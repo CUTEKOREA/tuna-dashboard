@@ -12,6 +12,7 @@ import ReeferMovement from './ReeferMovement';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import CountUp from 'react-countup';
 import TraderStatus from './TraderStatus';
+import CarrierUnloadingStatus from './CarrierUnloadingStatus';
 
 export default function LogisticsDashboard() {
   const [loading, setLoading] = useState(true);
@@ -64,7 +65,18 @@ export default function LogisticsDashboard() {
         </div>
       </header>
 
-      {/* ═══ Section 1: 가공 (Processing) ═══ */}
+      {/* ═══ Section 1: TRADER Status ═══ */}
+      <section style={{ marginBottom: '4rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+          <TrendingUp size={24} color="var(--color-info)" />
+          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>트레이더별 반입 물량 현황 (Trader Status)</h2>
+        </div>
+        <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
+          <TraderStatus />
+        </div>
+      </section>
+
+      {/* ═══ Section 2: 가공 (Processing) ═══ */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
           <Factory size={24} color="var(--color-success)" />
@@ -109,13 +121,16 @@ export default function LogisticsDashboard() {
         </div>
       </section>
 
-      {/* ═══ Section 2: 물류 (Logistics) ═══ */}
+      {/* ═══ Section 3: 물류 (Logistics) ═══ */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
           <Truck size={24} color="var(--color-info)" />
           <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>해상 운송 및 항만 인텔리전스</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
+            <CarrierUnloadingStatus />
+          </div>
           <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
             <ReeferMovement />
             <div style={{ background: 'var(--surface-2)', borderRadius: '6px', padding: '16px', marginTop: '1.5rem' }}>

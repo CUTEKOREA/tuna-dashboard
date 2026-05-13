@@ -125,8 +125,9 @@ export default function UnloadingStatus() {
     }
   };
 
-  const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...d }));
-  const activeVessels = vesselsList.filter(v => v.status.includes('진행중'));
+  const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...d }))
+    .sort((a, b) => (b.status.includes('하역중') ? 1 : 0) - (a.status.includes('하역중') ? 1 : 0));
+  const activeVessels = vesselsList.filter(v => v.status.includes('하역중'));
   const completedVessels = vesselsList.filter(v => v.status.includes('하역완료'));
   
   const totalReportedActive = activeVessels.reduce((sum, v) => sum + v.reportedTotal, 0);
@@ -190,7 +191,7 @@ export default function UnloadingStatus() {
         <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '16px' }}>전체 선박 하역 상태</h3>
         <div className={styles.fleetGrid}>
           {vesselsList.map(v => {
-            const isProgress = v.status.includes('진행중');
+            const isProgress = v.status.includes('하역중');
             const percent = Math.min((v.actualTotal / v.reportedTotal) * 100, 100);
             return (
               <div 
@@ -251,7 +252,7 @@ export default function UnloadingStatus() {
               <RechartsTooltip 
                 contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
                 itemStyle={{ color: '#e2e8f0' }}
-                formatter={(value: number, name: string) => [`${value.toLocaleString()} MT`, name]}
+                formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
               />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px' }} />
               <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
