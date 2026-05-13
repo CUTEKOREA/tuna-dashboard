@@ -193,6 +193,17 @@ export async function POST(req: Request) {
       if (match === '마늘') {
         kamisPrice = "7,800원 / kg (깐마늘 도매 기준)";
         mfdsRejection = "3건 (잔류농약 초과, 베트남/중국산 주로 적발)";
+        
+        // Dynamic HS Code correction based on input
+        if (item.includes('건조')) {
+          hsCode = '0712.90';
+          itemDesc = 'Dried garlic, whole, cut, sliced, broken or in powder';
+          tariffInfo = { base: '27%', fta: '0% (한중 FTA 특정 조건)' };
+        } else if (item.includes('냉동')) {
+          hsCode = '0710.80';
+          itemDesc = 'Frozen garlic';
+          tariffInfo = { base: '27%', fta: '24% (한중 FTA)' };
+        }
       } else if (match === '참치') {
         kamisPrice = "12,500원 / kg (가공용 원어 기준)";
         mfdsRejection = "0건 (최근 1년 무결점)";
