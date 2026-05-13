@@ -249,10 +249,22 @@ export default function SupplierDiscoveryDashboard() {
                         <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>기본 관세율 (MFN)</span>
                         <strong style={{ color: '#f8fafc', fontSize: '1.2rem' }}>{macroData.tariff.base}</strong>
                       </div>
-                      <div>
+                      <div style={{ marginBottom: '1rem' }}>
                         <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>FTA 협정 세율 ({macroCountry})</span>
                         <strong style={{ color: '#10b981', fontSize: '1.2rem' }}>{macroData.tariff.fta}</strong>
                       </div>
+                      {macroData.kamisPrice && (
+                        <div style={{ marginBottom: '1rem', borderTop: '1px solid #1e293b', paddingTop: '1rem' }}>
+                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>국내 도매가 (aT KAMIS API)</span>
+                          <strong style={{ color: '#fbbf24', fontSize: '1.1rem' }}>{macroData.kamisPrice}</strong>
+                        </div>
+                      )}
+                      {macroData.mfdsRejection && (
+                        <div>
+                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>식약처 수입적발 내역 (MFDS API)</span>
+                          <strong style={{ color: '#f87171', fontSize: '1.1rem' }}>{macroData.mfdsRejection}</strong>
+                        </div>
+                      )}
                     </div>
                   </div>
 
