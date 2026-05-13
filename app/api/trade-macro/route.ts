@@ -103,6 +103,65 @@ const tradeDatabase: Record<string, any> = {
   }
 };
 
+const countryCodeMap: Record<string, string> = {
+  '중국': 'CN',
+  '베트남': 'VN',
+  '태국': 'TH',
+  '인도네시아': 'ID',
+  '미국': 'US',
+  '일본': 'JP',
+  '인도': 'IN',
+  '노르웨이': 'NO',
+  '러시아': 'RU',
+  '에콰도르': 'EC'
+};
+
+async function fetchKCSVolume(hsCode: string, country: string, year: string) {
+  const apiKey = process.env.KCS_API_KEY;
+  if (!apiKey) return null;
+
+  const countryCode = countryCodeMap[country] || '';
+  const cleanHs = hsCode.replace(/\./g, '');
+  
+  const params = new URLSearchParams({
+    serviceKey: apiKey,
+    strtYymm: `${year}01`,
+    endYymm: `${year}12`,
+    hsSgn: cleanHs
+  });
+  
+  if (countryCode) {
+    params.append('statCd', countryCode);
+  }
+
+  const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList?${params.toString().replace(/%25/g, '%')}`;
+  
+  try {
+    const res = await fetch(url, { timeout: 8000 } as RequestInit);
+    if (!res.ok) return null;
+    const text = await res.text();
+    
+    const impMatch = text.match(/<item>[\s\S]*?<impWgt>(\d+)<\/impWgt>[\s\S]*?<year>총계<\/year>[\s\S]*?<\/item>/) || 
+                     text.match(/<item>[\s\S]*?<year>총계<\/year>[\s\S]*?<impWgt>(\d+)<\/impWgt>[\s\S]*?<\/item>/);
+                     
+    const expMatch = text.match(/<item>[\s\S]*?<expWgt>(\d+)<\/expWgt>[\s\S]*?<year>총계<\/year>[\s\S]*?<\/item>/) || 
+                     text.match(/<item>[\s\S]*?<year>총계<\/year>[\s\S]*?<expWgt>(\d+)<\/expWgt>[\s\S]*?<\/item>/);
+    
+    const importVolume = impMatch && impMatch[1] ? Math.round(parseInt(impMatch[1], 10) / 1000) : null;
+    const exportVolume = expMatch && expMatch[1] ? Math.round(parseInt(expMatch[1], 10) / 1000) : null;
+    
+    if (importVolume === null && exportVolume === null) return null;
+    
+    return {
+      year,
+      importVolume: importVolume || 0,
+      exportVolume: exportVolume || 0
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const { item, targetCountry } = await req.json();
@@ -111,49 +170,64 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Item and Target Country are required' }, { status: 400 });
     }
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
     const match = Object.keys(tradeDatabase).find(k => item.includes(k)) || null;
     
-    if (!match) {
-      return NextResponse.json({
-        hsCode: 'Auto-Matched',
-        itemDesc: `${item} (Automated Classification)`,
-        tariff: {
-          base: '8% (기본)',
-          fta: '조회 요망'
-        },
-        tradeVolume: [
-          { year: '2022', importVolume: 5000, exportVolume: 1000 },
-          { year: '2023', importVolume: 5200, exportVolume: 1100 },
-          { year: '2024', importVolume: 5600, exportVolume: 1250 },
-          { year: '2025', importVolume: 6100, exportVolume: 1400 },
-          { year: '2026', importVolume: 6500, exportVolume: 1550 }
-        ],
-        scorecard: buildScorecard(10, 10, 7,  8, 7, 5,  8, 7, 6) // Total: 68
-      });
+    let hsCode = 'Auto-Matched';
+    let itemDesc = `${item} (Automated Classification)`;
+    let tariffInfo = { base: '8% (기본)', fta: '조회 요망' };
+    let scorecard = buildScorecard(10, 10, 7,  8, 7, 5,  8, 7, 6);
+    let volumeBase = 5000;
+    let volGrowth = 1.1;
+
+    if (match) {
+      const data = tradeDatabase[match];
+      hsCode = data.hsCode;
+      itemDesc = data.itemDesc;
+      tariffInfo = data.tariffs[targetCountry] || { base: '조회 불가', fta: '조회 불가' };
+      scorecard = data.scorecard;
+      volumeBase = data.volumeBase;
+      volGrowth = data.volGrowth;
     }
 
-    const data = tradeDatabase[match];
-    const tariffInfo = data.tariffs[targetCountry] || { base: '조회 불가', fta: '조회 불가' };
-
-    const tradeVolume = [];
-    let currentVol = data.volumeBase;
+    // Attempt to fetch real KCS data for 2022-2026
+    let tradeVolume = [];
+    const kcsPromises = [];
     for (let year = 2022; year <= 2026; year++) {
-      tradeVolume.push({
-        year: year.toString(),
-        importVolume: Math.round(currentVol * (0.9 + Math.random() * 0.2)),
-        exportVolume: Math.round(currentVol * 0.1 * Math.random())
-      });
-      currentVol *= data.volGrowth;
+      kcsPromises.push(fetchKCSVolume(hsCode === 'Auto-Matched' ? '000000' : hsCode, targetCountry, year.toString()));
+    }
+    
+    const kcsResults = await Promise.all(kcsPromises);
+    const validKcsResults = kcsResults.filter(res => res !== null);
+
+    if (validKcsResults.length > 0) {
+      // Use real KCS data, fill missing years with 0
+      for (let year = 2022; year <= 2026; year++) {
+        const found = validKcsResults.find((r: any) => r.year === year.toString());
+        if (found) {
+          tradeVolume.push(found);
+        } else {
+          tradeVolume.push({ year: year.toString(), importVolume: 0, exportVolume: 0 });
+        }
+      }
+    } else {
+      // Fallback to mock logic if KCS fails or item is auto-matched without valid HS
+      let currentVol = volumeBase;
+      for (let year = 2022; year <= 2026; year++) {
+        tradeVolume.push({
+          year: year.toString(),
+          importVolume: Math.round(currentVol * (0.9 + Math.random() * 0.2)),
+          exportVolume: Math.round(currentVol * 0.1 * Math.random())
+        });
+        currentVol *= volGrowth;
+      }
     }
 
     return NextResponse.json({
-      hsCode: data.hsCode,
-      itemDesc: data.itemDesc,
+      hsCode,
+      itemDesc,
       tariff: tariffInfo,
       tradeVolume,
-      scorecard: data.scorecard
+      scorecard
     });
 
   } catch (error) {
