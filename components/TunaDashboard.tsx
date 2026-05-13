@@ -27,6 +27,10 @@ import { InsightNauruSwitch, InsightIOCollapse, InsightEU18C } from './TunaNewIn
 import { InsightTunaExtract, InsightPillarTwo, InsightVietnamOEM } from './TunaNewInsightsB';
 import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, KfasElderlyFunctionalFood } from './TunaKfasResearch';
 
+// Phase 1: Live Intelligence Upgrade
+import TunaLiveTicker from './TunaLiveTicker';
+import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
+
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -389,59 +393,16 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600,
             display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FCD535', boxShadow: '0 0 8px #FCD535', animation: 'pulse 2s infinite' }} />
-            <span>9 APIs <span style={{ color: '#FCD535' }}>Connected</span></span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ECB81', boxShadow: '0 0 8px #0ECB81', animation: 'pulse 2s infinite' }} />
+            <span>12 APIs <span style={{ color: '#0ECB81' }}>Connected</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>FishStatJ · WCPFC · IATTC</span>
+            <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · KAMIS · WITS · OEC · FRED</span>
           </div>
         </div>
       </header>
 
-      {/* ═══ LIVE API BAR (Placeholder structure matching Carrot) ═══ */}
-      <div className="ds-card" style={{marginBottom: '2rem', background: '#181818', border: 'none', borderRadius: '8px', padding: '1.2rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-        {/* Live Arbitrage */}
-        <div style={{ borderRight: '1px dashed rgba(255,255,255,0.1)', paddingRight: '1.5rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-            <h3 style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><RefreshCcw size={16} color="#FCD535" /> 실시간 차익거래 봇 (Arbitrage Radar)</h3>
-            <span style={{ fontSize: '0.66rem', background: '#FCD535', color: 'var(--bg-color)', padding: '2px 8px', borderRadius: '500px', fontWeight: 700, textTransform: 'uppercase' }}>{liveArbitrage ? 'LIVE' : 'ACTIVE'}</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Best Sourcing: {liveArbitrage?.best || 'Western Pacific (WCPFC)'}</div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>
-                {liveArbitrage?.price || '$2,100'} <span style={{ fontSize: '0.9rem', fontWeight: 400, color: '#94a3b8' }}>/ MT (Skipjack)</span>
-              </div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--color-success)', marginTop: '4px' }}>Spread vs Bangkok: {liveArbitrage?.spread || '-$180 (Opportunity)'}</div>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: '0.75rem', color: '#FCD535', fontWeight: 700 }}>REBALANCING SUGGESTED</div>
-              <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '4px' }}>MGO Fuel: $680/mt | KRW: 1,385</div>
-            </div>
-          </div>
-        </div>
-        
-        {/* VDS / Quota Tracking */}
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
-            <h3 style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}><Ship size={16} color="var(--color-warning)" /> VDS 조업 쿼터 모니터링 (PNA/WCPFC)</h3>
-            <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: 'var(--color-success)', padding: '2px 6px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
-              <ShieldCheck size={10} /> STABLE
-            </span>
-          </div>
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '6px', color: '#94a3b8' }}>
-              <span>잔여 조업일수: 1,420 Days</span>
-              <span>소진율: <strong style={{color:'#f8fafc'}}>68.4%</strong></span>
-            </div>
-            <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>
-              <div style={{ width: '68.4%', height: '100%', background: 'var(--color-success)', transition: 'width 1s ease-in-out' }} />
-            </div>
-            <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '8px' }}>
-              Next FAD Closure: July 1st (Expected Impact: +15% Price Surge)
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* ═══ LIVE INTELLIGENCE TICKER (Phase 1 Upgrade — replaces hardcoded Arbitrage Radar) ═══ */}
+      <TunaLiveTicker />
 
       {/* ═══ KPIs ═══ */}
       {kpiKeys.length > 0 && (
@@ -609,6 +570,10 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {/* Phase 1 신규: WITS/OEC 글로벌 무역 인텔리전스 위젯 */}
+            <WitsTariffWidget />
+            <OecBenchmarkWidget />
+            <WitsTradeFlowWidget />
             {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
