@@ -194,6 +194,7 @@ export default function PollockDashboard() {
               ))}
             </AreaChart>
           );
+        case "bar":
         case "composed":
           const hasRightAxisNew = widget.hasRightAxis || widget.lines?.some((l: any) => l.yAxisId === 'right') || widget.bars?.some((b: any) => b.yAxisId === 'right');
           return (

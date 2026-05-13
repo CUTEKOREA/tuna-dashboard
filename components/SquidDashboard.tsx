@@ -189,6 +189,7 @@ export default function SquidDashboard() {
               ))}
             </LineChart>
           );
+        case "bar":
         case "composed":
           return (
             <ComposedChart data={d}>

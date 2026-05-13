@@ -11,6 +11,7 @@ import ReeferFreightChart from './ReeferFreightChart';
 import ReeferMovement from './ReeferMovement';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import CountUp from 'react-countup';
+import TraderStatus from './TraderStatus';
 
 export default function LogisticsDashboard() {
   const [loading, setLoading] = useState(true);

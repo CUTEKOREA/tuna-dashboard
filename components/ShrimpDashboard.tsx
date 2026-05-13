@@ -212,6 +212,7 @@ export default function ShrimpDashboard() {
               ))}
             </AreaChart>
           );
+        case "bar":
         case "composed": {
           const hasDualAxis = widget.bars?.length > 0 && widget.lines?.length > 0;
           return (

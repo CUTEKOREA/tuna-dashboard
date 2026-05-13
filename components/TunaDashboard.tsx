@@ -173,6 +173,7 @@ const renderChart = (w: any) => {
             ))}
           </BarChart>
         );
+      case "bar":
       case "composed":
         const hasRightComposed = w.lines?.some((l: any) => l.yAxisId === 'right') || w.bars?.some((b: any) => b.yAxisId === 'right');
         return (
