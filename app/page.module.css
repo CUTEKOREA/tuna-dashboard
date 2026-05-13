@@ -1,0 +1,847 @@
+/* ==========================================================
+ * SILLA TRADING — INSTITUTIONAL PRECISION DESIGN SYSTEM
+ * Design Philosophy: Investment Banking Terminal (IB Dashboard)
+ * Reference: design.md (W3C DTCG Token Standard)
+ * ========================================================== */
+
+.container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 0.5rem;
+}
+
+.title {
+  font-size: var(--font-2xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+}
+
+.subtitle {
+  color: var(--text-tertiary);
+  font-size: var(--font-md);
+  margin-top: var(--space-1);
+  font-weight: var(--weight-normal);
+  letter-spacing: 0.02em;
+}
+
+/* ───────────────────────────────────────────
+ * LIVE BADGE — Minimal Status Indicator
+ * ─────────────────────────────────────────── */
+.liveBadge {
+  background: rgba(14, 203, 129, 0.08);
+  color: #0ECB81;
+  border: 1px solid rgba(14, 203, 129, 0.25);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-xs);
+  font-weight: var(--weight-semi);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  letter-spacing: 0.04em;
+}
+
+/* ───────────────────────────────────────────
+ * KPI METRICS GRID — High-Density Data Cards
+ * ─────────────────────────────────────────── */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+}
+
+/* ─── CARD: Flat Precision Unit ─── */
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--space-4) var(--space-5);
+  transition: border-color 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--card-hover-border);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-tertiary);
+  font-size: var(--font-xs);
+  font-weight: var(--weight-semi);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.iconBox {
+  background: var(--surface-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  display: flex;
+  border: 1px solid var(--card-border);
+}
+
+.cardValue {
+  font-size: var(--font-xl);
+  font-weight: var(--weight-bold);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.cardValue span {
+  font-size: var(--font-sm);
+  color: var(--text-tertiary);
+  font-weight: var(--weight-medium);
+}
+
+.trendRow {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+  margin-top: var(--space-2);
+  font-weight: var(--weight-semi);
+  gap: var(--space-1);
+}
+
+.trendDanger { color: var(--accent-danger); }
+.trendSuccess { color: var(--accent-secondary); }
+
+/* ───────────────────────────────────────────
+ * BANNER — Data Upload Area
+ * ─────────────────────────────────────────── */
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+}
+
+.bannerTitle {
+  font-size: var(--font-md);
+  font-weight: var(--weight-semi);
+}
+
+.bannerSubtitle {
+  font-size: var(--font-base);
+  color: var(--text-tertiary);
+  margin-top: var(--space-1);
+}
+
+.uploadBtn {
+  background: var(--accent-primary);
+  color: #fff;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-base);
+  font-weight: var(--weight-semi);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: background 0.2s ease;
+}
+
+.uploadBtn:hover {
+  background: #2563EB;
+}
+
+/* ───────────────────────────────────────────
+ * MAIN GRID — Chart + Insight Panel
+ * ─────────────────────────────────────────── */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.mainChartContainer {
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  min-height: 650px;
+  max-height: 650px;
+}
+
+.chartTitle {
+  font-size: var(--font-lg);
+  font-weight: var(--weight-semi);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+.insightSidebar {
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  min-height: 650px;
+  max-height: 650px;
+  overflow-y: auto;
+}
+
+.sidebarTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sidebarUpdate {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.insightList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.insightItem {
+  background: var(--table-th-bg);
+  border: 1px solid var(--panel-border);
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.insightItem:hover {
+  background: var(--hover-bg);
+  transform: translateX(4px);
+}
+
+.insightObjTitle {
+  font-size: 0.65rem;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.insightObjText {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* ───────────────────────────────────────────
+ * AI INSIGHT PANEL
+ * ─────────────────────────────────────────── */
+.aiInsightGrid {
+  background: var(--surface-2);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  color: var(--text-primary);
+}
+
+.aiInsightHeader {
+  color: var(--text-primary);
+  font-size: var(--font-lg);
+  font-weight: var(--weight-semi);
+  margin-bottom: var(--space-4);
+}
+
+.aiInsightCols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.aiColTitle {
+  font-size: var(--font-md);
+  font-weight: var(--weight-semi);
+  margin-bottom: var(--space-2);
+}
+
+.aiColText {
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ==========================================================
+ * SIDEBAR — Institutional Precision Navigation
+ * ========================================================== */
+.appWrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  width: 260px;
+  background: var(--surface-1);
+  border-right: 1px solid var(--card-border);
+  padding: var(--space-4) var(--space-3);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 10;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  transition: transform 0.25s ease;
+}
+
+.mainContent {
+  flex: 1;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+/* ─── MENU ITEM — Clean Navigation Button ─── */
+.menuItem {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--text-tertiary);
+  font-weight: var(--weight-medium);
+  font-size: var(--font-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: color 0.2s ease, background 0.2s ease;
+  border: 1px solid transparent;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.menuItem:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+/* ─── ACTIVE MENU — Left Border Indicator ─── */
+.menuItemActive {
+  background: rgba(252, 213, 53, 0.06);
+  color: #FCD535;
+  border: 1px solid rgba(252, 213, 53, 0.2);
+  font-weight: var(--weight-semi);
+  box-shadow: inset 3px 0 0 #FCD535;
+}
+
+/* Sidebar section title */
+.sidebarTitle {
+  font-size: var(--font-xs);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-weight: var(--weight-semi);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+  margin-top: var(--space-3);
+  padding-left: var(--space-3);
+}
+
+/* ==========================================================
+ * MOBILE HAMBURGER BUTTON
+ * ========================================================== */
+.mobileMenuBtn {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.mobileMenuBtn:active {
+  transform: scale(0.92);
+}
+
+/* Mobile overlay behind sidebar */
+.sidebarOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+
+/* ==========================================================
+ * LANDING OVERLAY & AUTH — Premium S-Grade Entry
+ * ========================================================== */
+.landingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: calc(100vh - 40px);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  background: radial-gradient(circle at 30% 50%, rgba(10, 15, 30, 0.6) 0%, rgba(5, 8, 15, 0.4) 100%);
+  backdrop-filter: blur(8px);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+}
+
+/* ─── LANDING HERO — Brand Messaging ─── */
+.landingHero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  max-width: 540px;
+}
+
+.landingBrand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.landingLogo {
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: var(--space-4);
+  align-self: flex-start;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.landingTitle {
+  font-size: 3.8rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.landingSubtitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--accent-primary);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.landingMessage {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  font-weight: 400;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  padding-left: var(--space-4);
+}
+
+.landingMessage p {
+  margin: 0 0 var(--space-2) 0;
+}
+
+.landingMessage p:last-child {
+  margin: 0;
+}
+
+/* ─── LOGIN PANEL — Solid Auth Card ─── */
+.loginPanel {
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-8);
+  text-align: center;
+  width: 380px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================
+ * LIGHT MODE OVERRIDES — Clean Institutional UI
+ * ========================================================== */
+
+[data-theme='light'] .sidebar {
+  background: var(--surface-1);
+  border-right: 1px solid var(--card-border);
+}
+
+[data-theme='light'] .sidebarTitle {
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  font-weight: var(--weight-semi);
+}
+
+[data-theme='light'] .menuItem {
+  color: var(--text-tertiary);
+}
+
+[data-theme='light'] .menuItem:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+[data-theme='light'] .menuItemActive {
+  background: var(--surface-2);
+  color: var(--accent-primary);
+  border: 1px solid var(--card-border);
+  font-weight: var(--weight-semi);
+  box-shadow: inset 3px 0 0 var(--accent-primary);
+}
+
+[data-theme='light'] .card,
+[data-theme='light'] .mainChartContainer,
+[data-theme='light'] .insightSidebar,
+[data-theme='light'] .banner {
+  box-shadow: var(--card-shadow);
+  border-color: var(--card-border);
+}
+
+[data-theme='light'] .card:hover {
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--card-hover-border);
+}
+
+[data-theme='light'] .liveBadge {
+  background: var(--surface-1);
+  color: var(--accent-danger);
+  border: 1px solid var(--card-border);
+}
+
+[data-theme='light'] .title {
+  color: var(--text-primary);
+}/* ==========================================================
+ * RESPONSIVE BREAKPOINTS — Comprehensive Mobile Support
+ * ========================================================== */
+
+/* ─── Tablet Landscape (≤1280px) ─── */
+@media (max-width: 1280px) {
+  .container {
+    padding: 1.5rem 1.75rem;
+  }
+  .cardValue {
+    font-size: 1.9rem;
+  }
+  .metricsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ─── Tablet (≤1024px) ─── */
+@media (max-width: 1024px) {
+  .metricsGrid { grid-template-columns: repeat(2, 1fr); }
+  .mainGrid { grid-template-columns: 1fr; }
+  .aiInsightCols { grid-template-columns: 1fr; gap: 1rem; }
+  .container {
+    padding: 1.25rem 1.5rem;
+    gap: 1.25rem;
+  }
+}
+
+/* ─── Mobile (≤768px) — Major Layout Shift ─── */
+@media (max-width: 768px) {
+  .mobileMenuBtn {
+    display: flex;
+  }
+  
+  .sidebarOverlay {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebarOverlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .appWrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 100;
+    transform: translateX(-100%);
+    border-right: 1px solid rgba(6, 182, 212, 0.15);
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 60px;
+  }
+
+  .sidebar.sidebarOpen {
+    transform: translateX(0);
+  }
+
+  .mainContent {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 52px; /* Space for mobile hamburger */
+  }
+
+  .container {
+    padding: 1rem 0.75rem;
+    gap: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .card {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .card:hover {
+    transform: none !important;
+  }
+
+  .cardHeader {
+    font-size: 0.7rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .cardValue {
+    font-size: 1.5rem;
+  }
+
+  .cardValue span {
+    font-size: 0.7rem;
+  }
+
+  .trendRow {
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+  }
+
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .uploadBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.55rem 1.25rem;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .mainChartContainer {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .insightSidebar {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .insightItem {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .aiInsightGrid {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .aiInsightCols {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .liveBadge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .title {
+    font-size: 1.15rem;
+  }
+
+  .landingOverlay {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .landingHero {
+    text-align: center;
+    align-items: center;
+  }
+
+  .landingLogo {
+    align-self: center;
+  }
+
+  .landingTitle {
+    font-size: 2.8rem;
+  }
+
+  .landingMessage {
+    border-left: none;
+    padding-left: 0;
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  .loginPanel {
+    width: 100%;
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* ─── Small Phone (≤480px) — Tight Layout ─── */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .card {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .cardHeader {
+    margin-bottom: 0;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .cardValue {
+    font-size: 1.4rem;
+    text-align: right;
+  }
+
+  .trendRow {
+    display: none;
+  }
+
+  .iconBox {
+    display: none;
+  }
+
+  .insightObjTitle {
+    font-size: 0.6rem;
+  }
+
+  .insightObjText {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .aiColTitle {
+    font-size: 0.82rem;
+  }
+
+  .aiColText {
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+
+  .chartTitle {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .changelogPanel {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .loginWrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    max-width: 95%;
+    top: 40px;
+  }
+  .loginPanel {
+    width: 100%;
+  }
+  .changelogPanel {
+    display: none;
+  }
+}

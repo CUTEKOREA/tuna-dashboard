@@ -1,0 +1,209 @@
+/* ==========================================================
+ * LIVE TICKER — Bloomberg-Grade Market Ribbon
+ * ========================================================== */
+
+.tickerWrap {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(2, 10, 20, 0.5);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.06);
+  border-top: 1px solid rgba(6, 182, 212, 0.06);
+  padding: 10px 0;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Fade edges for seamless scroll illusion */
+.tickerWrap::before,
+.tickerWrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.tickerWrap::before {
+  left: 120px;
+  background: linear-gradient(90deg, rgba(2, 10, 20, 0.6), transparent);
+}
+
+.tickerWrap::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(2, 10, 20, 0.6), transparent);
+}
+
+.tickerPrefix {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 10px;
+  z-index: 10;
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.tickerInner {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 40s linear infinite;
+  padding-left: 120px;
+}
+
+.tickerInner:hover {
+  animation-play-state: paused;
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 56px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-main);
+  font-family: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.02em;
+}
+
+.label {
+  color: var(--text-muted);
+  margin-right: 8px;
+  font-weight: 500;
+  font-size: 11.5px;
+}
+
+.value {
+  margin-right: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.up {
+  color: #34D399;
+  
+}
+
+.down {
+  color: #FB7185;
+  
+}
+
+.neutral {
+  color: var(--accent-warning);
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } 
+}
+
+/* ==========================================================
+ * LIGHT MODE OVERRIDES — Apple-Inspired Ticker
+ * ========================================================== */
+[data-theme='light'] .tickerWrap {
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme='light'] .tickerWrap::before {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), transparent);
+}
+
+[data-theme='light'] .tickerWrap::after {
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.9), transparent);
+}
+
+[data-theme='light'] .tickerPrefix {
+  background: #FFF0F0;
+  color: #FF3B30; /* Apple Red */
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.03);
+  border-right: 1px solid rgba(255, 59, 48, 0.15);
+}
+
+[data-theme='light'] .up {
+  color: #34C759; /* Apple Green */
+  text-shadow: none;
+}
+
+[data-theme='light'] .down {
+  color: #FF3B30; /* Apple Red */
+  text-shadow: none;
+}
+
+/* ─── Mobile Ticker ─── */
+@media (max-width: 768px) {
+  .tickerWrap {
+    padding: 7px 0;
+    margin-bottom: 12px;
+  }
+
+  .tickerPrefix {
+    padding: 0 10px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .tickerWrap::before {
+    left: 80px;
+    width: 40px;
+  }
+
+  .tickerWrap::after {
+    width: 40px;
+  }
+
+  .tickerInner {
+    padding-left: 80px;
+    animation-duration: 30s;
+  }
+
+  .tickerItem {
+    margin-right: 32px;
+    font-size: 11px;
+  }
+
+  .label {
+    font-size: 10px;
+    margin-right: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tickerPrefix {
+    padding: 0 8px;
+    font-size: 7px;
+  }
+
+  .tickerWrap::before {
+    left: 65px;
+  }
+
+  .tickerInner {
+    padding-left: 65px;
+    animation-duration: 25s;
+  }
+
+  .tickerItem {
+    margin-right: 24px;
+    font-size: 10px;
+  }
+
+  .label {
+    font-size: 9px;
+  }
+}

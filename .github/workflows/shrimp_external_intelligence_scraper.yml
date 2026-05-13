@@ -1,0 +1,45 @@
+name: Shrimp External Intelligence Scraper
+
+on:
+  schedule:
+    # 매월 1일 자정(UTC 기준)에 자동 실행
+    - cron: '0 0 1 * *'
+  workflow_dispatch: # 수동으로 원할 때 언제든 실행 가능하도록 설정
+
+jobs:
+  scrape-and-save:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # 리포지토리에 변경사항을 커밋하기 위한 권한
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # 안정적인 최신 Python 버전 사용
+          cache: 'pip' # 패키지 캐싱
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 requests feedparser
+
+      - name: Run Shrimp Scraper Script
+        run: python scripts/fetch_shrimp_external_intelligence.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/새우/External_*.md
+          # 변경사항이 있을 경우에만 커밋 및 푸시 진행
+          if git diff --staged --quiet; then
+            echo "No new external intelligence data to commit."
+          else
+            git commit -m "chore(shrimp): auto-fetch monthly external intelligence reports [skip ci]"
+            git push
+          fi

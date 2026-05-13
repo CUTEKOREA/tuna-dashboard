@@ -1,0 +1,121 @@
+Retrieving project…
+Deploying cutekorea-3280s-projects/tuna-dashboard
+Uploading [--------------------] (0.0B/314.5KB)
+Uploading [=====---------------] (80.9KB/314.5KB)
+Uploading [==========----------] (160.9KB/314.5KB)
+Uploading [===============-----] (240.9KB/314.5KB)
+Uploading [====================] (314.5KB/314.5KB)
+Inspect: https://vercel.com/cutekorea-3280s-projects/tuna-dashboard/AkdWhGos1w4ATXF8PxW3GkBbT861 [4s]
+Production: https://tuna-dashboard-h2s7icahk-cutekorea-3280s-projects.vercel.app [4s]
+https://tuna-dashboard-h2s7icahk-cutekorea-3280s-projects.vercel.appBuilding...
+Building...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 2 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Downloading 1722 deployment files...
+Building: Restored build cache from previous deployment (DV2i9RauXNftjAA6FdRfZ9pnjhuU)
+Building: Running "vercel build"
+Building: Vercel CLI 51.6.1
+Building: Installing dependencies...
+Building: up to date in 1s
+Building: 155 packages are looking for funding
+Building: run `npm fund` for details
+Building: Detected Next.js version: 16.2.1
+Building: Running "npm run build"
+Building: > tuna-dashboard@0.1.0 build
+Building: > next build
+Building: ⚠ `eslint` configuration in next.config.mjs is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+Building: ⚠ Invalid next.config.mjs options detected:
+Building: ⚠     Unrecognized key(s) in object: 'eslint'
+Building: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+Building: Applying modifyConfig from Vercel
+Building: ▲ Next.js 16.2.1 (Turbopack)
+Building: Creating an optimized production build ...
+Building: > Build error occurred
+Building: Error: Turbopack build failed with 4 errors:
+Building: ./components/CarrotDashboard.tsx:32:1
+Building: Module not found: Can't resolve '../data/당근/carrot_fao_w1_production.json'
+Building: 30 | import w9Data from '../data/carrot_w9_yield.json';
+Building: 31 | import w10Data from '../data/carrot_w10_volatility.json';
+Building: > 32 | import faoProd from '../data/당근/carrot_fao_w1_production.json';
+Building: | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Building: 33 | import faoTrade from '../data/당근/carrot_fao_w2_trade.json';
+Building: 34 | import faoPrice from '../data/당근/carrot_fao_w3_price.json';
+Building: 35 | import faoLoss from '../data/당근/carrot_fao_w4_loss.json';
+Building: Import traces:
+Building: Client Component Browser:
+Building: ./components/CarrotDashboard.tsx [Client Component Browser]
+Building: ./app/page.tsx [Client Component Browser]
+Building: ./app/page.tsx [Server Component]
+Building: Client Component SSR:
+Building: ./components/CarrotDashboard.tsx [Client Component SSR]
+Building: ./app/page.tsx [Client Component SSR]
+Building: ./app/page.tsx [Server Component]
+Building: https://nextjs.org/docs/messages/module-not-found
+Building: ./components/CarrotDashboard.tsx:33:1
+Building: Module not found: Can't resolve '../data/당근/carrot_fao_w2_trade.json'
+Building: 31 | import w10Data from '../data/carrot_w10_volatility.json';
+Building: 32 | import faoProd from '../data/당근/carrot_fao_w1_production.json';
+Building: > 33 | import faoTrade from '../data/당근/carrot_fao_w2_trade.json';
+Building: | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Building: 34 | import faoPrice from '../data/당근/carrot_fao_w3_price.json';
+Building: 35 | import faoLoss from '../data/당근/carrot_fao_w4_loss.json';
+Building: 36 | const CustomTooltip = ({ active, payload, label }: any) => {
+Building: Import traces:
+Building: Client Component Browser:
+Building: ./components/CarrotDashboard.tsx [Client Component Browser]
+Building: ./app/page.tsx [Client Component Browser]
+Building: ./app/page.tsx [Server Component]
+Building: Client Component SSR:
+Building: ./components/CarrotDashboard.tsx [Client Component SSR]
+Building: ./app/page.tsx [Client Component SSR]
+Building: ./app/page.tsx [Server Component]
+Building: https://nextjs.org/docs/messages/module-not-found
+Building: ./components/CarrotDashboard.tsx:34:1
+Building: Module not found: Can't resolve '../data/당근/carrot_fao_w3_price.json'
+Building: 32 | import faoProd from '../data/당근/carrot_fao_w1_production.json';
+Building: 33 | import faoTrade from '../data/당근/carrot_fao_w2_trade.json';
+Building: > 34 | import faoPrice from '../data/당근/carrot_fao_w3_price.json';
+Building: | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Building: 35 | import faoLoss from '../data/당근/carrot_fao_w4_loss.json';
+Building: 36 | const CustomTooltip = ({ active, payload, label }: any) => {
+Building: 37 |   if (active && payload?.length) {
+Building: Import traces:
+Building: Client Component Browser:
+Building: ./components/CarrotDashboard.tsx [Client Component Browser]
+Building: ./app/page.tsx [Client Component Browser]
+Building: ./app/page.tsx [Server Component]
+Building: Client Component SSR:
+Building: ./components/CarrotDashboard.tsx [Client Component SSR]
+Building: ./app/page.tsx [Client Component SSR]
+Building: ./app/page.tsx [Server Component]
+Building: https://nextjs.org/docs/messages/module-not-found
+Building: ./components/CarrotDashboard.tsx:35:1
+Building: Module not found: Can't resolve '../data/당근/carrot_fao_w4_loss.json'
+Building: 33 | import faoTrade from '../data/당근/carrot_fao_w2_trade.json';
+Building: 34 | import faoPrice from '../data/당근/carrot_fao_w3_price.json';
+Building: > 35 | import faoLoss from '../data/당근/carrot_fao_w4_loss.json';
+Building: | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Building: 36 | const CustomTooltip = ({ active, payload, label }: any) => {
+Building: 37 |   if (active && payload?.length) {
+Building: 38 |     return (
+Building: Import traces:
+Building: Client Component Browser:
+Building: ./components/CarrotDashboard.tsx [Client Component Browser]
+Building: ./app/page.tsx [Client Component Browser]
+Building: ./app/page.tsx [Server Component]
+Building: Client Component SSR:
+Building: ./components/CarrotDashboard.tsx [Client Component SSR]
+Building: ./app/page.tsx [Client Component SSR]
+Building: ./app/page.tsx [Server Component]
+Building: https://nextjs.org/docs/messages/module-not-found
+Building: at <unknown> (./components/CarrotDashboard.tsx:32:1)
+Building: at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+Building: at <unknown> (./components/CarrotDashboard.tsx:33:1)
+Building: at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+Building: at <unknown> (./components/CarrotDashboard.tsx:34:1)
+Building: at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+Building: at <unknown> (./components/CarrotDashboard.tsx:35:1)
+Building: at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+Building: Error: Command "npm run build" exited with 1
+Error: Command "npm run build" exited with 1

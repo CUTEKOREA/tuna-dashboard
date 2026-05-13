@@ -1,0 +1,40 @@
+name: Carrot Intelligence Hyper-Pipeline Sync
+
+on:
+  schedule:
+    - cron: '0 15 * * *' # 매일 자정 (KST 기준 00:00 = UTC 15:00)
+  workflow_dispatch: # 수동 실행 트리거
+
+jobs:
+  sync_carrot_data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run 9-Network Hyper-Pipeline (Carrot)
+      env:
+        KAMIS_API_KEY: ${{ secrets.KAMIS_API_KEY }}
+        KCS_API_KEY: ${{ secrets.KCS_API_KEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        python data/당근/carrot_real_data_collector.py
+
+    - name: Commit and Push Updated Data
+      run: |
+        git config --global user.name 'Antigravity-AI-Bot'
+        git config --global user.email 'ai@silla.co.kr'
+        git add data/당근/carrot_*.json
+        # 변경사항이 있을 경우에만 커밋 및 푸시
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🚀 [Automated] Carrot Intelligence 9-Network API Sync & Vercel Trigger" && git push)

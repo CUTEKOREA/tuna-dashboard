@@ -1,0 +1,7 @@
+Retrieving project…
+Deploying cutekorea-3280s-projects/tuna-dashboard
+Uploading [--------------------] (0.0B/391.8MB)
+Uploading [=====---------------] (98.0MB/391.8MB)
+Uploading [==========----------] (195.9MB/391.8MB)
+Uploading [===============-----] (293.8MB/391.8MB)
+Error: File size limit exceeded (100 MB)

@@ -1,0 +1,139 @@
+
+> tuna-dashboard@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.45.68:3000
+- Environments: .env.local
+✓ Ready in 136ms
+⚠ `eslint` configuration in next.config.mjs is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.mjs options detected: 
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+ GET /? 200 in 3.0s (next.js: 2.8s, application-code: 154ms)
+ GET /api/exchange 200 in 267ms (next.js: 121ms, application-code: 145ms)
+ GET /api/mgo 200 in 398ms (next.js: 113ms, application-code: 285ms)
+ GET /api/mgo 200 in 393ms (next.js: 102ms, application-code: 291ms)
+✓ Compiled in 30ms
+ GET /api/mgo 200 in 6ms (next.js: 1351µs, application-code: 5ms)
+ GET /api/mgo 200 in 5ms (next.js: 1888µs, application-code: 3ms)
+ GET /api/exchange 200 in 9ms (next.js: 6ms, application-code: 3ms)
+✓ Compiled in 29ms
+ GET /market 200 in 1054ms (next.js: 1021ms, application-code: 33ms)
+ GET /api/mgo 200 in 7ms (next.js: 3ms, application-code: 4ms)
+ GET /api/mgo 200 in 9ms (next.js: 6ms, application-code: 3ms)
+ GET /api/exchange 200 in 12ms (next.js: 10ms, application-code: 2ms)
+ GET /api/mgo 200 in 18ms (next.js: 13ms, application-code: 5ms)
+ GET /api/mgo 200 in 21ms (next.js: 17ms, application-code: 4ms)
+ GET /api/exchange 200 in 25ms (next.js: 22ms, application-code: 3ms)
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <InnerScrollAndFocusHandlerOld focusAndScrollRef={{scrollRef:null, ...}} cacheNode={{rsc:{...}, ...}}>
+      <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+        <LoadingBoundary name="market/" loading={null}>
+          <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/market" tree={[...]} params={{category:"..."}} cacheNode={{rsc:{...}, ...}} ...>
+                  <SegmentViewNode type="page" pagePath="[category]...">
+                    <SegmentTrieNode>
+                    <ClientPageRoot Component={function CategoryPage} serverProvidedParams={{...}}>
+                      <CategoryPage params={Promise} searchParams={Promise}>
+                        <Home>
+                          <div className="page-modul...">
+                            <AmbientBackground>
+                            <CommandPalette>
+                            <button>
+                            <aside className={"page-mod..."}>
+                              <div>
+                              <div>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <div>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <div>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <div>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <button>
+                              <div>
+                              <div>
+                              <button>
+                              <button>
++                             <button
++                               onClick={function handleLogout}
++                               style={{fontSize:"12px",padding:"10px 12px",backgroundColor:"rgba(239, ...",border:"1px solid ...", ...}}
++                             >
+-                             <div
+-                               style={{font-size:"12px",color:"var(--text...",text-align:"center",display:"flex",align-items:"center", ...}}
+-                             >
+                            ...
+                  ...
+                ...
+      ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at throwOnHydrationMismatch (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3318:56)
+    at beginWork (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6758:918)
+    at runWithFiberInDEV (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at performUnitOfWork (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9555:97)
+    at workLoopConcurrentByScheduler (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:58)
+    at renderRootConcurrent (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+    at button (<anonymous>)
+    at Home (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/_019nb1b._.js:4171:233)
+    at CategoryPage (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/_019nb1b._.js:6029:214)
+    at ClientPageRoot (file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/.next/dev/static/chunks/node_modules_042i0ep._.js:18746:50)
+ GET /fleet-strategy 200 in 30ms (next.js: 18ms, application-code: 12ms)
+✓ Compiled in 84ms
+ GET /api/mgo 200 in 14ms (next.js: 12ms, application-code: 2ms)
+ GET /api/mgo 200 in 5ms (next.js: 2ms, application-code: 2ms)
+ GET /api/exchange 200 in 16ms (next.js: 13ms, application-code: 2ms)
+ GET /api/mgo 200 in 15ms (next.js: 13ms, application-code: 2ms)
+ GET /api/mgo 200 in 7ms (next.js: 4ms, application-code: 2ms)
+ GET /api/exchange 200 in 3ms (next.js: 879µs, application-code: 1621µs)
+ GET /market 200 in 164ms (next.js: 7ms, application-code: 157ms)
+ GET /api/mgo 200 in 4ms (next.js: 1538µs, application-code: 3ms)
+ GET /api/mgo 200 in 7ms (next.js: 5ms, application-code: 1875µs)
+ GET /api/exchange 200 in 13ms (next.js: 10ms, application-code: 3ms)
+✓ Compiled in 50ms
+⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.45.68:3000
+- Environments: .env.local
+✓ Ready in 116ms
+⨯ Failed to load next.config.mjs, see more info here https://nextjs.org/docs/messages/next-config-error
+SyntaxError: Identifier '.default' has already been declared
+    at ignore-listed frames
+[?25h

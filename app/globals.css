@@ -1,0 +1,682 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Core Palette (Dark Mode Default) — Institutional Precision */
+  --bg-color: #0f172a; 
+  --panel-bg: rgba(15, 23, 42, 0.6);
+  --panel-border: rgba(255, 255, 255, 0.05);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  
+  /* Semantic Backgrounds (Opaque/Solid) */
+  --table-th-bg: rgba(15, 23, 42, 0.8);
+  --highlight-bg: rgba(56, 189, 248, 0.1); 
+  --hover-bg: rgba(56, 189, 248, 0.05);
+  --warning-bg: rgba(255, 164, 43, 0.08);
+
+  /* Precise Chart Palette — Flat */
+  --pastel-lemon: #1ed760;
+  --pastel-nimbus: #1f1f1f;
+  --pastel-rose: #f3727f;
+  --pastel-ice: #539df5;
+  --pastel-peach: #ffa42b;
+  --pastel-aqua: #1db954;
+  --pastel-orchid: #b3b3b3;
+
+  /* Accents — Strictly Semantic */
+  --accent-primary: #1ed760;
+  --accent-secondary: #ffffff;
+  --accent-warning: #ffa42b;
+  --accent-danger: #f3727f;
+  --accent-gold: #1ed760;
+  
+  /* Chart UI Colors */
+  --chart-grid: #252525;
+  --chart-axis: #b3b3b3;
+  --chart-tooltip-bg: #181818;
+  --chart-tooltip-border: #272727;
+
+
+
+  /* Card Design Tokens - Flat & Precise */
+  --card-bg: rgba(15, 23, 42, 0.6);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --card-radius: 12px;
+  --card-padding: 1.5rem;
+  --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --card-hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --card-hover-border: rgba(255, 255, 255, 0.15);
+  --card-gradient-overlay: none;
+
+  /* Typography Tokens */
+  --card-title-size: 1rem;
+  --card-title-color: #ffffff;
+  --card-subtitle-size: 0.875rem;
+  --card-subtitle-color: #b3b3b3;
+
+  /* Chart Unified Tokens */
+  --chart-height: 350px;
+  --chart-bar-radius: 2px;
+
+  /* ==========================================================
+   * DESIGN SYSTEM TOKENS (Phase 1)
+   * ========================================================== */
+
+  /* ===== TYPOGRAPHY SCALE (8단계 통일) ===== */
+  --font-xs:     0.6875rem;   /* 11px — 차트 tick, 캡션 전용 */
+  --font-sm:     0.75rem;     /* 12px — 보조 레이블, 범례 */
+  --font-base:   0.8125rem;   /* 13px — 본문 기본 */
+  --font-md:     0.875rem;    /* 14px — 카드 본문, 테이블 */
+  --font-lg:     1rem;        /* 16px — 카드 제목, 서브헤딩 */
+  --font-xl:     1.25rem;     /* 20px — 섹션 헤딩 */
+  --font-2xl:    1.5rem;      /* 24px — 페이지 제목 */
+  --font-3xl:    2rem;        /* 32px — 히어로 숫자 */
+
+  /* ===== FONT WEIGHT (4단계 통일) ===== */
+  --weight-normal:  400;
+  --weight-medium:  500;
+  --weight-semi:    600;
+  --weight-bold:    700;
+
+  /* ===== TEXT COLOR HIERARCHY (5계층) — Crisp & Luminous ===== */
+  --text-primary: #ffffff;                   /* 제목, 핵심 수치 — pure white */
+  --text-secondary: #b3b3b3;                   /* 본문 텍스트 */
+  --text-tertiary: #b3b3b3;                   /* 보조 설명 */
+  --text-dim: #7c7c7c; /* 비활성, 캡션 — Slate 500 */
+  --text-disabled: #4d4d4d; /* 플레이스홀더 — Slate 600 */
+
+  /* ===== SEMANTIC COLORS (통일) — Jewel Palette ===== */
+  --color-success: #1ed760;
+  --color-warning: #ffa42b;
+  --color-danger: #f3727f;
+  --color-info: #539df5;
+  --color-purple: #b3b3b3;
+
+  /* ===== SPACING SCALE (4px 기반) ===== */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+
+  /* ===== BORDER RADIUS (Crisp & Sharp) ===== */
+  --radius-sm:  2px;
+  --radius-md:  4px;
+  --radius-lg:  8px;
+
+  /* ===== SURFACE ELEVATION (Solid Depth) ===== */
+  --surface-0: #0f172a;            /* 최하단 바닥 */
+  --surface-1: rgba(15, 23, 42, 0.6);            /* 카드/패널 */
+  --surface-2: rgba(30, 41, 59, 0.7);            /* 떠있는 요소 (모달, 인사이트 카드) */
+  --surface-3: rgba(51, 65, 85, 0.8);            /* 최상위 (드롭다운, 툴팁) */
+}
+
+/* ==========================================================
+ * DESIGN SYSTEM UTILITY CLASSES (Phase 2)
+ * ========================================================== */
+
+/* ===== Card Unified System ===== */
+.ds-card {
+  background: var(--surface-1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.ds-card:hover {
+  background: var(--surface-2);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-2px);
+}
+
+/* Insight card variant — slightly raised */
+.ds-card-insight {
+  background: var(--surface-2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.ds-card-insight:hover {
+  background: var(--surface-3);
+  border-color: var(--card-hover-border);
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-2px);
+}
+
+/* ===== Typography Hierarchy ===== */
+.ds-heading-page {
+  font-size: var(--font-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.ds-heading-section {
+  font-size: var(--font-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.ds-heading-card {
+  font-size: var(--font-lg);
+  font-weight: var(--weight-semi);
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.ds-subheading {
+  font-size: var(--font-md);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.ds-body {
+  font-size: var(--font-md);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+.ds-body-sm {
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.ds-caption {
+  font-size: var(--font-sm);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+.ds-label {
+  font-size: var(--font-xs);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--weight-medium);
+}
+
+/* ===== KPI Number (Tabular Numerals) ===== */
+.ds-kpi {
+  font-family: 'Inter', monospace;
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.ds-kpi-xl {
+  font-size: var(--font-3xl);
+}
+.ds-kpi-lg {
+  font-size: var(--font-2xl);
+}
+.ds-kpi-md {
+  font-size: var(--font-xl);
+}
+.ds-kpi-sm {
+  font-size: var(--font-lg);
+}
+
+/* ===== Status Badge ===== */
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-xs);
+  font-weight: var(--weight-semi);
+  line-height: 1.5;
+}
+.ds-badge-success {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--color-success);
+}
+.ds-badge-warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-warning);
+}
+.ds-badge-danger {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-danger);
+}
+.ds-badge-info {
+  background: rgba(6, 182, 212, 0.12);
+  color: var(--color-info);
+}
+
+/* ===== Insight Situation / Takeaway boxes ===== */
+.ds-situation-box {
+  background: rgba(6, 182, 212, 0.05);
+  border-left: 3px solid var(--color-info);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+}
+.ds-takeaway-box {
+  background: rgba(16, 185, 129, 0.06);
+  border-left: 3px solid var(--color-success);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ===== Section Divider ===== */
+.ds-section-divider {
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: var(--space-6) 0;
+}
+
+/* ===== Grid Layouts ===== */
+.ds-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  align-items: stretch;
+}
+.ds-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  align-items: stretch;
+}
+@media (max-width: 768px) {
+  .ds-grid-2, .ds-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+:root[data-theme='light'] {
+  --bg-color: #F8F7F4;
+  --panel-bg: #FFFFFF;
+  --panel-border: rgba(0, 0, 0, 0.06);
+  --text-main: #1A1A1A;
+  --text-muted: #6B7280;
+  
+  --table-th-bg: #F9F8F5;
+  --highlight-bg: #EEF2FF; 
+  --hover-bg: #F5F3EE; 
+  --warning-bg: #FFFBEB;
+
+  --pastel-lemon: #FCEABB;
+  --pastel-nimbus: rgba(0, 0, 0, 0.03);
+  --pastel-rose: #FFDDE1;
+  --pastel-ice: #DBEAFE;
+  --pastel-peach: #FAD0C4;
+  --pastel-aqua: #D1FAE5;
+  --pastel-orchid: #E0C3FC;
+
+  --accent-primary: #2563EB;   
+  --accent-secondary: #059669; 
+  --accent-warning: #D97706;   
+  --accent-danger: #DC2626;    
+  
+  --chart-grid: rgba(0, 0, 0, 0.05);
+  --chart-axis: #6B7280;
+  --chart-tooltip-bg: rgba(255, 255, 255, 0.96);
+  --chart-tooltip-border: rgba(0, 0, 0, 0.08);
+
+  /* Card Design Tokens (Light) — Premium Depth */
+  --card-bg: #FFFFFF;
+  --card-border: rgba(0, 0, 0, 0.05);
+  --card-radius: 16px;
+  --card-padding: 1.5rem;
+  --card-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.02);
+  --card-hover-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 20px 60px rgba(0, 0, 0, 0.04);
+  --card-hover-border: rgba(0, 0, 0, 0.10);
+  --card-gradient-overlay: none;
+  --card-title-size: 1.1rem;
+  --card-title-color: #1A1A1A;
+  --card-subtitle-size: 0.85rem;
+  --card-subtitle-color: rgba(60, 60, 67, 0.6);
+  --chart-height: 350px;
+  --chart-bar-radius: 6px;
+
+  /* ===== TEXT COLOR HIERARCHY OVERRIDES (Light Mode) ===== */
+  --text-primary:   #1A1A1A;                   
+  --text-secondary: #6B7280;                   
+  --text-tertiary:  #9CA3AF;                   
+  --text-dim:       #9CA3AF;
+  --text-disabled:  #D1D5DB;
+
+  /* ===== SEMANTIC COLORS OVERRIDES (Light Mode) ===== */
+  --color-success:  #059669;
+  --color-warning:  #D97706;
+  --color-danger:   #DC2626;
+  --color-info:     #2563EB;
+  --color-purple:   #7C3AED;
+
+  /* ===== SURFACE ELEVATION OVERRIDES (Light Mode) ===== */
+  --surface-0:  #F8F7F4;            
+  --surface-1:  #FFFFFF;         
+  --surface-2:  #F1F5F9;         
+  --surface-3:  #E2E8F0;
+}
+
+/* Decorative keyframes removed for institutional precision */
+
+:root[data-theme='crisis'] {
+  --bg-color: #1a0808; 
+  --panel-bg: #290d0d; 
+  --panel-border: rgba(239, 68, 68, 0.4);
+  --text-main: #fee2e2;
+  --text-muted: #fca5a5;
+  
+  --table-th-bg: rgba(239, 68, 68, 0.1);
+  --highlight-bg: rgba(239, 68, 68, 0.15); 
+  --hover-bg: rgba(239, 68, 68, 0.08);
+  --warning-bg: rgba(245, 158, 11, 0.15);
+
+  --pastel-lemon: #FCD34D; 
+  --pastel-nimbus: rgba(239, 68, 68, 0.1);
+  --pastel-rose: #ef4444; 
+  --pastel-ice: #f87171; 
+  --pastel-peach: #fca5a5; 
+  --pastel-aqua: #b91c1c; 
+  --pastel-orchid: #991b1b; 
+
+  --accent-primary: #ef4444;
+  --accent-secondary: #f87171;
+  --accent-warning: #facc15;
+  --accent-danger: #dc2626;
+
+  --chart-grid: rgba(239, 68, 68, 0.15);
+  --chart-axis: #fca5a5;
+  --chart-tooltip-bg: rgba(41, 13, 13, 0.95);
+  --chart-tooltip-border: rgba(239, 68, 68, 0.5);
+
+  /* Card Design Tokens (Crisis) */
+  --card-bg: rgba(41, 13, 13, 0.5);
+  --card-border: rgba(239, 68, 68, 0.2);
+  --card-radius: 16px;
+  --card-padding: 1.5rem;
+  --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(239, 68, 68, 0.1);
+  --card-hover-shadow: 0 25px 50px rgba(41, 0, 0, 0.7);
+  --card-hover-border: rgba(239, 68, 68, 0.5);
+  --card-gradient-overlay: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, transparent 100%);
+  --card-title-size: 1.1rem;
+  --card-title-color: #f87171;
+  --card-subtitle-size: 0.85rem;
+  --card-subtitle-color: rgba(252, 165, 165, 0.7);
+  --chart-height: 350px;
+  --chart-bar-radius: 6px;
+}
+
+@keyframes crisis-pulse {
+  0%, 100% { box-shadow: inset 0 0 0 0 rgba(239, 68, 68, 0); }
+  50% { box-shadow: inset 0 0 120px 20px rgba(239, 68, 68, 0.15); }
+}
+
+@keyframes button-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+}
+
+:root[data-theme='crisis'] body {
+  animation: crisis-pulse 2s infinite ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-color);
+  background-image: radial-gradient(circle at 50% -20%, #1e293b, #0f172a 80%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: 'Sora', 'Plus Jakarta Sans', 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Decorative background removed for institutional precision */
+
+:root[data-theme='light'] body {
+  background: #F8F7F4;
+  animation: none;
+}
+
+:root[data-theme='light'] body::before,
+:root[data-theme='light'] body::after {
+  display: none;
+}
+
+h1, h2, h3, p {
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(56, 189, 248, 0.25);
+  color: #F8FAFC;
+}
+
+/* Scrollbar — GDWEB-grade invisible scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.3);
+}
+
+/* -------------------------------------
+ * Chart Styles (Flat)
+ * ------------------------------------- */
+:root .recharts-line-curve, 
+:root .recharts-area-area,
+:root .recharts-pie-sector path {
+  filter: none;
+}
+
+:root .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: var(--surface-3) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  color: var(--text-primary) !important;
+}
+
+:root[data-theme='light'] .recharts-line-curve, 
+:root[data-theme='light'] .recharts-area-area,
+:root[data-theme='light'] .recharts-pie-sector path {
+  filter: none;
+}
+
+:root[data-theme='light'] .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: var(--surface-1) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ==========================================================
+ * GLOBAL MOBILE RESPONSIVE IMPROVEMENTS
+ * ========================================================== */
+
+/* Prevent text size inflation on mobile */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Safe area for notched devices (iPhone etc.) */
+body {
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+/* Global overflow protection */
+*, *::before, *::after {
+  max-width: 100%;
+}
+
+/* Allow flex/grid items to shrink below content */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Touch-friendly minimum tap target */
+@media (max-width: 768px) {
+  button, a, [role="button"] {
+    min-height: 36px;
+  }
+
+  /* Hide scrollbar on mobile for cleaner look */
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.1);
+  }
+
+  /* Ensure charts and tables don't overflow */
+  .recharts-wrapper {
+    max-width: 100% !important;
+    overflow: hidden;
+  }
+
+  .recharts-surface {
+    max-width: 100% !important;
+  }
+
+  /* Prevent long text from breaking layouts */
+  p, li, span, div, td, th {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: keep-all;
+  }
+
+  /* ds-card compact on mobile */
+  .ds-card, .ds-card-insight {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  /* Tables horizontal scroll on mobile */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* KPI numbers scale down */
+  .ds-kpi-xl {
+    font-size: var(--font-2xl);
+  }
+  .ds-kpi-lg {
+    font-size: var(--font-xl);
+  }
+
+  /* Viewport meta enforcement via CSS */
+  .recharts-responsive-container {
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even thinner scrollbars */
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  /* Even tighter padding */
+  .ds-card, .ds-card-insight {
+    padding: var(--space-3);
+  }
+}
+
+/* ─── Leaflet Tooltip Dark Theme Override ─── */
+.leaflet-tooltip {
+  background: rgba(13, 17, 23, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 8px !important;
+  color: #f8fafc !important;
+  font-family: var(--font-sans), system-ui, sans-serif !important;
+  font-size: 12px !important;
+  padding: 10px 14px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  max-width: 280px !important;
+  white-space: normal !important;
+}
+
+.leaflet-tooltip-top::before {
+  border-top-color: rgba(13, 17, 23, 0.95) !important;
+}
+.leaflet-tooltip-bottom::before {
+  border-bottom-color: rgba(13, 17, 23, 0.95) !important;
+}
+.leaflet-tooltip-left::before {
+  border-left-color: rgba(13, 17, 23, 0.95) !important;
+}
+.leaflet-tooltip-right::before {
+  border-right-color: rgba(13, 17, 23, 0.95) !important;
+}
+
+
+/* ===== SPOTIFY DESIGN SYSTEM INJECTIONS ===== */
+button, [role="button"] {
+  border-radius: 500px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 800 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Make Circular controls (like close buttons with X) circular */
+button svg {
+  border-radius: 50% !important;
+}
+
+/* Ensure ACHROMATIC UI for standard elements (unless they are data/charts) */
+.ds-card, .ds-card-insight {
+  background: var(--surface-1) !important;
+  background-color: var(--surface-1) !important;
+  color: #ffffff !important;
+}
+
+/* Dense typography */
+h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+}
+

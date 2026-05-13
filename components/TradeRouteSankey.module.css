@@ -1,0 +1,276 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls {
+  display: flex;
+  gap: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.label {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider {
+  width: 100%;
+  accent-color: #f43f5e;
+  cursor: pointer;
+}
+
+.toggleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.toggleSwitch {
+  width: 40px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.toggleSwitch.active {
+  background: #3b82f6;
+}
+
+.toggleHandle {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s;
+}
+
+.toggleSwitch.active .toggleHandle {
+  left: 22px;
+}
+
+.impactBox {
+  flex: 1.5;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.impactBox.danger {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.impactTitle {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.impactValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.impactValue.danger {
+  color: #ef4444;
+}
+
+/* Sankey Diagram Area */
+.sankeyArea {
+  position: relative;
+  height: 380px;
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.svgLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pathLine {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke: rgba(59, 130, 246, 0.3);
+  stroke-width: 4px;
+  transition: all 0.5s ease-in-out;
+}
+
+.pathLine.active {
+  stroke: rgba(59, 130, 246, 0.7);
+  animation: dashFlow 20s linear infinite;
+  stroke-dasharray: 10 10;
+}
+
+.pathLine.danger {
+  stroke: rgba(239, 68, 68, 0.8);
+  animation: dashFlowFast 5s linear infinite;
+  stroke-dasharray: 8 8;
+  stroke-width: 6px;
+}
+
+.pathLine.success {
+  stroke: rgba(16, 185, 129, 0.6);
+  animation: dashFlow 20s linear infinite;
+  stroke-dasharray: 10 10;
+  stroke-width: 6px;
+}
+
+.pathLine.thick {
+  stroke-width: 12px;
+}
+
+.pathLine.medium {
+  stroke-width: 8px;
+}
+
+.pathLine.thin {
+  stroke-width: 4px;
+}
+
+@keyframes dashFlow {
+  to { stroke-dashoffset: -1000; }
+}
+
+@keyframes dashFlowFast {
+  to { stroke-dashoffset: -1000; }
+}
+
+/* Node Columns */
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 220px;
+  z-index: 2;
+  position: relative;
+}
+
+.colHeader {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.node {
+  background: #0F172A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.node:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-2px);
+}
+
+.nodeName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nodeSub {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.nodeBadge {
+  margin-top: 8px;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.nodeBadge.danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.nodeBadge.neutral {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+.aiInsight {
+  margin-top: 16px;
+  background: rgba(56, 189, 248, 0.05);
+  border-left: 3px solid #38bdf8;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 12px;
+  color: #e2e8f0;
+  line-height: 1.5;
+}

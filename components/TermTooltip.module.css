@@ -1,0 +1,71 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.term {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.container:hover .term {
+  color: #38bdf8;
+}
+
+.icon {
+  color: #38bdf8;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.container:hover .icon {
+  opacity: 1;
+  color: #fbbf24;
+}
+
+.tooltip {
+  position: fixed;
+  width: 250px;
+  max-width: calc(100vw - 24px);
+  background: #0F172A;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #e2e8f0;
+  line-height: 1.5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  font-weight: 400;
+  white-space: normal;
+  word-break: keep-all;
+  text-align: left;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent rgba(56, 189, 248, 0.5) transparent;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

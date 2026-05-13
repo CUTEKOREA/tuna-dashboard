@@ -1,0 +1,104 @@
+.container {
+  margin-top: 3rem;
+  background: var(--table-th-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--panel-bg);
+  /* Provide smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.85rem;
+  text-align: center;
+  /* Ensure min width for many columns */
+  min-width: 1400px; 
+}
+
+.table th, .table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--panel-border);
+  border-right: 1px solid var(--panel-border);
+  white-space: nowrap;
+}
+
+.table th:last-child, .table td:last-child {
+  border-right: none;
+}
+
+.table thead th {
+  background: var(--table-th-bg);
+  color: var(--text-muted);
+  font-weight: 700;
+  top: 0;
+  z-index: 10;
+  position: sticky;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover td {
+  background: var(--hover-bg);
+}
+
+/* Ensure header of sticky column stays above the rest during both horizontal and vertical scrolls */
+.stickyHeader {
+  position: sticky;
+  left: 0;
+  z-index: 30;
+  text-align: left;
+  font-weight: 600;
+  background: var(--table-th-bg);
+  box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1);
+  border-right: 1px solid var(--panel-border) !important;
+}
+
+/* Specific class for sticking the first td column */
+.stickyCell {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  text-align: left;
+  font-weight: 600;
+  background: var(--panel-bg);
+  box-shadow: 2px 0 5px -2px rgba(0,0,0,0.1);
+  border-right: 1px solid var(--panel-border) !important;
+}
+
+.valueCell {
+  color: var(--text-main);
+}
+
+.emptyCell {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.portHeader {
+  text-align: left;
+  font-size: 1rem;
+  color: var(--text-main);
+  background: var(--highlight-bg);
+}

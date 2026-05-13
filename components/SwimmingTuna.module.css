@@ -1,0 +1,58 @@
+.tunaWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1200px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transform-origin: center center;
+  transform: translate3d(-600px, -600px, 0);
+}
+
+.tunaImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Now using a real transparent PNG, no mix-blend-mode needed! */
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35)) contrast(1.2) brightness(1.1);
+  opacity: 1;
+  /* Origin at 15% from left, which aligns nicely with the tuna's nose for realistic tail flapping */
+  transform-origin: 15% 50%;
+  will-change: transform;
+}
+
+.tunaGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(14, 165, 233, 0.2) 0%,
+    rgba(56, 189, 248, 0.06) 40%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  mix-blend-mode: color-dodge;
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(15px);
+}
+
+.tunaDistortion {
+  position: absolute;
+  /* Slightly larger than the tuna to account for waves */
+  top: 15%;
+  bottom: 15%;
+  left: 15%;
+  right: 15%;
+  border-radius: 50%; /* Elliptical distortion bubble */
+  z-index: -2;
+  pointer-events: none;
+  /* Applies the SVG displacement map to the webpage behind it */
+}

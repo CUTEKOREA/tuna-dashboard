@@ -1,0 +1,57 @@
+.radarContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1000; /* Usually leaflet uses 400-500, but we can overlay */
+  overflow: hidden;
+}
+
+.radarContainer::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150vw;
+  height: 150vw;
+  margin-top: -75vw;
+  margin-left: -75vw;
+  background: conic-gradient(
+    from 0deg,
+    rgba(16, 185, 129, 0) 0%,
+    rgba(16, 185, 129, 0) 70%,
+    rgba(16, 185, 129, 0.1) 80%,
+    rgba(16, 185, 129, 0.4) 100%
+  );
+  border-radius: 50%;
+  animation: scan 6s linear infinite;
+  transform-origin: center center;
+}
+
+/* Add some subtle concentric grid rings */
+.radarContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vw;
+  margin-top: -50vw;
+  margin-left: -50vw;
+  border-radius: 50%;
+  background-image: radial-gradient(circle, rgba(16, 185, 129, 0.15) 1px, transparent 1px), radial-gradient(circle, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: 0 0, 40px 40px;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

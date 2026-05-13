@@ -1,0 +1,68 @@
+[2026-05-05 08:46:13] ============================================================
+[2026-05-05 08:46:13] 코코아 대시보드 데이터 파이프라인 시작
+[2026-05-05 08:46:13] 모드: DRY-RUN (변경 없음)
+[2026-05-05 08:46:13] 대상 위젯: ALL
+[2026-05-05 08:46:13] W1: FAOSTAT QCL 생산량 추출 시작
+[2026-05-05 08:46:13] W1: 7개 연도 데이터 추출 완료
+[2026-05-05 08:46:13] W3: ICCO 가공 허브 점유율 추출
+[2026-05-05 08:46:13] W5: FAOSTAT TM 한국 수입 Sankey 추출 시작
+[2026-05-05 08:46:15] W5: 상위 5개국 Sankey 데이터 생성 완료
+[2026-05-05 08:46:15] W7: FAOSTAT PP/TM 공급처 스캐터 추출 시작
+[2026-05-05 08:46:16] W7: 5개국 공급처 데이터 추출 완료
+[2026-05-05 08:46:16] W15: USDA FAS 가나 디스트레스 데이터 추출
+[2026-05-05 08:46:16] W15: USDA FAS에서 3개 그라인딩 라인 발견
+[2026-05-05 08:46:16] DRY-RUN: JSON 미저장. 미리보기:
+[2026-05-05 08:46:16]   w1_production_climate: [{"year": "2018", "IvoryCoast": 2113189, "Ghana": 904700, "CSSVD_Infection_Rate": 15, "source": "FAOSTAT QCL 2018 (CI:A, GH:X)"}, {"year": "2019", "IvoryCoast": 2235043, "Ghana": 811700, "CSSVD_Infect...
+[2026-05-05 08:46:16]   w10_eudr_compliance: [{"origin": "코트디부아르", "CMS_Registration": 65, "Polygon_Mapped": 50, "Export_Block_Risk": 40}, {"origin": "가나 (일반 지역)", "CMS_Registration": 55, "Polygon_Mapped": 40, "Export_Block_Risk": 50, "_note": "...
+[2026-05-05 08:46:16]   w11_farmer_decoupling: [{"quarter": "23-Q1", "globalPrice": 2700, "farmerPrice": 2500, "FX_Cedi_USD": 10.5}, {"quarter": "23-Q2", "globalPrice": 3100, "farmerPrice": 2500, "FX_Cedi_USD": 11.2}, {"quarter": "23-Q3", "globalP...
+[2026-05-05 08:46:16]   w12_green_premium: [{"route": "아프리카 직조달", "BaseCost": 100, "Logistics": 20, "EudrTax": 5}, {"route": "아시아 허브 경유", "BaseCost": 100, "Logistics": 15, "EudrTax": 10}, {"route": "유럽 허브 경유", "BaseCost": 100, "Logistics": 30,...
+[2026-05-05 08:46:16]   w13_dual_trap: [{"country": "가나", "eudrRisk": 90, "cadmiumLevel": 0.3, "volume": 120, "fill": "#ef4444"}, {"country": "코트디부아르", "eudrRisk": 80, "cadmiumLevel": 0.4, "volume": 180, "fill": "#f97316"}, {"country": "에콰...
+[2026-05-05 08:46:16]   w14_mna_radar: [{"target": "Target A (인니 서자바)", "capex": 85, "yield": 65, "capacity": 120, "fill": "#10b981", "_confidence": "SCENARIO"}, {"target": "Target B (인니 수마트라)", "capex": 75, "yield": 80, "capacity": 80, "f...
+[2026-05-05 08:46:16]   w15_ghana_distressed: [{"year": "MY2021", "Capacity": 505, "Utilization": 350, "ExportRatio": 20}, {"year": "MY2022", "Capacity": 505, "Utilization": 280, "ExportRatio": 22}, {"year": "MY2023", "Capacity": 505, "Utilizatio...
+[2026-05-05 08:46:16]   w16_cbe_rollup: [{"category": "100% 코코아 (B2C)", "EBITDA": 8, "CostBurden": 85, "Agility": 20}, {"category": "팜유 기반 CBE (B2C/B2B)", "EBITDA": 18, "CostBurden": 50, "Agility": 60}, {"category": "시어버터 프리미엄 CBE (B2B)", "...
+[2026-05-05 08:46:16]   w17_fta_triangle: {"nodes": [{"name": "가나/에콰도르 (원두)"}, {"name": "인도네시아 (자사 가공)"}, {"name": "한국 (0%관세 반입)"}, {"name": "일본 (프리미엄)"}, {"name": "중국 (급성장)"}, {"name": "동남아 (역수출)"}], "links": [{"source": 0, "target": 1, "val...
+[2026-05-05 08:46:16]   w18_asia_premium: [{"country": "한국", "PremiumShare": 35, "CBERatio": 15, "ImportCost": 100, "fill": "#10b981"}, {"country": "일본", "PremiumShare": 18, "CBERatio": 45, "ImportCost": 130, "fill": "#ef4444"}, {"country": "...
+[2026-05-05 08:46:16]   w19_kbeauty_bio: [{"channel": "식음료 B2B", "Margin": 8, "Growth": 3, "Polyphenol_mgGAE_g": 12.5, "Antioxidant_DPPH": 35}, {"channel": "건기식", "Margin": 38, "Growth": 18, "Polyphenol_mgGAE_g": 45.2, "Antioxidant_DPPH": 62...
+[2026-05-05 08:46:16]   w3_processing_hubs: [{"name": "Netherlands", "value": 33, "fill": "#38bdf8"}, {"name": "Côte d'Ivoire", "value": 14, "fill": "#f97316"}, {"name": "Indonesia", "value": 13, "fill": "#10b981"}, {"name": "Germany", "value":...
+[2026-05-05 08:46:16]   w5_sankey_nexus: {"_source": "FAOSTAT TM_cocoa.csv, Korea Import quantity 2024", "_updated": "2026-05-05", "nodes": [{"name": "Netherlands (Kingdom of the) (5,277t)"}, {"name": "Ghana (4,188t)"}, {"name": "Malaysia (3...
+[2026-05-05 08:46:16]   w7_sourcing_scatter: [{"country": "가나", "cost": 1800, "price": 0, "volume": 4188, "fill": "#ef4444"}, {"country": "에콰도르", "cost": 2200, "price": 5601.5, "volume": 1409, "fill": "#10b981"}, {"country": "페루", "cost": 2400, ...
+[2026-05-05 08:46:16]   w15_ghana_distressed: [{"year": "MY2021", "Capacity": 505, "Utilization": 350, "ExportRatio": 20}, {"year": "MY2022", "Capacity": 505, "Utilization": 280, "ExportRatio": 22}, {"year": "MY2023", "Capacity": 505, "Utilizatio...
+[2026-05-05 08:46:16] 업데이트된 위젯: w1, w3, w5, w7, w15
+[2026-05-05 08:46:16] 파이프라인 완료
+[2026-05-05 08:46:16] ============================================================
+[2026-05-05 08:55:39] ============================================================
+[2026-05-05 08:55:39] 코코아 대시보드 데이터 파이프라인 시작
+[2026-05-05 08:55:39] 모드: LIVE
+[2026-05-05 08:55:39] 대상 위젯: ALL
+[2026-05-05 08:55:39] W1: FAOSTAT QCL 생산량 추출 시작
+[2026-05-05 08:55:39] W1: 7개 연도 데이터 추출 완료
+[2026-05-05 08:55:39] W3: ICCO 가공 허브 점유율 추출
+[2026-05-05 08:55:39] W5: FAOSTAT TM 한국 수입 Sankey 추출 시작
+[2026-05-05 08:55:40] W5: 상위 5개국 Sankey 데이터 생성 완료
+[2026-05-05 08:55:40] W7: FAOSTAT PP/TM 공급처 스캐터 추출 시작
+[2026-05-05 08:55:41] W7: 5개국 공급처 데이터 추출 완료
+[2026-05-05 08:55:41] W15: USDA FAS 가나 디스트레스 데이터 추출
+[2026-05-05 08:55:41] W15: USDA FAS에서 3개 그라인딩 라인 발견
+[2026-05-05 08:55:41] 백업 저장: cocoa_market_data.backup_20260505_085541.json
+[2026-05-05 08:55:41] ✅ JSON 저장 완료: cocoa_market_data.json
+[2026-05-05 08:55:41] 업데이트된 위젯: w1, w3, w5, w7, w15
+[2026-05-05 08:55:41] 파이프라인 완료
+[2026-05-05 08:55:41] ============================================================
+[2026-05-05 08:58:09] ============================================================
+[2026-05-05 08:58:09] 코코아 대시보드 데이터 파이프라인 시작
+[2026-05-05 08:58:09] 모드: LIVE
+[2026-05-05 08:58:09] 대상 위젯: ALL
+[2026-05-05 08:58:09] W1: FAOSTAT QCL 생산량 추출 시작
+[2026-05-05 08:58:09] W1: 7개 연도 데이터 추출 완료
+[2026-05-05 08:58:09] W3: ICCO 가공 허브 점유율 추출
+[2026-05-05 08:58:09] W5: FAOSTAT TM 한국 수입 Sankey 추출 시작
+[2026-05-05 08:58:11] W5: 상위 5개국 Sankey 데이터 생성 완료
+[2026-05-05 08:58:11] W7: FAOSTAT PP/TM 공급처 스캐터 추출 시작
+[2026-05-05 08:58:12] W7: 5개국 공급처 데이터 추출 완료
+[2026-05-05 08:58:12] W15: USDA FAS 가나 디스트레스 데이터 추출
+[2026-05-05 08:58:12] W15: USDA FAS에서 3개 그라인딩 라인 발견
+[2026-05-05 08:58:12] 백업 저장: cocoa_market_data.backup_20260505_085812.json
+[2026-05-05 08:58:12] ✅ JSON 저장 완료: cocoa_market_data.json
+[2026-05-05 08:58:12] 업데이트된 위젯: w1, w3, w5, w7, w15
+[2026-05-05 08:58:12] 파이프라인 완료
+[2026-05-05 08:58:12] ============================================================

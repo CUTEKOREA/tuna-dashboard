@@ -1,0 +1,175 @@
+.container {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls {
+  display: flex;
+  gap: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 20px;
+}
+
+.sliderGroup {
+  flex: 1;
+}
+
+.sliderLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.sliderVal {
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+.slider {
+  width: 100%;
+  accent-color: #fbbf24;
+  cursor: pointer;
+}
+
+.statsGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 200px;
+}
+
+.statTitle {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 22px;
+  font-weight: 800;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.statValue.updated {
+  animation: pulseGreen 1s ease-out;
+}
+
+@keyframes pulseGreen {
+  0% { text-shadow: 0 0 0 rgba(16, 185, 129, 0); }
+  50% {  transform: scale(1.02); }
+  100% { text-shadow: 0 0 0 rgba(16, 185, 129, 0); transform: scale(1); }
+}
+
+.chartContainer {
+  height: 300px;
+  width: 100%;
+}
+
+.ganttContainer {
+  margin-top: 10px;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.ganttRow {
+  display: flex;
+  height: 30px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ganttRow:last-child {
+  border-bottom: none;
+}
+
+.ganttLabel {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+  padding-left: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0F172A;
+  z-index: 2;
+}
+
+.ganttTrack {
+  flex: 1;
+  position: relative;
+}
+
+.ganttBar {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.barAccumulate {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.4), rgba(56, 189, 248, 0.8));
+  border: 1px solid #38bdf8;
+}
+
+.barRelease {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.8));
+  border: 1px solid #10b981;
+}
+
+.insightPanel {
+  margin-top: 16px;
+  background: rgba(56, 189, 248, 0.05);
+  border-left: 3px solid #38bdf8;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 12px;
+  color: #e2e8f0;
+  line-height: 1.5;
+}

@@ -1,0 +1,265 @@
+.container {
+  padding: 2rem;
+  color: #fff;
+  font-family: "Pretendard", -apple-system, sans-serif;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f472b6, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #94a3b8;
+  font-size: 1rem;
+  max-width: 800px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+}
+
+.sidebar {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.menuItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.activeMenu {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.activeMenu:hover {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.insightCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.cardHeader {
+  padding: var(--card-padding);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.cardTitle {
+  font-size: var(--card-title-size);
+  font-weight: 600;
+  color: var(--card-title-color);
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardDesc {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cardBody {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.chartContainer {
+  height: 350px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px dashed rgba(148, 163, 184, 0.1);
+}
+
+.kpiPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kpiBox {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 4px solid #38bdf8;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+}
+
+.kpiLabel {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.kpiValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpiSub {
+  font-size: 0.8rem;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.kpiSub.negative {
+  color: #ef4444;
+}
+
+.analysisBlock {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+}
+
+.analysisTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.analysisText {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .cardBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0.75rem;
+    height: auto;
+  }
+  .title {
+    font-size: 1.4rem;
+  }
+  .description {
+    font-size: 0.85rem;
+  }
+  .layout {
+    gap: 1rem;
+  }
+  .sidebar {
+    padding: 1rem;
+  }
+  .insightCard {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .cardHeader {
+    padding: 1rem;
+  }
+  .cardBody {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .cardTitle {
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+  .cardDesc {
+    font-size: 0.82rem;
+  }
+  .chartContainer {
+    height: 260px;
+    padding: 0.5rem;
+  }
+  .kpiValue {
+    font-size: 1.4rem;
+  }
+  .content {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+  .cardBody {
+    padding: 0.75rem;
+  }
+  .chartContainer {
+    height: 220px;
+  }
+}
+

@@ -1,0 +1,434 @@
+
+.container {
+  margin-top: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(20, 184, 166, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.headerRow {
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleGradient {
+  background: linear-gradient(135deg, #e2e8f0, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.titleGradientTeal {
+  background: linear-gradient(135deg, #fbbf24, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.totalBadge {
+  margin-left: auto;
+  padding: 4px 10px;
+  background: rgba(20, 184, 166, 0.15);
+  color: #2dd4bf;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  -webkit-text-fill-color: #2dd4bf;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.mainLayout {
+  display: flex;
+  gap: 20px;
+  height: 600px;
+}
+
+.mapSection {
+  flex: 3;
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(20, 184, 166, 0.08);
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #94a3b8;
+}
+
+.backButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  background: #0F172A;
+  color: #2dd4bf;
+  border: 1px solid #14b8a6;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  background: rgba(20, 184, 166, 0.15);
+  transform: translateY(-1px);
+}
+
+.chartArea {
+  width: 100%;
+  height: 100%;
+}
+
+.detailSection {
+  flex: 2;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.detailHeader {
+  background: #0F172A;
+  padding: 15px;
+  font-weight: 600;
+  color: #e2e8f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: rgba(20, 184, 166, 0.2);
+  color: #2dd4bf;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+}
+
+.detailList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.emptyState {
+  padding: 40px 20px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.facilityItem {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.facilityItem:hover {
+  background: rgba(20, 184, 166, 0.04);
+  transform: translateX(2px);
+}
+
+.facName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.facBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.facCategory {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(20, 184, 166, 0.12);
+  color: #5eead4;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.sizeBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.facInfo {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+/* Cross Analysis Section */
+.crossAnalysis {
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.04), rgba(239,68,68,0.04));
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.crossHeader {
+  font-size: 1.1rem;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.crossDesc {
+  margin: 0 0 1rem 0;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.crossGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.crossItem {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border-left: 3px solid;
+  transition: transform 0.15s;
+}
+
+.crossItem:hover {
+  transform: translateY(-2px);
+}
+
+.crossItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.crossProvince {
+  font-weight: 600;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.crossBadge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.crossStats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.crossBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.crossBarFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s ease;
+}
+
+.strategyGrid {
+  margin-top: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(20, 184, 166, 0.08);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.strategyHeader {
+  font-size: 1.1rem;
+  color: #f8fafc;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.75rem;
+}
+
+.strategyCols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.strategyColTitle {
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.strategyColText {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.highlight {
+  color: #2dd4bf;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .mainLayout {
+    flex-direction: column;
+    height: auto;
+  }
+  .mapSection {
+    min-height: 450px;
+  }
+  .detailSection {
+    max-height: 400px;
+  }
+  .strategyCols {
+    grid-template-columns: 1fr;
+  }
+  .crossGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0.75rem;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+  .title {
+    font-size: 1rem;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .totalBadge {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
+  .subtitle {
+    font-size: 0.75rem;
+  }
+  .mapSection {
+    min-height: 300px;
+  }
+  .detailSection {
+    max-height: 300px;
+  }
+  .detailHeader {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  .facilityItem {
+    padding: 10px 12px;
+  }
+  .facName {
+    font-size: 0.88rem;
+  }
+  .facInfo {
+    font-size: 0.72rem;
+  }
+  .crossAnalysis {
+    padding: 0.75rem;
+    margin-top: 1rem;
+  }
+  .crossHeader {
+    font-size: 0.92rem;
+    flex-wrap: wrap;
+  }
+  .crossDesc {
+    font-size: 0.78rem;
+  }
+  .crossGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .crossItem {
+    padding: 10px 12px;
+  }
+  .crossProvince {
+    font-size: 0.82rem;
+  }
+  .crossStats {
+    font-size: 0.72rem;
+    gap: 8px;
+  }
+  .strategyGrid {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .strategyHeader {
+    font-size: 0.92rem;
+  }
+  .strategyCols {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .strategyColTitle {
+    font-size: 0.85rem;
+  }
+  .strategyColText {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+}
+

@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+"""
+3개년(2024-2026) 위판장별 위탁판매 현황 데이터 고속 수집기
+해양수산부 공공데이터 API → JSON 집계 파일 생성
+
+- 멀티스레딩 적용으로 수집 속도 극대화
+- 502 에러 등 네트워크 불안정 대비 재시도 로직 추가
+"""
+
+import json
+import time
+import ssl
+import urllib.request
+from collections import defaultdict
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+SERVICE_KEY = "6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030"
+BASE_URL = "https://apis.data.go.kr/1192000/select0040List/getselect0040List"
+OUTPUT_DIR = Path(__file__).parent.parent / "data"
+MAX_ROWS = 100
+
+SSL_CTX = ssl.create_default_context()
+SSL_CTX.check_hostname = False
+SSL_CTX.verify_mode = ssl.CERT_NONE
+
+
+def fetch_page_with_retry(baseDt: str, pageNo: int, max_retries: int = 3) -> tuple[list, int]:
+    url = (
+        f"{BASE_URL}?serviceKey={SERVICE_KEY}"
+        f"&pageNo={pageNo}&numOfRows={MAX_ROWS}&type=json&baseDt={baseDt}"
+    )
+    
+    for attempt in range(max_retries):
+        try:
+            req = urllib.request.Request(url)
+            with urllib.request.urlopen(req, timeout=15, context=SSL_CTX) as resp:
+                raw = resp.read().decode("utf-8")
+            
+            if len(raw) <= 10:
+                return [], 0
+            
+            data = json.loads(raw)
+            header = data.get("responseJson", {}).get("header", {})
+            items = data.get("responseJson", {}).get("body", {}).get("item", [])
+            total = header.get("totalCount", 0) or 0
+            result_code = header.get("resultCode", "")
+            
+            if result_code == "00":
+                return items, total
+            elif result_code == "03": # No data
+                return [], 0
+            else:
+                raise Exception(f"API Error: {result_code}")
+                
+        except Exception as e:
+            if attempt == max_retries - 1:
+                print(f"    ❌ page {pageNo} failed after {max_retries} retries: {e}")
+                return [], 0
+            time.sleep(1) # wait before retry
+
+
+def fetch_month(year: int, month: int) -> list:
+    baseDt = f"{year}{month:02d}01"
+    all_items = []
+    
+    items, total = fetch_page_with_retry(baseDt, 1)
+    if not items and total == 0:
+        print(f"  ⚠️  {baseDt}: No data")
+        return []
+    
+    all_items.extend(items)
+    total_pages = (total + MAX_ROWS - 1) // MAX_ROWS
+    
+    print(f"  📄 {baseDt}: {total:>6,}건 ({total_pages} pages) - Fetching concurrently...")
+    
+    if total_pages > 1:
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            future_to_page = {
+                executor.submit(fetch_page_with_retry, baseDt, page): page 
+                for page in range(2, total_pages + 1)
+            }
+            
+            for future in as_completed(future_to_page):
+                page = future_to_page[future]
+                try:
+                    page_items, _ = future.result()
+                    all_items.extend(page_items)
+                except Exception as e:
+                    print(f"    ❌ Exception for page {page}: {e}")
+                    
+    print(f"    ✅ Fetched: {len(all_items):,} records")
+    return all_items
+
+
+def aggregate_species(all_items: list) -> dict:
+    yearly = defaultdict(lambda: defaultdict(lambda: {"amount": 0, "qty": 0}))
+    monthly = defaultdict(lambda: defaultdict(lambda: {"amount": 0, "qty": 0}))
+    
+    for item in all_items:
+        date_str = item.get("csmtDe", "")
+        if len(date_str) < 6:
+            continue
+        year = date_str[:4]
+        ym = f"{date_str[:4]}-{date_str[4:6]}"
+        species = item.get("mprcStdCodeNm", "미분류")
+        amount = float(item.get("csmtAmount", 0) or 0)
+        qty = float(item.get("csmtWt", 0) or 0)
+        
+        yearly[year][species]["amount"] += amount
+        yearly[year][species]["qty"] += qty
+        monthly[ym][species]["amount"] += amount
+        monthly[ym][species]["qty"] += qty
+    
+    return {
+        "yearly": {y: dict(sp) for y, sp in sorted(yearly.items())},
+        "monthly": {m: dict(sp) for m, sp in sorted(monthly.items())},
+    }
+
+
+def build_dashboard_data(agg: dict) -> dict:
+    yearly_top = {}
+    for year, species_map in agg["yearly"].items():
+        ranked = sorted(species_map.items(), key=lambda x: x[1]["amount"], reverse=True)
+        yearly_top[year] = [
+            {
+                "rank": i + 1,
+                "seafoodName": sp,
+                "saleAmount": data["amount"],
+                "saleQty": data["qty"],
+                "avgUnitPrice": round(data["amount"] / data["qty"]) if data["qty"] > 0 else 0,
+            }
+            for i, (sp, data) in enumerate(ranked[:30])
+        ]
+    
+    monthly_detail = {}
+    for ym, species_map in agg["monthly"].items():
+        ranked = sorted(species_map.items(), key=lambda x: x[1]["amount"], reverse=True)
+        monthly_detail[ym] = [
+            {
+                "rank": i + 1,
+                "seafoodName": sp,
+                "saleAmount": data["amount"],
+                "saleQty": data["qty"],
+                "avgUnitPrice": round(data["amount"] / data["qty"]) if data["qty"] > 0 else 0,
+            }
+            for i, (sp, data) in enumerate(ranked[:30])  # Increased to top 30 for details
+        ]
+    
+    flat_items = []
+    for ym, species_map in agg["monthly"].items():
+        for sp, data in species_map.items():
+            flat_items.append({
+                "month": ym,
+                "year": ym[:4],
+                "seafoodName": sp,
+                "saleAmount": data["amount"],
+                "saleQty": data["qty"],
+                "avgUnitPrice": round(data["amount"] / data["qty"]) if data["qty"] > 0 else 0,
+            })
+    flat_items.sort(key=lambda x: x["saleAmount"], reverse=True)
+    
+    return {
+        "yearlyTop": yearly_top,
+        "monthlyDetail": monthly_detail,
+        "items": flat_items,
+        "_meta": {
+            "years": sorted(agg["yearly"].keys()),
+            "months": sorted(agg["monthly"].keys()),
+            "totalSpecies": len(set(item["seafoodName"] for item in flat_items)),
+            "totalRecords": len(flat_items),
+            "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%S+09:00"),
+        },
+    }
+
+
+def main():
+    all_items = []
+    
+    for year in [2024, 2025, 2026]:
+        if year == 2026:
+            months = range(1, 6)
+        else:
+            months = range(1, 13)
+        
+        print(f"\n{'='*55}")
+        print(f"📊 Fetching {year} consignment data...")
+        print(f"{'='*55}")
+        
+        for month in months:
+            items = fetch_month(year, month)
+            all_items.extend(items)
+    
+    print(f"\n{'='*55}")
+    print(f"📈 Total raw records collected: {len(all_items):,}")
+    
+    agg = aggregate_species(all_items)
+    dashboard_data = build_dashboard_data(agg)
+    
+    print(f"\n📊 Year-by-Year Summary:")
+    for year, species_list in dashboard_data["yearlyTop"].items():
+        total_amount = sum(s["saleAmount"] for s in species_list)
+        total_qty = sum(s["saleQty"] for s in species_list)
+        print(f"\n  📅 {year}: {len(species_list)} species | {total_amount/1e8:,.0f}억원 | {total_qty/1000:,.0f}t")
+        for s in species_list[:5]:
+            print(f"    {s['rank']:>2}. {s['seafoodName']:<12s} | {s['saleAmount']/1e8:>10,.1f}억원 | {s['saleQty']/1000:>8,.1f}t | ₩{s['avgUnitPrice']:>8,}/kg")
+    
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = OUTPUT_DIR / "consignment_3year.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(dashboard_data, f, ensure_ascii=False, indent=2)
+    
+    print(f"\n✅ Saved to: {output_path}")
+    print(f"   File size: {output_path.stat().st_size / 1024:.1f} KB")
+
+
+if __name__ == "__main__":
+    main()

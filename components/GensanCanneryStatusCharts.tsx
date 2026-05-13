@@ -1,0 +1,149 @@
+'use client';
+
+import React from 'react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from 'recharts';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
+import TermTooltip from './TermTooltip';
+
+const gensanCanneryData = [
+  { name: 'Gentuna/Century', prodMax: 800, prodCurrent: 600, storeMax: 25000, storeCurrent: 12000, procDays: 20 },
+  { name: 'Philbest', prodMax: 60, prodCurrent: 50, storeMax: 3000, storeCurrent: 800, procDays: 16 },
+  { name: 'Alliance', prodMax: 110, prodCurrent: 100, storeMax: 6500, storeCurrent: 2000, procDays: 20 },
+  { name: 'Celebes', prodMax: 40, prodCurrent: 45, storeMax: 4200, storeCurrent: 1950, procDays: 43 },
+  { name: 'Foodsphere', prodMax: 50, prodCurrent: 55, storeMax: 2000, storeCurrent: 200, procDays: 6 },
+  { name: 'Sea Trade', prodMax: 50, prodCurrent: 50, storeMax: 1500, storeCurrent: 500, procDays: 10 },
+  { name: 'R&R', prodMax: 15, prodCurrent: 15, storeMax: 500, storeCurrent: 100, procDays: 7 }
+];
+
+export default function GensanCanneryStatusCharts() {
+  const totalProd = gensanCanneryData.reduce((acc, curr) => acc + curr.prodCurrent, 0);
+  const totalStore = gensanCanneryData.reduce((acc, curr) => acc + curr.storeCurrent, 0);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+      <div style={{ display: 'flex', gap: '24px', width: '100%', flexDirection: 'row', flexWrap: 'wrap' }}>
+        
+        {/* Left Chart: Daily Production */}
+        <div style={{
+          flex: '1 1 45%',
+          backgroundColor: 'var(--panel-bg)',
+          border: '1px solid var(--panel-border)',
+          borderRadius: '8px',
+          padding: '24px',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
+                <TermTooltip term="필리핀 젠산 CANNERY 일 생산량" description="각 가공 공장(Cannery)이 하루에 생산할 수 있는 최대 가능 생산량(CAPA) 대비 실제 오늘 가동된 일 생산량 실적(MT)을 보여줍니다." />
+              </h2>
+              <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
+                필리핀 제너럴 산토스(Gensan) 가공 공장 CAPA 대비 실적 (Metric Tons)
+              </p>
+            </div>
+            <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
+              <span style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '2px' }}>총 일일 생산량 합계</span>
+              <span style={{ fontSize: '18px', fontWeight: 'bold', color: 'var(--color-success)' }}>{totalProd.toLocaleString()} <span style={{ fontSize: '13px', fontWeight: 'normal', color: 'var(--text-muted)' }}>톤</span></span>
+            </div>
+          </div>
+          
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <SafeResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={gensanCanneryData}
+                layout="vertical"
+                margin={{ top: 20, right: 30, left: 60, bottom: 5 }}
+                barGap={1}
+              >
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
+                <XAxis type="number" stroke="var(--text-muted)" axisLine={false} tickLine={false} tick={{ fontSize: 11 }} />
+                <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={100} />
+                <Tooltip 
+                  cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                  contentStyle={{ backgroundColor: '#0F172A', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)' }}
+                  itemStyle={{ fontSize: '13px' }}
+                  labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
+                  formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
+                />
+                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+                <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar dataKey="prodCurrent" name="일 생산량" fill="var(--color-success)" radius={[0, 4, 4, 0]} barSize={12} />
+              </BarChart>
+            </SafeResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Right Chart: Raw Material Storage */}
+        <div style={{
+          flex: '1 1 45%',
+          backgroundColor: 'var(--panel-bg)',
+          border: '1px solid var(--panel-border)',
+          borderRadius: '8px',
+          padding: '24px',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
+                <TermTooltip term="필리핀 젠산 CANNERY 원어 보관량" description="각 가공 공장의 냉동창고 보유 최대 CAPA 대비 현재 냉동 참치(원어) 재고량을 보여줍니다." />
+              </h2>
+              <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
+                필리핀 제너럴 산토스(Gensan) 가공 공장 보관창고 CAPACITY 대비 확보 현황
+              </p>
+            </div>
+            <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
+              <span style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '2px' }}>총 현재 보관량 합계</span>
+              <span style={{ fontSize: '18px', fontWeight: 'bold', color: 'var(--color-info)' }}>{totalStore.toLocaleString()} <span style={{ fontSize: '13px', fontWeight: 'normal', color: 'var(--text-muted)' }}>톤</span></span>
+            </div>
+          </div>
+          
+          <div style={{ flex: 1, minHeight: 0 }}>
+            <SafeResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={gensanCanneryData}
+                layout="vertical"
+                margin={{ top: 20, right: 30, left: 60, bottom: 5 }}
+                barGap={1}
+              >
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
+                <XAxis 
+                  type="number" 
+                  stroke="var(--text-muted)" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fontSize: 11 }} 
+                  tickFormatter={(val) => `${(val/1000).toLocaleString()}k`} 
+                />
+                <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={100} />
+                <Tooltip 
+                  cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                  contentStyle={{ backgroundColor: '#0F172A', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)' }}
+                  itemStyle={{ fontSize: '13px' }}
+                  labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
+                  formatter={(value: any, name: any, props: any) => {
+                    const extra = name === "현 보관량" ? ` (Processing: ${props.payload.procDays} Days)` : '';
+                    return [`${Number(value).toLocaleString()} 톤${extra}`, undefined];
+                  }}
+                />
+                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
+                <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar dataKey="storeCurrent" name="현 보관량" fill="var(--color-info)" radius={[0, 4, 4, 0]} barSize={12} />
+              </BarChart>
+            </SafeResponsiveContainer>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}

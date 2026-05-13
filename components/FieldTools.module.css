@@ -1,0 +1,530 @@
+/* ==========================================================
+ * FIELD TOOLS — 5 Practical Tools for Silla Trading Operators
+ * ========================================================== */
+
+.container {
+  padding: 2rem 2.5rem;
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  margin-bottom: 2rem;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #f59e0b, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pageSubtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* Tab Navigation */
+.tabNav {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(2, 14, 28, 0.4);
+  border: 1px solid rgba(6, 182, 212, 0.08);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.tabBtn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.tabBtn:hover {
+  color: var(--text-main);
+  background: rgba(6, 182, 212, 0.06);
+}
+
+.tabBtnActive {
+  background: rgba(6, 182, 212, 0.12) !important;
+  color: #E8F5F0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tool Panel */
+.toolPanel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.toolPanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+  pointer-events: none;
+}
+
+.toolHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.toolTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.toolBadge {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Landed Cost Calculator ─── */
+.costGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.costInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.costRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  background: rgba(6, 182, 212, 0.03);
+  border: 1px solid rgba(6, 182, 212, 0.06);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.costRow:hover {
+  border-color: rgba(6, 182, 212, 0.15);
+}
+
+.costLabel {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.costInput {
+  width: 120px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(6, 182, 212, 0.15);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  color: var(--text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: right;
+  font-family: 'Inter', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.costInput:focus {
+  outline: none;
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.costAutoTag {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.4rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.costResult {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.totalCostCard {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(16, 185, 129, 0.05));
+  border: 1px solid rgba(6, 182, 212, 0.15);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.totalLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.totalValue {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, #E8F5F0, rgba(232, 245, 240, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.totalUnit {
+  font-size: 0.85rem;
+  -webkit-text-fill-color: var(--text-muted);
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.marginCard {
+  padding: 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.marginPositive {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.marginNegative {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.marginWarning {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.marginPercent {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.marginLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.insightBox {
+  padding: 1rem 1.25rem;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+/* ─── Buy Signal Dashboard ─── */
+.signalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.gaugeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.gaugeSvg {
+  filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.2));
+}
+
+.signalLabel {
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.factorList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.factorRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(6, 182, 212, 0.03);
+  border: 1px solid rgba(6, 182, 212, 0.06);
+  border-radius: 8px;
+}
+
+.factorName {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.factorValue {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.factorBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.factorFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ─── Negotiation Simulator ─── */
+.negoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.scenarioCard {
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.scenarioCard:hover {
+  transform: translateY(-4px);
+}
+
+.scenarioTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.scenarioPrice {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.scenarioMargin {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.scenarioImpact {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ─── VDS Burn Tracker ─── */
+.burnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.burnCard {
+  padding: 1.25rem;
+  background: rgba(6, 182, 212, 0.03);
+  border: 1px solid rgba(6, 182, 212, 0.08);
+  border-radius: 8px;
+}
+
+.burnHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.burnCountry {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.burnPercent {
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.burnBarTrack {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.burnBarFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.burnStats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.burnAlert {
+  font-size: 0.75rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ─── Climate Risk Alert ─── */
+.alertCard {
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.alertCardActive {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  animation: alertPulse 3s ease-in-out infinite;
+}
+
+.alertCardSafe {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+@keyframes alertPulse {
+  0%, 100% { box-shadow: inset 0 0 0 rgba(239, 68, 68, 0); }
+  50% { box-shadow: none; }
+}
+
+.alertTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.alertGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.alertSection {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.alertSectionTitle {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.vesselList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.vesselItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 0.78rem;
+}
+
+.actionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.actionItem {
+  padding: 0.6rem 0.75rem;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: var(--text-main);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .costGrid, .signalGrid, .alertGrid, .burnGrid { grid-template-columns: 1fr; }
+  .negoGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 1rem; }
+  .tabNav { flex-wrap: wrap; }
+}

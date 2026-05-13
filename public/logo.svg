@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Background Blue Gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#3b8ec4"/>
+      <stop offset="60%" stop-color="#1e679a"/>
+      <stop offset="100%" stop-color="#0c446e"/>
+    </radialGradient>
+    
+    <!-- Silver Gradient for Blades -->
+    <linearGradient id="bladeGradient" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e0e4e8"/>
+      <stop offset="100%" stop-color="#949ba0"/>
+    </linearGradient>
+    
+    <!-- Silver Gradient for Ring -->
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#cfd4d8"/>
+      <stop offset="70%" stop-color="#a4aab0"/>
+      <stop offset="100%" stop-color="#6b7278"/>
+    </linearGradient>
+
+    <!-- Shadow for depth -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Blade path: points UP, base is an arc of the center circle -->
+    <path id="blade" d="M 50 16 Q 46 28 32.68 40 A 20 20 0 0 1 67.32 40 Q 54 28 50 16 Z" fill="url(#bladeGradient)" filter="url(#dropShadow)" stroke="#ffffff" stroke-width="0.5" stroke-opacity="0.8"/>
+  </defs>
+
+  <!-- Main Background Circle (Transparent background outside) -->
+  <circle cx="50" cy="50" r="49" fill="url(#bgGradient)" stroke="#0a2a45" stroke-width="1" filter="url(#dropShadow)"/>
+  
+  <!-- Outer Silver Ring -->
+  <circle cx="50" cy="50" r="41" fill="none" stroke="url(#ringGradient)" stroke-width="4.5" filter="url(#dropShadow)"/>
+  
+  <!-- Ring Highlights to make it metallic -->
+  <circle cx="50" cy="50" r="43.25" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
+  <circle cx="50" cy="50" r="38.75" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
+  <circle cx="50" cy="50" r="38.75" fill="none" stroke="#000000" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Three Arrowheads (Blades) -->
+  <use href="#blade" />
+  <use href="#blade" transform="rotate(120, 50, 50)" />
+  <use href="#blade" transform="rotate(240, 50, 50)" />
+  
+  <!-- Optional inner highlight for the center circle hole -->
+  <circle cx="50" cy="50" r="19.5" fill="none" stroke="#000000" stroke-width="0.5" opacity="0.1"/>
+</svg>
