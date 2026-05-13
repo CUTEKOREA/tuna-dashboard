@@ -31,6 +31,14 @@ import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, Kf
 import TunaLiveTicker from './TunaLiveTicker';
 import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
 
+// Phase 2: Landing Cost & Supplier Hub
+import TunaLandingCost from './TunaLandingCost';
+import TunaSupplierHub from './TunaSupplierHub';
+
+// Phase 3: Compliance & HS Classification
+import TunaComplianceRadar from './TunaComplianceRadar';
+import TunaHSClassifier from './TunaHSClassifier';
+
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -394,9 +402,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ECB81', boxShadow: '0 0 8px #0ECB81', animation: 'pulse 2s infinite' }} />
-            <span>12 APIs <span style={{ color: '#0ECB81' }}>Connected</span></span>
+            <span>16 APIs <span style={{ color: '#0ECB81' }}>Connected</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · KAMIS · WITS · OEC · FRED</span>
+            <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · KAMIS · WITS · OEC · FRED · OSH · HS Ping</span>
           </div>
         </div>
       </header>
@@ -554,6 +562,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             <TunaPetCareMargin />
+            <TunaSupplierHub />
             {widgets?.filter((w: any) => ['w04_proc', 'w14_species_polar', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w83_dfad_revenue_shock', 'w84_invasivorism'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
@@ -574,6 +583,10 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <WitsTariffWidget />
             <OecBenchmarkWidget />
             <WitsTradeFlowWidget />
+            {/* Phase 2: 착지원가 시뮬레이터 */}
+            <TunaLandingCost />
+            {/* Phase 3: HS 코드 자동분류 */}
+            <TunaHSClassifier />
             {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
@@ -607,6 +620,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {/* Phase 3: 컴플라이언스 레이더 */}
+            <TunaComplianceRadar />
             {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w57_alt_protein', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
