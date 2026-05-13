@@ -196,12 +196,12 @@ export async function POST(req: Request) {
         
         // Dynamic HS Code correction based on input
         if (item.includes('건조')) {
-          hsCode = '0712.90';
-          itemDesc = 'Dried garlic, whole, cut, sliced, broken or in powder';
-          tariffInfo = { base: '27%', fta: '0% (한중 FTA 특정 조건)' };
+          hsCode = '0712.90.1000';
+          itemDesc = 'Dried garlic (건조 마늘)';
+          tariffInfo = { base: '27%', fta: '0% (한중 FTA 등 조건 충족 시)' };
         } else if (item.includes('냉동')) {
-          hsCode = '0710.80';
-          itemDesc = 'Frozen garlic';
+          hsCode = '0710.80.1000';
+          itemDesc = 'Frozen garlic (냉동 마늘)';
           tariffInfo = { base: '27%', fta: '24% (한중 FTA)' };
         }
       } else if (match === '참치') {
