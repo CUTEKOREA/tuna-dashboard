@@ -28,6 +28,11 @@ import SalmonInsightTradeDown from './SalmonInsightTradeDown';
 import SalmonInsightMarginSqueeze from './SalmonInsightMarginSqueeze';
 import SalmonInsightLogisticsResilience from './SalmonInsightLogisticsResilience';
 import ExchangeSimulator from './ExchangeSimulator';
+import SalmonLiveTicker from './SalmonLiveTicker';
+import SalmonNTBRadar from './SalmonNTBRadar';
+import SalmonForecastSimulator from './SalmonForecastSimulator';
+import SalmonESGTracker from './SalmonESGTracker';
+import SalmonPolicyImpact from './SalmonPolicyImpact';
 import styles from './MackerelStrategy.module.css';
 
 /* ─── Custom Tooltip ─── */
@@ -304,7 +309,7 @@ export default function SalmonDashboard() {
                 background: 'var(--color-success)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 대서양 연어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Atlantic Salmon Strategic Command Center — 35 Widgets · 6 KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Atlantic Salmon Strategic Command Center v2.0 — 35 Widgets · 5 Modules · 6 KPIs · 12 Live APIs</p>
             </div>
           </div>
           <div style={{ 
@@ -352,6 +357,9 @@ export default function SalmonDashboard() {
           );
         })}
       </div>
+
+      {/* ═══ Module A: 실시간 연어 무역 인텔리전스 티커 ═══ */}
+      <SalmonLiveTicker />
 
       {/* ═══ Macro Simulator ═══ */}
       <ExchangeSimulator onSimulationChange={setSimulationFactors} />
@@ -507,10 +515,21 @@ export default function SalmonDashboard() {
                 <SalmonInsightMarginSqueeze />
               </>
             ))}
+
+            {/* ═══ Module C: AI 수급 전망 & 착지원가 시뮬레이터 ═══ */}
+            <div style={{ marginBottom: '3rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+                <Factory size={24} color="var(--color-success)" />
+                <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>착지원가 & AI 전망 (Landed Cost & Forecast)</h2>
+              </div>
+              <SalmonForecastSimulator />
+            </div>
+
             {renderSection("물류 (Logistics)", Truck, catLog, (
               <>
                 <SalmonInsightSmartColdChain />
                 <SalmonInsightLogisticsResilience />
+                <SalmonNTBRadar />
               </>
             ))}
             {renderSection("판매 (Sales)", DollarSign, catSales, (
@@ -523,8 +542,18 @@ export default function SalmonDashboard() {
               <>
                 <SalmonInsightClimate />
                 <SalmonInsightDoubleMateriality />
+                <SalmonESGTracker />
               </>
             ))}
+
+            {/* ═══ Module E: 정책 임팩트 시뮬레이터 ═══ */}
+            <div style={{ marginBottom: '3rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
+                <Globe size={24} color="var(--color-success)" />
+                <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>정책 임팩트 시뮬레이션 (Policy Impact Simulator)</h2>
+              </div>
+              <SalmonPolicyImpact />
+            </div>
           </>
         );
       })()}
