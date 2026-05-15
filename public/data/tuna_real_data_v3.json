@@ -3760,38 +3760,38 @@
       "xKey": "Cost Structure",
       "data": [
         {
-          "Cost Structure": "Raw Material",
-          "Traditional (SEA)": 75,
-          "Smart (EU/US)": 65
+          "Cost Structure": "원재료비",
+          "전통가공(동남아)": 75,
+          "스마트팩토리(EU/US)": 65
         },
         {
-          "Cost Structure": "Labor Cost",
-          "Traditional (SEA)": 10,
-          "Smart (EU/US)": 3
+          "Cost Structure": "인건비",
+          "전통가공(동남아)": 10,
+          "스마트팩토리(EU/US)": 3
         },
         {
-          "Cost Structure": "Logistics & Overhead",
-          "Traditional (SEA)": 5,
-          "Smart (EU/US)": 5
+          "Cost Structure": "물류/간접비",
+          "전통가공(동남아)": 5,
+          "스마트팩토리(EU/US)": 5
         },
         {
-          "Cost Structure": "Depreciation (CAPEX)",
-          "Traditional (SEA)": 2,
-          "Smart (EU/US)": 9
+          "Cost Structure": "감가상각(CAPEX)",
+          "전통가공(동남아)": 2,
+          "스마트팩토리(EU/US)": 9
         },
         {
-          "Cost Structure": "Operating Margin",
-          "Traditional (SEA)": 8,
-          "Smart (EU/US)": 18
+          "Cost Structure": "영업마진",
+          "전통가공(동남아)": 8,
+          "스마트팩토리(EU/US)": 18
         }
       ],
       "bars": [
         {
-          "key": "Traditional (SEA)",
+          "key": "전통가공(동남아)",
           "color": "#94a3b8"
         },
         {
-          "key": "Smart (EU/US)",
+          "key": "스마트팩토리(EU/US)",
           "color": "#38bdf8"
         }
       ],
@@ -3813,32 +3813,32 @@
       "xKey": "Cost Step",
       "data": [
         {
-          "Cost Step": "Base Raw Fish",
+          "Cost Step": "원물 매입가",
           "Value": 1523,
           "displayLabel": "$1,523 (53.5%)"
         },
         {
-          "Cost Step": "+ Bunker Fuel",
+          "Cost Step": "+ 선박유류비",
           "Value": 480,
           "displayLabel": "$480 (16.9%)"
         },
         {
-          "Cost Step": "+ Tinplate / Can Cost",
+          "Cost Step": "+ 캔포장재비",
           "Value": 185,
           "displayLabel": "$185 (6.5%)"
         },
         {
-          "Cost Step": "+ Port Handling",
+          "Cost Step": "+ 항만하역비",
           "Value": 120,
           "displayLabel": "$120 (4.2%)"
         },
         {
-          "Cost Step": "+ Reefer Freight",
+          "Cost Step": "+ 냉동운임",
           "Value": 540,
           "displayLabel": "$540 (19.0%)"
         },
         {
-          "Cost Step": "Total Landed Import Price",
+          "Cost Step": "총 착지원가",
           "Value": 2848,
           "displayLabel": "$2,848 (100%)"
         }
@@ -3868,37 +3868,37 @@
       "data": [
         {
           "Month": "Jan 25",
-          "Wholesale Price (Import)": 4.75,
-          "Retail Price (Online)": 14.2
+          "도매가(수입)": 4.75,
+          "소매가(온라인)": 14.2
         },
         {
           "Month": "Feb 25",
-          "Wholesale Price (Import)": 4.7,
-          "Retail Price (Online)": 14.35
+          "도매가(수입)": 4.7,
+          "소매가(온라인)": 14.35
         },
         {
           "Month": "Mar 25",
-          "Wholesale Price (Import)": 4.65,
-          "Retail Price (Online)": 14.5
+          "도매가(수입)": 4.65,
+          "소매가(온라인)": 14.5
         },
         {
           "Month": "Apr 25",
-          "Wholesale Price (Import)": 4.6,
-          "Retail Price (Online)": 14.8
+          "도매가(수입)": 4.6,
+          "소매가(온라인)": 14.8
         },
         {
           "Month": "May 25",
-          "Wholesale Price (Import)": 4.6,
-          "Retail Price (Online)": 14.9
+          "도매가(수입)": 4.6,
+          "소매가(온라인)": 14.9
         }
       ],
       "areas": [
         {
-          "key": "Retail Price (Online)",
+          "key": "소매가(온라인)",
           "color": "#ec4899"
         },
         {
-          "key": "Wholesale Price (Import)",
+          "key": "도매가(수입)",
           "color": "#38bdf8"
         }
       ],
