@@ -153,13 +153,13 @@ export function InsightEU18C() {
           <div className={styles.kpiBox} style={{ borderLeftColor: '#8b5cf6' }}>
             <div className={styles.kpiLabel}>규제 가격 갭</div>
             <div className={styles.kpiValue} style={{ color: '#8b5cf6' }}>€200M</div>
-            <div className={styles.kpiSub}>시장 사기(Fraud) 차단 규모</div>
+            <div className={styles.kpiSub}>시장 사기 차단 규모</div>
           </div>
         </div>
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Non-Tariff Barrier Weaponization] EU의 -18℃ 냉동 규제는 실제 식중독 사례가 미미함에도 시행된 경제적 무기입니다. €200M 규모의 시장 사기를 차단하는 동시에, -18℃ 설비 미보유 제3국 선단(글로벌 40%)의 EU 시장 접근을 원천 차단합니다. 스페인/프랑스 선단은 이미 완비."
+          situation="[비관세 장벽 무기화] EU의 -18℃ 냉동 규제는 실제 식중독 사례가 미미함에도 시행된 경제적 무기입니다. €200M 규모의 시장 사기를 차단하는 동시에, -18℃ 설비 미보유 제3국 선단(글로벌 40%)의 EU 시장 접근을 원천 차단합니다. 스페인/프랑스 선단은 이미 완비."
           actionPlan="EU -18℃ 규제는 위생이 아니라 경제 무기입니다. 규정 충족 선단(스페인 Balfegó, 프랑스 CFTO 등)의 지분을 선제 확보하여 마진 프리미엄을 독점하십시오. 비준수 선단의 EU 퇴출로 발생하는 공급 공백이 2027년까지 톤당 €300~500의 구조적 프리미엄을 창출할 것입니다."
           source="EU 집행위(EC) 규정 및 OPAGAC(유럽 참치선주협회) 동향 (2024)"
         />

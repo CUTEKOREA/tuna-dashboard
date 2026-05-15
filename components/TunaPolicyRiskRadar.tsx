@@ -39,11 +39,11 @@ export function PolicyRiskScorecard() {
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 리스크 점수 0~100)</span>
         </h3>
         <p className={styles.cardDesc}>
-          국정연 보고서 8건을 교차분석하여 참치 산업에 영향을 미치는 6대 통상정책 리스크를 심각도(Severity)×발생확률(Probability) 가중 합산으로 정량화합니다.
+          국정연 보고서 8건을 교차분석하여 참치 산업에 영향을 미치는 6대 통상정책 리스크를 심각도×발생확률 가중 합산으로 정량화합니다.
         </p>
       </div>
       <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
-      {loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading policy risk data...</div> : (
+      {loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>정책 리스크 데이터 로딩 중...</div> : (
         <>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
             <div style={{ background: 'rgba(239,68,68,0.15)', borderRadius: '12px', padding: '12px 20px', textAlign: 'center' }}>
