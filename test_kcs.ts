@@ -1,4 +1,4 @@
-import { fetch } from "undici"; // Or built-in node fetch
+ // Or built-in node fetch
 
 async function run() {
   const key = process.env.KCS_API_KEY;

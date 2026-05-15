@@ -34,6 +34,7 @@ import SalmonForecastSimulator from './SalmonForecastSimulator';
 import SalmonESGTracker from './SalmonESGTracker';
 import SalmonPolicyImpact from './SalmonPolicyImpact';
 import styles from './MackerelStrategy.module.css';
+import TakeawayBox from './TakeawayBox';
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -82,11 +83,36 @@ const WIDGET_ICONS: Record<string, any> = {
   k7_chum_coastal: MapPin, k8_chinook: Fish,
 };
 
-const formatYAxis = (v: number) => {
-  if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
-  if (v >= 1000) return (v / 1000).toFixed(0) + 'k';
-  return v;
+const formatYAxis = (v: number, unit?: string) => {
+  let formatted: string | number = v;
+  if (v >= 1000000) formatted = (v / 1000000).toFixed(1) + 'M';
+  else if (v >= 1000) formatted = (v / 1000).toFixed(0) + 'k';
+  return formatted + (unit ? ` ${unit}` : '');
 };
+
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)', flexShrink: 0 }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '80px', display: 'inline-block', verticalAlign: 'bottom' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
 
 export default function SalmonDashboard() {
   const [data, setData] = useState<any>(null);
@@ -94,12 +120,21 @@ export default function SalmonDashboard() {
   const [showEdu, setShowEdu] = useState(true);
   const [simulationFactors, setSimulationFactors] = useState({ nok: 0, eur: 0, mgo: 0 });
   const modalRef = useRef<HTMLDivElement>(null);
+  const [apiData, setApiData] = useState<any>({});
 
   useEffect(() => {
     fetch('/data/salmon_real_data_v4.json')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error("Failed to load salmon data", err));
+
+    Promise.all([
+      fetch('/api/salmon/kcs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'live', hsCode: 'fresh' }) }).then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch('/api/salmon/kamis').then(r => r.ok ? r.json() : null).catch(() => null),
+      fetch('/api/salmon/comtrade').then(r => r.ok ? r.json() : null).catch(() => null)
+    ]).then(([kcs, kamis, comtrade]) => {
+      setApiData({ kcs, kamis, comtrade });
+    });
   }, []);
 
   useEffect(() => {
@@ -156,7 +191,7 @@ export default function SalmonDashboard() {
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
+              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {(widget.areas || widget.lines)?.map((a: any, i: number) => (
@@ -169,7 +204,7 @@ export default function SalmonDashboard() {
             <LineChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
+              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.lines?.map((l: any, i: number) => (
@@ -182,7 +217,7 @@ export default function SalmonDashboard() {
             <BarChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
-              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
+              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.bars?.map((b: any, i: number) => (
@@ -195,7 +230,7 @@ export default function SalmonDashboard() {
             <ComposedChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
+              <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.bars?.map((b: any, i: number) => (
@@ -233,8 +268,8 @@ export default function SalmonDashboard() {
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
+            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
@@ -247,7 +282,7 @@ export default function SalmonDashboard() {
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
+            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
@@ -260,7 +295,7 @@ export default function SalmonDashboard() {
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
+            <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
@@ -273,8 +308,8 @@ export default function SalmonDashboard() {
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
-            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
+            <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
+            {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => {
@@ -340,12 +375,24 @@ export default function SalmonDashboard() {
               onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = '#181818'; }}
             >
               
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
-                <IconComp size={14} style={{ color: theme.text }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxWidth: '80%' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.2, wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    {kpi.title}
+                  </span>
+                  {(kpi.telemetry || (key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs)) && (
+                    <TelemetryBadge 
+                      status={((key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs)) ? 'live' : kpi.telemetry as any} 
+                      syncDate={((key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs)) ? '실시간 연동중' : kpi.syncDate} 
+                    />
+                  )}
+                </div>
+                <IconComp size={16} style={{ color: theme.text, flexShrink: 0 }} />
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>
-                {parsed ? (
+                {key === 'kpi3' && apiData.kamis && Array.isArray(apiData.kamis.data) && apiData.kamis.data.length > 0 ? `₩${parseInt(apiData.kamis.data[0].price).toLocaleString()} / 100g` 
+                 : key === 'kpi6' && apiData.kcs && Array.isArray(apiData.kcs.data) ? `$${Math.floor(apiData.kcs.data.reduce((acc: number, item: any) => acc + (item.balPayments || 0), 0) / 1000).toLocaleString()}K`
+                 : parsed ? (
                   <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
                 ) : kpi.value}
               </div>
@@ -564,38 +611,42 @@ export default function SalmonDashboard() {
   function renderWidgetCard(w: any) {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const accentColor = 'var(--color-success)';
-    const accentGlow = 'rgba(236, 72, 153, 0.1)';
     
-    // Existing data may use specific fields
+    // Get methodology text (supports both old "methodology" and new "logic" field)
     const methodologyText = w.logic || w.methodology || '';
+    // Get situation and takeaway (supports both old and new field names)
     const situation = w.sit || w.situation || w.desc || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
     
     return (
-      <div key={w.id} className={styles.glassCard} style={{ 
-        display: 'flex', flexDirection: 'column', minHeight: '480px'
-      }}>
+      <div key={w.id} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
+        background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
+        padding: '1.5rem'}}>
         
         {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: accentColor, margin: '0 0 0.4rem 0' }}>
-            <IconComp size={18} />
-            {w.title} {w.reliability && w.reliability <= 70 && (<span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #f59e0b', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>📐 Estimate</span>)}
+        <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+            <IconComp size={20} color={accentColor} />
+            {w.title} 
+            {w.isLiveApi ? (
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+            ) : w.reliability && w.reliability < 70 ? (
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>ESTIMATE</span>
+            ) : null}
             
-            {/* ❕ Info Icon */}
-            <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-              
+            <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
             </div>
           </h3>
           {(w.subtitle || methodologyText) && (
-            <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+            <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
               {[w.subtitle, methodologyText].filter(Boolean).join(' | ')}
             </p>
           )}
         </div>
 
         {/* Chart Area */}
-        <div style={{ height: '250px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
+        <div style={{ height: '250px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             {renderChart(w)}
           </SafeResponsiveContainer>
@@ -604,27 +655,11 @@ export default function SalmonDashboard() {
         {/* Takeaway Box */}
         {(situation || takeaway) && (
           <div style={{ marginTop: 'auto' }}>
-            <div style={{ 
-              background: 'rgba(2, 14, 28, 0.45)', 
-              borderTop: `2px solid ${accentColor}`, 
-              borderRadius: '8px', padding: '14px' 
-            }}>
-              {situation && (
-                <div style={{ paddingBottom: takeaway ? '10px' : '0', borderBottom: takeaway ? '1px dashed rgba(255,255,255,0.08)' : 'none', marginBottom: takeaway ? '10px' : '0' }}>
-                  <h4 style={{ color: accentColor, fontSize: '0.85rem', fontWeight: 700, margin: '0 0 4px 0' }}>📊 현황 분석 (SITUATION)</h4>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.6, margin: 0 }}>{situation}</p>
-                  <p style={{ color: '#475569', fontSize: '0.7rem', fontStyle: 'italic', margin: '4px 0 0 0' }}>
-                    🔗 출처: {w.source || 'FAO FishStatJ + data/대서양 연어/ CSV 원본 교차 검증 완료'}
-                  </p>
-                </div>
-              )}
-              {takeaway && (
-                <div>
-                  <h4 style={{ color: 'var(--color-warning)', fontSize: '0.85rem', fontWeight: 700, margin: '0 0 4px 0' }}>⚡ 실행 전략 (EXECUTIVE TAKEAWAY)</h4>
-                  <p style={{ color: '#fde68a', fontSize: '0.82rem', lineHeight: 1.6, margin: 0 }}>{takeaway}</p>
-                </div>
-              )}
-            </div>
+            <TakeawayBox
+              situation={situation}
+              actionPlan={takeaway}
+              source={w.source}
+            />
           </div>
         )}
       </div>

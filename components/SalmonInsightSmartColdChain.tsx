@@ -18,35 +18,13 @@ export default function SalmonInsightSmartColdChain() {
   const { containerRef, width } = useContainerWidth();
 
   return (
-    <div style={{
-      background: '#181818',
-      backdropFilter: 'blur(8px)',
-      border: 'none',
-      borderRadius: '12px',
-      padding: '1.5rem',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      minWidth: 0,
-      boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
-    }} ref={containerRef}>
+    <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}}  ref={containerRef}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
         <div>
-          <h3 style={{ 
-            margin: '0 0 0.5rem 0', 
-            fontSize: '1.1rem', 
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            [Live 🟢] [물류] 콜드체인 고도화: 해운 전환 및 IoT 모니터링
-          </h3>
-          <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            항공 운임 변동성을 회피하기 위한 해상 운송(Sea Freight) 전환 및 탄소 발자국 감축 효과
-            
-          </p>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+  [물류] 콜드체인 고도화: 해운 전환 및 IoT 모니터링 <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+</h3>
+          <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>항공 운임 변동성을 회피하기 위한 해상 운송(Sea Freight) 전환 및 탄소 발자국 감축 효과</p>
         </div>
         <Truck size={20} color="#ec4899" />
       </div>

@@ -114,10 +114,7 @@ export default function SalmonForecastSimulator() {
   const selected = origins.find(o => o.value === origin) || origins[0];
 
   return (
-    <div style={{
-      background: '#181818', borderRadius: '12px', overflow: 'hidden',
-      boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
-    }}>
+    <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}} >
       {/* Header */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',

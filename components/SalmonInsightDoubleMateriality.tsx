@@ -17,7 +17,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '10px', fontSize: '0.85rem', color: '#f8fafc' }}>
+      <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}} >
         <p style={{ margin: '0 0 5px 0', fontWeight: 700, color: data.color }}>{data.name}</p>
         <p style={{ margin: 0 }}>환경·사회적 영향 (X): {data.x}</p>
         <p style={{ margin: 0 }}>재무적 영향 (Y): {data.y}</p>
@@ -43,17 +43,9 @@ export default function SalmonInsightDoubleMateriality() {
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
         <div>
-          <h3 style={{ 
-            margin: '0 0 0.5rem 0', 
-            fontSize: '1.1rem', 
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            [Live 🟢] [ESG] 이중 중대성 평가 (Double Materiality)
-          </h3>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+  [ESG] 이중 중대성 평가 (Double Materiality) <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+</h3>
           <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             EU CSDDD/CSRD 규제 대응을 위한 환경적, 재무적 영향 동시 모니터링
             

@@ -110,8 +110,8 @@ export function TunaUpcyclingMarginMap() {
                 contentStyle={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
                 labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
-                formatter={(value: any, name: string) => [typeof value === 'number' ? value.toFixed(1) : value, name]}
-                labelFormatter={(label: string, payload: any) => payload?.[0]?.payload?.fullName || label}
+                formatter={(value: any, name: any) => [typeof value === 'number' ? value.toFixed(1) : value, String(name)]}
+                labelFormatter={(label: any, payload: any) => payload?.[0]?.payload?.fullName || String(label)}
               />
               <Legend wrapperStyle={{ fontSize: '11px' }} />
               <Bar dataKey="margin" fill="#a78bfa" name="마진율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />

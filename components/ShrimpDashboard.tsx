@@ -112,6 +112,29 @@ const parseTextWithTooltips = (text: string) => {
   });
 };
 
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)', flexShrink: 0 }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '80px', display: 'inline-block', verticalAlign: 'bottom' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
 const formatYAxis = (v: number, unit?: string) => {
   let formatted: string | number = v;
   if (v >= 1000000) formatted = (v / 1000000).toFixed(1) + 'M';
@@ -381,9 +404,19 @@ export default function ShrimpDashboard() {
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{kpi.title}</span>
-                <IconComp size={16} style={{ color: theme.text }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxWidth: '80%' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.2, wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+                    {kpi.title}
+                  </span>
+                  {(kpi.telemetry || (key === 'kpi3' && apiData.customs) || (key === 'kpi6' && apiData.macro)) && (
+                    <TelemetryBadge 
+                      status={((key === 'kpi3' && apiData.customs) || (key === 'kpi6' && apiData.macro)) ? 'live' : kpi.telemetry as any} 
+                      syncDate={((key === 'kpi3' && apiData.customs) || (key === 'kpi6' && apiData.macro)) ? '실시간 연동중' : kpi.syncDate} 
+                    />
+                  )}
+                </div>
+                <IconComp size={16} style={{ color: theme.text, flexShrink: 0 }} />
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                 {key === 'kpi3' && apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()} / 톤` 

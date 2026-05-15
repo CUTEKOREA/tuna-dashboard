@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TunaRanching.module.css';
 import insightsStyles from './TunaInsightsDashboard.module.css';
-import { Waves, TrendingUp, Fish, Ship, PackageSearch, Globe, ShieldAlert, Cpu, Target, RefreshCcw, Building2, Thermometer, Plane, ChevronDown, ChevronUp, MessageSquare, BookOpen, Leaf } from 'lucide-react';
+import { Waves, TrendingUp, Fish, Ship, PackageSearch, Globe, ShieldAlert, Cpu, Target, RefreshCcw, Building2, Thermometer, Plane, ChevronDown, ChevronUp, MessageSquare, BookOpen, Leaf, Factory, DollarSign, Scale, AlertTriangle } from 'lucide-react';
+import CountUp from 'react-countup';
 import { ComposedChart, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Tooltip as RechartsTooltip, BarChart, Bar, Cell, LineChart, Line, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
@@ -13,6 +14,54 @@ import ColdStorageMap from './ColdStorageMap';
 
 
 /* Data is loaded dynamically via fetch() from /data/tuna_ranching_dashboard.json */
+
+const KPI_THEMES = [
+  { border: 'none', glow: 'none', text: '#FCD535', icon: Globe },
+  { border: 'none', glow: 'none', text: '#0ECB81', icon: TrendingUp },
+  { border: 'none', glow: 'none', text: '#2196F3', icon: Factory },
+  { border: 'none', glow: 'none', text: '#F6465D', icon: DollarSign },
+  { border: 'none', glow: 'none', text: '#9B72CB', icon: Scale },
+  { border: 'none', glow: 'none', text: '#F0B90B', icon: AlertTriangle },
+];
+
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
+function parseAnimatedValue(valStr: string) {
+  if (!valStr || typeof valStr !== 'string') return null;
+  const match = valStr.match(/^([^\d]*)((?:\d|,|\.)+)(.*)$/);
+  if (match) {
+    const rawNumberStr = match[2];
+    const prefix = match[1];
+    const suffix = match[3];
+    const hasDecimal = rawNumberStr.includes('.');
+    const numberVal = parseFloat(rawNumberStr.replace(/,/g, ''));
+    if (!isNaN(numberVal)) {
+      return { numberVal, prefix, suffix, decimals: hasDecimal ? rawNumberStr.split('.')[1].length : 0 };
+    }
+  }
+  return null;
+}
 
 export default function TunaRanching() {
   const [data, setData] = useState<any>(null);
@@ -43,7 +92,7 @@ export default function TunaRanching() {
 
   if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon || ''} style={{marginBottom: '1rem'}}/></div><div>Loading verified intelligence...</div></div>;
 
-  const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan } = data;
+  const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan, kpis } = data;
 
   const halalSecurityIndexData = [
     { subject: '할랄 인증 (Halal)', score: 95, fullMark: 100 },
@@ -80,6 +129,57 @@ export default function TunaRanching() {
 
   return (
     <div className={styles.container}>
+
+      {/* ═══ KPIs ═══ */}
+      {kpis && Object.keys(kpis).length > 0 && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+          {Object.keys(kpis).map((key, idx) => {
+            const kpi = kpis[key];
+            const t = KPI_THEMES[idx % KPI_THEMES.length];
+            const I = t.icon;
+            const parsed = parseAnimatedValue(kpi.value);
+            return (
+              <div 
+                key={key} 
+                className="ds-card" style={{background: '#181818', 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  padding: '1.2rem', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '6px', 
+                  transition: 'all 0.2s ease', 
+                  cursor: 'default', 
+                  boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', 
+                  position: 'relative', 
+                  overflow: 'hidden'}}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'var(--surface-3)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#181818';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
+                  {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <I size={14} style={{ color: t.text }} />}
+                </div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                  {parsed ? (
+                    <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
+                  ) : kpi.value}
+                </div>
+                <div style={{ fontSize: '0.68rem', color: t.text, fontWeight: 600 }}>
+                  <span style={{ background: `${t.text}20`, padding: '1px 5px', borderRadius: '3px', marginRight: '4px' }}>{kpi.trend}</span>
+                  <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>{kpi.desc}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Value Chain Process */}
       <div className={styles.card}>

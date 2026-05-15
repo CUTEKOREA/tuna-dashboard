@@ -151,7 +151,7 @@ export async function POST(req: Request) {
       const words = query.toLowerCase().split(/\s+/).filter(Boolean);
       facilities = facilities.filter((f: any) => {
         const haystack = `${f.name} ${f.productType} ${f.parentCompany || ''} ${f.sector || ''}`.toLowerCase();
-        return words.some(w => haystack.includes(w));
+        return words.some((w: string) => haystack.includes(w));
       });
     }
 

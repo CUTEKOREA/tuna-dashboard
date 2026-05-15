@@ -40,7 +40,7 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
         {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
       </span>
       {!isLive && syncDate && (
-        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '80px', display: 'inline-block', verticalAlign: 'bottom' }}>
           {syncDate}
         </span>
       )}
@@ -416,13 +416,15 @@ export default function PollockDashboard() {
               onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = `0 0 16px ${theme.glow}`; }}
             >
               <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle, ${theme.glow}, transparent)`, pointerEvents: 'none' }} />
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
-                {kpi.telemetry ? (
-                  <TelemetryBadge status={kpi.telemetry as any} syncDate={kpi.syncDate} />
-                ) : (
-                  <IconComp size={14} style={{ color: theme.text }} />
-                )}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', minHeight: '32px' }}>
+                <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, lineHeight: 1.3, wordBreak: 'break-word' }}>{kpi.title}</span>
+                <div style={{ flexShrink: 0 }}>
+                  {kpi.telemetry ? (
+                    <TelemetryBadge status={kpi.telemetry as any} syncDate={kpi.syncDate} />
+                  ) : (
+                    <IconComp size={14} style={{ color: theme.text }} />
+                  )}
+                </div>
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>
                 {parsed ? (

@@ -19,35 +19,13 @@ export default function SalmonInsightFeed() {
   const { containerRef, width } = useContainerWidth();
 
   return (
-    <div style={{
-      background: '#181818',
-      backdropFilter: 'blur(8px)',
-      border: 'none',
-      borderRadius: '12px',
-      padding: '1.5rem',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      minWidth: 0,
-      boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
-    }} ref={containerRef}>
+    <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}}  ref={containerRef}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
         <div>
-          <h3 style={{ 
-            margin: '0 0 0.5rem 0', 
-            fontSize: '1.1rem', 
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            [Live 🟢] 마진율 방어: 사료 내재화 & 기능성 대체 원료 
-          </h3>
-          <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            양식 원가의 60%를 차지하는 사료를 전략적으로 내재화하고 기능성 단백질 도입
-            
-          </p>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+  마진율 방어: 사료 내재화 & 기능성 대체 원료 <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+</h3>
+          <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>양식 원가의 60%를 차지하는 사료를 전략적으로 내재화하고 기능성 단백질 도입</p>
         </div>
         <DollarSign size={20} color="var(--color-success)" />
       </div>

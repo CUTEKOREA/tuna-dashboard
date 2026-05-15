@@ -34,15 +34,7 @@ const FreightTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const eventItem = freightData.find(d => d.year === label);
     return (
-      <div style={{
-        background: '#181818',
-        border: '1px solid rgba(255,255,255,0.15)',
-        borderRadius: '8px',
-        padding: '0.75rem',
-        fontSize: '0.8rem',
-        color: '#e2e8f0',
-        maxWidth: 260,
-      }}>
+      <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}} >
         <p style={{ margin: '0 0 0.25rem 0', fontWeight: 700, color: '#38bdf8' }}>{label}</p>
         {eventItem?.event && (
           <p style={{ margin: '0 0 0.5rem 0', color: '#f97316', fontSize: '0.75rem', fontStyle: 'italic' }}>
@@ -80,17 +72,9 @@ export default function SalmonInsightLogisticsResilience() {
     }} ref={containerRef}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
         <div>
-          <h3 style={{ 
-            margin: '0 0 0.5rem 0', 
-            fontSize: '1.1rem', 
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            [Live 🟢] [물류] 거시 충격과 EU 연어 수입 물류 회복탄력성
-          </h3>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+  [물류] 거시 충격과 EU 연어 수입 물류 회복탄력성 <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+</h3>
           <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             EU 수입 + 글로벌 해운 운임 크로스 검증 (2019–2024)
             

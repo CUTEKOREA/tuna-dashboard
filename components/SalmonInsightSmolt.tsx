@@ -19,35 +19,13 @@ export default function SalmonInsightSmolt() {
   const { containerRef, width } = useContainerWidth();
 
   return (
-    <div style={{
-      background: '#181818',
-      backdropFilter: 'blur(8px)',
-      border: 'none',
-      borderRadius: '12px',
-      padding: '1.5rem',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      minWidth: 0,
-      boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
-    }} ref={containerRef}>
+    <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}}  ref={containerRef}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
         <div>
-          <h3 style={{ 
-            margin: '0 0 0.5rem 0', 
-            fontSize: '1.1rem', 
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            [Live 🟢] 생물학적 한계 돌파: 포스트 스몰트 & 심해 레이저
-          </h3>
-          <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            육상 사육 연장 및 심해 차폐 기술로 바다이(Sea lice) 리스크 원천 차단
-            
-          </p>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+  생물학적 한계 돌파: 포스트 스몰트 & 심해 레이저 <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+</h3>
+          <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>육상 사육 연장 및 심해 차폐 기술로 바다이(Sea lice) 리스크 원천 차단</p>
         </div>
         <ShieldCheck size={20} color="var(--color-success)" />
       </div>

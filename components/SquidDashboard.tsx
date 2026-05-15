@@ -394,7 +394,7 @@ export default function SquidDashboard() {
 
 
       {/* ═══ 6 KPIs ═══ */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
@@ -411,8 +411,8 @@ export default function SquidDashboard() {
               onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
               
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, lineHeight: '1.3', wordBreak: 'keep-all' }}>{kpi.title}</span>
                 {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <IconComp size={14} style={{ color: theme.text }} />}
               </div>
               <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
