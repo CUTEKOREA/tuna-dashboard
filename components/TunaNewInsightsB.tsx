@@ -6,6 +6,13 @@ import { FlaskConical, Landmark, Factory } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const tunaExtractData = [
   { name: '동원F&B', share: 32, color: '#10b981' },
   { name: '한라식품', share: 25, color: '#ef4444' },
@@ -40,7 +47,13 @@ const vietnamData = [
 ];
 
 export function InsightTunaExtract() {
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
@@ -54,10 +67,10 @@ export function InsightTunaExtract() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={coinBrothData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="year" stroke="#94a3b8" />
+              <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" unit="억" />
               <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Legend />
               <Bar yAxisId="left" dataKey="액상_시장" name="액상 시장(억원)" fill="#64748b" radius={[4,4,0,0]} />
               <Bar yAxisId="left" dataKey="분말_코인" name="분말/코인 시장(억원)" fill="#10b981" radius={[4,4,0,0]} />
@@ -99,9 +112,9 @@ export function InsightPillarTwo() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={pillarTwoData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="company" stroke="#94a3b8" />
+              <XAxis dataKey="company" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis stroke="#94a3b8" unit="%" domain={[0, 18]} />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Legend />
               <Bar dataKey="before" name="기존 실효세율(%)" fill="#64748b" radius={[4,4,0,0]} />
               <Bar dataKey="after" name="Pillar Two 적용 후(%) (2026E)" fill="#fbbf24" radius={[4,4,0,0]} />
@@ -142,9 +155,9 @@ export function InsightVietnamOEM() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={vietnamData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-              <XAxis type="number" stroke="#94a3b8" />
+              <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis dataKey="metric" type="category" stroke="#94a3b8" width={100} />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Legend />
               <Bar dataKey="Vietnam" name="🇻🇳 베트남 (2026)" fill="#06b6d4" radius={[0,4,4,0]} />
               <Bar dataKey="Thailand" name="🇹🇭 태국 (2026)" fill="#64748b" radius={[0,4,4,0]} />

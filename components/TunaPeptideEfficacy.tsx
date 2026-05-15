@@ -17,7 +17,7 @@ export default function TunaPeptideEfficacy() {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
-        <h3 className={styles.cardTitle}><TestTubeDiagonal size={18} className={styles.cardIcon} color="#8b5cf6"/> W14. 저분자 펩타이드(TPF) 생리활성 검증</h3>
+        <h3 className={styles.cardTitle}><TestTubeDiagonal size={18} className={styles.cardIcon} color="#8b5cf6"/> W14. 저분자 펩타이드 생리활성 검증</h3>
       </div>
       <div className={styles.cardBody}>
         <SafeResponsiveContainer height={280}>

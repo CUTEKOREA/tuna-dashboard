@@ -11,6 +11,13 @@ import { TrendingUp, Ship, Briefcase, Skull, ShieldAlert, ArrowRightLeft, Target
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const mockArbitrageData = [
   { year: 2019, 태국_매입가: 1200, EU_수출가: 3500 },
   { year: 2020, 태국_매입가: 1350, EU_수출가: 3800 },
@@ -140,9 +147,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockArbitrageData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: 'var(--text-primary)' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: 'var(--text-primary)' }} />
                 <Legend />
                 <Line type="monotone" dataKey="EU_수출가" stroke="#38bdf8" strokeWidth={3} dot={{ r: 4 }} />
                 <Line type="monotone" dataKey="태국_매입가" stroke="#94a3b8" strokeWidth={3} strokeDasharray="5 5" />
@@ -179,9 +186,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockProcessingHubs} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Area type="monotone" dataKey="미국" stackId="1" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.6} />
                 <Area type="monotone" dataKey="태국" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.6} />
@@ -218,9 +225,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockEmergingMarkets} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis type="number" stroke="#94a3b8" />
+                <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis dataKey="name" type="category" stroke="#94a3b8" width={100} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="growth" fill="#818cf8" radius={[0, 4, 4, 0]} name="CAGR Growth (%)" />
               </BarChart>
             </SafeResponsiveContainer>
@@ -268,9 +275,9 @@ export default function TunaInsightsDashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Area type="monotone" dataKey="Pacific_WCPO" stroke="#818cf8" fillOpacity={1} fill="url(#colorPacific)" />
                 <Area type="monotone" dataKey="Atlantic" stroke="#f472b6" fillOpacity={1} fill="url(#colorAtlantic)" />
@@ -307,9 +314,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockHedgingMatrix} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" domain={[60, 160]} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Line type="step" dataKey="Tuna_Index" stroke="#94a3b8" strokeWidth={3} />
                 <Line type="monotone" dataKey="Mackerel_Index" stroke="var(--color-success)" strokeWidth={4} />
@@ -345,9 +352,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockDarkTrading} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="region" stroke="#94a3b8" />
+                <XAxis dataKey="region" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Bar dataKey="Exported" fill="#38bdf8" />
                 <Bar dataKey="Imported" fill="#64748b" />
@@ -388,9 +395,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockAquaculturePremium} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Line type="monotone" dataKey="양식_단가" stroke="#f472b6" strokeWidth={4} />
                 <Line type="monotone" dataKey="야생_어획_단가" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4"/>
@@ -427,9 +434,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockGastronomyMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="country" stroke="#94a3b8" />
+                <XAxis dataKey="country" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" unit="$" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="price" fill="#f472b6" radius={[4, 4, 0, 0]}>
                   {
                     mockGastronomyMap.map((entry: any, index: number) => (
@@ -473,9 +480,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockHHIIndex} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" domain={[0, 3500]} />
-                <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="HHI" fill="#fbbf24" radius={[4, 4, 0, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
@@ -510,9 +517,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockClimateShift} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Area type="monotone" dataKey="Skipjack_Warm" stackId="1" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.6} />
                 <Area type="monotone" dataKey="Bluefin_Cold" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.6} />
@@ -553,9 +560,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockPrecisionFishing} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" domain={[60, 120]} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Line type="monotone" dataKey="CPUE" name="조업성공률(CPUE)" stroke="var(--color-success)" strokeWidth={3} />
                 <Line type="monotone" dataKey="MGO_Cost" name="유류비 지수(MGO)" stroke="var(--color-danger)" strokeWidth={3} strokeDasharray="5 5" />
@@ -591,9 +598,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockTariffHopping} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="region" stroke="#94a3b8" />
+                <XAxis dataKey="region" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Bar dataKey="2023" name="2023 실적 (톤)" fill="#94a3b8" />
                 <Bar dataKey="2026_Projected" name="2026 관세이후 전망" fill="#a855f7" />
@@ -629,9 +636,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockMSCPremium} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis type="number" domain={[0, 250]} stroke="#94a3b8" />
+                <XAxis type="number" domain={[0, 250]} stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis dataKey="category" type="category" stroke="#94a3b8" width={110} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="price" name="Retail Price Index" fill="var(--color-success)" radius={[0, 4, 4, 0]}>
                   {
                     mockMSCPremium.map((entry: any, index: number) => (
@@ -671,10 +678,10 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockAlternativeProtein} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis yAxisId="left" stroke="var(--color-warning)" />
                 <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" domain={[10, 30]} />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Area yAxisId="left" type="monotone" dataKey="VeganTuna_Market_USD_Millions" name="식물성 참치 시장 (백만불)" stroke="var(--color-warning)" fill="var(--color-warning)" fillOpacity={0.6} />
                 <Line yAxisId="right" type="monotone" dataKey="Average_FIFO_Ratio" name="소모 어분 비율 (FIFO)" stroke="var(--color-danger)" strokeWidth={3} />
@@ -710,9 +717,9 @@ export default function TunaInsightsDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockByproductUpcycling} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8" />
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" unit="%" />
-                <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
                 <Line type="monotone" dataKey="PetCare_Margin" name="펫케어 부문 영업이익률" stroke="var(--color-info)" strokeWidth={4} />
                 <Line type="monotone" dataKey="Canned_Margin" name="일반 통조림 영업이익률" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4" />
@@ -737,7 +744,13 @@ export default function TunaInsightsDashboard() {
     </>
   );
 
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>참치 전략 인사이트 대시보드</h1>

@@ -7,6 +7,13 @@ import styles from './TunaExtractDashboard.module.css';
 import { Globe } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const data = [
   { metric: "인건비 (Labor $/MT)", thailand: 450, vietnam: 280 },
   { metric: "가공 수율 (Yield %)", thailand: 46, vietnam: 44 },
@@ -19,10 +26,16 @@ const ACCENT = 'var(--color-info)';
 export default function TunaVietnamOemStrategy() {
   const CustomTooltip = ({ active, payload }: any) => {
     if (!active || !payload?.length) return null;
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div style={{
         background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
-        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 32px rgba(0,0,0,0.7)'
+        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0].payload.metric}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
@@ -59,7 +72,7 @@ export default function TunaVietnamOemStrategy() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ left: 30 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis type="number" stroke="#94a3b8" />
+            <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis dataKey="metric" type="category" stroke="#94a3b8" fontSize={11} width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />

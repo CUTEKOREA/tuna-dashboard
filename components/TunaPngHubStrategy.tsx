@@ -9,6 +9,13 @@ import styles from './TunaExtractDashboard.module.css';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 export default function TunaPngHubStrategy() {
   const [data, setData] = useState<any>(null);
 
@@ -27,7 +34,13 @@ export default function TunaPngHubStrategy() {
 
   if (!data) return null;
 
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
@@ -39,10 +52,10 @@ export default function TunaPngHubStrategy() {
         <SafeResponsiveContainer height={280}>
           <BarChart data={data} layout="vertical" margin={{ left: 50 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis type="number" stroke="#94a3b8" />
+            <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis dataKey="cost_type" type="category" stroke="#94a3b8" fontSize={11} width={120} />
             <Tooltip 
-              contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f8fafc' }}
+              contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }}
               itemStyle={{ color: '#f8fafc' }}
             />
             <Legend />

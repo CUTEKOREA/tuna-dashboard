@@ -7,6 +7,13 @@ import styles from './TunaExtractDashboard.module.css';
 import { TrendingUp } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const data = [
   { year: "2020", wild: 85000, farmed: 25000 },
   { year: "2022", wild: 78000, farmed: 35000 },
@@ -21,10 +28,16 @@ const ACCENT = '#f472b6';
 export default function TunaAquacultureExpansion() {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div style={{
         background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
-        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 32px rgba(0,0,0,0.7)'
+        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
@@ -59,7 +72,7 @@ export default function TunaAquacultureExpansion() {
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
+            <XAxis dataKey="year" stroke="#94a3b8" fontSize={12}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => `${val / 1000}k`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />

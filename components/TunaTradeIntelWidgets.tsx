@@ -11,6 +11,13 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import styles from './TunaInsightsDashboard.module.css';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const PIE_COLORS = ["#FCD535", "#0ECB81", "#2196F3", "#F6465D", "#9B72CB", "#F0B90B", "#FF9800", "#E91E63"];
 
 const COUNTRY_KR: Record<string, string> = {
@@ -25,7 +32,13 @@ const toKR = (name: string) => COUNTRY_KR[name] || name;
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div className={styles.customTooltip}>
         <p className={styles.tooltipLabel}>{label}</p>
         {payload.map((e: any, i: number) => (
@@ -103,7 +116,7 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={tariffData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey="country" stroke="#64748b" tick={{ fontSize: 10 }} />
+            <XAxis dataKey="country" stroke="#64748b" tick={{ fontSize: 10 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#64748b" tick={{ fontSize: 9 }} unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -283,7 +296,7 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey="Year" stroke="#64748b" tick={{ fontSize: 10 }} />
+            <XAxis dataKey="Year" stroke="#64748b" tick={{ fontSize: 10 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#64748b" tick={{ fontSize: 9 }} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} />

@@ -17,8 +17,8 @@ export default function TunaPrecisionFishing() {
     if (!active || !payload?.length) return null;
     return (
       <div style={{
-        background: '#1e293b', border: '1px solid rgba(255, 255, 255, 0.1)',
-        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 32px rgba(0,0,0,0.7)'
+        background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
+        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0].payload.metric}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
@@ -44,7 +44,7 @@ export default function TunaPrecisionFishing() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Crosshair size={20} color={ACCENT} />
-          AI 기반 스마트 정밀 조업 (Precision Harvesting)
+          AI 기반 스마트 정밀 조업
         </h3>
         <p className={styles.cardDesc}>
           전통적 방식(Traditional) 대비 스마트 정밀 조업(Precision Harvesting) 도입 시의 핵심 KPI 변화량 레이더 분석.

@@ -11,6 +11,13 @@ import { AlertTriangle } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 interface TacMonitorProps {
   tacData?: Array<{ rfmo: string; species: string; tac: number; consumed: number; pct: number; year: number; note?: string }>;
   forecastData?: Array<{ year: string; priceIndex: number; tacPressure: number }>;
@@ -18,10 +25,16 @@ interface TacMonitorProps {
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div style={{
       background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)',
-      padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 32px rgba(0,0,0,0.7)'
+      padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
     }}>
       <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
       {payload.map((entry: any, i: number) => (
@@ -84,7 +97,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
                 {t.pct.toFixed(1)}%
               </div>
               <div style={{
-                width: '100%', height: '6px', background: '#1e293b', borderRadius: '3px', marginTop: '6px',
+                width: '100%', height: '6px', background: 'rgba(15, 23, 42, 0.9)', borderRadius: '3px', marginTop: '6px',
                 overflow: 'hidden'
               }}>
                 <div style={{
@@ -105,7 +118,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
+            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" stroke="#94a3b8" fontSize={11} domain={[90, 140]} />
             <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} domain={[0, 100]} />
             <RechartsTooltip content={<CustomTooltip />} />

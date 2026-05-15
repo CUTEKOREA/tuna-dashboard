@@ -10,13 +10,26 @@ import data from '../data/tuna_korea_position.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const TunaKoreaPosition = () => {
   const { containerRef, width } = useContainerWidth();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      return (
+      
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
         <div className={styles.customTooltip}>
           <p className={styles.tooltipLabel}>{`${label}년 한국 참다랑어 수입`}</p>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -64,7 +77,7 @@ const TunaKoreaPosition = () => {
           margin={{ top: 20, right: 30, left: 10, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
+          <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" stroke="#38bdf8" tick={{ fill: '#38bdf8', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
           <YAxis yAxisId="right" orientation="right" stroke="#f43f5e" tick={{ fill: '#f43f5e', fontSize: 12 }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}M`} />
           <Tooltip content={<CustomTooltip />} />

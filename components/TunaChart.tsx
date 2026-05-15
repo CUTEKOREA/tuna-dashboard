@@ -16,13 +16,26 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const uniquePayload = payload.filter((v: any, i: number, a: any[]) => 
       a.findIndex(t => t.name === v.name) === i
     );
 
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div style={{ 
         backgroundColor: 'var(--chart-tooltip-bg)', 
         border: '1px solid var(--chart-tooltip-border)', 

@@ -6,6 +6,13 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import styles from './TunaInsightsDashboard.module.css';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const BYPRODUCT_DATA = [
   { name: '머리/뼈', value: 35, color: '#06b6d4' },
   { name: '내장', value: 20, color: '#f59e0b' },
@@ -24,7 +31,13 @@ const UPCYCLE_PRODUCTS = [
 ];
 
 export function TunaUpcyclingOpportunity() {
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
@@ -107,7 +120,7 @@ export function TunaUpcyclingMarginMap() {
               />
               <YAxis tick={{ fill: '#cbd5e1', fontSize: 10 }} stroke="#64748b" />
               <RechartsTooltip
-                contentStyle={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
                 labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
                 formatter={(value: any, name: any) => [typeof value === 'number' ? value.toFixed(1) : value, String(name)]}

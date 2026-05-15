@@ -12,6 +12,13 @@ import TakeawayBox from './TakeawayBox';
 import TunaRestaurantMap from './TunaRestaurantMap';
 import ColdStorageMap from './ColdStorageMap';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 
 /* Data is loaded dynamically via fetch() from /data/tuna_ranching_dashboard.json */
 
@@ -29,7 +36,13 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   const isLive = status === 'live';
   const isSynced = status === 'synced';
   
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
@@ -266,7 +279,7 @@ export default function TunaRanching() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
                 <Tooltip 
                   contentStyle={{ background: '#0f172a', border: '1px solid #1e293b' }} 
@@ -328,7 +341,7 @@ export default function TunaRanching() {
             <SafeResponsiveContainer width="100%" height={300}>
               <BarChart data={quotaData} layout="vertical" margin={{ top: 0, right: 30, left: 10, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.05)" />
-                <XAxis type="number" hide />
+                <XAxis type="number" hide  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#cbd5e1' }} width={120} />
                 <Tooltip cursor={{ fill: 'rgba(255,255,255,0.05)' }} contentStyle={{ background: '#0f172a', border: 'none' }} itemStyle={{ color: '#e2e8f0' }} />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={24} animationDuration={1000}>
@@ -352,7 +365,7 @@ export default function TunaRanching() {
 
       {/* 🌱 Part I — 원물 생산 (Raw Material) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(245,158,11,0.12) 0%, transparent 100%)", borderLeft:"4px solid #f59e0b", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌱 Part I — 원물 생산 (Raw Material)</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌱 Part I — 원물 생산</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>블루핀 도피회유, TAC 쿼터 과점, 자연폐사율 리스크 등 원물 조달의 근본적 제약과 기회</p>
       </div>
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
@@ -375,10 +388,10 @@ export default function TunaRanching() {
                   { period: '2024', stock: 180, escapement: 55 }
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}pt`} />
                   <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} unit="%" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value, name) => name === '도피율 (%)' ? [`${value}%`, name] : [`${value}pt`, name]} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value, name) => name === '도피율 (%)' ? [`${value}%`, name] : [`${value}pt`, name]} />
                   <Legend />
                   <Area yAxisId="left" type="monotone" dataKey="stock" name="동부 자원지수" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth={3} />
                   <Line yAxisId="right" type="monotone" dataKey="escapement" name="도피율 (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4, fill: '#f59e0b' }} />
@@ -416,9 +429,9 @@ export default function TunaRanching() {
                   { category: '스포츠 피싱·기타', value: 15, color: '#94a3b8' },
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                  <XAxis dataKey="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value) => [`${value}%`, 'TAC 비율']} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value) => [`${value}%`, 'TAC 비율']} />
                   <Bar dataKey="value" name="TAC 비율 (%)" radius={[4, 4, 0, 0]}>
                     {[
                       { category: '축양장 수용 (CBA)', value: 50, color: '#ec4899' },
@@ -558,7 +571,7 @@ export default function TunaRanching() {
 
       {/* 🏭 Part II — 가공 산업 (Processing) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(236,72,153,0.12) 0%, transparent 100%)", borderLeft:"4px solid #ec4899", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 Part II — 가공 산업 (Processing)</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 Part II — 가공 산업</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>초저온 이케지메 가공을 통한 양식/어획 패러다임 역전 및 원가-마진 시뮬레이션</p>
       </div>
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
@@ -577,9 +590,9 @@ export default function TunaRanching() {
               <SafeResponsiveContainer width="100%" height="100%">
                 <LineChart data={aquaculturePremium} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis dataKey="year" stroke="#94a3b8" />
+                  <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis stroke="#94a3b8" tickFormatter={(value) => value.toLocaleString()} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
                   <Legend />
                   <Line type="monotone" dataKey="양식_단가" stroke="#f472b6" strokeWidth={4} />
                   <Line type="monotone" dataKey="야생_어획_단가" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4"/>
@@ -910,7 +923,7 @@ export default function TunaRanching() {
                 <SafeResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={combinedColdChainData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                     <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
                     <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={v => `$${v}M`} />
                     <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#f8fafc', fontWeight: 700 }} itemStyle={{ color: '#e2e8f0' }} formatter={(v: any, name: any) => name === '한국발 수출(KCS)' ? `$${v}M` : `$${v}B`} />
@@ -953,9 +966,9 @@ export default function TunaRanching() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={asianMarketShift?.japaneseProduction} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} />
+                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                      <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                      <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                       <Bar dataKey="production" fill="#ef4444" radius={[4, 4, 0, 0]}>
                         {asianMarketShift?.japaneseProduction.map((entry: any, index: number) => (
                           <Cell key={`cell-${index}`} fill={index === 2 ? '#b91c1c' : '#ef4444'} />
@@ -971,9 +984,9 @@ export default function TunaRanching() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <LineChart data={asianMarketShift?.chineseImports} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} />
+                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                      <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                      <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                       <Line type="monotone" dataKey="import" stroke="#38bdf8" strokeWidth={4} dot={{ r: 5, fill: '#38bdf8' }} />
                     </LineChart>
                   </SafeResponsiveContainer>
@@ -1003,9 +1016,9 @@ export default function TunaRanching() {
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={gastronomyPriceMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                  <XAxis dataKey="country" stroke="#94a3b8" />
+                  <XAxis dataKey="country" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis stroke="#94a3b8" unit="$" tickFormatter={(value) => value.toLocaleString()} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
                   <Bar dataKey="price" fill="#f472b6" radius={[4, 4, 0, 0]}>
                     {
                       gastronomyPriceMap.map((entry: any, index: number) => (
@@ -1099,7 +1112,7 @@ export default function TunaRanching() {
                 <SafeResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={combinedQatarData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                     <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
                     <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={v => `$${v}M`} />
                     <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#f8fafc', fontWeight: 700 }} itemStyle={{ color: '#e2e8f0' }} formatter={(v: any, name: any) => name === '한국발 수출(KCS)' ? `$${v}M` : `${v}%`} />
@@ -1136,7 +1149,7 @@ export default function TunaRanching() {
                     <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'transparent' }} stroke="rgba(255,255,255,0.1)" />
                     <Radar name="프리미엄 지수" dataKey="score" stroke="#14b8a6" fill="#14b8a6" fillOpacity={0.4} />
-                    <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#5eead4' }} />
+                    <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#5eead4' }} />
                   </RadarChart>
                 </SafeResponsiveContainer>
               </div>
@@ -1201,7 +1214,7 @@ export default function TunaRanching() {
 
       {/* 🌍 Part V — ESG 및 지속가능성 (Sustainability) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(139,92,246,0.12) 0%, transparent 100%)", borderLeft:"4px solid #8b5cf6", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌍 Part V — ESG 및 지속가능성 (Sustainability)</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌍 Part V — ESG 및 지속가능성</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>eBCD 컴플라이언스 및 생사료 의존도/FIFO 위기로 인한 장기 환경 리스크 관리</p>
       </div>
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
@@ -1227,7 +1240,7 @@ export default function TunaRanching() {
                   <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 10 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'transparent' }} stroke="rgba(255,255,255,0.1)" />
                   <Radar name="컴플라이언스 이행 점수 (100점)" dataKey="score" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#fca5a5' }} formatter={(value) => [`${value}점`, '평가 점수']} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#fca5a5' }} formatter={(value) => [`${value}점`, '평가 점수']} />
                 </RadarChart>
               </SafeResponsiveContainer>
             </div>
@@ -1263,10 +1276,10 @@ export default function TunaRanching() {
                   { species: '새우 (양식)', fcr: 1.8, o2: 0.6 }
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="species" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                  <XAxis dataKey="species" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                   <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tick={{ fill: '#ef4444', fontSize: 11 }} tickFormatter={(val) => `${val}x`} />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                   <Legend />
                   <Bar yAxisId="left" dataKey="fcr" name="사료전환비 (FCR) - 좌측축" fill="#f59e0b" radius={[4, 4, 0, 0]} />
                   <Line yAxisId="right" type="monotone" dataKey="o2" name="산소 소비 배수 - 우측축" stroke="#ef4444" strokeWidth={3} dot={{ r: 4, fill: '#ef4444' }} />

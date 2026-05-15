@@ -8,6 +8,13 @@ import { Recycle } from 'lucide-react';
 import rawData from '../data/tuna_petcare_margin.json';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const COLORS = ['var(--color-danger)', 'var(--color-success)'];
 const ACCENT = '#38bdf8';
 
@@ -16,10 +23,16 @@ export default function TunaPetCareMargin() {
 
   const CustomBarTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div style={{
         background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255, 255, 255, 0.1)',
-        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '180px'
+        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', minWidth: '180px'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
@@ -87,7 +100,7 @@ export default function TunaPetCareMargin() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
-              <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v: number) => `${v}%`} domain={[0, 35]} />
+              <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v: number) => `${v}%`} domain={[0, 35]} angle={-25} textAnchor="end" height={60} />
               <YAxis type="category" dataKey="market_type" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 11, fontWeight: 'bold' }} width={120} />
               <RechartsTooltip content={<CustomBarTooltip />} />
               <Bar dataKey="margin_pct" name="마진율 (%)" radius={[0, 4, 4, 0]}>

@@ -6,6 +6,13 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 export function SkipjackForecastWidget() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +28,13 @@ export function SkipjackForecastWidget() {
     ...(sk?.forecast || []).map((f: any) => ({ period: f.period, predicted: f.predicted, upper: f.upper_95, lower: f.lower_95 })),
   ];
 
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
@@ -39,7 +52,7 @@ export function SkipjackForecastWidget() {
           <SafeResponsiveContainer width="100%" height={200}>
             <AreaChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-              <XAxis dataKey="period" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
+              <XAxis dataKey="period" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} domain={['dataMin-200', 'dataMax+200']} />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
               <Area type="monotone" dataKey="upper" stroke="none" fill="#FCD535" fillOpacity={0.1} />
@@ -112,7 +125,7 @@ export function EnsoCorrelationWidget() {
       <SafeResponsiveContainer width="100%" height={180}>
         <BarChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-          <XAxis dataKey="phase" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
+          <XAxis dataKey="phase" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Bar dataKey="skipjack" fill="#FCD535" name="가다랑어" radius={[4, 4, 0, 0]} />

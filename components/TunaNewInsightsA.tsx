@@ -6,6 +6,13 @@ import { Globe, Anchor, Shield, FlaskConical, Landmark, Factory } from 'lucide-r
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const nauruData = [
   { year: '2022', China_EU_Loin: 8, Ecuador_EU_Loin: 42, Taiwan_PNA_Days: 4200 },
   { year: '2023', China_EU_Loin: 14, Ecuador_EU_Loin: 40, Taiwan_PNA_Days: 3800 },
@@ -31,7 +38,13 @@ const eu18Data = [
 ];
 
 export function InsightNauruSwitch() {
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
@@ -45,10 +58,10 @@ export function InsightNauruSwitch() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={nauruData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="year" stroke="#94a3b8" />
+              <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
               <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Legend />
               <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="#ef4444" radius={[4,4,0,0]} />
               <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="#10b981" radius={[4,4,0,0]} />
@@ -96,10 +109,10 @@ export function InsightIOCollapse() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="month" stroke="#94a3b8" />
+              <XAxis dataKey="month" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" domain={[0, 100]} unit="%" />
               <YAxis yAxisId="right" orientation="right" stroke="#ef4444" unit="$" />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Legend />
               <Area yAxisId="left" type="monotone" dataKey="IO_Supply" name="IO 공급 지수" stroke="#f97316" fill="url(#ioGrad)" />
               <Line yAxisId="right" type="monotone" dataKey="SKJ_Price" name="방콕 SKJ 현물가($/t)" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} />
@@ -140,9 +153,9 @@ export function InsightEU18C() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={eu18Data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-              <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]} />
+              <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis dataKey="category" type="category" stroke="#94a3b8" width={140} />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Bar dataKey="value" name="글로벌 선단 비율" radius={[0, 4, 4, 0]}>
                 {eu18Data.map((entry, idx) => <Cell key={idx} fill={entry.fill} />)}
               </Bar>

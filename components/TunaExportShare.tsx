@@ -10,6 +10,13 @@ import rawData from '../data/tuna_export_share.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const TunaExportShare = () => {
   const { containerRef, width } = useContainerWidth();
 
@@ -35,7 +42,13 @@ const TunaExportShare = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      return (
+      
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
         <div className={styles.customTooltip}>
           <p className={styles.tooltipLabel}>{label} 수출 내역</p>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -72,7 +85,7 @@ const TunaExportShare = () => {
           margin={{ top: 10, right: 30, left: 10, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="Exporter" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
+          <XAxis dataKey="Exporter" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '20px' }} />

@@ -17,6 +17,7 @@ import {
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ShrimpDashboard.module.css';
+import TakeawayBox from './TakeawayBox';
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -135,47 +136,7 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   );
 };
 
-const TakeawayBox = ({ situation, actionPlan, source, apiSource }: { situation: any, actionPlan: any, source?: string, apiSource?: string }) => {
-  return (
-    <div style={{ marginTop: 'auto', paddingTop: '1.5rem' }}>
-      <div style={{ 
-        background: 'rgba(255, 255, 255, 0.03)', 
-        border: '1px solid rgba(255, 255, 255, 0.05)',
-        borderRadius: '8px', padding: '1.2rem',
-        display: 'flex', flexDirection: 'column', gap: '1rem'
-      }}>
-        {situation && (
-          <div>
-            <h4 style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '1.1rem' }}>📋</span> 현황 분석
-            </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-              {parseTextWithTooltips(typeof situation === 'string' ? situation.replace(/^현황:\s*/, '') : situation)}
-            </p>
-            {apiSource && <p style={{ color: '#64748b', fontSize: '0.75rem', fontStyle: 'italic', margin: '6px 0 0 0' }}>{apiSource}</p>}
-          </div>
-        )}
-        {actionPlan && (
-          <div style={{ borderTop: situation ? '1px solid rgba(255,255,255,0.05)' : 'none', paddingTop: situation ? '1rem' : '0' }}>
-            <h4 style={{ color: '#10b981', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '1.1rem' }}>💡</span> 실행 전략
-            </h4>
-            <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-              {typeof actionPlan === 'string' ? actionPlan.replace(/^전략:\s*/, '') : actionPlan}
-            </p>
-          </div>
-        )}
-        {(source || (!apiSource)) && (
-          <div style={{ paddingTop: '0.5rem' }}>
-            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
-              출처: {source || 'FAO FishStatJ + data/새우/ CSV 원본 교차 검증 완료'}
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+
 
 const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -801,7 +762,13 @@ export default function ShrimpDashboard() {
 
         {/* Takeaway Box */}
         {(situation || takeaway) && (
-          <TakeawayBox situation={situation} actionPlan={takeaway} source={w.source} apiSource={w.apiSource} />
+          <div style={{ marginTop: 'auto' }}>
+            <TakeawayBox 
+              situation={parseTextWithTooltips(typeof situation === 'string' ? situation.replace(/^현황:\s*/, '') : situation)} 
+              actionPlan={parseTextWithTooltips(typeof takeaway === 'string' ? takeaway.replace(/^전략:\s*/, '') : takeaway)} 
+              source={w.source || (w.apiSource ? `${w.apiSource}` : undefined) || 'FAO FishStatJ + data/새우/ CSV 원본 교차 검증 완료'}
+            />
+          </div>
         )}
       </div>
     );

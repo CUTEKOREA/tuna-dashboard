@@ -1,0 +1,99 @@
+# L-01 영문 잔여분 검사 화이트리스트 (V4.1)
+#
+# 사용자 노출 텍스트에 영문이 허용되는 단어를 한 줄에 하나씩 작성.
+# - 정확한 대소문자 매칭
+# - 주석은 # 으로 시작
+# - 빈 줄은 무시
+# - 다중 단어 텍스트는 각 단어가 모두 여기 등록되면 통과
+
+# === 통화 코드 ===
+USD
+JPY
+EUR
+KRW
+CNY
+GBP
+THB
+VND
+IDR
+
+# === 단위 ===
+MT
+kg
+g
+t
+ha
+m
+km
+L
+mL
+
+# === HS / 통관 / 정부기관 ===
+HS
+HSK
+KCS
+KAMIS
+KOSIS
+MFDS
+USDA
+FAO
+FAOSTAT
+ECOS
+FRED
+KOTRA
+OEC
+WTO
+NOAA
+
+# === RFMO (지역수산기구) ===
+RFMO
+IOTC
+CCSBT
+IATTC
+WCPFC
+ICCAT
+
+# === 해역 / 지역 코드 ===
+WCPO
+EPO
+EU
+US
+UK
+APAC
+ASEAN
+
+# === 어종 코드 (ISO) ===
+SBT
+BFT
+YFT
+BET
+SKJ
+ALB
+PBF
+
+# === 금융/경영 지표 ===
+GDP
+CPI
+ROI
+IRR
+EBITDA
+KPI
+FX
+PEF
+
+# === 기술/일반 약어 ===
+AI
+API
+ID
+SPS
+MAP
+ESG
+TDD
+SDD
+GIS
+
+# === 차트 라벨 단위 (display) ===
+k
+M
+B
+P

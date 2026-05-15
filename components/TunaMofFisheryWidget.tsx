@@ -7,6 +7,13 @@ import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import styles from './TunaInsightsDashboard.module.css';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const FALLBACK_FISH = [
   { market: '부산공동어시장', volume: 12450, avgPrice: 8200 },
   { market: '제주한림', volume: 3200, avgPrice: 9100 },
@@ -36,7 +43,13 @@ export function MofFishMarketWidget() {
     fetch('/api/mof-fishery', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: 'fish-market' }) })
       .then(r => r.json()).then(d => { if (d.fishMarket) { setData(d.fishMarket); setLive(true); } }).catch(() => {});
   }, []);
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader} style={{ display: 'flex', alignItems: 'center' }}>
         <h3 className={styles.cardTitle} style={{ flex: 1, margin: 0 }}>
@@ -54,10 +67,10 @@ export function MofFishMarketWidget() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-              <XAxis dataKey="market" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
+              <XAxis dataKey="market" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(val) => `${(val / 1000).toFixed(1)}k`} />
               <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(val) => `₩${val.toLocaleString()}`} />
-              <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
+              <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
               <Legend />
               <Bar yAxisId="left" dataKey="volume" fill="#0ea5e9" name="거래량(MT)" radius={[4, 4, 0, 0]} />
               <Line yAxisId="right" type="monotone" dataKey="avgPrice" stroke="#f59e0b" strokeWidth={3} name="평균 단가(₩/kg)" dot={{ r: 4 }} />
@@ -101,9 +114,9 @@ export function MofTradeBalanceWidget() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-              <XAxis dataKey="month" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
+              <XAxis dataKey="month" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(val) => `$${val}M`} />
-              <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
+              <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
               <Legend />
               <Bar dataKey="export" fill="#10b981" name="수출($M)" radius={[4, 4, 0, 0]} />
               <Bar dataKey="import" fill="#ef4444" name="수입($M)" radius={[4, 4, 0, 0]} />

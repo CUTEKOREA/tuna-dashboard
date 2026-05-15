@@ -54,7 +54,7 @@ export default function TunaGlobalHalalStrategy() {
               ))}
             </Pie>
             <Tooltip 
-              contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f8fafc' }}
+              contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }}
               itemStyle={{ color: '#f8fafc' }}
             />
             <Legend />

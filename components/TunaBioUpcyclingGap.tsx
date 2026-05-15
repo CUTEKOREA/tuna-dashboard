@@ -5,6 +5,13 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import styles from './TunaExtractDashboard.module.css';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const data = [
   { name: '한국 (Korea)', rate: 19.5 },
   { name: '글로벌 평균', rate: 40.0 },
@@ -14,7 +21,13 @@ const data = [
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div className={styles.customTooltip}>
         <p className={styles.tooltipLabel}>{label}</p>
         <p style={{ color: payload[0].payload.rate < 50 ? 'var(--color-danger)' : 'var(--color-success)', margin: '0.25rem 0', fontSize: '0.8rem' }}>
@@ -36,7 +49,7 @@ export default function TunaBioUpcyclingGap() {
         <SafeResponsiveContainer height={280}>
           <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-            <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickMargin={10} />
+            <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickMargin={10}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
             <Tooltip content={<CustomTooltip />} cursor={{fill: '#1e293b'}} />
             <Bar dataKey="rate" radius={[4, 4, 0, 0]} maxBarSize={50}>

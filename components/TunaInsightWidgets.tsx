@@ -5,6 +5,13 @@ import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Z
 import { motion, AnimatePresence } from 'framer-motion';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const DATA_URL = '/api/tuna';
 const COLORS = ['#f97316', '#0ea5e9', 'var(--color-success)', '#8b5cf6', '#f43f5e', 'var(--color-warning)', '#eab308', '#38bdf8'];
 
@@ -13,7 +20,13 @@ const formatNum = (v: number) => new Intl.NumberFormat('en-US').format(v);
 // --- Custom Tooltip Hook ---
 export const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    return (
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
       <div style={{ backgroundColor: '#0F172A', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.5)' }}>
         <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>{label}</p>
         {payload.map((entry: any, index: number) => {
@@ -142,7 +155,7 @@ export default function TunaInsightWidgets() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
+            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -157,7 +170,7 @@ export default function TunaInsightWidgets() {
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
+            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -181,7 +194,7 @@ export default function TunaInsightWidgets() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-              <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+              <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} angle={-25} textAnchor="end" height={60} />
               <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -200,7 +213,7 @@ export default function TunaInsightWidgets() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-              <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
+              <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />

@@ -732,7 +732,7 @@ export default function SquidDashboard() {
     const takeaway = w.strat || w.tak || w.takeaway || '';
     
     return (
-      <div key={w.id} className={styles.glassCard} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
+      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
         background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
         padding: '1.5rem'}}>
         

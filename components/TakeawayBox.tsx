@@ -21,19 +21,19 @@ export default function TakeawayBox({ situation, actionPlan, takeaway, source }:
     >
       <div className="ds-situation-box" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
         <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-info)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          📊 현황 분석 (SITUATION)
+          📊 현황 분석
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          {situation}
+          {typeof situation === 'string' ? <div dangerouslySetInnerHTML={{ __html: situation }} /> : situation}
         </div>
       </div>
       
       <div className="ds-takeaway-box" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
         <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-success)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          ⚡️ 실행 전략 (EXECUTIVE TAKEAWAY)
+          ⚡️ 실행 전략
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          {takeaway || actionPlan}
+          {typeof (takeaway || actionPlan) === 'string' ? <div dangerouslySetInnerHTML={{ __html: (takeaway || actionPlan) as string }} /> : (takeaway || actionPlan)}
         </div>
       </div>
 

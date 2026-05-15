@@ -10,13 +10,26 @@ import data from '../data/tuna_import_blackhole.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const TunaImportBlackhole = () => {
   const { containerRef, width } = useContainerWidth();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      return (
+      
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
         <div className={styles.customTooltip}>
           <p className={styles.tooltipLabel}>{label}</p>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -60,7 +73,7 @@ const TunaImportBlackhole = () => {
           margin={{ top: 10, right: 40, left: 10, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-          <XAxis type="number" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
+          <XAxis type="number" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} angle={-25} textAnchor="end" height={60} />
           <YAxis type="category" dataKey="Country" width={140} stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
           <Tooltip content={<CustomTooltip />} />
           <Bar dataKey="Volume" radius={[0, 6, 6, 0]} barSize={22}>

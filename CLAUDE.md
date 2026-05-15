@@ -1,2 +1,3 @@
 @AGENTS.md
-@design.md
+@COMPREHENSIVE_RULEBOOK.md
+@UI_RULES.md

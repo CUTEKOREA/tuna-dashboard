@@ -14,6 +14,13 @@ import {
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 // Helper components mapping directly into styles
 const CardHeader = ({ title, icon: Icon, term, desc }: any) => (
   <div className={styles.cardHeader}>
@@ -232,7 +239,13 @@ const TakeawayBox = ({ id }: { id: string }) => {
     }} as any;
   const data = takeawaysMap[id];
   if (!data) return null;
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.takeaway} style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
       {/* 📊 Chart Situation Description */}
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
@@ -512,7 +525,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_enso} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" />
                       <YAxis yAxisId="right" orientation="right" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -533,7 +546,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_fad} layout="vertical" margin={{ top: 20, right: 30, left: 60, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                      <XAxis type="number" unit="%" domain={[0, 100]} />
+                      <XAxis type="number" unit="%" domain={[0, 100]}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis dataKey="target" type="category" width={90} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -552,7 +565,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <LineChart data={data_margin} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -571,7 +584,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_area} layout="vertical" margin={{ top: 20, right: 30, left: 30, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis type="number" tickFormatter={(val) => `${val}k`} />
+                      <XAxis type="number" tickFormatter={(val) => `${val}k`} angle={-25} textAnchor="end" height={60} />
                       <YAxis dataKey="area" type="category" width={130} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -590,7 +603,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_enso_skj} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="scenario" />
+                      <XAxis dataKey="scenario"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -609,7 +622,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data_alba_shift} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="decade" />
+                      <XAxis dataKey="decade"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" reversed domain={[0, 40]} label={{ value: '남위(°S)', angle: -90, position: 'insideLeft' }} />
                       <YAxis yAxisId="right" orientation="right" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -634,7 +647,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_port} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="month" />
+                      <XAxis dataKey="month"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" tickFormatter={(v) => `$${(v).toLocaleString('en-US')}`} />
                       <YAxis yAxisId="right" orientation="right" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -655,7 +668,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_em} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" unit="%" />
                       <YAxis yAxisId="right" orientation="right" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -675,7 +688,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_gsp} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="country" />
+                      <XAxis dataKey="country"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -694,7 +707,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_hub} layout="vertical" margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                      <XAxis type="number" unit="%" />
+                      <XAxis type="number" unit="%"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis dataKey="hub" type="category" width={100} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -713,7 +726,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_labour} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" />
                       <YAxis yAxisId="right" orientation="right" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -733,7 +746,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_quota} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="rfmo" />
+                      <XAxis dataKey="rfmo"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -752,7 +765,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_export_risk} layout="vertical" stackOffset="expand" margin={{ top: 20, right: 30, left: 30, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis type="number" tickFormatter={(tick) => `${(tick * 100).toFixed(0)}%`} />
+                      <XAxis type="number" tickFormatter={(tick) => `${(tick * 100).toFixed(0)}%`} angle={-25} textAnchor="end" height={60} />
                       <YAxis dataKey="exporter" type="category" width={80} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -778,7 +791,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_msc} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis tickFormatter={(val) => `$${val}`} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -797,7 +810,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_rival} layout="vertical" margin={{ top: 20, right: 30, left: 50, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                      <XAxis type="number" domain={[0, 100]} unit="%" />
+                      <XAxis type="number" domain={[0, 100]} unit="%"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis dataKey="company" type="category" width={100} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -817,7 +830,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <LineChart data={data_aibep} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis tickFormatter={(val) => `$${(val/1000).toLocaleString('en-US')}k`} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -836,7 +849,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_finance} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="category" />
+                      <XAxis dataKey="category"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Bar dataKey="rate" name="조달 이자율(%)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
@@ -853,7 +866,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_byproduct} layout="vertical" margin={{ top: 20, right: 30, left: 70, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                      <XAxis type="number" />
+                      <XAxis type="number"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis dataKey="item" type="category" width={100} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Bar dataKey="margin" name="영업이익률(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
@@ -870,7 +883,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_premium} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" tickFormatter={(val) => `${val}k`} />
                       <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `${val}k`} />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -890,7 +903,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_aqua} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" tickFormatter={(val) => `${val}k`} />
                       <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `$${val/1000}M`} />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -915,7 +928,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data_albacore} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -934,7 +947,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_pouch} layout="vertical" margin={{ top: 20, right: 30, left: 60, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                      <XAxis type="number" />
+                      <XAxis type="number"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis dataKey="category" type="category" width={100} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -953,7 +966,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_blackhole} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="month" />
+                      <XAxis dataKey="month"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis yAxisId="left" tickFormatter={(val) => `$${val}`} />
                       <YAxis yAxisId="right" orientation="right" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -973,7 +986,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={data_foodservice} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="quarter" />
+                      <XAxis dataKey="quarter"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -992,7 +1005,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <LineChart data={data_altseafood} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -1010,7 +1023,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data_species} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis tickFormatter={(val) => `${val}k`} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -1030,7 +1043,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <LineChart data={data_hegemon} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis tickFormatter={(val) => `${val}k`} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -1052,7 +1065,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <LineChart data={data_korea_orig} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -1074,7 +1087,7 @@ export default function TunaOperationalInsights() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={data_import_bh} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="country" />
+                      <XAxis dataKey="country"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis tickFormatter={(val) => `${val/1000}k`} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />

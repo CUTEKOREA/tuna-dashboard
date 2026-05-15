@@ -9,6 +9,13 @@ import koreaOriginsData from '../data/tuna_korea_import_origins.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const TunaKoreaOrigins = () => {
   const { containerRef, width } = useContainerWidth();
   const [activeChart, setActiveChart] = useState<'koreaOrigins'>('koreaOrigins');
@@ -19,7 +26,13 @@ const TunaKoreaOrigins = () => {
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      return (
+      
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
         <div style={{ backgroundColor: '#0F172A', border: '1px solid #334155', padding: '12px', borderRadius: '8px', color: '#f8fafc' }}>
           <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>{`${label}년`}</p>
           {payload.map((entry: any, index: number) => (
@@ -82,7 +95,7 @@ const TunaKoreaOrigins = () => {
             barSize={40}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-            <XAxis dataKey="Year" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
+            <XAxis dataKey="Year" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(value) => `${formatNumber(value)}`} />
             <Tooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />

@@ -5,6 +5,13 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Dna, Ship, Shield, FlaskConical, Anchor, Fish, AlertTriangle, Recycle, TestTube } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 /* ═══════════════════════════════════════════════════════
    Insight G — 참치 부산물 고부가가치 바이오 전환
    Source: KFAS 가다랑어 부산물 + 황다랑어 알 효소 가수분해물 + 통조림 부산물 안전성
@@ -28,7 +35,13 @@ const roeHydrolysateData = [
 ];
 
 export function KfasByproductValueChain() {
-  return (
+  
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
@@ -44,7 +57,7 @@ export function KfasByproductValueChain() {
               <XAxis dataKey="part" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} angle={-20} textAnchor="end" interval={0} height={50} />
               <YAxis stroke="#94a3b8" unit="%" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
               <RTooltip 
-                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
                 labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
               />
@@ -109,11 +122,11 @@ export function KfasLonglineEvolution() {
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={longlineData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0} />
+              <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
               <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" unit="%" tick={{ fill: '#f59e0b', fontSize: 12, fontWeight: 500 }} />
               <RTooltip 
-                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
                 labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
               />
@@ -180,7 +193,7 @@ export function KfasIndianOceanRisk() {
               <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
               <PolarRadiusAxis angle={30} domain={[0, 3]} tick={{ fill: '#94a3b8', fontSize: 10 }} />
               <RTooltip 
-                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
                 labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
               />
@@ -256,7 +269,7 @@ export function KfasElderlyFunctionalFood() {
               <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
               <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" tick={{ fill: '#10b981', fontSize: 12, fontWeight: 500 }} />
               <RTooltip 
-                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
                 labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
               />

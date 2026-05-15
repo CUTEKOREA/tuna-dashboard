@@ -8,6 +8,13 @@ import TakeawayBox from './TakeawayBox';
 import declineData from '../data/tuna_traditional_decline.json';
 import empireData from '../data/tuna_thai_empire.json';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 const getKorCountry = (engName: string) => {
   const map: Record<string, string> = {
     'United States of America': '미국',
@@ -23,8 +30,14 @@ const getKorCountry = (engName: string) => {
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    return (
-      <div style={{ background: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
+      <div style={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ margin: '4px 0', color: entry.color || entry.payload.fill, fontSize: '13px', fontWeight: 600 }}>
@@ -68,7 +81,7 @@ export const WidgetTunaGiantsFall = () => (
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={declineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5} />
+          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
@@ -102,7 +115,7 @@ export const WidgetThaiEmpire = () => (
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={empireData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5} />
+          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />

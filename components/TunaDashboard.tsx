@@ -48,11 +48,24 @@ import TunaSupplierHub from './TunaSupplierHub';
 import TunaComplianceRadar from './TunaComplianceRadar';
 import TunaHSClassifier from './TunaHSClassifier';
 
+export const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
+
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
-    return (
-      <div style={{ backgroundColor: '#1e293b', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}>
+    
+  const truncateXAxis = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
+    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  };
+return (
+      <div style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
         <p style={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px', margin: 0 }}>{label}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
           {payload.map((e: any, i: number) => (
@@ -81,11 +94,11 @@ const KPI_THEMES = [
 ];
 
 const SECTIONS = [
-  { id: "S1", title: "⚓ Part I — 원물 생산 (Raw Material)", desc: "FAO FishStatJ · IOTC · IATTC · ICCAT 기반 글로벌 참치 어획량, 어종별 자원 동향, K-원양 선단 효율, 기후(ENSO) 영향 분석", color: "#FCD535" },
-  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "태국/스페인/한국 가공 패권 구조, 수율·인건비 벤치마크, 부산물 업사이클링, 펫케어 라인 전환 타당성", color: "#9B72CB" },
-  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
-  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
-  { id: "S5", title: "🌍 Part V — ESG 및 지속가능성 (Sustainability)", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
+  { id: "S1", title: "⚓ Part I — 원물 생산", desc: "FAO FishStatJ · IOTC · IATTC · ICCAT 기반 글로벌 참치 어획량, 어종별 자원 동향, K-원양 선단 효율, 기후(ENSO) 영향 분석", color: "#FCD535" },
+  { id: "S2", title: "🏭 Part II — 가공 산업", desc: "태국/스페인/한국 가공 패권 구조, 수율·인건비 벤치마크, 부산물 업사이클링, 펫케어 라인 전환 타당성", color: "#9B72CB" },
+  { id: "S3", title: "🚢 Part III — 물류 및 무역", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
+  { id: "S4", title: "🛒 Part IV — 판매 및 수요", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
+  { id: "S5", title: "🌍 Part V — ESG 및 지속가능성", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
 ];
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -179,7 +192,7 @@ const renderChart = (w: any) => {
               ))}
             </defs>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis {...yAxisProps} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -193,7 +206,7 @@ const renderChart = (w: any) => {
         return (
           <LineChart data={d} margin={CHART_MARGIN}>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" {...yAxisProps} />
             {hasRightLine && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -207,7 +220,7 @@ const renderChart = (w: any) => {
         return (
           <BarChart data={d} margin={{ ...CHART_MARGIN, top: 30 }}>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis {...yAxisProps} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -226,7 +239,7 @@ const renderChart = (w: any) => {
         return (
           <ComposedChart data={d} margin={CHART_MARGIN}>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" {...yAxisProps} />
             {hasRightComposed && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -278,7 +291,7 @@ const renderChart = (w: any) => {
       return (
         <LineChart data={d} margin={CHART_MARGIN}>
           {grid}
-          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0} />
+          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" {...yAxisProps} />
           {hasRightAxis && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
           <RechartsTooltip content={<CustomTooltip />} />
@@ -292,7 +305,7 @@ const renderChart = (w: any) => {
       return (
         <AreaChart data={d} margin={CHART_MARGIN}>
           {grid}
-          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0} />
+          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" {...yAxisProps} />
           {hasRightAxis && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
           <RechartsTooltip content={<CustomTooltip />} />
@@ -306,7 +319,7 @@ const renderChart = (w: any) => {
       return (
         <ComposedChart data={d} margin={CHART_MARGIN}>
           {grid}
-          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0} />
+          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" {...yAxisProps} />
           {hasRightAxis && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
           <RechartsTooltip content={<CustomTooltip />} />
@@ -345,11 +358,12 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
         <h3 className={styles.cardTitle}>
           <IconComp size={18} style={{ color: accentColor }} />
           {widget.title}
-          {widget.source && widget.source.includes('LIVE') ? (
-            <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', background:'rgba(16, 185, 129, 0.15)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:600, padding:'2px 6px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API</span>
-          ) : widget.reliability ? (
-            <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(255, 255, 255, 0.05)', border:'1px solid rgba(255, 255, 255, 0.1)', color:'#94a3b8', fontSize:'0.65rem', fontWeight:500, padding:'1px 5px', borderRadius:'4px' }}>Static Data</span>
-          ) : null}
+          <div style={{ marginLeft: '12px', display: 'flex', alignItems: 'center' }}>
+            <TelemetryBadge 
+              status={((widget.reliability && widget.reliability > 70) || (widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? 'live' : 'static'} 
+              syncDate={((widget.reliability && widget.reliability > 70) || (widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? 'Real-time' : '2024년 기준'} 
+            />
+          </div>
           
           <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
             {widget.unit && <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: {widget.unit})</span>}
