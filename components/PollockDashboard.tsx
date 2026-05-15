@@ -130,47 +130,47 @@ const WIDGET_ICONS: Record<string, any> = {
 };
 
 const WIDGET_UNITS: Record<string, string> = {
-  w1_global_catch: '톤 (Tonnes)',
-  w2_hegemony: '톤 (Tonnes)',
-  w3_diverging: '톤 (Tonnes)',
-  w4_korea_crisis: '톤 (Tonnes)',
-  w5_china_blackhole: '톤 (Tonnes)',
-  w6_inflation_unitprice: 'USD/t',
-  w7_usa_russia_unitprice: 'USD/t',
-  w8_korea_deficit: '천 달러 (USD 1,000)',
-  w9_surimi_megatrend: '톤 (Tonnes)',
-  w10_surimi_top3: '톤 (Tonnes)',
-  w11_surimi_trade: '톤 (Tonnes)',
-  w12_proc_vs_surimi: '톤 (Tonnes)',
-  w13: '톤 (Tonnes)',
-  w14: 'USD/t',
-  w15: '물량: 톤(t) / 단가: USD/t',
-  w16: '물량: 톤(t) / 단가: USD/t',
-  w17: '톤 (Tonnes)',
-  w18: '톤 (Tonnes)',
-  w19_tariff_engineering: '비율 (%)',
-  w20_whitefish_reshuffle: '증감률 (%)',
-  w21_b_season_hedge: '체선(주) / 지수',
-  w22_precision_release: '비율(%) / 마진율(%)',
-  w23_upcycling_esg: '비율 (%)',
-  w24_opex_spread: 'USD/t',
-  w25_processing_bottleneck: '일(Days) / 비율(%)',
-  w26_inventory_freight: '지수/비율',
-  w27_substitute_spread: 'USD/t',
-  w28_esg_premium: '지수/비율',
-  w29_eu_derisk_pivot: '천톤 (1,000t) / 비율(%)',
-  w30_traceability_risk: '천톤 (1,000t) / 지수',
-  w31_catch_gap: '천톤 (1,000t)',
-  w32_sst_fleet_matrix: '지수 / °C (SST)',
-  w33_arbitrage_tracker: 'KRW/kg / 마진',
-  n1_sanction_paradox: '비율 / 지수',
-  n5_rcep_detour: '천톤 (1,000t)',
-  n6_waste_to_wealth: '천톤 / 마진율(%)',
-  k1_3d_surimi: 'gf / 관능점수',
-  k2_epa_larva: '% / mg·g⁻¹',
-  k3_gamma_roe: 'log CFU/g · 점수',
-  k4_senior_food: 'N/m²',
-  k5_hatch_temp: '% / RNA·DNA⁻¹',
+  w1_global_catch: '(천 톤)',
+  w2_hegemony: '(%)',
+  w3_diverging: '(천 톤)',
+  w4_korea_crisis: '(%)',
+  w5_china_blackhole: '(천 톤)',
+  w6_inflation_unitprice: '(USD/t)',
+  w7_usa_russia_unitprice: '(USD/t)',
+  w8_korea_deficit: '(천 USD)',
+  w9_surimi_megatrend: '(천 톤)',
+  w10_surimi_top3: '(%)',
+  w11_surimi_trade: '(천 톤)',
+  w12_proc_vs_surimi: '(%)',
+  w13: '(%)',
+  w14: '(USD/t)',
+  w15: '(USD/t)',
+  w16: '(천 톤)',
+  w17: '(천 톤)',
+  w18: '(천 톤)',
+  w19_tariff_engineering: '(%)',
+  w20_whitefish_reshuffle: '(%)',
+  w21_b_season_hedge: '(주)',
+  w22_precision_release: '(%)',
+  w23_upcycling_esg: '(%)',
+  w24_opex_spread: '(USD/t)',
+  w25_processing_bottleneck: '(일)',
+  w26_inventory_freight: '(지수)',
+  w27_substitute_spread: '(USD/t)',
+  w28_esg_premium: '(지수)',
+  w29_eu_derisk_pivot: '(%)',
+  w30_traceability_risk: '(지수)',
+  w31_catch_gap: '(천 톤)',
+  w32_sst_fleet_matrix: '(°C)',
+  w33_arbitrage_tracker: '(원/kg)',
+  n1_sanction_paradox: '(지수)',
+  n5_rcep_detour: '(천 톤)',
+  n6_waste_to_wealth: '(%)',
+  k1_3d_surimi: '(gf)',
+  k2_epa_larva: '(%)',
+  k3_gamma_roe: '(점수)',
+  k4_senior_food: '(N/m²)',
+  k5_hatch_temp: '(%)',
 };
 
 const formatYAxis = (v: number) => {
@@ -584,17 +584,22 @@ export default function PollockDashboard() {
       
       {/* ═══ 5-PILLAR STRATEGIC FRAMEWORK ═══ */}
       {PILLARS.map((pillar) => {
-        const PillarIcon = pillar.icon;
         return (
           <section key={pillar.id} style={{ marginBottom: '4rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: `1px solid ${pillar.color}50`, paddingBottom: '0.5rem' }}>
-              <PillarIcon size={24} color={pillar.color} />
-              <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>
+            {/* S-Grade Signature Header */}
+            <div style={{ 
+              padding: "1.25rem 1.5rem", 
+              background: `linear-gradient(90deg, ${pillar.color}20 0%, transparent 100%)`, 
+              borderLeft: `4px solid ${pillar.color}`, 
+              marginBottom: "1.5rem", 
+              marginTop: "2rem" 
+            }}>
+              <h2 style={{ margin: 0, fontSize: "1.2rem", fontWeight: 700, color: "#f8fafc" }}>
                 {pillar.title}
               </h2>
-              <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#cbd5e1', background: `${pillar.color}20`, border: `1px solid ${pillar.color}30`, padding: '4px 10px', borderRadius: '12px' }}>
+              <p style={{ margin: "5px 0 0 0", fontSize: "0.85rem", color: "#94a3b8" }}>
                 {pillar.desc}
-              </span>
+              </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {widgets?.filter((w: any) => pillar.widgets.includes(w.id)).map((w: any) => renderWidgetCard(w))}
