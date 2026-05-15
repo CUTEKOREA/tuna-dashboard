@@ -16,19 +16,18 @@ import {
   Fish, TrendingDown, Beaker, Thermometer, ShoppingBag, Recycle, Package, FlaskConical
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css'; // Reusing established styles
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     return (
-      <div className={styles.customTooltip}>
-        <p className={styles.tooltipLabel}>{label}</p>
+      <div style={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: '#f8fafc', fontSize: '0.88rem' }}>
+        <p style={{ margin: '0 0 8px 0', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((e: any, i: number) => (
-          <div key={i} className={styles.tooltipValue}>
+          <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', marginBottom: '4px' }}>
             <span style={{ color: e.color }}>■ {e.name}</span>
-            <strong>{typeof e.value === 'number' ? e.value.toLocaleString() : e.value}</strong>
+            <strong style={{ fontWeight: 600 }}>{typeof e.value === 'number' ? e.value.toLocaleString() : e.value}</strong>
           </div>
         ))}
       </div>
@@ -237,7 +236,7 @@ export default function WhelkDashboard() {
             {/* Module 1: 품종별 특징 */}
             <div className="ds-card" style={{background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
               <h3 style={{ color: 'var(--text-primary)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                <Anchor size={20} color="var(--color-info)"/> 조업 방식 및 주요 어종 (Species)
+                <Anchor size={20} color="var(--color-info)"/> 조업 방식 및 주요 어종
               </h3>
               
               <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', marginBottom: '1rem' }}>
@@ -400,7 +399,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <LineChart data={canadaCaptureData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -441,7 +440,7 @@ export default function WhelkDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[6000, 11000]} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Area type="monotone" dataKey="capture" name="한국 어획(톤)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCapture)" />
@@ -515,7 +514,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <ComposedChart data={seasonalityData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Bar yAxisId="left" dataKey="importUSD" name="수입액($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -540,7 +539,7 @@ export default function WhelkDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Scale style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 국가별 원물 수율 기반 총사용원가(TCU) 비교
+                    <Scale style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 국가별 원물 수율 기반 총사용원가 비교
                   </h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <TelemetryBadge status="static" syncDate="2024년 기준" />
@@ -574,7 +573,7 @@ export default function WhelkDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <DollarSign style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국산 수입 통관 원가 워터폴(Waterfall)
+                    <DollarSign style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국산 수입 통관 원가 폭포수 구조
                   </h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <TelemetryBadge status="synced" syncDate="2026-05-15" />
@@ -696,7 +695,7 @@ export default function WhelkDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <DollarSign style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 환율(USD/KRW) 및 수입 단가 복합 변동성
+                    <DollarSign style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 환율 및 수입 단가 복합 변동성
                   </h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <TelemetryBadge status="live" syncDate="Real-time" />
@@ -711,7 +710,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <ComposedChart data={fxCorrelationData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
@@ -732,7 +731,7 @@ export default function WhelkDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Shield style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국 현지 어획 규제(IFCA) 리스크 진단
+                    <Shield style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국 현지 어획 규제 리스크 진단
                   </h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <TelemetryBadge status="static" syncDate="2024년 기준" />
@@ -783,7 +782,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <BarChart data={aquacultureData} margin={{ top: 10 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} />
+                    <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -804,7 +803,7 @@ export default function WhelkDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <FlaskConical style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 카드뮴(Cd) 생체축적 및 식품안전 규제 진단
+                    <FlaskConical style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 카드뮴 생체축적 및 식품안전 규제 진단
                   </h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <TelemetryBadge status="static" syncDate="2024년 기준" />
@@ -819,7 +818,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} />
+                    <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -864,7 +863,7 @@ export default function WhelkDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
@@ -937,7 +936,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <BarChart data={solidContentData} margin={{ top: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} />
+                    <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis domain={[0, 320]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'g', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -957,7 +956,7 @@ export default function WhelkDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
                   <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Thermometer style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 해수온(SST) 상승에 따른 조업지 이탈 기후 리스크
+                    <Thermometer style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 해수온 상승에 따른 조업지 이탈 기후 리스크
                   </h3>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <TelemetryBadge status="static" syncDate="2026 기후 시뮬레이션" />
@@ -982,7 +981,7 @@ export default function WhelkDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
                     <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '어획량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <YAxis yAxisId="right" orientation="right" domain={[9, 15]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'SST(°C)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
