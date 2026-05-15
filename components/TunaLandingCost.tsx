@@ -120,7 +120,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <Calculator size={18} style={{ color: '#FCD535' }} />
-          [착지원가] 착지원가 실시간 시뮬레이터 (Landing Cost Calculator)
+          [착지원가] 착지원가 실시간 시뮬레이터
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '4px',
             background: liveData?.source === 'Live API' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
@@ -229,12 +229,12 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>
             <tbody>
               {[
-                { label: 'FOB Price (본선인도가)', value: `$${result.fobPrice.toLocaleString()}/MT`, source: 'Market Benchmark', color: '#f8fafc' },
-                { label: 'Ocean Freight (해상운임)', value: `$${result.oceanFreight.toLocaleString()}/MT`, source: `WTI $${liveData?.wti.toFixed(0)} 반영`, color: '#f8fafc' },
-                { label: 'Insurance (보험료)', value: `$${result.insurance.toLocaleString()}/MT`, source: '1% CIF', color: '#94a3b8' },
-                { label: `Import Duty (관세 ${result.tariffRate})`, value: `$${result.importDuty.toLocaleString()}/MT`, source: result.ftaApplied ? `${result.ftaName} (FTA 0%)` : 'MFN', color: result.ftaApplied ? '#0ECB81' : '#F6465D' },
-                { label: 'Customs Fee (통관수수료)', value: `$${result.customsFee.toLocaleString()}/MT`, source: '0.5% CIF', color: '#94a3b8' },
-                { label: 'FX Impact (환율 영향)', value: `${result.fxImpact >= 0 ? '+' : ''}${result.fxImpact}%`, source: `₩${result.fxRate.toLocaleString()}/USD`, color: result.fxImpact >= 0 ? '#F6465D' : '#0ECB81' },
+                { label: 'FOB 본선인도가', value: `$${result.fobPrice.toLocaleString()}/MT`, source: '시장 벤치마크', color: '#f8fafc' },
+                { label: '해상운임', value: `$${result.oceanFreight.toLocaleString()}/MT`, source: `WTI $${liveData?.wti.toFixed(0)} 반영`, color: '#f8fafc' },
+                { label: '보험료', value: `$${result.insurance.toLocaleString()}/MT`, source: '1% CIF', color: '#94a3b8' },
+                { label: `관세 (${result.tariffRate})`, value: `$${result.importDuty.toLocaleString()}/MT`, source: result.ftaApplied ? `${result.ftaName} (FTA 0%)` : 'MFN', color: result.ftaApplied ? '#0ECB81' : '#F6465D' },
+                { label: '통관수수료', value: `$${result.customsFee.toLocaleString()}/MT`, source: '0.5% CIF', color: '#94a3b8' },
+                { label: '환율 영향', value: `${result.fxImpact >= 0 ? '+' : ''}${result.fxImpact}%`, source: `₩${result.fxRate.toLocaleString()}/USD`, color: result.fxImpact >= 0 ? '#F6465D' : '#0ECB81' },
               ].map((row, idx) => (
                 <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '8px 12px', color: '#94a3b8', fontWeight: 500 }}>{row.label}</td>
@@ -244,7 +244,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
               ))}
               <tr style={{ background: 'rgba(252,213,53,0.06)', borderTop: '2px solid rgba(252,213,53,0.3)' }}>
                 <td style={{ padding: '10px 12px', color: '#FCD535', fontWeight: 800, fontSize: '0.9rem' }}>
-                  TOTAL LANDED COST
+                  합계 착지원가
                 </td>
                 <td style={{ padding: '10px 12px', textAlign: 'right' }}>
                   <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#f8fafc' }}>${result.totalCIF.toLocaleString()}/MT</div>

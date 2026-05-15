@@ -13,6 +13,16 @@ import styles from './TunaInsightsDashboard.module.css';
 
 const PIE_COLORS = ["#FCD535", "#0ECB81", "#2196F3", "#F6465D", "#9B72CB", "#F0B90B", "#FF9800", "#E91E63"];
 
+const COUNTRY_KR: Record<string, string> = {
+  Thailand: '태국', China: '중국', Spain: '스페인', Ecuador: '에콰도르',
+  Indonesia: '인도네시아', Philippines: '필리핀', Vietnam: '베트남',
+  USA: '미국', Japan: '일본', UK: '영국', 'South Korea': '한국',
+  Germany: '독일', France: '프랑스', Italy: '이탈리아', Netherlands: '네덜란드',
+  Australia: '호주', Canada: '캐나다', 'United States': '미국',
+  'United Kingdom': '영국', Portugal: '포르투갈', Mexico: '멕시코',
+};
+const toKR = (name: string) => COUNTRY_KR[name] || name;
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     return (
@@ -80,7 +90,7 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
             color: isLive ? '#10b981' : '#94a3b8',
             fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
           }}>
-            {isLive ? '🟢 LIVE API' : 'Fallback DB'}
+            {isLive ? '🟢 실시간' : '폴백 DB'}
           </span>
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 관세율 %)</span>
         </h3>
@@ -141,12 +151,12 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
   }
 
   const exporterData = (data?.topExporters || []).slice(0, 8).map((d: any) => ({
-    name: d.country,
+    name: toKR(d.country),
     value: d.value,
   }));
 
   const importerData = (data?.topImporters || []).slice(0, 6).map((d: any) => ({
-    name: d.country,
+    name: toKR(d.country),
     value: d.value,
   }));
 
@@ -165,7 +175,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
             color: isLive ? '#10b981' : '#94a3b8',
             fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
           }}>
-            {isLive ? '🟢 LIVE API' : 'Benchmark DB'}
+            {isLive ? '🟢 실시간' : '벤치마크 DB'}
           </span>
         </h3>
         <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
@@ -176,7 +186,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
       <div style={{ height: '325px', width: '100%', marginBottom: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
         {/* Exporter Pie */}
         <div>
-          <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, marginBottom: '4px', textAlign: 'center' }}>Top 수출국 (Export)</div>
+          <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, marginBottom: '4px', textAlign: 'center' }}>Top 수출국</div>
           <SafeResponsiveContainer width="100%" height="90%">
             <PieChart>
               <Pie data={exporterData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={75} innerRadius={30}
@@ -189,7 +199,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
         </div>
         {/* Importer Pie */}
         <div>
-          <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, marginBottom: '4px', textAlign: 'center' }}>Top 수입국 (Import)</div>
+          <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, marginBottom: '4px', textAlign: 'center' }}>Top 수입국</div>
           <SafeResponsiveContainer width="100%" height="90%">
             <PieChart>
               <Pie data={importerData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={75} innerRadius={30}
@@ -260,7 +270,7 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
             color: isLive ? '#10b981' : '#94a3b8',
             fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
           }}>
-            {isLive ? '🟢 LIVE API' : 'Comtrade Snapshot'}
+            {isLive ? '🟢 실시간' : 'Comtrade 스냅샷'}
           </span>
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: $M / kMT)</span>
         </h3>
