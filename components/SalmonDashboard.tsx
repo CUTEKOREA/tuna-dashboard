@@ -34,7 +34,37 @@ import SalmonForecastSimulator from './SalmonForecastSimulator';
 import SalmonESGTracker from './SalmonESGTracker';
 import SalmonPolicyImpact from './SalmonPolicyImpact';
 import styles from './MackerelStrategy.module.css';
+import insightsStyles from './InsightsPanel.module.css';
 import TakeawayBox from './TakeawayBox';
+
+/* ─── V4.0 S-Grade: Salmon Monochromatic Theme (Rose/Coral) ─── */
+const SALMON_THEME = {
+  primary: '#ec4899',
+  secondary: '#f43f5e',
+  tertiary: '#fb7185',
+  quaternary: '#fda4af',
+  neutral: '#fecdd3',
+  gradient: 'linear-gradient(135deg, #ec4899, #f43f5e)',
+  gradientText: 'linear-gradient(135deg, #fda4af, #ec4899)',
+};
+
+/* ─── V4.0 D-05: X-Axis Label Forensic Truncation ─── */
+const xFmt = (label: string): string => {
+  if (!label || typeof label !== 'string') return '';
+  const cleaned = label.replace(/\s*\([^)]*\)$/g, '').trim();
+  return cleaned.length > 6 ? cleaned.slice(0, 6) : cleaned;
+};
+
+/* ─── 5-Pillar Section Colors ─── */
+const PILLAR_COLORS: Record<string, { accent: string; bg: string }> = {
+  raw:     { accent: '#f59e0b', bg: 'rgba(245,158,11,0.15)' },
+  proc:    { accent: '#ec4899', bg: 'rgba(236,72,153,0.15)' },
+  logis:   { accent: '#3b82f6', bg: 'rgba(59,130,246,0.15)' },
+  sales:   { accent: '#10b981', bg: 'rgba(16,185,129,0.15)' },
+  esg:     { accent: '#8b5cf6', bg: 'rgba(139,92,246,0.15)' },
+  forecast:{ accent: '#06b6d4', bg: 'rgba(6,182,212,0.15)' },
+  policy:  { accent: '#f97316', bg: 'rgba(249,115,22,0.15)' },
+};
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -58,16 +88,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const PIE_COLORS = ["#ec4899", "var(--color-warning)", "var(--color-info)", "var(--color-success)", "#8b5cf6", "var(--color-danger)", "#06b6d4", "#f97316"];
+const PIE_COLORS = [SALMON_THEME.primary, SALMON_THEME.secondary, SALMON_THEME.tertiary, SALMON_THEME.quaternary, SALMON_THEME.neutral, '#be185d', '#db2777', '#f472b6'];
 
 /* ─── KPI Themes ─── */
 const KPI_THEMES = [
-  { border: 'rgba(236, 72, 153, 0.5)', glow: 'rgba(236, 72, 153, 0.25)', text: 'var(--color-success)', icon: Database },
-  { border: 'rgba(239, 68, 68, 0.5)', glow: 'rgba(239, 68, 68, 0.25)', text: 'var(--color-danger)', icon: AlertTriangle },
-  { border: 'rgba(16, 185, 129, 0.5)', glow: 'rgba(16, 185, 129, 0.25)', text: 'var(--color-success)', icon: TrendingUp },
-  { border: 'rgba(59, 130, 246, 0.5)', glow: 'rgba(59, 130, 246, 0.25)', text: 'var(--color-info)', icon: ShieldCheck },
-  { border: 'rgba(245, 158, 11, 0.5)', glow: 'rgba(245, 158, 11, 0.25)', text: 'var(--color-warning)', icon: Factory },
-  { border: 'rgba(139, 92, 246, 0.5)', glow: 'rgba(139, 92, 246, 0.25)', text: '#8b5cf6', icon: Scale },
+  { border: 'rgba(236, 72, 153, 0.5)', glow: 'rgba(236, 72, 153, 0.25)', text: SALMON_THEME.primary, icon: Database },
+  { border: 'rgba(244, 63, 94, 0.5)', glow: 'rgba(244, 63, 94, 0.25)', text: SALMON_THEME.secondary, icon: AlertTriangle },
+  { border: 'rgba(251, 113, 133, 0.5)', glow: 'rgba(251, 113, 133, 0.25)', text: SALMON_THEME.tertiary, icon: TrendingUp },
+  { border: 'rgba(253, 164, 175, 0.5)', glow: 'rgba(253, 164, 175, 0.25)', text: SALMON_THEME.quaternary, icon: ShieldCheck },
+  { border: 'rgba(254, 205, 211, 0.5)', glow: 'rgba(254, 205, 211, 0.25)', text: SALMON_THEME.neutral, icon: Factory },
+  { border: 'rgba(190, 24, 93, 0.5)', glow: 'rgba(190, 24, 93, 0.25)', text: '#be185d', icon: Scale },
 ];
 
 /* ─── Widget Icons ─── */
@@ -149,7 +179,7 @@ export default function SalmonDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
-      <RefreshCcw size={32} style={{ color: 'var(--color-success)', animation: 'spin 1s linear infinite' }} />
+      <RefreshCcw size={32} style={{ color: SALMON_THEME.primary, animation: 'spin 1s linear infinite' }} />
       <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Loading Intelligence...</p>
     </div>
   );
@@ -190,7 +220,7 @@ export default function SalmonDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -203,7 +233,7 @@ export default function SalmonDashboard() {
           return (
             <LineChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -216,7 +246,7 @@ export default function SalmonDashboard() {
           return (
             <BarChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -267,7 +297,7 @@ export default function SalmonDashboard() {
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -281,7 +311,7 @@ export default function SalmonDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -294,7 +324,7 @@ export default function SalmonDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -307,7 +337,7 @@ export default function SalmonDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -333,7 +363,7 @@ export default function SalmonDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '8px', 
-              background: 'var(--color-success)', 
+              background: SALMON_THEME.gradient, 
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
             }}>
@@ -341,10 +371,10 @@ export default function SalmonDashboard() {
             </div>
             <div>
               <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px',
-                background: 'var(--color-success)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                background: SALMON_THEME.gradientText, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 대서양 연어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Atlantic Salmon Strategic Command Center v2.0 — 35 Widgets · 5 Modules · 6 KPIs · 12 Live APIs</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Atlantic Salmon Strategic Command Center v4.0 — 35 Widgets · 5 Pillars · 6 KPIs · 3 Live APIs</p>
             </div>
           </div>
           <div style={{ 
@@ -352,7 +382,7 @@ export default function SalmonDashboard() {
             background: '#181818', border: '1px solid rgba(236, 72, 153, 0.2)', 
             borderRadius: '8px', color: '#94a3b8', fontWeight: 500
           }}>
-            <span style={{ color: 'var(--color-success)' }}>FishStatJ 1950-2024 + KFAS</span> · Claude Verified
+            <span style={{ color: SALMON_THEME.primary }}>FishStatJ 1950-2024 + KFAS</span> · Claude Verified
           </div>
         </div>
       </header>
@@ -432,10 +462,10 @@ export default function SalmonDashboard() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {/* Module 1 */}
               <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
-                <h3 style={{ color: 'var(--color-success)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
+                <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
                   <Fish size={16}/> 패러다임 전환 (원물)
                 </h3>
-                <div style={{ padding: '1rem', background: '#181818', borderLeft: '3px solid #1ed760', borderRadius: '4px' }}>
+                <div style={{ padding: '1rem', background: '#181818', borderLeft: `3px solid ${SALMON_THEME.primary}`, borderRadius: '4px' }}>
                   <h4 style={{ color: '#f8fafc', fontSize: '0.9rem', margin: '0 0 0.5rem 0' }}>자연산 어획 종식 및 양식 주도</h4>
                   <p style={{ color: '#cbd5e1', fontSize: '0.8rem', lineHeight: 1.6, margin: 0 }}>
                     상업용 연어 어획은 0.06%에 불과하며, 양식이 압도적 비중(99.94%)을 차지합니다. 특히 노르웨이와 칠레의 양강 복점(Duopoly) 체제가 생산을 장악하고 있으며, 제한된 노르웨이 양식 면허는 가치가 급등하는 핵심 자산입니다.
@@ -445,10 +475,10 @@ export default function SalmonDashboard() {
 
               {/* Module 2 */}
               <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
-                <h3 style={{ color: 'var(--color-success)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
+                <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
                   <Factory size={16}/> 가공 및 부가가치 창출
                 </h3>
-                <div style={{ padding: '1rem', background: '#181818', borderLeft: '3px solid #1ed760', borderRadius: '4px' }}>
+                <div style={{ padding: '1rem', background: '#181818', borderLeft: `3px solid ${SALMON_THEME.primary}`, borderRadius: '4px' }}>
                   <h4 style={{ color: '#f8fafc', fontSize: '0.9rem', margin: '0 0 0.5rem 0' }}>폴란드의 재수출 허브 모델</h4>
                   <p style={{ color: '#cbd5e1', fontSize: '0.8rem', lineHeight: 1.6, margin: 0 }}>
                     연어 양식장이 전혀 없는 폴란드가 유럽 최대 연어 가공국으로 부상했습니다. 노르웨이산 원물을 수입하여 훈제 등 2차 가공 후 재수출함으로써 안정적이고 거대한 순이익을 창출하는 구조입니다.
@@ -458,7 +488,7 @@ export default function SalmonDashboard() {
               
               {/* Module 3 */}
               <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
-                <h3 style={{ color: 'var(--color-success)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
+                <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
                   <AlertTriangle size={16}/> 한국 시장의 한계 (물류/판매)
                 </h3>
                 <div style={{ padding: '1rem', background: 'rgba(239, 68, 68, 0.05)', borderLeft: '3px solid #ef4444', borderRadius: '4px' }}>
@@ -488,7 +518,7 @@ export default function SalmonDashboard() {
                   <Database size={24} color="#ec4899" />
                 </div>
                 <div>
-                  <h3 style={{ color: 'var(--color-success)', margin: '0 0 0.4rem 0', fontSize: '1.1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 0.4rem 0', fontSize: '1.1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Zap size={18} /> 연어 지식 AI 챗봇 (NotebookLM)
                   </h3>
                   <p style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1', lineHeight: 1.5 }}>
@@ -497,7 +527,7 @@ export default function SalmonDashboard() {
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/daced2ab-bb2a-4626-8211-5d102c11ce07" target="_blank" rel="noreferrer" style={{ 
-                background: 'var(--color-success)', 
+                background: SALMON_THEME.gradient, 
                 color: 'var(--text-primary)', 
                 padding: '0.8rem 1.5rem', 
                 borderRadius: '8px', 
@@ -528,17 +558,21 @@ export default function SalmonDashboard() {
         const catSales = ['w05_cash', 'w09_kr_import', 'w10_kr_deficit', 'w15_korea_deficit', 'w11_kr_price', 'w12_margin', 'w20_margin_paradox', 'w17_tier'];
         const catEsg = ['n3_melanosis_upcycle', 'w02_aqua_value', 'w14_value'];
 
-        const renderSection = (title: string, icon: any, keys: string[], customInsights?: React.ReactNode) => {
+        const renderSection = (title: string, icon: any, keys: string[], pillarKey: string, desc?: string, customInsights?: React.ReactNode) => {
           const sectionWidgets = widgets.filter((w: any) => keys.includes(w.id));
           if (sectionWidgets.length === 0 && !customInsights) return null;
+          const pc = PILLAR_COLORS[pillarKey] || PILLAR_COLORS.raw;
           
           return (
             <div style={{ marginBottom: '3rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
-                {React.createElement(icon, { size: 24, color: 'var(--color-success)' })}
-                <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>{title}</h2>
+              <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${pc.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${pc.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
+                <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                  {React.createElement(icon, { size: 22, color: pc.accent })}
+                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>{title}</h2>
+                </div>
+                {desc && <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>{desc}</p>}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <div className={insightsStyles.grid} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {customInsights}
                 {sectionWidgets.map((w: any) => renderWidgetCard(w))}
               </div>
@@ -548,14 +582,14 @@ export default function SalmonDashboard() {
 
         return (
           <>
-            {renderSection("원물 (Raw Material)", Fish, catRaw, (
+            {renderSection('🌾 원물 수급', Fish, catRaw, 'raw', '노르웨이·칠레 복점 체제, 양식 면허 가치, 기후 리스크 등 원물 조달의 근본적 제약과 기회', (
               <>
                 <SalmonInsightSmolt />
                 <SalmonInsightFeed />
                 <SalmonInsightFeedBio />
               </>
             ))}
-            {renderSection("가공 (Processing)", Factory, catProc, (
+            {renderSection('🏭 가공 산업', Factory, catProc, 'proc', '폴란드 재수출 모델, 2차 가공 부가가치, 자동화 수율 혁신 및 마진 방어 전략', (
               <>
                 <SalmonInsightProcessing />
                 <SalmonInsightAutomationYield />
@@ -565,27 +599,30 @@ export default function SalmonDashboard() {
 
             {/* ═══ Module C: AI 수급 전망 & 착지원가 시뮬레이터 ═══ */}
             <div style={{ marginBottom: '3rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
-                <Factory size={24} color="var(--color-success)" />
-                <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>착지원가 & AI 전망 (Landed Cost & Forecast)</h2>
+              <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.forecast.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.forecast.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
+                <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                  <Crosshair size={22} color={PILLAR_COLORS.forecast.accent} />
+                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>착지원가 및 AI 전망</h2>
+                </div>
+                <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>환율·유가·사료 시나리오 기반 착지원가 시뮬레이션 및 수급 전망</p>
               </div>
               <SalmonForecastSimulator />
             </div>
 
-            {renderSection("물류 (Logistics)", Truck, catLog, (
+            {renderSection('🚢 물류 및 통관', Truck, catLog, 'logis', '콜드체인 리질리언스, 비관세장벽(NTB) 레이더, 관세 헷징 전략', (
               <>
                 <SalmonInsightSmartColdChain />
                 <SalmonInsightLogisticsResilience />
                 <SalmonNTBRadar />
               </>
             ))}
-            {renderSection("판매 (Sales)", DollarSign, catSales, (
+            {renderSection('🛒 판매 및 수요', DollarSign, catSales, 'sales', '글로벌 수급 가격, 소매가 전가(그리드플레이션), 대체재 교차탄력성 분석', (
               <>
                 <SalmonInsightGlobalSupplyPrice simulationFactors={simulationFactors} />
                 <SalmonInsightTradeDown />
               </>
             ))}
-            {renderSection("ESG & 자산가치 (ESG & Valuation)", ShieldCheck, catEsg, (
+            {renderSection('🌍 ESG 및 지속가능성', ShieldCheck, catEsg, 'esg', '기후 리스크, 이중 중대성 평가, 탄소 발자국 추적 및 자산 가치 평가', (
               <>
                 <SalmonInsightClimate />
                 <SalmonInsightDoubleMateriality />
@@ -595,9 +632,12 @@ export default function SalmonDashboard() {
 
             {/* ═══ Module E: 정책 임팩트 시뮬레이터 ═══ */}
             <div style={{ marginBottom: '3rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem' }}>
-                <Globe size={24} color="var(--color-success)" />
-                <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>정책 임팩트 시뮬레이션 (Policy Impact Simulator)</h2>
+              <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.policy.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.policy.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
+                <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                  <Globe size={22} color={PILLAR_COLORS.policy.accent} />
+                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>정책 임팩트 시뮬레이션</h2>
+                </div>
+                <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>관세·IUU 규제·탄소세 등 정책 변동 시나리오의 수익성 영향 분석</p>
               </div>
               <SalmonPolicyImpact />
             </div>
@@ -610,7 +650,7 @@ export default function SalmonDashboard() {
 
   function renderWidgetCard(w: any) {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
-    const accentColor = 'var(--color-success)';
+    const accentColor = SALMON_THEME.primary;
     
     // Get methodology text (supports both old "methodology" and new "logic" field)
     const methodologyText = w.logic || w.methodology || '';
@@ -629,9 +669,9 @@ export default function SalmonDashboard() {
             <IconComp size={20} color={accentColor} />
             {w.title} 
             {w.isLiveApi ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(236,72,153,0.1)', border:'1px solid #ec4899', color: SALMON_THEME.primary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
             ) : w.reliability && w.reliability < 70 ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>ESTIMATE</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(253,164,175,0.1)', border:'1px solid #fda4af', color: SALMON_THEME.quaternary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>ESTIMATE</span>
             ) : null}
             
             <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
