@@ -11,7 +11,7 @@ const OSH_BASE = 'https://opensupplyhub.org/api';
 const OSH_TIMEOUT = 12000;
 
 const SECTOR_MAP: Record<string, string> = {
-  'seafood': 'Food', 'food': 'Food', '식품': 'Food', '수산': 'Food',
+  'seafood': 'Food', 'food': 'Food', '식품': 'Food', '수산': 'Food', 'fishery': 'Food',
   'apparel': 'Apparel', 'agriculture': 'Agriculture', '농업': 'Agriculture',
   'electronics': 'Electronics', 'chemicals': 'Chemicals',
 };
@@ -137,18 +137,22 @@ export async function POST(req: Request) {
     const fbKey = `${countryCode}_${sectorEN || 'Food'}`;
     let facilities = FACILITY_FALLBACK[fbKey] || [];
 
-    // Try broader match if exact key not found
-    if (facilities.length === 0 && countryCode) {
-      const broader = Object.entries(FACILITY_FALLBACK).filter(([k]) => k.startsWith(countryCode));
+    // Try broader match if exact key not found, or if country is empty
+    if (facilities.length === 0) {
+      const broader = Object.entries(FACILITY_FALLBACK).filter(([k]) => 
+        (countryCode ? k.startsWith(countryCode) : true) && 
+        k.endsWith(`_${sectorEN || 'Food'}`)
+      );
       facilities = broader.flatMap(([, v]) => v);
     }
 
-    // Query-based filter
+    // Query-based filter (OR match on each word)
     if (query && facilities.length > 0) {
-      const q = query.toLowerCase();
-      facilities = facilities.filter((f: any) =>
-        f.name.toLowerCase().includes(q) || f.productType.toLowerCase().includes(q) || (f.parentCompany || '').toLowerCase().includes(q)
-      );
+      const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+      facilities = facilities.filter((f: any) => {
+        const haystack = `${f.name} ${f.productType} ${f.parentCompany || ''} ${f.sector || ''}`.toLowerCase();
+        return words.some(w => haystack.includes(w));
+      });
     }
 
     return NextResponse.json({
