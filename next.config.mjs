@@ -6,7 +6,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path(market|fleet|logistics|unloading|ranching|value-chain|mackerel|squid|cashew|cassava|garlic|carrot|cocoa|mangosteen|used-car|pollock|shrimp|salmon|field-ops|petfood|seasia-oem|fleet-strategy|korea-market)',
+        source: '/:path(market|fleet|logistics|unloading|ranching|value-chain|mackerel|galchi|squid|cashew|cassava|garlic|carrot|cocoa|mangosteen|chicken|whelk|used-car|pollock|shrimp|salmon|field-ops|petfood|seasia-oem|fleet-strategy|korea-market|tuna-extract|cold-storage|research-lab)',
         destination: '/',
       },
     ]

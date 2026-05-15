@@ -995,13 +995,13 @@ export default function TunaRanching() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '20px' }}>
 
-        {/* NEW-1: 블루핀 도피회유 메커니즘 (GAP-C) */}
+        {/* NEW-1: 블루핀 도피회유 메커니즘 */}
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유(Escapement) — 자원 회복의 숨은 엔진
+              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유(Escapement) 현상 분석 — 자원 회복의 메커니즘
             </h3>
-            <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축 → 지중해 어린 개체의 북대서양 도피(Escapement) → 성장 후 귀환이 자원 폭발적 회복의 핵심 메커니즘. 슬로프 해(Slope Sea)가 제3의 산란장으로 확인됨.</p>
+            <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축이 촉발한 지중해 어린 개체의 북대서양 도피(Escapement) 및 산란장 복귀를 통한 자원 회복 구조.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
@@ -1015,9 +1015,9 @@ export default function TunaRanching() {
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
                   <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}pt`} />
                   <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} unit="%" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value, name) => name === '도피율 (%)' ? [`${value}%`, name] : [`${value}pt`, name]} />
                   <Legend />
                   <Area yAxisId="left" type="monotone" dataKey="stock" name="동부 자원지수" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth={3} />
                   <Line yAxisId="right" type="monotone" dataKey="escapement" name="도피율 (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4, fill: '#f59e0b' }} />
@@ -1027,20 +1027,25 @@ export default function TunaRanching() {
             <div style={{ padding: '0 20px 20px 20px' }}>
               <TakeawayBox
                 source="Block et al. 2026 (Ensuring the future of Atlantic bluefin tuna)"
-                situation="ICCAT 쿼터 감축 이후 지중해 어린 참다랑어가 어획 압력이 낮은 북미·서대서양으로 '도피(Escapement)' → 수년 안전 성장 → 산란기 귀환하여 동부 자원이 4.5배 회복. 슬로프 해(Slope Sea)가 제3의 산란장으로 확인됨."
-                actionPlan="축양 전략 수립 시 '도피 경로 보장'이 자원 지속성의 전제조건. 지중해→북대서양 회유 경로에 영향을 미치는 과도한 어획을 경계하고, 어린 개체 보호 쿼터를 지지하는 로비 전략이 장기 사업 안정성의 핵심."
+                situation="ICCAT 쿼터 감축 이후 지중해 어린 참다랑어가 어획 압력이 낮은 북미·서대서양으로 '도피(Escapement)'하여 수년 간 성장한 뒤, 산란기 귀환하여 동부 자원이 4.5배 회복되었습니다. 특히 슬로프 해(Slope Sea)가 제3의 산란장으로 새롭게 확인되었습니다."
+                actionPlan={
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                    <li style={{ marginBottom: '4px' }}><strong>도피 경로 보장 전략:</strong> 축양 전략 수립 시 치어(어린 개체)의 회유 경로를 보호하는 것이 장기 자원 지속성의 전제조건입니다.</li>
+                    <li><strong>선제적 규제 대응:</strong> 지중해→북대서양 회유 경로에 위치한 어획 구역의 쿼터 제한을 지지하여, 안정적인 자연 어획량 확보 및 기업 ESG 신뢰도를 제고해야 합니다.</li>
+                  </ul>
+                }
               />
             </div>
           </div>
         </div>
 
-        {/* NEW-2: eBCD 컴플라이언스 리스크 (GAP-D) */}
+        {/* NEW-2: eBCD 컴플라이언스 리스크 */}
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <ShieldAlert size={20} color="#ef4444"/> eBCD 컴플라이언스 — 미등록 = 시장 퇴출
+              <ShieldAlert size={20} color="#ef4444"/> eBCD 컴플라이언스 준수 현황 — 전면적 시장 리스크
             </h3>
-            <p className={insightsStyles.cardDesc}>ICCAT eBCD(전자 어획증명) 미등록 시 모든 상업 유통 전면 금지. 축양장의 IUU 세탁 리스크와 오차 허용 기준.</p>
+            <p className={insightsStyles.cardDesc}>ICCAT eBCD(전자 어획증명) 등록 현황 지표. 입체카메라 중량 오차율 허용 범위를 통한 투명성 검증.</p>
           </div>
           <div className={insightsStyles.cardBody} style={{ padding: '0', display: 'flex', flexDirection: 'column', height: '100%' }}>
             <div style={{ flex: 1, minHeight: '220px' }}>
@@ -1050,39 +1055,44 @@ export default function TunaRanching() {
                   { subject: 'IUU 세탁 방지', score: 75, fullMark: 100 },
                   { subject: '입체카메라 정확도', score: 95, fullMark: 100 },
                   { subject: 'Observer 커버리지', score: 85, fullMark: 100 },
-                  { subject: '오차한도 준수(±5%)', score: 88, fullMark: 100 },
+                  { subject: '오차한도 준수', score: 88, fullMark: 100 },
                   { subject: '폐사 보고 적시성', score: 70, fullMark: 100 },
                 ]} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
                   <PolarGrid stroke="rgba(255,255,255,0.1)" />
                   <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 10 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'transparent' }} stroke="rgba(255,255,255,0.1)" />
-                  <Radar name="컴플라이언스" dataKey="score" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#fca5a5' }} />
+                  <Radar name="컴플라이언스 이행 점수 (100점)" dataKey="score" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#fca5a5' }} formatter={(value) => [`${value}점`, '평가 점수']} />
                 </RadarChart>
               </SafeResponsiveContainer>
             </div>
             <div style={{ padding: '0 20px 20px 20px' }}>
               <TakeawayBox
                 source="ICCAT Compendium (eBCD 규정)"
-                situation="축양장은 IUU 어업 세탁(Laundering) 통로로 악용될 리스크 존재. ICCAT eBCD 미등록 시 수입/수출/국내 거래 등 모든 상업 유통이 전면 금지. 입체카메라 중량 오차 ±5% 초과 또는 보고-옵서버 간 10%+ 차이 시 즉시 조사."
-                actionPlan="eBCD 100% 등록 체계를 사전 구축하고, 입체카메라(Stereoscopic) 정밀도를 ±3% 이내로 관리하여 ICCAT 감사(Audit) 시 '무결점 이력'을 확보해야 함. 이것이 중동 수출의 ESG 신뢰도를 결정짓는 핵심 인프라."
+                situation="ICCAT eBCD 미등록 시 수입/수출/국내 거래 등 모든 상업 유통이 전면 금지됩니다. 축양장은 IUU 어업 세탁(Laundering) 통로로 오해받기 쉬우며, 입체카메라 중량 오차 ±5% 초과 또는 보고-옵서버 간 10% 초과 차이 발생 시 즉각적인 강제 조사가 실시됩니다."
+                actionPlan={
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                    <li style={{ marginBottom: '4px' }}><strong>eBCD 100% 디지털 추적성 확보:</strong> 어획물 포획부터 입식, 수확에 이르는 전 과정을 자동 등록하여 휴먼 에러를 방지합니다.</li>
+                    <li><strong>입체카메라(Stereoscopic) 고도화:</strong> AI 영상 판독을 통해 중량 오차를 ±3% 이내로 초정밀 통제하여 ICCAT 무결점 Audit(감사)을 달성해야 합니다.</li>
+                  </ul>
+                }
               />
             </div>
           </div>
         </div>
 
-        {/* NEW-3: 생사료 의존도 & FIFO 위기 (GAP-F) */}
+        {/* NEW-3: 생사료 의존도 & FIFO 위기 */}
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Fish size={20} color="#f59e0b"/> 생사료 의존도 & FIFO 위기 — 참치 1kg에 사료 15kg
+              <Fish size={20} color="#f59e0b"/> 생사료 의존도 및 FIFO 위기 분석 — 환경 및 원가 리스크
             </h3>
-            <p className={insightsStyles.cardDesc}>중온성 어류의 3.78배 에너지 소비로 사료전환효율(FCR) 극히 낮음. 글로벌 투기량 600만톤/년이 사료 원료를 압박.</p>
+            <p className={insightsStyles.cardDesc}>중온성(Mesothermic) 어류 특성으로 인한 타 어종 대비 높은 사료전환비율(FCR) 및 산소 소비량 심층 비교.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
               <SafeResponsiveContainer width="100%" height="100%">
-                <BarChart data={[
+                <ComposedChart data={[
                   { species: '참다랑어 (축양)', fcr: 15.0, o2: 3.78 },
                   { species: '연어 (양식)', fcr: 1.2, o2: 1.0 },
                   { species: '틸라피아 (양식)', fcr: 1.6, o2: 0.8 },
@@ -1090,30 +1100,37 @@ export default function TunaRanching() {
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
                   <XAxis dataKey="species" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tick={{ fill: '#ef4444', fontSize: 11 }} tickFormatter={(val) => `${val}x`} />
                   <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
                   <Legend />
-                  <Bar dataKey="fcr" name="사료전환비 (FCR)" fill="#f59e0b" radius={[4, 4, 0, 0]} />
-                </BarChart>
+                  <Bar yAxisId="left" dataKey="fcr" name="사료전환비 (FCR) - 좌측축" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+                  <Line yAxisId="right" type="monotone" dataKey="o2" name="산소 소비 배수 - 우측축" stroke="#ef4444" strokeWidth={3} dot={{ r: 4, fill: '#ef4444' }} />
+                </ComposedChart>
               </SafeResponsiveContainer>
             </div>
             <div style={{ padding: '0 20px 20px 20px' }}>
               <TakeawayBox
                 source="FAO SOFIA 2022 + Science (Mesothermic fishes)"
-                situation="참다랑어 축양의 FCR(사료전환비)은 약 15:1로 연어(1.2:1) 대비 12배 비효율적. 원인은 중온성(Mesothermic) 체질의 산소 소비 3.78배. 글로벌 투기량(Discard) 약 600만톤(어획의 6.3%)이 사료 원료 소형어종에 추가 압박."
-                actionPlan="단기: 사료 원료(정어리·고등어·오징어) 가격 선물 계약으로 원가 변동 헤징. 중기: 인공 배합사료(Formulated feed) 전환 R&D 투자로 FIFO 비율을 3:1 이하로 저감. 장기: 육상 순환여과(RAS) 기반 '완전 양식(Full-cycle)' 체계 구축으로 ESG 규제 면역 확보."
+                situation="참다랑어는 중온성 체질로 인해 다른 어종 대비 산소 소모량이 최대 3.78배에 달하여, 사료전환비(FCR)가 15:1이라는 극도의 비효율을 보여줍니다. (연어 1.2:1) 글로벌 사료 원료 소형 어종에 가해지는 압박이 심화 중입니다."
+                actionPlan={
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                    <li style={{ marginBottom: '4px' }}><strong>단기 원가 헷징:</strong> 주요 생사료 원료인 정어리, 고등어, 오징어에 대한 선도 계약을 통해 가격 변동 리스크를 통제해야 합니다.</li>
+                    <li><strong>장기 기술 전환:</strong> ESG 규제를 우회하기 위해 인공 배합사료(Formulated feed) R&D 투자를 늘리고, 궁극적으로 육상 순환여과(RAS) 완전 양식 체계를 목표로 해야 합니다.</li>
+                  </ul>
+                }
               />
             </div>
           </div>
         </div>
 
-        {/* NEW-4: TAC 축양장 집중 과점 (GAP-B) */}
+        {/* NEW-4: TAC 축양장 집중 과점 */}
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Target size={20} color="#ec4899"/> ICCAT TAC의 50%가 축양장 수용 — 쿼터 과점 경보
+              <Target size={20} color="#ec4899"/> ICCAT TAC 쿼터 과점 구조 분석 — 연안 축양장 수용률
             </h3>
-            <p className={insightsStyles.cardDesc}>전체 할당량(48,283t)의 약 절반이 지중해 연안 축양장(CBA)에 집중. 소수 대형 법인의 쿼터 과점 구조와 자원 평가 장애.</p>
+            <p className={insightsStyles.cardDesc}>전체 할당량의 약 50%가 지중해 연안 축양장(CBA)에 집중되며, 소수 대형 법인이 쿼터 및 유통망을 지배하는 구조 파악.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
@@ -1126,7 +1143,7 @@ export default function TunaRanching() {
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
                   <XAxis dataKey="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
                   <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value) => [`${value}%`, 'TAC 비율']} />
                   <Bar dataKey="value" name="TAC 비율 (%)" radius={[4, 4, 0, 0]}>
                     {[
                       { category: '축양장 수용 (CBA)', value: 50, color: '#ec4899' },
@@ -1142,8 +1159,13 @@ export default function TunaRanching() {
             <div style={{ padding: '0 20px 20px 20px' }}>
               <TakeawayBox
                 source="Block et al. 2026 + ICCAT Compendium"
-                situation="TAC의 50%가 지중해 축양장에 수용되며, 쿼터 소유권이 소수 대형 법인으로 집중되는 과점(Oligopoly) 구조. 선망→이송 과정에서 최초 포획량·크기 평가가 구조적으로 불가능 → ICCAT 자원 평가에 심각한 장애물."
-                actionPlan="축양장 과점 구조 하에서 신규 진입은 기존 쿼터 보유자와의 파트너십(JV/EXW)이 유일한 현실적 경로. 동시에 ICCAT의 입체카메라 의무화 및 탈출(Escapement) 방지 규정 강화를 선제적으로 충족하여 규제 리스크를 최소화해야 함."
+                situation="ICCAT TAC의 50%가 지중해 축양장(CBA)으로 수용되어, 쿼터 소유권이 극소수 법인에 편중된 과점(Oligopoly) 시장이 형성되었습니다. 활어의 선망 이송 특성 상 초기 자원량 평가의 불투명성 논란이 지속되고 있습니다."
+                actionPlan={
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                    <li style={{ marginBottom: '4px' }}><strong>우회 전략 모색:</strong> 쿼터 신규 취득이 사실상 불가능한 구조이므로, 기존 지중해 선두 기업들과의 합작(JV) 또는 입항도가 높은 공인된 파트너와의 EXW 거래가 필수적입니다.</li>
+                    <li><strong>투명성 검증 선제 적용:</strong> ICCAT 자원 평가 강화를 대비하여 블록체인 기반 어획량 데이터 파이프라인(eBCD) 통합 역량을 사전 홍보해야 합니다.</li>
+                  </ul>
+                }
               />
             </div>
           </div>
@@ -1214,8 +1236,13 @@ export default function TunaRanching() {
 
             <TakeawayBox
               source="글로벌 수산물 교역 동향 (SeafoodSource) + 국가별 양식 산업 브리핑"
-              situation="지중해 참다랑어 쿼터와 생산량의 대부분은 Ricardo Fuentes, Balfegó(스페인), AJD Tuna(몰타) 등 극소수 수직계열화된 과점 기업들이 선점하고 있으며, Maruha Nichiro 등 일본 종합상사들과 견고한 밸류체인을 구축한 상태."
-              actionPlan="과점 시장 내 후발주자 직접 진입은 리스크가 매우 큼. 신라교역은 1) 기존 거대 카르텔(몰타/스페인)이 장악한 일본 시장 외에 중동/사우디 시장으로의 '우회 독점 유통 파트너십(JV)' 체결 전략 혹은 2) 모로코 Alta Mar와 같은 신규 '완전양식' 자본 투자에 참여하여 향후 ICCAT 규제(포획 쿼터 제한)로부터 면역된 ESG 프리미엄 물량을 선점하는 방안이 유리함."
+              situation="지중해 참다랑어 생산량의 대부분은 스페인 및 몰타의 극소수 수직계열화 기업(Balfegó, Ricardo Fuentes 등)이 장악하고 있으며 일본 상사들과 독점적 유통 파트너십을 체결하여 진입장벽이 극히 높습니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>중동 우회 독점 유통망 확보:</strong> 기존 기업들의 주요 타겟인 일본을 우회하여 사우디, 카타르 등 성장하는 중동 시장 전용 독점 유통 파트너십(JV)을 제안하십시오.</li>
+                  <li><strong>신흥 '완전 양식' 프로젝트 투자:</strong> 자원 고갈 규제로부터 면제될 모로코 Alta Mar와 같은 차세대 부화장 기반 완전 양식 프로젝트에 지분 투자를 단행하여 ESG 프리미엄 물량을 입도선매 해야 합니다.</li>
+                </ul>
+              }
             />
           </div>
         </div>
@@ -1244,8 +1271,13 @@ export default function TunaRanching() {
             </div>
             <TakeawayBox
               source="Block et al. 2026 + 음향 태그(Acoustic tag) 모델링"
-              situation="일반적 예상과 달리 참다랑어의 자연폐사율(M)은 연령/크기가 증가해도 감소하지 않고 유지 또는 증가하는 역설적 패턴. 큰 개체가 먼바다로 회유하여 탐지 확률이 낮아지는 것이 원인. 이는 축양 시 대형 개체의 관리 리스크가 더 높음을 시사."
-              actionPlan="축양장 운영 시 300kg+ 대형 개체에 대해 별도의 관리 프로토콜(수심, 밀도, 수온 모니터링 강화)을 적용해야 함. 차세대 유전체 기술(Genomic technology)로 각 개체의 계군(Stock) 기원을 확인하는 정밀 관리로 전환 필요."
+              situation="일반적인 자연 생태 법칙과 달리, 참다랑어의 자연폐사율(M)은 연령 및 체급이 성장하더라도 오히려 증가하거나 유지되는 역설적인 패턴을 보입니다. 대형 개체의 원거리 회유 빈도 증가 및 적응 스트레스가 주요 요인입니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>대형 개체 특화 관리:</strong> 축양장 운영 시 수익성이 큰 300kg 이상의 슈퍼 프리미엄급 개체에 대해 별도의 수온/산소 밀착 모니터링 시스템을 강제해야 합니다.</li>
+                  <li><strong>생애주기 기반 출하 시점 최적화:</strong> 자연 폐사율이 급상승하는 변곡점을 데이터화하여, 리스크가 정점을 찍기 직전 프리미엄 어가로 일괄 조기 출하하는 '타임 아비트라지(Time-Arbitrage)' 전략을 도입합니다.</li>
+                </ul>
+              }
             />
           </div>
         </div>
