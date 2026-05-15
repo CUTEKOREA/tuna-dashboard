@@ -44,46 +44,50 @@ async function fetchKCSTunaPrice(): Promise<TickerItem | null> {
     const past = new Date(now.getFullYear(), now.getMonth() - 3, 1);
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
-    const url = `https://unipass.customs.go.kr/ext/rest/trtImpExpStas/retrieveTrtImpExpStas` +
-      `?crkyCn=${key}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030343&lclsNm=&dtyTp=&natCd=&netSlTp=00&imexTp=1` +
-      `&pageIndex=1&pageSize=10`;
+    const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
+      `?serviceKey=${key}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030343`;
     
     // KCS Unipass blocks AWS/Vercel IPs, so we MUST use the GCP Cloud Run proxy (Seoul IP)
-    const res = await fetchWithProxy(url, 300);
+    // KCS Public Data Portal does not block Vercel IPs, so we bypass the proxy
+    const res = await fetch(url, { next: { revalidate: 300 } });
     if (!res.ok) return null;
     const xml = await res.text();
     
-    // Parse the KCS API response
     const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
+    
     if (items.length > 0) {
-      const latestItem = items[items.length - 1][1]; 
+      const monthlyTotals: Record<string, { amt: number, wgt: number }> = {};
       
-      // Fallback matching for multiple possible KCS XML schemas (trtImpExpStas vs exprtImprtPrdlstInfoQry)
-      const amtMatch = latestItem.match(/<totCurAmt>([\d.]+)<\/totCurAmt>/) || latestItem.match(/<impDlr>([\d.]+)<\/impDlr>/) || latestItem.match(/<expDlr>([\d.]+)<\/expDlr>/);
-      const wgtMatch = latestItem.match(/<totWghtKg>([\d.]+)<\/totWghtKg>/) || latestItem.match(/<impWght>([\d.]+)<\/impWght>/) || latestItem.match(/<expWght>([\d.]+)<\/expWght>/);
+      for (const match of items) {
+        const itemStr = match[1];
+        const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
+        if (!yearMatch || yearMatch[1] === '총계') continue;
+        
+        const year = yearMatch[1];
+        const impDlrMatch = itemStr.match(/<impDlr>([\d.]+)<\/impDlr>/);
+        const impWghtMatch = itemStr.match(/<impWgt>([\d.]+)<\/impWgt>/);
+        
+        if (!monthlyTotals[year]) monthlyTotals[year] = { amt: 0, wgt: 0 };
+        if (impDlrMatch) monthlyTotals[year].amt += parseFloat(impDlrMatch[1]);
+        if (impWghtMatch) monthlyTotals[year].wgt += parseFloat(impWghtMatch[1]);
+      }
       
-      if (amtMatch && wgtMatch) {
-        let amt = parseFloat(amtMatch[1]);
-        let wgt = parseFloat(wgtMatch[1]);
+      const sortedMonths = Object.keys(monthlyTotals).sort();
+      if (sortedMonths.length > 0) {
+        const latestMonth = sortedMonths[sortedMonths.length - 1];
+        const { amt, wgt } = monthlyTotals[latestMonth];
         
-        // KCS 'impDlr'/'expDlr' are typically in $1,000s, while 'totCurAmt' is in $1s. If value is unusually small, multiply by 1000.
-        // Or actually, the formula (amt / wgt) * 1000 yields $/T if amt is in $1, wgt in KG.
-        // If amt is in $1,000s and wgt in Tonnes, (amt / wgt) yields $/T directly.
-        // KCS trtImpExpStas impWght is sometimes in KG, sometimes in Tonnes.
-        // A typical tuna price is $1,400 to $2,000 per Tonne.
-        let pricePerTon = 0;
-        
-        if (latestItem.includes('<impDlr>')) {
-           // trtImpExpStas: amt is $1000s, wgt is Tonnes
-           pricePerTon = Math.round((amt * 1000) / (wgt > 10000 ? wgt / 1000 : wgt)); // fallback heuristic if wgt is actually KG
-        } else {
-           // retrieveExprtImprtPrdlstInfo: amt is $1, wgt is KG
-           pricePerTon = Math.round((amt / wgt) * 1000);
-        }
-        
-        // Force bounds if it looks totally crazy (e.g., $14,000,000/T instead of $1,400/T)
-        if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
-        if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+        if (wgt > 0) {
+          // amt is in $1000s, wgt is in KG. 
+          // (amt * 1000) yields total USD. wgt is in KG.
+          // Example: amt=100 -> $100,000. wgt=50,000 -> 50,000 KG = 50 Tonnes.
+          // Price per Tonne = ($100,000 / 50) = $2000/T.
+          // Formula: (amt * 1000) / (wgt / 1000)
+          let pricePerTon = Math.round((amt * 1000) / (wgt / 1000));
+          
+          if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
+          if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+          
           return {
             id: 'kcs_import_price',
             label: 'KCS 수입단가',
@@ -93,6 +97,7 @@ async function fetchKCSTunaPrice(): Promise<TickerItem | null> {
             source: 'KCS API',
             isLive: true,
           };
+        }
       }
     }
     return null;
@@ -155,55 +160,53 @@ async function fetchKCSTunaExport(): Promise<TickerItem | null> {
     const past = new Date(now.getFullYear(), now.getMonth() - 3, 1);
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
-    const url = `https://unipass.customs.go.kr/ext/rest/trtImpExpStas/retrieveTrtImpExpStas` +
-      `?crkyCn=${key}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=160414&lclsNm=&dtyTp=&natCd=&netSlTp=00&imexTp=1` +
-      `&pageIndex=1&pageSize=10`;
+    const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
+      `?serviceKey=${key}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=160414`;
     
-    const res = await fetchWithProxy(url, 300);
+    // KCS Public Data Portal does not block Vercel IPs, so we bypass the proxy
+    const res = await fetch(url, { next: { revalidate: 300 } });
     if (!res.ok) return null;
     const xml = await res.text();
     
-    // Parse the KCS API response
     const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
+    
     if (items.length > 0) {
-      const latestItem = items[items.length - 1][1]; 
+      const monthlyTotals: Record<string, { amt: number, wgt: number }> = {};
       
-      // Fallback matching for multiple possible KCS XML schemas
-      const amtMatch = latestItem.match(/<totCurAmt>([\d.]+)<\/totCurAmt>/) || latestItem.match(/<expDlr>([\d.]+)<\/expDlr>/) || latestItem.match(/<impDlr>([\d.]+)<\/impDlr>/);
-      const wgtMatch = latestItem.match(/<totWghtKg>([\d.]+)<\/totWghtKg>/) || latestItem.match(/<expWght>([\d.]+)<\/expWght>/) || latestItem.match(/<impWght>([\d.]+)<\/impWght>/);
+      for (const match of items) {
+        const itemStr = match[1];
+        const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
+        if (!yearMatch || yearMatch[1] === '총계') continue;
+        
+        const year = yearMatch[1];
+        const expDlrMatch = itemStr.match(/<expDlr>([\d.]+)<\/expDlr>/);
+        const expWghtMatch = itemStr.match(/<expWgt>([\d.]+)<\/expWgt>/);
+        
+        if (!monthlyTotals[year]) monthlyTotals[year] = { amt: 0, wgt: 0 };
+        if (expDlrMatch) monthlyTotals[year].amt += parseFloat(expDlrMatch[1]);
+        if (expWghtMatch) monthlyTotals[year].wgt += parseFloat(expWghtMatch[1]);
+      }
       
-      if (amtMatch && wgtMatch) {
-        let amt = parseFloat(amtMatch[1]);
-        let wgt = parseFloat(wgtMatch[1]);
+      const sortedMonths = Object.keys(monthlyTotals).sort();
+      if (sortedMonths.length > 0) {
+        const latestMonth = sortedMonths[sortedMonths.length - 1];
+        const { amt, wgt } = monthlyTotals[latestMonth];
         
-        let pricePerTon = 0;
-        if (latestItem.includes('<expDlr>')) {
-           pricePerTon = Math.round((amt * 1000) / (wgt > 10000 ? wgt / 1000 : wgt));
-        } else {
-           pricePerTon = Math.round((amt / wgt) * 1000);
-        }
-        
-        if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
-        if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+        if (wgt > 0) {
+          let pricePerTon = Math.round((amt * 1000) / (wgt / 1000));
+          if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
+          if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
           
           let change = 0;
-          if (items.length > 1) {
-            const prevItem = items[items.length - 2][1];
-            const pAmtMatch = prevItem.match(/<totCurAmt>([\d.]+)<\/totCurAmt>/) || prevItem.match(/<expDlr>([\d.]+)<\/expDlr>/) || prevItem.match(/<impDlr>([\d.]+)<\/impDlr>/);
-            const pWgtMatch = prevItem.match(/<totWghtKg>([\d.]+)<\/totWghtKg>/) || prevItem.match(/<expWght>([\d.]+)<\/expWght>/) || prevItem.match(/<impWght>([\d.]+)<\/impWght>/);
+          if (sortedMonths.length > 1) {
+            const prevMonth = sortedMonths[sortedMonths.length - 2];
+            const pAmt = monthlyTotals[prevMonth].amt;
+            const pWgt = monthlyTotals[prevMonth].wgt;
             
-            if (pAmtMatch && pWgtMatch) {
-              const prevAmt = parseFloat(pAmtMatch[1]);
-              const prevWgt = parseFloat(pWgtMatch[1]);
-              let prevPrice = 0;
-              if (prevItem.includes('<expDlr>')) {
-                 prevPrice = Math.round((prevAmt * 1000) / (prevWgt > 10000 ? prevWgt / 1000 : prevWgt));
-              } else {
-                 prevPrice = Math.round((prevAmt / prevWgt) * 1000);
-              }
+            if (pWgt > 0) {
+              let prevPrice = Math.round((pAmt * 1000) / (pWgt / 1000));
               if (prevPrice > 10000) prevPrice = Math.round(prevPrice / 1000);
               if (prevPrice < 100) prevPrice = Math.round(prevPrice * 1000);
-              
               change = pricePerTon - prevPrice;
             }
           }
@@ -212,11 +215,12 @@ async function fetchKCSTunaExport(): Promise<TickerItem | null> {
             id: 'kamis_retail', // Keep ID so frontend mappings don't break
             label: 'KCS 참치캔 수출',
             value: `$${pricePerTon.toLocaleString()}/T`,
-            trend: `${change >= 0 ? '▲' : '▼'}${Math.abs(change).toLocaleString()}`,
+            trend: `${change >= 0 ? '▲' : '▼'}$${Math.abs(change).toLocaleString()}`,
             trendColor: change >= 0 ? '#F6465D' : '#0ECB81',
             source: 'KCS API',
             isLive: true,
           };
+        }
       }
     }
     return null;

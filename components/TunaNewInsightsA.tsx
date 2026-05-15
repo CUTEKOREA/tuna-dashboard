@@ -58,15 +58,15 @@ export function InsightNauruSwitch() {
         </div>
         <div className={styles.kpiPanel}>
           <div className={styles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
-            <div className={styles.kpiLabel}>China EU Loin Share (2026E)</div>
+            <div className={styles.kpiLabel}>중국 EU 로인 점유율 (2026E)</div>
             <div className={styles.kpiValue} style={{ color: '#ef4444' }}>38%</div>
-            <div className={styles.kpiSub} style={{ color: '#ef4444' }}>▲ +375% vs 2022</div>
+            <div className={styles.kpiSub} style={{ color: '#ef4444' }}>▲ 2022 대비 +375%</div>
           </div>
         </div>
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Geopolitical Supply Chain Disruption] 나우루의 대만→중국 외교 전환(2024.01)으로 대만 선단의 PNA 입어권이 급격히 축소되고 있습니다. 중국은 이 영향력을 현지 가공 투자가 아닌 본토 선전/광동 메가 캐너리에 집중 투입하며, ATQ 무관세를 무기화하여 EU 프리쿡트 로인 시장에서 에콰도르를 빠르게 대체 중입니다."
+          situation="[지정학적 공급망 교란] 나우루의 대만→중국 외교 전환(2024.01)으로 대만 선단의 PNA 입어권이 급격히 축소되고 있습니다. 중국은 이 영향력을 현지 가공 투자가 아닌 본토 선전/광동 메가 캐너리에 집중 투입하며, ATQ 무관세를 무기화하여 EU 프리쿡트 로인 시장에서 에콰도르를 빠르게 대체 중입니다."
           actionPlan="에콰도르 가공 자산의 밸류에이션을 즉시 재산정하십시오. 중국 메가 캐너리 본격 가동(2027~) 시 에콰도르향 투자 IRR이 3~5%p 하락할 수 있습니다. 대안으로 PNG/솔로몬 제도의 EU-RoO 특혜 가공 거점을 선제 확보하십시오."
           source="KMI 해외시장분석 및 글로벌 수산 무역 동향 (2024)"
         />
@@ -108,15 +108,15 @@ export function InsightIOCollapse() {
         </div>
         <div className={styles.kpiPanel}>
           <div className={styles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
-            <div className={styles.kpiLabel}>Bangkok SKJ Spot Price</div>
+            <div className={styles.kpiLabel}>방콕 가다랑어 현물가</div>
             <div className={styles.kpiValue} style={{ color: '#ef4444' }}>$2,100/t</div>
-            <div className={styles.kpiSub} style={{ color: '#ef4444' }}>▲ All-Time High</div>
+            <div className={styles.kpiSub} style={{ color: '#ef4444' }}>▲ 사상 최고치</div>
           </div>
         </div>
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Supply Source Extinction Risk] WCPO 공급 부족분의 최후 보루인 인도양(IO) 선단이 MGO $2,100/t 폭등과 어획 급감으로 자체 붕괴 직전입니다. 프랑스 Sapmer는 €18.3M 순손실, 복수 선단이 조업 중단을 검토 중이며 태국의 IO 긴급 수입은 Q1 2026 +106% YoY 급증했습니다."
+          situation="[공급원 소멸 위험] WCPO 공급 부족분의 최후 보루인 인도양(IO) 선단이 MGO $2,100/t 폭등과 어획 급감으로 자체 붕괴 직전입니다. 프랑스 Sapmer는 €18.3M 순손실, 복수 선단이 조업 중단을 검토 중이며 태국의 IO 긴급 수입은 Q1 2026 +106% YoY 급증했습니다."
           actionPlan="인도양 공급 붕괴는 '블랙스완'이 아닌 '그레이 코뿔소'입니다. 6개월 선물 계약을 즉시 체결하여 원가를 $1,800/t 이하로 락인하십시오. 동시에 서아프리카(가나 Tema 허브) 대체 소싱 파이프라인을 즉각 가동하여 IO 의존도를 30% 이하로 분산해야 합니다."
           source="FAO Globefish Market Report 및 IOTC 조업 동향 (2024)"
         />

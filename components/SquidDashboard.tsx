@@ -74,7 +74,15 @@ const WIDGET_ICONS: Record<string, any> = {
   w54_sourcing_bottleneck: AlertCircle, w55_export_concentration: MapPin,
   w56_sunmin_pe_valuation: DollarSign, w57_china_supply_dominance: TrendingUp,
   w58_iuu_blackbox_risk: AlertTriangle, w59_kor_vie_chn_conflict: Crosshair,
-  w60_twoway_price_simulator: Activity
+  w60_twoway_price_simulator: Activity,
+  w_squid_hs_tariff_sim: DollarSign,
+  w_kosis_squid_cpi: TrendingUp,
+  w_mfds_squid_safety: ShieldCheck,
+  w_ofac_iuu_radar: AlertTriangle,
+  w_wto_squid_sps: Globe,
+  w_importyeti_eu_buyers: Anchor,
+  w_squid_price_forecast: TrendingUp,
+  w_squid_sourcing_sim: Layers
 };
 
 const formatYAxis = (v: number) => {
@@ -85,6 +93,7 @@ const formatYAxis = (v: number) => {
 
 export default function SquidDashboard() {
   const [data, setData] = useState<any>(null);
+  const [apiWidgets, setApiWidgets] = useState<any[]>([]);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [showEdu, setShowEdu] = useState(true);
@@ -92,12 +101,22 @@ export default function SquidDashboard() {
   const [fxRate, setFxRate] = useState(1350);
   const [apiStatus, setApiStatus] = useState("Connected");
 
-
   useEffect(() => {
     fetch('/data/squid_real_data_v3.json')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error("Failed to load squid data", err));
+
+    // Fetch Live APIs for Squid
+    const apiEndpoints = ['hsping', 'kosis', 'mfds', 'ofac', 'wto', 'importyeti', 'squid-forecast', 'squid-sourcing'];
+    
+    Promise.allSettled(apiEndpoints.map(ep => fetch(`/api/squid/${ep}`).then(r => r.json())))
+      .then(results => {
+        const liveWidgets = results
+          .filter(r => r.status === 'fulfilled')
+          .map(r => (r as PromiseFulfilledResult<any>).value);
+        setApiWidgets(liveWidgets);
+      });
   }, []);
 
   useEffect(() => {
@@ -117,8 +136,11 @@ export default function SquidDashboard() {
     </div>
   );
 
-  const { kpis, widgets } = data;
+  const { kpis, widgets: jsonWidgets } = data;
   const kpiKeys = Object.keys(kpis);
+  
+  // Merge live API widgets with JSON widgets
+  const widgets = [...jsonWidgets, ...apiWidgets];
 
   /* ─── Unified Chart Renderer (supports both old series and new bars/lines/areas format) ─── */
   const renderChart = (widget: any) => {
@@ -560,58 +582,47 @@ export default function SquidDashboard() {
 
 
 
-      {/* 1. Raw Material (원물) */}
+      {/* 1. Global Squid Supply & Price Ticker (공급/가격 예측) */}
+      <section style={{ marginBottom: '4rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+          <Activity size={24} color="var(--color-success)" />
+          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Global Squid Supply & Price Ticker (공급/가격 예측)</h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          {widgets?.filter((w: any) => ['w_squid_price_forecast', 'w_kosis_squid_cpi', 'w1_catch_powers', 'w3_jumbo_flying'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+        </div>
+      </section>
+
+      {/* 2. Landed Cost & Sourcing Simulator (착지원가/소싱 최적화) */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
           <Anchor size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Raw Material (원물/조업)</h2>
+          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Landed Cost & Sourcing Simulator (착지원가/소싱 최적화)</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w1_catch_powers', 'w3_jumbo_flying', 'w6_species_pie', 'w12_ax_fishing', 'w15', 'w16', 'w18', 'w26_squid_ai_jigging_fuel', 'w48_supply_inversion', 'w50_fleet_opex', 'w53_energy_stress_test', 'w54_sourcing_bottleneck', 'w57_china_supply_dominance'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          {widgets?.filter((w: any) => ['w_squid_hs_tariff_sim', 'w50_fleet_opex', 'w40_value_chain_exploitation', 'w_squid_sourcing_sim'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
         </div>
       </section>
 
-      {/* 2. Processing (가공) */}
+      {/* 3. Regulatory & ESG Risk Radar (규제 및 컴플라이언스) */}
       <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Factory size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Processing (가공/원양)</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w10_processed_dominance', 'w13', 'w17', 'w25_squid_chitosan_biomaterial', 'w49_processing_funnel'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
-
-      {/* 3. Logistics (물류) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Truck size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Logistics (물류/무역)</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w5_top_importers', 'w7_korea_category', 'w9_trade_deficit', 'w14', 'w30_business_model', 'w55_export_concentration', 'w59_kor_vie_chn_conflict'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
-
-      {/* 4. Sales (판매) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <DollarSign size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Sales & EU Intelligence</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w2_korea_supply', 'w4_unit_price', 'w8_china_export', 'w28_falkland_waterfall', 'w31_eu_squid_supply_shock', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w34_value_add_funnel', 'w35_spain_trade_hub', 'w36_stagflation_paradox', 'w37_spain_arbitrage_trap', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w40_value_chain_exploitation', 'w41_temporal_arbitrage', 'w42_macro_demand_destruction', 'w43_risk_reward_inversion', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_france_premium_paradox', 'w47_spain_processing_empire', 'w51_policy_intervention', 'w56_sunmin_pe_valuation', 'w60_twoway_price_simulator'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
-
-      {/* 5. ESG (지속가능성) */}
-      <section style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
           <ShieldCheck size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>ESG & Tech (미래 생존)</h2>
+          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Regulatory & ESG Risk Radar (규제 및 컴플라이언스)</h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w11_no_aquaculture', 'w27_squid_climate_geopolitics', 'w29_capex_shock', 'w52_iuu_geopolitics', 'w58_iuu_blackbox_risk'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+        </div>
+      </section>
+
+      {/* 4. Trade Flow & Emerging Market Explorer (신흥 시장 발굴) */}
+      <section style={{ marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+          <Globe size={24} color="var(--color-success)" />
+          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Trade Flow & Emerging Market Explorer (신흥 시장 발굴)</h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          {widgets?.filter((w: any) => ['w_importyeti_eu_buyers', 'w35_spain_trade_hub', 'w55_export_concentration', 'w10_processed_dominance', 'w11_no_aquaculture', 'w27_squid_climate_geopolitics'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
         </div>
       </section>
 

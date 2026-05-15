@@ -49,11 +49,11 @@ export default function UnloadingStatus() {
       buyer: 'FCF CO.,LTD',
       status: '하역중 (In Progress)',
       reportedTotal: 4385.000,
-      actualTotal: 2905.360,
-      surplus: -1479.640,
+      actualTotal: 3153.220,
+      surplus: -1231.780,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 4099.000, actual: 2782.360, surplus: -1316.640 },
-        { id: 'YF', name: 'Yellowfin', reported: 286.000, actual: 123.000, surplus: -163.000 }
+        { id: 'SJ', name: 'Skipjack', reported: 4099.000, actual: 3019.620, surplus: -1079.380 },
+        { id: 'YF', name: 'Yellowfin', reported: 286.000, actual: 133.600, surplus: -152.400 }
       ],
       timeline: [
         { date: '4/23', time: '08:10 ~ 20:40', targetHol: 'S/EXP(#1-A), S/SPR(#3-A)', dailyAmount: 253.470, cumAmount: 253.470, quality: '어창 온도 -21.0℃ ~ -22.0℃. 양호.' },
@@ -67,7 +67,8 @@ export default function UnloadingStatus() {
         { date: '5/5', time: '08:10 ~ 20:20', targetHol: 'S/HAR(#1-C, #2-B)', dailyAmount: 257.100, cumAmount: 2429.770, quality: '온도 -20.0℃ ~ -23.0℃. 명일 휴무.' },
         { date: '5/7', time: '13:20 ~ 15:10', targetHol: 'S/CHA(#3-B)', dailyAmount: 63.400, cumAmount: 2493.170, quality: '명일 5/8 하역 없음. 5/9 재개.' },
         { date: '5/9', time: '08:10 ~ 16:30', targetHol: 'S/CHA(#3-B)', dailyAmount: 211.880, cumAmount: 2705.050, quality: '온도 -19.0℃ ~ -20.0℃. 5/10 일요일 하역 없음.' },
-        { date: '5/11', time: '08:10 ~ 18:10', targetHol: 'S/CHA(#3-B, #3-C)', dailyAmount: 200.310, cumAmount: 2905.360, quality: '온도 -19.0℃ ~ -21.0℃. 5/12 사정상 휴무, 5/13 재개 예정.' }
+        { date: '5/11', time: '08:10 ~ 18:10', targetHol: 'S/CHA(#3-B, #3-C)', dailyAmount: 200.310, cumAmount: 2905.360, quality: '온도 -19.0℃ ~ -21.0℃. 5/12 사정상 휴무, 5/13 재개 예정.' },
+        { date: '5/13', time: '08:10 ~ 18:50', targetHol: 'S/CHA(#3-C)', dailyAmount: 247.860, cumAmount: 3153.220, quality: '어창 온도 -19.0℃ ~ -20.0℃. 외관상태 양호. 명일 250톤 예정.' }
       ]
     },
     'heng-hong-11': {

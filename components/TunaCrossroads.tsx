@@ -5,7 +5,7 @@ import { Anchor } from 'lucide-react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, ComposedChart
 } from 'recharts';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_crossroad.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
@@ -33,7 +33,7 @@ const TunaCrossroads = () => {
   };
 
   return (
-    <div className={styles.glassCard} ref={containerRef}>
+    <div className={styles.insightCard} ref={containerRef}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />

@@ -12,7 +12,7 @@ import {
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
   Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
   RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, Workflow
+  Database, Ship, Zap, BookOpen, Workflow, Leaf, Layers
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
@@ -73,6 +73,16 @@ const WIDGET_ICONS: Record<string, any> = {
   w44_ems_margin: AlertTriangle, w45_export_vuln: Globe,
   w46_ecuador_dominance: Globe, w47_tariff_paradox: Scale,
   w48_vaccine_priming: ShieldCheck, w49_black_tiger_revival: Factory,
+  // V2.0 신규 위젯 아이콘
+  w_shrimp_price_forecast: TrendingUp, w_shrimp_macro_dashboard: Activity,
+  w_shrimp_sourcing_sim: Layers, w_shrimp_concentration_risk: AlertTriangle,
+  w_shrimp_substitute_elasticity: Scale,
+  w_shrimp_ntb_radar: ShieldCheck, w_shrimp_antibiotic_tracker: AlertCircle,
+  w_shrimp_sps_alert: Globe,
+  w_shrimp_forced_labor_map: AlertTriangle, w_shrimp_mangrove_index: Leaf,
+  w_shrimp_cert_tracker: ShieldCheck,
+  w_shrimp_chitosan_opportunity: Leaf, w_shrimp_halal_export: Globe,
+  w_shrimp_rte_format: Factory,
 };
 
 
@@ -128,14 +138,19 @@ export default function ShrimpDashboard() {
       .then(json => setData(json))
       .catch(err => console.error("Failed to load shrimp data", err));
 
-    // Fetch API Data
+    // Fetch API Data (V2.0: 9 endpoints)
     Promise.all([
       fetch('/api/shrimp/customs').then(r => r.ok ? r.json() : null),
       fetch('/api/shrimp/kamis').then(r => r.ok ? r.json() : null),
       fetch('/api/shrimp/macro').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/krungsri').then(r => r.ok ? r.json() : null)
-    ]).then(([customs, kamis, macro, krungsri]) => {
-      setApiData({ customs, kamis, macro, krungsri });
+      fetch('/api/shrimp/krungsri').then(r => r.ok ? r.json() : null),
+      fetch('/api/shrimp/forecast').then(r => r.ok ? r.json() : null),
+      fetch('/api/shrimp/sourcing-sim').then(r => r.ok ? r.json() : null),
+      fetch('/api/shrimp/compliance').then(r => r.ok ? r.json() : null),
+      fetch('/api/shrimp/esg-radar').then(r => r.ok ? r.json() : null),
+      fetch('/api/shrimp/emerging-markets').then(r => r.ok ? r.json() : null)
+    ]).then(([customs, kamis, macro, krungsri, forecast, sourcing, compliance, esg, emerging]) => {
+      setApiData({ customs, kamis, macro, krungsri, forecast, sourcing, compliance, esg, emerging });
       if (macro?.metrics?.rate) setSimExchangeRate(macro.metrics.rate);
     }).catch(console.error);
   }, []);
@@ -334,7 +349,7 @@ export default function ShrimpDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 새우 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Shrimp Strategic Command Center — 33 Widgets · 6 KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Shrimp Strategic Command Center — {displayWidgets?.length || 47} Widgets · 6 KPIs · 16 APIs</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -342,7 +357,9 @@ export default function ShrimpDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span><span style={{ color: 'var(--color-success)' }}>FishStatJ 1950-2024</span> · Claude Verified</span>
+            <span>9 APIs <span style={{ color: 'var(--color-success)' }}>Connected</span></span>
+            <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
+            <span style={{ color: 'var(--text-primary)' }}>FishStatJ 1950-2024</span>
           </div>
         </div>
       </header>
@@ -567,77 +584,89 @@ export default function ShrimpDashboard() {
         </div>
       </div>
 
-      {/* ═══ Categorized Widgets ═══ */}
+      
+      {/* ═══ V2.0 — 5-Part Strategic Architecture ═══ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
         
-        {/* 원물 (Raw Material) */}
+        {/* Part I: Raw Material */}
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Anchor size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>1. 원물 (Raw Material)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part I — 원물 생산 (Raw Material)</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w_raw1_production_trend', 'w_raw2_unit_price', 'w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w20_fcr_80', 'w43_feed_inflation', 'w44_ems_margin', 'w46_ecuador_dominance'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {displayWidgets?.filter((w: any) => ['w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* 가공 (Processing) */}
+        {/* Part II: Processing */}
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Factory size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>2. 가공 (Processing)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part II — 가공 산업 (Processing)</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w_proc1_type_production', 'w_proc2_kr_import_type', 'w03_processing', 'w18', 'w19_hyperspectral', 'w49_black_tiger_revival'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {displayWidgets?.filter((w: any) => ['w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* 물류 (Logistics) */}
+        {/* Part III: Logistics */}
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <Truck size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>3. 물류 (Logistics)</h2>
+            <Ship size={24} color="var(--color-success)" />
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part III — 물류 및 무역 (Logistics)</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w13', 'w47_tariff_paradox'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {displayWidgets?.filter((w: any) => ['w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* 판매 (Sales) */}
+        {/* Part IV: Sales & Demand */}
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <DollarSign size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>4. 판매 (Sales)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part IV — 판매 및 수요 (Sales & Demand)</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w06_top10_revenue', 'w10_kr_import', 'w11_kr_deficit', 'w12_unit_price', 'w14', 'w16', 'w17', 'w42_format_shift', 'w45_export_vuln'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {displayWidgets?.filter((w: any) => ['w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ESG (지속가능성) */}
+        {/* Part V: Sustainability */}
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <ShieldCheck size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. ESG</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part V — ESG 및 지속가능성 (Sustainability)</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w_esg1_compliance', 'w_esg2_supply_risk', 'w02_aqua_value', 'w21_peeling_esg', 'w22_microalgae', 'w48_vaccine_priming'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {displayWidgets?.filter((w: any) => ['w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {displayWidgets?.filter((w: any) => !['w_raw1_production_trend', 'w_raw2_unit_price', 'w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w03_processing', 'w18', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w13', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w06_top10_revenue', 'w10_kr_import', 'w11_kr_deficit', 'w12_unit_price', 'w14', 'w16', 'w17', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w02_aqua_value', 'w19_hyperspectral', 'w20_fcr_80', 'w21_peeling_esg', 'w22_microalgae', 'w42_format_shift', 'w43_feed_inflation', 'w44_ems_margin', 'w45_export_vuln', 'w46_ecuador_dominance', 'w47_tariff_paradox', 'w48_vaccine_priming', 'w49_black_tiger_revival'].includes(w.id)).length > 0 && (
-          <section>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-              <Database size={24} color="var(--color-success)" />
-              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>기타 분석 (Others)</h2>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-              {displayWidgets?.filter((w: any) => !['w_raw1_production_trend', 'w_raw2_unit_price', 'w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w03_processing', 'w18', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w13', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w06_top10_revenue', 'w10_kr_import', 'w11_kr_deficit', 'w12_unit_price', 'w14', 'w16', 'w17', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w02_aqua_value', 'w19_hyperspectral', 'w20_fcr_80', 'w21_peeling_esg', 'w22_microalgae', 'w42_format_shift', 'w43_feed_inflation', 'w44_ems_margin', 'w45_export_vuln', 'w46_ecuador_dominance', 'w47_tariff_paradox', 'w48_vaccine_priming', 'w49_black_tiger_revival'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-            </div>
-          </section>
-        )}
+        {/* Uncategorized fallback */}
+        {(() => {
+          const allZoneIds = [
+            'w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr',
+            'w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp',
+            'w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox',
+            'w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation',
+            'w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker'
+          ];
+          const uncategorized = displayWidgets?.filter((w: any) => !allZoneIds.includes(w.id));
+          if (!uncategorized || uncategorized.length === 0) return null;
+          return (
+            <section>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+                <Database size={24} color="var(--color-success)" />
+                <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>기타 분석 (Others)</h2>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+                {uncategorized.map((w: any) => renderWidgetCard(w))}
+              </div>
+            </section>
+          );
+        })()}
       </div>
-
     </div>
   );
 
@@ -650,7 +679,7 @@ export default function ShrimpDashboard() {
     const takeaway = w.strat || w.tak || w.takeaway || '';
     
     return (
-      <div key={w.id} className={styles.glassCard} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
+      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
         background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
         padding: '1.5rem'}}>
         
@@ -699,9 +728,9 @@ export default function ShrimpDashboard() {
               borderRadius: '6px', padding: '16px' 
             }}>
               {situation && (
-                <div style={{ paddingBottom: takeaway ? '12px' : '0', marginBottom: takeaway ? '12px' : '0' }}>
-                  <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{parseTextWithTooltips(situation)}</p>
+                <div style={{ paddingBottom: takeaway ? '12px' : '0', marginBottom: takeaway ? '12px' : '0', borderBottom: takeaway ? '1px solid #272727' : 'none' }}>
+                  <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>SITUATION (현황 분석)</h4>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{parseTextWithTooltips(situation.replace(/^현황:\s*/, ''))}</p>
                   
                   {w.apiSource ? (
                     <p style={{ color: '#7c7c7c', fontSize: '0.75rem', fontStyle: 'italic', margin: '8px 0 0 0' }}>{w.apiSource}</p>
@@ -710,8 +739,8 @@ export default function ShrimpDashboard() {
               )}
               {takeaway && (
                 <div>
-                  <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                  <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{takeaway}</p>
+                  <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>EXECUTIVE TAKEAWAY (실행 전략)</h4>
+                  <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{takeaway.replace(/^전략:\s*/, '')}</p>
                 </div>
               )}
               {(w.source || (!w.apiSource)) && (

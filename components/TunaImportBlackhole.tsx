@@ -5,7 +5,7 @@ import { Anchor } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell
 } from 'recharts';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_import_blackhole.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
@@ -39,7 +39,7 @@ const TunaImportBlackhole = () => {
   };
 
   return (
-    <div className={styles.glassCard} ref={containerRef}>
+    <div className={styles.insightCard} ref={containerRef}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Anchor } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import koreaOriginsData from '../data/tuna_korea_import_origins.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
@@ -62,7 +62,7 @@ const TunaKoreaOrigins = () => {
   const defaultColors = ['#ec4899', '#06b6d4', '#a855f7', 'var(--color-info)'];
 
   return (
-    <div className={styles.glassCard} ref={containerRef}>
+    <div className={styles.insightCard} ref={containerRef}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />

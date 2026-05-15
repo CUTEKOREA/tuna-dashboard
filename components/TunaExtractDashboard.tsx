@@ -595,14 +595,14 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part IX: KFAS Research Intelligence */}
-      <h3 style={{ borderLeft: '4px solid #06b6d4', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '0.5rem' }}>Part IX. [KFAS] 수산발효·부산물 과학 실증 연구</h3>
+      <h3 style={{ borderLeft: '4px solid #06b6d4', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '0.5rem' }}>Part IX. 수산발효·부산물 과학 실증 연구</h3>
       <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem' }}>한국수산과학회지(KFAS) 논문 8편 기반 — 참치 부산물·액젓·발효 과학 데이터</p>
       <div className={styles.grid}>
 
         {/* K01: 참치 부산물 안전성 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="#06b6d4"/> K01. [KFAS] 참치 통조림 부산물 위생안전성·영양 평가</h3>
+            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="#06b6d4"/> K01. 참치 통조림 부산물 위생안전성·영양 평가</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -628,7 +628,7 @@ export default function TunaExtractDashboard() {
         {/* K02: 참치 적색육 패티 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#06b6d4"/> K02. [KFAS] 참치 적색육+황새치 어육 패티 최적 배합</h3>
+            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#06b6d4"/> K02. 참치 적색육+황새치 어육 패티 최적 배합</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -654,7 +654,7 @@ export default function TunaExtractDashboard() {
         {/* K03: 가쓰오부시 위해요소 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> K03. [KFAS] 시판 가쓰오부시 위해요소 분석</h3>
+            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> K03. 시판 가쓰오부시 위해요소 분석</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -679,7 +679,7 @@ export default function TunaExtractDashboard() {
         {/* K04: 황다랑어 알 기능성 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> K04. [KFAS] 황다랑어 알 효소 가수분해물 생리활성</h3>
+            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> K04. 황다랑어 알 효소 가수분해물 생리활성</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -704,7 +704,7 @@ export default function TunaExtractDashboard() {
         {/* K05: 속성발효 액젓 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="#06b6d4"/> K05. [KFAS] 속성발효 고순도 멸치액젓 — 발효 혁신</h3>
+            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="#06b6d4"/> K05. 속성발효 고순도 멸치액젓 — 발효 혁신</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -729,7 +729,7 @@ export default function TunaExtractDashboard() {
         {/* K06: 바이오제닉 아민 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> K06. [KFAS] 젓갈 원료별 바이오제닉 아민 비교</h3>
+            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> K06. 젓갈 원료별 바이오제닉 아민 비교</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -754,7 +754,7 @@ export default function TunaExtractDashboard() {
         {/* K07: 쌀코지 어간장 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Lightbulb size={18} className={styles.cardIcon} color="#06b6d4"/> K07. [KFAS] 쌀코지 저염 어간장 발효특성 혁신</h3>
+            <h3 className={styles.cardTitle}><Lightbulb size={18} className={styles.cardIcon} color="#06b6d4"/> K07. 쌀코지 저염 어간장 발효특성 혁신</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -780,7 +780,7 @@ export default function TunaExtractDashboard() {
         {/* K08: 쓴맛 개선 조미소스 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> K08. [KFAS] 오징어 효소 활용 멸치 조미소스 쓴맛 제거</h3>
+            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> K08. 오징어 효소 활용 멸치 조미소스 쓴맛 제거</h3>
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>

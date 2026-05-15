@@ -73,11 +73,11 @@
 | **대시보드 활용** | 글로벌 교역량/가액 위젯, 국가간 무역 흐름 |
 | **Python 패키지** | `pip install comtradeapicall` |
 | **등록 URL** | https://comtradeplus.un.org/ → Sign Up |
-| **등록 상태** | 🟡 **등록 필요** |
+| **등록 상태** | ✅ **API Key 발급 및 연동 완료** |
 
 ```bash
 # .env.local에 추가
-COMTRADE_API_KEY="your_key_here"
+COMTRADE_API_KEY="61063fe9f1d2483ea97a9e526daf20a6"
 ```
 
 ```python
@@ -187,11 +187,12 @@ resp = requests.get(url)
 | **응답 형식** | JSON |
 | **대시보드 활용** | 관세 정책 변동 모니터링, FTA 영향 분석 |
 | **등록 URL** | https://apiportal.wto.org/ → Subscribe |
-| **등록 상태** | 🟡 **등록 필요** |
+| **등록 상태** | ✅ **API Key 발급 및 연동 완료** |
+| **API Route** | `POST /api/wto` — 글로벌 관세/분쟁 프로필 조회 |
 
 ```bash
 # .env.local에 추가
-WTO_API_KEY="your_key_here"
+WTO_API_KEY="9c11cd0e1f954c34865c8c427eb07174"
 ```
 
 ---
@@ -209,11 +210,12 @@ WTO_API_KEY="your_key_here"
 | **응답 형식** | JSON |
 | **대시보드 활용** | 미국向 수출입 분석, 미국 시장 트렌드 |
 | **등록 URL** | https://api.census.gov/data/key_signup.html |
-| **등록 상태** | 🟡 **등록 필요** |
+| **등록 상태** | ✅ **API Key 발급 및 연동 완료** |
+| **API Route** | `POST /api/us-census` — 미국 수출입 통계 조회 |
 
 ```bash
 # .env.local에 추가
-USCENSUS_API_KEY="your_key_here"
+USCENSUS_API_KEY="57ad5d9332b5b942e539e9dd3a0c83c00a5a06eb"
 ```
 
 ---
@@ -269,14 +271,14 @@ resp = requests.get(url)
 | **커버리지** | US, Canada, UK, EU, Singapore 등 |
 | **대시보드 활용** | HS 코드 자동 분류, 품목 분류 자동화 |
 | **등록 URL** | https://hsping.com/signup |
-| **등록 상태** | ✅ **파이프라인 구축 완료** |
+| **등록 상태** | ✅ **파이프라인 구축 및 API Key 연동 완료** |
 | **API Route** | `POST /api/hs-ping` — HS 코드 자동 분류 |
 | **Fallback** | 12개 Silla 핵심 품목 사전 분류 DB 내장 |
 | **한→영 매핑** | 20+ 한국어 품목명 자동 변환 지원 |
 
 ```bash
 # .env.local에 추가 (Live API 활성화)
-HSPING_API_KEY="your_key_here"
+HSPING_API_KEY="sk_live_***REDACTED*** (see .env.local)"
 # Fallback만으로도 12개 핵심 품목 분류 가능
 ```
 
@@ -293,7 +295,8 @@ HSPING_API_KEY="your_key_here"
 | **인증** | API Key |
 | **특장점** | Section 301/232 복합 관세 스태킹 계산 (미국 특화) |
 | **대시보드 활용** | 착지원가 시뮬레이션, 관세 영향 분석 |
-| **등록 상태** | 🟡 **등록 필요** |
+| **등록 상태** | ✅ **파이프라인 구축 완료 (Key 대기중)** |
+| **API Route** | `POST /api/tariffs` — 복합 관세율 및 착지원가 시뮬레이션 |
 
 ```bash
 # .env.local에 추가
@@ -354,7 +357,8 @@ OSH_API_TOKEN="your_token_here"
 | **데이터** | 미국 수출 시장 데이터, 무역 이벤트, FTA 정보 |
 | **대시보드 활용** | 미국 시장 진출 분석, FTA 활용 전략 |
 | **등록 URL** | https://developer.trade.gov/signup |
-| **등록 상태** | 🟡 **등록 필요** |
+| **등록 상태** | ✅ **파이프라인 구축 완료 (Key 대기중)** |
+| **API Route** | `POST /api/us-ita` — 시장/정책 리서치 데이터 조회 |
 
 ```bash
 # .env.local에 추가
@@ -411,16 +415,17 @@ ITA_API_KEY="your_key_here"
 
 ### 🔴 즉시 등록 추천 (높은 ROI)
 
-- [ ] **UN Comtrade** — https://comtradeplus.un.org/ → API Key 발급
+- [x] **UN Comtrade** — https://comtradeplus.un.org/ → API Key 발급
 - [ ] **WTO Data Portal** — https://apiportal.wto.org/ → Subscribe
-- [ ] **HS Ping** — https://hsping.com/signup → 무료 Tier 등록
+- [x] **HS Ping** — https://hsping.com/signup → 무료 Tier 등록
 
-### 🟡 필요 시 등록
+### 🟡 파이프라인 구축 완료 (API Key 발급 및 연동 대기)
 
-- [ ] **U.S. Census Bureau** — https://api.census.gov/data/key_signup.html
-- [ ] **Open Supply Hub** — https://opensupplyhub.org/auth/login
-- [ ] **U.S. ITA** — https://developer.trade.gov/signup
-- [ ] **Tariffs API** — https://tariffs.io/docs
+- [x] **WTO Data Portal** — https://apiportal.wto.org/ → Subscribe (`app/api/wto`)
+- [x] **U.S. Census Bureau** — https://api.census.gov/data/key_signup.html (`app/api/us-census`)
+- [ ] **Open Supply Hub** — https://opensupplyhub.org/auth/login (`app/api/osh`)
+- [ ] **U.S. ITA** — https://developer.trade.gov/signup (`app/api/us-ita`)
+- [ ] **Tariffs API** — https://tariffs.io/docs (`app/api/tariffs`)
 
 ### ✅ 인증 불필요 (즉시 사용 가능)
 
@@ -441,7 +446,78 @@ ITA_API_KEY="your_key_here"
 | 🌐 경제/금융 API | 2 | 0 | 2 |
 | 🤖 AI/인프라 | 3 | 0 | 3 |
 | 📊 글로벌 무역 인텔리전스 | 0 | **9** | 9 |
+| 🐟 명태 전용 인텔리전스 | 0 | **4** | 4 |
 | 📦 HS 코드 & 관세 | 0 | **2** | 2 |
 | 🏢 바이어/공급업체 | 0 | **3** | 3 |
 | 🛡️ 제재/컴플라이언스 | 0 | **2** | 2 |
-| **합계** | **9** | **16** | **25** |
+| 🏛️ 국정연 정책연구 기반 | 0 | **4** | 4 |
+| **합계** | **9** | **24** | **33** |
+
+---
+
+## 🏛️ 국가정책연구포털 기반 신규 API (2025-05-14 추가)
+
+### 26. 해양수산부 공공데이터 통합 (MOF Fishery)
+- **Route**: `/api/mof-fishery`
+- **Method**: POST
+- **Endpoints**: 위판장 위탁판매(select0040), 수출입(select0070), 어업생산(select0180), 운송비(seaimextrnpcst)
+- **Key**: `PUBLIC_DATA_API_KEY` + `KCS_API_KEY` (기등록)
+- **근거**: (일반 2025-01) 해양수산 공공데이터 플랫폼 활용 제고 방안 연구
+- **Status**: ✅ 파이프라인 완성 — Fallback 데이터 내장
+
+### 27. 참치 정책 리스크 인텔리전스 (Policy Risk)
+- **Route**: `/api/tuna-policy-risk`
+- **Method**: POST / GET
+- **Data**: 6대 정책 리스크 정량화 (미국 301, EU IUU, 강제노동, CPTPP/RCEP, IOTC TAC, SIMP)
+- **Key**: `WTO_API_KEY` (기등록)
+- **근거**: 국정연 8건 (2019-12, 2024-06, 2024-08, 2025-04, 2025-13, 2025-15 등)
+- **Status**: ✅ 파이프라인 완성 — WTO Live 연동 + Static Policy Matrix
+
+### 28. 참치 AI 가격 예측 엔진 (Price Forecast)
+- **Route**: `/api/tuna-forecast`
+- **Method**: POST / GET
+- **Model**: 5변수 VAR (가다랑어FOB, MGO, ENSO, KRW/USD, 태국가동률)
+- **Key**: `FRED_API_KEY` (기등록)
+- **근거**: (기본 2024-08) 수산물 무역 단기 전망모형 구축 연구
+- **Status**: ✅ 파이프라인 완성 — FRED Live + VAR 예측
+
+### 29. 참치 신흥시장 기회 인텔리전스 (Emerging Markets)
+- **Route**: `/api/tuna-emerging-markets`
+- **Method**: POST / GET
+- **Data**: 아프리카 5국 + 중동 3국 + ASEAN 3국 (총 11개 시장)
+- **Key**: `COMTRADE_API_KEY` (기등록)
+- **근거**: 국정연 아프리카 수산협력(2023-05), 할랄 수출전략(2023-09), ASEAN 무역(2024-03), 군소도서국(2024-01)
+- **Status**: ✅ 파이프라인 완성 — Comtrade Live + 정책연구 매트릭스
+
+### 30. 명태 정책 리스크 인텔리전스 (Pollock Policy Risk)
+- **Route**: `/api/pollock-policy-risk`
+- **Method**: POST / GET
+- **Data**: 6대 정책 리스크 정량화 (러시아 제재, 미국 301, NPFMC 쿼터, SIMP, 강제노동, 원산지 세탁)
+- **Key**: `WTO_API_KEY` + `COMTRADE_API_KEY` (기등록)
+- **근거**: 국정연 6건 (2019-12, 2023-10, 2024-06, 2024-08, 2025-04, 2025-13, 2025-15)
+- **Status**: ✅ 파이프라인 완성 — WTO Live + 6대 리스크 매트릭스 + FTA 관세 시뮬레이션
+
+### 31. 명태 AI 가격 예측 엔진 (Pollock Forecast)
+- **Route**: `/api/pollock-forecast`
+- **Method**: POST / GET
+- **Model**: 5변수 VAR (러시아 FOB, MGO, 베링해 SST, KRW/USD, 중국 다롄 가동률)
+- **Products**: 통명태 H&G + 수리미 FA급 + 명란(Roe) 3품목
+- **Key**: `FRED_API_KEY` (기등록)
+- **근거**: (기본 2024-08) 수산물 무역 단기 전망모형 + (일반 2025-14) AI 무역전망 고도화
+- **Status**: ✅ 파이프라인 완성 — FRED Live + VAR 예측 + SST 상관분석 + What-If 시나리오
+
+### 32. 명태 글로벌 공급망 인텔리전스 (Pollock Supply Chain)
+- **Route**: `/api/pollock-supply-chain`
+- **Method**: POST / GET
+- **Data**: HHI 집중도 지수 + 글로벌 플로우 맵 + 대체 소싱 레이더 + 대체 어종 교차탄력성
+- **Key**: `COMTRADE_API_KEY` + `KCS_API_KEY` (기등록)
+- **근거**: (일반 2023-10) 전략품목 관리 + (일반 2024-05) 공급망 관리 + (일반 2022-11) 대체관계 분석
+- **Status**: ✅ 파이프라인 완성 — Comtrade Live + HHI 7,100 극단적 집중 Alert
+
+### 33. 명태 착지원가 시뮬레이터 (Pollock Landed Cost)
+- **Route**: `/api/pollock-landed-cost`
+- **Method**: POST / GET
+- **Data**: 3경로 비교 (러시아 직수입 vs 중국 우회 vs 미국 MSC) + 환율 민감도
+- **Key**: `FRED_API_KEY` (기등록)
+- **근거**: (일반 2024-06) 신통상규범 영향 + (기본 2025-10) 물가 안정화
+- **Status**: ✅ 파이프라인 완성 — FRED FX Live + 워터폴 원가분해 + 경로별 Alert

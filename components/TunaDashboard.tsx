@@ -16,7 +16,7 @@ import {
   Eye, FileText, Thermometer
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
 // Tuna specific components
@@ -26,6 +26,15 @@ import TunaPriceDecoupling from './TunaPriceDecoupling';
 import { InsightNauruSwitch, InsightIOCollapse, InsightEU18C } from './TunaNewInsightsA';
 import { InsightTunaExtract, InsightPillarTwo, InsightVietnamOEM } from './TunaNewInsightsB';
 import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, KfasElderlyFunctionalFood } from './TunaKfasResearch';
+
+// Phase 4: 국정연 보고서 기반 신규 인텔리전스 (기획서 Phase 1~2 구현)
+import { PolicyRiskScorecard, FtaTariffOptimizer } from './TunaPolicyRiskRadar';
+import { SkipjackForecastWidget, EnsoCorrelationWidget, LandingCostSensitivity } from './TunaForecastWidgets';
+import { EmergingMarketsHeatmap } from './TunaEmergingMarkets';
+
+// Phase 5: 해수부 공공데이터 + 부산물 업사이클링 (기획서 Phase 2 구현)
+import { MofFishMarketWidget, MofTradeBalanceWidget, MofShippingCostWidget } from './TunaMofFisheryWidget';
+import { TunaUpcyclingOpportunity, TunaUpcyclingMarginMap } from './TunaUpcyclingWidgets';
 
 // Phase 1: Live Intelligence Upgrade
 import TunaLiveTicker from './TunaLiveTicker';
@@ -43,14 +52,17 @@ import TunaHSClassifier from './TunaHSClassifier';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     return (
-      <div className={styles.customTooltip}>
-        <p className={styles.tooltipLabel}>{label}</p>
-        {payload.map((e: any, i: number) => (
-          <div key={i} className={styles.tooltipValue}>
-            <span style={{ color: e.color }}>■ {e.name}</span>
-            <strong>{typeof e.value === 'number' ? Number(e.value.toFixed(1)).toLocaleString() : e.value}</strong>
-          </div>
-        ))}
+      <div style={{ backgroundColor: '#1e293b', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}>
+        <p style={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px', margin: 0 }}>{label}</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
+          {payload.map((e: any, i: number) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ color: e.color || e.stroke || e.fill, fontSize: '14px' }}>■</span>
+              <span style={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}>{e.name}: </span>
+              <strong style={{ color: '#fff', fontSize: '13px' }}>{typeof e.value === 'number' ? Number(e.value.toFixed(1)).toLocaleString() : e.value}</strong>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -69,13 +81,11 @@ const KPI_THEMES = [
 ];
 
 const SECTIONS = [
-  { id: "S1", title: "⚓ Part I — 원물 생산 (Raw Material)", desc: "FishStatJ 매크로 데이터 기반 — 조업 및 어획 동향 분석", color: "#FCD535" },
-  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "글로벌 캔 생산 및 부가가치 창출 (가공/수율)", color: "#9B72CB" },
-  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "수출입 무역망 및 글로벌 공급망 최적화", color: "#F0B90B" },
-  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "소비자 가격 전가 및 마진 구조 분석", color: "#0ECB81" },
-  { id: "S5", title: "🌍 Part V — ESG 및 지속가능성 (Sustainability)", desc: "친환경 인증, 대체 단백질, 그리고 데이터 패권", color: "#2196F3" },
-  { id: "S6", title: "🔥 Part VI — 신규 전략 인텔리전스 (New Strategic Intelligence)", desc: "9개 NotebookLM 노트북 × Google Drive DATA 교차 분석 — PE C-Level 블라인드 스팟 6선", color: "#ef4444" },
-  { id: "S7", title: "🔬 Part VII — KFAS 학술 연구 인텔리전스 (Academic Research)", desc: "한국수산과학회지(KFAS) 13편 참치 논문 — 부산물 바이오 전환 · 원양어업 구조변동 · 인도양 위험도 · 고령친화식품", color: "#06b6d4" },
+  { id: "S1", title: "⚓ Part I — 원물 생산 (Raw Material)", desc: "FAO FishStatJ · IOTC · IATTC · ICCAT 기반 글로벌 참치 어획량, 어종별 자원 동향, K-원양 선단 효율, 기후(ENSO) 영향 분석", color: "#FCD535" },
+  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "태국/스페인/한국 가공 패권 구조, 수율·인건비 벤치마크, 부산물 업사이클링, 펫케어 라인 전환 타당성", color: "#9B72CB" },
+  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
+  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
+  { id: "S5", title: "🌍 Part V — ESG 및 지속가능성 (Sustainability)", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
 ];
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -100,6 +110,29 @@ const EstimateBadge = () => (
   </span>
 );
 
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
 const formatYAxis = (v: number): string => {
   if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
   if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
@@ -107,6 +140,8 @@ const formatYAxis = (v: number): string => {
 };
 
 /* ─── 1. 전역으로 완전히 분리된 차트 렌더러 ─── */
+const CHART_MARGIN = { top: 20, right: 30, left: 0, bottom: 5 };
+
 const renderChart = (w: any) => {
   const d = w.data;
   if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
@@ -114,8 +149,8 @@ const renderChart = (w: any) => {
 
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
   const isShortData = d.length <= 10;
-  const xAxisTextProps: any = { stroke: "#64748b", tick: { fontSize: 9 }, ...(isShortData ? { interval: 0 } : {}) };
-  const yAxisProps = { stroke: "#64748b", tick: { fontSize: 9 }, tickFormatter: formatYAxis };
+  const xAxisTextProps: any = { stroke: "rgba(255,255,255,0.1)", tick: { fill: "#cbd5e1", fontSize: 12, fontWeight: 500 }, ...(isShortData ? { interval: 0 } : {}) };
+  const yAxisProps = { stroke: "rgba(255,255,255,0.1)", tick: { fill: "#cbd5e1", fontSize: 12, fontWeight: 500 }, tickFormatter: formatYAxis };
 
   // Universal Format handling
   if (w.xKey || w.bars || w.lines || w.areas) {
@@ -134,7 +169,7 @@ const renderChart = (w: any) => {
         );
       case "area":
         return (
-          <AreaChart data={d}>
+          <AreaChart data={d} margin={CHART_MARGIN}>
             <defs>
               {(w.areas || w.lines)?.map((a: any, i: number) => (
                 <linearGradient key={i} id={`sArea${w.id}_${i}`} x1="0" y1="0" x2="0" y2="1">
@@ -156,7 +191,7 @@ const renderChart = (w: any) => {
       case "line":
         const hasRightLine = w.lines?.some((l: any) => l.yAxisId === 'right');
         return (
-          <LineChart data={d}>
+          <LineChart data={d} margin={CHART_MARGIN}>
             {grid}
             <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
             <YAxis yAxisId="left" {...yAxisProps} />
@@ -170,7 +205,7 @@ const renderChart = (w: any) => {
         );
       case "bar":
         return (
-          <BarChart data={d} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
+          <BarChart data={d} margin={{ ...CHART_MARGIN, top: 30 }}>
             {grid}
             <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
             <YAxis {...yAxisProps} />
@@ -189,7 +224,7 @@ const renderChart = (w: any) => {
       case "composed":
         const hasRightComposed = w.lines?.some((l: any) => l.yAxisId === 'right') || w.bars?.some((b: any) => b.yAxisId === 'right');
         return (
-          <ComposedChart data={d}>
+          <ComposedChart data={d} margin={CHART_MARGIN}>
             {grid}
             <XAxis dataKey={xKeyVal} {...xAxisTextProps} />
             <YAxis yAxisId="left" {...yAxisProps} />
@@ -208,8 +243,8 @@ const renderChart = (w: any) => {
         return (
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={d}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
-            <PolarAngleAxis dataKey={w.radarKey || "subject"} tick={{fill:'#94a3b8', fontSize:10}} />
-            <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'#64748b', fontSize:8}} />
+            <PolarAngleAxis dataKey={w.radarKey || "subject"} tick={{fill:'#cbd5e1', fontSize:12, fontWeight: 500}} />
+            <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'#cbd5e1', fontSize:10, fontWeight: 500}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.radars?.map((r: any, i: number) => (
@@ -241,7 +276,7 @@ const renderChart = (w: any) => {
       );
     case "line":
       return (
-        <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+        <LineChart data={d} margin={CHART_MARGIN}>
           {grid}
           <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0} />
           <YAxis yAxisId="left" {...yAxisProps} />
@@ -255,7 +290,7 @@ const renderChart = (w: any) => {
       );
     case "area":
       return (
-        <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+        <AreaChart data={d} margin={CHART_MARGIN}>
           {grid}
           <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0} />
           <YAxis yAxisId="left" {...yAxisProps} />
@@ -269,7 +304,7 @@ const renderChart = (w: any) => {
       );
     case "composed":
       return (
-        <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+        <ComposedChart data={d} margin={CHART_MARGIN}>
           {grid}
           <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0} />
           <YAxis yAxisId="left" {...yAxisProps} />
@@ -303,11 +338,11 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
   let takeaway = widget.strat || widget.tak || widget.takeaway || '';
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard}>
       
       {/* Card Header */}
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <IconComp size={18} style={{ color: accentColor }} />
           {widget.title}
           {widget.source && widget.source.includes('LIVE') ? (
@@ -317,30 +352,32 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
           ) : null}
           
           <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {widget.unit && <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: {widget.unit})</span>}
+            {widget.unit && <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: {widget.unit})</span>}
           </div>
         </h3>
         {methodologyText && (
-          <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+          <p className={styles.cardDesc}>
             {methodologyText}
           </p>
         )}
       </div>
 
-      {/* Chart Area */}
-      <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0, overflow: 'hidden' }}>
-        <SafeResponsiveContainer width="100%" height="100%">
-          {renderChart(widget)}
-        </SafeResponsiveContainer>
-      </div>
+      <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
+        {/* Chart Area */}
+        <div className={styles.chartContainer}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            {renderChart(widget)}
+          </SafeResponsiveContainer>
+        </div>
 
-      {/* Takeaway Box */}
-      <div style={{ marginTop: 'auto' }}>
-        <TakeawayBox
-          situation={situation}
-          actionPlan={takeaway}
-          source={widget.source}
-        />
+        {/* Takeaway Box */}
+        <div style={{ marginTop: 'auto' }}>
+          <TakeawayBox
+            situation={situation}
+            actionPlan={takeaway}
+            source={widget.source}
+          />
+        </div>
       </div>
     </div>
   );
@@ -414,7 +451,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
       {/* ═══ KPIs ═══ */}
       {kpiKeys.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
           {kpiKeys.map((key, idx) => {
             const kpi = kpis[key];
             const t = KPI_THEMES[idx % KPI_THEMES.length];
@@ -444,9 +481,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600 }}>{kpi.title}</span>
-                  <I size={14} style={{ color: t.text }} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
+                  {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <I size={14} style={{ color: t.text }} />}
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                   {parsed ? (
@@ -531,10 +568,10 @@ const TunaDashboard = React.memo(function TunaDashboard() {
         )}
       </div>
 
-      {/* ═══ Sections & Categorized Widgets ═══ */}
+      {/* ═══ 5-Part Consolidated Sections ═══ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
         
-        {/* Section 1: Raw Material */}
+        {/* ═══════ Part I: 원물 생산 (Raw Material) ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
@@ -545,13 +582,20 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             <TunaPrecisionFishing />
-            {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w19_ecuador_surge', 'w22_japan_decline', 'w41_geopolitical_shift', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w53_enso_radar', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w92_ems_blind_spot', 'w93_mesotherm_energy'].includes(w.id)).map((w: any) => (
+            <KfasLonglineEvolution />
+            <KfasIndianOceanRisk />
+            <InsightNauruSwitch />
+            <InsightIOCollapse />
+            <MofFishMarketWidget />
+            {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
+            <EnsoCorrelationWidget />
+            <SkipjackForecastWidget />
           </div>
         </section>
 
-        {/* Section 2: Processing */}
+        {/* ═══════ Part II: 가공 산업 (Processing) ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
@@ -563,13 +607,19 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             <TunaPetCareMargin />
             <TunaSupplierHub />
-            {widgets?.filter((w: any) => ['w04_proc', 'w14_species_polar', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w83_dfad_revenue_shock', 'w84_invasivorism'].includes(w.id)).map((w: any) => (
+            <InsightTunaExtract />
+            <InsightVietnamOEM />
+            <KfasByproductValueChain />
+            <KfasElderlyFunctionalFood />
+            <TunaUpcyclingOpportunity />
+            <TunaUpcyclingMarginMap />
+            {widgets?.filter((w: any) => ['w04_proc', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w84_invasivorism', 'w57_alt_protein'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>
         </section>
 
-        {/* Section 3: Logistics */}
+        {/* ═══════ Part III: 물류 및 무역 (Logistics) ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
@@ -579,21 +629,23 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {/* Phase 1 신규: WITS/OEC 글로벌 무역 인텔리전스 위젯 */}
             <WitsTariffWidget />
             <OecBenchmarkWidget />
             <WitsTradeFlowWidget />
-            {/* Phase 2: 착지원가 시뮬레이터 */}
             <TunaLandingCost />
-            {/* Phase 3: HS 코드 자동분류 */}
             <TunaHSClassifier />
-            {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost'].includes(w.id)).map((w: any) => (
+            <MofTradeBalanceWidget />
+            <MofShippingCostWidget />
+            <FtaTariffOptimizer />
+            <LandingCostSensitivity />
+            <EmergingMarketsHeatmap />
+            {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>
         </section>
 
-        {/* Section 4: Sales */}
+        {/* ═══════ Part IV: 판매 및 수요 (Sales & Demand) ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
@@ -604,13 +656,14 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             <TunaPriceDecoupling />
-            {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation'].includes(w.id)).map((w: any) => (
+            <InsightEU18C />
+            {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>
         </section>
 
-        {/* Section 5: ESG */}
+        {/* ═══════ Part V: ESG 및 지속가능성 (Sustainability) ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
@@ -620,55 +673,12 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {/* Phase 3: 컴플라이언스 레이더 */}
             <TunaComplianceRadar />
-            {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w57_alt_protein', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement'].includes(w.id)).map((w: any) => (
+            <PolicyRiskScorecard />
+            <InsightPillarTwo />
+            {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
-          </div>
-        </section>
-
-        {/* Section 6: New Strategic Intelligence */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[5].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[5].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[5].desc}</p>
-            </div>
-          </div>
-          <div style={{ background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.15)', padding: '10px 14px', borderRadius: '8px', color: '#fca5a5', fontSize: '0.82rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Zap size={16} color="#ef4444" />
-            9개 NotebookLM 노트북(1,494 소스) + Google Drive DATA 교차 분석 결과. 기존 대시보드에 부재하던 6개 블라인드 스팟 인사이트.
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            <InsightNauruSwitch />
-            <InsightIOCollapse />
-            <InsightEU18C />
-            <InsightTunaExtract />
-            <InsightPillarTwo />
-            <InsightVietnamOEM />
-          </div>
-        </section>
-
-        {/* Section 7: KFAS Academic Research Intelligence */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[6].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[6].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[6].desc}</p>
-            </div>
-          </div>
-          <div style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.15)', padding: '10px 14px', borderRadius: '8px', color: '#67e8f9', fontSize: '0.82rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Dna size={16} color="#06b6d4" />
-            한국수산과학회지(KFAS) 2023~2026 참치 관련 논문 13편 — 가다랑어·눈다랑어·황다랑어·대서양참다랑어 전 어종 커버. 가공부산물 바이오 소재화, 원양어업 구조변동, IOTC 생태계 위험도, MSC 미끼자원 인증, 고령친화식품 R&D.
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            <KfasByproductValueChain />
-            <KfasLonglineEvolution />
-            <KfasIndianOceanRisk />
-            <KfasElderlyFunctionalFood />
           </div>
         </section>
 

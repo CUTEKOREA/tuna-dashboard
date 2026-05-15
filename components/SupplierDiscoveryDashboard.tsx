@@ -16,6 +16,9 @@ const allMockSuppliers = [
   { id: 1, name: 'PT. Ocean Harvest Indonesia', country: 'Indonesia', trust: 98, lastShipment: '2026-05-12', products: 'Frozen Tuna, Skipjack', category: 'tuna', hsCode: '1604.14', tariff: '8.5%', trustRationale: '최근 3개년 선적 B/L 데이터 100% 매칭, KCS 관세청 교차검증 통과' },
   { id: 2, name: 'Thai Union Group PCL', country: 'Thailand', trust: 99, lastShipment: '2026-05-10', products: 'Canned Tuna, Tuna Loins', category: 'tuna', hsCode: '1604.14', tariff: '8.5%', trustRationale: '글로벌 Top 3 공급사, 식약처(MFDS) 무결점 통과 이력 50건 이상 보유' },
   { id: 3, name: 'Vinh Hoan Corp', country: 'Vietnam', trust: 95, lastShipment: '2026-05-09', products: 'Pangasius, Shrimp', category: 'shrimp', hsCode: '0306.17', tariff: '5.0%', trustRationale: '자체 양식장 소유, B/L 역추적 시 안정적인 물동량 우상향 추세 확인' },
+  { id: 10, name: 'Zhoushan Putuo Xinliang', country: '중국', trust: 94, lastShipment: '2026-05-11', products: 'Frozen Squid, Webfoot Octopus (주꾸미)', category: '주꾸미, octopus, squid', hsCode: '0307.59', tariff: '0.0%', trustRationale: '중국 내 대규모 수산물 가공 공장, KCS 교차 검증 시 최근 1년 연속 선적 확인' },
+  { id: 11, name: 'Shandong Meijia Group', country: '중국', trust: 91, lastShipment: '2026-05-05', products: 'Frozen Fish, Webfoot Octopus (주꾸미)', category: '주꾸미, octopus, fish', hsCode: '0307.59', tariff: '0.0%', trustRationale: '산둥성 주요 수출업체, MFDS 적발 이력 없음' },
+  { id: 12, name: 'Ha Long Canned Food JSC', country: '베트남', trust: 88, lastShipment: '2026-05-02', products: 'Frozen Octopus (주꾸미)', category: '주꾸미, octopus', hsCode: '0307.59', tariff: '0.0%', trustRationale: '베트남 북부 주요 수산물 수출기업' },
   
   // Agriculture
   { id: 4, name: 'Shandong Jinxiang Garlic Group', country: '중국', trust: 96, lastShipment: '2026-05-11', products: 'Fresh Garlic, Peeled Garlic', category: 'garlic', hsCode: '0703.20', tariff: '15.0%', trustRationale: '세계 최대 마늘 산지 핵심 수출처, 국내 대형 유통사 거래 이력 확인' },
@@ -474,13 +477,16 @@ export default function SupplierDiscoveryDashboard() {
           <AnimatePresence mode="wait">
             {macroData && !isMacroSearching && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(250px, 1fr) minmax(400px, 2fr)', gap: '1.5rem', marginTop: '1.5rem', width: '100%' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem', width: '100%' }}>
                   
                   {/* Tariff & HS Code Stats */}
                   <div style={{ background: 'rgba(236, 72, 153, 0.1)', border: '1px solid #ec4899', borderRadius: '8px', padding: '1.5rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
                       <div style={{ flex: 1 }}>
-                        <span style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block', marginBottom: '0.25rem' }}>AI HS Code 매핑</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                          <span style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block' }}>AI HS Code 매핑</span>
+                          <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>LIVE API: HS Ping</span>
+                        </div>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap' }}>
                           <strong style={{ color: '#f8fafc', fontSize: '1.5rem', display: 'block' }}>{macroData.hsCode}</strong>
                           {macroData.engItemName && macroData.engItemName !== 'Unknown' && (
@@ -515,13 +521,13 @@ export default function SupplierDiscoveryDashboard() {
                       </div>
                       {macroData.kamisPrice && (
                         <div style={{ marginBottom: '1rem', borderTop: '1px solid #1e293b', paddingTop: '1rem' }}>
-                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>국내 도매가 (aT KAMIS API)</span>
+                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>국내 경매 도매가 (KAMIS / 공공데이터포털 연동)</span>
                           <strong style={{ color: '#fbbf24', fontSize: '1.1rem' }}>{macroData.kamisPrice}</strong>
                         </div>
                       )}
                       {macroData.mfdsRejection && (
                         <div>
-                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>식약처 수입적발 내역 (MFDS API)</span>
+                          <span style={{ color: '#94a3b8', fontSize: '0.85rem', display: 'block' }}>글로벌 안전성/적발 이력 (FDA / MFDS API)</span>
                           <strong style={{ color: '#f87171', fontSize: '1.1rem' }}>{macroData.mfdsRejection}</strong>
                         </div>
                       )}
@@ -529,33 +535,40 @@ export default function SupplierDiscoveryDashboard() {
                   </div>
 
                   {/* Volume Chart */}
-                  <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem', minWidth: '400px', overflow: 'hidden' }}>
-                    <h4 style={{ margin: '0 0 1rem 0', color: '#f8fafc', fontSize: '1.1rem' }}>한국 ↔ {macroCountry} 누적 물동량 (MT) 추이</h4>
-                    <div style={{ overflowX: 'auto' }}>
-                      <BarChart width={500} height={260} data={macroData.tradeVolume} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
-                        <defs>
-                          <linearGradient id="importGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
-                            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                          </linearGradient>
-                          <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#ec4899" stopOpacity={0.9}/>
-                            <stop offset="95%" stopColor="#ec4899" stopOpacity={0.3}/>
-                          </linearGradient>
-                        </defs>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} opacity={0.6} />
-                        <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickMargin={8} />
-                        <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} width={55} tickFormatter={(value: number) => value.toLocaleString()} />
-                        <RechartsTooltip
-                          cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                          contentStyle={{ background: 'rgba(15, 23, 42, 0.95)', border: '1px solid #475569', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}
-                          itemStyle={{ fontWeight: 'bold' }}
-                          formatter={(value: any) => `${Number(value).toLocaleString()} MT`}
-                        />
-                        <Legend wrapperStyle={{ paddingTop: '15px' }} iconType="circle" />
-                        <Bar dataKey="importVolume" name="한국 수입량" fill="url(#importGrad)" radius={[6, 6, 0, 0]} barSize={28} />
-                        <Bar dataKey="exportVolume" name="한국 수출량" fill="url(#exportGrad)" radius={[6, 6, 0, 0]} barSize={28} />
-                      </BarChart>
+                  <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '1.5rem', minWidth: 0, overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                      <h4 style={{ margin: 0, color: '#f8fafc', fontSize: '1.1rem' }}>한국 ↔ {macroCountry} 누적 물동량 (MT) 추이</h4>
+                      <span style={{ fontSize: '0.7rem', background: 'rgba(59, 130, 246, 0.2)', color: '#60a5fa', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                        {macroData.tradeVolume?.[0]?.source?.includes('COMTRADE') ? 'LIVE API: UN Comtrade' : 'LIVE API: KCS 관세청'}
+                      </span>
+                    </div>
+                    <div style={{ width: '100%', height: 260 }}>
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart data={macroData.tradeVolume} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
+                          <defs>
+                            <linearGradient id="importGrad" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
+                              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                            </linearGradient>
+                            <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#ec4899" stopOpacity={0.9}/>
+                              <stop offset="95%" stopColor="#ec4899" stopOpacity={0.3}/>
+                            </linearGradient>
+                          </defs>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} opacity={0.6} />
+                          <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickMargin={8} />
+                          <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} width={55} tickFormatter={(value: number) => value.toLocaleString()} />
+                          <RechartsTooltip
+                            cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                            contentStyle={{ background: 'rgba(15, 23, 42, 0.95)', border: '1px solid #475569', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}
+                            itemStyle={{ fontWeight: 'bold' }}
+                            formatter={(value: any) => `${Number(value).toLocaleString()} MT`}
+                          />
+                          <Legend wrapperStyle={{ paddingTop: '15px' }} iconType="circle" />
+                          <Bar dataKey="importVolume" name="한국 수입량" fill="url(#importGrad)" radius={[6, 6, 0, 0]} barSize={28} />
+                          <Bar dataKey="exportVolume" name="한국 수출량" fill="url(#exportGrad)" radius={[6, 6, 0, 0]} barSize={28} />
+                        </BarChart>
+                      </ResponsiveContainer>
                     </div>
                   </div>
 

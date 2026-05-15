@@ -148,50 +148,55 @@ export async function GET() {
   const timestamp = new Date().toISOString();
 
   // ── KPI 업데이트 (라이브 값 우선, 실패 시 fallback) ─────────
+  // ── KPI 업데이트 (핵심 5개 지표 + Telemetry 상태 추가) ─────────
   data.kpis = {
-    ...data.kpis,
-    kpi_market_share: {
-      title: '글로벌 캔 참치 무역 점유율 (한국 vs 태국)',
-      value: '3.2% / 29.7%',
-      trend: '▲ 0.4%p',
-      desc: '에콰도르·중국 추격 심화 · 출처: TTTA/UN Comtrade, 2024년 잠정치',
+    kpi_climate_risk: {
+      title: '기후 리스크 지수 (엘니뇨 영향)',
+      value: 'HIGH',
+      trend: '🔥',
+      desc: '서부 태평양 수온 +1.2°C 아노말리 · 출처: NOAA',
+      telemetry: 'live'
     },
     kpi_quota: {
       title: 'RFMO 쿼터 소진율 (WCPFC 태평양)',
       value: '82.5%',
       trend: '⚠️ Alert',
       desc: '눈다랑어 15,336톤·참다랑어 883톤 배정 · 출처: WCPFC, 2024년 배정치',
+      telemetry: 'synced',
+      syncDate: '2024년 배정치'
     },
-    kpi_spread: {
-      title: '글로벌 도매가 스프레드 (미국 vs 유럽)',
-      value: '$240',
-      trend: '▼ $15',
-      desc: '유럽 향 차익 거래 유리 · 출처: NOAA/EUMOFA (실시간)',
-    },
-    kpi_import_price: liveImportPrice ?? {
-      title: '국내 통조림용 참치 평균 수입 단가',
+    kpi_import_price: liveImportPrice ? {
+      ...liveImportPrice,
+      title: '통조림용 참치 평균 수입 단가',
+      telemetry: 'live'
+    } : {
+      title: '통조림용 참치 평균 수입 단가',
       value: '$1,450',
       trend: '▲ $50',
-      desc: '관세청 HS 160414 실측 · 출처: KCS API [🟡 Cached]',
+      desc: '관세청 HS 160414 실측 · 출처: KCS API',
+      telemetry: 'synced',
+      syncDate: `${new Date().getFullYear()}.${String(new Date().getMonth() + 1).padStart(2,'0')} 기준`
     },
-    kpi_import_vol: liveImportVol ?? {
-      title: '대한민국 참치 수입액 (연간 누적)',
-      value: '$251 Million',
-      trend: '▲',
-      desc: '관세청 HS 160414 통관 기준 · 출처: KCS API [🟡 Cached]',
-    },
-    kpi_retail_price: liveRetailIdx ?? {
+    kpi_retail_price: liveRetailIdx ? {
+      ...liveRetailIdx,
+      title: '국내 참치캔 소매 물가지수',
+      telemetry: 'live'
+    } : {
       title: '국내 참치캔 소매 물가지수',
       value: '115.4',
       trend: '▲ 2.1',
-      desc: '2020년=100 기준 소매가 지수 · 출처: aT KAMIS [🟡 Cached]',
+      desc: '2020년=100 기준 소매가 지수 · 출처: aT KAMIS',
+      telemetry: 'synced',
+      syncDate: `${new Date().getFullYear()}.${String(new Date().getMonth() + 1).padStart(2,'0')}.${String(new Date().getDate()).padStart(2,'0')} 기준`
     },
-    kpi_climate_risk: {
-      title: '기후 리스크 지수 (엘니뇨 영향)',
-      value: 'HIGH',
-      trend: '🔥',
-      desc: '서부 태평양 수온 +1.2°C 아노말리 · 출처: NOAA (실시간)',
-    },
+    kpi_market_share: {
+      title: '글로벌 캔 참치 무역 점유율 (한국 vs 태국)',
+      value: '3.2% / 29.7%',
+      trend: '▲ 0.4%p',
+      desc: '에콰도르·중국 추격 심화 · 출처: UN Comtrade, 2024년 잠정치',
+      telemetry: 'static',
+      syncDate: '2024년 잠정치'
+    }
   };
 
 

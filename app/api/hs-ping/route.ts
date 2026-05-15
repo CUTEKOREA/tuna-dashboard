@@ -37,7 +37,14 @@ const HS_FALLBACK: Record<string, { hsCode: string; description: string; confide
     { hsCode: '0303.89.0065', description: 'Cutlassfish (hairtail), frozen', confidence: 0.95, country: 'US', chapter: '03', notes: 'USITC specific subheading' },
   ],
   'frozen mackerel': [
-    { hsCode: '0303.54.00', description: 'Mackerels (Scomber scombrus/japonicus/australasicus), frozen', confidence: 0.97, country: 'US', chapter: '03', notes: 'All mackerel species' },
+    { hsCode: '0303.54.00', description: 'Mackerels (Scomber scombrus/japonicus/australasicus), frozen', confidence: 0.99, country: 'US', chapter: '03', notes: 'All mackerel species' },
+    { hsCode: '0303.54.0000', description: '냉동 고등어', confidence: 0.99, country: 'KR', chapter: '03', notes: '주력 수입 원물' },
+  ],
+  'mackerel fillet': [
+    { hsCode: '0304.89.0000', description: '기타 어종의 냉동 피레트 (고등어)', confidence: 0.95, country: 'KR', chapter: '03', notes: '순살 및 HMR 가공용 수요 급증' },
+  ],
+  'salted mackerel': [
+    { hsCode: '0305.63.0000', description: '염장한 고등어(건조/훈제 제외)', confidence: 0.96, country: 'KR', chapter: '03', notes: '전통 자반고등어 가공 원료' },
   ],
   'frozen alaska pollock': [
     { hsCode: '0303.63.00', description: 'Alaska Pollack (Theragra chalcogramma), frozen', confidence: 0.98, country: 'US', chapter: '03', notes: 'Primary surimi raw material' },
@@ -76,6 +83,8 @@ const KR_TO_EN: Record<string, string> = {
   '마늘': 'fresh garlic', '신선 마늘': 'fresh garlic',
   '캐슈넛': 'cashew nuts shelled', '카카오': 'cocoa beans',
   '카사바': 'cassava dried', '참치': 'frozen yellowfin tuna',
+  '고등어 필렛': 'mackerel fillet', '냉동 고등어 필렛': 'mackerel fillet',
+  '염장 고등어': 'salted mackerel', '자반 고등어': 'salted mackerel',
 };
 
 async function classifyWithHSPing(query: string, country: string = 'US'): Promise<any | null> {

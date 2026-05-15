@@ -1245,7 +1245,7 @@ export default function PetFoodDashboard() {
             </div>
           </div>
           <div className={styles.grid}>
-            {/* KFAS-W01: 참치 부산물 영양·안전성 */}
+            {/* 참치 부산물 영양·안전성 */}
             {d_kfas_w01 && (
               <div className={styles.card} style={{ gridColumn: 'span 2' }}>
                 <CardHeader title={d_kfas_w01.title} icon={Recycle} term="부산물 59.5%" desc="참치 3.5kg 가공 시 약 59.5%가 부산물 — 혈합육 단백질 26.75 g/100g" />
@@ -1303,7 +1303,7 @@ export default function PetFoodDashboard() {
               </div>
             )}
 
-            {/* KFAS-W02: 황다랑어 알 효소가수분해물 */}
+            {/* 황다랑어 알 효소가수분해물 */}
             {d_kfas_w02 && (
               <div className={styles.card}>
                 <CardHeader title={d_kfas_w02.title} icon={Zap} term="항산화 35.2%" desc="Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%" />
@@ -1332,7 +1332,7 @@ export default function PetFoodDashboard() {
               </div>
             )}
 
-            {/* KFAS-W03: 곤충단백질 어분 대체 */}
+            {/* 곤충단백질 어분 대체 */}
             {d_kfas_w03 && (
               <div className={styles.card}>
                 <CardHeader title={d_kfas_w03.title} icon={Leaf} term="BSF 5%→98%" desc="BSF 탈지분 5% 대체 시 성장률 98%, 면역 +18%" />
@@ -1361,7 +1361,7 @@ export default function PetFoodDashboard() {
               </div>
             )}
 
-            {/* KFAS-W04: 미세조류 단백질 추출 */}
+            {/* 미세조류 단백질 추출 */}
             {d_kfas_w04 && (
               <div className={styles.card}>
                 <CardHeader title={d_kfas_w04.title} icon={Leaf} term="수율 72.5%" desc="스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g" />
@@ -1388,7 +1388,7 @@ export default function PetFoodDashboard() {
               </div>
             )}
 
-            {/* KFAS-W05: 가자미 5종 EPA/DHA 프로파일 */}
+            {/* 가자미 5종 EPA/DHA 프로파일 */}
             {d_kfas_w05 && (
               <div className={styles.card}>
                 <CardHeader title={d_kfas_w05.title} icon={Activity} term="EPA+DHA 620" desc="줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고" />

@@ -12,6 +12,9 @@ const ECOS_API_KEY = process.env.ECOS_API_KEY || '';
 const KAMIS_API_KEY = process.env.KAMIS_API_KEY || '';
 const KCS_API_KEY = process.env.KCS_API_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 
+export const runtime = 'nodejs';
+export const revalidate = 300; // 5분 캐시
+
 // ─── ECOS: 한국은행 환율 ───
 async function fetchECOS_FX(): Promise<{ rate: number; change: number; isLive: boolean }> {
   const FALLBACK = { rate: 1382, change: 0.3, isLive: false };
@@ -58,7 +61,7 @@ async function fetchKAMIS_Mackerel(): Promise<{ wholesale: number; retail: numbe
       const items = json?.data?.item || [];
       // 고등어 항목 탐색
       const mackerel = items.find((i: any) => 
-        i.item_name?.includes('고등어') || i.item_code === '246'
+        i.item_name?.includes('고등어') || i.item_code === '246' || i.item_code === '611'
       );
       if (mackerel) {
         const price = parseInt(mackerel.dpr1?.replace(/,/g, '') || '0');
@@ -76,22 +79,49 @@ async function fetchKAMIS_Mackerel(): Promise<{ wholesale: number; retail: numbe
 // ─── KCS: 고등어 수입 CIF 단가 ───
 async function fetchKCS_CIF(): Promise<{ cifUsdTon: number; change: number; isLive: boolean }> {
   const FALLBACK = { cifUsdTon: 2240, change: -1.2, isLive: false };
+  if (!KCS_API_KEY) return FALLBACK;
 
   try {
-    const url = `https://api.odcloud.kr/api/15102783/v1/uddi:013e1b91-dcea-430c-aadf-f34b622492ec?page=1&perPage=1000&serviceKey=${KCS_API_KEY}`;
+    const now = new Date();
+    const past = new Date(now.getFullYear(), now.getMonth() - 3, 1);
+    const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
+    const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
+    const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
+      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030354`;
+
     const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
     if (res.ok) {
-      const json = await res.json();
-      const items = json.data || [];
-      const mackerelImport = items.find((item: any) =>
-        item['수출입구분코드'] === 'I' &&
-        (item['수산물수출입품목명']?.includes('고등어') || String(item['HSK품목코드']).startsWith('30354'))
-      );
-      if (mackerelImport && mackerelImport['당월수출입중량(킬로그램)'] > 0) {
-        const usd = mackerelImport['당월수출입미화금액(달러)'];
-        const kg = mackerelImport['당월수출입중량(킬로그램)'];
-        const cifPerTon = Math.round((usd / kg) * 1000);
-        return { cifUsdTon: cifPerTon, change: -1.2, isLive: true };
+      const xml = await res.text();
+      const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
+      
+      if (items.length > 0) {
+        const monthlyTotals: Record<string, { amt: number, wgt: number }> = {};
+        for (const match of items) {
+          const itemStr = match[1];
+          const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
+          if (!yearMatch || yearMatch[1] === '총계') continue;
+          
+          const year = yearMatch[1];
+          const impDlrMatch = itemStr.match(/<impDlr>([\d.]+)<\/impDlr>/);
+          const impWgtMatch = itemStr.match(/<impWgt>([\d.]+)<\/impWgt>/);
+          
+          if (!monthlyTotals[year]) monthlyTotals[year] = { amt: 0, wgt: 0 };
+          if (impDlrMatch) monthlyTotals[year].amt += parseFloat(impDlrMatch[1]);
+          if (impWgtMatch) monthlyTotals[year].wgt += parseFloat(impWgtMatch[1]);
+        }
+        
+        const sortedMonths = Object.keys(monthlyTotals).sort();
+        if (sortedMonths.length > 0) {
+          const latestMonth = sortedMonths[sortedMonths.length - 1];
+          const { amt, wgt } = monthlyTotals[latestMonth];
+          
+          if (wgt > 0) {
+            let pricePerTon = Math.round((amt * 1000) / (wgt / 1000));
+            if (pricePerTon > 10000) pricePerTon = Math.round(pricePerTon / 1000);
+            if (pricePerTon < 100) pricePerTon = Math.round(pricePerTon * 1000);
+            return { cifUsdTon: pricePerTon, change: -1.2, isLive: true };
+          }
+        }
       }
     }
   } catch (e) {

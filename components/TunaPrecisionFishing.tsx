@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip as RechartsTooltip, Legend } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip as RTooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import { Crosshair } from 'lucide-react';
 import rawData from '../data/tuna_precision_fishing.json';
 import TakeawayBox from './TakeawayBox';
@@ -17,17 +17,17 @@ export default function TunaPrecisionFishing() {
     if (!active || !payload?.length) return null;
     return (
       <div style={{
-        background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255, 255, 255, 0.1)',
+        background: '#1e293b', border: '1px solid rgba(255, 255, 255, 0.1)',
         padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 32px rgba(0,0,0,0.7)'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{payload[0].payload.metric}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-            <span style={{ color: '#94a3b8' }}>🧭 과거 (직관/사냥)</span>
+            <span style={{ color: '#cbd5e1' }}>🧭 과거 직관 조업</span>
             <span>{payload[0].payload.traditional_hunting}{payload[0].payload.unit}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-            <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>📡 미래 (데이터/수확)</span>
+            <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>📡 스마트 정밀 조업</span>
             <span style={{ color: '#38bdf8', fontWeight: 'bold' }}>{payload[0].payload.precision_harvesting}{payload[0].payload.unit}</span>
           </div>
         </div>
@@ -40,44 +40,52 @@ export default function TunaPrecisionFishing() {
   const source = 'ISSF Technical Report 2024 · SPC 어군 탐지 기술 평가 · FFA 스마트 FAD 파일럿 결과';
 
   return (
-    <div className={styles.glassCard} style={{
-      display: 'flex', flexDirection: 'column', minHeight: '480px'
-    }}>
-      {/* Card Header — renderWidgetCard 패턴 동일 */}
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
+    <div className={styles.insightCard}>
+      <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Crosshair size={20} color={ACCENT} />
           AI 기반 스마트 정밀 조업 (Precision Harvesting)
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          전통적 방식(Traditional) 대비 스마트 정밀 조업(Precision Harvesting) 도입 시의 핵심 KPI 변화량 레이더 분석. (무인 탐색 드론 및 3D 소나 사전 식별을 통한 유류비 제로화 및 조업 효율 극대화)
+        <p className={styles.cardDesc}>
+          전통적 방식(Traditional) 대비 스마트 정밀 조업(Precision Harvesting) 도입 시의 핵심 KPI 변화량 레이더 분석.
         </p>
       </div>
-
-      {/* Chart Area — renderWidgetCard 패턴 동일 */}
-      <div style={{ height: '250px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
-        <SafeResponsiveContainer width="100%" height="100%">
-          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
-            <PolarGrid stroke="rgba(255,255,255,0.2)" />
-            <PolarAngleAxis dataKey="metric" tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 11, fontWeight: 'bold' }} />
-            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-            <RechartsTooltip content={<CustomRadarTooltip />} />
-            <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-            <Radar name="🧭 과거 직관 의존 조업 (사냥)" dataKey="traditional_hunting" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.3} />
-            <Radar name="📡 딥테크 정밀 조업 (수확)" dataKey="precision_harvesting" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.6} />
-          </RadarChart>
-        </SafeResponsiveContainer>
+      
+      <div className={styles.cardBody}>
+        <div className={styles.chartContainer}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
+              <PolarGrid stroke="rgba(255,255,255,0.15)" />
+              <PolarAngleAxis dataKey="metric" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
+              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+              <RTooltip content={<CustomRadarTooltip />} />
+              <Legend />
+              <Radar name="🧭 과거 직관 의존 조업 (사냥)" dataKey="traditional_hunting" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.2} />
+              <Radar name="📡 딥테크 정밀 조업 (수확)" dataKey="precision_harvesting" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.3} />
+            </RadarChart>
+          </SafeResponsiveContainer>
+        </div>
+        
+        <div className={styles.kpiPanel}>
+          <div className={styles.kpiBox} style={{ borderLeftColor: '#38bdf8' }}>
+            <div className={styles.kpiLabel}>타겟 어군 식별률</div>
+            <div className={styles.kpiValue} style={{ color: '#38bdf8' }}>85%</div>
+            <div className={styles.kpiSub}>AI 3D 소나 도입 시</div>
+          </div>
+          <div className={styles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
+            <div className={styles.kpiLabel}>조업 효율 향상</div>
+            <div className={styles.kpiValue} style={{ color: '#10b981' }}>+15%</div>
+            <div className={styles.kpiSub}>탐색 유류비 제로화</div>
+          </div>
+        </div>
       </div>
-
-      {/* Takeaway Box — renderWidgetCard 패턴 동일 */}
-      <div style={{ marginTop: 'auto' }}>
-        <div style={{ marginTop: '20px' }}>
+      
+      <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
           situation={situation}
           actionPlan={takeaway}
           source={source}
         />
-      </div>
       </div>
     </div>
   );

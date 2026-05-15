@@ -12,11 +12,18 @@ import {
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
   Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
   RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, MessageSquare
+  Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, MessageSquare,
+  Shield, Thermometer
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
+
+// ═══ V2.0 Intelligence Modules ═══
+import { PollockSanctionParadox, PollockFtaTariffMatrix, PollockRiskScorecard } from './PollockPolicyRiskRadar';
+import { PollockPriceForecastChart, PollockScenarioSimulator } from './PollockPriceForecast';
+import { PollockLandedCostWaterfall, PollockRouteComparison } from './PollockLandedCost';
+import { PollockConcentrationIndex, PollockAlternativeSourcing, PollockSubstituteElasticity } from './PollockSupplyResilience';
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -334,7 +341,7 @@ export default function PollockDashboard() {
                 background: 'linear-gradient(135deg, #06b6d4, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 명태 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Pollock Strategic Command Center — 41 Widgets · 6 KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Pollock Strategic Command Center — 53 Widgets · 6 KPIs · 4 Live API Pipelines</p>
             </div>
           </div>
           <div style={{ 
@@ -342,7 +349,7 @@ export default function PollockDashboard() {
             background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(6, 182, 212, 0.2)', 
             borderRadius: '8px', color: '#94a3b8', fontWeight: 500
           }}>
-            <span style={{ color: '#06b6d4' }}>FishStatJ 1950-2024 + KFAS</span> · Claude Verified
+            <span style={{ color: '#06b6d4' }}>FishStatJ 1950-2024 + KFAS + 국정연 12건</span> · API-First · Claude Verified
           </div>
         </div>
       </header>
@@ -488,79 +495,78 @@ export default function PollockDashboard() {
         )}
       </div>
 
+      
       {/* ═══ VALUE CHAIN FRAMEWORK ═══ */}
       
-      {/* 1. Raw Material (원물) */}
+      {/* Part I — 원물 생산 (Raw Material) */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(6, 182, 212, 0.3)', paddingBottom: '0.5rem' }}>
           <Anchor size={24} color="#06b6d4" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>1. Raw Material (원물/조업)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>생산 한계 및 초강대국 독점</span>
+          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part I — 원물 생산 (Raw Material)</h2>
+          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>글로벌 어획 및 자원 밀도</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w1_global_catch', 'w2_hegemony', 'w3_diverging', 'w18', 'w19_tariff_engineering', 'w22_precision_release', 'w31_catch_gap', 'w32_sst_fleet_matrix', 'n1_sanction_paradox', 'k5_hatch_temp', 'k2_epa_larva'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          {widgets?.filter((w: any) => ['w1_global_catch', 'w2_hegemony', 'w3_diverging', 'w24_opex_spread', 'w31_catch_gap', 'w32_sst_fleet_matrix', 'k5_hatch_temp', 'k2_epa_larva'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          <PollockConcentrationIndex />
+          <PollockAlternativeSourcing />
         </div>
       </section>
 
-      {/* 2. Processing (가공) */}
+      {/* Part II — 가공 산업 (Processing) */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(56, 189, 248, 0.3)', paddingBottom: '0.5rem' }}>
           <Factory size={24} color="#38bdf8" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>2. Processing (가공/수리미)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>수리미 메가트렌드 및 가공 허브</span>
+          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part II — 가공 산업 (Processing)</h2>
+          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>수리미 및 고부가 가공 허브</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w5_china_blackhole', 'w9_surimi_megatrend', 'w10_surimi_top3', 'w12_proc_vs_surimi', 'w15', 'w17', 'w20_whitefish_reshuffle', 'w25_processing_bottleneck', 'k1_3d_surimi', 'k3_gamma_roe', 'k4_senior_food'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          {widgets?.filter((w: any) => ['w5_china_blackhole', 'w9_surimi_megatrend', 'w10_surimi_top3', 'w12_proc_vs_surimi', 'w17', 'w20_whitefish_reshuffle', 'w22_precision_release', 'w25_processing_bottleneck', 'k1_3d_surimi', 'k3_gamma_roe', 'k4_senior_food'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
         </div>
       </section>
 
-      {/* 3. Logistics (물류) */}
+      {/* Part III — 물류 및 무역 (Logistics) */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(245, 158, 11, 0.3)', paddingBottom: '0.5rem' }}>
           <Truck size={24} color="var(--color-warning)" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>3. Logistics (물류/무역)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(245, 158, 11, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>물동량 쇼크 및 단일국 종속</span>
+          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part III — 물류 및 무역 (Logistics)</h2>
+          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(245, 158, 11, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>글로벌 서플라이 체인 및 물동량</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w8_korea_deficit', 'w11_surimi_trade', 'w13', 'w16', 'w21_b_season_hedge', 'w26_inventory_freight', 'w29_eu_derisk_pivot', 'n5_rcep_detour'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          {widgets?.filter((w: any) => ['w8_korea_deficit', 'w11_surimi_trade', 'w13', 'w15', 'w16', 'w18', 'w19_tariff_engineering', 'w21_b_season_hedge', 'w26_inventory_freight', 'w29_eu_derisk_pivot', 'n1_sanction_paradox', 'n5_rcep_detour'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          <PollockFtaTariffMatrix />
+          <PollockRouteComparison />
+          <PollockLandedCostWaterfall />
         </div>
       </section>
 
-      {/* 4. Sales (판매) */}
+      {/* Part IV — 판매 및 수요 (Sales & Demand) */}
       <section style={{ marginBottom: '4rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(239, 68, 68, 0.3)', paddingBottom: '0.5rem' }}>
           <DollarSign size={24} color="var(--color-danger)" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>4. Sales (판매/수요)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(239, 68, 68, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>인플레이션 및 수출 단가</span>
+          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part IV — 판매 및 수요 (Sales & Demand)</h2>
+          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(239, 68, 68, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>수요 예측 및 단가 트렌드</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
           {widgets?.filter((w: any) => ['w6_inflation_unitprice', 'w7_usa_russia_unitprice', 'w27_substitute_spread', 'w33_arbitrage_tracker'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          <PollockPriceForecastChart />
+          <PollockScenarioSimulator />
+          <PollockSubstituteElasticity />
         </div>
       </section>
 
-      {/* 5. ESG (지속가능성) */}
+      {/* Part V — ESG 및 지속가능성 (Sustainability) */}
       <section style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem' }}>
           <ShieldCheck size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>5. ESG & Tech (수산 안보 및 인증)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(16, 185, 129, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>영해 소멸 위기 및 MSC 프리미엄</span>
+          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part V — ESG 및 지속가능성 (Sustainability)</h2>
+          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(16, 185, 129, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>규제 리스크 및 친환경 프리미엄</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
           {widgets?.filter((w: any) => ['w4_korea_crisis', 'w14', 'w23_upcycling_esg', 'w28_esg_premium', 'w30_traceability_risk', 'n6_waste_to_wealth'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          <PollockRiskScorecard />
+          <PollockSanctionParadox />
         </div>
       </section>
-
-      {widgets?.filter((w: any) => !['w1_global_catch', 'w2_hegemony', 'w3_diverging', 'w18', 'w19_tariff_engineering', 'w22_precision_release', 'w24_opex_spread', 'w5_china_blackhole', 'w9_surimi_megatrend', 'w10_surimi_top3', 'w12_proc_vs_surimi', 'w15', 'w17', 'w20_whitefish_reshuffle', 'w25_processing_bottleneck', 'w8_korea_deficit', 'w11_surimi_trade', 'w13', 'w16', 'w21_b_season_hedge', 'w26_inventory_freight', 'w29_eu_derisk_pivot', 'w6_inflation_unitprice', 'w7_usa_russia_unitprice', 'w27_substitute_spread', 'w4_korea_crisis', 'w14', 'w23_upcycling_esg', 'w28_esg_premium', 'w30_traceability_risk', 'w31_catch_gap', 'w32_sst_fleet_matrix', 'w33_arbitrage_tracker', 'n1_sanction_paradox', 'n5_rcep_detour', 'n6_waste_to_wealth'].includes(w.id)).length > 0 && (
-        <section style={{ marginBottom: '4rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(148, 163, 184, 0.3)', paddingBottom: '0.5rem' }}>
-            <Activity size={24} color="#94a3b8" />
-            <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#94a3b8' }}>기타 분석 (Others)</h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => !['w1_global_catch', 'w2_hegemony', 'w3_diverging', 'w18', 'w19_tariff_engineering', 'w22_precision_release', 'w24_opex_spread', 'w5_china_blackhole', 'w9_surimi_megatrend', 'w10_surimi_top3', 'w12_proc_vs_surimi', 'w15', 'w17', 'w20_whitefish_reshuffle', 'w25_processing_bottleneck', 'w8_korea_deficit', 'w11_surimi_trade', 'w13', 'w16', 'w21_b_season_hedge', 'w26_inventory_freight', 'w29_eu_derisk_pivot', 'w6_inflation_unitprice', 'w7_usa_russia_unitprice', 'w27_substitute_spread', 'w4_korea_crisis', 'w14', 'w23_upcycling_esg', 'w28_esg_premium', 'w30_traceability_risk', 'w31_catch_gap', 'w32_sst_fleet_matrix', 'w33_arbitrage_tracker', 'n1_sanction_paradox', 'n5_rcep_detour', 'n6_waste_to_wealth'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
-      )}
 
     </div>
   );

@@ -120,7 +120,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
       {/* Ticker Items */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(6, 1fr)',
+        gridTemplateColumns: 'repeat(5, 1fr)',
         gap: '0',
       }}>
         {ticker.map((item, idx) => (
@@ -185,7 +185,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           fontSize: '0.6rem', color: '#4a5568',
         }}>
-          <span>Sources: KCS · ECOS · KAMIS · FRED · Yahoo Finance</span>
+          <span>Sources: KCS (Import/Export) · ECOS · FRED · Yahoo Finance</span>
           <span>Updated: {new Date(meta.lastUpdated).toLocaleTimeString('ko-KR')}</span>
         </div>
       )}

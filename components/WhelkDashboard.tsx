@@ -44,7 +44,7 @@ export default function WhelkDashboard() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/data/whelk_real_data_v1.json')
+    fetch('/api/whelk/live')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error('Error fetching whelk data:', err));

@@ -5,7 +5,7 @@ import { Anchor } from 'lucide-react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_aqua_hegemony.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import TakeawayBox from './TakeawayBox';
@@ -47,7 +47,7 @@ const TunaAquaHegemony = () => {
   };
 
   return (
-    <div className={styles.glassCard} ref={containerRef}>
+    <div className={styles.insightCard} ref={containerRef}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />

@@ -3,7 +3,7 @@
 import React from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import { Recycle } from 'lucide-react';
 import rawData from '../data/tuna_petcare_margin.json';
 import TakeawayBox from './TakeawayBox';
@@ -41,7 +41,7 @@ export default function TunaPetCareMargin() {
   const source = 'Thai Union 2024 연차 보고서 · NotebookLM 산업 분석';
 
   return (
-    <div className={styles.glassCard} style={{
+    <div className={styles.insightCard} style={{
       display: 'flex', flexDirection: 'column', minHeight: '480px'
     }}>
       {/* Card Header — renderWidgetCard 패턴 동일 */}

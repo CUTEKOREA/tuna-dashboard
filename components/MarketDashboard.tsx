@@ -161,52 +161,52 @@ export default function MarketDashboard() {
           {/* News 1 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              공급 / 어획 규제
+              원자재 / 운임
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "슈퍼 엘니뇨로 인한 WCPO 어획량 급감과 태국 가공업계의 원어 공급망 재편"
+              "원자재 가격 변동과 중동발 연료비 압박"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              올봄 심화된 엘니뇨로 인해 중서부태평양(WCPO) 어획량이 전년비 22% 급감했습니다. 방콕의 태평양산 가다랑어(SKJ) 수입 빈자리를 인도양(IO)산 참치가 빠르게 대체하고 있어, 조업 효율성 저하 및 공급망 경쟁에 대한 선제적 대비가 요구됩니다.
+              중동발 유가 상승으로 해상 연료(MGO) 가격이 톤당 2,000달러를 돌파하며 선단 운영을 위협하고 있습니다. 반면 세계 최대 거래소인 방콕은 가공업체들의 저항에 부딪혀 최근 톤당 1,975달러로 하락해, 원가 상승분을 전가하기 어려운 밸류체인의 병목 현상을 시사합니다.
             </p>
           </div>
 
           {/* News 2 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              물류 / 해운 운임
+              기후 / 공급망
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "중동 전쟁발 유가 폭등의 장기화와 EU의 긴급 어업 지원금(EMFAF) 가동"
+              "엘니뇨(El Niño)발 어획 지형 변화와 아시아 가공업계의 조달처 다변화"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              호르무즈 사태발 MGO 폭등으로 원양 선단의 원가 압박이 극심한 가운데, EU는 자국 선단 보호를 위해 61억 유로의 긴급 지원(EMFAF)을 시작했습니다. 이에 따라 국가 보조금을 등에 업은 유럽 선단과의 불공정한 비용 경쟁 구도가 심화 중입니다.
+              슈퍼 엘니뇨 영향으로 서중태평양(WCPO) 어군이 이동하면서 대만 등 주요 선단의 조업 실적이 급감했습니다. 이에 태국 가공업체들은 1분기 WCPO산 수입을 줄이고 인도양(IO)산 원어 수입을 전년 대비 106% 늘리며 글로벌 참치 무역 흐름을 근본적으로 재편하고 있습니다.
             </p>
           </div>
 
           {/* News 3 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              수요 / 소비 패턴
+              규제 / 통상 리스크
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "방콕 가다랑어(SKJ) 어가 하락 전환 (톤당 1,975달러) 및 가공업계의 관망세"
+              "글로벌 무역 규제 및 관세 리스크의 불확실성 증폭"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              비용 상승 요인에도 불구하고 5월 초 방콕 시장의 가다랑어 거래가는 톤당 1,975달러로 6% 하락했습니다. 대형 가공사들이 2,000달러 이상의 가격을 수용하지 않으려는 심리적 저항선이 강해, 선주사의 이중고(Double Squeeze) 방어 전략이 시급합니다.
+              미국 무역법원이 2월 도입된 10% 관세를 위법으로 판결했으나 미 재무부가 재부과 가능성을 시사해 시장 불안이 가중되고 있습니다. 한편 유럽에서는 디지털 추적 시스템 'EU CATCH'의 행정 과부하로 주요 항구 통관 지연이 심화되어 무역 둔화로 직결되고 있습니다.
             </p>
           </div>
 
           {/* News 4 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              ESG / 무역 장벽
+              어획 할당량 / 외교
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "미국 무역법원, 트럼프발(發) 2월 10% 기습 관세에 '위법' 제동"
+              "IOTC 제30차 총회 개막 및 어획 할당량 쟁탈전"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              미국 무역법원(CIT)이 2월 부과된 10% 글로벌 수입 관세 조치에 위법 제동을 걸어 주요 가공국의 수출에 일시적 숨통이 트였습니다. 하지만 미 행정부가 7월 무역법 301조를 활용한 강력한 관세 재도입을 예고하여 무역 지형 변동성에 대한 모니터링이 필수적입니다.
+              5월 몰디브에서 열린 인도양참치위원회(IOTC) 총회에서 어획 한도 등 핵심 조치가 논의 중입니다. 특히 인도네시아의 가다랑어 한도 독자 상향에 대해 EU가 강력히 반발하며 연안국과 원양 조업국 간의 자원 주도권 갈등이 한층 격화되는 양상입니다.
             </p>
           </div>
         </div>

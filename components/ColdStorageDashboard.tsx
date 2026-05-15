@@ -270,7 +270,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k01',
-          title: '[KFAS] 보냉팩 개수별 냉동 수산물 상온유통 선도유지능 비교',
+          title: '보냉팩 개수별 냉동 수산물 상온유통 선도유지능 비교',
           subtitle: '진공포장 넙치·고등어 필렛 — 보냉팩 3개 이상 시 12시간 안전 구간',
           chartType: 'Composed',
           xKey: '시간',
@@ -291,7 +291,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k02',
-          title: '[KFAS] 수산물 상온유통 시 효율적 선도지표 설정',
+          title: '수산물 상온유통 시 효율적 선도지표 설정',
           subtitle: 'K값·VBN·히스타민·pH — 어종별 최적 선도판정 지표 도출',
           chartType: 'Bar',
           xKey: '지표',
@@ -312,7 +312,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k03',
-          title: '[KFAS] MAP+레몬 추출물 생굴 품질 혁신',
+          title: 'MAP+레몬 추출물 생굴 품질 혁신',
           subtitle: '기체치환포장(CO₂ 50%) + 레몬 추출물 → 유통기한 3배 연장',
           chartType: 'Composed',
           xKey: '저장일',
@@ -333,7 +333,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k04',
-          title: '[KFAS] 냉동 전복 유통 위해요소 분석 및 안전성 평가',
+          title: '냉동 전복 유통 위해요소 분석 및 안전성 평가',
           subtitle: '양식산 냉동전복 15건 — 중금속·미생물 기준 100% 적합',
           chartType: 'Bar',
           xKey: '항목',
@@ -354,7 +354,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k05',
-          title: '[KFAS] 초분광 영상 기반 고등어 AI 선도 등급 판정',
+          title: '초분광 영상 기반 고등어 AI 선도 등급 판정',
           subtitle: '93.2% 정확도 — 비파괴·실시간 선도 분류 시스템',
           chartType: 'Bar',
           xKey: '등급',
@@ -374,7 +374,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k06',
-          title: '[KFAS] 동결건조 블록형 HMR의 저장온도별 유통기한 추정',
+          title: '동결건조 블록형 HMR의 저장온도별 유통기한 추정',
           subtitle: '우럭 미역국 동결건조 블록 — 25°C 상온 14개월, -20°C 36개월+',
           chartType: 'Composed',
           xKey: '저장온도',
@@ -395,7 +395,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k07',
-          title: '[KFAS] 수리미 냉장 저장 중 카라기난 물성 안정화 효과',
+          title: '수리미 냉장 저장 중 카라기난 물성 안정화 효과',
           subtitle: '이오타-카라기난 1% 첨가 → 냉장 14일 겔 강도 85% 유지',
           chartType: 'Composed',
           xKey: '저장일',
@@ -416,7 +416,7 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k08',
-          title: '[KFAS] 냉동 송어육 TGase+다당류 물성개선 및 저장성',
+          title: '냉동 송어육 TGase+다당류 물성개선 및 저장성',
           subtitle: '동결→해동 드립 45% 절감, 겔 강도 2.1배 향상',
           chartType: 'Bar',
           xKey: '처리군',
@@ -750,7 +750,7 @@ export default function ColdStorageDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Snowflake size={24} color="#06b6d4" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. [KFAS] 냉동·저장 과학 실증 연구</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. 냉동·저장 과학 실증 연구</h2>
             <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>

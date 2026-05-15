@@ -5,7 +5,7 @@ import { Anchor } from 'lucide-react';
 import {
   ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_aqua_value.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 
@@ -37,7 +37,7 @@ const TunaAquaValue = () => {
   const formatY2 = (val: number) => `$${(val / 1000000).toFixed(0)}M`;
 
   return (
-    <div className={styles.glassCard} ref={containerRef}>
+    <div className={styles.insightCard} ref={containerRef}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
