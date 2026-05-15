@@ -17,11 +17,21 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
 
+const formatXAxis = (tickItem: any) => {
+  if (!tickItem || typeof tickItem !== 'string') return tickItem;
+  let formatted = tickItem.replace(/\s*\([A-Za-z\s']+\)\s*/g, '');
+  if (formatted.length > 6) {
+    return formatted.substring(0, 6) + '..';
+  }
+  return formatted;
+};
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
+    const cleanLabel = typeof label === 'string' ? label.replace(/\s*\([A-Za-z\s']+\)\s*/g, '') : label;
     return (
       <div className={styles.customTooltip}>
-        <p className={styles.tooltipLabel}>{label}</p>
+        <p className={styles.tooltipLabel}>{cleanLabel}</p>
         {payload.map((e: any, i: number) => (
           <div key={i} className={styles.tooltipValue}>
             <span style={{ color: e.color }}>■ {e.name}</span>
@@ -32,6 +42,28 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     );
   }
   return null;
+};
+
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
 };
 
 const PIE_COLORS = ["var(--color-success)", "var(--color-warning)", "#38bdf8", "var(--color-danger)", "#8b5cf6", "#ec4899", "#06b6d4", "#84cc16"];
@@ -98,8 +130,11 @@ export default function CashewStrategy() {
   const renderChart = (w: any) => {
     const d = w.data || w.pies;
     if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+    const isTextAxis = d.length > 0 && typeof d[0][w.xKey] === 'string' && isNaN(Number(d[0][w.xKey]));
+    const tickProps = isTextAxis ? {fontSize:10, angle:-30, textAnchor:'end' as const} : {fontSize:10};
+    const chartMargin = isTextAxis ? { top: 5, right: 10, left: -10, bottom: 40 } : undefined;
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
-    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} angle={d.length > 12 ? -30 : 0} textAnchor={d.length > 12 ? "end" : "middle"} height={d.length > 12 ? 50 : 30} />;
+    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={tickProps} interval={0} tickFormatter={formatXAxis} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     switch(w.chartType) {
@@ -116,7 +151,7 @@ export default function CashewStrategy() {
         );
       case "Area":
         return (
-          <AreaChart data={d}>
+          <AreaChart data={d} margin={chartMargin}>
             <defs>
               {w.areas?.map((a:any,i:number) => (
                 <linearGradient key={i} id={`aG${w.id}_${i}`} x1="0" y1="0" x2="0" y2="1">
@@ -135,11 +170,11 @@ export default function CashewStrategy() {
         );
       case "Bar":
         return (
-          <BarChart data={d} layout={d.length >= 10 ? "vertical" : "horizontal"}>
+          <BarChart data={d} layout={d.length >= 10 ? "vertical" : "horizontal"} margin={chartMargin}>
             {grid}
             {d.length >= 10 ? (
               <>
-                <YAxis type="category" dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} width={90} />
+                <YAxis type="category" dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} width={90} tickFormatter={formatXAxis} />
                 <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
               </>
             ) : (
@@ -154,7 +189,7 @@ export default function CashewStrategy() {
         );
       case "Line":
         return (
-          <LineChart data={d}>
+          <LineChart data={d} margin={chartMargin}>
             {grid}{xAxis}
             <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -166,7 +201,7 @@ export default function CashewStrategy() {
         );
       case "Composed":
         return (
-          <ComposedChart data={d}>
+          <ComposedChart data={d} margin={chartMargin}>
             {grid}{xAxis}
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
             {w.lines?.some((l:any) => l.yAxisId === 'right' || !l.yAxisId) && (
@@ -346,7 +381,7 @@ export default function CashewStrategy() {
         </button>
         {showEdu && (
           <div style={{ background: '#181818', borderRadius:'10px', border: 'none', padding:'1.5rem', animation:'fadeIn 0.3s' }}>
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(360px, 1fr))', gap:'1.5rem', marginBottom:'1.5rem' }}>
+            <div style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'1.5rem' }}>
               <div style={{ background:'rgba(0,0,0,0.3)', padding:'1.2rem', borderRadius:'10px', border: 'none' }}>
                 <h3 style={{ color:'var(--color-success)', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
                   <Globe size={16}/> 핵심 구조: 생산-가공 분리의 비효율
@@ -399,7 +434,7 @@ export default function CashewStrategy() {
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>{sec.desc}</p>
             </div>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
             {widgets.slice(sec.start, sec.end).map((w:any, wi:number) => {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[(sec.start + wi) % ACCENT_COLORS.length];
@@ -407,7 +442,9 @@ export default function CashewStrategy() {
                 <div key={w.id} className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
                   <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
                     <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:accent, margin:'0 0 0.4rem' }}>
-                      <Icon size={17} />{w.title} {w.reliability && w.reliability <= 70 && (<span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #f59e0b', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>📐 Estimate</span>)}
+                      <Icon size={17} />{w.title.replace(/\[.*?\]\s*/g, '').replace(/\s*\([A-Za-z\s']+\)\s*/g, '')}
+                      <TelemetryBadge status={w.telemetry || (w.isLiveApi ? 'live' : 'static')} syncDate={w.syncDate || '2024.12'} />
+                      {w.reliability && w.reliability <= 70 && (<span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #f59e0b', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>📐 Estimate</span>)}
                       {w.hasEstimates && (<span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #38bdf8', color:'#38bdf8', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>📐 Contains Projections</span>)}
                       <div style={{ marginLeft:'auto', flexShrink:0, display:'flex', alignItems:'center', gap:'10px' }}>
                         {/* 명시적 단위 (Unit) 표시 */}
@@ -426,10 +463,10 @@ export default function CashewStrategy() {
                   </div>
                   <div style={{ marginTop:'auto' }}>
                     <TakeawayBox
-          situation={w.sit}
-          actionPlan={w.strat}
-          source="* FAOSTAT 2024 데이터 기반"
-        />
+                      situation={w.sit}
+                      takeaway={w.strat}
+                      source={w.source || "* FAOSTAT 2024 데이터 기반"}
+                    />
                   </div>
                 </div>
               );

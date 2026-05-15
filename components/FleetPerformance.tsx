@@ -280,7 +280,7 @@ export default function FleetPerformance() {
         {mapViewMode === '2D' ? <PacificMapWithNoSSR /> : <PacificGlobeWithNoSSR />}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '1.5rem', marginTop: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '2rem' }}>
         <div>
           <h3 className={styles.tableSectionTitle}>
             <Navigation size={18} /> 대서양 선망 및 기지 현황 (Atlantic Seiners)

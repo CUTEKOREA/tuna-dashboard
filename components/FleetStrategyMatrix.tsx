@@ -402,7 +402,7 @@ export default function FleetStrategyMatrix() {
           <Target size={20} /> 조업 방식별 선대 포트폴리오 (어종 클릭 시 상세 명부 및 실적 출력)
         </h4>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
           {matrixData.map((row, idx) => {
             const isOld = parseInt(row.age) >= 25;
             return (

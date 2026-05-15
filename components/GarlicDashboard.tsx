@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         padding: '12px', borderRadius: '8px',
         backdropFilter: 'blur(10px)', color: 'var(--text-primary)', fontSize: '0.8rem', minWidth: '180px'
       }}>
-        <div style={{ fontWeight: 700, marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', color: '#38bdf8' }}>
+        <div style={{ fontWeight: 700, marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px', color: '#d97706' }}>
           {label}
         </div>
         {payload.map((entry: any, index: number) => (
@@ -164,7 +164,12 @@ export default function GarlicDashboard() {
 
   
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />;
-  const xAxisTextProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 } };
+  const xFmt = (v: any): string => {
+    if (typeof v !== 'string') return v;
+    let s = v.replace(/\([^)]*\)/g, '').trim();
+    return s.length > 6 ? s.slice(0, 6) + '..' : s;
+  };
+  const xAxisTextProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 }, tickFormatter: xFmt };
   const yFmt = (v: number): string => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
   const yAxisProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 }, tickFormatter: yFmt };
 
@@ -176,7 +181,7 @@ export default function GarlicDashboard() {
       <header style={{ marginBottom: '2rem', paddingTop: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--color-success)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(30,215,96,0.3)' }}>
+            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#eab308', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(30,215,96,0.3)' }}>
               <Layers size={24} color="var(--bg-color)" />
             </div>
             <div>
@@ -187,7 +192,7 @@ export default function GarlicDashboard() {
             </div>
           </div>
           <div style={{ fontSize: '0.85rem', padding: '0.5rem 1.2rem', background: '#282828', borderRadius: '20px', color: 'var(--text-secondary)', fontWeight: 600 }}>
-            <span style={{ color: 'var(--color-success)' }}>Global Market 2026</span> · Sourcing · Hubs · ESG
+            <span style={{ color: '#eab308' }}>Global Market 2026</span> · Sourcing · Hubs · ESG
           </div>
         </div>
       </header>
@@ -233,7 +238,7 @@ export default function GarlicDashboard() {
           onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; }}
         >
           <div style={{ display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <BookOpen size={20} color="var(--color-success)" />
+            <BookOpen size={20} color="#eab308" />
             <div style={{ textAlign:'left' }}>
               <div style={{ fontSize:'1.05rem', fontWeight:700, color:'var(--text-primary)', marginBottom:'4px' }}>신입직원 교육 가이드</div>
               <div style={{ fontSize:'0.8rem', color:'var(--text-secondary)' }}>FAOSTAT 및 KREI 실측 데이터 기반 — 글로벌 마늘 밸류체인 핵심 인사이트</div>
@@ -245,9 +250,9 @@ export default function GarlicDashboard() {
         </button>
         {showEdu && (
           <div style={{ background:'#181818', borderRadius:'8px', padding:'1.5rem', animation:'fadeIn 0.3s ease-out' }}>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(400px, 1fr))', gap:'1.5rem', marginBottom:'1.5rem' }}>
+          <div style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'1.5rem' }}>
             <div style={{ background:'#282828', padding:'1.2rem', borderRadius:'8px' }}>
-              <h3 style={{ color:'var(--color-success)', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
+              <h3 style={{ color:'#eab308', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
                 <Globe size={16}/> 핵심 구조: 생산의 불균형과 가공의 중요성
               </h3>
               <div style={{ fontSize:'0.82rem', color:'var(--text-secondary)', lineHeight:1.7 }}>
@@ -257,7 +262,7 @@ export default function GarlicDashboard() {
               </div>
             </div>
             <div style={{ background:'#282828', padding:'1.2rem', borderRadius:'8px' }}>
-              <h3 style={{ color:'var(--color-success)', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
+              <h3 style={{ color:'#eab308', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
                 <Workflow size={16}/> 전략적 시사점: 기후 리스크 헷징 + ESG 결합
               </h3>
               <ul style={{ margin:0, paddingLeft:'1.2rem', fontSize:'0.82rem', color:'var(--text-secondary)', lineHeight:1.7 }}>
@@ -269,15 +274,15 @@ export default function GarlicDashboard() {
           </div>
           <div style={{ background:'#282828', padding:'1.2rem 1.5rem', borderRadius:'8px', display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem' }}>
             <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-              <div style={{ background:'rgba(30, 215, 96, 0.1)', padding:'0.8rem', borderRadius:'50%' }}><Database size={20} color="var(--color-success)" /></div>
+              <div style={{ background:'rgba(30, 215, 96, 0.1)', padding:'0.8rem', borderRadius:'50%' }}><Database size={20} color="#eab308" /></div>
               <div>
-                <h3 style={{ color:'var(--text-primary)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} color="var(--color-success)" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> NotebookLM 마늘 AI 챗봇</h3>
+                <h3 style={{ color:'var(--text-primary)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} color="#eab308" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> NotebookLM 마늘 AI 챗봇</h3>
                 <p style={{ margin:0, fontSize:'0.82rem', color:'var(--text-secondary)' }}>J.P. Morgan 인사이트 및 전문 리서치가 학습된 맞춤형 AI입니다.</p>
               </div>
             </div>
-            <a href="https://notebooklm.google.com/notebook/f7aa78b2-427a-4300-8546-5247b416f513" target="_blank" rel="noopener noreferrer" style={{ background:'var(--color-success)', color:'#000000', padding:'0.7rem 1.3rem', borderRadius:'20px', fontSize:'0.9rem', fontWeight:700, textDecoration:'none', display:'flex', alignItems:'center', gap:'6px', whiteSpace:'nowrap', transition:'background 0.2s, transform 0.1s' }}
+            <a href="https://notebooklm.google.com/notebook/f7aa78b2-427a-4300-8546-5247b416f513" target="_blank" rel="noopener noreferrer" style={{ background:'#eab308', color:'#000000', padding:'0.7rem 1.3rem', borderRadius:'20px', fontSize:'0.9rem', fontWeight:700, textDecoration:'none', display:'flex', alignItems:'center', gap:'6px', whiteSpace:'nowrap', transition:'background 0.2s, transform 0.1s' }}
               onMouseEnter={(e) => { e.currentTarget.style.background = '#1fdf64'; e.currentTarget.style.transform = 'scale(1.02)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--color-success)'; e.currentTarget.style.transform = 'scale(1)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#eab308'; e.currentTarget.style.transform = 'scale(1)'; }}
             >
               <Activity size={16} /> 챗봇 시작
             </a>
@@ -290,13 +295,13 @@ export default function GarlicDashboard() {
       
       {/* Section 1: Raw Material */}
       <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
-        <div style={{ width:'4px', height:'28px', background:'var(--color-success)', borderRadius:'4px' }} />
+        <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         {/* W1 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
@@ -313,7 +318,7 @@ export default function GarlicDashboard() {
               <AreaChart data={w1Data}>
                 <defs>
                   <linearGradient id="colorChina" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.1}/></linearGradient>
-                  <linearGradient id="colorIndia" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-warning)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-warning)" stopOpacity={0.1}/></linearGradient>
+                  <linearGradient id="colorIndia" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#65a30d" stopOpacity={0.8}/><stop offset="95%" stopColor="#65a30d" stopOpacity={0.1}/></linearGradient>
                 </defs>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} />
@@ -321,10 +326,10 @@ export default function GarlicDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Area connectNulls={true} type="monotone" dataKey="중국" stackId="1" stroke="var(--color-danger)" fill="url(#colorChina)" name="중국" />
-                <Area connectNulls={true} type="monotone" dataKey="인도" stackId="1" stroke="var(--color-warning)" fill="url(#colorIndia)" name="인도" />
-                <Area connectNulls={true} type="monotone" dataKey="한국" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.3} name="한국" />
-                <Area connectNulls={true} type="monotone" dataKey="이집트" stackId="1" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.5} name="이집트" />
-                <Area connectNulls={true} type="monotone" dataKey="방글라데시" stackId="1" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.4} name="방글라데시" />
+                <Area connectNulls={true} type="monotone" dataKey="인도" stackId="1" stroke="#65a30d" fill="url(#colorIndia)" name="인도" />
+                <Area connectNulls={true} type="monotone" dataKey="한국" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.3} name="한국" />
+                <Area connectNulls={true} type="monotone" dataKey="이집트" stackId="1" stroke="#eab308" fill="#eab308" fillOpacity={0.5} name="이집트" />
+                <Area connectNulls={true} type="monotone" dataKey="방글라데시" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="방글라데시" />
                 <Area connectNulls={true} type="monotone" dataKey="기타" stackId="1" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} name="기타" />
               </AreaChart>
             </SafeResponsiveContainer>
@@ -353,13 +358,13 @@ export default function GarlicDashboard() {
             <div style={{ display:'flex', background:'rgba(0,0,0,0.5)', borderRadius:'6px', padding:'2px', border: 'none' }}>
               <button 
                 onClick={() => setW2Mode('macro')}
-                style={{ background: w2Mode === 'macro' ? 'var(--color-success)' : 'transparent', color: w2Mode === 'macro' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}
+                style={{ background: w2Mode === 'macro' ? '#eab308' : 'transparent', color: w2Mode === 'macro' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}
               >
                 Macro (연간)
               </button>
               <button 
                 onClick={() => setW2Mode('spot')}
-                style={{ background: w2Mode === 'spot' ? 'var(--color-success)' : 'transparent', color: w2Mode === 'spot' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}
+                style={{ background: w2Mode === 'spot' ? '#eab308' : 'transparent', color: w2Mode === 'spot' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}
               >
                 Spot (KAMIS 월별)
               </button>
@@ -376,10 +381,10 @@ export default function GarlicDashboard() {
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />
                   <Line connectNulls={true} type="monotone" dataKey="중국" stroke="var(--color-danger)" strokeWidth={2} dot={false} name="중국" />
-                  <Line connectNulls={true} type="monotone" dataKey="인도" stroke="var(--color-warning)" strokeWidth={2} dot={false} name="인도" />
-                  <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#38bdf8" strokeWidth={2} dot={false} name="한국" />
-                  <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="var(--color-success)" strokeWidth={2} dot={false} name="이집트" />
-                  <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#8b5cf6" strokeWidth={2} dot={false} name="방글라데시" />
+                  <Line connectNulls={true} type="monotone" dataKey="인도" stroke="#65a30d" strokeWidth={2} dot={false} name="인도" />
+                  <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#d97706" strokeWidth={2} dot={false} name="한국" />
+                  <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="#eab308" strokeWidth={2} dot={false} name="이집트" />
+                  <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#84cc16" strokeWidth={2} dot={false} name="방글라데시" />
                 </LineChart>
               ) : (
                 <LineChart data={kamisData}>
@@ -389,8 +394,8 @@ export default function GarlicDashboard() {
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />
                   <Line connectNulls={true} type="monotone" dataKey="y2026" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 3 }} name="2026년" />
-                  <Line connectNulls={true} type="monotone" dataKey="y2025" stroke="var(--color-warning)" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2025년" />
-                  <Line connectNulls={true} type="monotone" dataKey="y2024" stroke="#38bdf8" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2024년" />
+                  <Line connectNulls={true} type="monotone" dataKey="y2025" stroke="#65a30d" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2025년" />
+                  <Line connectNulls={true} type="monotone" dataKey="y2024" stroke="#d97706" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2024년" />
                   <Line connectNulls={true} type="monotone" dataKey="avg" stroke="#94a3b8" strokeWidth={2} dot={false} name="평년" />
                 </LineChart>
               )}
@@ -406,7 +411,7 @@ export default function GarlicDashboard() {
         </div>
 
         {/* INSIGHT 1 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Zap size={17} />정밀 농업 전환 (비료 헷징 및 GPR) [좌: 단수, 우: 비료지수]
@@ -426,7 +431,7 @@ export default function GarlicDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="Traditional" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.2} name="전통 농법 단수(톤/ha)" />
-                <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="GPR_Tech" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.4} name="정밀 농법 단수(톤/ha)" />
+                <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="GPR_Tech" stroke="#eab308" fill="#eab308" fillOpacity={0.4} name="정밀 농법 단수(톤/ha)" />
                 <Line connectNulls={true} yAxisId="right" type="step" dataKey="Fertilizer_Index" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" name="비료 원가 지수(Cost Index)" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -443,13 +448,13 @@ export default function GarlicDashboard() {
 
       {/* Section 2: Processing */}
       <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
-        <div style={{ width:'4px', height:'28px', background:'var(--color-success)', borderRadius:'4px' }} />
+        <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         {/* W3 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
@@ -470,8 +475,8 @@ export default function GarlicDashboard() {
                 <YAxis dataKey="year" type="category" width={80} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Fresh" stackId="a" fill="var(--color-info)" name="신선/식용 (%)" />
-                <Bar dataKey="Processed" stackId="a" fill="var(--color-warning)" name="가공용 (%)" />
+                <Bar dataKey="Fresh" stackId="a" fill="#ca8a04" name="신선/식용 (%)" />
+                <Bar dataKey="Processed" stackId="a" fill="#65a30d" name="가공용 (%)" />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -504,8 +509,8 @@ export default function GarlicDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="Price_USD_MT" fill="var(--color-info)" name="공급 단가(USD/MT)" />
-                <Line yAxisId="right" type="monotone" dataKey="Margin" stroke="var(--color-warning)" strokeWidth={2} name="영업 마진율(%)" />
+                <Bar yAxisId="left" dataKey="Price_USD_MT" fill="#ca8a04" name="공급 단가(USD/MT)" />
+                <Line yAxisId="right" type="monotone" dataKey="Margin" stroke="#65a30d" strokeWidth={2} name="영업 마진율(%)" />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>
@@ -519,7 +524,7 @@ export default function GarlicDashboard() {
         </div>
 
         {/* INSIGHT 2 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <TestTube size={17} />바이오케미컬 및 흑마늘 B2B 가치평가 [좌: $B, 우: 마진%]
@@ -538,8 +543,8 @@ export default function GarlicDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="Market_Billion" fill="var(--color-info)" stroke="var(--color-info)" fillOpacity={0.3} name="흑마늘 시장 규모(Billion $)" />
-                <Line connectNulls={true} yAxisId="right" type="monotone" dataKey="Margin" stroke="var(--color-warning)" strokeWidth={2} name="영업 마진율(%)" />
+                <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="Market_Billion" fill="#ca8a04" stroke="#ca8a04" fillOpacity={0.3} name="흑마늘 시장 규모(Billion $)" />
+                <Line connectNulls={true} yAxisId="right" type="monotone" dataKey="Margin" stroke="#65a30d" strokeWidth={2} name="영업 마진율(%)" />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>
@@ -555,13 +560,13 @@ export default function GarlicDashboard() {
 
       {/* Section 3: Logistics */}
       <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
-        <div style={{ width:'4px', height:'28px', background:'var(--color-success)', borderRadius:'4px' }} />
+        <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         {/* W5 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
@@ -582,7 +587,7 @@ export default function GarlicDashboard() {
                 <YAxis dataKey="target" type="category" width={100} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="value" fill="#38bdf8" name="수출 물량" radius={[0,4,4,0]} />
+                <Bar dataKey="value" fill="#d97706" name="수출 물량" radius={[0,4,4,0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -615,7 +620,7 @@ export default function GarlicDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="LandedCost" fill="#8b5cf6" name="최종 도착 원가(USD/MT)" />
+                <Bar yAxisId="left" dataKey="LandedCost" fill="#84cc16" name="최종 도착 원가(USD/MT)" />
                 <Line yAxisId="right" type="monotone" dataKey="Tariff" stroke="var(--color-danger)" strokeWidth={2} name="관세 페널티(%)" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -630,7 +635,7 @@ export default function GarlicDashboard() {
         </div>
 
         {/* INSIGHT 3 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Anchor size={17} />홍해 사태 (Red Sea Crisis) 물류 충격 [좌: 일수, 우: 지수]
@@ -649,7 +654,7 @@ export default function GarlicDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="TransitDays" fill="var(--color-warning)" name="운송 기간(일)" barSize={40} />
+                <Bar yAxisId="left" dataKey="TransitDays" fill="#65a30d" name="운송 기간(일)" barSize={40} />
                 <Line connectNulls={true} yAxisId="right" dataKey="InsurancePremium" stroke="var(--color-danger)" strokeWidth={3} name="운임 및 리스크 지수" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -682,12 +687,12 @@ export default function GarlicDashboard() {
               <input type="range" min="1" max="10" step="0.5" value={freightMultiplier} onChange={e=>setFreightMultiplier(parseFloat(e.target.value))} style={{ flex: 1, accentColor: 'var(--color-danger)' }} />
             </div>
             <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'0.8rem', alignItems:'center' }}>
-              <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)', flex: 1 }}>이집트 허브 가공 전환율: <strong style={{color:'var(--color-success)'}}>{egyptHubRatio}%</strong></span>
-              <input type="range" min="0" max="100" step="5" value={egyptHubRatio} onChange={e=>setEgyptHubRatio(parseInt(e.target.value))} style={{ flex: 1, accentColor: 'var(--color-success)' }} />
+              <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)', flex: 1 }}>이집트 허브 가공 전환율: <strong style={{color:'#eab308'}}>{egyptHubRatio}%</strong></span>
+              <input type="range" min="0" max="100" step="5" value={egyptHubRatio} onChange={e=>setEgyptHubRatio(parseInt(e.target.value))} style={{ flex: 1, accentColor: '#eab308' }} />
             </div>
             <div style={{ background: '#181818', padding:'0.6rem 0.8rem', borderRadius:'6px', display:'flex', justifyContent:'space-between', alignItems:'center', border: 'none' }}>
               <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)' }}>TEU당 물류비 절감액 (Savings)</span>
-              <span style={{ fontSize:'1.1rem', fontWeight:800, color:'var(--color-success)' }}>+ ${savingsPerTEU.toLocaleString()}</span>
+              <span style={{ fontSize:'1.1rem', fontWeight:800, color:'#eab308' }}>+ ${savingsPerTEU.toLocaleString()}</span>
             </div>
           </div>
 
@@ -699,7 +704,7 @@ export default function GarlicDashboard() {
                 <YAxis dataKey="route" type="category" width={100} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="TransitTime" stackId="a" fill="var(--color-warning)" name="운송 기간(일)" barSize={20} />
+                <Bar dataKey="TransitTime" stackId="a" fill="#65a30d" name="운송 기간(일)" barSize={20} />
                 <Scatter dataKey="FreightCost" fill="var(--color-danger)" name="물류 운임($)" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -716,13 +721,13 @@ export default function GarlicDashboard() {
 
       {/* Section 4: Sales */}
       <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
-        <div style={{ width:'4px', height:'28px', background:'var(--color-success)', borderRadius:'4px' }} />
+        <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         {/* W7 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
@@ -778,7 +783,7 @@ export default function GarlicDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="value" fill="#ec4899" name="무역 적자 추이" />
+                <Bar dataKey="value" fill="#facc15" name="무역 적자 추이" />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -792,7 +797,7 @@ export default function GarlicDashboard() {
         </div>
 
         {/* INSIGHT 4 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <ShieldCheck size={17} />2025 스마트 패키징 (Smart Packaging) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
@@ -843,8 +848,8 @@ export default function GarlicDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Area type="monotone" dataKey="BlackGarlic" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.4} name="흑마늘 추출물" />
-                <Area type="monotone" dataKey="Supplements" stackId="1" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.4} name="마늘 건기식(Supplements)" />
+                <Area type="monotone" dataKey="BlackGarlic" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.4} name="흑마늘 추출물" />
+                <Area type="monotone" dataKey="Supplements" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="마늘 건기식(Supplements)" />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>
@@ -860,13 +865,13 @@ export default function GarlicDashboard() {
 
       {/* Section 5: ESG */}
       <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
-        <div style={{ width:'4px', height:'28px', background:'var(--color-success)', borderRadius:'4px' }} />
+        <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         {/* W9 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
@@ -888,10 +893,10 @@ export default function GarlicDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Line connectNulls={true} type="monotone" dataKey="중국" stroke="var(--color-danger)" strokeWidth={2} name="중국" />
-                <Line connectNulls={true} type="monotone" dataKey="인도" stroke="var(--color-warning)" strokeWidth={2} name="인도" />
-                <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#38bdf8" strokeWidth={2} name="한국" />
-                <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="var(--color-success)" strokeWidth={2} name="이집트" />
-                <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#8b5cf6" strokeWidth={2} name="방글라데시" />
+                <Line connectNulls={true} type="monotone" dataKey="인도" stroke="#65a30d" strokeWidth={2} name="인도" />
+                <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#d97706" strokeWidth={2} name="한국" />
+                <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="#eab308" strokeWidth={2} name="이집트" />
+                <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#84cc16" strokeWidth={2} name="방글라데시" />
               </LineChart>
             </SafeResponsiveContainer>
           </div>
@@ -923,7 +928,7 @@ export default function GarlicDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Volatility" fill="var(--color-warning)" name="연간 생산 변동률 (%)" />
+                <Bar dataKey="Volatility" fill="#65a30d" name="연간 생산 변동률 (%)" />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -937,7 +942,7 @@ export default function GarlicDashboard() {
         </div>
 
         {/* INSIGHT 5 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Recycle size={17} />마늘 감모/폐기물 업사이클링 (Circular Economy) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
@@ -952,9 +957,9 @@ export default function GarlicDashboard() {
                 <YAxis dataKey="name" type="category" width={80} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Polysaccharides" stackId="a" fill="#8b5cf6" name="기능성 폴리사카라이드 (45%)" />
-                <Bar dataKey="Biofuel" stackId="a" fill="var(--color-success)" name="바이오 연료 (30%)" />
-                <Bar dataKey="EcoPackaging" stackId="a" fill="var(--color-info)" name="친환경 포장재 (25%)" />
+                <Bar dataKey="Polysaccharides" stackId="a" fill="#84cc16" name="기능성 폴리사카라이드 (45%)" />
+                <Bar dataKey="Biofuel" stackId="a" fill="#eab308" name="바이오 연료 (30%)" />
+                <Bar dataKey="EcoPackaging" stackId="a" fill="#ca8a04" name="친환경 포장재 (25%)" />
               </BarChart>
             </SafeResponsiveContainer>
           </div>

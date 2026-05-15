@@ -83,6 +83,13 @@ export default function PetFoodDashboard() {
 
 
 
+  
+  const xFmt = (tick: any) => {
+    if (typeof tick !== 'string') return tick;
+    const cleaned = tick.replace(/\s*\(.*?\)\s*/g, '').trim();
+    return cleaned.length > 6 ? cleaned.substring(0, 6) + '..' : cleaned;
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -125,7 +132,7 @@ export default function PetFoodDashboard() {
               <SafeResponsiveContainer width="100%" height="100%">
                 <ComposedChart data={d_simulator} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                  <XAxis dataKey="name" tick={{fill: '#94a3b8'}} />
+                  <XAxis dataKey="name" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
                   <YAxis yAxisId="left" tickFormatter={(v) => `${v}억`} tick={{fill: '#94a3b8'}} />
                   <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
                   <RechartsTooltip content={<CustomTooltip />} />
@@ -249,7 +256,7 @@ export default function PetFoodDashboard() {
 
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#10b981,#10b98199)', borderRadius:'2px' }} />
+            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg, #f472b6, #f472b699)', borderRadius:'2px' }} />
             <div>
               <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🌱 Part I — 원물 생산 (Raw Material)</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>수산 부산물 밸류업 및 사료용 원물 조달</p>
@@ -264,7 +271,7 @@ export default function PetFoodDashboard() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={d_w33} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis type="number" />
+                      <XAxis type="number"  tickFormatter={xFmt} />
                       <YAxis dataKey="criteria" type="category" width={100} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -288,7 +295,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w10} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `${(v / 10000).toFixed(1)}억$`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -313,7 +320,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w15} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="market" />
+            <XAxis dataKey="market"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `$${v}`} unit="/kg" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -358,7 +365,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w19} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="product" />
+            <XAxis dataKey="product"  tickFormatter={xFmt} />
             <YAxis unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Bar dataKey="margin" name="영업이익률(%)" fill={PINK} radius={[4, 4, 0, 0]}>
@@ -412,7 +419,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={d_w28} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `$${v}B`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Area type="monotone" dataKey="size" name="시장 규모 (억$)" stroke="var(--color-success)" fill="rgba(16,185,129,0.15)" strokeWidth={3} />
@@ -426,11 +433,93 @@ export default function PetFoodDashboard() {
             />
             </div>
             </div>
-          </div>
+          <div className={styles.card}>
+                <CardHeader title={d_kfas_w05.title} icon={Activity} term="EPA+DHA 620" desc="줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고" />
+                <div className={styles.cardBody}>
+                  <div className={styles.chartContainer}>
+                    <SafeResponsiveContainer width="100%" height="100%">
+                      <ComposedChart data={d_kfas_w05.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="species" tick={{fill: '#94a3b8', fontSize: 11}}  tickFormatter={xFmt} />
+                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
+                        <YAxis yAxisId="right" orientation="right" unit="g" tick={{fill: '#94a3b8'}} />
+                        <RechartsTooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar yAxisId="left" dataKey="EPA+DHA(mg/100g)" name="EPA+DHA (mg/100g)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                        <Line yAxisId="right" type="monotone" dataKey="조지방(g/100g)" name="조지방 (g/100g)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
+                      </ComposedChart>
+                    </SafeResponsiveContainer>
+                  </div>
+                  <TakeawayBox
+                    source={d_kfas_w05.source}
+                    situation={d_kfas_w05.sit}
+                    actionPlan={d_kfas_w05.strat}
+                  />
+                </div>
+              </div>
+<div className={styles.card}>
+              <CardHeader title="RFMO 쿼터 축소 → 원물 공급 리스크" icon={Ban} term="FAD -4%/년" desc="FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피." />
+              <div className={styles.cardBody}>
+                <div className={styles.kpiRow}>
+                  <KpiCard label="2025 TAC" value="73,011" unit="톤" />
+                  <KpiCard label="FAD 제한" value="288" unit="개/선박" />
+                  <KpiCard label="황다랑어 감축" value="-20" unit="% (2027)" />
+                </div>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={d_nw02_quota} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                      <XAxis dataKey="year" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
+                      <YAxis yAxisId="left" tickFormatter={(v) => `${(v/1000).toFixed(0)}K`} tick={{fill: '#94a3b8'}} />
+                      <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend />
+                      <Bar yAxisId="left" dataKey="tac" name="TAC (톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                      <Line yAxisId="right" type="monotone" dataKey="fadLimit" name="FAD 제한 (개/선박)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} />
+                      <Line yAxisId="right" type="monotone" dataKey="yftReduction" name="황다랑어 감축(%)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
+                    </ComposedChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01"
+                  situation="ICCAT은 FAD 제한을 2025년 300개 → 2026~27년 288개로 연 4% 축소 중이며, IOTC는 황다랑어를 2027년까지 2017년 대비 20% 감축 의무화했습니다. TAC 증가 대비 FAD 축소의 비대칭 구조는 선단별 어획 효율 하락과 원물 단가 상승을 불가피하게 합니다."
+                  actionPlan="쿼터 축소에 면역인 '부산물 기반 펫푸드 원료'로 포트폴리오를 전환하는 것이 유일한 구조적 헷지입니다. 목적어종 쿼터가 줄수록 부산물의 상대적 가치는 역설적으로 상승하므로, 가공 잔여물 독점 계약을 선제적으로 체결하십시오."
+                />
+              </div>
+            </div>
+<div className={styles.card}>
+              <CardHeader title="기후변화 → 참치 서식지 이동 전망 (2050/2100)" icon={Thermometer} term="-15~30%" desc="중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망." />
+              <div className={styles.cardBody}>
+                <div className={styles.kpiRow}>
+                  <KpiCard label="500kg 한계수온" value="20" unit="°C" />
+                  <KpiCard label="1톤급 한계수온" value="17" unit="°C" />
+                  <KpiCard label="중앙태평양 2100" value="-22" unit="%" />
+                </div>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <BarChart data={d_nw03_climate} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                      <XAxis type="number" unit="%" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
+                      <YAxis dataKey="region" type="category" width={100} tick={{fill: '#94a3b8', fontSize: 11}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend />
+                      <Bar dataKey="change2050" name="2050년 변화(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="change2100" name="2100년 변화(%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+                    </BarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="Block et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)"
+                  situation="기후변화로 참치 서식지가 극쪽으로 이동하며, 현재 주요 조업 해역(중앙 북태평양)의 바이오매스가 2100년까지 22% 감소할 전망입니다. 대형 중온어(1톤급)는 수온 17°C에서 과열 위험에 직면하여 개체 수 하락이 예상됩니다. 반면 동태평양과 지중해는 바이오매스가 증가합니다."
+                  actionPlan="조업 해역 이동은 물류 비용 증가로 직결되므로, 원물 직접 조달 비용이 구조적으로 상승합니다. 이는 '부산물 업사이클링' 전략의 경제적 정당성을 더욱 강화하며, 기후 리스크에 면역인 가공 잔여물 기반 원료 확보가 필수입니다."
+                />
+              </div>
+            </div>
+</div>
         </div>
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#3b82f6,#3b82f699)', borderRadius:'2px' }} />
+            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg, #f59e0b, #f59e0b99)', borderRadius:'2px' }} />
             <div>
               <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🏭 Part II — 가공 산업 (Processing)</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>펫푸드 ODM 수익 모델 및 수직계열화</p>
@@ -445,7 +534,7 @@ export default function PetFoodDashboard() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={d_w34} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="product" />
+                      <XAxis dataKey="product"  tickFormatter={xFmt} />
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
@@ -469,7 +558,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w09} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" />
+            <XAxis type="number"  tickFormatter={xFmt} />
             <YAxis dataKey="company" type="category" width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -493,7 +582,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w16} layout="vertical" margin={{ top: 10, right: 30, left: 30, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" unit="%" />
+            <XAxis type="number" unit="%"  tickFormatter={xFmt} />
             <YAxis dataKey="factor" type="category" width={120} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -523,7 +612,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w20} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis yAxisId="left" tickFormatter={(v) => `${v}억`} />
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -549,7 +638,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w22} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis yAxisId="left" />
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -575,7 +664,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w23} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis yAxisId="left" />
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -601,7 +690,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w26} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" unit="%" />
+            <XAxis type="number" unit="%"  tickFormatter={xFmt} />
             <YAxis dataKey="cat" type="category" width={120} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Bar dataKey="growth" name="성장률(%)" fill={PINK} radius={[0, 6, 6, 0]}>
@@ -625,7 +714,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w31} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis yAxisId="left" unit="천톤" />
             <YAxis yAxisId="right" orientation="right" />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -642,11 +731,59 @@ export default function PetFoodDashboard() {
             />
             </div>
             </div>
-          </div>
+          <div className={styles.card}>
+                <CardHeader title={d_kfas_w02.title} icon={Zap} term="항산화 35.2%" desc="Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%" />
+                <div className={styles.cardBody}>
+                  <div className={styles.chartContainer}>
+                    <SafeResponsiveContainer width="100%" height="100%">
+                      <ComposedChart data={d_kfas_w02.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="enzyme" tick={{fill: '#94a3b8', fontSize: 10}} angle={-15} textAnchor="end"  tickFormatter={xFmt} />
+                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
+                        <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
+                        <RechartsTooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar yAxisId="left" dataKey="가수분해도(%)" name="가수분해도(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                        <Bar yAxisId="left" dataKey="DPPH라디컬소거(%)" name="DPPH 소거(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
+                        <Line yAxisId="right" type="monotone" dataKey="거품활성(%)" name="거품활성(%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
+                      </ComposedChart>
+                    </SafeResponsiveContainer>
+                  </div>
+                  <TakeawayBox
+                    source={d_kfas_w02.source}
+                    situation={d_kfas_w02.sit}
+                    actionPlan={d_kfas_w02.strat}
+                  />
+                </div>
+              </div>
+<div className={styles.card}>
+                <CardHeader title={d_kfas_w04.title} icon={Leaf} term="수율 72.5%" desc="스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g" />
+                <div className={styles.cardBody}>
+                  <div className={styles.chartContainer}>
+                    <SafeResponsiveContainer width="100%" height="100%">
+                      <BarChart data={d_kfas_w04.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="method" tick={{fill: '#94a3b8', fontSize: 9}} angle={-20} textAnchor="end" height={70}  tickFormatter={xFmt} />
+                        <YAxis tick={{fill: '#94a3b8'}} />
+                        <RechartsTooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar dataKey="단백질수율(%)" name="단백질 수율(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="EAA함량(mg/g)" name="EAA 함량(mg/g)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </SafeResponsiveContainer>
+                  </div>
+                  <TakeawayBox
+                    source={d_kfas_w04.source}
+                    situation={d_kfas_w04.sit}
+                    actionPlan={d_kfas_w04.strat}
+                  />
+                </div>
+              </div>
+</div>
         </div>
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#f59e0b,#f59e0b99)', borderRadius:'2px' }} />
+            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg, #10b981, #10b98199)', borderRadius:'2px' }} />
             <div>
               <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🚢 Part III — 물류 및 무역 (Logistics)</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>수출입 무역망 및 국가별 교역 지표</p>
@@ -661,7 +798,7 @@ export default function PetFoodDashboard() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={d_w36} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  tickFormatter={xFmt} />
                       <YAxis yAxisId="left" tickFormatter={(v: any) => `$${v}M`} />
                       <YAxis yAxisId="right" orientation="right" tickFormatter={(v: any) => `${v}`} />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -831,7 +968,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w32} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="scenario" />
+            <XAxis dataKey="scenario"  tickFormatter={xFmt} />
             <YAxis unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -847,7 +984,38 @@ export default function PetFoodDashboard() {
             />
             </div>
             </div>
-          </div>
+          <div className={styles.card}>
+              <CardHeader title="US MMPA 비관세 장벽 리스크 레이더" icon={Radio} term="2026 시행" desc="미국 MMPA 동등성 미증명 시 수산물 수입 전면 금지." />
+              <div className={styles.cardBody}>
+                <div className={styles.kpiRow}>
+                  <KpiCard label="시행 연도" value="2026" unit="년" />
+                  <KpiCard label="미준수 시" value="수입금지" unit="" />
+                  <KpiCard label="ICCAT 커버리지" value="100" unit="%" />
+                </div>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={d_nw06_mmpa} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                      <XAxis dataKey="year" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
+                      <YAxis unit="%" domain={[0, 100]} tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Bar dataKey="riskLevel" name="리스크 수준(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]}>
+                        {d_nw06_mmpa?.map((_: any, i: number) => {
+                          const colors = ['#10b981', '#f59e0b', '#ef4444', '#7f1d1d'];
+                          return <Cell key={i} fill={colors[i] || '#ef4444'} />;
+                        })}
+                      </Bar>
+                    </ComposedChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="ICCAT Compendium, US Marine Mammal Protection Act (MMPA) Import Provisions"
+                  situation="2026년 발효되는 US MMPA는 수출국에 미국과 동등한 바이캐치 저감 기준 증명을 요구하며, 미충족 시 해당국 수산물의 대미 수입이 전면 금지됩니다. 태국 등 주요 OEM 생산국의 대미 펫푸드 수출에도 직접적 영향을 미치며, 이는 기존 관세 리스크를 넘어서는 '존재적 위협(Existential Threat)'입니다."
+                  actionPlan="태국 OEM 파트너 선정 시 MMPA 컴플라이언스 인증 여부를 필수 체크리스트에 포함하십시오. 자사 브랜드에 'MMPA-Compliant' 라벨을 선제적으로 부착하여 미국 시장 진입 시 비관세 장벽을 경쟁 우위로 전환해야 합니다. 100% EMS 탑재 선단 인증이 핵심 방어 수단입니다."
+                />
+              </div>
+            </div>
+</div>
         </div>
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
@@ -866,7 +1034,7 @@ export default function PetFoodDashboard() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={d_channel_share} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                      <XAxis type="number" unit="%" tick={{fill: '#94a3b8'}} />
+                      <XAxis type="number" unit="%" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
                       <YAxis dataKey="name" type="category" width={80} tick={{fill: '#94a3b8'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Bar dataKey="value" name="채널 점유율(%)" radius={[0, 6, 6, 0]}>
@@ -890,7 +1058,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={d_w01} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `$${v}B`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Area type="monotone" dataKey="size" name="시장 규모 (억$)" stroke={PINK} fill="rgba(244,114,182,0.15)" strokeWidth={3} />
@@ -934,7 +1102,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <LineChart data={d_w04} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `$${v}B`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -965,7 +1133,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w05} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="market" />
+            <XAxis dataKey="market"  tickFormatter={xFmt} />
             <YAxis yAxisId="left" tickFormatter={(v) => `$${v}B`} />
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -1017,7 +1185,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={d_w07} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `${(v / 10000).toFixed(1)}조`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Area type="monotone" dataKey="size" name="시장 규모 (억 원)" stroke="var(--color-info)" fill="rgba(59,130,246,0.15)" strokeWidth={3} />
@@ -1039,7 +1207,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w08} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="cat" />
+            <XAxis dataKey="cat"  tickFormatter={xFmt} />
             <YAxis unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -1063,7 +1231,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w18} layout="vertical" margin={{ top: 10, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" unit="%" domain={[0, 100]} />
+            <XAxis type="number" unit="%" domain={[0, 100]}  tickFormatter={xFmt} />
             <YAxis dataKey="country" type="category" width={80} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Bar dataKey="online" name="온라인 비중(%)" fill={PINK} radius={[0, 6, 6, 0]} />
@@ -1085,7 +1253,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w21} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="grade" />
+            <XAxis dataKey="grade"  tickFormatter={xFmt} />
             <YAxis yAxisId="left" tickFormatter={(v) => `$${v}`} />
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -1110,7 +1278,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={d_w25} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis unit="%" domain={[0, 100]} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
@@ -1130,7 +1298,7 @@ export default function PetFoodDashboard() {
         </div>
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#8b5cf6,#8b5cf699)', borderRadius:'2px' }} />
+            <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg, #3b82f6, #3b82f699)', borderRadius:'2px' }} />
             <div>
               <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🌍 Part V — ESG 및 순환경제 (Sustainability)</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>휴머나이제이션 및 대체 단백질 임팩트</p>
@@ -1145,7 +1313,7 @@ export default function PetFoodDashboard() {
                   <SafeResponsiveContainer width="100%" height="100%">
                     <AreaChart data={d_w35} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="year" />
+                      <XAxis dataKey="year"  tickFormatter={xFmt} />
                       <YAxis yAxisId="left" unit="톤" />
                       <YAxis yAxisId="right" orientation="right" unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
@@ -1205,7 +1373,8 @@ export default function PetFoodDashboard() {
             </div>
             </div>
             {/* W30 */}
-            <div className={styles.card}>
+            
+          <div className={styles.card}>
             <CardHeader title="생선 기반 펫푸드 — 최종 결론 🟢 Live API" icon={Bone} term="118억$ (2036E)" desc="수산물 비중 1.8% + 원가 최저 + 성장률 최고 = 미개척 블루오션." />
             <div className={styles.cardBody}>
             <div className={styles.kpiRow}>
@@ -1218,7 +1387,7 @@ export default function PetFoodDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={d_w30} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
+            <XAxis dataKey="year"  tickFormatter={xFmt} />
             <YAxis tickFormatter={(v) => `$${v}B`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Area type="monotone" dataKey="size" name="Fish-based 시장 (억$)" stroke={PINK} fill="rgba(244,114,182,0.2)" strokeWidth={3} />
@@ -1232,7 +1401,117 @@ export default function PetFoodDashboard() {
             />
             </div>
             </div>
-          </div>
+<div className={styles.card}>
+                <CardHeader title={d_kfas_w03.title} icon={Leaf} term="BSF 5%→98%" desc="BSF 탈지분 5% 대체 시 성장률 98%, 면역 +18%" />
+                <div className={styles.cardBody}>
+                  <div className={styles.chartContainer}>
+                    <SafeResponsiveContainer width="100%" height="100%">
+                      <ComposedChart data={d_kfas_w03.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="group" tick={{fill: '#94a3b8', fontSize: 9}} angle={-20} textAnchor="end" height={60}  tickFormatter={xFmt} />
+                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
+                        <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
+                        <RechartsTooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar yAxisId="left" dataKey="성장률(%)" name="성장률(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
+                        <Bar yAxisId="left" dataKey="사료효율(%)" name="사료효율(%)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                        <Line yAxisId="right" type="monotone" dataKey="면역지표(Lysozyme)" name="면역지표(Lysozyme)" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} />
+                      </ComposedChart>
+                    </SafeResponsiveContainer>
+                  </div>
+                  <TakeawayBox
+                    source={d_kfas_w03.source}
+                    situation={d_kfas_w03.sit}
+                    actionPlan={d_kfas_w03.strat}
+                  />
+                </div>
+              </div>
+<div className={styles.card}>
+              <CardHeader title="참치 바이캐치 구조 해부 (대서양 vs 인도양)" icon={Anchor} term="FAD 88%" desc="FAD 세트가 전체 혼획의 88% 이상을 유발." />
+              <div className={styles.cardBody}>
+                <div className={styles.kpiRow}>
+                  <KpiCard label="FAD 혼획 비율" value="88" unit="%+" />
+                  <KpiCard label="대서양 비목적어" value="6.46" unit="t/KT" />
+                  <KpiCard label="인도양 비목적어" value="2.87" unit="t/KT" />
+                  <KpiCard label="실크샤크 생존율" value="14.4" unit="%" />
+                </div>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <BarChart data={d_nw01_bycatch} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                      <XAxis dataKey="region" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
+                      <YAxis unit="%" tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend />
+                      <Bar dataKey="smallTuna" name="소형 참치(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} stackId="a" />
+                      <Bar dataKey="otherFish" name="기타 어류(%)" fill="var(--color-success)" radius={[0, 0, 0, 0]} stackId="a" />
+                      <Bar dataKey="sharks" name="상어류(%)" fill="var(--color-danger)" radius={[0, 0, 0, 0]} stackId="a" />
+                      <Bar dataKey="billfish" name="새치류(%)" fill="var(--color-warning)" radius={[0, 0, 4, 4]} stackId="a" />
+                    </BarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="ICCAT/IOTC 바이캐치 비교 연구, Global comparison of purse seine bycatch, Bycatch trend and fate 2025"
+                  situation="FAD(집어장치) 세트가 전체 혼획의 88%를 유발하며, 자유 군집 대비 5배의 비목적 어종을 포획합니다. 이 중 소형 참치(69.4%)와 기타 어류(19%)는 RFMO Full Retention 정책에 의해 폐기가 금지되어 항구에 강제 양륙됩니다. 이는 연간 수만 톤의 저상업가치 단백질이 펫푸드 원료로 전환 가능한 '제도적 공급 파이프라인'이 이미 확립되어 있음을 의미합니다."
+                  actionPlan="아비장, 세이셸 등 주요 양륙항의 Faux-Poisson(혼획 양륙물) 구매 네트워크를 선제적으로 구축하십시오. 연 21,000톤 이상의 저가 단백질을 원가 0에 수렴하는 가격으로 확보할 수 있으며, 이를 어분/펩타이드로 전환 시 원가 우위가 극대화됩니다."
+                />
+              </div>
+            </div>
+<div className={styles.card}>
+              <CardHeader title="전자감시(EMS) 컴플라이언스 스코어카드" icon={Eye} term="EMS 100%" desc="ICCAT 100% 옵저버 의무. 인간 옵저버 상어 미탐지 50~81%." />
+              <div className={styles.cardBody}>
+                <div className={styles.kpiRow}>
+                  <KpiCard label="EMS 위치정확도" value="100" unit="%" />
+                  <KpiCard label="인간 상어탐지" value="19~50" unit="%" />
+                  <KpiCard label="커버리지 의무" value="100" unit="%" />
+                </div>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <RadarChart cx="50%" cy="50%" outerRadius={100} data={d_nw04_radar}>
+                      <PolarGrid stroke="rgba(255,255,255,0.1)" />
+                      <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                      <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                      <Radar name="달성률(%)" dataKey="A" stroke="var(--color-danger)" fill="rgba(239,68,68,0.2)" fillOpacity={0.6} />
+                    </RadarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="ICCAT EMS 최소 기준 권고, Undetected silky sharks in the wellboat (2024)"
+                  situation="인간 옵저버는 고속 브레일링 과정(1회 4~6톤)에서 상어 바이캐치를 50~81% 미탐지합니다. 이로 인해 멸종위기종(ETP)이 선별 없이 냉동실에 혼입되어, 펫푸드 원료에 미식별 상어육이 포함될 리스크가 존재합니다. 반면 EMS는 위치/일시를 100% 정확하게 기록합니다."
+                  actionPlan="펫푸드 원료 조달 시 100% EMS 탑재 선단에서만 구매하는 '디지털 트레이서빌리티 정책'을 수립하십시오. 이는 ESG 리스크 방어인 동시에, 'Zero-Shark 클린 라벨'로 전환하여 프리미엄 마켓의 신뢰를 확보하는 공격적 브랜딩 전략입니다."
+                />
+              </div>
+            </div>
+<div className={styles.card}>
+              <CardHeader title="Full Retention 양륙 → 펫푸드 원료 파이프라인" icon={FileCheck} term="양륙 78%" desc="대서양 바이캐치 78% 보존/양륙. 폐기율 1.47%." />
+              <div className={styles.cardBody}>
+                <div className={styles.kpiRow}>
+                  <KpiCard label="아비장 양륙" value="21,582" unit="톤/년" />
+                  <KpiCard label="소형참치 비중" value="86.9" unit="%" />
+                  <KpiCard label="대서양 폐기율" value="1.47" unit="%" />
+                  <KpiCard label="인도양 폐기율" value="0.97" unit="%" />
+                </div>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <BarChart data={d_nw05_abidjan} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                      <XAxis dataKey="category" tick={{fill: '#94a3b8', fontSize: 11}}  tickFormatter={xFmt} />
+                      <YAxis tickFormatter={(v) => `${(v/1000).toFixed(1)}K`} tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Bar dataKey="volume" name="양륙량 (톤)" fill="#8b5cf6" radius={[4, 4, 0, 0]}>
+                        {d_nw05_abidjan?.map((_: any, i: number) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
+                      </Bar>
+                    </BarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="Utilization and Trade of Faux Poisson landed in Abidjan, Bycatch trend and fate of Spanish purse seiners 2025"
+                  situation="RFMO Full Retention 정책으로 폐기율이 1~1.5%로 극소화되면서, 연간 수만 톤의 비목적 어종이 항구에 의무 양륙됩니다. 아비장 단일 항구에서만 21,582톤이 처리되며, 이 중 86.9%가 상업적 활용이 제한된 소형 참치입니다. 대서양 보존율 90% 이상, 인도양 50% 이상이 Full Retention으로 양륙됩니다."
+                  actionPlan="아비장, 빅토리아(세이셸), 포트루이스(모리셔스) 등 주요 양륙 허브에서 Faux-Poisson 독점 구매 계약을 체결하십시오. 경쟁사가 인지하지 못한 '규제 파생 원료'를 선점하면, 톤당 수백 달러 수준의 초저가 수산 단백질을 안정적으로 확보하여 원가 경쟁력의 구조적 해자를 구축할 수 있습니다."
+                />
+              </div>
+            </div>
+</div>
         </div>
 
         {/* ═══ Part VII — KFAS 학술 연구 기반 R&D 인텔리전스 ═══ */}
@@ -1260,7 +1539,7 @@ export default function PetFoodDashboard() {
                     <SafeResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={d_kfas_w01.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="part" tick={{fill: '#94a3b8', fontSize: 11}} />
+                        <XAxis dataKey="part" tick={{fill: '#94a3b8', fontSize: 11}}  tickFormatter={xFmt} />
                         <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
                         <YAxis yAxisId="right" orientation="right" unit="%" domain={[35, 45]} tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
@@ -1304,117 +1583,16 @@ export default function PetFoodDashboard() {
             )}
 
             {/* 황다랑어 알 효소가수분해물 */}
-            {d_kfas_w02 && (
-              <div className={styles.card}>
-                <CardHeader title={d_kfas_w02.title} icon={Zap} term="항산화 35.2%" desc="Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%" />
-                <div className={styles.cardBody}>
-                  <div className={styles.chartContainer}>
-                    <SafeResponsiveContainer width="100%" height="100%">
-                      <ComposedChart data={d_kfas_w02.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="enzyme" tick={{fill: '#94a3b8', fontSize: 10}} angle={-15} textAnchor="end" />
-                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
-                        <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
-                        <RechartsTooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar yAxisId="left" dataKey="가수분해도(%)" name="가수분해도(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-                        <Bar yAxisId="left" dataKey="DPPH라디컬소거(%)" name="DPPH 소거(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
-                        <Line yAxisId="right" type="monotone" dataKey="거품활성(%)" name="거품활성(%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
-                      </ComposedChart>
-                    </SafeResponsiveContainer>
-                  </div>
-                  <TakeawayBox
-                    source={d_kfas_w02.source}
-                    situation={d_kfas_w02.sit}
-                    actionPlan={d_kfas_w02.strat}
-                  />
-                </div>
-              </div>
-            )}
+            {/* d_kfas_w02 — placeholder */}
 
             {/* 곤충단백질 어분 대체 */}
-            {d_kfas_w03 && (
-              <div className={styles.card}>
-                <CardHeader title={d_kfas_w03.title} icon={Leaf} term="BSF 5%→98%" desc="BSF 탈지분 5% 대체 시 성장률 98%, 면역 +18%" />
-                <div className={styles.cardBody}>
-                  <div className={styles.chartContainer}>
-                    <SafeResponsiveContainer width="100%" height="100%">
-                      <ComposedChart data={d_kfas_w03.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="group" tick={{fill: '#94a3b8', fontSize: 9}} angle={-20} textAnchor="end" height={60} />
-                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
-                        <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
-                        <RechartsTooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar yAxisId="left" dataKey="성장률(%)" name="성장률(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
-                        <Bar yAxisId="left" dataKey="사료효율(%)" name="사료효율(%)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                        <Line yAxisId="right" type="monotone" dataKey="면역지표(Lysozyme)" name="면역지표(Lysozyme)" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} />
-                      </ComposedChart>
-                    </SafeResponsiveContainer>
-                  </div>
-                  <TakeawayBox
-                    source={d_kfas_w03.source}
-                    situation={d_kfas_w03.sit}
-                    actionPlan={d_kfas_w03.strat}
-                  />
-                </div>
-              </div>
-            )}
+            {/* d_kfas_w03 — placeholder */}
 
             {/* 미세조류 단백질 추출 */}
-            {d_kfas_w04 && (
-              <div className={styles.card}>
-                <CardHeader title={d_kfas_w04.title} icon={Leaf} term="수율 72.5%" desc="스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g" />
-                <div className={styles.cardBody}>
-                  <div className={styles.chartContainer}>
-                    <SafeResponsiveContainer width="100%" height="100%">
-                      <BarChart data={d_kfas_w04.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="method" tick={{fill: '#94a3b8', fontSize: 9}} angle={-20} textAnchor="end" height={70} />
-                        <YAxis tick={{fill: '#94a3b8'}} />
-                        <RechartsTooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar dataKey="단백질수율(%)" name="단백질 수율(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
-                        <Bar dataKey="EAA함량(mg/g)" name="EAA 함량(mg/g)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
-                      </BarChart>
-                    </SafeResponsiveContainer>
-                  </div>
-                  <TakeawayBox
-                    source={d_kfas_w04.source}
-                    situation={d_kfas_w04.sit}
-                    actionPlan={d_kfas_w04.strat}
-                  />
-                </div>
-              </div>
-            )}
+            {/* d_kfas_w04 — placeholder */}
 
             {/* 가자미 5종 EPA/DHA 프로파일 */}
-            {d_kfas_w05 && (
-              <div className={styles.card}>
-                <CardHeader title={d_kfas_w05.title} icon={Activity} term="EPA+DHA 620" desc="줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고" />
-                <div className={styles.cardBody}>
-                  <div className={styles.chartContainer}>
-                    <SafeResponsiveContainer width="100%" height="100%">
-                      <ComposedChart data={d_kfas_w05.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="species" tick={{fill: '#94a3b8', fontSize: 11}} />
-                        <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
-                        <YAxis yAxisId="right" orientation="right" unit="g" tick={{fill: '#94a3b8'}} />
-                        <RechartsTooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar yAxisId="left" dataKey="EPA+DHA(mg/100g)" name="EPA+DHA (mg/100g)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                        <Line yAxisId="right" type="monotone" dataKey="조지방(g/100g)" name="조지방 (g/100g)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
-                      </ComposedChart>
-                    </SafeResponsiveContainer>
-                  </div>
-                  <TakeawayBox
-                    source={d_kfas_w05.source}
-                    situation={d_kfas_w05.sit}
-                    actionPlan={d_kfas_w05.strat}
-                  />
-                </div>
-              </div>
-            )}
+            {/* d_kfas_w05 — placeholder */}
           </div>
         </div>
 
@@ -1430,190 +1608,22 @@ export default function PetFoodDashboard() {
           <div className={styles.grid}>
 
             {/* NW-1: 바이캐치 구조 해부 */}
-            <div className={styles.card}>
-              <CardHeader title="참치 바이캐치 구조 해부 (대서양 vs 인도양)" icon={Anchor} term="FAD 88%" desc="FAD 세트가 전체 혼획의 88% 이상을 유발." />
-              <div className={styles.cardBody}>
-                <div className={styles.kpiRow}>
-                  <KpiCard label="FAD 혼획 비율" value="88" unit="%+" />
-                  <KpiCard label="대서양 비목적어" value="6.46" unit="t/KT" />
-                  <KpiCard label="인도양 비목적어" value="2.87" unit="t/KT" />
-                  <KpiCard label="실크샤크 생존율" value="14.4" unit="%" />
-                </div>
-                <div className={styles.chartContainer}>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <BarChart data={d_nw01_bycatch} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                      <XAxis dataKey="region" tick={{fill: '#94a3b8'}} />
-                      <YAxis unit="%" tick={{fill: '#94a3b8'}} />
-                      <RechartsTooltip content={<CustomTooltip />} />
-                      <Legend />
-                      <Bar dataKey="smallTuna" name="소형 참치(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} stackId="a" />
-                      <Bar dataKey="otherFish" name="기타 어류(%)" fill="var(--color-success)" radius={[0, 0, 0, 0]} stackId="a" />
-                      <Bar dataKey="sharks" name="상어류(%)" fill="var(--color-danger)" radius={[0, 0, 0, 0]} stackId="a" />
-                      <Bar dataKey="billfish" name="새치류(%)" fill="var(--color-warning)" radius={[0, 0, 4, 4]} stackId="a" />
-                    </BarChart>
-                  </SafeResponsiveContainer>
-                </div>
-                <TakeawayBox
-                  source="ICCAT/IOTC 바이캐치 비교 연구, Global comparison of purse seine bycatch, Bycatch trend and fate 2025"
-                  situation="FAD(집어장치) 세트가 전체 혼획의 88%를 유발하며, 자유 군집 대비 5배의 비목적 어종을 포획합니다. 이 중 소형 참치(69.4%)와 기타 어류(19%)는 RFMO Full Retention 정책에 의해 폐기가 금지되어 항구에 강제 양륙됩니다. 이는 연간 수만 톤의 저상업가치 단백질이 펫푸드 원료로 전환 가능한 '제도적 공급 파이프라인'이 이미 확립되어 있음을 의미합니다."
-                  actionPlan="아비장, 세이셸 등 주요 양륙항의 Faux-Poisson(혼획 양륙물) 구매 네트워크를 선제적으로 구축하십시오. 연 21,000톤 이상의 저가 단백질을 원가 0에 수렴하는 가격으로 확보할 수 있으며, 이를 어분/펩타이드로 전환 시 원가 우위가 극대화됩니다."
-                />
-              </div>
-            </div>
+            
 
             {/* NW-2: RFMO 쿼터 축소 시뮬레이터 */}
-            <div className={styles.card}>
-              <CardHeader title="RFMO 쿼터 축소 → 원물 공급 리스크" icon={Ban} term="FAD -4%/년" desc="FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피." />
-              <div className={styles.cardBody}>
-                <div className={styles.kpiRow}>
-                  <KpiCard label="2025 TAC" value="73,011" unit="톤" />
-                  <KpiCard label="FAD 제한" value="288" unit="개/선박" />
-                  <KpiCard label="황다랑어 감축" value="-20" unit="% (2027)" />
-                </div>
-                <div className={styles.chartContainer}>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <ComposedChart data={d_nw02_quota} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                      <XAxis dataKey="year" tick={{fill: '#94a3b8'}} />
-                      <YAxis yAxisId="left" tickFormatter={(v) => `${(v/1000).toFixed(0)}K`} tick={{fill: '#94a3b8'}} />
-                      <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
-                      <RechartsTooltip content={<CustomTooltip />} />
-                      <Legend />
-                      <Bar yAxisId="left" dataKey="tac" name="TAC (톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                      <Line yAxisId="right" type="monotone" dataKey="fadLimit" name="FAD 제한 (개/선박)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} />
-                      <Line yAxisId="right" type="monotone" dataKey="yftReduction" name="황다랑어 감축(%)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
-                    </ComposedChart>
-                  </SafeResponsiveContainer>
-                </div>
-                <TakeawayBox
-                  source="ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01"
-                  situation="ICCAT은 FAD 제한을 2025년 300개 → 2026~27년 288개로 연 4% 축소 중이며, IOTC는 황다랑어를 2027년까지 2017년 대비 20% 감축 의무화했습니다. TAC 증가 대비 FAD 축소의 비대칭 구조는 선단별 어획 효율 하락과 원물 단가 상승을 불가피하게 합니다."
-                  actionPlan="쿼터 축소에 면역인 '부산물 기반 펫푸드 원료'로 포트폴리오를 전환하는 것이 유일한 구조적 헷지입니다. 목적어종 쿼터가 줄수록 부산물의 상대적 가치는 역설적으로 상승하므로, 가공 잔여물 독점 계약을 선제적으로 체결하십시오."
-                />
-              </div>
-            </div>
+            
 
             {/* NW-3: 기후변화 바이오매스 이동 */}
-            <div className={styles.card}>
-              <CardHeader title="기후변화 → 참치 서식지 이동 전망 (2050/2100)" icon={Thermometer} term="-15~30%" desc="중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망." />
-              <div className={styles.cardBody}>
-                <div className={styles.kpiRow}>
-                  <KpiCard label="500kg 한계수온" value="20" unit="°C" />
-                  <KpiCard label="1톤급 한계수온" value="17" unit="°C" />
-                  <KpiCard label="중앙태평양 2100" value="-22" unit="%" />
-                </div>
-                <div className={styles.chartContainer}>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <BarChart data={d_nw03_climate} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                      <XAxis type="number" unit="%" tick={{fill: '#94a3b8'}} />
-                      <YAxis dataKey="region" type="category" width={100} tick={{fill: '#94a3b8', fontSize: 11}} />
-                      <RechartsTooltip content={<CustomTooltip />} />
-                      <Legend />
-                      <Bar dataKey="change2050" name="2050년 변화(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
-                      <Bar dataKey="change2100" name="2100년 변화(%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
-                    </BarChart>
-                  </SafeResponsiveContainer>
-                </div>
-                <TakeawayBox
-                  source="Block et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)"
-                  situation="기후변화로 참치 서식지가 극쪽으로 이동하며, 현재 주요 조업 해역(중앙 북태평양)의 바이오매스가 2100년까지 22% 감소할 전망입니다. 대형 중온어(1톤급)는 수온 17°C에서 과열 위험에 직면하여 개체 수 하락이 예상됩니다. 반면 동태평양과 지중해는 바이오매스가 증가합니다."
-                  actionPlan="조업 해역 이동은 물류 비용 증가로 직결되므로, 원물 직접 조달 비용이 구조적으로 상승합니다. 이는 '부산물 업사이클링' 전략의 경제적 정당성을 더욱 강화하며, 기후 리스크에 면역인 가공 잔여물 기반 원료 확보가 필수입니다."
-                />
-              </div>
-            </div>
+            
 
             {/* NW-4: EMS 컴플라이언스 스코어카드 */}
-            <div className={styles.card}>
-              <CardHeader title="전자감시(EMS) 컴플라이언스 스코어카드" icon={Eye} term="EMS 100%" desc="ICCAT 100% 옵저버 의무. 인간 옵저버 상어 미탐지 50~81%." />
-              <div className={styles.cardBody}>
-                <div className={styles.kpiRow}>
-                  <KpiCard label="EMS 위치정확도" value="100" unit="%" />
-                  <KpiCard label="인간 상어탐지" value="19~50" unit="%" />
-                  <KpiCard label="커버리지 의무" value="100" unit="%" />
-                </div>
-                <div className={styles.chartContainer}>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <RadarChart cx="50%" cy="50%" outerRadius={100} data={d_nw04_radar}>
-                      <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                      <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                      <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-                      <Radar name="달성률(%)" dataKey="A" stroke="var(--color-danger)" fill="rgba(239,68,68,0.2)" fillOpacity={0.6} />
-                    </RadarChart>
-                  </SafeResponsiveContainer>
-                </div>
-                <TakeawayBox
-                  source="ICCAT EMS 최소 기준 권고, Undetected silky sharks in the wellboat (2024)"
-                  situation="인간 옵저버는 고속 브레일링 과정(1회 4~6톤)에서 상어 바이캐치를 50~81% 미탐지합니다. 이로 인해 멸종위기종(ETP)이 선별 없이 냉동실에 혼입되어, 펫푸드 원료에 미식별 상어육이 포함될 리스크가 존재합니다. 반면 EMS는 위치/일시를 100% 정확하게 기록합니다."
-                  actionPlan="펫푸드 원료 조달 시 100% EMS 탑재 선단에서만 구매하는 '디지털 트레이서빌리티 정책'을 수립하십시오. 이는 ESG 리스크 방어인 동시에, 'Zero-Shark 클린 라벨'로 전환하여 프리미엄 마켓의 신뢰를 확보하는 공격적 브랜딩 전략입니다."
-                />
-              </div>
-            </div>
+            
 
             {/* NW-5: Full Retention 파이프라인 */}
-            <div className={styles.card}>
-              <CardHeader title="Full Retention 양륙 → 펫푸드 원료 파이프라인" icon={FileCheck} term="양륙 78%" desc="대서양 바이캐치 78% 보존/양륙. 폐기율 1.47%." />
-              <div className={styles.cardBody}>
-                <div className={styles.kpiRow}>
-                  <KpiCard label="아비장 양륙" value="21,582" unit="톤/년" />
-                  <KpiCard label="소형참치 비중" value="86.9" unit="%" />
-                  <KpiCard label="대서양 폐기율" value="1.47" unit="%" />
-                  <KpiCard label="인도양 폐기율" value="0.97" unit="%" />
-                </div>
-                <div className={styles.chartContainer}>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <BarChart data={d_nw05_abidjan} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                      <XAxis dataKey="category" tick={{fill: '#94a3b8', fontSize: 11}} />
-                      <YAxis tickFormatter={(v) => `${(v/1000).toFixed(1)}K`} tick={{fill: '#94a3b8'}} />
-                      <RechartsTooltip content={<CustomTooltip />} />
-                      <Bar dataKey="volume" name="양륙량 (톤)" fill="#8b5cf6" radius={[4, 4, 0, 0]}>
-                        {d_nw05_abidjan?.map((_: any, i: number) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
-                      </Bar>
-                    </BarChart>
-                  </SafeResponsiveContainer>
-                </div>
-                <TakeawayBox
-                  source="Utilization and Trade of Faux Poisson landed in Abidjan, Bycatch trend and fate of Spanish purse seiners 2025"
-                  situation="RFMO Full Retention 정책으로 폐기율이 1~1.5%로 극소화되면서, 연간 수만 톤의 비목적 어종이 항구에 의무 양륙됩니다. 아비장 단일 항구에서만 21,582톤이 처리되며, 이 중 86.9%가 상업적 활용이 제한된 소형 참치입니다. 대서양 보존율 90% 이상, 인도양 50% 이상이 Full Retention으로 양륙됩니다."
-                  actionPlan="아비장, 빅토리아(세이셸), 포트루이스(모리셔스) 등 주요 양륙 허브에서 Faux-Poisson 독점 구매 계약을 체결하십시오. 경쟁사가 인지하지 못한 '규제 파생 원료'를 선점하면, 톤당 수백 달러 수준의 초저가 수산 단백질을 안정적으로 확보하여 원가 경쟁력의 구조적 해자를 구축할 수 있습니다."
-                />
-              </div>
-            </div>
+            
 
             {/* NW-6: US MMPA 비관세 장벽 */}
-            <div className={styles.card}>
-              <CardHeader title="US MMPA 비관세 장벽 리스크 레이더" icon={Radio} term="2026 시행" desc="미국 MMPA 동등성 미증명 시 수산물 수입 전면 금지." />
-              <div className={styles.cardBody}>
-                <div className={styles.kpiRow}>
-                  <KpiCard label="시행 연도" value="2026" unit="년" />
-                  <KpiCard label="미준수 시" value="수입금지" unit="" />
-                  <KpiCard label="ICCAT 커버리지" value="100" unit="%" />
-                </div>
-                <div className={styles.chartContainer}>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <ComposedChart data={d_nw06_mmpa} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                      <XAxis dataKey="year" tick={{fill: '#94a3b8'}} />
-                      <YAxis unit="%" domain={[0, 100]} tick={{fill: '#94a3b8'}} />
-                      <RechartsTooltip content={<CustomTooltip />} />
-                      <Bar dataKey="riskLevel" name="리스크 수준(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]}>
-                        {d_nw06_mmpa?.map((_: any, i: number) => {
-                          const colors = ['#10b981', '#f59e0b', '#ef4444', '#7f1d1d'];
-                          return <Cell key={i} fill={colors[i] || '#ef4444'} />;
-                        })}
-                      </Bar>
-                    </ComposedChart>
-                  </SafeResponsiveContainer>
-                </div>
-                <TakeawayBox
-                  source="ICCAT Compendium, US Marine Mammal Protection Act (MMPA) Import Provisions"
-                  situation="2026년 발효되는 US MMPA는 수출국에 미국과 동등한 바이캐치 저감 기준 증명을 요구하며, 미충족 시 해당국 수산물의 대미 수입이 전면 금지됩니다. 태국 등 주요 OEM 생산국의 대미 펫푸드 수출에도 직접적 영향을 미치며, 이는 기존 관세 리스크를 넘어서는 '존재적 위협(Existential Threat)'입니다."
-                  actionPlan="태국 OEM 파트너 선정 시 MMPA 컴플라이언스 인증 여부를 필수 체크리스트에 포함하십시오. 자사 브랜드에 'MMPA-Compliant' 라벨을 선제적으로 부착하여 미국 시장 진입 시 비관세 장벽을 경쟁 우위로 전환해야 합니다. 100% EMS 탑재 선단 인증이 핵심 방어 수단입니다."
-                />
-              </div>
-            </div>
+            
 
           </div>
         </div>

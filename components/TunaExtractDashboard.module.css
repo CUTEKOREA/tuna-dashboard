@@ -1,4 +1,4 @@
-/* TunaExtractDashboard.module.css — Cloned from PetFoodDashboard with amber theme */
+/* TunaExtractDashboard.module.css — S-Grade Cyan→Blue Ocean Theme (V4.0 Rulebook D-04 Compliant) */
 .container {
   min-height: 100vh;
   color: #f8fafc;
@@ -14,11 +14,12 @@
   gap: 1rem;
 }
 
+/* D-04: 참치(해양) = cyan → blue 그라디언트 */
 .title {
   font-size: 1.5rem;
   font-weight: 800;
   margin: 0 0 0.25rem 0;
-  background: linear-gradient(135deg, #f97316, #fb923c);
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -55,6 +56,12 @@
   border-radius: 12px;
   padding: 1rem 1.25rem;
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpiCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.1);
 }
 
 .kpiLabel {
@@ -77,14 +84,14 @@
   font-weight: 500;
 }
 
-/* Grid */
+/* 2-Column Grid (D-04 Layout Mandate) */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
-/* Card */
+/* D-03: Glassmorphism Card */
 .card {
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.65), rgba(15, 23, 42, 0.65));
   backdrop-filter: blur(16px);
@@ -95,9 +102,10 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Cyan glow on hover (D-04 aligned) */
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(249, 115, 22, 0.08);
+  box-shadow: 0 12px 40px rgba(34, 211, 238, 0.08);
 }
 
 .cardHeader {
@@ -117,10 +125,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 1;
 }
 
 .cardIcon {
-  color: #f97316;
+  color: #22d3ee;
+  flex-shrink: 0;
 }
 
 .cardBody {
@@ -132,15 +142,121 @@
   height: 280px;
 }
 
+/* Section Header (inline style 제거 → 모듈화) */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0.75rem;
+  border-left: 4px solid #22d3ee;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.sectionHeaderAlt {
+  composes: sectionHeader;
+  border-left-color: #3b82f6;
+}
+
+.sectionHeaderWarn {
+  composes: sectionHeader;
+  border-left-color: #f59e0b;
+}
+
+.sectionHeaderDanger {
+  composes: sectionHeader;
+  border-left-color: #ef4444;
+}
+
+.sectionHeaderViolet {
+  composes: sectionHeader;
+  border-left-color: #8b5cf6;
+}
+
+.sectionHeaderPink {
+  composes: sectionHeader;
+  border-left-color: #f472b6;
+}
+
+.sectionHeaderTeal {
+  composes: sectionHeader;
+  border-left-color: #06b6d4;
+}
+
+/* Executive Command Box */
+.executiveCommand {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(59, 130, 246, 0.08), rgba(15, 23, 42, 0.8));
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.executiveCommandTitle {
+  margin: 0 0 0.5rem 0;
+  color: #22d3ee;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.executiveCommandText {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Telemetry Badge */
+.telemetryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.telemetryStatic {
+  composes: telemetryBadge;
+  background: rgba(100, 116, 139, 0.2);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.telemetrySynced {
+  composes: telemetryBadge;
+  background: rgba(34, 211, 238, 0.15);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.telemetryLive {
+  composes: telemetryBadge;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
 /* Tooltip */
 .customTooltip {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(15, 23, 42, 0.95);
   border: 1px solid rgba(51, 65, 85, 0.6);
   border-radius: 8px;
   padding: 0.75rem 1rem;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .tooltipLabel {
@@ -150,7 +266,7 @@
   font-size: 0.85rem;
 }
 
-/* Rotate icon */
+/* Rotate icon (loading spinner) */
 @keyframes rotateIcon {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

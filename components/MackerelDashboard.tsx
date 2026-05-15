@@ -723,7 +723,7 @@ export default function MackerelDashboard() {
             boxShadow: 'rgba(0,0,0,0.5) 0px 8px 24px', marginBottom: '2rem',
             animation: 'fadeIn 0.3s ease-out'
           }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               
               {/* Module 1: 주요 생산국 비교 */}
               <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
@@ -841,7 +841,7 @@ export default function MackerelDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part I — 원물 생산 (Raw Material)</h2>
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -853,7 +853,7 @@ export default function MackerelDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part II — 가공 산업 (Processing)</h2>
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>가공 허브 패권, 부가가치 분석, HMR 전환, 기술 혁신 및 부산물 활용</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -865,7 +865,7 @@ export default function MackerelDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part III — 물류 및 무역 (Logistics & Trade)</h2>
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>수출입 통관, 관세·FTA 분석, 착지원가, 차익거래, 해상운임 및 콜드체인</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -877,7 +877,7 @@ export default function MackerelDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part IV — 판매 및 수요 (Sales & Demand)</h2>
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>소비 트렌드, 유통 마진, 가격 분해, D2C·HMR 시장, 스태그플레이션 대응</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -889,7 +889,7 @@ export default function MackerelDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part V — ESG 및 지속가능성 (Sustainability)</h2>
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>제재·컴플라이언스, MSC 인증, 탄소 발자국, 선원 인권, IUU 감시 및 정책 대응</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>

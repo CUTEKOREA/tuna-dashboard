@@ -156,7 +156,7 @@ export default function ResearchLabDashboard() {
         <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'1.2rem',display:'flex',alignItems:'center',gap:8}}>
           <Target size={22} color="#8b5cf6" /> 조업사 최적화 Top 4 비즈니스 파이프라인
         </h2>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:'1.2rem'}}>
+        <div style={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)',gap:'1.2rem'}}>
           {B2B_MODELS.map((model, idx) => {
             const Icon = model.icon;
             return (

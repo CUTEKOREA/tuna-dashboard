@@ -523,7 +523,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
         </button>
         {showEdu && (
           <div className="ds-card" style={{background: '#181818', borderRadius: '8px', border: 'none', padding: '1.5rem', animation: 'fadeIn 0.3s', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '8px', border: 'none' }}>
                 <h3 style={{ color: '#FCD535', margin: '0 0 0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
                   <Anchor size={16}/> 조업 방식 핵심 차이
@@ -580,7 +580,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             <TunaPrecisionFishing />
             <KfasLonglineEvolution />
             <KfasIndianOceanRisk />
@@ -604,7 +604,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             <TunaPetCareMargin />
             <TunaSupplierHub />
             <InsightTunaExtract />
@@ -628,7 +628,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             <WitsTariffWidget />
             <OecBenchmarkWidget />
             <WitsTradeFlowWidget />
@@ -654,7 +654,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             <TunaPriceDecoupling />
             <InsightEU18C />
             {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption'].includes(w.id)).map((w: any) => (
@@ -672,7 +672,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             <TunaComplianceRadar />
             <PolicyRiskScorecard />
             <InsightPillarTwo />

@@ -609,7 +609,7 @@ export default function GalchiDashboard() {
                 </div>
                 {section.desc && <p style={{ margin: '0 0 0 16px', fontSize: '0.82rem', color: 'var(--text-secondary)', letterSpacing: '0.01em' }}>{section.desc}</p>}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {sectionWidgets.map((w: any) => renderWidgetCard(w, section.accent))}
               </div>
             </section>

@@ -43,15 +43,24 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 
 /* ─── 5-Part Section Definitions ─── */
 const SECTIONS = [
-  { id: 'S1', title: '🌊 Part I — 원물 및 조달 (Raw Material & Sourcing)', desc: '포클랜드 자원평가 트래커 · 글로벌 어획 헤게모니 · 기후 및 어획량 동향', color: '#10b981' },
-  { id: 'S2', title: '🏭 Part II — 가공 및 밸류체인 (Processing & Value Chain)', desc: '스페인(Vigo) 가공 허브 스프레드 · 대체 원료 블렌딩 마진 분석', color: '#8b5cf6' },
-  { id: 'S3', title: '⚓ Part III — 물류 및 운영 원가 (Logistics & Fleet OPEX)', desc: '라이선스/ITQ 입어료 비용 변동 · 채낚기 선단 유류비(MGO) 시뮬레이션', color: '#06b6d4' },
-  { id: 'S4', title: '📊 Part IV — 판매 및 수요 (Sales & Demand)', desc: 'KOSIS 내수 CPI 괴리율 · 인플레이션 발 수요 파괴 및 수입 단가 트렌드', color: '#3b82f6' },
-  { id: 'S5', title: '🛡️ Part V — ESG 및 규제 리스크 (ESG & Compliance)', desc: '남서대서양 IUU 조업 레이더 · 포클랜드 ITQ 규제 · 수입 통관 위생검역 모니터링', color: '#f59e0b' },
-  { id: 'S6', title: '🎯 Part VI — M&A 실사 인텔리전스 (Due Diligence)', desc: '선민수산 인수 Bull/Bear 스코어카드 · Earn-out 시뮬레이터 · 100일 Value Creation Plan', color: '#ec4899' },
+  { id: 'S1', title: '🌊 Part I — 원물 및 조달 (Raw Material)', desc: '포클랜드 자원평가 · 어획 헤게모니 · 기후 및 어획량 동향', color: '#8b5cf6' },
+  { id: 'S2', title: '🏭 Part II — 가공 및 밸류체인 (Processing)', desc: '스페인(Vigo) 가공 허브 스프레드 · 대체 원료 블렌딩 마진 분석', color: '#a855f7' },
+  { id: 'S3', title: '⚓ Part III — 물류 및 운영 원가 (Logistics)', desc: '라이선스/ITQ 입어료 비용 변동 · 채낚기 선단 유류비(MGO) 시뮬레이션', color: '#d946ef' },
+  { id: 'S4', title: '📊 Part IV — 판매 및 수요 (Sales & Demand)', desc: 'KOSIS 내수 CPI 괴리율 · 인플레이션 발 수요 파괴 및 수입 단가 트렌드', color: '#ec4899' },
+  { id: 'S5', title: '🛡️ Part V — ESG 및 미래 어업 (Sustainability)', desc: '남서대서양 IUU 레이더 · M&A 실사(PEF Valuation) 및 Earn-out 시뮬레이션', color: '#f43f5e' }
 ];
 
 /* ─── Custom Tooltip ─── */
+
+const formatXAxis = (tickItem: any) => {
+  if (!tickItem || typeof tickItem !== 'string') return tickItem;
+  let formatted = tickItem.replace(/s*\(.*?\)s*/g, '');
+  if (formatted.length > 6) {
+    return formatted.substring(0, 6) + '..';
+  }
+  return formatted;
+};
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -73,16 +82,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const PIE_COLORS = ["#8b5cf6", "#38bdf8", "var(--color-danger)", "var(--color-warning)", "var(--color-success)", "#ec4899", "#06b6d4", "#f97316"];
+const PIE_COLORS = ["#8b5cf6", "#a855f7", "#d946ef", "#e879f9", "#ec4899", "#f43f5e", "#fb7185", "#fda4af"];
 
 /* ─── KPI Themes ─── */
 const KPI_THEMES = [
-  { border: 'none', glow: 'none', text: 'var(--color-success)', icon: Database },
-  { border: 'none', glow: 'none', text: 'var(--text-primary)', icon: TrendingUp },
-  { border: 'none', glow: 'none', text: 'var(--color-success)', icon: Ship },
-  { border: 'none', glow: 'none', text: 'var(--color-danger)', icon: ShieldCheck },
-  { border: 'none', glow: 'none', text: 'var(--color-warning)', icon: Factory },
-  { border: 'none', glow: 'none', text: 'var(--text-primary)', icon: Scale },
+  { border: 'none', glow: 'none', text: '#8b5cf6', icon: Database },
+  { border: 'none', glow: 'none', text: '#a855f7', icon: TrendingUp },
+  { border: 'none', glow: 'none', text: '#d946ef', icon: Ship },
+  { border: 'none', glow: 'none', text: '#ec4899', icon: ShieldCheck },
+  { border: 'none', glow: 'none', text: '#f43f5e', icon: Factory },
+  { border: 'none', glow: 'none', text: '#fb7185', icon: Scale },
 ];
 
 /* ─── Widget Icons ─── */
@@ -180,6 +189,10 @@ export default function SquidDashboard() {
 
   /* ─── Unified Chart Renderer (supports both old series and new bars/lines/areas format) ─── */
   const renderChart = (widget: any) => {
+
+    const PALETTE = ["#8b5cf6", "#d946ef", "#ec4899", "#f43f5e", "#a855f7", "#fb7185"];
+    const getMonolithicColor = (i: number) => PALETTE[i % PALETTE.length];
+
     const d = widget.data;
     if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
 
@@ -210,18 +223,18 @@ export default function SquidDashboard() {
               <defs>
                 {widget.areas?.map((a: any, i: number) => (
                   <linearGradient key={i} id={`sArea${widget.id}_${i}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={a.color || a.fill} stopOpacity={0.6}/>
-                    <stop offset="95%" stopColor={a.color || a.fill} stopOpacity={0.05}/>
+                    <stop offset="5%" stopColor={getMonolithicColor(i)} stopOpacity={0.6}/>
+                    <stop offset="95%" stopColor={getMonolithicColor(i)} stopOpacity={0.05}/>
                   </linearGradient>
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={i} type="monotone" dataKey={a.key || a.dataKey} stroke={a.color || a.stroke || a.fill} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
+                <Area key={i} type="monotone" dataKey={a.key || a.dataKey} stroke={getMonolithicColor(i)} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
             </AreaChart>
           );
@@ -229,12 +242,12 @@ export default function SquidDashboard() {
           return (
             <BarChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={i} dataKey={b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={i} dataKey={b.key || b.dataKey} fill={getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
             </BarChart>
           );
@@ -242,12 +255,12 @@ export default function SquidDashboard() {
           return (
             <LineChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={i} type="monotone" dataKey={l.key || l.dataKey} stroke={l.color || l.stroke || l.fill} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={i} type="monotone" dataKey={l.key || l.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </LineChart>
           );
@@ -256,7 +269,7 @@ export default function SquidDashboard() {
           return (
             <ComposedChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {(widget.lines?.some((l:any) => l.yAxisId === 'right') || widget.bars?.some((b:any) => b.yAxisId === 'right') || widget.areas?.some((a:any) => a.yAxisId === 'right')) && (
                 <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
@@ -264,13 +277,13 @@ export default function SquidDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} fill={a.color || a.fill} stroke={a.color || a.stroke || a.fill} fillOpacity={0.5} strokeWidth={2} />
+                <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} fill={getMonolithicColor(i)} stroke={getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
               ))}
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} fill={getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} stroke={l.color || l.stroke || l.fill} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </ComposedChart>
           );
@@ -304,13 +317,13 @@ export default function SquidDashboard() {
         return (
           <LineChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
-              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
             ))}
           </LineChart>
         );
@@ -318,12 +331,12 @@ export default function SquidDashboard() {
         return (
           <AreaChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
-              <Area key={i} type="monotone" dataKey={s.dataKey} stroke={s.color} fill={s.color} fillOpacity={0.5} strokeWidth={2} />
+              <Area key={i} type="monotone" dataKey={s.dataKey} stroke={getMonolithicColor(i)} fill={getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
             ))}
           </AreaChart>
         );
@@ -331,12 +344,12 @@ export default function SquidDashboard() {
         return (
           <BarChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
-              <Bar key={i} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />
+              <Bar key={i} dataKey={s.dataKey} fill={getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
             ))}
           </BarChart>
         );
@@ -344,15 +357,15 @@ export default function SquidDashboard() {
         return (
           <ComposedChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => {
-              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
-              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} />;
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />;
+              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
+              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={getMonolithicColor(i)} />;
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
             })}
           </ComposedChart>
         );
@@ -446,7 +459,7 @@ export default function SquidDashboard() {
           onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <BookOpen size={24} color="var(--color-success)" />
+            <BookOpen size={24} color="#ec4899" />
             <div>
               <span style={{ fontSize: '1.13rem', fontWeight: 700, display: 'block', color: 'var(--text-primary)' }}>신입직원 교육 가이드</span>
               <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 400 }}>NotebookLM 분석 기반: 조업 방식 비교 및 포클랜드 시장 리스크 점검</span>
@@ -457,12 +470,12 @@ export default function SquidDashboard() {
         
         {showEdu && (
           <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'var(--bg-color)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               
               {/* Module 1 */}
               <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
                 <h3 style={{ color: 'var(--text-primary)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                  <Anchor size={20} color="var(--color-success)"/> 조업 방식 비교: 채낚기 vs 트롤
+                  <Anchor size={20} color="#ec4899"/> 조업 방식 비교: 채낚기 vs 트롤
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div style={{ padding: '1rem', background: 'var(--surface-2)', borderRadius: '6px' }}>
@@ -488,7 +501,7 @@ export default function SquidDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                    <Globe size={20} color="var(--color-success)"/> 포클랜드 어장 핵심 요약
+                    <Globe size={20} color="#ec4899"/> 포클랜드 어장 핵심 요약
                   </h3>
                   <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                     <li><strong style={{color:'var(--text-primary)'}}>타겟 어종:</strong> 일렉스 오징어 (Illex argentinus). 국내 살오징어 어획량 급감으로 대체재 가치 폭등 중.</li>
@@ -498,7 +511,7 @@ export default function SquidDashboard() {
                 </div>
                 <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flex: 1}}>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                    <ShieldCheck size={20} color="var(--color-danger)"/> 육상부서 필수 체크: 진입 리스크
+                    <ShieldCheck size={20} color="#8b5cf6"/> 육상부서 필수 체크: 진입 리스크
                   </h3>
                   <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                     <li><strong style={{color:'var(--text-primary)'}}>쿼터(ITQ B) 장벽:</strong> 25년 장기 어업권 제도로 독자 신규 진입 극히 어려움. 기존 선사와의 JV(합작) 또는 M&A 우회 타진 필요.</li>
@@ -521,11 +534,11 @@ export default function SquidDashboard() {
               flexWrap: 'wrap'}}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                 <div style={{ background: 'var(--surface-2)', padding: '1rem', borderRadius: '50%', flexShrink: 0 }}>
-                  <Database size={24} color="var(--color-success)" />
+                  <Database size={24} color="#ec4899" />
                 </div>
                 <div>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Zap size={18} color="var(--color-success)" /> 오징어 지식 AI 챗봇 (NotebookLM)
+                    <Zap size={18} color="#ec4899" /> 오징어 지식 AI 챗봇 (NotebookLM)
                   </h3>
                   <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                     70여 개의 최신 논문, 기사, 정부 보고서가 학습된 맞춤형 AI입니다. 실무 중 궁금한 오징어 시장 동향, 조업 기술, 규제 등을 즉시 질문하세요.
@@ -561,7 +574,7 @@ export default function SquidDashboard() {
 
 
       {/* ═══ API COMMAND CENTER ═══ */}
-      <section style={{ marginBottom: '3rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+      <section style={{ marginBottom: '3rem', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         {/* Scenario Simulator */}
         <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.2rem', color: 'var(--color-success)' }}>
@@ -604,7 +617,7 @@ export default function SquidDashboard() {
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <div style={{ display: 'flex', gap: '10px', padding: '0.8rem', background: 'var(--surface-2)', borderRadius: '6px', borderLeft: '3px solid #f3727f' }}>
-              <AlertTriangle size={16} color="var(--color-danger)" style={{ marginTop: '2px', flexShrink: 0 }} />
+              <AlertTriangle size={16} color="#8b5cf6" style={{ marginTop: '2px', flexShrink: 0 }} />
               <div>
                 <p style={{ margin: '0 0 0.2rem 0', fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>[기상청 API] ENSO 임계치 돌파</p>
                 <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>태평양 SST 이상 기온 지속. 공해상 조업 확대 지시가 필요합니다.</p>
@@ -612,7 +625,7 @@ export default function SquidDashboard() {
             </div>
             
             <div style={{ display: 'flex', gap: '10px', padding: '0.8rem', background: 'var(--surface-2)', borderRadius: '6px', borderLeft: '3px solid #539df5' }}>
-              <TrendingUp size={16} color="var(--color-info)" style={{ marginTop: '2px', flexShrink: 0 }} />
+              <TrendingUp size={16} color="#a855f7" style={{ marginTop: '2px', flexShrink: 0 }} />
               <div>
                 <p style={{ margin: '0 0 0.2rem 0', fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>[EUMOFA API] Vigo항 단가 급등</p>
                 <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Illex 도소매 스프레드 42% 도달. B2B 직수출 최적 타이밍입니다.</p>
@@ -638,7 +651,7 @@ export default function SquidDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w1_catch_powers', 'w2_korea_supply', 'w3_jumbo_flying', 'w_squid_price_forecast', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment', 'w48_supply_inversion', 'w57_china_supply_dominance', 'w18', 'w27_squid_climate_geopolitics', 'w12_ax_fishing', 'w68_import_dependency', 'w74_illex_boom_bust', 'w76_area41_illex_share', 'w80_loligo_vs_illex_portfolio'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -652,7 +665,7 @@ export default function SquidDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w10_processed_dominance', 'w31_eu_squid_supply_shock', 'w35_spain_trade_hub', 'w37_spain_arbitrage_trap', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w_squid_sourcing_sim', 'w34_value_add_funnel', 'w17', 'w47_spain_processing_empire', 'w30_business_model'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -666,7 +679,7 @@ export default function SquidDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w50_fleet_opex', 'w53_energy_stress_test', 'w26_squid_ai_jigging_fuel', 'w_squid_hs_tariff_sim', 'w54_sourcing_bottleneck', 'w28_falkland_waterfall', 'w29_capex_shock', 'w43_risk_reward_inversion', 'w66_capex_roadmap', 'w71_fig_licence_system', 'w73_illex_2024_season', 'w79_fleet_competition_map'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -680,7 +693,7 @@ export default function SquidDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -694,24 +707,12 @@ export default function SquidDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w11_no_aquaculture', 'w25_squid_chitosan_biomaterial', 'w51_policy_intervention', 'w77_mile201_dwf_crisis'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w11_no_aquaculture', 'w25_squid_chitosan_biomaterial', 'w51_policy_intervention', 'w77_mile201_dwf_crisis', 'w65_ma_scorecard', 'w67_earnout_sim', 'w70_value_creation', 'w56_sunmin_pe_valuation', 'w72_fig_revenue_trend', 'w75_loligo_scientific_mgmt', 'w78_itq_transition_timeline'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part VI: M&A 실사 인텔리전스 ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[5]?.color || '#ec4899', borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[5]?.title || '🎯 Part VI — M&A 실사 인텔리전스'}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[5]?.desc || ''}</p>
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w65_ma_scorecard', 'w67_earnout_sim', 'w70_value_creation', 'w56_sunmin_pe_valuation', 'w72_fig_revenue_trend', 'w75_loligo_scientific_mgmt', 'w78_itq_transition_timeline'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
+        
 
       </div>
 
@@ -769,7 +770,7 @@ export default function SquidDashboard() {
           <div style={{ marginTop: 'auto' }}>
             <TakeawayBox
               situation={situation}
-              actionPlan={takeaway}
+              takeaway={takeaway}
               source={w.source}
             />
           </div>

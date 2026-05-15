@@ -30,13 +30,24 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         <p className={styles.tooltipLabel}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ color: entry.color, margin: '0.25rem 0', fontSize: '0.8rem' }}>
-            {entry.name}: {entry.value}
+            {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
           </p>
         ))}
       </div>
     );
   }
   return null;
+};
+
+/* A-02: TelemetryBadge — 위젯별 데이터 상태 표시 */
+const TelemetryBadge = ({ status, syncDate }: { status: 'LIVE' | 'SYNCED' | 'STATIC'; syncDate?: string }) => {
+  const cls = status === 'LIVE' ? styles.telemetryLive : status === 'SYNCED' ? styles.telemetrySynced : styles.telemetryStatic;
+  return (
+    <span className={cls}>
+      {status === 'LIVE' ? '🟢' : status === 'SYNCED' ? '🔵' : '⚪'} {status}
+      {syncDate && <span style={{ marginLeft: '0.2rem', opacity: 0.7 }}>({syncDate})</span>}
+    </span>
+  );
 };
 
 // Main Component
@@ -63,7 +74,7 @@ export default function TunaExtractDashboard() {
   if (loading || !data) {
     return (
       <div className={styles.container} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Droplets size={48} className={styles.rotateIcon} color="#f97316" />
+        <Droplets size={48} className={styles.rotateIcon} color="#22d3ee" />
       </div>
     );
   }
@@ -73,24 +84,21 @@ export default function TunaExtractDashboard() {
       {/* Header */}
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>참치액젓 (Tuna Extract) Intelligence</h1>
-          <p className={styles.subtitle}>간장 대체 시장 리딩 & 부산물 밸류업 전략 (Updated: {new Date().toLocaleDateString()})</p>
+          <h1 className={styles.title}>참치액젓 인텔리전스</h1>
+          <p className={styles.subtitle}>간장 대체 시장 리딩 · 부산물 밸류업 전략 커맨드 센터 ({new Date().toLocaleDateString()})</p>
         </div>
         <div className={styles.lastUpdated}>
-          <CheckCircle2 size={16} color="var(--color-success)" />
-          <span>S-Grade Data Sync Active</span>
+          <CheckCircle2 size={16} color="#22d3ee" />
+          <TelemetryBadge status="SYNCED" syncDate="2025-Q4" />
         </div>
       </div>
 
       {/* Executive Command */}
-      <div style={{
-        background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(15, 23, 42, 0.8))',
-        border: '1px solid #f97316', borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem'
-      }}>
-        <h3 style={{ margin: '0 0 0.5rem 0', color: '#f97316', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Target size={20} /> Executive Strategy Command
+      <div className={styles.executiveCommand}>
+        <h3 className={styles.executiveCommandTitle}>
+          <Target size={20} /> 경영진 전략 요약
         </h3>
-        <p style={{ color: '#e2e8f0', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
+        <p className={styles.executiveCommandText}>
           참치액젓은 간장 시장의 <b>파괴적 대체재</b>로 부상 중이며, 연 50% 매출 성장률이 이를 증명합니다. 
           참치 통조림 가공 부산물(자숙액)을 활용한 <b>원가 '0' 밸류업 전략</b>으로 그룹 내 수산 수직계열화를 극대화해야 합니다. 
           해외 시장(일본 한인마트, K-Food)과 연계한 수출 확대가 3~5년 내 실현 가능한 골든 윈도우입니다.
@@ -143,16 +151,16 @@ export default function TunaExtractDashboard() {
             alignItems: 'center',
             justifyContent: 'space-between',
             cursor: 'pointer',
-            background: isEduOpen ? 'rgba(249, 115, 22, 0.1)' : 'transparent',
+            background: isEduOpen ? 'rgba(34, 211, 238, 0.08)' : 'transparent',
             transition: 'background 0.3s ease'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
-              background: 'rgba(249, 115, 22, 0.2)', padding: '0.5rem', borderRadius: '8px',
+              background: 'rgba(34, 211, 238, 0.2)', padding: '0.5rem', borderRadius: '8px',
               display: 'flex', alignItems: 'center', justifyContent: 'center'
             }}>
-              <BookOpen size={20} color="#f97316" />
+              <BookOpen size={20} color="#22d3ee" />
             </div>
             <div>
               <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
@@ -176,7 +184,7 @@ export default function TunaExtractDashboard() {
               {/* Left: Quick Guide */}
               <div style={{ background: 'var(--surface-3)', borderRadius: '10px', padding: '1.2rem' }}>
                 <h3 style={{ fontSize: '0.9rem', color: '#e2e8f0', fontWeight: 700, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Fish size={16} color="#f97316" /> 참치액젓 시장 핵심 역학
+                  <Fish size={16} color="#22d3ee" /> 참치액젓 시장 핵심 역학
                 </h3>
                 <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem', lineHeight: 1.8 }}>
                   <li><strong>대체재 부상:</strong> 전통적인 간장 시장을 잠식하며 파괴적 대체재로 급부상 중.</li>
@@ -189,7 +197,7 @@ export default function TunaExtractDashboard() {
               {/* Right: NotebookLM Chatbot */}
               <div style={{ background: 'var(--surface-3)', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
                 <div style={{ width: '50px', height: '50px', background: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                  <MessageSquare size={24} color="#f97316" />
+                  <MessageSquare size={24} color="#22d3ee" />
                 </div>
                 <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
                   참치액젓 전략 어시스턴트
@@ -229,12 +237,13 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part I: Market Structure */}
-      <h3 style={{ borderLeft: '4px solid #10b981', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part I. 시장 구조 (Market Structure)</h3>
+      <h3 className={styles.sectionHeader}>부문 I. 시장 구조</h3>
       <div className={styles.grid}>
         {/* W01 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="var(--color-success)"/> W01. 간장 제국의 붕괴: 카니발리제이션 역설</h3>
+            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="#22d3ee"/> 간장 제국의 붕괴: 카니발리제이션 역설</h3>
+            <TelemetryBadge status="SYNCED" syncDate="2025" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -261,7 +270,8 @@ export default function TunaExtractDashboard() {
         {/* W02 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><PieChartIcon size={18} className={styles.cardIcon} color="var(--color-success)"/> W02. 원조의 몰락과 자본의 승리 (2025 점유율 역전)</h3>
+            <h3 className={styles.cardTitle}><PieChartIcon size={18} className={styles.cardIcon} color="#22d3ee"/> 원조의 몰락과 자본의 승리 (2025 점유율 역전)</h3>
+            <TelemetryBadge status="SYNCED" syncDate="2025" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -284,12 +294,13 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part II: Raw Material & Processing */}
-      <h3 style={{ borderLeft: '4px solid #3b82f6', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part II. 원료·가공 (Raw Material & Processing)</h3>
+      <h3 className={styles.sectionHeaderAlt}>부문 II. 원료·가공</h3>
       <div className={styles.grid}>
         {/* W03 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="var(--color-info)"/> W03. 제로 코스트의 마법: 자숙액(By-product)의 부가가치</h3>
+            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="#3b82f6"/> 제로 코스트의 마법: 자숙액 부가가치</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -313,7 +324,8 @@ export default function TunaExtractDashboard() {
         {/* W04 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="var(--color-info)"/> W04. 원물 가격 정체 vs 자숙액의 초고마진 디커플링</h3>
+            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="#3b82f6"/> 원물 가격 정체 vs 자숙액 초고마진 디커플링</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -339,12 +351,13 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part III: Export & Regulation */}
-      <h3 style={{ borderLeft: '4px solid #f59e0b', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part III. 수출·규제 (Export & Regulation)</h3>
+      <h3 className={styles.sectionHeaderWarn}>부문 III. 수출·규제</h3>
       <div className={styles.grid}>
         {/* W05 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Globe size={18} className={styles.cardIcon} color="var(--color-warning)"/> W05. 주요국 K-Food 마트 참치액 유통 침투율</h3>
+            <h3 className={styles.cardTitle}><Globe size={18} className={styles.cardIcon} color="#f59e0b"/> 주요국 참치액 유통 침투율</h3>
+            <TelemetryBadge status="SYNCED" syncDate="2024" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -369,7 +382,8 @@ export default function TunaExtractDashboard() {
         {/* W06 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="var(--color-warning)"/> W06. <TermTooltip term="히스타민" description="아미노산(히스티딘)이 세균에 의해 분해되면서 생성되는 유해 물질. EU Regulation 2073/2005에서 발효 수산물의 허용 기준을 200mg/kg으로 규정하며, FDA는 50ppm으로 더 엄격하게 관리." /> 규제 리스크 맵</h3>
+            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="#f59e0b"/> <TermTooltip term="히스타민" description="아미노산(히스티딘)이 세균에 의해 분해되면서 생성되는 유해 물질. EU Regulation 2073/2005에서 발효 수산물의 허용 기준을 200mg/kg으로 규정하며, FDA는 50ppm으로 더 엄격하게 관리." /> 규제 리스크 맵</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -393,12 +407,13 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part IV: Consumer & Trend */}
-      <h3 style={{ borderLeft: '4px solid #ef4444', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part IV. 소비자·트렌드 (Consumer & Trend)</h3>
+      <h3 className={styles.sectionHeaderDanger}>부문 IV. 소비자·트렌드</h3>
       <div className={styles.grid}>
         {/* W07 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="var(--color-danger)"/> W07. 간장 대체 제품 소비자 선호도</h3>
+            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#ef4444"/> 간장 대체 제품 소비자 선호도</h3>
+            <TelemetryBadge status="SYNCED" syncDate="2021" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -423,7 +438,8 @@ export default function TunaExtractDashboard() {
         {/* W08 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><PieChartIcon size={18} className={styles.cardIcon} color="var(--color-danger)"/> W08. 참치액 활용 카테고리 확장 추이</h3>
+            <h3 className={styles.cardTitle}><PieChartIcon size={18} className={styles.cardIcon} color="#ef4444"/> 참치액 활용 카테고리 확장 추이</h3>
+            <TelemetryBadge status="SYNCED" syncDate="2024E" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -449,14 +465,15 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part V: R&D & Science */}
-      <h3 style={{ borderLeft: '4px solid #8b5cf6', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part V. R&D·기능성 (Science & Innovation)</h3>
+      <h3 className={styles.sectionHeaderViolet}>부문 V. 연구개발·기능성</h3>
       <div className={styles.grid}>
         <TunaBioUpcyclingGap />
         <TunaPeptideEfficacy />
         {/* W09 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#8b5cf6"/> W09. 부산물 활용 기능성 연구 파이프라인</h3>
+            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#8b5cf6"/> 부산물 기능성 연구 파이프라인</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -479,7 +496,8 @@ export default function TunaExtractDashboard() {
         {/* W10 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Lightbulb size={18} className={styles.cardIcon} color="#8b5cf6"/> W10. 규격 및 분류 체계 전략</h3>
+            <h3 className={styles.cardTitle}><Lightbulb size={18} className={styles.cardIcon} color="#8b5cf6"/> 규격 및 분류 체계 전략</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <div style={{ height: '280px', overflowY: 'auto' }}>
@@ -519,12 +537,13 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part VI: Strategy Simulation */}
-      <h3 style={{ borderLeft: '4px solid #f472b6', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part VI. 전략 시뮬레이션 (Strategy Simulation)</h3>
+      <h3 className={styles.sectionHeaderPink}>부문 VI. 전략 시뮬레이션</h3>
       <div className={styles.grid}>
         {/* W11 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#f472b6"/> W11. 참치액 진입 시나리오 시뮬레이터 (<TermTooltip term="ROIC" description="투하자본이익률(Return On Invested Capital). 투입된 자본 대비 영업이익을 나타내는 지표. ROIC가 높을수록 자본 효율성이 뛰어남." /> 기준)</h3>
+            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#f472b6"/> 진입 시나리오 시뮬레이터 (<TermTooltip term="ROIC" description="투하자본이익률(Return On Invested Capital). 투입된 자본 대비 영업이익을 나타내는 지표. ROIC가 높을수록 자본 효율성이 뛰어남." /> 기준)</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -550,7 +569,8 @@ export default function TunaExtractDashboard() {
         {/* W12 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="#f472b6"/> W12. 참치액 vs 펫푸드 부가가치 비교</h3>
+            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="#f472b6"/> 참치액 vs 펫푸드 부가가치 비교</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -575,7 +595,7 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part VII: Strategic New Insights */}
-      <h3 style={{ borderLeft: '4px solid #f59e0b', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part VII. 신규 글로벌 인텔리전스 (Global Expansion)</h3>
+      <h3 className={styles.sectionHeaderWarn}>부문 VII. 신규 글로벌 인텔리전스</h3>
       <div className={styles.grid}>
         <TunaPngHubStrategy />
         <TunaGlobalHalalStrategy />
@@ -583,7 +603,7 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part VIII: Supply Chain Risk & ESG */}
-      <h3 style={{ borderLeft: '4px solid #ef4444', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '1.5rem' }}>Part VIII. 공급망 리스크 & ESG (Supply Chain Risk & Sustainability)</h3>
+      <h3 className={styles.sectionHeaderDanger}>부문 VIII. 공급망 리스크 · 지속가능성</h3>
       <div className={styles.grid}>
         <TunaTacMonitor
           tacData={data.d_tac_monitor}
@@ -595,14 +615,15 @@ export default function TunaExtractDashboard() {
       </div>
 
       {/* Part IX: KFAS Research Intelligence */}
-      <h3 style={{ borderLeft: '4px solid #06b6d4', paddingLeft: '0.75rem', marginTop: '3rem', marginBottom: '0.5rem' }}>Part IX. 수산발효·부산물 과학 실증 연구</h3>
-      <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem' }}>한국수산과학회지(KFAS) 논문 8편 기반 — 참치 부산물·액젓·발효 과학 데이터</p>
+      <h3 className={styles.sectionHeaderTeal}>부문 IX. 수산발효·부산물 과학 실증 연구</h3>
+      <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem' }}>한국수산과학회지 논문 8편 기반 — 참치 부산물·액젓·발효 과학 데이터</p>
       <div className={styles.grid}>
 
         {/* K01: 참치 부산물 안전성 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="#06b6d4"/> K01. 참치 통조림 부산물 위생안전성·영양 평가</h3>
+            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="#06b6d4"/> 통조림 부산물 위생안전성·영양 평가</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -628,7 +649,8 @@ export default function TunaExtractDashboard() {
         {/* K02: 참치 적색육 패티 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#06b6d4"/> K02. 참치 적색육+황새치 어육 패티 최적 배합</h3>
+            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#06b6d4"/> 적색육+황새치 어육 패티 최적 배합</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -654,7 +676,8 @@ export default function TunaExtractDashboard() {
         {/* K03: 가쓰오부시 위해요소 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> K03. 시판 가쓰오부시 위해요소 분석</h3>
+            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> 시판 가쓰오부시 위해요소 분석</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -679,7 +702,8 @@ export default function TunaExtractDashboard() {
         {/* K04: 황다랑어 알 기능성 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> K04. 황다랑어 알 효소 가수분해물 생리활성</h3>
+            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> 황다랑어 알 효소 가수분해물 생리활성</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -704,7 +728,8 @@ export default function TunaExtractDashboard() {
         {/* K05: 속성발효 액젓 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="#06b6d4"/> K05. 속성발효 고순도 멸치액젓 — 발효 혁신</h3>
+            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="#06b6d4"/> 속성발효 고순도 멸치액젓 — 발효 혁신</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -729,7 +754,8 @@ export default function TunaExtractDashboard() {
         {/* K06: 바이오제닉 아민 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> K06. 젓갈 원료별 바이오제닉 아민 비교</h3>
+            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#06b6d4"/> 젓갈 원료별 바이오제닉 아민 비교</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -754,7 +780,8 @@ export default function TunaExtractDashboard() {
         {/* K07: 쌀코지 어간장 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Lightbulb size={18} className={styles.cardIcon} color="#06b6d4"/> K07. 쌀코지 저염 어간장 발효특성 혁신</h3>
+            <h3 className={styles.cardTitle}><Lightbulb size={18} className={styles.cardIcon} color="#06b6d4"/> 쌀코지 저염 어간장 발효특성 혁신</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>
@@ -780,7 +807,8 @@ export default function TunaExtractDashboard() {
         {/* K08: 쓴맛 개선 조미소스 */}
         <div className={styles.card}>
           <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> K08. 오징어 효소 활용 멸치 조미소스 쓴맛 제거</h3>
+            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#06b6d4"/> 오징어 효소 활용 멸치 조미소스 쓴맛 제거</h3>
+            <TelemetryBadge status="STATIC" />
           </div>
           <div className={styles.cardBody}>
             <SafeResponsiveContainer height={280}>

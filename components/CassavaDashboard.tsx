@@ -36,13 +36,23 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
+const CASSAVA_THEME = {
+  primary: '#b45309',
+  secondary: '#d97706',
+  tertiary: '#f59e0b',
+  quaternary: '#fbbf24',
+  neutral: '#fcd34d'
+};
+
+const ACCENT_COLORS = [CASSAVA_THEME.primary, CASSAVA_THEME.secondary, CASSAVA_THEME.tertiary, CASSAVA_THEME.quaternary, CASSAVA_THEME.neutral];
+
 const KPI_THEMES = [
-  { border: 'rgba(16,185,129,0.5)', glow: 'rgba(16,185,129,0.25)', text: 'var(--color-success)', icon: Globe },
-  { border: 'rgba(56,189,248,0.5)', glow: 'rgba(56,189,248,0.25)', text: '#38bdf8', icon: TrendingUp },
-  { border: 'rgba(239,68,68,0.5)', glow: 'rgba(239,68,68,0.25)', text: 'var(--color-danger)', icon: Factory },
-  { border: 'rgba(245,158,11,0.5)', glow: 'rgba(245,158,11,0.25)', text: 'var(--color-warning)', icon: DollarSign },
-  { border: 'rgba(139,92,246,0.5)', glow: 'rgba(139,92,246,0.25)', text: '#8b5cf6', icon: Scale },
-  { border: 'rgba(236,72,153,0.5)', glow: 'rgba(236,72,153,0.25)', text: '#ec4899', icon: AlertTriangle },
+  { border: 'rgba(245,158,11,0.5)', glow: 'rgba(245,158,11,0.25)', text: CASSAVA_THEME.tertiary, icon: Globe },
+  { border: 'rgba(217,119,6,0.5)', glow: 'rgba(217,119,6,0.25)', text: CASSAVA_THEME.secondary, icon: TrendingUp },
+  { border: 'rgba(180,83,9,0.5)', glow: 'rgba(180,83,9,0.25)', text: CASSAVA_THEME.primary, icon: Factory },
+  { border: 'rgba(251,191,36,0.5)', glow: 'rgba(251,191,36,0.25)', text: CASSAVA_THEME.quaternary, icon: DollarSign },
+  { border: 'rgba(252,211,77,0.5)', glow: 'rgba(252,211,77,0.25)', text: CASSAVA_THEME.neutral, icon: Scale },
+  { border: 'rgba(245,158,11,0.5)', glow: 'rgba(245,158,11,0.25)', text: CASSAVA_THEME.tertiary, icon: AlertTriangle },
 ];
 
 const CASSAVA_KPIS: Record<string, any> = {
@@ -60,13 +70,12 @@ const WIDGET_ICONS: Record<string, any> = {
   w_early_warning: ShieldAlert, w_arbitrage: Scale, w_esg: Leaf
 };
 
-const ACCENT_COLORS = ['var(--color-success)','#8b5cf6','var(--color-danger)','var(--color-info)','var(--color-warning)','#ec4899','#38bdf8','var(--color-warning)','var(--color-success)'];
-
 const SECTIONS = [
-  { id: "S1", title: "🧬 Part I — 4F 패러다임 전환 & 부가가치 확장", desc: "생분해성 수지, 변성전분 등 극한 마진 추구 지점 도출", color: "#8b5cf6", widgets: ["w10", "w01", "w02", "w03", "w_esg"] },
-  { id: "S2", title: "🚢 Part II — 글로벌 공급망 병목 & 태국/베트남 독점 리스크", desc: "메콩 편중 현상 데이터 검증 및 가격/생물학적 리스크 전이율 분석", color: "var(--color-danger)", widgets: ["w_early_warning", "w04", "w05", "w06"] },
-  { id: "S3", title: "🌍 Part III — 신라교역 5개국 시너지 넥서스 (Silla Co. 5-Hub Strategy)", desc: "어디서 조달하고 어디로 팔 것인가? 최적 권역별 미션 설정", color: "var(--color-info)", widgets: ["w07"] },
-  { id: "S4", title: "🏭 Part IV — 아프리카(가나) 시장의 역발상 기회", desc: "식량안보 이슈(밀 수입 대체) 해결 및 조기 투자 CAPEX 타당성", color: "var(--color-warning)", widgets: ["w_arbitrage", "w08", "w09"] },
+  { id: "S1", title: "원물 수급 및 글로벌 생산 (Raw Material)", desc: "기후 리스크 및 태국/베트남 등 핵심 산지 공급망 의존도 분석", color: CASSAVA_THEME.tertiary, widgets: ["w_early_warning", "w04"] },
+  { id: "S2", title: "가공 및 부가가치 창출 (Processing)", desc: "4F(식량, 사료, 원료, 바이오) 패러다임 전환 및 붕해제/바이오수지 마진 분석", color: CASSAVA_THEME.primary, widgets: ["w10", "w01", "w02"] },
+  { id: "S3", title: "물류 및 유통 (Logistics & Trading)", desc: "수입국 종속 리스크 및 글로벌 물류 허브(Silla 5-Hub) 간 차익 거래", color: CASSAVA_THEME.secondary, widgets: ["w07", "w_arbitrage", "w05"] },
+  { id: "S4", title: "판매 및 시장 수요 (Sales & Demand)", desc: "아프리카(가나) 시장의 역발상 기회 및 대체재(밀가루) 수입 대체 효과", color: CASSAVA_THEME.neutral, widgets: ["w08", "w09", "w06"] },
+  { id: "S5", title: "ESG 및 지속가능성 (Sustainability)", desc: "펄프/껍질 재자원화, 바이오가스 포집을 통한 공정 내 전력 순환", color: CASSAVA_THEME.quaternary, widgets: ["w03", "w_esg"] }
 ];
 
 export default function CassavaDashboard() {
@@ -88,7 +97,7 @@ export default function CassavaDashboard() {
 
   if (widgets.length === 0) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
-      <RefreshCcw size={32} style={{ color:'var(--color-success)', animation:'spin 1s linear infinite' }} />
+      <RefreshCcw size={32} style={{ color:CASSAVA_THEME.tertiary, animation:'spin 1s linear infinite' }} />
       <p style={{ color:'#94a3b8' }}>Loading High-Fidelity Cassava Intelligence...</p>
     </div>
   );
@@ -100,7 +109,8 @@ export default function CassavaDashboard() {
     let d = w.data;
     if (!d?.length && w.id !== 'w04') return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
-    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} angle={d?.length > 6 ? -20 : 0} textAnchor={d?.length > 6 ? "end" : "middle"} height={d?.length > 6 ? 40 : 30} />;
+    const xFmt = (v: any) => { if (typeof v !== 'string') return v; let s = v.replace(/\([^)]*\)/g, '').trim(); return s.length > 6 ? s.slice(0,6)+'..' : s; };
+    const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} angle={d?.length > 6 ? -20 : 0} textAnchor={d?.length > 6 ? "end" : "middle"} height={d?.length > 6 ? 40 : 30} tickFormatter={xFmt} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     if (w.id === 'w04') {
@@ -109,27 +119,27 @@ export default function CassavaDashboard() {
           <svg style={{ width: '100%', height: '100%' }} viewBox="0 0 400 250">
             <defs>
               <linearGradient id="gradientRed" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="var(--color-success)" />
-                <stop offset="100%" stopColor="var(--color-danger)" />
+                <stop offset="0%" stopColor={CASSAVA_THEME.tertiary} />
+                <stop offset="100%" stopColor="#b45309" />
               </linearGradient>
             </defs>
             <path d="M 90 100 Q 170 60 250 60" fill="none" stroke="url(#gradientRed)" strokeWidth="46" opacity="0.6" className="animate-pulse" />
             <path d="M 90 120 Q 170 160 250 160" fill="none" stroke="rgba(59,130,246,0.4)" strokeWidth="12" />
             <path d="M 90 130 Q 170 215 250 215" fill="none" stroke="rgba(245,158,11,0.4)" strokeWidth="4" />
             
-            <rect x="10" y="60" width="80" height="110" fill="rgba(16,185,129,0.15)" stroke="var(--color-success)" rx="8" />
-            <text x="50" y="110" fill="var(--color-success)" fontSize="12" textAnchor="middle" fontWeight="bold">태국/베트남</text>
+            <rect x="10" y="60" width="80" height="110" fill="rgba(245,158,11,0.15)" stroke={CASSAVA_THEME.tertiary} rx="8" />
+            <text x="50" y="110" fill={CASSAVA_THEME.tertiary} fontSize="12" textAnchor="middle" fontWeight="bold">태국/베트남</text>
             <text x="50" y="130" fill="#cbd5e1" fontSize="10" textAnchor="middle">생산 점유 선도</text>
             
-            <rect x="250" y="20" width="120" height="90" fill="rgba(239,68,68,0.15)" stroke="var(--color-danger)" rx="8" />
-            <text x="310" y="60" fill="var(--color-danger)" fontSize="12" textAnchor="middle" fontWeight="bold">중국 (블랙홀)</text>
+            <rect x="250" y="20" width="120" height="90" fill="rgba(180,83,9,0.15)" stroke={CASSAVA_THEME.primary} rx="8" />
+            <text x="310" y="60" fill={CASSAVA_THEME.primary} fontSize="12" textAnchor="middle" fontWeight="bold">중국 (블랙홀)</text>
             <text x="310" y="80" fill="#cbd5e1" fontSize="10" textAnchor="middle">수출량 {w._liveMetadata?.chinaAbsorptionRate || '60~95%'} 흡수</text>
 
-            <rect x="250" y="140" width="120" height="40" fill="rgba(59,130,246,0.15)" stroke="var(--color-info)" rx="6" />
-            <text x="310" y="165" fill="var(--color-info)" fontSize="11" textAnchor="middle">기타 아시아</text>
+            <rect x="250" y="140" width="120" height="40" fill="rgba(217,119,6,0.15)" stroke={CASSAVA_THEME.secondary} rx="6" />
+            <text x="310" y="165" fill={CASSAVA_THEME.secondary} fontSize="11" textAnchor="middle">기타 아시아</text>
             
-            <rect x="250" y="200" width="120" height="30" fill="rgba(245,158,11,0.15)" stroke="var(--color-warning)" rx="6" />
-            <text x="310" y="220" fill="var(--color-warning)" fontSize="11" textAnchor="middle">한국 ({w._liveMetadata?.thailandVietnamDependency || '99.9%'} 의존도)</text>
+            <rect x="250" y="200" width="120" height="30" fill="rgba(245,158,11,0.15)" stroke={CASSAVA_THEME.quaternary} rx="6" />
+            <text x="310" y="220" fill={CASSAVA_THEME.quaternary} fontSize="11" textAnchor="middle">한국 ({w._liveMetadata?.thailandVietnamDependency || '99.9%'} 의존도)</text>
           </svg>
         </div>
       );
@@ -220,7 +230,7 @@ export default function CassavaDashboard() {
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <div style={{ display:'flex', alignItems:'center', gap:'0.75rem' }}>
             <div style={{ width:'44px', height:'44px', borderRadius:'8px', background: 'var(--surface-3)', display:'flex', alignItems:'center', justifyContent:'center', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <Sprout size={24} color="var(--color-success)" />
+              <Sprout size={24} color={CASSAVA_THEME.tertiary} />
             </div>
             <div>
               <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: '#f8fafc' }}>
@@ -231,7 +241,7 @@ export default function CassavaDashboard() {
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
             <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: '1px solid rgba(255,255,255,0.05)', borderRadius:'8px', color:'#94a3b8' }}>
-              <span style={{ color:'var(--color-success)' }}>데이터 최종 동기화:</span> 2026-05-07 (Live API Connected)
+              <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> 2026-05-07 (Live API Connected)
             </div>
           </div>
         </div>
@@ -262,38 +272,38 @@ export default function CassavaDashboard() {
       {/* ═══ Educational Panel ═══ */}
       <div style={{ marginBottom:'2.5rem' }}>
         <button onClick={() => setShowEdu(!showEdu)} style={{
-          width:'100%', background:'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.2)',
+          width:'100%', background:'rgba(245,158,11,0.05)', border: `1px solid ${CASSAVA_THEME.tertiary}33`,
           borderRadius:'10px', padding:'1.2rem 1.5rem', display:'flex', alignItems:'center',
           justifyContent:'space-between', cursor:'pointer', transition:'all 0.2s', marginBottom: showEdu?'1rem':'0'
         }}>
           <div style={{ display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <BookOpen size={20} color="var(--color-success)" />
+            <BookOpen size={20} color={CASSAVA_THEME.tertiary} />
             <div style={{ textAlign:'left' }}>
-              <div style={{ fontSize:'1.05rem', fontWeight:700, color:'var(--color-success)', marginBottom:'4px' }}>2026 Executive Summary: 카사바와 타피오카의 통합 밸류체인</div>
+              <div style={{ fontSize:'1.05rem', fontWeight:700, color:CASSAVA_THEME.tertiary, marginBottom:'4px' }}>2026 Executive Summary: 카사바와 타피오카의 통합 밸류체인</div>
               <div style={{ fontSize:'0.8rem', color:'#94a3b8' }}>단순 구황작물(카사바)에서 글로벌 4F 산업(식량, 사료, 연료, 소재)의 최상위 마진 산업재(타피오카)로 진화</div>
             </div>
           </div>
           <div style={{ transform: showEdu?'rotate(180deg)':'rotate(0deg)', transition:'transform 0.3s' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={CASSAVA_THEME.tertiary} strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
         </button>
         {showEdu && (
           <div style={{ background: '#181818', borderRadius:'10px', border: '1px solid rgba(255,255,255,0.05)', padding:'1.5rem', animation:'fadeIn 0.3s' }}>
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(320px, 1fr))', gap:'1.5rem' }}>
+            <div style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem' }}>
               <div>
-                <h3 style={{ color:'#8b5cf6', fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Dna size={15}/> 4F 플랫폼 & 패러다임 전환 (Value Pivot)</h3>
+                <h3 style={{ color:CASSAVA_THEME.primary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Dna size={15}/> 4F 플랫폼 & 패러다임 전환 (Value Pivot)</h3>
                 <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
                   카사바(원료)를 타피오카(소재)로 정제하여 <strong>4F(Food, Feed, Fuel, Factory)</strong>로 확장합니다. 동물 사료용 칩 수출에 의존하던 저수익 구조에서 탈피해, 톤당 $6,400를 호가하는 <strong>생분해성 수지(PLA/PBAT)</strong> 및 영업이익률 90% 이상의 <strong>제약용 붕해제</strong> 등 고마진 바이오 소재로 중심축을 이동 중입니다.
                 </p>
               </div>
               <div>
-                <h3 style={{ color:'var(--color-success)', fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Recycle size={15}/> 제로 웨이스트 & 순환경제 (Circular Economy)</h3>
+                <h3 style={{ color:CASSAVA_THEME.secondary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Recycle size={15}/> 제로 웨이스트 & 순환경제 (Circular Economy)</h3>
                 <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
                   타피오카 추출 후 버려지던 찌꺼기(펄프)와 껍질을 발효해 고단백 사료/버섯 배지로 재자원화합니다. 또한 가공 공정의 폐수로 메탄가스(바이오가스)를 포집해 자체 전력 및 열원으로 전환, 숨겨진 비용(Hidden Cost)을 제로화하는 ESG 인프라 투자가 필수적입니다.
                 </p>
               </div>
               <div>
-                <h3 style={{ color:'var(--color-danger)', fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><AlertTriangle size={15}/> 가나(Ghana) 중심의 식량안보 & 헷징 전략</h3>
+                <h3 style={{ color:CASSAVA_THEME.tertiary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><AlertTriangle size={15}/> 가나(Ghana) 중심의 식량안보 & 헷징 전략</h3>
                 <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
                   한국의 수입 99.9%가 태국/베트남에 편중되어 있습니다. 이를 탈피하기 위해 가나를 서아프리카 HQCF(고품질 카사바 가루) 전초기지로 육성하여, $400M 규모의 현지 밀가루 수입 대체를 주도하고 글로벌 공급망 붕괴(안보 리스크)를 방어하는 <strong>수직 계열화 롤업 모델</strong>이 최우선 과제입니다.
                 </p>
@@ -313,14 +323,15 @@ export default function CassavaDashboard() {
               <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'#94a3b8' }}>{sec.desc}</p>
             </div>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,500px), 1fr))', gap:'1.5rem' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>
             {sec.widgets.map((wId: string, idx: number) => {
               const w = getWidget(wId);
               if (!w) return null;
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[idx % ACCENT_COLORS.length] || sec.color;
+              const isLastOdd = (sec.widgets.length % 2 !== 0) && (idx === sec.widgets.length - 1);
               return (
-                <div key={w.id} className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'500px' }}>
+                <div key={w.id} className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'500px', gridColumn: isLastOdd ? '1 / -1' : 'auto' }}>
                   <div style={{ marginBottom:'1rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
                     <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:accent, margin:'0 0 0.4rem' }}>
                       <Icon size={18} />{w.title}

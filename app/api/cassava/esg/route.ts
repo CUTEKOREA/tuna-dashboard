@@ -22,7 +22,7 @@ export async function GET() {
       xKey: 'dimension',
       radars: [
         { key: 'target', name: 'Silla Co. 목표', color: '#64748b' },
-        { key: 'current', name: '현재 ESG 달성도', color: '#10b981' }
+        { key: 'current', name: '현재 ESG 달성도', color: '#f59e0b' }
       ],
       data: [
         { dimension: '바이오가스(전력 자립)', target: 100, current: 85 },

@@ -72,7 +72,7 @@ export default function TunaRanchingEducation() {
       {/* Foldable Content */}
       {isEduOpen && (
         <div style={{ padding: '0 1.5rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
             
             {/* Left: Quick Guide */}
             <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '10px', padding: '1.2rem' }}>

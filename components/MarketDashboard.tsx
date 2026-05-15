@@ -155,7 +155,7 @@ export default function MarketDashboard() {
         </h3>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '16px'
         }}>
           {/* News 1 */}
@@ -218,7 +218,7 @@ export default function MarketDashboard() {
           <Search size={20} color="#818cf8" />
           Forensic Intelligence: 참치 산업 구조적 변화와 신라교역의 전략
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>가격 스프레드 역전과 다변화 물류 차익거래</h4>

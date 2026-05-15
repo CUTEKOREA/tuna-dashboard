@@ -23,11 +23,11 @@ export async function GET() {
       chartType: 'Composed',
       xKey: 'scenario',
       bars: [
-        { key: 'wheatCost', color: '#ef4444', name: '기존 밀가루 수입 비용 ($M)' },
-        { key: 'hqcfCost', color: '#10b981', name: 'HQCF 혼합 시 비용 ($M)' }
+        { key: 'wheatCost', color: '#b45309', name: '기존 밀가루 수입 비용 ($M)' },
+        { key: 'hqcfCost', color: '#fbbf24', name: 'HQCF 혼합 시 비용 ($M)' }
       ],
       lines: [
-        { key: 'savings', color: '#3b82f6', name: '순 절감액 (Net Savings $M)' }
+        { key: 'savings', color: '#f59e0b', name: '순 절감액 (Net Savings $M)' }
       ],
       data: [
         { scenario: '밀 100% (현행)', wheatCost: 400, hqcfCost: 400, savings: 0 },

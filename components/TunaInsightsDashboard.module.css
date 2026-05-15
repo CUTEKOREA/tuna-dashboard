@@ -268,3 +268,14 @@
   }
 }
 
+
+/* S-Grade 2-Column Grid Standard */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid > :last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}

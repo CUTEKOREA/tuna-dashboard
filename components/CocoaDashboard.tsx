@@ -46,20 +46,20 @@ const KPI_THEMES = [
 ];
 
 const COCOA_KPIS: Record<string, any> = {
-  k1: { title: '글로벌 가격 폭등률', value: '+300%', trend: '📈', desc: '역대 최고치($10K+) 돌파', source: '[LIVE] ICE API' },
-  k2: { title: '국내 제과 원가 상승률', value: '+42.5%', trend: '🔥', desc: '코코아/설탕가 동반 상승 타격', source: '[LIVE] KAMIS/KCS API' },
-  k3: { title: '가공품 마진 프리미엄', value: '2.6배', trend: '🧈', desc: '코코아 버터 품귀 현상 심화', source: '[LIVE] ICCO API' },
-  k4: { title: 'DART 실시간 타격 지수', value: 'COGS +14%', trend: '📉', desc: '경쟁사(L/O사) 3분기 원가율 악화', source: '[LIVE] DART API' },
-  k5: { title: '식약처 통관 거절률', value: '8.2%', trend: '🚨', desc: '남미산 카드뮴 허용치 초과 폐기', source: '[LIVE] MFDS API' },
-  k6: { title: 'EUDR 규제 리스크', value: '벌금 4%', trend: '⚖️', desc: '산림벌채 방지법(2025) 도입 임박', source: '[LIVE] JRC / EFI API' },
+  k1: { title: '글로벌 가격 폭등률', value: '+300%', trend: '📈', desc: '역대 최고치($10K+) 돌파', source: 'ICE API' },
+  k2: { title: '국내 제과 원가 상승률', value: '+42.5%', trend: '🔥', desc: '코코아/설탕가 동반 상승 타격', source: 'KAMIS/KCS API' },
+  k3: { title: '가공품 마진 프리미엄', value: '2.6배', trend: '🧈', desc: '코코아 버터 품귀 현상 심화', source: 'ICCO API' },
+  k4: { title: 'DART 실시간 타격 지수', value: 'COGS +14%', trend: '📉', desc: '경쟁사(L/O사) 3분기 원가율 악화', source: 'DART API' },
+  k5: { title: '식약처 통관 거절률', value: '8.2%', trend: '🚨', desc: '남미산 카드뮴 허용치 초과 폐기', source: 'MFDS API' },
+  k6: { title: 'EUDR 규제 리스크', value: '벌금 4%', trend: '⚖️', desc: '산림벌채 방지법(2025) 도입 임박', source: 'JRC / EFI API' },
 };
 
 const SECTIONS = [
-  { id: "S1", title: "🌱 Part I — 원물 생산 (Raw Material)", desc: "서아프리카 기후 리스크와 원두 숏티지 사태 전조", color: "var(--color-success)" },
-  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "글로벌 분산 가공 허브와 파생품 마진 스프레드", color: "var(--color-success)" },
-  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "한국의 이중 수입 넥서스와 공급망 다변화", color: "var(--color-success)" },
-  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "B2B 대체유(CBE) 방어선과 슈링크플레이션 전략", color: "var(--color-success)" },
-  { id: "S5", title: "🌍 Part V — ESG 및 미래 전략 (Sustainability)", desc: "EUDR 산림벌채 규제 리스크와 부산물 업사이클링", color: "var(--color-success)" },
+  { id: "S1", title: "🌱 Part I — 원물 생산 (Raw Material)", desc: "서아프리카 기후 리스크와 원두 숏티지 사태 전조", color: "#b45309" },
+  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "글로벌 분산 가공 허브와 파생품 마진 스프레드", color: "#b45309" },
+  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "한국의 이중 수입 넥서스와 공급망 다변화", color: "#b45309" },
+  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "B2B 대체유(CBE) 방어선과 슈링크플레이션 전략", color: "#b45309" },
+  { id: "S5", title: "🌍 Part V — ESG 및 미래 전략 (Sustainability)", desc: "EUDR 산림벌채 규제 리스크와 부산물 업사이클링", color: "#b45309" },
 ];
 
 export default function CocoaDashboard() {
@@ -89,7 +89,7 @@ export default function CocoaDashboard() {
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />;
   const xAxisTextProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 } };
   const yAxisProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 } };
-  const COLORS = ['#8b5cf6', 'var(--color-danger)', 'var(--color-success)', '#38bdf8', 'var(--color-warning)', '#ec4899'];
+  const COLORS = ['#78350f', 'var(--color-danger)', '#b45309', '#d97706', 'var(--color-warning)', '#f59e0b'];
 
   const processedPriceData = cocoaData?.w2_price_shock ? cocoaData.w2_price_shock.map((d: any, i: number, arr: any[]) => {
     const isForecast = d.month.includes('(F)');
@@ -104,7 +104,7 @@ export default function CocoaDashboard() {
 
   const renderSankeyNode = ({ x, y, width, height, index, payload }: any) => (
     <g>
-      <rect x={x} y={y} width={width} height={height} fill="#8b5cf6" rx={2} />
+      <rect x={x} y={y} width={width} height={height} fill="#78350f" rx={2} />
       <text x={x < 150 ? x + width + 5 : x - 5} y={y + height / 2} dy={3} textAnchor={x < 150 ? 'start' : 'end'} fill="#cbd5e1" fontSize={10} fontWeight={600}>
         {payload.name}
       </text>
@@ -125,8 +125,8 @@ export default function CocoaDashboard() {
     return (
       <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'var(--bg-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ width: '40px', height: '40px', border: '3px solid rgba(30,215,96,0.3)', borderTop: '3px solid #1ed760', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }}></div>
-          <p style={{ color: 'var(--color-success)', fontWeight: 600 }}>SYNCING LIVE API...</p>
+          <div style={{ width: '40px', height: '40px', border: '3px solid rgba(180,83,9,0.3)', borderTop: '3px solid #d97706', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }}></div>
+          <p style={{ color: '#b45309', fontWeight: 600 }}>SYNCING LIVE API...</p>
         </div>
       </div>
     );
@@ -141,7 +141,7 @@ export default function CocoaDashboard() {
       <header style={{ marginBottom:'2rem', paddingTop: '2rem' }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-            <div style={{ width:'48px', height:'48px', borderRadius:'50%', background:'var(--color-success)', display:'flex', alignItems:'center', justifyContent:'center', boxShadow: '0 4px 12px rgba(30,215,96,0.3)' }}>
+            <div style={{ width:'48px', height:'48px', borderRadius:'50%', background:'#b45309', display:'flex', alignItems:'center', justifyContent:'center', boxShadow: '0 4px 12px rgba(180,83,9,0.3)' }}>
               <Hexagon size={24} color="var(--bg-color)" />
             </div>
             <div>
@@ -152,7 +152,7 @@ export default function CocoaDashboard() {
             </div>
           </div>
           <div style={{ fontSize:'0.85rem', padding:'0.5rem 1.2rem', background:'#282828', borderRadius:'20px', color:'var(--text-secondary)', fontWeight: 600 }}>
-            <span style={{ color:'var(--color-success)' }}>Global Market 2026</span> · Sourcing · Hubs · Nexus · ESG
+            <span style={{ color:'#b45309' }}>Global Market 2026</span> · Sourcing · Hubs · Nexus · ESG
           </div>
         </div>
       </header>
@@ -180,11 +180,11 @@ export default function CocoaDashboard() {
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                <div style={{ width: '8px', height: '8px', backgroundColor: 'var(--color-success)', borderRadius: '50%' }} />
-                <div style={{ position: 'absolute', width: '16px', height: '16px', backgroundColor: 'var(--color-success)', borderRadius: '50%', opacity: 0.4, animation: 'pulse 2s infinite' }} />
+                <div style={{ width: '8px', height: '8px', backgroundColor: '#b45309', borderRadius: '50%' }} />
+                <div style={{ position: 'absolute', width: '16px', height: '16px', backgroundColor: '#b45309', borderRadius: '50%', opacity: 0.4, animation: 'pulse 2s infinite' }} />
               </div>
               <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.3px' }}>
-                LIVE COMMAND CENTER <span style={{ color: 'var(--color-success)', fontWeight: 600, fontSize: '0.85rem', marginLeft: '6px' }}>SYNCING</span>
+                LIVE COMMAND CENTER <span style={{ color: '#b45309', fontWeight: 600, fontSize: '0.85rem', marginLeft: '6px' }}>SYNCING</span>
               </h2>
             </div>
             
@@ -204,7 +204,7 @@ export default function CocoaDashboard() {
                   background: '#282828', borderRadius: '16px', 
                   padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '8px' 
                 }}>
-                  <Database size={12} color="var(--color-success)" />
+                  <Database size={12} color="#b45309" />
                   <div>
                     <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-primary)' }}>{net.name}</div>
                     <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{net.desc}</div>
@@ -252,11 +252,11 @@ export default function CocoaDashboard() {
                 {kpi.value}
               </div>
               <div style={{ fontSize:'0.7rem', color:'var(--text-secondary)', fontWeight:500, lineHeight: 1.4 }}>
-                <span style={{ background:'#282828', padding:'2px 6px', borderRadius:'12px', marginRight:'6px', color: 'var(--color-success)', fontSize: '0.65rem', fontWeight: 700 }}>{kpi.trend}</span>{kpi.desc}
+                <span style={{ background:'#282828', padding:'2px 6px', borderRadius:'12px', marginRight:'6px', color: '#b45309', fontSize: '0.65rem', fontWeight: 700 }}>{kpi.trend}</span>{kpi.desc}
               </div>
               {kpi.source && (
                 <div style={{ marginTop:'8px', display:'flex', alignItems:'center', gap:'4px' }}>
-                  <span style={{ fontSize:'0.65rem', color:'var(--color-success)', background:'rgba(30, 215, 96, 0.1)', padding:'2px 6px', borderRadius:'12px', fontWeight: 600 }}>
+                  <span style={{ fontSize:'0.65rem', color:'#b45309', background:'rgba(180, 83, 9, 0.1)', padding:'2px 6px', borderRadius:'12px', fontWeight: 600 }}>
                     {kpi.source}
                   </span>
                 </div>
@@ -280,7 +280,7 @@ export default function CocoaDashboard() {
           onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <BookOpen size={20} color="var(--color-success)" />
+            <BookOpen size={20} color="#b45309" />
             <div style={{ textAlign: 'left' }}>
               <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>신입직원 교육 가이드</div>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>FAOSTAT 및 World Bank 실제 데이터 기반 — 원물 패닉 바잉과 가공 허브 헷징 로직</div>
@@ -298,10 +298,10 @@ export default function CocoaDashboard() {
             padding: '1.5rem',
             animation: 'fadeIn 0.3s ease-out'
           }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               
               <div style={{ background: '#282828', padding: '1.2rem', borderRadius: '8px' }}>
-                <h3 style={{ color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
+                <h3 style={{ color: '#b45309', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
                   <Globe size={16}/> 핵심 구조: 글로벌 쇼티지와 이중 수입 넥서스
                 </h3>
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
@@ -312,7 +312,7 @@ export default function CocoaDashboard() {
               </div>
 
               <div style={{ background: '#282828', padding: '1.2rem', borderRadius: '8px' }}>
-                <h3 style={{ color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
+                <h3 style={{ color: '#b45309', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
                   <Workflow size={16}/> 전략적 시사점: 슈링크플레이션과 EUDR 방어
                 </h3>
                 <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
@@ -330,11 +330,11 @@ export default function CocoaDashboard() {
               display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' 
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ background: 'rgba(30, 215, 96, 0.1)', padding: '0.8rem', borderRadius: '50%' }}>
-                  <Database size={20} color="var(--color-success)" />
+                <div style={{ background: 'rgba(180, 83, 9, 0.1)', padding: '0.8rem', borderRadius: '50%' }}>
+                  <Database size={20} color="#b45309" />
                 </div>
                 <div>
-                  <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}><Zap size={16} color="var(--color-success)" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> NotebookLM 코코아 AI 챗봇</h3>
+                  <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}><Zap size={16} color="#b45309" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> NotebookLM 코코아 AI 챗봇</h3>
                   <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>FAOSTAT 원물 수급, World Bank 물가, EUDR 관련 데이터가 학습된 맞춤형 AI입니다.</p>
                 </div>
               </div>
@@ -343,7 +343,7 @@ export default function CocoaDashboard() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 style={{ 
-                  background: 'var(--color-success)', 
+                  background: '#b45309', 
                   color: '#000000', 
                   padding: '0.7rem 1.3rem', 
                   borderRadius: '20px', 
@@ -356,8 +356,8 @@ export default function CocoaDashboard() {
                   whiteSpace: 'nowrap',
                   transition: 'background 0.2s, transform 0.1s'
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#1fdf64'; e.currentTarget.style.transform = 'scale(1.02)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--color-success)'; e.currentTarget.style.transform = 'scale(1)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#f59e0b'; e.currentTarget.style.transform = 'scale(1.02)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#b45309'; e.currentTarget.style.transform = 'scale(1)'; }}
               >
                 <Activity size={16} /> 챗봇 시작
               </a>
@@ -383,7 +383,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
               <span style={{ color:'#FCD535' }}>☆</span> 기후 위기와 서아프리카 원두 생산 충격 — CSSVD 감염률 40% 돌파
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(30,215,96,0.15)', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
               <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: 톤)</span>
             </h3>
           </div>
@@ -396,8 +396,8 @@ export default function CocoaDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="IvoryCoast" stackId="a" fill="#8b5cf6" name="코트디부아르 생산량" />
-                <Bar yAxisId="left" dataKey="Ghana" stackId="a" fill="#a855f7" name="가나 생산량" />
+                <Bar yAxisId="left" dataKey="IvoryCoast" stackId="a" fill="#78350f" name="코트디부아르 생산량" />
+                <Bar yAxisId="left" dataKey="Ghana" stackId="a" fill="#92400e" name="가나 생산량" />
                 <Line yAxisId="right" type="monotone" dataKey="CSSVD_Infection_Rate" stroke="var(--color-danger)" strokeWidth={3} dot={{r:4}} name="CSSVD 감염률(%, RHS)" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -416,7 +416,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
               <span style={{ color:'#FCD535' }}>☆</span> 코코아 원두 선물 가격 패닉 바잉 — 톤당 $12,000 사상 최고치
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(30,215,96,0.15)', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
               <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: USD/MT)</span>
             </h3>
           </div>
@@ -425,7 +425,7 @@ export default function CocoaDashboard() {
               <AreaChart data={processedPriceData}>
                 <defs>
                   <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.1}/></linearGradient>
-                  <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/><stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.1}/></linearGradient>
+                  <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#78350f" stopOpacity={0.8}/><stop offset="95%" stopColor="#78350f" stopOpacity={0.1}/></linearGradient>
                   <linearGradient id="colorTrend" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/></linearGradient>
                 </defs>
                 {grid}
@@ -434,7 +434,7 @@ export default function CocoaDashboard() {
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Area type="monotone" dataKey="PriceHist" stroke="var(--color-danger)" fill="url(#colorPrice)" strokeWidth={2} name="실거래가($/MT)" />
-                <Area type="monotone" dataKey="PriceForecast" stroke="#8b5cf6" fill="url(#colorForecast)" strokeWidth={2} strokeDasharray="5 5" name="전망가(Forecast)" />
+                <Area type="monotone" dataKey="PriceForecast" stroke="#78350f" fill="url(#colorForecast)" strokeWidth={2} strokeDasharray="5 5" name="전망가(Forecast)" />
                 <Area type="monotone" dataKey="Trend" stroke="#f97316" fill="url(#colorTrend)" strokeWidth={2} name="추세 전망선" strokeDasharray="3 3" />
               </AreaChart>
             </SafeResponsiveContainer>
@@ -453,7 +453,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
               <span style={{ color:'#FCD535' }}>☆</span> 글로벌 시장가 vs 현지 농가 수매가 디커플링 — 16만 톤 밀수 유출
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(30,215,96,0.15)', color:'var(--color-success)', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
               <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: USD/MT)</span>
             </h3>
           </div>
@@ -468,7 +468,7 @@ export default function CocoaDashboard() {
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Line yAxisId="left" type="monotone" dataKey="globalPrice" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 4}} name="글로벌 선물 가격($)" />
                 <Bar yAxisId="right" dataKey="farmerPrice" fill="var(--color-info)" name="가나 농가 수매가(환산$)" barSize={35} />
-                <Line yAxisId="right" type="monotone" dataKey="FX_Cedi_USD" stroke="var(--color-success)" strokeWidth={2} name="환율(Cedi/USD, RHS)" strokeDasharray="3 3" />
+                <Line yAxisId="right" type="monotone" dataKey="FX_Cedi_USD" stroke="#b45309" strokeWidth={2} name="환율(Cedi/USD, RHS)" strokeDasharray="3 3" />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>
@@ -498,7 +498,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Factory size={17} />글로벌 가공 허브(Processing Hub) 포트폴리오
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 점유율 % | 출처: [LIVE] UN Comtrade 및 ICCO 가공 API)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 점유율 % | 출처: UN Comtrade 및 ICCO 가공 API)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -531,7 +531,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Scale size={17} />파생품(Derivative) 마진 스프레드 
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 거래량 Index, 프리미엄% | 출처: [LIVE] Bloomberg Commodity 및 ICE API)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 거래량 Index, 프리미엄% | 출처: Bloomberg Commodity 및 ICE API)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -546,7 +546,7 @@ export default function CocoaDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v) => `${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="volume" fill="#38bdf8" name="수입 거래량 비중" barSize={40} />
+                <Bar yAxisId="left" dataKey="volume" fill="#d97706" name="수입 거래량 비중" barSize={40} />
                 <Line yAxisId="right" type="monotone" dataKey="margin" stroke="var(--color-warning)" strokeWidth={3} dot={{r:5}} name="원물 대비 부가가치 마진율(Premium)" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -628,9 +628,9 @@ export default function CocoaDashboard() {
                 <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
                 <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="Capacity" name="가공 생산능력" fill="rgba(139,92,246,0.2)" stroke="#8b5cf6" />
+                <Bar yAxisId="left" dataKey="Capacity" name="가공 생산능력" fill="rgba(139,92,246,0.2)" stroke="#78350f" />
                 <Bar yAxisId="left" dataKey="Utilization" name="실제 가동량" fill="var(--color-danger)" />
-                <Line yAxisId="right" type="monotone" dataKey="ExportRatio" name="무가공 원물 수출비율(%)" stroke="#38bdf8" strokeWidth={2} />
+                <Line yAxisId="right" type="monotone" dataKey="ExportRatio" name="무가공 원물 수출비율(%)" stroke="#d97706" strokeWidth={2} />
                 <ReferenceLine x="2024" stroke="var(--color-warning)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'COCOBOD 구조조정(보조금 중단)', fill: 'var(--color-warning)', fontSize: 10 }} />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -649,7 +649,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Anchor size={17} />한국의 이중 수입 넥서스 (Sankey Flow)
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 거래망 Flow | 출처: [LIVE] 관세청(KCS) OpenAPI)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 거래망 Flow | 출처: 관세청(KCS) OpenAPI)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -660,7 +660,7 @@ export default function CocoaDashboard() {
               <Sankey
                 data={cocoaData.w5_sankey_nexus}
                 node={renderSankeyNode}
-                link={{ stroke: 'var(--color-success)', strokeOpacity: 0.3 }}
+                link={{ stroke: '#b45309', strokeOpacity: 0.3 }}
                 margin={{ left: 20, right: 80, top: 20, bottom: 20 }}
               >
                 <RechartsTooltip content={<CustomTooltip />} />
@@ -681,7 +681,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Shield size={17} />공급 충격 시나리오: 재고 소진율(Burn-rate) 트래커 ⚠️
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: DIO - 재고회전일수 | 출처: [LIVE] DART API 경쟁사 공시 및 내부 SCM)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: DIO - 재고회전일수 | 출처: DART API 경쟁사 공시 및 내부 SCM)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -696,9 +696,9 @@ export default function CocoaDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="DIO" fill="#38bdf8" name="현재 보유 재고일수(DIO)" barSize={40}>
+                <Bar yAxisId="left" dataKey="DIO" fill="#d97706" name="현재 보유 재고일수(DIO)" barSize={40}>
                   {cocoaData.w6_inventory_burn_rate && cocoaData.w6_inventory_burn_rate.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.DIO < 30 ? "var(--color-danger)" : "#38bdf8"} />
+                    <Cell key={`cell-${index}`} fill={entry.DIO < 30 ? "var(--color-danger)" : "#d97706"} />
                   ))}
                 </Bar>
                 <Line yAxisId="left" type="step" dataKey="CriticalLine" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" name="공장 가동 중단(Red Alert) 기준선" dot={false} />
@@ -720,7 +720,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Anchor size={17} />허브 경유에 따른 EUDR 그린 프리미엄 원가 전가
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 누적 비용 Index | 출처: [LIVE] EU 집행위(EC) 및 SCFI 운임지수 API)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 누적 비용 Index | 출처: EU 집행위(EC) 및 SCFI 운임지수 API)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -736,7 +736,7 @@ export default function CocoaDashboard() {
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="BaseCost" stackId="a" fill="#64748b" name="순수 원물 가격" barSize={40} />
                 <Bar dataKey="Logistics" stackId="a" fill="var(--color-info)" name="해상 물류비" />
-                <Bar dataKey="EudrTax" stackId="a" fill="var(--color-success)" name="EUDR 컴플라이언스 텍스" />
+                <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="EUDR 컴플라이언스 텍스" />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -783,7 +783,7 @@ export default function CocoaDashboard() {
                 <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 {cocoaData.w16_cbe_rollup.map((entry: any, index: number) => (
-                  <Scatter key={`scatter-${index}`} name={entry.category} data={[entry]} fill={index === 2 ? '#38bdf8' : '#8b5cf6'} />
+                  <Scatter key={`scatter-${index}`} name={entry.category} data={[entry]} fill={index === 2 ? '#d97706' : '#78350f'} />
                 ))}
               </ScatterChart>
             </SafeResponsiveContainer>
@@ -837,7 +837,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <RefreshCcw size={17} />슈링크플레이션 기반 B2B 단가 워터폴
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 원가 변동폭 | 출처: [LIVE] KAMIS 도매물가 및 KCS API 융합)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 원가 변동폭 | 출처: KAMIS 도매물가 및 KCS API 융합)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -900,8 +900,8 @@ export default function CocoaDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Theobromine_mg_g" stackId="a" fill="#38bdf8" name="테오브로민(mg/g)" />
-                <Bar dataKey="Catechin_mg_g" stackId="a" fill="var(--color-success)" name="카테킨(mg/g)" />
+                <Bar dataKey="Theobromine_mg_g" stackId="a" fill="#d97706" name="테오브로민(mg/g)" />
+                <Bar dataKey="Catechin_mg_g" stackId="a" fill="#b45309" name="카테킨(mg/g)" />
                 <Bar dataKey="Feed_Utility" stackId="a" fill="var(--color-warning)" name="사료 가치(Index)" />
               </BarChart>
             </SafeResponsiveContainer>
@@ -920,7 +920,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Gavel size={17} />EUDR 이력 추적(Traceability) 준수도 및 페널티 리스크
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 준수율%, 위험도 | 출처: [LIVE] Trase.earth 및 가나 TCDP API)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 준수율%, 위험도 | 출처: Trase.earth 및 가나 TCDP API)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -935,7 +935,7 @@ export default function CocoaDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="CMS_Registration" fill="#8b5cf6" name="CMS 농가 등록률(%)" barSize={35} />
+                <Bar yAxisId="left" dataKey="CMS_Registration" fill="#78350f" name="CMS 농가 등록률(%)" barSize={35} />
                 <Bar yAxisId="left" dataKey="Polygon_Mapped" fill="var(--color-info)" name="폴리곤 매핑(%)" barSize={35} />
                 <Line yAxisId="right" type="monotone" dataKey="Export_Block_Risk" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 5}} name="수출 차단 리스크(RHS)" />
               </ComposedChart>
@@ -981,7 +981,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Landmark size={17} />아시아 내 프리미엄 차익거래
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 비율 및 차익 | 출처: [LIVE] KCS(관세청) 실측 및 ICCO API)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 비율 및 차익 | 출처: KCS(관세청) 실측 및 ICCO API)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -997,8 +997,8 @@ export default function CocoaDashboard() {
                 <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="PremiumShare" name="프리미엄 비중" stackId="a" fill="var(--color-danger)" />
-                <Bar yAxisId="left" dataKey="CBERatio" name="CBE 비중" stackId="a" fill="#38bdf8" />
-                <Line yAxisId="right" type="monotone" dataKey="Spread" stroke="var(--color-success)" strokeWidth={3} name="현물/선물 스프레드(KCS-ICCO)" dot={{ r: 5 }} />
+                <Bar yAxisId="left" dataKey="CBERatio" name="CBE 비중" stackId="a" fill="#d97706" />
+                <Line yAxisId="right" type="monotone" dataKey="Spread" stroke="#b45309" strokeWidth={3} name="현물/선물 스프레드(KCS-ICCO)" dot={{ r: 5 }} />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>
@@ -1016,7 +1016,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <TestTube size={17} />K-뷰티/바이오 소재 전환 ROI
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 마진율 % | 출처: [LIVE] 식약처 MFDS API 및 B2B 데이터베이스)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 마진율 % | 출처: 식약처 MFDS API 및 B2B 데이터베이스)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>
@@ -1031,9 +1031,9 @@ export default function CocoaDashboard() {
                 <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
                 <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#ec4899" name="EBITDA 마진율(%)" barSize={35} />
-                <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#8b5cf6" name="시장 성장률(%)" barSize={35} />
-                <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#38bdf8" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
+                <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA 마진율(%)" barSize={35} />
+                <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#78350f" name="시장 성장률(%)" barSize={35} />
+                <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#d97706" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
                 <Line yAxisId="right" type="monotone" dataKey="Antioxidant_DPPH" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="3 3" name="항산화(DPPH, RHS)" />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -1052,7 +1052,7 @@ export default function CocoaDashboard() {
           <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Gavel size={17} />이중 규제의 덫 (Dual Regulatory Trap) 리스크 매트릭스
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: X=추적리스크, Y=중금속, Z=거절률 | 출처: [LIVE] MFDS 식약처 수입식품검역 API)</span>
+              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: X=추적리스크, Y=중금속, Z=거절률 | 출처: MFDS 식약처 수입식품검역 API)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}>
                 
               </div>

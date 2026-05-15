@@ -188,7 +188,7 @@ export default function KoreaConsignmentDashboard() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {/* Widget 1: Arbitrage Radar */}
             <div className={styles.glassCard} style={{ padding: '1.5rem' }}>
               <h3 style={{ fontSize: '1.05rem', color: '#38bdf8', margin: '0 0 1.2rem 0', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>
@@ -308,7 +308,7 @@ export default function KoreaConsignmentDashboard() {
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
           <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
             <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: '#38bdf8', margin: '0 0 0.4rem 0' }}>

@@ -72,14 +72,43 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const PIE_COLORS = ["var(--color-danger)", "var(--color-info)", "var(--color-warning)", "var(--color-success)", "#8b5cf6", "#ec4899", "#06b6d4", "#f97316"];
 
-/* ─── KPI Themes ─── */
+/* ─── KPI Themes (Pollock: Cyan & Slate Monolithic) ─── */
 const KPI_THEMES = [
   { border: 'rgba(6, 182, 212, 0.5)', glow: 'rgba(6, 182, 212, 0.25)', text: '#06b6d4', icon: Database },
-  { border: 'rgba(239, 68, 68, 0.5)', glow: 'rgba(239, 68, 68, 0.25)', text: 'var(--color-danger)', icon: AlertTriangle },
-  { border: 'rgba(245, 158, 11, 0.5)', glow: 'rgba(245, 158, 11, 0.25)', text: 'var(--color-warning)', icon: TrendingUp },
-  { border: 'rgba(239, 68, 68, 0.5)', glow: 'rgba(239, 68, 68, 0.25)', text: 'var(--color-danger)', icon: ShieldCheck },
-  { border: 'rgba(16, 185, 129, 0.5)', glow: 'rgba(16, 185, 129, 0.25)', text: 'var(--color-success)', icon: Factory },
-  { border: 'rgba(236, 72, 153, 0.5)', glow: 'rgba(236, 72, 153, 0.25)', text: '#ec4899', icon: Scale },
+  { border: 'rgba(14, 165, 233, 0.5)', glow: 'rgba(14, 165, 233, 0.25)', text: '#0ea5e9', icon: ShieldCheck },
+  { border: 'rgba(56, 189, 248, 0.5)', glow: 'rgba(56, 189, 248, 0.25)', text: '#38bdf8', icon: TrendingUp },
+  { border: 'rgba(59, 130, 246, 0.5)', glow: 'rgba(59, 130, 246, 0.25)', text: '#3b82f6', icon: Scale },
+  { border: 'rgba(96, 165, 250, 0.5)', glow: 'rgba(96, 165, 250, 0.25)', text: '#60a5fa', icon: Factory },
+  { border: 'rgba(148, 163, 184, 0.5)', glow: 'rgba(148, 163, 184, 0.25)', text: '#94a3b8', icon: AlertTriangle },
+];
+
+/* ─── 5-Pillar Framework ─── */
+const PILLARS = [
+  {
+    id: "P1", title: "⚓ Pillar I — 원료 수급 (Raw Material & Sourcing)", desc: "베링해/오호츠크해 쿼터 및 미·러 독점 지정학 리스크 관리", color: "#0891b2", icon: Anchor,
+    widgets: ["w1_global_catch", "w2_hegemony", "w3_diverging", "w24_opex_spread", "w31_catch_gap", "w32_sst_fleet_matrix", "k5_hatch_temp", "k2_epa_larva"],
+    customInject: ["PollockConcentrationIndex", "PollockAlternativeSourcing"]
+  },
+  {
+    id: "P2", title: "🏭 Pillar II — 가공 & 생산 (Processing & Value-chain)", desc: "수리미(Surimi) 전환 및 중국 우회 가공 클러스터 회피", color: "#0284c7", icon: Factory,
+    widgets: ["w5_china_blackhole", "w9_surimi_megatrend", "w10_surimi_top3", "w12_proc_vs_surimi", "w17", "w20_whitefish_reshuffle", "w22_precision_release", "w25_processing_bottleneck", "k1_3d_surimi", "k3_gamma_roe", "k4_senior_food"],
+    customInject: []
+  },
+  {
+    id: "P3", title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "러시아 극동 수산 클러스터 물동량 및 차익거래 트래커", color: "#2563eb", icon: Truck,
+    widgets: ["w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "n1_sanction_paradox", "n5_rcep_detour"],
+    customInject: ["PollockFtaTariffMatrix", "PollockRouteComparison", "PollockLandedCostWaterfall"]
+  },
+  {
+    id: "P4", title: "📈 Pillar IV — 판매 & 수요 (Sales & B2B Market)", desc: "단가 인플레이션 방어 및 정부 조달(B2G) 바잉 파워 롤업", color: "#3b82f6", icon: DollarSign,
+    widgets: ["w6_inflation_unitprice", "w7_usa_russia_unitprice", "w27_substitute_spread", "w33_arbitrage_tracker"],
+    customInject: ["PollockPriceForecastChart", "PollockScenarioSimulator", "PollockSubstituteElasticity"]
+  },
+  {
+    id: "P5", title: "🌱 Pillar V — ESG & 지속가능성 (ESG & Compliance)", desc: "대러 제재(Sanctions) 리스크 및 수산 안보 방어", color: "#0ea5e9", icon: ShieldCheck,
+    widgets: ["w4_korea_crisis", "w14", "w23_upcycling_esg", "w28_esg_premium", "w30_traceability_risk", "n6_waste_to_wealth"],
+    customInject: ["PollockRiskScorecard", "PollockSanctionParadox"]
+  }
 ];
 
 /* ─── Widget Icons ─── */
@@ -148,6 +177,15 @@ const formatYAxis = (v: number) => {
   if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
   if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
   return v;
+};
+
+const formatXAxis = (tickItem: any) => {
+  if (typeof tickItem !== 'string') return tickItem;
+  let label = tickItem.replace(/\(.*?\)/g, '').trim();
+  if (label.length > 6) {
+    label = label.substring(0, 6) + '..';
+  }
+  return label;
 };
 
 export default function PollockDashboard() {
@@ -234,7 +272,7 @@ export default function PollockDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -249,7 +287,7 @@ export default function PollockDashboard() {
           return (
             <ComposedChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {hasRightAxisNew && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />}
               <RechartsTooltip content={<CustomTooltip />} />
@@ -288,7 +326,7 @@ export default function PollockDashboard() {
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -302,7 +340,7 @@ export default function PollockDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -315,7 +353,7 @@ export default function PollockDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -328,7 +366,7 @@ export default function PollockDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -544,77 +582,36 @@ export default function PollockDashboard() {
       </div>
 
       
-      {/* ═══ VALUE CHAIN FRAMEWORK ═══ */}
-      
-      {/* Part I — 원물 생산 (Raw Material) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(6, 182, 212, 0.3)', paddingBottom: '0.5rem' }}>
-          <Anchor size={24} color="#06b6d4" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part I — 원물 생산 (Raw Material)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>글로벌 어획 및 자원 밀도</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w1_global_catch', 'w2_hegemony', 'w3_diverging', 'w24_opex_spread', 'w31_catch_gap', 'w32_sst_fleet_matrix', 'k5_hatch_temp', 'k2_epa_larva'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          <PollockConcentrationIndex />
-          <PollockAlternativeSourcing />
-        </div>
-      </section>
-
-      {/* Part II — 가공 산업 (Processing) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(56, 189, 248, 0.3)', paddingBottom: '0.5rem' }}>
-          <Factory size={24} color="#38bdf8" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part II — 가공 산업 (Processing)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>수리미 및 고부가 가공 허브</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w5_china_blackhole', 'w9_surimi_megatrend', 'w10_surimi_top3', 'w12_proc_vs_surimi', 'w17', 'w20_whitefish_reshuffle', 'w22_precision_release', 'w25_processing_bottleneck', 'k1_3d_surimi', 'k3_gamma_roe', 'k4_senior_food'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
-
-      {/* Part III — 물류 및 무역 (Logistics) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(245, 158, 11, 0.3)', paddingBottom: '0.5rem' }}>
-          <Truck size={24} color="var(--color-warning)" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part III — 물류 및 무역 (Logistics)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(245, 158, 11, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>글로벌 서플라이 체인 및 물동량</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w8_korea_deficit', 'w11_surimi_trade', 'w13', 'w15', 'w16', 'w18', 'w19_tariff_engineering', 'w21_b_season_hedge', 'w26_inventory_freight', 'w29_eu_derisk_pivot', 'n1_sanction_paradox', 'n5_rcep_detour'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          <PollockFtaTariffMatrix />
-          <PollockRouteComparison />
-          <PollockLandedCostWaterfall />
-        </div>
-      </section>
-
-      {/* Part IV — 판매 및 수요 (Sales & Demand) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(239, 68, 68, 0.3)', paddingBottom: '0.5rem' }}>
-          <DollarSign size={24} color="var(--color-danger)" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part IV — 판매 및 수요 (Sales & Demand)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(239, 68, 68, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>수요 예측 및 단가 트렌드</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w6_inflation_unitprice', 'w7_usa_russia_unitprice', 'w27_substitute_spread', 'w33_arbitrage_tracker'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          <PollockPriceForecastChart />
-          <PollockScenarioSimulator />
-          <PollockSubstituteElasticity />
-        </div>
-      </section>
-
-      {/* Part V — ESG 및 지속가능성 (Sustainability) */}
-      <section style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: '1px solid rgba(16, 185, 129, 0.3)', paddingBottom: '0.5rem' }}>
-          <ShieldCheck size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>Part V — ESG 및 지속가능성 (Sustainability)</h2>
-          <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(16, 185, 129, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>규제 리스크 및 친환경 프리미엄</span>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w4_korea_crisis', 'w14', 'w23_upcycling_esg', 'w28_esg_premium', 'w30_traceability_risk', 'n6_waste_to_wealth'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          <PollockRiskScorecard />
-          <PollockSanctionParadox />
-        </div>
-      </section>
+      {/* ═══ 5-PILLAR STRATEGIC FRAMEWORK ═══ */}
+      {PILLARS.map((pillar) => {
+        const PillarIcon = pillar.icon;
+        return (
+          <section key={pillar.id} style={{ marginBottom: '4rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', borderBottom: `1px solid ${pillar.color}50`, paddingBottom: '0.5rem' }}>
+              <PillarIcon size={24} color={pillar.color} />
+              <h2 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc' }}>
+                {pillar.title}
+              </h2>
+              <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#cbd5e1', background: `${pillar.color}20`, border: `1px solid ${pillar.color}30`, padding: '4px 10px', borderRadius: '12px' }}>
+                {pillar.desc}
+              </span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {widgets?.filter((w: any) => pillar.widgets.includes(w.id)).map((w: any) => renderWidgetCard(w))}
+              {pillar.customInject?.includes("PollockConcentrationIndex") && <PollockConcentrationIndex />}
+              {pillar.customInject?.includes("PollockAlternativeSourcing") && <PollockAlternativeSourcing />}
+              {pillar.customInject?.includes("PollockFtaTariffMatrix") && <PollockFtaTariffMatrix />}
+              {pillar.customInject?.includes("PollockRouteComparison") && <PollockRouteComparison />}
+              {pillar.customInject?.includes("PollockLandedCostWaterfall") && <PollockLandedCostWaterfall />}
+              {pillar.customInject?.includes("PollockPriceForecastChart") && <PollockPriceForecastChart />}
+              {pillar.customInject?.includes("PollockScenarioSimulator") && <PollockScenarioSimulator />}
+              {pillar.customInject?.includes("PollockSubstituteElasticity") && <PollockSubstituteElasticity />}
+              {pillar.customInject?.includes("PollockRiskScorecard") && <PollockRiskScorecard />}
+              {pillar.customInject?.includes("PollockSanctionParadox") && <PollockSanctionParadox />}
+            </div>
+          </section>
+        );
+      })}
 
     </div>
   );
@@ -624,9 +621,15 @@ export default function PollockDashboard() {
     const accentColor = '#06b6d4';
     const accentGlow = 'rgba(6, 182, 212, 0.1)';
     
+    // W-04: C-Level Executive Override (기술)
+    // 백엔드 API/JSON 데이터가 C레벨 요구사항에 미달할 경우, 이 객체를 통해 인사이트를 강제 주입(Override)합니다.
+    const ENHANCED_INSIGHTS: Record<string, {sit?: string, strat?: string}> = {
+      // 필요 시 여기에 위젯 ID 기반으로 오버라이드 텍스트 추가
+    };
+    
     const methodologyText = w.logic || w.methodology || '';
-    const situation = w.sit || w.situation || '';
-    const takeaway = w.strat || w.tak || w.takeaway || '';
+    const situation = ENHANCED_INSIGHTS[w.id]?.sit || w.sit || w.situation || '';
+    const takeaway = ENHANCED_INSIGHTS[w.id]?.strat || w.strat || w.tak || w.takeaway || '';
     
     return (
       <div key={w.id} className={styles.glassCard} style={{ 

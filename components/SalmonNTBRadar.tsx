@@ -147,7 +147,7 @@ export default function SalmonNTBRadar() {
 
       {/* Compliance Grid */}
       <div style={{ padding: '1rem 1.25rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
           {items.map((item, i) => {
             const cfg = statusConfig[item.status];
             const StatusIcon = cfg.icon;

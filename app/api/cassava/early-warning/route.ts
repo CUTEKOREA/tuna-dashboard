@@ -25,7 +25,7 @@ export async function GET() {
         { key: 'elNino', color: '#f59e0b', name: '엘니뇨 발생 확률 (%)' }
       ],
       lines: [
-        { key: 'cmdIndex', color: '#ef4444', name: 'CMD 확산 지수 (x10)' }
+        { key: 'cmdIndex', color: '#b45309', name: 'CMD 확산 지수 (x10)' }
       ],
       data: [
         { month: '1월', elNino: 40, cmdIndex: 40 },

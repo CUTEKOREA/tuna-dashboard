@@ -215,7 +215,7 @@ export default function WhelkDashboard() {
           boxShadow: 'rgba(0,0,0,0.5) 0px 8px 24px', marginBottom: '2rem',
           animation: 'fadeIn 0.3s ease-out'
         }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             
             {/* Module 1: 품종별 특징 */}
             <div className="ds-card" style={{background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>

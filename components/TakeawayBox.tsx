@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function TakeawayBox({ situation, actionPlan, source }: { situation: React.ReactNode, actionPlan: React.ReactNode, source?: string }) {
+export default function TakeawayBox({ situation, actionPlan, takeaway, source }: { situation: React.ReactNode, actionPlan?: React.ReactNode, takeaway?: React.ReactNode, source?: string }) {
   return (
     <motion.div 
       className="ds-card-insight"
@@ -33,7 +33,7 @@ export default function TakeawayBox({ situation, actionPlan, source }: { situati
           ⚡️ 실행 전략 (EXECUTIVE TAKEAWAY)
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          {actionPlan}
+          {takeaway || actionPlan}
         </div>
       </div>
 

@@ -429,7 +429,7 @@ export default function SalmonDashboard() {
         
         {showEdu && (
           <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {/* Module 1 */}
               <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
                 <h3 style={{ color: 'var(--color-success)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
@@ -538,7 +538,7 @@ export default function SalmonDashboard() {
                 {React.createElement(icon, { size: 24, color: 'var(--color-success)' })}
                 <h2 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>{title}</h2>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {customInsights}
                 {sectionWidgets.map((w: any) => renderWidgetCard(w))}
               </div>
