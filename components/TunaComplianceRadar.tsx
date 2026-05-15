@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useCallback } from 'react';
 import { ShieldCheck, Search, AlertTriangle, CheckCircle, XCircle, RefreshCcw, Clock } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
 interface ScreeningResult {
@@ -10,17 +10,9 @@ interface ScreeningResult {
   eu: { status: string; detail: string };
   riskScore: number;
   riskLevel: string;
+  aiAnalysis?: { confidence: number; falsePositiveRisk: string; recommendation: string };
 }
 
-const DB: Record<string, ScreeningResult> = {
-  'thai union': { entity: 'Thai Union Group PCL', ofac: { status: 'clean', detail: 'No match in SDN' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 95, riskLevel: 'LOW' },
-  'dongwon': { entity: 'Dongwon Industries', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 97, riskLevel: 'LOW' },
-  'silla': { entity: 'Silla Co., Ltd.', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 98, riskLevel: 'LOW' },
-  'sajo': { entity: 'Sajo Industries', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 96, riskLevel: 'LOW' },
-  'nirsa': { entity: 'Nirsa S.A.', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 90, riskLevel: 'LOW' },
-  'minh phu': { entity: 'Minh Phu Seafood', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'partial', detail: 'Similar name — manual review' }, riskScore: 72, riskLevel: 'MEDIUM' },
-  'dalian ocean': { entity: 'Dalian Ocean Fishing', ofac: { status: 'partial', detail: 'Subsidiary flagged' }, eu: { status: 'partial', detail: 'IUU vessel overlap' }, riskScore: 35, riskLevel: 'HIGH' },
-};
 
 const HISTORY = [
   { entity: 'Thai Union Group', result: '✅ Clean', date: '2026-05-13', score: 95 },
@@ -42,21 +34,33 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
   const run = useCallback(async () => {
     if (!query.trim()) return;
     setLoading(true); setShowHist(false);
-    await new Promise(r => setTimeout(r, 600));
-    const q = query.toLowerCase().trim();
-    const m = Object.entries(DB).find(([k]) => q.includes(k) || k.includes(q));
-    setResult(m ? m[1] : { entity: query, ofac: { status: 'clean', detail: 'No match (auto)' }, eu: { status: 'clean', detail: 'No match (auto)' }, riskScore: 85, riskLevel: 'LOW' });
-    setLoading(false);
+    try {
+      const res = await fetch('/api/compliance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ entity: query.trim() })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setResult(data.result);
+      } else {
+        setResult({ entity: query, ofac: { status: 'partial', detail: 'API Error' }, eu: { status: 'partial', detail: 'API Error' }, riskScore: 50, riskLevel: 'MEDIUM' });
+      }
+    } catch (err) {
+      setResult({ entity: query, ofac: { status: 'partial', detail: 'Network Error' }, eu: { status: 'partial', detail: 'Network Error' }, riskScore: 50, riskLevel: 'MEDIUM' });
+    } finally {
+      setLoading(false);
+    }
   }, [query]);
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-          <ShieldCheck size={18} style={{ color: '#0ECB81' }} /> 컴플라이언스 레이더 (Sanctions Radar)
+          <ShieldCheck size={18} style={{ color: '#0ECB81' }} /> [제재 스크리닝] 컴플라이언스 레이더 (Sanctions Radar)
           <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8' }}>OFAC + EU</span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8' }}>OFAC SDN + EU Sanctions 듀얼 스크리닝</p>
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>OFAC SDN(미국 해외자산통제국) 및 EU 통합 제재 목록을 실시간 듀얼 스크리닝하여 거래처의 제재 위반 여부를 자동 검증합니다. AI 오탐지(False Positive) 분석 엔진이 정확도를 보강합니다.</p>
       </div>
 
       <div style={{ display: 'flex', gap: '8px', marginBottom: '1rem' }}>
@@ -89,6 +93,18 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
               <span style={{ fontSize: '0.68rem', fontWeight: 700, background: `${riskColor(result.riskLevel)}20`, color: riskColor(result.riskLevel), padding: '2px 8px', borderRadius: '500px' }}>{result.riskLevel} RISK</span>
             </div>
           </div>
+
+          {result.aiAnalysis && (
+            <div style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1rem', display: 'flex', gap: '10px' }}>
+              <ShieldCheck size={18} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#06b6d4', marginBottom: '4px' }}>AI False Positive 엔진 분석</div>
+                <div style={{ fontSize: '0.75rem', color: '#f8fafc', marginBottom: '4px' }}>오탐지 위험도: <strong style={{ color: result.aiAnalysis.falsePositiveRisk === 'HIGH' ? '#F6465D' : '#0ECB81' }}>{result.aiAnalysis.falsePositiveRisk}</strong> (신뢰도: {(result.aiAnalysis.confidence * 100).toFixed(1)}%)</div>
+                <div style={{ fontSize: '0.7rem', color: '#94a3b8', lineHeight: 1.4 }}>{result.aiAnalysis.recommendation}</div>
+              </div>
+            </div>
+          )}
+
           <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', padding: '10px 14px' }}>
             <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f8fafc' }}>{result.entity}</div>
             <div style={{ fontSize: '0.7rem', color: '#64748b' }}>Screened: {new Date().toLocaleDateString('ko-KR')} · OFAC SDN + EU Consolidated + IUU List</div>

@@ -56,11 +56,12 @@ const chartStyle = { height: '260px', flexShrink: 0, width: '100%', position: 'r
 export const WidgetTunaGiantsFall = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
-      <h3 style={titleStyle}><ArrowDownRight size={18} color="#f43f5e" /> 전통 참치 강국의 몰락 (1980-2023)
+      <h3 style={titleStyle}><ArrowDownRight size={18} color="#f43f5e" /> [산업 구조변화] 전통 참치 강국의 몰락 (1980-2023)
       <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+      <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
-      <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8' }}>
-        원조 참치 대국인 미국, 일본, 한국의 가공/통조림 생산량이 노동 비용 한계로 인해 구조적으로 몰락하고 있는 추세를 보여줍니다.
+      <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        FAO FishStatJ 데이터를 기반으로 미국, 일본, 한국 등 전통 참치 강국의 가공/통조림 생산량 구조적 감소 추세를 시각화합니다. 노동 비용 한계로 인한 생산거점 이동을 분석합니다.
       </p>
     </div>
     <div style={chartStyle}>
@@ -89,11 +90,12 @@ export const WidgetTunaGiantsFall = () => (
 export const WidgetThaiEmpire = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
-      <h3 style={titleStyle}><Globe size={18} color="var(--color-warning)" /> 태국과 스페인의 통조림 제국
+      <h3 style={titleStyle}><Globe size={18} color="var(--color-warning)" /> [가공 패권] 태국과 스페인의 통조림 제국
       <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+      <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
-      <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8' }}>
-        원양 선단이 점차 축소됨에도 불구하고 '가공 인프라'만으로 글로벌 참치를 장악한 두 거점(스페인/태국)의 10배 성장 기록입니다.
+      <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        FAO 데이터 기반으로 원양 선단 없이 '가공 인프라'만으로 글로벌 참치 시장을 장악한 태국(Thai Union)과 스페인(Jealsa 등)의 10배 성장 레이더를 시각화합니다.
       </p>
     </div>
     <div style={chartStyle}>

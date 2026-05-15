@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useCallback } from 'react';
 import { Tag, Search, RefreshCcw, ArrowRight, Globe } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
 const QUICK_TAGS = ['참치', '가다랑어', '참치통조림', '갈치', '고등어', '명태', '새우', '오징어', '마늘', '캐슈넛'];
@@ -36,15 +36,15 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
   const isLive = meta?.source === 'HSPING_LIVE';
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-          <Tag size={18} style={{ color: '#2196F3' }} /> AI HS 코드 자동분류 (HS Ping)
+          <Tag size={18} style={{ color: '#2196F3' }} /> [HS 분류] AI HS 코드 자동분류 (HS Ping)
           <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: isLive ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.05)', border: isLive ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)', color: isLive ? '#10b981' : '#94a3b8' }}>
             {isLive ? '🟢 LIVE' : 'Pre-classified'}
           </span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8' }}>품목 입력 → HS/HTS 코드 자동 매핑 (7개국 지원)</p>
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>품목명(한/영)을 입력하면 HS Ping API를 통해 HS 6~10자리 코드를 자동 매핑합니다. 7개국 관세 분류체계를 지원하며, FTA 원산지 증명서 작성 및 관세 신고에 즉시 활용 가능합니다.</p>
       </div>
 
       {/* Search */}

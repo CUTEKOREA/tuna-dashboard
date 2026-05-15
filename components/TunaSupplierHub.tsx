@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Factory, MapPin, Globe, Users, RefreshCcw, ExternalLink, ChevronDown, ShieldCheck } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -75,12 +75,12 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
   }, 0);
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '540px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '540px' }}>
       {/* Header */}
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <Factory size={18} style={{ color: '#9B72CB' }} />
-          글로벌 참치 공급업체 발굴 허브 (Supplier Discovery)
+          [공급업체] 글로벌 참치 공급업체 발굴 허브 (Supplier Discovery)
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '4px',
             background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
@@ -91,8 +91,8 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
             {isLive ? '🟢 OSH LIVE' : 'Curated DB'}
           </span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          Open Supply Hub (CC BY-SA) — 6개국 수산물 가공시설 인텔리전스
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
+          Open Supply Hub(OSH) API를 연동하여 6개국(태국/베트남/인도네시아/중국/에콰도르/한국)의 수산물 가공시설 데이터를 검색합니다. 시설별 근로자 수, 모기업, ESG 인증 현황을 교차 분석하여 공급선 다변화 후보를 발굴합니다.
         </p>
       </div>
 

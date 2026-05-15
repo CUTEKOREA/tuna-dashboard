@@ -9,7 +9,7 @@ import {
 import { Globe, Scale, Factory, DollarSign, ShieldCheck, TrendingUp, RefreshCcw } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 
 const PIE_COLORS = ["#FCD535", "#0ECB81", "#2196F3", "#F6465D", "#9B72CB", "#F0B90B", "#FF9800", "#E91E63"];
 
@@ -49,7 +49,7 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
 
   if (loading) {
     return (
-      <div className={styles.glassCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
+      <div className={styles.insightCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
         <RefreshCcw size={24} style={{ color: '#FCD535', animation: 'spin 1s linear infinite' }} />
       </div>
     );
@@ -68,11 +68,11 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
   const isLive = data?.meta?.source === 'WITS_LIVE';
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <Scale size={18} style={{ color: '#FCD535' }} />
-          국가별 참치 관세율 비교 (WITS)
+          [관세율] 국가별 참치 관세율 비교 (WITS)
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '4px',
             background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
@@ -82,9 +82,10 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
           }}>
             {isLive ? '🟢 LIVE API' : 'Fallback DB'}
           </span>
+          <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 관세율 %)</span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          HS 160414 (참치 조제품) MFN/FTA/Bound 관세율 — World Bank WITS 데이터
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
+          World Bank WITS API를 통해 HS 160414(참치 조제품) 기준 주요국의 MFN/FTA/양허(Bound) 관세율을 비교합니다. FTA 활용에 따른 관세 절감 기회를 정량적으로 분석합니다.
         </p>
       </div>
 
@@ -133,7 +134,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
 
   if (loading) {
     return (
-      <div className={styles.glassCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
+      <div className={styles.insightCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
         <RefreshCcw size={24} style={{ color: '#FCD535', animation: 'spin 1s linear infinite' }} />
       </div>
     );
@@ -152,11 +153,11 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
   const isLive = data?.meta?.source === 'OEC_LIVE';
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <Globe size={18} style={{ color: '#2196F3' }} />
-          글로벌 참치 조제품 교역 벤치마크 (OEC)
+          [교역 벤치마크] 글로벌 참치 조제품 교역 벤치마크 (OEC)
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '4px',
             background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
@@ -167,8 +168,8 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
             {isLive ? '🟢 LIVE API' : 'Benchmark DB'}
           </span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          HS 1604 (어류 조제품) — 글로벌 교역 ${data?.globalTradeValueM ? `$${(data.globalTradeValueM / 1000).toFixed(1)}B` : ''} · Top 수출/수입국
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
+          Observatory of Economic Complexity(OEC) 데이터를 기반으로 HS 1604(어류 조제품) 글로벌 교역 규모와 주요 수출/수입국 점유율을 시각화합니다. 한국의 글로벌 포지셔닝을 분석합니다.
         </p>
       </div>
 
@@ -231,7 +232,7 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
 
   if (loading) {
     return (
-      <div className={styles.glassCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
+      <div className={styles.insightCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>
         <RefreshCcw size={24} style={{ color: '#FCD535', animation: 'spin 1s linear infinite' }} />
       </div>
     );
@@ -247,11 +248,11 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
   const isLive = data?.meta?.source === 'WITS_LIVE';
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <TrendingUp size={18} style={{ color: '#0ECB81' }} />
-          한국 황다랑어 수출입 추이 (WITS)
+          [수출입 추이] 한국 황다랑어 수출입 추이 (WITS)
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '4px',
             background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
@@ -263,8 +264,8 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
           </span>
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: $M / kMT)</span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          HS 030342 (냉동 황다랑어) — 한국 수출입 가액·물량 5개년 추이
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
+          HS 030342(냉동 황다랑어) 기준 한국의 수출입 가액 및 물량 5개년 추이를 WITS/UN Comtrade 데이터로 시각화합니다. 구조적 무역수지 적자 현황과 공급선 의존도를 분석합니다.
         </p>
       </div>
 

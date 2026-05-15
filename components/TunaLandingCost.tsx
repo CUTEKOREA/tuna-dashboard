@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { DollarSign, Globe, Ship, Calculator, RefreshCcw, TrendingDown, TrendingUp, ChevronDown } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -115,12 +115,12 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
   React.useEffect(() => { simulate(); }, []);
 
   return (
-    <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '540px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '540px' }}>
       {/* Header */}
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <Calculator size={18} style={{ color: '#FCD535' }} />
-          착지원가 실시간 시뮬레이터 (Landing Cost Calculator)
+          [착지원가] 착지원가 실시간 시뮬레이터 (Landing Cost Calculator)
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '4px',
             background: liveData?.source === 'Live API' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
@@ -131,8 +131,8 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
             {liveData?.source === 'Live API' ? '🟢 LIVE' : '🟡 Cached'}
           </span>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          원산지별 FOB → 한국 도착 총비용 실시간 계산 — WITS(관세) + ECOS(환율) + Yahoo(유가) 연동
+        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
+          원산지(태국/에콰도르/인도네시아 등)별 FOB 가격에서 한국 도착까지의 총비용(운임+보험+관세+수수료)을 실시간 계산합니다. WITS(관세율), ECOS(환율), Yahoo Finance(유가) API를 연동하여 정밀한 착지원가를 산출합니다.
         </p>
       </div>
 
