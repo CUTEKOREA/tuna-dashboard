@@ -22,15 +22,15 @@ import styles from './ShrimpDashboard.module.css';
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className={styles.customTooltip}>
-        <p className={styles.tooltipLabel}>{label}</p>
+      <div style={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: '#f8fafc', fontSize: '0.88rem' }}>
+        <p style={{ margin: '0 0 8px 0', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: any) => {
           if (entry.value === undefined || entry.name === undefined || entry.name === '') return null;
           if (isNaN(Number(entry.value))) return null;
           return (
-            <div key={index} className={styles.tooltipValue}>
+            <div key={index} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', marginBottom: '4px' }}>
               <span style={{ color: entry.color }}>■ {entry.name}</span>
-              <strong>{typeof entry.value === 'number' 
+              <strong style={{ fontWeight: 600 }}>{typeof entry.value === 'number' 
                 ? (Number.isInteger(entry.value) 
                   ? entry.value.toLocaleString() 
                   : entry.value.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 2}))
@@ -135,6 +135,48 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   );
 };
 
+const TakeawayBox = ({ situation, actionPlan, source, apiSource }: { situation: any, actionPlan: any, source?: string, apiSource?: string }) => {
+  return (
+    <div style={{ marginTop: 'auto', paddingTop: '1.5rem' }}>
+      <div style={{ 
+        background: 'rgba(255, 255, 255, 0.03)', 
+        border: '1px solid rgba(255, 255, 255, 0.05)',
+        borderRadius: '8px', padding: '1.2rem',
+        display: 'flex', flexDirection: 'column', gap: '1rem'
+      }}>
+        {situation && (
+          <div>
+            <h4 style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '1.1rem' }}>📋</span> 현황 분석
+            </h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
+              {parseTextWithTooltips(typeof situation === 'string' ? situation.replace(/^현황:\s*/, '') : situation)}
+            </p>
+            {apiSource && <p style={{ color: '#64748b', fontSize: '0.75rem', fontStyle: 'italic', margin: '6px 0 0 0' }}>{apiSource}</p>}
+          </div>
+        )}
+        {actionPlan && (
+          <div style={{ borderTop: situation ? '1px solid rgba(255,255,255,0.05)' : 'none', paddingTop: situation ? '1rem' : '0' }}>
+            <h4 style={{ color: '#10b981', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.5rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '1.1rem' }}>💡</span> 실행 전략
+            </h4>
+            <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
+              {typeof actionPlan === 'string' ? actionPlan.replace(/^전략:\s*/, '') : actionPlan}
+            </p>
+          </div>
+        )}
+        {(source || (!apiSource)) && (
+          <div style={{ paddingTop: '0.5rem' }}>
+            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+              출처: {source || 'FAO FishStatJ + data/새우/ CSV 원본 교차 검증 완료'}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
   const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, ''); // 괄호 영문명 제거
@@ -205,14 +247,15 @@ export default function ShrimpDashboard() {
   const kpiKeys = Object.keys(kpis);
 
   const displayWidgets = widgets?.map((w: any) => {
-    if (w.id === 'w_log3_kr_import_value' && apiData.customs?.liveImportData?.length > 0) {
-      const historicalData = w.data.filter((d: any) => parseInt(d.year) < 2024);
-      return {
-        ...w,
-        data: [...historicalData, ...apiData.customs.liveImportData]
-      };
+    let newW = { ...w };
+    if (newW.title) {
+       newW.title = newW.title.replace(/\s*\([A-Za-z\s]+\)/g, '');
     }
-    return w;
+    if (newW.id === 'w_log3_kr_import_value' && apiData.customs?.liveImportData?.length > 0) {
+      const historicalData = newW.data.filter((d: any) => parseInt(d.year) < 2024);
+      newW.data = [...historicalData, ...apiData.customs.liveImportData];
+    }
+    return newW;
   });
 
   /* ─── Unified Chart Renderer ─── */
@@ -247,7 +290,7 @@ export default function ShrimpDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={-25} textAnchor="end" height={60} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -262,7 +305,7 @@ export default function ShrimpDashboard() {
           return (
             <ComposedChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={-25} textAnchor="end" height={60} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               {hasDualAxis && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
               <RechartsTooltip content={<CustomTooltip />} />
@@ -302,7 +345,7 @@ export default function ShrimpDashboard() {
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={-25} textAnchor="end" height={60} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -316,7 +359,7 @@ export default function ShrimpDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={-25} textAnchor="end" height={60} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -329,7 +372,7 @@ export default function ShrimpDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={-25} textAnchor="end" height={60} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -342,7 +385,7 @@ export default function ShrimpDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={-25} textAnchor="end" height={60} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -368,7 +411,7 @@ export default function ShrimpDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '50%', 
-              background: 'var(--color-success)', 
+              background: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)', 
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
             }}>
@@ -401,14 +444,15 @@ export default function ShrimpDashboard() {
           const IconComp = theme.icon;
           const parsed = parseAnimatedValue(kpi.value);
           return (
-            <div key={key} className="ds-card" style={{background: '#181818',
-              border: 'none', borderRadius: '8px', padding: '1.2rem',
+            <div key={key} className="ds-card" style={{
+              background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '8px', padding: '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '6px',
               transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
               position: 'relative', overflow: 'hidden'}}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(24, 24, 24, 0.85)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxWidth: '80%' }}>
@@ -445,10 +489,10 @@ export default function ShrimpDashboard() {
         <button 
           onClick={() => setShowEdu(!showEdu)}
           style={{ 
-            width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem 1.5rem', background: '#181818', border: 'none', borderBottom: showEdu ? '1px solid #272727' : 'none', color: 'var(--text-primary)', cursor: 'pointer', textAlign: 'left', transition: 'background 0.2s', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.5) 0px 8px 24px', marginBottom: showEdu ? '0' : '1rem'
+            width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem 1.5rem', background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', color: 'var(--text-primary)', cursor: 'pointer', textAlign: 'left', transition: 'background 0.2s', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.5) 0px 8px 24px', marginBottom: showEdu ? '0' : '1rem'
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(24, 24, 24, 0.85)'; }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <BookOpen size={24} color="var(--color-success)" />
@@ -474,7 +518,7 @@ export default function ShrimpDashboard() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               
               {/* Module 1: 양식 vs 자연산 */}
-              <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
+              <div className="ds-card" style={{background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
                 <h3 style={{ color: 'var(--text-primary)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
                   <Anchor size={20} color="var(--color-success)"/> 조업/생산 방식 비교: 양식 vs 어획
                 </h3>
@@ -504,7 +548,7 @@ export default function ShrimpDashboard() {
 
               {/* Module 2 & 3 */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
+                <div className="ds-card" style={{background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
                     <Workflow size={20} color="var(--color-success)"/> 새우 밸류체인 핵심 구조
                   </h3>
@@ -515,7 +559,7 @@ export default function ShrimpDashboard() {
                   </ul>
                 </div>
                 
-                <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flex: 1}}>
+                <div className="ds-card" style={{background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flex: 1}}>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
                     <ShieldCheck size={20} color="var(--color-danger)"/> 육상부서 필수 체크: 주요 리스크
                   </h3>
@@ -529,7 +573,7 @@ export default function ShrimpDashboard() {
             </div>
 
             {/* Module 4: AI Chatbot (NotebookLM Link) */}
-            <div className="ds-card" style={{background: '#181818', 
+            <div className="ds-card" style={{background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', 
               padding: '1.5rem', 
               borderRadius: '8px', 
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', 
@@ -579,7 +623,7 @@ export default function ShrimpDashboard() {
       </div>
 
       {/* ═══ API Live & What-If Simulator ═══ */}
-      <div className="ds-card" style={{marginBottom: '2rem', padding: '1.5rem', background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}>
+      <div className="ds-card" style={{marginBottom: '2rem', padding: '1.5rem', background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-success)' }} />
         <h2 style={{ margin: '0 0 1rem 0', fontSize: '1.13rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Activity color="var(--color-success)" size={20} /> 관세/환율 충격 시뮬레이터
@@ -719,7 +763,7 @@ export default function ShrimpDashboard() {
     
     return (
       <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
-        background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
+        background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: '1px solid rgba(255, 255, 255, 0.05)',
         padding: '1.5rem'}}>
         
         {/* Card Header */}
@@ -729,16 +773,12 @@ export default function ShrimpDashboard() {
             {w.title} 
             
             {/* Badges */}
-            {((w.reliability && w.reliability <= 70) || (w.badges && w.badges.includes('Estimate'))) && (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>
-                ESTIMATE
-              </span>
-            )}
-            {((w.reliability && w.reliability > 70) || (w.badges && w.badges.includes('Live API'))) && (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>
-                LIVE API
-              </span>
-            )}
+            <div style={{ marginLeft: '12px', display: 'flex', alignItems: 'center' }}>
+              <TelemetryBadge 
+                status={((w.reliability && w.reliability > 70) || (w.badges && w.badges?.includes('Live API')) || w.apiSource) ? 'live' : 'static'} 
+                syncDate={((w.reliability && w.reliability > 70) || (w.badges && w.badges?.includes('Live API')) || w.apiSource) ? 'Real-time' : '2024년 기준'} 
+              />
+            </div>
 
             {/* ❕ Info Icon */}
             <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -761,36 +801,7 @@ export default function ShrimpDashboard() {
 
         {/* Takeaway Box */}
         {(situation || takeaway) && (
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ 
-              background: 'var(--surface-2)', 
-              borderRadius: '6px', padding: '16px' 
-            }}>
-              {situation && (
-                <div style={{ paddingBottom: takeaway ? '12px' : '0', marginBottom: takeaway ? '12px' : '0', borderBottom: takeaway ? '1px solid #272727' : 'none' }}>
-                  <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>SITUATION (현황 분석)</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{parseTextWithTooltips(situation.replace(/^현황:\s*/, ''))}</p>
-                  
-                  {w.apiSource ? (
-                    <p style={{ color: '#7c7c7c', fontSize: '0.75rem', fontStyle: 'italic', margin: '8px 0 0 0' }}>{w.apiSource}</p>
-                  ) : null}
-                </div>
-              )}
-              {takeaway && (
-                <div>
-                  <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>EXECUTIVE TAKEAWAY (실행 전략)</h4>
-                  <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{takeaway.replace(/^전략:\s*/, '')}</p>
-                </div>
-              )}
-              {(w.source || (!w.apiSource)) && (
-                <div style={{ paddingTop: '12px', marginTop: '12px' }}>
-                  <span style={{ fontSize: '0.75rem', color: '#7c7c7c' }}>
-                    출처: {w.source || 'FAO FishStatJ + data/새우/ CSV 원본 교차 검증 완료'}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
+          <TakeawayBox situation={situation} actionPlan={takeaway} source={w.source} apiSource={w.apiSource} />
         )}
       </div>
     );
