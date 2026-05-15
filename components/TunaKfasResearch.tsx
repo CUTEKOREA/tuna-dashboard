@@ -32,18 +32,22 @@ export function KfasByproductValueChain() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <Recycle size={20} color="#10b981"/> KFAS-G. 참치 부산물 → 고부가 바이오 소재 전환 파이프라인
+          <Recycle size={20} color="#10b981"/> 참치 부산물 → 고부가 바이오 소재 전환 파이프라인
         </h3>
         <p className={styles.cardDesc}>가다랑어·황다랑어 가공 부산물(총 생산량의 30~60%)의 부위별 화학·영양학적 프로파일링 및 효소 가수분해물의 기능성 평가 결과</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
           <SafeResponsiveContainer width="100%" height="100%">
-            <BarChart data={byproductData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <BarChart data={byproductData} margin={{ top: 20, right: 30, left: 20, bottom: 30 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="part" stroke="#94a3b8" fontSize={11} />
-              <YAxis stroke="#94a3b8" unit="%" />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <XAxis dataKey="part" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} angle={-20} textAnchor="end" interval={0} height={50} />
+              <YAxis stroke="#94a3b8" unit="%" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
+              <RTooltip 
+                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
+                labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
+              />
               <Legend />
               <Bar dataKey="protein" name="조단백(g/100g)" fill="#10b981" radius={[4,4,0,0]} />
               <Bar dataKey="lipid" name="조지방" fill="#3b82f6" radius={[4,4,0,0]} />
@@ -66,7 +70,7 @@ export function KfasByproductValueChain() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[KFAS 학술 근거] 한국의 다랑어류 어획량 290천톤(MOF, 2024) 중 가공 부산물은 30~60%에 달합니다(Klomklao & Benjakul, 2016). KFAS 연구진은 가다랑어 부산물 6개 부위의 화학·영양학적 프로파일을 완성했고, 황다랑어 알(Roe) 농축분말의 Alcalase 효소 가수분해물이 ACE 억제활성 82%, DPPH 라디칼 소거활성 78%의 높은 생리활성을 확인했습니다. 통조림 부산물의 위생안전성도 MFDS 기준치 이하로 검증되어 식품 원료 전환이 가능합니다."
+          situation="한국의 다랑어류 어획량 290천톤(MOF, 2024) 중 가공 부산물은 30~60%에 달합니다(Klomklao & Benjakul, 2016). 연구진은 가다랑어 부산물 6개 부위의 화학·영양학적 프로파일을 완성했고, 황다랑어 알(Roe) 농축분말의 Alcalase 효소 가수분해물이 ACE 억제활성 82%, DPPH 라디칼 소거활성 78%의 높은 생리활성을 확인했습니다. 통조림 부산물의 위생안전성도 MFDS 기준치 이하로 검증되어 식품 원료 전환이 가능합니다."
           actionPlan="부산물 폐기 비용(톤당 $50~80)을 바이오 소재 매출로 전환하십시오. ① 콜라겐 추출(껍질 28.5%): 화장품·건강기능식품 원료($15~25/kg) ② 어유(Roe DHA/EPA): 고급 오메가-3 원료($30~50/kg) ③ ACE 억제 펩타이드: 기능성 식품 소재($80~120/kg). 연간 부산물 87~174천톤의 10%만 고부가 전환 시 연매출 $50M+ 창출 가능합니다."
           source="KFAS 한수지 Vol.59(1), 2026 / Vol.58(1), 2025"
         />
@@ -96,19 +100,23 @@ export function KfasLonglineEvolution() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <Ship size={20} color="#3b82f6"/> KFAS-H. 한국 원양 다랑어 연승어업 60년 구조 변동
+          <Ship size={20} color="#3b82f6"/> 한국 원양 다랑어 연승어업 60년 구조 변동
         </h3>
         <p className={styles.cardDesc}>1957년 인도양 시험조업 이후 3대양으로 확대된 한국 연승어업의 선단 규모, 어획량, 어종 구성의 장기 변화 추적</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
           <SafeResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={longlineData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <ComposedChart data={longlineData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="period" stroke="#94a3b8" />
-              <YAxis yAxisId="left" stroke="#94a3b8" />
-              <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" unit="%" />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0} />
+              <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" unit="%" tick={{ fill: '#f59e0b', fontSize: 12, fontWeight: 500 }} />
+              <RTooltip 
+                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
+                labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
+              />
               <Legend />
               <Bar yAxisId="left" dataKey="vessels" name="조업 척수" fill="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.7} />
               <Line yAxisId="left" type="monotone" dataKey="catch_kt" name="어획량(천톤)" stroke="#ef4444" strokeWidth={3} />
@@ -131,7 +139,7 @@ export function KfasLonglineEvolution() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[KFAS 학술 근거] 한국 원양 다랑어 연승어업은 1957년 시험조업 이후 1980년대 250척·65천톤 정점을 기록했으나, WCPFC 규제 강화와 경제성 악화로 2020년대 70척·9천톤으로 급감했습니다. 어종 구성은 눈다랑어(고단가) 비중이 45%→60%로 고급화되었으나, 인도네시아산 풀가라지(미끼) 자원의 지속가능성이 MSC 인증의 새로운 병목으로 부상 중입니다."
+          situation="한국 원양 다랑어 연승어업은 1957년 시험조업 이후 1980년대 250척·65천톤 정점을 기록했으나, WCPFC 규제 강화와 경제성 악화로 2020년대 70척·9천톤으로 급감했습니다. 어종 구성은 눈다랑어(고단가) 비중이 45%→60%로 고급화되었으나, 인도네시아산 풀가라지(미끼) 자원의 지속가능성이 MSC 인증의 새로운 병목으로 부상 중입니다."
           actionPlan="① 연승어업의 '소수정예 고단가' 전환을 전략적 자산으로 재평가하십시오(척당 생산성 127t→129t 유지). ② MSC 미끼자원 인증 준비를 선제 착수하세요 — 인도네시아 풀가라지 MSY 대비 어획률(52.8%) 검증이 핵심입니다. ③ 태평양 조업 거점의 남위 이동(기후변화 적응)에 대비한 VDS 입어 포트폴리오를 재편하십시오."
           source="KFAS 한수지 Vol.58(4), 2025 / Vol.58(6), 2025"
         />
@@ -160,7 +168,7 @@ export function KfasIndianOceanRisk() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <AlertTriangle size={20} color="#f97316"/> KFAS-I. 인도양 다랑어어업 생태계 위험도 레이더
+          <AlertTriangle size={20} color="#f97316"/> 인도양 다랑어어업 생태계 위험도 레이더
         </h3>
         <p className={styles.cardDesc}>IOTC 관할 서부인도양 해역 — 어업별(선망/연승/자망) 생태계기반 위험도 평가(EBFA) 결과. 자망(Gillnet)이 전 지표에서 최고 위험.</p>
       </div>
@@ -169,9 +177,13 @@ export function KfasIndianOceanRisk() {
           <SafeResponsiveContainer width="100%" height="100%">
             <RadarChart cx="50%" cy="50%" outerRadius="65%" data={ioRiskData}>
               <PolarGrid stroke="rgba(255,255,255,0.15)" />
-              <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-              <PolarRadiusAxis angle={30} domain={[0, 3]} tick={{ fill: '#64748b', fontSize: 8 }} />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
+              <PolarRadiusAxis angle={30} domain={[0, 3]} tick={{ fill: '#94a3b8', fontSize: 10 }} />
+              <RTooltip 
+                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
+                labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
+              />
               <Legend />
               <Radar name="선망(Purse Seine)" dataKey="purseSeine" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.2} />
               <Radar name="연승(Longline)" dataKey="longline" stroke="#10b981" fill="#10b981" fillOpacity={0.2} />
@@ -194,7 +206,7 @@ export function KfasIndianOceanRisk() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[KFAS 학술 근거] 인도양 다랑어 어업은 약 $20억의 수익을 창출하며 그 중 80%가 서부인도양(WIO)에서 발생합니다. KFAS의 EBFA 분석 결과, 자망(Gillnet) 어업이 전 6개 관리목표에서 최고 위험(Risk Score 2.5~2.9/3.0)을 기록했습니다. 특히 FAD 사용 자망에서 부수어획 및 서식처 건전성 위험이 극단적으로 높으며, 눈다랑어는 '과도어획(overfishing)' 상태로 진입 중입니다."
+          situation="인도양 다랑어 어업은 약 $20억의 수익을 창출하며 그 중 80%가 서부인도양(WIO)에서 발생합니다. EBFA 분석 결과, 자망(Gillnet) 어업이 전 6개 관리목표에서 최고 위험(Risk Score 2.5~2.9/3.0)을 기록했습니다. 특히 FAD 사용 자망에서 부수어획 및 서식처 건전성 위험이 극단적으로 높으며, 눈다랑어는 '과도어획(overfishing)' 상태로 진입 중입니다."
           actionPlan="인도양 소싱 시 자망 어획 원물을 회피하고 연승 어획물 비중을 확대하십시오. ① 연승 어획물은 전 지표에서 Low Risk(1.0~1.9)로 ESG 컴플라이언스 최적 ② IOTC TAC 강화(2027 예상) 시 자망 퇴출로 공급 15~20% 감소 가능 → 선제적 장기계약 필요 ③ t-RFMO 5개 기구의 해양포유류 보존관리조치(CMM) 준수 여부를 소싱 체크리스트에 즉시 반영하십시오."
           source="KFAS 한수지 Vol.56(4), 2023 / Vol.58(6), 2025"
         />
@@ -231,19 +243,23 @@ export function KfasElderlyFunctionalFood() {
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <TestTube size={20} color="#8b5cf6"/> KFAS-J. 눈다랑어 고령친화식품 & 기능성 신시장
+          <TestTube size={20} color="#8b5cf6"/> 눈다랑어 고령친화식품 & 기능성 신시장
         </h3>
         <p className={styles.cardDesc}>눈다랑어 기반 연화식 제품(함박/완탕/스프) 및 참치-황새치 어육패티의 품질특성 검증 — 한국 고령화 시대의 신성장 동력</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
           <SafeResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={elderlyFoodData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <ComposedChart data={elderlyFoodData} margin={{ top: 20, right: 30, left: 20, bottom: 40 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="product" stroke="#94a3b8" fontSize={10} />
-              <YAxis yAxisId="left" stroke="#94a3b8" />
-              <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
-              <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <XAxis dataKey="product" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} angle={-25} textAnchor="end" interval={0} height={60} />
+              <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" tick={{ fill: '#10b981', fontSize: 12, fontWeight: 500 }} />
+              <RTooltip 
+                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 8px 32px rgba(0,0,0,0.7)' }}
+                itemStyle={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}
+                labelStyle={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px' }}
+              />
               <Legend />
               <Bar yAxisId="left" dataKey="protein" name="조단백(%)" fill="#8b5cf6" radius={[4,4,0,0]} />
               <Bar yAxisId="left" dataKey="hardness" name="경도(N)" fill="#f59e0b" radius={[4,4,0,0]} fillOpacity={0.7} />
@@ -266,7 +282,7 @@ export function KfasElderlyFunctionalFood() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[KFAS 학술 근거] 한국 65세+ 인구가 전체 20%를 돌파하며 고령친화식품 시장이 급성장 중입니다. KFAS 연구진은 눈다랑어 레토르트 연화식 3종(함박/완탕/스프)의 경도·단백질·관능평가를 완료했고, 참치 적색육:황새치 백색육 40:60 배합 패티가 단백질 22.4%·관능수용도 90%로 최적 조건을 확인했습니다. 수산물 기반 고령친화식품은 현재 거의 전무한 블루오션입니다."
+          situation="한국 65세+ 인구가 전체 20%를 돌파하며 고령친화식품 시장이 급성장 중입니다. 연구진은 눈다랑어 레토르트 연화식 3종(함박/완탕/스프)의 경도·단백질·관능평가를 완료했고, 참치 적색육:황새치 백색육 40:60 배합 패티가 단백질 22.4%·관능수용도 90%로 최적 조건을 확인했습니다. 수산물 기반 고령친화식품은 현재 거의 전무한 블루오션입니다."
           actionPlan="① 눈다랑어 연화식 3종을 '실버 프리미엄' 라인으로 즉시 상품화하십시오(학교급식 + 요양시설 B2B 우선). ② 참치-황새치 40:60 어육패티를 HMR 채널로 출시 — 기존 육류 패티 대비 단백질 동등·지방 50% 저감을 USP로 활용. ③ 대서양참다랑어 양식 사료에 아마인유(Linseed Oil) 15% 대체가 성장률 무영향으로 검증되어(KFAS 2023) 사료비 절감 카드로 활용 가능합니다."
           source="KFAS 한수지 Vol.57(5), 2024 / Vol.56(5), 2023 / Vol.58(3), 2025"
         />
