@@ -25,6 +25,29 @@ import { PollockPriceForecastChart, PollockScenarioSimulator } from './PollockPr
 import { PollockLandedCostWaterfall, PollockRouteComparison } from './PollockLandedCost';
 import { PollockConcentrationIndex, PollockAlternativeSourcing, PollockSubstituteElasticity } from './PollockSupplyResilience';
 
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -129,14 +152,20 @@ const formatYAxis = (v: number) => {
 
 export default function PollockDashboard() {
   const [data, setData] = useState<any>(null);
+  const [kcsLive, setKcsLive] = useState<any>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [isEduOpen, setIsEduOpen] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('/data/pollock_real_data_v4.json')
-      .then(res => res.json())
-      .then(json => setData(json))
+    Promise.all([
+      fetch('/data/pollock_real_data_v4.json').then(res => res.json()),
+      fetch('/api/pollock-kcs?year=2024').then(res => res.json()).catch(() => null)
+    ])
+      .then(([baseData, kcs]) => {
+        setData(baseData);
+        if (kcs) setKcsLive(kcs);
+      })
       .catch(err => console.error("Failed to load pollock data", err));
   }, []);
 
@@ -157,7 +186,20 @@ export default function PollockDashboard() {
     </div>
   );
 
-  const { kpis, widgets } = data;
+  const widgets = data.widgets;
+  const kpis = { ...data.kpis };
+
+  // Live Overrides
+  if (kcsLive && kcsLive.summary) {
+    kpis.kpi4 = {
+      ...kpis.kpi4,
+      value: `${kcsLive.summary.ruPct}%`,
+      desc: `${kcsLive.summary.totalWgt.toLocaleString()}톤 중 ${kcsLive.summary.ruWgt.toLocaleString()}톤이 러시아산`,
+      telemetry: kcsLive.isLive ? 'live' : 'synced',
+      syncDate: kcsLive.source,
+    };
+  }
+
   const kpiKeys = Object.keys(kpis);
 
   /* ─── Unified Chart Renderer ─── */
@@ -376,7 +418,11 @@ export default function PollockDashboard() {
               <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle, ${theme.glow}, transparent)`, pointerEvents: 'none' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
-                <IconComp size={14} style={{ color: theme.text }} />
+                {kpi.telemetry ? (
+                  <TelemetryBadge status={kpi.telemetry as any} syncDate={kpi.syncDate} />
+                ) : (
+                  <IconComp size={14} style={{ color: theme.text }} />
+                )}
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>
                 {parsed ? (

@@ -16,6 +16,38 @@ import {
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
+import TakeawayBox from './TakeawayBox';
+
+/* ─── Telemetry Badge (참치 패턴 동기화) ─── */
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
+/* ─── 5-Part Section Definitions ─── */
+const SECTIONS = [
+  { id: 'S1', title: '⚓ Part I — 공급/가격 예측 (Supply & Price)', desc: 'FishStatJ · SPRFMO · KOSIS 기반 글로벌 오징어 어획량, 종별 자원 동향, CPI 괴리율, AI 가격 예측', color: '#10b981' },
+  { id: 'S2', title: '🏭 Part II — 착지원가/소싱 (Landed Cost & Sourcing)', desc: 'HS Ping · KCS 관세율 · 원산지별 총비용 시뮬레이션, Fleet OPEX, Value Chain 분석', color: '#8b5cf6' },
+  { id: 'S3', title: '🛡️ Part III — 규제 및 컴플라이언스 (Regulatory & ESG)', desc: 'OFAC · WTO SPS · MFDS 기반 IUU 리스크, 위생검역, 통관 거부 모니터링', color: '#f59e0b' },
+  { id: 'S4', title: '🌍 Part IV — 무역 흐름/신흥시장 (Trade Flow & Markets)', desc: 'ImportYeti · OEC · Comtrade 기반 EU 바이어, 스페인 허브, 가공 패권 구조 분석', color: '#3b82f6' },
+];
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -100,6 +132,7 @@ export default function SquidDashboard() {
   const [mgoPrice, setMgoPrice] = useState(107);
   const [fxRate, setFxRate] = useState(1350);
   const [apiStatus, setApiStatus] = useState("Connected");
+  const [apiCount, setApiCount] = useState(0);
 
   useEffect(() => {
     fetch('/data/squid_real_data_v3.json')
@@ -116,6 +149,7 @@ export default function SquidDashboard() {
           .filter(r => r.status === 'fulfilled')
           .map(r => (r as PromiseFulfilledResult<any>).value);
         setApiWidgets(liveWidgets);
+        setApiCount(liveWidgets.length);
       });
   }, []);
 
@@ -351,9 +385,9 @@ export default function SquidDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span>9 APIs <span style={{ color: 'var(--color-success)' }}>{apiStatus}</span></span>
+            <span>{apiCount || 8} APIs <span style={{ color: 'var(--color-success)' }}>{apiStatus}</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>FishStatJ 1950-2024</span>
+            <span style={{ color: 'var(--text-primary)' }}>HS Ping · KOSIS · MFDS · WTO · OFAC · ImportYeti</span>
           </div>
         </div>
       </header>
@@ -377,18 +411,18 @@ export default function SquidDashboard() {
               onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
               
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{kpi.title}</span>
-                <IconComp size={16} style={{ color: theme.text }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
+                {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <IconComp size={14} style={{ color: theme.text }} />}
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 {parsed ? (
                   <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
                 ) : kpi.value}
               </div>
-              <div style={{ fontSize: '0.88rem', color: theme.text, fontWeight: 600 }}>
-                <span style={{ background: `${theme.text}20`, padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>{kpi.trend}</span>
-                {kpi.desc}
+              <div style={{ fontSize: '0.68rem', color: theme.text, fontWeight: 600 }}>
+                <span style={{ background: `${theme.text}20`, padding: '1px 5px', borderRadius: '3px', marginRight: '4px' }}>{kpi.trend}</span>
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>{kpi.desc}</span>
               </div>
             </div>
           );
@@ -582,49 +616,66 @@ export default function SquidDashboard() {
 
 
 
-      {/* 1. Global Squid Supply & Price Ticker (공급/가격 예측) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Activity size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Global Squid Supply & Price Ticker (공급/가격 예측)</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w_squid_price_forecast', 'w_kosis_squid_cpi', 'w1_catch_powers', 'w3_jumbo_flying'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
+      {/* ═══ 5-Part Consolidated Sections ═══ */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
 
-      {/* 2. Landed Cost & Sourcing Simulator (착지원가/소싱 최적화) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Anchor size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Landed Cost & Sourcing Simulator (착지원가/소싱 최적화)</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w_squid_hs_tariff_sim', 'w50_fleet_opex', 'w40_value_chain_exploitation', 'w_squid_sourcing_sim'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
+        {/* ═══════ Part I: 공급/가격 예측 ═══════ */}
+        <section>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w_squid_price_forecast', 'w_kosis_squid_cpi', 'w1_catch_powers', 'w3_jumbo_flying', 'w2_korea_supply', 'w4_unit_price', 'w6_species_pie', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          </div>
+        </section>
 
-      {/* 3. Regulatory & ESG Risk Radar (규제 및 컴플라이언스) */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <ShieldCheck size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Regulatory & ESG Risk Radar (규제 및 컴플라이언스)</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
+        {/* ═══════ Part II: 착지원가/소싱 ═══════ */}
+        <section>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w_squid_hs_tariff_sim', 'w_squid_sourcing_sim', 'w50_fleet_opex', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w53_energy_stress_test', 'w56_sunmin_pe_valuation', 'w60_twoway_price_simulator'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          </div>
+        </section>
 
-      {/* 4. Trade Flow & Emerging Market Explorer (신흥 시장 발굴) */}
-      <section style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Globe size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Trade Flow & Emerging Market Explorer (신흥 시장 발굴)</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-          {widgets?.filter((w: any) => ['w_importyeti_eu_buyers', 'w35_spain_trade_hub', 'w55_export_concentration', 'w10_processed_dominance', 'w11_no_aquaculture', 'w27_squid_climate_geopolitics'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-        </div>
-      </section>
+        {/* ═══════ Part III: 규제 및 컴플라이언스 ═══════ */}
+        <section>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w25_squid_chitosan_biomaterial', 'w26_squid_ai_jigging_fuel', 'w27_squid_climate_geopolitics'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          </div>
+        </section>
+
+        {/* ═══════ Part IV: 무역 흐름/신흥시장 ═══════ */}
+        <section>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w_importyeti_eu_buyers', 'w35_spain_trade_hub', 'w55_export_concentration', 'w10_processed_dominance', 'w5_top_importers', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w11_no_aquaculture', 'w31_eu_squid_supply_shock', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w37_spain_arbitrage_trap', 'w48_supply_inversion', 'w54_sourcing_bottleneck', 'w57_china_supply_dominance'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          </div>
+        </section>
+
+      </div>
 
 
 
@@ -675,31 +726,14 @@ export default function SquidDashboard() {
           </SafeResponsiveContainer>
         </div>
 
-        {/* Takeaway Box */}
+        {/* Takeaway Box (참치 TakeawayBox 컴포넌트 동기화) */}
         {(situation || takeaway) && (
           <div style={{ marginTop: 'auto' }}>
-            <div style={{ 
-              background: 'var(--surface-2)', 
-              borderRadius: '6px', padding: '16px' 
-            }}>
-              {situation && (
-                <div style={{ paddingBottom: takeaway ? '12px' : '0', marginBottom: takeaway ? '12px' : '0' }}>
-                  <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{situation}</p>
-                </div>
-              )}
-              {takeaway && (
-                <div>
-                  <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                  <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{takeaway}</p>
-                </div>
-              )}
-              {w.source && (
-                <div style={{ paddingTop: '12px', marginTop: '12px' }}>
-                  <span style={{ fontSize: '0.75rem', color: '#7c7c7c' }}>출처: {w.source}</span>
-                </div>
-              )}
-            </div>
+            <TakeawayBox
+              situation={situation}
+              actionPlan={takeaway}
+              source={w.source}
+            />
           </div>
         )}
       </div>

@@ -72,10 +72,12 @@ export async function GET() {
           monthlyTotals[monthKey].value += amt;
           
           if (wgt > 0 && statKorMatch) {
-            const country = statKorMatch[1];
-            if (!originTotals[country]) originTotals[country] = 0;
-            originTotals[country] += wgt;
-            totalWgt += wgt;
+            const country = statKorMatch[1].trim();
+            if (country && country !== '총계' && country.length > 0) {
+              if (!originTotals[country]) originTotals[country] = 0;
+              originTotals[country] += wgt;
+              totalWgt += wgt;
+            }
           }
         }
         
@@ -87,21 +89,26 @@ export async function GET() {
             value: Math.round(monthlyTotals[m].value)
           }));
           
-          let norway = 0, china = 0, uk = 0, other = 0;
-          Object.entries(originTotals).forEach(([c, w]) => {
-            const pct = (w / totalWgt) * 100;
-            if (c.includes('노르웨이')) norway += pct;
-            else if (c.includes('중국')) china += pct;
-            else if (c.includes('영국')) uk += pct;
-            else other += pct;
-          });
-          
-          origin = [
-            { name: '노르웨이', value: Math.round(norway * 10)/10, fill: '#0ea5e9' },
-            { name: '중국', value: Math.round(china * 10)/10, fill: '#f59e0b' },
-            { name: '영국', value: Math.round(uk * 10)/10, fill: '#10b981' },
-            { name: '기타', value: Math.round(other * 10)/10, fill: '#64748b' },
-          ];
+          if (totalWgt > 0) {
+            let norway = 0, china = 0, uk = 0, other = 0;
+            Object.entries(originTotals).forEach(([c, w]) => {
+              const pct = (w / totalWgt) * 100;
+              if (c.includes('노르웨이') || c.includes('노루웨이')) norway += pct;
+              else if (c.includes('중국') || c.includes('중화')) china += pct;
+              else if (c.includes('영국') || c.includes('그레이트')) uk += pct;
+              else other += pct;
+            });
+            
+            // 방어: 파싱 결과가 비정상일 경우 fallback 유지
+            if (norway > 0 || china > 0) {
+              origin = [
+                { name: '노르웨이', value: Math.round(norway * 10)/10, fill: '#0ea5e9' },
+                { name: '중국', value: Math.round(china * 10)/10, fill: '#f59e0b' },
+                { name: '영국', value: Math.round(uk * 10)/10, fill: '#10b981' },
+                { name: '기타', value: Math.round(other * 10)/10, fill: '#64748b' },
+              ];
+            }
+          }
           
           isLive = true;
         }

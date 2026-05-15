@@ -8,14 +8,14 @@ import { NextResponse } from 'next/server';
  */
 
 const FALLBACK_FLOW = [
-  { source: '노르웨이', target: '중국', value: 45000 },
-  { source: '노르웨이', target: '일본', value: 38000 },
-  { source: '노르웨이', target: '한국', value: 35000 },
-  { source: '노르웨이', target: 'EU', value: 85000 },
-  { source: '영국', target: '나이지리아', value: 25000 },
-  { source: '영국', target: '네덜란드', value: 18000 },
-  { source: '중국', target: '태국', value: 12000 },
-  { source: '아일랜드', target: '나이지리아', value: 15000 },
+  { source: '노르웨이→EU', value: 85000 },
+  { source: '노르웨이→중국', value: 45000 },
+  { source: '노르웨이→일본', value: 38000 },
+  { source: '노르웨이→한국', value: 35000 },
+  { source: '영국→나이지리아', value: 25000 },
+  { source: '영국→네덜란드', value: 18000 },
+  { source: '아일랜드→나이지리아', value: 15000 },
+  { source: '중국→태국', value: 12000 },
 ];
 
 export async function GET() {

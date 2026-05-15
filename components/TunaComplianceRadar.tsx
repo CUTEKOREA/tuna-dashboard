@@ -128,7 +128,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
 
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
-          situation={result && !showHist ? `[스크리닝] ${result.entity} — ${result.riskScore}/100 (${result.riskLevel}). OFAC: ${result.ofac.status}, EU: ${result.eu.status}.` : '[컴플라이언스] 주요 5개사 스크리닝 완료. Silla (98), Dongwon (97), Thai Union (95) 적합. Minh Phu (72) 주의.'}}
+          situation={result && !showHist ? `[스크리닝] ${result.entity} — ${result.riskScore}/100 (${result.riskLevel}). OFAC: ${result.ofac.status}, EU: ${result.eu.status}.` : '[컴플라이언스] 주요 5개사 스크리닝 완료. Silla (98), Dongwon (97), Thai Union (95) 적합. Minh Phu (72) 주의.'}
           actionPlan={result && result.riskScore < 80 ? `[조치] ${result.entity} Enhanced Due Diligence 실시 권고.` : '[정기 점검] 전 거래처 월 1회 자동 스크리닝 수행 권고.'}
           source="OFAC SDN + EU 통합제재목록 · 사전심사 DB"
         />

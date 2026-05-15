@@ -20,6 +20,45 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css'; // Reuse the glassmorphism styles
 
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const isLive = status === 'live';
+  const isSynced = status === 'synced';
+  
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
+        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
+      </div>
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
+      </span>
+      {!isLive && syncDate && (
+        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
+          {syncDate}
+        </span>
+      )}
+    </div>
+  );
+};
+
+function parseAnimatedValue(valStr: string) {
+  if (!valStr || typeof valStr !== 'string') return null;
+  const match = valStr.match(/^([^\d]*)((?:\d|,|\.)+)(.*)$/);
+  if (match) {
+    const rawNumberStr = match[2];
+    const prefix = match[1];
+    const suffix = match[3];
+    const hasDecimal = rawNumberStr.includes('.');
+    const numberVal = parseFloat(rawNumberStr.replace(/,/g, ''));
+    if (!isNaN(numberVal)) {
+      return { numberVal, prefix, suffix, decimals: hasDecimal ? rawNumberStr.split('.')[1].length : 0 };
+    }
+  }
+  return null;
+}
+
 /* ─── Custom Tooltip ─── */
 const smartFormat = (v: any, dataKey?: string): string | any => {
   if (Array.isArray(v)) {
@@ -170,6 +209,38 @@ export default function GalchiDashboard() {
   );
 
   let { kpis, widgets } = data;
+  kpis = { ...kpis };
+
+  if (liveKcs?.summary) {
+    kpis.kpi2 = {
+      title: "중국산 CIF",
+      value: `$${liveKcs.summary.cifPerKg}`,
+      trend: liveKcs.summary.yoy || "LIVE",
+      desc: "관세청 실측 통관 단가",
+      telemetry: liveKcs.isLive ? 'live' : 'synced',
+      syncDate: liveKcs.lastUpdated?.slice(0, 10),
+    };
+    kpis.kpi4 = {
+      title: "수입 의존도 (중국산 비중)",
+      value: `${liveKcs.summary.cnPct}%`,
+      trend: "LIVE",
+      desc: `총 수입량 중 중국산 비중`,
+      telemetry: liveKcs.isLive ? 'live' : 'synced',
+      syncDate: liveKcs.lastUpdated?.slice(0, 10),
+    };
+  }
+
+  if (liveKamis?.current) {
+    kpis.kpi1 = {
+      title: "위판 평균단가",
+      value: `${liveKamis.current.avgPrice.toLocaleString()}`,
+      trend: liveKamis.current.weekChange,
+      desc: "aT KAMIS 도매 시세 · 어획 감소로 역대급 단가 형성 중",
+      telemetry: liveKamis.isLive ? 'live' : 'synced',
+      syncDate: liveKamis.lastUpdated?.slice(0, 10),
+    };
+  }
+
   const kpiKeys = Object.keys(kpis);
   const widgetMap: Record<string, any> = {};
   widgets?.forEach((w: any) => { widgetMap[w.id] = { ...w }; });
@@ -395,21 +466,21 @@ export default function GalchiDashboard() {
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{kpi.title}</span>
-                <IconComp size={16} style={{ color: theme.text }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
+                {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <IconComp size={14} style={{ color: theme.text }} />}
               </div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                {kpi.value.startsWith('$') && '$'}
-                {kpi.value.startsWith('+') && '+'}
-                <CountUp end={parseFloat(kpi.value.replace(/[^0-9.]/g, ''))} duration={2} separator="," decimals={kpi.value.includes('.') ? (kpi.value.split('.')[1]?.replace(/[^0-9]/g,'').length || 1) : 0} />
-                <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 400, marginLeft: '3px' }}>
-                  {kpi.value.replace(/^[+$0-9.,%]+/, '').trim()}
-                </span>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                {(() => {
+                  const parsed = parseAnimatedValue(kpi.value);
+                  return parsed ? (
+                    <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
+                  ) : kpi.value;
+                })()}
               </div>
-              <div style={{ fontSize: '0.88rem', color: theme.text, fontWeight: 600 }}>
-                <span style={{ background: `${theme.text}20`, padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>{kpi.trend}</span>
-                {kpi.desc}
+              <div style={{ fontSize: '0.68rem', color: theme.text, fontWeight: 600 }}>
+                <span style={{ background: `${theme.text}20`, padding: '1px 5px', borderRadius: '3px', marginRight: '4px' }}>{kpi.trend}</span>
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>{kpi.desc}</span>
               </div>
             </div>
           );

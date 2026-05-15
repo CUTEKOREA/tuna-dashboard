@@ -42,73 +42,73 @@ async function fetchOEC(cube: string, drilldowns: string, measures: string, filt
 const BENCHMARKS: Record<string, any> = {
   '0303': {
     topExporters: [
-      { country: 'China', value: 4210, share: 15.2 }, { country: 'Norway', value: 3890, share: 14.1 },
-      { country: 'Russia', value: 2450, share: 8.9 }, { country: 'Vietnam', value: 1980, share: 7.2 },
-      { country: 'India', value: 1650, share: 6.0 }, { country: 'USA', value: 1420, share: 5.1 },
-      { country: 'Chile', value: 1380, share: 5.0 }, { country: 'Thailand', value: 1210, share: 4.4 },
+      { country: '중국', value: 4210, share: 15.2 }, { country: '노르웨이', value: 3890, share: 14.1 },
+      { country: '러시아', value: 2450, share: 8.9 }, { country: '베트남', value: 1980, share: 7.2 },
+      { country: '인도', value: 1650, share: 6.0 }, { country: '미국', value: 1420, share: 5.1 },
+      { country: '칠레', value: 1380, share: 5.0 }, { country: '태국', value: 1210, share: 4.4 },
     ],
     topImporters: [
-      { country: 'Japan', value: 3120, share: 11.3 }, { country: 'USA', value: 2870, share: 10.4 },
-      { country: 'China', value: 2450, share: 8.9 }, { country: 'South Korea', value: 2180, share: 7.9 },
-      { country: 'Thailand', value: 1920, share: 6.9 }, { country: 'Germany', value: 1650, share: 6.0 },
+      { country: '일본', value: 3120, share: 11.3 }, { country: '미국', value: 2870, share: 10.4 },
+      { country: '중국', value: 2450, share: 8.9 }, { country: '한국', value: 2180, share: 7.9 },
+      { country: '태국', value: 1920, share: 6.9 }, { country: '독일', value: 1650, share: 6.0 },
     ],
     globalTradeValueM: 27600, year: '2023', pci: -0.42,
   },
   '0306': {
     topExporters: [
-      { country: 'India', value: 5120, share: 18.5 }, { country: 'Ecuador', value: 4890, share: 17.7 },
-      { country: 'Vietnam', value: 3210, share: 11.6 }, { country: 'Indonesia', value: 2450, share: 8.9 },
-      { country: 'Thailand', value: 1980, share: 7.2 }, { country: 'China', value: 1650, share: 6.0 },
+      { country: '인도', value: 5120, share: 18.5 }, { country: '에콰도르', value: 4890, share: 17.7 },
+      { country: '베트남', value: 3210, share: 11.6 }, { country: '인도네시아', value: 2450, share: 8.9 },
+      { country: '태국', value: 1980, share: 7.2 }, { country: '중국', value: 1650, share: 6.0 },
     ],
     topImporters: [
-      { country: 'USA', value: 7210, share: 26.1 }, { country: 'Japan', value: 2450, share: 8.9 },
-      { country: 'China', value: 2180, share: 7.9 }, { country: 'South Korea', value: 1650, share: 6.0 },
-      { country: 'Spain', value: 1420, share: 5.1 },
+      { country: '미국', value: 7210, share: 26.1 }, { country: '일본', value: 2450, share: 8.9 },
+      { country: '중국', value: 2180, share: 7.9 }, { country: '한국', value: 1650, share: 6.0 },
+      { country: '스페인', value: 1420, share: 5.1 },
     ],
     globalTradeValueM: 27650, year: '2023', pci: -0.78,
   },
   '0307': {
     topExporters: [
-      { country: 'China', value: 2890, share: 18.2 }, { country: 'Spain', value: 1650, share: 10.4 },
-      { country: 'India', value: 1420, share: 8.9 }, { country: 'Peru', value: 1280, share: 8.1 },
-      { country: 'Morocco', value: 980, share: 6.2 },
+      { country: '중국', value: 2890, share: 18.2 }, { country: '스페인', value: 1650, share: 10.4 },
+      { country: '인도', value: 1420, share: 8.9 }, { country: '페루', value: 1280, share: 8.1 },
+      { country: '모로코', value: 980, share: 6.2 },
     ],
     topImporters: [
-      { country: 'Japan', value: 2450, share: 15.4 }, { country: 'South Korea', value: 1980, share: 12.5 },
-      { country: 'Italy', value: 1650, share: 10.4 }, { country: 'Spain', value: 1420, share: 8.9 },
+      { country: '일본', value: 2450, share: 15.4 }, { country: '한국', value: 1980, share: 12.5 },
+      { country: '이탈리아', value: 1650, share: 10.4 }, { country: '스페인', value: 1420, share: 8.9 },
     ],
     globalTradeValueM: 15880, year: '2023', pci: -0.35,
   },
   '0703': {
     topExporters: [
-      { country: 'China', value: 3450, share: 28.2 }, { country: 'Spain', value: 1120, share: 9.2 },
-      { country: 'Netherlands', value: 980, share: 8.0 }, { country: 'Argentina', value: 650, share: 5.3 },
+      { country: '중국', value: 3450, share: 28.2 }, { country: '스페인', value: 1120, share: 9.2 },
+      { country: '네덜란드', value: 980, share: 8.0 }, { country: '아르헨티나', value: 650, share: 5.3 },
     ],
     topImporters: [
-      { country: 'Indonesia', value: 1280, share: 10.5 }, { country: 'Brazil', value: 980, share: 8.0 },
-      { country: 'South Korea', value: 650, share: 5.3 },
+      { country: '인도네시아', value: 1280, share: 10.5 }, { country: '브라질', value: 980, share: 8.0 },
+      { country: '한국', value: 650, share: 5.3 },
     ],
     globalTradeValueM: 12230, year: '2023', pci: -1.12,
   },
   '0801': {
     topExporters: [
-      { country: 'Vietnam', value: 3780, share: 32.1 }, { country: 'India', value: 2450, share: 20.8 },
-      { country: "Côte d'Ivoire", value: 1120, share: 9.5 }, { country: 'Indonesia', value: 890, share: 7.6 },
+      { country: '베트남', value: 3780, share: 32.1 }, { country: '인도', value: 2450, share: 20.8 },
+      { country: '코트디부아르', value: 1120, share: 9.5 }, { country: '인도네시아', value: 890, share: 7.6 },
     ],
     topImporters: [
-      { country: 'USA', value: 1890, share: 16.1 }, { country: 'India', value: 1450, share: 12.3 },
-      { country: 'South Korea', value: 520, share: 4.4 },
+      { country: '미국', value: 1890, share: 16.1 }, { country: '인도', value: 1450, share: 12.3 },
+      { country: '한국', value: 520, share: 4.4 },
     ],
     globalTradeValueM: 11770, year: '2023', pci: -1.45,
   },
   '1604': {
     topExporters: [
-      { country: 'Thailand', value: 4520, share: 22.8 }, { country: 'China', value: 2180, share: 11.0 },
-      { country: 'Ecuador', value: 1890, share: 9.5 }, { country: 'Spain', value: 1450, share: 7.3 },
+      { country: '태국', value: 4520, share: 22.8 }, { country: '중국', value: 2180, share: 11.0 },
+      { country: '에콰도르', value: 1890, share: 9.5 }, { country: '스페인', value: 1450, share: 7.3 },
     ],
     topImporters: [
-      { country: 'USA', value: 3120, share: 15.7 }, { country: 'Japan', value: 2450, share: 12.4 },
-      { country: 'UK', value: 1650, share: 8.3 }, { country: 'South Korea', value: 1120, share: 5.7 },
+      { country: '미국', value: 3120, share: 15.7 }, { country: '일본', value: 2450, share: 12.4 },
+      { country: '영국', value: 1650, share: 8.3 }, { country: '한국', value: 1120, share: 5.7 },
     ],
     globalTradeValueM: 19820, year: '2023', pci: 0.12,
   },
