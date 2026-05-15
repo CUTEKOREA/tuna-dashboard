@@ -15,11 +15,11 @@ interface ScreeningResult {
 
 
 const HISTORY = [
-  { entity: 'Thai Union Group', result: '✅ Clean', date: '2026-05-13', score: 95 },
-  { entity: 'Dongwon Industries', result: '✅ Clean', date: '2026-05-13', score: 97 },
-  { entity: 'Silla Co., Ltd.', result: '✅ Clean', date: '2026-05-13', score: 98 },
-  { entity: 'Nirsa S.A.', result: '✅ Clean', date: '2026-05-12', score: 90 },
-  { entity: 'Minh Phu Seafood', result: '⚠️ Review', date: '2026-05-11', score: 72 },
+  { entity: 'Thai Union Group', result: '✅ 적합', date: '2026-05-13', score: 95 },
+  { entity: 'Dongwon Industries', result: '✅ 적합', date: '2026-05-13', score: 97 },
+  { entity: 'Silla Co., Ltd.', result: '✅ 적합', date: '2026-05-13', score: 98 },
+  { entity: 'Nirsa S.A.', result: '✅ 적합', date: '2026-05-12', score: 90 },
+  { entity: 'Minh Phu Seafood', result: '⚠️ 검토', date: '2026-05-11', score: 72 },
 ];
 
 const riskColor = (l: string) => l === 'LOW' ? '#0ECB81' : l === 'MEDIUM' ? '#F0B90B' : '#F6465D';
@@ -57,7 +57,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-          <ShieldCheck size={18} style={{ color: '#0ECB81' }} /> [제재 스크리닝] 컴플라이언스 레이더 (Sanctions Radar)
+          <ShieldCheck size={18} style={{ color: '#0ECB81' }} /> [제재 스크리닝] 컴플라이언스 레이더
           <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8' }}>OFAC + EU</span>
         </h3>
         <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>OFAC SDN(미국 해외자산통제국) 및 EU 통합 제재 목록을 실시간 듀얼 스크리닝하여 거래처의 제재 위반 여부를 자동 검증합니다. AI 오탐지(False Positive) 분석 엔진이 정확도를 보강합니다.</p>
@@ -84,13 +84,13 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
               <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{result.ofac.detail}</div>
             </div>
             <div style={{ background: result.eu.status === 'clean' ? 'rgba(14,203,129,0.06)' : 'rgba(240,185,11,0.06)', border: `1px solid ${result.eu.status === 'clean' ? 'rgba(14,203,129,0.2)' : 'rgba(240,185,11,0.2)'}`, borderRadius: '8px', padding: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.eu.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc' }}>EU Sanctions</span></div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.eu.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc' }}>EU 제재</span></div>
               <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{result.eu.detail}</div>
             </div>
             <div style={{ background: `${riskColor(result.riskLevel)}10`, border: `1px solid ${riskColor(result.riskLevel)}30`, borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
               <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>종합 위험도</div>
               <div style={{ fontSize: '1.6rem', fontWeight: 800, color: riskColor(result.riskLevel) }}>{result.riskScore}<span style={{ fontSize: '0.8rem' }}>/100</span></div>
-              <span style={{ fontSize: '0.68rem', fontWeight: 700, background: `${riskColor(result.riskLevel)}20`, color: riskColor(result.riskLevel), padding: '2px 8px', borderRadius: '500px' }}>{result.riskLevel} RISK</span>
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, background: `${riskColor(result.riskLevel)}20`, color: riskColor(result.riskLevel), padding: '2px 8px', borderRadius: '500px' }}>{result.riskLevel === 'LOW' ? '저위험' : result.riskLevel === 'MEDIUM' ? '중위험' : '고위험'}</span>
             </div>
           </div>
 
@@ -98,7 +98,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
             <div style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1rem', display: 'flex', gap: '10px' }}>
               <ShieldCheck size={18} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#06b6d4', marginBottom: '4px' }}>AI False Positive 엔진 분석</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#06b6d4', marginBottom: '4px' }}>AI 오탐지 분석 엔진</div>
                 <div style={{ fontSize: '0.75rem', color: '#f8fafc', marginBottom: '4px' }}>오탐지 위험도: <strong style={{ color: result.aiAnalysis.falsePositiveRisk === 'HIGH' ? '#F6465D' : '#0ECB81' }}>{result.aiAnalysis.falsePositiveRisk}</strong> (신뢰도: {(result.aiAnalysis.confidence * 100).toFixed(1)}%)</div>
                 <div style={{ fontSize: '0.7rem', color: '#94a3b8', lineHeight: 1.4 }}>{result.aiAnalysis.recommendation}</div>
               </div>
@@ -107,7 +107,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
 
           <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', padding: '10px 14px' }}>
             <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#f8fafc' }}>{result.entity}</div>
-            <div style={{ fontSize: '0.7rem', color: '#64748b' }}>Screened: {new Date().toLocaleDateString('ko-KR')} · OFAC SDN + EU Consolidated + IUU List</div>
+            <div style={{ fontSize: '0.7rem', color: '#64748b' }}>스크리닝 일시: {new Date().toLocaleDateString('ko-KR')} · OFAC SDN + EU 통합제재 + IUU 목록</div>
           </div>
         </div>
       )}
@@ -130,7 +130,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
         <TakeawayBox
           situation={result && !showHist ? `[스크리닝] ${result.entity} — ${result.riskScore}/100 (${result.riskLevel}). OFAC: ${result.ofac.status}, EU: ${result.eu.status}.` : '[컴플라이언스] 주요 5개사 스크리닝 완료. Silla (98), Dongwon (97), Thai Union (95) Clean. Minh Phu (72) 주의.'}
           actionPlan={result && result.riskScore < 80 ? `[조치] ${result.entity} Enhanced Due Diligence 실시 권고.` : '[정기 점검] 전 거래처 월 1회 자동 스크리닝 수행 권고.'}
-          source="OFAC SDN + EU Consolidated Sanctions · Pre-screened DB"
+          source="OFAC SDN + EU 통합제재목록 · 사전심사 DB"
         />
       </div>
     </div>
