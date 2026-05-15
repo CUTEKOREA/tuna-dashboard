@@ -32,7 +32,11 @@ export async function GET(request: Request) {
     }
 
     const filename = fileMap[id];
-    const filePath = path.join(process.cwd(), 'data', filename);
+    // public/data/ 우선 (Vercel 배포 호환), data/ 폴백 (로컬)
+    let filePath = path.join(process.cwd(), 'public', 'data', filename);
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(process.cwd(), 'data', filename);
+    }
     
     if (!fs.existsSync(filePath)) {
       return NextResponse.json({ error: `File not found: ${filename}` }, { status: 404 });

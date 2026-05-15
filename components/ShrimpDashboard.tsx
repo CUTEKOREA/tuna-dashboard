@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css';
+import styles from './ShrimpDashboard.module.css';
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -135,6 +135,12 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   );
 };
 
+const truncateXAxis = (tick: any) => {
+  if (typeof tick !== 'string') return tick;
+  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, ''); // 괄호 영문명 제거
+  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+};
+
 const formatYAxis = (v: number, unit?: string) => {
   let formatted: string | number = v;
   if (v >= 1000000) formatted = (v / 1000000).toFixed(1) + 'M';
@@ -241,7 +247,7 @@ export default function ShrimpDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -256,7 +262,7 @@ export default function ShrimpDashboard() {
           return (
             <ComposedChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               {hasDualAxis && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
               <RechartsTooltip content={<CustomTooltip />} />
@@ -276,7 +282,7 @@ export default function ShrimpDashboard() {
     }
 
     // OLD FORMAT (Gemini widgets)
-    const xAxis = widget.xAxis || 'Year';
+    const xAxis = widget.xAxis || '연도';
     const series = widget.series || [];
     const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
 
@@ -296,7 +302,7 @@ export default function ShrimpDashboard() {
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -310,7 +316,7 @@ export default function ShrimpDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -323,7 +329,7 @@ export default function ShrimpDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -336,7 +342,7 @@ export default function ShrimpDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -372,7 +378,7 @@ export default function ShrimpDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 새우 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Shrimp Strategic Command Center — {displayWidgets?.length || 47} Widgets · 6 KPIs · 16 APIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>새우 전략 종합 커맨드 센터 — {displayWidgets?.length || 47}개 위젯 · 6개 핵심지표 · 16개 API 연동</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -380,7 +386,7 @@ export default function ShrimpDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span>9 APIs <span style={{ color: 'var(--color-success)' }}>Connected</span></span>
+            <span>9개 API <span style={{ color: 'var(--color-success)' }}>연동됨</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>FishStatJ 1950-2024</span>
           </div>
@@ -475,7 +481,7 @@ export default function ShrimpDashboard() {
                 
                 <div style={{ padding: '1rem', background: 'var(--surface-2)', borderRadius: '6px', marginBottom: '1rem' }}>
                   <div style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Fish size={16}/> 양식 (Aquaculture)
+                    <Fish size={16}/> 양식
                   </div>
                   <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                     <strong style={{color:'var(--text-primary)'}}>주요종:</strong> 흰다리새우(Vannamei), 블랙타이거<br/>
@@ -486,7 +492,7 @@ export default function ShrimpDashboard() {
 
                 <div style={{ padding: '1rem', background: 'var(--surface-2)', borderRadius: '6px' }}>
                   <div style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Ship size={16}/> 자연산 어획 (Wild Catch)
+                    <Ship size={16}/> 자연산 어획
                   </div>
                   <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                     <strong style={{color:'var(--text-primary)'}}>주요종:</strong> 아르헨티나 붉은새우(Langostino) 등<br/>
@@ -538,7 +544,7 @@ export default function ShrimpDashboard() {
                 </div>
                 <div>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Zap size={18} color="var(--color-success)" /> 새우 지식 AI 챗봇 (NotebookLM)
+                    <Zap size={18} color="var(--color-success)" /> 새우 지식 AI 챗봇
                   </h3>
                   <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                     방대한 새우 산업 리포트, 양식 동향, 무역 관세 데이터가 학습된 맞춤형 AI입니다. 글로벌 시장 동향을 즉시 질문하세요.
@@ -576,38 +582,38 @@ export default function ShrimpDashboard() {
       <div className="ds-card" style={{marginBottom: '2rem', padding: '1.5rem', background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-success)' }} />
         <h2 style={{ margin: '0 0 1rem 0', fontSize: '1.13rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Activity color="var(--color-success)" size={20} /> 관세/환율 충격 시뮬레이터 (What-If API Engine)
+          <Activity color="var(--color-success)" size={20} /> 관세/환율 충격 시뮬레이터
           <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API 연동</span>
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
           
           <div style={{ background: 'var(--surface-2)', padding: '1.2rem', borderRadius: '6px' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>API Data Status</h3>
+            <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>API 데이터 연동 현황</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.88rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>관세청 (한국 수입가):</span> <strong style={{ color: apiData.customs ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()}/톤` : 'Fetching...'}</strong></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>KAMIS (국내 도매가):</span> <strong style={{ color: apiData.kamis ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.kamis ? `₩${apiData.kamis.metrics.wholesalePrice_KRW_per_KG.toLocaleString()}/kg` : 'Fetching...'}</strong></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>BOK (환율):</span> <strong style={{ color: apiData.macro ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.macro ? `₩${apiData.macro.metrics.rate.toLocaleString()}` : 'Fetching...'}</strong></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>관세청 (한국 수입가):</span> <strong style={{ color: apiData.customs ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()}/톤` : '로딩중...'}</strong></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>KAMIS (국내 도매가):</span> <strong style={{ color: apiData.kamis ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.kamis ? `₩${apiData.kamis.metrics.wholesalePrice_KRW_per_KG.toLocaleString()}/kg` : '로딩중...'}</strong></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>한국은행 (환율):</span> <strong style={{ color: apiData.macro ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.macro ? `₩${apiData.macro.metrics.rate.toLocaleString()}` : '로딩중...'}</strong></div>
             </div>
           </div>
 
           <div style={{ background: 'var(--surface-2)', padding: '1.2rem', borderRadius: '6px' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>What-If 컨트롤 (Variables)</h3>
+            <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>What-If 컨트롤 (변수 조정)</h3>
             <div style={{ marginBottom: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem', color: 'var(--text-primary)', marginBottom: '4px' }}>
-                <span>USD/KRW 환율</span> <strong>₩{simExchangeRate}</strong>
+                <span>원/달러 환율</span> <strong>₩{simExchangeRate}</strong>
               </div>
               <input type="range" min="1200" max="1500" step="5" value={simExchangeRate} onChange={(e) => setSimExchangeRate(Number(e.target.value))} style={{ width: '100%', accentColor: 'var(--color-success)' }} />
             </div>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem', color: 'var(--text-primary)', marginBottom: '4px' }}>
-                <span>미국 DOC 반덤핑 관세율</span> <strong>{simTariff.toFixed(1)}%</strong>
+                <span>미국 상무부 반덤핑 관세율</span> <strong>{simTariff.toFixed(1)}%</strong>
               </div>
               <input type="range" min="0" max="10" step="0.1" value={simTariff} onChange={(e) => setSimTariff(Number(e.target.value))} style={{ width: '100%', accentColor: 'var(--color-success)' }} />
             </div>
           </div>
 
           <div style={{ background: '#181818', padding: '1.2rem', borderRadius: '6px', border: '1px solid #1f1f1f', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}><TrendingUp size={16} /> 실시간 추정 이익률 (Net Margin)</h3>
+            <h3 style={{ fontSize: '0.88rem', color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}><TrendingUp size={16} /> 실시간 추정 이익률</h3>
             <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               {(simBaseMargin - ((simExchangeRate - 1385)/100) - simTariff).toFixed(1)}%
             </div>
@@ -625,7 +631,7 @@ export default function ShrimpDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Anchor size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part I — 원물 생산 (Raw Material)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제1기둥 — 원물 생산</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {displayWidgets?.filter((w: any) => ['w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
@@ -636,7 +642,7 @@ export default function ShrimpDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Factory size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part II — 가공 산업 (Processing)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제2기둥 — 가공 산업</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {displayWidgets?.filter((w: any) => ['w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
@@ -647,7 +653,7 @@ export default function ShrimpDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Ship size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part III — 물류 및 무역 (Logistics)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제3기둥 — 물류 및 무역</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {displayWidgets?.filter((w: any) => ['w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
@@ -658,7 +664,7 @@ export default function ShrimpDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <DollarSign size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part IV — 판매 및 수요 (Sales & Demand)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제4기둥 — 판매 및 수요</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {displayWidgets?.filter((w: any) => ['w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
@@ -669,7 +675,7 @@ export default function ShrimpDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <ShieldCheck size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part V — ESG 및 지속가능성 (Sustainability)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제5기둥 — ESG 및 지속가능성</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {displayWidgets?.filter((w: any) => ['w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
@@ -691,7 +697,7 @@ export default function ShrimpDashboard() {
             <section>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
                 <Database size={24} color="var(--color-success)" />
-                <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>기타 분석 (Others)</h2>
+                <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>기타 분석</h2>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {uncategorized.map((w: any) => renderWidgetCard(w))}

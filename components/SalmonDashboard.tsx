@@ -34,7 +34,6 @@ import SalmonForecastSimulator from './SalmonForecastSimulator';
 import SalmonESGTracker from './SalmonESGTracker';
 import SalmonPolicyImpact from './SalmonPolicyImpact';
 import styles from './MackerelStrategy.module.css';
-import insightsStyles from './InsightsPanel.module.css';
 import TakeawayBox from './TakeawayBox';
 
 /* ─── V4.0 S-Grade: Salmon Monochromatic Theme (Rose/Coral) ─── */
@@ -572,7 +571,7 @@ export default function SalmonDashboard() {
                 </div>
                 {desc && <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>{desc}</p>}
               </div>
-              <div className={insightsStyles.grid} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {customInsights}
                 {sectionWidgets.map((w: any) => renderWidgetCard(w))}
               </div>

@@ -647,6 +647,7 @@ export default function PollockDashboard() {
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
               <IconComp size={18} />
               {w.title} {w.reliability && w.reliability <= 70 && (<span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #f59e0b', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>📐 Estimate</span>)}
+              <TelemetryBadge status={w.isLiveApi ? 'live' : (w.syncDate ? 'synced' : 'static')} syncDate={w.syncDate} />
             </span>
             
             {WIDGET_UNITS[w.id] && (

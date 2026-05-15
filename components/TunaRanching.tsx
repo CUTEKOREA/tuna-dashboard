@@ -347,61 +347,221 @@ export default function TunaRanching() {
       </div>
 
       {/* 🚀 인젝션 포인트: 고급 양식 & 프리미엄 인사이트 추가 */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '20px' }}>
-        
-        {/* 아시아 마켓 시프트 위젯 */}
-        {asianMarketShift && (
-          <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(239,68,68,0.08), rgba(56,189,248,0.05))', border: '1px solid rgba(239,68,68,0.3)' }}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <Target size={20} color="var(--color-danger)"/> 아시아 럭셔리 마켓 패러다임 시프트 (일본 붕괴 vs 중국 폭발)
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (INFOFISH)</span>
-              </h3>
-              <p className={insightsStyles.cardDesc}>사료 원가 폭등으로 인한 일본의 축양 참치 80% 생산 감축 사태와 중국의 상반기 35% 수입 폭증(지중해산 중심)을 교차 분석합니다.</p>
+
+      {/* ================== S-GRADE 5-PILLAR ARCHITECTURE ================== */}
+
+      {/* 🌱 Part I — 원물 생산 (Raw Material) */}
+      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(245,158,11,0.12) 0%, transparent 100%)", borderLeft:"4px solid #f59e0b", marginBottom:"1.5rem", marginTop:"2rem" }}>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌱 Part I — 원물 생산 (Raw Material)</h2>
+        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>블루핀 도피회유, TAC 쿼터 과점, 자연폐사율 리스크 등 원물 조달의 근본적 제약과 기회</p>
+      </div>
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+        {/* NEW-1: 블루핀 도피회유 메커니즘 */}
+        <div className={insightsStyles.insightCard}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유(Escapement) 현상 분석 — 자원 회복의 메커니즘
+            </h3>
+            <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축이 촉발한 지중해 어린 개체의 북대서양 도피(Escapement) 및 산란장 복귀를 통한 자원 회복 구조.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div className={insightsStyles.chartContainer}>
+              <SafeResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={[
+                  { period: '2007', stock: 40, escapement: 15 },
+                  { period: '2010', stock: 55, escapement: 35 },
+                  { period: '2015', stock: 85, escapement: 50 },
+                  { period: '2020', stock: 130, escapement: 60 },
+                  { period: '2024', stock: 180, escapement: 55 }
+                ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}pt`} />
+                  <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} unit="%" />
+                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value, name) => name === '도피율 (%)' ? [`${value}%`, name] : [`${value}pt`, name]} />
+                  <Legend />
+                  <Area yAxisId="left" type="monotone" dataKey="stock" name="동부 자원지수" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth={3} />
+                  <Line yAxisId="right" type="monotone" dataKey="escapement" name="도피율 (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4, fill: '#f59e0b' }} />
+                </ComposedChart>
+              </SafeResponsiveContainer>
             </div>
-            <div className={insightsStyles.cardBody}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-                {/* 일본 생산 차트 */}
-                <div style={{ height: '220px' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#fca5a5', marginBottom: '8px', textAlign: 'center' }}>일본 자체 축양 생산량 추이 (톤)</div>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <BarChart data={asianMarketShift?.japaneseProduction} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                      <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                      <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
-                      <Bar dataKey="production" fill="#ef4444" radius={[4, 4, 0, 0]}>
-                        {asianMarketShift?.japaneseProduction.map((entry: any, index: number) => (
-                          <Cell key={`cell-${index}`} fill={index === 2 ? '#b91c1c' : '#ef4444'} />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </SafeResponsiveContainer>
-                </div>
-                
-                {/* 중국 수입 차트 */}
-                <div style={{ height: '220px' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#7dd3fc', marginBottom: '8px', textAlign: 'center' }}>중국 신선/냉동 참다랑어 수입 추이 (톤)</div>
-                  <SafeResponsiveContainer width="100%" height="100%">
-                    <LineChart data={asianMarketShift?.chineseImports} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                      <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
-                      <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
-                      <Line type="monotone" dataKey="import" stroke="#38bdf8" strokeWidth={4} dot={{ r: 5, fill: '#38bdf8' }} />
-                    </LineChart>
-                  </SafeResponsiveContainer>
-                </div>
-              </div>
-              
+            <div style={{ padding: '0 20px 20px 20px' }}>
               <TakeawayBox
-                source="INFOFISH 2025-2026 Intelligence Report"
-                situation="일본의 주요 수산기업들이 사료 원가 폭등으로 2025년 양식 생산량을 80% 감축했습니다. 반면 중국은 12.5만 개 일식당 수요를 위해 상반기 지중해산 수입량을 35% 폭증시키며 시장을 장악하고 있습니다."
-                actionPlan="과거 츠키지 시장에 의존하던 전통적 수출을 지양하십시오. 일본의 생산 붕괴 틈을 타, 이미 세계 표준이 된 '-60℃ 초저온 냉동 필렛' 포맷으로 중국 프리미엄 B2B 시장 및 일본 본토를 동시 직접 타격해야 합니다."
+                source="Block et al. 2026 (Ensuring the future of Atlantic bluefin tuna)"
+                situation="ICCAT 쿼터 감축 이후 지중해 어린 참다랑어가 어획 압력이 낮은 북미·서대서양으로 '도피(Escapement)'하여 수년 간 성장한 뒤, 산란기 귀환하여 동부 자원이 4.5배 회복되었습니다. 특히 슬로프 해(Slope Sea)가 제3의 산란장으로 새롭게 확인되었습니다."
+                actionPlan={
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                    <li style={{ marginBottom: '4px' }}><strong>도피 경로 보장 전략:</strong> 축양 전략 수립 시 치어(어린 개체)의 회유 경로를 보호하는 것이 장기 자원 지속성의 전제조건입니다.</li>
+                    <li><strong>선제적 규제 대응:</strong> 지중해→북대서양 회유 경로에 위치한 어획 구역의 쿼터 제한을 지지하여, 안정적인 자연 어획량 확보 및 기업 ESG 신뢰도를 제고해야 합니다.</li>
+                  </ul>
+                }
               />
             </div>
           </div>
-        )}
+        </div>
+
+        <div className={insightsStyles.insightCard}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <Target size={20} color="#ec4899"/> ICCAT TAC 쿼터 과점 구조 분석 — 연안 축양장 수용률
+            </h3>
+            <p className={insightsStyles.cardDesc}>전체 할당량의 약 50%가 지중해 연안 축양장(CBA)에 집중되며, 소수 대형 법인이 쿼터 및 유통망을 지배하는 구조 파악.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div className={insightsStyles.chartContainer}>
+              <SafeResponsiveContainer width="100%" height="100%">
+                <BarChart data={[
+                  { category: '축양장 수용 (CBA)', value: 50, color: '#ec4899' },
+                  { category: '직접 어획·판매', value: 35, color: '#38bdf8' },
+                  { category: '스포츠 피싱·기타', value: 15, color: '#94a3b8' },
+                ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
+                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value) => [`${value}%`, 'TAC 비율']} />
+                  <Bar dataKey="value" name="TAC 비율 (%)" radius={[4, 4, 0, 0]}>
+                    {[
+                      { category: '축양장 수용 (CBA)', value: 50, color: '#ec4899' },
+                      { category: '직접 어획·판매', value: 35, color: '#38bdf8' },
+                      { category: '스포츠 피싱·기타', value: 15, color: '#94a3b8' },
+                    ].map((entry: any, idx: number) => (
+                      <Cell key={idx} fill={entry.color} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </SafeResponsiveContainer>
+            </div>
+            <div style={{ padding: '0 20px 20px 20px' }}>
+              <TakeawayBox
+                source="Block et al. 2026 + ICCAT Compendium"
+                situation="ICCAT TAC의 50%가 지중해 축양장(CBA)으로 수용되어, 쿼터 소유권이 극소수 법인에 편중된 과점(Oligopoly) 시장이 형성되었습니다. 활어의 선망 이송 특성 상 초기 자원량 평가의 불투명성 논란이 지속되고 있습니다."
+                actionPlan={
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                    <li style={{ marginBottom: '4px' }}><strong>우회 전략 모색:</strong> 쿼터 신규 취득이 사실상 불가능한 구조이므로, 기존 지중해 선두 기업들과의 합작(JV) 또는 입항도가 높은 공인된 파트너와의 EXW 거래가 필수적입니다.</li>
+                    <li><strong>투명성 검증 선제 적용:</strong> ICCAT 자원 평가 강화를 대비하여 블록체인 기반 어획량 데이터 파이프라인(eBCD) 통합 역량을 사전 홍보해야 합니다.</li>
+                  </ul>
+                }
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <Building2 size={20} color="#6366f1"/> 지중해 참다랑어 축양 쿼터 독과점(Oligopoly) 카르텔 분석
+            </h3>
+            <p className={insightsStyles.cardDesc}>스페인·몰타 기반 극소수 수직계열화 기업이 지중해 쿼터를 장악. 신규 모로코 완전양식(Alta Mar) 프로젝트 부상.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '15px', marginBottom: '20px' }}>
+              
+              {/* 스페인 그룹 */}
+              <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: '10px', borderTop: '3px solid #ef4444' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                  <div style={{ fontSize: '1.2rem' }}>🇪🇸</div>
+                  <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.95rem' }}>스페인 2대 카르텔 (Global Top Tier)</div>
+                </div>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
+                  <li style={{ marginBottom: '8px' }}>
+                    <strong style={{ color: '#fca5a5' }}>Ricardo Fuentes e Hijos:</strong> 지중해(스페인, 몰타, 튀니지, 모로코 등) 최대 축양 거물. 선망선-해상가두리-초저온수출 수직계열화 완성. 마루하니치로(일본) 등 대형 상사와 독점적 파트너십 구축.
+                  </li>
+                  <li>
+                    <strong style={{ color: '#fca5a5' }}>Balfegó (발페고):</strong> 프리미엄 및 지속가능성(ESG) 특화 가문 기업. 개별 QR 추적성 시스템 최초 도입.
+                  </li>
+                </ul>
+              </div>
+
+              {/* 몰타 그룹 */}
+              <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(245,158,11,0.15)', borderRadius: '10px', borderTop: '3px solid #f59e0b' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                  <div style={{ fontSize: '1.2rem' }}>🇲🇹</div>
+                  <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.95rem' }}>몰타 로컬 거점 (유럽 최대 축양 허브)</div>
+                </div>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
+                  <li style={{ marginBottom: '8px' }}>
+                    <strong style={{ color: '#fcd34d' }}>Azzopardi Group (AJD Tuna):</strong> 1999년 몰타 최초 개척. 크로아티아 등지까지 최첨단 양식 시설 확대.
+                  </li>
+                  <li style={{ marginBottom: '8px' }}>
+                    <strong style={{ color: '#fcd34d' }}>Fish and Fish Limited:</strong> 20년 이상 아시아 스시/사시미 시장 직공급망 구축.
+                  </li>
+                  <li>
+                    <strong style={{ color: '#fcd34d' }}>Mare Blu Tuna Farm:</strong> Ricardo Fuentes 계열 자본 유입 모델 (해외 자본의 몰타 지리적 이점 활용).
+                  </li>
+                </ul>
+              </div>
+
+              {/* 모로코 신규 프로젝트 */}
+              <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(16,185,129,0.15)', borderRadius: '10px', borderTop: '3px solid #10b981' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                  <div style={{ fontSize: '1.2rem' }}>🇲🇦</div>
+                  <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.95rem' }}>모로코 완전양식(Full-Cycle) 혁신</div>
+                </div>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
+                  <li style={{ marginBottom: '8px' }}>
+                    <strong style={{ color: '#6ee7b7' }}>Ricardo Fuentes의 Almadraba:</strong> 기존 전통적 '함정그물(Almadraba)' 방식 + 축양 연계 (스페인 자본).
+                  </li>
+                  <li>
+                    <strong style={{ color: '#6ee7b7' }}>Alta Mar (모로코-노르웨이 JV):</strong> 2025년 Safi 지역에 $2,100만 투자. 야생 치어 포획(Ranching)이 아닌 부화장(Hatchery) 기반 <strong>'완전양식' 프로젝트 부상.</strong> 자원 고갈 규제 회피 및 국가 전략 산업화.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <TakeawayBox
+              source="글로벌 수산물 교역 동향 (SeafoodSource) + 국가별 양식 산업 브리핑"
+              situation="지중해 참다랑어 생산량의 대부분은 스페인 및 몰타의 극소수 수직계열화 기업(Balfegó, Ricardo Fuentes 등)이 장악하고 있으며 일본 상사들과 독점적 유통 파트너십을 체결하여 진입장벽이 극히 높습니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>중동 우회 독점 유통망 확보:</strong> 기존 기업들의 주요 타겟인 일본을 우회하여 사우디, 카타르 등 성장하는 중동 시장 전용 독점 유통 파트너십(JV)을 제안하십시오.</li>
+                  <li><strong>신흥 '완전 양식' 프로젝트 투자:</strong> 자원 고갈 규제로부터 면제될 모로코 Alta Mar와 같은 차세대 부화장 기반 완전 양식 프로젝트에 지분 투자를 단행하여 ESG 프리미엄 물량을 입도선매 해야 합니다.</li>
+                </ul>
+              }
+            />
+          </div>
+        </div>
+
+        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <Thermometer size={20} color="#a78bfa"/> 참다랑어 자연폐사율(Natural Mortality) 역설 — 클수록 더 위험
+            </h3>
+            <p className={insightsStyles.cardDesc}>Block et al. 음향 태그 모델링: 일반 예상과 달리, 참다랑어는 연령/크기 증가 시 자연폐사율이 감소하지 않고 유지 또는 증가. 3대 산란장(멕시코만·지중해·슬로프 해) 타임라인 포함.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '15px', marginBottom: '15px' }}>
+              {[
+                { icon: '🇺🇸', title: '멕시코만 (서부)', period: '2월 중순~5월 중순', desc: '서부 계군 산란장. 나이 많고 큰 개체 집중.', color: '#38bdf8' },
+                { icon: '🇪🇺', title: '지중해 (동부)', period: '5월 초~6월 하순', desc: '동부 계군 주요 산란장. 축양장 밀집 구역.', color: '#f59e0b' },
+                { icon: '🆕', title: '슬로프 해 (신규 발견)', period: '4월 하순~8월 중순', desc: '제3의 산란장. 동·서 계군 모두 산란 가능.', color: '#a78bfa' },
+              ].map((s, i) => (
+                <div key={i} style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '10px', borderLeft: `3px solid ${s.color}` }}>
+                  <div style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.88rem', marginBottom: '3px' }}>{s.icon} {s.title}</div>
+                  <div style={{ fontSize: '0.78rem', color: s.color, fontWeight: 600, marginBottom: '4px' }}>{s.period}</div>
+                  <div style={{ color: '#94a3b8', fontSize: '0.78rem', lineHeight: 1.5 }}>{s.desc}</div>
+                </div>
+              ))}
+            </div>
+            <TakeawayBox
+              source="Block et al. 2026 + 음향 태그(Acoustic tag) 모델링"
+              situation="일반적인 자연 생태 법칙과 달리, 참다랑어의 자연폐사율(M)은 연령 및 체급이 성장하더라도 오히려 증가하거나 유지되는 역설적인 패턴을 보입니다. 대형 개체의 원거리 회유 빈도 증가 및 적응 스트레스가 주요 요인입니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>대형 개체 특화 관리:</strong> 축양장 운영 시 수익성이 큰 300kg 이상의 슈퍼 프리미엄급 개체에 대해 별도의 수온/산소 밀착 모니터링 시스템을 강제해야 합니다.</li>
+                  <li><strong>생애주기 기반 출하 시점 최적화:</strong> 자연 폐사율이 급상승하는 변곡점을 데이터화하여, 리스크가 정점을 찍기 직전 프리미엄 어가로 일괄 조기 출하하는 '타임 아비트라지(Time-Arbitrage)' 전략을 도입합니다.</li>
+                </ul>
+              }
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* 🏭 Part II — 가공 산업 (Processing) */}
+      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(236,72,153,0.12) 0%, transparent 100%)", borderLeft:"4px solid #ec4899", marginBottom:"1.5rem", marginTop:"2rem" }}>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 Part II — 가공 산업 (Processing)</h2>
+        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>초저온 이케지메 가공을 통한 양식/어획 패러다임 역전 및 원가-마진 시뮬레이션</p>
+      </div>
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
 
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
@@ -442,299 +602,6 @@ export default function TunaRanching() {
             />
           </div>
         </div>
-
-        <div className={insightsStyles.insightCard}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <Globe size={20} color="#f472b6"/> 최고가 미식 소비 국가 맵 (Gastronomy Map)
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (EUMOFA)</span>
-              <TermTooltip term="" description="국가별 수입 단가를 히트맵형 바 차트로 배열하여, 하이엔드 신선 참치를 가장 비싸게 소비하는 럭셔리 마켓의 코어를 노출합니다." />
-            </h3>
-            <p className={insightsStyles.cardDesc}>kg당 수입단가가 30달러를 넘는 극프리미엄 지상주의 '소비 블랙홀' 흐름. 전통적 일본 수요보다 더 비싸게 사가는 신규 미식 타겟 국가 리스트입니다.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div className={insightsStyles.chartContainer}>
-              <SafeResponsiveContainer width="100%" height="100%">
-                <BarChart data={gastronomyPriceMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                  <XAxis dataKey="country" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" unit="$" tickFormatter={(value) => value.toLocaleString()} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
-                  <Bar dataKey="price" fill="#f472b6" radius={[4, 4, 0, 0]}>
-                    {
-                      gastronomyPriceMap.map((entry: any, index: number) => (
-                        <Cell key={`cell-${index}`} fill={entry.price > 40 ? '#ec4899' : '#fbcfe8'} />
-                      ))
-                    }
-                  </Bar>
-                </BarChart>
-              </SafeResponsiveContainer>
-            </div>
-            <div className={insightsStyles.kpiPanel}>
-              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ec4899' }}>
-                <div className={insightsStyles.kpiLabel}>#1 Premium Market</div>
-                <div className={insightsStyles.kpiValue}>UAE (Dubai)</div>
-                <div className={insightsStyles.kpiSub}>$48.00 / kg</div>
-              </div>
-            </div>
-          </div>
-          <div style={{ padding: '0 20px 20px 20px' }}>
-            <TakeawayBox
-              situation="전통적 미식 종주국인 일본을 제치고, UAE(두바이)와 사우디가 kg당 $30 이상의 무제한 단가를 지불하는 극프리미엄 지상주의 '소비 블랙홀'로 급부상하고 있습니다."
-              actionPlan="일본 츠키지/토요스 시장에 90% 이상 편중된 저마진 공급 구조를 즉각 해체하고, 두바이의 최고급 B2B 오마카세 및 5성급 호텔 네트워크로 항공 직납 밸류체인을 전면 재조정해야 합니다."
-            />
-          </div>
-        </div>
-
-        {/* 글로벌 차익거래 레이더 (Arbitrage Radar) */}
-        {arbitrageRadar && (
-          <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.05))', border: '1px solid rgba(16,185,129,0.3)' }}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <Target size={20} color="var(--color-success)"/> 실시간 글로벌 B2B 아비트라지 레이더 (Arbitrage Radar)
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast+EUMOFA+MGO)</span>
-              </h3>
-              <p className={insightsStyles.cardDesc}>지중해 스팟가로 매입하여 한국 가공 후 두바이로 항공 수출 시 발생하는 실시간 순수익 마진(Net Margin) 시뮬레이터입니다.</p>
-            </div>
-            <div className={insightsStyles.cardBody}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '15px', marginBottom: '20px' }}>
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #ef4444' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>지중해 매입가 (EUMOFA)</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-danger)' }}>${arbitrageRadar.mediterraneanSpotPriceUSD}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
-                </div>
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #f59e0b' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>항공운임/가공비 (MGO)</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-warning)' }}>${(arbitrageRadar.airFreightCostUSD + arbitrageRadar.processingCostUSD).toFixed(1)}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
-                </div>
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #10b981' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>두바이 도매가 (Local API)</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-success)' }}>${arbitrageRadar.dubaiLocalPriceUSD}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
-                </div>
-                <div style={{ background: 'rgba(16,185,129,0.1)', padding: '15px', borderRadius: '8px', border: '1px solid #10b981' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#34d399', marginBottom: '5px' }}>예상 순마진 (Net Margin)</div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 'bold', color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    ${arbitrageRadar.netMarginUSD.toFixed(1)}<span style={{ fontSize: '0.8rem' }}>/kg</span>
-                    <span style={{ fontSize: '0.9rem', background: 'var(--color-success)', color: 'var(--text-primary)', padding: '2px 8px', borderRadius: '4px' }}>{arbitrageRadar.marginGapVsJapan} vs 일본</span>
-                  </div>
-                </div>
-              </div>
-              <TakeawayBox
-                situation={arbitrageRadar.recommendation || "LIVE API 연동 진행 중"}
-                actionPlan="일본 시장 대비 즉각적인 순마진 우위가 확인되는 즉시, 지중해 매입 물량을 두바이 프리미엄 시장으로 전량 스위칭하는 Arbitrage(차익거래) 영업 인스턴스를 가동하십시오."
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* =================== 중동 시장 인텔리전스 섹션 (최상단) =================== */}
-      {middleEastMarket && (
-        <>
-        <div style={{ marginBottom: '20px', padding: '1.25rem 1.5rem', background: 'linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.04))', borderRadius: '8px', border: '1px solid rgba(245,158,11,0.2)' }}>
-          <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', color: '#fbbf24' }}>
-            <Building2 size={22} /> 중동(GCC) 축양 참치 수입 시장 인텔리전스
-          </h3>
-          <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8' }}>
-            Mordor Intelligence(참치 시장), Zion Market Research(양식 참치), IMARC Group(콜드체인), 6Wresearch(카타르), FAO GLOBEFISH, GCC Business Watch, Aramtec Blue 등 10개 소스를 교차 검증했습니다. (UAE, 사우디아라비아, 카타르, 오만 4개국의 양식/축양 참치 수입 현황, 콜드체인 인프라 투자, 규제 변화, 수요 구조 종합 분석)
-          </p>
-        </div>
-
-        {/* 중동 KPI 카드 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px', marginBottom: '20px' }}>
-          {[
-            { label: '중동 참치 CAGR', value: middleEastMarket.kpi.tunaCagr, sub: '글로벌 최고 성장률', color: 'var(--color-warning)', icon: <TrendingUp size={14}/> },
-            { label: '두바이 일일 수산거래', value: middleEastMarket.kpi.dubaiDailySeafood, sub: 'Waterfront Market', color: 'var(--color-info)', icon: <Fish size={14}/> },
-            { label: '사우디 콜드체인 (2025)', value: middleEastMarket.kpi.saudiColdChain2025, sub: `→ ${middleEastMarket.kpi.saudiColdChain2034} (2034)`, color: 'var(--color-success)', icon: <Thermometer size={14}/> },
-            { label: '호텔/리조트 비중', value: middleEastMarket.kpi.hospitalityShare, sub: '양식 참치 최종 소비', color: '#ec4899', icon: <Building2 size={14}/> },
-            { label: '사우디 수산 자급 목표', value: middleEastMarket.kpi.saudiFishTarget2030, sub: '비전 2030', color: '#8b5cf6', icon: <Target size={14}/> },
-          ].map((k, i) => (
-            <div key={i} style={{ background: 'rgba(0,0,0,0.25)', padding: '1rem', borderRadius: '8px', border: `1px solid ${k.color}33`, borderLeft: `3px solid ${k.color}` }}>
-              <div style={{ fontSize: '0.78rem', color: '#94a3b8', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>{k.icon} {k.label}</div>
-              <div style={{ fontSize: '1.3rem', fontWeight: 700, color: k.color }}>{k.value}</div>
-              {k.sub && <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '2px' }}>{k.sub}</div>}
-            </div>
-          ))}
-        </div>
-
-        {/* 중동 국가별 프로필 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '16px', marginBottom: '20px' }}>
-          {middleEastMarket.countryProfiles.map((cp: any, i: number) => {
-            const riskColor: Record<string,string> = { low: 'var(--color-success)', medium: 'var(--color-warning)', high: 'var(--color-danger)' };
-            return (
-              <div key={i} style={{ background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1.25rem', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: riskColor[cp.risk] }} />
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                  <h4 style={{ margin: 0, fontSize: '1rem', color: '#e2e8f0' }}>{cp.country}</h4>
-                  <span style={{ padding: '2px 8px', borderRadius: '10px', fontSize: '0.72rem', background: `${riskColor[cp.risk]}22`, color: riskColor[cp.risk] }}>{cp.highlight}</span>
-                </div>
-                <p style={{ margin: '0 0 10px 0', fontSize: '0.8rem', color: '#94a3b8', lineHeight: 1.55 }}>{cp.details}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>매력도</span>
-                  <div style={{ flex: 1, height: '6px', borderRadius: '3px', background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
-                    <div style={{ width: `${cp.score}%`, height: '100%', borderRadius: '3px', background: cp.score >= 85 ? 'var(--color-success)' : cp.score >= 75 ? 'var(--color-warning)' : 'var(--color-danger)', transition: 'width 0.6s ease' }} />
-                  </div>
-                  <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>{cp.score}</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 차트: 사우디 콜드체인 + 카타르 참치 성장 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '20px', marginBottom: '20px' }}>
-          <div className={insightsStyles.insightCard}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <Thermometer size={20} color="var(--color-success)" /> 사우디아라비아 콜드체인 시장 성장 전망
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (SFDA)</span>
-              </h3>
-              <p className={insightsStyles.cardDesc}>
-                IMARC Group의 'Saudi Arabia Cold Chain Market Size & Forecast to 2034' 보고서 데이터를 기반으로 산출했습니다. (사우디아라비아의 수산물·온도 민감성 제품 유통을 위한 콜드체인 인프라 투자 규모 전망. 비전 2030 핵심 투자 영역으로 CAGR 18.31% 폭발적 성장)
-              </p>
-            </div>
-            <div className={insightsStyles.cardBody}>
-              <div className={insightsStyles.chartContainer}>
-                <SafeResponsiveContainer width="100%" height="100%">
-                  <ComposedChart data={combinedColdChainData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
-                    <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={v => `$${v}M`} />
-                    <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#f8fafc', fontWeight: 700 }} itemStyle={{ color: '#e2e8f0' }} formatter={(v: any, name: any) => name === '한국발 수출(KCS)' ? `$${v}M` : `$${v}B`} />
-                    <Area yAxisId="left" type="monotone" dataKey="value" name="콜드체인 예측" fill="rgba(245,158,11,0.15)" stroke="var(--color-warning)" strokeWidth={3} />
-                    <Line yAxisId="right" type="monotone" dataKey="kcsExportUsd" name="한국발 수출(KCS)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-success)' }} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                source="IMARC Group (예측) + KCS 관세청 (실증 백테스팅)"
-                situation="비전 2030 국책 투자로 콜드체인이 4.5배 팽창한다는 IMARC의 장기 추정치($159억)는, KCS 관세청의 2021~2024년 대(對) 중동 실제 수산물 수출액(Empirical Data)의 연평균 35% 급증 궤적과 완벽히 동기화되며 실증되었습니다."
-                actionPlan="막연한 기대감이 아닌 증명된 시장입니다. 사우디 Jeddah항 내 초저온 냉동 물류 거점을 즉각 선점하고, 수입 규제의 가장 큰 허들인 SFDA(식품의약품청) 사전 인증을 업계 최초로 획득하십시오."
-              />
-            </div>
-          </div>
-
-          <div className={insightsStyles.insightCard}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <TrendingUp size={20} color="var(--color-warning)" /> 카타르 참치 시장 성장률 전망 (2025-2031)
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast)</span>
-              </h3>
-              <p className={insightsStyles.cardDesc}>
-                6Wresearch의 'Qatar Tuna Market Outlook (2025-2031)' 보고서를 기반으로 산출했습니다. (2022 월드컵 이후 호텔·관광 인프라 재개방에 따라 초기 역성장 후 2028년 18.35%로 급성장 전망)
-              </p>
-            </div>
-            <div className={insightsStyles.cardBody}>
-              <div className={insightsStyles.chartContainer}>
-                <SafeResponsiveContainer width="100%" height="100%">
-                  <ComposedChart data={combinedQatarData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
-                    <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={v => `$${v}M`} />
-                    <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#f8fafc', fontWeight: 700 }} itemStyle={{ color: '#e2e8f0' }} formatter={(v: any, name: any) => name === '한국발 수출(KCS)' ? `$${v}M` : `${v}%`} />
-                    <Bar yAxisId="left" dataKey="growth" name="성장률 예측" radius={[4,4,0,0]} barSize={28}>
-                      {combinedQatarData.map((e: any, idx: number) => (
-                        <Cell key={idx} fill={(e.growth || 0) < 0 ? 'var(--color-danger)' : (e.growth || 0) >= 15 ? 'var(--color-info)' : 'var(--color-warning)'} />
-                      ))}
-                    </Bar>
-                    <Line yAxisId="right" type="monotone" dataKey="kcsExportUsd" name="한국발 수출(KCS)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-success)' }} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                source="6Wresearch (예측) + KCS 관세청 (실증 백테스팅)"
-                situation="2028년 성장 정점(18.35%)이라는 6Wresearch의 예측을 뒷받침하듯, KCS 관세청 데이터를 통해 확인된 '월드컵(2022) 이후 대중동 참치 직접 수출 증가세'가 명확한 실증 지표로 나타나고 있습니다."
-                actionPlan="2027~2028년의 슈퍼 사이클 피크 타이밍을 역산하여, Qatar Airways 하이엔드 기내식 납품 및 도하 현지 5성급 호텔 체인과의 B2B 턴키 직계약 TF를 지금 당장 출범시켜야 합니다."
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* 진입 장벽 프리미엄 + 수요 구조 + 전략 요약 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))', gap: '20px', marginBottom: '20px' }}>
-
-          {/* 🚀 신규: 중동 수산물 진입 장벽 프리미엄화 지수 */}
-          <div className={insightsStyles.insightCard}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <ShieldAlert size={20} color="#14b8a6" /> 중동 프리미엄 진입 장벽 (Halal/Food Security)
-              </h3>
-              <p className={insightsStyles.cardDesc}>
-                태국 수산부(DOF) 및 Krungsri 리서치(2025-2027 Canned Seafood) 데이터를 기준으로 산출되었습니다. (할랄 인증 및 식량 안보 요건 등 중동 시장의 높은 진입장벽을 뚫고 입성 시 누리는 부가가치 독점율 계량화 지표)
-              </p>
-            </div>
-            <div className={insightsStyles.cardBody} style={{ padding: '0', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div style={{ flex: 1, minHeight: '220px' }}>
-                <SafeResponsiveContainer width="100%" height="100%">
-                  <RadarChart cx="50%" cy="50%" outerRadius="65%" data={halalSecurityIndexData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
-                    <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'transparent' }} stroke="rgba(255,255,255,0.1)" />
-                    <Radar name="프리미엄 지수" dataKey="score" stroke="#14b8a6" fill="#14b8a6" fillOpacity={0.4} />
-                    <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#5eead4' }} />
-                  </RadarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <div style={{ padding: '0 20px 20px 20px' }}>
-                <TakeawayBox
-                  source="Krungsri Research - Halal & Food Security Data"
-                  situation="중동의 럭셔리 시장 성장은 화려함 이면에 자리한 엄격한 '할랄(Halal) 종교 인증'과 지정학적 위기감을 극복하기 위한 '초강경 국가 식량 안보' 니즈가 지탱하고 있습니다."
-                  actionPlan="단순한 수출 기업을 넘어, 중동 국가의 식량 안보 파트너로 포지셔닝해야 합니다. 완벽한 할랄 인증과 -60℃ 초저온 인프라를 무기로 제시하여 현지 정부가 보장하는 '독점적 가격 프리미엄'을 수취하십시오."
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className={insightsStyles.insightCard}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <Building2 size={20} color="#ec4899" /> 중동 양식 참치 최종 소비 채널 구조
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (SFDA)</span>
-              </h3>
-              <p className={insightsStyles.cardDesc}>
-                Zion Market Research의 Farmed Bluefin Tuna Market Analysis (2034) 내 호스피탈리티 부문 세분화 데이터를 기반으로 산출했습니다. (중동 지역 양식 블루핀 참치가 최종 소비되는 채널별 비중 - 5성급 호텔/리조트 38% 등 프리미엄 시장 65% 지배)
-              </p>
-            </div>
-            <div className={insightsStyles.cardBody}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {middleEastMarket.demandDrivers.map((d: any, i: number) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ width: '120px', fontSize: '0.8rem', color: '#e2e8f0', flexShrink: 0 }}>{d.segment}</span>
-                    <div style={{ flex: 1, height: '20px', borderRadius: '6px', background: 'rgba(255,255,255,0.06)', overflow: 'hidden', position: 'relative' }}>
-                      <div style={{ width: `${d.share}%`, height: '100%', borderRadius: '6px', background: d.color, transition: 'width 0.8s ease' }} />
-                    </div>
-                    <span style={{ width: '40px', fontSize: '0.82rem', color: d.color, fontWeight: 700, textAlign: 'right' }}>{d.share}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className={insightsStyles.insightCard}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <Globe size={20} color="var(--color-info)" /> 중동 시장 전략적 시사점
-              </h3>
-            </div>
-            <div className={insightsStyles.cardBody}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {[
-                  { icon: '🇦🇪', title: 'UAE: 물류 허브 전략', desc: '두바이 워터프론트 마켓(일 600톤)을 GCC 전역 재수출 거점으로 활용. 아부다비 RAS 프로젝트(킨키대학 협력)와 기술 제휴 검토.', color: 'var(--color-success)' },
-                  { icon: '🇸🇦', title: '사우디: 콜드체인 동반 진출', desc: '$159억 규모 콜드체인 확장에 편승하여 Jeddah/Dammam항 냉동 물류 파트너십 확보. SFDA 사전인증 필수.', color: 'var(--color-info)' },
-                  { icon: '🇶🇦', title: '카타르: 타이밍 전략', desc: '2028년 성장 정점(18.35%)에 맞춰 Qatar Airways 기내식 및 호텔 직계약 추진. 도하 고급 일식 시장 선점.', color: 'var(--color-warning)' },
-                  { icon: '🇴🇲', title: '오만: 규제 리스크 모니터링', desc: '2026.4.22 신규 수입 인증 규정 시행. 진입장벽 상승으로 당분간 관망 후, 규정 안정화 시 진출 검토.', color: 'var(--color-danger)' },
-                ].map((s, i) => (
-                  <div key={i} style={{ padding: '10px 12px', background: 'rgba(0,0,0,0.2)', borderRadius: '10px', borderLeft: `3px solid ${s.color}` }}>
-                    <div style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.88rem', marginBottom: '3px' }}>{s.icon} {s.title}</div>
-                    <div style={{ color: '#94a3b8', fontSize: '0.8rem', lineHeight: 1.5 }}>{s.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* 원가-마진 스트레스 테스트 시뮬레이터 (What-If Simulator) */}
         {arbitrageRadar && (
           <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'rgba(0, 0, 0, 0.2)', border: '1px solid #3b82f6' }}>
@@ -807,9 +674,13 @@ export default function TunaRanching() {
             </div>
           </div>
         )}
-        </>
-      )}
+      </div>
 
+      {/* 🚢 Part III — 물류 및 무역 (Logistics & Trading) */}
+      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(56,189,248,0.12) 0%, transparent 100%)", borderLeft:"4px solid #38bdf8", marginBottom:"1.5rem", marginTop:"2rem" }}>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🚢 Part III — 물류 및 무역 (Logistics & Trading)</h2>
+        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>글로벌 B2B 아비트라지, 중동 콜드체인망 확충 및 CEPA 기반 재수출 허브 전략</p>
+      </div>
       {/* 🎯 비즈니스 모델 근거: 축양참치 → 한국 가공 → 두바이 수출 (최상단) */}
       <div style={{ marginBottom: '24px' }}>
         <div style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.08), rgba(59,130,246,0.08))', border: '1px solid rgba(245,158,11,0.2)', borderRadius: '8px', padding: '1.5rem', marginBottom: '20px' }}>
@@ -981,65 +852,359 @@ export default function TunaRanching() {
         />
       </div>
 
-
-
-      {/* =================== 🔬 NotebookLM 교차 분석 기반 신규 인텔리전스 =================== */}
-      <div style={{ marginBottom: '20px', padding: '1.25rem 1.5rem', background: 'linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.04))', borderRadius: '8px', border: '1px solid rgba(139,92,246,0.2)' }}>
-        <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', color: '#a78bfa' }}>
-          <Leaf size={22} /> 과학적 교차 분석 인텔리전스 (NotebookLM 48소스)
-        </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8' }}>
-          Block et al. 2026, Science (Mesothermic fishes), ICCAT Compendium, FAO SOFIA 2022 등 최신 논문 교차 분석 결과.
-        </p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px', marginBottom: '20px' }}>
-
-        {/* NEW-1: 블루핀 도피회유 메커니즘 */}
-        <div className={insightsStyles.insightCard}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유(Escapement) 현상 분석 — 자원 회복의 메커니즘
-            </h3>
-            <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축이 촉발한 지중해 어린 개체의 북대서양 도피(Escapement) 및 산란장 복귀를 통한 자원 회복 구조.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div className={insightsStyles.chartContainer}>
-              <SafeResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={[
-                  { period: '2007', stock: 40, escapement: 15 },
-                  { period: '2010', stock: 55, escapement: 35 },
-                  { period: '2015', stock: 85, escapement: 50 },
-                  { period: '2020', stock: 130, escapement: 60 },
-                  { period: '2024', stock: 180, escapement: 55 }
-                ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                  <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}pt`} />
-                  <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} unit="%" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value, name) => name === '도피율 (%)' ? [`${value}%`, name] : [`${value}pt`, name]} />
-                  <Legend />
-                  <Area yAxisId="left" type="monotone" dataKey="stock" name="동부 자원지수" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth={3} />
-                  <Line yAxisId="right" type="monotone" dataKey="escapement" name="도피율 (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4, fill: '#f59e0b' }} />
-                </ComposedChart>
-              </SafeResponsiveContainer>
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+        {/* 글로벌 차익거래 레이더 (Arbitrage Radar) */}
+        {arbitrageRadar && (
+          <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.05))', border: '1px solid rgba(16,185,129,0.3)' }}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <Target size={20} color="var(--color-success)"/> 실시간 글로벌 B2B 아비트라지 레이더 (Arbitrage Radar)
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast+EUMOFA+MGO)</span>
+              </h3>
+              <p className={insightsStyles.cardDesc}>지중해 스팟가로 매입하여 한국 가공 후 두바이로 항공 수출 시 발생하는 실시간 순수익 마진(Net Margin) 시뮬레이터입니다.</p>
             </div>
-            <div style={{ padding: '0 20px 20px 20px' }}>
+            <div className={insightsStyles.cardBody}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '15px', marginBottom: '20px' }}>
+                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #ef4444' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>지중해 매입가 (EUMOFA)</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-danger)' }}>${arbitrageRadar.mediterraneanSpotPriceUSD}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
+                </div>
+                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #f59e0b' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>항공운임/가공비 (MGO)</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-warning)' }}>${(arbitrageRadar.airFreightCostUSD + arbitrageRadar.processingCostUSD).toFixed(1)}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
+                </div>
+                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #10b981' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>두바이 도매가 (Local API)</div>
+                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-success)' }}>${arbitrageRadar.dubaiLocalPriceUSD}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
+                </div>
+                <div style={{ background: 'rgba(16,185,129,0.1)', padding: '15px', borderRadius: '8px', border: '1px solid #10b981' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#34d399', marginBottom: '5px' }}>예상 순마진 (Net Margin)</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 'bold', color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    ${arbitrageRadar.netMarginUSD.toFixed(1)}<span style={{ fontSize: '0.8rem' }}>/kg</span>
+                    <span style={{ fontSize: '0.9rem', background: 'var(--color-success)', color: 'var(--text-primary)', padding: '2px 8px', borderRadius: '4px' }}>{arbitrageRadar.marginGapVsJapan} vs 일본</span>
+                  </div>
+                </div>
+              </div>
               <TakeawayBox
-                source="Block et al. 2026 (Ensuring the future of Atlantic bluefin tuna)"
-                situation="ICCAT 쿼터 감축 이후 지중해 어린 참다랑어가 어획 압력이 낮은 북미·서대서양으로 '도피(Escapement)'하여 수년 간 성장한 뒤, 산란기 귀환하여 동부 자원이 4.5배 회복되었습니다. 특히 슬로프 해(Slope Sea)가 제3의 산란장으로 새롭게 확인되었습니다."
-                actionPlan={
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                    <li style={{ marginBottom: '4px' }}><strong>도피 경로 보장 전략:</strong> 축양 전략 수립 시 치어(어린 개체)의 회유 경로를 보호하는 것이 장기 자원 지속성의 전제조건입니다.</li>
-                    <li><strong>선제적 규제 대응:</strong> 지중해→북대서양 회유 경로에 위치한 어획 구역의 쿼터 제한을 지지하여, 안정적인 자연 어획량 확보 및 기업 ESG 신뢰도를 제고해야 합니다.</li>
-                  </ul>
-                }
+                situation={arbitrageRadar.recommendation || "LIVE API 연동 진행 중"}
+                actionPlan="일본 시장 대비 즉각적인 순마진 우위가 확인되는 즉시, 지중해 매입 물량을 두바이 프리미엄 시장으로 전량 스위칭하는 Arbitrage(차익거래) 영업 인스턴스를 가동하십시오."
+              />
+            </div>
+          </div>
+        )}
+      </div>
+      {middleEastMarket && (
+        <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+          <div className={insightsStyles.insightCard}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <Thermometer size={20} color="var(--color-success)" /> 사우디아라비아 콜드체인 시장 성장 전망
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (SFDA)</span>
+              </h3>
+              <p className={insightsStyles.cardDesc}>
+                IMARC Group의 'Saudi Arabia Cold Chain Market Size & Forecast to 2034' 보고서 데이터를 기반으로 산출했습니다. (사우디아라비아의 수산물·온도 민감성 제품 유통을 위한 콜드체인 인프라 투자 규모 전망. 비전 2030 핵심 투자 영역으로 CAGR 18.31% 폭발적 성장)
+              </p>
+            </div>
+            <div className={insightsStyles.cardBody}>
+              <div className={insightsStyles.chartContainer}>
+                <SafeResponsiveContainer width="100%" height="100%">
+                  <ComposedChart data={combinedColdChainData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
+                    <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={v => `$${v}M`} />
+                    <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#f8fafc', fontWeight: 700 }} itemStyle={{ color: '#e2e8f0' }} formatter={(v: any, name: any) => name === '한국발 수출(KCS)' ? `$${v}M` : `$${v}B`} />
+                    <Area yAxisId="left" type="monotone" dataKey="value" name="콜드체인 예측" fill="rgba(245,158,11,0.15)" stroke="var(--color-warning)" strokeWidth={3} />
+                    <Line yAxisId="right" type="monotone" dataKey="kcsExportUsd" name="한국발 수출(KCS)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-success)' }} />
+                  </ComposedChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                source="IMARC Group (예측) + KCS 관세청 (실증 백테스팅)"
+                situation="비전 2030 국책 투자로 콜드체인이 4.5배 팽창한다는 IMARC의 장기 추정치($159억)는, KCS 관세청의 2021~2024년 대(對) 중동 실제 수산물 수출액(Empirical Data)의 연평균 35% 급증 궤적과 완벽히 동기화되며 실증되었습니다."
+                actionPlan="막연한 기대감이 아닌 증명된 시장입니다. 사우디 Jeddah항 내 초저온 냉동 물류 거점을 즉각 선점하고, 수입 규제의 가장 큰 허들인 SFDA(식품의약품청) 사전 인증을 업계 최초로 획득하십시오."
               />
             </div>
           </div>
         </div>
+      )}
 
-        {/* NEW-2: eBCD 컴플라이언스 리스크 */}
+      {/* 🛒 Part IV — 판매 및 수요 (Sales & Demand) */}
+      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(16,185,129,0.12) 0%, transparent 100%)", borderLeft:"4px solid #10b981", marginBottom:"1.5rem", marginTop:"2rem" }}>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🛒 Part IV — 판매 및 수요 (Sales & Demand)</h2>
+        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>아시아 럭셔리 마켓 시프트, 중동(카타르/UAE) 프리미엄 시장 진입장벽 및 소비 채널 분석</p>
+      </div>
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+        {/* 아시아 마켓 시프트 위젯 */}
+        {asianMarketShift && (
+          <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(239,68,68,0.08), rgba(56,189,248,0.05))', border: '1px solid rgba(239,68,68,0.3)' }}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <Target size={20} color="var(--color-danger)"/> 아시아 럭셔리 마켓 패러다임 시프트 (일본 붕괴 vs 중국 폭발)
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (INFOFISH)</span>
+              </h3>
+              <p className={insightsStyles.cardDesc}>사료 원가 폭등으로 인한 일본의 축양 참치 80% 생산 감축 사태와 중국의 상반기 35% 수입 폭증(지중해산 중심)을 교차 분석합니다.</p>
+            </div>
+            <div className={insightsStyles.cardBody}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '20px' }}>
+                {/* 일본 생산 차트 */}
+                <div style={{ height: '220px' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#fca5a5', marginBottom: '8px', textAlign: 'center' }}>일본 자체 축양 생산량 추이 (톤)</div>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <BarChart data={asianMarketShift?.japaneseProduction} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} />
+                      <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
+                      <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                      <Bar dataKey="production" fill="#ef4444" radius={[4, 4, 0, 0]}>
+                        {asianMarketShift?.japaneseProduction.map((entry: any, index: number) => (
+                          <Cell key={`cell-${index}`} fill={index === 2 ? '#b91c1c' : '#ef4444'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                
+                {/* 중국 수입 차트 */}
+                <div style={{ height: '220px' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#7dd3fc', marginBottom: '8px', textAlign: 'center' }}>중국 신선/냉동 참다랑어 수입 추이 (톤)</div>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <LineChart data={asianMarketShift?.chineseImports} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+                      <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} />
+                      <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
+                      <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+                      <Line type="monotone" dataKey="import" stroke="#38bdf8" strokeWidth={4} dot={{ r: 5, fill: '#38bdf8' }} />
+                    </LineChart>
+                  </SafeResponsiveContainer>
+                </div>
+              </div>
+              
+              <TakeawayBox
+                source="INFOFISH 2025-2026 Intelligence Report"
+                situation="일본의 주요 수산기업들이 사료 원가 폭등으로 2025년 양식 생산량을 80% 감축했습니다. 반면 중국은 12.5만 개 일식당 수요를 위해 상반기 지중해산 수입량을 35% 폭증시키며 시장을 장악하고 있습니다."
+                actionPlan="과거 츠키지 시장에 의존하던 전통적 수출을 지양하십시오. 일본의 생산 붕괴 틈을 타, 이미 세계 표준이 된 '-60℃ 초저온 냉동 필렛' 포맷으로 중국 프리미엄 B2B 시장 및 일본 본토를 동시 직접 타격해야 합니다."
+              />
+            </div>
+          </div>
+        )}
+
+        <div className={insightsStyles.insightCard}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <Globe size={20} color="#f472b6"/> 최고가 미식 소비 국가 맵 (Gastronomy Map)
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (EUMOFA)</span>
+              <TermTooltip term="" description="국가별 수입 단가를 히트맵형 바 차트로 배열하여, 하이엔드 신선 참치를 가장 비싸게 소비하는 럭셔리 마켓의 코어를 노출합니다." />
+            </h3>
+            <p className={insightsStyles.cardDesc}>kg당 수입단가가 30달러를 넘는 극프리미엄 지상주의 '소비 블랙홀' 흐름. 전통적 일본 수요보다 더 비싸게 사가는 신규 미식 타겟 국가 리스트입니다.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div className={insightsStyles.chartContainer}>
+              <SafeResponsiveContainer width="100%" height="100%">
+                <BarChart data={gastronomyPriceMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="country" stroke="#94a3b8" />
+                  <YAxis stroke="#94a3b8" unit="$" tickFormatter={(value) => value.toLocaleString()} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
+                  <Bar dataKey="price" fill="#f472b6" radius={[4, 4, 0, 0]}>
+                    {
+                      gastronomyPriceMap.map((entry: any, index: number) => (
+                        <Cell key={`cell-${index}`} fill={entry.price > 40 ? '#ec4899' : '#fbcfe8'} />
+                      ))
+                    }
+                  </Bar>
+                </BarChart>
+              </SafeResponsiveContainer>
+            </div>
+            <div className={insightsStyles.kpiPanel}>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ec4899' }}>
+                <div className={insightsStyles.kpiLabel}>#1 Premium Market</div>
+                <div className={insightsStyles.kpiValue}>UAE (Dubai)</div>
+                <div className={insightsStyles.kpiSub}>$48.00 / kg</div>
+              </div>
+            </div>
+          </div>
+          <div style={{ padding: '0 20px 20px 20px' }}>
+            <TakeawayBox
+              situation="전통적 미식 종주국인 일본을 제치고, UAE(두바이)와 사우디가 kg당 $30 이상의 무제한 단가를 지불하는 극프리미엄 지상주의 '소비 블랙홀'로 급부상하고 있습니다."
+              actionPlan="일본 츠키지/토요스 시장에 90% 이상 편중된 저마진 공급 구조를 즉각 해체하고, 두바이의 최고급 B2B 오마카세 및 5성급 호텔 네트워크로 항공 직납 밸류체인을 전면 재조정해야 합니다."
+            />
+          </div>
+        </div>
+
+      </div>
+      {middleEastMarket && (
+        <>
+        <div style={{ marginBottom: '20px', padding: '1.25rem 1.5rem', background: 'linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.04))', borderRadius: '8px', border: '1px solid rgba(245,158,11,0.2)' }}>
+          <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', color: '#fbbf24' }}>
+            <Building2 size={22} /> 중동(GCC) 축양 참치 수입 시장 인텔리전스
+          </h3>
+          <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8' }}>
+            Mordor Intelligence(참치 시장), Zion Market Research(양식 참치), IMARC Group(콜드체인), 6Wresearch(카타르), FAO GLOBEFISH, GCC Business Watch, Aramtec Blue 등 10개 소스를 교차 검증했습니다. (UAE, 사우디아라비아, 카타르, 오만 4개국의 양식/축양 참치 수입 현황, 콜드체인 인프라 투자, 규제 변화, 수요 구조 종합 분석)
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px', marginBottom: '20px' }}>
+          {[
+            { label: '중동 참치 CAGR', value: middleEastMarket.kpi.tunaCagr, sub: '글로벌 최고 성장률', color: 'var(--color-warning)', icon: <TrendingUp size={14}/> },
+            { label: '두바이 일일 수산거래', value: middleEastMarket.kpi.dubaiDailySeafood, sub: 'Waterfront Market', color: 'var(--color-info)', icon: <Fish size={14}/> },
+            { label: '사우디 콜드체인 (2025)', value: middleEastMarket.kpi.saudiColdChain2025, sub: `→ ${middleEastMarket.kpi.saudiColdChain2034} (2034)`, color: 'var(--color-success)', icon: <Thermometer size={14}/> },
+            { label: '호텔/리조트 비중', value: middleEastMarket.kpi.hospitalityShare, sub: '양식 참치 최종 소비', color: '#ec4899', icon: <Building2 size={14}/> },
+            { label: '사우디 수산 자급 목표', value: middleEastMarket.kpi.saudiFishTarget2030, sub: '비전 2030', color: '#8b5cf6', icon: <Target size={14}/> },
+          ].map((k, i) => (
+            <div key={i} style={{ background: 'rgba(0,0,0,0.25)', padding: '1rem', borderRadius: '8px', border: `1px solid ${k.color}33`, borderLeft: `3px solid ${k.color}` }}>
+              <div style={{ fontSize: '0.78rem', color: '#94a3b8', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>{k.icon} {k.label}</div>
+              <div style={{ fontSize: '1.3rem', fontWeight: 700, color: k.color }}>{k.value}</div>
+              {k.sub && <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '2px' }}>{k.sub}</div>}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '16px', marginBottom: '20px' }}>
+          {middleEastMarket.countryProfiles.map((cp: any, i: number) => {
+            const riskColor: Record<string,string> = { low: 'var(--color-success)', medium: 'var(--color-warning)', high: 'var(--color-danger)' };
+            return (
+              <div key={i} style={{ background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1.25rem', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: riskColor[cp.risk] }} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <h4 style={{ margin: 0, fontSize: '1rem', color: '#e2e8f0' }}>{cp.country}</h4>
+                  <span style={{ padding: '2px 8px', borderRadius: '10px', fontSize: '0.72rem', background: `${riskColor[cp.risk]}22`, color: riskColor[cp.risk] }}>{cp.highlight}</span>
+                </div>
+                <p style={{ margin: '0 0 10px 0', fontSize: '0.8rem', color: '#94a3b8', lineHeight: 1.55 }}>{cp.details}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>매력도</span>
+                  <div style={{ flex: 1, height: '6px', borderRadius: '3px', background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+                    <div style={{ width: `${cp.score}%`, height: '100%', borderRadius: '3px', background: cp.score >= 85 ? 'var(--color-success)' : cp.score >= 75 ? 'var(--color-warning)' : 'var(--color-danger)', transition: 'width 0.6s ease' }} />
+                  </div>
+                  <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>{cp.score}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+          <div className={insightsStyles.insightCard}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <TrendingUp size={20} color="var(--color-warning)" /> 카타르 참치 시장 성장률 전망 (2025-2031)
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast)</span>
+              </h3>
+              <p className={insightsStyles.cardDesc}>
+                6Wresearch의 'Qatar Tuna Market Outlook (2025-2031)' 보고서를 기반으로 산출했습니다. (2022 월드컵 이후 호텔·관광 인프라 재개방에 따라 초기 역성장 후 2028년 18.35%로 급성장 전망)
+              </p>
+            </div>
+            <div className={insightsStyles.cardBody}>
+              <div className={insightsStyles.chartContainer}>
+                <SafeResponsiveContainer width="100%" height="100%">
+                  <ComposedChart data={combinedQatarData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                    <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
+                    <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={v => `$${v}M`} />
+                    <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} labelStyle={{ color: '#f8fafc', fontWeight: 700 }} itemStyle={{ color: '#e2e8f0' }} formatter={(v: any, name: any) => name === '한국발 수출(KCS)' ? `$${v}M` : `${v}%`} />
+                    <Bar yAxisId="left" dataKey="growth" name="성장률 예측" radius={[4,4,0,0]} barSize={28}>
+                      {combinedQatarData.map((e: any, idx: number) => (
+                        <Cell key={idx} fill={(e.growth || 0) < 0 ? 'var(--color-danger)' : (e.growth || 0) >= 15 ? 'var(--color-info)' : 'var(--color-warning)'} />
+                      ))}
+                    </Bar>
+                    <Line yAxisId="right" type="monotone" dataKey="kcsExportUsd" name="한국발 수출(KCS)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-success)' }} />
+                  </ComposedChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                source="6Wresearch (예측) + KCS 관세청 (실증 백테스팅)"
+                situation="2028년 성장 정점(18.35%)이라는 6Wresearch의 예측을 뒷받침하듯, KCS 관세청 데이터를 통해 확인된 '월드컵(2022) 이후 대중동 참치 직접 수출 증가세'가 명확한 실증 지표로 나타나고 있습니다."
+                actionPlan="2027~2028년의 슈퍼 사이클 피크 타이밍을 역산하여, Qatar Airways 하이엔드 기내식 납품 및 도하 현지 5성급 호텔 체인과의 B2B 턴키 직계약 TF를 지금 당장 출범시켜야 합니다."
+              />
+            </div>
+          </div>
+          <div className={insightsStyles.insightCard}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <ShieldAlert size={20} color="#14b8a6" /> 중동 프리미엄 진입 장벽 (Halal/Food Security)
+              </h3>
+              <p className={insightsStyles.cardDesc}>
+                태국 수산부(DOF) 및 Krungsri 리서치(2025-2027 Canned Seafood) 데이터를 기준으로 산출되었습니다. (할랄 인증 및 식량 안보 요건 등 중동 시장의 높은 진입장벽을 뚫고 입성 시 누리는 부가가치 독점율 계량화 지표)
+              </p>
+            </div>
+            <div className={insightsStyles.cardBody} style={{ padding: '0', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ flex: 1, minHeight: '220px' }}>
+                <SafeResponsiveContainer width="100%" height="100%">
+                  <RadarChart cx="50%" cy="50%" outerRadius="65%" data={halalSecurityIndexData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
+                    <PolarGrid stroke="rgba(255,255,255,0.1)" />
+                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: 'transparent' }} stroke="rgba(255,255,255,0.1)" />
+                    <Radar name="프리미엄 지수" dataKey="score" stroke="#14b8a6" fill="#14b8a6" fillOpacity={0.4} />
+                    <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} itemStyle={{ color: '#5eead4' }} />
+                  </RadarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <div style={{ padding: '0 20px 20px 20px' }}>
+                <TakeawayBox
+                  source="Krungsri Research - Halal & Food Security Data"
+                  situation="중동의 럭셔리 시장 성장은 화려함 이면에 자리한 엄격한 '할랄(Halal) 종교 인증'과 지정학적 위기감을 극복하기 위한 '초강경 국가 식량 안보' 니즈가 지탱하고 있습니다."
+                  actionPlan="단순한 수출 기업을 넘어, 중동 국가의 식량 안보 파트너로 포지셔닝해야 합니다. 완벽한 할랄 인증과 -60℃ 초저온 인프라를 무기로 제시하여 현지 정부가 보장하는 '독점적 가격 프리미엄'을 수취하십시오."
+                />
+              </div>
+            </div>
+          </div>
+          <div className={insightsStyles.insightCard}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <Building2 size={20} color="#ec4899" /> 중동 양식 참치 최종 소비 채널 구조
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (SFDA)</span>
+              </h3>
+              <p className={insightsStyles.cardDesc}>
+                Zion Market Research의 Farmed Bluefin Tuna Market Analysis (2034) 내 호스피탈리티 부문 세분화 데이터를 기반으로 산출했습니다. (중동 지역 양식 블루핀 참치가 최종 소비되는 채널별 비중 - 5성급 호텔/리조트 38% 등 프리미엄 시장 65% 지배)
+              </p>
+            </div>
+            <div className={insightsStyles.cardBody}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {middleEastMarket.demandDrivers.map((d: any, i: number) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ width: '120px', fontSize: '0.8rem', color: '#e2e8f0', flexShrink: 0 }}>{d.segment}</span>
+                    <div style={{ flex: 1, height: '20px', borderRadius: '6px', background: 'rgba(255,255,255,0.06)', overflow: 'hidden', position: 'relative' }}>
+                      <div style={{ width: `${d.share}%`, height: '100%', borderRadius: '6px', background: d.color, transition: 'width 0.8s ease' }} />
+                    </div>
+                    <span style={{ width: '40px', fontSize: '0.82rem', color: d.color, fontWeight: 700, textAlign: 'right' }}>{d.share}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className={insightsStyles.insightCard}>
+            <div className={insightsStyles.cardHeader}>
+              <h3 className={insightsStyles.cardTitle}>
+                <Globe size={20} color="var(--color-info)" /> 중동 시장 전략적 시사점
+              </h3>
+            </div>
+            <div className={insightsStyles.cardBody}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {[
+                  { icon: '🇦🇪', title: 'UAE: 물류 허브 전략', desc: '두바이 워터프론트 마켓(일 600톤)을 GCC 전역 재수출 거점으로 활용. 아부다비 RAS 프로젝트(킨키대학 협력)와 기술 제휴 검토.', color: 'var(--color-success)' },
+                  { icon: '🇸🇦', title: '사우디: 콜드체인 동반 진출', desc: '$159억 규모 콜드체인 확장에 편승하여 Jeddah/Dammam항 냉동 물류 파트너십 확보. SFDA 사전인증 필수.', color: 'var(--color-info)' },
+                  { icon: '🇶🇦', title: '카타르: 타이밍 전략', desc: '2028년 성장 정점(18.35%)에 맞춰 Qatar Airways 기내식 및 호텔 직계약 추진. 도하 고급 일식 시장 선점.', color: 'var(--color-warning)' },
+                  { icon: '🇴🇲', title: '오만: 규제 리스크 모니터링', desc: '2026.4.22 신규 수입 인증 규정 시행. 진입장벽 상승으로 당분간 관망 후, 규정 안정화 시 진출 검토.', color: 'var(--color-danger)' },
+                ].map((s, i) => (
+                  <div key={i} style={{ padding: '10px 12px', background: 'rgba(0,0,0,0.2)', borderRadius: '10px', borderLeft: `3px solid ${s.color}` }}>
+                    <div style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.88rem', marginBottom: '3px' }}>{s.icon} {s.title}</div>
+                    <div style={{ color: '#94a3b8', fontSize: '0.8rem', lineHeight: 1.5 }}>{s.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        </>
+      )}
+
+      {/* 🌍 Part V — ESG 및 지속가능성 (Sustainability) */}
+      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(139,92,246,0.12) 0%, transparent 100%)", borderLeft:"4px solid #8b5cf6", marginBottom:"1.5rem", marginTop:"2rem" }}>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌍 Part V — ESG 및 지속가능성 (Sustainability)</h2>
+        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>eBCD 컴플라이언스 및 생사료 의존도/FIFO 위기로 인한 장기 환경 리스크 관리</p>
+      </div>
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
@@ -1081,7 +1246,6 @@ export default function TunaRanching() {
           </div>
         </div>
 
-        {/* NEW-3: 생사료 의존도 & FIFO 위기 */}
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
@@ -1124,164 +1288,8 @@ export default function TunaRanching() {
           </div>
         </div>
 
-        {/* NEW-4: TAC 축양장 집중 과점 */}
-        <div className={insightsStyles.insightCard}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <Target size={20} color="#ec4899"/> ICCAT TAC 쿼터 과점 구조 분석 — 연안 축양장 수용률
-            </h3>
-            <p className={insightsStyles.cardDesc}>전체 할당량의 약 50%가 지중해 연안 축양장(CBA)에 집중되며, 소수 대형 법인이 쿼터 및 유통망을 지배하는 구조 파악.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div className={insightsStyles.chartContainer}>
-              <SafeResponsiveContainer width="100%" height="100%">
-                <BarChart data={[
-                  { category: '축양장 수용 (CBA)', value: 50, color: '#ec4899' },
-                  { category: '직접 어획·판매', value: 35, color: '#38bdf8' },
-                  { category: '스포츠 피싱·기타', value: 15, color: '#94a3b8' },
-                ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
-                  <XAxis dataKey="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
-                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} formatter={(value) => [`${value}%`, 'TAC 비율']} />
-                  <Bar dataKey="value" name="TAC 비율 (%)" radius={[4, 4, 0, 0]}>
-                    {[
-                      { category: '축양장 수용 (CBA)', value: 50, color: '#ec4899' },
-                      { category: '직접 어획·판매', value: 35, color: '#38bdf8' },
-                      { category: '스포츠 피싱·기타', value: 15, color: '#94a3b8' },
-                    ].map((entry: any, idx: number) => (
-                      <Cell key={idx} fill={entry.color} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </SafeResponsiveContainer>
-            </div>
-            <div style={{ padding: '0 20px 20px 20px' }}>
-              <TakeawayBox
-                source="Block et al. 2026 + ICCAT Compendium"
-                situation="ICCAT TAC의 50%가 지중해 축양장(CBA)으로 수용되어, 쿼터 소유권이 극소수 법인에 편중된 과점(Oligopoly) 시장이 형성되었습니다. 활어의 선망 이송 특성 상 초기 자원량 평가의 불투명성 논란이 지속되고 있습니다."
-                actionPlan={
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                    <li style={{ marginBottom: '4px' }}><strong>우회 전략 모색:</strong> 쿼터 신규 취득이 사실상 불가능한 구조이므로, 기존 지중해 선두 기업들과의 합작(JV) 또는 입항도가 높은 공인된 파트너와의 EXW 거래가 필수적입니다.</li>
-                    <li><strong>투명성 검증 선제 적용:</strong> ICCAT 자원 평가 강화를 대비하여 블록체인 기반 어획량 데이터 파이프라인(eBCD) 통합 역량을 사전 홍보해야 합니다.</li>
-                  </ul>
-                }
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* NEW-4-B: 지중해 축양 쿼터 독과점(Oligopoly) 현황 */}
-        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <Building2 size={20} color="#6366f1"/> 지중해 참다랑어 축양 쿼터 독과점(Oligopoly) 카르텔 분석
-            </h3>
-            <p className={insightsStyles.cardDesc}>스페인·몰타 기반 극소수 수직계열화 기업이 지중해 쿼터를 장악. 신규 모로코 완전양식(Alta Mar) 프로젝트 부상.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '15px', marginBottom: '20px' }}>
-              
-              {/* 스페인 그룹 */}
-              <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: '10px', borderTop: '3px solid #ef4444' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                  <div style={{ fontSize: '1.2rem' }}>🇪🇸</div>
-                  <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.95rem' }}>스페인 2대 카르텔 (Global Top Tier)</div>
-                </div>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
-                  <li style={{ marginBottom: '8px' }}>
-                    <strong style={{ color: '#fca5a5' }}>Ricardo Fuentes e Hijos:</strong> 지중해(스페인, 몰타, 튀니지, 모로코 등) 최대 축양 거물. 선망선-해상가두리-초저온수출 수직계열화 완성. 마루하니치로(일본) 등 대형 상사와 독점적 파트너십 구축.
-                  </li>
-                  <li>
-                    <strong style={{ color: '#fca5a5' }}>Balfegó (발페고):</strong> 프리미엄 및 지속가능성(ESG) 특화 가문 기업. 개별 QR 추적성 시스템 최초 도입.
-                  </li>
-                </ul>
-              </div>
-
-              {/* 몰타 그룹 */}
-              <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(245,158,11,0.15)', borderRadius: '10px', borderTop: '3px solid #f59e0b' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                  <div style={{ fontSize: '1.2rem' }}>🇲🇹</div>
-                  <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.95rem' }}>몰타 로컬 거점 (유럽 최대 축양 허브)</div>
-                </div>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
-                  <li style={{ marginBottom: '8px' }}>
-                    <strong style={{ color: '#fcd34d' }}>Azzopardi Group (AJD Tuna):</strong> 1999년 몰타 최초 개척. 크로아티아 등지까지 최첨단 양식 시설 확대.
-                  </li>
-                  <li style={{ marginBottom: '8px' }}>
-                    <strong style={{ color: '#fcd34d' }}>Fish and Fish Limited:</strong> 20년 이상 아시아 스시/사시미 시장 직공급망 구축.
-                  </li>
-                  <li>
-                    <strong style={{ color: '#fcd34d' }}>Mare Blu Tuna Farm:</strong> Ricardo Fuentes 계열 자본 유입 모델 (해외 자본의 몰타 지리적 이점 활용).
-                  </li>
-                </ul>
-              </div>
-
-              {/* 모로코 신규 프로젝트 */}
-              <div style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(16,185,129,0.15)', borderRadius: '10px', borderTop: '3px solid #10b981' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                  <div style={{ fontSize: '1.2rem' }}>🇲🇦</div>
-                  <div style={{ fontWeight: 700, color: '#e2e8f0', fontSize: '0.95rem' }}>모로코 완전양식(Full-Cycle) 혁신</div>
-                </div>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
-                  <li style={{ marginBottom: '8px' }}>
-                    <strong style={{ color: '#6ee7b7' }}>Ricardo Fuentes의 Almadraba:</strong> 기존 전통적 '함정그물(Almadraba)' 방식 + 축양 연계 (스페인 자본).
-                  </li>
-                  <li>
-                    <strong style={{ color: '#6ee7b7' }}>Alta Mar (모로코-노르웨이 JV):</strong> 2025년 Safi 지역에 $2,100만 투자. 야생 치어 포획(Ranching)이 아닌 부화장(Hatchery) 기반 <strong>'완전양식' 프로젝트 부상.</strong> 자원 고갈 규제 회피 및 국가 전략 산업화.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <TakeawayBox
-              source="글로벌 수산물 교역 동향 (SeafoodSource) + 국가별 양식 산업 브리핑"
-              situation="지중해 참다랑어 생산량의 대부분은 스페인 및 몰타의 극소수 수직계열화 기업(Balfegó, Ricardo Fuentes 등)이 장악하고 있으며 일본 상사들과 독점적 유통 파트너십을 체결하여 진입장벽이 극히 높습니다."
-              actionPlan={
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                  <li style={{ marginBottom: '4px' }}><strong>중동 우회 독점 유통망 확보:</strong> 기존 기업들의 주요 타겟인 일본을 우회하여 사우디, 카타르 등 성장하는 중동 시장 전용 독점 유통 파트너십(JV)을 제안하십시오.</li>
-                  <li><strong>신흥 '완전 양식' 프로젝트 투자:</strong> 자원 고갈 규제로부터 면제될 모로코 Alta Mar와 같은 차세대 부화장 기반 완전 양식 프로젝트에 지분 투자를 단행하여 ESG 프리미엄 물량을 입도선매 해야 합니다.</li>
-                </ul>
-              }
-            />
-          </div>
-        </div>
-
-        {/* NEW-5: 자연폐사율 역설 */}
-        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <Thermometer size={20} color="#a78bfa"/> 참다랑어 자연폐사율(Natural Mortality) 역설 — 클수록 더 위험
-            </h3>
-            <p className={insightsStyles.cardDesc}>Block et al. 음향 태그 모델링: 일반 예상과 달리, 참다랑어는 연령/크기 증가 시 자연폐사율이 감소하지 않고 유지 또는 증가. 3대 산란장(멕시코만·지중해·슬로프 해) 타임라인 포함.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '15px', marginBottom: '15px' }}>
-              {[
-                { icon: '🇺🇸', title: '멕시코만 (서부)', period: '2월 중순~5월 중순', desc: '서부 계군 산란장. 나이 많고 큰 개체 집중.', color: '#38bdf8' },
-                { icon: '🇪🇺', title: '지중해 (동부)', period: '5월 초~6월 하순', desc: '동부 계군 주요 산란장. 축양장 밀집 구역.', color: '#f59e0b' },
-                { icon: '🆕', title: '슬로프 해 (신규 발견)', period: '4월 하순~8월 중순', desc: '제3의 산란장. 동·서 계군 모두 산란 가능.', color: '#a78bfa' },
-              ].map((s, i) => (
-                <div key={i} style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '10px', borderLeft: `3px solid ${s.color}` }}>
-                  <div style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.88rem', marginBottom: '3px' }}>{s.icon} {s.title}</div>
-                  <div style={{ fontSize: '0.78rem', color: s.color, fontWeight: 600, marginBottom: '4px' }}>{s.period}</div>
-                  <div style={{ color: '#94a3b8', fontSize: '0.78rem', lineHeight: 1.5 }}>{s.desc}</div>
-                </div>
-              ))}
-            </div>
-            <TakeawayBox
-              source="Block et al. 2026 + 음향 태그(Acoustic tag) 모델링"
-              situation="일반적인 자연 생태 법칙과 달리, 참다랑어의 자연폐사율(M)은 연령 및 체급이 성장하더라도 오히려 증가하거나 유지되는 역설적인 패턴을 보입니다. 대형 개체의 원거리 회유 빈도 증가 및 적응 스트레스가 주요 요인입니다."
-              actionPlan={
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                  <li style={{ marginBottom: '4px' }}><strong>대형 개체 특화 관리:</strong> 축양장 운영 시 수익성이 큰 300kg 이상의 슈퍼 프리미엄급 개체에 대해 별도의 수온/산소 밀착 모니터링 시스템을 강제해야 합니다.</li>
-                  <li><strong>생애주기 기반 출하 시점 최적화:</strong> 자연 폐사율이 급상승하는 변곡점을 데이터화하여, 리스크가 정점을 찍기 직전 프리미엄 어가로 일괄 조기 출하하는 '타임 아비트라지(Time-Arbitrage)' 전략을 도입합니다.</li>
-                </ul>
-              }
-            />
-          </div>
-        </div>
       </div>
+
 
       {/* 🚀 전국 참치 전문점 영업 현황 매핑 */}
       <div style={{ marginBottom: '24px' }}>

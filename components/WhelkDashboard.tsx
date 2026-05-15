@@ -100,8 +100,12 @@ export default function WhelkDashboard() {
     importSurgeData = [],
     byproductData = [],
     solidContentData = [],
-    climateRiskData = []
+    climateRiskData = [],
+    widgets = []
   } = data;
+
+  // KFAS 연구 위젯 필터링
+  const kfasWidgets = widgets.filter((w: any) => w.id?.startsWith('w5'));
   
   return (
     <div style={{ padding:'0 1.5rem 3rem', color:'#f8fafc', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
@@ -121,7 +125,7 @@ export default function WhelkDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 골뱅이 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Whelk Strategic Command Center — 17 Widgets · 4 KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — 22개 위젯 · 5개 핵심지표</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -137,12 +141,12 @@ export default function WhelkDashboard() {
       </header>
 
       {/* 4 KPIs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         <div className="ds-card" style={{background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '6px', transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}
              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>UK Import Dependence</span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>영국산 수입 의존도</span>
             <TelemetryBadge status="live" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>52.1%</div>
@@ -155,7 +159,7 @@ export default function WhelkDashboard() {
              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>UK Landed Cost (Avg)</span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>영국산 평균 입고단가</span>
             <TelemetryBadge status="live" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>$12.8/kg</div>
@@ -168,7 +172,7 @@ export default function WhelkDashboard() {
              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>Canada Catch Decline</span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>캐나다 어획 감소율</span>
             <TelemetryBadge status="synced" syncDate="2023.12" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>-74%</div>
@@ -181,12 +185,25 @@ export default function WhelkDashboard() {
              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>UK Meat Yield</span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>영국산 원물 수율</span>
             <TelemetryBadge status="static" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>20-25%</div>
           <div style={{ fontSize: '0.88rem', color: 'var(--color-warning)', fontWeight: 600 }}>
             <span style={{ background: '#f59e0b20', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>수율 1위</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>튀르키예 대비 2배</span>
+          </div>
+        </div>
+
+        <div className="ds-card" style={{background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '8px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '6px', transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}
+             onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
+             onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>KFAS 학술 검증</span>
+            <TelemetryBadge status="static" syncDate="2024" />
+          </div>
+          <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#a78bfa' }}>{kfasWidgets.length}건</div>
+          <div style={{ fontSize: '0.88rem', color: '#8b5cf6', fontWeight: 600 }}>
+            <span style={{ background: '#8b5cf620', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>신뢰도 100%</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>수산과학원</span>
           </div>
         </div>
       </div>
@@ -322,8 +339,8 @@ export default function WhelkDashboard() {
       {/* CONTENT GRID */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', width: '100%' }}>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-    <Globe size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>1. 글로벌 수급 (Supply)</h2>
+    <Fish size={20} color="var(--color-info)" />
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 1. 원료 수급</h2>
   </div>
   <>
             {/* Widget 1: Global Capture Top 10 */}
@@ -439,8 +456,8 @@ export default function WhelkDashboard() {
           </>
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-    <Navigation size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>2. 무역 구조 (Trade)</h2>
+    <Factory size={20} color="var(--color-info)" />
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 2. 가공 및 생산</h2>
   </div>
   <>
             {/* Widget 4: Import Market Share */}
@@ -514,8 +531,8 @@ export default function WhelkDashboard() {
           </>
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-    <Factory size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>3. 밸류체인 & 전략 (Strategy)</h2>
+    <Ship size={20} color="var(--color-info)" />
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 3. 물류 및 통관</h2>
   </div>
   <>
             {/* Widget 7: Yield Arbitrage */}
@@ -591,8 +608,8 @@ export default function WhelkDashboard() {
           </>
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-    <Activity size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>4. 시장 & 브랜드 (Market)</h2>
+    <TrendingUp size={20} color="var(--color-info)" />
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 4. 판매 및 수요</h2>
   </div>
   <>
             {/* Widget 9: Brand Positioning — Quantitative Axes */}
@@ -668,10 +685,10 @@ export default function WhelkDashboard() {
             </div>
           </>
 
-        {/* Section 5: Risk & Macro */}
+        {/* Pillar 5: ESG & 지속가능성 */}
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-    <ShieldAlert size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>5. 리스크 & 매크로 (Risk)</h2>
+    <Leaf size={20} color="var(--color-success)" />
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 5. ESG 및 지속가능성</h2>
   </div>
   <>
             {/* Widget 11: FX-Import Price Correlation */}
@@ -744,11 +761,7 @@ export default function WhelkDashboard() {
             </div>
           </>
 
-        {/* Section 6: 구조적 위협 & 기회 */}
-        <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-    <Thermometer size={20} color="var(--color-danger)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>6. 구조적 위협 & 기회 (Structural)</h2>
-  </div>
+        {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
   <>
             {/* Widget 13: 양식 불가 자원 비교 */}
             <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -986,6 +999,76 @@ export default function WhelkDashboard() {
               />
             </div>
           </>
+
+        {/* KFAS 학술 연구 인텔리전스 위젯 (동적 렌더링) */}
+        {kfasWidgets.length > 0 && (
+          <>
+            <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Dna size={20} color="#8b5cf6" />
+              <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>KFAS 학술 연구 인텔리전스</h2>
+              <span style={{ fontSize: '0.75rem', color: '#94a3b8', background: 'rgba(139,92,246,0.15)', padding: '2px 8px', borderRadius: '4px', marginLeft: '8px' }}>
+                국립수산과학원 검증 · {kfasWidgets.length}개 위젯
+              </span>
+            </div>
+            {kfasWidgets.map((widget: any) => (
+              <div key={widget.id} className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(139,92,246,0.15)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                    <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <Dna style={{ color: '#8b5cf6', width: '20px', height: '20px' }} />
+                      {widget.title?.replace(/^🔬\s*/, '')}
+                    </h3>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <TelemetryBadge status="static" syncDate="KFAS 2024" />
+                      <span style={{ fontSize: '0.68rem', background: 'rgba(139,92,246,0.15)', color: '#a78bfa', padding: '2px 6px', borderRadius: '4px', fontWeight: 600 }}>
+                        신뢰도 {widget.reliability}%
+                      </span>
+                    </div>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                    {widget.subtitle}
+                  </p>
+                </div>
+
+                {/* 차트 */}
+                {widget.data && widget.data.length > 0 && (
+                  <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                    <SafeResponsiveContainer height="100%">
+                      <BarChart data={widget.data} margin={{ top: 10 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                        <XAxis
+                          dataKey={widget.xKey}
+                          tick={{ fill: '#f8fafc', fontSize: 10 }}
+                          interval={0}
+                          angle={-20}
+                          textAnchor="end"
+                          height={55}
+                        />
+                        <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                        <RechartsTooltip content={<CustomTooltip />} />
+                        <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                        {widget.bars?.map((bar: any, bi: number) => (
+                          <Bar key={bi} dataKey={bar.key} name={bar.name?.slice(0, 15)} fill={bar.color} radius={[4, 4, 0, 0]} />
+                        ))}
+                      </BarChart>
+                    </SafeResponsiveContainer>
+                  </div>
+                )}
+
+                {/* SIT / TAK */}
+                <TakeawayBox
+                  situation={<span>{widget.sit?.slice(0, 300)}{widget.sit?.length > 300 ? '…' : ''}</span>}
+                  actionPlan={<span>{widget.strat?.slice(0, 300)}{widget.strat?.length > 300 ? '…' : ''}</span>}
+                />
+
+                {/* 출처 메타데이터 */}
+                <div style={{ fontSize: '0.68rem', color: '#64748b', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '0.5rem', lineHeight: 1.4 }}>
+                  📄 {widget.source}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
 
       </div>
     </div>
