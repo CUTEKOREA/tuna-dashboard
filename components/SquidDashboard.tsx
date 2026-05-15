@@ -43,10 +43,12 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 
 /* ─── 5-Part Section Definitions ─── */
 const SECTIONS = [
-  { id: 'S1', title: '⚓ Part I — 공급/가격 예측 (Supply & Price)', desc: 'FishStatJ · SPRFMO · KOSIS 기반 글로벌 오징어 어획량, 종별 자원 동향, CPI 괴리율, AI 가격 예측', color: '#10b981' },
-  { id: 'S2', title: '🏭 Part II — 착지원가/소싱 (Landed Cost & Sourcing)', desc: 'HS Ping · KCS 관세율 · 원산지별 총비용 시뮬레이션, Fleet OPEX, Value Chain 분석', color: '#8b5cf6' },
-  { id: 'S3', title: '🛡️ Part III — 규제 및 컴플라이언스 (Regulatory & ESG)', desc: 'OFAC · WTO SPS · MFDS 기반 IUU 리스크, 위생검역, 통관 거부 모니터링', color: '#f59e0b' },
-  { id: 'S4', title: '🌍 Part IV — 무역 흐름/신흥시장 (Trade Flow & Markets)', desc: 'ImportYeti · OEC · Comtrade 기반 EU 바이어, 스페인 허브, 가공 패권 구조 분석', color: '#3b82f6' },
+  { id: 'S1', title: '🌊 Part I — 원물 및 조달 (Raw Material & Sourcing)', desc: '포클랜드 자원평가 트래커 · 글로벌 어획 헤게모니 · 기후 및 어획량 동향', color: '#10b981' },
+  { id: 'S2', title: '🏭 Part II — 가공 및 밸류체인 (Processing & Value Chain)', desc: '스페인(Vigo) 가공 허브 스프레드 · 대체 원료 블렌딩 마진 분석', color: '#8b5cf6' },
+  { id: 'S3', title: '⚓ Part III — 물류 및 운영 원가 (Logistics & Fleet OPEX)', desc: '라이선스/ITQ 입어료 비용 변동 · 채낚기 선단 유류비(MGO) 시뮬레이션', color: '#06b6d4' },
+  { id: 'S4', title: '📊 Part IV — 판매 및 수요 (Sales & Demand)', desc: 'KOSIS 내수 CPI 괴리율 · 인플레이션 발 수요 파괴 및 수입 단가 트렌드', color: '#3b82f6' },
+  { id: 'S5', title: '🛡️ Part V — ESG 및 규제 리스크 (ESG & Compliance)', desc: '남서대서양 IUU 조업 레이더 · 포클랜드 ITQ 규제 · 수입 통관 위생검역 모니터링', color: '#f59e0b' },
+  { id: 'S6', title: '🎯 Part VI — M&A 실사 인텔리전스 (Due Diligence)', desc: '선민수산 인수 Bull/Bear 스코어카드 · Earn-out 시뮬레이터 · 100일 Value Creation Plan', color: '#ec4899' },
 ];
 
 /* ─── Custom Tooltip ─── */
@@ -135,7 +137,7 @@ export default function SquidDashboard() {
   const [apiCount, setApiCount] = useState(0);
 
   useEffect(() => {
-    fetch('/data/squid_real_data_v3.json')
+    fetch('/data/squid_real_data_v4.json')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error("Failed to load squid data", err));
@@ -186,6 +188,10 @@ export default function SquidDashboard() {
 
     // NEW FORMAT (Claude widgets) — uses xKey, bars, lines, areas
     if (widget.xKey || widget.bars || widget.lines || widget.areas) {
+      // Smart label rotation for non-numeric X-axis (Korean labels)
+      const isNewTextAxis = widget.xKey && d.length > 0 && typeof d[0][widget.xKey] === 'string' && isNaN(Number(d[0][widget.xKey]));
+      const newTickProps = isNewTextAxis ? { fontSize: 10, angle: -30, textAnchor: 'end' as const } : { fontSize: 10 };
+      const newChartMargin = isNewTextAxis ? { top: 5, right: 10, left: -10, bottom: 40 } : undefined;
       switch(chartType) {
         case "pie":
           return (
@@ -200,7 +206,7 @@ export default function SquidDashboard() {
           );
         case "area":
           return (
-            <AreaChart data={d}>
+            <AreaChart data={d} margin={newChartMargin}>
               <defs>
                 {widget.areas?.map((a: any, i: number) => (
                   <linearGradient key={i} id={`sArea${widget.id}_${i}`} x1="0" y1="0" x2="0" y2="1">
@@ -210,7 +216,7 @@ export default function SquidDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} interval={d.length <= 10 ? 0 : "preserveStartEnd"} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -221,9 +227,9 @@ export default function SquidDashboard() {
           );
         case "bar":
           return (
-            <BarChart data={d}>
+            <BarChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} interval={d.length <= 10 ? 0 : "preserveStartEnd"} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -234,9 +240,9 @@ export default function SquidDashboard() {
           );
         case "line":
           return (
-            <LineChart data={d}>
+            <LineChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} interval={d.length <= 10 ? 0 : "preserveStartEnd"} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -248,9 +254,9 @@ export default function SquidDashboard() {
         case "bar":
         case "composed":
           return (
-            <ComposedChart data={d}>
+            <ComposedChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} interval={d.length <= 10 ? 0 : "preserveStartEnd"} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {(widget.lines?.some((l:any) => l.yAxisId === 'right') || widget.bars?.some((b:any) => b.yAxisId === 'right') || widget.areas?.some((a:any) => a.yAxisId === 'right')) && (
                 <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
@@ -277,6 +283,10 @@ export default function SquidDashboard() {
     const xAxis = widget.xAxis || 'Year';
     const series = widget.series || [];
     const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
+    // Smart label rotation for non-numeric X-axis (Korean labels)
+    const isTextAxis = xAxis !== 'Year' && d.length > 0 && typeof d[0][xAxis] === 'string' && isNaN(Number(d[0][xAxis]));
+    const xTickProps = isTextAxis ? { fill: '#94a3b8', fontSize: 10, angle: -30, textAnchor: 'end' as const } : { fill: '#94a3b8', fontSize: 11 };
+    const chartMargin = isTextAxis ? { top: 20, right: 10, left: -10, bottom: 40 } : { top: 20, right: 10, left: -10, bottom: 0 };
 
     switch(chartType) {
       case "pie":
@@ -292,9 +302,9 @@ export default function SquidDashboard() {
         );
       case "line":
         return (
-          <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+          <LineChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -306,9 +316,9 @@ export default function SquidDashboard() {
         );
       case "area":
         return (
-          <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+          <AreaChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -319,9 +329,9 @@ export default function SquidDashboard() {
         );
       case "bar":
         return (
-          <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+          <BarChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -332,9 +342,9 @@ export default function SquidDashboard() {
         );
       case "composed":
         return (
-          <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+          <ComposedChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -619,7 +629,7 @@ export default function SquidDashboard() {
       {/* ═══ 5-Part Consolidated Sections ═══ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
 
-        {/* ═══════ Part I: 공급/가격 예측 ═══════ */}
+        {/* ═══════ Part I: 원물 및 조달 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
@@ -629,11 +639,11 @@ export default function SquidDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_squid_price_forecast', 'w_kosis_squid_cpi', 'w1_catch_powers', 'w3_jumbo_flying', 'w2_korea_supply', 'w4_unit_price', 'w6_species_pie', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w1_catch_powers', 'w2_korea_supply', 'w3_jumbo_flying', 'w_squid_price_forecast', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment', 'w48_supply_inversion', 'w57_china_supply_dominance', 'w18', 'w27_squid_climate_geopolitics', 'w12_ax_fishing', 'w68_import_dependency', 'w74_illex_boom_bust', 'w76_area41_illex_share', 'w80_loligo_vs_illex_portfolio'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part II: 착지원가/소싱 ═══════ */}
+        {/* ═══════ Part II: 가공 및 밸류체인 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
@@ -643,11 +653,11 @@ export default function SquidDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_squid_hs_tariff_sim', 'w_squid_sourcing_sim', 'w50_fleet_opex', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w53_energy_stress_test', 'w56_sunmin_pe_valuation', 'w60_twoway_price_simulator'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w10_processed_dominance', 'w31_eu_squid_supply_shock', 'w35_spain_trade_hub', 'w37_spain_arbitrage_trap', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w_squid_sourcing_sim', 'w34_value_add_funnel', 'w17', 'w47_spain_processing_empire', 'w30_business_model'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part III: 규제 및 컴플라이언스 ═══════ */}
+        {/* ═══════ Part III: 물류 및 운영 원가 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
@@ -657,11 +667,11 @@ export default function SquidDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w25_squid_chitosan_biomaterial', 'w26_squid_ai_jigging_fuel', 'w27_squid_climate_geopolitics'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w50_fleet_opex', 'w53_energy_stress_test', 'w26_squid_ai_jigging_fuel', 'w_squid_hs_tariff_sim', 'w54_sourcing_bottleneck', 'w28_falkland_waterfall', 'w29_capex_shock', 'w43_risk_reward_inversion', 'w66_capex_roadmap', 'w71_fig_licence_system', 'w73_illex_2024_season', 'w79_fleet_competition_map'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part IV: 무역 흐름/신흥시장 ═══════ */}
+        {/* ═══════ Part IV: 판매 및 수요 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
@@ -671,7 +681,35 @@ export default function SquidDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_importyeti_eu_buyers', 'w35_spain_trade_hub', 'w55_export_concentration', 'w10_processed_dominance', 'w5_top_importers', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w11_no_aquaculture', 'w31_eu_squid_supply_shock', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w37_spain_arbitrage_trap', 'w48_supply_inversion', 'w54_sourcing_bottleneck', 'w57_china_supply_dominance'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          </div>
+        </section>
+
+        {/* ═══════ Part V: ESG 및 규제 리스크 ═══════ */}
+        <section>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w11_no_aquaculture', 'w25_squid_chitosan_biomaterial', 'w51_policy_intervention', 'w77_mile201_dwf_crisis'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+          </div>
+        </section>
+
+        {/* ═══════ Part VI: M&A 실사 인텔리전스 ═══════ */}
+        <section>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '4px', height: '28px', background: SECTIONS[5]?.color || '#ec4899', borderRadius: '2px' }} />
+            <div>
+              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[5]?.title || '🎯 Part VI — M&A 실사 인텔리전스'}</h2>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[5]?.desc || ''}</p>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets?.filter((w: any) => ['w65_ma_scorecard', 'w67_earnout_sim', 'w70_value_creation', 'w56_sunmin_pe_valuation', 'w72_fig_revenue_trend', 'w75_loligo_scientific_mgmt', 'w78_itq_transition_timeline'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
