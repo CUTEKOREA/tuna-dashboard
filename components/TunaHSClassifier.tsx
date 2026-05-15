@@ -6,6 +6,26 @@ import TakeawayBox from './TakeawayBox';
 
 const QUICK_TAGS = ['참치', '가다랑어', '참치통조림', '갈치', '고등어', '명태', '새우', '오징어', '마늘', '캐슈넛'];
 
+const DESC_KR: Record<string, string> = {
+  'Tunas (of the genus Thunnus), skipjack tuna': '다랑어류(투너스속), 가다랑어',
+  'Prepared or preserved fish; whole or in pieces': '어류 조제품; 전체 또는 절단',
+  'Tunas, skipjack and bonito, prepared or preserved': '다랑어/가다랑어/보니토 조제품',
+  'Cashew nuts, fresh or dried, shelled': '캐슈너트, 신선 또는 건조, 껍질 제거',
+  'Cashew nuts, fresh or dried, in shell': '캐슈너트, 신선 또는 건조, 껍질째',
+  'Fish, frozen, n.e.s.': '냉동 어류 (기타)',
+  'Skipjack or stripe-bellied bonito, frozen': '가다랑어, 냉동',
+  'Yellowfin tunas, frozen': '황다랑어, 냉동',
+  'Bigeye tunas, frozen': '눈다랑어, 냉동',
+  'Bluefin tunas, frozen': '참다랑어, 냉동',
+  'Garlic, fresh or chilled': '마늘, 신선 또는 냉장',
+  'Shrimps and prawns, frozen': '새우, 냉동',
+  'Mackerel, frozen': '고등어, 냉동',
+  'Alaska pollock, frozen': '명태, 냉동',
+  'Cuttle fish and squid, frozen': '오징어, 냉동',
+};
+const toKRDesc = (desc: string) => DESC_KR[desc] || desc;
+const toKRNotes = (notes: string) => notes?.replace('Largest:', '주요 산지:');
+
 const TunaHSClassifier = React.memo(function TunaHSClassifier() {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -41,7 +61,7 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
           <Tag size={18} style={{ color: '#2196F3' }} /> [HS 분류] AI HS 코드 자동분류 (HS Ping)
           <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: isLive ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.05)', border: isLive ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)', color: isLive ? '#10b981' : '#94a3b8' }}>
-            {isLive ? '🟢 LIVE' : 'Pre-classified'}
+            {isLive ? '🟢 실시간' : '사전분류'}
           </span>
         </h3>
         <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>품목명(한/영)을 입력하면 HS Ping API를 통해 HS 6~10자리 코드를 자동 매핑합니다. 7개국 관세 분류체계를 지원하며, FTA 원산지 증명서 작성 및 관세 신고에 즉시 활용 가능합니다.</p>
@@ -84,8 +104,8 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
                   <div style={{ fontSize: '0.65rem', color: '#4a5568', marginTop: '2px' }}>{r.chapter || `Chapter ${(r.hsCode || '').substring(0, 2)}`}</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.78rem', color: '#f8fafc', fontWeight: 500 }}>{r.description}</div>
-                  {r.notes && <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '3px' }}>{r.notes}</div>}
+                  <div style={{ fontSize: '0.78rem', color: '#f8fafc', fontWeight: 500 }}>{toKRDesc(r.description)}</div>
+                  {r.notes && <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '3px' }}>{toKRNotes(r.notes)}</div>}
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '0.82rem', fontWeight: 700, color: (r.confidence || 0) >= 0.95 ? '#0ECB81' : '#F0B90B' }}>
@@ -110,7 +130,7 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
         <TakeawayBox
           situation={results.length > 0 ? `[HS 분류] "${meta?.query || query}" → ${results[0]?.hsCode || '-'} (${results[0]?.description || '-'}). 신뢰도 ${Math.round((results[0]?.confidence || 0) * 100)}%. ${results.length}개 후보 코드 제시.` : '[HS 자동분류] 품목명(한/영) 입력 시 HS 6~10자리 코드를 자동 매핑. 관세 신고·원산지 증명서 작성 시 활용.'}
           actionPlan="[활용] FTA 원산지 증명서 HS 코드 기재 시 본 분류 결과 활용. 수입 통관 시 품목분류 사전심사(관세청) 신청 근거 자료."
-          source={`HS Ping API · ${isLive ? '🟢 LIVE' : '🟡 Pre-classified DB'} · Reliability: ${meta?.reliability?.grade || 'A'}`}
+          source={`HS Ping API · ${isLive ? '🟢 실시간' : '🟡 사전분류 DB'} · 신뢰도: ${meta?.reliability?.grade || 'A'}`}
         />
       </div>
     </div>

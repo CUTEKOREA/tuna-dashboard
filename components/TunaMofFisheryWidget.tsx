@@ -91,7 +91,7 @@ export function MofTradeBalanceWidget() {
           <TermTooltip term="" description="국가 전체의 참치 수출입 규모와 무역수지 적자/흑자 트렌드를 실시간 분석합니다." />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: USD Million)</span>
         </h3>
-        <span style={{ fontSize: '0.75rem', color: live ? '#10b981' : '#f59e0b', fontWeight: 600 }}>{live ? '🟢 LIVE' : '🟡 CACHED'}</span>
+        <span style={{ fontSize: '0.75rem', color: live ? '#10b981' : '#f59e0b', fontWeight: 600 }}>{live ? '🟢 실시간' : '🟡 캐시됨'}</span>
       </div>
       <p className={styles.cardDesc} style={{ padding: '0 20px', marginTop: 0 }}>
         관세청 KCS API와 해양수산부 통계를 연동하여 참치 HS 코드 기준 월별 수출액/수입액/무역수지 추이를 시각화합니다. 구조적 적자 해소를 위한 전략적 시사점을 제공합니다.
