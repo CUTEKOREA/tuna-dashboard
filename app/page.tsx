@@ -37,7 +37,6 @@ const UnloadingStatus = dynamic(() => import('../components/UnloadingStatus'));
 const MackerelDashboard = dynamic(() => import('../components/MackerelDashboard'));
 const GalchiDashboard = dynamic(() => import('../components/GalchiDashboard'));
 const SquidDashboard = dynamic(() => import('../components/SquidDashboard'));
-const JukkumiDashboard = dynamic(() => import('../components/JukkumiDashboard'));
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
 const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
 const SalmonDashboard = dynamic(() => import('../components/SalmonDashboard'));
@@ -115,9 +114,9 @@ export default function Home() {
   const [session, setSession] = useState<any>(null);
   const pathname = usePathname();
   
-  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'ranching' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'whelk' | 'used-car' | 'pollock' | 'shrimp' | 'salmon' | 'field-ops' | 'petfood' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'tuna-extract' | 'cold-storage' | 'research-lab'>(() => {
+  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'ranching' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'whelk' | 'used-car' | 'pollock' | 'shrimp' | 'salmon' | 'field-ops' | 'petfood' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'tuna-extract' | 'cold-storage' | 'research-lab'>(() => {
     const path = pathname?.replace('/', '');
-    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'ranching', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'whelk', 'used-car', 'pollock', 'shrimp', 'salmon', 'field-ops', 'petfood', 'seasia-oem', 'fleet-strategy', 'korea-market', 'tuna-extract', 'cold-storage', 'research-lab'];
+    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'ranching', 'value-chain', 'mackerel', 'galchi', 'squid', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'whelk', 'used-car', 'pollock', 'shrimp', 'salmon', 'field-ops', 'petfood', 'seasia-oem', 'fleet-strategy', 'korea-market', 'tuna-extract', 'cold-storage', 'research-lab'];
     if (path && validMenus.includes(path)) return path as any;
     return 'market';
   });
@@ -150,7 +149,7 @@ export default function Home() {
     const titles: Record<string, string> = {
       'market': '시장 동향', 'fleet': '선단 운영', 'logistics': '물류·가공',
       'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
-      'squid': '오징어', 'jukkumi': '주꾸미', 'pollock': '명태', 'shrimp': '새우', 'salmon': '연어',
+      'squid': '오징어', 'pollock': '명태', 'shrimp': '새우', 'salmon': '연어',
       'ranching': '참다랑어 축양', 'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓', 'cold-storage': '냉동창고',
       'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근', 'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'whelk': '골뱅이', 'used-car': '중고차', 'field-ops': '실무자 인텔', 'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스', 'research-lab': '연구 재료',
     };
@@ -348,7 +347,7 @@ export default function Home() {
   };
   // Keyboard shortcuts for number keys
   useEffect(() => {
-    const menuKeys = ['market', 'fleet', 'unloading', 'logistics', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'pollock', 'shrimp', 'salmon'] as const;
+    const menuKeys = ['market', 'fleet', 'unloading', 'logistics', 'value-chain', 'mackerel', 'galchi', 'squid', 'pollock', 'shrimp', 'salmon'] as const;
     const handler = (e: KeyboardEvent) => {
       // Skip if user is typing in an input
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
@@ -425,7 +424,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('market'); setIsMobileSidebarOpen(false); }}
         >
           <BarChart2 size={18} />
-          시장 동향 (Market)
+          <span>시장 동향 (Market)</span>
         </button>
 
         <button 
@@ -433,7 +432,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('fleet'); setIsMobileSidebarOpen(false); }}
         >
           <Navigation size={18} />
-          선단 운영 (Fleet)
+          <span>선단 운영 (Fleet)</span>
         </button>
 
         <button 
@@ -441,7 +440,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('unloading'); setIsMobileSidebarOpen(false); }}
         >
           <Anchor size={18} />
-          하역 현황 (Unloading)
+          <span>하역 현황 (Unloading)</span>
         </button>
 
         <button 
@@ -449,7 +448,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('logistics'); setIsMobileSidebarOpen(false); }}
         >
           <Factory size={18} />
-          물류·가공 (Logistics)
+          <span>물류·가공 (Logistics)</span>
         </button>
 
         <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🐟 어종별 인텔리전스</div>
@@ -459,7 +458,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('value-chain'); setIsMobileSidebarOpen(false); }}
         >
           <Fish size={18} />
-          참치 (Tuna)
+          <span>참치 (Tuna)</span>
         </button>
 
         <button 
@@ -467,7 +466,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('mackerel'); setIsMobileSidebarOpen(false); }}
         >
           <FishSymbol size={18} />
-          고등어 (Mackerel)
+          <span>고등어 (Mackerel)</span>
         </button>
 
         <button 
@@ -475,7 +474,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('galchi'); setIsMobileSidebarOpen(false); }}
         >
           <Fish size={18} />
-          갈치 (Hairtail)
+          <span>갈치 (Hairtail)</span>
         </button>
 
         <button 
@@ -483,15 +482,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('squid'); setIsMobileSidebarOpen(false); }}
         >
           <Droplets size={18} />
-          오징어 (Squid)
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'jukkumi' ? styles.menuItemActive : ''}`}
-          onClick={() => { setActiveMenu('jukkumi'); setIsMobileSidebarOpen(false); }}
-        >
-          <FishSymbol size={18} />
-          주꾸미 (Webfoot Octopus)
+          <span>오징어 (Squid)</span>
         </button>
 
         <button 
@@ -499,7 +490,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('pollock'); setIsMobileSidebarOpen(false); }}
         >
           <Snowflake size={18} />
-          명태 (Pollock)
+          <span>명태 (Pollock)</span>
         </button>
 
         <button 
@@ -507,7 +498,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('shrimp'); setIsMobileSidebarOpen(false); }}
         >
           <Shrimp size={18} />
-          새우 (Shrimp)
+          <span>새우 (Shrimp)</span>
         </button>
 
         <button 
@@ -515,7 +506,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('whelk'); setIsMobileSidebarOpen(false); }}
         >
           <Shell size={18} />
-          골뱅이 (Whelk)
+          <span>골뱅이 (Whelk)</span>
         </button>
 
         <button 
@@ -523,7 +514,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('salmon'); setIsMobileSidebarOpen(false); }}
         >
           <Waves size={18} />
-          연어 (Salmon)
+          <span>연어 (Salmon)</span>
         </button>
 
         <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🔬 전략 분석</div>
@@ -533,7 +524,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('cold-storage'); setIsMobileSidebarOpen(false); }}
         >
           <Snowflake size={18} />
-          냉동창고 (Cold Storage)
+          <span>냉동창고 (Cold Storage)</span>
         </button>
 
         <button 
@@ -541,7 +532,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('fleet-strategy'); setIsMobileSidebarOpen(false); }}
         >
           <Ship size={18} />
-          선대 현황 및 분석
+          <span>선대 현황 및 분석</span>
         </button>
 
         <button 
@@ -549,7 +540,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('korea-market'); setIsMobileSidebarOpen(false); }}
         >
           <Anchor size={18} />
-          국내 위판장 인텔리전스
+          <span>국내 위판장 인텔리전스</span>
         </button>
 
         <button 
@@ -557,7 +548,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('ranching'); setIsMobileSidebarOpen(false); }}
         >
           <Waves size={18} />
-          참다랑어 축양 (Ranching)
+          <span>참다랑어 축양 (Ranching)</span>
         </button>
 
         <button 
@@ -565,7 +556,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('seasia-oem'); setIsMobileSidebarOpen(false); }}
         >
           <Factory size={18} />
-          글로벌 OEM (VN/TH)
+          <span>글로벌 OEM (VN/TH)</span>
         </button>
 
         <button 
@@ -573,7 +564,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('petfood'); setIsMobileSidebarOpen(false); }}
         >
           <Leaf size={18} />
-          펫푸드 (Pet Food)
+          <span>펫푸드 (Pet Food)</span>
         </button>
 
         <button 
@@ -581,7 +572,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('tuna-extract'); setIsMobileSidebarOpen(false); }}
         >
           <Droplets size={18} />
-          참치액젓 (Tuna Extract)
+          <span>참치액젓 (Tuna Extract)</span>
         </button>
 
         <button 
@@ -589,7 +580,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('used-car'); setIsMobileSidebarOpen(false); }}
         >
           <CarFront size={18} />
-          중고차 (Used Car)
+          <span>중고차 (Used Car)</span>
         </button>
 
         <button 
@@ -597,7 +588,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('field-ops'); setIsMobileSidebarOpen(false); }}
         >
           <Compass size={18} />
-          실무자 작전 인텔 (Field Ops)
+          <span>실무자 작전 인텔 (Field Ops)</span>
         </button>
 
         <button 
@@ -605,7 +596,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('research-lab'); setIsMobileSidebarOpen(false); }}
         >
           <FlaskConical size={18} />
-          연구 재료 (Research Lab)
+          <span>연구 재료 (Research Lab)</span>
         </button>
 
         <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🌾 농산물 인텔리전스</div>
@@ -615,7 +606,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('cashew'); setIsMobileSidebarOpen(false); }}
         >
           <Nut size={18} />
-          캐슈넛 (Cashew)
+          <span>캐슈넛 (Cashew)</span>
         </button>
 
         <button 
@@ -623,7 +614,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('cassava'); setIsMobileSidebarOpen(false); }}
         >
           <Sprout size={18} />
-          카사바 (Cassava)
+          <span>카사바 (Cassava)</span>
         </button>
 
         <button 
@@ -631,7 +622,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('garlic'); setIsMobileSidebarOpen(false); }}
         >
           <LeafyGreen size={18} />
-          마늘 (Garlic)
+          <span>마늘 (Garlic)</span>
         </button>
 
         <button 
@@ -639,7 +630,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('carrot'); setIsMobileSidebarOpen(false); }}
         >
           <Carrot size={18} />
-          당근 (Carrot)
+          <span>당근 (Carrot)</span>
         </button>
 
         <button 
@@ -647,7 +638,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('cocoa'); setIsMobileSidebarOpen(false); }}
         >
           <Coffee size={18} />
-          코코아 (Cocoa)
+          <span>코코아 (Cocoa)</span>
         </button>
 
         <button 
@@ -655,7 +646,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('mangosteen'); setIsMobileSidebarOpen(false); }}
         >
           <Cherry size={18} />
-          망고스틴 (Mangosteen)
+          <span>망고스틴 (Mangosteen)</span>
         </button>
 
         <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🥩 축산물 인텔리전스</div>
@@ -665,7 +656,7 @@ export default function Home() {
           onClick={() => { setActiveMenu('chicken'); setIsMobileSidebarOpen(false); }}
         >
           <Drumstick size={18} />
-          닭 (Chicken)
+          <span>닭 (Chicken)</span>
         </button>
 
         <div style={{ flex: 1 }} />
@@ -678,7 +669,7 @@ export default function Home() {
           style={{ marginBottom: '8px', color: '#3B82F6' }}
         >
           <Wrench size={18} />
-          데이터 수집 매뉴얼
+          <span>데이터 수집 매뉴얼</span>
         </button>
 
         <div style={{
@@ -701,7 +692,7 @@ export default function Home() {
           style={{ marginBottom: '8px', color: '#10b981' }}
         >
           <Leaf size={18} />
-          청과제국 동화청과
+          <span>청과제국 동화청과</span>
         </button>
 
         <button 
@@ -710,7 +701,7 @@ export default function Home() {
           style={{ marginBottom: '8px', color: '#eab308' }}
         >
           <BookOpen size={18} />
-          신라교역 50년사
+          <span>신라교역 50년사</span>
         </button>
         
         {/* User / Meta in sidebar bottom */}
@@ -789,10 +780,6 @@ export default function Home() {
 
               <KeepAlivePanel active={activeMenu === 'squid'}>
                 <SquidDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'jukkumi'}>
-                <JukkumiDashboard />
               </KeepAlivePanel>
 
               <KeepAlivePanel active={activeMenu === 'pollock'}>
