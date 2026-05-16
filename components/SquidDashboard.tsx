@@ -54,9 +54,9 @@ const SECTIONS = [
 
 const formatXAxis = (tickItem: any) => {
   if (!tickItem || typeof tickItem !== 'string') return tickItem;
-  let formatted = tickItem.replace(/s*\(.*?\)s*/g, '');
-  if (formatted.length > 6) {
-    return formatted.substring(0, 6) + '..';
+  let formatted = tickItem.replace(/\s*\(.*?\)\s*/g, '');
+  if (formatted.length > 12) {
+    return formatted.substring(0, 12) + '..';
   }
   return formatted;
 };
@@ -203,8 +203,8 @@ export default function SquidDashboard() {
     if (widget.xKey || widget.bars || widget.lines || widget.areas) {
       // Smart label rotation for non-numeric X-axis (Korean labels)
       const isNewTextAxis = widget.xKey && d.length > 0 && typeof d[0][widget.xKey] === 'string' && isNaN(Number(d[0][widget.xKey]));
-      const newTickProps = isNewTextAxis ? { fontSize: 10, angle: -30, textAnchor: 'end' as const } : { fontSize: 10 };
-      const newChartMargin = isNewTextAxis ? { top: 5, right: 10, left: -10, bottom: 40 } : undefined;
+      const newTickProps = isNewTextAxis ? { fontSize: 10, angle: -45, textAnchor: 'end' as const, dy: 5 } : { fontSize: 10 };
+      const newChartMargin = isNewTextAxis ? { top: 5, right: 30, left: -10, bottom: 65 } : { top: 5, right: 30, left: -10, bottom: 5 };
       switch(chartType) {
         case "pie":
           return (
@@ -214,7 +214,7 @@ export default function SquidDashboard() {
                 {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
             </PieChart>
           );
         case "area":
@@ -229,10 +229,10 @@ export default function SquidDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.areas?.map((a: any, i: number) => (
                 <Area key={i} type="monotone" dataKey={a.key || a.dataKey} stroke={getMonolithicColor(i)} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
@@ -242,10 +242,10 @@ export default function SquidDashboard() {
           return (
             <BarChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.bars?.map((b: any, i: number) => (
                 <Bar key={i} dataKey={b.key || b.dataKey} fill={getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
@@ -255,27 +255,26 @@ export default function SquidDashboard() {
           return (
             <LineChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.lines?.map((l: any, i: number) => (
                 <Line key={i} type="monotone" dataKey={l.key || l.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </LineChart>
           );
-        case "bar":
         case "composed":
           return (
             <ComposedChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {(widget.lines?.some((l:any) => l.yAxisId === 'right') || widget.bars?.some((b:any) => b.yAxisId === 'right') || widget.areas?.some((a:any) => a.yAxisId === 'right')) && (
                 <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               )}
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.areas?.map((a: any, i: number) => (
                 <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} fill={getMonolithicColor(i)} stroke={getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
               ))}
@@ -298,8 +297,8 @@ export default function SquidDashboard() {
     const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
     // Smart label rotation for non-numeric X-axis (Korean labels)
     const isTextAxis = xAxis !== 'Year' && d.length > 0 && typeof d[0][xAxis] === 'string' && isNaN(Number(d[0][xAxis]));
-    const xTickProps = isTextAxis ? { fill: '#94a3b8', fontSize: 10, angle: -30, textAnchor: 'end' as const } : { fill: '#94a3b8', fontSize: 11 };
-    const chartMargin = isTextAxis ? { top: 20, right: 10, left: -10, bottom: 40 } : { top: 20, right: 10, left: -10, bottom: 0 };
+    const xTickProps = isTextAxis ? { fill: '#94a3b8', fontSize: 10, angle: -45, textAnchor: 'end' as const, dy: 5 } : { fill: '#94a3b8', fontSize: 11 };
+    const chartMargin = isTextAxis ? { top: 20, right: 30, left: -10, bottom: 65 } : { top: 20, right: 30, left: -10, bottom: 0 };
 
     switch(chartType) {
       case "pie":
@@ -310,18 +309,18 @@ export default function SquidDashboard() {
               {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
           </PieChart>
         );
       case "line":
         return (
           <LineChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
               <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
             ))}
@@ -331,10 +330,10 @@ export default function SquidDashboard() {
         return (
           <AreaChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
               <Area key={i} type="monotone" dataKey={s.dataKey} stroke={getMonolithicColor(i)} fill={getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
             ))}
@@ -344,10 +343,10 @@ export default function SquidDashboard() {
         return (
           <BarChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
               <Bar key={i} dataKey={s.dataKey} fill={getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
             ))}
@@ -357,11 +356,11 @@ export default function SquidDashboard() {
         return (
           <ComposedChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => {
               if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
               if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={getMonolithicColor(i)} />;
@@ -732,7 +731,7 @@ export default function SquidDashboard() {
     const takeaway = w.strat || w.tak || w.takeaway || '';
     
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
+      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
         background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
         padding: '1.5rem'}}>
         
@@ -759,7 +758,7 @@ export default function SquidDashboard() {
         </div>
 
         {/* Chart Area */}
-        <div style={{ height: '250px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
+        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             {renderChart(w)}
           </SafeResponsiveContainer>

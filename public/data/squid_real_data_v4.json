@@ -5344,36 +5344,36 @@
     },
     {
       "id": "w78_itq_transition_timeline",
-      "title": "Illex ITQ 전환 정책 타임라인 (2024)",
+      "title": "Illex ITQ 전환 정책 타임라인 (2026 업데이트)",
       "chartType": "bar",
       "description": "Illex B-라이선스의 개별양도성쿼터(ITQ) 전환 추진 현황과 M&A 함의",
-      "methodology": "Fisheries Committee 의사록 2024년 6월/12월 원문 분석",
-      "source": "FIG Fisheries Committee Open Minutes (June & Dec 2024)",
-      "unit": "정책 이벤트",
+      "methodology": "Fisheries Committee 의사록 2025/2026 원문 분석",
+      "source": "FIG Fisheries Committee Open Minutes (2025-2026)",
+      "unit": "진행도 (%)",
       "data": [
         {
           "시점": "할당정책",
-          "진행도": 80
+          "진행도": 85
         },
         {
           "시점": "경제분석",
-          "진행도": 70
+          "진행도": 80
         },
         {
           "시점": "ITQB검토",
-          "진행도": 60
+          "진행도": 65
         },
         {
           "시점": "IOG추진",
-          "진행도": 90
+          "진행도": 95
         },
         {
-          "시점": "Fee이자",
+          "시점": "잠정조치(Interim)",
           "진행도": 100
         }
       ],
-      "situation": "포클랜드는 이미 Loligo에 ITQ를 성공적으로 적용 중이며, 이제 Illex까지 확대를 추진합니다. IOG(Illex Operators Group)가 적극 주도하고 있으며, 2024년 내 allocation policy 초안이 완성되었습니다.",
-      "takeaway": "<ul><li>Illex ITQ 전환은 선민수산 인수의 결정적 타이밍 변수입니다.</li><li>ITQ 할당 기준 확정 전 인수 시, 기존 조업 실적에 기반한 할당권 확보가 가능합니다.</li><li>전환 후 인수 시에는 할당권 가격이 별도로 반영되어 인수가가 상승할 수 있습니다.</li></ul>",
+      "situation": "[포클랜드 어업 정책 동향 2026] Illex(원양 오징어) 자원의 ITQ(개별할당제) 전면 확대 도입이 지연되면서, 완전한 ITQ 체제 도입 전까지 '임시 조치(Interim Solution)' 체제로 운영되고 있습니다. 현행 연간 노력량(Effort Limits) 기반의 할당이 한시적으로 유지됩니다.",
+      "takeaway": "<ul><li><strong>[M&A 타임라인 재조정]</strong> ITQ 전면 도입이 지연됨에 따라, 선민수산 인수를 통한 '사전 쿼터 프리미엄 확보'의 긴급성은 다소 완화되었습니다.</li><li>오히려 현행 임시 면허 체제 하에서의 조업 실적(Track Record)이 향후 ITQ 지분 산정의 핵심 척도가 되므로, 인수 후 조업 역량을 극대화하는 방향으로 전략을 선회해야 합니다.</li></ul>",
       "xAxis": "시점",
       "series": [
         {
@@ -5382,10 +5382,10 @@
           "type": "bar"
         }
       ],
-      "subtitle": "Fisheries Committee 의사록 2024년 6월/12월 원문 분석",
-      "sit": "포클랜드는 이미 Loligo에 ITQ를 성공적으로 적용 중이며, 이제 Illex까지 확대를 추진합니다. IOG(Illex Operators Group)가 적극 주도하고 있으며, 2024년 내 allocation policy 초안이 완성되었습니다.",
-      "strat": "<ul><li>Illex ITQ 전환은 선민수산 인수의 결정적 타이밍 변수입니다.</li><li>ITQ 할당 기준 확정 전 인수 시, 기존 조업 실적에 기반한 할당권 확보가 가능합니다.</li><li>전환 후 인수 시에는 할당권 가격이 별도로 반영되어 인수가가 상승할 수 있습니다.</li></ul>",
-      "tak": "<ul><li>Illex ITQ 전환은 선민수산 인수의 결정적 타이밍 변수입니다.</li><li>ITQ 할당 기준 확정 전 인수 시, 기존 조업 실적에 기반한 할당권 확보가 가능합니다.</li><li>전환 후 인수 시에는 할당권 가격이 별도로 반영되어 인수가가 상승할 수 있습니다.</li></ul>"
+      "subtitle": "Fisheries Committee 의사록 2025/2026 원문 분석",
+      "sit": "[포클랜드 어업 정책 동향 2026] Illex(원양 오징어) 자원의 ITQ(개별할당제) 전면 확대 도입이 지연되면서, 완전한 ITQ 체제 도입 전까지 '임시 조치(Interim Solution)' 체제로 운영되고 있습니다. 현행 연간 노력량(Effort Limits) 기반의 할당이 한시적으로 유지됩니다.",
+      "strat": "<ul><li><strong>[M&A 타임라인 재조정]</strong> ITQ 전면 도입이 지연됨에 따라, 선민수산 인수를 통한 '사전 쿼터 프리미엄 확보'의 긴급성은 다소 완화되었습니다.</li><li>오히려 현행 임시 면허 체제 하에서의 조업 실적(Track Record)이 향후 ITQ 지분 산정의 핵심 척도가 되므로, 인수 후 조업 역량을 극대화하는 방향으로 전략을 선회해야 합니다.</li></ul>",
+      "tak": "<ul><li><strong>[M&A 타임라인 재조정]</strong> ITQ 전면 도입이 지연됨에 따라, 선민수산 인수를 통한 '사전 쿼터 프리미엄 확보'의 긴급성은 다소 완화되었습니다.</li><li>오히려 현행 임시 면허 체제 하에서의 조업 실적(Track Record)이 향후 ITQ 지분 산정의 핵심 척도가 되므로, 인수 후 조업 역량을 극대화하는 방향으로 전략을 선회해야 합니다.</li></ul>"
     },
     {
       "id": "w79_fleet_competition_map",

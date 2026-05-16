@@ -21,8 +21,8 @@ export async function GET() {
       { year: "2023", chinese_fleet: 310, other_fleet: 20 },
       { year: "2024", chinese_fleet: 380, other_fleet: 15 }
     ],
-    sit: "[OFAC/EU] 중국 원양선단의 공해상 오징어 싹쓸이 조업 및 IUU(불법어업) 제재 심화.",
-    strat: "원산지 증명서(Catch Certificate) 무결점 심사를 강화하고, 컴플라이언스가 검증된 선사와만 B2B 거래 진행.",
+    sit: "[OFAC/EU 제재 레이더] 남서대서양 공해상 중국 원양선단의 싹쓸이 조업 및 IUU(불법·비보고·비규제 어업) 적발이 급증하며 국제 제재 압박이 전방위적으로 심화되고 있음.",
+    strat: "[IUU 무결점 공급망 확보] 신규 매입 시 '원산지 증명(Catch Certificate)' 및 '해상 환적 이력' 100% 추적 시스템을 의무화하고, 준법 리스크가 없는 합법 선단 중심으로 B2B 매입망을 재편할 것.",
     source: "OFAC & EU IUU Blacklist"
   };
 

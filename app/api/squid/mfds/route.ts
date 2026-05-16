@@ -19,8 +19,8 @@ export async function GET() {
       { country: "페루", rejections: 8, inspections: 50 },
       { country: "칠레", rejections: 3, inspections: 20 }
     ],
-    sit: "[MFDS] 중국산 조미오징어 및 진미채에서 이물질(포르말린 등) 검출 비율 상승 중.",
-    strat: "중국산 OEM 비중을 줄이고, 베트남 등 통관 리스크가 낮은 동남아 가공장으로 소싱처 다변화.",
+    sit: "[식약처 검역 레이더] 최근 중국산 조미오징어 및 진미채 등 가공품에서 포르말린 등 유해 이물질 검출 및 수입 거부 비율이 급상승하며 식품안전(Food Safety) 리스크가 부각되고 있음.",
+    strat: "[OEM 소싱처 다변화] 고위험군으로 분류된 중국산 OEM 가공 비중을 단계적으로 축소하고, 위생검역 통과율이 높은 베트남 등 동남아시아 가공장으로 전략적 소싱 다변화를 추진할 것.",
     source: "MFDS Import Safety Radar"
   };
 

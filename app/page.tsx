@@ -37,6 +37,7 @@ const UnloadingStatus = dynamic(() => import('../components/UnloadingStatus'));
 const MackerelDashboard = dynamic(() => import('../components/MackerelDashboard'));
 const GalchiDashboard = dynamic(() => import('../components/GalchiDashboard'));
 const SquidDashboard = dynamic(() => import('../components/SquidDashboard'));
+const JukkumiDashboard = dynamic(() => import('../components/JukkumiDashboard'));
 const PollockDashboard = dynamic(() => import('../components/PollockDashboard'));
 const ShrimpDashboard = dynamic(() => import('../components/ShrimpDashboard'));
 const SalmonDashboard = dynamic(() => import('../components/SalmonDashboard'));
@@ -114,9 +115,9 @@ export default function Home() {
   const [session, setSession] = useState<any>(null);
   const pathname = usePathname();
   
-  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'ranching' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'whelk' | 'used-car' | 'pollock' | 'shrimp' | 'salmon' | 'field-ops' | 'petfood' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'tuna-extract' | 'cold-storage' | 'research-lab'>(() => {
+  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'ranching' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'whelk' | 'used-car' | 'pollock' | 'shrimp' | 'salmon' | 'field-ops' | 'petfood' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'tuna-extract' | 'cold-storage' | 'research-lab'>(() => {
     const path = pathname?.replace('/', '');
-    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'ranching', 'value-chain', 'mackerel', 'galchi', 'squid', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'whelk', 'used-car', 'pollock', 'shrimp', 'salmon', 'field-ops', 'petfood', 'seasia-oem', 'fleet-strategy', 'korea-market', 'tuna-extract', 'cold-storage', 'research-lab'];
+    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'ranching', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'whelk', 'used-car', 'pollock', 'shrimp', 'salmon', 'field-ops', 'petfood', 'seasia-oem', 'fleet-strategy', 'korea-market', 'tuna-extract', 'cold-storage', 'research-lab'];
     if (path && validMenus.includes(path)) return path as any;
     return 'market';
   });
@@ -149,7 +150,7 @@ export default function Home() {
     const titles: Record<string, string> = {
       'market': '시장 동향', 'fleet': '선단 운영', 'logistics': '물류·가공',
       'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
-      'squid': '오징어', 'pollock': '명태', 'shrimp': '새우', 'salmon': '연어',
+      'squid': '오징어', 'jukkumi': '주꾸미', 'pollock': '명태', 'shrimp': '새우', 'salmon': '연어',
       'ranching': '참다랑어 축양', 'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓', 'cold-storage': '냉동창고',
       'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근', 'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'whelk': '골뱅이', 'used-car': '중고차', 'field-ops': '실무자 인텔', 'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스', 'research-lab': '연구 재료',
     };
@@ -347,7 +348,7 @@ export default function Home() {
   };
   // Keyboard shortcuts for number keys
   useEffect(() => {
-    const menuKeys = ['market', 'fleet', 'unloading', 'logistics', 'value-chain', 'mackerel', 'galchi', 'squid', 'pollock', 'shrimp', 'salmon'] as const;
+    const menuKeys = ['market', 'fleet', 'unloading', 'logistics', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'pollock', 'shrimp', 'salmon'] as const;
     const handler = (e: KeyboardEvent) => {
       // Skip if user is typing in an input
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
@@ -483,6 +484,14 @@ export default function Home() {
         >
           <Droplets size={18} />
           오징어 (Squid)
+        </button>
+
+        <button 
+          className={`${styles.menuItem} ${activeMenu === 'jukkumi' ? styles.menuItemActive : ''}`}
+          onClick={() => { setActiveMenu('jukkumi'); setIsMobileSidebarOpen(false); }}
+        >
+          <FishSymbol size={18} />
+          주꾸미 (Webfoot Octopus)
         </button>
 
         <button 
@@ -780,6 +789,10 @@ export default function Home() {
 
               <KeepAlivePanel active={activeMenu === 'squid'}>
                 <SquidDashboard />
+              </KeepAlivePanel>
+
+              <KeepAlivePanel active={activeMenu === 'jukkumi'}>
+                <JukkumiDashboard />
               </KeepAlivePanel>
 
               <KeepAlivePanel active={activeMenu === 'pollock'}>
