@@ -55,8 +55,8 @@ const SECTIONS = [
 const formatXAxis = (tickItem: any) => {
   if (!tickItem || typeof tickItem !== 'string') return tickItem;
   let formatted = tickItem.replace(/\s*\(.*?\)\s*/g, '');
-  if (formatted.length > 7) {
-    return formatted.substring(0, 7) + '..';
+  if (formatted.length > 12) {
+    return formatted.substring(0, 12) + '..';
   }
   return formatted;
 };
@@ -113,7 +113,7 @@ export default function JukkumiDashboard() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch('/data/jukkumi_real_data_v1.json')
+    fetch('/api/jukkumi-intelligence')
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error("Failed to load jukkumi data", err));
@@ -159,17 +159,17 @@ export default function JukkumiDashboard() {
                 {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             </PieChart>
           );
         case "bar":
           return (
             <BarChart data={d} margin={chartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-              <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
+              <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
               <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => (
                 <Bar key={i} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
               ))}
@@ -179,11 +179,11 @@ export default function JukkumiDashboard() {
           return (
             <ComposedChart data={d} margin={chartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-              <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
+              <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
               <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
               {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+              <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => {
                 if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
                 if (s.type === 'area') return <Area key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || getMonolithicColor(i)} fill={s.color || getMonolithicColor(i)} fillOpacity={0.4} strokeWidth={2} />;
@@ -347,7 +347,7 @@ export default function JukkumiDashboard() {
     const takeaway = w.strat || w.tak || w.takeaway || '';
     
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
+      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
         background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
         padding: '1.5rem'}}>
         
@@ -374,7 +374,7 @@ export default function JukkumiDashboard() {
         </div>
 
         {/* Chart Area */}
-        <div style={{ height: '250px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
+        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             {renderChart(w)}
           </SafeResponsiveContainer>
