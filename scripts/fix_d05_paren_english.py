@@ -22,25 +22,63 @@ L-07 일괄 변환기 — D-05 위반(괄호 영문 잔존) 자동 제거 (V4.1)
 
 import argparse
 import re
-import sys
 from pathlib import Path
 
 DISPLAY_FIELDS = ("label", "name", "title", "tooltip", "legend", "cardDesc")
 
+# W-02 보존: 괄호 내용이 "단위/금액/지표"로 보이면 절대 제거하지 않음.
+# 다음 중 하나라도 만족하면 PRESERVE:
+#   - 슬래시 `/` 포함 (USD/t, kg/ha)
+#   - 통화/단위 토큰 포함 (USD, EUR, KRW, JPY, CNY, kg, MT, ton, ha, t, m, km, $, %, M, K, B)
+#   - 숫자 포함 (M USD 등)
+#   - 짧은 대문자 약어 + 단위 결합 (M USD, K kg)
+PRESERVE_TOKENS = {
+    "USD", "EUR", "KRW", "JPY", "CNY", "GBP", "THB", "VND", "IDR",
+    "MT", "kg", "ton", "tons", "ha", "L", "mL", "km", "g",
+    "M", "K", "B", "P",
+    "GDP", "CPI", "ROI", "IRR", "EBITDA", "KPI", "FX", "PEF",
+    "CAGR", "Cagr",  # 성장률 약어
+    "MGO", "RTE", "MAP", "SPS",  # 산업 약어
+    "NFI",  # National Frozen Industry 등
+}
+
 # 매칭 패턴
-#   <field> : '한글텍스트 (영문)' 또는 "..." 또는 `...`
-#   캡처: 1=field, 2=따옴표, 3=괄호 앞 한글+공백, 4=괄호 안 영문, 5=나머지 (보통 빈 문자열)
 FIELD_RE = re.compile(
     r"(?P<field>\b(?:" + "|".join(DISPLAY_FIELDS) + r")\b)"
     r"(?P<sep>\s*[:=]\s*\{?\s*)"
     r"(?P<quote>['\"`])"
     r"(?P<before>[^'\"`]*?[가-힣][^'\"`(]*?)"
     r"\s*\("
-    r"(?P<paren>[A-Z][A-Za-z. /]*)"
+    r"(?P<paren>[A-Z][A-Za-z. /$%0-9-]*)"
     r"\)"
     r"(?P<after>[^'\"`]*)"
     r"(?P=quote)"
 )
+
+
+def is_unit_or_metric(paren_content: str) -> bool:
+    """괄호 안이 보존 대상(단위/약어/전문용어/고유명사)이라면 True."""
+    s = paren_content.strip()
+    # 슬래시 / 달러 / 퍼센트 / 숫자 → 단위로 간주
+    if any(c in s for c in "/$%"):
+        return True
+    if any(c.isdigit() for c in s):
+        return True
+    # 토큰 분해 (공백·콤마 기준)
+    tokens = [t for t in re.split(r"[\s,]+", s) if t]
+    if not tokens:
+        return False
+    # 보존 토큰 사전 매칭
+    if any(tok in PRESERVE_TOKENS for tok in tokens):
+        return True
+    # All-caps 약어 (2~6자, 예: TAC, NB, RTE, CPU, AI, MGO, ESG)
+    if len(tokens) == 1 and re.fullmatch(r"[A-Z]{2,6}", tokens[0]):
+        return True
+    # 다중 단어 title case (예: "Smile Curve", "Wild Catch")
+    # → 단순 번역 중복이 아닌 전문 용어/관용구일 가능성 높음 → 보존
+    if len(tokens) >= 2 and all(re.match(r"^[A-Z][a-z]+$", t) for t in tokens):
+        return True
+    return False
 
 
 def transform_line(line: str):
@@ -49,11 +87,13 @@ def transform_line(line: str):
 
     def repl(m):
         nonlocal changes
+        paren = m.group("paren")
+        # W-02 가드: 단위/지표는 보존
+        if is_unit_or_metric(paren):
+            return m.group(0)
         before = m.group("before").rstrip()
         after = m.group("after").rstrip()
-        # 괄호 뒤에 추가 텍스트 있으면 보존
-        new_content = before + after
-        new_content = new_content.rstrip()
+        new_content = (before + after).rstrip()
         changes += 1
         return (
             m.group("field") + m.group("sep") +

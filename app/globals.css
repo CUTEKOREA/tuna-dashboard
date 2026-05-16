@@ -713,3 +713,84 @@ h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
   padding-top: 2px !important;
   padding-bottom: 2px !important;
 }
+
+/* ─── Insight Lists S-Grade UI (Situation & Takeaway) ─── */
+
+.ds-situation-box ul,
+.ds-takeaway-box ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Base style for list items as actionable cards */
+.ds-situation-box li,
+.ds-takeaway-box li {
+  position: relative;
+  padding: 10px 14px 10px 32px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  display: flex;
+  align-items: flex-start;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Situation Box Theme (Info/Blue) */
+.ds-situation-box li {
+  background: rgba(6, 182, 212, 0.05);
+  border: 1px solid rgba(6, 182, 212, 0.15);
+}
+
+.ds-situation-box li:hover {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.ds-situation-box li::before {
+  content: "•";
+  position: absolute;
+  left: 12px;
+  color: var(--color-info);
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+/* Takeaway Box Theme (Success/Green) */
+.ds-takeaway-box li {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.ds-takeaway-box li:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateX(2px);
+}
+
+.ds-takeaway-box li::before {
+  content: "→";
+  position: absolute;
+  left: 12px;
+  color: var(--color-success);
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+/* Make strong tags pop within the actionable cards */
+.ds-situation-box li strong {
+  color: var(--color-info);
+  font-weight: 700;
+}
+
+.ds-takeaway-box li strong {
+  color: var(--color-success);
+  font-weight: 700;
+}
+

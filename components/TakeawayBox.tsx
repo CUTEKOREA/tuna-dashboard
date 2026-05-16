@@ -24,7 +24,13 @@ export default function TakeawayBox({ situation, actionPlan, takeaway, source }:
           📊 현황 분석
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          {typeof situation === 'string' ? <div dangerouslySetInnerHTML={{ __html: situation }} /> : situation}
+          {typeof situation === 'string' ? (
+            situation.includes('<ul') || situation.includes('<li') || situation.includes('<div') ? (
+              <div dangerouslySetInnerHTML={{ __html: situation }} />
+            ) : (
+              <ul><li>{situation}</li></ul>
+            )
+          ) : situation}
         </div>
       </div>
       
@@ -33,7 +39,13 @@ export default function TakeawayBox({ situation, actionPlan, takeaway, source }:
           ⚡️ 실행 전략
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          {typeof (takeaway || actionPlan) === 'string' ? <div dangerouslySetInnerHTML={{ __html: (takeaway || actionPlan) as string }} /> : (takeaway || actionPlan)}
+          {typeof (takeaway || actionPlan) === 'string' ? (
+            ((takeaway || actionPlan) as string).includes('<ul') || ((takeaway || actionPlan) as string).includes('<li') || ((takeaway || actionPlan) as string).includes('<div') ? (
+              <div dangerouslySetInnerHTML={{ __html: (takeaway || actionPlan) as string }} />
+            ) : (
+              <ul><li>{(takeaway || actionPlan)}</li></ul>
+            )
+          ) : (takeaway || actionPlan)}
         </div>
       </div>
 

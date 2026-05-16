@@ -269,7 +269,7 @@ export default function SquidDashboard() {
           return (
             <ComposedChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} interval={0} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {(widget.lines?.some((l:any) => l.yAxisId === 'right') || widget.bars?.some((b:any) => b.yAxisId === 'right') || widget.areas?.some((a:any) => a.yAxisId === 'right')) && (
                 <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
@@ -280,10 +280,10 @@ export default function SquidDashboard() {
                 <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} fill={getMonolithicColor(i)} stroke={getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
               ))}
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} fill={getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} fill={getMonolithicColor(i + (widget.areas?.length || 0))} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} stroke={getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} stroke={getMonolithicColor(i + (widget.areas?.length || 0) + (widget.bars?.length || 0))} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </ComposedChart>
           );
@@ -357,7 +357,7 @@ export default function SquidDashboard() {
         return (
           <ComposedChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} interval={0} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
