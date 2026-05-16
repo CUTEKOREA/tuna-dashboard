@@ -2,7 +2,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-16 (Claude Code 세션)
+> **마지막 업데이트**: 2026-05-16 (Claude Code 세션 — Phase 1A 1차 완료)
 
 ---
 
@@ -21,6 +21,12 @@
 - ✅ `docs/adr/` 부트스트랩 — README + ADR 0001/0002/0003
 - ✅ `CLAUDE.md` 업데이트 (`@CONTEXT.md` 임포트 추가, Claude Code 전용)
 - ✅ `improve-codebase-architecture` 스킬 분석 결과: deepening 후보 5+1개 식별
+- ✅ `HANDOFF.md` + `AGENTS.md` 강화 (병용 규율, Quick Start, 알려진 함정, 1주 측정 루브릭)
+- ✅ `.git/hooks/pre-commit` HANDOFF 갱신 점검 (경고형, 비차단)
+- ✅ Claude Code 메모리: HANDOFF 갱신 자발 제안 규율 저장
+- ✅ **Phase 1A 1차 완료**: `TunaInsightsDashboard.tsx` 영문 잔존 28→0
+  - `scripts/fix_tuna_insights_en_to_ko.py` 작성·실행 (L-07 일괄 변환 패턴)
+  - `tsc --noEmit` 통과 (L-06 게이트)
 
 ## 베이스라인 (위반 현황)
 
@@ -41,9 +47,10 @@ python scripts/check_s_grade.py TunaDashboard.tsx TunaExtractDashboard.tsx TunaI
 ## 다음 단계 (우선순위 순)
 
 ### 즉시 (Phase 1A)
-1. **TunaInsightsDashboard.tsx 영문 잔존 28건 한글화** — 한·영 매핑 사전부터 만든 후 일괄 교체
-2. **TunaLiveTicker.tsx 4건, TunaDashboard.tsx 6건, 나머지 위젯들** 한글화
-3. 재측정 → 영문 잔존 0 확인
+1. ~~**TunaInsightsDashboard.tsx 영문 잔존 28건 한글화**~~ ✅ 완료 (2026-05-16)
+2. **TunaLiveTicker.tsx 4건, TunaDashboard.tsx 6건, TunaExtractDashboard.tsx 1건, TunaNewInsightsB.tsx 2건** 한글화
+3. **추가 발견 잔존 처리**: 베이스라인 grep이 못 잡는 패턴들 (예: `Rising Hub: Ecuador`, `$3,450` 등 콜론·기호 포함 또는 KPI value)
+4. 모든 closure 재측정 → 영문 잔존 0 확인
 
 ### Phase 1B (영문 박멸 완료 후)
 4. **TelemetryBadge 단일 Module 추출** — 10개 commodity dashboard에 자기 복사본이 있고 9개 vs 1개로 타입 불일치 (룰북 위반 상태). `components/TelemetryBadge.tsx` 1개로 통합.
@@ -116,6 +123,7 @@ git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' |
 | 날짜 | 에이전트 | 작업 유형 | 시간(분) | 마찰 | 승리 |
 |---|---|---|---|---|---|
 | 2026-05-16 | CC | bootstrap (CONTEXT/ADR/HANDOFF) | 90 | — | grill-me + CONTEXT.md 한 번에 완성 |
+| 2026-05-16 | CC | ui-fix (TunaInsights 영문 박멸 28건) | 20 | grep이 콜론·기호 포함 영문 못 잡음 (추가 라운드 필요) | L-07 일괄 변환 스크립트로 28건 무손실 치환, tsc 통과 |
 |  |  |  |  |  |  |
 
 **작업 유형 카테고리** (단순화):

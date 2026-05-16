@@ -158,7 +158,7 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox}>
-              <div className={styles.kpiLabel}>Current Spread (USD/t)</div>
+              <div className={styles.kpiLabel}>현재 스프레드 ($/MT)</div>
               <div className={styles.kpiValue}>$3,450</div>
               <div className={styles.kpiSub}>▲ 12.4% vs 2022</div>
             </div>
@@ -200,7 +200,7 @@ export default function TunaInsightsDashboard() {
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-success)' }}>
               <div className={styles.kpiLabel}>Rising Hub: Ecuador</div>
               <div className={styles.kpiValue}>26% Share</div>
-              <div className={styles.kpiSub}>Tariff advantage to EU</div>
+              <div className={styles.kpiSub}>EU 무관세 혜택</div>
             </div>
           </div>
         </div>
@@ -228,14 +228,14 @@ export default function TunaInsightsDashboard() {
                 <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis dataKey="name" type="category" stroke="#94a3b8" width={100} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-                <Bar dataKey="growth" fill="#818cf8" radius={[0, 4, 4, 0]} name="CAGR Growth (%)" />
+                <Bar dataKey="growth" fill="#818cf8" radius={[0, 4, 4, 0]} name="연평균 성장률 (%)" />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox}>
-              <div className={styles.kpiLabel}>Top Emerging Market</div>
-              <div className={styles.kpiValue}>Nigeria</div>
+              <div className={styles.kpiLabel}>최대 신흥 시장</div>
+              <div className={styles.kpiValue}>나이지리아</div>
               <div className={styles.kpiSub}>+22.1% Annual Growth</div>
             </div>
           </div>
@@ -286,9 +286,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: '#f472b6' }}>
-              <div className={styles.kpiLabel}>Atlantic Compensation Rate</div>
+              <div className={styles.kpiLabel}>대서양 보전율</div>
               <div className={styles.kpiValue}>+42%</div>
-              <div className={styles.kpiSub}>During Pacific Shocks</div>
+              <div className={styles.kpiSub}>태평양 충격기</div>
             </div>
             
           </div>
@@ -325,9 +325,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-success)' }}>
-              <div className={styles.kpiLabel}>Correlation (Tuna-Mackerel)</div>
+              <div className={styles.kpiLabel}>상관계수 (참치-고등어)</div>
               <div className={styles.kpiValue}>-0.78</div>
-              <div className={styles.kpiSub}>Strongly Negative (Hedgable)</div>
+              <div className={styles.kpiSub}>강한 음의 상관 (헷징 가능)</div>
             </div>
           </div>
         </div>
@@ -364,9 +364,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-danger)' }}>
-              <div className={styles.kpiLabel}>Largest Discrepancy Margin</div>
+              <div className={styles.kpiLabel}>최대 무역 격차</div>
               <div className={styles.kpiValue}>60 K/t</div>
-              <div className={styles.kpiSub} style={{color: 'var(--color-danger)'}}>Pacific Islands Route</div>
+              <div className={styles.kpiSub} style={{color: 'var(--color-danger)'}}>태평양 도서국 루트</div>
             </div>
           </div>
         </div>
@@ -406,9 +406,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: '#f472b6' }}>
-              <div className={styles.kpiLabel}>Aquaculture Premium</div>
+              <div className={styles.kpiLabel}>양식 프리미엄</div>
               <div className={styles.kpiValue}>+31.9%</div>
-              <div className={styles.kpiSub}>vs Wild Catch (2024)</div>
+              <div className={styles.kpiSub}>자연산 대비 (2024)</div>
             </div>
             
           </div>
@@ -450,7 +450,7 @@ export default function TunaInsightsDashboard() {
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: '#ec4899' }}>
               <div className={styles.kpiLabel}>#1 Premium Market</div>
-              <div className={styles.kpiValue}>UAE (Dubai)</div>
+              <div className={styles.kpiValue}>아랍에미리트 (두바이)</div>
               <div className={styles.kpiSub}>$42.00 / kg</div>
             </div>
           </div>
@@ -489,7 +489,7 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: '#fbbf24' }}>
-              <div className={styles.kpiLabel}>Current HHI Index</div>
+              <div className={styles.kpiLabel}>현재 HHI 지수</div>
               <div className={styles.kpiValue} style={{ color: '#fbbf24' }}>2,950</div>
               <div className={styles.kpiSub} style={{ color: 'var(--color-danger)' }}>Danger Zone (!&gt;2500)</div>
             </div>
@@ -528,9 +528,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-danger)' }}>
-              <div className={styles.kpiLabel}>Projected Shift by 2035</div>
+              <div className={styles.kpiLabel}>2035년 예상 변화</div>
               <div className={styles.kpiValue}>88%</div>
-              <div className={styles.kpiSub}>Warm-Water Species Dominance</div>
+              <div className={styles.kpiSub}>온수성 어종 우세</div>
             </div>
             
           </div>
@@ -571,9 +571,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-success)' }}>
-              <div className={styles.kpiLabel}>Fuel Cost Reduction</div>
+              <div className={styles.kpiLabel}>연료비 절감</div>
               <div className={styles.kpiValue}>-28%</div>
-              <div className={styles.kpiSub}>vs 2018 Baseline</div>
+              <div className={styles.kpiSub}>2018년 대비</div>
             </div>
           </div>
         </div>
@@ -609,9 +609,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: '#a855f7' }}>
-              <div className={styles.kpiLabel}>Thai Export Impact</div>
+              <div className={styles.kpiLabel}>태국 수출 충격</div>
               <div className={styles.kpiValue}>-60%</div>
-              <div className={styles.kpiSub}>Estimated Drop by 2026</div>
+              <div className={styles.kpiSub}>2026년 예상 하락</div>
             </div>
           </div>
         </div>
@@ -639,7 +639,7 @@ export default function TunaInsightsDashboard() {
                 <XAxis type="number" domain={[0, 250]} stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis dataKey="category" type="category" stroke="#94a3b8" width={110} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-                <Bar dataKey="price" name="Retail Price Index" fill="var(--color-success)" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="price" name="소매가 지수" fill="var(--color-success)" radius={[0, 4, 4, 0]}>
                   {
                     mockMSCPremium.map((entry: any, index: number) => (
                       <Cell key={`cell-${index}`} fill={index === 0 ? '#64748b' : index === 1 ? '#34d399' : 'var(--color-success)'} />
@@ -651,9 +651,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-success)' }}>
-              <div className={styles.kpiLabel}>Max Retail Premium</div>
+              <div className={styles.kpiLabel}>최대 소매 프리미엄</div>
               <div className={styles.kpiValue}>+81.3%</div>
-              <div className={styles.kpiSub}>Dual Certified Products</div>
+              <div className={styles.kpiSub}>이중 인증 제품</div>
             </div>
           </div>
         </div>
@@ -690,9 +690,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-warning)' }}>
-              <div className={styles.kpiLabel}>Alt-Protein Projection</div>
+              <div className={styles.kpiLabel}>대체 단백질 전망</div>
               <div className={styles.kpiValue}>$1.59B</div>
-              <div className={styles.kpiSub}>Target by 2030 (7.8% CAGR)</div>
+              <div className={styles.kpiSub}>2030년 목표 (연 7.8% 성장)</div>
             </div>
           </div>
         </div>
@@ -728,9 +728,9 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: 'var(--color-info)' }}>
-              <div className={styles.kpiLabel}>Upcycled PetCare Margin</div>
+              <div className={styles.kpiLabel}>업사이클 펫푸드 마진</div>
               <div className={styles.kpiValue}>28.5%</div>
-              <div className={styles.kpiSub}>vs 8.5% (Canned Tuna)</div>
+              <div className={styles.kpiSub}>통조림 참치 8.5% 대비</div>
             </div>
           </div>
         </div>
