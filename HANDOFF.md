@@ -86,6 +86,63 @@ python scripts/check_s_grade.py TunaDashboard.tsx TunaExtractDashboard.tsx TunaI
 
 ## 미해결 결정
 
-- `superpowers` 플러그인 설치 여부 — Claude Code 전용. 병용 시 가치 측정 필요.
+- `superpowers` 플러그인 설치 여부 — **1주 측정 후 재결정 (2026-05-23 디시전 데드라인)**. 아래 측정표 참조.
 - ADR-0003 (스크립트 일괄 리팩토링) — 후보 4 (Widget data intake)과 충돌. Phase 2 후 재검토.
 - `tuna_extract_upgrade_plan.md` 승인 상태 — "승인 시 즉시 돌입"으로 끝남, 실제 승인 여부 불명확.
+
+---
+
+## 📊 1주 병용 측정 (2026-05-16 ~ 2026-05-23)
+
+목적: Claude Code와 Antigravity의 *실제 사용 비율과 강점 분포*를 측정해, superpowers 설치 가치를 데이터로 판단.
+
+### 수집 데이터 (자동)
+
+git log에 이미 `[CC]` / `[AG]` 접두어가 강제되므로 1주 후 다음 명령으로 자동 집계 가능:
+
+```bash
+# 한 주의 에이전트별 커밋 수
+git log --since="2026-05-16" --until="2026-05-23" --oneline | grep -c "\[CC\]"
+git log --since="2026-05-16" --until="2026-05-23" --oneline | grep -c "\[AG\]"
+
+# 작업 유형별 분포 (refactor/feat/fix/chore)
+git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' | sort | uniq -c
+```
+
+### 수집 데이터 (수동 1줄 일지)
+
+매일 작업 종료 시 아래 표에 1행 추가. 30초 이하의 부담:
+
+| 날짜 | 에이전트 | 작업 유형 | 시간(분) | 마찰 | 승리 |
+|---|---|---|---|---|---|
+| 2026-05-16 | CC | bootstrap (CONTEXT/ADR/HANDOFF) | 90 | — | grill-me + CONTEXT.md 한 번에 완성 |
+|  |  |  |  |  |  |
+
+**작업 유형 카테고리** (단순화):
+- `bootstrap` — 인프라·문서·도구
+- `refactor` — 코드 구조 변경 (Module 추출 등)
+- `content` — 컨텐츠 재구성 (SIT/TAK 작성, plan 적용)
+- `ui-fix` — 영문 박멸·텍스트 교체 등 표면 작업
+- `data` — 데이터 수집·정제·API
+- `debug` — 빌드 에러·런타임 버그
+- `analysis` — 측정·grill·plan 작성
+
+### 결정 루브릭 (2026-05-23)
+
+다음 4개 지표를 보고 정합니다:
+
+| 지표 | "superpowers 설치" 신호 | "보류 계속" 신호 |
+|---|---|---|
+| **CC:AG 커밋 비율** | CC ≥ 60% | CC < 50% |
+| **refactor 작업 수** | ≥ 2건 (대규모 리팩토링 실제 발생) | 0~1건 |
+| **CC에서 큰 작업의 *마찰*** | "plan/worktree 부재로 헤맸다" 가 2회 이상 | 매끄럽게 진행됨 |
+| **HANDOFF.md 갱신 누락** | 1주 내 ≤ 1회 (규율 작동 중) | 3회 이상 (인프라 미작동) |
+
+**4개 중 3개 이상이 "설치" 신호** → 설치 진행.
+그 외 → 보류 + 추가 1주 측정 또는 영구 보류.
+
+### 측정 기간 중 절대 하지 말 것
+
+- 측정을 의식해서 CC/AG 비율을 *조정*하기 (자연스러운 사용이 측정 목적).
+- superpowers를 살짝 시험 설치하고 측정 (오염).
+- 결정 루브릭을 도중에 바꾸기 (사후 합리화 방지).

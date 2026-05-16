@@ -1,3 +1,40 @@
+# Quick Start for Agents (read this first)
+
+당신이 이 저장소에 처음 들어왔다면 이 순서대로 5분 안에 자리잡으세요:
+
+1. **`HANDOFF.md`** — 직전 세션의 완료/다음 단계. 무엇을 해야 하는지 여기에 있습니다.
+2. **`CONTEXT.md`** — 이 프로젝트 고유 도메인 어휘 (위젯·대시보드·SIT·TAK·TelemetryBadge·5-Pillar 등). 용어를 표류시키지 마세요.
+3. **`COMPREHENSIVE_RULEBOOK.md`** V4.1 — 종합 규칙서 (P/R/D/W/A/O/L 조항). 모든 작업의 정답.
+4. **`UI_RULES.md`** — UI/UX 디자인 시스템 (Glassmorphism, 시그니처 그라디언트, 한글 7자, Recharts).
+5. **`docs/adr/`** — 되돌리기 어려운 결정들(5-Pillar, Live API First, 일괄 리팩토링). 재논쟁 금지.
+
+## 핵심 명령어
+
+```bash
+npm run dev                                           # 로컬 개발 서버
+npm run build                                         # 배포 전 게이트 (L-03)
+python scripts/check_s_grade.py <Dashboard.tsx> ...   # S-Grade UI 표준 검증
+git log --oneline -10                                 # 최근 작업 흐름
+```
+
+## Universal 5-Pillar (모든 commodity 대시보드의 구조)
+
+1. 🐟/🌾 **원료 수급** — 생산량·기후 리스크·산지 단가
+2. 🏭 **가공·생산** — 가동률·수율·인건비
+3. 🚢 **물류·통관** — 운송비·콜드체인·SPS
+4. 📈 **판매·수요** — 점유율·소매가 전가·대체재
+5. 🌱 **ESG·지속가능성** — 탄소·혼획·동물복지·바이오 업사이클링
+
+## 알려진 함정 (피하세요)
+
+- **영문 잔존**: 사용자 노출 문자열은 100% 한글. 약어(NVIDIA, WCPO 등)는 TermTooltip으로. (L-01)
+- **TelemetryBadge 인라인 정의**: 10개 dashboard에 자기 복사본이 박혀있고 9개는 룰북 위반 타입(소문자). 새로 부착할 땐 단일 모듈을 추출하는 방향으로.
+- **`truncateXAxis` 함수 복붙**: 30+ 파일에 복사돼 있고 7자 룰을 안 따르는 코드도 섞임. 한 곳으로 모으세요.
+- **위젯이 JSON을 직접 import**: `import rawData from '../data/...'` 패턴은 Python 패치 스크립트 200+개의 원인. 새로 만들 때 가능하면 데이터 인테이크 모듈 경유.
+- **Lint 꺼져 있음**: `package.json`의 `"lint": "echo 'Skipping lint'"`. 타입체크는 `tsc --noEmit`로 별도 수행 필요.
+
+---
+
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
 
