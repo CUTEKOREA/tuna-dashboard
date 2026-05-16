@@ -119,7 +119,7 @@ const WIDGET_ICONS: Record<string, any> = {
 
 const EstimateBadge = () => (
   <span style={{ display:'inline-flex', alignItems:'center', gap:'0.3rem', padding:'2px 8px', borderRadius:'500px', border:'none', backgroundColor:'rgba(255,164,43,0.1)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:700, letterSpacing:'0.2px', marginLeft:'0.5rem', flexShrink:0, textTransform:'uppercase' as const }}>
-    ESTIMATE
+    추정
   </span>
 );
 
@@ -157,7 +157,7 @@ const CHART_MARGIN = { top: 20, right: 30, left: 0, bottom: 5 };
 
 const renderChart = (w: any) => {
   const d = w.data;
-  if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+  if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
   const chartType = (w.chartType || '').toLowerCase();
 
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
@@ -266,7 +266,7 @@ const renderChart = (w: any) => {
           </RadarChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>미지원</div>;
     }
   }
 
@@ -336,7 +336,7 @@ const renderChart = (w: any) => {
         </ComposedChart>
       );
     default:
-      return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+      return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>미지원</div>;
   }
 };
 
@@ -418,7 +418,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem', backgroundColor: 'var(--bg-color)' }}>
       <RefreshCcw size={32} style={{ color: '#FCD535', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#848E9C', fontSize: '1rem' }}>Loading Strategic Intelligence...</p>
+      <p style={{ color: '#848E9C', fontSize: '1rem' }}>전략 인텔리전스 불러오는 중...</p>
     </div>
   );
 
@@ -453,7 +453,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ECB81', boxShadow: '0 0 8px #0ECB81', animation: 'pulse 2s infinite' }} />
-            <span>16 APIs <span style={{ color: '#0ECB81' }}>Connected</span></span>
+            <span>16 APIs <span style={{ color: '#0ECB81' }}>연결됨</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · KAMIS · WITS · OEC · FRED · OSH · HS Ping</span>
           </div>

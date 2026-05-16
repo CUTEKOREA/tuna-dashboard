@@ -83,7 +83,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
             animation: 'pulse 2s infinite',
           }} />
           <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.5px' }}>
-            LIVE INTELLIGENCE TICKER
+            실시간 인텔리전스 티커
           </span>
           <span style={{
             fontSize: '0.65rem', fontWeight: 600,
@@ -112,7 +112,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
             onMouseLeave={e => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.background = 'none'; }}
           >
             <RefreshCcw size={12} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />
-            Refresh
+            새로고침
           </button>
         </div>
       </div>
@@ -164,11 +164,11 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
               <span style={{ fontSize: '0.58rem', color: '#4a5568' }}>
                 {item.isLive ? (
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '2px' }}>
-                    <Wifi size={8} color="#0ECB81" /> Live
+                    <Wifi size={8} color="#0ECB81" /> 실시간
                   </span>
                 ) : (
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '2px' }}>
-                    <WifiOff size={8} color="#64748b" /> Cached
+                    <WifiOff size={8} color="#64748b" /> 캐시됨
                   </span>
                 )}
               </span>

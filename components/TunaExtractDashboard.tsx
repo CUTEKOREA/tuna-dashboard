@@ -519,7 +519,7 @@ export default function TunaExtractDashboard() {
                   <tr style={{ background: 'rgba(15, 23, 42, 0.9)', borderBottom: '1px solid #334155' }}>
                     <th style={{ padding: '0.5rem', textAlign: 'left', color: '#94a3b8' }}>카테고리</th>
                     <th style={{ padding: '0.5rem', textAlign: 'left', color: '#94a3b8' }}>품목</th>
-                    <th style={{ padding: '0.5rem', textAlign: 'left', color: '#94a3b8' }}>HS Code</th>
+                    <th style={{ padding: '0.5rem', textAlign: 'left', color: '#94a3b8' }}>HS 코드</th>
                     <th style={{ padding: '0.5rem', textAlign: 'left', color: '#94a3b8' }}>기준 규격</th>
                   </tr>
                 </thead>

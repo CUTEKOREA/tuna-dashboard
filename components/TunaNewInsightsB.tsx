@@ -123,7 +123,7 @@ export function InsightPillarTwo() {
         </div>
         <div className={styles.kpiPanel}>
           <div className={styles.kpiBox} style={{ borderLeftColor: '#fbbf24' }}>
-            <div className={styles.kpiLabel}>Avg. Tax Rate Impact</div>
+            <div className={styles.kpiLabel}>평균 관세 영향</div>
             <div className={styles.kpiValue} style={{ color: '#fbbf24' }}>7% → 14%</div>
             <div className={styles.kpiSub} style={{ color: '#ef4444' }}>▲ ROE 근본적 훼손 (2026)</div>
           </div>
@@ -167,7 +167,7 @@ export function InsightVietnamOEM() {
         <div className={styles.kpiPanel}>
           <div className={styles.kpiBox} style={{ borderLeftColor: '#06b6d4' }}>
             <div className={styles.kpiLabel}>PE 지분 투자 타겟</div>
-            <div className={styles.kpiValue} style={{ color: '#06b6d4' }}>Tan Phat Foods</div>
+            <div className={styles.kpiValue} style={{ color: '#06b6d4' }}>탄팟 푸드</div>
             <div className={styles.kpiSub}>BRC/IFS/Halal 10개 인증 보유</div>
           </div>
         </div>
