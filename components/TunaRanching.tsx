@@ -108,10 +108,10 @@ export default function TunaRanching() {
   const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan, kpis } = data;
 
   const halalSecurityIndexData = [
-    { subject: '할랄 인증 (Halal)', score: 95, fullMark: 100 },
-    { subject: '식량 안보 (Vision 2030)', score: 92, fullMark: 100 },
-    { subject: 'ESG/MSC 대응', score: 88, fullMark: 100 },
-    { subject: '수입 규제 (SFDA 등)', score: 85, fullMark: 100 },
+    { subject: '할랄 인증', score: 95, fullMark: 100 },
+    { subject: '식량 안보 비전 2030', score: 92, fullMark: 100 },
+    { subject: '지속가능 인증 대응', score: 88, fullMark: 100 },
+    { subject: '수입 규제 대응', score: 85, fullMark: 100 },
     { subject: '초저온 콜드체인', score: 90, fullMark: 100 },
   ];
 
@@ -198,7 +198,7 @@ export default function TunaRanching() {
       <div className={styles.card}>
         <div className={styles.cardTitle}>
           <Fish size={18} color="var(--color-success)" />
-          Ranching(비육) 핵심 프로세스 & 통합 밸류체인 모델
+          축양 비육 핵심 프로세스 및 통합 밸류체인 모델
         </div>
         
         <div className={styles.processFlow}>
@@ -373,9 +373,10 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유(Escapement) 현상 분석 — 자원 회복의 메커니즘
+              <Globe size={20} color="#38bdf8"/> 블루핀 도피회유 현상 분석 — 자원 회복의 메커니즘
+              <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축이 촉발한 지중해 어린 개체의 북대서양 도피(Escapement) 및 산란장 복귀를 통한 자원 회복 구조.</p>
+            <p className={insightsStyles.cardDesc}>ICCAT 쿼터 감축이 촉발한 지중해 어린 개체의 북대서양 도피 및 산란장 복귀를 통한 자원 회복 구조.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
@@ -392,7 +393,7 @@ export default function TunaRanching() {
                   <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}pt`} />
                   <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} unit="%" />
                   <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value, name) => name === '도피율 (%)' ? [`${value}%`, name] : [`${value}pt`, name]} />
-                  <Legend />
+                  <Legend verticalAlign="top" height={36} />
                   <Area yAxisId="left" type="monotone" dataKey="stock" name="동부 자원지수" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" strokeWidth={3} />
                   <Line yAxisId="right" type="monotone" dataKey="escapement" name="도피율 (%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4, fill: '#f59e0b' }} />
                 </ComposedChart>
@@ -416,9 +417,10 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Target size={20} color="#ec4899"/> ICCAT TAC 쿼터 과점 구조 분석 — 연안 축양장 수용률
+              <Target size={20} color="#ec4899"/> 대서양 쿼터 과점 구조 분석 — 연안 축양장 수용률
+              <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>전체 할당량의 약 50%가 지중해 연안 축양장(CBA)에 집중되며, 소수 대형 법인이 쿼터 및 유통망을 지배하는 구조 파악.</p>
+            <p className={insightsStyles.cardDesc}>전체 할당량의 약 50%가 지중해 연안 축양장에 집중되며, 소수 대형 법인이 쿼터 및 유통망을 지배하는 구조 파악.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
@@ -462,9 +464,10 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Building2 size={20} color="#6366f1"/> 지중해 참다랑어 축양 쿼터 독과점(Oligopoly) 카르텔 분석
+              <Building2 size={20} color="#6366f1"/> 지중해 참다랑어 축양 쿼터 독과점 카르텔 분석
+              <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>스페인·몰타 기반 극소수 수직계열화 기업이 지중해 쿼터를 장악. 신규 모로코 완전양식(Alta Mar) 프로젝트 부상.</p>
+            <p className={insightsStyles.cardDesc}>스페인·몰타 기반 극소수 수직계열화 기업이 지중해 쿼터를 장악. 신규 모로코 완전양식 프로젝트 부상.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '15px', marginBottom: '20px' }}>
@@ -537,9 +540,10 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Thermometer size={20} color="#a78bfa"/> 참다랑어 자연폐사율(Natural Mortality) 역설 — 클수록 더 위험
+              <Thermometer size={20} color="#a78bfa"/> 참다랑어 자연폐사율 역설 — 클수록 더 위험
+              <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>Block et al. 음향 태그 모델링: 일반 예상과 달리, 참다랑어는 연령/크기 증가 시 자연폐사율이 감소하지 않고 유지 또는 증가. 3대 산란장(멕시코만·지중해·슬로프 해) 타임라인 포함.</p>
+            <p className={insightsStyles.cardDesc}>음향 태그 모델링 기반: 일반 예상과 달리, 참다랑어는 연령·크기 증가 시 자연폐사율이 감소하지 않고 유지 또는 증가. 3대 산란장(멕시코만·지중해·슬로프 해) 타임라인 포함.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '15px', marginBottom: '15px' }}>
@@ -579,9 +583,9 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <TrendingUp size={20} color="#f472b6"/> 양식 vs 어획 패러다임 역전 (Aquaculture Value Premium)
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MOF)</span>
-              <TermTooltip term="" description="야생 어확 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 '크로스오버' 시점을 궤적으로 보여주어 투자 전환기를 분석합니다." />
+              <TrendingUp size={20} color="#f472b6"/> 양식 대 어획 패러다임 역전
+              <TelemetryBadge status="live" />
+              <TermTooltip term="" description="야생 어획 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 역전 시점을 궤적으로 보여주어 투자 전환기를 분석합니다." />
             </h3>
             <p className={insightsStyles.cardDesc}>지속가능성 요구와 기후 리스크에 따른 어획량 감소로, 양식(Ranching) 참치의 톤당 단가가 자연산 야생 어획을 추월한 크로스오버를 보여줍니다.</p>
           </div>
@@ -593,7 +597,7 @@ export default function TunaRanching() {
                   <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis stroke="#94a3b8" tickFormatter={(value) => value.toLocaleString()} />
                   <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
-                  <Legend />
+                  <Legend verticalAlign="top" height={36} />
                   <Line type="monotone" dataKey="양식_단가" stroke="#f472b6" strokeWidth={4} />
                   <Line type="monotone" dataKey="야생_어획_단가" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4"/>
                 </LineChart>
@@ -601,9 +605,9 @@ export default function TunaRanching() {
             </div>
             <div className={insightsStyles.kpiPanel}>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#f472b6' }}>
-                <div className={insightsStyles.kpiLabel}>Aquaculture Premium</div>
+                <div className={insightsStyles.kpiLabel}>양식 프리미엄</div>
                 <div className={insightsStyles.kpiValue}>+31.9%</div>
-                <div className={insightsStyles.kpiSub}>vs Wild Catch (2024)</div>
+                <div className={insightsStyles.kpiSub}>야생 어획 대비 (2024)</div>
               </div>
             </div>
           </div>
@@ -691,7 +695,7 @@ export default function TunaRanching() {
 
       {/* 🚢 Part III — 물류 및 무역 (Logistics & Trading) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(56,189,248,0.12) 0%, transparent 100%)", borderLeft:"4px solid #38bdf8", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🚢 Part III — 물류 및 무역 (Logistics & Trading)</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🚢 Part III — 물류 및 무역</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>글로벌 B2B 아비트라지, 중동 콜드체인망 확충 및 CEPA 기반 재수출 허브 전략</p>
       </div>
       {/* 🎯 비즈니스 모델 근거: 축양참치 → 한국 가공 → 두바이 수출 (최상단) */}
@@ -871,7 +875,7 @@ export default function TunaRanching() {
           <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.05))', border: '1px solid rgba(16,185,129,0.3)' }}>
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
-                <Target size={20} color="var(--color-success)"/> 실시간 글로벌 B2B 아비트라지 레이더 (Arbitrage Radar)
+                <Target size={20} color="var(--color-success)"/> 실시간 글로벌 차익거래 레이더
                 <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast+EUMOFA+MGO)</span>
               </h3>
               <p className={insightsStyles.cardDesc}>지중해 스팟가로 매입하여 한국 가공 후 두바이로 항공 수출 시 발생하는 실시간 순수익 마진(Net Margin) 시뮬레이터입니다.</p>
@@ -1031,8 +1035,8 @@ export default function TunaRanching() {
             </div>
             <div className={insightsStyles.kpiPanel}>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ec4899' }}>
-                <div className={insightsStyles.kpiLabel}>#1 Premium Market</div>
-                <div className={insightsStyles.kpiValue}>UAE (Dubai)</div>
+                <div className={insightsStyles.kpiLabel}>최고가 시장</div>
+                <div className={insightsStyles.kpiValue}>아랍에미리트 (두바이)</div>
                 <div className={insightsStyles.kpiSub}>$48.00 / kg</div>
               </div>
             </div>
@@ -1221,9 +1225,10 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <ShieldAlert size={20} color="#ef4444"/> eBCD 컴플라이언스 준수 현황 — 전면적 시장 리스크
+              <ShieldAlert size={20} color="#ef4444"/> 전자 어획증명 컴플라이언스 준수 현황 — 전면적 시장 리스크
+              <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>ICCAT eBCD(전자 어획증명) 등록 현황 지표. 입체카메라 중량 오차율 허용 범위를 통한 투명성 검증.</p>
+            <p className={insightsStyles.cardDesc}>ICCAT 전자 어획증명 등록 현황 지표. 입체카메라 중량 오차율 허용 범위를 통한 투명성 검증.</p>
           </div>
           <div className={insightsStyles.cardBody} style={{ padding: '0', display: 'flex', flexDirection: 'column', height: '100%' }}>
             <div style={{ flex: 1, minHeight: '220px' }}>
@@ -1262,9 +1267,10 @@ export default function TunaRanching() {
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
-              <Fish size={20} color="#f59e0b"/> 생사료 의존도 및 FIFO 위기 분석 — 환경 및 원가 리스크
+              <Fish size={20} color="#f59e0b"/> 생사료 의존도 및 사료전환 위기 분석 — 환경 및 원가 리스크
+              <TelemetryBadge status="synced" syncDate="2025.12" />
             </h3>
-            <p className={insightsStyles.cardDesc}>중온성(Mesothermic) 어류 특성으로 인한 타 어종 대비 높은 사료전환비율(FCR) 및 산소 소비량 심층 비교.</p>
+            <p className={insightsStyles.cardDesc}>중온성 어류 특성으로 인한 타 어종 대비 높은 사료전환비율 및 산소 소비량 심층 비교.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
@@ -1280,7 +1286,7 @@ export default function TunaRanching() {
                   <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                   <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tick={{ fill: '#ef4444', fontSize: 11 }} tickFormatter={(val) => `${val}x`} />
                   <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-                  <Legend />
+                  <Legend verticalAlign="top" height={36} />
                   <Bar yAxisId="left" dataKey="fcr" name="사료전환비 (FCR) - 좌측축" fill="#f59e0b" radius={[4, 4, 0, 0]} />
                   <Line yAxisId="right" type="monotone" dataKey="o2" name="산소 소비 배수 - 우측축" stroke="#ef4444" strokeWidth={3} dot={{ r: 4, fill: '#ef4444' }} />
                 </ComposedChart>
