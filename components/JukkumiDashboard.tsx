@@ -12,7 +12,8 @@ import {
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
   Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
   RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, Leaf, Cpu, Layers, Clock
+  Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, Leaf, Cpu, Layers, Clock,
+  Map, Microscope, Beaker, FlaskConical, Dna, Award, Tag, Heart, FileSearch
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
@@ -43,11 +44,11 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 
 /* ─── 5-Part Section Definitions ─── */
 const SECTIONS = [
-  { id: 'S1', title: '🌊 Part I — 원물 및 조달 (Raw Material)', desc: '글로벌 어획량 현황 · 중국 공급망 종속성', color: '#8b5cf6' },
-  { id: 'S2', title: '🏭 Part II — 가공 및 밸류체인 (Processing)', desc: '주요 수입국 원물 조달 및 가공 현황', color: '#a855f7' },
-  { id: 'S3', title: '⚓ Part III — 물류 및 운영 원가 (Logistics)', desc: '수입-어획 수급 구조 · 재고 및 물류 리스크', color: '#d946ef' },
-  { id: 'S4', title: '📊 Part IV — 판매 및 수요 (Sales & Demand)', desc: '수산물 소비 트렌드 및 주꾸미 비중', color: '#ec4899' },
-  { id: 'S5', title: '🛡️ Part V — ESG 및 규제 리스크 (Sustainability)', desc: '서아프리카 신흥 소싱처 환경 리스크 및 단가 상승 요인', color: '#f43f5e' }
+  { id: 'S1', title: '🌊 Part I — 원료 수급', desc: '글로벌 주꾸미 원물 소싱 현황 및 연안 자원량 지수', color: '#8b5cf6' },
+  { id: 'S2', title: '🏭 Part II — 가공 및 생산', desc: 'HMR(가정간편식) 가공 수율 및 제조 원가율 추이', color: '#a855f7' },
+  { id: 'S3', title: '⚓ Part III — 물류 및 통관', desc: 'FTA 체결국발 물류 원가 및 통관 리스크 지수', color: '#d946ef' },
+  { id: 'S4', title: '📊 Part IV — 판매 및 수요', desc: '유통 채널별 주꾸미 판매 단가 및 탄력성 지수', color: '#ec4899' },
+  { id: 'S5', title: '🛡️ Part V — ESG 및 지속가능성', desc: '콜드체인 병원성 리스크 및 보건 안전 지수', color: '#f43f5e' }
 ];
 
 /* ─── Custom Tooltip ─── */
@@ -55,8 +56,8 @@ const SECTIONS = [
 const formatXAxis = (tickItem: any) => {
   if (!tickItem || typeof tickItem !== 'string') return tickItem;
   let formatted = tickItem.replace(/\s*\(.*?\)\s*/g, '');
-  if (formatted.length > 12) {
-    return formatted.substring(0, 12) + '..';
+  if (formatted.length > 7) {
+    return formatted.substring(0, 7) + '..';
   }
   return formatted;
 };
@@ -98,9 +99,34 @@ const KPI_THEMES = [
 const WIDGET_ICONS: Record<string, any> = {
   w1_global_catch: Globe,
   w2_korea_imports: Anchor,
-  w3_supply_demand: Scale,
-  w4_fbs_seafood: TrendingUp,
-  w5_mauritania_risk: AlertTriangle
+  w3_supply_demand: Truck,
+  w4_fbs_seafood: DollarSign,
+  w5_mauritania_risk: AlertTriangle,
+  w6_bio_processing: Activity,
+  w7_cannibalism_risk: ShieldCheck,
+  w8_recreational_tac: Scale,
+  w9_korea_fta_imports: Ship,
+  w10_species_map: Globe,
+  w11_spawn_cycle: Clock,
+  w12_generation_risk: Zap,
+  w13_processing_auto: Factory,
+  w14_nutrition: Heart,
+  w15_hsk_tariff: Database,
+  w16_korus_schedule: BookOpen,
+  w17_price_spread: TrendingUp,
+  w18_substitutes: BarChart2,
+  w19_vibrio_amr: Microscope,
+  w20_fip_esg: Leaf,
+  w21_leisure_fishing_impact: Scale,
+  w22_vietnam_trawl_fip: ShieldCheck,
+  w23_hmr_yield_optimization: Factory,
+  w24_china_aquaculture_rd: Activity,
+  w25_tariff_schedule_impact: Database,
+  w26_coldchain_utilization: Truck,
+  w27_japan_kfood_export: TrendingUp,
+  w28_domestic_senior_hmr: Heart,
+  w29_africa_human_rights_risk: AlertTriangle,
+  w30_tac_regulation_map: Map
 };
 
 const formatYAxis = (v: number) => {
@@ -147,8 +173,8 @@ export default function JukkumiDashboard() {
       const series = widget.series || [];
       const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
       const isTextAxis = xAxis !== 'Year' && d.length > 0 && d[0][xAxis] !== undefined && typeof d[0][xAxis] === 'string' && isNaN(Number(d[0][xAxis]));
-      const xTickProps = isTextAxis ? { fill: '#94a3b8', fontSize: 10, angle: -45, textAnchor: 'end' as const, dy: 5 } : { fill: '#94a3b8', fontSize: 11 };
-      const chartMargin = isTextAxis ? { top: 20, right: 30, left: -10, bottom: 65 } : { top: 20, right: 30, left: -10, bottom: 0 };
+      const xTickProps = { fill: '#94a3b8', fontSize: 10, angle: 0, textAnchor: 'middle' as const, dy: 5 };
+      const chartMargin = { top: 20, right: 30, left: -10, bottom: 10 };
 
       switch(chartType) {
         case "pie":
@@ -217,7 +243,7 @@ export default function JukkumiDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 주꾸미 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Webfoot Octopus Command Center — {widgets?.length || 5} Widgets · {kpiKeys?.length || 6} KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>주꾸미 커맨드 센터 — 총 {widgets?.length || 5}개 위젯 · {kpiKeys?.length || 6}개 핵심지표</p>
             </div>
           </div>
         </div>
@@ -261,7 +287,7 @@ export default function JukkumiDashboard() {
       {/* ═══ 5-Part Consolidated Sections ═══ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
 
-        {/* ═══════ Part I: 원물 및 조달 ═══════ */}
+        {/* ═══════ Part I: 원료 수급 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
@@ -271,11 +297,11 @@ export default function JukkumiDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w1_global_catch'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w1_global_catch', 'w7_cannibalism_risk', 'w10_species_map', 'w11_spawn_cycle', 'w12_generation_risk', 'w21_leisure_fishing_impact', 'w22_vietnam_trawl_fip'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part II: 가공 및 밸류체인 ═══════ */}
+        {/* ═══════ Part II: 가공 및 생산 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
@@ -285,11 +311,11 @@ export default function JukkumiDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w2_korea_imports'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w2_korea_imports', 'w6_bio_processing', 'w13_processing_auto', 'w14_nutrition', 'w23_hmr_yield_optimization', 'w24_china_aquaculture_rd'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part III: 물류 및 운영 원가 ═══════ */}
+        {/* ═══════ Part III: 물류 및 통관 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
@@ -299,7 +325,7 @@ export default function JukkumiDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w3_supply_demand'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w3_supply_demand', 'w9_korea_fta_imports', 'w15_hsk_tariff', 'w16_korus_schedule', 'w25_tariff_schedule_impact', 'w26_coldchain_utilization'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
@@ -313,11 +339,11 @@ export default function JukkumiDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w4_fbs_seafood'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w4_fbs_seafood', 'w17_price_spread', 'w18_substitutes', 'w27_japan_kfood_export', 'w28_domestic_senior_hmr'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
-        {/* ═══════ Part V: ESG 및 규제 리스크 ═══════ */}
+        {/* ═══════ Part V: ESG 및 지속가능성 ═══════ */}
         <section>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
@@ -327,7 +353,7 @@ export default function JukkumiDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w5_mauritania_risk'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w5_mauritania_risk', 'w8_recreational_tac', 'w19_vibrio_amr', 'w20_fip_esg', 'w29_africa_human_rights_risk', 'w30_tac_regulation_map'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
@@ -366,9 +392,9 @@ export default function JukkumiDashboard() {
               {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
             </div>
           </h3>
-          {(w.source || methodologyText) && (
+          {(w.subtitle) && (
             <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {[w.source, methodologyText].filter(Boolean).join(' | ')}
+              {w.subtitle}
             </p>
           )}
         </div>

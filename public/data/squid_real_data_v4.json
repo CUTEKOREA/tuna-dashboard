@@ -4849,36 +4849,31 @@
           "액션": "LED전환",
           "연간임팩트": 36.5,
           "투자비": 15,
-          "Payback_months": 5,
-          "fill": "#10b981"
+          "Payback_months": 5
         },
         {
           "액션": "유통통합",
           "연간임팩트": 25,
           "투자비": 0,
-          "Payback_months": 0,
-          "fill": "#3b82f6"
+          "Payback_months": 0
         },
         {
           "액션": "EU직수출",
           "연간임팩트": 18,
           "투자비": 8,
-          "Payback_months": 5,
-          "fill": "#8b5cf6"
+          "Payback_months": 5
         },
         {
           "액션": "바이오",
           "연간임팩트": 10,
           "투자비": 5,
-          "Payback_months": 6,
-          "fill": "#f59e0b"
+          "Payback_months": 6
         },
         {
           "액션": "디지털",
           "연간임팩트": 5.5,
           "투자비": 3,
-          "Payback_months": 7,
-          "fill": "#06b6d4"
+          "Payback_months": 7
         }
       ],
       "xKey": "액션",
