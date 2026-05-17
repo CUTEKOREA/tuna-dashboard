@@ -105,7 +105,7 @@ export default function TunaRanching() {
 
   if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon || ''} style={{marginBottom: '1rem'}}/></div><div>Loading verified intelligence...</div></div>;
 
-  const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan, kpis } = data;
+  const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan, kpis, issfScorecard, iscPacificBft, sfdaMilestones } = data;
 
   const halalSecurityIndexData = [
     { subject: '할랄 인증', score: 95, fullMark: 100 },
@@ -573,6 +573,118 @@ export default function TunaRanching() {
         </div>
       </div>
 
+      {/* 🆕 ISSF 글로벌 자원 건전성 스코어보드 + ISC 태평양 BFT 회복 */}
+      {issfScorecard && iscPacificBft && (
+      <div className={insightsStyles.insightsGrid} style={{ marginBottom: '1.5rem' }}>
+        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <Globe size={20} color="#10b981"/> 글로벌 참치 자원 건전성 스코어보드
+              <TelemetryBadge status="synced" syncDate="2026.01" />
+            </h3>
+            <p className={insightsStyles.cardDesc}>ISSF 과학자문위원회 기준 주요 8개 대양·어종별 자원 건전성 평가. 글로벌 평균 87% 건전 — 참다랑어만 예외적 주의 구간.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '15px' }}>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
+                <div className={insightsStyles.kpiLabel}>글로벌 건전성 평균</div>
+                <div className={insightsStyles.kpiValue}>87%</div>
+                <div className={insightsStyles.kpiSub}>8개 대양·어종 가중 평균</div>
+              </div>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
+                <div className={insightsStyles.kpiLabel}>최저 건전성 어종</div>
+                <div className={insightsStyles.kpiValue}>남방참다랑어 55%</div>
+                <div className={insightsStyles.kpiSub}>CCSBT 재건 프로그램 진행 중</div>
+              </div>
+            </div>
+            <div className={insightsStyles.chartContainer}>
+              <SafeResponsiveContainer width="100%" height="100%">
+                <BarChart data={issfScorecard} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+                  <XAxis type="number" domain={[0, 100]} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}점`} />
+                  <YAxis type="category" dataKey="ocean" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} width={110} tickFormatter={truncateXAxis} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any, props: any) => [`${value}점 (${props.payload.species} — ${props.payload.status})`, '건전성 점수']} />
+                  <Legend verticalAlign="top" height={36} />
+                  <Bar dataKey="score" name="건전성 점수" radius={[0, 4, 4, 0]}>
+                    {issfScorecard.map((entry: any, index: number) => (
+                      <Cell key={`issf-${index}`} fill={entry.color} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </SafeResponsiveContainer>
+            </div>
+            <TakeawayBox
+              source="ISSF Status of the Stocks 2025 + RFMO 공식 평가"
+              situation="ISSF 과학자문위 기준 전 세계 참치 자원의 87%가 '건전' 또는 '회복' 상태입니다. 그러나 대서양 서부 참다랑어(68점)와 남방참다랑어(55점)는 여전히 과잉어획 이력으로 인해 재건 중이며, 인도양 황다랑어(72점)는 감소 추세로 주의가 필요합니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>축양 원료 다변화:</strong> 건전성 90점 이상인 태평양 가다랑어·황다랑어 원물 조달 비중을 확대하여 자원 리스크를 분산하십시오.</li>
+                  <li><strong>참다랑어 프리미엄 방어:</strong> 대서양 동부(85점, 회복세) 쿼터 증량 추세를 선점하여, 축양용 원물 장기 계약을 확보하십시오.</li>
+                </ul>
+              }
+            />
+          </div>
+        </div>
+
+        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <TrendingUp size={20} color="#38bdf8"/> 태평양 참다랑어 자원 회복 궤적
+              <TelemetryBadge status="synced" syncDate="2024.12" />
+            </h3>
+            <p className={insightsStyles.cardDesc}>ISC 공식 자원평가 기준 산란자원량 비율(미어획 수준 대비). 2010년 역사적 최저(3.3%)에서 2024년 23.2%까지 7배 회복.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '15px' }}>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
+                <div className={insightsStyles.kpiLabel}>2010 최저점</div>
+                <div className={insightsStyles.kpiValue}>3.3%</div>
+                <div className={insightsStyles.kpiSub}>역사적 최저 — 긴급 관리</div>
+              </div>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#38bdf8' }}>
+                <div className={insightsStyles.kpiLabel}>2024 현재</div>
+                <div className={insightsStyles.kpiValue}>23.2%</div>
+                <div className={insightsStyles.kpiSub}>미어획 수준 대비</div>
+              </div>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
+                <div className={insightsStyles.kpiLabel}>회복 배율</div>
+                <div className={insightsStyles.kpiValue}>×7.0</div>
+                <div className={insightsStyles.kpiSub}>14년간 자원 회복</div>
+              </div>
+            </div>
+            <div className={insightsStyles.chartContainer}>
+              <SafeResponsiveContainer width="100%" height="100%">
+                <AreaChart data={iscPacificBft} margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
+                  <defs>
+                    <linearGradient id="bftRecoveryGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#38bdf8" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}%`} domain={[0, 30]} />
+                  <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any, props: any) => [`${value}% — ${props.payload.note}`, '산란자원량 비율']} />
+                  <Legend verticalAlign="top" height={36} />
+                  <Area type="monotone" dataKey="ssbRatio" name="산란자원량 비율 (%)" stroke="#38bdf8" strokeWidth={3} fill="url(#bftRecoveryGrad)" dot={{ r: 5, fill: '#38bdf8', stroke: '#0f172a', strokeWidth: 2 }} />
+                </AreaChart>
+              </SafeResponsiveContainer>
+            </div>
+            <TakeawayBox
+              source="ISC (북태평양 참다랑어 과학위원회) 2024 자원평가"
+              situation="태평양 참다랑어 산란자원량은 2010년 미어획 수준의 3.3%라는 역사적 최저치에서, WCPFC의 소형어 50% 감축(CMM 2014-04) 등 강력한 관리 덕분에 2024년 23.2%까지 7배 회복했습니다. 이는 향후 쿼터 증량의 과학적 근거가 됩니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>쿼터 증량 선점:</strong> 자원 회복세를 근거로 한국의 WCPFC 배정량 확대를 정부에 선제 로비하십시오. 현재 0.8%인 한국 할당량을 2~3%로 증량하면 축양 원물 자급 기반이 됩니다.</li>
+                  <li><strong>태평양산 원물 장기계약:</strong> 일본·멕시코 태평양 축양장과 2027~2030 장기 원물 공급 계약을 체결하여 가격 변동 리스크를 헷징하십시오.</li>
+                </ul>
+              }
+            />
+          </div>
+        </div>
+      </div>
+      )}
+
       {/* 🏭 Part II — 가공 산업 (Processing) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(236,72,153,0.12) 0%, transparent 100%)", borderLeft:"4px solid #ec4899", marginBottom:"1.5rem", marginTop:"2rem" }}>
         <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 Part II — 가공 산업</h2>
@@ -946,9 +1058,85 @@ export default function TunaRanching() {
         </div>
       )}
 
-      {/* 🛒 Part IV — 판매 및 수요 (Sales & Demand) */}
+      {/* 🆕 SFDA 인증 마일스톤 트래커 */}
+      {sfdaMilestones && (
+      <div className={insightsStyles.insightsGrid} style={{ marginBottom: '1.5rem' }}>
+        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <ShieldAlert size={20} color="#f59e0b"/> 사우디 식품의약품청 인증 마일스톤 트래커
+              <TelemetryBadge status="synced" syncDate="2026.05" />
+            </h3>
+            <p className={insightsStyles.cardDesc}>사우디아라비아 시장 진입을 위한 SFDA 인증 5단계 진행 현황. 시설 인증 통과가 핵심 관문이며 2027 Q1 정기 거래 개시 목표.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '20px' }}>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
+                <div className={insightsStyles.kpiLabel}>전체 진행률</div>
+                <div className={insightsStyles.kpiValue}>37%</div>
+                <div className={insightsStyles.kpiSub}>5단계 중 1단계 완료</div>
+              </div>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#f59e0b' }}>
+                <div className={insightsStyles.kpiLabel}>현재 단계</div>
+                <div className={insightsStyles.kpiValue}>시설 인증</div>
+                <div className={insightsStyles.kpiSub}>HACCP + 할랄 이중 심사</div>
+              </div>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#38bdf8' }}>
+                <div className={insightsStyles.kpiLabel}>목표 완료일</div>
+                <div className={insightsStyles.kpiValue}>2027 Q1</div>
+                <div className={insightsStyles.kpiSub}>정기 거래 개시</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+              {sfdaMilestones.map((ms: any, idx: number) => (
+                <div key={idx} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '14px 16px', border: ms.status === '진행중' ? '1px solid rgba(245,158,11,0.4)' : '1px solid rgba(255,255,255,0.05)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ 
+                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                        width: '24px', height: '24px', borderRadius: '50%', fontSize: '0.75rem', fontWeight: 700,
+                        background: ms.progress === 100 ? '#10b981' : ms.status === '진행중' ? '#f59e0b' : 'rgba(100,116,139,0.3)',
+                        color: ms.progress === 100 || ms.status === '진행중' ? '#0f172a' : '#94a3b8'
+                      }}>{idx + 1}</span>
+                      <span style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.9rem' }}>{ms.step}</span>
+                      <span style={{
+                        padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600,
+                        background: ms.status === '완료' ? 'rgba(16,185,129,0.15)' : ms.status === '진행중' ? 'rgba(245,158,11,0.15)' : 'rgba(100,116,139,0.1)',
+                        color: ms.status === '완료' ? '#10b981' : ms.status === '진행중' ? '#f59e0b' : '#64748b',
+                        border: `1px solid ${ms.status === '완료' ? 'rgba(16,185,129,0.3)' : ms.status === '진행중' ? 'rgba(245,158,11,0.3)' : 'rgba(100,116,139,0.2)'}`
+                      }}>{ms.status === '완료' ? '✅ 완료' : ms.status === '진행중' ? '🔄 진행중' : '⏳ 대기'}</span>
+                    </div>
+                    <span style={{ color: '#94a3b8', fontSize: '0.78rem' }}>목표: {ms.target}</span>
+                  </div>
+                  <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '6px', height: '8px', overflow: 'hidden', marginBottom: '6px' }}>
+                    <div style={{
+                      height: '100%', borderRadius: '6px', transition: 'width 0.5s ease',
+                      width: `${ms.progress}%`,
+                      background: ms.progress === 100 ? 'linear-gradient(90deg, #10b981, #059669)' : ms.progress > 0 ? 'linear-gradient(90deg, #f59e0b, #d97706)' : 'transparent'
+                    }} />
+                  </div>
+                  <div style={{ color: '#94a3b8', fontSize: '0.78rem' }}>{ms.detail}</div>
+                </div>
+              ))}
+            </div>
+            <TakeawayBox
+              source="SFDA 공식 가이드라인 + 사우디 비전 2030 수산물 정책"
+              situation="사우디아라비아는 비전 2030 하에 수산물 자급을 53~60만톤까지 확대하면서도, 고급 참치류 수입에 대해서는 SFDA 인증이라는 높은 진입장벽을 세웠습니다. HACCP + 할랄 이중 인증이 핵심 관문이며, 현재 시설 인증 심사 단계(65%)입니다."
+              actionPlan={
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
+                  <li style={{ marginBottom: '4px' }}><strong>2026 Q2 시설 인증 집중:</strong> HACCP·할랄 이중 인증 심사를 최우선 과제로 설정하고, 인증 컨설팅 전문 업체를 투입하여 일정 내 통과를 보장하십시오.</li>
+                  <li><strong>제다항 콜드체인 거점 동시 확보:</strong> 인증 진행과 병행하여 사우디 제다항 내 초저온 냉동 물류 거점을 선점하면, 인증 즉시 정기 거래 전환이 가능합니다.</li>
+                </ul>
+              }
+            />
+          </div>
+        </div>
+      </div>
+      )}
+
+      {/* 🛒 Part IV — 판매 및 수요 */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(16,185,129,0.12) 0%, transparent 100%)", borderLeft:"4px solid #10b981", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🛒 Part IV — 판매 및 수요 (Sales & Demand)</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🛒 Part IV — 판매 및 수요</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>아시아 럭셔리 마켓 시프트, 중동(카타르/UAE) 프리미엄 시장 진입장벽 및 소비 채널 분석</p>
       </div>
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
@@ -1216,7 +1404,7 @@ export default function TunaRanching() {
         </>
       )}
 
-      {/* 🌍 Part V — ESG 및 지속가능성 (Sustainability) */}
+      {/* 🌍 Part V — ESG 및 지속가능성 */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(139,92,246,0.12) 0%, transparent 100%)", borderLeft:"4px solid #8b5cf6", marginBottom:"1.5rem", marginTop:"2rem" }}>
         <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌍 Part V — ESG 및 지속가능성</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>eBCD 컴플라이언스 및 생사료 의존도/FIFO 위기로 인한 장기 환경 리스크 관리</p>

@@ -1,0 +1,161 @@
+{
+  "aquaculturePremium": [
+    { "year": 2005, "야생_어획_단가": 12000, "양식_단가": 8000, "note": "양식 초기 — 지중해 축양 파일럿 단계, 단가 열위" },
+    { "year": 2010, "야생_어획_단가": 15000, "양식_단가": 12500, "note": "축양 기술 성숙, ICCAT 쿼터 도입 → 양식 단가 상승" },
+    { "year": 2015, "야생_어획_단가": 18000, "양식_단가": 19000, "note": "양식 프리미 역전 시작 (이케지메 기술 접목)" },
+    { "year": 2020, "야생_어획_단가": 21000, "양식_단가": 26000, "note": "비육율 +25%(서부지중해), 이케지메·초저온 콜드체인 확립" },
+    { "year": 2024, "야생_어획_단가": 23500, "양식_단가": 31000, "note": "EUMOFA: 축양물 가격 자연산의 130~150%. EU 쿼터 17% 추가 증량" }
+  ],
+  "gastronomyPriceMap": [
+    { "country": "모로코", "price": 25, "note": "생산지 도매가. ICCAT 쿼터 9.1%(~4,400톤), 양식 인프라 미비 → JV 기회" },
+    { "country": "일본", "price": 45, "note": "도쿄 쓰키지/토요스 횟감 기준 $30-60+. 78,760개 일식점 소비 주도" },
+    { "country": "미국 (뉴욕/LA)", "price": 38, "note": "프리미엄 일식 레스토랑 도매가 기준" },
+    { "country": "중국 (연안)", "price": 35, "note": "78,760개 일식점. 2024 신선/냉동 참치 수입 2,616톤" },
+    { "country": "홍콩", "price": 40, "note": "아시아 재수출 허브. 참다랑어 경매 프리미엄 시장" },
+    { "country": "아랍에미리트 (두바이)", "price": 48, "note": "두바이 워터프론트 600t+/일 거래. GCC 재수출 허브" },
+    { "country": "사우디아라비아", "price": 44, "note": "비전 2030 수산물 자급 53~60만톤 목표. 콜드체인 CAGR 18.31%" },
+    { "country": "카타르", "price": 42, "note": "2022 FIFA 이후 관광 인프라 활용. 참치 시장 2028 CAGR 18.35%" }
+  ],
+  "ranchingCapacity": [
+    { "country": "이탈리아", "facilities": 14, "capacity_tons": 12600 },
+    { "country": "스페인", "facilities": 10, "capacity_tons": 12000 },
+    { "country": "몰타", "facilities": 8, "capacity_tons": 12000 },
+    { "country": "크로아티아", "facilities": 4, "capacity_tons": 8000 },
+    { "country": "터키", "facilities": 6, "capacity_tons": 6000 },
+    { "country": "기타 (호주/일본/멕시코)", "facilities": 12, "capacity_tons": 9400 }
+  ],
+  "ranchingMetrics": {
+    "totalFacilities": 54,
+    "totalCapacity": "50,000톤+",
+    "westMedFatteningRate": "25% (5~7개월)",
+    "eastMedGrowthRate": "100% (2~3년, 60kg 미만 소형 참다랑어 기준)",
+    "insuranceSurge": "+40% (태풍 빈도 증가)",
+    "iccat2025QuotaIncrease": "+17% (EU 2,800톤 추가)",
+    "pacificStockRecovery": "미어획 수준의 23.2%까지 회복",
+    "pacificCapacityGrowth2024_2027": "+8% (일본/멕시코/미국)",
+    "source": "ICCAT 2025 공식 등록 데이터 · EUMOFA · FAO FishStatJ"
+  },
+  "growthData": [
+    { "year": "2026", "value": 790 },
+    { "year": "2028", "value": 870 },
+    { "year": "2030", "value": 960 },
+    { "year": "2032", "value": 1050 },
+    { "year": "2035", "value": 1190 }
+  ],
+  "quotaData": [
+    { "name": "EU (스페인/이탈리아 등)", "value": 52.1, "color": "#3b82f6", "note": "2025 ICCAT: EU 할당 17% 증가, 2,800톤 추가" },
+    { "name": "모로코 (SNB 등)", "value": 9.1, "color": "#10b981", "note": "약 4,400톤. 양식 인프라 미비 → K-수산 JV 기회" },
+    { "name": "기타 국가", "value": 38.0, "color": "#64748b" },
+    { "name": "한국", "value": 0.8, "color": "#ef4444", "note": "소규모 배정. 제주도 외해 축양 실증 파일럿 필요" }
+  ],
+  "asianMarketShift": {
+    "japaneseProduction": [
+      { "year": "2023", "production": 21000 },
+      { "year": "2024", "production": 19500 },
+      { "year": "2025", "production": 3900, "note": "사료 원가 폭등으로 80% 급감" }
+    ],
+    "chineseImports": [
+      { "year": "2023", "import": 410 },
+      { "year": "2024", "import": 513 },
+      { "year": "2025", "import": 693, "note": "H1 35% 폭증 (지중해산 중심)" }
+    ]
+  },
+  "iccatFadBan": {
+    "status": "ACTIVE",
+    "period": "2025.03.17 ~ 04.30 (45일)",
+    "region": "대서양 전역",
+    "impact": "글로벌 스팟 단기 숏티지 감지",
+    "strategy": "초저온 냉동 필렛 비축 물량 프리미엄 출하 (Time-Arbitrage)"
+  },
+  "middleEastMarket": {
+    "kpi": {
+      "tunaCagr": "7.6%",
+      "dubaiDailySeafood": "600톤+",
+      "saudiColdChain2025": "$35억",
+      "saudiColdChain2034": "$159억",
+      "saudiColdChainCagr": "18.31%",
+      "hospitalityShare": "38%",
+      "saudiFishTarget2030": "53~60만톤"
+    },
+    "countryProfiles": [
+      {
+        "country": "🇦🇪 UAE",
+        "highlight": "중동 참치 허브",
+        "details": "두바이 워터프론트 마켓에서 매일 600톤+ 수산물 거래. 재수출 물류 인프라를 기반으로 GCC 전역의 참치 유통 중심지 역할. 아부다비 환경청(EAD)×킨키대학 블루핀 양식 파일럿 프로젝트 추진 중.",
+        "risk": "low",
+        "score": 92
+      },
+      {
+        "country": "🇸🇦 사우디아라비아",
+        "highlight": "비전 2030 수산물 자급",
+        "details": "해상 가두리 양식에 $5억 투자. 콜드체인 시장 2025년 $35억→2034년 $159억(CAGR 18.31%). 2030년까지 수산물 자체 생산 53~60만톤 목표. 다만 고수온 스트레스·부화장 부족 등 단기 생산 제약 존재.",
+        "risk": "medium",
+        "score": 85
+      },
+      {
+        "country": "🇶🇦 카타르",
+        "highlight": "호텔·관광 수요 회복",
+        "details": "2022 FIFA 월드컵 이후 관광 인프라 활용 본격화. 참치 시장 2028년 성장률 18.35% 가속화 전망. 스페인·호주 기술 기반 양식 파일럿 시험 중.",
+        "risk": "medium",
+        "score": 78
+      },
+      {
+        "country": "🇴🇲 오만",
+        "highlight": "신규 수입 규정 시행",
+        "details": "2026.4.22부터 양식·통조림 수산물에 대한 신규 인증 규정 시행. 스페인 기술 기반 참치 양식 파일럿 추진 중. 식품안전청 인증 절차 강화로 진입장벽 상승.",
+        "risk": "high",
+        "score": 68
+      }
+    ],
+    "coldChainGrowth": [
+      { "year": "2025", "value": 35 },
+      { "year": "2027", "value": 49 },
+      { "year": "2029", "value": 69 },
+      { "year": "2031", "value": 96 },
+      { "year": "2034", "value": 159 }
+    ],
+    "qatarTunaGrowth": [
+      { "year": "2025", "growth": -2.52 },
+      { "year": "2026", "growth": 5.8 },
+      { "year": "2027", "growth": 12.1 },
+      { "year": "2028", "growth": 18.35 },
+      { "year": "2029", "growth": 10.2 },
+      { "year": "2030", "growth": 4.8 },
+      { "year": "2031", "growth": 0.41 }
+    ],
+    "demandDrivers": [
+      { "segment": "5성급 호텔/리조트", "share": 38, "color": "#f59e0b" },
+      { "segment": "고급 일식 오마카세", "share": 27, "color": "#ef4444" },
+      { "segment": "고급 슈퍼마켓", "share": 20, "color": "#3b82f6" },
+      { "segment": "항공사 기내식", "share": 10, "color": "#8b5cf6" },
+      { "segment": "기타 HORECA", "share": 5, "color": "#64748b" }
+    ]
+  },
+  "issfScorecard": [
+    { "ocean": "태평양 (서중부)", "species": "가다랑어", "status": "건전", "score": 95, "trend": "안정", "color": "#10b981" },
+    { "ocean": "태평양 (서중부)", "species": "황다랑어", "status": "건전", "score": 88, "trend": "회복", "color": "#10b981" },
+    { "ocean": "태평양 (동부)", "species": "가다랑어", "status": "건전", "score": 92, "trend": "안정", "color": "#10b981" },
+    { "ocean": "인도양", "species": "황다랑어", "status": "주의", "score": 72, "trend": "감소", "color": "#f59e0b" },
+    { "ocean": "대서양 (동부)", "species": "참다랑어", "status": "건전", "score": 85, "trend": "회복", "color": "#10b981" },
+    { "ocean": "대서양 (서부)", "species": "참다랑어", "status": "주의", "score": 68, "trend": "정체", "color": "#f59e0b" },
+    { "ocean": "남방", "species": "남방참다랑어", "status": "재건", "score": 55, "trend": "회복", "color": "#ef4444" },
+    { "ocean": "인도양", "species": "눈다랑어", "status": "건전", "score": 80, "trend": "안정", "color": "#10b981" }
+  ],
+  "iscPacificBft": [
+    { "year": "2010", "ssbRatio": 3.3, "note": "역사적 최저치 — WCPFC 긴급 관리 시작" },
+    { "year": "2012", "ssbRatio": 3.8, "note": "일본 자주 감축 개시" },
+    { "year": "2014", "ssbRatio": 5.2, "note": "CMM 2014-04 채택 — 소형어 50% 감축" },
+    { "year": "2016", "ssbRatio": 7.8, "note": "TAC 체계 강화, 회유 경로 보호 확대" },
+    { "year": "2018", "ssbRatio": 11.5, "note": "회복 궤도 진입 — 중형어 쿼터 도입" },
+    { "year": "2020", "ssbRatio": 15.2, "note": "코로나 어획 압력 감소 반사 이익" },
+    { "year": "2022", "ssbRatio": 19.8, "note": "ISC 공식: 산란자원량 기준 20% 회복" },
+    { "year": "2024", "ssbRatio": 23.2, "note": "미어획 수준의 23.2% 도달 — 쿼터 증량 논의" }
+  ],
+  "sfdaMilestones": [
+    { "step": "사전 등록", "status": "완료", "target": "2025 Q4", "progress": 100, "detail": "SFDA 수입자 자격 등록 완료" },
+    { "step": "시설 인증", "status": "진행중", "target": "2026 Q2", "progress": 65, "detail": "HACCP + 할랄 이중 인증 심사 중" },
+    { "step": "라벨링 승인", "status": "대기", "target": "2026 Q3", "progress": 20, "detail": "아랍어 라벨 + 영양정보 번역 준비" },
+    { "step": "초도 수입 허가", "status": "대기", "target": "2026 Q4", "progress": 0, "detail": "시설 인증 통과 후 자동 발급" },
+    { "step": "정기 거래 개시", "status": "대기", "target": "2027 Q1", "progress": 0, "detail": "사우디 콜드체인 거점 + SFDA 클리어런스 완비" }
+  ]
+}
