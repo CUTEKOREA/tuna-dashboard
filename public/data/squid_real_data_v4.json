@@ -3955,7 +3955,7 @@
     {
       "id": "w55_export_concentration",
       "title": "태국 냉동 오징어 수출국 편중도 리스크 (Live)",
-      "chartType": "bar",
+      "chartType": "composed",
       "data": [
         {
           "수출국": "이탈리아",
@@ -3991,9 +3991,18 @@
       "xAxis": "수출국",
       "series": [
         {
+          "type": "bar",
+          "dataKey": "금액_백만USD",
+          "color": "#3b82f6",
+          "name": "수출 금액 (백만 USD)",
+          "yAxisId": "left"
+        },
+        {
+          "type": "line",
           "dataKey": "수출비중_pct",
-          "color": "#8b5cf6",
-          "name": "수출 비중(%)"
+          "color": "#f59e0b",
+          "name": "수출 비중 (%)",
+          "yAxisId": "right"
         }
       ],
       "situation": "태국 관세청 라이브 데이터에 따르면, 이탈리아(23%) 및 한국(22%)으로의 수출이 전체 수출량의 절반에 육박함. 단일 국가 내수 변동성에 수출이 즉각 연동되는 고도의 편중도 리스크 노출 상태.",
