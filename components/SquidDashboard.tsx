@@ -803,7 +803,7 @@ export default function SquidDashboard() {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_squid_eu_ceph_demand', 'w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap', 'w85_eu_illex_price_cycle'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_squid_eu_ceph_demand', 'w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_korea_holiday_effect', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap', 'w85_eu_illex_price_cycle'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
