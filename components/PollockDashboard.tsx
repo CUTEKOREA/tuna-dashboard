@@ -86,7 +86,7 @@ const KPI_THEMES = [
 const PILLARS = [
   {
     id: "P1", title: "⚓ Pillar I — 원료 수급 (Raw Material & Sourcing)", desc: "베링해/오호츠크해 쿼터 및 미·러 독점 지정학 리스크 관리", color: "#0891b2", icon: Anchor,
-    widgets: ["w1_global_catch", "w2_hegemony", "w3_diverging", "w24_opex_spread", "w31_catch_gap", "w32_sst_fleet_matrix", "k5_hatch_temp", "k2_epa_larva"],
+    widgets: ["w1_global_catch", "w2_hegemony", "w3_diverging", "w24_opex_spread", "w31_catch_gap", "w32_sst_fleet_matrix", "w34_china_export_flow", "k5_hatch_temp", "k2_epa_larva"],
     customInject: ["PollockConcentrationIndex", "PollockAlternativeSourcing"]
   },
   {
@@ -96,17 +96,17 @@ const PILLARS = [
   },
   {
     id: "P3", title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "러시아 극동 수산 클러스터 물동량 및 차익거래 트래커", color: "#2563eb", icon: Truck,
-    widgets: ["w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "n1_sanction_paradox", "n5_rcep_detour"],
+    widgets: ["w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "w35_eu_gateway", "w36_china_sanitary_pact", "w37_ntb_timeline", "n1_sanction_paradox", "n5_rcep_detour"],
     customInject: ["PollockFtaTariffMatrix", "PollockRouteComparison", "PollockLandedCostWaterfall"]
   },
   {
     id: "P4", title: "📈 Pillar IV — 판매 & 수요 (Sales & B2B Market)", desc: "단가 인플레이션 방어 및 정부 조달(B2G) 바잉 파워 롤업", color: "#3b82f6", icon: DollarSign,
-    widgets: ["w6_inflation_unitprice", "w7_usa_russia_unitprice", "w27_substitute_spread", "w33_arbitrage_tracker"],
+    widgets: ["w6_inflation_unitprice", "w7_usa_russia_unitprice", "w27_substitute_spread", "w33_arbitrage_tracker", "w38_us_canned_boom", "w39_saithe_competition"],
     customInject: ["PollockPriceForecastChart", "PollockScenarioSimulator", "PollockSubstituteElasticity"]
   },
   {
     id: "P5", title: "🌱 Pillar V — ESG & 지속가능성 (ESG & Compliance)", desc: "대러 제재(Sanctions) 리스크 및 수산 안보 방어", color: "#0ea5e9", icon: ShieldCheck,
-    widgets: ["w4_korea_crisis", "w14", "w23_upcycling_esg", "w28_esg_premium", "w30_traceability_risk", "n6_waste_to_wealth"],
+    widgets: ["w4_korea_crisis", "w14", "w23_upcycling_esg", "w28_esg_premium", "w30_traceability_risk", "w40_traceability_surge", "n6_waste_to_wealth"],
     customInject: ["PollockRiskScorecard", "PollockSanctionParadox"]
   }
 ];
@@ -124,6 +124,9 @@ const WIDGET_ICONS: Record<string, any> = {
   w27_substitute_spread: TrendingUp, w28_esg_premium: ShieldCheck,
   w29_eu_derisk_pivot: Globe, w30_traceability_risk: AlertCircle, w31_catch_gap: AlertTriangle,
   w32_sst_fleet_matrix: Ship, w33_arbitrage_tracker: Scale,
+  w34_china_export_flow: TrendingUp, w35_eu_gateway: Globe, w36_china_sanitary_pact: ShieldCheck,
+  w37_ntb_timeline: AlertTriangle, w38_us_canned_boom: TrendingUp, w39_saithe_competition: Scale,
+  w40_traceability_surge: Shield,
   n1_sanction_paradox: ShieldCheck, n5_rcep_detour: Globe, n6_waste_to_wealth: Factory,
   k1_3d_surimi: Zap, k2_epa_larva: Fish, k3_gamma_roe: ShieldCheck,
   k4_senior_food: Scale, k5_hatch_temp: Activity,
@@ -163,6 +166,13 @@ const WIDGET_UNITS: Record<string, string> = {
   w31_catch_gap: '(천 톤)',
   w32_sst_fleet_matrix: '(°C)',
   w33_arbitrage_tracker: '(원/kg)',
+  w34_china_export_flow: '(백만 USD)',
+  w35_eu_gateway: '(천 USD)',
+  w36_china_sanitary_pact: '(톤)',
+  w37_ntb_timeline: '(건)',
+  w38_us_canned_boom: '(백만 USD)',
+  w39_saithe_competition: '(EUR/kg)',
+  w40_traceability_surge: '(연도)',
   n1_sanction_paradox: '(지수)',
   n5_rcep_detour: '(천 톤)',
   n6_waste_to_wealth: '(%)',
@@ -257,7 +267,7 @@ export default function PollockDashboard() {
                 {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
+              <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} verticalAlign="top" height={36} />
             </PieChart>
           );
         case "area":
@@ -272,10 +282,10 @@ export default function PollockDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} />
+              <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.areas?.map((a: any, i: number) => (
                 <Area key={i} type="monotone" dataKey={a.key} stroke={a.color} fill={`url(#pArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
@@ -287,11 +297,11 @@ export default function PollockDashboard() {
           return (
             <ComposedChart data={d}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {hasRightAxisNew && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />}
               <RechartsTooltip content={<CustomTooltip />} />
-              <Legend wrapperStyle={{fontSize:'11px'}} />
+              <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.bars?.map((b: any, i: number) => (
                 <Bar key={`b${i}`} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
@@ -319,18 +329,18 @@ export default function PollockDashboard() {
               {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
           </PieChart>
         );
       case "line":
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
               <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
             ))}
@@ -340,10 +350,10 @@ export default function PollockDashboard() {
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
               <Area key={i} type="monotone" dataKey={s.dataKey} stroke={s.color} fill={s.color} fillOpacity={0.5} strokeWidth={2} />
             ))}
@@ -353,10 +363,10 @@ export default function PollockDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
               <Bar key={i} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />
             ))}
@@ -366,11 +376,11 @@ export default function PollockDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
+            <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => {
               if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
               if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} />;
@@ -421,7 +431,7 @@ export default function PollockDashboard() {
                 background: 'linear-gradient(135deg, #06b6d4, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 명태 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Pollock Strategic Command Center — 53 Widgets · 6 KPIs · 4 Live API Pipelines</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Pollock Strategic Command Center — 48 Widgets · 8 KPIs · 6 Live API Pipelines</p>
             </div>
           </div>
           <div style={{ 
@@ -435,7 +445,7 @@ export default function PollockDashboard() {
       </header>
 
       {/* ═══ 6 KPIs ═══ */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
@@ -547,9 +557,6 @@ export default function PollockDashboard() {
                 <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
                   명태 지식 AI 챗봇
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem', maxWidth: '80%' }}>
-                  사내 명태 분석 보고서와 글로벌 수급 데이터를 학습한 AI 챗봇입니다. 시장 동향, 리스크, 전략 등을 자유롭게 질문해 보세요.
-                </p>
                 <a 
                   href="https://notebooklm.google.com/notebook/767b7190-c2b6-447b-aa72-d86e06734031"
                   target="_blank"
@@ -638,7 +645,7 @@ export default function PollockDashboard() {
     
     return (
       <div key={w.id} className={styles.glassCard} style={{ 
-        display: 'flex', flexDirection: 'column', minHeight: '480px'
+        display: 'flex', flexDirection: 'column', minHeight: '600px'
       }}>
         
         {/* Card Header */}
@@ -661,15 +668,15 @@ export default function PollockDashboard() {
               
             </div>
           </h3>
-          {(w.subtitle || methodologyText) && (
+          {(w.subtitle) && (
             <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-              {[w.subtitle, methodologyText].filter(Boolean).join(' | ')}
+              {w.subtitle}
             </p>
           )}
         </div>
 
         {/* Chart Area */}
-        <div style={{ height: '250px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
+        <div style={{ height: '375px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             {renderChart(w)}
           </SafeResponsiveContainer>

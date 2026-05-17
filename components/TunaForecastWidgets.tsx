@@ -42,9 +42,6 @@ return (
           [AI 예측] 가다랑어 산지가격 VAR 모형 예측 엔진
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: USD/MT)</span>
         </h3>
-        <p className={styles.cardDesc}>
-          KFAS 수산물 무역 단기 전망모형 기반 VAR(Vector Autoregression) 모형으로 가다랑어 산지 가격을 분기별 예측합니다. ENSO·환율·유가 변수를 FRED API로 실시간 연동하며, MAPE 4.8% 수준의 예측 정확도를 제공합니다.
-        </p>
       </div>
       <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
       {loading ? <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>Loading forecast...</div> : (
@@ -52,7 +49,7 @@ return (
           <SafeResponsiveContainer width="100%" height={200}>
             <AreaChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-              <XAxis dataKey="period" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+              <XAxis dataKey="period" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} domain={['dataMin-200', 'dataMax+200']} />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
               <Area type="monotone" dataKey="upper" stroke="none" fill="#FCD535" fillOpacity={0.1} />
@@ -106,9 +103,6 @@ export function EnsoCorrelationWidget() {
           [기후 분석] ENSO-어획량 상관관계 분석기
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 어획량 변동 %)</span>
         </h3>
-        <p className={styles.cardDesc}>
-          NOAA ENSO 지수와 FAOSTAT 어획량 데이터의 상관분석을 통해 기후 변동이 주요 참치 어종(가다랑어·황다랑어)의 어획량에 미치는 영향을 정량화합니다. El Niño/La Niña/Neutral 위상별 어획량 변동폭을 시각화합니다.
-        </p>
       </div>
       <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
       <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
@@ -125,7 +119,7 @@ export function EnsoCorrelationWidget() {
       <SafeResponsiveContainer width="100%" height={180}>
         <BarChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-          <XAxis dataKey="phase" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey="phase" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Bar dataKey="skipjack" fill="#FCD535" name="가다랑어" radius={[4, 4, 0, 0]} />
@@ -159,9 +153,6 @@ export function LandingCostSensitivity() {
           [원가 시뮬레이션] 환율-착지원가 민감도 분석
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: ₩/kg)</span>
         </h3>
-        <p className={styles.cardDesc}>
-          ECOS 환율 API와 관세청 KCS 통관 단가를 연동하여, 환율·관세·운임 변동 시나리오별 참치 착지원가(Landed Cost)를 실시간 시뮬레이션합니다. 미국 301 관세, 원화 약세 등 주요 리스크 시나리오를 포함합니다.
-        </p>
       </div>
       <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
       <div style={{ display: 'grid', gap: '6px' }}>

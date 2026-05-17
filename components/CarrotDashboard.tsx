@@ -25,9 +25,9 @@ import TakeawayBox from './TakeawayBox';
 
 const formatXAxis = (tickItem: any) => {
   if (!tickItem || typeof tickItem !== 'string') return tickItem;
-  let formatted = tickItem.replace(/s*\(.*?\)s*/g, '');
-  if (formatted.length > 6) {
-    return formatted.substring(0, 6) + '..';
+  let formatted = tickItem.replace(/\s*\(.*?\)\s*/g, '');
+  if (formatted.length > 7) {
+    return formatted.substring(0, 7) + '..';
   }
   return formatted;
 };
@@ -412,7 +412,6 @@ export default function CarrotDashboard() {
                 <div style={{ background:'#181818', padding:'0.8rem', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center' }}><Database size={20} color="#ea580c" /></div>
                 <div>
                   <h3 style={{ color:'var(--text-primary)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} color="#ea580c" style={{marginRight:'6px'}} />NotebookLM 당근 AI 챗봇</h3>
-                  <p style={{ margin:0, fontSize:'0.85rem', color:'var(--text-secondary)' }}>118건의 5-Stage Value Chain 연구자료가 학습된 맞춤형 AI입니다.</p>
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/a9478d81-a1cf-4c62-9404-25c57c971d65" target="_blank" rel="noreferrer"
@@ -507,9 +506,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          글로벌 B2B 단가 헤징을 위한 국가 간 차익 거래 룸 PP(생산자 가격) 달러 환산 기준 한국 vs 중국 vs 베트남의 10년 연간 물가 동향 추적
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -547,9 +543,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          여름철 7~9월 도매가격 폭등 시 베트남산이 창출하는 실시간 헷징 마진 영역 자동 시각화 KAMIS(농수산식품유통공사) 제주/강원 산지 스팟가 API와 KCS(관세청) 베트남 랜디드 코스트(Landed Cost) 실측망 교차 계산
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -590,9 +583,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          한국인이 선호하는 고당도 종자의 고산지대(베트남 달랏) 재배 시 수율 및 품질 상승 실증 KREI 농업관측센터(2025.03) 겨울당근 단수 동향 통계 및 aT 해외시장 당도(Brix) 검사 실데이터 교차 검증
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -631,9 +621,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          기후 재난 시 폭등하는 스팟 가격을 이익으로 흡수하는 실시간  미국해양대기청(NOAA) 엘니뇨 기상 이변 지수와 베트남 MARD(농업부) 기후 데이터를 실시간 연동하여 한국 한파 리스크 확률을 산출
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -669,9 +656,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          중국산 식품 안전성 리스크를 활용한 베트남 달랏 무결점 농장(VietGAP)의 반사이익 식약처 수입식품 안전성 검사 실데이터 기반. 수입 당근 통관 불합격 건수 및 특정 농약(클로티아니딘 등) 기준치 초과 회수 물량 추적
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -708,9 +692,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          단순 세척 수출에서 탈피한 가치사슬 고도화 모델 KREI 농업전망 1분기 가락시장 도매가 폭등분(61,730원/20kg)을 기준으로 F&B 프랜차이즈의 실질 수율 및 인건비 전가분 역산
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -757,9 +738,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          깐깐한 방역 장벽을 무너뜨리는 100% 수율의 마법 aT 가공식품 세분시장 현황(2022) 전처리 폐기율 및 PQIS 식물검역온라인민원시스템 통관/폐기 실데이터 역산 분석
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -793,9 +771,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          중국의 노동 인구 노령화로 인한  KOTRA 2024 중국/베트남 제조업 인건비 추이 및 최저임금 연평균 성장률(CAGR 8~10%) 역산 모델링
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -830,9 +805,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          원물→전처리→IQF 전환의 구조적 필연성을 KREI 공식 전망으로 뒷받침 KREI 농업전망2026: 국내 당근 1인당 공급량 4.1→4.3kg 증가 추세, 자급률 47.2%→45.2% 하락 = 수입 가공품 비중 구조적 확대. aT 가공식품 세분시장 보고서 및 Krungsri Research 아세안 RTE Meals CAGR 3.1~4.1% 투영
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -867,9 +839,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          극단적 단일 의존 구조를 시각화하여 다변화의 시급성 입증 TM(양자 무역) 데이터의 수출국별 물량을 기반으로 한국 수입 공급망의 병목(Bottleneck) 식별
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -916,9 +885,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          한-베트남 FTA 면세 혜택이 장거리 물류/포장비를 상쇄하는 원리 검증 KREI 농산물 수입 관세표(E04-2026) 기준 중국산 30% 관세 및 한-베 FTA(VKFTA) 0% 영세율 적용. MA 특수포장 비용을 반영한 최종 Landed Cost 실증 비교
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -951,9 +917,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          장거리 해상 운송 리스크를 제거하는 기술 패키징 우위 Modified Atmosphere(MA) 적용 유무에 따른 수분 손실, 보관 일수 비교 데이터
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -988,9 +951,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          물류 지연을  중국(수입소요 3일)과 베트남(10일)의 화물 도착 시점 이후 발생하는 국내 3PL 냉동창고 누적 보관료(평균 $2/톤·일) 적용 산출
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1024,9 +984,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          규제 및 할당 리스크 없는 영구적(Permanent) 가격 우위 달성 입증 KREI 
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1064,9 +1021,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          수입 원가 불확실성을 완전히 잠재우는 무결점 B2B 영업 무기 증명 (Tridge 유료망 완벽 무료 대체) KCS(관세청) 수출입 API를 통한 중국/베트남 수입중량 대비 USD 금액 역산 실증
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1113,9 +1067,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          KREI 공식 통계 기반 TAM에서 S-Curve 침투율을 보수적으로 산출 KREI 농업전망2026: 국내 당근 공급량 20.6만톤(재배 9.7만+순수입 11.4만), 자급률 47.2%→45.2% 하락 추세. B2B TAM을 순수입량 11.4만톤 중 IQF 전처리 전환 가능 물량으로 설정, Bass Diffusion Model(p=0.03, q=0.38) 적용
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1149,9 +1100,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          마케팅 포인트 발굴을 위한 프리미엄 B2C/B2B 핵심 소구점 실증 데이터 식품의약품안전처(MFDS) 식품영양성분 데이터베이스 및 베트남 농업진흥청(MARD) 당도 실측 스펙 교차 검증
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1191,9 +1139,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          PEF 딜 소싱(Deal Sourcing) 단계에서 활용하는 다차원 가치평가(Valuation) 매트릭스 회계법인(Big4)의 커머셜 듀딜리전스(Commercial Due Diligence) 프레임워크를 차용하여 8개 전략 축에서 인수 타겟 적격성 점수화
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1229,9 +1174,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          마진을 일부 양보하여 시장 1위 바이어를 영구 종속시키는 구조 (*FCF: 영업현금흐름에서 설비투자 등을 제외한 실질 여유 자금) aT 가공식품 세분시장 조사(2024) 기반: 
-        </p>
           </div>
           <div style={{ height:'300px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1266,9 +1208,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          버려지는 막대한 잉여 원물을 포착하여 새로운 ESG 부가가치로 증명 SCL(공급이용계정)을 통한 원물 총생산 대비 식용 소비, 사료 전환, 수확후 폐기 물량의 비율을 산출
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1315,9 +1254,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          수입 통관 물량과 연동된 실시간 ESG 바이오 소재 마진율 전광판 기능 UN Comtrade/FAOSTAT 실시간 수출입 물량 기반 15% B품 자동 환산. GMI 천연 베타카로틴 타겟 마진 및 IPCC/CalPoly 수율 대입
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1354,9 +1290,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          IPCC 공식 배출계수 기반 정량 탄소 감축 증명으로 대기업 B2B 독점 파트너 지위 확보 Cecílio Filho et al.(2026): 관행농(겨울) CF=0.0833 vs 유기농 CF=0.0763 kgCO₂eq/kg (8.4% 감축). 업사이클링 전환 시 폐기 배출(83kg CO₂eq/톤) 회피 + 자원 순환으로 CF=0.047 추정(43% 감축 실증). IFRS S2 기후공시 + 신세계ESG리포트 Scope 3 벤더 관리 기준 적용
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1389,9 +1322,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          전통 농산물 수입업에서 글로벌 푸드테크(FoodTech) 기업으로 엑시트(Exit) 멀티플을 확장하는 재무적 로직 단순 수입 벤더의 저마진 구조(Flat) 대비, 선단(종자 IP)과 후단(전처리/바이오소재)을 장악한 애그테크(AgTech) 모델의 마진율 시뮬레이션
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1424,9 +1354,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          단순 농산물을  Amin et al.(2021) 착유 압착(Expeller) 공정 기반 카로티노이드 11배 추출 효율성(76.04%) 실증. Cecílio Filho(2026) 기반 톤당 83kg CO₂eq 감축 적용. GMI 시장조사 기반 천연 베타카로틴 수익 프리미엄 마진율 적용
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1460,9 +1387,6 @@ export default function CarrotDashboard() {
                 
               </div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          대시보드 접속 즉시 확인 가능한 현재 시점(Living)의 Silla Co. 예상 매각 기업가치 수학적 증명 KAMIS(가격변동성 방어), KCS(안전성 검증), GMI(ESG 업사이클링 프리미엄) 등의 API 실시간 데이터를 총망라하여 동적 EBITDA 멀티플 산출
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1504,7 +1428,7 @@ export default function CarrotDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={dynamicW19Data} margin={{ left: 10, right: 10 }}>
                 {grid}
-                <XAxis dataKey="stage" {...xAxisTextProps} interval={0} angle={-12} tickFormatter={formatXAxis} />
+                <XAxis dataKey="stage" {...xAxisTextProps} interval={0} angle={0} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Bar dataKey="value" name="밸류에이션 기여분">
@@ -1544,9 +1468,6 @@ export default function CarrotDashboard() {
                 <span style={{ fontSize:'0.65rem', background:'var(--surface-2)', color:'#ea580c', padding:'2px 8px', borderRadius:'500px', border:'none', fontWeight:600 }}>OEC 실측</span>
               </div>
             </h3>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-              2000~2024년 Top 6 수출국 수출액 추이 — 중국의 급부상($1,500만→$3.85억, 25배 성장)과 네덜란드·미국의 안정적 포지션 비교
-            </p>
           </div>
           <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1584,9 +1505,6 @@ export default function CarrotDashboard() {
                 <span style={{ fontSize:'0.65rem', background:'var(--surface-2)', color:'#ea580c', padding:'2px 8px', borderRadius:'500px', border:'none', fontWeight:600 }}>OEC 실측</span>
               </div>
             </h3>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-              한국의 당근 수입액은 2024년 $5,096만으로 독일·캐나다·미국 대비 소규모이나, 인구 대비 수입 의존도는 최고 수준
-            </p>
           </div>
           <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1624,9 +1542,6 @@ export default function CarrotDashboard() {
                 <span style={{ fontSize:'0.65rem', background:'var(--surface-2)', color:'#ea580c', padding:'2px 8px', borderRadius:'500px', border:'none', fontWeight:600 }}>KAMIS 실측</span>
               </div>
             </h3>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-              2023~2026 월별 도매가 추이 — 2024년 9월 ₩104,748 역대 최고 폭등 후 2026년 ₩28~35K 정상화 확인
-            </p>
           </div>
           <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -1663,9 +1578,6 @@ export default function CarrotDashboard() {
                 <span style={{ fontSize:'0.65rem', background:'var(--surface-2)', color:'#ea580c', padding:'2px 8px', borderRadius:'500px', border:'none', fontWeight:600 }}>FAOSTAT 실측</span>
               </div>
             </h3>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-              한국의 당근 손실률 27.3%는 중국(5.0%), 미국(8.9%) 대비 3~5배 높은 수준 → 업사이클링 TAM 정량화 근거
-            </p>
           </div>
           <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">

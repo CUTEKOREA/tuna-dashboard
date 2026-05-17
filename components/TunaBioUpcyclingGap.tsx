@@ -49,7 +49,7 @@ export default function TunaBioUpcyclingGap() {
         <SafeResponsiveContainer height={280}>
           <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-            <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickMargin={10}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickMargin={10}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
             <Tooltip content={<CustomTooltip />} cursor={{fill: '#1e293b'}} />
             <Bar dataKey="rate" radius={[4, 4, 0, 0]} maxBarSize={50}>

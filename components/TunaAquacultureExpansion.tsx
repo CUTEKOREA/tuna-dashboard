@@ -72,7 +72,7 @@ return (
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={12}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="year" stroke="#94a3b8" fontSize={12}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => `${val / 1000}k`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />

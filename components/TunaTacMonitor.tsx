@@ -118,7 +118,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="year" stroke="#94a3b8" fontSize={11}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" stroke="#94a3b8" fontSize={11} domain={[90, 140]} />
             <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} domain={[0, 100]} />
             <RechartsTooltip content={<CustomTooltip />} />

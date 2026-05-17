@@ -51,7 +51,7 @@ import TunaHSClassifier from './TunaHSClassifier';
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
   const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+  return noEng.length > 12 ? noEng.substring(0, 12) + '...' : noEng;
 };
 
 
@@ -62,7 +62,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   const truncateXAxis = (tick: any) => {
     if (typeof tick !== 'string') return tick;
     const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
+    return noEng.length > 12 ? noEng.substring(0, 12) + '...' : noEng;
   };
 return (
       <div style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
@@ -192,7 +192,7 @@ const renderChart = (w: any) => {
               ))}
             </defs>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis {...yAxisProps} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -206,7 +206,7 @@ const renderChart = (w: any) => {
         return (
           <LineChart data={d} margin={CHART_MARGIN}>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" {...yAxisProps} />
             {hasRightLine && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -220,7 +220,7 @@ const renderChart = (w: any) => {
         return (
           <BarChart data={d} margin={{ ...CHART_MARGIN, top: 30 }}>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis {...yAxisProps} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
@@ -239,7 +239,7 @@ const renderChart = (w: any) => {
         return (
           <ComposedChart data={d} margin={CHART_MARGIN}>
             {grid}
-            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" {...yAxisProps} />
             {hasRightComposed && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -291,7 +291,7 @@ const renderChart = (w: any) => {
       return (
         <LineChart data={d} margin={CHART_MARGIN}>
           {grid}
-          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={20}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" {...yAxisProps} />
           {hasRightAxis && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
           <RechartsTooltip content={<CustomTooltip />} />
@@ -305,7 +305,7 @@ const renderChart = (w: any) => {
       return (
         <AreaChart data={d} margin={CHART_MARGIN}>
           {grid}
-          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={20}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" {...yAxisProps} />
           {hasRightAxis && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
           <RechartsTooltip content={<CustomTooltip />} />
@@ -319,7 +319,7 @@ const renderChart = (w: any) => {
       return (
         <ComposedChart data={d} margin={CHART_MARGIN}>
           {grid}
-          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={0}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey={xAxis} {...xAxisTextProps} minTickGap={20}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" {...yAxisProps} />
           {hasRightAxis && <YAxis yAxisId="right" orientation="right" {...yAxisProps} />}
           <RechartsTooltip content={<CustomTooltip />} />
@@ -444,7 +444,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 참치 (Tuna) 글로벌 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Tuna Strategic Command Center — {widgets?.length || 0} Widgets · {kpiKeys.length || 0} KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>참치 전략 커맨드 센터 — {widgets?.length || 0}개 위젯 · {kpiKeys.length || 0}개 KPI</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -567,7 +567,6 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <div style={{ background: '#181818', padding: '0.8rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Database size={20} color="#FCD535" /></div>
                 <div>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}><Zap size={16} color="#FCD535" style={{marginRight:'6px'}} />NotebookLM 참치 AI 챗봇</h3>
-                  <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>500건 이상의 참치 밸류체인 심층 보고서가 학습된 맞춤형 AI입니다.</p>
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/1ce41abd-bdd2-4fce-8de7-e6a9f27ef6da" target="_blank" rel="noreferrer"
@@ -601,7 +600,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <InsightNauruSwitch />
             <InsightIOCollapse />
             <MofFishMarketWidget />
-            {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock'].includes(w.id)).map((w: any) => (
+            {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
             <EnsoCorrelationWidget />
@@ -627,7 +626,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <KfasElderlyFunctionalFood />
             <TunaUpcyclingOpportunity />
             <TunaUpcyclingMarginMap />
-            {widgets?.filter((w: any) => ['w04_proc', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w84_invasivorism', 'w57_alt_protein'].includes(w.id)).map((w: any) => (
+            {widgets?.filter((w: any) => ['w04_proc', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w84_invasivorism', 'w57_alt_protein', 'w98_byproduct_rd_pipeline', 'w102_spain_loin_outsourcing'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>
@@ -653,7 +652,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <FtaTariffOptimizer />
             <LandingCostSensitivity />
             <EmergingMarketsHeatmap />
-            {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand'].includes(w.id)).map((w: any) => (
+            {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>
@@ -671,7 +670,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             <TunaPriceDecoupling />
             <InsightEU18C />
-            {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption'].includes(w.id)).map((w: any) => (
+            {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w100_china_fukushima_switch'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>
@@ -690,7 +689,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <TunaComplianceRadar />
             <PolicyRiskScorecard />
             <InsightPillarTwo />
-            {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot'].includes(w.id)).map((w: any) => (
+            {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot', 'w101_greentech_drone_capex', 'w103_taiwan_esg_risk'].includes(w.id)).map((w: any) => (
               <WidgetCard key={w.id} widget={w} />
             ))}
           </div>

@@ -315,7 +315,6 @@ export default function KoreaConsignmentDashboard() {
               <TrendingUp size={18} />
               {activeTab === 'all' ? '연도별 총 판매 금액 추이' : `${activeTab}년 어종별 누적 판매 금액 (Top 15)`}
             </h3>
-            <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>해양수산부 공공데이터 기반 거래 대금 집계 실적</p>
           </div>
           <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -345,7 +344,6 @@ export default function KoreaConsignmentDashboard() {
               <Anchor size={18} />
               {activeTab === 'all' ? '연도별 총 유통 물량 추이' : `${activeTab}년 어종별 누적 판매 물량 (Top 15)`}
             </h3>
-            <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>해양수산부 공공데이터 기반 거래 물량(kg) 실적</p>
           </div>
           <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
             <SafeResponsiveContainer width="100%" height="100%">

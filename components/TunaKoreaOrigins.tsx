@@ -95,7 +95,7 @@ return (
             barSize={40}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-            <XAxis dataKey="Year" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="Year" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(value) => `${formatNumber(value)}`} />
             <Tooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />

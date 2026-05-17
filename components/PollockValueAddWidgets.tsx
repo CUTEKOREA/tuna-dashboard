@@ -21,9 +21,6 @@ export function Widget9_FilletRatio() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-success)', margin: 0 }}>
           선상 혁신: H&G 대신 Fillet(필레) 생산 트렌드 장악력
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          더 비싼 고수익 1차 동결(FAS) 필레 가공 비율의 점진적인 퀀텀 도약 지표
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -64,9 +61,6 @@ export function Widget10_SurimiGrowth() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-warning)', margin: 0 }}>
           미래 식량: 명태 연육(Surimi) 시장 글로벌 볼륨 상승
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          블록(Block) 형태의 생 소비를 뛰어넘는 수리미 기반 범용 원자재 시장의 폭발
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -106,9 +100,6 @@ export function Widget11_SurimiSpread() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#8b5cf6', margin: 0 }}>
           블렌딩 위협: 대체 연육(Tropical)의 반격과 단가 스프레드
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          고가 명태 연육과 저가 동남아 실꼬리돔(Itoyori) 사이클 이격도 분석
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -149,9 +140,6 @@ export function Widget12_RoePremium() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#fbbf24', margin: 0 }}>
           히든 프로핏: 프리미엄 명란(Roe) 폭발적 D2C 마진율
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          전체 물량의 초소형 파이를 차지하나 순이익금 상회를 주도하는 히든 부위 폭발성
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -162,7 +150,7 @@ export function Widget12_RoePremium() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} interval={0} angle={-20} textAnchor="end" tickMargin={10} />
+            <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} interval={0} angle={0} textAnchor="middle" tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}단가`} tickMargin={10} />
             <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Bar dataKey="value" name="카테고리별 마진추정액" radius={[4,4,0,0]}>

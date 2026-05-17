@@ -113,21 +113,23 @@ const WIDGET_ICONS: Record<string, any> = {
   w28: Target, w29: Thermometer,
   w_galchi_hs_class: Crosshair, w_galchi_multi_cost: DollarSign,
   w_kosis_cpi_spread: TrendingUp, w_mfds_safety_radar: ShieldCheck,
-  w_wto_sps_radar: AlertCircle, w_oec_galchi_export: Globe
+  w_wto_sps_radar: AlertCircle, w_oec_galchi_export: Globe,
+  w_galchi_prod_risk: Globe, w_galchi_consumption: Factory,
+  w_galchi_sg_valueup: TrendingUp
 };
 
 const SECTIONS = [
   { 
     title: "Part I — 원물 생산 (Raw Material)", 
     desc: "글로벌 어획량, 자원평가, 조업 효율, TAC 관리, 기후 리스크 및 KFAS 수산과학 연구", 
-    ids: ["w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"], 
+    ids: ["w_galchi_prod_risk","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"], 
     accent: "var(--color-success)",
     icon: "Fish"
   },
   { 
     title: "Part II — 가공 산업 (Processing)", 
     desc: "유통 단계별 마진 구조, 가공 전환 전략 및 B2B 급식 시장 개발", 
-    ids: ["w02","w06"], 
+    ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06"], 
     accent: "var(--color-warning)",
     icon: "Factory"
   },
@@ -263,14 +265,68 @@ export default function GalchiDashboard() {
   // Inject New Live Widgets
   const newWidgets = [
     {
+      id: "w_galchi_prod_risk",
+      title: "글로벌 어획량 vs 한국 TAC 트렌드",
+      subtitle: "FAO & USDA 연동. 자연산 의존도가 100%인 갈치의 글로벌 생산량과 한국의 총허용어획량(TAC) 트렌드를 모니터링합니다.",
+      chartType: "Composed",
+      xKey: "year",
+      bars: [{ key: "글로벌 생산량(톤)", color: "var(--color-success)" }],
+      lines: [{ key: "한국 TAC(톤)", color: "#f43f5e" }],
+      sit: "글로벌 갈치 생산은 양식이 불가하여 기후 리스크에 극도로 취약합니다. 반면 한국의 갈치 TAC는 자원 회복 기조로 최근 4년간 74% 증가했습니다.",
+      strat: "양식 불가능 리스크를 대비해 기후 변동에 따른 어획량 급감 전 선도거래 물량을 확보하고, 국내 증가분은 B2B 시장에 투입하여 수익성을 높이십시오.",
+      source: "FAO Yearbook & USDA GAIN",
+      isLive: true,
+      data: [
+        { year: "2020", "글로벌 생산량(톤)": 1050000, "한국 TAC(톤)": 30126 },
+        { year: "2021", "글로벌 생산량(톤)": 1060000, "한국 TAC(톤)": 48908 },
+        { year: "2022", "글로벌 생산량(톤)": 1068858, "한국 TAC(톤)": 48296 },
+        { year: "2023", "글로벌 생산량(톤)": 1070000, "한국 TAC(톤)": 52379 }
+      ]
+    },
+    {
+      id: "w_galchi_consumption",
+      title: "갈치 가공 형태별 소비 비중",
+      subtitle: "KMI 동향 연동. 자급률(63.6%)이 불안정한 갈치의 국내 핵심 소비 형태인 염장 가공 구조를 분석합니다.",
+      chartType: "Bar",
+      xKey: "type",
+      bars: [{ key: "비중(%)", color: "var(--color-warning)" }],
+      sit: "국내 갈치 시장은 수입 의존도가 높으며, 전체 유통 물량의 80% 이상이 염장 혹은 염수장 형태로 1차 가공되어 판매됩니다.",
+      strat: "원물 직수입 후 국내 가공 방식에서 벗어나 세네갈 등 산지에서 1차 염장 후 수입(B2B 반제품)하여 마진율을 15% 이상 추가 개선하십시오.",
+      source: "KMI 동향 리포트",
+      isLive: true,
+      data: [
+        { type: "염장 가공", "비중(%)": 80 },
+        { type: "생물/냉동", "비중(%)": 20 }
+      ]
+    },
+    {
+      id: "w_galchi_sg_valueup",
+      title: "SG 2026 밸류업: B2B 내재화 마진 시뮬레이션",
+      subtitle: "공통 전략 문건(SG '26년 운영방안) 연동. 신라교역(어획)-신라에스지(가공) 수직계열화를 통한 순살 갈치 B2B 가공 마진율을 예측합니다.",
+      chartType: "Composed",
+      xKey: "year",
+      bars: [{ key: "단순 원물 마진(%)", color: "#64748b" }],
+      lines: [{ key: "SG 내재화 마진(%)", color: "var(--color-warning)" }],
+      sit: "현재 갈치 유통은 원물 중심 단순 도매에 머물러 있어 이익률이 낮습니다. SG 2026 밸류업 전략에 따르면 신라에스지의 가공 컨트롤타워 역할 확대가 시급합니다.",
+      strat: "신라교역의 갈치 원물을 신라에스지가 B2B 급식용 HMR(순살 갈치 등)로 직접 가공·납품하는 ODM 방식으로 전환하여, 전사 영업이익률을 15%p 이상 개선하십시오.",
+      source: "SG 2026 밸류업 내부 문건",
+      isLive: true,
+      data: [
+        { year: "2023", "단순 원물 마진(%)": 5.2, "SG 내재화 마진(%)": 5.2 },
+        { year: "2024", "단순 원물 마진(%)": 4.8, "SG 내재화 마진(%)": 10.5 },
+        { year: "2025(E)", "단순 원물 마진(%)": 4.5, "SG 내재화 마진(%)": 16.8 },
+        { year: "2026(E)", "단순 원물 마진(%)": 4.0, "SG 내재화 마진(%)": 22.5 }
+      ]
+    },
+    {
       id: "w_galchi_hs_class",
-      title: "실시간 통관 HS 코드 정밀 분류 — 형태별 관세 매핑",
-      subtitle: "HS Ping API 연동. 갈치 원물/토막/필렛 가공 형태별 HS 코드(0303.89, 0304.89 등)를 자동 분류하여 통관 보류 리스크를 사전 방지합니다.",
+      title: "실시간 통관 HS 코드 정밀 분류 (0303.89.60.00)",
+      subtitle: "HS Ping API 연동. 냉동 갈치 핵심 타겟인 0303.89.60.00 코드를 기준으로 가공 형태별 코드 검증을 수행합니다.",
       chartType: "Bar",
       xKey: "form",
-      bars: [{ key: "conf", color: "#38bdf8" }],
-      sit: "수입 가공 형태에 따라 HS 코드가 상이하며, 코드 오류 시 통관 보류 및 과태료 리스크가 존재합니다. 특히 토막(cut) vs 필렛(fillet) 경계에서 분류 오류가 빈발합니다.",
-      strat: "HS Ping 실시간 매핑으로 통관 사고 Zero화 달성. ①수입 신고 전 HS Ping 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단.",
+      bars: [{ key: "분류 정확도(%)", color: "#38bdf8" }],
+      sit: "수입 가공 형태에 따라 10자리 HS 코드가 상이하며(냉동 갈치: 0303.89.60.00), 특히 토막(cut)과 필렛 간의 오분류 통관 사고가 지속 발생합니다.",
+      strat: "HS Ping 실시간 매핑으로 통관 사고 Zero화 달성. ①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단.",
       source: "HS Ping API (실시간 HS 코드 분류 엔진)",
       isLive: true,
       data: liveHsPing?.data || []
@@ -372,10 +428,10 @@ export default function GalchiDashboard() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{fontSize:'11px'}} />
+            <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.areas?.map((a: any, i: number) => (
               <Area key={i} type="monotone" dataKey={a.key} stroke={a.color} fill={`url(#mArea${widget.id}_${i})`} strokeWidth={2.5} stackId={widget.stacked ? 'stack1' : undefined} />
             ))}
@@ -385,10 +441,10 @@ export default function GalchiDashboard() {
         return (
           <BarChart data={d}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{fontSize:'11px'}} />
+            <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.bars?.map((b: any, i: number) => (
               <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
@@ -398,13 +454,13 @@ export default function GalchiDashboard() {
         return (
           <ComposedChart data={d}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
+            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             {widget.dualAxis && (
               <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             )}
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
-            <Legend wrapperStyle={{fontSize:'11px'}} />
+            <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.bars?.map((b: any, i: number) => (
               <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
@@ -572,9 +628,6 @@ export default function GalchiDashboard() {
               <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Zap size={18} color="var(--color-success)" /> 갈치 지식 AI 챗봇 (NotebookLM)
               </h3>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                구글 드라이브(Data 폴더)에서 스캔된 최신 수산경제전망 및 유통 현황이 학습된 맞춤형 AI입니다. 전략적 통찰을 즉시 질문하세요.
-              </p>
             </div>
           </div>
           <a href="https://notebooklm.google.com/notebook/73bd95c4-e9f8-49f3-aa90-1e907a3e1b00" target="_blank" rel="noreferrer" style={{ 
@@ -629,7 +682,7 @@ export default function GalchiDashboard() {
     let takeaway = w.strat || '';
     
     return (
-      <div key={w.id} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
+      <div key={w.id} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
         background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
         padding: '1.5rem'}}>
         
@@ -654,7 +707,7 @@ export default function GalchiDashboard() {
         </div>
 
         {/* Chart Area */}
-        <div style={{ height: '325px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
+        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             {renderChart(w)}
           </SafeResponsiveContainer>

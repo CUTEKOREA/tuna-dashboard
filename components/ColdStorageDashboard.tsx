@@ -558,9 +558,6 @@ export default function ColdStorageDashboard() {
                 <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
                   냉동창고 전략 어시스턴트
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem', maxWidth: '80%' }}>
-                  아세안 냉동창고 인텔리전스 보고서 및 운영 데이터를 심층 학습했습니다. "베트남 신축 시나리오의 예상 ROIC는?", "태국 Category II 규제 기준은?" 등 구체적인 질문을 해보세요.
-                </p>
                 <a 
                   href="https://notebooklm.google.com/notebook/bf3298f5-ce9c-4975-ab79-c58ca10ad84a"
                   target="_blank"

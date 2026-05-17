@@ -140,14 +140,13 @@ export default function TunaInsightsDashboard() {
             <ArrowRightLeft size={20} color="#38bdf8"/> Insight 1. 참치 차익거래 마진 레이더
             <TermTooltip term="" description="원어 매입가와 2차 가공 수출가 사이의 마진 스플릿을 추적하여 가장 유리한 스프레드 구간을 발굴하는 차트입니다." />
           </h3>
-          <p className={styles.cardDesc}>태국 등 원어 거점의 1차 매입가(Raw Material)와, 이를 가공하여 EU/미주에 파는 2차 수출가 사이의 괴리를 통계적으로 추적하여 최고 마진 경로를 노출합니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockArbitrageData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: 'var(--text-primary)' }} />
                 <Legend />
@@ -179,14 +178,13 @@ export default function TunaInsightsDashboard() {
             <Globe size={20} color="#38bdf8"/> Insight 2. 가공 허브 패권 지도
             <TermTooltip term="" description="과거 전통적인 가공 중심지에서 동남아/중남미 등으로 이동하는 무역량의 면적 확대를 통해 글로벌 공급망의 수직적 이동을 포착합니다." />
           </h3>
-          <p className={styles.cardDesc}>과거 미국, 일본 중심이던 참치 가공 산업이 동남아와 중남미로 이동하고 있음을 보여주는 글로벌 시장 점유율 데이터 궤적입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockProcessingHubs} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -218,14 +216,13 @@ export default function TunaInsightsDashboard() {
             <Crosshair size={20} color="#38bdf8"/> Insight 3. 신흥 소비 블랙홀 마켓
             <TermTooltip term="" description="CAGR이 15% 이상 급상승하는 국가를 수직 막대로 정렬하여, 통조림 소비가 폭발하는 차기 중진국 타겟 시장을 식별합니다." />
           </h3>
-          <p className={styles.cardDesc}>CAGR(연평균성장률)이 15%를 넘어가는 초고속 참치 소비 국가. 중진국 진입과 함께 통조림 수요가 폭발하는 시장입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockEmergingMarkets} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis dataKey="name" type="category" stroke="#94a3b8" width={100} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="growth" fill="#818cf8" radius={[0, 4, 4, 0]} name="연평균 성장률 (%)" />
@@ -258,7 +255,6 @@ export default function TunaInsightsDashboard() {
             <Anchor size={20} color="#818cf8"/> Insight 4. 어장 제로섬 역학 뷰어
             <TermTooltip term="" description="태평양과 대서양의 어획량을 면적 겹침(Stack)으로 나타내어, 엘니뇨 등 기상 이변 시 시소 게임처럼 서로 보완되는 헷징 효과를 증명합니다." />
           </h3>
-          <p className={styles.cardDesc}>엘니뇨 등 기상 이변으로 중서부태평양(WCPO) 조업이 급락할 때 대서양 어장이 반사 이익을 얻는 제로섬 시소 현상입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
@@ -275,7 +271,7 @@ export default function TunaInsightsDashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -307,14 +303,13 @@ export default function TunaInsightsDashboard() {
             <Map size={20} color="#818cf8"/> Insight 5. 대체 수산물 헷징 매트릭스
             <TermTooltip term="" description="참치 어획량이 무너질 때 고등어 등 펠라직 어종 수요가 급상승하는 역상관관계 라인을 통해 리스크 상쇄 포인트를 시각화합니다." />
           </h3>
-          <p className={styles.cardDesc}>가나 마스터플랜의 아이디어처럼, 참치의 흉어 시 고등어 등 대체 펠라직(표층수) 어종의 수출입 볼륨이 역상관관계로 폭등하는 포인트입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockHedgingMatrix} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" domain={[60, 160]} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -345,14 +340,13 @@ export default function TunaInsightsDashboard() {
             <ShieldAlert size={20} color="#818cf8"/> Insight 6. 다크 트레이딩 의심 경로
             <TermTooltip term="" description="해구별 수출량과 실제 수입된 물량의 갭을 막대 차이로 직접 비교하여 불법 환적이나 단위 위반(IUU) 의심 루트를 모니터링합니다." />
           </h3>
-          <p className={styles.cardDesc}>특정 국가들의 '수출 신고량'과 '수입국 반영량' 사이의 무역 불일치 격차를 통해 불법 어획(IUU) 및 해상 전재 블랙마켓을 추적합니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockDarkTrading} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="region" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="region" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -388,14 +382,13 @@ export default function TunaInsightsDashboard() {
             <TrendingUp size={20} color="#f472b6"/> Insight 7. 양식 vs 어획 패러다임 역전
             <TermTooltip term="" description="야생 어확 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 '크로스오버' 시점을 궤적으로 보여주어 투자 전환기를 분석합니다." />
           </h3>
-          <p className={styles.cardDesc}>지속가능성 요구와 지방률 통제 기술 발달로 인해, 양식(Ranching) 참치의 톤당 단가가 자연산 야생 어획을 추월한 크로스오버를 보여줍니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockAquaculturePremium} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -427,14 +420,13 @@ export default function TunaInsightsDashboard() {
             <Map size={20} color="#f472b6"/> Insight 8. 최고가 미식 소비 국가 맵
             <TermTooltip term="" description="국가별 수입 단가를 히트맵형 바 차트로 배열하여, 하이엔드 신선 참치를 가장 비싸게 소비하는 럭셔리 마켓의 코어를 노출합니다." />
           </h3>
-          <p className={styles.cardDesc}>kg당 수입단가가 30달러를 넘는 극프리미엄 지상주의 '소비 블랙홀' 흐름. 전통적 일본 수요보다 더 비싸게 사가는 신규 미식 타겟 국가 리스트입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockGastronomyMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="country" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="country" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" unit="$" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="price" fill="#f472b6" radius={[4, 4, 0, 0]}>
@@ -473,14 +465,13 @@ export default function TunaInsightsDashboard() {
             <Briefcase size={20} color="#fbbf24"/> Insight 9. 공급 독과점 HHI 지수 경보
             <TermTooltip term="" description="특정 상위 국가로 참치물 통제권이 집중되는 정도를 허핀달-허쉬만(HHI) 지수를 차용하여 바이어의 구매 리스크를 산출합니다." />
           </h3>
-          <p className={styles.cardDesc}>주요 참치 수출국 상위 3개국의 어획 집중도(HHI) 상승은 바이어(제조사)의 판가 교섭력 상실 및 조달 단가 폭등 리스크를 경고합니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockHHIIndex} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" domain={[0, 3500]} />
                 <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="HHI" fill="#fbbf24" radius={[4, 4, 0, 0]} />
@@ -510,14 +501,13 @@ export default function TunaInsightsDashboard() {
             <ThermometerSun size={20} color="#fbbf24"/> Insight 10. 기후 쇼크 타임머신
             <TermTooltip term="" description="지난 30년간 해수온 상승에 따라 블루핀(한대성)과 스킵잭(열대성)의 서식/어획 비중이 어떻게 역전 침식되어 왔는지 매핑합니다." />
           </h3>
-          <p className={styles.cardDesc}>수온 상승에 따른 지난 30년간의 어종 믹스(Species Mix) 점진적 붕괴. 한대성(Bluefin)이 구축당하고 열대성(Skipjack)이 확장하는 궤적.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockClimateShift} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -553,14 +543,13 @@ export default function TunaInsightsDashboard() {
             <Cpu size={20} color="var(--color-success)"/> Insight 11. 정밀 조업(Precision Fishing) 패러다임 전환
             <TermTooltip term="" description="AI 음향 부표 및 3D 소나를 활용한 타겟 어종 정확도 향상을 통해 선박 경유(MGO) 비용을 획기적으로 감축하는 기술 전환 지표입니다." />
           </h3>
-          <p className={styles.cardDesc}>어군 탐지 기술 발전으로 '공치기(Empty sets)'를 줄여 조업 성공률(CPUE)은 15% 상승하고 선박 연료 소모량은 급감하는 X자형 효율 크로스입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockPrecisionFishing} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" domain={[60, 120]} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -591,14 +580,13 @@ export default function TunaInsightsDashboard() {
             <Building2 size={20} color="#a855f7"/> Insight 12. 관세 회피(Tariff Hopping) 밸류체인 진화
             <TermTooltip term="" description="미국 발 상호 관세 부과에 대응하여 태국 등 전통적 수출국의 물량이 붕괴되고, 미국 내 또는 무관세 지역으로 직투자가 이동하는 과정을 추적합니다." />
           </h3>
-          <p className={styles.cardDesc}>거대 시장인 미국의 관세(최대 20%) 부과 여파로 태국발 수출 전망이 급감하고, 조지아주/중남미 등으로 공장이 이전하는 흐름입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockTariffHopping} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="region" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="region" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />
@@ -629,14 +617,13 @@ export default function TunaInsightsDashboard() {
             <Leaf size={20} color="var(--color-success)"/> Insight 13. 지속가능성(MSC) 더블 프리미엄
             <TermTooltip term="" description="MSC 지속가능성 인증과 돌고래 안전(Dolphin-safe) 인증의 듀얼 라벨 획득 시 최종 소비재 시장에서 입증되는 추가 판가 마진율입니다." />
           </h3>
-          <p className={styles.cardDesc}>단순 구호에 불과하던 에코 라벨이 거대 유통망(채널 캡틴)의 강제화 정책에 의해 강력한 가격 프리미엄(+81%) 플랫폼으로 변모했습니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={mockMSCPremium} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-                <XAxis type="number" domain={[0, 250]} stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis type="number" domain={[0, 250]} stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis dataKey="category" type="category" stroke="#94a3b8" width={110} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Bar dataKey="price" name="소매가 지수" fill="var(--color-success)" radius={[0, 4, 4, 0]}>
@@ -671,14 +658,13 @@ export default function TunaInsightsDashboard() {
             <TestTube2 size={20} color="var(--color-warning)"/> Insight 14. 하이브리드 포트폴리오 (비건/배양육)
             <TermTooltip term="" description="어분 소모율(FIFO) 한계로 더 이상 어획 볼륨 확대가 불가능해진 틈을 타 폭발적으로 성장하는 비건(식물성)/세포배양 참치 시장 규모추이입니다." />
           </h3>
-          <p className={styles.cardDesc}>1kg 성장을 위해 무려 15~20kg의 펠라직이 소모되는(FIFO 한계) 양식의 생물학적 천장을 넘기 위해 대안 단백질 시장이 급격히 커지고 있습니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={mockAlternativeProtein} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis yAxisId="left" stroke="var(--color-warning)" />
                 <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" domain={[10, 30]} />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
@@ -710,14 +696,13 @@ export default function TunaInsightsDashboard() {
             <Bone size={20} color="var(--color-info)"/> Insight 15. 펫케어/해양 콜라겐 업사이클링
             <TermTooltip term="" description="가공 후 버려지는 52%의 부산물(뼈, 내장 등)을 가축 사료 대신 최고급 펫푸드 및 바이오 기능식품(콜라겐 등)으로 가공할 때의 마진 차트입니다." />
           </h3>
-          <p className={styles.cardDesc}>본업인 캔 참치 제조의 저성장을 방어해내는 히든 캐시카우. 부산물 업사이클링을 통한 고부가 다운스트림 개척 전략의 핵심 수치입니다.</p>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={mockByproductUpcycling} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+                <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis stroke="#94a3b8" unit="%" />
                 <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
                 <Legend />

@@ -45,9 +45,6 @@ return (
           [제로 웨이스트] 참치 부산물 업사이클링 기회 분석
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: % / USD Billion)</span>
         </h3>
-        <p className={styles.cardDesc}>
-          참치 가공 시 발생하는 40~55% 부산물(머리/뼈/내장/피부 등)의 구성비와, 각 부산물을 활용한 고부가가치 제품(DHA, 콜라겐 등) 파이프라인의 시장 규모와 마진율을 시각화합니다.
-        </p>
       </div>
       <div className={styles.cardBody}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 16 }}>
@@ -100,9 +97,6 @@ export function TunaUpcyclingMarginMap() {
           [마진 분석] 바이오 업사이클 마진 매트릭스
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 마진율 % / 시장규모 $B)</span>
         </h3>
-        <p className={styles.cardDesc}>
-          참치 부산물 활용 제품별 마진율과 글로벌 시장 규모를 비교하여 최적의 투자 우선순위를 식별합니다. R&amp;D 단계 제품일수록 높은 마진이 기대되며, 상용화 전환 시점이 핵심입니다.
-        </p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
@@ -113,7 +107,7 @@ export function TunaUpcyclingMarginMap() {
                 dataKey="name"
                 tick={{ fill: '#cbd5e1', fontSize: 10, fontWeight: 500 }}
                 stroke="#64748b"
-                angle={-25}
+                angle={0}
                 textAnchor="end"
                 interval={0}
                 height={55}

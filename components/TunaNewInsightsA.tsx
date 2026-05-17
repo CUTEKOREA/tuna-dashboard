@@ -58,7 +58,7 @@ return (
           <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={nauruData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="year" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+              <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
               <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" />
               <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
@@ -109,7 +109,7 @@ export function InsightIOCollapse() {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="month" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+              <XAxis dataKey="month" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
               <YAxis yAxisId="left" stroke="#94a3b8" domain={[0, 100]} unit="%" />
               <YAxis yAxisId="right" orientation="right" stroke="#ef4444" unit="$" />
               <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
@@ -153,7 +153,7 @@ export function InsightEU18C() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={eu18Data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
-              <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+              <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
               <YAxis dataKey="category" type="category" stroke="#94a3b8" width={140} />
               <RTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
               <Bar dataKey="value" name="글로벌 선단 비율" radius={[0, 4, 4, 0]}>

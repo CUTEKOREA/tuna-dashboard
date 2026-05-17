@@ -65,7 +65,7 @@ return (
       <div style={{ width: '100%', height: 350, marginTop: '20px' }}>
         <ComposedChart width={width > 0 ? width - 60 : 800} height={350} data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" stroke="#38bdf8" tickFormatter={formatY1} tick={{ fill: '#38bdf8', fontSize: 12 }} />
           <YAxis yAxisId="right" orientation="right" stroke="#f43f5e" tickFormatter={formatY2} tick={{ fill: '#f43f5e', fontSize: 12 }} />
           <Tooltip content={<CustomTooltip />} />

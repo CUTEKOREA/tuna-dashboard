@@ -155,7 +155,7 @@ export default function TunaInsightWidgets() {
               ))}
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -170,7 +170,7 @@ export default function TunaInsightWidgets() {
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -194,7 +194,7 @@ export default function TunaInsightWidgets() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-              <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} angle={-25} textAnchor="end" height={60} />
+              <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} angle={0} textAnchor="middle" height={60} />
               <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -213,7 +213,7 @@ export default function TunaInsightWidgets() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-              <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+              <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
               <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />

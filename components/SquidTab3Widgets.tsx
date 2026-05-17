@@ -19,9 +19,6 @@ export function Widget21_SupplyDeadCross() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>21. 한국 연근해 수급 절벽 데드크로스 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 관세청 품목별(HS 03074) 국가 수입액. 포트폴리오 편중도 리스크 분석
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -52,9 +49,6 @@ export function Widget22_ImportHHI() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>22. 원산지 다변화 허핀달-허쉬만 지수(HHI) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: aT 농수산식품유통공사 식자재 유통 통계. 외식시장 점유율 추이
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
@@ -87,9 +81,6 @@ export function Widget23_MarketShareFixation() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>23. 글로벌 수입산 시장 점유율 고착화 궤적 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: HMM 해운 물류 운송 실적. 원산지별 입항 소요 변동성 타격
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
@@ -120,9 +111,6 @@ export function Widget24_LeadTime() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>24. 거점별 냉동 컨테이너 리드타임 편차 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 감천항 주요 냉동창고 반출입 이력. 유통 악성 재고 예측
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical">
@@ -152,9 +140,6 @@ export function Widget25_WarehouseGap() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>25. 콜드체인 창고 체화량 vs 실제 소비 갭 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 수입식품 정밀검사 통계. 창고료 전가 및 현금 회수 지연
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
@@ -185,9 +170,6 @@ export function Widget26_CustomsDelay() {
     return (
       <div style={glassContainerStyle}>
         <h3 className={styles.widgetTitle}>26. 식약처 통관 비관세 장벽 딜레이 리스크 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: NICE 종합 기업재무. 자본력이 필요한 수입 독과점화 추이
-        </p>
         <div style={{ height: 250 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={data} layout="vertical">
@@ -217,9 +199,6 @@ export function Widget27_VendorDominance() {
     return (
       <div style={glassContainerStyle}>
         <h3 className={styles.widgetTitle}>27. 상위 수입사(B2B Vendor) 카르텔 지배력 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 프랜차이즈 식자재 구매 이탈 심리 기반 오더북 분석
-        </p>
         <div style={{ height: 250 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={data}>
@@ -249,9 +228,6 @@ export function Widget28_DemandDestruction() {
     return (
       <div style={glassContainerStyle}>
         <h3 className={styles.widgetTitle}>28. B2B 수요 파괴(Demand Destruction) 임계점 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 한국은행 생산자물가지수(PPI).
-        </p>
         <div style={{ height: 250 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>
@@ -280,9 +256,6 @@ export function Widget29_InflationIndex() {
     return (
       <div style={glassContainerStyle}>
         <h3 className={styles.widgetTitle}>29. 오징어 수산물가 지수 vs 돈/계육 인플레 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 통계청 소매판매/프랜차이즈 식자재 전환 데이터
-        </p>
         <div style={{ height: 250 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <LineChart data={data}>

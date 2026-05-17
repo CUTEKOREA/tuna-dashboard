@@ -87,6 +87,8 @@ const WIDGET_ICONS: Record<string, any> = {
   w68: Crosshair, w69: Activity, w70: DollarSign, w71: Factory,
   w72: Zap, w73: Fish, w74: Scale, w75: Truck,
   w_tariff: ShieldCheck, w_landing: DollarSign, w_dist_margin: Scale,
+  w_us_boneless: Crosshair, w_africa_coldchain: Truck, w_global_b2c_channel: Globe,
+  w_busan_procurement: Fish, w_andong_salted: Factory, w_domestic_retail: DollarSign,
 };
 
 export default function MackerelDashboard() {
@@ -798,9 +800,6 @@ export default function MackerelDashboard() {
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Zap size={18} color="#8b5cf6" /> AI 기반 수산이슈 심층 리포팅 시스템 (AI Market Intelligence)
                   </h3>
-                  <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                    KMI/KIEP 연구 포털의 보고서와 25개 글로벌 API 데이터를 실시간으로 종합하여, 경영진을 위한 요약 보고서와 대화형 인사이트를 즉시 제공합니다.
-                  </p>
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/0d7d4923-e1ce-48fe-ac7e-2d4e89ce8181" target="_blank" rel="noreferrer" style={{ 
@@ -842,7 +841,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
@@ -854,7 +853,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>가공 허브 패권, 부가가치 분석, HMR 전환, 기술 혁신 및 부산물 활용</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
@@ -866,7 +865,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>수출입 통관, 관세·FTA 분석, 착지원가, 차익거래, 해상운임 및 콜드체인</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
@@ -878,7 +877,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>소비 트렌드, 유통 마진, 가격 분해, D2C·HMR 시장, 스태그플레이션 대응</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
 
@@ -945,9 +944,9 @@ export default function MackerelDashboard() {
               {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
             </div>
           </h3>
-          {(w.subtitle || methodologyText) && (
+          {(w.subtitle) && (
             <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {[w.subtitle, methodologyText].filter(Boolean).join(' | ')}
+              {w.subtitle}
             </p>
           )}
         </div>

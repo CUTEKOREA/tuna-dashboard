@@ -622,7 +622,7 @@ export default function FalklandSquidDashboard() {
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={companyData.slice(0, 8)} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
-                <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} angle={-25} textAnchor="end" height={60} />
+                <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} angle={0} textAnchor="middle" height={60} />
                 <YAxis yAxisId="left" stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
                 <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={12} />
                 <RechartsTooltip 
@@ -655,7 +655,6 @@ export default function FalklandSquidDashboard() {
                   개별 선박 실적 랭킹
                   <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/20">{vesselData.length}척</span>
                 </h3>
-                <p className="text-[11px] text-slate-500 mt-0.5">월별 조업(팬) · 누계 환산(KG, 1팬=20kg) · 선박 제원</p>
               </div>
             </div>
             <div className="relative">

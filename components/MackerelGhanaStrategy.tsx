@@ -13,9 +13,6 @@ export default function MackerelGhanaStrategy() {
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-primary)', marginBottom: '8px', fontWeight: 700, fontSize: '1.3rem' }}>
           한국 태평양고등어 가나 수출 전략 (테스트 성과 보고)
         </h3>
-        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', margin: 0 }}>
-          2026년 2월 부산 출항 1컨테이너 파일럿 판매 결과 및 향후 물량 확대 전략 시나리오
-        </p>
       </div>
 
       {/* 1. KPIs */}

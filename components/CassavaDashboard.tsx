@@ -298,9 +298,6 @@ export default function CassavaDashboard() {
               </div>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.secondary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Recycle size={15}/> 제로 웨이스트 & 순환경제 (Circular Economy)</h3>
-                <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
-                  타피오카 추출 후 버려지던 찌꺼기(펄프)와 껍질을 발효해 고단백 사료/버섯 배지로 재자원화합니다. 또한 가공 공정의 폐수로 메탄가스(바이오가스)를 포집해 자체 전력 및 열원으로 전환, 숨겨진 비용(Hidden Cost)을 제로화하는 ESG 인프라 투자가 필수적입니다.
-                </p>
               </div>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.tertiary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><AlertTriangle size={15}/> 가나(Ghana) 중심의 식량안보 & 헷징 전략</h3>

@@ -358,7 +358,6 @@ export default function ChickenDashboard() {
                   </div>
                   <div>
                     <h3 style={{ color: '#f8fafc', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}>NotebookLM C-Level 챗봇</h3>
-                    <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8' }}>최근 5개년 수산업계 영문 보고서(Tuna/Poultry) 교차 분석 완료</p>
                   </div>
                 </div>
                 <a 

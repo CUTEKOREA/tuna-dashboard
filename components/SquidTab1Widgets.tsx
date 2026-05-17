@@ -23,9 +23,6 @@ export function Widget01_ClimateYieldRadar() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>1. 기후-어획량 상관관계 (NOAA ENSO vs Catch) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: KOSIS 연근해어업 및 캐나다 수산국. 1990년 대구 사태와 현재 살오징어 추락 궤적 비교
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
@@ -59,9 +56,6 @@ export function Widget02_CollapseCountdown() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>2. 자원 붕괴 카운트다운 오버레이 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: NASA 글로벌 SST. 주요 조업 구역 수온 비정상 상승 추적
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -92,9 +86,6 @@ export function Widget03_SSTAnomaly() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>3. 해류 수온 편차 (SST Anomaly) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: FAO 식품가격지수 및 무역량. 대체육류 대비 성장 델타
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical">
@@ -130,9 +121,6 @@ export function Widget04_ProteinGrowth() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>4. 단백질원별 글로벌 수요 성장률 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: FishStatJ. 훔볼트 오징어의 주력 어종 편입 궤적
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
@@ -162,9 +150,6 @@ export function Widget05_SpeciesMix() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>5. 글로벌 두족류 어종별 생산 비중 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: UNEP-WCMC. 
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
@@ -196,9 +181,6 @@ export function Widget06_MPAExpansion() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>6. 해양보호구역(MPA) 및 조업 축소 시뮬 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: RFMO 위도 기록. 한류/난류 교차점 북상 추적
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} stackOffset="expand">
@@ -229,9 +211,6 @@ export function Widget07_LatitudeShift() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>7. 기후 발(發) 군집 이동 위도선 (북상) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: IFFO. 경제성 미달 소형 개체의 양식 사료 폐기율
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -261,9 +240,6 @@ export function Widget08_FishmealRatio() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>8. 글로벌 어분/사료(Feed) 전락 비율 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: Global Fishing Watch AIS 추적. 무역 제재 발동 리스크 계량화
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
@@ -294,9 +270,6 @@ export function Widget09_IUURadar() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>9. IUU (불법/비보고 조업) 리스크 횟수 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: RFMO TAC 문서 vs 실제 하역량. 인위적 초과 조업의 축적량
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>

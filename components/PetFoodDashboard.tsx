@@ -220,9 +220,6 @@ export default function PetFoodDashboard() {
                 <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
                   S-Grade 인텔리전스 봇
                 </h3>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem', maxWidth: '80%' }}>
-                  내부 기밀인 Phase 1~3 인텔리전스 보고서를 심층 학습했습니다. "태국 OEM 활용시 규제 리스크는?", "M&A vs OEM ROIC 3년 비교" 등 심층 전략을 프롬프트로 질의하세요.
-                </p>
                 <a 
                   href="https://notebooklm.google.com/notebook/a734debc-a607-4ec1-9f7a-1a31c15cf302"
                   target="_blank"
@@ -738,7 +735,7 @@ export default function PetFoodDashboard() {
                     <SafeResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={d_kfas_w02.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="enzyme" tick={{fill: '#94a3b8', fontSize: 10}} angle={-15} textAnchor="end"  tickFormatter={xFmt} />
+                        <XAxis dataKey="enzyme" tick={{fill: '#94a3b8', fontSize: 10}} angle={0} textAnchor="middle"  tickFormatter={xFmt} />
                         <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
                         <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
@@ -763,7 +760,7 @@ export default function PetFoodDashboard() {
                     <SafeResponsiveContainer width="100%" height="100%">
                       <BarChart data={d_kfas_w04.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="method" tick={{fill: '#94a3b8', fontSize: 9}} angle={-20} textAnchor="end" height={70}  tickFormatter={xFmt} />
+                        <XAxis dataKey="method" tick={{fill: '#94a3b8', fontSize: 9}} angle={0} textAnchor="middle" height={70}  tickFormatter={xFmt} />
                         <YAxis tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
@@ -1408,7 +1405,7 @@ export default function PetFoodDashboard() {
                     <SafeResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={d_kfas_w03.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="group" tick={{fill: '#94a3b8', fontSize: 9}} angle={-20} textAnchor="end" height={60}  tickFormatter={xFmt} />
+                        <XAxis dataKey="group" tick={{fill: '#94a3b8', fontSize: 9}} angle={0} textAnchor="middle" height={60}  tickFormatter={xFmt} />
                         <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} />
                         <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />

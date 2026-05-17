@@ -77,7 +77,7 @@ export default function WhelkDashboard() {
     return (
       <div style={{ padding: '2rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <RefreshCcw className="animate-spin" size={24} color="var(--color-info)" />
-        <span>Loading Whelk Intelligence...</span>
+        <span>골뱅이 인텔리전스 로딩 중...</span>
       </div>
     );
   }
@@ -100,7 +100,17 @@ export default function WhelkDashboard() {
     byproductData = [],
     solidContentData = [],
     climateRiskData = [],
-    widgets = []
+    widgets = [],
+    usCannedMarketData = [],
+    nutritionBenchmarkData = [],
+    mcrsScenarioData = [],
+    sgValueUpData = [],
+    euPackagingRiskData = [],
+    pfasRiskData = [],
+    postUkScorecardData = [],
+    blackSeaSupplyData = [],
+    fxAlertThresholds = [],
+    halalCollagenData = []
   } = data;
 
   // KFAS 연구 위젯 필터링
@@ -124,7 +134,7 @@ export default function WhelkDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 골뱅이 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — 22개 위젯 · 5개 핵심지표</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — 33개 위젯 · 5-Pillar 프레임워크</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -304,9 +314,6 @@ export default function WhelkDashboard() {
                 <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <Zap size={18} color="var(--color-info)" /> 골뱅이 지식 AI 챗봇 (NotebookLM)
                 </h3>
-                <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                  방대한 골뱅이 산업 보고서, 밸류체인 무역 데이터가 학습된 맞춤형 AI입니다. 글로벌 시장 동향을 즉시 질문하세요.
-                </p>
               </div>
             </div>
             <a href="https://notebooklm.google.com/notebook/e001ff32-0545-42f7-9fe5-29b7a01359bb" target="_blank" rel="noreferrer" style={{ 
@@ -399,7 +406,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <LineChart data={canadaCaptureData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -440,7 +447,7 @@ export default function WhelkDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[6000, 11000]} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Area type="monotone" dataKey="capture" name="한국 어획(톤)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCapture)" />
@@ -450,6 +457,78 @@ export default function WhelkDashboard() {
               <TakeawayBox
                 situation={<span>[KOSIS] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>}
                 actionPlan={<span>한국은 연안에서 연간 9,000톤 수준을 어획하는 글로벌 상위 생산국이나, 해당 원물은 프리미엄 단가를 쫓아 전량 <TermTooltip term="신선/냉장 활어" description="가공되지 않은 살아있는 상태로 주로 일본의 이자카야 및 고급 해산물 시장으로 직수출됨." /> 형태로 일본 시장에 직수출되고 있습니다. 반면, 국내 B2C 통조림 제조를 위한 대량의 가공 원물은 100% 수입산에 의존하는 기형적 '이중 가공무역' 구조에 갇혀 있습니다. 이러한 태생적 한계로 당사의 수익성은 글로벌 환율 및 해운 운임 변동성에 무방비로 노출되므로, 체질 개선을 위한 환헤지 및 통관 물류 효율화 투자가 필수불가결합니다.</span>}
+              />
+            </div>
+            {/* W21: MCRS 공급쇼크 시뮬레이션 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <AlertTriangle style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 영국 MCRS 상향 시나리오별 공급쇼크 시뮬레이션
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="2026 시뮬레이션" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  영국 IFCA의 최소보존규격(MCRS) 상향 시나리오(50mm/55mm/60mm)별 어획량 감소 영향을 모델링합니다.
+                </p>
+              </div>
+              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <AreaChart data={mcrsScenarioData}>
+                    <defs>
+                      <linearGradient id="colorBaseline" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.4}/>
+                        <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis domain={[5000, 15000]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                    <Area type="monotone" dataKey="baseline" name="현행 유지" stroke="var(--color-info)" fill="url(#colorBaseline)" />
+                    <Line type="monotone" dataKey="mcrs50" name="MCRS 50mm" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
+                    <Line type="monotone" dataKey="mcrs55" name="MCRS 55mm" stroke="var(--color-danger)" strokeWidth={2} />
+                    <Line type="monotone" dataKey="mcrs60" name="MCRS 60mm" stroke="#dc2626" strokeWidth={2} strokeDasharray="8 4" />
+                  </AreaChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[IFCA 시뮬레이션] 영국이 골뱅이 최소 크기 기준을 현행 45mm에서 55mm로 올리면, 어획 가능 물량이 최대 30% 이상 급감하여 글로벌 수급에 충격파를 일으킬 수 있습니다.</span>}
+                actionPlan={<span>MCRS 55mm 시나리오(가장 유력)에서 영국산 어획량이 2027년까지 현행 대비 26% 감소(14,091톤→9,800톤)할 것으로 예측됩니다. 이는 한국 수입 물량의 약 1,100톤 부족을 의미하며, 톤당 단가 15~20% 상승 압력이 불가피합니다. 조달 전략 파트는 MCRS 55mm 확정 시점(2026H2 예상) 이전에 현행 규격(45mm) 원물의 대량 선매입을 실행하고, 동시에 아이슬란드·아일랜드 대체 물량 확보를 병행해야 합니다.</span>}
+              />
+            </div>
+
+            {/* W25: Post-UK 신규 어장 스코어카드 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Navigation style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> Post-UK 시대 대비 신규 어장 스코어카드
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="2026 분석" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  영국 의존도 탈피를 위한 대체 어장 후보를 수온 안정성, 어획 추세, FTA 혜택, 물류비 등 4축으로 종합 평가합니다.
+                </p>
+              </div>
+              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                    <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis dataKey="country" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={70} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                    <Bar dataKey="catchTrend" name="어획 추세" fill="var(--color-info)" stackId="a" />
+                    <Bar dataKey="ftaStatus" name="FTA 혜택" fill="var(--color-success)" stackId="b" />
+                    <Bar dataKey="logisticsCost" name="물류 효율" fill="var(--color-warning)" stackId="c" />
+                  </BarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[FAOSTAT/ICES] 영국 다음으로 유력한 골뱅이 공급처는 아일랜드(종합 82점)와 아이슬란드(78점)이며, 캐나다(38점)는 사실상 탈락입니다.</span>}
+                actionPlan={<span>Post-UK 전략의 핵심은 아일랜드(종합 82점)입니다. 동일 B. undatum 종이며 EU FTA 관세 0% 혜택, 영국과 인접한 물류 인프라를 보유합니다. 차선책인 아이슬란드(78점)는 저수온(7.2°C)으로 장기 자원 안정성이 최고이나, 현재 FTA 미체결로 관세 부담이 존재합니다. 조달팀은 아일랜드 벤더 2~3곳과의 시범 거래를 26Q3에 착수하고, 아이슬란드와의 HS030781 관세 협상 가능성을 외교 채널로 탐색해야 합니다.</span>}
               />
             </div>
           </>
@@ -514,7 +593,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <ComposedChart data={seasonalityData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Bar yAxisId="left" dataKey="importUSD" name="수입액($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
@@ -528,6 +607,40 @@ export default function WhelkDashboard() {
               />
             </div>
           </>
+
+            {/* W22: SG 밸류업 HMR 로드맵 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Package style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵
+                  </h3>
+                  <TelemetryBadge status="live" syncDate="2026 Q2" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  SG 2026 운영방안에 따른 골뱅이 HMR 신제품 출시 파이프라인과 각 SKU별 개발 진행률을 추적합니다.
+                </p>
+              </div>
+              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                    <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '개발 진행률(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
+                    <YAxis dataKey="sku" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={130} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Bar dataKey="status" name="진행률(%)" radius={[0, 4, 4, 0]}>
+                      {sgValueUpData.map((entry: any, index: number) => (
+                        <Cell key={`sg-${index}`} fill={entry.status >= 70 ? 'var(--color-success)' : entry.status >= 50 ? 'var(--color-warning)' : 'var(--color-info)'} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[SG 밸류업] 2026 운영방안에 따라 골뱅이 HMR 라인 6종을 개발 중이며, 혼술 에디션과 에어프라이어 키트가 26Q3 출시 목표로 가장 빠르게 진행 중입니다.</span>}
+                actionPlan={<span>SG 2026 밸류업 전략의 핵심은 '혼술 에디션 150g'(85% 완성)과 '에어프라이어 키트 200g'(70% 완성)의 26Q3 성수기 적시 출시입니다. 두 제품 합산 연간 매출 목표 37억 원이며, 이를 위해 편의점(CU/GS25) 입점 MOU를 6월까지 확정해야 합니다. 후속 제품인 '프리미엄 고형량65%+'는 경쟁사 대비 투명성 마케팅 차별화를 위해 포장 전면에 고형량 비율을 대형 표기하는 전략이 핵심입니다. 마케팅팀은 인플루언서 홈술 콘텐츠 마케팅을 Q3 출시 4주 전부터 선제 집행해야 합니다.</span>}
+              />
+            </div>
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Ship size={20} color="var(--color-info)" />
@@ -588,7 +701,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <BarChart data={waterfallData} margin={{ top: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} interval={0} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={60} />
                     <YAxis domain={[11.5, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Bar dataKey="value" name="비용($/kg)" fill="var(--color-info)" label={{ position: 'top', fill: '#f8fafc', fontSize: 10 }}>
@@ -684,12 +797,146 @@ export default function WhelkDashboard() {
             </div>
           </>
 
+            {/* W19: 미국 캔 시장 트렌드 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <ShoppingBag style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 미국 캔 르네상스 — 골뱅이 수출 신시장 기회
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="KMI 2026.05" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  미국 시장에서 통조림 제품의 '힙한 리브랜딩' 트렌드가 확산되며, K-Food 골뱅이 캔의 수출 기회를 분석합니다.
+                </p>
+              </div>
+              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <ComposedChart data={usCannedMarketData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$B', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                    <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '%', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                    <Bar yAxisId="left" dataKey="marketSize" name="미국 캔 시장($B)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                    <Line yAxisId="right" type="monotone" dataKey="growth" name="성장률(%)" stroke="var(--color-success)" strokeWidth={2} />
+                    <Line yAxisId="left" type="monotone" dataKey="whelkPotential" name="골뱅이 침투 예상($M)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" dot={{ r: 5 }} />
+                  </ComposedChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[KMI 카드뉴스] 미국에서 통조림이 다시 '힙'해지고 있습니다. Z세대의 '틴 캔 르네상스'가 SNS에서 바이럴되며, 고급 수산 통조림 시장이 연 10% 이상 성장 중입니다.</span>}
+                actionPlan={<span>미국 프리미엄 캔 시장이 $15.5B(2026E)에 달하며, 특히 K-Food 한류 영향권 내 아시안 마켓과 H-Mart 채널이 연간 15%씩 성장 중입니다. 골뱅이 캔은 '한국식 해산물 안주'라는 독보적 포지셔닝이 가능하며, 미국 내 소주 열풍과 시너지가 큽니다. 해외사업부는 H-Mart, 쿠팡 글로벌 입점을 26Q4까지 완료하고, 영문 패키지 리디자인(프리미엄 크래프트 캔 콘셉트)을 즉시 착수해야 합니다. 초기 목표 매출 $1.2M(2026E).</span>}
+              />
+            </div>
+
+            {/* W20: 영양성분 벤치마크 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Activity style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="KFDA 2024 기준" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  골뱅이의 고단백·저지방·저칼로리 영양 프로필을 닭가슴살, 참치캔, 새우 등 주요 경쟁 단백질 식품과 직접 비교합니다.
+                </p>
+              </div>
+              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <XAxis dataKey="item" tick={{ fill: '#f8fafc', fontSize: 10 }} angle={0} textAnchor="middle" height={55} />
+                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                    <Bar dataKey="protein" name="단백질(g)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="fat" name="지방(g)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="iron" name="철분(mg)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[KMI 헬시플레저] 골뱅이는 100g당 82kcal, 단백질 18.2g, 지방 0.8g으로 닭가슴살보다 낮은 칼로리에 3배 이상의 철분을 보유한 '숨은 슈퍼푸드'입니다.</span>}
+                actionPlan={<span>골뱅이(자숙)의 영양 프로필은 헬시플레저 트렌드의 핵심 지표에서 경쟁 식품을 압도합니다. 칼로리 82kcal(닭가슴살 109kcal 대비 -25%), 지방 0.8g(소등심 15.0g 대비 -95%), 철분 3.2mg(닭가슴살 0.7mg 대비 4.5배)을 보유합니다. 마케팅팀은 '다이어트 안주의 혁명'이라는 포지셔닝으로 피트니스 인플루언서 협업 캠페인을 전개하고, 제품 패키지에 '82kcal 슈퍼프로틴' 배지를 전면 부착해야 합니다. 특히 여성 1인 가구 타겟의 '단백질 간식' 카테고리 진입이 가장 높은 ROI를 보일 것입니다.</span>}
+              />
+            </div>
+
         {/* Pillar 5: ESG & 지속가능성 */}
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Leaf size={20} color="var(--color-success)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 5. ESG 및 지속가능성</h2>
   </div>
   <>
+            {/* W26: 흑해 R. venosa 공급 안정성 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Ship style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 흑해산 R. venosa 공급 안정성 트렌드
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="FAOSTAT 2024" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  튀르키예·불가리아·루마니아의 흑해산 R. venosa(뿔고둥) 어획 추이를 모니터링하여 대체 원물의 안정성을 평가합니다.
+                </p>
+              </div>
+              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <BarChart data={blackSeaSupplyData} margin={{ top: 10 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                    <Bar dataKey="turkey" name="튀르키예" fill="var(--color-info)" stackId="a" radius={[0, 0, 0, 0]} />
+                    <Bar dataKey="bulgaria" name="불가리아" fill="var(--color-warning)" stackId="a" radius={[0, 0, 0, 0]} />
+                    <Bar dataKey="romania" name="루마니아" fill="var(--color-success)" stackId="a" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[FAOSTAT] 흑해산 R. venosa(뿔고둥)는 튀르키예가 연간 4,000~4,500톤을 안정적으로 생산하며, 영국산 B. undatum의 유일한 대규모 대체 공급원입니다.</span>}
+                actionPlan={<span>흑해산 R. venosa는 TCU(Total Cost of Usage) 기준으로 영국산 대비 15~20% 저렴하며, 맛과 식감이 유사하여 통조림 가공 적합성이 높습니다. 다만 불가리아(-31%)와 루마니아(-32%)의 어획량이 꾸준히 감소 중이므로, 사실상 튀르키예 단일 의존 구조입니다. 조달팀은 튀르키예 이스탄불 소재 대형 벤더(3곳)와 장기 공급계약(2~3년)을 체결하여 물량을 선제 확보하고, 한-튀르키예 FTA 발효 시 관세 인하 효과를 극대화할 전략을 준비해야 합니다.</span>}
+              />
+            </div>
+
+            {/* W27: FX 1,500원 비상 경보 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <AlertTriangle style={{ color: '#dc2626', width: '20px', height: '20px' }} /> 환율 1,500원 비상 경보 시스템
+                  </h3>
+                  <TelemetryBadge status="live" syncDate="Real-time" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  USD/KRW 환율 구간별 자동 경보 체계. 임계값 돌파 시 단계별 대응 매뉴얼을 즉시 실행합니다.
+                </p>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+                {fxAlertThresholds.map((t: any, i: number) => (
+                  <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${t.color}40`, borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: t.color }}>{t.level}</span>
+                      <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>₩{t.min}~{t.max}</span>
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.5 }}>
+                      대응: <strong style={{ color: t.color }}>{t.action}</strong>
+                    </div>
+                    <div style={{ height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: `${((t.max - 1200) / 500) * 100}%`, background: t.color, borderRadius: '2px' }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <TakeawayBox
+                situation={<span>[한국은행] USD/KRW 환율이 2026년 5월 기준 1,480원대에 진입하며 '위험 구간(1,450~1,550)' 임계점에 접근했습니다. 골뱅이 원물의 100% 달러 결제 구조상 수입 원가에 직격탄입니다.</span>}
+                actionPlan={<span>골뱅이 수입은 전량 USD 결제이므로, 환율 100원 상승 시 톤당 원화 매입가가 약 130만 원(+10%) 증가합니다. 현재 1,480원대는 '위험 구간' 진입 직전이며, 1,500원 돌파 시 즉시 긴급 선물환 계약(3~6개월물)을 체결해야 합니다. 재무팀은 현재 헤지 비율을 50%까지 즉시 상향하고, 1,550원 돌파 시에는 신규 발주 일시 중단 및 기존 재고 활용 전략으로 전환하는 비상 프로토콜을 가동해야 합니다.</span>}
+              />
+            </div>
             {/* Widget 11: FX-Import Price Correlation */}
             <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
@@ -710,7 +957,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <ComposedChart data={fxCorrelationData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
@@ -782,7 +1029,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <BarChart data={aquacultureData} margin={{ top: 10 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -818,7 +1065,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -863,7 +1110,7 @@ export default function WhelkDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
@@ -936,7 +1183,7 @@ export default function WhelkDashboard() {
                 <SafeResponsiveContainer height="100%">
                   <BarChart data={solidContentData} margin={{ top: 20 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis domain={[0, 320]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'g', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -981,7 +1228,7 @@ export default function WhelkDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={-25} textAnchor="end" height={60} />
+                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
                     <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '어획량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
                     <YAxis yAxisId="right" orientation="right" domain={[9, 15]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'SST(°C)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
                     <RechartsTooltip content={<CustomTooltip />} />
@@ -998,6 +1245,102 @@ export default function WhelkDashboard() {
               />
             </div>
           </>
+
+            {/* W23: EU 포장규제 리스크 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Recycle style={{ color: 'var(--color-warning)', width: '20px', height: '20px' }} /> EU PPWR 포장규제 컴플라이언스 리스크
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="KMI 2026.03" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  EU의 신규 포장폐기물규정(PPWR)이 골뱅이 캔 제품의 패키징 비용과 수출 경쟁력에 미치는 리스크를 6축으로 평가합니다.
+                </p>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                {euPackagingRiskData.map((d: any, i: number) => (
+                  <div key={i} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '0.75rem', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)' }}>
+                      {d.value}
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '4px', lineHeight: 1.3 }}>{d.axis}</div>
+                    <div style={{ height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', marginTop: '6px' }}>
+                      <div style={{ height: '100%', width: `${d.value}%`, background: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)', borderRadius: '2px' }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <TakeawayBox
+                situation={<span>[KMI 카드뉴스] EU가 2025년부터 시행하는 PPWR(포장폐기물규정)은 재활용 비율 의무화(80점)와 EPR 비용 부담 증가(70점)가 골뱅이 캔 수출에 직접적 비용 상승 요인입니다.</span>}
+                actionPlan={<span>EU PPWR의 핵심 리스크는 2030년까지 식품 포장재 재활용 비율 70% 의무화입니다. 현재 골뱅이 캔(주석도강판)의 재활용률은 이미 85%로 양호하나, 내부 코팅재(BPA 프리 전환)와 라벨 접착제의 재활용 적합성 인증이 추가로 필요합니다. 또한 EPR(생산자 책임 확대) 비용이 캔당 €0.02~0.05 증가 예상됩니다. 품질관리팀은 EU 수출용 포장재의 PPWR 적합성 사전 인증을 26Q4까지 완료하고, BPA-NI(Non-Intent) 코팅으로의 전환 계획을 수립해야 합니다.</span>}
+              />
+            </div>
+
+            {/* W24: PFAS 식품안전 매트릭스 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <FlaskConical style={{ color: 'var(--color-warning)', width: '20px', height: '20px' }} /> PFAS(과불화화합물) 차세대 식품안전 리스크
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="KFAS 2024" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  EU/미국에서 급부상하는 PFAS(영원한 화학물질) 규제가 수산물 수입에 미치는 영향을 어종별로 비교 분석합니다.
+                </p>
+              </div>
+              <div style={{ height: '280px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                    <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
+                    <YAxis dataKey="species" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={100} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                    <Bar dataKey="pfos" name="PFOS(ng/g)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="pfoa" name="PFOA(ng/g)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+                  </BarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[KFAS 군산연안 연구] 골뱅이(복족류)의 PFOS 수치(0.42 ng/g)는 EU 기준(1.0 ng/g) 이하로 '주의' 수준이나, 담치·굴 등 이매패류는 이미 기준을 초과하여 규제 강화 시 연쇄 영향이 우려됩니다.</span>}
+                actionPlan={<span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU가 2025년부터 수산물 PFOS/PFOA 모니터링을 의무화했습니다. 골뱅이는 현재 안전 범위이나, PFAS는 해양 환경에서 생물농축되므로 향후 규제 기준 강화(0.5 ng/g으로 하향) 시 '주의→초과'로 격상될 위험이 있습니다. 품질관리팀은 분기별 PFAS 모니터링 프로토콜을 신설하고, 원산지별(영국/튀르키예/아일랜드) PFAS 농도 프로파일을 확보하여 선제적 리스크 맵을 구축해야 합니다.</span>}
+              />
+            </div>
+
+            {/* W28: 할랄 해양콜라겐 시장 */}
+            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Globe style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 할랄 인증 해양콜라겐 — 글로벌 시장 기회
+                  </h3>
+                  <TelemetryBadge status="static" syncDate="KMI 2026.04" />
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
+                  골뱅이 부산물에서 추출하는 해양 콜라겐의 할랄/코셔 인증 기반 수출 시장 규모와 지역별 성장 잠재력을 분석합니다.
+                </p>
+              </div>
+              <div style={{ height: '280px', width: '100%', position: 'relative' }}>
+                <SafeResponsiveContainer height="100%">
+                  <BarChart data={halalCollagenData} margin={{ top: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                    <XAxis dataKey="region" tick={{ fill: '#f8fafc', fontSize: 10 }} />
+                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                    <Bar dataKey="marketSize" name="시장 규모($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="halalShare" name="할랄 비중(%)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </SafeResponsiveContainer>
+              </div>
+              <TakeawayBox
+                situation={<span>[KMI 할랄인증] 동남아시아의 할랄 인증 의무화(BPJPH)로 수산물 부산물 기반 해양 콜라겐의 수출 기회가 급부상하고 있습니다. 중동/북아프리카의 할랄 비중은 95%입니다.</span>}
+                actionPlan={<span>골뱅이 부산물에서 추출하는 해양 콜라겐 펩타이드는 소·돼지 원료 대비 '할랄/코셔 프리미엄'을 갖습니다. 중동·북아프리카($420M, 할랄 95%), 동남아($310M, 할랄 72%) 시장은 연 10~12% 성장 중이며, 인도네시아의 BPJPH 할랄 의무화는 한국산 수산물 부산물 콜라겐의 진입 기회입니다. R&D 부서는 할랄 인증(JAKIM/BPJPH) 취득을 위한 가공 공정 분리를 검토하고, 코스메슈티컬(기능성 화장품) 및 건강기능식품 채널을 타겟으로 2027년 출시를 목표로 해야 합니다.</span>}
+              />
+            </div>
 
         {/* KFAS 학술 연구 인텔리전스 위젯 (동적 렌더링) */}
         {kfasWidgets.length > 0 && (
@@ -1039,8 +1382,7 @@ export default function WhelkDashboard() {
                           dataKey={widget.xKey}
                           tick={{ fill: '#f8fafc', fontSize: 10 }}
                           interval={0}
-                          angle={-20}
-                          textAnchor="end"
+                          angle={0} textAnchor="middle"
                           height={55}
                         />
                         <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />

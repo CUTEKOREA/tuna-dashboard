@@ -73,15 +73,12 @@ export const WidgetTunaGiantsFall = () => (
       <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
       <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
-      <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-        FAO FishStatJ 데이터를 기반으로 미국, 일본, 한국 등 전통 참치 강국의 가공/통조림 생산량 구조적 감소 추세를 시각화합니다. 노동 비용 한계로 인한 생산거점 이동을 분석합니다.
-      </p>
     </div>
     <div style={chartStyle}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={declineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
@@ -107,15 +104,12 @@ export const WidgetThaiEmpire = () => (
       <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
       <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
-      <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-        FAO 데이터 기반으로 원양 선단 없이 '가공 인프라'만으로 글로벌 참치 시장을 장악한 태국(Thai Union)과 스페인(Jealsa 등)의 10배 성장 레이더를 시각화합니다.
-      </p>
     </div>
     <div style={chartStyle}>
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={empireData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+          <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />

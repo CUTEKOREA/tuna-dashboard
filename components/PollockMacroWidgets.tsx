@@ -21,9 +21,6 @@ export function Widget1_GlobalCatch() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#38bdf8', margin: 0 }}>
           명태 글로벌 생산 장기 병목 현상 (Bottleneck)
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          80년대 고점(700만톤) 이후 30년 넘게 이어진 글로벌 자원의 박스권 딜레마 방증
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -65,9 +62,6 @@ export function Widget2_Hegemony() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-danger)', margin: 0 }}>
           초강대국(미·러) 생산 독점 리스크
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          글로벌 어획량의 양강 구도 쏠림에 따른 자원 편중성과 스팟 가격 지배 구조 증명
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -105,9 +99,6 @@ export function Widget3_USARussiaDiverging() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-warning)', margin: 0 }}>
           미국 베링해 감축 vs 러시아 연안 증산 (Diverging)
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          기후 악화로 인한 알래스카 쿼터 급감과 러시아의 무분별 조업 간 이격 확대
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -148,9 +139,6 @@ export function Widget4_KoreaImport() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#94a3b8', margin: 0 }}>
           대한민국 수산 안보: 자국 어획 소멸의 데드크로스
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          국내 동해안 명태 소멸에 따른 100% 수입 의존 고착화 및 국가 식량 리스크 도래
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>

@@ -248,7 +248,7 @@ export default function UnloadingStatus() {
           <div style={{ width: '100%', overflowX: 'auto' }}>
             <ComposedChart width={Math.max(chartData.length * 60, 600)} height={300} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
-              <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} angle={-35} textAnchor="end" height={50} />
+              <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} angle={0} textAnchor="middle" height={50} />
               <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
               <RechartsTooltip 
                 contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}

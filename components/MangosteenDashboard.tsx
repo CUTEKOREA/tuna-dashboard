@@ -321,7 +321,6 @@ export default function MangosteenDashboard() {
                 </div>
                 <div>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}><Zap size={16} color="#c026d3" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> 노트북LM 망고스틴 AI 챗봇</h3>
-                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>태국 수출입, 국내 단가, 검역 기후 리스크 데이터가 모두 학습된 맞춤형 AI입니다.</p>
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/3cd01c74-92fe-4857-bbca-2327a254435e" target="_blank" rel="noopener noreferrer" style={{ background: '#c026d3', color: '#000000', padding: '0.7rem 1.3rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', whiteSpace: 'nowrap', transition: 'background 0.2s, transform 0.1s' }}>
@@ -349,7 +348,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Globe size={18} color={SECTIONS[0].color} /> 글로벌 생산량 및 수출 점유율
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>단위: 톤(t) / 국제식량농업기구 데이터</p>
             </div>
             <TelemetryBadge status="synced" syncDate="2026.05.15" />
           </div>
@@ -379,7 +377,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Droplets size={18} color="#e879f9" /> 기후 및 수율 연동 예측 모델
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>기후 지수 대비 검역 생존율 (%)</p>
             </div>
             <TelemetryBadge status="live" syncDate="2026.05.15" />
           </div>
@@ -420,7 +417,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Snowflake size={18} color="#c026d3" /> 생과 및 냉동 제품 수익성 트래커
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>생과 대비 냉동 퓨레 마진율 추이 (%)</p>
             </div>
             <TelemetryBadge status="live" syncDate="2026.05.15" />
           </div>
@@ -449,7 +445,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Snowflake size={18} color="#c026d3" /> 에틸렌 차단 예냉 기술 수율 방어 곡선
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>일반 냉장 대비 특수 가스 처리 수율 방어율 (%)</p>
             </div>
             <TelemetryBadge status="static" syncDate="2026.05.15" />
           </div>
@@ -519,7 +514,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Ship size={18} color="var(--color-success)" /> 물류 모드별 원가 시뮬레이션
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>운송비 ($/kg) 대비 유효 수율 (%)</p>
             </div>
             <TelemetryBadge status="static" syncDate="2026.05.15" />
           </div>
@@ -548,7 +542,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Landmark size={18} color="var(--color-warning)" /> 협정 삼각 무역 시뮬레이션
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>국가 간 수입 관세(%) 및 최종 마진율 비교</p>
             </div>
             <TelemetryBadge status="live" syncDate="2026.05.15" />
           </div>
@@ -589,7 +582,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Apple size={18} color={SECTIONS[3].color} /> 국내 과일 물가 연동 스캐너
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>국내 사과 도매가(원) vs 망고스틴 수입량(톤)</p>
             </div>
             <TelemetryBadge status="live" syncDate="2026.05.15" />
           </div>
@@ -619,7 +611,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Workflow size={18} color={SECTIONS[3].color} /> 글로벌 무역 가치사슬 흐름
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>국가 간 릴레이 무역 경로 (단위: 톤)</p>
             </div>
             <TelemetryBadge status="synced" syncDate="2026.05.15" />
           </div>
@@ -651,7 +642,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <PackageCheck size={18} color={SECTIONS[3].color} /> 최상급 품질 재수출 단가
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>몽골 및 괌 리조트향 재수출 데이터 ($/kg)</p>
             </div>
             <TelemetryBadge status="live" syncDate="2026.05.15" />
           </div>
@@ -693,7 +683,6 @@ export default function MangosteenDashboard() {
               <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
                 <Leaf size={18} color={SECTIONS[4].color} /> 망고스틴 껍질 업사이클링 시뮬레이션
               </h3>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>과육 단일 판매 및 껍질 펫푸드 연계 수익 구조 분석</p>
             </div>
             <TelemetryBadge status="synced" syncDate="2026.05.15" />
           </div>

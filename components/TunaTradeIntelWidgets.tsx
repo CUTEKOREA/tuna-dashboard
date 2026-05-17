@@ -107,16 +107,13 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
           </span>
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 관세율 %)</span>
         </h3>
-        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
-          World Bank WITS API를 통해 HS 160414(참치 조제품) 기준 주요국의 MFN/FTA/양허(Bound) 관세율을 비교합니다. FTA 활용에 따른 관세 절감 기회를 정량적으로 분석합니다.
-        </p>
       </div>
 
       <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0, overflow: 'hidden' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={tariffData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey="country" stroke="#64748b" tick={{ fontSize: 10 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="country" stroke="#64748b" tick={{ fontSize: 10 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#64748b" tick={{ fontSize: 9 }} unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -191,9 +188,6 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
             {isLive ? '🟢 실시간' : '벤치마크 DB'}
           </span>
         </h3>
-        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
-          Observatory of Economic Complexity(OEC) 데이터를 기반으로 HS 1604(어류 조제품) 글로벌 교역 규모와 주요 수출/수입국 점유율을 시각화합니다. 한국의 글로벌 포지셔닝을 분석합니다.
-        </p>
       </div>
 
       <div style={{ height: '325px', width: '100%', marginBottom: '1rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -287,16 +281,13 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
           </span>
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: $M / kMT)</span>
         </h3>
-        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
-          HS 030342(냉동 황다랑어) 기준 한국의 수출입 가액 및 물량 5개년 추이를 WITS/UN Comtrade 데이터로 시각화합니다. 구조적 무역수지 적자 현황과 공급선 의존도를 분석합니다.
-        </p>
       </div>
 
       <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0, overflow: 'hidden' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey="Year" stroke="#64748b" tick={{ fontSize: 10 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="Year" stroke="#64748b" tick={{ fontSize: 10 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis stroke="#64748b" tick={{ fontSize: 9 }} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} />

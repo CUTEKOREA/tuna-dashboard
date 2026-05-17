@@ -20,8 +20,8 @@ import TakeawayBox from './TakeawayBox';
 const formatXAxis = (tickItem: any) => {
   if (!tickItem || typeof tickItem !== 'string') return tickItem;
   let formatted = tickItem.replace(/\s*\([A-Za-z\s']+\)\s*/g, '');
-  if (formatted.length > 6) {
-    return formatted.substring(0, 6) + '..';
+  if (formatted.length > 7) {
+    return formatted.substring(0, 7) + '..';
   }
   return formatted;
 };
@@ -131,8 +131,8 @@ export default function CashewStrategy() {
     const d = w.data || w.pies;
     if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
     const isTextAxis = d.length > 0 && typeof d[0][w.xKey] === 'string' && isNaN(Number(d[0][w.xKey]));
-    const tickProps = isTextAxis ? {fontSize:10, angle:-30, textAnchor:'end' as const} : {fontSize:10};
-    const chartMargin = isTextAxis ? { top: 5, right: 10, left: -10, bottom: 40 } : undefined;
+    const tickProps = isTextAxis ? {fontSize:10, angle:0, textAnchor:'middle' as const, dy: 5} : {fontSize:10};
+    const chartMargin = isTextAxis ? { top: 5, right: 10, left: -10, bottom: 10 } : undefined;
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
     const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={tickProps} interval={0} tickFormatter={formatXAxis} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
@@ -412,7 +412,6 @@ export default function CashewStrategy() {
                 <div style={{ background:'rgba(16,185,129,0.2)', padding:'0.8rem', borderRadius:'50%' }}><Database size={20} color="var(--color-success)" /></div>
                 <div>
                   <h3 style={{ color:'var(--color-success)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} /> NotebookLM 캐슈넛 AI 챗봇</h3>
-                  <p style={{ margin:0, fontSize:'0.82rem', color:'#cbd5e1' }}>417건의 원본 소스가 학습된 맞춤형 AI입니다.</p>
                 </div>
               </div>
               <a href="https://notebooklm.google.com/notebook/898be2d6-0180-497a-ac2b-89ca39bb8fec" target="_blank" rel="noreferrer"

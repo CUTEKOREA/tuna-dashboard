@@ -82,9 +82,6 @@ export const WidgetChinaHegemony = () => (
   <div style={widgetStyle}>
     <div style={headerStyle}>
       <h3 style={titleStyle}><TrendingUp size={18} color="var(--color-danger)" /> 중국의 수리미 생산 블랙홀 현상</h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          전 세계 수리미 가공 생산량(천 톤)의 국가별 파이를 보여줍니다. 중국이 75% 이상을 독식하고 있습니다.
-        </p>
       
     </div>
     <div style={chartStyle}>
@@ -115,9 +112,6 @@ export const WidgetLithuaniaParadox = () => {
     <div style={widgetStyle}>
       <div style={headerStyle}>
         <h3 style={titleStyle}><Globe size={18} color="var(--color-warning)" /> 리투아니아 패러독스: 가공 마진의 승리</h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          명태 조업지가 아닌 동유럽 국가(리투아니아 등)가 가공을 통해 글로벌 #1 수리미 수출을 장악하고 있는 현상입니다.
-        </p>
         
       </div>
       <div style={chartStyle}>
@@ -144,9 +138,6 @@ export const WidgetKoreaDeficit = () => (
   <div style={widgetStyle}>
     <div style={headerStyle}>
       <h3 style={titleStyle}><AlertTriangle size={18} color="#f43f5e" /> 대한민국 딜레마: 글로벌 #1 수입국의 한계</h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          한국의 수리미 수입액이 치솟으며 수출액과의 격차(Deficit)가 커지는 모습을 추적합니다.
-        </p>
       
     </div>
     <div style={chartStyle}>
@@ -176,9 +167,6 @@ export const WidgetSurimiMultiplier = () => {
     <div style={widgetStyle}>
       <div style={headerStyle}>
         <h3 style={titleStyle}><PieChart size={18} color="#8b5cf6" /> 가치 창출 배수: 원물 블록 vs 2차 가공품</h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          명태를 다져 만든 1차 원물 블록 시장 대비, 2차 가공 완료된 완제품(맛살 등)의 글로벌 수출 시장 규모 차이입니다.
-        </p>
         
       </div>
       <div style={{...chartStyle, display: 'flex', flexDirection: 'row'}}>

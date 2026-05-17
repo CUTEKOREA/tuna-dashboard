@@ -52,7 +52,7 @@ return (
         <SafeResponsiveContainer height={280}>
           <BarChart data={data} layout="vertical" margin={{ left: 50 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis dataKey="cost_type" type="category" stroke="#94a3b8" fontSize={11} width={120} />
             <Tooltip 
               contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }}

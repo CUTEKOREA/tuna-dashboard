@@ -88,7 +88,7 @@ return (
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-            <XAxis dataKey="month" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }}  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis dataKey="month" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis yAxisId="left" stroke="rgba(59,130,246,0.5)" tick={{ fill: 'var(--color-info)', fontSize: 11 }} tickFormatter={(v) => `$${v}`} domain={[1300, 2100]} />
             <YAxis yAxisId="right" orientation="right" stroke="rgba(239,68,68,0.5)" tick={{ fill: 'var(--color-danger)', fontSize: 11 }} tickFormatter={(v) => `₩${v}`} domain={[2500, 3500]} />
             <Tooltip content={<CustomTooltip />} />

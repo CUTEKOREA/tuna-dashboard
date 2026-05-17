@@ -54,9 +54,6 @@ export const WidgetFishmealHegemony = () => (
   <div style={widgetStyle}>
     <div style={headerStyle}>
       <h3 style={titleStyle}><Factory size={18} color="#eab308" /> 칠레-페루 어분(Fishmeal) 제국의 탄생</h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          남미의 엄청난 잭매크럴(전갱이류) 조업량이 식용이 아닌 연어 양식/펫케어용 거대 
-        </p>
       
     </div>
     <div style={chartStyle}>

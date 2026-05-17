@@ -460,7 +460,7 @@ ITA_API_KEY="your_key_here"
 ### 26. 해양수산부 공공데이터 통합 (MOF Fishery)
 - **Route**: `/api/mof-fishery`
 - **Method**: POST
-- **Endpoints**: 위판장 위탁판매(select0040), 수출입(select0070), 어업생산(select0180), 운송비(seaimextrnpcst)
+- **Endpoints**: 일반해면어업생산량현황(15043937/v1), 위판장 위탁판매(select0040), 수출입(select0070), 어업생산(select0180), 운송비(seaimextrnpcst)
 - **Key**: `PUBLIC_DATA_API_KEY` + `KCS_API_KEY` (기등록)
 - **근거**: (일반 2025-01) 해양수산 공공데이터 플랫폼 활용 제고 방안 연구
 - **Status**: ✅ 파이프라인 완성 — Fallback 데이터 내장

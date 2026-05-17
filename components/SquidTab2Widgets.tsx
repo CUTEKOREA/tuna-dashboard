@@ -20,9 +20,6 @@ export function Widget11_HegemonyBubble() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>11. 글로벌 어획 패권 블랙홀 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 포클랜드 및 페루 연안 쿼터 리포트. 연간 허용량의 월별 조기 소진율
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
@@ -57,9 +54,6 @@ export function Widget12_QuotaBurnRate() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>12. 국가별/어장별 쿼터 소진 속도 (Burn Rate) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 글로벌 AIS 선박 추적망. 어선수 증가 대비 톤수(Size)의 폭발 비율
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
@@ -92,9 +86,6 @@ export function Widget13_FleetExpansion() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>13. C국 초대형 원양 선단 팽창 다이내믹스 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: WTO 무역통계 및 NotebookLM 관세 자료. 자국산 진흥을 위한 수출세/입항료 폭등
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -126,9 +117,6 @@ export function Widget14_EEZProtectionism() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>14. 연안국(아르헨/페루) 배타적 보호주의 지표 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 주요 RFMO 일일 조업 실적. 자본 집약적 기술이 생산을 좌우
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
@@ -159,9 +147,6 @@ export function Widget15_TechVsCPUE() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>15. 등선 마력(HP) 기술력 vs 단위어획량(CPUE) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: UN Comtrade. 남미 원물이 중국을 거쳐 가공된 후 북반구로 소비되는 Sankey 형태
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical">
@@ -192,9 +177,6 @@ export function Widget16_TradeFlows() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>16. 무역 흐름(Flow) 블랙홀 경로 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 각국 항만공사 하역 데이터. 거점 이동 트렌드 증명
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical">
@@ -225,9 +207,6 @@ export function Widget17_PortHubs() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>17. 글로벌 거점 항구 하역 물동량 추이 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: NotebookLM B2B 벨류체인 데이터. 인건비 상승에 따른 제3국 낙수 효과
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -257,9 +236,6 @@ export function Widget18_ProcessingBlackhole() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>18. 글로벌 임가공 거점 이동 (블랙홀 현상) </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: OECD 어업 지원금 데이터. 보조금이 적외선 선단 운영 연장을 돕는 역설
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" stackOffset="expand">
@@ -290,9 +266,6 @@ export function Widget19_SubsidiesVsDepletion() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>19. 유류 보조금 vs 초과 남획 상관관계 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: IMO 탄소 규제 로드맵 계산기. 낡은 어선 유지비 vs 신조선 교체기
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>

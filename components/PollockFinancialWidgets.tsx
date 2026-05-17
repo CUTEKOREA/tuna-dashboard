@@ -21,9 +21,6 @@ export function Widget17_OilMargin() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-danger)', margin: 0 }}>
           출항 마지노선: 유가(MGO) 쇼크 대비 조업 셧다운 데드라인
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          연료비가 전체 어선의 마진 단가를 초과 잠식시켜버리는 회계 자본 잠식회사 곡선
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -65,9 +62,6 @@ export function Widget18_FXMargin() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#8b5cf6', margin: 0 }}>
           무역의 배신: 고환율 쇼크에 따른 손익 역상관성
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          원물 달러매입(USD) 수입 결제 구조하에서 달러 고환율에 파괴되는 국내 OPM
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -109,9 +103,6 @@ export function Widget19_CollagenSpinoff() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-success)', margin: 0 }}>
           버려진 황금: 펩타이드 콜라겐 뷰티테크 스핀오프
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          수산 폐기물 쓰레기로 버려지던 명태 어피(껍질)의 영업 이익 하드 펌핑 신화
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -152,9 +143,6 @@ export function Widget20_Portfolio2030() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#38bdf8', margin: 0 }}>
           경영 최종 공의회: 2030 생존 포트폴리오의 미래
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          사양화되는 기존 비즈니스와 캐시카우를 대체할 블루오션의 Bubble Map
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>

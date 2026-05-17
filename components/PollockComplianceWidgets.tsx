@@ -21,9 +21,6 @@ export function Widget13_Decoupling() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-danger)', margin: 0 }}>
           지정학 충격: 가격 디커플링 (러시아 제재 vs 미국산 폭등)
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          서방 제재 유탄 맞은 러시아산 투매 파괴와 이격되는 미국산 프리미엄 현상
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -64,9 +61,6 @@ export function Widget14_MscRatio() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-success)', margin: 0 }}>
           무역 장벽 1순위: 친환경 에코 인증(MSC) 장악력 심화
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          글로벌 상위 프랜차이즈 식자재 입점 불허 기준선 역할을 하는 MSC 인증률 폭발 추이
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -107,9 +101,6 @@ export function Widget15_IuuRisk() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-danger)', margin: 0 }}>
           잠재 시한폭탄: 지역별 IUU(불법어업) 페널티 리스크 한계점
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          트레이스(이력 추적) 증빙 실패 시 항만 하역 압류 및 블랙리스트 지정 경고등
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -150,9 +141,6 @@ export function Widget16_ClimateShift() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#38bdf8', margin: 0 }}>
           기후 변화의 재난: 주력 어장 북상 임계치 곡선
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          베링해 난류 이상 기온 시뮬레이션 기반 황금 어장의 위도 상실 모델링
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>

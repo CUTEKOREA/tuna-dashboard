@@ -63,16 +63,13 @@ return (
           <Globe size={18} className={styles.cardIcon} color={ACCENT} />
           베트남/동남아 OEM 파트너십 전략
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          태국(Thai Empire) 편중 해소를 위한 신흥 가공 거점(베트남)과의 핵심 경쟁력 및 리스크 지표 비교
-        </p>
       </div>
 
       <div style={{ height: '280px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ left: 30 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-            <XAxis type="number" stroke="#94a3b8"  angle={-25} textAnchor="end" height={60} tickFormatter={truncateXAxis}/>
+            <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis dataKey="metric" type="category" stroke="#94a3b8" fontSize={11} width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />

@@ -19,9 +19,6 @@ export function Widget31_PriceSpread() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>31. 원산지별 C&F 수입 단가 스프레드 수렴 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 대형마트 B2C 실거래 패키지 규격 변화 데이터
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -53,9 +50,6 @@ export function Widget32_Shrinkflation() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>32. 제품량 삭감(Shrinkflation) 실중량 추적기 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: WTO 무역 관세율. 제3국(중국/베트남) 가공 FTA 0% 우회 마진 시뮬
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
@@ -86,9 +80,6 @@ export function Widget33_TariffArbitrage() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>33. 글로벌 정책/비관세 우회 가공 무역 차익 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 부산 공동어시장 위판 이력. 기후 악화에 따른 대형 어체 특품 프리미엄 폭발
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" stackOffset="expand">
@@ -120,9 +111,6 @@ export function Widget34_SizePremium() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>34. 대형어 vs 소형어 사이즈 프리미엄 스퀴즈 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 한국은행 외환 데이터. 강달러 타격에 따른 수입사 적자 분해
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -153,9 +141,6 @@ export function Widget35_FXHedging() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>35. 환율 민감도 연동 원가 헷징 레벨 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 1차 수입상/2차 가공장 납품 단가표 추적. 원물 절단 시 증폭되는 판가
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
@@ -191,9 +176,6 @@ export function Widget36_VASpread() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>36. 가공 단계별 부가가치 전가 스프레드 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: WTI 유가 및 발틱운임지수(BDI). 물류비가 침식하는 C&F 이익률
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
@@ -222,9 +204,6 @@ export function Widget37_FreightPremium() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>37. WTI 유가 / BDI 연동 해상 물류비 프리미엄 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 페루 수출 관세 단가표. 대체재에서 정상재로 신분 상승하는 기울기
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -257,9 +236,6 @@ export function Widget38_JumboJump() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>38. 대왕오징어(훔볼트) 원가 퀀텀 점프 가속도 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 현지 출항전 계약 단가 vs 상장 위판 단가 차익 트래킹
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
@@ -288,9 +264,6 @@ export function Widget39_ForwardSpot() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>39. 사전 선도계약(Forward) vs 스팟 펌핑 스프레드 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 프랜차이즈 식자재 성분율 조정 데이터. 30% 상승 시 대왕오징어로 폭주
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>

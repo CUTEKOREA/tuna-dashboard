@@ -335,7 +335,6 @@ export default function CocoaDashboard() {
                 </div>
                 <div>
                   <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}><Zap size={16} color="#b45309" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> NotebookLM 코코아 AI 챗봇</h3>
-                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)' }}>FAOSTAT 원물 수급, World Bank 물가, EUDR 관련 데이터가 학습된 맞춤형 AI입니다.</p>
                 </div>
               </div>
               <a 

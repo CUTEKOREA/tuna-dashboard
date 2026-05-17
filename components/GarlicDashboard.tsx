@@ -277,7 +277,6 @@ export default function GarlicDashboard() {
               <div style={{ background:'rgba(30, 215, 96, 0.1)', padding:'0.8rem', borderRadius:'50%' }}><Database size={20} color="#eab308" /></div>
               <div>
                 <h3 style={{ color:'var(--text-primary)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} color="#eab308" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> NotebookLM 마늘 AI 챗봇</h3>
-                <p style={{ margin:0, fontSize:'0.82rem', color:'var(--text-secondary)' }}>J.P. Morgan 인사이트 및 전문 리서치가 학습된 맞춤형 AI입니다.</p>
               </div>
             </div>
             <a href="https://notebooklm.google.com/notebook/f7aa78b2-427a-4300-8546-5247b416f513" target="_blank" rel="noopener noreferrer" style={{ background:'#eab308', color:'#000000', padding:'0.7rem 1.3rem', borderRadius:'20px', fontSize:'0.9rem', fontWeight:700, textDecoration:'none', display:'flex', alignItems:'center', gap:'6px', whiteSpace:'nowrap', transition:'background 0.2s, transform 0.1s' }}
@@ -309,9 +308,6 @@ export default function GarlicDashboard() {
             <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
               <Layers size={17} />글로벌 생산 패권 구조 (China Hegemony) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 톤)</span>
             </h3>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              FAOSTAT API 실시간 연동 기반 글로벌 마늘 생산량 점유율 추이 및 국가별 패권 동향 분석
-            </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -350,9 +346,6 @@ export default function GarlicDashboard() {
               <TrendingUp size={17} />{w2Mode === 'macro' ? (<>원물 인플레이션 및 국가별 수출 단가 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: USD/톤)</span></>) : (<>KAMIS 국내 도매가 스팟 매수 타이밍 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 원/kg)</span></>)}
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          FAOSTAT 및 KAMIS 실시간 연동 기반 글로벌 마늘 수출 단가(USD/톤) 및 국내 도매가(원/kg) 인플레이션 추이 분석
-        </p>
             
             {/* W2 Toggle */}
             <div style={{ display:'flex', background:'rgba(0,0,0,0.5)', borderRadius:'6px', padding:'2px', border: 'none' }}>
@@ -417,9 +410,6 @@ export default function GarlicDashboard() {
               <Zap size={17} />정밀 농업 전환 (비료 헷징 및 GPR) [좌: 단수, 우: 비료지수]
               <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          글로벌 비료 원가 지수 상승에 따른 GPR 정밀 농업(비료 최적화) 수율 방어 효과. 전통 농법 vs 정밀 농법 단수 비교 및 비료 원가 지수 교차 시뮬레이션
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -463,9 +453,6 @@ export default function GarlicDashboard() {
               <RefreshCw size={17} />용도별 공급-이용 전환율 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          신선 마늘과 가공 마늘(냉동, 건조, 페이스트 등)의 연도별 수요 전환 비중. KREI 농업전망(E04-2026) 소비 구조 분석: 외급식업 42.2%, 제조업 31.5%, 가구 26.3%
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -496,9 +483,6 @@ export default function GarlicDashboard() {
               <Zap size={17} />B2B 가공 카테고리별 마진 분해 및 타겟팅
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          마늘 가공 단계별 부가가치 창출 및 영업 이익률 비교. 신선 마늘 원가 대비 건조, 페이스트, 흑마늘, 추출(알리신) 단계별 가격 및 마진율 추산
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -530,9 +514,6 @@ export default function GarlicDashboard() {
               <TestTube size={17} />바이오케미컬 및 흑마늘 B2B 가치평가 [좌: $B, 우: 마진%]
               <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          아세안/글로벌 흑마늘 기능성 소재 시장 규모 및 영업 마진율 추이. 베트남 농축액 스틱 및 중국 흑마늘 향신료 B2B 수요 반영
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -575,9 +556,6 @@ export default function GarlicDashboard() {
               <Truck size={17} />주요 수출대상국 흐름 (Top Exports) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 톤)</span>
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          글로벌 주요 마늘 수출국의 수출 대상국별 물동량 분석. UN Comtrade HS Code 기준 교역 흐름 트래킹
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -607,9 +585,6 @@ export default function GarlicDashboard() {
               <Shield size={17} />OEC 관세율 연동 수입 소싱처 전환(Arbitrage) 맵
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          한국의 마늘 관세(최대 360%)를 고려한 소싱 루트별 최종 도착 원가(Landed Cost) 비교. FOB 원가 + 물류비 + 관세 페널티 산식 적용
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -641,9 +616,6 @@ export default function GarlicDashboard() {
               <Anchor size={17} />홍해 사태 (Red Sea Crisis) 물류 충격 [좌: 일수, 우: 지수]
               <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          홍해 사태에 따른 수에즈 운하 우회 시 운송 기간 증가 및 해상보험 리스크 지수 급등. SCFI 지수 기반 운임/리스크 프리미엄 교차 분석
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -675,9 +647,6 @@ export default function GarlicDashboard() {
               <ShieldCheck size={17} />운송 리스크 헷징 시뮬레이터 (Egypt Hub Hedging)
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          홍해 사태 시 운임 폭등 배수와 이집트 현지 가공 전환율에 따른 TEU당 물류비 절감액 동적 시뮬레이션
-        </p>
           </div>
           
           {/* Simulator Controls */}
@@ -736,9 +705,6 @@ export default function GarlicDashboard() {
               <MapPin size={17} />1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 USD]
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          국가별 마늘 1인당 소비량(kg/인)과 시장 규모(백만 USD)의 상관관계 산점도. FAO 통계 기반 소비국 매트릭스 분석
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -771,9 +737,6 @@ export default function GarlicDashboard() {
               <Activity size={17} />무역 수지 및 적자/흑자 전환 (한국 기준) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 백만 USD)</span>
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          한국 시장의 연도별 마늘 무역 수지(수출액 - 수입액) 변동 추이. 관세청(KCS) 수출입 데이터 기반 순 무역 적자 규모 추적
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -803,9 +766,6 @@ export default function GarlicDashboard() {
               <ShieldCheck size={17} />2025 스마트 패키징 (Smart Packaging) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          B2C 마늘 포장 트렌드(친환경/에코) 전환 시 브랜드 프리미엄 및 폐기물 감축 효과. 종이/PLA 친환경 포장 적용 시 마진 프리미엄 + 폐기 비용 절감률
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -836,9 +796,6 @@ export default function GarlicDashboard() {
               <TrendingUp size={17} />글로벌 흑마늘/추출물 가치평가 (Valuation) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 백만 USD)</span>
               <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          글로벌 흑마늘 추출물 및 마늘 건기식(Supplements) 시장의 연도별 가치평가 추이. J.P. Morgan PEF 멀티플 기반 밸류에이션
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -880,9 +837,6 @@ export default function GarlicDashboard() {
               <Leaf size={17} />기후 변화에 따른 단수 효율성 (Yield) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: kg/ha)</span>
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          주요 국가별 마늘 단위면적당 수확량(Yield, kg/ha) 시계열 추이. FAOSTAT QCL 기반 기후 변화에 따른 단수 효율성 비교
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -916,9 +870,6 @@ export default function GarlicDashboard() {
               <AlertTriangle size={17} />수확량 변동성 및 기후 리스크 지수 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 변동률 %)</span>
               
             </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-          주요 국가별 마늘 가격 연간 변동성(Volatility) 측정. 월간 가격 표준편차를 연평균으로 나눈 변동 계수(CV) 도출
-        </p>
           </div>
           <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
             <SafeResponsiveContainer width="100%" height="100%">

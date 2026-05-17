@@ -18,9 +18,6 @@ export function Widget41_FuelBEP() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>41. 선단 운영 유류비 손익분기점(BEP) 임계선 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 수산유통 벤더 폐업률 및 직납 구조 데이터
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
@@ -51,9 +48,6 @@ export function Widget42_MiddlemenCollapse() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>42. 중간 도매상(Middlemen) 마진 붕괴 궤적 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 통계청 수산물 유통 마진 조사 명세서. 최종 소비자 가격을 구성하는 거품 해부
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -84,9 +78,6 @@ export function Widget43_WaterfallMargin() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>43. 밸류체인 스텝별 폭포수(Waterfall) 마진 분배 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 메이저 냉동창고 연체료 규정. 장기 재고 타격의 수학적 한계선
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical">
@@ -116,9 +107,6 @@ export function Widget44_StorageDeadcross() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>44. 존버 실패: 보관료 누적 vs 시세 차익 데드크로스 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 가공 공장 입고 파레트 해동 실측 데이터. 장부상 중량의 허구 증명
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data}>
@@ -148,9 +136,6 @@ export function Widget45_YieldLoss() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>45. 물코기(Glazing) 수율 조작에 따른 손실 백테스트 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 최저임금상승률 및 글로벌 BAADER 설비 CAPEX 단가표
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" stackOffset="expand">
@@ -181,9 +166,6 @@ export function Widget46_AutomationROI() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>46. 인건비 폭동 vs 스마트(H&G 자동화) 기기 도입 ROI </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 채널별 매출 구조 시뮬레이션. Target 영업이익률 8% 달성 공식
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -213,9 +195,6 @@ export function Widget47_ChannelMarginTracker() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>47. B2B 식자재 타겟 영업 채널 조합 트래커 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 출항 당 고정비(선박 감가) 및 변동비(유류비) 해체 실적
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} layout="vertical">
@@ -244,9 +223,6 @@ export function Widget48_OpPerDay() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>48. 조업일 당 순수익 (OP per Sea-Day) 마일스톤 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: ERP 창고 입출고 지표. 회전율 저하는 자본 동결을 의미
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
@@ -280,9 +256,6 @@ export function Widget49_InventoryTurns() {
   return (
     <div style={glassContainerStyle}>
       <h3 className={styles.widgetTitle}>49. 재고 회전율 악성 경보 지연 </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          출처: 외상매출금(어음) 회수 평균 기일. 흑자 도산 방지 장치
-        </p>
       <div style={{ height: 250 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical">

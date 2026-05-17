@@ -21,9 +21,6 @@ export function Widget5_Importers() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#38bdf8', margin: 0 }}>
           무역의 블랙홀: 중국향 가공 쏠림 현상
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          전 세계를 상대로 수입 볼륨 1위를 기록하는 중국의 하청 재가공 베이스캠프 전락 리스크
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -64,9 +61,6 @@ export function Widget6_UnitPrice() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-danger)', margin: 0 }}>
           마진 스퀴즈: 수출가 vs 소비국 판가 단가 갭 축소선
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          원산지(러시아)의 원물 폭등을 따라가지 못해 압사당하는 B2B 중간상인(한국향) 이익 구조
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -106,9 +100,6 @@ export function Widget7_SankeyRoute() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-warning)', margin: 0 }}>
           Double-Frozen: 제재 우회와 품질 훼손의 딜레마
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          원물 국적 세탁을 위한 2번의 동결 프로세스가 수반하는 근본적 공급망 위험
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
@@ -157,9 +148,6 @@ export function Widget8_KoreaDeficit() {
         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-danger)', margin: 0 }}>
           대한민국 수산계 무역 수지 적자 늪 (Deficit Gap)
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          막대한 외화 결제 유출 속, 미미한 재가공 수출이 빚어낸 국부 유출의 민낯
-        </p>
         
       </div>
       <div style={{ fontSize: '0.9rem', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
