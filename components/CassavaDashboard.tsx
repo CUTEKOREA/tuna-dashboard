@@ -7,7 +7,7 @@ import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-  ScatterChart, Scatter, ZAxis, ReferenceArea, ReferenceLine
+  ScatterChart, Scatter, ZAxis, ReferenceArea, ReferenceLine, Sankey
 } from 'recharts';
 import {
   Globe, TrendingUp, AlertTriangle, Sprout, Factory, ShieldCheck, Banknote,
@@ -34,6 +34,27 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     );
   }
   return null;
+};
+
+const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
+  if (!status) return null;
+  const config = {
+    live: { bg: 'rgba(16, 185, 129, 0.15)', border: '#10b981', text: '#10b981', label: 'LIVE API' },
+    synced: { bg: 'rgba(56, 189, 248, 0.15)', border: '#c026d3', text: '#c026d3', label: 'SYNCED' },
+    static: { bg: 'rgba(148, 163, 184, 0.15)', border: '#64748b', text: '#94a3b8', label: 'STATIC' }
+  }[status];
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+      <span style={{ 
+        background: config.bg, border: `1px solid ${config.border}`, color: config.text, 
+        padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.5px' 
+      }}>
+        {config.label}
+      </span>
+      {syncDate && <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{syncDate}</span>}
+    </div>
+  );
 };
 
 const CASSAVA_THEME = {
@@ -71,11 +92,11 @@ const WIDGET_ICONS: Record<string, any> = {
 };
 
 const SECTIONS = [
-  { id: "S1", title: "원물 수급 및 글로벌 생산 (Raw Material)", desc: "기후 리스크 및 태국/베트남 등 핵심 산지 공급망 의존도 분석", color: CASSAVA_THEME.tertiary, widgets: ["w_early_warning", "w04"] },
-  { id: "S2", title: "가공 및 부가가치 창출 (Processing)", desc: "4F(식량, 사료, 원료, 바이오) 패러다임 전환 및 붕해제/바이오수지 마진 분석", color: CASSAVA_THEME.primary, widgets: ["w10", "w01", "w02"] },
-  { id: "S3", title: "물류 및 유통 (Logistics & Trading)", desc: "수입국 종속 리스크 및 글로벌 물류 허브(Silla 5-Hub) 간 차익 거래", color: CASSAVA_THEME.secondary, widgets: ["w07", "w_arbitrage", "w05"] },
-  { id: "S4", title: "판매 및 시장 수요 (Sales & Demand)", desc: "아프리카(가나) 시장의 역발상 기회 및 대체재(밀가루) 수입 대체 효과", color: CASSAVA_THEME.neutral, widgets: ["w08", "w09", "w06"] },
-  { id: "S5", title: "ESG 및 지속가능성 (Sustainability)", desc: "펄프/껍질 재자원화, 바이오가스 포집을 통한 공정 내 전력 순환", color: CASSAVA_THEME.quaternary, widgets: ["w03", "w_esg"] }
+  { id: "S1", title: "원물 수급 및 글로벌 생산", desc: "기후 리스크 및 태국/베트남 등 핵심 산지 공급망 의존도 분석", color: CASSAVA_THEME.tertiary, widgets: ["w_early_warning", "w04"] },
+  { id: "S2", title: "가공 및 부가가치 창출", desc: "4F 패러다임 전환 및 붕해제/바이오수지 마진 분석", color: CASSAVA_THEME.primary, widgets: ["w10", "w01", "w02"] },
+  { id: "S3", title: "물류 및 유통", desc: "수입국 종속 리스크 및 글로벌 물류 허브 간 차익 거래", color: CASSAVA_THEME.secondary, widgets: ["w07", "w_arbitrage", "w05"] },
+  { id: "S4", title: "판매 및 시장 수요", desc: "아프리카 시장의 역발상 기회 및 대체재 수입 대체 효과", color: CASSAVA_THEME.neutral, widgets: ["w08", "w09", "w06"] },
+  { id: "S5", title: "ESG 및 지속가능성", desc: "펄프/껍질 재자원화, 바이오가스 포집을 통한 공정 내 전력 순환", color: CASSAVA_THEME.quaternary, widgets: ["w03", "w_esg"] }
 ];
 
 export default function CassavaDashboard() {
@@ -114,34 +135,55 @@ export default function CassavaDashboard() {
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     if (w.id === 'w04') {
-      return (
-        <div style={{ width: '100%', height: '100%', position: 'relative', minHeight:'200px' }}>
-          <svg style={{ width: '100%', height: '100%' }} viewBox="0 0 400 250">
-            <defs>
-              <linearGradient id="gradientRed" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor={CASSAVA_THEME.tertiary} />
-                <stop offset="100%" stopColor="#b45309" />
-              </linearGradient>
-            </defs>
-            <path d="M 90 100 Q 170 60 250 60" fill="none" stroke="url(#gradientRed)" strokeWidth="46" opacity="0.6" className="animate-pulse" />
-            <path d="M 90 120 Q 170 160 250 160" fill="none" stroke="rgba(59,130,246,0.4)" strokeWidth="12" />
-            <path d="M 90 130 Q 170 215 250 215" fill="none" stroke="rgba(245,158,11,0.4)" strokeWidth="4" />
-            
-            <rect x="10" y="60" width="80" height="110" fill="rgba(245,158,11,0.15)" stroke={CASSAVA_THEME.tertiary} rx="8" />
-            <text x="50" y="110" fill={CASSAVA_THEME.tertiary} fontSize="12" textAnchor="middle" fontWeight="bold">태국/베트남</text>
-            <text x="50" y="130" fill="#cbd5e1" fontSize="10" textAnchor="middle">생산 점유 선도</text>
-            
-            <rect x="250" y="20" width="120" height="90" fill="rgba(180,83,9,0.15)" stroke={CASSAVA_THEME.primary} rx="8" />
-            <text x="310" y="60" fill={CASSAVA_THEME.primary} fontSize="12" textAnchor="middle" fontWeight="bold">중국 (블랙홀)</text>
-            <text x="310" y="80" fill="#cbd5e1" fontSize="10" textAnchor="middle">수출량 {w._liveMetadata?.chinaAbsorptionRate || '60~95%'} 흡수</text>
+      const sankeyData = {
+        nodes: [
+          { name: '태국/베트남' },
+          { name: '가나 (신규 Hub)' },
+          { name: '중국 (블랙홀)' },
+          { name: '기타 아시아' },
+          { name: '한국' }
+        ],
+        links: [
+          { source: 0, target: 2, value: 75 },
+          { source: 0, target: 3, value: 15 },
+          { source: 0, target: 4, value: 5 },
+          { source: 1, target: 4, value: 5 }
+        ]
+      };
+      
+      const renderCustomNode = ({ x, y, width, height, index, payload }: any) => {
+        const isTarget = index >= 2;
+        return (
+          <g>
+            <rect x={x} y={y} width={width} height={height} fill={isTarget ? CASSAVA_THEME.primary : CASSAVA_THEME.tertiary} rx="2" />
+            <text x={x + width / 2} y={y - 8} fill="#f8fafc" fontSize="11" textAnchor="middle" fontWeight="bold">
+              {payload.name}
+            </text>
+          </g>
+        );
+      };
 
-            <rect x="250" y="140" width="120" height="40" fill="rgba(217,119,6,0.15)" stroke={CASSAVA_THEME.secondary} rx="6" />
-            <text x="310" y="165" fill={CASSAVA_THEME.secondary} fontSize="11" textAnchor="middle">기타 아시아</text>
-            
-            <rect x="250" y="200" width="120" height="30" fill="rgba(245,158,11,0.15)" stroke={CASSAVA_THEME.quaternary} rx="6" />
-            <text x="310" y="220" fill={CASSAVA_THEME.quaternary} fontSize="11" textAnchor="middle">한국 ({w._liveMetadata?.thailandVietnamDependency || '99.9%'} 의존도)</text>
-          </svg>
-        </div>
+      const renderCustomLink = ({ sourceX, sourceY, targetX, targetY, sourceControlX, targetControlX, linkWidth }: any) => {
+        return (
+          <path
+            d={`M${sourceX},${sourceY} C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`}
+            fill="none"
+            stroke={CASSAVA_THEME.secondary}
+            strokeWidth={linkWidth}
+            strokeOpacity={0.2}
+          />
+        );
+      };
+
+      return (
+        <Sankey
+          data={sankeyData}
+          margin={{ top: 30, left: 20, right: 20, bottom: 20 }}
+          node={renderCustomNode}
+          link={renderCustomLink}
+        >
+          <RechartsTooltip />
+        </Sankey>
       );
     }
 
@@ -234,9 +276,9 @@ export default function CassavaDashboard() {
             </div>
             <div>
               <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: '#f8fafc' }}>
-                카사바(Cassava) & 타피오카(Tapioca) 통합 인텔리전스
+                카사바 & 타피오카 통합 인텔리전스
               </h1>
-              <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>원물(Cassava)에서 핵심 산업소재(Tapioca)로의 4F 밸류체인 진화 및 고부가가치화 전략</p>
+              <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>원물에서 핵심 산업소재로의 4F 밸류체인 진화 및 고부가가치화 전략</p>
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
@@ -279,8 +321,8 @@ export default function CassavaDashboard() {
           <div style={{ display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <BookOpen size={20} color={CASSAVA_THEME.tertiary} />
             <div style={{ textAlign:'left' }}>
-              <div style={{ fontSize:'1.05rem', fontWeight:700, color:CASSAVA_THEME.tertiary, marginBottom:'4px' }}>2026 Executive Summary: 카사바와 타피오카의 통합 밸류체인</div>
-              <div style={{ fontSize:'0.8rem', color:'#94a3b8' }}>단순 구황작물(카사바)에서 글로벌 4F 산업(식량, 사료, 연료, 소재)의 최상위 마진 산업재(타피오카)로 진화</div>
+              <div style={{ fontSize:'1.05rem', fontWeight:700, color:CASSAVA_THEME.tertiary, marginBottom:'4px' }}>2026 전략 요약: 카사바와 타피오카의 통합 밸류체인</div>
+              <div style={{ fontSize:'0.8rem', color:'#94a3b8' }}>단순 구황작물에서 글로벌 4F 산업의 최상위 마진 산업재로 진화</div>
             </div>
           </div>
           <div style={{ transform: showEdu?'rotate(180deg)':'rotate(0deg)', transition:'transform 0.3s' }}>
@@ -329,11 +371,14 @@ export default function CassavaDashboard() {
               const isLastOdd = (sec.widgets.length % 2 !== 0) && (idx === sec.widgets.length - 1);
               return (
                 <div key={w.id} className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'500px', gridColumn: isLastOdd ? '1 / -1' : 'auto' }}>
-                  <div style={{ marginBottom:'1rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
-                    <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:accent, margin:'0 0 0.4rem' }}>
-                      <Icon size={18} />{w.title}
-                    </h3>
-                    {w.subtitle && <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>{w.subtitle}</p>}
+                  <div style={{ marginBottom:'1rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div>
+                      <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:accent, margin:'0 0 0.4rem' }}>
+                        <Icon size={18} />{w.title}
+                      </h3>
+                      {w.subtitle && <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>{w.subtitle}</p>}
+                    </div>
+                    <TelemetryBadge status={w.id.startsWith('w_') || w.source?.includes('Live') ? 'live' : 'synced'} syncDate="2026.05.15" />
                   </div>
                   <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
                     <SafeResponsiveContainer width="100%" height="100%">{renderChart(w)}</SafeResponsiveContainer>

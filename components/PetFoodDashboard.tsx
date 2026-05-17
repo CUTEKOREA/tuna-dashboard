@@ -78,7 +78,7 @@ export default function PetFoodDashboard() {
 
   if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon} style={{marginBottom: '1rem'}}/></div><div>Loading verified intelligence...</div></div>;
 
-  const { kpis, d_simulator, d_channel_share, d_export_dest, d_w01, d_w02, d_w03, d_w04, d_w05, d_w06, d_w07, d_w08, d_w09, d_w10, d_w11, d_w12, d_w13, d_w14, d_w15, d_w16, d_w17, d_w18, d_w19, d_w20, d_w21, d_w22, d_w23, d_w24, d_w25, d_w26, d_w27_radar, d_w28, d_w30, d_w31, d_w32, d_nw01_bycatch, d_nw02_quota, d_nw03_climate, d_nw04_radar, d_nw05_retention, d_nw05_abidjan, d_nw06_mmpa, d_w33, d_w34, d_w35, d_w36, d_kfas_w01, d_kfas_w02, d_kfas_w03, d_kfas_w04, d_kfas_w05 } = data;
+  const { kpis, d_simulator, d_channel_share, d_export_dest, d_w01, d_w02, d_w03, d_w04, d_w05, d_w06, d_w07, d_w08, d_w09, d_w10, d_w11, d_w12, d_w13, d_w14, d_w15, d_w16, d_w17, d_w18, d_w19, d_w20, d_w21, d_w22, d_w23, d_w24, d_w25, d_w26, d_w27_radar, d_w28, d_w30, d_w31, d_w32, d_nw01_bycatch, d_nw02_quota, d_nw03_climate, d_nw04_radar, d_nw05_retention, d_nw05_abidjan, d_nw06_mmpa, d_w33, d_w34, d_w35, d_w36, d_kfas_w01, d_kfas_w02, d_kfas_w03, d_kfas_w04, d_kfas_w05, d_illex_risk, d_protein_mix, d_macro_sensitivity, d_sg_b2b } = data;
 
 
 
@@ -94,12 +94,12 @@ export default function PetFoodDashboard() {
     <div className={styles.container}>
       <header className={styles.header}>
         <div>
-          <h1 className={styles.title}>🐾 펫푸드 산업 전략 인텔리전스 (Pet Food Strategic Intel)</h1>
-          <p className={styles.subtitle}>글로벌 거시 + 한국 심층 + 공급망 + 비즈모델 + 소비자 트렌드 = 30대 핵심 인사이트</p>
+          <h1 className={styles.title}>🐾 펫푸드 산업 전략 인텔리전스</h1>
+          <p className={styles.subtitle}>글로벌 거시 + 한국 심층 + 공급망 + 비즈모델 + 소비자 트렌드 = 핵심 전략 지표</p>
         </div>
         <div className={styles.lastUpdated}>
           <RefreshCcw size={14} className={styles.rotateIcon} />
-          <span>Last updated: 2026.05.07 (Live API Connected)</span>
+          <span>최종 갱신일: 2026.05.17 (실시간 데이터 연동)</span>
         </div>
       </header>
 
@@ -114,17 +114,17 @@ export default function PetFoodDashboard() {
         {/* ═══ Executive Strategy Command ═══ */}
         <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'linear-gradient(145deg, #1e293b, #0f172a)', borderRadius: '12px', borderLeft: '4px solid #f472b6', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}>
           <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f8fafc', fontSize: '1.25rem', marginTop: 0, marginBottom: '1rem' }}>
-            <Crown size={22} color="#f472b6" /> [Executive Strategy Command]
+            <Crown size={22} color="#f472b6" /> [경영진 전략 지휘소]
           </h2>
           <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
             <strong>전략 요약:</strong> 글로벌 펫푸드 시장 진입의 <span style={{ color: '#f472b6' }}>골든 윈도우는 향후 3~5년</span>입니다. 한국산 펫푸드 수출이 12배 폭증(일본 중심)하고 있으나, 수입 역시 거대하여 1.5억 달러 무역 적자를 기록 중입니다. 경영진은 태국 OEM 인프라를 활용하는 <strong>[S2: D2C OEM]</strong> 모델을 최우선으로 검토하고, 중장기적으로 <strong>[S5: 처방식 JV]</strong>를 통해 고부가가치 시장(ROE 극대화)으로 이전해야 합니다.
           </p>
         </div>
 
-        {/* ═══ Market Entry Simulator ═══ */}
+        {/* ═══ 시장 진입 시나리오 예측기 ═══ */}
         <div className={styles.card} style={{ marginBottom: '3rem', border: '1px solid #334155' }}>
           <div className={styles.cardHeader} style={{ background: '#1e293b' }}>
-            <h3 className={styles.cardTitle}><Activity size={18} className={styles.cardIcon} color="#f472b6" /> Market Entry Simulator (Phase 3)</h3>
+            <h3 className={styles.cardTitle}><Activity size={18} className={styles.cardIcon} color="#f472b6" /> 시장 진입 시나리오 예측기 (Phase 3)</h3>
             <TermTooltip term="S1~S5" description="5대 진입 시나리오별 예상 자본금, 매출, ROIC 비교" />
           </div>
           <div className={styles.cardBody}>
@@ -260,6 +260,60 @@ export default function PetFoodDashboard() {
             </div>
           </div>
           <div className={styles.grid}>
+
+            {/* NEW WIDGET 1 */}
+            <div className={styles.card}>
+              <CardHeader title="오징어(Illex) 어획 부진 및 원가 리스크 맵" icon={AlertCircle} term="조업 리스크" desc="최근 주차 어획량과 참깨/오징어 대체 단가 추이" />
+              <div className={styles.cardBody}>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={d_illex_risk} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                      <XAxis dataKey="week" tick={{fill: '#94a3b8'}} tickFormatter={xFmt} />
+                      <YAxis yAxisId="left" tickFormatter={(v) => `${v}t`} tick={{fill: '#94a3b8'}} />
+                      <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}`} tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend />
+                      <Bar yAxisId="left" dataKey="catchVolume" name="어획량(톤)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                      <Line yAxisId="right" type="monotone" dataKey="squidPrice" name="오징어 단가($)" stroke="#ef4444" strokeWidth={3} />
+                      <Line yAxisId="right" type="monotone" dataKey="sesamePrice" name="참깨 단가($)" stroke="#10b981" strokeWidth={3} />
+                    </ComposedChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="아르헨티나 INIDEP 주간 어획 리포트"
+                  situation="오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로 급락하며 단가가 폭등($4,200/t)하고 있습니다. 반면 식물성 대체 단백질인 참깨 단가는 안정적인 박스권을 유지 중입니다."
+                  actionPlan="원가 방어를 위해 오징어/참치 믹스에서 참깨 등 대체 단백질의 비율을 상향 조정하는 레시피 튜닝을 즉각 실시하십시오."
+                />
+              </div>
+            </div>
+
+            {/* NEW WIDGET 2 */}
+            <div className={styles.card}>
+              <CardHeader title="식물성 믹스 원가 방어율 예측기" icon={Activity} term="What-If" desc="동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터" />
+              <div className={styles.cardBody}>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={d_protein_mix} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                      <XAxis dataKey="mixRatio" tick={{fill: '#94a3b8'}} />
+                      <YAxis yAxisId="left" tick={{fill: '#94a3b8'}} unit="%" />
+                      <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend />
+                      <Area yAxisId="left" type="monotone" dataKey="margin" name="예상 마진(%)" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth={3} />
+                      <Line yAxisId="right" type="monotone" dataKey="cost" name="톤당 원가($)" stroke="#f59e0b" strokeWidth={3} />
+                    </ComposedChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="글로벌 어분 단가 및 식물성 단백질 데이터"
+                  situation="동물성 단백질(어분/오징어)의 단가 변동성이 극심한 가운데, 식물성(참깨 등) 단백질 믹스 비율을 30%로 상향할 경우 톤당 원가가 $2,600 수준으로 하락하며 마진이 27%까지 개선됩니다."
+                  actionPlan="식물성 믹스 비율을 높인 하이브리드 포뮬러를 신제품 라인업으로 기획하여 원가 충격을 완충(Buffer)하는 전략을 수립하십시오."
+                />
+              </div>
+            </div>
+
             {/* W33: Clean Label Risk */}
             <div className={styles.card}>
               <CardHeader title="클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API" icon={ShieldCheck} term="Carrageenan" desc="카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력" />
@@ -1018,11 +1072,34 @@ export default function PetFoodDashboard() {
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#ef4444,#ef444499)', borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🛒 Part IV — 판매 및 수요 (Sales & Demand)</h2>
+              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🛒 제4전략기둥: 영업 (Sales & Demand) - 추가</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>글로벌 소비 트렌드 및 유통채널 대전환</p>
             </div>
           </div>
           <div className={styles.grid}>
+
+            {/* NEW WIDGET 4 */}
+            <div className={styles.card}>
+              <CardHeader title="신라교역 B2B 펫푸드 직공급 점유율" icon={Factory} term="밸류업" desc="2026 기업가치 제고 연계형 직공급 비중" />
+              <div className={styles.cardBody}>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={d_sg_b2b} cx="50%" cy="50%" innerRadius={60} outerRadius={100} dataKey="value" nameKey="name" label={({ name, percent }: any) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}>
+                        {d_sg_b2b?.map((entry: any, i: number) => <Cell key={i} fill={entry.fill} />)}
+                      </Pie>
+                      <RechartsTooltip content={<CustomTooltip />} />
+                    </PieChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="SG 26년 운영방안 (밸류업 전략)"
+                  situation="2026년 기업가치 제고(Value-Up) 계획의 핵심 축인 '고부가가치 B2B 직공급' 비중이 현재 25% 수준에 도달하여, 중간 마진이 제거된 수익 창출을 견인하고 있습니다."
+                  actionPlan="국내 핵심 펫푸드 제조사와의 전략적 파트너십을 통해 직공급 비중을 40%까지 확대하여, 단순 원물 매각을 넘어서는 구조적 수익률 퀀텀점프를 달성하십시오."
+                />
+              </div>
+            </div>
+
             {/* NEW: 한국 유통 채널 점유율 */}
             <div className={styles.card}>
               <CardHeader title="한국 유통 채널 점유율 대전환 🟢 Live API" icon={ShoppingCart} term="이커머스 65%" desc="이커머스가 65% 장악, 동물병원(처방식) 4%로 고마진 틈새." />
@@ -1297,7 +1374,7 @@ export default function PetFoodDashboard() {
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg, #3b82f6, #3b82f699)', borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🌍 Part V — ESG 및 순환경제 (Sustainability)</h2>
+              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🌍 제5전략기둥: ESG (ESG & Compliance)</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>휴머나이제이션 및 대체 단백질 임팩트</p>
             </div>
           </div>
@@ -1511,12 +1588,12 @@ export default function PetFoodDashboard() {
 </div>
         </div>
 
-        {/* ═══ Part VII — KFAS 학술 연구 기반 R&D 인텔리전스 ═══ */}
+        {/* ═══ 제2전략기둥: 가공 (Processing) - R&D ═══ */}
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#06b6d4,#06b6d499)', borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🔬 Part VII — KFAS 학술 연구 기반 R&D 인텔리전스</h2>
+              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>🔬 제2전략기둥: 가공 (Processing) - R&D</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>국립수산과학원(NIFS) 논문 5건 기반 고정밀 포렌식 데이터 — Reliability 100</p>
             </div>
           </div>
@@ -1593,16 +1670,44 @@ export default function PetFoodDashboard() {
           </div>
         </div>
 
-        {/* ═══ Part VI — 공급망 리스크 인텔리전스 ═══ */}
+        {/* ═══ 제3전략기둥: 물류 (Logistics & Supply Chain) ═══ */}
         <div style={{ marginBottom: '3rem' }}>
           <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:'linear-gradient(180deg,#ef4444,#f9731699)', borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>⚠️ Part VI — 공급망 리스크 인텔리전스 (Supply Chain Risk)</h2>
+              <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>⚠️ 제3전략기둥: 물류 (Logistics & Supply Chain) (Supply Chain Risk)</h2>
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>ICCAT · IOTC · FAO · Science 48개 학술 논문 기반 원물 조달 리스크</p>
             </div>
           </div>
           <div className={styles.grid}>
+
+            {/* NEW WIDGET 3 */}
+            <div className={styles.card}>
+              <CardHeader title="거시 지표(환율/유가) 펫푸드 마진 민감도" icon={Thermometer} term="민감도 분석" desc="환율, 유가, 해수온 변동에 따른 마진 임팩트" />
+              <div className={styles.cardBody}>
+                <div className={styles.chartContainer}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <BarChart data={d_macro_sensitivity} layout="vertical" margin={{ top: 10, right: 30, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                      <XAxis type="number" tick={{fill: '#94a3b8'}} tickFormatter={(v) => `${v}%`} />
+                      <YAxis dataKey="factor" type="category" width={100} tick={{fill: '#94a3b8'}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Bar dataKey="marginImpact" name="마진 임팩트(%)" radius={[0, 4, 4, 0]}>
+                        {d_macro_sensitivity?.map((entry: any, i: number) => (
+                          <Cell key={i} fill={entry.marginImpact > 0 ? "#10b981" : "#ef4444"} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <TakeawayBox
+                  source="NOAA 기후 리포트 및 거시 경제 지표"
+                  situation="거시 환경 변화 중 특히 환율(원달러) 상승은 펫푸드 수출 시 마진에 긍정적(+3.8%)으로 작용하나, 유가 및 해수온 상승은 조업 원가 상승으로 직결되어 마진을 훼손(-4.2%)합니다."
+                  actionPlan="수출 비중 확대를 통해 고환율 수혜를 극대화하고, 해수온 이상 지표 감지 시 유류 헤징(Hedging) 파생상품 비중을 선제적으로 늘려 리스크를 상쇄하십시오."
+                />
+              </div>
+            </div>
+
 
             {/* NW-1: 바이캐치 구조 해부 */}
             

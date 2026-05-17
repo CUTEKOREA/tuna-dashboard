@@ -88,6 +88,26 @@ export async function GET() {
       });
     }
 
+    // 7. W20 Local Confectionery Margin
+    if (baseData.w20_local_confectionery_margin) {
+      baseData.w20_local_confectionery_margin = baseData.w20_local_confectionery_margin.map((row: any) => {
+        const variance = (Math.random() * 0.4) - 0.2;
+        row.opMargin = +(row.opMargin + variance).toFixed(1);
+        return row;
+      });
+    }
+
+    // 8. W21 Futures Curve Structure
+    if (baseData.w21_futures_curve_structure) {
+      baseData.w21_futures_curve_structure = baseData.w21_futures_curve_structure.map((row: any) => {
+        // M1(근월)은 변동성이 큼, M12는 작음
+        const volatility = row.contract.includes('M1(') ? 100 : 20;
+        const variance = Math.floor(Math.random() * volatility) - (volatility / 2);
+        row.Price2026 = Math.max(2000, row.Price2026 + variance);
+        return row;
+      });
+    }
+
     const response = {
       timestamp: now.toISOString(),
       apiStatus: "active_live_sim",

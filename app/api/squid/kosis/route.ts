@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const data = {
+    const data = {
     id: "w_kosis_squid_cpi",
-    title: "소비자 물가(CPI) 괴리율 분석",
-    subtitle: "살오징어 vs 수입 대체 오징어",
+    title: "국산 살오징어 vs 수입 대체 오징어 물가(CPI) 디커플링",
+    subtitle: "KOSIS 소비자물가지수 기반 국산-수입산 가격 전가력 비교",
     isLiveApi: true,
     reliability: 98,
     chartType: "line",
@@ -21,8 +21,8 @@ export async function GET() {
       { month: "2월", domestic_cpi: 155, import_cpi: 108 },
       { month: "3월", domestic_cpi: 168, import_cpi: 110 }
     ],
-    sit: "[KOSIS] 국내 살오징어 어획량 급감으로 소비자 물가가 연일 최고치를 경신 중.",
-    strat: "가성비가 뛰어난 남미산 수입 물량을 내수 대형 마트에 B2B 직공급하여 점유율 확대.",
+    sit: "KOSIS 실증 데이터 분석 결과, 연근해 살오징어 어획량 붕괴에 따른 공급 쇼크로 국산 오징어 CPI가 단기 168까지 폭등하는 디커플링이 심화되고 있습니다. 반면 남미산 수입 대체재(Illex)의 CPI는 110 선에서 안정적인 하방 경직성을 보입니다.",
+    strat: "물가 저항이 한계치에 달한 '수요 전이(Demand Shift)'의 골든타임입니다. 선민수산의 가격 경쟁력 있는 남미산 원물을 국내 대형 유통채널(할인점, 식자재 마트 등)에 B2B 다이렉트로 꽂아 넣어 시장 점유율을 공격적으로 탈취하십시오.",
     source: "KOSIS & KAMIS Live"
   };
 

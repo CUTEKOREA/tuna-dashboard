@@ -347,7 +347,7 @@ export default function SquidDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={i} type="monotone" dataKey={a.key || a.dataKey} stroke={a.color || a.fill || getMonolithicColor(i)} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
+                <Area key={i} type="monotone" dataKey={a.key || a.dataKey} name={a.name || a.key || a.dataKey} stroke={a.color || a.fill || getMonolithicColor(i)} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
             </AreaChart>
           );
@@ -360,7 +360,7 @@ export default function SquidDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={i} dataKey={b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={i} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
             </BarChart>
           );
@@ -373,7 +373,7 @@ export default function SquidDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={i} type="monotone" dataKey={l.key || l.dataKey} stroke={l.color || l.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={i} type="monotone" dataKey={l.key || l.dataKey} name={l.name || l.key || l.dataKey} stroke={l.color || l.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </LineChart>
           );
@@ -389,13 +389,13 @@ export default function SquidDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} fill={a.color || a.fill || getMonolithicColor(i)} stroke={a.color || a.fill || getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
+                <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} name={a.name || a.key || a.dataKey} fill={a.color || a.fill || getMonolithicColor(i)} stroke={a.color || a.fill || getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
               ))}
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i + (widget.areas?.length || 0))} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i + (widget.areas?.length || 0))} radius={[6,6,0,0]} fillOpacity={0.85} />
               ))}
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} stroke={l.color || l.fill || getMonolithicColor(i + (widget.areas?.length || 0) + (widget.bars?.length || 0))} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} name={l.name || l.key || l.dataKey} stroke={l.color || l.fill || getMonolithicColor(i + (widget.areas?.length || 0) + (widget.bars?.length || 0))} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </ComposedChart>
           );
@@ -435,7 +435,7 @@ export default function SquidDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
-              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.key || s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
             ))}
           </LineChart>
         );
@@ -448,7 +448,7 @@ export default function SquidDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
-              <Area key={i} type="monotone" dataKey={s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} fill={s.color || s.fill || getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
+              <Area key={i} type="monotone" dataKey={s.dataKey} name={s.name || s.key || s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} fill={s.color || s.fill || getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
             ))}
           </AreaChart>
         );
@@ -461,7 +461,7 @@ export default function SquidDashboard() {
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => (
-              <Bar key={i} dataKey={s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
+              <Bar key={i} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
             ))}
           </BarChart>
         );
@@ -475,9 +475,9 @@ export default function SquidDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => {
-              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
-              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} />;
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
+              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.key || s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
+              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} />;
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
             })}
           </ComposedChart>
         );

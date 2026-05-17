@@ -51,7 +51,9 @@ const CustomTooltip = ({ active, payload, label, unit }: any) => {
 
 const WIDGET_ICONS: Record<string, any> = {
   w01: Activity, w02: Globe, w03: Factory, w04: Zap,
+  w05: Globe, w06: ShieldAlert,
   w07: Zap, w08: ShieldCheck, w09: TrendingUp,
+  n01: TrendingUp, n02: DollarSign, n03: Globe,
   k01: Snowflake, k02: BarChart2, k03: ShieldCheck, k04: ShieldAlert,
   k05: Zap, k06: Factory, k07: Activity, k08: Anchor,
 };
@@ -95,6 +97,7 @@ export default function ColdStorageDashboard() {
         {
           id: 'w01',
           title: '냉동창고 구역별 수익성 지수 및 입주율 전망',
+          subtitle: 'NotebookLM 인사이트 기반 · 일반/냉장/냉동/BTS 4구역 비교',
           chartType: 'Composed',
           xKey: 'zone',
           bars: [{key: '수익성_지수', color: '#38bdf8'}],
@@ -108,7 +111,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w02',
-          title: 'HS 841869 (산업용 냉동설비) 무역수지 비교',
+          title: 'HS 841869 산업용 냉동설비 무역수지 비교',
+          subtitle: 'OEC BACI 2024 · 한국/태국/베트남 3국 수출입 비교',
           chartType: 'Bar',
           xKey: 'country',
           bars: [{key: '수출액', color: '#38bdf8'}, {key: '수입액', color: '#c026d3'}],
@@ -121,6 +125,7 @@ export default function ColdStorageDashboard() {
         {
           id: 'w03',
           title: '국내 주요 콜드체인 기업 재무 현황 비교',
+          subtitle: 'DART 2024 연결재무제표 · CJ대한통운/HMM/동방 3사',
           chartType: 'Bar',
           xKey: 'company',
           bars: [{key: '매출', color: '#38bdf8'}, {key: '영업이익', color: 'var(--color-success)'}],
@@ -132,7 +137,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w04',
-          title: '현지 금융권 재고 품목별 담보인정비율(LTV) 변화',
+          title: '현지 금융권 재고 품목별 담보인정비율 변화',
+          subtitle: 'NotebookLM 분석 · 냉동수산물/축산/곡물/과일 4품목',
           chartType: 'Bar',
           xKey: 'scenario',
           bars: [{key: '일반_담보가치', color: '#64748b'}, {key: 'IoT_증명_담보가치', color: 'var(--color-success)'}],
@@ -144,7 +150,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w05',
-          title: '태국 vs 베트남 운영비용(OpEx) 비교',
+          title: '태국 대비 베트남 운영비용 비교',
+          subtitle: 'PEA/EVN 실측치 · 전력료/인건비/물류비/부지 4항목',
           chartType: 'Composed',
           xKey: '국가',
           bars: [{key: '전력료', color: '#38bdf8'}],
@@ -158,7 +165,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w06',
-          title: 'AS/RS 자동화 vs 패시브 쿨링 리스크 노출도',
+          title: '자동화 대비 패시브 쿨링 리스크 노출도',
+          subtitle: 'NotebookLM 분석 · 7개 리스크 축 레이더 비교',
           chartType: 'Radar',
           xKey: '리스크_유형',
           radars: [{name: '자동화', key: '자동화', color: '#f43f5e'}, {name: '패시브', key: '패시브', color: '#38bdf8'}],
@@ -170,7 +178,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w07',
-          title: 'TOU 요금제 기반 전통 냉각 vs 빙축열 시스템 비용 비교',
+          title: '전통 냉각 대비 빙축열 시스템 비용 비교',
+          subtitle: 'PEA TOU 모델링 · 10년 누적 운영비 시뮬레이션',
           chartType: 'Composed',
           xKey: 'year',
           bars: [{key: '전통적_냉각_비용', color: '#64748b'}, {key: '빙축열_냉각_비용', color: '#38bdf8'}],
@@ -184,7 +193,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w08',
-          title: '프레온계(HFCs) 냉매 규제에 따른 재무 리스크 예측',
+          title: '냉매 규제에 따른 재무 리스크 예측',
+          subtitle: '키갈리 개정안 기반 · GWP 단계별 전환 비용 추정',
           chartType: 'Composed',
           xKey: 'year',
           bars: [{key: '전환_CapEx', color: '#c026d3'}],
@@ -198,7 +208,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'w09',
-          title: '아세안 산업용 부동산 용도별 Cap Rate 비교',
+          title: '아세안 산업용 부동산 용도별 수익률 비교',
+          subtitle: '기관 리포트 기반 · 드라이/냉장/냉동/초저온 4유형',
           chartType: 'Bar',
           xKey: 'propertyType',
           bars: [{key: 'Cap_Rate', color: 'var(--color-success)'}],
@@ -209,8 +220,52 @@ export default function ColdStorageDashboard() {
           unit: '%'
         },
         {
+          id: 'n01',
+          title: '베트남 콜드체인 시장 성장 타임라인',
+          subtitle: 'GCCA/Ken Research/Trade.gov · 팔레트 용량 추이',
+          chartType: 'Composed',
+          xKey: '연도',
+          bars: [{key: '팔레트_용량', color: '#38bdf8'}],
+          lines: [{key: '미충족률', color: '#f43f5e', yAxisId: 'right'}],
+          dualAxis: true,
+          data: [{"연도":"2020","팔레트_용량":850,"미충족률":85},{"연도":"2021","팔레트_용량":950,"미충족률":83},{"연도":"2022","팔레트_용량":1100,"미충족률":82},{"연도":"2023","팔레트_용량":1200,"미충족률":81},{"연도":"2024","팔레트_용량":1300,"미충족률":80},{"연도":"2025(E)","팔레트_용량":1400,"미충족률":77},{"연도":"2026(E)","팔레트_용량":1500,"미충족률":73},{"연도":"2028(E)","팔레트_용량":1700,"미충족률":65}],
+          sit: '베트남 콜드체인 시장은 CAGR 12.4%로 글로벌 최고 성장률을 기록 중이며, 2024년 팔레트 용량 1.3M에서 2028년 1.7M으로 확대 전망됩니다. 그러나 시장 미충족률이 여전히 80%에 달해, 향후 3~5년이 진입의 골든윈도우입니다.',
+          strat: '베트남 남부(HCMC·Long An) IQF 수산 특화 시설 5,000~15,000팔레트 규모의 Greenfield 투자를 최우선 추진. 외국인 100% 토지 소유 가능 + Hung Vuong/Halong 수산 anchor 임차 확보로 36~48개월 BEP, ROIC 20~30% 달성 가능.',
+          source: 'GCCA Global Report + Ken Research Vietnam 2025 + Trade.gov',
+          unit: 'K팔레트 / %'
+        },
+        {
+          id: 'n02',
+          title: '콜드체인 부가서비스별 추가 수익 시뮬레이터',
+          subtitle: 'KFAS 논문 기반 · MAP/TGase/AI선도/안전성 인증 4서비스',
+          chartType: 'Bar',
+          xKey: '서비스',
+          bars: [{key: '톤당_추가수익', color: '#10b981'}, {key: '도입비용', color: '#64748b'}],
+          data: [{"서비스":"MAP 가스치환 포장","톤당_추가수익":80000,"도입비용":15000},{"서비스":"TGase 해동품질 보증","톤당_추가수익":50000,"도입비용":8000},{"서비스":"초분광AI 선도판별","톤당_추가수익":65000,"도입비용":25000},{"서비스":"위해요소 안전성 인증","톤당_추가수익":40000,"도입비용":5000}],
+          sit: 'KFAS 실증 연구에 따르면, MAP 포장은 유통기한 3배 연장(3일→14일), TGase 처리는 해동 드립 45% 절감, 초분광 AI는 선도판별 정확도 93.2%를 달성합니다. 이를 서비스화하면 톤당 ₩40,000~80,000의 추가 수익이 가능합니다.',
+          strat: 'MAP 가스치환 포장 라인을 최우선 도입하여 화주 Lock-in 효과를 극대화합니다. 단순 보관업에서 탈피하여 \"품질 보증형 콜드체인 서비스\" 비즈니스 모델로 전환하면 일반 냉동창고 대비 30~50% 보관료 프리미엄을 확보할 수 있습니다.',
+          source: 'KFAS 한국수산과학회지 논문 8편 종합 분석',
+          unit: '₩/톤'
+        },
+        {
+          id: 'n03',
+          title: '단일 거점 대비 이원화 시나리오 수익성 비교',
+          subtitle: 'Phase 3 전략 · 단일/태국/베트남/Bi-Node 4시나리오',
+          chartType: 'Composed',
+          xKey: '시나리오',
+          bars: [{key: '5년_NPV', color: '#38bdf8'}, {key: '투자액', color: '#64748b'}],
+          lines: [{key: 'ROIC', color: '#f43f5e', yAxisId: 'right'}],
+          dualAxis: true,
+          data: [{"시나리오":"태국 단일","5년_NPV":850,"투자액":800,"ROIC":15},{"시나리오":"베트남 단일","5년_NPV":1200,"투자액":500,"ROIC":25},{"시나리오":"Bi-Node 이원화","5년_NPV":2100,"투자액":1300,"ROIC":22},{"시나리오":"3국 통합","5년_NPV":3500,"투자액":2000,"ROIC":18}],
+          sit: '태국(RDC 허브) + 베트남(수산 가공·수출 기지)의 Bi-Node 이원화 전략은 단일 거점 대비 5년 NPV가 75% 이상 높습니다. 태국은 전력 안정성·BOI 면세, 베트남은 저렴한 인건비·FDI 우호 환경이 상호 보완적입니다.',
+          strat: '자본 1,300억 이상 확보 시 Bi-Node(태국 RDC + 베트남 IQF) 전략을 최우선 추진. 자본 500억 미만이면 베트남 단일 Greenfield(ROIC 25%)가 최적. 3국 통합(2,000억+)은 천연 냉매 R&D 사업화와 병행 시 장기 독점 가능.',
+          source: 'Phase 3 Entry Strategy 시나리오 분석 (2026)',
+          unit: '억원 / %'
+        },
+        {
           id: 'k01',
-          title: '보냉팩 상온유통 중 어종별 선도(K값) 변화',
+          title: '보냉팩 상온유통 중 어종별 선도 변화',
+          subtitle: 'KFAS 한국수산과학회지 · K값 기반 4어종 시계열',
           chartType: 'Composed',
           xKey: '시간',
           lines: [{key: '넙치K값', color: '#38bdf8'}, {key: '고등어K값', color: '#f43f5e'}],
@@ -223,6 +278,7 @@ export default function ColdStorageDashboard() {
         {
           id: 'k02',
           title: '어종별 4대 선도지표 민감도 스코어링',
+          subtitle: 'KFAS 논문 기반 · K값/TMA/VBN/pH 4축 레이더',
           chartType: 'Radar',
           xKey: '지표',
           radars: [{name: '넙치', key: '넙치', color: '#38bdf8'}, {name: '고등어', key: '고등어', color: '#f43f5e'}],
@@ -234,7 +290,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k03',
-          title: 'MAP 및 레몬 추출물 적용 생굴의 미생물 총균수 변화',
+          title: '가스치환 포장 적용 생굴의 미생물 총균수 변화',
+          subtitle: 'KFAS 논문 기반 · MAP+레몬 추출물 복합 처리',
           chartType: 'Composed',
           xKey: '저장일',
           lines: [{key: 'MAP_레몬', color: '#10b981'}, {key: '대조군', color: '#64748b'}],
@@ -247,6 +304,7 @@ export default function ColdStorageDashboard() {
         {
           id: 'k04',
           title: '냉동 전복 위해요소 검출 수준 및 안전성',
+          subtitle: 'KFAS 논문 기반 · 중금속/미생물/패독 3항목',
           chartType: 'Bar',
           xKey: '항목',
           bars: [{key: '기준치', color: '#64748b'}, {key: '검출값', color: '#38bdf8'}],
@@ -258,7 +316,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k05',
-          title: '초분광 AI 모델 vs 기존 관능검사 신선도 판별 정확도',
+          title: '초분광 모델 대비 관능검사 신선도 판별 정확도',
+          subtitle: 'KFAS 논문 기반 · 딥러닝 초분광 vs 기존 관능',
           chartType: 'Bar',
           xKey: '등급',
           bars: [{key: '정확도', color: '#38bdf8'}, {key: '기존방식', color: '#64748b'}],
@@ -270,7 +329,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k06',
-          title: '온도별 동결건조 블록(우럭미역국) 유통기한 및 지방산화',
+          title: '온도별 동결건조 블록 유통기한 및 지방산화',
+          subtitle: 'KFAS 논문 기반 · -20°C~35°C 5구간 비교',
           chartType: 'Composed',
           xKey: '저장온도',
           bars: [{key: '유통기한', color: '#38bdf8'}],
@@ -284,7 +344,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k07',
-          title: '카라기난 첨가 수리미의 냉장(4°C) 저장 중 겔 강도 변화',
+          title: '카라기난 첨가 수리미의 냉장 저장 중 겔 강도 변화',
+          subtitle: 'KFAS 논문 기반 · 이오타-카라기난 1% 첨가 효과',
           chartType: 'Composed',
           xKey: '저장일',
           lines: [{key: '카라기난', color: '#8b5cf6'}, {key: '대조군', color: '#64748b'}],
@@ -296,7 +357,8 @@ export default function ColdStorageDashboard() {
         },
         {
           id: 'k08',
-          title: 'TGase 복합 처리 무지개송어육의 해동 드립률 및 겔 강도',
+          title: '효소 복합 처리 무지개송어육의 해동 드립률 및 겔 강도',
+          subtitle: 'KFAS 논문 기반 · TGase 처리 전/후 비교',
           chartType: 'Composed',
           xKey: '처리군',
           bars: [{key: '겔강도', color: '#38bdf8'}],
@@ -352,7 +414,7 @@ export default function ColdStorageDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <Activity size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Loading Cold Storage Strategy Intelligence...</p>
+      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>아세안 콜드체인 전략 인텔리전스 로딩 중...</p>
     </div>
   );
 
@@ -397,10 +459,10 @@ export default function ColdStorageDashboard() {
         return (
           <BarChart data={d}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} />
+            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
-            <Legend wrapperStyle={{fontSize:'11px'}} />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
               <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
@@ -410,13 +472,13 @@ export default function ColdStorageDashboard() {
         return (
           <ComposedChart data={d}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} />
+            <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             {widget.dualAxis && (
               <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             )}
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
-            <Legend wrapperStyle={{fontSize:'11px'}} />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
               <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
@@ -432,7 +494,7 @@ export default function ColdStorageDashboard() {
             <PolarAngleAxis dataKey={widget.xKey} tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
-            <Legend wrapperStyle={{fontSize:'11px'}} />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.radars?.map((r: any, i: number) => (
               <Radar key={i} name={r.name} dataKey={r.key} stroke={r.color} fill={r.color} fillOpacity={0.4} />
             ))}
@@ -448,7 +510,7 @@ export default function ColdStorageDashboard() {
     const accentColor = '#38bdf8';
     
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '520px',
+      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
         background: 'rgba(24, 24, 24, 0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: '1px solid rgba(255,255,255,0.05)',
         padding: '1.5rem'}}>
         
@@ -469,7 +531,7 @@ export default function ColdStorageDashboard() {
         </div>
 
         {/* Chart Area */}
-        <div style={{ height: '280px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
+        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             {renderChart(w)}
           </SafeResponsiveContainer>
@@ -502,7 +564,7 @@ export default function ColdStorageDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 아세안 콜드체인 (투자 시나리오 보드)
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Strategic Investment & Operation Command — {widgets.length} Widgets · {kpiKeys.length} KPIs · <span style={{ color: '#38bdf8' }}>KFAS 실증 연구 통합</span></p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>전략 투자 및 운영 커맨드 센터 — {widgets.length}개 위젯 · {kpiKeys.length}개 핵심지표 · <span style={{ color: '#38bdf8' }}>KFAS 실증 연구 통합</span></p>
             </div>
           </div>
         </div>
@@ -589,7 +651,7 @@ export default function ColdStorageDashboard() {
       </div>
 
       {/* 6 KPIs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
@@ -634,17 +696,17 @@ export default function ColdStorageDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Activity size={24} color="#38bdf8" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>1. 입고 & 수급 (Raw Material & Inbound)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>1. 입고 및 수급</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w01', 'w03'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w01', 'w03', 'n01'].includes(w.id)).map(renderWidgetCard)}
           </div>
         </section>
 
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <ShieldAlert size={24} color="var(--color-danger)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>2. 보관 & 가동률 (Storage & Operations)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>2. 보관 및 가동률</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             {widgets.filter((w: any) => ['w02', 'w04'].includes(w.id)).map(renderWidgetCard)}
@@ -654,27 +716,27 @@ export default function ColdStorageDashboard() {
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Globe size={24} color="var(--color-warning)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>3. 물류 & 통관 인프라 (Logistics & Infrastructure)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>3. 물류 및 통관 인프라</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w05', 'w06'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w05', 'w06', 'n03'].includes(w.id)).map(renderWidgetCard)}
           </div>
         </section>
 
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <TrendingUp size={24} color="#8b5cf6" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>4. 수익성 & 투자 전략 (Profitability & Investment)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>4. 수익성 및 투자 전략</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w07', 'w08', 'w09'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w07', 'w08', 'w09', 'n02'].includes(w.id)).map(renderWidgetCard)}
           </div>
         </section>
 
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Snowflake size={24} color="#06b6d4" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. 에너지 최적화 & ESG (Energy & ESG)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>5. 에너지 최적화 및 품질과학</h2>
             <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>

@@ -32,6 +32,20 @@ const formatXAxis = (tickItem: any) => {
   return formatted;
 };
 
+
+const ChartWrapper = ({ data, children }: { data: any, children: React.ReactNode }) => {
+  if (!data || data.length === 0) {
+    return (
+      <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
+        <AlertTriangle size={24} style={{marginBottom:'8px',opacity:0.5}}/>
+        <span style={{fontSize:'0.85rem',fontWeight:600}}>데이터 집계 중</span>
+        <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>실시간 파이프라인 동기화 대기</span>
+      </div>
+    );
+  }
+  return <>{children}</>;
+};
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     return (
@@ -73,11 +87,11 @@ const CARROT_KPIS: Record<string, any> = {
 };
 
 const SECTIONS = [
-  { id: "S1", title: "🌱 Part I — 원물 생산 (Raw Material)", desc: "FAOSTAT 매크로 데이터 기반 — 종자 역수출 및 여름 단경기 집중 공략 (달랏 vs 제주)", color: "#ea580c" },
-  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "B2B 전처리(IQF) 가공을 통한 원가 절감 및 식물검역 우회", color: "#f97316" },
-  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "MA 특수 포장과 한-베 FTA 0% 관세 프리패스 우위", color: "#fbbf24" },
-  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "장기 수매 계약을 통한 단가 변동성 헤징 및 B2B 점유율 역전", color: "#f59e0b" },
-  { id: "S5", title: "🌍 Part V — ESG 및 미래 농업 (Sustainability)", desc: "비규격 폐기 방지 푸드 업사이클링 및 Scope 3 감축 연계", color: "#c2410c" },
+  { id: "S1", title: "🌱 제1지주: 원물 생산", desc: "FAOSTAT 매크로 데이터 기반 — 종자 역수출 및 여름 단경기 집중 공략 (달랏 vs 제주)", color: "#ea580c" },
+  { id: "S2", title: "🏭 제2지주: 가공 산업", desc: "B2B 전처리(IQF) 가공을 통한 원가 절감 및 식물검역 우회", color: "#f97316" },
+  { id: "S3", title: "🚢 제3지주: 물류 및 무역", desc: "MA 특수 포장과 한-베 FTA 0% 관세 프리패스 우위", color: "#fbbf24" },
+  { id: "S4", title: "🛒 제4지주: 판매 및 수요", desc: "장기 수매 계약을 통한 단가 변동성 헤징 및 B2B 점유율 역전", color: "#f59e0b" },
+  { id: "S5", title: "🌍 제5지주: ESG 및 미래 농업", desc: "비규격 폐기 방지 푸드 업사이클링 및 Scope 3 감축 연계", color: "#c2410c" },
 ];
 
 const EstimateBadge = () => (
@@ -233,7 +247,7 @@ export default function CarrotDashboard() {
               <h1 style={{ margin:0, fontSize:'1.5rem', fontWeight:700, letterSpacing:'-0.5px', color:'var(--text-primary)' }}>
                 당근 (Carrot) 글로벌 인텔리전스
               </h1>
-              <p style={{ margin:0, fontSize:'0.88rem', color:'var(--text-secondary)' }}>Carrot Strategic Command Center — 32 Widgets · 6 KPIs · FAOSTAT+KAMIS+OEC</p>
+              <p style={{ margin:0, fontSize:'0.88rem', color:'var(--text-secondary)' }}>당근 전략 지휘소 — 32개 위젯 · 6 KPIs · FAOSTAT+KAMIS+OEC</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize:'0.88rem', padding:'8px 16px', borderRadius:'500px', display:'flex', alignItems:'center', gap:'8px' }}>
@@ -305,10 +319,10 @@ export default function CarrotDashboard() {
         </div>
       )}
 
-      {/* ═══ Executive Strategy Command ═══ */}
+      {/* ═══ 경영진 전략 지휘소 ═══ */}
       <div style={{ marginBottom:'2rem', background:'linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%)', border:'1px solid rgba(249, 115, 22, 0.2)', borderRadius:'8px', padding:'1.5rem', boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px' }}>
         <h2 style={{ margin:'0 0 1rem 0', fontSize:'1.2rem', fontWeight:800, color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}>
-          <Target size={20} color="#f97316" /> Executive Strategy Command
+          <Target size={20} color="#f97316" /> 경영진 전략 지휘소
         </h2>
         <div className="ds-grid-3">
           <div>
@@ -507,7 +521,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={faoProdLive}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={faoProdLive}>
                 {grid}
@@ -515,13 +530,14 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString()} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="중국_면적" fill="#fbbf24" name="중국 수확면적(ha)" />
                 <Bar yAxisId="left" dataKey="베트남_면적" fill="#ea580c" name="베트남 수확면적(ha)" />
                 <Line yAxisId="right" type="monotone" dataKey="중국_수율" stroke="#f59e0b" strokeWidth={2} dot={false} name="중국 수율(t/ha)" />
                 <Line yAxisId="right" type="monotone" dataKey="베트남_수율" stroke="#f97316" strokeWidth={2} dot={false} name="베트남 수율(t/ha)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -544,7 +560,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={faoPriceLive}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={faoPriceLive}>
                 <defs>
@@ -556,12 +573,13 @@ export default function CarrotDashboard() {
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area connectNulls type="monotone" dataKey="한국" stroke="#f97316" fill="url(#colorKorea)" strokeWidth={2} name="한국 생산자 가격" />
                 <Area connectNulls type="monotone" dataKey="중국" stroke="#f59e0b" fill="url(#colorChina)" strokeWidth={2} name="중국 생산자 가격" />
                 <Area connectNulls type="monotone" dataKey="베트남" stroke="#ea580c" fill="url(#colorVietnam2)" strokeWidth={2} name="베트남 생산자 가격" />
               </AreaChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -584,7 +602,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w1Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={w1Live}>
                 <defs>
@@ -596,12 +615,13 @@ export default function CarrotDashboard() {
                 <XAxis dataKey="month" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area connectNulls={true} type="monotone" dataKey="한국(제주)" stroke="#f97316" fill="url(#colorKoreaJeju)" name="한국(제주) 도매가" />
                 <Area connectNulls={true} type="monotone" dataKey="한국(강원)" stroke="#f59e0b" fill="url(#colorKoreaGangwon)" name="한국(강원) 도매가" />
                 <Area connectNulls={true} type="monotone" dataKey="베트남(달랏)" stroke="#ea580c" fill="url(#colorVietnam)" name="베트남 수입가" />
               </AreaChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -622,7 +642,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w2Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={w2Live}>
                 {grid}
@@ -630,11 +651,12 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} domain={[0, 100]} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} domain={[0, 12]} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="생산수율(%)" fill="#f97316" name="생산수율(%)" barSize={40} />
                 <Line yAxisId="right" type="monotone" dataKey="당도(Brix)" stroke="#fbbf24" strokeWidth={3} dot={{r: 4}} name="당도(Brix)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -657,7 +679,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w15Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={w15Live}>
                 {grid}
@@ -665,12 +688,13 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="기후리스크지수" fill="#f59e0b" opacity={0.6} name="동북아 기후 리스크(태풍/폭우)" />
                 <Line yAxisId="right" type="monotone" dataKey="동북아_스팟가격폭등률" stroke="#fbbf24" strokeWidth={3} dot={{r: 4}} name="도매 스팟가 폭등률(%)" />
                 <Area yAxisId="left" type="step" dataKey="달랏_생산안정성" stroke="#ea580c" fill="#ea580c" fillOpacity={0.15} name="달랏(해발1500m) 생산안정성" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -693,7 +717,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w20Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={w20Live}>
                 {grid}
@@ -701,12 +726,13 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="중국_통관불합격건수" fill="#f59e0b" name="중국산 통관 불합격 건수" barSize={30} />
                 <Bar yAxisId="left" dataKey="베트남_통관불합격건수" fill="#ea580c" name="베트남산 불합격 건수" barSize={30} />
                 <Line yAxisId="right" type="monotone" dataKey="중국_회수물량_톤" stroke="#fbbf24" strokeWidth={3} dot={{r:4}} name="중국산 긴급 회수 물량(톤)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -739,19 +765,21 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w3Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={w3Live}>
                 {grid}
                 <XAxis dataKey="category" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="원물가" stackId="a" fill="#f97316" name="원물(생물) 수입비" />
                 <Bar dataKey="전처리 인건비" stackId="a" fill="#f59e0b" name="B2B 구매자 자체 인건비" />
                 <Bar dataKey="폐기물 처리비" stackId="a" fill="#94a3b8" name="폐기물 처리비용" />
               </BarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -772,19 +800,21 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w11Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={w11Live} layout="vertical" margin={{ left: 20 }}>
                 {grid}
                 <XAxis type="number" {...xAxisTextProps} domain={[0, 100]} />
                 <YAxis dataKey="name" type="category" {...yAxisProps} width={100} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="수율" stackId="a" fill="#ea580c" name="유효 수율(%)" />
                 <Bar dataKey="손실" stackId="a" fill="#f59e0b" name="원물/검역 폐기 손실(%)" />
                 <Bar dataKey="IQF" stackId="a" fill="#f97316" name="IQF 전처리 수율(%)" />
               </BarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -806,19 +836,21 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w16Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={w16Live}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="한국_전처리비용" stroke="#f97316" strokeWidth={2} name="한국 (한계 도달)" strokeDasharray="3 3" />
                 <Line type="monotone" dataKey="중국_전처리비용" stroke="#f59e0b" strokeWidth={3} name="중국 (수직 상승)" />
                 <Line type="monotone" dataKey="베트남_전처리비용" stroke="#ea580c" strokeWidth={3} name="베트남 달랏 (인구 보너스)" />
               </LineChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -840,20 +872,22 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w21Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={w21Live}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${v}%`} domain={[0, 100]} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area type="monotone" stackId="1" dataKey="IQF냉동_비중" stroke="#c2410c" fill="#c2410c" name="IQF 냉동" />
                 <Area type="monotone" stackId="1" dataKey="전처리_비중" stroke="#f97316" fill="#f97316" name="전처리(절단)" />
                 <Area type="monotone" stackId="1" dataKey="세척_비중" stroke="#ea580c" fill="#ea580c" name="세척 당근" />
                 <Area type="monotone" stackId="1" dataKey="원물_비중" stroke="#64748b" fill="#64748b" name="흙당근(원물)" />
               </AreaChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -886,7 +920,7 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie data={(faoTradeLive as any).links ? (faoTradeLive as any).links.map((l: any) => ({ name: l.source.replace('수출: ',''), value: l.value })) : []} cx="50%" cy="50%" innerRadius={50} outerRadius={90} paddingAngle={3} dataKey="value" label={({name, percent}: any) => `${name} ${(percent*100).toFixed(1)}%`}>
@@ -894,7 +928,7 @@ export default function CarrotDashboard() {
                   <Cell fill="#ea580c" />
                 </Pie>
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
               </PieChart>
             </SafeResponsiveContainer>
           </div>
@@ -918,20 +952,22 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w5Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={w5Live}>
                 {grid}
                 <XAxis dataKey="name" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="원물비" stackId="a" fill="#94a3b8" name="원물 비용" />
                 <Bar dataKey="포장/물류비" stackId="a" fill="#fbbf24" name="일반 물류비" />
                 <Bar dataKey="포장/물류비(MA)" stackId="a" fill="#ea580c" name="MA 특수 포장비" />
                 <Bar dataKey="관세(30%)" stackId="a" fill="#f59e0b" name="관세 (중국 30%)" />
               </BarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -952,18 +988,20 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w6Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w6Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
                 <PolarAngleAxis dataKey="subject" tick={{fill:'#94a3b8', fontSize:10}} />
                 <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{fill:'#64748b', fontSize:8}} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Radar name="일반 상자 포장" dataKey="일반포장" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.3} />
                 <Radar name="MA 특수 포장" dataKey="MA특수포장" stroke="#ea580c" fill="#ea580c" fillOpacity={0.3} />
               </RadarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -985,7 +1023,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w17Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={w17Live}>
                 <defs>
@@ -996,11 +1035,12 @@ export default function CarrotDashboard() {
                 <XAxis dataKey="day" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area type="monotone" dataKey="중국산_재고유지비" stroke="#f59e0b" fill="url(#colorChinaStorage)" strokeWidth={2} name="중국산 (조기도착/창고비 급증)" />
                 <Area type="monotone" dataKey="베트남산_재고유지비" stroke="#f97316" fill="url(#colorVietStorage)" strokeWidth={3} name="베트남산 (해상창고 10일 무료)" />
               </AreaChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1022,19 +1062,21 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={dynamicW22Data}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={dynamicW22Data}>
                 {grid}
                 <XAxis dataKey="month" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis yAxisId="left" {...yAxisProps} domain={[0, 'dataMax']} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area yAxisId="left" type="monotone" dataKey="베트남산_유통마진" fill="#ea580c" fillOpacity={0.4} stroke="#ea580c" name="베트남산 수입 마진 (USD/t)" />
                 <Area yAxisId="left" type="monotone" dataKey="중국산_유통마진" fill="#fbbf24" fillOpacity={0.2} stroke="#fbbf24" name="중국산 수입 마진 (USD/t)" />
                 <Line yAxisId="left" type="step" dataKey="국내도매가_환산" stroke="#f59e0b" strokeWidth={2} strokeDasharray="5 5" dot={false} name="KAMIS 국내 도매가 환산 (USD/t)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1068,19 +1110,21 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w7Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={w7Live}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="스팟시장(제주)" stroke="#f97316" strokeWidth={2} name="국산 스팟 단가" />
                 <Line type="monotone" dataKey="스팟시장(중국)" stroke="#f59e0b" strokeWidth={2} name="중국산 스팟 단가" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="베트남_장기계약" stroke="#ea580c" strokeWidth={4} name="베트남 연간 계약 고정단가" />
               </LineChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1101,7 +1145,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w8Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={w8Live}>
                 <defs>
@@ -1113,12 +1158,13 @@ export default function CarrotDashboard() {
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${v}%`} domain={[0, 100]} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area type="monotone" dataKey="낙관(Bull)" stroke="#ea580c" fill="url(#gradBull)" strokeWidth={2} name="낙관 시나리오(%)" />
                 <Area type="monotone" dataKey="기본(Base)" stroke="#f97316" fill="url(#gradBase)" strokeWidth={3} name="기본 시나리오(%)" strokeDasharray="0" />
                 <Area type="monotone" dataKey="보수적(Conservative)" stroke="#fbbf24" fill="url(#gradCons)" strokeWidth={2} name="보수적 시나리오(%)" strokeDasharray="5 5" />
               </AreaChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1140,18 +1186,20 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w12Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={w12Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
                 <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#475569', fontSize: 10 }} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Radar name="베트남 달랏(역수출)" dataKey="베트남_달랏" stroke="#ea580c" fill="#ea580c" fillOpacity={0.6} />
                 <Radar name="중국산(세척/일본종자)" dataKey="중국산_세척" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.4} />
               </RadarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1175,19 +1223,21 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'300px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w18Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w18Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
                 <PolarAngleAxis dataKey="subject" tick={{fill:'#94a3b8', fontSize:9}} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'#64748b', fontSize:8}} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Radar name="🇻🇳 달랏 농장 A (1순위)" dataKey="달랏농장A" stroke="#ea580c" fill="#ea580c" fillOpacity={0.35} strokeWidth={2} />
                 <Radar name="🇨🇳 칭다오 공장 B" dataKey="칭다오공장B" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.15} strokeWidth={1} />
                 <Radar name="🇰🇷 제주 산지 C" dataKey="제주산지C" stroke="#f97316" fill="#f97316" fillOpacity={0.15} strokeWidth={1} />
               </RadarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1209,7 +1259,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={dynamicW23Data}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={dynamicW23Data}>
                 {grid}
@@ -1217,12 +1268,13 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="스팟판매_누적수익" fill="#64748b" name="일반 스팟 판매 (누적 FCF)" barSize={40} />
                 <Area yAxisId="left" type="monotone" dataKey="장기계약_누적수익" fill="#c2410c" stroke="#c2410c" fillOpacity={0.3} name="장기 락인 계약 (누적 FCF)" />
                 <Line yAxisId="right" type="monotone" dataKey="고객이탈률" stroke="#f59e0b" strokeWidth={2} name="스팟 시장 고객 이탈률(%)" strokeDasharray="4 4" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1255,20 +1307,22 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={faoLossLive}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={faoLossLive} stackOffset="expand">
                 {grid}
                 <XAxis dataKey="category" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${Math.round(v * 100)}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="식용소비" stackId="a" fill="#ea580c" name="식탁 소비재" />
                 <Bar dataKey="가공용" stackId="a" fill="#f97316" name="고부가 가공 전환" />
                 <Bar dataKey="사료용" stackId="a" fill="#fbbf24" name="사료 전환" />
                 <Bar dataKey="수확후손실(폐기)" stackId="a" fill="#f59e0b" name="공급망 내 원물 손실(버려짐)" />
               </BarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1291,18 +1345,20 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w9Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={w9Live} layout="vertical">
                 {grid}
                 <XAxis type="number" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis dataKey="name" type="category" width={110} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar dataKey="수익창출(ROI)" fill="#ea580c" name="수익 창출 (ROI)" />
                 <Bar dataKey="탄소배출(Penalty)" fill="#f59e0b" name="탄소 감축 효과 (양수=감축)" />
               </BarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1323,18 +1379,20 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w10Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w10Live}>
                 <PolarGrid stroke="rgba(255,255,255,0.1)" />
                 <PolarAngleAxis dataKey="subject" tick={{fill:'#94a3b8', fontSize:10}} />
                 <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fill:'#64748b', fontSize:8}} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Radar name="기존 원물 소싱" dataKey="기존소싱" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.25} />
                 <Radar name="업사이클링 계약 소싱" dataKey="업사이클링" stroke="#ea580c" fill="#ea580c" fillOpacity={0.35} />
               </RadarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1355,18 +1413,20 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w14Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={w14Live}>
                 {grid}
                 <XAxis dataKey="stage" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} domain={[0, 40]} tickFormatter={(v: number) => `${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="기존_중국망" stroke="#94a3b8" strokeWidth={2} name="기존 수입 벤더 (Flat Margin)" strokeDasharray="5 5" />
                 <Area type="monotone" dataKey="PEF_수직계열화" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} strokeWidth={3} name="PEF 수직계열화 (Smile Curve)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1388,7 +1448,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'250px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w24Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={w24Live}>
                 {grid}
@@ -1396,12 +1457,13 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="left" dataKey="업사이클링_전환량_톤" fill="#ea580c" name="바이오소재 전환량(톤)" barSize={40} />
                 <Line yAxisId="right" type="monotone" dataKey="바이오소재_프리미엄마진율" stroke="#fbbf24" strokeWidth={3} name="베타카로틴 마진율(%)" />
                 <Line yAxisId="right" type="monotone" dataKey="Scope3_감축량_tCO2e" stroke="#ea580c" strokeWidth={3} strokeDasharray="3 3" name="Scope 3 탄소감축량(tCO2e)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1424,7 +1486,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'280px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={dynamicW19Data}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={dynamicW19Data} margin={{ left: 10, right: 10 }}>
                 {grid}
@@ -1438,6 +1501,7 @@ export default function CarrotDashboard() {
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1451,7 +1515,7 @@ export default function CarrotDashboard() {
         {/* ═══ NEW SECTION: 데이터 인텔리전스 고도화 (Data Intelligence Upgrade) ═══ */}
         <div style={{ gridColumn: '1 / -1', margin: '2.5rem 0 1rem', borderTop:'1px solid rgba(255,255,255,0.06)', paddingTop:'1.5rem' }}>
           <h2 style={{ fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)', margin:'0 0 0.3rem', display:'flex', alignItems:'center', gap:'0.5rem' }}>
-            <Database size={20} color="#ea580c" />📊 Data Intelligence Upgrade — OEC · KAMIS · FAOSTAT SCL 실측 통합
+            <Database size={20} color="#ea580c" />📊 데이터 인텔리전스 고도화: OEC · KAMIS · FAOSTAT SCL 실측 통합
           </h2>
           <p style={{ color:'var(--text-secondary)', fontSize:'0.82rem', margin:0 }}>
             신규 수집된 OEC 30년 무역 데이터, KAMIS 4년 월별 실측 도매가, FAOSTAT 공급이용계정(SCL)을 융합한 기관급 인텔리전스
@@ -1469,14 +1533,15 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w25Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <AreaChart data={w25Live}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${(v/1e6).toFixed(0)}M`} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Area type="monotone" dataKey="중국" stackId="1" stroke="#f59e0b" fill="#f59e0b66" name="중국" />
                 <Area type="monotone" dataKey="네덜란드" stackId="1" stroke="#f97316" fill="#f9731666" name="네덜란드" />
                 <Area type="monotone" dataKey="미국" stackId="1" stroke="#fdba74" fill="#fdba7466" name="미국" />
@@ -1485,6 +1550,7 @@ export default function CarrotDashboard() {
                 <Area type="monotone" dataKey="이스라엘" stackId="1" stroke="#c2410c" fill="#c2410c66" name="이스라엘" />
               </AreaChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1506,14 +1572,15 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w26Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={w26Live}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} tickFormatter={formatXAxis} />
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${(v/1e6).toFixed(0)}M`} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="독일" stroke="#fbbf24" strokeWidth={2} dot={false} name="독일" />
                 <Line type="monotone" dataKey="캐나다" stroke="#f59e0b" strokeWidth={2} dot={false} name="캐나다" />
                 <Line type="monotone" dataKey="미국" stroke="#fdba74" strokeWidth={2} dot={false} name="미국" />
@@ -1522,6 +1589,7 @@ export default function CarrotDashboard() {
                 <Line type="monotone" dataKey="한국" stroke="#ea580c" strokeWidth={3} dot={{ fill: '#ea580c', r: 3 }} name="🇰🇷 한국" />
               </LineChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1543,14 +1611,15 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w27Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <LineChart data={w27Live}>
                 {grid}
                 <XAxis dataKey="month" {...xAxisTextProps} tickFormatter={(v: string) => `${v}월`} />
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Line type="monotone" dataKey="y2024" stroke="#f59e0b" strokeWidth={2.5} name="2024 (폭등)" dot={{ fill: '#f59e0b', r: 2 }} />
                 <Line type="monotone" dataKey="y2025" stroke="#fbbf24" strokeWidth={2} name="2025 (회복)" dot={{ fill: '#fbbf24', r: 2 }} />
                 <Line type="monotone" dataKey="y2026" stroke="#ea580c" strokeWidth={2.5} name="2026 (정상화)" dot={{ fill: '#ea580c', r: 3 }} />
@@ -1558,6 +1627,7 @@ export default function CarrotDashboard() {
                 <Line type="monotone" dataKey="평년" stroke="var(--text-primary)" strokeWidth={1} strokeDasharray="3 3" name="평년 (5년)" dot={false} />
               </LineChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
@@ -1579,7 +1649,8 @@ export default function CarrotDashboard() {
               </div>
             </h3>
           </div>
-          <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
+          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
+            <ChartWrapper data={w28Live}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={w28Live} margin={{ left: 10, right: 10 }}>
                 {grid}
@@ -1587,12 +1658,13 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="left" {...yAxisProps} label={{ value: '손실률(%)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 9 }} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} label={{ value: '손실량(톤)', angle: 90, position: 'insideRight', fill: '#64748b', fontSize: 9 }} />
                 <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
+                <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
                 <Bar yAxisId="right" dataKey="손실" fill="#ef444488" name="손실량(톤)" barSize={35} />
                 <Bar yAxisId="right" dataKey="사료" fill="#f59e0b55" name="사료전환(톤)" barSize={35} />
                 <Line yAxisId="left" type="monotone" dataKey="손실률" stroke="#f59e0b" strokeWidth={3} dot={{ fill: '#f59e0b', r: 5, stroke: 'var(--text-primary)', strokeWidth: 2 }} name="손실률(%)" />
               </ComposedChart>
             </SafeResponsiveContainer>
+          </ChartWrapper>
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox

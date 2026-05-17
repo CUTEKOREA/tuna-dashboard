@@ -209,5 +209,42 @@ export async function GET() {
   // W16 보강: IOTC 쿼터 축소 시나리오
   data.d_w16.push({ factor: "IOTC 황다랑어 -20%", gpmImpact: -3.2, profitImpact: -15.0 });
 
+  // --- NEW PHASE 4-B WIDGETS DATA ---
+  
+  // 1. 오징어 어획 부진 및 원가 리스크 맵 (Illex Catch & Price Risk Map)
+  data.d_illex_risk = [
+    { week: "Semana 6", catchVolume: 12000, squidPrice: 2800, sesamePrice: 1500 },
+    { week: "Semana 7", catchVolume: 10500, squidPrice: 2950, sesamePrice: 1500 },
+    { week: "Semana 8", catchVolume: 8200, squidPrice: 3200, sesamePrice: 1520 },
+    { week: "Semana 9", catchVolume: 5100, squidPrice: 3800, sesamePrice: 1550 },
+    { week: "Semana 10 (Live)", catchVolume: 3200, squidPrice: 4200, sesamePrice: 1580 }
+  ];
+
+  // 2. 대체 단백질(식물성) 믹스 원가 방어율 예측기 (What-If) - data structure for AreaChart
+  data.d_protein_mix = [
+    { mixRatio: "0%", margin: 15, cost: 3500 },
+    { mixRatio: "10%", margin: 18, cost: 3200 },
+    { mixRatio: "20%", margin: 22, cost: 2900 },
+    { mixRatio: "30%", margin: 27, cost: 2600 },
+    { mixRatio: "40%", margin: 31, cost: 2300 },
+    { mixRatio: "50%", margin: 35, cost: 2000 }
+  ];
+
+  // 3. 거시 지표(환율/유가) 펫푸드 마진 민감도
+  data.d_macro_sensitivity = [
+    { factor: "유가 +10%", marginImpact: -2.5, category: "원가" },
+    { factor: "환율(원달러) +5%", marginImpact: +3.8, category: "수익" },
+    { factor: "해수온 +1.5도", marginImpact: -4.2, category: "원가" },
+    { factor: "물류비(SCFI) +20%", marginImpact: -1.8, category: "비용" }
+  ];
+
+  // 4. [SG 밸류업] B2B 펫푸드 시장 직공급 점유율
+  data.d_sg_b2b = [
+    { name: "SG 직공급 (Value-Up)", value: 25, fill: "#f472b6" },
+    { name: "기존 벤더", value: 45, fill: "#64748b" },
+    { name: "해외 수입", value: 30, fill: "#334155" }
+  ];
+
+
   return NextResponse.json(data);
 }

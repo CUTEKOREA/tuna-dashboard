@@ -14,7 +14,7 @@ import {
   BookOpen, Workflow, Database, Zap, Hexagon, Leaf, Target, MapPin, Landmark, Coins, Layers, Sprout
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css';
+import styles from './CashewStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
 
 const formatXAxis = (tickItem: any) => {
@@ -101,11 +101,11 @@ const WIDGET_UNITS: Record<string, string> = {
 };
 
 const SECTIONS = [
-  { id: "S1", title: "🌱 Part I — 원물 생산 (Raw Material)", desc: "글로벌 생산 추이, 수매가 마진 방어선 및 공급망 전환", color: "var(--color-success)", start: 0, end: 7 },
-  { id: "S2", title: "🏭 Part II — 가공 산업 (Processing)", desc: "SEZ 투자 매력도, 스마트 팩토리 ROI, 커널 등급 프리미엄 및 운전자본 리스크", color: "var(--color-info)", start: 7, end: 16 },
-  { id: "S3", title: "🚢 Part III — 물류 및 무역 (Logistics)", desc: "원산지 포트폴리오, 물류 히트맵 및 기형적 우회 수출 트렌드", color: "var(--color-warning)", start: 16, end: 24 },
-  { id: "S4", title: "🛒 Part IV — 판매 및 수요 (Sales & Demand)", desc: "가치사슬 마진 구조, 수요 시프트 트렌드 및 비건(Vegan) 대체유 프리미엄", color: "var(--color-danger)", start: 24, end: 31 },
-  { id: "S5", title: "🌍 Part V — ESG 및 순환경제 (Sustainability)", desc: "ESG 인증 프리미엄, 탄소 발자국 비교 및 CNSL(껍질 액) 부가가치", color: "#8b5cf6", start: 31, end: 39 },
+  { id: "S1", title: "📍 제1전략기둥: 원물", desc: "글로벌 생산 추이, 수매가 마진 방어선 및 공급망 전환", color: "var(--color-success)", start: 0, end: 7 },
+  { id: "S2", title: "⚙️ 제2전략기둥: 가공", desc: "SEZ 투자 매력도, 스마트 팩토리 ROI, 커널 등급 프리미엄 및 운전자본 리스크", color: "var(--color-info)", start: 7, end: 16 },
+  { id: "S3", title: "🚚 제3전략기둥: 물류", desc: "원산지 포트폴리오, 물류 히트맵 및 기형적 우회 수출 트렌드", color: "var(--color-warning)", start: 16, end: 24 },
+  { id: "S4", title: "🛒 제4전략기둥: 영업", desc: "가치사슬 마진 구조, 수요 시프트 트렌드 및 비건 대체유 프리미엄", color: "var(--color-danger)", start: 24, end: 31 },
+  { id: "S5", title: "🌍 제5전략기둥: ESG", desc: "ESG 인증 프리미엄, 탄소 발자국 비교 및 CNSL(껍질 액) 부가가치", color: "#8b5cf6", start: 31, end: 39 },
 ];
 
 export default function CashewStrategy() {
@@ -113,7 +113,7 @@ export default function CashewStrategy() {
   const [showEdu, setShowEdu] = useState(true);
 
   useEffect(() => {
-    fetch('/data/cashew_data.json')
+    fetch('/api/cashew')
       .then(r => r.json()).then(setData)
       .catch(e => console.error(e));
   }, []);
@@ -121,11 +121,11 @@ export default function CashewStrategy() {
   if (!data) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
       <RefreshCcw size={32} style={{ color:'var(--color-success)', animation:'spin 1s linear infinite' }} />
-      <p style={{ color:'#94a3b8' }}>Loading FAOSTAT Intelligence...</p>
+      <p style={{ color:'#94a3b8' }}>캐슈넛 전략 인텔리전스 데이터 동기화 중...</p>
     </div>
   );
 
-  const { kpis, widgets } = data;
+  const { kpis, widgets, d_vietnam_paradox, d_africa_processing, d_macro_sensitivity, d_cnsl_esg } = data;
 
   const renderChart = (w: any) => {
     const d = w.data || w.pies;
@@ -174,7 +174,7 @@ export default function CashewStrategy() {
             {grid}
             {d.length >= 10 ? (
               <>
-                <YAxis type="category" dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} width={90} tickFormatter={formatXAxis} />
+                <YAxis type="category" dataKey={w.xKey} interval={0} stroke="#64748b" tick={{fontSize:9}} width={90} tickFormatter={formatXAxis} />
                 <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
               </>
             ) : (
@@ -246,7 +246,7 @@ export default function CashewStrategy() {
             </div>
             <div>
               <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color:'#f8fafc' }}>
-                캐슈넛 글로벌 시장 인텔리전스
+                캐슈넛 산업 전략 지휘소 (Cashew Command Center)
               </h1>
               <p style={{ margin:0, fontSize:'0.8rem', color:'#64748b' }}>FAOSTAT Real Data · 10 Charts · 127 Data Points</p>
             </div>
@@ -434,6 +434,131 @@ export default function CashewStrategy() {
             </div>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+
+            {sec.id === 'S1' && d_vietnam_paradox && (
+              <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+                <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
+                  <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:"var(--color-success)", margin:'0 0 0.4rem' }}>
+                    <Globe size={17} />베트남 캐슈 원물 수입 의존도 리스크 (역설)
+                    <TelemetryBadge status="live" />
+                  </h3>
+                  <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>베트남 수출량 대비 원물(RCN) 수입량 격차</p>
+                </div>
+                <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative' }}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={d_vietnam_paradox} margin={{top:5, right:10, left:-10, bottom:10}}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                      <XAxis dataKey="year" stroke="#64748b" tick={{fontSize:10}} />
+                      <YAxis stroke="#64748b" tick={{fontSize:9}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend wrapperStyle={{fontSize:'10px'}} />
+                      <Area type="monotone" dataKey="importVolume" name="원물(RCN) 수입량" fill="rgba(239,68,68,0.2)" stroke="#ef4444" strokeWidth={2} />
+                      <Area type="monotone" dataKey="exportVolume" name="커널 수출량" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth={2} />
+                    </AreaChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <div style={{ marginTop:'auto' }}>
+                  <TakeawayBox 
+                    situation="베트남의 캐슈넛 수출량은 우상향 중이나, 자체 원물 조달의 한계로 RCN(원물) 수입 의존도 역시 역대 최고치로 폭증하며 마진 스프레드가 축소되고 있습니다."
+                    takeaway="베트남 가공 공장 의존도를 낮추고, 서아프리카 산지 직소싱 및 현지 1차 가공(JV) 거점 확보를 통해 원물 리스크를 헤징하십시오."
+                    source="베트남 해관총서(VINACAS) 및 무역 데이터"
+                  />
+                </div>
+              </div>
+            )}
+            {sec.id === 'S2' && d_africa_processing && (
+              <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+                <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
+                  <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:"var(--color-info)", margin:'0 0 0.4rem' }}>
+                    <Factory size={17} />서아프리카 현지 가공 비율 및 B2B 직공급 전환율
+                    <TelemetryBadge status="live" />
+                  </h3>
+                  <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>가공률(Processing Rate) 상승과 직공급 전환 궤적</p>
+                </div>
+                <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative' }}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                      <XAxis dataKey="quarter" stroke="#64748b" tick={{fontSize:10}} />
+                      <YAxis stroke="#64748b" tick={{fontSize:9}} unit="%" />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend wrapperStyle={{fontSize:'10px'}} />
+                      <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.8} />
+                      <Line type="monotone" dataKey="directSupply" name="B2B 직공급률(%)" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{r:4}} />
+                    </ComposedChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <div style={{ marginTop:'auto' }}>
+                  <TakeawayBox 
+                    situation="코트디부아르 등 서아프리카 핵심 산지의 자국 내 가공(Processing) 비율이 23년 12%에서 25년 35%로 급증하며, 원물 반출이 강력히 통제되고 있습니다."
+                    takeaway="베트남 우회 수입 경로를 축소하고, 아프리카 현지 가공공장과 장기 B2B 직공급 계약을 체결하여 '밸류업(Value-Up)' 기반 영업망을 구축하십시오."
+                    source="아프리카 캐슈 연맹(ACA) 분기 보고서"
+                  />
+                </div>
+              </div>
+            )}
+            {sec.id === 'S3' && d_macro_sensitivity && (
+              <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+                <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
+                  <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:"var(--color-warning)", margin:'0 0 0.4rem' }}>
+                    <Activity size={17} />거시 지표 민감도 분석 (What-If 시뮬레이터)
+                    <TelemetryBadge status="live" />
+                  </h3>
+                  <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>운임, 환율, 기후 및 프리미엄 변동에 따른 마진 임팩트</p>
+                </div>
+                <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative' }}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={true} vertical={false} />
+                      <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} unit="%" />
+                      <YAxis type="category" dataKey="factor" interval={0} width={100} stroke="#64748b" tick={{fontSize:9}} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Bar dataKey="impact" name="영업 마진 임팩트(%)" radius={[0,4,4,0]}>
+                        {d_macro_sensitivity.map((entry, index) => (
+                          <Cell key={index} fill={entry.impact > 0 ? '#10b981' : '#ef4444'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <div style={{ marginTop:'auto' }}>
+                  <TakeawayBox 
+                    situation="인도 수확기 도래에 따른 해상 운임(SCFI) 급등 리스크(-2.8%)가 원물 가격 하락폭을 상쇄하고 있으며, 반대로 원달러 고환율(+4.2%) 환경은 수출 마진을 견인하고 있습니다."
+                    takeaway="선박 확보 및 컨테이너 선도 계약(Forward)을 통해 물류비 스파이크를 방어하고, 환율 수혜가 극대화되는 시점에 EU 인증 프리미엄 물량을 선제적으로 밀어내십시오."
+                    source="자체 시뮬레이션 및 거시 경제 API"
+                  />
+                </div>
+              </div>
+            )}
+            {sec.id === 'S5' && d_cnsl_esg && (
+              <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
+                <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem' }}>
+                  <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:"#8b5cf6", margin:'0 0 0.4rem' }}>
+                    <Leaf size={17} />캐슈 껍질 액(CNSL) 기반 ESG 신사업 포트폴리오
+                    <TelemetryBadge status="live" />
+                  </h3>
+                  <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>부산물(CNSL) 업사이클링을 통한 부가수익 창출 비율 추정</p>
+                </div>
+                <div style={{ height:'250px', width:'100%', marginBottom:'1rem', position:'relative' }}>
+                  <SafeResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie data={d_cnsl_esg} cx="50%" cy="50%" outerRadius={85} innerRadius={40} dataKey="value" nameKey="name" label={({name,percent}) => `${name} ${(percent*100).toFixed(0)}%`} labelLine={false} fontSize={9}>
+                        {d_cnsl_esg.map((entry, i) => <Cell key={i} fill={entry.fill} />)}
+                      </Pie>
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend wrapperStyle={{fontSize:'10px'}} />
+                    </PieChart>
+                  </SafeResponsiveContainer>
+                </div>
+                <div style={{ marginTop:'auto' }}>
+                  <TakeawayBox 
+                    situation="캐슈넛 전체 중량의 70% 이상을 차지하는 껍질(CNSL) 추출물이 산업용 레진, 도료 및 차세대 바이오 에너지 원료로 급격히 재평가받고 있습니다."
+                    takeaway="가공 과정에서 버려지던 CNSL의 직접 추출 및 정제 설비를 조기 도입하여, 탄소 배출 저감(Scope 3) 크레딧 확보와 함께 친환경 신사업 부가가치를 25% 이상 창출하십시오."
+                    source="글로벌 ESG 리서치 및 대체 에너지 동향"
+                  />
+                </div>
+              </div>
+            )}
             {widgets.slice(sec.start, sec.end).map((w:any, wi:number) => {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[(sec.start + wi) % ACCENT_COLORS.length];

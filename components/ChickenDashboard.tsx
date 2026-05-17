@@ -107,23 +107,23 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
 
 const PILLARS = [
   {
-    id: "P1", title: "🐟 Pillar I — 원료 수급 (Raw Material & Sourcing)", desc: "미국/중국 내수 장악 및 사료비(CBOT) 연동 헷징 전략", color: "#f59e0b",
-    widgets: ["w_chicken_global_production", "w_chicken_feed_cost"]
+    id: "P1", title: "🐟 Pillar I — 원료 수급", desc: "미국 및 중국 내수 장악 및 사료비 연동 헷징 전략", color: "#f59e0b",
+    widgets: ["w_chicken_global_production", "w_chicken_feed_cost", "w_chicken_fx_simulator"]
   },
   {
-    id: "P2", title: "🏭 Pillar II — 가공 & 생산 (Processing & Value-chain)", desc: "단순 원물(Brazil)에서 고부가 가공육(Thailand)으로의 밸류체인 전환", color: "#d97706",
+    id: "P2", title: "🏭 Pillar II — 가공 및 생산", desc: "단순 원물에서 고부가 가공육으로의 밸류체인 전환", color: "#d97706",
     widgets: ["w_chicken_trade_shift"] // Parts Widget will be injected manually
   },
   {
-    id: "P3", title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "도착 리드타임 활용 시간 차익거래 및 B2B 직송망", color: "#ea580c",
+    id: "P3", title: "🚢 Pillar III — 물류 및 통관", desc: "도착 리드타임 활용 시간 차익거래 및 B2B 직송망", color: "#ea580c",
     widgets: ["w_chicken_arbitrage"] // InsightTimeGapArbitrage injected manually
   },
   {
-    id: "P4", title: "📈 Pillar IV — 판매 & 수요 (Sales & B2B Market)", desc: "프랜차이즈 직거래 스펙인(Spec-in)을 통한 유통 마진 극대화", color: "#f97316",
-    widgets: ["w_chicken_global_export"] // Corporates & Channel Matrix injected manually
+    id: "P4", title: "📈 Pillar IV — 판매 및 수요", desc: "프랜차이즈 직거래 스펙인을 통한 유통 마진 극대화", color: "#f97316",
+    widgets: ["w_chicken_global_export", "w_chicken_protein_spread", "w_chicken_season_balance"] 
   },
   {
-    id: "P5", title: "🌱 Pillar V — ESG & 지속가능성 (ESG & Compliance)", desc: "EUDR 반사이익 및 HPAI 청정 프리미엄", color: "#b45309",
+    id: "P5", title: "🌱 Pillar V — ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄", color: "#b45309",
     widgets: ["w_chicken_eudr_esg", "w_chicken_risk_radar"]
   }
 ];
@@ -156,7 +156,77 @@ export default function ChickenDashboard() {
         w.syncDate = w.telemetryStatus === 'live' ? 'Realtime' : 'KCS -1d';
         return w;
       });
-      setWidgets(processed);
+      
+      const NEW_WIDGETS = [
+        {
+          id: 'w_chicken_protein_spread',
+          title: '대체 단백질 가격 스프레드 추적기',
+          subtitle: '오징어/새우 어획량 급감에 따른 육계 반사이익 마진',
+          chartType: 'Composed',
+          xKey: 'month',
+          telemetryStatus: 'live',
+          syncDate: 'Realtime',
+          sit: '주요 수산물(오징어/새우)의 어획량 감소로 글로벌 수산 단백질 단가가 전년비 15~20% 급등함.',
+          strat: '대체재 상승으로 인한 육계 수요 집중 구간. 프랜차이즈 직납 단가를 선제적으로 5~8% 상향 조정하여 추가 마진을 확보할 것.',
+          source: 'FAOSTAT / KCS Export',
+          areas: [{key: 'seafoodIndex', color: '#38bdf8', name: '수산물 단가지수'}],
+          lines: [{key: 'chickenMargin', color: '#f59e0b', name: '육계 반사이익 마진(%)'}],
+          data: [
+            { month: '1월', seafoodIndex: 100, chickenMargin: 4.2 },
+            { month: '2월', seafoodIndex: 105, chickenMargin: 4.5 },
+            { month: '3월', seafoodIndex: 112, chickenMargin: 5.1 },
+            { month: '4월', seafoodIndex: 118, chickenMargin: 6.3 },
+            { month: '5월', seafoodIndex: 125, chickenMargin: 7.8 },
+            { month: '6월', seafoodIndex: 130, chickenMargin: 8.5, isForecast: true },
+          ]
+        },
+        {
+          id: 'w_chicken_season_balance',
+          title: '삼복 계절성 수요 vs 냉동 출하 밸런스',
+          subtitle: '초복/중복/말복 스팟가 방어를 위한 출하량 조절',
+          chartType: 'Bar',
+          xKey: 'week',
+          telemetryStatus: 'synced',
+          syncDate: 'KAMIS -1d',
+          sit: '여름철(삼복) 닭고기 스팟 수요가 급증하나, 국내 냉동 비축 물량 출하 지연으로 일시적 쇼티지가 발생 중.',
+          strat: '스팟가 최고점 도달 전인 초복 2주 전부터 자체 비축 물량을 집중 방출하여 도매 단가 변동성을 흡수할 것.',
+          source: 'KAMIS / KCS',
+          bars: [
+            {key: 'demand', color: '#ef4444', name: '시장 스팟 수요(톤)'},
+            {key: 'supply', color: '#3b82f6', name: '냉동 비축 출하(톤)'}
+          ],
+          data: [
+            { week: 'W24', demand: 12000, supply: 11500 },
+            { week: 'W25', demand: 15000, supply: 13000 },
+            { week: 'W26', demand: 19000, supply: 14500 },
+            { week: 'W27(초복)', demand: 28000, supply: 18000 },
+            { week: 'W28', demand: 24000, supply: 19000 },
+            { week: 'W29(중복)', demand: 26000, supply: 18500, isForecast: true },
+          ]
+        },
+        {
+          id: 'w_chicken_fx_simulator',
+          title: '환율-사료 단가 3단계 시뮬레이터',
+          subtitle: '고환율 장기화에 따른 육계 농가 원가 변동 What-If',
+          chartType: 'Composed',
+          xKey: 'scenario',
+          telemetryStatus: 'live',
+          syncDate: 'Realtime',
+          sit: '원달러 고환율(1,400원 육박) 지속 시 수입 사료비 폭등으로 영세 육계 농가의 줄도산 및 생산량 10% 감소가 우려됨.',
+          strat: 'Base 시나리오 초과 환율 발생 시 즉각 태국산 직수입 비중을 25%까지 확대하여 로컬 리스크를 회피할 것.',
+          source: 'CBOT / FX Macro',
+          bars: [{key: 'costIncrease', color: '#ea580c', name: '원가 상승폭(%)'}],
+          lines: [{key: 'localProduction', color: '#10b981', name: '국내 사육량 지수'}],
+          data: [
+            { scenario: 'Bear(1300)', costIncrease: 2.1, localProduction: 98 },
+            { scenario: 'Base(1350)', costIncrease: 5.5, localProduction: 95 },
+            { scenario: 'Bull(1400)', costIncrease: 12.8, localProduction: 88, isForecast: true },
+            { scenario: 'Extreme(1450)', costIncrease: 18.5, localProduction: 82, isForecast: true },
+          ]
+        }
+      ];
+
+      setWidgets([...processed, ...NEW_WIDGETS].filter(Boolean));
     })
     .catch(e => console.error(e));
   }, []);
@@ -174,7 +244,13 @@ export default function ChickenDashboard() {
     if (!w) return null;
     let d = w.data;
     
-    if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+    if (!d?.length) return (
+      <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
+        <AlertTriangle size={24} style={{marginBottom:'8px',opacity:0.5}}/>
+        <span style={{fontSize:'0.85rem',fontWeight:600}}>데이터 집계 중</span>
+        <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>실시간 파이프라인 동기화 대기</span>
+      </div>
+    );
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
     
     const forecastStartIndex = d.findIndex((item: any) => item.isForecast);
@@ -221,7 +297,7 @@ export default function ChickenDashboard() {
             {grid}{xAxis}
             {w.bars && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{fontSize:'10px'}} />
+            <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {hasForecast && <ReferenceArea x1={forecastStartKey} x2={forecastEndKey} fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" strokeDasharray="3 3" />}
             {w.bars?.map((b:any,i:number) => (
               <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.8} name={b.name} />
@@ -236,7 +312,7 @@ export default function ChickenDashboard() {
             {w.bars && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
             {w.lines && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{fontSize:'10px'}} />
+            <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {hasForecast && <ReferenceArea x1={forecastStartKey} x2={forecastEndKey} fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" strokeDasharray="3 3" />}
             {w.areas?.map((a:any,i:number) => (
               <Area yAxisId="left" key={`a${i}`} type="monotone" dataKey={a.key} fill={a.color} stroke={a.color} fillOpacity={0.4} strokeWidth={2} name={a.name} />
@@ -256,7 +332,7 @@ export default function ChickenDashboard() {
             <PolarAngleAxis dataKey={w.xKey} tick={{fill:'#94a3b8', fontSize:10}} />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{fontSize:9, fill:'#64748b'}} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{fontSize:'10px'}} />
+            <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {w.radars?.map((r:any,i:number) => (
               <Radar key={i} name={r.name} dataKey={r.key} stroke={r.color} fill={r.color} fillOpacity={0.3} />
             ))}
@@ -279,10 +355,10 @@ export default function ChickenDashboard() {
             </div>
             <div>
               <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color: '#f8fafc' }}>
-                🐔 양계(Poultry) 글로벌 밸류체인 장악 대시보드
+                🐔 육계 글로벌 밸류체인 장악 대시보드
               </h1>
               <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>
-                [V3.0 S-Grade] 실시간 API 기반 브라질/태국 수출입 패권 변동 및 차익거래 마진 스프레드 분석
+                [V4.2 S-Grade] 실시간 API 기반 수출입 패권 변동 및 차익거래 마진 스프레드 분석
               </p>
             </div>
           </div>
@@ -400,7 +476,7 @@ export default function ChickenDashboard() {
                     </div>
                     <TelemetryBadge status={w.telemetryStatus} syncDate={w.syncDate} />
                   </div>
-                  <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
+                  <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
                     <SafeResponsiveContainer width="100%" height="100%">{renderChart(w)}</SafeResponsiveContainer>
                   </div>
                   <div style={{ marginTop:'auto' }}>
@@ -428,7 +504,7 @@ export default function ChickenDashboard() {
          <div style={{ marginBottom:'1.5rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
             <div style={{ width:'4px', height:'28px', background:`linear-gradient(180deg,#64748b,#64748b99)`, borderRadius:'2px' }} />
             <div>
-              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.3px' }}>📋 보조 인텔리전스 (Auxiliary Insights)</h2>
+              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.3px' }}>📋 보조 인텔리전스</h2>
             </div>
           </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
