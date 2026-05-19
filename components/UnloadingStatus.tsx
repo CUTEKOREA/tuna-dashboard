@@ -52,8 +52,8 @@ export default function UnloadingStatus() {
       actualTotal: 4358.880,
       surplus: -26.120,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 4099.000, actual: 4225.280, surplus: 126.280 },
-        { id: 'YF', name: 'Yellowfin', reported: 286.000, actual: 133.600, surplus: -152.400 }
+        { id: 'SJ', name: 'Skipjack', reported: 4099.000, actual: 4118.980, surplus: 19.980 },
+        { id: 'YF', name: 'Yellowfin', reported: 286.000, actual: 239.900, surplus: -46.100 }
       ],
       timeline: [
         { date: '4/23', time: '08:10 ~ 20:40', targetHol: 'S/EXP(#1-A), S/SPR(#3-A)', dailyAmount: 253.470, cumAmount: 253.470, quality: '어창 온도 -21.0℃ ~ -22.0℃. 양호.' },
