@@ -15,7 +15,7 @@ import {
   Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, Leaf, Cpu, Layers, Clock
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './MackerelStrategy.module.css';
+import styles from './SquidDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 
 /* ─── Telemetry Badge (참치 패턴 동기화) ─── */
@@ -324,7 +324,7 @@ export default function SquidDashboard() {
             <PieChart>
               <Pie data={d} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={85} innerRadius={35}
                 label={({name, value, percent}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : ''} labelLine={false} fontSize={10}>
-                {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
+                {d.map((_: any, idx: number) => <Cell key={idx} fill={d[idx].fill || d[idx].color || PIE_COLORS[idx % PIE_COLORS.length]} />)}
               </Pie>
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
@@ -342,7 +342,7 @@ export default function SquidDashboard() {
                 ))}
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
@@ -355,12 +355,12 @@ export default function SquidDashboard() {
           return (
             <BarChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={i} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={i} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} maxBarSize={40} />
               ))}
             </BarChart>
           );
@@ -368,7 +368,7 @@ export default function SquidDashboard() {
           return (
             <LineChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
@@ -381,7 +381,7 @@ export default function SquidDashboard() {
           return (
             <ComposedChart data={d} margin={newChartMargin}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} />
+              <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} angle={0} textAnchor="middle" />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {(widget.lines?.some((l:any) => l.yAxisId === 'right') || widget.bars?.some((b:any) => b.yAxisId === 'right') || widget.areas?.some((a:any) => a.yAxisId === 'right')) && (
                 <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
@@ -392,7 +392,7 @@ export default function SquidDashboard() {
                 <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} name={a.name || a.key || a.dataKey} fill={a.color || a.fill || getMonolithicColor(i)} stroke={a.color || a.fill || getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
               ))}
               {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i + (widget.areas?.length || 0))} radius={[6,6,0,0]} fillOpacity={0.85} />
+                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i + (widget.areas?.length || 0))} radius={[6,6,0,0]} fillOpacity={0.85} maxBarSize={40} />
               ))}
               {widget.lines?.map((l: any, i: number) => (
                 <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} name={l.name || l.key || l.dataKey} stroke={l.color || l.fill || getMonolithicColor(i + (widget.areas?.length || 0) + (widget.bars?.length || 0))} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
@@ -419,7 +419,7 @@ export default function SquidDashboard() {
           <PieChart>
             <Pie data={d} cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={5} dataKey="value"
               label={({name, value, percent}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : ''} labelLine={false} fontSize={10}>
-              {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
+              {d.map((_: any, idx: number) => <Cell key={idx} fill={d[idx].fill || d[idx].color || PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -429,7 +429,7 @@ export default function SquidDashboard() {
         return (
           <LineChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -443,7 +443,7 @@ export default function SquidDashboard() {
         return (
           <AreaChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -456,7 +456,7 @@ export default function SquidDashboard() {
         return (
           <BarChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
@@ -469,7 +469,7 @@ export default function SquidDashboard() {
         return (
           <ComposedChart data={d} margin={chartMargin}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} />
+            <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} angle={0} textAnchor="middle" />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
             <RechartsTooltip content={<CustomTooltip />} />
@@ -832,7 +832,7 @@ export default function SquidDashboard() {
 
   function renderWidgetCard(w: any) {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
-    const accentColor = 'var(--color-success)';
+    const accentColor = '#ec4899'; // 오징어 테마 (Pink/Purple)
     
     // Get methodology text (supports both old "methodology" and new "logic" field)
     const methodologyText = w.logic || w.methodology || '';
@@ -840,29 +840,31 @@ export default function SquidDashboard() {
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
     
+    // cardDesc 표준화
+    const cardDesc = w.cardDesc || w.subtitle || methodologyText;
+    // Telemetry 상태 결정
+    const telemetryStatus = w.isLive || w.isLiveApi ? 'live' : (w.reliability && w.reliability < 70 ? 'static' : 'synced');
+    
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
-        background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
-        padding: '1.5rem'}}>
+      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px'}}>
         
         {/* Card Header */}
         <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
           <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
             <IconComp size={20} color={accentColor} />
             {w.title} 
-            {w.isLiveApi ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
-            ) : w.reliability && w.reliability < 70 ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>ESTIMATE</span>
-            ) : null}
+            
+            <div style={{ marginLeft: '6px' }}>
+              <TelemetryBadge status={telemetryStatus} syncDate={w.syncDate || '2026-05'} />
+            </div>
             
             <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
               {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
             </div>
           </h3>
-          {(w.subtitle) && (
+          {cardDesc && (
             <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {w.subtitle}
+              {cardDesc}
             </p>
           )}
         </div>
