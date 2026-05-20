@@ -2,7 +2,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-20 (Claude Code 세션 — Phase E API mock 정정 + 라이브 배포 완료, leedonggun.co.kr)
+> **마지막 업데이트**: 2026-05-20 (Antigravity 세션 — OSH 공급업체 허브 위젯 S-Grade 리터칭 완료)
 
 ---
 
@@ -119,6 +119,7 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 | 2026-05-20 | CC | style (Phase D GS 톤 정착 + AI tell 일괄 제거) | 75 | 첫 L-07 스크립트가 TS 코드 공백까지 잡아 rollback 1회 발생 → 한글 문맥 제한 정규식으로 재실행 | 50+ 파일에서 브래킷 라벨·영문 동격·과장 수식어·잉여현금흐름 후렴구 합계 417건 정리. TunaInsightsDashboard 14개 위젯 thesis-first 수동 재작성. 3개 커밋(6bfa990·07e8283·c97b05b) |
 | 2026-05-20 | AG | analysis (참치 대시보드 S-Grade 종합 업그레이드 제안서 작성) | 20 | — | 3종 대시보드 통합 고도화, UI/UX 디자인 표준화 및 API 로드맵을 포괄하는 S-Grade 제안서 작성 완료 |
 | 2026-05-20 | AG | ui-fix/refactor/debug (Tuna S-Grade 3종 업그레이드 및 빌드 안정화) | 120 | — | TelemetryBadge/chart-standards 공통화, 3종 대시보드 한글화 및 tsc/build 100% 성공 검증 |
+| 2026-05-20 | AG | ui-fix/style (TunaSupplierHub S-Grade 표준화 완료) | 20 | — | OSH 위젯 패딩/TelemetryBadge/한글화 완성 및 빌드 성공 |
 
 **작업 유형 카테고리** (단순화):
 - `bootstrap` — 인프라·문서·도구
