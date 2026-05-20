@@ -19,6 +19,7 @@
   - **Phase B4 신규 위젯 4종** (커밋 `d93fa87`): [components/TunaIntelInsightsB4.tsx](components/TunaIntelInsightsB4.tsx) — ThaiImportShift1Q26(S1) / PerfectStormWidget(S1) / FrimeAcquisitionWidget(S2) / RasSystemWidget(S5). 모두 TunaDashboard 각 pillar에 삽입. tsc + npm run build 통과.
   - **Phase C 외부 출처 후속 검증 4건** (커밋 `78874b9`): EUMOFA EU Fish Market 2025로 Ecuador EU 점유율 29%(volume)/48%(value) 확정 → TunaNewInsightsA nauruData 보정 / ISSF 2026-01 최신판으로 건전성 97%(어획량)/74%(stock) 업그레이드 → TunaRanching 갱신 / IMARC Saudi Cold Chain Report 2025-2034 직접 확인 → 출처 정확화 / 동원 펫푸드 28.5%는 비공개 추정치로 명시.
   - **Phase C mock 데이터 일부 실데이터 wiring** (커밋 `d62a359`): mockZeroSumData를 FAO FishStat v25 실측치로 교체 (가짜 2015 엘니뇨 shock 제거). mockMSCPremium에 Fisheries Research 2025 출처 주석 추가.
+  - **Phase D GS 톤 정착 + AI 티 제거** (커밋 `6bfa990`·`07e8283`·`c97b05b`): L-07 일괄 변환으로 브래킷 라벨 54건·영문 동격 188건·과장 수식어 17건·잔존 AI tell 158건(잉여현금흐름 극대화 후렴구 등) 정리. TunaInsightsDashboard 14개 위젯 TakeawayBox 본문을 thesis-first GS 데스크 노트 스타일로 수동 재작성. 명령형 어조 완화, date-stamp 명시, catalyst/risk 균형. 50+ 파일 영향.
 - ✅ **TunaOperationalInsights → S1~S5 위젯 모듈 분리 (2026-05-20, 커밋 `4f8cdce`)**:
   - `components/TunaOperationalInsights.tsx`(1110줄) 삭제 → `components/TunaOperationalIntelWidgets.tsx`로 재구성 후 `OperationalS1~S5Widgets`를 TunaDashboard 5-Pillar 각 섹션에 삽입.
   - `app/page.tsx`: field-ops 메뉴/라우트 및 TunaOperationalInsights dynamic import 제거.
@@ -155,7 +156,8 @@ git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' |
 | 2026-05-20 | AG | ui-fix/content (Tuna widget rearrangement & removal) | 60 | — | 참치 대시보드 위젯 흐름 재배치 및 불필요/요청 위젯 5종 완벽 제거 |
 | 2026-05-20 | CC | refactor (TunaOperationalInsights → S1~S5 모듈 분리 + GS Analyst Tone 일괄 적용) | 25 | 워킹트리에 137개 파일 누적 + 스크래치/로그 미정리 | 단일 커밋으로 묶음 분리·제외 판단, 빌드 깨짐 방지(신규 위젯 동봉) |
 | 2026-05-20 | CC | analysis+refactor (참치 위젯 사실 무결성 감사 Phase A+B 풀스캔) | 180 | 노트북 query 일부 timeout, 위젯 간 동일지표 정의 다름 | 33개 위젯 전부 검증·정정, 신규 위젯 4종 추가, 빌드 통과. 6개 커밋(7e8a032·fbbd719·81192ed·21d78f5·c631687·d93fa87) |
-| 2026-05-20 | CC | data (Phase C 외부 출처 검증 + mock 실데이터 wiring) | 45 | EUMOFA PDF는 pdftotext 필요(brew install poppler), 한국 참치액 단일값 미공개 | EUMOFA/ISSF/IMARC 직접 확인으로 4건 정확화, FishStat 실측으로 mockZeroSumData 교체. 2개 커밋(78874b9·d62a359) |log --oneline -10`으로 직전 변경 확인.
+| 2026-05-20 | CC | data (Phase C 외부 출처 검증 + mock 실데이터 wiring) | 45 | EUMOFA PDF는 pdftotext 필요(brew install poppler), 한국 참치액 단일값 미공개 | EUMOFA/ISSF/IMARC 직접 확인으로 4건 정확화, FishStat 실측으로 mockZeroSumData 교체. 2개 커밋(78874b9·d62a359) |
+| 2026-05-20 | CC | style (Phase D GS 톤 정착 + AI tell 일괄 제거) | 75 | 첫 L-07 스크립트가 TS 코드 공백까지 잡아 rollback 1회 발생 → 한글 문맥 제한 정규식으로 재실행 | 50+ 파일에서 브래킷 라벨·영문 동격·과장 수식어·잉여현금흐름 후렴구 합계 417건 정리. TunaInsightsDashboard 14개 위젯 thesis-first 수동 재작성. 3개 커밋(6bfa990·07e8283·c97b05b) |log --oneline -10`으로 직전 변경 확인.
 2. **세션 종료 시**: 이 파일의 "완료된 것" / "다음 단계"를 *반드시* 갱신하고 커밋.
 3. **동시 작업 금지**: 한 브랜치에 두 에이전트가 동시 입력 X. worktree 분리 또는 시간차 작업.
 4. **에이전트 의존 기능 사용 시 표시**: superpowers·grill-me 등 특정 도구 호출 결과는 *결정 자체*만 이 파일에 남기고 도구 호출 흔적은 남기지 않기 (다른 에이전트에 의미 없음).
