@@ -117,12 +117,12 @@ const KPI_THEMES = [
 ];
 
 const SECTIONS = [
-  { id: "S1", title: "⚓ Part I — 원물 생산", desc: "FAO FishStatJ · IOTC · IATTC · ICCAT 기반 글로벌 참치 어획량, 어종별 자원 동향, K-원양 선단 효율, 기후(ENSO) 영향 분석", color: "#FCD535" },
-  { id: "S2", title: "🏭 Part II — 가공 산업", desc: "태국/스페인/한국 가공 패권 구조, 수율·인건비 벤치마크, 부산물 업사이클링, 펫케어 라인 전환 타당성", color: "#9B72CB" },
-  { id: "S3", title: "🚢 Part III — 물류 및 무역", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
-  { id: "S4", title: "🛒 Part IV — 판매 및 수요", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
-  { id: "S5", title: "🌍 Part V — ESG 및 지속가능성", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
-  { id: "S6", title: "🐾 Part VI — 파생 사업 (펫푸드)", desc: "참치 부산물 기반 프리미엄 펫푸드 시장 진입, 카라기난 리스크 방어, 대체 단백질 글로벌 성장 구조 분석", color: "#EC4899" },
+  { id: "S1", num: "❶", label: "원물 생산", title: "⚓ Part I — 원물 생산", desc: "FAO FishStatJ · IOTC · IATTC · ICCAT 기반 글로벌 참치 어획량, 어종별 자원 동향, K-원양 선단 효율, 기후(ENSO) 영향 분석", color: "#FCD535" },
+  { id: "S2", num: "❷", label: "가공 산업", title: "🏭 Part II — 가공 산업", desc: "태국/스페인/한국 가공 패권 구조, 수율·인건비 벤치마크, 부산물 업사이클링, 펫케어 라인 전환 타당성", color: "#9B72CB" },
+  { id: "S3", num: "❸", label: "물류·무역", title: "🚢 Part III — 물류 및 무역", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
+  { id: "S4", num: "❹", label: "판매·수요", title: "🛒 Part IV — 판매 및 수요", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
+  { id: "S5", num: "❺", label: "ESG", title: "🌍 Part V — ESG 및 지속가능성", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
+  { id: "S6", num: "❻", label: "펫푸드", title: "🐾 Part VI — 파생 사업 (펫푸드)", desc: "참치 부산물 기반 프리미엄 펫푸드 시장 진입, 카라기난 리스크 방어, 대체 단백질 글로벌 성장 구조 분석", color: "#EC4899" },
 ];
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -564,28 +564,117 @@ const TunaDashboard = React.memo(function TunaDashboard() {
         </div>
       )}
 
-      {/* ═══ 6-Part Consolidated Sections with Sub-Tabs ═══ */}
-      <div style={{ display: 'flex', overflowX: 'auto', gap: '1rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '2rem' }}>
-        {SECTIONS.map((s) => (
-          <button
-            key={s.id}
-            onClick={() => setActivePart(s.id)}
-            style={{
-              padding: '10px 16px',
-              background: activePart === s.id ? `${s.color}20` : 'transparent',
-              border: `1px solid ${activePart === s.id ? s.color : 'rgba(255,255,255,0.1)'}`,
-              borderRadius: '8px',
-              color: activePart === s.id ? s.color : 'var(--text-secondary)',
-              fontWeight: activePart === s.id ? 700 : 500,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              transition: 'all 0.2s',
-              boxShadow: activePart === s.id ? `0 0 12px ${s.color}30` : 'none'
-            }}
-          >
-            {s.title}
-          </button>
-        ))}
+      {/* ═══ 6-Part Step Navigation (Glassmorphism + Numbered Steps) ═══ */}
+      <div style={{
+        position: 'relative',
+        background: 'rgba(255,255,255,0.03)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        {/* 상단 안내 라벨 */}
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* 활성 탭 하단 글로우 바 */}
+                {isActive && (
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0',
+                  }} />
+                )}
+                {/* 넘버 서클 */}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>
+                  {idx + 1}
+                </div>
+                {/* 라벨 */}
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {s.label}
+                </span>
+                {/* 짧은 설명 (활성 시에만) */}
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem',
+                    color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center',
+                    lineHeight: 1.3,
+                    maxWidth: '120px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical' as any,
+                  }}>
+                    {s.desc.split('·')[0].trim()}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
