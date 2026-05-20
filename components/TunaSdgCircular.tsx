@@ -107,7 +107,7 @@ export default function TunaSdgCircular({ sdgData }: SdgCircularProps) {
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
           situation="FAO에 따르면 전 세계 수산물 생산량의 30~35%가 보존 인프라 부족 및 폐기로 인해 손실되고 있으며, 참치 원물의 약 50%가 부산물(내장 12~18%, 뼈 9~15%, 머리 9~12%, 자숙액 등)로 버려지고 있습니다. 반면 글로벌 어분의 27%, 어유의 48%가 이미 부산물로부터 생산되고 있어, 참치 부산물의 고부가가치 전환(액젓, 펩타이드, 콜라겐) 잠재력은 막대합니다. EU CFP의 '하역 의무화(Landing Obligation)'로 해상 투기가 전면 금지되어, 부산물 자원화가 규제적 의무로 전환되고 있습니다."
-          actionPlan="**[Actionable Insight]** 1) 참치액젓 1톤 생산 시 부산물 자원화량을 SDG 12.3 기여도로 환산하여, ESG 보고서 및 바이어 대상 '순환경제 인증' 마케팅 소재로 활용해야 합니다. 2) FAO Blue Transformation 프레임워크와 연계하여, '추가 어획 없이 가치사슬을 업그레이드'하는 친환경 혁신 사례로 글로벌 바이어에게 포지셔닝하면 프리미엄 단가 확보가 가능합니다. 3) EU 하역 의무화 정책을 활용하여, 유럽 시장 진출 시 '규제 준수 + 순환경제' 이중 가치를 소구해야 합니다."
+          actionPlan="1) 참치액젓 1톤 생산 시 부산물 자원화량을 SDG 12.3 기여도로 환산하여, ESG 보고서 및 바이어 대상 '순환경제 인증' 마케팅 소재로 활용해야 합니다. 2) FAO Blue Transformation 프레임워크와 연계하여, '추가 어획 없이 가치사슬을 업그레이드'하는 친환경 혁신 사례로 글로벌 바이어에게 포지셔닝하면 프리미엄 단가 확보가 가능합니다. 3) EU 하역 의무화 정책을 활용하여, 유럽 시장 진출 시 '규제 준수 + 순환경제' 이중 가치를 소구해야 합니다."
           source="FAO SOFIA 2022 (The State of World Fisheries and Aquaculture) / EU CFP Landing Obligation / A third assessment of global marine fisheries discards.pdf / Blue Nature-Based Solutions in marine and coastal EU policies"
         />
       </div>

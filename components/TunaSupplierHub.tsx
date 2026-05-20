@@ -188,7 +188,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
           situation={`[공급망 인텔리전스] ${COUNTRIES.find(c => c.code === selectedCountry)?.flag || ''} ${selectedCountry} 수산물 가공시설 ${totalCount}개 확인. ${totalWorkers > 0 ? `총 근로자 ${(totalWorkers / 1000).toFixed(0)}K+ 규모.` : ''} ${facilities[0]?.parentCompany ? `최대 기업: ${facilities[0].parentCompany}.` : ''}`}
-          actionPlan="**[Actionable Insight]** [소싱 전략] 시설별 생산 능력/ESG 인증 상태를 교차 검증하여 Silla Co. 원료 공급선 다변화 후보 목록 구축. IUU 어업/강제노동 리스크가 있는 시설은 우선 배제."
+          actionPlan="[소싱 전략] 시설별 생산 능력/ESG 인증 상태를 교차 검증하여 Silla Co. 원료 공급선 다변화 후보 목록 구축. IUU 어업/강제노동 리스크가 있는 시설은 우선 배제."
           source={`Open Supply Hub (CC BY-SA) · ${isLive ? '🟢 LIVE API' : '🟡 Curated DB'} · 6개국 ${Object.values(facilities).length}개 시설`}
         />
       </div>

@@ -127,7 +127,7 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
           situation="한국 참치 조제품 MFN 관세율 20%는 AKFTA/RCEP 적용 시 0%로 전환. 미국은 KORUS FTA로 6%→0% 적용. 양허세율(Bound) 대비 실질 세율의 갭이 FTA 활용 기회를 보여줍니다."
-          actionPlan="**[Actionable Insight]** [FTA 극대화] 태국·인도네시아 원산지 원료 사용 시 AKFTA 원산지 증명서 발급으로 관세 0% 확보. 미국 수출 시 KORUS FTA 활용으로 경쟁사 대비 6%p 가격 우위 확보해야 합니다."
+          actionPlan="[FTA 극대화] 태국·인도네시아 원산지 원료 사용 시 AKFTA 원산지 증명서 발급으로 관세 0% 확보. 미국 수출 시 KORUS FTA 활용으로 경쟁사 대비 6%p 가격 우위 확보해야 합니다."
           source={`World Bank WITS API · ${data?.meta?.apiStatus === 'live' ? '🟢 LIVE' : '🟡 Fallback DB'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`}
         />
       </div>
@@ -222,7 +222,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
           situation={`[시장 구조] 글로벌 참치 조제품 교역 규모 $${data?.globalTradeValueM ? (data.globalTradeValueM / 1000).toFixed(1) : '19.8'}B. 태국이 22.8%로 수출 1위, 미국이 15.7%로 수입 1위. 한국은 수입 5.7% 비중으로 4대 수입국.`}
-          actionPlan="**[Actionable Insight]** [포지셔닝] 태국 원료 의존도(Exposure)를 에콰도르·인도네시아로 분산하고, 미국·EU·일본 3대 소비 시장에 대한 프리미엄 가공품 수출 파이프라인을 구축하여 밸류체인 상위 이동."
+          actionPlan="[포지셔닝] 태국 원료 의존도(Exposure)를 에콰도르·인도네시아로 분산하고, 미국·EU·일본 3대 소비 시장에 대한 프리미엄 가공품 수출 파이프라인을 구축하여 밸류체인 상위 이동."
           source={`OEC (Observatory of Economic Complexity) · ${isLive ? '🟢 LIVE' : '🟡 Benchmark DB'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`}
         />
       </div>
@@ -301,7 +301,7 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
           situation="한국 황다랑어 수입액은 5년 연속 증가($285M→$372M), 수출은 $17.5M에 불과. 수입 의존율 95% 이상으로 공급 차질 시 가격 급등 리스크."
-          actionPlan="**[Actionable Insight]** [공급 다변화] 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도(Exposure) 완화. 장기 선물 계약으로 가격 변동성 헤지."
+          actionPlan="[공급 다변화] 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도(Exposure) 완화. 장기 선물 계약으로 가격 변동성 헤지."
           source={`World Bank WITS / UN Comtrade · ${isLive ? '🟢 LIVE' : '🟡 Snapshot'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`}
         />
       </div>

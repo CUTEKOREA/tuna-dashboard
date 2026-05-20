@@ -91,7 +91,7 @@ export const WidgetTunaGiantsFall = () => (
     <TakeawayBox 
       source="FAO FishStatJ & National Fisheries Statistics - Processed Tuna Volume"
       situation={<>1990년대 이후 미국, 일본, 한국(전통 트로이카)의 가공 공장들이 사실상 전멸하고 있습니다. '참치를 가장 많이 잡던 나라'가 '참치로 부가가치를 버는 나라'가 아님을 증명합니다.</>}
-      actionPlan="**[Actionable Insight]** 국내의 비싼 인건비로 캔/가공을 고집하는 것은 자살행위와 같습니다. 어획 부문에 집중된 현 자본을 해외 현지 2차 가공 플랜트 인수에 긴급 재배치해야 합니다."
+      actionPlan="국내의 비싼 인건비로 캔/가공을 고집하는 것은 자살행위와 같습니다. 어획 부문에 집중된 현 자본을 해외 현지 2차 가공 플랜트 인수에 긴급 재배치해야 합니다."
     />
   </div>
 );
@@ -122,7 +122,7 @@ export const WidgetThaiEmpire = () => (
     <TakeawayBox 
       source="FAO FishStatJ Global Comodity Production & Trade"
       situation={<>참치잡이 배가 거의 없는 국토인 태국(Thai Union)과 유럽의 마진 브로커 스페인(Jealsa 등)이 1990년 대비 10배 폭발하며 전 세계 가공 마진을 집어삼켰습니다.</>}
-      actionPlan="**[Actionable Insight]** 글로벌 참치 산업에서 통조림/가공(Downstream) 영역은 이미 '원물 블록 매입 후 자동화 제조'를 통한 '초대형 식음료 비즈니스'로 전환되었습니다."
+      actionPlan="글로벌 참치 산업에서 통조림/가공(Downstream) 영역은 이미 '원물 블록 매입 후 자동화 제조'를 통한 '초대형 식음료 비즈니스'로 전환되었습니다."
     />
   </div>
 );
