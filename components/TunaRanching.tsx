@@ -681,10 +681,7 @@ export default function TunaRanching() {
       </div>
       )}
 
-      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(236,72,153,0.12) 0%, transparent 100%)", borderLeft:"4px solid #ec4899", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 가공 산업</h2>
-        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>초저온 이케지메 가공을 통한 양식/어획 패러다임 역전 및 원가-마진 시뮬레이션</p>
-      </div>
+
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
 
         <div className={insightsStyles.insightCard}>
@@ -800,10 +797,7 @@ export default function TunaRanching() {
         )}
       </div>
 
-      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(56,189,248,0.12) 0%, transparent 100%)", borderLeft:"4px solid #38bdf8", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🚢 물류 및 무역</h2>
-        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>글로벌 B2B 아비트라지, 중동 콜드체인망 확충 및 CEPA 기반 재수출 허브 전략</p>
-      </div>
+
       {/* 🎯 비즈니스 모델 근거: 축양참치 → 한국 가공 → 두바이 수출 (최상단) */}
       <div style={{ marginBottom: '24px' }}>
         <div style={{ background: 'linear-gradient(135deg, rgba(245,158,11,0.08), rgba(59,130,246,0.08))', border: '1px solid rgba(245,158,11,0.2)', borderRadius: '8px', padding: '1.5rem', marginBottom: '20px' }}>
@@ -975,47 +969,7 @@ export default function TunaRanching() {
         />
       </div>
 
-      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
-        {/* 글로벌 차익거래 레이더 (Arbitrage Radar) */}
-        {arbitrageRadar && (
-          <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(16,185,129,0.08), rgba(59,130,246,0.05))', border: '1px solid rgba(16,185,129,0.3)' }}>
-            <div className={insightsStyles.cardHeader}>
-              <h3 className={insightsStyles.cardTitle}>
-                <Target size={20} color="var(--color-success)"/> 실시간 글로벌 차익거래 레이더
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast+EUMOFA+MGO)</span>
-              </h3>
-              <p className={insightsStyles.cardDesc}>지중해 스팟가로 매입하여 한국 가공 후 두바이로 항공 수출 시 발생하는 실시간 순수익 마진(Net Margin) 시뮬레이터입니다.</p>
-            </div>
-            <div className={insightsStyles.cardBody}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '15px', marginBottom: '20px' }}>
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #ef4444' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>지중해 매입가 (EUMOFA)</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-danger)' }}>${arbitrageRadar.mediterraneanSpotPriceUSD}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
-                </div>
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #f59e0b' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>항공운임/가공비 (MGO)</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-warning)' }}>${(arbitrageRadar.airFreightCostUSD + arbitrageRadar.processingCostUSD).toFixed(1)}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
-                </div>
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '15px', borderRadius: '8px', borderLeft: '3px solid #10b981' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '5px' }}>두바이 도매가 (Local API)</div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--color-success)' }}>${arbitrageRadar.dubaiLocalPriceUSD}<span style={{ fontSize: '0.8rem' }}>/kg</span></div>
-                </div>
-                <div style={{ background: 'rgba(16,185,129,0.1)', padding: '15px', borderRadius: '8px', border: '1px solid #10b981' }}>
-                  <div style={{ fontSize: '0.8rem', color: '#34d399', marginBottom: '5px' }}>예상 순마진 (Net Margin)</div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 'bold', color: 'var(--color-success)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    ${arbitrageRadar.netMarginUSD.toFixed(1)}<span style={{ fontSize: '0.8rem' }}>/kg</span>
-                    <span style={{ fontSize: '0.9rem', background: 'var(--color-success)', color: 'var(--text-primary)', padding: '2px 8px', borderRadius: '4px' }}>{arbitrageRadar.marginGapVsJapan} vs 일본</span>
-                  </div>
-                </div>
-              </div>
-              <TakeawayBox
-                situation={arbitrageRadar.recommendation || "LIVE API 연동 진행 중"}
-                actionPlan="일본 시장 대비 즉각적인 순마진 우위가 확인되는 즉시, 지중해 매입 물량을 두바이 프리미엄 시장으로 전량 스위칭하는 Arbitrage(차익거래) 영업 인스턴스를 가동하십시오."
-              />
-            </div>
-          </div>
-        )}
-      </div>
+
       {middleEastMarket && (
         <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
           <div className={insightsStyles.insightCard}>
@@ -1052,87 +1006,9 @@ export default function TunaRanching() {
         </div>
       )}
 
-      {/* 🆕 SFDA 인증 마일스톤 트래커 */}
-      {sfdaMilestones && (
-      <div className={insightsStyles.insightsGrid} style={{ marginBottom: '1.5rem' }}>
-        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <ShieldAlert size={20} color="#f59e0b"/> 사우디 식품의약품청 인증 마일스톤 트래커
-              <TelemetryBadge status="synced" syncDate="2026.05" />
-            </h3>
-            <p className={insightsStyles.cardDesc}>사우디아라비아 시장 진입을 위한 SFDA 인증 5단계 진행 현황. 시설 인증 통과가 핵심 관문이며 2027 Q1 정기 거래 개시 목표.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '20px' }}>
-              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
-                <div className={insightsStyles.kpiLabel}>전체 진행률</div>
-                <div className={insightsStyles.kpiValue}>37%</div>
-                <div className={insightsStyles.kpiSub}>5단계 중 1단계 완료</div>
-              </div>
-              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#f59e0b' }}>
-                <div className={insightsStyles.kpiLabel}>현재 단계</div>
-                <div className={insightsStyles.kpiValue}>시설 인증</div>
-                <div className={insightsStyles.kpiSub}>HACCP + 할랄 이중 심사</div>
-              </div>
-              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#38bdf8' }}>
-                <div className={insightsStyles.kpiLabel}>목표 완료일</div>
-                <div className={insightsStyles.kpiValue}>2027 Q1</div>
-                <div className={insightsStyles.kpiSub}>정기 거래 개시</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
-              {sfdaMilestones.map((ms: any, idx: number) => (
-                <div key={idx} style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '14px 16px', border: ms.status === '진행중' ? '1px solid rgba(245,158,11,0.4)' : '1px solid rgba(255,255,255,0.05)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ 
-                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                        width: '24px', height: '24px', borderRadius: '50%', fontSize: '0.75rem', fontWeight: 700,
-                        background: ms.progress === 100 ? '#10b981' : ms.status === '진행중' ? '#f59e0b' : 'rgba(100,116,139,0.3)',
-                        color: ms.progress === 100 || ms.status === '진행중' ? '#0f172a' : '#94a3b8'
-                      }}>{idx + 1}</span>
-                      <span style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.9rem' }}>{ms.step}</span>
-                      <span style={{
-                        padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600,
-                        background: ms.status === '완료' ? 'rgba(16,185,129,0.15)' : ms.status === '진행중' ? 'rgba(245,158,11,0.15)' : 'rgba(100,116,139,0.1)',
-                        color: ms.status === '완료' ? '#10b981' : ms.status === '진행중' ? '#f59e0b' : '#64748b',
-                        border: `1px solid ${ms.status === '완료' ? 'rgba(16,185,129,0.3)' : ms.status === '진행중' ? 'rgba(245,158,11,0.3)' : 'rgba(100,116,139,0.2)'}`
-                      }}>{ms.status === '완료' ? '✅ 완료' : ms.status === '진행중' ? '🔄 진행중' : '⏳ 대기'}</span>
-                    </div>
-                    <span style={{ color: '#94a3b8', fontSize: '0.78rem' }}>목표: {ms.target}</span>
-                  </div>
-                  <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '6px', height: '8px', overflow: 'hidden', marginBottom: '6px' }}>
-                    <div style={{
-                      height: '100%', borderRadius: '6px', transition: 'width 0.5s ease',
-                      width: `${ms.progress}%`,
-                      background: ms.progress === 100 ? 'linear-gradient(90deg, #10b981, #059669)' : ms.progress > 0 ? 'linear-gradient(90deg, #f59e0b, #d97706)' : 'transparent'
-                    }} />
-                  </div>
-                  <div style={{ color: '#94a3b8', fontSize: '0.78rem' }}>{ms.detail}</div>
-                </div>
-              ))}
-            </div>
-            <TakeawayBox
-              source="SFDA 공식 가이드라인 + 사우디 비전 2030 수산물 정책"
-              situation="사우디아라비아는 비전 2030 하에 수산물 자급을 53~60만톤까지 확대하면서도, 고급 참치류 수입에 대해서는 SFDA 인증이라는 높은 진입장벽을 세웠습니다. HACCP + 할랄 이중 인증이 핵심 관문이며, 현재 시설 인증 심사 단계(65%)입니다."
-              actionPlan={
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                  <li style={{ marginBottom: '4px' }}><strong>2026 Q2 시설 인증 집중:</strong> HACCP·할랄 이중 인증 심사를 최우선 과제로 설정하고, 인증 컨설팅 전문 업체를 투입하여 일정 내 통과를 보장하십시오.</li>
-                  <li><strong>제다항 콜드체인 거점 동시 확보:</strong> 인증 진행과 병행하여 사우디 제다항 내 초저온 냉동 물류 거점을 선점하면, 인증 즉시 정기 거래 전환이 가능합니다.</li>
-                </ul>
-              }
-            />
-          </div>
-        </div>
-      </div>
-      )}
 
-      {/* 🛒 Part IV — 판매 및 수요 */}
-      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(16,185,129,0.12) 0%, transparent 100%)", borderLeft:"4px solid #10b981", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🛒 Part IV — 판매 및 수요</h2>
-        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>아시아 럭셔리 마켓 시프트, 중동(카타르/UAE) 프리미엄 시장 진입장벽 및 소비 채널 분석</p>
-      </div>
+
+
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
         {/* 아시아 마켓 시프트 위젯 */}
         {asianMarketShift && (
