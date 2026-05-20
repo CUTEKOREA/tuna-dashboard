@@ -36,7 +36,7 @@ export async function GET() {
         { month: '6월(예측)', elNino: 85, cmdIndex: 90 },
       ],
       sit: `[Live Status: ${riskLevel}] 현재 엘니뇨 발생 확률 ${elNinoProbability}% 및 CMD 지수 ${cmdOutbreakIndex}로 공급망 쇼크 주의(Yellow) 단계입니다.`,
-      strat: `태국/베트남의 원물 수급이 3개월 내 차질을 빚을 가능성이 높습니다. 아프리카(가나) 팜게이트 물량 선확보 및 HQCF 생산 라인 풀가동을 권장합니다.`,
+      strat: `**[Actionable Insight]** 태국/베트남의 원물 수급이 3개월 내 병목(Bottleneck)이 발생할 가능성이 높습니다. 아프리카(가나) 팜게이트 물량 선확보 및 HQCF 생산 라인 풀가동을 권장합니다 (Execution Recommended).`,
       reliability: 98,
       source: 'NOAA Climate Prediction Center & FAO EMPRES-i API (Live)'
     };

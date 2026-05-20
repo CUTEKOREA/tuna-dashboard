@@ -35,8 +35,8 @@ export async function GET() {
         { scenario: 'HQCF 20% 대체', wheatCost: 400, hqcfCost: 340, savings: 60 },
         { scenario: 'HQCF 35% 대체', wheatCost: 400, hqcfCost: 295, savings: 105 },
       ],
-      sit: `[Live CBOT/KCS Spread] 수입 밀가루 도매가($${wheatFlourWholesale}/t) 대비 HQCF($${hqcfMarketPrice}/t) 활용 시 톤당 $${hqcfSavingsPerTon}의 비용이 절감됩니다.`,
-      strat: `서아프리카(가나, 나이지리아) 제빵 시장에서 HQCF 20% 의무 혼합 법안 통과 시, 연간 최소 $60M 이상의 수입 대체 효과가 발생합니다. 즉각적인 CAPEX 투자가 타당합니다.`,
+      sit: `[Live CBOT/KCS Spread] 수입 밀가루 도매가($${wheatFlourWholesale}/t) 대비 HQCF($${hqcfMarketPrice}/t) 활용 시 톤당 $${hqcfSavingsPerTon}의 비용(OPEX)이 절감되며 구조적 알파(Alpha)가 창출됩니다.`,
+      strat: `**[Actionable Insight]** 서아프리카(가나, 나이지리아) 제빵 시장에서 HQCF 20% 의무 혼합 법안 통과 시, 연간 최소 $60M 이상의 수입 대체 효과가 발생합니다. 즉각적인 CAPEX 투자가 타당합니다 (Strong Buy).`,
       reliability: 95,
       source: 'CBOT Wheat Futures & KCS Trade Data API (Live)'
     };

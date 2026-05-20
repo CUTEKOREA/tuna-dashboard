@@ -32,7 +32,7 @@ export async function GET() {
         { dimension: '클린라벨 획득률', target: 100, current: 80 }
       ],
       sit: `[Live IoT ESG Data] 일일 폐수 ${dailyWastewaterTonnes}톤에서 바이오가스를 포집하여 일 ${Math.round(dailyElectricityKwh).toLocaleString()}kWh의 전력을 자체 생산 중이며, 매일 $${Math.round(dailySavings).toLocaleString()}의 에너지가 절감되고 있습니다.`,
-      strat: `유럽(EU) 및 북미 프리미엄 시장 진출 시 '100% Zero-Waste' 및 탄소발자국 인증을 위한 핵심 근거 데이터로 자동 출력되어, 제품 판가를 추가로 10% 할증할 수 있습니다.`,
+      strat: `**[Actionable Insight]** 유럽(EU) 및 북미 프리미엄 시장 진출 시 '100% Zero-Waste' 및 탄소발자국 인증을 위한 핵심 근거 데이터로 자동 출력되어, 제품 판가를 추가로 10% 프리미엄(Premium)을 할증하여 GPM을 방어할 수 있습니다.`,
       reliability: 99,
       source: 'Factory IoT Sensor & Energy Exchange API (Live)'
     };

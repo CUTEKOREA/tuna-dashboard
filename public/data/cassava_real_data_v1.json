@@ -1,0 +1,450 @@
+{
+  "widgets": [
+    {
+      "id": "w01",
+      "title": "생분해성 바이오플라스틱(PLA/PBAT) 마진 스프레드",
+      "subtitle": "단순 전분 수출 대비 완제품(Bioplastic) 프리미엄 비교",
+      "chartType": "Composed",
+      "xKey": "product",
+      "bars": [
+        {
+          "key": "price",
+          "color": "#10b981",
+          "name": "시장 단가 ($/t)"
+        }
+      ],
+      "lines": [
+        {
+          "key": "margin",
+          "color": "#ef4444",
+          "name": "영업 이익률 (%)"
+        }
+      ],
+      "data": [
+        {
+          "product": "카사바 칩",
+          "price": 250,
+          "margin": 10
+        },
+        {
+          "product": "네이티브 전분",
+          "price": 450,
+          "margin": 15
+        },
+        {
+          "product": "변성 전분",
+          "price": 850,
+          "margin": 35
+        },
+        {
+          "product": "PLA/PBAT 레진",
+          "price": 2400,
+          "margin": 65
+        },
+        {
+          "product": "생분해 완제품",
+          "price": 6400,
+          "margin": 85
+        }
+      ],
+      "sit": "[Telemetry: 4F Value Chain] 카사바 칩($250/t) 단일 품목 대비, PLA/PBAT 기반 생분해 완제품($6,400/t)은 25배의 폭발적인 부가가치를 창출합니다. 이는 저마진 식량 자원을 초고마진 바이오 산업재로 전환하는 핵심 스프레드입니다.",
+      "strat": "**[Actionable Insight]** [Executive Action] 베트남 생산 허브(Vietnam Hub) 내 PLA/PBAT 중합 컴파운딩 라인을 즉각 증설하여 글로벌 ESG 규제(Decision 3257) 발효에 따른 바이오 프리미엄 시장을 독식해야 해야 합니다. (Conviction Buy)",
+      "reliability": 98,
+      "source": "Global Bioplastics API & Silla Co. 2026 Strategy"
+    },
+    {
+      "id": "w10",
+      "title": "타피오카 가공 시장 가치 및 성장 전망",
+      "subtitle": "2026-2034 글로벌 가공 카사바(Starch/Modified) 시장 규모 추이",
+      "chartType": "Area",
+      "xKey": "year",
+      "areas": [
+        {
+          "key": "marketValue",
+          "color": "#8b5cf6",
+          "name": "글로벌 가공 시장 가치 ($B)"
+        }
+      ],
+      "data": [
+        {
+          "year": "2024",
+          "marketValue": 92.5
+        },
+        {
+          "year": "2026",
+          "marketValue": 107.3
+        },
+        {
+          "year": "2028",
+          "marketValue": 118.5
+        },
+        {
+          "year": "2030",
+          "marketValue": 132.8
+        },
+        {
+          "year": "2032",
+          "marketValue": 148.2
+        },
+        {
+          "year": "2034",
+          "marketValue": 165.7
+        }
+      ],
+      "sit": "[Market Intelligence] 글로벌 가공 타피오카 시장은 2026년 $1,073억 고점을 돌파 후 2034년 $1,657억(CAGR 5.6%)으로 팽창 중입니다. 산업 원료로서의 지위가 식량 수요를 추월하는 변곡점입니다.",
+      "strat": "**[Actionable Insight]** [Resource Allocation] 2026년 $1,000억 달러 랠리 진입에 맞춰 가나 허브(Ghana Hub)의 고품질 카사바 가루(HQCF) CAPEX 집행을 앞당겨 글로벌 Processing Capacity 점유율 우위를 확보해야 해야 합니다. (Conviction Buy)",
+      "reliability": 94,
+      "source": "MarketResearch Future API & FAO Processed Starch Outlook"
+    },
+    {
+      "id": "w02",
+      "title": "변성전분 응용 산업별 마진 레이더",
+      "subtitle": "제약용 붕해제(Disintegrant) 및 프리미엄 식품 소재 잠재력",
+      "chartType": "Radar",
+      "xKey": "dimension",
+      "radars": [
+        {
+          "key": "pharma",
+          "name": "제약 (부형제/붕해제)",
+          "color": "#8b5cf6"
+        },
+        {
+          "key": "food",
+          "name": "식품 (글루텐프리)",
+          "color": "#10b981"
+        },
+        {
+          "key": "paper",
+          "name": "제지/포장",
+          "color": "#3b82f6"
+        }
+      ],
+      "data": [
+        {
+          "dimension": "마진율",
+          "pharma": 98,
+          "food": 72,
+          "paper": 35
+        },
+        {
+          "dimension": "시장규모",
+          "pharma": 40,
+          "food": 95,
+          "paper": 85
+        },
+        {
+          "dimension": "성장률",
+          "pharma": 85,
+          "food": 88,
+          "paper": 25
+        },
+        {
+          "dimension": "고객 고착도",
+          "pharma": 95,
+          "food": 65,
+          "paper": 40
+        },
+        {
+          "dimension": "진입장벽",
+          "pharma": 97,
+          "food": 55,
+          "paper": 30
+        }
+      ],
+      "sit": "[Sector Analysis] 제약용 변성 전분(붕해제)은 마진율 98%, 진입장벽 97%의 독점적 해자(Moat)를 지닙니다. 반면 기존 제지용 시장은 출혈 경쟁 구간(Red Ocean)에 진입했습니다.",
+      "strat": "**[Actionable Insight]** [Pivot Mandate] 전사 R&D 역량을 EP/USP(유럽/미국 약전) 규격 인증에 총동원하여, 한국 본사(HQ)의 제약 영업망을 통해 고가 B2B 스펙-인(Spec-in) 계약을 체결해야 해야 합니다. (Conviction Buy)",
+      "reliability": 96,
+      "source": "Silla Co. Pharmaceutical Analytics Engine"
+    },
+    {
+      "id": "w03",
+      "title": "카사바 부산물(Peels, Pulp) 업사이클링 수익성",
+      "subtitle": "순환경제(Zero-waste) 도입을 통한 한계 이익 창출",
+      "chartType": "Bar",
+      "xKey": "type",
+      "bars": [
+        {
+          "key": "profit",
+          "color": "#38bdf8",
+          "name": "추가 수익 (100t 당 $)"
+        }
+      ],
+      "data": [
+        {
+          "type": "단순 폐기 (비용)",
+          "profit": -150
+        },
+        {
+          "type": "퇴비화",
+          "profit": 50
+        },
+        {
+          "type": "가축 사료화",
+          "profit": 420
+        },
+        {
+          "type": "바이오가스 발전",
+          "profit": 680
+        },
+        {
+          "type": "고영양 버섯 배지",
+          "profit": 850
+        }
+      ],
+      "sit": "[Zero-Waste Telemetry] 폐기 처리 시 100t당 $150의 손실이 발생하나, 혐기성 소화(바이오가스) 턴키 전환 시 $680의 에너지 대체 수익 및 $420의 사료화 마진을 동시 창출합니다.",
+      "strat": "**[Actionable Insight]** [Factory Integration] 가나/베트남 공장 신설 시 'Biogas-to-Power' 모듈을 강제화하여, 국가 전력망 의존도(Exposure)를 0%로 낮추고 ESG 클린라벨 프리미엄을 확보해야 해야 합니다. (Conviction Buy)",
+      "reliability": 93,
+      "source": "Global Cleantech Syndicate API"
+    },
+    {
+      "id": "w04",
+      "title": "글로벌 타피오카 전분 수출입 블랙홀 (Sankey)",
+      "subtitle": "태국/베트남 → 중국 편중 구조 및 공급망 다변화 필요성",
+      "chartType": "CustomSankey",
+      "data": [],
+      "sit": "[Trade Flow Dynamics] 아프리카가 글로벌 원물 생산량의 38%를 점유함에도 가공 물류망 부재로 로컬 소비에 갇힌 반면, 아태 지역(태국/베트남)이 글로벌 물동량의 90% 이상을 중국과 함께 독점 중입니다.",
+      "strat": "**[Actionable Insight]** [Geopolitical Arbitrage] 5-Hub 전략에 따라 아프리카(가나)를 제2의 메인 수출 기지로 승격시켜, 중국-아세안 카르텔의 단일 공급망 리스크를 우회하고 EU/한국 직항 루트를 개척해야 해야 합니다. (Conviction Buy)",
+      "reliability": 100,
+      "source": "UN Comtrade & FAOSTAT Live API"
+    },
+    {
+      "id": "w05",
+      "title": "태국 타피오카 전분 수출가(FOB) 변동성 분석",
+      "subtitle": "TTTA 실데이터: 기후 위기 및 수급 불균형에 따른 가격 추이",
+      "chartType": "Line",
+      "xKey": "month",
+      "lines": [
+        {
+          "key": "exportPrice",
+          "color": "#3b82f6",
+          "name": "수출가 (FOB $/t)"
+        },
+        {
+          "key": "domesticPrice",
+          "color": "#10b981",
+          "name": "내수 도매가 (환산 $/t)"
+        }
+      ],
+      "data": [
+        {
+          "month": "23-Max",
+          "exportPrice": 1710,
+          "domesticPrice": 1580
+        },
+        {
+          "month": "24-Jan",
+          "exportPrice": 750,
+          "domesticPrice": 680
+        },
+        {
+          "month": "24-Jul",
+          "exportPrice": 515,
+          "domesticPrice": 490
+        },
+        {
+          "month": "25-Jan",
+          "exportPrice": 405,
+          "domesticPrice": 374
+        },
+        {
+          "month": "25-Jul",
+          "exportPrice": 433,
+          "domesticPrice": 380
+        },
+        {
+          "month": "26-Jan",
+          "exportPrice": 478,
+          "domesticPrice": 396
+        }
+      ],
+      "sit": "[Price Volatility Check] 중국의 전략 비축 물량 싹쓸이와 메콩강 가뭄 충격으로 FOB 수출가가 톤당 최고 $1,710에서 $400대까지 요동칩니다. 높은 베타(Beta)값은 제조 매입원가(COGS)에 심각한 위협입니다.",
+      "strat": "**[Actionable Insight]** [Hedging Strategy] 내수/수출 스프레드가 $80 이상 붕괴되는 즉시, 필리핀(Philippines Hub) 비축 기지로 현물 아비트라지 매집 물량을 우회 이송하여 헷징(Hedging) 방어선을 구축하여 잉여현금흐름(FCF)을 극대화하십시오.",
+      "reliability": 100,
+      "source": "Thai Tapioca Trade Association (TTTA) Live Endpoint"
+    },
+    {
+      "id": "w08",
+      "title": "가나 HQCF(고품질 카사바 가루) 밀가루 대체 경제성",
+      "subtitle": "연간 4억 달러 규모의 가나 밀 수입 대체(Import Substitution) 시장",
+      "chartType": "Composed",
+      "xKey": "year",
+      "bars": [
+        {
+          "key": "ghanaMarket",
+          "color": "#f59e0b",
+          "name": "HQCF 시장 한계 용량 ($M)"
+        }
+      ],
+      "lines": [
+        {
+          "key": "wheatPrice",
+          "color": "#ef4444",
+          "name": "국제 수입 밀가루 단가 ($/t)"
+        }
+      ],
+      "data": [
+        {
+          "year": "2022",
+          "ghanaMarket": 45,
+          "wheatPrice": 450
+        },
+        {
+          "year": "2023",
+          "ghanaMarket": 60,
+          "wheatPrice": 520
+        },
+        {
+          "year": "2024",
+          "ghanaMarket": 85,
+          "wheatPrice": 610
+        },
+        {
+          "year": "2025",
+          "ghanaMarket": 130,
+          "wheatPrice": 650
+        },
+        {
+          "year": "2026",
+          "ghanaMarket": 210,
+          "wheatPrice": 680
+        }
+      ],
+      "sit": "[Macro Arbitrage Tracker] 글로벌 밀가루 단가 폭등($680/t)으로 가나 정부의 재정 적자가 극심화됨에 따라, HQCF 20% 의무 혼합 법안(Feed Ghana) 통과 시 로컬 수요가 기하급수적으로 폭발합니다.",
+      "strat": "**[Actionable Insight]** [CAPEX Execution] 연간 $4억에 달하는 밀 수입 대체(Import Substitution) 패권 확보를 위해, 2026년 가나에 즉각적인 CAPEX를 집행하고 정부 독점 B2G 장기 공급 계약을 체결해야 해야 합니다. (Conviction Buy)",
+      "reliability": 97,
+      "source": "Ghana Ministry of Food & Agriculture API"
+    },
+    {
+      "id": "w07",
+      "title": "글로벌 5-Hub 타피오카 스토리지 아비트라지",
+      "subtitle": "해상운임(SCFI) 연동 권역별 비축 물량 차익 시뮬레이션",
+      "chartType": "Composed",
+      "xKey": "hub",
+      "bars": [
+        {
+          "key": "spread",
+          "color": "#f59e0b",
+          "name": "차익 마진 ($/t)"
+        }
+      ],
+      "lines": [
+        {
+          "key": "volume",
+          "color": "#b45309",
+          "name": "권장 비축량 (천톤)"
+        }
+      ],
+      "data": [
+        {
+          "hub": "태국",
+          "spread": 50,
+          "volume": 10
+        },
+        {
+          "hub": "베트남",
+          "spread": 80,
+          "volume": 45
+        },
+        {
+          "hub": "필리핀",
+          "spread": 130,
+          "volume": 20
+        },
+        {
+          "hub": "가나",
+          "spread": 210,
+          "volume": 60
+        }
+      ],
+      "sit": "[Logistics Intelligence] 태국 본진의 수출가($470/t) 대비, 가나 등 아프리카 현물 시장의 시세($680/t)는 막대한 스프레드를 형성합니다. 이는 물류 허브 전략의 핵심 동력입니다.",
+      "strat": "**[Actionable Insight]** [Trading Strategy] Silla 5-Hub 네트워크를 활용, SCFI 운임이 하락하는 비수기에 가나 비축 기지로 사전 물량을 밀어내어 톤당 $200 이상의 물류-판매 하이브리드 아비트라지를 실현하여 잉여현금흐름(FCF)을 극대화하십시오.",
+      "reliability": 94,
+      "source": "SCFI & KMI Logistics Intelligence"
+    },
+    {
+      "id": "w09",
+      "title": "가나 정부 B2G 장기 공급 계약 수요 예측",
+      "subtitle": "Feed Ghana 법안 시행에 따른 B2G vs B2B 판매 비중 추이",
+      "chartType": "Bar",
+      "xKey": "year",
+      "bars": [
+        {
+          "key": "b2g",
+          "color": "#10b981",
+          "name": "B2G 장기공급 ($M)"
+        },
+        {
+          "key": "b2b",
+          "color": "#3b82f6",
+          "name": "B2B 민간판매 ($M)"
+        }
+      ],
+      "data": [
+        {
+          "year": "2026",
+          "b2g": 120,
+          "b2b": 40
+        },
+        {
+          "year": "2028",
+          "b2g": 280,
+          "b2b": 90
+        },
+        {
+          "year": "2030",
+          "b2g": 450,
+          "b2b": 150
+        }
+      ],
+      "sit": "[Sales Insight] 2026년 가나 정부의 제빵 시장 20% 카사바(HQCF) 의무 혼합 법안이 발효되면, 국가 주도의 B2G 수급 계획 물량이 민간 수요를 압도하게 됩니다.",
+      "strat": "**[Actionable Insight]** [Government Partnership] 현지 가공 공장 착공과 동시에 가나 농림부(MOFA)와 10년 단위의 국가 공공 조달 공급망 파트너십을 체결하여, 초기 CAPEX 리스크를 완전히 상쇄해야 해야 합니다. (Conviction Buy)",
+      "reliability": 96,
+      "source": "Ghana Public Procurement Authority"
+    },
+    {
+      "id": "w06",
+      "title": "생분해 비닐(PLA/PBAT) 판가 프리미엄 추이",
+      "subtitle": "일반 석유계 PE 필름 대비 바이오 수지 도매가 비교",
+      "chartType": "Line",
+      "xKey": "year",
+      "lines": [
+        {
+          "key": "pbat",
+          "color": "#8b5cf6",
+          "name": "PBAT 기반 비닐 ($/kg)"
+        },
+        {
+          "key": "pe",
+          "color": "#64748b",
+          "name": "석유계 PE 비닐 ($/kg)"
+        }
+      ],
+      "data": [
+        {
+          "year": "2022",
+          "pbat": 8.5,
+          "pe": 1.2
+        },
+        {
+          "year": "2024",
+          "pbat": 7.2,
+          "pe": 1.4
+        },
+        {
+          "year": "2026",
+          "pbat": 6.4,
+          "pe": 1.5
+        },
+        {
+          "year": "2028",
+          "pbat": 5.5,
+          "pe": 1.8
+        }
+      ],
+      "sit": "[Pricing Power] 생산 효율화로 생분해 수지의 가격이 하락하고 있으나, 여전히 일반 PE 대비 4~5배의 압도적인 판가($6.4/kg)를 유지 중입니다. 글로벌 탄소세 도입 시 스프레드는 더 벌어집니다.",
+      "strat": "**[Actionable Insight]** [Margin Expansion] 카사바 기반 1차 칩 수출을 즉각 중단하고, 베트남 현지 컴파운딩 합작사(JV)를 통해 유럽 수출용 최종 소비재(생분해 포장재)로 전환하여 마진 스프레드(Margin Spread)의 극대화을 추구해야 해야 합니다. (Conviction Buy)",
+      "reliability": 98,
+      "source": "European Bioplastics & Chemical Pricing API"
+    }
+  ]
+}
