@@ -45,6 +45,14 @@ import {
   OperationalS4Widgets,
   OperationalS5Widgets
 } from './TunaOperationalIntelWidgets';
+
+// Phase B4 신규 위젯 4종 (audit 기반)
+import {
+  ThaiImportShift1Q26,
+  FrimeAcquisitionWidget,
+  PerfectStormWidget,
+  RasSystemWidget
+} from './TunaIntelInsightsB4';
 import TunaLiveTicker from './TunaLiveTicker';
 import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
 
@@ -740,6 +748,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <TunaRanching />
             </div>
             <OperationalS1Widgets />
+            {/* Phase B4 신규: 태국 가공 허브 + 퍼펙트 스톰 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <ThaiImportShift1Q26 />
+              <PerfectStormWidget />
+            </div>
           </section>
         )}
 
@@ -783,6 +796,10 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               </div>
             </div>
             <OperationalS2Widgets />
+            {/* Phase B4 신규: Frime 인수 (스페인 최대 황다랑어 가공사) */}
+            <div style={{ marginTop: '1.5rem' }}>
+              <FrimeAcquisitionWidget />
+            </div>
           </section>
         )}
 
@@ -879,6 +896,10 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               ))}
             </div>
             <OperationalS5Widgets />
+            {/* Phase B4 신규: 동원·사조 RAS 시험 운영 */}
+            <div style={{ marginTop: '1.5rem' }}>
+              <RasSystemWidget />
+            </div>
           </section>
         )}
 
