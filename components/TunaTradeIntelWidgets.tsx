@@ -9,6 +9,7 @@ import {
 import { Globe, Scale, Factory, DollarSign, ShieldCheck, TrendingUp, RefreshCcw } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 import styles from './TunaInsightsDashboard.module.css';
 
 export const truncateXAxis = (tick: any) => {
@@ -92,20 +93,11 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
 
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <Scale size={18} style={{ color: '#FCD535' }} />
-          [관세율] 국가별 참치 관세율 비교 (WITS)
-          <span style={{
-            display: 'inline-flex', alignItems: 'center', gap: '4px',
-            background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
-            border: isLive ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)',
-            color: isLive ? '#10b981' : '#94a3b8',
-            fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
-          }}>
-            {isLive ? '🟢 실시간' : '폴백 DB'}
-          </span>
-          <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 관세율 %)</span>
+          [관세 정보] WITS 수입 관세율 벤치마크
+          <TelemetryBadge status={isLive ? 'LIVE' : 'STATIC'} syncDate={isLive ? 'Real-time' : '2024년 기준'} />
         </h3>
       </div>
 
@@ -174,19 +166,11 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
 
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-          <Globe size={18} style={{ color: '#2196F3' }} />
-          [교역 벤치마크] 글로벌 참치 조제품 교역 벤치마크 (OEC)
-          <span style={{
-            display: 'inline-flex', alignItems: 'center', gap: '4px',
-            background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
-            border: isLive ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)',
-            color: isLive ? '#10b981' : '#94a3b8',
-            fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
-          }}>
-            {isLive ? '🟢 실시간' : '벤치마크 DB'}
-          </span>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
+          <Factory size={18} style={{ color: '#3b82f6' }} />
+          [벤치마크] OEC 글로벌 참치 가공 허브 단가 비교
+          <TelemetryBadge status={isLive ? 'LIVE' : 'STATIC'} syncDate={isLive ? 'Real-time' : '2024년 기준'} />
         </h3>
       </div>
 
@@ -266,19 +250,11 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
 
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <TrendingUp size={18} style={{ color: '#0ECB81' }} />
           [수출입 추이] 한국 황다랑어 수출입 추이 (WITS)
-          <span style={{
-            display: 'inline-flex', alignItems: 'center', gap: '4px',
-            background: isLive ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
-            border: isLive ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)',
-            color: isLive ? '#10b981' : '#94a3b8',
-            fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
-          }}>
-            {isLive ? '🟢 실시간' : 'Comtrade 스냅샷'}
-          </span>
+          <TelemetryBadge status={isLive ? 'LIVE' : 'STATIC'} syncDate={isLive ? 'Real-time' : '2024년 기준'} />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: $M / kMT)</span>
         </h3>
       </div>

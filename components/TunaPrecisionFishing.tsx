@@ -7,6 +7,7 @@ import styles from './TunaInsightsDashboard.module.css';
 import { Crosshair } from 'lucide-react';
 import rawData from '../data/tuna_precision_fishing.json';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 const ACCENT = '#38bdf8';
 
@@ -45,6 +46,7 @@ export default function TunaPrecisionFishing() {
         <h3 className={styles.cardTitle}>
           <Crosshair size={20} color={ACCENT} />
           AI 기반 스마트 정밀 조업
+          <TelemetryBadge status="STATIC" syncDate="2024년 기준" />
         </h3>
         <p className={styles.cardDesc}>
           전통적 방식(Traditional) 대비 스마트 정밀 조업(Precision Harvesting) 도입 시의 핵심 KPI 변화량 레이더 분석.

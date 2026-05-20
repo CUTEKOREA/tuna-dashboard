@@ -4,6 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { DollarSign, Globe, Ship, Calculator, RefreshCcw, TrendingDown, TrendingUp, ChevronDown } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 /* ═══════════════════════════════════════════════════════════════════
    Tuna Landing Cost Simulator (착지원가 실시간 시뮬레이터)
@@ -117,21 +118,13 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '540px' }}>
       {/* Header */}
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <Calculator size={18} style={{ color: '#FCD535' }} />
           [착지원가] 착지원가 실시간 시뮬레이터
-          <span style={{
-            display: 'inline-flex', alignItems: 'center', gap: '4px',
-            background: liveData?.source === 'Live API' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255,255,255,0.05)',
-            border: liveData?.source === 'Live API' ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)',
-            color: liveData?.source === 'Live API' ? '#10b981' : '#94a3b8',
-            fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px',
-          }}>
-            {liveData?.source === 'Live API' ? '🟢 LIVE' : '🟡 Cached'}
-          </span>
+          <TelemetryBadge status={liveData?.source === 'Live API' ? 'LIVE' : 'STATIC'} syncDate={liveData?.source === 'Live API' ? 'Real-time' : '2024년 기준'} />
         </h3>
-        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>
+        <p className={styles.cardDesc}>
           원산지(태국/에콰도르/인도네시아 등)별 FOB 가격에서 한국 도착까지의 총비용(운임+보험+관세+수수료)을 실시간 계산합니다. WITS(관세율), ECOS(환율), Yahoo Finance(유가) API를 연동하여 정밀한 착지원가를 산출합니다.
         </p>
       </div>
@@ -261,7 +254,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       )}
 
       {/* Takeaway */}
-      <div style={{ marginTop: 'auto' }}>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={result
             ? `[착지원가] ${origin.flag} ${origin.name}산 ${product.name} → 한국 도착가 $${result.totalCIF.toLocaleString()}/MT (₩${result.totalKRW.toLocaleString()}K). ${result.ftaApplied ? `${result.ftaName} FTA 적용으로 관세 0% 확보.` : `MFN ${result.tariffRate} 관세 적용 — FTA 전환 시 $${result.importDuty}/MT 절감 가능.`}`

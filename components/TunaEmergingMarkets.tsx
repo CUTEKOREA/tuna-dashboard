@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Globe, MapPin } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 interface Market { country: string; code: string; pop_m: number; tuna_import_growth_5yr: number; current_import_mt: number; opportunity_usd_m: number; priority: string; barrier: string; }
 
@@ -29,6 +30,7 @@ export function EmergingMarketsHeatmap() {
         <h3 className={styles.cardTitle}>
           <Globe size={18} style={{ color: '#f59e0b' }} />
           [신흥시장 기회] 글로벌 사우스 참치 시장 기회 레이더
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: USD Million)</span>
         </h3>
         <p className={styles.cardDesc}>
@@ -36,7 +38,7 @@ export function EmergingMarketsHeatmap() {
         </p>
       </div>
       <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
-      {loading ? <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>Loading...</div> : (
+      {loading ? <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>로딩 중...</div> : (
         <div style={{ display: 'grid', gap: '12px' }}>
           {regions.map(region => (
             <div key={region.key}>

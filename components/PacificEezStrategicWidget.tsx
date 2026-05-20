@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './TunaInsightsDashboard.module.css';
+import TelemetryBadge from './TelemetryBadge';
+import TakeawayBox from './TakeawayBox';
 
 const PacificMapWithNoSSR = dynamic(() => import('./PacificVesselMap'), {
   ssr: false,
-  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>Loading Map...</div>
+  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>지도 로딩 중...</div>
 });
 
 interface EezData {
@@ -36,21 +38,18 @@ export default function PacificEezStrategicWidget() {
   const formatArea = (val: number) => (val / 10000).toLocaleString(undefined, { maximumFractionDigits: 0 }) + '만';
   const formatFee = (val: number) => '$' + (val / 1000000).toLocaleString(undefined, { maximumFractionDigits: 1 }) + 'M';
 
-  if (loading) return <div className={styles.card}>Loading EEZ Data...</div>;
+  if (loading) return <div className={styles.insightCard} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '480px' }}>EEZ 데이터 로딩 중...</div>;
 
   return (
-    <div className={styles.card}>
-      <div className={styles.cardHeader} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column' }}>
+      <div className={styles.cardHeader}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
           <h3 className={styles.cardTitle} style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ marginRight: 8 }}>🌊</span>
             [지리적 안보] 태평양 도서국(PNA) 배타적 경제수역(EEZ) 포트폴리오
+            <TelemetryBadge status="STATIC" syncDate="WCPFC 2024" />
           </h3>
-          <div style={{ display: 'flex', gap: 10 }}>
-            <span className={styles.liveIndicator}>
-              <span className={styles.liveDot}></span>
-              WCPFC Data
-            </span>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>(단위: km², USD)</span>
           </div>
         </div>
@@ -141,6 +140,13 @@ export default function PacificEezStrategicWidget() {
             <PacificMapWithNoSSR defaultEezActive={true} />
           </div>
         )}
+      </div>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
+        <TakeawayBox
+          situation="태평양도서국(PNA) 8개국의 합산 EEZ는 약 1,430만 km²로, 전 세계 가다랑어 공급의 약 50%를 장악하는 핵심 수역입니다."
+          actionPlan="PNA 조업일수제도(VDS) 입어료 상승에 대응해 Kiribati, Solomon Islands 등 거점 수역별 입어권 일수를 탄력적으로 조정하고 양자 협상을 강화하십시오."
+          source="WCPFC 과학위원회 & PNA 조업일수제도(VDS) 통계"
+        />
       </div>
     </div>
   );

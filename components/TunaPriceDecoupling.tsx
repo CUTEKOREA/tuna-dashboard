@@ -7,6 +7,7 @@ import styles from './TunaInsightsDashboard.module.css';
 import { TrendingUp } from 'lucide-react';
 import rawData from '../data/tuna_price_decoupling.json';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -63,16 +64,16 @@ return (
       display: 'flex', flexDirection: 'column', minHeight: '480px'
     }}>
       {/* Card Header — renderWidgetCard 패턴 동일 */}
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 className={styles.cardTitle} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: ACCENT, margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <TrendingUp size={20} color={ACCENT} />
           원가 vs 소매가: 강한 디커플링
-          <span style={{ display:'inline-block', background:'rgba(255,255,255,0.05)', border:'1px solid rgba(255,255,255,0.1)', color:'#94a3b8', fontSize:'0.65rem', padding:'2px 6px', borderRadius:'4px', marginLeft:'8px', fontWeight:500 }}>정적 데이터</span>
+          <TelemetryBadge status="STATIC" syncDate="2024년 기준" />
           <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: USD/t · ₩/캔)</span>
           </div>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        <p className={styles.cardDesc}>
           X축: 년/월. Y축(좌): 원어 가다랑어 국제 시세(USD/톤). Y축(우): 국내 참치 통조림(150g) 소매 납품가(원/캔). (원어 시세 30% 폭락에도 흔들리지 않는 통조림 소매가 — 새로운 이윤 창출의 틈새)
         </p>
       </div>
@@ -102,14 +103,12 @@ return (
       </div>
 
       {/* Takeaway Box — renderWidgetCard 패턴 동일 */}
-      <div style={{ marginTop: 'auto' }}>
-        <div style={{ marginTop: '20px' }}>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={situation}
           actionPlan={takeaway}
           source={source}
         />
-      </div>
       </div>
     </div>
   );

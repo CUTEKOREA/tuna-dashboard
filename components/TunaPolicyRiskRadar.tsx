@@ -5,6 +5,7 @@ import { Shield, AlertTriangle, TrendingUp } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -49,6 +50,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Shield size={18} style={{ color: '#ef4444' }} />
           [통상 리스크] 글로벌 통상정책 충격 스코어카드
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 리스크 점수 0~100)</span>
         </h3>
         <p className={styles.cardDesc}>
@@ -113,6 +115,7 @@ export function FtaTariffOptimizer() {
         <h3 className={styles.cardTitle}>
           <TrendingUp size={18} style={{ color: '#22c55e' }} />
           [관세 최적화] FTA 관세 차익 최적화 매트릭스
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 관세율 %)</span>
         </h3>
         <p className={styles.cardDesc}>

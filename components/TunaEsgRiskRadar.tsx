@@ -3,10 +3,11 @@
 import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './TunaExtractDashboard.module.css';
+import styles from './TunaInsightsDashboard.module.css';
 import { ShieldCheck } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
+import TelemetryBadge from './TelemetryBadge';
 
 const data = [
   { metric: "강제노동 위험", indonesia: 85, pna: 35 },
@@ -45,13 +46,14 @@ export default function TunaEsgRiskRadar() {
   const source = '국제 노동 기구(ILO) / 인도네시아 해양수산부 / 내부 ESG 실사 보고서';
 
   return (
-    <div className={styles.card} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
+    <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <ShieldCheck size={18} className={styles.cardIcon} color={ACCENT} />
+          <ShieldCheck size={18} className={styles.cardIcon} color={ACCENT} style={{ marginRight: 8 }} />
           인도네시아 참치 ESG 리스크 모니터링
+          <TelemetryBadge status="STATIC" syncDate="2025-11 기준" />
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        <p className={styles.cardDesc}>
           글로벌 참치 공급망의 강제 노동 및 환경 파괴 리스크 수준 비교 (인도네시아 vs WCPFC/PNA)
         </p>
       </div>
@@ -70,7 +72,7 @@ export default function TunaEsgRiskRadar() {
         </SafeResponsiveContainer>
       </div>
 
-      <div style={{ marginTop: 'auto' }}>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={situation}
           actionPlan={actionPlan}

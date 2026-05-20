@@ -7,6 +7,7 @@ import styles from './TunaInsightsDashboard.module.css';
 import { Recycle } from 'lucide-react';
 import rawData from '../data/tuna_petcare_margin.json';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -58,15 +59,16 @@ return (
       display: 'flex', flexDirection: 'column', minHeight: '480px'
     }}>
       {/* Card Header — renderWidgetCard 패턴 동일 */}
-      <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
+      <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Recycle size={20} color="var(--color-success)" />
-          부산물 업사이클링: 프리미엄 펫케어 (Petcare Upcycling)
+          부산물 업사이클링: 프리미엄 펫케어
+          <TelemetryBadge status="STATIC" syncDate="2024년 기준" />
           <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: %)</span>
           </div>
         </h3>
-        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        <p className={styles.cardDesc}>
           타이유니온(Thai Union)의 2024년 재무 데이터 기준 펫케어 부문 매출총이익률 분석 반영. (참치 통조림 마진 4~9% 범위 — 출처별 편차 / 프리미엄 펫푸드 원료 28.5%, 추정 — 증권사 리포트 단일화 대기)
         </p>
       </div>
@@ -114,14 +116,12 @@ return (
       </div>
 
       {/* Takeaway Box — renderWidgetCard 패턴 동일 */}
-      <div style={{ marginTop: 'auto' }}>
-        <div style={{ marginTop: '20px' }}>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={situation}
           actionPlan={takeaway}
           source={source}
         />
-      </div>
       </div>
     </div>
   );

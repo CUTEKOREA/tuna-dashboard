@@ -3,6 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { ShieldCheck, Search, AlertTriangle, CheckCircle, XCircle, RefreshCcw, Clock } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 interface ScreeningResult {
   entity: string;
@@ -55,12 +56,12 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
 
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-      <div style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <ShieldCheck size={18} style={{ color: '#0ECB81' }} /> [제재 스크리닝] 컴플라이언스 레이더
-          <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8' }}>OFAC + EU</span>
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
         </h3>
-        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>OFAC SDN(미국 해외자산통제국) 및 EU 통합 제재 목록을 실시간 듀얼 스크리닝하여 거래처의 제재 위반 여부를 자동 검증합니다. AI 오탐지 분석 엔진이 정확도를 보강합니다.</p>
+        <p className={styles.cardDesc}>OFAC SDN(미국 해외자산통제국) 및 EU 통합 제재 목록을 실시간 듀얼 스크리닝하여 거래처의 제재 위반 여부를 자동 검증합니다. AI 오탐지 분석 엔진이 정확도를 보강합니다.</p>
       </div>
 
       <div style={{ display: 'flex', gap: '8px', marginBottom: '1rem' }}>
@@ -126,7 +127,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
         </div>
       )}
 
-      <div style={{ marginTop: 'auto' }}>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={result && !showHist ? `[스크리닝] ${result.entity} — ${result.riskScore}/100 (${result.riskLevel}). OFAC: ${result.ofac.status}, EU: ${result.eu.status}.` : '[컴플라이언스] 주요 5개사 스크리닝 완료. Silla (98), Dongwon (97), Thai Union (95) 적합. Minh Phu (72) 주의.'}
           actionPlan={result && result.riskScore < 80 ? `[조치] ${result.entity} Enhanced Due Diligence 실시 권고.` : '[정기 점검] 전 거래처 월 1회 자동 스크리닝 수행 권고.'}

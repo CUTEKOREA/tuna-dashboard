@@ -4,6 +4,7 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 import { Recycle, TestTube } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 import styles from './TunaInsightsDashboard.module.css';
 
 export const truncateXAxis = (tick: any) => {
@@ -43,6 +44,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Recycle size={20} style={{ color: '#22c55e' }} />
           [제로 웨이스트] 참치 부산물 업사이클링 기회 분석
+          <TelemetryBadge status="STATIC" syncDate="2025-11 기준" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: % / USD Billion)</span>
         </h3>
       </div>
@@ -114,6 +116,7 @@ export function TunaUpcyclingMarginMap() {
         <h3 className={styles.cardTitle}>
           <TestTube size={20} style={{ color: '#a78bfa' }} />
           [마진 분석] 바이오 업사이클 마진 매트릭스
+          <TelemetryBadge status="STATIC" syncDate="2025-11 기준" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 마진율 % / 시장규모 $B)</span>
         </h3>
       </div>

@@ -5,6 +5,7 @@ import { TrendingUp, Activity, Thermometer } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -40,11 +41,12 @@ return (
         <h3 className={styles.cardTitle}>
           <TrendingUp size={18} style={{ color: '#FCD535' }} />
           가다랑어 방콕 산지가격 실측 + 단기 시나리오
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: USD/MT)</span>
         </h3>
       </div>
       <div className={styles.cardBody} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '1.5rem' }}>
-      {loading ? <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>Loading forecast...</div> : (
+      {loading ? <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>예측 데이터 로딩 중...</div> : (
         <>
           <SafeResponsiveContainer width="100%" height={200}>
             <AreaChart data={chartData}>
@@ -101,6 +103,7 @@ export function EnsoCorrelationWidget() {
         <h3 className={styles.cardTitle}>
           <Thermometer size={18} style={{ color: '#06b6d4' }} />
           ENSO-어획량 상관관계 분석기
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 어획량 변동 %)</span>
         </h3>
       </div>
@@ -108,7 +111,7 @@ export function EnsoCorrelationWidget() {
       <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
         <div style={{ background: 'rgba(6,182,212,0.1)', borderRadius: '8px', padding: '10px 16px', textAlign: 'center', flex: 1 }}>
           <div style={{ fontSize: '0.65rem', color: '#67e8f9' }}>현재 ENSO</div>
-          <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#06b6d4' }}>{enso?.current_enso?.phase || 'Loading...'}</div>
+          <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#06b6d4' }}>{enso?.current_enso?.phase || '로딩 중...'}</div>
           <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>Index: {enso?.current_enso?.index || 'N/A'}</div>
         </div>
         <div style={{ background: 'rgba(252,213,53,0.1)', borderRadius: '8px', padding: '10px 16px', textAlign: 'center', flex: 1 }}>
@@ -151,6 +154,7 @@ export function LandingCostSensitivity() {
         <h3 className={styles.cardTitle}>
           <Activity size={18} style={{ color: '#a78bfa' }} />
           [원가 시뮬레이션] 환율-착지원가 민감도 분석
+          <TelemetryBadge status="LIVE" syncDate="Real-time" />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: ₩/kg)</span>
         </h3>
       </div>

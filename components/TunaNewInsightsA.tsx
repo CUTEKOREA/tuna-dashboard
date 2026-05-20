@@ -5,6 +5,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, Shield, FlaskConical, Landmark, Factory } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -51,6 +52,7 @@ return (
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Globe size={20} color="#ef4444"/> 나우루 스위치 — 중국 캐너리 온쇼어링
+          <TelemetryBadge status="STATIC" syncDate="2024년 기준" />
           <TermTooltip term="" description="나우루의 대만→중국 외교 전환으로 촉발된 태평양 어업권 지각변동과 중국 본토 메가 캐너리 건설 동향을 추적합니다." />
         </h3>
         <p className={styles.cardDesc}>중국은 태평양 도서국에 현지 공장을 짓는 대신, 선전/광동에 메가 캐너리를 건설하여 EU ATQ 무관세로 에콰도르를 직접 위협합니다. EUMOFA 2024 기준 Ecuador는 EU 참치 수입의 29%(volume) / 48%(value) 차지하며 prepared/preserved(주로 loin)가 EU 참치 수입의 75% 점유.</p>
@@ -96,6 +98,7 @@ export function InsightIOCollapse() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Anchor size={20} color="#f97316"/> 인도양 공급 붕괴 — 라스트 리조트의 임계점
+          <TelemetryBadge status="STATIC" syncDate="2026-Q2 기준" />
           <TermTooltip term="" description="WCPO 부족분을 메우던 인도양 선단이 자체 붕괴 직전에 놓인 상황을 추적합니다. MGO 급등과 조업 중단 검토가 동시 발생 중입니다." />
         </h3>
         <p className={styles.cardDesc}>태국이 WCPO 부족분을 IO에서 +106% 긴급 수입 중이나, IO 선단 자체가 2026 Q2 호르무즈 봉쇄 위기로 MGO $2,000+/t 폭등하며 조업 중단을 검토 중. (참고: 2018~2024 평시에는 정밀어업 기술로 MGO 효율 -28% 개선 — 2026-Q2 외생 충격으로 일시 역전)</p>
@@ -146,6 +149,7 @@ export function InsightEU18C() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Shield size={20} color="#8b5cf6"/> EU -18℃ 규제 무기화 — €200M 가격 갭
+          <TelemetryBadge status="STATIC" syncDate="2026년 기준" />
           <TermTooltip term="" description="EU의 직접소비용 참치 -18℃ 냉동 의무화는 공중보건이 아닌 €200M 규모 시장사기 차단용 비관세 장벽입니다." />
         </h3>
         <p className={styles.cardDesc}>2026년 1월 시행된 EU -18℃ 규제는 공중보건 명분의 위장. 실제로는 제3국 선단을 퇴출시키는 경제 무기로 기능합니다.</p>

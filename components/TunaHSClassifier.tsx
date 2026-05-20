@@ -3,6 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { Tag, Search, RefreshCcw, ArrowRight, Globe } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 const QUICK_TAGS = ['참치', '가다랑어', '참치통조림', '갈치', '고등어', '명태', '새우', '오징어', '마늘', '캐슈넛'];
 
@@ -57,14 +58,12 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
 
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-      <div style={{ marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+      <div className={styles.cardHeader}>
+        <h3 className={styles.cardTitle}>
           <Tag size={18} style={{ color: '#2196F3' }} /> [HS 분류] AI HS 코드 자동분류 (HS Ping)
-          <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '2px 6px', borderRadius: '4px', background: isLive ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.05)', border: isLive ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)', color: isLive ? '#10b981' : '#94a3b8' }}>
-            {isLive ? '🟢 실시간' : '사전분류'}
-          </span>
+          <TelemetryBadge status={isLive ? 'LIVE' : 'STATIC'} syncDate={isLive ? 'Real-time' : '사전분류'} />
         </h3>
-        <p className={styles.cardDesc} style={{ margin: '4px 0 0 0' }}>품목명(한/영)을 입력하면 HS Ping API를 통해 HS 6~10자리 코드를 자동 매핑합니다. 7개국 관세 분류체계를 지원하며, FTA 원산지 증명서 작성 및 관세 신고에 즉시 활용 가능합니다.</p>
+        <p className={styles.cardDesc}>품목명(한/영)을 입력하면 HS Ping API를 통해 HS 6~10자리 코드를 자동 매핑합니다. 7개국 관세 분류체계를 지원하며, FTA 원산지 증명서 작성 및 관세 신고에 즉시 활용 가능합니다.</p>
       </div>
 
       {/* Search */}
@@ -126,7 +125,7 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
         )}
       </div>
 
-      <div style={{ marginTop: 'auto' }}>
+      <div style={{ padding: '0 20px 20px 20px', marginTop: 'auto' }}>
         <TakeawayBox
           situation={results.length > 0 ? `[HS 분류] "${meta?.query || query}" → ${results[0]?.hsCode || '-'} (${results[0]?.description || '-'}). 신뢰도 ${Math.round((results[0]?.confidence || 0) * 100)}%. ${results.length}개 후보 코드 제시.` : '[HS 자동분류] 품목명(한/영) 입력 시 HS 6~10자리 코드를 자동 매핑. 관세 신고·원산지 증명서 작성 시 활용.'}
           actionPlan="[활용] FTA 원산지 증명서 HS 코드 기재 시 본 분류 결과 활용. 수입 통관 시 품목분류 사전심사(관세청) 신청 근거 자료."

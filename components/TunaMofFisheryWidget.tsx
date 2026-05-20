@@ -5,6 +5,7 @@ import { Ship, Globe, Truck, Building2 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
+import TelemetryBadge from './TelemetryBadge';
 import styles from './TunaInsightsDashboard.module.css';
 
 export const truncateXAxis = (tick: any) => {
@@ -54,10 +55,10 @@ return (
       <div className={styles.cardHeader} style={{ display: 'flex', alignItems: 'center' }}>
         <h3 className={styles.cardTitle} style={{ flex: 1, margin: 0 }}>
           <Building2 size={20} color="#0ea5e9"/> [위판장 현황] 냉동 눈다랑어(Bigeye) 위탁판매 현황 (2026)
+          <TelemetryBadge status={live ? 'LIVE' : 'STATIC'} syncDate={live ? 'Real-time' : '2026년 기준'} />
           <TermTooltip term="" description="국내 주요 위판장(부산, 제주 등)의 2026년 냉동 눈다랑어(Bigeye Tuna) 위탁판매 물량(MT) 및 평균 단가(₩/kg) 동향을 추적합니다." />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: MT / ₩/kg)</span>
         </h3>
-        <span style={{ fontSize: '0.75rem', color: live ? '#10b981' : '#f59e0b', fontWeight: 600 }}>{live ? '🟢 LIVE' : '🟡 CACHED'}</span>
       </div>
       <p className={styles.cardDesc} style={{ padding: '0 20px', marginTop: 0 }}>
         해양수산부 수산정보포털(FIS) API에서 국내 5대 위판장의 냉동 눈다랑어 위탁판매 데이터를 실시간 수집하여, 시장별 거래량과 평균 단가를 비교 시각화합니다.
@@ -101,10 +102,10 @@ export function MofTradeBalanceWidget() {
       <div className={styles.cardHeader} style={{ display: 'flex', alignItems: 'center' }}>
         <h3 className={styles.cardTitle} style={{ flex: 1, margin: 0 }}>
           <Globe size={20} color="#10b981"/> [무역수지] 참치 수출입 무역수지 추이
+          <TelemetryBadge status={live ? 'LIVE' : 'STATIC'} syncDate={live ? 'Real-time' : '2024년 기준'} />
           <TermTooltip term="" description="국가 전체의 참치 수출입 규모와 무역수지 적자/흑자 트렌드를 실시간 분석합니다." />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: USD Million)</span>
         </h3>
-        <span style={{ fontSize: '0.75rem', color: live ? '#10b981' : '#f59e0b', fontWeight: 600 }}>{live ? '🟢 실시간' : '🟡 캐시됨'}</span>
       </div>
       <p className={styles.cardDesc} style={{ padding: '0 20px', marginTop: 0 }}>
         관세청 KCS API와 해양수산부 통계를 연동하여 참치 HS 코드 기준 월별 수출액/수입액/무역수지 추이를 시각화합니다. 구조적 적자 해소를 위한 전략적 시사점을 제공합니다.
@@ -148,10 +149,10 @@ export function MofShippingCostWidget() {
       <div className={styles.cardHeader} style={{ display: 'flex', alignItems: 'center' }}>
         <h3 className={styles.cardTitle} style={{ flex: 1, margin: 0 }}>
           <Ship size={20} color="#8b5cf6"/> [물류비] 해상운임 물류비 트래커
+          <TelemetryBadge status={live ? 'LIVE' : 'STATIC'} syncDate={live ? 'Real-time' : '2026년 기준'} />
           <TermTooltip term="" description="글로벌 주요 해상 물류 노선의 20ft/40ft 컨테이너 운임 변동을 모니터링합니다." />
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: USD/컨테이너)</span>
         </h3>
-        <span style={{ fontSize: '0.75rem', color: live ? '#10b981' : '#f59e0b', fontWeight: 600 }}>{live ? '🟢 LIVE' : '🟡 CACHED'}</span>
       </div>
       <p className={styles.cardDesc} style={{ padding: '0 20px', marginTop: 0 }}>
         해양수산부 해상운임 데이터와 SCFI 지수를 연동하여 주요 수출입 노선(부산→방콕, LA, 로테르담 등)의 컨테이너 운임 동향을 실시간 추적합니다.

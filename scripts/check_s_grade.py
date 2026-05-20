@@ -57,7 +57,13 @@ def build_closure(entries: list[str]) -> list[Path]:
     queue = list(entries)
     while queue:
         spec = queue.pop(0)
-        spec_norm = spec.lstrip("./").rstrip(".tsx").rstrip(".ts")
+        spec_norm = spec
+        if spec_norm.startswith("./"):
+            spec_norm = spec_norm[2:]
+        if spec_norm.endswith(".tsx"):
+            spec_norm = spec_norm[:-4]
+        elif spec_norm.endswith(".ts"):
+            spec_norm = spec_norm[:-3]
         if spec_norm in seen:
             continue
         path = resolve_component_path(spec_norm)

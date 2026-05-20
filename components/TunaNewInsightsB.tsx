@@ -5,6 +5,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { FlaskConical, Landmark, Factory } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -58,6 +59,7 @@ return (
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <FlaskConical size={20} color="#10b981"/> 가다랑어(Skipjack) 액젓 분말화 (2026)
+          <TelemetryBadge status="STATIC" syncDate="2026년 기준" />
           <TermTooltip term="" description="가다랑어(Skipjack) 추출액은 액젓이 아니라 '코인 육수' 시장(국내 700~1,000억원 추정)을 지배할 B2B 분말 소재입니다. 분무건조 기술로 물류비 50% 절감." />
         </h3>
         <p className={styles.cardDesc}>국내 참치액 시장 700~1,000억원(추정, 출처별 편차). 코인 육수 시장 +20% YoY 성장 중. 분말화로 냉동→건화물 전환 시 물류비 획기적 절감 (2026년 기준).</p>
@@ -103,6 +105,7 @@ export function InsightPillarTwo() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Landmark size={20} color="#fbbf24"/> OECD Pillar Two 세금 쇼크 (황다랑어 밸류체인)
+          <TelemetryBadge status="STATIC" syncDate="2026년 기준" />
           <TermTooltip term="" description="2026년 글로벌 최저한세 15% 적용. 조세 피난처를 경유하는 다국적 황다랑어/눈다랑어 유통 기업의 실효세율이 7%→14%로 급등." />
         </h3>
         <p className={styles.cardDesc}>조세 피난처와 이전가격 조작에 의존하던 다국적 수산기업의 실효세율이 OECD Pillar Two(2026 시행)로 2배 폭등합니다.</p>
@@ -146,6 +149,7 @@ export function InsightVietnamOEM() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Factory size={20} color="#06b6d4"/> 베트남 OEM 역전 — 황다랑어 가공 생태계 장악
+          <TelemetryBadge status="STATIC" syncDate="2026년 기준" />
           <TermTooltip term="" description="미국 MMPA 규제와 원물 부족 이중고 속에서 베트남 가공업체의 약세가 오히려 원양 선단 보유 기업에게 최적의 지분 투자 윈도우를 제공합니다." />
         </h3>
         <p className={styles.cardDesc}>2026년 베트남 임금 $342(태국 대비 -20%), VKFTA 무관세. MMPA 규제로 원물 부족 → 한국 원양 선단에 절대적 교섭력 집중.</p>
