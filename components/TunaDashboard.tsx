@@ -834,18 +834,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w100_china_fukushima_switch'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
-            </div>
-
-            {/* 3. 신규 수요 창출 (할랄 및 틈새 시장) */}
-            <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ fontSize: '1.05rem', color: '#0ECB81', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Target size={18} /> 신규 수요 창출 및 틈새 전략 
-                </h3>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                <TunaGlobalHalalStrategy />
-              </div>
+              
+              {/* 3. 신규 수요 창출 (할랄 및 틈새 시장) */}
+              <TunaGlobalHalalStrategy />
             </div>
           </section>
         )}
