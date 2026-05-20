@@ -131,8 +131,8 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
 
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
-          situation="IOTC는 눈다랑어(BET) TAC를 80,583톤(2025), ICCAT은 73,011톤(2025)으로 제한하고, 황다랑어(YFT)는 기준 연도 대비 13~20% 감축을 의무화했습니다. 초과 시 100~125% 페이백 페널티가 부과됩니다. FAO에 따르면 이러한 공급 제한과 수요 증가가 맞물려 2030년까지 수산물 가격이 명목 기준 약 33% 급등할 전망입니다. IOTC FAD 72일 조업 제한 시 통조림 수출 물량이 12% 하락하고, 공장 가동이 연간 2~6주 중단될 리스크가 존재합니다."
-          actionPlan="1) 참치 통조림 공장 가동률 저하 → 자숙액 공급 X톤 감소 → 참치액젓 생산 차질의 연쇄 시나리오를 분기별로 시뮬레이션해야 합니다. 2) 원물 가격 +33% 상승 시 각 진입 시나리오(S1~S4)별 ROIC 감응도 분석을 경영진에 사전 보고하여, 가격 헤지 또는 안전 재고 확보 전략을 선제 수립해야 합니다. 3) 쿼터 소진율 85% 이상 시 자동 경보(Alert)를 발동하는 트리거 시스템 구축이 필요합니다."
+          situation="IOTC는 눈다랑어(BET) TAC를 80,583톤(2025), ICCAT은 73,011톤(2025)으로 제한하고, 황다랑어(YFT)는 기준 연도 대비 13~20% 감축을 의무화했습니다. 초과 시 100~125% 페이백 페널티가 부과됩니다. FAO에 따르면 이러한 공급 제한과 수요 증가가 맞물려 2030년까지 수산물 가격이 명목 기준 약 33% 급등(Spike)할 전망입니다. IOTC FAD 72일 조업 제한 시 통조림 수출 물량이 12% 하락하고, 공장 가동이 연간 2~6주 중단될 리스크가 존재합니다."
+          actionPlan="**[Actionable Insight]** 1) 참치 통조림 공장 가동률 저하 → 자숙액 공급 X톤 감소 → 참치액젓 생산 차질의 연쇄 시나리오를 분기별로 시뮬레이션해야 합니다. 2) 원물 가격 +33% 상승 시 각 진입 시나리오(S1~S4)별 ROIC 감응도 분석을 경영진에 사전 보고하여, 가격 헤지 또는 안전 재고 확보 전략을 선제 수립해야 합니다. 3) 쿼터 소진율 85% 이상 시 자동 경보(Alert)를 발동하는 트리거 시스템 구축이 필요해야 합니다. (Conviction Buy)"
           source="IOTC Compendium of Active Conservation Measures / ICCAT Compendium of Management Recommendations / FAO The State of World Fisheries 2022 / Macroeconomic impact of international fishery regulation (Marine Policy)"
         />
       </div>

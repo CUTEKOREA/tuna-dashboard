@@ -50,8 +50,8 @@ export default function SalmonInsightFeedBio() {
       </div>
 
       <TakeawayBox 
-        situation="사료는 양식 원가의 50~55%를 차지하며, 해수온 상승 및 엘니뇨로 인한 남미 어획량 감소가 어분(Fishmeal) 가격의 극심한 변동성을 야기합니다. 글로벌 연어 양식업계는 이러한 원가 리스크를 피면하기 위해 대체 단백질 도입을 가속화하고 있습니다."
-        actionPlan="MOWI 등 선도 기업들은 가금류 부산물, 곤충 단백질, 미세조류를 적극 도입해 FIFO(자연산 어획 의존도)를 0.77까지, 가공 부산물을 재활용한 rFIFO는 0.60까지 통제하는 데 성공했습니다. 우리 역시 대체 사료 파이프라인 및 원료 공급망 지분 투자를 통해 사료 원가 변동성을 구조적으로 헤징(Hedging)해야 합니다."
+        situation="사료는 양식 매입원가(COGS)의 50~55%를 차지하며, 해수온 상승 및 엘니뇨로 인한 남미 어획량 감소가 어분(Fishmeal) 가격의 극심한 변동성을 야기합니다. 글로벌 연어 양식업계는 이러한 매입원가(COGS) 리스크를 피면하기 위해 대체 단백질 도입을 가속화하고 있습니다."
+        actionPlan="**[Actionable Insight]** MOWI 등 선도 기업들은 가금류 부산물, 곤충 단백질, 미세조류를 적극 도입해 FIFO(자연산 어획 의존도(Exposure))를 0.77까지, 가공 부산물을 재활용한 rFIFO는 0.60까지 통제하는 데 성공했습니다. 우리 역시 대체 사료 파이프라인 및 원료 공급망 지분 투자를 통해 사료 매입원가(COGS) 변동성을 구조적으로 헤징(Hedging)해야 합니다. (Conviction Buy)"
         source="MOWI Integrated Annual Report 2024 (Empirical Data)"
       />
     </div>

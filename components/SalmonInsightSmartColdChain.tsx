@@ -50,8 +50,8 @@ export default function SalmonInsightSmartColdChain() {
       </div>
 
       <TakeawayBox 
-        situation="신선 연어의 아시아 수출 시 항공 화물 의존도가 90%에 달하며, 이는 극심한 운임 변동성 리스크와 막대한 Scope 3 탄소 배출(kg당 12kg CO2)을 유발합니다. 환경 규제 강화로 인해 기존 물류 모델은 지속 불가능합니다."
-        actionPlan="신규 자본 지출(CAPEX)을 동원해 -1°C Super-chilling 및 진공 단열 상자 기술을 전면 도입, 항공 운송을 해운(Sea Freight)으로 전환해야 합니다. 확보된 물류비 절감분(kg당 -3.5 EUR)으로 가격 경쟁력을 갖추고 친환경 라벨링으로 아시아 프리미엄 시장을 장악하십시오."
+        situation="신선 연어의 아시아 수출 시 항공 화물 의존도(Exposure)가 90%에 달하며, 이는 극심한 운임 변동성 리스크와 막대한 Scope 3 탄소 배출(kg당 12kg CO2)을 유발합니다. 환경 규제 강화로 인해 기존 물류 모델은 지속 불가능합니다."
+        actionPlan="**[Actionable Insight]** 신규 자본 지출(CAPEX)을 동원해 -1°C Super-chilling 및 진공 단열 상자 기술을 전면 도입, 항공 운송을 해운(Sea Freight)으로 전환해야 합니다. 확보된 물류비 절감분(kg당 -3.5 EUR)으로 가격 경쟁력을 갖추고 친환경 라벨링으로 아시아 프리미엄 시장을 장악하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
         source="EU Fish Market 2024 · Global Seafood Alliance [📡 LIVE API 연동: 물류 배출량 추적]"
       />
     </div>

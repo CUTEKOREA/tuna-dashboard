@@ -36,7 +36,7 @@ export default function SquidDemandDestruction() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="통계청 가계동향조사 및 Nielson 소매판매 데이터" situation="[Demand Destruction & Substitution] 초인플레이션 기조 속 소매 판가(B2C)가 심리적 저항선(KRW 10K/M)을 상향 돌파하자, 수요 곡선이 완전히 붕괴(Demand Destruction)되며 대체 단백질인 고등어/가금류로 소비가 수직 이탈(Cannibalization)하는 매크로 쇼크가 발생했습니다." actionPlan="[B2C Exit & B2B Hedging] 원가 상승분을 소매가로 무한 전가(Pass-through)할 수 있다는 환상을 버리십시오. 소비자 가격 저항선이 확인되는 즉시 변동성이 극심한 B2C 원물 유통 포지션을 전량 청산하고, 단체급식/외식 프랜차이즈향 B2B 1년 장기 선물계약(Forward Contract)으로 전량 스위칭하여 고정 마진을 락인(Lock-in)해야 합니다." />
+      <TakeawayBox source="통계청 가계동향조사 및 Nielson 소매판매 데이터" situation="[Demand Destruction & Substitution] 초인플레이션 기조 속 소매 판가(B2C)가 심리적 저항선(KRW 10K/M)을 상향 돌파하자, 수요 곡선이 완전히 붕괴(Demand Destruction)되며 대체 단백질인 고등어/가금류로 소비가 수직 이탈(Cannibalization)하는 매크로 쇼크가 발생했습니다." actionPlan="**[Actionable Insight]** [B2C Exit & B2B Hedging] 매입원가(COGS) 상승분을 소매가로 무한 전가(Pass-through)할 수 있다는 환상을 버리십시오. 소비자 가격 저항선이 확인되는 즉시 변동성이 극심한 B2C 원물 유통 포지션을 전량 청산하고, 단체급식/외식 프랜차이즈향 B2B 1년 장기 선물계약(Forward Contract)으로 전량 스위칭하여 고정 마진을 락인(Lock-in)해야 합니다. (Conviction Buy)" />
     </div>
   );
 }

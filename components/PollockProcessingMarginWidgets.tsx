@@ -46,8 +46,8 @@ export function WidgetRoeMarginSpread() {
         </div>
         <TakeawayBox 
           source="식품산업통계정보(FIS) 명란젓 동향"
-          situation="명태 전체 포트폴리오 중 원가 상승을 소비자에게 가장 쉽게 전가할 수 있는 아이템은 최고급 밥도둑 반찬인 '명란'입니다. 단순히 벌크로 납품하는 것(이익률 8%) 대비 고부가가치 선물세트나 저염 명란 브랜드(이익률 55%)로 탈바꿈할 때 수익이 수직 상승합니다."
-          actionPlan="원물 단가의 상승을 멍하니 맞고 있지 마십시오. 어란(Roe)의 B2B 식당 도매상 직납 물량을 전면 축소하고, 부산/속초 지역에 위치한 당사 스마트 팩토리의 조제 명란 라인 풀-가동을 지시하여 소비자 직거래(D2C) 브랜드에 전력을 투구해야 합니다."
+          situation="명태 전체 포트폴리오 중 매입원가(COGS) 상승을 소비자에게 가장 쉽게 전가할 수 있는 아이템은 최고급 밥도둑 반찬인 '명란'입니다. 단순히 벌크로 납품하는 것(Bottom-line(순이익)률 8%) 대비 고부가가치 선물세트나 저염 명란 브랜드(Bottom-line(순이익)률 55%)로 탈바꿈할 때 수익이 수직 상승합니다."
+          actionPlan="**[Actionable Insight]** 원물 단가의 상승을 멍하니 맞고 있지 마십시오. 어란(Roe)의 B2B 식당 도매상 직납 물량을 전면 축소하고, 부산/속초 지역에 위치한 당사 스마트 팩토리의 조제 명란 라인 풀-가동을 지시하여 소비자 직거래(D2C) 브랜드에 전력을 투구해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>
@@ -88,8 +88,8 @@ export function WidgetPriceTransferResistance() {
         </div>
         <TakeawayBox 
           source="내부 ERP 판매 이력 및 소비자 탄력성 시뮬레이터"
-          situation="단순 통마리/동태 제품군은 시장 판매가를 20%만 올려도 수요가 반토막(60%대)나며 소비자들이 오징어나 돼지고기로 발길을 돌립니다. 반면 프랜차이즈 피쉬버거 전용 필레나 영유아용 순살 안심 패키지는 가격을 25% 올려도 이탈률이 10% 미만에 불과한 압도적 원가 방어력을 자랑합니다."
-          actionPlan="회사 영업부서의 핵심 지표(KPI)를 '벌크 동태 밀어내기 톤수'에서 '가공 레디투쿡(RTC) 제품군 마진 수성률'로 완전히 뜯어고쳐야 합니다. 가격 탄력성이 낮은(저항선이 강한) 고부가가치 필레(Fillet) 품목 중심으로 냉동 창고 포트폴리오를 조정하십시오."
+          situation="단순 통마리/동태 제품군은 시장 판매가를 20%만 올려도 수요가 반토막(60%대)나며 소비자들이 오징어나 돼지고기로 발길을 돌립니다. 반면 프랜차이즈 피쉬버거 전용 필레나 영유아용 순살 안심 패키지는 가격을 25% 올려도 이탈률이 10% 미만에 불과한 압도적 매입원가(COGS) 방어력을 자랑합니다."
+          actionPlan="**[Actionable Insight]** 회사 영업부서의 핵심 지표(KPI)를 '벌크 동태 밀어내기 톤수'에서 '가공 레디투쿡(RTC) 제품군 마진 수성률'로 완전히 뜯어고쳐야 합니다. 가격 탄력성이 낮은(저항선이 강한) 고부가가치 필레(Fillet) 품목 중심으로 냉동 창고 포트폴리오를 조정하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
         />
       </div>
     </div>
@@ -130,7 +130,7 @@ export function WidgetMSCPremiumSpread() {
         <TakeawayBox 
           source="UN FAO 글로벌 에코라벨 지표 추이"
           situation="맥도날드, 이케아 등 대형 글로벌 급식/외식업계가 '100% MSC 지속가능 수산물 사용'을 의무화하면서, MSC 라벨이 붙은 미국 알래스카/러시아산 명태와 비인증 어획물 간의 시장 가격 프리미엄(Gap)이 해가 갈수록 기하급수적으로 이격(Decoupling)되고 있습니다."
-          actionPlan="원물이 부족해질수록 시장은 MSC 인증 물량을 승자독식(Winner Takes All)합니다. 구매팀은 비인증 덤핑 물량의 유혹에 빠져서는 안 됩니다. 약간의 프리미엄(웃돈)을 주더라도 MSC 에코라벨이 부여된 쿼터만 집중 매입하여 글로벌 B2B 진입 장벽을 선점해야 합니다."
+          actionPlan="**[Actionable Insight]** 원물이 부족해질수록 시장은 MSC 인증 물량을 승자독식(Winner Takes All)합니다. 구매팀은 비인증 덤핑 물량의 유혹에 빠져서는 안 됩니다. 약간의 프리미엄(웃돈)을 주더라도 MSC 에코라벨이 부여된 쿼터만 집중 매입하여 글로벌 B2B 진입 장벽을 선점해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>
@@ -172,7 +172,7 @@ export function WidgetFactoryAutomation() {
         <TakeawayBox 
           source="보스턴컨설팅그룹 수산가공 리포트 & 당사 CAPEX 시뮬레이션"
           situation="중국 다롄과 칭다오 등 주요 기지의 임건비가 폭증하고 젊은 숙련공이 어류 가공을 기피함에 따라 수작업 임가공비가 우상향하고 있습니다. 반면, AI 비전 기반 뼈 제거(Pin-bone removal) 및 자동 필레팅 머신 도입 단가는 규모의 경제로 하락 중입니다."
-          actionPlan="도표가 보여주듯 2026년을 기점으로 비싼 렌탈료를 감안하더라도 로봇 공정의 비용 효율이 인간을 완벽히 압도(Crossover)합니다. 더 이상 값싼 노동력을 찾아 베트남, 인도네시아로 SCM을 옮겨 다니는 메뚜기 전략을 중단하고 부산/속초 허브에 AI 가공 라인 투자를 결단하여 품질을 균일화해야 합니다."
+          actionPlan="**[Actionable Insight]** 도표가 보여주듯 2026년을 기점으로 비싼 렌탈료를 감안하더라도 로봇 공정의 비용 효율이 인간을 완벽히 압도(Crossover)합니다. 더 이상 값싼 노동력을 찾아 베트남, 인도네시아로 SCM을 옮겨 다니는 메뚜기 전략을 중단하고 부산/속초 허브에 AI 가공 라인 투자를 결단하여 품질을 균일화해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>
@@ -219,7 +219,7 @@ export const WidgetReeferCapacity = () => {
         <TakeawayBox 
           source="다롄·부산 수산물 냉동 창고 비용 리포트"
           situation="동남아 우회 물류 병목으로 냉동 화물(Reefer)이 주요 항만에 적체되면서 창고 가동률이 95% 초과(Full Capacity) 시 보관 단가가 페널티 급으로 치솟습니다."
-          actionPlan="창고에 원물을 장기 보관하는 것 자체가 매초 '악성 비용'이 되는 구간입니다. JIT(Just-in-Time) 가공을 원칙으로 하거나, 비수기에 선제적으로 자사 콜드체인 창고 슬롯을 장기 매입해 두어야 추가 마진 증발을 막을 수 있습니다." 
+          actionPlan="**[Actionable Insight]** 창고에 원물을 장기 보관하는 것 자체가 매초 '악성 비용'이 되는 구간입니다. JIT(Just-in-Time) 가공을 원칙으로 하거나, 비수기에 선제적으로 자사 콜드체인 창고 슬롯을 장기 매입해 두어야 추가 마진 증발을 막을 수 있습니다." 
         />
       </div>
     </div>
@@ -266,7 +266,7 @@ export const WidgetCrewShortage = () => {
         <TakeawayBox 
           source="글로벌 선원(Seafarer) 수급 동향 평가서"
           situation="북태평양 혹한기 명태 조업을 기피하는 현상으로 원양 선원 평균 연령이 56세로 초고령화되었으며, 구인난으로 인한 외인 선원 프리미엄 임금이 매해 두 자릿수로 폭등 중입니다."
-          actionPlan="물고기가 있어도 '배트맨'이 없어 조업을 포기하는 사태가 벌어집니다. 동남아 외인 선원 직소싱 전담 부서를 내재화하거나, 조업 선단의 크레인/그물 자동화 설비(CAPEX) 업그레이드를 통해 인력 소요를 강제로 반감시켜야 합니다." 
+          actionPlan="**[Actionable Insight]** 물고기가 있어도 '배트맨'이 없어 조업을 포기하는 사태가 벌어집니다. 동남아 외인 선원 직소싱 전담 부서를 내재화(Internalization)하거나, 조업 선단의 크레인/그물 자동화 설비(CAPEX) 업그레이드를 통해 인력 소요를 강제로 반감시켜야 합니다. (Conviction Buy)" 
         />
       </div>
     </div>
@@ -312,7 +312,7 @@ export const WidgetFXHedging = () => {
         <TakeawayBox 
           source="재무팀 선물환(Forward) 헷징 시뮬레이션"
           situation="명태 매입은 100% 달러 베이스인 반면 국내 매출은 원화 베이스이므로, 달러 당 1,380원을 초과하면 가공 마진이 환차손으로 인해 빈 껍데기가 됩니다."
-          actionPlan="원/달러 환율이 임계점(1,350원)을 돌파하면 매입 물량을 기계적으로 홀드(Hold)하는 룰-베이스 펌핑을 시작해야 합니다. 수산 비즈니스는 곧 외환 헷징 사업이라 봐도 무방하며, 전용 재무팀의 선도 헷지가 조업량 배가보다 이윤이 높습니다." 
+          actionPlan="**[Actionable Insight]** 원/달러 환율이 임계점(1,350원)을 돌파하면 매입 물량을 기계적으로 홀드(Hold)하는 룰-베이스 펌핑을 시작해야 합니다. 수산 비즈니스는 곧 외환 헷징 사업이라 봐도 무방하며, 전용 재무팀의 선도 헷지가 조업량 배가보다 이윤이 높습니다." 
         />
       </div>
     </div>
@@ -354,7 +354,7 @@ export const WidgetAITimePredict = () => (
       <TakeawayBox 
         source="엔진 제조사(Wärtsilä) AI 도입 실증 선박 예방정비율 리포트"
         situation="해상에서 엔진 결함으로 표류(Downtime)하는 1일 기회비용은 $50,000 이상입니다. 사후 대처는 재앙을 부릅니다."
-        actionPlan="노후 선박일수록 AI 진동 센서(예지보전) 부착을 강제하여, 고장 전 입항 스케줄을 선제적으로 조정해 표류 비용을 80% 이상 절감하십시오." 
+        actionPlan="**[Actionable Insight]** 노후 선박일수록 AI 진동 센서(예지보전) 부착을 강제하여, 고장 전 입항 스케줄을 선제적으로 조정해 표류 비용을 80% 이상 절감하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>
@@ -395,7 +395,7 @@ export const WidgetPortTurnaround = () => (
       <TakeawayBox 
         source="NotebookLM 보관 항만 대리점 입출항 리드타임 분해 데이터"
         situation="만선(만재흘수) 이후 하역 항구의 선석 승인이 지연되면서 피크 시즌 턴어라운드(Turn-around) 타임이 2배로 폭증합니다."
-        actionPlan="항만 체선율이 높은 6~7월에는 선단장 재량 하에 90% 적재 후 조기 입항하도록 지시하여 하역 대기 시간을 스킵하는 것이 유리합니다." 
+        actionPlan="**[Actionable Insight]** 항만 체선율이 높은 6~7월에는 선단장 재량 하에 90% 적재 후 조기 입항하도록 지시하여 하역 대기 시간을 스킵하는 것이 유리합니다. (Conviction Buy)" 
       />
     </div>
   </div>
@@ -435,7 +435,7 @@ export const WidgetVesselCapex = () => (
       <TakeawayBox 
         source="한국선급(KR) 내구연한 수칙 및 해양수산부 스마트 선박 보조금 펀딩 현황"
         situation="선령 25년을 초과한 노후 선단 비율이 높아지며 유지보수율(OPEX) 한계점을 돌파, 기습적 신조선 발주(CAPEX) 타격이 예상됩니다."
-        actionPlan="Scrap(고철) 잔존가치가 급락하기 전 즉시 매각하고, 스마트 펀딩 매칭을 통해 수소/하이브리드 신조선 발주 계약을 체결하십시오." 
+        actionPlan="**[Actionable Insight]** Scrap(고철) 잔존가치가 급락하기 전 즉시 매각하고, 스마트 펀딩 매칭을 통해 수소/하이브리드 신조선 발주 계약을 체결하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>
@@ -474,7 +474,7 @@ export const WidgetRobotTCO = () => (
       <TakeawayBox 
         source="IFR 산업용 수산가공 로봇 보급률 및 Marel Filleting 머신 단가표"
         situation="동남아 인건비 상승 및 숙련공 고령화로 5년 차에 인건비 총액이 로봇 자동화 총소유비용(TCO)을 역전합니다."
-        actionPlan="단기적 장비 셋업 비용($150k)을 두려워 마십시오. BAADER/Marel 자동 절단기를 도입하면 위생 리스크 소거와 함께 인당 생산 효율이 300% 급증합니다." 
+        actionPlan="**[Actionable Insight]** 단기적 장비 셋업 비용($150k)을 두려워 마십시오. BAADER/Marel 자동 절단기를 도입하면 위생 리스크 소거와 함께 인당 생산 효율이 300% 급증합니다. (Conviction Buy)" 
       />
     </div>
   </div>
@@ -513,7 +513,7 @@ export const WidgetAirVsOcean = () => (
       <TakeawayBox 
         source="프레이토스 발틱 해상운임(FBX) 및 항공운임지수(TAC) 스프레드 비교"
         situation="초하이엔드 신선 명패(명란/생물)의 경우, 해운 운송 45일간 발생하는 선도 하락(30%) 패널티가 항공 추가 운임비보다 큽니다."
-        actionPlan="최상위 등급 S-Class 원물은 반드시 해상-항공 복합(Sea&Air)을 태워 20일 내 뉴욕에 랜딩시켜 프리미엄 하이엔드 시장에 직판하십시오." 
+        actionPlan="**[Actionable Insight]** 최상위 등급 S-Class 원물은 반드시 해상-항공 복합(Sea&Air)을 태워 20일 내 뉴욕에 랜딩시켜 프리미엄 하이엔드 시장에 직판하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>

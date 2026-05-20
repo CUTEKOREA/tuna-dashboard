@@ -90,7 +90,7 @@ return (
         <TakeawayBox
           source="KMI 식품산업통계정보 (2026) & 자체 추정치"
           situation="[가다랑어 부산물의 가치 재발견] 한국 참치액 시장(700억 원)은 과포화된 액상 경쟁에서 벗어나 '코인 육수' 분말 시장(+20% YoY)으로 급속 확장 중입니다. 가다랑어 추출액의 분무건조 설비를 결합하면, 냉동 컨테이너를 건화물로 전환하여 통관/물류비를 50% 이상 절감할 수 있습니다."
-          actionPlan="참치액의 미래는 액상이 아닌 '분말'에 있습니다. 베트남 현지 가다랑어(Skipjack) 전용 분무건조 파일럿을 즉시 가동하고, CJ/대상 등 코인 육수 제조사에 B2B 핵심 원료 납품 계약을 선제적으로 체결하십시오. TN 지수 1.5% 이상 고농축 스펙으로 차별화하여 프리미엄 시장을 장악해야 합니다."
+          actionPlan="**[Actionable Insight]** 참치액의 미래는 액상이 아닌 '분말'에 있습니다. 베트남 현지 가다랑어(Skipjack) 전용 분무건조 파일럿을 즉시 가동하고, CJ/대상 등 코인 육수 제조사에 B2B 핵심 원료 납품 계약을 선제적으로 체결하십시오. TN 지수 1.5% 이상 고농축 스펙으로 차별화하여 프리미엄 시장을 장악해야 해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>
@@ -133,7 +133,7 @@ export function InsightPillarTwo() {
         <TakeawayBox
           source="KIEP 국제조세 동향 (2025) & EU 집행위 발표자료"
           situation="[글로벌 최저한세 전면 도입] 2026년 OECD Pillar Two 도입으로 조세 피난처 유령법인을 활용하던 다국적 수산기업(Thai Union, Bolton 등)의 실효 법인세율이 7%에서 14%로 거의 2배 폭등합니다. 고단가 황다랑어(Yellowfin)의 이전가격(Transfer Pricing) 조작 구조가 붕괴됩니다."
-          actionPlan="Pillar Two는 글로벌 수산업계의 '디지털세'입니다. 포트폴리오 내 유령법인 구조 의존 기업의 밸류에이션을 즉시 15~20% 디스카운트하십시오. 세무 구조 리스크가 낮고 유럽 내 실질 가공 거점을 보유한 스페인(Frinsa 등) 지역 벤더를 대체 파트너로 재선별해야 합니다."
+          actionPlan="**[Actionable Insight]** Pillar Two는 글로벌 수산업계의 '디지털세'입니다. 포트폴리오 내 유령법인 구조 의존 기업의 밸류에이션을 즉시 15~20% 디스카운트하십시오. 세무 구조 리스크가 낮고 유럽 내 실질 가공 거점을 보유한 스페인(Frinsa 등) 지역 벤더를 대체 파트너로 재선별해야 해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>
@@ -170,7 +170,7 @@ export function InsightVietnamOEM() {
         <TakeawayBox
           source="ILO Global Wage Report (2025) & 관세청 KCS VKFTA"
           situation="[황다랑어 Buyer's Market] 미국 MMPA(2026 시행)로 베트남 어업 수입 금지 및 황다랑어(Yellowfin) 어획 제한으로 현지 가공 공장의 원물 가뭄이 극심합니다. 이 규제 이중고가 역설적으로 안정적 원양 선단을 보유한 기업에게 베트남 OEM 공장을 장악할 교섭력(Leverage)을 제공합니다."
-          actionPlan="베트남의 원물 부족 위기는 한국 조업사에게 최상의 '지분 인수 스위트 스팟'입니다. Tan Phat Foods 등 국제 인증(BRC/IFS)을 보유한 현지 최상위 벤더의 소수 지분(15~25%)을 원물(황다랑어) 장기 공급권과 스왑(Swap)하여 선제적으로 확보하십시오."
+          actionPlan="**[Actionable Insight]** 베트남의 원물 부족 위기는 한국 조업사에게 최상의 '지분 인수 스위트 스팟'입니다. Tan Phat Foods 등 국제 인증(BRC/IFS)을 보유한 현지 최상위 벤더의 소수 지분(15~25%)을 원물(황다랑어) 장기 공급권과 스왑(Swap)하여 선제적으로 확보하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
         />
       </div>
     </div>

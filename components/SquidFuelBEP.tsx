@@ -44,7 +44,7 @@ export default function SquidFuelBEP() {
       </div>
 
       <TakeawayBox source="수협 면세유고시가 & 자체 BEP 추정 모델" situation="과거 면세경유가 리터당 1,471원을 돌파하던 시기, 메탈할라이드 등(Lamp)을 사용하는 노후 선단은 BEP 붕괴로 집단 출어 포기 사태를 겪었습니다. 반면 고효율 LED 선단은 조업을 유지하며 독점적 마진을 올렸습니다."
-        actionPlan="신라교역은 채낚기 선단 인수 및 조업 합작 시 'LED 집어등 100% 전환'을 필수 계약 조건으로 명시하십시오. MGO 단가가 1,100원을 돌파할 경우 경쟁사 선단의 출항 포기를 역이용하여 단가를 공격적으로 올리는 가격 결정권(Pricing Power) 획득이 가능합니다."
+        actionPlan="**[Actionable Insight]** 신라교역은 채낚기 선단 인수 및 조업 합작 시 'LED 집어등 100% 전환'을 필수 계약 조건으로 명시하십시오. MGO 단가가 1,100원을 돌파할 경우 경쟁사 선단의 출항 포기를 역이용하여 단가를 공격적으로 올리는 가격 결정권(Pricing Power) 획득이 가능합니다. (Re-rating Expected)"
       />
     </div>
   );

@@ -129,7 +129,7 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
           situation={results.length > 0 ? `[HS 분류] "${meta?.query || query}" → ${results[0]?.hsCode || '-'} (${results[0]?.description || '-'}). 신뢰도 ${Math.round((results[0]?.confidence || 0) * 100)}%. ${results.length}개 후보 코드 제시.` : '[HS 자동분류] 품목명(한/영) 입력 시 HS 6~10자리 코드를 자동 매핑. 관세 신고·원산지 증명서 작성 시 활용.'}
-          actionPlan="[활용] FTA 원산지 증명서 HS 코드 기재 시 본 분류 결과 활용. 수입 통관 시 품목분류 사전심사(관세청) 신청 근거 자료."
+          actionPlan="**[Actionable Insight]** [활용] FTA 원산지 증명서 HS 코드 기재 시 본 분류 결과 활용. 수입 통관 시 품목분류 사전심사(관세청) 신청 근거 자료."
           source={`HS Ping API · ${isLive ? '🟢 실시간' : '🟡 사전분류 DB'} · 신뢰도: ${meta?.reliability?.grade || 'A'}`}
         />
       </div>

@@ -47,7 +47,7 @@ export default function PollockPremiumSpread() {
 
       <TakeawayBox
         situation="차트를 보면 러시아산 원물(H&G) 및 중국산 가공품(Double-Frozen) 가격이 하락 안정세를 보이는 반면, 극소수의 미국산 '싱글 프로즌' 제품은 고가의 프리미엄 가격대($2,500 이상)를 견고하게 방어하며 스프레드(단가 차이)가 벌어지고 있습니다."
-        actionPlan="단순 H&G 원물 무역에서 벗어나, 선상 가공(Single-Frozen) 능력을 확보하거나 해당 물량을 장기 입도선매하여 최고급 백색육 시장(B2C 프리미엄 마켓)용 필렛 공급망을 확충할 경우 경쟁사 대비 압도적인 마진율(Premium Spread)을 취할 수 있습니다."
+        actionPlan="**[Actionable Insight]** 단순 H&G 원물 무역에서 벗어나, 선상 가공(Single-Frozen) 능력을 확보하거나 해당 물량을 장기 입도선매하여 최고급 백색육 시장(B2C 프리미엄 마켓)용 필렛 공급망을 확충할 경우 경쟁사 대비 압도적인 마진율(Premium Spread)을 취할 수 있습니다."
       />
     </div>
   );

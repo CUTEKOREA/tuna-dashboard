@@ -101,7 +101,6 @@ const EstimateBadge = () => (
 );
 
 export default function CarrotDashboard() {
-  const [showEdu, setShowEdu] = useState(true);
   const [liveArbitrage, setLiveArbitrage] = useState<any>(null);
   const [liveTrq, setLiveTrq] = useState<any>(null);
   
@@ -378,70 +377,6 @@ export default function CarrotDashboard() {
         })}
       </div>
 
-      {/* ═══ Education Toggle ═══ */}
-      <div style={{ marginBottom:'2rem' }}>
-        <button onClick={() => setShowEdu(!showEdu)} 
-          className="ds-card" style={{width:'100%', display:'flex', alignItems:'center',
-            justifyContent:'space-between', cursor:'pointer', marginBottom: showEdu?'1rem':'0' }}
-        >
-          <div style={{ display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <BookOpen size={20} color="#ea580c" />
-            <div style={{ textAlign:'left' }}>
-              <div style={{ fontSize:'1.05rem', fontWeight:700, color:'var(--text-primary)', marginBottom:'4px' }}>신입직원 교육 가이드</div>
-              <div style={{ fontSize:'0.8rem', color:'var(--text-secondary)' }}>FAOSTAT 및 식약처 실제 데이터 기반 — 비대칭 경쟁 및 공급망 헷징 로직</div>
-            </div>
-          </div>
-          <div style={{ transform: showEdu?'rotate(180deg)':'rotate(0deg)', transition:'transform 0.3s' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </button>
-        {showEdu && (
-          <div className="ds-card" style={{ animation:'fadeIn 0.3s' }}>
-            <div className="ds-grid-2" style={{ marginBottom:'1.5rem' }}>
-              <div className="ds-card-insight">
-                <h3 style={{ color:'#ea580c', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
-                  <Globe size={16}/> 핵심 구조: B2B 전처리 가공과 0% 관세의 결합
-                </h3>
-                <div style={{ fontSize:'0.85rem', color:'var(--text-secondary)', lineHeight:1.65 }}>
-                  <strong style={{color:'var(--text-primary)'}}>생산:</strong> 제주산은 여름 단경기에 가격이 폭등하며, 중국산은 잔류농약(PLS) 리스크로 통관 불확실성이 극심함.<br/>
-                  <strong style={{color:'var(--text-primary)'}}>가공:</strong> 베트남산은 B2B 전처리(다이스/채썰기 등 IQF)를 통해 수율을 높이고 잔류농약 검역 장벽을 가공식품 형태로 완벽히 우회.<br/>
-                  <strong style={{color:'var(--text-primary)'}}>무역:</strong> 한-베트남 FTA 0% 관세 혜택으로 특수 포장재(MA) 추가 비용을 상쇄하며 중국산(관세 30%) 대비 Landed Cost 우위를 점함.
-                </div>
-              </div>
-              <div className="ds-card-insight">
-                <h3 style={{ color:'#fbbf24', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
-                  <Workflow size={16}/> 전략적 시사점: 공급 보장 헤징 + ESG 프리미엄
-                </h3>
-                <ul style={{ margin:0, paddingLeft:'1.2rem', fontSize:'0.85rem', color:'var(--text-secondary)', lineHeight:1.65 }}>
-                  <li><strong style={{color:'var(--text-primary)'}}>변동성 헷징:</strong> HMR/급식 바이어에게 "연중 고정 단가"를 보장하여 중국산 점유율 탈환</li>
-                  <li><strong style={{color:'var(--text-primary)'}}>ESG 프리미엄:</strong> 비규격 당근(어글리 프로듀스) 전량 수거 파이프라인 구축 및 대기업 Scope 3 감축 실적 제공</li>
-                  <li><strong style={{color:'var(--text-primary)'}}>메디푸드 피봇:</strong> B2C 원물 시장의 마진 한계를 베타카로틴(건기식) 바이오 테크 포트폴리오 편입으로 극복</li>
-                </ul>
-              </div>
-            </div>
-            <div className="ds-card-insight" style={{
-              display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem'
-            }}>
-              <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-                <div style={{ background:'#181818', padding:'0.8rem', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center' }}><Database size={20} color="#ea580c" /></div>
-                <div>
-                  <h3 style={{ color:'var(--text-primary)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} color="#ea580c" style={{marginRight:'6px'}} />NotebookLM 당근 AI 챗봇</h3>
-                </div>
-              </div>
-              <a href="https://notebooklm.google.com/notebook/a9478d81-a1cf-4c62-9404-25c57c971d65" target="_blank" rel="noreferrer"
-                style={{ background:'var(--text-primary)', color:'var(--bg-color)', padding:'12px 24px', borderRadius:'500px', fontSize:'0.9rem', fontWeight:700, textDecoration:'none', display:'flex', alignItems:'center', gap:'8px', whiteSpace:'nowrap', transition:'transform 0.2s' }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              >
-                <Activity size={16} /> 챗봇 시작
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
-
-
-
       {/* ═══ Sections ═══ */}
 
       {/* PEF Scenario Simulator Panel */}
@@ -542,7 +477,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="중국은 압도적인 재배 면적으로 생산량 1위를 유지하나, 기후 리스크 및 노후화로 인해 단위 면적당 수율 성장이 정체된 상태임."
-          takeaway="'양적 팽창'의 한계점이 임계에 달했음을 고려할 때, 좁은 면적에서도 수율이 뛰어난 대체 산지 발굴이 글로벌 소싱 전략의 핵심임."
+          takeaway="**[Actionable Insight]** '양적 팽창'의 한계점이 임계에 달했음을 고려할 때, 좁은 면적에서도 수율이 뛰어난 대체 산지 발굴이 글로벌 소싱 전략의 핵심임."
           source="* 📡 [LIVE API 연동: FAOSTAT Open API] Crops and livestock products (QCL)"
         />
           </div>
@@ -584,7 +519,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="KREI 및 FAOSTAT 실측 데이터에 따르면, 한국산(제주/강원)은 잦은 기상 이변으로 도매가 변동성이 극심하며, 시장점유율 90%의 중국(칭다오)산마저 기후 리스크와 내수 물가 인상으로 단가 헷징력을 상실하고 있음."
-          takeaway="해발 1,500m 항시 냉량 기후(15~25도)를 유지하는 베트남 달랏(Dalat)의 연중 고정 단가를 활용, 대형 B2B 바이어에게 '가격 변동성 제로(Zero-Volatility)' 장기 공급 락인(Lock-in) 모델을 제시하여 시장 지배력을 탈취할 것."
+          takeaway="**[Actionable Insight]** 해발 1,500m 항시 냉량 기후(15~25도)를 유지하는 베트남 달랏(Dalat)의 연중 고정 단가를 활용, 대형 B2B 바이어에게 '가격 변동성 제로(Zero-Volatility)' 장기 공급 락인(Lock-in) 모델을 제시하여 시장 지배력을 탈취할 것."
           source="* 📡 [LIVE API 연동: FAOSTAT Open API] Producer Prices (PP) — 베트남 가격은 LCU 기반 프록시 환산 추정치"
         />
           </div>
@@ -626,7 +561,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="한국의 고온 다습한 여름철(7~10월) 단경기 진입 시, 국내 고랭지 작황 붕괴와 중국산 부패율 급증으로 수급 불균형이 극대화되며 도매가격 폭등 현상이 구조적으로 반복됨."
-          takeaway="최대 마진 스프레드가 발생하는 7~9월 구간에 한-베트남 FTA(VKFTA 0%) 무관세 특혜를 적용받는 달랏산 물량을 집중 투입하여 단기 차익 거래(Arbitrage)를 극대화하고 벤더 이탈률을 방어할 것."
+          takeaway="**[Actionable Insight]** 최대 마진 스프레드가 발생하는 7~9월 구간에 한-베트남 FTA(VKFTA 0%) 무관세 특혜를 적용받는 달랏산 물량을 집중 투입하여 단기 차익 거래(Arbitrage)를 극대화하고 벤더 이탈률을 방어할 것."
           source="* 📡 [LIVE API 연동: KAMIS x KCS Hybrid API] 산지 스팟가 및 렌디드 코스트 동향"
         />
           </div>
@@ -661,7 +596,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="중국산(일본 종자)은 당도가 6.8 Brix로 낮은 편이며, 제주산(한국 종자)은 고당도(8.5 Brix)이나 이상 기후로 인해 생산 수율이 65.4%까지 크게 하락했습니다."
-          takeaway="한국형 고당도 종자를 베트남 달랏(해발 1,000m+ 최적 기후)으로 역수출하여 계약 재배할 경우, 92.5%의 높은 수율과 8.9 Brix의 압도적 당도를 동시에 달성할 수 있습니다."
+          takeaway="**[Actionable Insight]** 한국형 고당도 종자를 베트남 달랏(해발 1,000m+ 최적 기후)으로 역수출하여 계약 재배할 경우, 92.5%의 높은 수율과 8.9 Brix의 압도적 당도를 동시에 달성할 수 있습니다."
           source="* 📡 [LIVE API 연동: KREI x aT Open API] 겨울당근 생육 동향 및 해외시장 동향 분석"
         />
           </div>
@@ -699,7 +634,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="NOAA 엘니뇨 지표와 베트남 MARD 연동 분석 결과, 극단적 기후 재난 발현 시 동북아시아 농산물 공급망이 마비되며 스팟 가격이 폭등하는 기후 꼬리 리스크(Tail Risk)가 일상화됨."
-          takeaway="지정학적/기후적 타격권에서 완전히 벗어난 베트남 달랏을 '기후 프리미엄 콜옵션' 산지로 포지셔닝하여, 공급망 붕괴 시점에도 100% 이행 가능한 거시적 조달망을 무기로 프리미엄 단가를 확보할 것."
+          takeaway="**[Actionable Insight]** 지정학적/기후적 타격권에서 완전히 벗어난 베트남 달랏을 '기후 프리미엄 콜옵션' 산지로 포지셔닝하여, 공급망 붕괴 시점에도 100% 이행 가능한 거시적 조달망을 무기로 프리미엄 단가를 확보할 것."
           source="* 📡 [LIVE API 연동: NOAA Climate API x MARD] 글로벌 기후 지수 동향"
         />
           </div>
@@ -737,7 +672,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="최근 식약처(MFDS) 수입식품 검사에서 한국 수입량의 절대다수를 차지하던 중국산 당근에서 잔류농약(클로티아니딘 14.4배 초과 등)이 대거 적발되어 전량 폐기 사태가 발생, B2B 신뢰가 붕괴됨."
-          takeaway="중국산의 치명적 식품 안전성(Food Safety) 붕괴 사태를 반면교사 삼아, 파종부터 수확까지 엄격히 통제된 달랏의 무결점 인증(VietGAP) 당근을 '대체 불가한 안전 프랜차이즈 원료'로 프리미엄화할 것."
+          takeaway="**[Actionable Insight]** 중국산의 치명적 식품 안전성(Food Safety) 붕괴 사태를 반면교사 삼아, 파종부터 수확까지 엄격히 통제된 달랏의 무결점 인증(VietGAP) 당근을 '대체 불가한 안전 프랜차이즈 원료'로 프리미엄화할 것."
           source="* 📡 [LIVE API 연동: MFDS(식약처) Open API] 수입식품 안전성 검사결과 및 회수·판매중지 실데이터"
         />
           </div>
@@ -783,8 +718,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="한국 KREI 통계 기준 1분기 도매가 78.9% 폭등 등 극심한 원가/인건비 상승으로 전처리 식자재 수요가 폭발함."
-          takeaway="베트남 현지 공장에서 IQF(다이스) 가공 직수입 시 바이어의 최종 원가를 약 45% 절감(81k → 45k)시키는 강력한 영업 우위를 점유함."
+          situation="한국 KREI 통계 기준 1분기 도매가 78.9% 폭등 등 극심한 매입원가(COGS)/인건비 상승으로 전처리 식자재 수요가 폭발함."
+          takeaway="**[Actionable Insight]** 베트남 현지 공장에서 IQF(다이스) 가공 직수입 시 바이어의 최종 매입원가(COGS)를 약 45% 절감(81k → 45k)시키는 강력한 영업 우위를 점유함."
           source="KREI 농업전망 2025(1분기)"
         />
           </div>
@@ -819,7 +754,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="수입 생체 당근은 통관 과정의 정밀 검역 폐기(약 7.5%)와 원물의 구조적 가공 폐기율(껍질/밑동 16%)로 인해 최종 유효 수율이 76.5% 수준에 그침."
-          takeaway="생산지(베트남 달랏)에서 10x10mm 깍둑썰기 및 IQF(급속냉동) 전처리를 거쳐 수입할 경우, 생물 방역(PLS) 규제를 완전히 우회하며 100% 무손실 수율 구조를 달성함."
+          takeaway="**[Actionable Insight]** 생산지(베트남 달랏)에서 10x10mm 깍둑썰기 및 IQF(급속냉동) 전처리를 거쳐 수입할 경우, 생물 방역(PLS) 규제를 완전히 우회하며 100% 무손실 수율 구조를 달성함."
           source="* 근거: aT 전처리 보고서 및 PQIS 통관·폐기 통계"
         />
           </div>
@@ -854,8 +789,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="중국은 급격한 농촌 고령화와 임금 상승으로 인해 최저임금이 월 2,690위안(대도시 기준) 수준에 육박하며 과거 '저비용 농산물 가공 기지'로서의 원가 경쟁력을 완전히 상실함."
-          takeaway="평균 임금 상승률(CAGR 8~10%)을 감안해도 중국 대비 압도적으로 낮은 베트남으로 전처리(탈피/절단) 기지를 이전하는 것은, 향후 15년 이상의 장기 구조적 인건비 차익(Labor Arbitrage)을 확정 짓는 필수 전략임."
+          situation="중국은 급격한 농촌 고령화와 임금 상승으로 인해 최저임금이 월 2,690위안(대도시 기준) 수준에 육박하며 과거 '저비용 농산물 가공 기지'로서의 매입원가(COGS) 경쟁력을 완전히 상실함."
+          takeaway="**[Actionable Insight]** 평균 임금 상승률(CAGR 8~10%)을 감안해도 중국 대비 압도적으로 낮은 베트남으로 전처리(탈피/절단) 기지를 이전하는 것은, 향후 15년 이상의 장기 구조적 인건비 차익(Labor Arbitrage)을 확정 짓는 필수 전략임."
           source="* 근거: KOTRA 2024 해외시장뉴스 및 베트남/중국 최저임금 변동 추이"
         />
           </div>
@@ -892,7 +827,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="KREI 농업전망2026: 국내 당근 공급량 20.6만톤→21.7만톤(2035) 성장 전망이나, 국내 생산(9.7만톤)은 정체하고 순수입(11.4만→12.2만톤)이 성장을 견인. 1인당 공급량 4.1→4.3kg 증가는 HMR/급식 채널의 가공 당근(전처리·IQF) 수요 확대를 시사."
-          takeaway="베트남 현지에 전처리 가공/냉동 설비를 선제적으로 투자할 경우, 가장 빠르게 성장하는 수익성 높은 시장(High-margin segment)을 독식하게 됨."
+          takeaway="**[Actionable Insight]** 베트남 현지에 전처리 가공/냉동 설비를 선제적으로 투자할 경우, 가장 빠르게 성장하는 수익성(Profitability) 높은 시장(High-margin segment)을 독식하게 됨."
           source="* 근거: KREI 농업전망2026 엽근채소(2026.01.23) / aT 가공식품 세분시장 현황조사"
         />
           </div>
@@ -935,7 +870,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="한국의 수입 물량 절대다수가 단일 국가(중국)로부터 블랙홀처럼 수입되는 극단적인 단일 의존 구조를 띰."
-          takeaway="단일 공급망 리스크(PLS 사태, 수출 통제 등)를 방어하기 위해 즉각적인 베트남 등 '중국 외 공급 다변화(China+1)' 포트폴리오 구축이 필수적임."
+          takeaway="**[Actionable Insight]** 단일 공급망 리스크(PLS 사태, 수출 통제 등)를 방어하기 위해 즉각적인 베트남 등 '중국 외 공급 다변화(China+1)' 포트폴리오 구축이 필수적임."
           source="* 📡 [LIVE API 연동: FAOSTAT Open API] Detailed trade matrix (TM)"
         />
           </div>
@@ -972,7 +907,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="중국산은 근거리 이점(물류비 절감)이 있으나 기본 관세 30%가 치명적입니다. 반면 베트남산은 장거리 운송을 위한 특수 포장이 필수이나, 관세 0%가 이를 상쇄합니다."
-          takeaway="포장재 개선(MA)에 따른 원가 상승분은 VKFTA의 압도적인 0% 관세 효과로 완벽히 흡수되며, 최종 도착가(Landed Cost)에서 중국산을 역전합니다."
+          takeaway="**[Actionable Insight]** 포장재 개선(MA)에 따른 매입원가(COGS) 상승분은 VKFTA의 압도적인 0% 관세 효과로 완벽히 흡수되며, 최종 도착가(Landed Cost)에서 중국산을 역전해야 합니다. (Conviction Buy)"
           source="* 📡 [LIVE API 연동: KCS(관세청) Open API] 농산물 수입 관세표(E04-2026) 및 한-베트남 FTA(VKFTA) 조세 규정"
         />
           </div>
@@ -1006,7 +941,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="베트남 해상운송(7~12일) 시 일반 포장을 쓰면 수분 손실과 당도 저하가 심각해 도착 후 불량 폐기율이 매우 높음."
-          takeaway="호흡량을 억제하는 MA 포장 전면 도입으로 저온 보관일을 최장 45일까지 연장, 물류 지연 리스크를 완전히 제거하는 '기술적 방어' 실현."
+          takeaway="**[Actionable Insight]** 호흡량을 억제하는 MA 포장 전면 도입으로 저온 보관일을 최장 45일까지 연장, 물류 지연 리스크를 완전히 제거하는 '기술적 방어' 실현."
           source="수입식품 신선도 관리 가이드라인"
         />
           </div>
@@ -1045,7 +980,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="중국 화물은 3일 만에 조기 도착하여 즉시 비싼 국내 3PL 냉동창고 임대료(10톤 기준 일 $20 운전자본)를 소모시키며, 시황 폭락 시 덤핑 외에 대안이 없음."
-          takeaway="베트남발 화물의 10일 항해를 '무료 해상 창고'로 취급하여 초기 7일간의 재고유지비($140/컨테이너)를 세이브하고, 한국 시황 폭락 시 항로를 틀어 일본/대만으로 전매(Arbitrage)하는 지리적 콜옵션 발동이 가능함."
+          takeaway="**[Actionable Insight]** 베트남발 화물의 10일 항해를 '무료 해상 창고'로 취급하여 초기 7일간의 재고유지비($140/컨테이너)를 세이브하고, 한국 시황 폭락 시 항로를 틀어 일본/대만으로 전매(Arbitrage)하는 지리적 콜옵션 발동이 가능함."
           source="* 📡 [LIVE API 연동: KCS Open API] 해양수산부 항만 화물 처리시간 및 3PL 콜드체인 표준 보관료 매트릭스"
         />
           </div>
@@ -1081,7 +1016,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="기존 스팟 바이어들은 기상 악화 시 정부가 비정기적으로 배분하는 TRQ(저율관세할당량) 획득에 목을 매는 천수답식 수입에 의존하여 유통 마진 변동성이 극심합니다."
-          takeaway="VKFTA 0% 수혜를 받는 베트남 거점은 TRQ 발동과 무관하게 상시적(Permanent)으로 최대 유통 마진을 보장하는 완벽한 구조적 차익(Arbitrage) 머신으로 작동합니다."
+          takeaway="**[Actionable Insight]** VKFTA 0% 수혜를 받는 베트남 거점은 TRQ 발동과 무관하게 상시적(Permanent)으로 최대 유통 마진을 보장하는 완벽한 구조적 차익(Arbitrage) 머신으로 작동해야 합니다. (Conviction Buy)"
           source="* 📡 [LIVE API 연동: KREI Open API] WTO TRQ 개선 방안 리포트 실시간 지표"
         />
           </div>
@@ -1129,7 +1064,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="기존 중소 수입사들은 중국산 스팟 물량 수급에만 의존하여 환율 및 현지 물가 변동의 타격을 HMR, 식자재 등 고객사에게 그대로 전가해왔으며, 이는 극심한 벤더 이탈(Churn)의 원인이 됨."
-          takeaway="달랏-한국 간 직결형 하이브리드 파이프라인(KCS 수입 단가 실측)을 바탕으로 원가 불확실성을 0%로 통제하고, 경쟁사가 모방 불가능한 '연중 고정 공급가' 계약으로 대형 바이어를 영구 종속시킬 것."
+          takeaway="**[Actionable Insight]** 달랏-한국 간 직결형 하이브리드 파이프라인(KCS 수입 단가 실측)을 바탕으로 매입원가(COGS) 불확실성을 0%로 통제하고, 경쟁사가 모방 불가능한 '연중 고정 공급가' 계약으로 대형 바이어를 영구 종속시킬 것."
           source="* 📡 [LIVE API 연동: aT KAMIS API] 농산물유통정보(KAMIS) 도매가격 지수 변동성 데이터"
         />
           </div>
@@ -1168,8 +1103,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="KREI 농업전망2026에 따르면, 한국 당근 국내 공급량 20.6만톤 중 순수입이 11.4만톤(55.3%)이며, 자급률은 47.2%에서 2035년 45.2%로 지속 하락 전망. 수입 의존도 심화 속에서 중국산(90% 점유) 대비 안전성 우위의 베트남산 IQF 전처리 제품으로의 전환 수요가 구조적으로 확대 중."
-          takeaway="KREI TAM(순수입 11.4만톤) 기반 Bass Diffusion Model 적용 시, 기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨. 한-베 FTA 0% 관세 + IQF 전처리 품질 최적화가 핵심 전제 조건."
+          situation="KREI 농업전망2026에 따르면, 한국 당근 국내 공급량 20.6만톤 중 순수입이 11.4만톤(55.3%)이며, 자급률은 47.2%에서 2035년 45.2%로 지속 하락 전망. 수입 의존도(Exposure) 심화 속에서 중국산(90% 점유) 대비 안전성 우위의 베트남산 IQF 전처리 제품으로의 전환 수요가 구조적으로 확대 중."
+          takeaway="**[Actionable Insight]** KREI TAM(순수입 11.4만톤) 기반 Bass Diffusion Model 적용 시, 기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨. 한-베 FTA 0% 관세 + IQF 전처리 품질 최적화가 핵심 전제 조건."
           source="* 근거: KREI 농업전망2026 엽근채소 세션(2026.01.23) — 재배면적 3,065ha, 1인당 공급량 4.1kg"
         />
           </div>
@@ -1242,7 +1177,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="회계법인 커머셜 듀딜리전스(CDD) 프레임워크 평가 결과, 중국산 단순 유통 벤더의 기업 가치는 하락세인 반면, 베트남 달랏 애그테크 모델은 가공 인프라, FTA 관세 우위, 기후 내성에서 최상위 적격성(90점 이상)을 입증함."
-          takeaway="단순 수입 유통업(Flat Margin)을 넘어, 확고한 산지 장악력과 전처리 밸류체인 내재화를 무기로 사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트 밸류에이션 매트릭스의 압도적 우위를 증명할 것."
+          takeaway="**[Actionable Insight]** 단순 수입 유통업(Flat Margin)을 넘어, 확고한 산지 장악력과 전처리 밸류체인 내재화(Internalization)를 무기로 사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트(Exit) 밸류에이션 매트릭스의 압도적 우위를 증명할 것."
           source="* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 M&A 타겟 스코어카드 및 회계법인 CDD 프레임워크"
         />
           </div>
@@ -1279,7 +1214,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="HMR 및 밀키트 시장 내 '신선편의채소(절단/세척)' 수요가 폭발하고 있으나, 단순 원물 스팟 공급만으로는 벤더 이탈률(Churn)이 60%에 달해 사업 지속성이 떨어짐."
-          takeaway="전처리 폼팩터(IQF 다이스 등)를 '연중 고정 단가'로 대형 벤더(신세계/CJ 등)에 공급하여 락인(Lock-in)시, 3년 차부터 잉여현금흐름(FCF) 기반 이익이 3배 이상 폭발적으로 누적 증대됨."
+          takeaway="**[Actionable Insight]** 전처리 폼팩터(IQF 다이스 등)를 '연중 고정 단가'로 대형 벤더(신세계/CJ 등)에 공급하여 락인(Lock-in)시, 3년 차부터 잉여현금흐름(FCF) 기반 Bottom-line(순이익)이 3배 이상 폭발적으로 누적 증대됨."
           source="aT 가공식품 세분시장 현황-간편식 (2024)"
         />
           </div>
@@ -1327,7 +1262,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="글로벌 단위에서 막대한 당근 수확물이 상품성 미달(어글리 롯)이나 보관·운송 실패로 식탁에 오르기 전 전량 폐기처분(Loss)됨."
-          takeaway="비규격 손실분(Waste) 전량을 펫푸드나 고순도 베타카로틴(메디푸드)용 추출 산업으로 업사이클링 시, 막대한 마진 창출 및 ESG 페널티 면제가 가능함."
+          takeaway="**[Actionable Insight]** 비규격 손실분(Waste) 전량을 펫푸드나 고순도 베타카로틴(메디푸드)용 추출 산업으로 업사이클링(Up-cycling) 시, 막대한 마진 창출 및 ESG 페널티 면제가 가능함."
           source="FAOSTAT Supply Utilization Accounts (SCL) — 주: 한국의 '식용소비'에는 수입량이 합산 반영되어 국내 총생산량을 초과할 수 있음"
         />
           </div>
@@ -1363,7 +1298,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="전체 수확량의 20~30%에 달하는 비규격 '못난이 당근(B품)'은 그동안 전량 폐기(Loss)되었으나, 이를 압착(Expeller) 공정으로 고도 가공 시 천연 카로티노이드 추출 효율이 11배 폭증함(Amin et al., 2021)."
-          takeaway="까다로운 신선 농산물 국경 방역 장벽을 완전히 우회하면서, 잔여 폐기물을 천연 베타카로틴 시장(USD 6.1억, GMI)이나 펫푸드 등 고부가가치 바이오 소재로 100% 전환하는 '푸드 업사이클링' 초격차 마진을 실현할 것."
+          takeaway="**[Actionable Insight]** 까다로운 신선 농산물 국경 방역 장벽을 완전히 우회하면서, 잔여 폐기물을 천연 베타카로틴 시장(USD 6.1억, GMI)이나 펫푸드 등 고부가가치 바이오 소재로 100% 전환하는 '푸드 업사이클링(Up-cycling)' 초격차 마진을 실현할 것. (Execution Recommended)"
           source="* 📡 [LIVE API 연동: UN Comtrade & GMI] 글로벌 베타카로틴 수요 및 무역 흐름 데이터"
         />
           </div>
@@ -1396,8 +1331,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="Cecílio Filho et al.(2026) LCA 실측: 관행농(겨울) 당근 탄소발자국 0.0833 kgCO₂eq/kg → 유기농 0.0763(8.4% 감축), 업사이클링 전환 시 0.047(43% 감축 실증). 신세계 ESG 리포트(보유 자료 84KB)에 따르면 Scope 3 공급망 관리를 통한 벤더 탄소 실적이 향후 B2B 계약 갱신의 핵심 조건으로 부상."
-          takeaway="투명하게 입증 가능한 친환경 베트남 농법 데이터 및 B품 업사이클링 수거율 데이터를 무기로, 단가 경쟁을 피하고 대기업 바이어의 ESG 실적 달성을 돕는 '독점적 파트너' 지위를 확보함."
+          situation="Cecílio Filho et al.(2026) LCA 실측: 관행농(겨울) 당근 탄소발자국 0.0833 kgCO₂eq/kg → 유기농 0.0763(8.4% 감축), 업사이클링(Up-cycling) 전환 시 0.047(43% 감축 실증). 신세계 ESG 리포트(보유 자료 84KB)에 따르면 Scope 3 공급망 관리를 통한 벤더 탄소 실적이 향후 B2B 계약 갱신의 핵심 조건으로 부상."
+          takeaway="**[Actionable Insight]** 투명하게 입증 가능한 친환경 베트남 농법 데이터 및 B품 업사이클링(Up-cycling) 수거율 데이터를 무기로, 단가 경쟁을 피하고 대기업 바이어의 ESG 실적 달성을 돕는 '독점적 파트너' 지위를 확보함. (Strategic Buy)"
           source="* 근거: Cecílio Filho et al.(2026) Bragantia 85, IPCC 2019 Tier 2 / 신세계 ESG리포트 / IFRS S2 기후공시 기준"
         />
           </div>
@@ -1430,8 +1365,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="전통적인 1차 농산물 수입 벤더 구조는 중간 유통 마진율이 3~8% 수준에 머무르며, 자본 시장에서의 엑시트 멀티플(EV/EBITDA 5x 미만)이 극히 저조함."
-          takeaway="전방의 고당도 종자 IP(라이선싱) 통제권과 후방의 스마트 가공(IQF) 및 바이오 업사이클링 역량을 동시에 내재화할 경우, '단순 유통업'에서 '푸드테크 유니콘'으로 재분류되어 15배(15x) 이상의 폭발적인 멀티플 차익거래가 실현됨."
+          situation="전통적인 1차 농산물 수입 벤더 구조는 중간 유통 마진율이 3~8% 수준에 머무르며, 자본 시장에서의 엑시트(Exit) 멀티플(EV/EBITDA 5x 미만)이 극히 저조함."
+          takeaway="**[Actionable Insight]** 전방의 고당도 종자 IP(라이선싱) 통제권과 후방의 스마트 가공(IQF) 및 바이오 업사이클링(Up-cycling) 역량을 동시에 내재화(Internalization)할 경우, '단순 유통업'에서 '푸드테크 유니콘'으로 재분류되어 15배(15x) 이상의 폭발적인 멀티플(Multiple) 차익거래(Arbitrage)가 실현됨. (Value Realization Expected)"
           source="* 근거: 대형 사모펀드(PEF) 농식품 인더스트리 Buy & Build(롤업) 가치평가 실증 데이터"
         />
           </div>
@@ -1468,7 +1403,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="Amin et al.(2021) 연구에 따르면 착유 압착(Expeller) 도입 시 버려지던 매쉬의 카로티노이드가 11배 폭증함. KREI 기준 연간 ~3.1만톤의 B품 중 일부 전환(2400톤) 시 IPCC LCA 기준 Scope 3 감축량 199 tCO₂e를 확보할 수 있으며 글로벌 천연 베타카로틴 프리미엄을 독식함."
-          takeaway="잉여 원물을 폐기 비용에서 메디푸드(고순도 베타카로틴) 소재로 업사이클링 전환 시, 기존 유통 마진의 한계를 돌파하는 70% 이상의 초격차 마진이 창출되며 확보된 Scope 3 탄소 감축량은 대기업 B2B 계약의 독점적 무기로 작용함."
+          takeaway="**[Actionable Insight]** 잉여 원물을 폐기 비용에서 메디푸드(고순도 베타카로틴) 소재로 업사이클링(Up-cycling) 전환 시, 기존 유통 마진의 한계를 돌파하는 70% 이상의 초격차 마진이 창출되며 확보된 Scope 3 탄소 감축량은 대기업 B2B 계약의 독점적 무기로 작용함. (Alpha Driver)"
           source="* 근거: Amin et al.(2021) CalPoly / Cecílio Filho(2026) Bragantia 85 / GMI 2025 / KREI"
         />
           </div>
@@ -1505,8 +1440,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="단순 농산물 수입업의 EV/EBITDA 멀티플은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 이익의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함."
-              takeaway="기후 리스크 헷징, 무관세 원가 우위, 잔류농약 Zero 락인, 푸드 업사이클링 신사업을 총망라한 동적 EBITDA 멀티플 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것."
+              situation="단순 농산물 수입업의 EV/EBITDA 멀티플(Multiple)은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함."
+              takeaway="**[Actionable Insight]** 기후 리스크 헷징, 무관세 매입원가(COGS) 우위, 잔류농약 Zero 락인, 푸드 업사이클링(Up-cycling) 신사업을 총망라한 동적 EBITDA 멀티플(Multiple) 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것. (Strong Conviction)"
               source="* 📡 [LIVE API 연동: PitchBook API] 글로벌 애그테크/푸드테크 M&A 트랜잭션 및 글로벌 PEF 엑시트 실증 멀티플 데이터"
             />
           </div>
@@ -1555,7 +1490,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="OEC 30년 무역 데이터 분석 결과, 중국은 2003년부터 기하급수적 수출 성장을 보이며 2024년 $3.85억 달성(글로벌 22.5%). 그러나 마늘(65.6%)과 달리 당근 수출 시장은 네덜란드·미국·이탈리아·스페인이 각 10-12%를 차지하는 분산된 구조로, 공급처 다변화의 현실적 가능성이 입증됨."
-              takeaway="중국 단일 소싱 리스크를 완화하기 위한 베트남·호주·이스라엘 다변화 전략은 글로벌 수출 시장 구조상 충분히 실현 가능하며, 특히 이스라엘의 2020년 이후 급격한 수출 감소(전쟁 리스크)는 대체 공급원으로서 베트남의 포지셔닝 기회를 더욱 확대시킴."
+              takeaway="**[Actionable Insight]** 중국 단일 소싱 리스크를 완화하기 위한 베트남·호주·이스라엘 다변화 전략은 글로벌 수출 시장 구조상 충분히 실현 가능하며, 특히 이스라엘의 2020년 이후 급격한 수출 감소(전쟁 리스크)는 대체 공급원으로서 베트남의 포지셔닝 기회를 더욱 확대시킴. (Bullish Target)"
               source="* 📡 [OEC 실측 데이터] HS 070610 국가별 수출액 (1995~2024, 30년) — oec_carrot_export_by_year_country.csv"
             />
           </div>
@@ -1593,8 +1528,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="한국 당근 수입액은 $3.1M(2000)에서 $51M(2024)으로 16배 이상 급등하며 $38~51M 밴드에서 지속 증가 추세를 보임. 같은 기간 일본은 $19~52M 수준에서 정체된 반면, 미국은 $21M→$210M으로 10배 성장하며 수입국 Top 3에 진입. 한국은 인구 대비 수입 의존도(자급률 ~45%)가 비정상적으로 높은 구조적 취약성을 보유."
-              takeaway="한국의 당근 수입은 구조적으로 확대 불가피(KREI 자급률 45.2% 전망). 중국 의존도 90%+ 상태에서 베트남을 제2공급원으로 확보하는 것은 단순 원가 절감을 넘어 국가 식량안보 차원의 전략적 포지셔닝이며, 일본 시장($38M)으로의 동시 진출로 규모의 경제를 달성할 수 있음."
+              situation="한국 당근 수입액은 $3.1M(2000)에서 $51M(2024)으로 16배 이상 급등(Spike)하며 $38~51M 밴드에서 지속 증가 추세를 보임. 같은 기간 일본은 $19~52M 수준에서 정체된 반면, 미국은 $21M→$210M으로 10배 성장하며 수입국 Top 3에 진입. 한국은 인구 대비 수입 의존도(자급률 ~45%)가 비정상적으로 높은 구조적 취약성을 보유."
+              takeaway="**[Actionable Insight]** 한국의 당근 수입은 구조적으로 확대 불가피(KREI 자급률 45.2% 전망). 중국 의존도(Exposure) 90%+ 상태에서 베트남을 제2공급원으로 확보하는 것은 단순 매입원가(COGS) 절감을 넘어 국가 식량안보 차원의 전략적 포지셔닝이며, 일본 시장($38M)으로의 동시 진출로 규모의 경제를 달성할 수 있음. (Upside Potential)"
               source="* 📡 [OEC 실측 데이터] HS 070610 국가별 수입액 (1995~2024, 30년) — oec_carrot_import_by_year_country.csv"
             />
           </div>
@@ -1632,7 +1567,7 @@ export default function CarrotDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="KAMIS 실측 데이터 기준, 2024년은 연평균 ₩73,178/20kg으로 평년(₩57,923) 대비 +26% 폭등. 특히 9월 ₩104,748은 평년 대비 +37%로 역대 최고가를 기록. 이는 제주 작황 부진(재배면적 3,065ha, 태풍 피해)과 중국산 잔류농약 회수 사태의 복합 작용. 2026년 1~4월은 ₩28,131~35,578으로 평년 대비 -48% 수준의 급격한 정상화가 확인됨."
-              takeaway="2024년형 폭등 사이클(9월 피크)에 대비하여 7~8월 선제적 물량 확보 및 장기계약 단가 고정이 핵심. 2026년 저가 안정기(₩30K대)는 신규 바이어 진입에 최적의 타이밍이며, 중국산 대비 가격 경쟁력 확보 시 시장점유율 확대의 골든타임."
+              takeaway="**[Actionable Insight]** 2024년형 폭등 사이클(9월 피크)에 대비하여 7~8월 선제적 물량 확보 및 장기계약 단가 고정이 핵심. 2026년 저가 안정기(₩30K대)는 신규 바이어 진입에 최적의 타이밍이며, 중국산 대비 가격 경쟁력 확보 시 시장점유율 확대의 골든타임(Golden Window)."
               source="* 📡 [KAMIS 실측] 당근(상품) 도매가격 2023~2026 월별 + 평년가 — KAMIS_carrot_monthly_도매가_상품.csv"
             />
           </div>
@@ -1668,8 +1603,8 @@ export default function CarrotDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="FAOSTAT 공급이용계정(SCL, 2021) 실측 기준, 한국의 당근 수확후 손실률은 27.3%(30,570톤)으로 조사 대상국 중 최악. 중국 5.0%, 미국 8.9%, 독일 15.0% 대비 2~5배 높은 구조적 비효율. 이는 제주 노지 재배의 수확·선별·저장 인프라 부재와 비규격품(B품) 폐기 관행에 기인하며, 연간 ~3.1만톤의 업사이클링 TAM이 실측으로 검증됨."
-              takeaway="한국의 27.3% 손실률은 곧 3.1만톤의 비규격 원물을 의미하며, 이를 베타카로틴 추출(CalPoly Amin et al. 기준 11배 수율) 또는 IQF 전처리 원료로 전환 시 톤당 $200+ 부가가치 창출 가능. 중국 수준(5%)까지 손실률을 낮추면 연간 ~24,000톤의 식용 가능 물량이 추가 확보되어 수입 대체 효과까지 동시 달성."
+              situation="FAOSTAT 공급이용계정(SCL, 2021) 실측 기준, 한국의 당근 수확후 손실률은 27.3%(30,570톤)으로 조사 대상국 중 최악. 중국 5.0%, 미국 8.9%, 독일 15.0% 대비 2~5배 높은 구조적 비효율(Inefficiency). 이는 제주 노지 재배의 수확·선별·저장 인프라 부재와 비규격품(B품) 폐기 관행에 기인하며, 연간 ~3.1만톤의 업사이클링(Up-cycling) TAM이 실측으로 검증됨."
+              takeaway="**[Actionable Insight]** 한국의 27.3% 손실률은 곧 3.1만톤의 비규격 원물을 의미하며, 이를 베타카로틴 추출(CalPoly Amin et al. 기준 11배 수율) 또는 IQF 전처리 원료로 전환 시 톤당 $200+ 부가가치 창출 가능. 중국 수준(5%)까지 손실률을 낮추면 연간 ~24,000톤의 식용 가능 물량이 추가 확보되어 수입 대체 효과까지 동시 달성. (Synergy Effect)"
               source="* 📡 [FAOSTAT 실측] Supply Utilization Accounts (SCL) 2021 — 생산·식용·손실·사료·수출 국가별 비교"
             />
           </div>

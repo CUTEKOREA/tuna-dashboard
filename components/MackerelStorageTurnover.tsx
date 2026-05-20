@@ -41,7 +41,7 @@ export default function MackerelStorageTurnover() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[Inventory Anomaly Detection] 창고 텔레메트리(Telemetry) 분석 결과 치명적 이상치(Outlier)가 감지되었습니다. 물류 유입 볼륨은 폭증(Spike)하나 출고(Outbound) 볼륨이 소멸하며 악성 재고 회전율(Inventory Turnover 52 days) 한계선을 붕괴시키는 전형적인 \'보틀넥(Bottleneck)\' 경고입니다." actionPlan="[Short-Squeeze Countermeasures] 이는 단순 유통 지연이 아닌, 관세 부과 및 성수기 단가 폭등을 노린 메이저 도매 벤더들의 전략적 매점매석(Hoarding) 카르텔 정황입니다. 당사는 직수입 공급망(Direct Importer)의 레버리지를 극대화하여 물량 출하를 전격 차단(Squeeze)하고, 역으로 최상위 도매 채널에 판가 협상권 100% 백지위임을 강요하는 독점적 프라이싱 파워를 행사하십시오." />
+      <TakeawayBox situation="[Inventory Anomaly Detection] 창고 텔레메트리(Telemetry) 분석 결과 치명적 이상치(Outlier)가 감지되었습니다. 물류 유입 볼륨은 폭증(Spike)하나 출고(Outbound) 볼륨이 소멸하며 악성 재고 회전율(Inventory Turnover 52 days) 한계선을 붕괴시키는 전형적인 \'보틀넥(Bottleneck)\' 경고입니다." actionPlan="**[Actionable Insight]** [Short-Squeeze Countermeasures] 이는 단순 유통 지연이 아닌, 관세 부과 및 성수기 단가 폭등을 노린 메이저 도매 벤더들의 전략적 매점매석(Hoarding) 카르텔 정황입니다. 당사는 직수입 공급망(Direct Importer)의 레버리지를 극대화하여 물량 출하를 전격 차단(Squeeze)하고, 역으로 최상위 도매 채널에 판가 협상권 100% 백지위임을 강요하는 독점적 프라이싱 파워를 행사하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" />
     </div>
   );
 }

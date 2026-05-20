@@ -181,7 +181,7 @@ export default function SquidKoreaSupply() {
       </div>
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox source="FAO FishStatJ - Korea Capture + Trade Statistics (2000-2023)" situation="과거 20만 톤에 달하던 연근해 생산량(자급률)은 기후 변화(동해 수온 급상승)로 2024년 1.3만 톤까지 붕괴되었습니다. 이로 인해 공급의 83.1%를 원양/수입에 의존하게 되며 만성적인 '금(金)징어(소매가 38% 폭등)' 인플레이션이 고착화되었습니다."
-          actionPlan="2025년 원양 선복량 한도 폐지에 맞춰 남서대서양(FAO 41 공해상)에 선단을 긴급 투입하여 어획 히스토리를 선점하고, 페루산 대왕오징어 현지 1차 가공(B2B 진미채 등) 밸류체인을 수직 계열화하여 조달 원가(조정관세 22% 회피 등)를 원천 통제해야 합니다."
+          actionPlan="**[Actionable Insight]** 2025년 원양 선복량 한도 폐지에 맞춰 남서대서양(FAO 41 공해상)에 선단을 긴급 투입하여 어획 히스토리를 선점하고, 페루산 대왕오징어 현지 1차 가공(B2B 진미채 등) 밸류체인을 수직 계열화하여 조달 원가(조정관세 22% 회피 등)를 원천 통제해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>

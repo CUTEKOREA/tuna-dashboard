@@ -42,7 +42,7 @@ export default function MackerelAltSourcingIndex() {
           </LineChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="HSCustoms & UN Comtrade" situation="[Sourcing Diversification Dynamics] 노르웨이산의 초프리미엄(Hyper-premium) 지배력이 정점에 달한 가운데, 영국/아일랜드산이 티어 1.5 포지션으로 차익 거래 틈새를 침투 중입니다. 반면 칠레/페루산(펠라직 혼용)은 압도적 원가 우위(Cost Leadership)로 밑바닥 볼륨 마켓을 잠식하는 명확한 시장 분절(Fragmentation)이 포착됩니다." actionPlan="[Bifurcated Capital Allocation] 단일 소싱의 함정(Vendor Lock-in)을 즉각 해체하십시오. 단가 탄력성이 높은 B2B 통조림/식자재 유통 라인은 칠레산 기반의 파격적 로우코스트(Low-cost) 네트워크로 전면 개편하고, 투자가용자본(Dry Powder)은 철저히 B2C 대형 마트의 \'노르웨이 프리미엄 매대\' 브랜드 독점력 강화에만 100% 집중하는 투-트랙(Two-Track) 엣지를 실행해야 합니다." />
+      <TakeawayBox source="HSCustoms & UN Comtrade" situation="[Sourcing Diversification Dynamics] 노르웨이산의 초프리미엄(Hyper-premium) 지배력이 정점에 달한 가운데, 영국/아일랜드산이 티어 1.5 포지션으로 차익 거래 틈새를 침투 중입니다. 반면 칠레/페루산(펠라직 혼용)은 압도적 매입원가(COGS) 우위(Cost Leadership)로 밑바닥 볼륨 마켓을 잠식하는 명확한 시장 분절(Fragmentation)이 포착됩니다." actionPlan="**[Actionable Insight]** [Bifurcated Capital Allocation] 단일 소싱의 함정(Vendor Lock-in)을 즉각 해체하십시오. 단가 탄력성이 높은 B2B 통조림/식자재 유통 라인은 칠레산 기반의 파격적 로우코스트(Low-cost) 네트워크로 전면 개편하고, 투자가용자본(Dry Powder)은 철저히 B2C 대형 마트의 \'노르웨이 프리미엄 매대\' 브랜드 독점력 강화에만 100% 집중하는 투-트랙(Two-Track) 엣지를 실행해야 합니다. (Conviction Buy)" />
     </div>
   );
 }

@@ -97,7 +97,7 @@ export function PollockLandedCostWaterfall() {
       )}
       <TakeawayBox
         situation="러시아 직수입(₩2,883/kg) 최저가. 중국 우회(₩3,851) +33.6% 프리미엄. 미국 MSC(₩4,582) 최고가이나 관세 0%."
-        actionPlan="원가 최우선: 러시아 직수입. ESG/감사 최우선: 미국 MSC. 경로 갭 15% 미만 시 자동 스위칭 Alert."
+        actionPlan="**[Actionable Insight]** 매입원가(COGS) 최우선: 러시아 직수입. ESG/감사 최우선: 미국 MSC. 경로 갭 15% 미만 시 자동 스위칭 Alert."
         source="(일반 2024-06) 신통상규범 + Tariffs/WITS API"
       />
     </div>
@@ -164,8 +164,8 @@ export function PollockRouteComparison() {
         </BarChart>
       </SafeResponsiveContainer>
       <TakeawayBox
-        situation="전 환율 구간에서 러시아 직수입이 원가 최저. 단, 리스크(85점)+ESG(35점) 최하위."
-        actionPlan="리스크 가중 원가 산정 시 미국 MSC 전환점 존재. ESG 바이어 대응 시 미국 경로 자동 전환."
+        situation="전 환율 구간에서 러시아 직수입이 매입원가(COGS) 최저. 단, 리스크(85점)+ESG(35점) 최하위."
+        actionPlan="**[Actionable Insight]** 리스크 가중 매입원가(COGS) 산정 시 미국 MSC 전환점 존재. ESG 바이어 대응 시 미국 경로 자동 전환."
         source="(기본 2025-10) 물가 안정화 + FRED FX Live"
       />
     </div>

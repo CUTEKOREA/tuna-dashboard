@@ -45,7 +45,7 @@ export default function MackerelNorwaySpread() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="수협중앙회 & KMI" situation="[Import Cost Squeeze] 북해 연안국 간 쿼터 분쟁 격화로 노르웨이산 수입 원가가 +66% 수직 상승(Cost-Push)했으나, 국내 내수 시장의 강력한 소비 탄력성 저항선(Price Ceiling)에 부딪혀 도매 판가 인상이 지연되는 전형적인 마진 스퀴즈(Margin Squeeze) 위협 구간입니다." actionPlan="[Liquidity & Inventory Hedging] 톤당 마진 스프레드가 500원(KRW) 하단 임계치를 붕괴할 경우, 국내 방출 스케줄을 전면 셧다운(Hold) 하십시오. 창고 롤오버(Rollover) 비용을 감수하더라도 시장 내 숏티지를 인위적으로 유발하여 판가를 견인하거나, 관세 장벽이 낮은 동남아 등 제3국으로 전량 환적(Transshipment)하는 차익 거래(Arbitrage) 채널을 즉각 가동해야 합니다." />
+      <TakeawayBox source="수협중앙회 & KMI" situation="[Import Cost Squeeze] 북해 연안국 간 쿼터 분쟁 격화로 노르웨이산 수입 매입원가(COGS)가 +66% 수직 상승(Cost-Push)했으나, 국내 내수 시장의 강력한 소비 탄력성 저항선(Price Ceiling)에 부딪혀 도매 판가 인상이 지연되는 전형적인 마진 스퀴즈(Margin Squeeze) 위협 구간입니다." actionPlan="**[Actionable Insight]** [Liquidity & Inventory Hedging] 톤당 마진 스프레드가 500원(KRW) 하단 임계치를 붕괴할 경우, 국내 방출 스케줄을 전면 셧다운(Hold) 하십시오. 창고 롤오버(Rollover) 비용을 감수하더라도 시장 내 숏티지를 인위적으로 유발하여 판가를 견인하거나, 관세 장벽이 낮은 동남아 등 제3국으로 전량 환적(Transshipment)하는 차익 거래(Arbitrage) 채널을 즉각 가동해야 합니다. (Conviction Buy)" />
     </div>
   );
 }

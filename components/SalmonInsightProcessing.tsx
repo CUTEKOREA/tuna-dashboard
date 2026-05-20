@@ -45,7 +45,7 @@ export default function SalmonInsightProcessing() {
 
       <TakeawayBox 
         situation="유럽 및 북미 선진국 가공 허브의 극심한 노동력 부족 현상과 FDA의 이력 추적 의무화 등 까다로운 리테일 유통 기준 압박이 심화되고 있습니다. 수작업에 의존하는 기존 가공 공정은 더 이상 구조적 마진을 방어할 수 없습니다."
-        actionPlan="BAADER 시스템과 같은 뼈/내장 제거 통합 로보틱스 라인을 도입하여 인건비를 40% 절감하고 수율을 3~4% 극대화하십시오. AI 기반 재고 이력 관리(GenBI)와 슈퍼 칠링 기술을 신규 CAPEX 최우선 순위로 배정해야 합니다."
+        actionPlan="**[Actionable Insight]** BAADER 시스템과 같은 뼈/내장 제거 통합 로보틱스 라인을 도입하여 인건비를 40% 절감하고 수율을 3~4% 극대화하십시오. AI 기반 재고 이력 관리(GenBI)와 슈퍼 칠링 기술을 신규 CAPEX 최우선 순위로 배정해야 합니다. (Conviction Buy)"
         source="BAADER Group IR · Mowi Annual Report 2024 [📡 LIVE API 연동: 기업 공시]"
       />
     </div>

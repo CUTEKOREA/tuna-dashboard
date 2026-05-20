@@ -190,13 +190,13 @@ export default function SalmonInsightLogisticsResilience() {
       {activePanel === 'eu' ? (
         <TakeawayBox 
           situation="코로나19, 브렉시트 통관 지연, 러-우 전쟁발 운임 폭등이라는 3중 거시 충격에도 EU의 연어 수입 물량(약 100만 톤)은 견고합니다. 그러나 물류 병목으로 수입 단가가 2019년 6.46 EUR/kg에서 2024년 8.40 EUR/kg(+30%)로 구조적 상승을 겪고 있으며, 신선육 중심의 JIT(적시 생산) 체계가 타격을 입고 있습니다."
-          actionPlan="물류 지연 리스크를 근본적으로 회피하기 위해, 신선육(Fresh) 수입 비중을 낮추고 보관 유연성이 극대화된 냉동/2차 가공품(Frozen & Value-added) 포트폴리오를 대폭 확대해야 합니다. 동시에 노르웨이(80%)에 편중된 단일 공급망을 북미/아이슬란드로 헷징(Hedging)하십시오."
+          actionPlan="**[Actionable Insight]** 물류 지연 리스크를 근본적으로 회피하기 위해, 신선육(Fresh) 수입 비중을 낮추고 보관 유연성이 극대화된 냉동/2차 가공품(Frozen & Value-added) 포트폴리오를 대폭 확대해야 합니다. 동시에 노르웨이(80%)에 편중된 단일 공급망을 북미/아이슬란드로 헷징(Hedging)하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
           source="EUMOFA Trade Analytics [📡 LIVE API 연동: Eurostat COMEXT]"
         />
       ) : (
         <TakeawayBox 
-          situation="2024년 홍해 분쟁 발발로 BDI 및 CCFI 운임 지수가 재폭등했으며, 특히 유럽 노선 20ft 컨테이너 운임이 전년비 +218% 폭증했습니다. 여기에 IMO 2023(EEXI/CII) 환경 규제에 따른 선박 감속 운항이 더해져 신선 연어의 운송 리드타임과 물류 원가가 급증하고 있습니다."
-          actionPlan="운임 변동성 리스크를 차단하기 위해 장기 운송 계약(COA) 비중을 즉시 60% 이상으로 확대하십시오. 감속 운항에 대응할 수 있는 해상 콜드체인(Super-chilling) 역량을 확보하지 못하는 벤더는 공급망 벤더 리스트에서 영구 퇴출해야 합니다."
+          situation="2024년 홍해 분쟁 발발로 BDI 및 CCFI 운임 지수가 재폭등했으며, 특히 유럽 노선 20ft 컨테이너 운임이 전년비 +218% 폭증했습니다. 여기에 IMO 2023(EEXI/CII) 환경 규제에 따른 선박 감속 운항이 더해져 신선 연어의 운송 리드타임과 물류 매입원가(COGS)가 급증하고 있습니다."
+          actionPlan="**[Actionable Insight]** 운임 변동성 리스크를 차단하기 위해 장기 운송 계약(COA) 비중을 즉시 60% 이상으로 확대하십시오. 감속 운항에 대응할 수 있는 해상 콜드체인(Super-chilling) 역량을 확보하지 못하는 벤더는 공급망 벤더 리스트에서 영구 퇴출해야 합니다. (Conviction Buy)"
           source="Krungsri Research · UNCTAD [📡 LIVE API 연동: BDI & CCFI Index]"
         />
       )}

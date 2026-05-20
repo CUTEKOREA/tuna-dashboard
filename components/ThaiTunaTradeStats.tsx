@@ -87,7 +87,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           <div style={{ marginTop: '1.5rem' }}>
             <TakeawayBox 
               situation="태국은 전 세계 최대의 참치 가공 허브로, 원료(냉동 가다랑어 등)를 대량 수입하여 가공 제품(통조림, 파우치)으로 재수출하는 구조가 뚜렷합니다. 수입량이 수출량보다 약 5배 이상 높게 유지되고 있습니다."
-              actionPlan="원료 수입가 변동에 따른 가공 마진 압박을 모니터링해야 하며, 방콕(Bangkok) 오퍼 가격이 글로벌 참치 가격의 핵심 지표임을 재확인할 수 있습니다."
+              actionPlan="**[Actionable Insight]** 원료 수입가 변동에 따른 가공 마진 압박을 모니터링해야 하며, 방콕(Bangkok) 오퍼 가격이 글로벌 참치 가격의 핵심 지표임을 재확인할 수 있습니다."
             />
           </div>
         </div>
@@ -135,7 +135,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           <div style={{ marginTop: '1.5rem' }}>
             <TakeawayBox 
               situation="수출의 약 70% 이상이 '밀폐 용기에 담긴 가공 참치(통조림)'에 집중되어 있으며, 고부가가치 제품인 황다랑어(Yellowfin) 및 가공 로인(Loins) 비중이 뒤를 잇고 있습니다."
-              actionPlan="전통적인 통조림 시장 외에도 반려동물용(Pet Food) 참치 가공 및 RTE(Ready-to-Eat) 파우치 제품으로의 포트폴리오 다변화 전략이 관찰됩니다."
+              actionPlan="**[Actionable Insight]** 전통적인 통조림 시장 외에도 반려동물용(Pet Food) 참치 가공 및 RTE(Ready-to-Eat) 파우치 제품으로의 포트폴리오 다변화 전략이 관찰됩니다."
             />
           </div>
         </div>
@@ -184,7 +184,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           <div style={{ marginTop: '1.5rem' }}>
             <TakeawayBox 
               situation="미국과 일본이 태국산 가공 참치의 양대 핵심 시장으로 군림하고 있으며, 최근 베트남과 중동(리비아 등), 호주로의 수출 비중이 고르게 분포되어 있습니다."
-              actionPlan="미국 시장의 수요 회복 여부와 엔저 현상에 따른 일본향 수출 단가 변동성을 리스크 관리 항목으로 지정해야 합니다."
+              actionPlan="**[Actionable Insight]** 미국 시장의 수요 회복 여부와 엔저 현상에 따른 일본향 수출 단가 변동성을 리스크 관리 항목으로 지정해야 합니다. (Conviction Buy)"
             />
           </div>
         </div>

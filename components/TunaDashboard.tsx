@@ -38,6 +38,13 @@ import { MofFishMarketWidget, MofTradeBalanceWidget, MofShippingCostWidget } fro
 import { TunaUpcyclingOpportunity, TunaUpcyclingMarginMap } from './TunaUpcyclingWidgets';
 
 // Phase 1: Live Intelligence Upgrade
+import {
+  OperationalS1Widgets,
+  OperationalS2Widgets,
+  OperationalS3Widgets,
+  OperationalS4Widgets,
+  OperationalS5Widgets
+} from './TunaOperationalIntelWidgets';
 import TunaLiveTicker from './TunaLiveTicker';
 import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
 
@@ -732,6 +739,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               </div>
               <TunaRanching />
             </div>
+            <OperationalS1Widgets />
           </section>
         )}
 
@@ -774,6 +782,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <KfasElderlyFunctionalFood />
               </div>
             </div>
+            <OperationalS2Widgets />
           </section>
         )}
 
@@ -812,6 +821,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <WidgetCard key={w.id} widget={w} />
               ))}
             </div>
+            <OperationalS3Widgets />
           </section>
         )}
 
@@ -838,6 +848,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               {/* 3. 신규 수요 창출 (할랄 및 틈새 시장) */}
               <TunaGlobalHalalStrategy />
             </div>
+            <OperationalS4Widgets />
           </section>
         )}
 
@@ -867,6 +878,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <WidgetCard key={w.id} widget={w} />
               ))}
             </div>
+            <OperationalS5Widgets />
           </section>
         )}
 

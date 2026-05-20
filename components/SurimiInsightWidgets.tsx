@@ -100,7 +100,7 @@ export const WidgetChinaHegemony = () => (
     </div>
     <TakeawayBox 
       situation={<>2000년대 10만 톤 수준이던 중국의 수리미 생산량이 현재 158만 톤(전세계 75%)을 초과하며 폭발했습니다. 전 세계 명태/수리미 원물 블랙홀이 형성되었습니다.</>}
-      actionPlan="글로벌 수리미 원물(블록) 가격은 중국의 국내 내수(훠궈, 어묵 소비) 경기에 완전히 연동됩니다. 항시 중국 소비물가지수를 모니터링해야 합니다."
+      actionPlan="**[Actionable Insight]** 글로벌 수리미 원물(블록) 가격은 중국의 국내 내수(훠궈, 어묵 소비) 경기에 완전히 연동됩니다. 항시 중국 소비물가지수를 모니터링해야 합니다. (Conviction Buy)"
     />
   </div>
 );
@@ -127,7 +127,7 @@ export const WidgetLithuaniaParadox = () => {
       </div>
       <TakeawayBox 
         situation={<>러시아산 저가 블록을 수입하여 맛살(Vici 브랜드)로 가공, 전 유럽에 유통하는 리투아니아가 글로벌 수리미 전체 수출액 1위를 달성했습니다.</>}
-        actionPlan="단순 어획/블록 무역에서 벗어나, 베트남 또는 동유럽에 B2C 2차 가공(맛살, 어묵) 생산 기지를 투자/M&A해야 마진율을 극대화할 수 있습니다."
+        actionPlan="**[Actionable Insight]** 단순 어획/블록 무역에서 벗어나, 베트남 또는 동유럽에 B2C 2차 가공(맛살, 어묵) 생산 기지를 투자/M&A해야 마진율을 극대화할 수 있습니다."
       />
     </div>
   );
@@ -155,7 +155,7 @@ export const WidgetKoreaDeficit = () => (
     </div>
     <TakeawayBox 
       situation={<>한국은 2023년 한 해에만 약 2억 5천만 달러어치 수리미를 사들인 '세계 최강의 수리미 수입국(블랙홀 2)'입니다. 반면 수출 파워는 수입의 20%에 그칩니다.</>}
-      actionPlan="국내 B2C 어묵류 소매 단가의 구조적 마진이 원물 매입 비용에 먹히고 있다는 뜻입니다. 국내 최저가 방어를 위한 선제적 '원양 선단 물량 스왑' 전략을 가동해야 합니다."
+      actionPlan="**[Actionable Insight]** 국내 B2C 어묵류 소매 단가의 구조적 마진이 원물 매입 비용에 먹히고 있다는 뜻입니다. 국내 최저가 방어를 위한 선제적 '원양 선단 물량 스왑' 전략을 가동해야 합니다. (Conviction Buy)"
     />
   </div>
 );
@@ -183,7 +183,7 @@ export const WidgetSurimiMultiplier = () => {
       </div>
       <TakeawayBox 
         situation={<>2023년 기준 동결 수리미 원물의 글로벌 수출 가치는 1억 6천만 달러인 반면, 2차 가공된 수리미는 4억 달러를 돌파했습니다 (약 2.5배).</>}
-        actionPlan="단순 원물 B2B 무역상(Trader)으로 남지 마십시오. 자체 K-Surimi 브랜드를 런칭하여 글로벌 $401M의 하이엔드 부가 가치 시장을 공략해야 합니다."
+        actionPlan="**[Actionable Insight]** 단순 원물 B2B 무역상(Trader)으로 남지 마십시오. 자체 K-Surimi 브랜드를 런칭하여 글로벌 $401M의 하이엔드 부가 가치 시장을 공략해야 합니다. (Conviction Buy)"
       />
     </div>
   );

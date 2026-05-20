@@ -71,8 +71,8 @@ export function PollockConcentrationIndex() {
         </>
       )}
       <TakeawayBox
-        situation="HHI 7,100 — 극단적 양두독점(러시아 42% + 중국 48% = 90%). 공급 쇼크 시 대체 소싱 불가 위험."
-        actionPlan="미국 MSC(5%) 비중을 15%까지 확대 + 노르웨이·아이슬란드 대서양 명태 신규 소싱 채널 구축."
+        situation="HHI 7,100 — 극단적 양두독점(러시아 42% + 중국 48% = 90%). 공급 쇼크 시 대체 소싱 불가 리스크(Risk)."
+        actionPlan="**[Actionable Insight]** 미국 MSC(5%) 비중을 15%까지 확대 + 노르웨이·아이슬란드 대서양 명태 신규 소싱 채널 구축."
         source="(일반 2023-10) 전략품목 관리 + KCS 수출입통계"
       />
     </div>
@@ -127,7 +127,7 @@ export function PollockAlternativeSourcing() {
       </div>
       <TakeawayBox
         situation="미국 알래스카(85점) 최우수 대체 소싱. 노르웨이(72점)/아이슬란드(68점) 중위. 베트남(62점) 가공 허브로 부상."
-        actionPlan="단기: 미국 MSC 비중 3배 확대(5→15%). 중장기: 베트남 가공기지 JV 검토로 중국 가공 의존도 축소."
+        actionPlan="**[Actionable Insight]** 단기: 미국 MSC 비중 3배 확대(5→15%). 중장기: 베트남 가공기지 JV 검토로 중국 가공 의존도(Exposure) 축소."
         source="(일반 2024-05) 공급망 관리 + Open Supply Hub"
       />
     </div>
@@ -170,8 +170,8 @@ export function PollockSubstituteElasticity() {
         ))}
       </div>
       <TakeawayBox
-        situation="명태 수리미 CIF $3,800/MT 돌파 시 실꼬리돔 블렌딩 30%까지 확대 가능 (원가 18% 절감)."
-        actionPlan="실꼬리돔(태국·인니산) 선제 확보 + 해파리 연육 10% 블렌딩 R&D로 가격 방어 체계 구축."
+        situation="명태 수리미 CIF $3,800/MT 돌파 시 실꼬리돔 블렌딩 30%까지 확대 가능 (매입원가(COGS) 18% 절감)."
+        actionPlan="**[Actionable Insight]** 실꼬리돔(태국·인니산) 선제 확보 + 해파리 연육 10% 블렌딩 R&D로 가격 방어 체계 구축."
         source="(일반 2022-11) 대체관계 분석 연구"
       />
     </div>

@@ -130,7 +130,7 @@ const PILLARS = [
 
 export default function ChickenDashboard() {
   const [widgets, setWidgets] = useState<any[]>([]);
-  const [showEdu, setShowEdu] = useState(true);
+
   
   useEffect(() => {
     Promise.all([
@@ -392,62 +392,7 @@ export default function ChickenDashboard() {
         })}
       </div>
 
-      {/* ═══ NotebookLM / Google Drive Hybrid Education ═══ */}
-      <div style={{ marginBottom: '2rem' }}>
-        <button 
-          onClick={() => setShowEdu(!showEdu)}
-          style={{ 
-            width: '100%', background: '#181818', 
-            borderRadius: '8px', border: 'none',
-            padding: '1.2rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            cursor: 'pointer', transition: 'all 0.2s', marginBottom: showEdu ? '1rem' : '0'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <Database size={20} color="var(--color-info)" />
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f8fafc', marginBottom: '4px' }}>Hybrid 지식 통합: NotebookLM × Google Drive</div>
-              <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>OIE 수급, KAMIS 물가, KCS 수입 통계, 태국 DLD 공시자료 교차 검증 (PDF → MD 변환 완료)</div>
-            </div>
-          </div>
-          <div style={{ transform: showEdu ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-        </button>
 
-        {showEdu && (
-          <div style={{ background: '#181818', borderRadius: '8px', padding: '1.5rem', animation: 'fadeIn 0.3s ease-out' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '8px' }}>
-                <h3 style={{ color: 'var(--color-info)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <Globe size={16}/> 태국산 가공육 밸류업 기회 (C-Level Insight)
-                </h3>
-                <div style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.7 }}>
-                  <strong style={{color:'#f8fafc'}}>마진 구조:</strong> 수협 중매인을 거치는 브라질 단순 원물 수입 구조(수수료 4.3%)를 탈피하여, 태국 가공육 프랜차이즈 직거래 시 유통 마진 극대화 가능.<br/>
-                  <strong style={{color:'#f8fafc'}}>리스크 헷지:</strong> HPAI 발병 시점과 CBOT 옥수수 선물 윈도우를 교차 분석하여 사료비 하락 타이밍에 선제적 LTA(장기계약) 체결 必.
-                </div>
-              </div>
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem 1.5rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '0.8rem', borderRadius: '50%' }}>
-                    <Activity size={20} color="var(--color-info)" />
-                  </div>
-                  <div>
-                    <h3 style={{ color: '#f8fafc', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}>NotebookLM C-Level 챗봇</h3>
-                  </div>
-                </div>
-                <a 
-                  href="https://notebooklm.google.com/notebook/cd852c31-5b2d-4433-99aa-1fcae8cb0129" 
-                  target="_blank" rel="noopener noreferrer"
-                  style={{ background: 'var(--color-info)', color: 'var(--text-primary)', padding: '0.7rem 1.3rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none' }}
-                >
-                  Ask AI
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
 
       {/* ═══ 5-PILLAR ARCHITECTURE ═══ */}
       {PILLARS.map((sec) => (

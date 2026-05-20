@@ -42,7 +42,6 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
 };
 
 export default function PorkDashboard() {
-  const [showEdu, setShowEdu] = useState(true);
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
@@ -84,52 +83,6 @@ export default function PorkDashboard() {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* ═══ NotebookLM Education ═══ */}
-      <div style={{ marginBottom: '2rem' }}>
-        <button onClick={() => setShowEdu(!showEdu)} style={{ width: '100%', background: '#181818', borderRadius: '8px', border: 'none', padding: '1.2rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', marginBottom: showEdu ? '1rem' : '0' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <Database size={20} color="var(--color-info)" />
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f8fafc', marginBottom: '4px' }}>Hybrid 지식 통합: NotebookLM × Google Drive</div>
-              <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>FAOSTAT QCL/TCL/FBS, USDA PSD, OEC 교차 검증 (CSV → Data Pipeline 완료)</div>
-            </div>
-          </div>
-          <div style={{ transform: showEdu ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-        </button>
-        {showEdu && (
-          <div style={{ background: '#181818', borderRadius: '8px', padding: '1.5rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '8px' }}>
-                <h3 style={{ color: '#f43f5e', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <Globe size={16} /> 돈육-수산물 크로스 분석 (C-Level Insight)
-                </h3>
-                <div style={{ fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.7 }}>
-                  <strong style={{ color: '#f8fafc' }}>핵심 발견:</strong> 중국 ASF 발병 시 돈육 생산량 -20.9% 급감과 동시에 수산물 도매가 +35% 폭등하는 '공급 충격 전이' 현상 확인. 돈육 시장 모니터링이 곧 수산물 사업의 선행지표.<br />
-                  <strong style={{ color: '#f8fafc' }}>전략 시사점:</strong> 한국 돈육 자급률 66%로 구조적 수입 의존. 기존 수산물 콜드체인을 돈육까지 확장하여 '단백질 Total Solution' 기업으로 피봇.
-                </div>
-              </div>
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem 1.5rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <div style={{ background: 'rgba(244, 63, 94, 0.1)', padding: '0.8rem', borderRadius: '50%' }}>
-                    <Activity size={20} color="#f43f5e" />
-                  </div>
-                  <div>
-                    <h3 style={{ color: '#f8fafc', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}>NotebookLM C-Level 챗봇</h3>
-                    <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>FAOSTAT/USDA PSD 데이터 기반 질의응답</p>
-                  </div>
-                </div>
-                <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer"
-                  style={{ background: '#f43f5e', color: '#fff', padding: '0.7rem 1.3rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none' }}>
-                  Ask AI
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* ═══ 5-PILLAR ARCHITECTURE ═══ */}

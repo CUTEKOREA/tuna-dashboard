@@ -43,7 +43,7 @@ export function Widget13_Decoupling() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="우크라이나 이슈 이후 서방 금융망 제재 발동으로 단일 시세를 유지하던 궤도가 붕괴, 투트랙 스프레드(Decoupling)가 발생했습니다. EU/북미 하역을 금지당한 러시아산 덤핑 매물과 폭우성 초과수요가 박힌 프리미엄 미국산 단가로 분리 진화 중입니다."
-          actionPlan="제재망이 적용되지 않는 대한민국 및 아시아 제3세계 내수 유통 파이프라인에는 덤핑 하락한 빈사 상태의 러시아산 블록을 초저가로 흡수해 매입 단가를 혁파하십시오. 반면 까다로운 서방 수출 D2C 라인은 미국산 MSC 물동량으로 이원화 매칭 전략을 가동해야 합니다."
+          actionPlan="**[Actionable Insight]** 제재망이 적용되지 않는 대한민국 및 아시아 제3세계 내수 유통 파이프라인에는 덤핑 하락한 빈사 상태의 러시아산 블록을 초저가로 흡수해 매입 단가를 혁파하십시오. 반면 까다로운 서방 수출 D2C 라인은 미국산 MSC 물동량으로 이원화 매칭 전략을 가동해야 합니다. (Conviction Buy)"
           source="US Treasury OFAC Sanctions Index & FAS Global"
         />
       </div>
@@ -83,7 +83,7 @@ export function Widget14_MscRatio() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="EU 및 대형 패스트푸드(피시앤칩스 맥도날드 등) ESG 구매 강령 발효로 인해, 해양관리협의회 에코 인증(Uncertified) 딱지가 없는 무인증 원물들의 퇴출이 급가속하며 시장 내 상륙지가 차단되고 있습니다."
-          actionPlan="무인증 취급 어선 파트너의 완전 몰락이 최소 3년 시계열 안에 종식됩니다. 원양 조업에서부터 가공, 한국 공장 수입까지 이어지는 구매 밸류체인 전 구간에 MSC CoC(Chain of Custody, 관리연쇄) 인증 모듈을 즉시 100% 도입 의결합니다."
+          actionPlan="**[Actionable Insight]** 무인증 취급 어선 파트너의 완전 몰락이 최소 3년 시계열 안에 종식됩니다. 원양 조업에서부터 가공, 한국 공장 수입까지 이어지는 구매 밸류체인 전 구간에 MSC CoC(Chain of Custody, 관리연쇄) 인증 모듈을 즉시 100% 도입 의결합니다. (Conviction Buy)"
           source="Marine Stewardship Council (MSC) Annual Survey"
         />
       </div>
@@ -123,7 +123,7 @@ export function Widget15_IuuRisk() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="러시아 및 연변 인근 중국 하청 팩커들의 불법(IUU) 혐의 적발 리스크 스팟 포인트 지도입니다. 미국 해경이나 유럽 세관에 적발 시 수십억대 납품 컨테이너 전량 압류조치 등 극강 단호한 무관용 제재 구간(레드존)에 진입하였습니다."
-          actionPlan="자사가 운용 중인 매입 채널 중, 위성 어선 송신기(VMS)나 가공 생산 번호를 위변조 증거 없이 서류화(Trace) 해내지 못하는 낡은 2, 3차 소규모 영세 화교 벤더는 오늘일자로 전체 서플라이 체인에서 강제 컷오프(Cut-off) 처리 명령합니다."
+          actionPlan="**[Actionable Insight]** 자사가 운용 중인 매입 채널 중, 위성 어선 송신기(VMS)나 가공 생산 번호를 위변조 증거 없이 서류화(Trace) 해내지 못하는 낡은 2, 3차 소규모 영세 화교 벤더는 오늘일자로 전체 서플라이 체인에서 강제 컷오프(Cut-off) 처리 명령합니다. (Conviction Buy)"
           source="NOAA Fisheries IUU Biennial Report"
         />
       </div>
@@ -163,7 +163,7 @@ export function Widget16_ClimateShift() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="지구온난화와 난류 베링해 유입 가속화 여파로 기존 명태 서식 어장이 생존을 위해 대거 수백 km 이상 극지방으로 북상(Migration) 하였습니다. 과거의 경험론적 명당 어군 지도의 데이터적 가치는 사실상 붕괴 및 파괴되었습니다."
-          actionPlan="수익을 갉아먹는 기존 중위도 무리한 투망 및 쓸데없는 선박 유류비 낭비의 근절을 지시합니다. 위성 수온 감지 AI 관측 플랫폼을 그룹 내 전 선단 조타실에 의무 탑재 및 결합하고, 선장 감각이 아닌 AI 지시 코디네이트(좌표)로 작전 반경을 기계화 조절하십시오."
+          actionPlan="**[Actionable Insight]** 수익을 갉아먹는 기존 중위도 무리한 투망 및 쓸데없는 선박 유류비 낭비의 근절을 지시합니다. 위성 수온 감지 AI 관측 플랫폼을 그룹 내 전 선단 조타실에 의무 탑재 및 결합하고, 선장 감각이 아닌 AI 지시 코디네이트(좌표)로 작전 반경을 기계화 조절하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
           source="NOAA Alaska Fisheries Science Center (AFSC) Ecosystem Report"
         />
       </div>

@@ -34,7 +34,7 @@ export default function SquidProteinWar() {
           </AreaChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="FAO Food Balance Sheets" situation="[Protein Market Hegemony Shift] 수직 계열화된 양식업(연어) 및 사육 테크(가금류)가 글로벌 단백질 베이스라인을 장악한 반면, 100% 자연 채취에 의존하는 두족류(Cephalopod)의 생물량 펀더멘털은 완전히 붕괴(Structural Collapse)되어 대체 불가능한 희소성을 확보했습니다." actionPlan="[Asset Class Re-rating] 오징어를 더 이상 일반 수산물(Commodity) 카테고리로 분류하지 마십시오. 극단적 희소성을 띤 \'Veblen Good(과시재)\' 성격의 럭셔리 단백질로 포지셔닝을 전면 수정해야 합니다. 보유 중인 냉동 재고를 랍스터, 캐비아에 준하는 초프리미엄 자산(Asset Class)으로 장부상 즉각 재평가(Revaluation)하고 판가를 수직 인상하십시오." />
+      <TakeawayBox source="FAO Food Balance Sheets" situation="[Protein Market Hegemony Shift] 수직 계열화된 양식업(연어) 및 사육 테크(가금류)가 글로벌 단백질 베이스라인을 장악한 반면, 100% 자연 채취에 의존하는 두족류(Cephalopod)의 생물량 펀더멘털은 완전히 붕괴(Structural Collapse)되어 대체 불가능한 희소성을 확보했습니다." actionPlan="**[Actionable Insight]** [Asset Class Re-rating] 오징어를 더 이상 일반 수산물(Commodity) 카테고리로 분류하지 마십시오. 극단적 희소성을 띤 \'Veblen Good(과시재)\' 성격의 럭셔리 단백질로 포지셔닝을 전면 수정해야 합니다. 보유 중인 냉동 재고를 랍스터, 캐비아에 준하는 초프리미엄 자산(Asset Class)으로 장부상 즉각 재평가(Revaluation)하고 판가를 수직 인상하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" />
     </div>
   );
 }

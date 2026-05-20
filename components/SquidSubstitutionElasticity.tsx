@@ -32,7 +32,7 @@ export default function SquidSubstitutionElasticity() {
           </LineChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="KMI & 무역통계" situation="[Cross-Commodity Spread Explosion] 국내산 살오징어의 단가 랠리(Rally)가 펀더멘털을 이탈하며, 완벽한 대체재인 남미산 대왕오징어(Jumbo Flying Squid)와의 톤당 스프레드가 한계치(KRW 7,000 Gap)를 돌파하는 극단적 밸류에이션 왜곡(Valuation Distortion) 상태입니다." actionPlan="[Raw Material Substitution Execution] 프리미엄(살오징어) 라인업에 대한 B2B 프로모션을 전면 중단하십시오. 두 어종 간 가격 스프레드가 임계치(KRW 6,000)를 초과하는 즉시, 가공 및 식자재 투입 원료 100%를 초저가 남미산 대왕오징어로 강제 롤오버(Rollover)하는 \'코스트 스위칭(Cost Switching)\' 매뉴얼을 전 팩토리에 즉각 하달해야 합니다." />
+      <TakeawayBox source="KMI & 무역통계" situation="[Cross-Commodity Spread Explosion] 국내산 살오징어의 단가 랠리(Rally)가 펀더멘털을 이탈하며, 완벽한 대체재인 남미산 대왕오징어(Jumbo Flying Squid)와의 톤당 스프레드가 한계치(KRW 7,000 Gap)를 돌파하는 극단적 밸류에이션 왜곡(Valuation Distortion) 상태입니다." actionPlan="**[Actionable Insight]** [Raw Material Substitution Execution] 프리미엄(살오징어) 라인업에 대한 B2B 프로모션을 전면 중단하십시오. 두 어종 간 가격 스프레드가 임계치(KRW 6,000)를 초과하는 즉시, 가공 및 식자재 투입 원료 100%를 초저가 남미산 대왕오징어로 강제 롤오버(Rollover)하는 \'코스트 스위칭(Cost Switching)\' 매뉴얼을 전 팩토리에 즉각 하달해야 합니다. (Conviction Buy)" />
     </div>
   );
 }

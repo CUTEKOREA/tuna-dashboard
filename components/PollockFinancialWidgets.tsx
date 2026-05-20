@@ -44,7 +44,7 @@ export function Widget17_OilMargin() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="시장 형성 어획 단가 대비 기름값(유가 상승 속도)이 너무도 가팔라, 특정 MGO 임계 유가선(예: 톤당 700불)을 상향 돌파 시 선원들이 몸을 갈아넣어 만선 회항을 하여도 은행 잔고는 적자로 잠식되는 수학적 절망 구간이 공표되었습니다."
-          actionPlan="부서 내 유가 모니터링 경보를 DEFCON 2레벨로 대기 격상시키십시오. 고유가 장기 늪으로 진입하여 원가 보전을 실패할 경우, 글로벌 금융권 선박 MGO 파생상품 옵션을 즉각 매수 헷징하는 선제 조항을 본사 매뉴얼에 즉시 편입할 것을 긴급 발의합니다."
+          actionPlan="**[Actionable Insight]** 부서 내 유가 모니터링 경보를 DEFCON 2레벨로 대기 격상시키십시오. 고유가 장기 늪으로 진입하여 매입원가(COGS) 보전을 실패할 경우, 글로벌 금융권 선박 MGO 파생상품 옵션을 즉각 매수 헷징하는 선제 조항을 본사 매뉴얼에 즉시 편입할 것을 긴급 발의합니다. (Conviction Buy)"
           source="Silla Financial Operations Internal System & S&P Global Platts"
         />
       </div>
@@ -85,7 +85,7 @@ export function Widget18_FXMargin() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="강달러 1,300원대~1,400원선 뉴노멀 악재가 수년째 도래함에 따라, 무역 지부가 식당들에게 현행 정상 마진율에 물건을 열심히 팔아도 연말 결산 시 환차손 데미지로 인해 영업 무역 장부가 산산조각 박살 나는 역상관(Negative Correlation)의 충격 현장입니다."
-          actionPlan="당장의 스팟 달러 구매를 전부 스톱 홀딩하십시오. 주요 외국계 1금융권과 통화 선도 분할(FRA) 계약 체결을 즉각 발동시켜 차기 조업 시즌 1년 치 결제 펀드 자본을 강력 고정 락인(Lock-in)하고 경영진 보호막을 두르셔야 생존합니다."
+          actionPlan="**[Actionable Insight]** 당장의 스팟 달러 구매를 전부 스톱 홀딩하십시오. 주요 외국계 1금융권과 통화 선도 분할(FRA) 계약 체결을 즉각 발동시켜 차기 조업 시즌 1년 치 결제 펀드 자본을 강력 고정 락인(Lock-in)하고 경영진 보호막을 두르셔야 생존합니다. (Conviction Buy)"
           source="Bank of Korea Exchange Rate & Corporate Finance Data"
         />
       </div>
@@ -124,8 +124,8 @@ export function Widget19_CollagenSpinoff() {
       </div>
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
-          situation="kg당 100원 남짓 동물의 먹이나 쓰레기장 수산 폐기물로 버려지던 하급 어피(껍질)가 초미세 흡수율을 자랑하는 푸드테크(마린 콜라겐 펩타이드) 화장품 원료로 폭발하면서, 기존 생선 뼈째 파는 본업의 이익률을 수십 배 비웃는 현금 창출 괴물로 탈바꿈했습니다."
-          actionPlan="단순 어피 수집 하청과 공장 청소를 곁다리 업무 취급하던 인식을 뒤엎으십시오. 어피 분자 고도화 가공을 그룹 이사회 최우선 혁신 태스크포스(TF)로 단독 출범시키고, 글로벌 톱티어 에스테틱 제약 및 뷰티 계열사와 조인트 벤처(JV) 양해 각서를 체결하여 기술 우위를 독식하십시오."
+          situation="kg당 100원 남짓 동물의 먹이나 쓰레기장 수산 폐기물로 버려지던 하급 어피(껍질)가 초미세 흡수율을 자랑하는 푸드테크(마린 콜라겐 펩타이드) 화장품 원료로 폭발하면서, 기존 생선 뼈째 파는 본업의 Bottom-line(순이익)률을 수십 배 비웃는 현금 창출 괴물로 탈바꿈했습니다."
+          actionPlan="**[Actionable Insight]** 단순 어피 수집 하청과 공장 청소를 곁다리 업무 취급하던 인식을 뒤엎으십시오. 어피 분자 고도화 가공을 그룹 이사회 최우선 혁신 태스크포스(TF)로 단독 출범시키고, 글로벌 톱티어 에스테틱 제약 및 뷰티 계열사와 조인트 벤처(JV) 양해 각서를 체결하여 기술 우위를 독식하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
           source="Global Marine Pharmaceuticals Valuation Intelligence"
         />
       </div>
@@ -167,8 +167,8 @@ export function Widget20_Portfolio2030() {
       </div>
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
-          situation="매출 절대다수(Volume) 규모의 환상을 심어주며 임원진의 눈을 가렸던 옛 영광의 1차 벌크형 도매 비즈니스는 성장성과 이익률이 모두 박살 난 왼쪽 하단 사분면 침수 늪으로 추락한 명백한 재무 데이터를 고발합니다."
-          actionPlan="현 상태에 안주하여 재래식 냉동 창고에 흑자 도산의 무덤을 파지 마십시오. 오늘 회장단 최고위 협의체에서 2030 플랜을 기안하십시오. 회사의 향후 모든 수 백억 대 CapEx(시설 투자 자본) 신규 확충의 100%를 오로지 자사 브랜딩 D2C 멸균 제품, 파생 화학 수리미, 바이오 제약 콜라겐 인프라에 전면 융단 폭격 이동할 것을 의결 선언해야 합니다."
+          situation="매출 절대다수(Volume) 규모의 환상을 심어주며 임원진의 눈을 가렸던 옛 영광의 1차 벌크형 도매 비즈니스는 성장성과 Bottom-line(순이익)률이 모두 박살 난 왼쪽 하단 사분면 침수 늪으로 추락한 명백한 재무 데이터를 고발합니다."
+          actionPlan="**[Actionable Insight]** 현 상태에 안주하여 재래식 냉동 창고에 흑자 도산의 무덤을 파지 마십시오. 오늘 회장단 최고위 협의체에서 2030 플랜을 기안하십시오. 회사의 향후 모든 수 백억 대 CapEx(시설 투자 자본) 신규 확충의 100%를 오로지 자사 브랜딩 D2C 멸균 제품, 파생 화학 수리미, 바이오 제약 콜라겐 인프라에 전면 융단 폭격 이동할 것을 의결 선언해야 합니다. (Conviction Buy)"
           source="Silla Strategy Consulting Group: 2030 Value Roadmap"
         />
       </div>

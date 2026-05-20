@@ -63,7 +63,7 @@ export function WidgetRussiaHegemony() {
 
       <TakeawayBox
         situation="서방의 러시아산 제재에도 불구하고, 전체 글로벌 명태 가공 물량(111만 톤) 중 75만 톤(약 67%)을 러시아 단일 국가가 독점 생산하며 생태계를 완벽히 장악하고 있습니다."
-        actionPlan="서방의 Boycott이 무의미할 정도로 러시아 공장 선단(Factory trawlers)이 밸류체인 최상단을 지배하고 있습니다. 무리한 탈(脫)러시아화는 매입 원가 상승 폭탄으로 돌아오므로, 우회로(중국 필레 가공)를 통한 전략적 락인(Lock-in)이 여전히 불가피합니다."
+        actionPlan="**[Actionable Insight]** 서방의 Boycott이 무의미할 정도로 러시아 공장 선단(Factory trawlers)이 밸류체인 최상단을 지배하고 있습니다. 무리한 탈(脫)러시아화는 매입 매입원가(COGS) 상승 폭탄으로 돌아오므로, 우회로(중국 필레 가공)를 통한 전략적 락인(Lock-in)이 여전히 불가피합니다. (Conviction Buy)"
       />
     </div>
   );
@@ -116,7 +116,7 @@ export function WidgetEaCollapse() {
 
       <TakeawayBox
         situation="1980년대 각 49만 톤, 37만 톤 수준의 막대한 원물을 자체 가공하던 일본과 한국 명태 산업은 2023년 나란히 4만 톤 규모로 대침몰(Collapse)하며 가공 펀더멘털이 소멸했습니다."
-        actionPlan="오징어와 동일한 디스토피아 패턴입니다. 자국 내 기초 가공 능력을 완전히 상실하였기에, 향후 중국·러시아에서 가공된 필레와 반제품을 '부르는 게 값'인 셀러즈 마켓(Seller's Market) 구조에서 비싸게 사와야만 하는 수입 종속국으로 완전히 전락했습니다."
+        actionPlan="**[Actionable Insight]** 오징어와 동일한 디스토피아 패턴입니다. 자국 내 기초 가공 능력을 완전히 상실하였기에, 향후 중국·러시아에서 가공된 필레와 반제품을 '부르는 게 값'인 셀러즈 마켓(Seller's Market) 구조에서 비싸게 사와야만 하는 수입 종속국으로 완전히 전락했습니다."
       />
     </div>
   );

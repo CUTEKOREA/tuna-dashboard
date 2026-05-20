@@ -39,8 +39,8 @@ export const WidgetBlockVsIQF = () => (
     <div style={{ flexShrink: 0, marginTop: '12px' }}>
       <TakeawayBox 
         source="Urner Barry B2B 수산물 도매가 지수 리포트"
-        situation="단순 냉동 블록 형태의 원물 납품 마진은 15%에 그치나, IQF(개별 급속 냉동) 필렛은 이익률이 35%로 폭증합니다."
-        actionPlan="가격 경쟁력이 없는 범용 블록 생산 라인을 점진적으로 축소하고, B2C 밀키트용 IQF 하이엔드 라인 설비에 전량 캐파를 집중하십시오." 
+        situation="단순 냉동 블록 형태의 원물 납품 마진은 15%에 그치나, IQF(개별 급속 냉동) 필렛은 Bottom-line(순이익)률이 35%로 폭증합니다."
+        actionPlan="**[Actionable Insight]** 가격 경쟁력이 없는 범용 블록 생산 라인을 점진적으로 축소하고, B2C 밀키트용 IQF 하이엔드 라인 설비에 전량 캐파를 집중하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>
@@ -80,7 +80,7 @@ export const WidgetRoeMarginSpread = () => (
       <TakeawayBox 
         source="도쿄 도요스 시장 일별 경매 단가 및 후쿠오카 유통가 시계열"
         situation="원물(명란) 경매가가 -40% 폭락해도 멘타이코(명란젓) 최종 소비자가는 요지부동인 '전가 저항성'이 확인되었습니다."
-        actionPlan="가격이 폭락한 원원물 창고를 개방하여 공격적으로 B2C 가공을 늘리십시오. 산지 폭락이 B2C 벤더의 역사적 마진 스프레드를 창출합니다." 
+        actionPlan="**[Actionable Insight]** 가격이 폭락한 원원물 창고를 개방하여 공격적으로 B2C 가공을 늘리십시오. 산지 폭락이 B2C 벤더의 역사적 마진 스프레드를 창출합니다. (Conviction Buy)" 
       />
     </div>
   </div>
@@ -123,7 +123,7 @@ export const WidgetInventoryCycle = () => (
       <TakeawayBox 
         source="미국수산물협회(NFI) 재고율 및 일본 수산청 연례 적재량"
         situation="최대 수입국의 재고 사이클이 피크(170k tons) 통과 후 3개월 뒤 가격 반등(Price Rebound)이 발생합니다."
-        actionPlan="수입국 재고 폭발 시즌에 공매도 성격의 매수 포지션을 쥐지 말고 홀딩하다, 재고가 소진되는 Q3에 직방출하여 단가를 방어하십시오." 
+        actionPlan="**[Actionable Insight]** 수입국 재고 폭발 시즌에 공매도 성격의 매수 포지션을 쥐지 말고 홀딩하다, 재고가 소진되는 Q3에 직방출하여 단가를 방어하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>
@@ -163,7 +163,7 @@ export const WidgetSurimiBlendElasticity = () => (
       <TakeawayBox 
         source="일본 연육생산자협회(SNPA) 최고등급 AL/SA 급 거래 단가"
         situation="러시아산 덤핑이 소멸하고 AL/SA급 연육 단가가 톤당 $5,500을 돌파하면 B2B 벤더들이 즉각 동남아산 잡어(실꼬리돔) 비율을 늘려 품질을 희석시킵니다."
-        actionPlan="명태 연육가가 임계점을 넘으면 SA등급 단일 고집을 버리고, 고객사에 맞춤형 블렌딩(Blend) 비율을 제안해 계약 이탈(Churn)을 막으십시오." 
+        actionPlan="**[Actionable Insight]** 명태 연육가가 임계점을 넘으면 SA등급 단일 고집을 버리고, 고객사에 맞춤형 블렌딩(Blend) 비율을 제안해 계약 이탈(Churn)을 막으십시오." 
       />
     </div>
   </div>
@@ -205,7 +205,7 @@ export const WidgetB2BContractPipeline = () => (
       <TakeawayBox 
         source="글로벌 빅4 수산 납품 프랜차이즈 구매 계약(10-K) 사이클"
         situation="맥도날드, 대형 급식업체 등 빅바이어의 장기 공급 갱신 협상은 종료 D-30일부터 단가 협상 압력이 최고조에 달합니다."
-        actionPlan="D-30에 접어든(붉은색) 파이프라인에 집중하여, 어가 상승 데이터를 근거로 유류세 연동 단가 방어 협상을 관철하십시오." 
+        actionPlan="**[Actionable Insight]** D-30에 접어든(붉은색) 파이프라인에 집중하여, 어가 상승 데이터를 근거로 유류세 연동 단가 방어 협상을 관철하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>
@@ -246,7 +246,7 @@ export const WidgetWholesaleArbitrage = () => (
       <TakeawayBox 
         source="한국농수산식품공사(aT) 가락/수원 도매시장 API 분석망"
         situation="단일 위판장에서만 덤핑하면 시장 전체 시세가 폭락하지만, 요일별로 부족한 시장으로 물류를 분산하면 최소 15% 아비트리지가 획득됩니다."
-        actionPlan="API 추이 상 목요일 가락시장 가격이 항상 튑니다. 타 지역 물량을 서울로 밴(Van) 스나이핑하여 중도매 마진을 차단하십시오." 
+        actionPlan="**[Actionable Insight]** API 추이 상 목요일 가락시장 가격이 항상 튑니다. 타 지역 물량을 서울로 밴(Van) 스나이핑하여 중도매 마진을 차단하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
       />
     </div>
   </div>
@@ -285,7 +285,7 @@ export const WidgetClimateClause = () => (
       <TakeawayBox 
         source="자사 B2B 영업팀 우수 계약서 Pricing Escalation 조항 연구"
         situation="이제 고정가 장기계약은 도박입니다. 흉어로 쿼터가 터지거나 유가가 오르면 납품할수록 적자가 나는 데쓰 스파이럴에 빠집니다."
-        actionPlan="2026년 체결되는 모든 빅바이어 계약서엔 '기후 유닛 클로즈(환경 비용 증가 시 판매가 100% 반영)'를 강제해야 합니다." 
+        actionPlan="**[Actionable Insight]** 2026년 체결되는 모든 빅바이어 계약서엔 '기후 유닛 클로즈(환경 비용 증가 시 판매가 100% 반영)'를 강제해야 합니다. (Conviction Buy)" 
       />
     </div>
   </div>
@@ -324,7 +324,7 @@ export const WidgetHolidayPremium = () => (
       <TakeawayBox 
         source="닐슨(Nielsen) 스캐너(IRI) 미주 연휴 POS 해산물 매출 추적"
         situation="휴일 특수에 냉동 평대에 적재된 블록형 원물은 전혀 안 팔리지만, 즉석 조리가 가능한 델리(RTE) 코너의 매출은 80% 폭발합니다."
-        actionPlan="명절 D-3 시점부터 대형마트와 협의해 원물을 델리 코너(밀키트/조리포장)로 100% 스위칭하여 프리미엄 차익을 쓸어 담아야 합니다." 
+        actionPlan="**[Actionable Insight]** 명절 D-3 시점부터 대형마트와 협의해 원물을 델리 코너(밀키트/조리포장)로 100% 스위칭하여 프리미엄 차익을 쓸어 담아야 합니다. (Conviction Buy)" 
       />
     </div>
   </div>
@@ -364,7 +364,7 @@ export const WidgetSpeciesSwap = () => (
       <TakeawayBox 
         source="FAO FishStatJ 이기종 어종 수요 교차탄력성수리 모델"
         situation="명태 단가가 톤당 $4.5k를 넘어서는 폭등 시점에 접어들면 바이어들이 원재료를 틸라피아/광어로 60% 이상 무자비하게 스위칭합니다."
-        actionPlan="가격 인상(Mark-up) 정책을 밀고 나가되, Crossover Point ($4.5k)를 건드리지 않도록 빅바이어용 특별 할인 프로모션 락을 걸어야 합니다." 
+        actionPlan="**[Actionable Insight]** 가격 인상(Mark-up) 정책을 밀고 나가되, Crossover Point ($4.5k)를 건드리지 않도록 빅바이어용 특별 할인 프로모션 락을 걸어야 합니다. (Conviction Buy)" 
       />
     </div>
   </div>
@@ -403,7 +403,7 @@ export const WidgetD2CRoi = () => (
       <TakeawayBox 
         source="쿠팡/아마존 프레시 B2C 밀키트 CPC CVP율 통계"
         situation="D2C(자사몰/직배송) 이커머스 첫 진입 시 플랫폼 수수료와 마케팅비(45%)가 몽땅 빨려나가 B2B보다 이윤이 박살납니다."
-        actionPlan="초기 출혈을 감수하고 런칭하되, 구독형 로열티 멤버십 고객이 30%를 넘는 '로열 D2C' 단계가 되면 마진 45%의 황금알 거루가 완성됩니다." 
+        actionPlan="**[Actionable Insight]** 초기 출혈을 감수하고 런칭하되, 구독형 로열티 멤버십 고객이 30%를 넘는 '로열 D2C' 단계가 되면 마진 45%의 황금알 거루가 완성됩니다." 
       />
     </div>
   </div>

@@ -77,7 +77,6 @@ const KPI_THEMES = [
 const COLORS = ['#7e22ce', '#9333ea', '#a855f7', '#c026d3', '#d946ef', '#e879f9', '#db2777', '#f43f5e', '#fb7185', '#fda4af'];
 
 export default function MangosteenDashboard() {
-  const [showEdu, setShowEdu] = useState(true);
   const [climateYieldData, setClimateYieldData] = useState<any[]>([]);
   const [logisticsData, setLogisticsData] = useState<any[]>([]);
   const [arbitrageData, setArbitrageData] = useState<any[]>([]);
@@ -280,72 +279,6 @@ export default function MangosteenDashboard() {
         )}
       </div>
 
-      {/* ═══ S-Grade AI Assistant ═══ */}
-      <div style={{ marginBottom: '2rem' }}>
-        <button 
-          onClick={() => setShowEdu(!showEdu)}
-          style={{ 
-            width: '100%', background: '#181818', 
-            borderRadius: '8px', border: 'none',
-            padding: '1.2rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            cursor: 'pointer', transition: 'all 0.2s', marginBottom: showEdu ? '1rem' : '0'
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = '#282828'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <Zap size={20} color="#ec4899" />
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>프루트 퀸: 최고경영진 전략 AI 어시스턴트</div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>태국 독점 공급망 리스크(검역/라니냐) 분석, 비투비 가공품 우회 전략 및 특수 포장 물류 시뮬레이터 연동</div>
-            </div>
-          </div>
-          <div style={{ transform: showEdu ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </div>
-        </button>
-
-        {showEdu && (
-          <div style={{ background: '#181818', borderRadius: '8px', padding: '1.5rem', animation: 'fadeIn 0.3s ease-out' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              <div style={{ background: '#282828', padding: '1.2rem', borderRadius: '8px' }}>
-                <h3 style={{ color: '#c026d3', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <Globe size={16}/> 핵심 구조: 태국 의존도와 증열처리 검역 장벽
-                </h3>
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                  <strong style={{color:'var(--text-primary)'}}>공급 구조:</strong> 전세계 수출의 대부분을 차지하는 태국에 공급망이 편중. 기상이변(라니냐) 시 생과 수율(증열처리 생존율)이 급락.<br/>
-                  <strong style={{color:'var(--text-primary)'}}>물류 체계:</strong> 기존 항공 운송(약 $5.5/kg)은 마진을 잠식. 특수포장 기반 해상 물류($2.95/kg)로 전환 시 마진 스프레드 급등.<br/>
-                  <strong style={{color:'var(--text-primary)'}}>검역 규제:</strong> 인니/필리핀산은 증열처리 설비 부재로 생과 수입이 불가하여 냉동 가공품으로 선회 필수.
-                </div>
-              </div>
-              <div style={{ background: '#282828', padding: '1.2rem', borderRadius: '8px' }}>
-                <h3 style={{ color: '#c026d3', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <Workflow size={16}/> 전략적 시사점: 국내 과일 차익거래 및 최고급 재수출
-                </h3>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                  <li><strong style={{color:'var(--text-primary)'}}>차익 거래:</strong> 국내 사과/배 가격 폭등 시 대체 과일인 망고스틴 수요가 급증. 이 시기 공격적 선도 거래 매입 필요.</li>
-                  <li><strong style={{color:'var(--text-primary)'}}>사업 방어:</strong> 생과의 부패 리스크 및 0% 할당관세 종료에 대비해 유통기한과 마진이 안정적인 냉동 퓨레 라인업 확대.</li>
-                  <li><strong style={{color:'var(--text-primary)'}}>가치 제고:</strong> 몽골, 괌 등 고급 리조트/호텔을 대상으로 상위 1% 품질을 자체 브랜딩으로 재수출.</li>
-                </ul>
-              </div>
-            </div>
-            <div style={{ background: '#282828', padding: '1.2rem 1.5rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ background: 'rgba(56, 189, 248, 0.1)', padding: '0.8rem', borderRadius: '50%' }}>
-                  <Database size={20} color="#c026d3" />
-                </div>
-                <div>
-                  <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.3rem', fontSize: '1rem', fontWeight: 700 }}><Zap size={16} color="#c026d3" style={{ verticalAlign: 'middle', marginRight: '4px' }} /> 노트북LM 망고스틴 AI 챗봇</h3>
-                </div>
-              </div>
-              <a href="https://notebooklm.google.com/notebook/3cd01c74-92fe-4857-bbca-2327a254435e" target="_blank" rel="noopener noreferrer" style={{ background: '#c026d3', color: '#000000', padding: '0.7rem 1.3rem', borderRadius: '20px', fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', whiteSpace: 'nowrap', transition: 'background 0.2s, transform 0.1s' }}>
-                <Activity size={16} /> 챗봇 시작
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
-
       {/* ═══ Pillar 1: 원료 수급 ═══ */}
       <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
@@ -382,7 +315,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="인도네시아의 절대 생산량(32만 톤)이 1위이나 수출은 1% 미만이며, 태국은 생산량의 87%를 수출하며 글로벌 무역을 독점하고 있습니다." 
-            actionPlan="식물방역법 장벽이 생산 대국과 수입국을 단절시켰습니다. 태국의 가공 시설 선도거래를 선점하거나, 기업 간 거래용 가공품으로 전환해 인니/베트남 물량을 활용해야 합니다."
+            actionPlan="**[Actionable Insight]** 식물방역법 장벽이 생산 대국과 수입국을 단절시켰습니다. 태국의 가공 시설 선도거래를 선점하거나, 기업 간 거래용 가공품으로 전환해 인니/베트남 물량을 활용해야 해야 합니다. (Conviction Buy)"
           />
         </div>
 
@@ -412,7 +345,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="기후 지수가 악화되는 국면의 잦은 비는 과육 수액병을 유발해 증열처리 통과 생존율을 75%까지 급락시킵니다." 
-            actionPlan="기상청 실시간 연동을 통해 경보 발령 시, '수율 기반 변동 가격제'를 선제적으로 발동하여 매입 단가 리스크를 방어해야 합니다."
+            actionPlan="**[Actionable Insight]** 기상청 실시간 연동을 통해 경보 발령 시, '수율 기반 변동 가격제'를 선제적으로 발동하여 매입 단가 리스크를 방어해야 해야 합니다. (Conviction Buy)"
           />
         </div>
       </div>
@@ -452,7 +385,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="할당관세 종료 등 외부 요인에 의해 생과 마진은 변동성이 극심하나, 냉동 납품 마진은 22%대로 매우 안정적입니다." 
-            actionPlan="기업 간 거래용 냉동 물량 비중을 전체 포트폴리오의 40% 이상으로 확대하여 변동성을 차단하고 고정 현금흐름을 창출해야 합니다."
+            actionPlan="**[Actionable Insight]** 기업 간 거래용 냉동 물량 비중을 전체 포트폴리오의 40% 이상으로 확대하여 변동성을 차단하고 고정 현금흐름을 창출해야 해야 합니다. (Conviction Buy)"
           />
         </div>
 
@@ -481,7 +414,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="일반 해상 냉장 운송 시 25일 차에 수율이 5%로 급락하여 값비싼 항공 운송($5.5/kg)이 강제되고 있습니다." 
-            actionPlan="가스 처리 기술 도입 시 해상 운송(25일 차)에도 수율을 78% 이상 방어할 수 있어, 해상 운송비 절감($2.95/kg) 및 소매점 체류 시간 확장이 가능합니다."
+            actionPlan="**[Actionable Insight]** 가스 처리 기술 도입 시 해상 운송(25일 차)에도 수율을 78% 이상 방어할 수 있어, 해상 운송비 절감($2.95/kg) 및 소매점 체류 시간 확장이 가능해야 합니다. (Conviction Buy)"
           />
         </div>
 
@@ -510,8 +443,8 @@ export default function MangosteenDashboard() {
             </SafeResponsiveContainer>
           </div>
           <TakeawayBox 
-            situation="동남아 현지 식품 라벨링 및 패키징 규제가 강화됨에 따라 생산 원가 내 패키징 비용 비중이 급증할 전망입니다." 
-            actionPlan="벌크 단위 수입 후 국내 자체 패키징 라인을 가동하거나, 규제가 덜한 베트남 등 제3국에서 1차 가공을 마치는 우회 생산로를 구축해야 합니다."
+            situation="동남아 현지 식품 라벨링 및 패키징 규제가 강화됨에 따라 생산 매입원가(COGS) 내 패키징 비용 비중이 급증할 전망입니다." 
+            actionPlan="**[Actionable Insight]** 벌크 단위 수입 후 국내 자체 패키징 라인을 가동하거나, 규제가 덜한 베트남 등 제3국에서 1차 가공을 마치는 우회 생산로를 구축해야 해야 합니다. (Conviction Buy)"
           />
         </div>
       </div>
@@ -552,7 +485,7 @@ export default function MangosteenDashboard() {
           </ul>
           <TakeawayBox 
             situation="식물방역법으로 인해 생과 수입이 태국산에 독점되어 당사의 구매 협상력이 현저히 낮습니다." 
-            actionPlan="수입 금지 국가인 인도네시아 원물을 현지에서 냉동 가공하여 국내 시장으로 우회 반입하는 파이프라인 신설을 권고합니다."
+            actionPlan="**[Actionable Insight]** 수입 금지 국가인 인도네시아 원물을 현지에서 냉동 가공하여 국내 시장으로 우회 반입하는 파이프라인 신설을 권고해야 합니다. (Conviction Buy)"
           />
         </div>
 
@@ -581,7 +514,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="과피 경화 방어를 위해 항공 운송을 쓰고 있으나, 높은 비용($5.5/kg)이 마진을 잠식하고 있습니다." 
-            actionPlan="해상 운송에 가스 치환 포장을 결합하여 수율을 92%로 유지하면서 물류비를 절반($2.95/kg)으로 줄이는 즉각적 전환이 요구됩니다."
+            actionPlan="**[Actionable Insight]** 해상 운송에 가스 치환 포장을 결합하여 수율을 92%로 유지하면서 물류비를 절반($2.95/kg)으로 줄이는 즉각적 전환이 요구됩니다. (Actionable Buy)"
           />
         </div>
 
@@ -611,7 +544,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="태국산 직수입 시 자유무역협정 한계로 인해 24%의 높은 할당 및 기본 관세가 부과됩니다." 
-            actionPlan="저단가 인니 원물을 베트남으로 수출해 1차 가공한 후, 무관세 조항을 활용해 한국에 반입하는 역내포괄적경제동반자협정(RCEP) 삼각 무역 라인을 개척하십시오."
+            actionPlan="**[Actionable Insight]** 저단가 인니 원물을 베트남으로 수출해 1차 가공한 후, 무관세 조항을 활용해 한국에 반입하는 역내포괄적경제동반자협정(RCEP) 삼각 무역 라인을 개척하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
           />
         </div>
 
@@ -640,8 +573,8 @@ export default function MangosteenDashboard() {
             </SafeResponsiveContainer>
           </div>
           <TakeawayBox 
-            situation="동남아 주요 통화(특히 바트화)의 가치 상승이 매입 원가 상승 압력으로 작용하며 환리스크가 가중되고 있습니다." 
-            actionPlan="태국 직수입 물량의 결제 통화를 다변화하거나, 환율 변동성이 적은 동화(베트남) 결제 라인을 우회 구매 루트로 적극 활용하여 환차익을 극대화해야 합니다."
+            situation="동남아 주요 통화(특히 바트화)의 가치 상승이 매입 매입원가(COGS) 상승 압력으로 작용하며 환리스크가 가중되고 있습니다." 
+            actionPlan="**[Actionable Insight]** 태국 직수입 물량의 결제 통화를 다변화하거나, 환율 변동성이 적은 동화(베트남) 결제 라인을 우회 구매 루트로 적극 활용하여 환차익을 극대화해야 해야 합니다. (Conviction Buy)"
           />
         </div>
       </div>
@@ -682,7 +615,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="국산 사과 및 배 가격 폭등기에 망고스틴이 일상적인 대체 과일로 부상하며 수요가 비정상적으로 급증했습니다." 
-            actionPlan="국내 핵심 과일 물가 지수와 연동된 자동 발주 스캐너를 운영하여, 임계 가격 돌파 시 망고스틴 물량을 공격적으로 증대시켜 차익을 실현해야 합니다."
+            actionPlan="**[Actionable Insight]** 국내 핵심 과일 물가 지수와 연동된 자동 발주 스캐너를 운영하여, 임계 가격 돌파 시 망고스틴 물량을 공격적으로 증대시켜 차익을 실현해야 해야 합니다. (Conviction Buy)"
           />
         </div>
 
@@ -714,7 +647,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="태국에서 한국으로 향하는 경로가 압도적 물량을 차지하나, 단가 마진은 한국에서 몽골 및 괌으로 재수출하는 라인이 월등히 높습니다." 
-            actionPlan="한국을 최종 소비지가 아닌 동북아 예냉 및 재포장 물류 허브로 재정의하여, 검역 인프라가 취약한 제3국 프리미엄 시장을 직접 공략하십시오."
+            actionPlan="**[Actionable Insight]** 한국을 최종 소비지가 아닌 동북아 예냉 및 재포장 물류 허브로 재정의하여, 검역 인프라가 취약한 제3국 프리미엄 시장을 직접 공략하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
           />
         </div>
 
@@ -745,7 +678,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="한국 물류 허브를 거쳐 몽골, 괌 등으로 향하는 망고스틴 재수출 단가는 최고 12.4달러(kg당)를 기록하며 압도적인 마진을 냅니다." 
-            actionPlan="과피 경화 결함을 원천 차단한 최상급 1%의 물량만을 선별하여, 구매력이 높은 고급 리조트 시장에 자체 브랜드로 재수출하는 파이프라인을 공격적으로 확장해야 합니다."
+            actionPlan="**[Actionable Insight]** 과피 경화 결함을 원천 차단한 최상급 1%의 물량만을 선별하여, 구매력이 높은 고급 리조트 시장에 자체 브랜드로 재수출하는 파이프라인을 공격적으로 확장해야 해야 합니다. (Conviction Buy)"
           />
         </div>
 
@@ -774,7 +707,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="최근 중국 당국의 라이브 커머스 품질/위생 규제 강화로 인해 주요 D2C(소비자 직접 판매) 채널의 매출 비중이 25% 이하로 위축되었습니다." 
-            actionPlan="불안정한 B2C/D2C 판매 비중을 축소하고, 검증된 도매 채널 및 오프라인 대형 유통망(B2B) 중심의 안정적 매출 포트폴리오로 신속히 재편해야 합니다."
+            actionPlan="**[Actionable Insight]** 불안정한 B2C/D2C 판매 비중을 축소하고, 검증된 도매 채널 및 오프라인 대형 유통망(B2B) 중심의 안정적 매출 포트폴리오로 신속히 재편해야 해야 합니다. (Conviction Buy)"
           />
         </div>
       </div>
@@ -816,7 +749,7 @@ export default function MangosteenDashboard() {
           </div>
           <TakeawayBox 
             situation="전체 중량의 60~70%에 달하는 껍질은 폐기 비용을 발생시키나, 동시에 고농축 항산화 물질을 함유하고 있습니다." 
-            actionPlan="버려지는 껍질을 당사 펫푸드 전략 사업부로 전량 이관하여 폐기 비용을 완전히 없애고 전체 순수익이 1.5배 상승하는 순환경제 포트폴리오를 완성해야 합니다."
+            actionPlan="**[Actionable Insight]** 버려지는 껍질을 당사 펫푸드 전략 사업부로 전량 이관하여 폐기 비용을 완전히 없애고 전체 순수익이 1.5배 상승하는 순환경제 포트폴리오를 완성해야 해야 합니다. (Conviction Buy)"
           />
         </div>
       </div>

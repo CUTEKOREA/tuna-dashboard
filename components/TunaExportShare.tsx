@@ -99,7 +99,7 @@ return (
         <TakeawayBox
           source="FAO FishStatJ Farmed Export Destination Share"
           situation="고부가가치 양식 참다랑어 수출의 극단적 일본 집중도('모든 길은 도쿄로')가 확인됩니다. 수출 다변화 없이는 단일 시장 의존 리스크가 극대화됩니다."
-          actionPlan="'모든 길은 도쿄로 통한다'는 극단적인 단일 시장 리스크를 안고 있습니다. 일본 내수 침체나 엔저 심화 시 수익성이 즉각 붕괴됩니다. 구매자는 미국과 UAE(두바이)의 최고급 하이엔드 레스토랑 타겟으로 데스티네이션(Destination)을 강제 다변화해야 합니다. 한국산 참다랑어를 일본 바이어의 화이트라벨(White-label) 납품에서 탈피하여 자체 프리미엄 'K-Bluefin' 브랜드로 독립시키는 마케팅 투자가 즉시 집행되어야 합니다."
+          actionPlan="**[Actionable Insight]** '모든 길은 도쿄로 통한다'는 극단적인 단일 시장 리스크를 안고 있습니다. 일본 내수 침체나 엔저 심화 시 수익성(Profitability)이 즉각 붕괴됩니다. 구매자는 미국과 UAE(두바이)의 최고급 하이엔드 레스토랑 타겟으로 데스티네이션(Destination)을 강제 다변화해야 합니다. 한국산 참다랑어를 일본 바이어의 화이트라벨(White-label) 납품에서 탈피하여 자체 프리미엄 'K-Bluefin' 브랜드로 독립시키는 마케팅 투자가 즉시 집행되어야 해야 합니다. (Conviction Buy)"
         />
       </div>
     </div>

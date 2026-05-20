@@ -34,7 +34,7 @@ export default function SquidCollapseCountdown() {
           </LineChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="FAO 어업 붕괴(Collapse) 사례 D.B" situation="[Biomass Extinction Correlation] 당사 퀀트 분석 결과, 최근 한국 연근해 살오징어 어획량의 추락 궤적이 1990년대 북대서양 \'캐나다 대구(Cod) 멸종 사태\' 직전의 붕괴 패턴(회색 점선)과 수학적으로 99.4% 일치(Perfect Correlation)하는 종말적 시그널을 발송 중입니다." actionPlan="[Strategic Resource Reallocation] 살오징어 V자 반등의 헛된 희망을 버리십시오. 생태학적 복구 불능점(Point of No Return)을 이미 돌파했습니다. 국내 연근해 원물 소싱 부서(Domestic Procurement)를 전면 축소 해체하고, 포클랜드 및 남미 대왕오징어를 취급하는 글로벌 소싱(Global Sourcing) 데스크에 전사 예산과 권한을 무제한 상향 배치하는 극단적 피벗(Pivot)을 즉시 결행해야 합니다." />
+      <TakeawayBox source="FAO 어업 붕괴(Collapse) 사례 D.B" situation="[Biomass Extinction Correlation] 당사 퀀트 분석 결과, 최근 한국 연근해 살오징어 어획량의 추락 궤적이 1990년대 북대서양 \'캐나다 대구(Cod) 멸종 사태\' 직전의 붕괴 패턴(회색 점선)과 수학적으로 99.4% 일치(Perfect Correlation)하는 종말적 시그널을 발송 중입니다." actionPlan="**[Actionable Insight]** [Strategic Resource Reallocation] 살오징어 V자 반등의 헛된 희망을 버리십시오. 생태학적 복구 불능점(Point of No Return)을 이미 돌파했습니다. 국내 연근해 원물 소싱 부서(Domestic Procurement)를 전면 축소 해체하고, 포클랜드 및 남미 대왕오징어를 취급하는 글로벌 소싱(Global Sourcing) 데스크에 전사 예산과 권한을 무제한 상향 배치하는 극단적 피벗(Pivot)을 즉시 결행해야 합니다. (Conviction Buy)" />
     </div>
   );
 }
