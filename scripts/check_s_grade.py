@@ -130,26 +130,30 @@ EXAGG_ADJ = re.compile(r"압도적|완벽한 음의 상관|완벽한 헷지|완�
 EXCESS_PHRASE = re.compile(r"잉여현금흐름을 극대화|즉시 폐기하십시오|전격 가동하십시오|해야 해야")
 BRACKET_LABEL = re.compile(r'(?:situation|actionPlan|takeaway)\s*=\s*["\']\[[^\]\[]{2,80}\]\s+')
 
+# 룰북 강제 정의 파일은 forbidden 패턴 자체를 코드 안에 보유하므로 검사 대상에서 제외 (false positive 방지)
+EXCLUDED_FILES = {"WidgetCard.tsx"}
+
 # Phase E+ 확장: API endpoint hardcoded mock 의심 (역참조)
 FAKE_LIVE = re.compile(r"🟢 LIVE API|status:\s*['\"]🟢")
 
 
 def measure_file(path: Path) -> dict:
     content = path.read_text(encoding="utf-8")
+    is_excluded = path.name in EXCLUDED_FILES
     return {
         "lines": content.count("\n") + 1,
         "cardDesc": count_pattern(content, JSX_CARDDESC),
         "TelemetryBadge": count_pattern(content, JSX_TELEMETRY),
         "TakeawayBox": count_pattern(content, JSX_TAKEAWAY),
         "unit_parens": count_pattern(content, UNIT_PARENS),
-        "english_hits": english_leftover(content),
-        # GS 톤 위반 (Phase D)
-        "conviction_tags": count_pattern(content, CONVICTION_TAG),
-        "exagg_adjectives": count_pattern(content, EXAGG_ADJ),
-        "excess_phrases": count_pattern(content, EXCESS_PHRASE),
-        "bracket_labels": count_pattern(content, BRACKET_LABEL),
+        "english_hits": [] if is_excluded else english_leftover(content),
+        # GS 톤 위반 (Phase D) — excluded 파일은 룰북 강제 정의 자체라 제외
+        "conviction_tags": 0 if is_excluded else count_pattern(content, CONVICTION_TAG),
+        "exagg_adjectives": 0 if is_excluded else count_pattern(content, EXAGG_ADJ),
+        "excess_phrases": 0 if is_excluded else count_pattern(content, EXCESS_PHRASE),
+        "bracket_labels": 0 if is_excluded else count_pattern(content, BRACKET_LABEL),
         # API mock 의심 (Phase E~F)
-        "fake_live_tags": count_pattern(content, FAKE_LIVE),
+        "fake_live_tags": 0 if is_excluded else count_pattern(content, FAKE_LIVE),
     }
 
 
