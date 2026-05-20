@@ -164,13 +164,7 @@ export function InsightVietnamOEM() {
             </BarChart>
           </SafeResponsiveContainer>
         </div>
-        <div className={styles.kpiPanel}>
-          <div className={styles.kpiBox} style={{ borderLeftColor: '#06b6d4' }}>
-            <div className={styles.kpiLabel}>PE 지분 투자 타겟</div>
-            <div className={styles.kpiValue} style={{ color: '#06b6d4' }}>탄팟 푸드</div>
-            <div className={styles.kpiSub}>BRC/IFS/Halal 10개 인증 보유</div>
-          </div>
-        </div>
+
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
