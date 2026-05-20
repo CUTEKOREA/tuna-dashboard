@@ -10,11 +10,15 @@
 
 **TunaDashboard 3종(Dashboard/Extract/Insights) S-Grade UI 표준화** — `COMPREHENSIVE_RULEBOOK.md` V4.1 기준.
 
-- Phase 1: UI 포맷 표준화 (X축, Tooltip, 한글 매핑, TelemetryBadge, cardDesc, 단위 괄호) — *진행 중*
-- Phase 2: `artifacts/tuna_extract_upgrade_plan.md` 컨텐츠 재구성 (5대 반직관 인사이트) — *미착수*
-
-## 완료된 것 (직전 세션)
-
+- Phase 1: UI- ✅ **참치 대시보드 위젯 재배치 및 제거 (2026-05-20)**:
+  - 참다랑어 축양(Part V/VI) 하이브리드 통합 완료 및 1열 2위젯 그리드 배치 완료.
+  - 사용자 요청에 따른 5종 위젯/섹션 제거 완료:
+    1. 신입직원 교육 가이드 및 NotebookLM 챗봇
+    2. 원가-마진 스트레스 테스트 시뮬레이터 (What-If)
+    3. 실시간 글로벌 차익거래 레이더
+    4. 사우디 식품의약품청(SFDA) 인증 마일스톤 트래커
+    5. 축양 대시보드 내 Part V ESG 및 지속가능성 섹션 (eBCD 및 생사료/FIFO 위기 분석)
+  - `npm run build`를 통한 빌드 및 정적 페이지 생성 무오류 통과 검증 완료.
 - ✅ `scripts/check_s_grade.py` 작성 — closure 기반 5규칙 grep 검증 도구
 - ✅ `artifacts/s_grade_baseline.md` — 베이스라인 측정 보고서
 - ✅ `CONTEXT.md` 작성 — 24개 도메인 용어 + 관계도 + 모호점 해소
@@ -70,7 +74,7 @@ python scripts/check_s_grade.py TunaDashboard.tsx TunaExtractDashboard.tsx TunaI
 
 상세는 직전 세션 대화 또는 향후 별도 문서화. 요약:
 
-1. **위젯 인테이크 Module** — 100+ 위젯의 5단 합성 보일러플레이트 통합. 가장 큰 leverage. *큰 작업*.
+1. **위젯 인테이크 Module** — 100+ 위젯 of 5단 합성 보일러플레이트 통합. 가장 큰 leverage. *큰 작업*.
 2. **TelemetryBadge Module** — Phase 1B에 포함됨. 가장 빠른 win.
 3. **Korean chart standards Module** — Phase 1B에 포함됨.
 4. **Widget data intake Module** — Python `fix_*.py` 200+개의 근본 원인. *ADR-0003과 충돌, 재검토 필요*.
@@ -91,6 +95,45 @@ python scripts/check_s_grade.py TunaDashboard.tsx TunaExtractDashboard.tsx TunaI
 ## 세션 간 규율 (병용 시)
 
 1. **세션 시작 시**: 이 파일을 *먼저* 읽기. `git log --oneline -10`으로 직전 변경 확인.
+2. **세션 종료 시**: 이 파일의 "완료된 것" / "다음 단계"를 *반드시* 갱신하고 커밋.
+3. **동시 작업 금지**: 한 브랜치에 두 에이전트가 동시 입력 X. worktree 분리 또는 시간차 작업.
+4. **에이전트 의존 기능 사용 시 표시**: superpowers·grill-me 등 특정 도구 호출 결과는 *결정 자체*만 이 파일에 남기고 도구 호출 흔적은 남기지 않기 (다른 에이전트에 의미 없음).
+
+## 미해결 결정
+
+- `superpowers` 플러그인 설치 여부 — **1주 측정 후 재결정 (2026-05-23 디시전 데드라인)**. 아래 측정표 참조.
+- ADR-0003 (스크립트 일괄 리팩토링) — 후보 4 (Widget data intake)과 충돌. Phase 2 후 재검토.
+- `tuna_extract_upgrade_plan.md` 승인 상태 — "승인 시 즉시 돌입"으로 끝남, 실제 승인 여부 불명확.
+
+---
+
+## 📊 1주 병용 측정 (2026-05-16 ~ 2026-05-23)
+
+목적: Claude Code와 Antigravity의 *실제 사용 비율과 강점 분포*를 측정해, superpowers 설치 가치를 데이터로 판단.
+
+### 수집 데이터 (자동)
+
+git log에 이미 `[CC]` / `[AG]` 접두어가 강제되므로 1주 후 다음 명령으로 자동 집계 가능:
+
+```bash
+# 한 주의 에이전트별 커밋 수
+git log --since="2026-05-16" --until="2026-05-23" --oneline | grep -c "\[CC\]"
+git log --since="2026-05-16" --until="2026-05-23" --oneline | grep -c "\[AG\]"
+
+# 작업 유형별 분포 (refactor/feat/fix/chore)
+git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' | sort | uniq -c
+```
+
+### 수집 데이터 (수동 1줄 일지)
+
+매일 작업 종료 시 아래 표에 1행 추가. 30초 이하의 부담:
+
+| 날짜 | 에이전트 | 작업 유형 | 시간(분) | 마찰 | 승리 |
+|---|---|---|---|---|---|
+| 2026-05-16 | CC | bootstrap (CONTEXT/ADR/HANDOFF) | 90 | — | grill-me + CONTEXT.md 한 번에 완성 |
+| 2026-05-16 | CC | ui-fix (TunaInsights 영문 박멸 28건) | 20 | grep이 콜론·기호 포함 영문 못 잡음 (추가 라운드 필요) | L-07 일괄 변환 스크립트로 28건 무손실 치환, tsc 통과 |
+| 2026-05-16 | CC | ui-fix (4파일 영문 박멸 13건) | 12 | 회사 고유명사 음역 판단(Tan Phat→탄팟) | closure 전체 EN-잔존 0, tsc 통과 |
+| 2026-05-20 | AG | ui-fix/content (Tuna widget rearrangement & removal) | 60 | — | 참치 대시보드 위젯 흐름 재배치 및 불필요/요청 위젯 5종 완벽 제거 |log --oneline -10`으로 직전 변경 확인.
 2. **세션 종료 시**: 이 파일의 "완료된 것" / "다음 단계"를 *반드시* 갱신하고 커밋.
 3. **동시 작업 금지**: 한 브랜치에 두 에이전트가 동시 입력 X. worktree 분리 또는 시간차 작업.
 4. **에이전트 의존 기능 사용 시 표시**: superpowers·grill-me 등 특정 도구 호출 결과는 *결정 자체*만 이 파일에 남기고 도구 호출 흔적은 남기지 않기 (다른 에이전트에 의미 없음).
