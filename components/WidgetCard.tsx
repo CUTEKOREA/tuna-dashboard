@@ -71,9 +71,10 @@ export interface WidgetCardProps {
   telemetry: TelemetryProps;  // A-02 의무
 
   // === 본문 ===
-  chart?: React.ReactNode;
+  chart?: React.ReactNode;          // Recharts JSX (SafeResponsiveContainer 자동 래핑)
   chartHeight?: number;
   kpiPanel?: KpiItem[];
+  customBody?: React.ReactNode;     // chart로 표현 안 되는 인터랙티브 UI (list/search/탭)
 
   // === Takeaway ===
   takeaway: TakeawayProps;
@@ -141,6 +142,7 @@ export default function WidgetCard(props: WidgetCardProps) {
     chart,
     chartHeight = 280,
     kpiPanel,
+    customBody,
     takeaway,
   } = props;
 
@@ -191,6 +193,7 @@ export default function WidgetCard(props: WidgetCardProps) {
           </div>
         )}
         {kpiPanel && kpiPanel.length > 0 && <KpiPanel items={kpiPanel} />}
+        {customBody}
       </div>
 
       <div style={{ padding: '0 20px 20px 20px' }}>
