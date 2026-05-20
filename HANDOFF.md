@@ -2,7 +2,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-20 (Claude Code 세션 — TunaOperationalInsights S1~S5 분리 + GS Analyst Tone 일괄 적용 커밋)
+> **마지막 업데이트**: 2026-05-20 (Claude Code 세션 — 참치 위젯 사실 무결성 감사 Phase A+B 완료. STATIC 라벨링·EDIT·RECONCILE·신규 위젯 4종까지 일괄 진행)
 
 ---
 
@@ -10,6 +10,13 @@
 
 **TunaDashboard 3종(Dashboard/Extract/Insights) S-Grade UI 표준화** — `COMPREHENSIVE_RULEBOOK.md` V4.1 기준.
 
+- ✅ **참치 위젯 사실 무결성 감사 Phase A+B 완료 (2026-05-20)**:
+  - **Phase A 풀스캔** (커밋 `7e8a032`): 33개 위젯 × NotebookLM 10개 참치 노트북 × `agri_data/tuna` (FishStat·Atuna price CSV) 교차 검증. 즉시 정정 3건, 검증 통과 3건, EDIT 7건, RECONCILE 6건, STATIC 라벨링 14건, 신규 위젯 후보 4건 식별. 산출물: [artifacts/tuna_widget_audit.md](artifacts/tuna_widget_audit.md).
+  - **Phase B 즉시 정정 3건** (커밋 `fbbd719`): 가다랑어 $2,250 예측 거짓 → Atuna 실측+퍼펙트스톰 narrative / Thailand-US -60% 방향 반대 → USTR 상호관세 사실 / 콜라겐 $12.8B / DHA $48.2B 잘못된 매핑 → 수치 제거.
+  - **Phase B1 STATIC 라벨링 14건** (커밋 `81192ed`): TunaInsightsDashboard.tsx 14개 mock 위젯의 (Conviction Buy)/(Strong Buy)/(Actionable Insight) 태그 일괄 제거 + 파일 상단 STATIC 배너. L-07 스크립트 (/tmp/fix_tuna_insights_conviction.py).
+  - **Phase B2 EDIT 7건** (커밋 `21d78f5`): ISSF 87%(어획량) vs 65%(stock) 두 정의 명시 / Balfegó "최초" → "선도" 완화 / FAO SOFIA "명목 기준" 단서 / $280M·$12M 박혜진(2024-06) 국정연 출처 명확화 / HSK 6→10자리(L-04) / SCFI/MOF 운임 출처-루트 불일치 정정 / 동원 중동 "헤게모니"→"접근 단계" 톤다운.
+  - **Phase B3 RECONCILE 6건** (커밋 `c631687`): 한국 참치액 시장 ($70M/700억/950억 → "700~1,000억원" 통일) / 부산물 비율 40~60% 범위 / Ecuador EU M/S 두 다른 지표임 명시 / 두바이 $42~48/kg 범위 / Pet care baseline 4~9% 범위 / MGO 2018~2024 평시 vs 2026-Q2 외생 충격 시점 명시.
+  - **Phase B4 신규 위젯 4종** (커밋 `d93fa87`): [components/TunaIntelInsightsB4.tsx](components/TunaIntelInsightsB4.tsx) — ThaiImportShift1Q26(S1) / PerfectStormWidget(S1) / FrimeAcquisitionWidget(S2) / RasSystemWidget(S5). 모두 TunaDashboard 각 pillar에 삽입. tsc + npm run build 통과.
 - ✅ **TunaOperationalInsights → S1~S5 위젯 모듈 분리 (2026-05-20, 커밋 `4f8cdce`)**:
   - `components/TunaOperationalInsights.tsx`(1110줄) 삭제 → `components/TunaOperationalIntelWidgets.tsx`로 재구성 후 `OperationalS1~S5Widgets`를 TunaDashboard 5-Pillar 각 섹션에 삽입.
   - `app/page.tsx`: field-ops 메뉴/라우트 및 TunaOperationalInsights dynamic import 제거.
@@ -144,7 +151,8 @@ git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' |
 | 2026-05-16 | CC | ui-fix (TunaInsights 영문 박멸 28건) | 20 | grep이 콜론·기호 포함 영문 못 잡음 (추가 라운드 필요) | L-07 일괄 변환 스크립트로 28건 무손실 치환, tsc 통과 |
 | 2026-05-16 | CC | ui-fix (4파일 영문 박멸 13건) | 12 | 회사 고유명사 음역 판단(Tan Phat→탄팟) | closure 전체 EN-잔존 0, tsc 통과 |
 | 2026-05-20 | AG | ui-fix/content (Tuna widget rearrangement & removal) | 60 | — | 참치 대시보드 위젯 흐름 재배치 및 불필요/요청 위젯 5종 완벽 제거 |
-| 2026-05-20 | CC | refactor (TunaOperationalInsights → S1~S5 모듈 분리 + GS Analyst Tone 일괄 적용) | 25 | 워킹트리에 137개 파일 누적 + 스크래치/로그 미정리 | 단일 커밋으로 묶음 분리·제외 판단, 빌드 깨짐 방지(신규 위젯 동봉) |log --oneline -10`으로 직전 변경 확인.
+| 2026-05-20 | CC | refactor (TunaOperationalInsights → S1~S5 모듈 분리 + GS Analyst Tone 일괄 적용) | 25 | 워킹트리에 137개 파일 누적 + 스크래치/로그 미정리 | 단일 커밋으로 묶음 분리·제외 판단, 빌드 깨짐 방지(신규 위젯 동봉) |
+| 2026-05-20 | CC | analysis+refactor (참치 위젯 사실 무결성 감사 Phase A+B 풀스캔) | 180 | 노트북 query 일부 timeout, 위젯 간 동일지표 정의 다름 | 33개 위젯 전부 검증·정정, 신규 위젯 4종 추가, 빌드 통과. 6개 커밋(7e8a032·fbbd719·81192ed·21d78f5·c631687·d93fa87) |log --oneline -10`으로 직전 변경 확인.
 2. **세션 종료 시**: 이 파일의 "완료된 것" / "다음 단계"를 *반드시* 갱신하고 커밋.
 3. **동시 작업 금지**: 한 브랜치에 두 에이전트가 동시 입력 X. worktree 분리 또는 시간차 작업.
 4. **에이전트 의존 기능 사용 시 표시**: superpowers·grill-me 등 특정 도구 호출 결과는 *결정 자체*만 이 파일에 남기고 도구 호출 흔적은 남기지 않기 (다른 에이전트에 의미 없음).
