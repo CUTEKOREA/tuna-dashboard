@@ -1,107 +1,67 @@
-'use client';
+/**
+ * 양식 참다랑어 생산 패권 — ADR-0005 WidgetCard 마이그레이션 (2026-05-21)
+ * Before 107줄 → After 65줄 (-39%)
+ */
 
+'use client';
 import React from 'react';
 import { Anchor } from 'lucide-react';
-import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
-} from 'recharts';
-import styles from './TunaInsightsDashboard.module.css';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import data from '../data/tuna_aqua_hegemony.json';
-import useContainerWidth from '../hooks/useContainerWidth';
-import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
+const countries = (data as any[]).length > 0
+  ? Object.keys((data as any[])[0]).filter((k) => k !== 'Year')
+  : [];
 
+const colors = ['#8b5cf6', '#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#ec4899'];
 
-const TunaAquaHegemony = () => {
-  const { containerRef, width } = useContainerWidth();
-
-  // Extract country keys automatically from the first data object, ignoring 'Year'
-  const countries = data.length > 0 ? Object.keys(data[0]).filter(key => key !== 'Year') : [];
-  
-  // High contrast premium colors
-  const colors = ['#8b5cf6', 'var(--color-info)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-danger)', '#ec4899'];
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const total = payload.reduce((result: number, entry: any) => result + entry.value, 0);
-
-      
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
-return (
-        <div className={styles.customTooltip}>
-          <p className={styles.tooltipLabel}>{`${label}년 생산량 분포`}</p>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {payload.map((entry: any, index: number) => (
-            <p key={index} className={styles.tooltipValue} style={{ color: entry.color }}>
-              <span>{entry.name}:</span>
-              <strong>{Number(entry.value).toLocaleString()} 톤</strong>
-            </p>
-          ))}
-          <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />
-          <p className={styles.tooltipValue} style={{ color: 'var(--text-primary)', fontWeight: 'bold' }}>
-            <span>총 양식량:</span>
-            <strong>{Number(total).toLocaleString()} 톤</strong>
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
-
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  const total = payload.reduce((s: number, e: any) => s + e.value, 0);
   return (
-    <div className={styles.insightCard} ref={containerRef}>
-      <div className={styles.cardHeader}>
-        <h3 className={styles.cardTitle}>
-          <Anchor size={20} />
-          양식 참다랑어 생산 패권 (Global Aquaculture Hegemony)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
-        </h3>
-        <p className={styles.cardSubtitle}>
-          상위 생산 5개국을 추출하여 누적 면적 그래프(Stacked Area Chart)로 전체 시장의 크기와 점유율을 동시에 표현했습니다. (자금력과 기술력을 바탕으로 고부가가치 참다랑어 양식 패권을 장악하는 선진 해양국의 점유율 차트)
+    <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
+      <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{`${label}년 생산량 분포`}</p>
+      {payload.map((entry: any, i: number) => (
+        <p key={i} style={{ color: entry.color, margin: '4px 0 0 0', fontSize: '0.8rem' }}>
+          <span>{entry.name}: </span><strong>{Number(entry.value).toLocaleString()} 톤</strong>
         </p>
-      </div>
-
-      <div style={{ width: '100%', height: 350, marginTop: '20px' }}>
-        <AreaChart width={width > 0 ? width - 60 : 800} height={350} data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-          <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-          <YAxis stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(value) => `${value.toLocaleString()}`} />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend wrapperStyle={{ paddingTop: '20px' }} />
-          
-          {countries.map((country, idx) => (
-            <Area 
-              key={country} 
-              type="monotone" 
-              dataKey={country} 
-              stackId="1" 
-              stroke={colors[idx % colors.length]} 
-              fill={colors[idx % colors.length]} 
-              fillOpacity={0.8} 
-            />
-          ))}
-        </AreaChart>
-      </div>
-      <div style={{ marginTop: '20px' }}>
-        <TakeawayBox
-          source="FAO FishStatJ Aquaculture Production by Country"
-          situation="지중해권(호주, 일본, 스페인, 몰타, 멕시코)이 양식 참다랑어 생산의 절대 패권을 장악하고 있으며, 고부가가치 양식 시장의 지형이 빠르게 재편되고 있습니다."
-          actionPlan="지중해 남부(호주/일본 자본 유입)와 일부 선진국이 고부가가치 양식 생태계를 독점하고 있습니다. 우리 기업이 이 카르텔을 단독으로 깨는 것은 불가능합니다. 차라리 자본력이 부족한 튀르키예나 크로아티아 등 후발 양식 국가에 ODA(공적개발원조) 또는 민간 합작 채널을 통해 설비(냉동/사료)를 선지원하고 반대급부로 양식 물량의 장기 매입권(Off-take)을 독점하는 투트랙 우회 전략을 구사."
-        />
-      </div>
+      ))}
+      <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />
+      <p style={{ color: '#f8fafc', margin: 0, fontSize: '0.8rem', fontWeight: 'bold' }}>
+        <span>총 양식량: </span><strong>{Number(total).toLocaleString()} 톤</strong>
+      </p>
     </div>
   );
 };
+
+const TunaAquaHegemony = () => (
+  <WidgetCard
+    title="양식 참다랑어 생산 패권"
+    icon={Anchor}
+    iconColor="#8b5cf6"
+    pillar="S1"
+    cardDesc="FAO FishStatJ로 상위 양식국 5개를 누적 면적으로 시각화 — 지중해권(호주·일본·스페인·몰타·멕시코)의 고부가가치 양식 시장 점유율 추이"
+    telemetry={{ status: 'SYNCED', syncDate: 'FAO FishStatJ' }}
+    chartHeight={350}
+    chart={
+      <AreaChart data={data as any[]} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+        <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
+        <YAxis stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
+        <Tooltip content={<CustomTooltip />} />
+        <Legend wrapperStyle={{ paddingTop: '20px' }} />
+        {countries.map((country, idx) => (
+          <Area key={country} type="monotone" dataKey={country} stackId="1" stroke={colors[idx % colors.length]} fill={colors[idx % colors.length]} fillOpacity={0.8} />
+        ))}
+      </AreaChart>
+    }
+    takeaway={{
+      situation: '지중해권(호주·일본·스페인·몰타·멕시코)이 양식 참다랑어 생산 패권을 장악. 고부가가치 양식 시장이 자본력·기술력 기반으로 선진 해양국에 집중되며 빠르게 재편 중.',
+      actionPlan: '지중해 남부(호주·일본 자본 유입) 카르텔을 단독 돌파하기는 어려움. 자본력이 부족한 튀르키예·크로아티아 등 후발 양식국에 ODA 또는 민간 합작 채널로 설비(냉동·사료) 선지원, 반대급부로 양식 물량 장기 매입권(Off-take) 독점하는 투트랙 우회 전략.',
+      source: 'FAO FishStatJ Aquaculture Production by Country',
+    }}
+  />
+);
 
 export default TunaAquaHegemony;
