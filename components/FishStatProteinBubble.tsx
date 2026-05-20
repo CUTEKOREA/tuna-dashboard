@@ -24,7 +24,7 @@ export default function FishStatProteinBubble() {
       <div style={{ padding: '16px', background: 'rgba(16, 185, 129, 0.1)', borderLeft: '4px solid #10b981', borderRadius: '4px', marginBottom: '24px', display: 'flex', gap: '12px' }}>
         <Target size={20} color="var(--color-success)" style={{ flexShrink: 0 }} />
         <div style={{ fontSize: '13px', lineHeight: '1.6' }}>
-          <strong style={{ color: 'var(--color-success)' }}>Situation:</strong> 고물가 인플레이션 속에서 타 육류 대비 압도적인 X축 최좌측(저단가) 우위 입증.<br/>
+          <strong style={{ color: 'var(--color-success)' }}>Situation:</strong> 고물가 인플레이션 속에서 타 육류 대비 X축 최좌측(저단가) 우위 입증.<br/>
           <strong style={{ color: 'var(--color-success)' }}>Takeaway:</strong> 예산이 타이트한 B2B(학교, 공공급식) 입찰 시 닭고기 타겟팅 대체제로 적극 제안 편성.
         </div>
       </div>

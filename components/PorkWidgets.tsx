@@ -71,7 +71,7 @@ export function W3_TradeSpread({accent}:any) {
 
 export function W4_ESG({accent}:any) {
   return <W title="육류별 탄소 배출 지수 비교" icon={Shield} accent={accent} sub="주요 단백질 원천별 1kg 생산 당 CO2e 배출량" telemetry="FAOSTAT | 2024"
-    sit="돈육(12.3kg CO2e)은 수산물(2~5kg) 대비 압도적으로 높음. Scope 3 규제 시 과세 대상."
+    sit="돈육(12.3kg CO2e)은 수산물(2~5kg) 대비 으로 높음. Scope 3 규제 시 과세 대상."
     strat="ESG 보고서에서 수산물의 낮은 탄소 배출을 강조하여 '그린 프리미엄' 획득." source="FAOSTAT Emissions">
     <BarChart data={D.esgData} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false}/>
       <XAxis type="number" stroke="#64748b" tick={{fontSize:9,fill:'#64748b'}}/><YAxis type="category" dataKey="category" stroke="#64748b" tick={{fontSize:9,fill:'#94a3b8'}} width={80}/><RT content={<CT/>}/><Legend verticalAlign="top" wrapperStyle={{fontSize:'10px',paddingBottom:'10px'}}/>

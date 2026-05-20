@@ -304,7 +304,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="가나의 2023/24 시즌 생산량은 기상이변과 질병으로 15년 만의 최저치인 약 58~60만 톤으로 급감했으며, 웨스턴 노스 지역 재배 면적의 81%가 CSSVD에 감염되었습니다. 전염병과 노령화된 나무로 인해 구조적 생산량 회복에는 5~10년 이상의 리드타임이 소요됩니다."
-              actionPlan="**[Actionable Insight]** 포트폴리오 내 F&B 기업들의 서아프리카 원물 의존도(Exposure)를 즉각 하향 조정하고, 병해충 리스크가 낮은 중남미(에콰도르) 산지로의 공급망 다변화(Supply Chain Diversification)를 위한 소싱 계약 구조 개편을 강제해야 합니다. 기후 스마트 농업(CSA) 기술 보유 기업에 대한 그로스 캐피탈 투자를 선제적으로 검토해야 해야 합니다. (Conviction Buy)"
+              actionPlan="포트폴리오 내 F&B 기업들의 서아프리카 원물 의존도(Exposure)를 즉각 하향 조정하고, 병해충 리스크가 낮은 중남미(에콰도르) 산지로의 공급망 다변화(Supply Chain Diversification)를 위한 소싱 계약 구조 개편을 강제해야 합니다. 기후 스마트 농업(CSA) 기술 보유 기업에 대한 그로스 캐피탈 투자를 선제적으로 검토해야 합니다."
               source="FAOSTAT QCL 2018-2024 (CI:A, GH:X) / EFI Cocoa Insight March 2025"
             />
           </div>
@@ -341,7 +341,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="뉴욕 ICE 코코아 선물 가격은 극심한 숏 스퀴즈와 패닉 바잉이 겹치며 2024년 4월 톤당 $12,000를 돌파해 역사적 최고점을 경신했으나, 2026년 초 현재 톤당 약 $3,765까지 70%가량 폭락하며 극단적인 변동성을 보이고 있습니다. 이러한 백워데이션과 롤러코스터 장세는 산업 내 대규모 마진콜과 유동성 경색을 유발했습니다."
-              actionPlan="**[Actionable Insight]** 선물 가격 급등(Spike)락에 따른 운전자본(Working Capital) 부담을 역이용하여, 유동성 위기에 처한 중소형 가공업체·무역상들을 할인된 밸류에이션에 인수하는 디스트레스드(Distressed) 바이아웃 기회를 포착해야 합니다. 피투자사에는 'Just-in-Case' 재고 확보 모델 전환과 롤링 헤지(Rolling Hedge) 전략을 의무화해야 해야 합니다. (Conviction Buy)"
+              actionPlan="선물 가격 급등락에 따른 운전자본(Working Capital) 부담을 역이용하여, 유동성 위기에 처한 중소형 가공업체·무역상들을 할인된 밸류에이션에 인수하는 디스트레스드(Distressed) 바이아웃 기회를 포착해야 합니다. 피투자사에는 'Just-in-Case' 재고 확보 모델 전환과 롤링 헤지(Rolling Hedge) 전략을 의무화해야 합니다."
               source="World Bank Commodity Index / ICCO Daily Price / ICE Futures"
             />
           </div>
@@ -374,7 +374,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="가나 정부는 2025년 10월 농가 수매가를 톤당 58,000세디(FOB의 70%)로 상향했으나, 글로벌 시장 가격(한때 $10,000+)과의 심각한 디커플링으로 2023/24 시즌에만 약 16만 톤이 인접국으로 밀수되었습니다. COCOBOD의 유동성 위기로 농가 대금 지급이 지연되며 현지 유통망이 마비 상태에 이르렀습니다."
-              actionPlan="**[Actionable Insight]** 국가 통제망의 허점과 현지 매입상(LBC)의 유동성 경색을 이용해, PE 자금력으로 현지 LBC에 직접 자금을 조달(Trade Finance)하고 원물 우선 수매권을 확보하는 딜을 추진해야 합니다. 농가와 직접 연결되는 직수매 채널에 자본을 투입하여 국가 리스크(Sovereign Risk)를 우회해야 해야 합니다. (Conviction Buy)"
+              actionPlan="국가 통제망의 허점과 현지 매입상(LBC)의 유동성 경색을 이용해, PE 자금력으로 현지 LBC에 직접 자금을 조달(Trade Finance)하고 원물 우선 수매권을 확보하는 딜을 추진해야 합니다. 농가와 직접 연결되는 직수매 채널에 자본을 투입하여 국가 리스크(Sovereign Risk)를 우회해야 합니다."
               source="ICE 선물거래소 / 가나 COCOBOD 공시 / EFI Cocoa Insight 2025"
             />
           </div>
@@ -419,7 +419,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="2023/24 시즌 기준 글로벌 카카오 가공 점유율은 유럽이 35.8%(171만 톤)로 1위를 지키고 있으나, 아프리카(22.9%)와 아시아(22.2%) 신흥 허브의 추격이 거셉니다. 특히 인도네시아는 원두 수출국에서 연간 약 38.6만 톤의 파생품을 수출하는 핵심 가공 허브로 전환하며 글로벌 밸류체인의 축을 이동시키고 있습니다."
-              actionPlan="**[Actionable Insight]** 원물 생산지와 인접한 아시아(인도네시아/말레이시아) 및 서아프리카 현지의 중간 가공 인프라 자산에 대한 인프라/PE 공동 투자를 집행해야 합니다. 유럽 의존도(Exposure)를 낮추고 아시아 역내 수급망을 장악하는 벤더를 롤업(Roll-up)하여 아시아 프리미엄을 독점하는 전략이 유효해야 합니다. (Conviction Buy)"
+              actionPlan="원물 생산지와 인접한 아시아(인도네시아/말레이시아) 및 서아프리카 현지의 중간 가공 인프라 자산에 대한 인프라/PE 공동 투자를 집행해야 합니다. 유럽 의존도(Exposure)를 낮추고 아시아 역내 수급망을 장악하는 벤더를 롤업(Roll-up)하여 아시아 프리미엄을 독점하는 전략이 유효해야 합니다."
               source="ICCO Quarterly Bulletin / UN Comtrade HS 1801-1806"
             />
           </div>
@@ -453,7 +453,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="원두 부족 사태로 초콜릿의 핵심 원료인 코코아 버터 가격이 톤당 $15,000~$16,000까지 치솟으며 사상 최고치를 기록했습니다. 버터의 선물 비율(Ratio)은 안정화되는 추세이나 파우더 수요는 강하게 유지되며 가격 상승을 견인하고 있어, 파생품별 마진 스프레드의 극심한 비대칭성이 초래되고 있습니다."
-              actionPlan="**[Actionable Insight]** 버터와 파우더의 마진 스프레드 괴리를 활용한 아비트리지(Arbitrage) 역량을 갖춘 가공업체(Grinder)에 투자 가중치를 두어야 합니다. 파우더 혼합 베이커리/음료 B2B 시장에서 확고한 캡티브(Captive) 채널을 보유한 업체를 선별하여 바이아웃 포트폴리오에 편입해야 해야 합니다. (Conviction Buy)"
+              actionPlan="버터와 파우더의 마진 스프레드 괴리를 활용한 아비트리지 역량을 갖춘 가공업체(Grinder)에 투자 가중치를 두어야 합니다. 파우더 혼합 베이커리/음료 B2B 시장에서 확고한 캡티브(Captive) 채널을 보유한 업체를 선별하여 바이아웃 포트폴리오에 편입해야 합니다."
               source="Bloomberg Commodity / ICE Cocoa Futures / ICCO Quarterly Bulletin"
             />
           </div>
@@ -487,8 +487,8 @@ export default function CocoaDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="전례 없는 매입원가(COGS) 폭등과 정부의 수매 대금 체불, 이력 추적 시스템 도입에 따른 고정비 증가로 서아프리카 현지의 로컬 매입상 및 영세 가공업체들의 줄도산 리스크가 커지고 있습니다. 반대로 글로벌 자본을 등에 업은 일부 현지 기업(Niche Cocoa, CPC 등)은 M&A 및 JV 타겟으로 떠오르고 있습니다."
-              actionPlan="**[Actionable Insight]** 철저한 실사(Due Diligence)를 통해 부채 비율이 높으나 안정적 가공 설비와 라이선스를 보유한 현지 자산을 식별하여 오퍼튜니스틱(Opportunistic) 매수 전략을 구사해야 합니다. 설비 노후화로 가동률이 낮은 국영기업(CPC) 대비 민간 우량 기업(Niche Cocoa)과의 JV에 그로스 펀드를 배정해야 해야 합니다. (Conviction Buy)"
+              situation="전례 없는 매입원가 폭등과 정부의 수매 대금 체불, 이력 추적 시스템 도입에 따른 고정비 증가로 서아프리카 현지의 로컬 매입상 및 영세 가공업체들의 줄도산 리스크가 커지고 있습니다. 반대로 글로벌 자본을 등에 업은 일부 현지 기업(Niche Cocoa, CPC 등)은 M&A 및 JV 타겟으로 떠오르고 있습니다."
+              actionPlan="철저한 실사(Due Diligence)를 통해 부채 비율이 높으나 안정적 가공 설비와 라이선스를 보유한 현지 자산을 식별하여 오퍼튜니스틱(Opportunistic) 매수 전략을 구사해야 합니다. 설비 노후화로 가동률이 낮은 국영기업(CPC) 대비 민간 우량 기업(Niche Cocoa)과의 JV에 그로스 펀드를 배정해야 합니다."
               source="Silla Co. 내부 실사 DB / COCOBOD Annual Report / Niche Cocoa IR"
             />
           </div>
@@ -520,7 +520,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="근월물 가격이 원월물보다 비싼 강력한 백워데이션 장세에서 최근 콘탱고(Contango) 구조로의 전환 조짐이 보이고 있습니다. 이는 극단적 숏 스퀴즈가 진정되고 시장이 정상화 단계에 진입했음을 시사합니다."
-              actionPlan="**[Actionable Insight]** 선물 커브의 구조적 변화를 실시간 모니터링하여, 백워데이션 심화 시에는 현물 비축을 축소하고 롤링 헤지를 활용하며, 콘탱고 진입 시에는 장기 선물 계약을 통해 매입원가(COGS)를 락인(Lock-in)하는 유연한 헤지 전략이 필요해야 합니다. (Conviction Buy)"
+              actionPlan="선물 커브의 구조적 변화를 실시간 모니터링하여, 백워데이션 심화 시에는 현물 비축을 축소하고 롤링 헤지를 활용하며, 콘탱고 진입 시에는 장기 선물 계약을 통해 매입원가를 락인하는 유연한 헤지 전략이 필요해야 합니다."
               source="ICE 선물 커브 실시간 모니터링"
             />
           </div>
@@ -569,7 +569,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="가나 내 가공 인프라는 연 6.4만 톤 CAPA를 지닌 국영 CPC가 설비 노후화와 자금난으로 가동률 부진 및 구조조정을 겪고 있는 반면, Niche Cocoa(연 6만 톤)나 Touton(연 2.5만 톤) 등 민간/외국계 기업은 HACCP 등 글로벌 인증을 무기로 정상 가동 중인 양극화 상태입니다."
-              actionPlan="**[Actionable Insight]** 디스트레스드 자산화된 현지 설비(CPC 유휴 라인 등)를 PE 자본으로 인수·현대화(CAPEX 투자)하여 아프리카 원산지 내 가공(Origin Grinding) Bottom-line(순이익)을 내재화(Internalization)해야 합니다. 한국 제과사 스펙에 맞춘 리쿼(Liquor) 직생산 기지로 탈바꿈시켜 매입원가(COGS) 절감 턴어라운드를 실현하는 것이 핵심 밸류 크리에이션 레버입니다."
+              actionPlan="디스트레스드 자산화된 현지 설비(CPC 유휴 라인 등)를 PE 자본으로 인수·현대화(CAPEX 투자)하여 아프리카 원산지 내 가공(Origin Grinding) Bottom-line(순이익)을 내재화해야 합니다. 한국 제과사 스펙에 맞춘 리쿼(Liquor) 직생산 기지로 탈바꿈시켜 매입원가 절감 턴어라운드를 실현하는 것이 핵심 밸류 크리에이션 레버입니다."
               source="COCOBOD Annual Report / Ghana Cocoa Processing Company (CPC) / Niche Cocoa IR"
             />
           </div>
@@ -601,7 +601,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="2025년 한국의 코코아 원두 수입액 약 5,870만 달러 중 80%($47M)가 가나산에 편중되어 있으나, 버터나 매스 같은 1차 가공품은 네덜란드나 말레이시아 등 제3국 가공 허브를 거쳐 우회 수입되는 '이중 수입 구조'를 띠고 있습니다."
-              actionPlan="**[Actionable Insight]** 가나 원두에 종속된 비효율(Inefficiency)적 우회 수입 구조를 타파하기 위해, 현지(가나) 1차 가공 설비를 보유한 업체와 한국 B2B 유통사를 수직 계열화하는 볼트온(Bolt-on) M&A를 실행해야 합니다. 중간 마진(Middleman Margin)을 내재화(Internalization)하여 국내 제과 대기업을 상대로 한 가격 경쟁력 우위를 선점해야 해야 합니다. (Conviction Buy)"
+              actionPlan="가나 원두에 종속된 비효율(Inefficiency)적 우회 수입 구조를 타파하기 위해, 현지(가나) 1차 가공 설비를 보유한 업체와 한국 B2B 유통사를 수직 계열화하는 볼트온(Bolt-on) M&A를 실행해야 합니다. 중간 마진(Middleman Margin)을 내재화하여 국내 제과 대기업을 상대로 한 가격 경쟁력 우위를 선점해야 합니다."
               source="관세청(KCS) OpenAPI / UN Comtrade HS 1801-1806"
             />
           </div>
@@ -640,7 +640,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="2023/24 시즌 글로벌 재고 대 분쇄(Stocks-to-Grindings) 비율은 46년 만의 최저치인 26.4%로 급락했으며, 뉴욕 ICE 인증 재고는 19년 만의 최저치(약 11.8만 톤)를 기록하는 등 물리적 재고 고갈이 심각합니다. 주요 수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며 운전자본(NWC) 압박을 겪고 있습니다."
-              actionPlan="**[Actionable Insight]** 피투자사의 DIO(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 해야 합니다. (Conviction Buy)"
+              actionPlan="피투자사의 DIO(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다."
               source="ICCO Quarterly Bulletin / ICE Certified Stock Data / DART 경쟁사 공시"
             />
           </div>
@@ -673,8 +673,8 @@ export default function CocoaDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="EUDR로 인한 실사 비용 증가는 인증 원두에 대한 '그린 프리미엄(Green Premium)'을 형성하고 있으며, 이는 가공업체와 소비자의 매입원가(COGS) 부담으로 작용하고 있습니다. 롯데웰푸드의 경우 2025년 1분기 코코아 매입원가(COGS) 급등(Spike)으로 영업Bottom-line(순이익)이 전년 동기 대비 35.6% 급감하는 등 마진 압박이 현실화되었습니다."
-              actionPlan="**[Actionable Insight]** 피투자 기업이 그린 프리미엄 비용을 최종 B2B/B2C 판가에 전가(Pass-through)할 수 있는 브랜드 파워 및 시장 지배력이 있는지를 밸류에이션의 최우선 지표로 삼아야 합니다. 프리미엄 비용 전가가 가능한 하이엔드/다크 초콜릿 라인업으로 포트폴리오를 강제 재편해야 해야 합니다. (Conviction Buy)"
+              situation="EUDR로 인한 실사 비용 증가는 인증 원두에 대한 '그린 프리미엄(Green Premium)'을 형성하고 있으며, 이는 가공업체와 소비자의 매입원가 부담으로 작용하고 있습니다. 롯데웰푸드의 경우 2025년 1분기 코코아 매입원가 급등으로 영업Bottom-line(순이익)이 전년 동기 대비 35.6% 급감하는 등 마진 압박이 현실화되었습니다."
+              actionPlan="피투자 기업이 그린 프리미엄 비용을 최종 B2B/B2C 판가에 전가(Pass-through)할 수 있는 브랜드 파워 및 시장 지배력이 있는지를 밸류에이션의 최우선 지표로 삼아야 합니다. 프리미엄 비용 전가가 가능한 하이엔드/다크 초콜릿 라인업으로 포트폴리오를 강제 재편해야 합니다."
               source="EU 집행위(EC) EUDR 규정 / 롯데웰푸드 IR 2025Q1 / SCFI 운임지수"
             />
           </div>
@@ -721,8 +721,8 @@ export default function CocoaDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="코코아 버터 가격이 톤당 $15,000을 돌파하며 역사적 고점을 찍음에 따라, 제과 및 베이커리 업계는 매입원가(COGS) 절감을 위해 식물성 유지를 활용한 코코아 버터 대체재(CBS) 및 동등재(CBE)의 사용 비율을 급격히 늘리고 있습니다."
-              actionPlan="**[Actionable Insight]** 팔유, 시어버터 기반의 식물성 유지 및 CBE 제조 벤더들을 선제적으로 롤업(Roll-up) 매수하여 규모의 경제를 달성해야 합니다. B2B 식품소재 기업 포트폴리오의 Bottom-line(순이익)률 방어를 위해 CBE R&D 역량을 가진 피투자사 멀티플(Multiple)을 상향 조정하고 자금을 집중 투여해야 해야 합니다. (Conviction Buy)"
+              situation="코코아 버터 가격이 톤당 $15,000을 돌파하며 역사적 고점을 찍음에 따라, 제과 및 베이커리 업계는 매입원가 절감을 위해 식물성 유지를 활용한 코코아 버터 대체재(CBS) 및 동등재(CBE)의 사용 비율을 급격히 늘리고 있습니다."
+              actionPlan="팔유, 시어버터 기반의 식물성 유지 및 CBE 제조 벤더들을 선제적으로 롤업(Roll-up) 매수하여 규모의 경제를 달성해야 합니다. B2B 식품소재 기업 포트폴리오의 Bottom-line(순이익)률 방어를 위해 CBE R&D 역량을 가진 피투자사 멀티플(Multiple)을 상향 조정하고 자금을 집중 투여해야 합니다."
               source="Krungsri Research 팔유 산업 전망 / Silla Co. 내부 모델"
             />
           </div>
@@ -757,7 +757,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
               situation="서아프리카의 공급 붕괴 속에서 에콰도르는 헥타르당 800kg의 높은 수율을 무기로 생산량을 60만 톤 이상으로 확대하며 글로벌 3위이자 최적의 대안으로 급부상했습니다. 한국 시장 역시 리스크 헷지를 위해 에콰도르 수입 규모를 천만 달러 이상으로 확대하며 프리미엄 원두 비중을 높이고 있습니다."
-              actionPlan="**[Actionable Insight]** 에콰도르, 브라질 등 남미 산지의 현지 집하장 및 수출 터미널 자산에 전략적 지분 투자를 단행하여 서아프리카 리스크를 상쇄하는 지역적 다변화 펀드를 조성해야 합니다. 특히 프리미엄(Fine or Flavor) 코코아를 처리하는 남미의 빈투바(Bean-to-Bar) 원료 공급망을 선점해야 해야 합니다. (Conviction Buy)"
+              actionPlan="에콰도르, 브라질 등 남미 산지의 현지 집하장 및 수출 터미널 자산에 전략적 지분 투자를 단행하여 서아프리카 리스크를 상쇄하는 지역적 다변화 펀드를 조성해야 합니다. 특히 프리미엄(Fine or Flavor) 코코아를 처리하는 남미의 빈투바(Bean-to-Bar) 원료 공급망을 선점해야 합니다."
               source="Silla Co. 소싱 인텔리전스 DB / 관세청(KCS) OpenAPI"
             />
           </div>
@@ -793,8 +793,8 @@ export default function CocoaDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="매입원가(COGS) 폭등 속에서 제조사들은 제품 중량을 줄이는 슈링크플레이션을 단행하거나, 카카오 함량을 낮추고 식물성 유지(CBE) 등 대체 원료를 사용하는 방향으로 레시피를 변경해 매입원가(COGS)를 방어하고 있습니다."
-          actionPlan="**[Actionable Insight]** 대중적 시장에서는 팜유/설탕 기반 배합으로 단가를 낮추는 &apos;가성비 워터폴 전략&apos;을 취하되, 핵심 타겟에게는 코코아 본연의 성분을 유지한 &apos;고함량 프리미엄 라인&apos;을 병행하는 투트랙 접근이 필수적입니다. (Execution Recommended)"
+          situation="매입원가 폭등 속에서 제조사들은 제품 중량을 줄이는 슈링크플레이션을 단행하거나, 카카오 함량을 낮추고 식물성 유지(CBE) 등 대체 원료를 사용하는 방향으로 레시피를 변경해 매입원가를 방어하고 있습니다."
+          actionPlan="대중적 시장에서는 팜유/설탕 기반 배합으로 단가를 낮추는 &apos;가성비 워터폴 전략&apos;을 취하되, 핵심 타겟에게는 코코아 본연의 성분을 유지한 &apos;고함량 프리미엄 라인&apos;을 병행하는 투트랙 접근이 필수적입니다. (Execution Recommended)"
           source="KAMIS 도매물가 / KCS API 융합"
         />
           </div>
@@ -825,8 +825,8 @@ export default function CocoaDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-              situation="원물가 폭등으로 국내 주요 제과 업체들의 매입원가(COGS) 부담률이 80%를 상회하고 있습니다. 수익성(Profitability) 방어를 위해 해외 비중이 높은 업체를 중심으로 CBE(코코아 대체유) 전환율을 높이고 슈링크플레이션을 단행 중입니다."
-              actionPlan="**[Actionable Insight]** 내수 위주 업체의 실적 악화 가능성에 대비하여 공매도 포지션을 검토하거나, 대체유 제조 원천 기술을 확보하고 글로벌 밸류체인 헤지가 가능한 업체를 선별하여 롱(Long) 포지션을 구축하는 롱숏 전략을 구사해야 해야 합니다. (Conviction Buy)"
+              situation="원물가 폭등으로 국내 주요 제과 업체들의 매입원가 부담률이 80%를 상회하고 있습니다. 수익성 방어를 위해 해외 비중이 높은 업체를 중심으로 CBE(코코아 대체유) 전환율을 높이고 슈링크플레이션을 단행 중입니다."
+              actionPlan="내수 위주 업체의 실적 악화 가능성에 대비하여 공매도 포지션을 검토하거나, 대체유 제조 원천 기술을 확보하고 글로벌 밸류체인 헤지가 가능한 업체를 선별하여 롱(Long) 포지션을 구축하는 롱숏 전략을 구사해야 합니다."
               source="DART 전자공시 및 Silla Co. 내부 재무 모델링"
             />
           </div>
@@ -872,7 +872,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="코코아 생산 과정에서 발생하는 방대한 부산물(Husks, Pods)은 폐기물로 간주되어 탄소세 및 처리 비용을 발생시키지만, 그 이면에는 바이오 비료나 사료로의 엄청난 전환 잠재력이 숨겨져 있습니다."
-          actionPlan="**[Actionable Insight]** 버려지는 코코아 부산물을 자원화하는 애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를 구축해 폐기 비용을 제로화하고, 이를 새로운 ESG 기반의 캐시카우(Cash Cow)로 탈바꿈시키십시오."
+          actionPlan="버려지는 코코아 부산물을 자원화하는 애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를 구축해 폐기 비용을 제로화하고, 이를 새로운 ESG 기반의 캐시카우(Cash Cow)로 탈바꿈시키십시오."
           source="AgFunder 애그리테크 리포트 / 바이오매스 저널"
         />
           </div>
@@ -907,7 +907,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="EUDR 규정을 위반해 산림 훼손과 연관된 제품을 유통할 경우, EU 역내 연간 총Top-line 매출의 최소 4%에 달하는 막대한 벌금 조치가 내려질 수 있어 실시간 이력 추적 시스템(CMS) 도입이 발등의 불이 되었습니다."
-          actionPlan="**[Actionable Insight]** 단순한 환경 선언을 넘어 기업의 존폐를 가를 수 있는 핵심 재무 리스크이므로, 즉각적으로 투명한 이력 추적 및 디지털 실사(Due Diligence) 인프라에 투자해 글로벌 규제 준수 역량을 획득해야 해야 합니다. (Conviction Buy)"
+          actionPlan="단순한 환경 선언을 넘어 기업의 존폐를 가를 수 있는 핵심 재무 리스크이므로, 즉각적으로 투명한 이력 추적 및 디지털 실사(Due Diligence) 인프라에 투자해 글로벌 규제 준수 역량을 획득해야 합니다."
           source="Trase.earth / 가나 TCDP API"
         />
           </div>
@@ -933,7 +933,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="자유무역협정(FTA) 네트워크를 전략적으로 활용하면, 원물 수입부터 가공 후 역수출(Re-export)에 이르는 전 과정에서 발생하는 막대한 관세 장벽을 우회하고 물류비용을 극적으로 절감할 수 있습니다."
-          actionPlan="**[Actionable Insight]** 한국의 무관세 지위를 십분 활용해 동북아 코코아 가공 및 유통의 핵심 허브로 진화하십시오. 일본(프리미엄 시장)과 중국(매스 마켓)으로 뻗어가는 최적의 물류 넥서스를 선점해 시장 지배력을 강화해야 해야 합니다. (Conviction Buy)"
+          actionPlan="한국의 무관세 지위를 십분 활용해 동북아 코코아 가공 및 유통의 핵심 허브로 진화하십시오. 일본(프리미엄 시장)과 중국(매스 마켓)으로 뻗어가는 최적의 물류 넥서스를 선점해 시장 지배력을 강화해야 합니다."
           source="UN Comtrade 역수출 실데이터 / KCS API"
         />
           </div>
@@ -968,7 +968,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="한국/일본 시장은 높은 단가에도 다크 초콜릿 등 프리미엄 제품 수요가 굳건한 반면, 신흥 시장에서는 대중적이고 저렴한 가성비 초콜릿 제품(CBE 활용) 소비가 급격히 팽창하고 있습니다."
-          actionPlan="**[Actionable Insight]** 국가별 지불 용의와 선호도 격차를 활용하여, 선진 시장에는 고마진 프리미엄 라인업을 공급하고 신흥 시장에는 CBE 활용 제품을 스플릿(Split) 매각하는 세분화된 포트폴리오 전략으로 수익을 극대화해야 해야 합니다. (Conviction Buy)"
+          actionPlan="국가별 지불 용의와 선호도 격차를 활용하여, 선진 시장에는 고마진 프리미엄 라인업을 공급하고 신흥 시장에는 CBE 활용 제품을 스플릿(Split) 매각하는 세분화된 포트폴리오 전략으로 수익을 극대화해야 합니다."
           source="KCS(관세청) 실측 / ICCO API"
         />
           </div>
@@ -1003,8 +1003,8 @@ export default function CocoaDashboard() {
           </div>
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
-          situation="기존 식음료 채널이 매입원가(COGS) 폭등으로 마진 압박에 시달리는 반면, 코코아 추출물(폴리페놀 등)은 피부 보습 및 항산화 효과가 입증되어 제약/코스메틱 산업에서 높은 프리미엄 가격으로 거래되고 있습니다."
-          actionPlan="**[Actionable Insight]** 식품 산업의 낮은 수익성(Profitability)을 극복하기 위해 부가가치가 월등히 높은 K-뷰티 화장품 및 코스메슈티컬(Cosmeceutical) 헬스케어 소재로 코코아 원물을 치환함으로써 투자 수익률(ROI)을 퀀텀 점프시켜야 해야 합니다. (Conviction Buy)"
+          situation="기존 식음료 채널이 매입원가 폭등으로 마진 압박에 시달리는 반면, 코코아 추출물(폴리페놀 등)은 피부 보습 및 항산화 효과가 입증되어 제약/코스메틱 산업에서 높은 프리미엄 가격으로 거래되고 있습니다."
+          actionPlan="식품 산업의 낮은 수익성을 극복하기 위해 부가가치가 월등히 높은 K-뷰티 화장품 및 코스메슈티컬(Cosmeceutical) 헬스케어 소재로 코코아 원물을 치환함으로써 투자 수익률(ROI)을 퀀텀 점프시켜야 해야 합니다."
           source="식약처 MFDS API / B2B 데이터베이스"
         />
           </div>
@@ -1040,7 +1040,7 @@ export default function CocoaDashboard() {
           <div style={{ marginTop:'auto' }}>
             <TakeawayBox
           situation="가나산을 피해 중남미산으로 다변화할 경우 식약처 중금속(카드뮴) 규제에 가로막히고, 동남아산 팜유로 대체하려 해도 팜유 역시 EUDR 산림벌채 규제 대상이라 이중 규제의 덫에 직면하게 직면하게 됩니다."
-          actionPlan="**[Actionable Insight]** 단순한 산지 다변화나 대체 원료 투입만으로는 규제 압박을 피할 수 없으므로, 카드뮴 등 식품 안전 기준과 EUDR의 환경 실사 요건을 동시에 충족하도록 설계하는 &apos;안전성 기반 공급망 설계(Safety-by-Design)&apos;가 도입되어야 해야 합니다. (Conviction Buy)"
+          actionPlan="단순한 산지 다변화나 대체 원료 투입만으로는 규제 압박을 피할 수 없으므로, 카드뮴 등 식품 안전 기준과 EUDR의 환경 실사 요건을 동시에 충족하도록 설계하는 &apos;안전성 기반 공급망 설계(Safety-by-Design)&apos;가 도입되어야 해야 합니다."
           source="MFDS 식약처 수입식품검역 API"
         />
           </div>

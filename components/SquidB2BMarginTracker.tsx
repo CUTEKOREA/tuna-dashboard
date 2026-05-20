@@ -32,7 +32,7 @@ export default function SquidB2BMarginTracker() {
           </BarChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="내부 영업 관리 시스템" situation="[Channel Margin Leakage] 전통 재래 도매 채널(Wholesale) 납품 시 경매 수수료(4% 징수) 및 다단계 물류비(Logistics Friction)로 인한 심각한 OPM(영업Bottom-line(순이익)률) 누수(Leakage)가 확인됩니다. 반면, 대형 마트향 1차 벤더 직납 채널은 초기 패키징 CAPEX를 초과하는 압도적 마진 프리미엄을 보장합니다." actionPlan="**[Actionable Insight]** [B2B Direct-Channel Overweight] 저부가가치 전통 도매 채널에 대한 의존도(Exposure)를 즉시 축소(Underweight)하십시오. 전사 물량의 70% 이상을 이마트, 코스트코 등 기업형 리테일러향 직납(Direct B2B) 티어 1 벤더 채널로 집중(Overweight)시켜 마진을 락인하고, 도매 시장은 단순 덤핑 처리장(Dump Yard)으로 격하 병행 운용해야 합니다. (Conviction Buy)" />
+      <TakeawayBox source="내부 영업 관리 시스템" situation="전통 재래 도매 채널(Wholesale) 납품 시 경매 수수료(4% 징수) 및 다단계 물류비(Logistics Friction)로 인한 심각한 OPM(영업Bottom-line(순이익)률) 누수(Leakage)가 확인됩니다. 반면, 대형 마트향 1차 벤더 직납 채널은 초기 패키징 CAPEX를 초과하는 마진 프리미엄을 보장합니다." actionPlan="[B2B Direct-Channel Overweight] 저부가가치 전통 도매 채널에 대한 의존도(Exposure)를 즉시 축소(Underweight)하십시오. 전사 물량의 70% 이상을 이마트, 코스트코 등 기업형 리테일러향 직납(Direct B2B) 티어 1 벤더 채널로 집중(Overweight)시켜 마진을 락인하고, 도매 시장은 단순 덤핑 처리장(Dump Yard)으로 격하 병행 운용해야 합니다." />
     </div>
   );
 }

@@ -105,7 +105,7 @@ export function PollockPriceForecastChart() {
       )}
       <TakeawayBox
         situation="통명태 FOB 상승 추세(2025Q3 $1,580 예측). 수리미는 구조적 상승(아시아 HMR 수요). 명란은 프리미엄 성장(D2C $10,800)."
-        actionPlan="**[Actionable Insight]** 통명태: A-시즌 종료 전 선제 매입. 수리미: 실꼬리돔 블렌딩 최적화. 명란: D2C 프리미엄 전환으로 마진 7배 확보."
+        actionPlan="통명태: A-시즌 종료 전 선제 매입. 수리미: 실꼬리돔 블렌딩 최적화. 명란: D2C 프리미엄 전환으로 마진 7배 확보."
         source="(기본 2024-08) 수산물 무역 단기 전망모형 + FRED API"
       />
     </div>
@@ -165,8 +165,8 @@ export function PollockScenarioSimulator() {
         </div>
       )}
       <TakeawayBox
-        situation="기준 시나리오(45% 확률) 마진 12.5%. 쿼터 감축 시 마진 8.2%로 급락. 러시아 제재 강화 시 5.8%까지 하락 리스크(Risk)."
-        actionPlan="**[Actionable Insight]** 쿼터 감축·제재 강화 동시 발생(15%) 시 대체 어종 블렌딩 + 미국 MSC 전환 즉시 실행."
+        situation="기준 시나리오(45% 확률) 마진 12.5%. 쿼터 감축 시 마진 8.2%로 급락. 러시아 제재 강화 시 5.8%까지 하락 리스크."
+        actionPlan="쿼터 감축·제재 강화 동시 발생(15%) 시 대체 어종 블렌딩 + 미국 MSC 전환 즉시 실행."
         source="(기본 2024-08) 전망모형 + NOAA SST 데이터"
       />
     </div>

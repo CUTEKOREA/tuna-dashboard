@@ -120,7 +120,7 @@ const WIDGET_ICONS: Record<string, any> = {
 
 const SECTIONS = [
   { 
-    title: "Part I — 원물 생산 (Raw Material)", 
+    title: "Part I — 원물 생산", 
     desc: "글로벌 어획량, 자원평가, 조업 효율, TAC 관리, 기후 리스크 및 KFAS 수산과학 연구", 
     ids: ["w_galchi_prod_risk","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"], 
     accent: "var(--color-success)",

@@ -49,7 +49,7 @@ export default function SquidClimateRadar() {
 
       <TakeawayBox
         situation="동해 수온이 급등(SST Anomaly > 1.5℃)할 때 국내산 살오징어는 심해 및 북측 국경으로 빠져나가며 전멸하는 반면, 엘니뇨/수온 변동 사이클과 맞물려 남동태평양(페루) 대왕오징어 생산량은 오히려 폭증하는 디커플링 조짐이 뚜렷합니다."
-        actionPlan="**[Actionable Insight]** 실시간 수온 모니터링 수치가 임계점을 넘을 경우 즉각 경보를 발동하고, '국내 연근해 매입 비중 축소 및 페루산 냉각품 선도 계약 확대'라는 공급망 스위칭(Supply Chain Switching) 결정을 내려야 기후 리스크를 상쇄할 수 있습니다."
+        actionPlan="실시간 수온 모니터링 수치가 임계점을 넘을 경우 즉각 경보를 발동하고, '국내 연근해 매입 비중 축소 및 페루산 냉각품 선도 계약 확대'라는 공급망 스위칭(Supply Chain Switching) 결정을 내려야 기후 리스크를 상쇄할 수 있습니다."
       />
     </div>
   );

@@ -147,7 +147,7 @@ export default function MackerelDashboard() {
 
         const arbitrageWidget = {
           id: 'w_arbitrage_live',
-          title: '실시간 수입산 vs 국내산 차익거래 (Arbitrage) 레이더',
+          title: '실시간 수입산 vs 국내산 차익거래 레이더',
           subtitle: '해양수산부 실시간 위판가 기반 매입 타점 포착',
           chartType: 'Composed',
           xKey: 'market',
@@ -263,7 +263,7 @@ export default function MackerelDashboard() {
           lines: [{ key: 'value', name: '수입액 (백만 유로)', color: '#f59e0b' }],
           dualAxis: true, data: eurostatData.imports, badges: ['Live API'],
           sit: `EU-27 고등어 수입 시장은 연간 26만 톤 이상으로 성장하여 글로벌 수입 시장의 주요 권역으로 자리매김하고 있습니다. 네덜란드·독일·프랑스가 주요 수입국이며, 수입액 기준 5년간 연평균 8% 성장을 기록하고 있습니다.`,
-          strat: 'EU 내수 수요 증가는 글로벌 고등어 단가 상승을 견인하므로, 선도 거래(Forward Contract) 비율을 30% 이상으로 확대하여 헤지해야 합니다. 단, EU의 IUU 규제 강화 시 인증 도태 모듈의 선제적 도입이 필요합니다.',
+          strat: 'EU 내수 수요 증가는 글로벌 고등어 단가 상승을 견인하므로, 선도 거래 비율을 30% 이상으로 확대하여 헤지해야 합니다. 단, EU의 IUU 규제 강화 시 인증 도태 모듈의 선제적 도입이 필요합니다.',
           apiSource: '📡 [LIVE API 연동: Eurostat SDMX] EU 회원국 실시간 무역 데이터',
           source: 'Eurostat', unit: '천톤, 백만 유로'
         });
@@ -385,7 +385,7 @@ export default function MackerelDashboard() {
           bars: [{ key: 'volumeTeu', name: '누적 수출량 (TEU)', color: '#3b82f6' }],
           data: supplierData.data,
           badges: ['Live API', 'Verified', 'Forecast'],
-          sit: `노르웨이 메이저 벤더(Pelagia, Nils) 외에 영국(Highland), 아일랜드(Killybegs), 아이슬란드(Ísfélag)의 꾸준한 B2B 수출 기록이 검증되었습니다. TEU 기준 Pelagia가 압도적 1위이며, 대체 벤더들은 각각 200~800 TEU 규모로 중소형 공급업체입니다.`,
+          sit: `노르웨이 메이저 벤더(Pelagia, Nils) 외에 영국(Highland), 아일랜드(Killybegs), 아이슬란드(Ísfélag)의 꾸준한 B2B 수출 기록이 검증되었습니다. TEU 기준 Pelagia가 1위이며, 대체 벤더들은 각각 200~800 TEU 규모로 중소형 공급업체입니다.`,
           strat: '노르웨이의 할당량 감축에 대비하여 유럽 북부 대체 벤더들과의 선제적 스팟 계약 풀(Pool)을 구축해야 합니다. Highland·Ísfélag 등과 연간 500 TEU 규모의 예비 계약을 체결하면, Pelagia 공급 차질 시 즉시 대체 물량 확보가 가능합니다.',
           apiSource: '📡 [LIVE API 연동: ImportYeti] B2B 수출입 스크래핑',
           source: 'ImportYeti / Veridion', unit: 'TEU'
@@ -833,11 +833,11 @@ export default function MackerelDashboard() {
       {/* ═══ 5-Part Strategic Intelligence Architecture ═══ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
         
-        {/* Part I — 원물 생산 (Raw Material) */}
+        {/* Part I — 원물 생산 */}
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
             <Fish size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part I — 원물 생산 (Raw Material)</h2>
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part I — 원물 생산</h2>
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>

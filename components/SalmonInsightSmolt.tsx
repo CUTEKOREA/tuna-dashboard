@@ -61,7 +61,7 @@ export default function SalmonInsightSmolt() {
 
       <TakeawayBox 
         situation="전통적 해상 가두리 양식은 바다이(Sea lice)와 수온 상승으로 폐사율이 15%를 돌파하며 성장의 한계에 직면했습니다. 연안 양식 면허 신규 발급도 전면 중단된 상태입니다."
-        actionPlan="**[Actionable Insight]** 초기 생존율을 극대화하는 육상 RAS '포스트 스몰트(500g 육성 후 해상 이동)' 설비와, 바다이 접근을 차단하는 심해 잠수식 가두리에 집중 투자해야 합니다. 기존 패러다임을 혁신하는 기업만이 생산량 파이를 독식합니다. (Conviction Buy)"
+        actionPlan="초기 생존율을 극대화하는 육상 RAS '포스트 스몰트(500g 육성 후 해상 이동)' 설비와, 바다이 접근을 차단하는 심해 잠수식 가두리에 집중 투자해야 합니다. 기존 패러다임을 혁신하는 기업만이 생산량 파이를 독식합니다."
         source="Mowi ASA Annual Report 2024 · Grieg Seafood Q4-2024 IR [📡 LIVE API 연동: Oslo Børs]"
       />
     </div>

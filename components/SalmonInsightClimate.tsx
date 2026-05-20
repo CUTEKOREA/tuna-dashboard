@@ -61,7 +61,7 @@ export default function SalmonInsightClimate() {
 
       <TakeawayBox 
         situation="단기적인 수온 상승은 연어 성장을 앞당겨 출하 사이클을 단축시키나, 임계점(+1.5°C) 초과 시 해파리 및 조류 대발생으로 해상 폐사율이 폭증(2024년 16% 초과)합니다. 더 큰 치명타는 2030년 발효될 살인적인 톤당 탄소세(Carbon Tax) 폭탄입니다."
-        actionPlan="**[Actionable Insight]** PEF 자본 조달 시 '수온 리스크 프리미엄'과 '잠재 탄소세 부채'를 재무 모델에 선제 반영하십시오. 디젤 기반 물류망과 사료 바지선을 전동화(Electrification) 및 수소 하이브리드로 즉시 교체하여 다가올 세금 폭탄과 Scope 3 규제를 원천 헷징해야 합니다. (Conviction Buy)"
+        actionPlan="PEF 자본 조달 시 '수온 리스크 프리미엄'과 '잠재 탄소세 부채'를 재무 모델에 선제 반영하십시오. 디젤 기반 물류망과 사료 바지선을 전동화(Electrification) 및 수소 하이브리드로 즉시 교체하여 다가올 세금 폭탄과 Scope 3 규제를 원천 헷징해야 합니다."
         source="IEA Net Zero & GSI Report [📡 LIVE API 연동: 실시간 탄소세율 및 해수온 모니터링]"
       />
     </div>

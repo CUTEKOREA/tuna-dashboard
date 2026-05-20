@@ -33,7 +33,7 @@ export default function SquidCPUEProfitability() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="선단 조업일지" situation="[Unit Economics Dead-cross] 단위노력당어획량(CPUE) 하락 곡선이 선단 체재비 및 선박 연료유(MGO) 고정비 지출선(BEP)을 뚫고 내려가는 데드크로스(Dead-cross) 빈도가 리스크(Risk) 수위(Critical Level)를 초과했습니다." actionPlan="**[Actionable Insight]** [Automated Stop-Loss Protocol] 선장(Captain)의 직관에 의존한 무의미한 탐색 조업을 전면 금지하십시오. 일일 CPUE가 3영업일 연속 고정비 BEP(붉은 점선)를 하회하는 즉시, 해당 수역 내 선단 전체에 대한 강제 조업 셧다운(Shutdown) 및 신규 어장으로의 전술적 철수 명령(Stop-loss)을 자동 하달하는 알고리즘을 도입하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" />
+      <TakeawayBox source="선단 조업일지" situation="단위노력당어획량(CPUE) 하락 곡선이 선단 체재비 및 선박 연료유(MGO) 고정비 지출선(BEP)을 뚫고 내려가는 데드크로스(Dead-cross) 빈도가 리스크 수위(Critical Level)를 초과했습니다." actionPlan="[Automated Stop-Loss Protocol] 선장(Captain)의 직관에 의존한 무의미한 탐색 조업을 전면 금지하십시오. 일일 CPUE가 3영업일 연속 고정비 BEP(붉은 점선)를 하회하는 즉시, 해당 수역 내 선단 전체에 대한 강제 조업 셧다운(Shutdown) 및 신규 어장으로의 전술적 철수 명령(Stop-loss)을 자동 하달하는 알고리즘을 도입." />
     </div>
   );
 }

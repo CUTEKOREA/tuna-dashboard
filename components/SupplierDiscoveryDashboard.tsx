@@ -26,7 +26,7 @@ const allMockSuppliers = [
   { id: 6, name: 'Olam Agri Vietnam', country: '베트남', trust: 97, lastShipment: '2026-05-12', products: 'Raw Cashew Nuts, W320', category: 'cashew', hsCode: '0801.32', tariff: '0.0%', trustRationale: '아프리카-베트남 연계 조달망 구축, 품질(W320 이상) 안정성 최상위 등급' },
   { id: 7, name: 'Cargill Cocoa West Africa', country: 'Ivory Coast', trust: 99, lastShipment: '2026-05-13', products: 'Cocoa Beans, Cocoa Butter', category: 'cocoa', hsCode: '1801.00', tariff: '2.0%', trustRationale: '글로벌 농산물 메이저, 지속가능성 인증(Rainforest Alliance) 확보' },
   { id: 8, name: 'Chanthaburi Fresh Fruits', country: '태국', trust: 94, lastShipment: '2026-05-11', products: 'Fresh Mangosteen, Tropical Fruits', category: 'mangosteen', hsCode: '0804.50', tariff: '24.0%', trustRationale: '항공/해상 콜드체인 데이터 무결점, VHT(증열처리) 검역 통과율 100%' },
-  { id: 9, name: 'Agro Cassava Exporters', country: 'Nigeria', trust: 90, lastShipment: '2026-05-02', products: 'Dried Cassava Chips', category: 'cassava', hsCode: '0714.10', tariff: '5.0%', trustRationale: '아프리카 현지 물류 제약 리스크를 감안하더라도 가격 경쟁력 압도적 (A등급)' }
+  { id: 9, name: 'Agro Cassava Exporters', country: 'Nigeria', trust: 90, lastShipment: '2026-05-02', products: 'Dried Cassava Chips', category: 'cassava', hsCode: '0714.10', tariff: '5.0%', trustRationale: '아프리카 현지 물류 제약 리스크를 감안하더라도 가격 경쟁력 (A등급)' }
 ];
 
 const trendData = [

@@ -635,7 +635,7 @@ export default function FalklandSquidDashboard() {
             </ResponsiveContainer>
           </div>
           <TakeawayBox
-            situation={<>규모 면에서 <strong>정일산업(5척, 약 4,041톤)</strong>이 1위이나, 단일 선박 생산성 측면에서는 1척으로 <strong>1,021톤</strong>을 기록한 <strong>㈜피에이아이</strong>의 효율성이 압도적임.</>}
+            situation={<>규모 면에서 <strong>정일산업(5척, 약 4,041톤)</strong>이 1위이나, 단일 선박 생산성 측면에서는 1척으로 <strong>1,021톤</strong>을 기록한 <strong>㈜피에이아이</strong>의 효율성이 임.</>}
             actionPlan={<>물량 확보(정일산업 모델)와 고효율(피에이아이 모델) 중 전략적 방향성 설정 시 피에이아이의 조업 노하우 벤치마킹 필요.</>}
             source="2026년 포크 오징어채낚기 어획현황"
           />

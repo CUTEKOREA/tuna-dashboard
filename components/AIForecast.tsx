@@ -267,7 +267,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
             <div className={styles.timelineContent}>
               <div className={styles.timelineHeading}><CheckCircle2 size={14} style={{display:'inline', marginRight:'4px', color:'var(--color-danger)', verticalAlign:'text-bottom'}}/>라니냐 장기화에 따른 수급 스파이크 검증</div>
               <div className={styles.timelineDesc}>
-                23년 2분기 Brent유가는 $75~$80 안정세를 보였으나, 이례적인 3년 연속 라니냐(Triple-dip La Niña) 여파로 서태평양 어획량이 극도로 악화되며 SKJ 단가가 <span>$2,000에 도달하는 기형적 스파이크</span>를 보였습니다. 유류비보다 수급(Catch rate)이 압도적으로 단가를 지배한 사례입니다.
+                23년 2분기 Brent유가는 $75~$80 안정세를 보였으나, 이례적인 3년 연속 라니냐(Triple-dip La Niña) 여파로 서태평양 어획량이 극도로 악화되며 SKJ 단가가 <span>$2,000에 도달하는 기형적 스파이크</span>를 보였습니다. 유류비보다 수급(Catch rate)이 으로 단가를 지배한 사례입니다.
               </div>
             </div>
           </div>

@@ -66,7 +66,7 @@ export default function CategoryPortfolio() {
           <div className={`${styles.quadrant} ${styles.tl}`}><span><TermTooltip term="Question Mark" description="시장 점유율은 아직 낮지만 매우 빠르게 성장하고 있어 본격적인 대규모 육성 투자가 필요할지도 모르는 '물음표' 사업군입니다. (예: 비건/대체 참치)" /></span></div>
           <div className={`${styles.quadrant} ${styles.tr}`}><span><TermTooltip term="Star" description="시장 점유율도 높고 성장률도 가파른 수익창출원입니다. 경쟁을 방어하기 위해 적극적인 투자가 필요한 '에이스' 단위입니다." /></span></div>
           <div className={`${styles.quadrant} ${styles.bl}`}><span><TermTooltip term="Dog" description="점유율도 낮고 성장률도 정체되어있어 시장 철수, 매각, 외주화를 고려해야 하는 '개' 사업군입니다." /></span></div>
-          <div className={`${styles.quadrant} ${styles.br}`}><span><TermTooltip term="Cash Cow" description="성장률은 비교적 낮지만 압도적인 시장 점유율을 바탕으로 회사에 꼬박꼬박 막대한 현금(돈줄)을 벌어다 주는 안정적 '캐시카우' 사업군입니다. (예: 일반 오일 참치 캔)" /></span></div>
+          <div className={`${styles.quadrant} ${styles.br}`}><span><TermTooltip term="Cash Cow" description="성장률은 비교적 낮지만 시장 점유율을 바탕으로 회사에 꼬박꼬박 막대한 현금(돈줄)을 벌어다 주는 안정적 '캐시카우' 사업군입니다. (예: 일반 오일 참치 캔)" /></span></div>
         </div>
 
         <SafeResponsiveContainer width="100%" height={300}>
@@ -84,7 +84,7 @@ export default function CategoryPortfolio() {
               name="시장 점유율(%)" 
               domain={[0, 80]} 
               tick={{ fill: '#94a3b8', fontSize: 11 }} 
-              label={{ value: '시장 점유율 (Market Share) %', position: 'insideBottom', fill: '#94a3b8', fontSize: 12, offset: -10 }} 
+              label={{ value: '시장 점유율 %', position: 'insideBottom', fill: '#94a3b8', fontSize: 12, offset: -10 }} 
             />
             <YAxis 
               type="number" 

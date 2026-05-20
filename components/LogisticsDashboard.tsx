@@ -95,7 +95,7 @@ export default function LogisticsDashboard() {
               <div>
                 <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
                 <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  현재 원료 수급이 안정적인 대형 공장(Thai Union, Sea Value 등) 중심으로 직거래 물량을 사전 확보하고, 재고가 부족한 공장을 타겟으로 현물(Spot) 프리미엄 판매 전략을 구사하여 이익을 극대화해야 합니다.
+                  현재 원료 수급이 안정적인 대형 공장(Thai Union, Sea Value 등) 중심으로 직거래 물량을 사전 확보하고, 재고가 부족한 공장을 타겟으로 현물 프리미엄 판매 전략을 구사하여 이익을 극대화해야 합니다.
                 </p>
               </div>
             </div>

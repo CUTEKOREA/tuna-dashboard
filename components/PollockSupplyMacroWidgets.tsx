@@ -52,8 +52,8 @@ export function WidgetTACGapTracker() {
         </div>
         <TakeawayBox 
           source="북태평양어업관리협의회(NPFMC) 및 러시아 연방 수산청"
-          situation="베링해와 러시아 해역 모두 2026년까지 구조적인 명태 자원 고갈 단계에 진입했으며, 동반 쿼터제 삭감이 공표되었습니다. 공급 물량 자체가 증발하면서 현물(Spot) 시장에서의 스팟 가격은 TAC 축소율보다 훨씬 가파르게 폭등하고 있습니다."
-          actionPlan="**[Actionable Insight]** 물리적 공급량(Volume) 확보를 위해 즉각적인 3~5년 장기 오프테이크(Off-take) 계약 방어가 필수적입니다. 단순히 스팟 시장에서 단가를 맞추려는 미시적 어프로치를 전면 중단하고, 러시아의 최상위 조업 쿼터 보유 선단과 자본 지분을 스왑(Swap)하는 전략적 M&A 파이프라인을 가동해야 합니다. (Conviction Buy)" 
+          situation="베링해와 러시아 해역 모두 2026년까지 구조적인 명태 자원 고갈 단계에 진입했으며, 동반 쿼터제 삭감이 공표되었습니다. 공급 물량 자체가 증발하면서 현물 시장에서의 스팟 가격은 TAC 축소율보다 훨씬 가파르게 폭등하고 있습니다."
+          actionPlan="물리적 공급량(Volume) 확보를 위해 즉각적인 3~5년 장기 오프테이크(Off-take) 계약 방어가 필수적입니다. 단순히 스팟 시장에서 단가를 맞추려는 미시적 어프로치를 전면 중단하고, 러시아의 최상위 조업 쿼터 보유 선단과 자본 지분을 스왑(Swap)하는 전략적 M&A 파이프라인을 가동해야 합니다." 
         />
       </div>
     </div>
@@ -92,7 +92,7 @@ export function WidgetOriginWashAlert() {
         <TakeawayBox 
           source="한국 관세청 더블프로즌 적발 통계 종합"
           situation="러시아산 명태 원물을 수입하여 중국 다롄 등에서 필레(Fillet) 가공 후 'Double-frozen' 형태로 들여오는 물량에 대한 원산지 표기 단속 및 고조정 관세 타격(Risk > 90%)이 임계치에 도달했습니다. 중국 라인을 거친 물류는 언제든 압류나 세금 폭탄을 맞을 수 있습니다."
-          actionPlan="**[Actionable Insight]** 매입원가(COGS) 절감율이 높다고 하더라도 중국 우회 더블프로즌 라인을 일시 차단하십시오. 미국의 러 제재(Sanctions) 감시망 밖에 있으면서 관세 장벽이 느슨한 베트남(하이퐁) 및 인니 대체 가공 허브(Alt-Hub)로 필레 원물 가공 라인을 100% 리라우팅(Rerouting) 해야 합니다. (Conviction Buy)" 
+          actionPlan="매입원가 절감율이 높다고 하더라도 중국 우회 더블프로즌 라인을 일시 차단하십시오. 미국의 러 제재(Sanctions) 감시망 밖에 있으면서 관세 장벽이 느슨한 베트남(하이퐁) 및 인니 대체 가공 허브(Alt-Hub)로 필레 원물 가공 라인을 100% 리라우팅(Rerouting) 해야 합니다." 
         />
       </div>
     </div>
@@ -139,7 +139,7 @@ export function WidgetBunkerArbitrage() {
         <TakeawayBox 
           source="Global Bunker Price Index & 러시아 어선 운용 재무제표"
           situation="비율상 명태 원물(Fish) 단가보다도 인건비, 냉동 보관료(Reefer), MGO 유류비 등 3대 간접비 폭발이 손익을 파괴하고 있습니다. 2025년 이후 물류 동맥 경화로 선박 유류비-해상운임 복합 지수가 치솟으며 합작선사 비즈니스 마진이 마이너스 전환 임계점을 뚫었습니다."
-          actionPlan="**[Actionable Insight]** 현지(러시아/미국) 수산업체와 단순 5:5 쿼터 배분 수익 셰어링 모델은 자본잠식의 리스크(Risk)이 높습니다. 유류비 상승 분을 상대 파트너사에 온전히 부담(Hedge)시키고, 한국 측은 Fबोर्ड(FOB) 조건의 인수 금액만 고정시키는 '운임 전가 파생 계약'을 추가 삽입하여 변동성을 조기에 끊어내야 합니다. (Conviction Buy)" 
+          actionPlan="현지(러시아/미국) 수산업체와 단순 5:5 쿼터 배분 수익 셰어링 모델은 자본잠식의 리스크이 높습니다. 유류비 상승 분을 상대 파트너사에 온전히 부담(Hedge)시키고, 한국 측은 Fबोर्ड(FOB) 조건의 인수 금액만 고정시키는 '운임 전가 파생 계약'을 추가 삽입하여 변동성을 조기에 끊어내야 합니다." 
         />
       </div>
     </div>
@@ -183,7 +183,7 @@ export function WidgetBeringSeaMigration() {
         <TakeawayBox 
           source="NOAA 베링해 표층수온 관측소 및 C.P.(선단 원가) 리포트"
           situation="베링해와 오호츠크해의 치명적 해수온 상승(SST)으로 냉수성 어종인 명태 떼가 본래 서식지를 떠나 러시아 캄차카 반도 북쪽 및 북극해 방향으로 매년 수십 킬로미터씩 이탈(Migration)하고 있습니다."
-          actionPlan="**[Actionable Insight]** 물고기를 쫓아 배가 평소보다 수백 km를 더 항해하게 됨에 따라 왕복 유류비가 기하급수적으로 터지고 조업 리드타임이 지연됩니다. 과거의 평수기 표준 연비(Standard Fuel Consumption) 기준으로 용선 계약을 체결하지 마십시오. 유류비 상승 분은 선단이 아닌 현지 가공 공장 납품 판가에 '기후변화 유틸리티 클로즈(Climate-FC Clause)'로 자동 전가되도록 즉시 계약서를 수정해야 합니다. (Conviction Buy)" 
+          actionPlan="물고기를 쫓아 배가 평소보다 수백 km를 더 항해하게 됨에 따라 왕복 유류비가 기하급수적으로 터지고 조업 리드타임이 지연됩니다. 과거의 평수기 표준 연비(Standard Fuel Consumption) 기준으로 용선 계약을 체결하지 마십시오. 유류비 상승 분은 선단이 아닌 현지 가공 공장 납품 판가에 '기후변화 유틸리티 클로즈(Climate-FC Clause)'로 자동 전가되도록 즉시 계약서를 수정해야 합니다." 
         />
       </div>
     </div>
@@ -229,8 +229,8 @@ export const WidgetTariffWarImpact = () => {
       <div style={{ flexShrink: 0, marginTop: '12px' }}>
         <TakeawayBox 
           source="글로벌 수산물 관세 분쟁 시뮬레이터 (자체 추정)"
-          situation="EU 및 미국이 러시아산 직수입 명태에 35% 전후의 초고율 관세를 매기기 시작하면 직수입 매입원가(COGS)가 급격히 상승합니다."
-          actionPlan="**[Actionable Insight]** 직수입 관세(+$470)보다 제3국 우회 물류비(+$200~350)를 감당하는 역행이 유리해집니다. 이 때 한국 가공 허브가 중국 대비 물류비 우위를 가지게 되어 위탁 가공(OEM) 물량이 한국으로 쏠릴 폭발적 기회가 열립니다." 
+          situation="EU 및 미국이 러시아산 직수입 명태에 35% 전후의 초고율 관세를 매기기 시작하면 직수입 매입원가가 급격히 상승합니다."
+          actionPlan="직수입 관세(+$470)보다 제3국 우회 물류비(+$200~350)를 감당하는 역행이 유리해집니다. 이 때 한국 가공 허브가 중국 대비 물류비 우위를 가지게 되어 위탁 가공(OEM) 물량이 한국으로 쏠릴 폭발적 기회가 열립니다." 
         />
       </div>
     </div>
@@ -266,7 +266,7 @@ export const WidgetIUUShadowIndex = () => {
               <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
               <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
               <Line type="monotone" dataKey="officialTAC" name="공식 TAC (만 톤)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4 }} />
-              <Area type="monotone" dataKey="shadow" name="불법(IUU) 덤핑 추정량 (만 톤)" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} strokeWidth={2} />
+              <Area type="monotone" dataKey="shadow" name="불법 덤핑 추정량 (만 톤)" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.3} strokeWidth={2} />
             </ComposedChart>
           </SafeResponsiveContainer>
         </div>
@@ -277,7 +277,7 @@ export const WidgetIUUShadowIndex = () => {
         <TakeawayBox 
           source="IUU(불법/비보고/비규제) 어업 방지 태스크포스 활동 보고서 재구성"
           situation="공식 어획 쿼터(TAC)가 축소될수록, 규제망을 우회하는 속칭 '섀도우(그림자)' 선단의 불법 조업 물량이 암시장에 쏟아지며 블랙마켓 규모가 역성장하고 있습니다."
-          actionPlan="**[Actionable Insight]** 일시적인 IUU 물량 덤핑으로 시중 평균 단가가 하락하더라도 이에 현혹되어선 안 됩니다. EU 규제 도입 시 이 물량들은 일순간 통관 압류되어 공급 사슬을 무너뜨리므로, 반드시 조업 위성망(VDS) 이력이 증명된 원물만 매입하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+          actionPlan="일시적인 IUU 물량 덤핑으로 시중 평균 단가가 하락하더라도 이에 현혹되어선 안 됩니다. EU 규제 도입 시 이 물량들은 일순간 통관 압류되어 공급 사슬을 무너뜨리므로, 반드시 조업 위성망(VDS) 이력이 증명된 원물만 매입." 
         />
       </div>
     </div>
@@ -319,7 +319,7 @@ export const WidgetElNinoImpact = () => (
       <TakeawayBox 
         source="WMO(세계기상기구) 폭염 지수 및 한국 수산자원관리공단 어황 예측 모델"
         situation="해수면 온도가 1.5℃ 이상 오르는 수퍼 엘니뇨 발생 시, 한해성 어종인 명태의 서식지가 급격히 파괴되며 어획량이 최대 22% 실종됩니다."
-        actionPlan="**[Actionable Insight]** WMO ENSO 경보가 +1.5를 돌파하는 즉시 공격적인 원물 선도 매입 계약을 체결하고, 6개월 후행하는 가격 폭등에 대비하여 안전 재고를 최대로 비축하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+        actionPlan="WMO ENSO 경보가 +1.5를 돌파하는 즉시 공격적인 원물 선도 매입 계약을 체결하고, 6개월 후행하는 가격 폭등에 대비하여 안전 재고를 최대로 비축." 
       />
     </div>
   </div>
@@ -359,7 +359,7 @@ export const WidgetCBPDetentionRisk = () => (
       <TakeawayBox 
         source="NotebookLM 추출 미국 CBP 일일 통관 보류(WRO) 적발 사례집"
         situation="미국 관세국경보호청(CBP)의 대러제재 및 강제노동방지법 실사 타격으로 중국/러시아 발 화물의 적발 및 영구 압류 확률이 80%를 상회합니다."
-        actionPlan="**[Actionable Insight]** 안전마진을 고려하더라도 다롄 발 가공품 입항 비중을 즉각 30% 이하로 축소하고, 베트남 등 제3국 우회 라인으로 물류 체인을 리디렉션 하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+        actionPlan="안전마진을 고려하더라도 다롄 발 가공품 입항 비중을 즉각 30% 이하로 축소하고, 베트남 등 제3국 우회 라인으로 물류 체인을 리디렉션 ." 
       />
     </div>
   </div>
@@ -398,7 +398,7 @@ export const WidgetEEZConflict = () => (
       <TakeawayBox 
         source="국제해양법재판소(ITLOS) 및 한·러·일 연안국 해경 나포 통계"
         situation="배타적경제수역(EEZ)의 경계 통제가 군사 도발 수준으로 격상되며, 환동해 및 한일-러일 간 어선 나포/억류 빈도가 폭발적으로 증가하고 있습니다."
-        actionPlan="**[Actionable Insight]** 영해 인접 조업 시 자동식별장치(AIS) 조작이 단 1건이라도 적발될 경우 즉각적인 본선 압수로 이어집니다. 선단장에게 VDS 컴플라이언스 원격 모니터링을 강제하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+        actionPlan="영해 인접 조업 시 자동식별장치(AIS) 조작이 단 1건이라도 적발될 경우 즉각적인 본선 압수로 이어집니다. 선단장에게 VDS 컴플라이언스 원격 모니터링을 강제." 
       />
     </div>
   </div>
@@ -438,7 +438,7 @@ export const WidgetFoodSecurityPremium = () => (
       <TakeawayBox 
         source="FAO 식량가격지수(FFPI) 및 시카고상품거래소(CBOT) 데이터"
         situation="밀/대두 등 곡물 선물 지수 상승 시, 서민 자금의 대체재인 백색육(명태) 수요가 폭증하며 강한 레버리지 프리미엄 가격을 형성합니다."
-        actionPlan="**[Actionable Insight]** 곡물 식량 안보 지수(FFPI)가 전년 대비 15% 이상 상승하면, 명태 재고를 방출하지 말고 강하게 묵혀 분기 말 스팟(Spot) 스파이크에 전량 매도하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+        actionPlan="곡물 식량 안보 지수(FFPI)가 전년 대비 15% 이상 상승하면, 명태 재고를 방출하지 말고 강하게 묵혀 분기 말 스팟 스파이크에 전량 매도." 
       />
     </div>
   </div>
@@ -478,7 +478,7 @@ export const WidgetPortCongestion = () => (
       <TakeawayBox 
         source="국제운수노련(ITF) 파업 동향 및 JOC 글로벌 항만 체화 지수"
         situation="씨애틀과 다롄 등 수산물 거점 항만의 노동 파업으로 인해 리드타임이 +15일 이상 악화되며 초과 보관/체선료 폭탄이 터지고 있습니다."
-        actionPlan="**[Actionable Insight]** 지연일이 10일을 초과하는 항만으로 향하는 화물은 로딩 마스트 전 즉각 부산(BUS)이나 베트남항으로 양하(Discharge) 목적지를 스위칭 하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+        actionPlan="지연일이 10일을 초과하는 항만으로 향하는 화물은 로딩 마스트 전 즉각 부산(BUS)이나 베트남항으로 양하(Discharge) 목적지를 스위칭 ." 
       />
     </div>
   </div>

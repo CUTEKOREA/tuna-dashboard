@@ -468,7 +468,7 @@ export default function SalmonDashboard() {
                 <div style={{ padding: '1rem', background: '#181818', borderLeft: `3px solid ${SALMON_THEME.primary}`, borderRadius: '4px' }}>
                   <h4 style={{ color: '#f8fafc', fontSize: '0.9rem', margin: '0 0 0.5rem 0' }}>자연산 어획 종식 및 양식 주도</h4>
                   <p style={{ color: '#cbd5e1', fontSize: '0.8rem', lineHeight: 1.6, margin: 0 }}>
-                    상업용 연어 어획은 0.06%에 불과하며, 양식이 압도적 비중(99.94%)을 차지합니다. 특히 노르웨이와 칠레의 양강 복점(Duopoly) 체제가 생산을 장악하고 있으며, 제한된 노르웨이 양식 면허는 가치가 급등하는 핵심 자산입니다.
+                    상업용 연어 어획은 0.06%에 불과하며, 양식이 비중(99.94%)을 차지합니다. 특히 노르웨이와 칠레의 양강 복점(Duopoly) 체제가 생산을 장악하고 있으며, 제한된 노르웨이 양식 면허는 가치가 급등하는 핵심 자산입니다.
                   </p>
                 </div>
               </div>

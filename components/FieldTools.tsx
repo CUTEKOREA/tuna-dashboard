@@ -599,7 +599,7 @@ function DroneRoiTracker() {
         </div>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1rem' }}>
           <div className={styles.kpiBox} style={{ background: 'rgba(6, 182, 212, 0.1)', border: '1px solid rgba(6, 182, 212, 0.2)', padding: '1rem', borderRadius: '8px' }}>
-            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>장비 투자금 (CAPEX)</div>
+            <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>장비 투자금</div>
             <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>$1.2M</div>
           </div>
           <div className={styles.kpiBox} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1rem', borderRadius: '8px' }}>
@@ -1022,7 +1022,7 @@ function EcolabelRoiCalculator() {
       </div>
       
       <div className={styles.insightBox} style={{ borderLeftColor: 'var(--color-success)' }}>
-        <strong>MSC 인증 적극 추진:</strong> 월마트, 테스코 등 글로벌 유통망의 ESG 소싱 의무화로 인해 MSC 라벨 부착 시 5~10%의 프리미엄을 기대할 수 있습니다. ROI가 압도적으로 높으므로 즉시 어가 연합과 심사 절차에 착수하십시오.
+        <strong>MSC 인증 적극 추진:</strong> 월마트, 테스코 등 글로벌 유통망의 ESG 소싱 의무화로 인해 MSC 라벨 부착 시 5~10%의 프리미엄을 기대할 수 있습니다. ROI가 으로 높으므로 즉시 어가 연합과 심사 절차에 착수하십시오.
       </div>
     </div>
   );

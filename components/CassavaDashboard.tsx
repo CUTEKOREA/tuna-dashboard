@@ -80,7 +80,7 @@ const CASSAVA_KPIS: Record<string, any> = {
   k1: { title: '글로벌 가공 시장 (2026)', value: '$107.3B', trend: '📈', desc: '34년 $1,657억 구조적 메가트렌드 진입' },
   k2: { title: '한중 메콩 2국 의존도', value: '99.9%', trend: '⚠️', desc: '포트폴리오 다변화(Diversification) 필수' },
   k3: { title: '바이오플라스틱 프리미엄', value: '25x', trend: '🚀', desc: '칩($250) vs 완제품($6,400)' },
-  k4: { title: '제약용 붕해제 영업이익률', value: '90%+', trend: '💊', desc: '파마슈티컬 B2B 밸류체인 내 구조적 초과 마진(Alpha)' },
+  k4: { title: '제약용 붕해제 영업이익률', value: '90%+', trend: '💊', desc: '파마슈티컬 B2B 밸류체인 내 구조적 초과 마진' },
   k5: { title: '가나 밀 수입 대체 시장', value: '$400M', trend: '📉', desc: 'HQCF 혼합 의무화 수혜 기대' },
   k6: { title: '생분해 비닐 도매가 ($/kg)', value: '6.4', trend: '⚓', desc: '일반 PE 대비 4-5배 프리미엄' },
 };
@@ -335,7 +335,7 @@ export default function CassavaDashboard() {
               <div>
                 <h3 style={{ color:CASSAVA_THEME.primary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Dna size={15}/> 4F 플랫폼 & 패러다임 전환 (Value Pivot)</h3>
                 <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
-                  카사바(원료)를 타피오카(소재)로 정제하여 <strong>4F(Food, Feed, Fuel, Factory)</strong>로 확장합니다. 단순 사료용 칩(Chip) 원물 수출이라는 저마진(Low-margin) 덫에서 탈피해, 톤당 $6,400를 호가하는 <strong>생분해성 수지(PLA/PBAT)</strong> 및 영업이익률 90% 이상의 <strong>제약용 붕해제</strong> 등 프리미엄(Value-Added) 바이오 소재로 포트폴리오를 피벗(Pivot) 중입니다.
+                  카사바(원료)를 타피오카(소재)로 정제하여 <strong>4F(Food, Feed, Fuel, Factory)</strong>로 확장합니다. 단순 사료용 칩(Chip) 원물 수출이라는 저마진(Low-margin) 덫에서 탈피해, 톤당 $6,400를 호가하는 <strong>생분해성 수지(PLA/PBAT)</strong> 및 영업이익률 90% 이상의 <strong>제약용 붕해제</strong> 등 프리미엄(Value-Added) 바이오 소재로 포트폴리오를 피벗 중입니다.
                 </p>
               </div>
               <div>

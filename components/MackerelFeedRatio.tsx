@@ -40,7 +40,7 @@ export default function MackerelFeedRatio() {
           </BarChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[Food-Grade Supply Illusion] 국가 거시 통계상 총어획량은 유지되는 듯한 착시(Optical Illusion)를 보이나, 실질적인 B2C 식용(Food-grade) 체급 비중은 48%로 급감하며 심각한 수급 불균형(Supply Deficit) 한계치에 도달했습니다. 잔여 물량은 사료/어분용으로 강제 전용되는 품질 열화(Quality Degradation) 현상이 본질입니다." actionPlan="**[Actionable Insight]** [B2C Margin Defense] 정책 통계의 \'공급 과잉\' 노이즈를 전면 무시하십시오. 양질의 식용 원물은 현재 극심한 숏티지(Shortage) 상태입니다. 국내 대형 유통 3사(할인점)와의 납품 단가 네고 시 일체의 볼륨 디스카운트를 거부하고, 철저한 \'공급자 우위(Seller\'s Market)\' 기반의 프리미엄 판가 방어 전략(Price Shielding)을 락인해야 합니다. (Conviction Buy)" />
+      <TakeawayBox situation="국가 거시 통계상 총어획량은 유지되는 듯한 착시(Optical Illusion)를 보이나, 실질적인 B2C 식용(Food-grade) 체급 비중은 48%로 급감하며 심각한 수급 불균형(Supply Deficit) 한계치에 도달했습니다. 잔여 물량은 사료/어분용으로 강제 전용되는 품질 열화(Quality Degradation) 현상이 본질입니다." actionPlan="[B2C Margin Defense] 정책 통계의 \'공급 과잉\' 노이즈를 전면 무시하십시오. 양질의 식용 원물은 현재 극심한 숏티지(Shortage) 상태입니다. 국내 대형 유통 3사(할인점)와의 납품 단가 네고 시 일체의 볼륨 디스카운트를 거부하고, 철저한 \'공급자 우위(Seller\'s Market)\' 기반의 프리미엄 판가 방어 전략(Price Shielding)을 락인해야 합니다." />
     </div>
   );
 }

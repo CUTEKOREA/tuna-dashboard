@@ -310,7 +310,7 @@ export default function ColdStorageMap() {
       <div style={{ marginTop: '1.25rem' }}>
         <TakeawayBox
           source="행정안전부 지방행정 인허가 데이터 (2026년 4월 기준)"
-          situation={`전국 운영 중인 식품냉동냉장업체는 총 ${totalFacilities.toLocaleString()}개이며, 경기도(400개)가 전체의 45%로 압도적입니다. 부산(82개)은 항만 인접 메가 허브로, 경남(78개)과 함께 초도 수입 물류 거점 역할을 수행합니다. 반면 서울(9개)·대전(4개)은 수요 대비 공급 인프라가 극심하게 부족합니다.`}
+          situation={`전국 운영 중인 식품냉동냉장업체는 총 ${totalFacilities.toLocaleString()}개이며, 경기도(400개)가 전체의 45%로 입니다. 부산(82개)은 항만 인접 메가 허브로, 경남(78개)과 함께 초도 수입 물류 거점 역할을 수행합니다. 반면 서울(9개)·대전(4개)은 수요 대비 공급 인프라가 극심하게 부족합니다.`}
           actionPlan={
             <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#e2e8f0', fontSize: '0.85rem' }}>
               <li style={{ marginBottom: '4px' }}><strong>[Hub]</strong> 부산 사하/서구 + 인천 중/서구 — 초도 수입 축양 참다랑어 대용량 보관 메가 허브</li>
@@ -365,7 +365,7 @@ export default function ColdStorageMap() {
             actionPlan={
               <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#e2e8f0', fontSize: '0.85rem' }}>
                 <li style={{ marginBottom: '4px' }}><strong>[최우선]</strong> 서울 강서/구로 수산물류단지 인근에 축양 참다랑어 전용 소규모 전진 냉동기지 확보 — 당일 배송 리드타임을 4시간→2시간으로 단축</li>
-                <li style={{ marginBottom: '4px' }}><strong>[기회]</strong> 대전·대구의 공급 공백을 역으로 활용하여, 충청/영남 권역 독점 냉동 거점을 선점하면 경쟁자 진입 전 시장 락인(Lock-in) 가능</li>
+                <li style={{ marginBottom: '4px' }}><strong>[기회]</strong> 대전·대구의 공급 공백을 역으로 활용하여, 충청/영남 권역 독점 냉동 거점을 선점하면 경쟁자 진입 전 시장 락인 가능</li>
                 <li><strong>[벤치마크]</strong> 경기(1.5:1)·부산(1.5:1)·제주(1:1) 수준이 이상적 밸런스. 신규 진출 시 수요/공급 비율 2:1 이하를 목표로 설정</li>
               </ul>
             }

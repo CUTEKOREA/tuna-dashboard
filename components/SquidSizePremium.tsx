@@ -33,7 +33,7 @@ export default function SquidSizePremium() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="수협 위탁 단가 및 수산 시장 동향" situation="[Size-Premium Alpha Extraction] 기상 이변에 따른 어체 왜소화(Shrinkage) 트렌드로 인해 대형 규격(Large/Jumbo) 오징어 품귀 현상이 심화되며, 소형 대비 도매 톤당 단가 스프레드가 기하급수적으로 폭발하는 초격차 \'중량 프리미엄(Size Premium)\' 시대가 열렸습니다." actionPlan="**[Actionable Insight]** [Premium Arbitrage Optimization] 톤(Volume) 단위의 무차별 도매 출하를 즉각 중단하십시오. 그레이딩(Grading) 자동화 설비를 통해 대형 개체를 100% 분리 추출(Skimming)하여 호텔/고급 일식체인 전용 VVIP 라인업으로 직납하고, 조업 타겟팅 알고리즘을 대형 개체 서식 수온/수심으로 전면 재조정하여 프리미엄 차익(Alpha)을 극대화(Maximize)해야 합니다. (Conviction Buy)" />
+      <TakeawayBox source="수협 위탁 단가 및 수산 시장 동향" situation="기상 이변에 따른 어체 왜소화(Shrinkage) 트렌드로 인해 대형 규격(Large/Jumbo) 오징어 품귀 현상이 심화되며, 소형 대비 도매 톤당 단가 스프레드가 기하급수적으로 폭발하는 초격차 \'중량 프리미엄(Size Premium)\' 시대가 열렸습니다." actionPlan="[Premium Arbitrage Optimization] 톤(Volume) 단위의 무차별 도매 출하를 즉각 중단하십시오. 그레이딩(Grading) 자동화 설비를 통해 대형 개체를 100% 분리 추출(Skimming)하여 호텔/고급 일식체인 전용 VVIP 라인업으로 직납하고, 조업 타겟팅 알고리즘을 대형 개체 서식 수온/수심으로 전면 재조정하여 프리미엄 차익을 극대화(Maximize)해야 합니다." />
     </div>
   );
 }

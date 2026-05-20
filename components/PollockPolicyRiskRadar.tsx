@@ -66,7 +66,7 @@ export function PollockSanctionParadox() {
       )}
       <TakeawayBox
         situation="제재 강도 92점까지 상승했으나 러시아산 명태 점유율은 42%로 유지 — '중국 우회 가공' 62%로 폭증. 원산지 세탁의 구조적 역설."
-        actionPlan="**[Actionable Insight]** ① 중국 가공 의존도(Exposure) 70% 이하 유지 ② 폴란드·베트남 대체 가공기지 확보 ③ 블록체인 원산지 증명 체계 구축"
+        actionPlan="① 중국 가공 의존도(Exposure) 70% 이하 유지 ② 폴란드·베트남 대체 가공기지 확보 ③ 블록체인 원산지 증명 체계 구축"
         source="(기본 2019-12) 원양산업 사회적 책임 + Comtrade 교차검증"
       />
     </div>
@@ -117,7 +117,7 @@ export function PollockFtaTariffMatrix() {
       </div>
       <TakeawayBox
         situation="KORUS FTA 적용 시 미국→한국, 한국→US 루트 관세 0%. 중국 FTA 적용 시 필레 관세 5%(MFN 10% 대비 50% 절감)."
-        actionPlan="**[Actionable Insight]** 알래스카 MSC 직수입 시 KORUS 관세 0% 극대화. 중국 우회 시 한중FTA 5% 적용으로 매입원가(COGS) 절감."
+        actionPlan="알래스카 MSC 직수입 시 KORUS 관세 0% 극대화. 중국 우회 시 한중FTA 5% 적용으로 매입원가 절감."
         source="(일반 2024-06) 신통상규범 수산분야 영향 연구"
       />
     </div>
@@ -193,7 +193,7 @@ export function PollockRiskScorecard() {
       )}
       <TakeawayBox
         situation="명태 종합 리스크 86점(A-) — 全품목 최고. 지정학적 제재(93) + 공급 집중도(92)가 주요 드라이버."
-        actionPlan="**[Actionable Insight]** 러시아·중국 양두독점 리스크 차단을 위해 미국 MSC + 폴란드·베트남 가공기지 다변화 즉시 착수."
+        actionPlan="러시아·중국 양두독점 리스크 차단을 위해 미국 MSC + 폴란드·베트남 가공기지 다변화 즉시 착수."
         source="국정연 6건 교차분석 + WTO/OFAC/WITS API"
       />
     </div>

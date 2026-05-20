@@ -97,7 +97,7 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
   },
   "w_chicken_eudr_esg": {
     sit: "2025년 EU 삼림벌채방지법(EUDR) 시행으로 대두 사료 증빙이 필수화. 브라질 중소 패커들의 대유럽 수출이 막히며 아시아로 물량이 덤핑될 가능성 상승.",
-    strat: "태국 대형사(CPF, Betagro)는 이미 완벽한 EUDR 트레이서빌리티 구축. 단기 덤핑 브라질 물량으로 스팟 마진을 챙기고, 장기 코어 물량은 태국산으로 이원화할 것."
+    strat: "태국 대형사(CPF, Betagro)는 이미 강한 EUDR 트레이서빌리티 구축. 단기 덤핑 브라질 물량으로 스팟 마진을 챙기고, 장기 코어 물량은 태국산으로 이원화할 것."
   },
   "w_chicken_arbitrage": {
     sit: "태국 현지 공장 발주부터 한국 부산항 입항까지 평균 15~20일 소요. HPAI 발병 시점 대비 물동량 리드타임에 따른 가격 상승폭이 비선형적으로 증가.",

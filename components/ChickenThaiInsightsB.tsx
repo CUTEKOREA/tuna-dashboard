@@ -76,8 +76,8 @@ export function InsightKoreaSpecialLine() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Product Gap Analysis] 태국은 일본 수출 특화로 1.8~2.3kg 소형닭 위주 생산. 한국 프랜차이즈는 브라질 장닭(3kg+)의 큰 다리살에 익숙하여 사이즈 갭 존재. 그러나 Korea Special(2.5kg+)은 브라질보다 수율 74% vs 78%로 비슷하면서 FCR 1.72로 생산효율 우위."
-          actionPlan="**[Actionable Insight]** [Dual Line Strategy] GFPT/Betagro에 사육기간 연장형 2.5kg+ 라인 신설 제안. 일본향 소형 + 한국향 대형의 듀얼 라인으로 양 시장 동시 공략. Korea Special의 순살 수율 74% + 잔뼈 제로 = '1인분당 TCU' 기준으로 브라질산 대비 우위 입증."
+          situation="태국은 일본 수출 특화로 1.8~2.3kg 소형닭 위주 생산. 한국 프랜차이즈는 브라질 장닭(3kg+)의 큰 다리살에 익숙하여 사이즈 갭 존재. 그러나 Korea Special(2.5kg+)은 브라질보다 수율 74% vs 78%로 비슷하면서 FCR 1.72로 생산효율 우위."
+          actionPlan="[Dual Line Strategy] GFPT/Betagro에 사육기간 연장형 2.5kg+ 라인 신설 제안. 일본향 소형 + 한국향 대형의 듀얼 라인으로 양 시장 동시 공략. Korea Special의 순살 수율 74% + 잔뼈 제로 = '1인분당 TCU' 기준으로 브라질산 대비 우위 입증."
           source="GFPT Annual Report 2023 (일 도계 15→30만 마리 증설) & Thai DLD 2023 가공수율 보고서. FCR은 업계 평균 추정치"
         />
       </div>
@@ -93,7 +93,7 @@ export function InsightRiskNexus() {
         <h3 className={styles.cardTitle}>
           <AlertTriangle size={20} color="#ef4444"/> Insight E. 리스크 상관관계 넥서스 — 태국 vs 브라질 6축
         </h3>
-        <p className={styles.cardDesc}>해상운임(10일 vs 56일)과 HPAI 청정 지위에서 태국이 압도적 우위. 중국산 덤핑만이 유일한 경계 대상입니다.</p>
+        <p className={styles.cardDesc}>해상운임(10일 vs 56일)과 HPAI 청정 지위에서 태국이 우위. 중국산 덤핑만이 유일한 경계 대상입니다.</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
@@ -119,8 +119,8 @@ export function InsightRiskNexus() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Risk Correlation Matrix] 6축 리스크 중 태국이 열위인 것은 '중국산 덤핑(13~14% 저가)'과 '환율(KRW/THB)' 뿐입니다. 반면 해상운임(태국 10~14일 vs 브라질 56일), HPAI(태국 19년 청정 vs 브라질 2025 발발)에서 압도적 우위. CBOT $4.15 저점은 태국 사료비(매입원가(COGS) 60~70%) 역대 최저를 의미합니다."
-          actionPlan="**[Actionable Insight]** [Risk Hedging] ①환율: USD 선물환 분기별 리밸런싱 ②CBOT 저점($4.15): 즉시 고정가 LTA ③중국산 덤핑: GACC 위생 부적격 이슈를 역이용 → '안전한 프리미엄' 브랜딩 ④운임: 태국 램차방→부산 10~14일 직항 최적화 ⑤HPAI: 태국 구획화(Compartmentalization) 시스템 = 공급망 보험."
+          situation="6축 리스크 중 태국이 열위인 것은 '중국산 덤핑(13~14% 저가)'과 '환율(KRW/THB)' 뿐입니다. 반면 해상운임(태국 10~14일 vs 브라질 56일), HPAI(태국 19년 청정 vs 브라질 2025 발발)에서 우위. CBOT $4.15 저점은 태국 사료비(매입원가 60~70%) 역대 최저를 의미합니다."
+          actionPlan="[Risk Hedging] ①환율: USD 선물환 분기별 리밸런싱 ②CBOT 저점($4.15): 즉시 고정가 LTA ③중국산 덤핑: GACC 위생 부적격 이슈를 역이용 → '안전한 프리미엄' 브랜딩 ④운임: 태국 램차방→부산 10~14일 직항 최적화 ⑤HPAI: 태국 구획화(Compartmentalization) 시스템 = 공급망 보험."
           source="OIE WAHIS, CBOT 실시간 선물, BDI 해상운임 지수, KCS HS 0207 수입통계. ⚠️ 리스크 스코어(0~100)는 상대 비교용 모델링 수치"
         />
       </div>
@@ -163,8 +163,8 @@ export function InsightPartnerMatch() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Partner Intelligence] ①CP Foods: 세계 최대, 글로벌 스탠다드, 대형마트/글로벌 HMR 최적. ②Betagro: e-Traceability 2시간 이력추적, 무항생제(ABF), 웰빙/프리미엄 채널. ③GFPT: 수직계열화, 도계 15→30만/일 2배 증설, 일본/EU 수출 경험 풍부, 프랜차이즈 맞춤 스펙 R&D에 최적."
-          actionPlan="**[Actionable Insight]** [Partner Portfolio] ①GFPT = 프랜차이즈 맞춤 Korea Special Line R&D 파트너 → 순살 스펙 최적화 ②Betagro = 편의점 HMR 프리미엄 → 무항생제 '윤리적 치킨' 브랜딩 ③CP Foods = 볼륨 백본 → 식자재마트/급식 대량 납품 기반 확보. 3사 분산으로 단일 공급처 리스크 헤지."
+          situation="①CP Foods: 세계 최대, 글로벌 스탠다드, 대형마트/글로벌 HMR 최적. ②Betagro: e-Traceability 2시간 이력추적, 무항생제(ABF), 웰빙/프리미엄 채널. ③GFPT: 수직계열화, 도계 15→30만/일 2배 증설, 일본/EU 수출 경험 풍부, 프랜차이즈 맞춤 스펙 R&D에 최적."
+          actionPlan="[Partner Portfolio] ①GFPT = 프랜차이즈 맞춤 Korea Special Line R&D 파트너 → 순살 스펙 최적화 ②Betagro = 편의점 HMR 프리미엄 → 무항생제 '윤리적 치킨' 브랜딩 ③CP Foods = 볼륨 백본 → 식자재마트/급식 대량 납품 기반 확보. 3사 분산으로 단일 공급처 리스크 헤지."
           source="GFPT Annual Report 2023, Betagro IR 2023, CP Foods 2023 Value Chain Analysis. NotebookLM '닭' 479소스 교차검증"
         />
       </div>

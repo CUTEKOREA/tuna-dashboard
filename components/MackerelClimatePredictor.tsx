@@ -43,7 +43,7 @@ export default function MackerelClimatePredictor() {
           </ScatterChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[Climate-Driven Biomass Collapse] 글로벌 해수온(SST)이 1.5℃ 임계점(Tipping Point)을 돌파할 경우, 타겟 어군의 남하 회유 경로가 영구 붕괴되며 국내 EEZ 내 대형 체급 수확량이 65% 증발하는 구조적 꼬리 위험(Tail Risk)이 실시간으로 확인되고 있습니다." actionPlan="**[Actionable Insight]** [Quant-Hedging Execution] 인적 직관에 의존하는 재래식 발주를 즉각 폐기하십시오. NASA/NOAA의 해수온 이상 지수(ENSO)가 +1.5℃ 상단을 뚫는 즉시 알고리즘을 가동하여 차기 년도 노르웨이산 선물(Forward) 매입 볼륨을 3배 상향 락인(Lock-in)하는 \'Climate-Quant\' 헷징 포지션을 전격 승인해야 합니다. (Conviction Buy)" />
+      <TakeawayBox situation="글로벌 해수온(SST)이 1.5℃ 임계점(Tipping Point)을 돌파할 경우, 타겟 어군의 남하 회유 경로가 영구 붕괴되며 국내 EEZ 내 대형 체급 수확량이 65% 증발하는 구조적 꼬리 위험(Tail Risk)이 실시간으로 확인되고 있습니다." actionPlan="[Quant-Hedging Execution] 인적 직관에 의존하는 재래식 발주를 즉각 폐기하십시오. NASA/NOAA의 해수온 이상 지수(ENSO)가 +1.5℃ 상단을 뚫는 즉시 알고리즘을 가동하여 차기 년도 노르웨이산 선물(Forward) 매입 볼륨을 3배 상향 락인하는 \'Climate-Quant\' 헷징 포지션을 전격 승인해야 합니다." />
     </div>
   );
 }

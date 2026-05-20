@@ -71,8 +71,8 @@ export function InsightTimeGapArbitrage() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Market Telemetry] 브라질 HPAI 수입금지(5~7월)로 국내 도매가가 KAMIS 기준 1,950→2,650원/kg으로 +36% 폭등합니다. 태국산 CIF 2,750원은 얼핏 비싸 보이나, 순살 수율(잔뼈 제로)과 주방 인건비 절감을 감안한 TCU는 사실상 동등합니다. CBOT 옥수수 $4.15 저점은 태국 생산매입원가(COGS) 역대 최저를 의미합니다."
-          actionPlan="**[Actionable Insight]** [Temporal Arbitrage] ①GFPT/Betagro와 고정가 LTA 선도계약 즉시 체결 ②TRQ 0% 무관세 쿼터 Q1 선점 ③복날 3개월 전 냉동창고 비축 → 숏티지 시 B2B 방출로 20~30% 마진 실현. 핵심: 'kg당 단가'가 아닌 '1인분당 TCU'로 바이어를 설득해야 합니다. (Conviction Buy)"
+          situation="브라질 HPAI 수입금지(5~7월)로 국내 도매가가 KAMIS 기준 1,950→2,650원/kg으로 +36% 폭등합니다. 태국산 CIF 2,750원은 얼핏 비싸 보이나, 순살 수율(잔뼈 제로)과 주방 인건비 절감을 감안한 TCU는 사실상 동등합니다. CBOT 옥수수 $4.15 저점은 태국 생산매입원가 역대 최저를 의미합니다."
+          actionPlan="[Temporal Arbitrage] ①GFPT/Betagro와 고정가 LTA 선도계약 즉시 체결 ②TRQ 0% 무관세 쿼터 Q1 선점 ③복날 3개월 전 냉동창고 비축 → 숏티지 시 B2B 방출로 20~30% 마진 실현. 핵심: 'kg당 단가'가 아닌 '1인분당 TCU'로 바이어를 설득해야 합니다."
           source="KAMIS 육계 도매가(2025.11) & KCS HS 0207 수입단가. ⚠️ 브라질산 0=수입금지(가격 아님). 태국산은 CIF+관세+마진 포함 추정치"
         />
       </div>
@@ -118,8 +118,8 @@ export function InsightChannelMatrix() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Channel Intelligence] ①프랜차이즈 B2B(맘스터치·BHC·교촌): 순살 다리살 수요 폭발, 브라질 의존도(Exposure) 전환 임계점 진입. ②편의점 HMR: 샐러드치킨·꼬치 최고 마진(35%), 태국 수작업발골+자동화가 핵심 무기. ③대형마트: 생닭은 국내산 독점, 냉동가공 코너만 가능. ④식자재마트: 중국산 13~14% 저가 덤핑 경쟁으로 마진 박."
-          actionPlan="**[Actionable Insight]** [Channel Priority] 1순위=프랜차이즈 B2B 순살 LTA, 캐시카우=편의점 HMR 가공육 납품, 볼륨백본=식자재마트(마진 낮으나 물량 확보). 핵심: 태국산의 '정밀 가공 역량'과 '결품 없는 공급 안정성'을 동시 판매하는 2-Track 영업."
+          situation="①프랜차이즈 B2B(맘스터치·BHC·교촌): 순살 다리살 수요 폭발, 브라질 의존도(Exposure) 전환 임계점 진입. ②편의점 HMR: 샐러드치킨·꼬치 최고 마진(35%), 태국 수작업발골+자동화가 핵심 무기. ③대형마트: 생닭은 국내산 독점, 냉동가공 코너만 가능. ④식자재마트: 중국산 13~14% 저가 덤핑 경쟁으로 마진 박."
+          actionPlan="[Channel Priority] 1순위=프랜차이즈 B2B 순살 LTA, 캐시카우=편의점 HMR 가공육 납품, 볼륨백본=식자재마트(마진 낮으나 물량 확보). 핵심: 태국산의 '정밀 가공 역량'과 '결품 없는 공급 안정성'을 동시 판매하는 2-Track 영업."
           source="NotebookLM '닭' 479소스 교차분석. KAMIS, KCS HS0207, Thai DLD, CP Foods IR 2023"
         />
       </div>
@@ -168,8 +168,8 @@ export function InsightVMILockin() {
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[Infrastructure Arbitrage] 한국 프랜차이즈 본사는 결품 리스크를 극도로 기피합니다. 태국산 가공육을 국내 냉동 Repo 창고에 선비축하고, 바이어가 사용한 만큼만 매월 정산하는 VMI 방식은 초기 45%→24개월 95%로 재계약률이 극적으로 상승합니다."
-          actionPlan="**[Actionable Insight]** [VMI Lock-in] ①냉동창고 자본 투자 → '가공육 Repo(환매조건부)' 금융 모델 구축 ②프랜차이즈 본사에 '주방 로스 절감 + 인건비 절감 수치'를 제안 ③24개월 Lock-in 후 마진율 8%→28%로 3.5배 개선. 핵심: 고기를 파는 게 아니라 공급 안정성을 판다."
+          situation="한국 프랜차이즈 본사는 결품 리스크를 극도로 기피합니다. 태국산 가공육을 국내 냉동 Repo 창고에 선비축하고, 바이어가 사용한 만큼만 매월 정산하는 VMI 방식은 초기 45%→24개월 95%로 재계약률이 극적으로 상승합니다."
+          actionPlan="[VMI Lock-in] ①냉동창고 자본 투자 → '가공육 Repo(환매조건부)' 금융 모델 구축 ②프랜차이즈 본사에 '주방 로스 절감 + 인건비 절감 수치'를 제안 ③24개월 Lock-in 후 마진율 8%→28%로 3.5배 개선. 핵심: 고기를 파는 게 아니라 공급 안정성을 판다."
           source="NotebookLM '닭' 소스 기반 VMI 유통 모델링. Thai DLD & CP Foods 2023 Value Chain Analysis"
         />
       </div>

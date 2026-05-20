@@ -43,7 +43,7 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 
 /* ─── 5-Part Section Definitions ─── */
 const SECTIONS = [
-  { id: 'S1', title: '🌊 Part I — 원물 및 조달 (Raw Material)', desc: '포클랜드 자원평가 · 어획 헤게모니 · 기후 및 어획량 동향', color: '#8b5cf6' },
+  { id: 'S1', title: '🌊 Part I — 원물 및 조달', desc: '포클랜드 자원평가 · 어획 헤게모니 · 기후 및 어획량 동향', color: '#8b5cf6' },
   { id: 'S2', title: '🏭 Part II — 가공 및 밸류체인 (Processing)', desc: '스페인(Vigo) 가공 허브 스프레드 · 대체 원료 블렌딩 마진 분석', color: '#a855f7' },
   { id: 'S3', title: '⚓ Part III — 물류 및 운영 원가 (Logistics)', desc: '라이선스/ITQ 입어료 비용 변동 · 채낚기 선단 유류비(MGO) 시뮬레이션', color: '#d946ef' },
   { id: 'S4', title: '📊 Part IV — 판매 및 수요 (Sales & Demand)', desc: 'KOSIS 내수 CPI 괴리율 · 인플레이션 발 수요 파괴 및 수입 단가 트렌드', color: '#ec4899' },

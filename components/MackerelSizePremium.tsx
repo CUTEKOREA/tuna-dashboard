@@ -46,7 +46,7 @@ export default function MackerelSizePremium() {
           </AreaChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[Size-Premium Bifurcation] 해양 생태계 변화로 국내산 대형 사이즈 생물량(Biomass)이 절멸 국면에 진입하면서, 대-소 체급 간 단가 스프레드가 7배(7x Multiple) 위로 폭발적으로 팽창하는 극단적 마켓 양극화(Super-Polarization)가 완성되었습니다." actionPlan="**[Actionable Insight]** [Supply Monopolization & Product Mix] 대형 체급은 단순 소비재가 아닌 \'Veblen Good(과시재)\'으로 격상되었습니다. 최상위 선단에 대한 독점적 조업 선도자금(Pre-financing) 투입으로 대형물을 100% 싹쓸이(Sweep)하고, 소형물은 당사 HMR(가정간편식) 브랜드의 순살 가공 블렌딩 원료로 강제 치환하는 정밀한 티어링(Tiering) 설계가 필요합니다. (Conviction Buy)" />
+      <TakeawayBox situation="해양 생태계 변화로 국내산 대형 사이즈 생물량(Biomass)이 절멸 국면에 진입하면서, 대-소 체급 간 단가 스프레드가 7배(7x Multiple) 위로 폭발적으로 팽창하는 극단적 마켓 양극화(Super-Polarization)가 완성되었습니다." actionPlan="[Supply Monopolization & Product Mix] 대형 체급은 단순 소비재가 아닌 \'Veblen Good(과시재)\'으로 격상되었습니다. 최상위 선단에 대한 독점적 조업 선도자금(Pre-financing) 투입으로 대형물을 100% 싹쓸이(Sweep)하고, 소형물은 당사 HMR(가정간편식) 브랜드의 순살 가공 블렌딩 원료로 강제 치환하는 정밀한 티어링(Tiering) 설계가 필요합니다." />
     </div>
   );
 }

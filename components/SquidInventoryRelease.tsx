@@ -33,7 +33,7 @@ export default function SquidInventoryRelease() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="최근 5년 KMI 통합 시계열" situation="[Seasonality Alpha Capture] 설 명절 직전 1차 피크 아웃(Peak-out) 이후, 금어기(Close Season)에 따른 구조적 공급 숏티지가 발생하는 W36(추석 2주 전) 윈도우에 연중 최고 마진 스프레드(Alpha)가 형성되는 완벽한 계절성 아비트라지(Seasonality Arbitrage) 패턴입니다." actionPlan="**[Actionable Insight]** [Aggressive Swing Trading] 추석 2주 전 W36 윈도우를 타겟으로 선제적 재고 비축(Hoarding)에 돌입하십시오. 도매 시세가 목표 수익률 구간(Target Yield)을 돌파하는 1~2주의 짧은 스윙 윈도우(Swing Window) 내에 당사 보유 물량의 40% 이상을 고가에 일괄 타격(Punching)하여 현금흐름을 극대화(Cash-out)하는 전술적 매도(Tactical Sell)를 승인합니다. (Conviction Buy)" />
+      <TakeawayBox source="최근 5년 KMI 통합 시계열" situation="설 명절 직전 1차 피크 아웃(Peak-out) 이후, 금어기(Close Season)에 따른 구조적 공급 숏티지가 발생하는 W36(추석 2주 전) 윈도우에 연중 최고 마진 스프레드가 형성되는 강한 계절성 아비트라지(Seasonality Arbitrage) 패턴입니다." actionPlan="[Aggressive Swing Trading] 추석 2주 전 W36 윈도우를 타겟으로 선제적 재고 비축(Hoarding)에 돌입하십시오. 도매 시세가 목표 수익률 구간(Target Yield)을 돌파하는 1~2주의 짧은 스윙 윈도우(Swing Window) 내에 당사 보유 물량의 40% 이상을 고가에 일괄 타격(Punching)하여 현금흐름을 극대화(Cash-out)하는 전술적 매도(Tactical Sell)를 승인합니다." />
     </div>
   );
 }

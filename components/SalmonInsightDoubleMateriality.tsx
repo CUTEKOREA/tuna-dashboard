@@ -4,7 +4,7 @@ import { ShieldCheck } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
 const data = [
-  { id: '1', name: '온실가스 (Scope 3)', x: 9.5, y: 9.0, color: 'var(--color-danger)' },
+  { id: '1', name: '온실가스', x: 9.5, y: 9.0, color: 'var(--color-danger)' },
   { id: '2', name: '바다이(Sea lice) 방제', x: 8.5, y: 9.5, color: 'var(--color-danger)' },
   { id: '3', name: '지속가능한 사료 조달', x: 8.0, y: 8.5, color: 'var(--color-warning)' },
   { id: '4', name: '수질 관리 (오폐수)', x: 7.0, y: 7.5, color: 'var(--color-warning)' },
@@ -74,7 +74,7 @@ export default function SalmonInsightDoubleMateriality() {
 
       <TakeawayBox 
         situation="EU 기업지속가능성보고지침(CSRD) 발효로 인해, 한국 수산 기업 역시 유럽 시장 진출 시 Scope 3(사료/물류) 탄소 배출량 및 공급망 인권 실사 결과를 투명하게 의무 공시해야 하는 이중 중대성(재무적+환경적) 압박에 직면했습니다."
-        actionPlan="**[Actionable Insight]** ESG 공시를 단순 규제가 아닌 '프리미엄 시장 진입 장벽(Moat)'으로 활용하십시오. 녹색 채권(Green Bond) 자금을 조달하여 '친환경 사료 개발'과 '육상 양식장(RAS) 전환'에 집중 배정함으로써, 비규제 경쟁자들을 유럽 고급 시장에서 합법적으로 축출해야 합니다. (Conviction Buy)"
+        actionPlan="ESG 공시를 단순 규제가 아닌 '프리미엄 시장 진입 장벽(Moat)'으로 활용하십시오. 녹색 채권(Green Bond) 자금을 조달하여 '친환경 사료 개발'과 '육상 양식장(RAS) 전환'에 집중 배정함으로써, 비규제 경쟁자들을 유럽 고급 시장에서 합법적으로 축출해야 합니다."
         source="EU CSRD & TNFD Disclosure [📡 LIVE API 연동: Scope 3 배출량 및 생물다양성 실사]"
       />
     </div>

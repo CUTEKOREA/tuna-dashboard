@@ -45,7 +45,7 @@ export default function MackerelFilletPenetration() {
           </AreaChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[HMR Paradigm Shift] 1인 가구 폭증 및 에어프라이어(Air-fryer) 보급의 매크로 메가트렌드가 재래식 H&G(원물) 소비를 완전히 멸종시키며, 전처리(Pre-processed) 완료된 순살 필렛(Fillet)의 내수 침투율이 62%를 돌파하는 구조적 B2C 밸류업 변곡점에 도달했습니다." actionPlan="**[Actionable Insight]** [Supply Chain Front-loading] 단순 트레이딩 시대는 종료되었습니다. 당사 자동화 필레팅 공정의 수율과 CAPA를 사수하기 위해, 차기 년도 노르웨이 공급망 체결 시 단순 원물이 아닌 최소 H&G(Head/Gut 제거) 이상 등급의 스펙(Spec) 선확보 조항을 독점적으로 강제(Mandate)하여 원물 손실 리스크(Yield Loss)를 해외 패커에게 사전 전가하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" />
+      <TakeawayBox situation="1인 가구 폭증 및 에어프라이어(Air-fryer) 보급의 매크로 메가트렌드가 재래식 H&G(원물) 소비를 완전히 멸종시키며, 전처리(Pre-processed) 완료된 순살 필렛(Fillet)의 내수 침투율이 62%를 돌파하는 구조적 B2C 밸류업 변곡점에 도달했습니다." actionPlan="[Supply Chain Front-loading] 단순 트레이딩 시대는 종료되었습니다. 당사 자동화 필레팅 공정의 수율과 CAPA를 사수하기 위해, 차기 년도 노르웨이 공급망 체결 시 단순 원물이 아닌 최소 H&G(Head/Gut 제거) 이상 등급의 스펙(Spec) 선확보 조항을 독점적으로 강제(Mandate)하여 원물 손실 리스크(Yield Loss)를 해외 패커에게 사전 전가." />
     </div>
   );
 }

@@ -66,7 +66,7 @@ const CashewCartoon = () => {
         {/* Panel 3 */}
         <div className={styles.panel}>
           <div className={styles.narrationTop}>
-            게임 체인저(Game Changer)의 등장. 가나와 코트디부아르 현지에 AI 비전 검수 기반 스마트 가공 플랜트 CAPEX 투자를 단행하여 원가 우위를 선점한다.
+            게임 체인저()의 등장. 가나와 코트디부아르 현지에 AI 비전 검수 기반 스마트 가공 플랜트 CAPEX 투자를 단행하여 원가 우위를 선점한다.
           </div>
           <div className={styles.imageArea}>
             <Image 
@@ -97,7 +97,7 @@ const CashewCartoon = () => {
             </div>
           </div>
           <div className={styles.narrationBottom}>
-            프리미엄 커널(W-180)만을 타겟팅해 EU/US 마켓에 직수출. 유통 채널 축소(Disintermediation)로 발생한 초과 마진(Excess Return)을 바탕으로 압도적 ROI를 달성한다.
+            프리미엄 커널(W-180)만을 타겟팅해 EU/US 마켓에 직수출. 유통 채널 축소(Disintermediation)로 발생한 초과 마진(Excess Return)을 바탕으로 ROI를 달성한다.
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ export function Widget9_FilletRatio() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="어선들의 가공 트렌드가 급변하고 있습니다. 단순 H&G(벌크형 투척 품목) 중심에서, 바다 한가운데서 잡은 즉시 배 안에서 싱글 프로즌(Single-Frozen) 처리하여 뼈 없는 최고급 필레로 뽑아내는 테크놀로지 배합률이 기하급수적으로 폭증 중입니다."
-          actionPlan="**[Actionable Insight]** 해동을 거치지 않은 최상위 신선도의 선상 가공품(FAS) 라인 파이프를 먼저 뚫어내는 기업이 글로벌 B2B 프리미엄 다이닝 납품 입찰전을 쓸어 담습니다. 구형 H&G 매입 비중을 줄이고 최첨단 FAS 선박들과의 전속 거래 예산을 최대로 배분하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
+          actionPlan="해동을 거치지 않은 최상위 신선도의 선상 가공품(FAS) 라인 파이프를 먼저 뚫어내는 기업이 글로벌 B2B 프리미엄 다이닝 납품 입찰전을 쓸어 담습니다. 구형 H&G 매입 비중을 줄이고 최첨단 FAS 선박들과의 전속 거래 예산을 최대로 배분."
           source="FAO Fisheries & Aquaculture Production Data"
         />
       </div>
@@ -82,7 +82,7 @@ export function Widget10_SurimiGrowth() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="어묵 배합, 인조 게맛살(크래미), 패스트푸드 가공의 필수 베이스이자 미래 대체육 라인인명태 연육(Surimi) 생산량 그래프의 가파른 상승 저항선을 보여줍니다. 이제 명태는 더 이상 원형 생선이 아니라 화학적 식품 원료로서 그 가치가 복리 우상향 중입니다."
-          actionPlan="**[Actionable Insight]** 수리미 공급권은 당사 그룹 매출의 생명줄입니다. SA / FA 등급 등 최상위 하이엔드 수리미를 뽑아내는 상위 3개 러시아계 공장의 연간 쿼터를 싹쓸이하여 경쟁사들이 B급 원료로 밀려나게 만드는 압사 치킨게임을 지시합니다. (Conviction Buy)"
+          actionPlan="수리미 공급권은 당사 그룹 매출의 생명줄입니다. SA / FA 등급 등 최상위 하이엔드 수리미를 뽑아내는 상위 3개 러시아계 공장의 연간 쿼터를 싹쓸이하여 경쟁사들이 B급 원료로 밀려나게 만드는 압사 치킨게임을 지시합니다."
           source="Global Surimi Production & Trade Annual Index"
         />
       </div>
@@ -121,8 +121,8 @@ export function Widget11_SurimiSpread() {
       </div>
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
-          situation="프리미엄 명태 연육과 동남아산 값싼 열대어(Tropical)의 가격 갭(Spread)을 관찰합니다. 이 가격 갭이 2배율(2.0x)을 초과 돌파하는 임계점에 진입하면 대량 B2B 어묵 제조사들은 매입원가(COGS) 절감을 위해 맛이 조악해짐에도 싼 열대어 원료 레시피 교체를 단행합니다."
-          actionPlan="**[Actionable Insight]** 핵심 클라이언트인 식품 공장들이 염가 제품 라인으로 이탈하는 엑소더스를 차단해야 합니다. 100% 명태만 고집하지 말고, 자사 차원에서 명태 70%와 가성비 열대어 30%를 황금 비율로 사전 혼합(Blending)한 중간 마진 가격대의 새로운 방어형 아이템을 출시하여야 합니다. (Conviction Buy)"
+          situation="프리미엄 명태 연육과 동남아산 값싼 열대어(Tropical)의 가격 갭(Spread)을 관찰합니다. 이 가격 갭이 2배율(2.0x)을 초과 돌파하는 임계점에 진입하면 대량 B2B 어묵 제조사들은 매입원가 절감을 위해 맛이 조악해짐에도 싼 열대어 원료 레시피 교체를 단행합니다."
+          actionPlan="핵심 클라이언트인 식품 공장들이 염가 제품 라인으로 이탈하는 엑소더스를 차단해야 합니다. 100% 명태만 고집하지 말고, 자사 차원에서 명태 70%와 가성비 열대어 30%를 황금 비율로 사전 혼합한 중간 마진 가격대의 새로운 방어형 아이템을 출시하여야 합니다."
           source="Urner Barry Seafood Market Analytics"
         />
       </div>
@@ -162,7 +162,7 @@ export function Widget12_RoePremium() {
       <div style={{ marginTop: '20px' }}>
         <TakeawayBox
           situation="명태 전신을 분해할 때 명란(Roe) 부위가 전체 톤수 중량에서 차지하는 포션은 채 3%에 불과하나, 특수 발효/염장 상품화되었을 때 벌어들이는 1g 당 영업 무형 마진은 타 부위를 압살하며 전체 수익 곡선을 홀로 띄웁니다."
-          actionPlan="**[Actionable Insight]** 원물 처리 공정에서 소중한 란(Roe)이 포함된 완전 개체급 생물과 기타 부위를 한국 오프라인 도매상에게 '통나무형 벌크'로 싸게 하역 덤핑하는 행태를 멈추십시오. 명란만 독점 추출하는 D2C 자체 브랜딩 패키지 부서를 본사에 설립해야 합니다. (Conviction Buy)"
+          actionPlan="원물 처리 공정에서 소중한 란(Roe)이 포함된 완전 개체급 생물과 기타 부위를 한국 오프라인 도매상에게 '통나무형 벌크'로 싸게 하역 덤핑하는 행태를 멈추십시오. 명란만 독점 추출하는 D2C 자체 브랜딩 패키지 부서를 본사에 설립해야 합니다."
           source="일본 관세청 명란(Mentaiko) 수입 및 도매 유통 단가 DB"
         />
       </div>

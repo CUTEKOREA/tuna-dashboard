@@ -33,7 +33,7 @@ export default function SquidFXHedging() {
           </LineChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="한국은행 환율 통계 & 내부 결제망" situation="단순 수입 가격(USD)이 고정되더라도 원/달러 환율(파란선 점선) 상승분이 반영되어, 당사가 실제 지불하는 원화 기반 매입 원가(노란선 곡선)가 통제 불가 수준으로 뛰고 있습니다." actionPlan="**[Actionable Insight]** 연간 쿼터의 50% 이상 물량 대금은 '환율 1,300원 이하' 국면일 때 선물환(Forward) 매입을 통해 사전 고정(Fixing)시켜야 갑작스런 거시 쇼크를 방어할 수 있습니다." />
+      <TakeawayBox source="한국은행 환율 통계 & 내부 결제망" situation="단순 수입 가격(USD)이 고정되더라도 원/달러 환율(파란선 점선) 상승분이 반영되어, 당사가 실제 지불하는 원화 기반 매입 원가(노란선 곡선)가 통제 불가 수준으로 뛰고 있습니다." actionPlan="연간 쿼터의 50% 이상 물량 대금은 '환율 1,300원 이하' 국면일 때 선물환(Forward) 매입을 통해 사전 고정(Fixing)시켜야 갑작스런 거시 쇼크를 방어할 수 있습니다." />
     </div>
   );
 }

@@ -197,7 +197,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
         <div className={styles.card}>
           <div className={styles.cardTitle}>
             <Tag size={18} color="#f43f5e" />
-            <TermTooltip term="단가 갭(Gap) 트래커" description="제조사(NB) 참치와 유통사 자체 브랜드(PB) 참치 간의 100g당 실제 판매가 차이(가격 갭)를 추적합니다. 격차가 벌어질수록 고객이 저렴한 제품으로 넘어가버릴 확률(이탈 위험)이 커집니다." /> {selectedBrandKey !== 'ALL' && <span style={{fontSize:'11px', background:'#f43f5e', padding:'2px 6px', borderRadius:'4px', marginLeft:'8px'}}>필터 적용됨</span>}
+            <TermTooltip term="단가 갭(Gap) 트래커" description="제조사(NB) 참치와 유통사 자체 브랜드 참치 간의 100g당 실제 판매가 차이(가격 갭)를 추적합니다. 격차가 벌어질수록 고객이 저렴한 제품으로 넘어가버릴 확률(이탈 위험)이 커집니다." /> {selectedBrandKey !== 'ALL' && <span style={{fontSize:'11px', background:'#f43f5e', padding:'2px 6px', borderRadius:'4px', marginLeft:'8px'}}>필터 적용됨</span>}
           </div>
           
           <div style={{ overflowX: 'auto' }}>

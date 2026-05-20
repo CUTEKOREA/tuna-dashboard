@@ -49,7 +49,7 @@ export default function SalmonInsightAutomationYield() {
 
       <TakeawayBox 
         situation="북미 및 유럽 가공 허브의 극심한 노동력 부족과 임금 인상이 가공 마진을 압박하고 있음. 수작업에 의존하는 기존 방식은 연간 10~15%의 생산성 손실과 품질 불균일성을 야기함."
-        actionPlan="**[Actionable Insight]** BAADER 581 Pro와 같은 모듈형 자동화 시스템(필렛팅 및 트림 통합)을 전면 도입해야 함. 이는 수율을 3~4% 향상시키고 수작업 의존도(Exposure)를 40% 감소시켜 즉각적인 재무적 Bottom-line(순이익)을 창출하며, IoT 기반 예지보전으로 다운타임을 원천 차단함."
+        actionPlan="BAADER 581 Pro와 같은 모듈형 자동화 시스템(필렛팅 및 트림 통합)을 전면 도입해야 함. 이는 수율을 3~4% 향상시키고 수작업 의존도(Exposure)를 40% 감소시켜 즉각적인 재무적 Bottom-line(순이익)을 창출하며, IoT 기반 예지보전으로 다운타임을 원천 차단함."
         source="The Global Salmon Industry Value Chain Outlook 2024-2026 / BAADER Data"
       />
     </div>

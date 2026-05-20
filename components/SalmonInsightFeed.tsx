@@ -58,8 +58,8 @@ export default function SalmonInsightFeed() {
       </div>
 
       <TakeawayBox 
-        situation="기후 변화(엘니뇨 등)로 인한 어분(Fishmeal) 가격의 변동성이 EBITDA 마진을 훼손하고 있습니다. 매입원가(COGS)의 60%를 차지하는 사료 통제권 없이는 구조적 수익성(Profitability) 방어가 불가능합니다."
-        actionPlan="**[Actionable Insight]** 글로벌 1위 Mowi처럼 사료 밸류체인을 전면 내재화(In-house)하거나 독점 파트너십을 구축해야 합니다. 어분 의존도(Exposure)를 낮출 수 있는 곤충/미세조류 기반 대체 단백질 스타트업 M&A를 즉각 검토하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
+        situation="기후 변화(엘니뇨 등)로 인한 어분(Fishmeal) 가격의 변동성이 EBITDA 마진을 훼손하고 있습니다. 매입원가의 60%를 차지하는 사료 통제권 없이는 구조적 수익성 방어가 불가능합니다."
+        actionPlan="글로벌 1위 Mowi처럼 사료 밸류체인을 전면 내재화(In-house)하거나 독점 파트너십을 구축해야 합니다. 어분 의존도(Exposure)를 낮출 수 있는 곤충/미세조류 기반 대체 단백질 스타트업 M&A를 즉각 검토."
         source="Mowi ASA Annual Report 2024 · BioMar Sustainability 2024 [📡 LIVE API 연동: FAO FishPrice]"
       />
     </div>

@@ -24,7 +24,7 @@ const B2B_MODELS = [
     target: '글로벌 Tier-1 펫케어 브랜드',
     color: '#f43f5e',
     icon: Gem,
-    desc: '식용 불가 판정을 받은 적색육(Dark Muscle)을 초저온 냉동 블록화하여 글로벌 사료 벤더에 대량 납품. CAPEX 투입을 최소화하면서 즉각적인 Free Cash Flow(FCF)를 창출하는 구조적 캐시카우. (글로벌 피어 T사 펫케어 부문 Gross Margin 28% 도달).'
+    desc: '식용 불가 판정을 받은 적색육(Dark Muscle)을 초저온 냉동 블록화하여 글로벌 사료 벤더에 대량 납품. CAPEX 투입을 최소화하면서 즉각적인 Free Cash Flow를 창출하는 구조적 캐시카우. (글로벌 피어 T사 펫케어 부문 Gross Margin 28% 도달).'
   },
   {
     id: 'collagen',
@@ -46,7 +46,7 @@ const B2B_MODELS = [
     target: '글로벌 제약사(API) 및 메디컬 뉴트리션',
     color: '#fbbf24',
     icon: Fish,
-    desc: '1차 추출 조어유(Crude Fish Oil)를 글로벌 정제(Refining) 파트너십을 통해 초임계 추출 및 초고순도 탈취. 마진 스프레드가 극대화되는 원료의약품(API) 및 영유아 프리미엄 조제분유 시장으로 직결되는 락인(Lock-in) 밸류체인.'
+    desc: '1차 추출 조어유(Crude Fish Oil)를 글로벌 정제(Refining) 파트너십을 통해 초임계 추출 및 초고순도 탈취. 마진 스프레드가 극대화되는 원료의약품(API) 및 영유아 프리미엄 조제분유 시장으로 직결되는 락인 밸류체인.'
   },
   {
     id: 'fishmeal',

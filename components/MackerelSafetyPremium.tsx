@@ -42,7 +42,7 @@ export default function MackerelSafetyPremium() {
           </BarChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[Geopolitical Risk Premium] 지정학적 식품 안전(Radioactivity) 이슈로 글로벌 바이어들의 일본산 펠라직(Pelagic) 기피 현상이 트리거(Trigger)되며, 한국산이 아프리카 권역에서 완벽한 펀더멘털 대체재(Substitute)로 급부상(+38% 볼륨 팽창)하는 구조적 반사이익(Windfall) 국면입니다." actionPlan="**[Actionable Insight]** [Quality Moat Construction] 일회성 무역풍(Tailwind)에 안주하지 마십시오. 즉시 선적 물량 100%에 대해 제3자 국가공인 방사능 안전검사(QR 트래킹) 패키징을 강제 의무화하여, 단순 원물 수출을 진입 장벽이 완벽히 구축된 \'청정 프리미엄 원료(Clean-Label)\' 브랜드 비즈니스로 수직 상승시켜야 합니다. (Conviction Buy)" />
+      <TakeawayBox situation="지정학적 식품 안전(Radioactivity) 이슈로 글로벌 바이어들의 일본산 펠라직(Pelagic) 기피 현상이 트리거(Trigger)되며, 한국산이 아프리카 권역에서 강한 펀더멘털 대체재(Substitute)로 급부상(+38% 볼륨 팽창)하는 구조적 반사이익(Windfall) 국면입니다." actionPlan="[Quality Moat Construction] 일회성 무역풍(Tailwind)에 안주하지 마십시오. 즉시 선적 물량 100%에 대해 제3자 국가공인 방사능 안전검사(QR 트래킹) 패키징을 강제 의무화하여, 단순 원물 수출을 진입 장벽이 완벽히 구축된 \'청정 프리미엄 원료(Clean-Label)\' 브랜드 비즈니스로 수직 상승시켜야 합니다." />
     </div>
   );
 }

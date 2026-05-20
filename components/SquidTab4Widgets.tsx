@@ -259,7 +259,7 @@ export function Widget39_ForwardSpot() {
   const data = [
     { period: '시즌 전(선도/Forward)', price: 100 },
     { period: '항해 중(중도매)', price: 120 },
-    { period: '상장/하역(Spot)', price: 160 },
+    { period: '상장/하역', price: 160 },
   ];
   return (
     <div style={glassContainerStyle}>

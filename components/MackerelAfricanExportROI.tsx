@@ -43,7 +43,7 @@ export default function MackerelAfricanExportROI() {
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox situation="[Freight-Elasticity Squeeze] 아프리카향 하위 티어(소형어) 수출 포트폴리오는 원물 펀더멘털보다 글로벌 해상 운임 지수(SCFI) 변동성에 마진이 완벽히 종속되는 극단적 운임 민감도(Freight-Elastic) 구조입니다. 특정 임계점 돌파 시 즉각적 OPM(영업Bottom-line(순이익)률) 적자 전환이 발생합니다." actionPlan="**[Actionable Insight]** [Agile Channel Switching] 컨테이너 운임 임계치가 내부 모델링 하한선을 이탈하는 순간, 선적 스케줄을 즉시 Force Majeure(불가항력) 급으로 보류(Hold) 하십시오. 악성 재고화 방지를 위해 차라리 국내 양식장 생사료(Feed) 체인으로 전량 저가 매각(Dump)하여 워킹캐피탈(Working Capital)을 긴급 회수하는 \'손절 룰베이스 스위칭\' 매뉴얼을 전사 적용하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" />
+      <TakeawayBox situation="아프리카향 하위 티어(소형어) 수출 포트폴리오는 원물 펀더멘털보다 글로벌 해상 운임 지수(SCFI) 변동성에 마진이 완벽히 종속되는 극단적 운임 민감도(Freight-Elastic) 구조입니다. 특정 임계점 돌파 시 즉각적 OPM(영업Bottom-line(순이익)률) 적자 전환이 발생합니다." actionPlan="[Agile Channel Switching] 컨테이너 운임 임계치가 내부 모델링 하한선을 이탈하는 순간, 선적 스케줄을 즉시 Force Majeure(불가항력) 급으로 보류(Hold) 하십시오. 악성 재고화 방지를 위해 차라리 국내 양식장 생사료(Feed) 체인으로 전량 저가 매각(Dump)하여 워킹캐피탈(Working Capital)을 긴급 회수하는 \'손절 룰베이스 스위칭\' 매뉴얼을 전사 적용." />
     </div>
   );
 }

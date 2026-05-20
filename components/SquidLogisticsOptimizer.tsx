@@ -34,7 +34,7 @@ export default function SquidLogisticsOptimizer() {
           </BarChart>
         </SafeResponsiveContainer>
       </div>
-      <TakeawayBox source="국내 냉장창고 단가표 & 물류팀" situation="[Carry Cost vs Alpha Decay] 콜드체인 보관 주차(Weeks)가 경과할수록 창고료 및 기회비용(Carry Cost)이 복리로 누적되어, 12주 차(W12)를 기점으로 단기 시세차익(Alpha) 기대치를 완전히 초과(Dead-cross)하는 네거티브 롤일드(Negative Roll-Yield) 현상이 확인됩니다." actionPlan="**[Actionable Insight]** [Inventory Duration Cap] 투기적 재고 홀딩을 전면 금지하십시오. 국내 입항 후 \'콜드체인 체류 10주(W10)\'를 강제 청산(Stop-loss) 상한선으로 시스템에 하드코딩하고, 11주 차 돌입 전 도매 시장에 시장가(Market Order) 선도 덤핑 출회를 단행하여 악성 재고에 묶인 유동성(Liquidity)을 즉각 해방해야 합니다. (Conviction Buy)" />
+      <TakeawayBox source="국내 냉장창고 단가표 & 물류팀" situation="콜드체인 보관 주차(Weeks)가 경과할수록 창고료 및 기회비용(Carry Cost)이 복리로 누적되어, 12주 차(W12)를 기점으로 단기 시세차익 기대치를 완전히 초과(Dead-cross)하는 네거티브 롤일드(Negative Roll-Yield) 현상이 확인됩니다." actionPlan="[Inventory Duration Cap] 투기적 재고 홀딩을 전면 금지하십시오. 국내 입항 후 \'콜드체인 체류 10주(W10)\'를 강제 청산(Stop-loss) 상한선으로 시스템에 하드코딩하고, 11주 차 돌입 전 도매 시장에 시장가(Market Order) 선도 덤핑 출회를 단행하여 악성 재고에 묶인 유동성(Liquidity)을 즉각 해방해야 합니다." />
     </div>
   );
 }

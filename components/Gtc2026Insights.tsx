@@ -8,7 +8,7 @@ export default function Gtc2026Insights() {
       title: "물리적 세계의 AI 지배력 전이: '피지컬 AI'와 제로 레이버(Zero Labor)",
       methodology: "단순 텍스트 처리를 넘어, NVIDIA Omniverse와 Open Physical AI Data Factory 블루프린트를 통해 시뮬레이션된 디지털 트윈 환경에서 로봇이 물리적 법칙을 자율 학습하여 현실의 액추에이터를 제어함.",
       situation: "엔비디아 GTC 2026의 핵심은 AI의 종착지가 '소프트웨어'가 아닌 '물리적 인프라'임을 선언한 것임. 휴머노이드 로봇 및 자율 공정이 실험실을 벗어나 연산 능력(Compute)을 통해 현실의 노동력(Labor)을 직접 대체하는 티핑 포인트에 도달.",
-      takeaway: "자본 배분(CAPEX)의 무게 중심을 단순 S/W 도입에서 '디지털 트윈 호환성'을 갖춘 로보틱스 및 제조 인프라로 즉각 전환할 것. 향후 M&A 실사 시 대상 기업의 물리적 인프라가 AI 관제(Omniverse)와 즉각 연동 가능한지 여부를 핵심 밸류에이션 지표로 편입해야 함.",
+      takeaway: "자본 배분의 무게 중심을 단순 S/W 도입에서 '디지털 트윈 호환성'을 갖춘 로보틱스 및 제조 인프라로 즉각 전환할 것. 향후 M&A 실사 시 대상 기업의 물리적 인프라가 AI 관제(Omniverse)와 즉각 연동 가능한지 여부를 핵심 밸류에이션 지표로 편입해야 함.",
       source: "NVIDIA Open Physical AI Data Factory Blueprint"
     },
     {

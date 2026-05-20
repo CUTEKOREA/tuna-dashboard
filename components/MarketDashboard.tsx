@@ -280,7 +280,7 @@ export default function MarketDashboard() {
             <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>어획 변동성 심화에 따른 '수급 축 이동'과 'MSC 프리미엄의 주류화'</h4>
             <TakeawayBox 
               situation="기후 변화로 WCPO 조업이 부진해지자, 아시아 가공업체들은 인도양산 매입을 폭발적으로 늘리며 공급망 축을 이동 중입니다. 또한 영국 및 선진 시장에서 MSC 인증 수산물이 1위로 등극하는 등 '지속가능성'이 시장 진입의 필수 요건이 되었습니다."
-              actionPlan="**[Actionable Insight]** 조업 리스크 상쇄를 위해 수급처를 인도양/동부태평양으로 적극 다변화해야 합니다. 글로벌 대형 유통업체들의 100% MSC 전환 흐름에 대응해 원어 소싱부터 지속가능성 프리미엄 비축과 친환경 브랜딩을 가속화해야 합니다. (Conviction Buy)"
+              actionPlan="조업 리스크 상쇄를 위해 수급처를 인도양/동부태평양으로 적극 다변화해야 합니다. 글로벌 대형 유통업체들의 100% MSC 전환 흐름에 대응해 원어 소싱부터 지속가능성 프리미엄 비축과 친환경 브랜딩을 가속화해야 합니다."
               source="Atuna May 2026 News & Consumption Trends"
             />
           </div>
@@ -288,8 +288,8 @@ export default function MarketDashboard() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-main)', margin: 0 }}>하드웨어 조업에서 '인공지능·데이터 중심의 해양 지능화'로 가치 이동</h4>
             <TakeawayBox 
-              situation="연료비 폭등과 어가 변동으로 전통적 방식의 선단들이 수익성(Profitability) 위기를 겪는 가운데, AI 기반 실시간 모니터링 등 '해양 지능(Ocean Intelligence)' 소프트웨어 산업으로 무게중심이 급격히 이동하고 있습니다."
-              actionPlan="**[Actionable Insight]** 단순 선박 규모 확장이 아닌 스마트 조업 시스템(Smart-aFAD) 투자를 통해 연료 효율 최적화 및 한계 비용 축소에 집중해야 합니다. 또한 EU CATCH 등 규제 리스크를 기회로 바꾸기 위한 투명한 디지털 이력 추적 시스템 선제 도입이 시급합니다. (Immediate Action Required)"
+              situation="연료비 폭등과 어가 변동으로 전통적 방식의 선단들이 수익성 위기를 겪는 가운데, AI 기반 실시간 모니터링 등 '해양 지능(Ocean Intelligence)' 소프트웨어 산업으로 무게중심이 급격히 이동하고 있습니다."
+              actionPlan="단순 선박 규모 확장이 아닌 스마트 조업 시스템(Smart-aFAD) 투자를 통해 연료 효율 최적화 및 한계 비용 축소에 집중해야 합니다. 또한 EU CATCH 등 규제 리스크를 기회로 바꾸기 위한 투명한 디지털 이력 추적 시스템 선제 도입이 시급합니다. (Immediate Action Required)"
               source="Atuna May 2026 Tech & ESG Radar"
             />
           </div>

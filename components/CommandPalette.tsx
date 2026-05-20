@@ -24,14 +24,14 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
 
   const commands: CommandItem[] = [
     { id: 'market', label: '시장 동향 (Market)', category: '페이지', icon: <BarChart2 size={16} />, action: () => onNavigate('market') },
-    { id: 'fleet', label: '선단 운영 (Fleet)', category: '페이지', icon: <Navigation size={16} />, action: () => onNavigate('fleet') },
+    { id: 'fleet', label: '선단 운영', category: '페이지', icon: <Navigation size={16} />, action: () => onNavigate('fleet') },
     { id: 'logistics', label: '물류 및 가공 (Logistics)', category: '페이지', icon: <Factory size={16} />, action: () => onNavigate('logistics') },
     { id: 'unloading', label: '하역 현황 (Unloading)', category: '페이지', icon: <Anchor size={16} />, action: () => onNavigate('unloading') },
     { id: 'value-chain', label: '밸류체인 (Value Chain)', category: 'BETA', icon: <Workflow size={16} />, action: () => onNavigate('value-chain') },
     { id: 'ai-forecast', label: 'AI 유가·단가 예측', category: 'BETA', icon: <Cpu size={16} />, action: () => onNavigate('ai-forecast') },
     { id: 'strategy', label: '글로벌 전략 (Strategy)', category: 'BETA', icon: <Target size={16} />, action: () => onNavigate('strategy') },
     { id: 'retail', label: '소매 유통 (Retail POS)', category: '페이지', icon: <ShoppingCart size={16} />, action: () => onNavigate('retail') },
-    { id: 'ranching', label: '참다랑어 축양 (Ranching)', category: '페이지', icon: <Waves size={16} />, action: () => onNavigate('ranching') },
+    { id: 'ranching', label: '참다랑어 축양', category: '페이지', icon: <Waves size={16} />, action: () => onNavigate('ranching') },
     { id: 'mackerel', label: '고등어 (Mackerel)', category: '페이지', icon: <Fish size={16} />, action: () => onNavigate('mackerel') },
     { id: 'squid', label: '오징어 (Squid)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('squid') },
     { id: 'cashew', label: '캐슈넛 (Cashew Nut)', category: '페이지', icon: <Hexagon size={16} />, action: () => onNavigate('cashew') },

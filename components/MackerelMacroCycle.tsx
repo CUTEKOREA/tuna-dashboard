@@ -135,7 +135,7 @@ export default function MackerelMacroCycle() {
             수입 단가는 ${data[0].unit_price_usd.toLocaleString()}/t(1976)에서 ${latest.unit_price_usd.toLocaleString()}/t(2023)로 {((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승했습니다.
             현재는 <strong style={{ color: phaseColor }}>{phase}</strong> 국면입니다.
           </>}
-          actionPlan="**[Actionable Insight]** 현재 수입 단가 사이클이 뚜렷한 불황기에 진입했으므로 재고 방어적 매입 및 장기 계약 단가를 고정하는 전략을 구사해야 합니다. 노르웨이 TAC 삭감과 한국 연근해 고수온 등 복합적인 공급 제약으로 인해 추가 단가 상승 가능성이 존재합니다. 엘니뇨와 라니냐 전환기에 나타나는 어획량의 급격한 변동 리스크에 대비하여 재고를 적정 수준으로 유지하고 굳건한 헷징 수단을 확보하는 것이 필수적입니다. (Execution Recommended)"
+          actionPlan="현재 수입 단가 사이클이 뚜렷한 불황기에 진입했으므로 재고 방어적 매입 및 장기 계약 단가를 고정하는 전략을 구사해야 합니다. 노르웨이 TAC 삭감과 한국 연근해 고수온 등 복합적인 공급 제약으로 인해 추가 단가 상승 가능성이 존재합니다. 엘니뇨와 라니냐 전환기에 나타나는 어획량의 급격한 변동 리스크에 대비하여 재고를 적정 수준으로 유지하고 굳건한 헷징 수단을 확보하는 것이 필수적입니다. (Execution Recommended)"
         />
       </div>
     </div>

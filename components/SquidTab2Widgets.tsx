@@ -160,7 +160,7 @@ export function Widget15_TechVsCPUE() {
         </SafeResponsiveContainer>
       </div>
       <div className={styles.takeawayBox}>
-        <strong>[자본의 승리]</strong> 동일 어장 내에서도 C/P국이 압도적인 집어등 마력과 소나 탐지기로 CPUE 효율을 5배 격차로 벌림.
+        <strong>[자본의 승리]</strong> 동일 어장 내에서도 C/P국이 집어등 마력과 소나 탐지기로 CPUE 효율을 5배 격차로 벌림.
       </div>
     </div>
   );
@@ -308,7 +308,7 @@ export function Widget20_CarbonTaxCapex() {
         </SafeResponsiveContainer>
       </div>
       <div className={styles.takeawayBox}>
-        <strong>[자본 도태]</strong> 2028년을 기점으로 노후 선박에 부과되는 탄소세/입항 페널티가 신조선 건조 비용(CAPEX)을 추월. 중소 선사의 강제 퇴출기.
+        <strong>[자본 도태]</strong> 2028년을 기점으로 노후 선박에 부과되는 탄소세/입항 페널티가 신조선 건조 비용을 추월. 중소 선사의 강제 퇴출기.
       </div>
     </div>
   );

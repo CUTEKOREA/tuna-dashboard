@@ -63,7 +63,7 @@ export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { n
 
       <TakeawayBox 
         situation="노르웨이 신호등 규제(Traffic Light System)와 칠레의 생물학적 한계로 인해 2025~2026년 글로벌 연어 공급 증가율은 2~3%대에 머물 전망이며, 이는 EUR 8.0/kg 이상의 구조적 고단가(Structurally High Price)를 영구화시킵니다."
-        actionPlan="**[Actionable Insight]** 과거처럼 공급 과잉에 따른 가격 폭락(Downturn)은 오지 않습니다. Silla Co.는 단순 트레이딩 마진을 포기하고, 즉각적인 부가가치(Value-add) 가공 라인 투자를 통해 원물 단가 상승분을 소비자 판매가로 전가(Pass-through)해야 합니다. (Conviction Buy)"
+        actionPlan="과거처럼 공급 과잉에 따른 가격 폭락(Downturn)은 오지 않습니다. Silla Co.는 단순 트레이딩 마진을 포기하고, 즉각적인 부가가치(Value-add) 가공 라인 투자를 통해 원물 단가 상승분을 소비자 판매가로 전가(Pass-through)해야 합니다."
         source="Kontali Insights · Nasdaq Salmon Index [📡 LIVE API 연동: Spot Price & 환율 헷징]"
       />
     </div>

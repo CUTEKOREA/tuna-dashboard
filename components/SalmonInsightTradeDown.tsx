@@ -119,13 +119,13 @@ export default function SalmonInsightTradeDown() {
       {activeTab === 'eu' ? (
         <TakeawayBox 
           situation="러-우 전쟁발 거시 인플레이션으로 EU 주요국의 가정용 신선 연어 소비 '물량(Volume)'은 급감했습니다. 그러나 소비자들이 소포장, PB 상품, 훈제 가공품 등으로 하향 구매(Trade-Down)를 단행하면서 전체 '지출액(Value)'은 오히려 최고치를 경신하는 디커플링 현상이 발생했습니다."
-          actionPlan="**[Actionable Insight]** 인플레이션 국면에서는 프리미엄 통연어 유통을 과감히 축소하고, 가격 방어력이 압도적인 소포장(Convenience) 및 PB 가공 포트폴리오를 즉각 런칭하여 판매량(Volume) 하락을 Bottom-line(순이익)률(Margin)로 상쇄하는 전략이 필수적입니다. (Execution Recommended)"
+          actionPlan="인플레이션 국면에서는 프리미엄 통연어 유통을 과감히 축소하고, 가격 방어력이 소포장(Convenience) 및 PB 가공 포트폴리오를 즉각 런칭하여 판매량(Volume) 하락을 Bottom-line(순이익)률(Margin)로 상쇄하는 전략이 필수적입니다. (Execution Recommended)"
           source="EUMOFA Trade Analytics [📡 LIVE API 연동: 소비 지출 디커플링]"
         />
       ) : (
         <TakeawayBox 
           situation="2024년 고수온 폐사로 국내 양식 광어 도매가 역시 20,000원/kg 선을 돌파하며 연어와의 가격 스프레드가 무의미해졌습니다. 저가 대체 어종이 사라짐에 따라 소비자는 연어를 포기하는 대신 소포장/HMR 가공품으로 구매 단위를 축소(Trade-Down)하고 있습니다."
-          actionPlan="**[Actionable Insight]** 단가 상승을 방어하기 위한 단순 B2B 도매 경쟁은 한계에 달했습니다. EU의 사례처럼 B2C 소포장(Convenience) 및 초밥/샐러드용 필렛(Fillet)으로 제품군을 파편화하여, 물량(Volume) 감소를 마진(Margin) 확대로 상쇄하는 가치 창출 전환이 시급합니다. (Immediate Action Required)"
+          actionPlan="단가 상승을 방어하기 위한 단순 B2B 도매 경쟁은 한계에 달했습니다. EU의 사례처럼 B2C 소포장(Convenience) 및 초밥/샐러드용 필렛(Fillet)으로 제품군을 파편화하여, 물량(Volume) 감소를 마진(Margin) 확대로 상쇄하는 가치 창출 전환이 시급합니다. (Immediate Action Required)"
           source="Korea Customs Service & KAMIS API [📡 LIVE API 연동: 대체 단백질 스프레드]"
         />
       )}
