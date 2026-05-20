@@ -15,7 +15,8 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to load static data' }, { status: 500 });
   }
 
-  // 9대 API 시뮬레이션 및 데이터 오버라이트 로직
+  // ⚠️ 시뮬레이션 오버라이트 — 다음 9개 필드는 실시간 API 호출이 아닌 정기 갱신 추정치입니다.
+  // 실시간 KCS/KAMIS 통관은 /api/tuna 참조. 본 endpoint는 SYNCED 라벨 적용 권장.
   // 1. KCS(관세청) - 글로벌 단일 시장 수출 단가 업데이트
   data.livePriceData = {
     japanPrice: 14.85,
@@ -42,14 +43,17 @@ export async function GET() {
   });
 
   // 4. Middle East Local API + EUMOFA + Logistics + BOK = 글로벌 차익거래 레이더
+  // ⚠️ 시뮬레이션 데이터 — 두바이/지중해 가격은 IMARC Middle East Seafood 2026-2034 기반 추정
   data.arbitrageRadar = {
-    dubaiLocalPriceUSD: 48.0, // 두바이 판매가
-    mediterraneanSpotPriceUSD: 18.5, // 지중해 매입가
+    dubaiLocalPriceUSD: 45.0, // 두바이 판매가 (위젯 $42~48 범위 평균치, IMARC 2026-2034)
+    dubaiPriceRange: "42~48",
+    mediterraneanSpotPriceUSD: 18.5, // 지중해 매입가 (Balfegó 등 가공품 OEM 단가 추정)
     airFreightCostUSD: 4.2, // 항공 운임
     processingCostUSD: 2.8, // 가공비
-    netMarginUSD: 22.5, // 48.0 - 18.5 - 4.2 - 2.8
-    marginGapVsJapan: "+18%",
-    recommendation: "두바이 직수출 시 일본향 대비 톤당 영업이익 극대화 (Buy/Export)"
+    netMarginUSD: 19.5, // 45.0 - 18.5 - 4.2 - 2.8
+    marginGapVsJapan: "+15%",
+    recommendation: "두바이 직수출 마진이 일본향 대비 우위. 단 First-mover 윈도우는 1~2년(스페인·일본 트레이딩 하우스 진입 임박)",
+    source: "IMARC Middle East Seafood Market 2026-2034 추정 + 자체 분석"
   };
 
   // 5. NOAA 기후 리스크 및 운임 지수 시뮬레이터 파라미터 한계값
@@ -77,7 +81,7 @@ export async function GET() {
       value: "48,283톤",
       trend: "유지",
       desc: "대서양/지중해 배정 한도",
-      telemetry: "live",
+      telemetry: "SYNCED",
       syncDate: new Date().toLocaleDateString()
     },
     kpi2: {
@@ -85,31 +89,31 @@ export async function GET() {
       value: "85.4%",
       trend: "+12.1%p",
       desc: "단기 덤핑 리스크 경보",
-      telemetry: "live",
+      telemetry: "SYNCED",
       syncDate: new Date().toLocaleDateString()
     },
     kpi3: {
-      title: "글로벌 최고가 (UAE)",
-      value: "$48.0/kg",
+      title: "두바이 프리미엄 단가 (UAE)",
+      value: "$42~48/kg",
       trend: "+8.5%",
-      desc: "EUMOFA / B2B 오마카세",
-      telemetry: "live",
-      syncDate: new Date().toLocaleDateString()
+      desc: "IMARC Middle East Seafood Market 2026-2034 추정 범위",
+      telemetry: "STATIC",
+      syncDate: "2026-05-20"
     },
     kpi4: {
       title: "두바이 직납 순마진 (Net Margin)",
-      value: "$22.5/kg",
-      trend: "+18%",
-      desc: "vs 일본 츠키지 수출",
-      telemetry: "live",
-      syncDate: new Date().toLocaleDateString()
+      value: "$19.5/kg",
+      trend: "+15%",
+      desc: "vs 일본 츠키지 수출 (시뮬레이션)",
+      telemetry: "STATIC",
+      syncDate: "2026-05-20"
     },
     kpi5: {
       title: "양식 프리미엄",
       value: "+42.6%",
       trend: "확대",
       desc: "vs 야생 어획 단가",
-      telemetry: "live",
+      telemetry: "SYNCED",
       syncDate: new Date().toLocaleDateString()
     }
   };
