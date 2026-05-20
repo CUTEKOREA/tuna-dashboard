@@ -171,8 +171,8 @@ export function MofShippingCostWidget() {
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
           situation="[물류비 양극화] 부산→LA 노선 $2,200/20ft(+15% YoY)로 홍해 분쟁 여파가 지속되고 있습니다. 반면 부산→오사카 $620/20ft(+1%)로 아시아 노선은 상대적으로 안정적이며, 부산→로테르담은 $1,900(-3%)으로 소폭 하락 추세입니다."
-          actionPlan="**[Actionable Insight]** [운임 최적화] ① 방콕 직항 물류에 물량을 집중하여 단위당 운임 절감, ② LA행 장기계약(TAC) 체결로 운임 $1,800 이하 락인, ③ 로테르담 하락 추세 활용 EU 수출 확대를 실행해야 해야 합니다. (Conviction Buy)"
-          source="해양수산부 해상운임 데이터 · SCFI 지수"
+          actionPlan="[운임 최적화] ① 방콕 직항 물류에 물량을 집중하여 단위당 운임 절감, ② LA행 장기계약(TAC) 체결로 운임 $1,800 이하 락인, ③ 로테르담 하락 추세 활용 EU 수출 확대를 실행해야 합니다."
+          source="KMI 해운지수 부산항 · 해운조합 컨테이너 운임 발표치 (SCFI는 상하이 출발이라 부산 출발 운임은 KMI/KOBC 자료가 정확)"
         />
       </div>
     </div>

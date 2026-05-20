@@ -429,7 +429,7 @@ export default function TunaRanching() {
                     <strong style={{ color: '#fca5a5' }}>Ricardo Fuentes e Hijos:</strong> 지중해(스페인, 몰타, 튀니지, 모로코 등) 최대 축양 거물. 선망선-해상가두리-초저온수출 수직계열화 완성. 마루하니치로(일본) 등 대형 상사와 독점적 파트너십 구축.
                   </li>
                   <li>
-                    <strong style={{ color: '#fca5a5' }}>Balfegó (발페고):</strong> 프리미엄 및 지속가능성(ESG) 특화 가문 기업. 개별 QR 추적성 시스템 최초 도입.
+                    <strong style={{ color: '#fca5a5' }}>Balfegó (발페고):</strong> 프리미엄 및 지속가능성(ESG) 특화 가문 기업. 전 블루핀 개체 QR 추적성 시스템 운영(업계 선도).
                   </li>
                 </ul>
               </div>
@@ -442,7 +442,7 @@ export default function TunaRanching() {
                 </div>
                 <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
                   <li style={{ marginBottom: '8px' }}>
-                    <strong style={{ color: '#fcd34d' }}>Azzopardi Group (AJD Tuna):</strong> 1999년 몰타 최초 개척. 크로아티아 등지까지 최첨단 양식 시설 확대.
+                    <strong style={{ color: '#fcd34d' }}>Azzopardi Group (AJD Tuna):</strong> 몰타 블루핀 양식 1세대 개척사 (창립 연도 회사 공시 기준). 크로아티아 등지까지 최첨단 양식 시설 확대.
                   </li>
                   <li style={{ marginBottom: '8px' }}>
                     <strong style={{ color: '#fcd34d' }}>Fish and Fish Limited:</strong> 20년 이상 아시아 스시/사시미 시장 직공급망 구축.
@@ -529,14 +529,14 @@ export default function TunaRanching() {
               <Globe size={20} color="#10b981"/> 글로벌 참치 자원 건전성 스코어보드
               <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>ISSF 과학자문위원회 기준 주요 8개 대양·어종별 자원 건전성 평가. 글로벌 평균 87% 건전 — 참다랑어만 예외적 주의 구간.</p>
+            <p className={insightsStyles.cardDesc}>ISSF Status of the Stocks 2025-03 기준. <strong>어획량 가중 평균 87%</strong>가 건전 자원에서 공급 / <strong>stock 23개 중 65%(15개)</strong>가 건전 — 참다랑어만 예외적 주의 구간.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '15px' }}>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
-                <div className={insightsStyles.kpiLabel}>글로벌 건전성 평균</div>
+                <div className={insightsStyles.kpiLabel}>어획량 기준 건전성</div>
                 <div className={insightsStyles.kpiValue}>87%</div>
-                <div className={insightsStyles.kpiSub}>8개 대양·어종 가중 평균</div>
+                <div className={insightsStyles.kpiSub}>stock 기준은 65% (ISSF 2025-03)</div>
               </div>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
                 <div className={insightsStyles.kpiLabel}>최저 건전성 어종</div>
@@ -722,7 +722,7 @@ export default function TunaRanching() {
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
               <li>원어(라운드) 수입가 <strong>$14~18/kg</strong> → 이케지메 Loin 가공 후 <strong style={{ color: '#fbbf24' }}>$35~50/kg</strong></li>
-              <li>두바이 프리미엄 수입단가 <strong style={{ color: '#fbbf24' }}>$48/kg</strong> (글로벌 최고 수준)</li>
+              <li>두바이 프리미엄 수입단가 <strong style={{ color: '#fbbf24' }}>$42~48/kg</strong> (위젯 간 편차 — IMARC 중동 수산물 보고서로 단일화 필요)</li>
               <li>양식 참치 단가가 야생 어획 대비 <strong>+31.9% 프리미엄</strong> (2024 기준)</li>
               <li>한국 가공을 통한 부가가치 마진: <strong style={{ color: '#fbbf24' }}>kg당 $15~25 순이익 구간</strong></li>
             </ul>
@@ -784,10 +784,10 @@ export default function TunaRanching() {
               <li>두바이는 GCC 6개국 <strong style={{ color: '#fca5a5' }}>재수출 허브</strong> — 사우디·카타르·쿠웨이트·바레인·오만 동시 커버</li>
               <li>사우디 콜드체인 시장 <strong>$35억→$159억</strong> (2025→2034, CAGR 18.31%) 폭발 성장</li>
               <li>카타르 참치 시장 2028년 <strong style={{ color: '#fca5a5' }}>18.35% 성장 정점</strong> — Qatar Airways 기내식 시장</li>
-              <li>한 번의 두바이 거점 확보 → <strong>중동 전역 $100억+ 수산물 시장</strong> 동시 접근</li>
+              <li>두바이 거점 확보 → <strong>중동 GCC 수산물 시장</strong> 접근 채널 단계적 확보 (헤게모니가 아닌 접근 단계)</li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(239,68,68,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#fca5a5' }}>
-              📌 출처: IMARC Group 2025, 6Wresearch Qatar Tuna Market
+              📌 출처: IMARC Saudi/Middle East Seafood Market 2026-2034, 6Wresearch Qatar Tuna Market (수치는 보고서 원문 재확인 권장)
             </div>
           </div>
         </div>

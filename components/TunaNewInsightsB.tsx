@@ -38,7 +38,7 @@ const pillarTwoData = [
 
 // Source: ILO Global Wage Report 2024 (Vietnam/Thailand mfg. wages)
 // + VASEP Annual Report 2024 (processing lead times)
-// + 관세청 KCS VKFTA 양허세율 조회 HS 160414 (2025)
+// + 관세청 KCS VKFTA 양허세율 조회 HSK 1604.14.20.00 (가다랑어 조제·저장) / 1604.14.10.00 (참다랑어·황다랑어 조제) — L-04 의무 10자리
 const vietnamData = [
   { metric: '월 임금($)', Vietnam: 342, Thailand: 431, source: 'ILO 2024' },
   { metric: '리드타임(일)', Vietnam: 6.35, Thailand: 7.13, source: 'VASEP 2024' },
