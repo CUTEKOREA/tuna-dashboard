@@ -2,7 +2,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-20 (Claude Code 세션 — 참치 위젯 사실 무결성 감사 Phase A+B 완료. STATIC 라벨링·EDIT·RECONCILE·신규 위젯 4종까지 일괄 진행)
+> **마지막 업데이트**: 2026-05-20 (Antigravity 세션 — 참치 대시보드 디자인 및 S-Grade 업그레이드 종합 수정안 작성 완료)
 
 ---
 
@@ -157,7 +157,10 @@ git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' |
 | 2026-05-20 | CC | refactor (TunaOperationalInsights → S1~S5 모듈 분리 + GS Analyst Tone 일괄 적용) | 25 | 워킹트리에 137개 파일 누적 + 스크래치/로그 미정리 | 단일 커밋으로 묶음 분리·제외 판단, 빌드 깨짐 방지(신규 위젯 동봉) |
 | 2026-05-20 | CC | analysis+refactor (참치 위젯 사실 무결성 감사 Phase A+B 풀스캔) | 180 | 노트북 query 일부 timeout, 위젯 간 동일지표 정의 다름 | 33개 위젯 전부 검증·정정, 신규 위젯 4종 추가, 빌드 통과. 6개 커밋(7e8a032·fbbd719·81192ed·21d78f5·c631687·d93fa87) |
 | 2026-05-20 | CC | data (Phase C 외부 출처 검증 + mock 실데이터 wiring) | 45 | EUMOFA PDF는 pdftotext 필요(brew install poppler), 한국 참치액 단일값 미공개 | EUMOFA/ISSF/IMARC 직접 확인으로 4건 정확화, FishStat 실측으로 mockZeroSumData 교체. 2개 커밋(78874b9·d62a359) |
-| 2026-05-20 | CC | style (Phase D GS 톤 정착 + AI tell 일괄 제거) | 75 | 첫 L-07 스크립트가 TS 코드 공백까지 잡아 rollback 1회 발생 → 한글 문맥 제한 정규식으로 재실행 | 50+ 파일에서 브래킷 라벨·영문 동격·과장 수식어·잉여현금흐름 후렴구 합계 417건 정리. TunaInsightsDashboard 14개 위젯 thesis-first 수동 재작성. 3개 커밋(6bfa990·07e8283·c97b05b) |log --oneline -10`으로 직전 변경 확인.
+| 2026-05-20 | CC | style (Phase D GS 톤 정착 + AI tell 일괄 제거) | 75 | 첫 L-07 스크립트가 TS 코드 공백까지 잡아 rollback 1회 발생 → 한글 문맥 제한 정규식으로 재실행 | 50+ 파일에서 브래킷 라벨·영문 동격·과장 수식어·잉여현금흐름 후렴구 합계 417건 정리. TunaInsightsDashboard 14개 위젯 thesis-first 수동 재작성. 3개 커밋(6bfa990·07e8283·c97b05b) |
+| 2026-05-20 | AG | analysis (참치 대시보드 S-Grade 종합 업그레이드 제안서 작성) | 20 | — | 3종 대시보드 통합 고도화, UI/UX 디자인 표준화 및 API 로드맵을 포괄하는 S-Grade 제안서 작성 완료 |
+
+1. **세션 시작 시**: `git log --oneline -10`으로 직전 변경 확인.
 2. **세션 종료 시**: 이 파일의 "완료된 것" / "다음 단계"를 *반드시* 갱신하고 커밋.
 3. **동시 작업 금지**: 한 브랜치에 두 에이전트가 동시 입력 X. worktree 분리 또는 시간차 작업.
 4. **에이전트 의존 기능 사용 시 표시**: superpowers·grill-me 등 특정 도구 호출 결과는 *결정 자체*만 이 파일에 남기고 도구 호출 흔적은 남기지 않기 (다른 에이전트에 의미 없음).
