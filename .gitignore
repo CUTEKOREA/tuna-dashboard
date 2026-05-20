@@ -49,3 +49,12 @@ data/
 _archive/
 scratch/
 20260518_070729_78ad28
+
+# scratch and deploy logs
+scratch*.py
+scratch_*.py
+patch_*.js
+check_*.js
+*.log
+vercel_deploy_*.log
+.claude/

@@ -22,12 +22,8 @@ import TunaBioUpcyclingGap from './TunaBioUpcyclingGap';
 import TunaPeptideEfficacy from './TunaPeptideEfficacy';
 import TunaTacMonitor from './TunaTacMonitor';
 import TunaSdgCircular from './TunaSdgCircular';
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
+import TelemetryBadge from './TelemetryBadge';
+import { truncateKoreanLabel } from '../lib/chart-standards';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -45,16 +41,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-/* A-02: TelemetryBadge — 위젯별 데이터 상태 표시 */
-const TelemetryBadge = ({ status, syncDate }: { status: 'LIVE' | 'SYNCED' | 'STATIC'; syncDate?: string }) => {
-  const cls = status === 'LIVE' ? styles.telemetryLive : status === 'SYNCED' ? styles.telemetrySynced : styles.telemetryStatic;
-  return (
-    <span className={cls}>
-      {status === 'LIVE' ? '🟢' : status === 'SYNCED' ? '🔵' : '⚪'} {status}
-      {syncDate && <span style={{ marginLeft: '0.2rem', opacity: 0.7 }}>({syncDate})</span>}
-    </span>
-  );
-};
+export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
 // Fallback UI component for Empty State
 const EmptyState = ({ message }: { message: string }) => (
@@ -97,13 +84,17 @@ export default function TunaExtractDashboard() {
   }
 
   // 1. [신규] IOTC 소형 다랑어 쿼터 압박
-  const d_iotc_quota = data.d_iotc_quota || [
+  const d_iotc_quota = (data.d_iotc_quota || [
     { year: '2022', catch: 85, quota: 100 },
     { year: '2023', catch: 92, quota: 100 },
     { year: '2024', catch: 105, quota: 100 },
     { year: '2025E', catch: 110, quota: 95 },
     { year: '2026E', catch: 115, quota: 85 }
-  ];
+  ]).map((item: any) => ({
+    연도: item.year.replace('E', '년(예상)').replace(/(\d{4})$/, '$1년'),
+    어획량: item.catch,
+    쿼터: item.quota
+  }));
 
   // 2. [신규] 환율 원가 방어 시뮬레이터 적용된 W04
   const d_w04_simulated = (data.d_w04 || [
@@ -111,42 +102,58 @@ export default function TunaExtractDashboard() {
     { type: '까나리액젓', rawCost: 2100, retailPrice: 4200, margin: 12.8 },
     { type: '참치액(자숙액)', rawCost: 150, retailPrice: 5000, margin: 32.5 }
   ]).map((item: any) => {
+    let cost = item.rawCost;
+    let margin = item.margin;
     if (item.type.includes('참치')) {
       const baseRaw = 150;
       const rateImpact = (exchangeRateSlider - 1300) / 1300; 
       const adjustedCost = baseRaw * (1 + rateImpact);
       const newMargin = ((item.retailPrice - adjustedCost - 2000) / item.retailPrice) * 100;
-      return { ...item, rawCost: adjustedCost.toFixed(0), margin: newMargin.toFixed(1) };
+      cost = adjustedCost.toFixed(0);
+      margin = newMargin.toFixed(1);
     }
-    return item;
+    return { ...item, rawCost: Number(cost), margin: Number(margin) };
   });
 
   // 3. [신규] 대체 액젓류 역상관관계
-  const d_substitute_corr = data.d_substitute_corr || [
+  const d_substitute_corr = (data.d_substitute_corr || [
     { year: '2021', anchovy_prod: 100, tuna_sales: 30 },
     { year: '2022', anchovy_prod: 92, tuna_sales: 38 },
     { year: '2023', anchovy_prod: 85, tuna_sales: 45 },
     { year: '2024', anchovy_prod: 78, tuna_sales: 58 },
     { year: '2025', anchovy_prod: 65, tuna_sales: 72 },
     { year: '2026E', anchovy_prod: 55, tuna_sales: 95 }
-  ];
+  ]).map((item: any) => ({
+    연도: item.year.replace('E', '년(예상)').replace(/(\d{4})$/, '$1년'),
+    멸치생산량: item.anchovy_prod,
+    참치액발주량: item.tuna_sales
+  }));
 
   // 4. [신규] SCFI 기반 운임 지연 반영
-  const d_scfi_lagging = data.d_scfi_lagging || [
+  const d_scfi_lagging = (data.d_scfi_lagging || [
     { month: '2025-01', scfi: 1200, cost_impact: 1000 },
     { month: '2025-04', scfi: 2400, cost_impact: 1100 },
     { month: '2025-07', scfi: 3500, cost_impact: 1800 },
     { month: '2025-10', scfi: 3100, cost_impact: 2900 },
     { month: '2026-01', scfi: 2100, cost_impact: 2700 }
-  ];
+  ]).map((item: any) => ({
+    월: item.month.replace(/(\d{4})-(\d{2})/, '$1년 $2월'),
+    SCFI지수: item.scfi,
+    물류비: item.cost_impact
+  }));
 
   // 5. [신규] 인도/베트남 다변화 지도 데이터 (버블 차트 형태 대체)
-  const d_sourcing_map = data.d_sourcing_map || [
+  const d_sourcing_map = (data.d_sourcing_map || [
     { country: '태국 (기존)', cost: 100, risk: 40, volume: 80 },
     { country: '베트남 (신규)', cost: 85, risk: 30, volume: 45 },
     { country: '인도 (신규)', cost: 70, risk: 55, volume: 30 },
     { country: '인도네시아', cost: 90, risk: 45, volume: 50 }
-  ];
+  ]).map((item: any) => ({
+    국가: item.country,
+    조달단가: item.cost,
+    리스크: item.risk,
+    볼륨: item.volume
+  }));
 
   // 소비자 선호도 2026 업데이트
   const d_w07_2026 = [
@@ -247,12 +254,12 @@ export default function TunaExtractDashboard() {
             <SafeResponsiveContainer height={280}>
               <ComposedChart data={d_iotc_quota}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
+                <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
                 <YAxis stroke="#94a3b8" fontSize={12} />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend />
-                <Bar dataKey="catch" name="어획량 (만 톤)" fill="var(--color-info)" />
-                <Line type="step" dataKey="quota" name="IOTC 권고 쿼터 (만 톤)" stroke="var(--color-danger)" strokeWidth={3} />
+                <Bar dataKey="어획량" name="어획량 (만 톤)" fill="var(--color-info)" />
+                <Line type="step" dataKey="쿼터" name="IOTC 권고 쿼터 (만 톤)" stroke="var(--color-danger)" strokeWidth={3} />
               </ComposedChart>
             </SafeResponsiveContainer>
             <TakeawayBox 
@@ -337,7 +344,16 @@ export default function TunaExtractDashboard() {
                   <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>통조림 부산물 위생안전성·영양 평가 (히스타민)</h4>
                   {data.d_k01_byproduct_safety ? (
                     <SafeResponsiveContainer height={220}>
-                      <BarChart data={data.d_k01_byproduct_safety}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="항목" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Bar dataKey="생부산물" fill="var(--color-danger)" /><Bar dataKey="자숙부산물" fill="var(--color-success)" /><Line type="monotone" dataKey="기준치" stroke="var(--color-warning)" /></BarChart>
+                      <BarChart data={data.d_k01_byproduct_safety}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="항목" stroke="#94a3b8" fontSize={10}/>
+                        <YAxis stroke="#94a3b8" fontSize={12}/>
+                        <Tooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar dataKey="생부산물" fill="var(--color-danger)" />
+                        <Bar dataKey="자숙부산물" fill="var(--color-success)" />
+                        <Line type="monotone" dataKey="기준치" stroke="var(--color-warning)" />
+                      </BarChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
                   <TakeawayBox situation="자숙 부산물은 히스타민 45mg/kg(기준 200 이하)으로 극도로 안전하며, 조단백 24.8%로 영양성도 뛰어남." actionPlan="수출 시 '자숙 공정 인증 원료' 라벨을 도입하여 타 발효수산물 대비 안전성을 무기로 삼으십시오." source="KFAS 한국수산과학회지" />
@@ -348,7 +364,15 @@ export default function TunaExtractDashboard() {
                   <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>속성발효 고순도 액젓 혁신</h4>
                   {data.d_k05_rapid_anchovy ? (
                     <SafeResponsiveContainer height={220}>
-                      <LineChart data={data.d_k05_rapid_anchovy}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="발효일" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Line type="monotone" dataKey="속성발효TN" stroke="var(--color-success)" strokeWidth={2} /><Line type="monotone" dataKey="전통TN" stroke="#64748b" strokeDasharray="5 5" /></LineChart>
+                      <LineChart data={data.d_k05_rapid_anchovy}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="발효일" stroke="#94a3b8" fontSize={10}/>
+                        <YAxis stroke="#94a3b8" fontSize={12}/>
+                        <Tooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Line type="monotone" dataKey="속성발효TN" stroke="var(--color-success)" strokeWidth={2} />
+                        <Line type="monotone" dataKey="전통TN" stroke="#64748b" strokeDasharray="5 5" />
+                      </LineChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
                   <TakeawayBox situation="염장발효덧 적용 시 60일 만에 전통발효(180일)의 93% 품질(TN 1.35%)을 확보 가능." actionPlan="자숙액 속성발효 적용으로 생산 사이클을 6개월에서 2개월로 단축, 재고 회전율 3배를 달성해야 합니다." source="KFAS 한국수산과학회지" />
@@ -359,7 +383,15 @@ export default function TunaExtractDashboard() {
                   <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>쌀코지 저염 어간장 발효 혁신</h4>
                   {data.d_k07_kanari_koji ? (
                     <SafeResponsiveContainer height={220}>
-                      <BarChart data={data.d_k07_kanari_koji}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="조건" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Bar dataKey="아미노산" fill="#8b5cf6" /><Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} /></BarChart>
+                      <BarChart data={data.d_k07_kanari_koji}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="조건" stroke="#94a3b8" fontSize={10}/>
+                        <YAxis stroke="#94a3b8" fontSize={12}/>
+                        <Tooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar dataKey="아미노산" fill="#8b5cf6" />
+                        <Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} />
+                      </BarChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
                   <TakeawayBox situation="쌀코지 첨가 저염(10%) 발효 시 유리아미노산 급증 및 관능 최고점 달성." actionPlan="5060 건강 타겟 '저염 참치액젓(나트륨 50%↓)'을 출시하여 30%의 가격 프리미엄을 확보." source="KFAS 한국수산과학회지" />
@@ -370,7 +402,15 @@ export default function TunaExtractDashboard() {
                   <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>오징어 효소 활용 쓴맛 제거 (디비터링)</h4>
                   {data.d_k08_debit_sauce ? (
                     <SafeResponsiveContainer height={220}>
-                      <BarChart data={data.d_k08_debit_sauce}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="처리단계" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Bar dataKey="쓴맛강도" fill="var(--color-danger)" /><Line type="monotone" dataKey="감칠맛" stroke="var(--color-success)" /></BarChart>
+                      <BarChart data={data.d_k08_debit_sauce}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                        <XAxis dataKey="처리단계" stroke="#94a3b8" fontSize={10}/>
+                        <YAxis stroke="#94a3b8" fontSize={12}/>
+                        <Tooltip content={<CustomTooltip />} />
+                        <Legend />
+                        <Bar dataKey="쓴맛강도" fill="var(--color-danger)" />
+                        <Line type="monotone" dataKey="감칠맛" stroke="var(--color-success)" />
+                      </BarChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
                   <TakeawayBox situation="Aminopeptidase 효소 처리 시 쓴맛이 75% 감소하고 감칠맛이 폭발적으로 상승." actionPlan="'제로 비린내, 순수 감칠맛' 라인을 신설하여 기존 멸치/까나리의 한계를 극복하는 핵심 기술로 편입." source="KFAS 한국수산과학회지" />
@@ -396,13 +436,13 @@ export default function TunaExtractDashboard() {
             <SafeResponsiveContainer height={280}>
               <ComposedChart data={d_scfi_lagging}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
+                <XAxis dataKey="월" stroke="#94a3b8" fontSize={12} />
                 <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
                 <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={12} />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend />
-                <Area yAxisId="left" type="monotone" dataKey="scfi" name="상하이운임지수(SCFI)" fill="var(--color-warning)" fillOpacity={0.2} stroke="var(--color-warning)" />
-                <Line yAxisId="right" type="monotone" dataKey="cost_impact" name="실제 톤당 물류비" stroke="var(--color-danger)" strokeWidth={3} />
+                <Area yAxisId="left" type="monotone" dataKey="SCFI지수" name="상하이운임지수(SCFI)" fill="var(--color-warning)" fillOpacity={0.2} stroke="var(--color-warning)" />
+                <Line yAxisId="right" type="monotone" dataKey="물류비" name="실제 톤당 물류비" stroke="var(--color-danger)" strokeWidth={3} />
               </ComposedChart>
             </SafeResponsiveContainer>
             <TakeawayBox 
@@ -422,9 +462,9 @@ export default function TunaExtractDashboard() {
             <SafeResponsiveContainer height={280}>
               <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis type="number" dataKey="risk" name="지정학/공급 리스크" stroke="#94a3b8" domain={[0, 100]} />
-                <YAxis type="number" dataKey="cost" name="상대적 조달 단가" stroke="#94a3b8" domain={[50, 120]} />
-                <ZAxis type="number" dataKey="volume" range={[100, 1000]} />
+                <XAxis type="number" dataKey="리스크" name="지정학/공급 리스크" stroke="#94a3b8" domain={[0, 100]} />
+                <YAxis type="number" dataKey="조달단가" name="상대적 조달 단가" stroke="#94a3b8" domain={[50, 120]} />
+                <ZAxis type="number" dataKey="볼륨" range={[100, 1000]} />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
                 <Legend />
                 <Scatter name="국가별 소싱 매력도" data={d_sourcing_map} fill="var(--color-info)" />
@@ -476,13 +516,13 @@ export default function TunaExtractDashboard() {
             <SafeResponsiveContainer height={280}>
               <ComposedChart data={d_substitute_corr}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
+                <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
                 <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
                 <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend />
-                <Bar yAxisId="left" dataKey="anchovy_prod" name="국내 멸치/까나리 어획량 지수" fill="#64748b" />
-                <Line yAxisId="right" type="monotone" dataKey="tuna_sales" name="참치액 B2B 발주량 지수" stroke="var(--color-success)" strokeWidth={3} />
+                <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="#64748b" />
+                <Line yAxisId="right" type="monotone" dataKey="참치액발주량" name="참치액 B2B 발주량 지수" stroke="var(--color-success)" strokeWidth={3} />
               </ComposedChart>
             </SafeResponsiveContainer>
             <TakeawayBox 

@@ -18,6 +18,8 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
+import { truncateKoreanLabel } from '../lib/chart-standards';
 
 // Tuna specific components
 import TunaPrecisionFishing from './TunaPrecisionFishing';
@@ -83,22 +85,14 @@ import TunaSupplierHub from './TunaSupplierHub';
 import TunaComplianceRadar from './TunaComplianceRadar';
 import TunaHSClassifier from './TunaHSClassifier';
 
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 12 ? noEng.substring(0, 12) + '...' : noEng;
-};
+export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
     
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 12 ? noEng.substring(0, 12) + '...' : noEng;
-  };
+  // truncateXAxis is defined globally
 return (
       <div style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
         <p style={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px', margin: 0 }}>{label}</p>
@@ -120,24 +114,23 @@ return (
   return null;
 };
 
-const PIE_COLORS = ["#FCD535", "#0ECB81", "#2196F3", "#F6465D", "#9B72CB", "#F0B90B", "var(--color-success)", "var(--color-warning)"];
+const PIE_COLORS = ["#38bdf8", "#3b82f6", "#0ea5e9", "#60a5fa", "#2563eb", "#1d4ed8", "#0369a1", "#0284c7"];
 
 const KPI_THEMES = [
-  { border: 'none', glow: 'none', text: '#FCD535', icon: Globe },
-  { border: 'none', glow: 'none', text: '#0ECB81', icon: TrendingUp },
-  { border: 'none', glow: 'none', text: '#2196F3', icon: Factory },
-  { border: 'none', glow: 'none', text: '#F6465D', icon: DollarSign },
-  { border: 'none', glow: 'none', text: '#9B72CB', icon: Scale },
-  { border: 'none', glow: 'none', text: '#F0B90B', icon: AlertTriangle },
+  { border: 'none', glow: 'none', text: '#38bdf8', icon: Globe },
+  { border: 'none', glow: 'none', text: '#60a5fa', icon: TrendingUp },
+  { border: 'none', glow: 'none', text: '#0ea5e9', icon: Factory },
+  { border: 'none', glow: 'none', text: '#3b82f6', icon: DollarSign },
+  { border: 'none', glow: 'none', text: '#6366f1', icon: Scale },
+  { border: 'none', glow: 'none', text: '#2563eb', icon: AlertTriangle },
 ];
 
 const SECTIONS = [
-  { id: "S1", num: "❶", label: "원물 생산", title: "⚓ Part I — 원물 생산", desc: "FAO FishStatJ · IOTC · IATTC · ICCAT 기반 글로벌 참치 어획량, 어종별 자원 동향, K-원양 선단 효율, 기후(ENSO) 영향 분석", color: "#FCD535" },
-  { id: "S2", num: "❷", label: "가공 산업", title: "🏭 Part II — 가공 산업", desc: "태국/스페인/한국 가공 패권 구조, 수율·인건비 벤치마크, 부산물 업사이클링, 펫케어 라인 전환 타당성", color: "#9B72CB" },
-  { id: "S3", num: "❸", label: "물류·무역", title: "🚢 Part III — 물류 및 무역", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
-  { id: "S4", num: "❹", label: "판매·수요", title: "🛒 Part IV — 판매 및 수요", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
-  { id: "S5", num: "❺", label: "ESG", title: "🌍 Part V — ESG 및 지속가능성", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
-  { id: "S6", num: "❻", label: "펫푸드", title: "🐾 Part VI — 파생 사업 (펫푸드)", desc: "참치 부산물 기반 프리미엄 펫푸드 시장 진입, 카라기난 리스크 방어, 대체 단백질 글로벌 성장 구조 분석", color: "#EC4899" },
+  { id: "S1", num: "❶", label: "원료 수급", title: "🐟 Part I — 원료 수급 (Raw Material)", desc: "기후(ENSO) 상관 분석, IOTC/WCPFC 어획량, 수역별 할당량 및 조업 효율 분석", color: "#38bdf8" },
+  { id: "S2", num: "❷", label: "가공·생산", title: "🏭 Part II — 가공·생산 (Processing & Production)", desc: "참치 부산물(자숙액) 업사이클링 마진, 수율 및 인건비, 펫케어 가공 라인 분석", color: "#3b82f6" },
+  { id: "S3", num: "❸", label: "물류·통관", title: "🚢 Part III — 물류·통관 (Logistics & Customs)", desc: "글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화 및 해상운임 분석", color: "#38bdf8" },
+  { id: "S4", num: "❹", label: "판매·수요", title: "📈 Part IV — 판매·수요 (Sales & Demand)", desc: "브랜드별 점유율 역전 마진 분석, 간장 대체 카니발리제이션 속도, 소비 동향 분석", color: "#3b82f6" },
+  { id: "S5", num: "❺", label: "ESG·지속가능성", title: "🌱 Part V — ESG·지속가능성 (ESG & Sustainability)", desc: "규제 장벽 대응, MSC 인증 프리미엄, 글로벌 최저한세 리스크, 육상양식 도입 분석", color: "#38bdf8" },
 ];
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -162,28 +155,7 @@ const EstimateBadge = () => (
   </span>
 );
 
-const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
-  if (!status) return null;
-  const isLive = status === 'live';
-  const isSynced = status === 'synced';
-  
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
-      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
-        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
-      </div>
-      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
-        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
-      </span>
-      {!isLive && syncDate && (
-        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
-          {syncDate}
-        </span>
-      )}
-    </div>
-  );
-};
+// TelemetryBadge is now imported from components/TelemetryBadge.tsx
 
 const formatYAxis = (v: number): string => {
   if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
@@ -408,7 +380,7 @@ const renderChart = (w: any) => {
 /* ─── 2. 메모이제이션이 완벽하게 작동하는 위젯 카드 ─── */
 const WidgetCard = React.memo(({ widget }: { widget: any }) => {
   const IconComp = WIDGET_ICONS[widget.id] || Anchor;
-  const accentColor = '#FCD535';
+  const accentColor = '#38bdf8';
   
   const methodologyText = widget.logic || widget.methodology || '';
   let situation = widget.sit || widget.situation || widget.desc || '';
@@ -482,7 +454,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem', backgroundColor: 'var(--bg-color)' }}>
-      <RefreshCcw size={32} style={{ color: '#FCD535', animation: 'spin 1s linear infinite' }} />
+      <RefreshCcw size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
       <p style={{ color: '#848E9C', fontSize: '1rem' }}>전략 인텔리전스 불러오는 중...</p>
     </div>
   );
@@ -499,7 +471,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{ 
               width: '44px', height: '44px', borderRadius: '50%', 
-              background: '#FCD535', 
+              background: '#38bdf8', 
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
             }}>
@@ -602,7 +574,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '4px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {SECTIONS.map((s, idx) => {
             const isActive = activePart === s.id;
             return (
@@ -781,7 +753,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* 3. 부산물 고부가가치화 (업사이클링 및 참치액젓 R&D) */}
             <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
               <div style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ fontSize: '1.05rem', color: '#0ECB81', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <h3 style={{ fontSize: '1.05rem', color: '#38bdf8', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Leaf size={18} /> 부산물 업사이클링 & R&D 
                 </h3>
               </div>
@@ -799,6 +771,20 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* Phase B4 신규: Frime 인수 (스페인 최대 황다랑어 가공사) */}
             <div style={{ marginTop: '1.5rem' }}>
               <FrimeAcquisitionWidget />
+            </div>
+            
+            {/* 🐾 파생 사업 (펫푸드) 통합 */}
+            <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+              <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                <div style={{ width: '4px', height: '28px', background: '#3b82f6', borderRadius: '2px' }} />
+                <div>
+                  <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>🐾 파생 사업 — 프리미엄 펫케어 시장</h2>
+                  <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>참치 부산물 기반 고부가가치 펫푸드 시장 진입 전략 및 유통망 구조 분석</p>
+                </div>
+              </div>
+              <div style={{ margin: '0 -2rem' }}>
+                <PetFoodDashboard />
+              </div>
             </div>
           </section>
         )}
@@ -899,23 +885,6 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* Phase B4 신규: 동원·사조 RAS 시험 운영 */}
             <div style={{ marginTop: '1.5rem' }}>
               <RasSystemWidget />
-            </div>
-          </section>
-        )}
-
-        {/* ═══════ Part VI: 파생 사업 (Petfood) ═══════ */}
-        {activePart === 'S6' && (
-          <section>
-            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{ width: '4px', height: '28px', background: SECTIONS[5].color, borderRadius: '2px' }} />
-              <div>
-                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[5].title}</h2>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[5].desc}</p>
-              </div>
-            </div>
-            {/* Render full PetFoodDashboard inside S6 */}
-            <div style={{ margin: '0 -2rem' }}>
-              <PetFoodDashboard />
             </div>
           </section>
         )}
