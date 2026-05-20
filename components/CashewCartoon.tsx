@@ -12,7 +12,7 @@ const CashewCartoon = () => {
           신라 캐슈넛 기회: 만화로 보는 밸류체인
         </h2>
         <p className={styles.headerDesc}>
-          서아프리카 현지의 상황과 아시아 중개상인들의 구조적 한계, 그리고 이를 돌파하는 우리의 스마트 가공 비전을 카툰 형식으로 쉽게 살펴봅니다.
+          서아프리카 현지 매크로 상황과 중개상(Broker)들의 마진 스퀴즈 한계, 그리고 이를 돌파하는 산지 수직계열화(Vertical Integration) 비전을 카툰으로 살펴봅니다.
         </p>
       </div>
 
@@ -20,7 +20,7 @@ const CashewCartoon = () => {
         {/* Panel 1 */}
         <div className={styles.panel}>
           <div className={styles.narrationTop}>
-            세계 캐슈넛 원물(RCN)의 60% 이상이 서아프리카에서 재배되지만, 정작 현지 농가들은 가난의 굴레를 벗어나지 못하고 있다.
+            글로벌 캐슈넛 원물(RCN) 생산의 60%가 서아프리카에 집중되어 있으나, 가치 사슬(Value Chain) 하단에 머물러 경제적 렌트(Rent)를 포획하지 못하는 구조적 모순이 존재한다.
           </div>
           <div className={styles.imageArea}>
             <Image 
@@ -59,14 +59,14 @@ const CashewCartoon = () => {
             </div>
           </div>
           <div className={styles.narrationBottom}>
-            대부분의 원물을 아시아의 중간 가공업자들이 헐값에 매입해가는 불합리한 구조에 분노한 서아프리카 국가들은 원물 수출을 규제하기 시작했다.
+            원물(RCN) 수출에 따른 국부 유출(Value Leakage)에 대응하여, 서아프리카 국가는 징벌적 세금 부과 및 자원 무기화(Resource Nationalism)를 발동했다.
           </div>
         </div>
 
         {/* Panel 3 */}
         <div className={styles.panel}>
           <div className={styles.narrationTop}>
-            하지만 이제 변화의 바람이 분다! 신라교역은 가나와 코트디부아르 현지에 AI 기반의 스마트 가공 플랜트를 건설을 계획 중이다.
+            게임 체인저(Game Changer)의 등장. 가나와 코트디부아르 현지에 AI 비전 검수 기반 스마트 가공 플랜트 CAPEX 투자를 단행하여 원가 우위를 선점한다.
           </div>
           <div className={styles.imageArea}>
             <Image 
@@ -97,7 +97,7 @@ const CashewCartoon = () => {
             </div>
           </div>
           <div className={styles.narrationBottom}>
-            고품질의 완형(Whole) 캐슈넛만을 선별해 미국과 유럽에 다이렉트로 수출! 중간 마진을 현지 파트너와 나누며 최고의 ROI를 창출해 낸다.
+            프리미엄 커널(W-180)만을 타겟팅해 EU/US 마켓에 직수출. 유통 채널 축소(Disintermediation)로 발생한 초과 마진(Excess Return)을 바탕으로 압도적 ROI를 달성한다.
           </div>
         </div>
       </div>
