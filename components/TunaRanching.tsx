@@ -632,45 +632,7 @@ export default function TunaRanching() {
           </>
         )}
 
-        <div className={insightsStyles.insightCard}>
-          <div className={insightsStyles.cardHeader}>
-            <h3 className={insightsStyles.cardTitle}>
-              <TrendingUp size={20} color="#f472b6"/> 양식 대 어획 패러다임 역전
-              <TelemetryBadge status="live" />
-              <TermTooltip term="" description="야생 어획 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 역전 시점을 궤적으로 보여주어 투자 전환기를 분석합니다." />
-            </h3>
-            <p className={insightsStyles.cardDesc}>지속가능성 요구와 기후 리스크에 따른 어획량 감소로, 양식(Ranching) 참치의 톤당 단가가 자연산 야생 어획을 추월한 크로스오버를 보여줍니다.</p>
-          </div>
-          <div className={insightsStyles.cardBody}>
-            <div className={insightsStyles.chartContainer}>
-              <SafeResponsiveContainer width="100%" height="100%">
-                <LineChart data={aquaculturePremium} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-                  <YAxis stroke="#94a3b8" tickFormatter={(value) => value.toLocaleString()} />
-                  <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
-                  <Legend verticalAlign="top" height={36} />
-                  <Line type="monotone" dataKey="양식_단가" stroke="#f472b6" strokeWidth={4} />
-                  <Line type="monotone" dataKey="야생_어획_단가" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4"/>
-                </LineChart>
-              </SafeResponsiveContainer>
-            </div>
-            <div className={insightsStyles.kpiPanel}>
-              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#f472b6' }}>
-                <div className={insightsStyles.kpiLabel}>양식 프리미엄</div>
-                <div className={insightsStyles.kpiValue}>+31.9%</div>
-                <div className={insightsStyles.kpiSub}>야생 어획 대비 (2024)</div>
-              </div>
-            </div>
-          </div>
-          <div style={{ padding: '0 20px 20px 20px' }}>
-            <TakeawayBox
-              source="Krungsri Research - IO_Seafood_230724"
-              situation="엘니뇨(수온 상승)와 과도한 남획으로 비육용 생사료(정어리 등 소형어종) 생산 시스템이 붕괴하며, 원재료 조달난에 따른 원가 폭등 현상(Empirical Data)이 임계점을 돌파했습니다."
-              actionPlan="ESG는 더 이상 단순한 환경 규제가 아니라 '생존을 위한 원가 방어막'입니다. 인공 배합사료 체제 전환 및 육상 여과순환양식(RAS) 생태계 선제 구축만이 비용 통제의 유일한 해법입니다."
-            />
-          </div>
-        </div>
+
       </div>
 
 
@@ -846,8 +808,52 @@ export default function TunaRanching() {
       </div>
 
 
-      {middleEastMarket && (
-        <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+      {/* 새로운 4개 위젯 그룹: 양식 패러다임, 사우디, 아시아, 최고가 맵 (2열 배치) */}
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+        
+        {/* 1. 양식 대 어획 패러다임 역전 */}
+        <div className={insightsStyles.insightCard}>
+          <div className={insightsStyles.cardHeader}>
+            <h3 className={insightsStyles.cardTitle}>
+              <TrendingUp size={20} color="#f472b6"/> 양식 대 어획 패러다임 역전
+              <TelemetryBadge status="live" />
+              <TermTooltip term="" description="야생 어획 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 역전 시점을 궤적으로 보여주어 투자 전환기를 분석합니다." />
+            </h3>
+            <p className={insightsStyles.cardDesc}>지속가능성 요구와 기후 리스크에 따른 어획량 감소로, 양식(Ranching) 참치의 톤당 단가가 자연산 야생 어획을 추월한 크로스오버를 보여줍니다.</p>
+          </div>
+          <div className={insightsStyles.cardBody}>
+            <div className={insightsStyles.chartContainer}>
+              <SafeResponsiveContainer width="100%" height="100%">
+                <LineChart data={aquaculturePremium} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="year" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
+                  <YAxis stroke="#94a3b8" tickFormatter={(value) => value.toLocaleString()} />
+                  <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => typeof value === 'number' ? value.toLocaleString() : value} />
+                  <Legend verticalAlign="top" height={36} />
+                  <Line type="monotone" dataKey="양식_단가" stroke="#f472b6" strokeWidth={4} />
+                  <Line type="monotone" dataKey="야생_어획_단가" stroke="#94a3b8" strokeWidth={2} strokeDasharray="4 4"/>
+                </LineChart>
+              </SafeResponsiveContainer>
+            </div>
+            <div className={insightsStyles.kpiPanel}>
+              <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#f472b6' }}>
+                <div className={insightsStyles.kpiLabel}>양식 프리미엄</div>
+                <div className={insightsStyles.kpiValue}>+31.9%</div>
+                <div className={insightsStyles.kpiSub}>야생 어획 대비 (2024)</div>
+              </div>
+            </div>
+          </div>
+          <div style={{ padding: '0 20px 20px 20px' }}>
+            <TakeawayBox
+              source="Krungsri Research - IO_Seafood_230724"
+              situation="엘니뇨(수온 상승)와 과도한 남획으로 비육용 생사료(정어리 등 소형어종) 생산 시스템이 붕괴하며, 원재료 조달난에 따른 원가 폭등 현상(Empirical Data)이 임계점을 돌파했습니다."
+              actionPlan="ESG는 더 이상 단순한 환경 규제가 아니라 '생존을 위한 원가 방어막'입니다. 인공 배합사료 체제 전환 및 육상 여과순환양식(RAS) 생태계 선제 구축만이 비용 통제의 유일한 해법입니다."
+            />
+          </div>
+        </div>
+
+        {/* 2. 사우디아라비아 콜드체인 */}
+        {middleEastMarket && (
           <div className={insightsStyles.insightCard}>
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
@@ -879,16 +885,11 @@ export default function TunaRanching() {
               />
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-
-
-
-      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
-        {/* 아시아 마켓 시프트 위젯 */}
+        {/* 3. 아시아 마켓 시프트 위젯 */}
         {asianMarketShift && (
-          <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1', background: 'linear-gradient(135deg, rgba(239,68,68,0.08), rgba(56,189,248,0.05))', border: '1px solid rgba(239,68,68,0.3)' }}>
+          <div className={insightsStyles.insightCard} style={{ background: 'linear-gradient(135deg, rgba(239,68,68,0.08), rgba(56,189,248,0.05))', border: '1px solid rgba(239,68,68,0.3)' }}>
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
                 <Target size={20} color="var(--color-danger)"/> 아시아 럭셔리 마켓 패러다임 시프트 (일본 붕괴 vs 중국 폭발)
