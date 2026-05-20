@@ -529,14 +529,14 @@ export default function TunaRanching() {
               <Globe size={20} color="#10b981"/> 글로벌 참치 자원 건전성 스코어보드
               <TelemetryBadge status="synced" syncDate="2026.01" />
             </h3>
-            <p className={insightsStyles.cardDesc}>ISSF Status of the Stocks 2025-03 기준. <strong>어획량 가중 평균 87%</strong>가 건전 자원에서 공급 / <strong>stock 23개 중 65%(15개)</strong>가 건전 — 참다랑어만 예외적 주의 구간.</p>
+            <p className={insightsStyles.cardDesc}>ISSF Status of the Stocks 2026-01 (최신판) 기준. <strong>어획량 가중 평균 97%</strong>가 건전 자원에서 공급 / <strong>stock 23개 중 74%</strong>가 건전 abundance — 2024년 글로벌 어획량 580만톤(가다랑어 58%·황다랑어 30%·눈다랑어 7%·날개다랑어 4%·참다랑어 1%).</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '15px' }}>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
                 <div className={insightsStyles.kpiLabel}>어획량 기준 건전성</div>
-                <div className={insightsStyles.kpiValue}>87%</div>
-                <div className={insightsStyles.kpiSub}>stock 기준은 65% (ISSF 2025-03)</div>
+                <div className={insightsStyles.kpiValue}>97%</div>
+                <div className={insightsStyles.kpiSub}>stock 기준은 74% (ISSF 2026-01 최신판)</div>
               </div>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
                 <div className={insightsStyles.kpiLabel}>최저 건전성 어종</div>
@@ -782,12 +782,12 @@ export default function TunaRanching() {
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
               <li>두바이는 GCC 6개국 <strong style={{ color: '#fca5a5' }}>재수출 허브</strong> — 사우디·카타르·쿠웨이트·바레인·오만 동시 커버</li>
-              <li>사우디 콜드체인 시장 <strong>$35억→$159억</strong> (2025→2034, CAGR 18.31%) 폭발 성장</li>
+              <li>사우디 콜드체인 시장 <strong>USD 3.5B → 15.9B</strong> (2025→2034, CAGR 18.31%, 2026-2034 기준) — Vision 2030 인프라 투자 기반 성장 (IMARC 직접 확인)</li>
               <li>카타르 참치 시장 2028년 <strong style={{ color: '#fca5a5' }}>18.35% 성장 정점</strong> — Qatar Airways 기내식 시장</li>
               <li>두바이 거점 확보 → <strong>중동 GCC 수산물 시장</strong> 접근 채널 단계적 확보 (헤게모니가 아닌 접근 단계)</li>
             </ul>
             <div style={{ marginTop: '10px', padding: '8px 10px', background: 'rgba(239,68,68,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: '#fca5a5' }}>
-              📌 출처: IMARC Saudi/Middle East Seafood Market 2026-2034, 6Wresearch Qatar Tuna Market (수치는 보고서 원문 재확인 권장)
+              📌 출처: IMARC Saudi Arabia Cold Chain Market Report 2025-2034 (storage 38% 점유, Vision 2030 기반), IMARC Saudi/Middle East Seafood Market 2026-2034, 6Wresearch Qatar Tuna Market 2021-2031
             </div>
           </div>
         </div>

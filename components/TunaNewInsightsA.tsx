@@ -13,12 +13,14 @@ export const truncateXAxis = (tick: any) => {
 };
 
 
+// EUMOFA EU Fish Market 2025 실측: Ecuador 2024 = 29% (volume) / 48% (value) of EU tuna imports
+// nauruData의 2022~2026E 시계열은 EU loin segment 추정 series (정확값은 Eurostat HS 1604.14 직접 조회 필요)
 const nauruData = [
-  { year: '2022', China_EU_Loin: 8, Ecuador_EU_Loin: 42, Taiwan_PNA_Days: 4200 },
-  { year: '2023', China_EU_Loin: 14, Ecuador_EU_Loin: 40, Taiwan_PNA_Days: 3800 },
-  { year: '2024', China_EU_Loin: 22, Ecuador_EU_Loin: 38, Taiwan_PNA_Days: 3100 },
-  { year: '2025', China_EU_Loin: 31, Ecuador_EU_Loin: 35, Taiwan_PNA_Days: 2600 },
-  { year: '2026E', China_EU_Loin: 38, Ecuador_EU_Loin: 32, Taiwan_PNA_Days: 2200 },
+  { year: '2022', China_EU_Loin: 8, Ecuador_EU_Loin: 32, Taiwan_PNA_Days: 4200 },
+  { year: '2023', China_EU_Loin: 14, Ecuador_EU_Loin: 30, Taiwan_PNA_Days: 3800 },
+  { year: '2024', China_EU_Loin: 22, Ecuador_EU_Loin: 29, Taiwan_PNA_Days: 3100 },
+  { year: '2025', China_EU_Loin: 31, Ecuador_EU_Loin: 28, Taiwan_PNA_Days: 2600 },
+  { year: '2026E', China_EU_Loin: 38, Ecuador_EU_Loin: 27, Taiwan_PNA_Days: 2200 },
 ];
 
 const ioCollapseData = [
@@ -51,7 +53,7 @@ return (
           <Globe size={20} color="#ef4444"/> 나우루 스위치 — 중국 캐너리 온쇼어링
           <TermTooltip term="" description="나우루의 대만→중국 외교 전환으로 촉발된 태평양 어업권 지각변동과 중국 본토 메가 캐너리 건설 동향을 추적합니다." />
         </h3>
-        <p className={styles.cardDesc}>중국은 태평양 도서국에 현지 공장을 짓는 대신, 선전/광동에 메가 캐너리를 건설하여 EU ATQ 무관세로 에콰도르를 직접 위협합니다.</p>
+        <p className={styles.cardDesc}>중국은 태평양 도서국에 현지 공장을 짓는 대신, 선전/광동에 메가 캐너리를 건설하여 EU ATQ 무관세로 에콰도르를 직접 위협합니다. EUMOFA 2024 기준 Ecuador는 EU 참치 수입의 29%(volume) / 48%(value) 차지하며 prepared/preserved(주로 loin)가 EU 참치 수입의 75% 점유.</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
@@ -79,8 +81,8 @@ return (
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          situation="[지정학적 공급망 교란] 나우루의 대만→중국 외교 전환(2024.01)으로 대만 선단의 PNA 입어권이 급격히 축소되고 있습니다. 중국은 이 영향력을 현지 가공 투자가 아닌 본토 선전/광동 메가 캐너리에 집중 투입하며, ATQ 무관세를 무기화하여 EU 프리쿡트 로인 시장에서 에콰도르를 빠르게 대체 중입니다."
-          actionPlan="**[Actionable Insight]** 에콰도르 가공 자산의 밸류에이션을 즉시 재산정하십시오. 중국 메가 캐너리 본격 가동(2027~) 시 에콰도르향 투자 IRR이 3~5%p 하락할 수 있습니다. 대안으로 PNG/솔로몬 제도의 EU-RoO 특혜 가공 거점을 선제 확보하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
+          situation="[지정학적 공급망 교란] 나우루의 대만→중국 외교 전환(2024.01)으로 대만 선단의 PNA 입어권이 급격히 축소되고 있습니다. 중국은 이 영향력을 현지 가공 투자가 아닌 본토 선전/광동 메가 캐너리에 집중 투입하며, ATQ 무관세를 무기화하여 EU 프리쿡트 로인 시장에서 에콰도르(EUMOFA 2024 기준 EU 참치 수입의 29% volume / 48% value 차지)를 빠르게 대체 중입니다."
+          actionPlan="에콰도르 가공 자산의 밸류에이션을 즉시 재산정하십시오. 중국 메가 캐너리 본격 가동(2027~) 시 에콰도르향 투자 IRR이 3~5%p 하락할 수 있습니다. 대안으로 PNG/솔로몬 제도의 EU-RoO 특혜 가공 거점을 선제 확보하여 잉여현금흐름(FCF)을 극대화하십시오."
           source="KMI 해외시장분석 및 글로벌 수산 무역 동향 (2024)"
         />
       </div>

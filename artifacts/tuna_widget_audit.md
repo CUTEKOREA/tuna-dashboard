@@ -135,4 +135,23 @@ X1~X6 (참치액 시장 규모, 부산물 비율, Ecuador EU M/S, 두바이 단�
 
 ---
 
+## Phase C — 외부 출처 후속 검증 결과 (2026-05-20 추가)
+
+WebSearch + EUMOFA PDF (pdftotext) + ISSF 2026-01 PDF로 Phase A 대기 항목 외부 검증.
+
+| # | 검증 항목 | 외부 출처 결과 | 권고 적용 |
+|---|---|---|---|
+| C-1 | Ecuador EU loin M/S | **EUMOFA EU Fish Market 2025 직접 인용:** Ecuador = EU 참치 수입의 **29% (volume) / 48% (value), 2024**. Prepared/preserved(주로 loin)가 EU 참치 수입의 75% 차지 | **APPLIED** — TunaNewInsightsA.tsx nauruData를 32%~27% 범위로 보정 + cardDesc에 EUMOFA 2024 실측 추가 |
+| C-2 | ISSF 건전성 비중 | **ISSF 2026-01 (최신판) 직접 인용:** stock 기준 **74%** (2025-03판 65% → +9%p), 어획량 기준 **97%** (2025-03판 87% → +10%p). 2024 글로벌 어획 580만톤 | **APPLIED** — TunaRanching.tsx cardDesc·KPI를 ISSF 2026-01 수치로 업그레이드 |
+| C-3 | IMARC 사우디 콜드체인 | **IMARC 직접 확인:** USD 3.5B (2025) → 15.9B (2034), CAGR 18.31% (2026-2034). Storage 38% 비중, Vision 2030 인프라 기반 | **APPLIED** — TunaRanching.tsx 출처를 "IMARC Saudi Arabia Cold Chain Market Report 2025-2034" 정확 표기 |
+| C-4 | 동원 펫푸드 28.5% | WebSearch: 동원F&B 2024 전체 영업이익률 4.1% (1,835억/4.5조). 펫푸드 개별 매출총이익률은 공시 안 됨. 뉴트리플랜은 펫푸드 브랜드파워 3년 연속 1위·미국 매출 300억원 기대 | **APPLIED** — TunaPetCareMargin.tsx에 "동원 전체 4.1%" + "28.5%는 비공개 증권사 추정치" 명시 |
+| C-5 | 한국 참치액 시장 | WebSearch: 식약처·aT FIS·KATI 등 공식 통계에 단일 값 미공개. NotebookLM에도 없음 | **STATIC 유지** — Phase B3 "700~1,000억원(추정)" 범위 라벨링 그대로 유지 (식약처 통계간행물 또는 aT FIS POS 원자료 직접 조회 필요) |
+
+### Phase C 누적 발견 요약
+- 4건 외부 출처로 정확값 확정 (Ecuador 29%, ISSF 97%/74%, IMARC $3.5B→15.9B, 동원 4.1%)
+- 1건은 외부 출처로도 단일값 미확정 (한국 참치액)
+- ISSF 데이터는 2025-03판 → 2026-01판으로 자연 갱신되었으므로 향후 분기마다 ISSF 신규판 추적 필요
+
+---
+
 ## Phase A 진행 로그
