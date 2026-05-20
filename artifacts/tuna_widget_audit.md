@@ -179,4 +179,42 @@ WebSearch + EUMOFA PDF (pdftotext) + ISSF 2026-01 PDF로 Phase A 대기 항목 �
 
 ---
 
+## Phase F — 추가 API endpoint 정직 라벨링·데이터 정렬 (2026-05-20)
+
+**Inventory 결과 (전 7개 tuna API endpoint):**
+| Endpoint | 상태 | 정정 |
+|---|---|---|
+| `tuna-forecast` | Phase E에서 완료 | ✅ |
+| `tuna-live` | 🚨 "🟢 LIVE API" 가짜 표시 + 22개 분기 hardcoded | ✅ Phase F |
+| `tuna-policy-risk` | 7개 정책 리스크 hardcoded, $45M vs 위젯 $280M 모순 | ✅ Phase F |
+| `tuna-ranching` | "9개 API 시뮬레이션 오버라이트" + dubai $48 | ✅ Phase F |
+| `tuna-emerging-markets` | 11개국 시장 데이터, 출처 명시 | Tier 3 보류 |
+| `tuna-extract` (19줄) | 소형, 점검 결과 양호 | — |
+| `tuna/route.ts` | 실제 KCS/KAMIS/BOK API 호출 | ✅ (수정 불필요) |
+| `tuna/ticker` (324줄) | 다음 라운드 | 보류 |
+
+**Phase F 정정 (커밋 `20b5ed9`, deployment `tuna-dashboard-mog4al9g2`):**
+
+| File:Position | Before | After |
+|---|---|---|
+| [app/api/tuna-live/route.ts](../app/api/tuna-live/route.ts) `status` (4건) | "🟢 LIVE API" | "SYNCED" / "STATIC" + syncDate |
+| `historicalChartData` 25-Q1~26-Q2 priceHist | 1660/1510/1550/1573/1580/2000 | Atuna 실측 평균 1650/1510/1565/1609/1662/2008 |
+| `historicalChartData` 23-Q2 priceHist | 2000 ('라니냐 어획 급감') | 1700 (실측 보정) |
+| `arbitrageRadar.analysis` | 일반론 | 호르무즈 + 4월 $2,100 → 5월 $1,975 박스권 narrative |
+| [app/api/tuna-policy-risk/route.ts](../app/api/tuna-policy-risk/route.ts) `US_RECIPROCAL_TARIFF.impact_usd_millions` | 45 | **280** (위젯 $280M와 정렬) + `impact_note` 신설 |
+| `affected_hs` | 6자리 ['160414', ...] | 10자리 ['1604142000', ...] (L-04 의무) |
+| `timeline` | "2026 H1 시행 예정" | "2025-07-31 발효 (태국 19%/베트남 20%/에콰도르 15%), 2026-05 법원 판결로 지위 유동적" |
+| `_meta.data_status` | 누락 | "STATIC 추정치 — 박혜진(2024-06) 보고서" 명시 |
+| [app/api/tuna-ranching/route.ts](../app/api/tuna-ranching/route.ts) `arbitrageRadar.dubaiLocalPriceUSD` | 48.0 | 45.0 + `dubaiPriceRange: "42~48"` (IMARC 출처) |
+| KPI 5개 중 dubai 관련 2개 `telemetry` | "live" | "STATIC" (시뮬레이션) |
+| 헤더 주석 | "9대 API 시뮬레이션" | "⚠️ 시뮬레이션 오버라이트 — 실시간 API 아님" 경고 |
+
+**Phase F 누적 영향:**
+- 4개 endpoint 정직성 회복 (LIVE 가짜 표시 0건)
+- 위젯-API 수치 모순 해소 ($280M, 두바이 $42~48 정렬)
+- L-04 (HSK 10자리) 추가 1건 정정
+- 다음 라운드: `tuna-emerging-markets` (11개국 데이터) + `tuna/ticker` (324줄) 라벨링/검증.
+
+---
+
 ## Phase A 진행 로그
