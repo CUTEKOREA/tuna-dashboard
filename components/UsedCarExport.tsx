@@ -310,8 +310,8 @@ export default function UsedCarExport() {
           <MarketGrowthChart data={marketGrowth} />
           <TakeawayBox
             source="Grand View Research, Just Auto 2025"
-            situation="2025년 한국 중고차 수출은 $8.9B로 전년 대비 75.1% 급증하며 사상 최고치를 기록했습니다. 국내 시장은 2030년 $926B 규모로 연평균 12.7% 성장하며 아프리카 수출을 뒷받침할 매물 공급 기반이 됩니다."
-            actionPlan="국내 공급 과잉과 아프리카 수요 폭발이 교차하는 골든 윈도우입니다. 인천항 재고 소진과 서아프리카 파이프라인 구축을 동시에 진행해야 합니다."
+            situation="한국 중고차 수출액은 2025년 $8.9B(YoY +75.1%)를 돌파하며 역사적 고점(All-time High)을 경신. 동시에 2030년 $926B 규모로 팽창(CAGR 12.7%)하는 국내 내수 시장은 아프리카향 수출 물량을 구조적으로 떠받치는 거대한 매물 공급 풀(Pool)로 작용하고 있음."
+            actionPlan="국내 잉여 재고(Oversupply)와 서아프리카의 폭발적 수입 수요가 겹치는 펀더멘털 골든 윈도우 진입. 자본을 투입해 인천항 장기 재고를 즉각 싹쓸이(Sweep) 매입하고, 서아프리카 물류 파이프라인(RoRo/CNTR)을 장악하여 극대화된 마진 스프레드를 온전히 향유(Capture)할 것."
           />
         </div>
         <div style={glass}>
@@ -324,8 +324,8 @@ export default function UsedCarExport() {
           <MarketShareChart data={marketShareTrend} />
           <TakeawayBox
             source="KED Global, Arirang News"
-            situation="한국차 점유율이 2019년 18%에서 2025년 42%로 급등하며 일본차(37%)를 역전했습니다. 좌핸들(LHD) 이점과 우수한 가성비가 현지 통화 약세 환경에서 결정적 차별화 요소입니다."
-            actionPlan="역전의 골든크로스를 맞이했습니다. 현대/기아의 AS 부품 생태계(Abossey Okai, Ladipo)를 빠르게 확장하여 잔존가치를 방어하고 점유율 락인(Lock-in)을 굳혀야 합니다."
+            situation="서아프리카 시장 내 한국차(M/S 42%)가 일본차(37%)를 제치고 패권(Hegemony)을 장악하는 퀀텀 크로스가 발생. 좌핸들(LHD) 강제 규제와 압도적 가성비는, 나이라(NGN)/세디(GHS) 폭락으로 신음하는 현지 바이어들에게 구조적 대체재로 완벽히 자리 잡음."
+            actionPlan="아프리카 모빌리티 패권이 이동하는 티핑 포인트. 현대·기아의 핵심 애프터마켓(Abossey Okai 등)에 순정/OEM 부품 조달망을 선제적으로 침투(Penetration)시켜 잔존가치(Resale Value)를 방어하고, 수십 년간 고착화된 토요타 의존도를 영구히 붕괴시키는 Lock-in 전략을 구사할 것."
           />
         </div>
       </div>
@@ -342,8 +342,8 @@ export default function UsedCarExport() {
         <div style={{ marginTop: '1rem' }}>
           <TakeawayBox
             source="Wheelzar, WC Shipping, Seneweb, CNBC Africa"
-            situation="나이지리아(12년), 가나·세네갈·코트디부아르(10년)의 연식 제한이 핵심 규제입니다. 나이지리아는 2026년 7월부터 2,000cc 이상 차량에 Green Tax를 추가 부과합니다."
-            actionPlan="1,000cc 이하 경차(모닝 등)는 가나 관세 5%로 최적 진입이 가능합니다. 나이지리아는 Green Tax 면제 하이브리드 차종으로 선회하고, 세네갈은 연식 완화(8→10년) 시점을 활용하십시오."
+            situation="나이지리아(12년), 가나(10년) 등 핵심 타겟 국가의 수입 연식 상한 규제가 무역 밸류체인의 최대 병목(Bottleneck) 요인. 특히 나이지리아가 2026년 하반기부터 2.0L 초과 차량에 징벌적 Green Tax를 강행함에 따라 엑스트라 OPEX 리스크가 점증."
+            actionPlan="규제의 틈새(Loophole)를 정밀 타격하는 포트폴리오 리밸런싱 지시: 가나는 1,000cc 미만 경차(관세 5% Tier)로 대량 진입, 나이지리아는 Green Tax가 완전 면제되는 하이브리드(HEV) 차종으로 전량 피봇(Pivot). 세네갈의 연식 규제 완화(10년) 윈도우는 구형 재고 소진의 즉각적 캐시카우로 활용."
           />
         </div>
       </div>
@@ -471,8 +471,8 @@ export default function UsedCarExport() {
           <ShippingCostChart data={shippingCostChart} />
           <TakeawayBox
             source="Linear Shipping, Alkady Cars, WC Shipping"
-            situation="RoRo는 컨테이너 대비 15~30% 저렴하나 부품 동반 적재가 불가합니다. 40ft HC 컨테이너(인천→테마)는 $4,500으로 부품 혼적이 가능합니다."
-            actionPlan="소형차 6대+부품 혼적 컨테이너 방식이 대당 원가를 최소화합니다. RoRo는 고가 SUV 단독 선적에만 활용하십시오."
+            situation="해상 물류(Freight) 채널에서, 단가 효율이 15~30% 우수한 RoRo선과 고부가 부품 혼적이 가능한 40ft HC 컨테이너($4,500/테마) 간의 트레이드오프(Trade-off) 딜레마가 심화 중. 단일 물류 방식 고집은 원가 최적화 실패의 지름길임."
+            actionPlan="화물 특성에 따른 이원화 배차(Bi-modal Routing) 강제 적용. 마진 룸이 큰 고부가 SUV는 RoRo를 통해 리드타임을 단축하고, 경·소형차(6대 팩) 및 애프터마켓 부품은 40ft HC 혼적 셔틀로 편성하여 대당 물류 단가(Unit Cost)를 파괴적으로 억제(Minimizing)할 것."
           />
         </div>
         <div style={glass}>
@@ -485,8 +485,8 @@ export default function UsedCarExport() {
           <FuelPriceChart data={fuelPrices} />
           <TakeawayBox
             source="Business Insider Africa 2026"
-            situation="나이지리아 유가 $1.85/L로 50% 이상 급등했고, 세네갈도 $1.60을 돌파했습니다. 연비 우수 차량과 하이브리드에 대한 수요가 폭발적으로 증가하고 있습니다."
-            actionPlan="고유가 환경이 한국 경차·하이브리드의 최대 세일즈 포인트입니다. '연료비 절감 시뮬레이션'을 마케팅 핵심 메시지로 전면 배치하십시오."
+            situation="나이지리아 유가($1.85/L)가 50% 폭등하며 심리적 저항선을 돌파, 세네갈($1.60) 또한 살인적 인플레이션에 직면. 아프리카 현지의 주유 비용(TCO) 폭동은 고연비 차량과 하이브리드에 대한 폭발적 팬트업(Pent-up) 수요를 강제 점화시키고 있음."
+            actionPlan="매크로발(Macro) 유가 쇼크를 역이용한 세일즈 피치(Sales Pitch) 강화. 한국산 경차 및 하이브리드의 '연비 TCO 절감 시뮬레이션' 데이터를 현지 B2B 딜러망에 배포하여, 딜러들이 고연비 차량에 즉각적인 프리미엄 프라이싱(Premium Pricing)을 적용토록 넛지(Nudge)할 것."
           />
         </div>
       </div>
@@ -503,8 +503,8 @@ export default function UsedCarExport() {
           <HybridGrowthChart data={hybridGrowth} />
           <TakeawayBox
             source="Coherent Market Insights, R&M 2025"
-            situation="하이브리드 중고차 시장이 2030년까지 연평균 15.9% 성장($302B)하며 내연기관(11.3%)을 압도합니다. 나이지리아 Green Tax 면제와 고유가가 수요를 견인합니다."
-            actionPlan="한국-나이지리아 EV 합작(연 30만대)과 연계하여, 하이브리드 중고차→현지 조립 EV로 이어지는 2단계 전략을 수립하십시오."
+            situation="한국 하이브리드 중고차 시장은 2030년 $302B 규모(CAGR 15.9%)로 팽창하며 레거시 내연기관(11.3%)을 압살(Outperform)할 전망. 이는 나이지리아의 Green Tax 면제 혜택 및 현지 펌프가(Pump Price) 상승과 맞물려 완벽한 수요-공급 정렬(Alignment)을 달성."
+            actionPlan="내연기관 중심의 1차원적 매집 프로세스를 폐기. 하이브리드 중고차 라인업 선점 후, 한국-나이지리아 EV 합작 법인(연 30만대) 파이프라인과 전략적 연계(Strategic Tie-up)를 구축하여, 'HEV 수출 → 현지 EV 조립'으로 전환되는 2단계 밸류 점프(Value Jump) 시나리오를 가동할 것."
           />
         </div>
         <div style={glass}>
@@ -565,8 +565,8 @@ export default function UsedCarExport() {
             </ul>
           </div>
           <TakeawayBox
-            situation="한국은 나이지리아와 아프리카 최초 EV 합작법인을 체결하며 중고차 수출→현지 생산으로의 전환 교두보를 확보했습니다."
-            actionPlan="하이브리드 중고차 수출로 브랜드 인지도를 선점한 후, EV 부품 공급망 및 기술 이전 계약으로 장기 수익 파이프라인을 구축하십시오."
+            situation="한국과 나이지리아 간 아프리카 최초 EV 합작법인(JV) 체결은 판을 뒤흔드는 메가 트렌드(Mega-trend). 단순 완성차 수출(CBU) 비즈니스에서 현지 조립(CKD/SKD) 및 생산 허브로 체급(Tier)이 격상되는 역사적 전환점을 돌파함."
+            actionPlan="선(先) 중고 HEV 수출로 엠블럼 인지도(Brand Awareness)를 현지에 각인시키고, 후(後) EV 부품(배터리 팩, 모터) 독점 공급 및 기술 이전 벤더로 등극하는 롱테일 캐시플로우(Long-tail Cashflow) 모델을 고도화. 이를 통해 신생 중국 EV 업체들의 아프리카 진출 통로를 원천 봉쇄(Blockade)."
           />
         </div>
       </div>
@@ -787,13 +787,13 @@ export default function UsedCarExport() {
         {/* 최종 결론 */}
         <TakeawayBox
           source="종합 분석: 시장 데이터 + 규제 환경 + 물류 인프라 기반"
-          situation="가나는 차량 90% 이상을 수입 중고차에 의존하며, 좌핸들 의무·10년 연식 규정으로 한국차에 구조적 우위가 존재합니다. 2024년 대(對)가나 차량 수출 $4,218만, 한국 중고차 수출 총액은 2025년 $88.7억으로 75% 급증하며 역대 최고치를 기록 중입니다. 현대·기아는 가나 시장 Top 3 브랜드로 부품 가용성과 리세일 밸류에서 확고한 신뢰를 확보하고 있습니다."
+          situation="가나는 시장 물량의 90%를 수입에 의존하는 극단적 공급 부족(Deficit) 국가. LHD 의무화 및 10년 연식 상한제(Age Cap)는 우핸들 일본차의 진입을 막고 한국차에 구조적 해자(Economic Moat)를 제공함. 가나향 수출액 증가 및 국내 중고차 총수출액 $88.7억(YoY +75%) 갱신은, 가나가 전략적 캐시플로우 타겟팅의 완벽한 과녁(Bullseye)임을 증명함."
           actionPlan={
             <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#e2e8f0', fontSize: '0.85rem' }}>
-              <li style={{ marginBottom: '4px' }}><strong>[차종 포커스]</strong> 기아 모닝·피칸토(택시용) + 현대 포터II(상용) → 고회전·고마진 투트랙</li>
-              <li style={{ marginBottom: '4px' }}><strong>[연식 관리]</strong> 2017년식 이상만 매집 — 2027년 10년 규정 페널티(CIF 50%) 완전 회피</li>
-              <li style={{ marginBottom: '4px' }}><strong>[물류]</strong> 인천항 RoRo 정기편 활용, 월 1회 20~30대 일괄 선적 체계 구축</li>
-              <li><strong>[현지 파트너]</strong> 아크라/테마 내 Work-and-Pay 택시 딜러 네트워크와 독점 공급 MOU 체결</li>
+              <li style={{ marginBottom: '4px' }}><strong>[포트폴리오]</strong> 라이드헤일링(Uber) 특화 소형차(모닝)와 물류 상용차(포터II) 중심의 바벨 전략(Barbell Strategy) 구사, 턴어라운드 극대화</li>
+              <li style={{ marginBottom: '4px' }}><strong>[규제 헷징]</strong> 2017년식 이후 차량으로 매집 풀(Pool) 제한, 가나 관세청의 치명적인 10년 초과 페널티(CIF 50% 헤어컷) 원천 회피</li>
+              <li style={{ marginBottom: '4px' }}><strong>[단가 최적화]</strong> 인천 발(發) RoRo선 및 CNTR 복합 물류를 정례화(월 30대 롤아웃)하여 선사 대상 단가 협상력(Bargaining Power) 확보</li>
+              <li><strong>[현지 금융 레버리지]</strong> Work-and-Pay(리스/렌탈) 딜러 카르텔과 독점(Exclusive) MOU를 속전속결 체결, Cash Conversion Cycle 압축</li>
             </ul>
           }
         />
