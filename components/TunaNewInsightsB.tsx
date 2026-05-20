@@ -57,10 +57,10 @@ return (
     <div className={styles.insightCard}>
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
-          <FlaskConical size={20} color="#10b981"/> 가다랑어(Skipjack) 액젓 분말화 혁명 (2026)
-          <TermTooltip term="" description="가다랑어(Skipjack) 추출액은 액젓이 아니라 700억 원 '코인 육수' 시장을 지배할 B2B 분말 소재입니다. 분무건조 기술로 물류비 50% 절감." />
+          <FlaskConical size={20} color="#10b981"/> 가다랑어(Skipjack) 액젓 분말화 (2026)
+          <TermTooltip term="" description="가다랑어(Skipjack) 추출액은 액젓이 아니라 '코인 육수' 시장(국내 700~1,000억원 추정)을 지배할 B2B 분말 소재입니다. 분무건조 기술로 물류비 50% 절감." />
         </h3>
-        <p className={styles.cardDesc}>국내 참치액 시장 700억 원. 코인 육수 시장 +20% YoY 성장 중. 분말화로 냉동→건화물 전환 시 물류비 획기적 절감 (2026년 기준).</p>
+        <p className={styles.cardDesc}>국내 참치액 시장 700~1,000억원(추정, 출처별 편차). 코인 육수 시장 +20% YoY 성장 중. 분말화로 냉동→건화물 전환 시 물류비 획기적 절감 (2026년 기준).</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>
@@ -88,9 +88,9 @@ return (
       </div>
       <div style={{ padding: '0 20px 20px 20px' }}>
         <TakeawayBox
-          source="KMI 식품산업통계정보 (2026) & 자체 추정치"
-          situation="[가다랑어 부산물의 가치 재발견] 한국 참치액 시장(700억 원)은 과포화된 액상 경쟁에서 벗어나 '코인 육수' 분말 시장(+20% YoY)으로 급속 확장 중입니다. 가다랑어 추출액의 분무건조 설비를 결합하면, 냉동 컨테이너를 건화물로 전환하여 통관/물류비를 50% 이상 절감할 수 있습니다."
-          actionPlan="**[Actionable Insight]** 참치액의 미래는 액상이 아닌 '분말'에 있습니다. 베트남 현지 가다랑어(Skipjack) 전용 분무건조 파일럿을 즉시 가동하고, CJ/대상 등 코인 육수 제조사에 B2B 핵심 원료 납품 계약을 선제적으로 체결하십시오. TN 지수 1.5% 이상 고농축 스펙으로 차별화하여 프리미엄 시장을 장악해야 해야 합니다. (Conviction Buy)"
+          source="KMI 식품산업통계정보 (2026) & 자체 추정치 (700~1,000억원 범위, 식약처/aT 단일화 대기)"
+          situation="[가다랑어 부산물의 가치 재발견] 한국 참치액 시장(700~1,000억원, 출처별 편차)은 과포화된 액상 경쟁에서 벗어나 '코인 육수' 분말 시장(+20% YoY)으로 급속 확장 중입니다. 가다랑어 추출액의 분무건조 설비를 결합하면, 냉동 컨테이너를 건화물로 전환하여 통관/물류비를 50% 이상 절감할 수 있습니다."
+          actionPlan="참치액의 미래는 액상이 아닌 '분말'에 있습니다. 베트남 현지 가다랑어(Skipjack) 전용 분무건조 파일럿을 즉시 가동하고, CJ/대상 등 코인 육수 제조사에 B2B 핵심 원료 납품 계약을 선제적으로 체결하십시오. TN 지수 1.5% 이상 고농축 스펙으로 차별화하여 프리미엄 시장을 장악해야 합니다."
         />
       </div>
     </div>

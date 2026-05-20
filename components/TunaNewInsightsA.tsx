@@ -96,7 +96,7 @@ export function InsightIOCollapse() {
           <Anchor size={20} color="#f97316"/> 인도양 공급 붕괴 — 라스트 리조트의 임계점
           <TermTooltip term="" description="WCPO 부족분을 메우던 인도양 선단이 자체 붕괴 직전에 놓인 상황을 추적합니다. MGO 급등과 조업 중단 검토가 동시 발생 중입니다." />
         </h3>
-        <p className={styles.cardDesc}>태국이 WCPO 부족분을 IO에서 +106% 긴급 수입 중이나, IO 선단 자체가 MGO $2,100/t 폭등으로 조업 중단을 검토하고 있습니다.</p>
+        <p className={styles.cardDesc}>태국이 WCPO 부족분을 IO에서 +106% 긴급 수입 중이나, IO 선단 자체가 2026 Q2 호르무즈 봉쇄 위기로 MGO $2,000+/t 폭등하며 조업 중단을 검토 중. (참고: 2018~2024 평시에는 정밀어업 기술로 MGO 효율 -28% 개선 — 2026-Q2 외생 충격으로 일시 역전)</p>
       </div>
       <div className={styles.cardBody}>
         <div className={styles.chartContainer}>

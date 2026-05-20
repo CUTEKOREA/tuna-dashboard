@@ -186,7 +186,7 @@ export default function TunaExtractDashboard() {
         <div className={styles.kpiCard}>
           <div className={styles.kpiLabel}>{data.kpis?.market_size?.title || "국내 참치액 시장 규모"}</div>
           <div className={styles.kpiValue}>
-            {data.kpis?.market_size?.value || 950} <span className={styles.kpiUnit}>억 원 (2026E)</span>
+            {data.kpis?.market_size?.value || "700~1,000"} <span className={styles.kpiUnit}>억 원 (2026E, 추정)</span>
           </div>
         </div>
         <div className={styles.kpiCard}>

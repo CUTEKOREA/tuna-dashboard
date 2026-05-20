@@ -204,7 +204,7 @@ export default function TunaInsightsDashboard() {
         </div>
         <div style={{ padding: '0 20px 20px 20px' }}>
           <TakeawayBox
-            situation="[Supply Chain Migration] 과거 미국·일본이 주도하던 가공 패권이 지정학적 임금 인플레이션 및 관세 장벽으로 인해 해체되며, 에콰도르(M/S 26%) 및 베트남 중심의 신흥 오프쇼어링(Offshoring) 허브로 시장 재편이 완료되는 국면입니다."
+            situation="[Supply Chain Migration] 과거 미국·일본이 주도하던 가공 패권이 지정학적 임금 인플레이션 및 관세 장벽으로 인해 해체되며, 에콰도르(글로벌 가공 hub M/S 26%, 2023) 및 베트남 중심의 신흥 오프쇼어링(Offshoring) 허브로 시장 재편이 완료되는 국면입니다. *EU pre-cooked loin 좁은 segment 기준으로는 에콰도르 M/S 32~42%(TunaNewInsightsA 참조).*"
             actionPlan="[M&A / FDI Strategy] 미국 및 일본 내 On-shore 가공 설비를 보유한 경쟁사들의 한계 비용(Marginal Cost)이 한계선에 도달했습니다. 우리는 중남미(에콰도르)의 기구축된 밸류체인을 활용해, 북미 리테일러향 \'관세 회피(Tariff-free) 프라이빗 라벨(PB)\' 장기 공급 계약을 선점하는 우회 진입(Bypass) 전략을 즉각 승인해야 합니다."
           />
         </div>
