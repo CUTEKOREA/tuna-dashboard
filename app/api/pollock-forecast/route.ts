@@ -20,17 +20,17 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const FRED_KEY = process.env.FRED_API_KEY || '';
 
-// ═══ Pollock Price Forecast Model ═══
+// ═══ Pollock Price Forecast (STATIC 시나리오) ═══
+// ⚠️ 시점 갱신 2026-05-20: 기존 데이터는 2024-Q1~2026-Q1 시점. 실측 wiring 미완 — 시나리오 추정치 보존.
 const POLLOCK_FORECAST = {
   model_info: {
-    type: 'VAR (5-variable Vector Autoregression) — Pollock Specialized',
+    type: 'STATIC 시나리오 — VAR 모형 학습 결과 + 산업 헤드라인',
     basis: '(기본 2024-08) 수산물 무역 단기 전망모형 + (일반 2025-14) AI 무역전망 고도화',
     variables: ['russia_pollock_fob', 'mgo_price', 'bering_sst_anomaly', 'krw_usd', 'china_dalian_utilization'],
     training_period: '2016-Q1 to 2025-Q1',
-    forecast_horizon: '6 months',
-    rmse: 62.4,
-    mape: 3.9,
-    confidence: 0.95,
+    forecast_horizon: '4 quarters',
+    note: 'MAPE/RMSE 등 모형 artifact는 백테스트 보장 안 됨. Atuna·NMFS 실측 wiring 권장.',
+    last_review: '2026-05-20',
   },
 
   // Frozen Whole Pollock (냉동 통명태) — H&G
@@ -51,7 +51,7 @@ const POLLOCK_FORECAST = {
       { period: '2026-Q1', predicted: 1550, lower_95: 1320, upper_95: 1780, driver: '중국 춘절 수요 + 쿼터 추가 감축 예상' },
     ],
     trend: 'UPWARD',
-    risk_alert: '2025 Q3 최고점 예상 — A-시즌 종료 전 선제 매입 권고',
+    risk_alert: '2025 Q3 최고점 시나리오 (STATIC 추정) — Atuna 실측 wiring 후 재검증 필요',
   },
 
   // Pollock Surimi (명태 수리미/연육)
