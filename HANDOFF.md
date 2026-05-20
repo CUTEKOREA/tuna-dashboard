@@ -2,7 +2,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-16 (Claude Code 세션 — Phase 1A 2차 완료, baseline grep 기준 EN-잔존 0)
+> **마지막 업데이트**: 2026-05-20 (Claude Code 세션 — TunaOperationalInsights S1~S5 분리 + GS Analyst Tone 일괄 적용 커밋)
 
 ---
 
@@ -10,6 +10,13 @@
 
 **TunaDashboard 3종(Dashboard/Extract/Insights) S-Grade UI 표준화** — `COMPREHENSIVE_RULEBOOK.md` V4.1 기준.
 
+- ✅ **TunaOperationalInsights → S1~S5 위젯 모듈 분리 (2026-05-20, 커밋 `4f8cdce`)**:
+  - `components/TunaOperationalInsights.tsx`(1110줄) 삭제 → `components/TunaOperationalIntelWidgets.tsx`로 재구성 후 `OperationalS1~S5Widgets`를 TunaDashboard 5-Pillar 각 섹션에 삽입.
+  - `app/page.tsx`: field-ops 메뉴/라우트 및 TunaOperationalInsights dynamic import 제거.
+  - 약 100개 위젯의 `TakeawayBox.actionPlan`에 `**[Actionable Insight]**` 접두 + Conviction 태그(예: `(Conviction Buy)`) 일괄 적용 — GS Analyst Tone 통일.
+  - PetFoodDashboard: 원물 생산(Part I) 섹션 + KPI Row 추가.
+  - Carrot/Cocoa/Garlic/Mangosteen: 신입직원 교육 토글 등 잉여 섹션 제거 (D-01).
+  - 137개 파일, +2251/-2196.
 - Phase 1: UI- ✅ **참치 대시보드 위젯 재배치 및 제거 (2026-05-20)**:
   - 참다랑어 축양(Part V/VI) 하이브리드 통합 완료 및 1열 2위젯 그리드 배치 완료.
   - 사용자 요청에 따른 5종 위젯/섹션 제거 완료:
@@ -63,6 +70,9 @@ python scripts/check_s_grade.py TunaDashboard.tsx TunaExtractDashboard.tsx TunaI
 ### Phase 1B (영문 박멸 완료 후)
 4. **TelemetryBadge 단일 Module 추출** — 10개 commodity dashboard에 자기 복사본이 있고 9개 vs 1개로 타입 불일치 (룰북 위반 상태). `components/TelemetryBadge.tsx` 1개로 통합.
 5. **truncateKoreanLabel 모듈화** — 30개 Tuna 파일에 복사된 truncate 함수를 `lib/chart-standards.ts`로 통합.
+
+### 임시 산출물 정리 (다음 세션 권장)
+- 미커밋 스크래치 파일(`scratch.py`, `scratch_remove.py`, `check_ts.js`, `patch_tooltip.js`)과 신규 `vercel_deploy_*.log` 20여 개가 워킹트리에 누적됨. L-08에 따라 삭제 또는 `.gitignore` 패턴(`vercel_deploy_*.log`, `scratch*.py`, `patch_*.js`, `check_*.js`) 추가 필요.
 
 ### Phase 1C
 6. **cardDesc 누락 11개 추가** — TunaExtractDashboard의 패턴이 다른지 먼저 확인 (false positive 가능).
@@ -133,7 +143,8 @@ git log --since="2026-05-16" --until="2026-05-23" --oneline | awk '{print $2}' |
 | 2026-05-16 | CC | bootstrap (CONTEXT/ADR/HANDOFF) | 90 | — | grill-me + CONTEXT.md 한 번에 완성 |
 | 2026-05-16 | CC | ui-fix (TunaInsights 영문 박멸 28건) | 20 | grep이 콜론·기호 포함 영문 못 잡음 (추가 라운드 필요) | L-07 일괄 변환 스크립트로 28건 무손실 치환, tsc 통과 |
 | 2026-05-16 | CC | ui-fix (4파일 영문 박멸 13건) | 12 | 회사 고유명사 음역 판단(Tan Phat→탄팟) | closure 전체 EN-잔존 0, tsc 통과 |
-| 2026-05-20 | AG | ui-fix/content (Tuna widget rearrangement & removal) | 60 | — | 참치 대시보드 위젯 흐름 재배치 및 불필요/요청 위젯 5종 완벽 제거 |log --oneline -10`으로 직전 변경 확인.
+| 2026-05-20 | AG | ui-fix/content (Tuna widget rearrangement & removal) | 60 | — | 참치 대시보드 위젯 흐름 재배치 및 불필요/요청 위젯 5종 완벽 제거 |
+| 2026-05-20 | CC | refactor (TunaOperationalInsights → S1~S5 모듈 분리 + GS Analyst Tone 일괄 적용) | 25 | 워킹트리에 137개 파일 누적 + 스크래치/로그 미정리 | 단일 커밋으로 묶음 분리·제외 판단, 빌드 깨짐 방지(신규 위젯 동봉) |log --oneline -10`으로 직전 변경 확인.
 2. **세션 종료 시**: 이 파일의 "완료된 것" / "다음 단계"를 *반드시* 갱신하고 커밋.
 3. **동시 작업 금지**: 한 브랜치에 두 에이전트가 동시 입력 X. worktree 분리 또는 시간차 작업.
 4. **에이전트 의존 기능 사용 시 표시**: superpowers·grill-me 등 특정 도구 호출 결과는 *결정 자체*만 이 파일에 남기고 도구 호출 흔적은 남기지 않기 (다른 에이전트에 의미 없음).
