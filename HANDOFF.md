@@ -2,7 +2,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-20 (Antigravity 세션 — 참치 대시보드 3종 S-Grade 디자인 및 데이터 고도화 완료)
+> **마지막 업데이트**: 2026-05-20 (Claude Code 세션 — Phase E API mock 정정 + 라이브 배포 완료, leedonggun.co.kr)
 
 ---
 
@@ -20,6 +20,7 @@
   - **Phase C 외부 출처 후속 검증 4건** (커밋 `78874b9`): EUMOFA EU Fish Market 2025로 Ecuador EU 점유율 29%(volume)/48%(value) 확정 → TunaNewInsightsA nauruData 보정 / ISSF 2026-01 최신판으로 건전성 97%(어획량)/74%(stock) 업그레이드 → TunaRanching 갱신 / IMARC Saudi Cold Chain Report 2025-2034 직접 확인 → 출처 정확화 / 동원 펫푸드 28.5%는 비공개 추정치로 명시.
   - **Phase C mock 데이터 일부 실데이터 wiring** (커밋 `d62a359`): mockZeroSumData를 FAO FishStat v25 실측치로 교체 (가짜 2015 엘니뇨 shock 제거). mockMSCPremium에 Fisheries Research 2025 출처 주석 추가.
   - **Phase D GS 톤 정착 + AI 티 제거** (커밋 `6bfa990`·`07e8283`·`c97b05b`): L-07 일괄 변환으로 브래킷 라벨 54건·영문 동격 188건·과장 수식어 17건·잔존 AI tell 158건(잉여현금흐름 극대화 후렴구 등) 정리. TunaInsightsDashboard 14개 위젯 TakeawayBox 본문을 thesis-first GS 데스크 노트 스타일로 수동 재작성. 명령형 어조 완화, date-stamp 명시, catalyst/risk 균형. 50+ 파일 영향.
+  - **Phase E API mock 정정 + 라이브 배포** (커밋 `610e51f`, deployment `dpl_5X7NAhVjTuC12VP8XfSZ7CeisnTU`): 사용자가 라이브 KPI 카드에서 $2,250 거짓 예측치 잔존을 발견 → `app/api/tuna-forecast/route.ts`의 hardcoded mock (skipjack/yellowfin historical+forecast, enso_correlation, landing_cost_sensitivity)을 Atuna 실측치(skjbkk·yfabj)로 교체. **교훈: audit이 위젯 코드만 검사하고 API endpoint mock은 놓침** — 다른 API endpoints도 전수 점검 필요. 라이브 `leedonggun.co.kr` 반영.
 - ✅ **TunaOperationalInsights → S1~S5 위젯 모듈 분리 (2026-05-20, 커밋 `4f8cdce`)**:
   - `components/TunaOperationalInsights.tsx`(1110줄) 삭제 → `components/TunaOperationalIntelWidgets.tsx`로 재구성 후 `OperationalS1~S5Widgets`를 TunaDashboard 5-Pillar 각 섹션에 삽입.
   - `app/page.tsx`: field-ops 메뉴/라우트 및 TunaOperationalInsights dynamic import 제거.

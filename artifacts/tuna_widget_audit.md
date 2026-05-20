@@ -154,4 +154,29 @@ WebSearch + EUMOFA PDF (pdftotext) + ISSF 2026-01 PDF로 Phase A 대기 항목 �
 
 ---
 
+## Phase E — API mock 정정 (2026-05-20 추가)
+
+**계기:** 사용자가 라이브 화면에서 SkipjackForecastWidget의 KPI 카드에 여전히 $2,250(거짓 예측치)이 표시되는 것을 확인. Phase B에서 위젯 *텍스트*만 정정하고 API endpoint의 **hardcoded mock 데이터**는 audit 범위 밖이었음을 발견.
+
+**핵심 교훈:** audit이 코드 텍스트만 검사하고 `app/api/*/route.ts`의 mock 데이터는 점검하지 않으면 *위젯 본문은 새 narrative지만 차트·KPI는 옛 거짓값*이 라이브에 노출되는 상태가 됨.
+
+**정정 (커밋 `610e51f`):**
+
+| File:Position | 정정 |
+|---|---|
+| [app/api/tuna-forecast/route.ts](../app/api/tuna-forecast/route.ts) `skipjack.historical` | 2024-Q1~2025-Q1 가짜 → 2025-Q1~2026-Q2 Atuna skjbkk 실측 분기 평균 (1,650→2,008) |
+| `skipjack.forecast` | 2025-Q2~2026-Q1 (이미 과거) → 2026-Q3~2027-Q1 시나리오 (1,950→1,700) |
+| `skipjack.risk_alert` | "2025 Q3 최고점 — 선제 매입" → "2026-Q2 호르무즈 봉쇄 박스권 1,950~2,050 분할 매입" |
+| `yellowfin.historical/forecast` | $3,200~$3,720 → $2,400~$2,500 (Atuna yfabj 아비장 실측) |
+| `enso_correlation.current_enso` | "La Niña(약) 2025-Q2" → "Neutral 2026-Q2" + 호르무즈 1차 변수 명시 |
+| `landing_cost_sensitivity.base_case` | KRW 1,380 / FOB 2,120 → KRW 1,400 / FOB 1,975 (2026-05 실측) |
+| `model_info` | "VAR MAPE 4.8%" 가짜 artifact 제거 → "Atuna 실측 기반 평균" 정직 표기 |
+| [components/TunaForecastWidgets.tsx](../components/TunaForecastWidgets.tsx) EnsoCorrelationWidget TakeawayBox | 시점 갱신 + 단기 매입 시그널은 ENSO 아닌 호르무즈 정상화 여부임 명시 |
+
+**다음 라운드 점검 권고:**
+- 다른 API endpoint (`tuna-emerging-markets`, `tuna-extract`, `tuna-live`, `tuna-policy-risk`, `tuna-ranching`, `pollock-forecast` 등)에도 유사한 hardcoded mock이 존재할 가능성 — 전수 점검 필요.
+- Phase B audit 표를 *API endpoint 점검*까지 확장하도록 next session 작업 범위에 포함.
+
+---
+
 ## Phase A 진행 로그
