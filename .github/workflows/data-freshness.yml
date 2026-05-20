@@ -1,0 +1,107 @@
+name: Data Freshness Audit (ADR-0004 Phase 1)
+
+# 주 1회 월요일 09:00 KST (00:00 UTC) — Phase A~G audit의 자동 회귀
+# 한 번에 모든 commodity dashboard의 S-Grade·GS 톤·fake LIVE 위반을 점검하고
+# 1건이라도 발견되면 GitHub Issue 자동 생성
+
+on:
+  schedule:
+    - cron: '0 0 * * MON'  # 매주 월요일 00:00 UTC = 09:00 KST
+  workflow_dispatch:        # 수동 트리거 허용
+  push:
+    branches:
+      - main
+    paths:
+      - 'components/**/*.tsx'
+      - 'app/api/**/route.ts'
+      - 'scripts/check_s_grade.py'
+
+jobs:
+  s_grade_regression:
+    name: S-Grade · GS 톤 · fake LIVE 회귀 점검
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run S-Grade audit (전 commodity dashboard)
+        id: audit
+        continue-on-error: true
+        run: |
+          set +e
+          python3 scripts/check_s_grade.py \
+            TunaDashboard.tsx \
+            TunaExtractDashboard.tsx \
+            TunaInsightsDashboard.tsx \
+            MackerelDashboard.tsx \
+            SquidDashboard.tsx \
+            SalmonDashboard.tsx \
+            ChickenDashboard.tsx \
+            CarrotDashboard.tsx \
+            CocoaDashboard.tsx \
+            MangosteenDashboard.tsx \
+            GarlicDashboard.tsx \
+            CassavaDashboard.tsx \
+            PetFoodDashboard.tsx \
+            WhelkDashboard.tsx \
+            --report artifacts/s_grade_weekly.md \
+            --strict
+          EXIT=$?
+          echo "exit_code=$EXIT" >> "$GITHUB_OUTPUT"
+          if [ $EXIT -ne 0 ]; then
+            echo "::warning ::S-Grade audit found violations (exit $EXIT)"
+          fi
+
+      - name: TypeScript check
+        id: tsc
+        continue-on-error: true
+        run: |
+          if [ -f package.json ]; then
+            npm ci --no-audit --prefer-offline 2>/dev/null || true
+            npx tsc --noEmit 2>&1 | tee artifacts/tsc_output.txt
+            echo "tsc_exit=$?" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: s-grade-weekly-${{ github.run_number }}
+          path: |
+            artifacts/s_grade_weekly.md
+            artifacts/tsc_output.txt
+          retention-days: 90
+
+      - name: Create issue on failure
+        if: steps.audit.outputs.exit_code != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let body = '## 주간 S-Grade audit 실패\n\n';
+            body += '`scripts/check_s_grade.py --strict`가 1건 이상의 위반을 감지했습니다.\n\n';
+            body += '### 감지 카테고리 (Phase A~G 회귀)\n';
+            body += '- 영문 잔존 (사용자 노출 문자열)\n';
+            body += '- GS 톤 위반: Conviction Buy / Strong Buy / [Actionable Insight] / 압도적·완벽한·혁명 / 잉여현금흐름 후렴구 / 브래킷 라벨\n';
+            body += '- 가짜 🟢 LIVE API 표시 (A-02 위반)\n\n';
+            body += '### 다음 단계\n';
+            body += '1. Workflow run의 `s-grade-weekly-${{ github.run_number }}` artifact에서 `s_grade_weekly.md` 다운로드\n';
+            body += '2. 위반 위치 파악 후 정정 (L-07 일괄 변환 스크립트 권장)\n';
+            body += '3. tsc + npm run build 통과 확인 후 push\n\n';
+            body += `**Workflow URL**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n`;
+
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[Auto] 주간 S-Grade audit 실패 (${new Date().toISOString().slice(0, 10)})`,
+              body: body,
+              labels: ['audit', 'auto-generated', 'phase-A-G-regression'],
+            });

@@ -124,6 +124,15 @@ JSX_TELEMETRY = re.compile(r"<TelemetryBadge\b")
 JSX_TAKEAWAY = re.compile(r"<TakeawayBox\b")
 UNIT_PARENS = re.compile(r"\([\$\w\s가-힣%]*?[/\\][\w가-힣]+\)")
 
+# Phase D+ 확장: AI 티 / GS 톤 위반 패턴
+CONVICTION_TAG = re.compile(r"\(Conviction Buy\)|\(Strong Buy\)|\*\*\[Actionable Insight\]\*\*")
+EXAGG_ADJ = re.compile(r"압도적|완벽한 음의 상관|완벽한 헷지|완벽한 패러다임|혁명적|독보적|역사적 기회|최초이자 최고")
+EXCESS_PHRASE = re.compile(r"잉여현금흐름을 극대화|즉시 폐기하십시오|전격 가동하십시오|해야 해야")
+BRACKET_LABEL = re.compile(r'(?:situation|actionPlan|takeaway)\s*=\s*["\']\[[^\]\[]{2,80}\]\s+')
+
+# Phase E+ 확장: API endpoint hardcoded mock 의심 (역참조)
+FAKE_LIVE = re.compile(r"🟢 LIVE API|status:\s*['\"]🟢")
+
 
 def measure_file(path: Path) -> dict:
     content = path.read_text(encoding="utf-8")
@@ -134,6 +143,13 @@ def measure_file(path: Path) -> dict:
         "TakeawayBox": count_pattern(content, JSX_TAKEAWAY),
         "unit_parens": count_pattern(content, UNIT_PARENS),
         "english_hits": english_leftover(content),
+        # GS 톤 위반 (Phase D)
+        "conviction_tags": count_pattern(content, CONVICTION_TAG),
+        "exagg_adjectives": count_pattern(content, EXAGG_ADJ),
+        "excess_phrases": count_pattern(content, EXCESS_PHRASE),
+        "bracket_labels": count_pattern(content, BRACKET_LABEL),
+        # API mock 의심 (Phase E~F)
+        "fake_live_tags": count_pattern(content, FAKE_LIVE),
     }
 
 
@@ -163,15 +179,16 @@ def render_report(closures: dict[str, list[Path]]) -> str:
         out.append(f"## Dashboard: `{entry}`\n")
         out.append(f"- closure 크기: {len(files)}개 파일\n")
         out.append("")
-        out.append("| 파일 | 줄 | cardDesc | TelemetryBadge | TakeawayBox | unit-parens | EN-잔존 | 위젯? |")
+        out.append("| 파일 | 줄 | cardDesc | TelemBadge | Takeaway | EN | GS위반 | 위젯 |")
         out.append("|---|---:|---:|---:|---:|---:|---:|:---:|")
         for f in files:
             m = measure_file(f)
             widget = "🧩" if looks_like_widget(f, m) else ""
             en = len(m["english_hits"])
+            gs_total = m["conviction_tags"] + m["exagg_adjectives"] + m["excess_phrases"] + m["bracket_labels"]
             out.append(
                 f"| `{f.name}` | {m['lines']} | {m['cardDesc']} | {m['TelemetryBadge']} | "
-                f"{m['TakeawayBox']} | {m['unit_parens']} | {en} | {widget} |"
+                f"{m['TakeawayBox']} | {en} | {gs_total} | {widget} |"
             )
         out.append("")
 
@@ -205,13 +222,68 @@ def render_report(closures: dict[str, list[Path]]) -> str:
             out.append(f"- `{n}`")
         out.append("")
 
+    # Phase D+ GS 톤 위반 상세
+    out.append("## GS 톤 위반 (Conviction Buy / 과장 수식어 / 후렴구 / 브래킷 라벨)\n")
+    gs_violations: list[tuple[str, dict]] = []
+    for f in union.values():
+        m = measure_file(f)
+        total = m["conviction_tags"] + m["exagg_adjectives"] + m["excess_phrases"] + m["bracket_labels"]
+        if total > 0:
+            gs_violations.append((f.name, m))
+    if not gs_violations:
+        out.append("✅ 위반 0건 (전 closure 청결)")
+    else:
+        out.append("| 파일 | Conviction태그 | 과장수식어 | 후렴구 | 브래킷라벨 |")
+        out.append("|---|---:|---:|---:|---:|")
+        for name, m in gs_violations:
+            out.append(
+                f"| `{name}` | {m['conviction_tags']} | {m['exagg_adjectives']} | "
+                f"{m['excess_phrases']} | {m['bracket_labels']} |"
+            )
+    out.append("")
+
+    # Phase E+ 가짜 LIVE 태그 (위젯·API 양쪽)
+    out.append("## 가짜 LIVE API 표시 (Phase E+ A-02 위반)\n")
+    fake_live = [(f.name, m) for f, m in [(f, measure_file(f)) for f in union.values()] if m["fake_live_tags"] > 0]
+    if not fake_live:
+        out.append("✅ 위반 0건")
+    else:
+        for name, m in fake_live:
+            out.append(f"- `{name}` — {m['fake_live_tags']}건")
+    out.append("")
+
     return "\n".join(out)
+
+
+def compute_exit_code(closures: dict[str, list[Path]]) -> int:
+    """위반 1건 이상이면 1 반환 (CI 통합용)."""
+    union: dict[str, Path] = {}
+    for files in closures.values():
+        for f in files:
+            union[f.name] = f
+    total_violations = 0
+    for f in union.values():
+        m = measure_file(f)
+        total_violations += (
+            len(m["english_hits"])
+            + m["conviction_tags"]
+            + m["exagg_adjectives"]
+            + m["excess_phrases"]
+            + m["bracket_labels"]
+            + m["fake_live_tags"]
+        )
+    return 1 if total_violations > 0 else 0
 
 
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("entries", nargs="+", help="진입점 dashboard 파일들 (예: TunaDashboard.tsx)")
     parser.add_argument("--report", help="마크다운 보고서 출력 경로")
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="위반 1건이라도 있으면 exit 1 (CI 회귀 게이트용, ADR-0004 Phase 1)",
+    )
     args = parser.parse_args(argv)
 
     closures: dict[str, list[Path]] = {}
@@ -225,6 +297,9 @@ def main(argv: list[str]) -> int:
         Path(args.report).write_text(report, encoding="utf-8")
         print(f"보고서 저장: {args.report}", file=sys.stderr)
     print(report)
+
+    if args.strict:
+        return compute_exit_code(closures)
     return 0
 
 
