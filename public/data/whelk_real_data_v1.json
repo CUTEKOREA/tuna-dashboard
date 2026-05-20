@@ -1,0 +1,1287 @@
+{
+  "globalCaptureData": [
+    {
+      "name": "멕시코",
+      "value": 17782,
+      "label": "Rapa whelk"
+    },
+    {
+      "name": "영국",
+      "value": 14091,
+      "label": "B. undatum"
+    },
+    {
+      "name": "프랑스",
+      "value": 10117,
+      "label": "B. undatum"
+    },
+    {
+      "name": "한국",
+      "value": 9062,
+      "label": "B. opisoplectum"
+    },
+    {
+      "name": "아일랜드",
+      "value": 4803,
+      "label": "B. undatum"
+    }
+  ],
+  "canadaCaptureData": [
+    {
+      "year": "2008",
+      "canada": 7219,
+      "uk": 10393
+    },
+    {
+      "year": "2013",
+      "canada": 6302,
+      "uk": 11432
+    },
+    {
+      "year": "2018",
+      "canada": 2484,
+      "uk": 14197
+    },
+    {
+      "year": "2022",
+      "canada": 1847,
+      "uk": 14091
+    },
+    {
+      "year": "2024",
+      "canada": 1520,
+      "uk": 13800
+    },
+    {
+      "year": "2026 (E)",
+      "canada": 1350,
+      "uk": 12500
+    }
+  ],
+  "koreaCaptureData": [
+    {
+      "year": "2010",
+      "capture": 7242
+    },
+    {
+      "year": "2014",
+      "capture": 7342
+    },
+    {
+      "year": "2018",
+      "capture": 8162
+    },
+    {
+      "year": "2019",
+      "capture": 10190
+    },
+    {
+      "year": "2020",
+      "capture": 9530
+    },
+    {
+      "year": "2021",
+      "capture": 8954
+    },
+    {
+      "year": "2022",
+      "capture": 9062
+    },
+    {
+      "year": "2024",
+      "capture": 8750
+    },
+    {
+      "year": "2026 (E)",
+      "capture": 8200
+    }
+  ],
+  "importMarketShare": [
+    {
+      "name": "영국",
+      "value": 30.46,
+      "unitPrice": 12.75
+    },
+    {
+      "name": "아일랜드",
+      "value": 7.57,
+      "unitPrice": 12.27
+    },
+    {
+      "name": "중국",
+      "value": 4.88,
+      "unitPrice": 6.37
+    },
+    {
+      "name": "튀르키예",
+      "value": 4.17,
+      "unitPrice": 13.39
+    },
+    {
+      "name": "세네갈",
+      "value": 3.63,
+      "unitPrice": 4.73
+    }
+  ],
+  "seasonalityData": [
+    {
+      "month": "1월",
+      "importUSD": 1.5,
+      "volume": 120
+    },
+    {
+      "month": "2월",
+      "importUSD": 1.2,
+      "volume": 100
+    },
+    {
+      "month": "3월",
+      "importUSD": 2.1,
+      "volume": 160
+    },
+    {
+      "month": "4월",
+      "importUSD": 2.8,
+      "volume": 220
+    },
+    {
+      "month": "5월",
+      "importUSD": 4.2,
+      "volume": 310
+    },
+    {
+      "month": "6월",
+      "importUSD": 4.8,
+      "volume": 360
+    },
+    {
+      "month": "7월",
+      "importUSD": 5.1,
+      "volume": 390
+    },
+    {
+      "month": "8월",
+      "importUSD": 5.7,
+      "volume": 434
+    },
+    {
+      "month": "9월",
+      "importUSD": 3.2,
+      "volume": 250
+    },
+    {
+      "month": "10월",
+      "importUSD": 2.1,
+      "volume": 160
+    },
+    {
+      "month": "11월",
+      "importUSD": 1.8,
+      "volume": 140
+    },
+    {
+      "month": "12월",
+      "importUSD": 1.6,
+      "volume": 125
+    }
+  ],
+  "yieldArbitrageData": [
+    {
+      "origin": "영국 (B. undatum)",
+      "price": 12.75,
+      "yieldMin": 22.5,
+      "yieldMax": 25.1,
+      "tcu": 54.2,
+      "score": 95
+    },
+    {
+      "origin": "아일랜드 (B. undatum)",
+      "price": 12.27,
+      "yieldMin": 21.8,
+      "yieldMax": 24.5,
+      "tcu": 52.8,
+      "score": 92
+    },
+    {
+      "origin": "튀르키예 (R. venosa)",
+      "price": 13.39,
+      "yieldMin": 14.1,
+      "yieldMax": 15.3,
+      "tcu": 91,
+      "score": 40
+    },
+    {
+      "origin": "중국 (R. venosa)",
+      "price": 6.37,
+      "yieldMin": 13.5,
+      "yieldMax": 14.8,
+      "tcu": 45.1,
+      "score": 68
+    }
+  ],
+  "waterfallData": [
+    {
+      "name": "KCS 평균 수입단가",
+      "value": 12.75,
+      "fill": "var(--color-info)"
+    },
+    {
+      "name": "자숙/탈각 (FOB 포함)",
+      "value": 0,
+      "fill": "#64748b"
+    },
+    {
+      "name": "해상운임 (Reefer 40ft)",
+      "value": 0.42,
+      "fill": "var(--color-warning)"
+    },
+    {
+      "name": "한-영 FTA (관세 0%)",
+      "value": 0,
+      "fill": "var(--color-success)"
+    },
+    {
+      "name": "내륙운송/보관/검역",
+      "value": 0.15,
+      "fill": "#8b5cf6"
+    },
+    {
+      "name": "부산 입고 총원가",
+      "value": 13.32,
+      "fill": "var(--color-danger)"
+    }
+  ],
+  "brandPositioningData": [
+    {
+      "brand": "유동 골뱅이",
+      "x": 130,
+      "y": 4200,
+      "z": 54,
+      "type": "B2C 1위 (300g캔)"
+    },
+    {
+      "brand": "동원 골뱅이",
+      "x": 120,
+      "y": 3800,
+      "z": 22,
+      "type": "B2C 2위 (300g캔)"
+    },
+    {
+      "brand": "CJ 계절어보",
+      "x": 100,
+      "y": 5100,
+      "z": 12,
+      "type": "프리미엄 HMR (200g)"
+    },
+    {
+      "brand": "동표 골뱅이",
+      "x": 147,
+      "y": 3600,
+      "z": 12,
+      "type": "B2B/마니아 (300g캔)"
+    }
+  ],
+  "channelDemandData": [
+    {
+      "name": "대형마트/SSM",
+      "size": 62.3,
+      "fill": "var(--color-info)"
+    },
+    {
+      "name": "B2B 식자재/도매",
+      "size": 19.5,
+      "fill": "var(--color-warning)"
+    },
+    {
+      "name": "온라인 (쿠팡/SSG)",
+      "size": 11.8,
+      "fill": "var(--color-success)"
+    },
+    {
+      "name": "편의점/CVS",
+      "size": 6.4,
+      "fill": "#8b5cf6"
+    }
+  ],
+  "fxCorrelationData": [
+    {
+      "quarter": "23Q1",
+      "avgUnitPrice": 11.82,
+      "usdkrw": 1264
+    },
+    {
+      "quarter": "23Q2",
+      "avgUnitPrice": 12.01,
+      "usdkrw": 1302
+    },
+    {
+      "quarter": "23Q3",
+      "avgUnitPrice": 12.38,
+      "usdkrw": 1328
+    },
+    {
+      "quarter": "23Q4",
+      "avgUnitPrice": 12.55,
+      "usdkrw": 1310
+    },
+    {
+      "quarter": "24Q1",
+      "avgUnitPrice": 12.41,
+      "usdkrw": 1335
+    },
+    {
+      "quarter": "24Q2",
+      "avgUnitPrice": 12.68,
+      "usdkrw": 1372
+    },
+    {
+      "quarter": "24Q3",
+      "avgUnitPrice": 12.89,
+      "usdkrw": 1358
+    },
+    {
+      "quarter": "24Q4",
+      "avgUnitPrice": 12.75,
+      "usdkrw": 1400
+    },
+    {
+      "quarter": "25Q1",
+      "avgUnitPrice": 12.95,
+      "usdkrw": 1395
+    },
+    {
+      "quarter": "25Q2",
+      "avgUnitPrice": 13.1,
+      "usdkrw": 1415
+    },
+    {
+      "quarter": "26Q1",
+      "avgUnitPrice": 13.5,
+      "usdkrw": 1450
+    },
+    {
+      "quarter": "26Q2",
+      "avgUnitPrice": 13.85,
+      "usdkrw": 1485
+    }
+  ],
+  "ukRegulatoryRadar": [
+    {
+      "axis": "MCRS 강화 (45→55mm)",
+      "value": 85
+    },
+    {
+      "axis": "IFCA 통발수 제한",
+      "value": 70
+    },
+    {
+      "axis": "Wales ACL 쿼터제",
+      "value": 60
+    },
+    {
+      "axis": "어획 시즌 단축",
+      "value": 45
+    },
+    {
+      "axis": "MSC 인증 의무화",
+      "value": 30
+    },
+    {
+      "axis": "Brexit 수출규제",
+      "value": 55
+    }
+  ],
+  "aquacultureData": [
+    {
+      "species": "연어",
+      "aquaculture": 95,
+      "supplyElasticity": 90,
+      "priceStability": 85,
+      "subject": "양식 가능"
+    },
+    {
+      "species": "새우",
+      "aquaculture": 90,
+      "supplyElasticity": 85,
+      "priceStability": 80,
+      "subject": "양식 가능"
+    },
+    {
+      "species": "참치",
+      "aquaculture": 30,
+      "supplyElasticity": 40,
+      "priceStability": 50,
+      "subject": "제한적"
+    },
+    {
+      "species": "골뱅이",
+      "aquaculture": 0,
+      "supplyElasticity": 5,
+      "priceStability": 20,
+      "subject": "영구 불가"
+    }
+  ],
+  "cadmiumData": [
+    {
+      "part": "근육(살)",
+      "cd": 0.08,
+      "limit": 2,
+      "risk": "안전"
+    },
+    {
+      "part": "내장(간췌장)",
+      "cd": 5.5,
+      "limit": 2,
+      "risk": "초과 위험"
+    },
+    {
+      "part": "통째(비가공)",
+      "cd": 1.2,
+      "limit": 2,
+      "risk": "주의"
+    }
+  ],
+  "importSurgeData": [
+    {
+      "month": "24.01",
+      "volume": 83,
+      "value": 1.05
+    },
+    {
+      "month": "24.02",
+      "volume": 83,
+      "value": 1.02
+    },
+    {
+      "month": "24.07",
+      "volume": 310,
+      "value": 3.95
+    },
+    {
+      "month": "24.08",
+      "volume": 434,
+      "value": 5.7
+    },
+    {
+      "month": "24.12",
+      "volume": 125,
+      "value": 1.6
+    },
+    {
+      "month": "25.01",
+      "volume": 155,
+      "value": 2.1
+    },
+    {
+      "month": "25.02",
+      "volume": 170,
+      "value": 2.85
+    }
+  ],
+  "byproductData": [
+    {
+      "name": "가식부(살)",
+      "ratio": 22,
+      "value": 12.75,
+      "color": "var(--color-success)"
+    },
+    {
+      "name": "껍질(CaCO₃)",
+      "ratio": 55,
+      "value": 2.1,
+      "color": "var(--color-info)"
+    },
+    {
+      "name": "내장(콜라겐)",
+      "ratio": 18,
+      "value": 4.8,
+      "color": "var(--color-warning)"
+    },
+    {
+      "name": "체액/기타",
+      "ratio": 5,
+      "value": 0.3,
+      "color": "#64748b"
+    }
+  ],
+  "solidContentData": [
+    {
+      "brand": "유동",
+      "total": 300,
+      "solid": 130,
+      "liquid": 170,
+      "pricePerGram": 4200
+    },
+    {
+      "brand": "동원",
+      "total": 300,
+      "solid": 120,
+      "liquid": 180,
+      "pricePerGram": 3800
+    },
+    {
+      "brand": "동표",
+      "total": 300,
+      "solid": 147,
+      "liquid": 153,
+      "pricePerGram": 3600
+    },
+    {
+      "brand": "CJ 계절어보",
+      "total": 200,
+      "solid": 100,
+      "liquid": 100,
+      "pricePerGram": 5100
+    }
+  ],
+  "climateRiskData": [
+    {
+      "year": "2005",
+      "sst": 10.2,
+      "ukCatch": 12800,
+      "canadaCatch": 7500
+    },
+    {
+      "year": "2010",
+      "sst": 10.8,
+      "ukCatch": 13200,
+      "canadaCatch": 5800
+    },
+    {
+      "year": "2015",
+      "sst": 11.4,
+      "ukCatch": 14000,
+      "canadaCatch": 3200
+    },
+    {
+      "year": "2020",
+      "sst": 12.1,
+      "ukCatch": 14100,
+      "canadaCatch": 2100
+    },
+    {
+      "year": "2025E",
+      "sst": 12.6,
+      "ukCatch": 13500,
+      "canadaCatch": 1500
+    },
+    {
+      "year": "2030E",
+      "sst": 13.2,
+      "ukCatch": 12000,
+      "canadaCatch": 800
+    },
+    {
+      "year": "2035E",
+      "sst": 13.8,
+      "ukCatch": 10500,
+      "canadaCatch": 400
+    }
+  ],
+  "widgets": [
+    {
+      "id": "w50_kfas_trace_metal",
+      "title": "🔬 [KFAS] 연안 패류·퇴적물 미량금속 축적 포렌식: 골뱅이 원산지 리스크 맵",
+      "subtitle": "국립수산과학원 — 서·남·동해 13해역 해수·퇴적물·수산생물 8종 중금속 정밀 분석",
+      "chartType": "bar",
+      "xKey": "metal",
+      "unit": "mg/kg",
+      "bars": [
+        {
+          "key": "shellfish_avg",
+          "name": "패류 평균 (mg/kg)",
+          "color": "#ef4444"
+        },
+        {
+          "key": "tel_limit",
+          "name": "TEL 주의기준 (mg/kg)",
+          "color": "#64748b"
+        }
+      ],
+      "data": [
+        {
+          "metal": "As (비소)",
+          "shellfish_avg": 5.8,
+          "tel_limit": 14.5,
+          "sediment_avg": 8.2
+        },
+        {
+          "metal": "Cd (카드뮴)",
+          "shellfish_avg": 0.42,
+          "tel_limit": 0.75,
+          "sediment_avg": 0.15
+        },
+        {
+          "metal": "Cr (크롬)",
+          "shellfish_avg": 0.35,
+          "tel_limit": 116,
+          "sediment_avg": 45.2
+        },
+        {
+          "metal": "Cu (구리)",
+          "shellfish_avg": 3.8,
+          "tel_limit": 20.6,
+          "sediment_avg": 12.1
+        },
+        {
+          "metal": "Hg (수은)",
+          "shellfish_avg": 0.018,
+          "tel_limit": 0.11,
+          "sediment_avg": 0.025
+        },
+        {
+          "metal": "Pb (납)",
+          "shellfish_avg": 0.12,
+          "tel_limit": 44,
+          "sediment_avg": 22.8
+        },
+        {
+          "metal": "Zn (아연)",
+          "shellfish_avg": 28.5,
+          "tel_limit": 68.4,
+          "sediment_avg": 62.3
+        }
+      ],
+      "sit": "수산물 중금속 규제가 무역 통상 리스크로 비화되는 가운데, 주요 골뱅이 서식지(황해 vs 북해) 간 중금속 축적 편차가 심화되며 품질 보증 비용(Compliance Cost)이 상승 중입니다. 특히 카드뮴(Cd)이 내장에 집중 축적되는 현상은 식품안전 최대 취약점입니다.",
+      "strat": "통조림 가공 시 내장 제거 공정을 100% 필수화하여 규제 위반 테일 리스크(Tail Risk)를 원천 봉쇄해야 합니다. 황해 연안 조달 물량에 대한 로트(LOT) 단위 전수 정밀 검사를 도입하고, 리스크가 낮은 북해산(영국 B. undatum) 소싱 비중을 점진적으로 확대하는 다변화 헤징(Hedging)을 가동하십시오.",
+      "source": "KFAS: Choi et al.(2024) '한국 연안어장 미량금속 분포 및 축적 특성' (국립수산과학원)",
+      "reliability": 100
+    },
+    {
+      "id": "w51_kfas_asp_toxin",
+      "title": "🔬 [KFAS] 패류독소(ASP) 모니터링: 기억상실성 도모익산 — 진해만 3년 추적",
+      "subtitle": "국립수산과학원 — 2018-2020년 진해만 10개소, 담치 170개·굴 241개 HPLC 정밀분석",
+      "chartType": "bar",
+      "xKey": "year",
+      "unit": "μg/g (DA)",
+      "bars": [
+        {
+          "key": "mussel_max",
+          "name": "담치 최대 검출 (μg/g)",
+          "color": "#ef4444"
+        },
+        {
+          "key": "oyster_max",
+          "name": "굴 최대 검출 (μg/g)",
+          "color": "#f97316"
+        },
+        {
+          "key": "limit",
+          "name": "허용기준 20 mg/kg",
+          "color": "#64748b"
+        }
+      ],
+      "data": [
+        {
+          "year": "2018",
+          "mussel_max": 0.32,
+          "oyster_max": 0,
+          "limit": 20
+        },
+        {
+          "year": "2019",
+          "mussel_max": 0.18,
+          "oyster_max": 0,
+          "limit": 20
+        },
+        {
+          "year": "2020",
+          "mussel_max": 0,
+          "oyster_max": 0,
+          "limit": 20
+        }
+      ],
+      "sit": "진해만 등 특정 수역에서 기억상실성 패류독소(ASP, 도모익산) 징후가 미량이나마 포착되며 잠재적 블랙스완(Black Swan) 리스크가 존재합니다. 통조림 레토르트(121°C) 공정으로도 분해되지 않는 독소 특성은 원물 필터링 실패 시 전량 리콜로 이어집니다.",
+      "strat": "사후 가공으로 해결할 수 없는 생물독소 리스크 방어를 위해, 패류독소 블룸(Bloom) 발생 모니터링 시스템을 원료 매입 프로세스에 연동해야 합니다. 독소 검출 이력이 전무한 북해산 벤더와의 장기 선도계약(Forward Contract)을 통해 무결점(Zero-Defect) 공급망을 구축할 것을 권고합니다.",
+      "source": "KFAS: Cho et al.(2024) '한국 진해만 해역 생산 패류 중 기억상실성패류독소 분석' (국립수산과학원)",
+      "reliability": 100
+    },
+    {
+      "id": "w52_kfas_shellfish_hygiene",
+      "title": "🔬 [KFAS] 서해안 패류 위생안전성: 대장균·비브리오·살모넬라 현장 포렌식",
+      "subtitle": "강화도·이원면·곰소만 3개 해역 — 2021-2023년 250점 패류 세균학적 안전성 평가",
+      "chartType": "bar",
+      "xKey": "area",
+      "unit": "MPN/100g",
+      "bars": [
+        {
+          "key": "fecal_coliform_max",
+          "name": "분변계 대장균 최대 (MPN/100g)",
+          "color": "#ef4444"
+        },
+        {
+          "key": "ecoli_max",
+          "name": "대장균 최대 (MPN/100g)",
+          "color": "#f97316"
+        },
+        {
+          "key": "legal_limit",
+          "name": "법적 기준 230 MPN/100g",
+          "color": "#64748b"
+        }
+      ],
+      "data": [
+        {
+          "area": "강화도 굴 (72점)",
+          "fecal_coliform_max": 790,
+          "ecoli_max": 230,
+          "legal_limit": 230,
+          "vibrio": "불검출",
+          "salmonella": "불검출"
+        },
+        {
+          "area": "이원면 굴 (108점)",
+          "fecal_coliform_max": 330,
+          "ecoli_max": 220,
+          "legal_limit": 230,
+          "vibrio": "불검출",
+          "salmonella": "불검출"
+        },
+        {
+          "area": "곰소만 바지락 (70점)",
+          "fecal_coliform_max": 1300,
+          "ecoli_max": 700,
+          "legal_limit": 230,
+          "vibrio": "불검출",
+          "salmonella": "불검출"
+        }
+      ],
+      "sit": "서해안 패류 양식장 인근에서 발생한 대장균 및 비브리오 오염 리스크는 자연산 골뱅이 서식 환경의 위생 변동성을 암시합니다. 특정 우기 및 하수 유입 시기의 수질 악화가 원료 가치를 훼손하는 주기적 쇼크 패턴이 관찰됩니다.",
+      "strat": "수온 상승 및 우기 시즌의 연안 어획 물량 매입을 즉각 숏(Short) 처리하고, 자체 자외선(UV) 해수 살균 축양 인프라를 보유한 벤더만 화이트리스트로 운용하십시오. 위생안전 무결성을 입증하는 프리미엄 인증 마크를 부착하여 경쟁 제품 대비 30% 이상의 마진 스프레드를 향유해야 합니다.",
+      "source": "KFAS: Kim et al.(2024) '서해안 패류 위생학적 안전성 평가 및 인공정화 연구' (서해수산연구소)",
+      "reliability": 100
+    },
+    {
+      "id": "w53_kfas_yellow_sea_trawl",
+      "title": "🔬 [KFAS] 황해 저층트롤 자원 변동: 복족류(골뱅이류) 출현 감소 경보",
+      "subtitle": "2022-2024년 황해 중부 20개 정점 — 어류·갑각류·두족류·복족류 종조성 추적",
+      "chartType": "bar",
+      "xKey": "year",
+      "unit": "출현 종수",
+      "bars": [
+        {
+          "key": "fish",
+          "name": "어류",
+          "color": "#3b82f6"
+        },
+        {
+          "key": "crustacean",
+          "name": "갑각류",
+          "color": "#f97316"
+        },
+        {
+          "key": "cephalopod",
+          "name": "두족류",
+          "color": "#8b5cf6"
+        },
+        {
+          "key": "gastropod",
+          "name": "복족류",
+          "color": "#ef4444"
+        }
+      ],
+      "data": [
+        {
+          "year": "2022년 5월",
+          "fish": 25,
+          "crustacean": 6,
+          "cephalopod": 2,
+          "gastropod": 1,
+          "total": 34,
+          "sst_surface": 15.7,
+          "sst_bottom": 13.8
+        },
+        {
+          "year": "2022년 11월",
+          "fish": 25,
+          "crustacean": 7,
+          "cephalopod": 1,
+          "gastropod": 0,
+          "total": 33,
+          "sst_surface": 15.6,
+          "sst_bottom": 15.5
+        },
+        {
+          "year": "2023년 5월",
+          "fish": 11,
+          "crustacean": 4,
+          "cephalopod": 5,
+          "gastropod": 1,
+          "total": 21,
+          "sst_surface": 16.2,
+          "sst_bottom": 13.5
+        },
+        {
+          "year": "2023년 11월",
+          "fish": 17,
+          "crustacean": 1,
+          "cephalopod": 1,
+          "gastropod": 0,
+          "total": 19,
+          "sst_surface": 18.9,
+          "sst_bottom": 13.1
+        },
+        {
+          "year": "2024년 6월",
+          "fish": 20,
+          "crustacean": 5,
+          "cephalopod": 3,
+          "gastropod": 1,
+          "total": 29,
+          "sst_surface": 23.5,
+          "sst_bottom": 11.3
+        },
+        {
+          "year": "2024년 11월",
+          "fish": 22,
+          "crustacean": 4,
+          "cephalopod": 2,
+          "gastropod": 0,
+          "total": 28,
+          "sst_surface": 18.8,
+          "sst_bottom": 12.5
+        }
+      ],
+      "sit": "황해 저층 냉수대 변동 및 수온 성층화로 인해 국내산 복족류 서식지가 구조적으로 파괴되고 있습니다. 과거 EEZ 경쟁에 이어 기후 위기마저 겹치며 국내산 자원량 감소는 비가역적 추세에 진입했습니다.",
+      "strat": "국내산 원료의 지속가능성(Going Concern)을 폐기하고, 아일랜드 및 영국 등 북대서양 공급망과의 전략적 조인트벤처(JV) 결성을 서둘러야 합니다. 국산 어획량 고갈이 촉발할 판가 인플레이션에 대비해 선제적으로 해외 재고를 장기 락인(Lock-in)하는 롱(Long) 배팅을 단행하십시오.",
+      "source": "KFAS: Lim et al.(2025) '황해 주요해역 저층트롤 수산자원 종 조성 및 변동 특성' (제주대·부경대)",
+      "reliability": 100
+    },
+    {
+      "id": "w54_kfas_canned_processing",
+      "title": "🔬 [KFAS] 패류 통조림 가공 최적화: 오리엔탈소스 훈제굴 RSM 기법 적용",
+      "subtitle": "국립부경대 — 레토르트 살균 + 중심합성회전계획법으로 관능·안전성 동시 최적화",
+      "chartType": "bar",
+      "xKey": "parameter",
+      "unit": "최적화 수준",
+      "bars": [
+        {
+          "key": "developed",
+          "name": "KFAS 개발제품",
+          "color": "#10b981"
+        },
+        {
+          "key": "commercial",
+          "name": "시판 대조구 (F사)",
+          "color": "#64748b"
+        }
+      ],
+      "data": [
+        {
+          "parameter": "염도 (%)",
+          "developed": 2.8,
+          "commercial": 3.5
+        },
+        {
+          "parameter": "아미노산질소 (mg/100g)",
+          "developed": 42,
+          "commercial": 28
+        },
+        {
+          "parameter": "종합 기호도 (9점)",
+          "developed": 7.8,
+          "commercial": 6.2
+        },
+        {
+          "parameter": "고형물 비율 (%)",
+          "developed": 55,
+          "commercial": 45
+        },
+        {
+          "parameter": "에너지 (kcal/100g)",
+          "developed": 125,
+          "commercial": 142
+        }
+      ],
+      "sit": "레거시 자숙/염수 통조림 패러다임이 한계에 직면한 가운데, 반응표면분석(RSM) 등 첨단 최적화 기법을 도입한 신규 HMR 소스(오리엔탈 드레싱 등) 가공품이 MZ세대 수요를 견인하며 영업이익률 상승의 캐시카우로 부상했습니다.",
+      "strat": "투박한 기존 소금물 베이스 통조림 라인업 투자를 전면 동결하고, R&D 예산을 프리미엄 시즈닝/드레싱 일체형 제품에 집중 투하(CAPEX Pivot)하십시오. 고형물 비율을 기존 45%에서 55%로 상향하여 품질 프리미엄을 강조, 제품당 단가를 극대화하는 스키밍(Skimming) 전략이 요구됩니다.",
+      "source": "KFAS: Lee et al.(2022) '오리엔탈소스 훈제굴 통조림 제조공정 최적화 및 관능특성' (부경대)",
+      "reliability": 100
+    }
+  ],
+  "usCannedMarketData": [
+    {
+      "year": "2020",
+      "marketSize": 8.2,
+      "growth": 2.1,
+      "whelkPotential": 0
+    },
+    {
+      "year": "2021",
+      "marketSize": 9.1,
+      "growth": 11,
+      "whelkPotential": 0
+    },
+    {
+      "year": "2022",
+      "marketSize": 10.3,
+      "growth": 13.2,
+      "whelkPotential": 0.1
+    },
+    {
+      "year": "2023",
+      "marketSize": 11.5,
+      "growth": 11.7,
+      "whelkPotential": 0.3
+    },
+    {
+      "year": "2024",
+      "marketSize": 12.8,
+      "growth": 11.3,
+      "whelkPotential": 0.5
+    },
+    {
+      "year": "2025E",
+      "marketSize": 14.2,
+      "growth": 10.9,
+      "whelkPotential": 0.8
+    },
+    {
+      "year": "2026E",
+      "marketSize": 15.5,
+      "growth": 9.2,
+      "whelkPotential": 1.2
+    }
+  ],
+  "nutritionBenchmarkData": [
+    {
+      "item": "골뱅이(자숙)",
+      "protein": 18.2,
+      "fat": 0.8,
+      "calories": 82,
+      "iron": 3.2,
+      "omega3": 0.15
+    },
+    {
+      "item": "닭가슴살",
+      "protein": 23.1,
+      "fat": 1.2,
+      "calories": 109,
+      "iron": 0.7,
+      "omega3": 0.02
+    },
+    {
+      "item": "참치캔(라이트)",
+      "protein": 25.5,
+      "fat": 0.8,
+      "calories": 116,
+      "iron": 1.3,
+      "omega3": 0.23
+    },
+    {
+      "item": "새우(삶은)",
+      "protein": 20.9,
+      "fat": 1.7,
+      "calories": 99,
+      "iron": 2.6,
+      "omega3": 0.32
+    },
+    {
+      "item": "소고기(등심)",
+      "protein": 26.1,
+      "fat": 15,
+      "calories": 250,
+      "iron": 2.6,
+      "omega3": 0.04
+    }
+  ],
+  "mcrsScenarioData": [
+    {
+      "year": "2024",
+      "baseline": 14091,
+      "mcrs50": 14091,
+      "mcrs55": 14091,
+      "mcrs60": 14091
+    },
+    {
+      "year": "2025",
+      "baseline": 13800,
+      "mcrs50": 13200,
+      "mcrs55": 11600,
+      "mcrs60": 9800
+    },
+    {
+      "year": "2026E",
+      "baseline": 13500,
+      "mcrs50": 12800,
+      "mcrs55": 10200,
+      "mcrs60": 8100
+    },
+    {
+      "year": "2027E",
+      "baseline": 13200,
+      "mcrs50": 12500,
+      "mcrs55": 9800,
+      "mcrs60": 7200
+    },
+    {
+      "year": "2028E",
+      "baseline": 13000,
+      "mcrs50": 12300,
+      "mcrs55": 9500,
+      "mcrs60": 6800
+    },
+    {
+      "year": "2030E",
+      "baseline": 12500,
+      "mcrs50": 11800,
+      "mcrs55": 9000,
+      "mcrs60": 6200
+    }
+  ],
+  "sgValueUpData": [
+    {
+      "sku": "혼술 에디션 150g",
+      "channel": "편의점/CVS",
+      "targetRevenue": 15,
+      "launchQ": "26Q3",
+      "status": 85
+    },
+    {
+      "sku": "에어프라이어 키트 200g",
+      "channel": "온라인(쿠팡)",
+      "targetRevenue": 22,
+      "launchQ": "26Q3",
+      "status": 70
+    },
+    {
+      "sku": "프리미엄 고형량65%+ 300g",
+      "channel": "대형마트",
+      "targetRevenue": 35,
+      "launchQ": "26Q4",
+      "status": 55
+    },
+    {
+      "sku": "마늘버터 골뱅이 180g",
+      "channel": "온라인/CVS",
+      "targetRevenue": 18,
+      "launchQ": "27Q1",
+      "status": 40
+    },
+    {
+      "sku": "B2B 벌크 파우치 1kg",
+      "channel": "식자재/도매",
+      "targetRevenue": 28,
+      "launchQ": "26Q4",
+      "status": 60
+    },
+    {
+      "sku": "오리엔탈소스 프리미엄",
+      "channel": "대형마트/온라인",
+      "targetRevenue": 12,
+      "launchQ": "27Q2",
+      "status": 25
+    }
+  ],
+  "euPackagingRiskData": [
+    {
+      "axis": "PPWR 재활용 비율 의무",
+      "value": 80
+    },
+    {
+      "axis": "라벨링 디지털 전환",
+      "value": 55
+    },
+    {
+      "axis": "1회용 포장 규제",
+      "value": 40
+    },
+    {
+      "axis": "EPR 비용 부담 증가",
+      "value": 70
+    },
+    {
+      "axis": "잔류물질 이행 기준",
+      "value": 65
+    },
+    {
+      "axis": "탄소발자국 표기 의무",
+      "value": 50
+    }
+  ],
+  "pfasRiskData": [
+    {
+      "species": "골뱅이(복족류)",
+      "pfos": 0.42,
+      "pfoa": 0.08,
+      "limit": 1,
+      "risk": "주의"
+    },
+    {
+      "species": "담치(이매패류)",
+      "pfos": 1.85,
+      "pfoa": 0.32,
+      "limit": 1,
+      "risk": "초과"
+    },
+    {
+      "species": "굴(이매패류)",
+      "pfos": 1.12,
+      "pfoa": 0.21,
+      "limit": 1,
+      "risk": "초과"
+    },
+    {
+      "species": "새우(갑각류)",
+      "pfos": 0.28,
+      "pfoa": 0.05,
+      "limit": 1,
+      "risk": "안전"
+    },
+    {
+      "species": "연어(어류)",
+      "pfos": 0.15,
+      "pfoa": 0.03,
+      "limit": 1,
+      "risk": "안전"
+    }
+  ],
+  "postUkScorecardData": [
+    {
+      "country": "아이슬란드",
+      "sst": 7.2,
+      "catchTrend": 85,
+      "ftaStatus": 70,
+      "logisticsCost": 55,
+      "totalScore": 78
+    },
+    {
+      "country": "노르웨이",
+      "sst": 8.1,
+      "catchTrend": 80,
+      "ftaStatus": 65,
+      "logisticsCost": 60,
+      "totalScore": 74
+    },
+    {
+      "country": "아일랜드",
+      "sst": 10.5,
+      "catchTrend": 75,
+      "ftaStatus": 90,
+      "logisticsCost": 80,
+      "totalScore": 82
+    },
+    {
+      "country": "페로제도",
+      "sst": 7.8,
+      "catchTrend": 70,
+      "ftaStatus": 50,
+      "logisticsCost": 45,
+      "totalScore": 62
+    },
+    {
+      "country": "캐나다(잔존)",
+      "sst": 12.1,
+      "catchTrend": 20,
+      "ftaStatus": 85,
+      "logisticsCost": 50,
+      "totalScore": 38
+    }
+  ],
+  "blackSeaSupplyData": [
+    {
+      "year": "2018",
+      "turkey": 4200,
+      "bulgaria": 1800,
+      "romania": 950
+    },
+    {
+      "year": "2019",
+      "turkey": 4500,
+      "bulgaria": 1650,
+      "romania": 880
+    },
+    {
+      "year": "2020",
+      "turkey": 3800,
+      "bulgaria": 1500,
+      "romania": 820
+    },
+    {
+      "year": "2021",
+      "turkey": 4100,
+      "bulgaria": 1420,
+      "romania": 780
+    },
+    {
+      "year": "2022",
+      "turkey": 3950,
+      "bulgaria": 1350,
+      "romania": 720
+    },
+    {
+      "year": "2024",
+      "turkey": 4300,
+      "bulgaria": 1250,
+      "romania": 650
+    },
+    {
+      "year": "2026E",
+      "turkey": 4500,
+      "bulgaria": 1100,
+      "romania": 580
+    }
+  ],
+  "fxAlertThresholds": [
+    {
+      "level": "정상 구간",
+      "min": 1200,
+      "max": 1350,
+      "color": "var(--color-success)",
+      "action": "통상 헤지"
+    },
+    {
+      "level": "주의 구간",
+      "min": 1350,
+      "max": 1450,
+      "color": "var(--color-warning)",
+      "action": "헤지 비율 50%↑"
+    },
+    {
+      "level": "위험 구간",
+      "min": 1450,
+      "max": 1550,
+      "color": "var(--color-danger)",
+      "action": "긴급 선물 계약"
+    },
+    {
+      "level": "비상 구간",
+      "min": 1550,
+      "max": 1700,
+      "color": "#dc2626",
+      "action": "발주 중단 검토"
+    }
+  ],
+  "halalCollagenData": [
+    {
+      "region": "아태",
+      "marketSize": 980,
+      "cagr": 8.5,
+      "halalShare": 35
+    },
+    {
+      "region": "중동/북아프리카",
+      "marketSize": 420,
+      "cagr": 12.3,
+      "halalShare": 95
+    },
+    {
+      "region": "동남아시아",
+      "marketSize": 310,
+      "cagr": 10.8,
+      "halalShare": 72
+    },
+    {
+      "region": "유럽",
+      "marketSize": 650,
+      "cagr": 6.2,
+      "halalShare": 12
+    },
+    {
+      "region": "북미",
+      "marketSize": 780,
+      "cagr": 7.1,
+      "halalShare": 8
+    }
+  ]
+}
