@@ -519,9 +519,10 @@ export default function TunaRanching() {
         </div>
       </div>
 
-      {/* 🆕 ISSF 글로벌 자원 건전성 스코어보드 + ISC 태평양 BFT 회복 */}
-      {issfScorecard && iscPacificBft && (
-      <div className={insightsStyles.insightsGrid} style={{ marginBottom: '1.5rem' }}>
+      {/* 🆕 3대 주요 지표 (스코어보드, 자원 회복, 패러다임 역전) */}
+      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+        {issfScorecard && iscPacificBft && (
+          <>
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
@@ -628,11 +629,8 @@ export default function TunaRanching() {
             />
           </div>
         </div>
-      </div>
-      )}
-
-
-      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+          </>
+        )}
 
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
