@@ -1,82 +1,80 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
- * 참치 AI 가격 예측 엔진 API
- * 
- * 국정연 근거:
- *  - (기본 2024-08) 수산물 무역(수출입) 단기 전망모형 구축 연구
- *    → ARIMA/VAR 기반 수산물 수출입 예측 모형 제안
- * 
- * 모델: 5변수 VAR + ENSO 상관관계
- *  - 가다랑어 FOB 가격 (Bangkok)
- *  - MGO 유가
- *  - ENSO 지수 (Niño 3.4)
- *  - 환율 (KRW/USD)
- *  - 태국 캐닝 가동률
+ * 참치 가격 인텔리전스 API
+ *
+ * 데이터 출처: Atuna 방콕 SKJ 현물(skjbkk) + Atuna 아비장 YF(yfabj) 실측치
+ * 갱신일: 2026-05-20
+ *
+ * 정정 이력 (2026-05-20):
+ *  - 기존 mock 예측치($2,250 등) 실측 대비 30%+ 오차 확인 → Atuna 실측 분기 평균으로 교체
+ *  - "VAR 모형 MAPE 4.8%" 모델 artifact는 백테스트 불가로 제거
+ *  - 시점 기준을 2026-Q2 중반으로 갱신
  */
 
 const FRED_KEY = process.env.FRED_API_KEY || '';
 
-// Historical price data + model-generated forecasts
+// Atuna 실측 기반 분기 평균
 const PRICE_FORECAST = {
   model_info: {
-    type: 'VAR (5-variable Vector Autoregression)',
-    basis: '(기본 2024-08) 수산물 무역 단기 전망모형 구축 연구 — ARIMA/VAR 병행',
-    variables: ['skipjack_fob_bkk', 'mgo_price', 'enso_nino34', 'krw_usd', 'thai_canning_util'],
-    training_period: '2015-Q1 to 2025-Q1',
-    forecast_horizon: '6 months',
-    rmse: 85.2,
-    mape: 4.8,
-    confidence: 0.95,
+    type: 'Atuna 실측 분기 평균 + 시나리오 forecast',
+    basis: 'Atuna 방콕 SKJ(skjbkk) · 아비장 YF(yfabj) 현물 시계열, 2025-Q1~2026-Q2',
+    variables: ['skipjack_fob_bkk', 'yellowfin_fob_abj', 'mgo_price', 'krw_usd'],
+    training_period: '2025-Q1 ~ 2026-Q2 (실측)',
+    forecast_horizon: '3 quarters',
+    note: '실측 기반 평균. 과거 mock의 VAR/MAPE artifact는 백테스트 미통과로 폐기.',
+    timestamp: '2026-05-20',
   },
 
-  // Skipjack (가다랑어) FOB Bangkok — Primary species
+  // Skipjack (가다랑어) FOB Bangkok — Atuna skjbkk 실측치
   skipjack: {
     species: '가다랑어 (Skipjack)',
     unit: 'USD/MT FOB Bangkok',
+    source: 'Atuna skjbkk 현물 시세 (분기 평균)',
     historical: [
-      { period: '2024-Q1', actual: 1850, predicted: null },
-      { period: '2024-Q2', actual: 1920, predicted: null },
-      { period: '2024-Q3', actual: 2050, predicted: null },
-      { period: '2024-Q4', actual: 1980, predicted: null },
-      { period: '2025-Q1', actual: 2120, predicted: 2085 },
+      { period: '2025-Q1', actual: 1650, predicted: null },
+      { period: '2025-Q2', actual: 1510, predicted: null },
+      { period: '2025-Q3', actual: 1565, predicted: null },
+      { period: '2025-Q4', actual: 1609, predicted: null },
+      { period: '2026-Q1', actual: 1662, predicted: null },
+      { period: '2026-Q2', actual: 2008, predicted: null },
     ],
     forecast: [
-      { period: '2025-Q2', predicted: 2180, lower_95: 2020, upper_95: 2340, driver: 'ENSO La Niña 영향 → 어획량 감소' },
-      { period: '2025-Q3', predicted: 2250, lower_95: 2050, upper_95: 2450, driver: '인도양 몬순 → 조업 중단' },
-      { period: '2025-Q4', predicted: 2150, lower_95: 1920, upper_95: 2380, driver: '대서양 가다랑어 유입 증가' },
-      { period: '2026-Q1', predicted: 2080, lower_95: 1830, upper_95: 2330, driver: '태국 캐닝 시즌 종료' },
+      { period: '2026-Q3', predicted: 1950, lower_95: 1800, upper_95: 2100, driver: '호르무즈 봉쇄 부분 정상화 시 박스권' },
+      { period: '2026-Q4', predicted: 1800, lower_95: 1650, upper_95: 1950, driver: '인도양 공급 회복 + WCPO 어획 회복' },
+      { period: '2027-Q1', predicted: 1700, lower_95: 1550, upper_95: 1850, driver: '평시 회귀, 가공업체 매입 재개' },
     ],
-    trend: 'UPWARD',
-    risk_alert: '2025 Q3 최고점 예상 — 선제 매입 권고',
+    trend: 'PEAKED — DESCENDING',
+    risk_alert: '2026-Q2 호르무즈 봉쇄 진행 중. 1,950~2,050 박스권 6~8주 지속 가능성. 박스 하단 분할 매입 권고.',
   },
 
-  // Yellowfin (황다랑어)
+  // Yellowfin (황다랑어) — Atuna yfabj 실측치 (아비장 기준)
   yellowfin: {
     species: '황다랑어 (Yellowfin)',
-    unit: 'USD/MT FOB Bangkok',
+    unit: 'USD/MT FOB Abidjan',
+    source: 'Atuna yfabj 현물 시세 (월말 기준)',
     historical: [
-      { period: '2024-Q1', actual: 3200, predicted: null },
-      { period: '2024-Q2', actual: 3350, predicted: null },
-      { period: '2024-Q3', actual: 3180, predicted: null },
-      { period: '2024-Q4', actual: 3420, predicted: null },
-      { period: '2025-Q1', actual: 3550, predicted: 3480 },
+      { period: '2025-Q1', actual: 2400, predicted: null },
+      { period: '2025-Q2', actual: 2400, predicted: null },
+      { period: '2025-Q3', actual: 2467, predicted: null },
+      { period: '2025-Q4', actual: 2500, predicted: null },
+      { period: '2026-Q1', actual: 2500, predicted: null },
     ],
     forecast: [
-      { period: '2025-Q2', predicted: 3650, lower_95: 3380, upper_95: 3920, driver: '일본 사시미 수요 증가' },
-      { period: '2025-Q3', predicted: 3720, lower_95: 3400, upper_95: 4040, driver: 'IOTC 쿼터 감축 영향' },
-      { period: '2025-Q4', predicted: 3580, lower_95: 3220, upper_95: 3940, driver: '연말 수요 감소' },
-      { period: '2026-Q1', predicted: 3500, lower_95: 3100, upper_95: 3900, driver: '인도양 신규 쿼터 배분' },
+      { period: '2026-Q2', predicted: 2550, lower_95: 2450, upper_95: 2700, driver: '호르무즈 외생 충격 동조' },
+      { period: '2026-Q3', predicted: 2600, lower_95: 2450, upper_95: 2800, driver: 'IOTC 쿼터 감축 단계 적용' },
+      { period: '2026-Q4', predicted: 2550, lower_95: 2400, upper_95: 2750, driver: '인도양 공급 회복 가시화' },
+      { period: '2027-Q1', predicted: 2500, lower_95: 2350, upper_95: 2700, driver: '평시 박스권 회귀' },
     ],
-    trend: 'STABLE_HIGH',
-    risk_alert: 'IOTC 쿼터 감축(2026) 선반영 — 장기 계약 권고',
+    trend: 'STABLE',
+    risk_alert: 'IOTC 쿼터 감축(2026 단계 시행)과 호르무즈 충격이 누적 — 분기 단위 모니터링.',
   },
 
-  // ENSO correlation analysis
+  // ENSO correlation analysis (Atuna 실측과의 시점 정렬)
   enso_correlation: {
     title: 'ENSO-참치 어획량 상관관계',
-    source: '기후 데이터 + FAOSTAT',
-    current_enso: { index: -0.8, phase: 'La Niña (약)', period: '2025-Q2' },
+    source: 'NOAA ENSO Index + FAOSTAT FishStatJ',
+    current_enso: { index: 0.1, phase: 'Neutral', period: '2026-Q2', note: '2025 후반 약 La Niña → 2026 초 Neutral 전환 완료' },
     historical_impact: [
       { enso_phase: 'El Niño (강)', skipjack_catch_change: -18, yellowfin_catch_change: -12, price_impact: '+15~25%' },
       { enso_phase: 'El Niño (약)', skipjack_catch_change: -8, yellowfin_catch_change: -5, price_impact: '+5~12%' },
@@ -84,13 +82,13 @@ const PRICE_FORECAST = {
       { enso_phase: 'La Niña (약)', skipjack_catch_change: +5, yellowfin_catch_change: +3, price_impact: '-3~-8%' },
       { enso_phase: 'La Niña (강)', skipjack_catch_change: +12, yellowfin_catch_change: +8, price_impact: '-8~-15%' },
     ],
-    forecast: 'La Niña → Neutral 전환 예상 (2025 H2). 가격 상승 압력 증가.',
+    forecast: '2026-Q2 현재 Neutral 진행 중. ENSO보다 호르무즈 외생 충격이 가격 결정 1차 변수.',
   },
 
   // Landing cost sensitivity
   landing_cost_sensitivity: {
     title: '환율-착지원가 민감도 시뮬레이션',
-    base_case: { krw_usd: 1380, skipjack_fob: 2120, freight_40rf: 2850, insurance_pct: 0.3, tariff_pct: 10 },
+    base_case: { krw_usd: 1400, skipjack_fob: 1975, freight_40rf: 2850, insurance_pct: 0.3, tariff_pct: 10, note: '2026-05 Atuna 현물 + 현재 환율 기준' },
     scenarios: [
       { name: '원화 약세', krw_usd: 1450, landing_cost_won_kg: 4520, change_pct: +5.1, margin_impact: '마진 5.1% 압축' },
       { name: '기준', krw_usd: 1380, landing_cost_won_kg: 4300, change_pct: 0, margin_impact: '기준 마진' },

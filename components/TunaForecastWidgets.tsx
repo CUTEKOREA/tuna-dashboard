@@ -100,7 +100,7 @@ export function EnsoCorrelationWidget() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Thermometer size={18} style={{ color: '#06b6d4' }} />
-          [기후 분석] ENSO-어획량 상관관계 분석기
+          ENSO-어획량 상관관계 분석기
           <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 어획량 변동 %)</span>
         </h3>
       </div>
@@ -127,9 +127,9 @@ export function EnsoCorrelationWidget() {
         </BarChart>
       </SafeResponsiveContainer>
       <TakeawayBox
-        situation="현재 La Niña(약) 위상이 2025 하반기 Neutral로 전환될 전망입니다. 과거 10년 데이터 분석 결과, 이 전환기에 서태평양 가다랑어 어획량이 -5~-8% 감소하고, 산지가격은 +12% 상승하는 패턴이 반복되었습니다. 황다랑어는 상대적으로 영향이 적으나(-2~3%), 인도양 해역에서는 반대 패턴을 보여 지역별 차별화 전략이 필요합니다."
-        actionPlan="[기후 헷지 포트폴리오] ① WCPO 의존도(Exposure)를 낮추기 위해 대서양(ICCAT) 쿼터 추가 확보, ② 가격 상승기 대비 Q2 선제 재고 확보(3개월분), ③ 중장기적으로 지중해 참다랑어 축양 투자를 통한 기후 독립적 공급원 구축을 병행 추진해야 합니다."
-        source="NOAA ENSO Index · FAOSTAT FishStatJ · WCPFC/IOTC 조업통계 상관분석"
+        situation="2025 후반 약 La Niña에서 2026 초 Neutral로 ENSO가 이미 전환 완료된 상태(NOAA 기준). 과거 10년 데이터에서 La Niña→Neutral 전환기에 서태평양 가다랑어 어획량이 -5~-8% 감소하고 산지가격이 +10~12% 상승하는 패턴이 반복되었으나, 2026-Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 해협 봉쇄에 따른 외생 MGO 충격."
+        actionPlan="WCPO 단일 의존을 낮추는 방향은 유효하나, 단기(2~4주) 매입 의사결정의 1차 시그널은 호르무즈 정상화 여부. ICCAT(대서양) 쿼터 추가 확보 + 인도양(IOTC) 대체 공급선 비중 확대를 병행. 지중해 참다랑어 축양 투자는 5~7년 중장기 분리 트랙으로 운영."
+        source="NOAA ENSO Index · FAOSTAT FishStatJ · WCPFC/IOTC 조업통계 · Atuna 2026-Q2 시세"
       />
       </div>
     </div>
