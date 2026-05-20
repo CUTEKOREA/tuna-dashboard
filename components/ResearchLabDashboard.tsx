@@ -17,47 +17,47 @@ const B2B_PILLAR_META: Record<string, {name:string, color:string, icon:any}> = {
 const B2B_MODELS = [
   {
     id: 'petfood',
-    title: '프리미엄 펫푸드 원료',
-    source: '혈합육, 잔여육',
-    profitability: 'High Margin',
+    title: '프리미엄 펫푸드 소재 (High-Yield Pet Nutrition)',
+    source: '적색육(Dark Muscle), 가공 잔여물',
+    profitability: 'High Margin (GPM 25%+)',
     difficulty: 'Low Tech (하)',
-    target: '글로벌 펫푸드 제조사',
+    target: '글로벌 Tier-1 펫케어 브랜드',
     color: '#f43f5e',
     icon: Gem,
-    desc: '통조림/횟감용으로 불가능한 붉은 살코기를 냉동 블록화하여 대량 납품. 최소한의 설비투자로 즉각적 현금 창출이 가능한 검증된 모델 (예: 글로벌 T사 펫케어 부문 매출총이익률 28%).'
+    desc: '식용 불가 판정을 받은 적색육(Dark Muscle)을 초저온 냉동 블록화하여 글로벌 사료 벤더에 대량 납품. CAPEX 투입을 최소화하면서 즉각적인 Free Cash Flow(FCF)를 창출하는 구조적 캐시카우. (글로벌 피어 T사 펫케어 부문 Gross Margin 28% 도달).'
   },
   {
     id: 'collagen',
-    title: '마린 콜라겐 펩타이드',
-    source: '참치 껍질',
-    profitability: 'Very High',
+    title: '마린 콜라겐 펩타이드 (Marine Collagen Peptides)',
+    source: '어피 (Tuna Skin)',
+    profitability: 'Premium Margin (GPM 40%+)',
     difficulty: 'Mid-High Tech (중상)',
-    target: '화장품, 이너뷰티, 건기식 기업',
+    target: '글로벌 더마코스메틱 & 이너뷰티 기업',
     color: '#f472b6',
     icon: Sparkles,
-    desc: '수거된 참치 껍질을 바이오 기업과 제휴(JV)하여 효소 가수분해. 피부 보습 및 탄력 개선용 프리미엄 B2B 원료로 글로벌 뷰티 시장에 독점 공급.'
+    desc: '폐기되는 어피(Skin)를 바이오테크 JV를 통해 효소 가수분해(Enzymatic Hydrolysis) 처리. 아미노산 단위의 초저분자 펩타이드로 정제하여 글로벌 하이엔드 뷰티/건기식 벤더 대상 독점적(Exclusive) B2B 원료 파이프라인 구축.'
   },
   {
     id: 'omega3',
-    title: '고순도 오메가-3 (DHA/EPA)',
-    source: '머리, 안구 주변, 내장',
-    profitability: 'Premium',
+    title: '고순도 EPA/DHA 추출물 (rTG Omega-3 API)',
+    source: '두부, 안와지방, 부산물 내장',
+    profitability: 'Value-Added Premium',
     difficulty: 'Mid Tech (중)',
-    target: '제약사(API), 분유 제조사',
+    target: '글로벌 제약사(API) 및 메디컬 뉴트리션',
     color: '#fbbf24',
     icon: Fish,
-    desc: '1차 조어유(Crude Oil) 압착 추출 후, 정제 전문업체와의 파트너십을 통해 고순도 탈취/정제 공정을 거쳐 프리미엄 원료의약품 및 건기식 원료로 납품.'
+    desc: '1차 추출 조어유(Crude Fish Oil)를 글로벌 정제(Refining) 파트너십을 통해 초임계 추출 및 초고순도 탈취. 마진 스프레드가 극대화되는 원료의약품(API) 및 영유아 프리미엄 조제분유 시장으로 직결되는 락인(Lock-in) 밸류체인.'
   },
   {
     id: 'fishmeal',
-    title: '양식용 어분 & 액상 비료',
-    source: '뼈, 내장, 지느러미',
-    profitability: 'Stable Cash Cow',
+    title: '고단백 어분 및 바이오 비료 (Aqua-feed & Bio-fertilizer)',
+    source: '경골(Bone), 지느러미, 잔여 내장',
+    profitability: 'Steady Cash Generator',
     difficulty: 'Lowest Tech (최하)',
-    target: '글로벌 연어/새우 사료기업',
+    target: '글로벌 아쿠아컬처(연어/새우) 사료 벤더',
     color: '#34d399',
     icon: Factory,
-    desc: '폐기 처리 비용을 제로화하고 대량의 뼈와 내장을 건조/발효하여 사료용 어분(Fishmeal)으로 전환. 천연자원 고갈 속에서 안정적이고 확실한 캐시카우.'
+    desc: '매립/소각에 따른 환경 비용(OPEX)을 제로(0)화하고, 뼈와 내장을 렌더링(Rendering)하여 양식용 고단백 어분으로 전환. 어족 자원 고갈 메가트렌드 속에서 안정적 단가 방어가 가능한 리스크 헷징(Risk Hedging) 자산.'
   }
 ];
 
@@ -134,7 +134,7 @@ export default function ResearchLabDashboard() {
             <div>
               <h1 style={{margin:0,fontSize:'1.5rem',fontWeight:700,letterSpacing:'-0.5px'}}>B2B 신사업 인텔리전스</h1>
               <p style={{margin:0,fontSize:'0.88rem',color:'var(--text-secondary)', display:'flex', alignItems:'center', gap:6}}>
-                원양어업(참치 조업사) 특화 부산물 고부가가치 비즈니스 파이프라인
+                원양 조업사 특화 부산물 기반 고부가가치 비즈니스 파이프라인 (Value-Add Pipeline)
                 {liveDataStatus === 'success' && (
                   <span style={{background:'#22c55e20', color:'#22c55e', padding:'2px 6px', borderRadius:4, fontSize:'0.7rem', fontWeight:600, display:'flex', alignItems:'center', gap:4}}>
                     <span style={{width:6,height:6,background:'#22c55e',borderRadius:'50%',animation:'pulse 2s infinite'}}></span>
@@ -146,7 +146,7 @@ export default function ResearchLabDashboard() {
           </div>
           <div style={{fontSize:'0.88rem',padding:'8px 16px',background:'#181818',borderRadius:500,color:'var(--text-secondary)',fontWeight:600,display:'flex',alignItems:'center',gap:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <Microscope size={16} color="#8b5cf6" />
-            <span>학술/특허 레퍼런스 {papers.length}건 검증완료</span>
+            <span>학술/특허 인텔리전스 {papers.length}건 교차 검증 완료 (Validated)</span>
           </div>
         </div>
       </header>
@@ -154,7 +154,7 @@ export default function ResearchLabDashboard() {
       {/* Hero: Top 4 B2B Models */}
       <div style={{marginBottom:'3rem'}}>
         <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'1.2rem',display:'flex',alignItems:'center',gap:8}}>
-          <Target size={22} color="#8b5cf6" /> 조업사 최적화 Top 4 비즈니스 파이프라인
+          <Target size={22} color="#8b5cf6" /> 조업사 마진 극대화 Top 4 비즈니스 파이프라인 (Margin-Maximized Top 4 Pipelines)
         </h2>
         <div style={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)',gap:'1.2rem'}}>
           {B2B_MODELS.map((model, idx) => {
@@ -208,7 +208,7 @@ export default function ResearchLabDashboard() {
 
       {/* R&D Evidences */}
       <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'1.2rem',display:'flex',alignItems:'center',gap:8}}>
-        <Atom size={22} color="#8b5cf6" /> 사업화 검증을 위한 R&D / 특허 레퍼런스
+        <Atom size={22} color="#8b5cf6" /> 사업화 타당성(Feasibility) 검증용 R&D 및 특허 딥다이브
       </h2>
       
       {/* Pillar Tabs */}
@@ -271,7 +271,7 @@ export default function ResearchLabDashboard() {
                   )}
                   <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem',marginBottom:'0.8rem'}}>
                     <div style={{background:'var(--surface-2)',borderRadius:6,padding:'0.8rem'}}>
-                      <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>사업성/기술성숙도 (TRL)</div>
+                      <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>상용화 기술성숙도 (TRL)</div>
                       <div style={{display:'flex',alignItems:'center',gap:8}}>
                         <div style={{flex:1,height:6,background:'#272727',borderRadius:3,overflow:'hidden'}}>
                           <div style={{width:`${(p.trl/9)*100}%`,height:'100%',background:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8',borderRadius:3,transition:'width 0.5s'}} />
@@ -280,7 +280,7 @@ export default function ResearchLabDashboard() {
                       </div>
                     </div>
                     <div style={{background:'var(--surface-2)',borderRadius:6,padding:'0.8rem'}}>
-                      <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>상용화 매력도</div>
+                      <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>TAM 확장 매력도 (Commercial Viability)</div>
                       <div style={{display:'flex',alignItems:'center',gap:4}}>
                         {[1,2,3,4,5].map(s => (
                           <Star key={s} size={16} fill={s<=p.commercialScore?'#fbbf24':'transparent'} color={s<=p.commercialScore?'#fbbf24':'#4a4a4a'} />
@@ -306,7 +306,7 @@ export default function ResearchLabDashboard() {
         {/* TRL Distribution */}
         <div style={{background:'#181818',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
           <h3 style={{margin:'0 0 1rem',fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
-            <Target size={20} color="#8b5cf6" /> 기술성숙도(TRL) 분포
+            <Target size={20} color="#8b5cf6" /> 기술성숙도(TRL) 포트폴리오 분포
           </h3>
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -326,7 +326,7 @@ export default function ResearchLabDashboard() {
         {/* Species Distribution */}
         <div style={{background:'#181818',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
           <h3 style={{margin:'0 0 1rem',fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
-            <Fish size={20} color="#8b5cf6" /> 타겟 어종별 상용화 비중
+            <Fish size={20} color="#8b5cf6" /> 타겟 어종별 상용화 집중도 (Species Concentration)
           </h3>
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">
