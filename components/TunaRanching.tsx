@@ -10,7 +10,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TunaRestaurantMap from './TunaRestaurantMap';
-import ColdStorageMap from './ColdStorageMap';
+
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -143,56 +143,6 @@ export default function TunaRanching() {
   return (
     <div className={styles.container}>
 
-      {/* ═══ KPIs ═══ */}
-      {kpis && Object.keys(kpis).length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
-          {Object.keys(kpis).map((key, idx) => {
-            const kpi = kpis[key];
-            const t = KPI_THEMES[idx % KPI_THEMES.length];
-            const I = t.icon;
-            const parsed = parseAnimatedValue(kpi.value);
-            return (
-              <div 
-                key={key} 
-                className="ds-card" style={{background: '#181818', 
-                  border: 'none', 
-                  borderRadius: '8px', 
-                  padding: '1.2rem', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: '6px', 
-                  transition: 'all 0.2s ease', 
-                  cursor: 'default', 
-                  boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', 
-                  position: 'relative', 
-                  overflow: 'hidden'}}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--surface-3)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#181818';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
-                  {kpi.telemetry ? <TelemetryBadge status={kpi.telemetry} syncDate={kpi.syncDate} /> : <I size={14} style={{ color: t.text }} />}
-                </div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
-                  {parsed ? (
-                    <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
-                  ) : kpi.value}
-                </div>
-                <div style={{ fontSize: '0.68rem', color: t.text, fontWeight: 600 }}>
-                  <span style={{ background: `${t.text}20`, padding: '1px 5px', borderRadius: '3px', marginRight: '4px' }}>{kpi.trend}</span>
-                  <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>{kpi.desc}</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
 
       {/* Value Chain Process */}
       <div className={styles.card}>
@@ -1209,10 +1159,7 @@ export default function TunaRanching() {
         <TunaRestaurantMap />
       </div>
 
-      {/* ❄️ 전국 식품냉동냉장업 영업 현황 매핑 */}
-      <div style={{ marginBottom: '24px' }}>
-        <ColdStorageMap />
-      </div>
+
     </div>
   );
 }

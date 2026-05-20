@@ -51,7 +51,7 @@ import TunaImportBlackhole from './TunaImportBlackhole';
 import TunaExportShare from './TunaExportShare';
 import TunaKoreaPosition from './TunaKoreaPosition';
 import TunaKoreaOrigins from './TunaKoreaOrigins';
-import TunaRanchingEducation from './TunaRanchingEducation';
+
 import TunaRanching from './TunaRanching';
 import PetFoodDashboard from './PetFoodDashboard';
 import TunaEsgRiskRadar from './TunaEsgRiskRadar';
@@ -721,7 +721,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
             {/* 5. 프리미엄 원물 밸류에이션 (참다랑어 축양) */}
             <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
-              <TunaRanchingEducation />
+
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(600px, 1fr))', gap: '24px', margin: '24px 0' }}>
                 <TunaCrossroads />
                 <TunaAquaHegemony />
