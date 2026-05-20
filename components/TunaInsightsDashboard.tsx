@@ -597,16 +597,17 @@ export default function TunaInsightsDashboard() {
           </div>
           <div className={styles.kpiPanel}>
             <div className={styles.kpiBox} style={{ borderLeftColor: '#a855f7' }}>
-              <div className={styles.kpiLabel}>태국 수출 충격</div>
-              <div className={styles.kpiValue}>-60%</div>
-              <div className={styles.kpiSub}>2026년 예상 하락</div>
+              <div className={styles.kpiLabel}>동남아 가공 마진 압박</div>
+              <div className={styles.kpiValue}>15~20%p</div>
+              <div className={styles.kpiSub}>관세 부담분(추정)</div>
             </div>
           </div>
         </div>
         <div style={{ padding: '0 20px 20px 20px' }}>
           <TakeawayBox
-            situation="[Geopolitical Tariff Evasion] 미국발 고율 보호무역 관세(최대 20%) 쇼크로 인해 동남아 기반 벤더들의 대미 수출망이 붕괴(-60%)되고 있습니다. 반면, 글로벌 빅 플레이어들은 이미 조지아주 등 북미 현지(FDI)나 USMCA 무관세 혜택 국가(멕시코)로 생산 거점을 공격적으로 이전(On-shoring/Near-shoring) 중입니다."
-            actionPlan="**[Actionable Insight]** 전통 라인업(아시아 가공->수출)에 의존하는 벤더망을 즉시 조정하고, 멕시코/에콰도르 및 미국 로컬 온쇼어 가공 설비를 인수한 업체들의 우회 공급망으로 구매 포트폴리오를 전환해야 해야 합니다. (Conviction Buy)"
+            situation="[관세 인센티브 구조 역전] 미국이 2025-07-31 발효한 상호관세는 태국 19%·베트남 20%·에콰도르 15%로 동남아 가공 거점이 더 불리. 동남아 경유 미국 수출 마진이 압박 받는 가운데, 글로벌 빅 플레이어는 미 조지아주 등 북미 현지 FDI(0% 관세)와 USMCA 멕시코(0%)로 거점을 이전 중입니다. 다만 2026-02 미 대법원·5월 국제무역법원 판결로 관세 일부의 법적 지위는 유동적이라 단기 변동 가능."
+            actionPlan="(a) 동남아 단일 의존 벤더의 마진 압박을 마진 약정으로 부분 흡수하고, (b) 미 현지 FDI 거점을 보유한 가공사(예: Thai Union Georgia, Bumble Bee 등) 경유 우회 공급선을 확보. (c) 관세 판결의 항소심 결과를 6개월 모니터링하여 동남아 거점의 회복 시그널을 포착."
+            source="(추정치 — Atuna May 2026 News 6 sources · USTR Reciprocal Tariff 2025-07-31 · US Court of International Trade 2026-05-08 판결)"
           />
         </div>
       </div>
