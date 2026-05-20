@@ -667,24 +667,37 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+            {/* 1. 기후/환경 예측 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <EnsoCorrelationWidget />
+              <SkipjackForecastWidget />
               <div style={{ gridColumn: 'span 2' }}>
                 <PacificEezStrategicWidget />
               </div>
-              <TunaPrecisionFishing />
-              <KfasLonglineEvolution />
-              <KfasIndianOceanRisk />
+            </div>
+
+            {/* 2. 수역 및 할당량 확보 전략 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <InsightNauruSwitch />
+              <KfasIndianOceanRisk />
               <InsightIOCollapse />
               <MofFishMarketWidget />
+            </div>
+
+            {/* 3. 실전 조업 기술 및 역량 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <TunaPrecisionFishing />
+              <KfasLonglineEvolution />
+            </div>
+
+            {/* 4. 기타 원물 생산 관련 지표 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
-              <EnsoCorrelationWidget />
-              <SkipjackForecastWidget />
             </div>
 
-            {/* --- Absorbed Ranching --- */}
+            {/* 5. 프리미엄 원물 밸류에이션 (참다랑어 축양) */}
             <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
               <TunaRanchingEducation />
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(600px, 1fr))', gap: '24px', margin: '24px 0' }}>
@@ -710,21 +723,36 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <TunaPetCareMargin />
+            {/* 1. 글로벌 소싱 및 OEM 아웃소싱 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <TunaSupplierHub />
-              <InsightTunaExtract />
               <InsightVietnamOEM />
-              <KfasByproductValueChain />
-              <KfasElderlyFunctionalFood />
-              <TunaUpcyclingOpportunity />
-              <TunaUpcyclingMarginMap />
-              {/* --- Absorbed Extract R&D --- */}
-              <TunaBioUpcyclingGap />
-              <TunaPeptideEfficacy />
+            </div>
+
+            {/* 2. 통조림 원가 및 마진 방어 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <TunaPetCareMargin />
               {widgets?.filter((w: any) => ['w04_proc', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w84_invasivorism', 'w57_alt_protein', 'w98_byproduct_rd_pipeline', 'w102_spain_loin_outsourcing'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
+            </div>
+
+            {/* 3. 부산물 고부가가치화 (업사이클링 및 참치액젓 R&D) */}
+            <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h3 style={{ fontSize: '1.05rem', color: '#0ECB81', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Leaf size={18} /> 부산물 업사이클링 & R&D 
+                </h3>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+                <KfasByproductValueChain />
+                <TunaUpcyclingOpportunity />
+                <TunaUpcyclingMarginMap />
+                <TunaBioUpcyclingGap />
+                <TunaPeptideEfficacy />
+                <InsightTunaExtract />
+                <KfasElderlyFunctionalFood />
+              </div>
             </div>
           </section>
         )}
@@ -739,19 +767,35 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <WitsTariffWidget />
-              <OecBenchmarkWidget />
-              <WitsTradeFlowWidget />
+            {/* 1. 해상 운임 및 랜딩 코스트 (원가 산출) */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <MofShippingCostWidget />
               <TunaLandingCost />
+              <LandingCostSensitivity />
+            </div>
+
+            {/* 2. 글로벌 무역 흐름 및 수급 파악 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <WitsTradeFlowWidget />
               <TunaHSClassifier />
               <MofTradeBalanceWidget />
-              <MofShippingCostWidget />
-              <FtaTariffOptimizer />
-              <LandingCostSensitivity />
-              <EmergingMarketsHeatmap />
-              {/* --- Absorbed Extract Logistics --- */}
+            </div>
+
+            {/* 3. 전략적 물류 거점 (PNG 등) */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <TunaPngHubStrategy />
+            </div>
+
+            {/* 4. 관세 최적화 및 신흥 시장 개척 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <WitsTariffWidget />
+              <FtaTariffOptimizer />
+              <OecBenchmarkWidget />
+              <EmergingMarketsHeatmap />
+            </div>
+
+            {/* 5. 기타 물류 및 무역 지표 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
@@ -769,14 +813,29 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+            {/* 1. 거시 경제 및 인플레이션 타격 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <TunaPriceDecoupling />
+            </div>
+
+            {/* 2. 주요 소비 시장 동향 (EU 및 글로벌 리테일) */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <InsightEU18C />
-              {/* --- Absorbed Extract Sales --- */}
-              <TunaGlobalHalalStrategy />
               {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w100_china_fukushima_switch'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
+            </div>
+
+            {/* 3. 신규 수요 창출 (할랄 및 틈새 시장) */}
+            <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h3 style={{ fontSize: '1.05rem', color: '#0ECB81', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Target size={18} /> 신규 수요 창출 및 틈새 전략 
+                </h3>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+                <TunaGlobalHalalStrategy />
+              </div>
             </div>
           </section>
         )}
@@ -791,14 +850,22 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+            {/* 1. 글로벌 규제 레이더 및 컴플라이언스 리스크 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <TunaComplianceRadar />
               <PolicyRiskScorecard />
-              <InsightPillarTwo />
-              {/* --- Absorbed Extract ESG --- */}
               <TunaEsgRiskRadar />
+            </div>
+
+            {/* 2. 환경세 및 자원 보존 (TAC) 규제 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+              <InsightPillarTwo />
               <TunaTacMonitor />
               <TunaSdgCircular />
+            </div>
+
+            {/* 3. 기타 ESG 지표 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot', 'w101_greentech_drone_capex', 'w103_taiwan_esg_risk'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
