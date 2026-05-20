@@ -363,11 +363,7 @@ export default function TunaRanching() {
 
       {/* ================== S-GRADE 5-PILLAR ARCHITECTURE ================== */}
 
-      {/* 🌱 Part I — 원물 생산 (Raw Material) */}
-      <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(245,158,11,0.12) 0%, transparent 100%)", borderLeft:"4px solid #f59e0b", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🌱 Part I — 원물 생산</h2>
-        <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>블루핀 도피회유, TAC 쿼터 과점, 자연폐사율 리스크 등 원물 조달의 근본적 제약과 기회</p>
-      </div>
+      {/* ================== S-GRADE 5-PILLAR ARCHITECTURE ================== */}
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
         {/* NEW-1: 블루핀 도피회유 메커니즘 */}
         <div className={insightsStyles.insightCard}>
@@ -576,7 +572,7 @@ export default function TunaRanching() {
       {/* 🆕 ISSF 글로벌 자원 건전성 스코어보드 + ISC 태평양 BFT 회복 */}
       {issfScorecard && iscPacificBft && (
       <div className={insightsStyles.insightsGrid} style={{ marginBottom: '1.5rem' }}>
-        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+        <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
               <Globe size={20} color="#10b981"/> 글로벌 참치 자원 건전성 스코어보드
@@ -626,7 +622,7 @@ export default function TunaRanching() {
           </div>
         </div>
 
-        <div className={insightsStyles.insightCard} style={{ gridColumn: '1 / -1' }}>
+        <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
               <TrendingUp size={20} color="#38bdf8"/> 태평양 참다랑어 자원 회복 궤적
@@ -685,9 +681,8 @@ export default function TunaRanching() {
       </div>
       )}
 
-      {/* 🏭 Part II — 가공 산업 (Processing) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(236,72,153,0.12) 0%, transparent 100%)", borderLeft:"4px solid #ec4899", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 Part II — 가공 산업</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🏭 가공 산업</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>초저온 이케지메 가공을 통한 양식/어획 패러다임 역전 및 원가-마진 시뮬레이션</p>
       </div>
       <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
@@ -805,9 +800,8 @@ export default function TunaRanching() {
         )}
       </div>
 
-      {/* 🚢 Part III — 물류 및 무역 (Logistics & Trading) */}
       <div style={{ padding:"1.25rem 1.5rem", background:"linear-gradient(90deg, rgba(56,189,248,0.12) 0%, transparent 100%)", borderLeft:"4px solid #38bdf8", marginBottom:"1.5rem", marginTop:"2rem" }}>
-        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🚢 Part III — 물류 및 무역</h2>
+        <h2 style={{ margin:0, fontSize:"1.2rem", fontWeight:700, color:"#f8fafc" }}>🚢 물류 및 무역</h2>
         <p style={{ margin:"5px 0 0 0", fontSize:"0.85rem", color:"#94a3b8" }}>글로벌 B2B 아비트라지, 중동 콜드체인망 확충 및 CEPA 기반 재수출 허브 전략</p>
       </div>
       {/* 🎯 비즈니스 모델 근거: 축양참치 → 한국 가공 → 두바이 수출 (최상단) */}
