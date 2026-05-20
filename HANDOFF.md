@@ -1,5 +1,7 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚨 **ANTIGRAVITY 공지 (2026-05-21~2026-06-04)**: ADR-0005 (Widget Intake Module) 마이그레이션 진행 중. **Tuna 33개 위젯 closure 동일 파일 작업 1~2주 일시 중단** 요청. 다른 commodity (Mackerel/Squid/Salmon/Pollock 등) 작업은 OK. 자세한 사항은 [docs/adr/0005-widget-intake-module.md](docs/adr/0005-widget-intake-module.md) 참조.
+
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
 > **마지막 업데이트**: 2026-05-20 (Antigravity 세션 — 15개 참치 위젯 S-Grade UI 표준화 100% 완료 및 빌드 검증 성공)

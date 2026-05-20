@@ -1,9 +1,18 @@
 # ADR-0005: Widget Intake Module (위젯 합성 보일러플레이트 통합)
 
-> **상태**: PROPOSED (승인 대기 — 큰 결정)
-> **작성**: 2026-05-20 (Claude Code)
+> **상태**: **ACCEPTED** (2026-05-21, 사용자 의사결정)
+> **작성**: 2026-05-20 (Claude Code) / 최종 승인: 2026-05-21
 > **배경**: improve-codebase-architecture skill 분석에서 "deepening 후보 #1, 가장 큰 leverage"로 식별. 100+ 위젯의 5단 합성 보일러플레이트(`CardHeader` + `Chart` + `KPI Panel` + `TakeawayBox` + `TelemetryBadge`) 통합.
 > **ADR-0003 (스크립트 일괄 리팩토링)과 충돌** — 본 ADR 통과 시 0003 일부 폐기 또는 재정의 필요.
+
+## 의사결정 (2026-05-21)
+
+| 질문 | 결정 |
+|---|---|
+| 도입 여부 | ✅ **점진형 마이그레이션 도입** (프로토타입 없이 전면 도입) |
+| 우선순위 | **Tuna 33개 먼저** — 도메인 이해 깊고 audit 잘 마무리됨 |
+| 컴파일 타임 룰 | **P-03 전체 강제** — Conviction Buy / Actionable Insight / 과장 수식어 / cardDesc·TelemetryBadge·source 의무 모두 lint error |
+| Antigravity 조율 | **1~2주 동일 파일 작업 일시 중단** — HANDOFF 명시 후 마이그레이션 기간 확보 |
 
 ---
 
