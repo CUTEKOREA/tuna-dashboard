@@ -213,7 +213,27 @@ WebSearch + EUMOFA PDF (pdftotext) + ISSF 2026-01 PDF로 Phase A 대기 항목 �
 - 4개 endpoint 정직성 회복 (LIVE 가짜 표시 0건)
 - 위젯-API 수치 모순 해소 ($280M, 두바이 $42~48 정렬)
 - L-04 (HSK 10자리) 추가 1건 정정
-- 다음 라운드: `tuna-emerging-markets` (11개국 데이터) + `tuna/ticker` (324줄) 라벨링/검증.
+
+---
+
+## Phase G — 잔여 endpoint Tier 3 정리 (2026-05-20)
+
+**Phase F 미완 3개 endpoint 점검 결과 (커밋 `b63c23f`):**
+
+| Endpoint | 점검 결과 | 조치 |
+|---|---|---|
+| [app/api/tuna/ticker/route.ts](../app/api/tuna/ticker/route.ts) | **구조 양호** — 5개 외부 API(KCS·ECOS·KAMIS·FRED·Yahoo) 실호출 + fallback에 `(Cached)`/`isLive:false` 정직 표시 | fallback 5건 값을 2026-05-20 시점으로 갱신 (kcs_import_price $1,450→$1,975, ecos_fx ₩1,385→₩1,400, wti $61.2→$85.0 등) |
+| [app/api/tuna-emerging-markets/route.ts](../app/api/tuna-emerging-markets/route.ts) | 11개국 데이터는 국정연 보고서 추정치 (외부 단일 출처 미확정) | 파일 헤더에 STATIC 추정치 명시 + `_meta.data_status` + `last_sync` 추가. 값 자체는 보존. |
+| [app/api/tuna-extract/route.ts](../app/api/tuna-extract/route.ts) (19줄) | JSON 파일 read만, mock 데이터 없음 | 수정 불필요 |
+
+**Phase G 누적 영향:**
+- 7개 tuna API endpoint 전수 점검 완료
+- 정직성 라벨링: 모든 endpoint에 STATIC/SYNCED/LIVE 정확 표시
+- fallback 값을 현재 시점(2026-05) 실측치로 갱신
+
+**전체 audit 종료 시점 상태 (2026-05-20):**
+- 33개 위젯 + 7개 API endpoint 모두 정직성·정확성 1차 점검 완료
+- 다음 라운드 권고: 위젯 closure 정기 회귀 점검 (분기 1회), Atuna/EUMOFA/ISSF 신규판 자동 fetch 파이프라인 구축, `app/api/pollock-forecast/route.ts` 등 *다른 어종* endpoint도 동일 패턴 점검
 
 ---
 
