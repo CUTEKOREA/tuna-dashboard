@@ -10,7 +10,7 @@ export default function FleetHeroKPI({ climateRisk }: { climateRisk?: any }) {
       <div className={s.heroHeader}>
         <h2 className={s.heroTitle}>
           <Anchor size={20} /> 선단 운영 커맨드 센터
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>26.05.13 (수) 기준</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>26.05.20 (수) 기준</span>
         </h2>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '5px 12px', background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.3)', borderRadius: '20px' }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981', boxShadow: '0 0 8px #10b981', display: 'inline-block' }} />
@@ -20,30 +20,30 @@ export default function FleetHeroKPI({ climateRisk }: { climateRisk?: any }) {
 
       <div className={s.kpiRow}>
         <div className={`${s.kpiCard} ${s.kpiCardHighlight}`}>
-          <div className={s.kpiLabel}>⚡ 5/12 일간 어획량</div>
-          <div className={`${s.kpiValue} ${s.kpiValueAccent}`}><CountUp end={335} duration={2} separator="," /><span className={s.kpiUnit}>톤</span></div>
-          <div style={{ fontSize: '0.72rem', color: '#34d399', marginTop: 4 }}>태평양 135t + 대서양 200t</div>
+          <div className={s.kpiLabel}>⚡ 주간 총 어획량</div>
+          <div className={`${s.kpiValue} ${s.kpiValueAccent}`}><CountUp end={1408} duration={2} separator="," /><span className={s.kpiUnit}>톤</span></div>
+          <div style={{ fontSize: '0.72rem', color: '#34d399', marginTop: 4 }}>국적선 923t + 합작선 485t</div>
         </div>
         <div className={s.kpiCard}>
-          <div className={s.kpiLabel}>📅 월간 누계 어획량</div>
-          <div className={s.kpiValue}><CountUp end={6052} duration={2} separator="," /><span className={s.kpiUnit}>톤</span></div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>태평양 3,802t + 대서양 2,250t</div>
+          <div className={s.kpiLabel}>📅 월간 총 어획량</div>
+          <div className={s.kpiValue}><CountUp end={4980} duration={2} separator="," /><span className={s.kpiUnit}>톤</span></div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>국적선 3,233t + 합작선 1,747t</div>
         </div>
         <div className={s.kpiCard}>
-          <div className={s.kpiLabel}>📊 연간 누계 어획량</div>
-          <div className={s.kpiValue}><CountUp end={41537} duration={2.5} separator="," /><span className={s.kpiUnit}>톤</span></div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>태평양 29,631.5t + 대서양 11,905t</div>
+          <div className={s.kpiLabel}>📊 연간 총 어획량</div>
+          <div className={s.kpiValue}><CountUp end={30810} duration={2.5} separator="," /><span className={s.kpiUnit}>톤</span></div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>국적선 19,760t + 합작선 11,050t</div>
         </div>
       </div>
 
       {/* Ratio bar */}
       <div className={s.ratioBar}>
-        <span className={s.ratioLabel} style={{ color: '#38bdf8' }}>태평양 71%</span>
+        <span className={s.ratioLabel} style={{ color: '#38bdf8' }}>국적선 64%</span>
         <div className={s.ratioTrack}>
-          <div className={s.ratioFill} style={{ width: '71%', background: 'linear-gradient(90deg, #38bdf8, #60a5fa)' }} />
-          <div className={s.ratioFill} style={{ width: '29%', background: 'linear-gradient(90deg, #a78bfa, #818cf8)' }} />
+          <div className={s.ratioFill} style={{ width: '64%', background: 'linear-gradient(90deg, #38bdf8, #60a5fa)' }} />
+          <div className={s.ratioFill} style={{ width: '36%', background: 'linear-gradient(90deg, #a78bfa, #818cf8)' }} />
         </div>
-        <span className={s.ratioLabel} style={{ color: '#a78bfa', textAlign: 'right' }}>대서양 29%</span>
+        <span className={s.ratioLabel} style={{ color: '#a78bfa', textAlign: 'right' }}>합작선 36%</span>
       </div>
 
       {/* Climate alert */}

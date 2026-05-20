@@ -6,50 +6,48 @@ export default function FleetOperationStatus() {
   const [activeTab, setActiveTab] = useState('pacific');
 
   const tabs = [
-    { id: 'pacific', name: '태평양 선망', summary: '일간 135t / 연간 26,744.5t' },
-    { id: 'atlantic', name: '대서양 선망', summary: '일간 235t / 연간 10,965t' },
-    { id: 'longline', name: '연승 (Longline)', summary: '4척 운영' },
-    { id: 'carrier', name: '운반선 현황', summary: '7척 운항/대기' },
+    { id: 'pacific', name: '태평양 선망', summary: '일간 30t / 연간 30,924.5t' },
+    { id: 'atlantic', name: '대서양 선망', summary: '일간 155t / 연간 13,085t' },
+    { id: 'longline', name: '연승 (Longline)', summary: '3척 운영' },
+    { id: 'carrier', name: '운반선 현황', summary: '6척 운항/대기' },
   ];
 
   const pacificFleet = [
-    { name: 'S/EXP', pos: 'N0006 E17655 (KI)', catch: '-', load: '-', note: '-' },
-    { name: 'S/PIO', pos: 'S0327 W17603 (KI)', catch: '45', load: '110', note: '-' },
-    { name: 'S/CHA', pos: 'S0321 W17623 (KI)', catch: '-', load: '195', note: '-' },
-    { name: 'S/HAR', pos: 'S0307 W17623 (KI)', catch: '-', load: '780', note: '-' },
-    { name: 'S/JUP', pos: 'S0325 W17727 (KI)', catch: '60', load: '60', note: '-' },
-    { name: 'S/SPR', pos: 'TARAWA', catch: '-', load: '-', note: '5/1 TARAWA 입항, 5/4 출항 예정' },
-    { name: 'MOAMARI', pos: 'N0333 W17921 (H)', catch: '-', load: '395', note: '-' },
-    { name: 'MOAKONA', pos: 'S0334 W17601 (KI)', catch: '10', load: '10', note: '-' },
-    { name: 'NAOERO SUN', pos: 'S0413 W17758 (H)', catch: '20', load: '662', note: '-' },
-    { name: 'NAOERO STAR', pos: 'S0308 W17651 (KI)', catch: '-', load: '640', note: '-' },
+    { name: 'S/EXP', pos: 'S0543 W17324 (KI)', catch: '-', load: '319(13)', note: '-' },
+    { name: 'S/PIO', pos: 'S0500 W17303 (KI)', catch: '-', load: '1,035', note: '-' },
+    { name: 'S/CHA', pos: 'S0510 W17251 (KI)', catch: '-', load: '440', note: '-' },
+    { name: 'S/HAR', pos: 'N1131 E14555 (US)', catch: '-', load: '1,200', note: '5/11 현장발, 5/26 09:00 통영 입항 예정' },
+    { name: 'S/JUP', pos: 'S0531 W17257 (KI)', catch: '-', load: '445', note: '-' },
+    { name: 'S/SPR', pos: 'S0514 W17257 (KI)', catch: '-', load: '544(6)', note: '-' },
+    { name: 'MOAMARI', pos: 'N0542 W17756 (H)', catch: '5', load: '950', note: '5/21 12:00 TARAWA 입항, SHIN FUJI 편 약 950톤 전재 및 CA 검사 후 5/24 출항 예정' },
+    { name: 'MOAKONA', pos: 'S0228 W17242 (KI)', catch: '5', load: '402(37)', note: '-' },
+    { name: 'NAOERO SUN', pos: 'N0420 W17820 (H)', catch: '23', load: '797 (전재 820)', note: '5/21 15:00 TARAWA 입항, SEIN TOPAZ 및 SHIN FUJI 편 약 820톤 전재 후 5/24 출항 예정' },
+    { name: 'NAOERO STAR', pos: 'S0113 W17238 (KI)', catch: '20', load: '900', note: '-' },
   ];
 
   const atlanticFleet = [
-    { name: 'P/MAS', pos: 'S0211 W00439 (H)', catch: '5', load: '140' },
-    { name: 'P/DIS', pos: 'N0114 W00851 (L)', catch: '110', load: '360' },
-    { name: 'P/FORE', pos: 'S0141 W00518 (H)', catch: '25', load: '275' },
-    { name: 'P/PATH', pos: 'S0030 W00835 (H)', catch: '-', load: '110' },
-    { name: 'P/COM', pos: 'N0037 W00904 (H)', catch: '45', load: '155' },
-    { name: 'P/QUEEN', pos: 'S0151 W00618 (H)', catch: '40', load: '185' },
-    { name: 'P/GRACE', pos: 'N0218 W01334 (H)', catch: '10', load: '85' },
+    { name: 'P/MAS', pos: 'S0358 W01250 (H)', catch: '10', load: '540' },
+    { name: 'P/DIS', pos: 'S0249 W01433 (H)', catch: '20', load: '720' },
+    { name: 'P/FORE', pos: 'N0940 W02010 (H)', catch: '15', load: '550' },
+    { name: 'P/PATH', pos: 'S0031 W00942 (H)', catch: '50', load: '410' },
+    { name: 'P/COM', pos: 'S0014 W00354 (H)', catch: '35', load: '445' },
+    { name: 'P/QUEEN', pos: 'N0307 W01831 (H)', catch: '15', load: '450' },
+    { name: 'P/GRACE', pos: 'N0213 W01533 (H)', catch: '10', load: '315' },
   ];
 
   const longlineFleet = [
-    { name: 'SY-51', load: '-', note: '3/14 부산 입항, 하역 및 상가수리(3/17~3/31) 후 5/16 출항 예정' },
-    { name: 'SY-56', load: '(269.594톤)', note: '4/12 현장발, 5/11 부산 입항, 하역 및 상가수리(5/14~5/27) 후 6/1 출항 예정 (유가 주시 예정)' },
-    { name: 'SEI SHIN', load: '(233.557톤 (P-506, P-505))', note: '5/6 P-505 하역 완료(누: 137.856톤, 증: +5.010톤) / 5/11 P-506 100.711톤 하역 예정' },
-    { name: 'GENTA MARU', load: '(355.126톤 (SY-52, P-502, P-501))', note: '5/26 SY-52 97.390톤 하역 예정 / 5/28 P-502 155.725톤 하역 예정 / 5/29 P-501 102.011톤 하역 예정' },
+    { name: 'SY-56', load: '-', note: '5/11 부산 입항, 하역 및 상가수리(5/14~5/27) 후 6/1 출항 예정 (유가 주시 예정)' },
+    { name: 'P-505', load: '-', note: '(발전기 수리 및 휴계입항) 5/27 타히티 입항, 5/31 출항 예정' },
+    { name: 'GENTA MARU', load: '(355.126톤 (SY-52, P-502, P-501))', note: '5/22 P-502 155.725톤 하역 예정 / 5/26 P-501 102.011톤 하역 예정 / 5/29 SY-52 97.390톤 하역 예정' },
   ];
 
   const carrierFleet = [
-    { name: 'HIKARI 1 (3,800)', load: '826', note: 'GENSAN 하역 완료' },
-    { name: 'DINOK (4,500)', load: '4,385', note: 'BKK 하역 중' },
-    { name: 'SEIN PHOENIX (7,100)', load: '6,955', note: '5/4 BKK 도착 예정' },
-    { name: 'BAO LUCKY (5,800)', load: '4,803', note: '5/19 BKK 도착 예정' },
-    { name: 'SHIN IZU (2,400)', load: '2,301(161)', note: '5/16 국내 도착 예정' },
-    { name: 'SHIN FUJI (3,200)', load: '잔량 3,200', note: 'TARAWA 대기 중' },
-    { name: 'SEIN TOPAZ (7,300)', load: '잔량 5,918', note: 'TARAWA 대기 중 (타사 1,381.8)' },
+    { name: 'DINOK (4,500)', load: '누: 4,534.38t', note: '증: +149.38t | BKK 하역 완료' },
+    { name: 'SHIN IZU (2,400)', load: '2,301(161)t', note: 'S-50(20), C-130, P-200, MK-69(49), E-117(92), J-730, S-1,005 | 마산 하역 중' },
+    { name: 'SEIN PHOENIX (7,100)', load: '6,955t', note: 'NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180 | BKK 하역 대기 중' },
+    { name: 'BAO LUCKY (5,800)', load: '4,803t', note: 'MI-885, NT-1,035, C-865, P-375, MK-870, E-773, 타사 물량-930 | 5/22 BKK 도착 예정' },
+    { name: 'SHIN FUJI (3,200)', load: '(1,670)t', note: '예상잔량 (1,530)t | (MI-950), (NS-720) | TARAWA 대기 중' },
+    { name: 'SEIN TOPAZ (7,300)', load: '(100)t', note: '예상잔량 (4,633)t | (NS-100), (타사 물량-2,566.80) | TARAWA 대기 중' },
   ];
 
   return (
@@ -58,7 +56,7 @@ export default function FleetOperationStatus() {
         <Anchor size={22} color="var(--color-info)" />
         <div className={styles.toolTitle}>실시간 선단 위치 및 어획/하역 현황 (Fleet Operations)</div>
         <span className={styles.toolBadge} style={{ background: 'rgba(16, 185, 129, 0.15)', color: 'var(--color-success)', marginLeft: 'auto' }}>
-          ✓ 실데이터 (2026.05.07)
+          ✓ 실데이터 (2026.05.20)
         </span>
       </div>
 

@@ -83,7 +83,11 @@ const PACIFIC_VESSELS = BASE_PACIFIC_VESSELS.map((v, i) => {
   return { ...v, holds };
 });
 
-export default function PacificVesselMap() {
+interface PacificVesselMapProps {
+  defaultEezActive?: boolean;
+}
+
+export default function PacificVesselMap({ defaultEezActive = false }: PacificVesselMapProps) {
   const router = useRouter();
   const [ensoMode, setEnsoMode] = useState<'Neutral' | 'El Nino' | 'La Nina'>('Neutral');
   const [typhoonActive, setTyphoonActive] = useState(false);
@@ -93,6 +97,7 @@ export default function PacificVesselMap() {
   const [fadActive, setFadActive] = useState(false);
   const [voyageActive, setVoyageActive] = useState(false);
   const [forwardSalesActive, setForwardSalesActive] = useState(false);
+  const [eezActive, setEezActive] = useState(defaultEezActive);
   const [liveMgoPrice, setLiveMgoPrice] = useState<number | null>(null);
   const [selectedVesselName, setSelectedVesselName] = useState('S/SPR');
 
@@ -108,6 +113,17 @@ export default function PacificVesselMap() {
     { id: 'FAD-Gamma', lat: -4.10, lng: 178.50, biomass: 800, depth: '110m', temp: '28.5°C' },
     { id: 'FAD-Delta', lat: 3.50, lng: -175.20, biomass: 2100, depth: '85m', temp: '29.1°C' },
     { id: 'FAD-Echo', lat: -1.80, lng: 155.30, biomass: 450, depth: '150m', temp: '27.9°C' },
+  ];
+
+  const PNA_EEZ_DATA = [
+    { country: '키리바시 (Kiribati)', lat: 1.8, lng: 173.0, radius: 1000000, color: '#3b82f6', area: '355만 km²' },
+    { country: '파푸아뉴기니 (PNG)', lat: -5.0, lng: 148.0, radius: 1000000, color: '#10b981', area: '312만 km²' },
+    { country: '마이크로네시아 (FSM)', lat: 7.0, lng: 150.0, radius: 950000, color: '#8b5cf6', area: '299만 km²' },
+    { country: '마샬군도 (Marshall)', lat: 9.0, lng: 168.0, radius: 820000, color: '#f59e0b', area: '213만 km²' },
+    { country: '솔로몬제도 (Solomon)', lat: -9.0, lng: 160.0, radius: 710000, color: '#ef4444', area: '160만 km²' },
+    { country: '투발루 (Tuvalu)', lat: -8.0, lng: 178.0, radius: 530000, color: '#06b6d4', area: '90만 km²' },
+    { country: '팔라우 (Palau)', lat: 7.5, lng: 134.5, radius: 440000, color: '#ec4899', area: '62만 km²' },
+    { country: '나우루 (Nauru)', lat: -0.5, lng: 166.9, radius: 310000, color: '#f97316', area: '32만 km²' }
   ];
 
   useEffect(() => {
@@ -170,6 +186,10 @@ export default function PacificVesselMap() {
           animation: defcon-pulse 3s infinite ease-in-out;
         }
         .custom-fad-icon {
+          background: transparent !important;
+          border: none !important;
+        }
+        .eez-number-marker {
           background: transparent !important;
           border: none !important;
         }
@@ -263,6 +283,43 @@ export default function PacificVesselMap() {
             <Circle center={[0, 130]} radius={1800000} className="enso-core" pathOptions={{ stroke: false, fillColor: '#b91c1c', fillOpacity: 0.6 }} />
           </>
         )}
+
+        {/* PNA EEZ Overlays — numbered markers, hover-only tooltip */}
+        {eezActive && PNA_EEZ_DATA.map((eez, idx) => (
+          <React.Fragment key={`eez-${idx}`}>
+            <Circle 
+              center={[eez.lat, eez.lng]} 
+              radius={eez.radius} 
+              pathOptions={{ 
+                color: eez.color, 
+                weight: 2, 
+                fillColor: eez.color, 
+                fillOpacity: 0.12,
+                dashArray: '5, 5'
+              }}
+            >
+              <Tooltip direction="top" opacity={0.95}>
+                <div style={{ fontWeight: 'bold', color: eez.color, fontSize: '13px' }}>{eez.country}</div>
+                <div style={{ color: '#cbd5e1', fontSize: '11px', marginTop: '2px' }}>면적: {eez.area}</div>
+              </Tooltip>
+            </Circle>
+            {/* Numbered center marker */}
+            <Marker
+              position={[eez.lat, eez.lng]}
+              icon={L.divIcon({
+                html: `<div style="width:22px;height:22px;border-radius:50%;background:${eez.color};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:#fff;box-shadow:0 0 8px ${eez.color}80;border:2px solid rgba(255,255,255,0.4);">${idx + 1}</div>`,
+                className: 'eez-number-marker',
+                iconSize: [22, 22],
+                iconAnchor: [11, 11],
+              })}
+            >
+              <Tooltip direction="right" opacity={0.95}>
+                <div style={{ fontWeight: 'bold', color: eez.color, fontSize: '13px' }}>{eez.country}</div>
+                <div style={{ color: '#cbd5e1', fontSize: '11px', marginTop: '2px' }}>면적: {eez.area}</div>
+              </Tooltip>
+            </Marker>
+          </React.Fragment>
+        ))}
 
         {/* FAD Network Overlays */}
         {fadActive && FAD_NODES.map(fad => (
@@ -410,12 +467,47 @@ export default function PacificVesselMap() {
         </div>
       )}
 
+      {/* EEZ Legend Panel (left side) */}
+      {eezActive && (
+        <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.92)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '10px', padding: '14px 16px', minWidth: '200px', maxWidth: '230px', backdropFilter: 'blur(8px)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)' }}>
+          <div style={{ fontSize: '12px', fontWeight: 'bold', color: '#34d399', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '8px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            🌊 PNA EEZ 수역 범례
+          </div>
+          {PNA_EEZ_DATA.map((eez, idx) => (
+            <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 0', fontSize: '11px', color: '#e2e8f0' }}>
+              <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: eez.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold', color: '#fff', flexShrink: 0, boxShadow: `0 0 6px ${eez.color}60`, border: '1.5px solid rgba(255,255,255,0.3)' }}>
+                {idx + 1}
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 600, color: eez.color, fontSize: '11px', lineHeight: 1.3 }}>{eez.country.split(' (')[0]}</div>
+                <div style={{ color: '#94a3b8', fontSize: '10px' }}>{eez.area}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid rgba(255,255,255,0.08)', fontSize: '10px', color: '#64748b', lineHeight: 1.4 }}>
+            마커에 마우스를 올리면 상세 정보
+          </div>
+        </div>
+      )}
+
       {/* Control Panel */}
       <div style={{ position: 'absolute', bottom: '10px', left: '10px', zIndex: 1000, backgroundColor: 'rgba(13, 17, 23, 0.85)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px', padding: '8px', display: 'flex', gap: '4px' }}>
         <button onClick={() => setEnsoMode('Neutral')} style={{ padding: '4px 10px', fontSize: '12px', border: 'none', borderRadius: '4px', cursor: 'pointer', background: ensoMode === 'Neutral' ? '#374151' : 'transparent', color: ensoMode === 'Neutral' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>기본</button>
         <button onClick={() => setEnsoMode('El Nino')} style={{ padding: '4px 10px', fontSize: '12px', border: 'none', borderRadius: '4px', cursor: 'pointer', background: ensoMode === 'El Nino' ? 'var(--color-danger)' : 'transparent', color: ensoMode === 'El Nino' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>엘니뇨(El Niño)</button>
         <button onClick={() => setEnsoMode('La Nina')} style={{ padding: '4px 10px', fontSize: '12px', border: 'none', borderRadius: '4px', cursor: 'pointer', background: ensoMode === 'La Nina' ? 'var(--color-info)' : 'transparent', color: ensoMode === 'La Nina' ? 'var(--text-primary)' : 'var(--text-secondary)' }}>라니냐(La Niña)</button>
         <div style={{ width: '1px', background: 'rgba(255,255,255,0.2)', margin: '0 4px' }}></div>
+        
+        <button 
+          onClick={() => {
+            setEezActive(!eezActive);
+          }} 
+          style={{ padding: '4px 10px', fontSize: '12px', border: '1px solid #10b981', borderRadius: '4px', cursor: 'pointer', background: eezActive ? 'rgba(16, 185, 129, 0.2)' : 'transparent', color: '#10b981', fontWeight: 'bold', boxShadow: eezActive ? '0 0 10px rgba(16,185,129,0.4) inset' : 'none', transition: 'all 0.3s' }}
+        >
+          {eezActive ? '🌊 PNA EEZ (ON)' : '🌊 PNA EEZ 수역'}
+        </button>
+
+        <div style={{ width: '1px', background: 'rgba(255,255,255,0.2)', margin: '0 4px' }}></div>
+        
         <button 
           onClick={() => {
             setTyphoonActive(!typhoonActive);

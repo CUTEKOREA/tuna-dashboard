@@ -44,16 +44,16 @@ export default function UnloadingStatus() {
     },
     'dinok': {
       name: 'M/V DINOK',
-      dateRange: '2026.04.23 ~ (진행중)',
+      dateRange: '2026.04.23 ~ 2026.05.19',
       location: 'BANGKOK, THAILAND',
       buyer: 'FCF CO.,LTD',
-      status: '하역중 (In Progress)',
+      status: '하역완료 (Completed)',
       reportedTotal: 4385.000,
-      actualTotal: 4358.880,
-      surplus: -26.120,
+      actualTotal: 4534.380,
+      surplus: 149.380,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 4099.000, actual: 4118.980, surplus: 19.980 },
-        { id: 'YF', name: 'Yellowfin', reported: 286.000, actual: 239.900, surplus: -46.100 }
+        { id: 'SJ', name: 'Skipjack', reported: 4099.000, actual: 4180.620, surplus: 81.620 },
+        { id: 'YF', name: 'Yellowfin', reported: 286.000, actual: 353.760, surplus: 67.760 }
       ],
       timeline: [
         { date: '4/23', time: '08:10 ~ 20:40', targetHol: 'S/EXP(#1-A), S/SPR(#3-A)', dailyAmount: 253.470, cumAmount: 253.470, quality: '어창 온도 -21.0℃ ~ -22.0℃. 양호.' },
@@ -72,8 +72,15 @@ export default function UnloadingStatus() {
         { date: '5/14', time: '08:10 ~ 18:40', targetHol: 'S/CHA(#3-C)', dailyAmount: 257.360, cumAmount: 3410.580, quality: '어창 온도 -18.0℃ ~ -19.0℃. 전반적으로 양호.' },
         { date: '5/15', time: '08:10 ~ 19:00', targetHol: 'S/HAR(#2-B)', dailyAmount: 235.810, cumAmount: 3646.390, quality: '어창 온도 -22.0℃ ~ -23.0℃. 전반적으로 양호.' },
         { date: '5/16', time: '08:10 ~ 19:30', targetHol: 'S/HAR, S/JUP, S/CHA', dailyAmount: 285.730, cumAmount: 3932.120, quality: '#1-C 유증기로 하역중단. S/HAR -19~-20℃, S/JUP -20~-23℃.' },
-        { date: '5/18', time: '08:10 ~ 22:10', targetHol: 'S/EXP, S/HAR, S/JUP', dailyAmount: 426.760, cumAmount: 4358.880, quality: '어창 온도 -17.0℃ ~ -21.0℃. 외관 양호.' }
-      ]
+        { date: '5/18', time: '08:10 ~ 22:10', targetHol: 'S/EXP, S/HAR, S/JUP', dailyAmount: 426.760, cumAmount: 4358.880, quality: '어창 온도 -17.0℃ ~ -21.0℃. 외관 양호.' },
+        { date: '5/19', time: '08:20 ~ 15:40', targetHol: 'S/JUP(#2-C)', dailyAmount: 175.500, cumAmount: 4534.380, quality: '어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호. 하역 완료.' }
+      ],
+      finalReport: {
+        takeaway: {
+          situation: "보고량(4,385톤) 대비 149.380톤 증가한 4,534.380톤으로 방콕 하역 종료.",
+          insight: "S/JUP(#2-C) 홀드 하역(175.5톤)을 마지막으로 하역 최종 완료. SJ(+81.62톤) 및 YF(+67.76톤) 모두 보고량 대비 증량 실적 달성."
+        }
+      }
     },
     'heng-hong-11': {
       name: 'M/V HENG HONG 11',

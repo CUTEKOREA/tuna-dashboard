@@ -47,12 +47,33 @@ return (
         </h3>
       </div>
       <div className={styles.cardBody}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24, alignItems: 'start' }}>
           <div>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginBottom: 4, textAlign: 'center' }}>부산물 구성비 (가공 후)</div>
-            <SafeResponsiveContainer width="100%" height={180}>
+            <SafeResponsiveContainer width="100%" height={280}>
               <PieChart>
-                <Pie data={BYPRODUCT_DATA} cx="50%" cy="50%" innerRadius={35} outerRadius={65} paddingAngle={3} dataKey="value" label={({ name, value }) => `${name} ${value}%`} isAnimationActive={false}>
+                <Pie
+                  data={BYPRODUCT_DATA}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={45}
+                  outerRadius={80}
+                  paddingAngle={3}
+                  dataKey="value"
+                  label={({ name, value, cx, midAngle, outerRadius: or }) => {
+                    const RADIAN = Math.PI / 180;
+                    const radius = (or || 80) + 28;
+                    const x = (cx || 0) + radius * Math.cos(-(midAngle || 0) * RADIAN);
+                    const y = (cx || 0) + radius * Math.sin(-(midAngle || 0) * RADIAN);
+                    return (
+                      <text x={x} y={y} fill="#e2e8f0" textAnchor={x > (cx || 0) ? 'start' : 'end'} dominantBaseline="central" fontSize={11} fontWeight={600}>
+                        {`${name} ${value}%`}
+                      </text>
+                    );
+                  }}
+                  labelLine={{ stroke: 'rgba(255,255,255,0.3)', strokeWidth: 1 }}
+                  isAnimationActive={false}
+                >
                   {BYPRODUCT_DATA.map((d, i) => (<Cell key={i} fill={d.color} />))}
                 </Pie>
                 <RechartsTooltip contentStyle={{ background: 'rgba(0,0,0,0.85)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: '0.75rem' }} />
@@ -62,11 +83,9 @@ return (
           <div style={{ display: 'grid', gap: 6 }}>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginBottom: 2 }}>업사이클 제품 파이프라인</div>
             {UPCYCLE_PRODUCTS.map((p, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.7fr auto auto', gap: 8, padding: '6px 10px', alignItems: 'center', background: 'rgba(255,255,255,0.03)', borderRadius: 6, border: '1px solid rgba(255,255,255,0.06)', fontSize: '0.73rem' }}>
-                <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{p.product}</span>
-                <span style={{ color: 'var(--text-tertiary)' }}>${p.marketSize}B</span>
-                <span style={{ color: '#22c55e', fontWeight: 700 }}>{p.margin}%</span>
-                <span style={{ padding: '2px 6px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 600, background: p.status === '상용화' ? 'rgba(34,197,94,0.15)' : p.status === '성장' ? 'rgba(245,158,11,0.15)' : 'rgba(168,85,247,0.15)', color: p.status === '상용화' ? '#22c55e' : p.status === '성장' ? '#f59e0b' : '#a855f7' }}>{p.status}</span>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)', fontSize: '0.78rem' }}>
+                <span style={{ color: 'var(--text-primary)', fontWeight: 600, flex: 1 }}>{p.product}</span>
+                <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: '0.65rem', fontWeight: 600, background: p.status === '상용화' ? 'rgba(34,197,94,0.15)' : p.status === '성장' ? 'rgba(245,158,11,0.15)' : 'rgba(168,85,247,0.15)', color: p.status === '상용화' ? '#22c55e' : p.status === '성장' ? '#f59e0b' : '#a855f7' }}>{p.status}</span>
               </div>
             ))}
           </div>

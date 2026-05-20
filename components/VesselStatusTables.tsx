@@ -4,37 +4,35 @@ import React from 'react';
 import styles from './FleetPerformance.module.css';
 
 const ATLANTIC_SEINERS = [
-  { name: 'P/MAS', location: 'N0003 W00228 (H)', status: '누적 선적: 30톤' },
-  { name: 'P/DIS', location: 'S0036 W00202 (H)', status: '일간: 40톤 / 누적 선적: 120톤' },
-  { name: 'P/FORE', location: 'N0110 W00305 (H)', status: '누적 선적: 120톤' },
-  { name: 'P/PATH', location: 'S0011 W00322 (H)', status: '누적 선적: 50톤' },
-  { name: 'P/COM', location: 'S0122 W00157 (H)', status: '일간: 35톤 / 누적 선적: 50톤' },
-  { name: 'P/QUEEN', location: 'N0152 W00337 (G)', status: '일간: 15톤 / 누적 선적: 45톤' },
-  { name: 'P/GRACE', location: 'N0055 W00952 (H)', status: '누적 선적: 5톤' },
+  { name: 'P/MAS', location: 'S0358 W01250 (H)', status: '일간: 10톤 / 누적 선적: 540톤' },
+  { name: 'P/DIS', location: 'S0249 W01433 (H)', status: '일간: 20톤 / 누적 선적: 720톤' },
+  { name: 'P/FORE', location: 'N0940 W02010 (H)', status: '일간: 15톤 / 누적 선적: 550톤' },
+  { name: 'P/PATH', location: 'S0031 W00942 (H)', status: '일간: 50톤 / 누적 선적: 410톤' },
+  { name: 'P/COM', location: 'S0014 W00354 (H)', status: '일간: 35톤 / 누적 선적: 445톤' },
+  { name: 'P/QUEEN', location: 'N0307 W01831 (H)', status: '일간: 15톤 / 누적 선적: 450톤' },
+  { name: 'P/GRACE', location: 'N0213 W01533 (H)', status: '일간: 10톤 / 누적 선적: 315톤' },
 ];
 
 const LONGLINERS = [
-  { name: 'SY-51', load: '-', status: '3/14 부산 입항, 하역 및 상가수리(3/17~3/31) 후 출항 대기중 (유가 주시 중)' },
-  { name: 'SY-56', load: '(269.594톤)', status: '4/12 현장발, 5/11 부산 입항 예정' },
-  { name: 'SEI SHIN', load: '(233.557톤 (P-506, P-505))', status: '4/25 부산 입항, 5/6 P-505, 5/11 P-506 어획물 하역 예정 (P-506: 100.711톤, P-505: 132.846톤)' },
-  { name: 'GENTA MARU', load: '(355.126톤 (SY-52, P-502, P-501))', status: '4/28 부산 입항, 하역 일정 확인 중 (SY-52: 97.390톤, P-502: 155.725톤, P-501: 102.011톤)' },
+  { name: 'SY-56', load: '-', status: '5/11 부산 입항, 하역 및 상가수리(5/14~5/27) 후 6/1 출항 예정 (유가 주시 예정)' },
+  { name: 'P-505', load: '-', status: '(발전기 수리 및 휴계입항) 5/27 타히티 입항, 5/31 출항 예정' },
+  { name: 'GENTA MARU', load: '(355.126톤 (SY-52, P-502, P-501))', status: '5/22 P-502 155.725톤 하역 예정 / 5/26 P-501 102.011톤 하역 예정 / 5/29 SY-52 97.390톤 하역 예정' },
 ];
 
 const CARRIERS = [
-  { name: 'HIKARI 1 (3,800)', load: '826', remaining: '-', status: '누: 800.110톤, 감: -25.890톤', notice: 'GENSAN 하역 완료' },
-  { name: 'DINOK (4,500)', load: '4,385', remaining: '-', status: 'E-66, J-630, C-900, H-1,210, S-450, E-1,129', notice: 'BKK 하역 중' },
-  { name: 'SEIN PHOENIX (7,100)', load: '6,955', remaining: '-', status: 'NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180', notice: '5/4 BKK 도착 예정' },
-  { name: 'BAO LUCKY (5,800)', load: '4,803', remaining: '-', status: 'MI-885, NT-1,035, C-865, P-375, MK-870, E-773, 타사 물량-930', notice: '5/19 BKK 도착 예정' },
-  { name: 'SHIN IZU (2,400)', load: '2,301(161)', remaining: '-', status: 'S-50(20), C-130, P-200, MK-69(49), E-117(92), J-730, S-1,005', notice: '5/16 국내 도착 예정' },
-  { name: 'SHIN FUJI (3,200)', load: '-', remaining: '3,200', status: '-', notice: 'TARAWA 대기 중' },
-  { name: 'SEIN TOPAZ (7,300)', load: '-', remaining: '5,918', status: '타사 물량-1,381.80', notice: 'TARAWA 대기 중' },
+  { name: 'DINOK (4,500)', load: '-', remaining: '-', status: '누: 4,534.380톤, 증: +149.380톤', notice: 'BKK 하역 완료' },
+  { name: 'SHIN IZU (2,400)', load: '2,301(161)', remaining: '-', status: 'S-50(20), C-130, P-200, MK-69(49), E-117(92), J-730, S-1,005', notice: '마산 하역 중' },
+  { name: 'SEIN PHOENIX (7,100)', load: '6,955', remaining: '-', status: 'NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180', notice: 'BKK 하역 대기 중' },
+  { name: 'BAO LUCKY (5,800)', load: '4,803', remaining: '-', status: 'MI-885, NT-1,035, C-865, P-375, MK-870, E-773, 타사 물량-930', notice: '5/22 BKK 도착 예정' },
+  { name: 'SHIN FUJI (3,200)', load: '(1,670)', remaining: '(1,530)', status: '(MI-950), (NS-720)', notice: 'TARAWA 대기 중' },
+  { name: 'SEIN TOPAZ (7,300)', load: '(100)', remaining: '(4,633)', status: '(NS-100), (타사 물량-2,566.80)', notice: 'TARAWA 대기 중' },
 ];
 
 export function AtlanticSeinersTable() {
   return (
     <div className={styles.tableContainer} style={{ marginBottom: '2rem' }}>
       <div style={{ padding: '12px 16px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '13px', color: 'var(--text-muted)' }}>
-        <strong style={{ color: 'var(--text-main)' }}>CC. 대서양 선망 : 5/3</strong> (일간: 90톤 / 월간 누계: 420톤 / 연간 누계: 10,075톤)
+        <strong style={{ color: 'var(--text-main)' }}>CC. 대서양 선망 : 5/19</strong> (일간: 155톤 / 월간 누계: 3,430톤 / 연간 누계: 13,085톤)
       </div>
       <table className={styles.table}>
         <thead>
@@ -90,8 +88,8 @@ export function CarriersTable() {
   return (
     <div className={styles.tableContainer}>
       <div style={{ padding: '12px 16px', background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.05)', fontSize: '13px', color: 'var(--text-muted)', display: 'flex', justifyContent: 'flex-start', gap: '20px' }}>
-        <span>선적량: <strong>19,270(161)톤</strong></span>
-        <span>예상잔량: <strong>9,118톤</strong></span>
+        <span>선적량: <strong>15,829(161)톤</strong></span>
+        <span>예상잔량: <strong>6,163톤</strong></span>
       </div>
       <table className={styles.table}>
         <thead>

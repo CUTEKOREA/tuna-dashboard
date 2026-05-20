@@ -6,16 +6,16 @@ import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
 
 const rankData = [
-  { r: 1, cap: '모승현', name: 'S/HAR', days: 367, total: 11415, daily: 31.1, badge: 'gold' },
-  { r: 2, cap: '김효원', name: 'S/SPR', days: 226, total: 6374, daily: 28.2, badge: 'silver' },
-  { r: 3, cap: '정윤채', name: 'S/EXP', days: 373, total: 9372, daily: 25.1, badge: 'bronze' },
-  { r: 4, cap: '김태엽', name: 'N/STAR', days: 370, total: 8840, daily: 23.9, badge: '' },
-  { r: 5, cap: '김승현', name: 'S/PIO', days: 109, total: 2560, daily: 23.5, badge: '' },
-  { r: 6, cap: '김정훈', name: 'MARI', days: 389, total: 8740, daily: 22.5, badge: '' },
-  { r: 7, cap: '이평규', name: 'KONA', days: 61, total: 1206, daily: 19.8, badge: '' },
-  { r: 8, cap: '강창훈', name: 'S/JUP', days: 335, total: 6395, daily: 19.1, badge: '' },
-  { r: 9, cap: '최용석', name: 'S/CHA', days: 127, total: 2165, daily: 17.1, badge: '' },
-  { r: 10, cap: '김형주', name: 'N/SUN', days: 203, total: 2702, daily: 13.3, badge: '' },
+  { r: 1, cap: '김효원', name: 'S/SPR', weekly: 334.00, daily: 47.71, badge: 'gold' },
+  { r: 2, cap: '김태엽', name: 'N/STAR', weekly: 170.00, daily: 24.29, badge: 'silver' },
+  { r: 3, cap: '강창훈', name: 'S/JUP', weekly: 165.00, daily: 23.57, badge: 'bronze' },
+  { r: 4, cap: '김승현', name: 'S/PIO', weekly: 130.00, daily: 18.57, badge: '' },
+  { r: 5, cap: '최용석', name: 'S/CHA', weekly: 130.00, daily: 18.57, badge: '' },
+  { r: 6, cap: '김정훈', name: 'MARI', weekly: 130.00, daily: 18.57, badge: '' },
+  { r: 7, cap: '이평규', name: 'KONA', weekly: 130.00, daily: 18.57, badge: '' },
+  { r: 8, cap: '정윤채', name: 'S/EXP', weekly: 119.00, daily: 17.00, badge: '' },
+  { r: 9, cap: '김형주', name: 'N/SUN', weekly: 55.00, daily: 7.86, badge: '' },
+  { r: 10, cap: '모승현', name: 'S/HAR', weekly: 45.00, daily: 6.43, badge: '' },
 ];
 
 const tabs = [
@@ -46,8 +46,8 @@ export function FleetChartSection() {
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>PIO(김승현) 795t으로 주간 1위 독주. CHA(최용석) 75t 극심한 부진 — 전체 평균의 1/5 수준.</>}
-                actionPlan={<>CHA 부진 원인(기상/어군/장비) 긴급 분석. SPR(김효원) 185t도 평년 대비 하락세 — 어장 이동 여부 확인 필요.</>}
+                situation={<>SPR(김효원) 334t으로 주간 1위. HAR(모승현) 45t으로 일시적 부진 — 어장 이동에 따른 조업일수 감소 여파.</>}
+                actionPlan={<>HAR 하락 원인(어장 이동 및 기상 영향) 분석. SPR 일평균 47.71t으로 양호한 성과 지속 여부 모니터링.</>}
               />
             </div>
           </>
@@ -57,8 +57,8 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>월별 누적 기준 HAR(모승현)이 5개월 연속 상위권 유지. SPR은 4월 1,555t 폭발 후 5월 급감세.</>}
-                actionPlan={<>SPR 4→5월 급감 원인 파악(어장 이동 vs 기계 문제). EXP 하향 추세 지속 — 3분기 실적 리스크 점검.</>}
+                situation={<>월간 어획 기준 SPR이 4,430t으로 최상위 유지, HAR이 4,160t으로 뒤를 이음. SUN은 3월 실적 부재 영향으로 1,772t에 머무름.</>}
+                actionPlan={<>SPR 및 HAR의 높은 월간 실적 유지 전략 점검. SUN의 3월 무조업 극복을 위한 2분기 조업 효율 극대화 방안 수립.</>}
               />
             </div>
           </>
@@ -68,8 +68,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>모승현(S/HAR) 일어획 31.1t으로 전체 1위. 김형주(N/SUN) 13.3t으로 최하위 — 평균 대비 -10.04t.</>}
-                actionPlan={<>N/SUN 저실적 구조적 원인(합작선 운영 효율, 어장 접근성) 심층 분석. KONA(이평규) 61일차 아직 초기 — 추이 관찰.</>}
+                situation={<>모승현(S/HAR) 일어획 30.6t으로 전체 1위. 김형주(N/SUN) 13.1t으로 최하위 — 평균 대비 -10.13t.</>}
+                actionPlan={<>N/SUN 저실적 구조적 원인(합작선 운영 효율, 어장 접근성) 심층 분석. KONA(이평규) 68일차 초기 단계로 추이 지속 관찰.</>}
               />
             </div>
           </>
@@ -79,11 +79,11 @@ export function FleetChartSection() {
       {/* Ranking */}
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Trophy size={16} color="#fbbf24" /> 선장 실적 순위 (현어기 일어획)
+          <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
         </h3>
         <table className={s.rankTable}>
           <thead>
-            <tr><th>#</th><th>선장</th><th>선박</th><th>일어획</th><th>누적</th></tr>
+            <tr><th>순위</th><th>선장</th><th>선박</th><th>일평균 어획량</th><th>주간 어획량</th></tr>
           </thead>
           <tbody>
             {rankData.map(r => (
@@ -94,8 +94,8 @@ export function FleetChartSection() {
                   {r.badge && <span className={`${s.badge} ${badgeClass[r.badge]}`}>{titles[r.badge]}</span>}
                 </td>
                 <td>{r.name}</td>
-                <td style={{ fontWeight: 700, color: r.daily >= 25 ? '#34d399' : r.daily < 15 ? 'var(--accent-danger)' : 'var(--text-main)' }}>{r.daily}t</td>
-                <td style={{ color: 'var(--text-muted)' }}>{r.total.toLocaleString()}t</td>
+                <td style={{ fontWeight: 700, color: r.daily >= 25 ? '#34d399' : r.daily < 15 ? 'var(--accent-danger)' : 'var(--text-main)' }}>{r.daily}</td>
+                <td style={{ color: 'var(--text-muted)' }}>{r.weekly}</td>
               </tr>
             ))}
           </tbody>
@@ -147,8 +147,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>모승현(S/HAR) 367일간 11,415t 달성, '1만톤 클럽' 가입. 전체 일어획 평균 23.37t 대비 +7.75t로 독보적 성과. 반면 김형주(N/SUN)은 203일간 일어획 13.3t으로 평균 대비 -10.04t — 구조적 저실적 패턴.</>}
-              actionPlan={<>N/SUN 저실적 원인(합작선 한계 vs 어장 배정 문제) 긴급 분석 착수. KONA(이평규) 61일 조기 단계 — 60일 후 재평가. PIO(김승현) 109일차 일어획 23.5t, 안정 궤도 진입 확인.</>}
+              situation={<>모승현(S/HAR) 374일간 11,460t 달성, '1만톤 클럽' 가입. 전체 일어획 평균 23.3t 대비 +7.38t로 독보적 성과. 반면 김형주(N/SUN)은 210일간 일어획 13.1t으로 평균 대비 -10.13t — 구조적 저실적 패턴.</>}
+              actionPlan={<>N/SUN 저실적 원인(합작선 한계 vs 어장 배정 문제) 긴급 분석 착수. KONA(이평규) 68일 조기 단계 — 60일 후 재평가. PIO(김승현) 116일차 일어획 23.2t, 안정 궤도 진입 확인.</>}
             />
           </div>
         </div>

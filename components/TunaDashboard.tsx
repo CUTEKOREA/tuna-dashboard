@@ -23,6 +23,7 @@ import TakeawayBox from './TakeawayBox';
 import TunaPrecisionFishing from './TunaPrecisionFishing';
 import TunaPetCareMargin from './TunaPetCareMargin';
 import TunaPriceDecoupling from './TunaPriceDecoupling';
+import PacificEezStrategicWidget from './PacificEezStrategicWidget';
 import { InsightNauruSwitch, InsightIOCollapse, InsightEU18C } from './TunaNewInsightsA';
 import { InsightTunaExtract, InsightPillarTwo, InsightVietnamOEM } from './TunaNewInsightsB';
 import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, KfasElderlyFunctionalFood } from './TunaKfasResearch';
@@ -42,6 +43,25 @@ import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './Tun
 
 // Phase 2: Landing Cost & Supplier Hub
 import TunaLandingCost from './TunaLandingCost';
+
+// --- Absorbed Components for Hybrid Consolidation ---
+import TunaCrossroads from './TunaCrossroads';
+import TunaAquaHegemony from './TunaAquaHegemony';
+import TunaImportBlackhole from './TunaImportBlackhole';
+import TunaExportShare from './TunaExportShare';
+import TunaKoreaPosition from './TunaKoreaPosition';
+import TunaKoreaOrigins from './TunaKoreaOrigins';
+import TunaRanchingEducation from './TunaRanchingEducation';
+import TunaRanching from './TunaRanching';
+import PetFoodDashboard from './PetFoodDashboard';
+import TunaEsgRiskRadar from './TunaEsgRiskRadar';
+import TunaPngHubStrategy from './TunaPngHubStrategy';
+import TunaGlobalHalalStrategy from './TunaGlobalHalalStrategy';
+import TunaBioUpcyclingGap from './TunaBioUpcyclingGap';
+import TunaPeptideEfficacy from './TunaPeptideEfficacy';
+import TunaTacMonitor from './TunaTacMonitor';
+import TunaSdgCircular from './TunaSdgCircular';
+// ---------------------------------------------------
 import TunaSupplierHub from './TunaSupplierHub';
 
 // Phase 3: Compliance & HS Classification
@@ -72,7 +92,10 @@ return (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ color: e.color || e.stroke || e.fill, fontSize: '14px' }}>■</span>
               <span style={{ color: '#e2e8f0', fontWeight: 500, fontSize: '13px' }}>{e.name}: </span>
-              <strong style={{ color: '#fff', fontSize: '13px' }}>{typeof e.value === 'number' ? Number(e.value.toFixed(1)).toLocaleString() : e.value}</strong>
+              <strong style={{ color: '#fff', fontSize: '13px' }}>
+                {typeof e.value === 'number' ? Math.round(e.value).toLocaleString() : e.value}
+                {e.payload?.unit || ''}
+              </strong>
             </div>
           ))}
         </div>
@@ -99,6 +122,7 @@ const SECTIONS = [
   { id: "S3", title: "🚢 Part III — 물류 및 무역", desc: "UN Comtrade · Eurostat · 관세청 기반 글로벌 무역 흐름, 착지원가 시뮬레이션, 관세 최적화, 해상운임 트래커", color: "#F0B90B" },
   { id: "S4", title: "🛒 Part IV — 판매 및 수요", desc: "소매가 전가(그리드플레이션), 소비자 다운트레이딩, 프리미엄 마진 구조, AI 가격 예측, 신흥시장 수요 폭발", color: "#0ECB81" },
   { id: "S5", title: "🌍 Part V — ESG 및 지속가능성", desc: "혼획 저감, MPA 실효성, EMS 모니터링, 강제노동·이력추적 규제, OECD Pillar Two, 탄소 관세(CBAM) 대응", color: "#2196F3" },
+  { id: "S6", title: "🐾 Part VI — 파생 사업 (펫푸드)", desc: "참치 부산물 기반 프리미엄 펫푸드 시장 진입, 카라기난 리스크 방어, 대체 단백질 글로벌 성장 구조 분석", color: "#EC4899" },
 ];
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -160,20 +184,45 @@ const renderChart = (w: any) => {
   if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
   const chartType = (w.chartType || '').toLowerCase();
 
+  // Custom infographic progress bar rendering for multi-unit byproduct research metrics
+  if (chartType === 'custom_progress') {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', padding: '0.75rem 0', justifyContent: 'center', height: '100%' }}>
+        {d.map((item: any, idx: number) => {
+          const maxVal = 250;
+          const percentage = Math.min((item.value / maxVal) * 100, 100);
+          const barColor = idx === 0 ? '#10b981' : idx === 1 ? '#8b5cf6' : '#3b82f6';
+          return (
+            <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '13px', fontWeight: 600, color: '#e2e8f0' }}>{item.name}</span>
+                <span style={{ fontSize: '15px', fontWeight: 800, color: barColor }}>{item.value}{item.unit}</span>
+              </div>
+              <div style={{ width: '100%', height: '8px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden' }}>
+                <div style={{ width: `${percentage}%`, height: '100%', backgroundColor: barColor, borderRadius: '4px', boxShadow: `0 0 8px ${barColor}50` }} />
+              </div>
+              <span style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.4 }}>{item.desc}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
   const isShortData = d.length <= 10;
   const xAxisTextProps: any = { stroke: "rgba(255,255,255,0.1)", tick: { fill: "#cbd5e1", fontSize: 12, fontWeight: 500 }, ...(isShortData ? { interval: 0 } : {}) };
   const yAxisProps = { stroke: "rgba(255,255,255,0.1)", tick: { fill: "#cbd5e1", fontSize: 12, fontWeight: 500 }, tickFormatter: formatYAxis };
 
   // Universal Format handling
-  if (w.xKey || w.bars || w.lines || w.areas) {
+  if (w.xKey || w.bars || w.lines || w.areas || chartType === 'pie') {
     const xKeyVal = w.xKey || w.xAxis || 'Year';
     switch(chartType) {
       case "pie":
         return (
           <PieChart>
-            <Pie data={d} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={85} innerRadius={35}
-              label={({name, value, percent}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : ''} labelLine={false} fontSize={10} isAnimationActive={false}>
+            <Pie data={d} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} innerRadius={40}
+              label={({name, value, percent, payload}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? Math.round(value).toLocaleString() : value}${payload?.unit || ''}` : ''} labelLine={false} fontSize={10} isAnimationActive={false}>
               {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
@@ -279,8 +328,8 @@ const renderChart = (w: any) => {
     case "pie":
       return (
         <PieChart>
-          <Pie data={d} cx="50%" cy="50%" innerRadius={50} outerRadius={80} paddingAngle={5} dataKey="value" nameKey="name"
-            label={({name, value, percent}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? value.toLocaleString() : value}` : ''} labelLine={false} fontSize={10} isAnimationActive={false}>
+          <Pie data={d} cx="50%" cy="50%" innerRadius={45} outerRadius={75} paddingAngle={5} dataKey="value" nameKey="name"
+            label={({name, value, percent, payload}: any) => percent > 0.03 ? `${name} ${typeof value === 'number' ? Math.round(value).toLocaleString() : value}${payload?.unit || ''}` : ''} labelLine={false} fontSize={10} isAnimationActive={false}>
             {d.map((_: any, idx: number) => <Cell key={idx} fill={PIE_COLORS[idx % PIE_COLORS.length]} />)}
           </Pie>
           <RechartsTooltip content={<CustomTooltip />} />
@@ -401,6 +450,7 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
 const TunaDashboard = React.memo(function TunaDashboard() {
   const [data, setData] = useState<any>(null);
   const [showEdu, setShowEdu] = useState(true);
+  const [activePart, setActivePart] = useState('S1');
   const [liveArbitrage, setLiveArbitrage] = useState<any>(null);
   const [liveTrq, setLiveTrq] = useState<any>(null);
 
@@ -581,119 +631,197 @@ const TunaDashboard = React.memo(function TunaDashboard() {
         )}
       </div>
 
-      {/* ═══ 5-Part Consolidated Sections ═══ */}
+      {/* ═══ 6-Part Consolidated Sections with Sub-Tabs ═══ */}
+      <div style={{ display: 'flex', overflowX: 'auto', gap: '1rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '2rem' }}>
+        {SECTIONS.map((s) => (
+          <button
+            key={s.id}
+            onClick={() => setActivePart(s.id)}
+            style={{
+              padding: '10px 16px',
+              background: activePart === s.id ? `${s.color}20` : 'transparent',
+              border: `1px solid ${activePart === s.id ? s.color : 'rgba(255,255,255,0.1)'}`,
+              borderRadius: '8px',
+              color: activePart === s.id ? s.color : 'var(--text-secondary)',
+              fontWeight: activePart === s.id ? 700 : 500,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.2s',
+              boxShadow: activePart === s.id ? `0 0 12px ${s.color}30` : 'none'
+            }}
+          >
+            {s.title}
+          </button>
+        ))}
+      </div>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
         
         {/* ═══════ Part I: 원물 생산 (Raw Material) ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
+        {activePart === 'S1' && (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
+              </div>
             </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            <TunaPrecisionFishing />
-            <KfasLonglineEvolution />
-            <KfasIndianOceanRisk />
-            <InsightNauruSwitch />
-            <InsightIOCollapse />
-            <MofFishMarketWidget />
-            {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
-              <WidgetCard key={w.id} widget={w} />
-            ))}
-            <EnsoCorrelationWidget />
-            <SkipjackForecastWidget />
-          </div>
-        </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <div style={{ gridColumn: 'span 2' }}>
+                <PacificEezStrategicWidget />
+              </div>
+              <TunaPrecisionFishing />
+              <KfasLonglineEvolution />
+              <KfasIndianOceanRisk />
+              <InsightNauruSwitch />
+              <InsightIOCollapse />
+              <MofFishMarketWidget />
+              {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
+                <WidgetCard key={w.id} widget={w} />
+              ))}
+              <EnsoCorrelationWidget />
+              <SkipjackForecastWidget />
+            </div>
+
+            {/* --- Absorbed Ranching --- */}
+            <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+              <TunaRanchingEducation />
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(600px, 1fr))', gap: '24px', margin: '24px 0' }}>
+                <TunaCrossroads />
+                <TunaAquaHegemony />
+                <TunaImportBlackhole />
+                <TunaExportShare />
+                <TunaKoreaPosition />
+                <TunaKoreaOrigins />
+              </div>
+              <TunaRanching />
+            </div>
+          </section>
+        )}
 
         {/* ═══════ Part II: 가공 산업 (Processing) ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
+        {activePart === 'S2' && (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
+              </div>
             </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            <TunaPetCareMargin />
-            <TunaSupplierHub />
-            <InsightTunaExtract />
-            <InsightVietnamOEM />
-            <KfasByproductValueChain />
-            <KfasElderlyFunctionalFood />
-            <TunaUpcyclingOpportunity />
-            <TunaUpcyclingMarginMap />
-            {widgets?.filter((w: any) => ['w04_proc', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w84_invasivorism', 'w57_alt_protein', 'w98_byproduct_rd_pipeline', 'w102_spain_loin_outsourcing'].includes(w.id)).map((w: any) => (
-              <WidgetCard key={w.id} widget={w} />
-            ))}
-          </div>
-        </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <TunaPetCareMargin />
+              <TunaSupplierHub />
+              <InsightTunaExtract />
+              <InsightVietnamOEM />
+              <KfasByproductValueChain />
+              <KfasElderlyFunctionalFood />
+              <TunaUpcyclingOpportunity />
+              <TunaUpcyclingMarginMap />
+              {/* --- Absorbed Extract R&D --- */}
+              <TunaBioUpcyclingGap />
+              <TunaPeptideEfficacy />
+              {widgets?.filter((w: any) => ['w04_proc', 'w15_canning_factory', 'w20_thailand_paradox', 'w25_byproduct_cashcow', 'w30_spain_arbitrage', 'w32_species_margin', 'w33_spain_vs_france', 'w36_spain_vulnerability', 'w40_french_cannery_decline', 'w42_first_sale_cascade', 'w47_korea_thailand_pipeline', 'w49_yield_labor', 'w54_mega_cannery_opex', 'w70_eu_tuna_cost_shock', 'w66_petfood_capacity_defense', 'w84_invasivorism', 'w57_alt_protein', 'w98_byproduct_rd_pipeline', 'w102_spain_loin_outsourcing'].includes(w.id)).map((w: any) => (
+                <WidgetCard key={w.id} widget={w} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ═══════ Part III: 물류 및 무역 (Logistics) ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
+        {activePart === 'S3' && (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
+              </div>
             </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            <WitsTariffWidget />
-            <OecBenchmarkWidget />
-            <WitsTradeFlowWidget />
-            <TunaLandingCost />
-            <TunaHSClassifier />
-            <MofTradeBalanceWidget />
-            <MofShippingCostWidget />
-            <FtaTariffOptimizer />
-            <LandingCostSensitivity />
-            <EmergingMarketsHeatmap />
-            {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock'].includes(w.id)).map((w: any) => (
-              <WidgetCard key={w.id} widget={w} />
-            ))}
-          </div>
-        </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <WitsTariffWidget />
+              <OecBenchmarkWidget />
+              <WitsTradeFlowWidget />
+              <TunaLandingCost />
+              <TunaHSClassifier />
+              <MofTradeBalanceWidget />
+              <MofShippingCostWidget />
+              <FtaTariffOptimizer />
+              <LandingCostSensitivity />
+              <EmergingMarketsHeatmap />
+              {/* --- Absorbed Extract Logistics --- */}
+              <TunaPngHubStrategy />
+              {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock'].includes(w.id)).map((w: any) => (
+                <WidgetCard key={w.id} widget={w} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ═══════ Part IV: 판매 및 수요 (Sales & Demand) ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
+        {activePart === 'S4' && (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
+              </div>
             </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            <TunaPriceDecoupling />
-            <InsightEU18C />
-            {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w100_china_fukushima_switch'].includes(w.id)).map((w: any) => (
-              <WidgetCard key={w.id} widget={w} />
-            ))}
-          </div>
-        </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <TunaPriceDecoupling />
+              <InsightEU18C />
+              {/* --- Absorbed Extract Sales --- */}
+              <TunaGlobalHalalStrategy />
+              {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w100_china_fukushima_switch'].includes(w.id)).map((w: any) => (
+                <WidgetCard key={w.id} widget={w} />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ═══════ Part V: ESG 및 지속가능성 (Sustainability) ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
+        {activePart === 'S5' && (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
+              </div>
             </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            <TunaComplianceRadar />
-            <PolicyRiskScorecard />
-            <InsightPillarTwo />
-            {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot', 'w101_greentech_drone_capex', 'w103_taiwan_esg_risk'].includes(w.id)).map((w: any) => (
-              <WidgetCard key={w.id} widget={w} />
-            ))}
-          </div>
-        </section>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <TunaComplianceRadar />
+              <PolicyRiskScorecard />
+              <InsightPillarTwo />
+              {/* --- Absorbed Extract ESG --- */}
+              <TunaEsgRiskRadar />
+              <TunaTacMonitor />
+              <TunaSdgCircular />
+              {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot', 'w101_greentech_drone_capex', 'w103_taiwan_esg_risk'].includes(w.id)).map((w: any) => (
+                <WidgetCard key={w.id} widget={w} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ═══════ Part VI: 파생 사업 (Petfood) ═══════ */}
+        {activePart === 'S6' && (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: SECTIONS[5].color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[5].title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[5].desc}</p>
+              </div>
+            </div>
+            {/* Render full PetFoodDashboard inside S6 */}
+            <div style={{ margin: '0 -2rem' }}>
+              <PetFoodDashboard />
+            </div>
+          </section>
+        )}
 
       </div>
     </div>

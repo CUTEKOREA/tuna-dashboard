@@ -8,7 +8,7 @@ import TakeawayBox from './TakeawayBox';
 const DATA_URL = '/data/salmon_real_data_v2.json';
 const COLORS = ['#f97316', '#0ea5e9', 'var(--color-success)', '#8b5cf6', '#f43f5e', 'var(--color-warning)', '#eab308', '#38bdf8'];
 
-const formatNum = (v: number) => new Intl.NumberFormat('en-US').format(v);
+const formatNum = (v: number) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(v);
 
 // --- Custom Tooltip Hook ---
 export const CustomTooltip = ({ active, payload, label }: any) => {

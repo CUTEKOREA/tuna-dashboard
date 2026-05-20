@@ -21,16 +21,16 @@ const PacificGlobeWithNoSSR = dynamic(() => import('./PacificGlobe'), {
   loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>Loading 3D Globe...</div>
 });
 const CAPTAIN_DATA = [
-  { rank: 1, name: '김승현', vessel: 'S/PIO', weekly: '795.00', daily: '113.57' },
-  { rank: 2, name: '김정훈', vessel: 'MARI', weekly: '400.00', daily: '57.14' },
-  { rank: 3, name: '모승현', vessel: 'S/HAR', weekly: '345.00', daily: '49.29' },
-  { rank: 4, name: '이평규', vessel: 'KONA', weekly: '257.00', daily: '36.71' },
-  { rank: 5, name: '강창훈', vessel: 'S/JUP', weekly: '220.00', daily: '31.43' },
-  { rank: 6, name: '정윤채', vessel: 'S/EXP', weekly: '200.00', daily: '28.57' },
-  { rank: 7, name: '김효원', vessel: 'S/SPR', weekly: '185.00', daily: '26.43' },
-  { rank: 8, name: '김형주', vessel: 'N/SUN', weekly: '80.00', daily: '11.43' },
-  { rank: 9, name: '최용석', vessel: 'S/CHA', weekly: '75.00', daily: '10.71' },
-  { rank: 10, name: '김태엽', vessel: 'N/STAR', weekly: '70.00', daily: '10.00' },
+  { rank: 1, name: '김효원', vessel: 'S/SPR', weekly: '334.00', daily: '47.71' },
+  { rank: 2, name: '김태엽', vessel: 'N/STAR', weekly: '170.00', daily: '24.29' },
+  { rank: 3, name: '강창훈', vessel: 'S/JUP', weekly: '165.00', daily: '23.57' },
+  { rank: 4, name: '김승현', vessel: 'S/PIO', weekly: '130.00', daily: '18.57' },
+  { rank: 5, name: '최용석', vessel: 'S/CHA', weekly: '130.00', daily: '18.57' },
+  { rank: 6, name: '김정훈', vessel: 'MARI', weekly: '130.00', daily: '18.57' },
+  { rank: 7, name: '이평규', vessel: 'KONA', weekly: '130.00', daily: '18.57' },
+  { rank: 8, name: '정윤채', vessel: 'S/EXP', weekly: '119.00', daily: '17.00' },
+  { rank: 9, name: '김형주', vessel: 'N/SUN', weekly: '55.00', daily: '7.86' },
+  { rank: 10, name: '모승현', vessel: 'S/HAR', weekly: '45.00', daily: '6.43' },
 ];
 
 const VESSEL_SPECS: Record<string, { type: string, gt: string, year: string, age: string, country: string, kw: string, capacity: string }> = {
@@ -68,7 +68,7 @@ export default function FleetPerformance() {
     <section className={styles.container}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <h2 className={styles.headerTitle} style={{ margin: 0 }}>
-          <Anchor size={20} /> 주간 실적 현황 (26.05.04 ~ 05.10) - 5월 첫째주
+          <Anchor size={20} /> 주간 실적 현황 (26.05.11 ~ 05.17) - 5월 둘째주
         </h2>
         {liveData && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '20px' }}>
@@ -101,41 +101,41 @@ export default function FleetPerformance() {
       <div className={styles.metricsGrid}>
         <div className={`${styles.metricBox} ${styles.metricBoxHighlight}`}>
           <div className={styles.metricTitle}><TermTooltip term="국적선" description="대한민국 국적을 취득하고 정부의 허가 아래 조업하는 자사 소유의 선박입니다." /> 주간 <TermTooltip term="어획량" description="참치(가다랑어, 황다랑어 등)를 잡아올린 순수 물량(톤)입니다." /></div>
-          <div className={`${styles.metricValue} ${styles.valueHighlight}`}>1,820<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueHighlight}`}>923<span className={styles.unit}>톤</span></div>
         </div>
         <div className={`${styles.metricBox} ${styles.metricBoxHighlight}`}>
           <div className={styles.metricTitle}><TermTooltip term="합작선" description="해외 연안국(예: 키리바시 등)과 합작 투자를 통해 현지 국적을 달고 조업하여, 해당국의 입어 쿼터(VDS) 확보에 유리한 선박입니다." /> 주간 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueHighlight}`}>807<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueHighlight}`}>485<span className={styles.unit}>톤</span></div>
         </div>
         <div className={`${styles.metricBox} ${styles.metricBoxHighlight}`}>
           <div className={styles.metricTitle}>주간 총 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueHighlight}`}>2,627<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueHighlight}`}>1,408<span className={styles.unit}>톤</span></div>
         </div>
 
         <div className={styles.metricBox}>
           <div className={styles.metricTitle}>국적선 월간 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueNormal}`}>2,310<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueNormal}`}>3,233<span className={styles.unit}>톤</span></div>
         </div>
         <div className={styles.metricBox}>
           <div className={styles.metricTitle}>합작선 월간 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueNormal}`}>1,262<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueNormal}`}>1,747<span className={styles.unit}>톤</span></div>
         </div>
         <div className={styles.metricBox}>
           <div className={styles.metricTitle}>월간 총 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueNormal}`}>3,572<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueNormal}`}>4,980<span className={styles.unit}>톤</span></div>
         </div>
 
         <div className={styles.metricBox}>
           <div className={styles.metricTitle}>국적선 연간 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueNormal}`}>18,837<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueNormal}`}>19,760<span className={styles.unit}>톤</span></div>
         </div>
         <div className={styles.metricBox}>
           <div className={styles.metricTitle}>합작선 연간 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueNormal}`}>10,565<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueNormal}`}>11,050<span className={styles.unit}>톤</span></div>
         </div>
         <div className={styles.metricBox}>
           <div className={styles.metricTitle}>연간 총 어획량</div>
-          <div className={`${styles.metricValue} ${styles.valueNormal}`}>29,402<span className={styles.unit}>톤</span></div>
+          <div className={`${styles.metricValue} ${styles.valueNormal}`}>30,810<span className={styles.unit}>톤</span></div>
         </div>
       </div>
 
