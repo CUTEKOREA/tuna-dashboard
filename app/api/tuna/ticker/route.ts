@@ -284,13 +284,13 @@ async function fetchWTICrude(): Promise<TickerItem | null> {
   } catch { return null; }
 }
 
-// --- Fallback Values ---
+// --- Fallback Values (2026-05-20 갱신: Atuna 실측 + 환율·유가 시점 반영) ---
 const FALLBACK_TICKER: TickerItem[] = [
-  { id: 'kcs_import_price', label: 'KCS 수입단가', value: '$1,450/T', trend: '▲ $50', trendColor: '#F6465D', source: 'KCS (Cached)', isLive: false },
-  { id: 'ecos_fx', label: 'KRW/USD', value: '₩1,385.0', trend: '▼0.4%', trendColor: '#0ECB81', source: 'ECOS (Cached)', isLive: false },
-  { id: 'kamis_retail', label: 'KCS 참치캔 수출', value: '$2,180/T', trend: '▲ $50', trendColor: '#F6465D', source: 'KCS (Cached)', isLive: false },
-  { id: 'fred_cpi', label: 'US CPI', value: '3.2%', trend: '▼ Cooling', trendColor: '#0ECB81', source: 'FRED (Cached)', isLive: false },
-  { id: 'wti_crude', label: 'WTI Crude', value: '$61.2/bbl', trend: '▲1.1%', trendColor: '#F6465D', source: 'Yahoo (Cached)', isLive: false },
+  { id: 'kcs_import_price', label: 'KCS 수입단가', value: '$1,975/T', trend: '▼ -6%', trendColor: '#0ECB81', source: 'Atuna skjbkk 2026-05-06 (Cached)', isLive: false },
+  { id: 'ecos_fx', label: 'KRW/USD', value: '₩1,400.0', trend: '▲0.4%', trendColor: '#F6465D', source: 'ECOS (Cached)', isLive: false },
+  { id: 'kamis_retail', label: 'KCS 참치캔 수출', value: '$2,400/T', trend: '▲ $80', trendColor: '#F6465D', source: 'KCS (Cached)', isLive: false },
+  { id: 'fred_cpi', label: 'US CPI', value: '3.0%', trend: '▼ Cooling', trendColor: '#0ECB81', source: 'FRED (Cached)', isLive: false },
+  { id: 'wti_crude', label: 'WTI Crude', value: '$85.0/bbl', trend: '▲4.2%', trendColor: '#F6465D', source: 'Yahoo (Cached, 호르무즈 위기 반영)', isLive: false },
 ];
 
 export async function GET() {

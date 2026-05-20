@@ -2,14 +2,22 @@ import { NextRequest, NextResponse } from 'next/server';
 
 /**
  * 참치 신흥시장 기회 인텔리전스 API
- * 
+ *
+ * ⚠️ 데이터 상태: 11개국 시장 데이터는 국정연 보고서 4건의 추정치이며,
+ * Comtrade API key가 있을 때만 country_code 단위 실시간 enrichment가 동작합니다.
+ * 본 응답은 SYNCED (정기 갱신 스냅샷) 라벨이 적합.
+ *
  * 국정연 근거:
  *  - (일반 2023-05) 아프리카 수산협력 강화 전략
  *  - (일반 2024-03) 아세안 수산물 무역 확대
  *  - (일반 2023-09) 할랄 수산물 수출 전략
  *  - (기본 2024-01) 군소도서국(SIDS) 수산분야 협력
- * 
- * 연동 API: UN Comtrade + OEC
+ *
+ * 연동 API: UN Comtrade + OEC (key 있을 때 enrichWithComtrade)
+ *
+ * 정정 이력 (2026-05-20 Phase G):
+ *  - _meta에 data_status STATIC 추정치 명시 추가
+ *  - 11개국 opportunity_usd_m은 보고서 추정치 보존 (외부 단일 출처 미확정)
  */
 
 const COMTRADE_KEY = process.env.COMTRADE_API_KEY || '';
@@ -81,10 +89,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       _meta: {
-        source: '국가정책연구포털 4건 + UN Comtrade Live API',
+        source: '국가정책연구포털 4건 + UN Comtrade (country_code 단위 enrichment)',
         timestamp: new Date().toISOString(),
         total_markets_tracked: 11,
         total_opportunity_usd_m: EMERGING_MARKETS.composite_score.total_opportunity_usd_m,
+        data_status: 'SYNCED 정기 갱신 스냅샷 — 11개국 opportunity_usd_m은 국정연 보고서 추정치. 실시간 단가는 country_code 파라미터로 Comtrade enrichment 시도',
+        last_sync: '2026-05-20',
       },
       ...EMERGING_MARKETS,
     });
