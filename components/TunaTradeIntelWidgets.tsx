@@ -126,8 +126,8 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
 
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
-          situation="[관세 구조] 한국 참치 조제품 MFN 관세율 20%는 AKFTA/RCEP 적용 시 0%로 전환. 미국은 KORUS FTA로 6%→0% 적용. 양허세율(Bound) 대비 실질 세율의 갭이 FTA 활용 기회를 보여줍니다."
-          actionPlan="**[Actionable Insight]** [FTA 극대화] 태국·인도네시아 원산지 원료 사용 시 AKFTA 원산지 증명서 발급으로 관세 0% 확보. 미국 수출 시 KORUS FTA 활용으로 경쟁사 대비 6%p 가격 우위 확보해야 합니다. (Secure Assets)"
+          situation="한국 참치 조제품 MFN 관세율 20%는 AKFTA/RCEP 적용 시 0%로 전환. 미국은 KORUS FTA로 6%→0% 적용. 양허세율(Bound) 대비 실질 세율의 갭이 FTA 활용 기회를 보여줍니다."
+          actionPlan="**[Actionable Insight]** [FTA 극대화] 태국·인도네시아 원산지 원료 사용 시 AKFTA 원산지 증명서 발급으로 관세 0% 확보. 미국 수출 시 KORUS FTA 활용으로 경쟁사 대비 6%p 가격 우위 확보해야 합니다."
           source={`World Bank WITS API · ${data?.meta?.apiStatus === 'live' ? '🟢 LIVE' : '🟡 Fallback DB'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`}
         />
       </div>
@@ -300,7 +300,7 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
 
       <div style={{ marginTop: 'auto' }}>
         <TakeawayBox
-          situation="[구조적 적자] 한국 황다랑어 수입액은 5년 연속 증가($285M→$372M), 수출은 $17.5M에 불과. 수입 의존율 95% 이상으로 공급 차질 시 가격 급등(Spike) 리스크."
+          situation="한국 황다랑어 수입액은 5년 연속 증가($285M→$372M), 수출은 $17.5M에 불과. 수입 의존율 95% 이상으로 공급 차질 시 가격 급등 리스크."
           actionPlan="**[Actionable Insight]** [공급 다변화] 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도(Exposure) 완화. 장기 선물 계약으로 가격 변동성 헤지."
           source={`World Bank WITS / UN Comtrade · ${isLive ? '🟢 LIVE' : '🟡 Snapshot'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`}
         />

@@ -54,7 +54,7 @@ return (
     );
   };
 
-  const situation = '2023년 4월 톤당 2,000달러를 돌파했던 가다랑어 국제 시세가 2024년 1월 기준 1,400달러 선까지 약 30% 폭락했습니다. 그럼에도 불구하고 주요 참치 캔 제조사의 소매 납품 단가는 지속 인상되거나 유지되는 \'완벽한 디커플링(Decoupling)\'이 관측되었습니다.';
+  const situation = '2023년 4월 톤당 2,000달러를 돌파했던 가다랑어 국제 시세가 2024년 1월 기준 1,400달러 선까지 약 30% 폭락했습니다. 그럼에도 불구하고 주요 참치 캔 제조사의 소매 납품 단가는 지속 인상되거나 유지되는 \'강한 디커플링(Decoupling)\'이 관측되었습니다.';
   const takeaway = '원가와 판가의 비동조화 현상은 산업의 이윤 중심이 \'원물 어획\'에서 \'유통 장악력\'으로 넘어갔음을 증명합니다. 단순 원어 공급을 넘어, 유통망(리테일)을 쥐고 있는 B2C 브랜드와의 장기 납품 계약(Hedging)을 체결하거나, 자사 보유 원물을 활용해 OEM/ODM 방식으로 고마진 가공식품 시장에 직접 침투하는 수직 계열화 전략 도입이 시급합니다.';
   const source = '글로벌 참치 무역 데이터 & 한국소비자원 가격정보 (2023.04-2024.03)';
 
@@ -66,7 +66,7 @@ return (
       <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
         <h3 className={styles.cardTitle} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: ACCENT, margin: '0 0 0.4rem 0' }}>
           <TrendingUp size={20} color={ACCENT} />
-          원가 vs 소매가: 완벽한 디커플링
+          원가 vs 소매가: 강한 디커플링
           <span style={{ display:'inline-block', background:'rgba(255,255,255,0.05)', border:'1px solid rgba(255,255,255,0.1)', color:'#94a3b8', fontSize:'0.65rem', padding:'2px 6px', borderRadius:'4px', marginLeft:'8px', fontWeight:500 }}>정적 데이터</span>
           <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 500 }}>(단위: USD/t · ₩/캔)</span>

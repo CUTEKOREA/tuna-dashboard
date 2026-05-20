@@ -209,7 +209,7 @@ export default function TunaExtractDashboard() {
         </div>
       </div>
 
-      {/* ═══ Pillar I: 원물 수급 (Raw Material) ═══ */}
+      {/* ═══ Pillar I: 원물 수급 ═══ */}
       <h3 className={styles.sectionHeader}>기둥 I. 원물 수급 동향</h3>
       <div className={styles.grid}>
         <div className={styles.card}>
@@ -232,7 +232,7 @@ export default function TunaExtractDashboard() {
             ) : <EmptyState message="수익성 데이터 로딩 실패" />}
             <TakeawayBox 
               situation="참치액은 참치캔 가공 후 버려지던 자숙액을 100% 재활용하여 폐기물($0.05/kg)을 완제품($4.8/kg)으로 96배 밸류업합니다." 
-              actionPlan="**[Actionable Insight]** 통조림 공장의 폐수 처리 비용을 '매출 원천'으로 전환하는 극단적 ESG 순환 경제 모델을 전면에 내세워야 해야 합니다. (Conviction Buy)" 
+              actionPlan="**[Actionable Insight]** 통조림 공장의 폐수 처리 비용을 '매출 원천'으로 전환하는 극단적 ESG 순환 경제 모델을 전면에 내세워야 해야 합니다." 
               source="INFOFISH / 내부 원가 모델링" 
             />
           </div>
@@ -257,7 +257,7 @@ export default function TunaExtractDashboard() {
             </SafeResponsiveContainer>
             <TakeawayBox 
               situation="IOTC 최신 평가에 따르면 2025년부터 소형 다랑어(Bullet/Frigate)의 실 어획량이 권고 쿼터를 초과하여 자원 고갈 임계점에 도달했습니다." 
-              actionPlan="**[Actionable Insight]** 주요 원물인 소형 다랑어의 어획 쿼터 축소로 인한 단가 급등(Spike)이 예상되므로, 즉각적인 안전 재고 6개월분 선제 확보가 필수적입니다. (Execution Recommended)" 
+              actionPlan="**[Actionable Insight]** 주요 원물인 소형 다랑어의 어획 쿼터 축소로 인한 단가 급등이 예상되므로, 즉각적인 안전 재고 6개월분 선제 확보가 필수적입니다. (Execution Recommended)" 
               source="IOTC_SC28_Bullet_tuna.pdf / IOTC 실시간 공시 (2026 추정)" 
             />
           </div>
@@ -297,7 +297,7 @@ export default function TunaExtractDashboard() {
           </SafeResponsiveContainer>
           <TakeawayBox 
             situation={`환율이 ${exchangeRateSlider}원에 도달할 경우, 참치액의 마진율은 ${d_w04_simulated[2].margin}%로 방어되나 멸치/까나리액젓은 한계 상황에 직면합니다.`} 
-            actionPlan="**[Actionable Insight]** 원물 가격 상승 리스크가 낮은 참치액의 압도적 마진 디커플링을 무기로 삼아, 고환율 시기에 공격적 마케팅 비용을 투입해 경쟁사를 도태시켜야 해야 합니다. (Conviction Buy)" 
+            actionPlan="**[Actionable Insight]** 원물 가격 상승 리스크가 낮은 참치액의 마진 디커플링을 무기로 삼아, 고환율 시기에 공격적 마케팅 비용을 투입해 경쟁사를 도태시켜야 해야 합니다." 
             source="KMI 거시 무역 데이터 / 내부 원가 모델" 
           />
         </div>
@@ -340,7 +340,7 @@ export default function TunaExtractDashboard() {
                       <BarChart data={data.d_k01_byproduct_safety}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="항목" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Bar dataKey="생부산물" fill="var(--color-danger)" /><Bar dataKey="자숙부산물" fill="var(--color-success)" /><Line type="monotone" dataKey="기준치" stroke="var(--color-warning)" /></BarChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="자숙 부산물은 히스타민 45mg/kg(기준 200 이하)으로 극도로 안전하며, 조단백 24.8%로 영양성도 뛰어남." actionPlan="**[Actionable Insight]** 수출 시 '자숙 공정 인증 원료' 라벨을 도입하여 타 발효수산물 대비 압도적 안전성을 무기로 삼으십시오." source="KFAS 한국수산과학회지" />
+                  <TakeawayBox situation="자숙 부산물은 히스타민 45mg/kg(기준 200 이하)으로 극도로 안전하며, 조단백 24.8%로 영양성도 뛰어남." actionPlan="**[Actionable Insight]** 수출 시 '자숙 공정 인증 원료' 라벨을 도입하여 타 발효수산물 대비 안전성을 무기로 삼으십시오." source="KFAS 한국수산과학회지" />
                 </>
               )}
               {activeResearchTab === 'K05' && (
@@ -351,7 +351,7 @@ export default function TunaExtractDashboard() {
                       <LineChart data={data.d_k05_rapid_anchovy}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="발효일" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Line type="monotone" dataKey="속성발효TN" stroke="var(--color-success)" strokeWidth={2} /><Line type="monotone" dataKey="전통TN" stroke="#64748b" strokeDasharray="5 5" /></LineChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="염장발효덧 적용 시 60일 만에 전통발효(180일)의 93% 품질(TN 1.35%)을 확보 가능." actionPlan="**[Actionable Insight]** 자숙액 속성발효 적용으로 생산 사이클을 6개월에서 2개월로 단축, 재고 회전율 3배를 달성해야 해야 합니다. (Conviction Buy)" source="KFAS 한국수산과학회지" />
+                  <TakeawayBox situation="염장발효덧 적용 시 60일 만에 전통발효(180일)의 93% 품질(TN 1.35%)을 확보 가능." actionPlan="**[Actionable Insight]** 자숙액 속성발효 적용으로 생산 사이클을 6개월에서 2개월로 단축, 재고 회전율 3배를 달성해야 합니다." source="KFAS 한국수산과학회지" />
                 </>
               )}
               {activeResearchTab === 'K07' && (
@@ -362,7 +362,7 @@ export default function TunaExtractDashboard() {
                       <BarChart data={data.d_k07_kanari_koji}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="조건" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Bar dataKey="아미노산" fill="#8b5cf6" /><Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} /></BarChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="쌀코지 첨가 저염(10%) 발효 시 유리아미노산 급증 및 관능 최고점 달성." actionPlan="**[Actionable Insight]** 5060 건강 타겟 '저염 참치액젓(나트륨 50%↓)'을 출시하여 30%의 가격 프리미엄을 확보하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" source="KFAS 한국수산과학회지" />
+                  <TakeawayBox situation="쌀코지 첨가 저염(10%) 발효 시 유리아미노산 급증 및 관능 최고점 달성." actionPlan="**[Actionable Insight]** 5060 건강 타겟 '저염 참치액젓(나트륨 50%↓)'을 출시하여 30%의 가격 프리미엄을 확보하여 잉여현금흐름을 극대화하십시오." source="KFAS 한국수산과학회지" />
                 </>
               )}
               {activeResearchTab === 'K08' && (
@@ -373,7 +373,7 @@ export default function TunaExtractDashboard() {
                       <BarChart data={data.d_k08_debit_sauce}><CartesianGrid strokeDasharray="3 3" stroke="#334155" /><XAxis dataKey="처리단계" stroke="#94a3b8" fontSize={10}/><YAxis stroke="#94a3b8" fontSize={12}/><Tooltip content={<CustomTooltip />} /><Legend /><Bar dataKey="쓴맛강도" fill="var(--color-danger)" /><Line type="monotone" dataKey="감칠맛" stroke="var(--color-success)" /></BarChart>
                     </SafeResponsiveContainer>
                   ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="Aminopeptidase 효소 처리 시 쓴맛이 75% 감소하고 감칠맛이 폭발적으로 상승." actionPlan="**[Actionable Insight]** '제로 비린내, 순수 감칠맛' 라인을 신설하여 기존 멸치/까나리의 한계를 극복하는 핵심 기술로 편입하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" source="KFAS 한국수산과학회지" />
+                  <TakeawayBox situation="Aminopeptidase 효소 처리 시 쓴맛이 75% 감소하고 감칠맛이 폭발적으로 상승." actionPlan="**[Actionable Insight]** '제로 비린내, 순수 감칠맛' 라인을 신설하여 기존 멸치/까나리의 한계를 극복하는 핵심 기술로 편입하여 잉여현금흐름을 극대화하십시오." source="KFAS 한국수산과학회지" />
                 </>
               )}
               {!['K01','K05','K07','K08'].includes(activeResearchTab) && (
@@ -406,8 +406,8 @@ export default function TunaExtractDashboard() {
               </ComposedChart>
             </SafeResponsiveContainer>
             <TakeawayBox 
-              situation="국제 해상운임(SCFI) 급등(Spike) 시점이 수입 원가(물류비)에 반영되기까지 정확히 3~4개월의 지연(Lagging)이 발생합니다." 
-              actionPlan="**[Actionable Insight]** 현재 SCFI 하락 국면을 활용하여, 3개월 후 예상되는 저운임 시기에 원료 수입 물량을 집중하는 '물류 스케줄 헷징' 전략을 실행하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+              situation="국제 해상운임(SCFI) 급등 시점이 수입 원가(물류비)에 반영되기까지 정확히 3~4개월의 지연(Lagging)이 발생합니다." 
+              actionPlan="**[Actionable Insight]** 현재 SCFI 하락 국면을 활용하여, 3개월 후 예상되는 저운임 시기에 원료 수입 물량을 집중하는 '물류 스케줄 헷징' 전략을 실행하여 잉여현금흐름을 극대화하십시오." 
               source="상하이해운거래소(SSE) / 관세청 물류 통계 (2025-2026)" 
             />
           </div>
@@ -432,7 +432,7 @@ export default function TunaExtractDashboard() {
             </SafeResponsiveContainer>
             <TakeawayBox 
               situation="MPEDA 등 신흥국의 참치 가공 육성 정책으로 인해, 인도는 조달 단가가 낮지만 리스크가 크고, 베트남은 태국 대비 단가 15% 절감이 가능하여 가장 이상적입니다." 
-              actionPlan="**[Actionable Insight]** 기존 태국 단일 소싱에서 탈피하여 베트남 OEM 물량을 45%까지 즉각 확보하는 '차이나 플러스 원(China+1)' 방식의 다변화가 필요해야 합니다. (Conviction Buy)" 
+              actionPlan="**[Actionable Insight]** 기존 태국 단일 소싱에서 탈피하여 베트남 OEM 물량을 45%까지 즉각 확보하는 '차이나 플러스 원(China+1)' 방식의 다변화가 필요해야 합니다." 
               source="MPEDA Expression_of_Interest-Tuna.pdf / KITA 무역통계" 
             />
           </div>
@@ -461,7 +461,7 @@ export default function TunaExtractDashboard() {
             </SafeResponsiveContainer>
             <TakeawayBox 
               situation="2026년 기준 참치액젓의 현재 사용률은 38.5%로 급증했으며, 향후 사용 의향은 무려 65.2%로 간장 매대의 진정한 대세로 자리매김했습니다." 
-              actionPlan="**[Actionable Insight]** 소비자 인식에서 멸치/까나리를 압도했으므로, 이제는 전통 간장 수요층을 완전히 흡수하는 '만능 조미료' 브랜딩에 마케팅 예산을 집중하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+              actionPlan="**[Actionable Insight]** 소비자 인식에서 멸치/까나리를 압도했으므로, 이제는 전통 간장 수요층을 완전히 흡수하는 '만능 조미료' 브랜딩에 마케팅 예산을 집중하여 잉여현금흐름을 극대화하십시오." 
               source="2026년 aT 가공식품 세분시장 트렌드 업데이트 (LIVE 연동)" 
             />
           </div>
@@ -486,8 +486,8 @@ export default function TunaExtractDashboard() {
               </ComposedChart>
             </SafeResponsiveContainer>
             <TakeawayBox 
-              situation="연안 어획 부진으로 멸치/까나리 생산량이 5년간 급감하는 동안, 공급이 안정적인 참치액젓의 발주량은 이에 반비례하여 완벽한 '풍선 효과'를 누리고 있습니다." 
-              actionPlan="**[Actionable Insight]** 전통 액젓 가격 급등(Spike)으로 매입원가(COGS) 압박을 받는 HMR/외식 프랜차이즈 B2B 시장을 집중 공략하여 '안정적 공급가 보장'을 무기로 B2B 계약을 싹쓸이해야 해야 합니다. (Conviction Buy)" 
+              situation="연안 어획 부진으로 멸치/까나리 생산량이 5년간 급감하는 동안, 공급이 안정적인 참치액젓의 발주량은 이에 반비례하여 강한 '풍선 효과'를 누리고 있습니다." 
+              actionPlan="**[Actionable Insight]** 전통 액젓 가격 급등으로 매입원가 압박을 받는 HMR/외식 프랜차이즈 B2B 시장을 집중 공략하여 '안정적 공급가 보장'을 무기로 B2B 계약을 싹쓸이해야 합니다." 
               source="해양수산부 생산량 DB / 내부 B2B 발주 데이터" 
             />
           </div>
@@ -517,8 +517,8 @@ export default function TunaExtractDashboard() {
               </SafeResponsiveContainer>
             ) : <EmptyState message="규제 데이터 로딩 실패" />}
             <TakeawayBox 
-              situation="FDA(50ppm)와 EU(200mg/kg)의 통관 규제선이 매우 높습니다. 경쟁 액젓류(185mg/kg)는 EU 기준을 간신히 맞추나, 참치 자숙액은 45mg/kg으로 압도적입니다." 
-              actionPlan="**[Actionable Insight]** 가장 엄격한 FDA 기준(50ppm)을 통과하는 수출 전용 '저히스타민 라인' 인증을 선점하여 북미 한인마트 및 아시안 소스 시장을 독점하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)" 
+              situation="FDA(50ppm)와 EU(200mg/kg)의 통관 규제선이 매우 높습니다. 경쟁 액젓류(185mg/kg)는 EU 기준을 간신히 맞추나, 참치 자숙액은 45mg/kg으로 입니다." 
+              actionPlan="**[Actionable Insight]** 가장 엄격한 FDA 기준(50ppm)을 통과하는 수출 전용 '저히스타민 라인' 인증을 선점하여 북미 한인마트 및 아시안 소스 시장을 독점하여 잉여현금흐름을 극대화하십시오." 
               source="FDA CPG 7108.240 / EU Regulation No 2073/2005" 
             />
           </div>

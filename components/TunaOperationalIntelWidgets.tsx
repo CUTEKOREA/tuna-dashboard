@@ -59,22 +59,22 @@ const TakeawayBox = ({ id }: { id: string }) => {
     "enso": {
       "source": "NOAA Climate Data & ISSF CPUE Report / WCPFC SC21 Summary",
       "situation": "ENSO(엘니뇨·라니냐)는 어군 이동의 최대 변수입니다. 엘니뇨 시 Warm Pool이 동쪽으로 이동하면서 중태평양(키리바시·마샬 해역) CPUE는 상승하지만, 전통 서태평양(PNG·솔로몬 해역) CPUE는 하락합니다. 차트의 CPUE는 서태평양 전통 어장 기준이며, 2024년 엘니뇨(+1.2°C)로 서태평양 CPUE가 85로 하락한 반면 중태평양은 호조였습니다. 2026년 라니냐 전환(-1.0°C) 예보 시 서태평양 CPUE는 110으로 반등 전망이나, 중태평양은 역으로 위축됩니다.",
-      "short": "**[Actionable Insight]** 엘니뇨 예보 시 중태평양(키리바시·마샬) 조업 허가권 선제 확보, 라니냐 전환 시 서태평양(PNG·솔로몬) 복귀 전략 병행해야 합니다. (Dual Strategy Execution)",
-      "long": "**[Actionable Insight]** 표층 수온(SST) AI 모델을 도입하여 ENSO 국면별 최적 해역 자동 추천 및 선단 연료 소모율 15% 감축 극대화해야 합니다. (Maximize Returns)",
-      "risk": "**[Actionable Insight]** 엘니뇨/라니냐 전환 타이밍 예측 실패 시 빈 해역 조업으로 수익 손실 발생. 태풍 빈도 상승 시 대피 매뉴얼 점검 및 해상 통신 인프라(스타링크) 확보해야 합니다. (Secure Assets)"
+      "short": "**[Actionable Insight]** 엘니뇨 예보 시 중태평양(키리바시·마샬) 조업 허가권 선제 확보, 라니냐 전환 시 서태평양(PNG·솔로몬) 복귀 전략 병행해야 합니다.",
+      "long": "**[Actionable Insight]** 표층 수온(SST) AI 모델을 도입하여 ENSO 국면별 최적 해역 자동 추천 및 선단 연료 소모율 15% 감축 극대화해야 합니다.",
+      "risk": "**[Actionable Insight]** 엘니뇨/라니냐 전환 타이밍 예측 실패 시 빈 해역 조업으로 수익 손실 발생. 태풍 빈도 상승 시 대피 매뉴얼 점검 및 해상 통신 인프라(스타링크) 확보해야 합니다."
     },
     "fad": {
       "source": "WCPFC Technical Report on Eco-FADs",
       "situation": "일반 FAD 대비 스마트 FAD(Eco)를 사용할 경우, 주요 타겟 어종(스킵잭)의 어획 비율이 60%에서 85%로 대폭 상승하고, 부수어획(혼획)은 10%에서 3%로 감소합니다. 이는 EU·미주 유통망이 요구하는 '지속가능 조업 인증' 기준을 충족시키며, 생분해성 소재 전환이 곧 시장 접근권의 핵심 무기가 됩니다.",
-      "short": "**[Actionable Insight]** 생분해성 FAD 우선 도입으로 유럽/미주 리테일 바이어 계약 연장해야 합니다. (Contract Extension)",
-      "long": "**[Actionable Insight]** 에코사운더 결합 분석으로 타겟 초정밀 탐색 시스템 내재화(Internalization).",
+      "short": "**[Actionable Insight]** 생분해성 FAD 우선 도입으로 유럽/미주 리테일 바이어 계약 연장해야 합니다.",
+      "long": "**[Actionable Insight]** 에코사운더 결합 분석으로 타겟 초정밀 탐색 시스템 내재화.",
       "risk": "**[Actionable Insight]** FAD 유실률(Loss rate) 통제로 해양 오염 부과금 페널티 방어해야 합니다. (Defensive Posture)"
     },
     "port": {
       "source": "Global Port Demurrage DB & WCPO Unloading Log & Drewry Reefer Index",
-      "situation": "7~9월 금어기(FAD Closure) 시즌은 하역 대기일(최대 14일)과 초저온 운반선 운임(최대 $7,200/FEU)이 동시에 폭증하는 '이중 병목' 구간입니다. 이 기간 대기 손실만 8월 최고 $850K에 이르며, 비수기(4월: 대기 3일, $4,800/FEU) 대비 총비용이 3~4배 팽창합니다. 금어기 직전 물량 집중과 콜드체인 수요 폭증이 겹치면서 체선료(Demurrage)가 하루 $10K 이상 발생하는 리스크(Risk) 구간입니다.",
-      "short": "**[Actionable Insight]** 금어기 2개월 전 셔틀 선박 용선 완료 및 양륙 터미널·냉동 플러그 장기 임대 조기 조기 락인(Lock-in)해야 합니다. (Early Commitment)",
-      "long": "**[Actionable Insight]** 마주로·방콕 등 주요 허브의 냉동 창고 지분 투자 + 직행 콜드 셔틀(안데스 ↔ 아시아) 통합 하역 인프라 내재화(Internalization).",
+      "situation": "7~9월 금어기(FAD Closure) 시즌은 하역 대기일(최대 14일)과 초저온 운반선 운임(최대 $7,200/FEU)이 동시에 폭증하는 '이중 병목' 구간입니다. 이 기간 대기 손실만 8월 최고 $850K에 이르며, 비수기(4월: 대기 3일, $4,800/FEU) 대비 총비용이 3~4배 팽창합니다. 금어기 직전 물량 집중과 콜드체인 수요 폭증이 겹치면서 체선료(Demurrage)가 하루 $10K 이상 발생하는 리스크 구간입니다.",
+      "short": "**[Actionable Insight]** 금어기 2개월 전 셔틀 선박 용선 완료 및 양륙 터미널·냉동 플러그 장기 임대 조기 조기 락인해야 합니다. (Early Commitment)",
+      "long": "**[Actionable Insight]** 마주로·방콕 등 주요 허브의 냉동 창고 지분 투자 + 직행 콜드 셔틀(안데스 ↔ 아시아) 통합 하역 인프라 내재화.",
       "risk": "**[Actionable Insight]** 체선료 폭등 + 운임 스파이크 동시 발생 시 대체 하역항(필리핀 등) 사전 발굴 및 하루 $10K 페널티 시뮬레이션 모델 즉시 가동해야 합니다. (System Activation)"
     },
     "em_reg": {
@@ -100,14 +100,14 @@ const TakeawayBox = ({ id }: { id: string }) => {
     },
     "blackhole": {
       "source": "CFR Bangkok Price Index & EU/US Cold Storage Data",
-      "situation": "24-Q1 '패닉' 구간에서 스킵잭 방콕 시세가 $1,400에서 $1,900으로 35% 급등(Spike)한 반면, EU·US 창고 재고지수는 40~45까지 급감했습니다. 이후 Q3에서 재고가 85~90으로 회복되자 가격은 $1,600으로 다시 하락하여, '패닉 바잉 → 과잉 재고 → 가격 폭락' 사이클이 뚜렷하게 나타납니다.",
+      "situation": "24-Q1 '패닉' 구간에서 스킵잭 방콕 시세가 $1,400에서 $1,900으로 35% 급등한 반면, EU·US 창고 재고지수는 40~45까지 급감했습니다. 이후 Q3에서 재고가 85~90으로 회복되자 가격은 $1,600으로 다시 하락하여, '패닉 바잉 → 과잉 재고 → 가격 폭락' 사이클이 뚜렷하게 나타납니다.",
       "short": "**[Actionable Insight]** 어가 반등 뉴스 캐치 시 즉시 2개월치 물량 창고 락인(Wait & Hold) 즉각 실행해야 합니다. (Immediate Execution)",
       "long": "**[Actionable Insight]** 미국/EU 메이저 수입상의 재고 소진 시기(수요 공백기)를 계산하여 저점 매수 고점 고점 방출해야 합니다. (Take Profit)",
       "risk": "**[Actionable Insight]** 수입상 재고 조기 포화 시 데드캣 바운스 전 빠르게 덤핑/투매하는 역학 밸런스 통제해야 합니다. (Risk Control)"
     },
     "rival": {
       "source": "Global Seafood Major 3 Annual Reports (Maruha, Thai Union, Dongwon)",
-      "situation": "글로벌 메이저 3사의 포트폴리오를 보면, Maruha는 이미 양식업(45%) 중심으로 전환 완료했고, Thai Union은 가치 부가(45%) 비중이 압도적입니다. 반면 Dongwon은 참치 비중이 55%로 단일 어종 의존도(Exposure)가 여전히 높아, 어가 폭락 사이클에 가장 취약한 구조임을 보여줍니다.",
+      "situation": "글로벌 메이저 3사의 포트폴리오를 보면, Maruha는 이미 양식업(45%) 중심으로 전환 완료했고, Thai Union은 가치 부가(45%) 비중이 입니다. 반면 Dongwon은 참치 비중이 55%로 단일 어종 의존도(Exposure)가 여전히 높아, 어가 폭락 사이클에 가장 취약한 구조임을 보여줍니다.",
       "short": "**[Actionable Insight]** Maruha, Thai Union 등 메이저사의 비참치(Non-tuna)/양식업 지분 매입 흐름 추적해야 합니다. (Continuous Monitoring)",
       "long": "**[Actionable Insight]** 순수 조업/가공 밸류체인을 넘어선 수직계열화(CVC 투자 병행)로 캐시카우 다변화해야 합니다. (Diversify Exposure)",
       "risk": "**[Actionable Insight]** 어가 폭락 사이클 진입 시, 단일 어종 의존도(Exposure)가 높은 기업은 흑자 부도로 직행할 수 있음을 경계해야 합니다. (High Alert)"
@@ -117,13 +117,13 @@ const TakeawayBox = ({ id }: { id: string }) => {
       "situation": "ICCAT 관할 해역의 쿼터가 -22%로 가장 큰 폭의 삭감이 예상되며, 초과 시 페널티 배율은 300%에 달합니다. WCPFC도 -15% 삭감/200% 페널티, IATTC은 -10%/150% 수준으로, 사전에 대체 해역 조업권을 확보하지 못하면 한 차례의 쿼터 초과만으로도 연간 수익이 소멸될 수 있습니다.",
       "short": "**[Actionable Insight]** 빅아이/옐로핀 차년도 삭감 가능성 대비 선제적 대체 해역 조업권 매집 시뮬레이션 즉시 가동해야 합니다. (System Activation)",
       "long": "**[Actionable Insight]** 할당량 기반 매매(Trading) 시장에서 장기 계약 기반의 쿼터 락인 옵션 조기 조기 매수해야 합니다. (Early Accumulation)",
-      "risk": "**[Actionable Insight]** 쿼터 초과 시 징수되는 페널티 모델과 잉여 Bottom-line(순이익) 간의 최적화 손익 분기점 확보해야 합니다. (Secure Assets)"
+      "risk": "**[Actionable Insight]** 쿼터 초과 시 징수되는 페널티 모델과 잉여 Bottom-line(순이익) 간의 최적화 손익 분기점 확보해야 합니다."
     },
     "labour": {
       "source": "CBP Withhold Release Order(WRO) Data & NGO Reports",
       "situation": "2022년 노동 이슈 12건, 항만 입항 거부 3건이었던 상황이 추적 인증 구비율을 45%→98%로 끌어올리자 2026년에는 이슈 1건, 거부 0건으로 극적으로 개선되었습니다. 블록체인 기반 추적 인증서가 '보험' 역할을 하며, CBP(미 세관) 강제 노동 억류를 사전 방어하는 핵심 무기임을 보여줍니다.",
       "short": "**[Actionable Insight]** 미 세관(CBP) 강제 노동 관련 억류를 피할 추적 가능 인증서 블록체인 체계 연동해야 합니다. (System Integration)",
-      "long": "**[Actionable Insight]** 벤더사 및 인력 송출국 대상 분기별 자체 감사(Audit) 조직 신설로 리스크 내재화(Internalization) 방지해야 합니다. (Preventative Action)",
+      "long": "**[Actionable Insight]** 벤더사 및 인력 송출국 대상 분기별 자체 감사(Audit) 조직 신설로 리스크 내재화 방지해야 합니다. (Preventative Action)",
       "risk": "**[Actionable Insight]** 표적 캠페인에 의한 글로벌 NGO의 어선 블랙리스트 지정 가능성 원천 원천 차단해야 합니다. (Block Risks)"
     },
     "ai_bep": {
@@ -136,7 +136,7 @@ const TakeawayBox = ({ id }: { id: string }) => {
     "margin": {
       "source": "Super Freezer Premium Index & Fleet Fuel Cost Analytics & FAO/FFA Fleet Economics",
       "situation": "차트는 글로별 상위권 연승 업체(일본·대만 초저온 선단)의 사시미급 프리미엄 마진 추세를 보여줍니다. 단, 신라교역의 연승 사업이 적자인 것은 이 추세와 모순되지 않습니다. 핵심 괴리는 (1) 노후화된 선단의 연료 비효율(Inefficiency), (2) -60°C 초저온 콜드체인 미비로 사시미 프리미엄 단가를 몇 수용하지 못하는 점, (3) 시장 직거래 대신 중간 중개상 납품으로 단가가 20~30% 할인되는 구조입니다. 즉, 마진 역전의 수혜는 초저온 시설+사시미 직거래망을 갖춤 업체에만 해당되며, 그렇지 못한 연승은 오히려 선망보다 나쁜 마진 구조에 갇힐니다.",
-      "short": "**[Actionable Insight]** 우리 연승 선단의 초저온(-60°C) 콜드체인 능력 긴급 진단: 사시미 프리미엄 단가 획득이 불가하면 연승 철수/축소 결단 병행해야 합니다. (Dual Strategy Execution)",
+      "short": "**[Actionable Insight]** 우리 연승 선단의 초저온(-60°C) 콜드체인 능력 긴급 진단: 사시미 프리미엄 단가 획득이 불가하면 연승 철수/축소 결단 병행해야 합니다.",
       "long": "**[Actionable Insight]** 연승 유지 시: Super Freezer 설비 투자 + 일본 초소거 경매 시장 직거래망 구축으로 마진 역전 구간 진입. 철수 시: 선망 전용 스킵잭 증산에 외력 집중해야 합니다. (Concentrate Resources)",
       "risk": "**[Actionable Insight]** 현 연승 적자 지속 시 매년 손실이 누적되는 구조: 철수 vs Super Freezer 투자의 BEP(Break-Even Point) 시뮬레이션 즉각 수행 수행 필수입니다. (Mandatory Action)"
     },
@@ -152,11 +152,11 @@ const TakeawayBox = ({ id }: { id: string }) => {
       "situation": "태국 경유 시 EU 수입 관세 24% + 물류비 5%가 발생하지만, 에콰도르(관세 0%, 물류 8%) 또는 파푸아뉴기니(관세 0%, 물류 7%)로 가공 경로를 전환하면 순 비용이 21~17%포인트 감소합니다. 물류비가 3%p 증가하더라도 관세 24%를 완전 회피하므로 21%p의 순마진 차익이 확보되는 구조입니다.",
       "short": "**[Actionable Insight]** 아프리카, 태평양 도서국 등 0% 관세 혜택 국가로의 1차 가공(Loin) 아웃소싱 테스트 테스트 오더를 진행해야 합니다. (Pilot Execution)",
       "long": "**[Actionable Insight]** 태국(24% 관세) 대비 물류비(3%) 증가에도 불구하고 21% 마진 차익 확보를 위한 허브 재배치.",
-      "risk": "**[Actionable Insight]** 정치적 이슈로 GSP+ 혜택 강제 박탈 시 즉각 대체 가능한 허브(필리핀 등) 투트랙 투트랙 유지해야 합니다. (Dual-track Strategy)"
+      "risk": "**[Actionable Insight]** 정치적 이슈로 GSP+ 혜택 강제 박탈 시 즉각 대체 가능한 허브(필리핀 등) 투트랙 투트랙 유지해야 합니다."
     },
     "byproduct": {
       "source": "Global Pet Food Margin Report & Fishmeal Byproduct Valorization DB",
-      "situation": "참치캔 본품의 영업Bottom-line(순이익)률(8%)은 매입원가(COGS) 한계에 부딪힌 반면, 펫푸드(25%)와 오메가-3 오일(55%)은 동일 원재료(잔여 뼈/내장)에서 3~7배의 마진을 창출합니다. 현재 15%에 달하는 잔여물을 100% 활용할 경우 폐기비용 제로화와 함께 연간 신규 매출원이 발생하는 이중효과를 기대할 수 있습니다.",
+      "situation": "참치캔 본품의 영업Bottom-line(순이익)률(8%)은 매입원가 한계에 부딪힌 반면, 펫푸드(25%)와 오메가-3 오일(55%)은 동일 원재료(잔여 뼈/내장)에서 3~7배의 마진을 창출합니다. 현재 15%에 달하는 잔여물을 100% 활용할 경우 폐기비용 제로화와 함께 연간 신규 매출원이 발생하는 이중효과를 기대할 수 있습니다.",
       "short": "**[Actionable Insight]** 잔여 뼈/내장의 15%를 직접 펫푸드(Pet Care) 라인으로 이동시켜 폐기비용 즉각 0원 달성해야 합니다. (Achieve Milestone)",
       "long": "**[Actionable Insight]** 어분에 특화된 라인을 넘어 초프리미엄 펫푸드 자회사 인수합병(M&A) 전략 검토해야 합니다. (Strategic Review)",
       "risk": "**[Actionable Insight]** 원물 마진(8%) 한계를 뷰티/펫(30%~50%)로 방어하여 어상폭락 사이클 완충 파이프라인 파이프라인을 생성해야 합니다. (Pipeline Creation)"
@@ -181,7 +181,7 @@ const TakeawayBox = ({ id }: { id: string }) => {
       "situation": "태국 방콕의 가공 허브 점유율이 2020년 55%에서 2025년 35%로 20%p 하락하는 반면, 에콰도르 만타(15%→28%)와 베트남 호치민(10%→18%)이 공격적으로 점유율을 확대하고 있습니다. 태국의 최저임금 상승(+40%)과 바트화 강세가 비용 경쟁력을 잠식하면서, 글로벌 가공 패권이 중남미·동남아로 분산되는 중입니다.",
       "short": "**[Actionable Insight]** 바트화 전면 강세 및 인력난 대처를 위해 베트남/에콰도르 하역 턴어라운드 허브 우선 선제 선제 적용해야 합니다. (Early Adoption)",
       "long": "**[Actionable Insight]** 동남태평양 원물 직행 코스(에콰도르 만타 포트) 다이렉트 OEM 활성화 구축해야 합니다. (Establish Infrastructure)",
-      "risk": "**[Actionable Insight]** 안데스/신규 허브 초기 수율 문제(클레임) 통제를 위해 자사 품질 감리관 상주 조직 체계 확보해야 합니다. (Secure Assets)"
+      "risk": "**[Actionable Insight]** 안데스/신규 허브 초기 수율 문제(클레임) 통제를 위해 자사 품질 감리관 상주 조직 체계 확보해야 합니다."
     },
     "altseafood": {
       "source": "Good Food Institute (GFI) Alternative Seafood Market Forecast",
@@ -192,14 +192,14 @@ const TakeawayBox = ({ id }: { id: string }) => {
     },
     "species_dom": {
       "source": "FAO Global Fisheries Origin Database (1950-2024)",
-      "situation": "1950년부터 2024년까지 75년간 어종별 생산 추이를 보면, 가다랑어(Skipjack)가 전체 생산의 약 60%(357만 톤)를 독점적으로 차지하며, 눈다랑어(Bigeye)는 33만 톤으로 정체·감소세에 진입했습니다. 황다랑어(Yellowfin)는 171만 톤으로 안정적 2위를 유지하고 있으나, 가다랑어 대비 수익 마진이 2배 이상 높아 어종 비중 재편이 수익성(Profitability)의 핵심 레버입니다.",
-      "short": "**[Actionable Insight]** 눈다랑어 쿼터가 줄어드는 구간에서 황다랑어 연승(Longline) 비중을 30% 이상 확대하여 톤당 마진을 극대화해야 합니다. (Maximize Returns)",
+      "situation": "1950년부터 2024년까지 75년간 어종별 생산 추이를 보면, 가다랑어(Skipjack)가 전체 생산의 약 60%(357만 톤)를 독점적으로 차지하며, 눈다랑어(Bigeye)는 33만 톤으로 정체·감소세에 진입했습니다. 황다랑어(Yellowfin)는 171만 톤으로 안정적 2위를 유지하고 있으나, 가다랑어 대비 수익 마진이 2배 이상 높아 어종 비중 재편이 수익성의 핵심 레버입니다.",
+      "short": "**[Actionable Insight]** 눈다랑어 쿼터가 줄어드는 구간에서 황다랑어 연승(Longline) 비중을 30% 이상 확대하여 톤당 마진을 극대화해야 합니다.",
       "long": "**[Actionable Insight]** 가다랑어 의존 포트폴리오에서 탈피하여 프리미엄 어종(황다랑어·알바코어) 비중을 40%로 올리는 5개년 선대 재편 로드맵 마스터플랜 수립해야 합니다. (Masterplan Required)",
-      "risk": "**[Actionable Insight]** 눈다랑어 자원량 지속 감소 시 RFMO 쿼터 전면 삭감 가능성을 대비한 대체 어종 전환 파이프라인 확보해야 합니다. (Secure Assets)"
+      "risk": "**[Actionable Insight]** 눈다랑어 자원량 지속 감소 시 RFMO 쿼터 전면 삭감 가능성을 대비한 대체 어종 전환 파이프라인 확보해야 합니다."
     },
     "area_exhaust": {
       "source": "FAO Catch Area Density & CPUE Long-term Trends",
-      "situation": "9개 FAO 주요 해역의 75년간 어획량 변동에서, 서중태평양(WCPO)이 358만 톤으로 전체의 약 50%를 차지하는 절대 강자입니다. 그러나 동태평양(58만 톤), 동인도양(58만 톤)이 빠르게 성장하고 있으며, 대서양 중서부는 2.6만 톤으로 사실상 고갈 해역입니다. 해역별 CPUE 밀도 포화도가 향후 입어권 전략의 핵심 변수입니다.",
+      "situation": "9개 FAO 주요 해역의 75년간 어획량 변동에서, 서중태평양이 358만 톤으로 전체의 약 50%를 차지하는 절대 강자입니다. 그러나 동태평양(58만 톤), 동인도양(58만 톤)이 빠르게 성장하고 있으며, 대서양 중서부는 2.6만 톤으로 사실상 고갈 해역입니다. 해역별 CPUE 밀도 포화도가 향후 입어권 전략의 핵심 변수입니다.",
       "short": "**[Actionable Insight]** WCPO 포화 해역 의존도(Exposure)를 60%에서 45%로 감축하고, 동인도양·동태평양 입어권 조기 매입 교섭 교섭 착수해야 합니다. (Initiate Negotiation)",
       "long": "**[Actionable Insight]** FAO 해역별 CPUE 트렌드 데이터를 분기별 업데이트하여, 해역 분산 최적화 알고리즘 기반의 선단 배치 자동화 시스템 구축해야 합니다. (Establish Infrastructure)",
       "risk": "**[Actionable Insight]** 대서양 중서부 수준의 자원 고갈이 인도양으로 전이될 가능성에 대한 조기 경보 체계 마스터플랜 수립해야 합니다. (Masterplan Required)"
@@ -207,7 +207,7 @@ const TakeawayBox = ({ id }: { id: string }) => {
     "hegemony": {
       "source": "Global Top 6 Tuna Producer National Fleet Statistics",
       "situation": "6대 참치 생산국의 75년 생산 점유율 변동에서, 일본은 1970년대 40%에서 현재 5% 미만으로 극적 쇠퇴를 기록했고, 인도네시아가 126만 톤으로 세계 1위에 올랐습니다. 한국은 34만 톤으로 세계 3~4위를 유지하나, 대만(30만 톤)과의 격차가 좁혀지고 있어 위상 방어가 필요합니다.",
-      "short": "**[Actionable Insight]** 인도네시아 어선 오너와의 합작 JV(조인트벤처) 형태로 WCPO 내 조업 거점을 확보하여 매입원가(COGS) 경쟁력 확보해야 합니다. (Secure Assets)",
+      "short": "**[Actionable Insight]** 인도네시아 어선 오너와의 합작 JV(조인트벤처) 형태로 WCPO 내 조업 거점을 확보하여 매입원가 경쟁력 확보해야 합니다.",
       "long": "**[Actionable Insight]** 한국 수산업의 글로벌 3위권 유지를 위해 필리핀·파푸아뉴기니와의 어업협정 갱신 우선 교섭 리스트 관리 체계화.",
       "risk": "**[Actionable Insight]** 대만과의 생산 격차 역전 시 RFMO 내 투표권 및 쿼터 배분에서 불리해질 수 있는 외교적 리스크 선제 선제 대응해야 합니다. (Proactive Response)"
     },
@@ -216,7 +216,7 @@ const TakeawayBox = ({ id }: { id: string }) => {
       "situation": "눈다랑어(Bigeye)는 33만 톤으로 감소 추세인 반면, 참다랑어(Bluefin)는 양식 확대에 힘입어 7.1만 톤까지 회복했습니다. '프리미엄 어종의 교차점'—즉, 양식 블루핀의 공급 증가로 kg당 가격이 하락하면서 자연산 눈다랑어와의 가격 역전이 특정 시장(일본)에서 발생 중이며, 이 교차점을 수익 전략에 반영해야 합니다.",
       "short": "**[Actionable Insight]** 양식 블루핀 가격 하락기에 일본향 자연산 눈다랑어의 '야생(Wild-Caught) 프리미엄' 마케팅 강화로 가격 방어해야 합니다. (Defensive Posture)",
       "long": "**[Actionable Insight]** 참다랑어 양식 5대국(일본·호주·멕시코·몰타·스페인)의 생산량 모니터링 체계를 구축하여 가격 교차점 예측 모델링.",
-      "risk": "**[Actionable Insight]** 양식 블루핀 가격이 자연산 눈다랑어 이하로 떨어질 경우, 사시미 시장 전체의 마진 압축을 방어할 헤지 포지션 확보해야 합니다. (Secure Assets)"
+      "risk": "**[Actionable Insight]** 양식 블루핀 가격이 자연산 눈다랑어 이하로 떨어질 경우, 사시미 시장 전체의 마진 압축을 방어할 헤지 포지션 확보해야 합니다."
     },
     "aqua_disrupt": {
       "source": "Global SBT & Bluefin Aquaculture Production Yearbook",
@@ -228,7 +228,7 @@ const TakeawayBox = ({ id }: { id: string }) => {
     "korea_radar": {
       "source": "Korea Customs Service Tuna Import Database",
       "situation": "한국의 참다랑어 수입은 2019년 1,511톤(200억 원)에서 2023년 618톤(90억 원)으로 59% 급감했습니다. 원산지별로는 스페인(207톤)이 1위, 기타(185톤), 튀르키예(113톤), 일본(92톤), 호주(21톤) 순이며, 호주산이 2022년 190톤에서 2023년 21톤으로 89% 폭락한 점이 특이합니다.",
-      "short": "**[Actionable Insight]** 호주산 급감의 원인(SBT 수출 정책, 가격 경쟁력 변동)을 긴급 분석하고, 대체 공급원(몰타, 크로아티아)을 사전 확보해야 합니다. (Secure Assets)",
+      "short": "**[Actionable Insight]** 호주산 급감의 원인(SBT 수출 정책, 가격 경쟁력 변동)을 긴급 분석하고, 대체 공급원(몰타, 크로아티아)을 사전 확보해야 합니다.",
       "long": "**[Actionable Insight]** 한국 수입 시장의 단가 추이(2019년 $13.3/kg → 2023년 $14.6/kg)에 맞춘 가격대별 최적 원산지 매칭 알고리즘 구축해야 합니다. (Establish Infrastructure)",
       "risk": "**[Actionable Insight]** 튀르키예·스페인 양대 공급원에 과도하게 의존하는 구조를 개선하여 지정학 리스크(EU-터키 관계) 방어해야 합니다. (Defensive Posture)"
     },
@@ -237,21 +237,21 @@ const TakeawayBox = ({ id }: { id: string }) => {
       "situation": "글로벌 참다랑어 수입 블랙홀 TOP 3는 일본(51,458톤), 미국(17,447톤), 포르투갈(10,942톤)으로, 일본 단독으로 전체 거래량의 약 50%를 흡수합니다. 한국(4,342톤)은 6위이며, 중국(3,704톤)이 빠르게 추격 중입니다. 일본의 소비 감소 → 수입 블랙홀 축소 시 글로벌 가격 급락 연쇄 효과가 예상됩니다.",
       "short": "**[Actionable Insight]** 일본 수입량 동향을 월별 추적하여, 감소 신호 포착 시 미국·중국향 물량 전환 계약을 선제 체결.",
       "long": "**[Actionable Insight]** 일본 의존도(Exposure) 50% 이상인 수출사의 리스크를 분산하기 위해 미국 프리미엄 시장(포케/스시바) 진출 로드맵 마스터플랜 수립해야 합니다. (Masterplan Required)",
-      "risk": "**[Actionable Insight]** 일본 경기 침체기에 수입 블랙홀이 갑자기 수축할 때 발생하는 가격 급락 리스크(Risk)을 선물 헤지로 방어해야 합니다. (Defensive Posture)"
+      "risk": "**[Actionable Insight]** 일본 경기 침체기에 수입 블랙홀이 갑자기 수축할 때 발생하는 가격 급락 리스크을 선물 헤지로 방어해야 합니다. (Defensive Posture)"
     },
     "export_risk": {
       "source": "Australia, Malta, Turkey Export Reliance Analytics",
       "situation": "주요 참다랑어 수출국 5개국의 수출 목적지를 분석하면, 호주·몰타·튀르키예 모두 일본 시장 비중이 60~85%에 달하는 극단적 편중 구조입니다. 호주는 일본향 39,644톤 vs 미국향 905톤으로 일본 의존도(Exposure) 96%이며, 이는 일본 수요 1% 감소가 호주 수출 전체를 흔드는 '단일 고객 집중 리스크'입니다.",
       "short": "**[Actionable Insight]** 자사 수출 포트폴리오가 일본 편중 60% 이상인지 즉시 진단하고, 미국·EU·중국 3개 시장 분산 목표치 설정.",
       "long": "**[Actionable Insight]** 호주·몰타의 일본 편중 사례를 타산지석으로, 미국 소매(Costco·Whole Foods) 직납 채널 개척 가속화.",
-      "risk": "**[Actionable Insight]** 일본 엔저(¥150+) 장기화 시 엔화 기준 구매력 저하로 인한 물량 축소를 대비한 환율 헤지 포지션 확보해야 합니다. (Secure Assets)"
+      "risk": "**[Actionable Insight]** 일본 엔저(¥150+) 장기화 시 엔화 기준 구매력 저하로 인한 물량 축소를 대비한 환율 헤지 포지션 확보해야 합니다."
     },
     "enso_skipjack": {
       "source": "MGWR-BME Framework (Wang et al.) & WCPO Catch Spatial Data",
       "situation": "MGWR-BME 프레임워크 기반 연구(Wang et al.)에 따르면, 엘니뇨 시 가다랑어 조업 분포가 서태평양에서 중태평양으로 동쪽 이동하며, 라니냐 시 서태평양으로 회귀합니다. WCPO 선망어선의 어획 효율은 라니냐 시 15~20% 상승, 엘니뇨 시 10~25% 하락하는 패턴이 75년간 반복되었습니다.",
       "short": "**[Actionable Insight]** 기상청 ENSO 전망 발표 즉시, 라니냐 예보 시 WCPO 서부 선단 집중 배치, 엘니뇨 시 중부 이동 프로토콜 즉시 가동해야 합니다. (System Activation)",
       "long": "**[Actionable Insight]** ISSF 세계 참치어업 보고서와 NOAA ENSO 예보를 결합한 자체 '기후-어장 AI 모델'을 년 2회 업데이트 체계 구축해야 합니다. (Establish Infrastructure)",
-      "risk": "**[Actionable Insight]** 예보 실패(엘니뇨 전환이 예상보다 빠를 때)에 대비한 2개 해역 이상 동시 운영 체제 확보해야 합니다. (Secure Assets)"
+      "risk": "**[Actionable Insight]** 예보 실패(엘니뇨 전환이 예상보다 빠를 때)에 대비한 2개 해역 이상 동시 운영 체제 확보해야 합니다."
     },
     "alba_habitat": {
       "source": "SPC South Pacific Albacore Assessment (2024) & Mondal et al.",
@@ -421,7 +421,7 @@ const data_species = [
   { year: '2024', skipjack: 3575, bigeye: 329, yellowfin: 1710 },
 ];
 const data_area = [
-  { area: '중서부태평양(WCPO)', vol2000: 2240, vol2024: 3583 },
+  { area: '중서부태평양', vol2000: 2240, vol2024: 3583 },
   { area: '서인도양', vol2000: 685, vol2024: 1066 },
   { area: '동인도양', vol2000: 370, vol2024: 578 },
   { area: '동중부태평양', vol2000: 429, vol2024: 584 },

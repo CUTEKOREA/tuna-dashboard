@@ -694,7 +694,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
         
-        {/* ═══════ Part I: 원물 생산 (Raw Material) ═══════ */}
+        {/* ═══════ Part I: 원물 생산 ═══════ */}
         {activePart === 'S1' && (
           <section>
             <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>

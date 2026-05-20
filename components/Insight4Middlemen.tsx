@@ -68,7 +68,7 @@ const Insight4Middlemen = () => {
           
         </h3>
         <p className={styles.cardSubtitle}>
-          과거 압도적 수출 우위였던 한국/일본의 무역 수지가 적자로 곤두박질치는 '크로스 역전'
+          과거 수출 우위였던 한국/일본의 무역 수지가 적자로 곤두박질치는 '크로스 역전'
         </p>
       </div>
 

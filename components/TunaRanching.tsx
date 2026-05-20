@@ -242,7 +242,7 @@ export default function TunaRanching() {
           <TakeawayBox
             source="Krungsri Research - 2025-2027 Canned Seafood Industry Outlook"
             situation="미국과 유럽의 징벌적 관세 장벽 강화와 IUU(불법조업) 규제로 인해, 전통적인 선진국 프리미엄 시장의 무역 마찰 비용이 기하급수적으로 증가하고 있습니다."
-            actionPlan="**[Actionable Insight]** 미국/EU로 향하던 잉여 물량과 타겟 수요가 '한-UAE CEPA' 등 관세 혜택이 명확한 중동(UAE, 사우디)으로 블랙홀처럼 흡수될 예정입니다. 즉시 중동 직납 밸류체인을 구축하여 무관세 프리미엄을 독식해야 해야 합니다. (Conviction Buy)"
+            actionPlan="**[Actionable Insight]** 미국/EU로 향하던 잉여 물량과 타겟 수요가 '한-UAE CEPA' 등 관세 혜택이 명확한 중동(UAE, 사우디)으로 블랙홀처럼 흡수될 예정입니다. 즉시 중동 직납 밸류체인을 구축하여 무관세 프리미엄을 독식해야 합니다."
           />
         </div>
 
@@ -398,7 +398,7 @@ export default function TunaRanching() {
                 situation="ICCAT TAC의 50%가 지중해 축양장(CBA)으로 수용되어, 쿼터 소유권이 극소수 법인에 편중된 과점(Oligopoly) 시장이 형성되었습니다. 활어의 선망 이송 특성 상 초기 자원량 평가의 불투명성 논란이 지속되고 있습니다."
                 actionPlan={
                   <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                    <li style={{ marginBottom: '4px' }}><strong>우회 전략 모색:</strong> 쿼터 신규 취득이 사실상 불가능한 구조이므로, 기존 지중해 선두 기업들과의 합작(JV) 또는 입항도가 높은 공인된 파트너와의 EXW 거래가 필수적입니다.</li>
+                    <li style={{ marginBottom: '4px' }}><strong>우회 전략 모색:</strong> 쿼터 신규 취득이 사실상 불가능한 구조이므로, 기존 지중해 선두 기업들과의 합작 또는 입항도가 높은 공인된 파트너와의 EXW 거래가 필수적입니다.</li>
                     <li><strong>투명성 검증 선제 적용:</strong> ICCAT 자원 평가 강화를 대비하여 블록체인 기반 어획량 데이터 파이프라인(eBCD) 통합 역량을 사전 홍보해야 합니다.</li>
                   </ul>
                 }
@@ -464,7 +464,7 @@ export default function TunaRanching() {
                     <strong style={{ color: '#6ee7b7' }}>Ricardo Fuentes의 Almadraba:</strong> 기존 전통적 '함정그물(Almadraba)' 방식 + 축양 연계 (스페인 자본).
                   </li>
                   <li>
-                    <strong style={{ color: '#6ee7b7' }}>Alta Mar (모로코-노르웨이 JV):</strong> 2025년 Safi 지역에 $2,100만 투자. 야생 치어 포획(Ranching)이 아닌 부화장(Hatchery) 기반 <strong>'완전양식' 프로젝트 부상.</strong> 자원 고갈 규제 회피 및 국가 전략 산업화.
+                    <strong style={{ color: '#6ee7b7' }}>Alta Mar (모로코-노르웨이 JV):</strong> 2025년 Safi 지역에 $2,100만 투자. 야생 치어 포획이 아닌 부화장(Hatchery) 기반 <strong>'완전양식' 프로젝트 부상.</strong> 자원 고갈 규제 회피 및 국가 전략 산업화.
                   </li>
                 </ul>
               </div>
@@ -475,7 +475,7 @@ export default function TunaRanching() {
               situation="지중해 참다랑어 생산량의 대부분은 스페인 및 몰타의 극소수 수직계열화 기업(Balfegó, Ricardo Fuentes 등)이 장악하고 있으며 일본 상사들과 독점적 유통 파트너십을 체결하여 진입장벽이 극히 높습니다."
               actionPlan={
                 <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem' }}>
-                  <li style={{ marginBottom: '4px' }}><strong>중동 우회 독점 유통망 확보:</strong> 기존 기업들의 주요 타겟인 일본을 우회하여 사우디, 카타르 등 성장하는 중동 시장 전용 독점 유통 파트너십(JV)을 제안하십시오.</li>
+                  <li style={{ marginBottom: '4px' }}><strong>중동 우회 독점 유통망 확보:</strong> 기존 기업들의 주요 타겟인 일본을 우회하여 사우디, 카타르 등 성장하는 중동 시장 전용 독점 유통 파트너십을 제안하십시오.</li>
                   <li><strong>신흥 '완전 양식' 프로젝트 투자:</strong> 자원 고갈 규제로부터 면제될 모로코 Alta Mar와 같은 차세대 부화장 기반 완전 양식 프로젝트에 지분 투자를 단행하여 ESG 프리미엄 물량을 입도선매 해야 합니다.</li>
                 </ul>
               }
@@ -795,13 +795,13 @@ export default function TunaRanching() {
         {/* 최종 결론 */}
         <TakeawayBox
           source="종합 분석: CEPA + 시장 데이터 + 인프라 역량 기반"
-          situation="2026.5.1 '한-UAE CEPA'의 발효는 수산물 무관세(0%) 시대를 열어, 무역 협정을 체결하지 못한 일본(관세 5% 유지) 대비 강력한 구조적 매입원가(COGS) 우위를 제공합니다. 두바이의 $42/kg 글로벌 최고가 럭셔리 시장을 한국의 세계적 초저온 가공 인프라(HACCP/이케지메)로 직접 타격할 역사적 기회입니다."
+          situation="2026.5.1 '한-UAE CEPA'의 발효는 수산물 무관세(0%) 시대를 열어, 무역 협정을 체결하지 못한 일본(관세 5% 유지) 대비 강력한 구조적 매입원가 우위를 제공합니다. 두바이의 $42/kg 글로벌 최고가 럭셔리 시장을 한국의 세계적 초저온 가공 인프라(HACCP/이케지메)로 직접 타격할 구조적 기회입니다."
           actionPlan={
             <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#e2e8f0', fontSize: '0.85rem' }}>
               <li style={{ marginBottom: '4px' }}><strong>[CEPA 레버리지 극대화]</strong> MOTIE FTA 포털을 통한 원산지 증명(CO) 시스템을 선제 구축하여 관세 면제 혜택을 즉각 현금화하십시오.</li>
-              <li style={{ marginBottom: '4px' }}><strong>[수직 통합 가공 라인]</strong> 부산의 초저온 HACCP 거점에서 '축양 BFT Loin → 프리미엄 Saku 커팅 → 항공 직납'으로 이어지는 압도적 부가가치 생산 라인을 가동하십시오.</li>
+              <li style={{ marginBottom: '4px' }}><strong>[수직 통합 가공 라인]</strong> 부산의 초저온 HACCP 거점에서 '축양 BFT Loin → 프리미엄 Saku 커팅 → 항공 직납'으로 이어지는 부가가치 생산 라인을 가동하십시오.</li>
               <li style={{ marginBottom: '4px' }}><strong>[현지 권력 네트워크 침투]</strong> Dubai Waterfront Market의 핵심 B2B 벤더십을 장악하고, Jumeirah 등 5성급 최상위 호스피탈리티 자본과 직계약을 맺어 유통 마진을 100% 흡수해야 합니다.</li>
-              <li><strong>[퍼스트 무버 브랜딩]</strong> CEPA 발효 당일(5.1) 제1호 항공 수출을 성사시켜 중동 시장 내 '최초이자 최고의 한국산 프리미엄 블루핀'이라는 독보적 헤게모니를 선점하십시오.</li>
+              <li><strong>[퍼스트 무버 브랜딩]</strong> CEPA 발효 당일(5.1) 제1호 항공 수출을 성사시켜 중동 시장 내 ' 한국산 프리미엄 블루핀'이라는 헤게모니를 선점하십시오.</li>
             </ul>
           }
         />
@@ -819,7 +819,7 @@ export default function TunaRanching() {
               <TelemetryBadge status="live" />
               <TermTooltip term="" description="야생 어획 단가 상승률보다 양식 단가의 프리미엄이 뚫고 올라가는 역전 시점을 궤적으로 보여주어 투자 전환기를 분석합니다." />
             </h3>
-            <p className={insightsStyles.cardDesc}>지속가능성 요구와 기후 리스크에 따른 어획량 감소로, 양식(Ranching) 참치의 톤당 단가가 자연산 야생 어획을 추월한 크로스오버를 보여줍니다.</p>
+            <p className={insightsStyles.cardDesc}>지속가능성 요구와 기후 리스크에 따른 어획량 감소로, 양식 참치의 톤당 단가가 자연산 야생 어획을 추월한 크로스오버를 보여줍니다.</p>
           </div>
           <div className={insightsStyles.cardBody}>
             <div className={insightsStyles.chartContainer}>
@@ -846,8 +846,8 @@ export default function TunaRanching() {
           <div style={{ padding: '0 20px 20px 20px' }}>
             <TakeawayBox
               source="Krungsri Research - IO_Seafood_230724"
-              situation="엘니뇨(수온 상승)와 과도한 남획으로 비육용 생사료(정어리 등 소형어종) 생산 시스템이 붕괴하며, 원재료 조달난에 따른 매입원가(COGS) 폭등 현상(Empirical Data)이 임계점을 돌파했습니다."
-              actionPlan="**[Actionable Insight]** ESG는 더 이상 단순한 환경 규제가 아니라 '생존을 위한 매입원가(COGS) 방어막'입니다. 인공 배합사료 체제 전환 및 육상 여과순환양식(RAS) 생태계 선제 구축만이 비용 통제의 유일한 해법입니다."
+              situation="엘니뇨(수온 상승)와 과도한 남획으로 비육용 생사료(정어리 등 소형어종) 생산 시스템이 붕괴하며, 원재료 조달난에 따른 매입원가 폭등 현상(Empirical Data)이 임계점을 돌파했습니다."
+              actionPlan="**[Actionable Insight]** ESG는 더 이상 단순한 환경 규제가 아니라 '생존을 위한 매입원가 방어막'입니다. 인공 배합사료 체제 전환 및 육상 여과순환양식(RAS) 생태계 선제 구축만이 비용 통제의 유일한 해법입니다."
             />
           </div>
         </div>
@@ -881,7 +881,7 @@ export default function TunaRanching() {
               <TakeawayBox
                 source="IMARC Group (예측) + KCS 관세청 (실증 백테스팅)"
                 situation="비전 2030 국책 투자로 콜드체인이 4.5배 팽창한다는 IMARC의 장기 추정치($159억)는, KCS 관세청의 2021~2024년 대(對) 중동 실제 수산물 수출액(Empirical Data)의 연평균 35% 급증 궤적과 완벽히 동기화되며 실증되었습니다."
-                actionPlan="**[Actionable Insight]** 막연한 기대감이 아닌 증명된 시장입니다. 사우디 Jeddah항 내 초저온 냉동 물류 거점을 즉각 선점하고, 수입 규제의 가장 큰 허들인 SFDA(식품의약품청) 사전 인증을 업계 최초로 획득하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
+                actionPlan="**[Actionable Insight]** 막연한 기대감이 아닌 증명된 시장입니다. 사우디 Jeddah항 내 초저온 냉동 물류 거점을 즉각 선점하고, 수입 규제의 가장 큰 허들인 SFDA(식품의약품청) 사전 인증을 업계 최초로 획득하여 잉여현금흐름을 극대화하십시오."
               />
             </div>
           </div>
@@ -934,8 +934,8 @@ export default function TunaRanching() {
               
               <TakeawayBox
                 source="INFOFISH 2025-2026 Intelligence Report"
-                situation="일본의 주요 수산기업들이 사료 매입원가(COGS) 폭등으로 2025년 양식 생산량을 80% 감축했습니다. 반면 중국은 12.5만 개 일식당 수요를 위해 상반기 지중해산 수입량을 35% 폭증시키며 시장을 장악하고 있습니다."
-                actionPlan="**[Actionable Insight]** 과거 츠키지 시장에 의존하던 전통적 수출을 지양하십시오. 일본의 생산 붕괴 틈을 타, 이미 세계 표준이 된 '-60℃ 초저온 냉동 필렛' 포맷으로 중국 프리미엄 B2B 시장 및 일본 본토를 동시 직접 타격해야 해야 합니다. (Conviction Buy)"
+                situation="일본의 주요 수산기업들이 사료 매입원가 폭등으로 2025년 양식 생산량을 80% 감축했습니다. 반면 중국은 12.5만 개 일식당 수요를 위해 상반기 지중해산 수입량을 35% 폭증시키며 시장을 장악하고 있습니다."
+                actionPlan="**[Actionable Insight]** 과거 츠키지 시장에 의존하던 전통적 수출을 지양하십시오. 일본의 생산 붕괴 틈을 타, 이미 세계 표준이 된 '-60℃ 초저온 냉동 필렛' 포맷으로 중국 프리미엄 B2B 시장 및 일본 본토를 동시 직접 타격해야 합니다."
               />
             </div>
           </div>
@@ -979,7 +979,7 @@ export default function TunaRanching() {
           <div style={{ padding: '0 20px 20px 20px' }}>
             <TakeawayBox
               situation="전통적 미식 종주국인 일본을 제치고, UAE(두바이)와 사우디가 kg당 $30 이상의 무제한 단가를 지불하는 극프리미엄 지상주의 '소비 블랙홀'로 급부상하고 있습니다."
-              actionPlan="**[Actionable Insight]** 일본 츠키지/토요스 시장에 90% 이상 편중된 저마진 공급 구조를 즉각 해체하고, 두바이의 최고급 B2B 오마카세 및 5성급 호텔 네트워크로 항공 직납 밸류체인을 전면 재조정해야 해야 합니다. (Conviction Buy)"
+              actionPlan="**[Actionable Insight]** 일본 츠키지/토요스 시장에 90% 이상 편중된 저마진 공급 구조를 즉각 해체하고, 두바이의 최고급 B2B 오마카세 및 5성급 호텔 네트워크로 항공 직납 밸류체인을 전면 재조정해야 합니다."
             />
           </div>
         </div>
@@ -1067,7 +1067,7 @@ export default function TunaRanching() {
               <TakeawayBox
                 source="6Wresearch (예측) + KCS 관세청 (실증 백테스팅)"
                 situation="2028년 성장 정점(18.35%)이라는 6Wresearch의 예측을 뒷받침하듯, KCS 관세청 데이터를 통해 확인된 '월드컵(2022) 이후 대중동 참치 직접 수출 증가세'가 명확한 실증 지표로 나타나고 있습니다."
-                actionPlan="**[Actionable Insight]** 2027~2028년의 슈퍼 사이클 피크 타이밍을 역산하여, Qatar Airways 하이엔드 기내식 납품 및 도하 현지 5성급 호텔 체인과의 B2B 턴키 직계약 TF를 지금 당장 출범시켜야 해야 합니다. (Conviction Buy)"
+                actionPlan="**[Actionable Insight]** 2027~2028년의 슈퍼 사이클 피크 타이밍을 역산하여, Qatar Airways 하이엔드 기내식 납품 및 도하 현지 5성급 호텔 체인과의 B2B 턴키 직계약 TF를 지금 당장 출범시켜야 해야 합니다."
               />
             </div>
           </div>
@@ -1096,7 +1096,7 @@ export default function TunaRanching() {
                 <TakeawayBox
                   source="Krungsri Research - Halal & Food Security Data"
                   situation="중동의 럭셔리 시장 성장은 화려함 이면에 자리한 엄격한 '할랄(Halal) 종교 인증'과 지정학적 위기감을 극복하기 위한 '초강경 국가 식량 안보' 니즈가 지탱하고 있습니다."
-                  actionPlan="**[Actionable Insight]** 단순한 수출 기업을 넘어, 중동 국가의 식량 안보 파트너로 포지셔닝해야 합니다. 완벽한 할랄 인증과 -60℃ 초저온 인프라를 무기로 제시하여 현지 정부가 보장하는 '독점적 가격 프리미엄'을 수취하여 잉여현금흐름(FCF)을 극대화하십시오. (Strong Buy)"
+                  actionPlan="**[Actionable Insight]** 단순한 수출 기업을 넘어, 중동 국가의 식량 안보 파트너로 포지셔닝해야 합니다. 강한 할랄 인증과 -60℃ 초저온 인프라를 무기로 제시하여 현지 정부가 보장하는 '독점적 가격 프리미엄'을 수취하여 잉여현금흐름을 극대화하십시오."
                 />
               </div>
             </div>
