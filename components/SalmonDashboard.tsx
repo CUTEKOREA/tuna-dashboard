@@ -189,7 +189,7 @@ export default function SalmonDashboard() {
   /* ─── Unified Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
     const chartType = (widget.chartType || '').toLowerCase();
 
     // NEW FORMAT (Claude widgets)
@@ -670,7 +670,7 @@ export default function SalmonDashboard() {
             {w.isLiveApi ? (
               <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(236,72,153,0.1)', border:'1px solid #ec4899', color: SALMON_THEME.primary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
             ) : w.reliability && w.reliability < 70 ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(253,164,175,0.1)', border:'1px solid #fda4af', color: SALMON_THEME.quaternary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>ESTIMATE</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(253,164,175,0.1)', border:'1px solid #fda4af', color: SALMON_THEME.quaternary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>추정</span>
             ) : null}
             
             <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>

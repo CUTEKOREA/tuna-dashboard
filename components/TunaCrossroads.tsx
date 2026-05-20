@@ -51,7 +51,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           글로벌 참다랑어 생산량 크로스로드 (Catch vs Farmed)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           참다랑어 자연어획량 데이터와 양식 데이터를 결합하여 ComposedChart로 시각화했습니다. (1980년 이후 쿼터제로 묶여 성장이 멈춘 자연산 참다랑어(어획) 수급을, 인위적인 축양 및 양식이 어떻게 완벽하게 커버하며 우상향 돌파구를 열었는지 분석)

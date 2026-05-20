@@ -62,7 +62,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           한국의 양식 참다랑어 수입 경쟁력 (Korea Farmed Import Position)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           FAO FishStatJ 양자간 무역 데이터 중, 참다랑어 핵심 양식국(호주, 터키, 스페인 등 Top 10)에서 한국으로 수입된 물량과 금액만을 필터링한 이중 Y축 ComposedChart입니다. (자연산 수입분 제외) (순수 양식 물량은 정체되나 수입 총액은 견고 — 한국이 '최고급 프리미엄 오마카세' 성지가 된 증거)

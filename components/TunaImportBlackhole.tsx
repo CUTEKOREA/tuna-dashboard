@@ -57,7 +57,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           참다랑어 양식 블랙홀 수입국 분석 (Top Import Targets)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           FAO FishStatJ 양자간 무역 데이터 중, 세계 10대 참다랑어 양식국(호주, 몰타, 터키 등)에서 출발한 '양식 오리진(Farmed Origin)' 수입 물량만을 정밀 필터링하여 합산했습니다. (2019~2023년 전 세계 양식 참다랑어 수입 블랙홀 구조 분석)

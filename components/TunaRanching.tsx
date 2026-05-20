@@ -103,7 +103,7 @@ export default function TunaRanching() {
       .catch(console.error);
   }, []);
 
-  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon || ''} style={{marginBottom: '1rem'}}/></div><div>Loading verified intelligence...</div></div>;
+  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon || ''} style={{marginBottom: '1rem'}}/></div><div>데이터 로딩 중...</div></div>;
 
   const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan, kpis, issfScorecard, iscPacificBft, sfdaMilestones } = data;
 
@@ -202,7 +202,7 @@ export default function TunaRanching() {
           <div className={styles.cardTitle}>
             <TrendingUp size={18} color="#38bdf8" />
             <TermTooltip term="글로벌 단일 시장 성장 전망 & 수출 단가" description="고급 횟감용 참다랑어가 전 세계적으로 얼마나 많이 팔리고, 일본이나 미국 등 시장별로 1kg당 가격이 어떻게 다르게 형성되는지 보여주는 잠재적 성장 지표입니다." />
-            <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (KCS)</span>
+            <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (KCS)</span>
           </div>
           
           <div className={styles.insightGrid}>
@@ -251,7 +251,7 @@ export default function TunaRanching() {
           <div className={styles.cardTitle}>
             <Globe size={18} color="#eab308" />
             <TermTooltip term="대서양 ICCAT 쿼터 할당 (2026~2028)" description="ICCAT(대서양참치보존위원회)에서 각 국가별로 '매년 참다랑어를 얼마까지만 잡아도 된다'고 엄격히 정해준 허용량(쿼터)입니다. 쿼터가 없으면 돈이 있어도 사업을 할 수 없습니다." />
-            <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (ICCAT)</span>
+            <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (ICCAT)</span>
           </div>
           <p style={{ fontSize: '13px', color: '#94a3b8', marginBottom: '16px', lineHeight: 1.5 }}>
             참다랑어 축양의 가장 큰 진입 장벽은 엄격한 쿼터(TAC) 관리입니다. 총 48,283톤 중 대부분을 유럽과 아프리카 북부가 점유하고 있습니다.
@@ -858,7 +858,7 @@ export default function TunaRanching() {
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
                 <Thermometer size={20} color="var(--color-success)" /> 사우디아라비아 콜드체인 시장 성장 전망
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (SFDA)</span>
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (SFDA)</span>
               </h3>
               <p className={insightsStyles.cardDesc}>
                 IMARC Group의 'Saudi Arabia Cold Chain Market Size & Forecast to 2034' 보고서 데이터를 기반으로 산출했습니다. (사우디아라비아의 수산물·온도 민감성 제품 유통을 위한 콜드체인 인프라 투자 규모 전망. 비전 2030 핵심 투자 영역으로 CAGR 18.31% 폭발적 성장)
@@ -893,7 +893,7 @@ export default function TunaRanching() {
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
                 <Target size={20} color="var(--color-danger)"/> 아시아 럭셔리 마켓 패러다임 시프트 (일본 붕괴 vs 중국 폭발)
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (INFOFISH)</span>
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (INFOFISH)</span>
               </h3>
               <p className={insightsStyles.cardDesc}>사료 원가 폭등으로 인한 일본의 축양 참치 80% 생산 감축 사태와 중국의 상반기 35% 수입 폭증(지중해산 중심)을 교차 분석합니다.</p>
             </div>
@@ -945,7 +945,7 @@ export default function TunaRanching() {
           <div className={insightsStyles.cardHeader}>
             <h3 className={insightsStyles.cardTitle}>
               <Globe size={20} color="#f472b6"/> 최고가 미식 소비 국가 맵 (Gastronomy Map)
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (EUMOFA)</span>
+              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (EUMOFA)</span>
               <TermTooltip term="" description="국가별 수입 단가를 히트맵형 바 차트로 배열하여, 하이엔드 신선 참치를 가장 비싸게 소비하는 럭셔리 마켓의 코어를 노출합니다." />
             </h3>
             <p className={insightsStyles.cardDesc}>kg당 수입단가가 30달러를 넘는 극프리미엄 지상주의 '소비 블랙홀' 흐름. 전통적 일본 수요보다 더 비싸게 사가는 신규 미식 타겟 국가 리스트입니다.</p>
@@ -1040,7 +1040,7 @@ export default function TunaRanching() {
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
                 <TrendingUp size={20} color="var(--color-warning)" /> 카타르 참치 시장 성장률 전망 (2025-2031)
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (MiddleEast)</span>
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (MiddleEast)</span>
               </h3>
               <p className={insightsStyles.cardDesc}>
                 6Wresearch의 'Qatar Tuna Market Outlook (2025-2031)' 보고서를 기반으로 산출했습니다. (2022 월드컵 이후 호텔·관광 인프라 재개방에 따라 초기 역성장 후 2028년 18.35%로 급성장 전망)
@@ -1105,7 +1105,7 @@ export default function TunaRanching() {
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>
                 <Building2 size={20} color="#ec4899" /> 중동 양식 참치 최종 소비 채널 구조
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (SFDA)</span>
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (SFDA)</span>
               </h3>
               <p className={insightsStyles.cardDesc}>
                 Zion Market Research의 Farmed Bluefin Tuna Market Analysis (2034) 내 호스피탈리티 부문 세분화 데이터를 기반으로 산출했습니다. (중동 지역 양식 블루핀 참치가 최종 소비되는 채널별 비중 - 5성급 호텔/리조트 38% 등 프리미엄 시장 65% 지배)

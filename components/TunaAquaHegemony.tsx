@@ -65,7 +65,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           양식 참다랑어 생산 패권 (Global Aquaculture Hegemony)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           상위 생산 5개국을 추출하여 누적 면적 그래프(Stacked Area Chart)로 전체 시장의 크기와 점유율을 동시에 표현했습니다. (자금력과 기술력을 바탕으로 고부가가치 참다랑어 양식 패권을 장악하는 선진 해양국의 점유율 차트)

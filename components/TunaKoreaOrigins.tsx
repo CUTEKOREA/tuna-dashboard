@@ -80,7 +80,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           한국의 양식 참다랑어 수입 출처 (Korea Farmed Import Origins)
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           FAO FishStatJ 무역 데이터 중 한국의 참다랑어 수입량 5년치를, 수출국(Partner country)이 세계 Top 10 참다랑어 양식국인 조건으로 교차 필터링하여 생성한 Stacked Bar Chart입니다. (한국의 양식 참다랑어 수입 경로 점유율 - 튀르키예, 스페인 등 지중해 축양 참치가 한국 프리미엄 시장 장악)

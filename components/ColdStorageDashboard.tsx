@@ -437,7 +437,7 @@ export default function ColdStorageDashboard() {
       d = d.data;
     }
     
-    if (!d || !Array.isArray(d) || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+    if (!d || !Array.isArray(d) || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
 
     const formatVal = (v: any) => {
       if (typeof v !== 'number') return v;

@@ -76,7 +76,7 @@ export default function PetFoodDashboard() {
       .catch(console.error);
   }, []);
 
-  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon} style={{marginBottom: '1rem'}}/></div><div>Loading verified intelligence...</div></div>;
+  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon} style={{marginBottom: '1rem'}}/></div><div>데이터 로딩 중...</div></div>;
 
   const { kpis, d_simulator, d_channel_share, d_export_dest, d_w01, d_w02, d_w03, d_w04, d_w05, d_w06, d_w07, d_w08, d_w09, d_w10, d_w11, d_w12, d_w13, d_w14, d_w15, d_w16, d_w17, d_w18, d_w19, d_w20, d_w21, d_w22, d_w23, d_w24, d_w25, d_w26, d_w27_radar, d_w28, d_w30, d_w31, d_w32, d_nw01_bycatch, d_nw02_quota, d_nw03_climate, d_nw04_radar, d_nw05_retention, d_nw05_abidjan, d_nw06_mmpa, d_w33, d_w34, d_w35, d_w36, d_kfas_w01, d_kfas_w02, d_kfas_w03, d_kfas_w04, d_kfas_w05, d_illex_risk, d_protein_mix, d_macro_sensitivity, d_sg_b2b } = data;
 

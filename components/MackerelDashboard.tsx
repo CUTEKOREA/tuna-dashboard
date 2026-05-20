@@ -468,7 +468,7 @@ export default function MackerelDashboard() {
   /* ─── Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
-    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+    if (!d || d.length === 0) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
 
     const formatVal = (v: any) => {
       if (typeof v !== 'number') return v;
@@ -583,7 +583,7 @@ export default function MackerelDashboard() {
           </RadarChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported Chart</div>;
+        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원 안 되는 차트</div>;
     }
   };
 

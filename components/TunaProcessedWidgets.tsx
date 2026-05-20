@@ -70,7 +70,7 @@ export const WidgetTunaGiantsFall = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
       <h3 style={titleStyle}><ArrowDownRight size={18} color="#f43f5e" /> [산업 구조변화] 전통 참치 강국의 몰락 (1980-2023)
-      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
       <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
     </div>
@@ -101,7 +101,7 @@ export const WidgetThaiEmpire = () => (
   <div style={widgetStyle}>
     <div style={{ ...headerStyle, flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
       <h3 style={titleStyle}><Globe size={18} color="var(--color-warning)" /> [가공 패권] 태국과 스페인의 통조림 제국
-      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+      <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
       <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>(단위: 생산량 kMT)</span>
       </h3>
     </div>

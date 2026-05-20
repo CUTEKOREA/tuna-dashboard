@@ -70,7 +70,7 @@ return (
         <h3 className={styles.cardTitle}>
           <Anchor size={20} />
           양식 참다랑어 글로벌 수출 점유율
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🟢 LIVE API (FAO)</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(16,185,129,0.1)', border:'1px solid #10b981', color:'var(--color-success)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>🔵 SYNCED (FAO)</span>
         </h3>
         <p className={styles.cardSubtitle}>
           FAO FishStatJ 무역 데이터 중, 최대 참다랑어 양식 생산 10개국이 '보고국(Reporting country)'인 Exports 데이터만을 선별하여 구성한 Stacked Bar Chart입니다. (자연산 배제, 양식 물량 프록시 적용) ("모든 길은 일본으로" — 고부가가치 양식 참다랑어 수출의 극단적 단일 시장 종속 구조)

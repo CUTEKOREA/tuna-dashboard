@@ -17,7 +17,7 @@ export default function EstimateBadge() {
       verticalAlign: 'middle',
       lineHeight: 1.2
     }}>
-      <span style={{ fontSize: '0.8rem', lineHeight: 1 }}>📐</span> Estimate
+      <span style={{ fontSize: '0.8rem', lineHeight: 1 }}>📐</span> 추정치
     </span>
   );
 }

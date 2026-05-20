@@ -129,7 +129,7 @@ export default function CashewStrategy() {
 
   const renderChart = (w: any) => {
     const d = w.data || w.pies;
-    if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>No Data</div>;
+    if (!d?.length) return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
     const isTextAxis = d.length > 0 && typeof d[0][w.xKey] === 'string' && isNaN(Number(d[0][w.xKey]));
     const tickProps = isTextAxis ? {fontSize:10, angle:0, textAnchor:'middle' as const, dy: 5} : {fontSize:10};
     const chartMargin = isTextAxis ? { top: 5, right: 10, left: -10, bottom: 10 } : undefined;
