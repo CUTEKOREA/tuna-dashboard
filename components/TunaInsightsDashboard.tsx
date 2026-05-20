@@ -40,13 +40,15 @@ const mockEmergingMarkets = [
   { name: 'Colombia', growth: 12.8, volume: 22000 },
 ];
 
+// 실데이터: FAO FishStat Capture v25 (2026-05-13판) — Pacific WCPO(Area 71) vs Atlantic(Areas 21+27+31+34+37) 합계
+// 어종: 가다랑어·황다랑어·눈다랑어·날개다랑어·참다랑어·남방참다랑어 전체
 const mockZeroSumData = [
-  { year: 1990, Pacific_WCPO: 1200000, Atlantic: 400000 },
-  { year: 2000, Pacific_WCPO: 1800000, Atlantic: 450000 },
-  { year: 2010, Pacific_WCPO: 2400000, Atlantic: 350000 },
-  { year: 2015, Pacific_WCPO: 2100000, Atlantic: 500000 }, // El nino shock
-  { year: 2020, Pacific_WCPO: 2900000, Atlantic: 420000 },
-  { year: 2023, Pacific_WCPO: 2600000, Atlantic: 650000 },
+  { year: 1990, Pacific_WCPO: 1422314, Atlantic: 493001 },
+  { year: 2000, Pacific_WCPO: 2026888, Atlantic: 460960 },
+  { year: 2010, Pacific_WCPO: 2610851, Atlantic: 440240 },
+  { year: 2015, Pacific_WCPO: 2914618, Atlantic: 494174 },
+  { year: 2020, Pacific_WCPO: 2991381, Atlantic: 546490 },
+  { year: 2022, Pacific_WCPO: 3075465, Atlantic: 650178 },
 ];
 
 const mockHedgingMatrix = [
@@ -108,6 +110,8 @@ const mockTariffHopping = [
   { region: 'FDI in US/Georgia', '2023': 15000, '2026_Projected': 55000 },
 ];
 
+// 실데이터: Fisheries Research 2025 학술논문 (Nielsen Retail Scanner 2017-2019, Hedonic pricing model)
+// Standard = 100 (baseline), Dolphin-Safe 단일 = 125.4, MSC 단일 = 144.6, 듀얼 인증 = 181.3 (시너지 효과)
 const mockMSCPremium = [
   { category: 'Standard Canned', price: 100 },
   { category: 'MSC Certified', price: 144.6 },
