@@ -15,9 +15,8 @@ import {
   Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, Leaf, Cpu, Layers, Clock,
   Map, Microscope, Beaker, FlaskConical, Dna, Award, Tag, Heart, FileSearch
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 /* ─── Telemetry Badge (참치 패턴 동기화) ─── */
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
@@ -364,59 +363,24 @@ export default function JukkumiDashboard() {
 
   function renderWidgetCard(w: any) {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
-    const accentColor = 'var(--color-success)';
-    
-    // Get methodology text (supports both old "methodology" and new "logic" field)
-    const methodologyText = w.logic || w.methodology || '';
-    // Get situation and takeaway (supports both old and new field names)
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    
+    const status = w.isLiveApi ? 'LIVE' : (w.reliability && w.reliability < 70 ? 'STATIC' : 'SYNCED');
+
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
-        background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
-        padding: '1.5rem'}}>
-        
-        {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-            <IconComp size={20} color={accentColor} />
-            {w.title} 
-            {w.isLiveApi ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
-            ) : w.reliability && w.reliability < 70 ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>추정</span>
-            ) : null}
-            
-            <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
-            </div>
-          </h3>
-          {(w.subtitle) && (
-            <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {w.subtitle}
-            </p>
-          )}
-        </div>
-
-        {/* Chart Area */}
-        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            {renderChart(w)}
-          </SafeResponsiveContainer>
-        </div>
-
-        {/* Takeaway Box (참치 TakeawayBox 컴포넌트 동기화) */}
-        {(situation || takeaway) && (
-          <div style={{ marginTop: 'auto' }}>
-            <TakeawayBox
-              situation={situation}
-              takeaway={takeaway}
-              source={w.source}
-            />
-          </div>
-        )}
-      </div>
+      <WidgetCard
+        key={w.id}
+        title={w.title}
+        icon={IconComp}
+        iconColor="var(--color-success)"
+        pillar={(w.pillar || 'S1') as any}
+        cardDesc={w.subtitle || w.unit ? (w.subtitle || `단위: ${w.unit}`) : '주꾸미 인텔리전스 위젯'}
+        unit={w.unit ? `(단위: ${w.unit})` : undefined}
+        telemetry={{ status, syncDate: '2026-05-15' }}
+        chart={renderChart(w)}
+        chartHeight={375}
+        takeaway={{ situation, actionPlan: takeaway, source: w.source || '' }}
+      />
     );
   }
 }
