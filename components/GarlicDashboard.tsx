@@ -287,80 +287,62 @@ export default function GarlicDashboard() {
             source: "FAOSTAT QCL Open API",
           }} />
 
-        {/* W2 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem', display:'flex', justifyContent:'space-between', alignItems:'flex-start', flexWrap:'wrap', gap:'1rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <TrendingUp size={17} />{w2Mode === 'macro' ? (<>국가별 수출 단가 추이 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: USD/톤)</span></>) : (<>KAMIS 도매가 하향 안정화 추이 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 원/kg)</span></>)}
-              
-            </h3>
-            
-            {/* W2 Toggle */}
-            <div style={{ display:'flex', background:'rgba(0,0,0,0.5)', borderRadius:'6px', padding:'2px', border: 'none' }}>
-              <button 
-                onClick={() => setW2Mode('macro')}
-                style={{ background: w2Mode === 'macro' ? '#eab308' : 'transparent', color: w2Mode === 'macro' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}
-              >
-                Macro (연간)
-              </button>
-              <button 
-                onClick={() => setW2Mode('spot')}
-                style={{ background: w2Mode === 'spot' ? '#eab308' : 'transparent', color: w2Mode === 'spot' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}
-              >
-                Spot (KAMIS 월별)
-              </button>
+        <WidgetCard title={w2Mode === 'macro' ? "국가별 수출 단가 추이 (USD/톤)" : "KAMIS 도매가 하향 안정화 추이 (원/kg)"}
+          icon={TrendingUp} iconColor="#eab308" pillar="S4"
+          cardDesc="Macro(연간) vs Spot(KAMIS 월별) 토글로 매크로/스팟 모드 전환"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          customBody={
+            <div>
+              <div style={{ display:'flex', background:'rgba(0,0,0,0.5)', borderRadius:'6px', padding:'2px', border: 'none', marginBottom: '1rem', width: 'fit-content' }}>
+                <button onClick={() => setW2Mode('macro')}
+                  style={{ background: w2Mode === 'macro' ? '#eab308' : 'transparent', color: w2Mode === 'macro' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}>Macro (연간)</button>
+                <button onClick={() => setW2Mode('spot')}
+                  style={{ background: w2Mode === 'spot' ? '#eab308' : 'transparent', color: w2Mode === 'spot' ? 'var(--bg-color)' : 'var(--text-secondary)', border:'none', padding:'4px 12px', borderRadius:'20px', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.2s' }}>Spot (KAMIS 월별)</button>
+              </div>
+              <div style={{ height:'375px', width:'100%' }}>
+                <SafeResponsiveContainer width="100%" height="100%">
+                  {w2Mode === 'macro' ? (
+                    <LineChart data={w2Data}>
+                      {grid}
+                      <XAxis dataKey="year" {...xAxisTextProps} />
+                      <YAxis {...yAxisProps} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend wrapperStyle={{fontSize:'10px'}} />
+                      <Line connectNulls={true} type="monotone" dataKey="중국" stroke="var(--color-danger)" strokeWidth={2} dot={false} name="중국" />
+                      <Line connectNulls={true} type="monotone" dataKey="인도" stroke="#65a30d" strokeWidth={2} dot={false} name="인도" />
+                      <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#d97706" strokeWidth={2} dot={false} name="한국" />
+                      <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="#eab308" strokeWidth={2} dot={false} name="이집트" />
+                      <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#84cc16" strokeWidth={2} dot={false} name="방글라데시" />
+                    </LineChart>
+                  ) : (
+                    <LineChart data={kamisData}>
+                      {grid}
+                      <XAxis dataKey="month" {...xAxisTextProps} />
+                      <YAxis {...yAxisProps} domain={['auto', 'auto']} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend wrapperStyle={{fontSize:'10px'}} />
+                      <Line connectNulls={true} type="monotone" dataKey="y2026" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 3 }} name="2026년" />
+                      <Line connectNulls={true} type="monotone" dataKey="y2025" stroke="#65a30d" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2025년" />
+                      <Line connectNulls={true} type="monotone" dataKey="y2024" stroke="#d97706" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2024년" />
+                      <Line connectNulls={true} type="monotone" dataKey="avg" stroke="#94a3b8" strokeWidth={2} dot={false} name="평년" />
+                    </LineChart>
+                  )}
+                </SafeResponsiveContainer>
+              </div>
             </div>
-          </div>
-          
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              {w2Mode === 'macro' ? (
-                <LineChart data={w2Data}>
-                  {grid}
-                  <XAxis dataKey="year" {...xAxisTextProps} />
-                  <YAxis {...yAxisProps} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Legend wrapperStyle={{fontSize:'10px'}} />
-                  <Line connectNulls={true} type="monotone" dataKey="중국" stroke="var(--color-danger)" strokeWidth={2} dot={false} name="중국" />
-                  <Line connectNulls={true} type="monotone" dataKey="인도" stroke="#65a30d" strokeWidth={2} dot={false} name="인도" />
-                  <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#d97706" strokeWidth={2} dot={false} name="한국" />
-                  <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="#eab308" strokeWidth={2} dot={false} name="이집트" />
-                  <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#84cc16" strokeWidth={2} dot={false} name="방글라데시" />
-                </LineChart>
-              ) : (
-                <LineChart data={kamisData}>
-                  {grid}
-                  <XAxis dataKey="month" {...xAxisTextProps} />
-                  <YAxis {...yAxisProps} domain={['auto', 'auto']} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Legend wrapperStyle={{fontSize:'10px'}} />
-                  <Line connectNulls={true} type="monotone" dataKey="y2026" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 3 }} name="2026년" />
-                  <Line connectNulls={true} type="monotone" dataKey="y2025" stroke="#65a30d" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2025년" />
-                  <Line connectNulls={true} type="monotone" dataKey="y2024" stroke="#d97706" strokeWidth={2} dot={false} strokeDasharray="3 3" name="2024년" />
-                  <Line connectNulls={true} type="monotone" dataKey="avg" stroke="#94a3b8" strokeWidth={2} dot={false} name="평년" />
-                </LineChart>
-              )}
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="2025년 1.5만원대까지 치솟았던 깐마늘/통마늘 도매가가 2026년 4월 기준 9,667원으로 안정화 추세에 진입했습니다."
-          actionPlan="안정화된 도매가를 기반으로 국내 원물 소싱 비중을 전략(Strategy)적으로 재조정할 수 있는 적기입니다. 다만 평년 가격(1.4만원대)으로의 회귀 가능성을 대비해 스팟 매수보다는 6개월 단위 선도 계약을 추진."
-        source="📊 [데이터 출처: KAMIS 도매시장 & FAOSTAT TM/PP]"
-        />
-          </div>
-        </div>
+          }
+          takeaway={{
+            situation: "2025년 1.5만원대까지 치솟았던 깐마늘/통마늘 도매가가 2026년 4월 기준 9,667원으로 안정화 추세에 진입했습니다.",
+            actionPlan: "안정화된 도매가를 기반으로 국내 원물 소싱 비중을 전략(Strategy)적으로 재조정할 수 있는 적기입니다. 다만 평년 가격(1.4만원대)으로의 회귀 가능성을 대비해 스팟 매수보다는 6개월 단위 선도 계약을 추진.",
+            source: "KAMIS 도매시장 + FAOSTAT TM/PP",
+          }} />
 
-        {/* INSIGHT 1 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Zap size={17} />주요 산지 이상기후 및 벌마늘 리스크 모니터링 [좌: 단수, 우: 비료지수]
-              <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
+        <div style={{ gridColumn: '1 / -1' }}>
+          <WidgetCard title="주요 산지 이상기후 및 벌마늘 리스크 모니터링"
+            icon={Zap} iconColor="#ef4444" pillar="S1"
+            cardDesc="좌축: 단수(전통 vs 정밀 농법), 우축: 비료 원가 지수 — 이상기후 헷징"
+            telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+            chart={
               <ComposedChart data={i1Data}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} />
@@ -372,15 +354,12 @@ export default function GarlicDashboard() {
                 <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="GPR_Tech" stroke="#eab308" fill="#eab308" fillOpacity={0.4} name="정밀 농법 단수(톤/ha)" />
                 <Line connectNulls={true} yAxisId="right" type="step" dataKey="Fertilizer_Index" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" name="비료 원가 지수(Cost Index)" />
               </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="KREI 보고서에 따르면 창녕 및 남해 지역의 이른 고온 현상으로 인해 마늘의 2차 생장(벌마늘) 발생 우려가 급증하고 있습니다."
-          actionPlan="수확량 타격 및 품질 저하를 사전 헷징하기 위해 기후 예측 AI 모델을 도입해야 합니다. 이상기후 징후 포착 시 대체 산지(중국, 이집트) 발주량을 즉각 상향하는 공급망 민첩성(Agility)을 확보."
-        source="📊 [데이터 출처: KREI 농업전망 & 비료 원가 지수]"
-        />
-          </div>
+            }
+            takeaway={{
+              situation: "KREI 보고서에 따르면 창녕 및 남해 지역의 이른 고온 현상으로 인해 마늘의 2차 생장(벌마늘) 발생 우려가 급증하고 있습니다.",
+              actionPlan: "수확량 타격 및 품질 저하를 사전 헷징하기 위해 기후 예측 AI 모델을 도입해야 합니다. 이상기후 징후 포착 시 대체 산지(중국, 이집트) 발주량을 즉각 상향하는 공급망 민첩성(Agility)을 확보.",
+              source: "KREI 농업전망 + 비료 원가 지수",
+            }} />
         </div>
       </div>
 
