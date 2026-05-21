@@ -23,6 +23,7 @@ import TunaPeptideEfficacy from './TunaPeptideEfficacy';
 import TunaTacMonitor from './TunaTacMonitor';
 import TunaSdgCircular from './TunaSdgCircular';
 import TelemetryBadge from './TelemetryBadge';
+import WidgetCard from './WidgetCard';
 import { truncateKoreanLabel } from '../lib/chart-standards';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -219,56 +220,57 @@ export default function TunaExtractDashboard() {
       {/* ═══ Pillar I: 원물 수급 ═══ */}
       <h3 className={styles.sectionHeader}>기둥 I. 원물 수급 동향</h3>
       <div className={styles.grid}>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Droplets size={18} className={styles.cardIcon} color="#3b82f6"/> 제로 코스트의 마법: 자숙액 부가가치</h3>
-            <TelemetryBadge status="STATIC" />
-          </div>
-          <div className={styles.cardBody}>
-            {data.d_w03 ? (
-              <SafeResponsiveContainer height={280}>
-                <BarChart data={data.d_w03} layout="vertical" margin={{ left: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-                  <YAxis dataKey="stage" type="category" stroke="#94a3b8" fontSize={11} width={80} />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="value" name="부가가치 ($/kg)" fill="var(--color-info)" />
-                  <Bar dataKey="cost" name="가공비용 ($/kg)" fill="var(--color-danger)" />
-                </BarChart>
-              </SafeResponsiveContainer>
-            ) : <EmptyState message="수익성 데이터 로딩 실패" />}
-            <TakeawayBox 
-              situation="참치액은 참치캔 가공 후 버려지던 자숙액을 100% 재활용하여 폐기물($0.05/kg)을 완제품($4.8/kg)으로 96배 밸류업합니다." 
-              actionPlan="통조림 공장의 폐수 처리 비용을 '매출 원천'으로 전환하는 극단적 ESG 순환 경제 모델을 전면에 내세워야 해야 합니다." 
-              source="INFOFISH / 내부 원가 모델링" 
-            />
-          </div>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><AlertTriangle size={18} className={styles.cardIcon} color="#ef4444"/> [신규] 인도양 소형 다랑어 쿼터 압박 경고</h3>
-            <TelemetryBadge status="LIVE" syncDate="2026-05" />
-          </div>
-          <div className={styles.cardBody}>
+        <WidgetCard
+          title="제로 코스트의 마법: 자숙액 부가가치"
+          icon={Droplets}
+          iconColor="#3b82f6"
+          pillar="S1"
+          cardDesc="참치캔 가공 후 폐기되던 자숙액을 완제품으로 전환할 때의 단계별 부가가치 vs 가공비용 비교"
+          telemetry={{ status: 'STATIC', syncDate: '내부 원가 모델' }}
+          customBody={data.d_w03 ? (
             <SafeResponsiveContainer height={280}>
-              <ComposedChart data={d_iotc_quota}>
+              <BarChart data={data.d_w03} layout="vertical" margin={{ left: 20 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
-                <YAxis stroke="#94a3b8" fontSize={12} />
+                <XAxis type="number" stroke="#94a3b8" />
+                <YAxis dataKey="stage" type="category" stroke="#94a3b8" fontSize={11} width={80} />
                 <Tooltip content={<CustomTooltip />} />
-                <Legend />
-                <Bar dataKey="어획량" name="어획량 (만 톤)" fill="var(--color-info)" />
-                <Line type="step" dataKey="쿼터" name="IOTC 권고 쿼터 (만 톤)" stroke="var(--color-danger)" strokeWidth={3} />
-              </ComposedChart>
+                <Bar dataKey="value" name="부가가치 ($/kg)" fill="var(--color-info)" />
+                <Bar dataKey="cost" name="가공비용 ($/kg)" fill="var(--color-danger)" />
+              </BarChart>
             </SafeResponsiveContainer>
-            <TakeawayBox 
-              situation="IOTC 최신 평가에 따르면 2025년부터 소형 다랑어(Bullet/Frigate)의 실 어획량이 권고 쿼터를 초과하여 자원 고갈 임계점에 도달했습니다." 
-              actionPlan="주요 원물인 소형 다랑어의 어획 쿼터 축소로 인한 단가 급등이 예상되므로, 즉각적인 안전 재고 6개월분 선제 확보가 필수적입니다. (Execution Recommended)" 
-              source="IOTC_SC28_Bullet_tuna.pdf / IOTC 실시간 공시 (2026 추정)" 
-            />
-          </div>
-        </div>
+          ) : <EmptyState message="수익성 데이터 로딩 실패" />}
+          takeaway={{
+            situation: '참치액은 참치캔 가공 후 버려지던 자숙액을 100% 재활용하여 폐기물($0.05/kg)을 완제품($4.8/kg)으로 96배 밸류업.',
+            actionPlan: '통조림 공장의 폐수 처리 비용을 \'매출 원천\'으로 전환하는 ESG 순환 경제 모델을 전면에 배치.',
+            source: 'INFOFISH · 내부 원가 모델링',
+          }}
+        />
+
+        <WidgetCard
+          title="인도양 소형 다랑어 쿼터 압박 경고"
+          icon={AlertTriangle}
+          iconColor="#ef4444"
+          pillar="S1"
+          cardDesc="IOTC 관할 소형 다랑어(Bullet/Frigate)의 연도별 실 어획량 vs 권고 쿼터 추이 — 자원 고갈 임계점 추적"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          chartHeight={280}
+          chart={
+            <ComposedChart data={d_iotc_quota}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+              <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
+              <YAxis stroke="#94a3b8" fontSize={12} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Bar dataKey="어획량" name="어획량 (만 톤)" fill="var(--color-info)" />
+              <Line type="step" dataKey="쿼터" name="IOTC 권고 쿼터 (만 톤)" stroke="var(--color-danger)" strokeWidth={3} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: 'IOTC 최신 평가에 따르면 2025년부터 소형 다랑어(Bullet/Frigate)의 실 어획량이 권고 쿼터를 초과하여 자원 고갈 임계점 도달.',
+            actionPlan: '주요 원물인 소형 다랑어의 어획 쿼터 축소로 인한 단가 급등이 예상. 안전 재고 6개월분 선제 확보 필수.',
+            source: 'IOTC SC28 Bullet tuna · IOTC 실시간 공시 (2026 추정)',
+          }}
+        />
       </div>
 
       {/* ═══ Pillar II: 가공 생산 & R&D (Processing) ═══ */}
@@ -427,142 +429,146 @@ export default function TunaExtractDashboard() {
       {/* ═══ Pillar III: 물류 (Logistics) ═══ */}
       <h3 className={styles.sectionHeaderWarn}>기둥 III. 물류 및 공급망</h3>
       <div className={styles.grid}>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Truck size={18} className={styles.cardIcon} color="#f59e0b"/> [신규] SCFI 기반 운임 3개월 지연(Lagging) 반영</h3>
-            <TelemetryBadge status="LIVE" syncDate="2026-05" />
-          </div>
-          <div className={styles.cardBody}>
-            <SafeResponsiveContainer height={280}>
-              <ComposedChart data={d_scfi_lagging}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="월" stroke="#94a3b8" fontSize={12} />
-                <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
-                <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={12} />
-                <Tooltip content={<CustomTooltip />} />
-                <Legend />
-                <Area yAxisId="left" type="monotone" dataKey="SCFI지수" name="상하이운임지수(SCFI)" fill="var(--color-warning)" fillOpacity={0.2} stroke="var(--color-warning)" />
-                <Line yAxisId="right" type="monotone" dataKey="물류비" name="실제 톤당 물류비" stroke="var(--color-danger)" strokeWidth={3} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-            <TakeawayBox 
-              situation="국제 해상운임(SCFI) 급등 시점이 수입 원가(물류비)에 반영되기까지 정확히 3~4개월의 지연(Lagging)이 발생합니다." 
-              actionPlan="현재 SCFI 하락 국면을 활용하여, 3개월 후 예상되는 저운임 시기에 원료 수입 물량을 집중하는 '물류 스케줄 헷징' 전략을 실행." 
-              source="상하이해운거래소(SSE) / 관세청 물류 통계 (2025-2026)" 
-            />
-          </div>
-        </div>
+        <WidgetCard
+          title="SCFI 기반 운임 3개월 지연(Lagging) 반영"
+          icon={Truck}
+          iconColor="#f59e0b"
+          pillar="S3"
+          cardDesc="상하이운임지수(SCFI)와 실제 톤당 물류비의 시차 추적 — 운임 급등이 원가에 반영되는 3~4개월 지연 구간 시각화"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          chartHeight={280}
+          chart={
+            <ComposedChart data={d_scfi_lagging}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+              <XAxis dataKey="월" stroke="#94a3b8" fontSize={12} />
+              <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={12} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Area yAxisId="left" type="monotone" dataKey="SCFI지수" name="상하이운임지수(SCFI)" fill="var(--color-warning)" fillOpacity={0.2} stroke="var(--color-warning)" />
+              <Line yAxisId="right" type="monotone" dataKey="물류비" name="실제 톤당 물류비" stroke="var(--color-danger)" strokeWidth={3} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: '국제 해상운임(SCFI) 급등 시점이 수입 원가(물류비)에 반영되기까지 3~4개월 지연(Lagging) 발생.',
+            actionPlan: '현재 SCFI 하락 국면을 활용, 3개월 후 예상되는 저운임 시기에 원료 수입 물량을 집중하는 \'물류 스케줄 헷징\' 전략 실행.',
+            source: '상하이해운거래소(SSE) · 관세청 물류 통계 (2025-2026)',
+          }}
+        />
 
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Globe size={18} className={styles.cardIcon} color="#f59e0b"/> [신규] 인도/베트남 소싱 다변화 효율성</h3>
-            <TelemetryBadge status="LIVE" syncDate="2026-05" />
-          </div>
-          <div className={styles.cardBody}>
-            <SafeResponsiveContainer height={280}>
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis type="number" dataKey="리스크" name="지정학/공급 리스크" stroke="#94a3b8" domain={[0, 100]} />
-                <YAxis type="number" dataKey="조달단가" name="상대적 조달 단가" stroke="#94a3b8" domain={[50, 120]} />
-                <ZAxis type="number" dataKey="볼륨" range={[100, 1000]} />
-                <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
-                <Legend />
-                <Scatter name="국가별 소싱 매력도" data={d_sourcing_map} fill="var(--color-info)" />
-              </ScatterChart>
-            </SafeResponsiveContainer>
-            <TakeawayBox 
-              situation="MPEDA 등 신흥국의 참치 가공 육성 정책으로 인해, 인도는 조달 단가가 낮지만 리스크가 크고, 베트남은 태국 대비 단가 15% 절감이 가능하여 가장 이상적입니다." 
-              actionPlan="기존 태국 단일 소싱에서 탈피하여 베트남 OEM 물량을 45%까지 즉각 확보하는 '차이나 플러스 원(China+1)' 방식의 다변화가 필요해야 합니다." 
-              source="MPEDA Expression_of_Interest-Tuna.pdf / KITA 무역통계" 
-            />
-          </div>
-        </div>
+        <WidgetCard
+          title="인도/베트남 소싱 다변화 효율성"
+          icon={Globe}
+          iconColor="#f59e0b"
+          pillar="S3"
+          cardDesc="국가별 지정학 리스크 vs 조달 단가 vs 볼륨의 3축 버블 차트 — 차이나 플러스 원(China+1) 다변화 후보 평가"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          chartHeight={280}
+          chart={
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+              <XAxis type="number" dataKey="리스크" name="지정학/공급 리스크" stroke="#94a3b8" domain={[0, 100]} />
+              <YAxis type="number" dataKey="조달단가" name="상대적 조달 단가" stroke="#94a3b8" domain={[50, 120]} />
+              <ZAxis type="number" dataKey="볼륨" range={[100, 1000]} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
+              <Legend />
+              <Scatter name="국가별 소싱 매력도" data={d_sourcing_map} fill="var(--color-info)" />
+            </ScatterChart>
+          }
+          takeaway={{
+            situation: 'MPEDA 등 신흥국의 참치 가공 육성 정책으로, 인도는 조달 단가가 낮지만 리스크가 크고 베트남은 태국 대비 단가 15% 절감 가능.',
+            actionPlan: '기존 태국 단일 소싱에서 탈피, 베트남 OEM 물량을 45%까지 확보하는 \'차이나 플러스 원(China+1)\' 다변화 실행.',
+            source: 'MPEDA Expression of Interest · KITA 무역통계',
+          }}
+        />
       </div>
 
       {/* ═══ Pillar IV: 판매 수요 (Sales & Demand) ═══ */}
       <h3 className={styles.sectionHeaderDanger}>기둥 IV. 판매 수요 및 소비 트렌드</h3>
       <div className={styles.grid}>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><Target size={18} className={styles.cardIcon} color="#ef4444"/> 간장 대체 소비자 선호도 (2026 최신)</h3>
-            <TelemetryBadge status="LIVE" syncDate="2026-Q1" />
-          </div>
-          <div className={styles.cardBody}>
-            <SafeResponsiveContainer height={280}>
-              <BarChart data={d_w07_2026} layout="vertical" margin={{ left: 40 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
-                <YAxis dataKey="product" type="category" stroke="#94a3b8" fontSize={11} width={80} />
-                <Tooltip content={<CustomTooltip />} />
-                <Legend />
-                <Bar dataKey="current" name="현재 사용 (%)" fill="var(--color-danger)" stackId="a" />
-                <Bar dataKey="potential" name="향후 사용 의향 (%)" fill="#fca5a5" stackId="a" />
-              </BarChart>
-            </SafeResponsiveContainer>
-            <TakeawayBox 
-              situation="2026년 기준 참치액젓의 현재 사용률은 38.5%로 급증했으며, 향후 사용 의향은 무려 65.2%로 간장 매대의 진정한 대세로 자리매김했습니다." 
-              actionPlan="소비자 인식에서 멸치/까나리를 압도했으므로, 이제는 전통 간장 수요층을 완전히 흡수하는 '만능 조미료' 브랜딩에 마케팅 예산을 집중." 
-              source="2026년 aT 가공식품 세분시장 트렌드 업데이트 (LIVE 연동)" 
-            />
-          </div>
-        </div>
+        <WidgetCard
+          title="간장 대체 소비자 선호도 (2026 최신)"
+          icon={Target}
+          iconColor="#ef4444"
+          pillar="S4"
+          cardDesc="aT 가공식품 세분시장 트렌드 — 참치액·식물성 연두·멸치/까나리액젓의 현재 사용률 vs 향후 사용 의향 스택 비교"
+          telemetry={{ status: 'LIVE', syncDate: '2026-Q1' }}
+          chartHeight={280}
+          chart={
+            <BarChart data={d_w07_2026} layout="vertical" margin={{ left: 40 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+              <XAxis type="number" stroke="#94a3b8" />
+              <YAxis dataKey="product" type="category" stroke="#94a3b8" fontSize={11} width={80} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Bar dataKey="current" name="현재 사용 (%)" fill="var(--color-danger)" stackId="a" />
+              <Bar dataKey="potential" name="향후 사용 의향 (%)" fill="#fca5a5" stackId="a" />
+            </BarChart>
+          }
+          takeaway={{
+            situation: '2026년 참치액젓의 현재 사용률은 38.5%로 급증, 향후 사용 의향은 65.2%로 간장 매대의 주력으로 자리매김.',
+            actionPlan: '소비자 인식에서 멸치/까나리 대비 우위 확보. 전통 간장 수요층을 흡수하는 \'만능 조미료\' 브랜딩에 마케팅 예산 집중.',
+            source: '2026 aT 가공식품 세분시장 트렌드 업데이트 (LIVE 연동)',
+          }}
+        />
 
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="#ef4444"/> [신규] 대체 액젓류 역상관관계 교차 분석</h3>
-            <TelemetryBadge status="LIVE" syncDate="2026-05" />
-          </div>
-          <div className={styles.cardBody}>
-            <SafeResponsiveContainer height={280}>
-              <ComposedChart data={d_substitute_corr}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
-                <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
-                <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} />
-                <Tooltip content={<CustomTooltip />} />
-                <Legend />
-                <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="#64748b" />
-                <Line yAxisId="right" type="monotone" dataKey="참치액발주량" name="참치액 B2B 발주량 지수" stroke="var(--color-success)" strokeWidth={3} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-            <TakeawayBox 
-              situation="연안 어획 부진으로 멸치/까나리 생산량이 5년간 급감하는 동안, 공급이 안정적인 참치액젓의 발주량은 이에 반비례하여 강한 '풍선 효과'를 누리고 있습니다." 
-              actionPlan="전통 액젓 가격 급등으로 매입원가 압박을 받는 HMR/외식 프랜차이즈 B2B 시장을 집중 공략하여 '안정적 공급가 보장'을 무기로 B2B 계약을 싹쓸이해야 합니다." 
-              source="해양수산부 생산량 DB / 내부 B2B 발주 데이터" 
-            />
-          </div>
-        </div>
+        <WidgetCard
+          title="대체 액젓류 역상관관계 교차 분석"
+          icon={TrendingUp}
+          iconColor="#ef4444"
+          pillar="S4"
+          cardDesc="국내 멸치/까나리 어획량 지수 vs 참치액 B2B 발주량 지수의 역상관 패턴 — 풍선 효과(Balloon Effect) 추적"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          chartHeight={280}
+          chart={
+            <ComposedChart data={d_substitute_corr}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+              <XAxis dataKey="연도" stroke="#94a3b8" fontSize={12} />
+              <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend />
+              <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="#64748b" />
+              <Line yAxisId="right" type="monotone" dataKey="참치액발주량" name="참치액 B2B 발주량 지수" stroke="var(--color-success)" strokeWidth={3} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: '연안 어획 부진으로 멸치/까나리 생산량이 5년간 급감하는 동안, 공급이 안정적인 참치액젓의 발주량은 반비례로 상승하며 \'풍선 효과\' 발생.',
+            actionPlan: '전통 액젓 가격 급등으로 매입원가 압박을 받는 HMR/외식 프랜차이즈 B2B 시장을 집중 공략, \'안정적 공급가 보장\'을 무기로 B2B 계약 확보.',
+            source: '해양수산부 생산량 DB · 내부 B2B 발주 데이터',
+          }}
+        />
       </div>
 
       {/* ═══ Pillar V: ESG 규제 (ESG & Compliance) ═══ */}
       <h3 className={styles.sectionHeaderPink}>기둥 V. ESG 및 수출 규제 대응</h3>
       <div className={styles.grid}>
-        <div className={styles.card}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><ShieldCheck size={18} className={styles.cardIcon} color="#ec4899"/> 글로벌 히스타민 규제 리스크 맵</h3>
-            <TelemetryBadge status="LIVE" syncDate="2026-05" />
-          </div>
-          <div className={styles.cardBody}>
-            {data.d_w06 ? (
-              <SafeResponsiveContainer height={280}>
-                <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data.d_w06}>
-                  <PolarGrid stroke="#334155" />
-                  <PolarAngleAxis dataKey="axis" stroke="#94a3b8" fontSize={11} />
-                  <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#64748b" />
-                  <Radar name="한국산 리스크 수준" dataKey="KR" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.3} />
-                  <Radar name="EU 허용 기준치 충족도" dataKey="EU" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.3} />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Legend />
-                </RadarChart>
-              </SafeResponsiveContainer>
-            ) : <EmptyState message="규제 데이터 로딩 실패" />}
-            <TakeawayBox 
-              situation="FDA(50ppm)와 EU(200mg/kg)의 통관 규제선이 매우 높습니다. 경쟁 액젓류(185mg/kg)는 EU 기준을 간신히 맞추나, 참치 자숙액은 45mg/kg으로 입니다." 
-              actionPlan="가장 엄격한 FDA 기준(50ppm)을 통과하는 수출 전용 '저히스타민 라인' 인증을 선점하여 북미 한인마트 및 아시안 소스 시장을 독점." 
-              source="FDA CPG 7108.240 / EU Regulation No 2073/2005" 
-            />
-          </div>
-        </div>
+        <WidgetCard
+          title="글로벌 히스타민 규제 리스크 맵"
+          icon={ShieldCheck}
+          iconColor="#ec4899"
+          pillar="S5"
+          cardDesc="FDA·EU·일본·중국 등 주요 수출국 히스타민 통관 기준치와 한국산 참치 자숙액·경쟁 액젓류 실측 수치 레이더 비교"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          customBody={data.d_w06 ? (
+            <SafeResponsiveContainer height={280}>
+              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data.d_w06}>
+                <PolarGrid stroke="#334155" />
+                <PolarAngleAxis dataKey="axis" stroke="#94a3b8" fontSize={11} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} stroke="#64748b" />
+                <Radar name="한국산 리스크 수준" dataKey="KR" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.3} />
+                <Radar name="EU 허용 기준치 충족도" dataKey="EU" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.3} />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend />
+              </RadarChart>
+            </SafeResponsiveContainer>
+          ) : <EmptyState message="규제 데이터 로딩 실패" />}
+          takeaway={{
+            situation: 'FDA(50ppm)와 EU(200mg/kg)의 통관 규제선이 매우 높음. 경쟁 액젓류(185mg/kg)는 EU 기준을 간신히 충족, 참치 자숙액은 45mg/kg으로 안전.',
+            actionPlan: 'FDA 기준(50ppm)을 통과하는 수출 전용 \'저히스타민 라인\' 인증을 선점, 북미 한인마트 및 아시안 소스 시장에 진입.',
+            source: 'FDA CPG 7108.240 · EU Regulation No 2073/2005',
+          }}
+        />
 
         <TunaEsgRiskRadar />
         <TunaTacMonitor tacData={data.d_tac_monitor} forecastData={data.d_tac_price_forecast} />
