@@ -211,3 +211,7 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 측정을 의식해서 CC/AG 비율을 *조정*하기 (자연스러운 사용이 측정 목적).
 - superpowers를 살짝 시험 설치하고 측정 (오염).
 - 결정 루브릭을 도중에 바꾸기 (사후 합리화 방지).
+
+## 2026-05-21 18:00 KST (Antigravity)
+- **완료된 것**: Wave 1b Mackerel 3개 파일(MackerelSafetyPremium.tsx, MackerelAfricanExportROI.tsx, MackerelClimatePredictor.tsx) ADR-0005 (WidgetCard + import default) 마이그레이션 및 JSON 데이터 분리 추출 완료. check_s_grade.py S-Grade 검증 통과.
+- **다음 단계**: 나머지 Wave 1c 파일들 마이그레이션 이어서 진행.
