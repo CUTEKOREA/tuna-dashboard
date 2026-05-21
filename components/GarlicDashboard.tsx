@@ -511,52 +511,44 @@ export default function GarlicDashboard() {
             }} />
         </div>
 
-        {/* W12: Red Sea Hedging Simulator */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'520px' }}>
-          <div style={{ marginBottom:'1rem', borderBottom:'1px solid #282828', paddingBottom:'0.6rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <ShieldCheck size={17} />환율 변동성 대비 실질 수입 마진 시뮬레이터
-              
-            </h3>
-          </div>
-          
-          {/* Simulator Controls */}
-          <div style={{ background:'#282828', border: 'none', padding:'0.8rem', borderRadius:'8px', marginBottom:'1rem' }}>
-            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'0.5rem', alignItems:'center' }}>
-              <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)', flex: 1 }}>원/달러 환율: <strong style={{color:"var(--color-danger)"}}>{fxRateUSD}원</strong></span>
-              <input type="range" min="1200" max="1500" step="10" value={fxRateUSD} onChange={e=>setFxRateUSD(parseFloat(e.target.value))} style={{ flex: 1, accentColor: 'var(--color-danger)' }} />
+        <WidgetCard title="환율 변동성 대비 실질 수입 마진 시뮬레이터" icon={ShieldCheck} iconColor="#eab308" pillar="S3"
+          cardDesc="원/달러 + 원/위안 슬라이더 기반 실질 수입 단가 차익 시뮬레이션"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          customBody={
+            <div>
+              <div style={{ background:'#282828', border: 'none', padding:'0.8rem', borderRadius:'8px', marginBottom:'1rem' }}>
+                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'0.5rem', alignItems:'center' }}>
+                  <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)', flex: 1 }}>원/달러 환율: <strong style={{color:"var(--color-danger)"}}>{fxRateUSD}원</strong></span>
+                  <input type="range" min="1200" max="1500" step="10" value={fxRateUSD} onChange={e=>setFxRateUSD(parseFloat(e.target.value))} style={{ flex: 1, accentColor: 'var(--color-danger)' }} />
+                </div>
+                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'0.8rem', alignItems:'center' }}>
+                  <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)', flex: 1 }}>원/위안 환율: <strong style={{color:"#eab308"}}>{fxRateCNY}원</strong></span>
+                  <input type="range" min="170" max="210" step="1" value={fxRateCNY} onChange={e=>setFxRateCNY(parseInt(e.target.value))} style={{ flex: 1, accentColor: '#eab308' }} />
+                </div>
+                <div style={{ background: '#181818', padding:'0.6rem 0.8rem', borderRadius:'6px', display:'flex', justifyContent:'space-between', alignItems:'center', border: 'none' }}>
+                  <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)' }}>예상 실질 수입 단가 차익</span>
+                  <span style={{ fontSize:'1.1rem', fontWeight:800, color:'#eab308' }}>+ ${savingsPerTEU.toLocaleString()}</span>
+                </div>
+              </div>
+              <div style={{ height:'375px', width:'100%' }}>
+                <SafeResponsiveContainer width="100%" height="100%">
+                  <ComposedChart data={simulatedW12Data} layout="vertical">
+                    {grid}
+                    <XAxis type="number" {...xAxisTextProps} />
+                    <YAxis dataKey="route" type="category" width={100} {...yAxisProps} />
+                    <RechartsTooltip content={<CustomTooltip />} />
+                    <Legend wrapperStyle={{fontSize:'10px'}} />
+                    <Bar dataKey="FreightCost" fill="var(--color-danger)" name="환산 수입단가(천원)" barSize={20} />
+                  </ComposedChart>
+                </SafeResponsiveContainer>
+              </div>
             </div>
-            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'0.8rem', alignItems:'center' }}>
-              <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)', flex: 1 }}>원/위안 환율: <strong style={{color:"#eab308"}}>{fxRateCNY}원</strong></span>
-              <input type="range" min="170" max="210" step="1" value={fxRateCNY} onChange={e=>setFxRateCNY(parseInt(e.target.value))} style={{ flex: 1, accentColor: '#eab308' }} />
-            </div>
-            <div style={{ background: '#181818', padding:'0.6rem 0.8rem', borderRadius:'6px', display:'flex', justifyContent:'space-between', alignItems:'center', border: 'none' }}>
-              <span style={{ fontSize:'0.8rem', color:'var(--text-secondary)' }}>예상 실질 수입 단가 차익</span>
-              <span style={{ fontSize:'1.1rem', fontWeight:800, color:'#eab308' }}>+ ${savingsPerTEU.toLocaleString()}</span>
-            </div>
-          </div>
-
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={simulatedW12Data} layout="vertical">
-                {grid}
-                <XAxis type="number" {...xAxisTextProps} />
-                <YAxis dataKey="route" type="category" width={100} {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                
-                <Bar dataKey="FreightCost" fill="var(--color-danger)" name="환산 수입단가(천원)" barSize={20} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="중국발 공급 단가는 크게 낮아졌으나, 지속적인 위안화/달러 강세로 인해 실질적인 원화 환산 수입 단가 인하 효과가 상쇄되고 있습니다."
-          actionPlan="단순 매입원가 계약을 지양하고 선물환 거래 및 환변동 보험을 통해 결제 통화 리스크를 능동적으로 헷징해야 합니다. 시뮬레이터를 통해 최적의 결제 시점을 매일 평가."
-        source="📊 [데이터 출처: SCFI 지수 기반 시뮬레이션]"
-        />
-          </div>
-        </div>
+          }
+          takeaway={{
+            situation: "중국발 공급 단가는 크게 낮아졌으나, 지속적인 위안화/달러 강세로 인해 실질적인 원화 환산 수입 단가 인하 효과가 상쇄되고 있습니다.",
+            actionPlan: "단순 매입원가 계약을 지양하고 선물환 거래 및 환변동 보험을 통해 결제 통화 리스크를 능동적으로 헷징해야 합니다. 시뮬레이터를 통해 최적의 결제 시점을 매일 평가.",
+            source: "SCFI 지수 기반 시뮬레이션",
+          }} />
       </div>
 
       {/* Section 4: Sales */}
@@ -569,126 +561,86 @@ export default function GarlicDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* W7 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <MapPin size={17} />1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 USD]
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ScatterChart>
-                {grid}
-                <XAxis dataKey="consumption" type="number" name="1인당 소비(kg)" {...xAxisTextProps} />
-                <YAxis dataKey="marketSize" type="number" name="시장규모" {...yAxisProps} />
-                <ZAxis dataKey="growth" range={[50, 400]} name="성장률" />
-                <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Scatter name="소비국 매트릭스" data={w7Data} fill="var(--color-danger)">
-                  <LabelList dataKey="country" position="top" fill="var(--text-secondary)" fontSize={11} fontWeight={600} />
-                </Scatter>
-              </ScatterChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="FAO 실시간 통계 기준, 한국은 1인당 소비(6.7kg)가 세계 최상위권이나 인구 감소로 시장 파이가 축소 중입니다. 반면 미국/유럽은 1인당 소비는 적지만 '유기농 갈릭 파우더', '기능성 오일' 등 프리미엄 카테고리 확장에 힘입어 시장 규모(Market Value) 성장률이 입니다."
-          actionPlan="수량(Volume) 중심의 내수 성장은 한계에 직면했습니다. 타겟 시장을 글로벌 선진국으로 재편하고, 고마진 기능성/유기농 브랜드(Value Migration) 제품군을 론칭하는 것이 중장기 생존 및 멀티플(Multiple) 확장의 유일한 해답입니다."
-        source="📊 [데이터 출처: FAOSTAT QCL Open API]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 USD]" icon={MapPin} iconColor="#ef4444" pillar="S4"
+          cardDesc="국가별 1인당 소비와 시장 규모 + 성장률 — 가치 마이그레이션 매트릭스"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ScatterChart>
+              {grid}
+              <XAxis dataKey="consumption" type="number" name="1인당 소비(kg)" {...xAxisTextProps} />
+              <YAxis dataKey="marketSize" type="number" name="시장규모" {...yAxisProps} />
+              <ZAxis dataKey="growth" range={[50, 400]} name="성장률" />
+              <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Scatter name="소비국 매트릭스" data={w7Data} fill="var(--color-danger)">
+                <LabelList dataKey="country" position="top" fill="var(--text-secondary)" fontSize={11} fontWeight={600} />
+              </Scatter>
+            </ScatterChart>
+          }
+          takeaway={{
+            situation: "FAO 실시간 통계 기준, 한국은 1인당 소비(6.7kg)가 세계 최상위권이나 인구 감소로 시장 파이가 축소 중입니다. 반면 미국/유럽은 1인당 소비는 적지만 '유기농 갈릭 파우더', '기능성 오일' 등 프리미엄 카테고리 확장에 힘입어 시장 규모(Market Value) 성장률이 입니다.",
+            actionPlan: "수량(Volume) 중심의 내수 성장은 한계에 직면했습니다. 타겟 시장을 글로벌 선진국으로 재편하고, 고마진 기능성/유기농 브랜드(Value Migration) 제품군을 론칭하는 것이 중장기 생존 및 멀티플(Multiple) 확장의 유일한 해답입니다.",
+            source: "FAOSTAT QCL Open API",
+          }} />
 
-        {/* W8 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Activity size={17} />무역 수지 및 적자/흑자 전환 (한국 기준) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 백만 USD)</span>
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={w8Data}>
-                {grid}
-                <XAxis dataKey="name" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="value" fill="#facc15" name="무역 적자 추이" />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="관세청(KCS) API 실시간 누적 집계 결과, 마늘 무역 수지는 연간 약 $70M~$100M 규모의 구조적 적자 상태를 보이고 있습니다. 이는 KREI가 지적한 '생산 기반 붕괴' 및 '수확 후 감모율(Post-harvest Loss)'로 인한 국부 유출과 정확히 일치합니다."
-          actionPlan="연간 수만 톤에 달하는 보관 부패/폐기 물량을 막지 못하면 무역 적자는 심화됩니다. 대규모 CA(Controlled Atmosphere) 저온 저장고 등 애그리테크(Agri-Tech) 인프라를 보유한 기업을 인수하여 수급 조절 및 시세 차익 역량을 내재화해야 합니다."
-        source="📊 [데이터 출처: 관세청(KCS) 관세율표]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="무역 수지 및 적자/흑자 전환 (한국 기준, 백만 USD)" icon={Activity} iconColor="#facc15" pillar="S4"
+          cardDesc="관세청(KCS) 실시간 누적 — 연간 $70M~$100M 구조적 적자"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={w8Data}>
+              {grid}
+              <XAxis dataKey="name" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Bar dataKey="value" fill="#facc15" name="무역 적자 추이" />
+            </BarChart>
+          }
+          takeaway={{
+            situation: "관세청(KCS) API 실시간 누적 집계 결과, 마늘 무역 수지는 연간 약 $70M~$100M 규모의 구조적 적자 상태를 보이고 있습니다. 이는 KREI가 지적한 '생산 기반 붕괴' 및 '수확 후 감모율(Post-harvest Loss)'로 인한 국부 유출과 정확히 일치합니다.",
+            actionPlan: "연간 수만 톤에 달하는 보관 부패/폐기 물량을 막지 못하면 무역 적자는 심화됩니다. 대규모 CA(Controlled Atmosphere) 저온 저장고 등 애그리테크(Agri-Tech) 인프라를 보유한 기업을 인수하여 수급 조절 및 시세 차익 역량을 내재화해야 합니다.",
+            source: "관세청(KCS) 관세율표",
+          }} />
 
-        {/* INSIGHT 4 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <ShieldCheck size={17} />2025 스마트 패키징 (Smart Packaging) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
+        <div style={{ gridColumn: '1 / -1' }}>
+          <WidgetCard title="2025 스마트 패키징(Smart Packaging) (단위: %)" icon={ShieldCheck} iconColor="#84cc16" pillar="S5"
+            cardDesc="친환경 패키징 도입 비중 vs 리테일 마진 프리미엄"
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+            chart={
               <PieChart>
                 <RechartsTooltip />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
                 <Pie data={i4Data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2}>
-                  {i4Data.map((entry:any, idx:number) => (
-                    <Cell key={`cell-${idx}`} fill={entry.fill} />
-                  ))}
+                  {i4Data.map((entry:any, idx:number) => (<Cell key={`cell-${idx}`} fill={entry.fill} />))}
                 </Pie>
               </PieChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="KOTRA 및 글로벌 ESG 정책 API 데이터를 교차 검증한 결과, 주요 유통망(Distribution Network)(할루미, 월마트 등)에서 깐마늘 플라스틱 용기 퇴출이 가속화되고 있습니다. 친환경(Bio-degradable) 패키징 선도입 시 리테일 마진 프리미엄 12% 획득이 가능합니다."
-          actionPlan="B2C 소매 벤더 매각 시 ESG 컴플라이언스는 필수 듀딜리전스(DD) 항목입니다. 재생 플라스틱/종이 포장 자동화 설비를 선제 도입하여 대형 마트의 ESG 벤더 요건을 선점하는 것이 B2C 채널 방어 및 프리미엄 엑시트(Exit)의 전제 조건입니다."
-        source="📊 [데이터 출처: KOTRA & ESG 정책 리포트]"
-        />
-          </div>
+            }
+            takeaway={{
+              situation: "KOTRA 및 글로벌 ESG 정책 API 데이터를 교차 검증한 결과, 주요 유통망(Distribution Network)(할루미, 월마트 등)에서 깐마늘 플라스틱 용기 퇴출이 가속화되고 있습니다. 친환경(Bio-degradable) 패키징 선도입 시 리테일 마진 프리미엄 12% 획득이 가능합니다.",
+              actionPlan: "B2C 소매 벤더 매각 시 ESG 컴플라이언스는 필수 듀딜리전스(DD) 항목입니다. 재생 플라스틱/종이 포장 자동화 설비를 선제 도입하여 대형 마트의 ESG 벤더 요건을 선점하는 것이 B2C 채널 방어 및 프리미엄 엑시트(Exit)의 전제 조건입니다.",
+              source: "KOTRA + ESG 정책 리포트",
+            }} />
         </div>
 
-        {/* W11: Valuation */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <TrendingUp size={17} />글로벌 흑마늘/추출물 가치평가 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 백만 USD)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={w11Data}>
-                {grid}
-                <XAxis dataKey="year" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Area type="monotone" dataKey="BlackGarlic" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.4} name="흑마늘 추출물" />
-                <Area type="monotone" dataKey="Supplements" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="마늘 건기식(Supplements)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="J.P. Morgan 글로벌 사모펀드(PEF) 실사 API 기준, 동일한 매출이라도 단순 농산물 도매업은 4~5x 멀티플(Multiple)에 그치지만, 가공(Processing) 기술(Processing) 내재화 시 8x, 수확량 예측 AI(AgTech) 내재화 시 15x 이상의 엔터프라이즈 밸류(EV)를 인정받습니다."
-          actionPlan="전통적인 유통 구조에 안주하면 자본 시장에서 가치를 인정받을 수 없습니다. 대시보드 내 GPR 단수 방어, 흑마늘 기능성 가공(Processing), 수입 Arbitrage 물류 시스템을 총결합하여 회사를 '글로벌 애그테크 플랫폼'으로 포지셔닝해야 궁극적인 EBITDA 15x 리레이팅 엑시트(Exit)가 가능해야 합니다."
-        source="📊 [데이터 출처: J.P. Morgan PEF 리서치]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="글로벌 흑마늘/추출물 가치평가 (백만 USD)" icon={TrendingUp} iconColor="#d97706" pillar="S2"
+          cardDesc="흑마늘 + 마늘 건기식 시장 규모 추이 — 가공 기술 내재화 시 15x EV"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={w11Data}>
+              {grid}
+              <XAxis dataKey="year" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Area type="monotone" dataKey="BlackGarlic" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.4} name="흑마늘 추출물" />
+              <Area type="monotone" dataKey="Supplements" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="마늘 건기식(Supplements)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "J.P. Morgan 글로벌 사모펀드(PEF) 실사 API 기준, 동일한 매출이라도 단순 농산물 도매업은 4~5x 멀티플(Multiple)에 그치지만, 가공 기술 내재화 시 8x, 수확량 예측 AI(AgTech) 내재화 시 15x 이상의 엔터프라이즈 밸류(EV)를 인정받습니다.",
+            actionPlan: "전통적인 유통 구조에 안주하면 자본 시장에서 가치를 인정받을 수 없습니다. 대시보드 내 GPR 단수 방어, 흑마늘 기능성 가공, 수입 Arbitrage 물류 시스템을 총결합하여 회사를 '글로벌 애그테크 플랫폼'으로 포지셔닝해야 궁극적인 EBITDA 15x 리레이팅 엑시트(Exit)가 가능해야 합니다.",
+            source: "J.P. Morgan PEF 리서치",
+          }} />
       </div>
 
       {/* Section 5: ESG */}
@@ -701,78 +653,53 @@ export default function GarlicDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* W9 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Leaf size={17} />기후 변화에 따른 단수 효율성 (Yield) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: kg/ha)</span>
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <LineChart data={w9Data}>
-                {grid}
-                <XAxis dataKey="year" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Line connectNulls={true} type="monotone" dataKey="중국" stroke="var(--color-danger)" strokeWidth={2} name="중국" />
-                <Line connectNulls={true} type="monotone" dataKey="인도" stroke="#65a30d" strokeWidth={2} name="인도" />
-                <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#d97706" strokeWidth={2} name="한국" />
-                <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="#eab308" strokeWidth={2} name="이집트" />
-                <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#84cc16" strokeWidth={2} name="방글라데시" />
-              </LineChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="KREI 실시간 API 시계열 분석 결과, 국내 마늘 재배면적과 단수가 동시에 급감하는 '수축 사분면(Contraction Quadrant)'에 진입했습니다. 고령화로 면적이 줄면 기계화로 단수를 늘려야 하나, 두 지표가 동반 하락하며 국가 생산량 파이프라인의 붕괴가 진행 중입니다."
-          actionPlan="국내 수급에 전적으로 의존하는 B2B 식자재/가공(Processing) 벤더는 중장기적으로 원물 확보 불능(Sourcing Failure) 상태에 빠집니다. 실사 시 자체 농장(Corporate Farming) 보유 여부보다는 인도, 동남아, 중국 등 복수 국가 소싱망을 보유한 업체를 선별해야 밸류에이션 리스크를 헤지할 수 있습니다."
-        source="📊 [데이터 출처: KREI 농업관측센터]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="기후 변화에 따른 단수 효율성 (Yield, kg/ha)" icon={Leaf} iconColor="#d97706" pillar="S1"
+          cardDesc="국가별 단수 시계열 — 한국 '수축 사분면' 진입"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <LineChart data={w9Data}>
+              {grid}
+              <XAxis dataKey="year" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Line connectNulls={true} type="monotone" dataKey="중국" stroke="var(--color-danger)" strokeWidth={2} name="중국" />
+              <Line connectNulls={true} type="monotone" dataKey="인도" stroke="#65a30d" strokeWidth={2} name="인도" />
+              <Line connectNulls={true} type="monotone" dataKey="한국" stroke="#d97706" strokeWidth={2} name="한국" />
+              <Line connectNulls={true} type="monotone" dataKey="이집트" stroke="#eab308" strokeWidth={2} name="이집트" />
+              <Line connectNulls={true} type="monotone" dataKey="방글라데시" stroke="#84cc16" strokeWidth={2} name="방글라데시" />
+            </LineChart>
+          }
+          takeaway={{
+            situation: "KREI 실시간 API 시계열 분석 결과, 국내 마늘 재배면적과 단수가 동시에 급감하는 '수축 사분면(Contraction Quadrant)'에 진입했습니다. 고령화로 면적이 줄면 기계화로 단수를 늘려야 하나, 두 지표가 동반 하락하며 국가 생산량 파이프라인의 붕괴가 진행 중입니다.",
+            actionPlan: "국내 수급에 전적으로 의존하는 B2B 식자재/가공 벤더는 중장기적으로 원물 확보 불능(Sourcing Failure) 상태에 빠집니다. 실사 시 자체 농장(Corporate Farming) 보유 여부보다는 인도, 동남아, 중국 등 복수 국가 소싱망을 보유한 업체를 선별해야 밸류에이션 리스크를 헤지할 수 있습니다.",
+            source: "KREI 농업관측센터",
+          }} />
 
-        {/* W10 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <AlertTriangle size={17} />수확량 변동성 및 기후 리스크 지수 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 변동률 %)</span>
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={w10Data}>
-                {grid}
-                <XAxis dataKey="name" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Volatility" fill="#65a30d" name="연간 생산 변동률 (%)" />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="UN Comtrade 및 글로벌 선물 거래소 실시간 트래킹에 따르면, 마늘 가격 변동 계수(Volatility)는 14~18% 수준에 달해 타 작물(밀, 옥수수 등) 대비 으로 높습니다. 기후 위기 및 투기 자본 유입이 가격 널뛰기를 주도하고 있습니다."
-          actionPlan="고변동성은 매입원가 예측을 불가능하게 만들어 제조 마진을 파괴합니다. 이를 제어하기 위해 선도계약 비율을 70% 이상으로 유지하고, 파생상품 및 데이터 기반 가격 예측 알고리즘 운용 능력을 갖춘 퀀트 농업(Quant Agri) 조직 구축이 시급해야 합니다."
-        source="📊 [데이터 출처: UN Comtrade 선물거래소]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="수확량 변동성 및 기후 리스크 지수 (변동률 %)" icon={AlertTriangle} iconColor="#65a30d" pillar="S1"
+          cardDesc="연간 생산 변동률 — 14~18% 변동 계수 (타 작물 대비 높음)"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={w10Data}>
+              {grid}
+              <XAxis dataKey="name" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Bar dataKey="Volatility" fill="#65a30d" name="연간 생산 변동률 (%)" />
+            </BarChart>
+          }
+          takeaway={{
+            situation: "UN Comtrade 및 글로벌 선물 거래소 실시간 트래킹에 따르면, 마늘 가격 변동 계수(Volatility)는 14~18% 수준에 달해 타 작물(밀, 옥수수 등) 대비 높습니다. 기후 위기 및 투기 자본 유입이 가격 널뛰기를 주도하고 있습니다.",
+            actionPlan: "고변동성은 매입원가 예측을 불가능하게 만들어 제조 마진을 파괴합니다. 이를 제어하기 위해 선도계약 비율을 70% 이상으로 유지하고, 파생상품 및 데이터 기반 가격 예측 알고리즘 운용 능력을 갖춘 퀀트 농업(Quant Agri) 조직 구축이 시급해야 합니다.",
+            source: "UN Comtrade + 선물거래소",
+          }} />
 
-        {/* INSIGHT 5 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Recycle size={17} />마늘 감모/폐기물 업사이클링 (Circular Economy) <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
+        <div style={{ gridColumn: '1 / -1' }}>
+          <WidgetCard title="마늘 감모/폐기물 업사이클링 (Circular Economy, %)" icon={Recycle} iconColor="#84cc16" pillar="S5"
+            cardDesc="폴리사카라이드·바이오연료·친환경 포장재 등 업사이클링 비중"
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+            chart={
               <BarChart data={i5Data} layout="vertical">
                 {grid}
                 <XAxis type="number" {...xAxisTextProps} />
@@ -783,15 +710,12 @@ export default function GarlicDashboard() {
                 <Bar dataKey="Biofuel" stackId="a" fill="#eab308" name="바이오 연료 (30%)" />
                 <Bar dataKey="EcoPackaging" stackId="a" fill="#ca8a04" name="친환경 포장재 (25%)" />
               </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="농촌진흥청 바이오매스 연구 및 환경부 API를 분석하면, 박피 공정 시 발생하는 마늘 껍질 및 폐마늘(전체 중량의 약 15%)을 기존처럼 폐기하지 않고 기능성 사료나 바이오매스 비료로 업사이클링(Up-cycling) 시 부가 마진 6%를 창출하며 폐기 비용이 Zero화 됩니다."
-          actionPlan="PEF 밸류업 관점에서 ESG는 단순 규제 준수를 넘어 새로운 'Cash Cow'입니다. 마늘 가공(Processing) 시설 인수 시, 잔여물을 사료/비료화 하는 폐루프(Closed-loop) 공정 도입 가능성을 철저히 실사하여, 탄소 배출권 및 부가 매출(Top-line) 동시 확장을 도모해야 합니다."
-        source="📊 [데이터 출처: 농촌진흥청 & 환경부]"
-        />
-          </div>
+            }
+            takeaway={{
+              situation: "농촌진흥청 바이오매스 연구 및 환경부 API를 분석하면, 박피 공정 시 발생하는 마늘 껍질 및 폐마늘(전체 중량의 약 15%)을 기존처럼 폐기하지 않고 기능성 사료나 바이오매스 비료로 업사이클링(Up-cycling) 시 부가 마진 6%를 창출하며 폐기 비용이 Zero화 됩니다.",
+              actionPlan: "PEF 밸류업 관점에서 ESG는 단순 규제 준수를 넘어 새로운 'Cash Cow'입니다. 마늘 가공 시설 인수 시, 잔여물을 사료/비료화 하는 폐루프(Closed-loop) 공정 도입 가능성을 철저히 실사하여, 탄소 배출권 및 부가 매출(Top-line) 동시 확장을 도모해야 합니다.",
+              source: "농촌진흥청 + 환경부",
+            }} />
         </div>
       </div>
 
