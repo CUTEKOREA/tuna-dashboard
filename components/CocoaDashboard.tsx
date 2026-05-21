@@ -18,6 +18,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -277,75 +278,53 @@ export default function CocoaDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* Widget 1 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
-              <CloudRain size={17} /> 기후 위기와 서아프리카 원두 생산 충격
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
-              <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: 톤)</span>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w1_production_climate}>
-                {grid}
-                <XAxis dataKey="year" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="IvoryCoast" stackId="a" fill="#78350f" name="코트디부아르 생산량" />
-                <Bar yAxisId="left" dataKey="Ghana" stackId="a" fill="#92400e" name="가나 생산량" />
-                <Line yAxisId="right" type="monotone" dataKey="CSSVD_Infection_Rate" stroke="var(--color-danger)" strokeWidth={3} dot={{r:4}} name="CSSVD 감염률(%, RHS)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="가나의 2023/24 시즌 생산량은 기상이변과 질병으로 15년 만의 최저치인 약 58~60만 톤으로 급감했으며, 웨스턴 노스 지역 재배 면적의 81%가 CSSVD에 감염되었습니다. 전염병과 노령화된 나무로 인해 구조적 생산량 회복에는 5~10년 이상의 리드타임이 소요됩니다."
-              actionPlan="포트폴리오 내 F&B 기업들의 서아프리카 원물 의존도(Exposure)를 즉각 하향 조정하고, 병해충 리스크가 낮은 중남미(에콰도르) 산지로의 공급망 다변화(Supply Chain Diversification)를 위한 소싱 계약 구조 개편을 강제해야 합니다. 기후 스마트 농업(CSA) 기술 보유 기업에 대한 그로스 캐피탈 투자를 선제적으로 검토해야 합니다."
-              source="FAOSTAT QCL 2018-2024 (CI:A, GH:X) / EFI Cocoa Insight March 2025"
-            />
-          </div>
-        </div>
+        <WidgetCard title="기후 위기와 서아프리카 원두 생산 충격 (단위: 톤)" icon={CloudRain} iconColor="#b45309" pillar="S1"
+          cardDesc="가나·코트디부아르 생산량 vs CSSVD 감염률 — 구조적 회복 5~10년"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w1_production_climate}>
+              {grid}
+              <XAxis dataKey="year" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="IvoryCoast" stackId="a" fill="#78350f" name="코트디부아르 생산량" />
+              <Bar yAxisId="left" dataKey="Ghana" stackId="a" fill="#92400e" name="가나 생산량" />
+              <Line yAxisId="right" type="monotone" dataKey="CSSVD_Infection_Rate" stroke="var(--color-danger)" strokeWidth={3} dot={{r:4}} name="CSSVD 감염률(%, RHS)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "가나의 2023/24 시즌 생산량은 기상이변과 질병으로 15년 만의 최저치인 약 58~60만 톤으로 급감했으며, 웨스턴 노스 지역 재배 면적의 81%가 CSSVD에 감염되었습니다. 전염병과 노령화된 나무로 인해 구조적 생산량 회복에는 5~10년 이상의 리드타임이 소요됩니다.",
+            actionPlan: "포트폴리오 내 F&B 기업들의 서아프리카 원물 의존도(Exposure)를 즉각 하향 조정하고, 병해충 리스크가 낮은 중남미(에콰도르) 산지로의 공급망 다변화(Supply Chain Diversification)를 위한 소싱 계약 구조 개편을 강제해야 합니다. 기후 스마트 농업(CSA) 기술 보유 기업에 대한 그로스 캐피탈 투자를 선제적으로 검토해야 합니다.",
+            source: "FAOSTAT QCL 2018-2024 (CI:A, GH:X) / EFI Cocoa Insight March 2025",
+          }} />
 
-        {/* Widget 2 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
-              <TrendingUp size={17} /> 코코아 원두 선물 가격 패닉 바잉
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
-              <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: USD/MT)</span>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <AreaChart data={processedPriceData}>
-                <defs>
-                  <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.1}/></linearGradient>
-                  <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#78350f" stopOpacity={0.8}/><stop offset="95%" stopColor="#78350f" stopOpacity={0.1}/></linearGradient>
-                  <linearGradient id="colorTrend" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/></linearGradient>
-                </defs>
-                {grid}
-                <XAxis dataKey="month" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Area type="monotone" dataKey="PriceHist" stroke="var(--color-danger)" fill="url(#colorPrice)" strokeWidth={2} name="실거래가($/MT)" />
-                <Area type="monotone" dataKey="PriceForecast" stroke="#78350f" fill="url(#colorForecast)" strokeWidth={2} strokeDasharray="5 5" name="전망가(Forecast)" />
-                <Area type="monotone" dataKey="Trend" stroke="#f97316" fill="url(#colorTrend)" strokeWidth={2} name="추세 전망선" strokeDasharray="3 3" />
-              </AreaChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="뉴욕 ICE 코코아 선물 가격은 극심한 숏 스퀴즈와 패닉 바잉이 겹치며 2024년 4월 톤당 $12,000를 돌파해 역사적 최고점을 경신했으나, 2026년 초 현재 톤당 약 $3,765까지 70%가량 폭락하며 극단적인 변동성을 보이고 있습니다. 이러한 백워데이션과 롤러코스터 장세는 산업 내 대규모 마진콜과 유동성 경색을 유발했습니다."
-              actionPlan="선물 가격 급등락에 따른 운전자본(Working Capital) 부담을 역이용하여, 유동성 위기에 처한 중소형 가공업체·무역상들을 할인된 밸류에이션에 인수하는 디스트레스드(Distressed) 바이아웃 기회를 포착해야 합니다. 피투자사에는 'Just-in-Case' 재고 확보 모델 전환과 롤링 헤지(Rolling Hedge) 전략을 의무화해야 합니다."
-              source="World Bank Commodity Index / ICCO Daily Price / ICE Futures"
-            />
-          </div>
-        </div>
+        <WidgetCard title="코코아 원두 선물 가격 패닉 바잉 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
+          cardDesc="ICE 선물 실거래가·전망가·추세선 — $12K → $3.7K 극단적 변동성"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <AreaChart data={processedPriceData}>
+              <defs>
+                <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.1}/></linearGradient>
+                <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#78350f" stopOpacity={0.8}/><stop offset="95%" stopColor="#78350f" stopOpacity={0.1}/></linearGradient>
+                <linearGradient id="colorTrend" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/><stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/></linearGradient>
+              </defs>
+              {grid}
+              <XAxis dataKey="month" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Area type="monotone" dataKey="PriceHist" stroke="var(--color-danger)" fill="url(#colorPrice)" strokeWidth={2} name="실거래가($/MT)" />
+              <Area type="monotone" dataKey="PriceForecast" stroke="#78350f" fill="url(#colorForecast)" strokeWidth={2} strokeDasharray="5 5" name="전망가(Forecast)" />
+              <Area type="monotone" dataKey="Trend" stroke="#f97316" fill="url(#colorTrend)" strokeWidth={2} name="추세 전망선" strokeDasharray="3 3" />
+            </AreaChart>
+          }
+          takeaway={{
+            situation: "뉴욕 ICE 코코아 선물 가격은 극심한 숏 스퀴즈와 패닉 바잉이 겹치며 2024년 4월 톤당 $12,000를 돌파해 역사적 최고점을 경신했으나, 2026년 초 현재 톤당 약 $3,765까지 70%가량 폭락하며 극단적인 변동성을 보이고 있습니다. 이러한 백워데이션과 롤러코스터 장세는 산업 내 대규모 마진콜과 유동성 경색을 유발했습니다.",
+            actionPlan: "선물 가격 급등락에 따른 운전자본(Working Capital) 부담을 역이용하여, 유동성 위기에 처한 중소형 가공업체·무역상들을 할인된 밸류에이션에 인수하는 디스트레스드(Distressed) 바이아웃 기회를 포착해야 합니다. 피투자사에는 'Just-in-Case' 재고 확보 모델 전환과 롤링 헤지(Rolling Hedge) 전략을 의무화해야 합니다.",
+            source: "World Bank Commodity Index / ICCO Daily Price / ICE Futures",
+          }} />
 
         {/* Widget 11 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
