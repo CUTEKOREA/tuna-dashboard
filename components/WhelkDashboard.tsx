@@ -18,6 +18,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
+import WidgetCard from './WidgetCard';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -349,77 +350,47 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 1. 원료 수급</h2>
   </div>
   <>
-            {/* Widget 1: Global Capture Top 10 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Globe style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 글로벌 어획 생산량 상위 5개국
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2022년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: FAOSTAT</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  전 세계 수역에서 조업되는 골뱅이(Whelk) 원물의 주요 생산국 비중과 생산량 절대치를 비교하여 글로벌 수급의 핵심 헤게모니를 추적합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={globalCaptureData} layout="vertical" margin={{ left: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                    <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
-                    <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
-                    <Bar dataKey="value" name="어획량(톤)" fill="var(--color-info)" radius={[0, 4, 4, 0]}>
-                      {globalCaptureData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 3 ? 'var(--color-success)' : 'var(--color-info)'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[FAOSTAT] 전 세계 골뱅이 생산량이 북대서양(영국·아일랜드) 등 특정 해역에 편중되어 있어, 한 국가의 어획량이 줄어들면 전체 수급이 크게 흔들릴 수 있는 상황입니다.</span>}
-                actionPlan={<span>상위 5개국 중 영국과 아일랜드가 글로벌 고품질 골뱅이 물량의 핵심 공급망을 장악하고 있습니다. 한국 프리미엄 B2C 통조림 시장은 육질이 뛰어난 <TermTooltip term="B. undatum" description="북해에서 조업되는 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 에 절대적으로 의존합니다. 이러한 단일 해역 의존 리스크(Single Point of Failure) 방어를 위해 조달 파트는 영국 내 핵심 벤더와 선제적 쿼터 매입 및 다년 선도 계약을 추진하여 원가 변동성으로부터 전사 이익을 수성해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="글로벌 어획 생산량 상위 5개국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="전 세계 골뱅이 원물 주요 생산국 비중·생산량 — 글로벌 수급 헤게모니"
+              telemetry={{ status: 'STATIC', syncDate: '2022년 기준' }} chartHeight={300}
+              chart={
+                <BarChart data={globalCaptureData} layout="vertical" margin={{ left: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
+                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+                  <Bar dataKey="value" name="어획량(톤)" fill="var(--color-info)" radius={[0, 4, 4, 0]}>
+                    {globalCaptureData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 3 ? 'var(--color-success)' : 'var(--color-info)'} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[FAOSTAT] 전 세계 골뱅이 생산량이 북대서양(영국·아일랜드) 등 특정 해역에 편중되어 있어, 한 국가의 어획량이 줄어들면 전체 수급이 크게 흔들릴 수 있는 상황입니다.</span>,
+                actionPlan: <span>상위 5개국 중 영국과 아일랜드가 글로벌 고품질 골뱅이 물량의 핵심 공급망을 장악하고 있습니다. 한국 프리미엄 B2C 통조림 시장은 육질이 뛰어난 <TermTooltip term="B. undatum" description="북해에서 조업되는 물레고둥(백골뱅이). 수율이 높고 육질이 부드러워 한국 B2C 통조림 1위 원물." /> 에 절대적으로 의존합니다. 이러한 단일 해역 의존 리스크(Single Point of Failure) 방어를 위해 조달 파트는 영국 내 핵심 벤더와 선제적 쿼터 매입 및 다년 선도 계약을 추진하여 원가 변동성으로부터 전사 이익을 수성해야 합니다.</span>,
+                source: 'FAOSTAT (2022)',
+              }} />
 
-            {/* Widget 2: Canada vs UK */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TrendingUp style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 캐나다 vs 영국 어획량 장기 시계열
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 1H 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: DFO Canada</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  기후 변화로 인한 해수온 상승이 캐나다 해역의 골뱅이 어획량 급감에 미친 영향을 분석하고, 이를 통해 영국산 원물에 대한 수요 이동을 예측합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <LineChart data={canadaCaptureData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Line type="monotone" dataKey="canada" name="캐나다 어획(톤)" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 4 }} />
-                    <Line type="monotone" dataKey="uk" name="영국 어획(톤)" stroke="var(--color-info)" strokeWidth={2} strokeDasharray="5 5" />
-                  </LineChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[DFO Canada] 바닷물 온도가 높아지면서 캐나다 해역의 골뱅이가 사라지고 있으며, 이로 인해 전 세계 바이어들이 유일한 대안인 영국으로 몰려 경쟁이 치열해지고 있습니다.</span>}
-                actionPlan={<span>캐나다 해역 어획량이 수온 상승 등 해양 생태계 변화로 인해 과거 10년간 74%나 급감하며 사실상 산업 붕괴(Collapse) 수준에 도달했습니다. 이는 글로벌 수급 밸런스를 붕괴시키며, 유일한 고품질 대체재인 영국산 원물에 대한 전 세계 바이어들의 패닉 바잉(Panic Buying)과 가격 폭등을 촉발할 가능성이 농후합니다. 경영진은 이를 구조적 위기로 인식하고, 즉각적인 <TermTooltip term="장기 공급계약(LTC)" description="Long-Term Contract. 시장 가격 변동성에 대비하여 원물 공급자에게 고정 가격 혹은 최소 보장 물량을 담보받는 장기 선도 계약." /> 체결 및 선급금 지급을 통해서라도 영국 해역 내 확고한 물량 락인을 최우선으로 확보해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="캐나다 vs 영국 어획량 장기 시계열" icon={TrendingUp} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="해수온 상승의 캐나다 어획 영향 + 영국산 수요 이동 예측"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 1H 기준' }} chartHeight={300}
+              chart={
+                <LineChart data={canadaCaptureData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Line type="monotone" dataKey="canada" name="캐나다 어획(톤)" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 4 }} />
+                  <Line type="monotone" dataKey="uk" name="영국 어획(톤)" stroke="var(--color-info)" strokeWidth={2} strokeDasharray="5 5" />
+                </LineChart>
+              }
+              takeaway={{
+                situation: <span>[DFO Canada] 바닷물 온도가 높아지면서 캐나다 해역의 골뱅이가 사라지고 있으며, 이로 인해 전 세계 바이어들이 유일한 대안인 영국으로 몰려 경쟁이 치열해지고 있습니다.</span>,
+                actionPlan: <span>캐나다 해역 어획량이 수온 상승 등 해양 생태계 변화로 인해 과거 10년간 74%나 급감하며 사실상 산업 붕괴(Collapse) 수준에 도달했습니다. 이는 글로벌 수급 밸런스를 붕괴시키며, 유일한 고품질 대체재인 영국산 원물에 대한 전 세계 바이어들의 패닉 바잉(Panic Buying)과 가격 폭등을 촉발할 가능성이 농후합니다. 경영진은 이를 구조적 위기로 인식하고, 즉각적인 <TermTooltip term="장기 공급계약(LTC)" description="Long-Term Contract. 시장 가격 변동성에 대비하여 원물 공급자에게 고정 가격 혹은 최소 보장 물량을 담보받는 장기 선도 계약." /> 체결 및 선급금 지급을 통해서라도 영국 해역 내 확고한 물량 락인을 최우선으로 확보해야 합니다.</span>,
+                source: 'DFO Canada / UK MMO (2024 1H)',
+              }} />
             
             {/* Widget 3: Korea Capture */}
             <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
