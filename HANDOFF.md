@@ -36,6 +36,45 @@
 
 ---
 
+## 🆕 2026-05-21 메가 세션 갱신 (cont.) — Mangosteen 100% + Garlic 9/18 + Codex 병렬 셋업
+
+### 추가 진척 (마지막 PR #17 갱신분)
+- **Mangosteen 15 widgets** 100% 완료 (commit `27914d1` on omo/singles)
+- **Garlic 9/18 widgets** 진행 (commits `cf7bd4e` `98d5fde` `c8f9a8f`)
+  - 6개는 `omo/singles`에 (Cassava·Jukkumi·TunaExtract·Mangosteen 동반)
+  - 6개 추가분은 `omo/singles-codex`에 (W3·W4·INSIGHT2·W5·W6·INSIGHT3)
+- **Codex 병렬 worktree** 셋업: `tuna-dashboard-omo-codex` + `omo/singles-codex` 브랜치 + `CODEX_TASK.md` 지시서
+
+### 잔여 작업 (~98 widgets)
+
+**omo/singles-codex** (Codex 또는 새 세션 CC):
+- Garlic 잔여 9/18 (W7~W12·Insight4·Insight5·Insight6·Section5 위젯들)
+- Cocoa 22/22 (전체)
+
+**omo/singles** (새 세션 CC, ds-card framework 별도 처리):
+- Whelk 29 (TermTooltip JSX 임베디드 — `WidgetCard.TakeawayProps` 완화 필요)
+- Carrot 31
+- Galchi (TakeawayBox 0건, 별도 패턴)
+- FalklandSquid 3 (ds-card)
+
+### 다음 세션 전략
+
+1. **첫 5분**: `WidgetCard.tsx`의 `TakeawayProps.situation`/`actionPlan`을 `string | React.ReactNode` 로 확장 (checkForbidden은 `typeof === 'string'` 가드 추가). Whelk JSX 임베디드 컨텐츠 호환성 확보.
+2. **Garlic 잔여 + Cocoa**: omo/singles-codex 워크트리에서 Mangosteen 검증 패턴 그대로 적용.
+3. **Whelk + Carrot**: WidgetCard 확장 후 ds-card 패턴 migration.
+4. **Galchi**: 별도 구조 분석 후 결정.
+
+### Active Worktrees (이번 세션 끝 시점)
+- `tuna-dashboard` (main) — HEAD `c6e7312` (HANDOFF 업데이트만)
+- `tuna-dashboard-omo-pollock` — `omo/pollock-2a2` (PR #13)
+- `tuna-dashboard-omo-salmon` — `omo/salmon` (PR #14)
+- `tuna-dashboard-omo-squid` — `omo/squid` (PR #15)
+- `tuna-dashboard-omo-chicken` — `omo/chicken` (PR #16)
+- `tuna-dashboard-omo-singles` — `omo/singles` (PR #17, HEAD `cf7bd4e` Garlic 3/18)
+- `tuna-dashboard-omo-codex` — `omo/singles-codex` (HEAD `c8f9a8f` Garlic 9/18)
+
+---
+
 ## 🆕 2026-05-21 진행 요약 — Claude Code 통합 마이그레이션 메가 세션 (5 PR)
 
 ### 마이그레이션 누적 성과 (PR #13~#17)
