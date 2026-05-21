@@ -652,207 +652,130 @@ export default function CocoaDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* Widget 9 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Recycle size={17} />부산물 업사이클링 수익 포트폴리오
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 매출 기여도 % | 출처: AgFunder 애그리테크 리포트 및 바이오매스 저널)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={cocoaData.w9_upcycling}>
-                {grid}
-                <XAxis dataKey="category" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar dataKey="Theobromine_mg_g" stackId="a" fill="#d97706" name="테오브로민(mg/g)" />
-                <Bar dataKey="Catechin_mg_g" stackId="a" fill="#b45309" name="카테킨(mg/g)" />
-                <Bar dataKey="Feed_Utility" stackId="a" fill="var(--color-warning)" name="사료 가치(Index)" />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="코코아 생산 과정에서 발생하는 방대한 부산물(Husks, Pods)은 폐기물로 간주되어 탄소세 및 처리 비용을 발생시키지만, 그 이면에는 바이오 비료나 사료로의 엄청난 전환 잠재력이 숨겨져 있습니다."
-          actionPlan="버려지는 코코아 부산물을 자원화하는 애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를 구축해 폐기 비용을 제로화하고, 이를 새로운 ESG 기반의 캐시카우(Cash Cow)로 탈바꿈시키십시오."
-          source="AgFunder 애그리테크 리포트 / 바이오매스 저널"
-        />
-          </div>
-        </div>
+        <WidgetCard title="부산물 업사이클링 수익 포트폴리오 (매출 기여도 %)" icon={Recycle} iconColor="#d97706" pillar="S5"
+          cardDesc="Husks·Pods 부산물의 테오브로민·카테킨·사료 가치 — Cash Cow 전환"
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={cocoaData.w9_upcycling}>
+              {grid}
+              <XAxis dataKey="category" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar dataKey="Theobromine_mg_g" stackId="a" fill="#d97706" name="테오브로민(mg/g)" />
+              <Bar dataKey="Catechin_mg_g" stackId="a" fill="#b45309" name="카테킨(mg/g)" />
+              <Bar dataKey="Feed_Utility" stackId="a" fill="var(--color-warning)" name="사료 가치(Index)" />
+            </BarChart>
+          }
+          takeaway={{
+            situation: "코코아 생산 과정에서 발생하는 방대한 부산물(Husks, Pods)은 폐기물로 간주되어 탄소세 및 처리 비용을 발생시키지만, 그 이면에는 바이오 비료나 사료로의 엄청난 전환 잠재력이 숨겨져 있습니다.",
+            actionPlan: "버려지는 코코아 부산물을 자원화하는 애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를 구축해 폐기 비용을 제로화하고, 이를 새로운 ESG 기반의 캐시카우(Cash Cow)로 탈바꿈시키십시오.",
+            source: "AgFunder 애그리테크 리포트 / 바이오매스 저널",
+          }} />
 
-        {/* Widget 10 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Gavel size={17} />EUDR 이력 추적 준수도 및 페널티 리스크
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 준수율%, 위험도 | 출처: Trase.earth 및 가나 TCDP API)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w10_eudr_compliance}>
-                {grid}
-                <XAxis dataKey="origin" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v) => `${v}%`} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="CMS_Registration" fill="#78350f" name="CMS 농가 등록률(%)" barSize={35} />
-                <Bar yAxisId="left" dataKey="Polygon_Mapped" fill="var(--color-info)" name="폴리곤 매핑(%)" barSize={35} />
-                <Line yAxisId="right" type="monotone" dataKey="Export_Block_Risk" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 5}} name="수출 차단 리스크(RHS)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="EUDR 규정을 위반해 산림 훼손과 연관된 제품을 유통할 경우, EU 역내 연간 총Top-line 매출의 최소 4%에 달하는 막대한 벌금 조치가 내려질 수 있어 실시간 이력 추적 시스템(CMS) 도입이 발등의 불이 되었습니다."
-          actionPlan="단순한 환경 선언을 넘어 기업의 존폐를 가를 수 있는 핵심 재무 리스크이므로, 즉각적으로 투명한 이력 추적 및 디지털 실사(Due Diligence) 인프라에 투자해 글로벌 규제 준수 역량을 획득해야 합니다."
-          source="Trase.earth / 가나 TCDP API"
-        />
-          </div>
-        </div>
+        <WidgetCard title="EUDR 이력 추적 준수도 및 페널티 리스크 (준수율%, 위험도)" icon={Gavel} iconColor="#78350f" pillar="S5"
+          cardDesc="CMS 농가 등록률·폴리곤 매핑 vs 수출 차단 리스크 — EU 매출 4% 벌금 압박"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w10_eudr_compliance}>
+              {grid}
+              <XAxis dataKey="origin" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v) => `${v}%`} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="CMS_Registration" fill="#78350f" name="CMS 농가 등록률(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Polygon_Mapped" fill="var(--color-info)" name="폴리곤 매핑(%)" barSize={35} />
+              <Line yAxisId="right" type="monotone" dataKey="Export_Block_Risk" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 5}} name="수출 차단 리스크(RHS)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "EUDR 규정을 위반해 산림 훼손과 연관된 제품을 유통할 경우, EU 역내 연간 총매출의 최소 4%에 달하는 막대한 벌금 조치가 내려질 수 있어 실시간 이력 추적 시스템(CMS) 도입이 발등의 불이 되었습니다.",
+            actionPlan: "단순한 환경 선언을 넘어 기업의 존폐를 가를 수 있는 핵심 재무 리스크이므로, 즉각적으로 투명한 이력 추적 및 디지털 실사(Due Diligence) 인프라에 투자해 글로벌 규제 준수 역량을 획득해야 합니다.",
+            source: "Trase.earth / 가나 TCDP API",
+          }} />
 
-        
-        {/* Widget 17 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <MapPin size={17} />FTA 삼각 무역 및 역수출 흐름도
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <Sankey data={cocoaData.w17_fta_triangle} node={renderSankeyNode} nodePadding={30} margin={{ top: 10, right: 10, bottom: 10, left: 10 }} link={{ stroke: 'rgba(255,255,255,0.1)' }}>
-                <RechartsTooltip content={<CustomTooltip />} />
-              </Sankey>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="자유무역협정(FTA) 네트워크를 전략적으로 활용하면, 원물 수입부터 가공 후 역수출(Re-export)에 이르는 전 과정에서 발생하는 막대한 관세 장벽을 우회하고 물류비용을 극적으로 절감할 수 있습니다."
-          actionPlan="한국의 무관세 지위를 십분 활용해 동북아 코코아 가공 및 유통의 핵심 허브로 진화하십시오. 일본(프리미엄 시장)과 중국(매스 마켓)으로 뻗어가는 최적의 물류 넥서스를 선점해 시장 지배력을 강화해야 합니다."
-          source="UN Comtrade 역수출 실데이터 / KCS API"
-        />
-          </div>
-        </div>
+        <WidgetCard title="FTA 삼각 무역 및 역수출 흐름도" icon={MapPin} iconColor="#b45309" pillar="S3"
+          cardDesc="FTA 활용 무관세 우회 — 한국 동북아 가공·유통 허브 진화"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <Sankey data={cocoaData.w17_fta_triangle} node={renderSankeyNode} nodePadding={30} margin={{ top: 10, right: 10, bottom: 10, left: 10 }} link={{ stroke: 'rgba(255,255,255,0.1)' }}>
+              <RechartsTooltip content={<CustomTooltip />} />
+            </Sankey>
+          }
+          takeaway={{
+            situation: "자유무역협정(FTA) 네트워크를 전략적으로 활용하면, 원물 수입부터 가공 후 역수출(Re-export)에 이르는 전 과정에서 발생하는 막대한 관세 장벽을 우회하고 물류비용을 극적으로 절감할 수 있습니다.",
+            actionPlan: "한국의 무관세 지위를 십분 활용해 동북아 코코아 가공 및 유통의 핵심 허브로 진화하십시오. 일본(프리미엄 시장)과 중국(매스 마켓)으로 뻗어가는 최적의 물류 넥서스를 선점해 시장 지배력을 강화해야 합니다.",
+            source: "UN Comtrade 역수출 실데이터 / KCS API",
+          }} />
 
-        {/* Widget 18 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Landmark size={17} />아시아 내 프리미엄 차익거래
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 비율 및 차익 | 출처: KCS(관세청) 실측 및 ICCO API)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w18_asia_premium}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
-                <XAxis dataKey="country" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="PremiumShare" name="프리미엄 비중" stackId="a" fill="var(--color-danger)" />
-                <Bar yAxisId="left" dataKey="CBERatio" name="CBE 비중" stackId="a" fill="#d97706" />
-                <Line yAxisId="right" type="monotone" dataKey="Spread" stroke="#b45309" strokeWidth={3} name="현물/선물 스프레드(KCS-ICCO)" dot={{ r: 5 }} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="한국/일본 시장은 높은 단가에도 다크 초콜릿 등 프리미엄 제품 수요가 굳건한 반면, 신흥 시장에서는 대중적이고 저렴한 가성비 초콜릿 제품(CBE 활용) 소비가 급격히 팽창하고 있습니다."
-          actionPlan="국가별 지불 용의와 선호도 격차를 활용하여, 선진 시장에는 고마진 프리미엄 라인업을 공급하고 신흥 시장에는 CBE 활용 제품을 스플릿(Split) 매각하는 세분화된 포트폴리오 전략으로 수익을 극대화해야 합니다."
-          source="KCS(관세청) 실측 / ICCO API"
-        />
-          </div>
-        </div>
+        <WidgetCard title="아시아 내 프리미엄 차익거래" icon={Landmark} iconColor="#b45309" pillar="S4"
+          cardDesc="국가별 프리미엄 비중 + CBE 비중 + 현물/선물 스프레드"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w18_asia_premium}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
+              <XAxis dataKey="country" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="PremiumShare" name="프리미엄 비중" stackId="a" fill="var(--color-danger)" />
+              <Bar yAxisId="left" dataKey="CBERatio" name="CBE 비중" stackId="a" fill="#d97706" />
+              <Line yAxisId="right" type="monotone" dataKey="Spread" stroke="#b45309" strokeWidth={3} name="현물/선물 스프레드(KCS-ICCO)" dot={{ r: 5 }} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "한국/일본 시장은 높은 단가에도 다크 초콜릿 등 프리미엄 제품 수요가 굳건한 반면, 신흥 시장에서는 대중적이고 저렴한 가성비 초콜릿 제품(CBE 활용) 소비가 급격히 팽창하고 있습니다.",
+            actionPlan: "국가별 지불 용의와 선호도 격차를 활용하여, 선진 시장에는 고마진 프리미엄 라인업을 공급하고 신흥 시장에는 CBE 활용 제품을 스플릿(Split) 매각하는 세분화된 포트폴리오 전략으로 수익을 극대화해야 합니다.",
+            source: "KCS(관세청) 실측 / ICCO API",
+          }} />
 
-        {/* Widget 19 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <TestTube size={17} />K-뷰티/바이오 소재 전환 ROI
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 마진율 % | 출처: 식약처 MFDS API 및 B2B 데이터베이스)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w19_kbeauty_bio}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
-                <XAxis dataKey="channel" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} tickFormatter={(v) => `${v}%`} />
-                <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA 마진율(%)" barSize={35} />
-                <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#78350f" name="시장 성장률(%)" barSize={35} />
-                <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#d97706" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
-                <Line yAxisId="right" type="monotone" dataKey="Antioxidant_DPPH" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="3 3" name="항산화(DPPH, RHS)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="기존 식음료 채널이 매입원가 폭등으로 마진 압박에 시달리는 반면, 코코아 추출물(폴리페놀 등)은 피부 보습 및 항산화 효과가 입증되어 제약/코스메틱 산업에서 높은 프리미엄 가격으로 거래되고 있습니다."
-          actionPlan="식품 산업의 낮은 수익성을 극복하기 위해 부가가치가 월등히 높은 K-뷰티 화장품 및 코스메슈티컬(Cosmeceutical) 헬스케어 소재로 코코아 원물을 치환함으로써 투자 수익률(ROI)을 퀀텀 점프시켜야 해야 합니다."
-          source="식약처 MFDS API / B2B 데이터베이스"
-        />
-          </div>
-        </div>
+        <WidgetCard title="K-뷰티/바이오 소재 전환 ROI (마진율 %)" icon={TestTube} iconColor="#f59e0b" pillar="S2"
+          cardDesc="채널별 EBITDA·성장률 + 폴리페놀·항산화 측정치 — 코스메슈티컬 ROI"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w19_kbeauty_bio}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
+              <XAxis dataKey="channel" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} tickFormatter={(v) => `${v}%`} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA 마진율(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#78350f" name="시장 성장률(%)" barSize={35} />
+              <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#d97706" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
+              <Line yAxisId="right" type="monotone" dataKey="Antioxidant_DPPH" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="3 3" name="항산화(DPPH, RHS)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "기존 식음료 채널이 매입원가 폭등으로 마진 압박에 시달리는 반면, 코코아 추출물(폴리페놀 등)은 피부 보습 및 항산화 효과가 입증되어 제약/코스메틱 산업에서 높은 프리미엄 가격으로 거래되고 있습니다.",
+            actionPlan: "식품 산업의 낮은 수익성을 극복하기 위해 부가가치가 월등히 높은 K-뷰티 화장품 및 코스메슈티컬(Cosmeceutical) 헬스케어 소재로 코코아 원물을 치환함으로써 투자 수익률(ROI)을 퀀텀 점프시켜야 합니다.",
+            source: "식약처 MFDS API / B2B 데이터베이스",
+          }} />
 
-        {/* Widget 13 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Gavel size={17} />이중 규제의 덫 리스크 매트릭스
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: X=추적리스크, Y=중금속, Z=거절률 | 출처: MFDS 식약처 수입식품검역 API)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                {grid}
-                <XAxis type="number" dataKey="eudrRisk" name="EUDR 추적위험도(%)" {...xAxisTextProps} />
-                <YAxis type="number" dataKey="cadmiumLevel" name="카드뮴 수치(mg/kg)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <ZAxis type="number" dataKey="rejectionRate" range={[100, 800]} name="식약처 통관 거절률(%)" />
-                <ReferenceLine y={0.8} stroke="var(--color-danger)" strokeDasharray="3 3" label={{ position: 'top', value: '식약처 통관 제한선(0.8mg/kg)', fill: 'var(--color-danger)', fontSize: 10 }} />
-                <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                {cocoaData.w13_dual_trap.map((entry: any, index: number) => (
-                  <Scatter key={`scatter-${index}`} name={entry.country} data={[entry]} fill={entry.fill} />
-                ))}
-              </ScatterChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="가나산을 피해 중남미산으로 다변화할 경우 식약처 중금속(카드뮴) 규제에 가로막히고, 동남아산 팜유로 대체하려 해도 팜유 역시 EUDR 산림벌채 규제 대상이라 이중 규제의 덫에 직면하게 직면하게 됩니다."
-          actionPlan="단순한 산지 다변화나 대체 원료 투입만으로는 규제 압박을 피할 수 없으므로, 카드뮴 등 식품 안전 기준과 EUDR의 환경 실사 요건을 동시에 충족하도록 설계하는 &apos;안전성 기반 공급망 설계(Safety-by-Design)&apos;가 도입되어야 해야 합니다."
-          source="MFDS 식약처 수입식품검역 API"
-        />
-          </div>
-        </div>
+        <WidgetCard title="이중 규제의 덫 리스크 매트릭스" icon={Gavel} iconColor="#b45309" pillar="S5"
+          cardDesc="X: EUDR 추적위험도, Y: 카드뮴 수치, Z: 식약처 통관 거절률"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              {grid}
+              <XAxis type="number" dataKey="eudrRisk" name="EUDR 추적위험도(%)" {...xAxisTextProps} />
+              <YAxis type="number" dataKey="cadmiumLevel" name="카드뮴 수치(mg/kg)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <ZAxis type="number" dataKey="rejectionRate" range={[100, 800]} name="식약처 통관 거절률(%)" />
+              <ReferenceLine y={0.8} stroke="var(--color-danger)" strokeDasharray="3 3" label={{ position: 'top', value: '식약처 통관 제한선(0.8mg/kg)', fill: 'var(--color-danger)', fontSize: 10 }} />
+              <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              {cocoaData.w13_dual_trap.map((entry: any, index: number) => (
+                <Scatter key={`scatter-${index}`} name={entry.country} data={[entry]} fill={entry.fill} />
+              ))}
+            </ScatterChart>
+          }
+          takeaway={{
+            situation: "가나산을 피해 중남미산으로 다변화할 경우 식약처 중금속(카드뮴) 규제에 가로막히고, 동남아산 팜유로 대체하려 해도 팜유 역시 EUDR 산림벌채 규제 대상이라 이중 규제의 덫에 직면하게 됩니다.",
+            actionPlan: "단순한 산지 다변화나 대체 원료 투입만으로는 규제 압박을 피할 수 없으므로, 카드뮴 등 식품 안전 기준과 EUDR의 환경 실사 요건을 동시에 충족하도록 설계하는 '안전성 기반 공급망 설계(Safety-by-Design)'를 도입해야 합니다.",
+            source: "MFDS 식약처 수입식품검역 API",
+          }} />
 
       </div>
 
