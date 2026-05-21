@@ -12,6 +12,7 @@ import { Info, Layers, TrendingUp, RefreshCw, Zap, Truck, Shield, MapPin, Activi
 import styles from './TunaOperationalInsights.module.css';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 
 
@@ -258,42 +259,33 @@ export default function GarlicDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* W1 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Layers size={17} />글로벌 마늘 생산 추이 및 중국 패권 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 톤)</span>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <AreaChart data={w1Data}>
-                <defs>
-                  <linearGradient id="colorChina" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.1}/></linearGradient>
-                  <linearGradient id="colorIndia" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#65a30d" stopOpacity={0.8}/><stop offset="95%" stopColor="#65a30d" stopOpacity={0.1}/></linearGradient>
-                </defs>
-                {grid}
-                <XAxis dataKey="year" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Area connectNulls={true} type="monotone" dataKey="중국" stackId="1" stroke="var(--color-danger)" fill="url(#colorChina)" name="중국" />
-                <Area connectNulls={true} type="monotone" dataKey="인도" stackId="1" stroke="#65a30d" fill="url(#colorIndia)" name="인도" />
-                <Area connectNulls={true} type="monotone" dataKey="한국" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.3} name="한국" />
-                <Area connectNulls={true} type="monotone" dataKey="이집트" stackId="1" stroke="#eab308" fill="#eab308" fillOpacity={0.5} name="이집트" />
-                <Area connectNulls={true} type="monotone" dataKey="방글라데시" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="방글라데시" />
-                <Area connectNulls={true} type="monotone" dataKey="기타" stackId="1" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} name="기타" />
-              </AreaChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="WSC China Crop Report 기준, 중국 산둥성 지역 재배면적 증가 및 기후 안정으로 수확량이 15% 증가할 것으로 예측됩니다."
-          actionPlan="중국산 원물의 가격 경쟁력이 한층 강화될 전망입니다. 국내 생산 감소분을 상쇄하기 위해 중국산 벌크 수입 물량을 선제적으로 확보하고, 가격 하락 사이클을 활용해 마진율을 극대화해야 합니다."
-        source="📊 [데이터 출처: FAOSTAT QCL Open API]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="글로벌 마늘 생산 추이 및 중국 패권" icon={Layers} iconColor="#eab308" pillar="S1"
+          cardDesc="국가별 생산량 (단위: 톤) — 중국 산둥성 재배면적 증가 + 기후 안정 수확량 +15% 전망"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <AreaChart data={w1Data}>
+              <defs>
+                <linearGradient id="colorChina" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.1}/></linearGradient>
+                <linearGradient id="colorIndia" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#65a30d" stopOpacity={0.8}/><stop offset="95%" stopColor="#65a30d" stopOpacity={0.1}/></linearGradient>
+              </defs>
+              {grid}
+              <XAxis dataKey="year" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Area connectNulls={true} type="monotone" dataKey="중국" stackId="1" stroke="var(--color-danger)" fill="url(#colorChina)" name="중국" />
+              <Area connectNulls={true} type="monotone" dataKey="인도" stackId="1" stroke="#65a30d" fill="url(#colorIndia)" name="인도" />
+              <Area connectNulls={true} type="monotone" dataKey="한국" stackId="1" stroke="#d97706" fill="#d97706" fillOpacity={0.3} name="한국" />
+              <Area connectNulls={true} type="monotone" dataKey="이집트" stackId="1" stroke="#eab308" fill="#eab308" fillOpacity={0.5} name="이집트" />
+              <Area connectNulls={true} type="monotone" dataKey="방글라데시" stackId="1" stroke="#84cc16" fill="#84cc16" fillOpacity={0.4} name="방글라데시" />
+              <Area connectNulls={true} type="monotone" dataKey="기타" stackId="1" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} name="기타" />
+            </AreaChart>
+          }
+          takeaway={{
+            situation: "WSC China Crop Report 기준, 중국 산둥성 지역 재배면적 증가 및 기후 안정으로 수확량이 15% 증가할 것으로 예측됩니다.",
+            actionPlan: "중국산 원물의 가격 경쟁력이 한층 강화될 전망입니다. 국내 생산 감소분을 상쇄하기 위해 중국산 벌크 수입 물량을 선제적으로 확보하고, 가격 하락 사이클을 활용해 마진율을 극대화해야 합니다.",
+            source: "FAOSTAT QCL Open API",
+          }} />
 
         {/* W2 */}
         <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
