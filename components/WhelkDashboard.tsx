@@ -898,100 +898,71 @@ export default function WhelkDashboard() {
           </>
 
             {/* W23: EU 포장규제 리스크 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Recycle style={{ color: 'var(--color-warning)', width: '20px', height: '20px' }} /> EU PPWR 포장규제 컴플라이언스 리스크
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="KMI 2026.03" />
+            <WidgetCard title="EU PPWR 포장규제 컴플라이언스 리스크" icon={Recycle} iconColor="var(--color-warning)" pillar="S5"
+              cardDesc="EU 포장폐기물규정(PPWR)이 골뱅이 캔 패키징 비용·수출 경쟁력에 미치는 리스크 6축 평가"
+              telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
+              customBody={
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                  {euPackagingRiskData.map((d: any, i: number) => (
+                    <div key={i} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '0.75rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.5rem', fontWeight: 800, color: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)' }}>
+                        {d.value}
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '4px', lineHeight: 1.3 }}>{d.axis}</div>
+                      <div style={{ height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', marginTop: '6px' }}>
+                        <div style={{ height: '100%', width: `${d.value}%`, background: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)', borderRadius: '2px' }} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  EU의 신규 포장폐기물규정(PPWR)이 골뱅이 캔 제품의 패키징 비용과 수출 경쟁력에 미치는 리스크를 6축으로 평가합니다.
-                </p>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
-                {euPackagingRiskData.map((d: any, i: number) => (
-                  <div key={i} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '0.75rem', textAlign: 'center' }}>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 800, color: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)' }}>
-                      {d.value}
-                    </div>
-                    <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginTop: '4px', lineHeight: 1.3 }}>{d.axis}</div>
-                    <div style={{ height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', marginTop: '6px' }}>
-                      <div style={{ height: '100%', width: `${d.value}%`, background: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)', borderRadius: '2px' }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <TakeawayBox
-                situation={<span>[KMI 카드뉴스] EU가 2025년부터 시행하는 PPWR(포장폐기물규정)은 재활용 비율 의무화(80점)와 EPR 비용 부담 증가(70점)가 골뱅이 캔 수출에 직접적 비용 상승 요인입니다.</span>}
-                actionPlan={<span>EU PPWR의 핵심 리스크는 2030년까지 식품 포장재 재활용 비율 70% 의무화입니다. 현재 골뱅이 캔(주석도강판)의 재활용률은 이미 85%로 양호하나, 내부 코팅재(BPA 프리 전환)와 라벨 접착제의 재활용 적합성 인증이 추가로 필요합니다. 또한 EPR(생산자 책임 확대) 비용이 캔당 €0.02~0.05 증가 예상됩니다. 품질관리팀은 EU 수출용 포장재의 PPWR 적합성 사전 인증을 26Q4까지 완료하고, BPA-NI(Non-Intent) 코팅으로의 전환 계획을 수립해야 합니다.</span>}
-              />
-            </div>
+              }
+              takeaway={{
+                situation: <span>[KMI 카드뉴스] EU가 2025년부터 시행하는 PPWR(포장폐기물규정)은 재활용 비율 의무화(80점)와 EPR 비용 부담 증가(70점)가 골뱅이 캔 수출에 직접적 비용 상승 요인입니다.</span>,
+                actionPlan: <span>EU PPWR의 핵심 리스크는 2030년까지 식품 포장재 재활용 비율 70% 의무화입니다. 현재 골뱅이 캔(주석도강판)의 재활용률은 이미 85%로 양호하나, 내부 코팅재(BPA 프리 전환)와 라벨 접착제의 재활용 적합성 인증이 추가로 필요합니다. 또한 EPR(생산자 책임 확대) 비용이 캔당 €0.02~0.05 증가 예상됩니다. 품질관리팀은 EU 수출용 포장재의 PPWR 적합성 사전 인증을 26Q4까지 완료하고, BPA-NI(Non-Intent) 코팅으로의 전환 계획을 수립해야 합니다.</span>,
+                source: 'KMI / EU PPWR',
+              }} />
 
             {/* W24: PFAS 식품안전 매트릭스 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <FlaskConical style={{ color: 'var(--color-warning)', width: '20px', height: '20px' }} /> PFAS(과불화화합물) 차세대 식품안전 리스크
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="KFAS 2024" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  EU/미국에서 급부상하는 PFAS(영원한 화학물질) 규제가 수산물 수입에 미치는 영향을 어종별로 비교 분석합니다.
-                </p>
-              </div>
-              <div style={{ height: '280px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                    <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                    <YAxis dataKey="species" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={100} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
-                    <Bar dataKey="pfos" name="PFOS(ng/g)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
-                    <Bar dataKey="pfoa" name="PFOA(ng/g)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KFAS 군산연안 연구] 골뱅이(복족류)의 PFOS 수치(0.42 ng/g)는 EU 기준(1.0 ng/g) 이하로 '주의' 수준이나, 담치·굴 등 이매패류는 이미 기준을 초과하여 규제 강화 시 연쇄 영향이 우려됩니다.</span>}
-                actionPlan={<span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU가 2025년부터 수산물 PFOS/PFOA 모니터링을 의무화했습니다. 골뱅이는 현재 안전 범위이나, PFAS는 해양 환경에서 생물농축되므로 향후 규제 기준 강화(0.5 ng/g으로 하향) 시 '주의→초과'로 격상될 위험이 있습니다. 품질관리팀은 분기별 PFAS 모니터링 프로토콜을 신설하고, 원산지별(영국/튀르키예/아일랜드) PFAS 농도 프로파일을 확보하여 선제적 리스크 맵을 구축해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="PFAS(과불화화합물) 차세대 식품안전 리스크" icon={FlaskConical} iconColor="var(--color-warning)" pillar="S3"
+              cardDesc="EU/미국 PFAS(영원한 화학물질) 규제가 수산물 수입에 미치는 영향 — 어종별 비교"
+              telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }} chartHeight={280}
+              chart={
+                <BarChart data={pfasRiskData} layout="vertical" margin={{ left: 40 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'ng/g', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
+                  <YAxis dataKey="species" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={100} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                  <Bar dataKey="pfos" name="PFOS(ng/g)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="pfoa" name="PFOA(ng/g)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[KFAS 군산연안 연구] 골뱅이(복족류)의 PFOS 수치(0.42 ng/g)는 EU 기준(1.0 ng/g) 이하로 '주의' 수준이나, 담치·굴 등 이매패류는 이미 기준을 초과하여 규제 강화 시 연쇄 영향이 우려됩니다.</span>,
+                actionPlan: <span>PFAS는 '영원한 화학물질(Forever Chemicals)'로 불리며, EU가 2025년부터 수산물 PFOS/PFOA 모니터링을 의무화했습니다. 골뱅이는 현재 안전 범위이나, PFAS는 해양 환경에서 생물농축되므로 향후 규제 기준 강화(0.5 ng/g으로 하향) 시 '주의→초과'로 격상될 위험이 있습니다. 품질관리팀은 분기별 PFAS 모니터링 프로토콜을 신설하고, 원산지별(영국/튀르키예/아일랜드) PFAS 농도 프로파일을 확보하여 선제적 리스크 맵을 구축해야 합니다.</span>,
+                source: 'KFAS 군산연안 연구',
+              }} />
 
             {/* W28: 할랄 해양콜라겐 시장 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Globe style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 할랄 인증 해양콜라겐 — 글로벌 시장 기회
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="KMI 2026.04" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  골뱅이 부산물에서 추출하는 해양 콜라겐의 할랄/코셔 인증 기반 수출 시장 규모와 지역별 성장 잠재력을 분석합니다.
-                </p>
-              </div>
-              <div style={{ height: '280px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={halalCollagenData} margin={{ top: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="region" tick={{ fill: '#f8fafc', fontSize: 10 }} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
-                    <Bar dataKey="marketSize" name="시장 규모($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="halalShare" name="할랄 비중(%)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KMI 할랄인증] 동남아시아의 할랄 인증 의무화(BPJPH)로 수산물 부산물 기반 해양 콜라겐의 수출 기회가 급부상하고 있습니다. 중동/북아프리카의 할랄 비중은 95%입니다.</span>}
-                actionPlan={<span>골뱅이 부산물에서 추출하는 해양 콜라겐 펩타이드는 소·돼지 원료 대비 '할랄/코셔 프리미엄'을 갖습니다. 중동·북아프리카($420M, 할랄 95%), 동남아($310M, 할랄 72%) 시장은 연 10~12% 성장 중이며, 인도네시아의 BPJPH 할랄 의무화는 한국산 수산물 부산물 콜라겐의 진입 기회입니다. R&D 부서는 할랄 인증(JAKIM/BPJPH) 취득을 위한 가공 공정 분리를 검토하고, 코스메슈티컬(기능성 화장품) 및 건강기능식품 채널을 타겟으로 2027년 출시를 목표로 해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="할랄 인증 해양콜라겐 — 글로벌 시장 기회" icon={Globe} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="골뱅이 부산물 해양 콜라겐의 할랄/코셔 인증 기반 수출 시장 규모·지역별 성장 잠재력"
+              telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.04' }} chartHeight={280}
+              chart={
+                <BarChart data={halalCollagenData} margin={{ top: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="region" tick={{ fill: '#f8fafc', fontSize: 10 }} />
+                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                  <Bar dataKey="marketSize" name="시장 규모($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="halalShare" name="할랄 비중(%)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[KMI 할랄인증] 동남아시아의 할랄 인증 의무화(BPJPH)로 수산물 부산물 기반 해양 콜라겐의 수출 기회가 급부상하고 있습니다. 중동/북아프리카의 할랄 비중은 95%입니다.</span>,
+                actionPlan: <span>골뱅이 부산물에서 추출하는 해양 콜라겐 펩타이드는 소·돼지 원료 대비 '할랄/코셔 프리미엄'을 갖습니다. 중동·북아프리카($420M, 할랄 95%), 동남아($310M, 할랄 72%) 시장은 연 10~12% 성장 중이며, 인도네시아의 BPJPH 할랄 의무화는 한국산 수산물 부산물 콜라겐의 진입 기회입니다. R&D 부서는 할랄 인증(JAKIM/BPJPH) 취득을 위한 가공 공정 분리를 검토하고, 코스메슈티컬(기능성 화장품) 및 건강기능식품 채널을 타겟으로 2027년 출시를 목표로 해야 합니다.</span>,
+                source: 'KMI 할랄인증',
+              }} />
 
         {/* KFAS 학술 연구 인텔리전스 위젯 (동적 렌더링) */}
         {kfasWidgets.length > 0 && (
