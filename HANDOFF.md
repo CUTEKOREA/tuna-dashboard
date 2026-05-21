@@ -36,6 +36,18 @@
 
 ---
 
+## 🆕 2026-05-22 cont. — Whelk KFAS loop converted (3/29 incl. dynamic widgets)
+
+### 진척
+- Whelk KFAS 동적 widgets loop → WidgetCard 단일 호출로 변환 (`3c9deef`)
+- Whelk 마이그레이션 누계: W1 + W2 (정적) + KFAS dynamic loop = 3/29
+
+### Whelk 잔여 25 widgets
+
+`omo/singles-codex` HEAD = `3c9deef`. 모든 잔여 widget이 ds-card framework 동일 패턴이므로 새 세션에서 일괄 처리 가능.
+
+---
+
 ## 🆕 2026-05-22 메가 세션 cont. — Cocoa 100% + Whelk 패턴 검증 (2/29) + WidgetCard ReactNode 완화
 
 ### 추가 진척
