@@ -4,11 +4,27 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Claude Code 세션 — Tuna closure ADR-0005 마이그레이션 100% 완료 + Phase 2A.1 Pollock 소형 7파일 16카드 마이그레이션, 비-Tuna 확장 시작)
+> **마지막 업데이트**: 2026-05-21 (Antigravity 세션 — OMO Stage 0 검증 위젯 TunaOriginPriceTrend.tsx 신규 생성, spec_stage0.md §8 체크리스트 9/9 통과)
 
 ---
 
-## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
+## 🆕 2026-05-21 OMO Stage 0 검증 위젯 (Antigravity 세션)
+
+### TunaOriginPriceTrend.tsx 신규 생성
+- **spec**: `artifacts/spec_stage0.md` (사람 작성, 4-Agent 무인 루프 검증용)
+- **pillar**: S1 🐟 원료 수급
+- **구현**: ADR-0005 WidgetCard 사용, BarChart (Recharts), SVG linearGradient cyan→blue
+- **§8 체크리스트**: 9/9 통과 (cardDesc·TelemetryBadge STATIC·SIT 2문장·TAK 2문장·한글 100%·단위 원/kg·Pillar S1·WidgetCard·빌드)
+- **빌드**: 내 파일 에러 0건 (기존 49건은 carrot/mangosteen data 누락 — 기존 이슈)
+- **TermTooltip**: WCPFC·IATTC 약어에 한글 풀네임 해설 부착
+
+### 다음 단계
+- Stage 0 검증: 대시보드에 위젯 삽입 → 화면 렌더링 확인 (Verifier 역할)
+- Stage 1: Planner(Prometheus)가 spec 자동 생성 → 무인 루프 테스트
+
+---
+
+## 2026-05-21 진행 요약 (Claude Code 세션)
 
 ### Tuna closure ADR-0005 마이그레이션 완료
 - 멀티-위젯 모듈 7개 / 22 위젯 (TunaForecast/Upcycling/MofFishery/TradeIntel/NewInsightsA/B/KfasResearch)
