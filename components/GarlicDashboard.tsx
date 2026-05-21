@@ -373,77 +373,52 @@ export default function GarlicDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* W3 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <RefreshCw size={17} />국내 비축 재고 및 용도별 소진 둔화 지표 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: %)</span>
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={w3Data} layout="vertical">
-                {grid}
-                <XAxis type="number" {...xAxisTextProps} />
-                <YAxis dataKey="year" type="category" width={80} {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Fresh" stackId="a" fill="#ca8a04" name="신선/식용 (%)" />
-                <Bar dataKey="Processed" stackId="a" fill="#65a30d" name="가공(Processing)용 (%)" />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="소비 침체 및 외식업황 악화 장기화로 인해 정부 비축 및 민간 저장 마늘의 소진율이 전년 대비 현저히 둔화되었습니다."
-          actionPlan="민간 저장고의 출하 지연은 단기적인 가격 하락 압력으로 작용합니다. 저가 매수 기회로 활용하되, 재고 품질 저하(수분 감모, 부패)를 고려해 실물 검수(QA) 기준을 최고 등급으로 상향해야 합니다."
-        source="📊 [데이터 출처: KREI 농업관측센터]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="국내 비축 재고 및 용도별 소진 둔화 지표 (단위: %)" icon={RefreshCw} iconColor="#ca8a04" pillar="S2"
+          cardDesc="신선/식용 vs 가공용 재고 소진율 비교 — 외식업황 악화 영향"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={w3Data} layout="vertical">
+              {grid}
+              <XAxis type="number" {...xAxisTextProps} />
+              <YAxis dataKey="year" type="category" width={80} {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Bar dataKey="Fresh" stackId="a" fill="#ca8a04" name="신선/식용 (%)" />
+              <Bar dataKey="Processed" stackId="a" fill="#65a30d" name="가공용 (%)" />
+            </BarChart>
+          }
+          takeaway={{
+            situation: "소비 침체 및 외식업황 악화 장기화로 인해 정부 비축 및 민간 저장 마늘의 소진율이 전년 대비 현저히 둔화되었습니다.",
+            actionPlan: "민간 저장고의 출하 지연은 단기적인 가격 하락 압력으로 작용합니다. 저가 매수 기회로 활용하되, 재고 품질 저하(수분 감모, 부패)를 고려해 실물 검수(QA) 기준을 최고 등급으로 상향해야 합니다.",
+            source: "KREI 농업관측센터",
+          }} />
 
-        {/* W4 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Zap size={17} />가공(Processing)(냉동/다진) 마늘 수입 비중 및 원가 구조
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={w4Data}>
-                {grid}
-                <XAxis dataKey="category" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}`} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="Price_USD_MT" fill="#ca8a04" name="공급 단가(USD/MT)" />
-                <Line yAxisId="right" type="monotone" dataKey="Margin" stroke="#65a30d" strokeWidth={2} name="영업 마진율(%)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="OEC 및 관세청 통계 결과, 신선 마늘 대비 보관이 용이하고 관세가 저렴한 냉동 및 건조 가공(Processing) 마늘의 수입 비중이 91%를 돌파했습니다."
-          actionPlan="외식업계(HORECA)의 인건비 부담으로 원물 직접 조리보다 가공(Processing) 형태의 B2B 수요가 절대적입니다. 해외 현지 가공(Processing) 벤더와 독점 계약을 체결하여 일관된 품질의 냉동 다진 마늘 밸류체인을 선점."
-        source="📊 [데이터 출처: USDA & 내부 가공(Processing) 마진 DB]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="가공(냉동/다진) 마늘 수입 비중 및 원가 구조" icon={Zap} iconColor="#ca8a04" pillar="S2"
+          cardDesc="HS코드별 수입 단가 vs 영업 마진율 — 91% 가공 수입 비중"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={w4Data}>
+              {grid}
+              <XAxis dataKey="category" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}`} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Bar yAxisId="left" dataKey="Price_USD_MT" fill="#ca8a04" name="공급 단가(USD/MT)" />
+              <Line yAxisId="right" type="monotone" dataKey="Margin" stroke="#65a30d" strokeWidth={2} name="영업 마진율(%)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "OEC 및 관세청 통계 결과, 신선 마늘 대비 보관이 용이하고 관세가 저렴한 냉동 및 건조 가공 마늘의 수입 비중이 91%를 돌파했습니다.",
+            actionPlan: "외식업계(HORECA)의 인건비 부담으로 원물 직접 조리보다 가공 형태의 B2B 수요가 절대적입니다. 해외 현지 가공 벤더와 독점 계약을 체결하여 일관된 품질의 냉동 다진 마늘 밸류체인을 선점.",
+            source: "USDA + 내부 가공 마진 DB",
+          }} />
 
-        {/* INSIGHT 2 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <TestTube size={17} />영업 채널 이원화 마진 분석: B2B vs 프리미엄 B2C [좌: $B, 우: 마진%]
-              <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
+        <div style={{ gridColumn: '1 / -1' }}>
+          <WidgetCard title="영업 채널 이원화 마진 분석: B2B vs 프리미엄 B2C" icon={TestTube} iconColor="#ca8a04" pillar="S4"
+            cardDesc="흑마늘 시장 규모(좌, $B) + 영업 마진율(우, %) — 채널 이원화 심화"
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+            chart={
               <ComposedChart data={i2Data}>
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} />
@@ -454,15 +429,12 @@ export default function GarlicDashboard() {
                 <Area connectNulls={true} yAxisId="left" type="monotone" dataKey="Market_Billion" fill="#ca8a04" stroke="#ca8a04" fillOpacity={0.3} name="흑마늘 시장 규모(Billion $)" />
                 <Line connectNulls={true} yAxisId="right" type="monotone" dataKey="Margin" stroke="#65a30d" strokeWidth={2} name="영업 마진율(%)" />
               </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="B2B 시장은 철저한 저원가(수입산 가공(Processing)) 트랙을, B2C 시장은 무농약 소포장 프리미엄 트랙을 밟는 채널 이원화 현상이 심화되고 있습니다."
-          actionPlan="중소형 패키징 리테일러를 인수하여 프리미엄 B2C 시장에 직진출하고, B2B는 대용량 벌크 위주의 규모의 경제를 실현하는 투-트랙 포트폴리오를 완비해야 가치평가 방어가 가능해야 합니다."
-        source="📊 [데이터 출처: aT & KOTRA 해외시장조사]"
-        />
-          </div>
+            }
+            takeaway={{
+              situation: "B2B 시장은 철저한 저원가(수입산 가공) 트랙을, B2C 시장은 무농약 소포장 프리미엄 트랙을 밟는 채널 이원화 현상이 심화되고 있습니다.",
+              actionPlan: "중소형 패키징 리테일러를 인수하여 프리미엄 B2C 시장에 직진출하고, B2B는 대용량 벌크 위주의 규모의 경제를 실현하는 투-트랙 포트폴리오를 완비해야 가치평가 방어가 가능해야 합니다.",
+              source: "aT + KOTRA 해외시장조사",
+            }} />
         </div>
       </div>
 
