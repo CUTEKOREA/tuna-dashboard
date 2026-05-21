@@ -775,204 +775,126 @@ export default function WhelkDashboard() {
                 source: '국립수산과학원',
               }} />
 
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <FlaskConical style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 카드뮴 생체축적 및 식품안전 규제 진단
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: 식약처 / EFSA</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  골뱅이 부위별 중금속(카드뮴) 축적 농도를 분석하여, 내장 제거율 불량으로 인한 수입 통관 반려 및 식품 안전 리스크를 예방합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: '#f8fafc', fontSize: 11 }}>
-                      {cadmiumData.map((entry, index) => (
-                        <Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />
-                      ))}
-                    </Bar>
-                    <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="#f8fafc" strokeWidth={2} strokeDasharray="8 4" dot={false} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[식약처/EFSA] 골뱅이 내장에는 카드뮴이 식약처 기준치를 초과하여 쌓이므로, 가공 시 내장을 완벽하게 제거하지 않으면 통관에 실패할 수 있습니다.</span>}
-                actionPlan={<span>골뱅이의 간췌장(내장) 부위에는 카드뮴이 근육 대비 20~100배 농축(5.5mg/kg)되어 식약처 기준(2.0mg/kg)을 크게 초과합니다. 해외 가공 공장에서 <TermTooltip term="내장 제거 완전성" description="Evisceration Rate. 가공 과정에서 간췌장(내장)이 완전히 제거된 비율. 미달 시 중금속 기준 초과로 수입 통관 부적합 판정의 직접적 원인." /> 이 미달될 경우, 한 번의 식약처 부적합 판정으로 수억 원대 물량이 전량 폐기·반송됩니다. QC팀은 분기별 원산지 공장 방문 검수와 제3자 검사기관(SGS, Intertek) 인증을 의무화하고, 내장 제거율을 핵심 KPI로 관리해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="카드뮴 생체축적 및 식품안전 규제 진단" icon={FlaskConical} iconColor="var(--color-danger)" pillar="S3"
+              cardDesc="부위별 카드뮴 농도 — 내장 제거율 불량 시 통관 반려 리스크"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <ComposedChart data={cadmiumData} margin={{ top: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="part" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 7]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'mg/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: '#f8fafc', fontSize: 11 }}>
+                    {cadmiumData.map((entry, index) => (<Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />))}
+                  </Bar>
+                  <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="#f8fafc" strokeWidth={2} strokeDasharray="8 4" dot={false} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[식약처/EFSA] 골뱅이 내장에는 카드뮴이 식약처 기준치를 초과하여 쌓이므로, 가공 시 내장을 완벽하게 제거하지 않으면 통관에 실패할 수 있습니다.</span>,
+                actionPlan: <span>골뱅이의 간췌장(내장) 부위에는 카드뮴이 근육 대비 20~100배 농축(5.5mg/kg)되어 식약처 기준(2.0mg/kg)을 크게 초과합니다. 해외 가공 공장에서 <TermTooltip term="내장 제거 완전성" description="Evisceration Rate. 가공 과정에서 간췌장(내장)이 완전히 제거된 비율. 미달 시 중금속 기준 초과로 수입 통관 부적합 판정의 직접적 원인." /> 이 미달될 경우, 한 번의 식약처 부적합 판정으로 수억 원대 물량이 전량 폐기·반송됩니다. QC팀은 분기별 원산지 공장 방문 검수와 제3자 검사기관(SGS, Intertek) 인증을 의무화하고, 내장 제거율을 핵심 KPI로 관리해야 합니다.</span>,
+                source: '식약처 / EFSA',
+              }} />
 
-            {/* Widget 15: 혼술 이코노미 수입 폭증 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ShoppingBag style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 1인 가구 혼술 트렌드 및 채널 수입량 변동
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="live" syncDate="Real-time" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KCS / FishFocus UK</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  최근 1인 가구 중심의 홈술(Home-Sool) 문화 확산이 골뱅이 원물 수입 폭증에 미치는 구조적 상관관계를 증명합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={importSurgeData}>
-                    <defs>
-                      <linearGradient id="colorSurge" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Area yAxisId="left" type="monotone" dataKey="volume" name="수입량(톤)" stroke="var(--color-success)" fill="url(#colorSurge)" />
-                    <Line yAxisId="right" type="monotone" dataKey="value" name="수입액($M)" stroke="var(--color-warning)" strokeWidth={2} dot={{ r: 4 }} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KCS/FishFocus] 1인 가구의 '혼술' 트렌드가 유행을 넘어 구조적 소비로 굳어지며, 냉동 조미 골뱅이의 수입량이 2배 넘게 급증했습니다.</span>}
-                actionPlan={<span>2025년 2월 기준 냉동 자숙 골뱅이육 수입이 170톤(전년 동기 대비 +105%), 1~2월 누적 수입액 USD 4.95M(+84%)을 기록하며 역대 최고치를 경신했습니다. 이는 <TermTooltip term="혼술 이코노미" description="1인 가구와 홈술(집에서 마시는 술) 문화가 만든 소비 경제. 편의점 안주, 소포장 HMR 등 새로운 수요 창출의 원동력." /> 가 일시적 유행이 아닌 비가역적(Irreversible) 소비 구조 전환임을 입증합니다. 마케팅팀은 150g 소포장 '혼술 에디션'과 에어프라이어용 '마늘버터 골뱅이 키트' 등 채널 맞춤형 SKU를 Q3 성수기 전 선제 출시해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
+              telemetry={{ status: 'LIVE', syncDate: 'Real-time' }} chartHeight={300}
+              chart={
+                <ComposedChart data={importSurgeData}>
+                  <defs>
+                    <linearGradient id="colorSurge" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$M', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Area yAxisId="left" type="monotone" dataKey="volume" name="수입량(톤)" stroke="var(--color-success)" fill="url(#colorSurge)" />
+                  <Line yAxisId="right" type="monotone" dataKey="value" name="수입액($M)" stroke="var(--color-warning)" strokeWidth={2} dot={{ r: 4 }} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[KCS/FishFocus] 1인 가구의 '혼술' 트렌드가 유행을 넘어 구조적 소비로 굳어지며, 냉동 조미 골뱅이의 수입량이 2배 넘게 급증했습니다.</span>,
+                actionPlan: <span>2025년 2월 기준 냉동 자숙 골뱅이육 수입이 170톤(전년 동기 대비 +105%), 1~2월 누적 수입액 USD 4.95M(+84%)을 기록하며 역대 최고치를 경신했습니다. 이는 <TermTooltip term="혼술 이코노미" description="1인 가구와 홈술(집에서 마시는 술) 문화가 만든 소비 경제. 편의점 안주, 소포장 HMR 등 새로운 수요 창출의 원동력." /> 가 일시적 유행이 아닌 비가역적(Irreversible) 소비 구조 전환임을 입증합니다. 마케팅팀은 150g 소포장 '혼술 에디션'과 에어프라이어용 '마늘버터 골뱅이 키트' 등 채널 맞춤형 SKU를 Q3 성수기 전 선제 출시해야 합니다.</span>,
+                source: 'KCS / FishFocus UK',
+              }} />
 
-            {/* Widget 16: 부산물 업사이클링 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Recycle style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 원물 부산물(패각/내장) 업사이클링 순환 가치
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: MDPI / ResearchGate</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  가공 후 버려지는 78%의 패각 및 내장 부산물을 바이오 원료나 해양 콜라겐 등으로 재자원화하는 신규 수익 모델을 검토합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={byproductData} layout="vertical" margin={{ left: 30 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                    <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '중량 비율(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                    <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={90} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Bar dataKey="ratio" name="중량 비율(%)" radius={[0, 4, 4, 0]}>
-                      {byproductData.map((entry, index) => (
-                        <Cell key={`bp-${index}`} fill={entry.color} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[MDPI] 원물을 가공할 때 버려지는 78%의 껍데기와 내장에서 고부가가치의 '해양 콜라겐'을 추출할 수 있어 새로운 수익 창출이 가능합니다.</span>}
-                actionPlan={<span>골뱅이 원물의 78%는 껍질·내장·체액으로 폐기되지만, 이 부산물에서 <TermTooltip term="해양 콜라겐 펩타이드" description="Marine Collagen Peptide. 수산 부산물에서 효소 분해로 추출하는 저분자 단백질. 광우병 위험 없이 피부·관절 건강에 효과적이며, 할랄/코셔 인증이 용이." /> 를 추출할 수 있습니다. 아태 지역 해양 콜라겐 시장 규모는 $980M이며, 소·돼지 대비 종교적 제약이 없어 할랄/코셔 시장 진출이 용이합니다. 또한 껍질(CaCO₃)은 칼슘 보충제와 바이오 세라믹 원료로 활용 가능합니다. R&D 부서는 국내 바이오 스타트업과의 공동 연구 MOU를 통해 부산물 수익화 파이프라인을 구축해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="원물 부산물(패각/내장) 업사이클링 순환 가치" icon={Recycle} iconColor="var(--color-success)" pillar="S5"
+              cardDesc="가공 후 78% 폐기물 → 해양 콜라겐·바이오 세라믹 재자원화"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <BarChart data={byproductData} layout="vertical" margin={{ left: 30 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '중량 비율(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={90} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Bar dataKey="ratio" name="중량 비율(%)" radius={[0, 4, 4, 0]}>
+                    {byproductData.map((entry, index) => (<Cell key={`bp-${index}`} fill={entry.color} />))}
+                  </Bar>
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[MDPI] 원물을 가공할 때 버려지는 78%의 껍데기와 내장에서 고부가가치의 '해양 콜라겐'을 추출할 수 있어 새로운 수익 창출이 가능합니다.</span>,
+                actionPlan: <span>골뱅이 원물의 78%는 껍질·내장·체액으로 폐기되지만, 이 부산물에서 <TermTooltip term="해양 콜라겐 펩타이드" description="Marine Collagen Peptide. 수산 부산물에서 효소 분해로 추출하는 저분자 단백질. 광우병 위험 없이 피부·관절 건강에 효과적이며, 할랄/코셔 인증이 용이." /> 를 추출할 수 있습니다. 아태 지역 해양 콜라겐 시장 규모는 $980M이며, 소·돼지 대비 종교적 제약이 없어 할랄/코셔 시장 진출이 용이합니다. 또한 껍질(CaCO₃)은 칼슘 보충제와 바이오 세라믹 원료로 활용 가능합니다. R&D 부서는 국내 바이오 스타트업과의 공동 연구 MOU를 통해 부산물 수익화 파이프라인을 구축해야 합니다.</span>,
+                source: 'MDPI / ResearchGate',
+              }} />
 
-            {/* Widget 17: 고형량 투명성 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Package style={{ color: 'var(--color-warning)', width: '20px', height: '20px' }} /> B2C 통조림 규격별 고형량(살코기) 투명성 비율
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: aT FIS 식품산업통계</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  시판 300g 골뱅이 캔 내부의 실제 살코기(고형량)와 국물(조미액) 비중을 폭로 분석하여, 소비자 체감 가성비 증대를 위한 마케팅 방향을 설정합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={solidContentData} margin={{ top: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis domain={[0, 320]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'g', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar dataKey="solid" name="고형량(살)" stackId="a" fill="var(--color-success)" radius={[0, 0, 0, 0]} />
-                    <Bar dataKey="liquid" name="조미액" stackId="a" fill="#64748b" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[aT FIS] 일반적인 300g 캔 제품의 절반 이상이 국물(조미액)이며, 실제 골뱅이 살코기는 40~50% 수준에 불과합니다.</span>}
-                actionPlan={<span>300g 골뱅이 통조림에서 실제 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게. 소비자가 실제 먹게 되는 골뱅이 살의 양." /> 은 120~150g(40~50%)에 불과하며, 나머지는 간장 기반 조미액입니다. '헬시 플레저' 트렌드와 고물가 시대의 합리적 소비 심리가 맞물리면, 고형량 비율이 낮은 브랜드는 소비자 신뢰를 급격히 잃을 수 있습니다. 선제적으로 '고형량 65%+' 프리미엄 라인을 출시하고, 패키지 전면에 고형량 비율을 대형 표기하는 '투명성 마케팅'이 차별화 전략의 핵심입니다.</span>}
-              />
-            </div>
+            <WidgetCard title="B2C 통조림 규격별 고형량(살코기) 투명성 비율" icon={Package} iconColor="var(--color-warning)" pillar="S4"
+              cardDesc="300g 캔의 실제 살코기 40~50% — 투명성 마케팅 차별화"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <BarChart data={solidContentData} margin={{ top: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="brand" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 320]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'g', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="solid" name="고형량(살)" stackId="a" fill="var(--color-success)" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="liquid" name="조미액" stackId="a" fill="#64748b" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[aT FIS] 일반적인 300g 캔 제품의 절반 이상이 국물(조미액)이며, 실제 골뱅이 살코기는 40~50% 수준에 불과합니다.</span>,
+                actionPlan: <span>300g 골뱅이 통조림에서 실제 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게. 소비자가 실제 먹게 되는 골뱅이 살의 양." /> 은 120~150g(40~50%)에 불과하며, 나머지는 간장 기반 조미액입니다. '헬시 플레저' 트렌드와 고물가 시대의 합리적 소비 심리가 맞물리면, 고형량 비율이 낮은 브랜드는 소비자 신뢰를 급격히 잃을 수 있습니다. 선제적으로 '고형량 65%+' 프리미엄 라인을 출시하고, 패키지 전면에 고형량 비율을 대형 표기하는 '투명성 마케팅'이 차별화 전략의 핵심입니다.</span>,
+                source: 'aT FIS 식품산업통계',
+              }} />
 
-            {/* Widget 18: 기후 리스크 시뮬레이션 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Thermometer style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 해수온 상승에 따른 조업지 이탈 기후 리스크
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2026 기후 시뮬레이션" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: IPCC / FAOSTAT</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  해수면 온도 상승(SST)이 냉수성 저서생물인 골뱅이의 서식지 이탈과 어획량 급감을 유발하는 인과관계를 중장기적으로 모델링합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={climateRiskData}>
-                    <defs>
-                      <linearGradient id="colorUkCatch" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.6}/>
-                        <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0}/>
-                      </linearGradient>
-                      <linearGradient id="colorCaCatch" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.6}/>
-                        <stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '어획량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <YAxis yAxisId="right" orientation="right" domain={[9, 15]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'SST(°C)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Area yAxisId="left" type="monotone" dataKey="ukCatch" name="영국 어획(톤)" stroke="var(--color-info)" fill="url(#colorUkCatch)" />
-                    <Area yAxisId="left" type="monotone" dataKey="canadaCatch" name="캐나다 어획(톤)" stroke="var(--color-danger)" fill="url(#colorCaCatch)" />
-                    <Line yAxisId="right" type="monotone" dataKey="sst" name="북대서양 수온(°C)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5, fill: 'var(--color-warning)' }} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[IPCC/FAOSTAT] 바닷물 온도가 높아지면 찬물에 사는 골뱅이가 서식지를 떠나버립니다. 캐나다에서는 이미 수온 상승으로 어획량이 크게 줄어들었습니다.</span>}
-                actionPlan={<span>골뱅이 공급망의 진짜 적은 경쟁사가 아니라 '기후변화'입니다. 냉수성 저서생물인 B. undatum은 <TermTooltip term="SST" description="Sea Surface Temperature. 해수면 온도. 북대서양 수온이 15°C를 넘으면 골뱅이의 서식지 이탈과 산란율 급감이 시작됨." /> 15°C를 넘으면 서식지를 이탈하며, 이미 캐나다에서 이 시나리오가 현실화되어 어획량이 -74% 붕괴했습니다. IPCC 예측에 따르면 현재 한국 수입의 52%를 차지하는 영국 북해도 수온이 2035년까지 1.5~2°C 상승할 전망이며, 이는 10년 내 영국산 물량이 연간 10~15%씩 자연 감소할 수 있음을 의미합니다. 전략기획실은 '포스트-영국(Post-UK)' 시대를 대비하여 아이슬란드·노르웨이 등 고위도 신규 어장 개척과 흑해(튀르키예) R. venosa의 TCU 기반 경제성 재평가를 즉각 병행해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="해수온 상승에 따른 조업지 이탈 기후 리스크" icon={Thermometer} iconColor="var(--color-danger)" pillar="S1"
+              cardDesc="북대서양 SST + 영국·캐나다 어획량 — Post-UK 대비"
+              telemetry={{ status: 'STATIC', syncDate: '2026 기후 시뮬레이션' }} chartHeight={300}
+              chart={
+                <ComposedChart data={climateRiskData}>
+                  <defs>
+                    <linearGradient id="colorUkCatch" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.6} />
+                      <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0} />
+                    </linearGradient>
+                    <linearGradient id="colorCaCatch" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.6} />
+                      <stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '어획량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[9, 15]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'SST(°C)', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Area yAxisId="left" type="monotone" dataKey="ukCatch" name="영국 어획(톤)" stroke="var(--color-info)" fill="url(#colorUkCatch)" />
+                  <Area yAxisId="left" type="monotone" dataKey="canadaCatch" name="캐나다 어획(톤)" stroke="var(--color-danger)" fill="url(#colorCaCatch)" />
+                  <Line yAxisId="right" type="monotone" dataKey="sst" name="북대서양 수온(°C)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5, fill: 'var(--color-warning)' }} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[IPCC/FAOSTAT] 바닷물 온도가 높아지면 찬물에 사는 골뱅이가 서식지를 떠나버립니다. 캐나다에서는 이미 수온 상승으로 어획량이 크게 줄어들었습니다.</span>,
+                actionPlan: <span>골뱅이 공급망의 진짜 적은 경쟁사가 아니라 '기후변화'입니다. 냉수성 저서생물인 B. undatum은 <TermTooltip term="SST" description="Sea Surface Temperature. 해수면 온도. 북대서양 수온이 15°C를 넘으면 골뱅이의 서식지 이탈과 산란율 급감이 시작됨." /> 15°C를 넘으면 서식지를 이탈하며, 이미 캐나다에서 이 시나리오가 현실화되어 어획량이 -74% 붕괴했습니다. IPCC 예측에 따르면 현재 한국 수입의 52%를 차지하는 영국 북해도 수온이 2035년까지 1.5~2°C 상승할 전망이며, 이는 10년 내 영국산 물량이 연간 10~15%씩 자연 감소할 수 있음을 의미합니다. 전략기획실은 '포스트-영국(Post-UK)' 시대를 대비하여 아이슬란드·노르웨이 등 고위도 신규 어장 개척과 흑해(튀르키예) R. venosa의 TCU 기반 경제성 재평가를 즉각 병행해야 합니다.</span>,
+                source: 'IPCC / FAOSTAT',
+              }} />
           </>
 
             {/* W23: EU 포장규제 리스크 */}
