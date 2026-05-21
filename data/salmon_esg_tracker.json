@@ -1,0 +1,49 @@
+{
+  "originData": {
+    "노르웨이": [
+      {
+        "category": "강제노동 리스크", "score": 95, "maxScore": 100, "status": "low", "iconName": "Users",
+        "details": ["OECD 회원국 · ILO 핵심협약 비준", "양식업 노동자 보호법 시행", "제3자 사회감사 연 1회 의무"],
+        "research": "「수산업 강제노동 규범화 대응체계 구축연구」(박찬엽, 2025)"
+      },
+      {
+        "category": "환경 영향", "score": 72, "maxScore": 100, "status": "medium", "iconName": "Thermometer",
+        "details": ["RAS(순환여과) 전환율 35%", "해상 양식장 해저 오염 모니터링", "사료 전환율(FCR) 1.15 — 업계 최고"],
+        "research": "「수산물 업사이클링 생태계 조성 방안」(이남수, 2025)"
+      },
+      {
+        "category": "이력 추적성", "score": 90, "maxScore": 100, "status": "low", "iconName": "Shield",
+        "details": ["Barentswatch 통합 추적 시스템", "부화→가공→수출 전 과정 디지털 기록", "EU TRACES 연동 완료"]
+      }
+    ],
+    "칠레": [
+      {
+        "category": "강제노동 리스크", "score": 85, "maxScore": 100, "status": "low", "iconName": "Users",
+        "details": ["ILO 핵심협약 비준 완료", "계절 노동자 보호 규정 존재", "다만 하도급 체인 투명성 개선 필요"],
+        "research": "「수산업 강제노동 규범화 대응체계 구축연구」(박찬엽, 2025)"
+      },
+      {
+        "category": "환경 영향", "score": 58, "maxScore": 100, "status": "high", "iconName": "Thermometer",
+        "details": ["SRS 감염 빈발 → 항생제 사용량 高", "해양 적조 리스크 (2016 대규모 폐사)", "FCR 1.40 — 노르웨이 대비 열위"]
+      },
+      {
+        "category": "이력 추적성", "score": 75, "maxScore": 100, "status": "medium", "iconName": "Shield",
+        "details": ["Sernapesca 인증 시스템 운영", "수출용 C/O 발급 체계 안정", "SIMP 대응 체계 구축 중"]
+      }
+    ],
+    "러시아": [
+      {
+        "category": "강제노동 리스크", "score": 40, "maxScore": 100, "status": "high", "iconName": "Users",
+        "details": ["OFAC/EU 제재 대상국", "극동 지역 어업 노동환경 불투명", "강제노동 리스크 \"높음\" 분류"]
+      },
+      {
+        "category": "환경 영향", "score": 45, "maxScore": 100, "status": "high", "iconName": "Thermometer",
+        "details": ["IUU 어업 우려 (EU Yellow Card 이력)", "환경 모니터링 체계 취약", "폐수 관리 규정 미비"]
+      },
+      {
+        "category": "이력 추적성", "score": 30, "maxScore": 100, "status": "high", "iconName": "Shield",
+        "details": ["서방 제재로 직접 교역 차단", "제3국 우회 수출 의심 사례", "디지털 이력추적 시스템 부재"]
+      }
+    ]
+  }
+}

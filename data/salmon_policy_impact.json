@@ -1,0 +1,68 @@
+{
+  "scenarios": [
+    {
+      "id": "chile_tariff",
+      "title": "칠레 FTA 관세 인상 (0% → 10%)",
+      "description": "한-칠레 FTA 재협상으로 냉동연어 양허세율이 원복될 경우",
+      "iconName": "AlertTriangle",
+      "severity": "high",
+      "impacts": {
+        "landedCost": { "pct": 8.5, "direction": "up" },
+        "importVolume": { "pct": -15, "direction": "down" },
+        "retailPrice": { "pct": 6.2, "direction": "up" },
+        "supplyStability": "🟠 불안정 — 노르웨이 대체 수입 급증 예상"
+      },
+      "analysis": "칠레산 냉동연어는 한국 수입의 24%를 차지. 관세 원복 시 착지원가 ₩1,200/kg 상승 추정. 노르웨이 신선으로 대체되나 단가가 63% 높아 전체 수입 비용 증가 불가피.",
+      "researchBasis": "「수입수산물과 국산 간의 대체관계 분석」(박혜진, 2022) — 가격 탄력성 -0.85",
+      "tak": "칠레 FTA 재협상 모니터링을 외교 헤드라인 단위로 격상하고, 노르웨이 신선·후레쉬 직거래 라인을 사전에 락인하여 관세 원복 시점에 6.2% 소매가 상승을 1.5%P 내로 흡수합니다."
+    },
+    {
+      "id": "norway_license",
+      "title": "노르웨이 양식면허 추가 발급 (+5%)",
+      "description": "노르웨이 정부가 양식면허를 5% 추가 발급하여 공급량 증가",
+      "iconName": "CheckCircle",
+      "severity": "low",
+      "impacts": {
+        "landedCost": { "pct": -4.2, "direction": "down" },
+        "importVolume": { "pct": 8, "direction": "up" },
+        "retailPrice": { "pct": -3.5, "direction": "down" },
+        "supplyStability": "🟢 안정 — 공급 증가로 가격 하방 압력"
+      },
+      "analysis": "노르웨이 양식면허는 희소 자산(개당 ₩200억+). 추가 발급 시 글로벌 공급량 약 15만MT 증가 예상. NASDAQ Salmon Index 하락으로 한국 수입단가 개선.",
+      "researchBasis": "「수산물 공급 안정을 위한 수입수산물 전략품목 관리 방안」(박혜진, 2023)",
+      "tak": "양식면허 발급 공지 D-30 시점에 노르웨이 신선 선물 단가를 락인하고, 단가 하락 4.2%P 만큼 B2C PB 가격 인하 캠페인으로 시장 점유율을 선점합니다."
+    },
+    {
+      "id": "simp_expansion",
+      "title": "미국 SIMP 대상 확대 (연어 포함)",
+      "description": "NOAA가 대서양연어를 SIMP 의무 이력추적 대상에 추가",
+      "iconName": "Building2",
+      "severity": "medium",
+      "impacts": {
+        "landedCost": { "pct": 2.1, "direction": "up" },
+        "importVolume": { "pct": -3, "direction": "down" },
+        "retailPrice": { "pct": 1.5, "direction": "up" },
+        "supplyStability": "🟡 단기 혼란 — 인증 비용 전가 예상"
+      },
+      "analysis": "SIMP 인증 비용 kg당 $0.15~0.25 추가. 소규모 수출업체 퇴출로 공급처 집중화 심화 우려. 다만 한국 직접 영향은 미미 (대미 수출 비중 낮음).",
+      "researchBasis": "「미국 이력 추적 의무화에 따른 수산물 수출기업 대응실태 분석」(박혜진, 2025)",
+      "tak": "SIMP 시행 전 노르웨이·칠레 1차 가공사와의 디지털 이력추적 인증을 선제 완료하여 인증 비용 전가 구조에서 한국이 '최우선 통과 거점'으로 자리잡습니다."
+    },
+    {
+      "id": "russia_sanction_lift",
+      "title": "러시아산 연어 제재 해제",
+      "description": "서방 제재 완화로 러시아산 태평양연어 직접 수입 재개",
+      "iconName": "TrendingDown",
+      "severity": "medium",
+      "impacts": {
+        "landedCost": { "pct": -12, "direction": "down" },
+        "importVolume": { "pct": 20, "direction": "up" },
+        "retailPrice": { "pct": -8, "direction": "down" },
+        "supplyStability": "🟢 개선 — 수입원 다변화 효과"
+      },
+      "analysis": "러시아 태평양연어(Pink/Chum) FOB $3.5/kg로 칠레($5.8)·노르웨이($9.5) 대비 최저가. 다만 ESG 리스크(강제노동, IUU)와 품질 균일성 문제 잔존.",
+      "researchBasis": "「동북아 수산물 교역 여건 변화와 수산물 무역시장의 구조적 함의」(KMI, 2026)",
+      "tak": "제재 해제 시 러시아산은 B2C 프리미엄 채널에는 도입하지 않고 가공·HMR·외식 B2B에 한정 투입하여 12%P 단가 하락 메리트를 확보하면서 ESG 리스크 노출을 격리합니다."
+    }
+  ]
+}
