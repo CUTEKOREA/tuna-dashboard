@@ -58,3 +58,14 @@ check_*.js
 *.log
 vercel_deploy_*.log
 .claude/
+
+# OMO 작업 산물 (worktree 내부 상태, git 제외)
+.omo/
+.opencode/
+
+# Sisyphus가 생성한 1회성 마이그레이션 스크립트 (commit 안 함, 다음 정리 때 삭제)
+fix_widget20.py
+update_compliance.py
+update_draft.py
+update_financial.py
+update_macro.py

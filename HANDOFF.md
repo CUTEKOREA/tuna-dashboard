@@ -4,7 +4,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Antigravity 세션 — Phase 2A.2 Wave 2: Pollock 중형 2파일 ADR-0005 마이그레이션 완료)
+> **마지막 업데이트**: 2026-05-21 (Antigravity 세션 — Phase 2A.2 Wave 3: Pollock 대형 2파일 ADR-0005 마이그레이션 완료 → **Pollock 100% closure**)
 
 ---
 
