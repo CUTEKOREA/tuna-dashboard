@@ -509,115 +509,69 @@ export default function WhelkDashboard() {
               }} />
           </>
 
-            {/* W22: SG 밸류업 HMR 로드맵 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Package style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵
-                  </h3>
-                  <TelemetryBadge status="live" syncDate="2026 Q2" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  SG 2026 운영방안에 따른 골뱅이 HMR 신제품 출시 파이프라인과 각 SKU별 개발 진행률을 추적합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                    <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '개발 진행률(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                    <YAxis dataKey="sku" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={130} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Bar dataKey="status" name="진행률(%)" radius={[0, 4, 4, 0]}>
-                      {sgValueUpData.map((entry: any, index: number) => (
-                        <Cell key={`sg-${index}`} fill={entry.status >= 70 ? 'var(--color-success)' : entry.status >= 50 ? 'var(--color-warning)' : 'var(--color-info)'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[SG 밸류업] 2026 운영방안에 따라 골뱅이 HMR 라인 6종을 개발 중이며, 혼술 에디션과 에어프라이어 키트가 26Q3 출시 목표로 가장 빠르게 진행 중입니다.</span>}
-                actionPlan={<span>SG 2026 밸류업 전략의 핵심은 '혼술 에디션 150g'(85% 완성)과 '에어프라이어 키트 200g'(70% 완성)의 26Q3 성수기 적시 출시입니다. 두 제품 합산 연간 매출 목표 37억 원이며, 이를 위해 편의점(CU/GS25) 입점 MOU를 6월까지 확정해야 합니다. 후속 제품인 '프리미엄 고형량65%+'는 경쟁사 대비 투명성 마케팅 차별화를 위해 포장 전면에 고형량 비율을 대형 표기하는 전략이 핵심입니다. 마케팅팀은 인플루언서 홈술 콘텐츠 마케팅을 Q3 출시 4주 전부터 선제 집행해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵" icon={Package} iconColor="var(--color-success)" pillar="S2"
+              cardDesc="HMR 6종 개발 진행률 — 혼술 에디션·에어프라이어 키트 26Q3 출시"
+              telemetry={{ status: 'LIVE', syncDate: '2026 Q2' }} chartHeight={300}
+              chart={
+                <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '개발 진행률(%)', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
+                  <YAxis dataKey="sku" type="category" tick={{ fill: '#f8fafc', fontSize: 10 }} width={130} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Bar dataKey="status" name="진행률(%)" radius={[0, 4, 4, 0]}>
+                    {sgValueUpData.map((entry: any, index: number) => (<Cell key={`sg-${index}`} fill={entry.status >= 70 ? 'var(--color-success)' : entry.status >= 50 ? 'var(--color-warning)' : 'var(--color-info)'} />))}
+                  </Bar>
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[SG 밸류업] 2026 운영방안에 따라 골뱅이 HMR 라인 6종을 개발 중이며, 혼술 에디션과 에어프라이어 키트가 26Q3 출시 목표로 가장 빠르게 진행 중입니다.</span>,
+                actionPlan: <span>SG 2026 밸류업 전략의 핵심은 '혼술 에디션 150g'(85% 완성)과 '에어프라이어 키트 200g'(70% 완성)의 26Q3 성수기 적시 출시입니다. 두 제품 합산 연간 매출 목표 37억 원이며, 이를 위해 편의점(CU/GS25) 입점 MOU를 6월까지 확정해야 합니다. 후속 제품인 '프리미엄 고형량65%+'는 경쟁사 대비 투명성 마케팅 차별화를 위해 포장 전면에 고형량 비율을 대형 표기하는 전략이 핵심입니다. 마케팅팀은 인플루언서 홈술 콘텐츠 마케팅을 Q3 출시 4주 전부터 선제 집행해야 합니다.</span>,
+                source: 'SG 2026 밸류업 운영방안',
+              }} />
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Ship size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 3. 물류 및 통관</h2>
   </div>
   <>
-            {/* Widget 7: Yield Arbitrage */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Scale style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 국가별 원물 수율 기반 총사용원가 비교
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KCS & Seafish UK</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  단순 통관 단가가 아닌 가공 과정의 수율(Meat Yield)을 적용한 실제 사용 원가(Total Cost of Usage)를 도출하여, 저단가 원물의 '저수율 함정'을 회피합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                    <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis dataKey="origin" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={100} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Bar dataKey="price" name="단가($/kg)" fill="#64748b" barSize={15} />
-                    <Scatter dataKey="yieldMax" name="살수율(%)" fill="var(--color-success)" />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KCS+Seafish] 튀르키예나 중국산 원물이 표면상 영국산보다 싸 보이지만, 버려지는 내장이나 껍질 등을 빼고 순수 살코기 양만 보면 오히려 영국산이 더 저렴합니다.</span>}
-                actionPlan={<span>단순 통관 단가 기준으로는 중국/튀르키예산(R. venosa)이 영국산(B. undatum)의 절반 수준으로 저렴해 보입니다. 그러나 가공 공정 데이터를 연동하여 <TermTooltip term="TCU" description="Total Cost of Usage. 껍질, 내장, 수분 감량 등을 제한 후 실제로 제품에 쓰이는 순 살코기(Meat Yield)를 얻기 위한 환산 단위 원가." />(총사용원가)를 산출하면, 튀르키예산은 극심한 부산물 감량 탓에 실질 원가가 $91.0/kg까지 치솟아 오히려 영국산($54.2/kg)보다 68%나 비싼 'Low-Yield Trap(저수율 함정)'에 빠지게 됩니다. 조달팀은 벤더와의 단가 협상 시 맹목적인 단가 인하 방어가 아닌 'Yield-Adjusted(수율 조정)' 재무 모델을 전면 도입해 구매 타당성을 평가해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="단가 vs 살수율 — 저수율 함정 회피 TCU 분석"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <ComposedChart data={yieldArbitrageData} layout="vertical" margin={{ left: 40 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis dataKey="origin" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={100} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Bar dataKey="price" name="단가($/kg)" fill="#64748b" barSize={15} />
+                  <Scatter dataKey="yieldMax" name="살수율(%)" fill="var(--color-success)" />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[KCS+Seafish] 튀르키예나 중국산 원물이 표면상 영국산보다 싸 보이지만, 버려지는 내장이나 껍질 등을 빼고 순수 살코기 양만 보면 오히려 영국산이 더 저렴합니다.</span>,
+                actionPlan: <span>단순 통관 단가 기준으로는 중국/튀르키예산(R. venosa)이 영국산(B. undatum)의 절반 수준으로 저렴해 보입니다. 그러나 가공 공정 데이터를 연동하여 <TermTooltip term="TCU" description="Total Cost of Usage. 껍질, 내장, 수분 감량 등을 제한 후 실제로 제품에 쓰이는 순 살코기(Meat Yield)를 얻기 위한 환산 단위 원가." />(총사용원가)를 산출하면, 튀르키예산은 극심한 부산물 감량 탓에 실질 원가가 $91.0/kg까지 치솟아 오히려 영국산($54.2/kg)보다 68%나 비싼 'Low-Yield Trap(저수율 함정)'에 빠지게 됩니다. 조달팀은 벤더와의 단가 협상 시 맹목적인 단가 인하 방어가 아닌 'Yield-Adjusted(수율 조정)' 재무 모델을 전면 도입해 구매 타당성을 평가해야 합니다.</span>,
+                source: 'KCS + Seafish UK',
+              }} />
 
-            {/* Widget 8: Waterfall */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <DollarSign style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국산 수입 통관 원가 폭포수 구조
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="synced" syncDate="2026-05-15" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KCS 관세청</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  FOB(본선인도조건) 단가부터 해운 운임, 보관료, FTA 무관세 혜택까지 단계별 부대 비용을 해체하여 국내 최종 입고 원가의 구조적 강점을 분석합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={waterfallData} margin={{ top: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={60} />
-                    <YAxis domain={[11.5, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" name="비용($/kg)" fill="var(--color-info)" label={{ position: 'top', fill: '#f8fafc', fontSize: 10 }}>
-                      {waterfallData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.fill} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KCS] 영국 수입산 원물은 관세가 0%로 면제되는 한-영 FTA 혜택 덕분에, 다른 부가 비용이 붙더라도 매우 뛰어난 가격 방어력을 보입니다.</span>}
-                actionPlan={<span>영국산 원물의 평균 수입단가 $12.75/kg 이면에 있는 가장 강력한 방어기제는 <TermTooltip term="한-영 FTA" description="영국의 브렉시트(Brexit) 이후 한국과 영국 간 체결된 자유무역협정. 수산물(골뱅이) 무관세 혜택의 핵심." />(수입 관세 0%) 혜택입니다. 무관세 특권으로 해운 운임($0.42)과 내륙 통관/보관료($0.15)를 합산해도 총 입고단가를 $13.32/kg 선에서 억제하는 LCC(Life Cycle Cost) 효율이 발생합니다. 경쟁국(관세 부과 시) 대비 10~20%의 원가 우위 해자로 작용하므로, 무역 파트는 영국 현지 패커들의 원산지 증명 갱신 및 행정적 컴플라이언스 이탈을 상시 모니터링해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 한-영 FTA 무관세 방어"
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05-15' }} chartHeight={300}
+              chart={
+                <BarChart data={waterfallData} margin={{ top: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[11.5, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Bar dataKey="value" name="비용($/kg)" fill="var(--color-info)" label={{ position: 'top', fill: '#f8fafc', fontSize: 10 }}>
+                    {waterfallData.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
+                  </Bar>
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[KCS] 영국 수입산 원물은 관세가 0%로 면제되는 한-영 FTA 혜택 덕분에, 다른 부가 비용이 붙더라도 매우 뛰어난 가격 방어력을 보입니다.</span>,
+                actionPlan: <span>영국산 원물의 평균 수입단가 $12.75/kg 이면에 있는 가장 강력한 방어기제는 <TermTooltip term="한-영 FTA" description="영국의 브렉시트(Brexit) 이후 한국과 영국 간 체결된 자유무역협정. 수산물(골뱅이) 무관세 혜택의 핵심." />(수입 관세 0%) 혜택입니다. 무관세 특권으로 해운 운임($0.42)과 내륙 통관/보관료($0.15)를 합산해도 총 입고단가를 $13.32/kg 선에서 억제하는 LCC(Life Cycle Cost) 효율이 발생합니다. 경쟁국(관세 부과 시) 대비 10~20%의 원가 우위 해자로 작용하므로, 무역 파트는 영국 현지 패커들의 원산지 증명 갱신 및 행정적 컴플라이언스 이탈을 상시 모니터링해야 합니다.</span>,
+                source: 'KCS 관세청 수입 통관 통계',
+              }} />
           </>
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
