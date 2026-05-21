@@ -1,0 +1,9 @@
+[
+  { "year": "2015", "multiplier": 1.8 },
+  { "year": "2017", "multiplier": 2.1 },
+  { "year": "2019", "multiplier": 2.5 },
+  { "year": "2021", "multiplier": 3.2 },
+  { "year": "2023", "multiplier": 4.6 },
+  { "year": "2024", "multiplier": 5.8 },
+  { "year": "2025", "multiplier": 7.2 }
+]
