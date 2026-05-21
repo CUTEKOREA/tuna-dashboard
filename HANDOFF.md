@@ -4,11 +4,20 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Antigravity 세션 — Phase 2A.2 Wave 1: Pollock 소형 4파일 ADR-0005 마이그레이션 완료)
+> **마지막 업데이트**: 2026-05-21 (Antigravity 세션 — Phase 2A.2 Wave 2: Pollock 중형 2파일 ADR-0005 마이그레이션 완료)
 
 ---
 
 ## 🆕 2026-05-21 진행 요약 (Antigravity 세션)
+
+### Phase 2A.2 Wave 2 (Pollock 중형 2파일 완료)
+- `components/PollockProcessingMarginWidgets.tsx` (12개 위젯, 520→456줄) — S2 가공·생산 중심, pillar 배분: S1(2), S2(5), S3(3), S4(1), S5(1)
+- `components/PollockSalesValueWidgets.tsx` (10개 위젯, 410→379줄) — S4 판매·수요 전체
+- `WidgetCard` default import, `pillar`/`telemetry`/`cardDesc` 완비, `termTooltip` 보존 (원본에 있던 4개 위젯)
+- SIT/TAK/source/차트 데이터 원본 1글자 변경 없이 보존
+- 미사용 import 제거: `SafeResponsiveContainer`, `TakeawayBox`, `TermTooltip`, `styles`, `CardHeader` 로컬 컴포넌트
+- `npm run build` Pollock 에러 0건, `git diff --stat` 각 1개 파일만 변경 확인
+- 커밋: `72f6930` (Wave 2 #1), `c474d7e` (Wave 2 #2)
 
 ### Phase 2A.2 Wave 1 (Pollock 소형 4파일 완료)
 - `components/PollockPolicyRiskRadar.tsx`, `components/PollockSupplyResilience.tsx`, `components/PollockTradeWidgets.tsx`, `components/PollockValueAddWidgets.tsx` 마이그레이션 완료 (ADR-0005 적용).
