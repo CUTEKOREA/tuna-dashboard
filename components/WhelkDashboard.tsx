@@ -579,145 +579,87 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 4. 판매 및 수요</h2>
   </div>
   <>
-            {/* Widget 9: Brand Positioning — Quantitative Axes */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Target style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> B2C 통조림 브랜드 경쟁력 & 가성비 매핑
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: aT FIS 식품산업통계</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  국내 주요 B2C 골뱅이 통조림 브랜드의 고형량(실제 살코기 중량)과 100g당 단가를 3차원으로 교차 분석하여 소비자의 실질적 가성비 지표를 추적합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                    <XAxis dataKey="x" type="number" name="고형량" domain={[80, 160]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '고형량(g) →', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
-                    <YAxis dataKey="y" type="number" name="가격" domain={[3000, 5500]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '100g당 가격(₩) →', angle: -90, position: 'left', fill: '#94a3b8' }} />
-                    <ZAxis dataKey="z" type="number" range={[200, 1500]} name="점유율(%)" />
-                    <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
-                    <Scatter name="브랜드" data={brandPositioningData} fill="var(--color-info)">
-                      {brandPositioningData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={index === 0 ? 'var(--color-danger)' : index === 3 ? 'var(--color-warning)' : 'var(--color-info)'} />
-                      ))}
-                    </Scatter>
-                  </ScatterChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[aT FIS] 유동 골뱅이가 1위를 지키고 있으나, 타 브랜드들이 고형량(살코기 비율)을 늘리거나 가격을 낮추는 방식으로 가성비 경쟁을 치열하게 전개 중입니다.</span>}
-                actionPlan={<span>경쟁사 '동표골뱅이'는 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게." />(147g)과 저렴한 100g당 단가(₩3,600)를 무기로 매니아층 및 B2B 시장의 바닥을 무섭게 잠식하고 있습니다. 1위 브랜드인 유동(130g, ₩4,200)은 강력한 브랜드 헤리티지로 프리미엄 B2C 시장을 철통 수성 중이나, 합리적 소비 트렌드 확산에 따라 가성비 이탈 현상이 관측됩니다. 장기적 성장을 위해서는 프리미엄 라인의 고형량 투명성 강화 캠페인과 더불어, 중저가 원물 믹스를 통한 실속형 '세컨드 브랜드' 출시로 하방 압력을 분산해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
+              cardDesc="고형량 vs 100g당 단가 vs 점유율 — 브랜드 가성비 매트릭스"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <ScatterChart margin={{ top: 20, right: 30, bottom: 30, left: 30 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="x" type="number" name="고형량" domain={[80, 160]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '고형량(g) →', position: 'bottom', fill: '#94a3b8', offset: -5 }} />
+                  <YAxis dataKey="y" type="number" name="가격" domain={[3000, 5500]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '100g당 가격(₩) →', angle: -90, position: 'left', fill: '#94a3b8' }} />
+                  <ZAxis dataKey="z" type="number" range={[200, 1500]} name="점유율(%)" />
+                  <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
+                  <Scatter name="브랜드" data={brandPositioningData} fill="var(--color-info)">
+                    {brandPositioningData.map((entry, index) => (<Cell key={`cell-${index}`} fill={index === 0 ? 'var(--color-danger)' : index === 3 ? 'var(--color-warning)' : 'var(--color-info)'} />))}
+                  </Scatter>
+                </ScatterChart>
+              }
+              takeaway={{
+                situation: <span>[aT FIS] 유동 골뱅이가 1위를 지키고 있으나, 타 브랜드들이 고형량(살코기 비율)을 늘리거나 가격을 낮추는 방식으로 가성비 경쟁을 치열하게 전개 중입니다.</span>,
+                actionPlan: <span>경쟁사 '동표골뱅이'는 <TermTooltip term="고형량" description="Solid weight. 통조림 내 액상액(조미액)을 제외한 순수 고기 무게." />(147g)과 저렴한 100g당 단가(₩3,600)를 무기로 매니아층 및 B2B 시장의 바닥을 무섭게 잠식하고 있습니다. 1위 브랜드인 유동(130g, ₩4,200)은 강력한 브랜드 헤리티지로 프리미엄 B2C 시장을 철통 수성 중이나, 합리적 소비 트렌드 확산에 따라 가성비 이탈 현상이 관측됩니다. 장기적 성장을 위해서는 프리미엄 라인의 고형량 투명성 강화 캠페인과 더불어, 중저가 원물 믹스를 통한 실속형 '세컨드 브랜드' 출시로 하방 압력을 분산해야 합니다.</span>,
+                source: 'aT FIS 식품산업통계 (2024)',
+              }} />
 
-            {/* Widget 10: Channel Demand */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Building2 style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> B2C 및 B2B 채널별 매출 분포
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: aT FIS 식품산업통계</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  대형마트, 이커머스, 편의점 및 외식/식자재(B2B) 등 유통 채널별 판매 점유율 변화를 분석하여 포장 규격 및 타겟 마케팅 전략을 도출합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                 <SafeResponsiveContainer height="100%">
-                  <PieChart>
-                    <Pie data={channelDemandData} cx="50%" cy="50%" innerRadius={40} outerRadius={80} dataKey="size" paddingAngle={2} labelLine={false} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
-                      {channelDemandData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.fill} />
-                      ))}
-                    </Pie>
-                    <RechartsTooltip content={<CustomTooltip />} />
-                  </PieChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[aT FIS] 대형마트 판매는 둔화되는 반면, 쿠팡 등 이커머스와 B2B 식자재 유통 채널의 성장이 폭발적입니다.</span>}
-                actionPlan={<span>과거 시장을 지배하던 대형마트 및 SSM의 점유율(62.3%) 독과점 체제가 빠르게 허물어지며 유통 구조의 파편화가 진행 중입니다. 쿠팡을 위시한 e커머스(11.8%)의 묶음 배송과 1인 가구 홈술족을 겨냥한 편의점(6.4%) 매출이 폭발적으로 성장하고 있습니다. 무엇보다 외식 물가 상승으로 인한 호프/주점용 프랜차이즈 납품 시장, 즉 B2B 식자재(19.5%) 채널이 강력한 'Cash Cow'로 부상했습니다. 기존 300~400g 캔 규격의 틀을 깨고 <TermTooltip term="SKU 다변화" description="Stock Keeping Unit. 150g 소포장(CVS용), 1kg 대용량 벌크 파우치(B2B용) 등 포장 규격의 세분화 전략." />(150g 파우치, 1kg 벌크 등)를 통한 전방위 채널 침투 전략을 수립해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="B2C 및 B2B 채널별 매출 분포" icon={Building2} iconColor="var(--color-info)" pillar="S4"
+              cardDesc="대형마트·e커머스·편의점·B2B 식자재 채널별 점유율 변화"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <PieChart>
+                  <Pie data={channelDemandData} cx="50%" cy="50%" innerRadius={40} outerRadius={80} dataKey="size" paddingAngle={2} labelLine={false} label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                    {channelDemandData.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
+                  </Pie>
+                  <RechartsTooltip content={<CustomTooltip />} />
+                </PieChart>
+              }
+              takeaway={{
+                situation: <span>[aT FIS] 대형마트 판매는 둔화되는 반면, 쿠팡 등 이커머스와 B2B 식자재 유통 채널의 성장이 폭발적입니다.</span>,
+                actionPlan: <span>과거 시장을 지배하던 대형마트 및 SSM의 점유율(62.3%) 독과점 체제가 빠르게 허물어지며 유통 구조의 파편화가 진행 중입니다. 쿠팡을 위시한 e커머스(11.8%)의 묶음 배송과 1인 가구 홈술족을 겨냥한 편의점(6.4%) 매출이 폭발적으로 성장하고 있습니다. 무엇보다 외식 물가 상승으로 인한 호프/주점용 프랜차이즈 납품 시장, 즉 B2B 식자재(19.5%) 채널이 강력한 'Cash Cow'로 부상했습니다. 기존 300~400g 캔 규격의 틀을 깨고 <TermTooltip term="SKU 다변화" description="Stock Keeping Unit. 150g 소포장(CVS용), 1kg 대용량 벌크 파우치(B2B용) 등 포장 규격의 세분화 전략." />(150g 파우치, 1kg 벌크 등)를 통한 전방위 채널 침투 전략을 수립해야 합니다.</span>,
+                source: 'aT FIS 식품산업통계',
+              }} />
           </>
 
-            {/* W19: 미국 캔 시장 트렌드 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ShoppingBag style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 미국 캔 르네상스 — 골뱅이 수출 신시장 기회
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="KMI 2026.05" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  미국 시장에서 통조림 제품의 '힙한 리브랜딩' 트렌드가 확산되며, K-Food 골뱅이 캔의 수출 기회를 분석합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={usCannedMarketData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$B', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '%', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar yAxisId="left" dataKey="marketSize" name="미국 캔 시장($B)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                    <Line yAxisId="right" type="monotone" dataKey="growth" name="성장률(%)" stroke="var(--color-success)" strokeWidth={2} />
-                    <Line yAxisId="left" type="monotone" dataKey="whelkPotential" name="골뱅이 침투 예상($M)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" dot={{ r: 5 }} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KMI 카드뉴스] 미국에서 통조림이 다시 '힙'해지고 있습니다. Z세대의 '틴 캔 르네상스'가 SNS에서 바이럴되며, 고급 수산 통조림 시장이 연 10% 이상 성장 중입니다.</span>}
-                actionPlan={<span>미국 프리미엄 캔 시장이 $15.5B(2026E)에 달하며, 특히 K-Food 한류 영향권 내 아시안 마켓과 H-Mart 채널이 연간 15%씩 성장 중입니다. 골뱅이 캔은 '한국식 해산물 안주'라는 포지셔닝이 가능하며, 미국 내 소주 열풍과 시너지가 큽니다. 해외사업부는 H-Mart, 쿠팡 글로벌 입점을 26Q4까지 완료하고, 영문 패키지 리디자인(프리미엄 크래프트 캔 콘셉트)을 즉시 착수해야 합니다. 초기 목표 매출 $1.2M(2026E).</span>}
-              />
-            </div>
+            <WidgetCard title="미국 캔 르네상스 — 골뱅이 수출 신시장 기회" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="Z세대 '틴 캔 르네상스' 트렌드 + K-Food 골뱅이 침투 잠재력"
+              telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.05' }} chartHeight={300}
+              chart={
+                <ComposedChart data={usCannedMarketData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$B', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '%', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar yAxisId="left" dataKey="marketSize" name="미국 캔 시장($B)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Line yAxisId="right" type="monotone" dataKey="growth" name="성장률(%)" stroke="var(--color-success)" strokeWidth={2} />
+                  <Line yAxisId="left" type="monotone" dataKey="whelkPotential" name="골뱅이 침투 예상($M)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" dot={{ r: 5 }} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[KMI 카드뉴스] 미국에서 통조림이 다시 '힙'해지고 있습니다. Z세대의 '틴 캔 르네상스'가 SNS에서 바이럴되며, 고급 수산 통조림 시장이 연 10% 이상 성장 중입니다.</span>,
+                actionPlan: <span>미국 프리미엄 캔 시장이 $15.5B(2026E)에 달하며, 특히 K-Food 한류 영향권 내 아시안 마켓과 H-Mart 채널이 연간 15%씩 성장 중입니다. 골뱅이 캔은 '한국식 해산물 안주'라는 포지셔닝이 가능하며, 미국 내 소주 열풍과 시너지가 큽니다. 해외사업부는 H-Mart, 쿠팡 글로벌 입점을 26Q4까지 완료하고, 영문 패키지 리디자인(프리미엄 크래프트 캔 콘셉트)을 즉시 착수해야 합니다. 초기 목표 매출 $1.2M(2026E).</span>,
+                source: 'KMI 카드뉴스 (2026.05)',
+              }} />
 
-            {/* W20: 영양성분 벤치마크 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Activity style={{ color: 'var(--color-success)', width: '20px', height: '20px' }} /> 헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="KFDA 2024 기준" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  골뱅이의 고단백·저지방·저칼로리 영양 프로필을 닭가슴살, 참치캔, 새우 등 주요 경쟁 단백질 식품과 직접 비교합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="item" tick={{ fill: '#f8fafc', fontSize: 10 }} angle={0} textAnchor="middle" height={55} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
-                    <Bar dataKey="protein" name="단백질(g)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="fat" name="지방(g)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="iron" name="철분(mg)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KMI 헬시플레저] 골뱅이는 100g당 82kcal, 단백질 18.2g, 지방 0.8g으로 닭가슴살보다 낮은 칼로리에 3배 이상의 철분을 보유한 '숨은 슈퍼푸드'입니다.</span>}
-                actionPlan={<span>골뱅이(자숙)의 영양 프로필은 헬시플레저 트렌드의 핵심 지표에서 경쟁 식품을 압도합니다. 칼로리 82kcal(닭가슴살 109kcal 대비 -25%), 지방 0.8g(소등심 15.0g 대비 -95%), 철분 3.2mg(닭가슴살 0.7mg 대비 4.5배)을 보유합니다. 마케팅팀은 '다이어트 안주의 혁명'이라는 포지셔닝으로 피트니스 인플루언서 협업 캠페인을 전개하고, 제품 패키지에 '82kcal 슈퍼프로틴' 배지를 전면 부착해야 합니다. 특히 여성 1인 가구 타겟의 '단백질 간식' 카테고리 진입이 가장 높은 ROI를 보일 것입니다.</span>}
-              />
-            </div>
+            <WidgetCard title="헬시플레저 시대 — 골뱅이 영양 경쟁력 벤치마크" icon={Activity} iconColor="var(--color-success)" pillar="S4"
+              cardDesc="단백질·지방·철분 벤치마크 — 닭가슴살·참치캔·새우 대비"
+              telemetry={{ status: 'STATIC', syncDate: 'KFDA 2024 기준' }} chartHeight={300}
+              chart={
+                <BarChart data={nutritionBenchmarkData} margin={{ top: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="item" tick={{ fill: '#f8fafc', fontSize: 10 }} angle={0} textAnchor="middle" height={55} />
+                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                  <Bar dataKey="protein" name="단백질(g)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="fat" name="지방(g)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="iron" name="철분(mg)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[KMI 헬시플레저] 골뱅이는 100g당 82kcal, 단백질 18.2g, 지방 0.8g으로 닭가슴살보다 낮은 칼로리에 3배 이상의 철분을 보유한 '숨은 슈퍼푸드'입니다.</span>,
+                actionPlan: <span>골뱅이(자숙)의 영양 프로필은 헬시플레저 트렌드의 핵심 지표에서 경쟁 식품을 압도합니다. 칼로리 82kcal(닭가슴살 109kcal 대비 -25%), 지방 0.8g(소등심 15.0g 대비 -95%), 철분 3.2mg(닭가슴살 0.7mg 대비 4.5배)을 보유합니다. 마케팅팀은 '다이어트 안주의 혁명'이라는 포지셔닝으로 피트니스 인플루언서 협업 캠페인을 전개하고, 제품 패키지에 '82kcal 슈퍼프로틴' 배지를 전면 부착해야 합니다. 특히 여성 1인 가구 타겟의 '단백질 간식' 카테고리 진입이 가장 높은 ROI를 보일 것입니다.</span>,
+                source: 'KFDA 2024 식품성분표',
+              }} />
 
         {/* Pillar 5: ESG & 지속가능성 */}
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
