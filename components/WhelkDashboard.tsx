@@ -754,43 +754,27 @@ export default function WhelkDashboard() {
 
         {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
   <>
-            {/* Widget 13: 양식 불가 자원 비교 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ShieldAlert style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 패류 자원별 양식 가능성 및 공급 탄력성
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: 국립수산과학원</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  골뱅이(큰구슬우렁이)와 주요 패류 간의 양식 기술 적용 가능성 및 가격 방어력을 비교하여, 원물 공급의 구조적 한계와 희소성을 평가합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={aquacultureData} margin={{ top: 10 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar dataKey="aquaculture" name="양식 가능성" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="supplyElasticity" name="공급 탄력성" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="priceStability" name="가격 안정성" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[국립수산과학원] 충격적 사실: 골뱅이는 '해적생물(Pest)'로 분류되어 양식이 영구히 불가능한 유일한 국민 안주</span>}
-                actionPlan={<span>골뱅이(큰구슬우렁이)는 바지락·동죽 등 패류를 잡아먹는 <TermTooltip term="해적생물" description="해양 양식장에서 양식 대상 생물을 포식하거나 피해를 주는 유해 생물. 골뱅이는 육식성 포식자로 분류됨." /> 로서, 양식 시도 자체가 기존 패류 산업을 파괴합니다. 연어·새우와 달리 수요 폭증 시에도 공급을 인위적으로 늘릴 방법이 전무한 '공급 탄력성 제로(Zero Elasticity)' 품목입니다. 이는 장기적으로 <TermTooltip term="희소성 프리미엄" description="Scarcity Premium. 공급이 구조적으로 제한된 자원에 붙는 가격 프리미엄. 양식 불가 품목에서 특히 강하게 작용." /> 을 보장하지만, 동시에 기후·규제 충격 시 가격 방어 메커니즘이 전무함을 의미합니다. 12~18개월 선물(Forward) 계약과 R. venosa 블렌딩 20~30% 유지로 원가 완충 장치를 내재화해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="패류 자원별 양식 가능성 및 공급 탄력성" icon={ShieldAlert} iconColor="var(--color-danger)" pillar="S1"
+              cardDesc="골뱅이 vs 바지락·동죽·연어 — 해적생물 분류로 양식 영구 불가"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <BarChart data={aquacultureData} margin={{ top: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="species" tick={{ fill: '#f8fafc', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="aquaculture" name="양식 가능성" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="supplyElasticity" name="공급 탄력성" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="priceStability" name="가격 안정성" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[국립수산과학원] 충격적 사실: 골뱅이는 '해적생물(Pest)'로 분류되어 양식이 영구히 불가능한 유일한 국민 안주</span>,
+                actionPlan: <span>골뱅이(큰구슬우렁이)는 바지락·동죽 등 패류를 잡아먹는 <TermTooltip term="해적생물" description="해양 양식장에서 양식 대상 생물을 포식하거나 피해를 주는 유해 생물. 골뱅이는 육식성 포식자로 분류됨." /> 로서, 양식 시도 자체가 기존 패류 산업을 파괴합니다. 연어·새우와 달리 수요 폭증 시에도 공급을 인위적으로 늘릴 방법이 전무한 '공급 탄력성 제로(Zero Elasticity)' 품목입니다. 이는 장기적으로 <TermTooltip term="희소성 프리미엄" description="Scarcity Premium. 공급이 구조적으로 제한된 자원에 붙는 가격 프리미엄. 양식 불가 품목에서 특히 강하게 작용." /> 을 보장하지만, 동시에 기후·규제 충격 시 가격 방어 메커니즘이 전무함을 의미합니다. 12~18개월 선물(Forward) 계약과 R. venosa 블렌딩 20~30% 유지로 원가 완충 장치를 내재화해야 합니다.</span>,
+                source: '국립수산과학원',
+              }} />
 
-            {/* Widget 14: 카드뮴 식품안전 리스크 */}
             <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
