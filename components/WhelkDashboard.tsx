@@ -667,141 +667,89 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 5. ESG 및 지속가능성</h2>
   </div>
   <>
-            {/* W26: 흑해 R. venosa 공급 안정성 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Ship style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 흑해산 R. venosa 공급 안정성 트렌드
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="FAOSTAT 2024" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  튀르키예·불가리아·루마니아의 흑해산 R. venosa(뿔고둥) 어획 추이를 모니터링하여 대체 원물의 안정성을 평가합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={blackSeaSupplyData} margin={{ top: 10 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar dataKey="turkey" name="튀르키예" fill="var(--color-info)" stackId="a" radius={[0, 0, 0, 0]} />
-                    <Bar dataKey="bulgaria" name="불가리아" fill="var(--color-warning)" stackId="a" radius={[0, 0, 0, 0]} />
-                    <Bar dataKey="romania" name="루마니아" fill="var(--color-success)" stackId="a" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[FAOSTAT] 흑해산 R. venosa(뿔고둥)는 튀르키예가 연간 4,000~4,500톤을 안정적으로 생산하며, 영국산 B. undatum의 유일한 대규모 대체 공급원입니다.</span>}
-                actionPlan={<span>흑해산 R. venosa는 TCU(Total Cost of Usage) 기준으로 영국산 대비 15~20% 저렴하며, 맛과 식감이 유사하여 통조림 가공 적합성이 높습니다. 다만 불가리아(-31%)와 루마니아(-32%)의 어획량이 꾸준히 감소 중이므로, 사실상 튀르키예 단일 의존 구조입니다. 조달팀은 튀르키예 이스탄불 소재 대형 벤더(3곳)와 장기 공급계약(2~3년)을 체결하여 물량을 선제 확보하고, 한-튀르키예 FTA 발효 시 관세 인하 효과를 극대화할 전략을 준비해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="흑해산 R. venosa 공급 안정성 트렌드" icon={Ship} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="튀르키예·불가리아·루마니아 흑해산 R. venosa 어획 추이"
+              telemetry={{ status: 'STATIC', syncDate: 'FAOSTAT 2024' }} chartHeight={300}
+              chart={
+                <BarChart data={blackSeaSupplyData} margin={{ top: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '톤', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="turkey" name="튀르키예" fill="var(--color-info)" stackId="a" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="bulgaria" name="불가리아" fill="var(--color-warning)" stackId="a" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="romania" name="루마니아" fill="var(--color-success)" stackId="a" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[FAOSTAT] 흑해산 R. venosa(뿔고둥)는 튀르키예가 연간 4,000~4,500톤을 안정적으로 생산하며, 영국산 B. undatum의 유일한 대규모 대체 공급원입니다.</span>,
+                actionPlan: <span>흑해산 R. venosa는 TCU(Total Cost of Usage) 기준으로 영국산 대비 15~20% 저렴하며, 맛과 식감이 유사하여 통조림 가공 적합성이 높습니다. 다만 불가리아(-31%)와 루마니아(-32%)의 어획량이 꾸준히 감소 중이므로, 사실상 튀르키예 단일 의존 구조입니다. 조달팀은 튀르키예 이스탄불 소재 대형 벤더(3곳)와 장기 공급계약(2~3년)을 체결하여 물량을 선제 확보하고, 한-튀르키예 FTA 발효 시 관세 인하 효과를 극대화할 전략을 준비해야 합니다.</span>,
+                source: 'FAOSTAT 2024',
+              }} />
 
-            {/* W27: FX 1,500원 비상 경보 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <AlertTriangle style={{ color: '#dc2626', width: '20px', height: '20px' }} /> 환율 1,500원 비상 경보 시스템
-                  </h3>
-                  <TelemetryBadge status="live" syncDate="Real-time" />
+            <WidgetCard title="환율 1,500원 비상 경보 시스템" icon={AlertTriangle} iconColor="#dc2626" pillar="S3"
+              cardDesc="USD/KRW 구간별 자동 경보 + 단계별 대응 매뉴얼"
+              telemetry={{ status: 'LIVE', syncDate: 'Real-time' }}
+              customBody={
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+                  {fxAlertThresholds.map((t: any, i: number) => (
+                    <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${t.color}40`, borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 700, color: t.color }}>{t.level}</span>
+                        <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>₩{t.min}~{t.max}</span>
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.5 }}>대응: <strong style={{ color: t.color }}>{t.action}</strong></div>
+                      <div style={{ height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: `${((t.max - 1200) / 500) * 100}%`, background: t.color, borderRadius: '2px' }} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  USD/KRW 환율 구간별 자동 경보 체계. 임계값 돌파 시 단계별 대응 매뉴얼을 즉시 실행합니다.
-                </p>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
-                {fxAlertThresholds.map((t: any, i: number) => (
-                  <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${t.color}40`, borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: t.color }}>{t.level}</span>
-                      <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>₩{t.min}~{t.max}</span>
-                    </div>
-                    <div style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.5 }}>
-                      대응: <strong style={{ color: t.color }}>{t.action}</strong>
-                    </div>
-                    <div style={{ height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.1)', overflow: 'hidden' }}>
-                      <div style={{ height: '100%', width: `${((t.max - 1200) / 500) * 100}%`, background: t.color, borderRadius: '2px' }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <TakeawayBox
-                situation={<span>[한국은행] USD/KRW 환율이 2026년 5월 기준 1,480원대에 진입하며 '위험 구간(1,450~1,550)' 임계점에 접근했습니다. 골뱅이 원물의 100% 달러 결제 구조상 수입 원가에 직격탄입니다.</span>}
-                actionPlan={<span>골뱅이 수입은 전량 USD 결제이므로, 환율 100원 상승 시 톤당 원화 매입가가 약 130만 원(+10%) 증가합니다. 현재 1,480원대는 '위험 구간' 진입 직전이며, 1,500원 돌파 시 즉시 긴급 선물환 계약(3~6개월물)을 체결해야 합니다. 재무팀은 현재 헤지 비율을 50%까지 즉시 상향하고, 1,550원 돌파 시에는 신규 발주 일시 중단 및 기존 재고 활용 전략으로 전환하는 비상 프로토콜을 가동해야 합니다.</span>}
-              />
-            </div>
-            {/* Widget 11: FX-Import Price Correlation */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <DollarSign style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 환율 및 수입 단가 복합 변동성
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="live" syncDate="Real-time" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KCS / 한국은행</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  영국산 원물의 분기별 달러 단가 변동과 원-달러 환율 추이를 결합하여, 기업의 실제 원화 매입 부담과 환헤지(FX Hedge) 필요성을 점검합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={fxCorrelationData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                    <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar yAxisId="left" dataKey="avgUnitPrice" name="평균수입단가($/kg)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                    <Line yAxisId="right" type="monotone" dataKey="usdkrw" name="USD/KRW 환율" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 3 }} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KCS+BOK] 수입 단가(달러) 자체는 안정적이어도 환율이 오르면 실제 기업이 지불해야 하는 원화 결제액이 크게 늘어나 수익성이 악화됩니다.</span>}
-                actionPlan={<span>2023년 1분기부터 2024년 4분기 시계열 분석 결과, 거시 경제의 최악의 시나리오인 'Double Whammy(이중 타격)' 현상이 확인됩니다. 영국산 원물 USD 단가가 $11.82에서 $12.75(+7.9%)로 인상된 것에 더해, 동기간 USD/KRW 환율마저 1,264원에서 1,400원(+10.8%)으로 수직 상승했습니다. 이로 인해 국내 수입사가 체감하는 원화 환산 매입 원가는 무려 20% 가까이 폭등했습니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>}
-              />
-            </div>
+              }
+              takeaway={{
+                situation: <span>[한국은행] USD/KRW 환율이 2026년 5월 기준 1,480원대에 진입하며 '위험 구간(1,450~1,550)' 임계점에 접근했습니다. 골뱅이 원물의 100% 달러 결제 구조상 수입 원가에 직격탄입니다.</span>,
+                actionPlan: <span>골뱅이 수입은 전량 USD 결제이므로, 환율 100원 상승 시 톤당 원화 매입가가 약 130만 원(+10%) 증가합니다. 현재 1,480원대는 '위험 구간' 진입 직전이며, 1,500원 돌파 시 즉시 긴급 선물환 계약(3~6개월물)을 체결해야 합니다. 재무팀은 현재 헤지 비율을 50%까지 즉시 상향하고, 1,550원 돌파 시에는 신규 발주 일시 중단 및 기존 재고 활용 전략으로 전환하는 비상 프로토콜을 가동해야 합니다.</span>,
+                source: '한국은행 실시간 환율',
+              }} />
+            <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="분기별 USD 단가 vs USD/KRW 환율 — Double Whammy 분석"
+              telemetry={{ status: 'LIVE', syncDate: 'Real-time' }} chartHeight={300}
+              chart={
+                <ComposedChart data={fxCorrelationData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="quarter" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" domain={[11, 13.5]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[1200, 1450]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: 'USD/KRW', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar yAxisId="left" dataKey="avgUnitPrice" name="평균수입단가($/kg)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Line yAxisId="right" type="monotone" dataKey="usdkrw" name="USD/KRW 환율" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 3 }} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[KCS+BOK] 수입 단가(달러) 자체는 안정적이어도 환율이 오르면 실제 기업이 지불해야 하는 원화 결제액이 크게 늘어나 수익성이 악화됩니다.</span>,
+                actionPlan: <span>2023년 1분기부터 2024년 4분기 시계열 분석 결과, 거시 경제의 최악의 시나리오인 'Double Whammy(이중 타격)' 현상이 확인됩니다. 영국산 원물 USD 단가가 $11.82에서 $12.75(+7.9%)로 인상된 것에 더해, 동기간 USD/KRW 환율마저 1,264원에서 1,400원(+10.8%)으로 수직 상승했습니다. 이로 인해 국내 수입사가 체감하는 원화 환산 매입 원가는 무려 20% 가까이 폭등했습니다. 재무 라인은 즉각 비상 경영 체제로 돌입하여 능동적인 <TermTooltip term="FX Forward 헤지" description="환변동 위험을 방어하기 위해 미래 특정 시점의 환율을 현재 시점에 사전 고정시키는 선도 계약." /> 및 통화 분산 스왑을 가동, 판관비 및 이익률 훼손을 방어하는 최후의 보루 역할을 수행해야 합니다.</span>,
+                source: 'KCS / 한국은행',
+              }} />
 
-            {/* Widget 12: UK Regulatory Risk Radar */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Shield style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국 현지 어획 규제 리스크 진단
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: UK IFCA / MMO</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  최소보존규격(MCRS) 상향, 쿼터제 등 영국 현지 어업 관리 당국의 자국 자원 보호주의 정책이 미치는 공급망 위협 수준을 방사형 레이더로 측정합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <RadarChart data={ukRegulatoryRadar} cx="50%" cy="50%" outerRadius="70%">
-                    <PolarGrid stroke="rgba(255,255,255,0.15)" />
-                    <PolarAngleAxis dataKey="axis" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-                    <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-                    <Radar name="리스크 수준" dataKey="value" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.25} strokeWidth={2} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                  </RadarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[IFCA/MMO] 영국 정부가 골뱅이 크기 규제(MCRS)를 강화하고 어획량을 통제하면서, 영국산 물량 조달에 차질이 빚어질 위험이 커지고 있습니다.</span>}
-                actionPlan={<span>영국의 해양 규제 당국(<TermTooltip term="IFCA" description="영국 Inshore Fisheries and Conservation Authority. 해안 환경보존 및 어업 규제를 단속하는 핵심 부처." />)의 자국 수산자원 보호주의 정책이 골뱅이 공급망의 최대 뇌관으로 부상했습니다. 특히 <TermTooltip term="MCRS(최소보존규격)" description="Minimum Conservation Reference Size. 포획 허용 조개껍질 최소 크기. 상향 시 소형 어획 불가." />를 45mm에서 55mm로 기습 상향하려는 움직임은 단기 어획량을 20~30% 소멸시킬 수 있는 치명적 규제(Risk Score 85)입니다. 또한 웨일스 지방을 기점으로 확산 조짐이 보이는 <TermTooltip term="ACL 쿼터제" description="Annual Catch Limit. 지역 단위 총 할당량 제한으로 수입사의 독과점 물량 확보를 막는 보호무역 장치." />는 해외 자본의 독점적 물량 싹쓸이를 원천 차단합니다. 해외 전략 파트는 현지 로비망 가동 및 현지 가공 공장 지분 투자를 통해 이러한 '규제 장벽'을 내부자 자격으로 우회하는 전략적 판단이 필요합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="영국 현지 어획 규제 리스크 진단" icon={Shield} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="MCRS·쿼터제·IFCA 규제 — 영국 자원 보호주의 정책 위협 측정"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <RadarChart data={ukRegulatoryRadar} cx="50%" cy="50%" outerRadius="70%">
+                  <PolarGrid stroke="rgba(255,255,255,0.15)" />
+                  <PolarAngleAxis dataKey="axis" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+                  <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                  <Radar name="리스크 수준" dataKey="value" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.25} strokeWidth={2} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                </RadarChart>
+              }
+              takeaway={{
+                situation: <span>[IFCA/MMO] 영국 정부가 골뱅이 크기 규제(MCRS)를 강화하고 어획량을 통제하면서, 영국산 물량 조달에 차질이 빚어질 위험이 커지고 있습니다.</span>,
+                actionPlan: <span>영국의 해양 규제 당국(<TermTooltip term="IFCA" description="영국 Inshore Fisheries and Conservation Authority. 해안 환경보존 및 어업 규제를 단속하는 핵심 부처." />)의 자국 수산자원 보호주의 정책이 골뱅이 공급망의 최대 뇌관으로 부상했습니다. 특히 <TermTooltip term="MCRS(최소보존규격)" description="Minimum Conservation Reference Size. 포획 허용 조개껍질 최소 크기. 상향 시 소형 어획 불가." />를 45mm에서 55mm로 기습 상향하려는 움직임은 단기 어획량을 20~30% 소멸시킬 수 있는 치명적 규제(Risk Score 85)입니다. 또한 웨일스 지방을 기점으로 확산 조짐이 보이는 <TermTooltip term="ACL 쿼터제" description="Annual Catch Limit. 지역 단위 총 할당량 제한으로 수입사의 독과점 물량 확보를 막는 보호무역 장치." />는 해외 자본의 독점적 물량 싹쓸이를 원천 차단합니다. 해외 전략 파트는 현지 로비망 가동 및 현지 가공 공장 지분 투자를 통해 이러한 '규제 장벽'을 내부자 자격으로 우회하는 전략적 판단이 필요합니다.</span>,
+                source: 'UK IFCA / MMO',
+              }} />
           </>
 
         {/* Pillar 5 continued: 구조적 위협 & 기회 — 동일 Pillar 내 하위 블록 */}
