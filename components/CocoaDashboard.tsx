@@ -455,146 +455,90 @@ export default function CocoaDashboard() {
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         
-        {/* Widget 15 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <TrendingUp size={17} />가나 현지 가공 인프라 디스트레스 차익거래
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 천톤, % | 출처: COCOBOD 및 가나 현지 공장 사업보고서)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w15_ghana_distressed}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
-                <XAxis dataKey="year" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="Capacity" name="가공 생산능력" fill="rgba(139,92,246,0.2)" stroke="#78350f" />
-                <Bar yAxisId="left" dataKey="Utilization" name="실제 가동량" fill="var(--color-danger)" />
-                <Line yAxisId="right" type="monotone" dataKey="ExportRatio" name="무가공 원물 수출비율(%)" stroke="#d97706" strokeWidth={2} />
-                <ReferenceLine x="2024" stroke="var(--color-warning)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'COCOBOD 구조조정(보조금 중단)', fill: 'var(--color-warning)', fontSize: 10 }} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="가나 내 가공 인프라는 연 6.4만 톤 CAPA를 지닌 국영 CPC가 설비 노후화와 자금난으로 가동률 부진 및 구조조정을 겪고 있는 반면, Niche Cocoa(연 6만 톤)나 Touton(연 2.5만 톤) 등 민간/외국계 기업은 HACCP 등 글로벌 인증을 무기로 정상 가동 중인 양극화 상태입니다."
-              actionPlan="디스트레스드 자산화된 현지 설비(CPC 유휴 라인 등)를 PE 자본으로 인수·현대화(CAPEX 투자)하여 아프리카 원산지 내 가공(Origin Grinding) Bottom-line(순이익)을 내재화해야 합니다. 한국 제과사 스펙에 맞춘 리쿼(Liquor) 직생산 기지로 탈바꿈시켜 매입원가 절감 턴어라운드를 실현하는 것이 핵심 밸류 크리에이션 레버입니다."
-              source="COCOBOD Annual Report / Ghana Cocoa Processing Company (CPC) / Niche Cocoa IR"
-            />
-          </div>
-        </div>
+        <WidgetCard title="가나 현지 가공 인프라 디스트레스 차익거래 (천톤, %)" icon={TrendingUp} iconColor="#78350f" pillar="S3"
+          cardDesc="CPC vs Niche Cocoa 등 가나 가공 인프라 가동률 + 무가공 원물 수출비율"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w15_ghana_distressed}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
+              <XAxis dataKey="year" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis yAxisId="left" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="Capacity" name="가공 생산능력" fill="rgba(139,92,246,0.2)" stroke="#78350f" />
+              <Bar yAxisId="left" dataKey="Utilization" name="실제 가동량" fill="var(--color-danger)" />
+              <Line yAxisId="right" type="monotone" dataKey="ExportRatio" name="무가공 원물 수출비율(%)" stroke="#d97706" strokeWidth={2} />
+              <ReferenceLine x="2024" stroke="var(--color-warning)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'COCOBOD 구조조정', fill: 'var(--color-warning)', fontSize: 10 }} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "가나 내 가공 인프라는 연 6.4만 톤 CAPA를 지닌 국영 CPC가 설비 노후화와 자금난으로 가동률 부진 및 구조조정을 겪고 있는 반면, Niche Cocoa(연 6만 톤)나 Touton(연 2.5만 톤) 등 민간/외국계 기업은 HACCP 등 글로벌 인증을 무기로 정상 가동 중인 양극화 상태입니다.",
+            actionPlan: "디스트레스드 자산화된 현지 설비(CPC 유휴 라인 등)를 PE 자본으로 인수·현대화(CAPEX 투자)하여 아프리카 원산지 내 가공(Origin Grinding) Bottom-line(순이익)을 내재화해야 합니다. 한국 제과사 스펙에 맞춘 리쿼(Liquor) 직생산 기지로 탈바꿈시켜 매입원가 절감 턴어라운드를 실현하는 것이 핵심 밸류 크리에이션 레버입니다.",
+            source: "COCOBOD Annual Report / Ghana Cocoa Processing Company (CPC) / Niche Cocoa IR",
+          }} />
 
-        {/* Widget 5 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Anchor size={17} />한국의 이중 수입 넥서스 흐름도
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 거래망 Flow | 출처: 관세청(KCS) OpenAPI)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <Sankey
-                data={cocoaData.w5_sankey_nexus}
-                node={renderSankeyNode}
-                link={{ stroke: '#b45309', strokeOpacity: 0.3 }}
-                margin={{ left: 20, right: 80, top: 20, bottom: 20 }}
-              >
-                <RechartsTooltip content={<CustomTooltip />} />
-              </Sankey>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="2025년 한국의 코코아 원두 수입액 약 5,870만 달러 중 80%($47M)가 가나산에 편중되어 있으나, 버터나 매스 같은 1차 가공품은 네덜란드나 말레이시아 등 제3국 가공 허브를 거쳐 우회 수입되는 '이중 수입 구조'를 띠고 있습니다."
-              actionPlan="가나 원두에 종속된 비효율(Inefficiency)적 우회 수입 구조를 타파하기 위해, 현지(가나) 1차 가공 설비를 보유한 업체와 한국 B2B 유통사를 수직 계열화하는 볼트온(Bolt-on) M&A를 실행해야 합니다. 중간 마진(Middleman Margin)을 내재화하여 국내 제과 대기업을 상대로 한 가격 경쟁력 우위를 선점해야 합니다."
-              source="관세청(KCS) OpenAPI / UN Comtrade HS 1801-1806"
-            />
-          </div>
-        </div>
+        <WidgetCard title="한국의 이중 수입 넥서스 흐름도 (Flow)" icon={Anchor} iconColor="#b45309" pillar="S3"
+          cardDesc="가나 원두 80% 편중 + 네덜란드/말레이시아 우회 가공품 — Sankey 다이어그램"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <Sankey data={cocoaData.w5_sankey_nexus} node={renderSankeyNode}
+              link={{ stroke: '#b45309', strokeOpacity: 0.3 }} margin={{ left: 20, right: 80, top: 20, bottom: 20 }}>
+              <RechartsTooltip content={<CustomTooltip />} />
+            </Sankey>
+          }
+          takeaway={{
+            situation: "2025년 한국의 코코아 원두 수입액 약 5,870만 달러 중 80%($47M)가 가나산에 편중되어 있으나, 버터나 매스 같은 1차 가공품은 네덜란드나 말레이시아 등 제3국 가공 허브를 거쳐 우회 수입되는 '이중 수입 구조'를 띠고 있습니다.",
+            actionPlan: "가나 원두에 종속된 비효율적 우회 수입 구조를 타파하기 위해, 현지(가나) 1차 가공 설비를 보유한 업체와 한국 B2B 유통사를 수직 계열화하는 볼트온(Bolt-on) M&A를 실행해야 합니다. 중간 마진을 내재화하여 국내 제과 대기업을 상대로 한 가격 경쟁력 우위를 선점해야 합니다.",
+            source: "관세청(KCS) OpenAPI / UN Comtrade HS 1801-1806",
+          }} />
 
-        {/* Widget 6 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Shield size={17} />공급 충격 시나리오: 재고 소진율 트래커
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: DIO - 재고회전일수 | 출처: DART API 경쟁사 공시 및 내부 SCM)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w6_inventory_burn_rate}>
-                {grid}
-                <XAxis dataKey="timeline" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
-                <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="DIO" fill="#d97706" name="현재 보유 재고일수(DIO)" barSize={40}>
-                  {cocoaData.w6_inventory_burn_rate && cocoaData.w6_inventory_burn_rate.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.DIO < 30 ? "var(--color-danger)" : "#d97706"} />
-                  ))}
-                </Bar>
-                <Line yAxisId="left" type="step" dataKey="CriticalLine" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" name="공장 가동 중단(Red Alert) 기준선" dot={false} />
-                <Line yAxisId="right" type="monotone" dataKey="CompetitorMargin" stroke="var(--color-warning)" strokeWidth={3} name="경쟁사 OPM 하락(DART API)" dot={{ r: 5 }} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="2023/24 시즌 글로벌 재고 대 분쇄(Stocks-to-Grindings) 비율은 46년 만의 최저치인 26.4%로 급락했으며, 뉴욕 ICE 인증 재고는 19년 만의 최저치(약 11.8만 톤)를 기록하는 등 물리적 재고 고갈이 심각합니다. 주요 수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며 운전자본(NWC) 압박을 겪고 있습니다."
-              actionPlan="피투자사의 DIO(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다."
-              source="ICCO Quarterly Bulletin / ICE Certified Stock Data / DART 경쟁사 공시"
-            />
-          </div>
-        </div>
+        <WidgetCard title="공급 충격 시나리오: 재고 소진율 트래커 (DIO)" icon={Shield} iconColor="#d97706" pillar="S2"
+          cardDesc="DIO(재고회전일수) + 공장 가동 중단 임계선 + 경쟁사 OPM 동향"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w6_inventory_burn_rate}>
+              {grid}
+              <XAxis dataKey="timeline" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
+              <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="DIO" fill="#d97706" name="현재 보유 재고일수(DIO)" barSize={40}>
+                {cocoaData.w6_inventory_burn_rate && cocoaData.w6_inventory_burn_rate.map((entry: any, index: number) => (
+                  <Cell key={`cell-${index}`} fill={entry.DIO < 30 ? "var(--color-danger)" : "#d97706"} />
+                ))}
+              </Bar>
+              <Line yAxisId="left" type="step" dataKey="CriticalLine" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" name="공장 가동 중단(Red Alert) 기준선" dot={false} />
+              <Line yAxisId="right" type="monotone" dataKey="CompetitorMargin" stroke="var(--color-warning)" strokeWidth={3} name="경쟁사 OPM 하락(DART API)" dot={{ r: 5 }} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "2023/24 시즌 글로벌 재고 대 분쇄(Stocks-to-Grindings) 비율은 46년 만의 최저치인 26.4%로 급락했으며, 뉴욕 ICE 인증 재고는 19년 만의 최저치(약 11.8만 톤)를 기록하는 등 물리적 재고 고갈이 심각합니다. 주요 수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며 운전자본(NWC) 압박을 겪고 있습니다.",
+            actionPlan: "피투자사의 DIO(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다.",
+            source: "ICCO Quarterly Bulletin / ICE Certified Stock Data / DART 경쟁사 공시",
+          }} />
 
-        {/* Widget 12 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Anchor size={17} />허브 경유에 따른 EUDR 그린 프리미엄 원가 전가
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 누적 비용 Index | 출처: EU 집행위(EC) 및 SCFI 운임지수 API)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={cocoaData.w12_green_premium}>
-                {grid}
-                <XAxis dataKey="route" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar dataKey="BaseCost" stackId="a" fill="#64748b" name="순수 원물 가격" barSize={40} />
-                <Bar dataKey="Logistics" stackId="a" fill="var(--color-info)" name="해상 물류비" />
-                <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="EUDR 컴플라이언스 텍스" />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="EUDR로 인한 실사 비용 증가는 인증 원두에 대한 '그린 프리미엄(Green Premium)'을 형성하고 있으며, 이는 가공업체와 소비자의 매입원가 부담으로 작용하고 있습니다. 롯데웰푸드의 경우 2025년 1분기 코코아 매입원가 급등으로 영업Bottom-line(순이익)이 전년 동기 대비 35.6% 급감하는 등 마진 압박이 현실화되었습니다."
-              actionPlan="피투자 기업이 그린 프리미엄 비용을 최종 B2B/B2C 판가에 전가(Pass-through)할 수 있는 브랜드 파워 및 시장 지배력이 있는지를 밸류에이션의 최우선 지표로 삼아야 합니다. 프리미엄 비용 전가가 가능한 하이엔드/다크 초콜릿 라인업으로 포트폴리오를 강제 재편해야 합니다."
-              source="EU 집행위(EC) EUDR 규정 / 롯데웰푸드 IR 2025Q1 / SCFI 운임지수"
-            />
-          </div>
-        </div>
+        <WidgetCard title="허브 경유에 따른 EUDR 그린 프리미엄 원가 전가" icon={Anchor} iconColor="#b45309" pillar="S3"
+          cardDesc="EUDR 컴플라이언스 텍스 + 해상 물류비 + 원물 가격 — 그린 프리미엄 누적"
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={cocoaData.w12_green_premium}>
+              {grid}
+              <XAxis dataKey="route" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar dataKey="BaseCost" stackId="a" fill="#64748b" name="순수 원물 가격" barSize={40} />
+              <Bar dataKey="Logistics" stackId="a" fill="var(--color-info)" name="해상 물류비" />
+              <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="EUDR 컴플라이언스 텍스" />
+            </BarChart>
+          }
+          takeaway={{
+            situation: "EUDR로 인한 실사 비용 증가는 인증 원두에 대한 '그린 프리미엄(Green Premium)'을 형성하고 있으며, 이는 가공업체와 소비자의 매입원가 부담으로 작용하고 있습니다. 롯데웰푸드의 경우 2025년 1분기 코코아 매입원가 급등으로 영업이익이 전년 동기 대비 35.6% 급감하는 등 마진 압박이 현실화되었습니다.",
+            actionPlan: "피투자 기업이 그린 프리미엄 비용을 최종 B2B/B2C 판가에 전가(Pass-through)할 수 있는 브랜드 파워 및 시장 지배력이 있는지를 밸류에이션의 최우선 지표로 삼아야 합니다. 프리미엄 비용 전가가 가능한 하이엔드/다크 초콜릿 라인업으로 포트폴리오를 강제 재편해야 합니다.",
+            source: "EU 집행위(EC) EUDR 규정 / 롯데웰푸드 IR 2025Q1 / SCFI 운임지수",
+          }} />
 
       </div>
 
