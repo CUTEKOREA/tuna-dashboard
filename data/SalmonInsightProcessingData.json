@@ -1,0 +1,5 @@
+[
+  { "name": "수율(Yield) %", "traditional": 70, "automated": 74 },
+  { "name": "인건비 비중 %", "traditional": 30, "automated": 18 },
+  { "name": "리콜 소요시간(h)", "traditional": 168, "automated": 2 }
+]
