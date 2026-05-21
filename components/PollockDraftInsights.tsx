@@ -5,7 +5,7 @@ import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
   ComposedChart, AreaChart, Area, ScatterChart, Scatter, ZAxis
 } from 'recharts';
-import { WidgetCard } from './WidgetCard';
+import WidgetCard from './WidgetCard';
 import { Globe, ShieldCheck, Flag, TrendingUp, Navigation } from 'lucide-react';
 
 const countryMap: Record<string, string> = {
@@ -58,15 +58,6 @@ const countryMap: Record<string, string> = {
 };
 
 const tCountry = (name: string) => countryMap[name] || name;
-
-const CardHeader = ({ title, icon: Icon, term, desc }: any) => (
-  <div className={styles.cardHeader}>
-    <h3 className={styles.cardTitle}>
-      <Icon size={18} className={styles.cardIcon} /> {title}
-    </h3>
-    <TermTooltip term={term} description={desc} />
-  </div>
-);
 
 export default function PollockDraftInsights() {
   const [megatrend, setMegatrend] = useState<any[]>([]);
