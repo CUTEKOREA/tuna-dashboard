@@ -2,9 +2,8 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import styles from './MackerelStrategy.module.css';
 import { AlertTriangle } from 'lucide-react';
-import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_korea_supply.json';
 
 export default function MackerelKoreaSupply() {
@@ -50,20 +49,8 @@ export default function MackerelKoreaSupply() {
     );
   };
 
-  return (
-    <div className={styles.glassCard} style={{ borderColor: 'rgba(239, 68, 68, 0.3)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
-        <div>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#f87171', marginBottom: '6px', fontWeight: 700, fontSize: '1.1rem' }}>
-            <AlertTriangle size={20} /> 🇰🇷 한국 고등어 자급률 위기 모니터
-            
-          </h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0 }}>
-            국내 생산 붕괴와 수입 의존도 급증 — 자급률 데드크로스 진단
-          </p>
-        </div>
-      </div>
-
+  const customBody = (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '10px', marginBottom: '20px' }}>
         <div style={{ background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.2)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
@@ -113,13 +100,23 @@ export default function MackerelKoreaSupply() {
           </ComposedChart>
         )}
       </div>
-      <div style={{ marginTop: '20px' }}>
-        <TakeawayBox
-          source="옵시디안 고등어_마스터_인덱스 & 해양수산부 수산정보포털"
-          situation="해양 고수온 현상으로 연근해 총어업 생산량이 53년 만에 최저치(84.1만톤)를 기록했습니다. 특히 고등어는 어획량 자체는 양호하나 소비자가 선호하는 대형어(300g 이상) 비중이 1~4.6%에 불과해 소매가 1만원 돌파 등 '금(金)등어' 현상 및 수요 파괴(Demand Destruction)가 발생 중입니다."
-          actionPlan="헐값에 거래되는 200~300g 중소형 고등어 원물을 1인 가구 타겟 프리미엄 HMR(전자레인지용 순살구이) 상품으로 적극 전환하여 부가가치를 극대화해야 합니다. 수요가 정체된 대형어(300g 이상) 물량을 안정적으로 확보하기 위해 선별 상장(경매) 입찰 단가를 세밀하게 조정하고 산지 직계약 물량을 선점하는 투트랙 전략이 요구됩니다. 고수온 현상 장기화로 어획량 자체가 크게 감소할 수 있는 리스크가 불가피하므로, 원물의 안정적 수급을 위한 구체적인 수입 다변화 비상계획을 선제적으로 수립해야 합니다."
-        />
-      </div>
     </div>
+  );
+
+  return (
+    <WidgetCard
+      title="🇰🇷 한국 고등어 자급률 위기 모니터"
+      icon={AlertTriangle}
+      iconColor="#f87171"
+      pillar="S4"
+      cardDesc="국내 생산 붕괴와 수입 의존도 급증 — 자급률 데드크로스 진단"
+      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      customBody={customBody}
+      takeaway={{
+        situation: "해양 고수온 현상으로 연근해 총어업 생산량이 53년 만에 최저치(84.1만톤)를 기록했습니다. 특히 고등어는 어획량 자체는 양호하나 소비자가 선호하는 대형어(300g 이상) 비중이 1~4.6%에 불과해 소매가 1만원 돌파 등 '금(金)등어' 현상 및 수요 파괴(Demand Destruction)가 발생 중입니다.",
+        actionPlan: "헐값에 거래되는 200~300g 중소형 고등어 원물을 1인 가구 타겟 프리미엄 HMR(전자레인지용 순살구이) 상품으로 적극 전환하여 부가가치를 극대화해야 합니다. 수요가 정체된 대형어(300g 이상) 물량을 안정적으로 확보하기 위해 선별 상장(경매) 입찰 단가를 세밀하게 조정하고 산지 직계약 물량을 선점하는 투트랙 전략이 요구됩니다. 고수온 현상 장기화로 어획량 자체가 크게 감소할 수 있는 리스크가 불가피하므로, 원물의 안정적 수급을 위한 구체적인 수입 다변화 비상계획을 선제적으로 수립해야 합니다.",
+        source: "옵시디안 고등어_마스터_인덱스 & 해양수산부 수산정보포털",
+      }}
+    />
   );
 }
