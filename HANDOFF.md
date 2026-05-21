@@ -36,7 +36,67 @@
 
 ---
 
-## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
+## 🆕 2026-05-21 진행 요약 — Claude Code 통합 마이그레이션 메가 세션 (5 PR)
+
+### 마이그레이션 누적 성과 (PR #13~#17)
+
+| PR | Commodity | Widgets | Branch | 상태 |
+|----|-----------|---------|--------|------|
+| #13 | Pollock | 13 (Phase 2A.2) | `omo/pollock-2a2` | Open |
+| #14 | Salmon | 13 (Pilot+Wave1~3) | `omo/salmon` | Open |
+| #15 | Squid | 80 (30 standalone + 50 sub) | `omo/squid` | Open |
+| #16 | Chicken | 5 / 12 sub-widgets | `omo/chicken` | Open |
+| #17 | Singles 부분 | Cassava + Jukkumi + TunaExtract 2 cards + Mangosteen 2 | `omo/singles` | Open |
+
+**총 마이그레이션 widget**: ~123 (Pollock 13 + Salmon 13 + Squid 80 + Chicken 5/12 + Singles 5+ = 누계)
+
+### Worktree 구조 (5 active)
+- `tuna-dashboard-omo-pollock` — branch `omo/pollock-2a2`
+- `tuna-dashboard-omo-salmon` — branch `omo/salmon`
+- `tuna-dashboard-omo-squid` — branch `omo/squid`
+- `tuna-dashboard-omo-chicken` — branch `omo/chicken`
+- `tuna-dashboard-omo-singles` — branch `omo/singles`
+
+### 인시던트 + 학습
+
+1. **Wave 1c.2 (Salmon)·Wave 2 (Squid) cwd reset incident**: bash process가 명령 사이에 cwd를 main worktree로 reset하여 commit이 main으로 누락 안착 → cherry-pick 복구. **모든 git 명령은 `cd ...` prefix 또는 `git -C <worktree>` 명시**.
+2. **gh CLI 부재**: 세션 중 `brew install gh` 실행 → PR 자동 생성 가능. PAT은 채팅 노출 후 폐기·재발급 권장.
+3. **lucide-react 아이콘 검증**: `Waterfall` 미존재 → `BarChart3` 대체.
+4. **명명 import 함정**: `import { WidgetCard }` 명명 import는 default export 충돌 → 모두 `import WidgetCard from './WidgetCard'`.
+
+### 잔여 작업 — 단일 파일 commodity 미완료 (추정 ~123 widgets)
+
+PR #17 `omo/singles` 브랜치에 추가 작업 필요:
+- **Mangosteen** 13/15 (Pillar 2~5 widgets — Widget 1-3 이후)
+- **Garlic** 18 (전체)
+- **Cocoa** 22 (전체)
+- **Whelk** 29 (전체)
+- **Carrot** 31 (전체)
+- **Galchi** (TakeawayBox 0, 별도 패턴 검토 필요)
+- **FalklandSquid** 3 (ds-card framework, styles.glassCard 패턴 아님 — 별도 마이그레이션)
+
+각 파일이 헬퍼 함수 없이 inline hand-written이라 batch 처리 불가능, 위젯당 개별 Edit 필요. 새 세션에서 다음 순으로 진행 권장:
+1. Mangosteen 잔여 13 (가장 작음, 패턴 확립됨)
+2. Garlic → Cocoa (중간 크기)
+3. Whelk → Carrot (대형, 30+ widgets 각각)
+4. Galchi + FalklandSquid (별개 framework 분석 필요)
+
+### 마이그레이션 패턴 (검증 완료, 이번 세션 표준)
+
+1. `import WidgetCard from './WidgetCard'` (default import 의무)
+2. inline glassCard 또는 `styles.card` wrapper → `<WidgetCard ... />` 직접 호출
+3. 단순 단일 차트는 `chart` prop, 복잡 인터랙티브(탭/SVG/KPI grid)는 `customBody` prop
+4. takeaway = `{ situation, actionPlan, source }` (W-04 의무)
+5. pillar S1-S5 명시 + telemetry `{ status: 'LIVE'|'SYNCED'|'STATIC', syncDate }`
+6. `useContainerWidth` + `SafeResponsiveContainer` 직접 사용 제거 (WidgetCard 자동 wrap)
+
+### 보안 Note
+
+채팅에 노출된 PAT `ghp_Yzz8C...` 즉시 폐기 + 재발급 권장 (https://github.com/settings/tokens).
+
+---
+
+## 2026-05-21 진행 요약 (Claude Code 세션 — 이전 차수)
 
 ### Tuna closure ADR-0005 마이그레이션 완료
 - 멀티-위젯 모듈 7개 / 22 위젯 (TunaForecast/Upcycling/MofFishery/TradeIntel/NewInsightsA/B/KfasResearch)
