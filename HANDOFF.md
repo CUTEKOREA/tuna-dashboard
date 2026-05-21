@@ -220,3 +220,7 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 ## 2026-05-21 18:xx KST (OMO)
 - **완료된 것**: Wave 2 Mackerel 5개 소형 파일 (MackerelSankey, MackerelUnitPrice, MackerelSpreadWinners, MackerelTrioRadar, MackerelNorwayAlt) ADR-0005 WidgetCard 마이그레이션 완료. rawData 분리, subagent 없이 직접 수정, check_s_grade.py 통과. 
 - **다음 단계**: 남은 Mackerel 중대형 위젯 혹은 기타 commodity 파일 마이그레이션 진행.
+
+## 2026-05-21 19:xx KST (OMO)
+- **완료된 것**: Wave 3 Mackerel 6개 중형 파일(MackerelProcessedWidgets, MackerelBlackhole, MackerelKoreaSupply, MackerelMacroCycle, MackerelGhanaStrategy, MackerelAquaculture) ADR-0005 WidgetCard 마이그레이션 완료. subagent 없이 직접 Read+Write 진행 및 1글자 데이터 변경 없이 적용 완료. S-grade(check_s_grade.py) 9/9 100% 통과. 각 파일 [OMO] 접미사 단독 커밋 처리.
+- **다음 단계**: Mackerel 대형 위젯 혹은 기타 commodity (Squid, Salmon 등) ADR-0005 마이그레이션 계속 진행.
