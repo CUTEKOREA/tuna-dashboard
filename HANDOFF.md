@@ -36,6 +36,31 @@
 
 ---
 
+## 🆕 2026-05-22 cont. — PR #18 생성 + Whelk 8/29 (5 추가 widgets)
+
+### 진척
+- **PR #18 생성**: https://github.com/CUTEKOREA/tuna-dashboard/pull/18
+  - Garlic 18/18 + Cocoa 22/22 + Whelk 8/29 + WidgetCard ReactNode 완화
+- Whelk W3/W21/W25/W4/W5 추가 마이그레이션 (`5d8a8dc`)
+- 누적 Whelk: 8/29 widgets
+
+### 잔여 (~75 widgets)
+- Whelk 21/29 — `omo/singles-codex` `5d8a8dc` HEAD. 동일 패턴 반복.
+- Carrot 31 — 미시작
+- Galchi (TakeawayBox 0) — 별도 패턴
+- FalklandSquid 3 — ds-card framework
+
+### Active Worktrees
+- `tuna-dashboard-omo-codex` `5d8a8dc` (PR #18 open)
+- `tuna-dashboard-omo-singles` `27914d1` (PR #17 open)
+
+### 다음 세션 추천 작업
+1. Whelk 잔여 21 widgets — 동일 패턴 반복 (PR #18 추가 commit)
+2. Carrot 31 — Whelk와 동일 framework 예상
+3. Galchi / FalklandSquid 별도 분석
+
+---
+
 ## 🆕 2026-05-22 cont. — Whelk KFAS loop converted (3/29 incl. dynamic widgets)
 
 ### 진척
