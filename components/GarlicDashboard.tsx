@@ -448,76 +448,51 @@ export default function GarlicDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* W5 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Truck size={17} />양념채소류(양파) 대비 마늘 수요 대체 탄력성 <span style={{ color:'var(--text-secondary)', fontSize:'0.8rem', fontWeight:400 }}>(단위: 톤)</span>
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={w5Data.slice(0,10)} layout="vertical">
-                {grid}
-                <XAxis type="number" {...xAxisTextProps} />
-                <YAxis dataKey="target" type="category" width={100} {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="value" fill="#d97706" name="수출 물량" radius={[0,4,4,0]} />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="최근 양파 가격의 폭등에도 불구하고 상대적으로 저렴해진 마늘로의 수요 전이(대체 효과)가 매우 미미하게 나타나고 있습니다."
-          actionPlan="필수 양념채소 간의 대체재 효과가 작동하지 않는 비탄력적 시장 구조입니다. 타 작물의 가격 등락에 의존하기보다, 마늘 자체의 고유 수요를 창출할 HMR 레시피 개발 및 소스화 R&D 투자가 요구됩니다. (Actionable Buy)"
-        source="📊 [데이터 출처: UN Comtrade 선물거래소]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="양념채소류(양파) 대비 마늘 수요 대체 탄력성 (단위: 톤)" icon={Truck} iconColor="#d97706" pillar="S3"
+          cardDesc="양파 폭등 시 마늘 수요 전이 효과 — 비탄력적 시장 구조"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={w5Data.slice(0,10)} layout="vertical">
+              {grid}
+              <XAxis type="number" {...xAxisTextProps} />
+              <YAxis dataKey="target" type="category" width={100} {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Bar dataKey="value" fill="#d97706" name="수출 물량" radius={[0,4,4,0]} />
+            </BarChart>
+          }
+          takeaway={{
+            situation: "최근 양파 가격의 폭등에도 불구하고 상대적으로 저렴해진 마늘로의 수요 전이(대체 효과)가 매우 미미하게 나타나고 있습니다.",
+            actionPlan: "필수 양념채소 간의 대체재 효과가 작동하지 않는 비탄력적 시장 구조입니다. 타 작물의 가격 등락에 의존하기보다, 마늘 자체의 고유 수요를 창출할 HMR 레시피 개발 및 소스화 R&D 투자가 요구됩니다.",
+            source: "UN Comtrade + 선물거래소",
+          }} />
 
-        {/* W6 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Shield size={17} />정부 TRQ 방출 및 통관 수입 모니터링
-              
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={w6Data}>
-                {grid}
-                <XAxis dataKey="route" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}`} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="LandedCost" fill="#84cc16" name="최종 도착 원가(USD/MT)" />
-                <Line yAxisId="right" type="monotone" dataKey="Tariff" stroke="var(--color-danger)" strokeWidth={2} name="관세 페널티(%)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="물가 안정을 위한 정부의 저율관세할당(TRQ) 잔여 물량 방출 시그널이 하반기 시장 가격을 결정짓는 최대 변수입니다."
-          actionPlan="정책 리포트 및 농식품부 보도자료를 실시간 크롤링하여 TRQ 방출 징후를 선제적으로 포착하는 조기 경보 시스템을 가동 중입니다. 물량 방출 직전 보유 재고를 선출하하는 디리스킹(De-risking) 프로토콜을 실행."
-        source="📊 [데이터 출처: 관세청(KCS) 관세율표]"
-        />
-          </div>
-        </div>
+        <WidgetCard title="정부 TRQ 방출 및 통관 수입 모니터링" icon={Shield} iconColor="#84cc16" pillar="S3"
+          cardDesc="원산지별 도착 원가 + 관세 페널티 — TRQ 방출 시그널 추적"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={w6Data}>
+              {grid}
+              <XAxis dataKey="route" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}`} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Bar yAxisId="left" dataKey="LandedCost" fill="#84cc16" name="최종 도착 원가(USD/MT)" />
+              <Line yAxisId="right" type="monotone" dataKey="Tariff" stroke="var(--color-danger)" strokeWidth={2} name="관세 페널티(%)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "물가 안정을 위한 정부의 저율관세할당(TRQ) 잔여 물량 방출 시그널이 하반기 시장 가격을 결정짓는 최대 변수입니다.",
+            actionPlan: "정책 리포트 및 농식품부 보도자료를 실시간 크롤링하여 TRQ 방출 징후를 선제적으로 포착하는 조기 경보 시스템을 가동 중입니다. 물량 방출 직전 보유 재고를 선출하하는 디리스킹(De-risking) 프로토콜을 실행.",
+            source: "관세청(KCS) 관세율표",
+          }} />
 
-        {/* INSIGHT 3 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'480px', gridColumn: '1 / -1' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Anchor size={17} />홍해 사태 (Red Sea Crisis) 물류 충격 [좌: 일수, 우: 지수]
-              <div style={{ marginLeft:'auto', flexShrink:0 }}></div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem', position:'relative', zIndex:0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
+        <div style={{ gridColumn: '1 / -1' }}>
+          <WidgetCard title="홍해 사태(Red Sea Crisis) 물류 충격" icon={Anchor} iconColor="#65a30d" pillar="S3"
+            cardDesc="아시아-유럽 라인 운송 기간(좌, 일) + 운임/리스크 지수(우)"
+            telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+            chart={
               <ComposedChart data={i3Data}>
                 {grid}
                 <XAxis dataKey="route" {...xAxisTextProps} tick={false} />
@@ -528,15 +503,12 @@ export default function GarlicDashboard() {
                 <Bar yAxisId="left" dataKey="TransitDays" fill="#65a30d" name="운송 기간(일)" barSize={40} />
                 <Line connectNulls={true} yAxisId="right" dataKey="InsurancePremium" stroke="var(--color-danger)" strokeWidth={3} name="운임 및 리스크 지수" />
               </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="아시아-유럽 라인 불안정에 따른 해상 컨테이너 운임 폭등이 중국-유럽 간 마늘 수출입 마진율을 심각하게 훼손하고 있습니다."
-          actionPlan="외부 지정학적 충격에 무방비로 노출된 공급망은 실사 시 중대한 Risk 감점 요인입니다. 단순 선사 계약을 넘어 운임 변동에 따라 능동적으로 소싱처(동남아/남미)를 전환하거나 선도계약(Forward Rate Agreement)으로 물류비를 고정시키는 재무적 헷징 능력이 필수적입니다. (Execution Recommended)"
-        source="📊 [데이터 출처: SCFI 지수 기반 시뮬레이션]"
-        />
-          </div>
+            }
+            takeaway={{
+              situation: "아시아-유럽 라인 불안정에 따른 해상 컨테이너 운임 폭등이 중국-유럽 간 마늘 수출입 마진율을 심각하게 훼손하고 있습니다.",
+              actionPlan: "외부 지정학적 충격에 무방비로 노출된 공급망은 실사 시 중대한 Risk 감점 요인입니다. 단순 선사 계약을 넘어 운임 변동에 따라 능동적으로 소싱처(동남아/남미)를 전환하거나 선도계약(Forward Rate Agreement)으로 물류비를 고정시키는 재무적 헷징 능력이 필수적입니다.",
+              source: "SCFI 지수 기반 시뮬레이션",
+            }} />
         </div>
 
         {/* W12: Red Sea Hedging Simulator */}
