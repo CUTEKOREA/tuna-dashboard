@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import styles from './MackerelStrategy.module.css';
 import { TrendingUp, Activity } from 'lucide-react';
-import TakeawayBox from './TakeawayBox';
-import macroData from '../data/mackerel_macro.json';
+import WidgetCard from './WidgetCard';
+import rawData from '../data/mackerel_macro.json';
 
 export default function MackerelMacroCycle() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -62,18 +61,9 @@ export default function MackerelMacroCycle() {
     );
   };
 
-  return (
-    <div className={styles.glassCard} style={{ borderColor: 'rgba(6, 182, 212, 0.3)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
-        <div>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#67e8f9', marginBottom: '6px', fontWeight: 700, fontSize: '1.1rem' }}>
-            <TrendingUp size={20} /> 글로벌 고등어 호황/불황 사이클
-            
-          </h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0 }}>
-            글로벌 어획량(공급) vs 무역 단가(가격) 48년 추이 — 최적 진입 타이밍 감지
-          </p>
-        </div>
+  const customBody = (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
         <div style={{
           padding: '8px 16px', borderRadius: '8px',
           background: `rgba(${phase === '호황기' ? '16,185,129' : phase === '불황기' ? '239,68,68' : '251,191,36'},0.15)`,
@@ -125,19 +115,23 @@ export default function MackerelMacroCycle() {
           </ComposedChart>
         )}
       </div>
-
-      {/* Insight Text */}
-      <div style={{ marginTop: '16px' }}>
-        <TakeawayBox
-          source="FAO FishStatJ Global Capture & Trade Statistics (1976-2023)"
-          situation={<>
-            2000년대 이후 글로벌 어획량은 {(peak.production_t / 1000000).toFixed(0)}M톤(피크)에서 {(latest.production_t / 1000000).toFixed(1)}M톤으로 감소 추세인 반면,
-            수입 단가는 ${data[0].unit_price_usd.toLocaleString()}/t(1976)에서 ${latest.unit_price_usd.toLocaleString()}/t(2023)로 {((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승했습니다.
-            현재는 <strong style={{ color: phaseColor }}>{phase}</strong> 국면입니다.
-          </>}
-          actionPlan="현재 수입 단가 사이클이 뚜렷한 불황기에 진입했으므로 재고 방어적 매입 및 장기 계약 단가를 고정하는 전략을 구사해야 합니다. 노르웨이 TAC 삭감과 한국 연근해 고수온 등 복합적인 공급 제약으로 인해 추가 단가 상승 가능성이 존재합니다. 엘니뇨와 라니냐 전환기에 나타나는 어획량의 급격한 변동 리스크에 대비하여 재고를 적정 수준으로 유지하고 굳건한 헷징 수단을 확보하는 것이 필수적입니다. (Execution Recommended)"
-        />
-      </div>
     </div>
+  );
+
+  return (
+    <WidgetCard
+      title="글로벌 고등어 호황/불황 사이클"
+      icon={TrendingUp}
+      iconColor="#67e8f9"
+      pillar="S4"
+      cardDesc="글로벌 어획량(공급) vs 무역 단가(가격) 48년 추이 — 최적 진입 타이밍 감지"
+      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      customBody={customBody}
+      takeaway={{
+        situation: `2000년대 이후 글로벌 어획량은 ${(peak.production_t / 1000000).toFixed(0)}M톤(피크)에서 ${(latest.production_t / 1000000).toFixed(1)}M톤으로 감소 추세인 반면, 수입 단가는 $${data[0].unit_price_usd.toLocaleString()}/t(1976)에서 $${latest.unit_price_usd.toLocaleString()}/t(2023)로 ${((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승했습니다. 현재는 ${phase} 국면입니다.`,
+        actionPlan: "현재 수입 단가 사이클이 뚜렷한 불황기에 진입했으므로 재고 방어적 매입 및 장기 계약 단가를 고정하는 전략을 구사해야 합니다. 노르웨이 TAC 삭감과 한국 연근해 고수온 등 복합적인 공급 제약으로 인해 추가 단가 상승 가능성이 존재합니다. 엘니뇨와 라니냐 전환기에 나타나는 어획량의 급격한 변동 리스크에 대비하여 재고를 적정 수준으로 유지하고 굳건한 헷징 수단을 확보하는 것이 필수적입니다. (Execution Recommended)",
+        source: "FAO FishStatJ Global Capture & Trade Statistics (1976-2023)",
+      }}
+    />
   );
 }
