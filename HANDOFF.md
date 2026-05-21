@@ -4,7 +4,30 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-20 (Antigravity 세션 — 15개 참치 위젯 S-Grade UI 표준화 100% 완료 및 빌드 검증 성공)
+> **마지막 업데이트**: 2026-05-21 (Claude Code 세션 — Tuna closure ADR-0005 마이그레이션 100% 완료 + Phase 2A.1 Pollock 소형 7파일 16카드 마이그레이션, 비-Tuna 확장 시작)
+
+---
+
+## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
+
+### Tuna closure ADR-0005 마이그레이션 완료
+- 멀티-위젯 모듈 7개 / 22 위젯 (TunaForecast/Upcycling/MofFishery/TradeIntel/NewInsightsA/B/KfasResearch)
+- 대형 단일 파일 외과 교체 2개 / 22 카드 (TunaExtractDashboard 7 + TunaInsightsDashboard 15)
+- Bespoke 동결 2개 / 46카드 (Operational 4-field TakeawayBox + Ranching 소문자 TelemetryBadge) → ADR-0005에 명시
+- 레이아웃 회귀 수정: Frime/Ras Phase B4 솔로 wrapper → 2-col grid 통합 (`030244f`)
+- 라이브 배포 완료: 70 WidgetCard 인스턴스 × 5-Pillar 모두 분포 (S1:15·S2:8·S3:14·S4:13·S5:20)
+
+### 비-Tuna 확장 Phase 2A.1 (Pollock 소형 7파일 16카드)
+- PollockChinaDetour(1)·ValueDecoupling(1)·PremiumSpread(1)·KoreaCrisis(1)·LandedCost(2)·PriceForecast(2)·ProcessedWidgets(2)
+- 커밋: `784b9af`, `9269348` | 배포: `tuna-dashboard-eht6hey0s`
+
+### 다음 세션 우선순위 (비-Tuna 확장 잔여 ~343 카드)
+1. **Phase 2A.2~3 Pollock 잔여 14파일 ~70카드** (중·대형, 1.5~2h)
+2. **Phase 2B 중형 위젯 파일** (Chicken·Salmon·Cashew·Surimi·UsedCar 등 ~20파일 ~80카드)
+3. **Phase 2C 중량 dashboard 6개** (Carrot·Whelk·PetFood·Cocoa·Garlic·Mangosteen — 133 카드 inline)
+4. **Phase 2D 솔로 위젯 long tail** (Insight3~9·기타 ~60 위젯)
+
+전체 추정 15~20시간 / 2~3 세션. Antigravity 동시작업 충돌 주의 — HANDOFF로 동기화 권장.
 
 ---
 
