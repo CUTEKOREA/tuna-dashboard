@@ -145,3 +145,17 @@ export function WidgetCard(props: WidgetCardProps) {
 1. 본 ADR 승인
 2. 프로토타입 1개: 가장 단순한 위젯(예: [components/TunaCrossroads.tsx](../components/TunaCrossroads.tsx))을 `WidgetCard`로 마이그레이션 (2시간)
 3. 결과 평가 → 전체 마이그레이션 정책 결정
+
+---
+
+## Migration Status (2026-05-21)
+
+**완료된 closure (전체 → WidgetCard):**
+- 멀티-위젯 모듈 7개 / 22 위젯: TunaForecastWidgets, TunaUpcyclingWidgets, TunaMofFisheryWidget, TunaTradeIntelWidgets, TunaNewInsightsA/B, TunaKfasResearch
+- 대형 단일 파일 외과 교체 2개 / 22 카드: TunaExtractDashboard(7), TunaInsightsDashboard(15)
+
+**Bespoke로 동결 — 마이그레이션 제외:**
+- `components/TunaOperationalIntelWidgets.tsx` (29 카드): 자체 `TakeawayBox-by-id` 패턴(situation·short·long·risk 4-field lookup)에 의존. WidgetCard 3-field 모델(situation·actionPlan·source)과 구조적 불일치 — `risk` 필드 보존을 위해 동결.
+- `components/TunaRanching.tsx` (17 카드): 자체 로컬 `TelemetryBadge` 컴포넌트(소문자 'live'/'synced'/'static')에 의존. ADR-0005 표준(대문자) 불일치. 별도 작업으로 표준화 후 검토.
+
+두 파일에서 새 위젯 추가 시에도 WidgetCard 사용 금지 — 파일 내부 일관성 유지가 우선. 향후 두 파일의 구조 표준화는 별도 ADR로 분리 추적.
