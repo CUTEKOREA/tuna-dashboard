@@ -4,7 +4,35 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Claude Code 세션 — Tuna closure ADR-0005 마이그레이션 100% 완료 + Phase 2A.1 Pollock 소형 7파일 16카드 마이그레이션, 비-Tuna 확장 시작)
+> **마지막 업데이트**: 2026-05-21 (Claude Code + OMO 통합 세션 — **Stage 0/1/2.1/2.2 모두 통과 + Pollock Pilot/Wave 1 마이그레이션 9 파일 + 본 디렉터리 0 영향**)
+
+> 🔬 **OMO 통합 검증 완료** (별도 worktree 2개):
+>
+> **Tuna 신규 위젯 8개** (`tuna-dashboard-omo/`, 브랜치 `experiment/omo-stage0`) — ADR-0006 ACCEPTED + 누적 갱신:
+> - Stage 0 mock 1개 (`TunaOriginPriceTrend` BarChart) — 커밋 `6161965`
+> - Stage 1 mock 5개 자율 chaining (Catch·Species·Yield·ColdChain·MarketShare) — `ca99799`→`9ae12af`
+> - **Stage 2.1 Live 1개** (`TunaOriginPriceTrendLive` — Atuna 5 항구 USD/MT) — `f526c44`
+> - **Stage 2.2 Live 1개** (`TunaCatchBySpeciesLive` — FishStat 3 어종 8년) — `b66df1e`
+> - ADR-0006 final state — `560c23a`
+> - Preview 페이지: `tuna-dashboard-omo/app/omo-preview/page.tsx` (port 3001)
+>
+> **Pollock 마이그레이션 9 파일** (`tuna-dashboard-omo-pollock/`, 브랜치 `omo/pollock-2a2`) — Phase 2A.2 진척:
+> - Pilot 1 (`PollockPolicyFinanceWidgets`) — `3b72c4a`
+> - Wave 1 #1-8 (Compliance·DraftInsights·Financial·Macro·PolicyRiskRadar·SupplyResilience·Trade·ValueAdd) — `313f893`→`08f949c`
+> - HANDOFF append — `5aaeea2`
+> - SIT/TAK/source/차트 데이터 1글자 변경 X (behavior preservation 검증)
+> - 잔여 Wave 2/3: 중·대형 4 파일 (ProcessingMargin·SalesValue·SupplyMacro·FutureWidgets)
+>
+> **자원 비용**: $0 추가 결제. Antigravity OAuth 쿼터(Gemini 3.1 Pro high·Claude Opus 4.6 thinking) + Max20 Claude Code 매뉴얼 활용. OpenAI API $10 거의 미사용.
+>
+> **세부**: [`../tuna-dashboard-omo/docs/adr/0006-omo-stage0-trial.md`]
+
+> 🎯 **다음 세션 우선순위** (OMO 자산 실 가치 회수):
+> 1. **Pollock Wave 1 9 파일을 main 브랜치 PR** — 본 프로젝트 즉시 가치 회수
+> 2. Pollock Wave 2/3 (중·대형 4 파일) 마저 마이그레이션 후 PR
+> 3. Stage 2 흐름을 Mackerel/Squid/Salmon 등 다른 commodity로 확장
+> 4. Wave 1 #1-4 import 4:4 split 통일 (named → default)
+> 5. Pollock `a3b33aa [AG]` 라벨 commit 정정 (실제 OMO 작업)
 
 ---
 
