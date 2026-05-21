@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 import oecExportData from '../data/mangosteen_oec_export.json';
 import oecImportData from '../data/mangosteen_oec_import.json';
@@ -289,65 +290,58 @@ export default function MangosteenDashboard() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
-        {/* Widget 1-1 */}
-        <div style={{ background: '#181818', borderRadius: '12px', padding: '1.5rem', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div>
-              <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-                <Globe size={18} color={SECTIONS[0].color} /> 글로벌 생산량 및 수출 점유율
-              </h3>
-            </div>
-            <TelemetryBadge status="synced" syncDate="2026.05.17" />
-          </div>
-          <div style={{ height: '375px', width: '100%', marginBottom: '1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={productionVsTradeData} layout="vertical" margin={{ left: 50 }}>
-                {grid}
-                <XAxis type="number" {...xAxisProps} />
-                <YAxis dataKey="country" type="category" {...yAxisProps} width={80} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: "11px", color: "#94a3b8" }} />
- <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: "11px", color: "#94a3b8" }} />
-                <Bar dataKey="production" name="생산량 (톤)" fill="#475569" radius={[0, 4, 4, 0]} barSize={15} />
-                <Bar dataKey="export" name="수출량 (톤)" fill="#f97316" radius={[0, 4, 4, 0]} barSize={15} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <TakeawayBox 
-            situation="인도네시아의 절대 생산량(32만 톤)이 1위이나 수출은 1% 미만이며, 태국은 생산량의 87%를 수출하며 글로벌 무역을 독점하고 있습니다." 
-            actionPlan="식물방역법 장벽이 생산 대국과 수입국을 단절시켰습니다. 태국의 가공 시설 선도거래를 선점하거나, 기업 간 거래용 가공품으로 전환해 인니/베트남 물량을 활용해야 합니다."
-          />
-        </div>
+        <WidgetCard
+          title="글로벌 생산량 및 수출 점유율"
+          icon={Globe}
+          iconColor={SECTIONS[0].color}
+          pillar="S1"
+          cardDesc="국가별 생산량 vs 수출량 — 인도네시아 절대량 1위 vs 태국 수출 독점 디커플링"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }}
+          chartHeight={375}
+          chart={
+            <ComposedChart data={productionVsTradeData} layout="vertical" margin={{ left: 50 }}>
+              {grid}
+              <XAxis type="number" {...xAxisProps} />
+              <YAxis dataKey="country" type="category" {...yAxisProps} width={80} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Bar dataKey="production" name="생산량 (톤)" fill="#475569" radius={[0, 4, 4, 0]} barSize={15} />
+              <Bar dataKey="export" name="수출량 (톤)" fill="#f97316" radius={[0, 4, 4, 0]} barSize={15} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: '인도네시아의 절대 생산량(32만 톤)이 1위이나 수출은 1% 미만이며, 태국은 생산량의 87%를 수출하며 글로벌 무역을 독점하고 있습니다.',
+            actionPlan: '식물방역법 장벽이 생산 대국과 수입국을 단절시켰습니다. 태국의 가공 시설 선도거래를 선점하거나, 기업 간 거래용 가공품으로 전환해 인니/베트남 물량을 활용해야 합니다.',
+            source: 'FAOSTAT 망고스틴 생산·교역 통계 (2024)',
+          }}
+        />
 
-        {/* Widget 1-2 */}
-        <div style={{ background: '#181818', borderRadius: '12px', padding: '1.5rem', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div>
-              <h3 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem', color: 'var(--text-primary)' }}>
-                <Droplets size={18} color="#e879f9" /> 기후 및 수율 연동 예측 모델
-              </h3>
-            </div>
-            <TelemetryBadge status="live" syncDate="2026.05.17" />
-          </div>
-          <div style={{ height: '375px', width: '100%', marginBottom: '1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={climateYieldData}>
-                {grid}
-                <XAxis dataKey="year" {...xAxisProps} />
-                <YAxis yAxisId="left" domain={[60, 100]} {...yAxisProps} label={{ value: '검역 통과 수율 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
-                <YAxis yAxisId="right" orientation="right" domain={[-2, 2]} {...yAxisProps} label={{ value: '기후 지수', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: "11px", color: "#94a3b8" }} />
-<Bar yAxisId="right" dataKey="oni" name="기후 지수" fill="#64748b" fillOpacity={0.5} barSize={20} />
-                <Line yAxisId="left" type="monotone" dataKey="yield" name="검역 통과 수율(%)" stroke="#f97316" strokeWidth={3} dot={{ r: 5 }} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <TakeawayBox 
-            situation="기후 지수가 악화되는 국면의 잦은 비는 과육 수액병을 유발해 증열처리 통과 생존율을 75%까지 급락시킵니다." 
-            actionPlan="기상청 실시간 연동을 통해 경보 발령 시, '수율 기반 변동 가격제'를 선제적으로 발동하여 매입 단가 리스크를 방어해야 합니다."
-          />
-        </div>
+        <WidgetCard
+          title="기후 및 수율 연동 예측 모델"
+          icon={Droplets}
+          iconColor="#e879f9"
+          pillar="S1"
+          cardDesc="ENSO 기후 지수 vs 검역 통과 수율 — 수액병 발병 리스크 모니터"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }}
+          chartHeight={375}
+          chart={
+            <ComposedChart data={climateYieldData}>
+              {grid}
+              <XAxis dataKey="year" {...xAxisProps} />
+              <YAxis yAxisId="left" domain={[60, 100]} {...yAxisProps} label={{ value: '검역 통과 수율 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" domain={[-2, 2]} {...yAxisProps} label={{ value: '기후 지수', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
+              <Bar yAxisId="right" dataKey="oni" name="기후 지수" fill="#64748b" fillOpacity={0.5} barSize={20} />
+              <Line yAxisId="left" type="monotone" dataKey="yield" name="검역 통과 수율(%)" stroke="#f97316" strokeWidth={3} dot={{ r: 5 }} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: '기후 지수가 악화되는 국면의 잦은 비는 과육 수액병을 유발해 증열처리 통과 생존율을 75%까지 급락시킵니다.',
+            actionPlan: "기상청 실시간 연동을 통해 경보 발령 시, '수율 기반 변동 가격제'를 선제적으로 발동하여 매입 단가 리스크를 방어해야 합니다.",
+            source: 'NOAA ENSO 지수 + 식약처 망고스틴 검역 통계',
+          }}
+        />
       </div>
 
       {/* ═══ Pillar 2: 가공 & 생산 ═══ */}
