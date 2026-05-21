@@ -4,9 +4,16 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Claude Code 세션 — Tuna closure ADR-0005 마이그레이션 100% 완료 + Phase 2A.1 Pollock 소형 7파일 16카드 마이그레이션, 비-Tuna 확장 시작)
+> **마지막 업데이트**: 2026-05-21 (Antigravity 세션 — Phase 2A.2 Pilot: PollockPolicyFinanceWidgets.tsx 마이그레이션 완료)
 
 ---
+
+## 🆕 2026-05-21 진행 요약 (Antigravity 세션)
+
+### Phase 2A.2 Pilot (Pollock)
+- `components/PollockPolicyFinanceWidgets.tsx` (3개 위젯) 마이그레이션 완료 (ADR-0005 적용).
+- `WidgetCard`로 교체, `pillar="S3"`, `telemetry`, `cardDesc` 등 요구사항 충족. 데이터와 텍스트는 원본 그대로 보존.
+- 커밋: `[OMO]` 접미사
 
 ## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
 
@@ -148,6 +155,7 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 | 2026-05-20 | AG | ui-fix/refactor/debug (Tuna S-Grade 3종 업그레이드 및 빌드 안정화) | 120 | — | TelemetryBadge/chart-standards 공통화, 3종 대시보드 한글화 및 tsc/build 100% 성공 검증 |
 | 2026-05-20 | AG | ui-fix/style (TunaSupplierHub S-Grade 표준화 완료) | 20 | — | OSH 위젯 패딩/TelemetryBadge/한글화 완성 및 빌드 성공 |
 | 2026-05-20 | AG | ui-fix/refactor (15개 참치 위젯 S-Grade UI/UX 전면 표준화 완료) | 90 | — | 모든 참치 위젯의 텔레메트리 배지 부착, 헤더 및 테이크어웨이 패딩 레이아웃 표준화, tsc/build 검증 성공 |
+| 2026-05-21 | AG | refactor (Phase 2A.2 Pilot: PollockPolicyFinanceWidgets ADR-0005 마이그레이션) | 15 | — | WidgetCard로 교체하여 SIT/TAK/차트 텍스트 무손실 보존 완료 |
 
 **작업 유형 카테고리** (단순화):
 - `bootstrap` — 인프라·문서·도구
