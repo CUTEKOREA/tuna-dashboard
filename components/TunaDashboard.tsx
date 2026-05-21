@@ -765,13 +765,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <TunaPeptideEfficacy />
                 <InsightTunaExtract />
                 <KfasElderlyFunctionalFood />
+                {/* Phase B4 신규: Frime 인수 (스페인 최대 황다랑어 가공사) */}
+                <FrimeAcquisitionWidget />
               </div>
             </div>
             <OperationalS2Widgets />
-            {/* Phase B4 신규: Frime 인수 (스페인 최대 황다랑어 가공사) */}
-            <div style={{ marginTop: '1.5rem' }}>
-              <FrimeAcquisitionWidget />
-            </div>
             
             {/* 🐾 파생 사업 (펫푸드) 통합 */}
             <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
@@ -880,12 +878,10 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               {widgets?.filter((w: any) => ['w18_zero_aqua', 'w24_bluefin_ranch', 'w26_data_hegemony', 'w27_global_minimum_tax', 'w52_msc_cbam', 'w85_spain_mpa_paper_park', 'w86_observer_ems_cost', 'w87_incentive_vs_cc', 'w88_eu_landing_obligation', 'w89_undetected_silky_shark', 'w90_cgp_species_gap', 'w91_bluefin_escapement', 'w92_ems_blind_spot', 'w101_greentech_drone_capex', 'w103_taiwan_esg_risk'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
-            </div>
-            <OperationalS5Widgets />
-            {/* Phase B4 신규: 동원·사조 RAS 시험 운영 */}
-            <div style={{ marginTop: '1.5rem' }}>
+              {/* Phase B4 신규: 동원·사조 RAS 시험 운영 */}
               <RasSystemWidget />
             </div>
+            <OperationalS5Widgets />
           </section>
         )}
 
