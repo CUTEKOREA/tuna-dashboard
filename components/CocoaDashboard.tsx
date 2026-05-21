@@ -326,38 +326,27 @@ export default function CocoaDashboard() {
             source: "World Bank Commodity Index / ICCO Daily Price / ICE Futures",
           }} />
 
-        {/* Widget 11 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
-              <Scale size={17} /> 글로벌 시장가 대비 현지 농가 수매가 디커플링
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
-              <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: USD/MT)</span>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w11_farmer_decoupling}>
-                {grid}
-                <XAxis dataKey="quarter" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Line yAxisId="left" type="monotone" dataKey="globalPrice" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 4}} name="글로벌 선물 가격($)" />
-                <Bar yAxisId="right" dataKey="farmerPrice" fill="var(--color-info)" name="가나 농가 수매가(환산$)" barSize={35} />
-                <Line yAxisId="right" type="monotone" dataKey="FX_Cedi_USD" stroke="#b45309" strokeWidth={2} name="환율(Cedi/USD, RHS)" strokeDasharray="3 3" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="가나 정부는 2025년 10월 농가 수매가를 톤당 58,000세디(FOB의 70%)로 상향했으나, 글로벌 시장 가격(한때 $10,000+)과의 심각한 디커플링으로 2023/24 시즌에만 약 16만 톤이 인접국으로 밀수되었습니다. COCOBOD의 유동성 위기로 농가 대금 지급이 지연되며 현지 유통망이 마비 상태에 이르렀습니다."
-              actionPlan="국가 통제망의 허점과 현지 매입상(LBC)의 유동성 경색을 이용해, PE 자금력으로 현지 LBC에 직접 자금을 조달(Trade Finance)하고 원물 우선 수매권을 확보하는 딜을 추진해야 합니다. 농가와 직접 연결되는 직수매 채널에 자본을 투입하여 국가 리스크(Sovereign Risk)를 우회해야 합니다."
-              source="ICE 선물거래소 / 가나 COCOBOD 공시 / EFI Cocoa Insight 2025"
-            />
-          </div>
-        </div>
+        <WidgetCard title="글로벌 시장가 대비 현지 농가 수매가 디커플링 (USD/MT)" icon={Scale} iconColor="#b45309" pillar="S4"
+          cardDesc="글로벌 선물가 vs 가나 농가 수매가 + Cedi/USD 환율 — 밀수 트리거"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w11_farmer_decoupling}>
+              {grid}
+              <XAxis dataKey="quarter" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Line yAxisId="left" type="monotone" dataKey="globalPrice" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 4}} name="글로벌 선물 가격($)" />
+              <Bar yAxisId="right" dataKey="farmerPrice" fill="var(--color-info)" name="가나 농가 수매가(환산$)" barSize={35} />
+              <Line yAxisId="right" type="monotone" dataKey="FX_Cedi_USD" stroke="#b45309" strokeWidth={2} name="환율(Cedi/USD, RHS)" strokeDasharray="3 3" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "가나 정부는 2025년 10월 농가 수매가를 톤당 58,000세디(FOB의 70%)로 상향했으나, 글로벌 시장 가격(한때 $10,000+)과의 심각한 디커플링으로 2023/24 시즌에만 약 16만 톤이 인접국으로 밀수되었습니다. COCOBOD의 유동성 위기로 농가 대금 지급이 지연되며 현지 유통망이 마비 상태에 이르렀습니다.",
+            actionPlan: "국가 통제망의 허점과 현지 매입상(LBC)의 유동성 경색을 이용해, PE 자금력으로 현지 LBC에 직접 자금을 조달(Trade Finance)하고 원물 우선 수매권을 확보하는 딜을 추진해야 합니다. 농가와 직접 연결되는 직수매 채널에 자본을 투입하여 국가 리스크(Sovereign Risk)를 우회해야 합니다.",
+            source: "ICE 선물거래소 / 가나 COCOBOD 공시 / EFI Cocoa Insight 2025",
+          }} />
 
       </div>
 
@@ -371,139 +360,87 @@ export default function CocoaDashboard() {
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        {/* Widget 3 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Factory size={17} />글로벌 가공 허브 포트폴리오
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 점유율 % | 출처: UN Comtrade 및 ICCO 가공 API)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie data={cocoaData.w3_processing_hubs} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={5} dataKey="value">
-                  {cocoaData.w3_processing_hubs.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                  ))}
-                </Pie>
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              </PieChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="2023/24 시즌 기준 글로벌 카카오 가공 점유율은 유럽이 35.8%(171만 톤)로 1위를 지키고 있으나, 아프리카(22.9%)와 아시아(22.2%) 신흥 허브의 추격이 거셉니다. 특히 인도네시아는 원두 수출국에서 연간 약 38.6만 톤의 파생품을 수출하는 핵심 가공 허브로 전환하며 글로벌 밸류체인의 축을 이동시키고 있습니다."
-              actionPlan="원물 생산지와 인접한 아시아(인도네시아/말레이시아) 및 서아프리카 현지의 중간 가공 인프라 자산에 대한 인프라/PE 공동 투자를 집행해야 합니다. 유럽 의존도(Exposure)를 낮추고 아시아 역내 수급망을 장악하는 벤더를 롤업(Roll-up)하여 아시아 프리미엄을 독점하는 전략이 유효해야 합니다."
-              source="ICCO Quarterly Bulletin / UN Comtrade HS 1801-1806"
-            />
-          </div>
-        </div>
+        <WidgetCard title="글로벌 가공 허브 포트폴리오 (점유율 %)" icon={Factory} iconColor="#b45309" pillar="S2"
+          cardDesc="유럽 35.8% · 아프리카 22.9% · 아시아 22.2% — 가공 허브 동향 추적"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <PieChart>
+              <Pie data={cocoaData.w3_processing_hubs} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={5} dataKey="value">
+                {cocoaData.w3_processing_hubs.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
+              </Pie>
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+            </PieChart>
+          }
+          takeaway={{
+            situation: "2023/24 시즌 기준 글로벌 카카오 가공 점유율은 유럽이 35.8%(171만 톤)로 1위를 지키고 있으나, 아프리카(22.9%)와 아시아(22.2%) 신흥 허브의 추격이 거셉니다. 특히 인도네시아는 원두 수출국에서 연간 약 38.6만 톤의 파생품을 수출하는 핵심 가공 허브로 전환하며 글로벌 밸류체인의 축을 이동시키고 있습니다.",
+            actionPlan: "원물 생산지와 인접한 아시아(인도네시아/말레이시아) 및 서아프리카 현지의 중간 가공 인프라 자산에 대한 인프라/PE 공동 투자를 집행해야 합니다. 유럽 의존도(Exposure)를 낮추고 아시아 역내 수급망을 장악하는 벤더를 롤업(Roll-up)하여 아시아 프리미엄을 독점하는 전략이 유효해야 합니다.",
+            source: "ICCO Quarterly Bulletin / UN Comtrade HS 1801-1806",
+          }} />
 
-        {/* Widget 4 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Scale size={17} />파생품 마진 스프레드 
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 거래량 Index, 프리미엄% | 출처: Bloomberg Commodity 및 ICE API)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w4_derivative_spread}>
-                {grid}
-                <XAxis dataKey="type" {...xAxisTextProps} />
-                <YAxis yAxisId="left" {...yAxisProps} />
-                <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v) => `${v}%`} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar yAxisId="left" dataKey="volume" fill="#d97706" name="수입 거래량 비중" barSize={40} />
-                <Line yAxisId="right" type="monotone" dataKey="margin" stroke="var(--color-warning)" strokeWidth={3} dot={{r:5}} name="원물 대비 부가가치 마진율(Premium)" />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="원두 부족 사태로 초콜릿의 핵심 원료인 코코아 버터 가격이 톤당 $15,000~$16,000까지 치솟으며 사상 최고치를 기록했습니다. 버터의 선물 비율(Ratio)은 안정화되는 추세이나 파우더 수요는 강하게 유지되며 가격 상승을 견인하고 있어, 파생품별 마진 스프레드의 극심한 비대칭성이 초래되고 있습니다."
-              actionPlan="버터와 파우더의 마진 스프레드 괴리를 활용한 아비트리지 역량을 갖춘 가공업체(Grinder)에 투자 가중치를 두어야 합니다. 파우더 혼합 베이커리/음료 B2B 시장에서 확고한 캡티브(Captive) 채널을 보유한 업체를 선별하여 바이아웃 포트폴리오에 편입해야 합니다."
-              source="Bloomberg Commodity / ICE Cocoa Futures / ICCO Quarterly Bulletin"
-            />
-          </div>
-        </div>
+        <WidgetCard title="파생품 마진 스프레드 (거래량 Index, 프리미엄 %)" icon={Scale} iconColor="#d97706" pillar="S2"
+          cardDesc="버터·파우더 등 파생품별 거래량 + 부가가치 마진율 비교"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w4_derivative_spread}>
+              {grid}
+              <XAxis dataKey="type" {...xAxisTextProps} />
+              <YAxis yAxisId="left" {...yAxisProps} />
+              <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v) => `${v}%`} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar yAxisId="left" dataKey="volume" fill="#d97706" name="수입 거래량 비중" barSize={40} />
+              <Line yAxisId="right" type="monotone" dataKey="margin" stroke="var(--color-warning)" strokeWidth={3} dot={{r:5}} name="원물 대비 부가가치 마진율(Premium)" />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "원두 부족 사태로 초콜릿의 핵심 원료인 코코아 버터 가격이 톤당 $15,000~$16,000까지 치솟으며 사상 최고치를 기록했습니다. 버터의 선물 비율(Ratio)은 안정화되는 추세이나 파우더 수요는 강하게 유지되며 가격 상승을 견인하고 있어, 파생품별 마진 스프레드의 극심한 비대칭성이 초래되고 있습니다.",
+            actionPlan: "버터와 파우더의 마진 스프레드 괴리를 활용한 아비트리지 역량을 갖춘 가공업체(Grinder)에 투자 가중치를 두어야 합니다. 파우더 혼합 베이커리/음료 B2B 시장에서 확고한 캡티브(Captive) 채널을 보유한 업체를 선별하여 바이아웃 포트폴리오에 편입해야 합니다.",
+            source: "Bloomberg Commodity / ICE Cocoa Futures / ICCO Quarterly Bulletin",
+          }} />
 
-        {/* Widget 14 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Landmark size={17} />실사 기반 가공 공장 인수합병 타겟
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: X=매력도, Y=수율, Z=Capa | 출처: Silla Co. 내부 실사 DB)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                {grid}
-                <XAxis type="number" dataKey="capex" name="CAPEX 매력도" {...xAxisTextProps} />
-                <YAxis type="number" dataKey="yield" name="가공 인프라 점수" {...yAxisProps} />
-                <ZAxis type="number" dataKey="capacity" range={[200, 1500]} name="가공 Capa(천톤)" />
-                <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                {cocoaData.w14_mna_radar.map((entry: any, index: number) => (
-                  <Scatter key={`scatter-${index}`} name={entry.target} data={[entry]} fill={entry.fill} />
-                ))}
-              </ScatterChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="전례 없는 매입원가 폭등과 정부의 수매 대금 체불, 이력 추적 시스템 도입에 따른 고정비 증가로 서아프리카 현지의 로컬 매입상 및 영세 가공업체들의 줄도산 리스크가 커지고 있습니다. 반대로 글로벌 자본을 등에 업은 일부 현지 기업(Niche Cocoa, CPC 등)은 M&A 및 JV 타겟으로 떠오르고 있습니다."
-              actionPlan="철저한 실사(Due Diligence)를 통해 부채 비율이 높으나 안정적 가공 설비와 라이선스를 보유한 현지 자산을 식별하여 오퍼튜니스틱(Opportunistic) 매수 전략을 구사해야 합니다. 설비 노후화로 가동률이 낮은 국영기업(CPC) 대비 민간 우량 기업(Niche Cocoa)과의 JV에 그로스 펀드를 배정해야 합니다."
-              source="Silla Co. 내부 실사 DB / COCOBOD Annual Report / Niche Cocoa IR"
-            />
-          </div>
-        </div>
+        <WidgetCard title="실사 기반 가공 공장 인수합병 타겟" icon={Landmark} iconColor="#b45309" pillar="S2"
+          cardDesc="X: CAPEX 매력도, Y: 수율, Z: 가공 Capa — 디스트레스드 M&A 매트릭스"
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              {grid}
+              <XAxis type="number" dataKey="capex" name="CAPEX 매력도" {...xAxisTextProps} />
+              <YAxis type="number" dataKey="yield" name="가공 인프라 점수" {...yAxisProps} />
+              <ZAxis type="number" dataKey="capacity" range={[200, 1500]} name="가공 Capa(천톤)" />
+              <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              {cocoaData.w14_mna_radar.map((entry: any, index: number) => (
+                <Scatter key={`scatter-${index}`} name={entry.target} data={[entry]} fill={entry.fill} />
+              ))}
+            </ScatterChart>
+          }
+          takeaway={{
+            situation: "전례 없는 매입원가 폭등과 정부의 수매 대금 체불, 이력 추적 시스템 도입에 따른 고정비 증가로 서아프리카 현지의 로컬 매입상 및 영세 가공업체들의 줄도산 리스크가 커지고 있습니다. 반대로 글로벌 자본을 등에 업은 일부 현지 기업(Niche Cocoa, CPC 등)은 M&A 및 JV 타겟으로 떠오르고 있습니다.",
+            actionPlan: "철저한 실사(Due Diligence)를 통해 부채 비율이 높으나 안정적 가공 설비와 라이선스를 보유한 현지 자산을 식별하여 오퍼튜니스틱(Opportunistic) 매수 전략을 구사해야 합니다. 설비 노후화로 가동률이 낮은 국영기업(CPC) 대비 민간 우량 기업(Niche Cocoa)과의 JV에 그로스 펀드를 배정해야 합니다.",
+            source: "Silla Co. 내부 실사 DB / COCOBOD Annual Report / Niche Cocoa IR",
+          }} />
 
-        {/* Widget 21: I-09 코코아 선물 커브 구조 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
-              <TrendingUp size={17} /> 코코아 선물 커브 구조 및 백워데이션 전환 지표
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
-              <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: USD/MT)</span>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <LineChart data={cocoaData.w21_futures_curve_structure}>
-                {grid}
-                <XAxis dataKey="contract" {...xAxisTextProps} />
-                <YAxis {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Line type="monotone" dataKey="Price2024" stroke="var(--color-danger)" strokeWidth={3} name="2024년 가격" />
-                <Line type="monotone" dataKey="Price2025" stroke="#f97316" strokeWidth={2} strokeDasharray="3 3" name="2025년 가격" />
-                <Line type="monotone" dataKey="Price2026" stroke="#3b82f6" strokeWidth={2} name="2026년 가격 (LIVE)" />
-              </LineChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="근월물 가격이 원월물보다 비싼 강력한 백워데이션 장세에서 최근 콘탱고(Contango) 구조로의 전환 조짐이 보이고 있습니다. 이는 극단적 숏 스퀴즈가 진정되고 시장이 정상화 단계에 진입했음을 시사합니다."
-              actionPlan="선물 커브의 구조적 변화를 실시간 모니터링하여, 백워데이션 심화 시에는 현물 비축을 축소하고 롤링 헤지를 활용하며, 콘탱고 진입 시에는 장기 선물 계약을 통해 매입원가를 락인하는 유연한 헤지 전략이 필요해야 합니다."
-              source="ICE 선물 커브 실시간 모니터링"
-            />
-          </div>
-        </div>
+        <WidgetCard title="코코아 선물 커브 구조 및 백워데이션 전환 지표 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
+          cardDesc="2024·2025·2026년 선물 가격 커브 — 백워데이션 → 콘탱고 전환 시그널"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <LineChart data={cocoaData.w21_futures_curve_structure}>
+              {grid}
+              <XAxis dataKey="contract" {...xAxisTextProps} />
+              <YAxis {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Line type="monotone" dataKey="Price2024" stroke="var(--color-danger)" strokeWidth={3} name="2024년 가격" />
+              <Line type="monotone" dataKey="Price2025" stroke="#f97316" strokeWidth={2} strokeDasharray="3 3" name="2025년 가격" />
+              <Line type="monotone" dataKey="Price2026" stroke="#3b82f6" strokeWidth={2} name="2026년 가격 (LIVE)" />
+            </LineChart>
+          }
+          takeaway={{
+            situation: "근월물 가격이 원월물보다 비싼 강력한 백워데이션 장세에서 최근 콘탱고(Contango) 구조로의 전환 조짐이 보이고 있습니다. 이는 극단적 숏 스퀴즈가 진정되고 시장이 정상화 단계에 진입했음을 시사합니다.",
+            actionPlan: "선물 커브의 구조적 변화를 실시간 모니터링하여, 백워데이션 심화 시에는 현물 비축을 축소하고 롤링 헤지를 활용하며, 콘탱고 진입 시에는 장기 선물 계약을 통해 매입원가를 락인하는 유연한 헤지 전략이 필요해야 합니다.",
+            source: "ICE 선물 커브 실시간 모니터링",
+          }} />
 
       </div>
 
