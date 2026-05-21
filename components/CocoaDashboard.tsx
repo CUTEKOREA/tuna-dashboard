@@ -553,144 +553,92 @@ export default function CocoaDashboard() {
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         
-        {/* Widget 16 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Scale size={17} />B2B CBE(대체유) 벤더 롤업 가치 평가
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: EBITDA %, Agility | 출처: Krungsri Research 팜유 산업 전망 및 Silla Co. 모델)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
-                <XAxis type="number" dataKey="Agility" name="Agility(시장대응력)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <YAxis type="number" dataKey="EBITDA" name="EBITDA(%)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-                <ZAxis type="number" dataKey="CostBurden" range={[60, 400]} name="원가부담" />
-                <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                {cocoaData.w16_cbe_rollup.map((entry: any, index: number) => (
-                  <Scatter key={`scatter-${index}`} name={entry.category} data={[entry]} fill={index === 2 ? '#d97706' : '#78350f'} />
-                ))}
-              </ScatterChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="코코아 버터 가격이 톤당 $15,000을 돌파하며 역사적 고점을 찍음에 따라, 제과 및 베이커리 업계는 매입원가 절감을 위해 식물성 유지를 활용한 코코아 버터 대체재(CBS) 및 동등재(CBE)의 사용 비율을 급격히 늘리고 있습니다."
-              actionPlan="팔유, 시어버터 기반의 식물성 유지 및 CBE 제조 벤더들을 선제적으로 롤업(Roll-up) 매수하여 규모의 경제를 달성해야 합니다. B2B 식품소재 기업 포트폴리오의 Bottom-line(순이익)률 방어를 위해 CBE R&D 역량을 가진 피투자사 멀티플(Multiple)을 상향 조정하고 자금을 집중 투여해야 합니다."
-              source="Krungsri Research 팔유 산업 전망 / Silla Co. 내부 모델"
-            />
-          </div>
-        </div>
+        <WidgetCard title="B2B CBE(대체유) 벤더 롤업 가치 평가 (EBITDA %, Agility)" icon={Scale} iconColor="#d97706" pillar="S2"
+          cardDesc="대체유 벤더의 시장대응력 vs EBITDA vs 원가부담 — 롤업 매수 매트릭스"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
+              <XAxis type="number" dataKey="Agility" name="Agility(시장대응력)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis type="number" dataKey="EBITDA" name="EBITDA(%)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <ZAxis type="number" dataKey="CostBurden" range={[60, 400]} name="원가부담" />
+              <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              {cocoaData.w16_cbe_rollup.map((entry: any, index: number) => (
+                <Scatter key={`scatter-${index}`} name={entry.category} data={[entry]} fill={index === 2 ? '#d97706' : '#78350f'} />
+              ))}
+            </ScatterChart>
+          }
+          takeaway={{
+            situation: "코코아 버터 가격이 톤당 $15,000을 돌파하며 역사적 고점을 찍음에 따라, 제과 및 베이커리 업계는 매입원가 절감을 위해 식물성 유지를 활용한 코코아 버터 대체재(CBS) 및 동등재(CBE)의 사용 비율을 급격히 늘리고 있습니다.",
+            actionPlan: "팔유, 시어버터 기반의 식물성 유지 및 CBE 제조 벤더들을 선제적으로 롤업(Roll-up) 매수하여 규모의 경제를 달성해야 합니다. B2B 식품소재 기업 포트폴리오의 영업이익률 방어를 위해 CBE R&D 역량을 가진 피투자사 멀티플을 상향 조정하고 자금을 집중 투여해야 합니다.",
+            source: "Krungsri Research 팔유 산업 전망 / Silla Co. 내부 모델",
+          }} />
 
-        {/* Widget 7 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <Target size={17} />대체 공급처 발굴 수익성 분석
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: X=물류비, Y=원물가, Z=공급량 | 출처: Silla Co. 소싱 인텔리전스 DB)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                {grid}
-                <XAxis type="number" dataKey="cost" name="물류비($)" {...xAxisTextProps} />
-                <YAxis type="number" dataKey="price" name="원물가($)" {...yAxisProps} />
-                <ZAxis type="number" dataKey="volume" range={[60, 400]} name="조달 가능량" />
-                <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                {cocoaData.w7_sourcing_scatter.map((entry: any, index: number) => (
-                  <Scatter key={`scatter-${index}`} name={entry.country} data={[entry]} fill={entry.fill} />
-                ))}
-              </ScatterChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="서아프리카의 공급 붕괴 속에서 에콰도르는 헥타르당 800kg의 높은 수율을 무기로 생산량을 60만 톤 이상으로 확대하며 글로벌 3위이자 최적의 대안으로 급부상했습니다. 한국 시장 역시 리스크 헷지를 위해 에콰도르 수입 규모를 천만 달러 이상으로 확대하며 프리미엄 원두 비중을 높이고 있습니다."
-              actionPlan="에콰도르, 브라질 등 남미 산지의 현지 집하장 및 수출 터미널 자산에 전략적 지분 투자를 단행하여 서아프리카 리스크를 상쇄하는 지역적 다변화 펀드를 조성해야 합니다. 특히 프리미엄(Fine or Flavor) 코코아를 처리하는 남미의 빈투바(Bean-to-Bar) 원료 공급망을 선점해야 합니다."
-              source="Silla Co. 소싱 인텔리전스 DB / 관세청(KCS) OpenAPI"
-            />
-          </div>
-        </div>
+        <WidgetCard title="대체 공급처 발굴 수익성 분석 (물류비·원물가·공급량)" icon={Target} iconColor="#b45309" pillar="S1"
+          cardDesc="에콰도르·브라질 등 남미 산지 대안 — 다변화 펀드 매트릭스"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+              {grid}
+              <XAxis type="number" dataKey="cost" name="물류비($)" {...xAxisTextProps} />
+              <YAxis type="number" dataKey="price" name="원물가($)" {...yAxisProps} />
+              <ZAxis type="number" dataKey="volume" range={[60, 400]} name="조달 가능량" />
+              <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              {cocoaData.w7_sourcing_scatter.map((entry: any, index: number) => (
+                <Scatter key={`scatter-${index}`} name={entry.country} data={[entry]} fill={entry.fill} />
+              ))}
+            </ScatterChart>
+          }
+          takeaway={{
+            situation: "서아프리카의 공급 붕괴 속에서 에콰도르는 헥타르당 800kg의 높은 수율을 무기로 생산량을 60만 톤 이상으로 확대하며 글로벌 3위이자 최적의 대안으로 급부상했습니다. 한국 시장 역시 리스크 헷지를 위해 에콰도르 수입 규모를 천만 달러 이상으로 확대하며 프리미엄 원두 비중을 높이고 있습니다.",
+            actionPlan: "에콰도르, 브라질 등 남미 산지의 현지 집하장 및 수출 터미널 자산에 전략적 지분 투자를 단행하여 서아프리카 리스크를 상쇄하는 지역적 다변화 펀드를 조성해야 합니다. 특히 프리미엄(Fine or Flavor) 코코아를 처리하는 남미의 빈투바(Bean-to-Bar) 원료 공급망을 선점해야 합니다.",
+            source: "Silla Co. 소싱 인텔리전스 DB / 관세청(KCS) OpenAPI",
+          }} />
 
-        {/* Widget 8 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem' }}>
-              <RefreshCcw size={17} />슈링크플레이션 기반 B2B 단가 워터폴
-              <span style={{ fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400 }}>(단위: 원가 변동폭 | 출처: KAMIS 도매물가 및 KCS API 융합)</span>
-              <div style={{ marginLeft:'auto', flexShrink:0 }}>
-                
-              </div>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={waterfallData} layout="vertical">
-                {grid}
-                <XAxis type="number" {...xAxisTextProps} />
-                <YAxis dataKey="name" type="category" width={110} {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar dataKey="base" stackId="a" fill="transparent" />
-                <Bar dataKey="val" stackId="a" name="원가 변동 요소">
-                  {waterfallData.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-          situation="매입원가 폭등 속에서 제조사들은 제품 중량을 줄이는 슈링크플레이션을 단행하거나, 카카오 함량을 낮추고 식물성 유지(CBE) 등 대체 원료를 사용하는 방향으로 레시피를 변경해 매입원가를 방어하고 있습니다."
-          actionPlan="대중적 시장에서는 팜유/설탕 기반 배합으로 단가를 낮추는 &apos;가성비 워터폴 전략&apos;을 취하되, 핵심 타겟에게는 코코아 본연의 성분을 유지한 &apos;고함량 프리미엄 라인&apos;을 병행하는 투트랙 접근이 필수적입니다. (Execution Recommended)"
-          source="KAMIS 도매물가 / KCS API 융합"
-        />
-          </div>
-        </div>
+        <WidgetCard title="슈링크플레이션 기반 B2B 단가 워터폴" icon={RefreshCcw} iconColor="#b45309" pillar="S4"
+          cardDesc="원가 변동 요소별 워터폴 — 슈링크플레이션 + CBE 전환 마진 방어"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <BarChart data={waterfallData} layout="vertical">
+              {grid}
+              <XAxis type="number" {...xAxisTextProps} />
+              <YAxis dataKey="name" type="category" width={110} {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar dataKey="base" stackId="a" fill="transparent" />
+              <Bar dataKey="val" stackId="a" name="원가 변동 요소">
+                {waterfallData.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
+              </Bar>
+            </BarChart>
+          }
+          takeaway={{
+            situation: "매입원가 폭등 속에서 제조사들은 제품 중량을 줄이는 슈링크플레이션을 단행하거나, 카카오 함량을 낮추고 식물성 유지(CBE) 등 대체 원료를 사용하는 방향으로 레시피를 변경해 매입원가를 방어하고 있습니다.",
+            actionPlan: "대중적 시장에서는 팜유/설탕 기반 배합으로 단가를 낮추는 '가성비 워터폴 전략'을 취하되, 핵심 타겟에게는 코코아 본연의 성분을 유지한 '고함량 프리미엄 라인'을 병행하는 투트랙 접근이 필수적입니다.",
+            source: "KAMIS 도매물가 / KCS API 융합",
+          }} />
 
-        {/* Widget 20: I-07 국내 제과 3사 원가율 및 마진 방어력 */}
-        <div className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'600px' }}>
-          <div style={{ marginBottom:'1.2rem', borderBottom:'1px solid #282828', paddingBottom:'0.8rem' }}>
-            <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:600, color:'var(--text-primary)', margin:'0 0 0.4rem', flexWrap:'wrap' }}>
-              <Scale size={17} /> 국내 제과 3사 원가율 및 마진 방어력 벤치마크
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', padding:'2px 10px', borderRadius:'500px', background:'rgba(180,83,9,0.15)', color:'#b45309', fontSize:'0.7rem', fontWeight:700, flexShrink:0 }}>● LIVE API</span>
-              <span style={{ marginLeft:'auto', fontSize:'0.75rem', color:'var(--text-secondary)', fontWeight:400, flexShrink:0 }}>(단위: %)</span>
-            </h3>
-          </div>
-          <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={cocoaData.w20_local_confectionery_margin} layout="vertical">
-                {grid}
-                <XAxis type="number" {...xAxisTextProps} />
-                <YAxis dataKey="company" type="category" width={110} {...yAxisProps} />
-                <RechartsTooltip content={<CustomTooltip />} />
-                <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-                <Bar dataKey="costBurden" fill="var(--color-danger)" name="원가 부담률" barSize={30} />
-                <Bar dataKey="cbeRatio" fill="#f59e0b" name="CBE(대체유) 전환율" barSize={30} />
-                <Line dataKey="opMargin" type="monotone" stroke="#3b82f6" strokeWidth={3} name="영업이익률" dot={{r: 5}} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop:'auto' }}>
-            <TakeawayBox
-              situation="원물가 폭등으로 국내 주요 제과 업체들의 매입원가 부담률이 80%를 상회하고 있습니다. 수익성 방어를 위해 해외 비중이 높은 업체를 중심으로 CBE(코코아 대체유) 전환율을 높이고 슈링크플레이션을 단행 중입니다."
-              actionPlan="내수 위주 업체의 실적 악화 가능성에 대비하여 공매도 포지션을 검토하거나, 대체유 제조 원천 기술을 확보하고 글로벌 밸류체인 헤지가 가능한 업체를 선별하여 롱(Long) 포지션을 구축하는 롱숏 전략을 구사해야 합니다."
-              source="DART 전자공시 및 Silla Co. 내부 재무 모델링"
-            />
-          </div>
-        </div>
+        <WidgetCard title="국내 제과 3사 원가율 및 마진 방어력 벤치마크 (%)" icon={Scale} iconColor="#b45309" pillar="S4"
+          cardDesc="롯데웰푸드·해태·오리온 등 원가 부담률 + CBE 전환율 + 영업이익률"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          chart={
+            <ComposedChart data={cocoaData.w20_local_confectionery_margin} layout="vertical">
+              {grid}
+              <XAxis type="number" {...xAxisTextProps} />
+              <YAxis dataKey="company" type="category" width={110} {...yAxisProps} />
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
+              <Bar dataKey="costBurden" fill="var(--color-danger)" name="원가 부담률" barSize={30} />
+              <Bar dataKey="cbeRatio" fill="#f59e0b" name="CBE(대체유) 전환율" barSize={30} />
+              <Line dataKey="opMargin" type="monotone" stroke="#3b82f6" strokeWidth={3} name="영업이익률" dot={{r: 5}} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: "원물가 폭등으로 국내 주요 제과 업체들의 매입원가 부담률이 80%를 상회하고 있습니다. 수익성 방어를 위해 해외 비중이 높은 업체를 중심으로 CBE(코코아 대체유) 전환율을 높이고 슈링크플레이션을 단행 중입니다.",
+            actionPlan: "내수 위주 업체의 실적 악화 가능성에 대비하여 공매도 포지션을 검토하거나, 대체유 제조 원천 기술을 확보하고 글로벌 밸류체인 헤지가 가능한 업체를 선별하여 롱(Long) 포지션을 구축하는 롱숏 전략을 구사해야 합니다.",
+            source: "DART 전자공시 / Silla Co. 내부 재무 모델링",
+          }} />
 
       </div>
 
