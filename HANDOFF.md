@@ -36,6 +36,35 @@
 
 ---
 
+## 🆕 2026-05-22 메가 세션 cont. — Cocoa 100% + Whelk 패턴 검증 (2/29) + WidgetCard ReactNode 완화
+
+### 추가 진척
+- **Cocoa 22/22** 100% 완료 (`omo/singles-codex` `39dbe5a`)
+- **WidgetCard.TakeawayProps 완화**: `string | React.ReactNode` 허용 (`c0fcb2b`)
+- **Whelk W1/W2** 패턴 검증 완료 (`e1bea56`) — TermTooltip JSX 임베디드 정상 작동
+
+### 잔여 작업 (~62 widgets)
+
+| 파일 | 잔여 | 비고 |
+|------|------|------|
+| WhelkDashboard | 27/29 | ds-card framework, TermTooltip JSX (WidgetCard 완화로 해결) |
+| CarrotDashboard | 31 | 미시작 |
+| GalchiDashboard | ? | TakeawayBox 0건, 별도 패턴 |
+| FalklandSquidDashboard | 3 | ds-card framework |
+
+### 다음 세션 권장
+1. Whelk 잔여 27 widgets — 패턴 확립됨, 동일 변환 반복
+2. Carrot 31 — 동일 ds-card framework 예상 (Whelk 패턴 재사용 가능)
+3. Galchi / FalklandSquid 분석 후 결정
+
+### Active Worktree HEAD
+- `tuna-dashboard-omo-codex` HEAD = `e1bea56` (Whelk 2/29 + Garlic 100% + Cocoa 100%)
+- `tuna-dashboard-omo-singles` HEAD = `27914d1` (Mangosteen 100% + Garlic 3/18 + 기타)
+
+PR 통합 전략: omo/singles-codex가 omo/singles보다 진척이 많음. 두 브랜치를 동일 PR (#17)로 합치거나, 별도 PR #18 생성 권장.
+
+---
+
 ## 🆕 2026-05-21 메가 세션 최종 갱신 — Mangosteen + Garlic 100% + Cocoa 2/22
 
 ### 최종 추가 진척 (이 세션 cont.)
