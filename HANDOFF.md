@@ -36,6 +36,49 @@
 
 ---
 
+## 🆕 2026-05-21 메가 세션 최종 갱신 — Mangosteen + Garlic 100% + Cocoa 2/22
+
+### 최종 추가 진척 (이 세션 cont.)
+- **Mangosteen 15/15** 100% (omo/singles `27914d1`)
+- **Garlic 18/18** 100% (omo/singles-codex `3e1aa58`)
+- **Cocoa 2/22** (omo/singles-codex `3e12acb`)
+- **TunaExtract 2 main cards** (omo/singles `6d21d3c`)
+
+### 잔여 작업 (~85 widgets)
+
+**omo/singles-codex** (Cocoa 19 remaining):
+- Cocoa W11·W3·W4·W14 등 19 widgets
+
+**omo/singles** (또는 새 worktree, ds-card framework):
+- Whelk 29 (TermTooltip JSX 임베디드 — `WidgetCard.TakeawayProps` 완화 필요)
+- Carrot 31
+- Galchi (TakeawayBox 0건, 별도 패턴)
+- FalklandSquid 3 (ds-card)
+
+### 다음 세션 우선순위
+
+1. **Cocoa 잔여 19** (omo/singles-codex): 동일 패턴 반복, 위젯당 ~50 토큰
+2. **WidgetCard TakeawayProps 완화**: `string | React.ReactNode` 허용 + `checkForbidden` typeof 가드 추가
+3. **Whelk + Carrot**: ds-card framework migration (60 widgets, 가장 큰 단일 commodity)
+4. **Galchi + FalklandSquid**: 별도 framework 분석
+
+### Active Worktrees (세션 종료 시점)
+| Worktree | Branch | HEAD | 상태 |
+|----------|--------|------|------|
+| tuna-dashboard | main | `68861ae` | HANDOFF만 (push 안 됨) |
+| tuna-dashboard-omo-pollock | omo/pollock-2a2 | — | PR #13 open |
+| tuna-dashboard-omo-salmon | omo/salmon | — | PR #14 open |
+| tuna-dashboard-omo-squid | omo/squid | — | PR #15 open |
+| tuna-dashboard-omo-chicken | omo/chicken | — | PR #16 open |
+| tuna-dashboard-omo-singles | omo/singles | `27914d1` | PR #17 open |
+| **tuna-dashboard-omo-codex** | omo/singles-codex | `3e12acb` | **PR 미생성** |
+
+### Codex Worktree Status
+
+`omo/singles-codex`는 PR이 아직 생성되지 않음. 다음 세션에서 Cocoa 완료 후 PR #18로 생성 권장.
+
+---
+
 ## 🆕 2026-05-21 메가 세션 갱신 (cont.) — Mangosteen 100% + Garlic 9/18 + Codex 병렬 셋업
 
 ### 추가 진척 (마지막 PR #17 갱신분)
