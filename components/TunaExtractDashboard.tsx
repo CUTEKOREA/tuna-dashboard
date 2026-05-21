@@ -14,6 +14,7 @@ import {
 import styles from './TunaExtractDashboard.module.css';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 import TermTooltip from './TermTooltip';
 import TunaEsgRiskRadar from './TunaEsgRiskRadar';
 import TunaPngHubStrategy from './TunaPngHubStrategy';
@@ -23,7 +24,6 @@ import TunaPeptideEfficacy from './TunaPeptideEfficacy';
 import TunaTacMonitor from './TunaTacMonitor';
 import TunaSdgCircular from './TunaSdgCircular';
 import TelemetryBadge from './TelemetryBadge';
-import WidgetCard from './WidgetCard';
 import { truncateKoreanLabel } from '../lib/chart-standards';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -277,152 +277,174 @@ export default function TunaExtractDashboard() {
       <h3 className={styles.sectionHeaderAlt}>기둥 II. 가공 생산 및 R&D</h3>
       
       {/* 신규: 환율 시뮬레이터 */}
-      <div className={styles.card} style={{ marginBottom: '1.5rem' }}>
-        <div className={styles.cardHeader}>
-          <h3 className={styles.cardTitle}><TrendingUp size={18} className={styles.cardIcon} color="#8b5cf6"/> [신규] 환율 기반 원가 방어 시뮬레이터</h3>
-          <TelemetryBadge status="LIVE" syncDate="Today" />
-        </div>
-        <div className={styles.cardBody}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', background: '#0f172a', padding: '1rem', borderRadius: '8px' }}>
-            <span style={{ color: '#cbd5e1', fontWeight: 600 }}>현재 적용 환율 (USD/KRW): <span style={{ color: 'var(--color-info)', fontSize: '1.2rem', marginLeft: '0.5rem' }}>{exchangeRateSlider} 원</span></span>
-            <input 
-              type="range" min="1100" max="1600" step="10" 
-              value={exchangeRateSlider} 
-              onChange={(e) => setExchangeRateSlider(Number(e.target.value))} 
-              style={{ flexGrow: 1 }}
-            />
-          </div>
-          <SafeResponsiveContainer height={280}>
-            <ComposedChart data={d_w04_simulated}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis dataKey="type" stroke="#94a3b8" fontSize={12} />
-              <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
-              <YAxis yAxisId="right" orientation="right" stroke="var(--color-info)" fontSize={12} domain={[0, 50]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend />
-              <Bar yAxisId="left" dataKey="rawCost" name="원료 단가 (원)" fill="#64748b" />
-              <Line yAxisId="right" type="monotone" dataKey="margin" name="영업이익률 (%)" stroke="var(--color-info)" strokeWidth={3} />
-            </ComposedChart>
-          </SafeResponsiveContainer>
-          <TakeawayBox 
-            situation={`환율이 ${exchangeRateSlider}원에 도달할 경우, 참치액의 마진율은 ${d_w04_simulated[2].margin}%로 방어되나 멸치/까나리액젓은 한계 상황에 직면합니다.`} 
-            actionPlan="원물 가격 상승 리스크가 낮은 참치액의 마진 디커플링을 무기로 삼아, 고환율 시기에 공격적 마케팅 비용을 투입해 경쟁사를 도태시켜야 해야 합니다." 
-            source="KMI 거시 무역 데이터 / 내부 원가 모델" 
-          />
-        </div>
+      <div style={{ marginBottom: '1.5rem' }}>
+        <WidgetCard
+          title="[신규] 환율 기반 원가 방어 시뮬레이터"
+          icon={TrendingUp}
+          iconColor="#8b5cf6"
+          pillar="S2"
+          cardDesc="USD/KRW 환율 슬라이더 기반 참치액 vs 멸치·까나리 마진 시뮬레이션"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          customBody={
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', background: '#0f172a', padding: '1rem', borderRadius: '8px' }}>
+                <span style={{ color: '#cbd5e1', fontWeight: 600 }}>현재 적용 환율 (USD/KRW): <span style={{ color: 'var(--color-info)', fontSize: '1.2rem', marginLeft: '0.5rem' }}>{exchangeRateSlider} 원</span></span>
+                <input
+                  type="range" min="1100" max="1600" step="10"
+                  value={exchangeRateSlider}
+                  onChange={(e) => setExchangeRateSlider(Number(e.target.value))}
+                  style={{ flexGrow: 1 }}
+                />
+              </div>
+              <div style={{ width: '100%', height: 280 }}>
+                <SafeResponsiveContainer height={280}>
+                  <ComposedChart data={d_w04_simulated}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                    <XAxis dataKey="type" stroke="#94a3b8" fontSize={12} />
+                    <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} />
+                    <YAxis yAxisId="right" orientation="right" stroke="var(--color-info)" fontSize={12} domain={[0, 50]} />
+                    <Tooltip content={<CustomTooltip />} />
+                    <Legend />
+                    <Bar yAxisId="left" dataKey="rawCost" name="원료 단가 (원)" fill="#64748b" />
+                    <Line yAxisId="right" type="monotone" dataKey="margin" name="영업이익률 (%)" stroke="var(--color-info)" strokeWidth={3} />
+                  </ComposedChart>
+                </SafeResponsiveContainer>
+              </div>
+            </div>
+          }
+          takeaway={{
+            situation: `환율이 ${exchangeRateSlider}원에 도달할 경우, 참치액의 마진율은 ${d_w04_simulated[2].margin}%로 방어되나 멸치/까나리액젓은 한계 상황에 직면합니다.`,
+            actionPlan: "원물 가격 상승 리스크가 낮은 참치액의 마진 디커플링을 무기로 삼아, 고환율 시기에 공격적 마케팅 비용을 투입해 경쟁사를 도태시켜야 해야 합니다.",
+            source: "KMI 거시 무역 데이터 / 내부 원가 모델",
+          }}
+        />
       </div>
 
       <div className={styles.grid}>
         <TunaBioUpcyclingGap />
         <TunaPeptideEfficacy />
 
-        <div className={styles.card} style={{ gridColumn: '1 / -1' }}>
-          <div className={styles.cardHeader}>
-            <h3 className={styles.cardTitle}><FlaskConical size={18} className={styles.cardIcon} color="#8b5cf6"/> 통합 수산과학 실증 연구 (K01~K08)</h3>
-            <TelemetryBadge status="SYNCED" syncDate="KFAS" />
-          </div>
-          <div className={styles.cardBody}>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-              {researchTabs.map(tab => (
-                <button 
-                  key={tab.id}
-                  onClick={() => setActiveResearchTab(tab.id)}
-                  style={{
-                    background: activeResearchTab === tab.id ? 'var(--color-info)' : 'rgba(255,255,255,0.05)',
-                    color: activeResearchTab === tab.id ? '#fff' : '#94a3b8',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.85rem'
-                  }}
-                >
-                  <tab.icon size={14} /> {tab.id}: {tab.title}
-                </button>
-              ))}
-            </div>
-            
-            <div style={{ minHeight: '350px', background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px' }}>
-              {activeResearchTab === 'K01' && (
-                <>
-                  <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>통조림 부산물 위생안전성·영양 평가 (히스타민)</h4>
-                  {data.d_k01_byproduct_safety ? (
-                    <SafeResponsiveContainer height={220}>
-                      <BarChart data={data.d_k01_byproduct_safety}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="항목" stroke="#94a3b8" fontSize={10}/>
-                        <YAxis stroke="#94a3b8" fontSize={12}/>
-                        <Tooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar dataKey="생부산물" fill="var(--color-danger)" />
-                        <Bar dataKey="자숙부산물" fill="var(--color-success)" />
-                        <Line type="monotone" dataKey="기준치" stroke="var(--color-warning)" />
-                      </BarChart>
-                    </SafeResponsiveContainer>
-                  ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="자숙 부산물은 히스타민 45mg/kg(기준 200 이하)으로 극도로 안전하며, 조단백 24.8%로 영양성도 뛰어남." actionPlan="수출 시 '자숙 공정 인증 원료' 라벨을 도입하여 타 발효수산물 대비 안전성을 무기로 삼으십시오." source="KFAS 한국수산과학회지" />
-                </>
-              )}
-              {activeResearchTab === 'K05' && (
-                <>
-                  <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>속성발효 고순도 액젓 혁신</h4>
-                  {data.d_k05_rapid_anchovy ? (
-                    <SafeResponsiveContainer height={220}>
-                      <LineChart data={data.d_k05_rapid_anchovy}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="발효일" stroke="#94a3b8" fontSize={10}/>
-                        <YAxis stroke="#94a3b8" fontSize={12}/>
-                        <Tooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Line type="monotone" dataKey="속성발효TN" stroke="var(--color-success)" strokeWidth={2} />
-                        <Line type="monotone" dataKey="전통TN" stroke="#64748b" strokeDasharray="5 5" />
-                      </LineChart>
-                    </SafeResponsiveContainer>
-                  ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="염장발효덧 적용 시 60일 만에 전통발효(180일)의 93% 품질(TN 1.35%)을 확보 가능." actionPlan="자숙액 속성발효 적용으로 생산 사이클을 6개월에서 2개월로 단축, 재고 회전율 3배를 달성해야 합니다." source="KFAS 한국수산과학회지" />
-                </>
-              )}
-              {activeResearchTab === 'K07' && (
-                <>
-                  <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>쌀코지 저염 어간장 발효 혁신</h4>
-                  {data.d_k07_kanari_koji ? (
-                    <SafeResponsiveContainer height={220}>
-                      <BarChart data={data.d_k07_kanari_koji}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="조건" stroke="#94a3b8" fontSize={10}/>
-                        <YAxis stroke="#94a3b8" fontSize={12}/>
-                        <Tooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar dataKey="아미노산" fill="#8b5cf6" />
-                        <Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} />
-                      </BarChart>
-                    </SafeResponsiveContainer>
-                  ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="쌀코지 첨가 저염(10%) 발효 시 유리아미노산 급증 및 관능 최고점 달성." actionPlan="5060 건강 타겟 '저염 참치액젓(나트륨 50%↓)'을 출시하여 30%의 가격 프리미엄을 확보." source="KFAS 한국수산과학회지" />
-                </>
-              )}
-              {activeResearchTab === 'K08' && (
-                <>
-                  <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>오징어 효소 활용 쓴맛 제거 (디비터링)</h4>
-                  {data.d_k08_debit_sauce ? (
-                    <SafeResponsiveContainer height={220}>
-                      <BarChart data={data.d_k08_debit_sauce}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="처리단계" stroke="#94a3b8" fontSize={10}/>
-                        <YAxis stroke="#94a3b8" fontSize={12}/>
-                        <Tooltip content={<CustomTooltip />} />
-                        <Legend />
-                        <Bar dataKey="쓴맛강도" fill="var(--color-danger)" />
-                        <Line type="monotone" dataKey="감칠맛" stroke="var(--color-success)" />
-                      </BarChart>
-                    </SafeResponsiveContainer>
-                  ) : <EmptyState message="연구 데이터 로딩 실패" />}
-                  <TakeawayBox situation="Aminopeptidase 효소 처리 시 쓴맛이 75% 감소하고 감칠맛이 폭발적으로 상승." actionPlan="'제로 비린내, 순수 감칠맛' 라인을 신설하여 기존 멸치/까나리의 한계를 극복하는 핵심 기술로 편입." source="KFAS 한국수산과학회지" />
-                </>
-              )}
-              {!['K01','K05','K07','K08'].includes(activeResearchTab) && (
-                <EmptyState message={`${activeResearchTab} 세부 데이터는 현재 연구소 보안 검토 중입니다.`} />
-              )}
-            </div>
-          </div>
+        <div style={{ gridColumn: '1 / -1' }}>
+          {(() => {
+            const K_TAKEAWAYS: Record<string, { situation: string; actionPlan: string }> = {
+              K01: { situation: "자숙 부산물은 히스타민 45mg/kg(기준 200 이하)으로 극도로 안전하며, 조단백 24.8%로 영양성도 뛰어남.", actionPlan: "수출 시 '자숙 공정 인증 원료' 라벨을 도입하여 타 발효수산물 대비 안전성을 무기로 삼으십시오." },
+              K05: { situation: "염장발효덧 적용 시 60일 만에 전통발효(180일)의 93% 품질(TN 1.35%)을 확보 가능.", actionPlan: "자숙액 속성발효 적용으로 생산 사이클을 6개월에서 2개월로 단축, 재고 회전율 3배를 달성해야 합니다." },
+              K07: { situation: "쌀코지 첨가 저염(10%) 발효 시 유리아미노산 급증 및 관능 최고점 달성.", actionPlan: "5060 건강 타겟 '저염 참치액젓(나트륨 50%↓)'을 출시하여 30%의 가격 프리미엄을 확보." },
+              K08: { situation: "Aminopeptidase 효소 처리 시 쓴맛이 75% 감소하고 감칠맛이 폭발적으로 상승.", actionPlan: "'제로 비린내, 순수 감칠맛' 라인을 신설하여 기존 멸치/까나리의 한계를 극복하는 핵심 기술로 편입." },
+            };
+            const tk = K_TAKEAWAYS[activeResearchTab] || { situation: `${activeResearchTab} 세부 데이터는 현재 연구소 보안 검토 중입니다.`, actionPlan: '연구 완료 후 본 카드에 반영 예정.' };
+            return (
+              <WidgetCard
+                title="통합 수산과학 실증 연구 (K01~K08)"
+                icon={FlaskConical}
+                iconColor="#8b5cf6"
+                pillar="S2"
+                cardDesc="자숙 부산물 안전·속성발효·저염 코지·디비터링 등 8개 실증 트랙별 데이터 검증"
+                telemetry={{ status: 'SYNCED', syncDate: 'KFAS' }}
+                customBody={
+                  <div>
+                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+                      {researchTabs.map(tab => (
+                        <button
+                          key={tab.id}
+                          onClick={() => setActiveResearchTab(tab.id)}
+                          style={{
+                            background: activeResearchTab === tab.id ? 'var(--color-info)' : 'rgba(255,255,255,0.05)',
+                            color: activeResearchTab === tab.id ? '#fff' : '#94a3b8',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer',
+                            display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 600, fontSize: '0.85rem',
+                          }}
+                        >
+                          <tab.icon size={14} /> {tab.id}: {tab.title}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div style={{ minHeight: '350px', background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px' }}>
+                      {activeResearchTab === 'K01' && (
+                        <>
+                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>통조림 부산물 위생안전성·영양 평가 (히스타민)</h4>
+                          {data.d_k01_byproduct_safety ? (
+                            <SafeResponsiveContainer height={220}>
+                              <BarChart data={data.d_k01_byproduct_safety}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                <XAxis dataKey="항목" stroke="#94a3b8" fontSize={10} />
+                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <Tooltip content={<CustomTooltip />} />
+                                <Legend />
+                                <Bar dataKey="생부산물" fill="var(--color-danger)" />
+                                <Bar dataKey="자숙부산물" fill="var(--color-success)" />
+                                <Line type="monotone" dataKey="기준치" stroke="var(--color-warning)" />
+                              </BarChart>
+                            </SafeResponsiveContainer>
+                          ) : <EmptyState message="연구 데이터 로딩 실패" />}
+                        </>
+                      )}
+                      {activeResearchTab === 'K05' && (
+                        <>
+                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>속성발효 고순도 액젓 혁신</h4>
+                          {data.d_k05_rapid_anchovy ? (
+                            <SafeResponsiveContainer height={220}>
+                              <LineChart data={data.d_k05_rapid_anchovy}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                <XAxis dataKey="발효일" stroke="#94a3b8" fontSize={10} />
+                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <Tooltip content={<CustomTooltip />} />
+                                <Legend />
+                                <Line type="monotone" dataKey="속성발효TN" stroke="var(--color-success)" strokeWidth={2} />
+                                <Line type="monotone" dataKey="전통TN" stroke="#64748b" strokeDasharray="5 5" />
+                              </LineChart>
+                            </SafeResponsiveContainer>
+                          ) : <EmptyState message="연구 데이터 로딩 실패" />}
+                        </>
+                      )}
+                      {activeResearchTab === 'K07' && (
+                        <>
+                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>쌀코지 저염 어간장 발효 혁신</h4>
+                          {data.d_k07_kanari_koji ? (
+                            <SafeResponsiveContainer height={220}>
+                              <BarChart data={data.d_k07_kanari_koji}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                <XAxis dataKey="조건" stroke="#94a3b8" fontSize={10} />
+                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <Tooltip content={<CustomTooltip />} />
+                                <Legend />
+                                <Bar dataKey="아미노산" fill="#8b5cf6" />
+                                <Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} />
+                              </BarChart>
+                            </SafeResponsiveContainer>
+                          ) : <EmptyState message="연구 데이터 로딩 실패" />}
+                        </>
+                      )}
+                      {activeResearchTab === 'K08' && (
+                        <>
+                          <h4 style={{ color: '#e2e8f0', margin: '0 0 1rem 0' }}>오징어 효소 활용 쓴맛 제거 (디비터링)</h4>
+                          {data.d_k08_debit_sauce ? (
+                            <SafeResponsiveContainer height={220}>
+                              <BarChart data={data.d_k08_debit_sauce}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                <XAxis dataKey="처리단계" stroke="#94a3b8" fontSize={10} />
+                                <YAxis stroke="#94a3b8" fontSize={12} />
+                                <Tooltip content={<CustomTooltip />} />
+                                <Legend />
+                                <Bar dataKey="쓴맛강도" fill="var(--color-danger)" />
+                                <Line type="monotone" dataKey="감칠맛" stroke="var(--color-success)" />
+                              </BarChart>
+                            </SafeResponsiveContainer>
+                          ) : <EmptyState message="연구 데이터 로딩 실패" />}
+                        </>
+                      )}
+                      {!['K01', 'K05', 'K07', 'K08'].includes(activeResearchTab) && (
+                        <EmptyState message={`${activeResearchTab} 세부 데이터는 현재 연구소 보안 검토 중입니다.`} />
+                      )}
+                    </div>
+                  </div>
+                }
+                takeaway={{ situation: tk.situation, actionPlan: tk.actionPlan, source: 'KFAS 한국수산과학회지' }}
+              />
+            );
+          })()}
         </div>
       </div>
 
