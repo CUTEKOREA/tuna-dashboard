@@ -1324,60 +1324,33 @@ export default function WhelkDashboard() {
               </span>
             </div>
             {kfasWidgets.map((widget: any) => (
-              <div key={widget.id} className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(139,92,246,0.15)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                    <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <Dna style={{ color: '#8b5cf6', width: '20px', height: '20px' }} />
-                      {widget.title?.replace(/^🔬\s*/, '')}
-                    </h3>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <TelemetryBadge status="static" syncDate="KFAS 2024" />
-                      <span style={{ fontSize: '0.68rem', background: 'rgba(139,92,246,0.15)', color: '#a78bfa', padding: '2px 6px', borderRadius: '4px', fontWeight: 600 }}>
-                        신뢰도 {widget.reliability}%
-                      </span>
-                    </div>
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                    {widget.subtitle}
-                  </p>
-                </div>
-
-                {/* 차트 */}
-                {widget.data && widget.data.length > 0 && (
-                  <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                    <SafeResponsiveContainer height="100%">
-                      <BarChart data={widget.data} margin={{ top: 10 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                        <XAxis
-                          dataKey={widget.xKey}
-                          tick={{ fill: '#f8fafc', fontSize: 10 }}
-                          interval={0}
-                          angle={0} textAnchor="middle"
-                          height={55}
-                        />
-                        <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                        <RechartsTooltip content={<CustomTooltip />} />
-                        <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
-                        {widget.bars?.map((bar: any, bi: number) => (
-                          <Bar key={bi} dataKey={bar.key} name={bar.name?.slice(0, 15)} fill={bar.color} radius={[4, 4, 0, 0]} />
-                        ))}
-                      </BarChart>
-                    </SafeResponsiveContainer>
-                  </div>
-                )}
-
-                {/* SIT / TAK */}
-                <TakeawayBox
-                  situation={<span>{widget.sit?.slice(0, 300)}{widget.sit?.length > 300 ? '…' : ''}</span>}
-                  actionPlan={<span>{widget.strat?.slice(0, 300)}{widget.strat?.length > 300 ? '…' : ''}</span>}
-                />
-
-                {/* 출처 메타데이터 */}
-                <div style={{ fontSize: '0.68rem', color: '#64748b', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '0.5rem', lineHeight: 1.4 }}>
-                  📄 {widget.source}
-                </div>
-              </div>
+              <WidgetCard key={widget.id}
+                title={widget.title?.replace(/^🔬\s*/, '')}
+                icon={Dna} iconColor="#8b5cf6"
+                pillar={(widget.pillar || 'S5') as any}
+                cardDesc={widget.subtitle || '국립수산과학원 검증 학술 연구'}
+                telemetry={{ status: 'STATIC', syncDate: 'KFAS 2024' }}
+                chartHeight={300}
+                chart={
+                  widget.data && widget.data.length > 0 ? (
+                    <BarChart data={widget.data} margin={{ top: 10 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                      <XAxis dataKey={widget.xKey} tick={{ fill: '#f8fafc', fontSize: 10 }} interval={0} angle={0} textAnchor="middle" height={55} />
+                      <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                      <RechartsTooltip content={<CustomTooltip />} />
+                      <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                      {widget.bars?.map((bar: any, bi: number) => (
+                        <Bar key={bi} dataKey={bar.key} name={bar.name?.slice(0, 15)} fill={bar.color} radius={[4, 4, 0, 0]} />
+                      ))}
+                    </BarChart>
+                  ) : undefined
+                }
+                takeaway={{
+                  situation: <span>{widget.sit?.slice(0, 300)}{widget.sit?.length > 300 ? '…' : ''}</span>,
+                  actionPlan: <span>{widget.strat?.slice(0, 300)}{widget.strat?.length > 300 ? '…' : ''}</span>,
+                  source: widget.source || 'KFAS 한국수산과학회지',
+                }}
+              />
             ))}
           </>
         )}
