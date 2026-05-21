@@ -215,3 +215,8 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 ## 2026-05-21 18:00 KST (Antigravity)
 - **완료된 것**: Wave 1b Mackerel 3개 파일(MackerelSafetyPremium.tsx, MackerelAfricanExportROI.tsx, MackerelClimatePredictor.tsx) ADR-0005 (WidgetCard + import default) 마이그레이션 및 JSON 데이터 분리 추출 완료. check_s_grade.py S-Grade 검증 통과.
 - **다음 단계**: 나머지 Wave 1c 파일들 마이그레이션 이어서 진행.
+- Wave 1c (MackerelFilletPenetration, MackerelNorwaySpread, MackerelSizePremium) migrated to ADR-0005 and JSON extracted [OMO]
+
+## 2026-05-21 18:xx KST (OMO)
+- **완료된 것**: Wave 2 Mackerel 5개 소형 파일 (MackerelSankey, MackerelUnitPrice, MackerelSpreadWinners, MackerelTrioRadar, MackerelNorwayAlt) ADR-0005 WidgetCard 마이그레이션 완료. rawData 분리, subagent 없이 직접 수정, check_s_grade.py 통과. 
+- **다음 단계**: 남은 Mackerel 중대형 위젯 혹은 기타 commodity 파일 마이그레이션 진행.
