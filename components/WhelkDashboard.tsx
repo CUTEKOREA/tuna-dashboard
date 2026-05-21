@@ -392,116 +392,78 @@ export default function WhelkDashboard() {
                 source: 'DFO Canada / UK MMO (2024 1H)',
               }} />
             
-            {/* Widget 3: Korea Capture */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Activity style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 한국 연안 골뱅이 어획 생산량
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="static" syncDate="2024년 기준" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KOSIS</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  국내 연안에서 조업되는 골뱅이 생산량의 장기 추이를 확인하고, 내수용 통조림 원물 공급 가능성과 이중 무역 구조의 근본적 원인을 분석합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <AreaChart data={koreaCaptureData}>
-                    <defs>
-                      <linearGradient id="colorCapture" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[6000, 11000]} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Area type="monotone" dataKey="capture" name="한국 어획(톤)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCapture)" />
-                  </AreaChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KOSIS] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>}
-                actionPlan={<span>한국은 연안에서 연간 9,000톤 수준을 어획하는 글로벌 상위 생산국이나, 해당 원물은 프리미엄 단가를 쫓아 전량 <TermTooltip term="신선/냉장 활어" description="가공되지 않은 살아있는 상태로 주로 일본의 이자카야 및 고급 해산물 시장으로 직수출됨." /> 형태로 일본 시장에 직수출되고 있습니다. 반면, 국내 B2C 통조림 제조를 위한 대량의 가공 원물은 100% 수입산에 의존하는 기형적 '이중 가공무역' 구조에 갇혀 있습니다. 이러한 태생적 한계로 당사의 수익성은 글로벌 환율 및 해운 운임 변동성에 무방비로 노출되므로, 체질 개선을 위한 환헤지 및 통관 물류 효율화 투자가 필수불가결합니다.</span>}
-              />
-            </div>
-            {/* W21: MCRS 공급쇼크 시뮬레이션 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <AlertTriangle style={{ color: 'var(--color-danger)', width: '20px', height: '20px' }} /> 영국 MCRS 상향 시나리오별 공급쇼크 시뮬레이션
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="2026 시뮬레이션" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  영국 IFCA의 최소보존규격(MCRS) 상향 시나리오(50mm/55mm/60mm)별 어획량 감소 영향을 모델링합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <AreaChart data={mcrsScenarioData}>
-                    <defs>
-                      <linearGradient id="colorBaseline" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.4}/>
-                        <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis domain={[5000, 15000]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Area type="monotone" dataKey="baseline" name="현행 유지" stroke="var(--color-info)" fill="url(#colorBaseline)" />
-                    <Line type="monotone" dataKey="mcrs50" name="MCRS 50mm" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
-                    <Line type="monotone" dataKey="mcrs55" name="MCRS 55mm" stroke="var(--color-danger)" strokeWidth={2} />
-                    <Line type="monotone" dataKey="mcrs60" name="MCRS 60mm" stroke="#dc2626" strokeWidth={2} strokeDasharray="8 4" />
-                  </AreaChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[IFCA 시뮬레이션] 영국이 골뱅이 최소 크기 기준을 현행 45mm에서 55mm로 올리면, 어획 가능 물량이 최대 30% 이상 급감하여 글로벌 수급에 충격파를 일으킬 수 있습니다.</span>}
-                actionPlan={<span>MCRS 55mm 시나리오(가장 유력)에서 영국산 어획량이 2027년까지 현행 대비 26% 감소(14,091톤→9,800톤)할 것으로 예측됩니다. 이는 한국 수입 물량의 약 1,100톤 부족을 의미하며, 톤당 단가 15~20% 상승 압력이 불가피합니다. 조달 전략 파트는 MCRS 55mm 확정 시점(2026H2 예상) 이전에 현행 규격(45mm) 원물의 대량 선매입을 실행하고, 동시에 아이슬란드·아일랜드 대체 물량 확보를 병행해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="한국 연안 골뱅이 어획 생산량" icon={Activity} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="국내 어획량 장기 추이 — 신선 활어 전량 일본 직수출, 국내 가공용은 100% 수입"
+              telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }} chartHeight={300}
+              chart={
+                <AreaChart data={koreaCaptureData}>
+                  <defs>
+                    <linearGradient id="colorCapture" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="var(--color-success)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} domain={[6000, 11000]} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Area type="monotone" dataKey="capture" name="한국 어획(톤)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCapture)" />
+                </AreaChart>
+              }
+              takeaway={{
+                situation: <span>[KOSIS] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>,
+                actionPlan: <span>한국은 연안에서 연간 9,000톤 수준을 어획하는 글로벌 상위 생산국이나, 해당 원물은 프리미엄 단가를 쫓아 전량 <TermTooltip term="신선/냉장 활어" description="가공되지 않은 살아있는 상태로 주로 일본의 이자카야 및 고급 해산물 시장으로 직수출됨." /> 형태로 일본 시장에 직수출되고 있습니다. 반면, 국내 B2C 통조림 제조를 위한 대량의 가공 원물은 100% 수입산에 의존하는 기형적 '이중 가공무역' 구조에 갇혀 있습니다. 이러한 태생적 한계로 당사의 수익성은 글로벌 환율 및 해운 운임 변동성에 무방비로 노출되므로, 체질 개선을 위한 환헤지 및 통관 물류 효율화 투자가 필수불가결합니다.</span>,
+                source: 'KOSIS 어업생산 통계',
+              }} />
 
-            {/* W25: Post-UK 신규 어장 스코어카드 */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Navigation style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> Post-UK 시대 대비 신규 어장 스코어카드
-                  </h3>
-                  <TelemetryBadge status="static" syncDate="2026 분석" />
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  영국 의존도 탈피를 위한 대체 어장 후보를 수온 안정성, 어획 추세, FTA 혜택, 물류비 등 4축으로 종합 평가합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                    <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <YAxis dataKey="country" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={70} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                    <Bar dataKey="catchTrend" name="어획 추세" fill="var(--color-info)" stackId="a" />
-                    <Bar dataKey="ftaStatus" name="FTA 혜택" fill="var(--color-success)" stackId="b" />
-                    <Bar dataKey="logisticsCost" name="물류 효율" fill="var(--color-warning)" stackId="c" />
-                  </BarChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[FAOSTAT/ICES] 영국 다음으로 유력한 골뱅이 공급처는 아일랜드(종합 82점)와 아이슬란드(78점)이며, 캐나다(38점)는 사실상 탈락입니다.</span>}
-                actionPlan={<span>Post-UK 전략의 핵심은 아일랜드(종합 82점)입니다. 동일 B. undatum 종이며 EU FTA 관세 0% 혜택, 영국과 인접한 물류 인프라를 보유합니다. 차선책인 아이슬란드(78점)는 저수온(7.2°C)으로 장기 자원 안정성이 최고이나, 현재 FTA 미체결로 관세 부담이 존재합니다. 조달팀은 아일랜드 벤더 2~3곳과의 시범 거래를 26Q3에 착수하고, 아이슬란드와의 HS030781 관세 협상 가능성을 외교 채널로 탐색해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="영국 MCRS 상향 시나리오별 공급쇼크 시뮬레이션" icon={AlertTriangle} iconColor="var(--color-danger)" pillar="S1"
+              cardDesc="영국 IFCA 최소보존규격 50/55/60mm 시나리오별 어획량 영향"
+              telemetry={{ status: 'STATIC', syncDate: '2026 시뮬레이션' }} chartHeight={300}
+              chart={
+                <AreaChart data={mcrsScenarioData}>
+                  <defs>
+                    <linearGradient id="colorBaseline" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.4} />
+                      <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis domain={[5000, 15000]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Area type="monotone" dataKey="baseline" name="현행 유지" stroke="var(--color-info)" fill="url(#colorBaseline)" />
+                  <Line type="monotone" dataKey="mcrs50" name="MCRS 50mm" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
+                  <Line type="monotone" dataKey="mcrs55" name="MCRS 55mm" stroke="var(--color-danger)" strokeWidth={2} />
+                  <Line type="monotone" dataKey="mcrs60" name="MCRS 60mm" stroke="#dc2626" strokeWidth={2} strokeDasharray="8 4" />
+                </AreaChart>
+              }
+              takeaway={{
+                situation: <span>[IFCA 시뮬레이션] 영국이 골뱅이 최소 크기 기준을 현행 45mm에서 55mm로 올리면, 어획 가능 물량이 최대 30% 이상 급감하여 글로벌 수급에 충격파를 일으킬 수 있습니다.</span>,
+                actionPlan: <span>MCRS 55mm 시나리오(가장 유력)에서 영국산 어획량이 2027년까지 현행 대비 26% 감소(14,091톤→9,800톤)할 것으로 예측됩니다. 이는 한국 수입 물량의 약 1,100톤 부족을 의미하며, 톤당 단가 15~20% 상승 압력이 불가피합니다. 조달 전략 파트는 MCRS 55mm 확정 시점(2026H2 예상) 이전에 현행 규격(45mm) 원물의 대량 선매입을 실행하고, 동시에 아이슬란드·아일랜드 대체 물량 확보를 병행해야 합니다.</span>,
+                source: 'IFCA MCRS 시뮬레이션 (2026)',
+              }} />
+
+            <WidgetCard title="Post-UK 시대 대비 신규 어장 스코어카드" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="대체 어장 4축 평가 — 어획 추세·FTA 혜택·물류 효율"
+              telemetry={{ status: 'STATIC', syncDate: '2026 분석' }} chartHeight={300}
+              chart={
+                <BarChart data={postUkScorecardData} layout="vertical" margin={{ left: 30 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis dataKey="country" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={70} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="catchTrend" name="어획 추세" fill="var(--color-info)" stackId="a" />
+                  <Bar dataKey="ftaStatus" name="FTA 혜택" fill="var(--color-success)" stackId="b" />
+                  <Bar dataKey="logisticsCost" name="물류 효율" fill="var(--color-warning)" stackId="c" />
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[FAOSTAT/ICES] 영국 다음으로 유력한 골뱅이 공급처는 아일랜드(종합 82점)와 아이슬란드(78점)이며, 캐나다(38점)는 사실상 탈락입니다.</span>,
+                actionPlan: <span>Post-UK 전략의 핵심은 아일랜드(종합 82점)입니다. 동일 B. undatum 종이며 EU FTA 관세 0% 혜택, 영국과 인접한 물류 인프라를 보유합니다. 차선책인 아이슬란드(78점)는 저수온(7.2°C)으로 장기 자원 안정성이 최고이나, 현재 FTA 미체결로 관세 부담이 존재합니다. 조달팀은 아일랜드 벤더 2~3곳과의 시범 거래를 26Q3에 착수하고, 아이슬란드와의 HS030781 관세 협상 가능성을 외교 채널로 탐색해야 합니다.</span>,
+                source: 'FAOSTAT + ICES (2026 분석)',
+              }} />
           </>
 
         <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -509,74 +471,42 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 2. 가공 및 생산</h2>
   </div>
   <>
-            {/* Widget 4: Import Market Share */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <PieChart style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 국내 수입산 골뱅이 국가별 점유율
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="synced" syncDate="2026-05-15" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KCS 관세청</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  한국으로 수입되는 조제/보존 연체동물(HS160559) 중 영국 및 기타 국가의 점유율을 파악하여 특정 국가 의존 리스크를 진단합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <PieChart>
-                    <Pie data={importMarketShare} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
-                      {importMarketShare.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={IMPORT_COLORS[index % IMPORT_COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-                  </PieChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KCS] 수입 물량의 절반 이상을 영국과 아일랜드에 의존하고 있어, 해당 지역에 문제가 생기면 공급망 전체가 마비될 위험이 큽니다.</span>}
-                actionPlan={<span>영국산 원물 수입액이 $30.4M(30.46%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={PieChart} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="HS160559 국가별 수입 점유율 — 영국·아일랜드 65% 단일 해역 리스크"
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05-15' }} chartHeight={300}
+              chart={
+                <PieChart>
+                  <Pie data={importMarketShare} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
+                    {importMarketShare.map((entry, index) => (<Cell key={`cell-${index}`} fill={IMPORT_COLORS[index % IMPORT_COLORS.length]} />))}
+                  </Pie>
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                </PieChart>
+              }
+              takeaway={{
+                situation: <span>[KCS] 수입 물량의 절반 이상을 영국과 아일랜드에 의존하고 있어, 해당 지역에 문제가 생기면 공급망 전체가 마비될 위험이 큽니다.</span>,
+                actionPlan: <span>영국산 원물 수입액이 $30.4M(30.46%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>,
+                source: 'KCS 관세청 (2026-05-15)',
+              }} />
 
-            {/* Widget 5: Seasonality */}
-            <div className="ds-card" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Snowflake style={{ color: 'var(--color-info)', width: '20px', height: '20px' }} /> 영국산 원물 월별 수입 계절성
-                  </h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <TelemetryBadge status="synced" syncDate="2026-05-15" />
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: '#94a3b8', background: 'rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.2px' }}>출처: KCS 관세청</span>
-                  </div>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>
-                  과거 통관 데이터를 바탕으로 월별 수입 물량과 금액의 흐름을 분석하여, 성수기(여름철) 대비 원물 확보의 골든 타임과 물류비 상승 시점을 식별합니다.
-                </p>
-              </div>
-              <div style={{ height: '300px', width: '100%', position: 'relative' }}>
-                <SafeResponsiveContainer height="100%">
-                  <ComposedChart data={seasonalityData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
-                    <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
-                    <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-                    <RechartsTooltip content={<CustomTooltip />} />
-                    <Bar yAxisId="left" dataKey="importUSD" name="수입액($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
-                    <Line yAxisId="left" type="monotone" dataKey="volume" name="물량(톤)" stroke="var(--color-danger)" strokeWidth={2} />
-                  </ComposedChart>
-                </SafeResponsiveContainer>
-              </div>
-              <TakeawayBox
-                situation={<span>[KCS] 국내 골뱅이 소비는 여름철 비빔면과 야식 수요로 인해 5월~8월에 집중되며, 이때 수입 물량이 연간 물량의 절반을 넘습니다.</span>}
-                actionPlan={<span>여름철 성수기 집중 현상으로 인해 단월 최고치($5.7M)를 기록하는 8월 전후로는 글로벌 <TermTooltip term="Reefer" description="냉장/냉동 컨테이너(Refrigerated Container). 여름철 해상운송 단가 급등을 유발하는 주요 물류 변수." /> 해상운임 급등과 국내 항만 적체 현상이 빈번히 발생합니다. 이러한 'Peak Season Penalty' 비용 구조를 우회하기 위해 조달팀은 비수기인 3~4월에 전략적 조기 발주를 단행하고, 선제적인 부산항 배후 냉동창고 슬롯을 대규모로 저가 확보하여 공급망 병목 및 물류비 인상을 억제해야 합니다.</span>}
-              />
-            </div>
+            <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
+              cardDesc="월별 수입액·물량 추이 — 5~8월 성수기 집중, Reefer 운임 급등"
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05-15' }} chartHeight={300}
+              chart={
+                <ComposedChart data={seasonalityData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} angle={0} textAnchor="middle" height={60} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Bar yAxisId="left" dataKey="importUSD" name="수입액($M)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Line yAxisId="left" type="monotone" dataKey="volume" name="물량(톤)" stroke="var(--color-danger)" strokeWidth={2} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[KCS] 국내 골뱅이 소비는 여름철 비빔면과 야식 수요로 인해 5월~8월에 집중되며, 이때 수입 물량이 연간 물량의 절반을 넘습니다.</span>,
+                actionPlan: <span>여름철 성수기 집중 현상으로 인해 단월 최고치($5.7M)를 기록하는 8월 전후로는 글로벌 <TermTooltip term="Reefer" description="냉장/냉동 컨테이너(Refrigerated Container). 여름철 해상운송 단가 급등을 유발하는 주요 물류 변수." /> 해상운임 급등과 국내 항만 적체 현상이 빈번히 발생합니다. 이러한 'Peak Season Penalty' 비용 구조를 우회하기 위해 조달팀은 비수기인 3~4월에 전략적 조기 발주를 단행하고, 선제적인 부산항 배후 냉동창고 슬롯을 대규모로 저가 확보하여 공급망 병목 및 물류비 인상을 억제해야 합니다.</span>,
+                source: 'KCS 관세청 월별 통관 시계열',
+              }} />
           </>
 
             {/* W22: SG 밸류업 HMR 로드맵 */}
