@@ -49,6 +49,12 @@
 - PollockChinaDetour(1)·ValueDecoupling(1)·PremiumSpread(1)·KoreaCrisis(1)·LandedCost(2)·PriceForecast(2)·ProcessedWidgets(2)
 - 커밋: `784b9af`, `9269348` | 배포: `tuna-dashboard-eht6hey0s`
 
+### 비-Tuna 확장 Phase 2A.2 (Mackerel Wave 1a 미니 파일 3개)
+- MackerelStorageTurnover(1)·MackerelTRQMeter(1)·MackerelAltSourcingIndex(1)
+- 커밋: `[OMO]` 접미사 3개 커밋 (a048d9c 등)
+- ADR-0005 WidgetCard 적용 및 data/*.json import 패턴 적용 (SIT/TAK/차트 변경 X)
+- 컴파일러 에러 없는지 확인됨
+
 ### 다음 세션 우선순위 (비-Tuna 확장 잔여 ~343 카드)
 1. **Phase 2A.2~3 Pollock 잔여 14파일 ~70카드** (중·대형, 1.5~2h)
 2. **Phase 2B 중형 위젯 파일** (Chicken·Salmon·Cashew·Surimi·UsedCar 등 ~20파일 ~80카드)
