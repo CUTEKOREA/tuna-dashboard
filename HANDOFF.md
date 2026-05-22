@@ -8,6 +8,31 @@
 
 ---
 
+## 🆕 2026-05-21 Antigravity Phase 2A.2 — Pollock 100% closure
+
+### Wave 2 (Pollock 중형 2파일 완료)
+- `components/PollockProcessingMarginWidgets.tsx` (12개 위젯, 520→456줄) — S2 가공·생산 중심, pillar 배분: S1(2), S2(5), S3(3), S4(1), S5(1)
+- `components/PollockSalesValueWidgets.tsx` (10개 위젯, 410→379줄) — S4 판매·수요 전체
+- `WidgetCard` default import, `pillar`/`telemetry`/`cardDesc` 완비, `termTooltip` 보존 (원본에 있던 4개 위젯)
+- SIT/TAK/source/차트 데이터 원본 1글자 변경 없이 보존
+- 미사용 import 제거: `SafeResponsiveContainer`, `TakeawayBox`, `TermTooltip`, `styles`, `CardHeader` 로컬 컴포넌트
+- `npm run build` Pollock 에러 0건, `git diff --stat` 각 1개 파일만 변경 확인
+- 커밋: `72f6930` (Wave 2 #1), `c474d7e` (Wave 2 #2)
+
+### Wave 1 (Pollock 소형 4파일 완료)
+- `components/PollockPolicyRiskRadar.tsx`, `components/PollockSupplyResilience.tsx`, `components/PollockTradeWidgets.tsx`, `components/PollockValueAddWidgets.tsx` 마이그레이션 완료 (ADR-0005 적용).
+- `WidgetCard`로 100% 교체, `pillar` 식별 및 할당(S1/S2/S3), `telemetry`, `cardDesc` 등 요구사항 충족.
+- 모든 위젯별 데이터, 텍스트(TakeawayBox 포함)는 원본 1글자도 변경 없이 보존.
+
+### Pilot (Pollock)
+- `components/PollockPolicyFinanceWidgets.tsx` (3개 위젯) 마이그레이션 완료 (ADR-0005 적용).
+- `WidgetCard`로 교체, `pillar="S3"`, `telemetry`, `cardDesc` 등 요구사항 충족. 데이터와 텍스트는 원본 그대로 보존.
+- 커밋: `[OMO]` 접미사
+
+## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
+
+---
+
 ## 🆕 2026-05-22 — 단일파일 commodity 4종 마이그레이션 완료
 
 ### 진척 (omo/singles-codex on omo-codex worktree)
@@ -422,6 +447,8 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 | 2026-05-20 | AG | ui-fix/refactor/debug (Tuna S-Grade 3종 업그레이드 및 빌드 안정화) | 120 | — | TelemetryBadge/chart-standards 공통화, 3종 대시보드 한글화 및 tsc/build 100% 성공 검증 |
 | 2026-05-20 | AG | ui-fix/style (TunaSupplierHub S-Grade 표준화 완료) | 20 | — | OSH 위젯 패딩/TelemetryBadge/한글화 완성 및 빌드 성공 |
 | 2026-05-20 | AG | ui-fix/refactor (15개 참치 위젯 S-Grade UI/UX 전면 표준화 완료) | 90 | — | 모든 참치 위젯의 텔레메트리 배지 부착, 헤더 및 테이크어웨이 패딩 레이아웃 표준화, tsc/build 검증 성공 |
+| 2026-05-21 | AG | refactor (Phase 2A.2 Pilot: PollockPolicyFinanceWidgets ADR-0005 마이그레이션) | 15 | — | WidgetCard로 교체하여 SIT/TAK/차트 텍스트 무손실 보존 완료 |
+| 2026-05-21 | AG | refactor (Phase 2A.2 Wave 1: Pollock 4개 소형 파일 ADR-0005 마이그레이션) | 20 | — | WidgetCard로 교체 및 pillar, telemetry, cardDesc 완벽 할당 (원본 보존율 100%) |
 
 **작업 유형 카테고리** (단순화):
 - `bootstrap` — 인프라·문서·도구
