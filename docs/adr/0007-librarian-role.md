@@ -247,7 +247,18 @@ curl -X POST "$URL" \
 
 **현재 차단 사유**:
 - `gemini-3.x-pro-preview`: Vertex AI 미배포 (404), Direct API는 `free_tier_limit: 0` (paid 활성 필요)
-- `gemini-3.5-flash`: Vertex AI 미배포, Direct API는 작동 ✓
+- `gemini-3.5-flash`: Vertex AI 미배포, Direct API는 작동 (단 **free tier RPM/일별 한도 적용**)
+
+### 2026-05-22 실측: 3.5 Flash Direct free tier 한도
+
+122 파일 daily audit 실행 시 **18 파일만 정상**, 19번째부터 모두 429:
+```
+Quota exceeded for metric: ...free_tier_requests, limit: 0/250 per day
+```
+
+→ Free tier는 일일 ~250 request 또는 RPM 10 한도. 대량 batch에 부적합.
+→ paid tier (AI Studio billing 활성화) 후 안정 작동.
+→ 미활성 상태에선 Vertex AI 2.5 Pro로 fallback 필요.
 
 ### 모델별 endpoint 분기 (librarian_audit.sh 로직)
 
