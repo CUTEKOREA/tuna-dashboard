@@ -20,6 +20,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import PetFoodMap from './PetFoodMap';
 import TakeawayBox from './TakeawayBox';
 import EstimateBadge from './EstimateBadge';
+import WidgetCard from './WidgetCard';
 
 
 
@@ -143,9 +144,14 @@ export default function PetFoodDashboard() {
           <div className={styles.grid}>
 
             {/* NEW WIDGET 1 */}
-            <div className={styles.card}>
-              <CardHeader title="오징어(Illex) 어획 부진 및 원가 리스크 맵" icon={AlertCircle} term="조업 리스크" desc="최근 주차 어획량과 참깨/오징어 대체 단가 추이" />
-              <div className={styles.cardBody}>
+            <WidgetCard
+              title="오징어(Illex) 어획 부진 및 원가 리스크 맵"
+              icon={AlertCircle}
+              iconColor="var(--color-info)"
+              pillar="S1"
+              cardDesc={`조업 리스크 — 최근 주차 어획량과 참깨/오징어 대체 단가 추이`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={d_illex_risk} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -161,18 +167,19 @@ export default function PetFoodDashboard() {
                     </ComposedChart>
                   </SafeResponsiveContainer>
                 </div>
-                <TakeawayBox
-                  source="아르헨티나 INIDEP 주간 어획 리포트"
-                  situation="오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로 급락하며 단가가 폭등($4,200/t)하고 있습니다. 반면 식물성 대체 단백질인 참깨 단가는 안정적인 박스권을 유지 중입니다."
-                  actionPlan="매입원가 방어를 위해 오징어/참치 믹스에서 참깨 등 대체 단백질의 비율을 상향 조정하는 레시피 튜닝을 즉각 실시."
-                />
-              </div>
-            </div>
+              </>}
+              takeaway={{ situation: "오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로 급락하며 단가가 폭등($4,200/t)하고 있습니다. 반면 식물성 대체 단백질인 참깨 단가는 안정적인 박스권을 유지 중입니다.", actionPlan: "매입원가 방어를 위해 오징어/참치 믹스에서 참깨 등 대체 단백질의 비율을 상향 조정하는 레시피 튜닝을 즉각 실시.", source: "아르헨티나 INIDEP 주간 어획 리포트" }}
+            />
 
             {/* NEW WIDGET 2 */}
-            <div className={styles.card}>
-              <CardHeader title="식물성 믹스 원가 방어율 예측기" icon={Activity} term="What-If" desc="동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터" />
-              <div className={styles.cardBody}>
+            <WidgetCard
+              title="식물성 믹스 원가 방어율 예측기"
+              icon={Activity}
+              iconColor="var(--color-info)"
+              pillar="S2"
+              cardDesc={`What-If — 동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
                     <ComposedChart data={d_protein_mix} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -187,18 +194,19 @@ export default function PetFoodDashboard() {
                     </ComposedChart>
                   </SafeResponsiveContainer>
                 </div>
-                <TakeawayBox
-                  source="글로벌 어분 단가 및 식물성 단백질 데이터"
-                  situation="동물성 단백질(어분/오징어)의 단가 변동성이 극심한 가운데, 식물성(참깨 등) 단백질 믹스 비율을 30%로 상향할 경우 톤당 매입원가가 $2,600 수준으로 하락하며 마진이 27%까지 개선됩니다."
-                  actionPlan="식물성 믹스 비율을 높인 하이브리드 포뮬러를 신제품 라인업으로 기획하여 매입원가 충격을 완충(Buffer)하는 전략을 수립."
-                />
-              </div>
-            </div>
+              </>}
+              takeaway={{ situation: "동물성 단백질(어분/오징어)의 단가 변동성이 극심한 가운데, 식물성(참깨 등) 단백질 믹스 비율을 30%로 상향할 경우 톤당 매입원가가 $2,600 수준으로 하락하며 마진이 27%까지 개선됩니다.", actionPlan: "식물성 믹스 비율을 높인 하이브리드 포뮬러를 신제품 라인업으로 기획하여 매입원가 충격을 완충(Buffer)하는 전략을 수립.", source: "글로벌 어분 단가 및 식물성 단백질 데이터" }}
+            />
 
             {/* W33: Clean Label Risk */}
-            <div className={styles.card}>
-              <CardHeader title="클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API" icon={ShieldCheck} term="Carrageenan" desc="카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력" />
-              <div className={styles.cardBody}>
+            <WidgetCard
+              title="클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API"
+              icon={ShieldCheck}
+              iconColor="var(--color-info)"
+              pillar="S5"
+              cardDesc={`Carrageenan — 카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력`}
+              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={d_w33} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
@@ -212,17 +220,18 @@ export default function PetFoodDashboard() {
                     </BarChart>
                   </SafeResponsiveContainer>
                 </div>
-                <TakeawayBox
-                  source="NotebookLM 펫푸드 포렌식 리서치 (1339bce3-e447-40f5-a5f3-51451ffe2128)"
-                  situation="해조류 추출물인 카라기난은 펫푸드 핵심 겔화제이나, 소비자 네거티브 캠페인 확산 및 기후 변화(갯병 발생)로 인한 심각한 공급망 리스크에 노출되어 프리미엄 브랜드에서 전면 퇴출되고 있습니다."
-                  actionPlan="단기적으로 제품 포뮬러를 한천(Agar)이나 펙틴(Pectin) 등 '클린 라벨(Clean Label)' 규격으로 즉각 리뉴얼하고, 무첨가(Free-from) 마케팅을 전개하여 소비자 불신을 해소하고 가격 방어력을 2.5배 이상 견인해야 합니다."
-                />
-              </div>
-            </div>
+              </>}
+              takeaway={{ situation: "해조류 추출물인 카라기난은 펫푸드 핵심 겔화제이나, 소비자 네거티브 캠페인 확산 및 기후 변화(갯병 발생)로 인한 심각한 공급망 리스크에 노출되어 프리미엄 브랜드에서 전면 퇴출되고 있습니다.", actionPlan: "단기적으로 제품 포뮬러를 한천(Agar)이나 펙틴(Pectin) 등 '클린 라벨(Clean Label)' 규격으로 즉각 리뉴얼하고, 무첨가(Free-from) 마케팅을 전개하여 소비자 불신을 해소하고 가격 방어력을 2.5배 이상 견인해야 합니다.", source: "NotebookLM 펫푸드 포렌식 리서치 (1339bce3-e447-40f5-a5f3-51451ffe2128)" }}
+            />
             {/* W10 */}
-            <div className={styles.card}>
-            <CardHeader title="한국 펫푸드 무역수지 추이 (달러)" icon={ArrowRightLeft} term="무역적자" desc="수출이 연 25.2% 급성장했으나 여전히 수입의 2.3배가 적자." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="한국 펫푸드 무역수지 추이 (달러)"
+              icon={ArrowRightLeft}
+              iconColor="var(--color-info)"
+              pillar="S3"
+              cardDesc={`무역적자 — 수출이 연 25.2% 급성장했으나 여전히 수입의 2.3배가 적자.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w10} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -237,17 +246,18 @@ export default function PetFoodDashboard() {
             </ComposedChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="[이슈플러스]2025 펫푸드 수출 현황과 전망, South Korea Pet Food Report, 수산분야 펫푸드 산업 활성화 방안"
-            situation="한국 펫푸드 시장은 급성장 중이나 2023년 기준 수입액(3억 750만 달러)이 수출액(1억 4,975만 달러)을 2배 이상 초과하며 1억 5,775만 달러의 무역적자를 시현 중입니다. 수출 단가($1.84~$2.82/kg)가 수입 단가($2.38~$3.32/kg)를 밑돌며 중저가 제조의 함정에 빠져 있음을 보여줍니다."
-            actionPlan="국내 점유율 70%인 고가 수입 브랜드를 대체할 '하이엔드 프리미엄(기능성/처방식)' 라인업을 즉각 구축해 마진 스프레드를 방어해야 합니다. 더불어 일본, 대만 등 소비 대국으로 수출 전선을 고도화해 ASP(평균판매단가)를 글로벌 수준으로 견인해야 합니다."
+              </>}
+              takeaway={{ situation: "한국 펫푸드 시장은 급성장 중이나 2023년 기준 수입액(3억 750만 달러)이 수출액(1억 4,975만 달러)을 2배 이상 초과하며 1억 5,775만 달러의 무역적자를 시현 중입니다. 수출 단가($1.84~$2.82/kg)가 수입 단가($2.38~$3.32/kg)를 밑돌며 중저가 제조의 함정에 빠져 있음을 보여줍니다.", actionPlan: "국내 점유율 70%인 고가 수입 브랜드를 대체할 '하이엔드 프리미엄(기능성/처방식)' 라인업을 즉각 구축해 마진 스프레드를 방어해야 합니다. 더불어 일본, 대만 등 소비 대국으로 수출 전선을 고도화해 ASP(평균판매단가)를 글로벌 수준으로 견인해야 합니다.", source: "[이슈플러스]2025 펫푸드 수출 현황과 전망, South Korea Pet Food Report, 수산분야 펫푸드 산업 활성화 방안" }}
             />
-            </div>
-            </div>
             {/* W15 */}
-            <div className={styles.card}>
-            <CardHeader title="수출 단가 국가별 격차 ($/kg)" icon={DollarSign} term="Price Gap" desc="동일 시장에서 미국산이 태국산 대비 3~7배 고가." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="수출 단가 국가별 격차 ($/kg)"
+              icon={DollarSign}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`Price Gap — 동일 시장에서 미국산이 태국산 대비 3~7배 고가.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w15} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -261,17 +271,18 @@ export default function PetFoodDashboard() {
             </BarChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="Hong Kong Pet Food Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성 및 실행 전략 보고서"
-            situation="글로벌 소비 시장에서 미국산 펫푸드는 $5.15/kg, 태국산은 $3.77/kg의 프리미엄 가격대를 형성하고 있습니다. 미국은 영양 과학으로, 태국은 수산 가공 인프라로 시장을 탈환 중이나 한국산은 여전히 저가 '가성비' 함정에 갇혀 펀더멘털 한계를 노출합니다."
-            actionPlan="신규 CAPEX를 억제하고 세계 최고 수준의 태국 톱티어 OEM 인프라를 레버리지한 크로스보더(Cross-border) 아비트리지 전략으로 제조 마진을 극대화해야 합니다. 글로벌 영양 기준을 충족하는 임상 기반 처방식 브랜드를 론칭해 수입산 대비 대등한 단가 멀티플(Multiple) 리레이팅 달성이 필수입니다."
+              </>}
+              takeaway={{ situation: "글로벌 소비 시장에서 미국산 펫푸드는 $5.15/kg, 태국산은 $3.77/kg의 프리미엄 가격대를 형성하고 있습니다. 미국은 영양 과학으로, 태국은 수산 가공 인프라로 시장을 탈환 중이나 한국산은 여전히 저가 '가성비' 함정에 갇혀 펀더멘털 한계를 노출합니다.", actionPlan: "신규 CAPEX를 억제하고 세계 최고 수준의 태국 톱티어 OEM 인프라를 레버리지한 크로스보더(Cross-border) 아비트리지 전략으로 제조 마진을 극대화해야 합니다. 글로벌 영양 기준을 충족하는 임상 기반 처방식 브랜드를 론칭해 수입산 대비 대등한 단가 멀티플(Multiple) 리레이팅 달성이 필수입니다.", source: "Hong Kong Pet Food Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성 및 실행 전략 보고서" }}
             />
-            </div>
-            </div>
             {/* W17 */}
-            <div className={styles.card}>
-            <CardHeader title="펫푸드 내 원자재 구성비 해부 (%)" icon={PieChartIcon} term="수산물 1.8%" desc="한국 판매 펫푸드 내 수산물 비중이 단 1.8%." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="펫푸드 내 원자재 구성비 해부 (%)"
+              icon={PieChartIcon}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`수산물 1.8% — 한국 판매 펫푸드 내 수산물 비중이 단 1.8%.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <PieChart>
@@ -282,17 +293,18 @@ export default function PetFoodDashboard() {
             </PieChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="(기본2017-05)반려동물산업 성장에 따른수산분야 펫푸드 산업 활성화 방안, Comprehensive Review of Alternative Proteins"
-            situation="전통 원재료가 육류와 곡물에 편중되어 알러지 및 환경 이슈가 급증하는 반면, 소비자의 80.7%가 수산물 펫푸드 급여 의향을 보입니다. 현재 해양 단백질 비중은 1.8%에 불과하여 저알러지성과 영양 이점을 지닌 폭발적 성장이 예견되는 최적의 블루오션입니다."
-            actionPlan="참치 해양 단백질 소싱 역량을 보유한 원양 기업과의 수직계열화(Vertical Integration)로 변동성 제로의 매입원가 통제력(Cost Control)을 선점해야 합니다. 100% 해양 단일 단백질(Single Protein) 프리미엄 라인을 적각 출시하여 하이엔드 틈새 시장의 초과 마진을 독식."
+              </>}
+              takeaway={{ situation: "전통 원재료가 육류와 곡물에 편중되어 알러지 및 환경 이슈가 급증하는 반면, 소비자의 80.7%가 수산물 펫푸드 급여 의향을 보입니다. 현재 해양 단백질 비중은 1.8%에 불과하여 저알러지성과 영양 이점을 지닌 폭발적 성장이 예견되는 최적의 블루오션입니다.", actionPlan: "참치 해양 단백질 소싱 역량을 보유한 원양 기업과의 수직계열화(Vertical Integration)로 변동성 제로의 매입원가 통제력(Cost Control)을 선점해야 합니다. 100% 해양 단일 단백질(Single Protein) 프리미엄 라인을 적각 출시하여 하이엔드 틈새 시장의 초과 마진을 독식.", source: "(기본2017-05)반려동물산업 성장에 따른수산분야 펫푸드 산업 활성화 방안, Comprehensive Review of Alternative Proteins" }}
             />
-            </div>
-            </div>
             {/* W19 */}
-            <div className={styles.card}>
-            <CardHeader title="글로벌 참치 펫푸드 밸류업 마진 비교 (%)" icon={Recycle} term="Empirical Data" desc="태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="글로벌 참치 펫푸드 밸류업 마진 비교 (%)"
+              icon={Recycle}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`Empirical Data — 태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w19} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -306,17 +318,18 @@ export default function PetFoodDashboard() {
             </BarChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="I-TAIL CORPORATION ITC TB, 신라교역 펫푸드 유통 신사업 계획서"
-            situation="글로벌 톱 OEM인 태국 ITC는 휴먼그레이드 참치 원육 기반 프리미엄 라인을 통해 23.1%의 GPM과 18.7%의 순Bottom-line(순이익)률을 달성 중입니다. 횟감용 백육과 펫푸드용 적육을 분리 활용하는 'Full Utilization' 전략은 매입원가율을 극한으로 통제하며 폭발적 마진 수직 상승을 견인합니다."
-            actionPlan="자사가 확보한 프리미엄 참치 원물을 태국 최상위 OEM에 사급 형태로 독점 공급하는 '자원 교환형 파트너십'으로 임가공 마진을 극대화해야 합니다. 더불어 고마진 참치 기능성 보조치료식을 앞세워 브랜드 충성도가 높은 '동물병원' 채널을 독점하여 캐시플로우 질을 개선."
+              </>}
+              takeaway={{ situation: "글로벌 톱 OEM인 태국 ITC는 휴먼그레이드 참치 원육 기반 프리미엄 라인을 통해 23.1%의 GPM과 18.7%의 순Bottom-line(순이익)률을 달성 중입니다. 횟감용 백육과 펫푸드용 적육을 분리 활용하는 'Full Utilization' 전략은 매입원가율을 극한으로 통제하며 폭발적 마진 수직 상승을 견인합니다.", actionPlan: "자사가 확보한 프리미엄 참치 원물을 태국 최상위 OEM에 사급 형태로 독점 공급하는 '자원 교환형 파트너십'으로 임가공 마진을 극대화해야 합니다. 더불어 고마진 참치 기능성 보조치료식을 앞세워 브랜드 충성도가 높은 '동물병원' 채널을 독점하여 캐시플로우 질을 개선.", source: "I-TAIL CORPORATION ITC TB, 신라교역 펫푸드 유통 신사업 계획서" }}
             />
-            </div>
-            </div>
             {/* W24 */}
-            <div className={styles.card}>
-            <CardHeader title="단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API" icon={Scale} term="어분 최저" desc="어분 $0.45~0.50/kg으로 최저 동물성 단백질원." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API"
+              icon={Scale}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`어분 최저 — 어분 $0.45~0.50/kg으로 최저 동물성 단백질원.`}
+              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w24} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
@@ -330,17 +343,18 @@ export default function PetFoodDashboard() {
             </BarChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="Sustainability in the Pet Food Industry, Insects as Feed for Companion and Exotic Pets, 신라교역 신사업 계획서"
-            situation="해양 단백질원인 어분(Fish Meal)은 $0.45~$0.50/kg로 소고기($1.5~$2.5)나 대체 배양육($4.4~$5.5) 대비 최대 10배 저렴한 절대적 매입원가 우위를 지닙니다. 높은 소화율과 천연 오메가-3 등 영양 우위까지 입증되어 가공 단가 폭등의 한계를 돌파할 유일한 솔루션입니다."
-            actionPlan="매입원가 리더십을 갖춘 어분 기반 건식 사료를 캐시카우로 배치해 대체 단백질이 진입 불가한 '매스 프리미엄' Bottom-line(순이익)을 선점해야 합니다. 원양 조업 이력 추적 시스템과 MSC 인증을 클린 라벨(Clean Label)과 연계하여 시장에 가치 차별화를 명확히 각인시켜야 합니다."
+              </>}
+              takeaway={{ situation: "해양 단백질원인 어분(Fish Meal)은 $0.45~$0.50/kg로 소고기($1.5~$2.5)나 대체 배양육($4.4~$5.5) 대비 최대 10배 저렴한 절대적 매입원가 우위를 지닙니다. 높은 소화율과 천연 오메가-3 등 영양 우위까지 입증되어 가공 단가 폭등의 한계를 돌파할 유일한 솔루션입니다.", actionPlan: "매입원가 리더십을 갖춘 어분 기반 건식 사료를 캐시카우로 배치해 대체 단백질이 진입 불가한 '매스 프리미엄' Bottom-line(순이익)을 선점해야 합니다. 원양 조업 이력 추적 시스템과 MSC 인증을 클린 라벨(Clean Label)과 연계하여 시장에 가치 차별화를 명확히 각인시켜야 합니다.", source: "Sustainability in the Pet Food Industry, Insects as Feed for Companion and Exotic Pets, 신라교역 신사업 계획서" }}
             />
-            </div>
-            </div>
             {/* W28 */}
-            <div className={styles.card}>
-            <CardHeader title="대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API" icon={Leaf} term="CAGR 8.7%" desc="대체 단백질 펫푸드 시장 2027년 39억$ 전망." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API"
+              icon={Leaf}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`CAGR 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망.`}
+              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              customBody={<>
             <div className={styles.kpiRow}>
             <KpiCard label="CAGR" value="8.7" unit="%" />
             <KpiCard label="2027(E)" value="39" unit="억$" />
@@ -358,16 +372,17 @@ export default function PetFoodDashboard() {
             </AreaChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds, Alternative Proteins Review"
-            situation="버려지던 수산 부산물을 업사이클링(Up-cycling)하는 '블루푸드테크'가 대체 단백질 내 최고 고수익 모델로 부상했습니다. 참치 가공 잔여물을 효소 분해하여 항산화 생리활성 펩타이드로 추출하는 기술은 매입원가 '0'의 폐기물을 톤당 수천 달러의 초고부가가치 영양제(Nutraceuticals)로 탈바꿈시킵니다."
-            actionPlan="수명 연장으로 팽창 중인 시니어 펫 시장 타겟의 해양 기반 가수분해 펩타이드 특화 영양제 파이프라인을 선제 전개해야 합니다. 'Zero-Waste' ESG 스토리를 내재화하여 PE 엑시트(Exit) 시점에 대형 SI 투자자들로부터 멀티플(Multiple) 프리미엄을 확보하는 마스터플랜을 가동."
+              </>}
+              takeaway={{ situation: "버려지던 수산 부산물을 업사이클링(Up-cycling)하는 '블루푸드테크'가 대체 단백질 내 최고 고수익 모델로 부상했습니다. 참치 가공 잔여물을 효소 분해하여 항산화 생리활성 펩타이드로 추출하는 기술은 매입원가 '0'의 폐기물을 톤당 수천 달러의 초고부가가치 영양제(Nutraceuticals)로 탈바꿈시킵니다.", actionPlan: "수명 연장으로 팽창 중인 시니어 펫 시장 타겟의 해양 기반 가수분해 펩타이드 특화 영양제 파이프라인을 선제 전개해야 합니다. 'Zero-Waste' ESG 스토리를 내재화하여 PE 엑시트(Exit) 시점에 대형 SI 투자자들로부터 멀티플(Multiple) 프리미엄을 확보하는 마스터플랜을 가동.", source: "Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds, Alternative Proteins Review" }}
             />
-            </div>
-            </div>
-          <div className={styles.card}>
-                <CardHeader title={d_kfas_w05.title} icon={Activity} term="EPA+DHA 620" desc="줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고" />
-                <div className={styles.cardBody}>
+          <WidgetCard
+            title={d_kfas_w05.title}
+            icon={Activity}
+            iconColor="var(--color-info)"
+            pillar="S4"
+            cardDesc={`EPA+DHA 620 — 줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고`}
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+            customBody={<>
                   <div className={styles.chartContainer}>
                     <SafeResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={d_kfas_w05.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -382,16 +397,17 @@ export default function PetFoodDashboard() {
                       </ComposedChart>
                     </SafeResponsiveContainer>
                   </div>
-                  <TakeawayBox
-                    source={d_kfas_w05.source}
-                    situation={d_kfas_w05.sit}
-                    actionPlan={d_kfas_w05.strat}
-                  />
-                </div>
-              </div>
-<div className={styles.card}>
-              <CardHeader title="RFMO 쿼터 축소 → 원물 공급 리스크" icon={Ban} term="FAD -4%/년" desc="FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피." />
-              <div className={styles.cardBody}>
+            </>}
+            takeaway={{ situation: d_kfas_w05.sit, actionPlan: d_kfas_w05.strat, source: d_kfas_w05.source }}
+          />
+<WidgetCard
+  title="RFMO 쿼터 축소 → 원물 공급 리스크"
+  icon={Ban}
+  iconColor="var(--color-info)"
+  pillar="S1"
+  cardDesc={`FAD -4%/년 — FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피.`}
+  telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+  customBody={<>
                 <div className={styles.kpiRow}>
                   <KpiCard label="2025 TAC" value="73,011" unit="톤" />
                   <KpiCard label="FAD 제한" value="288" unit="개/선박" />
@@ -412,16 +428,17 @@ export default function PetFoodDashboard() {
                     </ComposedChart>
                   </SafeResponsiveContainer>
                 </div>
-                <TakeawayBox
-                  source="ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01"
-                  situation="ICCAT은 FAD 제한을 2025년 300개 → 2026~27년 288개로 연 4% 축소 중이며, IOTC는 황다랑어를 2027년까지 2017년 대비 20% 감축 의무화했습니다. TAC 증가 대비 FAD 축소의 비대칭 구조는 선단별 어획 효율 하락과 원물 단가 상승을 불가피하게 합니다."
-                  actionPlan="쿼터 축소에 면역인 '부산물 기반 펫푸드 원료'로 포트폴리오를 전환하는 것이 유일한 구조적 헷지입니다. 목적어종 쿼터가 줄수록 부산물의 상대적 가치는 역설적으로 상승하므로, 가공 잔여물 독점 계약을 선제적으로 체결."
-                />
-              </div>
-            </div>
-<div className={styles.card}>
-              <CardHeader title="기후변화 → 참치 서식지 이동 전망 (2050/2100)" icon={Thermometer} term="-15~30%" desc="중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망." />
-              <div className={styles.cardBody}>
+  </>}
+  takeaway={{ situation: "ICCAT은 FAD 제한을 2025년 300개 → 2026~27년 288개로 연 4% 축소 중이며, IOTC는 황다랑어를 2027년까지 2017년 대비 20% 감축 의무화했습니다. TAC 증가 대비 FAD 축소의 비대칭 구조는 선단별 어획 효율 하락과 원물 단가 상승을 불가피하게 합니다.", actionPlan: "쿼터 축소에 면역인 '부산물 기반 펫푸드 원료'로 포트폴리오를 전환하는 것이 유일한 구조적 헷지입니다. 목적어종 쿼터가 줄수록 부산물의 상대적 가치는 역설적으로 상승하므로, 가공 잔여물 독점 계약을 선제적으로 체결.", source: "ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01" }}
+/>
+<WidgetCard
+  title="기후변화 → 참치 서식지 이동 전망 (2050/2100)"
+  icon={Thermometer}
+  iconColor="var(--color-info)"
+  pillar="S1"
+  cardDesc={`-15~30% — 중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망.`}
+  telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+  customBody={<>
                 <div className={styles.kpiRow}>
                   <KpiCard label="500kg 한계수온" value="20" unit="°C" />
                   <KpiCard label="1톤급 한계수온" value="17" unit="°C" />
@@ -440,22 +457,23 @@ export default function PetFoodDashboard() {
                     </BarChart>
                   </SafeResponsiveContainer>
                 </div>
-                <TakeawayBox
-                  source="Block et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)"
-                  situation="기후변화로 참치 서식지가 극쪽으로 이동하며, 현재 주요 조업 해역(중앙 북태평양)의 바이오매스가 2100년까지 22% 감소할 전망입니다. 대형 중온어(1톤급)는 수온 17°C에서 과열 리스크에 직면하여 개체 수 하락이 예상됩니다. 반면 동태평양과 지중해는 바이오매스가 증가합니다."
-                  actionPlan="조업 해역 이동은 물류 비용 증가로 직결되므로, 원물 직접 조달 비용이 구조적으로 상승합니다. 이는 '부산물 업사이클링(Up-cycling)' 전략의 경제적 정당성을 더욱 강화하며, 기후 리스크에 면역인 가공 잔여물 기반 원료 확보가 필수입니다."
-                />
-              </div>
-            </div>
+  </>}
+  takeaway={{ situation: "기후변화로 참치 서식지가 극쪽으로 이동하며, 현재 주요 조업 해역(중앙 북태평양)의 바이오매스가 2100년까지 22% 감소할 전망입니다. 대형 중온어(1톤급)는 수온 17°C에서 과열 리스크에 직면하여 개체 수 하락이 예상됩니다. 반면 동태평양과 지중해는 바이오매스가 증가합니다.", actionPlan: "조업 해역 이동은 물류 비용 증가로 직결되므로, 원물 직접 조달 비용이 구조적으로 상승합니다. 이는 '부산물 업사이클링(Up-cycling)' 전략의 경제적 정당성을 더욱 강화하며, 기후 리스크에 면역인 가공 잔여물 기반 원료 확보가 필수입니다.", source: "Block et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)" }}
+/>
 </div>
         </div>
         <div style={{ marginBottom: '3rem' }}>
 
           <div className={styles.grid}>
             {/* W34: Tilapia Skin Upcycling */}
-            <div className={styles.card}>
-              <CardHeader title="틸라피아 껍질 업사이클링 수익성 🟢 Live API" icon={Recycle} term="Single-ingredient" desc="단일 원료(Single-ingredient) 반려견 간식 부가가치" />
-              <div className={styles.cardBody}>
+            <WidgetCard
+              title="틸라피아 껍질 업사이클링 수익성 🟢 Live API"
+              icon={Recycle}
+              iconColor="var(--color-info)"
+              pillar="S2"
+              cardDesc={`Single-ingredient — 단일 원료(Single-ingredient) 반려견 간식 부가가치`}
+              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={d_w34} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -469,17 +487,18 @@ export default function PetFoodDashboard() {
                     </BarChart>
                   </SafeResponsiveContainer>
                 </div>
-                <TakeawayBox
-                  source="NotebookLM 펫푸드 포렌식 리서치 (1339bce3-e447-40f5-a5f3-51451ffe2128)"
-                  situation="과거 어분(Fishmeal)으로 소진되거나 80%가 폐기되던 틸라피아 생선 껍질이, 현재는 풍부한 오메가-3와 치아 관리 기능을 내세운 '단일 원료(Single-ingredient) 프리미엄 수제 간식'으로 부상했습니다."
-                  actionPlan="저마진 사료용 가공 라인을 프리미엄 단일 원료 간식 제조 라인업으로 전환하는 '폐기물 제로(Zero-Waste) 업사이클링(Up-cycling)' 전략을 투입하여 기존 폐기 비용을 초고부가가치(GPM 65%) 수익 센터로 역전시켜야 합니다."
-                />
-              </div>
-            </div>
+              </>}
+              takeaway={{ situation: "과거 어분(Fishmeal)으로 소진되거나 80%가 폐기되던 틸라피아 생선 껍질이, 현재는 풍부한 오메가-3와 치아 관리 기능을 내세운 '단일 원료(Single-ingredient) 프리미엄 수제 간식'으로 부상했습니다.", actionPlan: "저마진 사료용 가공 라인을 프리미엄 단일 원료 간식 제조 라인업으로 전환하는 '폐기물 제로(Zero-Waste) 업사이클링(Up-cycling)' 전략을 투입하여 기존 폐기 비용을 초고부가가치(GPM 65%) 수익 센터로 역전시켜야 합니다.", source: "NotebookLM 펫푸드 포렌식 리서치 (1339bce3-e447-40f5-a5f3-51451ffe2128)" }}
+            />
             {/* W09 */}
-            <div className={styles.card}>
-            <CardHeader title="주요 기업 매출 및 이익률 비교 (억 원)" icon={Scale} term="Scoreboard" desc="로얄캐닌 2,093억 원으로 1위." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="주요 기업 매출 및 이익률 비교 (억 원)"
+              icon={Scale}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`Scoreboard — 로얄캐닌 2,093억 원으로 1위.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w09} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
@@ -493,17 +512,18 @@ export default function PetFoodDashboard() {
             </ComposedChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="[The Numbers] 하림펫푸드 매출 500억 돌파, 대한민국 반려동물 사료 시장 진화 전략"
-            situation="국내 펫푸드 시장은 초저가 가성비와 하이엔드 프리미엄으로 완벽히 양극화되었습니다. 1위 로얄캐닌코리아는 정밀 영양을 앞세워 12.6%의 고수익을 낸 반면, 매스(Mass) 위주의 토종 선두는 1,076억 매출에도 적자에 직면했습니다. 반대로 '휴먼그레이드' 하림펫푸드와 ODM 1위 오에스피는 Bottom-line(순이익)률 반등에 성공했습니다."
-            actionPlan="PEF 투자 시 '규모의 경제'보다 '프리미엄 세그먼트 침투력'에 멀티플(Multiple)을 부여해야 합니다. 어중간한 포트폴리오를 폐기하고, 합성보존료 무첨가 등으로 고마진(MSRP Premium)을 정당화하는 브랜드를 타겟팅하거나 B2C와 ODM을 수직 통합하는 롤업(Roll-up) 전략을 가동."
+              </>}
+              takeaway={{ situation: "국내 펫푸드 시장은 초저가 가성비와 하이엔드 프리미엄으로 완벽히 양극화되었습니다. 1위 로얄캐닌코리아는 정밀 영양을 앞세워 12.6%의 고수익을 낸 반면, 매스(Mass) 위주의 토종 선두는 1,076억 매출에도 적자에 직면했습니다. 반대로 '휴먼그레이드' 하림펫푸드와 ODM 1위 오에스피는 Bottom-line(순이익)률 반등에 성공했습니다.", actionPlan: "PEF 투자 시 '규모의 경제'보다 '프리미엄 세그먼트 침투력'에 멀티플(Multiple)을 부여해야 합니다. 어중간한 포트폴리오를 폐기하고, 합성보존료 무첨가 등으로 고마진(MSRP Premium)을 정당화하는 브랜드를 타겟팅하거나 B2C와 ODM을 수직 통합하는 롤업(Roll-up) 전략을 가동.", source: "[The Numbers] 하림펫푸드 매출 500억 돌파, 대한민국 반려동물 사료 시장 진화 전략" }}
             />
-            </div>
-            </div>
             {/* W16 */}
-            <div className={styles.card}>
-            <CardHeader title="펫푸드 원자재 및 환율 민감도 분석 (%)" icon={Activity} term="Sensitivity" desc="참치 +10% → 순이익 -8.5%. 환율 1바트 절상 → -10%." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="펫푸드 원자재 및 환율 민감도 분석 (%)"
+              icon={Activity}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`Sensitivity — 참치 +10% → 순이익 -8.5%. 환율 1바트 절상 → -10%.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w16} layout="vertical" margin={{ top: 10, right: 30, left: 30, bottom: 5 }}>
@@ -517,17 +537,18 @@ export default function PetFoodDashboard() {
             </BarChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="I-TAIL CORPORATION ITC TB (Finansia, Globlex Securities Analyst Reports)"
-            situation="수산 펫푸드는 매입원가와 환율에 치명적인 민감도를 지닙니다. 글로벌 톱 타이유니온 i-Tail(ITC)은 원재료의 50%가 참치이며, 참치 매입원가 10% 상승 시 순Bottom-line(순이익)이 8.5% 증발합니다. 수출 비중이 93.6%로 태국 바트 1바트 절상 시 순Bottom-line(순이익) 10%가 깎이는 환율 충격에도 노출되어 있습니다."
-            actionPlan="수산 기업 펫푸드 밸류업 핵심은 '매입원가 통제권(Cost Control)'의 내재화입니다. 외부 원물 변동 리스크를 계열사 내에서 흡수하는 수직 통합을 추진하고, 매입원가 상승을 고객사에 전가할 Cost-plus Pricing 계약 및 외환 헷징을 구축해야 살아남습니다."
+              </>}
+              takeaway={{ situation: "수산 펫푸드는 매입원가와 환율에 치명적인 민감도를 지닙니다. 글로벌 톱 타이유니온 i-Tail(ITC)은 원재료의 50%가 참치이며, 참치 매입원가 10% 상승 시 순Bottom-line(순이익)이 8.5% 증발합니다. 수출 비중이 93.6%로 태국 바트 1바트 절상 시 순Bottom-line(순이익) 10%가 깎이는 환율 충격에도 노출되어 있습니다.", actionPlan: "수산 기업 펫푸드 밸류업 핵심은 '매입원가 통제권(Cost Control)'의 내재화입니다. 외부 원물 변동 리스크를 계열사 내에서 흡수하는 수직 통합을 추진하고, 매입원가 상승을 고객사에 전가할 Cost-plus Pricing 계약 및 외환 헷징을 구축해야 살아남습니다.", source: "I-TAIL CORPORATION ITC TB (Finansia, Globlex Securities Analyst Reports)" }}
             />
-            </div>
-            </div>
             {/* W20 */}
-            <div className={styles.card}>
-            <CardHeader title="i-Tail 글로벌 ODM 매출 및 이익률 구조 (%)" icon={Factory} term="GPM 25%" desc="마즈·스머커 등 OEM으로 98.7% 매출. GPM 25%." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="i-Tail 글로벌 ODM 매출 및 이익률 구조 (%)"
+              icon={Factory}
+              iconColor="var(--color-info)"
+              pillar="S3"
+              cardDesc={`GPM 25% — 마즈·스머커 등 OEM으로 98.7% 매출. GPM 25%.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.kpiRow}>
             <KpiCard label="OEM 비중" value="98.7" unit="%" />
             <KpiCard label="프리미엄 비중" value="47-50" unit="%" />
@@ -549,17 +570,18 @@ export default function PetFoodDashboard() {
             </ComposedChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="I-TAIL CORPORATION ITC TB, 신라교역 펫푸드 유통 신사업 계획서"
-            situation="글로벌 톱 ITC는 전체 매출의 98.7%가 단순 OEM에서 발생함에도 25%의 GPM과 18.7%의 탁월한 순Bottom-line(순이익)률을 달성합니다. 탑티어 고객사와의 21년 장기 락인, 고마진 습식 중심의 생산, 영양학적 솔루션을 역제안하는 자체 혁신 센터(GPCI) 내재화가 그 비결입니다."
-            actionPlan="저마진 건식 사료 설비를 고수익 습식/동결건조 및 처방식 라인으로 즉각 전환하는 CapEx 투자가 요구됩니다. 제조 하청(OEM)을 넘어 처방식 포뮬러를 자체 설계하여 고객에게 솔루션을 파는 진정한 ODM으로 체질 개선을 이뤄내야 초과 수익을 담보합니다."
+              </>}
+              takeaway={{ situation: "글로벌 톱 ITC는 전체 매출의 98.7%가 단순 OEM에서 발생함에도 25%의 GPM과 18.7%의 탁월한 순Bottom-line(순이익)률을 달성합니다. 탑티어 고객사와의 21년 장기 락인, 고마진 습식 중심의 생산, 영양학적 솔루션을 역제안하는 자체 혁신 센터(GPCI) 내재화가 그 비결입니다.", actionPlan: "저마진 건식 사료 설비를 고수익 습식/동결건조 및 처방식 라인으로 즉각 전환하는 CapEx 투자가 요구됩니다. 제조 하청(OEM)을 넘어 처방식 포뮬러를 자체 설계하여 고객에게 솔루션을 파는 진정한 ODM으로 체질 개선을 이뤄내야 초과 수익을 담보합니다.", source: "I-TAIL CORPORATION ITC TB, 신라교역 펫푸드 유통 신사업 계획서" }}
             />
-            </div>
-            </div>
             {/* W22 */}
-            <div className={styles.card}>
-            <CardHeader title="오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API" icon={LineChartIcon} term="V자 회복" desc="원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API"
+              icon={LineChartIcon}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`V자 회복 — 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복.`}
+              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w22} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -575,17 +597,18 @@ export default function PetFoodDashboard() {
             </ComposedChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="대한민국 반려동물 사료 시장의 구조적 진화, 대한민국 펫푸드 주요 기업 분석 보고"
-            situation="코스닥 상장사 오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다. 원재료 급등으로 B2B 마진이 급감하자 간식 전문 제조사를 전략적 인수, B2B 모델에 안주하지 않고 PB 브랜드 확대 및 D2C 유통 진출로 영업Bottom-line(순이익)률을 15.4%로 완벽히 V자 회복시켰습니다."
-            actionPlan="안정적 캐시플로우의 B2B 제조사를 기반으로 충성 고객을 보유한 B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매입원가 절감)와 인수기업 유통망을 융합해 블렌디드 마진을 극대화하십시오."
+              </>}
+              takeaway={{ situation: "코스닥 상장사 오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다. 원재료 급등으로 B2B 마진이 급감하자 간식 전문 제조사를 전략적 인수, B2B 모델에 안주하지 않고 PB 브랜드 확대 및 D2C 유통 진출로 영업Bottom-line(순이익)률을 15.4%로 완벽히 V자 회복시켰습니다.", actionPlan: "안정적 캐시플로우의 B2B 제조사를 기반으로 충성 고객을 보유한 B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매입원가 절감)와 인수기업 유통망을 융합해 블렌디드 마진을 극대화하십시오.", source: "대한민국 반려동물 사료 시장의 구조적 진화, 대한민국 펫푸드 주요 기업 분석 보고" }}
             />
-            </div>
-            </div>
             {/* W23 */}
-            <div className={styles.card}>
-            <CardHeader title="하림펫푸드 매출 및 수직계열화 이익 성장 (억 원)" icon={Zap} term="Vertical Integration" desc="계열사 닭고기 원가 직접 공급으로 흑자 전환." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="하림펫푸드 매출 및 수직계열화 이익 성장 (억 원)"
+              icon={Zap}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`Vertical Integration — 계열사 닭고기 원가 직접 공급으로 흑자 전환.`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w23} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -601,17 +624,18 @@ export default function PetFoodDashboard() {
             </ComposedChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="비주류서 미래 핵심 사업으로…식품 대기업 펫푸드 베팅, [The Numbers] 하림펫푸드 분석"
-            situation="하림펫푸드가 2024년 최대 매출 521억, 영업Bottom-line(순이익)률 6%에 오른 비결은 모기업을 통한 원물 '직접 조달(Vertical Integration)'에 있습니다. 경쟁사가 외부 가격 변동에 고전할 때 하림은 신선 원료를 저매입원가로 통제하며 고판가 프리미엄 마케팅을 완성했습니다."
-            actionPlan="1차 밸류체인을 보유한 PE의 필승 전략입니다. 캡티브 원료 공급망을 지닌 펫푸드 부문을 육성해 글로벌 인플레이션 리스크를 완전히 상쇄(Hedging)해야 합니다. 이를 '신선 로컬 식재료(Clean Label)' 브랜딩으로 승화시켜 초과 마진을 달성."
+              </>}
+              takeaway={{ situation: "하림펫푸드가 2024년 최대 매출 521억, 영업Bottom-line(순이익)률 6%에 오른 비결은 모기업을 통한 원물 '직접 조달(Vertical Integration)'에 있습니다. 경쟁사가 외부 가격 변동에 고전할 때 하림은 신선 원료를 저매입원가로 통제하며 고판가 프리미엄 마케팅을 완성했습니다.", actionPlan: "1차 밸류체인을 보유한 PE의 필승 전략입니다. 캡티브 원료 공급망을 지닌 펫푸드 부문을 육성해 글로벌 인플레이션 리스크를 완전히 상쇄(Hedging)해야 합니다. 이를 '신선 로컬 식재료(Clean Label)' 브랜딩으로 승화시켜 초과 마진을 달성.", source: "비주류서 미래 핵심 사업으로…식품 대기업 펫푸드 베팅, [The Numbers] 하림펫푸드 분석" }}
             />
-            </div>
-            </div>
             {/* W26 */}
-            <div className={styles.card}>
-            <CardHeader title="카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API" icon={Award} term="PB 20.2%" desc="미국 PB 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배." />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API"
+              icon={Award}
+              iconColor="var(--color-info)"
+              pillar="S4"
+              cardDesc={`PB 20.2% — 미국 PB 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배.`}
+              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={d_w26} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
@@ -625,17 +649,18 @@ export default function PetFoodDashboard() {
             </BarChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="European pet food market share breakdown, 2026 Pet Care Industry Trends"
-            situation="인플레이션 심화로 소비자의 하향 이동(Trading down)이 발생, PB 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다. 소비자는 어중간한 브랜드를 버리고 가성비와 품질이 보장된 대형 유통사 PB로 대거 이탈 중입니다."
-            actionPlan="포트폴리오 내 OEM 제조사는 아마존 등 메가 리테일러의 PB 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다. B2C 브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어."
+              </>}
+              takeaway={{ situation: "인플레이션 심화로 소비자의 하향 이동(Trading down)이 발생, PB 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다. 소비자는 어중간한 브랜드를 버리고 가성비와 품질이 보장된 대형 유통사 PB로 대거 이탈 중입니다.", actionPlan: "포트폴리오 내 OEM 제조사는 아마존 등 메가 리테일러의 PB 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다. B2C 브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어.", source: "European pet food market share breakdown, 2026 Pet Care Industry Trends" }}
             />
-            </div>
-            </div>
             {/* W31 */}
-            <div className={styles.card}>
-            <CardHeader title="태국 휴먼그레이드 참치 수출 및 펫푸드 지수" icon={Activity} term="Empirical Data" desc="태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계" />
-            <div className={styles.cardBody}>
+            <WidgetCard
+              title="태국 휴먼그레이드 참치 수출 및 펫푸드 지수"
+              icon={Activity}
+              iconColor="var(--color-info)"
+              pillar="S3"
+              cardDesc={`Empirical Data — 태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계`}
+              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
             <ComposedChart data={d_w31} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -650,16 +675,17 @@ export default function PetFoodDashboard() {
             </ComposedChart>
             </SafeResponsiveContainer>
             </div>
-            <TakeawayBox
-            source="신라교역 타당성 및 실행 전략 보고서, (기본2017-05) 수산분야 펫푸드 산업 활성화 방안"
-            situation="프리미엄 펫푸드 수요 폭증은 참치 원물의 '부위별 종합 활용'이라는 Bottom-line(순이익) 창출 패러다임을 확립했습니다. 기존에 헐값 매각되던 적육(Red meat)과 자숙액이 최고급 반려묘 습식 사료 원료로 업사이클링(Up-cycling) 되며 참치 1톤당 부가가치를 기존 대비 10배 이상 끌어올렸습니다."
-            actionPlan="단순 1차 식품 가공에서 벗어나, 폐기되던 수산 부산물을 고부가가치 펫푸드 원료로 전환하는 업사이클링(Up-cycling) 공정에 투자하십시오. 매입원가 센터를 초고마진 Bottom-line(순이익) 센터로 변환하고 순환경제(Zero-Waste) 스토리를 더해 엑시트(Exit) 멀티플(Multiple)을 극대화해야 합니다."
+              </>}
+              takeaway={{ situation: "프리미엄 펫푸드 수요 폭증은 참치 원물의 '부위별 종합 활용'이라는 Bottom-line(순이익) 창출 패러다임을 확립했습니다. 기존에 헐값 매각되던 적육(Red meat)과 자숙액이 최고급 반려묘 습식 사료 원료로 업사이클링(Up-cycling) 되며 참치 1톤당 부가가치를 기존 대비 10배 이상 끌어올렸습니다.", actionPlan: "단순 1차 식품 가공에서 벗어나, 폐기되던 수산 부산물을 고부가가치 펫푸드 원료로 전환하는 업사이클링(Up-cycling) 공정에 투자하십시오. 매입원가 센터를 초고마진 Bottom-line(순이익) 센터로 변환하고 순환경제(Zero-Waste) 스토리를 더해 엑시트(Exit) 멀티플(Multiple)을 극대화해야 합니다.", source: "신라교역 타당성 및 실행 전략 보고서, (기본2017-05) 수산분야 펫푸드 산업 활성화 방안" }}
             />
-            </div>
-            </div>
-          <div className={styles.card}>
-                <CardHeader title={d_kfas_w02.title} icon={Zap} term="항산화 35.2%" desc="Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%" />
-                <div className={styles.cardBody}>
+          <WidgetCard
+            title={d_kfas_w02.title}
+            icon={Zap}
+            iconColor="var(--color-info)"
+            pillar="S2"
+            cardDesc={`항산화 35.2% — Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%`}
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+            customBody={<>
                   <div className={styles.chartContainer}>
                     <SafeResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={d_kfas_w02.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -675,16 +701,17 @@ export default function PetFoodDashboard() {
                       </ComposedChart>
                     </SafeResponsiveContainer>
                   </div>
-                  <TakeawayBox
-                    source={d_kfas_w02.source}
-                    situation={d_kfas_w02.sit}
-                    actionPlan={d_kfas_w02.strat}
-                  />
-                </div>
-              </div>
-<div className={styles.card}>
-                <CardHeader title={d_kfas_w04.title} icon={Leaf} term="수율 72.5%" desc="스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g" />
-                <div className={styles.cardBody}>
+            </>}
+            takeaway={{ situation: d_kfas_w02.sit, actionPlan: d_kfas_w02.strat, source: d_kfas_w02.source }}
+          />
+<WidgetCard
+  title={d_kfas_w04.title}
+  icon={Leaf}
+  iconColor="var(--color-info)"
+  pillar="S2"
+  cardDesc={`수율 72.5% — 스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g`}
+  telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+  customBody={<>
                   <div className={styles.chartContainer}>
                     <SafeResponsiveContainer width="100%" height="100%">
                       <BarChart data={d_kfas_w04.data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
@@ -698,13 +725,9 @@ export default function PetFoodDashboard() {
                       </BarChart>
                     </SafeResponsiveContainer>
                   </div>
-                  <TakeawayBox
-                    source={d_kfas_w04.source}
-                    situation={d_kfas_w04.sit}
-                    actionPlan={d_kfas_w04.strat}
-                  />
-                </div>
-              </div>
+  </>}
+  takeaway={{ situation: d_kfas_w04.sit, actionPlan: d_kfas_w04.strat, source: d_kfas_w04.source }}
+/>
 </div>
         </div>
 
