@@ -532,7 +532,7 @@ export default function PetFoodDashboard() {
             <YAxis dataKey="factor" type="category" width={120} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="gpmImpact" name="GPM 영향(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="gpmImpact" name="매출총이익률(GPM) 영향(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
             <Bar dataKey="profitImpact" name="순이익 영향(%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
             </BarChart>
             </SafeResponsiveContainer>
@@ -546,7 +546,7 @@ export default function PetFoodDashboard() {
               icon={Factory}
               iconColor="var(--color-info)"
               pillar="S3"
-              cardDesc={`GPM 25% — 마즈·스머커 등 OEM으로 98.7% 매출. GPM 25%.`}
+              cardDesc={`매출총이익률(GPM) 25% — 마즈·스머커 등 OEM으로 98.7% 매출. 매출총이익률(GPM) 25%.`}
               telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.kpiRow}>
@@ -571,7 +571,7 @@ export default function PetFoodDashboard() {
             </SafeResponsiveContainer>
             </div>
               </>}
-              takeaway={{ situation: "글로벌 톱 ITC는 전체 매출의 98.7%가 단순 OEM에서 발생함에도 25%의 GPM과 18.7%의 탁월한 순Bottom-line(순이익)률을 달성합니다. 탑티어 고객사와의 21년 장기 락인, 고마진 습식 중심의 생산, 영양학적 솔루션을 역제안하는 자체 혁신 센터(GPCI) 내재화가 그 비결입니다.", actionPlan: "저마진 건식 사료 설비를 고수익 습식/동결건조 및 처방식 라인으로 즉각 전환하는 CapEx 투자가 요구됩니다. 제조 하청(OEM)을 넘어 처방식 포뮬러를 자체 설계하여 고객에게 솔루션을 파는 진정한 ODM으로 체질 개선을 이뤄내야 초과 수익을 담보합니다.", source: "I-TAIL CORPORATION ITC TB, 신라교역 펫푸드 유통 신사업 계획서" }}
+              takeaway={{ situation: "글로벌 톱 ITC는 전체 매출의 98.7%가 단순 OEM에서 발생함에도 25%의 GPM과 18.7%의 탁월한 순Bottom-line(순이익)률을 달성합니다. 탑티어 고객사와의 21년 장기 락인, 고마진 습식 중심의 생산, 영양학적 솔루션을 역제안하는 자체 혁신 센터(GPCI) 내재화가 그 비결입니다.", actionPlan: "저마진 건식 사료 설비를 고수익 습식/동결건조 및 처방식 라인으로 즉각 전환하는 자본적 지출(CapEx) 투자가 요구됩니다. 제조 하청(OEM)을 넘어 처방식 포뮬러를 자체 설계하여 고객에게 솔루션을 파는 진정한 ODM으로 체질 개선을 이뤄내야 초과 수익을 담보합니다.", source: "I-TAIL CORPORATION ITC TB, 신라교역 펫푸드 유통 신사업 계획서" }}
             />
             {/* W22 */}
             <WidgetCard
@@ -598,7 +598,7 @@ export default function PetFoodDashboard() {
             </SafeResponsiveContainer>
             </div>
               </>}
-              takeaway={{ situation: "코스닥 상장사 오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다. 원재료 급등으로 B2B 마진이 급감하자 간식 전문 제조사를 전략적 인수, B2B 모델에 안주하지 않고 PB 브랜드 확대 및 D2C 유통 진출로 영업Bottom-line(순이익)률을 15.4%로 완벽히 V자 회복시켰습니다.", actionPlan: "안정적 캐시플로우의 B2B 제조사를 기반으로 충성 고객을 보유한 B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매입원가 절감)와 인수기업 유통망을 융합해 블렌디드 마진을 극대화하십시오.", source: "대한민국 반려동물 사료 시장의 구조적 진화, 대한민국 펫푸드 주요 기업 분석 보고" }}
+              takeaway={{ situation: "코스닥 상장사 오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다. 원재료 급등으로 B2B 마진이 급감하자 간식 전문 제조사를 전략적 인수, B2B 모델에 안주하지 않고 자체 브랜드(PB) 브랜드 확대 및 D2C 유통 진출로 영업Bottom-line(순이익)률을 15.4%로 완벽히 V자 회복시켰습니다.", actionPlan: "안정적 캐시플로우의 B2B 제조사를 기반으로 충성 고객을 보유한 B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매입원가 절감)와 인수기업 유통망을 융합해 블렌디드 마진을 극대화하십시오.", source: "대한민국 반려동물 사료 시장의 구조적 진화, 대한민국 펫푸드 주요 기업 분석 보고" }}
             />
             {/* W23 */}
             <WidgetCard
@@ -633,7 +633,7 @@ export default function PetFoodDashboard() {
               icon={Award}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`PB 20.2% — 미국 PB 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배.`}
+              cardDesc={`자체 브랜드(PB) 20.2% — 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배.`}
               telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
               customBody={<>
             <div className={styles.chartContainer}>
@@ -650,7 +650,7 @@ export default function PetFoodDashboard() {
             </SafeResponsiveContainer>
             </div>
               </>}
-              takeaway={{ situation: "인플레이션 심화로 소비자의 하향 이동(Trading down)이 발생, PB 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다. 소비자는 어중간한 브랜드를 버리고 가성비와 품질이 보장된 대형 유통사 PB로 대거 이탈 중입니다.", actionPlan: "포트폴리오 내 OEM 제조사는 아마존 등 메가 리테일러의 PB 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다. B2C 브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어.", source: "European pet food market share breakdown, 2026 Pet Care Industry Trends" }}
+              takeaway={{ situation: "인플레이션 심화로 소비자의 하향 이동(Trading down)이 발생, 자체 브랜드(PB) 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다. 소비자는 어중간한 브랜드를 버리고 가성비와 품질이 보장된 대형 유통사 PB로 대거 이탈 중입니다.", actionPlan: "포트폴리오 내 OEM 제조사는 아마존 등 메가 리테일러의 자체 브랜드(PB) 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다. B2C 브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어.", source: "European pet food market share breakdown, 2026 Pet Care Industry Trends" }}
             />
             {/* W31 */}
             <WidgetCard

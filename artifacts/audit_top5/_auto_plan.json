@@ -1,0 +1,31 @@
+{
+  "ICCO Quarterly Bulletin": {
+    "suggested": "ICCO 분기별 회보(ICCO Quarterly Bulletin)",
+    "count": 3,
+    "sources": [
+      "CocoaDashboard"
+    ]
+  },
+  "CapEx": {
+    "suggested": "자본적 지출(CapEx)",
+    "count": 4,
+    "sources": [
+      "PetFoodDashboard",
+      "carrot"
+    ]
+  },
+  "GPM": {
+    "suggested": "매출총이익률(GPM)",
+    "count": 3,
+    "sources": [
+      "PetFoodDashboard"
+    ]
+  },
+  "PB": {
+    "suggested": "자체 브랜드(PB)",
+    "count": 3,
+    "sources": [
+      "PetFoodDashboard"
+    ]
+  }
+}

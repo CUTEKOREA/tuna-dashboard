@@ -1,0 +1,413 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 110,
+  "tokens": {
+    "input": 17286,
+    "output": 4731,
+    "thoughts": 9938
+  },
+  "cost_usd": 0.06892,
+  "violations_count": 50,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "CapEx",
+      "context_excerpt": "과도한 CapEx가 요구되는 S3(M&A) 및 S4(자",
+      "suggested_korean": "자본적 지출(CapEx)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "PHASE 3",
+      "context_excerpt": "source: 'PHASE 3 진입 전략 보고서'",
+      "suggested_korean": "3단계",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Semana 10",
+      "context_excerpt": "오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로",
+      "suggested_korean": "10주차",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "What-If",
+      "context_excerpt": "cardDesc: `What-If — 동물성/식물성 단백질 믹스",
+      "suggested_korean": "가상 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "Free-from",
+      "context_excerpt": "규격으로 즉각 리뉴얼하고, 무첨가(Free-from) 마케팅을 전개하여 소비",
+      "suggested_korean": "무첨가",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 4,
+      "violation": "South Korea Pet Food Report",
+      "context_excerpt": "수출 현황과 전망, South Korea Pet Food Report, 수산분야 펫푸드 산업 활",
+      "suggested_korean": "한국 펫푸드 리포트",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Price Gap",
+      "context_excerpt": "cardDesc: `Price Gap — 동일 시장에서 미국산이 태",
+      "suggested_korean": "가격 격차",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "Hong Kong Pet Food Market Report 2026",
+      "context_excerpt": "source: \"Hong Kong Pet Food Market Report 2026, Thailand's Pet Food",
+      "suggested_korean": "2026 홍콩 펫푸드 시장 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "Thailand's Pet Food Market 2025",
+      "context_excerpt": "Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성",
+      "suggested_korean": "2025 태국 펫푸드 시장 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 6,
+      "violation": "Comprehensive Review of Alternative Proteins",
+      "context_excerpt": "펫푸드 산업 활성화 방안, Comprehensive Review of Alternative Proteins\"",
+      "suggested_korean": "대체 단백질 종합 검토",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "Empirical Data",
+      "context_excerpt": "cardDesc: `Empirical Data — 태국 참치캔 생산량 폭증의",
+      "suggested_korean": "실증 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 7,
+      "violation": "Full Utilization",
+      "context_excerpt": "백육과 펫푸드용 적육을 분리 활용하는 'Full Utilization' 전략은 매입원가율을 극",
+      "suggested_korean": "완전 활용(Full Utilization)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 8,
+      "violation": "Sustainability in the Pet Food Industry",
+      "context_excerpt": "source: \"Sustainability in the Pet Food Industry, Insects as Feed for",
+      "suggested_korean": "펫푸드 산업의 지속가능성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 8,
+      "violation": "Insects as Feed for Companion and Exotic Pets",
+      "context_excerpt": "Pet Food Industry, Insects as Feed for Companion and Exotic Pets, 신라교역 신사업 계획",
+      "suggested_korean": "반려 및 특수 애완동물 사료로서의 곤충",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 9,
+      "violation": "Zero-Waste",
+      "context_excerpt": "파이프라인을 선제 전개해야 합니다. 'Zero-Waste' ESG 스토리를 내재화하여",
+      "suggested_korean": "폐기물 제로(Zero-Waste)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds",
+      "context_excerpt": "source: \"Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds, Alternative Proteins",
+      "suggested_korean": "양식 사료용 항산화 펩타이드 성분으로의 참치 머리 부산물 가공",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "Alternative Proteins Review",
+      "context_excerpt": "for Aquaculture Feeds, Alternative Proteins Review\"",
+      "suggested_korean": "대체 단백질 검토",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 11,
+      "violation": "FAD",
+      "context_excerpt": "cardDesc: `FAD -4%/년 — FAD 제한 350→288개로",
+      "suggested_korean": "집어장치(FAD)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 11,
+      "violation": "IOTC",
+      "context_excerpt": "ICCAT은 FAD 제한을...이며, IOTC는 황다랑어를 2027년까지",
+      "suggested_korean": "인도양참치위원회(IOTC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 11,
+      "violation": "ICCAT Compendium 2025",
+      "context_excerpt": "source: \"ICCAT Compendium 2025, IOTC Harvest Control Rules",
+      "suggested_korean": "ICCAT 개요서 2025",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 11,
+      "violation": "IOTC Harvest Control Rules",
+      "context_excerpt": "Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01\"",
+      "suggested_korean": "IOTC 어획 관리 규칙",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 12,
+      "violation": "Mesothermic fishes face overheating risk",
+      "context_excerpt": "et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)\"",
+      "suggested_korean": "중온성 어류의 과열 위험",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "Single-ingredient",
+      "context_excerpt": "cardDesc: `Single-ingredient — 단일 원료(Single-ingredient)",
+      "suggested_korean": "단일 원료",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 13,
+      "violation": "GPM",
+      "context_excerpt": "전략을 투입하여 기존 폐기 비용을 초고부가가치(GPM 65%) 수익 센터로 역전시켜",
+      "suggested_korean": "매출총이익률(GPM)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 14,
+      "violation": "Scoreboard",
+      "context_excerpt": "cardDesc: `Scoreboard — 로얄캐닌 2,093억 원으로",
+      "suggested_korean": "경쟁 현황판",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 14,
+      "violation": "ODM",
+      "context_excerpt": "하림펫푸드와 ODM 1위 오에스피는 Bottom-line",
+      "suggested_korean": "제조자 개발 생산(ODM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 14,
+      "violation": "MSRP Premium",
+      "context_excerpt": "합성보존료 무첨가 등으로 고마진(MSRP Premium)을 정당화하는 브랜드를",
+      "suggested_korean": "권장소비자가 프리미엄(MSRP Premium)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 14,
+      "violation": "[The Numbers]",
+      "context_excerpt": "source: \"[The Numbers] 하림펫푸드 매출 500억 돌파",
+      "suggested_korean": "[더넘버스]",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Sensitivity",
+      "context_excerpt": "cardDesc: `Sensitivity — 참치 +10% → 순이익",
+      "suggested_korean": "민감도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 15,
+      "violation": "Cost-plus Pricing",
+      "context_excerpt": "고객사에 전가할 Cost-plus Pricing 계약 및 외환 헷징을",
+      "suggested_korean": "원가 가산 방식(Cost-plus Pricing)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 15,
+      "violation": "Analyst Reports",
+      "context_excerpt": "(Finansia, Globlex Securities Analyst Reports)\"",
+      "suggested_korean": "애널리스트 리포트",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "GPM",
+      "context_excerpt": "cardDesc: `GPM 25% — 마즈·스머커 등 OE",
+      "suggested_korean": "매출총이익률(GPM)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "OEM",
+      "context_excerpt": "— 마즈·스머커 등 OEM으로 98.7% 매출. GPM",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 16,
+      "violation": "GPM",
+      "context_excerpt": "단순 OEM에서 발생함에도 25%의 GPM과 18.7%의 탁월한 순B",
+      "suggested_korean": "매출총이익률(GPM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 16,
+      "violation": "GPCI",
+      "context_excerpt": "역제안하는 자체 혁신 센터(GPCI) 내재화가 그 비결입니다.",
+      "suggested_korean": "글로벌 펫푸드 혁신 센터(GPCI)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 16,
+      "violation": "CapEx",
+      "context_excerpt": "라인으로 즉각 전환하는 CapEx 투자가 요구됩니다. 제조 하청",
+      "suggested_korean": "자본적 지출(CapEx)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 16,
+      "violation": "ODM",
+      "context_excerpt": "고객에게 솔루션을 파는 진정한 ODM으로 체질 개선을 이뤄내야",
+      "suggested_korean": "제조자 개발 생산(ODM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 17,
+      "violation": "Bolt-on",
+      "context_excerpt": "보유한 B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를",
+      "suggested_korean": "볼트온(Bolt-on)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 17,
+      "violation": "Value-up",
+      "context_excerpt": "내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매",
+      "suggested_korean": "가치 증대(Value-up)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 18,
+      "violation": "Vertical Integration",
+      "context_excerpt": "cardDesc: `Vertical Integration — 계열사 닭고기 원가 직접",
+      "suggested_korean": "수직계열화(Vertical Integration)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 18,
+      "violation": "[The Numbers]",
+      "context_excerpt": "대기업 펫푸드 베팅, [The Numbers] 하림펫푸드 분석\"",
+      "suggested_korean": "[더넘버스]",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 19,
+      "violation": "PB",
+      "context_excerpt": "cardDesc: `PB 20.2% — 미국 PB 펫푸드 성장률 20",
+      "suggested_korean": "자체 브랜드(PB)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 19,
+      "violation": "PB",
+      "context_excerpt": "이동(Trading down)이 발생, PB 사료가 시장의 20~38%",
+      "suggested_korean": "자체 브랜드(PB)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 19,
+      "violation": "NB",
+      "context_excerpt": "잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게",
+      "suggested_korean": "내셔널 브랜드(NB)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 19,
+      "violation": "OEM",
+      "context_excerpt": "포트폴리오 내 OEM 제조사는 아마존 등 메가 리테",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 19,
+      "violation": "PB",
+      "context_excerpt": "메가 리테일러의 PB 독점 공급자로 포지셔닝하여",
+      "suggested_korean": "자체 브랜드(PB)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 19,
+      "violation": "Mid-tier",
+      "context_excerpt": "브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방",
+      "suggested_korean": "중간 등급(Mid-tier)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 19,
+      "violation": "European pet food market share breakdown",
+      "context_excerpt": "source: \"European pet food market share breakdown, 2026 Pet Care Industry",
+      "suggested_korean": "유럽 펫푸드 시장 점유율 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 19,
+      "violation": "2026 Pet Care Industry Trends",
+      "context_excerpt": "market share breakdown, 2026 Pet Care Industry Trends\"",
+      "suggested_korean": "2026 펫 케어 산업 트렌드",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 20,
+      "violation": "Empirical Data",
+      "context_excerpt": "cardDesc: `Empirical Data — 태국 캔참치 수출량과 프리",
+      "suggested_korean": "실증 데이터",
+      "confidence": "high"
+    }
+  ]
+}

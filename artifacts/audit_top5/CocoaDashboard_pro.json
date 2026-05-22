@@ -1,0 +1,245 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 109,
+  "tokens": {
+    "input": 19228,
+    "output": 2757,
+    "thoughts": 11542
+  },
+  "cost_usd": 0.0516,
+  "violations_count": 29,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "EFI Cocoa Insight March 2025",
+      "context_excerpt": "QCL 2018-2024 (CI:A, GH:X) / EFI Cocoa Insight March 2025",
+      "suggested_korean": "EFI 코코아 인사이트 2025년 3월호",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Just-in-Case",
+      "context_excerpt": "피투자사에는 'Just-in-Case' 재고 확보 모델 전환과 롤링",
+      "suggested_korean": "만일의 경우에 대비한(Just-in-Case)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "World Bank Commodity Index",
+      "context_excerpt": "source: \"World Bank Commodity Index / ICCO Daily Price / ICE Futures\"",
+      "suggested_korean": "세계은행 상품 지수(World Bank Commodity Index)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "ICCO Daily Price",
+      "context_excerpt": "Commodity Index / ICCO Daily Price / ICE Futures\"",
+      "suggested_korean": "ICCO 일일 가격(ICCO Daily Price)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "EFI Cocoa Insight 2025",
+      "context_excerpt": "가나 COCOBOD 공시 / EFI Cocoa Insight 2025",
+      "suggested_korean": "EFI 코코아 인사이트 2025년판",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "ICCO Quarterly Bulletin",
+      "context_excerpt": "source: \"ICCO Quarterly Bulletin / UN Comtrade HS 1801-1806\"",
+      "suggested_korean": "ICCO 분기별 회보(ICCO Quarterly Bulletin)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 4,
+      "violation": "Bloomberg Commodity",
+      "context_excerpt": "source: \"Bloomberg Commodity / ICE Cocoa Futures / ICCO Quarterly Bulletin\"",
+      "suggested_korean": "블룸버그 상품(Bloomberg Commodity)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 4,
+      "violation": "ICCO Quarterly Bulletin",
+      "context_excerpt": "ICE Cocoa Futures / ICCO Quarterly Bulletin\"",
+      "suggested_korean": "ICCO 분기별 회보(ICCO Quarterly Bulletin)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "COCOBOD Annual Report",
+      "context_excerpt": "내부 실사 DB / COCOBOD Annual Report / Niche Cocoa IR",
+      "suggested_korean": "COCOBOD 연례 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "Niche Cocoa IR",
+      "context_excerpt": "COCOBOD Annual Report / Niche Cocoa IR",
+      "suggested_korean": "Niche Cocoa 기업설명회 자료",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 7,
+      "violation": "HACCP",
+      "context_excerpt": "톤) 등 민간/외국계 기업은 HACCP 등 글로벌 인증을 무기로 정상",
+      "suggested_korean": "식품안전관리인증기준(HACCP)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 7,
+      "violation": "Origin Grinding",
+      "context_excerpt": "인수·현대화하여 아프리카 원산지 내 가공(Origin Grinding) Bottom-line(순이익)을",
+      "suggested_korean": "원산지 가공(Origin Grinding)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 7,
+      "violation": "COCOBOD Annual Report",
+      "context_excerpt": "source: \"COCOBOD Annual Report / Ghana Cocoa Processing Company (CPC) / Niche Cocoa IR\"",
+      "suggested_korean": "COCOBOD 연례 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 7,
+      "violation": "Niche Cocoa IR",
+      "context_excerpt": "Processing Company (CPC) / Niche Cocoa IR\"",
+      "suggested_korean": "Niche Cocoa 기업설명회 자료",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "Flow",
+      "context_excerpt": "한국의 이중 수입 넥서스 흐름도 (Flow)",
+      "suggested_korean": "흐름도",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "DIO",
+      "context_excerpt": "공급 충격 시나리오: 재고 소진율 트래커 (DIO)",
+      "suggested_korean": "재고회전일수(DIO)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "OPM",
+      "context_excerpt": "중단 임계선 + 경쟁사 OPM 동향",
+      "suggested_korean": "영업이익률(OPM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 9,
+      "violation": "Just-in-Case",
+      "context_excerpt": "수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며",
+      "suggested_korean": "만일의 경우에 대비한(Just-in-Case)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 9,
+      "violation": "NWC",
+      "context_excerpt": "급선회하며 운전자본(NWC) 압박을 겪고 있습니다.",
+      "suggested_korean": "순운전자본(NWC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "ICCO Quarterly Bulletin",
+      "context_excerpt": "source: \"ICCO Quarterly Bulletin / ICE Certified Stock Data / DART 경쟁사 공시\"",
+      "suggested_korean": "ICCO 분기별 회보",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "ICE Certified Stock Data",
+      "context_excerpt": "Quarterly Bulletin / ICE Certified Stock Data / DART 경쟁사 공시\"",
+      "suggested_korean": "ICE 인증 재고 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "EBITDA",
+      "context_excerpt": "B2B CBE(대체유) 벤더 롤업 가치 평가 (EBITDA %, Agility)",
+      "suggested_korean": "EBITDA(세전이자지급전이익)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "Agility",
+      "context_excerpt": "B2B CBE(대체유) 벤더 롤업 가치 평가 (EBITDA %, Agility)",
+      "suggested_korean": "민첩성(Agility)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 11,
+      "violation": "EBITDA",
+      "context_excerpt": "시장대응력 vs EBITDA vs 원가부담 — 롤업 매수 매트릭스",
+      "suggested_korean": "EBITDA(세전이자지급전이익)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 11,
+      "violation": "Krungsri Research",
+      "context_excerpt": "source: \"Krungsri Research 팔유 산업 전망 / Silla Co. 내부 모델\"",
+      "suggested_korean": "끄룽스리 리서치(Krungsri Research)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Cash Cow",
+      "context_excerpt": "카테킨·사료 가치 — Cash Cow 전환",
+      "suggested_korean": "캐시카우(Cash Cow)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 15,
+      "violation": "Husks, Pods",
+      "context_excerpt": "에서 발생하는 방대한 부산물(Husks, Pods)은 폐기물로 간주되어 탄소세",
+      "suggested_korean": "껍질(Husks), 꼬투리(Pods)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 15,
+      "violation": "Agri-Tech",
+      "context_excerpt": "부산물을 자원화하는 애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를",
+      "suggested_korean": "애그리테크(Agri-Tech)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 15,
+      "violation": "Spin-off",
+      "context_excerpt": "애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를 구축해 폐기 비용을",
+      "suggested_korean": "분사(Spin-off)",
+      "confidence": "high"
+    }
+  ]
+}

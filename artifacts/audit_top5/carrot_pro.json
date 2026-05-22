@@ -1,0 +1,381 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 126,
+  "tokens": {
+    "input": 29614,
+    "output": 3773,
+    "thoughts": 14240
+  },
+  "cost_usd": 0.07475,
+  "violations_count": 46,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": null,
+      "violation": "Hybrid API",
+      "context_excerpt": "KAMIS x KCS Hybrid API",
+      "suggested_korean": "하이브리드 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "p",
+      "widget_index": null,
+      "violation": "Zero-Volatility",
+      "context_excerpt": "연중 고정가(Zero-Volatility)를 제안하여 시장",
+      "suggested_korean": "무변동성",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Valuation Control",
+      "context_excerpt": "시뮬레이터 (PEF Valuation Control)",
+      "suggested_korean": "가치평가 제어",
+      "confidence": "high"
+    },
+    {
+      "field": "label",
+      "widget_index": null,
+      "violation": "CapEx",
+      "context_excerpt": "IQF 가공 전환율 (CapEx 투자율)",
+      "suggested_korean": "자본 지출",
+      "confidence": "high"
+    },
+    {
+      "field": "label",
+      "widget_index": null,
+      "violation": "Vendor Margin Sacrifice",
+      "context_excerpt": "초기 단가 양보율 (Vendor Margin Sacrifice)",
+      "suggested_korean": "공급업체 마진 희생",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Crops and livestock products",
+      "context_excerpt": "Open API] Crops and livestock products (QCL)",
+      "suggested_korean": "작물 및 축산물",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "Producer Prices",
+      "context_excerpt": "Open API] Producer Prices (PP) — 베트남",
+      "suggested_korean": "생산자 가격",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 4,
+      "violation": "Tail Risk",
+      "context_excerpt": "기후 꼬리 리스크(Tail Risk)가 일상화됨.",
+      "suggested_korean": "꼬리 위험",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "Phyto-Risk",
+      "context_excerpt": "리스크 지수 실증 (Phyto-Risk)",
+      "suggested_korean": "식물 위험",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 5,
+      "violation": "Food Safety",
+      "context_excerpt": "치명적 식품 안전성(Food Safety) 붕괴 사태를",
+      "suggested_korean": "식품 안전",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 8,
+      "violation": "Labor Arbitrage",
+      "context_excerpt": "구조적 인건비 차익(Labor Arbitrage)을 확정",
+      "suggested_korean": "노동 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "Demand Shift",
+      "context_excerpt": "수요 전환율 (Demand Shift)",
+      "suggested_korean": "수요 변화",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 9,
+      "violation": "High-margin segment",
+      "context_excerpt": "수익성 높은 시장(High-margin segment)을 독식하게",
+      "suggested_korean": "고수익 부문",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "Detailed trade matrix",
+      "context_excerpt": "Open API] Detailed trade matrix (TM)",
+      "suggested_korean": "상세 무역 매트릭스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 11,
+      "violation": "Landed Cost",
+      "context_excerpt": "최종 도착가(Landed Cost)에서 중국산을",
+      "suggested_korean": "도착 원가",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 14,
+      "violation": "Permanent",
+      "context_excerpt": "무관하게 상시적(Permanent)으로 최대 유통",
+      "suggested_korean": "영구적인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 15,
+      "violation": "Churn",
+      "context_excerpt": "극심한 벤더 이탈(Churn)의 원인이 됨.",
+      "suggested_korean": "고객 이탈",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 16,
+      "violation": "Predictive",
+      "context_excerpt": "B2B 시장 점유율 탈환 (Predictive)",
+      "suggested_korean": "예측",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 16,
+      "violation": "Exposure",
+      "context_excerpt": "수입 의존도(Exposure) 심화 속에서 중국산",
+      "suggested_korean": "노출",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 16,
+      "violation": "Bass Diffusion Model",
+      "context_excerpt": "TAM(순수입 11.4만톤) 기반 Bass Diffusion Model 적용",
+      "suggested_korean": "배스 확산 모델",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 17,
+      "violation": "Target Margin",
+      "context_excerpt": "시장까지 마진(Target Margin) 확장이 가능함.",
+      "suggested_korean": "목표 마진",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 18,
+      "violation": "Flat Margin",
+      "context_excerpt": "단순 수입 유통업(Flat Margin)을 넘어, 확고한",
+      "suggested_korean": "고정 마진",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 18,
+      "violation": "Deal Sourcing",
+      "context_excerpt": "딜 소싱(Deal Sourcing) 단계에서 엑시트(Exit)",
+      "suggested_korean": "거래 발굴",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 18,
+      "violation": "Exit",
+      "context_excerpt": "단계에서 엑시트(Exit) 밸류에이션 매트릭스의",
+      "suggested_korean": "투자 회수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 19,
+      "violation": "Bottom-line",
+      "context_excerpt": "잉여현금흐름 기반 Bottom-line(순이익)이 3배",
+      "suggested_korean": "최종 순익",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 20,
+      "violation": "Loss",
+      "context_excerpt": "원물 손실률(Loss) 및 잉여 가공",
+      "suggested_korean": "손실",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 20,
+      "violation": "Waste",
+      "context_excerpt": "비규격 손실분(Waste) 전량을 펫푸드나",
+      "suggested_korean": "폐기물",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 20,
+      "violation": "Up-cycling",
+      "context_excerpt": "추출 산업으로 업사이클링(Up-cycling) 시, 막대한",
+      "suggested_korean": "업사이클링",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 20,
+      "violation": "Supply Utilization Accounts",
+      "context_excerpt": "FAOSTAT Supply Utilization Accounts (SCL)",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 21,
+      "violation": "Expeller",
+      "context_excerpt": "이를 압착(Expeller) 공정으로 고도",
+      "suggested_korean": "압착기",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 21,
+      "violation": "Execution Recommended",
+      "context_excerpt": "마진을 실현할 것. (Execution Recommended)",
+      "suggested_korean": "실행 권고",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 22,
+      "violation": "Strategic Buy",
+      "context_excerpt": "지위를 확보함. (Strategic Buy)",
+      "suggested_korean": "전략적 매수",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 22,
+      "violation": "Bragantia 85, IPCC 2019 Tier 2",
+      "context_excerpt": "Filho et al.(2026) Bragantia 85, IPCC 2019 Tier 2",
+      "suggested_korean": "브라간티아 85, IPCC 2019 2단계",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 23,
+      "violation": "Multiple",
+      "context_excerpt": "폭발적인 멀티플(Multiple) 차익거래가 실현됨.",
+      "suggested_korean": "배수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 23,
+      "violation": "Value Realization Expected",
+      "context_excerpt": "차익거래가 실현됨. (Value Realization Expected)",
+      "suggested_korean": "가치 실현 예상",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 23,
+      "violation": "Buy & Build",
+      "context_excerpt": "농식품 인더스트리 Buy & Build(롤업) 가치평가",
+      "suggested_korean": "바이 앤 빌드",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 24,
+      "violation": "Alpha Driver",
+      "context_excerpt": "독점적 무기로 작용함. (Alpha Driver)",
+      "suggested_korean": "알파 동인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 25,
+      "violation": "Quality of Earnings",
+      "context_excerpt": "질(Quality of Earnings)을 푸드테크 영역으로",
+      "suggested_korean": "이익의 질",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 25,
+      "violation": "Re-categorization",
+      "context_excerpt": "영역으로 재분류(Re-categorization)함.",
+      "suggested_korean": "재범주화",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 25,
+      "violation": "Living",
+      "context_excerpt": "대시보드에 즉각(Living) 전시하여 대형",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 25,
+      "violation": "Strong Conviction",
+      "context_excerpt": "의사결정을 이끌어 낼 것. (Strong Conviction)",
+      "suggested_korean": "강력한 확신",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 26,
+      "violation": "Bullish Target",
+      "context_excerpt": "기회를 더욱 확대시킴. (Bullish Target)",
+      "suggested_korean": "상승 목표",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 27,
+      "violation": "Upside Potential",
+      "context_excerpt": "경제_를 달성할 수 있음. (Upside Potential)",
+      "suggested_korean": "상승 잠재력",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 28,
+      "violation": "Golden Window",
+      "context_excerpt": "시장점유율 확대의 골든타임(Golden Window).",
+      "suggested_korean": "황금 시간",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 29,
+      "violation": "Inefficiency",
+      "context_excerpt": "2~5배 높은 구조적 비효율(Inefficiency).",
+      "suggested_korean": "비효율성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 29,
+      "violation": "Synergy Effect",
+      "context_excerpt": "수입 대체 효과까지 동시 달성. (Synergy Effect)",
+      "suggested_korean": "시너지 효과",
+      "confidence": "high"
+    }
+  ]
+}

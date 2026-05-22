@@ -375,7 +375,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "2023/24 시즌 기준 글로벌 카카오 가공 점유율은 유럽이 35.8%(171만 톤)로 1위를 지키고 있으나, 아프리카(22.9%)와 아시아(22.2%) 신흥 허브의 추격이 거셉니다. 특히 인도네시아는 원두 수출국에서 연간 약 38.6만 톤의 파생품을 수출하는 핵심 가공 허브로 전환하며 글로벌 밸류체인의 축을 이동시키고 있습니다.",
             actionPlan: "원물 생산지와 인접한 아시아(인도네시아/말레이시아) 및 서아프리카 현지의 중간 가공 인프라 자산에 대한 인프라/PE 공동 투자를 집행해야 합니다. 유럽 의존도(Exposure)를 낮추고 아시아 역내 수급망을 장악하는 벤더를 롤업(Roll-up)하여 아시아 프리미엄을 독점하는 전략이 유효해야 합니다.",
-            source: "ICCO Quarterly Bulletin / UN Comtrade HS 1801-1806",
+            source: "ICCO 분기별 회보(ICCO Quarterly Bulletin) / UN Comtrade HS 1801-1806",
           }} />
 
         <WidgetCard title="파생품 마진 스프레드 (거래량 Index, 프리미엄 %)" icon={Scale} iconColor="#d97706" pillar="S2"
@@ -396,7 +396,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "원두 부족 사태로 초콜릿의 핵심 원료인 코코아 버터 가격이 톤당 $15,000~$16,000까지 치솟으며 사상 최고치를 기록했습니다. 버터의 선물 비율(Ratio)은 안정화되는 추세이나 파우더 수요는 강하게 유지되며 가격 상승을 견인하고 있어, 파생품별 마진 스프레드의 극심한 비대칭성이 초래되고 있습니다.",
             actionPlan: "버터와 파우더의 마진 스프레드 괴리를 활용한 아비트리지 역량을 갖춘 가공업체(Grinder)에 투자 가중치를 두어야 합니다. 파우더 혼합 베이커리/음료 B2B 시장에서 확고한 캡티브(Captive) 채널을 보유한 업체를 선별하여 바이아웃 포트폴리오에 편입해야 합니다.",
-            source: "Bloomberg Commodity / ICE Cocoa Futures / ICCO Quarterly Bulletin",
+            source: "Bloomberg Commodity / ICE Cocoa Futures / ICCO 분기별 회보(ICCO Quarterly Bulletin)",
           }} />
 
         <WidgetCard title="실사 기반 가공 공장 인수합병 타겟" icon={Landmark} iconColor="#b45309" pillar="S2"
@@ -516,7 +516,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "2023/24 시즌 글로벌 재고 대 분쇄(Stocks-to-Grindings) 비율은 46년 만의 최저치인 26.4%로 급락했으며, 뉴욕 ICE 인증 재고는 19년 만의 최저치(약 11.8만 톤)를 기록하는 등 물리적 재고 고갈이 심각합니다. 주요 수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며 운전자본(NWC) 압박을 겪고 있습니다.",
             actionPlan: "피투자사의 DIO(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다.",
-            source: "ICCO Quarterly Bulletin / ICE Certified Stock Data / DART 경쟁사 공시",
+            source: "ICCO 분기별 회보(ICCO Quarterly Bulletin) / ICE Certified Stock Data / DART 경쟁사 공시",
           }} />
 
         <WidgetCard title="허브 경유에 따른 EUDR 그린 프리미엄 원가 전가" icon={Anchor} iconColor="#b45309" pillar="S3"

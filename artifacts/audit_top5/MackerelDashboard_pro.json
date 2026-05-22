@@ -1,0 +1,317 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 160,
+  "tokens": {
+    "input": 17188,
+    "output": 3296,
+    "thoughts": 15027
+  },
+  "cost_usd": 0.05445,
+  "violations_count": 38,
+  "violations": [
+    {
+      "field": "apiSource",
+      "widget_index": 0,
+      "violation": "LIVE API",
+      "context_excerpt": "📡 [LIVE API 연동: 해양수산부 & 관세청] 실시간 무역통계",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 1,
+      "violation": "Live API",
+      "context_excerpt": "badges: ['Live API', 'Verified']",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "World Bank WITS",
+      "context_excerpt": "source: 'World Bank WITS / 관세청 KCS (실시간)'",
+      "suggested_korean": "세계은행 WITS(World Integrated Trade Solution)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 1,
+      "violation": "EEA",
+      "context_excerpt": "노르웨이는 EEA 협정으로 관세 0%입니다.",
+      "suggested_korean": "유럽경제지역(EEA)",
+      "confidence": "medium"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 2,
+      "violation": "VAT",
+      "context_excerpt": "CIF × 환율(...) × 관세 × VAT 실시간 계산",
+      "suggested_korean": "부가가치세(VAT)",
+      "confidence": "low"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 6,
+      "violation": "Eurostat SDMX",
+      "context_excerpt": "subtitle: 'Eurostat SDMX 실시간 동기화 데이터'",
+      "suggested_korean": "유로스타트(Eurostat) SDMX",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 6,
+      "violation": "IUU",
+      "context_excerpt": "단, EU의 IUU 규제 강화 시 인증 도태 모듈의 선제적",
+      "suggested_korean": "불법·비보고·비규제(IUU)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 6,
+      "violation": "Eurostat",
+      "context_excerpt": "source: 'Eurostat', unit: '천톤, 백만 유로'",
+      "suggested_korean": "유로스타트(Eurostat)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 7,
+      "violation": "Open Supply Hub",
+      "context_excerpt": "subtitle: 'Open Supply Hub 실시간 등록 시설(가공/냉동창고)",
+      "suggested_korean": "오픈 서플라이 허브(Open Supply Hub)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 7,
+      "violation": "OSH",
+      "context_excerpt": "sit: `OSH 플랫폼에 등록된 고등어 취급 시설 총",
+      "suggested_korean": "OSH(Open Supply Hub)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 7,
+      "violation": "HACCP/ISO 22000",
+      "context_excerpt": "OSH 데이터와 HACCP/ISO 22000 위생 등급을 교차 검증해야",
+      "suggested_korean": "HACCP/ISO 22000(식품안전인증)",
+      "confidence": "medium"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 8,
+      "violation": "UN Comtrade",
+      "context_excerpt": "subtitle: 'UN Comtrade 기반 수출국 → 수입국 무역 흐름'",
+      "suggested_korean": "유엔 컴트레이드(UN Comtrade)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 9,
+      "violation": "Tesseract OLAP",
+      "context_excerpt": "subtitle: `OEC Tesseract OLAP 엔진 기반 주요 수출국 점유율",
+      "suggested_korean": "테서랙트 OLAP",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 9,
+      "violation": "HHI",
+      "context_excerpt": "38%를 집중 장악하고 있으며, HHI 지수 기준 중위권 집중도로",
+      "suggested_korean": "허핀달-허쉬만 지수(HHI)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 9,
+      "violation": "Live Ticker",
+      "context_excerpt": "어획 쿼터 변동 뉴스를 Live Ticker와 연동하여 조기 경보",
+      "suggested_korean": "실시간 시세표(Live Ticker)",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 9,
+      "violation": "Observatory of Economic Complexity",
+      "context_excerpt": "연동: OEC] Observatory of Economic Complexity'",
+      "suggested_korean": "경제 복잡성 관측소",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 10,
+      "violation": "HS Ping API",
+      "context_excerpt": "subtitle: 'HS Ping API 실시간 품목분류 (원물, 필렛, 염장)'",
+      "suggested_korean": "HS Ping API",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 11,
+      "violation": "Tariffs API",
+      "context_excerpt": "subtitle: 'Tariffs API 기반 입체적 관세(MFN, EFTA) 누적 산출'",
+      "suggested_korean": "Tariffs API",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 11,
+      "violation": "EFTA",
+      "context_excerpt": "입체적 관세(MFN, EFTA) 누적 산출'",
+      "suggested_korean": "유럽자유무역연합(EFTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 11,
+      "violation": "Tariffs.io",
+      "context_excerpt": "apiSource: '📡 [LIVE 연동: Tariffs.io] 실시간 복합 관세율'",
+      "suggested_korean": "Tariffs.io",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 12,
+      "violation": "OFAC",
+      "context_excerpt": "title: '제재 우회 리스크 레이더 (OFAC/EU)'",
+      "suggested_korean": "해외자산통제국(OFAC)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 12,
+      "violation": "CRITICAL",
+      "context_excerpt": "cr.riskLevel === 'CRITICAL' ? '#ef4444' : '#10b981'",
+      "suggested_korean": "심각",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 12,
+      "violation": "CBAM",
+      "context_excerpt": "리스크가 급상승할 수 있으며, EU CBAM 시행 시 탄소발자국 인증도",
+      "suggested_korean": "탄소국경조정제도(CBAM)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 12,
+      "violation": "Compliance API",
+      "context_excerpt": "source: 'Compliance API', unit: '점'",
+      "suggested_korean": "컴플라이언스 API",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 13,
+      "violation": "ImportYeti",
+      "context_excerpt": "title: '노르웨이 대체 공급망 발굴 (ImportYeti)'",
+      "suggested_korean": "임포트예티(ImportYeti)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 13,
+      "violation": "TEU",
+      "context_excerpt": "꾸준한 B2B 수출 기록이 검증되었습니다. TEU 기준 Pelagia가 1위이며",
+      "suggested_korean": "TEU(20피트 컨테이너)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 13,
+      "violation": "ImportYeti / Veridion",
+      "context_excerpt": "source: 'ImportYeti / Veridion', unit: 'TEU'",
+      "suggested_korean": "임포트예티 / 베리디온",
+      "confidence": "high"
+    },
+    {
+      "field": "p",
+      "widget_index": -1,
+      "violation": "Mackerel Strategic Command Center",
+      "context_excerpt": "Mackerel Strategic Command Center — {widgets?.length || 0} 위젯",
+      "suggested_korean": "고등어 전략 커맨드 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "span",
+      "widget_index": -1,
+      "violation": "EUMOFA",
+      "context_excerpt": "EUMOFA 2026 + INFOFISH 2025 + KFAS",
+      "suggested_korean": "유럽수산시장관측소(EUMOFA)",
+      "confidence": "medium"
+    },
+    {
+      "field": "span",
+      "widget_index": -1,
+      "violation": "INFOFISH",
+      "context_excerpt": "EUMOFA 2026 + INFOFISH 2025 + KFAS",
+      "suggested_korean": "인포피시(INFOFISH)",
+      "confidence": "medium"
+    },
+    {
+      "field": "span",
+      "widget_index": -1,
+      "violation": "Widgets",
+      "context_excerpt": "KFAS</span> · {widgets?.length || 0} Widgets ·",
+      "suggested_korean": "위젯",
+      "confidence": "high"
+    },
+    {
+      "field": "span",
+      "widget_index": -1,
+      "violation": "Live",
+      "context_excerpt": "totalSources} Live` : 'Loading...'}",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "div",
+      "widget_index": -1,
+      "violation": "Billion",
+      "context_excerpt": "toFixed(2)} Billion` }",
+      "suggested_korean": "십억",
+      "confidence": "high"
+    },
+    {
+      "field": "span",
+      "widget_index": -1,
+      "violation": "LIVE TICKER",
+      "context_excerpt": "letterSpacing: '1px' }}>LIVE TICKER</span>",
+      "suggested_korean": "실시간 시세",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": -1,
+      "violation": "Processing",
+      "context_excerpt": "Part II — 가공 산업 (Processing)</h2>",
+      "suggested_korean": "가공",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": -1,
+      "violation": "Logistics & Trade",
+      "context_excerpt": "Part III — 물류 및 무역 (Logistics & Trade)</h2>",
+      "suggested_korean": "물류 및 무역",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": -1,
+      "violation": "Sales & Demand",
+      "context_excerpt": "Part IV — 판매 및 수요 (Sales & Demand)</h2>",
+      "suggested_korean": "판매 및 수요",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": -1,
+      "violation": "Sustainability",
+      "context_excerpt": "Part V — ESG 및 지속가능성 (Sustainability)</h2>",
+      "suggested_korean": "지속가능성",
+      "confidence": "high"
+    }
+  ]
+}
