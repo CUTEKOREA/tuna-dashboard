@@ -1,0 +1,61 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 20,
+  "tokens": {
+    "input": 4166,
+    "output": 499,
+    "thoughts": 4072
+  },
+  "cost_usd": 0.0025,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Fisheries & Aquaculture Production Data",
+      "context_excerpt": "FAO Fisheries & Aquaculture Production Data",
+      "suggested_korean": "FAO 수산 및 양식 생산 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "SA",
+      "context_excerpt": "SA / FA 등급 등 최상위 하이엔드 수리미를",
+      "suggested_korean": "SA(특등급)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "FA",
+      "context_excerpt": "SA / FA 등급 등 최상위 하이엔드 수리미를",
+      "suggested_korean": "FA(상등급)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Global Surimi Production & Trade Annual Index",
+      "context_excerpt": "Global Surimi Production & Trade Annual Index",
+      "suggested_korean": "글로벌 연육 생산 및 무역 연간 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Seafood Market Analytics",
+      "context_excerpt": "Urner Barry Seafood Market Analytics",
+      "suggested_korean": "수산물 시장 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "DB",
+      "context_excerpt": "유통 단가 DB",
+      "suggested_korean": "데이터베이스",
+      "confidence": "medium"
+    }
+  ]
+}

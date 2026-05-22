@@ -1,0 +1,685 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 135,
+  "tokens": {
+    "input": 19228,
+    "output": 6689,
+    "thoughts": 23367
+  },
+  "cost_usd": 0.02249,
+  "violations_count": 84,
+  "violations": [
+    {
+      "field": "Network Status",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "KCS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "Network Status",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "KAMIS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "Network Status",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "DART API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "Network Status",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "MFDS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "KPI Source",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "ICE API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "KPI Source",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "KAMIS/KCS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "KPI Source",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "ICCO API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "KPI Source",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "DART API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "KPI Source",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "MFDS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "KPI Source",
+      "widget_index": null,
+      "violation": "API",
+      "context_excerpt": "JRC / EFI API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "CSSVD",
+      "context_excerpt": "CSSVD 감염률 — 구조적 회복",
+      "suggested_korean": "코코아 부풀림병 바이러스",
+      "confidence": "high"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 0,
+      "violation": "CSSVD",
+      "context_excerpt": "CSSVD 감염률(%, RHS)",
+      "suggested_korean": "코코아 부풀림병 바이러스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "CSSVD",
+      "context_excerpt": "CSSVD에 감염되었습니다. 전염",
+      "suggested_korean": "코코아 부풀림병 바이러스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Exposure",
+      "context_excerpt": "원물 의존도(Exposure)를 즉각",
+      "suggested_korean": "노출도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Supply Chain Diversification",
+      "context_excerpt": "Supply Chain Diversification)를 위한",
+      "suggested_korean": "공급망 다변화",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "CSA",
+      "context_excerpt": "농업(CSA) 기술 보유 기업에",
+      "suggested_korean": "기후 스마트 농업",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "QCL",
+      "context_excerpt": "FAOSTAT QCL 2018-2024 (CI:A,",
+      "suggested_korean": "생산, 작물, 가축 및 수산물 데이터베이스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Cocoa Insight",
+      "context_excerpt": "EFI Cocoa Insight March 2025",
+      "suggested_korean": "코코아 인사이트 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Just-in-Case",
+      "context_excerpt": "'Just-in-Case' 재고 확보 모델",
+      "suggested_korean": "만일의 사태 대비",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Commodity Index",
+      "context_excerpt": "World Bank Commodity Index /",
+      "suggested_korean": "상품 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Daily Price",
+      "context_excerpt": "ICCO Daily Price / ICE Futures",
+      "suggested_korean": "일일 가격",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "PE",
+      "context_excerpt": "PE 자금력으로 현지 LBC에",
+      "suggested_korean": "사모펀드",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "LBC",
+      "context_excerpt": "현지 LBC에 직접 자금을 조달",
+      "suggested_korean": "인가 매입 회사",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Cocoa Insight",
+      "context_excerpt": "EFI Cocoa Insight 2025",
+      "suggested_korean": "코코아 인사이트 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "Exposure",
+      "context_excerpt": "유럽 의존도(Exposure)를 낮추고 아시아",
+      "suggested_korean": "노출도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "Quarterly Bulletin",
+      "context_excerpt": "ICCO Quarterly Bulletin / UN",
+      "suggested_korean": "분기별 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 4,
+      "violation": "Quarterly Bulletin",
+      "context_excerpt": "ICCO Quarterly Bulletin",
+      "suggested_korean": "분기별 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "X: CAPEX 매력도, Y: 수율, Z:",
+      "suggested_korean": "자본적 지출",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Capa",
+      "context_excerpt": "Z: 가공 Capa — 디스트레스드 M&A",
+      "suggested_korean": "생산 능력",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "M&A",
+      "context_excerpt": "디스트레스드 M&A 매트릭스",
+      "suggested_korean": "인수합병",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "CAPEX 매력도",
+      "suggested_korean": "자본적 지출",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 5,
+      "violation": "Capa",
+      "context_excerpt": "가공 Capa(천톤)",
+      "suggested_korean": "생산 능력",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 5,
+      "violation": "M&A",
+      "context_excerpt": "M&A 및 JV 타겟으로 떠오르고",
+      "suggested_korean": "인수합병",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "DB",
+      "context_excerpt": "내부 실사 DB / COCOBOD Annual",
+      "suggested_korean": "데이터베이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "Annual Report",
+      "context_excerpt": "COCOBOD Annual Report / Ghana",
+      "suggested_korean": "연간 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "IR",
+      "context_excerpt": "Niche Cocoa IR",
+      "suggested_korean": "투자자 관계",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 8,
+      "violation": "Capa",
+      "context_excerpt": "6.4만 톤 CAPA를 지닌 국영",
+      "suggested_korean": "생산 능력",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 8,
+      "violation": "HACCP",
+      "context_excerpt": "Touton(연 2.5만 톤) 등 민간/외국계 기업은 HACCP 등 글로벌 인증을 무기로",
+      "suggested_korean": "식품안전관리인증기준",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "PE",
+      "context_excerpt": "PE 자본으로 인수·현대화(CAPEX",
+      "suggested_korean": "사모펀드",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "CAPEX",
+      "context_excerpt": "현대화(CAPEX 투자)하여 아프리카 원산지",
+      "suggested_korean": "자본적 지출",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 8,
+      "violation": "Annual Report",
+      "context_excerpt": "COCOBOD Annual Report / Ghana",
+      "suggested_korean": "연간 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 8,
+      "violation": "IR",
+      "context_excerpt": "Niche Cocoa IR",
+      "suggested_korean": "투자자 관계",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "Sankey",
+      "context_excerpt": "Sankey 다이어그램",
+      "suggested_korean": "생키 다이어그램",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 9,
+      "violation": "M&A",
+      "context_excerpt": "볼트온(Bolt-on) M&A를 실행해야 합니다.",
+      "suggested_korean": "인수합병",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "OpenAPI",
+      "context_excerpt": "KCS) OpenAPI / UN Comtrade",
+      "suggested_korean": "개방형 응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 10,
+      "violation": "OPM",
+      "context_excerpt": "경쟁사 OPM 동향",
+      "suggested_korean": "영업이익률",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 10,
+      "violation": "OPM",
+      "context_excerpt": "경쟁사 OPM 하락(DART API)",
+      "suggested_korean": "영업이익률",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 10,
+      "violation": "API",
+      "context_excerpt": "DART API)",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 10,
+      "violation": "Just-in-Case",
+      "context_excerpt": "'Just-in-Case'로 재고 비축 모델을",
+      "suggested_korean": "만일의 사태 대비",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "Quarterly Bulletin",
+      "context_excerpt": "ICCO Quarterly Bulletin / ICE",
+      "suggested_korean": "분기별 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "Certified Stock Data",
+      "context_excerpt": "ICE Certified Stock Data / DART",
+      "suggested_korean": "인증 재고 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 11,
+      "violation": "IR",
+      "context_excerpt": "롯데웰푸드 IR 2025Q1 / SCFI",
+      "suggested_korean": "투자자 관계",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 12,
+      "violation": "CBE",
+      "context_excerpt": "B2B CBE(대체유) 벤더 롤업",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 12,
+      "violation": "EBITDA",
+      "context_excerpt": "vs EBITDA vs 원가부담 — 롤업",
+      "suggested_korean": "세전 이자 감가상각비 차감 전 영업이익",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 12,
+      "violation": "EBITDA",
+      "context_excerpt": "EBITDA(%)",
+      "suggested_korean": "세전 이자 감가상각비 차감 전 영업이익",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 12,
+      "violation": "CBS",
+      "context_excerpt": "대체재(CBS) 및 동등재(CBE)의 사용",
+      "suggested_korean": "코코아 버터 대용물",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 12,
+      "violation": "CBE",
+      "context_excerpt": "CBE 제조 벤더들을 선제적으로",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 12,
+      "violation": "R&D",
+      "context_excerpt": "CBE R&D 역량을 가진 피투자사",
+      "suggested_korean": "연구 개발",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 13,
+      "violation": "DB",
+      "context_excerpt": "인텔리전스 DB / 관세청(KCS) OpenAPI",
+      "suggested_korean": "데이터베이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 13,
+      "violation": "OpenAPI",
+      "context_excerpt": "KCS) OpenAPI",
+      "suggested_korean": "개방형 응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 14,
+      "violation": "CBE",
+      "context_excerpt": "CBE 전환 마진 방어",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 14,
+      "violation": "API",
+      "context_excerpt": "KCS API 융합",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "CBE",
+      "context_excerpt": "CBE 전환율 + 영업이익률",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 15,
+      "violation": "CBE",
+      "context_excerpt": "CBE(대체유) 전환율",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "Husks",
+      "context_excerpt": "Husks·Pods 부산물의 테오브로민",
+      "suggested_korean": "껍질",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "Pods",
+      "context_excerpt": "Husks·Pods 부산물의 테오브로민",
+      "suggested_korean": "꼬투리",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "Cash Cow",
+      "context_excerpt": "Cash Cow 전환",
+      "suggested_korean": "수익 창출원",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 16,
+      "violation": "Husks",
+      "context_excerpt": "부산물(Husks, Pods)은 폐기물로",
+      "suggested_korean": "껍질",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 16,
+      "violation": "Pods",
+      "context_excerpt": "부산물(Husks, Pods)은 폐기물로",
+      "suggested_korean": "꼬투리",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 16,
+      "violation": "Spin-off",
+      "context_excerpt": "Spin-off JV를 구축해 폐기",
+      "suggested_korean": "분사",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 16,
+      "violation": "Cash Cow",
+      "context_excerpt": "캐시카우(Cash Cow)로 탈바꿈시키십시오.",
+      "suggested_korean": "수익 창출원",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 17,
+      "violation": "CMS",
+      "context_excerpt": "CMS 농가 등록률·폴리곤 매핑",
+      "suggested_korean": "인증 관리 시스템",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 17,
+      "violation": "CMS",
+      "context_excerpt": "CMS 농가 등록률(%)",
+      "suggested_korean": "인증 관리 시스템",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 17,
+      "violation": "TCDP",
+      "context_excerpt": "가나 TCDP API",
+      "suggested_korean": "가나 코코아 이력 추적 및 산림 벌채 방지 프로그램",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 17,
+      "violation": "API",
+      "context_excerpt": "가나 TCDP API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 18,
+      "violation": "API",
+      "context_excerpt": "KCS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 18,
+      "violation": "CBE",
+      "context_excerpt": "CBE 비중 + 현물/선물 스프레드",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 18,
+      "violation": "CBE",
+      "context_excerpt": "CBE 비중",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 18,
+      "violation": "CBE",
+      "context_excerpt": "CBE 활용 제품을 스플릿(Split)",
+      "suggested_korean": "코코아 버터 대체재",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 18,
+      "violation": "API",
+      "context_excerpt": "ICCO API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 19,
+      "violation": "EBITDA",
+      "context_excerpt": "채널별 EBITDA·성장률 + 폴리페놀",
+      "suggested_korean": "세전 이자 감가상각비 차감 전 영업이익",
+      "confidence": "medium"
+    },
+    {
+      "field": "chart name",
+      "widget_index": 19,
+      "violation": "EBITDA",
+      "context_excerpt": "EBITDA 마진율(%)",
+      "suggested_korean": "세전 이자 감가상각비 차감 전 영업이익",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 19,
+      "violation": "API",
+      "context_excerpt": "MFDS API / B2B 데이터베이스",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 20,
+      "violation": "API",
+      "context_excerpt": "MFDS 식약처 수입식품검역 API",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "medium"
+    }
+  ]
+}

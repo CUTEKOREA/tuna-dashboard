@@ -1,0 +1,61 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 19,
+  "tokens": {
+    "input": 4337,
+    "output": 424,
+    "thoughts": 3530
+  },
+  "cost_usd": 0.00236,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "telemetry.status",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "Loading cost data",
+      "context_excerpt": "Loading cost data...",
+      "suggested_korean": "비용 데이터 로딩 중",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "per",
+      "context_excerpt": "per kg",
+      "suggested_korean": "킬로그램당",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Alert",
+      "context_excerpt": "스위칭 Alert.",
+      "suggested_korean": "알림",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 1,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Live",
+      "context_excerpt": "FRED FX Live",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    }
+  ]
+}

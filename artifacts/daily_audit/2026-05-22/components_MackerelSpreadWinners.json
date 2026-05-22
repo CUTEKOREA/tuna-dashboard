@@ -1,0 +1,29 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 2601,
+    "output": 192,
+    "thoughts": 2249
+  },
+  "cost_usd": 0.00126,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "Inefficiency",
+      "context_excerpt": "비효율(Inefficiency)적 중계 물동량이 많아 부가가치 창출 구조 개선이 절실합니다.",
+      "suggested_korean": "비효율성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Import/Export Price Spread Analysis",
+      "context_excerpt": "FAO FishStatJ Import/Export Price Spread Analysis (2023)",
+      "suggested_korean": "수출입 가격 스프레드 분석",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 39,
+  "tokens": {
+    "input": 4999,
+    "output": 1248,
+    "thoughts": 7737
+  },
+  "cost_usd": 0.00462,
+  "violations_count": 15,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Comtrade",
+      "context_excerpt": "신통상규범 | Comtrade + OFAC API",
+      "suggested_korean": "유엔 상품 무역 통계 데이터베이스(Comtrade)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "OFAC",
+      "context_excerpt": "Comtrade + OFAC API",
+      "suggested_korean": "미국 해외자산통제국(OFAC)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "API",
+      "context_excerpt": "Comtrade + OFAC API",
+      "suggested_korean": "응용 프로그래밍 인터페이스(API)",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "Exposure",
+      "context_excerpt": "중국 가공 의존도(Exposure) 70% 이하 유지",
+      "suggested_korean": "노출도(Exposure)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Comtrade",
+      "context_excerpt": "사회적 책임 + Comtrade 교차검증",
+      "suggested_korean": "유엔 상품 무역 통계 데이터베이스(Comtrade)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "WITS",
+      "context_excerpt": "비관세장벽 | WTO + WITS API",
+      "suggested_korean": "세계 무역 통합 솔루션(WITS)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "API",
+      "context_excerpt": "비관세장벽 | WTO + WITS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스(API)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "KORUS",
+      "context_excerpt": "KORUS FTA 적용 시 미국→한국",
+      "suggested_korean": "한미 자유무역협정(KORUS FTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "MFN",
+      "context_excerpt": "필레 관세 5%(MFN 10% 대비 50% 절감).",
+      "suggested_korean": "최혜국 대우(MFN)",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 1,
+      "violation": "KORUS",
+      "context_excerpt": "MSC 직수입 시 KORUS 관세 0% 극대화.",
+      "suggested_korean": "한미 자유무역협정(KORUS FTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "Severity",
+      "context_excerpt": "6대 리스크 Severity × Probability 가중합산",
+      "suggested_korean": "심각도(Severity)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "Probability",
+      "context_excerpt": "Severity × Probability 가중합산",
+      "suggested_korean": "발생확률(Probability)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "OFAC",
+      "context_excerpt": "교차분석 + WTO/OFAC/WITS API",
+      "suggested_korean": "미국 해외자산통제국(OFAC)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "WITS",
+      "context_excerpt": "교차분석 + WTO/OFAC/WITS API",
+      "suggested_korean": "세계 무역 통합 솔루션(WITS)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "API",
+      "context_excerpt": "교차분석 + WTO/OFAC/WITS API",
+      "suggested_korean": "응용 프로그래밍 인터페이스(API)",
+      "confidence": "high"
+    }
+  ]
+}

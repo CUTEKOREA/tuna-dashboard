@@ -1,0 +1,381 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 73,
+  "tokens": {
+    "input": 17188,
+    "output": 3320,
+    "thoughts": 12925
+  },
+  "cost_usd": 0.01346,
+  "violations_count": 46,
+  "violations": [
+    {
+      "field": "header",
+      "widget_index": null,
+      "violation": "Mackerel Strategic Command Center",
+      "context_excerpt": "Mackerel Strategic Command Center —",
+      "suggested_korean": "고등어 전략 지휘본부",
+      "confidence": "high"
+    },
+    {
+      "field": "kpi_value",
+      "widget_index": null,
+      "violation": "Billion",
+      "context_excerpt": "toFixed(2)} Billion`",
+      "suggested_korean": "억 달러",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": null,
+      "violation": "LIVE TICKER",
+      "context_excerpt": "LIVE TICKER",
+      "suggested_korean": "실시간 시세",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": null,
+      "violation": "Processing",
+      "context_excerpt": "가공 산업 (Processing)",
+      "suggested_korean": "가공",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": null,
+      "violation": "Logistics & Trade",
+      "context_excerpt": "물류 및 무역 (Logistics & Trade)",
+      "suggested_korean": "물류·교역",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": null,
+      "violation": "Sales & Demand",
+      "context_excerpt": "판매 및 수요 (Sales & Demand)",
+      "suggested_korean": "판매·수요",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": null,
+      "violation": "Sustainability",
+      "context_excerpt": "지속가능성 (Sustainability)",
+      "suggested_korean": "지속가능성",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: 해양수산부 &",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 1,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: WITS + KCS]",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 2,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: ECOS + KCS +",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 3,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: KAMIS + 해양",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 4,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 4,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 4,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: 관세청 KCS]",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 5,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: 관세청 KCS]",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 6,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 6,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: Eurostat SDMX",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 7,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: Open Supply H",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 8,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 8,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: UN Comtrade]",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 9,
+      "violation": "Live Ticker",
+      "context_excerpt": "Live Ticker와 연동하여 조기 경보",
+      "suggested_korean": "실시간 시세 표시기",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 9,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: OEC] Observat",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 10,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 10,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 10,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: HS Ping] 실시",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 11,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 11,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 11,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE 연동: Tariffs.io] 실시간",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 12,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 12,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 12,
+      "violation": "CBAM",
+      "context_excerpt": "EU CBAM 시행 시 탄소발자국 인증",
+      "suggested_korean": "탄소국경조정제도",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 12,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: OFAC/EU Sanc",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "LIVE",
+      "context_excerpt": "🟢 LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "Verified",
+      "context_excerpt": "✅ 검증완료",
+      "suggested_korean": "검증완료",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "Forecast",
+      "context_excerpt": "🔮 예측",
+      "suggested_korean": "예측",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 13,
+      "violation": "LIVE",
+      "context_excerpt": "📡 [LIVE API 연동: ImportYeti] B",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    }
+  ]
+}

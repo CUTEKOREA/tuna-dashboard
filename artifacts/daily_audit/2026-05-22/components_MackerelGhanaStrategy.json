@@ -1,0 +1,37 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 5824,
+    "output": 243,
+    "thoughts": 2671
+  },
+  "cost_usd": 0.00235,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "Duty Etc",
+      "context_excerpt": "관세 (Duty Etc)",
+      "suggested_korean": "관세 등",
+      "confidence": "medium"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 1,
+      "violation": "S. japonicus",
+      "context_excerpt": "타임라인 (S. japonicus 1,328 카톤)",
+      "suggested_korean": "태평양고등어 (Scomber japonicus)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 1,
+      "violation": "FDA",
+      "context_excerpt": "통관 (FDA검사)",
+      "suggested_korean": "미국 식품의약국(FDA) 검사",
+      "confidence": "high"
+    }
+  ]
+}

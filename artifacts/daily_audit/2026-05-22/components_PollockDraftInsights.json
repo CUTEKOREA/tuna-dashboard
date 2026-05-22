@@ -1,0 +1,149 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 46,
+  "tokens": {
+    "input": 6109,
+    "output": 1404,
+    "thoughts": 9234
+  },
+  "cost_usd": 0.00534,
+  "violations_count": 17,
+  "violations": [
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Global Megatrend",
+      "context_excerpt": "Global Megatrend",
+      "suggested_korean": "글로벌 메가트렌드",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Geopolitical Supply Hedging",
+      "context_excerpt": "[Geopolitical Supply Hedging]",
+      "suggested_korean": "지정학적 공급 헤징",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "DB",
+      "context_excerpt": "어획생산량 DB (1950-2024)",
+      "suggested_korean": "데이터베이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 1,
+      "violation": "Self-Sufficiency vs Import",
+      "context_excerpt": "Self-Sufficiency vs Import",
+      "suggested_korean": "자급률 대 수입 의존도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Margin Defense & Premiumization",
+      "context_excerpt": "[Margin Defense & Premiumization]",
+      "suggested_korean": "마진 방어 및 고급화",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 2,
+      "violation": "Import Blackholes",
+      "context_excerpt": "Import Blackholes",
+      "suggested_korean": "수입 블랙홀",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "Dual-Hub Tolling Strategy",
+      "context_excerpt": "[Dual-Hub Tolling Strategy]",
+      "suggested_korean": "이중 허브 위탁가공 전략",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Trade flow (Imports) Top 5 Countries",
+      "context_excerpt": "Trade flow (Imports) Top 5 Countries",
+      "suggested_korean": "무역 흐름 (수입) 상위 5개국",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 3,
+      "violation": "Spread Winners",
+      "context_excerpt": "Spread Winners",
+      "suggested_korean": "스프레드 승자",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "Smart Factory Capex",
+      "context_excerpt": "[Smart Factory Capex]",
+      "suggested_korean": "스마트 팩토리 설비 투자",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "AI",
+      "context_excerpt": "AI 광학 선별기 기반의",
+      "suggested_korean": "인공지능",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "CAPEX",
+      "context_excerpt": "대규모 CAPEX를 승인하십시오.",
+      "suggested_korean": "자본 지출",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "Imports/Exports Value & Volume",
+      "context_excerpt": "Imports/Exports Value & Volume (2023)",
+      "suggested_korean": "수입/수출 가치 및 물량",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 4,
+      "violation": "Price Tiers by Country",
+      "context_excerpt": "Price Tiers by Country",
+      "suggested_korean": "국가별 가격 등급",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 4,
+      "violation": "One-size-fits-all",
+      "context_excerpt": "'One-size-fits-all' 가격 산정 모델",
+      "suggested_korean": "획일적인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 4,
+      "violation": "Bifurcated Allocation Tactical Execution",
+      "context_excerpt": "[Bifurcated Allocation Tactical Execution]",
+      "suggested_korean": "이원화된 배정 전술 실행",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 4,
+      "violation": "Imports Volume/Value Weighted Avg by Country",
+      "context_excerpt": "Imports Volume/Value Weighted Avg by Country",
+      "suggested_korean": "국가별 수입 물량/가치 가중 평균",
+      "confidence": "high"
+    }
+  ]
+}

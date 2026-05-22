@@ -1,0 +1,61 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 30,
+  "tokens": {
+    "input": 4286,
+    "output": 506,
+    "thoughts": 4893
+  },
+  "cost_usd": 0.00255,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "SST",
+      "context_excerpt": "러시아FOB·MGO·SST·KRW/USD·중국가동률) 기반 통명태/수리미/명란 분기별 가격 예측 (FRED Live)",
+      "suggested_korean": "해수면 온도",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "What-If",
+      "context_excerpt": "W-PF2 · What-If 시나리오 시뮬레이터",
+      "suggested_korean": "가상 시나리오",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "SST",
+      "context_excerpt": "제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST",
+      "suggested_korean": "해수면 온도",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 1,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "SST",
+      "context_excerpt": "전망모형 · NOAA SST 데이터",
+      "suggested_korean": "해수면 온도",
+      "confidence": "high"
+    }
+  ]
+}

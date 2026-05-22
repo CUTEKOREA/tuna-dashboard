@@ -1,0 +1,717 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 124,
+  "tokens": {
+    "input": 17286,
+    "output": 8351,
+    "thoughts": 20642
+  },
+  "cost_usd": 0.02606,
+  "violations_count": 88,
+  "violations": [
+    {
+      "field": "situation",
+      "widget_index": null,
+      "violation": "골든 윈도우",
+      "context_excerpt": "글로벌 펫푸드 시장 진입의 골든 윈도우는 향후 3~5년입니다.",
+      "suggested_korean": "황금기",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Phase 3",
+      "context_excerpt": "시장 진입 시나리오 예측기 (Phase 3)",
+      "suggested_korean": "3단계",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "PHASE 3",
+      "context_excerpt": "ROIC 비교 — PHASE 3 진입 전략 보고서",
+      "suggested_korean": "3단계",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "CapEx",
+      "context_excerpt": "과도한 CapEx가 요구되는 S3(M&A) 및 S4(자체 공장 수출)는 보류하고",
+      "suggested_korean": "자본적 지출",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "M&A",
+      "context_excerpt": "과도한 CapEx가 요구되는 S3(M&A) 및 S4(자체 공장 수출)는 보류하고",
+      "suggested_korean": "인수합병",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "PHASE 3",
+      "context_excerpt": "PHASE 3 진입 전략 보고서",
+      "suggested_korean": "3단계",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "Semana 10",
+      "context_excerpt": "오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로 급락하며",
+      "suggested_korean": "10주차",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "What-If",
+      "context_excerpt": "What-If — 동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터",
+      "suggested_korean": "가상 시나리오",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 2,
+      "violation": "Buffer",
+      "context_excerpt": "매입원가 충격을 완충(Buffer)하는 전략을 수립.",
+      "suggested_korean": "완충",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 3,
+      "violation": "Live API",
+      "context_excerpt": "클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "Carrageenan",
+      "context_excerpt": "Carrageenan — 카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력",
+      "suggested_korean": "카라기난",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 3,
+      "violation": "Agar",
+      "context_excerpt": "제품 포뮬러를 한천(Agar)이나 펙틴(Pectin) 등 '클린 라벨(Clean Label)' 규격으로",
+      "suggested_korean": "한천",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 3,
+      "violation": "Pectin",
+      "context_excerpt": "제품 포뮬러를 한천(Agar)이나 펙틴(Pectin) 등 '클린 라벨(Clean Label)' 규격으로",
+      "suggested_korean": "펙틴",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 3,
+      "violation": "Free-from",
+      "context_excerpt": "무첨가(Free-from) 마케팅을 전개하여 소비자 불신을 해소하고",
+      "suggested_korean": "무첨가",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "South Korea Pet Food Report",
+      "context_excerpt": "South Korea Pet Food Report, 수산분야 펫푸드 산업 활성화 방안",
+      "suggested_korean": "한국 펫푸드 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Price Gap",
+      "context_excerpt": "Price Gap — 동일 시장에서 미국산이 태국산 대비 3~7배 고가.",
+      "suggested_korean": "가격 격차",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "신규 CAPEX를 억제하고 세계 최고 수준의 태국 톱티어 OEM 인프라를",
+      "suggested_korean": "자본적 지출",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "Hong Kong Pet Food Market Report 2026",
+      "context_excerpt": "Hong Kong Pet Food Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성 및 실행 전략 보고서",
+      "suggested_korean": "홍콩 펫푸드 시장 보고서 2026",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "Thailand's Pet Food Market 2025",
+      "context_excerpt": "Hong Kong Pet Food Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성 및 실행 전략 보고서",
+      "suggested_korean": "태국 펫푸드 시장 2025",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 6,
+      "violation": "Comprehensive Review of Alternative Proteins",
+      "context_excerpt": "Comprehensive Review of Alternative Proteins",
+      "suggested_korean": "대체 단백질 종합 검토",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "Empirical Data",
+      "context_excerpt": "Empirical Data — 태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요.",
+      "suggested_korean": "실증 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 7,
+      "violation": "GPM",
+      "context_excerpt": "23.1%의 GPM과 18.7%의 순Bottom-line(순이익)률을 달성 중입니다.",
+      "suggested_korean": "매출총이익률",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 7,
+      "violation": "Full Utilization",
+      "context_excerpt": "'Full Utilization' 전략은 매입원가율을 극한으로 통제하며 폭발적 마진 수직 상승을 견인합니다.",
+      "suggested_korean": "완전 활용",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "Live API",
+      "context_excerpt": "단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 8,
+      "violation": "MSC",
+      "context_excerpt": "원양 조업 이력 추적 시스템과 MSC 인증을 클린 라벨(Clean Label)과 연계하여",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 8,
+      "violation": "Sustainability in the Pet Food Industry",
+      "context_excerpt": "Sustainability in the Pet Food Industry, Insects as Feed for Companion and Exotic Pets, 신라교역 신사업 계획서",
+      "suggested_korean": "펫푸드 산업의 지속가능성",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 8,
+      "violation": "Insects as Feed for Companion and Exotic Pets",
+      "context_excerpt": "Sustainability in the Pet Food Industry, Insects as Feed for Companion and Exotic Pets, 신라교역 신사업 계획서",
+      "suggested_korean": "반려동물 및 특수 반려동물 사료용 곤충",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "Live API",
+      "context_excerpt": "대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "CAGR",
+      "context_excerpt": "CAGR 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망.",
+      "suggested_korean": "연평균 성장률",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiRow",
+      "widget_index": 9,
+      "violation": "CAGR",
+      "context_excerpt": "KpiCard label=\"CAGR\" value=\"8.7\" unit=\"%\"",
+      "suggested_korean": "연평균 성장률",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiRow",
+      "widget_index": 9,
+      "violation": "E",
+      "context_excerpt": "KpiCard label=\"2027(E)\" value=\"39\" unit=\"억$\"",
+      "suggested_korean": "예상치",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 9,
+      "violation": "Zero-Waste",
+      "context_excerpt": "'Zero-Waste' ESG 스토리를 내재화하여 PE 엑시트(Exit) 시점에",
+      "suggested_korean": "폐기물 제로",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 9,
+      "violation": "PE",
+      "context_excerpt": "'Zero-Waste' ESG 스토리를 내재화하여 PE 엑시트(Exit) 시점에",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 9,
+      "violation": "SI",
+      "context_excerpt": "대형 SI 투자자들로부터 멀티플(Multiple) 프리미엄을 확보하는 마스터플랜을 가동.",
+      "suggested_korean": "전략적 투자자",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 9,
+      "violation": "Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds",
+      "context_excerpt": "Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds, Alternative Proteins Review",
+      "suggested_korean": "참치 머리 부산물을 양식 사료용 항산화 펩타이드 성분으로 가공",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 9,
+      "violation": "Alternative Proteins Review",
+      "context_excerpt": "Processing of Tuna Head By-Products into Antioxidant Peptide Ingredients for Aquaculture Feeds, Alternative Proteins Review",
+      "suggested_korean": "대체 단백질 검토",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 10,
+      "violation": "EPA+DHA",
+      "context_excerpt": "d_kfas_w05.title",
+      "suggested_korean": "에이코사펜타엔산+도코사헥사엔산",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 10,
+      "violation": "EPA+DHA",
+      "context_excerpt": "EPA+DHA 620 — 줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고",
+      "suggested_korean": "에이코사펜타엔산+도코사헥사엔산",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "RFMO",
+      "context_excerpt": "RFMO 쿼터 축소 → 원물 공급 리스크",
+      "suggested_korean": "지역수산기구",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 11,
+      "violation": "FAD",
+      "context_excerpt": "FAD -4%/년 — FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피.",
+      "suggested_korean": "집어장치",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiRow",
+      "widget_index": 11,
+      "violation": "TAC",
+      "context_excerpt": "KpiCard label=\"2025 TAC\" value=\"73,011\" unit=\"톤\"",
+      "suggested_korean": "총허용어획량",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiRow",
+      "widget_index": 11,
+      "violation": "FAD",
+      "context_excerpt": "KpiCard label=\"FAD 제한\" value=\"288\" unit=\"개/선박\"",
+      "suggested_korean": "집어장치",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 11,
+      "violation": "FAD",
+      "context_excerpt": "ICCAT은 FAD 제한을 2025년 300개 → 2026~27년 288개로 연 4% 축소 중이며",
+      "suggested_korean": "집어장치",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 11,
+      "violation": "IOTC",
+      "context_excerpt": "IOTC는 황다랑어를 2027년까지 2017년 대비 20% 감축 의무화했습니다.",
+      "suggested_korean": "인도양참치위원회",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 11,
+      "violation": "TAC",
+      "context_excerpt": "TAC 증가 대비 FAD 축소의 비대칭 구조는 선단별 어획 효율 하락과 원물 단가 상승을 불가피하게 합니다.",
+      "suggested_korean": "총허용어획량",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "ICCAT Compendium 2025",
+      "context_excerpt": "ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01",
+      "suggested_korean": "ICCAT 편람 2025",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "IOTC Harvest Control Rules",
+      "context_excerpt": "ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01",
+      "suggested_korean": "인도양참치위원회 어획 통제 규칙",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "ICCAT Rec. 24-01",
+      "context_excerpt": "ICCAT Compendium 2025, IOTC Harvest Control Rules, ICCAT Rec. 24-01",
+      "suggested_korean": "ICCAT 권고 24-01",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 12,
+      "violation": "Block et al. 2026 (Science)",
+      "context_excerpt": "Block et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)",
+      "suggested_korean": "Block 외 2026 (사이언스)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 12,
+      "violation": "Mesothermic fishes face overheating risk (Science)",
+      "context_excerpt": "Block et al. 2026 (Science), Mesothermic fishes face overheating risk (Science)",
+      "suggested_korean": "중온성 어류의 과열 위험 (사이언스)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 13,
+      "violation": "Live API",
+      "context_excerpt": "틸라피아 껍질 업사이클링 수익성 🟢 Live API",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "Single-ingredient",
+      "context_excerpt": "Single-ingredient — 단일 원료(Single-ingredient) 반려견 간식 부가가치",
+      "suggested_korean": "단일 원료",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 13,
+      "violation": "GPM",
+      "context_excerpt": "기존 폐기 비용을 초고부가가치(GPM 65%) 수익 센터로 역전시켜야 합니다.",
+      "suggested_korean": "매출총이익률",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 14,
+      "violation": "Scoreboard",
+      "context_excerpt": "Scoreboard — 로얄캐닌 2,093억 원으로 1위.",
+      "suggested_korean": "실적 현황판",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 14,
+      "violation": "ODM",
+      "context_excerpt": "하림펫푸드와 ODM 1위 오에스피는 Bottom-line(순이익)률 반등에 성공했습니다.",
+      "suggested_korean": "제조자 개발 생산",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 14,
+      "violation": "PEF",
+      "context_excerpt": "PEF 투자 시 '규모의 경제'보다 '프리미엄 세그먼트 침투력'에 멀티플(Multiple)을 부여해야 합니다.",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 14,
+      "violation": "MSRP Premium",
+      "context_excerpt": "고마진(MSRP Premium)을 정당화하는 브랜드를 타겟팅하거나 B2C와 ODM을 수직 통합하는 롤업(Roll-up) 전략을 가동.",
+      "suggested_korean": "권장소비자가격 프리미엄",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 14,
+      "violation": "ODM",
+      "context_excerpt": "고마진(MSRP Premium)을 정당화하는 브랜드를 타겟팅하거나 B2C와 ODM을 수직 통합하는 롤업(Roll-up) 전략을 가동.",
+      "suggested_korean": "제조자 개발 생산",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 14,
+      "violation": "The Numbers",
+      "context_excerpt": "[The Numbers] 하림펫푸드 매출 500억 돌파, 대한민국 반려동물 사료 시장 진화 전략",
+      "suggested_korean": "수치로 본",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Sensitivity",
+      "context_excerpt": "Sensitivity — 참치 +10% → 순이익 -8.5%. 환율 1바트 절상 → -10%.",
+      "suggested_korean": "민감도",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 15,
+      "violation": "Cost-plus Pricing",
+      "context_excerpt": "매입원가 상승을 고객사에 전가할 Cost-plus Pricing 계약 및 외환 헷징을 구축해야 살아남습니다.",
+      "suggested_korean": "원가 가산 가격 책정",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 15,
+      "violation": "Finansia, Globlex Securities Analyst Reports",
+      "context_excerpt": "I-TAIL CORPORATION ITC TB (Finansia, Globlex Securities Analyst Reports)",
+      "suggested_korean": "Finansia, Globlex 증권사 분석 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 16,
+      "violation": "ODM",
+      "context_excerpt": "i-Tail 글로벌 ODM 매출 및 이익률 구조 (%)",
+      "suggested_korean": "제조자 개발 생산",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "GPM",
+      "context_excerpt": "GPM 25% — 마즈·스머커 등 OEM으로 98.7% 매출. GPM 25%.",
+      "suggested_korean": "매출총이익률",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 16,
+      "violation": "GPM",
+      "context_excerpt": "25%의 GPM과 18.7%의 탁월한 순Bottom-line(순이익)률을 달성합니다.",
+      "suggested_korean": "매출총이익률",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 16,
+      "violation": "GPCI",
+      "context_excerpt": "영양학적 솔루션을 역제안하는 자체 혁신 센터(GPCI) 내재화가 그 비결입니다.",
+      "suggested_korean": "글로벌 펫케어 혁신 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 16,
+      "violation": "CapEx",
+      "context_excerpt": "고수익 습식/동결건조 및 처방식 라인으로 즉각 전환하는 CapEx 투자가 요구됩니다.",
+      "suggested_korean": "자본적 지출",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 16,
+      "violation": "ODM",
+      "context_excerpt": "솔루션을 파는 진정한 ODM으로 체질 개선을 이뤄내야 초과 수익을 담보합니다.",
+      "suggested_korean": "제조자 개발 생산",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 17,
+      "violation": "Live API",
+      "context_excerpt": "오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 17,
+      "violation": "ODM",
+      "context_excerpt": "오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다.",
+      "suggested_korean": "제조자 개발 생산",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 17,
+      "violation": "PB",
+      "context_excerpt": "B2B 모델에 안주하지 않고 PB 브랜드 확대 및 D2C 유통 진출로 영업Bottom-line(순이익)률을",
+      "suggested_korean": "자체 브랜드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 17,
+      "violation": "Bolt-on",
+      "context_excerpt": "B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다.",
+      "suggested_korean": "볼트온 인수",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 17,
+      "violation": "Value-up",
+      "context_excerpt": "B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다.",
+      "suggested_korean": "가치 증대",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 18,
+      "violation": "Vertical Integration",
+      "context_excerpt": "Vertical Integration — 계열사 닭고기 원가 직접 공급으로 흑자 전환.",
+      "suggested_korean": "수직 계열화",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "PE",
+      "context_excerpt": "1차 밸류체인을 보유한 PE의 필승 전략입니다.",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 18,
+      "violation": "The Numbers",
+      "context_excerpt": "[The Numbers] 하림펫푸드 분석",
+      "suggested_korean": "수치로 본",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 19,
+      "violation": "Live API",
+      "context_excerpt": "카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 19,
+      "violation": "PB",
+      "context_excerpt": "PB 20.2% — 미국 PB 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배.",
+      "suggested_korean": "자체 브랜드",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 19,
+      "violation": "PB",
+      "context_excerpt": "PB 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다.",
+      "suggested_korean": "자체 브랜드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 19,
+      "violation": "PB",
+      "context_excerpt": "메가 리테일러의 PB 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다.",
+      "suggested_korean": "자체 브랜드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 19,
+      "violation": "Mid-tier",
+      "context_excerpt": "어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어.",
+      "suggested_korean": "중간급",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 19,
+      "violation": "European pet food market share breakdown",
+      "context_excerpt": "European pet food market share breakdown, 2026 Pet Care Industry Trends",
+      "suggested_korean": "유럽 펫푸드 시장 점유율 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 19,
+      "violation": "2026 Pet Care Industry Trends",
+      "context_excerpt": "European pet food market share breakdown, 2026 Pet Care Industry Trends",
+      "suggested_korean": "2026 펫케어 산업 동향",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 20,
+      "violation": "Empirical Data",
+      "context_excerpt": "Empirical Data — 태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계",
+      "suggested_korean": "실증 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 21,
+      "violation": "Aroase AP-10",
+      "context_excerpt": "Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%",
+      "suggested_korean": "아로아제 AP-10",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 21,
+      "violation": "DPPH",
+      "context_excerpt": "Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%",
+      "suggested_korean": "DPPH 라디칼",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 22,
+      "violation": "EAA",
+      "context_excerpt": "d_kfas_w04.title",
+      "suggested_korean": "필수 아미노산",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 22,
+      "violation": "EAA",
+      "context_excerpt": "스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g",
+      "suggested_korean": "필수 아미노산",
+      "confidence": "high"
+    }
+  ]
+}

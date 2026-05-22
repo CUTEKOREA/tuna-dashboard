@@ -1,0 +1,125 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 24,
+  "tokens": {
+    "input": 3954,
+    "output": 1256,
+    "thoughts": 4109
+  },
+  "cost_usd": 0.00433,
+  "violations_count": 14,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Bottleneck",
+      "context_excerpt": "명태 글로벌 생산 장기 병목 현상 (Bottleneck)",
+      "suggested_korean": "병목 현상",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "H&G",
+      "context_excerpt": "단순 원물(H&G) 수입상 포지션을 즉시 철회하고",
+      "suggested_korean": "머리 내장 제거 (어두내장 제거)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Value-Adder",
+      "context_excerpt": "고부가가치 가공업체(Value-Adder)로 비즈니스 중심축을",
+      "suggested_korean": "고부가가치 가공업체",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FishStatJ Global Pollock Catch Data",
+      "context_excerpt": "FAO FishStatJ Global Pollock Catch Data",
+      "suggested_korean": "FAO FishStatJ 글로벌 명태 어획량 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "옵저버 커버리지 및 MSC 인증을 무기로 프리미엄",
+      "suggested_korean": "해양관리협의회 (인증)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "FAS",
+      "context_excerpt": "선상급랭(FAS) 필렛과 연육 시장의 하이엔드를 독점해",
+      "suggested_korean": "선상급랭 (어류)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "PEF",
+      "context_excerpt": "품질 상향 평준화는 PEF에게 강력한 차익거래 기회를",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "FAS",
+      "context_excerpt": "러시아산 선상급랭(FAS) 필렛 및 연육의 아시아/유럽",
+      "suggested_korean": "선상급랭 (어류)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "EBITDA",
+      "context_excerpt": "글로벌 EBITDA 마진 확장을 도모해야 합니다.",
+      "suggested_korean": "법인세 이자 감가상각비 차감 전 영업이익",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "NOAA",
+      "context_excerpt": "미국 해양대기청(NOAA) 및 러시아 연방 수산청",
+      "suggested_korean": "미국 해양대기청",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Report",
+      "context_excerpt": "연방 수산청(Rosrybolovstvo) Report",
+      "suggested_korean": "보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Diverging",
+      "context_excerpt": "러시아 연안 증산 (Diverging)",
+      "suggested_korean": "이격, 분기",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "MSC",
+      "context_excerpt": "정식 인증(MSC) 블록 원료의 세계적 희소성이 치솟고",
+      "suggested_korean": "해양관리협의회 (인증)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "North Pacific Fishery Management Council Data",
+      "context_excerpt": "FAO North Pacific Fishery Management Council Data",
+      "suggested_korean": "FAO 북태평양 수산자원 관리 협의회 데이터",
+      "confidence": "high"
+    }
+  ]
+}

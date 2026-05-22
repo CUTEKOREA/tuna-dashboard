@@ -1,0 +1,37 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 17,
+  "tokens": {
+    "input": 2456,
+    "output": 269,
+    "thoughts": 2650
+  },
+  "cost_usd": 0.00141,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "TAC",
+      "context_excerpt": "노르웨이의 TAC 삭감(52%)과 MSC",
+      "suggested_korean": "총허용어획량(TAC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "MSC",
+      "context_excerpt": "TAC 삭감(52%)과 MSC 인증 상실로",
+      "suggested_korean": "해양관리협의회(MSC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Mackerel Trade Flow Matrix",
+      "context_excerpt": "FAO FishStatJ Mackerel Trade Flow Matrix (2023)",
+      "suggested_korean": "고등어 무역 흐름 매트릭스",
+      "confidence": "high"
+    }
+  ]
+}

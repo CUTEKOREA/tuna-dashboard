@@ -1,0 +1,117 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 32,
+  "tokens": {
+    "input": 4235,
+    "output": 1077,
+    "thoughts": 6543
+  },
+  "cost_usd": 0.00396,
+  "violations_count": 13,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "DEFCON",
+      "context_excerpt": "모니터링 경보를 DEFCON 2레벨로 대기",
+      "suggested_korean": "방어준비태세",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "OPM",
+      "context_excerpt": "파괴되는 국내 OPM",
+      "suggested_korean": "영업이익률",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "스톱 홀딩",
+      "context_excerpt": "구매를 전부 스톱 홀딩하십시오.",
+      "suggested_korean": "중단하고 보류하십시오",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "FRA",
+      "context_excerpt": "통화 선도 분할(FRA) 계약 체결을",
+      "suggested_korean": "선도금리계약",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Exchange Rate & Corporate Finance Data",
+      "context_excerpt": "Korea Exchange Rate & Corporate Finance Data",
+      "suggested_korean": "환율 및 기업 재무 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "하드 펌핑",
+      "context_excerpt": "영업 이익 하드 펌핑 신화",
+      "suggested_korean": "급격한 상승",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "TF",
+      "context_excerpt": "혁신 태스크포스(TF)로 단독 출범시키고",
+      "suggested_korean": "특별 전담팀",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "조인트 벤처",
+      "context_excerpt": "뷰티 계열사와 조인트 벤처 양해 각서를",
+      "suggested_korean": "합작 투자",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Global Marine Pharmaceuticals Valuation Intelligence",
+      "context_excerpt": "Global Marine Pharmaceuticals Valuation Intelligence",
+      "suggested_korean": "글로벌 해양 제약 가치 평가 정보",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "Bubble Map",
+      "context_excerpt": "블루오션의 Bubble Map",
+      "suggested_korean": "버블 지도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 3,
+      "violation": "Volume",
+      "context_excerpt": "매출 절대다수(Volume) 규모의 환상을",
+      "suggested_korean": "물량",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "D2C",
+      "context_excerpt": "자사 브랜딩 D2C 멸균 제품, 파생",
+      "suggested_korean": "소비자 직접 판매",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "2030 Value Roadmap",
+      "context_excerpt": "Consulting Group: 2030 Value Roadmap",
+      "suggested_korean": "2030 가치 로드맵",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 38,
+  "tokens": {
+    "input": 11267,
+    "output": 970,
+    "thoughts": 6640
+  },
+  "cost_usd": 0.00581,
+  "violations_count": 12,
+  "violations": [
+    {
+      "field": "pillar_title",
+      "widget_index": 0,
+      "violation": "Raw Material & Sourcing",
+      "context_excerpt": "원료 수급 (Raw Material & Sourcing)",
+      "suggested_korean": "원자재 조달",
+      "confidence": "high"
+    },
+    {
+      "field": "pillar_title",
+      "widget_index": 1,
+      "violation": "Processing & Value-chain",
+      "context_excerpt": "가공 & 생산 (Processing & Value-chain)",
+      "suggested_korean": "가공 및 가치 사슬",
+      "confidence": "high"
+    },
+    {
+      "field": "pillar_title",
+      "widget_index": 2,
+      "violation": "Logistics & Trade Nexus",
+      "context_excerpt": "물류 & 통관 (Logistics & Trade Nexus)",
+      "suggested_korean": "물류 및 무역 연결망",
+      "confidence": "high"
+    },
+    {
+      "field": "pillar_title",
+      "widget_index": 3,
+      "violation": "Sales & B2B Market",
+      "context_excerpt": "판매 & 수요 (Sales & B2B Market)",
+      "suggested_korean": "판매 및 기업 간 시장",
+      "confidence": "high"
+    },
+    {
+      "field": "pillar_title",
+      "widget_index": 4,
+      "violation": "Compliance",
+      "context_excerpt": "ESG & 지속가능성 (ESG & Compliance)",
+      "suggested_korean": "규정 준수",
+      "confidence": "high"
+    },
+    {
+      "field": "header_text",
+      "widget_index": 0,
+      "violation": "Pollock Strategic Command Center",
+      "context_excerpt": "Pollock Strategic Command Center — 48 Widgets",
+      "suggested_korean": "명태 전략 지휘 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "header_text",
+      "widget_index": 0,
+      "violation": "Widgets",
+      "context_excerpt": "Command Center — 48 Widgets · 8 KPIs · 6 Live",
+      "suggested_korean": "위젯",
+      "confidence": "medium"
+    },
+    {
+      "field": "header_text",
+      "widget_index": 0,
+      "violation": "Live API Pipelines",
+      "context_excerpt": "KPIs · 6 Live API Pipelines",
+      "suggested_korean": "실시간 API 파이프라인",
+      "confidence": "high"
+    },
+    {
+      "field": "header_text",
+      "widget_index": 0,
+      "violation": "API-First",
+      "context_excerpt": "국정연 12건 · API-First · Claude Verified",
+      "suggested_korean": "API 우선",
+      "confidence": "high"
+    },
+    {
+      "field": "header_text",
+      "widget_index": 0,
+      "violation": "Claude Verified",
+      "context_excerpt": "API-First · Claude Verified",
+      "suggested_korean": "Claude 검증 완료",
+      "confidence": "high"
+    },
+    {
+      "field": "strategic_insight_title",
+      "widget_index": 0,
+      "violation": "C-Level Strategic Insight",
+      "context_excerpt": "C-Level Strategic Insight: {title}",
+      "suggested_korean": "최고 경영진 전략적 통찰",
+      "confidence": "high"
+    },
+    {
+      "field": "widget_source_default",
+      "widget_index": 0,
+      "violation": "Intelligence Network",
+      "context_excerpt": "Silla Co. Intelligence Network",
+      "suggested_korean": "정보망",
+      "confidence": "high"
+    }
+  ]
+}

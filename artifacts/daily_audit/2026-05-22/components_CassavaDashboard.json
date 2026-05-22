@@ -1,0 +1,45 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 34,
+  "tokens": {
+    "input": 8036,
+    "output": 338,
+    "thoughts": 6080
+  },
+  "cost_usd": 0.00326,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "kpi_desc",
+      "widget_index": 0,
+      "violation": "HQCF",
+      "context_excerpt": "HQCF 혼합 의무화 수혜 기대",
+      "suggested_korean": "고품질 카사바 가루 (HQCF)",
+      "confidence": "high"
+    },
+    {
+      "field": "kpi_desc",
+      "widget_index": 1,
+      "violation": "PE",
+      "context_excerpt": "일반 PE 대비 4-5배 프리미엄",
+      "suggested_korean": "폴리에틸렌 (PE)",
+      "confidence": "high"
+    },
+    {
+      "field": "educational_panel_title",
+      "widget_index": 2,
+      "violation": "Value Pivot",
+      "context_excerpt": "4F 플랫폼 & 패러다임 전환 (Value Pivot)",
+      "suggested_korean": "가치 전환 (Value Pivot)",
+      "confidence": "high"
+    },
+    {
+      "field": "educational_panel_title",
+      "widget_index": 3,
+      "violation": "Circular Economy",
+      "context_excerpt": "제로 웨이스트 & 순환경제 (Circular Economy)",
+      "suggested_korean": "순환 경제 (Circular Economy)",
+      "confidence": "high"
+    }
+  ]
+}

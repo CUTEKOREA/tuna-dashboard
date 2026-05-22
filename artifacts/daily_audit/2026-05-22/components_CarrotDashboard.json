@@ -1,0 +1,813 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 204,
+  "tokens": {
+    "input": 29614,
+    "output": 9807,
+    "thoughts": 41525
+  },
+  "cost_usd": 0.0334,
+  "violations_count": 100,
+  "violations": [
+    {
+      "field": "h3",
+      "widget_index": null,
+      "violation": "BOT",
+      "context_excerpt": "실시간 차익거래 봇 (BOT & KAMIS API)",
+      "suggested_korean": "봇",
+      "confidence": "high"
+    },
+    {
+      "field": "div",
+      "widget_index": null,
+      "violation": "Arbitrage Data",
+      "context_excerpt": "Loading Arbitrage Data...",
+      "suggested_korean": "차익거래 데이터 로딩 중",
+      "confidence": "high"
+    },
+    {
+      "field": "h3",
+      "widget_index": null,
+      "violation": "TRQ",
+      "context_excerpt": "KCS 통관 TRQ 모니터링 (관세청 API)",
+      "suggested_korean": "저율관세할당량",
+      "confidence": "high"
+    },
+    {
+      "field": "div",
+      "widget_index": null,
+      "violation": "TRQ Data",
+      "context_excerpt": "Loading TRQ Data...",
+      "suggested_korean": "TRQ 데이터 로딩 중",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": null,
+      "violation": "Zero-Volatility",
+      "context_excerpt": "고정가(Zero-Volatility)를 제안하여 시장 점유율을 탈환.",
+      "suggested_korean": "변동성 제로",
+      "confidence": "high"
+    },
+    {
+      "field": "p",
+      "widget_index": null,
+      "violation": "LTV",
+      "context_excerpt": "장기 LTV(벤더 이탈 방어) 극대화 전략 수행.",
+      "suggested_korean": "고객 생애 가치",
+      "confidence": "high"
+    },
+    {
+      "field": "desc",
+      "widget_index": null,
+      "violation": "QCL",
+      "context_excerpt": "FAOSTAT QCL 1,866만t 생산 · OEC 수출 $3.85억(2024)",
+      "suggested_korean": "작물 및 축산물",
+      "confidence": "high"
+    },
+    {
+      "field": "desc",
+      "widget_index": null,
+      "violation": "SCL",
+      "context_excerpt": "FAOSTAT SCL — 3.1만t 폐기 · 독일 15%, 중국 5% 대비 최악",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "PEF",
+      "context_excerpt": "대화형 재무 시나리오 시뮬레이터 (PEF Valuation Control)",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Valuation Control",
+      "context_excerpt": "대화형 재무 시나리오 시뮬레이터 (PEF Valuation Control)",
+      "suggested_korean": "가치평가 관리",
+      "confidence": "high"
+    },
+    {
+      "field": "label",
+      "widget_index": null,
+      "violation": "CapEx",
+      "context_excerpt": "IQF 가공 전환율 (CapEx 투자율)",
+      "suggested_korean": "자본적 지출",
+      "confidence": "high"
+    },
+    {
+      "field": "p",
+      "widget_index": null,
+      "violation": "LTV",
+      "context_excerpt": "W23 벤더 락인 LTV",
+      "suggested_korean": "고객 생애 가치",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Crops and livestock products (QCL)",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Crops and livestock products",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Crops and livestock products (QCL)",
+      "suggested_korean": "작물 및 축산물",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "QCL",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Crops and livestock products (QCL)",
+      "suggested_korean": "작물 및 축산물",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Producer Prices (PP) — 베트남 가격은 LCU 기반 프록시 환산 추정치",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "Producer Prices",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Producer Prices (PP) — 베트남 가격은 LCU 기반 프록시 환산 추정치",
+      "suggested_korean": "생산자 가격",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "PP",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Producer Prices (PP) — 베트남 가격은 LCU 기반 프록시 환산 추정치",
+      "suggested_korean": "생산자 가격",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "LCU",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Producer Prices (PP) — 베트남 가격은 LCU 기반 프록시 환산 추정치",
+      "suggested_korean": "현지 통화 단위",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: KAMIS x KCS Hybrid API] 산지 스팟가 및 렌디드 코스트 동향",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "Hybrid API",
+      "context_excerpt": "* 📡 [LIVE API 연동: KAMIS x KCS Hybrid API] 산지 스팟가 및 렌디드 코스트 동향",
+      "suggested_korean": "혼합형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "source",
+      "widget_index": 3,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: KREI x aT Open API] 겨울당근 생육 동향 및 해외시장 동향 분석",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 3,
+      "violation": "Open API",
+      "context_excerpt": "* 📡 [LIVE API 연동: KREI x aT Open API] 겨울당근 생육 동향 및 해외시장 동향 분석",
+      "suggested_korean": "개방형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "situation",
+      "widget_index": 4,
+      "violation": "Tail Risk",
+      "context_excerpt": "기후 꼬리 리스크(Tail Risk)가 일상화됨.",
+      "suggested_korean": "꼬리 위험",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: NOAA Climate API x MARD] 글로벌 기후 지수 동향",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "Climate API",
+      "context_excerpt": "* 📡 [LIVE API 연동: NOAA Climate API x MARD] 글로벌 기후 지수 동향",
+      "suggested_korean": "기후 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "Phyto-Risk",
+      "context_excerpt": "식물방역 및 잔류농약 리스크 지수 실증 (Phyto-Risk)",
+      "suggested_korean": "식물 검역 위험",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 5,
+      "violation": "Food Safety",
+      "context_excerpt": "식품 안전성(Food Safety) 붕괴 사태를 반면교사 삼아, 파종부터 수확까지 엄격히 통제된 달랏의 무결점 인증(VietGAP) 당근을 '대체 불가한 안전 프랜차이즈 원료'로 프리미엄화할 것.",
+      "suggested_korean": "식품 안전성",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: MFDS(식약처) Open API] 수입식품 안전성 검사결과 및 회수·판매중지 실데이터",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "Open API",
+      "context_excerpt": "* 📡 [LIVE API 연동: MFDS(식약처) Open API] 수입식품 안전성 검사결과 및 회수·판매중지 실데이터",
+      "suggested_korean": "개방형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 8,
+      "violation": "CAGR",
+      "context_excerpt": "평균 임금 상승률(CAGR 8~10%)을 감안해도 중국 대비 으로 낮은 베트남으로 전처리(탈피/절단) 기지를 이전하는 것은, 향후 15년 이상의 장기 구조적 인건비 차익(Labor Arbitrage)을 확정 짓는 필수 전략임.",
+      "suggested_korean": "연평균 성장률",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 8,
+      "violation": "Labor Arbitrage",
+      "context_excerpt": "장기 구조적 인건비 차익(Labor Arbitrage)을 확정 짓는 필수 전략임.",
+      "suggested_korean": "노동력 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "Demand Shift",
+      "context_excerpt": "B2B HMR 폼팩터별 수요 전환율 (Demand Shift)",
+      "suggested_korean": "수요 전환",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 9,
+      "violation": "High-margin segment",
+      "context_excerpt": "수익성 높은 시장(High-margin segment)을 독식하게 됨.",
+      "suggested_korean": "고마진 부문",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Detailed trade matrix (TM)",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 10,
+      "violation": "China+1",
+      "context_excerpt": "공급 다변화(China+1)' 포트폴리오 구축이 필수적임.",
+      "suggested_korean": "중국 외 공급 다변화",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "Detailed trade matrix",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Detailed trade matrix (TM)",
+      "suggested_korean": "상세 무역 매트릭스",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "TM",
+      "context_excerpt": "* 📡 [LIVE API 연동: FAOSTAT Open API] Detailed trade matrix (TM)",
+      "suggested_korean": "무역 매트릭스",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 11,
+      "violation": "Landed Cost",
+      "context_excerpt": "최종 도착가(Landed Cost)에서 중국산을 역전해야 합니다.",
+      "suggested_korean": "도착 원가",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: KCS(관세청) Open API] 농산물 수입 관세표(E04-2026) 및 한-베트남 FTA(VKFTA) 조세 규정",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "Open API",
+      "context_excerpt": "* 📡 [LIVE API 연동: KCS(관세청) Open API] 농산물 수입 관세표(E04-2026) 및 한-베트남 FTA(VKFTA) 조세 규정",
+      "suggested_korean": "개방형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "situation",
+      "widget_index": 13,
+      "violation": "3PL",
+      "context_excerpt": "비싼 국내 3PL 냉동창고 임대료(10톤 기준 일 $20 운전자본)를 소모시키며, 시황 폭락 시 덤핑 외에 대안이 없음.",
+      "suggested_korean": "제3자 물류",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 13,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: KCS Open API] 해양수산부 항만 화물 처리시간 및 3PL 콜드체인 표준 보관료 매트릭스",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 13,
+      "violation": "Open API",
+      "context_excerpt": "* 📡 [LIVE API 연동: KCS Open API] 해양수산부 항만 화물 처리시간 및 3PL 콜드체인 표준 보관료 매트릭스",
+      "suggested_korean": "개방형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "source",
+      "widget_index": 13,
+      "violation": "3PL",
+      "context_excerpt": "* 📡 [LIVE API 연동: KCS Open API] 해양수산부 항만 화물 처리시간 및 3PL 콜드체인 표준 보관료 매트릭스",
+      "suggested_korean": "제3자 물류",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 14,
+      "violation": "TRQ",
+      "context_excerpt": "WTO TRQ 배분 의존도 vs FTA 영구 차익",
+      "suggested_korean": "저율관세할당량",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 14,
+      "violation": "TRQ",
+      "context_excerpt": "배분하는 TRQ(저율관세할당량) 획득에 목을 매는 천수답식 수입에 의존하여 유통 마진 변동성이 극심합니다.",
+      "suggested_korean": "저율관세할당량",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 14,
+      "violation": "TRQ",
+      "context_excerpt": "베트남 거점은 TRQ 발동과 무관하게 상시적(Permanent)으로 최대 유통 마진을 보장하는 강한 구조적 차익 머신으로 작동해야 합니다.",
+      "suggested_korean": "저율관세할당량",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 14,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: KREI Open API] WTO TRQ 개선 방안 리포트 실시간 지표",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 14,
+      "violation": "Open API",
+      "context_excerpt": "* 📡 [LIVE API 연동: KREI Open API] WTO TRQ 개선 방안 리포트 실시간 지표",
+      "suggested_korean": "개방형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "source",
+      "widget_index": 14,
+      "violation": "TRQ",
+      "context_excerpt": "* 📡 [LIVE API 연동: KREI Open API] WTO TRQ 개선 방안 리포트 실시간 지표",
+      "suggested_korean": "저율관세할당량",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 15,
+      "violation": "Churn",
+      "context_excerpt": "벤더 이탈(Churn)의 원인이 됨.",
+      "suggested_korean": "이탈률",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 15,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: aT KAMIS API] 농산물유통정보(KAMIS) 도매가격 지수 변동성 데이터",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 16,
+      "violation": "Predictive",
+      "context_excerpt": "공급 개런티 기반 B2B 시장 점유율 탈환 (Predictive)",
+      "suggested_korean": "예측",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 16,
+      "violation": "TAM",
+      "context_excerpt": "KREI TAM(순수입 11.4만톤) 기반 Bass Diffusion Model 적용 시, 기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨.",
+      "suggested_korean": "총 유효 시장",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 16,
+      "violation": "Bass Diffusion Model",
+      "context_excerpt": "KREI TAM(순수입 11.4만톤) 기반 Bass Diffusion Model 적용 시, 기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨.",
+      "suggested_korean": "배스 확산 모델",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 16,
+      "violation": "Base",
+      "context_excerpt": "기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨.",
+      "suggested_korean": "기본",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 17,
+      "violation": "R&D",
+      "context_excerpt": "글로벌 종자 기업(Enza Zaden 등) R&D 데이터",
+      "suggested_korean": "연구 개발",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 18,
+      "violation": "M&A",
+      "context_excerpt": "M&A 인수 타겟 스코어카드 (3자 비교 CDD)",
+      "suggested_korean": "인수 합병",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 18,
+      "violation": "CDD",
+      "context_excerpt": "M&A 인수 타겟 스코어카드 (3자 비교 CDD)",
+      "suggested_korean": "커머셜 듀딜리전스",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 18,
+      "violation": "CDD",
+      "context_excerpt": "커머셜 듀딜리전스(CDD) 프레임워크 평가 결과, 중국산 단순 유통 벤더의 기업 가치는 하락세인 반면, 베트남 달랏 애그테크 모델은 가공 인프라, FTA 관세 우위, 기후 내성에서 최상위 적격성(90점 이상)을 입증함.",
+      "suggested_korean": "커머셜 듀딜리전스",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "Flat Margin",
+      "context_excerpt": "단순 수입 유통업(Flat Margin)을 넘어, 확고한 산지 장악력과 전처리 밸류체인 내재화를 무기로 사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트(Exit) 밸류에이션 매트릭스의 우위를 증명할 것.",
+      "suggested_korean": "고정 마진",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "PEF",
+      "context_excerpt": "사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트(Exit) 밸류에이션 매트릭스의 우위를 증명할 것.",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "IP",
+      "context_excerpt": "고당도 종자 IP(라이선싱) 통제권과 후방의 스마트 가공(IQF) 및 바이오 업사이클링(Up-cycling) 역량을 동시에 내재화할 경우, '단순 유통업'에서 '푸드테크 유니콘'으로 재분류되어 15배(15x) 이상의 폭발적인 멀티플(Multiple) 차익거래가 실현됨. (Value Realization Expected)",
+      "suggested_korean": "지적 재산",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 18,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 M&A 타겟 스코어카드 및 회계법인 CDD 프레임워크",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 18,
+      "violation": "Open API",
+      "context_excerpt": "* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 M&A 타겟 스코어카드 및 회계법인 CDD 프레임워크",
+      "suggested_korean": "개방형 API",
+      "confidence": "medium"
+    },
+    {
+      "field": "source",
+      "widget_index": 18,
+      "violation": "M&A",
+      "context_excerpt": "* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 M&A 타겟 스코어카드 및 회계법인 CDD 프레임워크",
+      "suggested_korean": "인수 합병",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 18,
+      "violation": "CDD",
+      "context_excerpt": "* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 M&A 타겟 스코어카드 및 회계법인 CDD 프레임워크",
+      "suggested_korean": "커머셜 듀딜리전스",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 19,
+      "violation": "Churn",
+      "context_excerpt": "벤더 이탈률(Churn)이 60%에 달해 사업 지속성이 떨어짐.",
+      "suggested_korean": "이탈률",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 20,
+      "violation": "Loss",
+      "context_excerpt": "원물 손실률(Loss) 및 잉여 가공 전환 잠재력",
+      "suggested_korean": "손실",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 20,
+      "violation": "Loss",
+      "context_excerpt": "전량 폐기처분(Loss)됨.",
+      "suggested_korean": "손실",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 20,
+      "violation": "Waste",
+      "context_excerpt": "비규격 손실분(Waste) 전량을 펫푸드나 고순도 베타카로틴(메디푸드)용 추출 산업으로 업사이클링(Up-cycling) 시, 막대한 마진 창출 및 ESG 페널티 면제가 가능함.",
+      "suggested_korean": "폐기물",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 21,
+      "violation": "LIVE",
+      "context_excerpt": "* 📡 [LIVE API 연동: UN Comtrade & GMI] 글로벌 베타카로틴 수요 및 무역 흐름 데이터",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 21,
+      "violation": "Expeller",
+      "context_excerpt": "압착(Expeller) 공정으로 고도 가공 시 천연 카로티노이드 추출 효율이 11배 폭증함(Amin et al., 2021).",
+      "suggested_korean": "압착기",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 21,
+      "violation": "Execution Recommended",
+      "context_excerpt": "'푸드 업사이클링(Up-cycling)' 초격차 마진을 실현할 것. (Execution Recommended)",
+      "suggested_korean": "실행 권장",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 22,
+      "violation": "LCA",
+      "context_excerpt": "Cecílio Filho et al.(2026) LCA 실측: 관행농(겨울) 당근 탄소발자국 0.0833 kgCO₂eq/kg → 유기농 0.0763(8.4% 감축), 업사이클링(Up-cycling) 전환 시 0.047(43% 감축 실증).",
+      "suggested_korean": "전과정 평가",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 22,
+      "violation": "Tier 2",
+      "context_excerpt": "IPCC 2019 Tier 2 / 신세계 ESG리포트 / IFRS S2 기후공시 기준",
+      "suggested_korean": "2단계",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 22,
+      "violation": "IFRS S2",
+      "context_excerpt": "IPCC 2019 Tier 2 / 신세계 ESG리포트 / IFRS S2 기후공시 기준",
+      "suggested_korean": "국제회계기준 지속가능성 공시 기준 2",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 22,
+      "violation": "Strategic Buy",
+      "context_excerpt": "'독점적 파트너' 지위를 확보함. (Strategic Buy)",
+      "suggested_korean": "전략적 매수",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 23,
+      "violation": "PEF",
+      "context_excerpt": "가치사슬 통합 마진 스마일 커브 (PEF 롤업 모델)",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 23,
+      "violation": "EV/EBITDA",
+      "context_excerpt": "엑시트(Exit) 멀티플(EV/EBITDA 5x 미만)이 극히 저조함.",
+      "suggested_korean": "기업 가치 대비 상각전 영업이익",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 23,
+      "violation": "Buy & Build",
+      "context_excerpt": "대형 사모펀드(PEF) 농식품 인더스트리 Buy & Build(롤업) 가치평가 실증 데이터",
+      "suggested_korean": "인수 후 성장",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 23,
+      "violation": "Value Realization Expected",
+      "context_excerpt": "폭발적인 멀티플(Multiple) 차익거래가 실현됨. (Value Realization Expected)",
+      "suggested_korean": "가치 실현 예상",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "SCL",
+      "context_excerpt": "데이터 인텔리전스 고도화: OEC · KAMIS · FAOSTAT SCL 실측 통합",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 24,
+      "violation": "Bullish Target",
+      "context_excerpt": "포지셔닝 기회를 더욱 확대시킴. (Bullish Target)",
+      "suggested_korean": "상승 목표",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 25,
+      "violation": "Top 3",
+      "context_excerpt": "수입국 Top 3에 진입.",
+      "suggested_korean": "상위 3개국",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 26,
+      "violation": "Exposure",
+      "context_excerpt": "수입 의존도(Exposure) 심화 속에서 중국산(90% 점유) 대비 안전성 우위의 베트남산 IQF 전처리 제품으로의 전환 수요가 구조적으로 확대 중.",
+      "suggested_korean": "노출도",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 26,
+      "violation": "Upside Potential",
+      "context_excerpt": "규모의 경제를 달성할 수 있음. (Upside Potential)",
+      "suggested_korean": "상승 잠재력",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 27,
+      "violation": "Golden Window",
+      "context_excerpt": "시장점유율 확대의 골든타임(Golden Window).",
+      "suggested_korean": "황금 시기",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 28,
+      "violation": "SCL",
+      "context_excerpt": "글로벌 당근 수확후 손실률 비교 (FAOSTAT SCL)",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 28,
+      "violation": "SCL",
+      "context_excerpt": "FAOSTAT 공급이용계정(SCL, 2021) 실측 기준, 한국의 당근 수확후 손실률은 27.3%(30,570톤)으로 조사 대상국 중 최악.",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 28,
+      "violation": "TAM",
+      "context_excerpt": "연간 ~3.1만톤의 업사이클링(Up-cycling) TAM이 실측으로 검증됨.",
+      "suggested_korean": "총 유효 시장",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 28,
+      "violation": "Synergy Effect",
+      "context_excerpt": "수입 대체 효과까지 동시 달성. (Synergy Effect)",
+      "suggested_korean": "시너지 효과",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 28,
+      "violation": "Supply Utilization Accounts",
+      "context_excerpt": "* 📡 [FAOSTAT 실측] Supply Utilization Accounts (SCL) 2021 — 생산·식용·손실·사료·수출 국가별 비교",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 28,
+      "violation": "SCL",
+      "context_excerpt": "* 📡 [FAOSTAT 실측] Supply Utilization Accounts (SCL) 2021 — 생산·식용·손실·사료·수출 국가별 비교",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 18,
+      "violation": "EV/EBITDA",
+      "context_excerpt": "단순 농산물 수입업의 EV/EBITDA 멀티플(Multiple)은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함.",
+      "suggested_korean": "기업 가치 대비 상각전 영업이익",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "EBITDA",
+      "context_excerpt": "동적 EBITDA 멀티플(Multiple) 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것.",
+      "suggested_korean": "상각전 영업이익",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "Living",
+      "context_excerpt": "대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것.",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "LP",
+      "context_excerpt": "대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것.",
+      "suggested_korean": "유한책임투자자",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 18,
+      "violation": "Strong Conviction",
+      "context_excerpt": "투자의사결정을 이끌어 낼 것. (Strong Conviction)",
+      "suggested_korean": "강한 확신",
+      "confidence": "high"
+    }
+  ]
+}

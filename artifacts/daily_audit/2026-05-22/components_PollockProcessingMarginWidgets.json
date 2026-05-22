@@ -1,0 +1,125 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 38,
+  "tokens": {
+    "input": 10646,
+    "output": 1116,
+    "thoughts": 8352
+  },
+  "cost_usd": 0.00598,
+  "violations_count": 14,
+  "violations": [
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Roe",
+      "context_excerpt": "Roe D2C vs B2B Margin Spread",
+      "suggested_korean": "어란",
+      "confidence": "medium"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Margin Spread",
+      "context_excerpt": "Roe D2C vs B2B Margin Spread",
+      "suggested_korean": "마진 스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 1,
+      "violation": "Price Transfer Resistance",
+      "context_excerpt": "Price Transfer Resistance",
+      "suggested_korean": "가격 전가 저항선",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 2,
+      "violation": "Premium Spread",
+      "context_excerpt": "MSC Premium Spread",
+      "suggested_korean": "프리미엄 스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "Full Capacity",
+      "context_excerpt": "95% 초과(Full Capacity) 시 보관 단가",
+      "suggested_korean": "최대 용량",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 3,
+      "violation": "Automation",
+      "context_excerpt": "Automation BEP Crossover",
+      "suggested_korean": "자동화",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 3,
+      "violation": "Crossover",
+      "context_excerpt": "Automation BEP Crossover",
+      "suggested_korean": "교차점",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "SCM",
+      "context_excerpt": "SCM을 옮겨 다니는 메뚜기 전략을",
+      "suggested_korean": "공급망 관리",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 9,
+      "violation": "OPEX",
+      "context_excerpt": "유지보수율(OPEX) 한계점을 돌파, 기습적",
+      "suggested_korean": "운영 비용",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 10,
+      "violation": "TCO",
+      "context_excerpt": "공장 자동화(ROBOT) TCO 크로스오버",
+      "suggested_korean": "총소유비용",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 10,
+      "violation": "TCO",
+      "context_excerpt": "로봇 설비 TCO 크로스오버 시점 분석",
+      "suggested_korean": "총소유비용",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "Filleting",
+      "context_excerpt": "Marel Filleting 머신 단가표",
+      "suggested_korean": "필레 가공",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "Air vs Ocean",
+      "context_excerpt": "모달 쉬프트(Air vs Ocean) 선도 마진",
+      "suggested_korean": "항공 대 해상",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 11,
+      "violation": "S-Class",
+      "context_excerpt": "최상위 등급 S-Class 원물은 반드시 해상-항공",
+      "suggested_korean": "S등급",
+      "confidence": "high"
+    }
+  ]
+}

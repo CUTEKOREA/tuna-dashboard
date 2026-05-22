@@ -1,0 +1,85 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 36,
+  "tokens": {
+    "input": 3351,
+    "output": 725,
+    "thoughts": 6646
+  },
+  "cost_usd": 0.00282,
+  "violations_count": 9,
+  "violations": [
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "Framework",
+      "context_excerpt": "OPEX 혁신 전략 (NVIDIA GTC 2026 Framework)",
+      "suggested_korean": "체계",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Zero Labor",
+      "context_excerpt": "'피지컬 AI'와 제로 레이버(Zero Labor)",
+      "suggested_korean": "무노동",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 0,
+      "violation": "Compute",
+      "context_excerpt": "연산 능력(Compute)을 통해 현실의 노동력",
+      "suggested_korean": "연산",
+      "confidence": "medium"
+    },
+    {
+      "field": "situation",
+      "widget_index": 0,
+      "violation": "Labor",
+      "context_excerpt": "현실의 노동력(Labor)을 직접 대체하는 티핑",
+      "suggested_korean": "노동력",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "M&A",
+      "context_excerpt": "향후 M&A 실사 시 대상 기업의 물리적 인프라",
+      "suggested_korean": "인수합병",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "OPEX",
+      "context_excerpt": "미들오피스 운영 비용(OPEX)을 획기적으로 압축",
+      "suggested_korean": "운영비용",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 3,
+      "violation": "BCP",
+      "context_excerpt": "운영 안정성(BCP)을 확보해야 함.",
+      "suggested_korean": "업무연속성계획",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 4,
+      "violation": "IC",
+      "context_excerpt": "투자 심의(IC) 기준을 상향할 것.",
+      "suggested_korean": "투자심의위원회",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 5,
+      "violation": "Data-to-Value",
+      "context_excerpt": "마이그레이션하는 'Data-to-Value' 프로젝트를",
+      "suggested_korean": "데이터 가치화",
+      "confidence": "high"
+    }
+  ]
+}

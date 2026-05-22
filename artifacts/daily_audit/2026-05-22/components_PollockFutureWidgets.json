@@ -1,0 +1,53 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 28,
+  "tokens": {
+    "input": 7636,
+    "output": 420,
+    "thoughts": 5423
+  },
+  "cost_usd": 0.00334,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Maritime",
+      "context_excerpt": "SpaceX Maritime 요금 대비 기상 회피 VLSFO 연료 세이브 연산",
+      "suggested_korean": "해상",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "VLSFO",
+      "context_excerpt": "SpaceX Maritime 요금 대비 기상 회피 VLSFO 연료 세이브 연산",
+      "suggested_korean": "초저유황 연료유",
+      "confidence": "medium"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "Maritime",
+      "context_excerpt": "SpaceX Maritime 요금망 대비 기상 회피 VLSFO 연료 세이브 연산",
+      "suggested_korean": "해상",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "VLSFO",
+      "context_excerpt": "SpaceX Maritime 요금망 대비 기상 회피 VLSFO 연료 세이브 연산",
+      "suggested_korean": "초저유황 연료유",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "TIPPING POINT",
+      "context_excerpt": "자동 절단기 임금 역전 TIPPING POINT",
+      "suggested_korean": "전환점",
+      "confidence": "high"
+    }
+  ]
+}

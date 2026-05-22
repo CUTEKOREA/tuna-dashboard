@@ -1,0 +1,141 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 43,
+  "tokens": {
+    "input": 3766,
+    "output": 1202,
+    "thoughts": 7778
+  },
+  "cost_usd": 0.00413,
+  "violations_count": 16,
+  "violations": [
+    {
+      "field": "Loading message",
+      "widget_index": null,
+      "violation": "Logistics Intelligence",
+      "context_excerpt": "Loading Logistics Intelligence...",
+      "suggested_korean": "물류 인텔리전스",
+      "confidence": "high"
+    },
+    {
+      "field": "Header subtitle",
+      "widget_index": null,
+      "violation": "Global Value Chain Operation Command Center",
+      "context_excerpt": "Global Value Chain Operation Command Center",
+      "suggested_korean": "글로벌 가치 사슬 운영 통제 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "Header status",
+      "widget_index": null,
+      "violation": "LIVE Connected",
+      "context_excerpt": "LIVE Connected",
+      "suggested_korean": "실시간 연결됨",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.syncDate",
+      "widget_index": 0,
+      "violation": "Realtime",
+      "context_excerpt": "syncDate: 'Realtime'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Intelligence Network",
+      "context_excerpt": "Silla Co. Intelligence Network",
+      "suggested_korean": "인텔리전스 네트워크",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 1,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "CAPA",
+      "context_excerpt": "전체 CAPA 대비 가동률은 안정적인 수준입니다.",
+      "suggested_korean": "생산 능력",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 2,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 3,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.syncDate",
+      "widget_index": 3,
+      "violation": "Realtime",
+      "context_excerpt": "syncDate: 'Realtime'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 4,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.syncDate",
+      "widget_index": 4,
+      "violation": "Realtime",
+      "context_excerpt": "syncDate: 'Realtime'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Reefer",
+      "context_excerpt": "Reefer 40'HC 컨테이너 운임 추이",
+      "suggested_korean": "냉동",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 5,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "Joint Shipment",
+      "context_excerpt": "관계사들과의 Joint Shipment 물량을 집중 구성해야 합니다.",
+      "suggested_korean": "공동 선적",
+      "confidence": "high"
+    }
+  ]
+}

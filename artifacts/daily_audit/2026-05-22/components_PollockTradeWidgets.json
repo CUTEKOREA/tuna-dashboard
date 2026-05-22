@@ -1,0 +1,77 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 23,
+  "tokens": {
+    "input": 4369,
+    "output": 696,
+    "thoughts": 4286
+  },
+  "cost_usd": 0.00305,
+  "violations_count": 8,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Global Customs Import Statistics",
+      "context_excerpt": "FAO FishStatJ / Global Customs Import Statistics",
+      "suggested_korean": "글로벌 관세 수입 통계",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Undercurrent News Price Indices Analytics",
+      "context_excerpt": "Undercurrent News Price Indices Analytics",
+      "suggested_korean": "언더커런트 뉴스 가격 지수 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Double-Frozen",
+      "context_excerpt": "Double-Frozen: 제재 우회와 품질 훼손의 딜레마",
+      "suggested_korean": "이중 동결",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "메이드 인 차이나",
+      "context_excerpt": "재동결(Double-Frozen)하여 '메이드 인 차이나'로 유럽에 우회 수출하는",
+      "suggested_korean": "중국산",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "플랜B",
+      "context_excerpt": "우회 플랜B를 즉시 성립시켜야 합니다.",
+      "suggested_korean": "차선책",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "SeafoodSource Global Trade Tracking Report",
+      "context_excerpt": "SeafoodSource Global Trade Tracking Report",
+      "suggested_korean": "시푸드소스 글로벌 무역 추적 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 3,
+      "violation": "Deficit Gap",
+      "context_excerpt": "대한민국 수산계 무역 수지 적자 늪 (Deficit Gap)",
+      "suggested_korean": "적자 폭",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "R&D",
+      "context_excerpt": "'글로벌 지향형 아이템'에 R&D 예산을 즉각 재편성하여",
+      "suggested_korean": "연구 개발",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 63,
+  "tokens": {
+    "input": 14781,
+    "output": 1211,
+    "thoughts": 13202
+  },
+  "cost_usd": 0.00746,
+  "violations_count": 15,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "vs",
+      "context_excerpt": "생산량 vs 수출량 — 인도네시아 절대량",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "ENSO",
+      "context_excerpt": "ENSO 기후 지수 vs 검역 통과 수율",
+      "suggested_korean": "엘니뇨-남방진동",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "vs",
+      "context_excerpt": "기후 지수 vs 검역 통과 수율 — 수액",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "ENSO",
+      "context_excerpt": "NOAA ENSO 지수 + 식약처 망고스틴",
+      "suggested_korean": "엘니뇨-남방진동",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "vs",
+      "context_excerpt": "생과 vs 냉동 퓨레 마진 안정성 비교",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "vs",
+      "context_excerpt": "일반 냉장 vs 특수 가스 처리 — 25일",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "R&D",
+      "context_excerpt": "내부 콜드체인 R&D + 해상/항공 운임",
+      "suggested_korean": "연구 개발",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "Q1",
+      "context_excerpt": "항공 운임 단가 비교 (2026-Q1)",
+      "suggested_korean": "1분기",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 6,
+      "violation": "vs",
+      "context_excerpt": "패키지별 단가 vs 유효 수율",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "RCEP",
+      "context_excerpt": "RCEP/FTA 활용 우회 무역 경로별",
+      "suggested_korean": "역내포괄적경제동반자협정",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 7,
+      "violation": "RCEP",
+      "context_excerpt": "RCEP 협정문 + 관세청 HS코드 양허표",
+      "suggested_korean": "역내포괄적경제동반자협정",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "vs",
+      "context_excerpt": "사과 단가 vs 망고스틴 수입량 상관",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 10,
+      "violation": "vs",
+      "context_excerpt": "재수출 가치 vs 직수입 비교",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "vs",
+      "context_excerpt": "껍질 폐기 vs 펫푸드/항산화 추출 시나",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 13,
+      "violation": "R&D",
+      "context_excerpt": "내부 R&D + 망고스틴 껍질 폴리페놀",
+      "suggested_korean": "연구 개발",
+      "confidence": "high"
+    }
+  ]
+}

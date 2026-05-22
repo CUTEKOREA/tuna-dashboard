@@ -1,0 +1,109 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 29,
+  "tokens": {
+    "input": 4007,
+    "output": 1011,
+    "thoughts": 5201
+  },
+  "cost_usd": 0.00373,
+  "violations_count": 12,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "Decoupling",
+      "context_excerpt": "투트랙 스프레드(Decoupling)가 발생했습니다.",
+      "suggested_korean": "디커플링",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "D2C",
+      "context_excerpt": "서방 수출 D2C 라인은 미국산 MSC",
+      "suggested_korean": "D2C(소비자 직접 판매)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "OFAC Sanctions Index",
+      "context_excerpt": "US Treasury OFAC Sanctions Index & FAS Global",
+      "suggested_korean": "미국 재무부 해외자산통제국(OFAC) 제재 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FAS Global",
+      "context_excerpt": "OFAC Sanctions Index & FAS Global",
+      "suggested_korean": "해외농업국(FAS) 글로벌 보고서",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Uncertified",
+      "context_excerpt": "에코 인증(Uncertified) 딱지가 없는 무인증",
+      "suggested_korean": "미인증",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Annual Survey",
+      "context_excerpt": "Marine Stewardship Council (MSC) Annual Survey",
+      "suggested_korean": "연례 조사 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "VMS",
+      "context_excerpt": "위성 어선 송신기(VMS)나 가공 생산 번호를",
+      "suggested_korean": "VMS(선박 모니터링 시스템)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "Trace",
+      "context_excerpt": "서류화(Trace) 해내지 못하는 낡은 2, 3차",
+      "suggested_korean": "이력 추적(Trace)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Biennial Report",
+      "context_excerpt": "NOAA Fisheries IUU Biennial Report",
+      "suggested_korean": "격년 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 3,
+      "violation": "Migration",
+      "context_excerpt": "극지방으로 북상(Migration) 하였습니다.",
+      "suggested_korean": "이동",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "AI",
+      "context_excerpt": "AI 관측 플랫폼을 그룹 내 전 선단",
+      "suggested_korean": "AI(인공지능)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "Ecosystem Report",
+      "context_excerpt": "AFSC) Ecosystem Report",
+      "suggested_korean": "생태계 보고서",
+      "confidence": "high"
+    }
+  ]
+}

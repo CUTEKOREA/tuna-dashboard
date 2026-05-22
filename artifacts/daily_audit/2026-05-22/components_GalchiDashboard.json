@@ -1,0 +1,517 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 89,
+  "tokens": {
+    "input": 13895,
+    "output": 5183,
+    "thoughts": 13872
+  },
+  "cost_usd": 0.01713,
+  "violations_count": 63,
+  "violations": [
+    {
+      "field": "header.subtitle",
+      "widget_index": -1,
+      "violation": "C-Level Executive Briefing",
+      "context_excerpt": "C-Level Executive Briefing — {widgets?.length || 0} Widgets · {kpiKeys.length} KPIs · 17 Data Sources",
+      "suggested_korean": "최고 경영진 보고",
+      "confidence": "high"
+    },
+    {
+      "field": "header.subtitle",
+      "widget_index": -1,
+      "violation": "Widgets",
+      "context_excerpt": "C-Level Executive Briefing — {widgets?.length || 0} Widgets · {kpiKeys.length} KPIs · 17 Data Sources",
+      "suggested_korean": "위젯",
+      "confidence": "high"
+    },
+    {
+      "field": "header.subtitle",
+      "widget_index": -1,
+      "violation": "Data Sources",
+      "context_excerpt": "C-Level Executive Briefing — {widgets?.length || 0} Widgets · {kpiKeys.length} KPIs · 17 Data Sources",
+      "suggested_korean": "데이터 출처",
+      "confidence": "high"
+    },
+    {
+      "field": "header.status_badge",
+      "widget_index": -1,
+      "violation": "Forensic",
+      "context_excerpt": "Forensic v2 · 관세청·해수부·FAO 교차검증",
+      "suggested_korean": "정밀 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "kpi.telemetry.status",
+      "widget_index": -1,
+      "violation": "LIVE",
+      "context_excerpt": "isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "kpi.telemetry.status",
+      "widget_index": -1,
+      "violation": "SYNCED",
+      "context_excerpt": "isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'",
+      "suggested_korean": "동기화됨",
+      "confidence": "medium"
+    },
+    {
+      "field": "kpi.telemetry.status",
+      "widget_index": -1,
+      "violation": "STATIC",
+      "context_excerpt": "isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'",
+      "suggested_korean": "정적",
+      "confidence": "medium"
+    },
+    {
+      "field": "loading_message",
+      "widget_index": -1,
+      "violation": "Loading Intelligence",
+      "context_excerpt": "Loading Intelligence...",
+      "suggested_korean": "정보 로딩 중",
+      "confidence": "high"
+    },
+    {
+      "field": "kpi.trend",
+      "widget_index": -1,
+      "violation": "yoy",
+      "context_excerpt": "liveKcs.summary.yoy || \"LIVE\"",
+      "suggested_korean": "전년 대비",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Part I",
+      "context_excerpt": "Part I — 원물 생산",
+      "suggested_korean": "제1부",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Part II",
+      "context_excerpt": "Part II — 가공 산업 (Processing)",
+      "suggested_korean": "제2부",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Processing",
+      "context_excerpt": "Part II — 가공 산업 (Processing)",
+      "suggested_korean": "가공",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Part III",
+      "context_excerpt": "Part III — 물류 및 무역 (Logistics & Trade)",
+      "suggested_korean": "제3부",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Logistics & Trade",
+      "context_excerpt": "Part III — 물류 및 무역 (Logistics & Trade)",
+      "suggested_korean": "물류 및 무역",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Part IV",
+      "context_excerpt": "Part IV — 판매 및 수요 (Sales & Demand)",
+      "suggested_korean": "제4부",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Sales & Demand",
+      "context_excerpt": "Part IV — 판매 및 수요 (Sales & Demand)",
+      "suggested_korean": "판매 및 수요",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Part V",
+      "context_excerpt": "Part V — ESG 및 지속가능성 (Sustainability)",
+      "suggested_korean": "제5부",
+      "confidence": "high"
+    },
+    {
+      "field": "section.title",
+      "widget_index": -1,
+      "violation": "Sustainability",
+      "context_excerpt": "Part V — ESG 및 지속가능성 (Sustainability)",
+      "suggested_korean": "지속가능성",
+      "confidence": "high"
+    },
+    {
+      "field": "section.desc",
+      "widget_index": -1,
+      "violation": "SPS",
+      "context_excerpt": "SPS 비관세 장벽, 식품 안전 및 정책 모니터링",
+      "suggested_korean": "위생검역 조치",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_feed.header",
+      "widget_index": -1,
+      "violation": "Live Intelligence Feed",
+      "context_excerpt": "Live Intelligence Feed",
+      "suggested_korean": "실시간 정보 피드",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.card_title",
+      "widget_index": -1,
+      "violation": "Landing Cost",
+      "context_excerpt": "Landing Cost",
+      "suggested_korean": "착지원가",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.card_title",
+      "widget_index": -1,
+      "violation": "Import",
+      "context_excerpt": "KCS Import",
+      "suggested_korean": "수입",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.card_title",
+      "widget_index": -1,
+      "violation": "Wholesale",
+      "context_excerpt": "KAMIS Wholesale",
+      "suggested_korean": "도매",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.card_title",
+      "widget_index": -1,
+      "violation": "Macro Risk",
+      "context_excerpt": "Macro Risk",
+      "suggested_korean": "거시 경제 리스크",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.risk_level",
+      "widget_index": -1,
+      "violation": "HIGH",
+      "context_excerpt": "liveIntel.macroRisk.riskLevel",
+      "suggested_korean": "높음",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.risk_level",
+      "widget_index": -1,
+      "violation": "MEDIUM",
+      "context_excerpt": "liveIntel.macroRisk.riskLevel",
+      "suggested_korean": "중간",
+      "confidence": "high"
+    },
+    {
+      "field": "live_intelligence_ticker.risk_level",
+      "widget_index": -1,
+      "violation": "LOW",
+      "context_excerpt": "liveIntel.macroRisk.riskLevel",
+      "suggested_korean": "낮음",
+      "confidence": "high"
+    },
+    {
+      "field": "ai_chatbot.title",
+      "widget_index": -1,
+      "violation": "AI Chatbot",
+      "context_excerpt": "AI Chatbot (NotebookLM)",
+      "suggested_korean": "AI 챗봇",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[0].source",
+      "widget_index": 0,
+      "violation": "Yearbook",
+      "context_excerpt": "FAO Yearbook & USDA GAIN",
+      "suggested_korean": "연감",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[2].strat",
+      "widget_index": 2,
+      "violation": "ODM",
+      "context_excerpt": "ODM 방식으로 전환하여",
+      "suggested_korean": "제조자 개발 생산",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[3].subtitle",
+      "widget_index": 3,
+      "violation": "API",
+      "context_excerpt": "HS Ping API 연동.",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[3].sit",
+      "widget_index": 3,
+      "violation": "cut",
+      "context_excerpt": "토막(cut)과 필렛 간의 오분류",
+      "suggested_korean": "절단",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[3].source",
+      "widget_index": 3,
+      "violation": "API",
+      "context_excerpt": "HS Ping API (실시간 HS 코드 분류 엔진)",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].title",
+      "widget_index": 4,
+      "violation": "MFN",
+      "context_excerpt": "MFN vs FTA 복합 시뮬레이션",
+      "suggested_korean": "최혜국 대우",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].subtitle",
+      "widget_index": 4,
+      "violation": "Tariffs",
+      "context_excerpt": "Tariffs API 연동. MFN 기본관세(10%)",
+      "suggested_korean": "관세",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].subtitle",
+      "widget_index": 4,
+      "violation": "API",
+      "context_excerpt": "Tariffs API 연동. MFN 기본관세(10%)",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].subtitle",
+      "widget_index": 4,
+      "violation": "MFN",
+      "context_excerpt": "Tariffs API 연동. MFN 기본관세(10%)",
+      "suggested_korean": "최혜국 대우",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].sit",
+      "widget_index": 4,
+      "violation": "Lag",
+      "context_excerpt": "래그(Lag)를 보완하여 실시간",
+      "suggested_korean": "지연",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].sit",
+      "widget_index": 4,
+      "violation": "MFN",
+      "context_excerpt": "MFN 대비 착지원가가 8~12% 절감됩니다.",
+      "suggested_korean": "최혜국 대우",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].strat",
+      "widget_index": 4,
+      "violation": "MFN",
+      "context_excerpt": "①MFN-FTA 스프레드가 10% 이상인",
+      "suggested_korean": "최혜국 대우",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].source",
+      "widget_index": 4,
+      "violation": "Tariffs",
+      "context_excerpt": "Tariffs API",
+      "suggested_korean": "관세",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[4].source",
+      "widget_index": 4,
+      "violation": "API",
+      "context_excerpt": "Tariffs API",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].title",
+      "widget_index": 5,
+      "violation": "CPI",
+      "context_excerpt": "소비자 물가(CPI) vs 도매가 괴리율 분석",
+      "suggested_korean": "소비자물가지수",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].subtitle",
+      "widget_index": 5,
+      "violation": "API",
+      "context_excerpt": "KOSIS API 연동. 통계청 소비자물가지수(CPI)와",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].subtitle",
+      "widget_index": 5,
+      "violation": "CPI",
+      "context_excerpt": "KOSIS API 연동. 통계청 소비자물가지수(CPI)와",
+      "suggested_korean": "소비자물가지수",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].sit",
+      "widget_index": 5,
+      "violation": "CPI",
+      "context_excerpt": "소비자 물가(CPI) 상승기에 최종 소비",
+      "suggested_korean": "소비자물가지수",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].strat",
+      "widget_index": 5,
+      "violation": "CPI",
+      "context_excerpt": "①CPI-도매가 Spread가 15% 이상",
+      "suggested_korean": "소비자물가지수",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].strat",
+      "widget_index": 5,
+      "violation": "Spread",
+      "context_excerpt": "①CPI-도매가 Spread가 15% 이상",
+      "suggested_korean": "스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[5].source",
+      "widget_index": 5,
+      "violation": "API",
+      "context_excerpt": "KOSIS API (통계청 소비자물가지수)",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[6].subtitle",
+      "widget_index": 6,
+      "violation": "API",
+      "context_excerpt": "식약처(MFDS) API 연동. 수입국별 갈치",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[6].strat",
+      "widget_index": 6,
+      "violation": "PSI",
+      "context_excerpt": "사전 선적 검사(PSI) 의무화",
+      "suggested_korean": "선적 전 검사",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[6].strat",
+      "widget_index": 6,
+      "violation": "Zero",
+      "context_excerpt": "Zero 국가에 대해 '신뢰 공급자(Trusted Vendor)'",
+      "suggested_korean": "제로",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[6].strat",
+      "widget_index": 6,
+      "violation": "Trusted Vendor",
+      "context_excerpt": "'신뢰 공급자(Trusted Vendor)' 인증 부여.",
+      "suggested_korean": "신뢰 공급업체",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[6].source",
+      "widget_index": 6,
+      "violation": "API",
+      "context_excerpt": "MFDS API (식품의약품안전처 수입식품 검사 통계)",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].title",
+      "widget_index": 7,
+      "violation": "SPS",
+      "context_excerpt": "WTO SPS 비관세 장벽 발동 트렌드",
+      "suggested_korean": "위생검역 조치",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].subtitle",
+      "widget_index": 7,
+      "violation": "Data Portal",
+      "context_excerpt": "WTO Data Portal 연동. 중국·아세안의",
+      "suggested_korean": "데이터 포털",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].subtitle",
+      "widget_index": 7,
+      "violation": "SPS",
+      "context_excerpt": "수산물 위생검역(SPS) 조치 발동 건수를",
+      "suggested_korean": "위생검역 조치",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].sit",
+      "widget_index": 7,
+      "violation": "SPS",
+      "context_excerpt": "비관세 장벽(SPS)이 분기별로 심화",
+      "suggested_korean": "위생검역 조치",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].strat",
+      "widget_index": 7,
+      "violation": "Health Certificate",
+      "context_excerpt": "위생 증명서(Health Certificate) 요건 모니터링",
+      "suggested_korean": "위생 증명서",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].strat",
+      "widget_index": 7,
+      "violation": "SPS",
+      "context_excerpt": "SPS 발동 급증 분기에 대체 수출",
+      "suggested_korean": "위생검역 조치",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[7].source",
+      "widget_index": 7,
+      "violation": "Data Portal",
+      "context_excerpt": "WTO Data Portal",
+      "suggested_korean": "데이터 포털",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[8].subtitle",
+      "widget_index": 8,
+      "violation": "API",
+      "context_excerpt": "OEC API 연동. 경제복잡성지수(ECI) 기반",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    },
+    {
+      "field": "widgets[8].source",
+      "widget_index": 8,
+      "violation": "API",
+      "context_excerpt": "OEC API (Observatory of Economic Complexity)",
+      "suggested_korean": "API (응용 프로그래밍 인터페이스)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 63,
+  "tokens": {
+    "input": 10243,
+    "output": 1909,
+    "thoughts": 12722
+  },
+  "cost_usd": 0.00785,
+  "violations_count": 23,
+  "violations": [
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Geopolitical TAC Gap",
+      "context_excerpt": "term: Geopolitical TAC Gap",
+      "suggested_korean": "지정학적 총어획량 제한 격차",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "TAC",
+      "context_excerpt": "스팟 가격은 TAC 축소율보다",
+      "suggested_korean": "총어획량 제한",
+      "confidence": "medium"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 1,
+      "violation": "Russian-Origin Traceability",
+      "context_excerpt": "term: Russian-Origin Traceability",
+      "suggested_korean": "러시아산 원산지 추적 가능성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Double-frozen",
+      "context_excerpt": "가공 후 'Double-frozen' 형태로",
+      "suggested_korean": "이중 냉동",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Risk",
+      "context_excerpt": "관세 타격(Risk > 90%)이 임계치",
+      "suggested_korean": "위험",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 2,
+      "violation": "Bunker-Logistics Arbitrage",
+      "context_excerpt": "term: Bunker-Logistics Arbitrage",
+      "suggested_korean": "유류-물류 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Global Bunker Price Index",
+      "context_excerpt": "source: Global Bunker Price Index & 러시아",
+      "suggested_korean": "글로벌 벙커유 가격 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 3,
+      "violation": "Bering Sea Migration & Fuel Shock",
+      "context_excerpt": "term: Bering Sea Migration & Fuel Shock",
+      "suggested_korean": "베링해 어장 이동 및 유류 충격",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.description",
+      "widget_index": 3,
+      "violation": "FC",
+      "context_excerpt": "왕복 연비(FC) 상승 지수",
+      "suggested_korean": "연료 소비",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "SST",
+      "context_excerpt": "베링해 SST 상승에 따른 어장",
+      "suggested_korean": "해수면 온도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "VDS",
+      "context_excerpt": "조업 위성망(VDS) 이력이 증명된",
+      "suggested_korean": "선박 모니터링 시스템",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 6,
+      "violation": "ENSO",
+      "context_excerpt": "WMO 엘니뇨 ENSO 강도와 명태",
+      "suggested_korean": "엘니뇨-남방진동",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 6,
+      "violation": "ENSO",
+      "context_excerpt": "WMO ENSO 경보가 +1.5를",
+      "suggested_korean": "엘니뇨-남방진동",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "CBP",
+      "context_excerpt": "원산지별 미 CBP 통관 보류(WRO)",
+      "suggested_korean": "세관국경보호청",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "WRO",
+      "context_excerpt": "미 CBP 통관 보류(WRO) 적발",
+      "suggested_korean": "통관 보류 명령",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 7,
+      "violation": "CBP",
+      "context_excerpt": "NotebookLM 추출 미국 CBP 일일 통관",
+      "suggested_korean": "세관국경보호청",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 7,
+      "violation": "WRO",
+      "context_excerpt": "미국 CBP 일일 통관 보류(WRO)",
+      "suggested_korean": "통관 보류 명령",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 8,
+      "violation": "ITLOS",
+      "context_excerpt": "국제해양법재판소(ITLOS) 및 한·러·일",
+      "suggested_korean": "국제해양법재판소",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "AIS",
+      "context_excerpt": "자동식별장치(AIS) 조작이 단 1건",
+      "suggested_korean": "자동식별장치",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 9,
+      "violation": "FFPI",
+      "context_excerpt": "FAO FFPI 곡물 지수와 명태",
+      "suggested_korean": "FAO 식량가격지수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "CBOT",
+      "context_excerpt": "시카고상품거래소(CBOT) 데이터",
+      "suggested_korean": "시카고상품거래소",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "ITF",
+      "context_excerpt": "국제운수노련(ITF) 파업 동향",
+      "suggested_korean": "국제운수노련",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "JOC",
+      "context_excerpt": "JOC 글로벌 항만 체화 지수",
+      "suggested_korean": "저널 오브 커머스",
+      "confidence": "high"
+    }
+  ]
+}

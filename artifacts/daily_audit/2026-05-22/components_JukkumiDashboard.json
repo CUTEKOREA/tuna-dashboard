@@ -1,0 +1,93 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 31,
+  "tokens": {
+    "input": 8051,
+    "output": 692,
+    "thoughts": 6264
+  },
+  "cost_usd": 0.00415,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "p",
+      "widget_index": null,
+      "violation": "Strategic Intelligence",
+      "context_excerpt": "Loading Strategic Intelligence...",
+      "suggested_korean": "전략 정보",
+      "confidence": "high"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Part",
+      "context_excerpt": "🌊 Part I — 원료 수급",
+      "suggested_korean": "제1부",
+      "confidence": "medium"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Part",
+      "context_excerpt": "🏭 Part II — 가공 및 생산",
+      "suggested_korean": "제2부",
+      "confidence": "medium"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Part",
+      "context_excerpt": "⚓ Part III — 물류 및 통관",
+      "suggested_korean": "제3부",
+      "confidence": "medium"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Part",
+      "context_excerpt": "📊 Part IV — 판매 및 수요",
+      "suggested_korean": "제4부",
+      "confidence": "medium"
+    },
+    {
+      "field": "h2",
+      "widget_index": null,
+      "violation": "Part",
+      "context_excerpt": "🛡️ Part V — ESG 및 지속가능성",
+      "suggested_korean": "제5부",
+      "confidence": "medium"
+    },
+    {
+      "field": "span",
+      "widget_index": null,
+      "violation": "LIVE",
+      "context_excerpt": "LIVE",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "span",
+      "widget_index": null,
+      "violation": "SYNCED",
+      "context_excerpt": "SYNCED",
+      "suggested_korean": "동기화됨",
+      "confidence": "medium"
+    },
+    {
+      "field": "span",
+      "widget_index": null,
+      "violation": "STATIC",
+      "context_excerpt": "STATIC",
+      "suggested_korean": "정적",
+      "confidence": "medium"
+    },
+    {
+      "field": "div",
+      "widget_index": null,
+      "violation": "Unsupported Format",
+      "context_excerpt": "Unsupported Format",
+      "suggested_korean": "지원되지 않는 형식",
+      "confidence": "high"
+    }
+  ]
+}

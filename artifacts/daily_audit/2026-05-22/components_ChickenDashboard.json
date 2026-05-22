@@ -1,0 +1,221 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 74,
+  "tokens": {
+    "input": 9324,
+    "output": 2111,
+    "thoughts": 13542
+  },
+  "cost_usd": 0.00807,
+  "violations_count": 26,
+  "violations": [
+    {
+      "field": "desc",
+      "widget_index": 1,
+      "violation": "TRQ",
+      "context_excerpt": "관세 할당(TRQ) 최적화 효과",
+      "suggested_korean": "할당관세",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "HPAI",
+      "context_excerpt": "수입국 HPAI 청정 진단",
+      "suggested_korean": "고병원성 조류인플루엔자",
+      "confidence": "high"
+    },
+    {
+      "field": "value",
+      "widget_index": 5,
+      "violation": "S-Grade",
+      "context_excerpt": "S-Grade",
+      "suggested_korean": "최우수 등급",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 2,
+      "violation": "HPAI",
+      "context_excerpt": "브라질은 HPAI 발병 시 수입이 즉각 차단되며 단순 냉동육 위주.",
+      "suggested_korean": "고병원성 조류인플루엔자",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 7,
+      "violation": "HPAI",
+      "context_excerpt": "브라질 HPAI 확산에 따른 글로벌 사육두수 감축 리스크가 공존함.",
+      "suggested_korean": "고병원성 조류인플루엔자",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 8,
+      "violation": "EUDR",
+      "context_excerpt": "태국 대형사(CPF, Betagro)는 이미 강한 EUDR 트레이서빌리티 구축.",
+      "suggested_korean": "EU 삼림벌채방지법",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 3,
+      "violation": "HPAI",
+      "context_excerpt": "HPAI 발병 시점 대비 물동량 리드타임에 따른 가격 상승폭이 비선형적으로 증가.",
+      "suggested_korean": "고병원성 조류인플루엔자",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Pillar I",
+      "context_excerpt": "🐟 Pillar I — 원료 수급",
+      "suggested_korean": "제1 핵심축",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "Pillar II",
+      "context_excerpt": "🏭 Pillar II — 가공 및 생산",
+      "suggested_korean": "제2 핵심축",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Pillar III",
+      "context_excerpt": "🚢 Pillar III — 물류 및 통관",
+      "suggested_korean": "제3 핵심축",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 3,
+      "violation": "Pillar IV",
+      "context_excerpt": "📈 Pillar IV — 판매 및 수요",
+      "suggested_korean": "제4 핵심축",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Pillar V",
+      "context_excerpt": "🌱 Pillar V — ESG 및 지속가능성",
+      "suggested_korean": "제5 핵심축",
+      "confidence": "medium"
+    },
+    {
+      "field": "desc",
+      "widget_index": 4,
+      "violation": "EUDR",
+      "context_excerpt": "EUDR 반사이익 및 청정 프리미엄",
+      "suggested_korean": "EU 삼림벌채방지법",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 10,
+      "violation": "vs",
+      "context_excerpt": "삼복 계절성 수요 vs 냉동 출하 밸런스",
+      "suggested_korean": "대",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 11,
+      "violation": "What-If",
+      "context_excerpt": "육계 농가 원가 변동 What-If",
+      "suggested_korean": "가상 시나리오",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 11,
+      "violation": "Base",
+      "context_excerpt": "Base 시나리오 초과 환율 발생 시",
+      "suggested_korean": "기본",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "Macro",
+      "context_excerpt": "CBOT / FX Macro",
+      "suggested_korean": "거시 경제",
+      "confidence": "high"
+    },
+    {
+      "field": "loading_message",
+      "widget_index": -1,
+      "violation": "S-Grade",
+      "context_excerpt": "Loading S-Grade Chicken Intelligence...",
+      "suggested_korean": "최우수 등급",
+      "confidence": "high"
+    },
+    {
+      "field": "loading_message",
+      "widget_index": -1,
+      "violation": "Chicken Intelligence",
+      "context_excerpt": "Loading S-Grade Chicken Intelligence...",
+      "suggested_korean": "육계 정보",
+      "confidence": "high"
+    },
+    {
+      "field": "header_subtitle",
+      "widget_index": -1,
+      "violation": "S-Grade",
+      "context_excerpt": "[V4.2 S-Grade] 실시간 API 기반 수출입 패권 변동 및 차익거래 마진 스프레드 분석",
+      "suggested_korean": "최우수 등급",
+      "confidence": "high"
+    },
+    {
+      "field": "header_subtitle",
+      "widget_index": -1,
+      "violation": "API",
+      "context_excerpt": "[V4.2 S-Grade] 실시간 API 기반 수출입 패권 변동 및 차익거래 마진 스프레드 분석",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info_box",
+      "widget_index": -1,
+      "violation": "PEF",
+      "context_excerpt": "PEF Command Center: Live API Connected",
+      "suggested_korean": "사모펀드",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info_box",
+      "widget_index": -1,
+      "violation": "Command Center",
+      "context_excerpt": "PEF Command Center: Live API Connected",
+      "suggested_korean": "지휘 본부",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info_box",
+      "widget_index": -1,
+      "violation": "Live",
+      "context_excerpt": "PEF Command Center: Live API Connected",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info_box",
+      "widget_index": -1,
+      "violation": "API",
+      "context_excerpt": "PEF Command Center: Live API Connected",
+      "suggested_korean": "응용 프로그래밍 인터페이스",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info_box",
+      "widget_index": -1,
+      "violation": "Connected",
+      "context_excerpt": "PEF Command Center: Live API Connected",
+      "suggested_korean": "연결됨",
+      "confidence": "high"
+    }
+  ]
+}

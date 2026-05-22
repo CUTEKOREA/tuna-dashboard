@@ -1,0 +1,21 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 3991,
+    "output": 93,
+    "thoughts": 2484
+  },
+  "cost_usd": 0.00143,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "마스터_인덱스",
+      "context_excerpt": "옵시디안 고등어_마스터_인덱스 & 해양수산부",
+      "suggested_korean": "종합 색인",
+      "confidence": "high"
+    }
+  ]
+}

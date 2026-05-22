@@ -1,0 +1,45 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 21,
+  "tokens": {
+    "input": 3099,
+    "output": 300,
+    "thoughts": 3523
+  },
+  "cost_usd": 0.00168,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "telemetry.status",
+      "widget_index": 0,
+      "violation": "STATIC",
+      "context_excerpt": "status: 'STATIC', syncDate: 'WCPFC",
+      "suggested_korean": "정적",
+      "confidence": "high"
+    },
+    {
+      "field": "button.text",
+      "widget_index": 0,
+      "violation": "Map Overlay",
+      "context_excerpt": "EEZ Map Overlay)",
+      "suggested_korean": "지도 중첩",
+      "confidence": "high"
+    },
+    {
+      "field": "table.tbody.td.species",
+      "widget_index": 0,
+      "violation": "Skipjack",
+      "context_excerpt": "Skipjack",
+      "suggested_korean": "가다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "table.tbody.td.species",
+      "widget_index": 0,
+      "violation": "Yellowfin",
+      "context_excerpt": "Yellowfin",
+      "suggested_korean": "황다랑어",
+      "confidence": "high"
+    }
+  ]
+}

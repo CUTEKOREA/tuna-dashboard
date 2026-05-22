@@ -1,0 +1,141 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 48,
+  "tokens": {
+    "input": 4425,
+    "output": 1192,
+    "thoughts": 9360
+  },
+  "cost_usd": 0.00431,
+  "violations_count": 16,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "SE Asia OEM Intelligence",
+      "context_excerpt": "h2 className={styles.title}>SE Asia OEM",
+      "suggested_korean": "동남아시아 OEM 현황 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "filter",
+      "widget_index": 0,
+      "violation": "All",
+      "context_excerpt": "onClick={() => setActiveCountry('All')}",
+      "suggested_korean": "전체",
+      "confidence": "high"
+    },
+    {
+      "field": "filter",
+      "widget_index": 0,
+      "violation": "Sweet Spot",
+      "context_excerpt": "Tier 1: Sweet Spot', 'Tier 1: Global",
+      "suggested_korean": "최적의 기회",
+      "confidence": "high"
+    },
+    {
+      "field": "filter",
+      "widget_index": 0,
+      "violation": "Global Giants",
+      "context_excerpt": "Spot', 'Tier 1: Global Giants', 'Volume",
+      "suggested_korean": "글로벌 대기업",
+      "confidence": "high"
+    },
+    {
+      "field": "filter",
+      "widget_index": 0,
+      "violation": "Volume Provider",
+      "context_excerpt": "Global Giants', 'Volume Provider', 'Spe",
+      "suggested_korean": "대량 공급업체",
+      "confidence": "high"
+    },
+    {
+      "field": "filter",
+      "widget_index": 0,
+      "violation": "Specialized",
+      "context_excerpt": "Provider', 'Specialized'];",
+      "suggested_korean": "전문",
+      "confidence": "high"
+    },
+    {
+      "field": "metric_label",
+      "widget_index": 0,
+      "violation": "Daily Capacity",
+      "context_excerpt": "metricLabel}>Daily Capacity</div>",
+      "suggested_korean": "일일 생산량",
+      "confidence": "high"
+    },
+    {
+      "field": "unit",
+      "widget_index": 0,
+      "violation": "day",
+      "context_excerpt": "vendor.capacityMT}<span>MT/day</span>",
+      "suggested_korean": "일",
+      "confidence": "high"
+    },
+    {
+      "field": "metric_label",
+      "widget_index": 0,
+      "violation": "Certifications",
+      "context_excerpt": "metricLabel}>Certifications</div>",
+      "suggested_korean": "인증",
+      "confidence": "high"
+    },
+    {
+      "field": "certification_status",
+      "widget_index": 0,
+      "violation": "Domestic",
+      "context_excerpt": "!vendor.msc && 'Domestic'}",
+      "suggested_korean": "국내용",
+      "confidence": "high"
+    },
+    {
+      "field": "call_to_action",
+      "widget_index": 0,
+      "violation": "Takeaway",
+      "context_excerpt": "view Silla Takeaway ➔",
+      "suggested_korean": "시사점",
+      "confidence": "high"
+    },
+    {
+      "field": "label",
+      "widget_index": 0,
+      "violation": "Focus area",
+      "context_excerpt": "<strong>Focus area:</strong>",
+      "suggested_korean": "주요 분야:",
+      "confidence": "high"
+    },
+    {
+      "field": "certification_badge",
+      "widget_index": 0,
+      "violation": "FCE",
+      "context_excerpt": "US FDA FCE</span>",
+      "suggested_korean": "통조림 시설 등록",
+      "confidence": "medium"
+    },
+    {
+      "field": "certification_badge",
+      "widget_index": 0,
+      "violation": "Code",
+      "context_excerpt": "EU Code</span>",
+      "suggested_korean": "등록 코드",
+      "confidence": "medium"
+    },
+    {
+      "field": "certification_badge",
+      "widget_index": 0,
+      "violation": "ISSF",
+      "context_excerpt": "MSC / ISSF</span>",
+      "suggested_korean": "국제 지속가능 수산 재단",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Strategic Takeaway",
+      "context_excerpt": "Silla Strategic Takeaway",
+      "suggested_korean": "전략적 시사점",
+      "confidence": "high"
+    }
+  ]
+}

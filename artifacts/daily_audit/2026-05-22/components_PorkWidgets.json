@@ -1,0 +1,61 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 38,
+  "tokens": {
+    "input": 7137,
+    "output": 514,
+    "thoughts": 7629
+  },
+  "cost_usd": 0.00343,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "strat",
+      "widget_index": 0,
+      "violation": "Lean Hogs",
+      "context_excerpt": "CME) Lean Hogs 선물을 수산물 가격 전략 선행 지표로 삼아 동적 가격 전략 실행.",
+      "suggested_korean": "생돈 선물",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Item",
+      "context_excerpt": "FAOSTAT QCL Item 1035",
+      "suggested_korean": "항목",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Top 10",
+      "context_excerpt": "글로벌 Top 10 생산국 점유율",
+      "suggested_korean": "상위 10개",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "Item",
+      "context_excerpt": "FAOSTAT QCL Item 1035",
+      "suggested_korean": "항목",
+      "confidence": "high"
+    },
+    {
+      "field": "sub",
+      "widget_index": 9,
+      "violation": "vs",
+      "context_excerpt": "돈육 vs 수산물 vs 가금류 — 5개 핵심 지표 비교 | FAO/USDA 종합 2024",
+      "suggested_korean": "대",
+      "confidence": "high"
+    },
+    {
+      "field": "sub",
+      "widget_index": 10,
+      "violation": "vs",
+      "context_excerpt": "자급률(%) vs 수입 의존도(%) | FAOSTAT 식량수급표(FBS) + USDA 생산공급분배(PSD) 2022",
+      "suggested_korean": "대",
+      "confidence": "high"
+    }
+  ]
+}

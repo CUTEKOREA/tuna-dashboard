@@ -1,0 +1,197 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 56,
+  "tokens": {
+    "input": 3048,
+    "output": 2252,
+    "thoughts": 11532
+  },
+  "cost_usd": 0.00654,
+  "violations_count": 23,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "SIMP/EU 강제노동규제 리스크를 헷지하고",
+      "suggested_korean": "SIMP(수산물 수입 모니터링 프로그램)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "SRS",
+      "context_excerpt": "SRS 감염·항생제 사용량·FCR 1.40 열위가",
+      "suggested_korean": "SRS(연어 리케차병)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "FCR",
+      "context_excerpt": "사용량·FCR 1.40 열위가 누적 리스크를",
+      "suggested_korean": "FCR(사료 전환율)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "Sernapesca 인증 체계는 안정적이지만 SIMP 대응이 진행 중입니다.",
+      "suggested_korean": "SIMP(수산물 수입 모니터링 프로그램)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "SRS",
+      "context_excerpt": "칠레산은 SRS 발병기 직전 선구매로 가격 메리트를",
+      "suggested_korean": "SRS(연어 리케차병)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "PB",
+      "context_excerpt": "B2C 채널(대형마트 PB)에서는 노출을 축소하고",
+      "suggested_korean": "PB(자체 브랜드)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "SIMP·EU CBAM 위반 시 거래정지 리스크가 직접",
+      "suggested_korean": "SIMP(수산물 수입 모니터링 프로그램)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "CBAM",
+      "context_excerpt": "SIMP·EU CBAM 위반 시 거래정지 리스크가 직접 노출됩니다.",
+      "suggested_korean": "CBAM(탄소국경조정제도)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "KYC",
+      "context_excerpt": "공급사 KYC 강화 및 C/O 원산지 재검증 프로세스를",
+      "suggested_korean": "KYC(고객 알기 제도)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "C/O",
+      "context_excerpt": "KYC 강화 및 C/O 원산지 재검증 프로세스를 도입하여",
+      "suggested_korean": "C/O(원산지 증명서)",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "ILO",
+      "context_excerpt": "ILO Convention on Forced Labour (No.",
+      "suggested_korean": "ILO(국제노동기구)",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Convention on Forced Labour (No. 29) and Abolition of Forced Labour Convention (No. 105) ratification status in Norway.",
+      "context_excerpt": "Convention on Forced Labour (No.",
+      "suggested_korean": "노르웨이의 강제노동 협약(제29호) 및 강제노동 폐지 협약(제105호) 비준 현황",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Environmental Impact Assessment of Salmon Aquaculture in Norwegian Fjords: A Comparative Study of RAS and Open-Cage Systems.",
+      "context_excerpt": "Environmental Impact Assessment of",
+      "suggested_korean": "노르웨이 피오르드 연어 양식의 환경 영향 평가: RAS 및 개방형 가두리 시스템 비교 연구",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Traceability Systems in Norwegian Seafood Industry: Integration with EU TRACES and Digitalization Efforts.",
+      "context_excerpt": "Traceability Systems in Norwegian S",
+      "suggested_korean": "노르웨이 수산물 산업의 이력 추적 시스템: EU TRACES와의 통합 및 디지털화 노력",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Labour Standards and Compliance in Chilean Aquaculture Sector: An Analysis of ILO Conventions.",
+      "context_excerpt": "Labour Standards and Compliance in ",
+      "suggested_korean": "칠레 양식 부문의 노동 기준 및 준수: ILO 협약 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "ILO",
+      "context_excerpt": "An Analysis of ILO Conventions.",
+      "suggested_korean": "ILO(국제노동기구)",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Impact of SRS (Salmon Rickettsial Syndrome) and Antibiotic Use on Environmental Sustainability of Chilean Salmon Farming.",
+      "context_excerpt": "Impact of SRS (Salmon Rickettsial S",
+      "suggested_korean": "칠레 연어 양식의 환경 지속가능성에 대한 SRS(연어 리케차병) 및 항생제 사용의 영향",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "SRS (Salmon Rickettsial Syndrome)",
+      "context_excerpt": "Impact of SRS (Salmon Rickettsial S",
+      "suggested_korean": "SRS(연어 리케차병)",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Sernapesca Certification and Traceability in Chilean Seafood: Challenges and Opportunities for SIMP Compliance.",
+      "context_excerpt": "Sernapesca Certification and Tracea",
+      "suggested_korean": "칠레 수산물의 Sernapesca 인증 및 이력 추적: SIMP 준수를 위한 과제와 기회",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "Opportunities for SIMP Compliance.",
+      "suggested_korean": "SIMP(수산물 수입 모니터링 프로그램)",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Human Rights and Labour Conditions in Russian Fisheries: Implications of International Sanctions.",
+      "context_excerpt": "Human Rights and Labour Conditions ",
+      "suggested_korean": "러시아 어업의 인권 및 노동 조건: 국제 제재의 영향",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Environmental Governance and Illegal Fishing in Russian Waters: A Review of Current Practices.",
+      "context_excerpt": "Environmental Governance and Illega",
+      "suggested_korean": "러시아 수역의 환경 거버넌스 및 불법 어업: 현재 관행 검토",
+      "confidence": "high"
+    },
+    {
+      "field": "s.research",
+      "widget_index": 0,
+      "violation": "Traceability and Supply Chain Integrity in Russian Seafood Exports: Risks of Circumvention and Sanctions.",
+      "context_excerpt": "Traceability and Supply Chain Integ",
+      "suggested_korean": "러시아 수산물 수출의 이력 추적 및 공급망 무결성: 우회 및 제재 위험",
+      "confidence": "high"
+    }
+  ]
+}

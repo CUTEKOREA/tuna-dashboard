@@ -1,0 +1,237 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 65,
+  "tokens": {
+    "input": 7823,
+    "output": 2323,
+    "thoughts": 11701
+  },
+  "cost_usd": 0.00815,
+  "violations_count": 28,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "MGO",
+      "context_excerpt": "싱가포르 MGO 유가",
+      "suggested_korean": "선박용 경유",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "Regional Spread",
+      "context_excerpt": "SKJ & YF Regional Spread",
+      "suggested_korean": "지역별 가격 스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "Weekly",
+      "context_excerpt": "Atuna Weekly: 시장을 움직이는",
+      "suggested_korean": "주간 동향",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Perfect Storm",
+      "context_excerpt": "IO 참치 '퍼펙트 스톰' — 인도양",
+      "suggested_korean": "복합 위기",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 0,
+      "violation": "MGO",
+      "context_excerpt": "Port Victoria MGO는 4월 말 USD 2,000/t",
+      "suggested_korean": "선박용 경유",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "ash",
+      "context_excerpt": "5월 16일 ash 3.6km 상승 + 4.3M 지진",
+      "suggested_korean": "화산재",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "VDS",
+      "context_excerpt": "PNG 정부 VDS 입어료 수입 직접 타격 우려.",
+      "suggested_korean": "조업일수제",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 2,
+      "violation": "USTR",
+      "context_excerpt": "미국 의회 20인 위원이 USTR에 태국·베트남·중국",
+      "suggested_korean": "미국 무역대표부",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 2,
+      "violation": "unfair trade",
+      "context_excerpt": "Section 301 unfair trade 조사를 요구.",
+      "suggested_korean": "불공정 무역",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 2,
+      "violation": "MMPA",
+      "context_excerpt": "US 파우치 수입 Q1 25% 감소(MMPA + 관세 영향)",
+      "suggested_korean": "해양포유류보호법",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 3,
+      "violation": "yellowfin",
+      "context_excerpt": "IO yellowfin 42,903 M/T + bigeye 14,792 M/T",
+      "suggested_korean": "황다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 3,
+      "violation": "bigeye",
+      "context_excerpt": "IO yellowfin 42,903 M/T + bigeye 14,792 M/T",
+      "suggested_korean": "눈다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "Forensic Intelligence",
+      "context_excerpt": "Forensic Intelligence: 참치 산업 구조적 변화",
+      "suggested_korean": "심층 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 0,
+      "violation": "Perfect Storm",
+      "context_excerpt": "IO는 어선들이 연료비 부담으로 항구 정박을 단행하며 'Perfect Storm' 진입",
+      "suggested_korean": "복합 위기",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "SIDS",
+      "context_excerpt": "몰디브(UK 0% 관세 신규 개방)·태평양 SIDS 직거래",
+      "suggested_korean": "군소도서개도국",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "raw material",
+      "context_excerpt": "6개월 raw material 비축을 사전 확보하고",
+      "suggested_korean": "원재료",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Skipjack",
+      "context_excerpt": "IO Perfect Storm · EPO Skipjack · PNG Bismarck",
+      "suggested_korean": "가다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "MSC 미국 30% 점유 + 참치 부산물 펩타이드",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "MSC 인증 참치 미국 판매량 5년 동안 +330% 급증",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "SKU",
+      "context_excerpt": "Walmart 100% MSC 자체 라벨 전환 완료(37 SKU), Bumble Bee 49 SKU.",
+      "suggested_korean": "재고 관리 코드",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "CAGR",
+      "context_excerpt": "USD 1.56B (2034 전망, CAGR 4.8%) — Thai Union이",
+      "suggested_korean": "연평균 성장률",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "(1) MSC 인증 + 풀앤라인 원료 비축으로 미국·UK",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 1,
+      "violation": "PB",
+      "context_excerpt": "한국 대형 마트 PB MSC 전환을 제안.",
+      "suggested_korean": "자체 브랜드",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 1,
+      "violation": "R&D",
+      "context_excerpt": "업사이클링하는 R&D 파이프라인을 2027 출시 목표로",
+      "suggested_korean": "연구 개발",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 1,
+      "violation": "pipeline",
+      "context_excerpt": "R&D 파이프라인을 2027 출시 목표로 즉시 가동.",
+      "suggested_korean": "계획",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "Atuna 2026.05.20 (MSC US Sustainable Market · Tuna",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "Sustainable Market",
+      "context_excerpt": "MSC US Sustainable Market · Tuna Peptide Market",
+      "suggested_korean": "지속가능 시장",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "Tuna Peptide Market",
+      "context_excerpt": "Sustainable Market · Tuna Peptide Market",
+      "suggested_korean": "참치 펩타이드 시장",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 17,
+  "tokens": {
+    "input": 3987,
+    "output": 260,
+    "thoughts": 2705
+  },
+  "cost_usd": 0.00185,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "TAC",
+      "context_excerpt": "노르웨이 TAC 삭감과 한국 연근해",
+      "suggested_korean": "총허용어획량",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "Execution Recommended",
+      "context_excerpt": "확보하는 것이 필수적입니다. (Execution Recommended)",
+      "suggested_korean": "실행 권고",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "FishStatJ Global Capture & Trade Statistics",
+      "context_excerpt": "FAO FishStatJ Global Capture & Trade Statistics (1976-2023)",
+      "suggested_korean": "FishStatJ 글로벌 어획 및 무역 통계",
+      "confidence": "high"
+    }
+  ]
+}

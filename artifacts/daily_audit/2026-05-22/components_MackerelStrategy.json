@@ -1,0 +1,117 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 34,
+  "tokens": {
+    "input": 4560,
+    "output": 1181,
+    "thoughts": 5853
+  },
+  "cost_usd": 0.00432,
+  "violations_count": 13,
+  "violations": [
+    {
+      "field": "customBody (h3)",
+      "widget_index": 0,
+      "violation": "S. japonicus",
+      "context_excerpt": "운송 및 통관 프로세스 타임라인 (S. japonicus 1,328 카톤)",
+      "suggested_korean": "고등어 학명 (Scomber japonicus)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (specRow)",
+      "widget_index": 0,
+      "violation": "Duty Etc",
+      "context_excerpt": "관세 (Duty Etc)",
+      "suggested_korean": "관세 등",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (timeLocation)",
+      "widget_index": 0,
+      "violation": "FDA",
+      "context_excerpt": "통관 (FDA검사)",
+      "suggested_korean": "통관 (식품의약국 검사)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (strategyDesc)",
+      "widget_index": 0,
+      "violation": "FAD",
+      "context_excerpt": "상반기(3월 중순~4월 초) FAD 조업 금지로 인해 현지 냉동 창고에 여유가 발생합니다.",
+      "suggested_korean": "집어장치 (FAD)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (strategyTitle)",
+      "widget_index": 0,
+      "violation": "Tax Optimization",
+      "context_excerpt": "최우선 과제: Tax Optimization",
+      "suggested_korean": "세금 최적화",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (strategyDesc)",
+      "widget_index": 0,
+      "violation": "VAT",
+      "context_excerpt": "제세금(VAT+NHIL+GETFund) 등 세금 공제가 불가능한 구조적 페널티가 있습니다.",
+      "suggested_korean": "부가가치세 (VAT)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (strategyDesc)",
+      "widget_index": 0,
+      "violation": "NHIL",
+      "context_excerpt": "제세금(VAT+NHIL+GETFund) 등 세금 공제가 불가능한 구조적 페널티가 있습니다.",
+      "suggested_korean": "국가 건강 보험료 (NHIL)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (strategyDesc)",
+      "widget_index": 0,
+      "violation": "GETFund",
+      "context_excerpt": "제세금(VAT+NHIL+GETFund) 등 세금 공제가 불가능한 구조적 페널티가 있습니다.",
+      "suggested_korean": "가나 교육 신탁 기금 (GETFund)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (detailRow)",
+      "widget_index": 0,
+      "violation": "Lead Time",
+      "context_excerpt": "선적 일정 (Lead Time 45일)",
+      "suggested_korean": "선적 일정 (리드 타임 45일)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (strategyDesc)",
+      "widget_index": 0,
+      "violation": "FAD",
+      "context_excerpt": "FAD 금어기로 인한 대체 수요가 가장 높은 시기.",
+      "suggested_korean": "집어장치 (FAD)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (detailRow)",
+      "widget_index": 0,
+      "violation": "Lead Time",
+      "context_excerpt": "선적 일정 (Lead Time 45일)",
+      "suggested_korean": "선적 일정 (리드 타임 45일)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (detailRow)",
+      "widget_index": 0,
+      "violation": "Lead Time",
+      "context_excerpt": "선적 일정 (Lead Time 45일)",
+      "suggested_korean": "선적 일정 (리드 타임 45일)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody (detailRow)",
+      "widget_index": 0,
+      "violation": "Lead Time",
+      "context_excerpt": "선적 일정 (Lead Time 45일)",
+      "suggested_korean": "선적 일정 (리드 타임 45일)",
+      "confidence": "high"
+    }
+  ]
+}

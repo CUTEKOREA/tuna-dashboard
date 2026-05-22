@@ -1,0 +1,29 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 2494,
+    "output": 173,
+    "thoughts": 1997
+  },
+  "cost_usd": 0.00118,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "H&G",
+      "context_excerpt": "노르웨이산 H&G를 대량 보세 수입하여",
+      "suggested_korean": "머리 내장 제거",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "C/S",
+      "context_excerpt": "글로벌 C/S 채널(미국 한인마트, 아시안",
+      "suggested_korean": "고객 서비스",
+      "confidence": "high"
+    }
+  ]
+}

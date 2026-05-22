@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Librarian 일간 audit launchd job (macOS)
+
+  설치:
+    1. 파일을 사용자 LaunchAgents 디렉토리로 복사:
+       cp scripts/librarian_daily.launchd.plist ~/Library/LaunchAgents/com.cutekorea.librarian-daily.plist
+    2. launchctl로 load:
+       launchctl load ~/Library/LaunchAgents/com.cutekorea.librarian-daily.plist
+    3. 즉시 1회 실행 (테스트):
+       launchctl start com.cutekorea.librarian-daily
+
+  제거:
+    launchctl unload ~/Library/LaunchAgents/com.cutekorea.librarian-daily.plist
+    rm ~/Library/LaunchAgents/com.cutekorea.librarian-daily.plist
+
+  스케줄:
+    매일 오전 09:00 (수면·전원 꺼짐 시 다음 wake에 catch-up)
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.cutekorea.librarian-daily</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-ic</string>
+        <string>cd /Users/idong-geon/연구자동화애이전트들/tuna-dashboard &amp;&amp; BUDGET_USD=0.5 MODEL=gemini-2.5-pro ./scripts/librarian_daily_audit.sh</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- 시스템이 cold-start 일 때 catch-up 실행 -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- 로그 -->
+    <key>StandardOutPath</key>
+    <string>/Users/idong-geon/연구자동화애이전트들/tuna-dashboard/artifacts/daily_audit/_launchd_stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/idong-geon/연구자동화애이전트들/tuna-dashboard/artifacts/daily_audit/_launchd_stderr.log</string>
+
+    <!-- 환경변수: gcloud + ANTHROPIC PATH 등 -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/Users/idong-geon/google-cloud-sdk/bin</string>
+    </dict>
+
+    <!-- 짧은 task — Throttle 으로 동시 실행 방지 -->
+    <key>ThrottleInterval</key>
+    <integer>3600</integer>
+</dict>
+</plist>

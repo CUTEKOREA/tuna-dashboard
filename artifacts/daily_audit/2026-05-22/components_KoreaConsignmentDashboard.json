@@ -1,0 +1,109 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 33,
+  "tokens": {
+    "input": 9736,
+    "output": 956,
+    "thoughts": 5816
+  },
+  "cost_usd": 0.00531,
+  "violations_count": 12,
+  "violations": [
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "Monthly National Consignment Intelligence by Seafood Type",
+      "context_excerpt": "2024-2026 Monthly National Consignment Int",
+      "suggested_korean": "월별 전국 위탁판매 현황 (어종별)",
+      "confidence": "high"
+    },
+    {
+      "field": "status_badge",
+      "widget_index": null,
+      "violation": "Empirical Data Verified",
+      "context_excerpt": "Empirical Data Verified",
+      "suggested_korean": "실증 데이터 검증 완료",
+      "confidence": "high"
+    },
+    {
+      "field": "loading_message",
+      "widget_index": null,
+      "violation": "Loading 3-Year Consignment Intelligence",
+      "context_excerpt": "Loading 3-Year Consignment Intelligenc",
+      "suggested_korean": "3개년 위탁판매 정보 로딩 중",
+      "confidence": "high"
+    },
+    {
+      "field": "network_status_label",
+      "widget_index": null,
+      "violation": "LIVE",
+      "context_excerpt": "LIVE",
+      "suggested_korean": "실시간",
+      "confidence": "medium"
+    },
+    {
+      "field": "network_status_label",
+      "widget_index": null,
+      "violation": "STANDBY",
+      "context_excerpt": "STANDBY",
+      "suggested_korean": "대기 중",
+      "confidence": "medium"
+    },
+    {
+      "field": "network_status_label",
+      "widget_index": null,
+      "violation": "OFFLINE",
+      "context_excerpt": "OFFLINE",
+      "suggested_korean": "오프라인",
+      "confidence": "medium"
+    },
+    {
+      "field": "margin_description",
+      "widget_index": null,
+      "violation": "PROFITABLE",
+      "context_excerpt": "마진율 극대화 구간 진입 (PROFITAB",
+      "suggested_korean": "수익성 높음",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 0,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED', syncDate: '2026",
+      "suggested_korean": "동기화 완료",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.syncDate",
+      "widget_index": 0,
+      "violation": "syncDate",
+      "context_excerpt": "syncDate: '2026.05'",
+      "suggested_korean": "갱신 일자",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 1,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED', syncDate: '2026",
+      "suggested_korean": "동기화 완료",
+      "confidence": "medium"
+    },
+    {
+      "field": "telemetry.syncDate",
+      "widget_index": 1,
+      "violation": "syncDate",
+      "context_excerpt": "syncDate: '2026.05'",
+      "suggested_korean": "갱신 일자",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "SCM",
+      "context_excerpt": "SCM 유연성 확보에 주력.",
+      "suggested_korean": "공급망 관리",
+      "confidence": "high"
+    }
+  ]
+}

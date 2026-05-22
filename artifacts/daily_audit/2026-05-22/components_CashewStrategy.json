@@ -1,0 +1,93 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 42,
+  "tokens": {
+    "input": 10824,
+    "output": 779,
+    "thoughts": 8047
+  },
+  "cost_usd": 0.00519,
+  "violations_count": 11,
+  "violations": [
+    {
+      "field": "header_p",
+      "violation": "Real Data",
+      "context_excerpt": "FAOSTAT Real Data · 10 Charts ·",
+      "suggested_korean": "실측 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "header_p",
+      "violation": "Charts",
+      "context_excerpt": "Real Data · 10 Charts · 127 Data",
+      "suggested_korean": "차트",
+      "confidence": "high"
+    },
+    {
+      "field": "header_p",
+      "violation": "Data Points",
+      "context_excerpt": "Charts · 127 Data Points",
+      "suggested_korean": "데이터 포인트",
+      "confidence": "high"
+    },
+    {
+      "field": "data_source_h2",
+      "violation": "DATA SOURCE COMMAND CENTER",
+      "context_excerpt": "DATA SOURCE COMMAND CENTER IND",
+      "suggested_korean": "데이터 소스 지휘 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "data_source_h2",
+      "violation": "INDEXED",
+      "context_excerpt": "COMMAND CENTER INDEXED",
+      "suggested_korean": "색인 완료",
+      "confidence": "high"
+    },
+    {
+      "field": "scsi_index_div",
+      "violation": "INDEX",
+      "context_excerpt": "SCSI INDEX",
+      "suggested_korean": "지수",
+      "confidence": "high"
+    },
+    {
+      "field": "scsi_kpi_derived_div",
+      "violation": "KPI",
+      "context_excerpt": "Stress Index (KPI-Derived)",
+      "suggested_korean": "핵심 성과 지표",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "RCN",
+      "context_excerpt": "대비 원물(RCN) 수입량 격차",
+      "suggested_korean": "원물 캐슈넛",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 0,
+      "violation": "RCN",
+      "context_excerpt": "한계로 RCN 원물 수입 의존도 역",
+      "suggested_korean": "원물 캐슈넛",
+      "confidence": "high"
+    },
+    {
+      "field": "section_desc",
+      "violation": "SEZ",
+      "context_excerpt": "SEZ 투자 매력도, 스마트 팩토리",
+      "suggested_korean": "경제자유구역",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 3,
+      "violation": "CNSL",
+      "context_excerpt": "버려지던 CNSL의 직접 추출 및 정",
+      "suggested_korean": "캐슈넛 껍질 액",
+      "confidence": "high"
+    }
+  ]
+}

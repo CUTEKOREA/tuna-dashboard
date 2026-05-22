@@ -1,0 +1,165 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 25,
+  "tokens": {
+    "input": 4085,
+    "output": 1646,
+    "thoughts": 3526
+  },
+  "cost_usd": 0.00534,
+  "violations_count": 19,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Insight A.",
+      "context_excerpt": "Insight A. 타임갭 차익거래 — 브라질",
+      "suggested_korean": "핵심 A. / 통찰 A.",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "TCU",
+      "context_excerpt": "인건비 절감을 감안한 TCU는 사실상 동등합니다.",
+      "suggested_korean": "총사용비용",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Temporal Arbitrage",
+      "context_excerpt": "[Temporal Arbitrage] ①GFPT/Betagro와 고정가",
+      "suggested_korean": "시차 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "LTA",
+      "context_excerpt": "고정가 LTA 선도계약 즉시 체결 ②TRQ",
+      "suggested_korean": "장기 공급 계약",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TRQ",
+      "context_excerpt": "체결 ②TRQ 0% 무관세 쿼터 Q1 선점",
+      "suggested_korean": "관세할당량",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TCU",
+      "context_excerpt": "단가'가 아닌 '1인분당 TCU'로 바이어를 설득해야 합니다.",
+      "suggested_korean": "총사용비용",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "Insight B.",
+      "context_excerpt": "Insight B. 유통채널별 수익 매트릭스 —",
+      "suggested_korean": "핵심 B. / 통찰 B.",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Exposure",
+      "context_excerpt": "브라질 의존도(Exposure) 전환 임계점 진입.",
+      "suggested_korean": "노출 / 위험 노출",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Channel Priority",
+      "context_excerpt": "[Channel Priority] 1순위=프랜차이즈 B2B 순살",
+      "suggested_korean": "채널 우선순위",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "LTA",
+      "context_excerpt": "B2B 순살 LTA, 캐시카우=편의점 HMR 가공육",
+      "suggested_korean": "장기 공급 계약",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "2-Track",
+      "context_excerpt": "동시 판매하는 2-Track 영업.",
+      "suggested_korean": "투트랙 / 이중 전략",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Insight C.",
+      "context_excerpt": "Insight C. VMI 락인 — 공급 안정성 판매",
+      "suggested_korean": "핵심 C. / 통찰 C.",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "VMI",
+      "context_excerpt": "Insight C. VMI 락인 — 공급 안정성 판매",
+      "suggested_korean": "벤더 재고 관리",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "Repo",
+      "context_excerpt": "국내 냉동 Repo 창고에 선비축하고, 바이어가",
+      "suggested_korean": "환매조건부",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "VMI",
+      "context_excerpt": "정산하는 VMI 방식은 초기 45%→24개월",
+      "suggested_korean": "벤더 재고 관리",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "VMI Lock-in",
+      "context_excerpt": "[VMI Lock-in] ①냉동창고 자본 투자 → '가공육",
+      "suggested_korean": "VMI 고착화 / 벤더 재고 관리 고착화",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "Lock-in",
+      "context_excerpt": "③24개월 Lock-in 후 마진율 8%→28%로",
+      "suggested_korean": "고착화 / 종속",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "VMI",
+      "context_excerpt": "소스 기반 VMI 유통 모델링. Thai DLD & CP",
+      "suggested_korean": "벤더 재고 관리",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Value Chain Analysis",
+      "context_excerpt": "CP Foods 2023 Value Chain Analysis",
+      "suggested_korean": "가치 사슬 분석",
+      "confidence": "high"
+    }
+  ]
+}

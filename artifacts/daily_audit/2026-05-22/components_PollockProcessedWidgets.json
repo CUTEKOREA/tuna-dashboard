@@ -1,0 +1,37 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 17,
+  "tokens": {
+    "input": 2637,
+    "output": 252,
+    "thoughts": 2799
+  },
+  "cost_usd": 0.00142,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "vs",
+      "context_excerpt": "러시아 명태 가공 vs 전세계 기타 국가 가공량",
+      "suggested_korean": "대",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Boycott",
+      "context_excerpt": "서방 Boycott 무력화 — 러시아 공장 선단",
+      "suggested_korean": "불매운동",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Factory trawlers",
+      "context_excerpt": "러시아 공장 선단(Factory trawlers)이 밸류체인",
+      "suggested_korean": "공장식 트롤선",
+      "confidence": "high"
+    }
+  ]
+}

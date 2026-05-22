@@ -194,9 +194,13 @@ Paid Tier 가격 ([Google AI 공식](https://ai.google.dev/gemini-api/docs/prici
   - **Precision 80%+ 달성** (엄격 정책 100% / 관대 정책 75%)
   - **Recall 130%**: Flash가 놓친 `Landed Cost` 추가 발견
 - [ ] Oracle 의무 게이트 enforce (위젯 머지 전 GPT-4o pass 확인)
-- [ ] 일간 09:00 cron으로 Librarian audit 자동화 — Vertex AI 경로 사용
-- [ ] 30일 후 $100/월 실제 소진율 점검 — 현재 누적 ~$0.011 (0.011%)
-- [ ] scripts/librarian_audit.sh 작성 (gcloud OAuth + Vertex AI Pro pipeline)
+- [x] **일간 09:00 cron Librarian audit 자동화 (2026-05-22)** ✅
+  - `scripts/librarian_daily_audit.sh` + `scripts/librarian_daily.launchd.plist`
+  - macOS launchd 등록 가이드 포함
+  - BUDGET_USD env로 비용 cap, MODEL env로 Flash/Pro 선택
+  - 결과: artifacts/daily_audit/<YYYY-MM-DD>/summary.md + per-file JSON
+- [ ] 30일 후 $100/월 실제 소진율 점검 — 현재 누적 ~$0.20 (0.2%)
+- [x] **scripts/librarian_audit.sh 작성 (gcloud OAuth + Vertex AI Pro pipeline)** ✅
 
 ### Vertex AI Pipeline 정식 운영 명세
 

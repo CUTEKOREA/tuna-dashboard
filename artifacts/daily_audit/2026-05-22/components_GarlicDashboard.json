@@ -1,0 +1,341 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 99,
+  "tokens": {
+    "input": 16156,
+    "output": 3171,
+    "thoughts": 19277
+  },
+  "cost_usd": 0.01277,
+  "violations_count": 41,
+  "violations": [
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "C-Level",
+      "context_excerpt": "C-Level Strategic Value Chain Insights",
+      "suggested_korean": "고위 경영진의",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": null,
+      "violation": "Strategic Value Chain Insights",
+      "context_excerpt": "C-Level Strategic Value Chain Insights",
+      "suggested_korean": "전략적 가치 사슬 통찰력",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": null,
+      "violation": "LIVE",
+      "context_excerpt": "LIVE API",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info",
+      "widget_index": null,
+      "violation": "Global Market",
+      "context_excerpt": "Global Market 2026 · Sourcing · Hubs · ESG",
+      "suggested_korean": "글로벌 시장",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info",
+      "widget_index": null,
+      "violation": "Sourcing",
+      "context_excerpt": "Global Market 2026 · Sourcing · Hubs · ESG",
+      "suggested_korean": "원물 조달",
+      "confidence": "high"
+    },
+    {
+      "field": "header_info",
+      "widget_index": null,
+      "violation": "Hubs",
+      "context_excerpt": "Global Market 2026 · Sourcing · Hubs · ESG",
+      "suggested_korean": "거점",
+      "confidence": "high"
+    },
+    {
+      "field": "k6.value",
+      "widget_index": null,
+      "violation": "High",
+      "context_excerpt": "기후 변동성 리스크, value: 'High'",
+      "suggested_korean": "높음",
+      "confidence": "high"
+    },
+    {
+      "field": "SECTIONS[1].title",
+      "widget_index": null,
+      "violation": "Processing",
+      "context_excerpt": "가공(Processing) 및 부가가치 창출 (Processing)",
+      "suggested_korean": "가공",
+      "confidence": "high"
+    },
+    {
+      "field": "SECTIONS[1].desc",
+      "widget_index": null,
+      "violation": "Allicin",
+      "context_excerpt": "건조, 추출(Allicin), 흑마늘 등 용도 전환",
+      "suggested_korean": "알리신",
+      "confidence": "high"
+    },
+    {
+      "field": "SECTIONS[2].title",
+      "widget_index": null,
+      "violation": "Logistics & Trading",
+      "context_excerpt": "물류 및 유통 (Logistics & Trading)",
+      "suggested_korean": "물류 및 거래",
+      "confidence": "high"
+    },
+    {
+      "field": "SECTIONS[3].title",
+      "widget_index": null,
+      "violation": "Sales & Demand",
+      "context_excerpt": "수요 및 시장 성장 (Sales & Demand)",
+      "suggested_korean": "판매 및 수요",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "WSC China Crop Report",
+      "context_excerpt": "WSC China Crop Report 기준, 중국 산둥성 지역",
+      "suggested_korean": "WSC 중국 작황 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Open",
+      "context_excerpt": "FAOSTAT QCL Open API",
+      "suggested_korean": "공개",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 1,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 2,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 3,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 4,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 4,
+      "violation": "HORECA",
+      "context_excerpt": "외식업계(HORECA)의 인건비 부담으로 원물 직접 조리보다",
+      "suggested_korean": "호레카",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 5,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 6,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 7,
+      "violation": "TRQ",
+      "context_excerpt": "정부 TRQ 방출 및 통관 수입 모니터링",
+      "suggested_korean": "저율관세할당",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "TRQ",
+      "context_excerpt": "관세 페널티 — TRQ 방출 시그널 추적",
+      "suggested_korean": "저율관세할당",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 7,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 8,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "Risk",
+      "context_excerpt": "중대한 Risk 감점 요인입니다.",
+      "suggested_korean": "위험",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 9,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 10,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "Open",
+      "context_excerpt": "FAOSTAT QCL Open API",
+      "suggested_korean": "공개",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 11,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 12,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "EV",
+      "context_excerpt": "가공 기술 내재화 시 15x EV",
+      "suggested_korean": "기업 가치",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 13,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 13,
+      "violation": "GPR",
+      "context_excerpt": "대시보드 내 GPR 단수 방어, 흑마늘 기능성 가공",
+      "suggested_korean": "정밀 농법",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 13,
+      "violation": "Arbitrage",
+      "context_excerpt": "수입 Arbitrage 물류 시스템을 총결합하여",
+      "suggested_korean": "차익 거래",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 13,
+      "violation": "EBITDA",
+      "context_excerpt": "궁극적인 EBITDA 15x 리레이팅 엑시트(Exit)가 가능해야 합니다.",
+      "suggested_korean": "세전·이자지급전이익",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 14,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 15,
+      "violation": "LIVE",
+      "context_excerpt": "status: 'LIVE'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.label",
+      "widget_index": 16,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 16,
+      "violation": "Zero",
+      "context_excerpt": "폐기 비용이 Zero화 됩니다.",
+      "suggested_korean": "영(0)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 16,
+      "violation": "Cash Cow",
+      "context_excerpt": "새로운 'Cash Cow'입니다.",
+      "suggested_korean": "수익 창출원",
+      "confidence": "high"
+    }
+  ]
+}

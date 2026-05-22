@@ -1,0 +1,53 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 19,
+  "tokens": {
+    "input": 2501,
+    "output": 411,
+    "thoughts": 3560
+  },
+  "cost_usd": 0.00178,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Top",
+      "context_excerpt": "글로벌 Top 12 수출국의 점유율 변화",
+      "suggested_korean": "상위",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 0,
+      "violation": "MSC",
+      "context_excerpt": "쿼터(TAC)가 MSC 인증 상실 여파로",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 0,
+      "violation": "MSC",
+      "context_excerpt": "향후 MSC 인증 미회복 사태가 장기화",
+      "suggested_korean": "해양관리협의회",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "ICES TAC Advisory",
+      "context_excerpt": "인덱스 & ICES TAC Advisory / 관세청",
+      "suggested_korean": "국제해양탐사협의회 총허용어획량 자문 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "TRQ",
+      "context_excerpt": "Advisory / 관세청 TRQ 고시",
+      "suggested_korean": "할당관세",
+      "confidence": "high"
+    }
+  ]
+}

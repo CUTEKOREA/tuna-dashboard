@@ -1,0 +1,117 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 35,
+  "tokens": {
+    "input": 3738,
+    "output": 1056,
+    "thoughts": 6267
+  },
+  "cost_usd": 0.00376,
+  "violations_count": 13,
+  "violations": [
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Micro-bottleneck Score",
+      "context_excerpt": "HSK Micro-bottleneck Score",
+      "suggested_korean": "HSK 미세 병목 점수",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 1,
+      "violation": "Precision Warehousing",
+      "context_excerpt": "Precision Warehousing",
+      "suggested_korean": "정밀 창고 관리",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "Single-frozen",
+      "context_excerpt": "생산된 Single-frozen Lot별 VDS 정보",
+      "suggested_korean": "개별 급속 냉동",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "Lot",
+      "context_excerpt": "Single-frozen Lot별 VDS 정보의 식약처",
+      "suggested_korean": "로트",
+      "confidence": "medium"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 2,
+      "violation": "Virtual Docking System Integrity",
+      "context_excerpt": "Virtual Docking System Integrity",
+      "suggested_korean": "가상 도킹 시스템 무결성",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.description",
+      "widget_index": 2,
+      "violation": "Single-frozen",
+      "context_excerpt": "생산된 Single-frozen Lot별 VDS 정보",
+      "suggested_korean": "개별 급속 냉동",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.description",
+      "widget_index": 2,
+      "violation": "Lot",
+      "context_excerpt": "Single-frozen Lot별 VDS 정보의 식약처",
+      "suggested_korean": "로트",
+      "confidence": "medium"
+    },
+    {
+      "field": "termTooltip.description",
+      "widget_index": 2,
+      "violation": "VDS",
+      "context_excerpt": "Lot별 VDS 정보의 식약처 통관 프리패스",
+      "suggested_korean": "가상 도킹 시스템",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "IUU",
+      "context_excerpt": "및 IUU 어획 증명 DB",
+      "suggested_korean": "불법/비보고/비규제",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "DB",
+      "context_excerpt": "IUU 어획 증명 DB",
+      "suggested_korean": "데이터베이스",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "VDS",
+      "context_excerpt": "증명된 VDS 무결성이 부족하면 전량 반송됩니다.",
+      "suggested_korean": "가상 도킹 시스템",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "VDS",
+      "context_excerpt": "명단에서 VDS 데이터 무결성 지표가 90%",
+      "suggested_korean": "가상 도킹 시스템",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "VDS",
+      "context_excerpt": "기반의 VDS 원산지 정보가 박히는 프리미엄",
+      "suggested_korean": "가상 도킹 시스템",
+      "confidence": "high"
+    }
+  ]
+}

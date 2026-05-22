@@ -1,0 +1,45 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 25,
+  "tokens": {
+    "input": 4360,
+    "output": 349,
+    "thoughts": 3964
+  },
+  "cost_usd": 0.00218,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "MSC",
+      "context_excerpt": "미국 MSC(5%) 비중을 15%까지 확대",
+      "suggested_korean": "MSC(해양관리협의회)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "단기: 미국 MSC 비중 3배 확대(5→15%).",
+      "suggested_korean": "MSC(해양관리협의회)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Exposure",
+      "context_excerpt": "중국 가공 의존도(Exposure) 축소.",
+      "suggested_korean": "노출도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "R&D",
+      "context_excerpt": "10% 블렌딩 R&D로 가격 방어 체계",
+      "suggested_korean": "R&D(연구 개발)",
+      "confidence": "high"
+    }
+  ]
+}

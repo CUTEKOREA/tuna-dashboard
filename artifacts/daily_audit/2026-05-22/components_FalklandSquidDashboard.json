@@ -1,0 +1,37 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 21,
+  "tokens": {
+    "input": 12373,
+    "output": 270,
+    "thoughts": 3953
+  },
+  "cost_usd": 0.00439,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "telemetry.status",
+      "widget_index": 0,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED', syncDate: '2026 포클랜드 채낚기'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 1,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED', syncDate: '2026 포클랜드 채낚기'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.status",
+      "widget_index": 2,
+      "violation": "SYNCED",
+      "context_excerpt": "status: 'SYNCED', syncDate: '2026 포클랜드 채낚기'",
+      "suggested_korean": "동기화됨",
+      "confidence": "high"
+    }
+  ]
+}

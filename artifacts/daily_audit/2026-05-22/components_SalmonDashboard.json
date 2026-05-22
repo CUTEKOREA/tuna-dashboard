@@ -1,0 +1,125 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 48,
+  "tokens": {
+    "input": 11943,
+    "output": 1210,
+    "thoughts": 8791
+  },
+  "cost_usd": 0.00661,
+  "violations_count": 14,
+  "violations": [
+    {
+      "field": "kpi.desc",
+      "widget_index": "kpi5",
+      "violation": "RAS",
+      "context_excerpt": "RAS 기술 발전 및 시장 성장 기대",
+      "suggested_korean": "순환여과양식(RAS)",
+      "confidence": "high"
+    },
+    {
+      "field": "widget.source (default)",
+      "widget_index": null,
+      "violation": "NASF",
+      "context_excerpt": "FAO FishStatJ · NASF · KMI 연어 시장 보고서",
+      "suggested_korean": "북대서양연어기구(NASF)",
+      "confidence": "high"
+    },
+    {
+      "field": "SalmonInsightSmolt.title (inferred)",
+      "widget_index": null,
+      "violation": "Smolt",
+      "context_excerpt": "SalmonInsightSmolt 컴포넌트 내 제목/상황",
+      "suggested_korean": "치어",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightFeed.title (inferred)",
+      "widget_index": null,
+      "violation": "Feed",
+      "context_excerpt": "SalmonInsightFeed 컴포넌트 내 제목/상황",
+      "suggested_korean": "사료",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightProcessing.title (inferred)",
+      "widget_index": null,
+      "violation": "Processing",
+      "context_excerpt": "SalmonInsightProcessing 컴포넌트 내 제목/상황",
+      "suggested_korean": "가공",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightClimate.title (inferred)",
+      "widget_index": null,
+      "violation": "Climate",
+      "context_excerpt": "SalmonInsightClimate 컴포넌트 내 제목/상황",
+      "suggested_korean": "기후",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightFeedBio.title (inferred)",
+      "widget_index": null,
+      "violation": "Bio",
+      "context_excerpt": "SalmonInsightFeedBio 컴포넌트 내 제목/상황",
+      "suggested_korean": "생물",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightAutomationYield.title (inferred)",
+      "widget_index": null,
+      "violation": "Automation Yield",
+      "context_excerpt": "SalmonInsightAutomationYield 컴포넌트 내 제목/상황",
+      "suggested_korean": "자동화 수율",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightSmartColdChain.title (inferred)",
+      "widget_index": null,
+      "violation": "Smart Cold Chain",
+      "context_excerpt": "SalmonInsightSmartColdChain 컴포넌트 내 제목/상황",
+      "suggested_korean": "스마트 콜드체인",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightGlobalSupplyPrice.title (inferred)",
+      "widget_index": null,
+      "violation": "Global Supply Price",
+      "context_excerpt": "SalmonInsightGlobalSupplyPrice 컴포넌트 내 제목/상황",
+      "suggested_korean": "글로벌 공급 가격",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightDoubleMateriality.title (inferred)",
+      "widget_index": null,
+      "violation": "Double Materiality",
+      "context_excerpt": "SalmonInsightDoubleMateriality 컴포넌트 내 제목/상황",
+      "suggested_korean": "이중 중대성",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightTradeDown.title (inferred)",
+      "widget_index": null,
+      "violation": "Trade Down",
+      "context_excerpt": "SalmonInsightTradeDown 컴포넌트 내 제목/상황",
+      "suggested_korean": "하향 구매",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightMarginSqueeze.title (inferred)",
+      "widget_index": null,
+      "violation": "Margin Squeeze",
+      "context_excerpt": "SalmonInsightMarginSqueeze 컴포넌트 내 제목/상황",
+      "suggested_korean": "마진 압박",
+      "confidence": "medium"
+    },
+    {
+      "field": "SalmonInsightLogisticsResilience.title (inferred)",
+      "widget_index": null,
+      "violation": "Logistics Resilience",
+      "context_excerpt": "SalmonInsightLogisticsResilience 컴포넌트 내 제목/상황",
+      "suggested_korean": "물류 회복탄력성",
+      "confidence": "medium"
+    }
+  ]
+}

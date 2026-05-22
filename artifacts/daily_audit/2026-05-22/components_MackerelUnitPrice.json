@@ -1,0 +1,61 @@
+{
+  "model": "gemini-2.5-flash",
+  "elapsed_sec": 16,
+  "tokens": {
+    "input": 2401,
+    "output": 494,
+    "thoughts": 2567
+  },
+  "cost_usd": 0.00196,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Top",
+      "context_excerpt": "국가 Top 15 — 프리미엄 판로",
+      "suggested_korean": "상위",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Top",
+      "context_excerpt": "단가 Top 15 시장 대부분은 오직",
+      "suggested_korean": "상위",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "MSC",
+      "context_excerpt": "'MSC/ASC 유기농 인증' 패스",
+      "suggested_korean": "해양관리협의회(MSC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "ASC",
+      "context_excerpt": "'MSC/ASC 유기농 인증' 패스",
+      "suggested_korean": "양식관리협의회(ASC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "OEM",
+      "context_excerpt": "고부가 가공(OEM)하여 선진국",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Trade by Partner",
+      "context_excerpt": "FishStatJ - Trade by Partner (2023)",
+      "suggested_korean": "파트너별 교역 통계",
+      "confidence": "high"
+    }
+  ]
+}
