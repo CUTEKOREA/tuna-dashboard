@@ -131,7 +131,15 @@ EXCESS_PHRASE = re.compile(r"잉여현금흐름을 극대화|즉시 폐기하십
 BRACKET_LABEL = re.compile(r'(?:situation|actionPlan|takeaway)\s*=\s*["\']\[[^\]\[]{2,80}\]\s+')
 
 # 룰북 강제 정의 파일은 forbidden 패턴 자체를 코드 안에 보유하므로 검사 대상에서 제외 (false positive 방지)
-EXCLUDED_FILES = {"WidgetCard.tsx"}
+# ADR 0008: Dashboard-Level Pattern 파일은 ADR-0005 WidgetCard 마이그레이션 대상이 아님 — 검사 제외
+EXCLUDED_FILES = {
+    "WidgetCard.tsx",
+    # ADR 0008 dashboard-level pattern (master-detail / interactive tool dashboards)
+    "FleetStrategyMatrix.tsx",
+    "SEAsiaOEMDashboard.tsx",
+    "RetailPOS.tsx",
+    "StrategyIntel.tsx",
+}
 
 # Phase E+ 확장: API endpoint hardcoded mock 의심 (역참조)
 FAKE_LIVE = re.compile(r"🟢 LIVE API|status:\s*['\"]🟢")

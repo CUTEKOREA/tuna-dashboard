@@ -187,3 +187,14 @@ Paid Tier 가격 ([Google AI 공식](https://ai.google.dev/gemini-api/docs/prici
 - HANDOFF.md 최상단 박스 (모든 세션 1차 인지)
 - [Google AI 공식 가격](https://ai.google.dev/gemini-api/docs/pricing)
 - [Rate limits](https://aistudio.google.com/rate-limit)
+
+## Implementation Notes (2026-05-22 cont.)
+
+### OMO 실제 schema와의 차이
+
+`~/.config/opencode/oh-my-openagent.json` 실제 schema는 본 ADR 가설(max_tools/routing/tasks 옵션)과 다름. 실제 schema는 `model` + `variant`만 받음. 따라서 본 ADR에서 명시한 `max_tools: 0` 같은 옵션은 OMO standard 외 영역으로, **운영 규율로 enforce**할 필요가 있음:
+
+- OMO에 `librarian` (Gemini 3 Flash Preview) + `librarian-heavy` (Gemini 3.1 Pro Preview) 두 agent로 등록 완료 (commit pending)
+- `max_tools: 0` 강제는 OMO 매뉴얼 호출 시점에 도구 호출을 명시적으로 피하는 **사용 규율**로 전환
+- routing(by_input_tokens)은 사용자가 task 크기에 따라 librarian vs librarian-heavy를 수동 선택
+- 다음 OMO 세션에서 첫 실전: CashewStrategy L-01 영문 잔존 audit + L-07 변환 plan 생성
