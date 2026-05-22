@@ -19,6 +19,7 @@ import {
 
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css'; // Reuse the glassmorphism styles
+import WidgetCard from './WidgetCard';
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
   if (!status) return null;
@@ -119,40 +120,45 @@ const WIDGET_ICONS: Record<string, any> = {
 };
 
 const SECTIONS = [
-  { 
-    title: "Part I — 원물 생산", 
-    desc: "글로벌 어획량, 자원평가, 조업 효율, TAC 관리, 기후 리스크 및 KFAS 수산과학 연구", 
-    ids: ["w_galchi_prod_risk","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"], 
+  {
+    title: "Part I — 원물 생산",
+    desc: "글로벌 어획량, 자원평가, 조업 효율, TAC 관리, 기후 리스크 및 KFAS 수산과학 연구",
+    ids: ["w_galchi_prod_risk","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"],
     accent: "var(--color-success)",
-    icon: "Fish"
+    icon: "Fish",
+    pillar: "S1" as const
   },
-  { 
-    title: "Part II — 가공 산업 (Processing)", 
-    desc: "유통 단계별 마진 구조, 가공 전환 전략 및 B2B 급식 시장 개발", 
-    ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06"], 
+  {
+    title: "Part II — 가공 산업 (Processing)",
+    desc: "유통 단계별 마진 구조, 가공 전환 전략 및 B2B 급식 시장 개발",
+    ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06"],
     accent: "var(--color-warning)",
-    icon: "Factory"
+    icon: "Factory",
+    pillar: "S2" as const
   },
-  { 
-    title: "Part III — 물류 및 무역 (Logistics & Trade)", 
-    desc: "수출입 통관, 관세·FTA 분석, 착지원가, 교역 흐름, 대체 공급망 및 지정학 리스크", 
-    ids: ["w05","w17","w20","w23","w24","w25","w08","w09","w28","w_galchi_hs_class","w_galchi_multi_cost","w_oec_galchi_export"], 
+  {
+    title: "Part III — 물류 및 무역 (Logistics & Trade)",
+    desc: "수출입 통관, 관세·FTA 분석, 착지원가, 교역 흐름, 대체 공급망 및 지정학 리스크",
+    ids: ["w05","w17","w20","w23","w24","w25","w08","w09","w28","w_galchi_hs_class","w_galchi_multi_cost","w_oec_galchi_export"],
     accent: "#38bdf8",
-    icon: "Ship"
+    icon: "Ship",
+    pillar: "S3" as const
   },
-  { 
-    title: "Part IV — 판매 및 수요 (Sales & Demand)", 
-    desc: "가격 동향, 매입 타이밍, 도매가 스프레드, 소비 트렌드 및 내수 물가 분석", 
-    ids: ["w01","w07","w18","w22","w_kosis_cpi_spread"], 
+  {
+    title: "Part IV — 판매 및 수요 (Sales & Demand)",
+    desc: "가격 동향, 매입 타이밍, 도매가 스프레드, 소비 트렌드 및 내수 물가 분석",
+    ids: ["w01","w07","w18","w22","w_kosis_cpi_spread"],
     accent: "#8b5cf6",
-    icon: "TrendingUp"
+    icon: "TrendingUp",
+    pillar: "S4" as const
   },
-  { 
-    title: "Part V — ESG 및 지속가능성 (Sustainability)", 
-    desc: "공급망 노동 리스크, OFAC/EU 제재 검증, SPS 비관세 장벽, 식품 안전 및 정책 모니터링", 
-    ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10"], 
+  {
+    title: "Part V — ESG 및 지속가능성 (Sustainability)",
+    desc: "공급망 노동 리스크, OFAC/EU 제재 검증, SPS 비관세 장벽, 식품 안전 및 정책 모니터링",
+    ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10"],
     accent: "var(--color-danger)",
-    icon: "ShieldCheck"
+    icon: "ShieldCheck",
+    pillar: "S5" as const
   },
 ];
 
@@ -663,7 +669,7 @@ export default function GalchiDashboard() {
                 {section.desc && <p style={{ margin: '0 0 0 16px', fontSize: '0.82rem', color: 'var(--text-secondary)', letterSpacing: '0.01em' }}>{section.desc}</p>}
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                {sectionWidgets.map((w: any) => renderWidgetCard(w, section.accent))}
+                {sectionWidgets.map((w: any) => renderWidgetCard(w, section.accent, section.pillar))}
               </div>
             </section>
           );
@@ -673,73 +679,26 @@ export default function GalchiDashboard() {
     </div>
   );
 
-  function renderWidgetCard(w: any, accentColor: string) {
+  function renderWidgetCard(w: any, accentColor: string, pillar: 'S1'|'S2'|'S3'|'S4'|'S5') {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
     const LIVE_WIDGETS = ['w01','w05','w17','w18'];
     const isLiveWidget = LIVE_WIDGETS.includes(w.id) || w.isLive;
-    
-    let situation = w.sit || '';
-    let takeaway = w.strat || '';
-    
+
     return (
-      <div key={w.id} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
-        background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
-        padding: '1.5rem'}}>
-        
-        {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: 0, flex: 1 }}>
-              <IconComp size={20} color={accentColor} />
-              {w.title}
-            </h3>
-            {isLiveWidget && (
-              <span style={{ fontSize: '0.6rem', color: 'var(--color-success)', background: 'rgba(30,215,96,0.1)', padding: '3px 8px', borderRadius: '500px', fontWeight: 700, whiteSpace: 'nowrap', letterSpacing: '0.05em' }}>
-                ● API
-              </span>
-            )}
-          </div>
-          {(w.subtitle) && (
-            <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {w.subtitle}
-            </p>
-          )}
-        </div>
-
-        {/* Chart Area */}
-        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            {renderChart(w)}
-          </SafeResponsiveContainer>
-        </div>
-
-        {/* Takeaway Box */}
-        {(situation || takeaway) && (
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ background: 'var(--surface-2)', borderRadius: '6px', padding: '16px' }}>
-              {situation && (
-                <div style={{ paddingBottom: takeaway ? '12px' : '0', marginBottom: takeaway ? '12px' : '0' }}>
-                  <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{situation}</p>
-                </div>
-              )}
-              {takeaway && (
-                <div>
-                  <h4 style={{ color: accentColor, fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                  <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{takeaway}</p>
-                </div>
-              )}
-              {(w.source) && (
-                <div style={{ paddingTop: '12px', marginTop: '12px', borderTop: '1px solid #272727' }}>
-                  <span style={{ fontSize: '0.75rem', color: '#7c7c7c', display: 'inline-flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                    🔗 출처: {w.source}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+      <WidgetCard key={w.id}
+        title={w.title}
+        icon={IconComp}
+        iconColor={accentColor}
+        pillar={pillar}
+        cardDesc={w.subtitle || ''}
+        telemetry={{ status: isLiveWidget ? 'LIVE' : 'SYNCED', syncDate: w.syncDate || 'KFAS 2024' }}
+        chartHeight={375}
+        chart={renderChart(w)}
+        takeaway={{
+          situation: w.sit || '',
+          actionPlan: w.strat || '',
+          source: w.source || 'KFAS / KMI / FAOSTAT',
+        }} />
     );
   }
 }
