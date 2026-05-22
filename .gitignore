@@ -69,3 +69,7 @@ update_compliance.py
 update_draft.py
 update_financial.py
 update_macro.py
+
+# Atuna 일일 자동 sync 결과는 git 추적 (작은 JSON, prod endpoint 입력)
+!public/data/atuna_daily/
+!public/data/atuna_daily/*.json

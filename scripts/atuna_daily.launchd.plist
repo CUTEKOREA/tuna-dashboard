@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Atuna 일일 자동 sync (매일 22:00)
+
+  설치:
+    cp scripts/atuna_daily.launchd.plist ~/Library/LaunchAgents/com.cutekorea.atuna-daily.plist
+    launchctl load ~/Library/LaunchAgents/com.cutekorea.atuna-daily.plist
+    launchctl start com.cutekorea.atuna-daily   # 즉시 1회 테스트
+
+  제거:
+    launchctl unload ~/Library/LaunchAgents/com.cutekorea.atuna-daily.plist
+    rm ~/Library/LaunchAgents/com.cutekorea.atuna-daily.plist
+
+  로그:
+    tail -f artifacts/atuna_daily/_launchd_stdout.log
+    tail -f artifacts/atuna_daily/_launchd_stderr.log
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.cutekorea.atuna-daily</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-ic</string>
+        <string>cd /Users/idong-geon/연구자동화애이전트들/tuna-dashboard &amp;&amp; AUTO_COMMIT=1 AUTO_PUSH=1 ./scripts/atuna_daily_sync.sh</string>
+    </array>
+
+    <!-- 매일 22:00 (사용자가 그날 뉴스 다 업로드한 후) -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>22</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- 로그 -->
+    <key>StandardOutPath</key>
+    <string>/Users/idong-geon/연구자동화애이전트들/tuna-dashboard/artifacts/atuna_daily/_launchd_stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/idong-geon/연구자동화애이전트들/tuna-dashboard/artifacts/atuna_daily/_launchd_stderr.log</string>
+
+    <!-- 환경변수: rclone, gcloud, textutil 경로 -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/Users/idong-geon/google-cloud-sdk/bin</string>
+        <key>HOME</key>
+        <string>/Users/idong-geon</string>
+    </dict>
+
+    <key>ThrottleInterval</key>
+    <integer>3600</integer>
+</dict>
+</plist>

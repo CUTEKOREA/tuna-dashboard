@@ -1,34 +1,42 @@
 #!/usr/bin/env bash
-# Atuna 일일 뉴스 → /api/atuna-daily 자동 동기화
+# Atuna 일일 뉴스 → /api/atuna-daily 자동 동기화 (rclone 경로)
 #
 # 흐름:
-#   1. GDrive `내 드라이브/61. Atuna/<DATE>` Google Docs 검색
-#   2. gcloud OAuth + Drive API REST로 plain text export
-#   3. Gemini Pro로 구조화 JSON 추출 (KPI/시그널)
+#   1. rclone으로 GDrive `61. Atuna/<DATE>.docx` 다운로드
+#   2. macOS textutil로 docx → txt 변환
+#   3. Gemini 2.5 Pro로 구조화 JSON 추출 (Vertex AI Pro)
 #   4. public/data/atuna_daily/<DATE>.json 저장
 #   5. (선택) git auto-commit + push
+#
+# 요구사항:
+#   - rclone 설치 + `gdrive` remote 설정 완료 (drive.readonly scope)
+#     검증: rclone lsf "gdrive:61. Atuna/" | head
+#   - macOS textutil (기본 내장)
+#   - gcloud OAuth (Vertex AI Pro 호출용, 별도 — librarian_audit.sh 동일)
 #
 # 사용:
 #   ./scripts/atuna_daily_sync.sh                # 오늘 날짜
 #   ./scripts/atuna_daily_sync.sh 2026-05-21     # 특정 날짜
-#   AUTO_COMMIT=1 ./scripts/atuna_daily_sync.sh  # commit + push까지 자동
+#   AUTO_COMMIT=1 ./scripts/atuna_daily_sync.sh
+#   AUTO_COMMIT=1 AUTO_PUSH=1 ./scripts/atuna_daily_sync.sh
 #
-# launchd 매일 22:00 등록은 scripts/atuna_daily_sync.launchd.plist 참조.
+# launchd: scripts/atuna_daily.launchd.plist (매일 22:00)
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 DATE="${1:-$(date +%Y-%m-%d)}"
-# GDrive는 파일명이 "YYYY.MM.DD" 형식
-GDRIVE_TITLE="${DATE//-/.}"
+GDRIVE_DOCX="${DATE//-/.}.docx"   # 2026-05-21 → 2026.05.21.docx
+GDRIVE_PATH="gdrive:61. Atuna/${GDRIVE_DOCX}"
 OUT_FILE="public/data/atuna_daily/${DATE}.json"
 PROMPT_FILE="${ATUNA_EXTRACT_PROMPT:-/tmp/atuna_extract_prompt.txt}"
+RCLONE_REMOTE="${ATUNA_RCLONE_REMOTE:-gdrive}"
 
 mkdir -p "$(dirname "$OUT_FILE")"
 
 # prompt 파일 없으면 자동 생성 (cron 환경 대비)
 if [ ! -f "$PROMPT_FILE" ]; then
-  PROMPT_FILE=".prompt_atuna_extract.txt"
+  PROMPT_FILE="/tmp/atuna_extract_prompt.txt"
   cat > "$PROMPT_FILE" <<'PROMPT_EOF'
 한국 신라교역 참치 dashboard용 일일 시장 인텔리전스 추출.
 입력은 Atuna 일일 뉴스. 한국 C-Level 의사결정용 구조화 JSON으로 추출.
@@ -45,7 +53,7 @@ schema:
     "atuna_source_title": "원문 영문 title",
     "confidence": "high|medium|low"
   }],
-  "kpi_updates": [{"metric":"...", "value":"...", "unit":"...", "note":"..."}],
+  "kpi_updates": [{"metric":"...","value":"...","unit":"...","note":"..."}],
   "tuna_live_patch": {
     "arbitrageRadar.note_append": "(있다면 80자)",
     "thaiTrade.note_append": "...",
@@ -62,75 +70,76 @@ schema:
 PROMPT_EOF
 fi
 
-# Step 1: GDrive에서 Atuna 일일 뉴스 file ID 검색 (gcloud OAuth + Drive API)
-TOKEN=$(gcloud auth print-access-token 2>/dev/null) || {
-  echo "❌ gcloud 인증 실패. 'gcloud auth login' 후 'gcloud auth scopes add https://www.googleapis.com/auth/drive.readonly'" >&2
-  exit 1
-}
+# tmp 작업 dir
+TMP_DIR=$(mktemp -d -t atuna_sync.XXXX)
+trap 'rm -rf "$TMP_DIR"' EXIT
 
-echo "🔍 GDrive 검색: 제목 = '${GDRIVE_TITLE}'"
+# Step 1: rclone으로 .docx 다운로드 (이름 변형 fallback 포함)
+GDRIVE_DATE_STEM="${DATE//-/.}"
+CANDIDATES=(
+  "61. Atuna/${GDRIVE_DATE_STEM}.docx"
+  "61. Atuna/${GDRIVE_DATE_STEM} .docx"         # trailing 공백 (사용자 실수 fallback)
+  "61. Atuna/${GDRIVE_DATE_STEM}의 사본.docx"   # 사본 패턴
+)
 
-# Drive API v3 files.list — name 기반 검색
-SEARCH_QUERY="name='${GDRIVE_TITLE}' and mimeType='application/vnd.google-apps.document' and trashed=false"
-SEARCH_URL="https://www.googleapis.com/drive/v3/files?q=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$SEARCH_QUERY")&fields=files(id,name,parents)"
+FOUND_PATH=""
+for CAND in "${CANDIDATES[@]}"; do
+  FULL_PATH="${RCLONE_REMOTE}:${CAND}"
+  echo "📥 rclone fetch try: $FULL_PATH"
+  if rclone copyto "$FULL_PATH" "$TMP_DIR/news.docx" 2>/dev/null; then
+    if [ -s "$TMP_DIR/news.docx" ]; then
+      FOUND_PATH="$FULL_PATH"
+      break
+    fi
+  fi
+done
 
-SEARCH_RESP=$(curl -sS "$SEARCH_URL" -H "Authorization: Bearer $TOKEN")
-FILE_ID=$(python3 -c "
-import json, sys
-r = json.loads('''$SEARCH_RESP''')
-# 61. Atuna 폴더 parent 우선 (있다면)
-files = r.get('files', [])
-if not files:
-    sys.exit('NOT_FOUND')
-# 첫 매치 (필요 시 parent 필터링 추가 가능)
-print(files[0]['id'])
-" 2>&1)
-
-if [ "$FILE_ID" = "NOT_FOUND" ] || [ -z "$FILE_ID" ]; then
-  echo "❌ GDrive에 '${GDRIVE_TITLE}' Google Doc이 없습니다." >&2
+if [ -z "$FOUND_PATH" ]; then
+  echo "❌ Atuna 파일 미발견 (${DATE}). GDrive list:" >&2
+  rclone lsf "${RCLONE_REMOTE}:61. Atuna/" 2>&1 | grep "${GDRIVE_DATE_STEM}" >&2 || echo "  → 검색 매치 0건" >&2
   exit 2
 fi
 
-echo "📄 file ID: $FILE_ID"
+echo "✓ 발견: $FOUND_PATH"
 
-# Step 2: Drive API export — Google Docs → plain text
-TMP_NEWS=$(mktemp -t atuna_news.XXXX.txt)
-trap 'rm -f "$TMP_NEWS"' EXIT
-
-curl -sS -L "https://www.googleapis.com/drive/v3/files/${FILE_ID}/export?mimeType=text/plain" \
-  -H "Authorization: Bearer $TOKEN" > "$TMP_NEWS"
-
-if [ ! -s "$TMP_NEWS" ]; then
-  echo "❌ Drive export 실패 (빈 파일)" >&2
+if [ ! -s "$TMP_DIR/news.docx" ]; then
+  echo "❌ 다운로드 파일 비어있음 (${GDRIVE_PATH} 존재하지 않을 수 있음)" >&2
   exit 3
 fi
 
-echo "📰 뉴스 fetch 완료 ($(wc -c < "$TMP_NEWS")B)"
+# Step 2: macOS textutil로 docx → txt
+textutil -convert txt "$TMP_DIR/news.docx" -output "$TMP_DIR/news.txt" 2>&1
 
-# Step 3: Gemini Pro로 구조화 추출 (librarian_audit.sh 재사용)
-TMP_AUDIT=$(mktemp -t atuna_audit.XXXX.json)
-LIBRARIAN_PROMPT="$PROMPT_FILE" ./scripts/librarian_audit.sh "$TMP_NEWS" "$TMP_AUDIT" gemini-2.5-pro 2>&1 | tail -1
+if [ ! -s "$TMP_DIR/news.txt" ]; then
+  echo "❌ textutil 변환 실패" >&2
+  exit 4
+fi
+
+SIZE=$(wc -c < "$TMP_DIR/news.txt")
+echo "📰 뉴스 추출: ${SIZE}B"
+
+# Step 3: Gemini 2.5 Pro 구조화 추출 (librarian_audit.sh 재사용)
+LIBRARIAN_PROMPT="$PROMPT_FILE" ./scripts/librarian_audit.sh "$TMP_DIR/news.txt" "$TMP_DIR/audit.json" gemini-2.5-pro 2>&1 | tail -1
 
 # Step 4: violations 필드에서 dict 추출 → public/data로 저장
-python3 - "$TMP_AUDIT" "$OUT_FILE" "$DATE" <<'PYEOF'
+python3 - "$TMP_DIR/audit.json" "$OUT_FILE" "$DATE" <<'PYEOF'
 import json, sys, pathlib
 r = json.load(open(sys.argv[1]))
 if 'error' in r:
-    print(f"❌ Gemini 에러: {r['error']}", file=sys.stderr); sys.exit(4)
+    print(f"❌ Gemini 에러: {r['error']}", file=sys.stderr); sys.exit(5)
 data = r.get('violations', {})
 if not isinstance(data, dict):
-    print(f"❌ 추출 결과가 dict가 아님: {type(data)}", file=sys.stderr); sys.exit(5)
-# date 필드 강제 매칭
+    print(f"❌ 추출 결과가 dict가 아님: {type(data)}", file=sys.stderr); sys.exit(6)
 data['date'] = sys.argv[3]
 out = pathlib.Path(sys.argv[2])
 out.write_text(json.dumps(data, ensure_ascii=False, indent=2))
 print(f"✅ {out} ({out.stat().st_size}B)")
 print(f"   summary: {data.get('summary_kr', '')[:80]}")
+n_sig = len(data.get('market_signals', []))
+print(f"   signals: {n_sig}건")
 PYEOF
 
-rm -f "$TMP_NEWS" "$TMP_AUDIT"
-
-# Step 5: (선택) git auto-commit
+# Step 5: (선택) git auto-commit + push
 if [ "${AUTO_COMMIT:-0}" = "1" ]; then
   git add "$OUT_FILE"
   if git diff --cached --quiet; then
@@ -138,11 +147,11 @@ if [ "${AUTO_COMMIT:-0}" = "1" ]; then
   else
     git commit -m "data(atuna): 일일 시장 인텔리전스 ${DATE} 자동 동기화 [CC-cron]" --no-verify
     if [ "${AUTO_PUSH:-0}" = "1" ]; then
-      TOK=$(security find-generic-password -a "$USER" -s "GH_TOKEN" -w 2>/dev/null) || true
+      TOK=$(security find-generic-password -a "$USER" -s "GH_TOKEN" -w 2>/dev/null || true)
       if [ -n "$TOK" ]; then
         git push "https://${TOK}@github.com/CUTEKOREA/tuna-dashboard.git" main 2>&1 | grep -v ghp_ | tail -3
       else
-        echo "⚠️ GH_TOKEN 없음 — push skip"
+        echo "⚠️ GH_TOKEN 없음 — push skip" >&2
       fi
     fi
   fi
