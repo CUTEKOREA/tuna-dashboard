@@ -1,0 +1,50 @@
+{
+  "complianceItems": [
+    {
+      "regulation": "미국 SIMP (이력추적 의무화)",
+      "country": "🇺🇸 미국",
+      "status": "warning",
+      "detail": "2026.01~ 대서양연어 SIMP 대상 품목 확대. 어획지·양식장·가공이력 전 과정 기록 의무.",
+      "source": "NOAA/SIMP",
+      "researchBasis": "「미국 이력 추적 의무화에 따른 수산물 수출기업 대응실태 분석」(박혜진, 2025)"
+    },
+    {
+      "regulation": "EU 비관세장벽 (SPS/TBT)",
+      "country": "🇪🇺 EU",
+      "status": "monitor",
+      "detail": "EU Regulation 2019/627 기반 수산물 위생검사 강화. 노르웨이 EEA 우대 적용.",
+      "source": "WITS NTM",
+      "researchBasis": "「미 상호주의 대응 수산분야 비관세장벽 영향」(이정미, 2025)"
+    },
+    {
+      "regulation": "한국 MFDS 수입검사",
+      "country": "🇰🇷 한국",
+      "status": "safe",
+      "detail": "연어류 정밀검사율 3.2%. 리스테리아 모노사이토제네스 집중 모니터링 중.",
+      "source": "MFDS",
+      "researchBasis": "「수산물 공급 안정을 위한 수입수산물 전략품목 관리 방안」(박혜진, 2023)"
+    },
+    {
+      "regulation": "러시아산 제재 (OFAC/EU)",
+      "country": "🇷🇺 러시아",
+      "status": "critical",
+      "detail": "러시아산 연어 직접 수입 사실상 차단. 제3국 우회 수출 모니터링 강화.",
+      "source": "OFAC SDN"
+    },
+    {
+      "regulation": "칠레 FTA 관세율",
+      "country": "🇨🇱 칠레",
+      "status": "safe",
+      "detail": "한-칠레 FTA 양허: 냉동연어 기본세율 10% → FTA 0%. 원산지 증명 필수.",
+      "source": "WITS/KCS",
+      "researchBasis": "「동북아 수산물 교역 여건 변화와 구조적 함의」(KMI, 2026)"
+    },
+    {
+      "regulation": "노르웨이 EFTA 관세",
+      "country": "🇳🇴 노르웨이",
+      "status": "safe",
+      "detail": "한-EFTA FTA: 신선연어 기본세율 20% → FTA 0%. 단, C/O 발급 요건 엄격.",
+      "source": "WITS/KCS"
+    }
+  ]
+}

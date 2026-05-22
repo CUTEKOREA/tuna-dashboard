@@ -1,0 +1,9 @@
+[
+  { "year": "2020", "postSmolt": 10, "mortality": 15 },
+  { "year": "2021", "postSmolt": 15, "mortality": 14.2 },
+  { "year": "2022", "postSmolt": 22, "mortality": 13.5 },
+  { "year": "2023", "postSmolt": 30, "mortality": 11.8 },
+  { "year": "2024", "postSmolt": 38, "mortality": 9.5 },
+  { "year": "2025(E)", "postSmolt": 45, "mortality": 7.0 },
+  { "year": "2026(E)", "postSmolt": 50, "mortality": 5.2 }
+]

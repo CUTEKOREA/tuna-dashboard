@@ -1,0 +1,9 @@
+[
+  { "year": "2020", "supplyYoy": 4.5, "basePrice": 5.8 },
+  { "year": "2021", "supplyYoy": 7.2, "basePrice": 5.4 },
+  { "year": "2022", "supplyYoy": -1.5, "basePrice": 7.8 },
+  { "year": "2023", "supplyYoy": -2.0, "basePrice": 8.5 },
+  { "year": "2024", "supplyYoy": 1.8, "basePrice": 8.2 },
+  { "year": "2025(E)", "supplyYoy": 2.5, "basePrice": 8.5 },
+  { "year": "2026(E)", "supplyYoy": 3.2, "basePrice": 8.7 }
+]

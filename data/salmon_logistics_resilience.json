@@ -1,0 +1,18 @@
+{
+  "euImportData": [
+    { "year": "2019", "importVol": 991, "importVal": 6.4, "unitVal": 6.46 },
+    { "year": "2020", "importVol": 980, "importVal": 6.8, "unitVal": 6.94 },
+    { "year": "2021", "importVol": 1010, "importVal": 7.2, "unitVal": 7.13 },
+    { "year": "2022", "importVol": 995, "importVal": 8.0, "unitVal": 8.04 },
+    { "year": "2023", "importVol": 990, "importVal": 8.2, "unitVal": 8.28 },
+    { "year": "2024", "importVol": 1000, "importVal": 8.4, "unitVal": 8.40 }
+  ],
+  "freightData": [
+    { "year": "2019", "bdi": 1353, "ccfi": 818,  "euRouteCost": 0,    "event": "" },
+    { "year": "2020", "bdi": 1066, "ccfi": 981,  "euRouteCost": -5.2,  "event": "COVID-19 초기" },
+    { "year": "2021", "bdi": 2885, "ccfi": 2615, "euRouteCost": 168.0, "event": "COVID 물류 대란" },
+    { "year": "2022", "bdi": 1934, "ccfi": 2286, "euRouteCost": 48.5,  "event": "러-우 전쟁 발발" },
+    { "year": "2023", "bdi": 1378, "ccfi": 960,  "euRouteCost": -35.2, "event": "홍해 분쟁 시작" },
+    { "year": "2024", "bdi": 1820, "ccfi": 1552, "euRouteCost": 218.2, "event": "홍해 위기 심화" }
+  ]
+}
