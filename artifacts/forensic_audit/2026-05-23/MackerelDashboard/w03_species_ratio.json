@@ -1,0 +1,37 @@
+{
+  "widget_id": "w03",
+  "dashboard": "MackerelDashboard",
+  "title": "어종별 어획 비중 구조 분석",
+  "evaluator": "Claude Opus 4.7 (Prototype)",
+  "evaluated_at": "2026-05-23",
+  "axes": {
+    "source_reliability": {
+      "score": 60,
+      "evidence": "Easyfish Atlantic vs Pacific Mackerel Guide 2025 (상업 출판물) + Tridge Market Analysis 2024 (B2B 마켓플레이스 리포트)",
+      "issues": ["1차 자료 미사용 — FAO 분류·NPFC 데이터 등 1차 자료 보완 필요"]
+    },
+    "data_freshness": {
+      "score": 80,
+      "evidence": "2024-2025 (1-2년)",
+      "issues": []
+    },
+    "verifiability": {
+      "score": 55,
+      "evidence": "Easyfish / Tridge는 paid 또는 promo 자료라 외부 cross-check 약함",
+      "issues": ["1차 자료 (FAO Capture 어종별 통계) 보완 시 verifiability 90+"]
+    },
+    "integration_completeness": {
+      "score": 80,
+      "evidence": "SIT 수치 '$4~5/kg', '50~60%' 구체적, '디커플링(Decoupling)' 표기 — 한글+영문 병기 OK",
+      "issues": []
+    }
+  },
+  "score_avg": 69,
+  "grade": "C",
+  "verdict": "conditional",
+  "remediation": [
+    "🚨 1차 자료 보완 필수 — FAO Capture Production Atlantic vs Pacific 분류 데이터 인용",
+    "Easyfish/Tridge는 보조 자료로 강등, 주된 출처를 FAO/NPFC로 교체",
+    "재audit 후 grade B+ 목표"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "widget_id": "w05",
+  "dashboard": "MackerelDashboard",
+  "title": "고등어 양식 전환 가능성 평가",
+  "evaluator": "Claude Opus 4.7 (Prototype)",
+  "evaluated_at": "2026-05-23",
+  "axes": {
+    "source_reliability": {
+      "score": 95,
+      "evidence": "FAO SOFIA 2024 (1차 글로벌 수산 현황) + OECD Review of Fisheries 2025 (1차 OECD 정책)",
+      "issues": []
+    },
+    "data_freshness": {
+      "score": 90,
+      "evidence": "FAO SOFIA 2024 (1년), OECD Review 2025 (1년 이내)",
+      "issues": []
+    },
+    "verifiability": {
+      "score": 90,
+      "evidence": "FAO SOFIA 무료 PDF, OECD Review 공개 — 모두 직접 검증 가능",
+      "issues": ["SOFIA의 어느 chapter·table 인지 명시 권장"]
+    },
+    "integration_completeness": {
+      "score": 85,
+      "evidence": "SIT '0.1% 미만', '10년 내 상용화 불가' 단정 — 정량 + 정성 균형",
+      "issues": ["'Aquaculture' 영문 잔존 — '양식'으로 한글 단독 가능 (L-01 경향)"]
+    }
+  },
+  "score_avg": 90,
+  "grade": "A",
+  "verdict": "approve",
+  "remediation": [
+    "SOFIA 인용에 Chapter·Table 추가 (예: SOFIA 2024, Part 1, Table 5)",
+    "'Aquaculture' → '양식' 단독 표기 검토 (이미 한글이 충분히 보편적)"
+  ]
+}

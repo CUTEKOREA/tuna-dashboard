@@ -1,0 +1,36 @@
+{
+  "widget_id": "w02",
+  "dashboard": "MackerelDashboard",
+  "title": "상위 5개국 어획량 집중도 분석",
+  "evaluator": "Claude Opus 4.7 (Prototype)",
+  "evaluated_at": "2026-05-23",
+  "axes": {
+    "source_reliability": {
+      "score": 95,
+      "evidence": "Four Northeast Atlantic Coastal Parties Agreement 2026 (1차 정부간 협정 문서) + EU Parliament EPRS Brief (1차 EU 의회 자료)",
+      "issues": []
+    },
+    "data_freshness": {
+      "score": 100,
+      "evidence": "2026년 발효 협정 + 동기 EPRS 브리프 — 6개월 이내",
+      "issues": []
+    },
+    "verifiability": {
+      "score": 90,
+      "evidence": "EU Parliament EPRS는 공개 PDF, Coastal Parties Agreement는 가입국 정부 사이트 명시",
+      "issues": ["정확한 EPRS Brief 번호/URL 첨부 권장"]
+    },
+    "integration_completeness": {
+      "score": 90,
+      "evidence": "SIT의 '79.5%' '4국(영국·노르웨이·페로·아이슬란드)' 매우 구체적, 'Oligopoly 영문 잔존' 외 정합성 양호",
+      "issues": ["Oligopoly → 과점 한글 단독 표기 (L-01)"]
+    }
+  },
+  "score_avg": 94,
+  "grade": "A",
+  "verdict": "approve",
+  "remediation": [
+    "EPRS Brief 번호·URL 첨부 (예: PE 766.234)",
+    "Oligopoly → 과점 한글 단독 표기"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "widget_id": "w04",
+  "dashboard": "MackerelDashboard",
+  "title": "한·일 연근해 고등어 어획량 감소 추이",
+  "evaluator": "Claude Opus 4.7 (Prototype)",
+  "evaluated_at": "2026-05-23",
+  "axes": {
+    "source_reliability": {
+      "score": 100,
+      "evidence": "통계청 2024년 어업생산동향조사 (한국 1차 정부 통계) + NPFC Stock Assessment 2026 (RFMO 1차 자원평가) + 국립수산과학원 2024 보고서 (한국 정부 R&D)",
+      "issues": []
+    },
+    "data_freshness": {
+      "score": 95,
+      "evidence": "통계청 2024 (1년), NPFC 2026 (6개월), 국립수산과학원 2024 (1년)",
+      "issues": []
+    },
+    "verifiability": {
+      "score": 95,
+      "evidence": "KOSIS 직접 cross-check 가능, NPFC public report, 국립수산과학원 홈페이지",
+      "issues": ["NPFC Stock Assessment 정확한 species·year 명시 권장"]
+    },
+    "integration_completeness": {
+      "score": 95,
+      "evidence": "SIT 매우 구체적 — '84만 톤 (53년 만에 최저)', '16.6만 톤', 정량·정성 균형",
+      "issues": []
+    }
+  },
+  "score_avg": 96,
+  "grade": "A",
+  "verdict": "approve",
+  "remediation": [
+    "NPFC Stock Assessment 정확한 reference (예: NPFC-2026-SC11-AR07) 첨부 권장 — strictly perfectionist"
+  ],
+  "highlight": "전 위젯 중 최고 점수 모범 사례 — 다른 위젯의 source 보강 시 reference 패턴"
+}
