@@ -107,34 +107,35 @@ export default function PetFoodDashboard() {
           </p>
         </div>
 
-        {/* ═══ 시장 진입 시나리오 예측기 ═══ */}
-        <div className={styles.card} style={{ marginBottom: '3rem', border: '1px solid #334155' }}>
-          <div className={styles.cardHeader} style={{ background: '#1e293b' }}>
-            <h3 className={styles.cardTitle}><Activity size={18} className={styles.cardIcon} color="#f472b6" /> 시장 진입 시나리오 예측기 (Phase 3)</h3>
-            <TermTooltip term="S1~S5" description="5대 진입 시나리오별 예상 자본금, 매출, ROIC 비교" />
-          </div>
-          <div className={styles.cardBody}>
-            <div className={styles.chartContainer}>
-              <SafeResponsiveContainer width="100%" height="100%">
-                <ComposedChart data={d_simulator} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
-                  <XAxis dataKey="name" tick={{fill: '#94a3b8'}}  tickFormatter={xFmt} />
-                  <YAxis yAxisId="left" tickFormatter={(v) => `${v}억`} tick={{fill: '#94a3b8'}} />
-                  <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
-                  <RechartsTooltip content={<CustomTooltip />} />
-                  <Legend />
-                  <Bar yAxisId="left" dataKey="capital" name="투입 자본 (억 원)" fill="#64748b" radius={[4, 4, 0, 0]} />
-                  <Bar yAxisId="left" dataKey="revenue" name="예상 매출 (억 원)" fill="#f472b6" radius={[4, 4, 0, 0]} />
-                  <Line yAxisId="right" type="monotone" dataKey="roic" name="예상 ROIC (%)" stroke="var(--color-success)" strokeWidth={3} />
-                </ComposedChart>
-              </SafeResponsiveContainer>
-            </div>
-            <TakeawayBox
-              source="PHASE 3 진입 전략 보고서"
-              situation="자체 생산기반 없는 유통사 관점에서 5가지 시나리오를 시뮬레이션한 결과, 초기 투입 자본 대비 수익성(ROIC)이 가장 우수한 모델은 S2(D2C OEM, 32%)이며, 브랜드 장악력 확보 후 S5(처방식 JV, 20%)로 확장하는 단계적 접근이 요구됩니다."
-              actionPlan="과도한 CapEx가 요구되는 S3(M&A) 및 S4(자체 공장 수출)는 보류하고, 즉각적인 현금 창출이 가능한 S2 모델 승인 및 파트너(태국 I-Tail 등) 탐색에 전사적 자원을 집중할 것을 권고합니다."
-            />
-          </div>
+        {/* ═══ 시장 진입 시나리오 예측기 (WidgetCard 마이그레이션) ═══ */}
+        <div style={{ marginBottom: '3rem' }}>
+          <WidgetCard
+            title="시장 진입 시나리오 예측기 (Phase 3)"
+            icon={Activity}
+            iconColor="#f472b6"
+            pillar="S4"
+            cardDesc="5대 진입 시나리오별 예상 자본금·매출·ROIC 비교 — PHASE 3 진입 전략 보고서"
+            telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
+            chartHeight={400}
+            chart={
+              <ComposedChart data={d_simulator} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
+                <XAxis dataKey="name" tick={{ fill: '#94a3b8' }} tickFormatter={xFmt} />
+                <YAxis yAxisId="left" tickFormatter={(v) => `${v}억`} tick={{ fill: '#94a3b8' }} />
+                <YAxis yAxisId="right" orientation="right" unit="%" tick={{ fill: '#94a3b8' }} />
+                <RechartsTooltip content={<CustomTooltip />} />
+                <Legend />
+                <Bar yAxisId="left" dataKey="capital" name="투입 자본 (억 원)" fill="#64748b" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="revenue" name="예상 매출 (억 원)" fill="#f472b6" radius={[4, 4, 0, 0]} />
+                <Line yAxisId="right" type="monotone" dataKey="roic" name="예상 ROIC (%)" stroke="var(--color-success)" strokeWidth={3} />
+              </ComposedChart>
+            }
+            takeaway={{
+              situation: '자체 생산기반 없는 유통사 관점에서 5가지 시나리오를 시뮬레이션한 결과, 초기 투입 자본 대비 수익성(ROIC)이 가장 우수한 모델은 S2(D2C OEM, 32%)이며, 브랜드 장악력 확보 후 S5(처방식 JV, 20%)로 확장하는 단계적 접근이 요구됩니다.',
+              actionPlan: '과도한 CapEx가 요구되는 S3(M&A) 및 S4(자체 공장 수출)는 보류하고, 즉각적인 현금 창출이 가능한 S2 모델 승인 및 파트너(태국 I-Tail 등) 탐색에 전사적 자원을 집중할 것을 권고합니다.',
+              source: 'PHASE 3 진입 전략 보고서',
+            }}
+          />
         </div>
 
 

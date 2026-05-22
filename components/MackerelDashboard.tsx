@@ -17,6 +17,7 @@ import {
 
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
+import WidgetCard from './WidgetCard';
 
 /* ─── Custom Tooltip ─── */
 // 시뮬레이션(추정) 위젯 ID 목록
@@ -704,7 +705,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S1'))}
           </div>
         </section>
 
@@ -716,7 +717,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>가공 허브 패권, 부가가치 분석, HMR 전환, 기술 혁신 및 부산물 활용</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S2'))}
           </div>
         </section>
 
@@ -728,7 +729,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>수출입 통관, 관세·FTA 분석, 착지원가, 차익거래, 해상운임 및 콜드체인</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
           </div>
         </section>
 
@@ -740,7 +741,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>소비 트렌드, 유통 마진, 가격 분해, D2C·HMR 시장, 스태그플레이션 대응</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S4'))}
           </div>
         </section>
 
@@ -752,7 +753,7 @@ export default function MackerelDashboard() {
           </div>
           <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>제재·컴플라이언스, MSC 인증, 탄소 발자국, 선원 인권, IUU 감시 및 정책 대응</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
+            {widgets?.filter((w: any) => ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
           </div>
         </section>
 
@@ -761,108 +762,49 @@ export default function MackerelDashboard() {
     </div>
   );
 
-  function renderWidgetCard(w: any) {
+  function renderWidgetCard(w: any, pillar: 'S1' | 'S2' | 'S3' | 'S4' | 'S5' = 'S1') {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
-    const accentColor = 'var(--color-success)';
-    
-    // Fallback fields for various JSON keys
-    const methodologyText = w.logic || w.methodology || '';
-    let situation = w.sit || w.situation || w.desc || '';
-    let takeaway = w.strat || w.tak || w.takeaway || '';
-    
+    const situation = w.sit || w.situation || w.desc || '';
+    const takeaway = w.strat || w.tak || w.takeaway || '';
+    const isLive = (w.badges && w.badges.includes('Live API')) || w.apiSource || w.id === 'w_arbitrage_live';
+    const isEstimate = (w.reliability && w.reliability <= 70) || (w.badges && w.badges.includes('Estimate'));
+    const isForecast = w.badges && w.badges.includes('Forecast');
+    const isSimulation = SIMULATION_WIDGET_IDS.includes(w.id);
+
+    // badges → cardDesc 한글 chip suffix (정보 보존)
+    const badgeSuffix = [
+      isLive ? '🟢 LIVE API' : '',
+      isEstimate ? '📐 추정치' : '',
+      isForecast ? '🔮 예측' : '',
+      w.badges && w.badges.includes('Verified') ? '✅ 검증완료' : '',
+    ].filter(Boolean).join(' · ');
+
+    const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
+    const cardDesc = cardDescParts.join(' — ') || '고등어 인텔리전스 위젯';
+
+    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = isLive ? 'LIVE' : (isSimulation || isEstimate ? 'STATIC' : 'SYNCED');
+    const syncDate = isLive ? new Date().toISOString().split('T')[0] : (w.syncDate || '2026-05');
+
+    const source = w.apiSource
+      ? w.apiSource
+      : (isSimulation
+          ? '* 📡 [추정 모델 연동: NotebookLM] 산업 시뮬레이션 기반 추정치'
+          : (w.source || 'FAO FishStatJ + data/고등어/ CSV 원본 교차 검증 완료'));
+
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
-        background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none',
-        padding: '1.5rem'}}>
-        
-        {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-            <IconComp size={20} color={accentColor} />
-            {w.title}
-            
-            {/* Badges */}
-            {((w.reliability && w.reliability <= 70) || (w.badges && w.badges.includes('Estimate'))) && (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>
-                ESTIMATE
-              </span>
-            )}
-            {w.badges && w.badges.includes('Forecast') && (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', background:'var(--surface-2)', color:'#c084fc', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>
-                FORECAST
-              </span>
-            )}
-            {w.badges && w.badges.includes('Verified') && (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'4px', background:'var(--surface-2)', color:'#4ade80', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>
-                VERIFIED
-              </span>
-            )}
-            {((w.badges && w.badges.includes('Live API')) || w.apiSource || w.id === 'w_arbitrage_live') && (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>
-                LIVE API
-              </span>
-            )}
-            
-            <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
-            </div>
-          </h3>
-          {(w.subtitle) && (
-            <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {w.subtitle}
-            </p>
-          )}
-        </div>
-
-        {/* Chart Area */}
-        <div style={{ height: '325px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            {renderChart(w)}
-          </SafeResponsiveContainer>
-        </div>
-
-        {/* Takeaway Box */}
-        {(situation || takeaway) && (
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ 
-              background: 'var(--surface-2)', 
-              borderRadius: '6px', padding: '16px' 
-            }}>
-              {situation && (
-                <div style={{ paddingBottom: takeaway ? '12px' : '0', marginBottom: takeaway ? '12px' : '0' }}>
-                  <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{situation}</p>
-                  
-                  {w.apiSource ? (
-                    <p style={{ color: '#7c7c7c', fontSize: '0.75rem', fontStyle: 'italic', margin: '8px 0 0 0' }}>{w.apiSource}</p>
-                  ) : (SIMULATION_WIDGET_IDS.includes(w.id) ? (
-                    <p style={{ color: '#7c7c7c', fontSize: '0.75rem', fontStyle: 'italic', margin: '8px 0 0 0' }}>* 📡 [추정 모델 연동: NotebookLM] 산업 시뮬레이션 기반 추정치</p>
-                  ) : null)}
-                </div>
-              )}
-              {takeaway && (
-                <div>
-                  <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>{takeaway}</p>
-                </div>
-              )}
-              {(w.source || (!w.apiSource && !SIMULATION_WIDGET_IDS.includes(w.id))) && (
-                <div style={{ paddingTop: '12px', marginTop: '12px', borderTop: '1px solid #272727' }}>
-                  <span style={{ fontSize: '0.75rem', color: '#7c7c7c', display: 'inline-flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                    🔗 출처: {w.source || 'FAO FishStatJ + data/고등어/ CSV 원본 교차 검증 완료'}
-                    {((w.badges && w.badges.includes('Live API')) || w.apiSource || w.id === 'w_arbitrage_live') && (
-                      <>
-                        {` · 갱신: ${new Date().toISOString().split('T')[0]} `}
-                        <span style={{ color: '#4ade80', marginLeft: '4px' }}>[🟢 LIVE]</span>
-                      </>
-                    )}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+      <WidgetCard
+        key={w.id}
+        title={w.title}
+        icon={IconComp}
+        iconColor="var(--color-success)"
+        pillar={pillar}
+        cardDesc={cardDesc}
+        unit={w.unit}
+        telemetry={{ status: telemetryStatus, syncDate }}
+        chartHeight={325}
+        chart={renderChart(w)}
+        takeaway={{ situation, actionPlan: takeaway, source }}
+      />
     );
   }
 }

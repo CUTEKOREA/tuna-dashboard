@@ -15,6 +15,7 @@ import {
   Database, Ship, Zap, BookOpen, ChevronUp, ChevronDown
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+import WidgetCard from './WidgetCard';
 import SalmonInsightSmolt from './SalmonInsightSmolt';
 import SalmonInsightFeed from './SalmonInsightFeed';
 import SalmonInsightProcessing from './SalmonInsightProcessing';
@@ -464,7 +465,10 @@ export default function SalmonDashboard() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {customInsights}
-                {sectionWidgets.map((w: any) => renderWidgetCard(w))}
+                {sectionWidgets.map((w: any) => {
+                  const pillarMap: Record<string, 'S1' | 'S2' | 'S3' | 'S4' | 'S5'> = { raw: 'S1', proc: 'S2', logis: 'S3', sales: 'S4', esg: 'S5' };
+                  return renderWidgetCard(w, pillarMap[pillarKey] || 'S1');
+                })}
               </div>
             </div>
           );
@@ -538,63 +542,42 @@ export default function SalmonDashboard() {
     </div>
   );
 
-  function renderWidgetCard(w: any) {
+  function renderWidgetCard(w: any, pillar: 'S1' | 'S2' | 'S3' | 'S4' | 'S5' = 'S1') {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
-    const accentColor = SALMON_THEME.primary;
-    
-    // Get methodology text (supports both old "methodology" and new "logic" field)
-    const methodologyText = w.logic || w.methodology || '';
-    // Get situation and takeaway (supports both old and new field names)
     const situation = w.sit || w.situation || w.desc || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    
+    const isLive = w.isLiveApi;
+    const isEstimate = w.reliability && w.reliability < 70;
+
+    const badgeSuffix = [
+      isLive ? '🟢 LIVE API' : '',
+      isEstimate ? '📐 추정' : '',
+    ].filter(Boolean).join(' · ');
+
+    const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
+    const cardDesc = cardDescParts.join(' — ') || '연어 인텔리전스 위젯';
+
+    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' =
+      isLive ? 'LIVE'
+      : (w.telemetry && String(w.telemetry).toLowerCase() === 'static') ? 'STATIC'
+      : isEstimate ? 'STATIC'
+      : 'SYNCED';
+    const syncDate = w.syncDate || (isLive ? new Date().toISOString().split('T')[0] : '2026-05');
+
     return (
-      <div key={w.id} className="ds-card" style={{display: 'flex', flexDirection: 'column', minHeight: '480px',
-        background: 'rgba(24,24,24,0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-        borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: '1px solid rgba(255,255,255,0.06)',
-        padding: '1.5rem'}}>
-        
-        {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-            <IconComp size={20} color={accentColor} />
-            {w.title}
-            {w.telemetry && <TelemetryBadge status={w.telemetry as any} syncDate={w.syncDate} />}
-            {w.isLiveApi ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(236,72,153,0.1)', border:'1px solid #ec4899', color: SALMON_THEME.primary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API</span>
-            ) : w.reliability && w.reliability < 70 ? (
-              <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'rgba(253,164,175,0.1)', border:'1px solid #fda4af', color: SALMON_THEME.quaternary, fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>추정</span>
-            ) : null}
-            
-            <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
-            </div>
-          </h3>
-          {(w.subtitle) && (
-            <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-              {w.subtitle}
-            </p>
-          )}
-        </div>
-
-        {/* Chart Area */}
-        <div style={{ height: '250px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            {renderChart(w)}
-          </SafeResponsiveContainer>
-        </div>
-
-        {/* Takeaway Box */}
-        {(situation || takeaway) && (
-          <div style={{ marginTop: 'auto' }}>
-            <TakeawayBox
-              situation={situation}
-              actionPlan={takeaway}
-              source={w.source}
-            />
-          </div>
-        )}
-      </div>
+      <WidgetCard
+        key={w.id}
+        title={w.title}
+        icon={IconComp}
+        iconColor={SALMON_THEME.primary}
+        pillar={pillar}
+        cardDesc={cardDesc}
+        unit={w.unit}
+        telemetry={{ status: telemetryStatus, syncDate }}
+        chartHeight={250}
+        chart={renderChart(w)}
+        takeaway={{ situation, actionPlan: takeaway, source: w.source || 'FAO FishStatJ · NASF · KMI 연어 시장 보고서' }}
+      />
     );
   }
 }
