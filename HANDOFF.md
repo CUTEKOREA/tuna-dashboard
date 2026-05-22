@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🆕 **2026-05-22 cont. — 그룹 A 마이그레이션 완료**:
+> - **PorkWidgets 11 위젯** (S1/S2/S3/S4/S5 pillar 매핑) `ec89689`
+> - **CashewStrategy 전체** (4 hardcoded section S1/S2/S3/S5 + dynamic widgets.slice loop, renderCashewWidget 헬퍼 추출) `b97c64e`
+> - **ADR 0008 신설**: FleetStrategyMatrix·SEAsiaOEM·RetailPOS·StrategyIntel은 dashboard-level pattern으로 ADR-0005 제외 결정. 별도 트랙으로 분리.
+> - build pass ✓, ds-card 잔존 0 (마이그레이션 대상 한정)
+> - 잔여 즉시 가능 작업: **CashewStrategy L-01 영문 잔존 동반 수정**(Exposure·Margin Spread·Drawdown·Forward·FX Rate·Tail Risk·Value-up 등), Tuna closure 13개(~2026-06-04 중단), 4 dashboard-level (ADR 0008 트랙)
+
+
 > 💰 **AI 자원 분배 토폴로지** ([ADR 0006](docs/adr/0006-omo-stage0-trial.md) + [ADR 0007](docs/adr/0007-librarian-role.md)):
 > - **Claude Max20** ($200/월) → Claude Code 매뉴얼 (사람 1:1, `[CC]`)
 > - **Google AI Ultra**:
