@@ -82,7 +82,6 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 
 export default function ColdStorageDashboard() {
   const [data, setData] = useState<any>(null);
-  const [isEduOpen, setIsEduOpen] = useState(false);
 
   useEffect(() => {
     const mockData = {
@@ -554,86 +553,6 @@ export default function ColdStorageDashboard() {
           </div>
         </div>
       </header>
-
-      {/* Educational Guide */}
-      <div style={{ marginBottom: '2rem', background: '#181818', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
-        <div 
-          onClick={() => setIsEduOpen(!isEduOpen)}
-          style={{ padding: '1.2rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', background: isEduOpen ? 'rgba(56, 189, 248, 0.05)' : 'transparent', transition: 'all 0.2s ease' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ 
-              background: 'rgba(56, 189, 248, 0.2)', padding: '0.5rem', borderRadius: '8px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center'
-            }}>
-              <BookOpen size={20} color="#38bdf8" />
-            </div>
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
-                신입사원 가이드 및 AI 전략 어시스턴트
-              </h2>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', marginTop: '2px' }}>
-                냉동창고 글로벌 인프라 진입 전략 및 핵심 역학 가이드
-              </p>
-            </div>
-          </div>
-          <div>
-            {isEduOpen ? <ChevronUp size={24} color="#94a3b8" /> : <ChevronDown size={24} color="#94a3b8" />}
-          </div>
-        </div>
-
-        {isEduOpen && (
-          <div style={{ padding: '0 1.5rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
-              
-              <div style={{ background: 'var(--surface-3)', borderRadius: '10px', padding: '1.2rem' }}>
-                <h3 style={{ fontSize: '0.9rem', color: '#e2e8f0', fontWeight: 700, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Snowflake size={16} color="#38bdf8" /> 냉동창고 시장 핵심 역학
-                </h3>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem', lineHeight: 1.8 }}>
-                  <li><strong>신흥국 인프라 확충:</strong> 베트남(12.4% 성장) 및 태국(BOI 8년 면세) 중심의 콜드체인 수요 폭증.</li>
-                  <li><strong>에너지 최적화:</strong> 심야(Off-peak) 전력 사용 시 태국 기준 최대 40% 비용 절감 (TOU Rate).</li>
-                  <li><strong>초저온 고수익성:</strong> 상온 보관 대비 초저온(-25°C) 존의 수익성이 2~3배 높음.</li>
-                  <li><strong>규제 준수 리스크:</strong> FDA 승인, Ror.Ngor.4 면허, 암모니아 예지 보전 등 고강도 규제 선결 필요.</li>
-                </ul>
-              </div>
-
-              <div style={{ background: 'var(--surface-3)', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ width: '50px', height: '50px', background: 'var(--bg-color)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                  <MessageSquare size={24} color="#38bdf8" />
-                </div>
-                <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
-                  냉동창고 전략 어시스턴트
-                </h3>
-                <a 
-                  href="https://notebooklm.google.com/notebook/bf3298f5-ce9c-4975-ab79-c58ca10ad84a"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: 'var(--bg-color)',
-                    color: '#e2e8f0',
-                    padding: '0.6rem 1.5rem',
-                    borderRadius: '8px',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    transition: 'all 0.2s ease',
-                    border: '1px solid #334155'
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = '#38bdf8'; e.currentTarget.style.color = 'var(--bg-color)'; e.currentTarget.style.borderColor = '#38bdf8'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--bg-color)'; e.currentTarget.style.color = '#e2e8f0'; e.currentTarget.style.borderColor = '#334155'; }}
-                >
-                  <MessageSquare size={16} />
-                  NotebookLM AI 챗봇 열기
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
 
       {/* 6 KPIs */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>

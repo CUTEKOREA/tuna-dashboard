@@ -133,7 +133,6 @@ const SECTIONS = [
 
 export default function CashewStrategy() {
   const [data, setData] = useState<any>(null);
-  const [showEdu, setShowEdu] = useState(true);
 
   useEffect(() => {
     fetch('/api/cashew')
@@ -382,68 +381,6 @@ export default function CashewStrategy() {
             </div>
           );
         })}
-      </div>
-
-      {/* ═══ Education Toggle ═══ */}
-      <div style={{ marginBottom:'2rem' }}>
-        <button onClick={() => setShowEdu(!showEdu)} style={{
-          width:'100%', background:'rgba(16,185,129,0.1)', border: 'none',
-          borderRadius:'10px', padding:'1.2rem 1.5rem', display:'flex', alignItems:'center',
-          justifyContent:'space-between', cursor:'pointer', transition:'all 0.2s', marginBottom: showEdu?'1rem':'0'
-        }}>
-          <div style={{ display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <BookOpen size={20} color="var(--color-success)" />
-            <div style={{ textAlign:'left' }}>
-              <div style={{ fontSize:'1.05rem', fontWeight:700, color:'#f8fafc', marginBottom:'4px' }}>신입직원 교육 가이드</div>
-              <div style={{ fontSize:'0.8rem', color:'#94a3b8' }}>FAOSTAT 실제 데이터 기반 — 생산·무역·가격·수급 구조의 핵심 맹점</div>
-            </div>
-          </div>
-          <div style={{ transform: showEdu?'rotate(180deg)':'rotate(0deg)', transition:'transform 0.3s' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </button>
-        {showEdu && (
-          <div style={{ background: '#181818', borderRadius:'10px', border: 'none', padding:'1.5rem', animation:'fadeIn 0.3s' }}>
-            <div style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'1.5rem' }}>
-              <div style={{ background:'rgba(0,0,0,0.3)', padding:'1.2rem', borderRadius:'10px', border: 'none' }}>
-                <h3 style={{ color:'var(--color-success)', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
-                  <Globe size={16}/> 핵심 구조: 생산-가공 분리의 비효율
-                </h3>
-                <div style={{ fontSize:'0.82rem', color:'#cbd5e1', lineHeight:1.65 }}>
-                  <strong style={{color:'var(--text-primary)'}}>생산:</strong> 아프리카 7개국이 글로벌 생산의 70%를 차지하나, 대부분 원물(RCN) 그대로 수출합니다.<br/>
-                  <strong style={{color:'var(--text-primary)'}}>가공:</strong> 베트남·인도가 아프리카 원물의 80%를 수입해 가공. 그러나 원물의 75%는 폐껍질이므로 쓸모없는 무게를 대륙 간 운송하는 구조적 비효율이 존재합니다.<br/>
-                  <strong style={{color:'var(--text-primary)'}}>가격 스프레드:</strong> 코트디부아르 산지 가격 $454/t vs 베트남 $1,960/t — <strong style={{color:'var(--color-success)'}}>4.3배</strong>의 기회 스프레드.
-                </div>
-              </div>
-              <div style={{ background:'rgba(0,0,0,0.3)', padding:'1.2rem', borderRadius:'10px', border: 'none' }}>
-                <h3 style={{ color:'var(--color-warning)', margin:'0 0 0.8rem', display:'flex', alignItems:'center', gap:'0.5rem', fontSize:'1rem' }}>
-                  <Workflow size={16}/> 구조적 전환기: 아프리카의 정책 개입
-                </h3>
-                <ul style={{ margin:0, paddingLeft:'1.2rem', fontSize:'0.82rem', color:'#cbd5e1', lineHeight:1.65 }}>
-                  <li><strong style={{color:'var(--text-primary)'}}>수출 통제:</strong> 베냉은 RCN 수출 전면 금지, 코트디부아르는 징벌적 수출세 부과</li>
-                  <li><strong style={{color:'var(--text-primary)'}}>가공 인센티브:</strong> 코트디부아르 kg당 400 CFA 직접 보조금, 가나 1D1F 10년 법인세 면제</li>
-                  <li><strong style={{color:'var(--text-primary)'}}>손실 구조:</strong> 연간 18.5만 톤(~$2억)이 건조/저장 인프라 부족으로 소실 — 인프라 투자 기회</li>
-                </ul>
-              </div>
-            </div>
-            <div style={{
-              background: '#181818',
-              padding:'1.2rem 1.5rem', borderRadius:'10px', border: 'none',
-              display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem'
-            }}>
-              <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-                <div style={{ background:'rgba(16,185,129,0.2)', padding:'0.8rem', borderRadius:'50%' }}><Database size={20} color="var(--color-success)" /></div>
-                <div>
-                  <h3 style={{ color:'var(--color-success)', margin:'0 0 0.3rem', fontSize:'1rem', fontWeight:700 }}><Zap size={16} /> NotebookLM 캐슈넛 AI 챗봇</h3>
-                </div>
-              </div>
-              <a href="https://notebooklm.google.com/notebook/898be2d6-0180-497a-ac2b-89ca39bb8fec" target="_blank" rel="noreferrer"
-                style={{ background:'var(--color-success)', color:'#0f172a', padding:'0.7rem 1.3rem', borderRadius:'8px', fontSize:'0.9rem', fontWeight:700, textDecoration:'none', display:'flex', alignItems:'center', gap:'6px', whiteSpace:'nowrap' }}>
-                <Activity size={16} /> 챗봇 시작
-              </a>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* ═══ Sections: 5 Stages of Value Chain ═══ */}

@@ -146,7 +146,6 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 export default function SalmonDashboard() {
   const [data, setData] = useState<any>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [showEdu, setShowEdu] = useState(true);
   const [simulationFactors, setSimulationFactors] = useState({ nok: 0, eur: 0, mgo: 0 });
   const modalRef = useRef<HTMLDivElement>(null);
   const [apiData, setApiData] = useState<any>({});
@@ -440,112 +439,6 @@ export default function SalmonDashboard() {
 
       {/* ═══ Macro Simulator ═══ */}
       <ExchangeSimulator onSimulationChange={setSimulationFactors} />
-
-      {/* ═══ Education Module ═══ */}
-      <div className="ds-card" style={{marginBottom: '2.5rem', background: '#181818', border: 'none', borderRadius: '8px', overflow: 'hidden', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-        <button onClick={() => setShowEdu(!showEdu)} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem 1.5rem', background: '#181818', border: 'none', borderBottom: 'none', color: '#f8fafc', cursor: 'pointer', textAlign: 'left', transition: 'background 0.2s' }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'linear-gradient(90deg, rgba(236, 72, 153, 0.25), rgba(244, 63, 94, 0.1))'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'linear-gradient(90deg, rgba(236, 72, 153, 0.15), rgba(244, 63, 94, 0.05))'; }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <BookOpen size={22} color="#ec4899" />
-            <div>
-              <span style={{ fontSize: '1.1rem', fontWeight: 700, display: 'block' }}>신입직원 교육 가이드</span>
-              <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 400 }}>NotebookLM 분석 기반: 연어 산업 밸류체인 및 글로벌 시장 리스크 점검</span>
-            </div>
-          </div>
-          {showEdu ? <ChevronUp size={20} color="#94a3b8" /> : <ChevronDown size={20} color="#94a3b8" />}
-        </button>
-        
-        {showEdu && (
-          <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              {/* Module 1 */}
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
-                <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <Fish size={16}/> 패러다임 전환 (원물)
-                </h3>
-                <div style={{ padding: '1rem', background: '#181818', borderLeft: `3px solid ${SALMON_THEME.primary}`, borderRadius: '4px' }}>
-                  <h4 style={{ color: '#f8fafc', fontSize: '0.9rem', margin: '0 0 0.5rem 0' }}>자연산 어획 종식 및 양식 주도</h4>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.8rem', lineHeight: 1.6, margin: 0 }}>
-                    상업용 연어 어획은 0.06%에 불과하며, 양식이 비중(99.94%)을 차지합니다. 특히 노르웨이와 칠레의 양강 복점(Duopoly) 체제가 생산을 장악하고 있으며, 제한된 노르웨이 양식 면허는 가치가 급등하는 핵심 자산입니다.
-                  </p>
-                </div>
-              </div>
-
-              {/* Module 2 */}
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
-                <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <Factory size={16}/> 가공 및 부가가치 창출
-                </h3>
-                <div style={{ padding: '1rem', background: '#181818', borderLeft: `3px solid ${SALMON_THEME.primary}`, borderRadius: '4px' }}>
-                  <h4 style={{ color: '#f8fafc', fontSize: '0.9rem', margin: '0 0 0.5rem 0' }}>폴란드의 재수출 허브 모델</h4>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.8rem', lineHeight: 1.6, margin: 0 }}>
-                    연어 양식장이 전혀 없는 폴란드가 유럽 최대 연어 가공국으로 부상했습니다. 노르웨이산 원물을 수입하여 훈제 등 2차 가공 후 재수출함으로써 안정적이고 거대한 순이익을 창출하는 구조입니다.
-                  </p>
-                </div>
-              </div>
-              
-              {/* Module 3 */}
-              <div style={{ background: 'var(--surface-3)', padding: '1.2rem', borderRadius: '10px', border: 'none' }}>
-                <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
-                  <AlertTriangle size={16}/> 한국 시장의 한계 (물류/판매)
-                </h3>
-                <div style={{ padding: '1rem', background: 'rgba(239, 68, 68, 0.05)', borderLeft: '3px solid #ef4444', borderRadius: '4px' }}>
-                  <h4 style={{ color: '#f8fafc', fontSize: '0.9rem', margin: '0 0 0.5rem 0' }}>높은 의존도 및 무역 적자 누적</h4>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.8rem', lineHeight: 1.6, margin: 0 }}>
-                    신선 연어 소비가 늘고 있음에도, 여전히 냉동 원물 비중이 큽니다. 특히 단일국가(칠레) 편중이 심각해 가격 변동 리스크에 직접 노출되어 있습니다. 수입 다변화와 자체 가공 인프라 확보가 시급합니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Chatbot Action Banner */}
-            <div style={{ 
-              marginTop: '1rem',
-              background: 'linear-gradient(90deg, rgba(236, 72, 153, 0.1), rgba(244, 63, 94, 0.05))',
-              border: '1px solid rgba(236, 72, 153, 0.2)',
-              borderRadius: '10px',
-              padding: '1.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '1rem'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ background: 'rgba(236, 72, 153, 0.2)', padding: '1rem', borderRadius: '50%', flexShrink: 0 }}>
-                  <Database size={24} color="#ec4899" />
-                </div>
-                <div>
-                  <h3 style={{ color: SALMON_THEME.primary, margin: '0 0 0.4rem 0', fontSize: '1.1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Zap size={18} /> 연어 지식 AI 챗봇 (NotebookLM)
-                  </h3>
-                </div>
-              </div>
-              <a href="https://notebooklm.google.com/notebook/daced2ab-bb2a-4626-8211-5d102c11ce07" target="_blank" rel="noreferrer" style={{ 
-                background: SALMON_THEME.gradient, 
-                color: 'var(--text-primary)', 
-                padding: '0.8rem 1.5rem', 
-                borderRadius: '8px', 
-                fontSize: '0.95rem', 
-                fontWeight: 700, 
-                textDecoration: 'none', 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                transition: 'all 0.2s',
-                whiteSpace: 'nowrap'
-              }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.03)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(236, 72, 153, 0.5)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = 'none'; }}
-              >
-                <Activity size={18} /> 챗봇 시작하기
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
 
       {/* ═══ Dashboard Sections ═══ */}
       {(() => {

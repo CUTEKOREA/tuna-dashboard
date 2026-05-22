@@ -144,7 +144,6 @@ export default function SquidDashboard() {
   const [apiWidgets, setApiWidgets] = useState<any[]>([]);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
-  const [showEdu, setShowEdu] = useState(true);
   const [mgoPrice, setMgoPrice] = useState(107);
   const [fxRate, setFxRate] = useState(1350);
   const [apiStatus, setApiStatus] = useState("연결됨");
@@ -563,124 +562,6 @@ export default function SquidDashboard() {
           );
         })}
       </div>
-
-      {/* ═══ Education Module ═══ */}
-      <div style={{ marginBottom: '2rem', background: '#181818', border: 'none', borderRadius: '8px', overflow: 'hidden', boxShadow: 'rgba(0,0,0,0.5) 0px 8px 24px' }}>
-        <button onClick={() => setShowEdu(!showEdu)} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.2rem 1.5rem', background: '#181818', border: 'none', borderBottom: showEdu ? '1px solid #272727' : 'none', color: 'var(--text-primary)', cursor: 'pointer', textAlign: 'left', transition: 'background 0.2s' }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <BookOpen size={24} color="#ec4899" />
-            <div>
-              <span style={{ fontSize: '1.13rem', fontWeight: 700, display: 'block', color: 'var(--text-primary)' }}>신입직원 교육 가이드</span>
-              <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 400 }}>NotebookLM 분석 기반: 조업 방식 비교 및 포클랜드 시장 리스크 점검</span>
-            </div>
-          </div>
-          {showEdu ? <ChevronUp size={24} color="var(--text-secondary)" /> : <ChevronDown size={24} color="var(--text-secondary)" />}
-        </button>
-        
-        {showEdu && (
-          <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'var(--bg-color)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              
-              {/* Module 1 */}
-              <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-                <h3 style={{ color: 'var(--text-primary)', margin: '0 0 1rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                  <Anchor size={20} color="#ec4899"/> 조업 방식 비교: 채낚기 vs 트롤
-                </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div style={{ padding: '1rem', background: 'var(--surface-2)', borderRadius: '6px' }}>
-                    <h4 style={{ color: 'var(--text-primary)', margin: '0 0 0.5rem 0', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>🎣 채낚기</h4>
-                    <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                      <strong style={{color:'var(--text-primary)'}}>원리:</strong> 야간 집어등으로 수면 유인 후 자동 조획기로 낚획<br/>
-                      <strong style={{color:'var(--text-primary)'}}>장점:</strong> 극강의 선도, 외관 깨끗 (프리미엄 판매용), 혼획 거의 없음 (친환경)<br/>
-                      <strong style={{color:'var(--text-primary)'}}>단점:</strong> 막대한 유류비 (전체 비용의 60~70%), 국제 유가 변동 리스크에 취약
-                    </p>
-                  </div>
-                  <div style={{ padding: '1rem', background: 'var(--surface-2)', borderRadius: '6px' }}>
-                    <h4 style={{ color: 'var(--text-primary)', margin: '0 0 0.5rem 0', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>🕸️ 트롤</h4>
-                    <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                      <strong style={{color:'var(--text-primary)'}}>원리:</strong> 소나 탐지 후 거대한 그물을 끌며 대량 포획<br/>
-                      <strong style={{color:'var(--text-primary)'}}>장점:</strong> 1회 양망 시 대량 어획, 주간/악천후 조업 가능 (조업 일수 확보 유리)<br/>
-                      <strong style={{color:'var(--text-primary)'}}>단점:</strong> 그물 압착으로 선도 저하 (가공 원료용), 높은 혼획률, 해저 생태계 훼손 리스크
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Module 2 & 3 */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-                  <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                    <Globe size={20} color="#ec4899"/> 포클랜드 어장 핵심 요약
-                  </h3>
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                    <li><strong style={{color:'var(--text-primary)'}}>타겟 어종:</strong> 일렉스 오징어 (Illex argentinus). 국내 살오징어 어획량 급감으로 대체재 가치 폭등 중.</li>
-                    <li><strong style={{color:'var(--text-primary)'}}>경쟁 환경:</strong> 한국은 연평균 약 30척 입어 (4위). 대만(71척)과 스페인이 핵심 경쟁국이며 공해상은 중국 선단 주도.</li>
-                    <li><strong style={{color:'var(--text-primary)'}}>비즈니스 방향:</strong> 단순 조업을 넘어 진미채, 냉동 튜브 등 다운스트림 유통망 수직 계열화를 통한 수익성 방어 필수.</li>
-                  </ul>
-                </div>
-                <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flex: 1}}>
-                  <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.13rem', fontWeight: 700 }}>
-                    <ShieldCheck size={20} color="#8b5cf6"/> 육상부서 필수 체크: 진입 리스크
-                  </h3>
-                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                    <li><strong style={{color:'var(--text-primary)'}}>쿼터(ITQ B) 장벽:</strong> 25년 장기 어업권 제도로 독자 신규 진입 극히 어려움. 기존 선사와의 JV(합작) 또는 M&A 우회 타진 필요.</li>
-                    <li><strong style={{color:'var(--text-primary)'}}>선박 안전 규제:</strong> 영국 MSN 1873 규정 준용. 기존 30년 이상 노후 어선 투입 불가, 고효율 LED 집어등을 갖춘 신조 투자가 장기적 대안.</li>
-                    <li><strong style={{color:'var(--text-primary)'}}>IUU (불법어업) 통관:</strong> 수입 통관 시 '어획증명서(Catch Certificate)' 제출 의무. 무결점 원산지 증명 체계 구축 필요.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Module 4: AI Chatbot (NotebookLM Link) */}
-            <div className="ds-card" style={{background: '#181818', 
-              padding: '1.5rem', 
-              borderRadius: '8px', 
-              boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'space-between',
-              gap: '1rem',
-              flexWrap: 'wrap'}}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                <div style={{ background: 'var(--surface-2)', padding: '1rem', borderRadius: '50%', flexShrink: 0 }}>
-                  <Database size={24} color="#ec4899" />
-                </div>
-                <div>
-                  <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Zap size={18} color="#ec4899" /> 오징어 지식 AI 챗봇 (NotebookLM)
-                  </h3>
-                </div>
-              </div>
-              <a href="https://notebooklm.google.com/notebook/16a01f36-4e15-42c5-88e1-c2f9f6b16992" target="_blank" rel="noreferrer" style={{ 
-                background: 'var(--text-primary)', 
-                color: 'var(--bg-color)', 
-                padding: '12px 32px', 
-                borderRadius: '500px', 
-                fontSize: '0.88rem', 
-                fontWeight: 700, 
-                textTransform: 'uppercase',
-                letterSpacing: '1.4px',
-                textDecoration: 'none', 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                transition: 'transform 0.1s',
-                whiteSpace: 'nowrap'
-              }}
-                onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.96)'; }}
-                onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-              >
-                <Activity size={18} /> 챗봇 시작하기
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
-
 
       {/* ═══ API COMMAND CENTER ═══ */}
       <section style={{ marginBottom: '3rem', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>

@@ -78,7 +78,6 @@ function parseAnimatedValue(valStr: string) {
 
 export default function TunaRanching() {
   const [data, setData] = useState<any>(null);
-  const [isEduOpen, setIsEduOpen] = useState(true);
 
   const [simTemp, setSimTemp] = useState(24.5);
   const [simFreight, setSimFreight] = useState(4.2);

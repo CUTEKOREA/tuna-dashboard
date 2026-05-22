@@ -56,7 +56,6 @@ const EmptyState = ({ message }: { message: string }) => (
 export default function TunaExtractDashboard() {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [isEduOpen, setIsEduOpen] = useState(false);
   const [activeResearchTab, setActiveResearchTab] = useState('K01');
   const [exchangeRateSlider, setExchangeRateSlider] = useState(1400);
 

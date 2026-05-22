@@ -68,7 +68,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default function PetFoodDashboard() {
 
   const [data, setData] = useState<any>(null);
-  const [isEduOpen, setIsEduOpen] = useState(true);
 
   useEffect(() => {
     fetch('/api/petfood')

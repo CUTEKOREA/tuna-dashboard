@@ -159,7 +159,6 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
 export default function UsedCarExport() {
   const [data, setData] = useState<any>(null);
   const [activeCountry, setActiveCountry] = useState('all');
-  const [isEduOpen, setIsEduOpen] = useState(true);
 
   useEffect(() => {
     fetch('/api/used-car').then(r => r.json()).then(setData).catch(console.error);
@@ -171,112 +170,6 @@ export default function UsedCarExport() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', animation: 'fadeIn 0.5s ease-out' }}>
-      {/* ═══ Education & Chatbot Module (Foldable) ═══ */}
-      <div style={{
-        background: '#181818',
-        border: 'none',
-        borderRadius: '8px',
-        marginBottom: '2rem',
-        marginTop: '0.5rem',
-        overflow: 'hidden',
-        boxShadow: 'none',
-        color: '#f8fafc',
-        fontFamily: "'Inter', sans-serif"
-      }}>
-        {/* Toggle Header */}
-        <div 
-          onClick={() => setIsEduOpen(!isEduOpen)}
-          style={{
-            padding: '1.2rem 1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            cursor: 'pointer',
-            background: isEduOpen ? 'rgba(56, 189, 248, 0.1)' : 'transparent',
-            transition: 'background 0.3s ease'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ 
-              background: 'rgba(56, 189, 248, 0.2)', padding: '0.5rem', borderRadius: '8px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center'
-            }}>
-              <BookOpen size={20} color="#38bdf8" />
-            </div>
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
-                신입직원 교육 가이드
-              </h2>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', marginTop: '2px' }}>
-                서아프리카 중고차 수출 전략 및 핵심 인사이트
-              </p>
-            </div>
-          </div>
-          <div>
-            {isEduOpen ? <ChevronUp size={24} color="#94a3b8" /> : <ChevronDown size={24} color="#94a3b8" />}
-          </div>
-        </div>
-
-        {/* Foldable Content */}
-        {isEduOpen && (
-          <div style={{ padding: '0 1.5rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
-              
-              {/* Left: Quick Guide */}
-              <div style={{ background: 'var(--surface-3)', borderRadius: '10px', padding: '1.2rem' }}>
-                <h3 style={{ fontSize: '0.9rem', color: '#38bdf8', fontWeight: 700, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <CarFront size={16} /> 서아프리카 중고차 비즈니스 핵심
-                </h3>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem', lineHeight: 1.8 }}>
-                  <li><strong>한국 중고차 수출 역대 최고치:</strong> 2025년 기준 전년 대비 75.1% 성장한 $8.9B 달성, 원화 약세와 국내 매물을 활용한 아프리카 수출 붐.</li>
-                  <li><strong>서아프리카 시장의 골든크로스:</strong> 한국차 점유율이 42%로 일본차(37%)를 역전. 좌핸들(LHD) 필수 규제 및 높은 가성비가 주요 원인.</li>
-                  <li><strong>최적의 마진 스윗스팟:</strong> 한국 매입가 $2K~$5K 차량이 현지에서 $5.5K~$9K에 판매되며, 대당 $1,500~$3,000의 높은 순수익 구간 확보.</li>
-                  <li><strong>엄격한 연식 규제 대응:</strong> 가나는 15년 초과 시 CIF 기준 50%의 막대한 관세 페널티 부과. 한계 연식 차량의 빠른 선적 및 재고 관리가 필수.</li>
-                </ul>
-              </div>
-
-              {/* Right: NotebookLM Chatbot */}
-              <div style={{ background: 'var(--surface-3)', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ width: '50px', height: '50px', background: 'var(--surface-3)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                  <MessageSquare size={24} color="var(--text-primary)" />
-                </div>
-                <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
-                  가나 중고차 수출 지식 AI 챗봇
-                </h3>
-                <p style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '1.5rem', maxWidth: '80%' }}>
-                  관세 시뮬레이터 로직, Abossey Okai 부품 마켓 현황, 해상 운송 방식(RoRo/컨테이너) 등 중고차 비즈니스의 모든 것을 AI에게 질문하세요.
-                </p>
-                <a 
-                  href="https://notebooklm.google.com/notebook/2463684f-a08e-4877-b016-21f61ef90044"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: 'var(--surface-3)',
-                    color: '#e2e8f0',
-                    padding: '0.6rem 1.5rem',
-                    borderRadius: '8px',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    transition: 'all 0.2s ease',
-                    border: 'none'
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.background = 'var(--surface-3)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = 'var(--surface-3)'; }}
-                >
-                  <MessageSquare size={16} />
-                  AI 챗봇과 대화하기
-                </a>
-              </div>
-
-            </div>
-          </div>
-        )}
-      </div>
-
       {/* HEADER */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-main)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>

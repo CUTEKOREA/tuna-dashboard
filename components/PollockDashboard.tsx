@@ -203,7 +203,6 @@ export default function PollockDashboard() {
   const [data, setData] = useState<any>(null);
   const [kcsLive, setKcsLive] = useState<any>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [isEduOpen, setIsEduOpen] = useState(true);
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -489,107 +488,6 @@ export default function PollockDashboard() {
         })}
       </div>
 
-      {/* ═══ Education & Chatbot Module (Foldable) ═══ */}
-      <div style={{
-        background: 'rgba(0, 0, 0, 0.2)',
-        border: '1px solid rgba(6, 182, 212, 0.3)',
-        borderRadius: '8px',
-        marginBottom: '2rem',
-        overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
-      }}>
-        {/* Toggle Header */}
-        <div 
-          onClick={() => setIsEduOpen(!isEduOpen)}
-          style={{
-            padding: '1.2rem 1.5rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            cursor: 'pointer',
-            background: isEduOpen ? 'rgba(6, 182, 212, 0.1)' : 'transparent',
-            transition: 'background 0.3s ease'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ 
-              background: 'rgba(6, 182, 212, 0.2)', padding: '0.5rem', borderRadius: '8px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center'
-            }}>
-              <BookOpen size={20} color="#06b6d4" />
-            </div>
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
-                신입직원 교육 가이드
-              </h2>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', marginTop: '2px' }}>
-                명태 시장의 구조적 이해 및 글로벌 밸류체인 분석
-              </p>
-            </div>
-          </div>
-          <div>
-            {isEduOpen ? <ChevronUp size={24} color="#94a3b8" /> : <ChevronDown size={24} color="#94a3b8" />}
-          </div>
-        </div>
-
-        {/* Foldable Content */}
-        {isEduOpen && (
-          <div style={{ padding: '0 1.5rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
-              
-              {/* Left: Quick Guide */}
-              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '10px', padding: '1.2rem' }}>
-                <h3 style={{ fontSize: '0.9rem', color: '#06b6d4', fontWeight: 700, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Fish size={16} /> 명태 밸류체인 핵심 구조
-                </h3>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#cbd5e1', fontSize: '0.85rem', lineHeight: 1.8 }}>
-                  <li><strong>주요 어장:</strong> 베링해(Bering Sea) 및 오호츠크해(Okhotsk Sea) 중심 조업.</li>
-                  <li><strong>가공 형태:</strong> H&G(원물), HGT(선동), Fillet(필렛), Surimi(연육) 등으로 분류되며 부가가치 창출 구조 상이.</li>
-                  <li><strong>수리미(Surimi) 동향:</strong> 맛살/어묵의 주원료. 아시아 시장 확대와 더불어 글로벌 HMR 수요 증가로 지속적 성장세.</li>
-                  <li><strong>지정학적 리스크:</strong> 러시아-우크라이나 이슈에 따른 경제 제재, 중국 의존도 심화 및 서방 국가의 무역 장벽(관세 등)이 가격 변동의 핵심 요인.</li>
-                </ul>
-              </div>
-
-              {/* Right: NotebookLM Chatbot */}
-              <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '10px', padding: '1.2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ width: '50px', height: '50px', background: 'linear-gradient(135deg, #10b981, #059669)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', boxShadow: '0 0 15px rgba(16, 185, 129, 0.4)' }}>
-                  <MessageSquare size={24} color="var(--text-primary)" />
-                </div>
-                <h3 style={{ fontSize: '1rem', color: '#f8fafc', fontWeight: 700, margin: '0 0 0.5rem 0' }}>
-                  명태 지식 AI 챗봇
-                </h3>
-                <a 
-                  href="https://notebooklm.google.com/notebook/767b7190-c2b6-447b-aa72-d86e06734031"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    background: 'linear-gradient(135deg, #10b981, #059669)',
-                    color: 'var(--text-primary)',
-                    padding: '0.6rem 1.5rem',
-                    borderRadius: '8px',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    transition: 'all 0.2s ease',
-                    boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)'
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 15px rgba(16, 185, 129, 0.4)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 10px rgba(16, 185, 129, 0.3)'; }}
-                >
-                  <MessageSquare size={16} />
-                  AI 챗봇과 대화하기
-                </a>
-              </div>
-
-            </div>
-          </div>
-        )}
-      </div>
-
-      
       {/* ═══ 5-PILLAR STRATEGIC FRAMEWORK ═══ */}
       {PILLARS.map((pillar) => {
         return (
