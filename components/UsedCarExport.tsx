@@ -192,7 +192,7 @@ export default function UsedCarExport() {
       </div>
 
       {/* ROW 1: Market Growth + Market Share */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
           <h3 style={cardTitle}><TrendingUp size={18} color="var(--color-success)" /> 한국 중고차 시장 규모 & 수출 추이 <LiveAPIBadge source="KCS API & MOLIT" />
             
@@ -252,7 +252,7 @@ export default function UsedCarExport() {
         
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
           <div style={{ flex: 1, minWidth: '300px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '1rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '1rem' }}>
               <KpiCard icon={<CarFront size={14}/>} label="총 수집 매물 수" value={`${jijiGhanaData?.totalScraped?.toLocaleString() || 1424}대`} sub="현대/기아 승용 및 SUV" color="var(--color-info)" />
               <KpiCard icon={<DollarSign size={14}/>} label="현대 평균 소매가" value={`$${jijiGhanaData?.avgPrice?.hyundai?.toLocaleString() || '11,499'}`} sub="2012~2020년식 기준" color="var(--color-success)" />
               <KpiCard icon={<DollarSign size={14}/>} label="기아 평균 소매가" value={`$${jijiGhanaData?.avgPrice?.kia?.toLocaleString() || '11,046'}`} sub="2012~2020년식 기준" color="var(--color-warning)" />
@@ -353,7 +353,7 @@ export default function UsedCarExport() {
       </div>
 
       {/* ROW 3: Shipping + Fuel + Ghana Age Penalty */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
           <h3 style={cardTitle}><Ship size={18} color="var(--color-success)" /> 해상 운송 비용 비교 (RoRo vs 컨테이너)
             
@@ -385,7 +385,7 @@ export default function UsedCarExport() {
       </div>
 
       {/* ROW 4: Hybrid Growth + Ghana Penalty */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
           <h3 style={cardTitle}><Zap size={18} color="#8b5cf6" /> 한국 중고차 파워트레인별 성장 전망 <LiveAPIBadge source="KOTRA / KAMA" />
             
@@ -420,7 +420,7 @@ export default function UsedCarExport() {
       </div>
 
       {/* ROW 5: 현지 마켓 & EV 합작 */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
           <h3 style={cardTitle}><Target size={18} color="#ec4899" /> 현지 핵심 유통 허브
             
@@ -498,7 +498,7 @@ export default function UsedCarExport() {
       {/* Execution Playbook */}
       <div style={glass}>
         <h3 style={cardTitle}><FileText size={18} color="var(--color-success)" /> 실행 플레이북 (Execution Playbook)</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}>
           {[
             { icon: <CarFront size={16}/>, title: '차량 매입 & 상품화', color: '#60a5fa', items: ['외관 복원(광택/스크래치)이 바이어 첫인상 가격 결정','AutoWini, BeForward 다중 채널 B2B 리드 창출','현지 특성: 옵션보다 구동계 내구성·에어컨 작동이 최우선','하이브리드 차량 우선 매입으로 Green Tax 차별화'] },
             { icon: <Anchor size={16}/>, title: '선적 & 통관 컴플라이언스', color: 'var(--color-success)', items: ['컨테이너(혼적) vs RoRo(단가) 전략적 선택','제작 연도(초기등록일 아님) 기준 수입 규제 엄격','필수서류: B/L, CI, PL, 수출말소증명서','나이지리아 SON-VehCAP 사전인증 필수'] },
@@ -534,7 +534,7 @@ export default function UsedCarExport() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '20px' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '20px' }}>
 
           {/* 근거 1: 시장 규모 */}
           <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #eab308' }}>

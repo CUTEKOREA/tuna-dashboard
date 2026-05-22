@@ -372,7 +372,7 @@ export default function ChickenDashboard() {
       </header>
 
       {/* ═══ KPIs ═══ */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
         {Object.keys(CHICKEN_KPIS).map((key, idx) => {
           const kpi = CHICKEN_KPIS[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
@@ -405,7 +405,7 @@ export default function ChickenDashboard() {
               <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'#94a3b8' }}>{sec.desc}</p>
             </div>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>
+          <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>
             {sec.widgets.map((wId: string, idx: number) => {
               const w = getWidget(wId);
               if (!w) return null;
@@ -448,7 +448,7 @@ export default function ChickenDashboard() {
               <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.3px' }}>📋 보조 인텔리전스</h2>
             </div>
           </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
           <ChickenEmpiricalInsights />
           <InsightChannelMatrix />
           <InsightVMILockin />

@@ -313,7 +313,7 @@ export default function TunaRanching() {
       {/* ================== S-GRADE 5-PILLAR ARCHITECTURE ================== */}
 
       {/* ================== S-GRADE 5-PILLAR ARCHITECTURE ================== */}
-      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+      <div data-mobile-stack className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
         {/* NEW-1: 블루핀 도피회유 메커니즘 */}
         <div className={insightsStyles.insightCard}>
           <div className={insightsStyles.cardHeader}>
@@ -519,7 +519,7 @@ export default function TunaRanching() {
       </div>
 
       {/* 🆕 3대 주요 지표 (스코어보드, 자원 회복, 패러다임 역전) */}
-      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+      <div data-mobile-stack className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
         {issfScorecard && iscPacificBft && (
           <>
         <div className={insightsStyles.insightCard}>
@@ -531,7 +531,7 @@ export default function TunaRanching() {
             <p className={insightsStyles.cardDesc}>ISSF Status of the Stocks 2026-01 (최신판) 기준. <strong>어획량 가중 평균 97%</strong>가 건전 자원에서 공급 / <strong>stock 23개 중 74%</strong>가 건전 abundance — 2024년 글로벌 어획량 580만톤(가다랑어 58%·황다랑어 30%·눈다랑어 7%·날개다랑어 4%·참다랑어 1%).</p>
           </div>
           <div className={insightsStyles.cardBody}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '15px' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '15px' }}>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#10b981' }}>
                 <div className={insightsStyles.kpiLabel}>어획량 기준 건전성</div>
                 <div className={insightsStyles.kpiValue}>97%</div>
@@ -581,7 +581,7 @@ export default function TunaRanching() {
             <p className={insightsStyles.cardDesc}>ISC 공식 자원평가 기준 산란자원량 비율(미어획 수준 대비). 2010년 역사적 최저(3.3%)에서 2024년 23.2%까지 7배 회복.</p>
           </div>
           <div className={insightsStyles.cardBody}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '15px' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '15px' }}>
               <div className={insightsStyles.kpiBox} style={{ borderLeftColor: '#ef4444' }}>
                 <div className={insightsStyles.kpiLabel}>2010 최저점</div>
                 <div className={insightsStyles.kpiValue}>3.3%</div>
@@ -808,7 +808,7 @@ export default function TunaRanching() {
 
 
       {/* 새로운 4개 위젯 그룹: 양식 패러다임, 사우디, 아시아, 최고가 맵 (2열 배치) */}
-      <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+      <div data-mobile-stack className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
         
         {/* 1. 양식 대 어획 패러다임 역전 */}
         <div className={insightsStyles.insightCard}>
@@ -1034,7 +1034,7 @@ export default function TunaRanching() {
           })}
         </div>
 
-        <div className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
+        <div data-mobile-stack className={insightsStyles.grid} style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", marginBottom: "2rem" }}>
           <div className={insightsStyles.insightCard}>
             <div className={insightsStyles.cardHeader}>
               <h3 className={insightsStyles.cardTitle}>

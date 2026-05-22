@@ -28,7 +28,7 @@ export default function MackerelTrioRadar() {
   };
 
   const customBody = (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+    <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
       {data.map((d: any, i: number) => {
         const profile = getProfile(d);
         const radarData = [

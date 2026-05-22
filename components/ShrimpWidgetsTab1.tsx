@@ -157,7 +157,7 @@ export const W10_HHI = () => (
           <div key={i} style={{ width: `${(c.value/top10Prod[0].value)*100}%`, background: COLORS[i%COLORS.length] }} title={`${c.country}: ${(c.value/1000000).toFixed(1)}M`} />
         ))}
       </div>
-      <div style={{ marginTop: '16px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+      <div data-mobile-stack style={{ marginTop: '16px', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
         {top10Prod.slice(0,4).map((c:any, i:number) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: '#cbd5e1' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: COLORS[i%COLORS.length] }} />

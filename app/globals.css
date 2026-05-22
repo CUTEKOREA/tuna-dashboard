@@ -794,3 +794,13 @@ h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
   font-weight: 700;
 }
 
+/* === Mobile responsive grid stack (Phase 2, 2026-05-22) ===
+ * Inline `style={{ gridTemplateColumns: 'repeat(N, 1fr)' }}` cannot use media
+ * queries. The companion codemod scripts/fix_mobile_grid.py adds
+ * `data-mobile-stack` to every fixed multi-column grid so this rule can
+ * override the inline style on mobile. !important is required because inline
+ * styles otherwise win cascade. */
+@media (max-width: 768px) {
+  [data-mobile-stack] { grid-template-columns: 1fr !important; }
+}
+

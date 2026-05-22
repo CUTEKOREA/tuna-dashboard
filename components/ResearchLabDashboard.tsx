@@ -156,7 +156,7 @@ export default function ResearchLabDashboard() {
         <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'1.2rem',display:'flex',alignItems:'center',gap:8}}>
           <Target size={22} color="#8b5cf6" /> 조업사 마진 극대화 Top 4 비즈니스 파이프라인 (Margin-Maximized Top 4 Pipelines)
         </h2>
-        <div style={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)',gap:'1.2rem'}}>
+        <div data-mobile-stack style={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)',gap:'1.2rem'}}>
           {B2B_MODELS.map((model, idx) => {
             const Icon = model.icon;
             return (
@@ -174,7 +174,7 @@ export default function ResearchLabDashboard() {
                 </div>
                 
                 {/* Metrics */}
-                <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.8rem',marginBottom:16}}>
+                <div data-mobile-stack style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.8rem',marginBottom:16}}>
                   <div style={{background:'var(--surface-2)',padding:'0.6rem',borderRadius:6}}>
                     <div style={{fontSize:'0.7rem',color:'var(--text-secondary)',marginBottom:2}}>수익성 (Margin)</div>
                     <div style={{fontSize:'0.85rem',fontWeight:700,color:model.color}}>{model.profitability}</div>
@@ -269,7 +269,7 @@ export default function ResearchLabDashboard() {
                       ))}
                     </div>
                   )}
-                  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem',marginBottom:'0.8rem'}}>
+                  <div data-mobile-stack style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem',marginBottom:'0.8rem'}}>
                     <div style={{background:'var(--surface-2)',borderRadius:6,padding:'0.8rem'}}>
                       <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>상용화 기술성숙도 (TRL)</div>
                       <div style={{display:'flex',alignItems:'center',gap:8}}>

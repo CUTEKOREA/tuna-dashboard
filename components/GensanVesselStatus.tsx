@@ -59,7 +59,7 @@ export default function GensanVesselStatus() {
                   <strong style={{ color: '#60a5fa', fontSize: '14px' }}>{v.vessel}</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>{v.shipper}</span>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--text-muted)' }}>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--text-muted)' }}>
                   <div>Total Cargo: <strong style={{ color: 'var(--text-main)' }}>{v.cargo} MT</strong></div>
                   <div>Discharged: <strong style={{ color: 'var(--color-success)' }}>{v.discharged} MT</strong></div>
                   <div>Arrived: {v.arrived}</div>
@@ -85,7 +85,7 @@ export default function GensanVesselStatus() {
                   <strong style={{ color: 'var(--color-warning)', fontSize: '14px' }}>{v.vessel}</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>{v.shipper}</span>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--text-muted)' }}>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--text-muted)' }}>
                   <div>Total Cargo: <strong style={{ color: 'var(--text-main)' }}>{v.cargo}</strong></div>
                   <div>ETA: <strong style={{ color: 'var(--color-success)' }}>{v.eta}</strong></div>
                   <div style={{ gridColumn: '1 / -1' }}>Consignee: {v.consignee}</div>

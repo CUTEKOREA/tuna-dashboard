@@ -40,7 +40,7 @@ export function ThaiImportShift1Q26() {
       unit="(단위: 톤 / %)"
       telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026-05-04' }}
       customBody={
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
           <div style={{ height: 240 }}>
             <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 4, textAlign: 'center' }}>어종별 수입량 (톤)</div>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -100,7 +100,7 @@ export function FrimeAcquisitionWidget() {
       unit="(단위: %)"
       telemetry={{ status: 'SYNCED', syncDate: 'Atuna May 2026' }}
       customBody={
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, padding: '0 16px' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, padding: '0 16px' }}>
           <div>
             <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: 8 }}>EU pre-cooked loin 시장 점유율</div>
             <div style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 12, padding: '24px 16px', textAlign: 'center' }}>

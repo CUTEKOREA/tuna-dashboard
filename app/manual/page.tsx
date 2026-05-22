@@ -519,7 +519,7 @@ export default function ManualPage() {
                   title={`${selected.category} 적용 규칙`}
                   icon={<FolderTree size={16} color={C.blue} />}
                 >
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 12 }}>
+                  <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 12 }}>
                     <div>
                       <div style={{ fontSize: 11, color: C.textTertiary, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>
                         적용 섹션
@@ -623,7 +623,7 @@ export default function ManualPage() {
         {/* Core rules footer */}
         <div style={{ marginTop: 28 }}>
           <SectionCard title="v28.3 핵심 원칙" icon={<AlertTriangle size={16} color={C.amber} />}>
-            <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+            <ul data-mobile-stack style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               {[
                 '작업 중간에 사용자 확인 질문 금지 (자동 실행 모드)',
                 '워크스페이스 독립 저장 — _shared/ symlink 금지',

@@ -249,7 +249,7 @@ export default function JukkumiDashboard() {
       </header>
 
       {/* ═══ 6 KPIs ═══ */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
@@ -295,7 +295,7 @@ export default function JukkumiDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w1_global_catch', 'w7_cannibalism_risk', 'w10_species_map', 'w11_spawn_cycle', 'w12_generation_risk', 'w21_leisure_fishing_impact', 'w22_vietnam_trawl_fip'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -309,7 +309,7 @@ export default function JukkumiDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w2_korea_imports', 'w6_bio_processing', 'w13_processing_auto', 'w14_nutrition', 'w23_hmr_yield_optimization', 'w24_china_aquaculture_rd'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -323,7 +323,7 @@ export default function JukkumiDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w3_supply_demand', 'w9_korea_fta_imports', 'w15_hsk_tariff', 'w16_korus_schedule', 'w25_tariff_schedule_impact', 'w26_coldchain_utilization'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -337,7 +337,7 @@ export default function JukkumiDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w4_fbs_seafood', 'w17_price_spread', 'w18_substitutes', 'w27_japan_kfood_export', 'w28_domestic_senior_hmr'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>
@@ -351,7 +351,7 @@ export default function JukkumiDashboard() {
               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {widgets?.filter((w: any) => ['w5_mauritania_risk', 'w8_recreational_tac', 'w19_vibrio_amr', 'w20_fip_esg', 'w29_africa_human_rights_risk', 'w30_tac_regulation_map'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
           </div>
         </section>

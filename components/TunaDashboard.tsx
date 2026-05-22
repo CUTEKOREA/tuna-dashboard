@@ -501,7 +501,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
       {/* ═══ KPIs ═══ */}
       {kpiKeys.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
           {kpiKeys.map((key, idx) => {
             const kpi = kpis[key];
             const t = KPI_THEMES[idx % KPI_THEMES.length];
@@ -573,7 +573,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
           </span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {SECTIONS.map((s, idx) => {
             const isActive = activePart === s.id;
             return (
@@ -676,7 +676,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               </div>
             </div>
             {/* 1. 기후/환경 예측 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <EnsoCorrelationWidget />
               <SkipjackForecastWidget />
               <div style={{ gridColumn: 'span 2' }}>
@@ -685,7 +685,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
 
             {/* 2. 수역 및 할당량 확보 전략 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <InsightNauruSwitch />
               <KfasIndianOceanRisk />
               <InsightIOCollapse />
@@ -693,13 +693,13 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
 
             {/* 3. 실전 조업 기술 및 역량 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <TunaPrecisionFishing />
               <KfasLonglineEvolution />
             </div>
 
             {/* 4. 기타 원물 생산 관련 지표 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
@@ -720,7 +720,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
             <OperationalS1Widgets />
             {/* Phase B4 신규: 태국 가공 허브 + 퍼펙트 스톰 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
               <ThaiImportShift1Q26 />
               <PerfectStormWidget />
             </div>
@@ -738,7 +738,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               </div>
             </div>
             {/* 1. 글로벌 소싱 및 OEM 아웃소싱 / 2. 통조림 원가 및 마진 방어 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <TunaSupplierHub />
               <InsightVietnamOEM />
               
@@ -756,7 +756,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                   <Leaf size={18} /> 부산물 업사이클링 & R&D 
                 </h3>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 <KfasByproductValueChain />
                 <TunaUpcyclingOpportunity />
                 <TunaUpcyclingMarginMap />
@@ -796,7 +796,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {/* 1. 해상 운임 및 랜딩 코스트 (원가 산출) */}
               <MofShippingCostWidget />
               <TunaLandingCost />
@@ -835,7 +835,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {/* 1. 거시 경제 및 인플레이션 타격 */}
               <TunaPriceDecoupling />
               
@@ -862,7 +862,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {/* 1. 글로벌 규제 레이더 및 컴플라이언스 리스크 */}
               <TunaComplianceRadar />
               <PolicyRiskScorecard />

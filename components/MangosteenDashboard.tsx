@@ -249,7 +249,7 @@ export default function MangosteenDashboard() {
       </div>
 
       {/* ═══ KPIs ═══ */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
         {Object.keys(mangosteenKpis).length > 0 ? Object.keys(mangosteenKpis).map((key, idx) => {
           const kpi = mangosteenKpis[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
@@ -289,7 +289,7 @@ export default function MangosteenDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard
           title="글로벌 생산량 및 수출 점유율"
           icon={Globe}
@@ -353,7 +353,7 @@ export default function MangosteenDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard
           title="생과 및 냉동 제품 수익성 트래커"
           icon={Snowflake}
@@ -443,7 +443,7 @@ export default function MangosteenDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard
           title="식물방역법 장벽 분석"
           icon={ShieldCheck}
@@ -565,7 +565,7 @@ export default function MangosteenDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="국내 과일 물가 연동 스캐너" icon={Apple} iconColor={SECTIONS[3].color} pillar="S4"
           cardDesc="국내 사과 단가 vs 망고스틴 수입량 상관관계 — 가격 폭등기 대체 수요 캡처"
           telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }} chartHeight={375}
@@ -661,7 +661,7 @@ export default function MangosteenDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="망고스틴 껍질 업사이클링 시뮬레이션" icon={Leaf} iconColor={SECTIONS[4].color} pillar="S5"
           cardDesc="껍질 폐기 vs 펫푸드/항산화 추출 시나리오별 매출 + 순마진"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }} chartHeight={375}

@@ -289,7 +289,7 @@ export default function CassavaDashboard() {
       </header>
 
       {/* ═══ KPIs ═══ */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
         {Object.keys(CASSAVA_KPIS).map((key, idx) => {
           const kpi = CASSAVA_KPIS[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
@@ -330,7 +330,7 @@ export default function CassavaDashboard() {
         </button>
         {showEdu && (
           <div style={{ background: '#181818', borderRadius:'10px', border: '1px solid rgba(255,255,255,0.05)', padding:'1.5rem', animation:'fadeIn 0.3s' }}>
-            <div style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem' }}>
+            <div data-mobile-stack style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem' }}>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.primary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Dna size={15}/> 4F 플랫폼 & 패러다임 전환 (Value Pivot)</h3>
                 <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
@@ -361,7 +361,7 @@ export default function CassavaDashboard() {
               <p style={{ margin:'4px 0 0 0', fontSize:'0.8rem', color:'#94a3b8' }}>{sec.desc}</p>
             </div>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>
+          <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>
             {sec.widgets.map((wId: string, idx: number) => {
               const w = getWidget(wId);
               if (!w) return null;

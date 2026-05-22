@@ -403,7 +403,7 @@ export default function PollockDashboard() {
         <Zap size={20} />
         C-Level Strategic Insight: {title}
       </h3>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
         <TakeawayBox situation={background} actionPlan={takeaway} />
       </div>
     </div>
@@ -445,7 +445,7 @@ export default function PollockDashboard() {
       </header>
 
       {/* ═══ 6 KPIs ═══ */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
@@ -507,7 +507,7 @@ export default function PollockDashboard() {
                 {pillar.desc}
               </p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               {widgets?.filter((w: any) => pillar.widgets.includes(w.id)).map((w: any) => renderWidgetCard(w, pillar.id.replace('P', 'S') as 'S1'|'S2'|'S3'|'S4'|'S5'))}
               {pillar.customInject?.includes("PollockConcentrationIndex") && <PollockConcentrationIndex />}
               {pillar.customInject?.includes("PollockAlternativeSourcing") && <PollockAlternativeSourcing />}

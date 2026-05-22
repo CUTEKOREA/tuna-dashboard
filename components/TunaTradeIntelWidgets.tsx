@@ -97,7 +97,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
       cardDesc="Observatory of Economic Complexity 데이터로 글로벌 참치 조제품 Top 수출국·수입국 비중 비교"
       telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? 'Real-time' : '2024년 기준' }}
       customBody={loading ? <Spinner /> : (
-        <div style={{ height: '325px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div data-mobile-stack style={{ height: '325px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
           <div>
             <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600, marginBottom: '4px', textAlign: 'center' }}>Top 수출국</div>
             <PieChart width={250} height={280}>

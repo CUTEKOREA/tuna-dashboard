@@ -387,7 +387,7 @@ export default function SalmonDashboard() {
       </header>
 
       {/* ═══ 6 KPIs ═══ */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {kpiKeys.map((key, idx) => {
           const kpi = kpis[key];
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
@@ -463,7 +463,7 @@ export default function SalmonDashboard() {
                 </div>
                 {desc && <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>{desc}</p>}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                 {customInsights}
                 {sectionWidgets.map((w: any) => {
                   const pillarMap: Record<string, 'S1' | 'S2' | 'S3' | 'S4' | 'S5'> = { raw: 'S1', proc: 'S2', logis: 'S3', sales: 'S4', esg: 'S5' };

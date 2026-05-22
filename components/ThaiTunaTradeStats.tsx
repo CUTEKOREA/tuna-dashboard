@@ -51,7 +51,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default React.memo(function ThaiTunaTradeStats() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         
         {/* 1. Yearly Trade Trend */}
         <div 

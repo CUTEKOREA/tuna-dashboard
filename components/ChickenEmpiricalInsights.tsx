@@ -42,7 +42,7 @@ export default function ChickenEmpiricalInsights() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <WidgetCard
           title={arbData.title}
           icon={BarChart2}

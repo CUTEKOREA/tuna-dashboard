@@ -189,7 +189,7 @@ export default function KoreaConsignmentDashboard() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {/* Widget 1: Arbitrage Radar */}
             <div className={styles.glassCard} style={{ padding: '1.5rem' }}>
               <h3 style={{ fontSize: '1.05rem', color: '#38bdf8', margin: '0 0 1.2rem 0', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>
@@ -309,7 +309,7 @@ export default function KoreaConsignmentDashboard() {
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <WidgetCard
           title={activeTab === 'all' ? '연도별 총 판매 금액 추이' : `${activeTab}년 어종별 누적 판매 금액 (Top 15)`}
           icon={TrendingUp}

@@ -30,7 +30,7 @@ export default function FieldTools() {
         </div>
       </div>
 
-      <div className={styles.toolGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+      <div data-mobile-stack className={styles.toolGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
         {/* Fleet */}
         <FleetOperationStatus />
         <FuiMarginSimulator />
@@ -293,7 +293,7 @@ function NegotiationSimulator() {
         <span className={styles.toolBadge} style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--color-warning)', marginLeft: 'auto' }}>📐 Estimate</span>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
         <div className={styles.costRow}>
           <div className={styles.costLabel}>바이어 요구가</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>

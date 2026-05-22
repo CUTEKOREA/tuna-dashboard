@@ -279,7 +279,7 @@ export default function UnloadingStatus() {
             <span>작업 기록 (Timeline)</span>
             <span style={{ fontSize: '0.8rem' }}><TermTooltip term="어창(Hold)" description="하역 중인 선박의 냉동창고 번호입니다." /></span>
           </h4>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', maxHeight: '400px', overflowY: 'auto', paddingRight: '4px' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', maxHeight: '400px', overflowY: 'auto', paddingRight: '4px' }}>
             {[...selectedData.timeline].reverse().map((t, idx) => (
               <div key={idx} className={styles.timelineLog}>
                 <div className={styles.logDate}>{t.date} <span style={{fontSize:'0.75rem', fontWeight:'normal', color:'var(--text-muted)', marginLeft:'8px'}}>{t.time}</span></div>

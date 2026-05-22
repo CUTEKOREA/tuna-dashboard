@@ -62,7 +62,7 @@ export default function SalmonESGTracker() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
         {scores.map((s, i) => {
           const cfg = getStatusColor(s.status);
           const IconComp = ICONS[s.iconName] || Shield;

@@ -188,7 +188,7 @@ export default function FleetStrategyMatrix() {
         )}
 
         {/* 선령 분포 + 강점/리스크/인사이트 */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
           {/* 선령 분포 분석 */}
           <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '16px' }}>
             <h5 style={{ color: '#fbbf24', margin: '0 0 12px 0', fontSize: '0.9rem' }}>⏳ 선령 분포 분석</h5>
@@ -402,7 +402,7 @@ export default function FleetStrategyMatrix() {
           <Target size={20} /> 조업 방식별 선대 포트폴리오 (어종 클릭 시 상세 명부 및 실적 출력)
         </h4>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
           {matrixData.map((row, idx) => {
             const isOld = parseInt(row.age) >= 25;
             return (
@@ -441,7 +441,7 @@ export default function FleetStrategyMatrix() {
                 
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {/* 재무 KPI 행 */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '10px' }}>
+                  <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '10px' }}>
                     <div>
                       <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' }}>매출</div>
                       <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#34d399' }}>{(row as any).revenue || '-'}</div>

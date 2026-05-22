@@ -356,7 +356,7 @@ export default function CashewStrategy() {
       </div>
 
       {/* ═══ KPIs ═══ */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
         {Object.keys(kpis).map((key, idx) => {
           const kpi = kpis[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
@@ -393,7 +393,7 @@ export default function CashewStrategy() {
               <p style={{ margin:0, fontSize:'0.75rem', color:'#64748b' }}>{sec.desc}</p>
             </div>
           </div>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+          <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
 
             {sec.id === 'S1' && d_vietnam_paradox && renderCashewWidget({
               icon: Globe, title: "베트남 캐슈 원물 수입 의존도 리스크 (역설)",

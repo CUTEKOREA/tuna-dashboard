@@ -72,7 +72,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
       </div>
       {result && !showHist && (
         <div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.8rem', marginBottom: '1rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.8rem', marginBottom: '1rem' }}>
             <div style={{ background: result.ofac.status === 'clean' ? 'rgba(14,203,129,0.06)' : 'rgba(240,185,11,0.06)', border: `1px solid ${result.ofac.status === 'clean' ? 'rgba(14,203,129,0.2)' : 'rgba(240,185,11,0.2)'}`, borderRadius: '8px', padding: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>{statusIcon(result.ofac.status)}<span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc' }}>OFAC (미국)</span></div>
               <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{result.ofac.detail}</div>

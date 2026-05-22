@@ -216,7 +216,7 @@ export default function SquidArbitrageRadar() {
                 품목: {route.product}
               </p>
 
-              <div style={{
+              <div data-mobile-stack style={{
                 display: hoveredRouteId === route.id ? 'grid' : 'none',
                 gridTemplateColumns: '1fr 1fr',
                 gap: '4px',

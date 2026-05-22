@@ -355,7 +355,7 @@ export default function FleetRosterGrid() {
             title="태평양 선망" count={pacificFleet.length}
             summary="주간 923t · 월간 3,233t · 연간 19,760t"
           />
-          <div style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
+          <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
             {pacificFleet.map(v => (
               <VesselCard
                 key={v.name} name={v.name} zone={v.zone}
@@ -373,7 +373,7 @@ export default function FleetRosterGrid() {
             title="대서양 선망" count={atlanticFleet.length}
             summary="주간 485t · 월간 1,747t · 연간 11,050t"
           />
-          <div style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
+          <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
             {atlanticFleet.map(v => (
               <VesselCard
                 key={v.name} name={v.name} zone={v.zone}

@@ -97,7 +97,7 @@ export default function MackerelAquaculture() {
 
       {/* KPI + Pie Row */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 180px', gap: '16px', marginBottom: '20px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
           <div style={{ background: 'rgba(6, 182, 212, 0.1)', border: '1px solid rgba(6, 182, 212, 0.2)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
             <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)' }}>2023 자연산</div>
             <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#06b6d4' }}>{(latest.capture_t / 1000000).toFixed(1)}M톤</div>

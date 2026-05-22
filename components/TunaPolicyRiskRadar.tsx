@@ -97,7 +97,7 @@ export function FtaTariffOptimizer() {
 
   const Body = (
     <>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginTop: '8px' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginTop: '8px' }}>
         {routes.slice(0, 3).map((r, i) => (
           <div key={i} style={{ background: 'rgba(34,197,94,0.06)', borderRadius: '6px', padding: '8px', textAlign: 'center' }}>
             <div style={{ fontSize: '0.65rem', color: '#94a3b8' }}>{r.route}</div>

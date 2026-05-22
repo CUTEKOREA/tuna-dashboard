@@ -47,7 +47,7 @@ export default function SalmonPolicyImpact() {
         })}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', marginBottom: '1rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', marginBottom: '1rem' }}>
         {[
           { label: '착지원가', ...scenario.impacts.landedCost },
           { label: '수입물량', ...scenario.impacts.importVolume },

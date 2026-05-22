@@ -235,7 +235,7 @@ export default function MarketDashboard() {
           <Newspaper size={20} color="#f59e0b" />
           Atuna Weekly: 시장을 움직이는 핵심 시그널 4선
         </h3>
-        <div style={{
+        <div data-mobile-stack style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '16px'
@@ -312,7 +312,7 @@ export default function MarketDashboard() {
           <Search size={20} color="#818cf8" />
           Forensic Intelligence: 참치 산업 구조적 변화와 신라교역의 전략
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
             title="3대양 동시 공급 충격 — IO·EPO 부진 + WCPO 화산 리스크"

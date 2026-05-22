@@ -151,7 +151,7 @@ export default function WhelkDashboard() {
       </header>
 
       {/* 4 KPIs */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         <div className="ds-card" style={{background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '6px', transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}
              onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
@@ -219,7 +219,7 @@ export default function WhelkDashboard() {
       </div>
 
       {/* CONTENT GRID */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', width: '100%' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', width: '100%' }}>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Fish size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 1. 원료 수급</h2>
@@ -567,7 +567,7 @@ export default function WhelkDashboard() {
               cardDesc="USD/KRW 구간별 자동 경보 + 단계별 대응 매뉴얼"
               telemetry={{ status: 'LIVE', syncDate: 'Real-time' }}
               customBody={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
                   {fxAlertThresholds.map((t: any, i: number) => (
                     <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${t.color}40`, borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -777,7 +777,7 @@ export default function WhelkDashboard() {
               cardDesc="EU 포장폐기물규정(PPWR)이 골뱅이 캔 패키징 비용·수출 경쟁력에 미치는 리스크 6축 평가"
               telemetry={{ status: 'STATIC', syncDate: 'KMI 2026.03' }}
               customBody={
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
                   {euPackagingRiskData.map((d: any, i: number) => (
                     <div key={i} style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '0.75rem', textAlign: 'center' }}>
                       <div style={{ fontSize: '1.5rem', fontWeight: 800, color: d.value >= 70 ? 'var(--color-danger)' : d.value >= 50 ? 'var(--color-warning)' : 'var(--color-success)' }}>

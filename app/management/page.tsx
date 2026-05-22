@@ -436,7 +436,7 @@ export default function ManagementDashboard() {
 
                 <div style={{ padding: '32px 24px' }}>
                   {/* Financial KPI Grid */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '32px' }}>
+                  <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '32px' }}>
                     
                     {/* Col 1: P&L Summary */}
                     <div style={{ border: `1px solid ${theme.border}`, borderRadius: '4px', padding: '20px', background: theme.cream }}>
@@ -561,7 +561,7 @@ export default function ManagementDashboard() {
     if (activeTab === 'benchmark') {
       return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {/* OPM Chart */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
@@ -630,7 +630,7 @@ export default function ManagementDashboard() {
     if (activeTab === 'research_insight') {
       return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {/* Chart 1: Investment Capital Flow */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
@@ -1003,7 +1003,7 @@ export default function ManagementDashboard() {
       <div style={{ padding: '2.5rem 4rem', maxWidth: '1600px', margin: '0 auto' }}>
 
       {/* KPI Cards Section */}
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '2.5rem' }}>
+      <section data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '2.5rem' }}>
         <KPICard 
           title="그룹 매출액" 
           dataObj={performData.summary.revenue} 

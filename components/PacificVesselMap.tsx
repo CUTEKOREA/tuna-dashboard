@@ -752,7 +752,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                 
                 {/* Ship Cross Section (2x5 Grid) */}
                 <div style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid #333', borderRadius: '40px 40px 10px 10px', padding: '16px 20px', width: '280px', margin: '0 auto', boxSizing: 'border-box' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     {targetVessel.holds?.map((hold: any, i: number) => {
                       const isSKJ = hold.species === 'SKJ';
                       const isYFT = hold.species === 'YFT';

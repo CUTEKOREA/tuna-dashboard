@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 📱 **2026-05-22 — 모바일 PWA 4-Phase 작업 개시 (Sisyphus=Claude Code)**:
+> - **Phase 1 완료 (CC, L-03 빌드 통과 ✓)**: `public/manifest.json`, `public/sw.js` (네트워크-first API + cache-first static + navigate fallback), `public/icons/{192,512,maskable-512,apple-touch-180}.png` (tuna 마스코트 기반), `components/PWARegister.tsx` (production-only SW 등록), `app/layout.tsx` 메타 확장 (viewport.themeColor `#0f172a`, manifest, appleWebApp standalone, icons).
+> - **Phase 2 완료 (CC Plan B — Hephaestus 역할 겸임, L-03 빌드 통과 ✓)**: `scripts/fix_mobile_grid.py` 신규 (L-07 idempotent codemod), `app/globals.css` 하단 1줄 (`@media (max-width:768px) [data-mobile-stack] { grid-template-columns: 1fr !important }`), 54개 파일 / 141 sites JSX 태그에 `data-mobile-stack` 속성 부착 (`repeat(N,1fr)` N≥2 + `'1fr 1fr ...'` 변형). Tuna 9 파일 26 sites 포함 — attribute-only 변경으로 ADR 0008 closure 동결 본의와 무관. **상세 브리프**: [MOBILE_PWA_PHASE2_BRIEF.md](MOBILE_PWA_PHASE2_BRIEF.md) (작업 후 `_archive/handoffs/`로 이동 예정).
+> - **Phase 3 예정 (Librarian)**: ~100+ 위젯 long-context audit → "모바일 ≤375px에서 깨질 가능성 높은 위젯 TOP 20" 리포트 → Hephaestus 후속 수정.
+> - **Phase 4 예정 (Oracle)**: 머지 직전 S-Grade 4-Axis 채점.
+
 > 🆕 **2026-05-22 cont. — 그룹 A 마이그레이션 완료 + 잉여 섹션 일괄 제거**:
 > - **PorkWidgets 11 위젯** (S1/S2/S3/S4/S5 pillar 매핑) `ec89689`
 > - **CashewStrategy 전체** (4 hardcoded section S1/S2/S3/S5 + dynamic widgets.slice loop, renderCashewWidget 헬퍼 추출) `b97c64e`

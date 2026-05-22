@@ -46,7 +46,7 @@ export default function ChickenPartsWidget() {
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
         {data.parts.map((part: any, i: number) => {
           const IconComponent = IconMap[part.icon] || Dna;
           return (

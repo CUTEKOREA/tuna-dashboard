@@ -118,7 +118,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
       </div>
 
       {/* Ticker Items */}
-      <div style={{
+      <div data-mobile-stack style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(5, 1fr)',
         gap: '0',

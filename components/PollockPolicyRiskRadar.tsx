@@ -111,7 +111,7 @@ export function PollockFtaTariffMatrix() {
               <Bar dataKey="FTA" fill="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
             </BarChart>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginTop: '8px' }}>
+          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginTop: '8px' }}>
             {routes.slice(0, 3).map((r: any, i: number) => (
               <div key={i} style={{ background: 'rgba(34,197,94,0.06)', borderRadius: '6px', padding: '8px', textAlign: 'center' }}>
                 <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{r.route}</div>

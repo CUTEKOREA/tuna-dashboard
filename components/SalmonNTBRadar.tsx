@@ -59,7 +59,7 @@ export default function SalmonNTBRadar() {
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
         {items.map((item, i) => {
           const cfg = statusConfig[item.status];
           const StatusIcon = cfg.icon;

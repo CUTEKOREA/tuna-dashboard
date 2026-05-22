@@ -221,7 +221,7 @@ export default function GarlicDashboard() {
       </header>
       
       {/* ═══ KPIs ═══ */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
         {Object.keys(GARLIC_KPIS).map((key, idx) => {
           const kpi = GARLIC_KPIS[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
@@ -257,7 +257,7 @@ export default function GarlicDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="글로벌 마늘 생산 추이 및 중국 패권" icon={Layers} iconColor="#eab308" pillar="S1"
           cardDesc="국가별 생산량 (단위: 톤) — 중국 산둥성 재배면적 증가 + 기후 안정 수확량 +15% 전망"
@@ -371,7 +371,7 @@ export default function GarlicDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="국내 비축 재고 및 용도별 소진 둔화 지표 (단위: %)" icon={RefreshCw} iconColor="#ca8a04" pillar="S2"
           cardDesc="신선/식용 vs 가공용 재고 소진율 비교 — 외식업황 악화 영향"
@@ -446,7 +446,7 @@ export default function GarlicDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="양념채소류(양파) 대비 마늘 수요 대체 탄력성 (단위: 톤)" icon={Truck} iconColor="#d97706" pillar="S3"
           cardDesc="양파 폭등 시 마늘 수요 전이 효과 — 비탄력적 시장 구조"
@@ -559,7 +559,7 @@ export default function GarlicDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 USD]" icon={MapPin} iconColor="#ef4444" pillar="S4"
           cardDesc="국가별 1인당 소비와 시장 규모 + 성장률 — 가치 마이그레이션 매트릭스"
@@ -651,7 +651,7 @@ export default function GarlicDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="기후 변화에 따른 단수 효율성 (Yield, kg/ha)" icon={Leaf} iconColor="#d97706" pillar="S1"
           cardDesc="국가별 단수 시계열 — 한국 '수축 사분면' 진입"

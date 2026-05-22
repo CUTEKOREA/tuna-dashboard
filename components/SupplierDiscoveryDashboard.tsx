@@ -405,7 +405,7 @@ export default function SupplierDiscoveryDashboard() {
               <Loader2 size={20} className={styles.spin} /> 글로벌 환경 데이터 수집 중 (ECOS 환율 + FRED 금리 + KOTRA 시장뉴스)...
             </div>
           ) : envData && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
               {/* Exchange Rate */}
               <div style={{ background: 'rgba(15, 23, 42, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
@@ -477,7 +477,7 @@ export default function SupplierDiscoveryDashboard() {
           <AnimatePresence mode="wait">
             {macroData && !isMacroSearching && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem', width: '100%' }}>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginTop: '1.5rem', width: '100%' }}>
                   
                   {/* Tariff & HS Code Stats */}
                   <div style={{ background: 'rgba(236, 72, 153, 0.1)', border: '1px solid #ec4899', borderRadius: '8px', padding: '1.5rem' }}>
@@ -584,7 +584,7 @@ export default function SupplierDiscoveryDashboard() {
                       </span>
                     </h4>
                     
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+                    <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
                       {[
                         { key: 'demand', title: '1. 수요 (Demand)', data: macroData.scorecard.demand },
                         { key: 'accessibility', title: '2. 접근성 (Accessibility)', data: macroData.scorecard.accessibility },
@@ -754,7 +754,7 @@ export default function SupplierDiscoveryDashboard() {
               <Loader2 size={20} className={styles.spin} /> 리스크 포렌식 스캔 중 (식약처 + KOTRA 사기사례 + OFAC 제재)...
             </div>
           ) : riskData && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
               {/* OFAC Sanctions */}
               <div style={{ background: 'rgba(15, 23, 42, 0.8)', border: `1px solid ${riskData.ofac?.isSanctioned ? '#ef4444' : '#334155'}`, borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>

@@ -261,7 +261,7 @@ export default function CarrotDashboard() {
 
       {/* ═══ LIVE API BAR ═══ */}
       {(liveArbitrage || liveTrq) && (
-        <div className="ds-card" style={{ marginBottom:'2rem', padding:'1.2rem', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem' }}>
+        <div data-mobile-stack className="ds-card" style={{ marginBottom:'2rem', padding:'1.2rem', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem' }}>
           {/* Live Arbitrage */}
           <div style={{ borderRight:'1px dashed rgba(255,255,255,0.1)', paddingRight:'1.5rem' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
@@ -353,7 +353,7 @@ export default function CarrotDashboard() {
       </div>
 
       {/* ═══ KPIs ═══ */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(6, 1fr)', gap:'1rem', marginBottom:'2rem' }}>
         {Object.keys(CARROT_KPIS).map((key, idx) => {
           const kpi = CARROT_KPIS[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (

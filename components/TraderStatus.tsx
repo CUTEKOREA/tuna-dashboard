@@ -67,7 +67,7 @@ export default function TraderStatus() {
         </SafeResponsiveContainer>
       </div>
 
-      <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
+      <div data-mobile-stack style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
         <div style={{ padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', textAlign: 'center' }}>
           <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>FCF</div>
           <div style={{ fontSize: '16px', fontWeight: 'bold', color: COLORS['FCF'] }}>94,777 <span style={{ fontSize: '10px' }}>MT</span></div>

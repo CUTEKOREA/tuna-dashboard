@@ -51,7 +51,7 @@ export function SkipjackForecastWidget() {
               </AreaChart>
             </div>
             {sk?.forecast && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', marginTop: '8px' }}>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', marginTop: '8px' }}>
                 {sk.forecast.map((f: any, i: number) => (
                   <div key={i} style={{ background: 'rgba(252,213,53,0.06)', borderRadius: '6px', padding: '6px', textAlign: 'center' }}>
                     <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>{f.period}</div>
