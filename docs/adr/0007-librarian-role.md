@@ -227,15 +227,39 @@ curl -X POST "$URL" \
 - gcloud project가 결제 활성 GCP project여야 함 (사용자 `gen-lang-client-0963198205` 확인됨)
 - OAuth 토큰 1시간 만료 — 매 호출 시 재발급
 
-### 실측 권장 운영 패턴 (Multi-stage pipeline)
+### 실측 권장 운영 패턴 (2026-05-22 갱신)
 
-| Stage | 모델 | Prompt | 비용/audit | 시간 | 역할 |
+| Stage | 모델 | Endpoint | 비용/audit | 시간 | 역할 |
 |---|---|---|---|---|---|
-| 1차 광역 sweep | Flash (AI Studio API key) | v1 (관대) | $0.003 | 43초 | 위반 후보 광역 검출 (recall 우선) |
-| 2차 precision check | **Pro 2.5 (Vertex AI OAuth)** | v3 (엄격) | $0.006 | 31초 | 진짜 위반 confirm (precision 100%) |
-| 3차 final approval | Claude Code or 사람 | $0 | — | 도메인 정책 (엄격/관대) 적용 + 머지 |
+| **1차 광역 sweep** | **gemini-3.5-flash** | Direct API key (`generativelanguage`) | **$0.001** | **17초** | 빠른 recall 우선 (실측 carrot 3건) |
+| **2차 precision check** | **gemini-2.5-pro** | Vertex AI OAuth (`aiplatform`) | $0.004 | 40초 | 진짜 위반 confirm (precision 100%) |
+| 3차 final approval | Claude Code or 사람 | — | $0 | — | 도메인 정책 적용 + 머지 |
 
-전체 audit 비용: **$0.009/dashboard** → $100/월 = **11,000 audit pipeline 가능**.
+전체 audit 비용: **~$0.005/dashboard** → $100/월 = **20,000 audit pipeline 가능**.
+
+### 모델 swap roadmap
+
+| 시점 | Librarian (Flash) | Librarian-heavy (Pro) |
+|---|---|---|
+| 2026-05-22 (현재) | `gemini-3.5-flash` via Direct API | `gemini-2.5-pro` via Vertex AI OAuth |
+| Vertex AI 3.x Pro 배포 시 | (동일) | → `gemini-3.1-pro-preview` via Vertex AI OAuth |
+| AI Studio billing 활성화 시 | (선택) → Vertex로 통일 | → `gemini-3.1-pro-preview` via Direct (대안) |
+
+**현재 차단 사유**:
+- `gemini-3.x-pro-preview`: Vertex AI 미배포 (404), Direct API는 `free_tier_limit: 0` (paid 활성 필요)
+- `gemini-3.5-flash`: Vertex AI 미배포, Direct API는 작동 ✓
+
+### 모델별 endpoint 분기 (librarian_audit.sh 로직)
+
+```bash
+# 모델명이 'gemini-3'로 시작하면 Direct API (Vertex 미배포)
+if [[ "$MODEL" =~ ^gemini-3 ]]; then
+  URL="https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}"
+else  # 2.5 시리즈는 Vertex AI OAuth (paid ON_DEMAND)
+  TOKEN=$(gcloud auth print-access-token)
+  URL="https://${LOC}-aiplatform.googleapis.com/v1/projects/${PROJECT}/.../models/${MODEL}:generateContent"
+fi
+```
 
 ### 실측 권장 운영 패턴 (Multi-stage pipeline)
 

@@ -23,7 +23,9 @@ ROOT="$(pwd)"
 
 DATE="$(date +%Y-%m-%d)"
 OUT_DIR="artifacts/daily_audit/${DATE}"
-MODEL="${MODEL:-gemini-2.5-pro}"
+# 기본 모델: gemini-3.5-flash (Direct API, 17초/$0.001, recall 우수)
+# precision 필요 시: MODEL=gemini-2.5-pro (Vertex AI OAuth, 40초/$0.004)
+MODEL="${MODEL:-gemini-3.5-flash}"
 BUDGET="${BUDGET_USD:-1.0}"
 PROMPT_FILE="${LIBRARIAN_PROMPT:-/tmp/librarian_prompt_v3.txt}"
 
