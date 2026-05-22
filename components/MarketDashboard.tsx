@@ -43,10 +43,36 @@ export default function MarketDashboard() {
     return () => ro.disconnect();
   }, []);
 
-  const [mgoData, setMgoData] = useState({ price: 795, change: 45, date: '2026.05.11', loading: false });
-  const [fxData, setFxData] = useState({ usd_krw: 1455, date: '2026.05.11', loading: false });
+  const [mgoData, setMgoData] = useState({ price: 1665, change: -45, date: '2026.05.20', loading: false });
+  const [fxData, setFxData] = useState({ usd_krw: 1455, date: '2026.05.22', loading: false });
+  const [atunaLatest, setAtunaLatest] = useState<{
+    skjBkk: { price: number; date: string };
+    yfSey: { price: number; date: string };
+    latestDate: string | null;
+    loading: boolean;
+  }>({
+    skjBkk: { price: 1975, date: '2026-05-22' },
+    yfSey: { price: 2320, date: '2026-05-22' },
+    latestDate: '2026-05-22',
+    loading: false,
+  });
 
   useEffect(() => {
+    // Atuna 참치 도매가 latest 페치 (SKJ Bangkok + YF Seychelles)
+    setAtunaLatest(prev => ({ ...prev, loading: true }));
+    fetch('/api/atuna-prices')
+      .then(res => res.json())
+      .then(data => {
+        const hub = data.latestByHub || {};
+        setAtunaLatest({
+          skjBkk: hub.skj_bkk || { price: 1975, date: '2026-05-22' },
+          yfSey: hub.yf_sey || { price: 2320, date: '2026-05-22' },
+          latestDate: data.latestDate,
+          loading: false,
+        });
+      })
+      .catch(() => setAtunaLatest(prev => ({ ...prev, loading: false })));
+
     // Fetch MGO live data
     setMgoData(prev => ({ ...prev, loading: true }));
     fetch('/api/mgo')
@@ -70,8 +96,7 @@ export default function MarketDashboard() {
       .catch(() => setFxData(prev => ({ ...prev, loading: false })));
   }, []);
 
-  const latestSkjBkk = priceData.length > 0 ? priceData[priceData.length - 1].skj_bkk || 1975 : 1975;
-  const latestYfVig = priceData.length > 0 ? priceData[priceData.length - 1].yf_vig || 2800 : 2800;
+  const formatHubDate = (d?: string) => (d ? d.replace(/-/g, '.') : '');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -85,37 +110,37 @@ export default function MarketDashboard() {
         {/* KPI 1 */}
         <div className="ds-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <span style={{ fontWeight: 600 }}>SKJ Price (Bangkok)</span>
+            <span style={{ fontWeight: 600 }}>SKJ 가다랑어 (방콕)</span>
             <Ship size={16} color="#38bdf8" />
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
-            ${latestSkjBkk.toLocaleString()} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
+            {atunaLatest.loading ? '...' : `$${atunaLatest.skjBkk.price.toLocaleString()}`} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: 'var(--accent-success)' }}>
             <TrendingDown size={14} />
-            <span>수요 파괴로 전월 대비 -6%</span>
+            <span>Atuna API ({formatHubDate(atunaLatest.skjBkk.date)} 기준)</span>
           </div>
         </div>
 
         {/* KPI 2 */}
         <div className="ds-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <span style={{ fontWeight: 600 }}>YF Price (Vigo)</span>
+            <span style={{ fontWeight: 600 }}>YF 황다랑어 (세이셸)</span>
             <Anchor size={16} color="#818cf8" />
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
-            ${latestYfVig.toLocaleString()} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
+            {atunaLatest.loading ? '...' : `$${atunaLatest.yfSey.price.toLocaleString()}`} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px', fontSize: '0.8rem', color: 'var(--accent-warning)' }}>
             <TrendingUp size={14} />
-            <span>프리미엄 횟감 수요 탄탄 (+2%)</span>
+            <span>Atuna API ({formatHubDate(atunaLatest.yfSey.date)} 기준)</span>
           </div>
         </div>
 
         {/* KPI 3 */}
         <div className="ds-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <span style={{ fontWeight: 600 }}>Singapore MGO</span>
+            <span style={{ fontWeight: 600 }}>싱가포르 MGO 유가</span>
             <Activity size={16} color="#ef4444" />
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
@@ -130,7 +155,7 @@ export default function MarketDashboard() {
         {/* KPI 4 */}
         <div className="ds-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            <span style={{ fontWeight: 600 }}>USD / KRW 환율</span>
+            <span style={{ fontWeight: 600 }}>달러·원 환율</span>
             <Globe size={16} color="#10b981" />
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
