@@ -1,0 +1,9 @@
+[
+  { "m": "M1", "freightRate": 1000, "margin": 4.2 },
+  { "m": "M2", "freightRate": 1100, "margin": 4.5 },
+  { "m": "M3", "freightRate": 1800, "margin": 2.1 },
+  { "m": "M4", "freightRate": 1500, "margin": 3.5 },
+  { "m": "M5", "freightRate": 2500, "margin": -1.2 },
+  { "m": "M6", "freightRate": 1200, "margin": 5.6 },
+  { "m": "M7", "freightRate": 1150, "margin": 6.2 }
+]

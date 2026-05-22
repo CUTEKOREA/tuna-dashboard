@@ -1,0 +1,6 @@
+[
+  { "region": "중국산", "before": 100, "after": 102 },
+  { "region": "일본산", "before": 98, "after": 65 },
+  { "region": "한국(가나 향)", "before": 105, "after": 145 },
+  { "region": "노르웨이", "before": 140, "after": 148 }
+]

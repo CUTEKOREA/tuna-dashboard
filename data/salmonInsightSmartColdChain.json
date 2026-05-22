@@ -1,0 +1,9 @@
+[
+  { "year": "2020", "airCost": 4.5, "seaCost": 1.2, "carbon": 100 },
+  { "year": "2021", "airCost": 6.8, "seaCost": 1.5, "carbon": 98 },
+  { "year": "2022", "airCost": 8.2, "seaCost": 2.1, "carbon": 95 },
+  { "year": "2023", "airCost": 5.5, "seaCost": 1.4, "carbon": 90 },
+  { "year": "2024", "airCost": 4.8, "seaCost": 1.3, "carbon": 85 },
+  { "year": "2025(E)", "airCost": 5.0, "seaCost": 1.2, "carbon": 75 },
+  { "year": "2026(E)", "airCost": 5.2, "seaCost": 1.1, "carbon": 60 }
+]

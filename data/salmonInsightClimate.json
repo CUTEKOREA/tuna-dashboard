@@ -1,0 +1,8 @@
+[
+  { "year": "2022", "carbonTax": 30, "mortality": 11 },
+  { "year": "2023", "carbonTax": 45, "mortality": 11.5 },
+  { "year": "2024", "carbonTax": 60, "mortality": 16.2 },
+  { "year": "2026(E)", "carbonTax": 90, "mortality": 14 },
+  { "year": "2028(E)", "carbonTax": 120, "mortality": 14.5 },
+  { "year": "2030(E)", "carbonTax": 150, "mortality": 15 }
+]

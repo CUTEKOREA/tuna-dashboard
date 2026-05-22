@@ -2,10 +2,9 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ZAxis } from 'recharts';
-import styles from './MackerelStrategy.module.css';
 import { Radar } from 'lucide-react';
+import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_blackhole.json';
-import TakeawayBox from './TakeawayBox';
 import WestAfricaMap from './WestAfricaMap';
 
 export default function MackerelBlackhole() {
@@ -62,19 +61,8 @@ export default function MackerelBlackhole() {
 
   const top5Growth = [...data].filter(d => d.growth_pct > 0).sort((a, b) => b.growth_pct - a.growth_pct).slice(0, 5);
 
-  return (
-    <div className={styles.glassCard} style={{ borderColor: 'rgba(245, 158, 11, 0.3)' }}>
-      <div style={{ marginBottom: '16px' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#fbbf24', marginBottom: '6px', fontWeight: 700, fontSize: '1.1rem' }}>
-          <Radar size={20} /> &quot;고등어 블랙홀&quot; 신흥 시장 발굴
-          
-        </h3>
-        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0 }}>
-          2019→2023 수입량 증가율 vs 절대 규모 — 폭발 성장 시장을 조기 포착
-        </p>
-      </div>
-
-      {/* Top 5 Growth Markets */}
+  const customBody = (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
         {top5Growth.map((d, i) => (
           <div key={i} style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '8px', padding: '8px 14px', fontSize: '0.78rem' }}>
@@ -102,13 +90,23 @@ export default function MackerelBlackhole() {
           </ScatterChart>
         )}
       </div>
-      <div style={{ marginTop: '20px' }}>
-        <TakeawayBox
-          source="FAO FishStatJ - Trade by Partner (2019-2023)"
-          situation="2019~2023년 데이터를 분석한 결과, 토고(+5,932%), 말리(+1,300%), 필리핀(+167%), 코트디부아르(+81%) 등 아프리카 및 동남아 신흥 국가들의 고등어 수입량이 폭발적으로 증가하며 '신흥 블랙홀'을 형성하고 있습니다. 이들 국가의 인구 증가와 저렴한 단백질 수요가 세계 고등어 무역 지형을 빠르게 바꾸고 있습니다."
-          actionPlan="코트디부아르·필리핀·콩고민주공화국 등 수입 성장세가 뚜렷한 국가들을 신규 전략 시장으로 지정하고, 국내에서 상품성이 낮은 소형어(300g 미만)의 정기 컨테이너 수출 물량을 대폭 확대하십시오. 과거 최대 시장이었던 가나·나이지리아의 점유율이 점차 하락하는 추세임을 고려해, 서아프리카 인근 다른 거점 국가로의 선제적인 유통망 다변화 투자가 핵심입니다."
-        />
-      </div>
     </div>
+  );
+
+  return (
+    <WidgetCard
+      title="&quot;고등어 블랙홀&quot; 신흥 시장 발굴"
+      icon={Radar}
+      iconColor="#fbbf24"
+      pillar="S4"
+      cardDesc="2019→2023 수입량 증가율 vs 절대 규모 — 폭발 성장 시장을 조기 포착"
+      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      customBody={customBody}
+      takeaway={{
+        situation: "2019~2023년 데이터를 분석한 결과, 토고(+5,932%), 말리(+1,300%), 필리핀(+167%), 코트디부아르(+81%) 등 아프리카 및 동남아 신흥 국가들의 고등어 수입량이 폭발적으로 증가하며 '신흥 블랙홀'을 형성하고 있습니다. 이들 국가의 인구 증가와 저렴한 단백질 수요가 세계 고등어 무역 지형을 빠르게 바꾸고 있습니다.",
+        actionPlan: "코트디부아르·필리핀·콩고민주공화국 등 수입 성장세가 뚜렷한 국가들을 신규 전략 시장으로 지정하고, 국내에서 상품성이 낮은 소형어(300g 미만)의 정기 컨테이너 수출 물량을 대폭 확대하십시오. 과거 최대 시장이었던 가나·나이지리아의 점유율이 점차 하락하는 추세임을 고려해, 서아프리카 인근 다른 거점 국가로의 선제적인 유통망 다변화 투자가 핵심입니다.",
+        source: "FAO FishStatJ - Trade by Partner (2019-2023)",
+      }}
+    />
   );
 }

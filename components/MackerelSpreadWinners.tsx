@@ -2,10 +2,9 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell, ReferenceLine } from 'recharts';
-import styles from './MackerelStrategy.module.css';
 import { Scissors } from 'lucide-react';
 import rawData from '../data/mackerel_spread.json';
-import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 export default function MackerelSpreadWinners() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -47,41 +46,39 @@ export default function MackerelSpreadWinners() {
     );
   };
 
-  return (
-    <div className={styles.glassCard} style={{ borderColor: 'rgba(139, 92, 246, 0.3)' }}>
-      <div style={{ marginBottom: '16px' }}>
-        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#a78bfa', marginBottom: '6px', fontWeight: 700, fontSize: '1.1rem' }}>
-          <Scissors size={20} /> 가공 차익의 승자들
-          
-        </h3>
-        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0 }}>
-          2023년 기준 수입→수출 가공 스프레드 상위 국가 — 가공 인프라 투자 ROI 판단
-        </p>
-      </div>
-
-      <div ref={chartRef} style={{ width: '100%' }}>
-        {chartWidth > 0 && (
-          <BarChart width={chartWidth} height={400} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 60 }} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
-            <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />
-            <YAxis type="category" dataKey="country" width={100} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
-            <Tooltip content={<SpreadTooltip />} />
-            <ReferenceLine x={0} stroke="rgba(255,255,255,0.2)" />
-            <Bar dataKey="margin_usd" name="가공 스프레드 ($/t)" radius={[0, 4, 4, 0]}>
-              {data.map((d: any, i: number) => (
-                <Cell key={i} fill={d.margin_usd > 0 ? `rgba(16, 185, 129, ${0.4 + Math.min(d.margin_usd / 5000, 0.6)})` : 'rgba(239, 68, 68, 0.5)'} />
-              ))}
-            </Bar>
-          </BarChart>
-        )}
-      </div>
-      <div style={{ marginTop: '20px' }}>
-        <TakeawayBox
-          source="FAO FishStatJ Import/Export Price Spread Analysis (2023)"
-          situation="호주가 톤당 $11,508의 최고 마진 달성률을 보이고 선별적인 프리미엄 시장 수요를 파고들었으며, 폴란드($3,178/t), 체코($2,558/t) 등 주요 유럽 인접국들이 동유럽 중심의 견고한 가공 스프레드를 기록하고 있어 서유럽 향 '밸류업 팩토리' 역할을 지속 중입니다. 반면 한국은 단순 벌크 원물 수입 후 유사한 가격대에 재수출되는 비효율(Inefficiency)적 중계 물동량이 많아 부가가치 창출 구조 개선이 절실합니다."
-          actionPlan="동유럽/폴란드식 고수익 가공 모델을 참고하여 수입산 펠라직 어종을 HMR(간편식)·구이용 필레·양념 및 특수 포장 제품 등 2차 가공품으로 전환할 자체 인프라를 구축해야 합니다. 또한 호주 사례와 같이 철저히 시장을 분리하여 저가 대량 유통과 고가 소량 프리미엄 시장(수출 및 내수)을 동시에 타겟팅하는 '프라이싱 이원화' 전략을 수립."
-        />
-      </div>
+  const customBody = (
+    <div ref={chartRef} style={{ width: '100%' }}>
+      {chartWidth > 0 && (
+        <BarChart width={chartWidth} height={400} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 60 }} layout="vertical">
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />
+          <YAxis type="category" dataKey="country" width={100} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
+          <Tooltip content={<SpreadTooltip />} />
+          <ReferenceLine x={0} stroke="rgba(255,255,255,0.2)" />
+          <Bar dataKey="margin_usd" name="가공 스프레드 ($/t)" radius={[0, 4, 4, 0]}>
+            {data.map((d: any, i: number) => (
+              <Cell key={i} fill={d.margin_usd > 0 ? `rgba(16, 185, 129, ${0.4 + Math.min(d.margin_usd / 5000, 0.6)})` : 'rgba(239, 68, 68, 0.5)'} />
+            ))}
+          </Bar>
+        </BarChart>
+      )}
     </div>
+  );
+
+  return (
+    <WidgetCard
+      title="가공 차익의 승자들"
+      icon={Scissors}
+      iconColor="#a78bfa"
+      pillar="S2"
+      cardDesc="2023년 기준 수입→수출 가공 스프레드 상위 국가 — 가공 인프라 투자 ROI 판단"
+      telemetry={{ status: 'STATIC' }}
+      customBody={customBody}
+      takeaway={{
+        situation: "호주가 톤당 $11,508의 최고 마진 달성률을 보이고 선별적인 프리미엄 시장 수요를 파고들었으며, 폴란드($3,178/t), 체코($2,558/t) 등 주요 유럽 인접국들이 동유럽 중심의 견고한 가공 스프레드를 기록하고 있어 서유럽 향 '밸류업 팩토리' 역할을 지속 중입니다. 반면 한국은 단순 벌크 원물 수입 후 유사한 가격대에 재수출되는 비효율(Inefficiency)적 중계 물동량이 많아 부가가치 창출 구조 개선이 절실합니다.",
+        actionPlan: "동유럽/폴란드식 고수익 가공 모델을 참고하여 수입산 펠라직 어종을 HMR(간편식)·구이용 필레·양념 및 특수 포장 제품 등 2차 가공품으로 전환할 자체 인프라를 구축해야 합니다. 또한 호주 사례와 같이 철저히 시장을 분리하여 저가 대량 유통과 고가 소량 프리미엄 시장(수출 및 내수)을 동시에 타겟팅하는 '프라이싱 이원화' 전략을 수립.",
+        source: "FAO FishStatJ Import/Export Price Spread Analysis (2023)"
+      }}
+    />
   );
 }

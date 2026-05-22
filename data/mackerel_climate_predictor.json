@@ -1,0 +1,8 @@
+[
+  { "tempRise": 0.1, "catchRate": 5, "year": "2016" },
+  { "tempRise": 0.5, "catchRate": 1, "year": "2018" },
+  { "tempRise": 1.1, "catchRate": -15, "year": "2020" },
+  { "tempRise": 1.5, "catchRate": -22, "year": "2021" },
+  { "tempRise": 1.8, "catchRate": -45, "year": "2023" },
+  { "tempRise": 2.1, "catchRate": -65, "year": "2024" }
+]

@@ -52,8 +52,8 @@ export interface KpiItem {
 }
 
 export interface TakeawayProps {
-  situation: string;
-  actionPlan: string;
+  situation: string | React.ReactNode;
+  actionPlan: string | React.ReactNode;
   source: string;          // W-04: 의무
 }
 
@@ -97,8 +97,9 @@ const FORBIDDEN_PATTERNS = [
   /잉여현금흐름을 극대화/,
 ];
 
-function checkForbidden(text: string, field: string, title: string): void {
+function checkForbidden(text: string | React.ReactNode, field: string, title: string): void {
   if (process.env.NODE_ENV === 'production') return;  // prod에서는 lint로만 검출
+  if (typeof text !== 'string') return;  // ReactNode 통과 (TermTooltip 임베디드 등)
   for (const pattern of FORBIDDEN_PATTERNS) {
     if (pattern.test(text)) {
       console.error(

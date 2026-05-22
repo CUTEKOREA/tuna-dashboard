@@ -1,0 +1,7 @@
+[
+  { "p": "W1", "storageVolume": 8000, "turnoverDays": 14 },
+  { "p": "W2", "storageVolume": 12000, "turnoverDays": 18 },
+  { "p": "W3", "storageVolume": 18000, "turnoverDays": 35 },
+  { "p": "W4", "storageVolume": 22000, "turnoverDays": 52 },
+  { "p": "W5", "storageVolume": 21000, "turnoverDays": 45 }
+]
