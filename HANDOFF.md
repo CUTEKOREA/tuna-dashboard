@@ -8,6 +8,35 @@
 
 ---
 
+## 🆕 2026-05-21 OMO Stage 1 검증 위젯 #1 (Antigravity 세션)
+
+### TunaCatchVolumeTrend.tsx 신규 생성
+- **spec**: `artifacts/spec_stage1.md` 위젯 #1 (참치 어획량 추이)
+- **pillar**: S1 🐟 원료 수급
+- **구현**: ADR-0005 WidgetCard 사용, LineChart (Recharts), SVG linearGradient cyan→blue stroke
+- **§X 체크리스트**: 9/9 통과 (cardDesc·TelemetryBadge STATIC·SIT 2문장·TAK 2문장·한글 100%·단위 천 톤·Pillar S1·WidgetCard·빌드)
+- **빌드**: 내 파일 에러 0건, tsc --noEmit 통과
+- **TermTooltip**: WCPFC·IATTC 약어에 한글 풀네임 해설 부착
+- **커밋**: `4389e80` `feat(widget): 참치 어획량 추이 위젯 신규 생성 (Stage 1 검증 #1) [OMO]`
+
+### 다음 단계
+- Stage 1 위젯 #2~#5 순차 생성 (spec_stage1.md 참조)
+- 대시보드에 Stage 0+1 위젯 삽입 → 화면 렌더링 확인 (Verifier 역할)
+
+---
+
+## 2026-05-21 OMO Stage 0 검증 위젯 (Antigravity 세션)
+
+### TunaOriginPriceTrend.tsx 신규 생성
+- **spec**: `artifacts/spec_stage0.md` (사람 작성, 4-Agent 무인 루프 검증용)
+- **pillar**: S1 🐟 원료 수급
+- **구현**: ADR-0005 WidgetCard 사용, BarChart (Recharts), SVG linearGradient cyan→blue
+- **§8 체크리스트**: 9/9 통과 (cardDesc·TelemetryBadge STATIC·SIT 2문장·TAK 2문장·한글 100%·단위 원/kg·Pillar S1·WidgetCard·빌드)
+- **빌드**: 내 파일 에러 0건 (기존 49건은 carrot/mangosteen data 누락 — 기존 이슈)
+- **TermTooltip**: WCPFC·IATTC 약어에 한글 풀네임 해설 부착
+
+---
+
 ## 🆕 2026-05-21 Antigravity Phase 2A.2 — Pollock 100% closure
 
 ### Wave 2 (Pollock 중형 2파일 완료)
