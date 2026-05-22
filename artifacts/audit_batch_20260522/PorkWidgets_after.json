@@ -1,0 +1,29 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 67,
+  "tokens": {
+    "input": 7137,
+    "output": 158,
+    "thoughts": 7445
+  },
+  "cost_usd": 0.0105,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Item",
+      "context_excerpt": "FAOSTAT QCL Item 1035",
+      "suggested_korean": "항목",
+      "confidence": "low"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Top 10",
+      "context_excerpt": "글로벌 Top 10 생산국 점유율",
+      "suggested_korean": "상위 10개",
+      "confidence": "high"
+    }
+  ]
+}

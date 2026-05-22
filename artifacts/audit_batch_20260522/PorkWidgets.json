@@ -1,0 +1,181 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 62,
+  "tokens": {
+    "input": 6971,
+    "output": 1713,
+    "thoughts": 7271
+  },
+  "cost_usd": 0.02584,
+  "violations_count": 21,
+  "violations": [
+    {
+      "field": "strat",
+      "widget_index": 0,
+      "violation": "WOAH",
+      "context_excerpt": "WOAH ASF 모니터링 + CME Lean",
+      "suggested_korean": "세계동물보건기구(WOAH)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 0,
+      "violation": "CME Lean Hogs",
+      "context_excerpt": "모니터링 + CME Lean Hogs 선물을 수산물",
+      "suggested_korean": "시카고상업거래소(CME) 돈육 선물",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Item",
+      "context_excerpt": "source=\"FAOSTAT QCL Item 1035\"",
+      "suggested_korean": "품목",
+      "confidence": "medium"
+    },
+    {
+      "field": "sub",
+      "widget_index": 1,
+      "violation": "CBOT",
+      "context_excerpt": "마진율(%) 추이 | CBOT 2022-2023",
+      "suggested_korean": "시카고상품거래소(CBOT)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "CBOT Corn/Soy",
+      "context_excerpt": "source=\"CBOT Corn/Soy\"",
+      "suggested_korean": "시카고상품거래소(CBOT) 옥수수/대두",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "Trade Data",
+      "context_excerpt": "source=\"OEC Trade Data\"",
+      "suggested_korean": "무역 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 3,
+      "violation": "Emissions",
+      "context_excerpt": "source=\"FAOSTAT Emissions\"",
+      "suggested_korean": "배출량",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Top 10",
+      "context_excerpt": "title=\"글로벌 Top 10 생산국 점유율\"",
+      "suggested_korean": "상위 10개",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 4,
+      "violation": "HHI",
+      "context_excerpt": "합산 57.6%로 HHI 2,100+ 고집중도.",
+      "suggested_korean": "허핀달-허쉬만 지수(HHI)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "Item",
+      "context_excerpt": "source=\"FAOSTAT QCL Item 1035\"",
+      "suggested_korean": "품목",
+      "confidence": "medium"
+    },
+    {
+      "field": "sub",
+      "widget_index": 6,
+      "violation": "FBS",
+      "context_excerpt": "시계열 | FAOSTAT QCL+FBS 2015-2023",
+      "suggested_korean": "식량수급표(FBS)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 6,
+      "violation": "FBS",
+      "context_excerpt": "source=\"FAOSTAT FBS\"",
+      "suggested_korean": "식량수급표(FBS)",
+      "confidence": "high"
+    },
+    {
+      "field": "sub",
+      "widget_index": 7,
+      "violation": "TM",
+      "context_excerpt": "국가별 물량 | FAOSTAT TM 2022",
+      "suggested_korean": "무역 매트릭스(TM)",
+      "confidence": "medium"
+    },
+    {
+      "field": "source",
+      "widget_index": 7,
+      "violation": "TM",
+      "context_excerpt": "source=\"FAOSTAT TM HS1038\"",
+      "suggested_korean": "무역 매트릭스(TM)",
+      "confidence": "medium"
+    },
+    {
+      "field": "strat",
+      "widget_index": 8,
+      "violation": "WOAH",
+      "context_excerpt": "strat=\"WOAH ASF 경보 발령 즉시, 자사",
+      "suggested_korean": "세계동물보건기구(WOAH)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 8,
+      "violation": "Fish Price Index",
+      "context_excerpt": "source=\"FAOSTAT QCL + Fish Price Index\"",
+      "suggested_korean": "수산물 가격 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 9,
+      "violation": "PSD",
+      "context_excerpt": "source=\"FAO / USDA PSD\"",
+      "suggested_korean": "생산, 공급, 분배(PSD)",
+      "confidence": "high"
+    },
+    {
+      "field": "sub",
+      "widget_index": 10,
+      "violation": "FBS",
+      "context_excerpt": "의존도(%) | FAOSTAT FBS + USDA PSD",
+      "suggested_korean": "식량수급표(FBS)",
+      "confidence": "high"
+    },
+    {
+      "field": "sub",
+      "widget_index": 10,
+      "violation": "PSD",
+      "context_excerpt": "의존도(%) | FAOSTAT FBS + USDA PSD",
+      "suggested_korean": "생산, 공급, 분배(PSD)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "FBS",
+      "context_excerpt": "source=\"FAOSTAT FBS / USDA PSD\"",
+      "suggested_korean": "식량수급표(FBS)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "PSD",
+      "context_excerpt": "source=\"FAOSTAT FBS / USDA PSD\"",
+      "suggested_korean": "생산, 공급, 분배(PSD)",
+      "confidence": "high"
+    }
+  ]
+}

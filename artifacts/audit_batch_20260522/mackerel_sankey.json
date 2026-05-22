@@ -1,0 +1,12 @@
+{
+  "model": "gemini-2.5-pro",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 2073,
+    "output": 1,
+    "thoughts": 1979
+  },
+  "cost_usd": 0.0026,
+  "violations_count": 0,
+  "violations": []
+}
