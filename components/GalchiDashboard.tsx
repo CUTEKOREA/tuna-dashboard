@@ -122,7 +122,7 @@ const WIDGET_ICONS: Record<string, any> = {
 const SECTIONS = [
   {
     title: "Part I — 원물 생산",
-    desc: "글로벌 어획량, 자원평가, 조업 효율, TAC 관리, 기후 리스크 및 KFAS 수산과학 연구",
+    desc: "글로벌 어획량, 자원평가, 조업 효율, 총허용어획량(TAC) 관리, 기후 리스크 및 KFAS 수산과학 연구",
     ids: ["w_galchi_prod_risk","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"],
     accent: "var(--color-success)",
     icon: "Fish",
@@ -154,7 +154,7 @@ const SECTIONS = [
   },
   {
     title: "Part V — ESG 및 지속가능성 (Sustainability)",
-    desc: "공급망 노동 리스크, OFAC/EU 제재 검증, SPS 비관세 장벽, 식품 안전 및 정책 모니터링",
+    desc: "공급망 노동 리스크, OFAC/EU 제재 검증, 위생·식물위생 조치(SPS) 비관세 장벽, 식품 안전 및 정책 모니터링",
     ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10"],
     accent: "var(--color-danger)",
     icon: "ShieldCheck",
@@ -212,7 +212,7 @@ export default function GalchiDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>Loading Intelligence...</p>
+      <p style={{ color: '#94a3b8', fontSize: '1rem' }}>인텔리전스 로딩 중...</p>
     </div>
   );
 
@@ -280,7 +280,7 @@ export default function GalchiDashboard() {
       lines: [{ key: "한국 TAC(톤)", color: "#f43f5e" }],
       sit: "글로벌 갈치 생산은 양식이 불가하여 기후 리스크에 극도로 취약합니다. 반면 한국의 갈치 TAC는 자원 회복 기조로 최근 4년간 74% 증가했습니다.",
       strat: "양식 불가능 리스크를 대비해 기후 변동에 따른 어획량 급감 전 선도거래 물량을 확보하고, 국내 증가분은 B2B 시장에 투입하여 수익성을 높이십시오.",
-      source: "FAO Yearbook & USDA GAIN",
+      source: "FAO 통계 연감 + USDA 글로벌 농업 정보 네트워크(GAIN)",
       isLive: true,
       data: [
         { year: "2020", "글로벌 생산량(톤)": 1050000, "한국 TAC(톤)": 30126 },
@@ -339,7 +339,7 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_galchi_multi_cost",
-      title: "착지원가 실시간 스태킹 — MFN vs FTA 복합 시뮬레이션",
+      title: "착지원가 실시간 스태킹 — 최혜국대우(MFN) vs FTA 복합 시뮬레이션",
       subtitle: "Tariffs API 연동. MFN 기본관세(10%)와 세네갈 FTA 특혜관세를 동시 적용한 착지원가를 월별로 비교하여, 관세 차익이 최대화되는 수입 타이밍을 식별합니다.",
       chartType: "Composed",
       xKey: "month",
@@ -380,8 +380,8 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_wto_sps_radar",
-      title: "WTO SPS 비관세 장벽 발동 트렌드",
-      subtitle: "WTO Data Portal 연동. 중국·아세안의 수산물 위생검역(SPS) 조치 발동 건수를 분기별로 추적합니다. 수출 시 비관세 장벽 충격을 사전 대비합니다.",
+      title: "WTO 위생·식물위생(SPS) 비관세 장벽 발동 트렌드",
+      subtitle: "WTO 데이터 포털(Data Portal) 연동. 중국·아세안의 수산물 위생검역(SPS) 조치 발동 건수를 분기별로 추적합니다. 수출 시 비관세 장벽 충격을 사전 대비합니다.",
       chartType: "Area",
       xKey: "period",
       areas: [
@@ -390,7 +390,7 @@ export default function GalchiDashboard() {
       ],
       sit: "중국 및 아세안의 수산물 비관세 장벽(SPS)이 분기별로 심화 추세입니다. 특히 중국은 정치적 이슈 발생 시 SPS 조치를 '비공식 제재' 수단으로 활용하는 패턴이 관측됩니다.",
       strat: "①대중국 수출 전 사전 위생 증명서(Health Certificate) 요건 모니터링 체계 가동, ②SPS 발동 급증 분기에 대체 수출 루트(일본·홍콩) 사전 확보.",
-      source: "WTO Data Portal",
+      source: "WTO 데이터 포털(Data Portal)",
       isLive: true,
       data: liveWto?.data || []
     },
@@ -403,7 +403,7 @@ export default function GalchiDashboard() {
       bars: [{ key: "수출 잠재력", color: "#10b981" }],
       sit: "대중국 수출 의존도가 높아 지정학적 리스크 노출이 큽니다. 일본(현재 986톤)을 제외하면 수출 다변화가 거의 진행되지 않은 상태입니다.",
       strat: "①경제 복잡성 대비 잠재력이 높은 싱가포르·홍콩 프리미엄 시장 타겟팅, ②베트남 HMR 가공 기지 활용 후 일본 재수출 삼각무역 구조 검토.",
-      source: "OEC API (Observatory of Economic Complexity)",
+      source: "경제 복잡성 관측소(Observatory of Economic Complexity, OEC) API",
       isLive: true,
       data: liveOec?.data || []
     }
@@ -499,7 +499,7 @@ export default function GalchiDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 갈치 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>C-Level Executive Briefing — {widgets?.length || 0} Widgets · {kpiKeys.length} KPIs · 17 Data Sources</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>최고경영진 브리핑 — {widgets?.length || 0}개 위젯 · {kpiKeys.length}개 KPI · 17개 데이터 소스</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -554,7 +554,7 @@ export default function GalchiDashboard() {
         <div style={{ marginBottom: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
             <Zap size={14} color="var(--color-success)" />
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>Live Intelligence Feed</span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>실시간 인텔리전스 피드</span>
             {(liveIntel?.exchange?.isLive || liveKcs?.isLive || liveKamis?.isLive) && (
               <span style={{ fontSize: '0.65rem', color: 'var(--color-success)', background: 'rgba(30,215,96,0.1)', padding: '2px 8px', borderRadius: '500px', fontWeight: 700 }}>● LIVE</span>
             )}

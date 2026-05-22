@@ -297,7 +297,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "가나의 2023/24 시즌 생산량은 기상이변과 질병으로 15년 만의 최저치인 약 58~60만 톤으로 급감했으며, 웨스턴 노스 지역 재배 면적의 81%가 CSSVD에 감염되었습니다. 전염병과 노령화된 나무로 인해 구조적 생산량 회복에는 5~10년 이상의 리드타임이 소요됩니다.",
             actionPlan: "포트폴리오 내 F&B 기업들의 서아프리카 원물 의존도(Exposure)를 즉각 하향 조정하고, 병해충 리스크가 낮은 중남미(에콰도르) 산지로의 공급망 다변화(Supply Chain Diversification)를 위한 소싱 계약 구조 개편을 강제해야 합니다. 기후 스마트 농업(CSA) 기술 보유 기업에 대한 그로스 캐피탈 투자를 선제적으로 검토해야 합니다.",
-            source: "FAOSTAT QCL 2018-2024 (CI:A, GH:X) / EFI Cocoa Insight March 2025",
+            source: "FAOSTAT QCL 2018-2024 (CI:A, GH:X) / EFI 코코아 인사이트 2025년 3월호",
           }} />
 
         <WidgetCard title="코코아 원두 선물 가격 패닉 바잉 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
@@ -323,7 +323,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "뉴욕 ICE 코코아 선물 가격은 극심한 숏 스퀴즈와 패닉 바잉이 겹치며 2024년 4월 톤당 $12,000를 돌파해 역사적 최고점을 경신했으나, 2026년 초 현재 톤당 약 $3,765까지 70%가량 폭락하며 극단적인 변동성을 보이고 있습니다. 이러한 백워데이션과 롤러코스터 장세는 산업 내 대규모 마진콜과 유동성 경색을 유발했습니다.",
             actionPlan: "선물 가격 급등락에 따른 운전자본(Working Capital) 부담을 역이용하여, 유동성 위기에 처한 중소형 가공업체·무역상들을 할인된 밸류에이션에 인수하는 디스트레스드(Distressed) 바이아웃 기회를 포착해야 합니다. 피투자사에는 'Just-in-Case' 재고 확보 모델 전환과 롤링 헤지(Rolling Hedge) 전략을 의무화해야 합니다.",
-            source: "World Bank Commodity Index / ICCO Daily Price / ICE Futures",
+            source: "세계은행 상품 지수(World Bank Commodity Index) / ICCO 일일 가격(ICCO Daily Price) / ICE Futures",
           }} />
 
         <WidgetCard title="글로벌 시장가 대비 현지 농가 수매가 디커플링 (USD/MT)" icon={Scale} iconColor="#b45309" pillar="S4"
@@ -345,7 +345,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "가나 정부는 2025년 10월 농가 수매가를 톤당 58,000세디(FOB의 70%)로 상향했으나, 글로벌 시장 가격(한때 $10,000+)과의 심각한 디커플링으로 2023/24 시즌에만 약 16만 톤이 인접국으로 밀수되었습니다. COCOBOD의 유동성 위기로 농가 대금 지급이 지연되며 현지 유통망이 마비 상태에 이르렀습니다.",
             actionPlan: "국가 통제망의 허점과 현지 매입상(LBC)의 유동성 경색을 이용해, PE 자금력으로 현지 LBC에 직접 자금을 조달(Trade Finance)하고 원물 우선 수매권을 확보하는 딜을 추진해야 합니다. 농가와 직접 연결되는 직수매 채널에 자본을 투입하여 국가 리스크(Sovereign Risk)를 우회해야 합니다.",
-            source: "ICE 선물거래소 / 가나 COCOBOD 공시 / EFI Cocoa Insight 2025",
+            source: "ICE 선물거래소 / 가나 COCOBOD 공시 / EFI 코코아 인사이트 2025",
           }} />
 
       </div>
@@ -396,7 +396,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "원두 부족 사태로 초콜릿의 핵심 원료인 코코아 버터 가격이 톤당 $15,000~$16,000까지 치솟으며 사상 최고치를 기록했습니다. 버터의 선물 비율(Ratio)은 안정화되는 추세이나 파우더 수요는 강하게 유지되며 가격 상승을 견인하고 있어, 파생품별 마진 스프레드의 극심한 비대칭성이 초래되고 있습니다.",
             actionPlan: "버터와 파우더의 마진 스프레드 괴리를 활용한 아비트리지 역량을 갖춘 가공업체(Grinder)에 투자 가중치를 두어야 합니다. 파우더 혼합 베이커리/음료 B2B 시장에서 확고한 캡티브(Captive) 채널을 보유한 업체를 선별하여 바이아웃 포트폴리오에 편입해야 합니다.",
-            source: "Bloomberg Commodity / ICE Cocoa Futures / ICCO 분기별 회보(ICCO Quarterly Bulletin)",
+            source: "블룸버그 상품(Bloomberg Commodity) / ICE Cocoa Futures / ICCO 분기별 회보(ICCO Quarterly Bulletin)",
           }} />
 
         <WidgetCard title="실사 기반 가공 공장 인수합병 타겟" icon={Landmark} iconColor="#b45309" pillar="S2"
@@ -418,7 +418,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "전례 없는 매입원가 폭등과 정부의 수매 대금 체불, 이력 추적 시스템 도입에 따른 고정비 증가로 서아프리카 현지의 로컬 매입상 및 영세 가공업체들의 줄도산 리스크가 커지고 있습니다. 반대로 글로벌 자본을 등에 업은 일부 현지 기업(Niche Cocoa, CPC 등)은 M&A 및 JV 타겟으로 떠오르고 있습니다.",
             actionPlan: "철저한 실사(Due Diligence)를 통해 부채 비율이 높으나 안정적 가공 설비와 라이선스를 보유한 현지 자산을 식별하여 오퍼튜니스틱(Opportunistic) 매수 전략을 구사해야 합니다. 설비 노후화로 가동률이 낮은 국영기업(CPC) 대비 민간 우량 기업(Niche Cocoa)과의 JV에 그로스 펀드를 배정해야 합니다.",
-            source: "Silla Co. 내부 실사 DB / COCOBOD Annual Report / Niche Cocoa IR",
+            source: "Silla Co. 내부 실사 DB / COCOBOD 연례 보고서 / Niche Cocoa 기업설명회 자료(IR)",
           }} />
 
         <WidgetCard title="코코아 선물 커브 구조 및 백워데이션 전환 지표 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
@@ -473,9 +473,9 @@ export default function CocoaDashboard() {
             </ComposedChart>
           }
           takeaway={{
-            situation: "가나 내 가공 인프라는 연 6.4만 톤 CAPA를 지닌 국영 CPC가 설비 노후화와 자금난으로 가동률 부진 및 구조조정을 겪고 있는 반면, Niche Cocoa(연 6만 톤)나 Touton(연 2.5만 톤) 등 민간/외국계 기업은 HACCP 등 글로벌 인증을 무기로 정상 가동 중인 양극화 상태입니다.",
-            actionPlan: "디스트레스드 자산화된 현지 설비(CPC 유휴 라인 등)를 PE 자본으로 인수·현대화(CAPEX 투자)하여 아프리카 원산지 내 가공(Origin Grinding) Bottom-line(순이익)을 내재화해야 합니다. 한국 제과사 스펙에 맞춘 리쿼(Liquor) 직생산 기지로 탈바꿈시켜 매입원가 절감 턴어라운드를 실현하는 것이 핵심 밸류 크리에이션 레버입니다.",
-            source: "COCOBOD Annual Report / Ghana Cocoa Processing Company (CPC) / Niche Cocoa IR",
+            situation: "가나 내 가공 인프라는 연 6.4만 톤 CAPA를 지닌 국영 CPC가 설비 노후화와 자금난으로 가동률 부진 및 구조조정을 겪고 있는 반면, Niche Cocoa(연 6만 톤)나 Touton(연 2.5만 톤) 등 민간/외국계 기업은 식품안전관리인증기준(HACCP) 등 글로벌 인증을 무기로 정상 가동 중인 양극화 상태입니다.",
+            actionPlan: "디스트레스드 자산화된 현지 설비(CPC 유휴 라인 등)를 PE 자본으로 인수·현대화(CAPEX 투자)하여 아프리카 원산지 내 가공(원산지 가공(Origin Grinding)) Bottom-line(순이익)을 내재화해야 합니다. 한국 제과사 스펙에 맞춘 리쿼(Liquor) 직생산 기지로 탈바꿈시켜 매입원가 절감 턴어라운드를 실현하는 것이 핵심 밸류 크리에이션 레버입니다.",
+            source: "COCOBOD 연례 보고서 / Ghana Cocoa Processing Company (CPC) / Niche Cocoa 기업설명회 자료(IR)",
           }} />
 
         <WidgetCard title="한국의 이중 수입 넥서스 흐름도 (Flow)" icon={Anchor} iconColor="#b45309" pillar="S3"
@@ -494,7 +494,7 @@ export default function CocoaDashboard() {
           }} />
 
         <WidgetCard title="공급 충격 시나리오: 재고 소진율 트래커 (DIO)" icon={Shield} iconColor="#d97706" pillar="S2"
-          cardDesc="DIO(재고회전일수) + 공장 가동 중단 임계선 + 경쟁사 OPM 동향"
+          cardDesc="재고회전일수(DIO)(재고회전일수) + 공장 가동 중단 임계선 + 경쟁사 영업이익률(OPM) 동향"
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w6_inventory_burn_rate}>
@@ -504,19 +504,19 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="DIO" fill="#d97706" name="현재 보유 재고일수(DIO)" barSize={40}>
+              <Bar yAxisId="left" dataKey="재고회전일수(DIO)" fill="#d97706" name="현재 보유 재고일수(DIO)" barSize={40}>
                 {cocoaData.w6_inventory_burn_rate && cocoaData.w6_inventory_burn_rate.map((entry: any, index: number) => (
-                  <Cell key={`cell-${index}`} fill={entry.DIO < 30 ? "var(--color-danger)" : "#d97706"} />
+                  <Cell key={`cell-${index}`} fill={entry.재고회전일수(DIO) < 30 ? "var(--color-danger)" : "#d97706"} />
                 ))}
               </Bar>
               <Line yAxisId="left" type="step" dataKey="CriticalLine" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" name="공장 가동 중단(Red Alert) 기준선" dot={false} />
-              <Line yAxisId="right" type="monotone" dataKey="CompetitorMargin" stroke="var(--color-warning)" strokeWidth={3} name="경쟁사 OPM 하락(DART API)" dot={{ r: 5 }} />
+              <Line yAxisId="right" type="monotone" dataKey="CompetitorMargin" stroke="var(--color-warning)" strokeWidth={3} name="경쟁사 영업이익률(OPM) 하락(DART API)" dot={{ r: 5 }} />
             </ComposedChart>
           }
           takeaway={{
             situation: "2023/24 시즌 글로벌 재고 대 분쇄(Stocks-to-Grindings) 비율은 46년 만의 최저치인 26.4%로 급락했으며, 뉴욕 ICE 인증 재고는 19년 만의 최저치(약 11.8만 톤)를 기록하는 등 물리적 재고 고갈이 심각합니다. 주요 수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며 운전자본(NWC) 압박을 겪고 있습니다.",
-            actionPlan: "피투자사의 DIO(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다.",
-            source: "ICCO 분기별 회보(ICCO Quarterly Bulletin) / ICE Certified Stock Data / DART 경쟁사 공시",
+            actionPlan: "피투자사의 재고회전일수(DIO)(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다.",
+            source: "ICCO 분기별 회보(ICCO Quarterly Bulletin) / ICE 인증 재고 데이터 / DART 경쟁사 공시",
           }} />
 
         <WidgetCard title="허브 경유에 따른 EUDR 그린 프리미엄 원가 전가" icon={Anchor} iconColor="#b45309" pillar="S3"
@@ -554,13 +554,13 @@ export default function CocoaDashboard() {
         
         
         <WidgetCard title="B2B CBE(대체유) 벤더 롤업 가치 평가 (EBITDA %, Agility)" icon={Scale} iconColor="#d97706" pillar="S2"
-          cardDesc="대체유 벤더의 시장대응력 vs EBITDA vs 원가부담 — 롤업 매수 매트릭스"
+          cardDesc="대체유 벤더의 시장대응력 vs EBITDA(세전·이자·감가상각비 차감 전 이익) vs 원가부담 — 롤업 매수 매트릭스"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
               <XAxis type="number" dataKey="Agility" name="Agility(시장대응력)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
-              <YAxis type="number" dataKey="EBITDA" name="EBITDA(%)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <YAxis type="number" dataKey="EBITDA(세전·이자·감가상각비 차감 전 이익)" name="EBITDA(세전·이자·감가상각비 차감 전 이익)(%)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <ZAxis type="number" dataKey="CostBurden" range={[60, 400]} name="원가부담" />
               <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
@@ -572,7 +572,7 @@ export default function CocoaDashboard() {
           takeaway={{
             situation: "코코아 버터 가격이 톤당 $15,000을 돌파하며 역사적 고점을 찍음에 따라, 제과 및 베이커리 업계는 매입원가 절감을 위해 식물성 유지를 활용한 코코아 버터 대체재(CBS) 및 동등재(CBE)의 사용 비율을 급격히 늘리고 있습니다.",
             actionPlan: "팔유, 시어버터 기반의 식물성 유지 및 CBE 제조 벤더들을 선제적으로 롤업(Roll-up) 매수하여 규모의 경제를 달성해야 합니다. B2B 식품소재 기업 포트폴리오의 영업이익률 방어를 위해 CBE R&D 역량을 가진 피투자사 멀티플을 상향 조정하고 자금을 집중 투여해야 합니다.",
-            source: "Krungsri Research 팔유 산업 전망 / Silla Co. 내부 모델",
+            source: "끄룽스리 리서치(Krungsri Research) 팔유 산업 전망 / Silla Co. 내부 모델",
           }} />
 
         <WidgetCard title="대체 공급처 발굴 수익성 분석 (물류비·원물가·공급량)" icon={Target} iconColor="#b45309" pillar="S1"
@@ -668,7 +668,7 @@ export default function CocoaDashboard() {
             </BarChart>
           }
           takeaway={{
-            situation: "코코아 생산 과정에서 발생하는 방대한 부산물(Husks, Pods)은 폐기물로 간주되어 탄소세 및 처리 비용을 발생시키지만, 그 이면에는 바이오 비료나 사료로의 엄청난 전환 잠재력이 숨겨져 있습니다.",
+            situation: "코코아 생산 과정에서 발생하는 방대한 부산물(껍질(Husks)·꼬투리(Pods))은 폐기물로 간주되어 탄소세 및 처리 비용을 발생시키지만, 그 이면에는 바이오 비료나 사료로의 엄청난 전환 잠재력이 숨겨져 있습니다.",
             actionPlan: "버려지는 코코아 부산물을 자원화하는 애그리테크(Agri-Tech) 파트너십이나 Spin-off JV를 구축해 폐기 비용을 제로화하고, 이를 새로운 ESG 기반의 캐시카우(Cash Cow)로 탈바꿈시키십시오.",
             source: "AgFunder 애그리테크 리포트 / 바이오매스 저널",
           }} />
@@ -732,7 +732,7 @@ export default function CocoaDashboard() {
           }} />
 
         <WidgetCard title="K-뷰티/바이오 소재 전환 ROI (마진율 %)" icon={TestTube} iconColor="#f59e0b" pillar="S2"
-          cardDesc="채널별 EBITDA·성장률 + 폴리페놀·항산화 측정치 — 코스메슈티컬 ROI"
+          cardDesc="채널별 EBITDA(세전·이자·감가상각비 차감 전 이익)·성장률 + 폴리페놀·항산화 측정치 — 코스메슈티컬 ROI"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w19_kbeauty_bio}>
@@ -742,7 +742,7 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA 마진율(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA(세전·이자·감가상각비 차감 전 이익) 마진율(%)" barSize={35} />
               <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#78350f" name="시장 성장률(%)" barSize={35} />
               <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#d97706" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
               <Line yAxisId="right" type="monotone" dataKey="Antioxidant_DPPH" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="3 3" name="항산화(DPPH, RHS)" />

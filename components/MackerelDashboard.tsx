@@ -158,7 +158,7 @@ export default function MackerelDashboard() {
             { key: 'norwayPriceBox', name: '노르웨이산 환산가 (15kg)', color: 'var(--color-warning)' }
           ],
           data: enrichedData,
-          badges: ['Live API'],
+          badges: ['실시간 API'],
           sit: `해양수산부 공공데이터 기준 금일 부산공동어시장(대) 위판가는 ${mofData.data[0]?.price.toLocaleString()}원입니다. 노르웨이산 환산 단가 대비 실시간 스프레드는 ${spread}%로 확인됩니다.`,
           strat: stratText,
           logic: '해양수산부 위탁판매 현황 API 실시간 연동 및 관세청 기준 CIF 추정가 대비 스프레드 맵핑 (15kg 박스 기준 환산)',
@@ -179,7 +179,7 @@ export default function MackerelDashboard() {
             chartType: 'Composed', xKey: 'country',
             bars: [{ key: 'mfn', name: 'MFN 관세율 (%)', color: '#f59e0b' }, { key: 'fta', name: 'FTA 적용 (%)', color: 'var(--color-success)' }],
             data: tickerData.tariffComparison,
-            badges: ['Live API', 'Verified'],
+            badges: ['실시간 API', 'Verified'],
             sit: `한국의 냉동고등어 MFN 관세율은 ${tickerData.tariff?.mfn}%이며, RCEP FTA 적용 시 ${tickerData.tariff?.fta}%로 면세 수입이 가능합니다. 노르웨이는 EEA 협정으로 관세 0%입니다.`,
             strat: 'RCEP/한-노르웨이 FTA 활용 시 관세 10%p 절감 가능. 연간 수입 13.6만 톤 기준 약 $26M 절감 효과로, FTA C/O(원산지증명서) 100% 확보가 최우선 과제입니다.',
             apiSource: '📡 [LIVE API 연동: WITS + KCS] 관세율 실시간 비교',
@@ -200,7 +200,7 @@ export default function MackerelDashboard() {
               { scenario: 'FTA (0%)', cost: lc.ftaKrwKg },
               { scenario: '절감액', cost: lc.savingsKg },
             ],
-            badges: ['Live API'],
+            badges: ['실시간 API'],
             sit: `현재 환율 ${tickerData.fx?.usdKrw}원 기준, 노르웨이산 고등어 MFN 착지원가는 ${lc.mfnKrwKg?.toLocaleString()}원/kg, FTA 적용 시 ${lc.ftaKrwKg?.toLocaleString()}원/kg입니다.`,
             strat: `FTA 활용 시 kg당 ${lc.savingsKg}원(${lc.savingsPct}%) 절감. 연 13.6만 톤 수입 시 약 ${Math.round(lc.savingsKg * 136000 / 1e8)}억원 절감 가능.`,
             apiSource: '📡 [LIVE API 연동: ECOS + KCS + WITS] 실시간 착지원가 계산',
@@ -218,7 +218,7 @@ export default function MackerelDashboard() {
             lines: [{ key: 'margin', name: '마진율 (%)', color: 'var(--color-warning)' }],
             dualAxis: true,
             data: tickerData.distributionMargin,
-            badges: ['Live API'],
+            badges: ['실시간 API'],
             sit: `현재 KAMIS 기준 고등어 도매가 ${tickerData.kamis?.wholesaleKg?.toLocaleString()}원/kg, 소매가 ${tickerData.kamis?.retailKg?.toLocaleString()}원/kg입니다. 도매→소매 마진은 약 ${Math.round(((tickerData.kamis?.retailKg - tickerData.kamis?.wholesaleKg) / tickerData.kamis?.wholesaleKg) * 100)}%입니다.`,
             strat: '산지-도매 구간 마진이 가장 높아, 산지 직구매(위판장 직접 낙찰) 비중 확대 시 원가 경쟁력 확보 가능합니다.',
             apiSource: '📡 [LIVE API 연동: KAMIS + 해양수산부] 유통 단계별 실시간 가격',
@@ -236,7 +236,7 @@ export default function MackerelDashboard() {
           chartType: 'Composed', xKey: 'month',
           bars: [{ key: 'volume', name: '수입량 (톤)', color: '#38bdf8' }],
           lines: [{ key: 'value', name: '수입액 (천불)', color: '#10b981' }],
-          dualAxis: true, data: kcsData.monthly, badges: ['Live API', 'Verified'],
+          dualAxis: true, data: kcsData.monthly, badges: ['실시간 API', 'Verified'],
           sit: `관세청 통관 실적 기준 냉동고등어(HS 030354) 월별 수입량은 약 1.3만 톤 수준을 유지 중이며, CIF 단가는 톤당 $1,500~1,800 구간에서 등락을 반복하고 있습니다. 가을 시즌(9~11월) 에는 노르웨이산 조업 시기와 맞물려 수입량이 증가하는 패턴이 확인됩니다.`,
           strat: '월별 통관 물량 변동성을 국내 산지 위판가와 역상관관계로 분석하여, 대량 통관 시기에는 국내산 매입을 억제하고 수입산 우선 소진 전략을 구사해야 합니다. CIF 단가 급등 시 월별 매입 물량을 사전 조절하는 헤지 전략이 필요합니다.',
           apiSource: '📡 [LIVE API 연동: 관세청 KCS] 실시간 월별 통관 실적',
@@ -246,7 +246,7 @@ export default function MackerelDashboard() {
           id: 'w_kcs_origin', title: '관세청 국가별 수입 점유율',
           subtitle: 'KCS 실시간 통관 데이터 기반 원산지 비중',
           chartType: 'Pie', xKey: 'name',
-          pieDataKey: 'value', data: kcsData.origin, badges: ['Live API', 'Verified'],
+          pieDataKey: 'value', data: kcsData.origin, badges: ['실시간 API', 'Verified'],
           sit: `노르웨이산 점유율이 85%를 넘어서며 사실상 독점적 지위를 지니고 있습니다. 단일 국가 의존도가 극단적으로 높아, 노르웨이 해역의 쿼터 삭감, 기후 변동, 또는 지정학적 리스크 발생 시 원재료 관점의 심각한 공급 차질이 예상됩니다.`,
           strat: '노르웨이 수입 의존도가 극도로 높아 북대서양 쿼터 축소 시 심각한 원가 압박이 예상됩니다. 중국·영국·아일랜드 등 대체 원산지 발굴과 동시에, 장기 공급 계약(2년 이상) 비율을 현재 30% → 60%로 확대하여 가격 변동 리스크를 헤지해야 합니다.',
           apiSource: '📡 [LIVE API 연동: 관세청 KCS] 실시간 국가별 점유율',
@@ -261,7 +261,7 @@ export default function MackerelDashboard() {
           chartType: 'Composed', xKey: 'year',
           bars: [{ key: 'volume', name: '수입량 (천톤)', color: '#8b5cf6' }],
           lines: [{ key: 'value', name: '수입액 (백만 유로)', color: '#f59e0b' }],
-          dualAxis: true, data: eurostatData.imports, badges: ['Live API'],
+          dualAxis: true, data: eurostatData.imports, badges: ['실시간 API'],
           sit: `EU-27 고등어 수입 시장은 연간 26만 톤 이상으로 성장하여 글로벌 수입 시장의 주요 권역으로 자리매김하고 있습니다. 네덜란드·독일·프랑스가 주요 수입국이며, 수입액 기준 5년간 연평균 8% 성장을 기록하고 있습니다.`,
           strat: 'EU 내수 수요 증가는 글로벌 고등어 단가 상승을 견인하므로, 선도 거래 비율을 30% 이상으로 확대하여 헤지해야 합니다. 단, EU의 IUU 규제 강화 시 인증 도태 모듈의 선제적 도입이 필요합니다.',
           apiSource: '📡 [LIVE API 연동: Eurostat SDMX] EU 회원국 실시간 무역 데이터',
@@ -278,7 +278,7 @@ export default function MackerelDashboard() {
         json.widgets.push({
           id: 'w_osh_facilities', title: '글로벌 고등어 취급 시설 매핑',
           subtitle: 'Open Supply Hub 실시간 등록 시설(가공/냉동창고) 국가별 비중',
-          chartType: 'Pie', xKey: 'name', pieDataKey: 'value', data: oData, badges: ['Live API'],
+          chartType: 'Pie', xKey: 'name', pieDataKey: 'value', data: oData, badges: ['실시간 API'],
           sit: `OSH 플랫폼에 등록된 고등어 취급 시설 총 ${oshData.meta?.count || oshData.facilities.length}개 중 아시아(CN/ID/TH/VN) 및 북유럽(KR/EC) 시설이 다수 확인됩니다. 국가별 시설 분포는 글로벌 공급망의 재가공 허브 위치를 반영하며, 중국·태국이 1차 가공 허브로 기능하고 있습니다.`,
           strat: '글로벌 공급망 투명성 제고를 위해 노르웨이 1차 가공 공장들의 OSH 데이터와 HACCP/ISO 22000 위생 등급을 교차 검증해야 합니다. ESG 공시 의무화 대비 시 공급업체 위생 인증 현황을 선제적으로 확보하십시오.',
           apiSource: '📡 [LIVE API 연동: Open Supply Hub] 글로벌 시설 위치',
@@ -293,7 +293,7 @@ export default function MackerelDashboard() {
           subtitle: 'UN Comtrade 기반 수출국 → 수입국 무역 흐름',
           chartType: 'Bar', xKey: 'source', // Sankey 미지원 → Bar Fallback
           bars: [{ key: 'value', name: '교역량 (톤)', color: '#38bdf8' }],
-          data: comtradeData.tradeFlows, badges: ['Live API'],
+          data: comtradeData.tradeFlows, badges: ['실시간 API'],
           sit: `노르웨이를 허브로 EU·중국·일본·한국 향 수출이 전 세계 고등어 교역량의 과반을 차지합니다. 특히 노르웨이→EU 항로가 85,000톤으로 최대이며, 노르웨이→한국은 35,000톤으로 4위입니다.`,
           strat: '노르웨이발 수입 루트 병목 현상 발생 시 영국·아일랜드 대서양 루트를 즐시 가동할 수 있도록 대체 공급처 다변화 채널을 상시 유지해야 합니다. 영국→나이지리아 항로(25,000톤)는 아프리카 시장의 성장성을 나타내며, 신시장 진출 검토 시 참고할 만합니다.',
           apiSource: '📡 [LIVE API 연동: UN Comtrade] 글로벌 무역 흐름망',
@@ -307,7 +307,7 @@ export default function MackerelDashboard() {
           subtitle: `OEC Tesseract OLAP 엔진 기반 주요 수출국 점유율 (총 교역규모: $${oecData.globalTradeValueM}M)`,
           chartType: 'Bar', xKey: 'country',
           bars: [{ key: 'share', name: '수출 점유율 (%)', color: '#10b981' }],
-          data: oecData.topExporters, badges: ['Live API', 'Verified'],
+          data: oecData.topExporters, badges: ['실시간 API', 'Verified'],
           sit: `OEC 데이터 기준 고등어(HS 0303) 글로벌 수출 시장은 중국(15.2%)·노르웨이(14.1%)·러시아(8.9%) 3국이 전체의 38%를 집중 장악하고 있으며, HHI 지수 기준 중위권 집중도로 공급망 리스크가 존재합니다.`,
           strat: '노르웨이·러시아의 어획 쿼터 변동 뉴스를 Live Ticker와 연동하여 조기 경보 시스템을 가동해야 합니다. 중국의 수입·수출 동시 점유 위치는 중국 역내 재가공 후 재수출하는 구조로, 원산지 세탁 리스크를 주시해야 합니다.',
           apiSource: '📡 [LIVE API 연동: OEC] Observatory of Economic Complexity',
@@ -327,7 +327,7 @@ export default function MackerelDashboard() {
             { product: '고등어 필렛(순살)', hsCode: '0304.89', confidence: 95 },
             { product: '자반/염장 고등어', hsCode: '0305.63', confidence: 96 }
           ],
-          badges: ['Live API', 'Verified'],
+          badges: ['실시간 API', 'Verified'],
           sit: `입력된 주요 가공 형태에 대해 HS Ping API가 국가별 최적 HS 코드를 매핑 완료했습니다. (원물: 0303.54, 필렛: 0304.89)`,
           strat: 'HMR용 순살 필렛의 경우 수입 통관 시 HS 0304.89로 분류되어 원물과 다른 수입 요건 및 관세가 적용되므로 주의가 필요합니다.',
           apiSource: '📡 [LIVE API 연동: HS Ping] 실시간 HS 자동 분류',
@@ -347,7 +347,7 @@ export default function MackerelDashboard() {
             { type: 'EFTA 협정관세', rate: td.additionalDuties?.[0]?.rate || -10 },
             { type: '최종 적용세율', rate: td.totalDutyRate || 0 }
           ],
-          badges: ['Live API', 'Verified'],
+          badges: ['실시간 API', 'Verified'],
           sit: `현재 노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이나, 한-EFTA FTA 적용으로 최종 0%가 적용됩니다.`,
           strat: 'FTA 100% 활용을 위해 노르웨이 수출업체의 원산지 증명서(C/O) 발급을 계약서에 명문화하고 실시간 추적해야 합니다.',
           apiSource: '📡 [LIVE 연동: Tariffs.io] 실시간 복합 관세율',
@@ -368,7 +368,7 @@ export default function MackerelDashboard() {
             { check: 'EU 제재', score: cr.eu?.status === 'clean' ? 100 : (cr.eu?.status === 'partial' ? 50 : 10) },
             { check: '종합 리스크', score: cr.riskScore }
           ],
-          badges: ['Live API', 'Verified'],
+          badges: ['실시간 API', 'Verified'],
           sit: `검색된 공급사 "${cr.entity}"에 대해 OFAC(${cr.ofac?.status === 'clean' ? '적합' : '위험'}) 및 EU(${cr.eu?.status === 'clean' ? '적합' : cr.eu?.status === 'partial' ? '부분적합' : '위험'}) 제재 모니터링이 완료되었습니다. 종합 리스크 수준: ${cr.riskLevel}. 특히 러시아산 고등어의 중국 우회 가공 수출 사례가 강화된 감시 대상입니다.`,
           strat: '공급망의 실소유주(UBO)를 OFAC API를 통해 상시 교차 검증하십시오. 러시아 제재 강화 시 노르웨이 직수입 대비 중국 경유 수입의 원산지 세탁 리스크가 급상승할 수 있으며, EU CBAM 시행 시 탄소발자국 인증도 필수적으로 요구됩니다.',
           apiSource: '📡 [LIVE API 연동: OFAC/EU Sanctions] 실시간 제재망 조회',
@@ -384,7 +384,7 @@ export default function MackerelDashboard() {
           chartType: 'Bar', xKey: 'supplier',
           bars: [{ key: 'volumeTeu', name: '누적 수출량 (TEU)', color: '#3b82f6' }],
           data: supplierData.data,
-          badges: ['Live API', 'Verified', 'Forecast'],
+          badges: ['실시간 API', 'Verified', 'Forecast'],
           sit: `노르웨이 메이저 벤더(Pelagia, Nils) 외에 영국(Highland), 아일랜드(Killybegs), 아이슬란드(Ísfélag)의 꾸준한 B2B 수출 기록이 검증되었습니다. TEU 기준 Pelagia가 1위이며, 대체 벤더들은 각각 200~800 TEU 규모로 중소형 공급업체입니다.`,
           strat: '노르웨이의 할당량 감축에 대비하여 유럽 북부 대체 벤더들과의 선제적 스팟 계약 풀(Pool)을 구축해야 합니다. Highland·Ísfélag 등과 연간 500 TEU 규모의 예비 계약을 체결하면, Pelagia 공급 차질 시 즉시 대체 물량 확보가 가능합니다.',
           apiSource: '📡 [LIVE API 연동: ImportYeti] B2B 수출입 스크래핑',
@@ -766,7 +766,7 @@ export default function MackerelDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
     const situation = w.sit || w.situation || w.desc || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const isLive = (w.badges && w.badges.includes('Live API')) || w.apiSource || w.id === 'w_arbitrage_live';
+    const isLive = (w.badges && w.badges.includes('실시간 API')) || w.apiSource || w.id === 'w_arbitrage_live';
     const isEstimate = (w.reliability && w.reliability <= 70) || (w.badges && w.badges.includes('Estimate'));
     const isForecast = w.badges && w.badges.includes('Forecast');
     const isSimulation = SIMULATION_WIDGET_IDS.includes(w.id);

@@ -103,7 +103,7 @@ export default function PetFoodDashboard() {
             <Crown size={22} color="#f472b6" /> [경영진 전략 지휘소]
           </h2>
           <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-            <strong>전략 요약:</strong> 글로벌 펫푸드 시장 진입의 <span style={{ color: '#f472b6' }}>골든 윈도우는 향후 3~5년</span>입니다. 한국산 펫푸드 수출이 12배 폭증(일본 중심)하고 있으나, 수입 역시 거대하여 1.5억 달러 무역 적자를 기록 중입니다. 경영진은 태국 OEM 인프라를 활용하는 <strong>[S2: D2C OEM]</strong> 모델을 최우선으로 검토하고, 중장기적으로 <strong>[S5: 처방식 JV]</strong>를 통해 고부가가치 시장(ROE 극대화)으로 이전해야 합니다.
+            <strong>전략 요약:</strong> 글로벌 펫푸드 시장 진입의 <span style={{ color: '#f472b6' }}>골든 윈도우는 향후 3~5년</span>입니다. 한국산 펫푸드 수출이 12배 폭증(일본 중심)하고 있으나, 수입 역시 거대하여 1.5억 달러 무역 적자를 기록 중입니다. 경영진은 태국 주문자 상표 부착 생산(OEM) 인프라를 활용하는 <strong>[S2: 소비자 직접 판매(D2C) 주문자 상표 부착 생산(OEM)]</strong> 모델을 최우선으로 검토하고, 중장기적으로 <strong>[S5: 처방식 JV]</strong>를 통해 고부가가치 시장(ROE 극대화)으로 이전해야 합니다.
           </p>
         </div>
 
@@ -131,7 +131,7 @@ export default function PetFoodDashboard() {
               </ComposedChart>
             }
             takeaway={{
-              situation: '자체 생산기반 없는 유통사 관점에서 5가지 시나리오를 시뮬레이션한 결과, 초기 투입 자본 대비 수익성(ROIC)이 가장 우수한 모델은 S2(D2C OEM, 32%)이며, 브랜드 장악력 확보 후 S5(처방식 JV, 20%)로 확장하는 단계적 접근이 요구됩니다.',
+              situation: '자체 생산기반 없는 유통사 관점에서 5가지 시나리오를 시뮬레이션한 결과, 초기 투입 자본 대비 수익성(ROIC)이 가장 우수한 모델은 S2(D2C 주문자 상표 부착 생산(OEM), 32%)이며, 브랜드 장악력 확보 후 S5(처방식 JV, 20%)로 확장하는 단계적 접근이 요구됩니다.',
               actionPlan: '과도한 CapEx가 요구되는 S3(M&A) 및 S4(자체 공장 수출)는 보류하고, 즉각적인 현금 창출이 가능한 S2 모델 승인 및 파트너(태국 I-Tail 등) 탐색에 전사적 자원을 집중할 것을 권고합니다.',
               source: 'PHASE 3 진입 전략 보고서',
             }}
@@ -272,7 +272,7 @@ export default function PetFoodDashboard() {
             </SafeResponsiveContainer>
             </div>
               </>}
-              takeaway={{ situation: "글로벌 소비 시장에서 미국산 펫푸드는 $5.15/kg, 태국산은 $3.77/kg의 프리미엄 가격대를 형성하고 있습니다. 미국은 영양 과학으로, 태국은 수산 가공 인프라로 시장을 탈환 중이나 한국산은 여전히 저가 '가성비' 함정에 갇혀 펀더멘털 한계를 노출합니다.", actionPlan: "신규 CAPEX를 억제하고 세계 최고 수준의 태국 톱티어 OEM 인프라를 레버리지한 크로스보더(Cross-border) 아비트리지 전략으로 제조 마진을 극대화해야 합니다. 글로벌 영양 기준을 충족하는 임상 기반 처방식 브랜드를 론칭해 수입산 대비 대등한 단가 멀티플(Multiple) 리레이팅 달성이 필수입니다.", source: "Hong Kong Pet Food Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성 및 실행 전략 보고서" }}
+              takeaway={{ situation: "글로벌 소비 시장에서 미국산 펫푸드는 $5.15/kg, 태국산은 $3.77/kg의 프리미엄 가격대를 형성하고 있습니다. 미국은 영양 과학으로, 태국은 수산 가공 인프라로 시장을 탈환 중이나 한국산은 여전히 저가 '가성비' 함정에 갇혀 펀더멘털 한계를 노출합니다.", actionPlan: "신규 CAPEX를 억제하고 세계 최고 수준의 태국 톱티어 주문자 상표 부착 생산(OEM) 인프라를 레버리지한 크로스보더(Cross-border) 아비트리지 전략으로 제조 마진을 극대화해야 합니다. 글로벌 영양 기준을 충족하는 임상 기반 처방식 브랜드를 론칭해 수입산 대비 대등한 단가 멀티플(Multiple) 리레이팅 달성이 필수입니다.", source: "Hong Kong Pet Food Market Report 2026, Thailand's Pet Food Market 2025, 신라교역 포괄적 타당성 및 실행 전략 보고서" }}
             />
             {/* W17 */}
             <WidgetCard
@@ -352,11 +352,11 @@ export default function PetFoodDashboard() {
               icon={Leaf}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`CAGR 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망.`}
+              cardDesc={`연평균성장률(CAGR) 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망.`}
               telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
               customBody={<>
             <div className={styles.kpiRow}>
-            <KpiCard label="CAGR" value="8.7" unit="%" />
+            <KpiCard label="연평균성장률(CAGR)" value="8.7" unit="%" />
             <KpiCard label="2027(E)" value="39" unit="억$" />
             <KpiCard label="어분 원가" value="$0.48" unit="/kg" />
             <KpiCard label="배양육 원가" value="$4.95" unit="/kg" />
@@ -550,7 +550,7 @@ export default function PetFoodDashboard() {
               telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.kpiRow}>
-            <KpiCard label="OEM 비중" value="98.7" unit="%" />
+            <KpiCard label="주문자 상표 부착 생산(OEM) 비중" value="98.7" unit="%" />
             <KpiCard label="프리미엄 비중" value="47-50" unit="%" />
             <KpiCard label="간식 성장률" value="+36.5" unit="%" />
             <KpiCard label="배당 성향" value="85.6" unit="%" />
@@ -598,7 +598,7 @@ export default function PetFoodDashboard() {
             </SafeResponsiveContainer>
             </div>
               </>}
-              takeaway={{ situation: "코스닥 상장사 오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다. 원재료 급등으로 B2B 마진이 급감하자 간식 전문 제조사를 전략적 인수, B2B 모델에 안주하지 않고 자체 브랜드(PB) 브랜드 확대 및 D2C 유통 진출로 영업Bottom-line(순이익)률을 15.4%로 완벽히 V자 회복시켰습니다.", actionPlan: "안정적 캐시플로우의 B2B 제조사를 기반으로 충성 고객을 보유한 B2C/D2C 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매입원가 절감)와 인수기업 유통망을 융합해 블렌디드 마진을 극대화하십시오.", source: "대한민국 반려동물 사료 시장의 구조적 진화, 대한민국 펫푸드 주요 기업 분석 보고" }}
+              takeaway={{ situation: "코스닥 상장사 오에스피(OSP)는 프리미엄 유기농 ODM 1위입니다. 원재료 급등으로 B2B 마진이 급감하자 간식 전문 제조사를 전략적 인수, B2B 모델에 안주하지 않고 자체 브랜드(PB) 브랜드 확대 및 소비자 직접 판매(D2C) 유통 진출로 영업Bottom-line(순이익)률을 15.4%로 완벽히 V자 회복시켰습니다.", actionPlan: "안정적 캐시플로우의 B2B 제조사를 기반으로 충성 고객을 보유한 B2C/소비자 직접 판매(D2C) 플랫폼을 Bolt-on 인수하여 유통 수수료를 내재화하는 정석적 Value-up입니다. 자사 제조 인프라(매입원가 절감)와 인수기업 유통망을 융합해 블렌디드 마진을 극대화하십시오.", source: "대한민국 반려동물 사료 시장의 구조적 진화, 대한민국 펫푸드 주요 기업 분석 보고" }}
             />
             {/* W23 */}
             <WidgetCard
@@ -650,7 +650,7 @@ export default function PetFoodDashboard() {
             </SafeResponsiveContainer>
             </div>
               </>}
-              takeaway={{ situation: "인플레이션 심화로 소비자의 하향 이동(Trading down)이 발생, 자체 브랜드(PB) 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다. 소비자는 어중간한 브랜드를 버리고 가성비와 품질이 보장된 대형 유통사 PB로 대거 이탈 중입니다.", actionPlan: "포트폴리오 내 OEM 제조사는 아마존 등 메가 리테일러의 자체 브랜드(PB) 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다. B2C 브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어.", source: "European pet food market share breakdown, 2026 Pet Care Industry Trends" }}
+              takeaway={{ situation: "인플레이션 심화로 소비자의 하향 이동(Trading down)이 발생, 자체 브랜드(PB) 사료가 시장의 20~38%를 잠식하며 내셔널 브랜드(NB) 대비 3~5배 이상 가파르게 성장 중입니다. 소비자는 어중간한 브랜드를 버리고 가성비와 품질이 보장된 대형 유통사 PB로 대거 이탈 중입니다.", actionPlan: "포트폴리오 내 주문자 상표 부착 생산(OEM) 제조사는 아마존 등 메가 리테일러의 자체 브랜드(PB) 독점 공급자로 포지셔닝하여 마케팅 비용 제로 구조를 달성해야 합니다. B2C 브랜드를 소유했다면 어중간한 Mid-tier를 버리고 PB가 모방 불가한 특수 기능성 개발로 피봇팅하여 밸류를 방어.", source: "European pet food market share breakdown, 2026 Pet Care Industry Trends" }}
             />
             {/* W31 */}
             <WidgetCard

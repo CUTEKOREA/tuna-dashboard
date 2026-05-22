@@ -854,8 +854,8 @@ export default function CarrotDashboard() {
           takeaway={{ situation: "식약처 DB 및 현지 실측 결과, 중국산은 조리 편의성에 치중한 일본 종자를 써서 당도(6.2)와 베타카로틴 함량이 현저히 낮으나, 베트남 산지 모델은 고당도(12.8 Brix)와 무결점 안전성(VietGAP)을 증명함.", actionPlan: `기존의 단순 '값싼 원재료' 프레임에서 탈피하여, "고당도·항산화 청정 프리미엄" 소구점을 통해 고수익성 B2C(프리미엄 밀키트, 유기농 이유식) 시장까지 마진(Target Margin) 확장이 가능함.`, source: "* 근거: 식품의약품안전처 영양성분DB 및 글로벌 종자 기업(Enza Zaden 등) R&D 데이터" }} />
 
 
-        {/* New W18 Widget: M&A Acquisition Target Radar */}
-        <WidgetCard title='M&A 인수 타겟 스코어카드 (3자 비교 CDD)' icon={Target} iconColor="#ea580c" pillar="S4"
+        {/* New W18 Widget: 인수합병(M&A) Acquisition Target Radar */}
+        <WidgetCard title='인수합병(M&A) 인수 타겟 스코어카드 (3자 비교 CDD)' icon={Target} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 100점 만점'
           telemetry={{ status: 'LIVE', syncDate: 'KAMIS & KCS & NOAA' }} chartHeight={375}
           chart={
@@ -872,7 +872,7 @@ export default function CarrotDashboard() {
               </RadarChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "회계법인 커머셜 듀딜리전스(CDD) 프레임워크 평가 결과, 중국산 단순 유통 벤더의 기업 가치는 하락세인 반면, 베트남 달랏 애그테크 모델은 가공 인프라, FTA 관세 우위, 기후 내성에서 최상위 적격성(90점 이상)을 입증함.", actionPlan: "단순 수입 유통업(Flat Margin)을 넘어, 확고한 산지 장악력과 전처리 밸류체인 내재화를 무기로 사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트(Exit) 밸류에이션 매트릭스의 우위를 증명할 것.", source: "* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 M&A 타겟 스코어카드 및 회계법인 CDD 프레임워크" }} />
+          takeaway={{ situation: "회계법인 커머셜 듀딜리전스(CDD) 프레임워크 평가 결과, 중국산 단순 유통 벤더의 기업 가치는 하락세인 반면, 베트남 달랏 애그테크 모델은 가공 인프라, FTA 관세 우위, 기후 내성에서 최상위 적격성(90점 이상)을 입증함.", actionPlan: "단순 수입 유통업(Flat Margin)을 넘어, 확고한 산지 장악력과 전처리 밸류체인 내재화를 무기로 사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트(Exit) 밸류에이션 매트릭스의 우위를 증명할 것.", source: "* 📡 [LIVE API 연동: DART Open API] 자체 딜 소싱 인수합병(M&A) 타겟 스코어카드 및 회계법인 CDD 프레임워크" }} />
 
         {/* New W23 Widget: Vendor Lock-in LTV */}
         <WidgetCard title='대형 벤더 장기 락인 누적 생애가치 (LTV)' icon={Banknote} iconColor="#ea580c" pillar="S4"
@@ -1022,7 +1022,7 @@ export default function CarrotDashboard() {
               </BarChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "단순 농산물 수입업의 EV/EBITDA 멀티플(Multiple)은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함.", actionPlan: "기후 리스크 헷징, 무관세 매입원가 우위, 잔류농약 Zero 락인, 푸드 업사이클링(Up-cycling) 신사업을 총망라한 동적 EBITDA 멀티플(Multiple) 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것. (Strong Conviction)", source: "* 📡 [LIVE API 연동: PitchBook API] 글로벌 애그테크/푸드테크 M&A 트랜잭션 및 글로벌 PEF 엑시트 실증 멀티플 데이터" }} />
+          takeaway={{ situation: "단순 농산물 수입업의 EV/EBITDA 멀티플(Multiple)은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함.", actionPlan: "기후 리스크 헷징, 무관세 매입원가 우위, 잔류농약 Zero 락인, 푸드 업사이클링(Up-cycling) 신사업을 총망라한 동적 EBITDA 멀티플(Multiple) 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것. (Strong Conviction)", source: "* 📡 [LIVE API 연동: PitchBook API] 글로벌 애그테크/푸드테크 인수합병(M&A) 트랜잭션 및 글로벌 PEF 엑시트 실증 멀티플 데이터" }} />
 
         {/* ═══ NEW SECTION: 데이터 인텔리전스 고도화 (Data Intelligence Upgrade) ═══ */}
         <div style={{ gridColumn: '1 / -1', margin: '2.5rem 0 1rem', borderTop:'1px solid rgba(255,255,255,0.06)', paddingTop:'1.5rem' }}>
