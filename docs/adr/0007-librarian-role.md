@@ -181,9 +181,27 @@ Paid Tier 가격 ([Google AI 공식](https://ai.google.dev/gemini-api/docs/prici
   - Gemini 2.5 Flash, $0.00347, 43초, 15건 검출 (진짜 위반 3건, false positive 11건)
   - 실측 precision 20% — Flash는 1차 audit용, Pro 또는 prompt 강화 필요
   - 3건 진짜 위반 즉시 정정 (영문 보고서 제목 한글 병기)
+- [x] **Pro Preview 재검증 시도 + prompt v2/v3 실험 (2026-05-22)** ⚠️ 부분 검증
+  - 결과 보고: [artifacts/librarian_second_run.md](../../artifacts/librarian_second_run.md)
+  - **API key billing 미연결**: gemini-2.5-pro / gemini-3.1-pro-preview 모두 `free_tier_limit 0` 으로 호출 불가
+  - Flash v2 (엄격 prompt) → 0건 (recall 0%로 후퇴)
+  - Flash v3 (균형 prompt) → 1건 (false positive)
+  - **Flash로는 prompt 튜닝만으로 precision 80%+ 달성 불가** 실측 입증
+- [ ] Oracle 의무 게이트 enforce (위젯 머지 전 GPT-4o pass 확인)
 - [ ] 일간 09:00 cron으로 Librarian audit 자동화 (다음 세션)
-- [ ] 30일 후 $100/월 실제 소진율 점검 — 현재 1회 호출 $0.003 = 0.003%
-- [ ] Pro Preview로 같은 input 재audit하여 precision 비교 (다음 세션)
+- [ ] 30일 후 $100/월 실제 소진율 점검 — 현재 누적 ~$0.004 (0.004%)
+- [ ] **사용자 액션 아이템**: aistudio.google.com에서 API key billing 활성화 (Pro 모델 호출 가능하게)
+- [ ] billing 활성화 후 Pro Preview 재검증 (목표: precision 80%+)
+
+### 실측 권장 운영 패턴 (Multi-stage pipeline)
+
+| Stage | 모델 | Prompt | 비용/audit | 역할 |
+|---|---|---|---|---|
+| 1차 광역 sweep | Flash | v1 (관대) | $0.003 | 위반 후보 광역 검출 (recall 우선) |
+| 2차 precision check | Pro Preview | v3 (엄격) | $0.5 | Flash 후보 중 진짜 위반 confirm |
+| 3차 final approval | Claude Code or 사람 | $0 | Pro 결과 검토 후 적용 |
+
+$100/월 한도로 약 200 audit pipeline 가능 (Flash + Pro).
 
 ## References
 
