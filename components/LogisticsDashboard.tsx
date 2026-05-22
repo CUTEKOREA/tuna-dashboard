@@ -13,6 +13,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import CountUp from 'react-countup';
 import TraderStatus from './TraderStatus';
 import CarrierUnloadingStatus from './CarrierUnloadingStatus';
+import WidgetCard from './WidgetCard';
 
 export default function LogisticsDashboard() {
   const [loading, setLoading] = useState(true);
@@ -71,9 +72,20 @@ export default function LogisticsDashboard() {
           <TrendingUp size={24} color="var(--color-info)" />
           <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>트레이더별 반입 물량 현황 (Trader Status)</h2>
         </div>
-        <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
-          <TraderStatus />
-        </div>
+        <WidgetCard
+          title="트레이더별 반입 물량"
+          icon={TrendingUp}
+          iconColor="var(--color-info)"
+          pillar="S4"
+          cardDesc="트레이더 단위 반입 물량·점유율 — 실시간 갱신"
+          telemetry={{ status: 'LIVE', syncDate: 'Realtime' }}
+          customBody={<TraderStatus />}
+          takeaway={{
+            situation: '트레이더별 누적 반입 물량으로 핵심 거래 파트너의 거래 비중을 식별.',
+            actionPlan: '점유율 상위 트레이더와의 거래 안정성 강화 + 신규 트레이더 발굴을 통한 거래 다변화.',
+            source: 'Silla Co. Intelligence Network',
+          }}
+        />
       </section>
 
       {/* ═══ Section 2: 가공 (Processing) ═══ */}
@@ -83,41 +95,35 @@ export default function LogisticsDashboard() {
           <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>가공 공장(Cannery) 가동 현황</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
-            <CanneryStatusCharts />
-            <div style={{ background: 'var(--surface-2)', borderRadius: '6px', padding: '16px', marginTop: '1.5rem' }}>
-              <div style={{ paddingBottom: '12px', marginBottom: '12px' }}>
-                <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석 (방콕)</h4>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  방콕 및 송클라 지역의 주요 통조림 공장들은 현재 총 보관 용량 대비 원어 재고가 타이트하게 유지되고 있으며, 전체 CAPA 대비 가동률은 안정적인 수준입니다. 최근 운반선 입항 지연으로 인해 향후 2~3주 내 일시적인 원료 부족 현상이 일부 중소 공장에서 발생할 수 있습니다.
-                </p>
-              </div>
-              <div>
-                <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  현재 원료 수급이 안정적인 대형 공장(Thai Union, Sea Value 등) 중심으로 직거래 물량을 사전 확보하고, 재고가 부족한 공장을 타겟으로 현물 프리미엄 판매 전략을 구사하여 이익을 극대화해야 합니다.
-                </p>
-              </div>
-            </div>
-          </div>
+          <WidgetCard
+            title="가공 공장 가동 현황 (방콕·송클라)"
+            icon={Factory}
+            iconColor="var(--color-success)"
+            pillar="S2"
+            cardDesc="태국 방콕·송클라 통조림 공장 가동률·재고"
+            telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+            customBody={<CanneryStatusCharts />}
+            takeaway={{
+              situation: '방콕 및 송클라 지역의 주요 통조림 공장들은 현재 총 보관 용량 대비 원어 재고가 타이트하게 유지되고 있으며, 전체 CAPA 대비 가동률은 안정적인 수준입니다. 최근 운반선 입항 지연으로 인해 향후 2~3주 내 일시적인 원료 부족 현상이 일부 중소 공장에서 발생할 수 있습니다.',
+              actionPlan: '현재 원료 수급이 안정적인 대형 공장(Thai Union, Sea Value 등) 중심으로 직거래 물량을 사전 확보하고, 재고가 부족한 공장을 타겟으로 현물 프리미엄 판매 전략을 구사하여 이익을 극대화해야 합니다.',
+              source: '태국 캐너리 인텔리전스',
+            }}
+          />
 
-          <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
-            <GensanCanneryStatusCharts />
-            <div style={{ background: 'var(--surface-2)', borderRadius: '6px', padding: '16px', marginTop: '1.5rem' }}>
-              <div style={{ paddingBottom: '12px', marginBottom: '12px' }}>
-                <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석 (필리핀 젠산)</h4>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  제너럴 산토스 지역은 지역 연안 어획량 감소로 인해 수입 원어에 대한 의존도가 심화되고 있습니다. 창고 보관량은 여유가 있으나, 실질적인 공장 가동률은 방콕 대비 낮게 형성되어 있습니다.
-                </p>
-              </div>
-              <div>
-                <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  필리핀 지역으로의 운반선 직항 노선을 확보하여, 방콕항 체선 시 대체 양륙항으로 활용하는 전략적 유연성이 요구됩니다. 이를 통해 방콕향 운임 상승 리스크를 헷지할 수 있습니다.
-                </p>
-              </div>
-            </div>
-          </div>
+          <WidgetCard
+            title="가공 공장 가동 현황 (필리핀 젠산)"
+            icon={Factory}
+            iconColor="var(--color-success)"
+            pillar="S2"
+            cardDesc="필리핀 제너럴 산토스 통조림 공장 가동률"
+            telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+            customBody={<GensanCanneryStatusCharts />}
+            takeaway={{
+              situation: '제너럴 산토스 지역은 지역 연안 어획량 감소로 인해 수입 원어에 대한 의존도가 심화되고 있습니다. 창고 보관량은 여유가 있으나, 실질적인 공장 가동률은 방콕 대비 낮게 형성되어 있습니다.',
+              actionPlan: '필리핀 지역으로의 운반선 직항 노선을 확보하여, 방콕항 체선 시 대체 양륙항으로 활용하는 전략적 유연성이 요구됩니다. 이를 통해 방콕향 운임 상승 리스크를 헷지할 수 있습니다.',
+              source: '필리핀 젠산 캐너리 인텔리전스',
+            }}
+          />
         </div>
       </section>
 
@@ -128,44 +134,50 @@ export default function LogisticsDashboard() {
           <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>해상 운송 및 항만 인텔리전스</h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
-            <CarrierUnloadingStatus />
-          </div>
-          <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
-            <ReeferMovement />
-            <div style={{ background: 'var(--surface-2)', borderRadius: '6px', padding: '16px', marginTop: '1.5rem' }}>
-              <div style={{ paddingBottom: '12px', marginBottom: '12px' }}>
-                <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석 (방콕항 체선율)</h4>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  현재 방콕항 묘박지 대기 선박 및 체선율 지수가 실시간으로 모니터링되고 있습니다. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.
-                </p>
-              </div>
-              <div>
-                <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  체선일이 10일을 초과하는 선박에 대해서는 선하증권(B/L) 분할 양륙 및 인근 송클라 또는 젠산 항구로의 목적지 변경(Diversion)을 적극 검토해야 합니다.
-                </p>
-              </div>
-            </div>
-          </div>
+          <WidgetCard
+            title="운반선 하역 현황 (Carrier Unloading)"
+            icon={Ship}
+            iconColor="var(--color-info)"
+            pillar="S3"
+            cardDesc="운반선·하역 항만·소요일 모니터링"
+            telemetry={{ status: 'LIVE', syncDate: 'Realtime' }}
+            customBody={<CarrierUnloadingStatus />}
+            takeaway={{
+              situation: '운반선 하역 진행 상황을 실시간으로 모니터링.',
+              actionPlan: '체선이 심화된 항만에서 다른 항만으로 하역 일정 조정 검토.',
+              source: '실시간 항만 인텔리전스',
+            }}
+          />
 
-          <div className="ds-card" style={{ background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: 'none' }}>
-            <ReeferFreightChart />
-            <div style={{ background: 'var(--surface-2)', borderRadius: '6px', padding: '16px', marginTop: '1.5rem' }}>
-              <div style={{ paddingBottom: '12px', marginBottom: '12px' }}>
-                <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>현황 분석 (글로벌 해상 운임)</h4>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  주요 허브(태국, 필리핀, 스페인 등)로 향하는 냉동 컨테이너(Reefer 40'HC) 운임이 지정학적 불안과 파나마/수에즈 운하 이슈로 인해 전반적인 상승 압력을 받고 있습니다.
-                </p>
-              </div>
-              <div>
-                <h4 style={{ color: 'var(--color-success)', fontSize: '1rem', fontWeight: 700, margin: '0 0 8px 0' }}>실행 전략</h4>
-                <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.6, margin: 0 }}>
-                  해상 운임 급등기에는 개별 컨테이너 선적보다 대형 냉동 운반선(Reefer Carrier) 벌크 용선의 경제성이 우월해집니다. 물류비를 방어하기 위해 관계사들과의 Joint Shipment 물량을 집중 구성해야 합니다.
-                </p>
-              </div>
-            </div>
-          </div>
+          <WidgetCard
+            title="냉동 운반선 이동 (Reefer Movement)"
+            icon={Navigation}
+            iconColor="var(--color-info)"
+            pillar="S3"
+            cardDesc="방콕항 체선율·운반선 이동 경로"
+            telemetry={{ status: 'LIVE', syncDate: 'Realtime' }}
+            customBody={<ReeferMovement />}
+            takeaway={{
+              situation: '현재 방콕항 묘박지 대기 선박 및 체선율 지수가 실시간으로 모니터링되고 있습니다. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
+              actionPlan: '체선일이 10일을 초과하는 선박에 대해서는 선하증권(B/L) 분할 양륙 및 인근 송클라 또는 젠산 항구로의 목적지 변경(Diversion)을 적극 검토해야 합니다.',
+              source: '방콕항 체선율 모니터링',
+            }}
+          />
+
+          <WidgetCard
+            title="냉동 컨테이너 해상 운임 (Reefer Freight)"
+            icon={Truck}
+            iconColor="var(--color-info)"
+            pillar="S3"
+            cardDesc="Reefer 40'HC 컨테이너 운임 추이 — 주요 허브 비교"
+            telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+            customBody={<ReeferFreightChart />}
+            takeaway={{
+              situation: "주요 허브(태국, 필리핀, 스페인 등)로 향하는 냉동 컨테이너(Reefer 40'HC) 운임이 지정학적 불안과 파나마/수에즈 운하 이슈로 인해 전반적인 상승 압력을 받고 있습니다.",
+              actionPlan: '해상 운임 급등기에는 개별 컨테이너 선적보다 대형 냉동 운반선(Reefer Carrier) 벌크 용선의 경제성이 우월해집니다. 물류비를 방어하기 위해 관계사들과의 Joint Shipment 물량을 집중 구성해야 합니다.',
+              source: '글로벌 해상 운임 인텔리전스',
+            }}
+          />
         </div>
       </section>
     </div>

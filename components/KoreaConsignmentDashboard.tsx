@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
+import WidgetCard from './WidgetCard';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -309,63 +310,55 @@ export default function KoreaConsignmentDashboard() {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-        <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-          <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: '#38bdf8', margin: '0 0 0.4rem 0' }}>
-              <TrendingUp size={18} />
-              {activeTab === 'all' ? '연도별 총 판매 금액 추이' : `${activeTab}년 어종별 누적 판매 금액 (Top 15)`}
-            </h3>
-          </div>
-          <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
-                <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 100000000).toFixed(0)}억`} />
-                <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-                <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
-                <Bar dataKey="saleAmount" name="판매금액 (원)" fill="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ background: 'rgba(2, 14, 28, 0.45)', borderTop: `2px solid #38bdf8`, borderRadius: '8px', padding: '14px' }}>
-              <h4 style={{ color: 'var(--color-warning)', fontSize: '0.85rem', fontWeight: 700, margin: '0 0 4px 0' }}>⚡ 실행 전략 (EXECUTIVE TAKEAWAY)</h4>
-              <p style={{ color: '#fde68a', fontSize: '0.82rem', lineHeight: 1.6, margin: 0 }}>
-                {activeTab === 'all' ? '3개년 총 판매 금액 추이를 통해 국내 수산 시장의 전반적인 규모 변화와 트렌드를 파악.' : `어종별 누적 거래 대금을 분석하여 ${activeTab}년도 핵심 캐시카우 어종을 선별하고, 전략적 매입 계획 수립에 활용.`}
-              </p>
-            </div>
-          </div>
-        </div>
+        <WidgetCard
+          title={activeTab === 'all' ? '연도별 총 판매 금액 추이' : `${activeTab}년 어종별 누적 판매 금액 (Top 15)`}
+          icon={TrendingUp}
+          iconColor="#38bdf8"
+          pillar="S4"
+          cardDesc="단위: 원 — 노량진·자갈치 등 위판장 통계 집계"
+          telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+          chartHeight={325}
+          chart={
+            <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
+              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 100000000).toFixed(0)}억`} />
+              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+              <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
+              <Bar dataKey="saleAmount" name="판매금액 (원)" fill="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
+            </BarChart>
+          }
+          takeaway={{
+            situation: activeTab === 'all' ? '3개년 총 판매 금액 추이를 통해 국내 수산 시장의 전반적인 규모 변화와 트렌드를 파악.' : `${activeTab}년 어종별 누적 거래 대금을 단일 화면에서 비교.`,
+            actionPlan: activeTab === 'all' ? '시장 규모 변화 트렌드에 맞춰 매입·판매 전략을 조정.' : `어종별 거래 대금을 분석하여 ${activeTab}년도 핵심 캐시카우 어종을 선별하고, 전략적 매입 계획 수립에 활용.`,
+            source: '위판장 집계 데이터',
+          }}
+        />
 
-        <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
-          <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: '#38bdf8', margin: '0 0 0.4rem 0' }}>
-              <Anchor size={18} />
-              {activeTab === 'all' ? '연도별 총 유통 물량 추이' : `${activeTab}년 어종별 누적 판매 물량 (Top 15)`}
-            </h3>
-          </div>
-          <div style={{ height: '325px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
-                <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 1000).toFixed(0)}t`} />
-                <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-                <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
-                <Bar dataKey="saleQty" name="판매물량 (kg)" fill="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
-              </BarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ background: 'rgba(2, 14, 28, 0.45)', borderTop: `2px solid #38bdf8`, borderRadius: '8px', padding: '14px' }}>
-              <h4 style={{ color: 'var(--color-warning)', fontSize: '0.85rem', fontWeight: 700, margin: '0 0 4px 0' }}>⚡ 물량 확보 전략</h4>
-              <p style={{ color: '#fde68a', fontSize: '0.82rem', lineHeight: 1.6, margin: 0 }}>
-                {activeTab === 'all' ? '국내 총 유통 물량 변동성을 모니터링하여 가공 공장 케파(Capacity) 및 원물 확보 스케줄 사전 기획.' : `물량이 집중되는 핵심 어종의 ${activeTab}년 공급 안정성을 평가하고 대체 어종 발굴 등 SCM 유연성 확보에 주력.`}
-              </p>
-            </div>
-          </div>
-        </div>
+        <WidgetCard
+          title={activeTab === 'all' ? '연도별 총 유통 물량 추이' : `${activeTab}년 어종별 누적 판매 물량 (Top 15)`}
+          icon={Anchor}
+          iconColor="#38bdf8"
+          pillar="S3"
+          cardDesc="단위: kg — 노량진·자갈치 등 위판장 물량 집계"
+          telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+          chartHeight={325}
+          chart={
+            <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
+              <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 1000).toFixed(0)}t`} />
+              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+              <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
+              <Bar dataKey="saleQty" name="판매물량 (kg)" fill="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
+            </BarChart>
+          }
+          takeaway={{
+            situation: activeTab === 'all' ? '국내 총 유통 물량 변동성을 모니터링하여 가공 공장 케파(Capacity) 및 원물 확보 스케줄 사전 기획.' : `${activeTab}년 어종별 누적 판매 물량을 비교.`,
+            actionPlan: activeTab === 'all' ? '유통 물량 변동성에 맞춰 가공 공장 케파·원물 확보 일정을 사전 조정.' : `물량이 집중되는 핵심 어종의 ${activeTab}년 공급 안정성을 평가하고 대체 어종 발굴 등 SCM 유연성 확보에 주력.`,
+            source: '위판장 집계 데이터',
+          }}
+        />
       </div>
 
       {/* Detailed Table Section (Only for specific year) */}
