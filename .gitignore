@@ -41,11 +41,11 @@ yarn-error.log*
 next-env.d.ts
 .env*.local
 _archive/
-data/*.csv
-data/**/*.csv
-data/**/*.zip
+/data/*.csv
+/data/**/*.csv
+/data/**/*.zip
 *.zip
-data/
+/data/
 _archive/
 scratch/
 20260518_070729_78ad28

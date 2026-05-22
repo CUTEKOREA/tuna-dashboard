@@ -1,0 +1,85 @@
+{
+  "date": "2026-05-19",
+  "summary_kr": "미·EU 규제 강화 및 무역 갈등 심화, 조업 불확실성 증대",
+  "market_signals": [
+    {
+      "type": "geopolitics",
+      "headline_kr": "미 의회, 외국 수산물 불공정 무역 조사 압박",
+      "detail_kr": "미 의회가 무역법 301조에 따라 태국, 베트남 등 주요 수산물 수출국에 대한 불공정 무역 관행(보조금, IUU 등) 전면 조사를 촉구했습니다.",
+      "impact_on_korea": "위협: 한국도 조사 대상 포함 가능성. 대미 수출에 규제 및 관세 장벽 리스크 증대.",
+      "atuna_source_title": "US Lawmakers Seek Section 301 Probe Into Foreign Unfair Seafood Practices",
+      "confidence": "high"
+    },
+    {
+      "type": "regulation",
+      "headline_kr": "EU 선단, 규제 압박 및 어장 접근성 악화",
+      "detail_kr": "스페인 Albacora CEO, EU의 엄격한 규제와 지정학적 복잡성으로 인한 어장 접근성 약화를 경고. 특히 인도양, 태평양에서 EU 영향력 감소.",
+      "impact_on_korea": "위협: EU 경쟁사 약화는 반사 이익이나, 아시아권 경쟁 심화는 위협 요인.",
+      "atuna_source_title": "EU Fleets Face Regulatory Pressure & Fishing Access Issues",
+      "confidence": "high"
+    },
+    {
+      "type": "demand",
+      "headline_kr": "미국 파우치 참치 수입, 1분기 25% 급감",
+      "detail_kr": "2026년 1분기 미국 파우치 참치 수입량이 11,500톤으로 25% 감소. 관세 불확실성 및 해양포유류보호법(MMPA) 강화가 주 원인입니다.",
+      "impact_on_korea": "기회/위협: 미국 시장 진입 장벽 강화는 위협이나, 경쟁국(베트남, 에콰도르) 부진은 기회.",
+      "atuna_source_title": "US Buyers Reduce Pouch Imports Amid Tariff and Regulation Woes",
+      "confidence": "high"
+    },
+    {
+      "type": "supply",
+      "headline_kr": "조업 불확실성 증대, 선박 운항 중단 우려",
+      "detail_kr": "Atuna 설문, 93%가 중동 위기, 원가 상승, 서부태평양(WCPO)·인도양 어획 부진으로 더 많은 참치 선박이 조업을 중단할 것으로 예상.",
+      "impact_on_korea": "위협: 조업 중단 선박 증가는 공급 감소 및 원어 가격 상승 요인으로 작용.",
+      "atuna_source_title": "Readers: More Tuna Vessels Likely To Halt Operations",
+      "confidence": "medium"
+    },
+    {
+      "type": "supply",
+      "headline_kr": "스페인, 2026년 인도양 쿼터 확정",
+      "detail_kr": "스페인, 14척 선망선에 2026년 인도양 황다랑어 42,903톤, 눈다랑어 14,792톤 쿼터를 배정했습니다.",
+      "impact_on_korea": "중립: 경쟁국인 스페인 선단의 쿼터 확정으로 인도양 조업량 예측 가능성 증대.",
+      "atuna_source_title": "Spain Sets 2026 IO Yellowfin And Bigeye Quotas",
+      "confidence": "high"
+    },
+    {
+      "type": "demand",
+      "headline_kr": "스페인 Balfegó, 2025년 매출 11% 증가",
+      "detail_kr": "스페인 참다랑어 기업 Balfegó, 2025년 매출 1.19억 유로 기록. 미국 관세에도 불구, 중국 수출 호조로 성장했습니다.",
+      "impact_on_korea": "중립: 참다랑어(Bluefin) 시장 동향으로 신라교역 주력 어종과 직접 연관성 낮음.",
+      "atuna_source_title": "Balfegó Posts Higher 2025 Sales As Bluefin Season Begins",
+      "confidence": "high"
+    }
+  ],
+  "kpi_updates": [
+    {
+      "metric": "skj_price_bangkok",
+      "value": "상승세",
+      "unit": "추세",
+      "note": "Skipjack raw material prices have been edging higher in key processing hubs including Bangkok"
+    },
+    {
+      "metric": "fuel_availability",
+      "value": "일부 지역 배급제 및 부족 현상 발생",
+      "unit": "상태",
+      "note": "this year, there have been fuel rationing situations and vessels stopped due to a lack of availability"
+    },
+    {
+      "metric": "us_pouch_import_volume_q1_2026",
+      "value": "11,500",
+      "unit": "M/T",
+      "note": "From January to March, 11,500 M/T of pouched tuna were imported by the US"
+    },
+    {
+      "metric": "us_pouch_import_price_q1_2026",
+      "value": "5,201",
+      "unit": "USD/ton",
+      "note": "at a one percent increase to USD 5,201 per ton"
+    }
+  ],
+  "tuna_live_patch": {
+    "arbitrageRadar.note_append": "미국 파우치 시장, 베트남산 고가($7,343/톤)에 수요 붕괴, 태국산은 가격 인하($4,652/톤).",
+    "thaiTrade.note_append": "미국 파우치 참치 수입량 감소에도 불구, 태국산은 선방. 트럼프 관세 철회로 향후 가격 경쟁력 회복 기대.",
+    "climateRisk.note_append": "서부태평양(WCPO) 및 인도양 어획 부진으로 선박 운항 중단 가능성 제기."
+  }
+}

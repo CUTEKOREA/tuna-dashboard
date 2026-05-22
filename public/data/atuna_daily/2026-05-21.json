@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-21",
+  "summary_kr": "PNG 화산 분화로 서태평양 조업 차질 우려, 유가 상승 리스크",
+  "market_signals": [
+    {
+      "type": "supply",
+      "headline_kr": "PNG 해저화산 분화, 서태평양 조업 차질",
+      "detail_kr": "파푸아뉴기니(PNG) 비스마르크해 화산 분화로 조업 중단 경고. 한국 등 원양선사 조업 지역으로, 어군 이동 및 조업 차질 예상.",
+      "impact_on_korea": "위협: 주 조업지역 이탈로 인한 어획량 감소 및 비용 증가 가능성.",
+      "atuna_source_title": "Bismarck Sea Volcanic Eruptions Threaten PNG's Key Fishing Ground",
+      "confidence": "high"
+    },
+    {
+      "type": "price",
+      "headline_kr": "美 유통사 이익 독점, 선단 수익성 악화",
+      "detail_kr": "방콕 가다랑어 가격은 2007년 이후 평균 1,500$/MT 정체. 동원(스타키스트) 등 브랜드사가 가격 결정, 선단 압박 심화.",
+      "impact_on_korea": "위협: 원가 상승에도 판가 반영 어려워 수익성 악화 지속 우려.",
+      "atuna_source_title": "The US Tuna Retail Trade Continues To Profit At The Expense Of Fleet & Resource Owners",
+      "confidence": "high"
+    },
+    {
+      "type": "geopolitics",
+      "headline_kr": "영국, 몰디브산 참치 관세 20% 철폐",
+      "detail_kr": "영국이 몰디브산 참치 수입 관세(20%)를 2028년까지 중단. 연간 2,200만 달러 규모 시장으로, 가격 경쟁력 확보.",
+      "impact_on_korea": "중립: 영국 시장 내 경쟁 심화 가능성 있으나 직접 영향은 제한적.",
+      "atuna_source_title": "UK Removes 20 Percent Tariff Barrier For Maldivian Tuna",
+      "confidence": "high"
+    },
+    {
+      "type": "supply",
+      "headline_kr": "베트남, 1.6억 달러 투자 참치 허브 야심",
+      "detail_kr": "베트남 Gia Lai성, 1.62억 달러 투자해 참치 항구 확장. 2030년까지 수출 등급 참치 30-35% 목표, EU 옐로카드 해제 목표.",
+      "impact_on_korea": "중립: 장기적으로 베트남의 가공 및 수출 경쟁력 강화 예상.",
+      "atuna_source_title": "Vietnam's Gia Lai Province Eyes Tuna Hub With Multi-Million Dollar Investment",
+      "confidence": "high"
+    },
+    {
+      "type": "esg",
+      "headline_kr": "타이유니온, EU 수은 규제 100% 준수",
+      "detail_kr": "타이유니온 소유 Petit Navire 참치 제품, EU 수은 규제(1mg/kg) 준수. 테스트 제품 78%는 0.3mg/kg 미만.",
+      "impact_on_korea": "중립: 글로벌 경쟁사의 품질 관리 동향. 한국도 유사 규제 대비 필요.",
+      "atuna_source_title": "Petit Navire Tuna Complies With EU Mercury Rules",
+      "confidence": "high"
+    }
+  ],
+  "kpi_updates": [
+    {
+      "metric": "skj_price_bangkok_historical_avg",
+      "value": "1500",
+      "unit": "USD/MT",
+      "note": "2007년 이후 방콕 가다랑어 연평균 가격. 월별 변동폭은 USD 850-2,350. (Atuna)"
+    },
+    {
+      "metric": "vessel_breakeven_point",
+      "value": ">7500",
+      "unit": "MT/year",
+      "note": "선망선 연간 조업량 손익분기점, 일일 약 34톤 수준. (Atuna)"
+    },
+    {
+      "metric": "fuel_price_risk",
+      "value": "상승",
+      "unit": "",
+      "note": "이란 분쟁으로 인한 유가 상승 리스크, 저효율 선박 조업 중단 가능성. (Atuna)"
+    },
+    {
+      "metric": "uk_tariff_maldives_tuna",
+      "value": "0",
+      "unit": "%",
+      "note": "영국, 몰디브산 참치 수입 관세 20%→0%로 2028년까지 인하. (Atuna)"
+    }
+  ],
+  "tuna_live_patch": {
+    "arbitrageRadar.note_append": "영국, 몰디브산 참치 관세 20%→0% 인하(2028년까지). 태국 경유 가공품 가격 경쟁력 변동 가능성.",
+    "thaiTrade.note_append": "타이유니온(Petit Navire) 제품, EU 수은 기준 100% 준수. 몰디브산 원료(가다랑어) 수입 지속.",
+    "climateRisk.note_append": "파푸아뉴기니(PNG) 비스마르크해 해저 화산 분화, 주요 어장 조업 차질 및 참치 어군 이동 가능성."
+  }
+}

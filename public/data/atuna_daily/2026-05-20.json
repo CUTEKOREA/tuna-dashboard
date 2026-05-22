@@ -1,0 +1,77 @@
+{
+  "date": "2026-05-20",
+  "summary_kr": "인도양 조업 중단 및 에콰도르 어획량 급감으로 글로벌 공급 불안정성 심화",
+  "market_signals": [
+    {
+      "type": "supply",
+      "headline_kr": "인도양 참치업계, '퍼펙트 스톰' 직면",
+      "detail_kr": "인도양 선단, 저어획·고유가·저선가 3중고로 조업 중단. MGO 유가는 톤당 $1,665, 가다랑어 선가는 톤당 $1,728로 하락.",
+      "impact_on_korea": "위협/기회: 원가 상승 위협이나, 글로벌 공급 차질로 인한 선가 상승의 기회로 작용 가능.",
+      "atuna_source_title": "IO Tuna Industry Faces “Perfect Storm”",
+      "confidence": "high"
+    },
+    {
+      "type": "supply",
+      "headline_kr": "에콰도르 선단, 가다랑어 어획량 35% 급감",
+      "detail_kr": "2026년 1분기 에콰도르 선단의 가다랑어 어획량이 전년 동기 대비 35% 감소한 53,996톤을 기록. 이는 2024년 이전 평년 수준으로 회귀한 것.",
+      "impact_on_korea": "기회: 경쟁국 에콰도르의 원어 공급 감소는 가공품 생산 차질로 이어져 한국에 반사이익 가능성.",
+      "atuna_source_title": "Ecuadorian Fleet Feels The Squeeze With Low Skipjack Catches",
+      "confidence": "high"
+    },
+    {
+      "type": "esg",
+      "headline_kr": "미국 MSC 인증 시장, 참치가 30% 이상 주도",
+      "detail_kr": "미국 내 MSC 인증 참치 판매량이 5년간 330% 급증, 2025/26년 75,000톤 기록. Thai Union, Walmart 등이 시장 성장을 주도.",
+      "impact_on_korea": "중립: 미국 시장의 MSC 인증 선호 심화. 지속가능성 확보가 향후 수출 경쟁력의 핵심 요건임을 시사.",
+      "atuna_source_title": "Tuna Leads MSC Seafood Market In US With Over 30 Percent Of Sales",
+      "confidence": "high"
+    },
+    {
+      "type": "demand",
+      "headline_kr": "참치 부산물, 10억 달러 시장 잠재력 보유",
+      "detail_kr": "참치 펩타이드 시장이 연평균 4.8% 성장하여 2034년 15.6억 달러 규모 전망. Thai Union은 2025년 이 시장에 진출.",
+      "impact_on_korea": "기회: 참치 부산물을 활용한 고부가가치 사업(펩타이드 등) 진출로 신규 수익원 창출 가능성.",
+      "atuna_source_title": "Tuna Waste Has Billion-Dollar Market Potential",
+      "confidence": "medium"
+    },
+    {
+      "type": "demand",
+      "headline_kr": "영국 Princes 그룹, 참치 부문 매출 4% 감소",
+      "detail_kr": "NewPrinces 그룹의 2026년 1분기 참치 부문 매출이 전년 동기 대비 4% 감소한 1.02억 유로 기록. 낮은 평균 판매가가 원인.",
+      "impact_on_korea": "중립: 유럽 시장 경쟁사의 판매가 하락은 시장 내 가격 경쟁이 심화되고 있음을 시사.",
+      "atuna_source_title": "NewPrinces Group Turnover Increases But Drop In Tuna Sales",
+      "confidence": "high"
+    }
+  ],
+  "kpi_updates": [
+    {
+      "metric": "skj_price_seychelles",
+      "value": "1,728",
+      "unit": "USD/MT",
+      "note": "Atuna spot price for SJK1.8:SEY at EUR 1,490/ton, down 1% from three weeks ago."
+    },
+    {
+      "metric": "yf_price_seychelles",
+      "value": "2,320",
+      "unit": "USD/MT",
+      "note": "Spot price for YF10:SEY increased to EUR 2,000/ton due to low catches."
+    },
+    {
+      "metric": "fuel_price_mgo",
+      "value": "1,665",
+      "unit": "USD/MT",
+      "note": "Port Victoria MGO price, down from USD 2,000 at the end of April."
+    },
+    {
+      "metric": "fleet_catch_ecuador_q1_skj",
+      "value": "-35",
+      "unit": "%",
+      "note": "Ecuadorian fleet's skipjack catches plummeted by 35% to 53,996 M/T in Q1 2026 YoY."
+    }
+  ],
+  "tuna_live_patch": {
+    "arbitrageRadar.note_append": "인도양 선단 조업 중단으로 공급 차질 심화, 지역별 선가 차이 발생 가능성 증대.",
+    "thaiTrade.note_append": "Thai Union, 참치 부산물 활용 펩타이드 사업으로 고부가가치 시장 진출 가속화.",
+    "climateRisk.note_append": "동태평양(EPO) 가다랑어 어획량, 기록적이었던 2024년 이후 평년 수준으로 회귀."
+  }
+}
