@@ -4,7 +4,24 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Claude Code + OMO 통합 세션 — **Stage 0/1/2.1/2.2 모두 통과 + Pollock Pilot/Wave 1 마이그레이션 9 파일 + 본 디렉터리 0 영향**)
+> **마지막 업데이트**: 2026-05-22 (Claude Code OMO-Codex 세션 — **Whelk 29/29 + Carrot 30/30 + Galchi (renderer) + FalklandSquid 2/3 완료, PR #18 4 commodity 통합**)
+
+---
+
+## 🆕 2026-05-22 — 단일파일 commodity 4종 마이그레이션 완료
+
+### 진척 (omo/singles-codex on omo-codex worktree)
+- **Whelk 29/29** (W14/15/16/17/18/23/24/28 완료) — `f99f0e7`·`3ba66b7`
+- **Carrot 30/30** (파이썬 스크립트 L-07 일괄 변환, -487 lines) — `b37d306`
+- **Galchi renderWidgetCard** (5 pillar 다이나믹 매핑, -41 lines) — `adfc4bb`
+- **FalklandSquid 2/3** (table widget3는 ds-card 유지 — 비차트 구조) — `41e2f9c`
+- `omo/singles-codex` HEAD = `41e2f9c`
+- **PR #18**: 5 commodity 통합 (Garlic 18 + Cocoa 22 + Whelk 29 + Carrot 30 + Galchi + FalklandSquid 2 + WidgetCard ReactNode 완화)
+
+### 다음 단계
+1. PR #18 머지 (사용자 검토)
+2. table 구조 widget (FalklandSquid widget3) WidgetCard 적용 방안 검토 — customBody slot 활용 가능
+3. 남은 dashboard 측정 (Reefer / Mackerel / Pollock 잔여 등)
 
 > 🔬 **OMO 통합 검증 완료** (별도 worktree 2개):
 >
