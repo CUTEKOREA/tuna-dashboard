@@ -217,53 +217,65 @@ export default function MarketDashboard() {
         }}>
           {/* News 1 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              원자재 / 운임
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+                원자재 / 운임
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.20</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "해상 연료비 급등과 BKK 가다랑어 원가 압박"
+              "IO 참치 '퍼펙트 스톰' — 인도양 선사 운영 중단 단행"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              중동 분쟁으로 인한 해상 연료비 급등으로 4월 태국 방콕(BKK)과 에콰도르 만타(MNT)의 가다랑어 원어 가격이 톤당 2,000달러 선까지 치솟았습니다. 그러나 가공업체들의 매입 관망세로 5월 방콕 거래가는 1,975달러로 소폭 하락하며 조정 국면에 진입했습니다.
+              인도양 어획 부진·고유가·저단가 삼중고로 다수 IO 선사가 자선을 항구에 정박시켰습니다. Port Victoria MGO는 4월 말 USD 2,000/t → 5월 현재 USD 1,665/t으로 하락했고, Seychelles 스킵잭 스팟가는 EUR 1,490(USD 1,728)/t으로 3주 전 EUR 1,500 대비 -1%. 옐로핀 YF10:SEY는 EUR 2,000/t까지 상승하며 코로나 팬데믹과 달리 단기 개선 전망이 없는 구조적 위기입니다.
             </p>
           </div>
 
           {/* News 2 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              기후 / 공급망
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+                기후 / 공급망
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.21</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "슈퍼 엘니뇨로 인한 조업 지형 변화 및 지역별 공급 불균형"
+              "PNG 비스마르크해 해저화산 분출 — 핵심 WCPO 어장 위협"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              강력한 엘니뇨 발생 예측으로 참치 어군이 동진하며 서중부태평양(WCPO) 선단 어획량이 급감했습니다. 반면 동부태평양(EPO)에서는 대형 황다랑어가 이례적으로 초과 어획되는 등 극심한 수급 불균형 현상이 나타나고 있습니다.
+              파푸아뉴기니 북쪽 Titan Ridge 해저화산이 5월 8일부터 분출을 가속화. 5월 16일 ash 3.6km 상승 + 4.3M 지진, 5월 18일 5.4M 추가. 비스마르크해는 대만·한국·일본·필리핀 원양 선망 선단의 주요 어장으로, 화산활동이 지속되면 참치는 산소가 풍부한 해역으로 이동하며 어장이 이전될 전망입니다. PNG 정부 VDS 입어료 수입 직접 타격 우려.
             </p>
           </div>
 
           {/* News 3 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              규제 / 통상 리스크
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+                규제 / 통상 리스크
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.19~21</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "미국 글로벌 관세 위법 판결 및 EU CATCH 통관 마비"
+              "US Section 301 청원 + UK-몰디브 20% 관세 면제 양극화"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              미 무역법원의 10% 글로벌 관세 위법 판결로 긍정적 전환점이 마련되었으나, 7월 재부과 리스크가 상존합니다. 더불어 EU의 새로운 디지털 어획 증명 시스템(CATCH) 도입으로 스페인 등 주요 항구의 통관 지연과 물류 마비가 심화되고 있습니다.
+              미국 의회 20인 위원이 USTR에 태국·베트남·중국·인도네시아 등 17개국 대상 Section 301 unfair trade 조사를 요구. 한편 영국은 몰디브산 참치 20% 관세를 2028년까지 면제하며 풀앤라인 지속가능 참치에 시장을 개방. US 파우치 수입 Q1 25% 감소(MMPA + 관세 영향), 베트남은 1월부터 12개 어장 미국 수출 금지로 충격.
             </p>
           </div>
 
           {/* News 4 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-              어획 할당량 / 외교
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+                어획 할당량 / 어장
+              </div>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.19~20</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "IOTC 제30차 총회 개막 및 편의치적 갈등 점화"
+              "에콰도르 EPO 스킵잭 Q1 -35% + 스페인 IO 2026 쿼터 발표"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              인도양참치위원회(IOTC) 총회에서 할당량 축소 및 전자 집어장치(e-DFAD) 의무화가 핵심 논의 중입니다. 동시에 대형 참치 기업들의 편의치적을 통한 할당량 우회 사용 논란이 불거지며 연안국과 원양 조업국 간 외교적 갈등이 확산되고 있습니다.
+              에콰도르 선단 Q1 2026 스킵잭 53,966 M/T로 전년 동기 -35%, 2024 record 대비 절반 수준 — 2024년 이전 정상 레벨로 회귀. EU 가공업체 수요 압박 가속. 한편 스페인은 IO yellowfin 42,903 M/T + bigeye 14,792 M/T 2026 쿼터를 14개 Bermeo 기반 선망에 배분. Atuna 독자 투표 93%가 "더 많은 어선이 운영 중단할 것"이라 응답.
             </p>
           </div>
         </div>
@@ -278,32 +290,32 @@ export default function MarketDashboard() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="어획 변동성 심화 — '수급 축 이동'과 'MSC 프리미엄의 주류화'"
+            title="3대양 동시 공급 충격 — IO·EPO 부진 + WCPO 화산 리스크"
             icon={Search}
             iconColor="#818cf8"
             pillar="S1"
-            cardDesc="WCPO 부진 → 인도양 전환 + MSC 인증 의무화 흐름"
-            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05' }}
+            cardDesc="이번 주 인도양·동부태평양·서태평양 3대양 모두 공급 위기 단서 표면화"
+            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.18~21' }}
             customBody={<></>}
             takeaway={{
-              situation: "기후 변화로 WCPO 조업이 부진해지자, 아시아 가공업체들은 인도양산 매입을 폭발적으로 늘리며 공급망 축을 이동 중입니다. 또한 영국 및 선진 시장에서 MSC 인증 수산물이 1위로 등극하는 등 '지속가능성'이 시장 진입의 필수 요건이 되었습니다.",
-              actionPlan: "조업 리스크 상쇄를 위해 수급처를 인도양/동부태평양으로 적극 다변화해야 합니다. 글로벌 대형 유통업체들의 100% MSC 전환 흐름에 대응해 원어 소싱부터 지속가능성 프리미엄 비축과 친환경 브랜딩을 가속화해야 합니다.",
-              source: 'Atuna May 2026 News & Consumption Trends',
+              situation: "IO는 어선들이 연료비 부담으로 항구 정박을 단행하며 'Perfect Storm' 진입(SJK 1,728 USD/t, MGO USD 1,665/t). EPO는 에콰도르 선단 Q1 스킵잭 -35%로 2024 이전 정상 레벨 회귀. WCPO는 PNG Bismarck Sea 해저화산 분출 가속화로 주요 선망 어장이 산소 결핍 위협을 받음.",
+              actionPlan: "3대양 동시 공급 충격기에는 단일 원산지 노출을 즉시 축소하고, 몰디브(UK 0% 관세 신규 개방)·태평양 SIDS 직거래·인도네시아 풀앤라인 등 '대체 풀'을 다각화해야 합니다. 5~7월 IO 부진 + 6월 PNG 화산 정세 미정 구간을 대비해 6개월 raw material 비축을 사전 확보하고, 단가 상승분을 캐너리·바이어에 단계적으로 전가하는 가격 패스스루 협상 카드를 준비.",
+              source: 'Atuna 2026.05.18~21 (IO Perfect Storm · EPO Skipjack · PNG Bismarck)',
             }}
           />
 
           <WidgetCard
-            title="하드웨어 조업 → '인공지능·데이터 중심 해양 지능화' 가치 이동"
+            title="MSC 미국 30% 점유 + 참치 부산물 펩타이드 USD 1.56B 시장"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="Smart-aFAD·EU CATCH 등 디지털 이력 추적 가속"
-            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05' }}
+            cardDesc="지속가능 인증 메인스트림화 + 폐기물 → 고부가 펩타이드 전환"
+            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.20' }}
             customBody={<></>}
             takeaway={{
-              situation: "연료비 폭등과 어가 변동으로 전통적 방식의 선단들이 수익성 위기를 겪는 가운데, AI 기반 실시간 모니터링 등 '해양 지능(Ocean Intelligence)' 소프트웨어 산업으로 무게중심이 급격히 이동하고 있습니다.",
-              actionPlan: "단순 선박 규모 확장이 아닌 스마트 조업 시스템(Smart-aFAD) 투자를 통해 연료 효율 최적화 및 한계 비용 축소에 집중해야 합니다. 또한 EU CATCH 등 규제 리스크를 기회로 바꾸기 위한 투명한 디지털 이력 추적 시스템 선제 도입이 시급합니다.",
-              source: 'Atuna May 2026 Tech & ESG Radar',
+              situation: "MSC 인증 참치 미국 판매량 5년 동안 +330% 급증, 75,000톤으로 全 MSC 인증 수산물 33% 점유. Walmart 100% MSC 자체 라벨 전환 완료(37 SKU), Bumble Bee 49 SKU. 한편 참치 부산물 펩타이드 시장 USD 1.56B (2034 전망, CAGR 4.8%) — Thai Union이 USD 30M 투자로 ThalaCol 콜라겐 펩타이드 양산 개시.",
+              actionPlan: "(1) MSC 인증 + 풀앤라인 원료 비축으로 미국·UK 프리미엄 채널 진입을 가속. Walmart·Sainsbury's·Tesco 사례를 벤치마크로 한국 대형 마트 PB MSC 전환을 제안. (2) 참치 가공 부산물(머리·껍질)을 콜라겐/펩타이드/항산화 영양제로 업사이클링하는 R&D 파이프라인을 2027 출시 목표로 즉시 가동. 폐기물에서 톤당 수천 달러의 고부가 가치를 확보할 수 있는 '제로 코스트 마진' 모델.",
+              source: 'Atuna 2026.05.20 (MSC US Sustainable Market · Tuna Peptide Market)',
             }}
           />
 

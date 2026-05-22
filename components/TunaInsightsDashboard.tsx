@@ -255,9 +255,9 @@ export default function TunaInsightsDashboard() {
           </AreaChart>
         }
         takeaway={{
-          situation: 'WCPO-대서양 어획량의 충격 시점 상관계수 약 -0.6~-0.8. 2015·2023 WCPO 엘니뇨 충격 당시 대서양 어획이 자연 헷지로 +42% 회복. 단일 해역 의존 선단은 비대칭 노출.',
-          actionPlan: 'NOAA ENSO Index가 +1.5σ를 돌파하면 선단의 25~30%를 대서양 공해상으로 전진 배치하는 사전 매뉴얼 운영. 라이센스 미보유 해역은 단기 임차로 커버. 헷지 비용은 ENSO 충격 시 단가 차익에서 6~12개월 내 회수 가능.',
-          source: 'FAO FishStat Capture v25 (2026-05-13판)',
+          situation: '2026년 1분기 WCPO 어획량이 전년 동기 대비 22% 급감(137,577톤)하며 엘니뇨 충격이 현실화됨. 이에 대응해 태국 가공사들이 인도양(IO) 수입 물량을 106% 늘려 부족분의 3분의 2를 상쇄하는 등 글로벌 공급망의 급격한 이동이 진행 중.',
+          actionPlan: 'NOAA ENSO Index 돌파와 실제 어획량 급감을 고려하여, 선단의 25~30%를 대서양 공해상 및 인도양으로 전진 배치하는 사전 매뉴얼 가동. 인도양 어장 라이센스 단기 확보로 WCPO발 스퀴즈 리스크를 헷지.',
+          source: 'FAO FishStat Capture v25 · Atuna May 2026 (Q1 WCPO Supply Drop)',
         }}
       />
 
@@ -492,9 +492,9 @@ export default function TunaInsightsDashboard() {
           </BarChart>
         }
         takeaway={{
-          situation: '미국이 2025-07-31 발효한 상호관세는 태국 19%·베트남 20%·에콰도르 15%로 동남아 가공 거점이 불리. 동남아 경유 미국 수출 마진이 압박 받는 가운데, 글로벌 빅 플레이어는 미 조지아주 등 북미 현지 FDI(0% 관세)와 USMCA 멕시코(0%)로 거점 이전 중. 2026-02 미 대법원·5월 국제무역법원 판결로 관세 일부의 법적 지위는 유동적.',
-          actionPlan: '(a) 동남아 단일 의존 벤더의 마진 압박을 마진 약정으로 부분 흡수, (b) 미 현지 FDI 거점을 보유한 가공사(Thai Union Georgia, Bumble Bee 등) 경유 우회 공급선 확보, (c) 관세 판결의 항소심 결과를 6개월 모니터링하여 동남아 거점의 회복 시그널 포착.',
-          source: '(추정치) Atuna May 2026 News 6 sources · USTR Reciprocal Tariff 2025-07-31 · US Court of International Trade 2026-05-08',
+          situation: '2026년 5월, 미국 국제무역법원이 기존 10% 글로벌 상호관세를 불법으로 판결(strike down)하며 동남아 가공 거점의 수출 마진 압박이 일시 해소될 호재 발생. 단, 기납부 관세 환급(CAPE 시스템)의 절차적 불확실성은 여전함.',
+          actionPlan: '(a) 관세 철폐 판결에 따라 태국·베트남 등 기존 동남아 공급망 발주 물량을 정상화, (b) 기납부 관세 환급 가능성을 대비해 통관 파트너와 관련 서류 사전 정비, (c) 북미 현지 FDI 이전 계획은 항소심 최종 결과 전까지 CAPEX 집행 속도 조절.',
+          source: 'Atuna May 2026 (US Court Tariff Strike Down) · USTR Reciprocal Tariff',
         }}
       />
 
@@ -579,9 +579,9 @@ export default function TunaInsightsDashboard() {
           </LineChart>
         }
         takeaway={{
-          situation: '참치 부산물 비중은 평균 40~55%(어종·공정별 편차). 52% 모델 케이스 기준. 부산물을 펫푸드·해양 콜라겐으로 전용한 라인은 통조림 본업(영업이익률 1~9% 박스권) 대비 28.5%(추정·증권사 리포트) 매출총이익률을 시현.',
-          actionPlan: '어분 라인 매각 검토는 즉시 중단. 부산물 원료를 활용한 펫푸드·바이오 콜라겐·DHA 설비에 JV 자본을 투입하여 밸류체인 수직 계열화. 부산물 라인 OPEX/매출 비율을 분기별로 모니터링하여 28.5% 추정의 검증 데이터로 활용.',
-          source: '증권사 펫푸드 부문 리포트 · 자체 부산물 마진 모델 (2019-2024)',
+          situation: '참치 부산물을 전용한 펫푸드 라인은 28.5% 수준의 고마진을 시현 중. 실제로 Thai Union의 2026년 1분기 PetCare 부문 매출이 전년 대비 23% 급증(THB 5.1B)하며 그룹 전체 이익 성장을 견인, 업사이클링의 강력한 이익 창출력이 시장에서 입증됨.',
+          actionPlan: '단순 어분 라인 매각 검토는 전면 백지화. 검증된 고수익성(펫푸드·바이오 콜라겐) 설비에 JV 형태로 자본을 집중 투입해 밸류체인을 수직 계열화. Thai Union의 실적을 벤치마킹하여 초기 프리미엄 펫푸드 시장 점유율 확보에 주력.',
+          source: 'Thai Union Q1 2026 Financials · Atuna May 2026 News',
         }}
       />
     </>
