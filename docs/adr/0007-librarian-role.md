@@ -174,11 +174,16 @@ Paid Tier 가격 ([Google AI 공식](https://ai.google.dev/gemini-api/docs/prici
 
 ## Validation
 
-- [ ] `~/.config/opencode/oh-my-openagent.json`에 4 역할 등록
+- [x] `~/.config/opencode/oh-my-openagent.json`에 librarian + librarian-heavy 등록 (2026-05-22)
 - [ ] Oracle 의무 게이트 enforce (위젯 머지 전 GPT-4o pass 확인)
-- [ ] Librarian 첫 작업: CashewStrategy dynamic loop + L-01 영문 잔존 audit (다음 세션)
+- [x] **Librarian 첫 작업: carrot_insights.js L-01 audit (2026-05-22)** ✅
+  - 결과 보고: [artifacts/librarian_first_run.md](../../artifacts/librarian_first_run.md)
+  - Gemini 2.5 Flash, $0.00347, 43초, 15건 검출 (진짜 위반 3건, false positive 11건)
+  - 실측 precision 20% — Flash는 1차 audit용, Pro 또는 prompt 강화 필요
+  - 3건 진짜 위반 즉시 정정 (영문 보고서 제목 한글 병기)
 - [ ] 일간 09:00 cron으로 Librarian audit 자동화 (다음 세션)
-- [ ] 30일 후 $100/월 실제 소진율 점검 — 목표: 30% 이상
+- [ ] 30일 후 $100/월 실제 소진율 점검 — 현재 1회 호출 $0.003 = 0.003%
+- [ ] Pro Preview로 같은 input 재audit하여 precision 비교 (다음 세션)
 
 ## References
 
