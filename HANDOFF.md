@@ -1,5 +1,16 @@
 # HANDOFF — 현재 작업 상태
 
+> 💰 **AI 자원 분배 토폴로지** ([ADR 0006](docs/adr/0006-omo-stage0-trial.md) + [ADR 0007](docs/adr/0007-librarian-role.md)):
+> - **Claude Max20** ($200/월) → Claude Code 매뉴얼 (사람 1:1, `[CC]`)
+> - **Google AI Ultra**:
+>   - Antigravity OAuth → OMO Sisyphus(`claude-opus-4-6-thinking`) · Hephaestus(`gemini-3-pro`)
+>   - **Direct API ($100/월 무료)** → **Librarian** (`gemini-3.5-flash` / `gemini-3.1-pro-preview`, `max_tools=0`)
+> - **OpenAI** ($10) → OMO Oracle (`gpt-4o`, 독립 채점)
+>
+> Antigravity Claude 락 (6-10/일) 발생 시: ① Antigravity Gemini 3.1 Pro → ② Librarian (락 무관)
+> 잔여 Gemini Direct API capacity: 어제 작업 부하 기준 월 ~$2/100 (98% 미사용) — 일간 자동 audit·PDF 변환·뉴스카드에 배분 권장
+> 세부 자원 위치 + Librarian 작업 카탈로그: [ADR 0007](docs/adr/0007-librarian-role.md)
+
 > 🚨 **ANTIGRAVITY 공지 (2026-05-21~2026-06-04)**: ADR-0005 (Widget Intake Module) 마이그레이션 진행 중. **Tuna 33개 위젯 closure 동일 파일 작업 1~2주 일시 중단** 요청. 다른 commodity (Mackerel/Squid/Salmon/Pollock 등) 작업은 OK. 자세한 사항은 [docs/adr/0005-widget-intake-module.md](docs/adr/0005-widget-intake-module.md) 참조.
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.

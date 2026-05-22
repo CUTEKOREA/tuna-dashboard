@@ -86,6 +86,36 @@ _Avoid_: 라벨회전, tilt
 한 대시보드가 transitively import하는 모든 컴포넌트의 집합. S-Grade 검증의 자연스러운 단위.
 _Avoid_: dependency graph, 의존성
 
+### AI 자원 분배 (멀티-에이전트 토폴로지)
+
+**3-요금제 분배**:
+Claude Max20 + Google AI Ultra + OpenAI 3개 구독을 OMO 역할별로 분리해 결제선 독립·자기검증 편향 차단·ToS 깨끗하게 운영하는 토폴로지. ADR 0006+0007 결정.
+_Avoid_: multi-model, 모델 라우팅, 분산
+
+**Sisyphus**:
+OMO 오케스트레이터 역할. Plan 수립·병렬 위임 담당. 모델: Antigravity Claude Opus 4.6 thinking (1순위) → Antigravity Gemini 3.1 Pro (락 시).
+_Avoid_: planner, 조정자
+
+**Hephaestus**:
+OMO 딥 워커 역할. 자율 탐색·코드 작성·실행 담당. 모델: Antigravity Gemini 3 Pro (1순위).
+_Avoid_: worker, executor
+
+**Oracle**:
+OMO 리뷰어 역할. 위젯 머지 전 의무 채점. 작성 모델과 분리해 자기검증 편향 차단. 모델: OpenAI GPT-4o.
+_Avoid_: reviewer, checker, QA
+
+**Librarian**:
+OMO non-agentic batch 워커 역할. `max_tools=0`으로 도구 차단, 텍스트 in/out만. Long-context audit·codemod plan generator·cardDesc fan-out·PDF→MD 변환·번역 담당. Antigravity 락 무관. 모델: Gemini Direct API ($100/월 무료 — gemini-3.5-flash 단순 / gemini-3.1-pro-preview heavy). ADR 0007.
+_Avoid_: 사서, 보조, helper
+
+**Antigravity 락**:
+Google AI Ultra의 OAuth 쿼터에서 Claude Opus 4.6 thinking이 일 6-10 호출 후 도달하는 일시 정지 상태. 17:06 reset 실측. 이 상태에서 Sisyphus는 Antigravity Gemini 3.1 Pro로, Hephaestus는 Antigravity Gemini 3.1 Pro로 fallback. Librarian은 Direct API라 락 무관.
+_Avoid_: 쿼터 초과, throttle
+
+**Gemini Direct API**:
+Antigravity OAuth가 아닌 `GOOGLE_GENERATIVE_AI_API_KEY` 직접 호출 경로. 매월 $100 무료 크레딧(AI Ultra 포함). Librarian 전용. *agentic tool-use 약함* 함정(55분 hang 관찰)으로 1순위 코딩 task 금지.
+_Avoid_: Vertex AI, Gemini CLI
+
 ### 비즈니스 도메인
 
 **Silla Co.**:
