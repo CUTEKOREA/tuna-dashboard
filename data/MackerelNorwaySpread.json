@@ -1,0 +1,12 @@
+[
+  { "month": "23.01", "importCost": 2100, "domesticPrice": 2400 },
+  { "month": "23.04", "importCost": 2150, "domesticPrice": 2500 },
+  { "month": "23.07", "importCost": 2200, "domesticPrice": 2600 },
+  { "month": "23.10", "importCost": 2400, "domesticPrice": 2750 },
+  { "month": "24.01", "importCost": 2700, "domesticPrice": 3200 },
+  { "month": "24.04", "importCost": 3100, "domesticPrice": 3500 },
+  { "month": "24.07", "importCost": 3400, "domesticPrice": 3800 },
+  { "month": "24.10", "importCost": 3800, "domesticPrice": 4200 },
+  { "month": "25.01", "importCost": 4200, "domesticPrice": 5000 },
+  { "month": "25.04", "importCost": 4500, "domesticPrice": 5600 }
+]

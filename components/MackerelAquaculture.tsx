@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
-import styles from './MackerelStrategy.module.css';
 import { Droplets, Fish } from 'lucide-react';
+import WidgetCard from './WidgetCard';
 import aquaData from '../data/mackerel_aquaculture.json';
 
 const COLORS = ['#06b6d4', 'var(--color-success)'];
@@ -74,18 +74,9 @@ export default function MackerelAquaculture() {
     );
   };
 
-  return (
-    <div className={styles.glassCard} style={{ borderColor: 'rgba(16, 185, 129, 0.3)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
-        <div>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#34d399', marginBottom: '6px', fontWeight: 700, fontSize: '1.1rem' }}>
-            <Droplets size={20} /> 양식 고등어의 부상과 블루오션
-            
-          </h3>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0 }}>
-            자연산 vs 양식 생산 비중 추이 및 양식 프리미엄 단가 비교
-          </p>
-        </div>
+  const customBody = (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
         <div style={{ display: 'flex', gap: '6px' }}>
           <button onClick={() => setViewMode('trend')} style={{
             padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 600,
@@ -184,5 +175,17 @@ export default function MackerelAquaculture() {
         </div>
       </div>
     </div>
+  );
+
+  return (
+    <WidgetCard
+      title="양식 고등어의 부상과 블루오션"
+      icon={Droplets}
+      iconColor="#34d399"
+      pillar="S5"
+      cardDesc="자연산 vs 양식 생산 비중 추이 및 양식 프리미엄 단가 비교"
+      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      customBody={customBody}
+    />
   );
 }

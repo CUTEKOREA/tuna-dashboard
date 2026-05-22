@@ -320,6 +320,12 @@ PR #17 `omo/singles` 브랜치에 추가 작업 필요:
 - PollockChinaDetour(1)·ValueDecoupling(1)·PremiumSpread(1)·KoreaCrisis(1)·LandedCost(2)·PriceForecast(2)·ProcessedWidgets(2)
 - 커밋: `784b9af`, `9269348` | 배포: `tuna-dashboard-eht6hey0s`
 
+### 비-Tuna 확장 Phase 2A.2 (Mackerel Wave 1a 미니 파일 3개)
+- MackerelStorageTurnover(1)·MackerelTRQMeter(1)·MackerelAltSourcingIndex(1)
+- 커밋: `[OMO]` 접미사 3개 커밋 (a048d9c 등)
+- ADR-0005 WidgetCard 적용 및 data/*.json import 패턴 적용 (SIT/TAK/차트 변경 X)
+- 컴파일러 에러 없는지 확인됨
+
 ### 다음 세션 우선순위 (비-Tuna 확장 잔여 ~343 카드)
 1. **Phase 2A.2~3 Pollock 잔여 14파일 ~70카드** (중·대형, 1.5~2h)
 2. **Phase 2B 중형 위젯 파일** (Chicken·Salmon·Cashew·Surimi·UsedCar 등 ~20파일 ~80카드)
@@ -441,7 +447,7 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 | 2026-05-20 | AG | ui-fix/content (Tuna widget rearrangement & removal) | 60 | — | 참치 대시보드 위젯 흐름 재배치 및 불필요/요청 위젯 5종 완벽 제거 |
 | 2026-05-20 | CC | refactor (TunaOperationalInsights → S1~S5 모듈 분리 + GS Analyst Tone 일괄 적용) | 25 | 워킹트리에 137개 파일 누적 + 스크래치/로그 미정리 | 단일 커밋으로 묶음 분리·제외 판단, 빌드 깨짐 방지(신규 위젯 동봉) |
 | 2026-05-20 | CC | analysis+refactor (참치 위젯 사실 무결성 감사 Phase A+B 풀스캔) | 180 | 노트북 query 일부 timeout, 위젯 간 동일지표 정의 다름 | 33개 위젯 전부 검증·정정, 신규 위젯 4종 추가, 빌드 통과. 6개 커밋(7e8a032·fbbd719·81192ed·21d78f5·c631687·d93fa87) |
-| 2026-05-20 | CC | data (Phase C 외부 출처 검증 + mock 실데이터 wiring) | 45 | EUMOFA PDF는 pdftotext 필요(brew install poppler), 한국 참치액 단일값 미공개 | EUMOFA/ISSF/IMARC 직접 확인으로 4건 정확화, FishStat 실측으로 mockZeroSumData 교체. 2개 커밋(78874b9·d62a359) |
+| 2026-05-20 | CC | data (Phase C 외부 출처 검증 + mock 실데이터 wiring) | 45 | EUMOFA PDF는 pdftotext 필요(brew install 파플러), 한국 참치액 단일값 미공개 | EUMOFA/ISSF/IMARC 직접 확인으로 4건 정확화, FishStat 실측으로 mockZeroSumData 교체. 2개 커밋(78874b9·d62a359) |
 | 2026-05-20 | CC | style (Phase D GS 톤 정착 + AI tell 일괄 제거) | 75 | 첫 L-07 스크립트가 TS 코드 공백까지 잡아 rollback 1회 발생 → 한글 문맥 제한 정규식으로 재실행 | 50+ 파일에서 브래킷 라벨·영문 동격·과장 수식어·잉여현금흐름 후렴구 합계 417건 정리. TunaInsightsDashboard 14개 위젯 thesis-first 수동 재작성. 3개 커밋(6bfa990·07e8283·c97b05b) |
 | 2026-05-20 | AG | analysis (참치 대시보드 S-Grade 종합 업그레이드 제안서 작성) | 20 | — | 3종 대시보드 통합 고도화, UI/UX 디자인 표준화 및 API 로드맵을 포괄하는 S-Grade 제안서 작성 완료 |
 | 2026-05-20 | AG | ui-fix/refactor/debug (Tuna S-Grade 3종 업그레이드 및 빌드 안정화) | 120 | — | TelemetryBadge/chart-standards 공통화, 3종 대시보드 한글화 및 tsc/build 100% 성공 검증 |
@@ -478,3 +484,20 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 측정을 의식해서 CC/AG 비율을 *조정*하기 (자연스러운 사용이 측정 목적).
 - superpowers를 살짝 시험 설치하고 측정 (오염).
 - 결정 루브릭을 도중에 바꾸기 (사후 합리화 방지).
+
+## 2026-05-21 18:00 KST (Antigravity)
+- **완료된 것**: Wave 1b Mackerel 3개 파일(MackerelSafetyPremium.tsx, MackerelAfricanExportROI.tsx, MackerelClimatePredictor.tsx) ADR-0005 (WidgetCard + import default) 마이그레이션 및 JSON 데이터 분리 추출 완료. check_s_grade.py S-Grade 검증 통과.
+- **다음 단계**: 나머지 Wave 1c 파일들 마이그레이션 이어서 진행.
+- Wave 1c (MackerelFilletPenetration, MackerelNorwaySpread, MackerelSizePremium) migrated to ADR-0005 and JSON extracted [OMO]
+
+## 2026-05-21 18:xx KST (OMO)
+- **완료된 것**: Wave 2 Mackerel 5개 소형 파일 (MackerelSankey, MackerelUnitPrice, MackerelSpreadWinners, MackerelTrioRadar, MackerelNorwayAlt) ADR-0005 WidgetCard 마이그레이션 완료. rawData 분리, subagent 없이 직접 수정, check_s_grade.py 통과. 
+- **다음 단계**: 남은 Mackerel 중대형 위젯 혹은 기타 commodity 파일 마이그레이션 진행.
+
+## 2026-05-21 19:xx KST (OMO)
+- **완료된 것**: Wave 3 Mackerel 6개 중형 파일(MackerelProcessedWidgets, MackerelBlackhole, MackerelKoreaSupply, MackerelMacroCycle, MackerelGhanaStrategy, MackerelAquaculture) ADR-0005 WidgetCard 마이그레이션 완료. subagent 없이 직접 Read+Write 진행 및 1글자 데이터 변경 없이 적용 완료. S-grade(check_s_grade.py) 9/9 100% 통과. 각 파일 [OMO] 접미사 단독 커밋 처리.
+- **다음 단계**: Mackerel 대형 위젯 혹은 기타 commodity (Squid, Salmon 등) ADR-0005 마이그레이션 계속 진행.
+
+## 2026-05-21 20:xx KST (OMO)
+- **완료된 것**: Wave 4 (마지막) Mackerel 1개 대형 파일(`MackerelStrategy.tsx`, 240 LOC) ADR-0005 WidgetCard 마이그레이션 완료. subagent 위임 금지 룰 준수, 직접 Read+Write 진행. SIT/TAK/데이터 1글자도 변경하지 않고 래핑 완료. S-grade 검증 통과 후 `[OMO]` 접미사로 별도 커밋. Mackerel 전체 Wave 마이그레이션 완료!
+- **다음 단계**: 다른 commodity (Squid, Salmon 등) 파일들의 ADR-0005 마이그레이션 착수.
