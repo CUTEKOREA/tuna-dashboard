@@ -17,16 +17,33 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
+  themeColor: '#0f172a',
 };
 
 export const metadata: Metadata = {
   title: "참치왕국 신라교역",
   description: "Tuna Market Intelligence Dashboard",
+  manifest: "/manifest.json",
+  applicationName: "참치왕국",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "참치왕국",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  formatDetection: { telephone: false },
 };
 
 import DeepOceanCreatures from "@/components/DeepOceanCreatures";
 import { ToastProvider } from "@/components/ToastProvider";
 import HermesAgent from "@/components/HermesAgent";
+import PWARegister from "@/components/PWARegister";
 
 export default function RootLayout({
   children,
@@ -45,6 +62,7 @@ export default function RootLayout({
           {children}
         </ToastProvider>
         <HermesAgent category="농수산물" />
+        <PWARegister />
       </body>
     </html>
   );
