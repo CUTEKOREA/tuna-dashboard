@@ -9,6 +9,7 @@ import {
   Ship, Anchor, TrendingUp, AlertCircle, CheckCircle2, FileText, Search, Filter, Box
 } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 const vesselData = [
   {
@@ -575,71 +576,57 @@ export default function FalklandSquidDashboard() {
 
       <div className="ds-grid-2">
         {/* Widget 1: Monthly Catch Trend */}
-        <motion.div className="ds-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-          <div className="ds-card-header">
-            <h3 className="ds-card-title">
-              <TrendingUp size={20} /> 월별 전체 어획량 추이
-            </h3>
-            <span className="text-xs px-2 py-1 bg-[var(--bg-tertiary)] rounded-md border border-[var(--border-primary)] text-[var(--text-secondary)]">단위: 톤 (Ton)</span>
-          </div>
-          <div className="ds-card-content h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <defs>
-                  <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
-                <XAxis dataKey="month" stroke="var(--text-secondary)" fontSize={12} />
-                <YAxis stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
-                <RechartsTooltip 
-                  contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
-                  itemStyle={{ color: 'var(--text-primary)' }}
-                  formatter={(value: any) => [`${value.toLocaleString()} KG`, '어획량']}
-                />
-                <Area type="monotone" dataKey="total" stroke="var(--color-primary)" fillOpacity={1} fill="url(#colorTotal)" />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-          <TakeawayBox
-            situation={<>3월과 4월에 전체 어획량의 <strong>55.8%</strong>가 집중되었으며, 4월에 연중 최고치인 <strong>약 6,487톤</strong>을 기록함.</>}
-            actionPlan={<>봄철 성어기(3~4월) 집중 투입 전략 유지 및 이 시기 선박 회전율 극대화 모니터링 필요.</>}
-            source="일일/월별 누계수량 데이터"
-          />
-        </motion.div>
+        <WidgetCard title="월별 전체 어획량 추이" icon={TrendingUp} iconColor="var(--color-primary)" pillar="S1"
+          cardDesc="단위: 톤 (Ton) — 일일·월별 누계 어획량"
+          telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
+          chart={
+            <AreaChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <defs>
+                <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
+              <XAxis dataKey="month" stroke="var(--text-secondary)" fontSize={12} />
+              <YAxis stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
+              <RechartsTooltip
+                contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
+                itemStyle={{ color: 'var(--text-primary)' }}
+                formatter={(value: any) => [`${value.toLocaleString()} KG`, '어획량']}
+              />
+              <Area type="monotone" dataKey="total" stroke="var(--color-primary)" fillOpacity={1} fill="url(#colorTotal)" />
+            </AreaChart>
+          }
+          takeaway={{
+            situation: <>3월과 4월에 전체 어획량의 <strong>55.8%</strong>가 집중되었으며, 4월에 연중 최고치인 <strong>약 6,487톤</strong>을 기록함.</>,
+            actionPlan: <>봄철 성어기(3~4월) 집중 투입 전략 유지 및 이 시기 선박 회전율 극대화 모니터링 필요.</>,
+            source: '일일/월별 누계수량 데이터',
+          }} />
 
         {/* Widget 2: Company Performance */}
-        <motion.div className="ds-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-          <div className="ds-card-header">
-            <h3 className="ds-card-title">
-              <Ship size={20} /> 업체별 누계 실적 및 보유 선박 수
-            </h3>
-            <span className="text-xs px-2 py-1 bg-[var(--bg-tertiary)] rounded-md border border-[var(--border-primary)] text-[var(--text-secondary)]">단위: 톤 (Ton)</span>
-          </div>
-          <div className="ds-card-content h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={companyData.slice(0, 8)} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
-                <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} angle={0} textAnchor="middle" height={60} />
-                <YAxis yAxisId="left" stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
-                <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={12} />
-                <RechartsTooltip 
-                  contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
-                />
-                <Legend />
-                <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="var(--color-secondary)" radius={[4, 4, 0, 0]} />
-                <Line yAxisId="right" type="monotone" dataKey="vessels" name="선박 수(척)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5 }} />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </div>
-          <TakeawayBox
-            situation={<>규모 면에서 <strong>정일산업(5척, 약 4,041톤)</strong>이 1위이나, 단일 선박 생산성 측면에서는 1척으로 <strong>1,021톤</strong>을 기록한 <strong>㈜피에이아이</strong>의 효율성이 임.</>}
-            actionPlan={<>물량 확보(정일산업 모델)와 고효율(피에이아이 모델) 중 전략적 방향성 설정 시 피에이아이의 조업 노하우 벤치마킹 필요.</>}
-            source="2026년 포크 오징어채낚기 어획현황"
-          />
-        </motion.div>
+        <WidgetCard title="업체별 누계 실적 및 보유 선박 수" icon={Ship} iconColor="var(--color-secondary)" pillar="S2"
+          cardDesc="단위: 톤 (Ton) — 업체별 어획·선박 효율"
+          telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
+          chart={
+            <ComposedChart data={companyData.slice(0, 8)} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
+              <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} angle={0} textAnchor="middle" height={60} />
+              <YAxis yAxisId="left" stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
+              <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={12} />
+              <RechartsTooltip
+                contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
+              />
+              <Legend />
+              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="var(--color-secondary)" radius={[4, 4, 0, 0]} />
+              <Line yAxisId="right" type="monotone" dataKey="vessels" name="선박 수(척)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5 }} />
+            </ComposedChart>
+          }
+          takeaway={{
+            situation: <>규모 면에서 <strong>정일산업(5척, 약 4,041톤)</strong>이 1위이나, 단일 선박 생산성 측면에서는 1척으로 <strong>1,021톤</strong>을 기록한 <strong>㈜피에이아이</strong>의 효율성이 임.</>,
+            actionPlan: <>물량 확보(정일산업 모델)와 고효율(피에이아이 모델) 중 전략적 방향성 설정 시 피에이아이의 조업 노하우 벤치마킹 필요.</>,
+            source: '2026년 포크 오징어채낚기 어획현황',
+          }} />
       </div>
 
       <div className="ds-grid-1 mt-6">
