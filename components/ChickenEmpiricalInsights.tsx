@@ -1,9 +1,8 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { Activity, ShieldAlert, BarChart2, CheckCircle2, Egg } from 'lucide-react';
 import { LineChart, Line, ComposedChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
-import styles from './MackerelStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
+import WidgetCard from './WidgetCard';
 
 export default function ChickenEmpiricalInsights() {
   const [arbData, setArbData] = useState<any>(null);
@@ -16,125 +15,125 @@ export default function ChickenEmpiricalInsights() {
       fetch('/api/chicken/arbitrage').then(r => r.json()),
       fetch('/api/chicken/risk-radar').then(r => r.json()),
       fetch('/api/chicken/processing').then(r => r.json()),
-      fetch('/api/chicken/eggs').then(r => r.json())
+      fetch('/api/chicken/eggs').then(r => r.json()),
     ])
-    .then(([arb, risk, proc, eggs]) => {
-      setArbData(arb);
-      setRiskData(risk);
-      setProcData(proc);
-      setEggsData(eggs);
-    })
-    .catch(e => console.error(e));
+      .then(([arb, risk, proc, eggs]) => {
+        setArbData(arb);
+        setRiskData(risk);
+        setProcData(proc);
+        setEggsData(eggs);
+      })
+      .catch(e => console.error(e));
   }, []);
 
-  if (!arbData || !riskData || !procData || !eggsData) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>Loading Empirical Insights...</div>;
+  if (!arbData || !riskData || !procData || !eggsData) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>실증 인사이트 로딩 중...</div>;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', gridColumn: '1 / -1' }}>
-      
-      {/* Header for Empirical Insights */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           <div style={{ padding: '8px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
             <Activity size={24} color="var(--color-success)" />
           </div>
           <div>
-            <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#f8fafc', fontWeight: 800 }}>S-Grade Chicken Intelligence: Empirical Insights</h2>
+            <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#f8fafc', fontWeight: 800 }}>S-Grade 닭고기 인텔리전스: 실증 인사이트</h2>
             <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>실시간 API 통합 (차익거래, 리스크 헤징, 가공 밸류체인, 계란 가격 변동성)</p>
           </div>
         </div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-        
-        {/* Arbitrage Widget */}
-        <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <BarChart2 size={18} color="var(--color-success)" /> {arbData.title}
-          </h3>
-          <div style={{ height: '240px' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <LineChart data={arbData.data}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis stroke="#64748b" tick={{ fontSize: 10 }} />
-                <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
-                <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Line type="monotone" dataKey="domestic" name="국내산 도매가 (KRW/kg)" stroke="#f87171" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                <Line type="monotone" dataKey="brazil" name="브라질산 수입 원가" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                <Line type="monotone" dataKey="thai" name="태국산 수입 원가" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-              </LineChart>
-            </SafeResponsiveContainer>
-          </div>
-          <TakeawayBox situation={arbData.sit} actionPlan={arbData.strat} source={arbData.source} />
-        </div>
+        <WidgetCard
+          title={arbData.title}
+          icon={BarChart2}
+          iconColor="var(--color-success)"
+          pillar="S4"
+          cardDesc="국내 vs 브라질 vs 태국 도매가 스프레드 실시간 트래킹"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          chartHeight={240}
+          chart={
+            <LineChart data={arbData.data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 10 }} />
+              <YAxis stroke="#64748b" tick={{ fontSize: 10 }} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} />
+              <Line type="monotone" dataKey="domestic" name="국내산 도매가 (KRW/kg)" stroke="#f87171" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+              <Line type="monotone" dataKey="brazil" name="브라질산 수입 원가" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+              <Line type="monotone" dataKey="thai" name="태국산 수입 원가" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+            </LineChart>
+          }
+          takeaway={{ situation: arbData.sit, actionPlan: arbData.strat, source: arbData.source }}
+        />
 
-        {/* Risk Radar Widget */}
-        <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <ShieldAlert size={18} color="var(--color-danger)" /> {riskData.title}
-          </h3>
-          <div style={{ height: '240px' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={riskData.data}>
-                <PolarGrid stroke="rgba(255,255,255,0.15)" />
-                <PolarAngleAxis dataKey="dimension" tick={{ fill: '#e2e8f0', fontSize: 11 }} />
-                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
-                <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Radar name="브라질 육계 (Conventional)" dataKey="brazil" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.2} strokeWidth={2} />
-                <Radar name="태국 토종 (Pradu Hang Dum)" dataKey="thai" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.5} strokeWidth={2} />
-              </RadarChart>
-            </SafeResponsiveContainer>
-          </div>
-          <TakeawayBox situation={riskData.sit} actionPlan={riskData.strat} source={riskData.source} />
-        </div>
+        <WidgetCard
+          title={riskData.title}
+          icon={ShieldAlert}
+          iconColor="var(--color-danger)"
+          pillar="S3"
+          cardDesc="브라질 육계 vs 태국 토종 다축 리스크 비교"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+          chartHeight={240}
+          chart={
+            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={riskData.data}>
+              <PolarGrid stroke="rgba(255,255,255,0.15)" />
+              <PolarAngleAxis dataKey="dimension" tick={{ fill: '#e2e8f0', fontSize: 11 }} />
+              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} />
+              <Radar name="브라질 육계 (Conventional)" dataKey="brazil" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.2} strokeWidth={2} />
+              <Radar name="태국 토종 (Pradu Hang Dum)" dataKey="thai" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.5} strokeWidth={2} />
+            </RadarChart>
+          }
+          takeaway={{ situation: riskData.sit, actionPlan: riskData.strat, source: riskData.source }}
+        />
 
-        {/* Processing Widget */}
-        <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <CheckCircle2 size={18} color="var(--color-warning)" /> {procData.title}
-          </h3>
-          <div style={{ height: '280px' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={procData.data}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis dataKey="stage" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
-                <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Bar yAxisId="left" dataKey="laborCost" name="인건비 비중 (%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} maxBarSize={60} />
-                <Area yAxisId="right" type="monotone" dataKey="valueAdded" name="부가가치 (Value Added)" fill="var(--color-warning)" stroke="var(--color-warning)" fillOpacity={0.2} strokeWidth={3} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <TakeawayBox situation={procData.sit} actionPlan={procData.strat} source={procData.source} />
-        </div>
+        <WidgetCard
+          title={procData.title}
+          icon={CheckCircle2}
+          iconColor="var(--color-warning)"
+          pillar="S2"
+          cardDesc="단계별 인건비 비중 vs 부가가치 곡선"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+          chartHeight={280}
+          chart={
+            <ComposedChart data={procData.data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <XAxis dataKey="stage" stroke="#64748b" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} />
+              <Bar yAxisId="left" dataKey="laborCost" name="인건비 비중 (%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} maxBarSize={60} />
+              <Area yAxisId="right" type="monotone" dataKey="valueAdded" name="부가가치 (Value Added)" fill="var(--color-warning)" stroke="var(--color-warning)" fillOpacity={0.2} strokeWidth={3} />
+            </ComposedChart>
+          }
+          takeaway={{ situation: procData.sit, actionPlan: procData.strat, source: procData.source }}
+        />
 
-        {/* Eggs Risk Widget */}
-        <div className={styles.glassCard} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Egg size={18} color="#ec4899" /> {eggsData.title}
-          </h3>
-          <div style={{ height: '280px' }}>
-            <SafeResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={eggsData.data}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
-                <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} domain={[0, 250]} />
-                <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
-                <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Bar yAxisId="left" dataKey="liquidImport" stackId="a" name="액상 계란 수입 (톤)" fill="var(--color-info)" radius={[0, 0, 0, 0]} maxBarSize={60} />
-                <Bar yAxisId="left" dataKey="driedImport" stackId="a" name="건조 계란 수입 (톤)" fill="#8b5cf6" radius={[4, 4, 0, 0]} maxBarSize={60} />
-                <Line yAxisId="right" type="monotone" dataKey="priceIndex" name="신선란 도매가 지수" stroke="#ec4899" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-              </ComposedChart>
-            </SafeResponsiveContainer>
-          </div>
-          <TakeawayBox situation={eggsData.sit} actionPlan={eggsData.strat} source={eggsData.source} />
-        </div>
-
+        <WidgetCard
+          title={eggsData.title}
+          icon={Egg}
+          iconColor="#ec4899"
+          pillar="S4"
+          cardDesc="액상·건조 계란 수입 vs 신선란 도매가 변동성"
+          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          chartHeight={280}
+          chart={
+            <ComposedChart data={eggsData.data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
+              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} domain={[0, 250]} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+              <Legend wrapperStyle={{ fontSize: '11px' }} />
+              <Bar yAxisId="left" dataKey="liquidImport" stackId="a" name="액상 계란 수입 (톤)" fill="var(--color-info)" radius={[0, 0, 0, 0]} maxBarSize={60} />
+              <Bar yAxisId="left" dataKey="driedImport" stackId="a" name="건조 계란 수입 (톤)" fill="#8b5cf6" radius={[4, 4, 0, 0]} maxBarSize={60} />
+              <Line yAxisId="right" type="monotone" dataKey="priceIndex" name="신선란 도매가 지수" stroke="#ec4899" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+            </ComposedChart>
+          }
+          takeaway={{ situation: eggsData.sit, actionPlan: eggsData.strat, source: eggsData.source }}
+        />
       </div>
     </div>
   );
