@@ -16,6 +16,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 import ChickenEmpiricalInsights from './ChickenEmpiricalInsights';
 import ChickenCorporateWidget from './ChickenCorporateWidget';
 import ChickenPartsWidget from './ChickenPartsWidget';
@@ -409,29 +410,24 @@ export default function ChickenDashboard() {
               const w = getWidget(wId);
               if (!w) return null;
               const Icon = WIDGET_ICONS[w.id] || Target;
-              const accent = sec.color;
+              const pillarS = sec.id.replace('P', 'S') as 'S1'|'S2'|'S3'|'S4'|'S5';
+              const status: 'LIVE'|'SYNCED'|'STATIC' = w.telemetryStatus === 'live' ? 'LIVE' : w.telemetryStatus === 'synced' ? 'SYNCED' : 'STATIC';
               return (
-                <div key={w.id} className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'500px' }}>
-                  <div style={{ marginBottom:'1rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem', display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
-                    <div>
-                      <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:accent, margin:'0 0 0.4rem' }}>
-                        <Icon size={18} />{w.title}
-                      </h3>
-                      {w.subtitle && <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>{w.subtitle}</p>}
-                    </div>
-                    <TelemetryBadge status={w.telemetryStatus} syncDate={w.syncDate} />
-                  </div>
-                  <div style={{ height:'375px', width:'100%', marginBottom:'1rem' }}>
-                    <SafeResponsiveContainer width="100%" height="100%">{renderChart(w)}</SafeResponsiveContainer>
-                  </div>
-                  <div style={{ marginTop:'auto' }}>
-                    <TakeawayBox
-                      situation={w.sit}
-                      actionPlan={w.strat}
-                      source={w.source}
-                    />
-                  </div>
-                </div>
+                <WidgetCard key={w.id}
+                  title={w.title}
+                  icon={Icon}
+                  iconColor={sec.color}
+                  pillar={pillarS}
+                  cardDesc={w.subtitle || ''}
+                  telemetry={{ status, syncDate: w.syncDate || '2026.05' }}
+                  chartHeight={375}
+                  chart={renderChart(w)}
+                  takeaway={{
+                    situation: w.sit || '',
+                    actionPlan: w.strat || '',
+                    source: w.source || 'Silla Co. Intelligence Network',
+                  }}
+                />
               );
             })}
             
