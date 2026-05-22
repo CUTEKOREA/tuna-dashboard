@@ -4,7 +4,49 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-21 (Claude Code + OMO 통합 세션 — **Stage 0/1/2.1/2.2 모두 통과 + Pollock Pilot/Wave 1 마이그레이션 9 파일 + 본 디렉터리 0 영향**)
+> **마지막 업데이트**: 2026-05-22 (Claude Code OMO-Codex 세션 — **Whelk 29/29 + Carrot 30/30 + Galchi (renderer) + FalklandSquid 2/3 완료, PR #18 4 commodity 통합**)
+
+---
+
+## 🆕 2026-05-21 Antigravity Phase 2A.2 — Pollock 100% closure
+
+### Wave 2 (Pollock 중형 2파일 완료)
+- `components/PollockProcessingMarginWidgets.tsx` (12개 위젯, 520→456줄) — S2 가공·생산 중심, pillar 배분: S1(2), S2(5), S3(3), S4(1), S5(1)
+- `components/PollockSalesValueWidgets.tsx` (10개 위젯, 410→379줄) — S4 판매·수요 전체
+- `WidgetCard` default import, `pillar`/`telemetry`/`cardDesc` 완비, `termTooltip` 보존 (원본에 있던 4개 위젯)
+- SIT/TAK/source/차트 데이터 원본 1글자 변경 없이 보존
+- 미사용 import 제거: `SafeResponsiveContainer`, `TakeawayBox`, `TermTooltip`, `styles`, `CardHeader` 로컬 컴포넌트
+- `npm run build` Pollock 에러 0건, `git diff --stat` 각 1개 파일만 변경 확인
+- 커밋: `72f6930` (Wave 2 #1), `c474d7e` (Wave 2 #2)
+
+### Wave 1 (Pollock 소형 4파일 완료)
+- `components/PollockPolicyRiskRadar.tsx`, `components/PollockSupplyResilience.tsx`, `components/PollockTradeWidgets.tsx`, `components/PollockValueAddWidgets.tsx` 마이그레이션 완료 (ADR-0005 적용).
+- `WidgetCard`로 100% 교체, `pillar` 식별 및 할당(S1/S2/S3), `telemetry`, `cardDesc` 등 요구사항 충족.
+- 모든 위젯별 데이터, 텍스트(TakeawayBox 포함)는 원본 1글자도 변경 없이 보존.
+
+### Pilot (Pollock)
+- `components/PollockPolicyFinanceWidgets.tsx` (3개 위젯) 마이그레이션 완료 (ADR-0005 적용).
+- `WidgetCard`로 교체, `pillar="S3"`, `telemetry`, `cardDesc` 등 요구사항 충족. 데이터와 텍스트는 원본 그대로 보존.
+- 커밋: `[OMO]` 접미사
+
+## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
+
+---
+
+## 🆕 2026-05-22 — 단일파일 commodity 4종 마이그레이션 완료
+
+### 진척 (omo/singles-codex on omo-codex worktree)
+- **Whelk 29/29** (W14/15/16/17/18/23/24/28 완료) — `f99f0e7`·`3ba66b7`
+- **Carrot 30/30** (파이썬 스크립트 L-07 일괄 변환, -487 lines) — `b37d306`
+- **Galchi renderWidgetCard** (5 pillar 다이나믹 매핑, -41 lines) — `adfc4bb`
+- **FalklandSquid 2/3** (table widget3는 ds-card 유지 — 비차트 구조) — `41e2f9c`
+- `omo/singles-codex` HEAD = `41e2f9c`
+- **PR #18**: 5 commodity 통합 (Garlic 18 + Cocoa 22 + Whelk 29 + Carrot 30 + Galchi + FalklandSquid 2 + WidgetCard ReactNode 완화)
+
+### 다음 단계
+1. PR #18 머지 (사용자 검토)
+2. table 구조 widget (FalklandSquid widget3) WidgetCard 적용 방안 검토 — customBody slot 활용 가능
+3. 남은 dashboard 측정 (Reefer / Mackerel / Pollock 잔여 등)
 
 > 🔬 **OMO 통합 검증 완료** (별도 worktree 2개):
 >
@@ -36,7 +78,236 @@
 
 ---
 
-## 🆕 2026-05-21 진행 요약 (Claude Code 세션)
+## 🆕 2026-05-22 cont. — Whelk 20/29 진척 (12 추가 widgets)
+
+### 진척
+- **Whelk W22, W7/W8, W9/W10/W19/W20, W26/W27/W11/W12, W13** 추가 마이그레이션
+- `omo/singles-codex` HEAD = `ded2195` (Whelk 20/29 누적)
+- PR #18 갱신 (5d8a8dc → ded2195)
+
+### Whelk 잔여 8 widgets (Pillar 5 후반)
+- W14 (카드뮴 식품안전 리스크) — 다음 직접 대상
+- W15 (혼술 이코노미)
+- W16 (부산물 업사이클링)
+- W17 (고형량 투명성)
+- W18 (기후 리스크 시뮬레이션)
+- W23 (EU PPWR 포장규제)
+- W24 (PFAS 식품안전)
+- W28 (할랄 해양콜라겐)
+
+모두 동일 ds-card 패턴이므로 새 세션에서 일괄 처리 가능.
+
+---
+
+## 🆕 2026-05-22 cont. — PR #18 생성 + Whelk 8/29 (5 추가 widgets)
+
+### 진척
+- **PR #18 생성**: https://github.com/CUTEKOREA/tuna-dashboard/pull/18
+  - Garlic 18/18 + Cocoa 22/22 + Whelk 8/29 + WidgetCard ReactNode 완화
+- Whelk W3/W21/W25/W4/W5 추가 마이그레이션 (`5d8a8dc`)
+- 누적 Whelk: 8/29 widgets
+
+### 잔여 (~75 widgets)
+- Whelk 21/29 — `omo/singles-codex` `5d8a8dc` HEAD. 동일 패턴 반복.
+- Carrot 31 — 미시작
+- Galchi (TakeawayBox 0) — 별도 패턴
+- FalklandSquid 3 — ds-card framework
+
+### Active Worktrees
+- `tuna-dashboard-omo-codex` `5d8a8dc` (PR #18 open)
+- `tuna-dashboard-omo-singles` `27914d1` (PR #17 open)
+
+### 다음 세션 추천 작업
+1. Whelk 잔여 21 widgets — 동일 패턴 반복 (PR #18 추가 commit)
+2. Carrot 31 — Whelk와 동일 framework 예상
+3. Galchi / FalklandSquid 별도 분석
+
+---
+
+## 🆕 2026-05-22 cont. — Whelk KFAS loop converted (3/29 incl. dynamic widgets)
+
+### 진척
+- Whelk KFAS 동적 widgets loop → WidgetCard 단일 호출로 변환 (`3c9deef`)
+- Whelk 마이그레이션 누계: W1 + W2 (정적) + KFAS dynamic loop = 3/29
+
+### Whelk 잔여 25 widgets
+
+`omo/singles-codex` HEAD = `3c9deef`. 모든 잔여 widget이 ds-card framework 동일 패턴이므로 새 세션에서 일괄 처리 가능.
+
+---
+
+## 🆕 2026-05-22 메가 세션 cont. — Cocoa 100% + Whelk 패턴 검증 (2/29) + WidgetCard ReactNode 완화
+
+### 추가 진척
+- **Cocoa 22/22** 100% 완료 (`omo/singles-codex` `39dbe5a`)
+- **WidgetCard.TakeawayProps 완화**: `string | React.ReactNode` 허용 (`c0fcb2b`)
+- **Whelk W1/W2** 패턴 검증 완료 (`e1bea56`) — TermTooltip JSX 임베디드 정상 작동
+
+### 잔여 작업 (~62 widgets)
+
+| 파일 | 잔여 | 비고 |
+|------|------|------|
+| WhelkDashboard | 27/29 | ds-card framework, TermTooltip JSX (WidgetCard 완화로 해결) |
+| CarrotDashboard | 31 | 미시작 |
+| GalchiDashboard | ? | TakeawayBox 0건, 별도 패턴 |
+| FalklandSquidDashboard | 3 | ds-card framework |
+
+### 다음 세션 권장
+1. Whelk 잔여 27 widgets — 패턴 확립됨, 동일 변환 반복
+2. Carrot 31 — 동일 ds-card framework 예상 (Whelk 패턴 재사용 가능)
+3. Galchi / FalklandSquid 분석 후 결정
+
+### Active Worktree HEAD
+- `tuna-dashboard-omo-codex` HEAD = `e1bea56` (Whelk 2/29 + Garlic 100% + Cocoa 100%)
+- `tuna-dashboard-omo-singles` HEAD = `27914d1` (Mangosteen 100% + Garlic 3/18 + 기타)
+
+PR 통합 전략: omo/singles-codex가 omo/singles보다 진척이 많음. 두 브랜치를 동일 PR (#17)로 합치거나, 별도 PR #18 생성 권장.
+
+---
+
+## 🆕 2026-05-21 메가 세션 최종 갱신 — Mangosteen + Garlic 100% + Cocoa 2/22
+
+### 최종 추가 진척 (이 세션 cont.)
+- **Mangosteen 15/15** 100% (omo/singles `27914d1`)
+- **Garlic 18/18** 100% (omo/singles-codex `3e1aa58`)
+- **Cocoa 2/22** (omo/singles-codex `3e12acb`)
+- **TunaExtract 2 main cards** (omo/singles `6d21d3c`)
+
+### 잔여 작업 (~85 widgets)
+
+**omo/singles-codex** (Cocoa 19 remaining):
+- Cocoa W11·W3·W4·W14 등 19 widgets
+
+**omo/singles** (또는 새 worktree, ds-card framework):
+- Whelk 29 (TermTooltip JSX 임베디드 — `WidgetCard.TakeawayProps` 완화 필요)
+- Carrot 31
+- Galchi (TakeawayBox 0건, 별도 패턴)
+- FalklandSquid 3 (ds-card)
+
+### 다음 세션 우선순위
+
+1. **Cocoa 잔여 19** (omo/singles-codex): 동일 패턴 반복, 위젯당 ~50 토큰
+2. **WidgetCard TakeawayProps 완화**: `string | React.ReactNode` 허용 + `checkForbidden` typeof 가드 추가
+3. **Whelk + Carrot**: ds-card framework migration (60 widgets, 가장 큰 단일 commodity)
+4. **Galchi + FalklandSquid**: 별도 framework 분석
+
+### Active Worktrees (세션 종료 시점)
+| Worktree | Branch | HEAD | 상태 |
+|----------|--------|------|------|
+| tuna-dashboard | main | `68861ae` | HANDOFF만 (push 안 됨) |
+| tuna-dashboard-omo-pollock | omo/pollock-2a2 | — | PR #13 open |
+| tuna-dashboard-omo-salmon | omo/salmon | — | PR #14 open |
+| tuna-dashboard-omo-squid | omo/squid | — | PR #15 open |
+| tuna-dashboard-omo-chicken | omo/chicken | — | PR #16 open |
+| tuna-dashboard-omo-singles | omo/singles | `27914d1` | PR #17 open |
+| **tuna-dashboard-omo-codex** | omo/singles-codex | `3e12acb` | **PR 미생성** |
+
+### Codex Worktree Status
+
+`omo/singles-codex`는 PR이 아직 생성되지 않음. 다음 세션에서 Cocoa 완료 후 PR #18로 생성 권장.
+
+---
+
+## 🆕 2026-05-21 메가 세션 갱신 (cont.) — Mangosteen 100% + Garlic 9/18 + Codex 병렬 셋업
+
+### 추가 진척 (마지막 PR #17 갱신분)
+- **Mangosteen 15 widgets** 100% 완료 (commit `27914d1` on omo/singles)
+- **Garlic 9/18 widgets** 진행 (commits `cf7bd4e` `98d5fde` `c8f9a8f`)
+  - 6개는 `omo/singles`에 (Cassava·Jukkumi·TunaExtract·Mangosteen 동반)
+  - 6개 추가분은 `omo/singles-codex`에 (W3·W4·INSIGHT2·W5·W6·INSIGHT3)
+- **Codex 병렬 worktree** 셋업: `tuna-dashboard-omo-codex` + `omo/singles-codex` 브랜치 + `CODEX_TASK.md` 지시서
+
+### 잔여 작업 (~98 widgets)
+
+**omo/singles-codex** (Codex 또는 새 세션 CC):
+- Garlic 잔여 9/18 (W7~W12·Insight4·Insight5·Insight6·Section5 위젯들)
+- Cocoa 22/22 (전체)
+
+**omo/singles** (새 세션 CC, ds-card framework 별도 처리):
+- Whelk 29 (TermTooltip JSX 임베디드 — `WidgetCard.TakeawayProps` 완화 필요)
+- Carrot 31
+- Galchi (TakeawayBox 0건, 별도 패턴)
+- FalklandSquid 3 (ds-card)
+
+### 다음 세션 전략
+
+1. **첫 5분**: `WidgetCard.tsx`의 `TakeawayProps.situation`/`actionPlan`을 `string | React.ReactNode` 로 확장 (checkForbidden은 `typeof === 'string'` 가드 추가). Whelk JSX 임베디드 컨텐츠 호환성 확보.
+2. **Garlic 잔여 + Cocoa**: omo/singles-codex 워크트리에서 Mangosteen 검증 패턴 그대로 적용.
+3. **Whelk + Carrot**: WidgetCard 확장 후 ds-card 패턴 migration.
+4. **Galchi**: 별도 구조 분석 후 결정.
+
+### Active Worktrees (이번 세션 끝 시점)
+- `tuna-dashboard` (main) — HEAD `c6e7312` (HANDOFF 업데이트만)
+- `tuna-dashboard-omo-pollock` — `omo/pollock-2a2` (PR #13)
+- `tuna-dashboard-omo-salmon` — `omo/salmon` (PR #14)
+- `tuna-dashboard-omo-squid` — `omo/squid` (PR #15)
+- `tuna-dashboard-omo-chicken` — `omo/chicken` (PR #16)
+- `tuna-dashboard-omo-singles` — `omo/singles` (PR #17, HEAD `cf7bd4e` Garlic 3/18)
+- `tuna-dashboard-omo-codex` — `omo/singles-codex` (HEAD `c8f9a8f` Garlic 9/18)
+
+---
+
+## 🆕 2026-05-21 진행 요약 — Claude Code 통합 마이그레이션 메가 세션 (5 PR)
+
+### 마이그레이션 누적 성과 (PR #13~#17)
+
+| PR | Commodity | Widgets | Branch | 상태 |
+|----|-----------|---------|--------|------|
+| #13 | Pollock | 13 (Phase 2A.2) | `omo/pollock-2a2` | Open |
+| #14 | Salmon | 13 (Pilot+Wave1~3) | `omo/salmon` | Open |
+| #15 | Squid | 80 (30 standalone + 50 sub) | `omo/squid` | Open |
+| #16 | Chicken | 5 / 12 sub-widgets | `omo/chicken` | Open |
+| #17 | Singles 부분 | Cassava + Jukkumi + TunaExtract 2 cards + Mangosteen 2 | `omo/singles` | Open |
+
+**총 마이그레이션 widget**: ~123 (Pollock 13 + Salmon 13 + Squid 80 + Chicken 5/12 + Singles 5+ = 누계)
+
+### Worktree 구조 (5 active)
+- `tuna-dashboard-omo-pollock` — branch `omo/pollock-2a2`
+- `tuna-dashboard-omo-salmon` — branch `omo/salmon`
+- `tuna-dashboard-omo-squid` — branch `omo/squid`
+- `tuna-dashboard-omo-chicken` — branch `omo/chicken`
+- `tuna-dashboard-omo-singles` — branch `omo/singles`
+
+### 인시던트 + 학습
+
+1. **Wave 1c.2 (Salmon)·Wave 2 (Squid) cwd reset incident**: bash process가 명령 사이에 cwd를 main worktree로 reset하여 commit이 main으로 누락 안착 → cherry-pick 복구. **모든 git 명령은 `cd ...` prefix 또는 `git -C <worktree>` 명시**.
+2. **gh CLI 부재**: 세션 중 `brew install gh` 실행 → PR 자동 생성 가능. PAT은 채팅 노출 후 폐기·재발급 권장.
+3. **lucide-react 아이콘 검증**: `Waterfall` 미존재 → `BarChart3` 대체.
+4. **명명 import 함정**: `import { WidgetCard }` 명명 import는 default export 충돌 → 모두 `import WidgetCard from './WidgetCard'`.
+
+### 잔여 작업 — 단일 파일 commodity 미완료 (추정 ~123 widgets)
+
+PR #17 `omo/singles` 브랜치에 추가 작업 필요:
+- **Mangosteen** 13/15 (Pillar 2~5 widgets — Widget 1-3 이후)
+- **Garlic** 18 (전체)
+- **Cocoa** 22 (전체)
+- **Whelk** 29 (전체)
+- **Carrot** 31 (전체)
+- **Galchi** (TakeawayBox 0, 별도 패턴 검토 필요)
+- **FalklandSquid** 3 (ds-card framework, styles.glassCard 패턴 아님 — 별도 마이그레이션)
+
+각 파일이 헬퍼 함수 없이 inline hand-written이라 batch 처리 불가능, 위젯당 개별 Edit 필요. 새 세션에서 다음 순으로 진행 권장:
+1. Mangosteen 잔여 13 (가장 작음, 패턴 확립됨)
+2. Garlic → Cocoa (중간 크기)
+3. Whelk → Carrot (대형, 30+ widgets 각각)
+4. Galchi + FalklandSquid (별개 framework 분석 필요)
+
+### 마이그레이션 패턴 (검증 완료, 이번 세션 표준)
+
+1. `import WidgetCard from './WidgetCard'` (default import 의무)
+2. inline glassCard 또는 `styles.card` wrapper → `<WidgetCard ... />` 직접 호출
+3. 단순 단일 차트는 `chart` prop, 복잡 인터랙티브(탭/SVG/KPI grid)는 `customBody` prop
+4. takeaway = `{ situation, actionPlan, source }` (W-04 의무)
+5. pillar S1-S5 명시 + telemetry `{ status: 'LIVE'|'SYNCED'|'STATIC', syncDate }`
+6. `useContainerWidth` + `SafeResponsiveContainer` 직접 사용 제거 (WidgetCard 자동 wrap)
+
+### 보안 Note
+
+채팅에 노출된 PAT `ghp_Yzz8C...` 즉시 폐기 + 재발급 권장 (https://github.com/settings/tokens).
+
+---
+
+## 2026-05-21 진행 요약 (Claude Code 세션 — 이전 차수)
 
 ### Tuna closure ADR-0005 마이그레이션 완료
 - 멀티-위젯 모듈 7개 / 22 위젯 (TunaForecast/Upcycling/MofFishery/TradeIntel/NewInsightsA/B/KfasResearch)
@@ -182,6 +453,8 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 | 2026-05-20 | AG | ui-fix/refactor/debug (Tuna S-Grade 3종 업그레이드 및 빌드 안정화) | 120 | — | TelemetryBadge/chart-standards 공통화, 3종 대시보드 한글화 및 tsc/build 100% 성공 검증 |
 | 2026-05-20 | AG | ui-fix/style (TunaSupplierHub S-Grade 표준화 완료) | 20 | — | OSH 위젯 패딩/TelemetryBadge/한글화 완성 및 빌드 성공 |
 | 2026-05-20 | AG | ui-fix/refactor (15개 참치 위젯 S-Grade UI/UX 전면 표준화 완료) | 90 | — | 모든 참치 위젯의 텔레메트리 배지 부착, 헤더 및 테이크어웨이 패딩 레이아웃 표준화, tsc/build 검증 성공 |
+| 2026-05-21 | AG | refactor (Phase 2A.2 Pilot: PollockPolicyFinanceWidgets ADR-0005 마이그레이션) | 15 | — | WidgetCard로 교체하여 SIT/TAK/차트 텍스트 무손실 보존 완료 |
+| 2026-05-21 | AG | refactor (Phase 2A.2 Wave 1: Pollock 4개 소형 파일 ADR-0005 마이그레이션) | 20 | — | WidgetCard로 교체 및 pillar, telemetry, cardDesc 완벽 할당 (원본 보존율 100%) |
 
 **작업 유형 카테고리** (단순화):
 - `bootstrap` — 인프라·문서·도구

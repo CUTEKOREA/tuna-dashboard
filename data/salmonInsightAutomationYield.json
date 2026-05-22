@@ -1,0 +1,7 @@
+[
+  { "year": "2020", "yield": 68.0, "manualCost": 100, "capex": 20 },
+  { "year": "2021", "yield": 68.5, "manualCost": 98, "capex": 30 },
+  { "year": "2022", "yield": 69.2, "manualCost": 90, "capex": 50 },
+  { "year": "2023", "yield": 70.8, "manualCost": 75, "capex": 75 },
+  { "year": "2024", "yield": 72.5, "manualCost": 60, "capex": 100 }
+]

@@ -1,0 +1,10 @@
+{
+  "euData": [
+    { "year": "2019", "frVol": 27.0, "frVal": 517, "esVol": 53.1, "esVal": 541 },
+    { "year": "2020", "frVol": 33.6, "frVal": 595, "esVol": 67.9, "esVal": 676 },
+    { "year": "2021", "frVol": 37.4, "frVal": 668, "esVol": 68.4, "esVal": 669 },
+    { "year": "2022", "frVol": 28.9, "frVal": 640, "esVol": 49.5, "esVal": 650 },
+    { "year": "2023", "frVol": 28.7, "frVal": 635, "esVol": 51.4, "esVal": 699 },
+    { "year": "2024(E)", "frVol": 29.0, "frVal": 660, "esVol": 52.0, "esVal": 778 }
+  ]
+}
