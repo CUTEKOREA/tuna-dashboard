@@ -18,6 +18,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 // ═══ V2.0 Intelligence Modules ═══
 import { PollockSanctionParadox, PollockFtaTariffMatrix, PollockRiskScorecard } from './PollockPolicyRiskRadar';
@@ -609,7 +610,7 @@ export default function PollockDashboard() {
               </p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              {widgets?.filter((w: any) => pillar.widgets.includes(w.id)).map((w: any) => renderWidgetCard(w))}
+              {widgets?.filter((w: any) => pillar.widgets.includes(w.id)).map((w: any) => renderWidgetCard(w, pillar.id.replace('P', 'S') as 'S1'|'S2'|'S3'|'S4'|'S5'))}
               {pillar.customInject?.includes("PollockConcentrationIndex") && <PollockConcentrationIndex />}
               {pillar.customInject?.includes("PollockAlternativeSourcing") && <PollockAlternativeSourcing />}
               {pillar.customInject?.includes("PollockFtaTariffMatrix") && <PollockFtaTariffMatrix />}
@@ -628,87 +629,34 @@ export default function PollockDashboard() {
     </div>
   );
 
-  function renderWidgetCard(w: any) {
+  function renderWidgetCard(w: any, pillar: 'S1'|'S2'|'S3'|'S4'|'S5' = 'S3') {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const accentColor = '#06b6d4';
-    const accentGlow = 'rgba(6, 182, 212, 0.1)';
-    
-    // W-04: C-Level Executive Override (기술)
-    // 백엔드 API/JSON 데이터가 C레벨 요구사항에 미달할 경우, 이 객체를 통해 인사이트를 강제 주입(Override)합니다.
-    const ENHANCED_INSIGHTS: Record<string, {sit?: string, strat?: string}> = {
-      // 필요 시 여기에 위젯 ID 기반으로 오버라이드 텍스트 추가
-    };
-    
-    const methodologyText = w.logic || w.methodology || '';
+
+    const ENHANCED_INSIGHTS: Record<string, {sit?: string, strat?: string}> = {};
     const situation = ENHANCED_INSIGHTS[w.id]?.sit || w.sit || w.situation || '';
     const takeaway = ENHANCED_INSIGHTS[w.id]?.strat || w.strat || w.tak || w.takeaway || '';
-    
+    const unit = WIDGET_UNITS[w.id] ? `단위: ${WIDGET_UNITS[w.id]}` : '';
+    const subtitle = w.subtitle || '';
+    const cardDesc = [unit, subtitle].filter(Boolean).join(' — ');
+    const liveStatus: 'LIVE'|'SYNCED'|'STATIC' = w.isLiveApi ? 'LIVE' : (w.syncDate ? 'SYNCED' : 'STATIC');
+
     return (
-      <div key={w.id} className={styles.glassCard} style={{ 
-        display: 'flex', flexDirection: 'column', minHeight: '600px'
-      }}>
-        
-        {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.6rem', fontSize: '1rem', fontWeight: 700, color: accentColor, margin: '0 0 0.4rem 0' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <IconComp size={18} />
-              {w.title} {w.reliability && w.reliability <= 70 && (<span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'#292524', border:'1px solid #f59e0b', color:'var(--color-warning)', fontSize:'0.65rem', fontWeight:600, padding:'1px 5px', borderRadius:'4px', letterSpacing:'0.2px', marginLeft:'6px' }}>📐 Estimate</span>)}
-              <TelemetryBadge status={w.isLiveApi ? 'live' : (w.syncDate ? 'synced' : 'static')} syncDate={w.syncDate} />
-            </span>
-            
-            {WIDGET_UNITS[w.id] && (
-              <span style={{ fontSize: '0.75rem', fontWeight: 500, color: '#cbd5e1', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)', padding: '2px 8px', borderRadius: '6px', whiteSpace: 'nowrap' }}>
-                단위: {WIDGET_UNITS[w.id]}
-              </span>
-            )}
-            
-            {/* ❕ Info Icon with Tooltip on Hover */}
-            <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
-              
-            </div>
-          </h3>
-          {(w.subtitle) && (
-            <p style={{ margin: 0, fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-              {w.subtitle}
-            </p>
-          )}
-        </div>
-
-        {/* Chart Area */}
-        <div style={{ height: '375px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            {renderChart(w)}
-          </SafeResponsiveContainer>
-        </div>
-
-        {/* Takeaway Box */}
-        {(situation || takeaway) && (
-          <div style={{ marginTop: 'auto' }}>
-            <div style={{ 
-              background: 'rgba(2, 14, 28, 0.45)', 
-              borderTop: `2px solid ${accentColor}`, 
-              borderRadius: '8px', padding: '14px' 
-            }}>
-              {situation && (
-                <div style={{ paddingBottom: '10px', borderBottom: '1px dashed rgba(255,255,255,0.08)', marginBottom: '10px' }}>
-                  <h4 style={{ color: accentColor, fontSize: '0.85rem', fontWeight: 700, margin: '0 0 4px 0' }}>📊 현황 분석 (SITUATION)</h4>
-                  <p style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.6, margin: 0 }}>{situation}</p>
-                  <p style={{ color: '#475569', fontSize: '0.7rem', fontStyle: 'italic', margin: '4px 0 0 0' }}>
-                    * 출처: {w.methodology || 'Silla Co. Intelligence Network'}
-                  </p>
-                </div>
-              )}
-              {takeaway && (
-                <div>
-                  <h4 style={{ color: 'var(--color-warning)', fontSize: '0.85rem', fontWeight: 700, margin: '0 0 4px 0' }}>⚡ 실행 전략 (EXECUTIVE TAKEAWAY)</h4>
-                  <p style={{ color: '#fde68a', fontSize: '0.82rem', lineHeight: 1.6, margin: 0 }}>{takeaway}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+      <WidgetCard key={w.id}
+        title={w.title}
+        icon={IconComp}
+        iconColor={accentColor}
+        pillar={pillar}
+        cardDesc={cardDesc}
+        telemetry={{ status: liveStatus, syncDate: w.syncDate || '2026.05' }}
+        chartHeight={375}
+        chart={renderChart(w)}
+        takeaway={{
+          situation,
+          actionPlan: takeaway,
+          source: w.methodology || w.source || 'Silla Co. Intelligence Network',
+        }}
+      />
     );
   }
 }

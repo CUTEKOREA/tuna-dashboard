@@ -631,31 +631,22 @@ export default function FalklandSquidDashboard() {
 
       <div className="ds-grid-1 mt-6">
         {/* Widget 3: Individual Vessel Rankings */}
-        <motion.div className="ds-card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-          <div className="ds-card-header flex justify-between items-center flex-wrap gap-4 border-b border-white/5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                <Ship size={20} className="text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
-                  개별 선박 실적 랭킹
-                  <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/20">{vesselData.length}척</span>
-                </h3>
+        <WidgetCard title={`개별 선박 실적 랭킹 (${vesselData.length}척)`} icon={Ship} iconColor="var(--color-primary)" pillar="S1"
+          cardDesc="선박명·업체 검색 + 월별 어획량 + 누계·비중·선령·교체 상태"
+          telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }}
+          customBody={<>
+            <div className="flex justify-end mb-3">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={15} />
+                <input
+                  type="text"
+                  placeholder="선박명 또는 업체 검색..."
+                  className="pl-9 pr-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-xl text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500/30 w-64 transition-all placeholder:text-slate-600"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
             </div>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={15} />
-              <input 
-                type="text" 
-                placeholder="선박명 또는 업체 검색..." 
-                className="pl-9 pr-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-xl text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500/30 w-64 transition-all placeholder:text-slate-600"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
-          
           <div style={{ overflow: 'hidden', borderRadius: '0 0 12px 12px', position: 'relative' }}>
             <div style={{ overflowX: 'auto', overflowY: 'auto', maxHeight: '720px' }}>
               <table style={{ width: '100%', minWidth: '1300px', fontSize: '13px', borderCollapse: 'separate', borderSpacing: 0 }}>
@@ -770,15 +761,12 @@ export default function FalklandSquidDashboard() {
               </table>
             </div>
           </div>
-          <div className="px-5 py-4 bg-gradient-to-r from-slate-800/50 to-transparent border-t border-white/5 flex items-start gap-3 rounded-b-xl">
-            <div className="w-6 h-6 rounded-lg bg-amber-500/15 flex items-center justify-center shrink-0 mt-0.5">
-              <AlertCircle size={14} className="text-amber-400" />
-            </div>
-            <p className="text-[12px] text-slate-400 leading-relaxed">
-              <strong className="text-slate-300">분석 노트</strong> — 상위 5개 선박이 전체 어획량의 핵심을 견인. 월별 수치는 원본(팬 단위) 그대로 표기, 환산 누계(KG)는 1팬=20kg 기준 적용.
-            </p>
-          </div>
-        </motion.div>
+          </>}
+          takeaway={{
+            situation: '상위 5개 선박이 전체 어획량의 핵심을 견인. 월별 수치는 원본(팬 단위) 그대로 표기.',
+            actionPlan: '환산 누계(KG)는 1팬=20kg 기준 적용. 선령·교체 상태 데이터를 활용해 노후 선박 교체·신조 투자 의사결정에 반영.',
+            source: '2026년 포크 오징어채낚기 어획현황',
+          }} />
       </div>
     </div>
   );

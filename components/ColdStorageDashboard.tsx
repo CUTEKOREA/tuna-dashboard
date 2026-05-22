@@ -15,6 +15,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
+import WidgetCard from './WidgetCard';
 import styles from './MackerelStrategy.module.css'; // 재사용
 
 const smartFormat = (v: any, dataKey?: string): string | any => {
@@ -505,43 +506,27 @@ export default function ColdStorageDashboard() {
     }
   };
 
-  const renderWidgetCard = (w: any) => {
+  const renderWidgetCard = (w: any, pillar: 'S1'|'S2'|'S3'|'S4'|'S5' = 'S3') => {
     const IconComp = WIDGET_ICONS[w.id] || Factory;
     const accentColor = '#38bdf8';
-    
+    const liveStatus: 'LIVE'|'SYNCED'|'STATIC' = w.telemetry === 'live' || w.isLiveApi ? 'LIVE' : (w.telemetry === 'synced' ? 'SYNCED' : 'STATIC');
+
     return (
-      <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px',
-        background: 'rgba(24, 24, 24, 0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', border: '1px solid rgba(255,255,255,0.05)',
-        padding: '1.5rem'}}>
-        
-        {/* Card Header */}
-        <div style={{ position: 'relative', marginBottom: '1.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
-              <IconComp size={20} color={accentColor} />
-              {w.title || 'Data Widget'}
-            </h3>
-            {w.subtitle && (
-              <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                {w.subtitle}
-              </p>
-            )}
-          </div>
-          <TelemetryBadge status={w.telemetry || (w.isLiveApi ? 'live' : 'static')} syncDate={w.syncDate || '2026.05.15'} />
-        </div>
-
-        {/* Chart Area */}
-        <div style={{ height: '375px', width: '100%', marginBottom: '1.5rem', position: 'relative', zIndex: 0 }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            {renderChart(w)}
-          </SafeResponsiveContainer>
-        </div>
-
-        {/* Takeaway Box component replaces manually coded HTML */}
-        {(w.sit || w.strat) && (
-          <TakeawayBox situation={w.sit} actionPlan={w.strat} source={w.source} />
-        )}
-      </div>
+      <WidgetCard key={w.id}
+        title={w.title || 'Data Widget'}
+        icon={IconComp}
+        iconColor={accentColor}
+        pillar={pillar}
+        cardDesc={w.subtitle || ''}
+        telemetry={{ status: liveStatus, syncDate: w.syncDate || '2026.05.15' }}
+        chartHeight={375}
+        chart={renderChart(w)}
+        takeaway={{
+          situation: w.sit || '',
+          actionPlan: w.strat || '',
+          source: w.source || '아세안 콜드체인 인텔리전스 네트워크',
+        }}
+      />
     );
   };
 
@@ -699,7 +684,7 @@ export default function ColdStorageDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>1. 입고 및 수급</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w01', 'w03', 'n01'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w01', 'w03', 'n01'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S1'))}
           </div>
         </section>
 
@@ -709,7 +694,7 @@ export default function ColdStorageDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>2. 보관 및 가동률</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w02', 'w04'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w02', 'w04'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S2'))}
           </div>
         </section>
 
@@ -719,7 +704,7 @@ export default function ColdStorageDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>3. 물류 및 통관 인프라</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w05', 'w06', 'n03'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w05', 'w06', 'n03'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
           </div>
         </section>
 
@@ -729,7 +714,7 @@ export default function ColdStorageDashboard() {
             <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>4. 수익성 및 투자 전략</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['w07', 'w08', 'w09', 'n02'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['w07', 'w08', 'w09', 'n02'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S4'))}
           </div>
         </section>
 
@@ -740,7 +725,7 @@ export default function ColdStorageDashboard() {
             <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(6, 182, 212, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>한국수산과학회지 KFAS 논문 8편 기반</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08'].includes(w.id)).map(renderWidgetCard)}
+            {widgets.filter((w: any) => ['k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
           </div>
         </section>
 
