@@ -4,7 +4,64 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-22 (Claude Code OMO-Codex 세션 — **Whelk 29/29 + Carrot 30/30 + Galchi (renderer) + FalklandSquid 2/3 완료, PR #18 4 commodity 통합**)
+> **마지막 업데이트**: 2026-05-22 (Claude Code 세션 — HANDOFF 동기화: 12개 PR 머지 완료 반영, 진짜 잔여 작업 재식별)
+
+---
+
+## 🟢 2026-05-22 — 누적 PR 머지 현황 (main 브랜치 통합 완료)
+
+OMO 마이그레이션 12개 PR이 모두 main에 머지됨. main HEAD = `0fb686a`.
+
+| PR | Branch | Merge commit | 내용 |
+|----|--------|--------------|------|
+| #13 | omo/pollock-2a2 | `1b688bb` | Pollock Phase 2A.2 (13 widgets) |
+| #14 | omo/salmon | `8684c2f` | Salmon Pilot+Wave1~3 (13 widgets) |
+| #15 | omo/squid | `3c9601d` | Squid 80 widgets |
+| #16 | omo/chicken | `4c1c7c1` | Chicken 5/12 sub-widgets |
+| #17 | omo/singles | `70ab178` | Cassava/Jukkumi/TunaExtract/Mangosteen |
+| #18 | omo/singles-codex | `bab4b5b` | Garlic 18 + Cocoa 22 + Whelk 29 + Carrot 30 + Galchi + FalklandSquid 2 + WidgetCard ReactNode 완화 |
+| #25 | omo/mackerel | `a6d3d92` | Mackerel Wave 1~4 |
+| #27 | omo/petfood | `3272be4` | PetFood 22 widgets |
+| #29 | experiment/omo-stage0 | `12ef178` | Tuna Stage 0/1/2 신규 위젯 8개 |
+| #31 | omo/small-dashes | `0b23ea9` | Small dashboards 일괄 |
+| #33 | omo/remaining-dashes | `2cf95ea` | ColdStorage·Pollock·Chicken·FalklandSquid widget3 등 4 dashboard |
+| #35 | omo/final-dashes | `13d2cdc` | Market 2 Forensic insight widgets |
+
+### 추가 main HEAD 작업 (PR 없이 직접 머지)
+- `0fb686a` Atuna KPI 라이브 API endpoint 신설 + 한글화
+- `9fb3418` Market 4 카드 + 2 Forensic widget + TunaInsights 2 takeaway 갱신
+- `09e1584` Shrimp + KoreaConsignment + Logistics → WidgetCard (3 dashboard 일괄)
+- `e359142` PetFood 22 widgets → WidgetCard (L-07 일괄 변환)
+
+**WidgetCard 사용 파일**: 161개
+
+---
+
+## 🎯 2026-05-22 — 진짜 잔여 작업 (재식별)
+
+### A. 비-Tuna 미마이그레이션 dashboard (WidgetCard 0 사용 + ds-card 잔존)
+다음 파일은 WidgetCard 호출이 0건, ds-card 잔존 → 마이그레이션 필요:
+- `components/SEAsiaOEMDashboard.tsx` (5)
+- `components/CashewStrategy.tsx` (5)
+- `components/RetailPOS.tsx` (6)
+- `components/SquidValueChainMargin.tsx` (4)
+- `components/SquidFuelBEP.tsx` (4)
+- `components/StrategyIntel.tsx` (2)
+- `components/FleetStrategyMatrix.tsx` (2)
+- `components/PacificEezStrategicWidget.tsx` (3)
+
+### B. Tuna closure (⚠️ 2026-06-04까지 작업 중단)
+ANTIGRAVITY 공지 유효 (~2026-06-04). 다음 파일은 **건드리지 말 것**:
+- `TunaOperationalIntelWidgets.tsx` (61)
+- `TunaRanching.tsx`, `TunaExecutiveInsights.tsx`, `TunaVietnamOemStrategy.tsx`, `TunaAquacultureExpansion.tsx`, `TunaLandingCost.tsx`, `TunaAquaValue.tsx`
+- `Insight3Blackhole.tsx`, `Insight4Middlemen.tsx`, `Insight5JumboLeap.tsx`, `Insight6ClimateCombo.tsx`, `Insight7SpreadWinners.tsx`, `Insight9TunaVsSquidCombo.tsx`
+
+### C. 혼합 파일 ds-card 잔존 (부분 마이그레이션 완료, 잔존 분석 필요)
+WhelkDashboard·SquidDashboard·MarketDashboard·GalchiDashboard·ShrimpDashboard·MackerelDashboard·PetFoodDashboard·CarrotDashboard·KoreaConsignmentDashboard·MackerelStrategy·SalmonDashboard 등. 대부분 framework wrapper(KPI Row, Section header) 잔존일 가능성 — 위젯별 정밀 분석 후 결정.
+
+### D. 인프라·운영 항목
+- **gh CLI 인증 만료** (HTTP 401) → `gh auth login` 필요
+- **PAT `ghp_Yzz8C...` 폐기·재발급** → https://github.com/settings/tokens (사용자 직접)
 
 ---
 
