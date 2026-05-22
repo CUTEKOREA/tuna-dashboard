@@ -15,9 +15,8 @@ import {
   Hexagon, Target, Truck, Layers, Coins, Leaf, MapPin, Landmark, Shield, Anchor,
   Dna, Gavel, TestTube, Recycle, ShieldAlert, EyeOff, Pill
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
+import WidgetCard from './WidgetCard';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -369,27 +368,20 @@ export default function CassavaDashboard() {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[idx % ACCENT_COLORS.length] || sec.color;
               const isLastOdd = (sec.widgets.length % 2 !== 0) && (idx === sec.widgets.length - 1);
+              const liveStatus = w.id.startsWith('w_') || w.source?.includes('Live') ? 'LIVE' : 'SYNCED';
               return (
-                <div key={w.id} className={styles.glassCard} style={{ display:'flex', flexDirection:'column', minHeight:'500px', gridColumn: isLastOdd ? '1 / -1' : 'auto' }}>
-                  <div style={{ marginBottom:'1rem', borderBottom:'1px solid rgba(255,255,255,0.05)', paddingBottom:'0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div>
-                      <h3 style={{ display:'flex', alignItems:'center', gap:'0.6rem', fontSize:'0.95rem', fontWeight:700, color:accent, margin:'0 0 0.4rem' }}>
-                        <Icon size={18} />{w.title}
-                      </h3>
-                      {w.subtitle && <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8', lineHeight:1.5 }}>{w.subtitle}</p>}
-                    </div>
-                    <TelemetryBadge status={w.id.startsWith('w_') || w.source?.includes('Live') ? 'live' : 'synced'} syncDate="2026.05.15" />
-                  </div>
-                  <div style={{ height:'260px', width:'100%', marginBottom:'1rem' }}>
-                    <SafeResponsiveContainer width="100%" height="100%">{renderChart(w)}</SafeResponsiveContainer>
-                  </div>
-                  <div style={{ marginTop:'auto' }}>
-                    <TakeawayBox
-                      situation={w.sit}
-                      actionPlan={w.strat}
-                      source={w.source}
-                    />
-                  </div>
+                <div key={w.id} style={{ gridColumn: isLastOdd ? '1 / -1' : 'auto' }}>
+                  <WidgetCard
+                    title={w.title}
+                    icon={Icon}
+                    iconColor={accent}
+                    pillar={sec.id as any}
+                    cardDesc={w.subtitle || '카사바 인텔리전스 위젯'}
+                    telemetry={{ status: liveStatus, syncDate: '2026-05-15' }}
+                    chart={renderChart(w)}
+                    chartHeight={260}
+                    takeaway={{ situation: w.sit, actionPlan: w.strat, source: w.source }}
+                  />
                 </div>
               );
             })}

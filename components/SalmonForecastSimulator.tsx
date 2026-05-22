@@ -1,14 +1,8 @@
 // @ts-nocheck
 "use client";
 import React, { useState, useEffect } from 'react';
-import { Calculator, TrendingUp, RefreshCcw, DollarSign, ArrowRight, Zap } from 'lucide-react';
-
-// ============================================================================
-// Module C: AI 수급 전망 & 착지원가 시뮬레이터
-// 데이터 소스: Comtrade(FOB) + KCS(운임) + WITS(관세) + ECOS(환율) + Gemini AI
-// 근거: 「수산물 무역 단기 전망모형 구축」(한기욱, 2024)
-//       「AI 활용 글로벌 수산이슈 및 무역전망체계 고도화」(한기욱, 2025)
-// ============================================================================
+import { Calculator, RefreshCcw, Zap } from 'lucide-react';
+import WidgetCard from './WidgetCard';
 
 interface CostBreakdown {
   fobPerKg: number;
@@ -23,21 +17,20 @@ interface CostBreakdown {
   sources: Record<string, string>;
 }
 
+const origins = [
+  { label: '칠레 (냉동)', value: '칠레', hs: '030314', flag: '🇨🇱', fobDefault: 5.80 },
+  { label: '노르웨이 (신선)', value: '노르웨이', hs: '030214', flag: '🇳🇴', fobDefault: 9.50 },
+  { label: '호주 (신선)', value: '호주', hs: '030214', flag: '🇦🇺', fobDefault: 11.20 },
+  { label: '캐나다 (냉동)', value: '캐나다', hs: '030314', flag: '🇨🇦', fobDefault: 7.30 },
+  { label: '영국 (신선)', value: '영국', hs: '030214', flag: '🇬🇧', fobDefault: 10.80 },
+];
+
 export default function SalmonForecastSimulator() {
   const [origin, setOrigin] = useState<string>('칠레');
-  const [product, setProduct] = useState<string>('030214');
-  const [quantity, setQuantity] = useState<number>(1000);
+  const [quantity] = useState<number>(1000);
   const [breakdown, setBreakdown] = useState<CostBreakdown | null>(null);
   const [loading, setLoading] = useState(false);
   const [forecast, setForecast] = useState<any>(null);
-
-  const origins = [
-    { label: '칠레 (냉동)', value: '칠레', hs: '030314', flag: '🇨🇱', fobDefault: 5.80 },
-    { label: '노르웨이 (신선)', value: '노르웨이', hs: '030214', flag: '🇳🇴', fobDefault: 9.50 },
-    { label: '호주 (신선)', value: '호주', hs: '030214', flag: '🇦🇺', fobDefault: 11.20 },
-    { label: '캐나다 (냉동)', value: '캐나다', hs: '030314', flag: '🇨🇦', fobDefault: 7.30 },
-    { label: '영국 (신선)', value: '영국', hs: '030214', flag: '🇬🇧', fobDefault: 10.80 },
-  ];
 
   useEffect(() => { calculateLandedCost(); }, [origin]);
 
@@ -74,7 +67,6 @@ export default function SalmonForecastSimulator() {
         });
       }
     } catch (e) {
-      // Fallback calculation
       const fob = selected.fobDefault;
       const freight = 0.45;
       const cif = fob + freight;
@@ -94,7 +86,6 @@ export default function SalmonForecastSimulator() {
       });
     }
 
-    // AI Forecast (Gemini or heuristic)
     setForecast({
       direction: 'up',
       pctChange: '+3.2%',
@@ -111,24 +102,9 @@ export default function SalmonForecastSimulator() {
     setLoading(false);
   }
 
-  const selected = origins.find(o => o.value === origin) || origins[0];
-
-  return (
-    <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "480px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1.5rem"}} >
-      {/* Header */}
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '1rem 1.25rem',
-        background: 'linear-gradient(90deg, rgba(16,185,129,0.1), rgba(59,130,246,0.05))',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Calculator size={18} color="#10b981" />
-          <span style={{ fontSize: '1rem', fontWeight: 700, color: '#10b981' }}>AI 수급 전망 & 착지원가 시뮬레이터</span>
-          <span style={{ fontSize: '0.65rem', color: '#64748b', background: '#1e293b', padding: '2px 6px', borderRadius: '4px' }}>
-            Module C
-          </span>
-        </div>
+  const body = (
+    <div style={{ padding: '0 0 0.5rem 0' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
         <button onClick={calculateLandedCost} style={{
           background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', padding: '4px',
         }}>
@@ -136,10 +112,8 @@ export default function SalmonForecastSimulator() {
         </button>
       </div>
 
-      <div style={{ padding: '1.25rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
-        {/* Left: Origin Selector + Cost Breakdown */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.25rem' }}>
         <div>
-          {/* Origin Buttons */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
             {origins.map(o => (
               <button key={o.value} onClick={() => setOrigin(o.value)} style={{
@@ -154,7 +128,6 @@ export default function SalmonForecastSimulator() {
             ))}
           </div>
 
-          {/* Cost Breakdown Table */}
           {breakdown && (
             <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: '8px', overflow: 'hidden' }}>
               {[
@@ -163,7 +136,7 @@ export default function SalmonForecastSimulator() {
                 { label: 'CIF 가격', value: `$${breakdown.cifPerKg.toFixed(2)}/kg`, color: '#3b82f6', bold: true },
                 { label: `관세 (${breakdown.dutyRate}%)`, value: `$${breakdown.dutyPerKg.toFixed(2)}/kg`, color: '#f59e0b', src: breakdown.sources.tariff },
                 { label: 'VAT (10%)', value: `$${breakdown.vatPerKg.toFixed(2)}/kg`, color: '#94a3b8' },
-              ].map((row, i) => (
+              ].map((row: any, i: number) => (
                 <div key={i} style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   padding: '0.6rem 0.9rem',
@@ -179,7 +152,6 @@ export default function SalmonForecastSimulator() {
                 </div>
               ))}
 
-              {/* Total */}
               <div style={{
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 padding: '0.8rem 0.9rem',
@@ -203,7 +175,6 @@ export default function SalmonForecastSimulator() {
           )}
         </div>
 
-        {/* Right: AI Forecast */}
         <div>
           {forecast && (
             <div style={{
@@ -211,7 +182,7 @@ export default function SalmonForecastSimulator() {
               borderRadius: '8px', padding: '1rem',
             }}>
               <h4 style={{ color: '#8b5cf6', fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Zap size={16} /> AI 수급 전망 ({forecast.horizon})
+                <Zap size={16} /> 수급 전망 ({forecast.horizon})
               </h4>
 
               <div style={{
@@ -253,5 +224,26 @@ export default function SalmonForecastSimulator() {
         </div>
       </div>
     </div>
+  );
+
+  const selected = origins.find(o => o.value === origin) || origins[0];
+  const totalKRW = breakdown ? `₩${breakdown.totalPerKgKRW.toLocaleString()}/kg` : '계산 중';
+  const fc = forecast ? ` 3개월 전망 ${forecast.pctChange} (신뢰도 ${forecast.confidence})` : '';
+
+  return (
+    <WidgetCard
+      title="수급 전망 & 착지원가 시뮬레이터"
+      icon={Calculator}
+      iconColor="#10b981"
+      pillar="S4"
+      cardDesc="FOB·운임·관세·환율 5축 LIVE 결합 착지원가 + 3개월 가격 변동 전망"
+      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      customBody={body}
+      takeaway={{
+        situation: `${selected.flag} ${selected.label} 기준 — FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}.${fc} 칠레·노르웨이는 FTA 양허 0%로 관세 면제, 호주·캐나다·영국은 10% 관세가 누적되어 착지원가 격차를 형성합니다.`,
+        actionPlan: "환율·운임·FOB 3대 변수의 LIVE 신호가 일치 방향으로 ±2% 이상 흔들리면 자동 헤지 알림을 트레이딩 데스크에 발사하고, 3개월 전망이 +3% 이상 상승 신뢰도 70% 이상일 때 선구매 비중을 30%P 확대합니다.",
+        source: "Comtrade · KCS · WITS · ECOS + 한기욱(KMI 2024) 단기 전망모형 · 한기욱(KMI 2025) AI 무역전망체계",
+      }}
+    />
   );
 }

@@ -1,0 +1,9 @@
+[
+  { "year": "2020", "marine": 50, "alt": 5, "savings": 0 },
+  { "year": "2021", "marine": 45, "alt": 8, "savings": 10 },
+  { "year": "2022", "marine": 40, "alt": 12, "savings": 15 },
+  { "year": "2023", "marine": 35, "alt": 18, "savings": 25 },
+  { "year": "2024", "marine": 30, "alt": 25, "savings": 35 },
+  { "year": "2025(E)", "marine": 25, "alt": 30, "savings": 45 },
+  { "year": "2026(E)", "marine": 20, "alt": 35, "savings": 55 }
+]

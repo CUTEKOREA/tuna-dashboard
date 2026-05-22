@@ -1,0 +1,7 @@
+[
+  { "year": "2020", "fifo": 1.05, "marine": 35, "alt": 10 },
+  { "year": "2021", "fifo": 0.95, "marine": 32, "alt": 15 },
+  { "year": "2022", "fifo": 0.85, "marine": 28, "alt": 22 },
+  { "year": "2023", "fifo": 0.76, "marine": 25, "alt": 28 },
+  { "year": "2024", "fifo": 0.77, "marine": 22, "alt": 35 }
+]
