@@ -1,0 +1,9 @@
+[
+  { "id": "1", "name": "온실가스", "x": 9.5, "y": 9.0, "color": "var(--color-danger)" },
+  { "id": "2", "name": "바다이(Sea lice) 방제", "x": 8.5, "y": 9.5, "color": "var(--color-danger)" },
+  { "id": "3", "name": "지속가능한 사료 조달", "x": 8.0, "y": 8.5, "color": "var(--color-warning)" },
+  { "id": "4", "name": "수질 관리 (오폐수)", "x": 7.0, "y": 7.5, "color": "var(--color-warning)" },
+  { "id": "5", "name": "포장재 재활용 (플라스틱)", "x": 6.5, "y": 6.0, "color": "var(--color-success)" },
+  { "id": "6", "name": "인권 및 공급망 노동 환경", "x": 5.5, "y": 7.0, "color": "var(--color-info)" },
+  { "id": "7", "name": "항생제 사용 감축", "x": 7.5, "y": 8.0, "color": "var(--color-warning)" }
+]
