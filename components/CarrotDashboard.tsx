@@ -832,7 +832,7 @@ export default function CarrotDashboard() {
               </AreaChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "KREI 농업전망2026에 따르면, 한국 당근 국내 공급량 20.6만톤 중 순수입이 11.4만톤(55.3%)이며, 자급률은 47.2%에서 2035년 45.2%로 지속 하락 전망. 수입 의존도(Exposure) 심화 속에서 중국산(90% 점유) 대비 안전성 우위의 베트남산 IQF 전처리 제품으로의 전환 수요가 구조적으로 확대 중.", actionPlan: "KREI TAM(순수입 11.4만톤) 기반 Bass Diffusion Model 적용 시, 기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨. 한-베 FTA 0% 관세 + IQF 전처리 품질 최적화가 핵심 전제 조건.", source: "* 근거: KREI 농업전망2026 엽근채소 세션(2026.01.23) — 재배면적 3,065ha, 1인당 공급량 4.1kg" }} />
+          takeaway={{ situation: "KREI 농업전망2026에 따르면, 한국 당근 국내 공급량 20.6만톤 중 순수입이 11.4만톤(55.3%)이며, 자급률은 47.2%에서 2035년 45.2%로 지속 하락 전망. 수입 의존도(Exposure) 심화 속에서 중국산(90% 점유) 대비 안전성 우위의 베트남산 IQF 전처리 제품으로의 전환 수요가 구조적으로 확대 중.", actionPlan: "KREI TAM(순수입 11.4만톤) 기반 바스 확산 모형(Bass Diffusion Model) 적용 시, 기본(Base) 시나리오 5년 내 55%, 보수적 시나리오에서도 30%의 시장 침투가 전망됨. 한-베 FTA 0% 관세 + IQF 전처리 품질 최적화가 핵심 전제 조건.", source: "* 근거: KREI 농업전망2026 엽근채소 세션(2026.01.23) — 재배면적 3,065ha, 1인당 공급량 4.1kg" }} />
 
         {/* New W12 Widget: Nutritional Spec Radar */}
         <WidgetCard title='핵심 스펙 (당도·영양) 실증 분석 레이더' icon={Dna} iconColor="#ea580c" pillar="S4"
@@ -944,7 +944,7 @@ export default function CarrotDashboard() {
               </BarChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "전체 수확량의 20~30%에 달하는 비규격 '못난이 당근(B품)'은 그동안 전량 폐기(Loss)되었으나, 이를 압착(Expeller) 공정으로 고도 가공 시 천연 카로티노이드 추출 효율이 11배 폭증함(Amin et al., 2021).", actionPlan: "까다로운 신선 농산물 국경 방역 장벽을 완전히 우회하면서, 잔여 폐기물을 천연 베타카로틴 시장(USD 6.1억, GMI)이나 펫푸드 등 고부가가치 바이오 소재로 100% 전환하는 '푸드 업사이클링(Up-cycling)' 초격차 마진을 실현할 것. (Execution Recommended)", source: "* 📡 [LIVE API 연동: UN Comtrade & GMI] 글로벌 베타카로틴 수요 및 무역 흐름 데이터" }} />
+          takeaway={{ situation: "전체 수확량의 20~30%에 달하는 비규격 '못난이 당근(B품)'은 그동안 전량 폐기(Loss)되었으나, 이를 압착(Expeller) 공정으로 고도 가공 시 천연 카로티노이드 추출 효율이 11배 폭증함(Amin et al., 2021).", actionPlan: "까다로운 신선 농산물 국경 방역 장벽을 완전히 우회하면서, 잔여 폐기물을 천연 베타카로틴 시장(USD 6.1억, GMI)이나 펫푸드 등 고부가가치 바이오 소재로 100% 전환하는 '푸드 업사이클링(Up-cycling)' 초격차 마진을 실현할 것. (실행 권장)", source: "* 📡 [LIVE API 연동: UN Comtrade & GMI] 글로벌 베타카로틴 수요 및 무역 흐름 데이터" }} />
 
         <WidgetCard title='바이어 Scope 3 감축 연계 및 ESG 파트너십' icon={AlertTriangle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 평가 지수'
@@ -962,7 +962,7 @@ export default function CarrotDashboard() {
               </RadarChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "Cecílio Filho et al.(2026) LCA 실측: 관행농(겨울) 당근 탄소발자국 0.0833 kgCO₂eq/kg → 유기농 0.0763(8.4% 감축), 업사이클링(Up-cycling) 전환 시 0.047(43% 감축 실증). 신세계 ESG 리포트(보유 자료 84KB)에 따르면 Scope 3 공급망 관리를 통한 벤더 탄소 실적이 향후 B2B 계약 갱신의 핵심 조건으로 부상.", actionPlan: "투명하게 입증 가능한 친환경 베트남 농법 데이터 및 B품 업사이클링(Up-cycling) 수거율 데이터를 무기로, 단가 경쟁을 피하고 대기업 바이어의 ESG 실적 달성을 돕는 '독점적 파트너' 지위를 확보함. (Strategic Buy)", source: "* 근거: Cecílio Filho et al.(2026) Bragantia 85, IPCC 2019 Tier 2 / 신세계 ESG리포트 / IFRS S2 기후공시 기준" }} />
+          takeaway={{ situation: "Cecílio Filho et al.(2026) LCA 실측: 관행농(겨울) 당근 탄소발자국 0.0833 kgCO₂eq/kg → 유기농 0.0763(8.4% 감축), 업사이클링(Up-cycling) 전환 시 0.047(43% 감축 실증). 신세계 ESG 리포트(보유 자료 84KB)에 따르면 Scope 3 공급망 관리를 통한 벤더 탄소 실적이 향후 B2B 계약 갱신의 핵심 조건으로 부상.", actionPlan: "투명하게 입증 가능한 친환경 베트남 농법 데이터 및 B품 업사이클링(Up-cycling) 수거율 데이터를 무기로, 단가 경쟁을 피하고 대기업 바이어의 ESG 실적 달성을 돕는 '독점적 파트너' 지위를 확보함. (전략적 매수)", source: "* 근거: Cecílio Filho et al.(2026) Bragantia 85, IPCC 2019 Tier 2 / 신세계 ESG리포트 / IFRS S2 기후공시 기준" }} />
 
         <WidgetCard title='가치사슬 통합 마진 스마일 커브 (PEF 롤업 모델)' icon={Layers} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: EBITDA 영업이익률 %'
@@ -980,7 +980,7 @@ export default function CarrotDashboard() {
               </ComposedChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "전통적인 1차 농산물 수입 벤더 구조는 중간 유통 마진율이 3~8% 수준에 머무르며, 자본 시장에서의 엑시트(Exit) 멀티플(EV/EBITDA 5x 미만)이 극히 저조함.", actionPlan: "전방의 고당도 종자 IP(라이선싱) 통제권과 후방의 스마트 가공(IQF) 및 바이오 업사이클링(Up-cycling) 역량을 동시에 내재화할 경우, '단순 유통업'에서 '푸드테크 유니콘'으로 재분류되어 15배(15x) 이상의 폭발적인 멀티플(Multiple) 차익거래가 실현됨. (Value Realization Expected)", source: "* 근거: 대형 사모펀드(PEF) 농식품 인더스트리 Buy & Build(롤업) 가치평가 실증 데이터" }} />
+          takeaway={{ situation: "전통적인 1차 농산물 수입 벤더 구조는 중간 유통 마진율이 3~8% 수준에 머무르며, 자본 시장에서의 엑시트(Exit) 멀티플(EV/EBITDA 5x 미만)이 극히 저조함.", actionPlan: "전방의 고당도 종자 IP(라이선싱) 통제권과 후방의 스마트 가공(IQF) 및 바이오 업사이클링(Up-cycling) 역량을 동시에 내재화할 경우, '단순 유통업'에서 '푸드테크 유니콘'으로 재분류되어 15배(15x) 이상의 폭발적인 멀티플(Multiple) 차익거래가 실현됨. (가치 실현 기대)", source: "* 근거: 대형 사모펀드(PEF) 농식품 인더스트리 바이앤빌드(Buy & Build, 인수 후 롤업) 가치평가 실증 데이터" }} />
 
         {/* New W24 Widget: ESG Upcycling */}
         <WidgetCard title='푸드 업사이클링 프리미엄 및 Scope 3 감축 효과 실증' icon={Leaf} iconColor="#ea580c" pillar="S5"
@@ -1001,7 +1001,7 @@ export default function CarrotDashboard() {
               </ComposedChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "Amin et al.(2021) 연구에 따르면 착유 압착(Expeller) 도입 시 버려지던 매쉬의 카로티노이드가 11배 폭증함. KREI 기준 연간 ~3.1만톤의 B품 중 일부 전환(2400톤) 시 IPCC LCA 기준 Scope 3 감축량 199 tCO₂e를 확보할 수 있으며 글로벌 천연 베타카로틴 프리미엄을 독식함.", actionPlan: "잉여 원물을 폐기 비용에서 메디푸드(고순도 베타카로틴) 소재로 업사이클링(Up-cycling) 전환 시, 기존 유통 마진의 한계를 돌파하는 70% 이상의 초격차 마진이 창출되며 확보된 Scope 3 탄소 감축량은 대기업 B2B 계약의 독점적 무기로 작용함. (Alpha Driver)", source: "* 근거: Amin et al.(2021) CalPoly / Cecílio Filho(2026) Bragantia 85 / GMI 2025 / KREI" }} />
+          takeaway={{ situation: "Amin et al.(2021) 연구에 따르면 착유 압착(Expeller) 도입 시 버려지던 매쉬의 카로티노이드가 11배 폭증함. KREI 기준 연간 ~3.1만톤의 B품 중 일부 전환(2400톤) 시 IPCC LCA 기준 Scope 3 감축량 199 tCO₂e를 확보할 수 있으며 글로벌 천연 베타카로틴 프리미엄을 독식함.", actionPlan: "잉여 원물을 폐기 비용에서 메디푸드(고순도 베타카로틴) 소재로 업사이클링(Up-cycling) 전환 시, 기존 유통 마진의 한계를 돌파하는 70% 이상의 초격차 마진이 창출되며 확보된 Scope 3 탄소 감축량은 대기업 B2B 계약의 독점적 무기로 작용함. (알파 동인)", source: "* 근거: Amin et al.(2021) CalPoly / Cecílio Filho(2026) Bragantia 85 / GMI 2025 / KREI" }} />
 
         {/* New W19 Widget: Exit Valuation Waterfall */}
         <WidgetCard title='엑시트 밸류에이션 워터폴: 5x → 15x 멀티플 브릿지 실증' icon={Landmark} iconColor="#ea580c" pillar="S5"
@@ -1022,7 +1022,7 @@ export default function CarrotDashboard() {
               </BarChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "단순 농산물 수입업의 EV/EBITDA 멀티플(Multiple)은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함.", actionPlan: "기후 리스크 헷징, 무관세 매입원가 우위, 잔류농약 Zero 락인, 푸드 업사이클링(Up-cycling) 신사업을 총망라한 동적 EBITDA 멀티플(Multiple) 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것. (Strong Conviction)", source: "* 📡 [LIVE API 연동: PitchBook API] 글로벌 애그테크/푸드테크 인수합병(M&A) 트랜잭션 및 글로벌 PEF 엑시트 실증 멀티플 데이터" }} />
+          takeaway={{ situation: "단순 농산물 수입업의 EV/EBITDA 멀티플(Multiple)은 글로벌 평균 5x 수준에 고착화되어 투자 매력도가 낮으나, Silla Co.는 9대 API망 인텔리전스를 융합하여 Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크 영역으로 재분류(Re-categorization)함.", actionPlan: "기후 리스크 헷징, 무관세 매입원가 우위, 잔류농약 Zero 락인, 푸드 업사이클링(Up-cycling) 신사업을 총망라한 동적 EBITDA 멀티플(Multiple) 워터폴을 대시보드에 즉각(Living) 전시하여 대형 기관 투자자(LP)의 투자의사결정을 이끌어 낼 것. (강한 확신)", source: "* 📡 [LIVE API 연동: PitchBook API] 글로벌 애그테크/푸드테크 인수합병(M&A) 트랜잭션 및 글로벌 PEF 엑시트 실증 멀티플 데이터" }} />
 
         {/* ═══ NEW SECTION: 데이터 인텔리전스 고도화 (Data Intelligence Upgrade) ═══ */}
         <div style={{ gridColumn: '1 / -1', margin: '2.5rem 0 1rem', borderTop:'1px solid rgba(255,255,255,0.06)', paddingTop:'1.5rem' }}>
@@ -1055,7 +1055,7 @@ export default function CarrotDashboard() {
               </AreaChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "OEC 30년 무역 데이터 분석 결과, 중국은 2003년부터 기하급수적 수출 성장을 보이며 2024년 $3.85억 달성(글로벌 22.5%). 그러나 마늘(65.6%)과 달리 당근 수출 시장은 네덜란드·미국·이탈리아·스페인이 각 10-12%를 차지하는 분산된 구조로, 공급처 다변화의 현실적 가능성이 입증됨.", actionPlan: "중국 단일 소싱 리스크를 완화하기 위한 베트남·호주·이스라엘 다변화 전략은 글로벌 수출 시장 구조상 충분히 실현 가능하며, 특히 이스라엘의 2020년 이후 급격한 수출 감소(전쟁 리스크)는 대체 공급원으로서 베트남의 포지셔닝 기회를 더욱 확대시킴. (Bullish Target)", source: "* 📡 [OEC 실측 데이터] HS 070610 국가별 수출액 (1995~2024, 30년) — oec_carrot_export_by_year_country.csv" }} />
+          takeaway={{ situation: "OEC 30년 무역 데이터 분석 결과, 중국은 2003년부터 기하급수적 수출 성장을 보이며 2024년 $3.85억 달성(글로벌 22.5%). 그러나 마늘(65.6%)과 달리 당근 수출 시장은 네덜란드·미국·이탈리아·스페인이 각 10-12%를 차지하는 분산된 구조로, 공급처 다변화의 현실적 가능성이 입증됨.", actionPlan: "중국 단일 소싱 리스크를 완화하기 위한 베트남·호주·이스라엘 다변화 전략은 글로벌 수출 시장 구조상 충분히 실현 가능하며, 특히 이스라엘의 2020년 이후 급격한 수출 감소(전쟁 리스크)는 대체 공급원으로서 베트남의 포지셔닝 기회를 더욱 확대시킴. (낙관적 목표)", source: "* 📡 [OEC 실측 데이터] HS 070610 국가별 수출액 (1995~2024, 30년) — oec_carrot_export_by_year_country.csv" }} />
 
         {/* W26: OEC 수입국 벤치마크 (한국 포지션) */}
         <WidgetCard title='글로벌 당근 수입 벤치마크: 한국 vs 주요 수입국' icon={Target} iconColor="#ea580c" pillar="S5"
@@ -1078,7 +1078,7 @@ export default function CarrotDashboard() {
               </LineChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "한국 당근 수입액은 $3.1M(2000)에서 $51M(2024)으로 16배 이상 급등하며 $38~51M 밴드에서 지속 증가 추세를 보임. 같은 기간 일본은 $19~52M 수준에서 정체된 반면, 미국은 $21M→$210M으로 10배 성장하며 수입국 Top 3에 진입. 한국은 인구 대비 수입 의존도(자급률 ~45%)가 비정상적으로 높은 구조적 취약성을 보유.", actionPlan: "한국의 당근 수입은 구조적으로 확대 불가피(KREI 자급률 45.2% 전망). 중국 의존도(Exposure) 90%+ 상태에서 베트남을 제2공급원으로 확보하는 것은 단순 매입원가 절감을 넘어 국가 식량안보 차원의 전략적 포지셔닝이며, 일본 시장($38M)으로의 동시 진출로 규모의 경제를 달성할 수 있음. (Upside Potential)", source: "* 📡 [OEC 실측 데이터] HS 070610 국가별 수입액 (1995~2024, 30년) — oec_carrot_import_by_year_country.csv" }} />
+          takeaway={{ situation: "한국 당근 수입액은 $3.1M(2000)에서 $51M(2024)으로 16배 이상 급등하며 $38~51M 밴드에서 지속 증가 추세를 보임. 같은 기간 일본은 $19~52M 수준에서 정체된 반면, 미국은 $21M→$210M으로 10배 성장하며 수입국 Top 3에 진입. 한국은 인구 대비 수입 의존도(자급률 ~45%)가 비정상적으로 높은 구조적 취약성을 보유.", actionPlan: "한국의 당근 수입은 구조적으로 확대 불가피(KREI 자급률 45.2% 전망). 중국 의존도(Exposure) 90%+ 상태에서 베트남을 제2공급원으로 확보하는 것은 단순 매입원가 절감을 넘어 국가 식량안보 차원의 전략적 포지셔닝이며, 일본 시장($38M)으로의 동시 진출로 규모의 경제를 달성할 수 있음. (상승 잠재력)", source: "* 📡 [OEC 실측 데이터] HS 070610 국가별 수입액 (1995~2024, 30년) — oec_carrot_import_by_year_country.csv" }} />
 
         {/* W27: KAMIS 월별 도매가 실측 히트맵 */}
         <WidgetCard title='KAMIS 실측 도매가 4개년 비교 (상품 20kg)' icon={Banknote} iconColor="#ea580c" pillar="S5"
@@ -1121,7 +1121,7 @@ export default function CarrotDashboard() {
               </ComposedChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "FAOSTAT 공급이용계정(SCL, 2021) 실측 기준, 한국의 당근 수확후 손실률은 27.3%(30,570톤)으로 조사 대상국 중 최악. 중국 5.0%, 미국 8.9%, 독일 15.0% 대비 2~5배 높은 구조적 비효율(Inefficiency). 이는 제주 노지 재배의 수확·선별·저장 인프라 부재와 비규격품(B품) 폐기 관행에 기인하며, 연간 ~3.1만톤의 업사이클링(Up-cycling) TAM이 실측으로 검증됨.", actionPlan: "한국의 27.3% 손실률은 곧 3.1만톤의 비규격 원물을 의미하며, 이를 베타카로틴 추출(CalPoly Amin et al. 기준 11배 수율) 또는 IQF 전처리 원료로 전환 시 톤당 $200+ 부가가치 창출 가능. 중국 수준(5%)까지 손실률을 낮추면 연간 ~24,000톤의 식용 가능 물량이 추가 확보되어 수입 대체 효과까지 동시 달성. (Synergy Effect)", source: "* 📡 [FAOSTAT 실측] Supply Utilization Accounts (SCL) 2021 — 생산·식용·손실·사료·수출 국가별 비교" }} />
+          takeaway={{ situation: "FAOSTAT 공급이용계정(SCL, 2021) 실측 기준, 한국의 당근 수확후 손실률은 27.3%(30,570톤)으로 조사 대상국 중 최악. 중국 5.0%, 미국 8.9%, 독일 15.0% 대비 2~5배 높은 구조적 비효율(Inefficiency). 이는 제주 노지 재배의 수확·선별·저장 인프라 부재와 비규격품(B품) 폐기 관행에 기인하며, 연간 ~3.1만톤의 업사이클링(Up-cycling) TAM이 실측으로 검증됨.", actionPlan: "한국의 27.3% 손실률은 곧 3.1만톤의 비규격 원물을 의미하며, 이를 베타카로틴 추출(CalPoly Amin et al. 기준 11배 수율) 또는 IQF 전처리 원료로 전환 시 톤당 $200+ 부가가치 창출 가능. 중국 수준(5%)까지 손실률을 낮추면 연간 ~24,000톤의 식용 가능 물량이 추가 확보되어 수입 대체 효과까지 동시 달성. (시너지 효과)", source: "* 📡 [FAOSTAT 실측] Supply Utilization Accounts (SCL) 2021 — 생산·식용·손실·사료·수출 국가별 비교" }} />
 
       </div>
 

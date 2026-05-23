@@ -19,8 +19,8 @@ export const WidgetTACGapTracker = () => (
     icon={Globe}
     iconColor="#cbd5e1"
     pillar="S1"
-    termTooltip={{ term: "Geopolitical TAC Gap", description: "미국 베링해와 러시아 EEZ의 자원 고갈에 따른 어획 할당량(TAC)의 우하향 곡선 및 ス팟 가격 반응선" }}
-    cardDesc="NPFMC·러 수산청 어획 할당량(TAC) 연차별 삭감 추이와 현물 시세 반응"
+    termTooltip={{ term: "지정학적 어획 할당량 격차(Geopolitical TAC Gap)", description: "미국 베링해와 러시아 배타적 경제수역(EEZ)의 자원 고갈에 따른 어획 할당량(TAC)의 우하향 곡선 및 스팟 가격 반응선" }}
+    cardDesc="북태평양어업관리협의회(NPFMC)·러 수산청 어획 할당량(TAC) 연차별 삭감 추이와 현물 시세 반응"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={260}
     chart={
@@ -58,7 +58,7 @@ export const WidgetOriginWashAlert = () => (
     icon={AlertTriangle}
     iconColor="#cbd5e1"
     pillar="S3"
-    termTooltip={{ term: "Russian-Origin Traceability", description: "러시아산 원물이 중국에서 재가공되어 수입될 때 겪는 경제제재 원산지 단속 리스크의 지수화" }}
+    termTooltip={{ term: "러시아산 원물 추적성(Russian-Origin Traceability)", description: "러시아산 원물이 중국에서 재가공되어 수입될 때 겪는 경제제재 원산지 단속 리스크의 지수화" }}
     cardDesc="가공 허브별 더블프로즌 관세 단속 리스크 지수 vs 유통 물량 비중 매핑"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={260}
@@ -73,7 +73,7 @@ export const WidgetOriginWashAlert = () => (
     }
     takeaway={{
       source: '한국 관세청 더블프로즌 적발 통계 종합',
-      situation: '러시아산 명태 원물을 수입하여 중국 다롄 등에서 필레(Fillet) 가공 후 \'Double-frozen\' 형태로 들여오는 물량에 대한 원산지 표기 단속 및 고조정 관세 타격(Risk > 90%)이 임계치에 도달했습니다. 중국 라인을 거친 물류는 언제든 압류나 세금 폭탄을 맞을 수 있습니다.',
+      situation: '러시아산 명태 원물을 수입하여 중국 다롄 등에서 필레(Fillet) 가공 후 \'재냉동(Double-frozen)\' 형태로 들여오는 물량에 대한 원산지 표기 단속 및 고조정 관세 타격(리스크 > 90%)이 임계치에 도달했습니다. 중국 라인을 거친 물류는 언제든 압류나 세금 폭탄을 맞을 수 있습니다.',
       actionPlan: '매입원가 절감율이 높다고 하더라도 중국 우회 더블프로즌 라인을 일시 차단하십시오. 미국의 러 제재(Sanctions) 감시망 밖에 있으면서 관세 장벽이 느슨한 베트남(하이퐁) 및 인니 대체 가공 허브(Alt-Hub)로 필레 원물 가공 라인을 100% 리라우팅(Rerouting) 해야 합니다.',
     }}
   />
@@ -93,7 +93,7 @@ export const WidgetBunkerArbitrage = () => (
     icon={Ship}
     iconColor="#cbd5e1"
     pillar="S3"
-    termTooltip={{ term: "Bunker-Logistics Arbitrage", description: "선용 MGO(유류비)와 글로벌 해상 컨테이너 스페이스 운임 폭등이 갉아먹는 간접 원가의 마진 타격선" }}
+    termTooltip={{ term: "유류비-물류 아비트라지(Bunker-Logistics Arbitrage)", description: "선용 MGO(유류비)와 글로벌 해상 컨테이너 스페이스 운임 폭등이 갉아먹는 간접 원가의 마진 타격선" }}
     cardDesc="선박 MGO 유가와 합작선사 마진 간 역상관 타격선 추적"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={260}
@@ -115,7 +115,7 @@ export const WidgetBunkerArbitrage = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: 'Global Bunker Price Index & 러시아 어선 운용 재무제표',
+      source: '글로벌 벙커 가격 지수(Global Bunker Price Index) & 러시아 어선 운용 재무제표',
       situation: '비율상 명태 원물(Fish) 단가보다도 인건비, 냉동 보관료(Reefer), MGO 유류비 등 3대 간접비 폭발이 손익을 파괴하고 있습니다. 2025년 이후 물류 동맥 경화로 선박 유류비-해상운임 복합 지수가 치솟으며 합작선사 비즈니스 마진이 마이너스 전환 임계점을 뚫었습니다.',
       actionPlan: '현지(러시아/미국) 수산업체와 단순 5:5 쿼터 배분 수익 셰어링 모델은 자본잠식의 리스크이 높습니다. 유류비 상승 분을 상대 파트너사에 온전히 부담(Hedge)시키고, 한국 측은 Fबोर्ड(FOB) 조건의 인수 금액만 고정시키는 \'운임 전가 파생 계약\'을 추가 삽입하여 변동성을 조기에 끊어내야 합니다.',
     }}
@@ -137,8 +137,8 @@ export const WidgetBeringSeaMigration = () => (
     icon={Thermometer}
     iconColor="#cbd5e1"
     pillar="S1"
-    termTooltip={{ term: "Bering Sea Migration & Fuel Shock", description: "수온 상승(Sea Surface Temperature)으로 인한 명태 어장의 극지방 북상 거리와 이에 비례하는 하역 왕복 연비(FC) 상승 지수" }}
-    cardDesc="베링해 SST 상승에 따른 어장 북상 거리와 선단 연비 지수 시계열"
+    termTooltip={{ term: "베링해 어장 북상 및 연료 충격(Bering Sea Migration & Fuel Shock)", description: "수온 상승(해수면 온도, Sea Surface Temperature)으로 인한 명태 어장의 극지방 북상 거리와 이에 비례하는 하역 왕복 연비(FC) 상승 지수" }}
+    cardDesc="베링해 해수면 온도(SST) 상승에 따른 어장 북상 거리와 선단 연비 지수 시계열"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={260}
     chart={
@@ -172,7 +172,7 @@ const dataTariffWargame = [
 
 export const WidgetTariffWarImpact = () => (
   <WidgetCard
-    title="[Macro] 미·러 무역 상호 관세 파급 맵"
+    title="[거시 경제] 미·러 무역 상호 관세 파급 맵"
     icon={ShieldAlert}
     iconColor="var(--color-danger)"
     pillar="S3"
@@ -209,7 +209,7 @@ const dataIUUIndex = [
 
 export const WidgetIUUShadowIndex = () => (
   <WidgetCard
-    title="[Macro] 일명 '섀도우 플릿'의 IUU 덤핑 타격"
+    title="[거시 경제] 일명 '섀도우 플릿'의 불법조업(IUU) 덤핑 타격"
     icon={Crosshair}
     iconColor="#8b5cf6"
     pillar="S1"
@@ -246,11 +246,11 @@ const dataElNino = [
 
 export const WidgetElNinoImpact = () => (
   <WidgetCard
-    title="[Macro] 엘니뇨 기후 지수와 흉어기 상관망"
+    title="[거시 경제] 엘니뇨 기후 지수와 흉어기 상관망"
     icon={Thermometer}
     iconColor="#f97316"
     pillar="S1"
-    cardDesc="WMO 엘니뇨 ENSO 강도와 명태 어획량 증감률 상관 분석"
+    cardDesc="세계기상기구(WMO) 엘니뇨 남방진동(ENSO) 강도와 명태 어획량 증감률 상관 분석"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={260}
     chart={
@@ -283,11 +283,11 @@ const dataCbp = [
 
 export const WidgetCBPDetentionRisk = () => (
   <WidgetCard
-    title="[Macro] 주요 원산지 제재 통관 억류 리스크 지수"
+    title="[거시 경제] 주요 원산지 제재 통관 억류 리스크 지수"
     icon={ShieldAlert}
     iconColor="var(--color-danger)"
     pillar="S3"
-    cardDesc="원산지별 미 CBP 통관 보류(WRO) 적발 건수 및 자산 동결 확률"
+    cardDesc="원산지별 미국 관세국경보호청(CBP) 통관 보류(WRO) 적발 건수 및 자산 동결 확률"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={260}
     chart={
@@ -412,7 +412,7 @@ export const WidgetPortCongestion = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '국제운수노련(ITF) 파업 동향 및 JOC 글로벌 항만 체화 지수',
+      source: '국제운수노련(ITF) 파업 동향 및 저널오브커머스(JOC) 글로벌 항만 체화 지수',
       situation: '씨애틀과 다롄 등 수산물 거점 항만의 노동 파업으로 인해 리드타임이 +15일 이상 악화되며 초과 보관/체선료 폭탄이 터지고 있습니다.',
       actionPlan: '지연일이 10일을 초과하는 항만으로 향하는 화물은 로딩 마스트 전 즉각 부산(BUS)이나 베트남항으로 양하(Discharge) 목적지를 스위칭 .',
     }}
