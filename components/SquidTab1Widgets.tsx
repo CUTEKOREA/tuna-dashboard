@@ -18,7 +18,7 @@ export function Widget01_ClimateYieldRadar() {
   ];
   return (
     <WidgetCard
-      title="기후-어획량 상관관계 (NOAA ENSO vs Catch)"
+      title="기후-어획량 상관관계 (해양대기청 ENSO vs 어획량)"
       icon={Thermometer}
       iconColor="#67e8f9"
       pillar="S1"
@@ -32,7 +32,7 @@ export function Widget01_ClimateYieldRadar() {
           <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="#67e8f9" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
-          <Bar yAxisId="left" dataKey="catch" name="어획량(Index)" fill="var(--color-danger)" fillOpacity={0.6} />
+          <Bar yAxisId="left" dataKey="catch" name="어획량 지수" fill="var(--color-danger)" fillOpacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="enso" name="ENSO(수온편차)" stroke="#67e8f9" strokeWidth={3} />
         </ComposedChart>
       }
@@ -93,7 +93,7 @@ export function Widget03_SSTAnomaly() {
   ];
   return (
     <WidgetCard
-      title="해류 수온 편차 (SST Anomaly)"
+      title="해류 수온 편차 (해수면 온도 편차)"
       icon={Flame}
       iconColor="#f59e0b"
       pillar="S1"
@@ -115,7 +115,7 @@ export function Widget03_SSTAnomaly() {
       }
       takeaway={{
         situation: "북서태평양(한국/일본 연안) 수온 편차가 +2.1℃로 4개 해역 중 가장 가혹. 냉수성 살오징어 남하 완전 차단된 상태.",
-        actionPlan: "[히트맵 감지] NW Pacific 어장 의존도를 5년 내 0% 목표로 단계 철수. 남미(Area 41) 및 인도양(Area 51) 어장으로 선단 자산 재배치.",
+        actionPlan: "[히트맵 감지] 북서태평양(NW Pacific) 어장 의존도를 5년 내 0% 목표로 단계 철수. 남미(Area 41) 및 인도양(Area 51) 어장으로 선단 자산 재배치.",
         source: "NOAA Optimum Interpolation SST + FAO Area boundary",
       }}
     />
@@ -152,7 +152,7 @@ export function Widget04_ProteinGrowth() {
       }
       takeaway={{
         situation: "두족류 수요는 아시아 전통 시장을 넘어 북미·유럽 저지방 헬스푸드 트렌드로 연평균 4.8% 성장 중. 연어(5.2%) 다음의 2위.",
-        actionPlan: "[거시 수요] 북미·유럽 시장 진출 가속화 — 그릴 오징어(타파스), 칼라마리 링, 단백질 스낵 형태의 프리미엄 라인업으로 mass-premium 포지셔닝.",
+        actionPlan: "[거시 수요] 북미·유럽 시장 진출 가속화 — 그릴 오징어(타파스), 칼라마리 링, 단백질 스낵 형태의 프리미엄 라인업으로 대중 프리미엄(mass-premium) 포지셔닝.",
         source: "FAO Food Balance Sheets (2010-2024)",
       }}
     />
@@ -189,7 +189,7 @@ export function Widget05_SpeciesMix() {
       }
       takeaway={{
         situation: "2010년 이단아 취급받던 대왕오징어가 점유율 60% 돌파하며 사실상 '글로벌 표준 오징어'로 격상. 살오징어는 8%로 추락.",
-        actionPlan: "[어종 교체] 살오징어 가공 라인 50% 이상 대왕오징어 처리 설비로 전환. 신규 CAPEX는 대왕오징어 가공 자동화에 집중 투자.",
+        actionPlan: "[어종 교체] 살오징어 가공 라인 50% 이상 대왕오징어 처리 설비로 전환. 신규 설비투자(CAPEX)는 대왕오징어 가공 자동화에 집중 투자.",
         source: "FAO FishStatJ Capture Production by Species (2010-2023)",
       }}
     />
@@ -260,7 +260,7 @@ export function Widget07_LatitudeShift() {
       }
       takeaway={{
         situation: "오징어 떼 평균 주 서식지가 위도 44도(러시아 연해주·베링해 인근)까지 가파르게 북상. 30년간 9도 상승 = 거리로 1,000km 이상 이탈.",
-        actionPlan: "[영해 이탈] 러시아·일본 EEZ 입어료 협상 트랙 신설. 베링해 조업 라이선스 단가가 5년 내 3배로 폭등할 것을 대비해 장기 계약 즉시 락인.",
+        actionPlan: "[영해 이탈] 러시아·일본 배타적 경제수역(EEZ) 입어료 협상 트랙 신설. 베링해 조업 라이선스 단가가 5년 내 3배로 폭등할 것을 대비해 장기 계약 즉시 락인.",
         source: "Northeast Asian Squid Migration Tracking (JFA + KMI 1990-2023)",
       }}
     />
@@ -317,7 +317,7 @@ export function Widget09_IUURadar() {
       icon={ShieldAlert}
       iconColor="#f43f5e"
       pillar="S3"
-      cardDesc="AIS 이탈/EEZ 침범 등 불법조업(IUU) 사례 — Red Card 제재 트리거 모니터링"
+      cardDesc="선박자동식별장치(AIS) 이탈/배타적 경제수역(EEZ) 침범 등 불법조업(IUU) 사례 — 적색카드(Red Card) 제재 트리거 모니터링"
       telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
@@ -330,8 +330,8 @@ export function Widget09_IUURadar() {
         </BarChart>
       }
       takeaway={{
-        situation: "특정 거대 선단의 상습적 AIS 끄기 및 EEZ 침범 — 연간 450회 위반. EU/미국 수입 금지 제재(Red Card) 발동 트리거 대기 중.",
-        actionPlan: "[지정학 리스크] IUU 고위험국 가공품 직접 매입을 100% 차단하고 SIMP 인증을 받은 제3국 가공거점만 사용. C/O 원산지 위변조 검증 프로세스 의무화.",
+        situation: "특정 거대 선단의 상습적 선박자동식별장치(AIS) 끄기 및 배타적 경제수역(EEZ) 침범 — 연간 450회 위반. EU/미국 수입 금지 제재(적색카드, Red Card) 발동 트리거 대기 중.",
+        actionPlan: "[지정학 리스크] 불법조업(IUU) 고위험국 가공품 직접 매입을 100% 차단하고 수산물수입모니터링제도(SIMP) 인증을 받은 제3국 가공거점만 사용. 원산지증명서(C/O) 위변조 검증 프로세스 의무화.",
         source: "OceanMind AIS Tracking + Global Fishing Watch IUU Index (2024)",
       }}
     />
