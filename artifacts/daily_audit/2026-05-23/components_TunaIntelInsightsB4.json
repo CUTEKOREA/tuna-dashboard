@@ -1,0 +1,101 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 20,
+  "tokens": {
+    "input": 6188,
+    "output": 1026,
+    "thoughts": 4060
+  },
+  "cost_usd": 0.00442,
+  "violations_count": 11,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Thai Processors Turn To IO WR As Pacific Supply Dwindles In Q1",
+      "context_excerpt": "Atuna 'Thai Processors Turn To IO WR As Pacific Supply Dwindles In Q1' (2026.05.04)",
+      "suggested_korean": "태국 가공업체들, 1분기 태평양 공급 감소로 인도양 원어로 선회",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "product line",
+      "context_excerpt": "황다랑어 product line 가격 인상 여지가 더 큼.",
+      "suggested_korean": "제품 라인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "pre-cooked loin",
+      "context_excerpt": "Frime은 EU pre-cooked loin 시장 단일 21% 점유",
+      "suggested_korean": "자숙 로인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "loin",
+      "context_excerpt": "2025년 EU loin 수입량은 역대 최고",
+      "suggested_korean": "로인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "OEM",
+      "context_excerpt": "중견 1~2곳과 OEM/JV 협상 개시 시점.",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "MGO",
+      "context_excerpt": "방콕가($/MT) vs MGO 지수(2025-10=100)",
+      "suggested_korean": "선박용 경유(MGO)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "FIFO",
+      "context_excerpt": "용수·항생제·FIFO 일괄 비교",
+      "suggested_korean": "어분·어유 투입 비율(FIFO)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 3,
+      "violation": "CAPEX",
+      "context_excerpt": "초기 CAPEX 높고 양식 가능 어종 제한",
+      "suggested_korean": "설비투자비용(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "KPI",
+      "context_excerpt": "동원 RAS 파일럿의 KPI(생산성·FIFO·OPEX/kg)를",
+      "suggested_korean": "핵심성과지표(KPI)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "OPEX/kg",
+      "context_excerpt": "KPI(생산성·FIFO·OPEX/kg)를 분기별 공개",
+      "suggested_korean": "킬로그램당 운영비용(OPEX/kg)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "PBR",
+      "context_excerpt": "글로벌 동종 대비 PBR -20% 디스카운트",
+      "suggested_korean": "주가순자산비율(PBR)",
+      "confidence": "high"
+    }
+  ]
+}

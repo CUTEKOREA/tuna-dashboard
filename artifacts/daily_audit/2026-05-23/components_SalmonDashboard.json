@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 16,
+  "tokens": {
+    "input": 11953,
+    "output": 232,
+    "thoughts": 2471
+  },
+  "cost_usd": 0.00417,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "loading text",
+      "widget_index": 0,
+      "violation": "Loading Intelligence...",
+      "context_excerpt": "fontSize: '1rem' }}>Loading Intelligence...</p>",
+      "suggested_korean": "인텔리전스 로딩 중...",
+      "confidence": "high"
+    },
+    {
+      "field": "chart fallback text",
+      "widget_index": 0,
+      "violation": "Unsupported",
+      "context_excerpt": "marginTop:'40px'}}>Unsupported</div>",
+      "suggested_korean": "지원되지 않는 형식",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Claude Verified",
+      "context_excerpt": "KFAS</span> · Claude Verified",
+      "suggested_korean": "Claude 검증 완료",
+      "confidence": "medium"
+    }
+  ]
+}

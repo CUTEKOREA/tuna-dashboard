@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2258,
+    "output": 280,
+    "thoughts": 1423
+  },
+  "cost_usd": 0.00138,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Status of the Stocks",
+      "context_excerpt": "ISSF 2025 Status of the Stocks 기반 글로벌",
+      "suggested_korean": "참치 자원 현황 보고서(Status of the Stocks)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "ENSO",
+      "context_excerpt": "의존도 높음 = ENSO·라니냐 한 번에",
+      "suggested_korean": "엘니뇨 남방진동(ENSO)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Status of the Stocks",
+      "context_excerpt": "ISSF 2025 Status of the Stocks (Stage 1",
+      "suggested_korean": "참치 자원 현황 보고서(Status of the Stocks)",
+      "confidence": "high"
+    }
+  ]
+}

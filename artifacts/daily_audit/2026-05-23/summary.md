@@ -1,0 +1,138 @@
+# 일간 Librarian Audit — 2026-05-23
+
+- **모델**: `gemini-3.5-flash`
+- **대상 파일**: 122개
+- **총 위반 검출**: 546건
+- **누적 비용**: $0.32893
+
+## 파일별 결과
+
+| 파일 | 위반 | 비용 | 시간 |
+|---|---:|---:|---:|
+| `artifacts/daily_audit/2026-05-23/components_CarrotDashboard.json` | 14 | $0.01194 | 43초 |
+| `artifacts/daily_audit/2026-05-23/components_CashewStrategy.json` | 5 | $0.00461 | 9초 |
+| `artifacts/daily_audit/2026-05-23/components_CassavaDashboard.json` | 4 | $0.00331 | 16초 |
+| `artifacts/daily_audit/2026-05-23/components_ChickenCorporateWidget.json` | 0 | $0.00067 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_ChickenDashboard.json` | 4 | $0.00365 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_ChickenEmpiricalInsights.json` | 1 | $0.00126 | 13초 |
+| `artifacts/daily_audit/2026-05-23/components_ChickenPartsWidget.json` | 0 | $0.00081 | 10초 |
+| `artifacts/daily_audit/2026-05-23/components_ChickenThaiInsightsA.json` | 10 | $0.00341 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_ChickenThaiInsightsB.json` | 10 | $0.00360 | 19초 |
+| `artifacts/daily_audit/2026-05-23/components_CocoaDashboard.json` | 21 | $0.01044 | 234초 |
+| `artifacts/daily_audit/2026-05-23/components_ColdStorageDashboard.json` | 9 | $0.00698 | 56초 |
+| `artifacts/daily_audit/2026-05-23/components_FalklandSquidDashboard.json` | 0 | $0.00371 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_GalchiDashboard.json` | 4 | $0.00499 | 22초 |
+| `artifacts/daily_audit/2026-05-23/components_GarlicDashboard.json` | 2 | $0.00528 | 26초 |
+| `artifacts/daily_audit/2026-05-23/components_Gtc2026Insights.json` | 9 | $0.00321 | 30초 |
+| `artifacts/daily_audit/2026-05-23/components_JukkumiDashboard.json` | 2 | $0.00281 | 16초 |
+| `artifacts/daily_audit/2026-05-23/components_KoreaConsignmentDashboard.json` | 3 | $0.00362 | 13초 |
+| `artifacts/daily_audit/2026-05-23/components_LogisticsDashboard.json` | 3 | $0.00175 | 17초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelAquaculture.json` | 0 | $0.00150 | 6초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelBlackhole.json` | 1 | $0.00114 | 6초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelDashboard.json` | 7 | $0.00669 | 28초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelGhanaStrategy.json` | 1 | $0.00198 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelKoreaSupply.json` | 0 | $0.00120 | 5초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelMacroCycle.json` | 3 | $0.00186 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelNorwayAlt.json` | 1 | $0.00101 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelProcessedWidgets.json` | 3 | $0.00147 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelSankey.json` | 3 | $0.00142 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelSpreadWinners.json` | 1 | $0.00102 | 5초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelStrategy.json` | 6 | $0.00258 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelTrioRadar.json` | 2 | $0.00122 | 10초 |
+| `artifacts/daily_audit/2026-05-23/components_MackerelUnitPrice.json` | 1 | $0.00093 | 7초 |
+| `artifacts/daily_audit/2026-05-23/components_MangosteenDashboard.json` | 0 | $0.00445 | 15초 |
+| `artifacts/daily_audit/2026-05-23/components_MarketDashboard.json` | 9 | $0.00458 | 22초 |
+| `artifacts/daily_audit/2026-05-23/components_PacificEezStrategicWidget.json` | 2 | $0.00135 | 10초 |
+| `artifacts/daily_audit/2026-05-23/components_PetFoodDashboard.json` | 10 | $0.00729 | 28초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockComplianceWidgets.json` | 6 | $0.00271 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockDashboard.json` | 2 | $0.00378 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockDraftInsights.json` | 11 | $0.00436 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockFinancialWidgets.json` | 8 | $0.00308 | 16초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockFutureWidgets.json` | 3 | $0.00294 | 22초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockLandedCost.json` | 4 | $0.00211 | 12초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockMacroWidgets.json` | 7 | $0.00273 | 21초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockPolicyFinanceWidgets.json` | 3 | $0.00178 | 19초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockPolicyRiskRadar.json` | 2 | $0.00197 | 13초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockPriceForecast.json` | 5 | $0.00233 | 13초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockProcessedWidgets.json` | 1 | $0.00100 | 9초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockProcessingMarginWidgets.json` | 6 | $0.00449 | 26초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockSalesValueWidgets.json` | 12 | $0.00502 | 24초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockSupplyMacroWidgets.json` | 14 | $0.00616 | 33초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockSupplyResilience.json` | 1 | $0.00152 | 10초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockTradeWidgets.json` | 5 | $0.00242 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_PollockValueAddWidgets.json` | 4 | $0.00217 | 17초 |
+| `artifacts/daily_audit/2026-05-23/components_PorkWidgets.json` | 7 | $0.00361 | 23초 |
+| `artifacts/daily_audit/2026-05-23/components_SEAsiaOEMDashboard.json` | 6 | $0.00257 | 12초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonDashboard.json` | 3 | $0.00417 | 16초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonESGTracker.json` | 8 | $0.00266 | 15초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonForecastSimulator.json` | 3 | $0.00199 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonInsightLogisticsResilience.json` | 4 | $0.00208 | 13초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonInsightTradeDown.json` | 5 | $0.00203 | 14초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonInsightWidgets.json` | 0 | $0.00127 | 7초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonLiveTicker.json` | 2 | $0.00161 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonNTBRadar.json` | 9 | $0.00289 | 15초 |
+| `artifacts/daily_audit/2026-05-23/components_SalmonPolicyImpact.json` | 2 | $0.00131 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_ShrimpDashboard.json` | 3 | $0.00503 | 10초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidArbitrageRadar.json` | 3 | $0.00223 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidAreaMap.json` | 1 | $0.00172 | 7초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidImportPortfolio.json` | 2 | $0.00129 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidKoreaSupply.json` | 1 | $0.00174 | 5초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidShrinkflation.json` | 2 | $0.00121 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidTab1Widgets.json` | 20 | $0.00673 | 26초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidTab2Widgets.json` | 10 | $0.00419 | 23초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidTab3Widgets.json` | 4 | $0.00271 | 20초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidTab4Widgets.json` | 4 | $0.00296 | 22초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidTab5Widgets.json` | 11 | $0.00445 | 21초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidTradeMatrix.json` | 1 | $0.00149 | 9초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidUnitPrice.json` | 1 | $0.00112 | 6초 |
+| `artifacts/daily_audit/2026-05-23/components_SquidWinnersLosers.json` | 1 | $0.00112 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaCatchVolumeTrend.json` | 5 | $0.00177 | 11초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaColdChainCostGap.json` | 2 | $0.00123 | 7초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaComplianceRadar.json` | 2 | $0.00166 | 9초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaExtractDashboard.json` | 6 | $0.00461 | 25초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaForecastWidgets.json` | 10 | $0.00351 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaHSClassifier.json` | 0 | $0.00100 | 6초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaInsightsDashboard.json` | 7 | $0.00642 | 27초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaIntelInsightsB4.json` | 11 | $0.00442 | 20초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaKfasResearch.json` | 18 | $0.00575 | 28초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaKoreaOrigins.json` | 2 | $0.00111 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaMofFisheryWidget.json` | 2 | $0.00169 | 14초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaNewInsightsA.json` | 4 | $0.00212 | 14초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaNewInsightsB.json` | 4 | $0.00206 | 18초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaOriginPriceTrend.json` | 1 | $0.00090 | 7초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaPetCareMargin.json` | 2 | $0.00125 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaPolicyRiskRadar.json` | 7 | $0.00256 | 13초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaPriceDecoupling.json` | 1 | $0.00098 | 7초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaProcessingYield.json` | 3 | $0.00141 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaSdgCircular.json` | 6 | $0.00225 | 12초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaSpeciesComposition.json` | 3 | $0.00138 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaSupplierHub.json` | 4 | $0.00183 | 8초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaTacMonitor.json` | 5 | $0.00214 | 10초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaTradeIntelWidgets.json` | 7 | $0.00284 | 15초 |
+| `artifacts/daily_audit/2026-05-23/components_TunaUpcyclingWidgets.json` | 9 | $0.00306 | 17초 |
+| `artifacts/daily_audit/2026-05-23/components_UnloadingStatus.json` | 11 | $0.00474 | 21초 |
+| `artifacts/daily_audit/2026-05-23/components_WhelkDashboard.json` | 18 | $0.01193 | 31초 |
+| `artifacts/daily_audit/2026-05-23/components_WidgetCard.json` | 0 | $0.00091 | 5초 |
+| `artifacts/daily_audit/2026-05-23/data_carrot_insights.json` | 3 | $0.00127 | 19초 |
+| `artifacts/daily_audit/2026-05-23/data_finai2026_insights.json` | 7 | $0.00376 | 30초 |
+| `artifacts/daily_audit/2026-05-23/data_garlic_insight_w10_circular.json` | 3 | $0.00084 | 6초 |
+| `artifacts/daily_audit/2026-05-23/data_garlic_insight_w2_gpr.json` | 0 | $0.00034 | 2초 |
+| `artifacts/daily_audit/2026-05-23/data_garlic_insight_w4_blackgarlic.json` | 0 | $0.00032 | 2초 |
+| `artifacts/daily_audit/2026-05-23/data_garlic_insight_w6_redsea.json` | 1 | $0.00047 | 6초 |
+| `artifacts/daily_audit/2026-05-23/data_garlic_insight_w8_packaging.json` | 3 | $0.00087 | 5초 |
+| `artifacts/daily_audit/2026-05-23/data_gtc_insights_part2.json` | 10 | $0.00341 | 22초 |
+| `artifacts/daily_audit/2026-05-23/data_gtc_insights_part3.json` | 11 | $0.00390 | 32초 |
+| `artifacts/daily_audit/2026-05-23/data_insight10_iuu_discrepancy.json` | 0 | $0.00040 | 5초 |
+| `artifacts/daily_audit/2026-05-23/data_insight3_blackhole.json` | 0 | $0.00063 | 3초 |
+| `artifacts/daily_audit/2026-05-23/data_insight4_middlemen.json` | 0 | $0.00153 | 2초 |
+| `artifacts/daily_audit/2026-05-23/data_insight5_jumbo_leap.json` | 0 | $0.00064 | 2초 |
+| `artifacts/daily_audit/2026-05-23/data_insight6_climate_shock.json` | 0 | $0.00060 | 2초 |
+| `artifacts/daily_audit/2026-05-23/data_insight6_combo.json` | 0 | $0.00083 | 4초 |
+| `artifacts/daily_audit/2026-05-23/data_insight7_spread_winners.json` | 0 | $0.00038 | 3초 |
+| `artifacts/daily_audit/2026-05-23/data_insight8_shadow_trade.json` | 0 | $0.00036 | 4초 |
+| `artifacts/daily_audit/2026-05-23/data_salmon_insight_trade_down.json` | 0 | $0.00036 | 4초 |
+
+## 다음 단계 권장
+- 위반 수가 많은 파일 (top 3)을 사람 검토 → 정정 PR
+- false positive 패턴이 반복되면 prompt 화이트리스트에 추가
+- 위반 0건 dashboard는 audit 주기 일 → 주 단위로 완화 가능

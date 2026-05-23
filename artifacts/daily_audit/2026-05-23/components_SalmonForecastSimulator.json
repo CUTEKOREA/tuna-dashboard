@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 11,
+  "tokens": {
+    "input": 4419,
+    "output": 266,
+    "thoughts": 2181
+  },
+  "cost_usd": 0.00199,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "FOB·운임·관세·환율 5축 LIVE 결합 착지원가",
+      "suggested_korean": "실시간(LIVE)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "LIVE",
+      "context_excerpt": "환율·운임·FOB 3대 변수의 LIVE 신호가 일치",
+      "suggested_korean": "실시간(LIVE)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "AI",
+      "context_excerpt": "한기욱(KMI 2025) AI 무역전망체계",
+      "suggested_korean": "인공지능(AI)",
+      "confidence": "high"
+    }
+  ]
+}

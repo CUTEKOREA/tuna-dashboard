@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 3512,
+    "output": 602,
+    "thoughts": 2539
+  },
+  "cost_usd": 0.00256,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "MFN",
+      "context_excerpt": "1604.14) × MFN 12.5~35% 차익",
+      "suggested_korean": "최혜국대우(MFN)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "CBAM",
+      "context_excerpt": "③ EU CBAM 대비 탄소배출 인벤토리",
+      "suggested_korean": "탄소국경조정제도(CBAM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Tariff Schedule",
+      "context_excerpt": "국정연 · WTO Tariff Schedule · WITS API",
+      "suggested_korean": "관세율표",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "MFN",
+      "context_excerpt": "WTO MFN 관세율 vs FTA 특혜관세율",
+      "suggested_korean": "최혜국대우(MFN)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Korea",
+      "context_excerpt": "Korea→EU/US 루트에서 KORUS",
+      "suggested_korean": "한국",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "MFN",
+      "context_excerpt": "× (미 MFN 12.5%/35% in",
+      "suggested_korean": "최혜국대우(MFN)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "in oil",
+      "context_excerpt": "12.5%/35% in oil) 차익 산정 시",
+      "suggested_korean": "오일 첨가(in oil)",
+      "confidence": "high"
+    }
+  ]
+}

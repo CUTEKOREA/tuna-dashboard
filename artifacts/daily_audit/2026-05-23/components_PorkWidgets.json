@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 23,
+  "tokens": {
+    "input": 7137,
+    "output": 588,
+    "thoughts": 4754
+  },
+  "cost_usd": 0.00361,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "Lean Hogs",
+      "context_excerpt": "상업거래소(CME) Lean Hogs 선물을 수산물",
+      "suggested_korean": "지육(Lean Hogs)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "ASF",
+      "context_excerpt": "2019년 중국 ASF 사태로 글로벌",
+      "suggested_korean": "아프리카돼지열병(ASF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 4,
+      "violation": "ASF",
+      "context_excerpt": "시장에서 ASF 재발 시 수산물",
+      "suggested_korean": "아프리카돼지열병(ASF)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "ASF",
+      "context_excerpt": "ASF 발병 → 수산물 반사수혜",
+      "suggested_korean": "아프리카돼지열병(ASF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 8,
+      "violation": "ASF",
+      "context_excerpt": "2018-2019 중국 ASF로 돈육 생산",
+      "suggested_korean": "아프리카돼지열병(ASF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 8,
+      "violation": "ASF",
+      "context_excerpt": "보건기구(WOAH) ASF 경보 발령 즉시",
+      "suggested_korean": "아프리카돼지열병(ASF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 9,
+      "violation": "ASF",
+      "context_excerpt": "돈육은 저렴하나 ASF 리스크 85점",
+      "suggested_korean": "아프리카돼지열병(ASF)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 3913,
+    "output": 354,
+    "thoughts": 3997
+  },
+  "cost_usd": 0.00206,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TN",
+      "context_excerpt": "납품 계약을 선제 체결. TN 지수 1.5% 이상 고농축",
+      "suggested_korean": "총질소(TN)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "Pillar Two",
+      "context_excerpt": "OECD Pillar Two 세금 쇼크 (황다랑어",
+      "suggested_korean": "필라 2(Pillar Two)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "MMPA",
+      "context_excerpt": "VKFTA 무관세. MMPA 규제로 원물 부족",
+      "suggested_korean": "해양포유류보호법(MMPA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Global Wage Report",
+      "context_excerpt": "ILO Global Wage Report (2025) · 관세",
+      "suggested_korean": "세계 임금 보고서(Global Wage Report)",
+      "confidence": "high"
+    }
+  ]
+}

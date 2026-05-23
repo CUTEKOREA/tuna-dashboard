@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2271,
+    "output": 171,
+    "thoughts": 1587
+  },
+  "cost_usd": 0.00111,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Omakase",
+      "context_excerpt": "한국 고급 Omakase 타겟팅에는 자연산",
+      "suggested_korean": "오마카세",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Otoro",
+      "context_excerpt": "지방 함량(Otoro) 균일성 등 프리",
+      "suggested_korean": "오토로(대뱃살)",
+      "confidence": "high"
+    }
+  ]
+}

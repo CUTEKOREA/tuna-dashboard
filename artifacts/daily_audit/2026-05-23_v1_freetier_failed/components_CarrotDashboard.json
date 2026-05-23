@@ -1,0 +1,133 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 54,
+  "tokens": {
+    "input": 29645,
+    "output": 1331,
+    "thoughts": 12003
+  },
+  "cost_usd": 0.01222,
+  "violations_count": 15,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Crops and livestock products (QCL)",
+      "context_excerpt": "FAOSTAT Open API] Crops and livestock products (QCL)",
+      "suggested_korean": "작물 및 축산물 (QCL)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Zero-Volatility",
+      "context_excerpt": "바이어에게 '가격 변동성 제로(Zero-Volatility)' 장기 공급",
+      "suggested_korean": "가격 변동성 제로",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "Producer Prices (PP)",
+      "context_excerpt": "FAOSTAT Open API] Producer Prices (PP) — 베트남",
+      "suggested_korean": "생산자 가격 (PP)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 4,
+      "violation": "Tail Risk",
+      "context_excerpt": "폭등하는 기후 꼬리 리스크(Tail Risk)가 일상화됨.",
+      "suggested_korean": "꼬리 위험",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "Phyto-Risk",
+      "context_excerpt": "지수 실증 (Phyto-Risk)' icon={ShieldCheck}",
+      "suggested_korean": "식물 위생 리스크",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "Food Safety",
+      "context_excerpt": "치명적 식품 안전성(Food Safety) 붕괴 사태를 반면교사",
+      "suggested_korean": "식품 안전성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "Labor Arbitrage",
+      "context_excerpt": "장기 구조적 인건비 차익(Labor Arbitrage)을 확정 짓는",
+      "suggested_korean": "노동력 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "Demand Shift",
+      "context_excerpt": "폼팩터별 수요 전환율 (Demand Shift)' icon={Layers}",
+      "suggested_korean": "수요 전환",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 9,
+      "violation": "High-margin segment",
+      "context_excerpt": "성장하는 수익성 높은 시장(High-margin segment)을 독식하게",
+      "suggested_korean": "고마진 세그먼트",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 10,
+      "violation": "Detailed trade matrix (TM)",
+      "context_excerpt": "FAOSTAT Open API] Detailed trade matrix (TM)\"",
+      "suggested_korean": "상세 무역 매트릭스 (TM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 11,
+      "violation": "Landed Cost",
+      "context_excerpt": "완벽히 흡수되며, 최종 도착가(Landed Cost)에서 중국산을",
+      "suggested_korean": "인도 가격",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 17,
+      "violation": "Target Margin",
+      "context_excerpt": "이유식) 시장까지 마진(Target Margin) 확장이 가능함.",
+      "suggested_korean": "목표 마진",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 18,
+      "violation": "Flat Margin",
+      "context_excerpt": "단순 수입 유통업(Flat Margin)을 넘어, 확고한",
+      "suggested_korean": "단순 유통 마진",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 18,
+      "violation": "Deal Sourcing",
+      "context_excerpt": "사모펀드(PEF) 딜 소싱(Deal Sourcing) 단계에서 엑시트",
+      "suggested_korean": "투자처 발굴",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 25,
+      "violation": "Quality of Earnings",
+      "context_excerpt": "Bottom-line(순이익)의 질(Quality of Earnings)을 푸드테크",
+      "suggested_korean": "수익의 질",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2422,
+    "output": 195,
+    "thoughts": 1785
+  },
+  "cost_usd": 0.00121,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "ENSO",
+      "context_excerpt": "남획과 해수온 상승(ENSO)으로 역대 최대 피크",
+      "suggested_korean": "엘니뇨 남방진동(ENSO)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FishStatJ Global Squid Production & Trade",
+      "context_excerpt": "FAO FishStatJ Global Squid Production & Trade",
+      "suggested_korean": "세계 오징어 생산 및 무역 통계(FishStatJ Global Squid Production & Trade)",
+      "confidence": "high"
+    }
+  ]
+}

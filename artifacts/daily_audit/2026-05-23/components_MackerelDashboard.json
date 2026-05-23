@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 28,
+  "tokens": {
+    "input": 17233,
+    "output": 609,
+    "thoughts": 7268
+  },
+  "cost_usd": 0.00669,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "header",
+      "widget_index": 0,
+      "violation": "Mackerel Strategic Command Center",
+      "context_excerpt": "고등어 전략 인텔리전스 Mackerel Strategic Command Center",
+      "suggested_korean": "고등어 전략 지휘 본부",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 9,
+      "violation": "OLAP",
+      "context_excerpt": "OEC Tesseract OLAP 엔진 기반 주요 수출국",
+      "suggested_korean": "온라인 분석 처리(OLAP)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 9,
+      "violation": "Live Ticker",
+      "context_excerpt": "어획 쿼터 변동 뉴스를 Live Ticker와 연동하여",
+      "suggested_korean": "실시간 티커(Live Ticker)",
+      "confidence": "high"
+    },
+    {
+      "field": "apiSource",
+      "widget_index": 9,
+      "violation": "Observatory of Economic Complexity",
+      "context_excerpt": "OEC] Observatory of Economic Complexity",
+      "suggested_korean": "경제복잡성전망대(Observatory of Economic Complexity)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 6,
+      "violation": "IUU",
+      "context_excerpt": "단, EU의 IUU 규제 강화 시 인증 도태",
+      "suggested_korean": "불법·비보고·비규제(IUU) 어업",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 11,
+      "violation": "EFTA",
+      "context_excerpt": "입체적 관세(MFN, EFTA) 누적 산출",
+      "suggested_korean": "유럽자유무역연합(EFTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 12,
+      "violation": "CBAM",
+      "context_excerpt": "EU CBAM 시행 시 탄소발자국 인증도",
+      "suggested_korean": "탄소국경조정제도(CBAM)",
+      "confidence": "high"
+    }
+  ]
+}

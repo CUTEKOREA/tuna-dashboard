@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 17,
+  "tokens": {
+    "input": 3766,
+    "output": 248,
+    "thoughts": 3696
+  },
+  "cost_usd": 0.00175,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Intelligence Network",
+      "context_excerpt": "source: 'Silla Co. Intelligence Network'",
+      "suggested_korean": "정보 네트워크",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "CAPA",
+      "context_excerpt": "전체 CAPA 대비 가동률은 안정적인 수준입니다.",
+      "suggested_korean": "생산능력(CAPA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "Joint Shipment",
+      "context_excerpt": "관계사들과의 Joint Shipment 물량을 집중 구성해야",
+      "suggested_korean": "공동 선적(Joint Shipment)",
+      "confidence": "high"
+    }
+  ]
+}

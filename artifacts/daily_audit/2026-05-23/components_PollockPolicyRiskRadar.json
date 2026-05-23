@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 5004,
+    "output": 189,
+    "thoughts": 2883
+  },
+  "cost_usd": 0.00197,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "MFN",
+      "context_excerpt": "중국 FTA 적용 시 필레 관세 5%(MFN 10% 대비 50% 절감).",
+      "suggested_korean": "최혜국 관세(MFN)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "Severity × Probability",
+      "context_excerpt": "6대 리스크 Severity × Probability 가중합산",
+      "suggested_korean": "심각도(Severity) × 발생확률(Probability)",
+      "confidence": "high"
+    }
+  ]
+}

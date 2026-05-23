@@ -1,0 +1,181 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 234,
+  "tokens": {
+    "input": 19458,
+    "output": 1843,
+    "thoughts": 62913
+  },
+  "cost_usd": 0.01044,
+  "violations_count": 21,
+  "violations": [
+    {
+      "field": "value",
+      "widget_index": -1,
+      "violation": "COGS",
+      "context_excerpt": "DART 실시간 타격 지수 | COGS +14% | 경쟁사(L/O사)",
+      "suggested_korean": "매출원가(COGS)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "CSSVD",
+      "context_excerpt": "생산량 vs CSSVD 감염률 — 구조적 회복",
+      "suggested_korean": "카카오 팽대 바이러스병(CSSVD)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "CSSVD",
+      "context_excerpt": "재배 면적의 81%가 CSSVD에 감염되었습니다. 전염",
+      "suggested_korean": "카카오 팽대 바이러스병(CSSVD)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Just-in-Case",
+      "context_excerpt": "피투자사에는 'Just-in-Case' 재고 확보 모델 전환",
+      "suggested_korean": "만일의 사태에 대비한(Just-in-Case)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "LBC",
+      "context_excerpt": "PE 자금력으로 현지 LBC에 직접 자금을 조달",
+      "suggested_korean": "면허 매입상(LBC)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Index",
+      "context_excerpt": "파생품 마진 스프레드 (거래량 Index, 프리미엄 %)",
+      "suggested_korean": "지수(Index)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "X: CAPEX 매력도, Y: 수율, Z",
+      "suggested_korean": "자본적 지출(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Capa",
+      "context_excerpt": "Y: 수율, Z: 가공 Capa — 디스트레스드 M&A",
+      "suggested_korean": "생산능력(Capa)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "M&A",
+      "context_excerpt": "가공 Capa — 디스트레스드 M&A 매트릭스",
+      "suggested_korean": "인수합병(M&A)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "Flow",
+      "context_excerpt": "한국의 이중 수입 넥서스 흐름도 (Flow)",
+      "suggested_korean": "흐름(Flow)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "DIO",
+      "context_excerpt": "공급 충격 시나리오: 재고 소진율 트래커 (DIO)",
+      "suggested_korean": "재고회전일수(DIO)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "EBITDA",
+      "context_excerpt": "CBE(대체유) 벤더 롤업 가치 평가 (EBITDA %, Agility)",
+      "suggested_korean": "세전·이자·감가상각비 차감 전 이익(EBITDA)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "Agility",
+      "context_excerpt": "가치 평가 (EBITDA %, Agility)",
+      "suggested_korean": "시장대응력(Agility)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 13,
+      "violation": "CBE",
+      "context_excerpt": "요소별 워터폴 — 슈링크플레이션 + CBE 전환 마진 방어",
+      "suggested_korean": "코코아 대체유(CBE)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 14,
+      "violation": "CBE",
+      "context_excerpt": "원가 부담률 + CBE 전환율 + 영업이익률",
+      "suggested_korean": "코코아 대체유(CBE)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Husks",
+      "context_excerpt": "Husks·Pods 부산물의 테오브로민·",
+      "suggested_korean": "껍질(Husks)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Pods",
+      "context_excerpt": "Husks·Pods 부산물의 테오브로민·",
+      "suggested_korean": "꼬투리(Pods)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Cash Cow",
+      "context_excerpt": "사료 가치 — Cash Cow 전환",
+      "suggested_korean": "현금창출원(Cash Cow)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 16,
+      "violation": "CMS",
+      "context_excerpt": "CMS 농가 등록률·폴리곤 매핑 vs",
+      "suggested_korean": "이력 추적 시스템(CMS)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 18,
+      "violation": "CBE",
+      "context_excerpt": "프리미엄 비중 + CBE 비중 + 현물/선물 스프",
+      "suggested_korean": "코코아 대체유(CBE)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 20,
+      "violation": "EUDR",
+      "context_excerpt": "X: EUDR 추적위험도, Y: 카드뮴",
+      "suggested_korean": "유럽연합 산림벌채 규정(EUDR)",
+      "confidence": "high"
+    }
+  ]
+}

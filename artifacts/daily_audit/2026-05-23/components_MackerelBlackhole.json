@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 6,
+  "tokens": {
+    "input": 3028,
+    "output": 93,
+    "thoughts": 993
+  },
+  "cost_usd": 0.00114,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Trade by Partner",
+      "context_excerpt": "FAO FishStatJ - Trade by Partner (2019-2023)",
+      "suggested_korean": "파트너별 교역량",
+      "confidence": "high"
+    }
+  ]
+}

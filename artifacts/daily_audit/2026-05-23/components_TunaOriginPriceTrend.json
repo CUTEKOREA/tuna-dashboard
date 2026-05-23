@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 7,
+  "tokens": {
+    "input": 2302,
+    "output": 84,
+    "thoughts": 1383
+  },
+  "cost_usd": 0.0009,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Stage 0 mock",
+      "context_excerpt": "IATTC 추정치 (Stage 0 mock)",
+      "suggested_korean": "임시 테스트 데이터",
+      "confidence": "high"
+    }
+  ]
+}

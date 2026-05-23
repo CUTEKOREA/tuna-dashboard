@@ -1,0 +1,101 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 21,
+  "tokens": {
+    "input": 8665,
+    "output": 857,
+    "thoughts": 3879
+  },
+  "cost_usd": 0.00474,
+  "violations_count": 11,
+  "violations": [
+    {
+      "field": "execCardTitle",
+      "widget_index": 0,
+      "violation": "Active",
+      "context_excerpt": "진행 중인 하역 선박 (Active)",
+      "suggested_korean": "활성",
+      "confidence": "high"
+    },
+    {
+      "field": "execCardTitle",
+      "widget_index": 1,
+      "violation": "Congestion",
+      "context_excerpt": "글로벌 항구 병목 (Congestion)",
+      "suggested_korean": "혼잡",
+      "confidence": "high"
+    },
+    {
+      "field": "execCardValue",
+      "widget_index": 2,
+      "violation": "High",
+      "context_excerpt": "High (방콕)",
+      "suggested_korean": "높음",
+      "confidence": "high"
+    },
+    {
+      "field": "execCardTitle",
+      "widget_index": 3,
+      "violation": "Weekly Volume",
+      "context_excerpt": "주간 통합 하역량 (Weekly Volume)",
+      "suggested_korean": "주간 하역량",
+      "confidence": "high"
+    },
+    {
+      "field": "location",
+      "widget_index": 4,
+      "violation": "GENSAN, PHILIPPINES",
+      "context_excerpt": "location: 'GENSAN, PHILIPPINES'",
+      "suggested_korean": "필리핀 젠산",
+      "confidence": "high"
+    },
+    {
+      "field": "location",
+      "widget_index": 5,
+      "violation": "BANGKOK, THAILAND",
+      "context_excerpt": "location: 'BANGKOK, THAILAND'",
+      "suggested_korean": "태국 방콕",
+      "confidence": "high"
+    },
+    {
+      "field": "timeline",
+      "widget_index": 6,
+      "violation": "Night shift",
+      "context_excerpt": "Night shift 계량기 고장으로 하역중단.",
+      "suggested_korean": "야간 근무조",
+      "confidence": "high"
+    },
+    {
+      "field": "timeline",
+      "widget_index": 7,
+      "violation": "SHORT",
+      "context_excerpt": "하역 최종 종료. SHORT 25.890 MT",
+      "suggested_korean": "부족량",
+      "confidence": "high"
+    },
+    {
+      "field": "deepDiveTitle",
+      "widget_index": 8,
+      "violation": "Timeline",
+      "context_excerpt": "작업 기록 (Timeline)",
+      "suggested_korean": "시간대별 기록",
+      "confidence": "high"
+    },
+    {
+      "field": "takeawayBox",
+      "widget_index": 9,
+      "violation": "Executive Takeaway",
+      "context_excerpt": "경영진 요약 (Executive Takeaway)",
+      "suggested_korean": "핵심 요약",
+      "confidence": "high"
+    },
+    {
+      "field": "finalReport",
+      "widget_index": 10,
+      "violation": "FREESCHOOL",
+      "context_excerpt": "FREESCHOOL MSC 규격 대량 강등 발생",
+      "suggested_korean": "자연군(Free School)",
+      "confidence": "high"
+    }
+  ]
+}

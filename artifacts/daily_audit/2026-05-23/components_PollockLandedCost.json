@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 12,
+  "tokens": {
+    "input": 4337,
+    "output": 322,
+    "thoughts": 2433
+  },
+  "cost_usd": 0.00211,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Tariffs",
+      "context_excerpt": "환율 민감도 시뮬레이션 (Tariffs/WITS/FRED API)",
+      "suggested_korean": "관세",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Alert",
+      "context_excerpt": "경로 갭 15% 미만 시 자동 스위칭 Alert.",
+      "suggested_korean": "알림",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Tariffs",
+      "context_excerpt": "신통상규범 · Tariffs/WITS API",
+      "suggested_korean": "관세",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Live",
+      "context_excerpt": "물가 안정화 · FRED FX Live",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    }
+  ]
+}

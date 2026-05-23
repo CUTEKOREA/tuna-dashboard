@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 9339,
+    "output": 341,
+    "thoughts": 3309
+  },
+  "cost_usd": 0.00365,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "CHICKEN_KPIS.k6.title",
+      "widget_index": 0,
+      "violation": "HPAI",
+      "context_excerpt": "수입국 HPAI 청정 진단",
+      "suggested_korean": "고병원성 조류인플루엔자(HPAI)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 2,
+      "violation": "What-If",
+      "context_excerpt": "육계 농가 원가 변동 What-If",
+      "suggested_korean": "가상 시나리오(What-If)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 2,
+      "violation": "Base",
+      "context_excerpt": "Base 시나리오 초과 환율 발생 시",
+      "suggested_korean": "기본(Base)",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": 0,
+      "violation": "Command Center: Live API Connected",
+      "context_excerpt": "PEF Command Center: Live API Connected",
+      "suggested_korean": "관제 센터: 실시간 API 연결 완료",
+      "confidence": "high"
+    }
+  ]
+}

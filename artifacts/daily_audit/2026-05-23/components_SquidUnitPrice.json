@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 6,
+  "tokens": {
+    "input": 2855,
+    "output": 107,
+    "thoughts": 1177
+  },
+  "cost_usd": 0.00112,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FishStatJ Squid Import Unit Price by Country",
+      "context_excerpt": "source: \"FAO FishStatJ Squid Import Unit Price by Country\"",
+      "suggested_korean": "FAO 수산통계(FishStatJ) 국가별 오징어 수입 단가",
+      "confidence": "high"
+    }
+  ]
+}

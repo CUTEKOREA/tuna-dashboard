@@ -1,5 +1,21 @@
 # HANDOFF — 현재 작업 상태
 
+> 🟢 **2026-05-23 — Librarian 일간 audit 전수 가동 완료 (3.5 Flash, Tier 1 paid)**:
+> - **전체**: 122 파일 / 546 위반 / $0.329 / **에러 0** / ~32분 (1929s)
+> - **clean (위반 0건)**: 20 파일 (16%) — 평균 4.5 위반/파일
+> - **상위 5 정정 우선순위**: CocoaDashboard (21) · SquidTab1Widgets (20) · WhelkDashboard (18) · TunaKfasResearch (18) · PollockSupplyMacroWidgets / CarrotDashboard (각 14)
+> - **위치**: `artifacts/daily_audit/2026-05-23/summary.md` + 122 JSON
+> - **검증된 토폴로지**: Gemini Direct API 유료 Tier 1 / `gemini-3.5-flash` / `max_tools=0` / budget cap $1.0
+> - **잔여 무료 크레딧**: $99.67 / $100 (월) — 일간 자동 가동 ~300회 여유
+> - **이전 시도**: `2026-05-23_v1_freetier_failed` (Tier 0, 18/122에서 429), `2026-05-22_v2.5flash_backup` (구 모델, 백업)
+> - **다음**: 상위 5 파일 L-01 패턴 정정 → launchd 등록 → ADR 0007 갱신
+>
+> 🔬 **2026-05-23 — Forensic Audit Pilot (Mackerel 5 위젯, Claude Opus 4.7 prototype)**:
+> - schema·grade·remediation 검증 완료 (commit `dbc0842`)
+> - 평균 86.8 (B+) — w04 한·일 어획 감소 = 96 (모범, 3중 1차 자료), w03 어종 비중 = 69 C (1차 자료 부재)
+> - 79 위젯 전수 sprint는 사용자 OpenCode `sisyphus`/`hephaestus` 호출 대기 (Antigravity `/auth` 필요)
+> - 계획서: `artifacts/forensic_audit/_plan.md`
+>
 > 📱 **2026-05-22 — 모바일 PWA 4-Phase 작업 개시 (Sisyphus=Claude Code)**:
 > - **Phase 1 완료 (CC, L-03 빌드 통과 ✓)**: `public/manifest.json`, `public/sw.js` (네트워크-first API + cache-first static + navigate fallback), `public/icons/{192,512,maskable-512,apple-touch-180}.png` (tuna 마스코트 기반), `components/PWARegister.tsx` (production-only SW 등록), `app/layout.tsx` 메타 확장 (viewport.themeColor `#0f172a`, manifest, appleWebApp standalone, icons).
 > - **Phase 2 완료 (CC Plan B — Hephaestus 역할 겸임, L-03 빌드 통과 ✓)**: `scripts/fix_mobile_grid.py` 신규 (L-07 idempotent codemod), `app/globals.css` 하단 1줄 (`@media (max-width:768px) [data-mobile-stack] { grid-template-columns: 1fr !important }`), 54개 파일 / 141 sites JSX 태그에 `data-mobile-stack` 속성 부착 (`repeat(N,1fr)` N≥2 + `'1fr 1fr ...'` 변형). Tuna 9 파일 26 sites 포함 — attribute-only 변경으로 ADR 0008 closure 동결 본의와 무관. **상세 브리프**: [MOBILE_PWA_PHASE2_BRIEF.md](MOBILE_PWA_PHASE2_BRIEF.md) (작업 후 `_archive/handoffs/`로 이동 예정).
@@ -30,7 +46,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-22 (Claude Code 세션 — HANDOFF 동기화: 12개 PR 머지 완료 반영, 진짜 잔여 작업 재식별)
+> **마지막 업데이트**: 2026-05-23 (Claude Code 세션 — Librarian 122 audit 전수 완료 + Forensic Pilot 반영)
 
 ---
 

@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 7,
+  "tokens": {
+    "input": 2635,
+    "output": 176,
+    "thoughts": 1404
+  },
+  "cost_usd": 0.00123,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "MAP(modified atmosphere packaging)",
+      "context_excerpt": "MAP(modified atmosphere packaging) 해상 전환으로",
+      "suggested_korean": "가스치환포장(MAP, Modified Atmosphere Packaging)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Stage 1 mock",
+      "context_excerpt": "항공운임 자체조사 (Stage 1 mock)",
+      "suggested_korean": "1단계 테스트 데이터",
+      "confidence": "medium"
+    }
+  ]
+}

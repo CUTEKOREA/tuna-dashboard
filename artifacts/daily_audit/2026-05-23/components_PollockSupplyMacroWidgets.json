@@ -1,0 +1,125 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 33,
+  "tokens": {
+    "input": 10243,
+    "output": 1234,
+    "thoughts": 6694
+  },
+  "cost_usd": 0.00616,
+  "violations_count": 14,
+  "violations": [
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Geopolitical TAC Gap",
+      "context_excerpt": "term: \"Geopolitical TAC Gap\", description:",
+      "suggested_korean": "지정학적 TAC 갭",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.description",
+      "widget_index": 0,
+      "violation": "EEZ",
+      "context_excerpt": "미국 베링해와 러시아 EEZ의 자원 고갈에 따른",
+      "suggested_korean": "배타적 경제수역(EEZ)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "NPFMC",
+      "context_excerpt": "NPFMC·러 수산청 어획 할당량",
+      "suggested_korean": "북태평양어업관리협의회(NPFMC)",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 1,
+      "violation": "Russian-Origin Traceability",
+      "context_excerpt": "term: \"Russian-Origin Traceability\", description:",
+      "suggested_korean": "러시아산 원물 추적성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Double-frozen",
+      "context_excerpt": "가공 후 'Double-frozen' 형태로 들여오는 물량",
+      "suggested_korean": "더블프로즌(Double-frozen)",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 2,
+      "violation": "Bunker-Logistics Arbitrage",
+      "context_excerpt": "term: \"Bunker-Logistics Arbitrage\", description:",
+      "suggested_korean": "유류비-물류 아비트라지",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Global Bunker Price Index",
+      "context_excerpt": "source: 'Global Bunker Price Index & 러시아 어선",
+      "suggested_korean": "글로벌 벙커 가격 지수(Global Bunker Price Index)",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 3,
+      "violation": "Bering Sea Migration & Fuel Shock",
+      "context_excerpt": "term: \"Bering Sea Migration & Fuel Shock\", description:",
+      "suggested_korean": "베링해 어장 북상 및 연료 쇼크",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "SST",
+      "context_excerpt": "베링해 SST 상승에 따른 어장 북상",
+      "suggested_korean": "해수면 온도(SST)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Macro",
+      "context_excerpt": "title: \"[Macro] 미·러 무역 상호 관세",
+      "suggested_korean": "거시 경제",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "IUU",
+      "context_excerpt": "섀도우 플릿'의 IUU 덤핑 타격",
+      "suggested_korean": "불법·비보고·비규제(IUU)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 6,
+      "violation": "ENSO",
+      "context_excerpt": "WMO 엘니뇨 ENSO 강도와 명태 어획량",
+      "suggested_korean": "엘니뇨 남방진동(ENSO)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "CBP",
+      "context_excerpt": "원산지별 미 CBP 통관 보류(WRO) 적발",
+      "suggested_korean": "미국 관세국경보호청(CBP)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "JOC",
+      "context_excerpt": "동향 및 JOC 글로벌 항만 체화 지수",
+      "suggested_korean": "저널오브커머스(JOC)",
+      "confidence": "high"
+    }
+  ]
+}

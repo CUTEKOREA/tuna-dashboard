@@ -1,0 +1,125 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 43,
+  "tokens": {
+    "input": 29645,
+    "output": 1219,
+    "thoughts": 8962
+  },
+  "cost_usd": 0.01194,
+  "violations_count": 14,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Crops and livestock products",
+      "context_excerpt": "FAOSTAT Open API] Crops and livestock products (QCL)",
+      "suggested_korean": "작물 및 축산물 생산량",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Producer Prices",
+      "context_excerpt": "FAOSTAT Open API] Producer Prices (PP) — 베트남",
+      "suggested_korean": "생산자 가격",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 10,
+      "violation": "Detailed trade matrix",
+      "context_excerpt": "FAOSTAT Open API] Detailed trade matrix (TM)",
+      "suggested_korean": "상세 무역 매트릭스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 16,
+      "violation": "Bass Diffusion Model",
+      "context_excerpt": "순수입 11.4만톤) 기반 Bass Diffusion Model 적용 시, 기본",
+      "suggested_korean": "바스 확산 모형",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 20,
+      "violation": "Supply Utilization Accounts",
+      "context_excerpt": "FAOSTAT Supply Utilization Accounts (SCL) — 주: 한국",
+      "suggested_korean": "공급 이용 계정",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 21,
+      "violation": "Execution Recommended",
+      "context_excerpt": "초격차 마진을 실현할 것. (Execution Recommended)",
+      "suggested_korean": "실행 권장",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 22,
+      "violation": "Strategic Buy",
+      "context_excerpt": "독점적 파트너' 지위를 확보함. (Strategic Buy)",
+      "suggested_korean": "전략적 매수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 23,
+      "violation": "Value Realization Expected",
+      "context_excerpt": "차익거래가 실현됨. (Value Realization Expected)",
+      "suggested_korean": "가치 실현 기대",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 23,
+      "violation": "Buy & Build",
+      "context_excerpt": "농식품 인더스트리 Buy & Build(롤업) 가치평가",
+      "suggested_korean": "바이앤빌드(인수 후 성장)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 24,
+      "violation": "Alpha Driver",
+      "context_excerpt": "독점적 무기로 작용함. (Alpha Driver)",
+      "suggested_korean": "알파 동인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 25,
+      "violation": "Strong Conviction",
+      "context_excerpt": "투자의사결정을 이끌어 낼 것. (Strong Conviction)",
+      "suggested_korean": "강한 확신",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 26,
+      "violation": "Bullish Target",
+      "context_excerpt": "포지셔닝 기회를 더욱 확대시킴. (Bullish Target)",
+      "suggested_korean": "낙관적 목표",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 27,
+      "violation": "Upside Potential",
+      "context_excerpt": "규모의 경제를 달성할 수 있음. (Upside Potential)",
+      "suggested_korean": "상승 잠재력",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 29,
+      "violation": "Synergy Effect",
+      "context_excerpt": "수입 대체 효과까지 동시 달성. (Synergy Effect)",
+      "suggested_korean": "시너지 효과",
+      "confidence": "high"
+    }
+  ]
+}

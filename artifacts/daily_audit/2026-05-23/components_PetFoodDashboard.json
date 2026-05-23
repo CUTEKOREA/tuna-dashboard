@@ -1,0 +1,93 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 28,
+  "tokens": {
+    "input": 17422,
+    "output": 825,
+    "thoughts": 5948
+  },
+  "cost_usd": 0.00729,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Phase 3",
+      "context_excerpt": "시장 진입 시나리오 예측기 (Phase 3)",
+      "suggested_korean": "3단계",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "CapEx",
+      "context_excerpt": "과도한 CapEx가 요구되는 S3(M&A) 및",
+      "suggested_korean": "자본적 지출(CapEx)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "Semana 10",
+      "context_excerpt": "어획량이 Semana 10 기준 3,200톤으로",
+      "suggested_korean": "10주차(Semana 10)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "What-If",
+      "context_excerpt": "What-If — 동물성/식물성 단백질",
+      "suggested_korean": "가상 시나리오(What-If)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 3,
+      "violation": "Live API",
+      "context_excerpt": "카라기난 리스크 방어 🟢 Live API",
+      "suggested_korean": "실시간 연동(Live API)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Price Gap",
+      "context_excerpt": "Price Gap — 동일 시장에서 미국산이",
+      "suggested_korean": "가격 격차(Price Gap)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 7,
+      "violation": "Empirical Data",
+      "context_excerpt": "Empirical Data — 태국 참치캔 생산량",
+      "suggested_korean": "실증 데이터(Empirical Data)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 7,
+      "violation": "Full Utilization",
+      "context_excerpt": "활용하는 'Full Utilization' 전략은",
+      "suggested_korean": "전량 활용(Full Utilization)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 14,
+      "violation": "Scoreboard",
+      "context_excerpt": "Scoreboard — 로얄캐닌 2,093억",
+      "suggested_korean": "현황판(Scoreboard)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Sensitivity",
+      "context_excerpt": "Sensitivity — 참치 +10% →",
+      "suggested_korean": "민감도(Sensitivity)",
+      "confidence": "high"
+    }
+  ]
+}

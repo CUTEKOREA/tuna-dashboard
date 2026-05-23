@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 4163,
+    "output": 348,
+    "thoughts": 3021
+  },
+  "cost_usd": 0.00212,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Ecuador",
+      "context_excerpt": "EUMOFA 2024 기준 Ecuador EU 참치 29%",
+      "suggested_korean": "에콰도르",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "prepared/preserved",
+      "context_excerpt": "value), prepared/preserved 75% 점유",
+      "suggested_korean": "가공/보존제품",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "volume / 48% value",
+      "context_excerpt": "수입 29% volume / 48% value)를 빠르게",
+      "suggested_korean": "중량 / 48% 금액",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Globefish Market Report",
+      "context_excerpt": "FAO Globefish Market Report · IOTC 조업",
+      "suggested_korean": "글로브피쉬 시장 보고서",
+      "confidence": "high"
+    }
+  ]
+}

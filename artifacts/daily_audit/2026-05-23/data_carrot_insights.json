@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 19,
+  "tokens": {
+    "input": 2129,
+    "output": 254,
+    "thoughts": 4154
+  },
+  "cost_usd": 0.00127,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "methodology",
+      "widget_index": 0,
+      "violation": "Arbitrage",
+      "context_excerpt": "수입 고정 단가 간의 스프레드(Arbitrage) 분석.",
+      "suggested_korean": "차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "methodology",
+      "widget_index": 2,
+      "violation": "Landed Cost",
+      "context_excerpt": "최종 단가(Landed Cost) 시뮬레이션.",
+      "suggested_korean": "도착 가격(인도제비용 포함 원가)",
+      "confidence": "medium"
+    },
+    {
+      "field": "methodology",
+      "widget_index": 3,
+      "violation": "Volatility",
+      "context_excerpt": "단가 고정성(0% Volatility) 검증 모델링.",
+      "suggested_korean": "변동성",
+      "confidence": "high"
+    }
+  ]
+}

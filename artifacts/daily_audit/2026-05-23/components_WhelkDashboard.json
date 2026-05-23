@@ -1,0 +1,157 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 31,
+  "tokens": {
+    "input": 26869,
+    "output": 1549,
+    "thoughts": 5609
+  },
+  "cost_usd": 0.01193,
+  "violations_count": 18,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "Single Point of Failure",
+      "context_excerpt": "이러한 단일 해역 의존 리스크(Single Point of Failure) 방어를 위해",
+      "suggested_korean": "단일 장애점",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "B. undatum",
+      "context_excerpt": "육질이 뛰어난 B. undatum 에 절대적으로 의존합니다",
+      "suggested_korean": "물레고둥(B. undatum)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "Collapse",
+      "context_excerpt": "사실상 산업 붕괴(Collapse) 수준에 도달했습니다",
+      "suggested_korean": "붕괴",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "Panic Buying",
+      "context_excerpt": "세계 바이어들의 패닉 바잉(Panic Buying)과 가격 폭등",
+      "suggested_korean": "사재기",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Post-UK",
+      "context_excerpt": "Post-UK 시대 대비 신규 어장 스코어카드",
+      "suggested_korean": "포스트 영국",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 6,
+      "violation": "Peak Season Penalty",
+      "context_excerpt": "이러한 'Peak Season Penalty' 비용 구조를 우회하기",
+      "suggested_korean": "성수기 할증",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 8,
+      "violation": "Low-Yield Trap",
+      "context_excerpt": "비싼 'Low-Yield Trap(저수율 함정)'에 빠지게",
+      "suggested_korean": "저수율 함정",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 8,
+      "violation": "Yield-Adjusted",
+      "context_excerpt": "방어가 아닌 'Yield-Adjusted(수율 조정)' 재무 모델",
+      "suggested_korean": "수율 조정",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 9,
+      "violation": "LCC(Life Cycle Cost)",
+      "context_excerpt": "억제하는 LCC(Life Cycle Cost) 효율이 발생합니다",
+      "suggested_korean": "총수명주기비용(LCC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 11,
+      "violation": "Cash Cow",
+      "context_excerpt": "채널이 강력한 'Cash Cow'로 부상했습니다",
+      "suggested_korean": "현금창출원",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 14,
+      "violation": "TCU(Total Cost of Usage)",
+      "context_excerpt": "기준으로 TCU(Total Cost of Usage) 기준으로 영국산",
+      "suggested_korean": "총사용원가(TCU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 16,
+      "violation": "Double Whammy",
+      "context_excerpt": "최악의 시나리오인 'Double Whammy(이중 타격)' 현상이",
+      "suggested_korean": "이중고",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 16,
+      "violation": "FX Forward",
+      "context_excerpt": "능동적인 FX Forward 헤지 및 통화 분산",
+      "suggested_korean": "선물환(FX Forward)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 17,
+      "violation": "Risk Score",
+      "context_excerpt": "치명적 규제(Risk Score 85)입니다",
+      "suggested_korean": "리스크 점수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 18,
+      "violation": "Zero Elasticity",
+      "context_excerpt": "공급 탄력성 제로(Zero Elasticity) 품목입니다",
+      "suggested_korean": "무탄력성",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 18,
+      "violation": "R. venosa",
+      "context_excerpt": "계약과 R. venosa 블렌딩 20~30% 유지로",
+      "suggested_korean": "뿔고둥(R. venosa)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 20,
+      "violation": "Irreversible",
+      "context_excerpt": "유행이 아닌 비가역적(Irreversible) 소비 구조 전환",
+      "suggested_korean": "비가역적",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 24,
+      "violation": "BPA-NI(Non-Intent)",
+      "context_excerpt": "완료하고, BPA-NI(Non-Intent) 코팅으로의 전환",
+      "suggested_korean": "의도하지 않은 비스페놀 A(BPA-NI)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 22,
+  "tokens": {
+    "input": 3011,
+    "output": 1002,
+    "thoughts": 4208
+  },
+  "cost_usd": 0.00341,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "NVIDIA & T-Mobile AI-RAN Integration",
+      "context_excerpt": "source: \"NVIDIA & T-Mobile AI-RAN Integration\"",
+      "suggested_korean": "엔비디아 및 티모바일 AI-RAN 통합",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "NVIDIA Speculative Decoding & DWDP Architecture",
+      "context_excerpt": "source: \"NVIDIA Speculative Decoding & DWDP Architecture\"",
+      "suggested_korean": "엔비디아 투기적 해독 및 DWDP 아키텍처",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "Quantum-as-a-Service(QaaS)",
+      "context_excerpt": "기술 해자(Moat)를 위한 'Quantum-as-a-Service(QaaS)' 파트너십을 체결할 것",
+      "suggested_korean": "서비스형 양자(Quantum-as-a-Service, QaaS)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "OpenQASM 3.0 to CUDA-Q Transpilation",
+      "context_excerpt": "source: \"OpenQASM 3.0 to CUDA-Q Transpilation\"",
+      "suggested_korean": "OpenQASM 3.0에서 CUDA-Q로의 변환",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 3,
+      "violation": "Adobe & NVIDIA Agentic Workflows Partnership",
+      "context_excerpt": "source: \"Adobe & NVIDIA Agentic Workflows Partnership\"",
+      "suggested_korean": "어도비 및 엔비디아 에이전틱 워크플로우 파트너십",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "Lenovo NVIDIA GB300 NVL72 Rack Scale AI",
+      "context_excerpt": "source: \"Lenovo NVIDIA GB300 NVL72 Rack Scale AI\"",
+      "suggested_korean": "레노버 엔비디아 GB300 NVL72 랙 스케일 AI",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "The End of the Foundation Model Era & Sovereign AI",
+      "context_excerpt": "source: \"The End of the Foundation Model Era & Sovereign AI\"",
+      "suggested_korean": "파운데이션 모델 시대의 종말과 소버린 AI",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 6,
+      "violation": "CAPEX",
+      "context_excerpt": "모든 막대한 CAPEX 투자 심의 과정에서",
+      "suggested_korean": "자본적 지출(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 6,
+      "violation": "Synopsys NVIDIA Partnership Ecosystem",
+      "context_excerpt": "source: \"Synopsys NVIDIA Partnership Ecosystem\"",
+      "suggested_korean": "시놉시스 엔비디아 파트너십 생태계",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 7,
+      "violation": "Disney Robotic Olaf & NVIDIA GTC 2026",
+      "context_excerpt": "source: \"Disney Robotic Olaf & NVIDIA GTC 2026\"",
+      "suggested_korean": "디즈니 로봇 올라프 및 엔비디아 GTC 2026",
+      "confidence": "high"
+    }
+  ]
+}

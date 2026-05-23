@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2841,
+    "output": 106,
+    "thoughts": 1622
+  },
+  "cost_usd": 0.00112,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FishStatJ Squid Catch Data",
+      "context_excerpt": "FAO FishStatJ Squid Catch Data (2014-2023)",
+      "suggested_korean": "FAO 수산통계(FishStatJ) 오징어 어획 데이터",
+      "confidence": "high"
+    }
+  ]
+}

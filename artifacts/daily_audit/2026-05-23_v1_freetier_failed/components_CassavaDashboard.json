@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 8051,
+    "output": 337,
+    "thoughts": 3714
+  },
+  "cost_usd": 0.00326,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "body",
+      "widget_index": 0,
+      "violation": "Loading High-Fidelity Cassava Intelligence...",
+      "context_excerpt": "Loading High-Fidelity Cassava Intelligence...",
+      "suggested_korean": "고정밀 카사바 인텔리전스를 불러오는 중입니다...",
+      "confidence": "high"
+    },
+    {
+      "field": "body",
+      "widget_index": 0,
+      "violation": "Value Pivot",
+      "context_excerpt": "패러다임 전환 (Value Pivot)",
+      "suggested_korean": "가치 전환",
+      "confidence": "high"
+    },
+    {
+      "field": "body",
+      "widget_index": 0,
+      "violation": "Food/Feed/Fuel/Factory",
+      "context_excerpt": "글로벌 4F(Food/Feed/Fuel/Factory) 섹터 내",
+      "suggested_korean": "식품/사료/연료/가공",
+      "confidence": "high"
+    },
+    {
+      "field": "chart",
+      "widget_index": 1,
+      "violation": "Hub",
+      "context_excerpt": "{ name: '가나 (신규 Hub)' }",
+      "suggested_korean": "허브",
+      "confidence": "high"
+    }
+  ]
+}

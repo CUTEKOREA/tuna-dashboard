@@ -1,0 +1,53 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 10,
+  "tokens": {
+    "input": 2944,
+    "output": 503,
+    "thoughts": 1780
+  },
+  "cost_usd": 0.00214,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "SOFIA",
+      "context_excerpt": "페널티. FAO SOFIA 2022에 따르면 공급 제한",
+      "suggested_korean": "세계 수산양식 현황(SOFIA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "FAD",
+      "context_excerpt": "하락 단서). IOTC FAD 72일 제한 시 통조림",
+      "suggested_korean": "어군집어장치(FAD)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "IOTC Compendium of Active Conservation Measures",
+      "context_excerpt": "source: 'IOTC Compendium of Active Conservation Measures · ICCAT Compendium",
+      "suggested_korean": "IOTC 활성 보존조치 요약서(Compendium of Active Conservation Measures)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "ICCAT Compendium",
+      "context_excerpt": "Conservation Measures · ICCAT Compendium · FAO SOFIA 2022",
+      "suggested_korean": "ICCAT 보존조치 요약서(ICCAT Compendium)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Macroeconomic impact of international fishery regulation (Marine Policy)",
+      "context_excerpt": "FAO SOFIA 2022 · Macroeconomic impact of international fishery regulation (Marine Policy)",
+      "suggested_korean": "국제 어업 규제의 거시경제적 영향(Macroeconomic impact of international fishery regulation) (Marine Policy)",
+      "confidence": "high"
+    }
+  ]
+}

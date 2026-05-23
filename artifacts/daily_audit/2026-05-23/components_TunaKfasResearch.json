@@ -1,0 +1,157 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 28,
+  "tokens": {
+    "input": 5943,
+    "output": 1585,
+    "thoughts": 5371
+  },
+  "cost_usd": 0.00575,
+  "violations_count": 18,
+  "violations": [
+    {
+      "field": "kpiPanel",
+      "widget_index": 0,
+      "violation": "MOF",
+      "context_excerpt": "한국 다랑어 어획량 290천톤 MOF 2024 기준",
+      "suggested_korean": "해양수산부(MOF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "ACE",
+      "context_excerpt": "Alcalase 가수분해물의 ACE 억제활성 82% 확인",
+      "suggested_korean": "안지오텐신 전환 효소(ACE)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "DPPH",
+      "context_excerpt": "ACE 억제활성 82%·DPPH 78% 확인",
+      "suggested_korean": "DPPH 라디칼 소거능",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "MFDS",
+      "context_excerpt": "통조림 부산물 위생안전성도 MFDS 기준치 이하 검증",
+      "suggested_korean": "식품의약품안전처(MFDS)",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiPanel",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "MSC 인증 필요성 필수 미끼 자원 포함",
+      "suggested_korean": "해양관리협의회(MSC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "WCPFC",
+      "context_excerpt": "기록했으나, WCPFC 규제 강화와 경제성 악화",
+      "suggested_korean": "중서부태평양수산위원회(WCPFC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "MSY",
+      "context_excerpt": "인도네시아 풀가라지 MSY 대비 어획률(52.8%)",
+      "suggested_korean": "최대지속생산량(MSY)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "VDS",
+      "context_excerpt": "기후변화 적응에 대비한 VDS 입어 포트폴리오 재편",
+      "suggested_korean": "일수조업제도(VDS)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "IOTC",
+      "context_excerpt": "IOTC 관할 서부인도양 해역 어업별",
+      "suggested_korean": "인도양참치위원회(IOTC)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "EBFA",
+      "context_excerpt": "생태계기반 위험도 평가(EBFA) 결과",
+      "suggested_korean": "생태계기반 위험도 평가(EBFA)",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiPanel",
+      "widget_index": 2,
+      "violation": "FAD",
+      "context_excerpt": "자망 FAD 위험도 HIGH 서식처 훼손",
+      "suggested_korean": "어군집어장치(FAD)",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiPanel",
+      "widget_index": 2,
+      "violation": "IO",
+      "context_excerpt": "IO 수익 비중 80% 인도양 전체",
+      "suggested_korean": "인도양(IO)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "Risk Score",
+      "context_excerpt": "최고 위험(Risk Score 2.5~2.9/3.0)",
+      "suggested_korean": "위험도 점수(Risk Score)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "Low Risk",
+      "context_excerpt": "전 지표에서 Low Risk(1.0~1.9)로 ESG",
+      "suggested_korean": "낮은 위험(Low Risk)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "TAC",
+      "context_excerpt": "IOTC TAC 강화(2027 예상) 시 자망",
+      "suggested_korean": "총허용어획량(TAC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "t-RFMO",
+      "context_excerpt": "③ t-RFMO 5개 기구의 해양포유류",
+      "suggested_korean": "지역수산관리기구(t-RFMO)",
+      "confidence": "high"
+    },
+    {
+      "field": "kpiPanel",
+      "widget_index": 3,
+      "violation": "CAGR",
+      "context_excerpt": "2025E · CAGR 15%+ trendColor",
+      "suggested_korean": "연평균 성장률(CAGR)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 3,
+      "violation": "USP",
+      "context_excerpt": "단백질 동등·지방 50% 저감을 USP로 활용",
+      "suggested_korean": "고유의 강점(USP)",
+      "confidence": "high"
+    }
+  ]
+}

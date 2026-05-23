@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 33,
+  "tokens": {
+    "input": 16854,
+    "output": 668,
+    "thoughts": 6588
+  },
+  "cost_usd": 0.00673,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "sit",
+      "widget_index": 0,
+      "violation": "Dry/Ready-built",
+      "context_excerpt": "일반 상온 창고(Dry/Ready-built)는 극단적 공급 과잉으로",
+      "suggested_korean": "상온/표준형(Dry/Ready-built)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 2,
+      "violation": "Distressed M&A",
+      "context_excerpt": "국내 한계 기업을 대상으로 Distressed M&A 및 핵심 자산 스핀오프",
+      "suggested_korean": "부실기업 인수합병(Distressed M&A)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 3,
+      "violation": "Inventory Financing",
+      "context_excerpt": "전략적 비축(Inventory Financing)에 나서는 금융 레버리지를",
+      "suggested_korean": "재고금융(Inventory Financing)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 7,
+      "violation": "CapEx",
+      "context_excerpt": "수년 내 막대한 환경 부담금 및 CapEx 전면 교체라는 재무적 폭탄",
+      "suggested_korean": "자본적 지출(CapEx)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 8,
+      "violation": "Cap Rate",
+      "context_excerpt": "물류 부동산 시장 내 일반 상온 창고(Dry)의 Cap Rate는 상승(가치 하락) 중이나",
+      "suggested_korean": "자본환원율(Cap Rate)",
+      "confidence": "high"
+    },
+    {
+      "field": "sit",
+      "widget_index": 9,
+      "violation": "CAGR",
+      "context_excerpt": "베트남 콜드체인 시장은 글로벌 최고 수준인 CAGR 12.4% 성장 중",
+      "suggested_korean": "연평균 성장률(CAGR)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 14,
+      "violation": "In-house MAP Line",
+      "context_excerpt": "창고 내 가스치환포장 설비(In-house MAP Line)를 구축해 부가 서비스를",
+      "suggested_korean": "자체 가스치환포장 라인(In-house MAP Line)",
+      "confidence": "high"
+    }
+  ]
+}

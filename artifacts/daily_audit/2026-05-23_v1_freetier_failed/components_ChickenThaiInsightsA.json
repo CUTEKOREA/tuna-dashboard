@@ -1,0 +1,117 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 22,
+  "tokens": {
+    "input": 4085,
+    "output": 1092,
+    "thoughts": 4508
+  },
+  "cost_usd": 0.00396,
+  "violations_count": 13,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Insight",
+      "context_excerpt": "title=\"Insight A. 타임갭 차익거래",
+      "suggested_korean": "인사이트",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "TCU",
+      "context_excerpt": "인건비 절감을 감안한 TCU는 사실상 동등합니다.",
+      "suggested_korean": "총사용비용(TCU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "CBOT",
+      "context_excerpt": "동등합니다. CBOT 옥수수 $4.15 저점",
+      "suggested_korean": "시카고상품거래소(CBOT)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Temporal Arbitrage",
+      "context_excerpt": "actionPlan=\"[Temporal Arbitrage] ①GFPT/Betagro",
+      "suggested_korean": "시간차 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "LTA",
+      "context_excerpt": "Betagro와 고정가 LTA 선도계약 즉시 체결",
+      "suggested_korean": "장기공급계약(LTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TRQ",
+      "context_excerpt": "체결 ②TRQ 0% 무관세 쿼터",
+      "suggested_korean": "저율관세할당(TRQ)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "Insight",
+      "context_excerpt": "title=\"Insight B. 유통채널별 수익",
+      "suggested_korean": "인사이트",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Channel Priority",
+      "context_excerpt": "actionPlan=\"[Channel Priority] 1순위=프랜차이즈",
+      "suggested_korean": "채널 우선순위",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Insight",
+      "context_excerpt": "title=\"Insight C. VMI 락인",
+      "suggested_korean": "인사이트",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "VMI",
+      "context_excerpt": "title=\"Insight C. VMI 락인",
+      "suggested_korean": "공급자주도재고관리(VMI)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "Repo",
+      "context_excerpt": "국내 냉동 Repo 창고에 선비축하고",
+      "suggested_korean": "환매조건부(Repo)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "VMI Lock-in",
+      "context_excerpt": "actionPlan=\"[VMI Lock-in] ①냉동창고 자본",
+      "suggested_korean": "VMI 락인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Value Chain Analysis",
+      "context_excerpt": "Foods 2023 Value Chain Analysis",
+      "suggested_korean": "가치사슬 분석",
+      "confidence": "high"
+    }
+  ]
+}

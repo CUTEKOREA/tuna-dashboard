@@ -1,0 +1,12 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 2,
+  "tokens": {
+    "input": 2128,
+    "output": 1,
+    "thoughts": 179
+  },
+  "cost_usd": 0.00064,
+  "violations_count": 0,
+  "violations": []
+}

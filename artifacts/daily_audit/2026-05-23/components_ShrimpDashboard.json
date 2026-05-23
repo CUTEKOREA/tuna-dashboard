@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 10,
+  "tokens": {
+    "input": 14627,
+    "output": 255,
+    "thoughts": 1599
+  },
+  "cost_usd": 0.00503,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "loading_text",
+      "widget_index": 0,
+      "violation": "Loading Intelligence...",
+      "context_excerpt": "fontSize: '1rem' }}>Loading Intelligence...</p>",
+      "suggested_korean": "인텔리전스 로딩 중...",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "What-If",
+      "context_excerpt": "<h3>What-If 컨트롤 (변수 조정)</h3>",
+      "suggested_korean": "가정 분석(What-If)",
+      "confidence": "high"
+    },
+    {
+      "field": "telemetry.syncDate",
+      "widget_index": 0,
+      "violation": "Real-time",
+      "context_excerpt": "syncDate: isLive ? 'Real-time' : '2024년 기준'",
+      "suggested_korean": "실시간",
+      "confidence": "high"
+    }
+  ]
+}

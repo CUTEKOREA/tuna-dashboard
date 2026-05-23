@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 7,
+  "tokens": {
+    "input": 2561,
+    "output": 86,
+    "thoughts": 1512
+  },
+  "cost_usd": 0.00098,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Hedging",
+      "context_excerpt": "장기 납품 계약(Hedging) 체결, 또는 자사",
+      "suggested_korean": "헤징",
+      "confidence": "high"
+    }
+  ]
+}

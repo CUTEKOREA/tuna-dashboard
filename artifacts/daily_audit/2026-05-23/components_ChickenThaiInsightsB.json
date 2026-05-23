@@ -1,0 +1,93 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 19,
+  "tokens": {
+    "input": 3917,
+    "output": 968,
+    "thoughts": 3893
+  },
+  "cost_usd": 0.0036,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "[Dual Line Strategy]",
+      "context_excerpt": "actionPlan: '[Dual Line Strategy] GFPT/Betagro에'",
+      "suggested_korean": "[이중 라인 전략]",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TCU",
+      "context_excerpt": "제로 = '1인분당 TCU' 기준으로 브라질산 대비",
+      "suggested_korean": "총원가(TCU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "GFPT Annual Report 2023",
+      "context_excerpt": "source: 'GFPT Annual Report 2023 (일 도계 15→30만'",
+      "suggested_korean": "GFPT 연례 보고서 2023",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "[Risk Hedging]",
+      "context_excerpt": "actionPlan: '[Risk Hedging] ①환율: USD 선물환'",
+      "suggested_korean": "[리스크 헤징]",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "LTA",
+      "context_excerpt": "CBOT 저점($4.15): 즉시 고정가 LTA ③중국산 덤핑: GACC",
+      "suggested_korean": "장기공급계약(LTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "e-Traceability",
+      "context_excerpt": "Betagro: e-Traceability 2시간 이력추적, 무항",
+      "suggested_korean": "전자 이력추적(e-Traceability)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "[Partner Portfolio]",
+      "context_excerpt": "actionPlan: '[Partner Portfolio] ①GFPT = 프랜차이즈'",
+      "suggested_korean": "[파트너 포트폴리오]",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "GFPT Annual Report 2023",
+      "context_excerpt": "source: 'GFPT Annual Report 2023, Betagro IR 2023",
+      "suggested_korean": "GFPT 연례 보고서 2023",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Betagro IR 2023",
+      "context_excerpt": "Annual Report 2023, Betagro IR 2023, CP Foods 2023",
+      "suggested_korean": "Betagro IR 자료 2023",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "CP Foods 2023 Value Chain Analysis",
+      "context_excerpt": "Betagro IR 2023, CP Foods 2023 Value Chain Analysis. NotebookLM",
+      "suggested_korean": "CP Foods 2023 가치사슬 분석",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 10,
+  "tokens": {
+    "input": 3099,
+    "output": 170,
+    "thoughts": 1875
+  },
+  "cost_usd": 0.00135,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "body",
+      "widget_index": 0,
+      "violation": "Map Overlay",
+      "context_excerpt": "수역 지리적 지도 (EEZ Map Overlay)",
+      "suggested_korean": "지도 레이어",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "WCPFC",
+      "context_excerpt": "WCPFC 과학위원회 + PNA 조업일수제도",
+      "suggested_korean": "중서부태평양수산위원회(WCPFC)",
+      "confidence": "high"
+    }
+  ]
+}

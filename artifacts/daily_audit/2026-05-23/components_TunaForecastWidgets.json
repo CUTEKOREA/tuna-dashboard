@@ -1,0 +1,93 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 4274,
+    "output": 891,
+    "thoughts": 3649
+  },
+  "cost_usd": 0.00351,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "forecast",
+      "context_excerpt": "단기 시나리오 forecast — 호르무즈",
+      "suggested_korean": "예측",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "skjbkk",
+      "context_excerpt": "Atuna skjbkk 분기 평균(실측)",
+      "suggested_korean": "방콕 가다랑어 가격 코드(skjbkk)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "MGO",
+      "context_excerpt": "위기로 MGO 톤당 $2,000 돌파",
+      "suggested_korean": "선박용 경유(MGO)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "May 2026 News 6 sources",
+      "context_excerpt": "Atuna May 2026 News 6 sources · WCPFC",
+      "suggested_korean": "2026년 5월 뉴스 및 6개 소스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "WCPFC",
+      "context_excerpt": "6 sources · WCPFC 2024-25 어획량",
+      "suggested_korean": "중서부태평양수산위원회(WCPFC)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "ENSO",
+      "context_excerpt": "ENSO-어획량 상관관계 분석기",
+      "suggested_korean": "엘니뇨 남방진동(ENSO)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "NOAA",
+      "context_excerpt": "cardDesc=\"NOAA ENSO Index와 가다랑어",
+      "suggested_korean": "미국 해양대기청(NOAA)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "La Niña/El Niño/Neutral",
+      "context_excerpt": "상관 — La Niña/El Niño/Neutral 별 가격 영향",
+      "suggested_korean": "라니냐/엘니뇨/중립",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "FAOSTAT FishStatJ",
+      "context_excerpt": "Index · FAOSTAT FishStatJ · WCPFC/IOTC",
+      "suggested_korean": "FAO 수산통계(FAOSTAT FishStatJ)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "ECOS",
+      "context_excerpt": "ECOS 환율 + KCS 통관 시나리오",
+      "suggested_korean": "한국은행 경제통계시스템(ECOS)",
+      "confidence": "high"
+    }
+  ]
+}

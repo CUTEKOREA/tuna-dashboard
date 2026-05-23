@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 16,
+  "tokens": {
+    "input": 8081,
+    "output": 154,
+    "thoughts": 3299
+  },
+  "cost_usd": 0.00281,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Part",
+      "context_excerpt": "🌊 Part I — 원료 수급",
+      "suggested_korean": "부 (또는 파트)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Loading Strategic Intelligence...",
+      "context_excerpt": "Loading Strategic Intelligence...",
+      "suggested_korean": "전략 인텔리전스 로딩 중...",
+      "confidence": "high"
+    }
+  ]
+}

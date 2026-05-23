@@ -1,0 +1,85 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 22,
+  "tokens": {
+    "input": 7833,
+    "output": 894,
+    "thoughts": 4389
+  },
+  "cost_usd": 0.00458,
+  "violations_count": 9,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "Perfect Storm",
+      "context_excerpt": "부담으로 항구 정박을 단행하며 'Perfect Storm' 진입(SJK 1,728",
+      "suggested_korean": "퍼펙트 스톰(Perfect Storm)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "SIDS",
+      "context_excerpt": "개방)·태평양 SIDS 직거래·인도네시아 풀앤",
+      "suggested_korean": "소도서개발국(SIDS)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "raw material",
+      "context_excerpt": "구간을 대비해 6개월 raw material 비축을 사전 확보하고",
+      "suggested_korean": "원자재(raw material)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "IO Perfect Storm · EPO Skipjack · PNG Bismarck",
+      "context_excerpt": "Atuna 2026.05.18~21 (IO Perfect Storm · EPO Skipjack · PNG Bismarck)",
+      "suggested_korean": "인도양 퍼펙트 스톰 · 동태평양 가다랑어 · 파푸아뉴기니 비스마르크(IO Perfect Storm · EPO Skipjack · PNG Bismarck)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "CAGR",
+      "context_excerpt": "1.56B (2034 전망, CAGR 4.8%) — Thai Union",
+      "suggested_korean": "연평균 성장률(CAGR)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "SKU",
+      "context_excerpt": "완료(37 SKU), Bumble Bee 49 SKU. 한편",
+      "suggested_korean": "품목 수(SKU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "PB",
+      "context_excerpt": "한국 대형 마트 PB MSC 전환을 제안.",
+      "suggested_korean": "자체 브랜드(PB)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "R&D",
+      "context_excerpt": "영양제로 업사이클링하는 R&D 파이프라인을 2027",
+      "suggested_korean": "연구개발(R&D)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "MSC US Sustainable Market · Tuna Peptide Market",
+      "context_excerpt": "Atuna 2026.05.20 (MSC US Sustainable Market · Tuna Peptide Market)",
+      "suggested_korean": "MSC 미국 지속가능 시장 · 참치 펩타이드 시장(MSC US Sustainable Market · Tuna Peptide Market)",
+      "confidence": "high"
+    }
+  ]
+}

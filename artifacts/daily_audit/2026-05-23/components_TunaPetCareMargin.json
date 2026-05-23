@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2529,
+    "output": 197,
+    "thoughts": 1725
+  },
+  "cost_usd": 0.00125,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "R&D",
+      "context_excerpt": "해양 콜라겐으로 전환하는 R&D 시설 투자 + 제약·바이오",
+      "suggested_korean": "연구개발(R&D)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "IR",
+      "context_excerpt": "동원F&B 2024-2026 분기 IR · 28.5% 펫푸드 마진은",
+      "suggested_korean": "기업설명회(IR)",
+      "confidence": "high"
+    }
+  ]
+}

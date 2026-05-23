@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 11,
+  "tokens": {
+    "input": 4560,
+    "output": 485,
+    "thoughts": 2323
+  },
+  "cost_usd": 0.00258,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "Duty Etc",
+      "context_excerpt": "<span>관세 (Duty Etc)</span>",
+      "suggested_korean": "기타 세금",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "S. japonicus",
+      "context_excerpt": "타임라인 (S. japonicus 1,328 카톤)",
+      "suggested_korean": "참고등어(S. japonicus)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "FAD",
+      "context_excerpt": "상반기(3월 중순~4월 초) FAD 조업 금지로 인해",
+      "suggested_korean": "어군집어장치(FAD)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "Tax Optimization",
+      "context_excerpt": "최우선 과제: Tax Optimization",
+      "suggested_korean": "세금 최적화(Tax Optimization)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "Lead Time",
+      "context_excerpt": "선적 일정 (Lead Time 45일)",
+      "suggested_korean": "조달 기간(Lead Time)",
+      "confidence": "high"
+    },
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "Container",
+      "context_excerpt": "Q1 (1 Container)",
+      "suggested_korean": "컨테이너",
+      "confidence": "medium"
+    }
+  ]
+}

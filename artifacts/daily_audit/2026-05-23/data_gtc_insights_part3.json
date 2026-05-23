@@ -1,0 +1,101 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 32,
+  "tokens": {
+    "input": 3641,
+    "output": 1124,
+    "thoughts": 7285
+  },
+  "cost_usd": 0.0039,
+  "violations_count": 11,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "GTC 2026: Swap Robotics' Data Problem for Compute",
+      "context_excerpt": "source: \"GTC 2026: Swap Robotics' Data Problem for Compute\"",
+      "suggested_korean": "GTC 2026: 연산력을 위한 스왑 로보틱스의 데이터 문제 해결",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "NVIDIA OpenShell & Capability Governance for AI Agents",
+      "context_excerpt": "source: \"NVIDIA OpenShell & Capability Governance for AI Agents\"",
+      "suggested_korean": "NVIDIA OpenShell 및 AI 에이전트를 위한 역량 거버넌스",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "Investor Outlook: Scrutiny Over AI Revenue Projections",
+      "context_excerpt": "source: \"Investor Outlook: Scrutiny Over AI Revenue Projections\"",
+      "suggested_korean": "투자자 전망: AI 매출 전망에 대한 정밀 조사",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 3,
+      "violation": "Design, Simulate, and Scale with NVIDIA DSX Air",
+      "context_excerpt": "source: \"Design, Simulate, and Scale with NVIDIA DSX Air\"",
+      "suggested_korean": "NVIDIA DSX Air를 통한 설계, 시뮬레이션 및 확장",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "NVIDIA Launches Space Computing, Rocketing AI Into Orbit",
+      "context_excerpt": "source: \"NVIDIA Launches Space Computing, Rocketing AI Into Orbit\"",
+      "suggested_korean": "NVIDIA, 우주 컴퓨팅 출시로 AI를 궤도로 쏘아 올리다",
+      "confidence": "high"
+    },
+    {
+      "field": "methodology",
+      "widget_index": 5,
+      "violation": "Foundation Model",
+      "context_excerpt": "미국식 Foundation Model 경쟁에서 탈피하여",
+      "suggested_korean": "파운데이션 모델(Foundation Model)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "French-German Executive's Dialogue on Artificial Intelligence for Industry",
+      "context_excerpt": "source: \"French-German Executive's Dialogue on Artificial Intelligence for Industry\"",
+      "suggested_korean": "산업용 인공지능에 관한 프랑스-독일 경영진 대화",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 6,
+      "violation": "NVIDIA Announces NemoClaw for the OpenClaw Community",
+      "context_excerpt": "source: \"NVIDIA Announces NemoClaw for the OpenClaw Community\"",
+      "suggested_korean": "NVIDIA, 오픈클로 커뮤니티를 위한 니모클로 발표",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 7,
+      "violation": "Scaling Autonomous AI Agents and Workloads with NVIDIA DGX Spark",
+      "context_excerpt": "source: \"Scaling Autonomous AI Agents and Workloads with NVIDIA DGX Spark\"",
+      "suggested_korean": "NVIDIA DGX Spark를 통한 자율 AI 에이전트 및 워크로드 확장",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 8,
+      "violation": "CNN Optimization Methods for Edge AI: Role of Early Exits",
+      "context_excerpt": "source: \"CNN Optimization Methods for Edge AI: Role of Early Exits\"",
+      "suggested_korean": "엣지 AI를 위한 CNN 최적화 방법: 조기 종료의 역할",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 9,
+      "violation": "Building the AI Grid with NVIDIA: Orchestrating Intelligence Everywhere",
+      "context_excerpt": "source: \"Building the AI Grid with NVIDIA: Orchestrating Intelligence Everywhere\"",
+      "suggested_korean": "NVIDIA와 함께하는 AI 그리드 구축: 어디서나 지능 오케스트레이션하기",
+      "confidence": "high"
+    }
+  ]
+}

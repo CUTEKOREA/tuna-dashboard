@@ -1,0 +1,85 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 15,
+  "tokens": {
+    "input": 2866,
+    "output": 813,
+    "thoughts": 2431
+  },
+  "cost_usd": 0.00289,
+  "violations_count": 9,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "critical",
+      "context_excerpt": "러시아산 OFAC/EU 제재가 critical, 미국 SIMP 확대",
+      "suggested_korean": "위험(critical)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "러시아산 OFAC/EU 제재가 critical, 미국 SIMP 확대",
+      "suggested_korean": "수산물수입감시제도(SIMP)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "warning",
+      "context_excerpt": "확대(2026.01~)가 warning으로 진입했고",
+      "suggested_korean": "주의(warning)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "SPS·TBT",
+      "context_excerpt": "진입했고, EU SPS·TBT는 노르웨이 EEA",
+      "suggested_korean": "위생검역(SPS) 및 무역기술장벽(TBT)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "EEA",
+      "context_excerpt": "SPS·TBT는 노르웨이 EEA 우대로 모니터링",
+      "suggested_korean": "유럽경제지역(EEA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "EFTA",
+      "context_excerpt": "차단합니다. 한-EFTA C/O 발급 요건",
+      "suggested_korean": "유럽자유무역연합(EFTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "C/O",
+      "context_excerpt": "한-EFTA C/O 발급 요건 엄격화 대응",
+      "suggested_korean": "원산지증명서(C/O)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "NTM",
+      "context_excerpt": "source: \"WITS NTM · OFAC SDN · MFDS",
+      "suggested_korean": "비관세조치(NTM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "SDN",
+      "context_excerpt": "WITS NTM · OFAC SDN · MFDS · 박혜진",
+      "suggested_korean": "특별지정제재대상(SDN)",
+      "confidence": "high"
+    }
+  ]
+}

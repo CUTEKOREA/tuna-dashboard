@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 25,
+  "tokens": {
+    "input": 11024,
+    "output": 523,
+    "thoughts": 4892
+  },
+  "cost_usd": 0.00461,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "Bullet/Frigate",
+      "context_excerpt": "소형 다랑어(Bullet/Frigate)의 연도별 실 어획량",
+      "suggested_korean": "몽구리/줄다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Bullet/Frigate",
+      "context_excerpt": "소형 다랑어(Bullet/Frigate)의 실 어획량이 권고",
+      "suggested_korean": "몽구리/줄다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Bullet tuna",
+      "context_excerpt": "IOTC SC28 Bullet tuna · IOTC 실시간",
+      "suggested_korean": "몽구리다랑어",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 3,
+      "violation": "TN",
+      "context_excerpt": "품질(TN 1.35%)을 확보 가능.",
+      "suggested_korean": "총질소(TN)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 3,
+      "violation": "Aminopeptidase",
+      "context_excerpt": "Aminopeptidase 효소 처리 시 쓴맛이 75",
+      "suggested_korean": "아미노펩티다아제",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 5,
+      "violation": "Expression of Interest",
+      "context_excerpt": "MPEDA Expression of Interest · KITA 무역통계",
+      "suggested_korean": "사업의향서",
+      "confidence": "high"
+    }
+  ]
+}

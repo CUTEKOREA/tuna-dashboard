@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 6,
+  "tokens": {
+    "input": 934,
+    "output": 224,
+    "thoughts": 975
+  },
+  "cost_usd": 0.00084,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "Biofuel",
+      "widget_index": 0,
+      "violation": "Biofuel",
+      "context_excerpt": "\"Biofuel\": 30",
+      "suggested_korean": "바이오연료",
+      "confidence": "high"
+    },
+    {
+      "field": "Polysaccharides",
+      "widget_index": 0,
+      "violation": "Polysaccharides",
+      "context_excerpt": "\"Polysaccharides\": 45",
+      "suggested_korean": "다당류",
+      "confidence": "high"
+    },
+    {
+      "field": "EcoPackaging",
+      "widget_index": 0,
+      "violation": "EcoPackaging",
+      "context_excerpt": "\"EcoPackaging\": 25",
+      "suggested_korean": "친환경 포장",
+      "confidence": "high"
+    }
+  ]
+}

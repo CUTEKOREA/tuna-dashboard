@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 9746,
+    "output": 534,
+    "thoughts": 2401
+  },
+  "cost_usd": 0.00426,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "loading_text",
+      "widget_index": 0,
+      "violation": "Loading 3-Year Consignment Intelligence...",
+      "context_excerpt": "Loading 3-Year Consignment Intelligence...",
+      "suggested_korean": "3개년 위탁판매 분석 정보 로딩 중...",
+      "confidence": "high"
+    },
+    {
+      "field": "badge",
+      "widget_index": 0,
+      "violation": "Empirical Data Verified",
+      "context_excerpt": "Empirical Data Verified",
+      "suggested_korean": "실증 데이터 검증 완료",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "2024-2026 Monthly National Consignment Intelligence by Seafood Type",
+      "context_excerpt": "2024-2026 Monthly National Consignment Intelligence by Seafood Type",
+      "suggested_korean": "2024-2026 수산물 종류별 월간 전국 위탁판매 분석 현황",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Command Center",
+      "context_excerpt": "9대 데이터망 실시간 관제 센터 (Command Center)",
+      "suggested_korean": "통합 관제 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "description",
+      "widget_index": 0,
+      "violation": "PROFITABLE",
+      "context_excerpt": "유통 시 마진율 극대화 구간 진입 (PROFITABLE)",
+      "suggested_korean": "수익 확보 가능",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "SCM",
+      "context_excerpt": "대체 어종 발굴 등 SCM 유연성 확보에 주력",
+      "suggested_korean": "공급망 관리(SCM)",
+      "confidence": "high"
+    }
+  ]
+}

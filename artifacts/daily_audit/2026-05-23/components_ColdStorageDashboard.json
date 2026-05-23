@@ -1,0 +1,85 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 56,
+  "tokens": {
+    "input": 16854,
+    "output": 768,
+    "thoughts": 12138
+  },
+  "cost_usd": 0.00698,
+  "violations_count": 9,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "Distressed M&A",
+      "context_excerpt": "국내 한계 기업을 대상으로 Distressed M&A 및 핵심 자산",
+      "suggested_korean": "부실기업 인수합병(Distressed M&A)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 5,
+      "violation": "AS/RS",
+      "context_excerpt": "자본을 투입한 AS/RS 무인 스마트 창고도",
+      "suggested_korean": "자동화 창고 시스템(AS/RS)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 7,
+      "violation": "CapEx",
+      "context_excerpt": "환경 부담금 및 CapEx 전면 교체라는",
+      "suggested_korean": "자본적 지출(CapEx)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 8,
+      "violation": "Cap Rate",
+      "context_excerpt": "상온 창고(Dry)의 Cap Rate는 상승(가치 하락)",
+      "suggested_korean": "자본환원율(Cap Rate)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 9,
+      "violation": "CAGR",
+      "context_excerpt": "글로벌 최고 수준인 CAGR 12.4% 성장 중",
+      "suggested_korean": "연평균 성장률(CAGR)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 9,
+      "violation": "BEP",
+      "context_excerpt": "48개월 내 BEP 달성 및 ROIC",
+      "suggested_korean": "손익분기점(BEP)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 11,
+      "violation": "NPV",
+      "context_excerpt": "거점 대비 5년 NPV 추정치가 75%",
+      "suggested_korean": "순현재가치(NPV)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 12,
+      "violation": "C/S",
+      "context_excerpt": "유통 과정 내 C/S 클레임 및 반품",
+      "suggested_korean": "고객 서비스(C/S)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 13,
+      "violation": "QC",
+      "context_excerpt": "냉동창고 QC 프로토콜을 어종별로",
+      "suggested_korean": "품질 관리(QC)",
+      "confidence": "high"
+    }
+  ]
+}

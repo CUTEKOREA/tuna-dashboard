@@ -1,0 +1,85 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 17,
+  "tokens": {
+    "input": 3639,
+    "output": 788,
+    "thoughts": 3492
+  },
+  "cost_usd": 0.00306,
+  "violations_count": 9,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "CAGR",
+      "context_excerpt": "해양 콜라겐 시장 모두 두 자릿수 CAGR 성장(시장 규모는",
+      "suggested_korean": "연평균 성장률(CAGR)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "Phase",
+      "context_excerpt": "Phase 1 (즉시): DHA/EPA 추출... Phase 2 (3년): KFAS",
+      "suggested_korean": "단계(Phase)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "MOF",
+      "context_excerpt": "한국 다랑어 어획량 290천톤(MOF 2024) 기준",
+      "suggested_korean": "해양수산부(MOF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "ACE",
+      "context_excerpt": "공동 R&D로 ACE 억제 기능성 펩타이드",
+      "suggested_korean": "안지오텐신 전환 효소(ACE)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "ACE",
+      "context_excerpt": "기능성 펩타이드(ACE 억제 활성 82%)",
+      "suggested_korean": "안지오텐신 전환 효소(ACE)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "R&D",
+      "context_excerpt": "제품 파이프라인 (상용화·성장·R&D)",
+      "suggested_korean": "연구개발(R&D)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "R&D",
+      "context_excerpt": "KFAS/NIFS 공동 R&D로 ACE 억제",
+      "suggested_korean": "연구개발(R&D)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "R&D",
+      "context_excerpt": "상회하나 현재 R&D 단계. 시장 규모는",
+      "suggested_korean": "연구개발(R&D)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "R&D",
+      "context_excerpt": "KFAS/NIFS 공동 R&D로 기능성 펩타이드",
+      "suggested_korean": "연구개발(R&D)",
+      "confidence": "medium"
+    }
+  ]
+}

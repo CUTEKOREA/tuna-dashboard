@@ -1,0 +1,109 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 24,
+  "tokens": {
+    "input": 8486,
+    "output": 991,
+    "thoughts": 4664
+  },
+  "cost_usd": 0.00502,
+  "violations_count": 12,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 블록 vs IQF 패스 마진 스프레드",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 명란 경매가 및 소매 방어력 투시도",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 미-일 내수 시장 재고 사이클 투시도",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 3,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 연육(Surimi) 공급 충격 대체 탄력성",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 패스트푸드 B2B 갱신 파이프라인",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 도매시장 일별 경락 아비트리지",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 6,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] B2B '기후변화 유닛 클로즈' 전가 비중",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 7,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 명절 연휴 D-Day 델리 전진배치 매출",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] 대체재(틸라피아) 가격 교차탄력성",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "Crossover Point",
+      "context_excerpt": "정책을 밀고 나가되, Crossover Point ($4.5k)를 건드리지",
+      "suggested_korean": "전환점(Crossover Point)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "Sales",
+      "context_excerpt": "[Sales] D2C 이커머스 전향 플랫폼 취소율 극복 ROI",
+      "suggested_korean": "영업",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 9,
+      "violation": "CPC CVP",
+      "context_excerpt": "아마존 프레시 B2C 밀키트 CPC CVP율 통계",
+      "suggested_korean": "CPC(클릭당 비용) 및 CVP(원가-조업도-이익)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 34,
+  "tokens": {
+    "input": 16186,
+    "output": 366,
+    "thoughts": 8057
+  },
+  "cost_usd": 0.00577,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "WSC China Crop Report",
+      "context_excerpt": "WSC China Crop Report 기준, 중국 산둥성 지역 재배",
+      "suggested_korean": "WSC 중국 작물 보고서(WSC China Crop Report)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "Risk",
+      "context_excerpt": "공급망은 실사 시 중대한 Risk 감점 요인입니다. 단순 선",
+      "suggested_korean": "리스크(Risk)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 13,
+      "violation": "Arbitrage",
+      "context_excerpt": "기능성 가공, 수입 Arbitrage 물류 시스템을 총결합하여",
+      "suggested_korean": "차익거래(Arbitrage)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 16,
+      "violation": "Cash Cow",
+      "context_excerpt": "준수를 넘어 새로운 'Cash Cow'입니다. 마늘 가공 시설",
+      "suggested_korean": "수익창출원(Cash Cow)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 30,
+  "tokens": {
+    "input": 3351,
+    "output": 883,
+    "thoughts": 6680
+  },
+  "cost_usd": 0.00321,
+  "violations_count": 9,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "NVIDIA GTC 2026: Physical AI & Infrastructure",
+      "context_excerpt": "NVIDIA GTC 2026: Physical AI & Infrastructure",
+      "suggested_korean": "엔비디아 GTC 2026: 피지컬 AI 및 인프라",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "NVIDIA GTC 2026 Framework",
+      "context_excerpt": "OPEX 혁신 전략 (NVIDIA GTC 2026 Framework)",
+      "suggested_korean": "엔비디아 GTC 2026 프레임워크",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "NVIDIA Open Physical AI Data Factory Blueprint",
+      "context_excerpt": "NVIDIA Open Physical AI Data Factory Blueprint",
+      "suggested_korean": "엔비디아 오픈 피지컬 AI 데이터 팩토리 블루프린트",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 1,
+      "violation": "NVIDIA Vera CPU & Agentic AI Ecosystem",
+      "context_excerpt": "NVIDIA Vera CPU & Agentic AI Ecosystem",
+      "suggested_korean": "엔비디아 베라 CPU 및 에이전틱 AI 생태계",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 2,
+      "violation": "NVIDIA Vera Rubin NVL72 AI Supercomputer",
+      "context_excerpt": "NVIDIA Vera Rubin NVL72 AI Supercomputer",
+      "suggested_korean": "엔비디아 베라 루빈 NVL72 AI 슈퍼컴퓨터",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 3,
+      "violation": "Inside NVIDIA Groq 3 LPX & Inference Infrastructure",
+      "context_excerpt": "Inside NVIDIA Groq 3 LPX & Inference Infrastructure",
+      "suggested_korean": "엔비디아 그록 3 LPX 및 추론 인프라 내부 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 4,
+      "violation": "NVIDIA Open Physical AI Data Factory & Autonomous Vehicles",
+      "context_excerpt": "NVIDIA Open Physical AI Data Factory & Autonomous Vehicles",
+      "suggested_korean": "엔비디아 오픈 피지컬 AI 데이터 팩토리 및 자율주행 차량",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 5,
+      "violation": "NVIDIA BlueField-4 STX Storage Architecture",
+      "context_excerpt": "NVIDIA BlueField-4 STX Storage Architecture",
+      "suggested_korean": "엔비디아 블루필드-4 STX 스토리지 아키텍처",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 5,
+      "violation": "Data-to-Value",
+      "context_excerpt": "마이그레이션하는 'Data-to-Value' 프로젝트를",
+      "suggested_korean": "데이터 가치화(Data-to-Value)",
+      "confidence": "high"
+    }
+  ]
+}

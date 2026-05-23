@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 19,
+  "tokens": {
+    "input": 3738,
+    "output": 264,
+    "thoughts": 4060
+  },
+  "cost_usd": 0.00178,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "VDS",
+      "context_excerpt": "선상 VDS 검증 무결성 지표",
+      "suggested_korean": "선상 가상 도킹 시스템(VDS)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "IUU",
+      "context_excerpt": "식약처(MFDS) 전자 통관 및 IUU 어획 증명 DB",
+      "suggested_korean": "불법·비보고·비규제(IUU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 2,
+      "violation": "VDS",
+      "context_excerpt": "사전에 전자적으로 증명된 VDS 무결성이 부족하면",
+      "suggested_korean": "가상 도킹 시스템(VDS)",
+      "confidence": "high"
+    }
+  ]
+}

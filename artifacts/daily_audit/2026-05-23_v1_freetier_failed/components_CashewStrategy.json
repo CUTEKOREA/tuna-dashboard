@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 15,
+  "tokens": {
+    "input": 10834,
+    "output": 518,
+    "thoughts": 3367
+  },
+  "cost_usd": 0.00455,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "header",
+      "widget_index": 0,
+      "violation": "Real Data · 10 Charts · 127 Data Points",
+      "context_excerpt": "FAOSTAT Real Data · 10 Charts · 127 Data Points",
+      "suggested_korean": "실제 데이터 · 10개 차트 · 127개 데이터 포인트",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "DATA SOURCE COMMAND CENTER INDEXED",
+      "context_excerpt": "DATA SOURCE COMMAND CENTER INDEXED",
+      "suggested_korean": "데이터 소스 통합 관제 센터 (색인 완료)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "SCSI INDEX",
+      "context_excerpt": "SCSI INDEX",
+      "suggested_korean": "SCSI 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Silla Cashew Stress Index (KPI-Derived)",
+      "context_excerpt": "Silla Cashew Stress Index (KPI-Derived)",
+      "suggested_korean": "신라 캐슈 스트레스 지수 (KPI 기반)",
+      "confidence": "high"
+    },
+    {
+      "field": "text",
+      "widget_index": 0,
+      "violation": "Last Update",
+      "context_excerpt": "Last Update: {new Date().toLocaleTimeString()}",
+      "suggested_korean": "최종 업데이트",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 3,
+      "violation": "What-If",
+      "context_excerpt": "거시 지표 민감도 분석 (What-If 시뮬레이터)",
+      "suggested_korean": "가상 시나리오 (What-If)",
+      "confidence": "high"
+    }
+  ]
+}

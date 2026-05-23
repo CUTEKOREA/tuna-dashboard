@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 22,
+  "tokens": {
+    "input": 13982,
+    "output": 318,
+    "thoughts": 5404
+  },
+  "cost_usd": 0.00499,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "strat",
+      "widget_index": 2,
+      "violation": "ODM",
+      "context_excerpt": "직접 가공·납품하는 ODM 방식으로 전환하여",
+      "suggested_korean": "제조업자 개발생산(ODM)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 3,
+      "violation": "Zero화",
+      "context_excerpt": "통관 사고 Zero화 달성. ①수입 신고 전",
+      "suggested_korean": "제로화",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 5,
+      "violation": "Spread",
+      "context_excerpt": "①CPI-도매가 Spread가 15% 이상 확대 시",
+      "suggested_korean": "스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 6,
+      "violation": "Zero",
+      "context_excerpt": "②적발 Zero 국가에 대해 '신뢰 공급자'",
+      "suggested_korean": "제로(0)",
+      "confidence": "high"
+    }
+  ]
+}

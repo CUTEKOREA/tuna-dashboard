@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 11,
+  "tokens": {
+    "input": 11282,
+    "output": 157,
+    "thoughts": 1991
+  },
+  "cost_usd": 0.00378,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "C-Level Strategic Insight",
+      "context_excerpt": "C-Level Strategic Insight: {title}",
+      "suggested_korean": "C-레벨 전략 인사이트",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Intelligence Network",
+      "context_excerpt": "Silla Co. Intelligence Network",
+      "suggested_korean": "인텔리전스 네트워크",
+      "confidence": "high"
+    }
+  ]
+}

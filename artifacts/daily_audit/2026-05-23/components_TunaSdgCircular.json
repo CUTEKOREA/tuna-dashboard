@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 12,
+  "tokens": {
+    "input": 2535,
+    "output": 594,
+    "thoughts": 2184
+  },
+  "cost_usd": 0.00225,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "CFP",
+      "context_excerpt": "부산물 자원화량... EU CFP 하역 의무화로 부산물",
+      "suggested_korean": "공동어업정책(CFP)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Blue Transformation",
+      "context_excerpt": "FAO Blue Transformation 프레임워크 연계로",
+      "suggested_korean": "블루 트랜스포메이션(Blue Transformation)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FAO SOFIA 2022",
+      "context_excerpt": "source: 'FAO SOFIA 2022 · EU CFP Landing",
+      "suggested_korean": "FAO 세계 수산양식 현황(SOFIA) 2022",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "EU CFP Landing Obligation",
+      "context_excerpt": "SOFIA 2022 · EU CFP Landing Obligation · A third",
+      "suggested_korean": "EU 공동어업정책(CFP) 하역 의무 규정",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "A third assessment of global marine fisheries discards",
+      "context_excerpt": "Landing Obligation · A third assessment of global marine fisheries discards · Blue Nature-Based",
+      "suggested_korean": "세계 해양 어업 폐기물에 대한 3차 평가 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Blue Nature-Based Solutions in marine and coastal EU policies",
+      "context_excerpt": "fisheries discards · Blue Nature-Based Solutions in marine and coastal EU policies",
+      "suggested_korean": "유럽연합 해양 및 연안 정책의 청정 자연 기반 해결책",
+      "confidence": "high"
+    }
+  ]
+}

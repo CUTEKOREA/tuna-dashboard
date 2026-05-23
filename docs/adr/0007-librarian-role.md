@@ -227,23 +227,24 @@ curl -X POST "$URL" \
 - gcloud project가 결제 활성 GCP project여야 함 (사용자 `gen-lang-client-0963198205` 확인됨)
 - OAuth 토큰 1시간 만료 — 매 호출 시 재발급
 
-### 실측 권장 운영 패턴 (2026-05-22 갱신)
+### 실측 권장 운영 패턴 (2026-05-22 갱신 — billing 활성화 후)
 
 | Stage | 모델 | Endpoint | 비용/audit | 시간 | 역할 |
 |---|---|---|---|---|---|
-| **1차 광역 sweep** | **gemini-3.5-flash** | Direct API key (`generativelanguage`) | **$0.001** | **17초** | 빠른 recall 우선 (실측 carrot 3건) |
-| **2차 precision check** | **gemini-2.5-pro** | Vertex AI OAuth (`aiplatform`) | $0.004 | 40초 | 진짜 위반 confirm (precision 100%) |
+| **1차 광역 sweep** | **gemini-3.5-flash** | Direct API key (paid Tier 1) | **$0.001** | **17초** | 빠른 recall 우선 |
+| **2차 precision check** | **gemini-3.1-pro-preview** ⭐ | Direct API key (paid Tier 1) | ~$0.05 | ~30초 | 최신 Pro Preview, Vertex AI 우회 |
 | 3차 final approval | Claude Code or 사람 | — | $0 | — | 도메인 정책 적용 + 머지 |
 
-전체 audit 비용: **~$0.005/dashboard** → $100/월 = **20,000 audit pipeline 가능**.
+전체 audit 비용: **~$0.05/dashboard** (Pro 포함) → $100/월 = **2,000 audit pipeline**.
+sweep만은 **20,000 audit/월** 가능.
 
-### 모델 swap roadmap
+### 모델 swap roadmap (실측 완료)
 
 | 시점 | Librarian (Flash) | Librarian-heavy (Pro) |
 |---|---|---|
-| 2026-05-22 (현재) | `gemini-3.5-flash` via Direct API | `gemini-2.5-pro` via Vertex AI OAuth |
-| Vertex AI 3.x Pro 배포 시 | (동일) | → `gemini-3.1-pro-preview` via Vertex AI OAuth |
-| AI Studio billing 활성화 시 | (선택) → Vertex로 통일 | → `gemini-3.1-pro-preview` via Direct (대안) |
+| 2026-05-22 초기 | `gemini-3.5-flash` Direct (free tier) | `gemini-2.5-pro` Vertex AI |
+| **2026-05-22 billing 활성 후 (현재)** ⭐ | `gemini-3.5-flash` Direct (Tier 1) | **`gemini-3.1-pro-preview` Direct** (Tier 1) |
+| Vertex AI 3.x Pro 배포 시 | 변경 없음 | (선택) Vertex OAuth로 fallback |
 
 **현재 차단 사유**:
 - `gemini-3.x-pro-preview`: Vertex AI 미배포 (404), Direct API는 `free_tier_limit: 0` (paid 활성 필요)

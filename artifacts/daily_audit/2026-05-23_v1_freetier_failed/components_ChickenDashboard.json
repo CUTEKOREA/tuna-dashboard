@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 9339,
+    "output": 245,
+    "thoughts": 3603
+  },
+  "cost_usd": 0.00341,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "HPAI",
+      "context_excerpt": "수입국 HPAI 청정 진단",
+      "suggested_korean": "고병원성 조류인플루엔자(HPAI)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 2,
+      "violation": "What-If",
+      "context_excerpt": "육계 농가 원가 변동 What-If",
+      "suggested_korean": "가상 시나리오 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "actionPlan",
+      "widget_index": 2,
+      "violation": "Base",
+      "context_excerpt": "Base 시나리오 초과 환율 발생 시",
+      "suggested_korean": "기준(Base)",
+      "confidence": "high"
+    }
+  ]
+}

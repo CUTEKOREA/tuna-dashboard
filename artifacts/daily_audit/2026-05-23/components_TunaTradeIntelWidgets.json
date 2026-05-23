@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 15,
+  "tokens": {
+    "input": 4573,
+    "output": 588,
+    "thoughts": 3114
+  },
+  "cost_usd": 0.00284,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Fallback DB",
+      "context_excerpt": "WITS_LIVE' ? 'LIVE' : 'Fallback DB'} · Reliability:",
+      "suggested_korean": "대체 데이터베이스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Reliability",
+      "context_excerpt": "Fallback DB'} · Reliability: ${data?.meta?.reliability",
+      "suggested_korean": "신뢰도",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "Observatory of Economic Complexity",
+      "context_excerpt": "cardDesc: \"Observatory of Economic Complexity 데이터로 글로벌",
+      "suggested_korean": "경제복잡성연구소(OEC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Benchmark DB",
+      "context_excerpt": "OEC_LIVE' ? 'LIVE' : 'Benchmark DB'} · Reliability:",
+      "suggested_korean": "벤치마크 데이터베이스",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Reliability",
+      "context_excerpt": "Benchmark DB'} · Reliability: ${data?.meta?.reliability",
+      "suggested_korean": "신뢰도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Snapshot",
+      "context_excerpt": "WITS_LIVE' ? 'LIVE' : 'Snapshot'} · Reliability:",
+      "suggested_korean": "스냅샷 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Reliability",
+      "context_excerpt": "LIVE' : 'Snapshot'} · Reliability: ${data?.meta?.reliability",
+      "suggested_korean": "신뢰도",
+      "confidence": "high"
+    }
+  ]
+}

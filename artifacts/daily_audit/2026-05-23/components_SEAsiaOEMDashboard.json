@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 12,
+  "tokens": {
+    "input": 4430,
+    "output": 495,
+    "thoughts": 2122
+  },
+  "cost_usd": 0.00257,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "SE Asia OEM Intelligence",
+      "context_excerpt": "h2 className={styles.title}>SE Asia OEM Intelligence</h2>",
+      "suggested_korean": "동남아시아 OEM 인텔리전스",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Daily Capacity",
+      "context_excerpt": "div className={styles.metricLabel}>Daily Capacity</div>",
+      "suggested_korean": "일일 생산능력",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Certifications",
+      "context_excerpt": "div className={styles.metricLabel}>Certifications</div>",
+      "suggested_korean": "인증 현황",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "Click to view Silla Takeaway",
+      "context_excerpt": "Click to view Silla Takeaway ➔",
+      "suggested_korean": "클릭하여 신라 시사점 보기",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Focus area",
+      "context_excerpt": "strong>Focus area:</strong>",
+      "suggested_korean": "주요 집중 분야",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "Silla Strategic Takeaway",
+      "context_excerpt": "takeawayTitle}>\n                <Target size={16} /> Silla Strategic Takeaway",
+      "suggested_korean": "신라 전략적 시사점",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 30,
+  "tokens": {
+    "input": 5840,
+    "output": 803,
+    "thoughts": 6355
+  },
+  "cost_usd": 0.00376,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "ARK Big Ideas 2026, JP Morgan AI CapEx Analysis, Gartner 2026 AI Spending Forecast",
+      "context_excerpt": "source: \"ARK Big Ideas 2026, JP Morgan AI CapEx Analysis, Gartner 2026 AI Spending Forecast\"",
+      "suggested_korean": "ARK 빅 아이디어 2026, JP모건 AI 자본지출 분석, 가트너 2026 AI 지출 전망",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "Rolling Recovery",
+      "context_excerpt": "Morgan Stanley 'Rolling Recovery': S&P 500",
+      "suggested_korean": "순환적 회복(Rolling Recovery)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 11,
+      "violation": "Morgan Stanley 2026 US Equities Outlook: The Rolling Recovery Is Here",
+      "context_excerpt": "source: \"Morgan Stanley 2026 US Equities Outlook: The Rolling Recovery Is Here\"",
+      "suggested_korean": "모건스탠리 2026 미국 주식 전망: 순환적 회복이 도래했다",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 13,
+      "violation": "EV",
+      "context_excerpt": "사용자당 50~200달러의 추가 EV 확보",
+      "suggested_korean": "기업 가치(EV)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 14,
+      "violation": "Golden Age",
+      "context_excerpt": "이는 ARK의 'Golden Age' 테제의 재정적 기반.",
+      "suggested_korean": "황금기(Golden Age)",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 15,
+      "violation": "Canton Network Q1 2026",
+      "context_excerpt": "Canton Network Q1 2026 보고서에 따르면",
+      "suggested_korean": "칸톤 네트워크 2026년 1분기(Canton Network Q1 2026)",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 15,
+      "violation": "Canton Q1 2026 Ecosystem Report, 21Shares State of Crypto 2026, Houlihan Lokey Digital Assets Update",
+      "context_excerpt": "source: \"Canton Q1 2026 Ecosystem Report, 21Shares State of Crypto 2026, Houlihan Lokey Digital Assets Update\"",
+      "suggested_korean": "칸톤 2026년 1분기 생태계 보고서, 21쉐어즈 크립토 현황 2026, 훌리한 로키 디지털 자산 업데이트",
+      "confidence": "high"
+    }
+  ]
+}

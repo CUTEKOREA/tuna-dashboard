@@ -1,0 +1,69 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 21,
+  "tokens": {
+    "input": 3954,
+    "output": 618,
+    "thoughts": 4524
+  },
+  "cost_usd": 0.00273,
+  "violations_count": 7,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FishStatJ Global Pollock Catch Data",
+      "context_excerpt": "source: \"FAO FishStatJ Global Pollock Catch Data\"",
+      "suggested_korean": "FAO 세계 명태 어획 데이터 (FishStatJ)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "100% 옵저버 커버리지 및 MSC 인증을 무기로",
+      "suggested_korean": "해양관리협의회(MSC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "PEF",
+      "context_excerpt": "러시아산 명태의 품질 상향 평준화는 PEF에게 강력한 차익거래 기회를",
+      "suggested_korean": "사모펀드(PEF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "EBITDA",
+      "context_excerpt": "매입원가 절감 및 글로벌 EBITDA 마진 확장을",
+      "suggested_korean": "세전·이자지급전이익(EBITDA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Report",
+      "context_excerpt": "연방 수산청(Rosrybolovstvo) Report",
+      "suggested_korean": "보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 2,
+      "violation": "Diverging",
+      "context_excerpt": "러시아 연안 증산 (Diverging)",
+      "suggested_korean": "디커플링",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "North Pacific Fishery Management Council Data",
+      "context_excerpt": "source: \"FAO North Pacific Fishery Management Council Data\"",
+      "suggested_korean": "북태평양어업관리위원회 데이터",
+      "confidence": "high"
+    }
+  ]
+}

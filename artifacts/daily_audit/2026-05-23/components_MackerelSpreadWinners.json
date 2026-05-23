@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 5,
+  "tokens": {
+    "input": 2601,
+    "output": 94,
+    "thoughts": 1165
+  },
+  "cost_usd": 0.00102,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Import/Export Price Spread Analysis",
+      "context_excerpt": "FAO FishStatJ Import/Export Price Spread Analysis (2023)",
+      "suggested_korean": "수입/수출 가격 스프레드 분석",
+      "confidence": "high"
+    }
+  ]
+}

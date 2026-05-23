@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 16,
+  "tokens": {
+    "input": 8051,
+    "output": 359,
+    "thoughts": 3019
+  },
+  "cost_usd": 0.00331,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Food/Feed/Fuel/Factory",
+      "context_excerpt": "글로벌 4F(Food/Feed/Fuel/Factory) 섹터 내 최상위",
+      "suggested_korean": "식품/사료/연료/가공(Food/Feed/Fuel/Factory)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Value Pivot",
+      "context_excerpt": "패러다임 전환 (Value Pivot)",
+      "suggested_korean": "가치 피벗(Value Pivot)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "HQCF",
+      "context_excerpt": "desc: 'HQCF 혼합 의무화 수혜 기대'",
+      "suggested_korean": "고품질 카사바 가루(HQCF)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "High-Fidelity Cassava Intelligence",
+      "context_excerpt": "Loading High-Fidelity Cassava Intelligence...",
+      "suggested_korean": "고정밀 카사바 인텔리전스",
+      "confidence": "medium"
+    }
+  ]
+}

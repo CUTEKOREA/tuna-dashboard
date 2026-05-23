@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 9,
+  "tokens": {
+    "input": 3998,
+    "output": 183,
+    "thoughts": 1765
+  },
+  "cost_usd": 0.00166,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Enhanced Due Diligence",
+      "context_excerpt": "Enhanced Due Diligence 실시 권고.",
+      "suggested_korean": "강화된 실사(Enhanced Due Diligence)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "OFAC SDN",
+      "context_excerpt": "OFAC SDN + EU 통합제재목록",
+      "suggested_korean": "미국 해외자산통제국 특별지정제재대상자(OFAC SDN)",
+      "confidence": "high"
+    }
+  ]
+}

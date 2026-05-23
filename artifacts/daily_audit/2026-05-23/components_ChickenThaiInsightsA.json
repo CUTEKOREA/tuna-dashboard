@@ -1,0 +1,93 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 4085,
+    "output": 873,
+    "thoughts": 3890
+  },
+  "cost_usd": 0.00341,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Temporal Arbitrage",
+      "context_excerpt": "[Temporal Arbitrage] ①GFPT/Betagro",
+      "suggested_korean": "시간차 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "TCU",
+      "context_excerpt": "인건비 절감을 감안한 TCU는 사실상 동등합니다.",
+      "suggested_korean": "총사용비용(TCU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "LTA",
+      "context_excerpt": "GFPT/Betagro와 고정가 LTA 선도계약 즉시 체결",
+      "suggested_korean": "장기공급계약(LTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TRQ",
+      "context_excerpt": "②TRQ 0% 무관세 쿼터 Q1 선점",
+      "suggested_korean": "저율관세할당(TRQ)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Channel Priority",
+      "context_excerpt": "[Channel Priority] 1순위=프랜차이즈",
+      "suggested_korean": "채널 우선순위",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "LTA",
+      "context_excerpt": "프랜차이즈 B2B 순살 LTA, 캐시카우=편의점",
+      "suggested_korean": "장기공급계약(LTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "Repo",
+      "context_excerpt": "국내 냉동 Repo 창고에 선비축하고",
+      "suggested_korean": "환매조건부(Repo)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "VMI Lock-in",
+      "context_excerpt": "[VMI Lock-in] ①냉동창고 자본 투자",
+      "suggested_korean": "VMI 락인",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "Lock-in",
+      "context_excerpt": "③24개월 Lock-in 후 마진율 8%",
+      "suggested_korean": "락인(Lock-in)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Value Chain Analysis",
+      "context_excerpt": "Foods 2023 Value Chain Analysis",
+      "suggested_korean": "가치사슬 분석",
+      "confidence": "high"
+    }
+  ]
+}

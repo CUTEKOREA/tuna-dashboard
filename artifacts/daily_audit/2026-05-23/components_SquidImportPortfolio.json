@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2616,
+    "output": 202,
+    "thoughts": 1621
+  },
+  "cost_usd": 0.00129,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "FishStatJ Trade Flow",
+      "context_excerpt": "마스터_인덱스 & FAO FishStatJ Trade Flow / 관세청 HS코드",
+      "suggested_korean": "피시스탯제이 세계 수산물 교역 통계(FishStatJ Trade Flow)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "OEM",
+      "context_excerpt": "이 크므로, 완제품 해외 OEM 소싱 비율을 60% 이상",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "medium"
+    }
+  ]
+}

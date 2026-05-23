@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 9,
+  "tokens": {
+    "input": 2637,
+    "output": 83,
+    "thoughts": 1976
+  },
+  "cost_usd": 0.001,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Boycott",
+      "context_excerpt": "서방 Boycott 무력화 — 러시아 공장",
+      "suggested_korean": "보이콧",
+      "confidence": "high"
+    }
+  ]
+}

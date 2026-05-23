@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 6,
+  "tokens": {
+    "input": 949,
+    "output": 76,
+    "thoughts": 953
+  },
+  "cost_usd": 0.00047,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "route",
+      "widget_index": 0,
+      "violation": "Suez",
+      "context_excerpt": "2023 (Suez 통항)",
+      "suggested_korean": "수에즈",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 6109,
+    "output": 1009,
+    "thoughts": 3432
+  },
+  "cost_usd": 0.00436,
+  "violations_count": 11,
+  "violations": [
+    {
+      "field": "termTooltip",
+      "widget_index": 0,
+      "violation": "Global Megatrend",
+      "context_excerpt": "termTooltip={{ term: \"Global Megatrend\", description: \"지난 75년간",
+      "suggested_korean": "글로벌 메가트렌드",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "Thermal Shift",
+      "context_excerpt": "베링해의 거시적 수온 이동(Thermal Shift)으로 인해 러시아",
+      "suggested_korean": "수온 이동",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Geopolitical Supply Hedging",
+      "context_excerpt": "actionPlan: \"[Geopolitical Supply Hedging] 단일 어종 세계",
+      "suggested_korean": "지정학적 공급망 헤징",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip",
+      "widget_index": 1,
+      "violation": "Self-Sufficiency vs Import",
+      "context_excerpt": "termTooltip={{ term: \"Self-Sufficiency vs Import\", description: \"국산",
+      "suggested_korean": "자급률 대비 수입 의존도",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Margin Defense & Premiumization",
+      "context_excerpt": "actionPlan: \"[Margin Defense & Premiumization] 자원 회복에",
+      "suggested_korean": "마진 방어 및 프리미엄화",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip",
+      "widget_index": 2,
+      "violation": "Import Blackholes",
+      "context_excerpt": "termTooltip={{ term: \"Import Blackholes\", description: \"가장 공격적",
+      "suggested_korean": "수입 블랙홀",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "Dual-Hub Tolling Strategy",
+      "context_excerpt": "actionPlan: \"[Dual-Hub Tolling Strategy] 단순 중간 무역",
+      "suggested_korean": "이중 허브 위탁가공 전략",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip",
+      "widget_index": 3,
+      "violation": "Spread Winners",
+      "context_excerpt": "termTooltip={{ term: \"Spread Winners\", description: \"수입 단가",
+      "suggested_korean": "스프레드 우수 국가",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "Smart Factory Capex",
+      "context_excerpt": "actionPlan: \"[Smart Factory Capex] 재래식 내수용",
+      "suggested_korean": "스마트 팩토리 설비투자",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip",
+      "widget_index": 4,
+      "violation": "Price Tiers by Country",
+      "context_excerpt": "termTooltip={{ term: \"Price Tiers by Country\", description: \"Top 15",
+      "suggested_korean": "국가별 가격 등급",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 4,
+      "violation": "Bifurcated Allocation Tactical Execution",
+      "context_excerpt": "actionPlan: \"[Bifurcated Allocation Tactical Execution] 전사적 물량",
+      "suggested_korean": "이원화 물량 배정 전술 실행",
+      "confidence": "high"
+    }
+  ]
+}

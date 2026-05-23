@@ -1,0 +1,53 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 11,
+  "tokens": {
+    "input": 2373,
+    "output": 422,
+    "thoughts": 1972
+  },
+  "cost_usd": 0.00177,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "peak",
+      "context_excerpt": "어획량은 7-8월 peak(401천 톤)에서",
+      "suggested_korean": "정점(peak)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "trough",
+      "context_excerpt": "1-2월 trough(198천 톤)까지",
+      "suggested_korean": "저점(trough)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "peak",
+      "context_excerpt": "8월 peak 진입 전 5-7월",
+      "suggested_korean": "정점(peak)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "capa",
+      "context_excerpt": "콜드체인 가용 capa 사전 점검 필수",
+      "suggested_korean": "용량(capa)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Catch Statistics",
+      "context_excerpt": "WCPFC 2025 Catch Statistics + IATTC",
+      "suggested_korean": "어획 통계(Catch Statistics)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 23,
+  "tokens": {
+    "input": 6625,
+    "output": 881,
+    "thoughts": 4981
+  },
+  "cost_usd": 0.00419,
+  "violations_count": 10,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "EEZ",
+      "context_excerpt": "C국 선단이 P국·A국 EEZ 자원을 원양 조업으로",
+      "suggested_korean": "배타적 경제수역(EEZ)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Capture Production",
+      "context_excerpt": "FAO Capture Production + RFMO Records",
+      "suggested_korean": "어획 생산량",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "RFMO",
+      "context_excerpt": "Capture Production + RFMO Records (2015-2023)",
+      "suggested_korean": "지역수산관리기구(RFMO)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "ITQ",
+      "context_excerpt": "ITQ 쿼터 월별 소진율 — 조기",
+      "suggested_korean": "개별양도성할당량(ITQ)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "CAPEX",
+      "context_excerpt": "한국도 신조선 CAPEX를 대형 등급으로 격상하지",
+      "suggested_korean": "설비투자비용(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 4,
+      "violation": "CPUE",
+      "context_excerpt": "자본 투입 대비 CPUE 효율 비교 — 5배",
+      "suggested_korean": "단위노력당어획량(CPUE)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Zhoushan/Shidao",
+      "context_excerpt": "물량의 60%가 중국 Zhoushan/Shidao 경유 — 의존성",
+      "suggested_korean": "저우산/스다오",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 5,
+      "violation": "Tube/Ring",
+      "context_excerpt": "최종 상품(Tube/Ring)으로 전환 — 심각한",
+      "suggested_korean": "튜브/링",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 7,
+      "violation": "OEM",
+      "context_excerpt": "호치민/하이퐁 가공 OEM 파트너십을 확대하여",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 9,
+      "violation": "IMO",
+      "context_excerpt": "탄소 배출 규제(IMO) 한계 비용 교차점",
+      "suggested_korean": "국제해사기구(IMO)",
+      "confidence": "high"
+    }
+  ]
+}

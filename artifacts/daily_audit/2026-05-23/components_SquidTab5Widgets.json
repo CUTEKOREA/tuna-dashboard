@@ -1,0 +1,101 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 21,
+  "tokens": {
+    "input": 6526,
+    "output": 998,
+    "thoughts": 4473
+  },
+  "cost_usd": 0.00445,
+  "violations_count": 11,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "CAPEX",
+      "context_excerpt": "자동 출항 자제 알고리즘 가동 + LNG 전환선 신조 CAPEX 검토.",
+      "suggested_korean": "설비투자비(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 4,
+      "violation": "C&F",
+      "context_excerpt": "15톤이 물로 사라지는 마법 — C&F 단가에 15% 가산 필수.",
+      "suggested_korean": "운임포함인도(C&F)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 5,
+      "violation": "H&G",
+      "context_excerpt": "인건비 폭동 vs 스마트(H&G 자동화) 기기 도입 ROI",
+      "suggested_korean": "머리·내장 제거(H&G)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "수작업 인건비 누적 vs 자동화 CAPEX 회수 — 2.5년 Payback",
+      "suggested_korean": "설비투자비(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 5,
+      "violation": "Payback",
+      "context_excerpt": "수작업 인건비 누적 vs 자동화 CAPEX 회수 — 2.5년 Payback",
+      "suggested_korean": "투자회수(Payback)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "기계 도입 초기 CAPEX는 크나, 매년 급등하는 가공장",
+      "suggested_korean": "설비투자비(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 5,
+      "violation": "Payback",
+      "context_excerpt": "정확히 2.5년째 크로스(Payback) 완료.",
+      "suggested_korean": "투자회수(Payback)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "H&G",
+      "context_excerpt": "2026년 H&G 자동화 라인 도입 결의",
+      "suggested_korean": "머리·내장 제거(H&G)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "Baader 기기 분할 도입으로 CAPEX 부담 분산.",
+      "suggested_korean": "설비투자비(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 8,
+      "violation": "SKU",
+      "context_excerpt": "SKU별 연간 회전율 — 2회전 미만은",
+      "suggested_korean": "상품관리단위(SKU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "SKU",
+      "context_excerpt": "2회전 미만 SKU 자동 알림 시스템 구축",
+      "suggested_korean": "상품관리단위(SKU)",
+      "confidence": "high"
+    }
+  ]
+}

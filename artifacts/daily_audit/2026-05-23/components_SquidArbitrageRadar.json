@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 11,
+  "tokens": {
+    "input": 4999,
+    "output": 294,
+    "thoughts": 1862
+  },
+  "cost_usd": 0.00223,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "customBody",
+      "widget_index": 0,
+      "violation": "LIVE SQUID ARBITRAGE",
+      "context_excerpt": "animation: 'pulse 1.5s infinite' }} />\n            LIVE SQUID ARBITRAGE\n          </span>",
+      "suggested_korean": "실시간 오징어 차익거래",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Spread",
+      "context_excerpt": "원물 수입가 vs 가공품 수출가 Spread 차액을 B2B 트레이딩 봇처럼",
+      "suggested_korean": "스프레드(Spread)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "Sashimi Grade",
+      "context_excerpt": "특히 인도네시아-일본(Sashimi Grade) 라우트는 운송비를 제하고도",
+      "suggested_korean": "횟감용 등급(Sashimi Grade)",
+      "confidence": "high"
+    }
+  ]
+}

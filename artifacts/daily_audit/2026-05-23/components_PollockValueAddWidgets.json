@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 17,
+  "tokens": {
+    "input": 4166,
+    "output": 369,
+    "thoughts": 3245
+  },
+  "cost_usd": 0.00217,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Fisheries & Aquaculture Production Data",
+      "context_excerpt": "source: \"FAO Fisheries & Aquaculture Production Data\"",
+      "suggested_korean": "수산 및 양식 생산 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "SA / FA",
+      "context_excerpt": "매출의 생명줄입니다. SA / FA 등급 등 최상위 하이엔드",
+      "suggested_korean": "SA/FA(최고급)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Global Surimi Production & Trade Annual Index",
+      "context_excerpt": "source: \"Global Surimi Production & Trade Annual Index\"",
+      "suggested_korean": "글로벌 연육 생산 및 교역 연례 지수",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Urner Barry Seafood Market Analytics",
+      "context_excerpt": "source: \"Urner Barry Seafood Market Analytics\"",
+      "suggested_korean": "어너 배리(Urner Barry) 수산 시장 분석",
+      "confidence": "high"
+    }
+  ]
+}

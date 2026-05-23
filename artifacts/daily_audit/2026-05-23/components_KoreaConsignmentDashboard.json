@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 9746,
+    "output": 280,
+    "thoughts": 2281
+  },
+  "cost_usd": 0.00362,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "loading",
+      "widget_index": 0,
+      "violation": "Loading 3-Year Consignment Intelligence...",
+      "context_excerpt": "Loading 3-Year Consignment Intelligence...",
+      "suggested_korean": "3개년 위탁판매 분석 정보 로딩 중...",
+      "confidence": "high"
+    },
+    {
+      "field": "header",
+      "widget_index": 0,
+      "violation": "Empirical Data Verified",
+      "context_excerpt": "Empirical Data Verified",
+      "suggested_korean": "실증 데이터 검증 완료",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "2024-2026 Monthly National Consignment Intelligence by Seafood Type",
+      "context_excerpt": "2024-2026 Monthly National Consignment Intelligence by Seafood Type",
+      "suggested_korean": "2024-2026년 어종별 전국 월간 위탁판매 분석 현황",
+      "confidence": "high"
+    }
+  ]
+}

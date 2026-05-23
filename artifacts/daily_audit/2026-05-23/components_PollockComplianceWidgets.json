@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 18,
+  "tokens": {
+    "input": 4007,
+    "output": 603,
+    "thoughts": 3121
+  },
+  "cost_usd": 0.00271,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "D2C",
+      "context_excerpt": "까다로운 서방 수출 D2C 라인은 미국산 MSC 물동량",
+      "suggested_korean": "소비자 직접 판매(D2C)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "US Treasury OFAC Sanctions Index & FAS Global",
+      "context_excerpt": "US Treasury OFAC Sanctions Index & FAS Global",
+      "suggested_korean": "미 재무부 해외자산통제국(OFAC) 제재 지수 및 해외농업청(FAS) 글로벌",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Uncertified",
+      "context_excerpt": "에코 인증(Uncertified) 딱지가 없는 무인증 원물",
+      "suggested_korean": "미인증(Uncertified)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Marine Stewardship Council (MSC) Annual Survey",
+      "context_excerpt": "Marine Stewardship Council (MSC) Annual Survey",
+      "suggested_korean": "해양관리협의회(MSC) 연례 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "NOAA Fisheries IUU Biennial Report",
+      "context_excerpt": "NOAA Fisheries IUU Biennial Report",
+      "suggested_korean": "미국 국립해양대기청(NOAA) 수산청 IUU 격년 보고서",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "NOAA Alaska Fisheries Science Center (AFSC) Ecosystem Report",
+      "context_excerpt": "NOAA Alaska Fisheries Science Center (AFSC) Ecosystem Report",
+      "suggested_korean": "미국 국립해양대기청(NOAA) 알래스카 수산과학센터(AFSC) 생태계 보고서",
+      "confidence": "high"
+    }
+  ]
+}

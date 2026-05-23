@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 20,
+  "tokens": {
+    "input": 6233,
+    "output": 336,
+    "thoughts": 5054
+  },
+  "cost_usd": 0.00271,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "Sourcing",
+      "context_excerpt": "페루/칠레/오만/인도로 Sourcing 강제 다변화",
+      "suggested_korean": "소싱",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "Cash Flow",
+      "context_excerpt": "평균 입고 소요 일수 — Cash Flow 빙하기 모니터",
+      "suggested_korean": "현금 흐름",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "Cash Flow",
+      "context_excerpt": "[Cash Flow 빙하기] 남미 직수입 비중을",
+      "suggested_korean": "현금 흐름",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 9,
+      "violation": "SKU",
+      "context_excerpt": "대형마트 원물 SKU는 50% 축소.",
+      "suggested_korean": "품목 수",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 11,
+  "tokens": {
+    "input": 5824,
+    "output": 94,
+    "thoughts": 2241
+  },
+  "cost_usd": 0.00198,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "S. japonicus",
+      "context_excerpt": "프로세스 타임라인 (S. japonicus 1,328 카톤)",
+      "suggested_korean": "태평양고등어(S. japonicus)",
+      "confidence": "high"
+    }
+  ]
+}

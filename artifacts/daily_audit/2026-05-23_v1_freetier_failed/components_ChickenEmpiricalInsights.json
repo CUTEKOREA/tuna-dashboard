@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 9,
+  "tokens": {
+    "input": 3573,
+    "output": 80,
+    "thoughts": 1721
+  },
+  "cost_usd": 0.00127,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "Radar name",
+      "widget_index": 1,
+      "violation": "Conventional",
+      "context_excerpt": "name=\"브라질 육계 (Conventional)\"",
+      "suggested_korean": "일반 또는 관행",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 4286,
+    "output": 416,
+    "thoughts": 2557
+  },
+  "cost_usd": 0.00233,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "VAR",
+      "context_excerpt": "가격 예측 엔진 (VAR 모형)",
+      "suggested_korean": "벡터자기회귀(VAR)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "D2C",
+      "context_excerpt": "명란은 프리미엄 성장(D2C $10,800).",
+      "suggested_korean": "소비자 직접 판매(D2C)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 1,
+      "violation": "What-If",
+      "context_excerpt": "W-PF2 · What-If 시나리오 시뮬레이터",
+      "suggested_korean": "가상 상황(What-If)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "MSC",
+      "context_excerpt": "대체 어종 블렌딩 + 미국 MSC 전환 즉시 실행.",
+      "suggested_korean": "해양관리협의회(MSC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 1,
+      "violation": "SST",
+      "context_excerpt": "전망모형 · NOAA SST 데이터",
+      "suggested_korean": "해수면 온도(SST)",
+      "confidence": "high"
+    }
+  ]
+}

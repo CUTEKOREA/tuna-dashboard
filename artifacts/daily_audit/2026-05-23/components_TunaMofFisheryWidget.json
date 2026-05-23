@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 4286,
+    "output": 163,
+    "thoughts": 2857
+  },
+  "cost_usd": 0.00169,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "unit",
+      "widget_index": 1,
+      "violation": "Million",
+      "context_excerpt": "unit=\"(단위: USD Million)\"",
+      "suggested_korean": "백만",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "YoY",
+      "context_excerpt": "2,200/20ft(+15% YoY)로 홍해 분쟁",
+      "suggested_korean": "전년 대비",
+      "confidence": "high"
+    }
+  ]
+}

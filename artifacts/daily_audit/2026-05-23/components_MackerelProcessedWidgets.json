@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2757,
+    "output": 257,
+    "thoughts": 1611
+  },
+  "cost_usd": 0.00147,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Global Production & Non-Food Uses",
+      "context_excerpt": "FAO FishStatJ - Global Production & Non-Food Uses",
+      "suggested_korean": "글로벌 생산 및 비식용 소비",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Immediate Action Required",
+      "context_excerpt": "응이 시급합니다. (Immediate Action Required)",
+      "suggested_korean": "즉각적인 조치 필요",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Processed volume statistics",
+      "context_excerpt": "FAO FishStatJ - Processed volume statistics",
+      "suggested_korean": "가공량 통계",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 9,
+  "tokens": {
+    "input": 10834,
+    "output": 542,
+    "thoughts": 1804
+  },
+  "cost_usd": 0.00461,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "DATA SOURCE COMMAND CENTER",
+      "context_excerpt": "<h2>DATA SOURCE COMMAND CENTER <span style={{ color: '#94a3b8'",
+      "suggested_korean": "데이터 소스 통합 관제 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Silla Cashew Stress Index (KPI-Derived)",
+      "context_excerpt": "color: '#fca5a5', fontWeight: 600 }}>Silla Cashew Stress Index (KPI-Derived)</div>",
+      "suggested_korean": "신라 캐슈 스트레스 지수 (KPI 기반)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Real Data · 10 Charts · 127 Data Points",
+      "context_excerpt": "color: '#64748b' }}>FAOSTAT Real Data · 10 Charts · 127 Data Points</p>",
+      "suggested_korean": "실시간 데이터 · 10개 차트 · 127개 데이터 포인트",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Last Update",
+      "context_excerpt": "color: '#64748b', marginTop: '6px' }}>Last Update: {new Date().toLocaleTimeString()}",
+      "suggested_korean": "최종 업데이트",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "SCSI INDEX",
+      "context_excerpt": "color=\"var(--color-danger)\" />\n              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-danger)', letterSpacing: '1px' }}>SCSI INDEX</div>",
+      "suggested_korean": "SCSI 지수 (캐슈넛 스트레스 지수)",
+      "confidence": "medium"
+    }
+  ]
+}

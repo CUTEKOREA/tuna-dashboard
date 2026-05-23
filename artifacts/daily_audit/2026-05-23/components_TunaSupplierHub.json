@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 3139,
+    "output": 356,
+    "thoughts": 1424
+  },
+  "cost_usd": 0.00183,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "Open Supply Hub",
+      "context_excerpt": "Open Supply Hub(OSH) API로 6개국",
+      "suggested_korean": "오픈 서플라이 허브(Open Supply Hub)",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip",
+      "widget_index": 0,
+      "violation": "Open Supply Hub",
+      "context_excerpt": "Open Supply Hub — 전 세계 가공 시설의",
+      "suggested_korean": "오픈 서플라이 허브(Open Supply Hub)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "IUU",
+      "context_excerpt": "후보 목록 구축. IUU 어업·강제노동 리스크",
+      "suggested_korean": "불법·비보고·비규제(IUU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Open Supply Hub",
+      "context_excerpt": "Open Supply Hub (CC BY-SA) ·",
+      "suggested_korean": "오픈 서플라이 허브(Open Supply Hub)",
+      "confidence": "high"
+    }
+  ]
+}

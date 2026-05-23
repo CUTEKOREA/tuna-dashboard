@@ -1,0 +1,77 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 15,
+  "tokens": {
+    "input": 3053,
+    "output": 697,
+    "thoughts": 3019
+  },
+  "cost_usd": 0.00266,
+  "violations_count": 8,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "SRS",
+      "context_excerpt": "환경 영향이 58점으로 SRS 감염·항생제 사용량",
+      "suggested_korean": "연어 리케차 증후군(SRS)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "FCR",
+      "context_excerpt": "항생제 사용량·FCR 1.40 열위가 누적",
+      "suggested_korean": "사료효율성지표(FCR)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "안정적이지만 SIMP 대응이 진행 중입니다",
+      "suggested_korean": "수산물 수입 모니터링 프로그램(SIMP)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "OFAC",
+      "context_excerpt": "OFAC/EU 제재 대상국 지위로 강제노동",
+      "suggested_korean": "미국 해외자산통제국(OFAC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "CBAM",
+      "context_excerpt": "SIMP·EU CBAM 위반 시 거래정지",
+      "suggested_korean": "탄소국경조정제도(CBAM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "PB",
+      "context_excerpt": "대형마트 PB)에서는 노출을 축소하고",
+      "suggested_korean": "자체브랜드(PB)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "KYC",
+      "context_excerpt": "공급사 KYC 강화 및 C/O 원산지",
+      "suggested_korean": "고객확인제도(KYC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "C/O",
+      "context_excerpt": "KYC 강화 및 C/O 원산지 재검증 프로세스",
+      "suggested_korean": "원산지증명서(C/O)",
+      "confidence": "high"
+    }
+  ]
+}

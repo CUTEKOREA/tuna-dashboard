@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 5,
+  "tokens": {
+    "input": 5014,
+    "output": 95,
+    "thoughts": 1113
+  },
+  "cost_usd": 0.00174,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Korea Capture + Trade Statistics",
+      "context_excerpt": "FishStatJ - Korea Capture + Trade Statistics (2000-2",
+      "suggested_korean": "한국 어획 및 교역 통계",
+      "confidence": "high"
+    }
+  ]
+}

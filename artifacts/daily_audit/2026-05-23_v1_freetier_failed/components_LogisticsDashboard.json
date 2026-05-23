@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 26,
+  "tokens": {
+    "input": 3766,
+    "output": 334,
+    "thoughts": 5588
+  },
+  "cost_usd": 0.00196,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Global Value Chain Operation Command Center",
+      "context_excerpt": "color: 'var(--text-secondary)' }}>Global Value Chain Operation Command Center</p>",
+      "suggested_korean": "글로벌 가치 사슬 운영 통제 센터",
+      "confidence": "high"
+    },
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "Intelligence Network",
+      "context_excerpt": "source: 'Silla Co. Intelligence Network'",
+      "suggested_korean": "정보 네트워크",
+      "confidence": "high"
+    },
+    {
+      "field": "situation",
+      "widget_index": 1,
+      "violation": "CAPA",
+      "context_excerpt": "전체 CAPA 대비 가동률은 안정적인 수준입니다.",
+      "suggested_korean": "생산능력(CAPA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 5,
+      "violation": "Joint Shipment",
+      "context_excerpt": "관계사들과의 Joint Shipment 물량을 집중 구성해야",
+      "suggested_korean": "공동 선적(Joint Shipment)",
+      "confidence": "high"
+    }
+  ]
+}

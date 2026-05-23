@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 25,
+  "tokens": {
+    "input": 13982,
+    "output": 236,
+    "thoughts": 6112
+  },
+  "cost_usd": 0.00478,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "strat",
+      "widget_index": 2,
+      "violation": "ODM",
+      "context_excerpt": "직접 가공·납품하는 ODM 방식으로 전환하여",
+      "suggested_korean": "제조업자 개발생산(ODM)",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 5,
+      "violation": "Spread",
+      "context_excerpt": "①CPI-도매가 Spread가 15% 이상 확대 시",
+      "suggested_korean": "스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "strat",
+      "widget_index": 6,
+      "violation": "Zero",
+      "context_excerpt": "②적발 Zero 국가에 대해",
+      "suggested_korean": "제로(0)",
+      "confidence": "medium"
+    }
+  ]
+}

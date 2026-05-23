@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 3900,
+    "output": 177,
+    "thoughts": 1479
+  },
+  "cost_usd": 0.00161,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "Fed Rate",
+      "context_excerpt": "NOK/KRW 환율과 Fed Rate가 단기 착지원가 결정 변",
+      "suggested_korean": "미국 기준금리(Fed Rate)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "PB",
+      "context_excerpt": "이상 벌릴 경우 PB 단가 재협상 트리거",
+      "suggested_korean": "자체브랜드(PB)",
+      "confidence": "medium"
+    }
+  ]
+}

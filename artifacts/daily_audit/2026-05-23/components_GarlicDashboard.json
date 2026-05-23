@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 26,
+  "tokens": {
+    "input": 16186,
+    "output": 170,
+    "thoughts": 5879
+  },
+  "cost_usd": 0.00528,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "takeaway",
+      "widget_index": 0,
+      "violation": "WSC China Crop Report",
+      "context_excerpt": "WSC China Crop Report 기준, 중국 산둥성",
+      "suggested_korean": "WSC 중국 작물 보고서(WSC China Crop Report)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway",
+      "widget_index": 8,
+      "violation": "Risk",
+      "context_excerpt": "실사 시 중대한 Risk 감점 요인입니다.",
+      "suggested_korean": "리스크(Risk)",
+      "confidence": "high"
+    }
+  ]
+}

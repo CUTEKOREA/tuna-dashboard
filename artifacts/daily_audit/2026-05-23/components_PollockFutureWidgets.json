@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 22,
+  "tokens": {
+    "input": 7636,
+    "output": 259,
+    "thoughts": 5228
+  },
+  "cost_usd": 0.00294,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 7,
+      "violation": "Bolt-on",
+      "context_excerpt": "물류AI 기업을 저점 인수(Bolt-on).",
+      "suggested_korean": "볼트온(Bolt-on)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "TIPPING POINT",
+      "context_excerpt": "자동 절단기 임금 역전 TIPPING POINT",
+      "suggested_korean": "티핑 포인트(Tipping Point)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 9,
+      "violation": "Bottom-line",
+      "context_excerpt": "영업Bottom-line(순이익)을 흡수합니다.",
+      "suggested_korean": "최종 이익(Bottom-line)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2567,
+    "output": 256,
+    "thoughts": 1733
+  },
+  "cost_usd": 0.00141,
+  "violations_count": 3,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "size",
+      "context_excerpt": "가다랑어는 작은 size로 정형 손실이 큼.",
+      "suggested_korean": "크기",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "CapEx",
+      "context_excerpt": "절감 추정. CapEx 회수기간 18개월 시뮬레이션",
+      "suggested_korean": "설비투자비용(CapEx)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Stage 1 mock",
+      "context_excerpt": "산업통계 (Stage 1 mock)",
+      "suggested_korean": "1단계 모의 데이터",
+      "confidence": "medium"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2501,
+    "output": 104,
+    "thoughts": 1443
+  },
+  "cost_usd": 0.00101,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "ICES TAC Advisory",
+      "context_excerpt": "마스터_인덱스 & ICES TAC Advisory / 관세청",
+      "suggested_korean": "국제해양개발심의회(ICES) 총허용어획량(TAC) 권고안",
+      "confidence": "high"
+    }
+  ]
+}

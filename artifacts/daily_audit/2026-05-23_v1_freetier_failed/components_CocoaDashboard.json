@@ -1,0 +1,77 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 36,
+  "tokens": {
+    "input": 19458,
+    "output": 678,
+    "thoughts": 8275
+  },
+  "cost_usd": 0.00753,
+  "violations_count": 8,
+  "violations": [
+    {
+      "field": "COCOA_KPIS.k4.value",
+      "widget_index": 0,
+      "violation": "COGS",
+      "context_excerpt": "value: 'COGS +14%'",
+      "suggested_korean": "매출원가(COGS)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Just-in-Case",
+      "context_excerpt": "피투자사에는 'Just-in-Case' 재고 확보 모델",
+      "suggested_korean": "적기 확보(Just-in-Case)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 4,
+      "violation": "Index",
+      "context_excerpt": "파생품 마진 스프레드 (거래량 Index, 프리미엄 %)",
+      "suggested_korean": "지수(Index)",
+      "confidence": "medium"
+    },
+    {
+      "field": "title",
+      "widget_index": 8,
+      "violation": "Flow",
+      "context_excerpt": "이중 수입 넥서스 흐름도 (Flow)",
+      "suggested_korean": "흐름(Flow)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 9,
+      "violation": "Just-in-Case",
+      "context_excerpt": "...'Just-in-Case'로 재고 비축 모델을...",
+      "suggested_korean": "적기 확보(Just-in-Case)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 11,
+      "violation": "Agility",
+      "context_excerpt": "EBITDA %, Agility)",
+      "suggested_korean": "민첩성(Agility)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Husks·Pods",
+      "context_excerpt": "Husks·Pods 부산물의 테오브로민",
+      "suggested_korean": "껍질·꼬투리(Husks·Pods)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 15,
+      "violation": "Cash Cow",
+      "context_excerpt": "사료 가치 — Cash Cow 전환",
+      "suggested_korean": "현금창출원(Cash Cow)",
+      "confidence": "high"
+    }
+  ]
+}

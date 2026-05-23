@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 10,
+  "tokens": {
+    "input": 4360,
+    "output": 84,
+    "thoughts": 2305
+  },
+  "cost_usd": 0.00152,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Exposure",
+      "context_excerpt": "중국 가공 의존도(Exposure) 축소.",
+      "suggested_korean": "익스포저",
+      "confidence": "high"
+    }
+  ]
+}

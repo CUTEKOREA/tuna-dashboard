@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 8081,
+    "output": 481,
+    "thoughts": 2673
+  },
+  "cost_usd": 0.00363,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Part I",
+      "context_excerpt": "🌊 Part I — 원료 수급",
+      "suggested_korean": "제1부 (또는 파트 1)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Part II",
+      "context_excerpt": "🏭 Part II — 가공 및 생산",
+      "suggested_korean": "제2부 (또는 파트 2)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Part III",
+      "context_excerpt": "⚓ Part III — 물류 및 통관",
+      "suggested_korean": "제3부 (또는 파트 3)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Part IV",
+      "context_excerpt": "📊 Part IV — 판매 및 수요",
+      "suggested_korean": "제4부 (또는 파트 4)",
+      "confidence": "high"
+    },
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Part V",
+      "context_excerpt": "🛡️ Part V — ESG 및 지속가능성",
+      "suggested_korean": "제5부 (또는 파트 5)",
+      "confidence": "high"
+    },
+    {
+      "field": "subtitle",
+      "widget_index": 0,
+      "violation": "Loading Strategic Intelligence...",
+      "context_excerpt": "Loading Strategic Intelligence...",
+      "suggested_korean": "전략 인텔리전스를 불러오는 중...",
+      "confidence": "high"
+    }
+  ]
+}

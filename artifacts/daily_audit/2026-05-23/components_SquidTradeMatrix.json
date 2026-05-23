@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 9,
+  "tokens": {
+    "input": 4087,
+    "output": 107,
+    "thoughts": 1436
+  },
+  "cost_usd": 0.00149,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "source",
+      "widget_index": 0,
+      "violation": "FishStatJ Squid Trade Flow Matrix",
+      "context_excerpt": "source: \"FAO FishStatJ Squid Trade Flow Matrix (2023)\"",
+      "suggested_korean": "FAO 세계수산통계(FishStatJ) 오징어 무역 매트릭스",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 24,
+  "tokens": {
+    "input": 3917,
+    "output": 1565,
+    "thoughts": 4654
+  },
+  "cost_usd": 0.00509,
+  "violations_count": 17,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Dual Line Strategy",
+      "context_excerpt": "[Dual Line Strategy] GFPT/Betagro에",
+      "suggested_korean": "이중 라인 전략",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "TCU",
+      "context_excerpt": "1인분당 TCU' 기준으로 브라질산 대비",
+      "suggested_korean": "총소요비용(TCU)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "GFPT Annual Report 2023",
+      "context_excerpt": "source: 'GFPT Annual Report 2023 (일 도계",
+      "suggested_korean": "GFPT 연례보고서 2023",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Thai DLD",
+      "context_excerpt": "증설) & Thai DLD 2023 가공수율 보고서",
+      "suggested_korean": "태국 축산개발국(DLD)",
+      "confidence": "medium"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "HPAI",
+      "context_excerpt": "해상운임(10일 vs 56일)과 HPAI 청정 지위에서",
+      "suggested_korean": "고병원성 조류인플루엔자(HPAI)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 1,
+      "violation": "CBOT",
+      "context_excerpt": "사료비(CBOT)'. CBOT $4.15 저점은",
+      "suggested_korean": "시카고상품거래소(CBOT)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "Risk Hedging",
+      "context_excerpt": "[Risk Hedging] ①환율: USD 선물환",
+      "suggested_korean": "리스크 헤징",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "LTA",
+      "context_excerpt": "즉시 고정가 LTA ③중국산 덤핑",
+      "suggested_korean": "장기공급계약(LTA)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 1,
+      "violation": "GACC",
+      "context_excerpt": "중국산 덤핑: GACC 위생 부적격 이슈를",
+      "suggested_korean": "중국 해관총서(GACC)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "OIE WAHIS",
+      "context_excerpt": "source: 'OIE WAHIS, CBOT 실시간",
+      "suggested_korean": "세계동물보건기구 동물위생정보시스템(OIE WAHIS)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "BDI",
+      "context_excerpt": "실시간 선물, BDI 해상운임 지수,",
+      "suggested_korean": "발틱운임지수(BDI)",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 2,
+      "violation": "ABF",
+      "context_excerpt": "Betagro(프리미엄 ABF) + CP Foods",
+      "suggested_korean": "무항생제(ABF)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.situation",
+      "widget_index": 2,
+      "violation": "e-Traceability",
+      "context_excerpt": "Betagro: e-Traceability 2시간 이력추적",
+      "suggested_korean": "전자 이력추적(e-Traceability)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "Partner Portfolio",
+      "context_excerpt": "[Partner Portfolio] ①GFPT = 프랜차이즈",
+      "suggested_korean": "파트너 포트폴리오",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "GFPT Annual Report 2023",
+      "context_excerpt": "source: 'GFPT Annual Report 2023, Betagro",
+      "suggested_korean": "GFPT 연례보고서 2023",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Betagro IR 2023",
+      "context_excerpt": "Report 2023, Betagro IR 2023, CP Foods",
+      "suggested_korean": "Betagro IR 보고서 2023",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "CP Foods 2023 Value Chain Analysis",
+      "context_excerpt": "IR 2023, CP Foods 2023 Value Chain Analysis. NotebookLM",
+      "suggested_korean": "CP Foods 2023 가치사슬 분석 보고서",
+      "confidence": "high"
+    }
+  ]
+}

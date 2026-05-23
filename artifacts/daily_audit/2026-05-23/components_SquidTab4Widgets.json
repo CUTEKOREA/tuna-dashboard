@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 22,
+  "tokens": {
+    "input": 6753,
+    "output": 375,
+    "thoughts": 5022
+  },
+  "cost_usd": 0.00296,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 2,
+      "violation": "OEM",
+      "context_excerpt": "베트남 호치민 1차 가공 OEM 라인 100% 활용하여",
+      "suggested_korean": "주문자 상표 부착 생산(OEM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "Value Add",
+      "context_excerpt": "[Value Add] 절단·가공 라인 CAPEX",
+      "suggested_korean": "부가가치(Value Add)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 5,
+      "violation": "CAPEX",
+      "context_excerpt": "절단·가공 라인 CAPEX 투자를 최우선 순위로",
+      "suggested_korean": "설비 투자(CAPEX)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 8,
+      "violation": "ENSO/CPUE",
+      "context_excerpt": "시즌 시작 2개월 전 ENSO/CPUE 시그널 기반",
+      "suggested_korean": "엘니뇨(ENSO) 및 단위노력당 어획량(CPUE)",
+      "confidence": "high"
+    }
+  ]
+}

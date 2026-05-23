@@ -1,0 +1,61 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 26,
+  "tokens": {
+    "input": 10646,
+    "output": 519,
+    "thoughts": 5008
+  },
+  "cost_usd": 0.00449,
+  "violations_count": 6,
+  "violations": [
+    {
+      "field": "termTooltip.term",
+      "widget_index": 0,
+      "violation": "Roe D2C vs B2B Margin Spread",
+      "context_excerpt": "term: 'Roe D2C vs B2B Margin Spread'",
+      "suggested_korean": "명란 D2C 대비 B2B 마진 스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 1,
+      "violation": "Price Transfer Resistance",
+      "context_excerpt": "term: 'Price Transfer Resistance'",
+      "suggested_korean": "가격 전가 저항선",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 2,
+      "violation": "MSC Premium Spread",
+      "context_excerpt": "term: 'MSC Premium Spread'",
+      "suggested_korean": "MSC 인증 프리미엄 스프레드",
+      "confidence": "high"
+    },
+    {
+      "field": "termTooltip.term",
+      "widget_index": 3,
+      "violation": "Automation BEP Crossover",
+      "context_excerpt": "term: 'Automation BEP Crossover'",
+      "suggested_korean": "자동화 손익분기점 교차",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "SCM",
+      "context_excerpt": "인도네시아로 SCM을 옮겨 다니는",
+      "suggested_korean": "공급망 관리(SCM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 11,
+      "violation": "S-Class",
+      "context_excerpt": "최상위 등급 S-Class 원물은 반드시",
+      "suggested_korean": "최고 등급(S-Class)",
+      "confidence": "high"
+    }
+  ]
+}

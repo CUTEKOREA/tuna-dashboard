@@ -1,0 +1,53 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 14,
+  "tokens": {
+    "input": 3312,
+    "output": 414,
+    "thoughts": 2869
+  },
+  "cost_usd": 0.00203,
+  "violations_count": 5,
+  "violations": [
+    {
+      "field": "title",
+      "widget_index": 0,
+      "violation": "Trade-Down",
+      "context_excerpt": "대체 단백질 가격 (Trade-Down)",
+      "suggested_korean": "하향 구매(Trade-Down)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Execution Recommended",
+      "context_excerpt": "전략이 필수적입니다. (Execution Recommended)",
+      "suggested_korean": "실행 권장(Execution Recommended)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Trade Analytics",
+      "context_excerpt": "EUMOFA Trade Analytics [LIVE API 연동",
+      "suggested_korean": "무역 분석(Trade Analytics)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 0,
+      "violation": "Immediate Action Required",
+      "context_excerpt": "전환이 시급합니다. (Immediate Action Required)",
+      "suggested_korean": "즉각 조치 필요(Immediate Action Required)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Korea Customs Service",
+      "context_excerpt": "Korea Customs Service & KAMIS API",
+      "suggested_korean": "관세청(Korea Customs Service)",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 13,
+  "tokens": {
+    "input": 3901,
+    "output": 362,
+    "thoughts": 2752
+  },
+  "cost_usd": 0.00208,
+  "violations_count": 4,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "EUMOFA Trade Analytics",
+      "context_excerpt": "source: \"EUMOFA Trade Analytics [LIVE API 연동",
+      "suggested_korean": "유럽어업수산물시장관측기구(EUMOFA) 분석",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Eurostat COMEXT",
+      "context_excerpt": "LIVE API 연동: Eurostat COMEXT]\"",
+      "suggested_korean": "유럽연합 통계청 외역무역데이터베이스(Eurostat COMEXT)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "LIVE API",
+      "context_excerpt": "Analytics [LIVE API 연동: Eurostat",
+      "suggested_korean": "실시간 API",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "BDI & CCFI Index",
+      "context_excerpt": "LIVE API 연동: BDI & CCFI Index]\"",
+      "suggested_korean": "BDI 및 CCFI 지수",
+      "confidence": "high"
+    }
+  ]
+}

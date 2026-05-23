@@ -1,0 +1,21 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 7,
+  "tokens": {
+    "input": 4902,
+    "output": 100,
+    "thoughts": 1516
+  },
+  "cost_usd": 0.00172,
+  "violations_count": 1,
+  "violations": [
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Squid Catch by FAO Area",
+      "context_excerpt": "FAO FishStatJ Squid Catch by FAO Area (1950-2020)",
+      "suggested_korean": "해역별 오징어 어획량",
+      "confidence": "high"
+    }
+  ]
+}

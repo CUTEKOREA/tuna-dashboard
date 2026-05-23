@@ -1,0 +1,77 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 16,
+  "tokens": {
+    "input": 4235,
+    "output": 724,
+    "thoughts": 3207
+  },
+  "cost_usd": 0.00308,
+  "violations_count": 8,
+  "violations": [
+    {
+      "field": "takeaway.situation",
+      "widget_index": 0,
+      "violation": "MGO",
+      "context_excerpt": "특정 MGO 임계 유가선(예: 톤당 700불)",
+      "suggested_korean": "선박용 경유(MGO)",
+      "confidence": "medium"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "Silla Financial Operations Internal System",
+      "context_excerpt": "Silla Financial Operations Internal System & S&P Global Platts",
+      "suggested_korean": "신라 재무운영 내부 시스템",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 1,
+      "violation": "OPM",
+      "context_excerpt": "달러 고환율에 파괴되는 국내 OPM",
+      "suggested_korean": "영업이익률(OPM)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 1,
+      "violation": "Bank of Korea Exchange Rate & Corporate Finance Data",
+      "context_excerpt": "Bank of Korea Exchange Rate & Corporate Finance Data",
+      "suggested_korean": "한국은행 환율 및 기업재무 데이터",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 2,
+      "violation": "Global Marine Pharmaceuticals Valuation Intelligence",
+      "context_excerpt": "Global Marine Pharmaceuticals Valuation Intelligence",
+      "suggested_korean": "글로벌 해양 제약 가치 평가 인텔리전스",
+      "confidence": "high"
+    },
+    {
+      "field": "cardDesc",
+      "widget_index": 3,
+      "violation": "Bubble Map",
+      "context_excerpt": "대체할 블루오션의 Bubble Map",
+      "suggested_korean": "버블 차트(Bubble Map)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.actionPlan",
+      "widget_index": 3,
+      "violation": "D2C",
+      "context_excerpt": "오로지 자사 브랜딩 D2C 멸균 제품",
+      "suggested_korean": "소비자 직거래(D2C)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 3,
+      "violation": "Silla Strategy Consulting Group: 2030 Value Roadmap",
+      "context_excerpt": "Silla Strategy Consulting Group: 2030 Value Roadmap",
+      "suggested_korean": "신라 전략 컨설팅 그룹: 2030 가치 로드맵",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "model": "gemini-3.5-flash",
+  "elapsed_sec": 8,
+  "tokens": {
+    "input": 2732,
+    "output": 196,
+    "thoughts": 1450
+  },
+  "cost_usd": 0.00131,
+  "violations_count": 2,
+  "violations": [
+    {
+      "field": "cardDesc",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "FTA·SIMP·제재 정책 변화 4종 시나리오별",
+      "suggested_korean": "수입수산물 이력추적제(SIMP)",
+      "confidence": "high"
+    },
+    {
+      "field": "takeaway.source",
+      "widget_index": 0,
+      "violation": "SIMP",
+      "context_excerpt": "박혜진(2025) SIMP 대응실태 · KMI(2026)",
+      "suggested_korean": "수입수산물 이력추적제(SIMP)",
+      "confidence": "high"
+    }
+  ]
+}
