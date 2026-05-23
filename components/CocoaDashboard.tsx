@@ -50,7 +50,7 @@ const COCOA_KPIS: Record<string, any> = {
   k1: { title: '글로벌 가격 폭등률', value: '+300%', trend: '📈', desc: '역대 최고치($10K+) 돌파', source: 'ICE API' },
   k2: { title: '국내 제과 원가 상승률', value: '+42.5%', trend: '🔥', desc: '코코아/설탕가 동반 상승 타격', source: 'KAMIS/KCS API' },
   k3: { title: '가공품 마진 프리미엄', value: '2.6배', trend: '🧈', desc: '코코아 버터 품귀 현상 심화', source: 'ICCO API' },
-  k4: { title: 'DART 실시간 타격 지수', value: 'COGS +14%', trend: '📉', desc: '경쟁사(L/O사) 3분기 원가율 악화', source: 'DART API' },
+  k4: { title: 'DART 실시간 타격 지수', value: '매출원가 +14%', trend: '📉', desc: '경쟁사(L/O사) 3분기 원가율 악화', source: 'DART API' },
   k5: { title: '식약처 통관 거절률', value: '8.2%', trend: '🚨', desc: '남미산 카드뮴 허용치 초과 폐기', source: 'MFDS API' },
   k6: { title: 'EUDR 규제 리스크', value: '벌금 4%', trend: '⚖️', desc: '산림벌채 방지법(2025) 도입 임박', source: 'JRC / EFI API' },
 };
@@ -378,7 +378,7 @@ export default function CocoaDashboard() {
             source: "ICCO 분기별 회보(ICCO Quarterly Bulletin) / UN Comtrade HS 1801-1806",
           }} />
 
-        <WidgetCard title="파생품 마진 스프레드 (거래량 Index, 프리미엄 %)" icon={Scale} iconColor="#d97706" pillar="S2"
+        <WidgetCard title="파생품 마진 스프레드 (거래량 지수, 프리미엄 %)" icon={Scale} iconColor="#d97706" pillar="S2"
           cardDesc="버터·파우더 등 파생품별 거래량 + 부가가치 마진율 비교"
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
@@ -400,14 +400,14 @@ export default function CocoaDashboard() {
           }} />
 
         <WidgetCard title="실사 기반 가공 공장 인수합병 타겟" icon={Landmark} iconColor="#b45309" pillar="S2"
-          cardDesc="X: CAPEX 매력도, Y: 수율, Z: 가공 Capa — 디스트레스드 M&A 매트릭스"
+          cardDesc="X: 자본적 지출(CAPEX) 매력도, Y: 수율, Z: 가공 생산능력(Capa) — 디스트레스드 인수합병(M&A) 매트릭스"
           telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               {grid}
               <XAxis type="number" dataKey="capex" name="CAPEX 매력도" {...xAxisTextProps} />
               <YAxis type="number" dataKey="yield" name="가공 인프라 점수" {...yAxisProps} />
-              <ZAxis type="number" dataKey="capacity" range={[200, 1500]} name="가공 Capa(천톤)" />
+              <ZAxis type="number" dataKey="capacity" range={[200, 1500]} name="가공 생산능력(천톤)" />
               <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
               {cocoaData.w14_mna_radar.map((entry: any, index: number) => (
@@ -478,7 +478,7 @@ export default function CocoaDashboard() {
             source: "COCOBOD 연례 보고서 / Ghana Cocoa Processing Company (CPC) / Niche Cocoa 기업설명회 자료(IR)",
           }} />
 
-        <WidgetCard title="한국의 이중 수입 넥서스 흐름도 (Flow)" icon={Anchor} iconColor="#b45309" pillar="S3"
+        <WidgetCard title="한국의 이중 수입 넥서스 흐름도" icon={Anchor} iconColor="#b45309" pillar="S3"
           cardDesc="가나 원두 80% 편중 + 네덜란드/말레이시아 우회 가공품 — Sankey 다이어그램"
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
@@ -493,8 +493,8 @@ export default function CocoaDashboard() {
             source: "관세청(KCS) OpenAPI / UN Comtrade HS 1801-1806",
           }} />
 
-        <WidgetCard title="공급 충격 시나리오: 재고 소진율 트래커 (DIO)" icon={Shield} iconColor="#d97706" pillar="S2"
-          cardDesc="재고회전일수(DIO)(재고회전일수) + 공장 가동 중단 임계선 + 경쟁사 영업이익률(OPM) 동향"
+        <WidgetCard title="공급 충격 시나리오: 재고 소진율 트래커" icon={Shield} iconColor="#d97706" pillar="S2"
+          cardDesc="재고회전일수(DIO) + 공장 가동 중단 임계선 + 경쟁사 영업이익률(OPM) 동향"
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w6_inventory_burn_rate}>
@@ -506,7 +506,7 @@ export default function CocoaDashboard() {
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
               <Bar yAxisId="left" dataKey="재고회전일수(DIO)" fill="#d97706" name="현재 보유 재고일수(DIO)" barSize={40}>
                 {cocoaData.w6_inventory_burn_rate && cocoaData.w6_inventory_burn_rate.map((entry: any, index: number) => (
-                  <Cell key={`cell-${index}`} fill={entry.재고회전일수(DIO) < 30 ? "var(--color-danger)" : "#d97706"} />
+                  <Cell key={`cell-${index}`} fill={entry["재고회전일수(DIO)"] < 30 ? "var(--color-danger)" : "#d97706"} />
                 ))}
               </Bar>
               <Line yAxisId="left" type="step" dataKey="CriticalLine" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" name="공장 가동 중단(Red Alert) 기준선" dot={false} />
@@ -515,7 +515,7 @@ export default function CocoaDashboard() {
           }
           takeaway={{
             situation: "2023/24 시즌 글로벌 재고 대 분쇄(Stocks-to-Grindings) 비율은 46년 만의 최저치인 26.4%로 급락했으며, 뉴욕 ICE 인증 재고는 19년 만의 최저치(약 11.8만 톤)를 기록하는 등 물리적 재고 고갈이 심각합니다. 주요 수입국 기업들은 'Just-in-Case'로 재고 비축 모델을 급선회하며 운전자본(NWC) 압박을 겪고 있습니다.",
-            actionPlan: "피투자사의 재고회전일수(DIO)(재고회전일수) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다.",
+            actionPlan: "피투자사의 재고회전일수(DIO) 장기화에 대비하여 크레딧 펀드(Credit Fund)와 연계한 재고 금융(Inventory Financing) 솔루션을 제공해 자본 효율성을 높여야 합니다. 잉여 재고를 확보한 상사/벤더의 경우 단기 프리미엄 매각을 통한 특별 배당 재원 마련 전략을 실행해야 합니다.",
             source: "ICCO 분기별 회보(ICCO Quarterly Bulletin) / ICE 인증 재고 데이터 / DART 경쟁사 공시",
           }} />
 
@@ -531,7 +531,7 @@ export default function CocoaDashboard() {
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
               <Bar dataKey="BaseCost" stackId="a" fill="#64748b" name="순수 원물 가격" barSize={40} />
               <Bar dataKey="Logistics" stackId="a" fill="var(--color-info)" name="해상 물류비" />
-              <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="EUDR 컴플라이언스 텍스" />
+              <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="유럽연합 산림벌채 규정(EUDR) 준수 비용" />
             </BarChart>
           }
           takeaway={{
@@ -553,13 +553,13 @@ export default function CocoaDashboard() {
       <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         
-        <WidgetCard title="B2B CBE(대체유) 벤더 롤업 가치 평가 (EBITDA %, Agility)" icon={Scale} iconColor="#d97706" pillar="S2"
+        <WidgetCard title="기업간(B2B) 코코아 대체유(CBE) 벤더 롤업 가치 평가" icon={Scale} iconColor="#d97706" pillar="S2"
           cardDesc="대체유 벤더의 시장대응력 vs EBITDA(세전·이자·감가상각비 차감 전 이익) vs 원가부담 — 롤업 매수 매트릭스"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
-              <XAxis type="number" dataKey="Agility" name="Agility(시장대응력)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
+              <XAxis type="number" dataKey="Agility" name="시장대응력(Agility)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <YAxis type="number" dataKey="EBITDA(세전·이자·감가상각비 차감 전 이익)" name="EBITDA(세전·이자·감가상각비 차감 전 이익)(%)" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <ZAxis type="number" dataKey="CostBurden" range={[60, 400]} name="원가부담" />
               <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
