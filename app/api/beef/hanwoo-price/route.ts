@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { logApiFail, logApiSuccess, logSchemaIssue } from '@/lib/api-debug';
 
 /**
  * 한우 도매가 vs 수입육 LIVE API — W8
@@ -59,16 +60,26 @@ async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCo
     p_returntype: 'json',
   });
 
+  const label = `beef/hanwoo-price[item=${itemCode},kind=${kindCode}]`;
   const res = await fetch(`${KAMIS_BASE}?${params}`, {
     signal: AbortSignal.timeout(10000),
     next: { revalidate: 86400 },
   });
-  if (!res.ok) return {};
+  if (!res.ok) {
+    logApiFail(label, `HTTP ${res.status}`);
+    return {};
+  }
   const text = await res.text();
   let json: any;
-  try { json = JSON.parse(text); } catch { return {}; }
+  try { json = JSON.parse(text); } catch (e) {
+    logApiFail(label, 'JSON parse failed', text.slice(0, 200));
+    return {};
+  }
 
   const items = json?.data?.item || json?.items || [];
+  if (!items.length) {
+    logSchemaIssue(label, 'data.item[] non-empty', JSON.stringify(json).slice(0, 300));
+  }
   const byQ: Record<string, number[]> = {};
   for (const it of items) {
     const raw = (it.yyyy || '') + (it.regday || '');
@@ -82,6 +93,9 @@ async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCo
     const arr = byQ[q];
     result[q] = Math.round(arr.reduce((a, b) => a + b, 0) / arr.length);
   });
+  if (Object.keys(result).length > 0) {
+    logApiSuccess(label, `${Object.keys(result).length} quarters`);
+  }
   return result;
 }
 

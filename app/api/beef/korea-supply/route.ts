@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { logApiFail, logApiSuccess, logSchemaIssue } from '@/lib/api-debug';
 
 /**
  * 한국 소고기 수급 구조 LIVE API — W7
@@ -47,10 +48,19 @@ async function fetchKosisMeat(): Promise<typeof FALLBACK | null> {
       signal: AbortSignal.timeout(10000),
       next: { revalidate: 86400 * 7 },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      logApiFail('beef/korea-supply', `HTTP ${res.status}`, await res.text().catch(() => ''));
+      return null;
+    }
     const json = await res.json();
-    if (!Array.isArray(json) || !json.length) return null;
-    if (json[0]?.err) return null;
+    if (!Array.isArray(json) || !json.length) {
+      logSchemaIssue('beef/korea-supply', 'array with rows', json);
+      return null;
+    }
+    if (json[0]?.err) {
+      logApiFail('beef/korea-supply', 'KOSIS err', JSON.stringify(json[0]));
+      return null;
+    }
 
     // 연도별 production/imports/perCapita 매핑 시도
     const byYear: Record<string, any> = {};
@@ -66,7 +76,11 @@ async function fetchKosisMeat(): Promise<typeof FALLBACK | null> {
     });
 
     const years = Object.keys(byYear).sort();
-    if (years.length < 5) return null;
+    if (years.length < 5) {
+      logSchemaIssue('beef/korea-supply', '≥5 years parsed', `got ${years.length} years; sample row: ${JSON.stringify(json[0]).slice(0, 200)}`);
+      return null;
+    }
+    logApiSuccess('beef/korea-supply', `${years.length} years from ${years[0]} to ${years[years.length - 1]}`);
 
     return years.map(y => {
       const r = byYear[y];
@@ -81,7 +95,8 @@ async function fetchKosisMeat(): Promise<typeof FALLBACK | null> {
         selfRate,
       };
     });
-  } catch {
+  } catch (e) {
+    logApiFail('beef/korea-supply', 'exception', String(e));
     return null;
   }
 }
