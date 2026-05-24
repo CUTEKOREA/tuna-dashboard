@@ -6,6 +6,26 @@ import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield, Factory, Truck, L
 import WidgetCard from './WidgetCard';
 import * as D from './beefData';
 
+// USDA NASS LIVE 데이터 hook (W3 도축장 가동률)
+function useNassSlaughter() {
+  const [state, setState] = useState<{
+    data: typeof D.slaughterData;
+    isLive: boolean;
+    source: string;
+  }>({ data: D.slaughterData, isLive: false, source: 'USDA NASS + MLA 정적 캐시' });
+
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/beef/slaughter-rate', { signal: AbortSignal.timeout(20000) })
+      .then(r => r.json())
+      .then(d => { if (alive && d.data) setState(d); })
+      .catch(() => { /* fallback 유지 */ });
+    return () => { alive = false; };
+  }, []);
+
+  return state;
+}
+
 // FAOSTAT LIVE 데이터 공용 hook (W1+W2 통합 endpoint)
 function useFaostatProduction() {
   const [state, setState] = useState<{
@@ -108,16 +128,21 @@ export function W2_Top5Producers({ accent }: any) {
 }
 
 export function W3_SlaughterUtil({ accent }: any) {
+  const { data, isLive, source } = useNassSlaughter();
+  const latest = data[data.length - 1];
+  const first = data[0];
+  const auDelta = latest.auUtil - first.auUtil;
   return <W title="호주·미국 도축장 가동률 + 도체중" icon={Factory} accent={accent} pillar="S2"
-    sub="미국·호주 주요 도축장 가동률(%) + 평균 도체중(kg) 추이 | 미국 농업통계국(USDA NASS) + 호주 축산공사(MLA) 2024-2025"
-    telemetry="USDA NASS + MLA 2024-2025"
-    sit="호주 가동률이 2024-Q1 72% → 2025-Q1 83%로 급등 — 미·호 사이클 역전. 도체중은 양국 모두 +1% 안팎 증가, 효율성 일관."
+    status={isLive ? 'LIVE' : 'STATIC'}
+    sub="미국·호주 주요 도축장 가동률(%) + 평균 도체중(kg) 추이 | 미국 농업통계국(USDA NASS) + 호주 축산공사(MLA)"
+    telemetry={isLive ? 'NASS QuickStats (1d 캐시)' : 'USDA NASS + MLA 정적'}
+    sit={`호주 가동률이 ${first.month} ${first.auUtil}% → ${latest.month} ${latest.auUtil}% ${auDelta > 0 ? '급등' : '감소'} — 미·호 사이클 ${auDelta > 5 ? '역전' : '안정'}. 미국 최신 ${latest.usUtil}% / 호주 ${latest.auUtil}%, 도체중 미 ${latest.usCarcassKg}kg / 호 ${latest.auCarcassKg}kg.`}
     strat="2025년 호주 공급 사이클 정점 진입. 24-Q1~Q3 호주산 장기 선도 계약 체결로 단가 4-6% 절감 가능."
-    source="미국 농업통계국(USDA NASS) Slaughter + 호주 축산공사(MLA) Industry Stats">
-    <ComposedChart data={D.slaughterData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    source={source}>
+    <ComposedChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
-      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[60, 90]} />
-      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[300, 380]} />
+      <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[60, 100]} />
+      <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[300, 400]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Bar yAxisId="left" dataKey="usUtil" name="미국 가동률 (%)" fill="#dc2626" radius={[4, 4, 0, 0]} />
       <Bar yAxisId="left" dataKey="auUtil" name="호주 가동률 (%)" fill="#e11d48" radius={[4, 4, 0, 0]} />
