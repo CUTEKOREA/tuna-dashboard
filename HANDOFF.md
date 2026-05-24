@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐂 **2026-05-24 — BeefDashboard 신규 commodity 추가**:
+> - **위젯 11개** (Pork 동일 구조, 5-Pillar 매핑) — S1 원료(W1,W2) · S2 가공(W3,W4) · S3 물류(W5,W6) · S4 판매(W7,W8,W9) · S5 ESG(W10,W11)
+> - **시그니처 그라디언트**: `red → rose → amber` (#dc2626 → #e11d48 → #f59e0b, 한우 마블링 컨셉)
+> - **아이콘**: Lucide `Beef`, 사이드바 위치: Chicken → Pork → **Beef**
+> - **데이터 출처**: FAOSTAT QCL Item 867 + USDA NASS Slaughter + MLA Industry Stats + UN Comtrade HS 0201/0202 + KCS TM + KOSIS/KREI + KAMIS + WOAH WAHIS + FAO LEAP + USDA AMS + Nielsen
+> - **KPI 6개**: 글로벌 생산 73,862천톤 / 한국 1인당 14.5kg / 수입 521천톤 (미·호 83.7%) / 한우 vs 호주 1.94배 / 탄소 99.5kg / 자급률 36.9%
+> - **L-03 빌드 통과** ✓
+> - **다음**: 시각 검증 (`npm run dev` → sidebar "소고기 (Beef)") · LIVE API 연동 후속 (USDA PSD + WOAH WAHIS API)
+>
 > 🟢 **2026-05-23 — Librarian 일간 audit 전수 가동 완료 (3.5 Flash, Tier 1 paid)**:
 > - **전체**: 122 파일 / 546 위반 / $0.329 / **에러 0** / ~32분 (1929s)
 > - **clean (위반 0건)**: 20 파일 (16%) — 평균 4.5 위반/파일
@@ -46,7 +55,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-23 (Claude Code 세션 — Librarian 122 audit 전수 완료 + Forensic Pilot 반영)
+> **마지막 업데이트**: 2026-05-24 (Claude Code 세션 — BeefDashboard 신규 commodity 11 위젯 추가)
 
 ---
 

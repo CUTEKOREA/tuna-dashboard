@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import CountUp from 'react-countup';
-import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Search, FlaskConical , ScanSearch, Box, FlaskRound, Map, TestTube} from 'lucide-react';
+import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Search, FlaskConical , ScanSearch, Box, FlaskRound, Map, TestTube} from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useRouter, usePathname } from 'next/navigation';
 import { playVHFRadioChatter } from '../lib/audio';
@@ -48,6 +48,7 @@ const CarrotDashboard = dynamic(() => import('../components/CarrotDashboard'));
 const CocoaDashboard = dynamic(() => import('../components/CocoaDashboard'));
 const ChickenDashboard = dynamic(() => import('../components/ChickenDashboard'));
 const PorkDashboard = dynamic(() => import('../components/PorkDashboard'));
+const BeefDashboard = dynamic(() => import('../components/BeefDashboard'));
 const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
@@ -165,7 +166,7 @@ export default function Home() {
       'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
       'squid': '오징어', 'jukkumi': '주꾸미', 'pollock': '명태', 'shrimp': '새우', 'salmon': '연어',
       'ranching': '참다랑어 축양', 'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓', 'cold-storage': '냉동창고',
-      'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근', 'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'pork': '돼지고기', 'whelk': '골뱅이', 'used-car': '중고차', 'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스', 'research-lab': '연구 재료',
+      'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근', 'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'pork': '돼지고기', 'beef': '소고기', 'whelk': '골뱅이', 'used-car': '중고차', 'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스', 'research-lab': '연구 재료',
     };
     document.title = `${titles[activeMenu] || activeMenu} | 참치왕국`;
   }, [activeMenu]);
@@ -669,6 +670,14 @@ export default function Home() {
           <span>돼지고기 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Pork)</span></span>
         </button>
 
+        <button
+          className={`${styles.menuItem} ${activeMenu === 'beef' ? styles.menuItemActive : ''}`}
+          onClick={() => { handleMenuClick('beef'); setIsMobileSidebarOpen(false); }}
+        >
+          <Beef size={18} />
+          <span>소고기 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Beef)</span></span>
+        </button>
+
         <div style={{ flex: 1 }} />
 
         <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🛠 도구</div>
@@ -844,6 +853,10 @@ export default function Home() {
 
               <KeepAlivePanel active={activeMenu === 'pork'}>
                 <PorkDashboard />
+              </KeepAlivePanel>
+
+              <KeepAlivePanel active={activeMenu === 'beef'}>
+                <BeefDashboard />
               </KeepAlivePanel>
 
               <KeepAlivePanel active={activeMenu === 'used-car'}>
