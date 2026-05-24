@@ -1,5 +1,15 @@
 # HANDOFF — 현재 작업 상태
 
+> ♿ **2026-05-24 — A8 색맹 대비 codemod **전체 commodity 18 종 完적용** (누계 96 파일, ~250+ Bar)**:
+> - **스크립트 개선** (`scripts/fix_a11y_charts.py`): BarChart\b 단어 경계 (BarChart2/3 Lucide 아이콘 오탐 차단) + 멀티라인 opening tag 지원 + self-closing 자동 skip
+> - **Low 8 commodity** 일괄 적용:
+>   - Tuna 30+ widget files (Dashboard·Insights·Operational·Trade·Ranching 등)
+>   - Mangosteen / Cashew / Cassava / Garlic / Carrot / Jukkumi (단일-Bar 위젯 포함)
+>   - Whelk / 잔여 Mackerel·Pollock·Salmon 위젯 / Market·PetFood·UsedCar·Fleet 보조 dashboard
+> - **누계** (3 phase 통합): 18 commodity + 보조 dashboard = 96 component 파일
+> - **WCAG 2.1 SC 1.4.1** (Use of Color) **전사 준수 완료**
+> - L-03 빌드 통과 ✓ (4.0s, 117 정적 페이지 OK)
+>
 > ♿ **2026-05-24 — A8 색맹 대비 codemod Mid 4종 추가 확산 (40 파일, ~150 Bar)**:
 > - **신설 스크립트** `scripts/fix_a11y_charts.py` (L-07 패턴): import 자동 추가 + `<ChartPatternDefs />` 자동 삽입 + Bar fill→pattern URL 변환 (per-chart 인덱스 로테이션, Cell-loop 자동 skip)
 > - **Squid**: Dashboard 렌더러 + 18 widget files (Tab1-5 + 13 individual widgets)
