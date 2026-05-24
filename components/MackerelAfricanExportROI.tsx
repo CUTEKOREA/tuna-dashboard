@@ -4,6 +4,7 @@ import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { Target } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_african_export_roi.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelAfricanExportROI() {
   const data = rawData as any[];
@@ -11,6 +12,7 @@ export default function MackerelAfricanExportROI() {
   const ChartObj = (
     <div style={{ height: '250px', width: '100%' }}>
       <ComposedChart data={data} margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
         <XAxis dataKey="m" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
         <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`$${v}`} tick={{ fill: 'var(--color-danger)', fontSize: 10 }} />

@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const vesselData = [
   {
@@ -610,6 +611,7 @@ export default function FalklandSquidDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
           chart={
             <ComposedChart data={companyData.slice(0, 8)} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
               <XAxis dataKey="name" stroke="var(--text-secondary)" fontSize={11} angle={0} textAnchor="middle" height={60} />
               <YAxis yAxisId="left" stroke="var(--text-secondary)" fontSize={12} tickFormatter={(val) => `${Math.round(val/1000)}t`} />
@@ -618,7 +620,7 @@ export default function FalklandSquidDashboard() {
                 contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
               />
               <Legend />
-              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="var(--color-secondary)" radius={[4, 4, 0, 0]} />
+              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="url(#a11y-stripe-h)" color="var(--color-secondary)" radius={[4, 4, 0, 0]} />
               <Line yAxisId="right" type="monotone" dataKey="vessels" name="선박 수(척)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5 }} />
             </ComposedChart>
           }

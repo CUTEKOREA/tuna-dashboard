@@ -17,6 +17,7 @@ import WidgetCard from './WidgetCard';
 import oecExportData from '../data/mangosteen_oec_export.json';
 import oecImportData from '../data/mangosteen_oec_import.json';
 import krExportData from '../data/mangosteen_kr_export.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -325,13 +326,14 @@ export default function MangosteenDashboard() {
           chartHeight={375}
           chart={
             <ComposedChart data={productionVsTradeData} layout="vertical" margin={{ left: 50 }}>
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="country" type="category" {...yAxisProps} width={80} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="production" name="생산량 (톤)" fill="#475569" radius={[0, 4, 4, 0]} barSize={15} />
-              <Bar dataKey="export" name="수출량 (톤)" fill="#f97316" radius={[0, 4, 4, 0]} barSize={15} />
+              <Bar dataKey="production" name="생산량 (톤)" fill="url(#a11y-stripe-h)" color="#475569" radius={[0, 4, 4, 0]} barSize={15} />
+              <Bar dataKey="export" name="수출량 (톤)" fill="url(#a11y-diag)" color="#f97316" radius={[0, 4, 4, 0]} barSize={15} />
             </ComposedChart>
           }
           takeaway={{
@@ -351,13 +353,14 @@ export default function MangosteenDashboard() {
           chartHeight={375}
           chart={
             <ComposedChart data={climateYieldData}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="year" {...xAxisProps} />
               <YAxis yAxisId="left" domain={[60, 100]} {...yAxisProps} label={{ value: '검역 통과 수율 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
               <YAxis yAxisId="right" orientation="right" domain={[-2, 2]} {...yAxisProps} label={{ value: '기후 지수', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar yAxisId="right" dataKey="oni" name="기후 지수" fill="#64748b" fillOpacity={0.5} barSize={20} />
+              <Bar yAxisId="right" dataKey="oni" name="기후 지수" fill="url(#a11y-stripe-h)" color="#64748b" fillOpacity={0.5} barSize={20} />
               <Line yAxisId="left" type="monotone" dataKey="yield" name="검역 통과 수율(%)" stroke="#f97316" strokeWidth={3} dot={{ r: 5 }} />
             </ComposedChart>
           }
@@ -443,14 +446,15 @@ export default function MangosteenDashboard() {
           chartHeight={375}
           chart={
             <BarChart data={packagingData}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="year" {...xAxisProps} />
               <YAxis {...yAxisProps} label={{ value: '비용 비중 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="원물" stackId="a" name="원물 비용" fill="#64748b" barSize={40} />
-              <Bar dataKey="인건비" stackId="a" name="인건비" fill="#c026d3" />
-              <Bar dataKey="라벨링패키징" name="패키징 규제 비용" stackId="a" fill="#f97316" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="원물" stackId="a" name="원물 비용" fill="url(#a11y-stripe-h)" color="#64748b" barSize={40} />
+              <Bar dataKey="인건비" stackId="a" name="인건비" fill="url(#a11y-diag)" color="#c026d3" />
+              <Bar dataKey="라벨링패키징" name="패키징 규제 비용" stackId="a" fill="url(#a11y-dots)" color="#f97316" radius={[4, 4, 0, 0]} />
             </BarChart>
           }
           takeaway={{
@@ -515,13 +519,14 @@ export default function MangosteenDashboard() {
           chartHeight={375}
           chart={
             <ComposedChart data={logisticsData} layout="vertical" margin={{ left: 30 }}>
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="mode" type="category" {...yAxisProps} width={100} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="cost" name="운송 단가 ($/kg)" fill="#64748b" radius={[0, 4, 4, 0]} barSize={20} />
-              <Bar dataKey="netYield" name="유효 수율 (%)" fill="var(--color-success)" radius={[0, 4, 4, 0]} barSize={20} />
+              <Bar dataKey="cost" name="운송 단가 ($/kg)" fill="url(#a11y-stripe-h)" color="#64748b" radius={[0, 4, 4, 0]} barSize={20} />
+              <Bar dataKey="netYield" name="유효 수율 (%)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} barSize={20} />
             </ComposedChart>
           }
           takeaway={{
@@ -541,13 +546,14 @@ export default function MangosteenDashboard() {
           chartHeight={375}
           chart={
             <BarChart data={rcepArbitrageData} layout="vertical" margin={{ left: 0 }}>
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="route" type="category" {...yAxisProps} width={120} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="tariff" name="관세율 (%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} barSize={12} />
-              <Bar dataKey="margin" name="최종 마진율 (%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} barSize={12} />
+              <Bar dataKey="tariff" name="관세율 (%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} barSize={12} />
+              <Bar dataKey="margin" name="최종 마진율 (%)" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[0, 4, 4, 0]} barSize={12} />
             </BarChart>
           }
           takeaway={{
@@ -567,13 +573,14 @@ export default function MangosteenDashboard() {
           chartHeight={375}
           chart={
             <ComposedChart data={fxMarginData}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
               <YAxis yAxisId="left" domain={[30, 45]} {...yAxisProps} label={{ value: '환율 (원/바트)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
               <YAxis yAxisId="right" orientation="right" domain={[0, 35]} {...yAxisProps} label={{ value: '최종 마진 (%)', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar yAxisId="right" dataKey="마진" name="마진율 (%)" fill="#10b981" barSize={20} radius={[4, 4, 0, 0]} />
+              <Bar yAxisId="right" dataKey="마진" name="마진율 (%)" fill="url(#a11y-stripe-h)" color="#10b981" barSize={20} radius={[4, 4, 0, 0]} />
               <Line yAxisId="left" type="monotone" dataKey="환율" name="바트화 환율(원)" stroke="#facc15" strokeWidth={3} dot={{ r: 4 }} />
             </ComposedChart>
           }
@@ -602,13 +609,14 @@ export default function MangosteenDashboard() {
           telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <ComposedChart data={arbitrageData}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
               <YAxis yAxisId="left" {...yAxisProps} label={{ value: '수입량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} label={{ value: '사과 단가(원)', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 10 }} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar yAxisId="left" dataKey="mangoImport" name="망고스틴 수입(톤)" fill="#9333ea" barSize={30} radius={[4, 4, 0, 0]} />
+              <Bar yAxisId="left" dataKey="mangoImport" name="망고스틴 수입(톤)" fill="url(#a11y-stripe-h)" color="#9333ea" barSize={30} radius={[4, 4, 0, 0]} />
               <Line yAxisId="right" type="step" dataKey="applePrice" name="사과 단가(원)" stroke="var(--color-warning)" strokeWidth={2} />
             </ComposedChart>
           }
@@ -623,6 +631,7 @@ export default function MangosteenDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <BarChart data={bilateralReExportData} layout="vertical" margin={{ left: 140 }}>
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="flow" type="category" {...yAxisProps} width={130} />
@@ -646,13 +655,14 @@ export default function MangosteenDashboard() {
           telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <ComposedChart data={krExportData}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="month" {...xAxisProps} />
               <YAxis yAxisId="left" {...yAxisProps} label={{ value: '수출량 (kg)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 11 }} />
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} label={{ value: '단가 ($/kg)', angle: 90, position: 'insideRight', fill: '#94a3b8', fontSize: 11 }} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar yAxisId="left" dataKey="weight_kg" name="수출 물량(kg)" fill="#c026d3" barSize={15} radius={[2, 2, 0, 0]} />
+              <Bar yAxisId="left" dataKey="weight_kg" name="수출 물량(kg)" fill="url(#a11y-stripe-h)" color="#c026d3" barSize={15} radius={[2, 2, 0, 0]} />
               <Line yAxisId="right" type="step" dataKey="unit_price" name="수출 단가($/kg)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} />
             </ComposedChart>
           }
@@ -700,13 +710,14 @@ export default function MangosteenDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <ComposedChart data={upcyclingData} layout="vertical" margin={{ left: 0 }}>
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisProps} />
               <YAxis dataKey="scenario" type="category" {...yAxisProps} width={130} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="revenue" name="매출 추정액" fill="#a3e635" barSize={15} />
-              <Bar dataKey="rindDisposalCost" name="껍질 폐기비용" fill="var(--color-danger)" barSize={15} />
+              <Bar dataKey="revenue" name="매출 추정액" fill="url(#a11y-stripe-h)" color="#a3e635" barSize={15} />
+              <Bar dataKey="rindDisposalCost" name="껍질 폐기비용" fill="url(#a11y-diag)" color="var(--color-danger)" barSize={15} />
               <Line dataKey="netMargin" name="최종 넷마진" stroke="var(--text-primary)" strokeWidth={3} dot={{ r: 5 }} />
             </ComposedChart>
           }

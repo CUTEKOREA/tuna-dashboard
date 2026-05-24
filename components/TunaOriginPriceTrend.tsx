@@ -12,6 +12,7 @@ import React from 'react';
 import { MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // ─── 정적 mock 데이터 (Stage 0 한정) ─────────────────────────────────────────
 // 단위: 원/kg
@@ -59,6 +60,7 @@ const TunaOriginPriceTrend = () => (
     chartHeight={300}
     chart={
       <BarChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+        <ChartPatternDefs />
         <defs>
           <linearGradient id="tunaOriginPriceGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#22d3ee" />
@@ -77,7 +79,7 @@ const TunaOriginPriceTrend = () => (
           tickFormatter={(v) => v.toLocaleString()}
         />
         <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
-        <Bar dataKey="price" fill="url(#tunaOriginPriceGradient)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="price" fill="url(#a11y-stripe-h)" color="url(#tunaOriginPriceGradient)" radius={[4, 4, 0, 0]} />
       </BarChart>
     }
     takeaway={{

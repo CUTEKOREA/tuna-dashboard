@@ -3,6 +3,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Composed
 import { Factory } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/salmonInsightAutomationYield.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SalmonInsightAutomationYield() {
   return (
@@ -16,6 +17,7 @@ export default function SalmonInsightAutomationYield() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="var(--color-success)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />

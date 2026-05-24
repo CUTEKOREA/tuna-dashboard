@@ -41,6 +41,7 @@ export function InsightTimeGapArbitrage() {
       chartHeight={320}
       chart={
         <ComposedChart data={arbitrageData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="spreadGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#ef4444" stopOpacity={0.6} />
@@ -120,6 +121,7 @@ export function InsightVMILockin() {
       chartHeight={320}
       chart={
         <ComposedChart data={vmiLockData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="retGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.6} />

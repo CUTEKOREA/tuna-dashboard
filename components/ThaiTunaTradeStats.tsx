@@ -19,6 +19,7 @@ import { motion } from 'framer-motion';
 import tradeData from '../data/thai_tuna_trade_summary.json';
 import TakeawayBox from './TakeawayBox';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const COLORS = ['var(--color-info)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6'];
 
@@ -73,12 +74,13 @@ export default React.memo(function ThaiTunaTradeStats() {
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={tradeData.yearly_totals}>
+                <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
                 <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickMargin={10} />
                 <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => (val / 1000).toFixed(0) + 'k'} />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
-                <Bar name="수입 (Imports)" dataKey="imports" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={40} opacity={0.6} isAnimationActive={false} />
+                <Bar name="수입 (Imports)" dataKey="imports" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} barSize={40} opacity={0.6} isAnimationActive={false} />
                 <Line name="수출 (Exports)" type="monotone" dataKey="exports" stroke="var(--color-success)" strokeWidth={3} dot={{ fill: 'var(--color-success)', r: 4 }} isAnimationActive={false} />
               </ComposedChart>
             </SafeResponsiveContainer>
@@ -112,6 +114,7 @@ export default React.memo(function ThaiTunaTradeStats() {
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={tradeData.top_commodities_2023} layout="vertical" margin={{ left: 20, right: 30 }}>
+                <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
                 <XAxis type="number" hide />
                 <YAxis 

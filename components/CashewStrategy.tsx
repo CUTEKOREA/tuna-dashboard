@@ -17,6 +17,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './CashewStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // CashewStrategy section/dynamic widgets용 공통 wrapper — WidgetCard 호출 일원화
 const renderCashewWidget = (opts: {
@@ -195,6 +196,7 @@ export default function CashewStrategy() {
       case "Bar":
         return (
           <BarChart data={d} layout={d.length >= 10 ? "vertical" : "horizontal"} margin={chartMargin}>
+            <ChartPatternDefs />
             {grid}
             {d.length >= 10 ? (
               <>
@@ -207,7 +209,7 @@ export default function CashewStrategy() {
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill:'rgba(255,255,255,0.04)'}} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
-              <Bar key={i} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.85} />
+              <Bar key={i} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[4,4,0,0]} fillOpacity={0.85} />
             ))}
           </BarChart>
         );
@@ -226,6 +228,7 @@ export default function CashewStrategy() {
       case "Composed":
         return (
           <ComposedChart data={d} margin={chartMargin}>
+            <ChartPatternDefs />
             {grid}{xAxis}
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
             {w.lines?.some((l:any) => l.yAxisId === 'right' || !l.yAxisId) && (
@@ -234,7 +237,7 @@ export default function CashewStrategy() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
-              <Bar yAxisId={b.yAxisId || "left"} key={`b${i}`} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.8} />
+              <Bar yAxisId={b.yAxisId || "left"} key={`b${i}`} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[4,4,0,0]} fillOpacity={0.8} />
             ))}
             {w.lines?.map((l:any,i:number) => (
               <Line yAxisId={l.yAxisId || "right"} key={`l${i}`} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:4}} connectNulls />
@@ -444,12 +447,13 @@ export default function CashewStrategy() {
               iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: "LIVE",
               chart: (
                 <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
                   <XAxis dataKey="quarter" stroke="#64748b" tick={{fontSize:10}} />
                   <YAxis stroke="#64748b" tick={{fontSize:9}} unit="%" />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />
-                  <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.8} />
+                  <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.8} />
                   <Line type="monotone" dataKey="directSupply" name="B2B 직공급률(%)" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{r:4}} />
                 </ComposedChart>
               ),
@@ -463,6 +467,7 @@ export default function CashewStrategy() {
               iconColor: "var(--color-warning)", pillar: "S3", telemetryStatus: "LIVE",
               chart: (
                 <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={true} vertical={false} />
                   <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} unit="%" />
                   <YAxis type="category" dataKey="factor" interval={0} width={100} stroke="#64748b" tick={{fontSize:9}} />

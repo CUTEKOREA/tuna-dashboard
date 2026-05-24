@@ -13,6 +13,7 @@ import React, { useEffect, useState } from 'react';
 import { MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 interface TunaPriceData {
   region: string;
@@ -60,6 +61,7 @@ const TunaOriginPriceTrendLive = () => {
       chartHeight={300}
       chart={
         <BarChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="tunaOriginPriceLiveGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#22d3ee" />
@@ -78,7 +80,7 @@ const TunaOriginPriceTrendLive = () => {
             tickFormatter={(v) => v.toLocaleString()}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
-          <Bar dataKey="price" fill="url(#tunaOriginPriceLiveGradient)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="price" fill="url(#a11y-stripe-h)" color="url(#tunaOriginPriceLiveGradient)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{

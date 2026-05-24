@@ -9,6 +9,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { AlertTriangle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 interface TacMonitorProps {
   tacData?: Array<{ rfmo: string; species: string; tac: number; consumed: number; pct: number; year: number; note?: string }>;
@@ -69,6 +70,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
     <div style={{ height: '200px', width: '100%', position: 'relative', zIndex: 0 }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={chartData}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
           <YAxis yAxisId="left" stroke="#94a3b8" fontSize={11} domain={[90, 140]} />
@@ -76,7 +78,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Line yAxisId="left" type="monotone" dataKey="priceIndex" name="수산물 가격 지수" stroke="#f59e0b" strokeWidth={3} />
-          <Bar yAxisId="right" dataKey="tacPressure" name="쿼터 압력 (0~100)" fill="#ef4444" fillOpacity={0.6} />
+          <Bar yAxisId="right" dataKey="tacPressure" name="쿼터 압력 (0~100)" fill="url(#a11y-stripe-h)" color="#ef4444" fillOpacity={0.6} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </div>

@@ -15,6 +15,7 @@ import {
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import FleetOperationStatus from './FleetOperationStatus';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 type ToolTab = 'fleet' | 'logistics' | 'finance' | 'esg';
 
@@ -588,12 +589,13 @@ function DroneRoiTracker() {
         <div style={{ flex: 2, height: '220px' }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20, right: 0, left: -20, bottom: 5 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
               <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} />
               <YAxis stroke="#94a3b8" fontSize={12} />
               <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
-              <Bar dataKey="drySet" name="공치기 확률 (%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} barSize={40} />
-              <Bar dataKey="fuelWaste" name="낭비 연료(MT/월)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} barSize={40} />
+              <Bar dataKey="drySet" name="공치기 확률 (%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} barSize={40} />
+              <Bar dataKey="fuelWaste" name="낭비 연료(MT/월)" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[4, 4, 0, 0]} barSize={40} />
             </BarChart>
           </SafeResponsiveContainer>
         </div>
@@ -1060,6 +1062,7 @@ function ByproductUpcycleTracker() {
       <div style={{ height: '220px', marginBottom: '1.5rem', padding: '0 10px' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 30, left: 10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.05)" />
             <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(val) => `$${val}`} />
             <YAxis dataKey="name" type="category" stroke="#94a3b8" fontSize={11} width={90} />
@@ -1067,7 +1070,7 @@ function ByproductUpcycleTracker() {
               contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} 
               formatter={(value, name) => [`$${value}`, name === 'profit' ? '단순 수익' : '폐기 비용']} 
             />
-            <Bar dataKey="cost" stackId="a" fill="var(--color-danger)" radius={[4, 0, 0, 4]} barSize={20} />
+            <Bar dataKey="cost" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 0, 0, 4]} barSize={20} />
             <Bar dataKey="profit" stackId="a" radius={[0, 4, 4, 0]} barSize={20}>
               {chartData.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />

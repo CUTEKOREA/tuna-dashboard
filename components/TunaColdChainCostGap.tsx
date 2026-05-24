@@ -12,6 +12,7 @@ import React from 'react';
 import { Truck } from 'lucide-react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // ─── 정적 mock 데이터 (Stage 1 한정) ─────────────────────────────────────────
 // 단위: 만원/MT (Bar=해상, Line=항공)
@@ -60,6 +61,7 @@ const TunaColdChainCostGap = () => (
     chartHeight={300}
     chart={
       <ComposedChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+        <ChartPatternDefs />
         <defs>
           <linearGradient id="tunaColdChainBarGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#22d3ee" />
@@ -95,7 +97,7 @@ const TunaColdChainCostGap = () => (
             </span>
           )}
         />
-        <Bar yAxisId="sea" dataKey="sea" fill="url(#tunaColdChainBarGradient)" radius={[4, 4, 0, 0]} barSize={32} />
+        <Bar yAxisId="sea" dataKey="sea" fill="url(#a11y-stripe-h)" color="url(#tunaColdChainBarGradient)" radius={[4, 4, 0, 0]} barSize={32} />
         <Line yAxisId="air" type="monotone" dataKey="air" stroke="#f59e0b" strokeWidth={2} dot={{ fill: '#f59e0b', r: 4, strokeWidth: 0 }} />
       </ComposedChart>
     }

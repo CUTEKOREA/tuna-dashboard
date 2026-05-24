@@ -7,6 +7,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import { ArrowUpRight } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const data = [
   { name: '한국', rate: 19.5 },
@@ -39,6 +40,7 @@ export default function TunaBioUpcyclingGap() {
       chartHeight={280}
       chart={
         <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
           <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickMargin={10} angle={0} textAnchor="middle" height={60} />
           <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />

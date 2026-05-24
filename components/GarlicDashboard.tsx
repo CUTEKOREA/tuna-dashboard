@@ -13,6 +13,7 @@ import styles from './TunaOperationalInsights.module.css';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 
 
@@ -368,6 +369,7 @@ export default function GarlicDashboard() {
             telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
               <ComposedChart data={i1Data}>
+                <ChartPatternDefs />
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} />
                 <YAxis yAxisId="left" domain={["auto", "auto"]} {...yAxisProps} />
@@ -404,13 +406,14 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w3Data} layout="vertical">
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisTextProps} />
               <YAxis dataKey="year" type="category" width={80} {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="Fresh" stackId="a" fill="#ca8a04" name="신선/식용 (%)" />
-              <Bar dataKey="Processed" stackId="a" fill="#65a30d" name="가공용 (%)" />
+              <Bar dataKey="Fresh" stackId="a" fill="url(#a11y-stripe-h)" color="#ca8a04" name="신선/식용 (%)" />
+              <Bar dataKey="Processed" stackId="a" fill="url(#a11y-diag)" color="#65a30d" name="가공용 (%)" />
             </BarChart>
           }
           takeaway={{
@@ -424,13 +427,14 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={w4Data}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="category" {...xAxisTextProps} />
               <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}`} />
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar yAxisId="left" dataKey="Price_USD_MT" fill="#ca8a04" name="공급 단가(USD/MT)" />
+              <Bar yAxisId="left" dataKey="Price_USD_MT" fill="url(#a11y-stripe-h)" color="#ca8a04" name="공급 단가(USD/MT)" />
               <Line yAxisId="right" type="monotone" dataKey="Margin" stroke="#65a30d" strokeWidth={2} name="영업 마진율(%)" />
             </ComposedChart>
           }
@@ -446,6 +450,7 @@ export default function GarlicDashboard() {
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
               <ComposedChart data={i2Data}>
+                <ChartPatternDefs />
                 {grid}
                 <XAxis dataKey="year" {...xAxisTextProps} />
                 <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}B`} />
@@ -481,12 +486,13 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w5Data.slice(0,10)} layout="vertical">
+              <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisTextProps} />
               <YAxis dataKey="target" type="category" width={100} {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="value" fill="#d97706" name="수출 물량" radius={[0,4,4,0]} />
+              <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="#d97706" name="수출 물량" radius={[0,4,4,0]} />
             </BarChart>
           }
           takeaway={{
@@ -500,13 +506,14 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={w6Data}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="route" {...xAxisTextProps} />
               <YAxis yAxisId="left" {...yAxisProps} tickFormatter={(v)=>`$${v}`} />
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v)=>`${v}%`} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar yAxisId="left" dataKey="LandedCost" fill="#84cc16" name="최종 도착 원가(USD/MT)" />
+              <Bar yAxisId="left" dataKey="LandedCost" fill="url(#a11y-stripe-h)" color="#84cc16" name="최종 도착 원가(USD/MT)" />
               <Line yAxisId="right" type="monotone" dataKey="Tariff" stroke="var(--color-danger)" strokeWidth={2} name="관세 페널티(%)" />
             </ComposedChart>
           }
@@ -522,13 +529,14 @@ export default function GarlicDashboard() {
             telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
               <ComposedChart data={i3Data}>
+                <ChartPatternDefs />
                 {grid}
                 <XAxis dataKey="route" {...xAxisTextProps} tick={false} />
                 <YAxis yAxisId="left" {...yAxisProps} />
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="TransitDays" fill="#65a30d" name="운송 기간(일)" barSize={40} />
+                <Bar yAxisId="left" dataKey="TransitDays" fill="url(#a11y-stripe-h)" color="#65a30d" name="운송 기간(일)" barSize={40} />
                 <Line connectNulls={true} yAxisId="right" dataKey="InsurancePremium" stroke="var(--color-danger)" strokeWidth={3} name="운임 및 리스크 지수" />
               </ComposedChart>
             }
@@ -561,12 +569,13 @@ export default function GarlicDashboard() {
               <div style={{ height:'375px', width:'100%' }}>
                 <SafeResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={simulatedW12Data} layout="vertical">
+                    <ChartPatternDefs />
                     {grid}
                     <XAxis type="number" {...xAxisTextProps} />
                     <YAxis dataKey="route" type="category" width={100} {...yAxisProps} />
                     <RechartsTooltip content={<CustomTooltip />} />
                     <Legend wrapperStyle={{fontSize:'10px'}} />
-                    <Bar dataKey="FreightCost" fill="var(--color-danger)" name="환산 수입단가(천원)" barSize={20} />
+                    <Bar dataKey="FreightCost" fill="url(#a11y-stripe-h)" color="var(--color-danger)" name="환산 수입단가(천원)" barSize={20} />
                   </ComposedChart>
                 </SafeResponsiveContainer>
               </div>
@@ -618,12 +627,13 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w8Data}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="name" {...xAxisTextProps} />
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="value" fill="#facc15" name="무역 적자 추이" />
+              <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="#facc15" name="무역 적자 추이" />
             </BarChart>
           }
           takeaway={{
@@ -657,6 +667,7 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={w11Data}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="year" {...xAxisTextProps} />
               <YAxis {...yAxisProps} />
@@ -713,12 +724,13 @@ export default function GarlicDashboard() {
           telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w10Data}>
+              <ChartPatternDefs />
               {grid}
               <XAxis dataKey="name" {...xAxisTextProps} />
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="Volatility" fill="#65a30d" name="연간 생산 변동률 (%)" />
+              <Bar dataKey="Volatility" fill="url(#a11y-stripe-h)" color="#65a30d" name="연간 생산 변동률 (%)" />
             </BarChart>
           }
           takeaway={{
@@ -733,14 +745,15 @@ export default function GarlicDashboard() {
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
               <BarChart data={i5Data} layout="vertical">
+                <ChartPatternDefs />
                 {grid}
                 <XAxis type="number" {...xAxisTextProps} />
                 <YAxis dataKey="name" type="category" width={80} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="Polysaccharides" stackId="a" fill="#84cc16" name="기능성 폴리사카라이드 (45%)" />
-                <Bar dataKey="Biofuel" stackId="a" fill="#eab308" name="바이오 연료 (30%)" />
-                <Bar dataKey="EcoPackaging" stackId="a" fill="#ca8a04" name="친환경 포장재 (25%)" />
+                <Bar dataKey="Polysaccharides" stackId="a" fill="url(#a11y-stripe-h)" color="#84cc16" name="기능성 폴리사카라이드 (45%)" />
+                <Bar dataKey="Biofuel" stackId="a" fill="url(#a11y-diag)" color="#eab308" name="바이오 연료 (30%)" />
+                <Bar dataKey="EcoPackaging" stackId="a" fill="url(#a11y-dots)" color="#ca8a04" name="친환경 포장재 (25%)" />
               </BarChart>
             }
             takeaway={{

@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell, Refe
 import { Scissors } from 'lucide-react';
 import rawData from '../data/mackerel_spread.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelSpreadWinners() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -50,6 +51,7 @@ export default function MackerelSpreadWinners() {
     <div ref={chartRef} style={{ width: '100%' }}>
       {chartWidth > 0 && (
         <BarChart width={chartWidth} height={400} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 60 }} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />
           <YAxis type="category" dataKey="country" width={100} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />

@@ -4,10 +4,12 @@ import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { Snowflake } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel/mackerel_storage_turnover.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelStorageTurnover() {
   const chart = (
     <ComposedChart data={rawData} margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
+      <ChartPatternDefs />
       <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
       <XAxis dataKey="p" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
       <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />

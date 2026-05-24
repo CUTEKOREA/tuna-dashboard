@@ -9,10 +9,10 @@
  *
  *   <BarChart data={data}>
  *     <ChartPatternDefs />
- *     <Bar dataKey="A" fill={getPatternFill('stripe-h', '#0ea5e9')} />
- *     <Bar dataKey="B" fill={getPatternFill('dots', '#10b981')} />
- *     <Bar dataKey="C" fill={getPatternFill('cross', '#f59e0b')} />
- *     <Bar dataKey="D" fill={A11Y_PALETTE[3]} />  // solid (마지막 dataKey)
+ *     <Bar dataKey="A" fill="url(#a11y-stripe-h)" color={getPatternFill('stripe-h', '#0ea5e9')} />
+ *     <Bar dataKey="B" fill="url(#a11y-diag)" color={getPatternFill('dots', '#10b981')} />
+ *     <Bar dataKey="C" fill="url(#a11y-dots)" color={getPatternFill('cross', '#f59e0b')} />
+ *     <Bar dataKey="D" fill="url(#a11y-stripe-v)" color={A11Y_PALETTE[3]} />  // solid (마지막 dataKey)
  *   </BarChart>
  *
  * WCAG 2.1 SC 1.4.1 Use of Color 준수 (색상 단독 의존 금지).

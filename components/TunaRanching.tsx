@@ -10,6 +10,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TunaRestaurantMap from './TunaRestaurantMap';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 
 export const truncateXAxis = (tick: any) => {
@@ -289,6 +290,7 @@ export default function TunaRanching() {
           <div style={{ height: '280px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height={300}>
               <BarChart data={quotaData} layout="vertical" margin={{ top: 0, right: 30, left: 10, bottom: 0 }}>
+                <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.05)" />
                 <XAxis type="number" hide  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                 <YAxis type="category" dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#cbd5e1' }} width={120} />
@@ -333,6 +335,7 @@ export default function TunaRanching() {
                   { period: '2020', stock: 130, escapement: 60 },
                   { period: '2024', stock: 180, escapement: 55 }
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
                   <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}pt`} />
@@ -375,6 +378,7 @@ export default function TunaRanching() {
                   { category: '직접 어획·판매', value: 35, color: '#38bdf8' },
                   { category: '스포츠 피싱·기타', value: 15, color: '#94a3b8' },
                 ]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
                   <XAxis dataKey="category" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
@@ -546,6 +550,7 @@ export default function TunaRanching() {
             <div className={insightsStyles.chartContainer}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={issfScorecard} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
                   <XAxis type="number" domain={[0, 100]} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(val) => `${val}점`} />
                   <YAxis type="category" dataKey="ocean" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} width={110} tickFormatter={truncateXAxis} />
@@ -867,6 +872,7 @@ export default function TunaRanching() {
               <div className={insightsStyles.chartContainer}>
                 <SafeResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={combinedColdChainData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <ChartPatternDefs />
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
                     <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                     <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
@@ -903,6 +909,7 @@ export default function TunaRanching() {
                   <div style={{ fontSize: '0.8rem', color: '#fca5a5', marginBottom: '8px', textAlign: 'center' }}>일본 자체 축양 생산량 추이 (톤)</div>
                   <SafeResponsiveContainer width="100%" height="100%">
                     <BarChart data={asianMarketShift?.japaneseProduction} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                      <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
                       <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                       <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} />
@@ -953,6 +960,7 @@ export default function TunaRanching() {
             <div className={insightsStyles.chartContainer}>
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={gastronomyPriceMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
                   <XAxis dataKey="country" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                   <YAxis stroke="#94a3b8" unit="$" tickFormatter={(value) => value.toLocaleString()} />
@@ -1049,6 +1057,7 @@ export default function TunaRanching() {
               <div className={insightsStyles.chartContainer}>
                 <SafeResponsiveContainer width="100%" height="100%">
                   <ComposedChart data={combinedQatarData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <ChartPatternDefs />
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
                     <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                     <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />

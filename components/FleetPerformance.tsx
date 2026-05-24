@@ -9,6 +9,7 @@ import { AtlanticSeinersTable, LonglinersTable, CarriersTable } from './VesselSt
 import RadarOverlay from './RadarOverlay';
 import { playSonarPing } from '../lib/audio';
 import TermTooltip from './TermTooltip';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // SSR must be disabled for Leaflet to work in Next.js
 const PacificMapWithNoSSR = dynamic(() => import('./PacificVesselMap'), {

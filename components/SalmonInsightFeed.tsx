@@ -5,6 +5,7 @@ import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Co
 import { DollarSign } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/salmonInsightFeed.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SalmonInsightFeed() {
   return (
@@ -18,6 +19,7 @@ export default function SalmonInsightFeed() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />

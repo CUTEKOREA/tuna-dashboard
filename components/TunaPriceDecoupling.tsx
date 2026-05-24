@@ -9,6 +9,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { TrendingUp } from 'lucide-react';
 import rawData from '../data/tuna_price_decoupling.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
@@ -46,6 +47,7 @@ export default function TunaPriceDecoupling() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 50, left: 30, bottom: 20 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="marginSpread" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.6} />

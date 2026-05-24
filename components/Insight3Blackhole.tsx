@@ -18,6 +18,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css'; // Reuse existing glassmorphism styling
 import data from '../data/insight3_blackhole.json';
 import useContainerWidth from '../hooks/useContainerWidth';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const Insight3Blackhole = () => {
   const { containerRef, width } = useContainerWidth();
@@ -73,6 +74,7 @@ const Insight3Blackhole = () => {
             stackOffset="sign"
             margin={{ top: 20, right: 30, left: 10, bottom: 5 }}
           >
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
             <YAxis
@@ -85,9 +87,9 @@ const Insight3Blackhole = () => {
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <ReferenceLine y={0} stroke="rgba(255,255,255,0.3)" />
             {/* Exports on top (positive) */}
-            <Bar dataKey="Exports" name="수출 (Exports)" fill="url(#exportGrad)" maxBarSize={40} />
+            <Bar dataKey="Exports" name="수출 (Exports)" fill="url(#a11y-stripe-h)" color="url(#exportGrad)" maxBarSize={40} />
             {/* Imports on bottom (negative) */}
-            <Bar dataKey="Imports" name="수입 (Imports)" fill="url(#importGrad)" maxBarSize={40} />
+            <Bar dataKey="Imports" name="수입 (Imports)" fill="url(#a11y-diag)" color="url(#importGrad)" maxBarSize={40} />
             
             <defs>
               <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">

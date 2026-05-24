@@ -4,6 +4,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Zap, Info, AlertCircle, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TakeawayBox from './TakeawayBox';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -185,6 +186,7 @@ export default function TunaInsightWidgets() {
         <SafeResponsiveContainer width="100%" height="100%">
           {w.xAxis === 'name' ? (
             <BarChart data={w.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} layout="vertical">
+              <ChartPatternDefs />
               <defs>
                 {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
                   <linearGradient key={`color-${idx}`} id={`color-${w.id}-${idx}`} x1="0" y1="0" x2="1" y2="0">
@@ -199,11 +201,12 @@ export default function TunaInsightWidgets() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-                 <Bar key={idx} dataKey={s.dataKey} fill={`url(#color-${w.id}-${idx})`} radius={[0, 4, 4, 0]} />
+                 <Bar key={idx} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={`url(#color-${w.id}-${idx})`} radius={[0, 4, 4, 0]} />
               ))}
             </BarChart>
           ) : (
             <BarChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <ChartPatternDefs />
               <defs>
                 {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
                   <linearGradient key={`color-${idx}`} id={`color-${w.id}-${idx}`} x1="0" y1="0" x2="0" y2="1">
@@ -218,7 +221,7 @@ export default function TunaInsightWidgets() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-                 <Bar key={idx} dataKey={s.dataKey} fill={`url(#color-${w.id}-${idx})`} radius={[4, 4, 0, 0]} />
+                 <Bar key={idx} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={`url(#color-${w.id}-${idx})`} radius={[4, 4, 0, 0]} />
               ))}
             </BarChart>
           )}

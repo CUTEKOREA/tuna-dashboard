@@ -13,6 +13,7 @@ import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import atunaPrices from '../public/data/atuna_prices.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MarketDashboard() {
   const [priceData, setPriceData] = useState<any[]>([]);

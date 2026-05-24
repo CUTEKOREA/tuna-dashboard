@@ -8,6 +8,7 @@ import {
 import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_aqua_value.json';
 import useContainerWidth from '../hooks/useContainerWidth';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -64,6 +65,7 @@ return (
 
       <div style={{ width: '100%', height: 350, marginTop: '20px' }}>
         <ComposedChart width={width > 0 ? width - 60 : 800} height={350} data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis yAxisId="left" stroke="#38bdf8" tickFormatter={formatY1} tick={{ fill: '#38bdf8', fontSize: 12 }} />
@@ -71,7 +73,7 @@ return (
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '20px' }} />
           
-          <Bar yAxisId="left" dataKey="Aqua_Volume" name="생산량 (Volume)" fill="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="Aqua_Volume" name="생산량 (Volume)" fill="url(#a11y-stripe-h)" color="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="Aqua_Value" name="총생산액 (Value in '000 USD)" stroke="#f43f5e" strokeWidth={4} dot={false} activeDot={{ r: 8 }} />
         </ComposedChart>
       </div>

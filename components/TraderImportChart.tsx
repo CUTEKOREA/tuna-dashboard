@@ -17,6 +17,7 @@ import { RefreshCw, AlertCircle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const traderData = [
   { year: '2021', FCF: 184154, ITOCHU: 143642, TRIMARINE: 64923, DIRECT: 84651, MALDIVES: 49038, Total: 526408 },
@@ -190,6 +191,7 @@ export default function TraderImportChart() {
               margin={rc.isMobile ? { top: 25, right: 5, left: -5, bottom: 5 } : { top: 25, right: 10, left: 10, bottom: 5 }}
               barSize={rc.isMobile ? 18 : 40}
             >
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
               <XAxis 
                 dataKey="year" 
@@ -225,11 +227,11 @@ export default function TraderImportChart() {
                   return <span style={{ color: 'var(--text-main)' }}>{labelMap[value]}</span>;
                 }}
               />
-              <Bar dataKey="FCF" stackId="a" fill={COLORS.FCF} radius={[0, 0, 4, 4]} />
-              <Bar dataKey="ITOCHU" stackId="a" fill={COLORS.ITOCHU} />
-              <Bar dataKey="TRIMARINE" stackId="a" fill={COLORS.TRIMARINE} />
-              <Bar dataKey="DIRECT" stackId="a" fill={COLORS.DIRECT} />
-              <Bar dataKey="MALDIVES" stackId="a" fill={COLORS.MALDIVES} radius={[4, 4, 0, 0]} />
+              <Bar dataKey="FCF" stackId="a" fill="url(#a11y-stripe-h)" color={COLORS.FCF} radius={[0, 0, 4, 4]} />
+              <Bar dataKey="ITOCHU" stackId="a" fill="url(#a11y-diag)" color={COLORS.ITOCHU} />
+              <Bar dataKey="TRIMARINE" stackId="a" fill="url(#a11y-dots)" color={COLORS.TRIMARINE} />
+              <Bar dataKey="DIRECT" stackId="a" fill="url(#a11y-stripe-v)" color={COLORS.DIRECT} />
+              <Bar dataKey="MALDIVES" stackId="a" fill="url(#a11y-cross)" color={COLORS.MALDIVES} radius={[4, 4, 0, 0]} />
             </BarChart>
           </SafeResponsiveContainer>
         </div>
@@ -243,13 +245,14 @@ export default function TraderImportChart() {
           <div style={{ flex: 1 }}>
             <SafeResponsiveContainer width="100%" height={280}>
               <BarChart data={monthlyData} layout="vertical" margin={{ top: 10, right: 10, left: 30, bottom: 0 }}>
+                <ChartPatternDefs />
                 <XAxis type="number" hide />
                 <YAxis type="category" dataKey="month" axisLine={false} tickLine={false} stroke="var(--text-muted)" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
                 <Tooltip content={<CustomTooltipMonthly />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
-                <Bar dataKey="FCF" stackId="a" fill={COLORS.FCF} barSize={24} radius={[4, 0, 0, 4]} />
-                <Bar dataKey="ITOCHU" stackId="a" fill={COLORS.ITOCHU} />
-                <Bar dataKey="TRIMARINE" stackId="a" fill={COLORS.TRIMARINE} />
-                <Bar dataKey="DIRECT" stackId="a" fill={COLORS.DIRECT} radius={[0, 4, 4, 0]} />
+                <Bar dataKey="FCF" stackId="a" fill="url(#a11y-stripe-h)" color={COLORS.FCF} barSize={24} radius={[4, 0, 0, 4]} />
+                <Bar dataKey="ITOCHU" stackId="a" fill="url(#a11y-diag)" color={COLORS.ITOCHU} />
+                <Bar dataKey="TRIMARINE" stackId="a" fill="url(#a11y-dots)" color={COLORS.TRIMARINE} />
+                <Bar dataKey="DIRECT" stackId="a" fill="url(#a11y-stripe-v)" color={COLORS.DIRECT} radius={[0, 4, 4, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>

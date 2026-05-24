@@ -9,6 +9,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Anchor } from 'lucide-react';
 import koreaOriginsData from '../data/tuna_korea_import_origins.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
 
@@ -58,15 +59,16 @@ const TunaKoreaOrigins = () => (
     chartHeight={300}
     chart={
       <BarChart data={koreaOriginsData as any[]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} barSize={40}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#334155" />
         <XAxis dataKey="Year" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} />
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${formatNumber(v)}`} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
         {origins.map((origin, i) => (
-          <Bar key={origin} dataKey={origin} stackId="a" fill={colors[origin] || defaultColors[i % defaultColors.length]} animationDuration={2000} />
+          <Bar key={origin} dataKey={origin} stackId="a" fill="url(#a11y-stripe-h)" color={colors[origin] || defaultColors[i % defaultColors.length]} animationDuration={2000} />
         ))}
-        <Bar key="기타 (Others)" dataKey="기타 (Others)" stackId="a" fill={colors['기타 (Others)']} animationDuration={2000} />
+        <Bar key="기타 (Others)" dataKey="기타 (Others)" stackId="a" fill="url(#a11y-diag)" color={colors['기타 (Others)']} animationDuration={2000} />
       </BarChart>
     }
     takeaway={{

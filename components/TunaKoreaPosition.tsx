@@ -9,6 +9,7 @@ import { Anchor } from 'lucide-react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import data from '../data/tuna_korea_position.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
@@ -41,13 +42,14 @@ const TunaKoreaPosition = () => (
     chartHeight={350}
     chart={
       <ComposedChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
         <XAxis dataKey="Year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
         <YAxis yAxisId="left" stroke="#38bdf8" tick={{ fill: '#38bdf8', fontSize: 12 }} tickFormatter={(v) => `${v.toLocaleString()}`} />
         <YAxis yAxisId="right" orientation="right" stroke="#f43f5e" tick={{ fill: '#f43f5e', fontSize: 12 }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}M`} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
-        <Bar yAxisId="left" dataKey="Volume" name="수입량 (톤)" fill="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={40} />
+        <Bar yAxisId="left" dataKey="Volume" name="수입량 (톤)" fill="url(#a11y-stripe-h)" color="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={40} />
         <Line yAxisId="right" type="monotone" dataKey="Value" name="수입액 (천 USD)" stroke="#f43f5e" strokeWidth={4} dot={{ r: 5 }} activeDot={{ r: 8 }} />
       </ComposedChart>
     }

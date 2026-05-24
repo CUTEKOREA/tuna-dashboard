@@ -7,6 +7,7 @@ import TakeawayBox from './TakeawayBox';
 
 import declineData from '../data/tuna_traditional_decline.json';
 import empireData from '../data/tuna_thai_empire.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -77,6 +78,7 @@ export const WidgetTunaGiantsFall = () => (
     <div style={chartStyle}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={declineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>

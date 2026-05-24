@@ -5,6 +5,7 @@ import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Line 
 import { ShieldCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/SalmonInsightSmolt.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SalmonInsightSmolt() {
   return (
@@ -18,6 +19,7 @@ export default function SalmonInsightSmolt() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
@@ -32,7 +34,7 @@ export default function SalmonInsightSmolt() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
-          <Bar yAxisId="left" dataKey="postSmolt" name="육상 포스트 스몰트 비중" fill="url(#colorSmolt)" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="postSmolt" name="육상 포스트 스몰트 비중" fill="url(#a11y-stripe-h)" color="url(#colorSmolt)" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="mortality" name="해상 폐사율 (바다이 등)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
           <defs>
             <linearGradient id="colorSmolt" x1="0" y1="0" x2="0" y2="1">

@@ -6,6 +6,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './PriceLagSimulator.module.css';
 import { TrendingDown, Activity, DollarSign } from 'lucide-react';
 import TermTooltip from './TermTooltip';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function PriceLagSimulator() {
   const [lagMonths, setLagMonths] = useState(4); // 1 to 6 months
@@ -113,6 +114,7 @@ export default function PriceLagSimulator() {
       <div className={styles.chartContainer}>
         <SafeResponsiveContainer width="100%" height={300}>
           <ComposedChart data={data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} />
             <YAxis yAxisId="left" domain={[1200, 2200]} tickFormatter={(val) => `${Number(val).toLocaleString()}`} tick={{ fill: '#38bdf8', fontSize: 11 }} />

@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, CartesianGrid, Legend, ComposedChart } from 'recharts';
 import styles from './TunaExtractDashboard.module.css';
 import SupplierTrademoPhase2 from './SupplierTrademoPhase2';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // Expanded Mock Data for various commodities
 const allMockSuppliers = [
@@ -545,6 +546,7 @@ export default function SupplierDiscoveryDashboard() {
                     <div style={{ width: '100%', height: 260 }}>
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={macroData.tradeVolume} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
+                          <ChartPatternDefs />
                           <defs>
                             <linearGradient id="importGrad" x1="0" y1="0" x2="0" y2="1">
                               <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.9}/>
@@ -565,8 +567,8 @@ export default function SupplierDiscoveryDashboard() {
                             formatter={(value: any) => `${Number(value).toLocaleString()} MT`}
                           />
                           <Legend wrapperStyle={{ paddingTop: '15px' }} iconType="circle" />
-                          <Bar dataKey="importVolume" name="한국 수입량" fill="url(#importGrad)" radius={[6, 6, 0, 0]} barSize={28} />
-                          <Bar dataKey="exportVolume" name="한국 수출량" fill="url(#exportGrad)" radius={[6, 6, 0, 0]} barSize={28} />
+                          <Bar dataKey="importVolume" name="한국 수입량" fill="url(#a11y-stripe-h)" color="url(#importGrad)" radius={[6, 6, 0, 0]} barSize={28} />
+                          <Bar dataKey="exportVolume" name="한국 수출량" fill="url(#a11y-diag)" color="url(#exportGrad)" radius={[6, 6, 0, 0]} barSize={28} />
                         </BarChart>
                       </ResponsiveContainer>
                     </div>

@@ -15,6 +15,7 @@ import {
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -108,6 +109,7 @@ export default function TunaChart({ data }: { data: any[] }) {
           data={data}
           margin={rc.mainChartMargin}
         >
+            <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" vertical={false} />
         <XAxis 
           dataKey="month" 
@@ -161,15 +163,15 @@ export default function TunaChart({ data }: { data: any[] }) {
         />
         
         {/* Estimated Data (Shown without 'Est.' labels) */}
-        <Bar yAxisId="left" dataKey="importEst" name="Import Volume" fill="var(--accent-secondary)" fillOpacity={0.2} stroke="var(--accent-secondary)" strokeDasharray="4 4" strokeWidth={2} radius={[4, 4, 0, 0]} legendType="none" />
-        <Bar yAxisId="left" dataKey="exportEst" name="Export Volume" fill="var(--accent-primary)" fillOpacity={0.2} stroke="var(--accent-primary)" strokeDasharray="4 4" strokeWidth={2} radius={[4, 4, 0, 0]} legendType="none" />
+        <Bar yAxisId="left" dataKey="importEst" name="Import Volume" fill="url(#a11y-stripe-h)" color="var(--accent-secondary)" fillOpacity={0.2} stroke="var(--accent-secondary)" strokeDasharray="4 4" strokeWidth={2} radius={[4, 4, 0, 0]} legendType="none" />
+        <Bar yAxisId="left" dataKey="exportEst" name="Export Volume" fill="url(#a11y-diag)" color="var(--accent-primary)" fillOpacity={0.2} stroke="var(--accent-primary)" strokeDasharray="4 4" strokeWidth={2} radius={[4, 4, 0, 0]} legendType="none" />
         
         {/* Historical Data */}
         <Line yAxisId="right" type="monotone" dataKey="priceEst" name="SKJ CFR Price" stroke="var(--accent-warning)" strokeWidth={rc.isMobile ? 2 : 3} strokeDasharray="4 4" dot={renderCustomDot} activeDot={{ r: rc.isMobile ? 4 : 6 }} legendType="none" />
         <Line yAxisId="right" type="monotone" dataKey="brentPriceEst" name="Singapore MGO Price" stroke="#22c55e" strokeWidth={rc.isMobile ? 2 : 3} strokeDasharray="4 4" dot={{ r: rc.isMobile ? 2 : 4, strokeWidth: 2, fill: "var(--bg-color)" }} activeDot={{ r: rc.isMobile ? 4 : 6 }} legendType="none" />
         
-        <Bar yAxisId="left" dataKey="import" name="Import Volume" fill="var(--accent-secondary)" radius={[4, 4, 0, 0]} />
-        <Bar yAxisId="left" dataKey="export" name="Export Volume" fill="var(--accent-primary)" radius={[4, 4, 0, 0]} />
+        <Bar yAxisId="left" dataKey="import" name="Import Volume" fill="url(#a11y-dots)" color="var(--accent-secondary)" radius={[4, 4, 0, 0]} />
+        <Bar yAxisId="left" dataKey="export" name="Export Volume" fill="url(#a11y-stripe-v)" color="var(--accent-primary)" radius={[4, 4, 0, 0]} />
         
         <Line yAxisId="right" type="monotone" dataKey="priceHist" name="SKJ CFR Price" stroke="var(--accent-warning)" strokeWidth={rc.isMobile ? 2 : 3} dot={renderCustomDot} activeDot={{ r: rc.isMobile ? 4 : 6 }} />
         <Line yAxisId="right" type="monotone" dataKey="brentPriceHist" name="Singapore MGO Price" stroke="#22c55e" strokeWidth={rc.isMobile ? 2 : 3} dot={{ r: rc.isMobile ? 2 : 4, strokeWidth: 2, fill: "var(--bg-color)" }} activeDot={{ r: rc.isMobile ? 4 : 6 }} />

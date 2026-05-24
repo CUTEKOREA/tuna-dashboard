@@ -20,6 +20,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight6_combo.json';
 import useContainerWidth from '../hooks/useContainerWidth';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const Insight6ClimateCombo = () => {
   const { containerRef, width } = useContainerWidth();
@@ -74,6 +75,7 @@ const Insight6ClimateCombo = () => {
             data={data}
             margin={{ top: 20, right: 10, left: -20, bottom: 5 }}
           >
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} minTickGap={20} />
             

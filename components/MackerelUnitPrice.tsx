@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recha
 import { Globe } from 'lucide-react';
 import rawData from '../data/mackerel_unit_price.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelUnitPrice() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -47,6 +48,7 @@ export default function MackerelUnitPrice() {
     <div ref={chartRef} style={{ width: '100%' }}>
       {chartWidth > 0 && (
         <BarChart width={chartWidth} height={450} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 20 }} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />
           <YAxis type="category" dataKey="country" width={110} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />

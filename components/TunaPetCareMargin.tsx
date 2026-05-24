@@ -10,6 +10,7 @@ import { Recycle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import rawData from '../data/tuna_petcare_margin.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const COLORS = ['#ef4444', '#22c55e'];
 
@@ -51,6 +52,7 @@ export default function TunaPetCareMargin() {
       <div style={{ flex: 1.5, minHeight: 0 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 20 }} layout="vertical">
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
             <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v: number) => `${v}%`} domain={[0, 35]} />
             <YAxis type="category" dataKey="market_type" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 11, fontWeight: 'bold' }} width={120} />

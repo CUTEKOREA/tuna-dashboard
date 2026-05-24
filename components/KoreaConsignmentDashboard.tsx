@@ -12,6 +12,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -320,12 +321,13 @@ export default function KoreaConsignmentDashboard() {
           chartHeight={325}
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 100000000).toFixed(0)}억`} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
-              <Bar dataKey="saleAmount" name="판매금액 (원)" fill="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar dataKey="saleAmount" name="판매금액 (원)" fill="url(#a11y-stripe-h)" color="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
             </BarChart>
           }
           takeaway={{
@@ -345,12 +347,13 @@ export default function KoreaConsignmentDashboard() {
           chartHeight={325}
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 1000).toFixed(0)}t`} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
-              <Bar dataKey="saleQty" name="판매물량 (kg)" fill="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar dataKey="saleQty" name="판매물량 (kg)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
             </BarChart>
           }
           takeaway={{

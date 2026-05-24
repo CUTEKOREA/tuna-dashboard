@@ -18,6 +18,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight5_jumbo_leap.json';
 import useContainerWidth from '../hooks/useContainerWidth';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const Insight5JumboLeap = () => {
   const { containerRef, width } = useContainerWidth();
@@ -68,6 +69,7 @@ const Insight5JumboLeap = () => {
             data={data}
             margin={{ top: 20, right: 30, left: 10, bottom: 5 }}
           >
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
             
@@ -92,7 +94,7 @@ const Insight5JumboLeap = () => {
               yAxisId="left"
               dataKey="jumbo_catch_t" 
               name="훔볼트 어획량 (Tonnes)" 
-              fill="#60A5FA" 
+              fill="url(#a11y-stripe-h)" color="#60A5FA" 
               opacity={0.6}
               maxBarSize={40}
               radius={[4, 4, 0, 0]}

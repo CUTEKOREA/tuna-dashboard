@@ -8,6 +8,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Recycle, TestTube } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const BYPRODUCT_DATA = [
   { name: '머리/뼈', value: 35, color: '#06b6d4' },
@@ -89,6 +90,7 @@ export function TunaUpcyclingMarginMap() {
       chartHeight={280}
       chart={
         <BarChart data={marginData} margin={{ top: 20, right: 20, left: 10, bottom: 40 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
           <XAxis dataKey="name" tick={{ fill: '#cbd5e1', fontSize: 10, fontWeight: 500 }} stroke="#64748b" height={55} />
           <YAxis tick={{ fill: '#cbd5e1', fontSize: 10 }} stroke="#64748b" />
@@ -100,8 +102,8 @@ export function TunaUpcyclingMarginMap() {
             labelFormatter={(label: any, payload: any) => payload?.[0]?.payload?.fullName || String(label)}
           />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Bar dataKey="margin" fill="#a78bfa" name="마진율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="market" fill="#06b6d4" name="시장규모($B)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="margin" fill="url(#a11y-stripe-h)" color="#a78bfa" name="마진율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="market" fill="url(#a11y-diag)" color="#06b6d4" name="시장규모($B)" radius={[4, 4, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
         </BarChart>
       }
       takeaway={{

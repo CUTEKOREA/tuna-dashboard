@@ -5,6 +5,7 @@ import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Line 
 import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/salmonInsightClimate.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SalmonInsightClimate() {
   return (
@@ -18,6 +19,7 @@ export default function SalmonInsightClimate() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
@@ -33,7 +35,7 @@ export default function SalmonInsightClimate() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="mortality" name="고수온에 따른 해상 폐사율" fill="url(#colorMortality)" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="mortality" name="고수온에 따른 해상 폐사율" fill="url(#a11y-stripe-h)" color="url(#colorMortality)" radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="carbonTax" name="노르웨이 탄소세 전망(IEA NZE)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
           
           <defs>

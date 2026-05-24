@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Shield } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_norway_alt.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const COLORS = ['var(--color-info)','var(--color-danger)','var(--color-success)','var(--color-warning)','#8b5cf6','#06b6d4','#ec4899','#f97316','#14b8a6','#6366f1','#84cc16','#e11d48'];
 
@@ -55,13 +56,14 @@ export default function MackerelNorwayAlt() {
     <div ref={chartRef} style={{ width: '100%' }}>
       {chartWidth > 0 && (
         <BarChart width={chartWidth} height={400} data={chartData} margin={{ top: 10, right: 30, left: 30, bottom: 20 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 12 }} />
           <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v/1000000).toFixed(1)}M`} />
           <Tooltip content={<NorTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '11px' }} />
           {countries.map((c: any, i: number) => (
-            <Bar key={c.country} dataKey={c.country} stackId="a" fill={COLORS[i % COLORS.length]} />
+            <Bar key={c.country} dataKey={c.country} stackId="a" fill="url(#a11y-stripe-h)" color={COLORS[i % COLORS.length]} />
           ))}
         </BarChart>
       )}

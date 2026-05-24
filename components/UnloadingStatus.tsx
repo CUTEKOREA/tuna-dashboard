@@ -5,6 +5,7 @@ import { Ship, Anchor, AlertCircle, BarChart3, Clock, PackageCheck, TrendingDown
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import TermTooltip from './TermTooltip';
 import GensanVesselStatus from './GensanVesselStatus';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function UnloadingStatus() {
   const [selectedVessel, setSelectedVessel] = useState('dinok');
@@ -258,6 +259,7 @@ export default function UnloadingStatus() {
           <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)' }}>일일 및 누적 하역 추이 (MT)</h4>
           <div style={{ width: '100%', overflowX: 'auto' }}>
             <ComposedChart width={Math.max(chartData.length * 60, 600)} height={300} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
               <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} angle={0} textAnchor="middle" height={50} />
               <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
@@ -267,7 +269,7 @@ export default function UnloadingStatus() {
                 formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
               />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px' }} />
-              <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
+              <Bar name="일일 하역량" dataKey="일일하역량" fill="url(#a11y-stripe-h)" color="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
               <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="#10b981" strokeWidth={2.5} dot={{ r: 3, fill: '#10b981', strokeWidth: 0 }} />
             </ComposedChart>
           </div>

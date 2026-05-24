@@ -8,6 +8,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import PriceLagSimulator from './PriceLagSimulator';
 import TermTooltip from './TermTooltip';
 import { LandedCostCalculator, BuySignalDashboard } from './FieldTools';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // V2: Interactive Market Share Data
 const marketShareData = [
@@ -253,6 +254,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
           <div className={styles.chartArea}>
             <SafeResponsiveContainer width="100%" height={320}>
               <ComposedChart data={waterfallData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
                 <XAxis dataKey="step" tick={{fill: '#94a3b8', fontSize: 11}} axisLine={false} tickLine={false} />
                 <YAxis yAxisId="left" domain={[0, 6500]} tick={{fill: '#94a3b8', fontSize: 11}} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} axisLine={false} tickLine={false} />

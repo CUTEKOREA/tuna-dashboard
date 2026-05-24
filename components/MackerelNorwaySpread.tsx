@@ -7,6 +7,7 @@ import WidgetCard from './WidgetCard';
 import TakeawayBox from './TakeawayBox';
 import { TrendingUp } from 'lucide-react';
 import rawData from '../data/MackerelNorwaySpread.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelNorwaySpread() {
   const chartData = useMemo(() => {
@@ -16,13 +17,14 @@ export default function MackerelNorwaySpread() {
   const ChartArea = (
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
         <XAxis dataKey="month" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
         <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`₩${v/1000}k`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
         <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`₩${v}`} tick={{ fill: '#34d399', fontSize: 10 }} />
         <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius:'8px' }} />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
-        <Bar yAxisId="right" dataKey="margin" name="총 마진 폭(Spread)" fill="var(--color-success)" opacity={0.6} />
+        <Bar yAxisId="right" dataKey="margin" name="총 마진 폭(Spread)" fill="url(#a11y-stripe-h)" color="var(--color-success)" opacity={0.6} />
         <Line yAxisId="left" type="monotone" dataKey="importCost" name="노르웨이 수입원가" stroke="var(--color-danger)" strokeWidth={2} dot={false} />
         <Line yAxisId="left" type="monotone" dataKey="domesticPrice" name="국내 도매가" stroke="#38bdf8" strokeWidth={2} dot={false} />
       </ComposedChart>

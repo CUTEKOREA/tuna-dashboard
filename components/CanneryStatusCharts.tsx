@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const canneryData = [
   { location: 'BANGKOK', name: 'THAI UNION', prodMax: 1300, prodCurrent: 600, storeMax: 62000, storeCurrent: 74000 },
@@ -115,6 +116,7 @@ export default function CanneryStatusCharts() {
               margin={{ top: 20, right: 30, left: 60, bottom: 5 }}
               barGap={1}
             >
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
               <XAxis type="number" stroke="var(--text-muted)" axisLine={false} tickLine={false} tick={{ fontSize: 11 }} />
               <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={80} />
@@ -126,8 +128,8 @@ export default function CanneryStatusCharts() {
                 formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
               />
               <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-              <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={8} />
-              <Bar dataKey="prodCurrent" name="일 생산량" fill="var(--color-success)" radius={[0, 4, 4, 0]} barSize={8} />
+              <Bar dataKey="prodMax" name="최대 가능 생산량" fill="url(#a11y-stripe-h)" color="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={8} />
+              <Bar dataKey="prodCurrent" name="일 생산량" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} barSize={8} />
             </BarChart>
           </SafeResponsiveContainer>
         </div>
@@ -166,6 +168,7 @@ export default function CanneryStatusCharts() {
               margin={{ top: 20, right: 30, left: 60, bottom: 5 }}
               barGap={1}
             >
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
               <XAxis 
                 type="number" 
@@ -184,8 +187,8 @@ export default function CanneryStatusCharts() {
                 formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
               />
               <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-              <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={8} />
-              <Bar dataKey="storeCurrent" name="현 보관량" fill="var(--color-info)" radius={[0, 4, 4, 0]} barSize={8} />
+              <Bar dataKey="storeMax" name="최대 가능 보관량" fill="url(#a11y-stripe-h)" color="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={8} />
+              <Bar dataKey="storeCurrent" name="현 보관량" fill="url(#a11y-diag)" color="var(--color-info)" radius={[0, 4, 4, 0]} barSize={8} />
             </BarChart>
           </SafeResponsiveContainer>
         </div>

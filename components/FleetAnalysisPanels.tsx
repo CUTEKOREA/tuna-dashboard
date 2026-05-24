@@ -4,6 +4,7 @@ import { ChevronDown, Trophy, BarChart3 } from 'lucide-react';
 import { WeeklyCatchChart, MonthlyCatchChart, CumulativeChart, CumulativeTableData } from './FleetCharts';
 import TakeawayBox from './TakeawayBox';
 import s from './FleetCommandCenter.module.css';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const rankData = [
   { r: 1, cap: '김효원', name: 'S/SPR', weekly: 334.00, daily: 47.71, badge: 'gold' },

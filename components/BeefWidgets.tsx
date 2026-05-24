@@ -172,12 +172,13 @@ export function W1_ProductionTrend({ accent }: any) {
     sit={`${latest.year}년 글로벌 생산량 ${(latest.production / 10).toFixed(0)}만톤 — 10년간 ${Number(growth) > 0 ? '+' : ''}${growth}% 성장. 가격 지수는 100→${latest.price}로 +${latest.price - 100}% 변동, 공급 대비 신흥국 수요가 우세.`}
     strat="중국·동남아 수요 급증으로 인한 구조적 가격 상승 사이클. 브라질·호주 산지 직매입선 확보로 중간 마진 30% 절감 가능."
     source={source}>
-    <ComposedChart data={productionTrend}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={productionTrend}>
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="생산량 (천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
+      <Bar yAxisId="left" dataKey="production" name="생산량 (천톤)" fill="url(#a11y-stripe-h)" color="#dc2626" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
       <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke="#f59e0b" strokeWidth={2.5} dot={true} />
     </ComposedChart>
   </W>;
@@ -237,7 +238,8 @@ export function W4_FeedMargin({ accent }: any) {
     sit="2022-Q3 곡물가 피크 시 비육 비율 1.3까지 추락 — 비육업자 대량 도축으로 시장 단기 공급 과잉 → 1년 후 공급 부족 사이클 도래."
     strat="옥수수 선물 가격 110 돌파 시 6개월 후 도축 헤드 -10% 예상. 호주 사료 미사용 그래스피드 비중 30%까지 확대로 사료 변동성 헤지."
     source="시카고상품거래소(CBOT) 옥수수·대두박 선물 + 미국 농업통계국(USDA NASS) Feeder Cattle">
-    <ComposedChart data={D.feedMarginData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={D.feedMarginData}>
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="quarter" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[1, 3]} />
@@ -262,7 +264,8 @@ export function W5_TradeFlow({ accent }: any) {
     sit={`${top1.route} 단일 경로 $${top1Bn}B(${top1.volume.toLocaleString()}천톤) — 글로벌 최대. Top 3 합산 전체의 ${top3Pct}%로 고집중. 한국이 미·호 양강의 4대 시장.`}
     strat="브·중 단일축이 흔들리면 (브라질 ESG 제재 등) 호주산 공급 부족 즉시 발생. 우루과이·뉴질랜드 백업 라인 24Q3까지 구축."
     source={source}>
-    <BarChart data={data} layout="vertical" margin={{ left: 5 }}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    <BarChart data={data} layout="vertical" margin={{ left: 5 }}>
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => `$${v.toLocaleString()}M`} />
       <YAxis type="category" dataKey="route" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={110} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -281,7 +284,8 @@ export function W6_KoreaImports({ accent }: any) {
     sit={`미·호 양강 ${usAuPct}% 장악 (${data[0]?.country} ${data[0]?.pct}% / ${data[1]?.country} ${data[1]?.pct}%). 2018년 90.7% 대비 ${(90.7 - Number(usAuPct)).toFixed(1)}%p 감소 — 광우병 우려 점진 해소 + 다변화 진행.`}
     strat="미·호 의존도 80% 이하로 낮추기 위해 우루과이·아르헨티나 직거래선 확장. 평균 단가 8-12% 절감 + 광우병 리스크 분산."
     source={source}>
-    <BarChart data={data} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    <BarChart data={data} layout="vertical">
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -303,13 +307,14 @@ export function W7_KoreaSupply({ accent }: any) {
     sit={`1인당 소비 ${first.year}~${last.year} ${first.perCapita}→${last.perCapita}kg(+${perCapitaDelta}%). 자급률 ${first.selfRate}%→${last.selfRate}%로 ${selfDelta}%p ${Number(selfDelta) < 0 ? '폭락' : '변동'} — 수입 의존 구조 더욱 심화.`}
     strat="자급률 갭이 매년 1%p씩 확대 — 안정적 수입 인프라(콜드체인+장기 계약) 선점 기업이 향후 5년 시장 주도. 콜드체인 CAPEX 우선 배정."
     source={source}>
-    <ComposedChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={data}>
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 16]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} />
-      <Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="url(#a11y-stripe-h)" color="#dc2626" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="url(#a11y-diag)" color="#f59e0b" radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke="#fb923c" strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
   </W>;
@@ -366,7 +371,8 @@ export function W10_CarbonFootprint({ accent }: any) {
     sit="소고기 99.5kg CO2e/kg — 돈육(12.3) 대비 8배, 수산물(2.9) 대비 34배. EU 탄소국경조정제도(CBAM) 적용 시 kg당 €0.5~1.2 추가 비용."
     strat="ESG 보고서에서 소고기는 '리스크 항목'으로 분류, 가능한 수산물·가금류 비중 확대. 소고기 라인은 그래스피드·탄소상쇄 인증 한정으로만 유지."
     source="식량농업기구(FAO) Livestock Environmental Assessment + Poore & Nemecek(2018) Science 360:987">
-    <BarChart data={D.carbonFootprintData} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    <BarChart data={D.carbonFootprintData} layout="vertical">
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis type="category" dataKey="category" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={90} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -382,12 +388,13 @@ export function W11_Premium({ accent }: any) {
     sit="관행 76% / 그래스피드 12% / 유기농 7% / 듀얼인증 3% / 와규·한우 2%. 듀얼인증 단가 $38.7/kg — 관행 대비 2.1배, 마진율 +40%."
     strat="와규·한우 + 듀얼인증 프리미엄 라인(합산 5%)이 절대 마진 60% 차지. 듀얼인증 호주 그래스피드 직소싱으로 차별화된 고마진 라인업 구축."
     source="미국 농업마케팅서비스(USDA AMS) Retail Lamb·Beef Report + 닐슨(Nielsen) Premium Meat Tracker 2023">
-    <ComposedChart data={D.premiumData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={D.premiumData}>
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="segment" stroke="#64748b" tick={{ fontSize: 8, fill: '#64748b' }} angle={-15} textAnchor="end" height={70} interval={0} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `$${v}`} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} tickFormatter={v => `${v}%`} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="price" name="평균 소매가 (달러/kg)" fill="#dc2626" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="price" name="평균 소매가 (달러/kg)" fill="url(#a11y-stripe-h)" color="#dc2626" radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="share" name="점유율 (%)" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 4 }} />
     </ComposedChart>
   </W>;

@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -211,12 +212,13 @@ export default function CassavaDashboard() {
       case "Bar":
         return (
           <BarChart data={d}>
+            <ChartPatternDefs />
             {grid}{xAxis}
             <YAxis stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill:'rgba(255,255,255,0.04)'}} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
-              <Bar key={i} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.85} name={b.name} />
+              <Bar key={i} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[4,4,0,0]} fillOpacity={0.85} name={b.name} />
             ))}
           </BarChart>
         );
@@ -235,13 +237,14 @@ export default function CassavaDashboard() {
       case "Composed":
         return (
           <ComposedChart data={d}>
+            <ChartPatternDefs />
             {grid}{xAxis}
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
             <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
-              <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.8} name={b.name} />
+              <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[4,4,0,0]} fillOpacity={0.8} name={b.name} />
             ))}
             {w.lines?.map((l:any,i:number) => (
               <Line yAxisId="right" key={`l${i}`} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={true} activeDot={{r:5}} name={l.name} />

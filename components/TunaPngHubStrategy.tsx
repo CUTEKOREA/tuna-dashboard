@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Anchor } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function TunaPngHubStrategy() {
   const [data, setData] = useState<any[] | null>(null);
@@ -32,6 +33,7 @@ export default function TunaPngHubStrategy() {
       chartHeight={280}
       chart={
         <BarChart data={data} layout="vertical" margin={{ left: 50 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
           <XAxis type="number" stroke="#94a3b8" />
           <YAxis dataKey="cost_type" type="category" stroke="#94a3b8" fontSize={11} width={120} />
@@ -40,8 +42,8 @@ export default function TunaPngHubStrategy() {
             itemStyle={{ color: '#f8fafc' }}
           />
           <Legend />
-          <Bar dataKey="domestic" name="국내 직조달 ($/톤)" fill="#ef4444" />
-          <Bar dataKey="png_hub" name="PNG 산지 추출 ($/톤)" fill="#10b981" />
+          <Bar dataKey="domestic" name="국내 직조달 ($/톤)" fill="url(#a11y-stripe-h)" color="#ef4444" />
+          <Bar dataKey="png_hub" name="PNG 산지 추출 ($/톤)" fill="url(#a11y-diag)" color="#10b981" />
         </BarChart>
       }
       takeaway={{

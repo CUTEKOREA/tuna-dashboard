@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend } from 'recharts';
 import { Microscope, Atom, TrendingUp, Fish, Recycle, HeartPulse, ChevronDown, ChevronUp, Star, ArrowRight, Target, Briefcase, Factory, Gem, Sparkles, FlaskConical } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const B2B_PILLAR_META: Record<string, {name:string, color:string, icon:any}> = {
   collagen: { name: '뷰티/콜라겐 원료', color: '#f472b6', icon: Sparkles },
@@ -311,6 +312,7 @@ export default function ResearchLabDashboard() {
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={trlDistribution} layout="vertical" margin={{left:20}}>
+                <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
                 <XAxis type="number" stroke="#64748b" tick={{fontSize:11}} />
                 <YAxis dataKey="level" type="category" stroke="#64748b" tick={{fontSize:10}} width={130} />

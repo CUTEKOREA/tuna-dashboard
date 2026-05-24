@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Target } from 'lucide-react';
 import TermTooltip from './TermTooltip';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const data = [
   { size: '< 200g (미어)', value: 4500, color: 'var(--color-danger)' },
@@ -31,6 +32,7 @@ export default function FishStatJumboFunnel() {
       <div style={{ height: '240px', width: '100%' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
             <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
             <YAxis dataKey="size" type="category" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} width={110} />

@@ -126,6 +126,7 @@ export default function PollockDraftInsights() {
         chart={
 <ComposedChart data={koreaCrisis.filter(d=>
   <ChartPatternDefs />d.year>=1990)} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+  <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                 <XAxis dataKey="year" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />

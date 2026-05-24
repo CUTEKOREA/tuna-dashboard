@@ -5,6 +5,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_korea_supply.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelKoreaSupply() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -79,6 +80,7 @@ export default function MackerelKoreaSupply() {
       <div ref={chartRef} style={{ width: '100%' }}>
         {chartWidth > 0 && (
           <ComposedChart width={chartWidth} height={380} data={data} margin={{ top: 10, right: 50, left: 30, bottom: 20 }}>
+            <ChartPatternDefs />
             <defs>
               <linearGradient id="krProdGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.6}/><stop offset="95%" stopColor="var(--color-info)" stopOpacity={0.05}/>

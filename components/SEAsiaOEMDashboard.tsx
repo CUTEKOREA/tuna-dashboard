@@ -3,6 +3,7 @@ import styles from './SEAsiaOEMDashboard.module.css';
 import { Target, CheckCircle2, Factory, X, MapPin, ClipboardList, Globe2, BarChart3, Users } from 'lucide-react';
 import vendorsData from '../data/seasia_oem_vendors.json';
 import ThaiTunaTradeStats from './ThaiTunaTradeStats';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 interface Vendor {
   id: string;

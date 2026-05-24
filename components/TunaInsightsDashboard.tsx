@@ -15,6 +15,7 @@ import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import WidgetCard from './WidgetCard';
 import { truncateKoreanLabel } from '../lib/chart-standards';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -205,11 +206,12 @@ export default function TunaInsightsDashboard() {
         chartHeight={280}
         chart={
           <BarChart data={mockEmergingMarkets} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
             <XAxis type="number" stroke="#94a3b8" />
             <YAxis dataKey="국가" type="category" stroke="#94a3b8" width={100} />
             <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-            <Bar dataKey="성장률" fill="#3b82f6" radius={[0, 4, 4, 0]} name="연평균 성장률 (%)" />
+            <Bar dataKey="성장률" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[0, 4, 4, 0]} name="연평균 성장률 (%)" />
           </BarChart>
         }
         takeaway={{
@@ -301,14 +303,15 @@ export default function TunaInsightsDashboard() {
         chartHeight={280}
         chart={
           <BarChart data={mockDarkTrading} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
             <XAxis dataKey="지역" stroke="#94a3b8" />
             <YAxis stroke="#94a3b8" />
             <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend />
-            <Bar dataKey="수출량" name="수출량 (K/t)" fill="#38bdf8" />
-            <Bar dataKey="수입량" name="수입량 (K/t)" fill="#3b82f6" />
-            <Bar dataKey="통관격차" name="통관 격차" fill="#64748b" />
+            <Bar dataKey="수출량" name="수출량 (K/t)" fill="url(#a11y-stripe-h)" color="#38bdf8" />
+            <Bar dataKey="수입량" name="수입량 (K/t)" fill="url(#a11y-diag)" color="#3b82f6" />
+            <Bar dataKey="통관격차" name="통관 격차" fill="url(#a11y-dots)" color="#64748b" />
           </BarChart>
         }
         takeaway={{
@@ -362,6 +365,7 @@ export default function TunaInsightsDashboard() {
         chartHeight={280}
         chart={
           <BarChart data={mockGastronomyMap} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
             <XAxis dataKey="국가" stroke="#94a3b8" />
             <YAxis stroke="#94a3b8" unit="$" />
@@ -396,11 +400,12 @@ export default function TunaInsightsDashboard() {
         chartHeight={280}
         chart={
           <BarChart data={mockHHIIndex} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey="연도" stroke="#94a3b8" />
             <YAxis stroke="#94a3b8" domain={[0, 3500]} />
             <RechartsTooltip cursor={{ fill: 'rgba(255,255,255,0.05)' }} contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-            <Bar dataKey="HHI" name="HHI 지수" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="HHI" name="HHI 지수" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[4, 4, 0, 0]} />
           </BarChart>
         }
         takeaway={{
@@ -482,13 +487,14 @@ export default function TunaInsightsDashboard() {
         chartHeight={280}
         chart={
           <BarChart data={mockTariffHopping} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
             <XAxis dataKey="경로" stroke="#94a3b8" />
             <YAxis stroke="#94a3b8" />
             <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend />
-            <Bar dataKey="2023년_실적" name="2023년 실적 (톤)" fill="#94a3b8" />
-            <Bar dataKey="2026년_예상(관세_충격)" name="2026년 예상 (관세 충격)" fill="#3b82f6" />
+            <Bar dataKey="2023년_실적" name="2023년 실적 (톤)" fill="url(#a11y-stripe-h)" color="#94a3b8" />
+            <Bar dataKey="2026년_예상(관세_충격)" name="2026년 예상 (관세 충격)" fill="url(#a11y-diag)" color="#3b82f6" />
           </BarChart>
         }
         takeaway={{
@@ -510,6 +516,7 @@ export default function TunaInsightsDashboard() {
         chartHeight={280}
         chart={
           <BarChart data={mockMSCPremium} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
             <XAxis type="number" domain={[0, 200]} stroke="#94a3b8" />
             <YAxis dataKey="분류" type="category" stroke="#94a3b8" width={110} />

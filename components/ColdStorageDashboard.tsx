@@ -17,6 +17,7 @@ import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
 import styles from './MackerelStrategy.module.css'; // 재사용
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const smartFormat = (v: any, dataKey?: string): string | any => {
   if (Array.isArray(v)) {
@@ -458,19 +459,21 @@ export default function ColdStorageDashboard() {
       case "bar":
         return (
           <BarChart data={d}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar key={i} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
           </BarChart>
         );
       case "composed":
         return (
           <ComposedChart data={d}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
@@ -480,7 +483,7 @@ export default function ColdStorageDashboard() {
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
             {widget.lines?.map((l: any, i: number) => (
               <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={{r:4}} activeDot={{r:6}} />

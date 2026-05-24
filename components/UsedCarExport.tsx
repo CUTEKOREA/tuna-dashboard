@@ -4,6 +4,7 @@ import { CarFront, TrendingUp, Globe, Ship, AlertTriangle, DollarSign, Package, 
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import { MarketGrowthChart, MarketShareChart, ShippingCostChart, HybridGrowthChart, FuelPriceChart, AgePenaltyChart } from './UsedCarCharts';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const glass = { background: '#181818', border: 'none', borderRadius: '8px', padding: '1.5rem' } as const;
 const cardTitle = { margin: '0 0 1rem 0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' } as const;

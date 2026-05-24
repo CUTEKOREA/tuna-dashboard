@@ -7,6 +7,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, Area, Cell, ComposedChart } from 'recharts';
 import { Globe, Anchor, Shield } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // EUMOFA EU Fish Market 2025 실측: Ecuador 2024 = 29%(volume) / 48%(value)
 const nauruData = [
@@ -49,14 +50,15 @@ export function InsightNauruSwitch() {
       chartHeight={280}
       chart={
         <ComposedChart data={nauruData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
           <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="#ef4444" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="url(#a11y-stripe-h)" color="#ef4444" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="url(#a11y-diag)" color="#10b981" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="Taiwan_PNA_Days" name="🇹🇼 대만 PNA 조업일수" stroke="#fbbf24" strokeWidth={3} />
         </ComposedChart>
       }
@@ -85,6 +87,7 @@ export function InsightIOCollapse() {
       chartHeight={280}
       chart={
         <ComposedChart data={ioCollapseData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="ioGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#f97316" stopOpacity={0.8} />
@@ -126,6 +129,7 @@ export function InsightEU18C() {
       chartHeight={280}
       chart={
         <BarChart data={eu18Data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]} />
           <YAxis dataKey="category" type="category" stroke="#94a3b8" width={140} />

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -508,13 +509,14 @@ export const OperationalS1Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_enso} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="year"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" />
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="sstAnomaly" name="SST 아노말리(°C)" fill="var(--color-danger)" />
+                              <Bar yAxisId="left" dataKey="sstAnomaly" name="SST 아노말리(°C)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" />
                               <Line yAxisId="right" type="monotone" dataKey="catchRate" name="어획률(CPUE 지수)" stroke="var(--color-info)" strokeWidth={3} />
                               <Line yAxisId="right" type="monotone" dataKey="fuelCost" name="연료 소모 지수" stroke="var(--color-warning)" strokeDasharray="5 5" />
                             </ComposedChart>
@@ -530,13 +532,14 @@ export const OperationalS1Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_fad} layout="vertical" margin={{ top: 20, right: 30, left: 60, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                               <XAxis type="number" unit="%" domain={[0, 100]}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis dataKey="target" type="category" width={90} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="normalFAD" name="일반 FAD" fill="#64748b" radius={[0, 4, 4, 0]} />
-                              <Bar dataKey="smartFAD" name="스마트 FAD (Eco)" fill="#14b8a6" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="normalFAD" name="일반 FAD" fill="url(#a11y-stripe-h)" color="#64748b" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="smartFAD" name="스마트 FAD (Eco)" fill="url(#a11y-diag)" color="#14b8a6" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -550,13 +553,14 @@ export const OperationalS1Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_area} layout="vertical" margin={{ top: 20, right: 30, left: 30, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis type="number" tickFormatter={(val) => `${val}k`} angle={0} textAnchor="middle" height={60} />
                               <YAxis dataKey="area" type="category" width={130} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="vol2000" name="2000년 (k tons)" fill="var(--text-secondary)" radius={[0, 4, 4, 0]} />
-                              <Bar dataKey="vol2024" name="2024년 (k tons)" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="vol2000" name="2000년 (k tons)" fill="url(#a11y-stripe-h)" color="var(--text-secondary)" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="vol2024" name="2024년 (k tons)" fill="url(#a11y-diag)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -570,12 +574,13 @@ export const OperationalS1Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_enso_skj} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="scenario"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis unit="%" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="cpueChange" name="CPUE 변동률(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="cpueChange" name="CPUE 변동률(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
                               <Line type="monotone" dataKey="areaDrift" name="서태평양 이탈률(%)" stroke="var(--color-danger)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -655,13 +660,14 @@ export const OperationalS1Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_premium} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="year"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" tickFormatter={(val) => `${val}k`} />
                               <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `${val}k`} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="bigeye" name="눈다랑어 물량 (k tons)" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="bigeye" name="눈다랑어 물량 (k tons)" fill="url(#a11y-stripe-h)" color="#94a3b8" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="bluefin" name="참다랑어 물량 (k tons)" stroke="var(--color-danger)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -676,13 +682,14 @@ export const OperationalS1Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_aqua} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="year"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" tickFormatter={(val) => `${val}k`} />
                               <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `$${val/1000}M`} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="aquaVol" name="양식 생산량 (k tons)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="aquaVol" name="양식 생산량 (k tons)" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="aquaVal" name="생산액 (1k USD)" stroke="#8b5cf6" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -729,13 +736,14 @@ export const OperationalS2Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_hub} layout="vertical" margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                               <XAxis type="number" unit="%"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis dataKey="hub" type="category" width={100} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="share2020" name="2020년 점유" fill="#475569" radius={[0, 4, 4, 0]} />
-                              <Bar dataKey="share2025" name="2025년 점유" fill="#14b8a6" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="share2020" name="2020년 점유" fill="url(#a11y-stripe-h)" color="#475569" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="share2025" name="2025년 점유" fill="url(#a11y-diag)" color="#14b8a6" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -749,12 +757,13 @@ export const OperationalS2Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_pouch} layout="vertical" margin={{ top: 20, right: 30, left: 60, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                               <XAxis type="number"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis dataKey="category" type="category" width={100} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="yoyGrowth" name="전년비 성장률(%)" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="yoyGrowth" name="전년비 성장률(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
                               <Line dataKey="gpMargin" name="매출총이익률(%)" stroke="#f43f5e" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -769,11 +778,12 @@ export const OperationalS2Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_byproduct} layout="vertical" margin={{ top: 20, right: 30, left: 70, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                               <XAxis type="number"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis dataKey="item" type="category" width={100} />
                               <RechartsTooltip content={<CustomTooltip />} />
-                              <Bar dataKey="margin" name="영업이익률(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="margin" name="영업이익률(%)" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -787,14 +797,15 @@ export const OperationalS2Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_rival} layout="vertical" margin={{ top: 20, right: 30, left: 50, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                               <XAxis type="number" domain={[0, 100]} unit="%"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis dataKey="company" type="category" width={100} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="tunaPct" name="참치(조업/통조림)" stackId="a" fill="#1e40af" />
-                              <Bar dataKey="valueAddedPct" name="가치 부가(부가가치/펫푸드)" stackId="a" fill="#8b5cf6" />
-                              <Bar dataKey="aquaPct" name="기타 양식/수산" stackId="a" fill="#0ea5e9" radius={[0, 4, 4, 0]} />
+                              <Bar dataKey="tunaPct" name="참치(조업/통조림)" stackId="a" fill="url(#a11y-stripe-h)" color="#1e40af" />
+                              <Bar dataKey="valueAddedPct" name="가치 부가(부가가치/펫푸드)" stackId="a" fill="url(#a11y-diag)" color="#8b5cf6" />
+                              <Bar dataKey="aquaPct" name="기타 양식/수산" stackId="a" fill="url(#a11y-dots)" color="#0ea5e9" radius={[0, 4, 4, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -820,13 +831,14 @@ export const OperationalS3Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_port} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="month"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" tickFormatter={(v) => `$${(v).toLocaleString('en-US')}`} />
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="reeferRate" name="리퍼 운임($/FEU)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="reeferRate" name="리퍼 운임($/FEU)" fill="url(#a11y-stripe-h)" color="#38bdf8" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="unloadDays" name="하역 대기일(Days)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} />
                               <Line yAxisId="right" type="monotone" dataKey="loss" name="대기 손실($k)" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" />
                             </ComposedChart>
@@ -842,13 +854,14 @@ export const OperationalS3Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_gsp} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" vertical={false} />
                               <XAxis dataKey="country"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis unit="%" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="duty" name="EU 수입 관세율(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
-                              <Bar dataKey="logistics" name="경로 전환 배송비(%)" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="duty" name="EU 수입 관세율(%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="logistics" name="경로 전환 배송비(%)" fill="url(#a11y-diag)" color="#94a3b8" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -862,15 +875,16 @@ export const OperationalS3Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_export_risk} layout="vertical" stackOffset="expand" margin={{ top: 20, right: 30, left: 30, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis type="number" tickFormatter={(tick) => `${(tick * 100).toFixed(0)}%`} angle={0} textAnchor="middle" height={60} />
                               <YAxis dataKey="exporter" type="category" width={80} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="japan" name="일본행" stackId="a" fill="var(--color-danger)" />
-                              <Bar dataKey="usa" name="미국행" stackId="a" fill="var(--color-info)" />
-                              <Bar dataKey="korea" name="한국행" stackId="a" fill="var(--color-success)" />
-                              <Bar dataKey="others" name="기타 지역" stackId="a" fill="#cbd5e1" />
+                              <Bar dataKey="japan" name="일본행" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-danger)" />
+                              <Bar dataKey="usa" name="미국행" stackId="a" fill="url(#a11y-diag)" color="var(--color-info)" />
+                              <Bar dataKey="korea" name="한국행" stackId="a" fill="url(#a11y-dots)" color="var(--color-success)" />
+                              <Bar dataKey="others" name="기타 지역" stackId="a" fill="url(#a11y-stripe-v)" color="#cbd5e1" />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -907,6 +921,7 @@ export const OperationalS3Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_import_bh} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="country"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis tickFormatter={(val) => `${val/1000}k`} />
@@ -942,13 +957,14 @@ export const OperationalS4Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_blackhole} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="month"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" tickFormatter={(val) => `$${val}`} />
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="right" dataKey="euInv" name="EU 창고 재고지수" fill="#cbd5e1" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="right" dataKey="euInv" name="EU 창고 재고지수" fill="url(#a11y-stripe-h)" color="#cbd5e1" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="left" type="monotone" dataKey="price" name="스킵잭 방콕 시세($)" stroke="var(--color-danger)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -963,13 +979,14 @@ export const OperationalS4Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_foodservice} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="quarter"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
                               <Line type="monotone" dataKey="foodservice" name="외식(Foodservice) 수요" stroke="var(--color-danger)" strokeWidth={3} />
-                              <Bar dataKey="retail" name="슈퍼마켓 B2C 참치캔 수요" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="retail" name="슈퍼마켓 B2C 참치캔 수요" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -1034,13 +1051,14 @@ export const OperationalS5Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_em} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="year"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" unit="%" />
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="coverage" name="EM 탑재율(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="coverage" name="EM 탑재율(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="fines" name="규제 적발 페널티($k)" stroke="var(--color-danger)" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -1055,13 +1073,14 @@ export const OperationalS5Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <ComposedChart data={data_labour} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" />
                               <XAxis dataKey="year"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis yAxisId="left" />
                               <YAxis yAxisId="right" orientation="right" />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar yAxisId="left" dataKey="issues" name="노동 이슈 발생(건)" fill="#f97316" radius={[4, 4, 0, 0]} />
+                              <Bar yAxisId="left" dataKey="issues" name="노동 이슈 발생(건)" fill="url(#a11y-stripe-h)" color="#f97316" radius={[4, 4, 0, 0]} />
                               <Line yAxisId="right" type="monotone" dataKey="traceDocs" name="추적 인증 구비율(%)" stroke="#059669" strokeWidth={3} />
                             </ComposedChart>
                           </SafeResponsiveContainer>
@@ -1076,13 +1095,14 @@ export const OperationalS5Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_quota} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" vertical={false} />
                               <XAxis dataKey="rfmo"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="cut27" name="쿼터 삭감률(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
-                              <Bar dataKey="penaltyRate" name="초과 페널티 배율(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="cut27" name="쿼터 삭감률(%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="penaltyRate" name="초과 페널티 배율(%)" fill="url(#a11y-diag)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -1096,13 +1116,14 @@ export const OperationalS5Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_msc} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" vertical={false} />
                               <XAxis dataKey="year"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis tickFormatter={(val) => `$${val}`} />
                               <RechartsTooltip content={<CustomTooltip />} />
                               <Legend />
-                              <Bar dataKey="standardPrice" name="일반 스킵잭 기준가" fill="#94a3b8" radius={[4, 4, 0, 0]} />
-                              <Bar dataKey="mscPrice" name="MSC 확보 물량 체결가" fill="#059669" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="standardPrice" name="일반 스킵잭 기준가" fill="url(#a11y-stripe-h)" color="#94a3b8" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="mscPrice" name="MSC 확보 물량 체결가" fill="url(#a11y-diag)" color="#059669" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>
@@ -1136,11 +1157,12 @@ export const OperationalS5Widgets = () => (
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
                             <BarChart data={data_finance} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+                              <ChartPatternDefs />
                               <CartesianGrid strokeDasharray="3 3" vertical={false} />
                               <XAxis dataKey="category"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
                               <YAxis unit="%" />
                               <RechartsTooltip content={<CustomTooltip />} />
-                              <Bar dataKey="rate" name="조달 이자율(%)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+                              <Bar dataKey="rate" name="조달 이자율(%)" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4, 4, 0, 0]} />
                             </BarChart>
                           </SafeResponsiveContainer>
                         </div>

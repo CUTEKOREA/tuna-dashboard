@@ -5,6 +5,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { TrendingUp, Activity } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_macro.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function MackerelMacroCycle() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -98,6 +99,7 @@ export default function MackerelMacroCycle() {
       <div ref={chartRef} style={{ width: '100%' }}>
         {chartWidth > 0 && (
           <ComposedChart width={chartWidth} height={380} data={data} margin={{ top: 10, right: 50, left: 30, bottom: 20 }}>
+            <ChartPatternDefs />
             <defs>
               <linearGradient id="macProdGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.5}/>

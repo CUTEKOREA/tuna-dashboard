@@ -5,6 +5,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 import { Droplets, Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import aquaData from '../data/mackerel_aquaculture.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const COLORS = ['#06b6d4', 'var(--color-success)'];
 
@@ -135,6 +136,7 @@ export default function MackerelAquaculture() {
       <div ref={chartRef} style={{ width: '100%' }}>
         {chartWidth > 0 && viewMode === 'trend' && (
           <ComposedChart width={chartWidth} height={350} data={data} margin={{ top: 10, right: 50, left: 30, bottom: 20 }}>
+            <ChartPatternDefs />
             <defs>
               <linearGradient id="capGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.6}/>
@@ -147,12 +149,13 @@ export default function MackerelAquaculture() {
             <YAxis yAxisId="aqua" orientation="right" stroke="rgba(16,185,129,0.5)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={(v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : `${v}`} />
             <Tooltip content={<AquaTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-            <Bar dataKey="capture_t" name="🐟 자연산 어획 (톤)" fill="url(#capGrad)" radius={[2, 2, 0, 0]} />
+            <Bar dataKey="capture_t" name="🐟 자연산 어획 (톤)" fill="url(#a11y-stripe-h)" color="url(#capGrad)" radius={[2, 2, 0, 0]} />
             <Line type="monotone" dataKey="aquaculture_t" name="🏗️ 양식 생산 (톤)" stroke="var(--color-success)" strokeWidth={2.5} dot={false} yAxisId="aqua" />
           </ComposedChart>
         )}
         {chartWidth > 0 && viewMode === 'price' && (
           <ComposedChart width={chartWidth} height={350} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 20 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v}`} />

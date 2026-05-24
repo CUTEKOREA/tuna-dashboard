@@ -8,6 +8,7 @@ import styles from './ReeferMovement.module.css';
 import TermTooltip from './TermTooltip';
 
 import BANGKOK_PORT_DATA from '../data/reefer_week18.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // ── helpers ──
 function parseNum(s: any): number {
@@ -248,6 +249,7 @@ export default function ReeferMovement() {
         <div style={{ height: Math.max(canneryAgg.length * 36 + 30, 200), width: '100%' }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={canneryAgg} layout="vertical" margin={{ left: 10, right: 30, top: 5, bottom: 5 }}>
+              <ChartPatternDefs />
               <XAxis type="number" tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false}
                 tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}K` : `${v}`} />
               <YAxis type="category" dataKey="name" tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }}

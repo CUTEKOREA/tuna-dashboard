@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Scale, Factory, TrendingUp, RefreshCcw } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const PIE_COLORS = ['#FCD535', '#0ECB81', '#2196F3', '#F6465D', '#9B72CB', '#F0B90B', '#FF9800', '#E91E63'];
 
@@ -55,14 +56,15 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
       chartHeight={325}
       chart={loading ? undefined : (
         <BarChart data={tariffData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
           <XAxis dataKey="country" stroke="#64748b" tick={{ fontSize: 10 }} />
           <YAxis stroke="#64748b" tick={{ fontSize: 9 }} unit="%" />
           <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Bar dataKey="MFN" name="MFN 세율" fill="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="FTA" name="FTA 적용" fill="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="Bound" name="양허세율" fill="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="MFN" name="MFN 세율" fill="url(#a11y-stripe-h)" color="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="FTA" name="FTA 적용" fill="url(#a11y-diag)" color="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="Bound" name="양허세율" fill="url(#a11y-dots)" color="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
         </BarChart>
       )}
       customBody={loading ? <Spinner /> : undefined}
@@ -158,14 +160,15 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
       chartHeight={325}
       chart={loading ? undefined : (
         <BarChart data={chartData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
           <XAxis dataKey="Year" stroke="#64748b" tick={{ fontSize: 10 }} />
           <YAxis stroke="#64748b" tick={{ fontSize: 9 }} />
           <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Bar dataKey="수입액" name="수입액 ($M)" fill="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="수출액" name="수출액 ($M)" fill="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="수입량" name="수입량 (kMT)" fill="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.5} isAnimationActive={false} />
+          <Bar dataKey="수입액" name="수입액 ($M)" fill="url(#a11y-stripe-h)" color="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="수출액" name="수출액 ($M)" fill="url(#a11y-diag)" color="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="수입량" name="수입량 (kMT)" fill="url(#a11y-dots)" color="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.5} isAnimationActive={false} />
         </BarChart>
       )}
       customBody={loading ? <Spinner /> : undefined}

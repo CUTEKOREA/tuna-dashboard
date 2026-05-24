@@ -6,6 +6,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaExtractDashboard.module.css';
 import { Globe } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export const truncateXAxis = (tick: any) => {
   if (typeof tick !== 'string') return tick;
@@ -68,13 +69,14 @@ return (
       <div style={{ height: '280px', width: '100%', marginBottom: '1rem', position: 'relative', zIndex: 0 }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ left: 30 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
             <XAxis type="number" stroke="#94a3b8"  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis dataKey="metric" type="category" stroke="#94a3b8" fontSize={11} width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-            <Bar dataKey="thailand" name="태국 (기존 거점)" fill="#8b5cf6" />
-            <Bar dataKey="vietnam" name="베트남 (신규 거점)" fill="var(--color-success)" />
+            <Bar dataKey="thailand" name="태국 (기존 거점)" fill="url(#a11y-stripe-h)" color="#8b5cf6" />
+            <Bar dataKey="vietnam" name="베트남 (신규 거점)" fill="url(#a11y-diag)" color="var(--color-success)" />
           </BarChart>
         </SafeResponsiveContainer>
       </div>

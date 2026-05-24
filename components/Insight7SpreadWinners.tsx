@@ -18,6 +18,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight7_spread_winners.json';
 import useContainerWidth from '../hooks/useContainerWidth';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const Insight7SpreadWinners = () => {
   const { containerRef, width } = useContainerWidth();
@@ -74,6 +75,7 @@ const Insight7SpreadWinners = () => {
             data={data}
             margin={{ top: 20, right: 30, left: 10, bottom: 5 }}
           >
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="country" stroke="rgba(255,255,255,0.5)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }} />
             <YAxis
@@ -84,8 +86,8 @@ const Insight7SpreadWinners = () => {
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             
-            <Bar dataKey="frozen_price_usd_per_t" name="원물 수출단가 (Frozen USD/t)" fill="#6B7280" radius={[4, 4, 0, 0]} maxBarSize={40} />
-            <Bar dataKey="prepared_price_usd_per_t" name="가공 수출단가 (Prepared USD/t)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} maxBarSize={40} />
+            <Bar dataKey="frozen_price_usd_per_t" name="원물 수출단가 (Frozen USD/t)" fill="url(#a11y-stripe-h)" color="#6B7280" radius={[4, 4, 0, 0]} maxBarSize={40} />
+            <Bar dataKey="prepared_price_usd_per_t" name="가공 수출단가 (Prepared USD/t)" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[4, 4, 0, 0]} maxBarSize={40} />
           </BarChart>
         </SafeResponsiveContainer>
       </div>

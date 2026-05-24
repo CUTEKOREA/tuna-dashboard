@@ -91,6 +91,7 @@ export default function SalmonInsightTradeDown() {
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={kamisData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="date" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="var(--color-warning)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k₩`} />

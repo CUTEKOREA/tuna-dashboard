@@ -14,6 +14,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const volumeData = [
   { year: '2019', Total: 171219 },
@@ -116,6 +117,7 @@ export default function GensanImportChart() {
               margin={{ top: 25, right: 10, left: 10, bottom: 5 }}
               barSize={rc.isMobile ? 18 : 40}
             >
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
               <XAxis 
                 dataKey="year" 
@@ -155,6 +157,7 @@ export default function GensanImportChart() {
           <div style={{ flex: 1 }}>
             <SafeResponsiveContainer width="100%" height={280}>
               <BarChart data={monthly2026Data} layout="vertical" margin={{ top: 10, right: 30, left: 30, bottom: 0 }}>
+                <ChartPatternDefs />
                 <XAxis type="number" hide />
                 <YAxis type="category" dataKey="month" axisLine={false} tickLine={false} stroke="var(--text-muted)" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
                 <Tooltip content={<CustomTooltipMonthly />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
