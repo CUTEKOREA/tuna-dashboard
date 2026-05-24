@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🥩 **2026-05-24 — 축산 3종 5-Pillar 네비게이터 일괄 도입 (Pork/Beef/Chicken) — 18 commodity 全완료**:
+> - **Pork**: PILLARS.map → activePart filter (pink #f43f5e → emerald #10b981)
+> - **Beef**: PILLARS.map → activePart filter (red→rose→amber, 룰북 D-04 등재)
+> - **Chicken**: PILLARS.map → activePart filter (amber→orange→red, 룰북 D-04 등재)
+> - 모두 동일 패턴 (PILLARS.filter + 동일 네비게이터 UI)
+> - L-03 빌드 통과 ✓
+> - **누적 18 commodity 전체 네비게이터 적용 완료** (수산 8 + 농산 6 + 축산 3 + Tuna 원형)
+>
 > 🌾 **2026-05-24 — 농산물 6종 5-Pillar 네비게이터 일괄 도입 (Cashew/Cassava/Garlic/Carrot/Cocoa/Mangosteen)**:
 > - **Cashew**: SECTIONS.map → activePart filter (nut amber #f59e0b → #78350f)
 > - **Cassava**: SECTIONS.map → activePart filter (yellow CASSAVA_THEME 보존)

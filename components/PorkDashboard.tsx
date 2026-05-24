@@ -27,12 +27,13 @@ const KPIS = [
   { title: '한국 돈육 자급률', value: '66%', trend: '🎯', desc: '34% 구조적 수입 의존', telemetry: 'synced', syncDate: 'PSD', color: '#f59e0b' },
 ];
 
+// 5-Pillar 네비게이터 메타 (돼지 시그니처 — pink/rose 톤)
 const PILLARS = [
-  { id: 'P1', title: '🐷 Pillar I — 원료 수급', desc: '글로벌 생산량 모니터링 및 ASF 질병 헤징 전략', color: '#f43f5e', widgets: ['W1', 'W5', 'W6', 'W9'] },
-  { id: 'P2', title: '🏭 Pillar II — 가공 및 생산', desc: '사료가 연동 마진 관리 및 단백질 포트폴리오 최적화', color: '#ec4899', widgets: ['W2', 'W10'] },
-  { id: 'P3', title: '🚢 Pillar III — 물류 및 통관', desc: '대륙간 무역 단가 스프레드 및 수입 파트너 다변화', color: '#8b5cf6', widgets: ['W3', 'W8'] },
-  { id: 'P4', title: '📈 Pillar IV — 판매 및 수요', desc: '한국 수급 구조 분석 및 자급률 갭 공략', color: '#f97316', widgets: ['W7', 'W11'] },
-  { id: 'P5', title: '🌱 Pillar V — ESG 및 지속가능성', desc: '탄소 배출 비교 및 그린 프리미엄 전략', color: '#10b981', widgets: ['W4'] },
+  { id: 'P1', num: '❶', label: '원료 수급', title: '🐷 Pillar I — 원료 수급', desc: '글로벌 생산량 모니터링 및 ASF 질병 헤징 전략', color: '#f43f5e', widgets: ['W1', 'W5', 'W6', 'W9'] },
+  { id: 'P2', num: '❷', label: '가공·생산', title: '🏭 Pillar II — 가공 및 생산', desc: '사료가 연동 마진 관리 및 단백질 포트폴리오 최적화', color: '#ec4899', widgets: ['W2', 'W10'] },
+  { id: 'P3', num: '❸', label: '물류·통관', title: '🚢 Pillar III — 물류 및 통관', desc: '대륙간 무역 단가 스프레드 및 수입 파트너 다변화', color: '#8b5cf6', widgets: ['W3', 'W8'] },
+  { id: 'P4', num: '❹', label: '판매·수요', title: '📈 Pillar IV — 판매 및 수요', desc: '한국 수급 구조 분석 및 자급률 갭 공략', color: '#f97316', widgets: ['W7', 'W11'] },
+  { id: 'P5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Pillar V — ESG 및 지속가능성', desc: '탄소 배출 비교 및 그린 프리미엄 전략', color: '#10b981', widgets: ['W4'] },
 ];
 
 const WIDGET_MAP: Record<string, React.FC<any>> = {
@@ -42,6 +43,7 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
 };
 
 export default function PorkDashboard() {
+  const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
@@ -85,8 +87,30 @@ export default function PorkDashboard() {
         ))}
       </div>
 
-      {/* ═══ 5-PILLAR ARCHITECTURE ═══ */}
-      {PILLARS.map((sec) => (
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {PILLARS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button key={s.id} onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
+                style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
+                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ═══ 5-PILLAR ARCHITECTURE (activePart 필터링) ═══ */}
+      {PILLARS.filter(s => s.id === activePart).map((sec) => (
         <div key={sec.id} style={{ marginBottom: '4rem' }}>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: `linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius: '2px' }} />

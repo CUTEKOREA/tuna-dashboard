@@ -1,6 +1,6 @@
 // @ts-nocheck
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Beef, TrendingUp, Globe, ShoppingCart, Leaf, Activity, Clock } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import {
@@ -31,12 +31,13 @@ const KPIS = [
   { title: '한국 소고기 자급률', value: '36.9%', trend: '🎯', desc: '10년 -10.6%p 폭락', telemetry: 'synced', syncDate: 'KOSIS 23Y', color: '#fbbf24' },
 ];
 
+// 5-Pillar 네비게이터 메타 (소고기 시그니처 그라디언트 — 룰북 D-04 red→rose→amber)
 const PILLARS = [
-  { id: 'P1', title: '🐂 Pillar I — 원료 수급', desc: '글로벌 생산 동향 및 미·브라질 양강 공급 구조', color: '#dc2626', widgets: ['W1', 'W2'] },
-  { id: 'P2', title: '🏭 Pillar II — 가공 및 생산', desc: '도축장 가동률 사이클 + 사료 곡물가 마진 압박', color: '#e11d48', widgets: ['W3', 'W4'] },
-  { id: 'P3', title: '🚢 Pillar III — 물류 및 통관', desc: '글로벌 무역 흐름 + 한국 수입 파트너 다변화', color: '#f43f5e', widgets: ['W5', 'W6'] },
-  { id: 'P4', title: '📈 Pillar IV — 판매 및 수요', desc: '한국 수급 구조 + 한우·수입육 가격 갭 + 질병 리스크', color: '#fb923c', widgets: ['W7', 'W8', 'W9'] },
-  { id: 'P5', title: '🌱 Pillar V — ESG 및 지속가능성', desc: '탄소 발자국 비교 + 그래스피드·유기농 프리미엄', color: '#f59e0b', widgets: ['W10', 'W11'] },
+  { id: 'P1', num: '❶', label: '원료 수급', title: '🐂 Pillar I — 원료 수급', desc: '글로벌 생산 동향 및 미·브라질 양강 공급 구조', color: '#dc2626', widgets: ['W1', 'W2'] },
+  { id: 'P2', num: '❷', label: '가공·생산', title: '🏭 Pillar II — 가공 및 생산', desc: '도축장 가동률 사이클 + 사료 곡물가 마진 압박', color: '#e11d48', widgets: ['W3', 'W4'] },
+  { id: 'P3', num: '❸', label: '물류·통관', title: '🚢 Pillar III — 물류 및 통관', desc: '글로벌 무역 흐름 + 한국 수입 파트너 다변화', color: '#f43f5e', widgets: ['W5', 'W6'] },
+  { id: 'P4', num: '❹', label: '판매·수요', title: '📈 Pillar IV — 판매 및 수요', desc: '한국 수급 구조 + 한우·수입육 가격 갭 + 질병 리스크', color: '#fb923c', widgets: ['W7', 'W8', 'W9'] },
+  { id: 'P5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Pillar V — ESG 및 지속가능성', desc: '탄소 발자국 비교 + 그래스피드·유기농 프리미엄', color: '#f59e0b', widgets: ['W10', 'W11'] },
 ];
 
 const WIDGET_MAP: Record<string, React.FC<any>> = {
@@ -46,6 +47,7 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
 };
 
 export default function BeefDashboard() {
+  const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter',sans-serif" }}>
@@ -89,8 +91,30 @@ export default function BeefDashboard() {
         ))}
       </div>
 
-      {/* ═══ 5-PILLAR ARCHITECTURE ═══ */}
-      {PILLARS.map((sec) => (
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {PILLARS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button key={s.id} onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
+                style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
+                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ═══ 5-PILLAR ARCHITECTURE (activePart 필터링) ═══ */}
+      {PILLARS.filter(s => s.id === activePart).map((sec) => (
         <div key={sec.id} style={{ marginBottom: '4rem' }}>
           <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{ width: '4px', height: '28px', background: `linear-gradient(180deg,${sec.color},${sec.color}99)`, borderRadius: '2px' }} />
