@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-24 — GalchiDashboard 5-Pillar 네비게이터 도입 (Mackerel 패턴 확산)**:
+> - 동일 패턴 이식: SECTIONS 메타에 `id/num/label/color/iconComp` 필드 추가, `activePart` state, 네비게이터 UI
+> - 시그니처 그라디언트: emerald → teal (룰북 D-04 기존 등재 활용)
+>   - S1 `#10b981` (emerald-500) / S2 `#14b8a6` (teal-500) / S3 `#0d9488` (teal-600) / S4 `#5eead4` (teal-300) / S5 `#99f6e4` (teal-200)
+> - 이미 SECTIONS+pillar 구조 존재 → 평면 스크롤만 활성 단일 section으로 교체 (코드 ~25줄 수정)
+> - L-03 빌드 통과 ✓
+>
 > 🐟 **2026-05-24 — MackerelDashboard 5-Pillar 네비게이터 도입**:
 > - **Tuna 패턴 이식**: `밸류체인 네비게이터` UI + `activePart` state + 5단 클릭 필터링
 > - **SECTIONS 메타** 추가 (S1~S5, num/label/title/desc/color/icon)

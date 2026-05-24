@@ -119,51 +119,58 @@ const WIDGET_ICONS: Record<string, any> = {
   w_galchi_sg_valueup: TrendingUp
 };
 
+// 5-Pillar 네비게이터 메타 (Mackerel/Tuna 패턴 + 갈치 시그니처 그라디언트 emerald → teal)
 const SECTIONS = [
   {
-    title: "Part I — 원물 생산",
+    id: "S1", num: "❶", label: "원료 수급",
+    title: "🐟 Part I — 원물 생산 (Raw Material)",
     desc: "글로벌 어획량, 자원평가, 조업 효율, 총허용어획량(TAC) 관리, 기후 리스크 및 KFAS 수산과학 연구",
     ids: ["w_galchi_prod_risk","w14","w15","w16","w19","w03","w04","w29","w11","w12","w13"],
-    accent: "var(--color-success)",
-    icon: "Fish",
+    accent: "#10b981", color: "#10b981",
+    iconComp: Fish,
     pillar: "S1" as const
   },
   {
-    title: "Part II — 가공 산업 (Processing)",
+    id: "S2", num: "❷", label: "가공·생산",
+    title: "🏭 Part II — 가공 산업 (Processing)",
     desc: "유통 단계별 마진 구조, 가공 전환 전략 및 B2B 급식 시장 개발",
     ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06"],
-    accent: "var(--color-warning)",
-    icon: "Factory",
+    accent: "#14b8a6", color: "#14b8a6",
+    iconComp: Factory,
     pillar: "S2" as const
   },
   {
-    title: "Part III — 물류 및 무역 (Logistics & Trade)",
+    id: "S3", num: "❸", label: "물류·통관",
+    title: "🚢 Part III — 물류 및 무역 (Logistics & Trade)",
     desc: "수출입 통관, 관세·FTA 분석, 착지원가, 교역 흐름, 대체 공급망 및 지정학 리스크",
     ids: ["w05","w17","w20","w23","w24","w25","w08","w09","w28","w_galchi_hs_class","w_galchi_multi_cost","w_oec_galchi_export"],
-    accent: "#38bdf8",
-    icon: "Ship",
+    accent: "#0d9488", color: "#0d9488",
+    iconComp: Ship,
     pillar: "S3" as const
   },
   {
-    title: "Part IV — 판매 및 수요 (Sales & Demand)",
+    id: "S4", num: "❹", label: "판매·수요",
+    title: "📈 Part IV — 판매 및 수요 (Sales & Demand)",
     desc: "가격 동향, 매입 타이밍, 도매가 스프레드, 소비 트렌드 및 내수 물가 분석",
     ids: ["w01","w07","w18","w22","w_kosis_cpi_spread"],
-    accent: "#8b5cf6",
-    icon: "TrendingUp",
+    accent: "#5eead4", color: "#5eead4",
+    iconComp: TrendingUp,
     pillar: "S4" as const
   },
   {
-    title: "Part V — ESG 및 지속가능성 (Sustainability)",
+    id: "S5", num: "❺", label: "ESG·지속가능성",
+    title: "🌱 Part V — ESG 및 지속가능성 (Sustainability)",
     desc: "공급망 노동 리스크, OFAC/EU 제재 검증, 위생·식물위생 조치(SPS) 비관세 장벽, 식품 안전 및 정책 모니터링",
     ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10"],
-    accent: "var(--color-danger)",
-    icon: "ShieldCheck",
+    accent: "#99f6e4", color: "#99f6e4",
+    iconComp: ShieldCheck,
     pillar: "S5" as const
   },
 ];
 
 export default function GalchiDashboard() {
   const [data, setData] = useState(null);
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [liveIntel, setLiveIntel] = useState<any>(null);
   const [liveKcs, setLiveKcs] = useState<any>(null);
   const [liveKamis, setLiveKamis] = useState<any>(null);
@@ -651,30 +658,133 @@ export default function GalchiDashboard() {
         </div>
       </div>
 
-      {/* ═══ Categorized Widget Sections ═══ */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-        {SECTIONS.map((section) => {
-          const sectionWidgets = section.ids.map(id => widgetMap[id]).filter(Boolean);
-          if (sectionWidgets.length === 0) return null;
-          return (
-            <section key={section.title}>
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
-                  <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: section.accent }} />
-                  <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)' }}>{section.title}</h2>
-                  <span style={{ fontSize: '0.7rem', color: section.accent, background: `${section.accent}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
-                    {sectionWidgets.length}
-                  </span>
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0',
+                  }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>
+                  {idx + 1}
                 </div>
-                {section.desc && <p style={{ margin: '0 0 0 16px', fontSize: '0.82rem', color: 'var(--text-secondary)', letterSpacing: '0.01em' }}>{section.desc}</p>}
-              </div>
-              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                {sectionWidgets.map((w: any) => renderWidgetCard(w, section.accent, section.pillar))}
-              </div>
-            </section>
-          );
-        })}
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {s.label}
+                </span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem',
+                    color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center',
+                    lineHeight: 1.3,
+                    marginTop: '2px',
+                    padding: '0 4px',
+                  }}>
+                    {s.desc.slice(0, 24)}…
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      {/* ═══ 활성 Pillar 위젯 그리드 (activePart 필터링) ═══ */}
+      {(() => {
+        const sec = SECTIONS.find(s => s.id === activePart)!;
+        const SecIcon = sec.iconComp;
+        const sectionWidgets = sec.ids.map(id => widgetMap[id]).filter(Boolean);
+        return (
+          <section>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
+                <div style={{ width: '4px', height: '28px', borderRadius: '2px', background: sec.accent }} />
+                <SecIcon size={22} color={sec.accent} />
+                <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)' }}>{sec.title}</h2>
+                <span style={{ fontSize: '0.7rem', color: sec.accent, background: `${sec.accent}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
+                  {sectionWidgets.length}
+                </span>
+              </div>
+              <p style={{ margin: '0 0 0 16px', fontSize: '0.82rem', color: 'var(--text-secondary)', letterSpacing: '0.01em' }}>{sec.desc}</p>
+            </div>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {sectionWidgets.length === 0
+                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
+                : sectionWidgets.map((w: any) => renderWidgetCard(w, sec.accent, sec.pillar))}
+            </div>
+          </section>
+        );
+      })()}
 
     </div>
   );
