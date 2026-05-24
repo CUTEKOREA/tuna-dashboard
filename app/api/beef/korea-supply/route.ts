@@ -34,10 +34,13 @@ interface KosisRow {
 }
 
 async function fetchKosisMeat(): Promise<typeof FALLBACK | null> {
-  // 농림부 가축유통 통계 — 소고기 수급 (orgId=114, tblId 후보들)
-  // 실제 통계표 ID는 KOSIS 메뉴에서 확인 필요
-  // DT_114_2017_S0034 = 가축통계 (수급 항목 포함)
-  const url = `${KOSIS_BASE}?method=getList&apiKey=${KOSIS_KEY}&itmId=T1+T2+T3+&objL1=ALL&format=json&jsonVD=Y&prdSe=Y&startPrdDe=2015&endPrdDe=2024&orgId=114&tblId=DT_114_2017_S0034`;
+  // 통계청 가축통계조사 — 한우(육우) 사육두수·도축 (orgId=101)
+  // tblId 후보:
+  //   - DT_1IZ1101 (가축통계조사) — 한우 사육두수
+  //   - DT_1ED7011 (농업총조사) — 축종별 생산량
+  // 정확한 ID는 KOSIS 메뉴 검색 필요. 현재는 자급률 표 (KREI 식량수급표 별도)
+  // L-04 권고: KOSIS Open API 정확한 매핑 후 활성화
+  const url = `${KOSIS_BASE}?method=getList&apiKey=${KOSIS_KEY}&itmId=T10+T20+T30&objL1=ALL&format=json&jsonVD=Y&prdSe=Y&startPrdDe=2015&endPrdDe=2024&orgId=101&tblId=DT_1IZ1101`;
 
   try {
     const res = await fetch(url, {

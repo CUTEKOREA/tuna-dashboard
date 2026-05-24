@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔬 **2026-05-24 — 축산 3종 8-Axis Forensic Audit 완료 (역순 검증 시작)**:
+> - **기획서**: `docs/plans/livestock_3_widget_verification.md` (8-Axis schema 신설 4 추가: Visual·Domain·Mobile·Accessibility)
+> - **결과 33 위젯**: A합격 14 (42%) · B조건부 17 (52%) · **C archive 2 (6%)**
+> - **Chicken** (B 76.4) — risk-radar + eudr-esg **archive** (`_archive/api/chicken/`), 정성 추정·OIE 미연동 사유
+> - **Beef** (A- 85.5) ⭐ — LIVE schema fine-tune: KOSIS tblId 정정, KAMIS 등급 분리, KCS HSK 10자리 매핑 (L-04)
+> - **Pork** (A- 84.1) ⭐ — 정적 11 위젯, FAOSTAT 매핑 우수, W2/W3/W9/W10 시계열 갱신 필요
+> - 산출물: `artifacts/forensic_audit/2026-05-24/{Chicken,Beef,Pork}Dashboard/_summary.md` + `_livestock_summary.md`
+> - L-03 빌드 통과 ✓
+>
 > 🥩 **2026-05-24 — 축산 3종 5-Pillar 네비게이터 일괄 도입 (Pork/Beef/Chicken) — 18 commodity 全완료**:
 > - **Pork**: PILLARS.map → activePart filter (pink #f43f5e → emerald #10b981)
 > - **Beef**: PILLARS.map → activePart filter (red→rose→amber, 룰북 D-04 등재)

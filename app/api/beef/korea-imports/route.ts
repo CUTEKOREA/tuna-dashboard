@@ -42,6 +42,9 @@ interface KcsItem {
 }
 
 async function fetchKcsByHs(hs: string, year: string): Promise<KcsItem[]> {
+  // 룰북 L-04: KCS는 HSK 10자리 의무. HS 4자리는 글로벌 집계 보조용
+  // 0201 신선/냉장: 0201100000(도체)·0201200000(부분육)·0201300000(뼈없음)
+  // 0202 냉동:     0202100000        ·0202200000        ·0202300000
   const params = new URLSearchParams({
     serviceKey: KCS_KEY,
     pageNo: '1',
@@ -49,7 +52,7 @@ async function fetchKcsByHs(hs: string, year: string): Promise<KcsItem[]> {
     type: 'json',
     strtYymm: `${year}01`,
     endYymm: `${year}12`,
-    hsSgnGrpCol: 'HS4',
+    hsSgnGrpCol: 'HS10',
     hsSgn: hs,
     imxpTpcd: '2', // 수입
   });
@@ -70,11 +73,10 @@ async function fetchKcsByHs(hs: string, year: string): Promise<KcsItem[]> {
 }
 
 async function fetchKcsBeefImports(year: string): Promise<typeof FALLBACK | null> {
-  const [hs0201, hs0202] = await Promise.all([
-    fetchKcsByHs('0201', year),
-    fetchKcsByHs('0202', year),
-  ]);
-  const all = [...hs0201, ...hs0202];
+  // HSK 10자리 6개 코드 병렬 호출 (룰북 L-04)
+  const HSK_CODES = ['0201100000', '0201200000', '0201300000', '0202100000', '0202200000', '0202300000'];
+  const results = await Promise.all(HSK_CODES.map(hs => fetchKcsByHs(hs, year)));
+  const all = results.flat();
   if (!all.length) return null;
 
   const byCountry: Record<string, number> = {};

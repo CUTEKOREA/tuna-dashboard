@@ -79,11 +79,11 @@ const WIDGET_ICONS: Record<string, any> = {
   w_chicken_global_export: Target,
   w_chicken_trade_shift: Factory,
   w_chicken_arbitrage: Scale,
-  w_chicken_risk_radar: ShieldAlert,
+  // archived 2026-05-24 — forensic grade C: w_chicken_risk_radar (정성 추정, OIE 미연동)
   w_chicken_processing: Factory,
   w_chicken_corporates: Building2,
   w_chicken_feed_cost: Leaf,
-  w_chicken_eudr_esg: Shield
+  // archived 2026-05-24 — forensic grade C: w_chicken_eudr_esg (자체 ESG 추정, MSCI 무관)
 };
 
 // C-Level PEF Executive Override Protocol (V3.0)
@@ -96,10 +96,7 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
     sit: "CBOT 옥수수 선물이 $4.15로 전년 대비 하락세를 유지 중이나, 브라질 HPAI 확산에 따른 글로벌 사육두수 감축 리스크가 공존함.",
     strat: "곡물가 하락 윈도우를 활용한 선제적 원물 매집 필수. 사료비가 바닥을 칠 때 B2B 프랜차이즈 연간 공급 물량을 픽스하여 원가 변동성을 100% 헷징할 것."
   },
-  "w_chicken_eudr_esg": {
-    sit: "2025년 EU 삼림벌채방지법(EUDR) 시행으로 대두 사료 증빙이 필수화. 브라질 중소 패커들의 대유럽 수출이 막히며 아시아로 물량이 덤핑될 가능성 상승.",
-    strat: "태국 대형사(CPF, Betagro)는 이미 강한 EUDR 트레이서빌리티 구축. 단기 덤핑 브라질 물량으로 스팟 마진을 챙기고, 장기 코어 물량은 태국산으로 이원화할 것."
-  },
+  // archived 2026-05-24 — w_chicken_eudr_esg (forensic grade C, _archive/api/chicken/eudr-esg/)
   "w_chicken_arbitrage": {
     sit: "태국 현지 공장 발주부터 한국 부산항 입항까지 평균 15~20일 소요. HPAI 발병 시점 대비 물동량 리드타임에 따른 가격 상승폭이 비선형적으로 증가.",
     strat: "물류 리드타임을 이용한 시간 차익거래(Time Arbitrage) 가동. 부산 냉동창고 B2B 직배송망을 선제 구축하여 프랜차이즈 긴급 발주 물량을 프리미엄 가격에 소화할 것."
@@ -116,8 +113,8 @@ const PILLARS = [
     widgets: ["w_chicken_arbitrage"] },
   { id: "P4", num: "❹", label: "판매·수요", title: "📈 Pillar IV — 판매 및 수요", desc: "프랜차이즈 직거래 스펙인을 통한 유통 마진 극대화", color: "#f97316",
     widgets: ["w_chicken_global_export", "w_chicken_protein_spread", "w_chicken_season_balance"] },
-  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "🌱 Pillar V — ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄", color: "#b45309",
-    widgets: ["w_chicken_eudr_esg", "w_chicken_risk_radar"] }
+  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "🌱 Pillar V — ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄 (재구성 중 — MSCI ESG·WOAH WAHIS 실측 연동 예정)", color: "#b45309",
+    widgets: [] } // archived 2026-05-24: w_chicken_eudr_esg, w_chicken_risk_radar (forensic grade C)
 ];
 
 export default function ChickenDashboard() {
@@ -131,11 +128,10 @@ export default function ChickenDashboard() {
       fetch('/api/chicken/global-export').then(r => r.json()),
       fetch('/api/chicken/trade-shift').then(r => r.json()),
       fetch('/api/chicken/arbitrage').then(r => r.json()),
-      fetch('/api/chicken/risk-radar').then(r => r.json()),
       fetch('/api/chicken/processing').then(r => r.json()),
       fetch('/api/chicken/corporates').then(r => r.json()),
-      fetch('/api/chicken/feed-cost').then(r => r.json()),
-      fetch('/api/chicken/eudr-esg').then(r => r.json())
+      fetch('/api/chicken/feed-cost').then(r => r.json())
+      // archived 2026-05-24: /api/chicken/risk-radar, /api/chicken/eudr-esg (forensic grade C)
     ])
     .then((responses) => {
       // Inject C-Level Override & V3.0 compliance
