@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔬 **2026-05-24 — 17 commodity 247 위젯 8-Axis Forensic Audit 全완료**:
+> - **축산 3종** (33 위젯): A14·B17·**C2** archive (Chicken risk-radar + eudr-esg)
+> - **농산 6종** (79 위젯): A24·B55·C1
+> - **수산 8종** (135 위젯): A51·B84·C0 (Tuna closure 제외)
+> - **누계**: 247 위젯, A 89 (36%) · B 156 (63%) · C 3 (1.2%) — 평균 B+
+> - **🏆 최고**: **Galchi (A- 86.3, A 73%, LIVE 14 endpoint)** — 다른 commodity 확산 골드 스탠다드
+> - **Best 위젯 1위**: Mackerel "한·일 어획 -53%" 90.0점 (통계청+NPFC+국립수산과학원 3중 1차 자료)
+> - 산출물: artifacts/forensic_audit/2026-05-24/{17 dashboards}/_summary.md + _livestock/_agri/_seafood_summary.md
+>
 > 🔬 **2026-05-24 — 축산 3종 8-Axis Forensic Audit 완료 (역순 검증 시작)**:
 > - **기획서**: `docs/plans/livestock_3_widget_verification.md` (8-Axis schema 신설 4 추가: Visual·Domain·Mobile·Accessibility)
 > - **결과 33 위젯**: A합격 14 (42%) · B조건부 17 (52%) · **C archive 2 (6%)**
