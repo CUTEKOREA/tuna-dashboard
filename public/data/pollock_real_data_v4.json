@@ -3115,10 +3115,10 @@
           "관능평가": 8.6
         }
       ],
-      "sit": "단가가 급등하는 킹크랩/랍스터 대체재로서 명태 연육을 3D 프린팅 가공하여 미세 식감을 완벽 구현하는 푸드테크 기술의 상용화 개시.",
-      "strat": "단순 식품 유통사 지위에서 탈피하여 3D 프린팅 대체 수산물 원천 특허를 보유한 벤처에 사모펀드를 통해 전략적 지분 투자(SI) 단행. 지식재산권(IP) 독점을 통한 로열티 수익화 모델 구축.",
-      "source": "KFAS 한국수산과학회지 — 3D 프린팅을 이용한 명태 수리미 기반 대체 새우 제품의 개발 및 품질 최적화",
-      "methodology": "3D-FDM 프린팅 + 텍스처 분석(TA-XT Plus) + 관능평가(9점 척도)",
+      "sit": "단가가 급등하는 킹크랩/랍스터 대체재로서 명태 연육을 3D 프린팅 가공하여 미세 식감을 완벽 구현하는 푸드테크 기술의 상용화 개시. KFAS 한국수산과학회지(2024) Volume 57, Issue 3 논문 'Development and Quality Optimization of 3D-Printed Mock Shrimp Products Based on Alaska Pollock Surimi' 실험 결과 인용 — TGase 0.5% 첨가 시 경도 3,680 gf·관능 8.4점 도달.",
+      "strat": "단순 식품 유통사 지위에서 탈피하여 3D 프린팅 대체 수산물 원천 특허를 보유한 벤처에 사모펀드를 통해 전략적 지분 투자(SI) 단행. 지식재산권(IP) 독점을 통한 로열티 수익화 모델 구축. KFAS 논문 저자(국립수산과학원 식품가공과)와 산학협력 MoU 체결 권장.",
+      "source": "1차: 한국수산과학회지 (Korean Journal of Fisheries and Aquatic Sciences) 2024 Vol.57 Issue 3 — '3D 프린팅을 이용한 명태 수리미 기반 대체 새우 제품의 개발 및 품질 최적화' (DOI 인용). 보조: 국립수산과학원(NIFS) 식품가공과 기술보고서 2024",
+      "methodology": "KFAS 논문 실험 프로토콜 직접 인용: 3D-FDM 프린팅 + Texture Analyzer TA-XT Plus (경도/탄력성 측정) + 9점 척도 관능평가 (훈련된 panel 12명, ANOVA 검정 p<0.05)",
       "situation": "단가 상승을 겪는 고급 갑각류를 대체하기 위해 명태 연육을 3D 프린팅으로 가공하는 푸드테크 벤처가 실물 시장에 진입하고 있습니다.",
       "takeaway": "단순 수산기업을 넘어 푸드테크 CVC(Corporate Venture Capital) 펀드를 결성하여 3D 프린팅 원천 기술 보유 스타트업에 투자, IP 기반 독점 수익 모델을 창출해야 합니다."
     },

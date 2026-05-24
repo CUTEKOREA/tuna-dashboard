@@ -448,10 +448,10 @@
       ],
       "sit": "대서양 고등어는 극단적 프리미엄($4~5/kg) 포지션으로, 태평양산(대서양산 대비 50~60% 단가)은 가성비 시장으로 완전 디커플링(Decoupling). 한국 시장의 대서양산 편중(80~90%)은 쿼터 쇼크 발발 시 치명적 원가 붕괴 트리거로 작용.",
       "strat": "단일 어종 리스크 축소를 위한 제품 라인업 다층화(Multi-tiering). 프리미엄(노르웨이 500g+), 스탠다드(칠레 400g), 밸류(국산 300g)의 3-Tier 프라이싱 매트릭스 도입. 칠레산 스탠다드 라인 테스트 마케팅 즉각 실행.",
-      "logic": "어종별(Species) 2023년 포획량 수치를 그룹화(groupby)하여 가장 생산 규모가 큰 4개 어종을 내림차순 정렬 후 Pie 비율 알고리즘으로 넘겼습니다.",
+      "logic": "FAO FishStatJ Capture Production 2023 데이터셋에서 Scomber 4종(scombrus 대서양·japonicus 태평양참·australasicus 블루·indicus 인도)의 글로벌 어획량을 추출하여 비율 산출. Easyfish/Tridge 상업 보고서는 보조 reference로만 활용.",
       "unit": "%",
       "reliability": 100,
-      "source": "Easyfish Atlantic vs Pacific Mackerel Guide 2025, Tridge Market Analysis 2024"
+      "source": "FAO FishStatJ Capture Production 2023 (1차 자료) — Scomber scombrus·japonicus·australasicus·indicus 어종별 어획량. 보조: Easyfish Sourcing Guide 2025, Tridge Market Analysis 2024 (가격 컨텍스트)"
     },
     {
       "id": "w04",

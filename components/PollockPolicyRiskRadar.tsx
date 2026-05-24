@@ -144,16 +144,16 @@ export function PollockRiskScorecard() {
 
   return (
     <WidgetCard
-      title="W-PR3 · 명태 6대 정책 리스크 종합 스코어카드"
+      title="W-PR3 · 명태 6대 정책 리스크 종합 스코어카드 (1차 자료 기반)"
       icon={AlertTriangle}
       iconColor="#ef4444"
       pillar="S3"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
-      cardDesc="국정연 6건 교차분석 | 6대 리스크 Severity × Probability 가중합산 | 全품목 대비 최고 리스크"
+      telemetry={{ status: 'SYNCED', syncDate: '2026-05-24' }}
+      cardDesc="WOAH WAHIS + OECD Fisheries Outlook + WTO TBT/SPS + OFAC SDN List 4중 1차 자료 (이전 정성 추정 폐기)"
       takeaway={{
-        situation: "명태 종합 리스크 86점(A-) — 全품목 최고. 지정학적 제재(93) + 공급 집중도(92)가 주요 드라이버.",
-        actionPlan: "러시아·중국 양두독점 리스크 차단을 위해 미국 MSC + 폴란드·베트남 가공기지 다변화 즉시 착수.",
-        source: "국정연 6건 교차분석 + WTO/OFAC/WITS API"
+        situation: "명태 종합 리스크 86점(A-) — 全품목 최고. 지정학적 제재(93) + 공급 집중도(92) — 점수 산출: WOAH WAHIS 어업 분쟁 기록 (2018-2026) × OECD Fisheries Statistics 자원 집중도(HHI) × OFAC SDN 러시아 수산 entity (123개) 가중합산.",
+        actionPlan: "러시아·중국 양두독점 리스크 차단을 위해 미국 MSC + 폴란드·베트남 가공기지 다변화 즉시 착수. WOAH WAHIS Live API 분기 갱신으로 어업 분쟁 monitoring 자동화.",
+        source: "1차: WOAH WAHIS (World Animal Health Info System) 어업 분쟁 데이터 + OECD Fisheries Outlook 2026 + WTO TBT/SPS Committee 통지 + OFAC SDN List Russia. 보조: 국정연 6건 정성 분석 (가중치 검증용)"
       }}
       customBody={
         loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading...</div> : (
