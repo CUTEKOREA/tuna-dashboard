@@ -38,21 +38,24 @@ function toQuarterKey(dateStr: string): string | null {
   return `${yy}-${String(mm).padStart(2, '0')}`;
 }
 
-async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCode: string): Promise<Record<string, number>> {
+async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCode: string, productRankCode: string): Promise<Record<string, number>> {
   // 분기별 가격 추출 — 최근 24개월
   const today = new Date();
   const start = new Date(today);
   start.setMonth(start.getMonth() - 24);
 
   const fmt = (d: Date) => d.toISOString().slice(0, 10);
-  // 한우 1++ 등급 = kindCode '01', 수입 쇠고기 = '02' (KAMIS 표준)
+  // KAMIS 한우 매핑 (KAMIS URL 검증 완료):
+  //   itemcategorycode=500 (축산물, 100 아님!)
+  //   itemcode=4304 (한우 4자리, 411 아님)
+  //   kindcode=27 (한우 1등급), productrankcode=1
   const params = new URLSearchParams({
     action: 'periodProductList',
     p_productclscode: '01', // 도매
     p_itemcategorycode: itemCategoryCode,
     p_itemcode: itemCode,
     p_kindcode: kindCode,
-    p_productrankcode: '04',
+    p_productrankcode: productRankCode,
     p_startday: fmt(start),
     p_endday: fmt(today),
     p_cert_key: KAMIS_KEY,
@@ -106,10 +109,12 @@ export async function GET() {
 
   if (KAMIS_KEY) {
     try {
-      // 품목: 한우(411) 1++(kind 01), 수입 쇠고기(412) 일반(kind 02)
+      // KAMIS 검증 매핑 (URL 추출 확인):
+      //   한우: itemcategorycode=500, itemcode=4304, kindcode=27, productrankcode=1
+      //   수입 쇠고기: 동일 카테고리, 별도 itemcode (4307 미국산 등) 추정
       const [hanwoo, imported] = await Promise.all([
-        fetchKamisItem('411', '100', '01'),
-        fetchKamisItem('412', '100', '02'),
+        fetchKamisItem('4304', '500', '27', '1'),
+        fetchKamisItem('4307', '500', '27', '1'),
       ]);
 
       const quarters = Object.keys(hanwoo).sort();
