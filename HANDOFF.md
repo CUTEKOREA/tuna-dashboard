@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-24 — MackerelDashboard 5-Pillar 네비게이터 도입**:
+> - **Tuna 패턴 이식**: `밸류체인 네비게이터` UI + `activePart` state + 5단 클릭 필터링
+> - **SECTIONS 메타** 추가 (S1~S5, num/label/title/desc/color/icon)
+> - **PILLAR_WIDGET_IDS** 매핑 (기존 5 Part 위젯 id 그대로 재사용)
+> - **Phase 4 통합**: dangling 외부 위젯 6개 import (KoreaSupply/NorwayAlt/ClimatePredictor → S1, Aquaculture → S2, AfricanExportROI → S3, SafetyPremium → S5)
+> - **시그니처 그라디언트 정식 등재**: 룰북 D-04에 `cyan-700 → sky-500` 추가 (Tuna `cyan→blue`와 명도 분리)
+> - **기획서**: `docs/plans/mackerel_pillar_navigator.md`
+> - **빌드**: L-03 통과 ✓
+>
 > 🐂 **2026-05-24 — BeefDashboard 신규 commodity 추가**:
 > - **위젯 11개** (Pork 동일 구조, 5-Pillar 매핑) — S1 원료(W1,W2) · S2 가공(W3,W4) · S3 물류(W5,W6) · S4 판매(W7,W8,W9) · S5 ESG(W10,W11)
 > - **시그니처 그라디언트**: `red → rose → amber` (#dc2626 → #e11d48 → #f59e0b, 한우 마블링 컨셉)

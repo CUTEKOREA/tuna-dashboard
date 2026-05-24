@@ -45,10 +45,12 @@
 - D-03: **Dark Mode Glassmorphism** 필수 (`bg-gray-900/95` + `bg-white/5 backdrop-blur-md`).
 - D-04: **품목별(작물/축종/어종) 시그니처 그라디언트 테마 준수:**
   - 참치(해양): `cyan → blue`
+  - 고등어(등푸른 원양·연근해): `cyan-700 → sky-500` (#0e7490 → #0ea5e9)
   - 갈치/새우(연안): `emerald → teal`
   - 오징어: `purple → pink`
   - 망고스틴(열대과일): `purple → fuchsia → pink`
   - 닭고기(가금류): `amber → orange → red`
+  - 소고기(축산-한우 마블링): `red → rose → amber` (#dc2626 → #e11d48 → #f59e0b)
 - D-05: 차트 렌더링 시 X축 라벨은 **한글 기준 최대 7자**(영문 잔존 시도 동일 7자) 초과 시 truncate 하고 괄호 영문명은 모두 제거합니다. 7자 초과 라벨이 다수일 경우 **Korean smart rotation**(`angle={-45}` 또는 `-30` + `textAnchor="end"` + 충분한 하단 `margin.bottom` 확보)을 적용합니다. (V4.1: 운영 중 104개 라벨 실측 결과 6자 → 7자가 한글 단어 단위 보존에 더 안전함이 확인됨.)
 
 ---

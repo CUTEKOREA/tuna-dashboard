@@ -19,6 +19,45 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 
+// Phase 4: dangling 외부 위젯 통합 import (가치 高 6개)
+import MackerelKoreaSupply from './MackerelKoreaSupply';
+import MackerelNorwayAlt from './MackerelNorwayAlt';
+import MackerelClimatePredictor from './MackerelClimatePredictor';
+import MackerelAquaculture from './MackerelAquaculture';
+import MackerelAfricanExportROI from './MackerelAfricanExportROI';
+import MackerelSafetyPremium from './MackerelSafetyPremium';
+
+// 5-Pillar 네비게이터 메타 (Tuna 패턴 + 고등어 시그니처 그라디언트 cyan-700→sky-500)
+const SECTIONS = [
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🐟 Part I — 원료 수급 (Raw Material)',
+    desc: '글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링', color: '#0e7490', icon: Fish },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 Part II — 가공·생산 (Processing & Production)',
+    desc: '가공 허브 패권, 부가가치 분석, HMR 전환, 기술 혁신 및 부산물 활용', color: '#0891b2', icon: Factory },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 Part III — 물류·통관 (Logistics & Customs)',
+    desc: '수출입 통관, 관세·FTA 분석, 착지원가, 차익거래, 해상운임 및 콜드체인', color: '#0ea5e9', icon: Ship },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 Part IV — 판매·수요 (Sales & Demand)',
+    desc: '소비 트렌드, 유통 마진, 가격 분해, D2C·HMR 시장, 스태그플레이션 대응', color: '#38bdf8', icon: TrendingUp },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 Part V — ESG·지속가능성 (Sustainability)',
+    desc: '제재·컴플라이언스, MSC 인증, 탄소 발자국, 선원 인권, IUU 감시 및 정책 대응', color: '#7dd3fc', icon: ShieldCheck },
+] as const;
+
+const PILLAR_WIDGET_IDS: Record<string, string[]> = {
+  S1: ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'],
+  S2: ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'],
+  S3: ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'],
+  S4: ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'],
+  S5: ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'],
+};
+
+// Phase 4: dangling 외부 위젯 → pillar 매핑
+const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
+  S1: [MackerelKoreaSupply, MackerelNorwayAlt, MackerelClimatePredictor],
+  S2: [MackerelAquaculture],
+  S3: [MackerelAfricanExportROI],
+  S4: [],
+  S5: [MackerelSafetyPremium],
+};
+
 /* ─── Custom Tooltip ─── */
 // 시뮬레이션(추정) 위젯 ID 목록
 const SIMULATION_WIDGET_IDS = ['w23', 'w25'];
@@ -94,6 +133,7 @@ const WIDGET_ICONS: Record<string, any> = {
 
 export default function MackerelDashboard() {
   const [data, setData] = useState(null);
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [tickerData, setTickerData] = useState<any>(null);
   const [kcsData, setKcsData] = useState<any>(null);
@@ -694,70 +734,127 @@ export default function MackerelDashboard() {
         </div>
       )}
 
-      {/* ═══ 5-Part Strategic Intelligence Architecture ═══ */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-        
-        {/* Part I — 원물 생산 */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
-            <Fish size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part I — 원물 생산</h2>
-          </div>
-          <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>글로벌 어획량, 자원평가, 어종 분포, 쿼터 관리 및 생태계 모니터링</p>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S1'))}
-          </div>
-        </section>
-
-        {/* Part II — 가공 산업 (Processing) */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
-            <Factory size={24} color="var(--color-warning)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part II — 가공 산업 (Processing)</h2>
-          </div>
-          <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>가공 허브 패권, 부가가치 분석, HMR 전환, 기술 혁신 및 부산물 활용</p>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S2'))}
-          </div>
-        </section>
-
-        {/* Part III — 물류 및 무역 (Logistics & Trade) */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
-            <Ship size={24} color="#38bdf8" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part III — 물류 및 무역 (Logistics & Trade)</h2>
-          </div>
-          <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>수출입 통관, 관세·FTA 분석, 착지원가, 차익거래, 해상운임 및 콜드체인</p>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
-          </div>
-        </section>
-
-        {/* Part IV — 판매 및 수요 (Sales & Demand) */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
-            <TrendingUp size={24} color="#8b5cf6" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part IV — 판매 및 수요 (Sales & Demand)</h2>
-          </div>
-          <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>소비 트렌드, 유통 마진, 가격 분해, D2C·HMR 시장, 스태그플레이션 대응</p>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S4'))}
-          </div>
-        </section>
-
-        {/* Part V — ESG 및 지속가능성 (Sustainability) */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
-            <ShieldCheck size={24} color="var(--color-danger)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Part V — ESG 및 지속가능성 (Sustainability)</h2>
-          </div>
-          <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>제재·컴플라이언스, MSC 인증, 탄소 발자국, 선원 인권, IUU 감시 및 정책 대응</p>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
-          </div>
-        </section>
-
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0',
+                  }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>
+                  {idx + 1}
+                </div>
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {s.label}
+                </span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem',
+                    color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center',
+                    lineHeight: 1.3,
+                    marginTop: '2px',
+                    padding: '0 4px',
+                  }}>
+                    {s.desc.slice(0, 24)}…
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      {/* ═══ 활성 Pillar 위젯 그리드 (activePart 필터링) ═══ */}
+      {(() => {
+        const sec = SECTIONS.find(s => s.id === activePart)!;
+        const SecIcon = sec.icon;
+        const pillarWidgets = widgets?.filter((w: any) => PILLAR_WIDGET_IDS[activePart].includes(w.id)) || [];
+        const extras = EXTRA_BY_PILLAR[activePart] || [];
+        return (
+          <section>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '0.5rem' }}>
+              <SecIcon size={24} color={sec.color} />
+              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>{sec.title}</h2>
+            </div>
+            <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {pillarWidgets.map((w: any) => renderWidgetCard(w, activePart))}
+              {extras.map((Comp, i) => <Comp key={`extra-${activePart}-${i}`} />)}
+            </div>
+          </section>
+        );
+      })()}
 
     </div>
   );
