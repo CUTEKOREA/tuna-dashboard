@@ -1,33 +1,33 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Activity, ShieldAlert, BarChart2, CheckCircle2, Egg } from 'lucide-react';
-import { LineChart, Line, ComposedChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { Activity, BarChart2, CheckCircle2, Egg } from 'lucide-react';
+import { LineChart, Line, ComposedChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function ChickenEmpiricalInsights() {
   const [arbData, setArbData] = useState<any>(null);
-  const [riskData, setRiskData] = useState<any>(null);
   const [procData, setProcData] = useState<any>(null);
   const [eggsData, setEggsData] = useState<any>(null);
+  // risk-radar는 2026-05-24 Forensic Audit에서 archive (C-grade, _archive/api/chicken/risk-radar/)
 
   useEffect(() => {
+    // 각 fetch를 독립 처리하여 한 endpoint 실패가 전체 로딩을 막지 않도록 함
+    const safeFetch = (url: string) =>
+      fetch(url).then(r => (r.ok ? r.json() : null)).catch(() => null);
+
     Promise.all([
-      fetch('/api/chicken/arbitrage').then(r => r.json()),
-      fetch('/api/chicken/risk-radar').then(r => r.json()),
-      fetch('/api/chicken/processing').then(r => r.json()),
-      fetch('/api/chicken/eggs').then(r => r.json()),
-    ])
-      .then(([arb, risk, proc, eggs]) => {
-        setArbData(arb);
-        setRiskData(risk);
-        setProcData(proc);
-        setEggsData(eggs);
-      })
-      .catch(e => console.error(e));
+      safeFetch('/api/chicken/arbitrage'),
+      safeFetch('/api/chicken/processing'),
+      safeFetch('/api/chicken/eggs'),
+    ]).then(([arb, proc, eggs]) => {
+      setArbData(arb);
+      setProcData(proc);
+      setEggsData(eggs);
+    });
   }, []);
 
-  if (!arbData || !riskData || !procData || !eggsData) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>실증 인사이트 로딩 중...</div>;
+  if (!arbData || !procData || !eggsData) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>실증 인사이트 로딩 중...</div>;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', gridColumn: '1 / -1' }}>
@@ -67,27 +67,7 @@ export default function ChickenEmpiricalInsights() {
           takeaway={{ situation: arbData.sit, actionPlan: arbData.strat, source: arbData.source }}
         />
 
-        <WidgetCard
-          title={riskData.title}
-          icon={ShieldAlert}
-          iconColor="var(--color-danger)"
-          pillar="S3"
-          cardDesc="브라질 육계 vs 태국 토종 다축 리스크 비교"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
-          chartHeight={240}
-          chart={
-            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={riskData.data}>
-              <PolarGrid stroke="rgba(255,255,255,0.15)" />
-              <PolarAngleAxis dataKey="dimension" tick={{ fill: '#e2e8f0', fontSize: 11 }} />
-              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-              <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
-              <Legend wrapperStyle={{ fontSize: '11px' }} />
-              <Radar name="브라질 육계 (Conventional)" dataKey="brazil" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.2} strokeWidth={2} />
-              <Radar name="태국 토종 (Pradu Hang Dum)" dataKey="thai" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.5} strokeWidth={2} />
-            </RadarChart>
-          }
-          takeaway={{ situation: riskData.sit, actionPlan: riskData.strat, source: riskData.source }}
-        />
+        {/* risk-radar 위젯 archive (2026-05-24 Forensic Audit, C-grade) — _archive/api/chicken/risk-radar/ */}
 
         <WidgetCard
           title={procData.title}
