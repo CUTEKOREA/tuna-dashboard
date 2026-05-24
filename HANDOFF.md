@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🦑 **2026-05-24 — SquidDashboard 5-Pillar 네비게이터 도입 (Mackerel/Galchi 패턴 확산)**:
+> - SECTIONS 메타에 num/label 추가 (id/color는 이미 있음)
+> - PILLAR_WIDGET_IDS 추출 (80 위젯 5-Pillar 분류 보존)
+> - activePart state + 네비게이터 UI + 단일 활성 section 렌더
+> - 시그니처 그라디언트: purple → pink (룰북 D-04 기존 등재 활용)
+>   - S1 #8b5cf6 / S2 #a855f7 / S3 #d946ef / S4 #ec4899 / S5 #f43f5e
+> - 위젯 카운트 뱃지 추가 (예: "20 위젯")
+> - L-03 빌드 통과 ✓
+>
 > 🐟 **2026-05-24 — GalchiDashboard 5-Pillar 네비게이터 도입 (Mackerel 패턴 확산)**:
 > - 동일 패턴 이식: SECTIONS 메타에 `id/num/label/color/iconComp` 필드 추가, `activePart` state, 네비게이터 UI
 > - 시그니처 그라디언트: emerald → teal (룰북 D-04 기존 등재 활용)
