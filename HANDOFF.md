@@ -1,12 +1,17 @@
 # HANDOFF — 현재 작업 상태
 
-> ♿ **2026-05-24 — A8 색맹 대비 codemod 시범 적용 (foundation commit)**:
-> - **신설**: `components/ChartPatterns.tsx` — Okabe-Ito 8-color 팔레트 + 5종 SVG pattern (`a11y-stripe-h/v/diag/dots/cross`) + `getA11yBarProps(idx)` 헬퍼
-> - **시범 3 위젯**: Beef W2 (Top 5 생산국 multi-Cell), Beef W3 (도축장 가동률 2-Bar), Pork W7 (한국 수급 2-Bar)
+> ♿ **2026-05-24 — A8 색맹 대비 codemod High 4종 확산 완료 (20 파일, ~40 차트)**:
+> - **Foundation**: `components/ChartPatterns.tsx` (Okabe-Ito 8-color + 5종 SVG pattern + `getA11yBarProps`)
+> - **시범 3 위젯**: Beef W2/W3 + Pork W7 (커밋 2dbd66d)
+> - **High 4종 확산** (커밋 65c1f8c, 17 파일):
+>   - Chicken: Dashboard 렌더러 (Bar+Composed), ThaiInsightsA/B (Cell-loop + 2-Bar), EmpiricalInsights (인건비 + 계란 stacked)
+>   - Galchi: Dashboard 렌더러 (Bar+Composed)
+>   - Mackerel: Dashboard 렌더러, FeedRatio (식용/사료 stacked), ProcessedWidgets (Chile/Peru/기타 3-stack), SafetyPremium (Cell-based 국가구분)
+>   - Salmon: Dashboard 4 렌더러 경로, InsightFeedBio (marine/alt/fifo), InsightWidgets (vertical+horizontal), InsightTradeDown/SmartColdChain/Processing/MarginSqueeze/LogisticsResilience (2-Bar 비교)
+> - **정책**: 단일-Bar 위젯은 제외 (다중 시리즈 비교에서만 WCAG 1.4.1 의미 있음)
 > - **WCAG 2.1 SC 1.4.1** (Use of Color) 준수 — 색상 + 패턴 이중 표현
-> - **가이드**: `docs/plans/a8_accessibility_codemod.md` (3 패턴 + 점진 확산 로드맵 ~120 Bar / 4.5h)
 > - L-03 빌드 통과 ✓
-> - **다음 단계 (사용자 선택)**: (a) Chicken/Mackerel/Galchi/Salmon 일괄 확산 1h / (b) `scripts/fix_a11y_charts.py` 자동 codemod 작성 / (c) 시범 보존
+> - **잔여 작업 (Mid/Low 우선순위)**: Squid/Shrimp/Pollock/Cocoa (Mid, ~40 Bar) + 나머지 8 commodity (Low, ~50 Bar) — 가이드 `docs/plans/a8_accessibility_codemod.md`
 >
 > 🔬 **2026-05-24 — 17 commodity 247 위젯 8-Axis Forensic Audit 全완료**:
 > - **축산 3종** (33 위젯): A14·B17·**C2** archive (Chicken risk-radar + eudr-esg)
