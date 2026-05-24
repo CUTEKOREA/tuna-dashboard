@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🦐 **2026-05-24 — ShrimpDashboard 5-Pillar 네비게이터 도입**:
+> - SECTIONS 메타 신규 작성 (inline 5 section → 단일 정의)
+> - 75+ 위젯 5-Pillar 매핑 (각 pillar별 widgets 배열)
+> - activePart state + 네비게이터 UI + 단일 활성 section
+> - 그라디언트: emerald → teal (룰북 D-04 새우 등재 활용)
+> - **Uncategorized fallback 처리**: S4 활성 시에만 "기타 분석" sub-section 자동 표시 (미매핑 위젯 손실 방지)
+> - 위젯 카운트 뱃지 추가
+> - L-03 빌드 통과 ✓
+>
 > ❄️ **2026-05-24 — PollockDashboard 5-Pillar 네비게이터 도입**:
 > - PILLARS 메타에 num/label 추가 (id=P1~P5, customInject 보존)
 > - activePart state ('P1' 기본) + 네비게이터 UI + 단일 활성 section 렌더

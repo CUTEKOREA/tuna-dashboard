@@ -152,8 +152,23 @@ const formatYAxis = (v: number, unit?: string) => {
   return formatted + (unit ? ` ${unit}` : '');
 };
 
+// 5-Pillar 네비게이터 메타 (새우 시그니처 그라디언트 emerald → teal — 룰북 D-04 갈치/새우 공통)
+const SECTIONS = [
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🦐 제1기둥 — 원물 생산', desc: '글로벌 양식·어획 동향, 산지 가격, 질병/사료 리스크', color: '#10b981', icon: Anchor,
+    widgets: ['w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr', 'w54_commodity_trap_index', 'w55_india_species_shift', 'w59_feed_substitute_economics', 'w60_disease_dx_evolution', 'w63_coldwater_shrimp_stock', 'w65_india_seafood_export_trajectory', 'w69_andhra_pradesh_risk'] },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 제2기둥 — 가공 산업', desc: '가공 유형별 생산, 한국 수입 가공품 구조, 신소재 및 대체 단백질', color: '#14b8a6', icon: Factory,
+    widgets: ['w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp', 'w62_alt_seafood_disruption'] },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '🚢 제3기둥 — 물류 및 무역', desc: '글로벌 무역 흐름, 한국 수입 다변화, 관세·CVD·FTA 시뮬레이션', color: '#0d9488', icon: Ship,
+    widgets: ['w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox', 'w56_trade_diversion_flow', 'w61_hhi_timeseries', 'w64_us_cvd_tariff_matrix', 'w66_vn_shrimp_export_peak', 'w67_indo_eu_fta_impact', 'w70_tariff_chaos_timeline'] },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📈 제4기둥 — 판매 및 수요', desc: '단가 트렌드, 수출국 매출, 대체재 탄력성, 할랄·인플레이션 노출', color: '#5eead4', icon: DollarSign,
+    widgets: ['w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation'] },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🌱 제5기둥 — ESG 및 지속가능성', desc: '비관세 장벽(NTB), 항생제·강제노동·맹그로브·인증 컴플라이언스', color: '#99f6e4', icon: ShieldCheck,
+    widgets: ['w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker', 'w57_csddd_readiness', 'w58_vn_labor_audit', 'w68_indonesia_shrimp_associations'] },
+];
+
 export default function ShrimpDashboard() {
   const [data, setData] = useState<any>(null);
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -491,88 +506,137 @@ export default function ShrimpDashboard() {
       </div>
 
       
-      {/* ═══ V2.0 — 5-Part Strategic Architecture ═══ */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-        
-        {/* Part I: Raw Material */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <Anchor size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제1기둥 — 원물 생산</h2>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr', 'w54_commodity_trap_index', 'w55_india_species_shift', 'w59_feed_substitute_economics', 'w60_disease_dx_evolution', 'w63_coldwater_shrimp_stock', 'w65_india_seafood_export_trajectory', 'w69_andhra_pradesh_risk'].includes(w.id)).map((w: any) => renderWidgetCard(w, "S1"))}
-          </div>
-        </section>
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0' }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>{idx + 1}</div>
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>{s.label}</span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem', color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center', lineHeight: 1.3, marginTop: '2px', padding: '0 4px',
+                  }}>
+                    {s.desc.slice(0, 24)}…
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-        {/* Part II: Processing */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <Factory size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제2기둥 — 가공 산업</h2>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp', 'w62_alt_seafood_disruption'].includes(w.id)).map((w: any) => renderWidgetCard(w, "S2"))}
-          </div>
-        </section>
+      {/* ═══ 활성 Pillar 위젯 그리드 ═══ */}
+      {(() => {
+        const sec = SECTIONS.find(s => s.id === activePart)!;
+        const SecIcon = sec.icon;
+        const pillarWidgets = displayWidgets?.filter((w: any) => sec.widgets.includes(w.id)) || [];
 
-        {/* Part III: Logistics */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <Ship size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제3기둥 — 물류 및 무역</h2>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox', 'w56_trade_diversion_flow', 'w61_hhi_timeseries', 'w64_us_cvd_tariff_matrix', 'w66_vn_shrimp_export_peak', 'w67_indo_eu_fta_impact', 'w70_tariff_chaos_timeline'].includes(w.id)).map((w: any) => renderWidgetCard(w, "S3"))}
-          </div>
-        </section>
+        // S4 활성 시 uncategorized fallback 같이 표시 (5-Pillar에 미매핑된 위젯 안 잃도록)
+        const allZoneIds = SECTIONS.flatMap(s => s.widgets);
+        const uncategorized = activePart === 'S4'
+          ? displayWidgets?.filter((w: any) => !allZoneIds.includes(w.id)) || []
+          : [];
 
-        {/* Part IV: Sales & Demand */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <DollarSign size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제4기둥 — 판매 및 수요</h2>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation'].includes(w.id)).map((w: any) => renderWidgetCard(w, "S4"))}
-          </div>
-        </section>
-
-        {/* Part V: Sustainability */}
-        <section>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-            <ShieldCheck size={24} color="var(--color-success)" />
-            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>제5기둥 — ESG 및 지속가능성</h2>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {displayWidgets?.filter((w: any) => ['w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker', 'w57_csddd_readiness', 'w58_vn_labor_audit', 'w68_indonesia_shrimp_associations'].includes(w.id)).map((w: any) => renderWidgetCard(w, "S5"))}
-          </div>
-        </section>
-
-        {/* Uncategorized fallback */}
-        {(() => {
-          const allZoneIds = [
-            'w01_paradigm_shift', 'w04_top10_aqua', 'w05_top10_catch', 'w15', 'w44_ems_margin', 'w46_ecuador_dominance', 'w_raw1_production_trend', 'w_raw2_unit_price', 'w_shrimp_price_forecast', 'w_shrimp_macro_dashboard', 'w48_vaccine_priming', 'w20_fcr_80', 'w22_microalgae', 'w50_kfas_bft_pathogen', 'w51_kfas_silymarin_feed', 'w52_kfas_duplex_pcr', 'w54_commodity_trap_index', 'w55_india_species_shift', 'w59_feed_substitute_economics', 'w60_disease_dx_evolution', 'w63_coldwater_shrimp_stock', 'w65_india_seafood_export_trajectory', 'w69_andhra_pradesh_risk',
-            'w03_processing', 'w18', 'w19_hyperspectral', 'w_proc1_type_production', 'w_proc2_kr_import_type', 'w49_black_tiger_revival', 'w42_format_shift', 'w_shrimp_chitosan_opportunity', 'w_shrimp_rte_format', 'w53_kfas_3d_printed_shrimp', 'w62_alt_seafood_disruption',
-            'w07_trade_scaleup', 'w08_top_exporter', 'w09_top_importer', 'w10_kr_import', 'w11_kr_deficit', 'w17', 'w_log1_spot_price', 'w_log2_kr_sourcing', 'w_log3_kr_import_value', 'w_shrimp_sourcing_sim', 'w_shrimp_concentration_risk', 'w45_export_vuln', 'w47_tariff_paradox', 'w56_trade_diversion_flow', 'w61_hhi_timeseries', 'w64_us_cvd_tariff_matrix', 'w66_vn_shrimp_export_peak', 'w67_indo_eu_fta_impact', 'w70_tariff_chaos_timeline',
-            'w02_aqua_value', 'w06_top10_revenue', 'w12_unit_price', 'w13', 'w14', 'w16', 'w_sales1_commodity_unit_price', 'w_sales2_exporter_trend', 'w_shrimp_substitute_elasticity', 'w_shrimp_halal_export', 'w43_feed_inflation',
-            'w21_peeling_esg', 'w_esg1_compliance', 'w_esg2_supply_risk', 'w_shrimp_ntb_radar', 'w_shrimp_antibiotic_tracker', 'w_shrimp_sps_alert', 'w_shrimp_forced_labor_map', 'w_shrimp_mangrove_index', 'w_shrimp_cert_tracker', 'w57_csddd_readiness', 'w58_vn_labor_audit', 'w68_indonesia_shrimp_associations'
-          ];
-          const uncategorized = displayWidgets?.filter((w: any) => !allZoneIds.includes(w.id));
-          if (!uncategorized || uncategorized.length === 0) return null;
-          return (
+        return (
+          <>
             <section>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-                <Database size={24} color="var(--color-success)" />
-                <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>기타 분석</h2>
+                <SecIcon size={24} color={sec.color} />
+                <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>{sec.title}</h2>
+                <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: sec.color, background: `${sec.color}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
+                  {pillarWidgets.length} 위젯
+                </span>
               </div>
+              <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
               <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                {uncategorized.map((w: any) => renderWidgetCard(w, "S4"))}
+                {pillarWidgets.length === 0
+                  ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
+                  : pillarWidgets.map((w: any) => renderWidgetCard(w, sec.id as any))}
               </div>
             </section>
-          );
-        })()}
-      </div>
+            {uncategorized.length > 0 && (
+              <section style={{ marginTop: '3rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+                  <Database size={20} color="var(--text-secondary)" />
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-secondary)' }}>기타 분석 ({uncategorized.length})</h3>
+                </div>
+                <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+                  {uncategorized.map((w: any) => renderWidgetCard(w, 'S4'))}
+                </div>
+              </section>
+            )}
+          </>
+        );
+      })()}
     </div>
   );
 
