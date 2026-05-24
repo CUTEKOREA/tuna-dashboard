@@ -119,21 +119,24 @@ export async function GET() {
 
       const quarters = Object.keys(hanwoo).sort();
       if (quarters.length >= 4) {
-        // 수입육 = imported (단일 가격) → us/au 동일값 (KAMIS 분리 없음, 수입쇠고기 일괄)
-        // 호주는 통상 미국 대비 15% 저렴 가정 (가격 갭 보존)
+        // 수입육 itemcode 4307은 잘못된 코드 — 데이터 없음
+        // 한우만 LIVE, 수입육은 FALLBACK 정적 값 유지 (정확한 itemcode 조사 별도 작업)
+        const importedHasData = Object.keys(imported).length > 0;
         data = quarters.slice(-8).map(q => {
           const us = imported[q] || 0;
+          // FALLBACK 같은 month index 찾아서 us/au 값 보존
+          const fb = FALLBACK[FALLBACK.length - 1];
           return {
             month: q,
             hanwoo: hanwoo[q] || 0,
-            usImport: us,
-            auImport: Math.round(us * 0.85),
+            usImport: us > 0 ? us : fb.usImport,
+            auImport: us > 0 ? Math.round(us * 0.85) : fb.auImport,
           };
         });
         isLive = true;
-        source = 'KAMIS API (한우 411 + 수입쇠고기 412, 1d 캐시)';
+        source = `KAMIS API (한우 4304/27 LIVE, ${quarters.length} quarters${importedHasData ? ' + 수입육 LIVE' : ' + 수입육 fallback'}, 1d 캐시)`;
       } else {
-        source = 'KAMIS 응답 부족 — 정적 미러';
+        source = 'KAMIS 한우 응답 부족 — 정적 미러';
       }
     } catch (e) {
       source = 'KAMIS API 호출 실패 — 정적 미러';
