@@ -144,8 +144,18 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 };
 
 
+// 5-Pillar 네비게이터 메타 (연어 시그니처 그라디언트 — salmon pink → coral 살색 컨셉)
+const SALMON_SECTIONS = [
+  { id: 'S1', num: '❶', label: '원료 수급', pillarKey: 'raw', color: '#fb7185' },
+  { id: 'S2', num: '❷', label: '가공·생산', pillarKey: 'proc', color: '#f43f5e' },
+  { id: 'S3', num: '❸', label: '물류·통관', pillarKey: 'logis', color: '#ec4899' },
+  { id: 'S4', num: '❹', label: '판매·수요', pillarKey: 'sales', color: '#e11d48' },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', pillarKey: 'esg', color: '#be123c' },
+];
+
 export default function SalmonDashboard() {
   const [data, setData] = useState<any>(null);
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [simulationFactors, setSimulationFactors] = useState({ nok: 0, eur: 0, mgo: 0 });
   const modalRef = useRef<HTMLDivElement>(null);
@@ -441,6 +451,57 @@ export default function SalmonDashboard() {
       {/* ═══ Macro Simulator ═══ */}
       <ExchangeSimulator onSimulationChange={setSimulationFactors} />
 
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem', marginTop: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SALMON_SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
+                style={{
+                  position: 'relative',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}>
+                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                  background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* ═══ Dashboard Sections ═══ */}
       {(() => {
         const catRaw = ['n1_hfs_paradox', 'w01_paradigm', 'w18_extinction', 'w03_aqua_pie', 'w13_monopoly', 'w19_iceland', 'w22_license_gold', 'w36_supply_outlook', 'w37_smolt_efficiency', 'w39_hab_risk', 'w41_feed_cost', 'k1_ras_photoperiod', 'k2_smolt_offseason', 'k3_temp_cataract', 'k7_chum_coastal', 'k8_chinook'];
@@ -474,67 +535,67 @@ export default function SalmonDashboard() {
           );
         };
 
+        // activePart에 따라 단일 section 렌더 + extra module(forecast→S1, policy→S5) 자연 통합
         return (
           <>
-            {renderSection('🌾 원물 수급', Fish, catRaw, 'raw', '노르웨이·칠레 복점 체제, 양식 면허 가치, 기후 리스크 등 원물 조달의 근본적 제약과 기회', (
+            {activePart === 'S1' && renderSection('🌾 원물 수급', Fish, catRaw, 'raw', '노르웨이·칠레 복점 체제, 양식 면허 가치, 기후 리스크 등 원물 조달의 근본적 제약과 기회', (
               <>
                 <SalmonInsightSmolt />
                 <SalmonInsightFeed />
                 <SalmonInsightFeedBio />
               </>
             ))}
-            {renderSection('🏭 가공 산업', Factory, catProc, 'proc', '폴란드 재수출 모델, 2차 가공 부가가치, 자동화 수율 혁신 및 마진 방어 전략', (
+            {activePart === 'S1' && (
+              <div style={{ marginBottom: '3rem' }}>
+                <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.forecast.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.forecast.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
+                  <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                    <Crosshair size={22} color={PILLAR_COLORS.forecast.accent} />
+                    <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>착지원가 및 AI 전망</h2>
+                  </div>
+                  <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>환율·유가·사료 시나리오 기반 착지원가 시뮬레이션 및 수급 전망</p>
+                </div>
+                <SalmonForecastSimulator />
+              </div>
+            )}
+            {activePart === 'S2' && renderSection('🏭 가공 산업', Factory, catProc, 'proc', '폴란드 재수출 모델, 2차 가공 부가가치, 자동화 수율 혁신 및 마진 방어 전략', (
               <>
                 <SalmonInsightProcessing />
                 <SalmonInsightAutomationYield />
                 <SalmonInsightMarginSqueeze />
               </>
             ))}
-
-            {/* ═══ Module C: AI 수급 전망 & 착지원가 시뮬레이터 ═══ */}
-            <div style={{ marginBottom: '3rem' }}>
-              <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.forecast.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.forecast.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
-                <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
-                  <Crosshair size={22} color={PILLAR_COLORS.forecast.accent} />
-                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>착지원가 및 AI 전망</h2>
-                </div>
-                <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>환율·유가·사료 시나리오 기반 착지원가 시뮬레이션 및 수급 전망</p>
-              </div>
-              <SalmonForecastSimulator />
-            </div>
-
-            {renderSection('🚢 물류 및 통관', Truck, catLog, 'logis', '콜드체인 리질리언스, 비관세장벽(NTB) 레이더, 관세 헷징 전략', (
+            {activePart === 'S3' && renderSection('🚢 물류 및 통관', Truck, catLog, 'logis', '콜드체인 리질리언스, 비관세장벽(NTB) 레이더, 관세 헷징 전략', (
               <>
                 <SalmonInsightSmartColdChain />
                 <SalmonInsightLogisticsResilience />
                 <SalmonNTBRadar />
               </>
             ))}
-            {renderSection('🛒 판매 및 수요', DollarSign, catSales, 'sales', '글로벌 수급 가격, 소매가 전가(그리드플레이션), 대체재 교차탄력성 분석', (
+            {activePart === 'S4' && renderSection('🛒 판매 및 수요', DollarSign, catSales, 'sales', '글로벌 수급 가격, 소매가 전가(그리드플레이션), 대체재 교차탄력성 분석', (
               <>
                 <SalmonInsightGlobalSupplyPrice simulationFactors={simulationFactors} />
                 <SalmonInsightTradeDown />
               </>
             ))}
-            {renderSection('🌍 ESG 및 지속가능성', ShieldCheck, catEsg, 'esg', '기후 리스크, 이중 중대성 평가, 탄소 발자국 추적 및 자산 가치 평가', (
+            {activePart === 'S5' && renderSection('🌍 ESG 및 지속가능성', ShieldCheck, catEsg, 'esg', '기후 리스크, 이중 중대성 평가, 탄소 발자국 추적 및 자산 가치 평가', (
               <>
                 <SalmonInsightClimate />
                 <SalmonInsightDoubleMateriality />
                 <SalmonESGTracker />
               </>
             ))}
-
-            {/* ═══ Module E: 정책 임팩트 시뮬레이터 ═══ */}
-            <div style={{ marginBottom: '3rem' }}>
-              <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.policy.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.policy.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
-                <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
-                  <Globe size={22} color={PILLAR_COLORS.policy.accent} />
-                  <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>정책 임팩트 시뮬레이션</h2>
+            {activePart === 'S5' && (
+              <div style={{ marginBottom: '3rem' }}>
+                <div style={{ padding:'1rem 1.5rem', background:`linear-gradient(90deg, ${PILLAR_COLORS.policy.bg} 0%, transparent 100%)`, borderLeft:`4px solid ${PILLAR_COLORS.policy.accent}`, marginBottom:'1.5rem', marginTop:'1rem', borderRadius: '0 8px 8px 0' }}>
+                  <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                    <Globe size={22} color={PILLAR_COLORS.policy.accent} />
+                    <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'#f8fafc' }}>정책 임팩트 시뮬레이션</h2>
+                  </div>
+                  <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>관세·IUU 규제·탄소세 등 정책 변동 시나리오의 수익성 영향 분석</p>
                 </div>
-                <p style={{ margin:'5px 0 0 0', fontSize:'0.85rem', color:'#94a3b8' }}>관세·IUU 규제·탄소세 등 정책 변동 시나리오의 수익성 영향 분석</p>
+                <SalmonPolicyImpact />
               </div>
-              <SalmonPolicyImpact />
-            </div>
+            )}
           </>
         );
       })()}

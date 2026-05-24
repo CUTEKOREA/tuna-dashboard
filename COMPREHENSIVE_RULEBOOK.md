@@ -46,8 +46,11 @@
 - D-04: **품목별(작물/축종/어종) 시그니처 그라디언트 테마 준수:**
   - 참치(해양): `cyan → blue`
   - 고등어(등푸른 원양·연근해): `cyan-700 → sky-500` (#0e7490 → #0ea5e9)
+  - 명태(한류 백색): `cyan-600 → sky-500` (#0891b2 → #0ea5e9)
   - 갈치/새우(연안): `emerald → teal`
-  - 오징어: `purple → pink`
+  - 오징어/주꾸미(두족류): `purple → pink`
+  - 골뱅이(패류 껍데기): `amber → brown` (#fbbf24 → #92400e)
+  - 연어(살색): `pink → rose` (#fb7185 → #be123c)
   - 망고스틴(열대과일): `purple → fuchsia → pink`
   - 닭고기(가금류): `amber → orange → red`
   - 소고기(축산-한우 마블링): `red → rose → amber` (#dc2626 → #e11d48 → #f59e0b)

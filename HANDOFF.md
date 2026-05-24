@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐠 **2026-05-24 — SalmonDashboard 5-Pillar 네비게이터 도입 (renderSection 함수형 패턴)**:
+> - SALMON_SECTIONS 메타 추가 (5 pillar + pillarKey 매핑: raw/proc/logis/sales/esg)
+> - activePart state ('S1' 기본) + 네비게이터 UI
+> - renderSection 함수 호출을 `{activePart === 'SN' && renderSection(...)}` 형태로 조건부 변경
+> - **Extra Module 자연 통합**: Module C(forecast/착지원가)는 S1 활성 시, Module E(policy/정책)는 S5 활성 시 같이 표시
+> - 룰북 D-04에 연어 등재: pink-rose (#fb7185 → #be123c, 살색 컨셉)
+> - 같이 등재: 명태(cyan-600→sky-500), 골뱅이(amber→brown), 주꾸미(오징어와 두족류 공통)
+> - L-03 빌드 통과 ✓
+>
 > 🐚 **2026-05-24 — WhelkDashboard 5-Pillar 네비게이터 도입 (인라인 JSX 패턴)**:
 > - SECTIONS 메타 추가 (5 pillar, amber/orange 그라디언트 — 골뱅이 껍데기 컨셉)
 > - **인라인 JSX 패턴 처리**: SECTIONS array 추출 불가능 (위젯이 직접 JSX 작성) → 각 Pillar 헤더+위젯 그룹을 `{activePart === 'SN' && (<>...</>)}` 형태로 conditional wrap
