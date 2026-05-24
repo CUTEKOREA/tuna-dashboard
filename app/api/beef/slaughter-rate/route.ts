@@ -49,14 +49,24 @@ const QUARTER_MAP: Record<string, string> = {
   'JUL THRU SEP': 'Q3', 'OCT THRU DEC': 'Q4',
 };
 
+// 월 약자 → 분기 매핑 (NASS MONTHLY reference_period_desc)
+const MONTH_TO_QUARTER: Record<string, string> = {
+  JAN: 'Q1', FEB: 'Q1', MAR: 'Q1',
+  APR: 'Q2', MAY: 'Q2', JUN: 'Q2',
+  JUL: 'Q3', AUG: 'Q3', SEP: 'Q3',
+  OCT: 'Q4', NOV: 'Q4', DEC: 'Q4',
+};
+
 function lbToKg(lb: number) { return Math.round(lb * 0.4536); }
 function parseNum(v: string) { return Number((v || '0').replace(/,/g, '')); }
 
 async function fetchNassSlaughter(key: string): Promise<typeof FALLBACK | null> {
-  // 도축 두수 (분기별)
-  const slaughterUrl = `https://quickstats.nass.usda.gov/api/api_GET/?key=${key}&commodity_desc=CATTLE&statisticcat_desc=SLAUGHTER&unit_desc=HEAD&agg_level_desc=NATIONAL&freq_desc=QUARTERLY&year__GE=2024&short_desc=CATTLE,%20INCL%20CALVES%20-%20SLAUGHTERED,%20COMMERCIAL%20-%20HEAD&format=JSON`;
-  // 도체중 (평균 dressed weight, 분기별)
-  const weightUrl = `https://quickstats.nass.usda.gov/api/api_GET/?key=${key}&commodity_desc=CATTLE&statisticcat_desc=WEIGHT&unit_desc=LB&agg_level_desc=NATIONAL&freq_desc=QUARTERLY&year__GE=2024&short_desc=CATTLE,%20DRESSED%20WEIGHT%20-%20MEASURED%20IN%20LB%20/%20HEAD&format=JSON`;
+  // 도축 두수 (월별, 분기 집계용) — CATTLE, GE 500 LBS, SLAUGHTER, COMMERCIAL
+  const slaughterShortDesc = encodeURIComponent('CATTLE, GE 500 LBS, SLAUGHTER, COMMERCIAL - SLAUGHTERED, MEASURED IN HEAD');
+  const slaughterUrl = `https://quickstats.nass.usda.gov/api/api_GET/?key=${key}&commodity_desc=CATTLE&statisticcat_desc=SLAUGHTERED&agg_level_desc=NATIONAL&freq_desc=MONTHLY&year__GE=2024&short_desc=${slaughterShortDesc}&format=JSON`;
+  // 도체중 (월별, dressed basis lb/head)
+  const weightShortDesc = encodeURIComponent('CATTLE, GE 500 LBS, SLAUGHTER, COMMERCIAL, FI - SLAUGHTERED, MEASURED IN LB / HEAD, DRESSED BASIS');
+  const weightUrl = `https://quickstats.nass.usda.gov/api/api_GET/?key=${key}&commodity_desc=CATTLE&statisticcat_desc=SLAUGHTERED&agg_level_desc=NATIONAL&freq_desc=MONTHLY&year__GE=2024&short_desc=${weightShortDesc}&format=JSON`;
 
   try {
     const [sRes, wRes] = await Promise.all([
@@ -70,24 +80,39 @@ async function fetchNassSlaughter(key: string): Promise<typeof FALLBACK | null> 
     const wRows: NassRow[] = wJson?.data || [];
     if (!sRows.length) return null;
 
-    // 분기 키 생성: "24-Q1" 형식
+    // 월별 → 분기 집계 (도축은 합계, 도체중은 평균)
+    // 완료된 분기만 포함하기 위해 월 수를 카운트
     const slaughterByQ: Record<string, number> = {};
-    const weightByQ: Record<string, number> = {};
+    const slaughterMonthCnt: Record<string, number> = {};
+    const weightSum: Record<string, number> = {};
+    const weightCnt: Record<string, number> = {};
 
     sRows.forEach(r => {
-      const q = QUARTER_MAP[r.reference_period_desc];
+      const q = MONTH_TO_QUARTER[r.reference_period_desc] || QUARTER_MAP[r.reference_period_desc];
       if (!q) return;
-      const key = `${r.year.slice(-2)}-${q}`;
-      slaughterByQ[key] = parseNum(r.Value);
+      const key = `${String(r.year).slice(-2)}-${q}`;
+      slaughterByQ[key] = (slaughterByQ[key] || 0) + parseNum(r.Value);
+      slaughterMonthCnt[key] = (slaughterMonthCnt[key] || 0) + 1;
     });
     wRows.forEach(r => {
-      const q = QUARTER_MAP[r.reference_period_desc];
+      const q = MONTH_TO_QUARTER[r.reference_period_desc] || QUARTER_MAP[r.reference_period_desc];
       if (!q) return;
-      const key = `${r.year.slice(-2)}-${q}`;
-      weightByQ[key] = parseNum(r.Value);
+      const key = `${String(r.year).slice(-2)}-${q}`;
+      const v = parseNum(r.Value);
+      if (v > 0) {
+        weightSum[key] = (weightSum[key] || 0) + v;
+        weightCnt[key] = (weightCnt[key] || 0) + 1;
+      }
+    });
+    const weightByQ: Record<string, number> = {};
+    Object.keys(weightSum).forEach(k => {
+      weightByQ[k] = weightSum[k] / (weightCnt[k] || 1);
     });
 
-    const quarters = Object.keys(slaughterByQ).sort();
+    // 3개월 모두 있는 완료된 분기만 포함 (partial quarter 제외)
+    const quarters = Object.keys(slaughterByQ)
+      .filter(q => slaughterMonthCnt[q] === 3)
+      .sort();
     if (!quarters.length) return null;
 
     return quarters.slice(-5).map(q => {
