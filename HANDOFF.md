@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐚 **2026-05-24 — WhelkDashboard 5-Pillar 네비게이터 도입 (인라인 JSX 패턴)**:
+> - SECTIONS 메타 추가 (5 pillar, amber/orange 그라디언트 — 골뱅이 껍데기 컨셉)
+> - **인라인 JSX 패턴 처리**: SECTIONS array 추출 불가능 (위젯이 직접 JSX 작성) → 각 Pillar 헤더+위젯 그룹을 `{activePart === 'SN' && (<>...</>)}` 형태로 conditional wrap
+> - 5개 boundary 수정: P1→P2, P2→P3, P3→P4, P4→P5, P5 종료
+> - **KFAS 학술 인텔리전스 섹션** (kfasWidgets dynamic)은 모든 pillar 공통 표시 유지
+> - 그라디언트: S1 #fbbf24 → S5 #92400e (amber → brown)
+> - L-03 빌드 통과 ✓
+>
 > 🦐 **2026-05-24 — ShrimpDashboard 5-Pillar 네비게이터 도입**:
 > - SECTIONS 메타 신규 작성 (inline 5 section → 단일 정의)
 > - 75+ 위젯 5-Pillar 매핑 (각 pillar별 widgets 배열)

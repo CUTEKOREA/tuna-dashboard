@@ -64,8 +64,18 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 // --- DATA ---
 const IMPORT_COLORS = ['var(--color-info)', 'var(--color-success)', 'var(--color-danger)', 'var(--color-warning)', '#8b5cf6'];
 
+// 5-Pillar 네비게이터 메타 (골뱅이 시그니처 그라디언트 — 영국 북해 + 흑해 amber/stone 조합)
+const SECTIONS = [
+  { id: 'S1', num: '❶', label: '원료 수급', title: 'Pillar 1. 원료 수급', desc: '글로벌 어획 헤게모니, 북해 어획량 변동, B. undatum 자원 동향', color: '#fbbf24' },
+  { id: 'S2', num: '❷', label: '가공·생산', title: 'Pillar 2. 가공 및 생산', desc: '살수율(20-25%), 한·영 가공 마진 구조, 가공 효율성', color: '#f59e0b' },
+  { id: 'S3', num: '❸', label: '물류·통관', title: 'Pillar 3. 물류 및 통관', desc: 'FTA 무관세 우위, 콜드체인, IUU/MCRS 규제 리스크', color: '#d97706' },
+  { id: 'S4', num: '❹', label: '판매·수요', title: 'Pillar 4. 판매 및 수요', desc: '한국 통조림 시장, 가격 갭, FX/이중 타격 헤지, 채널 다변화', color: '#b45309' },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: 'Pillar 5. ESG 및 지속가능성', desc: '양식 불가 자원 + 영국 IFCA/MCRS 규제 + EU PPWR 포장 컴플라이언스', color: '#92400e' },
+];
+
 export default function WhelkDashboard() {
   const [data, setData] = useState<any>(null);
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
 
   useEffect(() => {
     fetch('/api/whelk/live')
@@ -218,8 +228,95 @@ export default function WhelkDashboard() {
         </div>
       </div>
 
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0' }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>{idx + 1}</div>
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>{s.label}</span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem', color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center', lineHeight: 1.3, marginTop: '2px', padding: '0 4px',
+                  }}>
+                    {s.desc.slice(0, 24)}…
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* CONTENT GRID */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', width: '100%' }}>
+      {activePart === 'S1' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Fish size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 1. 원료 수급</h2>
@@ -340,8 +437,9 @@ export default function WhelkDashboard() {
                 source: 'FAOSTAT + ICES (2026 분석)',
               }} />
           </>
-
-        <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      </>)}
+      {activePart === 'S2' && (<>
+        <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Factory size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 2. 가공 및 생산</h2>
   </div>
@@ -403,8 +501,9 @@ export default function WhelkDashboard() {
                 actionPlan: <span>SG 2026 밸류업 전략의 핵심은 '혼술 에디션 150g'(85% 완성)과 '에어프라이어 키트 200g'(70% 완성)의 26Q3 성수기 적시 출시입니다. 두 제품 합산 연간 매출 목표 37억 원이며, 이를 위해 편의점(CU/GS25) 입점 MOU를 6월까지 확정해야 합니다. 후속 제품인 '프리미엄 고형량65%+'는 경쟁사 대비 투명성 마케팅 차별화를 위해 포장 전면에 고형량 비율을 대형 표기하는 전략이 핵심입니다. 마케팅팀은 인플루언서 홈술 콘텐츠 마케팅을 Q3 출시 4주 전부터 선제 집행해야 합니다.</span>,
                 source: 'SG 2026 밸류업 운영방안',
               }} />
-
-        <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      </>)}
+      {activePart === 'S3' && (<>
+        <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Ship size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 3. 물류 및 통관</h2>
   </div>
@@ -448,8 +547,9 @@ export default function WhelkDashboard() {
                 source: 'KCS 관세청 수입 통관 통계',
               }} />
           </>
-
-        <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      </>)}
+      {activePart === 'S4' && (<>
+        <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <TrendingUp size={20} color="var(--color-info)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 4. 판매 및 수요</h2>
   </div>
@@ -535,9 +635,10 @@ export default function WhelkDashboard() {
                 actionPlan: <span>골뱅이(자숙)의 영양 프로필은 헬시플레저 트렌드의 핵심 지표에서 경쟁 식품을 압도합니다. 칼로리 82kcal(닭가슴살 109kcal 대비 -25%), 지방 0.8g(소등심 15.0g 대비 -95%), 철분 3.2mg(닭가슴살 0.7mg 대비 4.5배)을 보유합니다. 마케팅팀은 '다이어트 안주의 혁명'이라는 포지셔닝으로 피트니스 인플루언서 협업 캠페인을 전개하고, 제품 패키지에 '82kcal 슈퍼프로틴' 배지를 전면 부착해야 합니다. 특히 여성 1인 가구 타겟의 '단백질 간식' 카테고리 진입이 가장 높은 ROI를 보일 것입니다.</span>,
                 source: 'KFDA 2024 식품성분표',
               }} />
-
+      </>)}
+      {activePart === 'S5' && (<>
         {/* Pillar 5: ESG & 지속가능성 */}
-        <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Leaf size={20} color="var(--color-success)" />
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 5. ESG 및 지속가능성</h2>
   </div>
@@ -838,8 +939,9 @@ export default function WhelkDashboard() {
                 actionPlan: <span>골뱅이 부산물에서 추출하는 해양 콜라겐 펩타이드는 소·돼지 원료 대비 '할랄/코셔 프리미엄'을 갖습니다. 중동·북아프리카($420M, 할랄 95%), 동남아($310M, 할랄 72%) 시장은 연 10~12% 성장 중이며, 인도네시아의 BPJPH 할랄 의무화는 한국산 수산물 부산물 콜라겐의 진입 기회입니다. R&D 부서는 할랄 인증(JAKIM/BPJPH) 취득을 위한 가공 공정 분리를 검토하고, 코스메슈티컬(기능성 화장품) 및 건강기능식품 채널을 타겟으로 2027년 출시를 목표로 해야 합니다.</span>,
                 source: 'KMI 할랄인증',
               }} />
+      </>)}
 
-        {/* KFAS 학술 연구 인텔리전스 위젯 (동적 렌더링) */}
+        {/* KFAS 학술 연구 인텔리전스 위젯 (동적 렌더링, 모든 pillar 공통 표시) */}
         {kfasWidgets.length > 0 && (
           <>
             <div style={{ gridColumn: '1 / -1', marginTop: '2rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
