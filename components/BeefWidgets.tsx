@@ -6,6 +6,26 @@ import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield, Factory, Truck, L
 import WidgetCard from './WidgetCard';
 import * as D from './beefData';
 
+// UN Comtrade LIVE 데이터 hook (W5 무역 흐름)
+function useComtradeBeef() {
+  const [state, setState] = useState<{
+    data: typeof D.tradeFlowData;
+    isLive: boolean;
+    source: string;
+  }>({ data: D.tradeFlowData, isLive: false, source: 'UN Comtrade 정적 캐시' });
+
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/beef/trade-flow', { signal: AbortSignal.timeout(25000) })
+      .then(r => r.json())
+      .then(d => { if (alive && d.data) setState(d); })
+      .catch(() => { /* fallback 유지 */ });
+    return () => { alive = false; };
+  }, []);
+
+  return state;
+}
+
 // USDA NASS LIVE 데이터 hook (W3 도축장 가동률)
 function useNassSlaughter() {
   const [state, setState] = useState<{
@@ -172,17 +192,23 @@ export function W4_FeedMargin({ accent }: any) {
 }
 
 export function W5_TradeFlow({ accent }: any) {
+  const { data, isLive, source } = useComtradeBeef();
+  const top1 = data[0];
+  const top1Bn = (top1.value / 1000).toFixed(1);
+  const total = data.reduce((a, b) => a + b.value, 0);
+  const top3Pct = ((data.slice(0, 3).reduce((a, b) => a + b.value, 0) / total) * 100).toFixed(0);
   return <W title="글로벌 무역 흐름 Top 8 경로" icon={Truck} accent={accent} pillar="S3"
-    sub="국가간 소고기 무역 흐름 상위 8개 경로 — 무역액(백만 달러) 및 물량(천 톤) | 유엔 무역통계(UN Comtrade) HS 0201+0202 2023"
-    telemetry="UN Comtrade HS 0201+0202 2023"
-    sit="브라질→중국 단일 경로 $64억(천손 1,352천톤) — 글로벌 최대. 미·호 → 한국 합산 $38억 / 436천톤, 한국이 미·호 양강의 4대 시장."
+    status={isLive ? 'LIVE' : 'STATIC'}
+    sub="국가간 소고기 무역 흐름 상위 8개 경로 — 무역액(백만 달러) 및 물량(천 톤) | 유엔 무역통계(UN Comtrade) HS 0201+0202"
+    telemetry={isLive ? 'UN Comtrade (1w 캐시)' : 'UN Comtrade 정적'}
+    sit={`${top1.route} 단일 경로 $${top1Bn}B(${top1.volume.toLocaleString()}천톤) — 글로벌 최대. Top 3 합산 전체의 ${top3Pct}%로 고집중. 한국이 미·호 양강의 4대 시장.`}
     strat="브·중 단일축이 흔들리면 (브라질 ESG 제재 등) 호주산 공급 부족 즉시 발생. 우루과이·뉴질랜드 백업 라인 24Q3까지 구축."
-    source="유엔 무역통계(UN Comtrade) HS 0201(신선·냉장 쇠고기) + HS 0202(냉동 쇠고기)">
-    <BarChart data={D.tradeFlowData} layout="vertical" margin={{ left: 5 }}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    source={source}>
+    <BarChart data={data} layout="vertical" margin={{ left: 5 }}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => `$${v.toLocaleString()}M`} />
       <YAxis type="category" dataKey="route" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={110} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="value" name="무역액 (백만 달러)" radius={[0, 4, 4, 0]}>{D.tradeFlowData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
+      <Bar dataKey="value" name="무역액 (백만 달러)" radius={[0, 4, 4, 0]}>{data.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
     </BarChart>
   </W>;
 }
