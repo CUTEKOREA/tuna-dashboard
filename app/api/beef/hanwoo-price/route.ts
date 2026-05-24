@@ -121,20 +121,20 @@ export async function GET() {
       if (quarters.length >= 4) {
         // 수입육 itemcode 4307은 잘못된 코드 — 데이터 없음
         // 한우만 LIVE, 수입육은 FALLBACK 정적 값 유지 (정확한 itemcode 조사 별도 작업)
+        // KAMIS 한우는 100g 단위 가격 → kg 단위(× 10)로 정규화 (차트 일관성)
         const importedHasData = Object.keys(imported).length > 0;
         data = quarters.slice(-8).map(q => {
           const us = imported[q] || 0;
-          // FALLBACK 같은 month index 찾아서 us/au 값 보존
           const fb = FALLBACK[FALLBACK.length - 1];
           return {
             month: q,
-            hanwoo: hanwoo[q] || 0,
-            usImport: us > 0 ? us : fb.usImport,
-            auImport: us > 0 ? Math.round(us * 0.85) : fb.auImport,
+            hanwoo: (hanwoo[q] || 0) * 10, // 100g → kg 환산
+            usImport: us > 0 ? us * 10 : fb.usImport,
+            auImport: us > 0 ? Math.round(us * 0.85) * 10 : fb.auImport,
           };
         });
         isLive = true;
-        source = `KAMIS API (한우 4304/27 LIVE, ${quarters.length} quarters${importedHasData ? ' + 수입육 LIVE' : ' + 수입육 fallback'}, 1d 캐시)`;
+        source = `KAMIS API (한우 4304/27 LIVE, kg 환산, ${quarters.length} quarters${importedHasData ? ' + 수입육 LIVE' : ' + 수입육 fallback'}, 1d 캐시)`;
       } else {
         source = 'KAMIS 한우 응답 부족 — 정적 미러';
       }
