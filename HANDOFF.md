@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> ♿ **2026-05-24 — A8 색맹 대비 codemod 시범 적용 (foundation commit)**:
+> - **신설**: `components/ChartPatterns.tsx` — Okabe-Ito 8-color 팔레트 + 5종 SVG pattern (`a11y-stripe-h/v/diag/dots/cross`) + `getA11yBarProps(idx)` 헬퍼
+> - **시범 3 위젯**: Beef W2 (Top 5 생산국 multi-Cell), Beef W3 (도축장 가동률 2-Bar), Pork W7 (한국 수급 2-Bar)
+> - **WCAG 2.1 SC 1.4.1** (Use of Color) 준수 — 색상 + 패턴 이중 표현
+> - **가이드**: `docs/plans/a8_accessibility_codemod.md` (3 패턴 + 점진 확산 로드맵 ~120 Bar / 4.5h)
+> - L-03 빌드 통과 ✓
+> - **다음 단계 (사용자 선택)**: (a) Chicken/Mackerel/Galchi/Salmon 일괄 확산 1h / (b) `scripts/fix_a11y_charts.py` 자동 codemod 작성 / (c) 시범 보존
+>
 > 🔬 **2026-05-24 — 17 commodity 247 위젯 8-Axis Forensic Audit 全완료**:
 > - **축산 3종** (33 위젯): A14·B17·**C2** archive (Chicken risk-radar + eudr-esg)
 > - **농산 6종** (79 위젯): A24·B55·C1
