@@ -106,6 +106,7 @@ const GARLIC_KPIS: Record<string, any> = {
 
 export default function GarlicDashboard() {
 
+  const [activePart, setActivePart] = useState<'raw' | 'processing' | 'logistics' | 'sales' | 'esg'>('raw');
   const [w1Data, setW1Data] = useState<any[]>([]);
   const [w2Data, setW2Data] = useState<any[]>([]);
   const [kamisData, setKamisData] = useState<any[]>([]);
@@ -174,12 +175,13 @@ export default function GarlicDashboard() {
   ];
   const savingsPerTEU = (baseCostUSD * fxRateUSD) - (baseCostCNY * fxRateCNY);
 
+  // 5-Pillar 네비게이터 메타 (마늘 시그니처 그라디언트 — yellow/amber)
   const SECTIONS = [
-    { id: 'raw', title: '원물 확보 및 글로벌 생산', desc: '중국 주도의 시장 패권 및 기후/병해충으로 인한 생산 변동성 및 가격 인플레이션 점검' },
-    { id: 'processing', title: '가공(Processing) 및 부가가치 창출 (Processing)', desc: '건조, 추출(Allicin), 흑마늘 등 용도 전환에 따른 마진 캡쳐 및 기술 파이프라인' },
-    { id: 'logistics', title: '물류 및 유통 (Logistics & Trading)', desc: '주요 잉여국의 수출 경로 및 수입국의 종속 리스크, 홍해 사태 등 공급망 헷징 지표' },
-    { id: 'sales', title: '수요 및 시장 성장 (Sales & Demand)', desc: '1인당 소비량(한국 등) vs 글로벌 시장 규모 상관관계 및 무역 수지 변동 추이' },
-    { id: 'esg', title: '지속가능성 및 미래 헷징 (ESG)', desc: '기후 변화에 따른 단위 면적당 수확량(Yield) 리스크 및 폐기물 업사이클링' }
+    { id: 'raw', num: '❶', label: '원료 수급', title: '원물 확보 및 글로벌 생산', desc: '중국 주도의 시장 패권 및 기후/병해충으로 인한 생산 변동성 및 가격 인플레이션 점검', color: '#eab308' },
+    { id: 'processing', num: '❷', label: '가공·생산', title: '가공(Processing) 및 부가가치 창출 (Processing)', desc: '건조, 추출(Allicin), 흑마늘 등 용도 전환에 따른 마진 캡쳐 및 기술 파이프라인', color: '#ca8a04' },
+    { id: 'logistics', num: '❸', label: '물류·통관', title: '물류 및 유통 (Logistics & Trading)', desc: '주요 잉여국의 수출 경로 및 수입국의 종속 리스크, 홍해 사태 등 공급망 헷징 지표', color: '#d97706' },
+    { id: 'sales', num: '❹', label: '판매·수요', title: '수요 및 시장 성장 (Sales & Demand)', desc: '1인당 소비량(한국 등) vs 글로벌 시장 규모 상관관계 및 무역 수지 변동 추이', color: '#a16207' },
+    { id: 'esg', num: '❺', label: 'ESG·지속가능성', title: '지속가능성 및 미래 헷징 (ESG)', desc: '기후 변화에 따른 단위 면적당 수확량(Yield) 리스크 및 폐기물 업사이클링', color: '#854d0e' }
   ];
 
   
@@ -247,8 +249,30 @@ export default function GarlicDashboard() {
       </div>
 
       
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button key={s.id} onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
+                style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
+                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* ═══ Sections ═══ */}
-      
+      {activePart === 'raw' && (<>
       {/* Section 1: Raw Material */}
       <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
@@ -363,8 +387,10 @@ export default function GarlicDashboard() {
         </div>
       </div>
 
+      </>)}
+      {activePart === 'processing' && (<>
       {/* Section 2: Processing */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
@@ -438,8 +464,10 @@ export default function GarlicDashboard() {
         </div>
       </div>
 
+      </>)}
+      {activePart === 'logistics' && (<>
       {/* Section 3: Logistics */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
@@ -551,8 +579,10 @@ export default function GarlicDashboard() {
           }} />
       </div>
 
+      </>)}
+      {activePart === 'sales' && (<>
       {/* Section 4: Sales */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
@@ -643,8 +673,10 @@ export default function GarlicDashboard() {
           }} />
       </div>
 
+      </>)}
+      {activePart === 'esg' && (<>
       {/* Section 5: ESG */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#eab308', borderRadius:'4px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
@@ -718,6 +750,7 @@ export default function GarlicDashboard() {
             }} />
         </div>
       </div>
+      </>)}
 
 
     </div>

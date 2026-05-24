@@ -58,12 +58,13 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   );
 };
 
+// 5-Pillar 네비게이터 메타 (망고스틴 시그니처 그라디언트 — 룰북 D-04 purple→fuchsia→pink)
 const SECTIONS = [
-  { id: "P1", title: "원료 수급", desc: "태국 생산량 독점 방어 및 라니냐 발동 기후 리스크 연동 모델", color: "#7e22ce" },
-  { id: "P2", title: "가공 & 생산", desc: "생과 및 냉동 퓨레 수익성 트래커 및 에틸렌 차단 예냉 수율 방어 곡선", color: "#9333ea" },
-  { id: "P3", title: "물류 & 통관", desc: "해상 혼합 가스 물류 전환, 식물검역 장벽 분석 및 협정 삼각 무역", color: "#c026d3" },
-  { id: "P4", title: "판매 & 수요", desc: "국내 대체 과일 인플레이션 스캐너 및 최고급 틈새 시장 재수출 단가", color: "#db2777" },
-  { id: "P5", title: "ESG & 지속가능성", desc: "망고스틴 부산물 펫푸드 업사이클링을 통한 최종 수익률 시뮬레이션", color: "#f43f5e" },
+  { id: "P1", num: "❶", label: "원료 수급", title: "원료 수급", desc: "태국 생산량 독점 방어 및 라니냐 발동 기후 리스크 연동 모델", color: "#7e22ce" },
+  { id: "P2", num: "❷", label: "가공·생산", title: "가공 & 생산", desc: "생과 및 냉동 퓨레 수익성 트래커 및 에틸렌 차단 예냉 수율 방어 곡선", color: "#9333ea" },
+  { id: "P3", num: "❸", label: "물류·통관", title: "물류 & 통관", desc: "해상 혼합 가스 물류 전환, 식물검역 장벽 분석 및 협정 삼각 무역", color: "#c026d3" },
+  { id: "P4", num: "❹", label: "판매·수요", title: "판매 & 수요", desc: "국내 대체 과일 인플레이션 스캐너 및 최고급 틈새 시장 재수출 단가", color: "#db2777" },
+  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "ESG & 지속가능성", desc: "망고스틴 부산물 펫푸드 업사이클링을 통한 최종 수익률 시뮬레이션", color: "#f43f5e" },
 ];
 
 const KPI_THEMES = [
@@ -78,6 +79,7 @@ const KPI_THEMES = [
 const COLORS = ['#7e22ce', '#9333ea', '#a855f7', '#c026d3', '#d946ef', '#e879f9', '#db2777', '#f43f5e', '#fb7185', '#fda4af'];
 
 export default function MangosteenDashboard() {
+  const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
   const [climateYieldData, setClimateYieldData] = useState<any[]>([]);
   const [logisticsData, setLogisticsData] = useState<any[]>([]);
   const [arbitrageData, setArbitrageData] = useState<any[]>([]);
@@ -280,6 +282,29 @@ export default function MangosteenDashboard() {
         )}
       </div>
 
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', marginTop: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button key={s.id} onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
+                style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
+                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {activePart === 'P1' && (<>
       {/* ═══ Pillar 1: 원료 수급 ═══ */}
       <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
@@ -344,6 +369,8 @@ export default function MangosteenDashboard() {
         />
       </div>
 
+      </>)}
+      {activePart === 'P2' && (<>
       {/* ═══ Pillar 2: 가공 & 생산 ═══ */}
       <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
@@ -434,6 +461,8 @@ export default function MangosteenDashboard() {
         />
       </div>
 
+      </>)}
+      {activePart === 'P3' && (<>
       {/* ═══ Pillar 3: 물류 & 통관 ═══ */}
       <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
@@ -556,6 +585,8 @@ export default function MangosteenDashboard() {
         />
       </div>
 
+      </>)}
+      {activePart === 'P4' && (<>
       {/* ═══ Pillar 4: 판매 & 수요 ═══ */}
       <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
@@ -652,6 +683,8 @@ export default function MangosteenDashboard() {
           }} />
       </div>
 
+      </>)}
+      {activePart === 'P5' && (<>
       {/* ═══ Pillar 5: ESG & 지속가능성 ═══ */}
       <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
@@ -683,6 +716,7 @@ export default function MangosteenDashboard() {
             source: '내부 R&D + 망고스틴 껍질 폴리페놀 추출 연구',
           }} />
       </div>
+      </>)}
 
     </div>
   );

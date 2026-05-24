@@ -87,12 +87,13 @@ const CARROT_KPIS: Record<string, any> = {
   k6: { title: '한국 수확후 손실률', value: '27.3%', trend: '🌪️', desc: 'FAOSTAT SCL — 3.1만t 폐기 · 독일 15%, 중국 5% 대비 최악' },
 };
 
+// 5-Pillar 네비게이터 메타 (당근 시그니처 그라디언트 — orange 뿌리채소)
 const SECTIONS = [
-  { id: "S1", title: "🌱 제1지주: 원물 생산", desc: "FAOSTAT 매크로 데이터 기반 — 종자 역수출 및 여름 단경기 집중 공략 (달랏 vs 제주)", color: "#ea580c" },
-  { id: "S2", title: "🏭 제2지주: 가공 산업", desc: "B2B 전처리(IQF) 가공을 통한 원가 절감 및 식물검역 우회", color: "#f97316" },
-  { id: "S3", title: "🚢 제3지주: 물류 및 무역", desc: "MA 특수 포장과 한-베 FTA 0% 관세 프리패스 우위", color: "#fbbf24" },
-  { id: "S4", title: "🛒 제4지주: 판매 및 수요", desc: "장기 수매 계약을 통한 단가 변동성 헤징 및 B2B 점유율 역전", color: "#f59e0b" },
-  { id: "S5", title: "🌍 제5지주: ESG 및 미래 농업", desc: "비규격 폐기 방지 푸드 업사이클링 및 Scope 3 감축 연계", color: "#c2410c" },
+  { id: "S1", num: "❶", label: "원료 수급", title: "🌱 제1지주: 원물 생산", desc: "FAOSTAT 매크로 데이터 기반 — 종자 역수출 및 여름 단경기 집중 공략 (달랏 vs 제주)", color: "#ea580c" },
+  { id: "S2", num: "❷", label: "가공·생산", title: "🏭 제2지주: 가공 산업", desc: "B2B 전처리(IQF) 가공을 통한 원가 절감 및 식물검역 우회", color: "#f97316" },
+  { id: "S3", num: "❸", label: "물류·통관", title: "🚢 제3지주: 물류 및 무역", desc: "MA 특수 포장과 한-베 FTA 0% 관세 프리패스 우위", color: "#fbbf24" },
+  { id: "S4", num: "❹", label: "판매·수요", title: "🛒 제4지주: 판매 및 수요", desc: "장기 수매 계약을 통한 단가 변동성 헤징 및 B2B 점유율 역전", color: "#f59e0b" },
+  { id: "S5", num: "❺", label: "ESG·지속가능성", title: "🌍 제5지주: ESG 및 미래 농업", desc: "비규격 폐기 방지 푸드 업사이클링 및 Scope 3 감축 연계", color: "#c2410c" },
 ];
 
 const EstimateBadge = () => (
@@ -102,6 +103,7 @@ const EstimateBadge = () => (
 );
 
 export default function CarrotDashboard() {
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [liveArbitrage, setLiveArbitrage] = useState<any>(null);
   const [liveTrq, setLiveTrq] = useState<any>(null);
   
@@ -437,8 +439,31 @@ export default function CarrotDashboard() {
         </div>
       </div>
 
+{/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', marginTop: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button key={s.id} onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
+                style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
+                {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {activePart === 'S1' && (<>
 {/* Section 1: Raw Material */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#ea580c', borderRadius:'2px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
@@ -581,8 +606,10 @@ export default function CarrotDashboard() {
 
       </div>
 
+      </>)}
+      {activePart === 'S2' && (<>
       {/* Section 2: Processing */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#ea580c', borderRadius:'2px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
@@ -672,8 +699,10 @@ export default function CarrotDashboard() {
 
       </div>
 
+      </>)}
+      {activePart === 'S3' && (<>
       {/* Section 3: Logistics */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#ea580c', borderRadius:'2px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
@@ -781,8 +810,10 @@ export default function CarrotDashboard() {
 
       </div>
 
+      </>)}
+      {activePart === 'S4' && (<>
       {/* Section 4: Sales */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#ea580c', borderRadius:'2px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
@@ -897,8 +928,10 @@ export default function CarrotDashboard() {
 
       </div>
 
+      </>)}
+      {activePart === 'S5' && (<>
       {/* Section 5: ESG */}
-      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem', marginTop: '3rem' }}>
+      <div style={{ marginBottom:'1rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
         <div style={{ width:'4px', height:'28px', background:'#ea580c', borderRadius:'2px' }} />
         <div>
           <h2 style={{ margin:0, fontSize:'1.15rem', fontWeight:700, color:'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
@@ -1124,6 +1157,7 @@ export default function CarrotDashboard() {
           takeaway={{ situation: "FAOSTAT 공급이용계정(SCL, 2021) 실측 기준, 한국의 당근 수확후 손실률은 27.3%(30,570톤)으로 조사 대상국 중 최악. 중국 5.0%, 미국 8.9%, 독일 15.0% 대비 2~5배 높은 구조적 비효율(Inefficiency). 이는 제주 노지 재배의 수확·선별·저장 인프라 부재와 비규격품(B품) 폐기 관행에 기인하며, 연간 ~3.1만톤의 업사이클링(Up-cycling) TAM이 실측으로 검증됨.", actionPlan: "한국의 27.3% 손실률은 곧 3.1만톤의 비규격 원물을 의미하며, 이를 베타카로틴 추출(CalPoly Amin et al. 기준 11배 수율) 또는 IQF 전처리 원료로 전환 시 톤당 $200+ 부가가치 창출 가능. 중국 수준(5%)까지 손실률을 낮추면 연간 ~24,000톤의 식용 가능 물량이 추가 확보되어 수입 대체 효과까지 동시 달성. (시너지 효과)", source: "* 📡 [FAOSTAT 실측] Supply Utilization Accounts (SCL) 2021 — 생산·식용·손실·사료·수출 국가별 비교" }} />
 
       </div>
+      </>)}
 
     </div>
   );

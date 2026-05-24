@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌾 **2026-05-24 — 농산물 6종 5-Pillar 네비게이터 일괄 도입 (Cashew/Cassava/Garlic/Carrot/Cocoa/Mangosteen)**:
+> - **Cashew**: SECTIONS.map → activePart filter (nut amber #f59e0b → #78350f)
+> - **Cassava**: SECTIONS.map → activePart filter (yellow CASSAVA_THEME 보존)
+> - **Garlic**: 인라인 Section 1-5 → conditional wrap × 5 (yellow/amber #eab308 → #854d0e)
+> - **Carrot**: 인라인 Section 1-5 → conditional wrap × 5 (orange #ea580c → #c2410c)
+> - **Cocoa**: 인라인 Part 1-5 → conditional wrap × 5 (brown #92400e → #78350f)
+> - **Mangosteen**: 인라인 Pillar 1-5 → conditional wrap × 5 (purple→fuchsia→pink #7e22ce → #f43f5e)
+> - 모두 L-03 빌드 통과 ✓
+>
 > 🐠 **2026-05-24 — SalmonDashboard 5-Pillar 네비게이터 도입 (renderSection 함수형 패턴)**:
 > - SALMON_SECTIONS 메타 추가 (5 pillar + pillarKey 매핑: raw/proc/logis/sales/esg)
 > - activePart state ('S1' 기본) + 네비게이터 UI
