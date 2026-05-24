@@ -83,7 +83,7 @@ export function WeeklyCatchChart() {
         <YAxis yAxisId="right" orientation="right" stroke="var(--accent-danger)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 60]} width={rc.isMobile ? 25 : 40} hide={rc.isMobile} />
         <Tooltip contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderColor: 'var(--chart-tooltip-border)', color: 'var(--text-main)', fontSize: rc.isMobile ? '11px' : '13px' }} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill="url(#a11y-stripe-h)" color="var(--pastel-ice)" radius={[4, 4, 0, 0]} />
+        <Bar yAxisId="left" dataKey="weekly" name="주간 어획량 (톤)" fill="var(--pastel-ice)" radius={[4, 4, 0, 0]} />
         <Line yAxisId="right" type="monotone" dataKey="avg" name="일평균 어획량" stroke="var(--accent-danger)" dot={{ r: rc.isMobile ? 3 : 5, fill: 'var(--accent-danger)' }} strokeWidth={0} />
       </ComposedChart>
     </SafeResponsiveContainer>
@@ -114,11 +114,11 @@ export function MonthlyCatchChart() {
         <YAxis stroke="var(--chart-axis)" axisLine={false} tickLine={false} tick={{ fontSize: rc.tickFontSize }} domain={[0, 3500]} width={rc.isMobile ? 30 : 40} />
         <Tooltip contentStyle={{ backgroundColor: 'var(--chart-tooltip-bg)', borderColor: 'var(--chart-tooltip-border)', color: 'var(--text-main)', fontSize: rc.isMobile ? '11px' : '13px' }} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar dataKey="month1" stackId="a" name="1월" fill="url(#a11y-stripe-h)" color="var(--pastel-lemon)" />
-        <Bar dataKey="month2" stackId="a" name="2월" fill="url(#a11y-diag)" color="var(--pastel-aqua)" />
-        <Bar dataKey="month3" stackId="a" name="3월" fill="url(#a11y-dots)" color="var(--pastel-orchid)" />
-        <Bar dataKey="month4" stackId="a" name="4월" fill="url(#a11y-stripe-v)" color="#ce7a2c" />
-        <Bar dataKey="month5" stackId="a" name="5월" fill="url(#a11y-cross)" color="#ff98ba" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="month1" stackId="a" name="1월" fill="var(--pastel-lemon)" />
+        <Bar dataKey="month2" stackId="a" name="2월" fill="var(--pastel-aqua)" />
+        <Bar dataKey="month3" stackId="a" name="3월" fill="var(--pastel-orchid)" />
+        <Bar dataKey="month4" stackId="a" name="4월" fill="#ce7a2c" />
+        <Bar dataKey="month5" stackId="a" name="5월" fill="#ff98ba" radius={[4, 4, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   );
@@ -180,7 +180,7 @@ export function CumulativeChart() {
         <YAxis yAxisId="right" orientation="right" stroke="var(--pastel-peach)" axisLine={false} tickLine={false} tick={false} domain={[0, 11]} reversed width={rc.isMobile ? 10 : 20} />
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ fontSize: rc.legendFontSize }} />
-        <Bar yAxisId="left" dataKey="daily" name="일어획량 (톤)" fill="url(#a11y-stripe-h)" color="var(--accent-primary)" radius={[4, 4, 0, 0]} barSize={rc.barSize} />
+        <Bar yAxisId="left" dataKey="daily" name="일어획량 (톤)" fill="var(--accent-primary)" radius={[4, 4, 0, 0]} barSize={rc.barSize} />
         <Scatter yAxisId="right" dataKey="rank" name="순위" fill="var(--pastel-peach)" shape={<CustomRankShape />} />
       </ComposedChart>
     </SafeResponsiveContainer>

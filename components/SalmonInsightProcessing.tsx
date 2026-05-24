@@ -29,8 +29,8 @@ export default function SalmonInsightProcessing() {
             cursor={{ fill: 'rgba(255,255,255,0.05)' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
-          <Bar dataKey="traditional" name="기존 수작업 공정" fill="url(#a11y-dots)" color={A11Y_PALETTE[7]} radius={[0, 4, 4, 0]} barSize={15} fillOpacity={0.6} />
-          <Bar dataKey="automated" name="자동화/GenBI 도입 공정" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[0, 4, 4, 0]} barSize={15} />
+          <Bar dataKey="traditional" name="기존 수작업 공정" fill={A11Y_PALETTE[7]} radius={[0, 4, 4, 0]} barSize={15} fillOpacity={0.6} />
+          <Bar dataKey="automated" name="자동화/GenBI 도입 공정" fill={A11Y_PALETTE[0]} radius={[0, 4, 4, 0]} barSize={15} />
         </BarChart>
       }
       takeaway={{

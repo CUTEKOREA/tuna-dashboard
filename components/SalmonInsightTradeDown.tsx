@@ -76,8 +76,8 @@ export default function SalmonInsightTradeDown() {
             <Tooltip contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
             <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
 
-            <Bar yAxisId="left" dataKey="frVol" name="🇫🇷 프랑스 소비량 (천톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={14} />
-            <Bar yAxisId="left" dataKey="esVol" name="🇪🇸 스페인 소비량 (천톤)" fill="url(#a11y-diag)" color={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} barSize={14} />
+            <Bar yAxisId="left" dataKey="frVol" name="🇫🇷 프랑스 소비량 (천톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={14} />
+            <Bar yAxisId="left" dataKey="esVol" name="🇪🇸 스페인 소비량 (천톤)" fill={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} barSize={14} />
             <Line yAxisId="right" type="monotone" dataKey="frVal" name="🇫🇷 프랑스 지출액 (EUR M)" stroke="#f97316" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
             <Line yAxisId="right" type="monotone" dataKey="esVal" name="🇪🇸 스페인 지출액 (EUR M)" stroke="var(--color-danger)" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} strokeDasharray="5 3" />
           </ComposedChart>

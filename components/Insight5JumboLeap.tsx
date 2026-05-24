@@ -94,7 +94,7 @@ const Insight5JumboLeap = () => {
               yAxisId="left"
               dataKey="jumbo_catch_t" 
               name="훔볼트 어획량 (Tonnes)" 
-              fill="url(#a11y-stripe-h)" color="#60A5FA" 
+              fill="#60A5FA" 
               opacity={0.6}
               maxBarSize={40}
               radius={[4, 4, 0, 0]}

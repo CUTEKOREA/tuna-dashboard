@@ -73,7 +73,7 @@ return (
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '20px' }} />
           
-          <Bar yAxisId="left" dataKey="Aqua_Volume" name="생산량 (Volume)" fill="url(#a11y-stripe-h)" color="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="Aqua_Volume" name="생산량 (Volume)" fill="#38bdf8" fillOpacity={0.8} radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="Aqua_Value" name="총생산액 (Value in '000 USD)" stroke="#f43f5e" strokeWidth={4} dot={false} activeDot={{ r: 8 }} />
         </ComposedChart>
       </div>

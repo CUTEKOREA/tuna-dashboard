@@ -39,7 +39,7 @@ export function Widget32_Shrinkflation() {
           <YAxis yAxisId="left" domain={[0, 12000]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" domain={[0, 1200]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar yAxisId="right" dataKey="actualWeight" name="실제 해동 중량(g)" fill="url(#a11y-stripe-h)" color="#8b5cf6" fillOpacity={0.7} />
+          <Bar yAxisId="right" dataKey="actualWeight" name="실제 해동 중량(g)" fill="#8b5cf6" fillOpacity={0.7} />
           <Line yAxisId="left" type="step" dataKey="price" name="판매 명목 가격(원)" stroke="#fcd34d" strokeWidth={3} />
         </ComposedChart>
       }
@@ -59,9 +59,9 @@ export function Widget33_TariffArbitrage() {
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="route" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={90} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="margin" name="최종 영업 마진율" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
-          <Bar dataKey="tariff" name="관세 차감분" stackId="a" fill="url(#a11y-diag)" color="var(--color-danger)" />
-          <Bar dataKey="cost" name="원가 및 운송비" stackId="a" fill="url(#a11y-dots)" color="var(--color-info)" fillOpacity={0.5} />
+          <Bar dataKey="margin" name="최종 영업 마진율" stackId="a" fill="var(--color-success)" />
+          <Bar dataKey="tariff" name="관세 차감분" stackId="a" fill="var(--color-danger)" />
+          <Bar dataKey="cost" name="원가 및 운송비" stackId="a" fill="var(--color-info)" fillOpacity={0.5} />
         </BarChart>
       }
       takeaway={{ situation: '남미 직수입 시 20% 관세 폭탄을 회피하기 위해, 베트남에서 튜브 가공 후 무관세(FTA) 입항이 절대 공식화.', actionPlan: '[루트 아비트라지] 베트남 호치민 1차 가공 OEM 라인 100% 활용하여 한-베트남 FTA 무관세 혜택 풀 활용.', source: SRC }}
@@ -120,7 +120,7 @@ export function Widget36_VASpread() {
           <XAxis dataKey="type" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="value" name="판매 가치(Index)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="value" name="판매 가치(Index)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{ situation: '원물 그대로 판매 시 마진 0에 수렴. 링(Ring)으로 한번만 써는 순간 단가 2배 폭증.', actionPlan: '[Value Add] 절단·가공 라인 CAPEX 투자를 최우선 순위로 격상, 원물 직판 비중을 30% 이하로 축소.', source: SRC }}

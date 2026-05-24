@@ -178,7 +178,7 @@ export function W1_ProductionTrend({ accent }: any) {
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="생산량 (천톤)" fill="url(#a11y-stripe-h)" color="#dc2626" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
+      <Bar yAxisId="left" dataKey="production" name="생산량 (천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} fillOpacity={0.8} />
       <Line yAxisId="right" type="monotone" dataKey="price" name="산지 가격 지수" stroke="#f59e0b" strokeWidth={2.5} dot={true} />
     </ComposedChart>
   </W>;
@@ -223,8 +223,8 @@ export function W3_SlaughterUtil({ accent }: any) {
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[60, 100]} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[300, 400]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="usUtil" name="미국 가동률 (%)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} />
-      <Bar yAxisId="left" dataKey="auUtil" name="호주 가동률 (%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[1]} radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="usUtil" name="미국 가동률 (%)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="auUtil" name="호주 가동률 (%)" fill={A11Y_PALETTE[1]} radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="usCarcassKg" name="미국 도체중 (kg)" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3 }} />
       <Line yAxisId="right" type="monotone" dataKey="auCarcassKg" name="호주 도체중 (kg)" stroke="#fb923c" strokeWidth={2} dot={{ r: 3 }} />
     </ComposedChart>
@@ -313,8 +313,8 @@ export function W7_KoreaSupply({ accent }: any) {
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 16]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="url(#a11y-stripe-h)" color="#dc2626" radius={[4, 4, 0, 0]} />
-      <Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="url(#a11y-diag)" color="#f59e0b" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="#f59e0b" radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke="#fb923c" strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
   </W>;
@@ -394,7 +394,7 @@ export function W11_Premium({ accent }: any) {
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `$${v}`} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} tickFormatter={v => `${v}%`} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="price" name="평균 소매가 (달러/kg)" fill="url(#a11y-stripe-h)" color="#dc2626" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="price" name="평균 소매가 (달러/kg)" fill="#dc2626" radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="share" name="점유율 (%)" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 4 }} />
     </ComposedChart>
   </W>;

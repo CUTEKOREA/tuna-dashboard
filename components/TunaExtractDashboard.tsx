@@ -235,8 +235,8 @@ export default function TunaExtractDashboard() {
                 <XAxis type="number" stroke="#94a3b8" />
                 <YAxis dataKey="stage" type="category" stroke="#94a3b8" fontSize={11} width={80} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="value" name="부가가치 ($/kg)" fill="url(#a11y-stripe-h)" color="var(--color-info)" />
-                <Bar dataKey="cost" name="가공비용 ($/kg)" fill="url(#a11y-diag)" color="var(--color-danger)" />
+                <Bar dataKey="value" name="부가가치 ($/kg)" fill="var(--color-info)" />
+                <Bar dataKey="cost" name="가공비용 ($/kg)" fill="var(--color-danger)" />
               </BarChart>
             </SafeResponsiveContainer>
           ) : <EmptyState message="수익성 데이터 로딩 실패" />}
@@ -263,7 +263,7 @@ export default function TunaExtractDashboard() {
               <YAxis stroke="#94a3b8" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Bar dataKey="어획량" name="어획량 (만 톤)" fill="url(#a11y-stripe-h)" color="var(--color-info)" />
+              <Bar dataKey="어획량" name="어획량 (만 톤)" fill="var(--color-info)" />
               <Line type="step" dataKey="쿼터" name="IOTC 권고 쿼터 (만 톤)" stroke="var(--color-danger)" strokeWidth={3} />
             </ComposedChart>
           }
@@ -308,7 +308,7 @@ export default function TunaExtractDashboard() {
                     <YAxis yAxisId="right" orientation="right" stroke="var(--color-info)" fontSize={12} domain={[0, 50]} />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend />
-                    <Bar yAxisId="left" dataKey="rawCost" name="원료 단가 (원)" fill="url(#a11y-stripe-h)" color="#64748b" />
+                    <Bar yAxisId="left" dataKey="rawCost" name="원료 단가 (원)" fill="#64748b" />
                     <Line yAxisId="right" type="monotone" dataKey="margin" name="영업이익률 (%)" stroke="var(--color-info)" strokeWidth={3} />
                   </ComposedChart>
                 </SafeResponsiveContainer>
@@ -377,8 +377,8 @@ export default function TunaExtractDashboard() {
                                 <YAxis stroke="#94a3b8" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
-                                <Bar dataKey="생부산물" fill="url(#a11y-stripe-h)" color="var(--color-danger)" />
-                                <Bar dataKey="자숙부산물" fill="url(#a11y-diag)" color="var(--color-success)" />
+                                <Bar dataKey="생부산물" fill="var(--color-danger)" />
+                                <Bar dataKey="자숙부산물" fill="var(--color-success)" />
                                 <Line type="monotone" dataKey="기준치" stroke="var(--color-warning)" />
                               </BarChart>
                             </SafeResponsiveContainer>
@@ -415,7 +415,7 @@ export default function TunaExtractDashboard() {
                                 <YAxis stroke="#94a3b8" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
-                                <Bar dataKey="아미노산" fill="url(#a11y-stripe-h)" color="#8b5cf6" />
+                                <Bar dataKey="아미노산" fill="#8b5cf6" />
                                 <Line type="monotone" dataKey="관능" stroke="var(--color-success)" strokeWidth={2.5} />
                               </BarChart>
                             </SafeResponsiveContainer>
@@ -434,7 +434,7 @@ export default function TunaExtractDashboard() {
                                 <YAxis stroke="#94a3b8" fontSize={12} />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Legend />
-                                <Bar dataKey="쓴맛강도" fill="url(#a11y-stripe-h)" color="var(--color-danger)" />
+                                <Bar dataKey="쓴맛강도" fill="var(--color-danger)" />
                                 <Line type="monotone" dataKey="감칠맛" stroke="var(--color-success)" />
                               </BarChart>
                             </SafeResponsiveContainer>
@@ -531,8 +531,8 @@ export default function TunaExtractDashboard() {
               <YAxis dataKey="product" type="category" stroke="#94a3b8" fontSize={11} width={80} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Bar dataKey="current" name="현재 사용 (%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" stackId="a" />
-              <Bar dataKey="potential" name="향후 사용 의향 (%)" fill="url(#a11y-diag)" color="#fca5a5" stackId="a" />
+              <Bar dataKey="current" name="현재 사용 (%)" fill="var(--color-danger)" stackId="a" />
+              <Bar dataKey="potential" name="향후 사용 의향 (%)" fill="#fca5a5" stackId="a" />
             </BarChart>
           }
           takeaway={{
@@ -559,7 +559,7 @@ export default function TunaExtractDashboard() {
               <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="url(#a11y-stripe-h)" color="#64748b" />
+              <Bar yAxisId="left" dataKey="멸치생산량" name="국내 멸치/까나리 어획량 지수" fill="#64748b" />
               <Line yAxisId="right" type="monotone" dataKey="참치액발주량" name="참치액 B2B 발주량 지수" stroke="var(--color-success)" strokeWidth={3} />
             </ComposedChart>
           }

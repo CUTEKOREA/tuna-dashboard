@@ -39,9 +39,9 @@ export default function FishStatTACIllusion() {
             <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             {/* Background bar simulating Bullet Chart target (TAC) */}
-            <Bar dataKey="tac" name="정부 TAC 할당 목표량" fill="url(#a11y-stripe-h)" color="rgba(255,255,255,0.1)" barSize={40} />
+            <Bar dataKey="tac" name="정부 TAC 할당 목표량" fill="rgba(255,255,255,0.1)" barSize={40} />
             {/* Inner bar simulating Bullet Chart measure (Real) */}
-            <Bar dataKey="real" name="실제 조업 달성량 (Real)" fill="url(#a11y-diag)" color="var(--color-warning)" barSize={16} />
+            <Bar dataKey="real" name="실제 조업 달성량 (Real)" fill="var(--color-warning)" barSize={16} />
           </ComposedChart>
         </SafeResponsiveContainer>
       </div>

@@ -57,8 +57,8 @@ export function InsightNauruSwitch() {
           <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="url(#a11y-stripe-h)" color="#ef4444" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="url(#a11y-diag)" color="#10b981" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="#ef4444" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="Taiwan_PNA_Days" name="🇹🇼 대만 PNA 조업일수" stroke="#fbbf24" strokeWidth={3} />
         </ComposedChart>
       }

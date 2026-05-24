@@ -149,7 +149,7 @@ export default function MackerelAquaculture() {
             <YAxis yAxisId="aqua" orientation="right" stroke="rgba(16,185,129,0.5)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={(v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : `${v}`} />
             <Tooltip content={<AquaTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-            <Bar dataKey="capture_t" name="🐟 자연산 어획 (톤)" fill="url(#a11y-stripe-h)" color="url(#capGrad)" radius={[2, 2, 0, 0]} />
+            <Bar dataKey="capture_t" name="🐟 자연산 어획 (톤)" fill="url(#capGrad)" radius={[2, 2, 0, 0]} />
             <Line type="monotone" dataKey="aquaculture_t" name="🏗️ 양식 생산 (톤)" stroke="var(--color-success)" strokeWidth={2.5} dot={false} yAxisId="aqua" />
           </ComposedChart>
         )}

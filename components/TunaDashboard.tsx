@@ -284,7 +284,7 @@ const renderChart = (w: any) => {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             {w.bars?.map((b: any, i: number) => (
-              <Bar key={`b${i}`} yAxisId={b.yAxisId || "left"} stackId={b.stackId} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill="url(#a11y-stripe-h)" color={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} isAnimationActive={false} />
+              <Bar key={`b${i}`} yAxisId={b.yAxisId || "left"} stackId={b.stackId} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} isAnimationActive={false} />
             ))}
             {w.lines?.map((l: any, i: number) => (
               <Line key={`l${i}`} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key || l.dataKey} name={l.name || l.key || l.dataKey} stroke={l.color || l.stroke || l.fill} strokeWidth={l.strokeWidth || 2.5} dot={false} activeDot={{r:5}} strokeDasharray={l.strokeDasharray} isAnimationActive={false} />
@@ -366,7 +366,7 @@ const renderChart = (w: any) => {
           <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
           {series.map((s: any, i: number) => {
             if (s.type === 'bar') {
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name} fill="url(#a11y-stripe-h)" color={s.color} radius={[4,4,0,0]} isAnimationActive={false} />;
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name} fill={s.color} radius={[4,4,0,0]} isAnimationActive={false} />;
             } else if (s.type === 'area') {
               return <Area key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name} stroke={s.color} fill={s.color} fillOpacity={0.3} strokeWidth={2} isAnimationActive={false} />;
             } else {

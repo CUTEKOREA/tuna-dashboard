@@ -30,8 +30,8 @@ export default function SalmonInsightMarginSqueeze() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="volume" name="EU 훈제 연어 생산량 (천 톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar yAxisId="left" dataKey="polShare" name="폴란드 점유율 (%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="volume" name="EU 훈제 연어 생산량 (천 톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="polShare" name="폴란드 점유율 (%)" fill={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="unitValue" name="훈제 연어 단가 (EUR/kg)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
         </ComposedChart>
       }

@@ -314,8 +314,8 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="IvoryCoast" stackId="a" fill="url(#a11y-stripe-h)" color="#78350f" name="코트디부아르 생산량" />
-              <Bar yAxisId="left" dataKey="Ghana" stackId="a" fill="url(#a11y-diag)" color="#92400e" name="가나 생산량" />
+              <Bar yAxisId="left" dataKey="IvoryCoast" stackId="a" fill="#78350f" name="코트디부아르 생산량" />
+              <Bar yAxisId="left" dataKey="Ghana" stackId="a" fill="#92400e" name="가나 생산량" />
               <Line yAxisId="right" type="monotone" dataKey="CSSVD_Infection_Rate" stroke="var(--color-danger)" strokeWidth={3} dot={{r:4}} name="CSSVD 감염률(%, RHS)" />
             </ComposedChart>
           }
@@ -364,7 +364,7 @@ export default function CocoaDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
               <Line yAxisId="left" type="monotone" dataKey="globalPrice" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 4}} name="글로벌 선물 가격($)" />
-              <Bar yAxisId="right" dataKey="farmerPrice" fill="url(#a11y-stripe-h)" color="var(--color-info)" name="가나 농가 수매가(환산$)" barSize={35} />
+              <Bar yAxisId="right" dataKey="farmerPrice" fill="var(--color-info)" name="가나 농가 수매가(환산$)" barSize={35} />
               <Line yAxisId="right" type="monotone" dataKey="FX_Cedi_USD" stroke="#b45309" strokeWidth={2} name="환율(Cedi/USD, RHS)" strokeDasharray="3 3" />
             </ComposedChart>
           }
@@ -418,7 +418,7 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v) => `${v}%`} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="volume" fill="url(#a11y-stripe-h)" color="#d97706" name="수입 거래량 비중" barSize={40} />
+              <Bar yAxisId="left" dataKey="volume" fill="#d97706" name="수입 거래량 비중" barSize={40} />
               <Line yAxisId="right" type="monotone" dataKey="margin" stroke="var(--color-warning)" strokeWidth={3} dot={{r:5}} name="원물 대비 부가가치 마진율(Premium)" />
             </ComposedChart>
           }
@@ -498,8 +498,8 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <RechartsTooltip cursor={{strokeDasharray: '3 3'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="Capacity" name="가공 생산능력" fill="url(#a11y-stripe-h)" color="rgba(139,92,246,0.2)" stroke="#78350f" />
-              <Bar yAxisId="left" dataKey="Utilization" name="실제 가동량" fill="url(#a11y-diag)" color="var(--color-danger)" />
+              <Bar yAxisId="left" dataKey="Capacity" name="가공 생산능력" fill="rgba(139,92,246,0.2)" stroke="#78350f" />
+              <Bar yAxisId="left" dataKey="Utilization" name="실제 가동량" fill="var(--color-danger)" />
               <Line yAxisId="right" type="monotone" dataKey="ExportRatio" name="무가공 원물 수출비율(%)" stroke="#d97706" strokeWidth={2} />
               <ReferenceLine x="2024" stroke="var(--color-warning)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'COCOBOD 구조조정', fill: 'var(--color-warning)', fontSize: 10 }} />
             </ComposedChart>
@@ -563,9 +563,9 @@ export default function CocoaDashboard() {
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar dataKey="BaseCost" stackId="a" fill="url(#a11y-stripe-h)" color="#64748b" name="순수 원물 가격" barSize={40} />
-              <Bar dataKey="Logistics" stackId="a" fill="url(#a11y-diag)" color="var(--color-info)" name="해상 물류비" />
-              <Bar dataKey="EudrTax" stackId="a" fill="url(#a11y-dots)" color="#b45309" name="유럽연합 산림벌채 규정(EUDR) 준수 비용" />
+              <Bar dataKey="BaseCost" stackId="a" fill="#64748b" name="순수 원물 가격" barSize={40} />
+              <Bar dataKey="Logistics" stackId="a" fill="var(--color-info)" name="해상 물류비" />
+              <Bar dataKey="EudrTax" stackId="a" fill="#b45309" name="유럽연합 산림벌채 규정(EUDR) 준수 비용" />
             </BarChart>
           }
           takeaway={{
@@ -644,7 +644,7 @@ export default function CocoaDashboard() {
               <YAxis dataKey="name" type="category" width={110} {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar dataKey="base" stackId="a" fill="url(#a11y-stripe-h)" color="transparent" />
+              <Bar dataKey="base" stackId="a" fill="transparent" />
               <Bar dataKey="val" stackId="a" name="원가 변동 요소">
                 {waterfallData.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
               </Bar>
@@ -667,8 +667,8 @@ export default function CocoaDashboard() {
               <YAxis dataKey="company" type="category" width={110} {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar dataKey="costBurden" fill="url(#a11y-stripe-h)" color="var(--color-danger)" name="원가 부담률" barSize={30} />
-              <Bar dataKey="cbeRatio" fill="url(#a11y-diag)" color="#f59e0b" name="CBE(대체유) 전환율" barSize={30} />
+              <Bar dataKey="costBurden" fill="var(--color-danger)" name="원가 부담률" barSize={30} />
+              <Bar dataKey="cbeRatio" fill="#f59e0b" name="CBE(대체유) 전환율" barSize={30} />
               <Line dataKey="opMargin" type="monotone" stroke="#3b82f6" strokeWidth={3} name="영업이익률" dot={{r: 5}} />
             </ComposedChart>
           }
@@ -703,9 +703,9 @@ export default function CocoaDashboard() {
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar dataKey="Theobromine_mg_g" stackId="a" fill="url(#a11y-stripe-h)" color="#d97706" name="테오브로민(mg/g)" />
-              <Bar dataKey="Catechin_mg_g" stackId="a" fill="url(#a11y-diag)" color="#b45309" name="카테킨(mg/g)" />
-              <Bar dataKey="Feed_Utility" stackId="a" fill="url(#a11y-dots)" color="var(--color-warning)" name="사료 가치(Index)" />
+              <Bar dataKey="Theobromine_mg_g" stackId="a" fill="#d97706" name="테오브로민(mg/g)" />
+              <Bar dataKey="Catechin_mg_g" stackId="a" fill="#b45309" name="카테킨(mg/g)" />
+              <Bar dataKey="Feed_Utility" stackId="a" fill="var(--color-warning)" name="사료 가치(Index)" />
             </BarChart>
           }
           takeaway={{
@@ -726,8 +726,8 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="CMS_Registration" fill="url(#a11y-stripe-h)" color="#78350f" name="CMS 농가 등록률(%)" barSize={35} />
-              <Bar yAxisId="left" dataKey="Polygon_Mapped" fill="url(#a11y-diag)" color="var(--color-info)" name="폴리곤 매핑(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="CMS_Registration" fill="#78350f" name="CMS 농가 등록률(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Polygon_Mapped" fill="var(--color-info)" name="폴리곤 매핑(%)" barSize={35} />
               <Line yAxisId="right" type="monotone" dataKey="Export_Block_Risk" stroke="var(--color-danger)" strokeWidth={3} dot={{r: 5}} name="수출 차단 리스크(RHS)" />
             </ComposedChart>
           }
@@ -763,8 +763,8 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="PremiumShare" name="프리미엄 비중" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-danger)" />
-              <Bar yAxisId="left" dataKey="CBERatio" name="CBE 비중" stackId="a" fill="url(#a11y-diag)" color="#d97706" />
+              <Bar yAxisId="left" dataKey="PremiumShare" name="프리미엄 비중" stackId="a" fill="var(--color-danger)" />
+              <Bar yAxisId="left" dataKey="CBERatio" name="CBE 비중" stackId="a" fill="#d97706" />
               <Line yAxisId="right" type="monotone" dataKey="Spread" stroke="#b45309" strokeWidth={3} name="현물/선물 스프레드(KCS-ICCO)" dot={{ r: 5 }} />
             </ComposedChart>
           }
@@ -786,8 +786,8 @@ export default function CocoaDashboard() {
               <YAxis yAxisId="right" orientation="right" stroke="var(--text-secondary)" tick={{ fontSize: 9 }} />
               <RechartsTooltip cursor={{fill: 'rgba(255,255,255,0.02)'}} content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} verticalAlign="top" height={36} />
-              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="url(#a11y-stripe-h)" color="#f59e0b" name="EBITDA(세전·이자·감가상각비 차감 전 이익) 마진율(%)" barSize={35} />
-              <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="url(#a11y-diag)" color="#78350f" name="시장 성장률(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Margin" stackId="a" fill="#f59e0b" name="EBITDA(세전·이자·감가상각비 차감 전 이익) 마진율(%)" barSize={35} />
+              <Bar yAxisId="left" dataKey="Growth" stackId="a" fill="#78350f" name="시장 성장률(%)" barSize={35} />
               <Line yAxisId="right" type="monotone" dataKey="Polyphenol_mgGAE_g" stroke="#d97706" strokeWidth={3} name="폴리페놀(mg GAE/g, RHS)" />
               <Line yAxisId="right" type="monotone" dataKey="Antioxidant_DPPH" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="3 3" name="항산화(DPPH, RHS)" />
             </ComposedChart>

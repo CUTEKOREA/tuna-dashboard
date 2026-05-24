@@ -41,7 +41,7 @@ export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { n
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="supplyYoy" name="글로벌 공급 증감률 (YoY %)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} barSize={24} />
+          <Bar yAxisId="left" dataKey="supplyYoy" name="글로벌 공급 증감률 (YoY %)" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={24} />
           <Line yAxisId="right" type="monotone" dataKey="price" name="스팟 가격 (EUR/kg)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
         </ComposedChart>
       }

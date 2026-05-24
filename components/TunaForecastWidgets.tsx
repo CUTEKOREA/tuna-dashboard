@@ -109,8 +109,8 @@ export function EnsoCorrelationWidget() {
           <XAxis dataKey="phase" tick={{ fill: '#94a3b8', fontSize: 9 }} />
           <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
-          <Bar dataKey="skipjack" fill="url(#a11y-stripe-h)" color="#FCD535" name="가다랑어" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="yellowfin" fill="url(#a11y-diag)" color="#06b6d4" name="황다랑어" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="skipjack" fill="#FCD535" name="가다랑어" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="yellowfin" fill="#06b6d4" name="황다랑어" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{

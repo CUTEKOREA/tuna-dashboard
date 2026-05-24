@@ -60,11 +60,11 @@ export default function TraderStatus() {
               labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
             />
             <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-            <Bar dataKey="FCF" stackId="a" fill="url(#a11y-stripe-h)" color={COLORS['FCF']} radius={[0, 0, 4, 4]} />
-            <Bar dataKey="ITOCHU" stackId="a" fill="url(#a11y-diag)" color={COLORS['ITOCHU']} />
-            <Bar dataKey="TRI MARINE" stackId="a" fill="url(#a11y-dots)" color={COLORS['TRI MARINE']} />
-            <Bar dataKey="Direct deal" stackId="a" fill="url(#a11y-stripe-v)" color={COLORS['Direct deal']} />
-            <Bar dataKey="Maldives" stackId="a" fill="url(#a11y-cross)" color={COLORS['Maldives']} radius={[4, 4, 0, 0]} />
+            <Bar dataKey="FCF" stackId="a" fill={COLORS['FCF']} radius={[0, 0, 4, 4]} />
+            <Bar dataKey="ITOCHU" stackId="a" fill={COLORS['ITOCHU']} />
+            <Bar dataKey="TRI MARINE" stackId="a" fill={COLORS['TRI MARINE']} />
+            <Bar dataKey="Direct deal" stackId="a" fill={COLORS['Direct deal']} />
+            <Bar dataKey="Maldives" stackId="a" fill={COLORS['Maldives']} radius={[4, 4, 0, 0]} />
           </BarChart>
         </SafeResponsiveContainer>
       </div>

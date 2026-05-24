@@ -59,7 +59,7 @@ const TunaExportShare = () => (
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
         {destinations.map((dest, idx) => (
-          <Bar key={dest} dataKey={dest} stackId="a" fill="url(#a11y-stripe-h)" color={getColor(dest, idx)} radius={idx === destinations.length - 1 ? [4, 4, 0, 0] : [0, 0, 0, 0]} />
+          <Bar key={dest} dataKey={dest} stackId="a" fill={getColor(dest, idx)} radius={idx === destinations.length - 1 ? [4, 4, 0, 0] : [0, 0, 0, 0]} />
         ))}
       </BarChart>
     }

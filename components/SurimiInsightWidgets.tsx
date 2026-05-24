@@ -123,7 +123,7 @@ export const WidgetLithuaniaParadox = () => {
             <XAxis type="number" stroke="#94a3b8" tick={{ fontSize: 11 }} tickFormatter={(val) => `$${val/1000}M`} />
             <YAxis type="category" dataKey="country" stroke="#f8fafc" tick={{ fontSize: 11, fontWeight: 600 }} width={60} />
             <RechartsTooltip content={<CustomTooltip />} />
-            <Bar dataKey="value_k" name="수리미 누적 수출액($1000)" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[0, 4, 4, 0]} barSize={20} />
+            <Bar dataKey="value_k" name="수리미 누적 수출액($1000)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} barSize={20} />
           </BarChart>
         </SafeResponsiveContainer>
       </div>
@@ -151,7 +151,7 @@ export const WidgetKoreaDeficit = () => (
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`$${v}M`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Bar dataKey="import_m" name="한국 수리미 수입 지출액($M)" fill="url(#a11y-stripe-h)" color="rgba(244, 63, 94, 0.7)" radius={[4, 4, 0, 0]} barSize={30}/>
+          <Bar dataKey="import_m" name="한국 수리미 수입 지출액($M)" fill="rgba(244, 63, 94, 0.7)" radius={[4, 4, 0, 0]} barSize={30}/>
           <Line type="monotone" dataKey="export_m" name="한국 수리미 가공 수출액($M)" stroke="#14b8a6" strokeWidth={3} dot={{r:4}}/>
         </ComposedChart>
       </SafeResponsiveContainer>

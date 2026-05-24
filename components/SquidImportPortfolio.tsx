@@ -75,7 +75,7 @@ export default function SquidImportPortfolio() {
           <Tooltip content={<PortfolioTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '11px' }} iconType="square" />
           {CATS.map(cat => (
-            <Bar key={cat.key} dataKey={cat.key} name={cat.label} stackId="portfolio" fill="url(#a11y-stripe-h)" color={cat.color} fillOpacity={0.85} />
+            <Bar key={cat.key} dataKey={cat.key} name={cat.label} stackId="portfolio" fill={cat.color} fillOpacity={0.85} />
           ))}
         </BarChart>
       }

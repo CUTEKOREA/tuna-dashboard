@@ -55,8 +55,8 @@ export function InsightTunaExtract() {
           <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="액상_시장" name="액상 시장(억원)" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="분말_코인" name="분말/코인 시장(억원)" fill="url(#a11y-diag)" color="#10b981" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="액상_시장" name="액상 시장(억원)" fill="#64748b" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="분말_코인" name="분말/코인 시장(억원)" fill="#10b981" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="마진율_분말" name="분말 B2B 마진율(%)" stroke="#fbbf24" strokeWidth={3} />
         </ComposedChart>
       }
@@ -91,8 +91,8 @@ export function InsightPillarTwo() {
           <YAxis stroke="#94a3b8" unit="%" domain={[0, 18]} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="before" name="기존 실효세율(%)" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="after" name="Pillar Two 적용 후(%) (2026E)" fill="url(#a11y-diag)" color="#fbbf24" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="before" name="기존 실효세율(%)" fill="#64748b" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="after" name="Pillar Two 적용 후(%) (2026E)" fill="#fbbf24" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -123,8 +123,8 @@ export function InsightVietnamOEM() {
           <YAxis dataKey="metric" type="category" stroke="#94a3b8" width={100} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="Vietnam" name="🇻🇳 베트남 (2026)" fill="url(#a11y-stripe-h)" color="#06b6d4" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="Thailand" name="🇹🇭 태국 (2026)" fill="url(#a11y-diag)" color="#64748b" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="Vietnam" name="🇻🇳 베트남 (2026)" fill="#06b6d4" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="Thailand" name="🇹🇭 태국 (2026)" fill="#64748b" radius={[0, 4, 4, 0]} />
         </BarChart>
       }
       takeaway={{

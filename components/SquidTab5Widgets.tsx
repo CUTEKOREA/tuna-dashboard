@@ -20,7 +20,7 @@ export function Widget41_FuelBEP() {
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
           <Line yAxisId="left" type="step" dataKey="break_even_catch" name="필요 최소 어획량(BEP 톤)" stroke="var(--color-danger)" strokeWidth={3} strokeDasharray="5 5" />
-          <Bar yAxisId="right" dataKey="wti" name="WTI 유가" fill="url(#a11y-stripe-h)" color="#64748b" fillOpacity={0.6} />
+          <Bar yAxisId="right" dataKey="wti" name="WTI 유가" fill="#64748b" fillOpacity={0.6} />
         </ComposedChart>
       }
       takeaway={{ situation: '배럴당 $110 돌파 시 하루 160톤 이상 잡지 못하면 출항할수록 손실 누적 — 적자(Negative Margin) 발생.', actionPlan: '[출항 포기선] 유가 $90 돌파 시 자동 출항 자제 알고리즘 가동 + LNG 전환선 신조 CAPEX 검토.', source: SRC }}
@@ -58,7 +58,7 @@ export function Widget43_WaterfallMargin() {
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[0, 100]} />
           <YAxis dataKey="step" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="value" name="해당 단계 마진 폭(%)" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
+          <Bar dataKey="value" name="해당 단계 마진 폭(%)" fill="var(--color-success)" />
         </BarChart>
       }
       takeaway={{ situation: '바다에서 잡는 사람(30%)과 마트 진열장(30%)이 동일 마진. 가공장(25%)이 칼질 한번에 수입상(15%)보다 많이 챙기는 구조.', actionPlan: '[피도 눈물도 없는 파이] 수입상 마진 15% 영역을 가공·소매 인접 영역으로 확장(수직 통합) 추진.', source: SRC }}
@@ -77,7 +77,7 @@ export function Widget44_StorageDeadcross() {
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="price_gain" name="스팟 시세 상승 예상분(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" />
+          <Bar dataKey="price_gain" name="스팟 시세 상승 예상분(%)" fill="var(--color-info)" />
           <Line type="monotone" dataKey="storage_cost" name="월간 누적 창고 보관료(%)" stroke="var(--color-danger)" strokeWidth={3} />
         </ComposedChart>
       }
@@ -97,8 +97,8 @@ export function Widget45_YieldLoss() {
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="supplier" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="actual_meat" name="실제 살코기 수율(%)" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
-          <Bar dataKey="ice_glaze" name="얼음물(글레이징) 마이너스" stackId="a" fill="url(#a11y-diag)" color="var(--color-danger)" />
+          <Bar dataKey="actual_meat" name="실제 살코기 수율(%)" stackId="a" fill="var(--color-success)" />
+          <Bar dataKey="ice_glaze" name="얼음물(글레이징) 마이너스" stackId="a" fill="var(--color-danger)" />
         </BarChart>
       }
       takeaway={{ situation: '서류상 100톤 구매했으나 해동 시 얼음 코팅으로 15톤이 물로 사라지는 마법 — C&F 단가에 15% 가산 필수.', actionPlan: '[수분 뻥튀기] 공급사 인보이스에 \'순중량 100% 기준\' 조항 의무화 + 통관 시 해동 샘플링 무작위 검증.', source: SRC }}
@@ -136,7 +136,7 @@ export function Widget47_ChannelMarginTracker() {
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="channel" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="margin" name="채널별 영업이익률(%)" fill="url(#a11y-stripe-h)" color="var(--color-success)" barSize={20} />
+          <Bar dataKey="margin" name="채널별 영업이익률(%)" fill="var(--color-success)" barSize={20} />
           <Scatter dataKey="volume_share" name="투입 물량 비중(%)" fill="var(--color-info)" />
         </ComposedChart>
       }

@@ -327,7 +327,7 @@ export default function KoreaConsignmentDashboard() {
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 100000000).toFixed(0)}억`} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
-              <Bar dataKey="saleAmount" name="판매금액 (원)" fill="url(#a11y-stripe-h)" color="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar dataKey="saleAmount" name="판매금액 (원)" fill="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
             </BarChart>
           }
           takeaway={{
@@ -353,7 +353,7 @@ export default function KoreaConsignmentDashboard() {
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 1000).toFixed(0)}t`} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
-              <Bar dataKey="saleQty" name="판매물량 (kg)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar dataKey="saleQty" name="판매물량 (kg)" fill="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
             </BarChart>
           }
           takeaway={{

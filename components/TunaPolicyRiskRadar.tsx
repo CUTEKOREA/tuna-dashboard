@@ -127,8 +127,8 @@ export function FtaTariffOptimizer() {
           <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} />
           <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-          <Bar dataKey="MFN" fill="url(#a11y-stripe-h)" color="#ef4444" name="MFN 관세" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="FTA" fill="url(#a11y-diag)" color="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="MFN" fill="#ef4444" name="MFN 관세" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="FTA" fill="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       customBody={Body}

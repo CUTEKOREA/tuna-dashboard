@@ -66,7 +66,7 @@ export const WidgetCellCultureVC = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`$${v}m`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="amount" name="시리즈B/C 누적 투자액 (Mil USD)" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[4,4,0,0]} />
+        <Bar dataKey="amount" name="시리즈B/C 누적 투자액 (Mil USD)" fill="var(--color-warning)" radius={[4,4,0,0]} />
       </BarChart>
     }
     takeaway={{
@@ -136,7 +136,7 @@ export const WidgetParasiteAI = () => (
         <YAxis yAxisId="right" orientation="right" stroke="#0ea5e9" fontSize={11} tickFormatter={(v)=>`${v}%`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar yAxisId="left" dataKey="cost" name="품질 클레임 보상액 (연 환산)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4,4,0,0]} barSize={25} />
+        <Bar yAxisId="left" dataKey="cost" name="품질 클레임 보상액 (연 환산)" fill="var(--color-danger)" radius={[4,4,0,0]} barSize={25} />
         <Line yAxisId="right" type="step" dataKey="recall" name="선충 검출 정확도 (%)" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
     }
@@ -172,8 +172,8 @@ export const WidgetAlgaeFeed = () => (
         <YAxis type="category" dataKey="item" stroke="#94a3b8" fontSize={11} width={80} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="cbamCost" name="유럽 CBAM 탄소세 페널티" fill="url(#a11y-stripe-h)" color="var(--color-danger)" stackId="a" />
-        <Bar dataKey="premium" name="저탄소인증 B2B 단가 프리미엄" fill="url(#a11y-diag)" color="#22c55e" stackId="a" />
+        <Bar dataKey="cbamCost" name="유럽 CBAM 탄소세 페널티" fill="var(--color-danger)" stackId="a" />
+        <Bar dataKey="premium" name="저탄소인증 B2B 단가 프리미엄" fill="#22c55e" stackId="a" />
       </BarChart>
     }
     takeaway={{
@@ -207,8 +207,8 @@ export const WidgetStarlinkMaritime = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`$${v}k / M`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="commCost" name="월간 텔레콤 통신료" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4,4,0,0]} />
-        <Bar dataKey="fuelSave" name="날씨 라우팅 최적화 연료절감액" fill="url(#a11y-diag)" color="#6366f1" radius={[4,4,0,0]} />
+        <Bar dataKey="commCost" name="월간 텔레콤 통신료" fill="var(--color-danger)" radius={[4,4,0,0]} />
+        <Bar dataKey="fuelSave" name="날씨 라우팅 최적화 연료절감액" fill="#6366f1" radius={[4,4,0,0]} />
       </BarChart>
     }
     takeaway={{
@@ -244,7 +244,7 @@ export const WidgetRovSonar = () => (
         <YAxis yAxisId="right" orientation="right" stroke="#0ea5e9" fontSize={11} tickFormatter={(v)=>`${v}%`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar yAxisId="left" dataKey="fuel" name="탐색용 헛기울임 유류 소모 (%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4,4,0,0]} />
+        <Bar yAxisId="left" dataKey="fuel" name="탐색용 헛기울임 유류 소모 (%)" fill="var(--color-danger)" radius={[4,4,0,0]} />
         <Line yAxisId="right" type="monotone" dataKey="detect" name="어군 크기/밀집도 적중률 (%)" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
     }
@@ -282,7 +282,7 @@ export const WidgetMnATargets = () => (
         <YAxis type="category" dataKey="tech" stroke="#94a3b8" fontSize={11} width={80} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="ev" name="시장 EV/EBITDA 멀티플" fill="url(#a11y-stripe-h)" color="#f43f5e" radius={[0,4,4,0]} />
+        <Bar dataKey="ev" name="시장 EV/EBITDA 멀티플" fill="#f43f5e" radius={[0,4,4,0]} />
       </BarChart>
     }
     takeaway={{
@@ -353,7 +353,7 @@ export const WidgetNonCatchBenchmark = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`${v}%`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="value" name="Top 3 연매출 기여도 비중 (%)" fill="url(#a11y-stripe-h)" color="#06b6d4" radius={[4,4,0,0]} />
+        <Bar dataKey="value" name="Top 3 연매출 기여도 비중 (%)" fill="#06b6d4" radius={[4,4,0,0]} />
       </BarChart>
     }
     takeaway={{

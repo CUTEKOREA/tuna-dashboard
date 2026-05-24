@@ -466,7 +466,7 @@ export default function ColdStorageDashboard() {
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
           </BarChart>
         );
@@ -483,7 +483,7 @@ export default function ColdStorageDashboard() {
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
             {widget.lines?.map((l: any, i: number) => (
               <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={{r:4}} activeDot={{r:6}} />

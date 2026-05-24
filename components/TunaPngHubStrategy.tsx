@@ -42,8 +42,8 @@ export default function TunaPngHubStrategy() {
             itemStyle={{ color: '#f8fafc' }}
           />
           <Legend />
-          <Bar dataKey="domestic" name="국내 직조달 ($/톤)" fill="url(#a11y-stripe-h)" color="#ef4444" />
-          <Bar dataKey="png_hub" name="PNG 산지 추출 ($/톤)" fill="url(#a11y-diag)" color="#10b981" />
+          <Bar dataKey="domestic" name="국내 직조달 ($/톤)" fill="#ef4444" />
+          <Bar dataKey="png_hub" name="PNG 산지 추출 ($/톤)" fill="#10b981" />
         </BarChart>
       }
       takeaway={{

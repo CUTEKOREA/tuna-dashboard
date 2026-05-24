@@ -34,7 +34,7 @@ export const W32_AquaUnitCost = () => (
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="valuePerTon" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="valuePerTon" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -72,9 +72,9 @@ export const W34_OriginCompare = () => {
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="ecuador" name="에콰도르" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="india" name="인도" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="vietnam" name="베트남" fill="url(#a11y-dots)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="ecuador" name="에콰도르" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="india" name="인도" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="vietnam" name="베트남" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -93,7 +93,7 @@ export const W35_ProcMargin = () => {
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
           <YAxis dataKey="category" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="margin" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="margin" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -149,7 +149,7 @@ export const W38_ChinaDemand = () => {
           <YAxis yAxisId="L" stroke="#ec4899" fontSize={11} />
           <YAxis yAxisId="R" orientation="right" stroke="var(--color-info)" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar yAxisId="L" dataKey="c" name="중국수입량" fill="url(#a11y-stripe-h)" color="#ec4899" radius={[4,4,0,0]} opacity={0.6}/>
+          <Bar yAxisId="L" dataKey="c" name="중국수입량" fill="#ec4899" radius={[4,4,0,0]} opacity={0.6}/>
           <Line yAxisId="R" dataKey="p" name="글로벌단가" stroke="var(--color-info)" strokeWidth={3} />
         </ComposedChart>
       </SafeResponsiveContainer>
@@ -169,7 +169,7 @@ export const W39_ValueAddWaterfall = () => {
           <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v=>`$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="v" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[4,4,0,0]} />
+          <Bar dataKey="v" fill="var(--color-warning)" radius={[4,4,0,0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>

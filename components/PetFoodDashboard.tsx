@@ -127,8 +127,8 @@ export default function PetFoodDashboard() {
                 <YAxis yAxisId="right" orientation="right" unit="%" tick={{ fill: '#94a3b8' }} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend />
-                <Bar yAxisId="left" dataKey="capital" name="투입 자본 (억 원)" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} />
-                <Bar yAxisId="left" dataKey="revenue" name="예상 매출 (억 원)" fill="url(#a11y-diag)" color="#f472b6" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="capital" name="투입 자본 (억 원)" fill="#64748b" radius={[4, 4, 0, 0]} />
+                <Bar yAxisId="left" dataKey="revenue" name="예상 매출 (억 원)" fill="#f472b6" radius={[4, 4, 0, 0]} />
                 <Line yAxisId="right" type="monotone" dataKey="roic" name="예상 ROIC (%)" stroke="var(--color-success)" strokeWidth={3} />
               </ComposedChart>
             }
@@ -164,7 +164,7 @@ export default function PetFoodDashboard() {
                       <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}`} tick={{fill: '#94a3b8'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Bar yAxisId="left" dataKey="catchVolume" name="어획량(톤)" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[4, 4, 0, 0]} />
+                      <Bar yAxisId="left" dataKey="catchVolume" name="어획량(톤)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                       <Line yAxisId="right" type="monotone" dataKey="squidPrice" name="오징어 단가($)" stroke="#ef4444" strokeWidth={3} />
                       <Line yAxisId="right" type="monotone" dataKey="sesamePrice" name="참깨 단가($)" stroke="#10b981" strokeWidth={3} />
                     </ComposedChart>
@@ -220,8 +220,8 @@ export default function PetFoodDashboard() {
                       <YAxis dataKey="criteria" type="category" width={100} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Bar dataKey="carrageenan" name="기존(카라기난)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
-                      <Bar dataKey="clean_label" name="클린라벨(한천/펙틴)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="carrageenan" name="기존(카라기난)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="clean_label" name="클린라벨(한천/펙틴)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
                     </BarChart>
                   </SafeResponsiveContainer>
                 </div>
@@ -246,8 +246,8 @@ export default function PetFoodDashboard() {
             <YAxis tickFormatter={(v) => `${(v / 10000).toFixed(1)}억$`} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="exports" name="수출 (만$)" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="imports" name="수입 (만$)" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="exports" name="수출 (만$)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="imports" name="수입 (만$)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
             <Line type="monotone" dataKey="deficit" name="무역적자 (만$)" stroke="var(--color-warning)" strokeWidth={3} strokeDasharray="5 5" />
             </ComposedChart>
             </SafeResponsiveContainer>
@@ -273,8 +273,8 @@ export default function PetFoodDashboard() {
             <YAxis tickFormatter={(v) => `$${v}`} unit="/kg" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="usPrice" name="미국산 ($/kg)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="thPrice" name="태국산 ($/kg)" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="usPrice" name="미국산 ($/kg)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="thPrice" name="태국산 ($/kg)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
             </BarChart>
             </SafeResponsiveContainer>
             </div>
@@ -402,7 +402,7 @@ export default function PetFoodDashboard() {
                         <YAxis yAxisId="right" orientation="right" unit="g" tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
-                        <Bar yAxisId="left" dataKey="EPA+DHA(mg/100g)" name="EPA+DHA (mg/100g)" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[4, 4, 0, 0]} />
+                        <Bar yAxisId="left" dataKey="EPA+DHA(mg/100g)" name="EPA+DHA (mg/100g)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                         <Line yAxisId="right" type="monotone" dataKey="조지방(g/100g)" name="조지방 (g/100g)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
                       </ComposedChart>
                     </SafeResponsiveContainer>
@@ -433,7 +433,7 @@ export default function PetFoodDashboard() {
                       <YAxis yAxisId="right" orientation="right" tick={{fill: '#94a3b8'}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Bar yAxisId="left" dataKey="tac" name="TAC (톤)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+                      <Bar yAxisId="left" dataKey="tac" name="TAC (톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
                       <Line yAxisId="right" type="monotone" dataKey="fadLimit" name="FAD 제한 (개/선박)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} />
                       <Line yAxisId="right" type="monotone" dataKey="yftReduction" name="황다랑어 감축(%)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />
                     </ComposedChart>
@@ -464,8 +464,8 @@ export default function PetFoodDashboard() {
                       <YAxis dataKey="region" type="category" width={100} tick={{fill: '#94a3b8', fontSize: 11}} />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Bar dataKey="change2050" name="2050년 변화(%)" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[0, 4, 4, 0]} />
-                      <Bar dataKey="change2100" name="2100년 변화(%)" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="change2050" name="2050년 변화(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+                      <Bar dataKey="change2100" name="2100년 변화(%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
                     </BarChart>
                   </SafeResponsiveContainer>
                 </div>
@@ -495,8 +495,8 @@ export default function PetFoodDashboard() {
                       <YAxis unit="%" />
                       <RechartsTooltip content={<CustomTooltip />} />
                       <Legend />
-                      <Bar dataKey="margin" name="영업이익률(%)" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="waste" name="자원 낭비율(%)" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="margin" name="영업이익률(%)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="waste" name="자원 낭비율(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
                     </BarChart>
                   </SafeResponsiveContainer>
                 </div>
@@ -521,7 +521,7 @@ export default function PetFoodDashboard() {
             <YAxis dataKey="company" type="category" width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="revenue" name="매출 (억 원)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="revenue" name="매출 (억 원)" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
             <Line dataKey="margin" name="영업이익률(%)" stroke={PINK} strokeWidth={3} type="monotone" />
             </ComposedChart>
             </SafeResponsiveContainer>
@@ -547,8 +547,8 @@ export default function PetFoodDashboard() {
             <YAxis dataKey="factor" type="category" width={120} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar dataKey="gpmImpact" name="매출총이익률(GPM) 영향(%)" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[0, 4, 4, 0]} />
-            <Bar dataKey="profitImpact" name="순이익 영향(%)" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="gpmImpact" name="매출총이익률(GPM) 영향(%)" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="profitImpact" name="순이익 영향(%)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
             </BarChart>
             </SafeResponsiveContainer>
             </div>
@@ -580,7 +580,7 @@ export default function PetFoodDashboard() {
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 바트)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 바트)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="gpm" name="GPM(%)" stroke={PINK} strokeWidth={3} />
             <Line yAxisId="right" type="monotone" dataKey="npm" name="순이익률(%)" stroke="var(--color-success)" strokeWidth={2} strokeDasharray="5 5" />
             </ComposedChart>
@@ -608,7 +608,7 @@ export default function PetFoodDashboard() {
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 원)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 원)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="margin" name="영업이익률(%)" stroke={PINK} strokeWidth={3} />
             <Line yAxisId="right" type="monotone" dataKey="costRate" name="매출원가율(%)" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" />
             </ComposedChart>
@@ -636,8 +636,8 @@ export default function PetFoodDashboard() {
             <YAxis yAxisId="right" orientation="right" unit="%" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 원)" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4, 4, 0, 0]} />
-            <Bar yAxisId="left" dataKey="profit" name="영업이익 (억 원)" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="revenue" name="매출 (억 원)" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="profit" name="영업이익 (억 원)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="margin" name="영업이익률(%)" stroke={PINK} strokeWidth={3} />
             </ComposedChart>
             </SafeResponsiveContainer>
@@ -690,7 +690,7 @@ export default function PetFoodDashboard() {
             <YAxis yAxisId="right" orientation="right" />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend />
-            <Bar yAxisId="left" dataKey="cannedExport" name="태국 참치캔 수출(천 톤)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="cannedExport" name="태국 참치캔 수출(천 톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="petfoodDemand" name="펫푸드 수요 지수" stroke="#f472b6" strokeWidth={3} dot={{ r: 4 }} />
             </ComposedChart>
             </SafeResponsiveContainer>
@@ -716,8 +716,8 @@ export default function PetFoodDashboard() {
                         <YAxis yAxisId="right" orientation="right" unit="%" tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
-                        <Bar yAxisId="left" dataKey="가수분해도(%)" name="가수분해도(%)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
-                        <Bar yAxisId="left" dataKey="DPPH라디컬소거(%)" name="DPPH 소거(%)" fill="url(#a11y-diag)" color="#10b981" radius={[4, 4, 0, 0]} />
+                        <Bar yAxisId="left" dataKey="가수분해도(%)" name="가수분해도(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+                        <Bar yAxisId="left" dataKey="DPPH라디컬소거(%)" name="DPPH 소거(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
                         <Line yAxisId="right" type="monotone" dataKey="거품활성(%)" name="거품활성(%)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 4 }} />
                       </ComposedChart>
                     </SafeResponsiveContainer>
@@ -742,8 +742,8 @@ export default function PetFoodDashboard() {
                         <YAxis tick={{fill: '#94a3b8'}} />
                         <RechartsTooltip content={<CustomTooltip />} />
                         <Legend />
-                        <Bar dataKey="단백질수율(%)" name="단백질 수율(%)" fill="url(#a11y-stripe-h)" color="#10b981" radius={[4, 4, 0, 0]} />
-                        <Bar dataKey="EAA함량(mg/g)" name="EAA 함량(mg/g)" fill="url(#a11y-diag)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="단백질수율(%)" name="단백질 수율(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="EAA함량(mg/g)" name="EAA 함량(mg/g)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </SafeResponsiveContainer>
                   </div>

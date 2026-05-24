@@ -227,11 +227,11 @@ export default function TraderImportChart() {
                   return <span style={{ color: 'var(--text-main)' }}>{labelMap[value]}</span>;
                 }}
               />
-              <Bar dataKey="FCF" stackId="a" fill="url(#a11y-stripe-h)" color={COLORS.FCF} radius={[0, 0, 4, 4]} />
-              <Bar dataKey="ITOCHU" stackId="a" fill="url(#a11y-diag)" color={COLORS.ITOCHU} />
-              <Bar dataKey="TRIMARINE" stackId="a" fill="url(#a11y-dots)" color={COLORS.TRIMARINE} />
-              <Bar dataKey="DIRECT" stackId="a" fill="url(#a11y-stripe-v)" color={COLORS.DIRECT} />
-              <Bar dataKey="MALDIVES" stackId="a" fill="url(#a11y-cross)" color={COLORS.MALDIVES} radius={[4, 4, 0, 0]} />
+              <Bar dataKey="FCF" stackId="a" fill={COLORS.FCF} radius={[0, 0, 4, 4]} />
+              <Bar dataKey="ITOCHU" stackId="a" fill={COLORS.ITOCHU} />
+              <Bar dataKey="TRIMARINE" stackId="a" fill={COLORS.TRIMARINE} />
+              <Bar dataKey="DIRECT" stackId="a" fill={COLORS.DIRECT} />
+              <Bar dataKey="MALDIVES" stackId="a" fill={COLORS.MALDIVES} radius={[4, 4, 0, 0]} />
             </BarChart>
           </SafeResponsiveContainer>
         </div>
@@ -249,10 +249,10 @@ export default function TraderImportChart() {
                 <XAxis type="number" hide />
                 <YAxis type="category" dataKey="month" axisLine={false} tickLine={false} stroke="var(--text-muted)" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
                 <Tooltip content={<CustomTooltipMonthly />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
-                <Bar dataKey="FCF" stackId="a" fill="url(#a11y-stripe-h)" color={COLORS.FCF} barSize={24} radius={[4, 0, 0, 4]} />
-                <Bar dataKey="ITOCHU" stackId="a" fill="url(#a11y-diag)" color={COLORS.ITOCHU} />
-                <Bar dataKey="TRIMARINE" stackId="a" fill="url(#a11y-dots)" color={COLORS.TRIMARINE} />
-                <Bar dataKey="DIRECT" stackId="a" fill="url(#a11y-stripe-v)" color={COLORS.DIRECT} radius={[0, 4, 4, 0]} />
+                <Bar dataKey="FCF" stackId="a" fill={COLORS.FCF} barSize={24} radius={[4, 0, 0, 4]} />
+                <Bar dataKey="ITOCHU" stackId="a" fill={COLORS.ITOCHU} />
+                <Bar dataKey="TRIMARINE" stackId="a" fill={COLORS.TRIMARINE} />
+                <Bar dataKey="DIRECT" stackId="a" fill={COLORS.DIRECT} radius={[0, 4, 4, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>

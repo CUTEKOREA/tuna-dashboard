@@ -53,7 +53,7 @@ export const W23_KoreaUnitPrice = () => {
           <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="price" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[4,4,0,0]} />
+          <Bar dataKey="price" fill="var(--color-warning)" radius={[4,4,0,0]} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -164,8 +164,8 @@ export const W28_KoreaPremiumGap = () => {
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="krPrice" name="한국수입가" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="jpPrice" name="일본수입가" fill="url(#a11y-diag)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="krPrice" name="한국수입가" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="jpPrice" name="일본수입가" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -185,8 +185,8 @@ export const W29_KoreaTradeBal = () => {
           <YAxis dataKey="year" type="category" width={40} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="imp" name="수입(빨래질)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="exp" name="수출(방어)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="imp" name="수입(빨래질)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="exp" name="수출(방어)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>

@@ -52,8 +52,8 @@ export function ThaiImportShift1Q26() {
                 <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} />
                 <RechartsTooltip contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
                 <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-                <Bar dataKey="2025_Q1" name="2025 Q1" fill="url(#a11y-stripe-h)" color="#94a3b8" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="2026_Q1" name="2026 Q1" fill="url(#a11y-diag)" color="#06b6d4" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2025_Q1" name="2025 Q1" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2026_Q1" name="2026 Q1" fill="#06b6d4" radius={[4, 4, 0, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -67,8 +67,8 @@ export function ThaiImportShift1Q26() {
                 <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
                 <RechartsTooltip contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
                 <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-                <Bar dataKey="2025_Q1" name="2025 Q1" fill="url(#a11y-stripe-h)" color="#94a3b8" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="2026_Q1" name="2026 Q1" fill="url(#a11y-diag)" color="#a855f7" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2025_Q1" name="2025 Q1" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="2026_Q1" name="2026 Q1" fill="#a855f7" radius={[4, 4, 0, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -124,7 +124,7 @@ export function FrimeAcquisitionWidget() {
                 <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
                 <YAxis type="category" dataKey="product" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                 <RechartsTooltip contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
-                <Bar dataKey="share" name="제품 비중" fill="url(#a11y-stripe-h)" color="#f59e0b" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="share" name="제품 비중" fill="#f59e0b" radius={[0, 4, 4, 0]} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -173,7 +173,7 @@ export function PerfectStormWidget() {
           <YAxis yAxisId="right" orientation="right" tick={{ fill: '#94a3b8', fontSize: 10 }} />
           <RechartsTooltip contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
           <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-          <Bar yAxisId="left" dataKey="skj_price" name="가다랑어 방콕가($/MT)" fill="url(#a11y-stripe-h)" color="#06b6d4" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="skj_price" name="가다랑어 방콕가($/MT)" fill="#06b6d4" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="mgo_index" name="MGO 지수(2025-10=100)" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       }
@@ -215,8 +215,8 @@ export function RasSystemWidget() {
           <YAxis type="category" dataKey="metric" tick={{ fill: '#94a3b8', fontSize: 11 }} width={100} />
           <RechartsTooltip contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} />
           <Legend wrapperStyle={{ fontSize: '0.7rem' }} />
-          <Bar dataKey="traditional" name="전통 가두리" fill="url(#a11y-stripe-h)" color="#94a3b8" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="RAS" name="RAS (순환여과)" fill="url(#a11y-diag)" color="#10b981" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="traditional" name="전통 가두리" fill="#94a3b8" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="RAS" name="RAS (순환여과)" fill="#10b981" radius={[0, 4, 4, 0]} />
         </BarChart>
       }
       takeaway={{

@@ -170,7 +170,7 @@ export default function ShrimpInsightWidgets() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             {w.series.map((s: any, idx: number) => (
-               <Bar key={idx} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={s.color} radius={[0, 4, 4, 0]} />
+               <Bar key={idx} dataKey={s.dataKey} fill={s.color} radius={[0, 4, 4, 0]} />
             ))}
           </BarChart>
         </SafeResponsiveContainer>

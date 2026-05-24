@@ -81,7 +81,7 @@ export const W05_Top10Prod = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -97,7 +97,7 @@ export const W06_Top10Aqua = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -113,7 +113,7 @@ export const W07_Top10Cap = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -129,7 +129,7 @@ export const W08_Top10AquaVal = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -145,7 +145,7 @@ export const W09_CapCeiling = () => (
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} domain={[0, 'auto']} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="#64748b" opacity={0.6} />
+        <Bar dataKey="value" fill="#64748b" opacity={0.6} />
         <ReferenceLine y={3500000} stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '생태계 허용 한계량 (3.5M Ton)', fill: 'var(--color-danger)', fontSize: 11 }} />
       </ComposedChart>
     </SafeResponsiveContainer>

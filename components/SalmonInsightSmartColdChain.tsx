@@ -28,8 +28,8 @@ export default function SalmonInsightSmartColdChain() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="airCost" name="항공 운송 비용 (EUR/kg)" fill="url(#a11y-stripe-v)" color={A11Y_PALETTE[5]} radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar yAxisId="left" dataKey="seaCost" name="해상 운송 비용 (EUR/kg)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="airCost" name="항공 운송 비용 (EUR/kg)" fill={A11Y_PALETTE[5]} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="seaCost" name="해상 운송 비용 (EUR/kg)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="carbon" name="물류 탄소배출 지수" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
         </ComposedChart>
       }

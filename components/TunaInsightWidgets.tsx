@@ -201,7 +201,7 @@ export default function TunaInsightWidgets() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-                 <Bar key={idx} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={`url(#color-${w.id}-${idx})`} radius={[0, 4, 4, 0]} />
+                 <Bar key={idx} dataKey={s.dataKey} fill={`url(#color-${w.id}-${idx})`} radius={[0, 4, 4, 0]} />
               ))}
             </BarChart>
           ) : (
@@ -221,7 +221,7 @@ export default function TunaInsightWidgets() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
               {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-                 <Bar key={idx} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={`url(#color-${w.id}-${idx})`} radius={[4, 4, 0, 0]} />
+                 <Bar key={idx} dataKey={s.dataKey} fill={`url(#color-${w.id}-${idx})`} radius={[4, 4, 0, 0]} />
               ))}
             </BarChart>
           )}

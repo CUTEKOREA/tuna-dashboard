@@ -54,7 +54,7 @@ export function InsightKoreaSpecialLine() {
               return <Cell key={idx} fill={p.fill} color={p.color} stroke={p.stroke} />;
             })}
           </Bar>
-          <Bar yAxisId="left" dataKey="margin" name="예상 마진(%)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} fillOpacity={0.85} />
+          <Bar yAxisId="left" dataKey="margin" name="예상 마진(%)" fill={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} fillOpacity={0.85} />
           <Line yAxisId="right" type="monotone" dataKey="fcr" name="FCR(사료요구율)" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       }

@@ -34,7 +34,7 @@ export function Widget01_ClimateYieldRadar() {
           <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="#67e8f9" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
-          <Bar yAxisId="left" dataKey="catch" name="어획량 지수" fill="url(#a11y-stripe-h)" color="var(--color-danger)" fillOpacity={0.6} />
+          <Bar yAxisId="left" dataKey="catch" name="어획량 지수" fill="var(--color-danger)" fillOpacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="enso" name="ENSO(수온편차)" stroke="#67e8f9" strokeWidth={3} />
         </ComposedChart>
       }
@@ -151,7 +151,7 @@ export function Widget04_ProteinGrowth() {
           <XAxis dataKey="protein" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
-          <Bar dataKey="growth" name="연평균 수요 성장률(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="growth" name="연평균 수요 성장률(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -224,8 +224,8 @@ export function Widget06_MPAExpansion() {
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(tick) => `${tick * 100}%`} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="mpa" name="보호구역(조업금지)" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
-          <Bar dataKey="fishingZone" name="합법 조업구역" stackId="a" fill="url(#a11y-diag)" color="var(--color-info)" fillOpacity={0.6} />
+          <Bar dataKey="mpa" name="보호구역(조업금지)" stackId="a" fill="var(--color-success)" />
+          <Bar dataKey="fishingZone" name="합법 조업구역" stackId="a" fill="var(--color-info)" fillOpacity={0.6} />
         </BarChart>
       }
       takeaway={{
@@ -332,7 +332,7 @@ export function Widget09_IUURadar() {
           <XAxis dataKey="country" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="violations" name="AIS 이탈/침범 횟수" fill="url(#a11y-stripe-h)" color="#f43f5e" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="violations" name="AIS 이탈/침범 횟수" fill="#f43f5e" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{

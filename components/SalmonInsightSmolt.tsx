@@ -34,7 +34,7 @@ export default function SalmonInsightSmolt() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
-          <Bar yAxisId="left" dataKey="postSmolt" name="육상 포스트 스몰트 비중" fill="url(#a11y-stripe-h)" color="url(#colorSmolt)" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="postSmolt" name="육상 포스트 스몰트 비중" fill="url(#colorSmolt)" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="mortality" name="해상 폐사율 (바다이 등)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
           <defs>
             <linearGradient id="colorSmolt" x1="0" y1="0" x2="0" y2="1">

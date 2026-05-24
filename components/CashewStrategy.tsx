@@ -209,7 +209,7 @@ export default function CashewStrategy() {
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill:'rgba(255,255,255,0.04)'}} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
-              <Bar key={i} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[4,4,0,0]} fillOpacity={0.85} />
+              <Bar key={i} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.85} />
             ))}
           </BarChart>
         );
@@ -237,7 +237,7 @@ export default function CashewStrategy() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'10px'}} />
             {w.bars?.map((b:any,i:number) => (
-              <Bar yAxisId={b.yAxisId || "left"} key={`b${i}`} dataKey={b.key} fill="url(#a11y-stripe-h)" color={b.color} radius={[4,4,0,0]} fillOpacity={0.8} />
+              <Bar yAxisId={b.yAxisId || "left"} key={`b${i}`} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.8} />
             ))}
             {w.lines?.map((l:any,i:number) => (
               <Line yAxisId={l.yAxisId || "right"} key={`l${i}`} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:4}} connectNulls />
@@ -453,7 +453,7 @@ export default function CashewStrategy() {
                   <YAxis stroke="#64748b" tick={{fontSize:9}} unit="%" />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />
-                  <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.8} />
+                  <Bar dataKey="processingRate" name="현지 가공 비율(%)" fill="#3b82f6" radius={[4,4,0,0]} fillOpacity={0.8} />
                   <Line type="monotone" dataKey="directSupply" name="B2B 직공급률(%)" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{r:4}} />
                 </ComposedChart>
               ),

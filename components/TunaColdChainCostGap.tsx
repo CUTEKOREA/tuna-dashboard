@@ -97,7 +97,7 @@ const TunaColdChainCostGap = () => (
             </span>
           )}
         />
-        <Bar yAxisId="sea" dataKey="sea" fill="url(#a11y-stripe-h)" color="url(#tunaColdChainBarGradient)" radius={[4, 4, 0, 0]} barSize={32} />
+        <Bar yAxisId="sea" dataKey="sea" fill="url(#tunaColdChainBarGradient)" radius={[4, 4, 0, 0]} barSize={32} />
         <Line yAxisId="air" type="monotone" dataKey="air" stroke="#f59e0b" strokeWidth={2} dot={{ fill: '#f59e0b', r: 4, strokeWidth: 0 }} />
       </ComposedChart>
     }

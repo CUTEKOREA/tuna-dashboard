@@ -46,9 +46,9 @@ export default function MackerelProcessedWidgets() {
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Bar dataKey="chile" stackId="1" name={getKorCountry("Chile")} fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[6]} radius={[0, 0, 0, 0]} barSize={20} />
-          <Bar dataKey="peru" stackId="1" name={getKorCountry("Peru")} fill="url(#a11y-diag)" color={A11Y_PALETTE[1]} radius={[0, 0, 0, 0]} />
-          <Bar dataKey="other" stackId="1" name="기타 비주류국가" fill="url(#a11y-dots)" color={A11Y_PALETTE[7]} radius={[4, 4, 0, 0]} fillOpacity={0.6} />
+          <Bar dataKey="chile" stackId="1" name={getKorCountry("Chile")} fill={A11Y_PALETTE[6]} radius={[0, 0, 0, 0]} barSize={20} />
+          <Bar dataKey="peru" stackId="1" name={getKorCountry("Peru")} fill={A11Y_PALETTE[1]} radius={[0, 0, 0, 0]} />
+          <Bar dataKey="other" stackId="1" name="기타 비주류국가" fill={A11Y_PALETTE[7]} radius={[4, 4, 0, 0]} fillOpacity={0.6} />
         </BarChart>
       </SafeResponsiveContainer>
     </div>

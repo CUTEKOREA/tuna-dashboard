@@ -62,8 +62,8 @@ export function PollockSanctionParadox() {
                 <YAxis yAxisId="left" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
                 <YAxis yAxisId="right" orientation="right" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                 <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-                <Bar yAxisId="left" dataKey="russia_share" fill="url(#a11y-stripe-h)" color="#ef4444" name="러시아 점유율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
-                <Bar yAxisId="left" dataKey="china_relay" fill="url(#a11y-diag)" color="#f59e0b" name="중국 우회 가공(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+                <Bar yAxisId="left" dataKey="russia_share" fill="#ef4444" name="러시아 점유율(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+                <Bar yAxisId="left" dataKey="china_relay" fill="#f59e0b" name="중국 우회 가공(%)" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
                 <Line yAxisId="right" type="monotone" dataKey="sanction_intensity" stroke="#a855f7" strokeWidth={2} name="제재 강도" dot={{ fill: '#a855f7', r: 3 }} />
               </ComposedChart>
             </div>
@@ -110,8 +110,8 @@ export function PollockFtaTariffMatrix() {
               <XAxis dataKey="name" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
-              <Bar dataKey="MFN" fill="url(#a11y-stripe-h)" color="#ef4444" name="MFN 관세" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="FTA" fill="url(#a11y-diag)" color="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="MFN" fill="#ef4444" name="MFN 관세" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="FTA" fill="#22c55e" name="FTA 관세" radius={[4, 4, 0, 0]} />
             </BarChart>
           </div>
           <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', marginTop: '8px' }}>

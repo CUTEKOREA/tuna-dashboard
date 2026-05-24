@@ -9,10 +9,10 @@
  *
  *   <BarChart data={data}>
  *     <ChartPatternDefs />
- *     <Bar dataKey="A" fill="url(#a11y-stripe-h)" color={getPatternFill('stripe-h', '#0ea5e9')} />
- *     <Bar dataKey="B" fill="url(#a11y-diag)" color={getPatternFill('dots', '#10b981')} />
- *     <Bar dataKey="C" fill="url(#a11y-dots)" color={getPatternFill('cross', '#f59e0b')} />
- *     <Bar dataKey="D" fill="url(#a11y-stripe-v)" color={A11Y_PALETTE[3]} />  // solid (마지막 dataKey)
+ *     <Bar dataKey="A" fill={getPatternFill('stripe-h', '#0ea5e9')} />
+ *     <Bar dataKey="B" fill={getPatternFill('dots', '#10b981')} />
+ *     <Bar dataKey="C" fill={getPatternFill('cross', '#f59e0b')} />
+ *     <Bar dataKey="D" fill={A11Y_PALETTE[3]} />  // solid (마지막 dataKey)
  *   </BarChart>
  *
  * WCAG 2.1 SC 1.4.1 Use of Color 준수 (색상 단독 의존 금지).
@@ -90,12 +90,9 @@ export function getPatternFill(kind: PatternKind, color?: string): string {
  *   {dataKeys.map((key, idx) => <Bar key={key} dataKey={key} {...getA11yBarProps(idx)} />)}
  */
 export function getA11yBarProps(index: number): { fill: string; stroke: string; color?: string } {
-  const patterns: PatternKind[] = ['solid', 'stripe-h', 'diag', 'dots', 'stripe-v', 'cross', 'solid', 'diag'];
-  const kind = patterns[index % patterns.length];
+  // NOTE: 이전엔 url(#a11y-*) 패턴 + currentColor 사용했으나, Recharts <Bar>가
+  // 임의 props(color)를 SVG로 forward하지 않아 currentColor가 미설정 → 패턴이
+  // 투명하게 렌더링되는 버그 발생. Okabe-Ito 색맹 친화 솔리드 컬러로 회귀.
   const color = A11Y_PALETTE[index % A11Y_PALETTE.length];
-  return {
-    fill: kind === 'solid' ? color : `url(#a11y-${kind})`,
-    stroke: color,
-    color, // currentColor 부모로 전달 (CSS color)
-  };
+  return { fill: color, stroke: color, color };
 }

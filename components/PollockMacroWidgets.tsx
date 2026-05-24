@@ -82,8 +82,8 @@ export function Widget3_USARussiaDiverging() {
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-            <Bar dataKey="미국_증감" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4,4,0,0]} />
-            <Bar dataKey="러시아_증감" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[4,4,0,0]} />
+            <Bar dataKey="미국_증감" fill="var(--color-info)" radius={[4,4,0,0]} />
+            <Bar dataKey="러시아_증감" fill="var(--color-danger)" radius={[4,4,0,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
           </BarChart>
       }

@@ -75,8 +75,8 @@ return (
             <YAxis dataKey="metric" type="category" stroke="#94a3b8" fontSize={11} width={100} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
-            <Bar dataKey="thailand" name="태국 (기존 거점)" fill="url(#a11y-stripe-h)" color="#8b5cf6" />
-            <Bar dataKey="vietnam" name="베트남 (신규 거점)" fill="url(#a11y-diag)" color="var(--color-success)" />
+            <Bar dataKey="thailand" name="태국 (기존 거점)" fill="#8b5cf6" />
+            <Bar dataKey="vietnam" name="베트남 (신규 거점)" fill="var(--color-success)" />
           </BarChart>
         </SafeResponsiveContainer>
       </div>

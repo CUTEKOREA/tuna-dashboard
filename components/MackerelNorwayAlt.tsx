@@ -63,7 +63,7 @@ export default function MackerelNorwayAlt() {
           <Tooltip content={<NorTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '11px' }} />
           {countries.map((c: any, i: number) => (
-            <Bar key={c.country} dataKey={c.country} stackId="a" fill="url(#a11y-stripe-h)" color={COLORS[i % COLORS.length]} />
+            <Bar key={c.country} dataKey={c.country} stackId="a" fill={COLORS[i % COLORS.length]} />
           ))}
         </BarChart>
       )}

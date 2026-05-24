@@ -61,7 +61,7 @@ export function MofFishMarketWidget() {
           <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `₩${v.toLocaleString()}`} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="volume" fill="url(#a11y-stripe-h)" color="#0ea5e9" name="거래량(MT)" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="volume" fill="#0ea5e9" name="거래량(MT)" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="avgPrice" stroke="#f59e0b" strokeWidth={3} name="평균 단가(₩/kg)" dot={{ r: 4 }} />
         </ComposedChart>
       }
@@ -100,8 +100,8 @@ export function MofTradeBalanceWidget() {
           <YAxis stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} tickFormatter={(v) => `$${v}M`} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="export" fill="url(#a11y-stripe-h)" color="#10b981" name="수출($M)" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="import" fill="url(#a11y-diag)" color="#ef4444" name="수입($M)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="export" fill="#10b981" name="수출($M)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="import" fill="#ef4444" name="수입($M)" radius={[4, 4, 0, 0]} />
           <Line type="monotone" dataKey="balance" stroke="#f59e0b" strokeWidth={3} strokeDasharray="5 5" name="무역수지($M)" dot={{ r: 4 }} />
         </ComposedChart>
       }

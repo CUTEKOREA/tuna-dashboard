@@ -66,9 +66,9 @@ const TunaKoreaOrigins = () => (
         <Tooltip content={<CustomTooltip />} />
         <Legend wrapperStyle={{ paddingTop: '20px' }} />
         {origins.map((origin, i) => (
-          <Bar key={origin} dataKey={origin} stackId="a" fill="url(#a11y-stripe-h)" color={colors[origin] || defaultColors[i % defaultColors.length]} animationDuration={2000} />
+          <Bar key={origin} dataKey={origin} stackId="a" fill={colors[origin] || defaultColors[i % defaultColors.length]} animationDuration={2000} />
         ))}
-        <Bar key="기타 (Others)" dataKey="기타 (Others)" stackId="a" fill="url(#a11y-diag)" color={colors['기타 (Others)']} animationDuration={2000} />
+        <Bar key="기타 (Others)" dataKey="기타 (Others)" stackId="a" fill={colors['기타 (Others)']} animationDuration={2000} />
       </BarChart>
     }
     takeaway={{

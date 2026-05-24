@@ -24,9 +24,9 @@ export default function SquidLogisticsOptimizer() {
           <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
-          <Bar dataKey="freight" stackId="a" name="해상 운임" fill="url(#a11y-stripe-h)" color="#475569" />
-          <Bar dataKey="loading" stackId="a" name="상하차/동결" fill="url(#a11y-diag)" color="#64748b" />
-          <Bar dataKey="storage" stackId="a" name="누적 보관료" fill="url(#a11y-dots)" color="var(--color-danger)" />
+          <Bar dataKey="freight" stackId="a" name="해상 운임" fill="#475569" />
+          <Bar dataKey="loading" stackId="a" name="상하차/동결" fill="#64748b" />
+          <Bar dataKey="storage" stackId="a" name="누적 보관료" fill="var(--color-danger)" />
           <ReferenceLine y={1200} stroke="var(--color-success)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '단기 기대 시장수익(Gap)', fill: 'var(--color-success)', fontSize: 10 }} />
         </BarChart>
       }

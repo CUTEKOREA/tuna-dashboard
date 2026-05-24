@@ -38,8 +38,8 @@ export default function FishStatBlackholeBar() {
             <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => `${value}%`} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-            <Bar dataKey="feed" stackId="a" name="비식용 (양식 사료/어분)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 0, 0, 4]} />
-            <Bar dataKey="consumption" stackId="a" name="인간 식용 (Consumption)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+            <Bar dataKey="feed" stackId="a" name="비식용 (양식 사료/어분)" fill="var(--color-danger)" radius={[0, 0, 0, 4]} />
+            <Bar dataKey="consumption" stackId="a" name="인간 식용 (Consumption)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
           </BarChart>
         </SafeResponsiveContainer>
       </div>

@@ -24,9 +24,9 @@ export default function SquidOriginDiversification() {
           <YAxis type="category" dataKey="route" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 10 }} width={120} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
-          <Bar dataKey="sea_freight" stackId="a" name="해상 배송 (일)" fill="url(#a11y-stripe-h)" color="var(--color-info)" />
-          <Bar dataKey="customs" stackId="a" name="통관/검역 (일)" fill="url(#a11y-diag)" color="var(--color-warning)" />
-          <Bar dataKey="inland" stackId="a" name="내륙 배송 (일)" fill="url(#a11y-dots)" color="var(--color-danger)" />
+          <Bar dataKey="sea_freight" stackId="a" name="해상 배송 (일)" fill="var(--color-info)" />
+          <Bar dataKey="customs" stackId="a" name="통관/검역 (일)" fill="var(--color-warning)" />
+          <Bar dataKey="inland" stackId="a" name="내륙 배송 (일)" fill="var(--color-danger)" />
         </BarChart>
       }
       takeaway={{

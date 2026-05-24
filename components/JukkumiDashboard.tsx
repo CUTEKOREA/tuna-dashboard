@@ -208,7 +208,7 @@ export default function JukkumiDashboard() {
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => (
-                <Bar key={i} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
+                <Bar key={i} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
               ))}
             </BarChart>
           );
@@ -226,7 +226,7 @@ export default function JukkumiDashboard() {
                 if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
                 if (s.type === 'area') return <Area key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || getMonolithicColor(i)} fill={s.color || getMonolithicColor(i)} fillOpacity={0.4} strokeWidth={2} />;
                 if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} />;
-                return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
+                return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
               })}
             </ComposedChart>
           );

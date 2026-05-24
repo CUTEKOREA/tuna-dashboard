@@ -77,8 +77,8 @@ export default function GensanCanneryStatusCharts() {
                   formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <Bar dataKey="prodMax" name="최대 가능 생산량" fill="url(#a11y-stripe-h)" color="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
-                <Bar dataKey="prodCurrent" name="일 생산량" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar dataKey="prodCurrent" name="일 생산량" fill="var(--color-success)" radius={[0, 4, 4, 0]} barSize={12} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -139,8 +139,8 @@ export default function GensanCanneryStatusCharts() {
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <Bar dataKey="storeMax" name="최대 가능 보관량" fill="url(#a11y-stripe-h)" color="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
-                <Bar dataKey="storeCurrent" name="현 보관량" fill="url(#a11y-diag)" color="var(--color-info)" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar dataKey="storeCurrent" name="현 보관량" fill="var(--color-info)" radius={[0, 4, 4, 0]} barSize={12} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>

@@ -620,7 +620,7 @@ export default function FalklandSquidDashboard() {
                 contentStyle={{ backgroundColor: 'var(--bg-secondary)', border: '1px solid var(--border-primary)', borderRadius: '8px' }}
               />
               <Legend />
-              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="url(#a11y-stripe-h)" color="var(--color-secondary)" radius={[4, 4, 0, 0]} />
+              <Bar yAxisId="left" dataKey="totalKg" name="총 어획량(KG)" fill="var(--color-secondary)" radius={[4, 4, 0, 0]} />
               <Line yAxisId="right" type="monotone" dataKey="vessels" name="선박 수(척)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 5 }} />
             </ComposedChart>
           }

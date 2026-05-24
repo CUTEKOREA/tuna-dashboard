@@ -135,7 +135,7 @@ export default function PollockDraftInsights() {
                   formatter={(value: any) => [`${(Number(value)/1000).toFixed(1)}k tons`, '']}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
-                <Bar dataKey="import" name="수입량 (Import)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="import" name="수입량 (Import)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
                 <Line type="monotone" dataKey="catch" name="자체 어획량 (Catch)" stroke="var(--color-success)" strokeWidth={3} dot={false} />
               </ComposedChart>
         }
@@ -195,8 +195,8 @@ export default function PollockDraftInsights() {
                   formatter={(value: any, name: any) => [`$${Number(value).toFixed(2)}/ton`, name === 'spread' ? '마진 차액(Spread)' : (name === 'import_price' ? '수입원가' : '수출원가')]}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
-                <Bar dataKey="import_price" stackId="a" name="수입원가" fill="url(#a11y-stripe-h)" color="#64748b" />
-                <Bar dataKey="spread" stackId="a" name="부가가치 (Spread)" fill="url(#a11y-diag)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="import_price" stackId="a" name="수입원가" fill="#64748b" />
+                <Bar dataKey="spread" stackId="a" name="부가가치 (Spread)" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
               </BarChart>
         }
         takeaway={{

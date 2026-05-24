@@ -80,7 +80,7 @@ export default React.memo(function ThaiTunaTradeStats() {
                 <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => (val / 1000).toFixed(0) + 'k'} />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px' }} />
-                <Bar name="수입 (Imports)" dataKey="imports" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} barSize={40} opacity={0.6} isAnimationActive={false} />
+                <Bar name="수입 (Imports)" dataKey="imports" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={40} opacity={0.6} isAnimationActive={false} />
                 <Line name="수출 (Exports)" type="monotone" dataKey="exports" stroke="var(--color-success)" strokeWidth={3} dot={{ fill: 'var(--color-success)', r: 4 }} isAnimationActive={false} />
               </ComposedChart>
             </SafeResponsiveContainer>

@@ -24,7 +24,7 @@ export default function SquidCPUEProfitability() {
           <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
-          <Bar dataKey="profit" name="마진(kg)" fill="url(#a11y-stripe-h)" color="rgba(16, 185, 129, 0.6)" />
+          <Bar dataKey="profit" name="마진(kg)" fill="rgba(16, 185, 129, 0.6)" />
           <Line type="monotone" dataKey="cpue" name="현장 CPUE" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4 }} />
           <ReferenceLine y={1000} stroke="var(--color-danger)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '조업 BEP', fill: 'var(--color-danger)', fontSize: 10 }} />
         </ComposedChart>

@@ -79,7 +79,7 @@ const TunaOriginPriceTrend = () => (
           tickFormatter={(v) => v.toLocaleString()}
         />
         <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
-        <Bar dataKey="price" fill="url(#a11y-stripe-h)" color="url(#tunaOriginPriceGradient)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="price" fill="url(#tunaOriginPriceGradient)" radius={[4, 4, 0, 0]} />
       </BarChart>
     }
     takeaway={{

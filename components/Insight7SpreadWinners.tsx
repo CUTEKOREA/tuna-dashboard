@@ -86,8 +86,8 @@ const Insight7SpreadWinners = () => {
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             
-            <Bar dataKey="frozen_price_usd_per_t" name="원물 수출단가 (Frozen USD/t)" fill="url(#a11y-stripe-h)" color="#6B7280" radius={[4, 4, 0, 0]} maxBarSize={40} />
-            <Bar dataKey="prepared_price_usd_per_t" name="가공 수출단가 (Prepared USD/t)" fill="url(#a11y-diag)" color="var(--color-warning)" radius={[4, 4, 0, 0]} maxBarSize={40} />
+            <Bar dataKey="frozen_price_usd_per_t" name="원물 수출단가 (Frozen USD/t)" fill="#6B7280" radius={[4, 4, 0, 0]} maxBarSize={40} />
+            <Bar dataKey="prepared_price_usd_per_t" name="가공 수출단가 (Prepared USD/t)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} maxBarSize={40} />
           </BarChart>
         </SafeResponsiveContainer>
       </div>

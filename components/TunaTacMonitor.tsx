@@ -78,7 +78,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Line yAxisId="left" type="monotone" dataKey="priceIndex" name="수산물 가격 지수" stroke="#f59e0b" strokeWidth={3} />
-          <Bar yAxisId="right" dataKey="tacPressure" name="쿼터 압력 (0~100)" fill="url(#a11y-stripe-h)" color="#ef4444" fillOpacity={0.6} />
+          <Bar yAxisId="right" dataKey="tacPressure" name="쿼터 압력 (0~100)" fill="#ef4444" fillOpacity={0.6} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </div>

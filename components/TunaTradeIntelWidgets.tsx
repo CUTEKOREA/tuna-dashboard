@@ -62,9 +62,9 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
           <YAxis stroke="#64748b" tick={{ fontSize: 9 }} unit="%" />
           <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Bar dataKey="MFN" name="MFN 세율" fill="url(#a11y-stripe-h)" color="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="FTA" name="FTA 적용" fill="url(#a11y-diag)" color="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="Bound" name="양허세율" fill="url(#a11y-dots)" color="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="MFN" name="MFN 세율" fill="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="FTA" name="FTA 적용" fill="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="Bound" name="양허세율" fill="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
         </BarChart>
       )}
       customBody={loading ? <Spinner /> : undefined}
@@ -166,9 +166,9 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
           <YAxis stroke="#64748b" tick={{ fontSize: 9 }} />
           <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
-          <Bar dataKey="수입액" name="수입액 ($M)" fill="url(#a11y-stripe-h)" color="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="수출액" name="수출액 ($M)" fill="url(#a11y-diag)" color="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
-          <Bar dataKey="수입량" name="수입량 (kMT)" fill="url(#a11y-dots)" color="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.5} isAnimationActive={false} />
+          <Bar dataKey="수입액" name="수입액 ($M)" fill="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="수출액" name="수출액 ($M)" fill="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
+          <Bar dataKey="수입량" name="수입량 (kMT)" fill="#2196F3" radius={[6, 6, 0, 0]} fillOpacity={0.5} isAnimationActive={false} />
         </BarChart>
       )}
       customBody={loading ? <Spinner /> : undefined}

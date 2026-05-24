@@ -39,8 +39,8 @@ export default function FishStatDumpingRoute() {
             <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `$${val}`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
             <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any) => { return name === 'SCFI' ? [`$${value}`, name] : [`${value}k Tons`, name]; }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-            <Bar yAxisId="left" dataKey="asiaDiscard" name="아시아 미성어 방출" fill="url(#a11y-stripe-h)" color="#6366f1" radius={[4, 4, 0, 0]} />
-            <Bar yAxisId="left" dataKey="africaImport" name="서아프리카 수입고" fill="url(#a11y-diag)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="asiaDiscard" name="아시아 미성어 방출" fill="#6366f1" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="africaImport" name="서아프리카 수입고" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
             <Line yAxisId="right" type="monotone" dataKey="scfi" name="해운운임지수(SCFI)" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 4, fill: 'var(--color-danger)' }} />
           </ComposedChart>
         </SafeResponsiveContainer>

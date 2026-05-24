@@ -28,10 +28,10 @@ export default function SalmonInsightFeedBio() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="marine" name="해양 원료 비중(%)" stackId="a" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[0, 0, 4, 4]} />
-          <Bar yAxisId="left" dataKey="alt" name="대체 사료 비중(%)" stackId="a" fill="url(#a11y-diag)" color={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="marine" name="해양 원료 비중(%)" stackId="a" fill={A11Y_PALETTE[0]} radius={[0, 0, 4, 4]} />
+          <Bar yAxisId="left" dataKey="alt" name="대체 사료 비중(%)" stackId="a" fill={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
 
-          <Bar yAxisId="right" dataKey="fifo" name="FIFO (의존도 비율)" fill="url(#a11y-cross)" color={A11Y_PALETTE[1]} barSize={3} />
+          <Bar yAxisId="right" dataKey="fifo" name="FIFO (의존도 비율)" fill={A11Y_PALETTE[1]} barSize={3} />
         </ComposedChart>
       }
       takeaway={{

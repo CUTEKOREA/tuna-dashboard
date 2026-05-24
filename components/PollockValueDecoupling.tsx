@@ -38,7 +38,7 @@ export default function PollockValueDecoupling() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
-          <Bar yAxisId="left" dataKey="vol_k" name="글로벌 수입 수량 (Volume)" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} barSize={20} opacity={0.6} />
+          <Bar yAxisId="left" dataKey="vol_k" name="글로벌 수입 수량 (Volume)" fill="#64748b" radius={[4, 4, 0, 0]} barSize={20} opacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="val_m" name="글로벌 수입 금액 (Value USD)" stroke="#14b8a6" strokeWidth={3} dot={{ r: 4, fill: '#14b8a6' }} />
         </ComposedChart>
       }

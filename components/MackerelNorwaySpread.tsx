@@ -24,7 +24,7 @@ export default function MackerelNorwaySpread() {
         <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`₩${v}`} tick={{ fill: '#34d399', fontSize: 10 }} />
         <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius:'8px' }} />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
-        <Bar yAxisId="right" dataKey="margin" name="총 마진 폭(Spread)" fill="url(#a11y-stripe-h)" color="var(--color-success)" opacity={0.6} />
+        <Bar yAxisId="right" dataKey="margin" name="총 마진 폭(Spread)" fill="var(--color-success)" opacity={0.6} />
         <Line yAxisId="left" type="monotone" dataKey="importCost" name="노르웨이 수입원가" stroke="var(--color-danger)" strokeWidth={2} dot={false} />
         <Line yAxisId="left" type="monotone" dataKey="domesticPrice" name="국내 도매가" stroke="#38bdf8" strokeWidth={2} dot={false} />
       </ComposedChart>

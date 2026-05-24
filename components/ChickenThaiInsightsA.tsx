@@ -94,7 +94,7 @@ export function InsightChannelMatrix() {
               return <Cell key={idx} fill={p.fill} color={p.color} stroke={p.stroke} />;
             })}
           </Bar>
-          <Bar dataKey="difficulty" name="진입난이도(%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[5]} radius={[0, 4, 4, 0]} fillOpacity={0.6} />
+          <Bar dataKey="difficulty" name="진입난이도(%)" fill={A11Y_PALETTE[5]} radius={[0, 4, 4, 0]} fillOpacity={0.6} />
         </BarChart>
       }
       kpiPanel={[

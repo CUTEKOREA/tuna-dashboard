@@ -51,8 +51,8 @@ export const W13_RecentTradeQty = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
         <Legend wrapperStyle={{ fontSize: 11 }} />
-        <Bar dataKey="exportQty" name="수출 물량(Ton)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="importQty" name="수입 물량(Ton)" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="exportQty" name="수출 물량(Ton)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="importQty" name="수입 물량(Ton)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -69,8 +69,8 @@ export const W14_RecentTradeUsd = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
         <Legend wrapperStyle={{ fontSize: 11 }} />
-        <Bar dataKey="exportUsd" name="수출액(USD)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
-        <Bar dataKey="importUsd" name="수입액(USD)" fill="url(#a11y-diag)" color="#ec4899" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="exportUsd" name="수출액(USD)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="importUsd" name="수입액(USD)" fill="#ec4899" radius={[4, 4, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -86,7 +86,7 @@ export const W15_ExpTop10Qty = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -102,7 +102,7 @@ export const W16_ImpTop10Qty = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -118,7 +118,7 @@ export const W17_ExpTop10Usd = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -134,7 +134,7 @@ export const W18_ImpTop10Usd = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="#ec4899" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="#ec4899" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>

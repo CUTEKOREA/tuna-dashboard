@@ -35,7 +35,7 @@ export default function SalmonInsightClimate() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="mortality" name="고수온에 따른 해상 폐사율" fill="url(#a11y-stripe-h)" color="url(#colorMortality)" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="mortality" name="고수온에 따른 해상 폐사율" fill="url(#colorMortality)" radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="carbonTax" name="노르웨이 탄소세 전망(IEA NZE)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
           
           <defs>

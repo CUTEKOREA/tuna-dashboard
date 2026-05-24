@@ -66,7 +66,7 @@ export function Widget6_UnitPrice() {
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
               <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-              <Bar dataKey="수출_러시아단가" fill="url(#a11y-stripe-h)" color="#64748b" name="러시아산 원물 항구 수출 단가" radius={[4,4,0,0]} />
+              <Bar dataKey="수출_러시아단가" fill="#64748b" name="러시아산 원물 항구 수출 단가" radius={[4,4,0,0]} />
               <Line type="monotone" dataKey="수입_한국단가" stroke="var(--color-info)" strokeWidth={3} name="한국 내수 B2B 도매 단가" dot={{r:3}} />
               <Line type="monotone" dataKey="수입_독일단가" stroke="#fbbf24" strokeWidth={3} name="독일 리테일(판매가) 단가" dot={{r:3}} />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />

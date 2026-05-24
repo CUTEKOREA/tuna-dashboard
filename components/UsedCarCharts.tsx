@@ -19,7 +19,7 @@ export function MarketGrowthChart({ data }: { data: any[] }) {
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
         <Area type="monotone" dataKey="domestic" name="국내 시장" fill="rgba(59,130,246,0.15)" stroke="var(--color-info)" strokeWidth={2} />
-        <Bar dataKey="export" name="수출 규모" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4,4,0,0]} barSize={20} />
+        <Bar dataKey="export" name="수출 규모" fill="var(--color-success)" radius={[4,4,0,0]} barSize={20} />
       </ComposedChart>
     </SafeResponsiveContainer>
   );
@@ -36,7 +36,7 @@ export function MarketShareChart({ data }: { data: any[] }) {
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `${v}%`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
-        {Object.keys(colors).map(k => <Bar key={k} dataKey={k} stackId="a" fill="url(#a11y-stripe-h)" color={colors[k]} />)}
+        {Object.keys(colors).map(k => <Bar key={k} dataKey={k} stackId="a" fill={colors[k]} />)}
       </BarChart>
     </SafeResponsiveContainer>
   );
@@ -52,8 +52,8 @@ export function ShippingCostChart({ data }: { data: any[] }) {
         <YAxis type="category" dataKey="route" width={160} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${Number(v).toLocaleString()}`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
-        <Bar dataKey="roro" name="RoRo" fill="url(#a11y-stripe-h)" color="var(--color-success)" barSize={14} radius={[0,4,4,0]} />
-        <Bar dataKey="container" name="컨테이너" fill="url(#a11y-diag)" color="var(--color-warning)" barSize={14} radius={[0,4,4,0]} />
+        <Bar dataKey="roro" name="RoRo" fill="var(--color-success)" barSize={14} radius={[0,4,4,0]} />
+        <Bar dataKey="container" name="컨테이너" fill="var(--color-warning)" barSize={14} radius={[0,4,4,0]} />
       </BarChart>
     </SafeResponsiveContainer>
   );
@@ -69,9 +69,9 @@ export function HybridGrowthChart({ data }: { data: any[] }) {
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
         <Legend wrapperStyle={{ paddingTop: 10 }} />
-        <Bar dataKey="내연기관" stackId="a" fill="url(#a11y-stripe-h)" color="#64748b" />
-        <Bar dataKey="하이브리드" stackId="a" fill="url(#a11y-diag)" color="#8b5cf6" />
-        <Bar dataKey="전기차" stackId="a" fill="url(#a11y-dots)" color="var(--color-success)" radius={[4,4,0,0]} />
+        <Bar dataKey="내연기관" stackId="a" fill="#64748b" />
+        <Bar dataKey="하이브리드" stackId="a" fill="#8b5cf6" />
+        <Bar dataKey="전기차" stackId="a" fill="var(--color-success)" radius={[4,4,0,0]} />
       </BarChart>
     </SafeResponsiveContainer>
   );

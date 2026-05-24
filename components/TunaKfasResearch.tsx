@@ -67,9 +67,9 @@ export function KfasByproductValueChain() {
           <YAxis stroke="#94a3b8" unit="%" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="protein" name="조단백(g/100g)" fill="url(#a11y-stripe-h)" color="#10b981" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="lipid" name="조지방" fill="url(#a11y-diag)" color="#3b82f6" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="collagen" name="콜라겐" fill="url(#a11y-dots)" color="#f59e0b" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="protein" name="조단백(g/100g)" fill="#10b981" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="lipid" name="조지방" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="collagen" name="콜라겐" fill="#f59e0b" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -104,7 +104,7 @@ export function KfasLonglineEvolution() {
           <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" unit="%" tick={{ fill: '#f59e0b', fontSize: 12, fontWeight: 500 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="vessels" name="조업 척수" fill="url(#a11y-stripe-h)" color="#3b82f6" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+          <Bar yAxisId="left" dataKey="vessels" name="조업 척수" fill="#3b82f6" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
           <Line yAxisId="left" type="monotone" dataKey="catch_kt" name="어획량(천톤)" stroke="#ef4444" strokeWidth={3} />
           <Line yAxisId="right" type="monotone" dataKey="bigeye_pct" name="눈다랑어 비중(%)" stroke="#f59e0b" strokeWidth={2} strokeDasharray="5 5" />
         </ComposedChart>
@@ -176,8 +176,8 @@ export function KfasElderlyFunctionalFood() {
           <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" tick={{ fill: '#10b981', fontSize: 12, fontWeight: 500 }} />
           <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
-          <Bar yAxisId="left" dataKey="protein" name="조단백(%)" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[4, 4, 0, 0]} />
-          <Bar yAxisId="left" dataKey="hardness" name="경도(N)" fill="url(#a11y-diag)" color="#f59e0b" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+          <Bar yAxisId="left" dataKey="protein" name="조단백(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="hardness" name="경도(N)" fill="#f59e0b" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
           <Line yAxisId="right" type="monotone" dataKey="acceptance" name="관능 수용도(%)" stroke="#10b981" strokeWidth={3} />
         </ComposedChart>
       }

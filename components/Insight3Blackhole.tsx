@@ -87,9 +87,9 @@ const Insight3Blackhole = () => {
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <ReferenceLine y={0} stroke="rgba(255,255,255,0.3)" />
             {/* Exports on top (positive) */}
-            <Bar dataKey="Exports" name="수출 (Exports)" fill="url(#a11y-stripe-h)" color="url(#exportGrad)" maxBarSize={40} />
+            <Bar dataKey="Exports" name="수출 (Exports)" fill="url(#exportGrad)" maxBarSize={40} />
             {/* Imports on bottom (negative) */}
-            <Bar dataKey="Imports" name="수입 (Imports)" fill="url(#a11y-diag)" color="url(#importGrad)" maxBarSize={40} />
+            <Bar dataKey="Imports" name="수입 (Imports)" fill="url(#importGrad)" maxBarSize={40} />
             
             <defs>
               <linearGradient id="exportGrad" x1="0" y1="0" x2="0" y2="1">

@@ -84,8 +84,8 @@ export function Widget15_IuuRisk() {
             <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis dataKey="region" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={95} tickMargin={5} />
             <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-            <Bar dataKey="위험도" fill="url(#a11y-stripe-h)" color="var(--color-danger)" name="적발시 누적 벌금/페널티" radius={[0,4,4,0]} />
-            <Bar dataKey="통제율" fill="url(#a11y-diag)" color="var(--color-info)" name="바이어의 Traceability 방어력" radius={[0,4,4,0]} />
+            <Bar dataKey="위험도" fill="var(--color-danger)" name="적발시 누적 벌금/페널티" radius={[0,4,4,0]} />
+            <Bar dataKey="통제율" fill="var(--color-info)" name="바이어의 Traceability 방어력" radius={[0,4,4,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
           </BarChart>
       }

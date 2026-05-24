@@ -30,7 +30,7 @@ export function WidgetRoeMarginSpread() {
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`${v}%`} />
           <YAxis dataKey="category" type="category" stroke="#cbd5e1" fontSize={10} width={150} tick={{fill: '#e2e8f0'}} />
           <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
-          <Bar dataKey="margin" name="최종 영업 이익률 (Margin %)" fill="url(#a11y-stripe-h)" color="var(--color-success)" barSize={20} radius={[0, 4, 4, 0]} />
+          <Bar dataKey="margin" name="최종 영업 이익률 (Margin %)" fill="var(--color-success)" barSize={20} radius={[0, 4, 4, 0]} />
         </ComposedChart>
       }
       takeaway={{
@@ -189,7 +189,7 @@ export const WidgetReeferCapacity = () => {
           <YAxis yAxisId="right" orientation="right" stroke="#06b6d4" fontSize={11} tickFormatter={(v)=>`$${v}`} />
           <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
           <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-          <Bar yAxisId="left" dataKey="capacityPct" name="냉동창고 가동률(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} barSize={30} />
+          <Bar yAxisId="left" dataKey="capacityPct" name="냉동창고 가동률(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={30} />
           <Line yAxisId="right" type="monotone" dataKey="reeferCost" name="플러그/보관 인상료($)" stroke="#06b6d4" strokeWidth={3} />
         </ComposedChart>
       }
@@ -229,7 +229,7 @@ export const WidgetCrewShortage = () => {
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={11} domain={[80, 200]} />
           <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
           <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-          <Bar yAxisId="left" dataKey="avgAge" name="항해사/선원 평균 연령" fill="url(#a11y-stripe-h)" color="#1e293b" stroke="#cbd5e1" radius={[4, 4, 0, 0]} />
+          <Bar yAxisId="left" dataKey="avgAge" name="항해사/선원 평균 연령" fill="#1e293b" stroke="#cbd5e1" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="stepAfter" dataKey="wageIndex" name="외인 선원 임금 지수(2020=100)" stroke="var(--color-warning)" strokeWidth={3} />
         </ComposedChart>
       }
@@ -268,7 +268,7 @@ export const WidgetFXHedging = () => {
           <YAxis stroke="var(--color-danger)" fontSize={11} domain={[0, 60]} tickFormatter={(v)=>`-${v}%`} />
           <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
           <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-          <Bar dataKey="fxLoss" name="영업이익 환차손 증발률(%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="fxLoss" name="영업이익 환차손 증발률(%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -305,8 +305,8 @@ export const WidgetAITimePredict = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v)=>`${v}일`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="downtimeConv" name="기존 유지보수 운휴일수" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4,4,0,0]} barSize={25} />
-        <Bar dataKey="downtimeAi" name="AI 예지보전 시 운휴일수" fill="url(#a11y-diag)" color="#06b6d4" radius={[4,4,0,0]} barSize={25} />
+        <Bar dataKey="downtimeConv" name="기존 유지보수 운휴일수" fill="var(--color-danger)" radius={[4,4,0,0]} barSize={25} />
+        <Bar dataKey="downtimeAi" name="AI 예지보전 시 운휴일수" fill="#06b6d4" radius={[4,4,0,0]} barSize={25} />
       </BarChart>
     }
     takeaway={{
@@ -343,7 +343,7 @@ export const WidgetPortTurnaround = () => (
         <YAxis yAxisId="right" orientation="right" stroke="#eab308" fontSize={11} tickFormatter={(v)=>`${v}h`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar yAxisId="left" dataKey="actualDays" name="실제 턴어라운드 (Days)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4,4,0,0]} barSize={20} />
+        <Bar yAxisId="left" dataKey="actualDays" name="실제 턴어라운드 (Days)" fill="var(--color-info)" radius={[4,4,0,0]} barSize={20} />
         <Line yAxisId="right" type="monotone" dataKey="bottleneckHours" name="병목 체선 지연 (Hours)" stroke="#eab308" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
     }
@@ -382,7 +382,7 @@ export const WidgetVesselCapex = () => (
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
         <Area yAxisId="left" type="monotone" dataKey="capexRisk" name="대체 CAPEX 강제 압박률 (%)" fill="var(--color-danger)" stroke="var(--color-danger)" fillOpacity={0.3} strokeWidth={2} />
-        <Bar yAxisId="right" dataKey="scrapValue" name="예상 고철(Scrap) 잔존가치" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4,4,0,0]} barSize={20} />
+        <Bar yAxisId="right" dataKey="scrapValue" name="예상 고철(Scrap) 잔존가치" fill="#64748b" radius={[4,4,0,0]} barSize={20} />
       </ComposedChart>
     }
     takeaway={{
@@ -454,7 +454,7 @@ export const WidgetAirVsOcean = () => (
         <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} domain={[0, 40]} tickFormatter={(v)=>`${v}%`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar yAxisId="left" dataKey="costDiff" name="추가 운임/kg (USD)" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[4,4,0,0]} barSize={25} />
+        <Bar yAxisId="left" dataKey="costDiff" name="추가 운임/kg (USD)" fill="var(--color-success)" radius={[4,4,0,0]} barSize={25} />
         <Line yAxisId="right" type="monotone" dataKey="freshnessLoss" name="선도(신선도) 가치 하락률 (%)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
     }

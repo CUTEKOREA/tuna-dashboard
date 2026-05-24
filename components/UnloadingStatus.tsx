@@ -269,7 +269,7 @@ export default function UnloadingStatus() {
                 formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
               />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px' }} />
-              <Bar name="일일 하역량" dataKey="일일하역량" fill="url(#a11y-stripe-h)" color="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
+              <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
               <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="#10b981" strokeWidth={2.5} dot={{ r: 3, fill: '#10b981', strokeWidth: 0 }} />
             </ComposedChart>
           </div>

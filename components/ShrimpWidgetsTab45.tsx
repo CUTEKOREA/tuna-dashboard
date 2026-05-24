@@ -31,7 +31,7 @@ export const W42_ProcTop10 = () => (
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={80} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -47,7 +47,7 @@ export const W43_ProcRatio = () => (
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="ratio" name="가공/원물 투입비율" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="ratio" name="가공/원물 투입비율" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -63,7 +63,7 @@ export const W44_VertIntegration = () => (
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="production" name="양식장 생산파워" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="production" name="양식장 생산파워" fill="#64748b" radius={[4, 4, 0, 0]} />
         <Line dataKey="processed" name="스마트팩토리 처리량" stroke="var(--color-success)" strokeWidth={3} dot={{r:4}} />
       </ComposedChart>
     </SafeResponsiveContainer>
@@ -103,7 +103,7 @@ export const W46_ClimateImpact = () => {
           <YAxis yAxisId="R" orientation="right" stroke="var(--color-info)" fontSize={11} domain={[60, 140]} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Line yAxisId="L" type="monotone" dataKey="t" name="적도 수온(C)" stroke="var(--color-danger)" strokeWidth={3} />
-          <Bar yAxisId="R" dataKey="v" name="양식 출하량" fill="url(#a11y-stripe-h)" color="var(--color-info)" opacity={0.6} radius={[4,4,0,0]} />
+          <Bar yAxisId="R" dataKey="v" name="양식 출하량" fill="var(--color-info)" opacity={0.6} radius={[4,4,0,0]} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -150,8 +150,8 @@ export const W48_ProcHubROI = () => {
           <YAxis dataKey="name" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="cost" name="초기 투하(Capex)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="roi" name="연환산 ROI(%)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="cost" name="초기 투하(Capex)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="roi" name="연환산 ROI(%)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -170,7 +170,7 @@ export const W49_ValueChainFlow = () => {
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v=>`${v}%`} />
           <YAxis dataKey="step" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="v" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="v" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>

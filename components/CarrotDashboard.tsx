@@ -486,8 +486,8 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="중국_면적" fill="url(#a11y-stripe-h)" color="#fbbf24" name="중국 수확면적(ha)" />
-                <Bar yAxisId="left" dataKey="베트남_면적" fill="url(#a11y-diag)" color="#ea580c" name="베트남 수확면적(ha)" />
+                <Bar yAxisId="left" dataKey="중국_면적" fill="#fbbf24" name="중국 수확면적(ha)" />
+                <Bar yAxisId="left" dataKey="베트남_면적" fill="#ea580c" name="베트남 수확면적(ha)" />
                 <Line yAxisId="right" type="monotone" dataKey="중국_수율" stroke="#f59e0b" strokeWidth={2} dot={false} name="중국 수율(t/ha)" />
                 <Line yAxisId="right" type="monotone" dataKey="베트남_수율" stroke="#f97316" strokeWidth={2} dot={false} name="베트남 수율(t/ha)" />
               </ComposedChart>
@@ -558,7 +558,7 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} domain={[0, 12]} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="생산수율(%)" fill="url(#a11y-stripe-h)" color="#f97316" name="생산수율(%)" barSize={40} />
+                <Bar yAxisId="left" dataKey="생산수율(%)" fill="#f97316" name="생산수율(%)" barSize={40} />
                 <Line yAxisId="right" type="monotone" dataKey="당도(Brix)" stroke="#fbbf24" strokeWidth={3} dot={{r: 4}} name="당도(Brix)" />
               </ComposedChart>
             </ChartWrapper>
@@ -579,7 +579,7 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="기후리스크지수" fill="url(#a11y-stripe-h)" color="#f59e0b" opacity={0.6} name="동북아 기후 리스크(태풍/폭우)" />
+                <Bar yAxisId="left" dataKey="기후리스크지수" fill="#f59e0b" opacity={0.6} name="동북아 기후 리스크(태풍/폭우)" />
                 <Line yAxisId="right" type="monotone" dataKey="동북아_스팟가격폭등률" stroke="#fbbf24" strokeWidth={3} dot={{r: 4}} name="도매 스팟가 폭등률(%)" />
                 <Area yAxisId="left" type="step" dataKey="달랏_생산안정성" stroke="#ea580c" fill="#ea580c" fillOpacity={0.15} name="달랏(해발1500m) 생산안정성" />
               </ComposedChart>
@@ -601,8 +601,8 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="중국_통관불합격건수" fill="url(#a11y-stripe-h)" color="#f59e0b" name="중국산 통관 불합격 건수" barSize={30} />
-                <Bar yAxisId="left" dataKey="베트남_통관불합격건수" fill="url(#a11y-diag)" color="#ea580c" name="베트남산 불합격 건수" barSize={30} />
+                <Bar yAxisId="left" dataKey="중국_통관불합격건수" fill="#f59e0b" name="중국산 통관 불합격 건수" barSize={30} />
+                <Bar yAxisId="left" dataKey="베트남_통관불합격건수" fill="#ea580c" name="베트남산 불합격 건수" barSize={30} />
                 <Line yAxisId="right" type="monotone" dataKey="중국_회수물량_톤" stroke="#fbbf24" strokeWidth={3} dot={{r:4}} name="중국산 긴급 회수 물량(톤)" />
               </ComposedChart>
             </ChartWrapper>
@@ -635,9 +635,9 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="원물가" stackId="a" fill="url(#a11y-stripe-h)" color="#f97316" name="원물(생물) 수입비" />
-                <Bar dataKey="전처리 인건비" stackId="a" fill="url(#a11y-diag)" color="#f59e0b" name="B2B 구매자 자체 인건비" />
-                <Bar dataKey="폐기물 처리비" stackId="a" fill="url(#a11y-dots)" color="#94a3b8" name="폐기물 처리비용" />
+                <Bar dataKey="원물가" stackId="a" fill="#f97316" name="원물(생물) 수입비" />
+                <Bar dataKey="전처리 인건비" stackId="a" fill="#f59e0b" name="B2B 구매자 자체 인건비" />
+                <Bar dataKey="폐기물 처리비" stackId="a" fill="#94a3b8" name="폐기물 처리비용" />
               </BarChart>
             </ChartWrapper>
           }
@@ -655,9 +655,9 @@ export default function CarrotDashboard() {
                 <YAxis dataKey="name" type="category" {...yAxisProps} width={100} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="수율" stackId="a" fill="url(#a11y-stripe-h)" color="#ea580c" name="유효 수율(%)" />
-                <Bar dataKey="손실" stackId="a" fill="url(#a11y-diag)" color="#f59e0b" name="원물/검역 폐기 손실(%)" />
-                <Bar dataKey="IQF" stackId="a" fill="url(#a11y-dots)" color="#f97316" name="IQF 전처리 수율(%)" />
+                <Bar dataKey="수율" stackId="a" fill="#ea580c" name="유효 수율(%)" />
+                <Bar dataKey="손실" stackId="a" fill="#f59e0b" name="원물/검역 폐기 손실(%)" />
+                <Bar dataKey="IQF" stackId="a" fill="#f97316" name="IQF 전처리 수율(%)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -746,10 +746,10 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="원물비" stackId="a" fill="url(#a11y-stripe-h)" color="#94a3b8" name="원물 비용" />
-                <Bar dataKey="포장/물류비" stackId="a" fill="url(#a11y-diag)" color="#fbbf24" name="일반 물류비" />
-                <Bar dataKey="포장/물류비(MA)" stackId="a" fill="url(#a11y-dots)" color="#ea580c" name="MA 특수 포장비" />
-                <Bar dataKey="관세(30%)" stackId="a" fill="url(#a11y-stripe-v)" color="#f59e0b" name="관세 (중국 30%)" />
+                <Bar dataKey="원물비" stackId="a" fill="#94a3b8" name="원물 비용" />
+                <Bar dataKey="포장/물류비" stackId="a" fill="#fbbf24" name="일반 물류비" />
+                <Bar dataKey="포장/물류비(MA)" stackId="a" fill="#ea580c" name="MA 특수 포장비" />
+                <Bar dataKey="관세(30%)" stackId="a" fill="#f59e0b" name="관세 (중국 30%)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -928,7 +928,7 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${v}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="스팟판매_누적수익" fill="url(#a11y-stripe-h)" color="#64748b" name="일반 스팟 판매 (누적 FCF)" barSize={40} />
+                <Bar yAxisId="left" dataKey="스팟판매_누적수익" fill="#64748b" name="일반 스팟 판매 (누적 FCF)" barSize={40} />
                 <Area yAxisId="left" type="monotone" dataKey="장기계약_누적수익" fill="#c2410c" stroke="#c2410c" fillOpacity={0.3} name="장기 락인 계약 (누적 FCF)" />
                 <Line yAxisId="right" type="monotone" dataKey="고객이탈률" stroke="#f59e0b" strokeWidth={2} name="스팟 시장 고객 이탈률(%)" strokeDasharray="4 4" />
               </ComposedChart>
@@ -962,10 +962,10 @@ export default function CarrotDashboard() {
                 <YAxis {...yAxisProps} tickFormatter={(v: number) => `${Math.round(v * 100)}%`} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="식용소비" stackId="a" fill="url(#a11y-stripe-h)" color="#ea580c" name="식탁 소비재" />
-                <Bar dataKey="가공용" stackId="a" fill="url(#a11y-diag)" color="#f97316" name="고부가 가공 전환" />
-                <Bar dataKey="사료용" stackId="a" fill="url(#a11y-dots)" color="#fbbf24" name="사료 전환" />
-                <Bar dataKey="수확후손실(폐기)" stackId="a" fill="url(#a11y-stripe-v)" color="#f59e0b" name="공급망 내 원물 손실(버려짐)" />
+                <Bar dataKey="식용소비" stackId="a" fill="#ea580c" name="식탁 소비재" />
+                <Bar dataKey="가공용" stackId="a" fill="#f97316" name="고부가 가공 전환" />
+                <Bar dataKey="사료용" stackId="a" fill="#fbbf24" name="사료 전환" />
+                <Bar dataKey="수확후손실(폐기)" stackId="a" fill="#f59e0b" name="공급망 내 원물 손실(버려짐)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -984,8 +984,8 @@ export default function CarrotDashboard() {
                 <YAxis dataKey="name" type="category" width={110} {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar dataKey="수익창출(ROI)" fill="url(#a11y-stripe-h)" color="#ea580c" name="수익 창출 (ROI)" />
-                <Bar dataKey="탄소배출(Penalty)" fill="url(#a11y-diag)" color="#f59e0b" name="탄소 감축 효과 (양수=감축)" />
+                <Bar dataKey="수익창출(ROI)" fill="#ea580c" name="수익 창출 (ROI)" />
+                <Bar dataKey="탄소배출(Penalty)" fill="#f59e0b" name="탄소 감축 효과 (양수=감축)" />
               </BarChart>
             </ChartWrapper>
           }
@@ -1042,7 +1042,7 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="left" dataKey="업사이클링_전환량_톤" fill="url(#a11y-stripe-h)" color="#ea580c" name="바이오소재 전환량(톤)" barSize={40} />
+                <Bar yAxisId="left" dataKey="업사이클링_전환량_톤" fill="#ea580c" name="바이오소재 전환량(톤)" barSize={40} />
                 <Line yAxisId="right" type="monotone" dataKey="바이오소재_프리미엄마진율" stroke="#fbbf24" strokeWidth={3} name="베타카로틴 마진율(%)" />
                 <Line yAxisId="right" type="monotone" dataKey="Scope3_감축량_tCO2e" stroke="#ea580c" strokeWidth={3} strokeDasharray="3 3" name="Scope 3 탄소감축량(tCO2e)" />
               </ComposedChart>
@@ -1164,8 +1164,8 @@ export default function CarrotDashboard() {
                 <YAxis yAxisId="right" orientation="right" {...yAxisProps} tickFormatter={(v: number) => `${(v/1000).toFixed(0)}K`} label={{ value: '손실량(톤)', angle: 90, position: 'insideRight', fill: '#64748b', fontSize: 9 }} />
                 <RechartsTooltip content={<CustomTooltip />} />
                 <Legend verticalAlign="top" align="right" wrapperStyle={{fontSize:'10px'}} />
-                <Bar yAxisId="right" dataKey="손실" fill="url(#a11y-stripe-h)" color="#ef444488" name="손실량(톤)" barSize={35} />
-                <Bar yAxisId="right" dataKey="사료" fill="url(#a11y-diag)" color="#f59e0b55" name="사료전환(톤)" barSize={35} />
+                <Bar yAxisId="right" dataKey="손실" fill="#ef444488" name="손실량(톤)" barSize={35} />
+                <Bar yAxisId="right" dataKey="사료" fill="#f59e0b55" name="사료전환(톤)" barSize={35} />
                 <Line yAxisId="left" type="monotone" dataKey="손실률" stroke="#f59e0b" strokeWidth={3} dot={{ fill: '#f59e0b', r: 5, stroke: 'var(--text-primary)', strokeWidth: 2 }} name="손실률(%)" />
               </ComposedChart>
             </ChartWrapper>

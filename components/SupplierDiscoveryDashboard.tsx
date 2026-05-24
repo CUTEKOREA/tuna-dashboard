@@ -567,8 +567,8 @@ export default function SupplierDiscoveryDashboard() {
                             formatter={(value: any) => `${Number(value).toLocaleString()} MT`}
                           />
                           <Legend wrapperStyle={{ paddingTop: '15px' }} iconType="circle" />
-                          <Bar dataKey="importVolume" name="한국 수입량" fill="url(#a11y-stripe-h)" color="url(#importGrad)" radius={[6, 6, 0, 0]} barSize={28} />
-                          <Bar dataKey="exportVolume" name="한국 수출량" fill="url(#a11y-diag)" color="url(#exportGrad)" radius={[6, 6, 0, 0]} barSize={28} />
+                          <Bar dataKey="importVolume" name="한국 수입량" fill="url(#importGrad)" radius={[6, 6, 0, 0]} barSize={28} />
+                          <Bar dataKey="exportVolume" name="한국 수출량" fill="url(#exportGrad)" radius={[6, 6, 0, 0]} barSize={28} />
                         </BarChart>
                       </ResponsiveContainer>
                     </div>
