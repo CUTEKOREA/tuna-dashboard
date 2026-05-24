@@ -6,6 +6,60 @@ import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield, Factory, Truck, L
 import WidgetCard from './WidgetCard';
 import * as D from './beefData';
 
+// KCS LIVE hook (W6 한국 수입 파트너)
+function useKcsImports() {
+  const [state, setState] = useState<{
+    data: typeof D.koreaImportPartnersData;
+    isLive: boolean;
+    source: string;
+  }>({ data: D.koreaImportPartnersData, isLive: false, source: '관세청 정적 캐시' });
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/beef/korea-imports', { signal: AbortSignal.timeout(20000) })
+      .then(r => r.json())
+      .then(d => { if (alive && d.data) setState(d); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  return state;
+}
+
+// KOSIS LIVE hook (W7 한국 수급)
+function useKosisSupply() {
+  const [state, setState] = useState<{
+    data: typeof D.koreaSupplyData;
+    isLive: boolean;
+    source: string;
+  }>({ data: D.koreaSupplyData, isLive: false, source: 'KOSIS + KREI 정적 캐시' });
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/beef/korea-supply', { signal: AbortSignal.timeout(20000) })
+      .then(r => r.json())
+      .then(d => { if (alive && d.data) setState(d); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  return state;
+}
+
+// KAMIS LIVE hook (W8 한우 가격)
+function useKamisHanwoo() {
+  const [state, setState] = useState<{
+    data: typeof D.priceGapData;
+    isLive: boolean;
+    source: string;
+  }>({ data: D.priceGapData, isLive: false, source: 'KAMIS 정적 캐시' });
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/beef/hanwoo-price', { signal: AbortSignal.timeout(20000) })
+      .then(r => r.json())
+      .then(d => { if (alive && d.data) setState(d); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  return state;
+}
+
 // UN Comtrade LIVE 데이터 hook (W5 무역 흐름)
 function useComtradeBeef() {
   const [state, setState] = useState<{
@@ -214,29 +268,38 @@ export function W5_TradeFlow({ accent }: any) {
 }
 
 export function W6_KoreaImports({ accent }: any) {
+  const { data, isLive, source } = useKcsImports();
+  const usAuPct = ((data.find(d => d.country === '미국')?.pct || 0) + (data.find(d => d.country === '호주')?.pct || 0)).toFixed(1);
   return <W title="한국 수입 파트너 다변화 추이" icon={Globe} accent={accent} pillar="S3"
-    sub="한국 소고기 수입 파트너 국가별 물량(톤) + 2018→2023년 점유율 변화 | 관세청(KCS) 무역통계(TM) 2023"
-    telemetry="관세청(KCS) 무역통계(TM) 2023"
-    sit="미·호 양강 83.7% 장악 — 2018년 90.7% 대비 7%p 감소. 캐나다(+2.7%p)·우루과이(+1.7%p) 신흥국 약진 — 광우병 우려 점진 해소 신호."
+    status={isLive ? 'LIVE' : 'STATIC'}
+    sub="한국 소고기 수입 파트너 국가별 물량(톤) + 2018→2023년 점유율 변화 | 관세청(KCS) 무역통계(TM)"
+    telemetry={isLive ? 'KCS 관세청 (1w 캐시)' : 'KCS 정적'}
+    sit={`미·호 양강 ${usAuPct}% 장악 (${data[0]?.country} ${data[0]?.pct}% / ${data[1]?.country} ${data[1]?.pct}%). 2018년 90.7% 대비 ${(90.7 - Number(usAuPct)).toFixed(1)}%p 감소 — 광우병 우려 점진 해소 + 다변화 진행.`}
     strat="미·호 의존도 80% 이하로 낮추기 위해 우루과이·아르헨티나 직거래선 확장. 평균 단가 8-12% 절감 + 광우병 리스크 분산."
-    source="관세청(KCS) 무역통계(TM) HS 0201+0202">
-    <BarChart data={D.koreaImportPartnersData} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    source={source}>
+    <BarChart data={data} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="volume" name="2023년 수입량 (톤)" radius={[0, 4, 4, 0]}>{D.koreaImportPartnersData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
+      <Bar dataKey="volume" name="수입량 (톤)" radius={[0, 4, 4, 0]}>{data.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
     </BarChart>
   </W>;
 }
 
 export function W7_KoreaSupply({ accent }: any) {
+  const { data, isLive, source } = useKosisSupply();
+  const first = data[0];
+  const last = data[data.length - 1];
+  const perCapitaDelta = (((last.perCapita - first.perCapita) / first.perCapita) * 100).toFixed(0);
+  const selfDelta = (last.selfRate - first.selfRate).toFixed(1);
   return <W title="한국 소고기 수급 구조 + 1인당 소비량" icon={ShoppingCart} accent={accent} pillar="S4"
-    sub="한국 국내 생산·수입·1인당 연간 소비량 시계열 | 국가통계포털(KOSIS) + 한국농촌경제연구원(KREI) 식량수급표 2015-2023"
-    telemetry="KOSIS + KREI 2015-2023"
-    sit="1인당 소비 10년간 11.6→14.5kg(+25%) 꾸준한 성장. 자급률 47.5%→36.9%로 10.6%p 폭락 — 수입 의존 구조 더욱 심화."
+    status={isLive ? 'LIVE' : 'STATIC'}
+    sub="한국 국내 생산·수입·1인당 연간 소비량 시계열 | 국가통계포털(KOSIS) + 한국농촌경제연구원(KREI) 식량수급표"
+    telemetry={isLive ? 'KOSIS API (1w 캐시)' : 'KOSIS + KREI 정적'}
+    sit={`1인당 소비 ${first.year}~${last.year} ${first.perCapita}→${last.perCapita}kg(+${perCapitaDelta}%). 자급률 ${first.selfRate}%→${last.selfRate}%로 ${selfDelta}%p ${Number(selfDelta) < 0 ? '폭락' : '변동'} — 수입 의존 구조 더욱 심화.`}
     strat="자급률 갭이 매년 1%p씩 확대 — 안정적 수입 인프라(콜드체인+장기 계약) 선점 기업이 향후 5년 시장 주도. 콜드체인 CAPEX 우선 배정."
-    source="국가통계포털(KOSIS) 가축통계 + 한국농촌경제연구원(KREI) 식량수급표">
-    <ComposedChart data={D.koreaSupplyData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    source={source}>
+    <ComposedChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 16]} />
@@ -249,13 +312,18 @@ export function W7_KoreaSupply({ accent }: any) {
 }
 
 export function W8_PriceGap({ accent }: any) {
+  const { data, isLive, source } = useKamisHanwoo();
+  const latest = data[data.length - 1];
+  const gapUs = (latest.hanwoo / latest.usImport).toFixed(2);
+  const gapAu = (latest.hanwoo / latest.auImport).toFixed(2);
   return <W title="한우 vs 수입육 도매 가격 갭" icon={TrendingUp} accent={accent} pillar="S4"
-    sub="한우 1등급 vs 미국·호주 수입육 도매가(원/kg) 분기 시계열 | 한국농수산식품유통공사(KAMIS) 2023-2024"
-    telemetry="KAMIS 도매가 2023-2024"
-    sit="한우 평균 ₩22,800/kg, 미국산 ₩13,800/kg — 갭 1.65배. 호주산은 한우의 53% 수준($11,800)으로 갭 최대 1.94배 — 외식·B2B 채널 미·호산 압도적 우위."
+    status={isLive ? 'LIVE' : 'STATIC'}
+    sub="한우 1등급 vs 미국·호주 수입육 도매가(원/kg) 분기 시계열 | 한국농수산식품유통공사(KAMIS)"
+    telemetry={isLive ? 'KAMIS (1d 캐시)' : 'KAMIS 정적'}
+    sit={`최신 ${latest.month}: 한우 ₩${latest.hanwoo.toLocaleString()}/kg, 미국산 ₩${latest.usImport.toLocaleString()} (갭 ${gapUs}배), 호주산 ₩${latest.auImport.toLocaleString()} (갭 ${gapAu}배) — 외식·B2B 채널 미·호산 압도적 우위.`}
     strat="한우는 명절·선물 프리미엄 채널에만 집중, 일반 외식 B2B는 호주산 위주로 매입. 호주산 단가 변동성 헤지 위해 6개월 선도 매입 계약."
-    source="한국농수산식품유통공사(KAMIS) 축산물 도매가격">
-    <LineChart data={D.priceGapData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    source={source}>
+    <LineChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `${(v / 1000).toFixed(0)}K`} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
