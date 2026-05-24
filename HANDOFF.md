@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> ❄️ **2026-05-24 — PollockDashboard 5-Pillar 네비게이터 도입**:
+> - PILLARS 메타에 num/label 추가 (id=P1~P5, customInject 보존)
+> - activePart state ('P1' 기본) + 네비게이터 UI + 단일 활성 section 렌더
+> - 시그니처 그라디언트: 한류 cyan→indigo 보존 (P1 #0891b2 → P5 #0ea5e9)
+> - customInject 외부 컴포넌트 (PollockConcentrationIndex/AlternativeSourcing/FtaTariffMatrix 등 10개) 그대로 작동
+> - 위젯 카운트 뱃지 추가 (filter + customInject 합산)
+> - L-03 빌드 통과 ✓
+>
 > 🐙 **2026-05-24 — JukkumiDashboard 5-Pillar 네비게이터 도입 + 사이드바 아이콘 정규화**:
 > - JukkumiDashboard: SECTIONS+PILLAR_WIDGET_IDS+activePart+네비 UI (Squid 패턴 복제)
 > - 시그니처 그라디언트: purple → pink (오징어와 두족류 일관)

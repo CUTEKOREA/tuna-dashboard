@@ -83,30 +83,35 @@ const KPI_THEMES = [
   { border: 'rgba(148, 163, 184, 0.5)', glow: 'rgba(148, 163, 184, 0.25)', text: '#94a3b8', icon: AlertTriangle },
 ];
 
-/* ─── 5-Pillar Framework ─── */
+/* ─── 5-Pillar Framework (한류 명태 cyan→indigo) ─── */
 const PILLARS = [
   {
-    id: "P1", title: "⚓ Pillar I — 원료 수급 (Raw Material & Sourcing)", desc: "베링해/오호츠크해 쿼터 및 미·러 독점 지정학 리스크 관리", color: "#0891b2", icon: Anchor,
+    id: "P1", num: "❶", label: "원료 수급",
+    title: "⚓ Pillar I — 원료 수급 (Raw Material & Sourcing)", desc: "베링해/오호츠크해 쿼터 및 미·러 독점 지정학 리스크 관리", color: "#0891b2", icon: Anchor,
     widgets: ["w1_global_catch", "w2_hegemony", "w3_diverging", "w24_opex_spread", "w31_catch_gap", "w32_sst_fleet_matrix", "w34_china_export_flow", "k5_hatch_temp", "k2_epa_larva"],
     customInject: ["PollockConcentrationIndex", "PollockAlternativeSourcing"]
   },
   {
-    id: "P2", title: "🏭 Pillar II — 가공 & 생산 (Processing & Value-chain)", desc: "수리미(Surimi) 전환 및 중국 우회 가공 클러스터 회피", color: "#0284c7", icon: Factory,
+    id: "P2", num: "❷", label: "가공·생산",
+    title: "🏭 Pillar II — 가공 & 생산 (Processing & Value-chain)", desc: "수리미(Surimi) 전환 및 중국 우회 가공 클러스터 회피", color: "#0284c7", icon: Factory,
     widgets: ["w5_china_blackhole", "w9_surimi_megatrend", "w10_surimi_top3", "w12_proc_vs_surimi", "w17", "w20_whitefish_reshuffle", "w22_precision_release", "w25_processing_bottleneck", "k1_3d_surimi", "k3_gamma_roe", "k4_senior_food"],
     customInject: []
   },
   {
-    id: "P3", title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "러시아 극동 수산 클러스터 물동량 및 차익거래 트래커", color: "#2563eb", icon: Truck,
+    id: "P3", num: "❸", label: "물류·통관",
+    title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "러시아 극동 수산 클러스터 물동량 및 차익거래 트래커", color: "#2563eb", icon: Truck,
     widgets: ["w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "w35_eu_gateway", "w36_china_sanitary_pact", "w37_ntb_timeline", "n1_sanction_paradox", "n5_rcep_detour"],
     customInject: ["PollockFtaTariffMatrix", "PollockRouteComparison", "PollockLandedCostWaterfall"]
   },
   {
-    id: "P4", title: "📈 Pillar IV — 판매 & 수요 (Sales & B2B Market)", desc: "단가 인플레이션 방어 및 정부 조달(B2G) 바잉 파워 롤업", color: "#3b82f6", icon: DollarSign,
+    id: "P4", num: "❹", label: "판매·수요",
+    title: "📈 Pillar IV — 판매 & 수요 (Sales & B2B Market)", desc: "단가 인플레이션 방어 및 정부 조달(B2G) 바잉 파워 롤업", color: "#3b82f6", icon: DollarSign,
     widgets: ["w6_inflation_unitprice", "w7_usa_russia_unitprice", "w27_substitute_spread", "w33_arbitrage_tracker", "w38_us_canned_boom", "w39_saithe_competition"],
     customInject: ["PollockPriceForecastChart", "PollockScenarioSimulator", "PollockSubstituteElasticity"]
   },
   {
-    id: "P5", title: "🌱 Pillar V — ESG & 지속가능성 (ESG & Compliance)", desc: "대러 제재(Sanctions) 리스크 및 수산 안보 방어", color: "#0ea5e9", icon: ShieldCheck,
+    id: "P5", num: "❺", label: "ESG·지속가능성",
+    title: "🌱 Pillar V — ESG & 지속가능성 (ESG & Compliance)", desc: "대러 제재(Sanctions) 리스크 및 수산 안보 방어", color: "#0ea5e9", icon: ShieldCheck,
     widgets: ["w4_korea_crisis", "w14", "w23_upcycling_esg", "w28_esg_premium", "w30_traceability_risk", "w40_traceability_surge", "n6_waste_to_wealth"],
     customInject: ["PollockRiskScorecard", "PollockSanctionParadox"]
   }
@@ -201,6 +206,7 @@ const formatXAxis = (tickItem: any) => {
 
 export default function PollockDashboard() {
   const [data, setData] = useState<any>(null);
+  const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
   const [kcsLive, setKcsLive] = useState<any>(null);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -488,27 +494,119 @@ export default function PollockDashboard() {
         })}
       </div>
 
-      {/* ═══ 5-PILLAR STRATEGIC FRAMEWORK ═══ */}
-      {PILLARS.map((pillar) => {
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {PILLARS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0',
+                  }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>{idx + 1}</div>
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>{s.label}</span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem', color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center', lineHeight: 1.3, marginTop: '2px', padding: '0 4px',
+                  }}>
+                    {s.desc.slice(0, 24)}…
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ═══ 활성 Pillar 위젯 그리드 ═══ */}
+      {(() => {
+        const pillar = PILLARS.find(p => p.id === activePart)!;
+        const pillarWidgets = widgets?.filter((w: any) => pillar.widgets.includes(w.id)) || [];
         return (
-          <section key={pillar.id} style={{ marginBottom: '4rem' }}>
-            {/* S-Grade Signature Header */}
-            <div style={{ 
-              padding: "1.25rem 1.5rem", 
-              background: `linear-gradient(90deg, ${pillar.color}20 0%, transparent 100%)`, 
-              borderLeft: `4px solid ${pillar.color}`, 
-              marginBottom: "1.5rem", 
-              marginTop: "2rem" 
+          <section style={{ marginBottom: '4rem' }}>
+            <div style={{
+              padding: "1.25rem 1.5rem",
+              background: `linear-gradient(90deg, ${pillar.color}20 0%, transparent 100%)`,
+              borderLeft: `4px solid ${pillar.color}`,
+              marginBottom: "1.5rem",
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem',
             }}>
-              <h2 style={{ margin: 0, fontSize: "1.2rem", fontWeight: 700, color: "#f8fafc" }}>
-                {pillar.title}
-              </h2>
-              <p style={{ margin: "5px 0 0 0", fontSize: "0.85rem", color: "#94a3b8" }}>
-                {pillar.desc}
-              </p>
+              <div>
+                <h2 style={{ margin: 0, fontSize: "1.2rem", fontWeight: 700, color: "#f8fafc" }}>{pillar.title}</h2>
+                <p style={{ margin: "5px 0 0 0", fontSize: "0.85rem", color: "#94a3b8" }}>{pillar.desc}</p>
+              </div>
+              <span style={{ fontSize: '0.7rem', color: pillar.color, background: `${pillar.color}20`, padding: '4px 12px', borderRadius: '500px', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                {pillarWidgets.length + (pillar.customInject?.length || 0)} 위젯
+              </span>
             </div>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              {widgets?.filter((w: any) => pillar.widgets.includes(w.id)).map((w: any) => renderWidgetCard(w, pillar.id.replace('P', 'S') as 'S1'|'S2'|'S3'|'S4'|'S5'))}
+              {pillarWidgets.map((w: any) => renderWidgetCard(w, pillar.id.replace('P', 'S') as 'S1'|'S2'|'S3'|'S4'|'S5'))}
               {pillar.customInject?.includes("PollockConcentrationIndex") && <PollockConcentrationIndex />}
               {pillar.customInject?.includes("PollockAlternativeSourcing") && <PollockAlternativeSourcing />}
               {pillar.customInject?.includes("PollockFtaTariffMatrix") && <PollockFtaTariffMatrix />}
@@ -522,7 +620,7 @@ export default function PollockDashboard() {
             </div>
           </section>
         );
-      })}
+      })()}
 
     </div>
   );
