@@ -4,6 +4,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Factory } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/SalmonInsightProcessingData.json';
 
 export default function SalmonInsightProcessing() {
@@ -18,6 +19,7 @@ export default function SalmonInsightProcessing() {
       chartHeight={250}
       chart={
         <BarChart data={rawData} layout="vertical" margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={true} vertical={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis dataKey="name" type="category" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} width={100} />
@@ -27,8 +29,8 @@ export default function SalmonInsightProcessing() {
             cursor={{ fill: 'rgba(255,255,255,0.05)' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
-          <Bar dataKey="traditional" name="기존 수작업 공정" fill="#64748b" radius={[0, 4, 4, 0]} barSize={15} />
-          <Bar dataKey="automated" name="자동화/GenBI 도입 공정" fill="#38bdf8" radius={[0, 4, 4, 0]} barSize={15} />
+          <Bar dataKey="traditional" name="기존 수작업 공정" fill="url(#a11y-dots)" color={A11Y_PALETTE[7]} radius={[0, 4, 4, 0]} barSize={15} fillOpacity={0.6} />
+          <Bar dataKey="automated" name="자동화/GenBI 도입 공정" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[0, 4, 4, 0]} barSize={15} />
         </BarChart>
       }
       takeaway={{

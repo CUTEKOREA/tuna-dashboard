@@ -20,6 +20,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css'; // Reuse the glassmorphism styles
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
   if (!status) return null;
@@ -453,19 +454,22 @@ export default function GalchiDashboard() {
       case "Bar":
         return (
           <BarChart data={d}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
-            {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
-            ))}
+            {widget.bars?.map((b: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+            })}
           </BarChart>
         );
       case "Composed":
         return (
           <ComposedChart data={d}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
@@ -474,9 +478,10 @@ export default function GalchiDashboard() {
             )}
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
-            {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
-            ))}
+            {widget.bars?.map((b: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+            })}
             {widget.lines?.map((l: any, i: number) => (
               <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
             ))}

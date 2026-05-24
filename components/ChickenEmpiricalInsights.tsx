@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Activity, ShieldAlert, BarChart2, CheckCircle2, Egg } from 'lucide-react';
 import { LineChart, Line, ComposedChart, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function ChickenEmpiricalInsights() {
   const [arbData, setArbData] = useState<any>(null);
@@ -98,13 +99,14 @@ export default function ChickenEmpiricalInsights() {
           chartHeight={280}
           chart={
             <ComposedChart data={procData.data}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
               <XAxis dataKey="stage" stroke="#64748b" tick={{ fontSize: 10 }} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
               <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} />
               <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
               <Legend wrapperStyle={{ fontSize: '11px' }} />
-              <Bar yAxisId="left" dataKey="laborCost" name="인건비 비중 (%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} maxBarSize={60} />
+              <Bar yAxisId="left" dataKey="laborCost" name="인건비 비중 (%)" fill="url(#a11y-stripe-v)" color={A11Y_PALETTE[5]} radius={[4, 4, 0, 0]} maxBarSize={60} />
               <Area yAxisId="right" type="monotone" dataKey="valueAdded" name="부가가치 (Value Added)" fill="var(--color-warning)" stroke="var(--color-warning)" fillOpacity={0.2} strokeWidth={3} />
             </ComposedChart>
           }
@@ -121,14 +123,15 @@ export default function ChickenEmpiricalInsights() {
           chartHeight={280}
           chart={
             <ComposedChart data={eggsData.data}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
               <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 10 }} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 10 }} />
               <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 10 }} domain={[0, 250]} />
               <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
               <Legend wrapperStyle={{ fontSize: '11px' }} />
-              <Bar yAxisId="left" dataKey="liquidImport" stackId="a" name="액상 계란 수입 (톤)" fill="var(--color-info)" radius={[0, 0, 0, 0]} maxBarSize={60} />
-              <Bar yAxisId="left" dataKey="driedImport" stackId="a" name="건조 계란 수입 (톤)" fill="#8b5cf6" radius={[4, 4, 0, 0]} maxBarSize={60} />
+              <Bar yAxisId="left" dataKey="liquidImport" stackId="a" name="액상 계란 수입 (톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[0, 0, 0, 0]} maxBarSize={60} />
+              <Bar yAxisId="left" dataKey="driedImport" stackId="a" name="건조 계란 수입 (톤)" fill="url(#a11y-diag)" color={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} maxBarSize={60} />
               <Line yAxisId="right" type="monotone" dataKey="priceIndex" name="신선란 도매가 지수" stroke="#ec4899" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
             </ComposedChart>
           }

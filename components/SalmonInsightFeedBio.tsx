@@ -2,6 +2,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
 import { Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/salmonInsightFeedBio.json';
 
 export default function SalmonInsightFeedBio() {
@@ -16,6 +17,7 @@ export default function SalmonInsightFeedBio() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
@@ -26,10 +28,10 @@ export default function SalmonInsightFeedBio() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="marine" name="해양 원료 비중(%)" stackId="a" fill="var(--color-info)" radius={[0, 0, 4, 4]} />
-          <Bar yAxisId="left" dataKey="alt" name="대체 사료 비중(%)" stackId="a" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
-          
-          <Bar yAxisId="right" dataKey="fifo" name="FIFO (의존도 비율)" fill="var(--color-warning)" barSize={3} />
+          <Bar yAxisId="left" dataKey="marine" name="해양 원료 비중(%)" stackId="a" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[0, 0, 4, 4]} />
+          <Bar yAxisId="left" dataKey="alt" name="대체 사료 비중(%)" stackId="a" fill="url(#a11y-diag)" color={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
+
+          <Bar yAxisId="right" dataKey="fifo" name="FIFO (의존도 비율)" fill="url(#a11y-cross)" color={A11Y_PALETTE[1]} barSize={3} />
         </ComposedChart>
       }
       takeaway={{

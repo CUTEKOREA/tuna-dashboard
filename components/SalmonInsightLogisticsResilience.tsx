@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, ResponsiveContainer } from 'recharts';
 import { Ship, Anchor } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/salmon_logistics_resilience.json';
 
 const euImportData = rawData.euImportData;
@@ -83,6 +84,7 @@ export default function SalmonInsightLogisticsResilience() {
       {activePanel === 'eu' && (
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={euImportData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k`} />
@@ -90,7 +92,7 @@ export default function SalmonInsightLogisticsResilience() {
             <Tooltip contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
             <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
 
-            <Bar yAxisId="left" dataKey="importVol" name="EU 역외 수입량 (천 톤)" fill="#06b6d4" radius={[4, 4, 0, 0]} barSize={24} />
+            <Bar yAxisId="left" dataKey="importVol" name="EU 역외 수입량 (천 톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={24} />
             <Line yAxisId="right" type="monotone" dataKey="importVal" name="수입 총액 (EUR Billion)" stroke="#f97316" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
             <Line yAxisId="right" type="monotone" dataKey="unitVal" name="수입 단가 (EUR/kg)" stroke="var(--color-danger)" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} strokeDasharray="5 3" />
           </ComposedChart>
@@ -118,7 +120,7 @@ export default function SalmonInsightLogisticsResilience() {
 
             <Area yAxisId="left" type="monotone" dataKey="bdi" name="BDI (발틱건화물지수)" stroke="var(--color-info)" strokeWidth={2} fill="url(#bdiGradient)" dot={{ r: 3, fill: 'var(--color-info)' }} activeDot={{ r: 5 }} />
             <Area yAxisId="left" type="monotone" dataKey="ccfi" name="CCFI (중국컨테이너지수)" stroke="#f97316" strokeWidth={2} fill="url(#ccfiGradient)" dot={{ r: 3, fill: '#f97316' }} activeDot={{ r: 5 }} />
-            <Bar yAxisId="right" dataKey="euRouteCost" name="EU 노선 운임 YoY (%)" fill="rgba(16, 185, 129, 0.5)" radius={[4, 4, 0, 0]} barSize={18} />
+            <Bar yAxisId="right" dataKey="euRouteCost" name="EU 노선 운임 YoY (%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} barSize={18} fillOpacity={0.7} />
           </ComposedChart>
         </ResponsiveContainer>
       )}

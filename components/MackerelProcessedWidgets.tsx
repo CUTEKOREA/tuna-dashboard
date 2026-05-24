@@ -4,6 +4,7 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveCo
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Factory, AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 import fishmealData from '../data/mackerel_fishmeal.json';
 import chinaStealthData from '../data/mackerel_china_stealth.json';
@@ -39,14 +40,15 @@ export default function MackerelProcessedWidgets() {
     <div style={{ height: '260px', width: '100%', position: 'relative' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={fishmealData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5} />
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Bar dataKey="chile" stackId="1" name={getKorCountry("Chile")} fill="rgba(234, 179, 8, 0.8)" radius={[0, 0, 0, 0]} barSize={20} />
-          <Bar dataKey="peru" stackId="1" name={getKorCountry("Peru")} fill="rgba(249, 115, 22, 0.8)" radius={[0, 0, 0, 0]} />
-          <Bar dataKey="other" stackId="1" name="기타 비주류국가" fill="rgba(100, 116, 139, 0.4)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="chile" stackId="1" name={getKorCountry("Chile")} fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[6]} radius={[0, 0, 0, 0]} barSize={20} />
+          <Bar dataKey="peru" stackId="1" name={getKorCountry("Peru")} fill="url(#a11y-diag)" color={A11Y_PALETTE[1]} radius={[0, 0, 0, 0]} />
+          <Bar dataKey="other" stackId="1" name="기타 비주류국가" fill="url(#a11y-dots)" color={A11Y_PALETTE[7]} radius={[4, 4, 0, 0]} fillOpacity={0.6} />
         </BarChart>
       </SafeResponsiveContainer>
     </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import { ComposedChart, Bar, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend, BarChart, Cell } from 'recharts';
 import { Timer, ShoppingCart, Warehouse } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE, getA11yBarProps } from './ChartPatterns';
 
 const arbitrageData = [
   { month: '1월', domestic: 1950, brazil: 1750, thai: 2500, spread: 200 },
@@ -80,17 +81,19 @@ export function InsightChannelMatrix() {
       chartHeight={320}
       chart={
         <BarChart data={channelData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="#94a3b8" unit="%" />
           <YAxis dataKey="channel" type="category" stroke="#94a3b8" width={120} />
           <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
           <Legend />
-          <Bar dataKey="margin" name="마진율(%)" fill="#10b981" radius={[0, 4, 4, 0]}>
-            {channelData.map((_, idx) => (
-              <Cell key={idx} fill={['#8b5cf6', '#10b981', '#3b82f6', '#64748b'][idx]} />
-            ))}
+          <Bar dataKey="margin" name="마진율(%)" radius={[0, 4, 4, 0]}>
+            {channelData.map((_, idx) => {
+              const p = getA11yBarProps(idx);
+              return <Cell key={idx} fill={p.fill} color={p.color} stroke={p.stroke} />;
+            })}
           </Bar>
-          <Bar dataKey="difficulty" name="진입난이도(%)" fill="#f87171" radius={[0, 4, 4, 0]} fillOpacity={0.5} />
+          <Bar dataKey="difficulty" name="진입난이도(%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[5]} radius={[0, 4, 4, 0]} fillOpacity={0.6} />
         </BarChart>
       }
       kpiPanel={[

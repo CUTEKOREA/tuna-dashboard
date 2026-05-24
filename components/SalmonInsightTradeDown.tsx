@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { ShoppingCart, RefreshCcw } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/salmon_insight_trade_down.json';
 
 const euData = rawData.euData;
@@ -67,6 +68,7 @@ export default function SalmonInsightTradeDown() {
       {activeTab === 'eu' && (
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart data={euData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k t`} />
@@ -74,8 +76,8 @@ export default function SalmonInsightTradeDown() {
             <Tooltip contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
             <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
 
-            <Bar yAxisId="left" dataKey="frVol" name="🇫🇷 프랑스 소비량 (천톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={14} />
-            <Bar yAxisId="left" dataKey="esVol" name="🇪🇸 스페인 소비량 (천톤)" fill="#8b5cf6" radius={[4, 4, 0, 0]} barSize={14} />
+            <Bar yAxisId="left" dataKey="frVol" name="🇫🇷 프랑스 소비량 (천톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={14} />
+            <Bar yAxisId="left" dataKey="esVol" name="🇪🇸 스페인 소비량 (천톤)" fill="url(#a11y-diag)" color={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} barSize={14} />
             <Line yAxisId="right" type="monotone" dataKey="frVal" name="🇫🇷 프랑스 지출액 (EUR M)" stroke="#f97316" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} />
             <Line yAxisId="right" type="monotone" dataKey="esVal" name="🇪🇸 스페인 지출액 (EUR M)" stroke="var(--color-danger)" strokeWidth={2.5} dot={{ r: 4 }} activeDot={{ r: 6 }} strokeDasharray="5 3" />
           </ComposedChart>

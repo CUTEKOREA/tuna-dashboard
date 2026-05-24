@@ -22,6 +22,7 @@ import ChickenCorporateWidget from './ChickenCorporateWidget';
 import ChickenPartsWidget from './ChickenPartsWidget';
 import { InsightTimeGapArbitrage, InsightChannelMatrix, InsightVMILockin } from './ChickenThaiInsightsA';
 import { InsightKoreaSpecialLine, InsightRiskNexus, InsightPartnerMatch } from './ChickenThaiInsightsB';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
   if (!status) return null;
@@ -283,19 +284,22 @@ export default function ChickenDashboard() {
       case "Bar":
         return (
           <BarChart data={d}>
+            <ChartPatternDefs />
             {grid}{xAxis}
             {w.bars && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend verticalAlign="top" wrapperStyle={{fontSize:'10px', paddingBottom:'10px'}} />
             {hasForecast && <ReferenceArea x1={forecastStartKey} x2={forecastEndKey} fill="rgba(245,158,11,0.05)" stroke="rgba(245,158,11,0.2)" strokeDasharray="3 3" />}
-            {w.bars?.map((b:any,i:number) => (
-              <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.8} name={b.name} />
-            ))}
+            {w.bars?.map((b:any,i:number) => {
+              const p = getA11yBarProps(i);
+              return <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[4,4,0,0]} fillOpacity={0.85} name={b.name} />;
+            })}
           </BarChart>
         );
       case "Composed":
         return (
           <ComposedChart data={d}>
+            <ChartPatternDefs />
             {grid}{xAxis}
             {w.areas && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
             {w.bars && <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:9}} tickFormatter={yFmt} />}
@@ -306,9 +310,10 @@ export default function ChickenDashboard() {
             {w.areas?.map((a:any,i:number) => (
               <Area yAxisId="left" key={`a${i}`} type="monotone" dataKey={a.key} fill={a.color} stroke={a.color} fillOpacity={0.4} strokeWidth={2} name={a.name} />
             ))}
-            {w.bars?.map((b:any,i:number) => (
-              <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill={b.color} radius={[4,4,0,0]} fillOpacity={0.8} name={b.name} />
-            ))}
+            {w.bars?.map((b:any,i:number) => {
+              const p = getA11yBarProps(i);
+              return <Bar yAxisId="left" key={`b${i}`} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[4,4,0,0]} fillOpacity={0.85} name={b.name} />;
+            })}
             {w.lines?.map((l:any,i:number) => (
               <Line yAxisId="right" key={`l${i}`} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={true} activeDot={{r:5}} name={l.name} />
             ))}

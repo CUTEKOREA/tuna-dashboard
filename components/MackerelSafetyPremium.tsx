@@ -3,6 +3,7 @@ import React from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { ShieldCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/mackerel_safety_premium.json';
 
 export default function MackerelSafetyPremium() {
@@ -11,15 +12,17 @@ export default function MackerelSafetyPremium() {
   const ChartObj = (
     <div style={{ height: '250px', width: '100%' }}>
       <BarChart data={data} layout="vertical" margin={{ top: 20, right: 30, left: 25, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
         <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
         <YAxis type="category" dataKey="region" stroke="rgba(255,255,255,0.2)" tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }} />
         <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
-        <Bar dataKey="before" name="안전 사태 이전 ($ Index)" fill="rgba(255,255,255,0.15)" radius={[0,4,4,0]} barSize={14} />
-        <Bar dataKey="after" name="안전 사태 이후 ($ Index)" fill="#0ea5e9" radius={[0,4,4,0]} barSize={14}>
-          {data.map((entry: any, index: number) => (
-            <Cell key={`cell-${index}`} fill={entry.region.includes('한국') ? '#38bdf8' : entry.region === '일본산' ? 'var(--color-danger)' : '#64748b'} />
-          ))}
+        <Bar dataKey="before" name="안전 사태 이전 ($ Index)" fill="url(#a11y-dots)" color={A11Y_PALETTE[7]} radius={[0,4,4,0]} barSize={14} fillOpacity={0.5} />
+        <Bar dataKey="after" name="안전 사태 이후 ($ Index)" fill="url(#a11y-stripe-h)" radius={[0,4,4,0]} barSize={14}>
+          {data.map((entry: any, index: number) => {
+            const color = entry.region.includes('한국') ? A11Y_PALETTE[0] : entry.region === '일본산' ? A11Y_PALETTE[5] : A11Y_PALETTE[7];
+            return <Cell key={`cell-${index}`} fill="url(#a11y-stripe-h)" color={color} stroke={color} />;
+          })}
         </Bar>
       </BarChart>
     </div>

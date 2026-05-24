@@ -4,6 +4,7 @@ import React from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Factory } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/salmonInsightMarginSqueeze.json';
 
 export default function SalmonInsightMarginSqueeze() {
@@ -18,6 +19,7 @@ export default function SalmonInsightMarginSqueeze() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k`} />
@@ -28,8 +30,8 @@ export default function SalmonInsightMarginSqueeze() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="volume" name="EU 훈제 연어 생산량 (천 톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar yAxisId="left" dataKey="polShare" name="폴란드 점유율 (%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="volume" name="EU 훈제 연어 생산량 (천 톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="polShare" name="폴란드 점유율 (%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[3]} radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="unitValue" name="훈제 연어 단가 (EUR/kg)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
         </ComposedChart>
       }

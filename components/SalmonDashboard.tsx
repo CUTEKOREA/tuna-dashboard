@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import SalmonInsightSmolt from './SalmonInsightSmolt';
 import SalmonInsightFeed from './SalmonInsightFeed';
 import SalmonInsightProcessing from './SalmonInsightProcessing';
@@ -254,27 +255,31 @@ export default function SalmonDashboard() {
         case "bar":
           return (
             <BarChart data={d}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
-              {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} dataKey={b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} />
-              ))}
+              {widget.bars?.map((b: any, i: number) => {
+                const p = getA11yBarProps(i);
+                return <Bar key={`b${i}`} dataKey={b.key || b.dataKey} fill={p.fill} color={(b.color || b.fill) || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+              })}
             </BarChart>
           );
         case "composed":
           return (
             <ComposedChart data={d}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
-              {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId="left" dataKey={b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} />
-              ))}
+              {widget.bars?.map((b: any, i: number) => {
+                const p = getA11yBarProps(i);
+                return <Bar key={`b${i}`} yAxisId="left" dataKey={b.key || b.dataKey} fill={p.fill} color={(b.color || b.fill) || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+              })}
               {widget.lines?.map((l: any, i: number) => (
                 <Line key={`l${i}`} yAxisId="left" type="monotone" dataKey={l.key || l.dataKey} stroke={l.color || l.stroke || l.fill} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
@@ -332,19 +337,22 @@ export default function SalmonDashboard() {
       case "bar":
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" />
-            {series.map((s: any, i: number) => (
-              <Bar key={i} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />
-            ))}
+            {series.map((s: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} dataKey={s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
+            })}
           </BarChart>
         );
       case "composed":
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
@@ -354,7 +362,8 @@ export default function SalmonDashboard() {
             {series.map((s: any, i: number) => {
               if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
               if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} />;
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />;
+              const p = getA11yBarProps(i);
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
             })}
           </ComposedChart>
         );

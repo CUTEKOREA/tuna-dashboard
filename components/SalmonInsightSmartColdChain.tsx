@@ -2,6 +2,7 @@ import React from 'react';
 import { BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
 import { Truck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/salmonInsightSmartColdChain.json';
 
 export default function SalmonInsightSmartColdChain() {
@@ -16,6 +17,7 @@ export default function SalmonInsightSmartColdChain() {
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}`} />
@@ -26,8 +28,8 @@ export default function SalmonInsightSmartColdChain() {
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
-          <Bar yAxisId="left" dataKey="airCost" name="항공 운송 비용 (EUR/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} barSize={20} />
-          <Bar yAxisId="left" dataKey="seaCost" name="해상 운송 비용 (EUR/kg)" fill="var(--color-info)" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="airCost" name="항공 운송 비용 (EUR/kg)" fill="url(#a11y-stripe-v)" color={A11Y_PALETTE[5]} radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="seaCost" name="해상 운송 비용 (EUR/kg)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="carbon" name="물류 탄소배출 지수" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
         </ComposedChart>
       }

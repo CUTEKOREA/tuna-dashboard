@@ -18,6 +18,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 // Phase 4: dangling 외부 위젯 통합 import (가치 高 6개)
 import MackerelKoreaSupply from './MackerelKoreaSupply';
@@ -551,14 +552,16 @@ export default function MackerelDashboard() {
       case "Bar":
         return (
           <BarChart data={d}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
-            {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
-            ))}
+            {widget.bars?.map((b: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+            })}
           </BarChart>
         );
       case "Line":
@@ -577,6 +580,7 @@ export default function MackerelDashboard() {
       case "Composed":
         return (
           <ComposedChart data={d}>
+            <ChartPatternDefs />
             <defs>
               {widget.areas?.map((a: any, i: number) => (
                 <linearGradient key={`ca${i}`} id={`mCompArea${widget.id}_${i}`} x1="0" y1="0" x2="0" y2="1">
@@ -598,9 +602,10 @@ export default function MackerelDashboard() {
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             
-            {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
-            ))}
+            {widget.bars?.map((b: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+            })}
             {widget.areas?.map((a: any, i: number) => (
               <Area key={i} yAxisId={a.yAxisId || "left"} type="monotone" dataKey={a.key} fill={`url(#mCompArea${widget.id}_${i})`} stroke={a.color} strokeWidth={2} />
             ))}

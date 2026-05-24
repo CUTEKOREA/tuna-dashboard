@@ -3,6 +3,7 @@ import React from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Cell } from 'recharts';
 import { Factory, AlertTriangle, Building2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE, getA11yBarProps } from './ChartPatterns';
 
 const koreaSpecialData = [
   { spec: '일본향(1.8kg)', yield: 62, margin: 15, fcr: 1.58 },
@@ -40,6 +41,7 @@ export function InsightKoreaSpecialLine() {
       chartHeight={320}
       chart={
         <ComposedChart data={koreaSpecialData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="spec" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
@@ -47,11 +49,12 @@ export function InsightKoreaSpecialLine() {
           <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="yield" name="순살 수율(%)" radius={[4, 4, 0, 0]}>
-            {koreaSpecialData.map((entry, idx) => (
-              <Cell key={idx} fill={idx === 2 ? '#f59e0b' : idx === 3 ? '#ef4444' : '#3b82f6'} />
-            ))}
+            {koreaSpecialData.map((entry, idx) => {
+              const p = getA11yBarProps(idx);
+              return <Cell key={idx} fill={p.fill} color={p.color} stroke={p.stroke} />;
+            })}
           </Bar>
-          <Bar yAxisId="left" dataKey="margin" name="예상 마진(%)" fill="#10b981" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
+          <Bar yAxisId="left" dataKey="margin" name="예상 마진(%)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} fillOpacity={0.85} />
           <Line yAxisId="right" type="monotone" dataKey="fcr" name="FCR(사료요구율)" stroke="#ef4444" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
       }

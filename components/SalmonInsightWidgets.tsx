@@ -4,6 +4,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Zap, AlertCircle, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import WidgetCard, { Pillar } from './WidgetCard';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 const DATA_URL = '/data/salmon_real_data_v2.json';
 const COLORS = ['#f97316', '#0ea5e9', 'var(--color-success)', '#8b5cf6', '#f43f5e', 'var(--color-warning)', '#eab308', '#38bdf8'];
@@ -106,41 +107,29 @@ export default function SalmonInsightWidgets() {
     } else if (w.chartType === 'bar') {
       ChartComponent = w.xAxis === 'name' ? (
         <BarChart data={w.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} layout="vertical">
-          <defs>
-            {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-              <linearGradient key={`color-${idx}`} id={`color-${w.id}-${idx}`} x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor={s.color || s.fill} stopOpacity={0.6}/>
-                <stop offset="100%" stopColor={s.color || s.fill} stopOpacity={1}/>
-              </linearGradient>
-            ))}
-          </defs>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
           <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-          {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-            <Bar key={idx} dataKey={s.dataKey} fill={`url(#color-${w.id}-${idx})`} radius={[0, 4, 4, 0]} />
-          ))}
+          {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => {
+            const p = getA11yBarProps(idx);
+            return <Bar key={idx} dataKey={s.dataKey} fill={p.fill} color={(s.color || s.fill) || p.color} radius={[0, 4, 4, 0]} />;
+          })}
         </BarChart>
       ) : (
         <BarChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-          <defs>
-            {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-              <linearGradient key={`color-${idx}`} id={`color-${w.id}-${idx}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={s.color || s.fill} stopOpacity={1}/>
-                <stop offset="100%" stopColor={s.color || s.fill} stopOpacity={0.6}/>
-              </linearGradient>
-            ))}
-          </defs>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
-          {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
-            <Bar key={idx} dataKey={s.dataKey} fill={`url(#color-${w.id}-${idx})`} radius={[4, 4, 0, 0]} />
-          ))}
+          {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => {
+            const p = getA11yBarProps(idx);
+            return <Bar key={idx} dataKey={s.dataKey} fill={p.fill} color={(s.color || s.fill) || p.color} radius={[4, 4, 0, 0]} />;
+          })}
         </BarChart>
       );
     } else if (w.chartType === 'pie') {
