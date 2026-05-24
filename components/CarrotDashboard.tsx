@@ -35,7 +35,7 @@ const formatXAxis = (tickItem: any) => {
 };
 
 
-const ChartWrapper = ({ data, children }: { data: any, children: React.ReactNode }) => {
+const ChartWrapper = ({ data, children, ...rest }: { data: any, children: React.ReactNode } & Record<string, any>) => {
   if (!data || data.length === 0) {
     return (
       <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
@@ -45,7 +45,10 @@ const ChartWrapper = ({ data, children }: { data: any, children: React.ReactNode
       </div>
     );
   }
-  return <>{children}</>;
+  // SafeResponsiveContainer가 cloneElement로 width/height를 주입하는데, 이를 안쪽
+  // Recharts chart에 전파해야 정상 렌더링됨. Fragment 반환 시 width/height가 유실됨.
+  const child = React.Children.only(children) as React.ReactElement;
+  return React.cloneElement(child, rest);
 };
 
 const CustomTooltip = ({ active, payload, label }: any) => {
