@@ -56,7 +56,7 @@ async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCo
     p_startday: fmt(start),
     p_endday: fmt(today),
     p_cert_key: KAMIS_KEY,
-    p_cert_id: 'silla_co',
+    p_cert_id: 'cutekorea',
     p_returntype: 'json',
   });
 
