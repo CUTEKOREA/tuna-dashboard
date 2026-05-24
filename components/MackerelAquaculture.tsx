@@ -177,15 +177,24 @@ export default function MackerelAquaculture() {
     </div>
   );
 
+  const premiumPct = latest.aqua_price_usd > 0
+    ? ((latest.aqua_price_usd / latest.wild_price_usd - 1) * 100).toFixed(0)
+    : '0';
+
   return (
     <WidgetCard
       title="양식 고등어의 부상과 블루오션"
       icon={Droplets}
       iconColor="#34d399"
-      pillar="S5"
+      pillar="S2"
       cardDesc="자연산 vs 양식 생산 비중 추이 및 양식 프리미엄 단가 비교"
       telemetry={{ status: 'STATIC', syncDate: '2023' }}
       customBody={customBody}
+      takeaway={{
+        situation: `${latest.year}년 자연산 ${(latest.capture_t / 1000000).toFixed(1)}M톤 대 양식 ${latest.aquaculture_t.toLocaleString()}톤 — 양식 비중 ${latest.aqua_ratio_pct}%로 미미하나 단가는 ${premiumPct}% 프리미엄을 형성. ${peak.year}년 피크(${peak.aquaculture_t.toLocaleString()}톤) 이후 양식 산업 성숙기 진입.`,
+        actionPlan: `고부가가치 양식 기술 R&D 투자 확대로 자연산 어획 의존도 헤지. 양식 단가 프리미엄(${premiumPct}%)을 활용한 프리미엄 라인업(생식용·횟감) 진출로 마진 5%p 이상 개선 가능.`,
+        source: '한국수산자원공단(FIRA) 양식 통계 + FAO FishStatJ Aquaculture Production 2010-2023',
+      }}
     />
   );
 }
