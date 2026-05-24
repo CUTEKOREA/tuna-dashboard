@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> ♿ **2026-05-24 — A8 색맹 대비 codemod Mid 4종 추가 확산 (40 파일, ~150 Bar)**:
+> - **신설 스크립트** `scripts/fix_a11y_charts.py` (L-07 패턴): import 자동 추가 + `<ChartPatternDefs />` 자동 삽입 + Bar fill→pattern URL 변환 (per-chart 인덱스 로테이션, Cell-loop 자동 skip)
+> - **Squid**: Dashboard 렌더러 + 18 widget files (Tab1-5 + 13 individual widgets)
+> - **Shrimp**: Dashboard 렌더러 + 6 widget files (Tab1-4, Tab45, InsightWidgets)
+> - **Pollock**: Dashboard 렌더러 + 14 widget files
+> - **Cocoa**: CocoaDashboard (23 inline Bars 일괄)
+> - **누계** (High + Mid): 60 파일, ~190 Bar 차트 패턴 부착
+> - L-03 빌드 통과 ✓ (4.0s)
+>
 > ♿ **2026-05-24 — A8 색맹 대비 codemod High 4종 확산 완료 (20 파일, ~40 차트)**:
 > - **Foundation**: `components/ChartPatterns.tsx` (Okabe-Ito 8-color + 5종 SVG pattern + `getA11yBarProps`)
 > - **시범 3 위젯**: Beef W2/W3 + Pork W7 (커밋 2dbd66d)
