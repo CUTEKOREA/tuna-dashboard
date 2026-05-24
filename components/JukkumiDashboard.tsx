@@ -42,13 +42,22 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
 };
 
 /* ─── 5-Part Section Definitions ─── */
+// 5-Pillar 네비게이터 메타 (Squid 패턴 + 주꾸미 시그니처 그라디언트 purple → pink 두족류 일관)
 const SECTIONS = [
-  { id: 'S1', title: '🌊 Part I — 원료 수급', desc: '글로벌 주꾸미 원물 소싱 현황 및 연안 자원량 지수', color: '#8b5cf6' },
-  { id: 'S2', title: '🏭 Part II — 가공 및 생산', desc: 'HMR(가정간편식) 가공 수율 및 제조 원가율 추이', color: '#a855f7' },
-  { id: 'S3', title: '⚓ Part III — 물류 및 통관', desc: 'FTA 체결국발 물류 원가 및 통관 리스크 지수', color: '#d946ef' },
-  { id: 'S4', title: '📊 Part IV — 판매 및 수요', desc: '유통 채널별 주꾸미 판매 단가 및 탄력성 지수', color: '#ec4899' },
-  { id: 'S5', title: '🛡️ Part V — ESG 및 지속가능성', desc: '콜드체인 병원성 리스크 및 보건 안전 지수', color: '#f43f5e' }
+  { id: 'S1', num: '❶', label: '원료 수급', title: '🌊 Part I — 원료 수급', desc: '글로벌 주꾸미 원물 소싱 현황 및 연안 자원량 지수', color: '#8b5cf6' },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '🏭 Part II — 가공 및 생산', desc: 'HMR(가정간편식) 가공 수율 및 제조 원가율 추이', color: '#a855f7' },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '⚓ Part III — 물류 및 통관', desc: 'FTA 체결국발 물류 원가 및 통관 리스크 지수', color: '#d946ef' },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '📊 Part IV — 판매 및 수요', desc: '유통 채널별 주꾸미 판매 단가 및 탄력성 지수', color: '#ec4899' },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '🛡️ Part V — ESG 및 지속가능성', desc: '콜드체인 병원성 리스크 및 보건 안전 지수', color: '#f43f5e' }
 ];
+
+const PILLAR_WIDGET_IDS: Record<string, string[]> = {
+  S1: ['w1_global_catch', 'w7_cannibalism_risk', 'w10_species_map', 'w11_spawn_cycle', 'w12_generation_risk', 'w21_leisure_fishing_impact', 'w22_vietnam_trawl_fip'],
+  S2: ['w2_korea_imports', 'w6_bio_processing', 'w13_processing_auto', 'w14_nutrition', 'w23_hmr_yield_optimization', 'w24_china_aquaculture_rd'],
+  S3: ['w3_supply_demand', 'w9_korea_fta_imports', 'w15_hsk_tariff', 'w16_korus_schedule', 'w25_tariff_schedule_impact', 'w26_coldchain_utilization'],
+  S4: ['w4_fbs_seafood', 'w17_price_spread', 'w18_substitutes', 'w27_japan_kfood_export', 'w28_domestic_senior_hmr'],
+  S5: ['w5_mauritania_risk', 'w8_recreational_tac', 'w19_vibrio_amr', 'w20_fip_esg', 'w29_africa_human_rights_risk', 'w30_tac_regulation_map'],
+};
 
 /* ─── Custom Tooltip ─── */
 
@@ -136,6 +145,7 @@ const formatYAxis = (v: number) => {
 
 export default function JukkumiDashboard() {
   const [data, setData] = useState<any>(null);
+  const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
 
   useEffect(() => {
     fetch('/api/jukkumi-intelligence')
@@ -283,80 +293,131 @@ export default function JukkumiDashboard() {
         })}
       </div>
 
-      {/* ═══ 5-Part Consolidated Sections ═══ */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
-
-        {/* ═══════ Part I: 원료 수급 ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[0].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[0].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
-            </div>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w1_global_catch', 'w7_cannibalism_risk', 'w10_species_map', 'w11_spawn_cycle', 'w12_generation_risk', 'w21_leisure_fishing_impact', 'w22_vietnam_trawl_fip'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
-
-        {/* ═══════ Part II: 가공 및 생산 ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[1].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[1].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
-            </div>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w2_korea_imports', 'w6_bio_processing', 'w13_processing_auto', 'w14_nutrition', 'w23_hmr_yield_optimization', 'w24_china_aquaculture_rd'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
-
-        {/* ═══════ Part III: 물류 및 통관 ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[2].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[2].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
-            </div>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w3_supply_demand', 'w9_korea_fta_imports', 'w15_hsk_tariff', 'w16_korus_schedule', 'w25_tariff_schedule_impact', 'w26_coldchain_utilization'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
-
-        {/* ═══════ Part IV: 판매 및 수요 ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[3].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[3].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
-            </div>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w4_fbs_seafood', 'w17_price_spread', 'w18_substitutes', 'w27_japan_kfood_export', 'w28_domestic_senior_hmr'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
-
-        {/* ═══════ Part V: ESG 및 지속가능성 ═══════ */}
-        <section>
-          <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <div style={{ width: '4px', height: '28px', background: SECTIONS[4].color, borderRadius: '2px' }} />
-            <div>
-              <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{SECTIONS[4].title}</h2>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
-            </div>
-          </div>
-          <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-            {widgets?.filter((w: any) => ['w5_mauritania_risk', 'w8_recreational_tac', 'w19_vibrio_amr', 'w20_fip_esg', 'w29_africa_human_rights_risk', 'w30_tac_regulation_map'].includes(w.id)).map((w: any) => renderWidgetCard(w))}
-          </div>
-        </section>
-
+      {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        border: '1px solid rgba(255,255,255,0.04)',
+        borderRadius: '16px',
+        padding: '6px',
+        marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px',
+          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s, idx) => {
+            const isActive = activePart === s.id;
+            return (
+              <button
+                key={s.id}
+                onClick={() => setActivePart(s.id as any)}
+                onMouseEnter={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = `${s.color}40`;
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'transparent';
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '12px 8px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0',
+                  }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  fontSize: '0.75rem', fontWeight: 800,
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>
+                  {idx + 1}
+                </div>
+                <span style={{
+                  fontSize: '0.78rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {s.label}
+                </span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.6rem',
+                    color: 'rgba(148,163,184,0.7)',
+                    textAlign: 'center',
+                    lineHeight: 1.3,
+                    marginTop: '2px',
+                    padding: '0 4px',
+                  }}>
+                    {s.desc.slice(0, 24)}…
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      {/* ═══ 활성 Pillar 위젯 그리드 (activePart 필터링) ═══ */}
+      {(() => {
+        const sec = SECTIONS.find(s => s.id === activePart)!;
+        const pillarWidgets = widgets?.filter((w: any) => PILLAR_WIDGET_IDS[activePart].includes(w.id)) || [];
+        return (
+          <section>
+            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ width: '4px', height: '28px', background: sec.color, borderRadius: '2px' }} />
+              <div>
+                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>{sec.title}</h2>
+                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
+              </div>
+              <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: sec.color, background: `${sec.color}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
+                {pillarWidgets.length} 위젯
+              </span>
+            </div>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {pillarWidgets.length === 0
+                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
+                : pillarWidgets.map((w: any) => renderWidgetCard(w))}
+            </div>
+          </section>
+        );
+      })()}
 
     </div>
   );

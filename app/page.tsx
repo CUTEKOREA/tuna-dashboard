@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import CountUp from 'react-countup';
-import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Search, FlaskConical , ScanSearch, Box, FlaskRound, Map, TestTube} from 'lucide-react';
+import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Search, FlaskConical , ScanSearch, Octagon, Box, FlaskRound, Map, TestTube} from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useRouter, usePathname } from 'next/navigation';
 import { playVHFRadioChatter } from '../lib/audio';
@@ -512,7 +512,7 @@ export default function Home() {
           className={`${styles.menuItem} ${activeMenu === 'jukkumi' ? styles.menuItemActive : ''}`}
           onClick={() => { handleMenuClick('jukkumi'); setIsMobileSidebarOpen(false); }}
         >
-          <ScanSearch size={28} strokeWidth={2.2} style={{ margin: '-3px' }} />
+          <Octagon size={18} />
           <span>주꾸미 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Webfoot Octopus)</span></span>
         </button>
 

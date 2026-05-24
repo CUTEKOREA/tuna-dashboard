@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐙 **2026-05-24 — JukkumiDashboard 5-Pillar 네비게이터 도입 + 사이드바 아이콘 정규화**:
+> - JukkumiDashboard: SECTIONS+PILLAR_WIDGET_IDS+activePart+네비 UI (Squid 패턴 복제)
+> - 시그니처 그라디언트: purple → pink (오징어와 두족류 일관)
+> - 사이드바 메뉴 아이콘 정규화:
+>   - 주꾸미: `ScanSearch size=28 strokeWidth=2.2 margin=-3` (가는 돋보기) → `Octagon size=18` (8각형, 다른 메뉴와 시각 통일)
+>   - 다른 어종 아이콘(Snowflake/Shrimp/Shell/Waves)과 솔리드 균형 회복
+> - L-03 빌드 통과 ✓
+>
 > 🦑 **2026-05-24 — SquidDashboard 5-Pillar 네비게이터 도입 (Mackerel/Galchi 패턴 확산)**:
 > - SECTIONS 메타에 num/label 추가 (id/color는 이미 있음)
 > - PILLAR_WIDGET_IDS 추출 (80 위젯 5-Pillar 분류 보존)
