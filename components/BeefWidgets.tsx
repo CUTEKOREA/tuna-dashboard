@@ -5,6 +5,7 @@ import { BarChart, Bar, LineChart, Line, ComposedChart, Area, Scatter, ScatterCh
 import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield, Factory, Truck, Leaf } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import * as D from './beefData';
+import { ChartPatternDefs, getA11yBarProps, A11Y_PALETTE } from './ChartPatterns';
 
 // KCS LIVE hook (W6 한국 수입 파트너)
 function useKcsImports() {
@@ -192,11 +193,14 @@ export function W2_Top5Producers({ accent }: any) {
     sit={`${top5[0]?.country}(${top5[0]?.pct}%)·${top5[1]?.country}(${top5[1]?.pct}%) 양강 ${(top5[0]?.pct + top5[1]?.pct).toFixed(1)}% 장악. 상위 5국 합산 ${sumPct.toFixed(1)}% — 돼지고기(중국 단독 44%) 대비 분산도 우수.`}
     strat="단일국 의존 리스크는 낮으나 브라질 BSE/벌목 환경 리스크는 EU 그린딜 규제 강화 시 즉시 발화 가능. 호주·미국 이중 헤지 권장."
     source={source}>
-    <BarChart data={top5} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    <BarChart data={top5} layout="vertical"><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar dataKey="production" name="생산량 (천톤)" radius={[0, 4, 4, 0]}>{top5.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}</Bar>
+      <Bar dataKey="production" name="생산량 (천톤)" radius={[0, 4, 4, 0]}>{top5.map((_, i) => {
+        const props = getA11yBarProps(i);
+        return <Cell key={i} fill={props.fill} stroke={props.stroke} color={props.color} />;
+      })}</Bar>
     </BarChart>
   </W>;
 }
@@ -213,13 +217,13 @@ export function W3_SlaughterUtil({ accent }: any) {
     sit={`호주 가동률이 ${first.month} ${first.auUtil}% → ${latest.month} ${latest.auUtil}% ${auDelta > 0 ? '급등' : '감소'} — 미·호 사이클 ${auDelta > 5 ? '역전' : '안정'}. 미국 최신 ${latest.usUtil}% / 호주 ${latest.auUtil}%, 도체중 미 ${latest.usCarcassKg}kg / 호 ${latest.auCarcassKg}kg.`}
     strat="2025년 호주 공급 사이클 정점 진입. 24-Q1~Q3 호주산 장기 선도 계약 체결로 단가 4-6% 절감 가능."
     source={source}>
-    <ComposedChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={data}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[60, 100]} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[300, 400]} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="usUtil" name="미국 가동률 (%)" fill="#dc2626" radius={[4, 4, 0, 0]} />
-      <Bar yAxisId="left" dataKey="auUtil" name="호주 가동률 (%)" fill="#e11d48" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="usUtil" name="미국 가동률 (%)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="auUtil" name="호주 가동률 (%)" fill="url(#a11y-diag)" color={A11Y_PALETTE[1]} radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="usCarcassKg" name="미국 도체중 (kg)" stroke="#f59e0b" strokeWidth={2} dot={{ r: 3 }} />
       <Line yAxisId="right" type="monotone" dataKey="auCarcassKg" name="호주 도체중 (kg)" stroke="#fb923c" strokeWidth={2} dot={{ r: 3 }} />
     </ComposedChart>

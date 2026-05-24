@@ -5,6 +5,7 @@ import { BarChart, Bar, LineChart, Line, ComposedChart, Area, XAxis, YAxis, Cart
 import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import * as D from './porkData';
+import { ChartPatternDefs, A11Y_PALETTE, getA11yBarProps } from './ChartPatterns';
 
 const CT = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
@@ -121,10 +122,10 @@ export function W7_KoreaSupply({ accent }: any) {
     telemetry="FAOSTAT QCL·FBS 2015-2023"
     sit="한국 1인당 돈육 소비 10년간 30.9→41.4kg(+34%) 폭증. 생산 증가율(+20%)이 소비를 못따라감."
     strat="기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보." source="FAOSTAT 식량수급표(FBS)">
-    <ComposedChart data={D.koreaSupplyData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={D.koreaSupplyData}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[30, 45]} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-      <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="#3b82f6" radius={[4, 4, 0, 0]} /><Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="#10b981" radius={[4, 4, 0, 0]} />
+      <Bar yAxisId="left" dataKey="production" name="국내 생산 (천톤)" fill="url(#a11y-stripe-h)" color={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} /><Bar yAxisId="left" dataKey="imports" name="수입 (천톤)" fill="url(#a11y-diag)" color={A11Y_PALETTE[2]} radius={[4, 4, 0, 0]} />
       <Line yAxisId="right" type="monotone" dataKey="perCapita" name="1인당 소비 (kg)" stroke="#f43f5e" strokeWidth={2.5} dot={{ r: 3 }} />
     </ComposedChart>
   </W>;
