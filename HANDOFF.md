@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚑 **2026-05-24 — A8 codemod 회귀 핫픽스: 패턴 URL → Okabe-Ito 솔리드 색상 (107 파일)**:
+> - **원인**: `<pattern fill="currentColor">`는 부모 SVG element의 CSS color 의존. Recharts `<Bar>`는 임의 props(`color`)를 SVG로 forward하지 않아 currentColor가 미설정 → 다크 테마에서 차트가 투명/검정으로 렌더링되는 회귀 발생 (커밋 ba1a882 부작용, Carrot S1 등 노출).
+> - **수정**: `scripts/revert_a11y_bar_fills.py` 신설 (`fill="url(#a11y-X)" color={Y}` → `fill={Y}` 일괄 변환) + `getA11yBarProps()` 반환을 솔리드 Okabe-Ito 색상으로 단순화 (Cell-loop 호환).
+> - **보존**: `<ChartPatternDefs />`, ChartPatterns import — 휴면 코드로 유지 (향후 v2에서 색별 명명 패턴으로 재활용).
+> - **결과**: 모든 Bar = 원본 brand color 또는 A11Y_PALETTE 솔리드 회귀. 색맹 친화성(Okabe-Ito 검증)은 유지, WCAG 1.4.1은 텍스트 라벨/툴팁/legend 다중 표현으로 보완.
+> - L-03 빌드 통과 ✓ (4.4s)
+>
 > ♿ **2026-05-24 — A8 색맹 대비 codemod **전체 commodity 18 종 完적용** (누계 96 파일, ~250+ Bar)**:
 > - **스크립트 개선** (`scripts/fix_a11y_charts.py`): BarChart\b 단어 경계 (BarChart2/3 Lucide 아이콘 오탐 차단) + 멀티라인 opening tag 지원 + self-closing 자동 skip
 > - **Low 8 commodity** 일괄 적용:
