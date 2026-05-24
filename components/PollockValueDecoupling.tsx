@@ -5,6 +5,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { TrendingUp } from 'lucide-react';
 import data from '../data/pollock_value_decoupling.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function PollockValueDecoupling() {
   const chartData = (data as any[]).map((d: any) => ({
@@ -24,6 +25,7 @@ export default function PollockValueDecoupling() {
       chartHeight={260}
       chart={
         <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}k`} domain={['auto', 'auto']} />
@@ -36,7 +38,7 @@ export default function PollockValueDecoupling() {
             }}
           />
           <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
-          <Bar yAxisId="left" dataKey="vol_k" name="글로벌 수입 수량 (Volume)" fill="#64748b" radius={[4, 4, 0, 0]} barSize={20} opacity={0.6} />
+          <Bar yAxisId="left" dataKey="vol_k" name="글로벌 수입 수량 (Volume)" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} barSize={20} opacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="val_m" name="글로벌 수입 금액 (Value USD)" stroke="#14b8a6" strokeWidth={3} dot={{ r: 4, fill: '#14b8a6' }} />
         </ComposedChart>
       }

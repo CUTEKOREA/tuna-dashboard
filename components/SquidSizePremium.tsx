@@ -4,6 +4,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { Scissors } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_size_premium.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SquidSizePremium() {
   return (
@@ -17,6 +18,7 @@ export default function SquidSizePremium() {
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `₩${val / 1000}k`} />

@@ -3,6 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Cell } from 'recharts';
 import { TrendingUp, Package, GitBranch, Award, CircleDollarSign, Layers, Fuel, Zap, Send, ArrowLeftRight } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const SRC = '관세청 C&F 단가 + KMI 수산물 마진 분석 (2019-2023)';
 
@@ -32,12 +33,13 @@ export function Widget32_Shrinkflation() {
     <WidgetCard title="제품량 삭감(Shrinkflation) 실중량 추적기" icon={Package} iconColor="#fcd34d" pillar="S4" cardDesc="명목 가격 vs 실제 해동 중량 — 3년새 살코기 40% 증발" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <ComposedChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" domain={[0, 12000]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" domain={[0, 1200]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar yAxisId="right" dataKey="actualWeight" name="실제 해동 중량(g)" fill="#8b5cf6" fillOpacity={0.7} />
+          <Bar yAxisId="right" dataKey="actualWeight" name="실제 해동 중량(g)" fill="url(#a11y-stripe-h)" color="#8b5cf6" fillOpacity={0.7} />
           <Line yAxisId="left" type="step" dataKey="price" name="판매 명목 가격(원)" stroke="#fcd34d" strokeWidth={3} />
         </ComposedChart>
       }
@@ -52,13 +54,14 @@ export function Widget33_TariffArbitrage() {
     <WidgetCard title="글로벌 정책/비관세 우회 가공 무역 차익" icon={GitBranch} iconColor="#10b981" pillar="S3" cardDesc="3개 라우트별 원가·관세·마진 비교 — FTA 우회 가공이 절대 공식" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical" stackOffset="expand">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="route" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={90} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="margin" name="최종 영업 마진율" stackId="a" fill="var(--color-success)" />
-          <Bar dataKey="tariff" name="관세 차감분" stackId="a" fill="var(--color-danger)" />
-          <Bar dataKey="cost" name="원가 및 운송비" stackId="a" fill="var(--color-info)" fillOpacity={0.5} />
+          <Bar dataKey="margin" name="최종 영업 마진율" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
+          <Bar dataKey="tariff" name="관세 차감분" stackId="a" fill="url(#a11y-diag)" color="var(--color-danger)" />
+          <Bar dataKey="cost" name="원가 및 운송비" stackId="a" fill="url(#a11y-dots)" color="var(--color-info)" fillOpacity={0.5} />
         </BarChart>
       }
       takeaway={{ situation: '남미 직수입 시 20% 관세 폭탄을 회피하기 위해, 베트남에서 튜브 가공 후 무관세(FTA) 입항이 절대 공식화.', actionPlan: '[루트 아비트라지] 베트남 호치민 1차 가공 OEM 라인 100% 활용하여 한-베트남 FTA 무관세 혜택 풀 활용.', source: SRC }}
@@ -91,6 +94,7 @@ export function Widget35_FXHedging() {
     <WidgetCard title="환율 민감도 연동 원가 헷징 레벨" icon={CircleDollarSign} iconColor="#fcd34d" pillar="S3" cardDesc="USD/KRW 환율 변동과 영업이익률 데드크로스 — 1,350원 임계선" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <ComposedChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" domain={[1200, 1450]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
@@ -111,11 +115,12 @@ export function Widget36_VASpread() {
     <WidgetCard title="가공 단계별 부가가치 전가 스프레드" icon={Layers} iconColor="#06b6d4" pillar="S2" cardDesc="원물 → 절단 가공 4단계별 판매 가치 인덱스 — 링 가공만으로 2배" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="type" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="value" name="판매 가치(Index)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="value" name="판매 가치(Index)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{ situation: '원물 그대로 판매 시 마진 0에 수렴. 링(Ring)으로 한번만 써는 순간 단가 2배 폭증.', actionPlan: '[Value Add] 절단·가공 라인 CAPEX 투자를 최우선 순위로 격상, 원물 직판 비중을 30% 이하로 축소.', source: SRC }}
@@ -167,6 +172,7 @@ export function Widget39_ForwardSpot() {
     <WidgetCard title="사전 선도계약(Forward) vs 스팟 펌핑 스프레드" icon={Send} iconColor="#67e8f9" pillar="S4" cardDesc="선도 계약 → 항해 → 하역 3단계별 단가 변동 — 60% 펌핑 차익" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />

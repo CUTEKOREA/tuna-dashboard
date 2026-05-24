@@ -4,6 +4,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link, RefreshCcw } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 import { koreaImportTimeline, koreaSelfSufficiency, unitPriceExport } from './ShrimpDataHelper';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // W21: KoreaImportTimeline
 export const W21_KoreaImpTimeline = () => (
@@ -47,11 +48,12 @@ export const W23_KoreaUnitPrice = () => {
     <WidgetCard title="한국 수입 도입 단가 경쟁력 갭" icon={DollarSign} term="C/P Gap" desc="글로벌 소싱 대비 매입 단가 퍼포먼스" source="Custom Analysis based on FAO/Korea Customs" situation="퀀트 엔진 분석 결과, 대한민국은 글로벌 벤더 협상력에서 완벽히 패배하며 경쟁국 대비 톤당 7% 이상의 악성 프리미엄(Korea Discount/Penalty) 페널티를 강제로 지불하고 있습니다." actionPlan="[Direct Sourcing Disintermediation] 구시대적 종합상사 의존 구조(Middleman)를 완전히 해체하십시오. 전사 구매 파트를 베트남 까마우(Ca Mau) 등 팩토리 현장에 상주시켜 다이렉트 프라이싱 라인(Direct Pricing Line)을 구축해 유통 마진 누수를 원천 봉쇄해야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={koreaCompare} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
           <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="price" fill="var(--color-warning)" radius={[4,4,0,0]} />
+          <Bar dataKey="price" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[4,4,0,0]} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -69,6 +71,7 @@ export const W24_AsiaImpCompare = () => {
     <WidgetCard title="동북아 새우 소비 라이벌 타격전" icon={Flag} term="Asia Consumption" desc="한/일/대만 시장 규모 배틀" source="FAO Asian Market DB" situation="극강의 하이엔드 소비 마켓이었던 일본의 파이를 한국 시장이 경이로운 속도로 잠식(Cannibalizing)하며 동북아시아 새우 컨슈머 헤게모니가 교체 중입니다." actionPlan="[Predatory Sourcing Attack] 철저하게 일본 수출 라인만 태우던 베트남 최상위 팩토리의 고품질 물량(Panko, 초밥용 나비새우)에 프리미엄 웃돈을 얹어 탈취하십시오. 이를 국내 하이엔드 오마카세 프랜차이즈에 덤핑 투하(Dumping Strike)하여 신규 시장 지배력을 장악해야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={asiaImp} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
           <YAxis dataKey="name" type="category" width={50} stroke="#94a3b8" fontSize={11} />
@@ -134,6 +137,7 @@ export const W27_KoreaFTABenefit = () => {
     <WidgetCard title="FTA 무관세 파괴력 베네핏 뷰어" icon={ShieldCheck} term="Tariff Defense" desc="국가별 관세 장벽이 수입 마진에 미치는 충격" source="관세청 수출입 무역 통계 코드(0306)" situation="대한민국 새우 수입 생태계 1위 헤게모니를 베트남이 철옹성처럼 방어하는 유일무이한 핵심 무기(Moat)는 VKFTA 발효에 따른 '관세 0% 프리미엄'의 극단적 비대칭성(Asymmetry) 덕분입니다." actionPlan="[SECA Option Contingency Plan] 에콰도르와의 SECA 협상이 최종 타결될 경우 20% 관세 족쇄가 풀리며 베트남 카르텔은 붕괴(Bloodbath)됩니다. 관세 철폐 즉시 실행 가능한 남미산 대량 선물 매입 콜옵션(Call Option)을 즉각 세팅하여 사태 반전에 선제 대응.">
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
           <YAxis dataKey="origin" type="category" width={80} stroke="#94a3b8" fontSize={10} />
@@ -154,13 +158,14 @@ export const W28_KoreaPremiumGap = () => {
     <WidgetCard title="Korea Premium 단가 페널티 추적" icon={DollarSign} term="Country Premium Risk" desc="동일 원물 대비 한국 바이어가 지불하는 눈먼 프리미엄" source="내부 무역 거래장부 대조" situation="국내 중소 브로커리지들의 자기 파괴적인 소싱 치킨게임(Chicken Game)으로 인해, 현지 팩토리(Packer)들에게 프라이싱 통제권을 완전히 헌납하며 연간 4%의 바보 비용(Korea Premium)을 지불 중입니다." actionPlan="[Market Squeeze & Block Deal] 무의미한 중소 수입업자 카르텔을 시장에서 강제 퇴출(Squeeze-out)시키십시오. 사내 막대한 잉여 자금을 투입, 신라교역 명의로 베트남/인니 팩토리에 메가톤급 블록 딜(Block Deal)을 타결하여 현지 CAPA를 100% 독점, 매입 단가를 인위적으로 박살내야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
           <XAxis dataKey="item" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="krPrice" name="한국수입가" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="jpPrice" name="일본수입가" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="krPrice" name="한국수입가" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="jpPrice" name="일본수입가" fill="url(#a11y-diag)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -174,13 +179,14 @@ export const W29_KoreaTradeBal = () => {
     <WidgetCard title="한국 새우 무역수지(Trade Balance)" icon={Scale} term="Deficit Gravity" desc="수입 결제 대금 vs 수출 획득 대금 갭" source="KITA 한국무역협회 데이터" situation="수입 92 대 수출 5 라는, 국가 거시 경제 지표를 왜곡시킬 수준의 비정상적 무역수지 적자(Trade Deficit Anomaly)를 창출하는 치명적 자본 유출 핵심 품목입니다." actionPlan="[K-Food Reverse Export Arbitrage] 수입한 원물에 밸류를 입혀 다시 수출하는 리버스 엔지니어링(Reverse Engineering)을 가동하십시오. 국내 클린룸에서 K-안주/하이엔드 간편식으로 밸류업(Value-up)한 뒤, K-팝 뷰티 패키징을 입혀 미주 H-Mart 등 교민 마켓에 수 배의 마진으로 역수출하는 라인을 뚫어야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} />
           <YAxis dataKey="year" type="category" width={40} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="imp" name="수입(빨래질)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="exp" name="수출(방어)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="imp" name="수입(빨래질)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="exp" name="수출(방어)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>

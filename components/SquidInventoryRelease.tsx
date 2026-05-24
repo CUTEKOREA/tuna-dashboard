@@ -4,6 +4,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { CalendarRange } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_inventory_release.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SquidInventoryRelease() {
   return (
@@ -17,13 +18,14 @@ export default function SquidInventoryRelease() {
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="week" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `₩${val / 1000}k`} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `${val}%`} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
-          <Bar yAxisId="right" dataKey="release_target" name="당사 재고 출하 목표비율(%)" fill="rgba(16, 185, 129, 0.4)" barSize={40} />
+          <Bar yAxisId="right" dataKey="release_target" name="당사 재고 출하 목표비율(%)" fill="url(#a11y-stripe-h)" color="rgba(16, 185, 129, 0.4)" barSize={40} />
           <Line yAxisId="left" type="monotone" dataKey="wholesale" name="시장 평균 도매가 (원)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
         </ComposedChart>
       }

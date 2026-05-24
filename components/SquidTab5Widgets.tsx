@@ -3,6 +3,7 @@ import React from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Scatter, Cell } from 'recharts';
 import { Fuel, Users, BarChart3, Snowflake, Droplets, Wrench, Target, AlertTriangle, RotateCw, Coins } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const SRC = '내부 영업·운영 데이터 + KAMIS 수산물 마진 분석 (2021-2023)';
 
@@ -12,13 +13,14 @@ export function Widget41_FuelBEP() {
     <WidgetCard title="선단 운영 유류비 손익분기점(BEP) 임계선" icon={Fuel} iconColor="#f43f5e" pillar="S1" cardDesc="WTI 유가 변동과 일일 BEP 어획량 — 출항 포기선 모니터" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <ComposedChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
           <Line yAxisId="left" type="step" dataKey="break_even_catch" name="필요 최소 어획량(BEP 톤)" stroke="var(--color-danger)" strokeWidth={3} strokeDasharray="5 5" />
-          <Bar yAxisId="right" dataKey="wti" name="WTI 유가" fill="#64748b" fillOpacity={0.6} />
+          <Bar yAxisId="right" dataKey="wti" name="WTI 유가" fill="url(#a11y-stripe-h)" color="#64748b" fillOpacity={0.6} />
         </ComposedChart>
       }
       takeaway={{ situation: '배럴당 $110 돌파 시 하루 160톤 이상 잡지 못하면 출항할수록 손실 누적 — 적자(Negative Margin) 발생.', actionPlan: '[출항 포기선] 유가 $90 돌파 시 자동 출항 자제 알고리즘 가동 + LNG 전환선 신조 CAPEX 검토.', source: SRC }}
@@ -51,11 +53,12 @@ export function Widget43_WaterfallMargin() {
     <WidgetCard title="밸류체인 스텝별 폭포수(Waterfall) 마진 분배" icon={BarChart3} iconColor="#10b981" pillar="S4" cardDesc="조업-수입-가공-소매 4단계 마진 분배 — 가공이 수입상보다 큼" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[0, 100]} />
           <YAxis dataKey="step" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="value" name="해당 단계 마진 폭(%)" fill="var(--color-success)" />
+          <Bar dataKey="value" name="해당 단계 마진 폭(%)" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
         </BarChart>
       }
       takeaway={{ situation: '바다에서 잡는 사람(30%)과 마트 진열장(30%)이 동일 마진. 가공장(25%)이 칼질 한번에 수입상(15%)보다 많이 챙기는 구조.', actionPlan: '[피도 눈물도 없는 파이] 수입상 마진 15% 영역을 가공·소매 인접 영역으로 확장(수직 통합) 추진.', source: SRC }}
@@ -69,11 +72,12 @@ export function Widget44_StorageDeadcross() {
     <WidgetCard title="존버 실패: 보관료 누적 vs 시세 차익 데드크로스" icon={Snowflake} iconColor="#f87171" pillar="S3" cardDesc="시세 펌핑 기대 vs 보관료 누적 임계점 — 8개월 데드크로스" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <ComposedChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="price_gain" name="스팟 시세 상승 예상분(%)" fill="var(--color-info)" />
+          <Bar dataKey="price_gain" name="스팟 시세 상승 예상분(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" />
           <Line type="monotone" dataKey="storage_cost" name="월간 누적 창고 보관료(%)" stroke="var(--color-danger)" strokeWidth={3} />
         </ComposedChart>
       }
@@ -88,12 +92,13 @@ export function Widget45_YieldLoss() {
     <WidgetCard title="물코기(Glazing) 수율 조작에 따른 손실 백테스트" icon={Droplets} iconColor="#06b6d4" pillar="S2" cardDesc="공급사별 실제 살코기 vs 얼음 코팅 비율 — 서류상 100톤 ≠ 실제" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical" stackOffset="expand">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="supplier" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="actual_meat" name="실제 살코기 수율(%)" stackId="a" fill="var(--color-success)" />
-          <Bar dataKey="ice_glaze" name="얼음물(글레이징) 마이너스" stackId="a" fill="var(--color-danger)" />
+          <Bar dataKey="actual_meat" name="실제 살코기 수율(%)" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
+          <Bar dataKey="ice_glaze" name="얼음물(글레이징) 마이너스" stackId="a" fill="url(#a11y-diag)" color="var(--color-danger)" />
         </BarChart>
       }
       takeaway={{ situation: '서류상 100톤 구매했으나 해동 시 얼음 코팅으로 15톤이 물로 사라지는 마법 — C&F 단가에 15% 가산 필수.', actionPlan: '[수분 뻥튀기] 공급사 인보이스에 \'순중량 100% 기준\' 조항 의무화 + 통관 시 해동 샘플링 무작위 검증.', source: SRC }}
@@ -126,11 +131,12 @@ export function Widget47_ChannelMarginTracker() {
     <WidgetCard title="B2B 식자재 타겟 영업 채널 조합 트래커" icon={Target} iconColor="#10b981" pillar="S4" cardDesc="채널별 영업이익률 vs 투입 물량 비중 — 골든 믹스 검증" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <ComposedChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="channel" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="margin" name="채널별 영업이익률(%)" fill="var(--color-success)" barSize={20} />
+          <Bar dataKey="margin" name="채널별 영업이익률(%)" fill="url(#a11y-stripe-h)" color="var(--color-success)" barSize={20} />
           <Scatter dataKey="volume_share" name="투입 물량 비중(%)" fill="var(--color-info)" />
         </ComposedChart>
       }
@@ -145,6 +151,7 @@ export function Widget48_OpPerDay() {
     <WidgetCard title="조업일 당 순수익 (OP per Sea-Day) 마일스톤" icon={AlertTriangle} iconColor="#f87171" pillar="S1" cardDesc="순항 vs 저조 조업 효율 비교 — 일 $35K 고정비 공중분해 모니터" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="target" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
@@ -163,6 +170,7 @@ export function Widget49_InventoryTurns() {
     <WidgetCard title="재고 회전율 악성 경보 지연" icon={RotateCw} iconColor="#6366f1" pillar="S2" cardDesc="SKU별 연간 회전율 — 2회전 미만은 손절매(Dumping) 트리거" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="items" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
@@ -181,6 +189,7 @@ export function Widget50_CashConversionCycle() {
     <WidgetCard title="B2B 거래처 현금 회수기일(DSO) 모니터링" icon={Coins} iconColor="#f87171" pillar="S4" cardDesc="거래처 등급별 매출 대금 회수 소요 일수 — 90일 초과 위험" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="client" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={120} />

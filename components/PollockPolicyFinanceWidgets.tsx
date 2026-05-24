@@ -3,6 +3,7 @@ import React from 'react';
 import { ComposedChart, AreaChart, Area, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Scatter, ReferenceLine } from 'recharts';
 import { ShieldAlert, Crosshair, FileCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // 8. HSK 병목 타격 지수
 const hskData = [
@@ -65,12 +66,13 @@ export function WidgetWarehouseSniping() {
       chartHeight={260}
       chart={
         <ComposedChart data={wareHouseData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
           <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={12} tickFormatter={(v)=>`${v}t`} domain={[0, 16000]} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} tickFormatter={(v)=>`₩${v}`} domain={[1500, 3000]} />
           <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)' }} />
-          <Bar yAxisId="left" dataKey="inventory" name="보세창고 재고량 (톤)" fill="#475569" opacity={0.7} />
+          <Bar yAxisId="left" dataKey="inventory" name="보세창고 재고량 (톤)" fill="url(#a11y-stripe-h)" color="#475569" opacity={0.7} />
           <Line yAxisId="right" type="monotone" dataKey="price" name="시장 평균 도매가" stroke="var(--color-success)" strokeWidth={3} />
           <Scatter yAxisId="right" dataKey="demandIndex" fill="var(--color-warning)" name="명절/금어기 타겟 수요 지수" />
           <ReferenceLine yAxisId="left" y={10000} stroke="#f43f5e" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '재고 보관료 마진 임계선', fill: '#f43f5e', fontSize: 10 }} />

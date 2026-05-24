@@ -3,6 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, ScatterChart, Scatter, ZAxis, Cell } from 'recharts';
 import { Globe2, Flame, Ship, Lock, Cpu, Network, Anchor, Factory, DollarSign, Leaf } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const SRC = 'FAO Capture Production + RFMO Records (2015-2023)';
 
@@ -39,6 +40,7 @@ export function Widget12_QuotaBurnRate() {
     <WidgetCard title="국가별/어장별 쿼터 소진 속도 (Burn Rate)" icon={Flame} iconColor="#f59e0b" pillar="S1" cardDesc="ITQ 쿼터 월별 소진율 — 조기 클로징 = 시세 폭등 트리거" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis domain={[0, 100]} stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t}%`} />
@@ -96,12 +98,13 @@ export function Widget15_TechVsCPUE() {
     <WidgetCard title="등선 마력(HP) 기술력 vs 단위어획량(CPUE)" icon={Cpu} iconColor="#8b5cf6" pillar="S1" cardDesc="조업 기술 자본 투입 대비 CPUE 효율 비교 — 5배 격차" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="name" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="cpue" name="하루 어획량 효율(CPUE)" fill="var(--color-success)" />
-          <Bar dataKey="hp" name="광원/마력 투입 자본" fill="#6366f1" />
+          <Bar dataKey="cpue" name="하루 어획량 효율(CPUE)" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
+          <Bar dataKey="hp" name="광원/마력 투입 자본" fill="url(#a11y-diag)" color="#6366f1" />
         </BarChart>
       }
       takeaway={{ situation: '동일 어장 내에서 C/P국이 집어등 마력·소나 탐지기로 CPUE 효율을 5배 격차로 벌림.', actionPlan: '[자본의 승리] 한국 선단의 집어등·소나 시스템을 차세대 LED+AI 어군탐지 패키지로 일괄 교체 CAPEX 결의.', source: SRC }}
@@ -115,11 +118,12 @@ export function Widget16_TradeFlows() {
     <WidgetCard title="무역 흐름(Flow) 블랙홀 경로" icon={Network} iconColor="#a78bfa" pillar="S4" cardDesc="전 세계 물량의 60%가 중국 Zhoushan/Shidao 경유 — 의존성 구조" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="dest" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="value" name="이동 물동량(천톤)" fill="#8b5cf6" />
+          <Bar dataKey="value" name="이동 물동량(천톤)" fill="url(#a11y-stripe-h)" color="#8b5cf6" />
         </BarChart>
       }
       takeaway={{ situation: '전 세계 물량의 60%가 중국 Zhoushan/Shidao 등을 거쳐야만 최종 상품(Tube/Ring)으로 전환 — 심각한 의존성.', actionPlan: '[병목 지점] 베트남·인도네시아에 자체 가공/물류 스포크 배치하여 중국 통제 리스크 우회.', source: SRC }}
@@ -153,13 +157,14 @@ export function Widget18_ProcessingBlackhole() {
     <WidgetCard title="글로벌 임가공 거점 이동 (블랙홀 현상)" icon={Factory} iconColor="#10b981" pillar="S2" cardDesc="중국 → 베트남·인도로 가공 거점 분산 — 인건비 상승 효과" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical" stackOffset="expand">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="Vietnam" stackId="a" fill="var(--color-success)" />
-          <Bar dataKey="India" stackId="a" fill="var(--color-warning)" />
-          <Bar dataKey="China" stackId="a" fill="var(--color-danger)" />
+          <Bar dataKey="Vietnam" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
+          <Bar dataKey="India" stackId="a" fill="url(#a11y-diag)" color="var(--color-warning)" />
+          <Bar dataKey="China" stackId="a" fill="url(#a11y-dots)" color="var(--color-danger)" />
         </BarChart>
       }
       takeaway={{ situation: '중국 인건비 상승으로 해체/절단 작업이 베트남·인도로 대거 아웃소싱 — 동남아가 새로운 가공 블랙홀.', actionPlan: '[거점 분산] 베트남 호치민/하이퐁 가공 OEM 파트너십을 확대하여 중국 가공 의존도 40% 이하 통제.', source: SRC }}
@@ -173,12 +178,13 @@ export function Widget19_SubsidiesVsDepletion() {
     <WidgetCard title="유류 보조금 vs 초과 남획 상관관계" icon={DollarSign} iconColor="#06b6d4" pillar="S1" cardDesc="국가 유류 보조금이 한계 어선을 바다에 잔류시켜 남획 가속" telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="subsidies" name="보조금 지수" fill="var(--color-info)" />
-          <Bar dataKey="depletionRate" name="어장 고갈 가속도" fill="var(--color-danger)" />
+          <Bar dataKey="subsidies" name="보조금 지수" fill="url(#a11y-stripe-h)" color="var(--color-info)" />
+          <Bar dataKey="depletionRate" name="어장 고갈 가속도" fill="url(#a11y-diag)" color="var(--color-danger)" />
         </BarChart>
       }
       takeaway={{ situation: '보조금을 가장 많이 투입하는 국가일수록 철수해야 할 한계 어선들이 바다에 남아 싹쓸이 남획 주도.', actionPlan: '[시장 교란] WTO 어업 보조금 협상 캠페인 동참 + 한국 자체 유류 보조금 ESG 연동 인센티브로 전환.', source: SRC }}

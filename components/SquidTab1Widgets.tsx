@@ -3,6 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Cell } from 'recharts';
 import { Thermometer, AlertOctagon, Flame, TrendingUp, Layers, Shield, ArrowUp, Recycle, ShieldAlert, Scale } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // 1. 글로벌 기후-어획량 상관관계 레이더
 export function Widget01_ClimateYieldRadar() {
@@ -27,12 +28,13 @@ export function Widget01_ClimateYieldRadar() {
       chartHeight={250}
       chart={
         <ComposedChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="#67e8f9" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
-          <Bar yAxisId="left" dataKey="catch" name="어획량 지수" fill="var(--color-danger)" fillOpacity={0.6} />
+          <Bar yAxisId="left" dataKey="catch" name="어획량 지수" fill="url(#a11y-stripe-h)" color="var(--color-danger)" fillOpacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="enso" name="ENSO(수온편차)" stroke="#67e8f9" strokeWidth={3} />
         </ComposedChart>
       }
@@ -102,6 +104,7 @@ export function Widget03_SSTAnomaly() {
       chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[0, 2.5]} />
           <YAxis dataKey="area" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={120} />
@@ -143,11 +146,12 @@ export function Widget04_ProteinGrowth() {
       chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="protein" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
-          <Bar dataKey="growth" name="연평균 수요 성장률(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="growth" name="연평균 수요 성장률(%)" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{
@@ -215,12 +219,13 @@ export function Widget06_MPAExpansion() {
       chartHeight={250}
       chart={
         <BarChart data={data} stackOffset="expand">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(tick) => `${tick * 100}%`} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="mpa" name="보호구역(조업금지)" stackId="a" fill="var(--color-success)" />
-          <Bar dataKey="fishingZone" name="합법 조업구역" stackId="a" fill="var(--color-info)" fillOpacity={0.6} />
+          <Bar dataKey="mpa" name="보호구역(조업금지)" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-success)" />
+          <Bar dataKey="fishingZone" name="합법 조업구역" stackId="a" fill="url(#a11y-diag)" color="var(--color-info)" fillOpacity={0.6} />
         </BarChart>
       }
       takeaway={{
@@ -322,11 +327,12 @@ export function Widget09_IUURadar() {
       chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="country" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="violations" name="AIS 이탈/침범 횟수" fill="#f43f5e" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="violations" name="AIS 이탈/침범 횟수" fill="url(#a11y-stripe-h)" color="#f43f5e" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
       takeaway={{

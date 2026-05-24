@@ -4,6 +4,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 import { processedTimeline, top10Processed, processingRatio } from './ShrimpDataHelper';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // W41: ProcTimeline
 export const W41_ProcTimeline = () => (
@@ -25,11 +26,12 @@ export const W42_ProcTop10 = () => (
   <WidgetCard title="공장제 가공 파워보드 Top 10" icon={Cog} term="Processing Top" desc="공장 설비로 마진을 쥐어짜는 핵심국가 리스트" source="FAO Processed by Country" situation="동남아시아 3국(태국, 베트남, 인니)의 저임금-고숙련(Low-cost, High-skilled) 노동 집약 클러스터가 글로벌 수작업 탈각(Peeling) 프로세싱 밸류체인을 완벽히 초토화 및 독식했습니다." actionPlan="[Cross-Border M&A Strategy] 한국의 살인적 포장 인건비(Labor Cost)로는 영업이익(OPM) 방어가 불가능합니다. 베트남 및 인니의 GMP/HACCP 인증을 기보유한 한계 기업(Distressed Assets)을 헐값에 공격적 인수합병(Bolt-on M&A)하여 아시아 전진 가공 기지(Processing Hub)로 즉시 재편.">
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Processed} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={80} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -40,11 +42,12 @@ export const W43_ProcRatio = () => (
   <WidgetCard title="단순 채취 vs 공장 세탁 비율(Ratio)" icon={DivideSquare} term="Process/Prod Ratio" desc="원물 생산량 대비 가공 처리량 랭킹" source="FAO Derived Ratio Index" situation="막대한 1차 양식 원물을 쏟아내는 중국/인도와 대조적으로, 선진국(유럽/한국)은 수입 원물을 기반으로 하이엔드 2차 가공(Value-Add Processing) 마진을 수취하는 전형적인 '부가가치 조립 국가(Assembly Model)' 궤적을 밟고 있습니다." actionPlan="[Fabless Food-Tech Paradigm] 새우 비즈니스를 반도체 팹리스(Fabless) 모델로 격상시키십시오. 에콰도르/인도의 거대 양식장(Foundry)에서 아웃소싱 생산된 1차 원물을 수입하여, 국내 하이엔드 로컬 프리미엄 브랜딩(IP) 및 패키징 기법을 결합하는 '고도화 설계/마케팅' 역량에 전사 자원을 올인.">
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={processingRatio.slice(0, 5)} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="ratio" name="가공/원물 투입비율" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="ratio" name="가공/원물 투입비율" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[4, 4, 0, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -55,11 +58,12 @@ export const W44_VertIntegration = () => (
   <WidgetCard title="글로벌 벨류체인 수직계열화(Vertical) 독주" icon={Layers} term="Vertical Integration" desc="양식부터 라스트마일까지 체인 장악력" source="FAO Data Processed" situation="태국 CP Foods 등 글로벌 메가 트레이더들이 종자(Hatchery)-사료(Feed)-스마트양식-가공-무역-B2C 리테일까지 SCM 전 구간을 수직 계열화(Vertical Integration)하여 생태계를 완전 장악했습니다." actionPlan="[Defensive Triad Execution] 파편화된 국내 중소 유통망으로는 글로벌 거대 자본의 덤핑 공세(Margin Squeeze)를 방어할 수 없습니다. 신라교역 그룹 차원에서 최소한 [가공 플랜트 - 글로벌 무역 데스크 - 초대형 콜드체인(Cold Chain)]의 3각 코어 인프라를 직영 100% 수직 계열화하여 구조적 해자(Moat)를 구축.">
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={processingRatio.slice(0, 5)} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="production" name="양식장 생산파워" fill="#64748b" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="production" name="양식장 생산파워" fill="url(#a11y-stripe-h)" color="#64748b" radius={[4, 4, 0, 0]} />
         <Line dataKey="processed" name="스마트팩토리 처리량" stroke="var(--color-success)" strokeWidth={3} dot={{r:4}} />
       </ComposedChart>
     </SafeResponsiveContainer>
@@ -92,13 +96,14 @@ export const W46_ClimateImpact = () => {
     <WidgetCard title="엘니뇨(El Nino) 기후 재난 방정식" icon={Target} term="Climate Risk" desc="수온 상승 지수에 반비례하는 물동량 타격" source="NOAA MEI Index & FAO overlay" situation="슈퍼 엘니뇨(El Niño) 발현으로 적도 해수면 온도(SST)가 1.5도 상승할 시, 페루 어분(Fishmeal) 매입원가 폭등 및 양식장 용존 산소량(DO) 붕괴로 인한 대규모 집단 폐사(Mass Mortality) 사태가 필연적으로 발생합니다." actionPlan="[Algorithmic Climate Hedging] 트레이딩 데스크의 퀀트 지표에 엘니뇨(ENSO) 기상 인디케이터를 최우선 가중치로 연동(Integration)하십시오. 임계치 도달 시, 무관세 혜택을 포기하더라도 즉시 대서양/인도양 등 비(非)태평양 영향권의 대체 물량으로 자동 롤오버(Auto-Rollover)하는 헷징 매뉴얼을 발동해야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
           <XAxis dataKey="y" stroke="#94a3b8" fontSize={11} />
           <YAxis yAxisId="L" stroke="var(--color-danger)" fontSize={11} domain={[24, 27]} />
           <YAxis yAxisId="R" orientation="right" stroke="var(--color-info)" fontSize={11} domain={[60, 140]} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Line yAxisId="L" type="monotone" dataKey="t" name="적도 수온(C)" stroke="var(--color-danger)" strokeWidth={3} />
-          <Bar yAxisId="R" dataKey="v" name="양식 출하량" fill="var(--color-info)" opacity={0.6} radius={[4,4,0,0]} />
+          <Bar yAxisId="R" dataKey="v" name="양식 출하량" fill="url(#a11y-stripe-h)" color="var(--color-info)" opacity={0.6} radius={[4,4,0,0]} />
         </ComposedChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -139,13 +144,14 @@ export const W48_ProcHubROI = () => {
     <WidgetCard title="자동화 프로세싱 허브(Hub) 셋업 ROI" icon={Anchor} term="Hub ROI" desc="투자비 대비 회수 마진율" source="공단 입주 비용 시뮬레이션 기반(추정)" situation="수작업 집약도가 극단적으로 높은 새우 탈각(Peeling)/가공 공정을 최고 수준의 최저임금을 자랑하는 한국 본토에서 수행할 경우, 영업이익(OPM)이 즉시 마이너스로 전환되며 12개월 내 자본 잠식(Default) 리스크에 직면합니다." actionPlan="[JV & Tech-Driven QA Hub] 동남아 핵심 파트너사에 소수 지분(Minority Equity) 투자를 단행하여 현지 노동집약 가공 라인을 사실상 직영 통제(Control) 하십시오. 반면 국내에는 AI 비전 스캐닝(Vision Sorter) 기반의 무인화 클린룸 및 최종 QC 패키징 센터만 운용하는 극단적 투트랙(Two-track) 효율화 모델을 셋업해야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} />
           <YAxis dataKey="name" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Bar dataKey="cost" name="초기 투하(Capex)" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
-          <Bar dataKey="roi" name="연환산 ROI(%)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="cost" name="초기 투하(Capex)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="roi" name="연환산 ROI(%)" fill="url(#a11y-diag)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>
@@ -159,11 +165,12 @@ export const W49_ValueChainFlow = () => {
     <WidgetCard title="엔드-투-엔드(E2E) 이윤 귀속 분해도" icon={BarChart2} term="Margin Flow" desc="가치사슬에서 누가 돈을 쓸어가는가" source="Value Chain Matrix Analysis" situation="서플라이 체인의 최하단인 현지 양식업자(Farmer)의 이익 귀속률은 전체 밸류체인의 15% 미만에 불과하며, 핵심 초과 이익(Alpha Margin)은 100% 중간 가공(Processing) 및 라스트마일 유통(Retail) 파트에 집중되는 구조적 비대칭(Asymmetry)이 고착화되었습니다." actionPlan="[Vertical Margin Capture] 이윤 배분의 멱법칙(Power Law)을 활용하십시오. 고마진 2차 가공(Processing) 라인을 자사 캐시카우 코어로 즉각 내부화하고, B2C 최종 소매 콜드체인 터미널에 당사 독자 브랜드(Private Brand) IP를 강력하게 꽂아 넣어 라스트마일 마진을 독식해야 합니다.">
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v=>`${v}%`} />
           <YAxis dataKey="step" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
-          <Bar dataKey="v" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
+          <Bar dataKey="v" fill="url(#a11y-stripe-h)" color="#8b5cf6" radius={[0, 4, 4, 0]} />
         </BarChart>
       </SafeResponsiveContainer>
     </WidgetCard>

@@ -3,6 +3,7 @@ import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, Cartesia
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, TrendingUp, Anchor, ShieldCheck, Ship, DollarSign, Database, Rocket, AlertTriangle, Crosshair, BarChart2, Activity, Zap } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export function Widget9_FilletRatio() {
   const [data, setData] = useState([]);
@@ -128,6 +129,7 @@ export function Widget12_RoePremium() {
         <div style={{ height: 280 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20 }}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} interval={0} angle={0} textAnchor="middle" tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}단가`} tickMargin={10} />

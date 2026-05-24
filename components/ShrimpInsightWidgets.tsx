@@ -4,6 +4,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Zap, Info, AlertCircle, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TakeawayBox from './TakeawayBox';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const DATA_URL = '/data/shrimp_real_data_v2.json';
 const COLORS = ['var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6', '#ec4899', '#14b8a6', '#0ea5e9'];
@@ -162,13 +163,14 @@ export default function ShrimpInsightWidgets() {
       ChartComponent = (
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={w.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} layout="vertical">
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
             <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
             <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} />
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             {w.series.map((s: any, idx: number) => (
-               <Bar key={idx} dataKey={s.dataKey} fill={s.color} radius={[0, 4, 4, 0]} />
+               <Bar key={idx} dataKey={s.dataKey} fill="url(#a11y-stripe-h)" color={s.color} radius={[0, 4, 4, 0]} />
             ))}
           </BarChart>
         </SafeResponsiveContainer>

@@ -3,6 +3,7 @@ import React from 'react';
 import { ComposedChart, AreaChart, Area, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ScatterChart, Scatter } from 'recharts';
 import { TrendingUp, AlertTriangle, Ship, Thermometer, ShieldAlert, Crosshair, Globe } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // 1. TAC 갭 트래커 Data
 const tacData = [
@@ -25,14 +26,15 @@ export const WidgetTACGapTracker = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={tacData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
         <YAxis yAxisId="left" stroke="#94a3b8" fontSize={12} tickFormatter={(v) => `${v}만t`} />
         <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={12} tickFormatter={(v) => `$${v}`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '12px' }} />
-        <Bar yAxisId="left" dataKey="rusTac" name="러시아 TAC (만 톤)" fill="var(--color-info)" opacity={0.7} stackId="a" />
-        <Bar yAxisId="left" dataKey="usaTac" name="미국 베링해 TAC (만 톤)" fill="#64748b" opacity={0.7} stackId="a" />
+        <Bar yAxisId="left" dataKey="rusTac" name="러시아 TAC (만 톤)" fill="url(#a11y-stripe-h)" color="var(--color-info)" opacity={0.7} stackId="a" />
+        <Bar yAxisId="left" dataKey="usaTac" name="미국 베링해 TAC (만 톤)" fill="url(#a11y-diag)" color="#64748b" opacity={0.7} stackId="a" />
         <Line yAxisId="right" type="stepAfter" dataKey="priceSpot" name="스팟 시세 지표 ($/톤)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
     }
@@ -99,6 +101,7 @@ export const WidgetBunkerArbitrage = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={bunkerData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
         <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={12} domain={[600, 1000]} tickFormatter={(v)=>(v===1000)?'Max':v} />
@@ -143,6 +146,7 @@ export const WidgetBeringSeaMigration = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={migrationData} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
         <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={12} domain={[0, 250]} tickFormatter={(v)=>`${v}km`} />
@@ -181,14 +185,15 @@ export const WidgetTariffWarImpact = () => (
     chartHeight={260}
     chart={
       <BarChart data={dataTariffWargame} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} barSize={30}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="region" stroke="#94a3b8" fontSize={12} />
         <YAxis tickFormatter={(v)=>`$${v}`} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="base" name="기본 원가 ($)" stackId="a" fill="var(--color-info)" radius={[0, 0, 4, 4]} />
-        <Bar dataKey="tariff" name="관세 할증 ($)" stackId="a" fill="var(--color-danger)" />
-        <Bar dataKey="detour" name="우회 물류비 ($)" stackId="a" fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="base" name="기본 원가 ($)" stackId="a" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[0, 0, 4, 4]} />
+        <Bar dataKey="tariff" name="관세 할증 ($)" stackId="a" fill="url(#a11y-diag)" color="var(--color-danger)" />
+        <Bar dataKey="detour" name="우회 물류비 ($)" stackId="a" fill="url(#a11y-dots)" color="var(--color-warning)" radius={[4, 4, 0, 0]} />
       </BarChart>
     }
     takeaway={{
@@ -218,6 +223,7 @@ export const WidgetIUUShadowIndex = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={dataIUUIndex} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
         <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 350]} tickFormatter={(v)=>`${v}만톤`} />
@@ -255,6 +261,7 @@ export const WidgetElNinoImpact = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={dataElNino} margin={{ top: 10, right: 20, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} />
         <YAxis yAxisId="left" stroke="#f97316" fontSize={11} domain={[-2, 3]} tickFormatter={(v)=>`${v}℃`} />
@@ -262,7 +269,7 @@ export const WidgetElNinoImpact = () => (
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
         <Line yAxisId="left" type="monotone" dataKey="enso" name="엘니뇨 강도 (SST 편차)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} />
-        <Bar yAxisId="right" dataKey="catchDiff" name="어획량 증감 추이 (%)" fill="var(--color-danger)" radius={[4,4,0,0]} barSize={20} />
+        <Bar yAxisId="right" dataKey="catchDiff" name="어획량 증감 추이 (%)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4,4,0,0]} barSize={20} />
       </ComposedChart>
     }
     takeaway={{
@@ -292,12 +299,13 @@ export const WidgetCBPDetentionRisk = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={dataCbp} layout="vertical" margin={{ top: 10, right: 20, left: 20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} />
         <YAxis dataKey="region" type="category" stroke="#94a3b8" fontSize={11} width={80} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar dataKey="riskCases" name="세관 보류(WRO) 적발 건수" fill="var(--color-danger)" barSize={15} radius={[0,4,4,0]} />
+        <Bar dataKey="riskCases" name="세관 보류(WRO) 적발 건수" fill="url(#a11y-stripe-h)" color="var(--color-danger)" barSize={15} radius={[0,4,4,0]} />
         <Line dataKey="freezeProb" name="조사 시 자산 동결 확률(%)" stroke="#f87171" strokeWidth={2} dot={{ r: 4 }} />
       </ComposedChart>
     }
@@ -364,6 +372,7 @@ export const WidgetFoodSecurityPremium = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={dataFoodPremium} margin={{ top: 10, right: 20, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
         <YAxis yAxisId="left" stroke="var(--color-success)" fontSize={11} domain={[100, 160]} tickFormatter={(v)=>v.toString()} />
@@ -401,13 +410,14 @@ export const WidgetPortCongestion = () => (
     chartHeight={260}
     chart={
       <ComposedChart data={dataPort} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="port" stroke="#94a3b8" fontSize={12} />
         <YAxis yAxisId="left" stroke="#ec4899" fontSize={11} domain={[0, 30]} tickFormatter={(v)=>`${v}일`} />
         <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" fontSize={11} domain={[0, 6000]} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar yAxisId="left" dataKey="waitDays" name="외항 체선 대기일(Days)" fill="#ec4899" radius={[4,4,0,0]} barSize={20} />
+        <Bar yAxisId="left" dataKey="waitDays" name="외항 체선 대기일(Days)" fill="url(#a11y-stripe-h)" color="#ec4899" radius={[4,4,0,0]} barSize={20} />
         <Line yAxisId="right" type="monotone" dataKey="backlog" name="컨테이너 적체(Backlog TEU)" stroke="#f472b6" strokeWidth={2} dot={{ r: 4 }} />
       </ComposedChart>
     }

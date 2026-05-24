@@ -3,6 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Cell } from 'recharts';
 import { AlertTriangle, GitMerge, Trophy, Clock, Warehouse, Stamp, Crown, Skull, BarChart2, Layers } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const SRC = 'KMI + KAMIS + 관세청 수입통계 (2010-2023)';
 
@@ -31,6 +32,7 @@ export function Widget22_ImportHHI() {
     <WidgetCard title="원산지 다변화 허핀달-허쉬만 지수(HHI)" icon={GitMerge} iconColor="#10b981" pillar="S3" cardDesc="수입 집중도 HHI — 3000 이상 위험, 1800 안정" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis domain={[0, 5000]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
@@ -68,11 +70,12 @@ export function Widget24_LeadTime() {
     <WidgetCard title="거점별 냉동 컨테이너 리드타임 편차" icon={Clock} iconColor="#8b5cf6" pillar="S3" cardDesc="원산지별 평균 입고 소요 일수 — Cash Flow 빙하기 모니터" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="origin" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="avg" name="평균 소요 일수(Days)" fill="#8b5cf6" />
+          <Bar dataKey="avg" name="평균 소요 일수(Days)" fill="url(#a11y-stripe-h)" color="#8b5cf6" />
         </BarChart>
       }
       takeaway={{ situation: '남미(아르헨티나) 원물 계약금 지불 후 실제 창고 입고까지 최장 70일 자금 경색(Cash Lock) 구간 발생.', actionPlan: '[Cash Flow 빙하기] 남미 직수입 비중을 60% 이하로 통제하고, 중국·베트남 가공품 직납 비율을 40% 이상 유지.', source: SRC }}
@@ -86,11 +89,12 @@ export function Widget25_WarehouseGap() {
     <WidgetCard title="콜드체인 창고 체화량 vs 실제 소비 갭" icon={Warehouse} iconColor="#fcd34d" pillar="S3" cardDesc="조업 성수기 입고 vs 소비 출고 갭 — 가격 상승 기대 \'눈치 게임\'" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <ComposedChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="입고량" fill="var(--color-info)" fillOpacity={0.6} />
+          <Bar dataKey="입고량" fill="url(#a11y-stripe-h)" color="var(--color-info)" fillOpacity={0.6} />
           <Line type="monotone" dataKey="출고소비" stroke="#fcd34d" strokeWidth={3} />
         </ComposedChart>
       }
@@ -105,11 +109,12 @@ export function Widget26_CustomsDelay() {
     <WidgetCard title="식약처 통관 비관세 장벽 딜레이 리스크" icon={Stamp} iconColor="#f87171" pillar="S3" cardDesc="검사 사유별 추가 통관 지연 일수 — 지체료 폭탄 트리거" telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="cause" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={110} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="days" name="추가 통관 지연(일)" fill="var(--color-danger)" />
+          <Bar dataKey="days" name="추가 통관 지연(일)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" />
         </BarChart>
       }
       takeaway={{ situation: '정밀 검사 대상 지정 시 부두 창고에서 최대 15일 대기. 지체료(Demurrage) 폭탄이 영업이익률 1%P 하락.', actionPlan: '[보이지 않는 장벽] 페루산 중금속 사전 검사 인증서를 자체 발급, 한국 식약처 사전 알림 시스템으로 검사 지정을 회피.', source: SRC }}
@@ -123,11 +128,12 @@ export function Widget27_VendorDominance() {
     <WidgetCard title="상위 수입사(B2B Vendor) 카르텔 지배력" icon={Crown} iconColor="#6366f1" pillar="S4" cardDesc="국내 4대 수입상 시장 점유율 — 대기업 3사가 70% 통제" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="vendor" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="share" name="시장 점유율(%)" fill="#6366f1" />
+          <Bar dataKey="share" name="시장 점유율(%)" fill="url(#a11y-stripe-h)" color="#6366f1" />
         </BarChart>
       }
       takeaway={{ situation: '가격 급등·통관 리스크로 중소 개미 수입상이 멸종, 상위 대기업 3사가 시장 물량의 70% 통제.', actionPlan: '[자본의 독식] 신라교역 18% 점유율을 25%까지 확대하고, 카르텔 가격 협의 트랙을 통해 마진 락인.', source: SRC }}
@@ -179,13 +185,14 @@ export function Widget30_ChannelMix() {
     <WidgetCard title="엔드유저 유통 채널(Channel Mix) 이탈" icon={Layers} iconColor="#06b6d4" pillar="S4" cardDesc="대형마트 원물 vs B2B 가공 vs 온라인 HMR — 가공품 지배 시대" telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical" stackOffset="expand">
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
-          <Bar dataKey="b2c_mart" stackId="a" name="전통/대형마트 원물" fill="#06b6d4" />
-          <Bar dataKey="b2b_franchise" stackId="a" name="외식/반찬 B2B 가공품" fill="var(--color-warning)" />
-          <Bar dataKey="online" stackId="a" name="밀키트 등 HMR" fill="var(--color-info)" />
+          <Bar dataKey="b2c_mart" stackId="a" name="전통/대형마트 원물" fill="url(#a11y-stripe-h)" color="#06b6d4" />
+          <Bar dataKey="b2b_franchise" stackId="a" name="외식/반찬 B2B 가공품" fill="url(#a11y-diag)" color="var(--color-warning)" />
+          <Bar dataKey="online" stackId="a" name="밀키트 등 HMR" fill="url(#a11y-dots)" color="var(--color-info)" />
         </BarChart>
       }
       takeaway={{ situation: '원물을 사서 요리하는 오프라인 주부 수요가 증발하고, 공장 가공 거친 냉동 링/비닐팩 밀키트 형태가 장악.', actionPlan: '[가공품 지배] B2B 가공·HMR 비중을 75% 이상으로 확대, 대형마트 원물 SKU는 50% 축소.', source: SRC }}

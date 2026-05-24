@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Package } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import portfolioData from '../data/squid_import_portfolio.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CATS = [
   { key: '냉동', color: 'var(--color-info)', label: '냉동 오징어' },
@@ -67,13 +68,14 @@ export default function SquidImportPortfolio() {
       chartHeight={380}
       chart={
         <BarChart data={portfolioData} margin={{ top: 10, right: 20, left: 20, bottom: 20 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}K`} />
           <Tooltip content={<PortfolioTooltip />} />
           <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '11px' }} iconType="square" />
           {CATS.map(cat => (
-            <Bar key={cat.key} dataKey={cat.key} name={cat.label} stackId="portfolio" fill={cat.color} fillOpacity={0.85} />
+            <Bar key={cat.key} dataKey={cat.key} name={cat.label} stackId="portfolio" fill="url(#a11y-stripe-h)" color={cat.color} fillOpacity={0.85} />
           ))}
         </BarChart>
       }

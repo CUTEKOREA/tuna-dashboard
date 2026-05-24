@@ -4,6 +4,7 @@ import { ThermometerSun } from 'lucide-react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_climate_radar.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SquidClimateRadar() {
   return (
@@ -17,6 +18,7 @@ export default function SquidClimateRadar() {
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="colorSST" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.8} />

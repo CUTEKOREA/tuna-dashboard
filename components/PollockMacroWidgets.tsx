@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, ScatterChart, Scatter, ZAxis, Cell, PieChart, Pie, Treemap } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { Globe, TrendingUp, Anchor, ShieldCheck, Ship, DollarSign, Database, Rocket, AlertTriangle, Crosshair, BarChart2, Activity, Zap } from 'lucide-react';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export function Widget1_GlobalCatch() {
   const [data, setData] = useState([]);
@@ -76,12 +77,13 @@ export function Widget3_USARussiaDiverging() {
       cardDesc="기후 악화로 인한 알래스카 쿼터 급감과 러시아의 무분별 조업 간 이격 확대"
       chart={
 <BarChart data={data}>
+  <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-            <Bar dataKey="미국_증감" fill="var(--color-info)" radius={[4,4,0,0]} />
-            <Bar dataKey="러시아_증감" fill="var(--color-danger)" radius={[4,4,0,0]} />
+            <Bar dataKey="미국_증감" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[4,4,0,0]} />
+            <Bar dataKey="러시아_증감" fill="url(#a11y-diag)" color="var(--color-danger)" radius={[4,4,0,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
           </BarChart>
       }

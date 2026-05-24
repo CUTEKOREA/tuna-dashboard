@@ -7,6 +7,7 @@ import {
 } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { Globe, ShieldCheck, Flag, TrendingUp, Navigation } from 'lucide-react';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const countryMap: Record<string, string> = {
   'China': '중국',
@@ -123,7 +124,8 @@ export default function PollockDraftInsights() {
         cardDesc="국산 원양/연근해산 고갈 현상 및 100%에 달하는 수입 의존도 교차점 투영"
         termTooltip={{ term: "Self-Sufficiency vs Import", description: "국산 원양/연근해산 고갈 현상 및 100%에 달하는 수입 의존도 교차점 투영" }}
         chart={
-<ComposedChart data={koreaCrisis.filter(d=>d.year>=1990)} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+<ComposedChart data={koreaCrisis.filter(d=>
+  <ChartPatternDefs />d.year>=1990)} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                 <XAxis dataKey="year" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
@@ -132,7 +134,7 @@ export default function PollockDraftInsights() {
                   formatter={(value: any) => [`${(Number(value)/1000).toFixed(1)}k tons`, '']}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
-                <Bar dataKey="import" name="수입량 (Import)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="import" name="수입량 (Import)" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[4, 4, 0, 0]} />
                 <Line type="monotone" dataKey="catch" name="자체 어획량 (Catch)" stroke="var(--color-success)" strokeWidth={3} dot={false} />
               </ComposedChart>
         }
@@ -183,6 +185,7 @@ export default function PollockDraftInsights() {
         termTooltip={{ term: "Spread Winners", description: "수입 단가 대비 수출 단가의 차액을 극대화하여 2차 가공 이윤을 창출하는 승자 목록" }}
         chart={
 <BarChart data={spread} layout="vertical" margin={{ top: 20, right: 30, left: 60, bottom: 5 }}>
+  <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
                 <XAxis type="number" tickFormatter={(v) => `$${v}`} stroke="#94a3b8" />
                 <YAxis dataKey="country" type="category" stroke="#94a3b8" width={80} />
@@ -191,8 +194,8 @@ export default function PollockDraftInsights() {
                   formatter={(value: any, name: any) => [`$${Number(value).toFixed(2)}/ton`, name === 'spread' ? '마진 차액(Spread)' : (name === 'import_price' ? '수입원가' : '수출원가')]}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
-                <Bar dataKey="import_price" stackId="a" name="수입원가" fill="#64748b" />
-                <Bar dataKey="spread" stackId="a" name="부가가치 (Spread)" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="import_price" stackId="a" name="수입원가" fill="url(#a11y-stripe-h)" color="#64748b" />
+                <Bar dataKey="spread" stackId="a" name="부가가치 (Spread)" fill="url(#a11y-diag)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
               </BarChart>
         }
         takeaway={{

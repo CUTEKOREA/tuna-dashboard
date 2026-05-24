@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, ScatterChart, Scatter, ZAxis, Cell, PieChart, Pie, Treemap } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { Globe, TrendingUp, Anchor, ShieldCheck, Ship, DollarSign, Database, Rocket, AlertTriangle, Crosshair, BarChart2, Activity, Zap } from 'lucide-react';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export function Widget17_OilMargin() {
   const [data, setData] = useState([]);
@@ -16,11 +17,12 @@ export function Widget17_OilMargin() {
       cardDesc="연료비가 전체 어선의 마진 단가를 초과 잠식시켜버리는 회계 자본 잠식회사 곡선"
       chart={
 <ComposedChart data={data}>
+  <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={9} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
             <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-            <Bar dataKey="추정_영업이익" fill="var(--color-success)" name="척당 월 추정 이익(초과 시 손실 폭주)" radius={[4,4,0,0]} />
+            <Bar dataKey="추정_영업이익" fill="url(#a11y-stripe-h)" color="var(--color-success)" name="척당 월 추정 이익(초과 시 손실 폭주)" radius={[4,4,0,0]} />
             <Line type="monotone" dataKey="MGO_유가" stroke="var(--color-danger)" strokeWidth={3} name="국제 선박 화물유가(MGO)" dot={{r:3}} />
             <Line type="monotone" dataKey="어획_단가" stroke="var(--color-info)" strokeWidth={2} name="현행 스팟 도매가 형성선" dot={false} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -80,12 +82,13 @@ export function Widget19_CollagenSpinoff() {
       cardDesc="수산 폐기물 쓰레기로 버려지던 명태 어피(껍질)의 영업 이익 하드 펌핑 신화"
       chart={
 <BarChart data={data}>
+  <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="sector" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
             <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-            <Bar dataKey="매출비중" fill="#cbd5e1" name="그룹 전사 매출 점유(Volume)" radius={[4,4,0,0]} />
-            <Bar dataKey="이익기여도" fill="#8b5cf6" name="영업 순수익 현금 캐리 포션" radius={[4,4,0,0]} />
+            <Bar dataKey="매출비중" fill="url(#a11y-stripe-h)" color="#cbd5e1" name="그룹 전사 매출 점유(Volume)" radius={[4,4,0,0]} />
+            <Bar dataKey="이익기여도" fill="url(#a11y-diag)" color="#8b5cf6" name="영업 순수익 현금 캐리 포션" radius={[4,4,0,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
           </BarChart>
       }

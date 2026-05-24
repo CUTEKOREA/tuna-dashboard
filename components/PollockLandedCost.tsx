@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { DollarSign, ArrowRight } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 /**
  * 명태 착지원가 실시간 시뮬레이터
@@ -76,11 +77,12 @@ export function PollockLandedCostWaterfall() {
               </div>
               <SafeResponsiveContainer width="100%" height={180}>
                 <BarChart data={chartData}>
+                  <ChartPatternDefs />
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
                   <XAxis dataKey="name" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
                   <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="₩" />
                   <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} formatter={(v: any) => `₩${v}/kg`} />
-                  <Bar dataKey="cost" fill={routes.find(r => r.key === activeRoute)?.color || '#22c55e'} radius={[4, 4, 0, 0]} fillOpacity={0.8} />
+                  <Bar dataKey="cost" fill="url(#a11y-stripe-h)" color={routes.find(r => r.key === activeRoute)?.color || '#22c55e'} radius={[4, 4, 0, 0]} fillOpacity={0.8} />
                 </BarChart>
               </SafeResponsiveContainer>
               <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '8px' }}>
@@ -152,13 +154,14 @@ export function PollockRouteComparison() {
           <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>📊 환율별 착지원가 변동 (₩/kg)</div>
           <SafeResponsiveContainer width="100%" height={150}>
             <BarChart data={fxData} barGap={1}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
               <XAxis dataKey="fx" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.7rem' }} formatter={(v: any) => `₩${v}`} />
-              <Bar dataKey="russia_krw" fill="#ef4444" name="러시아" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
-              <Bar dataKey="china_krw" fill="#f59e0b" name="중국" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
-              <Bar dataKey="us_krw" fill="#3b82f6" name="미국 MSC" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
+              <Bar dataKey="russia_krw" fill="url(#a11y-stripe-h)" color="#ef4444" name="러시아" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
+              <Bar dataKey="china_krw" fill="url(#a11y-diag)" color="#f59e0b" name="중국" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
+              <Bar dataKey="us_krw" fill="url(#a11y-dots)" color="#3b82f6" name="미국 MSC" radius={[3, 3, 0, 0]} fillOpacity={0.7} />
             </BarChart>
           </SafeResponsiveContainer>
         </>

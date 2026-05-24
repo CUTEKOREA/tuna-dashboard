@@ -4,6 +4,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 import { megatrendData, capVsAquaData, aquaValueTimeline, aquaShareData, top10Prod, top10Aqua, top10Cap, top10AquaVal, captureCeiling, hhi } from './ShrimpDataHelper';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // W01: Megatrend
 export const W01_Megatrend = () => (
@@ -25,6 +26,7 @@ export const W02_CapVsAqua = () => (
   <WidgetCard title="어획(Capture) vs 양식(Aqua) 크로스오버" icon={Layers} term="Cap vs Aqua" desc="생산 방식별 교차점" source="FAO FishStatJ - Species Group by Timeline" situation="2000년대 초반을 기점으로 양식 생산량이 자연산 어획량을 영구적으로 초월(Structural Golden-Cross)하며, 공급 주도권이 해양 선단에서 육상 플랜트로 완전히 이전되었습니다." actionPlan="[CAPEX Reallocation] 기존 원양어선 선단에 대한 신규 투자를 전면 보류(Hold)하십시오. 가용 유동성(Liquidity)을 양식 인프라 펀드(Infrastructure Fund) 및 최첨단 육상 가공 플랜트(Processing Plant) 확보에 전면 재배치(Reallocation)해야 합니다.">
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={capVsAquaData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(0)}M`} />
@@ -57,6 +59,7 @@ export const W04_AquaShare = () => (
   <WidgetCard title="양식 침투율(Aquaculture Share)" icon={TrendingUp} term="Aqua Penetration" desc="전체 생산 중 양식이 차지하는 비중" source="FAO FishStatJ - Timeline Analysis" situation="글로벌 새우 공급망의 65% 이상이 양식업 베이스로 완전히 재편(Market Penetration)되며, 양식 매입원가 경쟁력이 시장의 표준(Standard)으로 자리 잡았습니다." actionPlan="[Two-Track SCM Strategy] 포트폴리오를 철저히 이원화(Two-track)하십시오. 자연산은 최고가 파인다이닝향 니치 마켓(Niche Market) 전용으로 격리하고, 볼륨을 책임지는 B2B 프랜차이즈 체인은 100% 매입원가 통제가 가능한 양식 기반 SCM으로 전면 개편(Restructuring)해야 생존 가능합니다. (Re-rating Expected)">
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={aquaShareData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} domain={[0, 100]} />
@@ -73,11 +76,12 @@ export const W05_Top10Prod = () => (
   <WidgetCard title="글로벌 생산 Top 10 국가" icon={Globe} term="Top Production" desc="최근 국가별 총생산량" source="FAO FishStatJ - Recent Production by Country" situation="중국, 인도, 에콰도르 3개국이 글로벌 양식 생산 물량의 절대다수를 통제하며, 사실상의 시장 독과점(Oligopoly/Triopoly) 헤게모니를 완벽하게 구축했습니다." actionPlan="[Macro Risk Monitoring] 이 3대 메이저 국가의 기후변화(El Nino) 및 생물학적 리스크가 당사 영업이익(OPM)의 치명적 변수로 작용합니다. C/I/E(China/India/Ecuador) 벨트에 대한 퀀트 기반 실시간 리스크 모니터링 데스크를 즉각 신설.">
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Prod} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="var(--color-success)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-success)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -88,11 +92,12 @@ export const W06_Top10Aqua = () => (
   <WidgetCard title="글로벌 양식업 Top 10 기지" icon={Factory} term="Top Aqua Base" desc="양식업 집중 육성 국가 순위" source="FAO FishStatJ - Aquaculture by Country" situation="양식업의 구조적 주도권이 광활한 토지와 값싼 자본이 집약된 아시아 및 에콰도르(LATAM) 지역으로 극단적 쏠림(Geopolitical Concentration) 현상을 보이고 있습니다." actionPlan="[FDI & Joint Venture Strategy] 무의미한 제3국 투자를 배제하십시오. 원물 소싱 캐파(CAPA)가 보장되는 인도 또는 에콰도르 핵심 기지에 직접투자(FDI) 기반의 조인트벤처 스마트 팩토리를 설립하여 서플라이 체인의 최상단을 점유해야 합니다.">
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Aqua} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="var(--color-info)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-info)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -103,11 +108,12 @@ export const W07_Top10Cap = () => (
   <WidgetCard title="자연산 어획 잔존 세력 Top 10" icon={Anchor} term="Capture Remnants" desc="야생 새우 어획 선단 유지 국가" source="FAO FishStatJ - Capture by Country" situation="범용 양식업의 폭발적 팽창 속에서도, 중국과 아르헨티나는 거대 조업 선단을 활용해 붉은새우(Argentine Red Shrimp) 등 고부가가치 특수 어종 생태계(Niche Market)를 강력하게 장악하고 있습니다." actionPlan="[Targeted Allocation Strategy] 양식(Vannamei)과 자연산 붉은새우(Argentine Red)의 타겟 소비층(Target Audience)은 완전히 디커플링(Decoupling)되어 있습니다. B2B 하이엔드 파인다이닝 전용으로 자연산 희귀 어획 물량을 독점 락인하여 초격차 경쟁력을 확보.">
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Cap} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="var(--color-danger)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-danger)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -118,11 +124,12 @@ export const W08_Top10AquaVal = () => (
   <WidgetCard title="양식업 부가가치 창출 Top 10" icon={DollarSign} term="Aqua Value Gen" desc="양식업으로 달러를 쓸어담는 국가" source="FAO FishStatJ - Aquaculture Value" situation="글로벌 물량 생산량(Volume) Top 3 국가가 창출하는 부가가치(Value-Add) Top 3 순위와 완벽히 동기화(Synchronization)되며 극단적인 Bottom-line(순이익) 과점 체제(Oligopoly)를 완성했습니다." actionPlan="[Pricing Power Hedging] 메이저 3국은 물량 공세(Dumping)를 넘어 글로벌 마켓 프라이싱 권한(Pricing Power)마저 독점하고 있습니다. 특정 국가에 대한 소싱 의존도(Exposure)를 30% 이하로 통제(Diversification)하여 공급망 병목 리스크(Bottleneck)를 완벽히 헤징(Hedging)해야 합니다.">
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10AquaVal} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="var(--color-warning)" radius={[0, 4, 4, 0]} />
+        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="var(--color-warning)" radius={[0, 4, 4, 0]} />
       </BarChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -133,11 +140,12 @@ export const W09_CapCeiling = () => (
   <WidgetCard title="자연산 어획량 정체 한계선(Ceiling)" icon={Activity} term="Catch Ceiling" desc="환경적 요인으로 인한 어획 한계" source="FAO FishStatJ - Capture Timeline Analysis" situation="극심한 해양 생태계 파괴 여파로 지난 20년간 글로벌 자연산 어획량은 3.5M 톤(Tonnes)의 강한 횡보 박스권(Stagnation Box)에 갇혀 한계치(Ceiling)에 도달했습니다." actionPlan="[ESG Premium Exploitation] 자연산 새우의 희소 가치(Scarcity Value)는 영구적으로 치솟을 것입니다. MSC(해양관리협의회) 지속가능성 라벨링이 가능한 합법적 조업 쿼터를 프리미엄 가격에 선제 싹쓸이(Buyout)하여 럭셔리 VVIP 라인업을 즉각 런칭.">
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={captureCeiling} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
+        <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} domain={[0, 'auto']} />
         <RechartsTooltip contentStyle={tooltipStyle} />
-        <Bar dataKey="value" fill="#64748b" opacity={0.6} />
+        <Bar dataKey="value" fill="url(#a11y-stripe-h)" color="#64748b" opacity={0.6} />
         <ReferenceLine y={3500000} stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '생태계 허용 한계량 (3.5M Ton)', fill: 'var(--color-danger)', fontSize: 11 }} />
       </ComposedChart>
     </SafeResponsiveContainer>

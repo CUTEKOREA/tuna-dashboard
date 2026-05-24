@@ -4,6 +4,7 @@ import { Factory } from 'lucide-react';
 import { Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
 import data from '../data/squid_valuechain_margin.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SquidValueChainMargin() {
   return (
@@ -17,6 +18,7 @@ export default function SquidValueChainMargin() {
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `$${val}`} />

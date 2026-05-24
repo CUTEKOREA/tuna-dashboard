@@ -4,6 +4,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_shrinkflation.json';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const ShrinkflationTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
@@ -39,6 +40,7 @@ export default function SquidShrinkflation() {
       chartHeight={380}
       chart={
         <ComposedChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 5 }}>
+          <ChartPatternDefs />
           <defs>
             <linearGradient id="colorCatch" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.4} />

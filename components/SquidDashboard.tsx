@@ -17,6 +17,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './SquidDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 /* ─── Telemetry Badge (참치 패턴 동기화) ─── */
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
@@ -363,14 +364,16 @@ export default function SquidDashboard() {
         case "bar":
           return (
             <BarChart data={d} margin={newChartMargin}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
-              {widget.bars?.map((b: any, i: number) => (
-                <Bar key={i} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i)} radius={[6,6,0,0]} fillOpacity={0.85} maxBarSize={40} />
-              ))}
+              {widget.bars?.map((b: any, i: number) => {
+                const p = getA11yBarProps(i);
+                return <Bar key={i} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={p.fill} color={(b.color || b.fill || getMonolithicColor(i)) || p.color} radius={[6,6,0,0]} fillOpacity={0.85} maxBarSize={40} />;
+              })}
             </BarChart>
           );
         case "line":
@@ -389,6 +392,7 @@ export default function SquidDashboard() {
         case "composed":
           return (
             <ComposedChart data={d} margin={newChartMargin}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} angle={0} textAnchor="middle" />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
@@ -400,9 +404,10 @@ export default function SquidDashboard() {
               {widget.areas?.map((a: any, i: number) => (
                 <Area key={`a${i}`} yAxisId={a.yAxisId || 'left'} type="monotone" dataKey={a.key || a.dataKey} name={a.name || a.key || a.dataKey} fill={a.color || a.fill || getMonolithicColor(i)} stroke={a.color || a.fill || getMonolithicColor(i)} fillOpacity={0.5} strokeWidth={2} />
               ))}
-              {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill || getMonolithicColor(i + (widget.areas?.length || 0))} radius={[6,6,0,0]} fillOpacity={0.85} maxBarSize={40} />
-              ))}
+              {widget.bars?.map((b: any, i: number) => {
+                const p = getA11yBarProps(i);
+                return <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={p.fill} color={(b.color || b.fill || getMonolithicColor(i + (widget.areas?.length || 0))) || p.color} radius={[6,6,0,0]} fillOpacity={0.85} maxBarSize={40} />;
+              })}
               {widget.lines?.map((l: any, i: number) => (
                 <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} name={l.name || l.key || l.dataKey} stroke={l.color || l.fill || getMonolithicColor(i + (widget.areas?.length || 0) + (widget.bars?.length || 0))} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
@@ -464,19 +469,22 @@ export default function SquidDashboard() {
       case "bar":
         return (
           <BarChart data={d} margin={chartMargin}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
-            {series.map((s: any, i: number) => (
-              <Bar key={i} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
-            ))}
+            {series.map((s: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={p.fill} color={(s.color || s.fill || getMonolithicColor(i)) || p.color} radius={[6, 6, 0, 0]} />;
+            })}
           </BarChart>
         );
       case "composed":
         return (
           <ComposedChart data={d} margin={chartMargin}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} angle={0} textAnchor="middle" />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
@@ -486,7 +494,8 @@ export default function SquidDashboard() {
             {series.map((s: any, i: number) => {
               if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.key || s.dataKey} stroke={s.color || s.fill || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
               if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} />;
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={s.color || s.fill || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
+              const p = getA11yBarProps(i);
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.key || s.dataKey} fill={p.fill} color={(s.color || s.fill || getMonolithicColor(i)) || p.color} radius={[6, 6, 0, 0]} />;
             })}
           </ComposedChart>
         );

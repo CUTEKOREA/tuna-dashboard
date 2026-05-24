@@ -4,6 +4,7 @@ import { Fuel } from 'lucide-react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import data from '../data/squid_fuel_bep.json';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function SquidFuelBEP() {
   return (
@@ -17,6 +18,7 @@ export default function SquidFuelBEP() {
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
+          <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
@@ -24,7 +26,7 @@ export default function SquidFuelBEP() {
           <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '11px' }} />
 
-          <Bar yAxisId="left" dataKey="mgo_price" name="MGO 면세유 (원/L)" fill="rgba(148, 163, 184, 0.5)" barSize={20} />
+          <Bar yAxisId="left" dataKey="mgo_price" name="MGO 면세유 (원/L)" fill="url(#a11y-stripe-h)" color="rgba(148, 163, 184, 0.5)" barSize={20} />
           <Line yAxisId="right" type="monotone" dataKey="squid_price" name="오징어 단가 (원/kg)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-success)' }} activeDot={{ r: 6 }} />
 
           <ReferenceLine yAxisId="left" y={1100} stroke="var(--color-danger)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '메탈 BEP선', fill: 'var(--color-danger)', fontSize: 10 }} />

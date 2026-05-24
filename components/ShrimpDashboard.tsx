@@ -19,6 +19,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ShrimpDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
+import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -280,15 +281,17 @@ export default function ShrimpDashboard() {
           const hasDualAxis = widget.bars?.length > 0 && widget.lines?.length > 0;
           return (
             <ComposedChart data={d}>
+              <ChartPatternDefs />
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               {hasDualAxis && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
-              {widget.bars?.map((b: any, i: number) => (
-                <Bar key={`b${i}`} yAxisId="left" dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
-              ))}
+              {widget.bars?.map((b: any, i: number) => {
+                const p = getA11yBarProps(i);
+                return <Bar key={`b${i}`} yAxisId="left" dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+              })}
               {widget.lines?.map((l: any, i: number) => (
                 <Line key={`l${i}`} yAxisId={hasDualAxis ? "right" : "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
@@ -347,19 +350,22 @@ export default function ShrimpDashboard() {
       case "bar":
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
-            {series.map((s: any, i: number) => (
-              <Bar key={i} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />
-            ))}
+            {series.map((s: any, i: number) => {
+              const p = getA11yBarProps(i);
+              return <Bar key={i} dataKey={s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
+            })}
           </BarChart>
         );
       case "composed":
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
+            <ChartPatternDefs />
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
@@ -369,7 +375,8 @@ export default function ShrimpDashboard() {
             {series.map((s: any, i: number) => {
               if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
               if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} />;
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} radius={[6, 6, 0, 0]} />;
+              const p = getA11yBarProps(i);
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
             })}
           </ComposedChart>
         );
