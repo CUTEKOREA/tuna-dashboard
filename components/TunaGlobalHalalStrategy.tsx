@@ -41,8 +41,24 @@ export default function TunaGlobalHalalStrategy() {
         </PieChart>
       }
       takeaway={{
-        situation: '한국 참치액 시장(약 700~1,000억원 — 출처별 편차, 식약처·aT FIS 단일화 대기)은 내수 포화 진입 중이나, 글로벌 피시소스 시장($4.5B)과 할랄 시장($1.2B)은 여전히 구시대 발효 공정과 비린내 한계를 겪고 있음. 참치액은 훈연 공정으로 비린내 완화한 프리미엄 K-피시소스로서 품질 차별화 우위.',
-        actionPlan: '1) 인도네시아·말레이시아 타겟팅을 위해 JAKIM(말레이시아 할랄) 또는 MUI(인도네시아 할랄) 인증 획득을 최우선 추진. 2) 현지 피시소스 1위 브랜드들과 B2B 원료(베이스 액) 납품 계약을 체결해 마케팅 비용 없이 시장 파이 확보.',
+        situation: `<div>
+<p>한국 참치액 시장은 약 <strong>700~1,000억원</strong>(출처별 편차)으로 내수 포화 진입. 반면 글로벌 시장:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>글로벌 피시소스 시장 $4.5B</strong> (한국 시장의 50~70배)</li>
+<li><strong>할랄 식품 시장 $1.2B</strong> (이슬람 인구 19억의 식품 구매력)</li>
+</ul>
+<p>핵심 차별화 기회: 글로벌 피시소스(태국 nampla·베트남 nuoc mam)는 구시대 발효 공정으로 <strong>비린내·짠맛 한계</strong>. 참치액은 훈연 공정으로 비린내 완화한 프리미엄 K-피시소스 — <strong>품질 차별화 절대 우위</strong>.</p>
+<p>의미: 인도네시아(인구 2.7억) + 말레이시아(3,200만) + 사우디(3,400만) + UAE(990만) 무슬림 시장 진입 시 한국 시장의 5~10배 매출 잠재. 할랄 인증만 따면 진입장벽 무력화.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 글로벌 할랄 피시소스 시장은 한국 참치액의 <strong>"가장 큰 미회수 글로벌 매출 옵션"</strong>. 한국 키코만이 1970년 미국 진입한 모델 차용.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>JAKIM(말레이시아) / MUI(인도네시아) 할랄 인증 최우선 획득</strong>: 인증 비용 $200~500K, 회수 기간 12개월 이내.</li>
+<li style="margin-bottom: 8px;"><strong>현지 피시소스 1위 브랜드와 B2B 원료 납품 계약</strong>: ABC Indonesia·Cap Kapal Bola(말레이시아)에 base 액 OEM 공급. 마케팅 cost 0으로 시장 파이 확보.</li>
+<li><strong>"K-Halal Premium" 자체 brand</strong>: 5년 후 자체 brand 출시 — 한국 K-pop·K-drama cross-promotion. 글로벌 할랄 무역 hub(두바이 DMCC)에 distribution center 구축. 5년 매출 $50~100M 잠재.</li>
+</ol>
+</div>`,
         source: 'UNIDO 동남아 피시소스 공정 현대화 보고서 · KOTRA 글로벌 할랄 푸드 시장 트렌드',
       }}
     />

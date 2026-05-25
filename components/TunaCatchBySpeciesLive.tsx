@@ -71,8 +71,20 @@ export default function TunaCatchBySpeciesLive() {
         </LineChart>
       }
       takeaway={{
-        situation: '2022년 기준 가다랑어 3,061,304톤(전 어종 61%) · 황다랑어 1,563,619톤(31%) · 눈다랑어 357,628톤(7%) — 가다랑어가 양적 압도. 2015-2022 8년간 가다랑어는 ~3M톤 박스권 안정, 황다랑어는 1.4-1.6M톤 점진 증가, 눈다랑어는 자원 회복 우려로 0.35M톤 박스권.',
-        actionPlan: '가다랑어 의존도 60%+ = ENSO·라니냐 한 사건이 글로벌 공급 60% 직격. 황다랑어 비중 30%대를 35%+로 끌어올리는 *어획권 다변화* 전략이 단기 수익성보다 *장기 공급 안정성*에 결정적. 신라교역 차원에서 황다랑어 어획권 보유 선사와 5년 장기 공급 계약 검토.',
+        situation: `<div>
+<p>FAO FishStat 글로벌 참치 어획량 실측(2022): <strong>가다랑어(Skipjack) 3,061,304톤(61%)</strong> · 황다랑어(Yellowfin) 1,563,619톤(31%) · 눈다랑어(Bigeye) 357,628톤(7%).</p>
+<p>8년 추세(2015-2022): 가다랑어 ~3M톤 박스권 안정(어획 한계 도달), 황다랑어 1.4 → 1.6M톤 점진 증가, 눈다랑어 0.35M톤 박스권(자원 회복 우려로 IOTC TAC 강화).</p>
+<p>의미: 글로벌 참치 어획은 가다랑어 60% 단일 의존 구조. ENSO·라니냐 한 번에 글로벌 공급 60%가 휘청. 황다랑어 추가 capacity가 sweet spot이지만 쿼터 강화 속도 빠름.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 가다랑어 60% 의존은 climate beta 100% 노출 single-stock. 황다랑어·날개다랑어 분산이 sharpe ratio 2배 개선 instrument.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>황다랑어 비중 30% → 35%+ 확대</strong>: IATTC·WCPFC 황다랑어 쿼터 forward 매입 + 황다랑어 어획권 보유 선사와 5년 장기 공급 계약.</li>
+<li style="margin-bottom: 8px;"><strong>"Species portfolio sharpe ratio" KPI</strong>: 본사 risk 부서가 매 분기 species 비중을 modern portfolio theory 기반 dynamic rebalancing.</li>
+<li><strong>차세대 어종(날개다랑어·청새치) 선제 진입</strong>: 기후변화로 위도 상승 시 신규 어장 출현 — 미리 라이센스 forward 매입.</li>
+</ol>
+</div>`,
         source: 'FAO FishStat Capture Statistics 2015-2022 (Q_tlw, 자료수집 매뉴얼 v28.4 §2 FishStat 3 zip)'
       }}
     />

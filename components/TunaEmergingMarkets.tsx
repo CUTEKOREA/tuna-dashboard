@@ -63,8 +63,25 @@ export function EmergingMarketsHeatmap() {
         )
       }
       takeaway={{
-        situation: '글로벌 사우스 참치 시장 총 기회규모는 $1.9B. 나이지리아($597M, 5년 +23%)와 인도네시아($352M, +18%)가 최대 성장 시장이며, UAE 할랄 프리미엄($180M)은 kg당 단가가 일반 시장 대비 30~40% 높아 마진 우위.',
-        actionPlan: '3단계 진입 전략으로 ① 나이지리아: 현지 캔 브랜드 라이센싱으로 마켓 선점(3년 내 점유율 5% 목표), ② UAE: 할랄 인증 + 프리미엄 라인으로 kg당 $2 추가 마진, ③ 베트남: OEM 가공 허브로 현지 인건비 차익 활용.',
+        situation: `<div>
+<p>"글로벌 사우스(Global South)"란 아프리카·동남아·중동·남미 신흥국 묶음. 선진국 시장이 정체된 반면 글로벌 사우스 참치 시장은 폭발적 성장 중. 총 기회 규모 <strong>$1.9B</strong>.</p>
+<p>핵심 시장 매트릭스:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>나이지리아 $597M, 5년 +23%</strong> — 인구 2.2억, 중산층 형성기, 통조림 수요 폭증</li>
+<li><strong>인도네시아 $352M, +18%</strong> — 무슬림 인구 2.7억, 할랄 + 가격 민감</li>
+<li><strong>UAE 할랄 프리미엄 $180M</strong> — kg당 단가 일반 시장 +30~40% 마진 우위</li>
+</ul>
+<p>의미: 글로벌 사우스는 ① 통조림 volume 성장 ② 할랄 premium 시장 ③ 현지 가공 hub 후보 3개 layer 동시 활용 가능한 multi-track opportunity.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 글로벌 사우스는 단순 신규 시장이 아닌 <strong>"향후 20년 K-tuna brand 글로벌 platform"</strong>. 시장별 차별화 전략으로 동시 multi-entry.</p>
+<p><strong>3단계 진입</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>나이지리아 — 현지 캔 브랜드 라이센싱</strong>: Cosharis Food 같은 현지 1차 vendor minority equity 5~10% 인수 + brand 라이센싱. 3년 내 점유율 5% 목표.</li>
+<li style="margin-bottom: 8px;"><strong>UAE — 할랄 인증 + 프리미엄 라인</strong>: JAKIM/MUI 할랄 인증 획득 + 두바이·아부다비 호스피탈리티 직접 채널. kg당 $2 추가 마진.</li>
+<li><strong>베트남 — OEM 가공 허브</strong>: 현지 인건비 차익 활용 + USMCA·EU 무관세 결합. 동시에 글로벌 사우스 cross-border 유통 hub로 활용.</li>
+</ol>
+</div>`,
         source: '국정연 아프리카 수산협력(2023-05) · 할랄 수출전략(2023-09) · UN Comtrade',
       }}
     />

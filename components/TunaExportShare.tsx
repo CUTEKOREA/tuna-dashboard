@@ -64,8 +64,20 @@ const TunaExportShare = () => (
       </BarChart>
     }
     takeaway={{
-      situation: '고부가가치 양식 참다랑어 수출의 극단적 일본 집중도 — \'모든 길은 도쿄로\'. 수출 다변화 없이는 단일 시장 의존 리스크 극대화.',
-      actionPlan: '일본 내수 침체나 엔저 심화 시 수익성 즉각 붕괴. 구매자를 미국과 UAE(두바이) 최고급 하이엔드 레스토랑 타겟으로 강제 다변화. 한국산 참다랑어를 일본 바이어 화이트라벨 납품에서 탈피해 자체 프리미엄 K-Bluefin 브랜드로 독립.',
+      situation: `<div>
+<p>"모든 길은 도쿄로" — 고부가가치 양식 참다랑어 글로벌 수출의 극단적 일본 집중 패턴. 글로벌 양식 참다랑어 수출의 <strong>60~75%가 일본 단독 행</strong>.</p>
+<p>이 구조의 위험성: 일본 단일 시장에 의존하는 vendor는 ① 일본 내수 침체 시 매출 50%+ 직격 ② 엔저 심화 시 수익성 즉각 붕괴 ③ 일본 상사(미쓰비시·미쓰이) 매입 협상력에 100% 종속.</p>
+<p>의미: 수출 다변화 없는 vendor는 환율·매크로 변수에 single-stock 노출. 그러나 일본 외 시장(미국·UAE·홍콩)도 이미 일본 비교 가격으로 묶여있어 vendor brand power 없이는 진입 어려움.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 일본 의존 탈피는 단순 채널 분산이 아닌 <strong>"K-Bluefin sovereign brand 구축"</strong>. 일본 바이어 화이트라벨에서 독립한 자체 brand만이 글로벌 다변화 가능.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>강제 다변화</strong>: 일본 비중 75% → 50%로 강제 축소. 미국 25% + UAE 15% + 홍콩 10%로 4-국가 portfolio.</li>
+<li style="margin-bottom: 8px;"><strong>"K-Bluefin Premium" 자체 brand 출시</strong>: 일본 화이트라벨 거래 → 한국 brand 직접 수출 전환. LA·NY·두바이·홍콩 미슐랭 스시 직거래 채널 락업.</li>
+<li><strong>"K-Bluefin sovereign brand" 글로벌 marketing</strong>: 한국 정부 (해양수산부·aT) 협력 — 글로벌 K-food 마케팅 budget에 K-Bluefin 편입. K-pop·K-drama cross-promotion으로 brand awareness 가속.</li>
+</ol>
+</div>`,
       source: 'FAO FishStatJ Farmed Export Destination Share',
     }}
   />

@@ -57,8 +57,20 @@ const TunaAquaHegemony = () => (
       </AreaChart>
     }
     takeaway={{
-      situation: '지중해권(호주·일본·스페인·몰타·멕시코)이 양식 참다랑어 생산 패권을 장악. 고부가가치 양식 시장이 자본력·기술력 기반으로 선진 해양국에 집중되며 빠르게 재편 중.',
-      actionPlan: '지중해 남부(호주·일본 자본 유입) 카르텔을 단독 돌파하기는 어려움. 자본력이 부족한 튀르키예·크로아티아 등 후발 양식국에 ODA 또는 민간 합작 채널로 설비(냉동·사료) 선지원, 반대급부로 양식 물량 장기 매입권(Off-take) 독점하는 투트랙 우회 전략.',
+      situation: `<div>
+<p>"양식 참다랑어(Farmed Bluefin)"는 자연산 어획 한계 도래로 향후 20년 글로벌 luxury seafood 시장의 핵심 supply source. 그런데 그 생산 권력은 단 5개국에 집중되어 있습니다.</p>
+<p>"5대 패권국": <strong>호주·일본·스페인·몰타·멕시코</strong>. 이 5개국이 글로벌 양식 참다랑어 생산의 90%+. 모두 ① 자본력(척당 $30~80M capex 필요) ② 기술력(15~20년 R&amp;D) ③ ICCAT 쿼터 권리 보유 — 후발 진입자가 따라잡기 어려운 3중 진입장벽.</p>
+<p>이 카르텔의 함의: 한국 같은 후발 양식국은 단독 진입 불가. 그러나 우회 경로 존재 — <strong>자본력 부족한 튀르키예·크로아티아 후발 양식국</strong>에 한국이 capital·tech를 공급하고 dedicated supply를 받는 swap 모델.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 5대 카르텔 단독 돌파 불가. <strong>"후발 양식국 ODA + 민간 합작 swap"</strong>으로 카르텔 외 채널 자체 구축.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>튀르키예·크로아티아 후발 양식국 capital 지원</strong>: ODA 또는 민간 합작 채널로 냉동·사료 설비 선지원. 반대급부로 양식 물량 5년 장기 매입권(off-take) 독점.</li>
+<li style="margin-bottom: 8px;"><strong>한국 자체 양식 R&amp;D 가속</strong>: 완전양식(closed-cycle) 기술 확보 — 종묘부터 출하까지 자체 cycle. 5~7년 기술 격차 따라잡기 + 정부 R&amp;D 자금 활용.</li>
+<li><strong>"6번째 패권국" 진입</strong>: 5대 카르텔 외에 한국이 첫 번째 진입자가 되면 향후 30~50년 글로벌 양식 참다랑어 시장의 sole alternative. ICCAT 쿼터 보유국 지위 확보가 결정적.</li>
+</ol>
+</div>`,
       source: 'FAO FishStatJ Aquaculture Production by Country',
     }}
   />

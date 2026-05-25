@@ -48,8 +48,20 @@ const TunaCrossroads = () => (
       </ComposedChart>
     }
     takeaway={{
-      situation: '엄격한 글로벌 쿼터로 천연산 참다랑어 어획량이 1980년 이후 정체. 반면 축양·양식 생산량은 우상향 돌파해 산업 구조의 근본적 전환 진행 중.',
-      actionPlan: '어획(자연산) 중심 사업은 글로벌 쿼터 규제로 성장 정체. 성장의 돌파구는 양식·축양. 기존 원양어선 투자를 줄이고 완전양식(Closed-cycle) R&D 및 해상 가두리 인프라에 자본 재배치. 천연 치어 쿼터 삭감 시 종묘 가격 폭등에 대비해 핵심 Hatchery와 JV 또는 지분 투자로 원물 소스 선점.',
+      situation: `<div>
+<p>"Crossroads(갈림길)"란 한 길에서 두 길로 나뉘는 결정적 분기점. 글로벌 참다랑어 산업이 정확히 그 분기점에 있습니다.</p>
+<p>40년 추세: <strong>천연산 어획량 1980년 이후 정체</strong>(ICCAT·IATTC 쿼터 강화). 반면 <strong>축양·양식 생산량은 우상향 돌파</strong>(2015년 자연산 추월, 현재 1.5배+). 두 선이 X자로 교차 후 점점 벌어지는 영구적 구조 전환.</p>
+<p>의미: 어획(자연산) 중심 사업은 글로벌 쿼터 규제로 성장 정체. 향후 30년 성장의 돌파구는 양식·축양 한 길뿐. 자연산 어선·인프라에 묶인 자본은 향후 5~10년 stranded asset 가능성.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 자연산 어획 vs 양식의 갈림길은 한 번 지나가면 되돌아갈 수 없는 일방향 전환. capital allocation 의사결정의 최우선 순위.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>원양어선 capex 동결</strong>: 신규 자연산 어선 건조 100% 동결. 그 자본을 양식·축양 인프라로 재배치.</li>
+<li style="margin-bottom: 8px;"><strong>완전양식(Closed-cycle) R&amp;D + 해상 가두리 인프라 capex</strong>: 호주 Cleanseas Tuna·일본 긴키대학·스페인 IEO와 partnership. 5~10년 R&amp;D 투자.</li>
+<li><strong>"Hatchery equity 락업"</strong>: 천연 치어 쿼터 삭감 시 종묘 가격 폭등 — 핵심 hatchery(긴키대학·Balfegó hatchery) JV 또는 지분 투자로 원물 소스 선점. 향후 양식 시장 보틀넥 통제권.</li>
+</ol>
+</div>`,
       source: 'FAO FishStatJ — Bluefin Tuna Wild Catch vs Aquaculture',
     }}
   />

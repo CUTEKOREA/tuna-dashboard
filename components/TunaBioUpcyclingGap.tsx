@@ -53,8 +53,21 @@ export default function TunaBioUpcyclingGap() {
         </BarChart>
       }
       takeaway={{
-        situation: '한국의 수산 부산물 업사이클링 비율은 19.5%로 글로벌 평균(40%)의 절반에도 못 미치며, 아이슬란드(95%)·노르웨이(99%) 대비 5배 격차. 2020년 기준 글로벌 어분 27%, 어유 48%가 이미 어획 부산물 기반인 점을 감안하면 한국에 막대한 미회수 가치가 잠재. EU 공동어로정책(CFP) 하역 의무화로 부산물 자원화가 규제적 의무로 전환 중.',
-        actionPlan: '1) 아이슬란드 \'Nothing is Waste\' 모델을 벤치마킹해 참치 가공 부산물 전량을 제약·건기식·펫푸드 B2B 원료로 전환하는 제로 웨이스트 로드맵 수립. 2) 단기 자숙액→액젓(19.5→40%), 중장기 심장·뼈→기능성 추출물·칼슘 보충제(40→80%+)로 단계적 확대. 3) EU 하역 의무화 정책 활용 \'규제 준수 + 순환경제\' 이중 가치로 EU 시장 진출 시 프리미엄 확보.',
+        situation: `<div>
+<p>"업사이클링 비율"이란 수산 가공 부산물(부피의 30~50%)을 폐기하지 않고 고부가 제품으로 재가공하는 비율. 글로벌 격차가 충격적입니다.</p>
+<p>국가별 비율: <strong>아이슬란드 95% · 노르웨이 99% · 글로벌 평균 40% · 한국 19.5%</strong>. 한국은 글로벌 평균의 절반에도 못 미치며 아이슬란드 대비 <strong>5배 격차</strong>.</p>
+<p>왜 한국이 뒤처졌나? ① 부산물 분리·가공 인프라 부족 ② 폐기 처분이 더 싸다는 인식 ③ B2B 원료 시장 미발달 ④ R&amp;D 부재. 그러나 글로벌 어분 27%·어유 48%가 이미 어획 부산물 기반인 점을 보면 시장 자체는 거대.</p>
+<p>의미: 한국은 <strong>"미회수 $500M~1B 시장"</strong>을 보유한 셈. 동시에 EU CFP 하역 의무화 발효 중 — 부산물 자원화가 규제 의무로 전환되는 시점이라 first-mover 우위 극대.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 업사이클링 격차는 한국 수산 산업의 가장 큰 미회수 자산. <strong>아이슬란드 "Nothing is Waste" 모델</strong>을 한국형으로 이식하면 5년 내 산업 매출 +20~30% 잠재.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>제로 웨이스트 로드맵 수립</strong>: 참치 가공 부산물 전량을 제약·건기식·펫푸드 B2B 원료로 전환. 단기 19.5% → 5년 80% 목표.</li>
+<li style="margin-bottom: 8px;"><strong>단계적 확대</strong>: 단기 자숙액 → 액젓(19.5→40%), 중장기 심장·뼈 → 기능성 추출물·칼슘 보충제(40→80%+).</li>
+<li><strong>EU 하역 의무화 활용</strong>: "규제 준수 + 순환경제" 이중 가치로 EU 시장 진출 시 프리미엄 확보. 아이슬란드 Ocean Cluster와 partnership으로 IP·노하우 transfer.</li>
+</ol>
+</div>`,
         source: 'FAO SOFIA 2022 · 수산과학원 부산물 재활용 동향 · 아이슬란드 Ocean Cluster 사례 · A third assessment of global marine fisheries discards · EU CFP Landing Obligation',
       }}
     />
