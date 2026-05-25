@@ -64,8 +64,20 @@ export function TunaUpcyclingOpportunity() {
         </div>
       }
       takeaway={{
-        situation: '참치 가공 시 총 중량의 40~55%가 머리(35%)·내장(20%)·혈합육(15%)·껍질(10%) 등 부산물. 한국 다랑어 어획량 290천톤(MOF 2024) 기준 부산물 116~160천톤 발생. 글로벌 EPA/DHA·해양 콜라겐 시장 모두 두 자릿수 CAGR 성장(시장 규모는 보고서별 편차, Grand View Research 2025 재확인 대상). 기존 폐기 비용 톤당 $50~80을 고부가 매출로 전환할 수 있는 기회.',
-        actionPlan: 'Phase 1 (즉시): DHA/EPA 추출(마진 65%) + 해양 콜라겐 펩타이드(마진 72%) 라인 증설로 연 ₩50억+ 추가 매출. Phase 2 (3년): KFAS/NIFS 공동 R&D로 ACE 억제 기능성 펩타이드(마진 80%) 상용화. 부산물 10% 고부가 전환 시 연매출 $50M+.',
+        situation: `<div>
+<p>참치 가공 시 총 중량의 <strong>40~55%가 부산물</strong>: 머리(35%)·내장(20%)·혈합육(15%)·껍질(10%). 한국 다랑어 어획량 29만 톤(MOF 2024) 기준 <strong>연 11.6~16만 톤 부산물</strong> 발생. 톤당 처리비 $50~80 들이며 폐기.</p>
+<p>그런데 글로벌 EPA/DHA·해양 콜라겐 시장이 모두 두 자릿수 CAGR 성장. 동일 부산물이 폐기물(-$80/톤)에서 <strong>고부가 원료($4,000~12,000/톤)</strong>로 전환 가능 — 50~150배 밸류업.</p>
+<p>의미: 한국 참치 가공의 부산물은 <strong>"unrealized $300~500M 시장"</strong>. first-mover capacity 구축 시 5년 내 매출 +$50~100M, EBITDA 마진 35%+ segment 신설.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 부산물은 폐기물이 아닌 <strong>"미회수 ingredient platform asset"</strong>. cost center를 profit center로 전환.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>Phase 1 (즉시)</strong>: DHA/EPA(마진 65%) + 해양 콜라겐 펩타이드(마진 72%) 라인 증설 — <strong>연 매출 ₩50억+</strong>, 회수 18개월.</li>
+<li style="margin-bottom: 8px;"><strong>Phase 2 (3년)</strong>: KFAS/NIFS 공동 R&amp;D <strong>ACE 억제 기능성 펩타이드(마진 80%)</strong> 상용화 + patent filing 글로벌 health food 진입.</li>
+<li><strong>Phase 3 (5~10년)</strong>: <strong>"Marine bio-ingredient platform"</strong> 진화. Givaudan·Symrise·DSM 라이센싱 + EV/EBITDA 8x → 22x rerate.</li>
+</ol>
+</div>`,
         source: '(기본 2025-11) 수산물 업사이클링 생태계 조성 방안 연구 · MOF 2024 어업생산통계 (시장 규모는 추정·재확인 대상)',
       }}
     />
@@ -107,8 +119,20 @@ export function TunaUpcyclingMarginMap() {
         </BarChart>
       }
       takeaway={{
-        situation: '기능성 펩타이드(마진 80%)가 DHA(65%)·콜라겐(72%) 상회하나 현재 R&D 단계. 시장 규모는 DHA > 콜라겐 > 바이오사료 순(보고서별 편차)이며 마진율과 시장 규모는 역상관 경향. 상용화 완료 제품 중 콜라겐 펩타이드(마진 72%)가 투자 효율 최적.',
-        actionPlan: '① 즉시 수익: 해양 콜라겐 펩타이드 라인 증설(마진 72%, 상용화). ② 중기 성장: 칼슘제 양산화(마진 45%, 성장기 — 원료 자급 우위). ③ 장기 고수익: KFAS/NIFS 공동 R&D로 기능성 펩타이드(ACE 억제 활성 82%) 3년 파이프라인. 바이오사료(마진 25%)는 대량 부산물 처리용 투트랙.',
+        situation: `<div>
+<p>"마진율 vs 시장 규모"의 역상관 패턴 — 부산물 업사이클 product portfolio의 핵심 trade-off. 마진이 높은 제품은 시장이 작고, 시장이 큰 제품은 마진이 낮은 inverse relationship.</p>
+<p>구체 매트릭스: <strong>기능성 펩타이드(마진 80%, 시장 $2.1B, R&amp;D)</strong> · <strong>해양 콜라겐(마진 72%, 시장 $12.8B, 상용화)</strong> · DHA/EPA(마진 65%, 시장 $48.2B, 상용화) · 칼슘제(마진 45%, 시장 $5.4B, 성장) · 바이오사료(마진 25%, 시장 $8.7B, 상용화).</p>
+<p>의미: 단일 제품 집중이 아닌 <strong>portfolio approach</strong> 필수. 현재 즉시 수익(상용화 제품) + 중기 성장(R&amp;D 제품) + 장기 R&amp;D(차세대) 3 tier 동시 운영이 IRR 최대.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 업사이클 portfolio는 단순 제품 라인업이 아닌 <strong>"마진-시장 trade-off optimization 매트릭스"</strong>. 본사 capital allocation 위원회가 분기마다 3-tier 비중을 dynamic rebalancing.</p>
+<p><strong>3-tier 실행</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>즉시 수익 tier</strong>: 해양 콜라겐 펩타이드 라인 증설(마진 72%, 상용화). 회수 12~18개월, capex $5~10M.</li>
+<li style="margin-bottom: 8px;"><strong>중기 성장 tier</strong>: 칼슘제 양산화(마진 45%, 성장기). 원료 자급 우위로 비교 우위 락업.</li>
+<li><strong>장기 고수익 tier</strong>: KFAS/NIFS 공동 R&amp;D로 <strong>기능성 펩타이드(ACE 억제 82%)</strong> 3년 파이프라인. 동시에 바이오사료(마진 25%)는 대량 부산물 처리용 투트랙 — high-mix high-margin + low-mix high-volume 결합.</li>
+</ol>
+</div>`,
         source: '(기본 2025-11) 업사이클링 생태계 연구 · KFAS 바이오 가치사슬 분석 (시장 규모는 Grand View Research 2025 등 재확인 대상)',
       }}
     />

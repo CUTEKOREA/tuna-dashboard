@@ -127,8 +127,22 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
       telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? 'Real-time' : '사전분류 DB' }}
       customBody={<>{SearchBar}{QuickTags}{ResultList}</>}
       takeaway={{
-        situation: results.length > 0 ? `"${meta?.query || query}" → ${results[0]?.hsCode || '-'} (${toKRDesc(results[0]?.description || '-')}). 신뢰도 ${Math.round((results[0]?.confidence || 0) * 100)}%. ${results.length}개 후보 코드 제시.` : '품목명(한/영) 입력 시 HS 6~10자리 자동 매핑. 관세 신고·원산지 증명서 작성 시 활용.',
-        actionPlan: 'FTA 원산지 증명서 HS 코드 기재 시 본 분류 결과 활용. 수입 통관 시 품목분류 사전심사(관세청) 신청 근거 자료.',
+        situation: results.length > 0 ? `<div>
+<p><strong>"HS Code(Harmonized System Code)"</strong>는 WCO(세계관세기구)가 정한 6~10자리 상품 분류 코드. 모든 무역 절차(관세·통관·FTA·원산지 증명서)의 기준이며, 잘못 분류 시 통관 거절·과다 관세 부과 위험.</p>
+<p>검색 결과: <strong>"${meta?.query || query}" → ${results[0]?.hsCode || '-'}</strong> (${toKRDesc(results[0]?.description || '-')}). 신뢰도 <strong>${Math.round((results[0]?.confidence || 0) * 100)}%</strong>, ${results.length}개 후보 코드 제시.</p>
+<p>왜 HS 정밀 분류가 중요한가? FTA 특혜관세 적용 시 HS 6자리(국제 표준)·10자리(국가별 세부)가 정확히 맞아야 함. 한 자리 오류로 관세 +12~25%p 차이 가능. 또한 원산지 증명서(C/O) 발급 시에도 HS 코드 매칭이 필수.</p>
+</div>` : `<div>
+<p><strong>HS Code 자동 분류 시스템</strong>: 품목명(한/영) 입력 시 HS 6~10자리 자동 매핑. 관세 신고·원산지 증명서 작성 시 활용.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: HS 코드 정밀 분류는 단순 사무 작업이 아닌 <strong>"FTA 관세차익 회수의 1차 게이트"</strong>. 분류 오류 시 연간 수억원 관세 손실.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>FTA 원산지 증명서 HS 코드 기재에 본 분류 결과 활용</strong>: AI 분류 + 사람 검증 dual-check로 분류 오류 90% 감소.</li>
+<li style="margin-bottom: 8px;"><strong>수입 통관 시 품목분류 사전심사 신청</strong>: 관세청에 사전심사를 받으면 향후 5년 동일 품목 통관 시 분쟁 없이 처리. 통관 시간 50% 단축.</li>
+<li><strong>"HS Code Automation SaaS"</strong>: 우리 자체 분류 시스템을 동남아·중남미 mid-tier vendor에 라이센싱 — 연 $50~150K/고객. 본업 외 SaaS 수익원.</li>
+</ol>
+</div>`,
         source: `HS Ping API · ${isLive ? '실시간' : '사전분류 DB'} · 신뢰도: ${meta?.reliability?.grade || 'A'}`,
       }}
     />

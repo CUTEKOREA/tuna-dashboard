@@ -103,8 +103,20 @@ const TunaProcessingYield = () => (
       </LineChart>
     }
     takeaway={{
-      situation: '최종 충전 수율은 가다랑어 52% vs 눈다랑어 60%로 약 8%p 격차. 정형 단계(56% vs 63%)에서 격차가 크게 벌어짐 — 가다랑어는 작은 size로 정형 손실이 큼.',
-      actionPlan: '가다랑어 정형 자동화 라인 도입 시 수율 +3-5%p 가능 — 연간 원료 비용 환산 ~15억원 절감 추정. CapEx 회수기간 18개월 시뮬레이션 권고.',
+      situation: `<div>
+<p>"가공 수율(Processing Yield)"이란 원물 100kg을 가공 라인에 투입했을 때 최종 통조림 충전되는 살의 비율. 같은 1톤 원물을 사도 수율 차이만큼 매출이 다릅니다.</p>
+<p>어종별 수율 차이: <strong>가다랑어 52% vs 눈다랑어 60%</strong> — 약 <strong>8%p 격차</strong>. 정형 단계(56% vs 63%)에서 격차 가장 크게 벌어짐. 가다랑어는 작은 size(평균 3~5kg)로 정형 손실이 큼.</p>
+<p>의미: 8%p 수율 차이는 곧 8%p 매출 차이. 가다랑어 비중 60% 한국 가공 라인의 평균 수율을 +3~5%p 개선하면 <strong>연 15억원+ 원가 절감</strong>.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 가공 수율은 단순 KPI가 아닌 <strong>"capex retrofit ROI generator"</strong>. 자동화 ROI는 18개월 이내 회수, 그 후 영구 수익.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>가다랑어 정형 자동화 라인 도입</strong>: BAADER·Marel(노르웨이) 시스템 — 수율 +3~5%p, 인건비 -30%. CapEx $3~5M/라인, 회수 18개월.</li>
+<li style="margin-bottom: 8px;"><strong>"Yield-per-fish optimization KPI"</strong>: 본사 KPI를 톤 가공량에서 수율 %로 전환. 매월 라인별 yield benchmark.</li>
+<li><strong>"Yield optimization platform" SaaS 라이센싱</strong>: 동남아 mid-tier 가공사 50~100곳 라이센싱 — 연 $200~400K/고객.</li>
+</ol>
+</div>`,
       source: 'KFAS 한국수산과학회지 2024 + 산업통계 (Stage 1 mock)',
     }}
   />

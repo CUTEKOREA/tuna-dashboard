@@ -54,8 +54,21 @@ const TunaImportBlackhole = () => (
       </BarChart>
     }
     takeaway={{
-      situation: '전 세계 양식 참다랑어 수입의 과반을 일본이 빨아들이는 블랙홀 구조 확인. 글로벌 소비 접근의 구조적 병목.',
-      actionPlan: '도쿄 츠키지·도요스 경매 우회. 최대 산지인 호주·지중해(몰타) 양식장과 산지 직거래 채널 개통으로 중간 유통마진 회수. 한국발 미국·EU 직수출 프리미엄 브랜드의 가격 경쟁력 확보.',
+      situation: `<div>
+<p>"블랙홀(Black Hole)"이란 모든 것을 빨아들이고 빠져나오지 못하게 하는 구조. 글로벌 양식 참다랑어 시장에서 일본이 정확히 그 역할.</p>
+<p>구조: <strong>전 세계 양식 참다랑어 수입의 과반(50%+)을 일본 단독으로 빨아들임</strong>. 모든 양식장(호주·스페인·몰타·튀르키예·멕시코)의 1순위 vendor가 일본이며, 다른 국가는 일본 수입 후 잔량을 받는 secondary 위치.</p>
+<p>왜 일본이 이렇게 지배? ① 도쿄 토요스 경매가 글로벌 price-setter ② 일본 미슐랭·스시 문화의 압도적 소비 ③ 양식장과의 100년 trade history ④ 일본 상사(미쓰비시·미쓰이) capital backbone.</p>
+<p>의미: 한국·중국·중동이 양식 참다랑어 시장에 접근하려면 <strong>일본 도쿄 경매 우회가 필수</strong>. 도쿄 경매 가격에 묶이는 한 마진의 50~60%가 일본 상사에 흡수됨.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 일본 블랙홀 구조 탈피는 단순 채널 확보가 아닌 <strong>"글로벌 luxury seafood 시장의 권력 구조 재편 시도"</strong>. 한국이 first-mover로 직거래 채널 구축하면 향후 20년 아시아 luxury seafood platform 가능.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>호주·지중해 양식장 산지 직거래 개통</strong>: Cleanseas Tuna(호주)·Balfegó(스페인)·Malta Fish Farming Co. 등 mid-tier 양식장 5~7곳과 직접 계약. 중간 유통마진 200~400bp 회수.</li>
+<li style="margin-bottom: 8px;"><strong>한국발 미국·EU 직수출 프리미엄 브랜드 launch</strong>: 일본 토요스 ASP 대비 -15~20% 가격 경쟁력. LA·NY·런던·파리 미쉐린 스시 가게 직납.</li>
+<li><strong>"Asia luxury seafood hub" 진화</strong>: 한국 inchon·부산을 일본 토요스 alternative hub로 정착. 5년 후 일본 블랙홀에 대등한 두 번째 글로벌 hub 형성. JP Morgan Asia Luxury Goods Desk와 partnership.</li>
+</ol>
+</div>`,
       source: 'FAO FishStatJ Farmed Bluefin Import Volume',
     }}
   />

@@ -54,8 +54,20 @@ const TunaKoreaPosition = () => (
       </ComposedChart>
     }
     takeaway={{
-      situation: '한국 참다랑어 수입의 물량 대비 금액 증가 속도가 빨라 단가 구조적 상승(프리미엄화) 뚜렷. 한국이 아시아 최대 고급 Omakase 시장으로 부상.',
-      actionPlan: '매입원가 상승 압박(환율·물류비) 방어를 위해 선물환(FX Forward) 헷지 계약 체결. 일본 단순 중계를 넘어 사시미·초밥 세트 가공 설비에 신규 자본 투입. 국내 하이엔드 HoReCa 직납 비중을 40%+로 확대해 중간 유통 부가가치 내재화.',
+      situation: `<div>
+<p>한국 참다랑어(Bluefin) 수입의 패턴 분석: <strong>물량 증가 속도 < 금액 증가 속도</strong>. 즉 단가가 구조적으로 상승하고 있다는 시그널. 한국 시장이 단순 양적 확대가 아닌 <strong>프리미엄화(premiumization)</strong> 단계 진입.</p>
+<p>드라이버: ① 한국 미슐랭 스시 오마카세 폭발적 성장(서울 미쉐린 스시 가게 5년 전 5개 → 현재 25개+) ② 도쿄 토요스 의존 탈피, 직접 수입 비중 확대 ③ 강남·청담 지역 부유층 high-end 수요.</p>
+<p>의미: 한국이 일본·홍콩에 이어 <strong>"아시아 3대 고급 Omakase 시장"</strong>으로 부상. 향후 5~10년 프리미엄 수요 +30~50% 추가 성장 잠재. 이 시장은 가격 민감도 낮고 마진 50~60% 가능한 luxury segment.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 한국 프리미엄 참다랑어 시장은 단순 수입국 위치가 아닌 <strong>"아시아 luxury food regional hub"</strong> 후보. 우리가 채널을 잡으면 일본·중국·동남아 cross-border B2B 가능.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>매입원가 상승 압박 방어</strong>: 선물환(FX Forward) 6개월·12개월 분할 hedge 체결. 매입가 변동성 ±15% 박스로 락업.</li>
+<li style="margin-bottom: 8px;"><strong>일본 단순 중계 탈피 + 가공 설비 신규 capex</strong>: 사시미·초밥 세트 가공 자체 라인 도입. 도쿄 토요스 우회로 중간 유통 마진 200~400bp 직접 회수.</li>
+<li><strong>국내 하이엔드 HoReCa 직납 비중 40%+ 확대</strong>: 미쉐린 스시·럭셔리 호텔 30곳과 5년 exclusive 공급 계약. 동시에 한국 hub로 일본·홍콩·싱가포르 cross-border 수출 platform 진화.</li>
+</ol>
+</div>`,
       source: '관세청 수입통계 + FAO FishStatJ',
     }}
   />

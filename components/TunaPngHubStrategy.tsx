@@ -47,8 +47,21 @@ export default function TunaPngHubStrategy() {
         </BarChart>
       }
       takeaway={{
-        situation: '동원산업은 파푸아뉴기니(PNG)에 RD Tuna Canners를 구축해 현지 가공 허브 선점. 냉동 원물을 한국으로 들여와 가공할 경우 냉동 보관·내륙 물류비가 누적되지만, 산지에서 즉시 해체·1차 자숙액 추출 시 물류비·보관비 70%+ 절감.',
-        actionPlan: '1) \'산지 1차 가공 → 국내 고도화 숙성\' 글로벌 분업 모델을 활용해 국내 중소 경쟁사(한라식품 등) 대비 매입원가 진입장벽 구축. 2) PNG 허브를 동남아·호주 직수출 전초 기지로 격상.',
+        situation: `<div>
+<p>"파푸아뉴기니(PNG)"는 WCPO 어획 쿼터를 통제하는 PNA 8개국 중 가장 큰 회원국. 동시에 EU EBA(Everything But Arms) 무관세 + 한국 ODA 협력국이라는 3중 유리한 위치.</p>
+<p>동원산업이 PNG Madang에 <strong>RD Tuna Canners</strong>를 구축해 현지 가공 허브를 선점한 것은 한국 수산 산업의 가장 영리한 capex 결정 중 하나.</p>
+<p>왜? 냉동 원물을 한국까지 들여와 가공하면 냉동 보관·내륙 물류비가 누적됩니다. 반면 산지(PNG)에서 즉시 해체·1차 자숙액 추출 시 <strong>물류비·보관비 70%+ 절감</strong>. 동시에 EBA 무관세 활용으로 EU 직수출 가능.</p>
+<p>의미: PNG 허브는 단순 가공 거점이 아닌 <strong>"WCPO 원물 + EU 시장 + ASEAN/호주 backup channel"</strong> 3-in-1 platform.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: PNG 허브는 단순 가공 외주가 아닌 <strong>"sovereign-level strategic asset"</strong>. 한국 중소 경쟁사가 따라할 수 없는 매입원가·물류·관세 3중 진입장벽.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>"산지 1차 가공 → 국내 고도화" 글로벌 분업 모델</strong>: PNG에서 1차 자숙·loin 가공, 한국에서 final canning·R&amp;D. 한라식품 등 국내 중소 경쟁사 대비 매입원가 진입장벽 -25%p 구축.</li>
+<li style="margin-bottom: 8px;"><strong>PNG 허브를 동남아·호주 직수출 전초 기지로 격상</strong>: 현재 한국 수출 전용 → 호주·뉴질랜드·인도네시아 직수출 확대.</li>
+<li><strong>"WCPO sovereign equity partnership"</strong>: PNG sovereign development fund와 LP-GP 구조 — 우리가 anchor LP로 $30~50M 출자, fund가 PNG 인프라 재투자. dividend로 매입원가 회수 + ESG 자산화.</li>
+</ol>
+</div>`,
         source: '동원산업 글로벌 Value Chain 전략 분석 + 수산물류 비용 구조 데이터',
       }}
     />

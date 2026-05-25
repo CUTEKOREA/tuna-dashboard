@@ -84,8 +84,27 @@ const TunaOriginPriceTrendLive = () => {
         </BarChart>
       }
       takeaway={{
-        situation: '2026년 5월 기준 5개 항구 Skipjack 평균 1,659 USD/MT. **동태평양(Manta 2,000) > 서태평양(Bangkok 1,975) > 지중해(Vigo 1,600) > 서인도양(Seychelles 1,500) > 서아프리카(Abidjan 1,220)** 순. 동태평양·서태평양 단가 격차가 서아프리카 대비 ~60% 프리미엄, 어획 비용·물류 거리·가공 인프라 차이 반영.',
-        actionPlan: '서아프리카(Abidjan) 1,220 USD/MT는 5개 항구 중 최저 — 원물 매입 비용 측면 우위. 단 EU 항구(Vigo)·아시아 시장으로의 물류비를 더해야 실 도착가가 산출됨. Q2 어획 시즌(5-8월) 진입 전 *Abidjan 원물 + Vigo 가공* 코스트 시뮬레이션 1주 내 실행 권고.',
+        situation: `<div>
+<p>2026년 5월 기준 글로벌 5개 항구 Skipjack(가다랑어) 평균 가격 <strong>1,659 USD/MT</strong>.</p>
+<p>항구별 격차:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>동태평양(Manta, 에콰도르)</strong>: 2,000 USD/MT</li>
+<li><strong>서태평양(Bangkok)</strong>: 1,975 USD/MT</li>
+<li><strong>지중해(Vigo, 스페인)</strong>: 1,600 USD/MT</li>
+<li><strong>서인도양(Seychelles)</strong>: 1,500 USD/MT</li>
+<li><strong>서아프리카(Abidjan)</strong>: <strong>1,220 USD/MT</strong> (최저)</li>
+</ul>
+<p>동·서태평양 vs 서아프리카 가격 격차 약 <strong>60% 프리미엄</strong>. 이유: ① 어획 비용 차이 ② 물류 거리 ③ 가공 인프라 성숙도. 서아프리카는 원물 자체는 싸지만 EU·아시아 항구까지 물류비를 더하면 실제 도착가는 다를 수 있음 — 따로 시뮬레이션 필요.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 5개 항구 가격 격차는 단순 비교가 아닌 <strong>"global arbitrage map"</strong>. 어디서 사고 어디서 가공·판매하느냐의 routing 결정이 마진을 좌우.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>"Abidjan 원물 + Vigo 가공" 코스트 시뮬레이션</strong>: 1주 내 실행 — Q2 어획 시즌(5-8월) 진입 전 매입 routing 결정. 예상 마진 +8~12%p.</li>
+<li style="margin-bottom: 8px;"><strong>"Origin-Destination matrix optimization"</strong>: 5개 항구 × 3개 가공 거점(태국·에콰도르·베트남) × 4개 최종 시장(미국·EU·일본·중동) = 60가지 조합. ML 모델로 quarterly 최적 routing 산출.</li>
+<li><strong>"Skipjack benchmark trading"</strong>: 5개 항구 가격 spread를 ICE OTC swap으로 paper hedge. 본업 매입 외 trading P&amp;L로 EBITDA +2~4%p 추가.</li>
+</ol>
+</div>`,
         source: 'Atuna 시장가 인덱스 (Bangkok·Manta·Seychelles·Abidjan·Vigo, 2026-03-31~2026-05-12 latest)',
       }}
     />

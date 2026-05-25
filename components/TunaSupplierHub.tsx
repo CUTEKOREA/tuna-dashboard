@@ -141,8 +141,20 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
       ]}
       customBody={<>{CountryTabs}{FacilityList}</>}
       takeaway={{
-        situation: `${COUNTRIES.find((c) => c.code === selectedCountry)?.flag || ''} ${selectedCountry} 수산물 가공시설 ${totalCount}개 확인. ${totalWorkers > 0 ? `총 근로자 ${(totalWorkers / 1000).toFixed(0)}K+ 규모.` : ''} ${facilities[0]?.parentCompany ? `최대 기업: ${facilities[0].parentCompany}.` : ''}`,
-        actionPlan: '시설별 생산 능력·ESG 인증을 교차 검증해 Silla Co. 원료 공급선 다변화 후보 목록 구축. IUU 어업·강제노동 리스크가 있는 시설은 우선 배제.',
+        situation: `<div>
+<p>"Supplier Hub"는 글로벌 수산물 가공시설을 국가별로 시각화한 vendor mapping. <strong>${COUNTRIES.find((c) => c.code === selectedCountry)?.flag || ''} ${selectedCountry}</strong> 가공시설 <strong>${totalCount}개</strong> 확인. ${totalWorkers > 0 ? `총 근로자 <strong>${(totalWorkers / 1000).toFixed(0)}K+</strong> 규모.` : ''} ${facilities[0]?.parentCompany ? `최대 기업: <strong>${facilities[0].parentCompany}</strong>.` : ''}</p>
+<p>왜 vendor mapping이 중요한가? 글로벌 supply chain 의사결정의 1차 정보. ① 어느 시설이 capacity 우위인지 ② 어느 시설이 IUU·강제노동 리스크 있는지 ③ 어느 시설이 EU·미국 인증 보유인지가 한눈에 비교 가능.</p>
+<p>의미: 단일 vendor 의존은 single-point-of-failure. 6개국 mapping을 분석해 country·company 분산 portfolio 구성이 가능.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: Supplier Hub는 단순 vendor 리스트가 아닌 <strong>"공급망 portfolio optimization tool"</strong>. 국가·인증·capacity 3축 매트릭스로 vendor portfolio dynamic rebalancing.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>시설별 생산능력·ESG 인증 교차 검증</strong>: 6개국 ${facilities.length}개 시설을 capacity·MSC·Dolphin-Safe·UFLPA 4축으로 점수화. 상위 30곳을 Silla Co. 1차 vendor pool로 등재.</li>
+<li style="margin-bottom: 8px;"><strong>IUU·강제노동 리스크 자동 배제</strong>: Open Supply Hub + WCPFC IUU list + UFLPA Entity List 교차 검증. 리스크 의심 vendor 자동 blacklist.</li>
+<li><strong>"Vendor portfolio sharpe optimization"</strong>: 단일 country 의존도 35% 이하 강제. 분기마다 portfolio rebalancing — JP Morgan Trade Finance와 partnership으로 vendor financing 패키지 운영.</li>
+</ol>
+</div>`,
         source: `Open Supply Hub (CC BY-SA) · ${isLive ? '실시간 연동' : '고정 데이터'} · 6개국 ${facilities.length}개 시설`,
       }}
     />

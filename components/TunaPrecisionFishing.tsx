@@ -55,8 +55,25 @@ export default function TunaPrecisionFishing() {
         </RadarChart>
       }
       takeaway={{
-        situation: '기후 변화(엘니뇨·라니냐)로 수온 변화에 따라 어군 서식지가 수천 km 단위로 이동. 선박을 동원한 맹목적 탐색 비용(항공유·유류비)과 가치 낮은 어종이 잡히는 공치기(Dry sets) 확률이 치명적 리스크.',
-        actionPlan: '단순 선박 건조(CapEx)에서 \'소프트웨어·센서 중심\'으로 투자 전환. 무인 어군 탐지 드론 + AI 3D 소나 도입 시 타겟 어군 85% 사전 식별. 불필요한 항해 차단으로 유류비 절감 + 조업 효율 +15% 향상 — 핀포인트 수확(Proactive Intercept) 전략 핵심.',
+        situation: `<div>
+<p>전통 참치 조업은 선장의 경험과 운에 의존하는 <strong>"맹목적 탐색"</strong>이었습니다. 그런데 기후 변화로 어군 서식지가 수천 km 단위로 이동하면서 이 방식의 cost가 폭증.</p>
+<p>치명적 리스크:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>유류비 폭등</strong>: ENSO 시즌 동안 어군 위치 변화로 항공유·MGO 소비 +40~60%</li>
+<li><strong>공치기(Dry sets)</strong>: 그물을 내려도 가치 낮은 어종만 잡히거나 빈 그물. 공치기 비율 평시 15% → ENSO 시즌 35%+</li>
+<li><strong>인건비</strong>: 비효율 조업 시간 늘면서 선원 OPEX 함께 증가</li>
+</ul>
+<p>"정밀 조업(Precision Fishing)" 해결책: 무인 드론·AI 3D 소나로 어군 사전 식별 후 핀포인트 수확. 결과: <strong>타겟 어군 85% 사전 식별, 유류비 -28%, CPUE +15%</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 정밀 조업은 단순 OPEX 절감이 아닌 <strong>"climate beta resilience capex"</strong>. ENSO 사이클이 강해질수록 정밀 vendor와 일반 vendor의 cost gap이 벌어진다.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>"하드웨어 → 소프트웨어·센서" 투자 전환</strong>: 선박 건조 capex 동결, 그 자본을 무인 어군 드론 + AI 3D 소나로 전환.</li>
+<li style="margin-bottom: 8px;"><strong>"Pinpoint Harvest 프로토콜"</strong>: 어군 사전 식별 → 조업 결정의 모든 단계를 ML 모델에 의탁. 선장 직관 의존도 단계적 제로화.</li>
+<li><strong>"Climate-resilient fleet conversion"</strong>: 5년 내 한국 선단 100% 정밀 조업 전환. 동시에 우리 정밀 조업 IP를 PNA·IOTC 회원국 어선에 라이센싱 — 본업 외 IP 수익원.</li>
+</ol>
+</div>`,
         source: 'ISSF Technical Report 2024 · SPC 어군 탐지 기술 평가 · FFA 스마트 FAD 파일럿 결과',
       }}
     />

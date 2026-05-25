@@ -78,8 +78,21 @@ export default function TunaSdgCircular({ sdgData }: SdgCircularProps) {
         </RadarChart>
       }
       takeaway={{
-        situation: 'FAO에 따르면 전 세계 수산물의 30~35%가 보존 인프라 부족·폐기로 손실. 참치 원물의 약 50%가 부산물(내장 12~18%·뼈 9~15%·머리 9~12%·자숙액)로 버려짐. 반면 글로벌 어분 27%·어유 48%는 이미 부산물 기반 — 고부가가치 전환(액젓·펩타이드·콜라겐) 잠재력 막대. EU CFP 하역 의무화로 부산물 자원화가 규제적 의무로 전환 중.',
-        actionPlan: '1) 참치액 1톤 생산 시 부산물 자원화량을 SDG 12.3 기여도로 환산해 ESG 보고서·바이어 \'순환경제 인증\' 마케팅 소재로 활용. 2) FAO Blue Transformation 프레임워크 연계로 \'추가 어획 없이 가치사슬 업그레이드\' 친환경 혁신 사례 포지셔닝 — 프리미엄 단가 확보. 3) EU 하역 의무화 정책 활용해 EU 진출 시 \'규제 준수 + 순환경제\' 이중 가치 소구.',
+        situation: `<div>
+<p>"순환경제(Circular Economy)"란 자원을 한 번 쓰고 버리지 않고 재활용·재가공해 다시 가치 창출하는 경제 모델. SDG 12.3(식품 폐기 절반 감축)의 핵심 instrument.</p>
+<p>FAO 데이터: 전 세계 수산물의 <strong>30~35%가 보존 인프라 부족·폐기로 손실</strong>. 참치 원물 <strong>약 50%가 부산물</strong>(내장 12~18%·뼈 9~15%·머리 9~12%·자숙액)로 버려짐. 그러나 글로벌 어분 27%·어유 48%는 이미 부산물 기반 — 즉 어분·어유 시장은 사실상 부산물 시장.</p>
+<p>고부가가치 전환 잠재력: 액젓($4~6K/톤) · 펩타이드($80~120/kg) · 콜라겐($15~25/kg). 폐기물 ($-50/톤)에서 고부가 원료 (+$4~12K/톤) 전환 시 50~150배 밸류업.</p>
+<p>EU CFP(Common Fisheries Policy) 하역 의무화 발효 중 — 부산물 자원화가 단순 비즈니스 기회가 아닌 <strong>규제적 의무</strong>로 전환되는 시점.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 순환경제는 단순 ESG 보고서가 아닌 <strong>"규제 강화 시점에 first-mover 우위를 self-create하는 instrument"</strong>. SDG 12.3 기여도가 ASP 프리미엄으로 직접 회수.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>참치액 1톤당 부산물 자원화량을 SDG 12.3 기여도로 환산</strong>: 본사 ESG 보고서 + 바이어용 "순환경제 인증" 마케팅 자산화. 글로벌 retail 채널 vendor 평가 가산점.</li>
+<li style="margin-bottom: 8px;"><strong>FAO Blue Transformation 프레임워크 연계</strong>: "추가 어획 없이 가치사슬 업그레이드" 포지셔닝으로 World Bank Blue Economy Fund 자본 유치 + ESG fund LP 모집.</li>
+<li><strong>EU 하역 의무화 정책 활용</strong>: EU 진출 시 "규제 준수 + 순환경제" 이중 가치 소구. 동시에 우리 순환경제 시스템을 SaaS로 라이센싱해 동남아·라틴 mid-tier 가공사에 platform 매출 추가.</li>
+</ol>
+</div>`,
         source: 'FAO SOFIA 2022 · EU CFP Landing Obligation · A third assessment of global marine fisheries discards · Blue Nature-Based Solutions in marine and coastal EU policies',
       }}
     />

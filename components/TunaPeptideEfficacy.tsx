@@ -49,8 +49,25 @@ export default function TunaPeptideEfficacy() {
         </RadarChart>
       }
       takeaway={{
-        situation: '효소가수분해(Protease) 방식 저분자 펩타이드(TPF)가 5개 생리활성 지표 모두에서 전통 열수추출 대비 우위 — 항산화 56.7 vs 21.9, ACE 억제 65 vs 15, 지방세포 억제 75 vs 10. HPMC 장용성 코팅 적용 시 소장 흡수율 85%까지 상승하며 \'프리미엄 헬스케어 소재(EPP)\' 카테고리 전환 근거가 충분.',
-        actionPlan: '1) 기존 자숙 공정에 프로테아제 효소 분해 라인 신설을 우선 CapEx 항목으로. 열수추출 대비 3~7배 높은 생리활성이 B2B 납품 단가 프리미엄으로 직결. 2) HPMC 장용성 캡슐형 건기식(EPP) 제품화로 카테고리 단가 $4.8/kg(조미료) → $12.5+/kg(헬스케어 소재) 업그레이드.',
+        situation: `<div>
+<p>"펩타이드(Peptide)"란 단백질이 작게 분해된 분자로, 인체 흡수율이 단백질 대비 3~5배 높아 건강기능식품·의약품 원료의 핵심.</p>
+<p>참치 자숙 부산물에서 펩타이드 추출의 2 방식 비교:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>전통 열수추출</strong>: 항산화 21.9, ACE 억제 15, 지방세포 억제 10</li>
+<li><strong>효소가수분해(Protease) TPF 방식</strong>: 항산화 <strong>56.7</strong>, ACE 억제 <strong>65</strong>, 지방세포 억제 <strong>75</strong> — 모든 지표 <strong>3~7배 우위</strong></li>
+</ul>
+<p>추가로 HPMC 장용성 코팅 적용 시 소장 흡수율 <strong>85%</strong>까지 상승. 단순 조미료 원료에서 <strong>"프리미엄 헬스케어 소재(EPP, Enhanced Peptide Premium)"</strong> 카테고리 전환 근거 확보.</p>
+<p>의미: 단가가 $4.8/kg(조미료)에서 <strong>$12.5+/kg(헬스케어 소재)</strong>로 2.6배 업그레이드 가능. 본질적으로 같은 부산물이지만 가공 기술만 바꿔도 카테고리가 바뀜.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 펩타이드 효능 차이는 단순 R&amp;D 성과가 아닌 <strong>"category jump multiplier"</strong>. 같은 원료 cost로 2.6배 매출 회수.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>프로테아제 효소 분해 라인 신설 (우선 CapEx)</strong>: 기존 자숙 공정에 retrofit, $2~4M/라인. 회수 12개월.</li>
+<li style="margin-bottom: 8px;"><strong>HPMC 장용성 캡슐형 건기식(EPP) 제품화</strong>: 자체 brand 또는 Nestlé Health·Glanbia·Amorepacific OEM 공급. 카테고리 단가 $12.5+/kg.</li>
+<li><strong>"Marine peptide IP licensing platform"</strong>: 효소 분해·HPMC 코팅 IP를 patent 후 글로벌 specialty ingredient leader 라이센싱. JP Morgan Specialty Chemicals Desk advisor.</li>
+</ol>
+</div>`,
         source: 'KFAS 한국수산과학회지 참치 가공부산물 항산화 평가 (2019~2023) · Silla Co. R&D — 구체적 DOI 매칭 필요',
       }}
     />

@@ -78,8 +78,24 @@ export function PolicyRiskScorecard() {
       telemetry={{ status: 'SYNCED', syncDate: '국정연 보고서 8건' }}
       customBody={Body}
       takeaway={{
-        situation: '미국 상호관세(92점)와 강제노동법(88점)이 참치 산업의 최대 정책 리스크. 6대 정책 리스크 종합 점수 74점(B+). 미국 관세 인상 시 한국 참치 가공품 수출(HSK 1604.14) × MFN 12.5~35% 차익 시나리오 추정치는 연 약 $280M.',
-        actionPlan: '① KORUS FTA 관세차익 활용으로 미국 관세 리스크 제로화, ② 블록체인 이력추적으로 강제노동법 컴플라이언스 확보, ③ EU CBAM 대비 탄소배출 인벤토리 선제 구축을 즉각 실행해야 합니다.',
+        situation: `<div>
+<p>참치 산업의 6대 정책 리스크를 0~100 점수화한 종합 레이더. 현재 종합 점수 <strong>74점(B+)</strong>로 상승 추세 — 향후 24~36개월 내 정책 리스크가 본업 EBITDA의 8~15%를 잠식할 수 있음을 시그널.</p>
+<p>핵심 2 리스크:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>미국 상호관세 (92점)</strong>: USTR이 한국 가공품 HSK 1604.14에 MFN 12.5~35% 추가 부과 시 한국 수출 연 약 <strong>$280M 차익 손실</strong> 추정.</li>
+<li><strong>미국 강제노동법(UFLPA) (88점)</strong>: 공급망 강제노동 의심 vendor 입증 시 미국 항구 화물 압류. blacklist 18~36개월.</li>
+</ul>
+<p>의미: 두 리스크 모두 한국이 통제 불가능한 외부 변수지만, 미리 대비하지 않으면 EBITDA의 8~15% 잠재 손실. 정책 리스크는 reactive가 아닌 <strong>proactive instrument</strong>로.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 정책 리스크는 단순 ESG 보고서 항목이 아닌 <strong>"본업 EBITDA를 좌우하는 derivative position"</strong>. risk desk가 매 분기 6대 리스크 점수를 마진 매트릭스에 reflect.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>미국 관세 리스크 제로화</strong>: KORUS FTA + 원산지 증명서 자동화로 미국 수출 관세 0% 락업. 멕시코 USMCA contingent capacity 확보.</li>
+<li style="margin-bottom: 8px;"><strong>강제노동법 컴플라이언스</strong>: 블록체인 이력추적(IBM Food Trust)으로 UFLPA 압류 100% 회피. 인증 자산을 SaaS 라이센싱(Compliance-as-a-Service).</li>
+<li><strong>EU CBAM 대비 탄소 인벤토리</strong>: Scope 1·2·3 탄소 배출 정량화. EU CBAM 2027 발효 전 carbon offset 선매수.</li>
+</ol>
+</div>`,
         source: '추정치 — 박혜진(2024-06) 「신통상규범 확대에 따른 수산분야 영향 및 대응방안」 국정연 · WTO Tariff Schedule · WITS API',
       }}
     />
@@ -133,8 +149,26 @@ export function FtaTariffOptimizer() {
       }
       customBody={Body}
       takeaway={{
-        situation: 'Korea→EU/US 루트에서 KORUS·한-EU FTA 적용 시 참치 가공품 관세 0%. 한국 대미 수출액 × (미 MFN 12.5%/35% in oil) 차익 산정 시 연간 $12M+ 절감 효과 추정.',
-        actionPlan: '① 원산지 증명서 자동화 시스템으로 FTA 특혜관세 적용률 95%+ 달성, ② 한-ASEAN FTA 활용 태국 경유 가공 루트로 EU 수출 시 추가 절감, ③ WITS API 실시간 모니터링으로 관세 변동 즉시 대응 체계 가동.',
+        situation: `<div>
+<p>FTA(Free Trade Agreement) 관세차익은 한국 수산업의 가장 중요한 가격 경쟁력. 한국→미국/EU 수출 시 FTA 미적용 vendor 대비 6~35%p 가격 우위.</p>
+<p>주요 루트:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>Korea→US</strong>: KORUS FTA로 MFN 12.5% → 0% (in oil은 35% → 0%)</li>
+<li><strong>Korea→EU</strong>: 한-EU FTA로 MFN 25% → 0%</li>
+<li><strong>Korea→ASEAN</strong>: AKFTA/RCEP로 MFN 5~20% → 0%</li>
+</ul>
+<p>차익 계산: 한국 대미 수출액 × MFN 12.5% (또는 in oil 35%) = 연간 <strong>$12M+ 절감 효과</strong> 추정. 단순 비용 절감이 아닌 <strong>경쟁사 대비 가격 협상 자유도</strong>로 작용해 추가 마진 +5~8%p 회수.</p>
+<p>한 가지 더: FTA는 원산지 증명서(C/O) 발급해야 적용. 현재 한국 수산 vendor 평균 FTA 적용률 70~80% — 20~30%는 그냥 MFN 관세 내고 있음. 이 갭이 즉시 회수 가능한 hidden margin.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: FTA 관세차익은 단순 cost saving이 아닌 <strong>"한국 vendor만의 regulatory moat"</strong>. 우리는 buyer가 아닌 trade arbitrage trader로 포지셔닝.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>원산지 증명서 자동화 시스템</strong>: FTA 특혜관세 적용률 70% → 95%+ 달성. 즉시 회수되는 $5~8M/년 hidden margin.</li>
+<li style="margin-bottom: 8px;"><strong>한-ASEAN FTA 활용 태국 경유 가공 루트</strong>: 한국 원물 → 태국 가공(AKFTA) → EU 수출(EU-Thai FTA 일부 적용) — 단가 추가 -8~12% 절감.</li>
+<li><strong>WITS API 실시간 모니터링</strong>: 관세 변동 즉시 대응 프로토콜 자동화. 본사 trade desk가 7개 FTA를 매주 monitoring 후 trading book에 reflect. 동시에 FTA 활용 노하우를 다른 한국 수산 vendor에 컨설팅 라이센싱.</li>
+</ol>
+</div>`,
         source: '추정치 — 박혜진(2024-06) 국정연 · KORUS FTA 양허 0% · WITS API',
       }}
     />

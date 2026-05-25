@@ -95,8 +95,27 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
       termTooltip={{ term: 'TAC', description: '총허용어획량(Total Allowable Catch). ICCAT·IOTC 등 RFMO가 매년 어종별로 설정하는 최대 어획량 상한선. 초과 시 100~125% 페이백(삭감) 페널티.' }}
       customBody={<>{TacGauges}{ChartArea}</>}
       takeaway={{
-        situation: 'IOTC는 눈다랑어(BET) TAC를 80,583톤(2025), ICCAT은 73,011톤(2025)으로 제한. 황다랑어는 기준 연도 대비 13~20% 감축 의무. 초과 시 100~125% 페이백 페널티. FAO SOFIA 2022에 따르면 공급 제한 + 수요 증가로 2030년까지 수산물 가격이 명목 기준 +33% 상승 전망(실질은 하락 단서). IOTC FAD 72일 제한 시 통조림 수출 -12%, 공장 연간 2~6주 중단 리스크.',
-        actionPlan: '1) 통조림 공장 가동률 저하 → 자숙액 공급 감소 → 참치액 생산 차질 연쇄 시나리오를 분기별 시뮬레이션. 2) 원물 +33% 상승 시 진입 시나리오별 ROIC 감응도 분석을 경영진에 사전 보고 — 가격 헤지 또는 안전 재고 확보. 3) 쿼터 소진율 85%+ 시 자동 경보 트리거 시스템 구축.',
+        situation: `<div>
+<p><strong>TAC(Total Allowable Catch)</strong>는 RFMO(국제 수산기구)가 매년 어종별로 설정하는 최대 어획량 상한선. 초과 시 <strong>100~125% 페이백(다음 해 쿼터 삭감) 페널티</strong>.</p>
+<p>2025 주요 TAC:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li>IOTC 눈다랑어(BET): <strong>80,583톤</strong></li>
+<li>ICCAT 눈다랑어: <strong>73,011톤</strong></li>
+<li>황다랑어: 기준 연도 대비 <strong>13~20% 감축 의무</strong></li>
+<li>IOTC FAD 72일 제한 시 → 통조림 수출 -12%, 공장 연 2~6주 중단 리스크</li>
+</ul>
+<p>FAO SOFIA 2022 전망: 공급 제한 + 수요 증가로 <strong>2030년까지 수산물 가격 명목 +33% 상승</strong>(실질은 하락). 통조림 메이커는 원가 +33% 흡수 시 마진 -10~15%p 압박.</p>
+<p>의미: TAC는 한국 어획·가공 capacity의 hard ceiling이며, 향후 5년 더 강화될 가능성 매우 높음. 우리 본업 EBITDA의 가장 큰 외생 변수.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: TAC는 단순 어획 제한이 아닌 <strong>"본업 EBITDA의 hard ceiling derivative"</strong>. 본사 risk 부서가 매 분기 쿼터 소진율을 monitoring + scenario 시뮬레이션.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>연쇄 시나리오 시뮬레이션</strong>: 가동률 저하 → 자숙액 감소 → 참치액 차질 chain effect를 분기별 BS·P&amp;L에 reflect.</li>
+<li style="margin-bottom: 8px;"><strong>원물 +33% 상승 ROIC 감응도</strong>: 경영진 사전 보고 + 가격 헤지/안전 재고 확보. 6개월 forward + 12개월 forward 분할 락업.</li>
+<li><strong>"쿼터 소진율 85%+ 자동 경보 트리거"</strong>: AI 기반 monitoring + 본사 trading desk 직보 시스템. 동시에 쿼터 보유 sovereign과 equity-level partnership으로 long-term access 보장.</li>
+</ol>
+</div>`,
         source: 'IOTC Compendium of Active Conservation Measures · ICCAT Compendium · FAO SOFIA 2022 · Macroeconomic impact of international fishery regulation (Marine Policy)',
       }}
     />

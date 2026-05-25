@@ -83,8 +83,20 @@ const TunaOriginPriceTrend = () => (
       </BarChart>
     }
     takeaway={{
-      situation: '5대 해역 평균 산지 단가는 1,550원/kg으로 전월 대비 +2.3%. 지중해(1,780원/kg, +8.7%)와 동태평양(1,620원/kg, +5.4%)이 상승을 견인했으나, 인도양은 -3.2%로 단가 분산이 확대 중이다.',
-      actionPlan: '지중해 상승이 일시적 환율 효과인지 항만 비용 구조 변화인지 30일 내 재검증 필요. 인도양 단가 약세를 활용해 Q4 원료 비축 확대를 우선 검토 — 예상 마진 갭 +2.1pp.',
+      situation: `<div>
+<p>"산지 단가"란 어선이 어획해 양륙한 시점의 원물 가격. 글로벌 5대 해역(지중해·동태평양·서태평양·인도양·서아프리카)별로 가격이 다르며 이 차이가 우리 매입 의사결정의 1차 input.</p>
+<p>5대 해역 평균: <strong>1,550원/kg, 전월 대비 +2.3%</strong>. 상승 견인: 지중해(1,780원/kg, +8.7%), 동태평양(1,620원/kg, +5.4%). 반대로 인도양은 -3.2% 약세. <strong>해역간 가격 분산이 확대 중</strong>이라는 게 핵심 시그널.</p>
+<p>의미: 분산 확대 = 차익거래 기회 확대. 인도양 약세 + 지중해 강세를 active하게 활용하면 매입원가 -5~8%p 절감 가능. 단일 해역 의존 vendor는 이런 차익 기회 놓침.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 해역간 가격 분산은 단순 정보가 아닌 <strong>"arbitrage trading signal"</strong>. 본사 trading desk가 매주 5대 해역 가격을 모니터링하여 매입 portfolio를 dynamic rebalancing.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>지중해 상승 원인 30일 내 재검증</strong>: 일시적 환율 효과 vs 항만 비용 구조 변화 — 환율이면 헷지, 구조면 거점 reallocation.</li>
+<li style="margin-bottom: 8px;"><strong>인도양 약세 활용 Q4 비축 확대</strong>: 인도양 6개월 forward 매입 락업. 예상 마진 갭 +2.1pp 회수.</li>
+<li><strong>"Origin price arbitrage trading book"</strong>: 5대 해역 long-short 자동 trading. ICE 또는 SGX와 OTC swap으로 paper hedge 결합.</li>
+</ol>
+</div>`,
       source: 'WCPFC 2025 Q3 + IATTC 추정치 (Stage 0 mock)',
     }}
   />

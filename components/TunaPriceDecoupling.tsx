@@ -66,8 +66,20 @@ export default function TunaPriceDecoupling() {
         </ComposedChart>
       }
       takeaway={{
-        situation: '2023년 4월 톤당 $2,000을 돌파했던 가다랑어 국제 시세가 2024년 1월 $1,400 선까지 약 30% 폭락. 그러나 주요 참치 캔 제조사의 소매 납품가는 인상 또는 유지되는 강한 디커플링.',
-        actionPlan: '원가와 판가 비동조화는 산업의 이윤 중심이 \'원물 어획\'에서 \'유통 장악력\'으로 이동했음을 시사. 원어 공급을 넘어 유통망(리테일)을 쥔 B2C 브랜드와 장기 납품 계약(Hedging) 체결, 또는 자사 원물을 활용한 OEM/ODM 고마진 가공식품 직접 침투 수직 계열화 전략 필요.',
+        situation: `<div>
+<p>"디커플링(Decoupling)"이란 두 변수가 평소에는 같이 움직이다가 어느 순간 분리되는 현상. 참치 산업에서 가장 중요한 디커플링: <strong>원물 가격 ↔ 소매가</strong>.</p>
+<p>2023~2024 충격적 패턴: <strong>가다랑어 국제 시세 2023-04 $2,000 → 2024-01 $1,400 (-30% 폭락)</strong>. 정상 시장이라면 소매 통조림 가격도 비슷하게 하락해야 함. 그런데 <strong>주요 캔 제조사 소매 납품가는 인상 또는 유지</strong>.</p>
+<p>의미: 산업의 이윤 중심이 <strong>"원물 어획"에서 "유통 장악력"으로 이동</strong>했다는 강력한 신호. 원물 가격이 떨어지면 마진을 어획자가 가져가는 게 아니라 유통·브랜드가 추가 마진으로 흡수. 한국 어획자·가공사는 점점 마진 압박을 받는 구조.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 원가-판가 디커플링은 단순 시장 이상이 아닌 <strong>"value chain power shift"</strong>. 한국 vendor는 어획·가공 단계에 묶여 있으면 향후 5년 마진 점점 잃는다. 유통·브랜드 직접 진출 또는 수직 계열화가 유일한 출구.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>리테일 B2C 브랜드와 장기 납품 hedging</strong>: Costco·Sam's Club·이마트·롯데마트 PB 라인과 3~5년 fixed price 계약 락업. 변동성 헷지 + 매출 visibility.</li>
+<li style="margin-bottom: 8px;"><strong>OEM/ODM 고마진 가공식품 직접 침투</strong>: 단순 통조림이 아닌 HMR·즉석식품·페트푸드로 SKU 확장. 마진 8% → 20~28%로 doubling.</li>
+<li><strong>"Forward integration to retail"</strong>: 자체 brand 출시 + DTC e-commerce(Amazon·11번가) 직접 채널 가동. 5년 내 매출의 30%를 B2C 직접 채널로 이동 — 유통 마진 200~400bp 직접 회수.</li>
+</ol>
+</div>`,
         source: '글로벌 참치 무역 데이터 + 한국소비자원 가격정보 (2023.04~2024.03)',
       }}
     />
