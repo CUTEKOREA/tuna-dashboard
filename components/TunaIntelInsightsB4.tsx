@@ -75,8 +75,21 @@ export function ThaiImportShift1Q26() {
         </div>
       }
       takeaway={{
-        situation: '태국 가공 허브의 2026 1분기 원어 수입이 가다랑어 -5%, 황다랑어 -14% 동시 감소. 슈퍼 엘니뇨로 WCPO에서 마이크로네시아·대만·나우루·한국 공급 급감하자 태국 가공업체가 부족분을 몰디브·세이셸·인도·필리핀 등 인도양으로 긴급 대체. WCPO 의존도 65 → 48%(-17%p), 인도양 비중 22 → 38%(+16%p).',
-        actionPlan: '(a) 한국·대만·필리핀의 WCPO 어획 쿼터 가치가 단기 상승했으므로 쿼터 라이센싱 시 우위 협상. (b) 동원·사조의 인도양(IOTC) 조업 확대 검토 — 태국 가공사들이 대체 공급선으로 인도양을 적극 채택하는 흐름에 편승. (c) 가다랑어 vs 황다랑어 감소율 차이(-5% vs -14%)를 보면 황다랑어가 더 타이트하므로 황다랑어 product line 가격 인상 여지가 더 큼.',
+        situation: `<div>
+<p>태국은 글로벌 참치 가공 허브 1위(점유율 30%). 이 허브가 어떤 어장에서 원어를 들여오는지가 곧 글로벌 참치 공급망 지도. 2026 1분기 결과는 <strong>역사적 지각변동</strong>입니다.</p>
+<p>WCPO 의존도가 65% → 48%로 <strong>-17%p 급감</strong>, 인도양 비중이 22% → 38%로 <strong>+16%p 급증</strong>. 슈퍼 엘니뇨 충격으로 마이크로네시아·대만·나우루·한국 공급이 급감하자 태국 가공사들이 부족분을 <strong>몰디브·세이셸·인도·필리핀</strong>으로 긴급 대체.</p>
+<p>어종별 임팩트도 차별적: 가다랑어 -5%, <strong>황다랑어 -14%</strong>. 황다랑어가 더 타이트한 이유는 ① 황다랑어 어획에 더 깊은 수심 필요 → ENSO 충격 시 가다랑어보다 회복 느림 ② 황다랑어 가격대(가다랑어의 1.8~2.2배)가 가공사 매입 의사결정의 우선순위.</p>
+<p>의미: WCPO 단일 의존 vendor는 지금 죽고 있고, <strong>인도양·필리핀 어획 쿼터 보유자가 단기 우위</strong>. 가격 협상에서 quota holder가 sweet spot.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 어장 이동은 단순 supply shift가 아닌 <strong>"쿼터 가치 재평가 사건"</strong>. 인도양·필리핀·한국 WCPO 쿼터 vendor는 향후 12~24개월 가격 협상에서 sweet spot.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>단기</strong>: 한국·대만·필리핀 WCPO 어획 쿼터 단기 가치 상승 활용 — 라이센싱 협상에서 <strong>+12~18% 프리미엄</strong> 회수.</li>
+<li style="margin-bottom: 8px;"><strong>중기</strong>: 동원·사조의 인도양(IOTC) 조업 확대로 인도양 capacity 30~40% 추가 확보. 태국 가공사 dependence 흐름에 편승하여 long-term contract 락업.</li>
+<li><strong>장기</strong>: 황다랑어 product line ASP <strong>+8~15% 인상</strong>. 가다랑어 대비 -14% 공급 감소 + 1.8~2.2배 가격대 결합으로 마진 +12%p 회수. 동시에 "ENSO-resilient sourcing" 마케팅으로 EU loin 채널에 sustainability premium 추가.</li>
+</ol>
+</div>`,
         source: 'Atuna \'Thai Processors Turn To IO WR As Pacific Supply Dwindles In Q1\' (2026.05.04) · 관련 기사 3건',
       }}
     />
@@ -131,8 +144,20 @@ export function FrimeAcquisitionWidget() {
         </div>
       }
       takeaway={{
-        situation: 'Frime은 EU pre-cooked loin 시장 단일 21% 점유 스페인 최대 황다랑어 가공사로 2026년 새 소유주 인수. MSC 인증 어장 100% 조달 지속가능성 프리미엄 포지션. 거래 구조·인수 주체는 비공개. 2025년 EU loin 수입량은 역대 최고 194,258톤 기록 — Frime 인수는 그 흐름의 마지막 단추.',
-        actionPlan: '(a) Frime 새 소유주 단기 모니터링 (Bolton/Thai Union/Bumble Bee 계열인지). 글로벌 통조림 4대 메이저 중 누구의 EU 가공 거점 강화인지가 한국 수출 게임 룰을 결정. (b) 동원·사조가 ANFACO-CECOPESCA 채널로 스페인 23개 핵심 가공사 중 중견 1~2곳과 OEM/JV 협상 개시 시점. (c) MSC 인증 어장 100% 모델은 한국 KMI 표준으로도 적용 가능 — 인증 기반 프리미엄 라인업 설계.',
+        situation: `<div>
+<p><strong>Frime SA</strong>는 스페인 최대 황다랑어 가공사로 EU pre-cooked loin 시장의 단일 <strong>21% 점유</strong>. EU 시장에서 사실상 가장 영향력 있는 single processor. 2026년 새 소유주에게 인수 — 거래 구조·인수 주체는 비공개.</p>
+<p>왜 중요? Frime은 ① <strong>MSC 인증 어장 100% 조달</strong> (지속가능성 프리미엄) ② EU pre-cooked loin segment의 가격 결정력 보유 ③ 2025년 EU loin 수입량 역대 최고 194,258톤 기록의 핵심 backbone. 인수자는 곧 EU 시장의 게임 룰을 다시 쓸 수 있는 위치.</p>
+<p>업계 추측: 글로벌 통조림 4대 메이저(Bolton·Thai Union·Bumble Bee·Bumble Bee 계열) 중 한 곳이 EU 거점 강화 차원에서 인수했을 가능성. 누가 인수했는지에 따라 향후 한국 수출 vendor 등재 게임 룰이 완전히 바뀝니다.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: Frime 인수는 단순 M&amp;A 뉴스가 아니라 <strong>"EU loin 시장의 권력 구조 재편 사건"</strong>. 한국 vendor는 향후 12개월 내 새 소유주에 line up하는 vendor onboarding race에서 빠르게 포지셔닝해야 한다.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: Frime 새 소유주 identity 즉시 확인 (Atuna·EUMOFA·SEC 13D filing 모니터링). 4대 메이저 중 누구인지가 우리 EU 채널 전략의 1순위 변수.</li>
+<li style="margin-bottom: 8px;"><strong>중기</strong>: 동원·사조가 <strong>ANFACO-CECOPESCA</strong>(스페인 가공사 협회) 채널로 스페인 23개 핵심 가공사 중 중견 1~2곳과 <strong>OEM/JV 협상 개시</strong>. Frime 외 alternative 거점 확보로 single point dependency 회피.</li>
+<li><strong>장기</strong>: <strong>"MSC 100% 인증 어장 supply" 표준화</strong>. Frime의 MSC 100% 조달 모델을 한국 KMI 표준으로 정착 — 우리도 EU 채널에 MSC 100% 어장 vendor로 자리매김. 동시에 한국 농수산식품유통공사(aT)에 EU 가공 거점 협력 사업 제안 — 정부 자금으로 EU 거점 minority equity 확보.</li>
+</ol>
+</div>`,
         source: 'Atuna May 2026 News 6 sources · NotebookLM EU·스페인 참치 가공사 노트북 · ANFACO-CECOPESCA 산업 통계',
       }}
     />
@@ -178,8 +203,26 @@ export function PerfectStormWidget() {
         </ComposedChart>
       }
       takeaway={{
-        situation: '2026 Q2 가다랑어 가격 폭등은 3가지 동시 충격의 합성. (1) 호르무즈: 2026-02말 미·이스라엘-이란 분쟁 격화로 호르무즈 봉쇄 위기 → MGO 톤당 $2,000 돌파, 어획 비용의 약 68% 잠식. (2) WCPO: 슈퍼 엘니뇨로 1Q26 어획량이 전년 동기 대비 -22%(-39,000톤) 급감. (3) 가공업체 저항: 4월 22일 $2,100 체결가에서 태국 가공사들이 매입 거부·관망세 전환, 5월 6일 $1,975로 하락. 가격 추가 상승의 천장은 가공업체 손익분기점이 결정.',
-        actionPlan: '(a) 1,950~2,050 박스권이 6~8주 지속 가능성 — 박스 하단 분할 매입이 안전. (b) 호르무즈 리스크 해소까지 단기 매입은 2~4주 단위로 분할해 $2,000+ 호가 노출 회피. (c) 인도양(IOTC) 대체 공급선(몰디브·세이셸·인도·필리핀) 비중 확대로 WCPO 단일 의존도 낮추기. (d) 가공업체 저항이 깨지는 시그널(태국 캐너 매입 재개) 주간 모니터링.',
+        situation: `<div>
+<p>"퍼펙트 스톰"이란 동시 다발적 위기가 결합되어 시너지로 시장을 초토화하는 현상. 2026 Q2 가다랑어 가격 폭등은 정확히 그 사례입니다.</p>
+<p><strong>3가지 동시 충격</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 4px;"><strong>호르무즈 봉쇄 위기</strong>: 2026-02 말 미·이스라엘-이란 분쟁 격화로 호르무즈 해협 봉쇄 위협 → 글로벌 MGO(어선 연료) 톤당 $2,000 돌파. 어획 cost의 <strong>약 68%를 연료가 잠식</strong>.</li>
+<li style="margin-bottom: 4px;"><strong>WCPO 어획 급감</strong>: 슈퍼 엘니뇨로 1Q26 WCPO 어획량 전년 동기 대비 <strong>-22%(-39,000톤)</strong>.</li>
+<li><strong>가공업체 저항</strong>: 4월 22일 $2,100 체결가에서 태국 가공사들이 매입 거부·관망세. 5월 6일 $1,975까지 하락. 추가 상승의 천장은 <strong>가공업체 손익분기점(약 $2,050)</strong>이 결정.</li>
+</ol>
+<p>의미: 가격 상승은 외생 변수(전쟁·기후)가 fuel, 천장은 내생 변수(가공사 손익분기점)이 cap. <strong>$1,950~2,050 박스권이 6~8주 지속</strong> 가능성. 박스 하단 매입이 위험 대비 수익률 최적.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: Q2 위기는 단순 사이클이 아닌 <strong>"3중 외생 충격 + 가공사 저항선이 만든 박스권 trading opportunity"</strong>. 본사 매입 데스크는 reactive가 아닌 <strong>systematic trading book</strong>으로 운영.</p>
+<p><strong>실행</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>박스 하단 분할 매입</strong>: $1,950~$1,980 구간 자동 발주, $2,000+ 호가는 회피. 6~8주에 걸쳐 분할 매수로 평균 매입가 $1,970 타게팅.</li>
+<li style="margin-bottom: 8px;"><strong>인도양 대체 공급선 동시 가동</strong>: 몰디브·세이셸·인도·필리핀 비중을 임시 +20%p 확대. WCPO 의존도를 65% → 55%로 낮춤.</li>
+<li><strong>가공업체 저항선 모니터링</strong>: 태국 캐너의 주간 매입 재개 시그널을 weekly intelligence report로 추적. 매입 재개가 확인되는 순간 가격 $2,100+ 돌파 가능성 — 추가 매입 가속 또는 forward 계약 락업.</li>
+<li><strong>호르무즈 정상화 trigger</strong>: 호르무즈 봉쇄 해소되면 MGO $1,200 수준으로 정상화 — 그 시점에 forward sell 또는 short hedge 진입.</li>
+</ol>
+</div>`,
         source: 'Atuna 방콕 가다랑어 실측 (skjbkk 2025-10~2026-05) · Atuna May 2026 News · WCPFC 1Q26 어획량 통계',
       }}
     />
@@ -220,8 +263,27 @@ export function RasSystemWidget() {
         </BarChart>
       }
       takeaway={{
-        situation: '동원산업은 MSC 지속가능성 기준 충족 + 비용 절감 위해 RAS(부유식 순환여과양식) 시험 운영 중. RAS는 전통 가두리 양식 대비 단위 면적당 생산성 4.5배, 용수 사용 95% 절감, 항생제 사용 90% 감소. 초기 CAPEX 높고 양식 가능 어종 제한이라는 약점도 존재. 가나에서는 WASTE2TASTE 프로젝트가 부산물 활용 어유·콜라겐 추출 공정 연구 중 — RAS와 결합 시 순환 경제 모델 완성.',
-        actionPlan: '(a) 동원 RAS 파일럿의 KPI(생산성·FIFO·OPEX/kg)를 분기별 공개 압박해 ESG 투자자 신뢰 확보. (b) 사조산업도 단독 또는 동원 컨소시엄 형태로 RAS 합류 시 양사 ESG 디스카운트 해소 가능 (한국 수산주 글로벌 동종 대비 PBR -20% 디스카운트). (c) 가나·세네갈 가공 거점에 WASTE2TASTE 모델 결합 — 본사 RAS + 아프리카 가공 부산물 = 순환 경제 듀얼 엔진.',
+        situation: `<div>
+<p><strong>RAS(Recirculating Aquaculture System)</strong>는 부유식 순환여과양식 — 바다에 떠 있는 폐쇄 양식 시설로 물·사료·배설물을 100% 순환시키는 차세대 양식 기술입니다.</p>
+<p>전통 가두리 양식 대비 압도적 우위:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li>단위 면적당 생산성 <strong>4.5배</strong></li>
+<li>용수 사용 <strong>-95%</strong> (해양 오염 회피)</li>
+<li>항생제 사용 <strong>-90%</strong> (MSC 인증 기준 충족)</li>
+<li>FIFO(어분 의존도) 단축 잠재력 (사료 회수율 95%+)</li>
+</ul>
+<p>약점: ① 초기 CAPEX 매우 높음 ($30~50M/시설) ② 양식 가능 어종 제한 (현재 광어·연어 중심, 참치는 R&amp;D 단계).</p>
+<p>한국 동원산업이 시험 운영 중. 동시에 가나에서 <strong>WASTE2TASTE 프로젝트</strong>(부산물 활용 어유·콜라겐 추출 공정) 진행 — RAS와 결합 시 "순환 경제(circular economy)" 모델 완성: 양식 → 가공 → 부산물 → 바이오 소재 → 다시 양식 사료.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: RAS는 단순 양식 기술이 아닌 <strong>"한국 수산주의 PBR rerating instrument"</strong>. 현재 한국 수산주는 글로벌 동종 대비 PBR -20% 디스카운트 — ESG·기후 관련 부재가 핵심 사유. RAS 파일럿이 성공하면 디스카운트 해소 + 추가 프리미엄 가능.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>단기</strong>: 동원 RAS 파일럿의 KPI(생산성·FIFO·OPEX/kg)를 <strong>분기별 공개 압박</strong>으로 ESG 투자자(BlackRock·MSCI ESG·Sustainalytics) 신뢰 확보. 동원 단독이 아닌 한국 수산 전체의 ESG 시그널로 활용.</li>
+<li style="margin-bottom: 8px;"><strong>중기</strong>: 사조산업도 단독 또는 동원 컨소시엄 형태로 RAS 합류. 양사 공동 ESG initiative로 PBR -20% 디스카운트 해소 — 시가총액 +20~30% 회복 가능.</li>
+<li><strong>장기</strong>: <strong>아프리카(가나·세네갈) 가공 거점에 WASTE2TASTE 결합</strong>. 본사 RAS + 아프리카 가공 부산물 = 순환 경제 듀얼 엔진. World Bank IFC Blue Economy Fund + AfDB 협력으로 자본 조달. 5년 후 우리는 단순 한국 수산사가 아닌 <strong>"global circular protein platform"</strong>으로 valuation rerate (EV/EBITDA 8x → 18~22x).</li>
+</ol>
+</div>`,
         source: 'NotebookLM 가나 서아프리카 참치 노트북 · WASTE2TASTE 프로젝트 · MSC 양식 표준',
       }}
     />

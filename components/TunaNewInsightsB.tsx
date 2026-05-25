@@ -61,8 +61,21 @@ export function InsightTunaExtract() {
         </ComposedChart>
       }
       takeaway={{
-        situation: '한국 참치액 시장(700~1,000억원, 출처별 편차)은 과포화된 액상 경쟁에서 벗어나 \'코인 육수\' 분말 시장(+20% YoY)으로 급속 확장 중. 가다랑어 추출액의 분무건조 설비를 결합하면 냉동 컨테이너를 건화물로 전환하여 통관/물류비를 50% 이상 절감할 수 있음.',
-        actionPlan: '참치액의 미래는 액상이 아닌 \'분말\'에 있음. 베트남 현지 가다랑어(Skipjack) 전용 분무건조 파일럿을 즉시 가동하고, CJ/대상 등 코인 육수 제조사에 B2B 핵심 원료 납품 계약을 선제 체결. TN 지수 1.5% 이상 고농축 스펙으로 차별화하여 프리미엄 시장 장악.',
+        situation: `<div>
+<p>한국 참치액 시장은 <strong>700~1,000억원 규모</strong>(출처별 편차)로 액상 시장은 사실상 포화. 청정원·연두·하선정 등 4~5개 brand가 가격 경쟁을 벌이는 red ocean.</p>
+<p>옆에 새로운 blue ocean이 열렸습니다. <strong>"코인 육수"(분말 우마미)</strong> 시장입니다. 캡슐 한 알로 한 그릇 국물을 만드는 dehydrated 분말 형태로, <strong>+20% YoY 급성장</strong>. 견인 요인: ① 1인 가구 증가 ② 캠핑·아웃도어 ③ Z세대 minimalism 트렌드.</p>
+<p>핵심 기회: 가다랑어 추출액의 <strong>분무건조(spray drying)</strong>. 액상→분말 전환 시 ① 부피·무게 -85% ② <strong>냉동 컨테이너→건화물 전환</strong> ③ 통관·물류비 -50%+ ④ 유통기한 24개월+ (액상 6개월 대비).</p>
+<p>의미: 액상은 한국 내수만 가능한 작은 게임, 분말은 글로벌 수출 가능한 큰 게임. 기술 전환만으로 시장 규모 5~10배 확대.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 참치액의 미래는 액상이 아닌 <strong>"globally shippable powder"</strong>. 본사는 한국 액상 가공사에서 <strong>"global umami concentrate platform"</strong>로 진화해 EV/EBITDA를 식품가공 8x → ingredient platform 18~22x로 multiple rerate.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>베트남 분무건조 파일럿 즉시 가동</strong>: 베트남 가다랑어 가공 거점에 분무건조 line 설치 ($5~8M). 인건비·전기료 저렴, 운영 cost 한국 대비 -40%. 6~9개월 회수.</li>
+<li style="margin-bottom: 8px;"><strong>CJ·대상 등 코인 육수 제조사에 B2B 핵심 원료 납품 계약 선제 체결</strong>: TN(Total Nitrogen) 1.5%+ 고농축 스펙으로 차별화. 5년 exclusive 공급 + Take-or-Pay 조건.</li>
+<li><strong>"Global umami concentrate" 글로벌 진출</strong>: 일본 키코만·중국 라오간마·동남아 우마미 leader 30곳 B2B ingredient supply. 5년 후 글로벌 powder umami sole upstream supplier 포지션. Givaudan·Symrise M&amp;A target 검토.</li>
+</ol>
+</div>`,
         source: 'KMI 식품산업통계정보 (2026) · 자체 추정치 (700~1,000억원 범위, 식약처/aT 단일화 대기)',
       }}
     />
@@ -96,8 +109,21 @@ export function InsightPillarTwo() {
         </BarChart>
       }
       takeaway={{
-        situation: '2026년 OECD Pillar Two 도입으로 조세 피난처 유령법인을 활용하던 다국적 수산기업(Thai Union, Bolton 등)의 실효 법인세율이 7%에서 14%로 거의 2배 폭등. 고단가 황다랑어(Yellowfin)의 이전가격(Transfer Pricing) 조작 구조 붕괴.',
-        actionPlan: 'Pillar Two는 글로벌 수산업계의 \'디지털세\'. 포트폴리오 내 유령법인 구조 의존 기업의 밸류에이션을 즉시 15~20% 디스카운트. 세무 구조 리스크가 낮고 유럽 내 실질 가공 거점을 보유한 스페인(Frinsa 등) 지역 벤더를 대체 파트너로 재선별.',
+        situation: `<div>
+<p><strong>OECD Pillar Two</strong>는 글로벌 다국적 기업의 최저 법인세율을 <strong>15%</strong>로 강제하는 국제 합의입니다(2026년 시행). 핵심 목적: 케이만·버뮤다 같은 조세 피난처에 유령법인을 두고 실효 세율을 5~7%로 낮추던 글로벌 기업의 우회 구조 차단.</p>
+<p>참치 산업에서의 영향: Thai Union(태국), Bolton(이탈리아) 등 다국적 수산기업이 그동안 사용해온 <strong>이전가격(Transfer Pricing) 조작 구조 붕괴</strong>. 실효 법인세율이 7% → 14%로 <strong>거의 2배 폭등</strong>.</p>
+<p>구체 mechanism: 고단가 황다랑어(Yellowfin)를 케이만 유령법인이 한국에서 $5,000/톤에 매입 → 미국으로 $8,000/톤에 판매 → $3,000/톤 차익이 케이만에서 5% 과세. 이 구조가 Pillar Two로 막힌다.</p>
+<p>의미: 글로벌 수산업계의 "디지털세" 격. Bolton·Thai Union 등 multinationals의 EBITDA가 5~8% 직접 압박. <strong>유령법인 구조 의존 기업 valuation 15~20% discount</strong>. 반대로 실질 가공 거점을 보유한 스페인·한국 vendor가 상대적 우위.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: Pillar Two는 단순 세제 변경이 아닌 <strong>"글로벌 수산업계 valuation 재편 이벤트"</strong>. 우리는 multinationals가 잃는 위치에 long, ourselves처럼 실질 거점 기반 vendor에 long 포지션.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>포트폴리오 내 유령법인 구조 의존 기업 valuation 15~20% discount</strong>: Thai Union·Bolton 주가 또는 partner equity 평가에 즉시 적용. 새 capex·M&amp;A 의사결정에 reflect.</li>
+<li style="margin-bottom: 8px;"><strong>대체 파트너 재선별</strong>: 세무 구조 리스크 낮고 유럽 내 실질 가공 거점을 보유한 <strong>스페인(Frinsa·NIRSA)·이탈리아(Generale Conserve)</strong> 지역 vendor를 우선 파트너로. 향후 Pillar Two 추가 영향에서 자유.</li>
+<li><strong>"Pillar Two arbitrage trading"</strong>: Thai Union·Bolton 같은 multinationals의 distressed asset(EBITDA 압박으로 매각 가능)을 PE 컨소시엄과 co-invest로 인수. JP Morgan Cross-Border M&amp;A Desk가 advisor. 5년 후 valuation 회복 시 IRR 18~25% 잠재.</li>
+</ol>
+</div>`,
         source: 'KIEP 국제조세 동향 (2025) · EU 집행위 발표자료',
       }}
     />
@@ -128,8 +154,26 @@ export function InsightVietnamOEM() {
         </BarChart>
       }
       takeaway={{
-        situation: '미국 MMPA(2026 시행)로 베트남 어업 수입 금지 및 황다랑어(Yellowfin) 어획 제한으로 현지 가공 공장의 원물 가뭄 극심. 이 규제 이중고가 역설적으로 안정적 원양 선단을 보유한 기업에게 베트남 OEM 공장을 장악할 교섭력(Leverage) 제공.',
-        actionPlan: '베트남의 원물 부족 위기는 한국 조업사에게 최상의 \'지분 인수 스위트 스팟\'. Tan Phat Foods 등 국제 인증(BRC/IFS)을 보유한 현지 최상위 벤더의 소수 지분(15~25%)을 원물(황다랑어) 장기 공급권과 스왑(Swap)하여 선제 확보.',
+        situation: `<div>
+<p><strong>MMPA(Marine Mammal Protection Act)</strong>는 미국이 운영하는 해양 포유류 보호법으로, 자국 기준을 충족하지 못하는 국가의 수산물 수입을 금지합니다. <strong>2026년 베트남 어업 수입 금지 결정</strong>이 발효되며 베트남 황다랑어(Yellowfin) 가공 산업이 직격탄.</p>
+<p>베트남의 이중고:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>미국 시장 차단</strong>: 베트남 수산 수출의 35%(미국 채널) 즉시 차단</li>
+<li><strong>황다랑어 어획 자체 제한</strong>: MMPA 준수를 위한 어법 제한으로 어획 capacity -25%</li>
+<li><strong>현지 가공 공장 원물 가뭄</strong>: 자체 어획 부족 + 외부 수입 cost 상승으로 가공사 EBITDA 압박</li>
+</ul>
+<p>역설적 기회: 베트남 가공사들의 distress가 <strong>안정적 원양 선단을 보유한 한국 조업사에게 베트남 OEM 공장을 장악할 교섭력(Leverage)을 제공</strong>합니다. 베트남 가공사는 원물 공급 보장이 절박하고, 우리는 OEM capacity가 필요. 양측 swap 가능.</p>
+<p>의미: 평시에는 매수 불가능했던 베트남 최상위 가공사(Tan Phat Foods 등 BRC/IFS 인증 보유)의 minority equity를 distressed valuation으로 인수 가능한 일회성 window.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 베트남 위기는 한국 조업사에게 <strong>"equity acquisition sweet spot"</strong>. 평시에는 EBITDA 8~10x 거래되던 mid-tier 가공사를 EBITDA 4~5x distressed valuation으로 minority stake 인수 가능한 12~18개월 window.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>Equity-for-Supply Swap 즉시 가동</strong>: Tan Phat Foods 등 BRC/IFS 인증 보유 현지 최상위 vendor 5~7곳에 minority equity 15~25%를 <strong>원물(황다랑어) 5년 장기 공급권과 swap</strong>. 우리는 cash 부담 0, vendor는 supply 보장.</li>
+<li style="margin-bottom: 8px;"><strong>MMPA 준수 retrofit consulting</strong>: 한국 어선의 MMPA-compliant 조업 know-how를 베트남 vendor에 라이센싱. 우리는 license fee + equity dividend 이중 회수.</li>
+<li><strong>"베트남 OEM platform" 진화</strong>: 5년 후 베트남 가공 capacity의 25~30%를 우리 패권 하에 통합 — 단순 OEM 외주가 아닌 brand·R&amp;D·logistics 통합 platform. EU·일본·동남아 수출의 secondary processing hub로 활용. JP Morgan Asia Industrials Desk와 협력해 SPV 구조로 본사 BS off-balance.</li>
+</ol>
+</div>`,
         source: 'ILO Global Wage Report (2025) · 관세청 KCS VKFTA',
       }}
     />

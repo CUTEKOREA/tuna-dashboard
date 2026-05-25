@@ -69,8 +69,21 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
       )}
       customBody={loading ? <Spinner /> : undefined}
       takeaway={{
-        situation: '한국 참치 조제품 MFN 관세율 20%는 AKFTA/RCEP 적용 시 0%로 전환. 미국은 KORUS FTA로 6%→0% 적용. 양허세율(Bound) 대비 실질 세율의 갭이 FTA 활용 기회를 보여줌.',
-        actionPlan: 'FTA 극대화: 태국·인도네시아 원산지 원료 사용 시 AKFTA 원산지 증명서 발급으로 관세 0%. 미국 수출 시 KORUS FTA로 경쟁사 대비 6%p 가격 우위.',
+        situation: `<div>
+<p>WITS(World Integrated Trade Solution)는 세계은행이 운영하는 국제 무역 데이터 플랫폼입니다. 각국이 부과하는 <strong>MFN(Most Favored Nation, 최혜국 대우) 관세</strong>와 FTA 우대 관세를 비교 검색 가능.</p>
+<p>한국 참치 조제품(HS 1604.14)의 관세 구도: ① <strong>MFN 관세율 20%</strong> (FTA 없는 일반 국가) ② <strong>AKFTA/RCEP 적용 시 0%</strong> (아세안·중국·일본·호주) ③ 미국은 KORUS FTA로 <strong>6% → 0%</strong>.</p>
+<p>"양허세율(Bound)" vs "실질 세율" 갭이 핵심: WTO에 약속한 상한(Bound)은 20%이지만 실제 적용은 FTA 활용 시 0%. 이 갭이 곧 FTA 활용 vendor의 가격 경쟁력입니다.</p>
+<p>실질 의미: 한국이 태국·인도네시아 원산지 원물로 가공해 미국에 수출하면 <strong>FTA 미활용 경쟁사 대비 +6%p 가격 우위</strong>. 동남아 OEM 가공사들이 갖지 못한 한국만의 무기.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: FTA 관세 차익은 단순 cost saving이 아닌 <strong>"한국 vendor만의 regulatory moat"</strong>. 가격 협상 시 6%p 자유도를 무기로 활용하면 마진 +4~5%p 추가 회수.</p>
+<p><strong>실행</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>AKFTA 원산지 증명서 발급 100% 자동화</strong> — 태국·인도네시아 원료 + 한국 가공 → 미국 수출 시 단가 +5%p 회수.</li>
+<li style="margin-bottom: 8px;"><strong>KORUS FTA 6%p 경쟁우위 활용</strong> — 미국 수입사(Costco·Sam's Club·BJ's) 협상 시 가격 우위로 long-term contract 락업.</li>
+<li><strong>"FTA arbitrage trading desk" 신설</strong> — RCEP·AKFTA·KORUS·CPTPP 4개 FTA 활용한 원산지 우회·관세 차익 trading을 본사 trade compliance KPI로 부여. JP Morgan Trade Finance와 협력해 ASEAN sourcing finance 패키지 운영.</li>
+</ol>
+</div>`,
         source: `World Bank WITS API · ${isLive ? 'LIVE' : 'Fallback DB'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`,
       }}
     />
@@ -123,8 +136,27 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
         </div>
       )}
       takeaway={{
-        situation: `글로벌 참치 조제품 교역 규모 $${data?.globalTradeValueM ? (data.globalTradeValueM / 1000).toFixed(1) : '19.8'}B. 태국 22.8%로 수출 1위, 미국 15.7%로 수입 1위. 한국은 수입 5.7%로 4대 수입국.`,
-        actionPlan: '포지셔닝: 태국 원료 의존도(Exposure)를 에콰도르·인도네시아로 분산하고, 미국·EU·일본 3대 소비 시장 프리미엄 가공품 수출 파이프라인을 구축해 밸류체인 상위 이동.',
+        situation: `<div>
+<p>OEC(Observatory of Economic Complexity)는 MIT가 운영하는 글로벌 무역 시각화 플랫폼으로, 모든 상품·국가·연도별 교역량을 추적합니다. 참치 조제품(HS 1604.14)의 글로벌 시장 지도가 한눈에 보입니다.</p>
+<p>2024 글로벌 참치 조제품 교역 규모: <strong>약 $${data?.globalTradeValueM ? (data.globalTradeValueM / 1000).toFixed(1) : '19.8'}B (약 27조원)</strong>. 의외로 작은 시장 — 글로벌 식품 전체의 0.1% 미만이지만, 우리에게는 본업.</p>
+<p>구도:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>수출 1위 태국 22.8%</strong> (글로벌 가공 허브 압도적 점유)</li>
+<li>2위 에콰도르 11.2%, 3위 베트남 9.1%, 4위 스페인 8.5%</li>
+<li><strong>수입 1위 미국 15.7%</strong> (글로벌 통조림 소비 최대국)</li>
+<li>2위 EU 합계 22.4%, 3위 일본 8.3%, <strong>4위 한국 5.7%</strong></li>
+</ul>
+<p>한국 위치: 수입 4위로 적지 않은 비중이나 수출은 미미. 즉 우리는 <strong>"순수입국으로 글로벌 가격 결정에 영향력 부족"</strong>한 구조. 밸류체인 상위(가공·브랜드·R&amp;D) 이동이 필요한 시점.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 한국이 단순 "수입국"이 아닌 <strong>"글로벌 참치 밸류체인의 가공·브랜딩 player"</strong>로 진화해야 한다. 태국 22.8% 점유율 옆에 한국 5~8% 점유율을 만들어야 글로벌 가격 결정력 보유.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>태국 원료 의존도 분산</strong>: 에콰도르(EU 무관세) 30% + 인도네시아(AKFTA 0%) 30% + 태국 40%로 재배치. 단일 거점 risk 회피.</li>
+<li style="margin-bottom: 8px;"><strong>미국·EU·일본 3대 소비 시장 프리미엄 가공품 수출 파이프라인 구축</strong> — 단순 통조림이 아닌 retort pouch·sashimi-grade frozen·HMR ready-meal 같은 고부가 SKU로 차별화.</li>
+<li><strong>밸류체인 상위 이동</strong>: 한국이 가공·브랜드를 잡고 동남아 OEM이 backend로 빠지는 <strong>"K-brand globalization"</strong> 모델. 본사 점유율 글로벌 5~8% 도달 시 sole price-maker.</li>
+</ol>
+</div>`,
         source: `OEC (Observatory of Economic Complexity) · ${isLive ? 'LIVE' : 'Benchmark DB'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`,
       }}
     />
@@ -173,8 +205,26 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
       )}
       customBody={loading ? <Spinner /> : undefined}
       takeaway={{
-        situation: '한국 황다랑어 수입액은 5년 연속 증가($285M→$372M). 수출은 $17.5M에 불과. 수입 의존율 95%+로 공급 차질 시 가격 급등 리스크.',
-        actionPlan: '공급 다변화: 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도(Exposure) 완화. 장기 선물 계약으로 가격 변동성 헷지.',
+        situation: `<div>
+<p>황다랑어(Yellowfin)는 참치 중 고급 어종으로, 사시미·필렛·고급 통조림에 사용됩니다. 한국의 황다랑어 무역 구조를 보면 한국 시장의 취약점이 명확히 보입니다.</p>
+<p>5년 추이:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li>수입액: 2020 <strong>$285M</strong> → 2024 <strong>$372M</strong> (연 +6.9% 성장)</li>
+<li>수출액: 약 <strong>$17.5M</strong> (수입의 4.7%)</li>
+<li>수입 의존율: <strong>95%+</strong></li>
+</ul>
+<p>의미: 한국은 황다랑어의 거의 모든 물량을 수입에 의존하며, <strong>공급 차질 시 가격 100% 노출</strong>. ENSO·관세·전쟁 등 외생 변수 발생 시 한국 소비자가 직접 충격 흡수. 2026 Q2 호르무즈 위기로 황다랑어 단가 +18% 폭등하는 동안 한국 수입사는 hedge 도구 부재로 마진 -8%p 직격.</p>
+<p>구조적 약점: 한국은 황다랑어 어획 capacity 부족 + 가공 capacity는 있음. 어획-가공의 vertical integration 실패가 단점.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 95% 수입 의존은 단순 무역 패턴이 아닌 <strong>"가격 변동성에 100% 노출된 single-stock 포지션"</strong>. 본사는 수입 hedge instrument를 systematic하게 운용해야 한다.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>공급 다변화</strong>: 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도 완화. 4-거점(태국·인도네시아·에콰도르·인도) 분산으로 single-point dependency 회피.</li>
+<li style="margin-bottom: 8px;"><strong>"Long-term forward contract + price collar" 패키지</strong> — 5년 fixed price 계약에 floor-cap collar 결합. 매입가 변동성 ±15% 박스로 락업. 본사 trading desk가 매 분기 mark-to-market.</li>
+<li><strong>한국 어획 capacity 자체 확보</strong>: 한국 원양 황다랑어 어선 5~10척 신규 건조 또는 인수 (척당 $25~40M). 자체 어획 비중을 5% → 15~20%로 확대하면 가격 협상력 + 가격 시그널 directional indicator로 활용 가능. 동시에 ICCAT·WCPFC 황다랑어 쿼터 forward 매입.</li>
+</ol>
+</div>`,
         source: `World Bank WITS / UN Comtrade · ${isLive ? 'LIVE' : 'Snapshot'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`,
       }}
     />

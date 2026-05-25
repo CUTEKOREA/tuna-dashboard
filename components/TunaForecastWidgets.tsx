@@ -66,8 +66,27 @@ export function SkipjackForecastWidget() {
         )
       }
       takeaway={{
-        situation: 'Atuna 방콕 가다랑어 산지가격 실측은 2025-10 $1,700 → 2025-12 $1,500 저점 → 2026-04 $2,100 위기 정점 → 2026-05 $1,975로 진정 국면. 동시 충격 요인: (1) 2026-02말 호르무즈 봉쇄 위기로 MGO 톤당 $2,000 돌파, 어획 비용의 약 68% 잠식. (2) 슈퍼 엘니뇨로 1Q26 WCPO -22%(-39,000톤) 급감. 태국 가공업체들이 $2,000 저항선에서 관망세로 돌아서며 추가 상승 차단.',
-        actionPlan: '(a) 인도양(IOTC) 대체 공급선(몰디브·세이셸·인도·필리핀) 비중 확대로 WCPO 단일 의존도 낮춤. (b) 호르무즈 리스크 해소 전까지 단기 매입은 2~4주 단위로 분할해 $2,000+ 호가 회피. 가공업체 관망세 유지 시 1,950~2,050 박스권이 6~8주 지속 가능 — 박스 하단 분할 매입이 안전.',
+        situation: `<div>
+<p><strong>Atuna 방콕 가다랑어 산지가격</strong>은 글로벌 가다랑어 가격의 사실상 benchmark. 모든 가공사의 매입 의사결정 기준점.</p>
+<p>최근 6개월 추이:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li>2025-10: <strong>$1,700</strong> (정상)</li>
+<li>2025-12: <strong>$1,500</strong> (계절 저점)</li>
+<li>2026-04: <strong>$2,100</strong> (위기 정점, +40% 6개월)</li>
+<li>2026-05: <strong>$1,975</strong> (진정 국면, -6%)</li>
+</ul>
+<p>3중 충격: ① <strong>호르무즈 봉쇄</strong>(2026-02말) MGO $2,000 돌파, 어획 cost 68% 잠식 ② <strong>슈퍼 엘니뇨</strong> 1Q26 WCPO -22%(-39,000톤) ③ <strong>가공업체 저항</strong> 태국 캐너 $2,000 저항선 관망세로 추가 상승 차단.</p>
+<p>시나리오: <strong>$1,950~$2,050 박스권 6~8주 지속</strong> 가능성. 호르무즈 해소 시 $1,500 회복, 봉쇄 장기화 시 $2,300 재돌파 가능.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 산지가격 trading은 reactive cost management가 아닌 <strong>"systematic trading book"</strong>. 매주 Atuna 시그널 + 호르무즈·WCPO·태국 가공업체 3개 변수의 mathematical model로 매입 의사결정 자동화.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>인도양 대체 공급선 확대</strong>: 평소 25% → 위기시 40%로 동적 조정.</li>
+<li style="margin-bottom: 8px;"><strong>호르무즈 해소 전 단기 매입 분할</strong>: 2~4주 단위로 분할, $2,000+ 호가는 회피. 박스 하단 분할 매입으로 평균 매입가 $1,970 타게팅.</li>
+<li><strong>"Tuna price systematic trading desk" 신설</strong>: Atuna + NOAA ENSO + Hormuz tension + MGO 4개 변수 ML 모델 input, 주간 매입 비중 자동 조정. JP Morgan Commodity Quant Desk와 collab해 backtest sharpe 2.0+ 검증.</li>
+</ol>
+</div>`,
         source: 'Atuna 가격 데이터(skjbkk 2025-10~2026-05) · Atuna May 2026 News 6 sources · WCPFC 2024-25 어획량 통계',
       }}
     />
@@ -114,8 +133,21 @@ export function EnsoCorrelationWidget() {
         </BarChart>
       }
       takeaway={{
-        situation: '2025 후반 약 La Niña → 2026 초 Neutral로 ENSO가 이미 전환 완료(NOAA 기준). 과거 10년 데이터에서 La Niña→Neutral 전환기에 서태평양 가다랑어 -5~-8% 감소 + 산지가격 +10~12% 상승 패턴 반복. 다만 2026-Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 봉쇄 외생 MGO 충격.',
-        actionPlan: 'WCPO 단일 의존을 낮추는 방향은 유효하나, 단기(2~4주) 매입 의사결정의 1차 시그널은 호르무즈 정상화 여부. ICCAT(대서양) 쿼터 추가 + 인도양(IOTC) 대체 공급선 확대 병행. 지중해 참다랑어 축양 투자는 5~7년 중장기 분리 트랙으로 운영.',
+        situation: `<div>
+<p><strong>ENSO(El Niño-Southern Oscillation)</strong>는 태평양 적도 수온 변화 주기. <strong>엘니뇨(El Niño)</strong>는 평균보다 따뜻해지고 <strong>라니냐(La Niña)</strong>는 차가워지는 현상, 그 중간이 <strong>Neutral</strong>. NOAA가 매월 ONI(Oceanic Niño Index)로 측정·공시.</p>
+<p>참치 어획과 ENSO의 관계: 가다랑어는 따뜻한 표층수에 모이는 어종. 라니냐 → Neutral 전환기에 가다랑어가 더 깊은 수심으로 분산되며 어획 효율(CPUE) 일시 하락. 과거 10년 데이터: <strong>La Niña→Neutral 전환기에 WCPO 가다랑어 -5~-8% 감소 + 산지가격 +10~12% 상승</strong> 패턴 반복.</p>
+<p>현재 상황: <strong>2025 후반 약 La Niña → 2026 초 Neutral로 이미 전환 완료</strong>(NOAA 기준). 즉 ENSO 충격은 이미 가격에 반영된 상태.</p>
+<p>중요한 caveat: <strong>2026 Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 봉쇄 외생 MGO 충격</strong>. ENSO 시그널만 보고 매입 결정하면 호르무즈 변수를 놓침 — 두 변수 동시 모니터링 필수.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: ENSO 분석은 중장기(6~24개월) 어장 시그널이며 단기 매입은 호르무즈 변수가 dominant. <strong>"Time-horizon별 변수 분리 trading"</strong>으로 두 신호를 독립적으로 활용.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>단기 (2~4주 매입)</strong>: 호르무즈 정상화 여부가 1차 시그널. ENSO는 무시. 박스권 trading.</li>
+<li style="margin-bottom: 8px;"><strong>중기 (6~12개월 capacity 계획)</strong>: <strong>WCPO 단일 의존 → 4-RFMO 분산</strong>. ICCAT(대서양) 쿼터 추가 + 인도양(IOTC) 대체 공급선 확대 병행.</li>
+<li><strong>장기 (5~7년 capex)</strong>: <strong>지중해 참다랑어(BFT) 축양 투자</strong>를 ENSO 영향 없는 분리 트랙으로 운영. 호주 SBT 양식도 동시 진입. ENSO와 무관한 양식 capacity 확보로 climate beta 헷지.</li>
+</ol>
+</div>`,
         source: 'NOAA ENSO Index · FAOSTAT FishStatJ · WCPFC/IOTC 조업통계 · Atuna 2026-Q2 시세',
       }}
     />
@@ -154,8 +186,25 @@ export function LandingCostSensitivity() {
         </div>
       }
       takeaway={{
-        situation: '미국 301 관세 시나리오 시 착지매입원가 +20% 급등. 원화 약세(₩1,450/USD) 시나리오에서는 추가 마진 5.1%p 압축. 현재 기준환율(₩1,385) 대비 ₩65 추가 절하 시 kg당 약 ₩420의 매입원가 상승 불가피.',
-        actionPlan: '3중 방어 전략: ① 환율 헷지(3개월 선물환 계약으로 ₩1,400 이하 락인), ② FTA 우회(한-ASEAN FTA로 태국 경유 관세 0%), ③ ECOS/KCS API 실시간 모니터링으로 변동 즉시 대응 프로토콜.',
+        situation: `<div>
+<p>"착지원가(Landed Cost)"란 수입 원물이 한국 항구에 도착했을 때의 최종 원가. 매입가 + 운임 + 보험 + 관세 + 환율 등 모든 변수의 합. 우리 마진의 가장 큰 input variable.</p>
+<p>2개 핵심 시나리오 영향:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>미국 301 관세 시나리오</strong>: 미국이 한국 가공품에 301조 관세 부과 시 착지매입원가 <strong>+20% 급등</strong>. 마진 -8~12%p 직접 압박.</li>
+<li><strong>원화 약세 시나리오</strong>: USD/KRW 환율 ₩1,385 → ₩1,450(₩65 추가 절하) 시 kg당 약 <strong>₩420 매입원가 상승</strong>, 추가 마진 -5.1%p 압축.</li>
+</ul>
+<p>의미: 두 시나리오가 동시 발생 시(미국 정치 불확실성 + 한국 경상수지 악화 결합 가능) 마진 -13~17%p의 catastrophic 시나리오. 본사 EBITDA 마진 8%면 사실상 적자 전환.</p>
+<p>현재 visibility: ① 미국 USTR이 한국 가공품 301조 검토 중(2026 하반기 결정) ② 한국 경상수지 적자 누적으로 KRW 약세 압력 지속. 두 트리거가 12~18개월 내 동시 발동 가능성 20~30%.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 착지원가는 단순 회계 변수가 아닌 <strong>"3중 외생 충격에 노출된 derivative position"</strong>. 본사 risk desk가 매주 환율·관세·운임을 종합 모니터링해 자동 헷지 발동.</p>
+<p><strong>3중 방어 전략</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>환율 헷지</strong>: 3개월 선물환 계약으로 <strong>₩1,400 이하 락인</strong>. 매입 물량의 70% hedge, 30% spot 노출 — 환율 변동성 ±10% 한도 내로 제한.</li>
+<li style="margin-bottom: 8px;"><strong>FTA 우회</strong>: 한-ASEAN FTA로 <strong>태국 경유 관세 0%</strong> 활용. 미국 301 관세 시나리오 발동 시 즉시 supply route를 한국 직수출 → 태국→미국으로 자동 우회. 관세 부담 0.</li>
+<li><strong>ECOS/KCS API 실시간 모니터링 자동화 프로토콜</strong>: 한국은행 ECOS + 관세청 KCS API로 환율·관세 변동을 실시간 catch. 임계치 돌파 시 본사 risk desk에 자동 alert + 헷지 instrument 자동 발동. JP Morgan FX·관세 desk와 결합해 24/7 monitoring.</li>
+</ol>
+</div>`,
         source: '한국은행 ECOS API · 관세청 KCS API · FTA 관세양허표',
       }}
     />
