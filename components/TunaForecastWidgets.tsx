@@ -67,27 +67,29 @@ export function SkipjackForecastWidget() {
       }
       takeaway={{
         situation: `<div>
-<p><strong>Atuna 방콕 가다랑어 산지가격</strong>은 글로벌 가다랑어 가격의 사실상 benchmark. 모든 가공사의 매입 의사결정 기준점.</p>
-<p>최근 6개월 추이:</p>
+<p><strong>Atuna 방콕 가다랑어 산지가격(skjbkk)</strong>은 글로벌 가다랑어 가격의 사실상 benchmark. 모든 가공사의 매입 의사결정 기준점.</p>
+<p>최근 6분기 실측(분기 평균 FOB Bangkok):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li>2025-10: <strong>$1,700</strong> (정상)</li>
-<li>2025-12: <strong>$1,500</strong> (계절 저점)</li>
-<li>2026-04: <strong>$2,100</strong> (위기 정점, +40% 6개월)</li>
-<li>2026-05: <strong>$1,975</strong> (진정 국면, -6%)</li>
+<li>2025-Q1: <strong>$1,650</strong></li>
+<li>2025-Q2: <strong>$1,510</strong> (저점)</li>
+<li>2025-Q3: <strong>$1,565</strong></li>
+<li>2025-Q4: <strong>$1,609</strong></li>
+<li>2026-Q1: <strong>$1,662</strong></li>
+<li>2026-Q2: <strong>$2,008</strong> (위기 정점, 저점 대비 <strong>+33%</strong>)</li>
 </ul>
-<p>3중 충격: ① <strong>호르무즈 봉쇄</strong>(2026-02말) MGO $2,000 돌파, 어획 cost 68% 잠식 ② <strong>슈퍼 엘니뇨</strong> 1Q26 WCPO -22%(-39,000톤) ③ <strong>가공업체 저항</strong> 태국 캐너 $2,000 저항선 관망세로 추가 상승 차단.</p>
-<p>시나리오: <strong>$1,950~$2,050 박스권 6~8주 지속</strong> 가능성. 호르무즈 해소 시 $1,500 회복, 봉쇄 장기화 시 $2,300 재돌파 가능.</p>
+<p>3중 충격 (2026-Q2 동시 발생): ① <strong>호르무즈 봉쇄</strong>(2026-02말) MGO $2,000 돌파, 어획 cost 68% 잠식 ② <strong>슈퍼 엘니뇨</strong> 1Q26 WCPO -22%(-39,000톤) ③ <strong>가공업체 저항</strong> 태국 캐너 $2,000 저항선 관망세로 추가 상승 차단.</p>
+<p>3분기 forecast 시나리오(차트의 점선): <strong>2026-Q3 $1,950</strong> (호르무즈 봉쇄 부분 정상화) → <strong>2026-Q4 $1,800</strong> (인도양 공급 회복 + WCPO 어획 회복) → <strong>2027-Q1 $1,700</strong> (평시 회귀, 가공업체 매입 재개). 단 95% 신뢰구간 ±$150 변동성.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 산지가격 trading은 reactive cost management가 아닌 <strong>"systematic trading book"</strong>. 매주 Atuna 시그널 + 호르무즈·WCPO·태국 가공업체 3개 변수의 mathematical model로 매입 의사결정 자동화.</p>
+<p><strong>재정의</strong>: 산지가격 trading은 reactive cost management가 아닌 <strong>"systematic trading book"</strong>. Atuna 분기 평균 + 호르무즈·WCPO·태국 가공업체 3개 변수의 mathematical model로 매입 의사결정 자동화.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>인도양 대체 공급선 확대</strong>: 평소 25% → 위기시 40%로 동적 조정.</li>
-<li style="margin-bottom: 8px;"><strong>호르무즈 해소 전 단기 매입 분할</strong>: 2~4주 단위로 분할, $2,000+ 호가는 회피. 박스 하단 분할 매입으로 평균 매입가 $1,970 타게팅.</li>
-<li><strong>"Tuna price systematic trading desk" 신설</strong>: Atuna + NOAA ENSO + Hormuz tension + MGO 4개 변수 ML 모델 input, 주간 매입 비중 자동 조정. JP Morgan Commodity Quant Desk와 collab해 backtest sharpe 2.0+ 검증.</li>
+<li style="margin-bottom: 8px;"><strong>2026-Q3 박스권 매입 ($1,800~$2,100)</strong>: forecast 중심값 $1,950 기준 ±7.5% 박스 하단 분할 매입. $2,050+ 호가는 회피, $1,850 이하 적극 매수. 평균 매입가 $1,900 타게팅.</li>
+<li style="margin-bottom: 8px;"><strong>인도양 대체 공급선 확대</strong>: 2026-Q2 위기 시점 WCPO 비중 65% → 48%로 이미 -17%p 이동 완료. 2026-Q4 인도양 회복 가시화 시 비중을 평시 25%로 점진 복귀, 그러나 인도양 라이센스는 forward 유지로 옵션 가치 보존.</li>
+<li><strong>2027-Q1 $1,700 회귀 시 6개월 forward 락업</strong>: forecast 중심값에서 ±5% 박스권 진입 시 12개월 forward 매입 계약 체결. 평시 단가 $1,700 락업으로 다음 사이클 매입원가 visibility 확보. JP Morgan Commodity Desk와 OTC swap으로 paper hedge 결합 — 실물 long + paper short 양방향 운용.</li>
 </ol>
 </div>`,
-        source: 'Atuna 가격 데이터(skjbkk 2025-10~2026-05) · Atuna May 2026 News 6 sources · WCPFC 2024-25 어획량 통계',
+        source: 'Atuna 분기 평균 실측(skjbkk 2025-Q1~2026-Q2) + 3분기 시나리오 forecast · /api/tuna-forecast · WCPFC 1Q26 어획량 통계',
       }}
     />
   );
