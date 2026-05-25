@@ -68,28 +68,32 @@ export function SkipjackForecastWidget() {
       takeaway={{
         situation: `<div>
 <p><strong>Atuna 방콕 가다랑어 산지가격(skjbkk)</strong>은 글로벌 가다랑어 가격의 사실상 benchmark. 모든 가공사의 매입 의사결정 기준점.</p>
-<p>최근 6분기 실측(분기 평균 FOB Bangkok):</p>
+<p>6분기 실측(분기 평균 FOB Bangkok): $1,650 → $1,510 → $1,565 → $1,609 → $1,662 → <strong>$2,008</strong>(2026-Q2 정점).</p>
+<p><strong>⚡ 2026-05-22 현장 인텔리전스 — Q2 정점 통과, 하락 가속 진행 중</strong>:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li>2025-Q1: <strong>$1,650</strong></li>
-<li>2025-Q2: <strong>$1,510</strong> (저점)</li>
-<li>2025-Q3: <strong>$1,565</strong></li>
-<li>2025-Q4: <strong>$1,609</strong></li>
-<li>2026-Q1: <strong>$1,662</strong></li>
-<li>2026-Q2: <strong>$2,008</strong> (위기 정점, 저점 대비 <strong>+33%</strong>)</li>
+<li><strong>Atuna 현물가</strong>: 이미 <strong>$1,850 이하</strong>로 하락 (Q2 평균 $2,008 대비 -8%)</li>
+<li><strong>대형 캐너리 오퍼</strong>: SV·TU(Thai Union)가 <strong>$1,700 초반</strong> 호가 — 매입자 협상력 우위 전환</li>
+<li><strong>"$1,800 밑으로 빠지는 건 기정 사실"</strong> — 트레이더 컨센서스</li>
+<li><strong>공급 증가</strong>: 13척 하역 중 + 13척 대기 중 (방콕 항만 적체)</li>
+<li><strong>WCPO 어획 회복</strong>: 대만 240톤/척/주(FSM·Marshall·Phoenix), 중국 180톤/척/주(솔로몬·타라와), 필리핀 30~40톤/척/일 — Q1 -22% 충격 빠른 회복</li>
+<li><strong>origin별 spread</strong>: PNG $1,650+, 필리핀 gSP $1,925/NON $1,820, 남미 $1,950~2,000 origin</li>
+<li><strong>남미 흡수 trend</strong>: 동태평양·대서양·인도양 운반선이 다수 남미로 — 방콕 $1,700 진입 시 남미로 더 많이 이동 예상</li>
+<li><strong>인도양</strong>: 세이셸 남동쪽 20~40톤/척/일, 유럽선 다수 체항 중 — 시즌 종료 시그널</li>
 </ul>
-<p>3중 충격 (2026-Q2 동시 발생): ① <strong>호르무즈 봉쇄</strong>(2026-02말) MGO $2,000 돌파, 어획 cost 68% 잠식 ② <strong>슈퍼 엘니뇨</strong> 1Q26 WCPO -22%(-39,000톤) ③ <strong>가공업체 저항</strong> 태국 캐너 $2,000 저항선 관망세로 추가 상승 차단.</p>
-<p>3분기 forecast 시나리오(차트의 점선): <strong>2026-Q3 $1,950</strong> (호르무즈 봉쇄 부분 정상화) → <strong>2026-Q4 $1,800</strong> (인도양 공급 회복 + WCPO 어획 회복) → <strong>2027-Q1 $1,700</strong> (평시 회귀, 가공업체 매입 재개). 단 95% 신뢰구간 ±$150 변동성.</p>
+<p><strong>시나리오 재정렬</strong>: 이전 forecast(Q3 $1,950)는 이미 outdated. 새 시나리오 <strong>2026-Q3 $1,700~$1,800 박스권</strong> (캐너리 오퍼가 사실상 floor) → 2026-Q4 $1,650~$1,750 → 2027-Q1 $1,600~$1,700 평시 회귀.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 산지가격 trading은 reactive cost management가 아닌 <strong>"systematic trading book"</strong>. Atuna 분기 평균 + 호르무즈·WCPO·태국 가공업체 3개 변수의 mathematical model로 매입 의사결정 자동화.</p>
-<p><strong>3단계</strong>:</p>
+<p><strong>재정의</strong>: 게임이 바뀌었다. Q2 정점에서 매도자 우위였던 시장이 <strong>2주 만에 매입자 우위로 전환</strong>(공급 증가 + 캐너리 매입 reluctance). 본사 매입 데스크는 reactive에서 <strong>aggressive procurement mode</strong>로 즉시 전환 — 가격 추가 하락 전에 1700 박스권 적극 매수.</p>
+<p><strong>4단계 즉시 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>2026-Q3 박스권 매입 ($1,800~$2,100)</strong>: forecast 중심값 $1,950 기준 ±7.5% 박스 하단 분할 매입. $2,050+ 호가는 회피, $1,850 이하 적극 매수. 평균 매입가 $1,900 타게팅.</li>
-<li style="margin-bottom: 8px;"><strong>인도양 대체 공급선 확대</strong>: 2026-Q2 위기 시점 WCPO 비중 65% → 48%로 이미 -17%p 이동 완료. 2026-Q4 인도양 회복 가시화 시 비중을 평시 25%로 점진 복귀, 그러나 인도양 라이센스는 forward 유지로 옵션 가치 보존.</li>
-<li><strong>2027-Q1 $1,700 회귀 시 6개월 forward 락업</strong>: forecast 중심값에서 ±5% 박스권 진입 시 12개월 forward 매입 계약 체결. 평시 단가 $1,700 락업으로 다음 사이클 매입원가 visibility 확보. JP Morgan Commodity Desk와 OTC swap으로 paper hedge 결합 — 실물 long + paper short 양방향 운용.</li>
+<li style="margin-bottom: 8px;"><strong>1순위 — "캐너리 floor 매입" 즉시 가동 ($1,700~$1,800)</strong>: SV·TU 오퍼 $1,700 초반을 floor reference로 활용. <strong>$1,750 이하 100% 적극 매수, $1,800 이상은 단순 보충용 소량 매수</strong>. 향후 4~6주에 걸쳐 분할 매입 — 평균 매입가 $1,720 타게팅 (Q2 정점 $2,008 대비 -14%, 이전 forecast $1,950 대비 -12%). 1개월 안에 90일치 안전 재고 풀로딩.</li>
+<li style="margin-bottom: 8px;"><strong>2순위 — Origin arbitrage triangulation</strong>: ① <strong>PNG $1,650+</strong>이 최저가 — 동원 PNG 허브(RD Tuna Canners) 활용해 산지 직매입 가속 ② <strong>남미 $1,950~$2,000</strong>은 +$250~300 프리미엄 — origin spread arbitrage 기회. 동태평양 운반선이 남미로 향하는 흐름을 우리 logistics로 가로채기 ③ <strong>필리핀 NON $1,820</strong>은 mid-tier, AKFTA 무관세 + 한국 근거리 활용해 통조림 라인 보충.</li>
+<li style="margin-bottom: 8px;"><strong>3순위 — 12개월 forward 락업 즉시</strong>: Q3 박스권 $1,700~$1,800 진입 즉시 <strong>$1,750 fixed price 12개월 forward 계약</strong> 체결. 매입의 50%를 forward로 락업, 나머지 50%는 spot으로 유연 운용. 카운터파티: PNA 직접 어선 + 동원 RD + 태국 mid-tier 가공사 3축. 평시 단가 락업으로 2027 사이클 매입원가 visibility 12개월+ 확보.</li>
+<li><strong>4순위 — Paper hedge로 추가 하락 보호</strong>: 만약 가격이 $1,650 밑으로 추가 하락 시 우리 forward $1,750 계약이 mark-to-market loss. 이를 hedge하기 위해 <strong>JP Morgan Commodity Desk와 OTC put option</strong> 매입 — strike $1,700, 6개월 만기, 프리미엄 ~$30/MT. 매입 50%에 대해 downside protection 확보, upside는 open. 동시에 인도양 라이센스(평시 EUR 80~120/톤)는 시즌 종료 시점에 spot 매도 — 보유 비용 0으로 옵션 가치만 회수.</li>
 </ol>
+<p><strong>경계 시그널</strong>: ① 캐너리 오퍼가 $1,650 밑으로 추가 하락 시 → 가격 자유 낙하 진입, 매입 일시 정지 + spot 모니터링 ② 호르무즈 재봉쇄 또는 신규 ENSO 충격 발생 시 → forward 락업분이 알파, 즉시 추가 forward 매수 가속.</p>
 </div>`,
-        source: 'Atuna 분기 평균 실측(skjbkk 2025-Q1~2026-Q2) + 3분기 시나리오 forecast · /api/tuna-forecast · WCPFC 1Q26 어획량 통계',
+        source: 'Atuna 분기 평균 실측(skjbkk 2025-Q1~2026-Q2) + 현장 인텔리전스(2026-05-22 캐너리 오퍼·하역/대기 선단·origin spread) · /api/tuna-forecast · WCPFC 1Q26 어획량 통계',
       }}
     />
   );
