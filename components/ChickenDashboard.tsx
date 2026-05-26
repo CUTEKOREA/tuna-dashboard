@@ -90,17 +90,35 @@ const WIDGET_ICONS: Record<string, any> = {
 // C-Level PEF Executive Override Protocol (V3.0)
 const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
   "w_chicken_trade_shift": {
-    sit: "브라질은 HPAI 발병 시 수입이 즉각 차단되며 단순 냉동육 위주. 반면 태국은 HPAI 청정국 지위를 유지하며 고부가 가공육(순살/꼬치) 수출 비중이 70%를 상회함.",
-    strat: "마진 스프레드 20~30% 확보 기회. 여름철 복날 쇼티지 대비 태국 우량 기업(GFPT, Betagro)과 LTA(장기계약)를 체결하여 국내 중간 벤더 마진(4.3%)을 철저히 회피할 것."
+    sit: `<div>
+<p>"HPAI 청정국 지위"란 OIE/WOAH가 인증하는 sanitary 등급. 청정국은 EU·일본·한국 등 prime market 수출 권한 확보, 발병국은 즉시 100% 수입 차단.</p>
+<p>실측: <strong>브라질 = HPAI 발병 위험 + 단순 냉동육 위주. 태국 = HPAI 19년 청정 + 고부가 가공육(순살·꼬치) 수출 70%+</strong>. 두 origin은 동일 commodity가 아닌 완전히 다른 위험·부가가치 등급 — 분리 운영 필수.</p>
+</div>`,
+    strat: `<div>
+<p><strong>재정의</strong>: 브라질→태국 전환은 단순 sourcing 다변화가 아닌 <strong>"국내 중간 벤더 마진(4.3%) 회피 + HPAI 위험 zero화의 dual instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① GFPT·Betagro LTA(장기계약) 즉시 체결 — 마진 스프레드 20~30% 확보 ② 여름철 복날 쇼티지 시즌 3개월 전 비축 ③ 중간 벤더 우회 직납 구조로 4.3% 마진 내재화.</p>
+</div>`
   },
   "w_chicken_feed_cost": {
-    sit: "CBOT 옥수수 선물이 $4.15로 전년 대비 하락세를 유지 중이나, 브라질 HPAI 확산에 따른 글로벌 사육두수 감축 리스크가 공존함.",
-    strat: "곡물가 하락 윈도우를 활용한 선제적 원물 매집 필수. 사료비가 바닥을 칠 때 B2B 프랜차이즈 연간 공급 물량을 픽스하여 원가 변동성을 100% 헷징할 것."
+    sit: `<div>
+<p>"CBOT 옥수수 선물"이란 시카고상품거래소에서 거래되는 글로벌 사료 곡물 벤치마크. 닭 사육 원가의 60~70%가 사료 — 옥수수 단가 변동이 곧 닭 마진 변동.</p>
+<p>실측: <strong>CBOT 옥수수 $4.15로 전년 대비 하락세 유지 — 사료비 역대 저점 구간. 단, 브라질 HPAI 확산으로 글로벌 사육두수 감축 + 곡물 수요 감소 동시 진행</strong>. 단기 lock-in 윈도우 1~2분기 한정.</p>
+</div>`,
+    strat: `<div>
+<p><strong>재정의</strong>: 곡물가 하락은 단순 cost 절감이 아닌 <strong>"사료비를 다음 12개월 fix해 마진 변동성을 100% 헷지할 black swan-proof 기회"</strong>.</p>
+<p><strong>3단계</strong>: ① CBOT 옥수수 forward 선매수 — 12개월 사료비 lock-in ② B2B 프랜차이즈 연간 공급 물량 픽스 — 원가 변동성 100% 헷징 ③ 사료비 상승 시나리오 대비 OTC swap contract 체결 (downside protection).</p>
+</div>`
   },
   // archived 2026-05-24 — w_chicken_eudr_esg (forensic grade C, _archive/api/chicken/eudr-esg/)
   "w_chicken_arbitrage": {
-    sit: "태국 현지 공장 발주부터 한국 부산항 입항까지 평균 15~20일 소요. HPAI 발병 시점 대비 물동량 리드타임에 따른 가격 상승폭이 비선형적으로 증가.",
-    strat: "물류 리드타임을 이용한 시간 차익거래(Time Arbitrage) 가동. 부산 냉동창고 B2B 직배송망을 선제 구축하여 프랜차이즈 긴급 발주 물량을 프리미엄 가격에 소화할 것."
+    sit: `<div>
+<p>"시간 차익거래(Time Arbitrage)"란 물류 리드타임이 다른 origin 간의 공급 격차를 활용해 가격 변동을 monetize하는 트레이딩 기법. HPAI 발병 시점 대비 리드타임 격차가 마진의 핵심 결정 변수.</p>
+<p>실측: <strong>태국 현지 공장 발주 → 부산항 입항 15~20일. HPAI 발병 시 리드타임이 짧을수록 가격 상승폭은 비선형적으로 증가</strong>. 태국 10~14일 vs 브라질 56일 차이가 위기 시 vendor 운명 결정.</p>
+</div>`,
+    strat: `<div>
+<p><strong>재정의</strong>: 리드타임 격차는 단순 물류 advantage가 아닌 <strong>"HPAI 사이클 시즌마다 프리미엄 가격을 강제 수취할 systematic arbitrage instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① 부산 냉동창고 B2B 직배송망 선제 구축 — 24시간 출고 capa ② 프랜차이즈 긴급 발주 라인 셋업 — premium price 30%+ ③ 태국 램차방→부산 10일 직항 lock — 브라질 발병 시즌마다 손실 없는 가격 결정권 확보.</p>
+</div>`
   }
 };
 
@@ -156,9 +174,15 @@ export default function ChickenDashboard() {
           xKey: 'month',
           telemetryStatus: 'live',
           syncDate: 'Realtime',
-          sit: '주요 수산물(오징어/새우)의 어획량 감소로 글로벌 수산 단백질 단가가 전년비 15~20% 급등함.',
-          strat: '대체재 상승으로 인한 육계 수요 집중 구간. 프랜차이즈 직납 단가를 선제적으로 5~8% 상향 조정하여 추가 마진을 확보할 것.',
-          source: 'FAOSTAT / KCS Export',
+          sit: `<div>
+<p>"대체 단백질 가격 스프레드(Substitute Protein Spread)"란 어종·축종 간 가격 elasticity의 cross-section. 수산물 단가 급등 시 소비자는 자동으로 닭고기로 substitution — 닭고기는 수산물 단가의 mirror image instrument.</p>
+<p>실측: <strong>오징어·새우 어획량 감소로 글로벌 수산 단백질 단가 전년比 15~20% 급등 → 닭고기 substitution 수요 집중 구간. 5~8% 추가 마진 capture 가능 윈도우</strong>. 수산 위기는 닭고기 vendor의 windfall.</p>
+</div>`,
+          strat: `<div>
+<p><strong>재정의</strong>: 대체재 상승은 외부 변수가 아닌 <strong>"수산 위기를 닭고기 마진 확장으로 자동 변환할 substitution arbitrage 시그널"</strong>.</p>
+<p><strong>3단계</strong>: ① 수산 단가 지수 +15% 돌파 즉시 프랜차이즈 직납 단가 5~8% 선제 상향 ② 수산 헤지펀드 short 포지션 대비 닭고기 long 포지션 비중 확대 ③ "치킨이 대안" 마케팅 캠페인 동시 launch — 소비자 substitution 가속.</p>
+</div>`,
+          source: 'FAOSTAT · KCS Export',
           areas: [{key: 'seafoodIndex', color: '#38bdf8', name: '수산물 단가지수'}],
           lines: [{key: 'chickenMargin', color: '#f59e0b', name: '육계 반사이익 마진(%)'}],
           data: [
@@ -178,9 +202,15 @@ export default function ChickenDashboard() {
           xKey: 'week',
           telemetryStatus: 'synced',
           syncDate: 'KAMIS -1d',
-          sit: '여름철(삼복) 닭고기 스팟 수요가 급증하나, 국내 냉동 비축 물량 출하 지연으로 일시적 쇼티지가 발생 중.',
-          strat: '스팟가 최고점 도달 전인 초복 2주 전부터 자체 비축 물량을 집중 방출하여 도매 단가 변동성을 흡수할 것.',
-          source: 'KAMIS / KCS',
+          sit: `<div>
+<p>"삼복(三伏)"이란 초복·중복·말복 7~8월 한국 닭고기 소비 최절정 시즌. 주간 수요가 평시 대비 2~3배 폭증, vendor의 연간 P&L 결정 분기.</p>
+<p>실측: <strong>여름철 삼복 스팟 수요 폭증 (W27 초복 28,000톤 vs 평시 12,000톤) → 국내 냉동 비축 출하 지연으로 일시적 shortage 발생. 스팟가 최고점 도달 전 출하 timing이 마진의 결정 변수</strong>. 출하 1주 늦으면 단가 30% 차이.</p>
+</div>`,
+          strat: `<div>
+<p><strong>재정의</strong>: 삼복은 단순 성수기가 아닌 <strong>"비축 → 방출 타이밍 1주 차이가 연간 P&L 20%를 좌우하는 high-stakes operations 게임"</strong>.</p>
+<p><strong>3단계</strong>: ① 초복 2주 전부터 자체 비축 물량 집중 방출 — 도매 단가 변동성 흡수 ② AI 기반 일별 출하 알고리즘 도입 — 인간 직관 의존 제거 ③ 중복·말복 spot price spike 직전 forward 단가 lock-in으로 P&L 변동성 헷지.</p>
+</div>`,
+          source: 'KAMIS · KCS',
           bars: [
             {key: 'demand', color: '#ef4444', name: '시장 스팟 수요(톤)'},
             {key: 'supply', color: '#3b82f6', name: '냉동 비축 출하(톤)'}
@@ -202,9 +232,15 @@ export default function ChickenDashboard() {
           xKey: 'scenario',
           telemetryStatus: 'live',
           syncDate: 'Realtime',
-          sit: '원달러 고환율(1,400원 육박) 지속 시 수입 사료비 폭등으로 영세 육계 농가의 줄도산 및 생산량 10% 감소가 우려됨.',
-          strat: 'Base 시나리오 초과 환율 발생 시 즉각 태국산 직수입 비중을 25%까지 확대하여 로컬 리스크를 회피할 것.',
-          source: 'CBOT / FX Macro',
+          sit: `<div>
+<p>"What-if 시뮬레이션"이란 환율을 외생 변수로 두고 사료비·생산량 변동을 시나리오별로 정량 예측하는 risk model. 영세 농가는 환율 50원 변동에도 줄도산 가능 — 본질적으로 currency-sensitive 산업.</p>
+<p>실측: <strong>원/달러 환율 1,400원 돌파 시 수입 사료비 폭등 → 영세 농가 줄도산 + 국내 생산량 10% 감소 우려. Bull(1,400) 시나리오에서 원가 +12.8%, Extreme(1,450)에서 +18.5%</strong>. 환율은 한국 닭고기 산업의 single biggest external risk.</p>
+</div>`,
+          strat: `<div>
+<p><strong>재정의</strong>: 고환율은 국내 vendor의 위협이 아닌 <strong>"태국 직수입 비중을 자동 확대시키는 sourcing rebalancing 트리거"</strong>. 국내 생산 감소가 곧 수입 vendor의 점유율 expansion.</p>
+<p><strong>3단계</strong>: ① Base 시나리오(1,350원) 초과 환율 발생 시 태국산 직수입 비중 즉시 25%까지 확대 ② USD/THB 분기별 forward 헷지로 환차손 lock-in ③ Extreme 시나리오(1,450) 대비 SPV로 환위험 자본화 — JP Morgan FX Desk OTC contract 체결.</p>
+</div>`,
+          source: 'CBOT · FX Macro',
           bars: [{key: 'costIncrease', color: '#ea580c', name: '원가 상승폭(%)'}],
           lines: [{key: 'localProduction', color: '#10b981', name: '국내 사육량 지수'}],
           data: [

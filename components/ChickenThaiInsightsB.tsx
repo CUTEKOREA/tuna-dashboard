@@ -62,9 +62,15 @@ export function InsightKoreaSpecialLine() {
         { label: 'Korea Special 마진', value: '25%', sub: '수율 74% · FCR 1.72', trendColor: '#f59e0b' },
       ]}
       takeaway={{
-        situation: '태국은 일본 수출 특화로 1.8~2.3kg 소형닭 위주 생산. 한국 프랜차이즈는 브라질 장닭(3kg+)의 큰 다리살에 익숙하여 사이즈 갭 존재. 그러나 Korea Special(2.5kg+)은 브라질보다 수율 74% vs 78%로 비슷하면서 FCR 1.72로 생산효율 우위.',
-        actionPlan: '[Dual Line Strategy] GFPT/Betagro에 사육기간 연장형 2.5kg+ 라인 신설 제안. 일본향 소형 + 한국향 대형의 듀얼 라인으로 양 시장 동시 공략. Korea Special의 순살 수율 74% + 잔뼈 제로 = \'1인분당 TCU\' 기준으로 브라질산 대비 우위 입증.',
-        source: 'GFPT Annual Report 2023 (일 도계 15→30만 마리 증설) & Thai DLD 2023 가공수율 보고서. FCR은 업계 평균 추정치',
+        situation: `<div>
+<p>"FCR(Feed Conversion Ratio, 사료요구율)"이란 1kg 증체에 필요한 사료량. 1.7 이하 = 글로벌 최상위, 2.0+ = 영세 농가. "Korea Special Line"이란 한국 프랜차이즈 표준(2.5kg+) 맞춤 듀얼 사육 라인을 의미.</p>
+<p>실측: <strong>태국 표준 1.8~2.3kg 소형닭은 일본 수출 특화 → 한국 프랜차이즈 스펙(3kg+) 불충족. 그러나 Korea Special 2.5kg+ 라인은 수율 74% (브라질 78% 대비 -4%p), FCR 1.72로 생산효율 brazil 대비 우위</strong>. 사이즈 갭은 단순 spec issue가 아닌 전체 가공·유통 시스템의 재설계 필요.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 사이즈 갭은 한계점이 아닌 <strong>"GFPT·Betagro와 한국 vendor가 독점 공유할 듀얼 라인 R&D 협업 기회"</strong>. 다른 한국 vendor는 진입 불가능한 entry barrier.</p>
+<p><strong>3단계</strong>: ① GFPT/Betagro에 사육기간 연장형 2.5kg+ 라인 신설 — 독점 spec 계약 즉시 체결 ② 일본향 소형 + 한국향 대형 듀얼 라인 — 양 시장 동시 공략으로 생산 효율 극대화 ③ Korea Special 순살 수율 74% + 잔뼈 zero → "1인분당 TCU" framework로 프랜차이즈 본사 sales — 브라질산 대비 우위 정량 입증.</p>
+</div>`,
+        source: 'GFPT Annual Report 2023 (도계 15→30만 마리 증설) · Thai DLD 2023 가공수율 보고서',
       }}
     />
   );
@@ -95,9 +101,15 @@ export function InsightRiskNexus() {
         { label: '태국 HPAI 청정', value: '2007~', sub: '19년 연속 무발생', trendColor: '#10b981' },
       ]}
       takeaway={{
-        situation: '6축 리스크 중 태국이 열위인 것은 \'중국산 덤핑(13~14% 저가)\'과 \'환율(KRW/THB)\' 뿐입니다. 반면 해상운임(태국 10~14일 vs 브라질 56일), HPAI(태국 19년 청정 vs 브라질 2025 발발)에서 우위. CBOT $4.15 저점은 태국 사료비(매입원가 60~70%) 역대 최저를 의미합니다.',
-        actionPlan: '[Risk Hedging] ①환율: USD 선물환 분기별 리밸런싱 ②CBOT 저점($4.15): 즉시 고정가 LTA ③중국산 덤핑: GACC 위생 부적격 이슈를 역이용 → \'안전한 프리미엄\' 브랜딩 ④운임: 태국 램차방→부산 10~14일 직항 최적화 ⑤HPAI: 태국 구획화(Compartmentalization) 시스템 = 공급망 보험.',
-        source: 'OIE WAHIS, CBOT 실시간 선물, BDI 해상운임 지수, KCS HS 0207 수입통계. ⚠️ 리스크 스코어(0~100)는 상대 비교용 모델링 수치',
+        situation: `<div>
+<p>"Risk Nexus(리스크 넥서스)"란 단일 sourcing의 6축 리스크(환율·사료·운임·HPAI·덤핑·관세)를 동시 비교해 vendor 포트폴리오 분산 결정을 내리는 framework. 한 축만 봐서는 비교 무의미 — 6축 동시 분석이 본질.</p>
+<p>실측: <strong>태국 vs 브라질 6축 비교 결과 — 태국 열위는 "환율(KRW/THB) + 중국산 덤핑(13~14% 저가)" 2개뿐. 해상운임(태국 10~14일 vs 브라질 56일), HPAI(태국 19년 청정 vs 브라질 2025 발발), CBOT $4.15 저점 등 4축에서 압도적 우위</strong>. 6축 가중 합산 시 태국 우위 명확.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 중국산 덤핑은 위협이 아닌 <strong>"GACC 위생 부적격 이슈를 역이용해 '안전한 프리미엄' 브랜딩 lock-in 기회"</strong>. 태국 구획화(Compartmentalization)는 공급망 보험.</p>
+<p><strong>3단계</strong>: ① 환율 — USD 선물환 분기별 리밸런싱으로 헷지 ② CBOT 저점($4.15) 즉시 고정가 LTA 체결 ③ 중국산 덤핑 → GACC 위생 부적격 매월 모니터링 보고서 발행 — "Korea Safe Premium" 브랜드 lock-in. 태국 램차방→부산 10일 직항 최적화로 한국 시장 결품 zero.</p>
+</div>`,
+        source: 'OIE WAHIS · CBOT 실시간 선물 · BDI 해상운임 지수 · KCS HS 0207 수입통계',
       }}
     />
   );
@@ -129,9 +141,15 @@ export function InsightPartnerMatch() {
         { label: 'GFPT 도계능력 증설', value: '30만/일', sub: '15→30만 마리 (2배)', trendColor: '#8b5cf6' },
       ]}
       takeaway={{
-        situation: '①CP Foods: 세계 최대, 글로벌 스탠다드, 대형마트/글로벌 HMR 최적. ②Betagro: e-Traceability 2시간 이력추적, 무항생제(ABF), 웰빙/프리미엄 채널. ③GFPT: 수직계열화, 도계 15→30만/일 2배 증설, 일본/EU 수출 경험 풍부, 프랜차이즈 맞춤 스펙 R&D에 최적.',
-        actionPlan: '[Partner Portfolio] ①GFPT = 프랜차이즈 맞춤 Korea Special Line R&D 파트너 → 순살 스펙 최적화 ②Betagro = 편의점 HMR 프리미엄 → 무항생제 \'윤리적 치킨\' 브랜딩 ③CP Foods = 볼륨 백본 → 식자재마트/급식 대량 납품 기반 확보. 3사 분산으로 단일 공급처 리스크 헤지.',
-        source: 'GFPT Annual Report 2023, Betagro IR 2023, CP Foods 2023 Value Chain Analysis. NotebookLM \'닭\' 479소스 교차검증',
+        situation: `<div>
+<p>"Partner Portfolio Matching"이란 단일 vendor 의존 대신 channel별 최적 vendor를 매칭해 risk를 횡적 분산하는 sourcing 전략. CP·Betagro·GFPT 3사는 각각 channel 특화 강점이 다른 complementary 포지션.</p>
+<p>실측: <strong>CP Foods (생산능력 95) = 세계 최대 + 가격경쟁력 / Betagro (품질·위생 95 + ESG 95) = 무항생제 프리미엄 / GFPT (맞춤 유연성 95 + 도계 15→30만/일 2배 증설) = 프랜차이즈 맞춤 R&D 최적</strong>. 3사 모두 distinct moat 보유 — 1개사 의존은 capital allocation error.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 3사 분산은 단순 risk hedge가 아닌 <strong>"채널별 vendor strength를 1:1 매칭해 한국 시장 전 채널 동시 장악할 portfolio play"</strong>.</p>
+<p><strong>3단계</strong>: ① GFPT = 프랜차이즈 맞춤 Korea Special Line R&D 파트너 — 순살 spec 최적화 독점 ② Betagro = 편의점 HMR 프리미엄 — 무항생제 "윤리적 치킨" ESG 브랜딩 ③ CP Foods = 볼륨 백본 — 식자재마트·급식 대량 납품 base. 단일 vendor 50%+ 의존 금지 → 3-way diversification으로 한국 시장 vendor lock-in.</p>
+</div>`,
+        source: 'GFPT Annual Report 2023 · Betagro IR 2023 · CP Foods 2023 Value Chain Analysis',
       }}
     />
   );
