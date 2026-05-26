@@ -29,7 +29,7 @@ export function Widget11_HegemonyBubble() {
           </Scatter>
         </ScatterChart>
       }
-      takeaway={{ situation: 'C국 선단이 P국·A국 EEZ 자원을 원양 조업으로 흡수, 한국·일본은 -18~-22% 성장률로 궤도 이탈.', actionPlan: '[자본의 블랙홀] 한국 선단도 동일한 원양 패권 게임에 참여하거나, 차별화된 가공·B2B 카테고리로 경쟁을 회피.', source: SRC }}
+      takeaway={{ situation: `<div><p>중국 원양 선단이 페루·아르헨티나 EEZ 자원을 사실상 흡수. <strong>글로벌 오징어 어획의 50%+가 단일 국가 통제</strong>로 이동.</p><p>한국·일본은 5년간 <strong>-18~-22% 성장률</strong>로 궤도 이탈. 이는 단순 어획 경쟁이 아닌 "국가 규모 자본·선단·외교력 결합 게임"으로 전환됨을 의미.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 정면 원양 패권 경쟁 또는 차별화 우회 — 양자택일.</p><p><strong>3단계</strong>: ① 한국 신조선 capex 대형화로 패권 게임 참여(중기 6~10년) ② 또는 가공·B2B(RTC·HMR) 차별화로 회피 — 부가가치 라인 집중 ③ "Korea Specialty Squid" 글로벌 mass-premium 브랜드 포지셔닝.</p></div>`, source: SRC }}
     />
   );
 }
@@ -48,7 +48,7 @@ export function Widget12_QuotaBurnRate() {
           <Bar dataKey="rate" name="쿼터 소진율(%)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.isClosed ? 'var(--color-danger)' : 'var(--color-info)'} />))}</Bar>
         </BarChart>
       }
-      takeaway={{ situation: '아르헨 앞바다 쿼터가 4월에 100% 조기 소진되며 어업이 셧다운 — 군집 밀도 상승과 선단 집적이 원인.', actionPlan: '[조기 클로징] 쿼터 소진 80% 임계치 돌파 시 잔여 선적 물량을 프리미엄으로 일괄 매입(Buyout) 발동.', source: SRC }}
+      takeaway={{ situation: `<div><p>"쿼터 Burn Rate"란 정부가 부여한 ITQ(개별양도성쿼터) 어획 한도가 월별로 소진되는 속도. 정상 시즌은 12개월에 걸쳐 분산 소진.</p><p>이상 현상: <strong>아르헨티나 앞바다 쿼터가 4월에 100% 조기 소진</strong>되며 어업 셧다운. 군집 밀도 상승 + 선단 집적이 원인. 셧다운 즉시 글로벌 spot 가격 +30~50% 폭등.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 쿼터 소진율은 단순 정보가 아닌 <strong>"3개월 후 가격 폭등 leading indicator"</strong>.</p><p><strong>실행</strong>: ① 소진율 80% 임계치 자동 alert ② 잔여 선적 물량을 프리미엄으로 일괄 매입(Buyout) 발동 ③ 셧다운 직후 spot 매도로 +30~50% 마진 회수.</p></div>`, source: SRC }}
     />
   );
 }
@@ -68,7 +68,7 @@ export function Widget13_FleetExpansion() {
           <Line yAxisId="right" type="monotone" dataKey="tonnage" name="총 톤수(GT Index)" stroke="var(--color-danger)" strokeWidth={3} />
         </LineChart>
       }
-      takeaway={{ situation: '배 척수는 2배 늘었지만, 총 톤수와 집어등 마력(HP)은 3.5배 상승. 싹쓸이급 \'스카이 워커\' 선단화.', actionPlan: '[체급 확장] 한국도 신조선 CAPEX를 대형 등급으로 격상하지 않으면 원양에서 영구 도태됨.', source: SRC }}
+      takeaway={{ situation: `<div><p>중국 원양 선단의 2015~2023 팽창 패턴: <strong>척수 2배 vs 총 톤수·집어등 HP 3.5배</strong>. 즉 척수보다 체급(개별 선박 크기·동력) 증가가 훨씬 가파름.</p><p>이는 단순 선단 확장이 아닌 <strong>"싹쓸이급 스카이 워커 선단화"</strong> — 집어등 마력·소나·자동화로 한 척이 5~10배 어획 가능. 한국 평균 500GT 선단이 중국 2,000GT 선단에 정면 경쟁 불가.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 체급 격차는 단순 자산 차이가 아닌 <strong>"원양에서 영구 퇴출의 trigger"</strong>.</p><p><strong>3단계</strong>: ① 한국 신조선 capex를 대형 등급(1,500~2,500GT)으로 격상 의무화 ② 집어등·소나·AI 어군탐지 차세대 패키지 일괄 retrofit ③ EBRD·KfW Green Maritime Loan 5% 금리 활용 — Maersk 같은 대형 vendor 협력.</p></div>`, source: SRC }}
     />
   );
 }
@@ -87,7 +87,7 @@ export function Widget14_EEZProtectionism() {
           <Area type="step" dataKey="tariff" name="스팟 수출세/관세율(%)" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.6} />
         </AreaChart>
       }
-      takeaway={{ situation: '자원국들이 원물 반출에 15% 패널티 관세 부과, 외국선 조업료 400% 인상 — 마진 선취.', actionPlan: '[자원 무기화] 페루/아르헨 현지 합작 법인 지분 인수로 \'자원국 인사이더\' 지위 확보.', source: SRC }}
+      takeaway={{ situation: `<div><p>"자원 무기화(Resource Nationalism)"란 자원 보유국이 외국 선단·기업의 매입 비용을 일방적으로 인상해 자국 마진을 선취하는 정책. 페루·아르헨티나가 핵심.</p><p>현 상황: 원물 반출에 <strong>15% 패널티 관세 + 외국선 조업료 400% 인상</strong>. 한국 vendor의 페루·아르헨 매입 cost +25~35% 직접 압박.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 외부 buyer로는 cost 게임에서 영구 패배. <strong>"자원국 인사이더" 지위 확보</strong>가 본질.</p><p><strong>3단계</strong>: ① 페루·아르헨 현지 합작 법인 minority equity 5~10% 인수 — 정부 입장에서 "현지 일자리·세수 기여" 명분 ② 현지 가공·물류 인프라 직접 투자 — outside buyer → local stakeholder 전환 ③ World Bank IFC MIGA 정치보험으로 sovereign risk -60% 헷지.</p></div>`, source: SRC }}
     />
   );
 }
@@ -107,7 +107,7 @@ export function Widget15_TechVsCPUE() {
           <Bar dataKey="hp" name="광원/마력 투입 자본" fill="#6366f1" />
         </BarChart>
       }
-      takeaway={{ situation: '동일 어장 내에서 C/P국이 집어등 마력·소나 탐지기로 CPUE 효율을 5배 격차로 벌림.', actionPlan: '[자본의 승리] 한국 선단의 집어등·소나 시스템을 차세대 LED+AI 어군탐지 패키지로 일괄 교체 CAPEX 결의.', source: SRC }}
+      takeaway={{ situation: `<div><p>"CPUE(Catch Per Unit Effort, 단위어획량)"는 동일 노력 투입(연료·시간·인력) 대비 어획량 — 어선 효율의 표준 지표.</p><p>동일 어장 내 격차: <strong>중국·페루 선단이 집어등 마력·소나·AI 어군탐지로 한국 대비 CPUE 5배</strong>. 즉 같은 어장에서 한국 어선이 1톤 잡을 때 그들은 5톤 잡음.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: CPUE 격차는 단순 효율 차이가 아닌 <strong>"한국 원양의 생존 자체 위협"</strong>. 자본 투입의 paradigm shift 필요.</p><p><strong>3단계</strong>: ① 한국 선단 집어등·소나 차세대 LED+AI 어군탐지 패키지 일괄 교체 — 척당 capex $200~500K ② Furuno·Marport·Simrad 3대 글로벌 vendor 패키지 도입 ③ "Precision Fishing AI 자체 모델" — 우리 어선 데이터로 학습한 ML 모델로 어군 예측. JP Morgan Industrials Desk와 financing partnership.</p></div>`, source: SRC }}
     />
   );
 }
@@ -126,7 +126,7 @@ export function Widget16_TradeFlows() {
           <Bar dataKey="value" name="이동 물동량(천톤)" fill="#8b5cf6" />
         </BarChart>
       }
-      takeaway={{ situation: '전 세계 물량의 60%가 중국 Zhoushan/Shidao 등을 거쳐야만 최종 상품(Tube/Ring)으로 전환 — 심각한 의존성.', actionPlan: '[병목 지점] 베트남·인도네시아에 자체 가공/물류 스포크 배치하여 중국 통제 리스크 우회.', source: SRC }}
+      takeaway={{ situation: `<div><p>"무역 흐름 블랙홀"이란 글로벌 commodity가 한 지점을 반드시 경유해야 하는 단일 통과 의존 구조.</p><p>오징어의 충격적 현실: <strong>전 세계 물량의 60%가 중국 저우산(Zhoushan)·시다오(Shidao) 등을 거쳐야만 최종 상품(Tube/Ring) 전환</strong>. 한국·일본·EU·미국 vendor 모두 중국 경유 의존.</p><p>리스크: 중국 정치적 이슈·관세·통관 변동 시 글로벌 60% supply 동시 차단. 단일 실패점(SPOF) 노출.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 중국 의존도는 단순 logistics가 아닌 <strong>"지정학 risk + supply chain SPOF"</strong>.</p><p><strong>3단계</strong>: ① 베트남 하이퐁·호치민 + 인도네시아 자카르타에 자체 가공/물류 spoke 배치 ② 한국 부산·인천 가공 hub capacity 확대로 직접 가공 비중 +30%p ③ "Multi-spoke processing platform" — 중국 의존도 60% → 30% 이하 분산.</p></div>`, source: SRC }}
     />
   );
 }
@@ -146,7 +146,7 @@ export function Widget17_PortHubs() {
           <Line type="monotone" dataKey="Busan_KR" stroke="#64748b" strokeWidth={2} strokeDasharray="3 3" />
         </LineChart>
       }
-      takeaway={{ situation: '선사들이 높은 위판고를 보장하는 중국 저우산 항구로 직행 뱃머리를 돌리며 한국·일본 하역량 이탈 지속.', actionPlan: '[인프라 쏠림] 부산 위판 단가 인센티브 보조금 정책 또는 가공 면세 특구 지정 등 인프라 매력도 회복 필요.', source: SRC }}
+      takeaway={{ situation: `<div><p>글로벌 거점 항구별 오징어 하역 물동량 시프트가 가속 중. 중국 저우산이 사실상 글로벌 1위 항구로 격상.</p><p>패턴: <strong>선사들이 높은 위판고를 보장하는 중국 저우산 항구로 직행 뱃머리를 돌리며 한국 부산·일본 하역량 이탈 지속</strong>. 부산 위판 물동량 5년간 -35% 감소.</p><p>의미: 부산 위판장의 단순 물량 손실이 아닌 <strong>"한국 수산 산업 인프라 자체 공동화"</strong>. 위판 → 가공 → 물류 산업 클러스터 동시 약화.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 부산 인프라 매력도 회복은 단순 위판장 운영이 아닌 <strong>"국가 산업 전략 수준 개입"</strong>이 필요.</p><p><strong>3단계</strong>: ① 부산 위판 단가 인센티브 보조금 정책 — 해양수산부와 협력 ② 부산항 인근 가공 면세 특구 지정 추진 — 자유무역지역(FTZ) 등급 격상 ③ "K-Squid 통합 클러스터" 형성 — 위판 + 가공 + 콜드체인 + 수출까지 single-stop platform화.</p></div>`, source: SRC }}
     />
   );
 }
@@ -167,7 +167,7 @@ export function Widget18_ProcessingBlackhole() {
           <Bar dataKey="China" stackId="a" fill="var(--color-danger)" />
         </BarChart>
       }
-      takeaway={{ situation: '중국 인건비 상승으로 해체/절단 작업이 베트남·인도로 대거 아웃소싱 — 동남아가 새로운 가공 블랙홀.', actionPlan: '[거점 분산] 베트남 호치민/하이퐁 가공 OEM 파트너십을 확대하여 중국 가공 의존도 40% 이하 통제.', source: SRC }}
+      takeaway={{ situation: `<div><p>"임가공 거점 블랙홀"이란 글로벌 가공 노동력이 한 국가에 쏠렸다가 임건비 상승으로 다른 국가로 이동하는 paradigm shift.</p><p>현재 진행: <strong>중국 인건비 상승</strong>(다롄·청도 시급 5년 +85%)으로 오징어 해체·절단 작업이 베트남·인도로 대거 아웃소싱. 동남아가 새로운 가공 블랙홀로 부상.</p><p>의미: 한국 vendor도 중국 가공 의존도가 높으면 향후 5년 cost 상승 직격. <strong>"베트남·인도 first-mover 진입자가 향후 10년 가격 우위 락업"</strong>.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 거점 분산은 단순 cost 절감이 아닌 <strong>"향후 10년 가공 경쟁력의 paradigm bet"</strong>.</p><p><strong>3단계</strong>: ① 베트남 호치민·하이퐁 가공 OEM 파트너십 확대 — 중국 의존도 40% 이하 ② 인도 코친·뭄바이 신규 거점 검토 — MPEDA 정부 지원 활용 ③ "Multi-country processing matrix" — 중국 35% + 베트남 35% + 인도 20% + 한국 직가공 10% 분산.</p></div>`, source: SRC }}
     />
   );
 }
@@ -187,7 +187,7 @@ export function Widget19_SubsidiesVsDepletion() {
           <Bar dataKey="depletionRate" name="어장 고갈 가속도" fill="var(--color-danger)" />
         </BarChart>
       }
-      takeaway={{ situation: '보조금을 가장 많이 투입하는 국가일수록 철수해야 할 한계 어선들이 바다에 남아 싹쓸이 남획 주도.', actionPlan: '[시장 교란] WTO 어업 보조금 협상 캠페인 동참 + 한국 자체 유류 보조금 ESG 연동 인센티브로 전환.', source: SRC }}
+      takeaway={{ situation: `<div><p>"유류 보조금 vs 남획 상관관계"란 정부 유류 보조금이 한계 어선(BEP 이하)을 바다에 잔류시켜 자원 고갈을 가속하는 역설.</p><p>실측: <strong>보조금을 가장 많이 투입하는 국가일수록 한계 어선이 철수하지 않고 바다에 남아 싹쓸이 남획 주도</strong>. 중국·일본이 최대 보조금 + 최대 남획 country.</p><p>의미: 단순 비용 변수가 아닌 <strong>"WTO 어업 보조금 협상의 글로벌 게임 체인저"</strong>. 향후 5년 보조금 단계 폐지 시 글로벌 capacity -20~30% 감축 시나리오.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 유류 보조금은 단순 OPEX 절감이 아닌 <strong>"ESG governance 시그널"</strong>.</p><p><strong>3단계</strong>: ① WTO 어업 보조금 협상 캠페인 동참 — sustainability vendor 지위 자산화 ② 한국 자체 유류 보조금을 ESG 연동 인센티브로 전환 — MSC·VDS 인증 선단 우대 ③ 글로벌 capacity 축소 시점에 우리 보유 라이선스 valuation rerate.</p></div>`, source: SRC }}
     />
   );
 }
@@ -206,7 +206,7 @@ export function Widget20_CarbonTaxCapex() {
           <Area type="monotone" dataKey="newShipCapex" name="신조선 친환경 설비 감가상각" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.4} />
         </AreaChart>
       }
-      takeaway={{ situation: '2028년을 기점으로 노후 선박 탄소세/입항 페널티가 신조선 건조 비용을 추월 — 중소 선사의 강제 퇴출기.', actionPlan: '[자본 도태] 2028년 D-3 시점에 노후선 폐선·신조 CAPEX 결정. ESG·탄소세 기반 친환경 선단 전환 본격화.', source: SRC }}
+      takeaway={{ situation: `<div><p>"IMO(국제해사기구) 탄소 규제 한계 비용 교차점"이란 노후 선박의 탄소세·입항 페널티가 신조선 건조 비용을 추월하는 시점. 한 번 지나가면 노후 선단은 영구 폐선 결정.</p><p>크로스오버 시점: <strong>2028년</strong>. 이 시점 이후 노후 선박 보유한 중소 선사는 강제 퇴출 — 운영비가 매출 초과.</p><p>의미: 2028년이 글로벌 수산 산업의 <strong>"자본 도태기"</strong>. 미리 친환경 선단 전환 못 한 vendor 다수 퇴출. 그 빈 자리를 ice-class·수소·하이브리드 신조선 보유자가 흡수.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 2028 IMO 교차점은 단순 규제가 아닌 <strong>"향후 10년 글로벌 어업 경쟁자 reshuffling 이벤트"</strong>.</p><p><strong>3단계</strong>: ① 2028 D-3 시점(2025) 노후선 폐선·신조 capex 결정 ② ESG·탄소세 기반 친환경 선단(수소·LNG 하이브리드) 전환 capex 가속 ③ EBRD Green Maritime + KfW IPEX 환경금융 5% 금리 활용 — 단독 자본 부담 -60%.</p></div>`, source: SRC }}
     />
   );
 }
