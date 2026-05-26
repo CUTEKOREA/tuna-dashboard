@@ -80,9 +80,15 @@ export default function MackerelNorwayAlt() {
       telemetry={{ status: 'STATIC' }}
       customBody={customBody}
       takeaway={{
-        situation: "한국 수입의 80-90%를 차지하는 노르웨이산 고등어 어획 쿼터(TAC)가 MSC 인증 상실 여파로 52%(16.5만 → 7.9만 톤) 대폭 삭감되었으며, 환율 급등까지 겹쳐 수입 단가가 전년 대비 20~30% 폭등하고 있습니다.",
-        actionPlan: "칠레, 영국, 네덜란드 등 다양한 대체 수입 공급망을 전면적으로 개척하여 장기 공급 계약을 조기에 체결해야 합니다. 매입원가 상승 국면을 타개하기 위해 정부의 물가안정용 할당관세(TRQ 0%) 제도를 선제적으로 활용하며 재고 중심의 헷징 전략을 치밀하게 구사하는 것이 필수적입니다. 향후 MSC 인증 미회복 사태가 장기화되어 노르웨이산 쿼터의 추가 삭감이 발생할 리스크에 대비해, 가나를 위시한 아프리카 등 비인증 시장으로의 판매 데스티네이션 전환 및 포트폴리오 다각화를 선제적으로 준비해야 합니다.",
-        source: "옵시디안 고등어_마스터_인덱스 & ICES TAC Advisory / 관세청 TRQ 고시"
+        situation: `<div>
+<p>"TAC(Total Allowable Catch, 총허용어획량)"란 어종별 자원량 평가를 바탕으로 ICES·NEAFC가 매년 결정하는 국제 어획 쿼터. MSC 인증은 글로벌 retailer(EU·일본·한국 대형마트) 진입의 사실상 lock.</p>
+<p>실측: <strong>노르웨이 TAC 52% 삭감 (16.5만 → 7.9만 톤) + MSC 인증 상실 + 환율 급등 트리플 펀치 → 수입 단가 전년比 20~30% 폭등. 한국 수입의 80~90% 단일 의존이 즉시 P&L 폭탄으로 전환</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 노르웨이 의존 80%는 단순 sourcing 편중이 아닌 <strong>"북동대서양 단일 fish stock 의존 = paper company"</strong> 수준의 fundamental risk.</p>
+<p><strong>3단계</strong>: ① 칠레·영국·네덜란드 장기 공급 계약 즉시 체결 (분산 sourcing) ② 정부 TRQ 0% 제도 선제 활용 + 재고 헤지 ③ MSC 인증 미회복 장기화 대비 — 가나/아프리카 비인증 시장 판매 destination 전환 포트폴리오 구축.</p>
+</div>`,
+        source: "고등어 마스터 인덱스 · ICES TAC Advisory · 관세청 TRQ 고시"
       }}
     />
   );

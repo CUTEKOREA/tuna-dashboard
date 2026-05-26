@@ -29,9 +29,15 @@ export default function MackerelAltSourcingIndex() {
       telemetry={{ status: 'LIVE' }}
       chart={chart}
       takeaway={{
-        situation: "노르웨이산의 초프리미엄(Hyper-premium) 지배력이 정점에 달한 가운데, 영국/아일랜드산이 티어 1.5 포지션으로 차익 거래 틈새를 침투 중입니다. 반면 칠레/페루산(펠라직 혼용)은 매입원가 우위(Cost Leadership)로 밑바닥 볼륨 마켓을 잠식하는 명확한 시장 분절(Fragmentation)이 포착됩니다.",
-        actionPlan: "[Bifurcated Capital Allocation] 단일 소싱의 함정(Vendor Lock-in)을 즉각 해체하십시오. 단가 탄력성이 높은 B2B 통조림/식자재 유통 라인은 칠레산 기반의 파격적 로우코스트(Low-cost) 네트워크로 전면 개편하고, 투자가용자본은 철저히 B2C 대형 마트의 '노르웨이 프리미엄 매대' 브랜드 독점력 강화에만 100% 집중하는 투-트랙(Two-Track) 엣지를 실행해야 합니다.",
-        source: "HSCustoms & UN Comtrade"
+        situation: `<div>
+<p>"대체 소싱 지수(Alt-Sourcing Index)"란 단일 원산지 의존도가 무너졌을 때 vendor가 대체할 수 있는 sourcing pool의 가격·품질 매력도. 노르웨이 단일 의존에서 영국/아일랜드/칠레로 분기되는 fragmentation 진행.</p>
+<p>실측: <strong>노르웨이산 hyper-premium tier · 영국·아일랜드산 1.5 tier 차익거래 침투 · 칠레/페루산 vol leader low-cost 잠식 — 시장이 명확한 3-tier segmentation 진입</strong>. 단일 origin 시대는 종료, capital allocation 재설계 필요 국면.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: vendor lock-in은 함정이 아닌 <strong>"채널별 sourcing tier를 분리해 capital allocation을 정밀 분기시킬 황금 기회"</strong>.</p>
+<p><strong>3단계</strong>: ① B2B 통조림/식자재 유통 라인 — 칠레산 low-cost network로 전면 개편 ② B2C 대형마트 매대 — 노르웨이 프리미엄 브랜드 독점력 강화에 capital 100% 집중 ③ 영국·아일랜드산은 1.5 tier 차익거래 instrument로 한정 운용 — bifurcated capital allocation lock.</p>
+</div>`,
+        source: "관세청 HS Customs · UN Comtrade"
       }}
     />
   );

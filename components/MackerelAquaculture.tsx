@@ -194,9 +194,15 @@ export default function MackerelAquaculture() {
       telemetry={{ status: 'STATIC', syncDate: '2023' }}
       customBody={customBody}
       takeaway={{
-        situation: `${latest.year}년 자연산 ${(latest.capture_t / 1000000).toFixed(1)}M톤 대 양식 ${latest.aquaculture_t.toLocaleString()}톤 — 양식 비중 ${latest.aqua_ratio_pct}%로 미미하나 단가는 ${premiumPct}% 프리미엄을 형성. ${peak.year}년 피크(${peak.aquaculture_t.toLocaleString()}톤) 이후 양식 산업 성숙기 진입.`,
-        actionPlan: `고부가가치 양식 기술 R&D 투자 확대로 자연산 어획 의존도 헤지. 양식 단가 프리미엄(${premiumPct}%)을 활용한 프리미엄 라인업(생식용·횟감) 진출로 마진 5%p 이상 개선 가능.`,
-        source: '한국수산자원공단(FIRA) 양식 통계 + FAO FishStatJ Aquaculture Production 2010-2023',
+        situation: `<div>
+<p>"고등어 양식(Mackerel Aquaculture)"이란 표층 회유어 특성상 일본·노르웨이 외 상용화 사례가 극히 적은 첨단 분야. 양식 단가가 자연산보다 비싼 역전 현상은 횟감·생식용 프리미엄 수요 존재의 증거.</p>
+<p>실측: <strong>${latest.year}년 자연산 ${(latest.capture_t / 1000000).toFixed(1)}M톤 vs 양식 ${latest.aquaculture_t.toLocaleString()}톤 — 양식 비중 ${latest.aqua_ratio_pct}% 미미. 단, 양식 단가 ${premiumPct}% 프리미엄 → 고부가 시장 존재</strong>. 자연산 어획 변동성에 무방비 노출된 산업 구조에서 양식 R&D는 P&L 헤지의 결정적 지렛대.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 양식은 단순 부가 R&D가 아닌 <strong>"자연산 어획 collapse 시 P&L 방어 유일 옵션 + ${premiumPct}% 프리미엄 monetization 이중 instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① 고부가가치 양식 기술 R&D capex 즉시 확대 (제주·일본 합작 우선) ② 생식용·횟감 프리미엄 라인업 진출 — 마진 5%p+ 개선 ③ 자연산 어획 변동성 헤지 instrument로 양식을 자산 운용 측면 평가.</p>
+</div>`,
+        source: '한국수산자원공단(FIRA) 양식 통계 · FAO FishStatJ Aquaculture Production 2010-2023',
       }}
     />
   );

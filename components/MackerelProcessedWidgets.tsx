@@ -86,9 +86,15 @@ export default function MackerelProcessedWidgets() {
         telemetry={{ status: 'STATIC', syncDate: '2023' }}
         customBody={ChartObj1}
         takeaway={{
-          situation: "칠레(50.7만 톤)와 페루(17.6만 톤)의 고등어류 조업 물량 중 약 10만 톤 이상이 식용이 아닌 '농수산 펠릿 사료(Fishmeal)'로 집중 가공되어 사라집니다.",
-          actionPlan: "고등어류 단가는 이제 '서민 식탁'이 아닌, 10배 이상 거대한 '연어 양식장 매입원가' 및 '초고가 펫케어 시장'에 연동되어 최저 가격 바닥(Floor)이 붕괴되지 않는 구조입니다.",
-          source: "FAO FishStatJ - Global Production & Non-Food Uses",
+          situation: `<div>
+<p>"Fishmeal(어분)"이란 펠라직 어종을 분쇄·건조해 만든 양식 사료·반려동물 식품 원료. 칠레/페루 jack mackerel(잭마커렐)이 글로벌 어분 시장의 단가 결정자(price setter).</p>
+<p>실측: <strong>칠레 50.7만 톤 + 페루 17.6만 톤 고등어류 조업 중 10만 톤 이상이 식용 아닌 fishmeal로 집중 가공 — 식용 시장과 어분 시장이 단일 원물 풀에서 경쟁</strong>. 연어 양식·펫케어 시장의 폭발 성장이 floor price를 영구 받쳐주는 구조.</p>
+</div>`,
+          actionPlan: `<div>
+<p><strong>재정의</strong>: 고등어 단가는 더 이상 "서민 식탁"이 결정하는 변수가 아닌 <strong>"연어 양식·펫케어 매입원가에 연동된 derivative commodity"</strong>.</p>
+<p><strong>3단계</strong>: ① 노르웨이 연어 양식 fishmeal 매입 단가를 고등어 매입 forward의 leading indicator로 트래킹 ② 펫케어 프리미엄 브랜드 OEM 진출 — fishmeal 다음 단계 monetization ③ 식용·fishmeal·펫케어 3-way arbitrage 모델 셋팅.</p>
+</div>`,
+          source: "FAO FishStatJ Global Production & Non-Food Uses",
         }}
       />
       <WidgetCard
@@ -99,10 +105,16 @@ export default function MackerelProcessedWidgets() {
         cardDesc=""
         telemetry={{ status: 'STATIC', syncDate: '2023' }}
         customBody={ChartObj2}
-        takeaway={{
-          situation: "2000년 5,187톤에 불과했던 중국 내 고등어 가공량이 2023년 무려 322,729톤(약 62배 폭증)으로 치솟으며 글로벌 원물을 모조리 쓸어버리고 있습니다.",
-          actionPlan: "수리미에 이어 고등어마저 훠궈/어묵 등 중국 내수 시장으로 쏠리며 한국의 수입 단가를 위협합니다. 글로벌 바잉 파워(Buying Power) 붕괴 전 대응이 시급합니다. (Immediate Action Required)",
-          source: "FAO FishStatJ - Processed volume statistics",
+          takeaway={{
+          situation: `<div>
+<p>"China Stealth Buy-up(중국의 스텔스 싹쓸이)"란 중국이 자국 통계 후공시·간접 무역 라우팅으로 글로벌 원물을 조용히 매집해 가공량이 5년/10년 단위로 수십 배 폭증하는 현상. 수리미·연어에 이어 고등어가 다음 타깃.</p>
+<p>실측: <strong>중국 고등어 가공량 2000년 5,187톤 → 2023년 322,729톤 (62배 폭증) — 훠궈·어묵 내수 폭증이 동인. 글로벌 원물 buying power가 한국 vendor에서 중국 vendor로 빠르게 이전 중</strong>. 1~2년 내 한국 수입 단가가 중국 내수 가격에 따라 결정되는 종속 구조로 전환 위험.</p>
+</div>`,
+          actionPlan: `<div>
+<p><strong>재정의</strong>: 중국 가공량 폭증은 단순 경쟁 증가가 아닌 <strong>"한국이 글로벌 buyer 지위에서 price taker로 강등되는 마지막 골든 window"</strong>.</p>
+<p><strong>3단계</strong>: ① 노르웨이·아일랜드 vendor와 3~5년 장기 take-or-pay 계약 즉시 체결 — 중국 매집 전 lock-in ② 한국 가공·HMR 라인 capex 가속 — 원물 종속 → 가공품 export로 전환 ③ 일본·EU 프리미엄 시장 진출 — 중국이 진입 불가능한 brand moat 구축.</p>
+</div>`,
+          source: "FAO FishStatJ Processed volume statistics",
         }}
       />
     </>

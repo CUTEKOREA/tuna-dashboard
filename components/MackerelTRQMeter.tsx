@@ -34,8 +34,14 @@ export default function MackerelTRQMeter() {
       telemetry={{ status: 'LIVE' }}
       chart={chart}
       takeaway={{
-        situation: "무관세 쿼터(TRQ) 소진율이 89% 리스크 수위를 상향 돌파하며, 단기 내 기본 관세(10~22%) 원복에 따른 밸류체인 전반의 조달 원가 폭등 및 치명적인 마진 훼손(Margin Erosion) 리스크가 카운트다운에 돌입했습니다.",
-        actionPlan: "[Regulatory Arbitrage Strategy] 경쟁 벤더들의 통관 지연 및 매입원가 패닉을 철저히 이용하십시오. 잔여 TRQ를 선제적으로 싹쓸이 통관(Front-loading)하여 제로(0) 관세율을 확정 지은 후, 1개월 뒤 관세가 전가된 도매 시장 평균 단가 상단에 맞춰 당사 재고를 스팟 방출(Spot Release)하는 '마켓 메이커(Market Maker)' 수준의 초과 수익을 추출해야 합니다.",
+        situation: `<div>
+<p>"TRQ(Tariff-Rate Quota, 무관세 쿼터)"란 일정 물량까지만 0% 관세 적용, 초과 시 기본 관세(10~22%) 원복하는 제도.</p>
+<p>현 위기: <strong>TRQ 소진율 89% 리스크 수위 돌파 → 단기 내 기본 관세 원복으로 조달 원가 폭등·마진 훼손 카운트다운</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: TRQ 위기는 단순 cost 변수가 아닌 <strong>"Regulatory Arbitrage 기회"</strong>.</p>
+<p><strong>3단계</strong>: ① 잔여 TRQ 선제 싹쓸이 통관(Front-loading) — 0% 관세율 확정 ② 1개월 뒤 관세 전가된 도매 시장 단가 상단에 스팟 방출 ③ "Market Maker" 수준 초과 수익 추출.</p>
+</div>`,
         source: "관세청 TRQ 고시"
       }}
     />

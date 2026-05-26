@@ -130,8 +130,14 @@ export default function MackerelMacroCycle() {
       telemetry={{ status: 'STATIC', syncDate: '2023' }}
       customBody={customBody}
       takeaway={{
-        situation: `2000년대 이후 글로벌 어획량은 ${(peak.production_t / 1000000).toFixed(0)}M톤(피크)에서 ${(latest.production_t / 1000000).toFixed(1)}M톤으로 감소 추세인 반면, 수입 단가는 $${data[0].unit_price_usd.toLocaleString()}/t(1976)에서 $${latest.unit_price_usd.toLocaleString()}/t(2023)로 ${((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승했습니다. 현재는 ${phase} 국면입니다.`,
-        actionPlan: "현재 수입 단가 사이클이 뚜렷한 불황기에 진입했으므로 재고 방어적 매입 및 장기 계약 단가를 고정하는 전략을 구사해야 합니다. 노르웨이 TAC 삭감과 한국 연근해 고수온 등 복합적인 공급 제약으로 인해 추가 단가 상승 가능성이 존재합니다. 엘니뇨와 라니냐 전환기에 나타나는 어획량의 급격한 변동 리스크에 대비하여 재고를 적정 수준으로 유지하고 굳건한 헷징 수단을 확보하는 것이 필수적입니다. (Execution Recommended)",
+        situation: `<div>
+<p>"Commodity Super-Cycle"이란 수년~수십년 단위로 반복되는 호황기·불황기·안정기 cyclical 패턴. 어종 commodity는 stock biology(자원 회복) + 기후(엘니뇨/라니냐) + 지정학(TAC·MSC)이 3축 결정 요인.</p>
+<p>실측: <strong>2000년대 피크 ${(peak.production_t / 1000000).toFixed(0)}M톤 → 2023년 ${(latest.production_t / 1000000).toFixed(1)}M톤 감소 추세. 단가 1976년 $${data[0].unit_price_usd.toLocaleString()}/t → 2023년 $${latest.unit_price_usd.toLocaleString()}/t로 ${((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승 — 현재 ${phase} 국면</strong>. 공급 감소 + 단가 상승의 stagflation 구조.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: ${phase}는 단기 가격 위기가 아닌 <strong>"북동대서양 stock 영구 shrinkage + 기후 phase shift의 multi-decade 신호"</strong>.</p>
+<p><strong>3단계</strong>: ① 재고 방어적 선매입 + 장기 계약 단가 고정 ② 노르웨이 TAC 삭감·한국 연근해 고수온 복합 리스크 대비 추가 매입 트리거 셋팅 ③ ENSO 전환기 어획 변동에 대비 forward 계약·OTC 어종 swap 헤지 instrument 확보.</p>
+</div>`,
         source: "FAO FishStatJ Global Capture & Trade Statistics (1976-2023)",
       }}
     />

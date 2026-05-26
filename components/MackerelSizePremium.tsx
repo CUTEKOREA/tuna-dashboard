@@ -39,8 +39,14 @@ export default function MackerelSizePremium() {
         {ChartArea}
       </div>
       <TakeawayBox
-        situation="해양 생태계 변화로 국내산 대형 사이즈 생물량(Biomass)이 절멸 국면에 진입하면서, 대-소 체급 간 단가 스프레드가 7배(7x Multiple) 위로 폭발적으로 팽창하는 극단적 마켓 양극화(Super-Polarization)가 완성되었습니다."
-        actionPlan="[Supply Monopolization & Product Mix] 대형 체급은 단순 소비재가 아닌 'Veblen Good(과시재)'으로 격상되었습니다. 최상위 선단에 대한 독점적 조업 선도자금(Pre-financing) 투입으로 대형물을 100% 싹쓸이(Sweep)하고, 소형물은 당사 HMR(가정간편식) 브랜드의 순살 가공 블렌딩 원료로 강제 치환하는 정밀한 티어링(Tiering) 설계가 필요합니다."
+        situation={`<div>
+<p>"체급 프리미엄 배수(Size Premium Multiplier)"란 대형(300g+) 가격을 소형(200g-) 가격으로 나눈 비율. 정상 시장은 2~3x, 5x 초과는 양극화, 7x+는 super-polarization으로 시장 구조 자체가 분리된 상태.</p>
+<p>실측: <strong>해양 생태계 변화로 국내산 대형 biomass 절멸 → 대-소 체급 스프레드 7배 multiple 팽창. 대형은 prestige goods, 소형은 사료/HMR 원료로 시장 자체가 둘로 분기된 super-polarization 완성</strong>. 단일 product 전략은 dead model.</p>
+</div>`}
+        actionPlan={`<div>
+<p><strong>재정의</strong>: 대형 체급은 단순 소비재가 아닌 <strong>"Veblen Good(과시재) 등급으로 격상된 limited-supply luxury asset"</strong>.</p>
+<p><strong>3단계</strong>: ① 최상위 선단 pre-financing 선도자금 투입 → 대형물 100% 싹쓸이 ② 소형물은 자체 HMR 브랜드의 순살 가공 블렌딩 원료로 강제 치환 ③ 대형 = 백화점·호텔 직판 luxury 채널, 소형 = 마트·편의점 HMR 양극 tiering 설계 완성.</p>
+</div>`}
       />
     </WidgetCard>
   );

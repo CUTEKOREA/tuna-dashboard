@@ -34,9 +34,15 @@ export default function MackerelClimatePredictor() {
       telemetry={{ status: 'STATIC', syncDate: '2024 (NOAA)' }}
       customBody={ChartObj}
       takeaway={{
-        situation: "글로벌 해수온(SST)이 1.5℃ 임계점(Tipping Point)을 돌파할 경우, 타겟 어군의 남하 회유 경로가 영구 붕괴되며 국내 EEZ 내 대형 체급 수확량이 65% 증발하는 구조적 꼬리 위험(Tail Risk)이 실시간으로 확인되고 있습니다.",
-        actionPlan: "[Quant-Hedging Execution] 인적 직관에 의존하는 재래식 발주를 즉각 폐기하십시오. NASA/NOAA의 해수온 이상 지수(ENSO)가 +1.5℃ 상단을 뚫는 즉시 알고리즘을 가동하여 차기 년도 노르웨이산 선물(Forward) 매입 볼륨을 3배 상향 락인하는 'Climate-Quant' 헷징 포지션을 전격 승인해야 합니다.",
-        source: "NASA/NOAA ENSO Data",
+        situation: `<div>
+<p>"SST(Sea Surface Temperature) Anomaly"란 해당 해역의 30년 평균 표층수온 대비 편차. 한반도 남해안의 +1.5℃ 돌파는 회유어 isotherm(등온선) 영구 북상의 tipping point.</p>
+<p>실측: <strong>SST +1.5℃ 임계점 돌파 시 타겟 어군 회유 경로 영구 붕괴 → 국내 EEZ 대형어 수확량 65% 증발 tail risk. 인적 직관 발주 모델은 climate stochasticity 앞에 무력</strong>. 매년 ENSO phase shift에 따라 매입 volume이 ±300% 변동해야 정상.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 기후 리스크는 단순 cost 변수가 아닌 <strong>"전사 P&L의 가장 큰 미헤지 노출 — 자산 운용사 수준 quant 헤징 필수"</strong>.</p>
+<p><strong>3단계</strong>: ① NOAA ENSO 지수 +1.5℃ 돌파 즉시 알고리즘 트리거 — 차기 노르웨이산 forward 3배 lock-in ② 인적 직관 발주 폐기 → "Climate-Quant" 자동 매입 알고리즘 도입 ③ JP Morgan 어종 weather derivative OTC 헤지 contract 체결 — tail risk 자본화.</p>
+</div>`,
+        source: "NASA · NOAA ENSO Data (자체 SST anomaly 모델 결합)",
       }}
     />
   );

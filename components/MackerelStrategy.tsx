@@ -13,9 +13,15 @@ export default function MackerelStrategy() {
       cardDesc="2026년 2월 부산 출항 1컨테이너 파일럿 판매 결과 및 향후 물량 확대 전략 시나리오"
       telemetry={{ status: 'STATIC', syncDate: '2026-Q1' }}
       takeaway={{
-        situation: '초기 1컨테이너 파일럿 판매 결과 총 매출액 $60,311, 마진율 6.21% 확보',
-        actionPlan: '분기별 물량 차등 투입 및 참치 대체재 헤징으로 가나 관세(10%) 페널티 방어',
-        source: '내부 수출 시뮬레이션 및 가나 현지 파일럿 실증 데이터'
+        situation: `<div>
+<p>"Pilot Export(파일럿 수출)"란 본격 양산 전 1컨테이너 단위 시범 출하로 P&L·통관·수요 실측을 동시 검증하는 단계. 가나는 참치(면세) vs 고등어(10% 관세 + 20% 제세금)의 구조적 페널티 비대칭이 존재.</p>
+<p>실측: <strong>1컨테이너 매출 $60,311, 순수익 $2,550, 마진율 6.21% — 2019년 1.93% 대비 3.2배 개선. 단, 매입원가 $34,482의 67%인 $23,278이 가나 세금(관세+VAT+NHIL+GETFund)에 전가</strong>. 부산-테마항 50일 콜드체인 무사고 통관 성공.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 가나 수출은 "마진 게임"이 아닌 <strong>"참치 어획 사이클의 음(陰)면 헤징 instrument"</strong>. 라니냐로 참치 어획이 저조한 분기에 고등어를 대체 단백질로 푸쉬.</p>
+<p><strong>3단계</strong>: ① Q2 성수기 2컨테이너 집중 + Q1 매입 최저가 줍줍($26.5/카톤) — 마진 16% 목표 ② B2B 직납 구조로 20% 간접세 전가 ③ 참치-고등어 cross-hedge로 연간 6컨테이너 안정 운영.</p>
+</div>`,
+        source: '내부 수출 시뮬레이션 · 가나 테마항 파일럿 실증 데이터 (2026 Q1)'
       }}
       customBody={
         <div className={styles.container} style={{ padding: 0, marginTop: '1rem' }}>

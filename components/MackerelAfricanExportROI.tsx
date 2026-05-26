@@ -35,9 +35,15 @@ export default function MackerelAfricanExportROI() {
       telemetry={{ status: 'STATIC', syncDate: '2024-03' }}
       customBody={ChartObj}
       takeaway={{
-        situation: "아프리카향 하위 티어(소형어) 수출 포트폴리오는 원물 펀더멘털보다 글로벌 해상 운임 지수(SCFI) 변동성에 마진이 완벽히 종속되는 극단적 운임 민감도(Freight-Elastic) 구조입니다. 특정 임계점 돌파 시 즉각적 OPM(영업Bottom-line(순이익)률) 적자 전환이 발생합니다.",
-        actionPlan: "[Agile Channel Switching] 컨테이너 운임 임계치가 내부 모델링 하한선을 이탈하는 순간, 선적 스케줄을 즉시 Force Majeure(불가항력) 급으로 보류(Hold) 하십시오. 악성 재고화 방지를 위해 차라리 국내 양식장 생사료(Feed) 체인으로 전량 저가 매각(Dump)하여 워킹캐피탈(Working Capital)을 긴급 회수하는 '손절 룰베이스 스위칭' 매뉴얼을 전사 적용.",
-        source: "상하이해운거래소 및 자체 모델링",
+        situation: `<div>
+<p>"SCFI(Shanghai Containerized Freight Index)"란 상해→글로벌 컨테이너 해상 운임 변동 벤치마크. 가나/서아프리카 라인은 hub-and-spoke가 아닌 long-leg single line이라 SCFI 변동에 마진이 1:1 종속.</p>
+<p>실측: <strong>SCFI 임계치 돌파 시 가나 수출 OPM 즉시 적자 전환 — 원물 cost가 아닌 운임이 마진의 결정 변수. 운임 elasticity 거의 1.0에 가까운 극단 구조</strong>. 일반 commodity 트레이딩 risk model은 적용 불가능 영역.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 운임 변동은 통제 불가 외생변수가 아닌 <strong>"룰베이스 손절 자동화로 working capital을 보존할 시스템 디자인 문제"</strong>.</p>
+<p><strong>3단계</strong>: ① SCFI 내부 하한선 모델링 → 임계치 이탈 즉시 선적 force majeure급 보류 ② 보류 물량은 국내 양식장 생사료 체인으로 즉시 dump — working capital 긴급 회수 ③ 손절 rule-based switching 매뉴얼 전사 적용 + AI 자동 트리거 도입.</p>
+</div>`,
+        source: "상하이해운거래소 SCFI · 자체 운임-마진 elasticity 모델",
       }}
     />
   );

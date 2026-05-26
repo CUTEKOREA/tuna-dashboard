@@ -65,8 +65,14 @@ export default function MackerelSankey() {
       telemetry={{ status: 'STATIC' }}
       customBody={customBody}
       takeaway={{
-        situation: "글로벌 고등어 무역의 핵심 축은 '노르웨이→한국/일본(대형어, 프리미엄)'과 '칠레/아일랜드→아프리카/동남아(소형어, 벌크)'의 이원 구조입니다. 한국은 수입의 75~80%를 노르웨이 단일 국가에 의존하는 극단적 편중 상태이며, 노르웨이의 TAC 삭감(52%)과 MSC 인증 상실로 공급 안정성이 심각하게 훼손된 상황입니다. 특히 한국→가나/나이지리아 재수출 루트가 급성장하며, 한국이 '중간 유통 허브' 역할까지 수행 중입니다.",
-        actionPlan: "노르웨이 의존도(Exposure) 80%를 2027년까지 50% 이하로 낮추는 로드맵을 수립하십시오. 칠레산(잭마커렐)·아일랜드산(대서양고등어)을 보완 소싱 루트로 개척하되, 칠레산은 소형어 중심이므로 가공(필레/통조림)용으로 한정하고, 노르웨이산 대체재로는 아이슬란드·페로제도산 대형어를 우선 테스트.",
+        situation: `<div>
+<p>"무역 플로우 매트릭스(Trade Flow Matrix)"란 글로벌 commodity의 수출국→수입국 흐름을 시각화해 공급망 집중도·교란 취약점을 진단하는 분석법. 단일국 의존도 75%+ 는 critical concentration risk.</p>
+<p>실측: <strong>한국 수입의 75~80%가 노르웨이 단일국 의존 — TAC 52% 삭감 + MSC 인증 상실로 공급 안정성 critical. 칠레/아일랜드→아프리카/동남아 벌크 라인은 별도 이원 구조</strong>. 한국→가나/나이지리아 재수출 신흥 루트도 확장 중.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 노르웨이 80% 의존은 단순 편중이 아닌 <strong>"공급 cliff 사건 시 즉시 P&L 파산할 single point of failure"</strong>.</p>
+<p><strong>3단계</strong>: ① 노르웨이 의존도 2027년까지 50% 이하 로드맵 ② 아이슬란드·페로제도산 대형어로 대체 소싱(대형어용), 칠레산·아일랜드산은 가공·통조림용 한정 ③ 가나/나이지리아 재수출 라인을 자체 수출 인프라로 전환 — 중계 마진 내재화.</p>
+</div>`,
         source: "FAO FishStatJ Mackerel Trade Flow Matrix (2023)"
       }}
     />

@@ -39,8 +39,14 @@ export default function MackerelFilletPenetration() {
         {ChartArea}
       </div>
       <TakeawayBox
-        situation="1인 가구 폭증 및 에어프라이어(Air-fryer) 보급의 매크로 메가트렌드가 재래식 H&G(원물) 소비를 완전히 멸종시키며, 전처리(Pre-processed) 완료된 순살 필렛(Fillet)의 내수 침투율이 62%를 돌파하는 구조적 B2C 밸류업 변곡점에 도달했습니다."
-        actionPlan="[Supply Chain Front-loading] 단순 트레이딩 시대는 종료되었습니다. 당사 자동화 필레팅 공정의 수율과 CAPA를 사수하기 위해, 차기 년도 노르웨이 공급망 체결 시 단순 원물이 아닌 최소 H&G(Head/Gut 제거) 이상 등급의 스펙(Spec) 선확보 조항을 독점적으로 강제(Mandate)하여 원물 손실 리스크(Yield Loss)를 해외 패커에게 사전 전가."
+        situation={`<div>
+<p>"H&G(Head & Gut removed)"란 머리·내장 제거 단계로, 원물의 1차 전처리 등급. "Fillet(순살 필렛)"은 뼈·껍질까지 제거한 HMR 최종 가공품으로 B2C 직접 소비 가능한 최고 부가가치 등급.</p>
+<p>실측: <strong>1인 가구 폭증 + 에어프라이어 보급으로 재래식 H&G(원물) 소비 멸종 → 순살 필렛 내수 침투율 62% 돌파. 단순 원물 트레이딩 시대 종료, HMR 가공품 시장이 B2C 가치사슬의 본질로 전환</strong>. HS 코드 병합으로 공공통계에 포착되지 않는 sub-market 폭증.</p>
+</div>`}
+        actionPlan={`<div>
+<p><strong>재정의</strong>: 가공은 부가 옵션이 아닌 <strong>"원물 수율 손실 리스크를 해외 패커에게 사전 전가하는 supply chain front-loading 무기"</strong>.</p>
+<p><strong>3단계</strong>: ① 노르웨이 공급망 계약 시 최소 H&G 등급 이상 spec 선확보 조항 독점 강제 ② 자동화 필레팅 라인 수율·capa 사수 capex ③ B2C HMR 필렛 직판 채널(쿠팡·마켓컬리) 직접 운영 — 60% 마진 수직 통합.</p>
+</div>`}
       />
     </WidgetCard>
   );

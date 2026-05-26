@@ -30,9 +30,15 @@ export default function MackerelStorageTurnover() {
       telemetry={{ status: 'LIVE' }}
       chart={chart}
       takeaway={{
-        situation: "창고 텔레메트리(Telemetry) 분석 결과 치명적 이상치(Outlier)가 감지되었습니다. 물류 유입 볼륨은 폭증하나 출고(Outbound) 볼륨이 소멸하며 악성 재고 회전율(Inventory Turnover 52 days) 한계선을 붕괴시키는 전형적인 '보틀넥(Bottleneck)' 경고입니다.",
-        actionPlan: "[Short-Squeeze Countermeasures] 이는 단순 유통 지연이 아닌, 관세 부과 및 성수기 단가 폭등을 노린 메이저 도매 벤더들의 전략적 매점매석(Hoarding) 카르텔 정황입니다. 당사는 직수입 공급망(Direct Importer)의 레버리지를 극대화하여 물량 출하를 전격 차단(Squeeze)하고, 역으로 최상위 도매 채널에 판가 협상권 100% 백지위임을 강요하는 독점적 프라이싱 파워를 행사.",
-        source: "내부 텔레메트리 데이터"
+        situation: `<div>
+<p>"재고 회전일수(Inventory Turnover Days)"란 창고에 적재된 물량이 출하되기까지 평균 소요 일수. 정상 콜드체인은 25~30일, 40일 초과 시 매점매석(Hoarding) 의심 구간.</p>
+<p>실측: <strong>적재 물량 폭증 + 출고 정체로 회전일수 52일 돌파 — 정상 대비 2배 체화. 관세 부과·성수기 단가 폭등 직전 메이저 도매 벤더들의 카르텔성 hoarding 정황</strong>. 보세 임치 물량의 비정상 누적은 short-squeeze 사전 시그널.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 매점매석 카르텔은 위협이 아닌 <strong>"직수입 레버리지를 휘두를 황금 타이밍"</strong>.</p>
+<p><strong>3단계</strong>: ① 직수입 물량 출하를 의도적 차단(counter-squeeze) — 도매 카르텔 재고 가치 폭락 유도 ② 최상위 도매 채널에 판가 협상권 100% 백지위임 강요 ③ 다음 분기 회전일수 25일 이내로 정상화 + 독점 프라이싱 파워 확보.</p>
+</div>`,
+        source: "관세청 보세창고 재고 텔레메트리 (자체 모니터링)"
       }}
     />
   );

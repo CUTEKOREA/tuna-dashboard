@@ -103,9 +103,15 @@ export default function MackerelBlackhole() {
       telemetry={{ status: 'STATIC', syncDate: '2023' }}
       customBody={customBody}
       takeaway={{
-        situation: "2019~2023년 데이터를 분석한 결과, 토고(+5,932%), 말리(+1,300%), 필리핀(+167%), 코트디부아르(+81%) 등 아프리카 및 동남아 신흥 국가들의 고등어 수입량이 폭발적으로 증가하며 '신흥 블랙홀'을 형성하고 있습니다. 이들 국가의 인구 증가와 저렴한 단백질 수요가 세계 고등어 무역 지형을 빠르게 바꾸고 있습니다.",
-        actionPlan: "코트디부아르·필리핀·콩고민주공화국 등 수입 성장세가 뚜렷한 국가들을 신규 전략 시장으로 지정하고, 국내에서 상품성이 낮은 소형어(300g 미만)의 정기 컨테이너 수출 물량을 대폭 확대하십시오. 과거 최대 시장이었던 가나·나이지리아의 점유율이 점차 하락하는 추세임을 고려해, 서아프리카 인근 다른 거점 국가로의 선제적인 유통망 다변화 투자가 핵심입니다.",
-        source: "FAO FishStatJ - Trade by Partner (2019-2023)",
+        situation: `<div>
+<p>"Demand Black Hole(수요 블랙홀)"이란 5년 사이 수입량이 50~5000% 폭증한 신흥 시장. 인구 증가율 + 단백질 결핍 + 저소득층 식량 안보 정책이 결합해 무역 흐름이 빨려 들어가는 country cluster.</p>
+<p>실측: <strong>토고 +5,932%, 말리 +1,300%, 필리핀 +167%, 코트디부아르 +81% 5년 성장률. 가나·나이지리아 전통 마켓은 saturation 진입, 인근 서아프리카 위성 시장에 신규 무역풍 형성</strong>. early-mover advantage 가능한 window가 1~2년 한정.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 신흥 시장은 단순 분산이 아닌 <strong>"가나·나이지리아 saturation 전환 전 서아프리카 전체 hub network lock-in 기회"</strong>.</p>
+<p><strong>3단계</strong>: ① 코트디부아르·필리핀·콩고민주공화국을 신규 전략 시장 즉시 지정 — 정기 컨테이너 수출 라인 개설 ② 300g 미만 소형어 monetization 채널로 전환 ③ 가나 거점 인프라(테마항 콜드체인) 활용해 인근 5개국 distribution hub 확장 — 서아프리카 5국 점유 영구화.</p>
+</div>`,
+        source: "FAO FishStatJ Trade by Partner (2019-2023)",
       }}
     />
   );

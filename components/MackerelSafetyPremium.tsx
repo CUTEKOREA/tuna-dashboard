@@ -38,9 +38,15 @@ export default function MackerelSafetyPremium() {
       telemetry={{ status: 'STATIC', syncDate: '2023-Q4' }}
       customBody={ChartObj}
       takeaway={{
-        situation: "지정학적 식품 안전(Radioactivity) 이슈로 글로벌 바이어들의 일본산 펠라직(Pelagic) 기피 현상이 트리거(Trigger)되며, 한국산이 아프리카 권역에서 강한 펀더멘털 대체재(Substitute)로 급부상(+38% 볼륨 팽창)하는 구조적 반사이익(Windfall) 국면입니다.",
-        actionPlan: "[Quality Moat Construction] 일회성 무역풍(Tailwind)에 안주하지 마십시오. 즉시 선적 물량 100%에 대해 제3자 국가공인 방사능 안전검사(QR 트래킹) 패키징을 강제 의무화하여, 단순 원물 수출을 진입 장벽이 완벽히 구축된 '청정 프리미엄 원료(Clean-Label)' 브랜드 비즈니스로 수직 상승시켜야 합니다.",
-        source: "FAOSTAT 및 자체 가공 무역 데이터",
+        situation: `<div>
+<p>"Safety Premium(안전 프리미엄)"이란 지정학·안전 악재로 경쟁 원산지가 기피되며 대체 원산지에 부여되는 무형의 단가 프리미엄. 후쿠시마 오염수 방류 이슈는 일본산 펠라직 어종에 영구적 신뢰 손상 부과.</p>
+<p>실측: <strong>아프리카 훈제 시장에서 한국산 원물 볼륨 +38% 팽창 — 일본산 기피로 인한 구조적 반사이익(Windfall). Clean-label 브랜드 구축의 일회성 골든 윈도우 개방</strong>. 단, 무역풍은 영구적이지 않음 — 신뢰는 빠르게 굳어야.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 후쿠시마 반사이익은 일회성 tailwind가 아닌 <strong>"30년 brand moat을 1회 capex로 구축할 골든 윈도우"</strong>.</p>
+<p><strong>3단계</strong>: ① 선적 100% 제3자 국가공인 방사능 검사 + QR 트래킹 패키징 의무화 ② "Korea Clean Fish" 브랜드 인증 출시 — 아프리카 5개국 B2B 우선 침투 ③ 일본산 신뢰 회복 전 5년 내 아프리카 시장 점유율 30% 고착 — 진입장벽 영구화.</p>
+</div>`,
+        source: "FAOSTAT 무역 데이터 · 자체 아프리카 시장 분석 (2023-Q4)",
       }}
     />
   );

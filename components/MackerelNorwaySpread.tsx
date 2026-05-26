@@ -41,9 +41,15 @@ export default function MackerelNorwaySpread() {
         {ChartArea}
       </div>
       <TakeawayBox
-        source="수협중앙회 & KMI"
-        situation="북해 연안국 간 쿼터 분쟁 격화로 노르웨이산 수입 매입원가가 +66% 수직 상승(Cost-Push)했으나, 국내 내수 시장의 강력한 소비 탄력성 저항선(Price Ceiling)에 부딪혀 도매 판가 인상이 지연되는 전형적인 마진 스퀴즈(Margin Squeeze) 위협 구간입니다."
-        actionPlan="[Liquidity & Inventory Hedging] 톤당 마진 스프레드가 500원(KRW) 하단 임계치를 붕괴할 경우, 국내 방출 스케줄을 전면 셧다운(Hold) 하십시오. 창고 롤오버(Rollover) 비용을 감수하더라도 시장 내 숏티지를 인위적으로 유발하여 판가를 견인하거나, 관세 장벽이 낮은 동남아 등 제3국으로 전량 환적하는 차익 거래 채널을 즉각 가동해야 합니다."
+        source="수협중앙회 · KMI 한국해양수산개발원"
+        situation={`<div>
+<p>"마진 스퀴즈(Margin Squeeze)"란 매입원가 상승은 즉시 P&L에 반영되나, 판가 인상은 소비자 price elasticity에 막혀 지연되는 구간. 노르웨이 수입 vendor의 가장 빈번한 P&L 파괴 패턴.</p>
+<p>실측: <strong>북해 연안국 쿼터 분쟁 격화로 노르웨이산 수입 원가 +66% cost-push, 국내 도매 판가 전가 지연 → 톤당 마진 스프레드가 500원/kg 하단 임계치 붕괴 위험</strong>. 마진 스퀴즈가 vendor 도산 1순위 시그널.</p>
+</div>`}
+        actionPlan={`<div>
+<p><strong>재정의</strong>: 마진 스퀴즈는 외생 변수가 아닌 <strong>"liquidity 헤지 + inventory 재고 매니지먼트로 정밀 헷지 가능한 운영 instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① 마진 스프레드 500원/kg 하한선 붕괴 시 국내 방출 스케줄 즉시 셧다운(Hold) ② 창고 rollover 비용 감수하고 의도적 shortage 유발 → 판가 견인 ③ 동남아 등 관세 장벽 낮은 제3국 환적 차익거래 채널 즉시 가동.</p>
+</div>`}
       />
     </WidgetCard>
   );

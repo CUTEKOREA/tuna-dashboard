@@ -77,9 +77,15 @@ export default function MackerelSpreadWinners() {
       telemetry={{ status: 'STATIC' }}
       customBody={customBody}
       takeaway={{
-        situation: "호주가 톤당 $11,508의 최고 마진 달성률을 보이고 선별적인 프리미엄 시장 수요를 파고들었으며, 폴란드($3,178/t), 체코($2,558/t) 등 주요 유럽 인접국들이 동유럽 중심의 견고한 가공 스프레드를 기록하고 있어 서유럽 향 '밸류업 팩토리' 역할을 지속 중입니다. 반면 한국은 단순 벌크 원물 수입 후 유사한 가격대에 재수출되는 비효율(Inefficiency)적 중계 물동량이 많아 부가가치 창출 구조 개선이 절실합니다.",
-        actionPlan: "동유럽/폴란드식 고수익 가공 모델을 참고하여 수입산 펠라직 어종을 HMR(간편식)·구이용 필레·양념 및 특수 포장 제품 등 2차 가공품으로 전환할 자체 인프라를 구축해야 합니다. 또한 호주 사례와 같이 철저히 시장을 분리하여 저가 대량 유통과 고가 소량 프리미엄 시장(수출 및 내수)을 동시에 타겟팅하는 '프라이싱 이원화' 전략을 수립.",
-        source: "FAO FishStatJ Import/Export Price Spread Analysis (2023)"
+        situation: `<div>
+<p>"가공 스프레드(Processing Spread)"란 원물 수입 단가와 가공품 수출 단가의 차이 = 가공 인프라의 ROI 측정 지표. 톤당 $1,000 미만은 단순 중계 무역, $3,000+ 는 진정한 부가가치 창출.</p>
+<p>실측: <strong>호주 $11,508/t로 최고 마진 (프리미엄 시장 침투) · 폴란드 $3,178/t · 체코 $2,558/t (동유럽 밸류업 팩토리) vs 한국은 벌크 원물 단순 재수출로 부가가치 거의 없음</strong>. 한국 가공 인프라 ROI는 글로벌 하위권.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 가공 인프라 부재는 단순 capex 부족이 아닌 <strong>"한국 어업의 글로벌 가치사슬 최하단 갇힘(Commodity Trap)"</strong>.</p>
+<p><strong>3단계</strong>: ① 폴란드 모델 벤치마킹 — HMR·구이 필레·양념 2차 가공 라인 capex 즉시 ② 호주 모델 — 저가 벌크 / 고가 프리미엄 이원화 프라이싱 ③ 5년 내 가공 스프레드 $3,000/t 돌파 — EV/EBITDA rerate 트리거.</p>
+</div>`,
+        source: "FAO FishStatJ Mackerel Import/Export Price Spread (2023)"
       }}
     />
   );
