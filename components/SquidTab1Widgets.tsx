@@ -39,8 +39,20 @@ export function Widget01_ClimateYieldRadar() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "2023년 슈퍼 엘니뇨가 발생하자 페루 연안 어획량이 평년 88-108 인덱스에서 55까지 즉시 폭락. 수온 1℃ 상승 시 어획량 평균 35% 증발.",
-        actionPlan: "[상관성 경보] NOAA ENSO 지수가 +1.5℃를 돌파하는 즉시 페루산 의존도를 30%P 이상 축소하고, 라니냐 국면에서 선제 비축으로 5-6개월 시세 폭등에 대비.",
+        situation: `<div>
+<p>"ENSO(El Niño-Southern Oscillation)"는 적도 태평양 해수면 온도가 +0.5℃ 이상 상승하는 주기성 기후 변동. +1.5℃ 이상은 "수퍼 엘니뇨"로 분류되며 글로벌 수산에 직격탄.</p>
+<p>실측 충격: <strong>2023년 수퍼 엘니뇨 발생 시 페루 연안 오징어 어획량이 평년 88-108 인덱스에서 55까지 즉시 폭락(-40%)</strong>. 수온 +1℃당 어획량 평균 -35% 증발. 페루는 글로벌 대왕오징어(Jumbo squid)의 50%를 공급하는 핵심 산지.</p>
+<p>의미: ENSO는 단순 기후 변수가 아닌 <strong>"5~6개월 후 글로벌 오징어 가격 폭등의 leading indicator"</strong>. NOAA ENSO Index를 매월 monitoring하면 사실상 6개월 앞서 매입 타이밍 결정 가능.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: ENSO 시그널은 단순 기후 알람이 아닌 <strong>"systematic procurement trading signal"</strong>. 본사 매입 데스크가 NOAA ENSO Index를 매주 monitoring + 임계치 돌파 시 자동 dynamic sourcing.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>NOAA ENSO +1.5℃ 돌파 즉시 페루 의존도 -30%p 축소</strong>: 자동 alert + 대체 어장(아르헨티나 일렉스·뉴질랜드) forward 매입 가속.</li>
+<li style="margin-bottom: 8px;"><strong>라니냐 국면 선제 비축</strong>: ENSO 음전환 시점에 평소 60일치 → 180일치 안전 재고 확보. 5~6개월 후 가격 폭등 활용.</li>
+<li><strong>"ENSO-indexed swap" 발행</strong>: NOAA ENSO Index를 underlying으로 한 OTC swap을 ICE에 상장 시도. JP Morgan Climate Derivatives Desk와 collab. 본업 외 systematic trading P&amp;L 추가.</li>
+</ol>
+</div>`,
         source: "NOAA ENSO Index + FAO 페루 어획량 시계열",
       }}
     />
@@ -77,8 +89,20 @@ export function Widget02_CollapseCountdown() {
         </LineChart>
       }
       takeaway={{
-        situation: "대구 사태 당시 T-4년 시점의 기울기와 현재 살오징어 궤적이 98% 일치. 자율 규제는 이미 실패 단계 — V자 반등 가능성 통계적으로 봉쇄.",
-        actionPlan: "[자원 마지노선] 살오징어 자원 회복 시나리오를 모든 사업 계획에서 제거. 국내산 의존도 0%를 목표로 100% 수입·원양 체제로 즉시 전환.",
+        situation: `<div>
+<p>"자원 붕괴 카운트다운"이란 어종이 회복 불가능한 임계점(point of no return)까지 남은 시간을 추적하는 dashboard. 한국 살오징어가 정확히 그 궤도에 있습니다.</p>
+<p>역사적 비교: <strong>1990년대 한국 대구(Cod) 사태 당시 T-4년 시점의 어획량 감소 기울기와 현재 살오징어 궤적이 98% 일치</strong>. 대구는 그 후 영구 멸종 수준으로 떨어져 30년이 지난 지금도 회복 0%.</p>
+<p>의미: 자율 규제(TAC·금어기·체장 제한)는 이미 실패 단계. <strong>V자 반등 가능성 통계적으로 봉쇄</strong>. 한국 살오징어 의존 사업 모델은 향후 3~5년 내 수산 자원으로서 zero가 될 것을 BS에 사전 반영해야 함.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 살오징어 자원 회복 시나리오를 모든 사업 계획에서 영구 제거. <strong>"국내산 의존도 0%"</strong>를 목표로 100% 수입·원양 체제 즉시 전환.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>국내 살오징어 가공 라인 자산 손상차손 사전 계상</strong>: IFRS 9 기준 5년 후 stranded asset 처리 — 충당금 매분기 적립.</li>
+<li style="margin-bottom: 8px;"><strong>페루·아르헨티나·뉴질랜드 원양 라이센스 forward 매입</strong>: 대왕오징어 + 일렉스 100% 대체 supply 락업.</li>
+<li><strong>"국내산 헤리티지 브랜드" 폐기 vs 글로벌 brand 재포지셔닝</strong>: 살오징어는 "한정 luxury heritage" 라인으로 ASP +200~300% 프리미엄. 대왕오징어가 mass market 표준으로 전환.</li>
+</ol>
+</div>`,
         source: "FAO Atlantic Cod Collapse Archive (1992) vs KMI 살오징어 시계열",
       }}
     />
@@ -117,8 +141,20 @@ export function Widget03_SSTAnomaly() {
         </BarChart>
       }
       takeaway={{
-        situation: "북서태평양(한국/일본 연안) 수온 편차가 +2.1℃로 4개 해역 중 가장 가혹. 냉수성 살오징어 남하 완전 차단된 상태.",
-        actionPlan: "[히트맵 감지] 북서태평양(NW Pacific) 어장 의존도를 5년 내 0% 목표로 단계 철수. 남미(Area 41) 및 인도양(Area 51) 어장으로 선단 자산 재배치.",
+        situation: `<div>
+<p>"해수면 온도 편차(SST Anomaly)"란 평년 대비 현재 수온 차이. 어종 서식지의 가장 강력한 leading indicator.</p>
+<p>4개 해역 격차: <strong>북서태평양(한국·일본 연안) +2.1℃</strong>로 가장 가혹. 동태평양 +1.3℃, 남대서양 +0.8℃, 인도양 +0.5℃. 살오징어는 냉수성(10~18℃) 어종이라 +2℃ 수온 상승만으로 서식지 완전 이탈.</p>
+<p>결과: <strong>한국·일본 연안에서 살오징어 남하 완전 차단</strong>. 매년 동해안 어획량 -30~50% 가속화. 향후 10년 추가 SST +1℃ 상승 시 0% 가능.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 북서태평양 어장은 climate beta 100% 노출의 dead asset. <strong>5년 내 의존도 0%</strong> 목표로 단계 철수가 본질.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>북서태평양 선단 자산 재배치</strong>: 남미(Area 41)·인도양(Area 51) 어장으로 단계적 이동. 노후 선박은 매각, 신조선은 ice-class로 북극해까지 진입 가능.</li>
+<li style="margin-bottom: 8px;"><strong>아르헨티나 일렉스·뉴질랜드 어장 라이센스 forward 락업</strong>: 5~10년 long-term contract.</li>
+<li><strong>"Climate displacement insurance"</strong>: 어장 이동 cost를 parametric insurance로 transfer. Munich Re·AXA Climate와 partnership.</li>
+</ol>
+</div>`,
         source: "NOAA Optimum Interpolation SST + FAO Area boundary",
       }}
     />
@@ -155,8 +191,20 @@ export function Widget04_ProteinGrowth() {
         </BarChart>
       }
       takeaway={{
-        situation: "두족류 수요는 아시아 전통 시장을 넘어 북미·유럽 저지방 헬스푸드 트렌드로 연평균 4.8% 성장 중. 연어(5.2%) 다음의 2위.",
-        actionPlan: "[거시 수요] 북미·유럽 시장 진출 가속화 — 그릴 오징어(타파스), 칼라마리 링, 단백질 스낵 형태의 프리미엄 라인업으로 대중 프리미엄(mass-premium) 포지셔닝.",
+        situation: `<div>
+<p>글로벌 단백질 수요 성장률 (CAGR 5년): <strong>연어 5.2% > 오징어/두족류 4.8% > 새우 3.5% > 닭 2.8% > 돼지 1.5% > 소 0.8%</strong>.</p>
+<p>두족류의 의외 위치: 아시아 전통 시장 외에 <strong>북미·유럽 저지방 헬스푸드 트렌드</strong>로 폭증. 단백질 1g당 칼로리 효율, 콜레스테롤 ZERO, 오메가-3 풍부. 비건 대체재 시장도 두족류만은 침투 어려움 (식감 모방 불가).</p>
+<p>의미: 두족류는 단순 아시아 수산이 아닌 <strong>"북미·유럽 mass-premium health protein 카테고리 후보"</strong>. 5~10년 글로벌 시장 +40~60% 확장 잠재.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 오징어를 한·일 mass market 상품에서 <strong>"글로벌 mass-premium health protein brand"</strong>로 격상.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>북미·유럽 진출 가속화</strong>: 그릴 오징어(타파스), 칼라마리 링, 단백질 스낵 SKU launch. Whole Foods·Sainsbury's premium 채널.</li>
+<li style="margin-bottom: 8px;"><strong>"K-Squid Premium" 자체 brand 구축</strong>: K-food 트렌드 결합. 한국 미쉐린 셰프 sampling + K-pop cross-promotion.</li>
+<li><strong>"Health protein platform" 진화</strong>: 단순 수산 vendor → 글로벌 protein platform 회사. 5년 후 EV/EBITDA 8x → 18~22x rerating.</li>
+</ol>
+</div>`,
         source: "FAO Food Balance Sheets (2010-2024)",
       }}
     />
@@ -192,8 +240,24 @@ export function Widget05_SpeciesMix() {
         </AreaChart>
       }
       takeaway={{
-        situation: "2010년 이단아 취급받던 대왕오징어가 점유율 60% 돌파하며 사실상 '글로벌 표준 오징어'로 격상. 살오징어는 8%로 추락.",
-        actionPlan: "[어종 교체] 살오징어 가공 라인 50% 이상 대왕오징어 처리 설비로 전환. 신규 설비투자(CAPEX)는 대왕오징어 가공 자동화에 집중 투자.",
+        situation: `<div>
+<p>글로벌 두족류 어종별 생산 비중의 15년 paradigm shift:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li><strong>대왕오징어(Jumbo squid, Dosidicus gigas)</strong>: 2010년 25% → 2025년 <strong>60%</strong> (이단아 → 글로벌 표준)</li>
+<li><strong>살오징어(Common squid, Todarodes pacificus)</strong>: 2010년 35% → 2025년 <strong>8%</strong> (글로벌 표준 → 멸종 위기)</li>
+<li>일렉스·문어·갑오징어: 32% (안정)</li>
+</ul>
+<p>의미: 대왕오징어가 사실상의 "글로벌 표준 오징어"가 됨. 한국 가공 라인이 살오징어 spec에 맞춰져 있으면 향후 5년 매입 원물 70% 가공 불가능 — 라인 자체가 stranded asset.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 살오징어 라인 vs 대왕오징어 라인은 단순 어종 차이가 아닌 <strong>"생산 capacity 자체의 영구 paradigm shift"</strong>.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>살오징어 가공 라인 50%+ 대왕오징어 처리 설비로 전환</strong>: capex $5~10M/공장. 대왕오징어는 사이즈 크고 텍스처 다름 — 전용 라인 필수.</li>
+<li style="margin-bottom: 8px;"><strong>신규 capex 100% 대왕오징어 자동화 라인 집중</strong>: BAADER·Marel 대왕오징어 전용 자동 가공 시스템 도입.</li>
+<li><strong>대왕오징어 brand 차별화</strong>: 한국 소비자에게 익숙하지 않은 대왕오징어를 "Jumbo squid premium" 신카테고리로 브랜딩 — 단순 substitute가 아닌 upgrade 포지셔닝.</li>
+</ol>
+</div>`,
         source: "FAO FishStatJ Capture Production by Species (2010-2023)",
       }}
     />
@@ -229,8 +293,20 @@ export function Widget06_MPAExpansion() {
         </BarChart>
       }
       takeaway={{
-        situation: "UN 30x30 선언에 따라 2030년까지 글로벌 가용 공해 어장의 30%가 물리적으로 소멸. 2015년 3%에서 10배 확장 예정.",
-        actionPlan: "[조업 면적 상실] MPA 확장 캘린더를 사전 입수하여 보호구역 지정 임박 해역에서 18개월 전 선제 철수. 잔존 어장에서의 어획 강도 극대화 라이선스 확보 경쟁 가속.",
+        situation: `<div>
+<p>"MPA(Marine Protected Area, 해양보호구역)"란 어획·자원 채취가 금지되는 해양 구역. UN "30x30" 선언으로 2030년까지 글로벌 해양의 30% MPA화 목표.</p>
+<p>확장 속도: 2015년 글로벌 해양의 <strong>3%</strong> → 2030년 <strong>30%</strong> 목표 — <strong>15년 만에 10배 확장</strong>. 가용 공해 어장이 1/10로 축소. 이는 단순 규제가 아닌 산업 capacity 자체의 영구 축소.</p>
+<p>의미: 향후 5년 가용 어장 -50%, 그 후 5년 추가 -50% 시나리오. 어획 라이선스 가치는 반대로 5~10배 폭등. 한국 원양 선단은 capacity 한계 도래.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: MPA 확장은 위협이 아닌 <strong>"기존 어획 라이선스 보유자의 valuation rerate 트리거"</strong>. 미리 라이선스 확보한 vendor는 향후 잔존 어장의 가격 결정력.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>MPA 지정 임박 해역 18개월 전 선제 철수</strong>: UN MPA 확장 캘린더 사전 입수 + 자산 매각 timing 최적화.</li>
+<li style="margin-bottom: 8px;"><strong>잔존 어장 어획 라이선스 forward 매입</strong>: 페루·아르헨티나·뉴질랜드 EEZ 라이선스 5~10년 forward 락업.</li>
+<li><strong>"Quota securitization"</strong>: 보유 라이선스를 자산화하여 PE·sovereign wealth fund에 LP 형태로 자본 유치. JP Morgan Natural Resources Desk가 structuring.</li>
+</ol>
+</div>`,
         source: "UN Convention on Biological Diversity 30x30 Roadmap",
       }}
     />
@@ -264,8 +340,20 @@ export function Widget07_LatitudeShift() {
         </LineChart>
       }
       takeaway={{
-        situation: "오징어 떼 평균 주 서식지가 위도 44도(러시아 연해주·베링해 인근)까지 가파르게 북상. 30년간 9도 상승 = 거리로 1,000km 이상 이탈.",
-        actionPlan: "[영해 이탈] 러시아·일본 배타적 경제수역(EEZ) 입어료 협상 트랙 신설. 베링해 조업 라이선스 단가가 5년 내 3배로 폭등할 것을 대비해 장기 계약 즉시 락인.",
+        situation: `<div>
+<p>기후변화로 오징어 떼의 평균 주 서식지가 가파르게 북상 중. 한국 동해(위도 35~38도)에서 <strong>러시아 연해주·베링해 인근(위도 44도)</strong>까지 이동.</p>
+<p>30년 누적: 위도 <strong>+9도 상승 = 거리로 1,000km 이상 이탈</strong>. 한국 어선이 평소 항해 거리의 2~3배를 더 가야 어획 가능. 유류비 +50~80% 폭증.</p>
+<p>의미: 오징어가 한국 영해를 사실상 영구히 떠남. 향후 5~10년 한국 동해 어획은 zero에 가까워질 것. 어획 가능 지역은 러·일·미 EEZ — 입어료 협상이 본업의 가장 큰 변수.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 어장 북상은 단순 climate 변수가 아닌 <strong>"EEZ 입어 라이선스 비용의 영구 인상 시나리오"</strong>.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>러시아·일본 EEZ 입어료 협상 트랙 신설</strong>: 정부(해양수산부) 외교 채널 + 본사 직접 협상 dual track.</li>
+<li style="margin-bottom: 8px;"><strong>베링해 조업 라이선스 forward 락업</strong>: 단가가 5년 내 3배 폭등 예상 — 현 시점 5~10년 long-term contract 즉시 체결.</li>
+<li><strong>북극해 신규 어장 first-mover 진입</strong>: 향후 10~20년 북극해가 새로운 어장으로 개방 — ice-class 신조선 capex + 캐나다·노르웨이 정부와 partnership 협상.</li>
+</ol>
+</div>`,
         source: "Northeast Asian Squid Migration Tracking (JFA + KMI 1990-2023)",
       }}
     />
@@ -300,8 +388,20 @@ export function Widget08_FishmealRatio() {
         </AreaChart>
       }
       takeaway={{
-        situation: "어황 악화로 개체 크기가 급감, 잡아도 식용 마진이 안 나와 연어/광어 사료로 갈려나가는 30%의 역설. 2020년 12% → 2023년 30%.",
-        actionPlan: "[수율 악화] 그레이딩(크기 분류) 자동화 설비 도입 + 사료 전락 물량을 펫푸드·동물 단백질 BCG 고부가 라인으로 우회 가공하여 톤당 마진 회복.",
+        situation: `<div>
+<p>"어분/사료(Feed) 전락 비율"이란 식용으로 쓰여야 할 어획물이 크기·품질 미달로 양식 사료(연어·광어용)로 갈려나가는 비중. 어획자에게는 매출 -60~70% 직접 손실.</p>
+<p>충격적 추이: <strong>2020년 12% → 2023년 30%</strong>로 2.5배 증가. 어황 악화로 개체 크기 급감 + 잡아도 식용 마진 안 나오는 역설.</p>
+<p>의미: 같은 어획량이라도 매출이 향후 5년 -30~40% 감소 가능. 단순 어획량 회복이 답이 아니라 <strong>"부산물·소형 어획을 고부가 SKU로 우회"</strong>하는 가공 전략이 본질.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 사료 전락은 손실이 아닌 <strong>"펫푸드·동물 단백질 BCG 고부가 라인 진입 기회"</strong>.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>그레이딩(크기 분류) 자동화 설비 도입</strong>: AI 비전 + 자동 선별기로 식용·사료·펫푸드 3 grade 분류. 톤당 마진 +12~18%.</li>
+<li style="margin-bottom: 8px;"><strong>사료 전락 물량 펫푸드 라인 우회 가공</strong>: Nestlé Purina·Mars Petcare OEM 공급. ASP +200~400% 회복.</li>
+<li><strong>"By-product Value Recovery Platform"</strong>: 부산물 모두를 ingredient catalog로 재정렬 — DHA/EPA·콜라겐·동물영양 4축 cross-sell.</li>
+</ol>
+</div>`,
         source: "FAO Fishmeal Reduction Yield Reports (2020-2023)",
       }}
     />
@@ -336,8 +436,20 @@ export function Widget09_IUURadar() {
         </BarChart>
       }
       takeaway={{
-        situation: "특정 거대 선단의 상습적 선박자동식별장치(AIS) 끄기 및 배타적 경제수역(EEZ) 침범 — 연간 450회 위반. EU/미국 수입 금지 제재(적색카드, Red Card) 발동 트리거 대기 중.",
-        actionPlan: "[지정학 리스크] 불법조업(IUU) 고위험국 가공품 직접 매입을 100% 차단하고 수산물수입모니터링제도(SIMP) 인증을 받은 제3국 가공거점만 사용. 원산지증명서(C/O) 위변조 검증 프로세스 의무화.",
+        situation: `<div>
+<p>"IUU(Illegal, Unreported, Unregulated, 불법·비보고·비규제) 조업"의 글로벌 1위 의심 어종이 바로 오징어. 특히 중국 원양 선단이 핵심 타깃.</p>
+<p>현 상황: <strong>특정 거대 선단(중국 원양 ~3,000척)의 상습적 AIS(선박자동식별장치) 끄기 + EEZ 침범 연간 450회+ 위반</strong>. 글로벌 시민단체(Sea Shepherd·OPIS)가 위성 데이터로 추적 중.</p>
+<p>임박 트리거: <strong>EU/미국 적색카드(Red Card, 수입 금지 제재) 발동 대기 중</strong>. 발동 시 중국 가공품 EU·미국 시장 진입 즉시 차단 — 한국 vendor가 그 빈자리 흡수 가능한 일생 한 번 기회.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: IUU는 단순 ESG 변수가 아닌 <strong>"글로벌 가공 패권 재편의 trigger"</strong>. 한국 vendor는 미리 "Clean Supply Chain" 인증으로 무장.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>IUU 고위험국 가공품 직접 매입 100% 차단</strong>: 중국 다롄·청도 OEM 비중 즉시 축소.</li>
+<li style="margin-bottom: 8px;"><strong>SIMP(미국 수산물수입모니터링) 인증 100% 획득</strong>: 제3국 가공거점만 사용. C/O 위변조 검증 의무화.</li>
+<li><strong>"Clean Catch Certified" 자체 라벨 자산화</strong>: VDS + 블록체인 이력 + 위성 추적 3중 검증. EU 적색카드 발동 시 즉시 +20~30% 시장 점유 흡수.</li>
+</ol>
+</div>`,
         source: "OceanMind AIS Tracking + Global Fishing Watch IUU Index (2024)",
       }}
     />
@@ -373,8 +485,20 @@ export function Widget10_TACGap() {
         </LineChart>
       }
       takeaway={{
-        situation: "규제 당국이 매년 쿼터를 60-90% 수준으로 삭감함에도, 무허가 싹쓸이로 인해 실제 어획량이 TAC 곡선을 5년 연속 하향 돌파 중.",
-        actionPlan: "[초과 남획] 자원 회복 시나리오를 영구 제외. TAC 절대 준수 인증 선단만 1차 벤더로 등록하고, 비준수 선단의 가공품은 ESG 위반 사유로 거래 차단.",
+        situation: `<div>
+<p>"TAC(Total Allowable Catch, 총허용어획량)"는 정부·국제 수산기구가 자원 보호 위해 설정하는 어획 상한. 정상 시장이라면 실 조업량 ≤ TAC.</p>
+<p>현 위기: <strong>규제 당국이 매년 TAC를 60~90% 수준으로 삭감함에도 실 조업량이 TAC 곡선을 5년 연속 하향 돌파</strong>. 즉 줄어든 쿼터마저 충족 못 하는 자원 고갈 단계.</p>
+<p>의미: 단순 무허가 싹쓸이가 아닌 <strong>"오징어 자원 자체의 영구 고갈"</strong> 시그널. V자 반등 통계적으로 불가능. 향후 5년 글로벌 공급 -30~50% 시나리오에 대비 필수.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: TAC 갭은 자원 회복 시나리오 영구 폐기 시그널. <strong>"TAC 절대 준수 인증 선단"만 1차 벤더로 등록</strong>이 본업 sustainability의 핵심.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>TAC 준수 인증 vendor whitelist 운영</strong>: VDS·MSC·블록체인 3중 검증 통과 vendor만 1차. 비준수 선단 ESG 사유로 거래 차단.</li>
+<li style="margin-bottom: 8px;"><strong>자원 회복 시나리오 폐기</strong>: 5년 사업 계획에 V자 반등 가정 영구 제외 — IFRS BS에 stranded asset 사전 충당.</li>
+<li><strong>"Quota arbitrage trading"</strong>: 글로벌 TAC 감축 → 라이선스 가치 폭등 → 우리 보유 라이선스 valuation rerate. JP Morgan Natural Resources Desk와 collab해 보유 쿼터 자산화.</li>
+</ol>
+</div>`,
         source: "RFMO TAC vs Actual Catch Reports (2019-2023)",
       }}
     />
