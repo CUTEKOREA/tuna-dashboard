@@ -48,7 +48,7 @@ export default function SalmonLiveTicker() {
         }
         if (data.fedRate?.latest?.value) {
           items.push({
-            label: 'Fed Rate',
+            label: '美 정책금리',
             value: `${data.fedRate.latest.value.toFixed(2)}%`,
             change: undefined,
             changeDirection: 'flat',
@@ -123,7 +123,7 @@ export default function SalmonLiveTicker() {
     if (items.length === 0) {
       items.push(
         { label: 'NOK/KRW', value: '₩154.2', change: '+0.3%', changeDirection: 'up', iconName: 'DollarSign', source: 'OFFLINE', color: '#3b82f6' },
-        { label: 'Fed Rate', value: '5.33%', iconName: 'Activity', source: 'OFFLINE', color: '#8b5cf6', changeDirection: 'flat' },
+        { label: '美 정책금리', value: '5.33%', iconName: 'Activity', source: 'OFFLINE', color: '#8b5cf6', changeDirection: 'flat' },
         { label: 'KCS 수입 (2023)', value: '74K MT', change: '-2.6%', changeDirection: 'down', iconName: 'Ship', source: 'OFFLINE', color: '#10b981' },
         { label: '단가 (2023)', value: '$6.89/kg', iconName: 'BarChart2', source: 'OFFLINE', color: '#f59e0b', changeDirection: 'flat' },
       );
