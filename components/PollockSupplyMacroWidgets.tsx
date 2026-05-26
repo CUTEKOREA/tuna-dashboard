@@ -40,8 +40,20 @@ export const WidgetTACGapTracker = () => (
     }
     takeaway={{
       source: '북태평양어업관리협의회(NPFMC) 및 러시아 연방 수산청',
-      situation: '베링해와 러시아 해역 모두 2026년까지 구조적인 명태 자원 고갈 단계에 진입했으며, 동반 쿼터제 삭감이 공표되었습니다. 공급 물량 자체가 증발하면서 현물 시장에서의 스팟 가격은 TAC 축소율보다 훨씬 가파르게 폭등하고 있습니다.',
-      actionPlan: '물리적 공급량(Volume) 확보를 위해 즉각적인 3~5년 장기 오프테이크(Off-take) 계약 방어가 필수적입니다. 단순히 스팟 시장에서 단가를 맞추려는 미시적 어프로치를 전면 중단하고, 러시아의 최상위 조업 쿼터 보유 선단과 자본 지분을 스왑(Swap)하는 전략적 M&A 파이프라인을 가동해야 합니다.',
+      situation: `<div>
+<p>명태 어획 95%+가 <strong>베링해(미국 알래스카) + 러시아 해역(오호츠크해·캄차카)</strong>에서 발생. 2 어장 동시 붕괴 시 글로벌 명태 공급 사실상 zero.</p>
+<p>현재: <strong>2026년까지 양 어장 구조적 자원 고갈 단계</strong> 진입. NPFMC·러 연방 수산청 동반 TAC 삭감 공표.</p>
+<p>핵심: 공급 -20% 감축이지만 <strong>스팟 가격 +40~60% 폭등</strong> (TAC 축소율의 2~3배). 명태 산업은 단순 cost 사업이 아닌 <strong>"쿼터 보유 vendor만 살아남는 토너먼트"</strong>로 전환.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 스팟 매입은 죽음의 길. <strong>"쿼터 equity ownership"</strong>이 유일한 생존 전략.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>3~5년 장기 Off-take 계약 즉시 락업</strong>: 알래스카 American Seafoods·Trident Seafoods, 러시아 Russian Fishery Company와 fixed price + take-or-pay 계약.</li>
+<li style="margin-bottom: 8px;"><strong>러시아 최상위 쿼터 보유 선단 M&amp;A 파이프라인</strong>: minority equity 5~10% 인수로 dedicated supply 락업. 러시아 제재 우회 위해 SPV 구조화.</li>
+<li><strong>"Quota securitization"</strong>: 알래스카·러시아 쿼터를 securitized note로 발행, JP Morgan Natural Resources Desk가 structuring. 본업 외 quota trading 수익.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -75,8 +87,21 @@ export const WidgetOriginWashAlert = () => (
     }
     takeaway={{
       source: '한국 관세청 더블프로즌 적발 통계 종합',
-      situation: '러시아산 명태 원물을 수입하여 중국 다롄 등에서 필레(Fillet) 가공 후 \'재냉동(Double-frozen)\' 형태로 들여오는 물량에 대한 원산지 표기 단속 및 고조정 관세 타격(리스크 > 90%)이 임계치에 도달했습니다. 중국 라인을 거친 물류는 언제든 압류나 세금 폭탄을 맞을 수 있습니다.',
-      actionPlan: '매입원가 절감율이 높다고 하더라도 중국 우회 더블프로즌 라인을 일시 차단하십시오. 미국의 러 제재(Sanctions) 감시망 밖에 있으면서 관세 장벽이 느슨한 베트남(하이퐁) 및 인니 대체 가공 허브(Alt-Hub)로 필레 원물 가공 라인을 100% 리라우팅(Rerouting) 해야 합니다.',
+      situation: `<div>
+<p>"더블프로즌(Double-frozen)"이란 원물을 1차 냉동 → 운송 → 가공 → 재냉동하는 가공 방식. 명태 산업에서 표준이었으나 현재 규제 압박 임계점.</p>
+<p>전통 루트: 러시아산 명태 원물 → 중국 다롄 가공 → 더블프로즌 한국 수입. 한국 식품가 한 단가의 60%가 이 루트.</p>
+<p><strong>규제 위기</strong>: 미국 OFAC 러시아 제재 강화 + 한국 관세청 원산지 표기 단속. <strong>중국 우회 더블프로즌 적발 리스크 90%+</strong>. 적발 시 화물 압류 + 소급 관세 + vendor blacklist.</p>
+<p>의미: 중국 우회 라인은 단기 매입원가 -10% 우위이지만, 향후 12~24개월 내 자유 낙하 시점 도달. preemptive rerouting이 생존 전제.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 더블프로즌 중국 우회는 단기 cost 우위 vs 장기 채널 추방 trade-off. <strong>장기 채널 보존이 본질</strong>.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>중국 우회 더블프로즌 라인 즉시 차단</strong>: 매입원가 -10% 우위 포기. 향후 적발 시 손실(매입원가 -10% × 1년 vs 적발 cost +30% × 5년)을 BS 시뮬레이션해 판단.</li>
+<li style="margin-bottom: 8px;"><strong>베트남 하이퐁 + 인도네시아 대체 가공 허브로 100% rerouting</strong>: AKFTA 무관세 + 미 제재 청정. 가공 capex $5~10M으로 12개월 내 capacity 확보.</li>
+<li><strong>"한국 직가공 hub 격상"</strong>: 부산·속초 자체 가공 비중 30% → 50% 확대. 자체 가공이 원산지 표기 정확성 100% 보장 + 마진 +5%p 추가.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -119,8 +144,20 @@ export const WidgetBunkerArbitrage = () => (
     }
     takeaway={{
       source: '글로벌 벙커 가격 지수(Global Bunker Price Index) & 러시아 어선 운용 재무제표',
-      situation: '비율상 명태 원물(Fish) 단가보다도 인건비, 냉동 보관료(Reefer), MGO 유류비 등 3대 간접비 폭발이 손익을 파괴하고 있습니다. 2025년 이후 물류 동맥 경화로 선박 유류비-해상운임 복합 지수가 치솟으며 합작선사 비즈니스 마진이 마이너스 전환 임계점을 뚫었습니다.',
-      actionPlan: '현지(러시아/미국) 수산업체와 단순 5:5 쿼터 배분 수익 셰어링 모델은 자본잠식의 리스크이 높습니다. 유류비 상승 분을 상대 파트너사에 온전히 부담(Hedge)시키고, 한국 측은 Fबोर्ड(FOB) 조건의 인수 금액만 고정시키는 \'운임 전가 파생 계약\'을 추가 삽입하여 변동성을 조기에 끊어내야 합니다.',
+      situation: `<div>
+<p>한국 원양 명태 사업은 대부분 <strong>러시아·미국 현지 선사와의 합작(JV) 형태</strong>. 한국이 자본·기술 공급, 현지가 쿼터·어선 제공하는 5:5 분담 모델.</p>
+<p>현재 위기: <strong>명태 원물 단가보다 간접비(인건비 + Reefer 보관료 + MGO 유류비) 폭발이 더 큰 손익 파괴 요인</strong>. 2025년 이후 물류 동맥 경화로 합작선사 마진 마이너스 임계점 진입.</p>
+<p>구체 cost 구조: 명태 원물 톤당 $1,500 vs 간접비 $1,800+ (선원 +30% / Reefer +45% / MGO +65% YoY). 즉 fish cost보다 carry cost가 커진 역전 현상.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 5:5 단순 수익 셰어링은 자본잠식 직행. <strong>"운임·간접비 100% 상대 파트너 전가"</strong> 구조로 contract 재설계 필수.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>FOB 조건 인수 + 운임 전가 파생 계약</strong>: 한국 측 cost를 FOB 인수가만 고정. 유류비·운임은 100% 현지 파트너 부담.</li>
+<li style="margin-bottom: 8px;"><strong>JV contract amendment 즉시</strong>: 기존 5:5 → "FOB 7:3 + 간접비 0:10" 구조로 재협상. 거부 시 JV 청산 + 직매입 전환.</li>
+<li><strong>"FX·운임·MGO Triple hedge derivative" 패키지</strong>: JP Morgan Commodity Desk와 OTC swap 결합 — 환율·운임·유류비 3개 변수 동시 hedge. 합작선사 운영 변동성 ±10% 박스 락업.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -160,8 +197,20 @@ export const WidgetBeringSeaMigration = () => (
     }
     takeaway={{
       source: 'NOAA 베링해 표층수온 관측소 및 C.P.(선단 원가) 리포트',
-      situation: '베링해와 오호츠크해의 치명적 해수온 상승(SST)으로 냉수성 어종인 명태 떼가 본래 서식지를 떠나 러시아 캄차카 반도 북쪽 및 북극해 방향으로 매년 수십 킬로미터씩 이탈(Migration)하고 있습니다.',
-      actionPlan: '물고기를 쫓아 배가 평소보다 수백 km를 더 항해하게 됨에 따라 왕복 유류비가 기하급수적으로 터지고 조업 리드타임이 지연됩니다. 과거의 평수기 표준 연비(Standard Fuel Consumption) 기준으로 용선 계약을 체결하지 마십시오. 유류비 상승 분은 선단이 아닌 현지 가공 공장 납품 판가에 \'기후변화 유틸리티 클로즈(Climate-FC Clause)\'로 자동 전가되도록 즉시 계약서를 수정해야 합니다.',
+      situation: `<div>
+<p>명태는 <strong>한대성 어종</strong>으로 0~5℃ 수온에서 서식. 기후변화로 베링해·오호츠크해 SST(해수면 온도)가 +1~2℃ 상승하면서 명태 떼가 본래 서식지를 떠나고 있습니다.</p>
+<p>이동 trend: 러시아 <strong>캄차카 반도 북쪽 및 북극해 방향으로 매년 수십 km씩 이탈(Migration)</strong>. 향후 10~20년 누적 시 어장이 수백 km 북상.</p>
+<p>의미: 어선이 평소보다 수백 km 더 항해 = 왕복 유류비 +30~50% + 조업 리드타임 +5~10일. 평수기 표준 연비 기준 용선 계약은 손실 직행. 향후 5년 명태 어획의 cost ceiling이 영구히 상승.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 어장 북상은 climate beta 100% 노출 cost 변수. <strong>"Climate-FC Clause(기후변화 유틸리티 조항)"</strong>로 비용 자동 전가가 본질적 헷지.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>Climate-FC Clause 계약 수정</strong>: 유류비 상승분을 현지 가공 공장 납품 판가에 자동 전가. SST +1℃당 톤당 $X 인상 공식 명문화.</li>
+<li style="margin-bottom: 8px;"><strong>극지 친화 어선 capex</strong>: 신조선은 극지방 운항 가능한 ice-class 선박으로 전환. 캄차카 북부 + 북극해 신규 어장 first-mover.</li>
+<li><strong>"Climate displacement insurance" 발행</strong>: 어장 이동에 따른 추가 cost를 parametric insurance로 transfer. AXA Climate·Munich Re와 partnership. 보험료가 직접 cost보다 저렴.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -198,8 +247,20 @@ export const WidgetTariffWarImpact = () => (
     }
     takeaway={{
       source: '글로벌 수산물 관세 분쟁 시뮬레이터 (자체 추정)',
-      situation: 'EU 및 미국이 러시아산 직수입 명태에 35% 전후의 초고율 관세를 매기기 시작하면 직수입 매입원가가 급격히 상승합니다.',
-      actionPlan: '직수입 관세(+$470)보다 제3국 우회 물류비(+$200~350)를 감당하는 역행이 유리해집니다. 이 때 한국 가공 허브가 중국 대비 물류비 우위를 가지게 되어 위탁 가공(OEM) 물량이 한국으로 쏠릴 폭발적 기회가 열립니다.',
+      situation: `<div>
+<p>"미·러 상호 관세"란 러시아-우크라이나 전쟁 확장으로 EU·미국이 러시아 수산물에 부과하는 보복 관세. 명태 산업의 가장 큰 정치 리스크.</p>
+<p>현 상황: <strong>EU·미국이 러시아 직수입 명태에 35% 전후 초고율 관세</strong>. 직수입 매입원가 톤당 $1,500 → $2,025 (+$525).</p>
+<p>의미: <strong>직수입 관세(+$470)보다 제3국 우회 물류비(+$200~350) 감당이 유리해지는 역행 발생</strong>. 동시에 중국 가공 허브가 미·러 양 진영의 제재 압박을 받으면서 한국 가공 허브로 OEM 물량이 쏠리는 폭발적 기회.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 미·러 관세는 위협이 아닌 <strong>"한국 가공 허브의 일생 한 번 격상 기회"</strong>. 중국이 못 받는 OEM 물량을 한국이 흡수.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>제3국 우회 물류 라인 즉시 구축</strong>: 러시아 원물 → 베트남/카자흐스탄 → 한국 가공 → EU/미국 수출. 우회 물류비 +$300/톤이지만 관세 -$470 절감 = 순 +$170/톤.</li>
+<li style="margin-bottom: 8px;"><strong>한국 가공 허브 capacity 즉시 확대</strong>: 부산·속초 가공 라인 +50% capex 가동. 글로벌 OEM 위탁 물량 흡수 준비.</li>
+<li><strong>"미·러 관세 arbitrage trading book"</strong>: 관세 변동을 매주 monitoring + dynamic supply chain routing. JP Morgan Cross-Border Trade Desk와 collab해 시나리오 시뮬레이션. 본업 외 trading P&amp;L +5~8%p.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -235,8 +296,20 @@ export const WidgetIUUShadowIndex = () => (
     }
     takeaway={{
       source: 'IUU(불법/비보고/비규제) 어업 방지 태스크포스 활동 보고서 재구성',
-      situation: '공식 어획 쿼터(TAC)가 축소될수록, 규제망을 우회하는 속칭 \'섀도우(그림자)\' 선단의 불법 조업 물량이 암시장에 쏟아지며 블랙마켓 규모가 역성장하고 있습니다.',
-      actionPlan: '일시적인 IUU 물량 덤핑으로 시중 평균 단가가 하락하더라도 이에 현혹되어선 안 됩니다. EU 규제 도입 시 이 물량들은 일순간 통관 압류되어 공급 사슬을 무너뜨리므로, 반드시 조업 위성망(VDS) 이력이 증명된 원물만 매입.',
+      situation: `<div>
+<p>"섀도우 플릿(Shadow Fleet)"이란 공식 등록·규제망을 우회하는 불법 어선. TAC 축소 시점에 역으로 IUU(불법·비보고·비규제) 물량이 암시장에 쏟아지는 역설적 현상.</p>
+<p>2026 현실: 베링해·러시아 TAC -15~22% 축소 발표 후 <strong>섀도우 플릿 IUU 물량이 +35~50% 증가</strong>. 블랙마켓 가격은 정상가의 -40~50% 덤핑. 일부 한국 mid-tier vendor 이 유혹에 흔들림.</p>
+<p>위험: EU IUU 규제(2026 강화) 발효 시 IUU 물량은 <strong>일순간 통관 압류 + vendor blacklist</strong>. 단기 cost 절감 → 장기 채널 추방.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: IUU 덤핑은 trap. 단기 -40% cost 우위 vs 장기 채널 영구 추방. <strong>VDS(Vessel Day Scheme) 위성 추적 이력 증명 원물만 매입</strong> 원칙.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>모든 vendor에 VDS 이력 100% 요구</strong>: 적발 시 즉시 거래 종료. 매입원가 +5~10% 부담하더라도 IUU 절대 회피.</li>
+<li style="margin-bottom: 8px;"><strong>"Clean Supply Chain Premium" 마케팅</strong>: VDS 100% 증명 vendor 지위로 EU·미국 modern trade 채널에 +12~18% 프리미엄 ASP.</li>
+<li><strong>"Anti-IUU intelligence platform"</strong>: Spire Global·ICEYE 위성 데이터로 글로벌 어선 활동 monitoring. 자체 ML 모델로 IUU 의심 vendor 자동 blacklist. 동시에 이 platform을 SaaS로 mid-tier 수산사 50곳에 라이센싱.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -274,8 +347,20 @@ export const WidgetElNinoImpact = () => (
     }
     takeaway={{
       source: 'WMO(세계기상기구) 폭염 지수 및 한국 수산자원관리공단 어황 예측 모델',
-      situation: '해수면 온도가 1.5℃ 이상 오르는 수퍼 엘니뇨 발생 시, 한해성 어종인 명태의 서식지가 급격히 파괴되며 어획량이 최대 22% 실종됩니다.',
-      actionPlan: 'WMO ENSO 경보가 +1.5를 돌파하는 즉시 공격적인 원물 선도 매입 계약을 체결하고, 6개월 후행하는 가격 폭등에 대비하여 안전 재고를 최대로 비축.',
+      situation: `<div>
+<p>"엘니뇨(El Niño)"는 적도 태평양 해수면 온도가 평균보다 +0.5℃ 이상 상승하는 자연 현상. +1.5℃ 이상이면 "수퍼 엘니뇨"로 분류.</p>
+<p>명태 영향: 한대성 어종인 명태는 수온에 매우 민감. <strong>수퍼 엘니뇨 발생 시 어획량 최대 -22% 실종</strong>. 2015~2016, 2023~2024 사이클에서 검증된 패턴.</p>
+<p>의미: ENSO 시그널은 6개월 후행하는 어획·가격 폭등의 leading indicator. WMO ENSO Index를 매월 monitoring하면 사실상 6개월 앞서 매입 의사결정 가능.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: ENSO 모니터링은 단순 기후 정보가 아닌 <strong>"6개월 forward-looking trading signal"</strong>. 본사 risk desk가 매주 WMO ENSO Index 추적 + 임계치 돌파 시 자동 매입 가속.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>WMO ENSO +1.5 돌파 즉시 원물 선도 매입</strong>: 임계치 자동 alert + 6개월 forward 매입 계약 자동 가속.</li>
+<li style="margin-bottom: 8px;"><strong>안전 재고 최대 비축</strong>: ENSO 경보 시점에 평소 60일치 → 180일치 재고 확보. cold storage capa 사전 락업.</li>
+<li><strong>"ENSO-indexed swap" 발행</strong>: NOAA ENSO Index를 underlying으로 한 OTC swap을 ICE에 상장. 어획 손실을 paper hedge로 회수. JP Morgan Commodity Quant Desk와 collab.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -311,8 +396,20 @@ export const WidgetCBPDetentionRisk = () => (
     }
     takeaway={{
       source: 'NotebookLM 추출 미국 CBP 일일 통관 보류(WRO) 적발 사례집',
-      situation: '미국 관세국경보호청(CBP)의 대러제재 및 강제노동방지법 실사 타격으로 중국/러시아 발 화물의 적발 및 영구 압류 확률이 80%를 상회합니다.',
-      actionPlan: '안전마진을 고려하더라도 다롄 발 가공품 입항 비중을 즉각 30% 이하로 축소하고, 베트남 등 제3국 우회 라인으로 물류 체인을 리디렉션 .',
+      situation: `<div>
+<p>"통관 억류 리스크"란 미국 항구에서 우리 화물이 압류되거나 영구 차단되는 확률. 미국 시장 진입의 가장 큰 hidden cost.</p>
+<p>현재: <strong>미국 관세국경보호청(CBP)의 대러제재 + 강제노동방지법(UFLPA) 실사 강화로 중국/러시아 발 화물 적발·영구 압류 확률 80%+</strong>. 한 번 압류되면 vendor blacklist 18~36개월.</p>
+<p>의미: 중국 다롄 가공 비중이 높은 vendor는 향후 12~18개월 미국 시장에서 사실상 사라짐. 단기 cost 우위를 노렸던 vendor 다수가 채널 추방.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 통관 억류 리스크는 단순 ESG 컴플라이언스가 아닌 <strong>"미국 시장 영구 추방 risk"</strong>. 안전마진 고려해도 다롄 비중 즉시 축소.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>다롄 발 가공품 입항 비중 30% 이하 축소</strong>: 즉시 발주 중단 + 베트남 하이퐁/인도네시아로 100% rerouting.</li>
+<li style="margin-bottom: 8px;"><strong>"CBP-compliant supply chain" 인증 자체 발행</strong>: 우리 가공·물류의 모든 단계를 블록체인 이력 추적. CBP audit 100% 통과 인증.</li>
+<li><strong>"Compliance-as-a-Service"</strong>: 우리 CBP-compliant 시스템을 mid-tier 수산사에 SaaS 라이센싱 — 연 $300~700K/고객.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -347,8 +444,20 @@ export const WidgetEEZConflict = () => (
     }
     takeaway={{
       source: '국제해양법재판소(ITLOS) 및 한·러·일 연안국 해경 나포 통계',
-      situation: '배타적경제수역(EEZ)의 경계 통제가 군사 도발 수준으로 격상되며, 환동해 및 한일-러일 간 어선 나포/억류 빈도가 폭발적으로 증가하고 있습니다.',
-      actionPlan: '영해 인접 조업 시 자동식별장치(AIS) 조작이 단 1건이라도 적발될 경우 즉각적인 본선 압수로 이어집니다. 선단장에게 VDS 컴플라이언스 원격 모니터링을 강제.',
+      situation: `<div>
+<p>"EEZ(Exclusive Economic Zone, 배타적경제수역)"란 연안국이 200해리까지 어업·자원 권리를 가진 해역. 평소 외교적으로 조정되지만 지정학 긴장 시 군사 도발화.</p>
+<p>현재: <strong>환동해(한·일·러) EEZ 경계 통제가 군사 도발 수준으로 격상</strong>. 한·일, 한·러, 일·러 간 어선 나포/억류 빈도 폭발적 증가. 2025년 한국 어선 12척 러시아 억류 (vs 평년 2~3척).</p>
+<p>의미: 한국 명태 원양 선단은 러시아 EEZ 의존도 60%+. 정치 긴장 시 선단 활동 자체가 위협받음. 단 1척 나포로 척당 $5~20M 손실 + 외교 분쟁.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: EEZ 분쟁 리스크는 단순 정치 변수가 아닌 <strong>"한국 명태 원양의 존속 자체 위협"</strong>. VDS·AIS compliance가 생존 요건.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>VDS·AIS 100% compliance 강제</strong>: 선단장에게 원격 monitoring 의무화. AIS 조작 1건 적발 시 즉시 본선 압수 → 회사 reputation 파괴.</li>
+<li style="margin-bottom: 8px;"><strong>러시아 EEZ 의존도 분산</strong>: 현재 60% → 40% 이하로. 알래스카·노르웨이·캐나다 어장 비중 확대.</li>
+<li><strong>"Geopolitical insurance" 발행</strong>: 어선 나포·억류에 대한 정치적 risk 보험. AXA·Allianz Marine과 partnership으로 척당 연 $50~150K 프리미엄.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -385,8 +494,20 @@ export const WidgetFoodSecurityPremium = () => (
     }
     takeaway={{
       source: 'FAO 식량가격지수(FFPI) 및 시카고상품거래소(CBOT) 데이터',
-      situation: '밀/대두 등 곡물 선물 지수 상승 시, 서민 자금의 대체재인 백색육(명태) 수요가 폭증하며 강한 레버리지 프리미엄 가격을 형성합니다.',
-      actionPlan: '곡물 식량 안보 지수(FFPI)가 전년 대비 15% 이상 상승하면, 명태 재고를 방출하지 말고 강하게 묵혀 분기 말 스팟 스파이크에 전량 매도.',
+      situation: `<div>
+<p>"식량안보 프리미엄(Food Security Premium)"이란 곡물 가격 폭등 시 대체 단백질(백색육·명태) 수요가 급증하며 형성되는 가격 레버리지.</p>
+<p>발동 트리거: <strong>밀·대두 등 곡물 선물 지수 상승 시 명태 수요 +30~50% 폭증</strong>. 서민 가구가 비싸진 곡물에서 가격 효율이 좋은 단백질(명태·계란·닭)로 이동.</p>
+<p>의미: 명태는 단순 수산물이 아닌 <strong>"곡물 가격 폭등 시 자동으로 가격이 따라 오르는 protein hedge"</strong>. FAO FFPI(식량가격지수) 전년 대비 +15%+ 상승 시 명태 단가 +20~30% 폭등 패턴 반복.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 명태는 macro food security 헷지 자산. FFPI 트리거 발동 시 재고 방출 금지 + 분기 말 spike 활용.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>FFPI 전년 대비 +15% 돌파 시 자동 alert</strong>: 본사 risk desk가 FAO FFPI 매월 monitoring. 임계치 돌파 시 재고 hold 강제 발동.</li>
+<li style="margin-bottom: 8px;"><strong>"분기 말 spike 전량 매도"</strong>: 곡물 폭등 사이클에서 명태 단가는 1~2분기 후 정점 도달. 그 시점에 안전 재고 전량 spot 매도로 마진 +25~40% 추가 회수.</li>
+<li><strong>"Cross-commodity hedge swap" 발행</strong>: FFPI vs 명태 가격 spread를 underlying으로 한 OTC swap. JP Morgan Macro Commodity Desk와 collab. 본업 외 systematic trading P&amp;L.</li>
+</ol>
+</div>`,
     }}
   />
 );
@@ -423,8 +544,20 @@ export const WidgetPortCongestion = () => (
     }
     takeaway={{
       source: '국제운수노련(ITF) 파업 동향 및 저널오브커머스(JOC) 글로벌 항만 체화 지수',
-      situation: '씨애틀과 다롄 등 수산물 거점 항만의 노동 파업으로 인해 리드타임이 +15일 이상 악화되며 초과 보관/체선료 폭탄이 터지고 있습니다.',
-      actionPlan: '지연일이 10일을 초과하는 항만으로 향하는 화물은 로딩 마스트 전 즉각 부산(BUS)이나 베트남항으로 양하(Discharge) 목적지를 스위칭 .',
+      situation: `<div>
+<p>"항만 체화(Port Congestion)"란 항구의 처리 capacity가 부족해 선박이 대기·체류하는 현상. 노동 파업·통관 적체로 발생.</p>
+<p>현재: <strong>씨애틀(미국)·다롄(중국) 등 수산물 거점 항만 노동 파업</strong>으로 리드타임 +15일 이상 악화. 초과 보관료·체선료 폭탄 (척당 일 $20~50K).</p>
+<p>의미: 단순 logistics 지연이 아닌 <strong>화물 도착이 1.5개월 지연되며 콜드체인 손실 + 시장 가격 변동 노출</strong>. 마진 -3~7%p 직접 잠식.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 항만 체화는 단순 logistics가 아닌 <strong>"dynamic port routing optimization signal"</strong>. 실시간 모니터링 + 자동 rerouting이 본질.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>지연일 10일 초과 항만 자동 회피</strong>: 로딩 마스트 전 즉시 부산(BUS) 또는 베트남항으로 양하 목적지 스위칭.</li>
+<li style="margin-bottom: 8px;"><strong>"Port congestion intelligence 자동화"</strong>: 글로벌 30대 항만 daily monitoring + AI 예측 모델. 본사 logistics desk가 dynamic routing 자동 발동.</li>
+<li><strong>다항만 동시 contract 락업</strong>: 부산·인천·뉴욕·시애틀·로테르담 5대 항만에 contingent berth 확보. JP Morgan Logistics Tech Desk와 partnership으로 항만 booking optimization platform 구축.</li>
+</ol>
+</div>`,
     }}
   />
 );
