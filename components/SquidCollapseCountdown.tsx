@@ -29,8 +29,14 @@ export default function SquidCollapseCountdown() {
         </LineChart>
       }
       takeaway={{
-        situation: "당사 퀀트 분석 결과, 최근 한국 연근해 살오징어 어획량의 추락 궤적이 1990년대 북대서양 '캐나다 대구(Cod) 멸종 사태' 직전의 붕괴 패턴(회색 점선)과 수학적으로 99.4% 일치(Perfect Correlation)하는 종말적 시그널을 발송 중입니다.",
-        actionPlan: "[Strategic Resource Reallocation] 살오징어 V자 반등의 헛된 희망을 버리십시오. 생태학적 복구 불능점(Point of No Return)을 이미 돌파했습니다. 국내 연근해 원물 소싱 부서(Domestic Procurement)를 전면 축소 해체하고, 포클랜드 및 남미 대왕오징어를 취급하는 글로벌 소싱(Global Sourcing) 데스크에 전사 예산과 권한을 무제한 상향 배치하는 극단적 피벗을 즉시 결행해야 합니다.",
+        situation: `<div>
+<p>"붕괴 카운트다운(Collapse Countdown)"이란 어종이 회복 불가능 임계점까지 남은 시간을 추적하는 quant 모델.</p>
+<p>퀀트 결과: <strong>한국 살오징어 어획량 추락 궤적이 1990년대 캐나다 대구(Cod) 멸종 사태 직전 붕괴 패턴과 99.4% 수학적 일치</strong>. 대구는 그 후 30년 회복 0%. 살오징어도 사실상 동일 길.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: V자 반등 희망 영구 폐기. <strong>"Strategic Resource Reallocation"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 국내 연근해 원물 소싱 부서 전면 축소·해체 ② 포클랜드·남미 대왕오징어 글로벌 소싱 데스크에 전사 예산 무제한 상향 배치 ③ 살오징어 라인 자산 손상차손 사전 충당.</p>
+</div>`,
         source: "FAO 어업 붕괴(Collapse) 사례 D.B",
       }}
     />

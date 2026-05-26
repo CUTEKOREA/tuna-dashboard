@@ -28,8 +28,14 @@ export default function SquidFXHedging() {
         </LineChart>
       }
       takeaway={{
-        situation: "단순 수입 가격(USD)이 고정되더라도 원/달러 환율(파란선 점선) 상승분이 반영되어, 당사가 실제 지불하는 원화 기반 매입 원가(노란선 곡선)가 통제 불가 수준으로 뛰고 있습니다.",
-        actionPlan: "연간 쿼터의 50% 이상 물량 대금은 '환율 1,300원 이하' 국면일 때 선물환(Forward) 매입을 통해 사전 고정(Fixing)시켜야 갑작스런 거시 쇼크를 방어할 수 있습니다.",
+        situation: `<div>
+<p>"FX Hedging"은 환율 변동 위험을 선물환·옵션으로 미리 락업하는 instrument. 수입 무역사의 본업 P&amp;L generator.</p>
+<p>현실: <strong>단순 수입 가격(USD)이 고정되더라도 USD/KRW 환율 상승분이 반영되어, 실제 원화 매입 원가가 통제 불가 수준으로 폭증</strong>. 평시 마진 8%가 환율 충격으로 -5%p 이상 일주일 만에 사라짐.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: FX hedge는 risk 관리가 아닌 <strong>"본업 P&amp;L의 핵심 generator"</strong>.</p>
+<p><strong>3단계</strong>: ① 환율 1,300원 이하 국면 시 연간 쿼터 50%+ 선물환 사전 고정 ② JP Morgan FX Desk와 cross-currency swap 결합 ③ "FX hedge ratio KPI" — risk desk 매주 monitoring + CFO 직보.</p>
+</div>`,
         source: "한국은행 환율 통계 & 내부 결제망",
       }}
     />

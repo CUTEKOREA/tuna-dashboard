@@ -34,8 +34,14 @@ export default function SquidFuelBEP() {
         </ComposedChart>
       }
       takeaway={{
-        situation: '과거 면세 경유가 리터당 1,471원을 돌파하던 시기, 메탈할라이드 등(Lamp) 노후 선단은 BEP 붕괴로 집단 출어 포기 사태를 겪었습니다. 반면 고효율 LED 선단은 조업을 유지하며 독점적 마진을 올렸습니다.',
-        actionPlan: '신라교역은 채낚기 선단 인수·합작 시 \'LED 집어등 100% 전환\'을 필수 계약 조건으로 명시. MGO 단가가 1,100원을 돌파할 경우 경쟁사 선단의 출항 포기를 역이용해 단가 결정권(Pricing Power)을 확보합니다.',
+        situation: `<div>
+<p>"유류 BEP(손익분기점)"란 어선 출항이 흑자가 되는 최소 어획량. 채낚기 선단(집어등)은 전기·유류비 비중이 매우 큼.</p>
+<p>역사적 비교: <strong>면세 경유가 1,471원/L 돌파 시 메탈할라이드 노후 선단은 BEP 붕괴로 집단 출어 포기</strong> vs <strong>고효율 LED 선단은 조업 유지 + 독점 마진 시현</strong>. 단가 결정권(pricing power) 확보.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: LED 집어등은 단순 설비가 아닌 <strong>"고유가 시점 pricing power instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① 채낚기 선단 인수·합작 시 "LED 집어등 100% 전환" 필수 계약 조건 명시 ② MGO 단가 1,100원 돌파 시 경쟁사 출항 포기를 역이용 단가 결정권 확보 ③ "LED 락업 vendor 비중 +50%p" — 시장 지배력 확대.</p>
+</div>`,
         source: '수협 면세유 고시가 · 자체 BEP 추정 모델',
       }}
     />

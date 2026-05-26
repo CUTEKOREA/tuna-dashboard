@@ -47,8 +47,14 @@ export default function SquidComplianceRisk() {
         </ScatterChart>
       }
       takeaway={{
-        situation: "중국 원양 선단이 장악한 공해상은 막대한 어획량을 보장하지만, 불법 환적 리스크가 95에 달해 향후 구미(US/EU) 대형 유통망 수출 시 전면 차단될 '시한폭탄'입니다. 반면 포클랜드 해역은 25년 장기 어업권(ITQ-B) 접근이 가능하고 리스크가 현저히 낮습니다.",
-        actionPlan: "저가 중심의 단기 출혈 경쟁 시대는 끝났습니다. 신라교역의 막대한 자본력을 바탕으로, 포클랜드나 아르헨티나 현지 합작 법인 지분 인수를 통한 '안전한 프리미엄 쿼터' 선점에 투자해야 글로벌 B2B 공급망 심사에서 1차 벤더 지위를 확보할 수 있습니다.",
+        situation: `<div>
+<p>"규제 리스크 매트릭스(Compliance Risk Matrix)"는 어장별 IUU·환적·EU/미국 차단 리스크를 정량화한 매트릭스.</p>
+<p>대조: <strong>중국 원양 선단 공해상 어획량 ↑ but 불법 환적 리스크 95(시한폭탄) — EU/미국 시장 차단 임박</strong> vs <strong>포클랜드 해역 25년 장기 어업권(ITQ-B) + 리스크 낮음</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 저가 출혈 경쟁 시대 종료. <strong>"안전한 프리미엄 쿼터 선점"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 중국 원양 매입 비중 즉시 축소 ② 포클랜드·아르헨티나 현지 합작 법인 minority equity 5~10% 인수 ③ 글로벌 B2B 1차 벤더 지위 확보 — 5년 후 EU 적색카드 발동 시 우리만 살아남음.</p>
+</div>`,
         source: "국제해사기구(IMO) & 포클랜드 ITQ-B 제도 보고서",
       }}
     />

@@ -255,8 +255,14 @@ export default function SquidAreaMap() {
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
-        situation: "과거 북서태평양(한국/일본 앞바다) 중심이던 오징어 생산 코어가 남미 해역(페루, 아르헨티나 앞바다)으로 완벽하게 전이되는 기후/생태적 '풍선 효과'가 추적됩니다.",
-        actionPlan: "한국 연안의 자원 고갈은 일시적인 흉어가 아닌 비가역적 시프트(Shift)입니다. 단기 수입에 의존하지 말고, 남미(페루/아르헨티나) 원양 선단을 직접 확보하거나 현지 메이저 조업사와 장기 독점 공급 계약(Off-take) 파이프라인을 체결하여 식량 주권을 선제 확보해야 합니다.",
+        situation: `<div>
+<p>"오징어 생산 코어 전이"란 글로벌 어획 지도의 70년 paradigm shift. 단순 흉어가 아닌 영구적 어장 이동.</p>
+<p>실측: <strong>과거 북서태평양(한국·일본 앞바다) 중심 → 남미 해역(페루·아르헨티나) 완벽 전이</strong>. FAO Area 6 → Area 41·87로 비가역적 풍선 효과. 한국 연안은 향후 회복 불가.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 한국 연안 어획은 영구 dead asset. <strong>"남미 원양 직접 확보 + 식량 주권 선제 확보"</strong>가 본질.</p>
+<p><strong>3단계</strong>: ① 단기 수입 의존 탈피 — 남미 원양 선단 직접 확보 capex ② 페루·아르헨 메이저 조업사와 5~10년 Off-take 계약 ③ 한국 정부(해수부)와 partnership으로 식량 안보 산업 자금 활용.</p>
+</div>`,
         source: "FAO FishStatJ Squid Catch by FAO Area (1950-2020)",
       }}
     />

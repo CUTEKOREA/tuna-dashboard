@@ -37,8 +37,14 @@ export default function SquidClimateRadar() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "동해 수온이 급등(SST Anomaly > 1.5℃)할 때 국내산 살오징어는 심해 및 북측 국경으로 빠져나가며 전멸하는 반면, 엘니뇨/수온 변동 사이클과 맞물려 남동태평양(페루) 대왕오징어 생산량은 오히려 폭증하는 디커플링 조짐이 뚜렷합니다.",
-        actionPlan: "실시간 수온 모니터링 수치가 임계점을 넘을 경우 즉각 경보를 발동하고, '국내 연근해 매입 비중 축소 및 페루산 냉각품 선도 계약 확대'라는 공급망 스위칭(Supply Chain Switching) 결정을 내려야 기후 리스크를 상쇄할 수 있습니다.",
+        situation: `<div>
+<p>"기후 디커플링(Climate Decoupling)"이란 동일 climate 충격(SST 상승)이 두 지역에 정반대 효과를 만드는 현상.</p>
+<p>한국 vs 페루 비대칭: <strong>동해 SST +1.5℃ 시 한국 살오징어는 심해·북측 국경 이탈로 전멸 vs 페루 대왕오징어는 오히려 생산량 폭증</strong>. 같은 엘니뇨가 위협 + 기회 동시 발동.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: SST 모니터링은 단순 알람이 아닌 <strong>"supply chain switching trigger"</strong>.</p>
+<p><strong>3단계</strong>: ① 실시간 SST 모니터링 임계점 자동 경보 ② 국내 연근해 매입 비중 축소 ③ 페루산 냉각품 선도 계약 확대 — climate decoupling을 alpha generator로 활용.</p>
+</div>`,
         source: "NOAA SST + FAO FishStatJ 해역별 어획량 교차분석",
       }}
     />

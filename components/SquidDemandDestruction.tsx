@@ -33,8 +33,14 @@ export default function SquidDemandDestruction() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "초인플레이션 기조 속 소매 판가(B2C)가 심리적 저항선(KRW 10K/M)을 상향 돌파하자, 수요 곡선이 완전히 붕괴(Demand Destruction)되며 대체 단백질인 고등어/가금류로 소비가 수직 이탈(Cannibalization)하는 매크로 쇼크가 발생했습니다.",
-        actionPlan: "[B2C Exit & B2B Hedging] 매입원가 상승분을 소매가로 무한 전가(Pass-through)할 수 있다는 환상을 버리십시오. 소비자 가격 저항선이 확인되는 즉시 변동성이 극심한 B2C 원물 유통 포지션을 전량 청산하고, 단체급식/외식 프랜차이즈향 B2B 1년 장기 선물계약으로 전량 스위칭하여 고정 마진을 락인해야 합니다.",
+        situation: `<div>
+<p>"수요 파괴(Demand Destruction)"란 가격이 심리적 저항선을 넘으면 수요 곡선이 완전히 붕괴하는 임계 현상.</p>
+<p>한국 오징어 trigger: <strong>B2C 소매 판가가 KRW 10,000/마리 상향 돌파 시 수요 완전 붕괴 → 고등어·가금류로 수직 이탈(cannibalization)</strong>. 한 번 이탈하면 18~24개월 재진입 안 함.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 매입원가 무한 전가는 환상. <strong>"B2C 청산 + B2B 락인"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 소비자 가격 저항선 확인 즉시 B2C 원물 유통 포지션 전량 청산 ② 단체급식·외식 프랜차이즈 B2B 1년 장기 선물계약으로 전량 스위칭 ③ 고정 마진 락인.</p>
+</div>`,
         source: "통계청 가계동향조사 및 Nielson 소매판매 데이터",
       }}
     />

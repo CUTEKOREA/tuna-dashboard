@@ -253,8 +253,20 @@ export default function SquidArbitrageRadar() {
       telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
-        situation: "차익 마진(Spread) 레이더를 통해, 인도네시아·페루 등 생산기지에서 가공 원료로 매입한 뒤, 1차 가공(할복·탈피)을 거쳐 일본·중국 등 주요 소비국으로 재수출할 때 발생하는 톤당 $200~$410 수준의 '차익거래 밴드'가 실시간 포착됩니다. 특히 인도네시아-일본(Sashimi Grade) 라우트는 운송비를 제하고도 톤당 $410의 초과 Bottom-line(순이익) 구간을 보여 단순 원물 무역 대비 높은 Bottom-line(순이익) 구조를 입증합니다.",
-        actionPlan: "페루 파이타(Paita) 항구나 인도네시아 수라바야 현지에 1차 전처리(할복/세척) 조인트벤처를 즉시 셋업하십시오. 해외에서 반제품 상태로 가공하여 일본 등에 직납(FOB)하는 3각 무역 모델을 통해 불필요한 국내 반입 관세 및 물류비를 아끼고 중간 마진을 100% 자사화할 수 있습니다.",
+        situation: `<div>
+<p>"차익거래 밴드(Arbitrage Band)"란 글로벌 vendor가 생산국 매입 가격과 소비국 판매 가격 사이의 spread를 추적하는 instrument.</p>
+<p>실측: <strong>인도네시아·페루 매입 + 1차 가공(할복·탈피) + 일본·중국 재수출 시 톤당 $200~$410 차익거래 밴드 실시간 포착</strong>. 특히 <strong>인도네시아-일본 Sashimi Grade 라우트는 운송비 제하고도 톤당 $410 초과 이익</strong>.</p>
+<p>의미: 단순 원물 무역은 마진 0, <strong>"3각 무역(현지 가공 + 직납)"</strong>이 진짜 P&amp;L generator. 우리가 outside buyer에서 local processor + global trader로 정체성 격상 필요.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 차익거래는 단순 trading이 아닌 <strong>"수직 통합형 trade infrastructure"</strong>.</p>
+<p><strong>3단계</strong>:</p>
+<ol style="margin: 4px 0 0 18px; padding: 0;">
+<li style="margin-bottom: 8px;"><strong>페루 파이타(Paita) + 인도네시아 수라바야 현지 1차 전처리 JV 셋업</strong>: minority equity 5~10% + supply 락업.</li>
+<li style="margin-bottom: 8px;"><strong>3각 무역 모델 구축</strong>: 현지 가공 → FOB 직납 일본·중국. 한국 반입 우회로 관세·물류비 -25~35% 절감.</li>
+<li><strong>"Origin-Destination Arbitrage Trading Desk"</strong> — 매일 origin·destination 가격 매트릭스 자동 monitoring + ML 모델 routing 최적화. JP Morgan Trade Finance와 partnership으로 cross-border invoice factoring.</li>
+</ol>
+</div>`,
         source: "FAO FishStatJ & 관세청 수입·수출 단가 비교",
       }}
     />
