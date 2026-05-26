@@ -23,7 +23,7 @@ export function Widget41_FuelBEP() {
           <Bar yAxisId="right" dataKey="wti" name="WTI 유가" fill="#64748b" fillOpacity={0.6} />
         </ComposedChart>
       }
-      takeaway={{ situation: '배럴당 $110 돌파 시 하루 160톤 이상 잡지 못하면 출항할수록 손실 누적 — 적자(Negative Margin) 발생.', actionPlan: '[출항 포기선] 유가 $90 돌파 시 자동 출항 자제 알고리즘 가동 + LNG 전환선 신조 CAPEX 검토.', source: SRC }}
+      takeaway={{ situation: `<div><p>"유류비 BEP(Break-Even Point)"는 어선 출항 시 흑자가 되는 최소 일일 어획량. 유가 변동에 따라 동적 변동.</p><p>위기: <strong>WTI 배럴당 $110 돌파 시 하루 160톤+ 잡지 못하면 출항할수록 손실 누적</strong>. 어선이 바다에 떠 있을수록 적자 가속.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 유가 BEP는 단순 OPEX가 아닌 <strong>"어선 출항 자체의 economic feasibility 판정선"</strong>.</p><p><strong>3단계</strong>: ① WTI $90 돌파 자동 출항 자제 알고리즘 ② LNG·하이브리드 전환선 신조 capex (IMO 2030 대비) ③ "Fuel-indexed voyage decision" 자동화.</p></div>`, source: SRC }}
     />
   );
 }
@@ -42,7 +42,7 @@ export function Widget42_MiddlemenCollapse() {
           <Line type="monotone" dataKey="direct_sourcing" name="프랜차이즈 직수입 비율(%)" stroke="var(--color-info)" strokeWidth={3} />
         </LineChart>
       }
-      takeaway={{ situation: '다단계 하청 원물 유통 구조 붕괴, 대형 프랜차이즈가 수입사와 다이렉트로 조인 — 거품 70% 증발.', actionPlan: '[브로커의 종말] 신라교역 → 대형 프랜차이즈 직거래 라인을 60% 이상 확대, 도매시장 의존도 30% 이하 통제.', source: SRC }}
+      takeaway={{ situation: `<div><p>"중간 도매상(Middlemen) 마진 붕괴"란 다단계 하청 원물 유통이 사라지고 vendor 직거래로 전환되는 paradigm shift.</p><p>현재 진행: <strong>대형 프랜차이즈(BBQ·BHC·맘스터치·SPC)가 수입사와 다이렉트 조인 — 거품 70% 증발</strong>. 5단계 도매 → 2단계 (수입사 → 프랜차이즈) 단축.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 중도매 marg 붕괴는 위협이 아닌 <strong>"직거래 라인 락업의 jackpot 윈도우"</strong>.</p><p><strong>3단계</strong>: ① 신라교역 → 대형 프랜차이즈 직거래 라인 60%+ 확대 ② 도매시장 의존도 30% 이하 통제 ③ "Direct-to-Franchise platform" — TOP 10 프랜차이즈와 5년 exclusive 계약.</p></div>`, source: SRC }}
     />
   );
 }
@@ -61,7 +61,7 @@ export function Widget43_WaterfallMargin() {
           <Bar dataKey="value" name="해당 단계 마진 폭(%)" fill="var(--color-success)" />
         </BarChart>
       }
-      takeaway={{ situation: '바다에서 잡는 사람(30%)과 마트 진열장(30%)이 동일 마진. 가공장(25%)이 칼질 한번에 수입상(15%)보다 많이 챙기는 구조.', actionPlan: '[피도 눈물도 없는 파이] 수입상 마진 15% 영역을 가공·소매 인접 영역으로 확장(수직 통합) 추진.', source: SRC }}
+      takeaway={{ situation: `<div><p>"폭포수(Waterfall) 마진 분배"란 가치사슬 단계별 누가 얼마를 가져가는지의 정량 분석.</p><p>4단계 분배: <strong>조업 30% · 수입 15% · 가공 25% · 소매 30%</strong>. 충격적 인사이트: 가공장(25%)이 단순 칼질 한 번으로 수입상(15%)보다 많이 챙김. 즉 cost·risk 가장 적은 가공이 마진 우위.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 수입상 15% segment는 stranded position. <strong>"가공·소매 인접 영역 수직 통합"</strong>이 본질.</p><p><strong>3단계</strong>: ① 가공 라인 capex 가속 — 마진 25% segment 진입 ② 자체 brand B2C 채널 launch — 소매 마진 30% 흡수 ③ "Vertically integrated platform" — 수입+가공+B2C 통합으로 마진 70% 회수.</p></div>`, source: SRC }}
     />
   );
 }
@@ -81,7 +81,7 @@ export function Widget44_StorageDeadcross() {
           <Line type="monotone" dataKey="storage_cost" name="월간 누적 창고 보관료(%)" stroke="var(--color-danger)" strokeWidth={3} />
         </ComposedChart>
       }
-      takeaway={{ situation: '8개월 이상 \'존버\' 시 누적 창고료 패널티가 시세 차익을 잡아먹고 적자 진입하는 한계점 입증.', actionPlan: '[창고 이자의 덫] 강제 청산 한계선 6개월(W26)로 시스템 하드코딩하여 악성 재고 누적 봉쇄.', source: SRC }}
+      takeaway={{ situation: `<div><p>"존버 데드크로스"란 시세 상승 기대로 창고 장기 보관 시 누적 보관료가 시세 차익을 잡아먹는 한계점.</p><p>실측 임계점: <strong>8개월 이상 보관 시 누적 창고료가 시세 차익 추월 → 적자 진입</strong>. 매월 톤당 $25~50 보관료 누적이 가격 상승률 +1~2%/월을 초과.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 보관 timing은 단순 의사결정이 아닌 <strong>"systematic discipline instrument"</strong>.</p><p><strong>3단계</strong>: ① 강제 청산 한계선 6개월(W26) 시스템 하드코딩 ② 5개월 시점 자동 alert + 강제 출하 검토 ③ "Inventory aging dashboard" — 매주 monitoring + ML 기반 optimal exit timing 예측.</p></div>`, source: SRC }}
     />
   );
 }
@@ -101,7 +101,7 @@ export function Widget45_YieldLoss() {
           <Bar dataKey="ice_glaze" name="얼음물(글레이징) 마이너스" stackId="a" fill="var(--color-danger)" />
         </BarChart>
       }
-      takeaway={{ situation: '서류상 100톤 구매했으나 해동 시 얼음 코팅으로 15톤이 물로 사라지는 마법 — C&F 단가에 15% 가산 필수.', actionPlan: '[수분 뻥튀기] 공급사 인보이스에 \'순중량 100% 기준\' 조항 의무화 + 통관 시 해동 샘플링 무작위 검증.', source: SRC }}
+      takeaway={{ situation: `<div><p>"물코기(Glazing)"란 냉동 수산물 표면에 얼음 코팅을 입혀 중량을 부풀리는 vendor의 일상적 조작 관행. 글로벌 수산 무역의 보편적 grey area.</p><p>실측 손실: <strong>서류상 100톤 구매 → 해동 시 얼음 코팅 15톤이 물로 사라지는 마법</strong>. C&amp;F 단가에 +15% 가산 필수.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: Glazing은 단순 vendor 트릭이 아닌 <strong>"매입 cost +15% hidden tax"</strong>.</p><p><strong>3단계</strong>: ① 공급사 인보이스에 "순중량 100% 기준" 조항 의무화 ② 통관 시 해동 샘플링 무작위 검증 — 기준 초과 시 페널티 ③ "Net Weight Trust Score" vendor 등급제 — 위반 vendor 자동 blacklist.</p></div>`, source: SRC }}
     />
   );
 }
@@ -120,7 +120,7 @@ export function Widget46_AutomationROI() {
           <Line type="monotone" dataKey="baader_machine" name="자동화 기기 CAPEX + 유지비" stroke="var(--color-info)" strokeWidth={3} />
         </LineChart>
       }
-      takeaway={{ situation: '기계 도입 초기 CAPEX는 크나, 매년 급등하는 가공장 최저임금을 대체하여 정확히 2.5년째 크로스(Payback) 완료.', actionPlan: '[원금 회수] 2026년 H&G 자동화 라인 도입 결의 — Baader 기기 분할 도입으로 CAPEX 부담 분산.', source: SRC }}
+      takeaway={{ situation: `<div><p>"H&amp;G(Head &amp; Gut, 머리·내장 제거) 자동화" ROI 분석. 수작업 인건비와 자동화 capex의 교차점.</p><p>회수 기간: <strong>초기 capex 크지만 가공장 최저임금 급등을 대체하여 정확히 2.5년째 Payback 완료</strong>. 그 이후 영구 흑자 — 인건비 상승 가속화로 매년 ROI 추가 개선.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 자동화는 옵션이 아닌 <strong>"향후 인건비 상승 hedge instrument"</strong>.</p><p><strong>3단계</strong>: ① 2026년 H&amp;G 자동화 라인 도입 결의 ② Baader/Marel 기기 분할 도입으로 capex 부담 분산 ③ "Automation-as-a-Service" — 자체 시스템을 동남아 mid-tier vendor에 라이센싱 추가 수익원.</p></div>`, source: SRC }}
     />
   );
 }
@@ -140,7 +140,7 @@ export function Widget47_ChannelMarginTracker() {
           <Scatter dataKey="volume_share" name="투입 물량 비중(%)" fill="var(--color-info)" />
         </ComposedChart>
       }
-      takeaway={{ situation: '도매 직납으로 물량을 털어내고(50%), 고마진 B2C/밀키트 채널(20%)로 최종 영업이익률을 펌핑하는 골든 믹스 증명.', actionPlan: '[최적 포트폴리오] B2C 밀키트 자사몰 비중을 2026년 30%로 확대, 도매 직납 의존도 50% → 40%로 점진 축소.', source: SRC }}
+      takeaway={{ situation: `<div><p>"채널 골든 믹스(Channel Golden Mix)"란 영업이익률 극대화하는 채널 portfolio 비중.</p><p>실측 최적 mix: <strong>도매 직납 50% (volume backbone) + 프랜차이즈 B2B 30% + 고마진 B2C/밀키트 20%</strong>. B2C 20%가 전체 영업이익의 40~50%를 펌핑.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 채널 mix는 단순 매출 분배가 아닌 <strong>"마진 portfolio optimization"</strong>.</p><p><strong>3단계</strong>: ① B2C 밀키트 자사몰 비중 2026년 30%로 확대 ② 도매 직납 의존도 50% → 40% 점진 축소 ③ DTC platform 자체 구축 — 마진 35%+ 직접 회수.</p></div>`, source: SRC }}
     />
   );
 }
@@ -159,7 +159,7 @@ export function Widget48_OpPerDay() {
           <Bar dataKey="margin" name="바다 1일당 순 흑자/적자($)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.margin < 0 ? 'var(--color-danger)' : 'var(--color-success)'} />))}</Bar>
         </BarChart>
       }
-      takeaway={{ situation: '선박이 바다에 떠 있는 것만으로 하루 $35,000 비용 공중 분해 — 투망 없는 며칠이 한달 치 적자를 확정.', actionPlan: '[공중분해 주의] 3일 연속 어획량 0 시 자동 회항 알고리즘 가동, 신규 어장 탐색은 별도 탐사선으로 분리.', source: SRC }}
+      takeaway={{ situation: `<div><p>"OP per Sea-Day(조업일 당 순수익)"란 어선이 바다에 떠 있는 1일 기준 순수익. 어선 효율의 단일 KPI.</p><p>고정비 충격: <strong>선박이 바다에 떠 있는 것만으로 하루 $35,000 비용 공중 분해</strong>. 투망 없는 며칠이 한 달 치 적자 확정.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: OP per Sea-Day는 단순 KPI가 아닌 <strong>"어선 출항 의사결정의 strict gate"</strong>.</p><p><strong>3단계</strong>: ① 3일 연속 어획량 0 시 자동 회항 알고리즘 가동 ② 신규 어장 탐색은 별도 탐사선으로 분리 ③ AI 어군 탐지 모델 + ROV 사전 투입으로 공치(dry set) 비율 -90%.</p></div>`, source: SRC }}
     />
   );
 }
@@ -178,7 +178,7 @@ export function Widget49_InventoryTurns() {
           <Bar dataKey="turns" name="연간 회전율(Turns/Yr)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.turns < 2 ? 'var(--color-danger)' : '#6366f1'} />))}</Bar>
         </BarChart>
       }
-      takeaway={{ situation: '창고에 처박힌 튜브가 1.5회전 밑으로 떨어지면 손절매(Dumping) 버튼을 강제로 눌러 유동성 확보 필요.', actionPlan: '[블라인드 리스크] 2회전 미만 SKU 자동 알림 시스템 구축 + 30일 이내 50% 덤핑 가격으로 강제 출회.', source: SRC }}
+      takeaway={{ situation: `<div><p>"재고 회전율(Inventory Turnover)"이란 연 재고 회전 횟수. 정상 수산 비즈니스는 4~6회전, 위험선은 2회전 미만.</p><p>현 위기: <strong>창고에 처박힌 튜브가 1.5회전 밑으로 떨어지면 손절매(Dumping) 버튼을 강제로 눌러야 유동성 확보 가능</strong>. 1회전 미만 SKU는 사실상 사고난 자산.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 재고 회전율 모니터링은 단순 운영이 아닌 <strong>"BS 건강성 KPI"</strong>.</p><p><strong>3단계</strong>: ① 2회전 미만 SKU 자동 알림 시스템 구축 ② 30일 이내 50% 덤핑 가격으로 강제 출회 ③ "Inventory health dashboard" — SKU별 weekly monitoring + CFO 직보.</p></div>`, source: SRC }}
     />
   );
 }
@@ -197,7 +197,7 @@ export function Widget50_CashConversionCycle() {
           <Bar dataKey="days" name="매출 대금 회수 소요(Days)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.days > 90 ? 'var(--color-danger)' : 'var(--color-info)'} />))}</Bar>
         </BarChart>
       }
-      takeaway={{ situation: '서류상 10억을 팔아도 영세 가공장 어음 회수가 120일 넘게 지연되면, 이자 부담에 의해 장부상 흑자가 실물 적자로 강제 전환.', actionPlan: '[피의 유동성] C급 거래처 신용 한도 5천만원으로 강제 캡 설정, A급(45일) 거래선 비중을 60% 이상으로 끌어올림.', source: SRC }}
+      takeaway={{ situation: `<div><p>"DSO(Days Sales Outstanding, 매출 회수 기일)"란 거래처에 매출을 발행한 후 실제 cash 회수까지 걸리는 일수.</p><p>위험 시나리오: <strong>서류상 10억 매출이라도 영세 가공장 어음 회수가 120일+ 지연되면 이자 부담으로 장부 흑자가 실물 적자로 강제 전환</strong>. cash 유동성이 영업이익을 압도.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: DSO는 단순 회계 KPI가 아닌 <strong>"유동성 생존 KPI"</strong>.</p><p><strong>3단계</strong>: ① 거래처 등급별 신용 한도 강제 캡 (C급 5천만원, B급 2억, A급 5억) ② A급(45일) 거래선 비중 60%+ 유지 ③ JP Morgan Trade Finance와 invoice factoring partnership — DSO 120일 → 7일로 단축.</p></div>`, source: SRC }}
     />
   );
 }

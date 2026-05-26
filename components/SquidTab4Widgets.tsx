@@ -22,7 +22,7 @@ export function Widget31_PriceSpread() {
           <Line type="monotone" dataKey="china" name="중국(원양)" stroke="var(--color-danger)" strokeWidth={2} />
         </LineChart>
       }
-      takeaway={{ situation: '저가의 대명사였던 페루 대왕오징어 단가가 아르헨티나산 숏핀 단가와 갭을 좁히며 맹렬히 수렴.', actionPlan: '[저가 방어막 붕괴] 저가 페루 의존도 70% → 50%로 축소하고 아르헨·중국 분산 비중 확대.', source: SRC }}
+      takeaway={{ situation: `<div><p>"C&amp;F(Cost & Freight) 스프레드 수렴"이란 원산지별 단가 격차가 좁아지는 현상. 저가 vendor의 우위가 사라지는 시그널.</p><p>현재 위기: <strong>저가 대명사였던 페루 대왕오징어 단가가 아르헨티나 숏핀 단가와 갭을 좁히며 맹렬히 수렴</strong>. 페루 의존 vendor의 "저가 방어막 붕괴".</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 단일 저가 origin 의존은 dead model.</p><p><strong>3단계</strong>: ① 페루 의존도 70% → 50% 축소 ② 아르헨·중국·인도 분산 ③ 가격 게임에서 인증 게임으로 전환 — MSC·SIMP traceability 차별화.</p></div>`, source: SRC }}
     />
   );
 }
@@ -43,7 +43,7 @@ export function Widget32_Shrinkflation() {
           <Line yAxisId="left" type="step" dataKey="price" name="판매 명목 가격(원)" stroke="#fcd34d" strokeWidth={3} />
         </ComposedChart>
       }
-      takeaway={{ situation: '소비자 인지 가격은 방어한 듯 보이나 해동 시 실제 살코기 중량이 3년새 40% 이상 증발.', actionPlan: '[기만적 인플레] 한국공정거래위원회 슈링크플레이션 규제 대응 — 실중량 정확 표기 + 단가 인상 정공법 전환.', source: SRC }}
+      takeaway={{ situation: `<div><p>"슈링크플레이션(Shrinkflation)"이란 가격은 유지하면서 제품량을 줄이는 hidden inflation. 한국 오징어 가공품 시장의 광범위한 관행.</p><p>실측: <strong>소비자 인지 가격은 방어한 듯 보이나 해동 시 실제 살코기 중량이 3년새 40% 이상 증발</strong>. 한국공정거래위원회 슈링크플레이션 규제 대응 압박 중.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 슈링크플레이션은 단기 마진 방어 vs 장기 brand 신뢰 파괴의 trade-off.</p><p><strong>3단계</strong>: ① 실중량 정확 표기 자체 의무화 — 규제 시행 전 first-mover ② 단가 인상 정공법 전환 — brand 신뢰 자산화 ③ "Honest Weight Certified" 라벨로 차별화 마케팅.</p></div>`, source: SRC }}
     />
   );
 }
@@ -64,7 +64,7 @@ export function Widget33_TariffArbitrage() {
           <Bar dataKey="cost" name="원가 및 운송비" stackId="a" fill="var(--color-info)" fillOpacity={0.5} />
         </BarChart>
       }
-      takeaway={{ situation: '남미 직수입 시 20% 관세 폭탄을 회피하기 위해, 베트남에서 튜브 가공 후 무관세(FTA) 입항이 절대 공식화.', actionPlan: '[루트 아비트라지] 베트남 호치민 1차 가공 OEM 라인 100% 활용하여 한-베트남 FTA 무관세 혜택 풀 활용.', source: SRC }}
+      takeaway={{ situation: `<div><p>"FTA 우회 가공"이란 직수입 시 부과되는 관세를 회피하기 위해 FTA 체결국에서 가공 후 무관세로 한국 입항하는 무역 routing 전략.</p><p>한국 표준 routing: <strong>남미 직수입 20% 관세 폭탄 회피 → 베트남에서 튜브 가공 후 한-베트남 FTA 무관세 입항</strong>이 절대 공식. 가공 가격 +$200~300/톤이지만 관세 -$400+ 절감 = 순 +$100~200/톤.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: FTA 우회는 단순 cost 절감이 아닌 <strong>"한-베트남 FTA arbitrage 본질"</strong>.</p><p><strong>3단계</strong>: ① 베트남 호치민 1차 가공 OEM 라인 100% 활용 ② AKFTA·RCEP·KORUS 4중 FTA 활용 라우팅 systematic 운영 ③ "FTA arbitrage trading desk" — 매주 4 FTA 변동을 monitoring + dynamic routing.</p></div>`, source: SRC }}
     />
   );
 }
@@ -83,7 +83,7 @@ export function Widget34_SizePremium() {
           <Line type="monotone" dataKey="small" name="소형/일반품 단가" stroke="var(--color-info)" strokeWidth={2} />
         </LineChart>
       }
-      takeaway={{ situation: '굶주림으로 어체 크기가 소형화되며, 정상 규격의 \'대형 특품\'은 돈을 주고도 못 구하는 하이엔드 럭셔리 진입.', actionPlan: '[희소성의 덫] 자동 그레이딩 설비 도입 + 대형 특품 100% 분리 추출(Skimming)하여 호텔·일식체인 VVIP 직납.', source: SRC }}
+      takeaway={{ situation: `<div><p>"사이즈 프리미엄 스퀴즈"란 어자원 고갈로 어체 크기가 소형화되면서 정상 규격 대형 특품의 희소성 가치가 폭증하는 현상.</p><p>실측: 4년간 대형 특품 vs 소형 일반품 단가 격차 <strong>2.5배 격차</strong>. <strong>정상 규격 "대형 특품"은 돈을 주고도 못 구하는 하이엔드 럭셔리</strong> 진입.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 사이즈 프리미엄은 "희소성의 덫" — 우리가 first-mover로 segment 락업 시 영구 가격 결정력.</p><p><strong>3단계</strong>: ① 자동 그레이딩 설비 도입 (BAADER·Marel) ② 대형 특품 100% 분리 추출 (Skimming) ③ 호텔·일식체인 VVIP 직납 — ASP +200~300% 프리미엄. 5년 forward 계약으로 채널 락업.</p></div>`, source: SRC }}
     />
   );
 }
@@ -104,7 +104,7 @@ export function Widget35_FXHedging() {
           <Line yAxisId="left" type="monotone" dataKey="usd_krw" name="환율(USD/KRW)" stroke="var(--color-warning)" strokeWidth={3} />
         </ComposedChart>
       }
-      takeaway={{ situation: '달러당 1,350원 돌파 시 C&F 결제 무역사들의 마진 룸 소멸. 선물환 사전 매수 여부가 생사를 가름.', actionPlan: '[매크로 폭격] 1,300원 이하 시 연간 쿼터 50% 이상 선물환(Forward) 매입으로 사전 락인.', source: SRC }}
+      takeaway={{ situation: `<div><p>"환율 데드크로스"란 USD/KRW 환율이 일정선을 넘으면 무역사 영업이익률이 zero가 되는 임계점.</p><p>한국 오징어 수입 임계점: <strong>USD/KRW 1,350원 돌파 시 C&amp;F 결제 무역사들의 마진 룸 소멸</strong>. 평시 마진 8%가 환율 1,400 도달 시 0~2%로 압축.</p><p>의미: 환 헷지는 단순 risk 관리가 아닌 <strong>"수입 무역사의 생사를 가르는 instrument"</strong>.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 환 헷지는 본업 P&amp;L의 가장 큰 generator.</p><p><strong>3단계</strong>: ① 1,300원 이하 시 연간 쿼터 50%+ 선물환 사전 매입 ② 환율 시나리오별 매입 룰 자동화 — risk desk daily monitoring ③ JP Morgan FX Desk와 cross-currency swap — KRW·USD·CNY·VND 4통화 dynamic 운용.</p></div>`, source: SRC }}
     />
   );
 }
@@ -123,7 +123,7 @@ export function Widget36_VASpread() {
           <Bar dataKey="value" name="판매 가치(Index)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
-      takeaway={{ situation: '원물 그대로 판매 시 마진 0에 수렴. 링(Ring)으로 한번만 써는 순간 단가 2배 폭증.', actionPlan: '[Value Add] 절단·가공 라인 CAPEX 투자를 최우선 순위로 격상, 원물 직판 비중을 30% 이하로 축소.', source: SRC }}
+      takeaway={{ situation: `<div><p>"부가가치 전가 스프레드"란 가공 단계별 판매 가치 인덱스. 같은 원물이라도 가공 단계에 따라 마진이 기하급수적으로 차이.</p><p>가공 단계별 가치: <strong>원물 100 → 1차 절단(링) 200 → 2차 가공(밀키트) 320 → 3차 RTC 480</strong>. 단순 링 가공 한 번에 단가 2배 폭증.</p><p>의미: 원물 직판 마진 0에 수렴 vs RTC 가공품 마진 35%+. 본업 P&amp;L의 본질은 어획·매입이 아닌 <strong>"가공 단계 부가가치 추출"</strong>.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: Value Add 라인은 CAPEX 1순위.</p><p><strong>3단계</strong>: ① 절단·가공 라인 CAPEX 최우선 순위 격상 ② 원물 직판 비중 30% 이하로 축소 ③ "Value Add Platform" — 원물 → 링·튜브·밀키트·RTC 4단계 SKU 표준화 + 자체 brand 출시.</p></div>`, source: SRC }}
     />
   );
 }
@@ -143,7 +143,7 @@ export function Widget37_FreightPremium() {
           <Line yAxisId="right" type="stepAfter" dataKey="freightCost" name="운임 포함 단가상승분(%)" stroke="#8b5cf6" strokeWidth={3} />
         </LineChart>
       }
-      takeaway={{ situation: '글로벌 유가 병목 시 수입 원가의 최고 45%가 순수 \'냉동 컨테이너 물류비\'로 지출되는 패널티 발생.', actionPlan: '[운임 충격] WTI $90 돌파 시 해상 운임 락인 장기 계약(COA) 비중을 60% 이상으로 확대.', source: SRC }}
+      takeaway={{ situation: `<div><p>"WTI(서부텍사스유)·BDI(발틱운임지수) 연동 물류비 프리미엄"이란 글로벌 유가 변동이 냉동 컨테이너(Reefer) 운임에 미치는 충격.</p><p>위기 시점: <strong>WTI $90+ 돌파 시 수입 원가의 최고 45%가 순수 냉동 컨테이너 물류비로 지출</strong>. 호르무즈 봉쇄·홍해 분쟁 시점에 빈발하는 페널티 시나리오.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 운임 충격은 단순 OPEX가 아닌 <strong>"systematic hedging instrument"</strong>.</p><p><strong>3단계</strong>: ① WTI $90 돌파 자동 alert ② 해상 운임 장기 계약(COA) 비중 60%+ 확대 — Maersk·MSC·CMA CGM 3사 ③ JP Morgan Shipping Desk와 BDI 기반 OTC swap 결합 — paper hedge로 추가 보호.</p></div>`, source: SRC }}
     />
   );
 }
@@ -161,7 +161,7 @@ export function Widget38_JumboJump() {
           <Area type="monotone" dataKey="price_index" name="페루산 대왕오징어 원가 지수" fill="#ec4899" stroke="#ec4899" fillOpacity={0.4} />
         </AreaChart>
       }
-      takeaway={{ situation: '살오징어 대체재로 모든 프랜차이즈가 대왕(훔볼트)을 찾자 수요 폭발로 4년새 원가 2.5배 퀀텀 점프.', actionPlan: '[신분 상승] 더 이상 \'저가 대체재\'가 아닌 프리미엄 원료로 재포지셔닝, B2C 단가도 +50% 상향 조정.', source: SRC }}
+      takeaway={{ situation: `<div><p>"퀀텀 점프(Quantum Jump)"란 점진적 변화가 아닌 급격한 가격대 도약. 한국 오징어 시장에서 정확히 발생 중.</p><p>대왕오징어(훔볼트) 변동: <strong>살오징어 대체재로 모든 프랜차이즈가 대왕을 찾자 수요 폭발 → 4년새 원가 2.5배 퀀텀 점프</strong>. 페루산 톤당 $1,500 → $3,800.</p><p>의미: 대왕오징어는 더 이상 "저가 대체재"가 아닌 main protein. 단순 substitute → premium 카테고리 격상.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 대왕오징어 가격 인상은 위협이 아닌 <strong>"신분 상승 기회"</strong>.</p><p><strong>3단계</strong>: ① 저가 대체재 마케팅 폐기 → 프리미엄 원료로 재포지셔닝 ② B2C 단가 +50% 상향 조정 ③ "Jumbo Squid Premium" 자체 brand — Whole Foods·일본 이세탄 글로벌 채널 진출.</p></div>`, source: SRC }}
     />
   );
 }
@@ -180,7 +180,7 @@ export function Widget39_ForwardSpot() {
           <Bar dataKey="price" name="계약 체결 단가(Index)" fill="var(--color-info)">{data.map((entry: any, index: number) => (<Cell key={index} fill={index === 2 ? 'var(--color-danger)' : 'var(--color-info)'} />))}</Bar>
         </BarChart>
       }
-      takeaway={{ situation: '항해 개시 전 흉어를 예감하고 선도 계약(입도선매)을 체결한 트레이딩 팀은 하역 시점 무위험 60% 펌핑 차익 시현.', actionPlan: '[위험의 대상] 시즌 시작 2개월 전 ENSO/CPUE 시그널 기반 선도 계약 비중을 50% 이상 락인.', source: SRC }}
+      takeaway={{ situation: `<div><p>"선도 계약(Forward Contract, 입도선매)"이란 항해 시작 전 미리 가격을 락업하는 계약. spot 가격 변동 헷지 instrument.</p><p>실측 차익: <strong>항해 개시 전 흉어를 예감하고 선도 계약을 체결한 트레이딩 팀은 하역 시점 무위험 60% 펌핑 차익 시현</strong>. 흉어 예측 정확도가 alpha generator.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 선도 계약은 단순 매입이 아닌 <strong>"ENSO·CPUE 시그널 기반 systematic trading"</strong>.</p><p><strong>3단계</strong>: ① 시즌 시작 2개월 전 NOAA ENSO + 어선 CPUE 데이터 분석 ② 선도 계약 비중 50%+ 락인 — 흉어 시그널 강할수록 비중 확대 ③ JP Morgan Commodity Quant Desk와 ML 모델 collab — backtest sharpe 2.0+ 검증.</p></div>`, source: SRC }}
     />
   );
 }
@@ -198,7 +198,7 @@ export function Widget40_SubstitutionElasticity() {
           <Line type="monotone" dataKey="substitute_rate" name="대왕징어로의 전환 비율(%)" stroke="var(--color-success)" strokeWidth={4} />
         </LineChart>
       }
-      takeaway={{ situation: '일반 오징어 단가 30% 상승 시 B2B 식당들이 레시피를 대왕오징어로 70% 교체하는 티핑포인트 도달.', actionPlan: '[대체 폭주선] 살오징어 단가 +25% 임계치 직전 대왕오징어 원료 비축 60% 완료 — 대체 수요 100% 흡수.', source: SRC }}
+      takeaway={{ situation: `<div><p>"레시피 대체 탄력성"이란 가격 인상 시 B2B 식당이 레시피에서 다른 어종으로 전환하는 비율. 향후 매출의 핵심 leading indicator.</p><p>티핑포인트: <strong>일반 오징어 단가 +30% 상승 시 B2B 식당의 70%가 레시피를 대왕오징어로 교체</strong>. 한 번 교체된 vendor는 18~24개월 재진입 안 함.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 대체 시그널은 단순 위협이 아닌 <strong>"대왕오징어 capacity 사전 확보의 trigger"</strong>.</p><p><strong>3단계</strong>: ① 살오징어 단가 +25% 임계치 직전 대왕오징어 원료 비축 60% 완료 ② 대체 수요 100% 흡수 — 우리가 alternative 1순위 supplier 락업 ③ "Substitution arbitrage" — 단가 spread 활용해 양방향 trading.</p></div>`, source: SRC }}
     />
   );
 }
