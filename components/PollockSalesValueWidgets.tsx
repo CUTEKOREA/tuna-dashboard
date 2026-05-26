@@ -37,8 +37,15 @@ export const WidgetBlockVsIQF = () => (
     }
     takeaway={{
       source: 'Urner Barry B2B 수산물 도매가 지수 리포트',
-      situation: '단순 냉동 블록 형태의 원물 납품 마진은 15%에 그치나, IQF(개별 급속 냉동) 필렛은 Bottom-line(순이익)률이 35%로 폭증합니다.',
-      actionPlan: '가격 경쟁력이 없는 범용 블록 생산 라인을 점진적으로 축소하고, B2C 밀키트용 IQF 하이엔드 라인 설비에 전량 캐파를 집중.',
+      situation: `<div>
+<p>"IQF(Individually Quick Frozen, 개별 급속 냉동)"란 명태 필렛 한 조각씩 -40℃ 급속 냉동해 한 조각씩 떼어 쓸 수 있는 가공 방식. 전통 "블록 냉동" 대비 편의성·품질 모두 우위.</p>
+<p>마진 격차: <strong>블록 원물 납품 15% vs IQF 필렛 35%</strong> — 2.3배 격차. 같은 원물도 가공 방식 변경만으로 마진 doubling.</p>
+<p>의미: 블록은 B2B 가공사 대상 commodity, IQF는 B2C 밀키트·즉석조리 대상 differentiated product. 한국 1인 가구 +50% 트렌드에서 IQF 수요 폭증.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 블록 vs IQF는 단순 가공 선택이 아닌 <strong>"commodity 사업 → branded product 사업 paradigm shift"</strong>.</p>
+<p><strong>3단계</strong>: ① 블록 라인 70% → 40% 축소 ② IQF 하이엔드 라인 capex $5~10M, 회수 18개월 ③ CJ Hetbahn·마켓컬리·쿠팡과 5년 exclusive 공급 계약으로 default ingredient 락업.</p>
+</div>`,
     }}
   />
 );
@@ -74,8 +81,15 @@ export const WidgetRoeMarginSpread = () => (
     }
     takeaway={{
       source: '도쿄 도요스 시장 일별 경매 단가 및 후쿠오카 유통가 시계열',
-      situation: "원물(명란) 경매가가 -40% 폭락해도 멘타이코(명란젓) 최종 소비자가는 요지부동인 '전가 저항성'이 확인되었습니다.",
-      actionPlan: '가격이 폭락한 원원물 창고를 개방하여 공격적으로 B2C 가공을 늘리십시오. 산지 폭락이 B2C 벤더의 역사적 마진 스프레드를 창출합니다.',
+      situation: `<div>
+<p>"전가 저항성(Pass-through Resistance)"이란 원물 가격 변동이 소비자가에 얼마나 반영되는지의 한계. 명란 시장은 특이하게도 <strong>매우 강한 비대칭 저항성</strong>을 보입니다.</p>
+<p>실측: <strong>원물(명란) 경매가 -40% 폭락에도 멘타이코(명란젓) 소비자가 요지부동</strong>. 상승 시에는 100% 전가, 하락 시에는 0% 전가. 즉 일방향 sticky pricing.</p>
+<p>의미: 원물 폭락 시점이 <strong>B2C 벤더의 "역사적 마진 스프레드 창출 윈도우"</strong>. 매입원가 -40% + 판가 유지 = 마진 +30~40%p 폭증.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 원물 폭락은 위기가 아닌 <strong>"3~6개월 한정 골든 윈도우"</strong>.</p>
+<p><strong>3단계</strong>: ① 원물 창고 개방 + 공격적 B2C 가공 가속 ② D2C 채널 마케팅 예산 +50% 일시 증액 — 골든 윈도우 동안 시장 점유 락업 ③ 동일 사이클을 systematic하게 capture하는 "Roe arbitrage trading book" 운영.</p>
+</div>`,
     }}
   />
 );
@@ -115,8 +129,15 @@ export const WidgetInventoryCycle = () => (
     }
     takeaway={{
       source: '미국수산물협회(NFI) 재고율 및 일본 수산청 연례 적재량',
-      situation: '최대 수입국의 재고 사이클이 피크(170k tons) 통과 후 3개월 뒤 가격 반등(Price Rebound)이 발생합니다.',
-      actionPlan: '수입국 재고 폭발 시즌에 공매도 성격의 매수 포지션을 쥐지 말고 홀딩하다, 재고가 소진되는 Q3에 직방출하여 단가를 방어.',
+      situation: `<div>
+<p>"재고 사이클(Inventory Cycle)"이란 미국·일본 등 주요 수입국의 명태 재고가 분기별로 oscillate하는 패턴. 매우 예측 가능한 cyclic indicator.</p>
+<p>실측 패턴: <strong>최대 수입국 재고 피크 170k tons 통과 후 정확히 3개월 뒤 가격 반등(Price Rebound) 발생</strong>. 5년간 동일 패턴 검증.</p>
+<p>의미: 재고 사이클은 가격 변동의 leading indicator. 미국 NMFS·일본 농수성 재고 통계를 매월 monitoring하면 사실상 3개월 앞서 매도/매수 timing 결정 가능.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 재고 사이클은 단순 macro 정보가 아닌 <strong>"3-month forward trading signal"</strong>.</p>
+<p><strong>3단계</strong>: ① 재고 폭발 시즌 매수 포지션 hold (덤핑하지 말 것) ② 재고 소진 Q3에 spot 직방출로 단가 +20~30% 회수 ③ NMFS·농수성 재고 통계 자동 monitoring + ML 모델로 매도 timing 자동 발동.</p>
+</div>`,
     }}
   />
 );
@@ -153,8 +174,15 @@ export const WidgetSurimiBlendElasticity = () => (
     }
     takeaway={{
       source: '일본 연육생산자협회(SNPA) 최고등급 AL/SA 급 거래 단가',
-      situation: '러시아산 덤핑이 소멸하고 AL/SA급 연육 단가가 톤당 $5,500을 돌파하면 B2B 벤더들이 즉각 동남아산 잡어(실꼬리돔) 비율을 늘려 품질을 희석시킵니다.',
-      actionPlan: '명태 연육가가 임계점을 넘으면 SA등급 단일 고집을 버리고, 고객사에 맞춤형 블렌딩(Blend) 비율을 제안해 계약 이탈(Churn)을 막으십시오.',
+      situation: `<div>
+<p>"연육(Surimi)"이란 명태 살을 갈아 만든 가공 원료. 게맛살·어묵·핫도그 등의 핵심 ingredient. 글로벌 연육의 60%+가 명태 기반.</p>
+<p>임계점: <strong>AL/SA급 연육 단가 톤당 $5,500 돌파</strong> 시 B2B 벤더(CJ·동원·사조)가 동남아산 잡어(실꼬리돔·정어리)로 즉각 블렌딩 시작. 품질 희석은 vendor switching 신호.</p>
+<p>의미: 명태 SA등급 단일 고집은 임계점 이후 계약 이탈(churn) 가속. <strong>유연한 블렌딩 제안이 vendor lock-in의 핵심</strong>.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 연육 비즈니스는 단일 등급 commodity가 아닌 <strong>"customizable blending platform"</strong>.</p>
+<p><strong>3단계</strong>: ① 명태 단가 $5,500 임계점 모니터링 — 돌파 시 자동 블렌딩 옵션 제안 ② 고객사별 맞춤형 블렌드 ratio 시뮬레이션 sheet 제공 ③ "Blended Surimi as a Service" platform 진화 — 고객사가 원하는 단백질·텍스처·가격 sweet spot을 우리가 정의하는 ingredient 컨설팅 서비스로 확장.</p>
+</div>`,
     }}
   />
 );
@@ -192,8 +220,15 @@ export const WidgetB2BContractPipeline = () => (
     }
     takeaway={{
       source: '글로벌 빅4 수산 납품 프랜차이즈 구매 계약(10-K) 사이클',
-      situation: '맥도날드, 대형 급식업체 등 빅바이어의 장기 공급 갱신 협상은 종료 D-30일부터 단가 협상 압력이 최고조에 달합니다.',
-      actionPlan: 'D-30에 접어든(붉은색) 파이프라인에 집중하여, 어가 상승 데이터를 근거로 유류세 연동 단가 방어 협상을 관철.',
+      situation: `<div>
+<p>"갱신 파이프라인(Renewal Pipeline)"이란 빅바이어 장기 공급 계약의 만료 일정을 시각화한 trading desk dashboard. 갱신 타이밍이 곧 가격 협상력의 결정 변수.</p>
+<p>패턴: <strong>맥도날드·서브웨이·대형 급식업체 등 빅바이어의 갱신 협상은 D-30일부터 단가 압력 최고조</strong>. 그 시점 빅바이어는 multiple vendor 대안 적극 활용. 우리가 가격 sticky 못하면 5년 계약 잃음.</p>
+<p>의미: 갱신 D-30 윈도우는 <strong>"vendor의 협상력이 가장 약한 시점"</strong>. 미리 어가 상승 데이터 + 대안 vendor 시장가 자료를 무장해야 함.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 갱신 협상은 reactive cost defense가 아닌 <strong>"D-90 사전 무장 + 데이터 기반 정량 협상"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① D-90 시점 vendor 분석 자료 준비 — 어가 상승·환율·운임 지표 정량화 ② D-30 시점 "유류세 연동 단가 자동 조정 clause" 강제 제안 ③ 빅바이어 multi-year contract에 ESG·MSC 인증·climate clause를 lock-in 조건으로 끼워넣어 switching cost 강제 ↑.</p>
+</div>`,
     }}
   />
 );
@@ -230,8 +265,15 @@ export const WidgetWholesaleArbitrage = () => (
     }
     takeaway={{
       source: '한국농수산식품공사(aT) 가락/수원 도매시장 API 분석망',
-      situation: '단일 위판장에서만 덤핑하면 시장 전체 시세가 폭락하지만, 요일별로 부족한 시장으로 물류를 분산하면 최소 15% 아비트리지가 획득됩니다.',
-      actionPlan: 'API 추이 상 목요일 가락시장 가격이 항상 튑니다. 타 지역 물량을 서울로 밴(Van) 스나이핑하여 중도매 마진을 차단.',
+      situation: `<div>
+<p>"도매시장 경락 아비트리지(Wholesale Auction Arbitrage)"란 위판장·도매시장별 가격 격차를 활용해 매도 channel을 dynamic하게 선택하는 trading 전략.</p>
+<p>실측 패턴: 단일 위판장 덤핑 시 전체 시세 -10~15% 폭락. 반면 <strong>요일·지역별 가격 격차 활용 시 최소 +15% 아비트리지 획득</strong> 가능. 핵심: 서울 가락시장 목요일 가격이 항상 +12~18% 상승 sticky.</p>
+<p>의미: 도매 채널은 단순 매도 outlet이 아닌 <strong>"5축 (가락·노량진·부산·인천·울산) dynamic routing platform"</strong>. 같은 원물도 어디서 어느 요일에 매도하느냐로 마진 차이 큼.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 도매시장 매도는 reactive logistics가 아닌 <strong>"systematic arbitrage trading"</strong>.</p>
+<p><strong>3단계</strong>: ① 가락·노량진·부산·인천·울산 5대 시장 daily 가격 API 모니터링 ② 목요일 가락시장 spike 자동 활용 — 타 지역 물량을 수도권 밴(van) 라우팅으로 중도매 마진 200~400bp 회수 ③ "Wholesale arbitrage SaaS" 자체 platform화 — mid-tier 수산사에 라이센싱.</p>
+</div>`,
     }}
   />
 );
@@ -267,8 +309,15 @@ export const WidgetClimateClause = () => (
     }
     takeaway={{
       source: '자사 B2B 영업팀 우수 계약서 Pricing Escalation 조항 연구',
-      situation: '이제 고정가 장기계약은 도박입니다. 흉어로 쿼터가 터지거나 유가가 오르면 납품할수록 적자가 나는 데쓰 스파이럴에 빠집니다.',
-      actionPlan: "2026년 체결되는 모든 빅바이어 계약서엔 '기후 유닛 클로즈(환경 비용 증가 시 판매가 100% 반영)'를 강제해야 합니다.",
+      situation: `<div>
+<p>"기후 유닛 클로즈(Climate Unit Clause)"란 계약서에 명시되는 조항으로, 환경·기후 비용(어가 폭등·유가·운임) 상승 시 판가에 자동 전가하는 mechanism.</p>
+<p>현실: <strong>고정가 장기계약은 더 이상 안정성이 아닌 도박</strong>. 흉어 사이클·유가 폭등·운임 충격 시 납품할수록 적자가 나는 데스 스파이럴 진입. 2023~2024 다수 한국 vendor가 이로 마진 -10~15%p 직격.</p>
+<p>의미: 기후·매크로 변동성이 새 평시 standard. <strong>"고정가 계약 = 우리가 외생 충격 100% 떠안음" 구조 폐기</strong>가 핵심.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 계약 형태는 단순 commercial term이 아닌 <strong>"본업 P&amp;L의 외생 충격 흡수 mechanism"</strong>. clause 1줄이 마진 +10~15%p 차이.</p>
+<p><strong>3단계</strong>: ① 2026년 체결 모든 빅바이어 계약에 "Climate Unit Clause(어가·유가·환율 상승 시 판가 100% 자동 반영)" 강제 ② NPFMC TAC 결정·NOAA ENSO Index·OPEC 유가 결정의 자동 가격 trigger 명문화 ③ 빅바이어가 거부 시 multi-vendor switching cost 데이터로 협상 — 우리만의 차별화(MSC·VDS·Compliance)로 갱신 lock-in.</p>
+</div>`,
     }}
   />
 );
@@ -303,8 +352,15 @@ export const WidgetHolidayPremium = () => (
     }
     takeaway={{
       source: '닐슨(Nielsen) 스캐너(IRI) 미주 연휴 POS 해산물 매출 추적',
-      situation: '휴일 특수에 냉동 평대에 적재된 블록형 원물은 전혀 안 팔리지만, 즉석 조리가 가능한 델리(RTE) 코너의 매출은 80% 폭발합니다.',
-      actionPlan: '명절 D-3 시점부터 대형마트와 협의해 원물을 델리 코너(밀키트/조리포장)로 100% 스위칭하여 프리미엄 차익을 쓸어 담아야 합니다.',
+      situation: `<div>
+<p>"델리(RTE, Ready-To-Eat)"란 대형마트의 즉석 조리·포장 코너. 최근 한국 가구 구조 변화로 RTE가 매대 매출의 35~50% 차지.</p>
+<p>명절 특수 패턴: <strong>휴일·명절(설·추석·연말) 동안 냉동 블록 원물 매출은 -30~50% 감소</strong>, 반면 <strong>RTE 델리 코너 매출 +80% 폭발</strong>. 가족 모임·홈파티에서 즉석 조리 가능한 SKU 선호.</p>
+<p>의미: 명절 시즌의 마진은 SKU 변환만으로 +200~400bp 차이. 블록 그대로 매대에 두는 vendor와 RTE 변환한 vendor의 시즌 매출 갭이 결정적.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: 명절 D-3 시점은 단순 매대 적재가 아닌 <strong>"SKU dynamic transformation window"</strong>.</p>
+<p><strong>3단계</strong>: ① 명절 D-3부터 대형마트(이마트·롯데마트·홈플러스)와 협의 — 원물 100%를 RTE 밀키트/조리포장으로 스위칭 ② "명절 한정 limited edition" 프리미엄 SKU launch — ASP +30~50% ③ 자체 brand("K-Pollock Holiday Premium") D2C 채널 launch — 명절 시즌 마진 도매 마진 200~400bp 직접 회수.</p>
+</div>`,
     }}
   />
 );
@@ -341,8 +397,15 @@ export const WidgetSpeciesSwap = () => (
     }
     takeaway={{
       source: 'FAO FishStatJ 이기종 어종 수요 교차탄력성수리 모델',
-      situation: '명태 단가가 톤당 $4.5k를 넘어서는 폭등 시점에 접어들면 바이어들이 원재료를 틸라피아/광어로 60% 이상 무자비하게 스위칭합니다.',
-      actionPlan: '가격 인상(Mark-up) 정책을 밀고 나가되, Crossover Point ($4.5k)를 건드리지 않도록 빅바이어용 특별 할인 프로모션 락을 걸어야 합니다.',
+      situation: `<div>
+<p>"교차탄력성(Cross-Price Elasticity)"이란 대체재 가격 변동이 본 상품 수요에 미치는 영향. 명태의 가장 큰 substitution risk는 <strong>틸라피아(중국·동남아 양식)와 양식 광어</strong>.</p>
+<p>임계점: <strong>명태 단가 톤당 $4,500 돌파 시 B2B 바이어가 원재료를 틸라피아/광어로 60% 이상 무자비하게 스위칭</strong>. 한 번 스위칭하면 재진입 24~36개월 소요.</p>
+<p>의미: $4,500은 사실상 명태 가격의 <strong>"absolute ceiling"</strong>. 이 선을 넘으면 단기 마진 +5% 얻고 장기 시장 -60% 잃음. 가격 정책의 가장 중요한 visible line.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: $4,500 Crossover Point는 단순 가격 변수가 아닌 <strong>"vendor 시장 점유의 absolute boundary"</strong>.</p>
+<p><strong>3단계</strong>: ① $4,500 임계점 자동 alert — 돌파 임박 시 빅바이어용 특별 할인 프로모션 락 자동 발동 ② 가격 인상은 $4,300까지만, 그 이상은 차별화 SKU(MSC·인증)로 우회 ③ 틸라피아·광어 대비 우리 명태만의 가치 정량화 (단백질 함량·식감·brand history) 마케팅으로 switching cost 강제 증가.</p>
+</div>`,
     }}
   />
 );
@@ -378,8 +441,15 @@ export const WidgetD2CRoi = () => (
     }
     takeaway={{
       source: '쿠팡/아마존 프레시 B2C 밀키트 CPC CVP율 통계',
-      situation: 'D2C(자사몰/직배송) 이커머스 첫 진입 시 플랫폼 수수료와 마케팅비(45%)가 몽땅 빨려나가 B2B보다 이윤이 박살납니다.',
-      actionPlan: "초기 출혈을 감수하고 런칭하되, 구독형 로열티 멤버십 고객이 30%를 넘는 '로열 D2C' 단계가 되면 마진 45%의 황금알 거루가 완성됩니다.",
+      situation: `<div>
+<p>"D2C(Direct-to-Consumer) 이커머스"란 자사몰·직배송 채널로 중간 유통 없이 소비자에게 직접 판매. B2B 대비 마진 잠재력은 높지만 초기 cost 부담 큼.</p>
+<p>초기 비용 함정: <strong>D2C 첫 진입 시 플랫폼 수수료(쿠팡·네이버페이) + 마케팅비 합산 45%가 매출에서 빠짐</strong>. B2B 대비 단기 이윤 더 박살. 첫 12~18개월 P&amp;L은 적자 가능.</p>
+<p>임계점: <strong>구독형 로열티 멤버십 고객이 30%+ 도달 시 마진 45%의 골든 ROI 단계</strong>. 이후 광고비·플랫폼 의존도 감소 + lifetime value 폭증.</p>
+</div>`,
+      actionPlan: `<div>
+<p><strong>재정의</strong>: D2C는 단기 P&amp;L이 아닌 <strong>"3년 후 마진 45% 도달의 옵션 자산"</strong>. 초기 출혈 감수하는 capital allocation 결단이 본질.</p>
+<p><strong>3단계</strong>: ① 초기 12~18개월 출혈 감수 launch — capex $5~10M 별도 budget ② "Loyalty subscription" 가속 — 30% 로열 고객 목표 달성까지 마케팅비 +50% 일시 증액 ③ 도달 후 자체 brand "K-Pollock Premium" 글로벌 확장 — 일본·LA 한인 마트 + Amazon FBA. JP Morgan E-commerce Tech Desk와 partnership.</p>
+</div>`,
     }}
   />
 );
