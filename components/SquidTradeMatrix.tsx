@@ -171,8 +171,14 @@ export default function SquidTradeMatrix() {
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
-        situation: "2023년 양자 간 무역(Bilateral Trade) 매트릭스를 분석하면, 글로벌 오징어 밸류체인은 '중국을 정점으로 한 블랙홀 구조'를 보여줍니다. 페루(약 35%), 인도네시아(약 65%), 미국(약 60%) 등 주요 조업국 원물의 막대한 물량이 중국 가공 거점(수입 45만 톤)으로 빨려 들어가며, 여기서 생산된 가공품이 다시 태국, 일본, 한국, 대만 등으로 뻗어나가는 거대한 거미줄 독점망을 형성하고 있습니다.",
-        actionPlan: "대중국 원물 집중화에 대응하기 위해, 중국 칭다오 가공 거점을 단순히 경유하는 기존 소싱을 우회할 루트를 찾아야 합니다. 중국의 태국 및 동남아시아향 가공 수출 물량을 파악하고, 베트남(가공 단가 유리)이나 인도네시아(원물 조달 유리)에 자체 가공/물류 스포크를 배치함으로써 중국 수출 통제 리스크와 중간 마진을 최소화하는 다이렉트 소싱 파트너십을 구축해야 합니다.",
+        situation: `<div>
+<p>"양자 간 무역 매트릭스(Bilateral Trade Matrix)"는 글로벌 오징어 밸류체인의 정점 vs 변방 관계를 정량화한 indicator.</p>
+<p>2023 실측: <strong>중국이 정점 — 페루 35%·인도네시아 65%·미국 60% 원물이 중국 가공 거점으로 흡수 (수입 45만 톤)</strong> → 가공품이 태국·일본·한국·대만으로 재유출. <strong>거대한 거미줄 독점망</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 대중국 원물 집중화 우회. <strong>"다이렉트 소싱 파트너십"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 베트남(가공 단가 유리)·인도네시아(원물 조달 유리)에 자체 가공·물류 spoke 배치 ② 중국 칭다오 우회 — 중국 수출 통제 리스크·중간 마진 최소화 ③ "Multi-spoke direct sourcing platform" — 중국 의존도 60% → 30% 분산.</p>
+</div>`,
         source: "FAO FishStatJ Squid Trade Flow Matrix (2023)",
       }}
     />

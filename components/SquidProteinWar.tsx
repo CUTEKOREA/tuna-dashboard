@@ -29,8 +29,14 @@ export default function SquidProteinWar() {
         </AreaChart>
       }
       takeaway={{
-        situation: "수직 계열화된 양식업(연어) 및 사육 테크(가금류)가 글로벌 단백질 베이스라인을 장악한 반면, 100% 자연 채취에 의존하는 두족류(Cephalopod)의 생물량 펀더멘털은 완전히 붕괴(Structural Collapse)되어 대체 불가능한 희소성을 확보했습니다.",
-        actionPlan: "[Asset Class Re-rating] 오징어를 더 이상 일반 수산물(Commodity) 카테고리로 분류하지 마십시오. 극단적 희소성을 띤 'Veblen Good(과시재)' 성격의 럭셔리 단백질로 포지셔닝을 전면 수정해야 합니다. 보유 중인 냉동 재고를 랍스터, 캐비아에 준하는 초프리미엄 자산(Asset Class)으로 장부상 즉각 재평가(Revaluation)하고 판가를 수직 인상.",
+        situation: `<div>
+<p>"단백질 전쟁(Protein War)"이란 양식·사육 vs 자연 채취 단백질의 글로벌 시장 점유 경쟁.</p>
+<p>구조적 격차: <strong>수직 계열화 양식(연어)·사육 테크(가금)는 글로벌 베이스라인 장악 vs 100% 자연 채취 두족류는 생물량 fundamentals 붕괴 → 대체 불가능한 희소성 확보</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 오징어를 commodity 분류 폐기. <strong>"Veblen Good 럭셔리 단백질"</strong>로 격상.</p>
+<p><strong>3단계</strong>: ① 보유 냉동 재고를 랍스터·캐비아급 초프리미엄 자산으로 장부상 재평가 ② 판가 수직 인상 ③ "Premium K-Squid" 자체 brand — 글로벌 luxury food 채널 진출.</p>
+</div>`,
         source: "FAO Food Balance Sheets",
       }}
     />

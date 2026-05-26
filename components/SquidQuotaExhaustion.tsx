@@ -27,8 +27,14 @@ export default function SquidQuotaExhaustion() {
         </AreaChart>
       }
       takeaway={{
-        situation: "글로벌 ESG 규제 압박으로 남반구 핵심 조업국들의 개별할당제(ITQ) 쿼터가 5~6월경 조기 고갈(Depletion)되며 어업이 강제 셧다운(Shutdown) 조치되는 빈도가 급증했습니다. 직후 글로벌 시세가 수직 폭등하는 공급 공백 국면이 상시화되었습니다.",
-        actionPlan: "[Preemptive Global Buyout] 타국 선단의 쿼터 소진율 텔레메트리를 실시간 트래킹 하십시오. 특정 메이저 어장의 ITQ 소진율이 80% 임계치를 돌파하는 즉시, 1개월 내 발생할 시세 폭등을 겨냥해 남미/대만 등 제3국 선단들이 보유한 잔여 해상 선적 물량을 선도가(Premium)에 전량 싹쓸이(Buyout)하는 글로벌 알박기 전략을 지시합니다.",
+        situation: `<div>
+<p>"쿼터 조기 고갈(Quota Depletion)"이란 ITQ 어획 한도가 시즌 중반에 100% 소진되어 어업 강제 셧다운되는 현상.</p>
+<p>패턴: <strong>남반구 핵심 조업국 ITQ 5~6월 조기 고갈 → 셧다운 → 글로벌 시세 수직 폭등 공백 국면 상시화</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 쿼터 80% 임계점은 1개월 후 시세 폭등의 alarm.</p>
+<p><strong>3단계</strong>: ① 타국 선단 쿼터 소진율 실시간 텔레메트리 ② 80% 돌파 즉시 남미·대만 제3국 잔여 해상 선적 물량 선도가 buyout ③ 1개월 후 시세 폭등 시 +30~50% 마진 회수.</p>
+</div>`,
         source: "포클랜드 어업국 / 원양 선단",
       }}
     />

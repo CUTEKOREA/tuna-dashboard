@@ -112,8 +112,14 @@ export default function SquidUnitPrice() {
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       customBody={<>{toggles}{chart}</>}
       takeaway={{
-        situation: "일본($11,894/t)과 모로코($10,072/t)는 프리미엄 식자재 수요를 바탕으로 최고 단가 시장을 형성하고 있습니다. 반면, 태국($7,995/t)과 베트남($6,292/t)은 가공 거점으로서 견고한 단가를 유지 중이며, 페루($2,060/t)나 칠레($1,677/t) 등 원물 생산국들의 수입 단가와는 최대 5~6배에 달하는 극단적 갭을 보여줍니다. 한국($4,583/t)은 수입 단가가 스페인 수준이긴 하나 역성장하며 가공 경쟁력을 잃고 있습니다.",
-        actionPlan: "한국 내수 시장의 저가 원물 수입 후 단순 유통하는 방식에서 벗어나, 고부가가치 창출 구조로 전환해야 합니다. 이탈리아·스페인의 타파스(Tapas)용 HMR이나 일본의 세븐일레븐 편의점용 프리미엄 안주류 패키징을 벤치마킹하여 'K-안주(K-Snack)' 형태의 고단가 가공품으로 전환, 수익성이 검증된 수출 시장 및 일본 내수 시장 진입을 모색.",
+        situation: `<div>
+<p>국가별 오징어 수입 단가 매트릭스 — 글로벌 가치 사슬 위치 정량화.</p>
+<p>실측: <strong>일본 $11,894/t · 모로코 $10,072/t (최고)</strong>; 태국 $7,995/t · 베트남 $6,292/t (가공 거점); 페루 $2,060/t · 칠레 $1,677/t (원물 생산국). <strong>5~6배 갭</strong>. 한국 $4,583/t — 스페인 수준이나 역성장 중.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 한국 단순 유통 모델 폐기. <strong>"고부가가치 K-Snack 변환"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 이탈리아·스페인 타파스 HMR 벤치마킹 ② 일본 세븐일레븐 프리미엄 안주류 벤치마킹 ③ "K-안주(K-Snack) Premium" 자체 brand — 일본·EU·미국 수출.</p>
+</div>`,
         source: "FAO FishStatJ Squid Import Unit Price by Country",
       }}
     />

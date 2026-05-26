@@ -31,8 +31,14 @@ export default function SquidLogisticsOptimizer() {
         </BarChart>
       }
       takeaway={{
-        situation: "콜드체인 보관 주차(Weeks)가 경과할수록 창고료 및 기회비용(Carry Cost)이 복리로 누적되어, 12주 차(W12)를 기점으로 단기 시세차익 기대치를 완전히 초과(Dead-cross)하는 네거티브 롤일드(Negative Roll-Yield) 현상이 확인됩니다.",
-        actionPlan: "[Inventory Duration Cap] 투기적 재고 홀딩을 전면 금지하십시오. 국내 입항 후 '콜드체인 체류 10주(W10)'를 강제 청산(Stop-loss) 상한선으로 시스템에 하드코딩하고, 11주 차 돌입 전 도매 시장에 시장가(Market Order) 선도 덤핑 출회를 단행하여 악성 재고에 묶인 유동성(Liquidity)을 즉각 해방해야 합니다.",
+        situation: `<div>
+<p>"네거티브 롤일드(Negative Roll-Yield)"란 재고 보관 cost가 시세 상승률보다 큰 임계점.</p>
+<p>실측: <strong>콜드체인 보관 12주(W12) 시 창고료·기회비용 누적이 단기 시세차익 기대치 완전 초과 — 데드크로스</strong>. 추가 보관할수록 손실 가속.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 투기적 재고 holding 전면 금지. <strong>"Inventory Duration Cap"</strong> 시스템 의무.</p>
+<p><strong>3단계</strong>: ① 콜드체인 체류 10주(W10) 강제 청산 상한선 시스템 하드코딩 ② 11주 차 돌입 전 도매 시장 시장가 선도 덤핑 ③ "Aging dashboard" — SKU별 weekly monitoring + CFO 직보.</p>
+</div>`,
         source: "국내 냉장창고 단가표 & 물류팀",
       }}
     />

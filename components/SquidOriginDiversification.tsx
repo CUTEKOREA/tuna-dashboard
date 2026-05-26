@@ -30,8 +30,14 @@ export default function SquidOriginDiversification() {
         </BarChart>
       }
       takeaway={{
-        situation: "페루 해역 조업물을 중국 다롄 공장으로 이송 후 재가공 수입하는 기존 톨링 삼각무역 라인은 리드타임(Lead-time)이 최대 80일까지 지연되는 치명적 공급망 마비(Disruption) 리스크에 노출되어 있습니다.",
-        actionPlan: "[Lead-time Hedging via FAS] 수에즈/파나마 운하 병목 등 지정학적 해운 리스크 폭발 시기를 대비하십시오. 중국 우회 라인 의존도(Exposure)를 40% 이하로 통제하고, 단가가 15% 이상 비싸더라도 선상동결(FAS) 후 30일 내 국내로 즉시 다이렉트 꽂히는 '미주 태평양 직항' 원물 라인 물량에 프리미엄을 주고 우선 장기 가계약(Hedging)을 맺어 블랙스완에 대비해야 합니다.",
+        situation: `<div>
+<p>"원산지 다변화 리드타임"이란 페루→중국→한국 톨링 삼각무역 vs 직항의 리드타임 격차.</p>
+<p>위험: <strong>페루→다롄→한국 톨링 라인 최대 80일 지연 — 공급망 마비 리스크</strong>. 수에즈·파나마 운하 병목 시 추가 +30~60일.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 톨링 의존은 dead model. <strong>"FAS 직항 hedging"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 중국 우회 라인 의존도 40% 이하 통제 ② 단가 +15% 비싸더라도 선상동결(FAS) 30일 직항 라인 우선 장기 가계약 ③ "Blackswan resilience portfolio" — 다항만·다국적 분산으로 단일 SPOF 회피.</p>
+</div>`,
         source: "선사 선박스케줄 & SCM 리포트",
       }}
     />

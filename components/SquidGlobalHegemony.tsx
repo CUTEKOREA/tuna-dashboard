@@ -33,8 +33,14 @@ export default function SquidGlobalHegemony() {
         </ScatterChart>
       }
       takeaway={{
-        situation: "1990년대 북태평양을 지배했던 한국/일본 선단의 생물량 장악력(M/S)은 소멸(Evaporation) 직전이며, 막강한 국가 보조금(Subsidies)으로 무장한 중국의 극양망(Mega-trawler) 선단이 전체 글로벌 오징어 어장의 파이를 독식하는 패권 장악(Hegemony Shift)이 완료되었습니다.",
-        actionPlan: "[Blue Ocean Pivot] 중국의 자본 공세가 휩쓰는 북태평양/남서대서양 메인 어장(Red Ocean)에서의 소모전(Attrition Warfare)을 즉시 포기 선언하십시오. 중국 선단 투사율이 10% 미만인 아프리카 서안이나 인도양 미개척 FAO Area 등 극단적 블루오션으로 선단을 100% 우회 전개하는 프론티어 탐사(Frontier Exploration) 조업에 전사 CAPEX를 올인해야 합니다.",
+        situation: `<div>
+<p>"패권 장악(Hegemony Shift)"이란 글로벌 어업 산업의 지정학적 권력 이동.</p>
+<p>30년 변화: <strong>1990s 북태평양 한·일 선단 지배 → 2026 중국 메가 트롤러(국가 보조금) 글로벌 독식</strong>. 한·일 M/S 사실상 소멸 직전.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: Red Ocean 소모전 폐기. <strong>"Blue Ocean Pivot"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 북태평양·남서대서양 메인 어장 포기 선언 ② 중국 선단 투사율 10% 미만 아프리카 서안·인도양 미개척 FAO Area로 100% 우회 ③ "Frontier Exploration" 조업에 전사 capex 올인.</p>
+</div>`,
         source: "FAO FishStatJ (1990-2025)",
       }}
     />

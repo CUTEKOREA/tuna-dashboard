@@ -30,8 +30,14 @@ export default function SquidSizePremium() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "기상 이변에 따른 어체 왜소화(Shrinkage) 트렌드로 인해 대형 규격(Large/Jumbo) 오징어 품귀 현상이 심화되며, 소형 대비 도매 톤당 단가 스프레드가 기하급수적으로 폭발하는 초격차 '중량 프리미엄(Size Premium)' 시대가 열렸습니다.",
-        actionPlan: "[Premium Arbitrage Optimization] 톤(Volume) 단위의 무차별 도매 출하를 즉각 중단하십시오. 그레이딩(Grading) 자동화 설비를 통해 대형 개체를 100% 분리 추출(Skimming)하여 호텔/고급 일식체인 전용 VVIP 라인업으로 직납하고, 조업 타겟팅 알고리즘을 대형 개체 서식 수온/수심으로 전면 재조정하여 프리미엄 차익을 극대화(Maximize)해야 합니다.",
+        situation: `<div>
+<p>"중량 프리미엄(Size Premium)"이란 어체 사이즈에 따른 도매 단가 격차. 기상 이변으로 어체 왜소화 가속.</p>
+<p>실측: <strong>대형 규격(Large/Jumbo) 품귀 → 소형 대비 도매 톤당 단가 스프레드 기하급수 폭발</strong>. 초격차 size premium 시대.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 무차별 도매 출하 중단. <strong>"Premium Arbitrage Optimization"</strong>.</p>
+<p><strong>3단계</strong>: ① 그레이딩 자동화 설비로 대형 개체 100% Skimming ② 호텔·고급 일식체인 VVIP 직납 ③ 조업 타겟팅 알고리즘을 대형 개체 서식 수온·수심으로 재조정 — ASP +200~300% 프리미엄.</p>
+</div>`,
         source: "수협 위탁 단가 및 수산 시장 동향",
       }}
     />

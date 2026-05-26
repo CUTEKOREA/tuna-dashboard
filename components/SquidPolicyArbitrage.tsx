@@ -46,8 +46,14 @@ export default function SquidPolicyArbitrage() {
         </LineChart>
       }
       takeaway={{
-        situation: "명절 직전 '정부 비축물량 고강도 방출' 이벤트와 '금어기로 인한 수급경색 단기 해소를 위한 조정관세 인하(최대 22% -> 할당관세)' 이벤트가 발생할 때마다, 수입업자들은 매입(Punching) 러시를 하며 시장가가 인위적으로 눌리는 현상이 포착되었습니다.",
-        actionPlan: "단순 거시 스프레드만 보는 것은 리스크합니다. 정책 이벤트 캘린더를 시스템화하여, 조정관세 완화가 예상되는 시점 직전에 남반구 성수기 조업 물량을 '보세 창고 재고' 형태로 풀고, 방출 이벤트 직후에 시중에 본격 유통시키는 '정밀 창고 운용(Precision Warehousing)' 전략이 필수입니다.",
+        situation: `<div>
+<p>"정책 아비트라지(Policy Arbitrage)"란 정부 정책 이벤트(비축 방출·조정관세 인하)가 시장가에 미치는 인위적 영향을 활용하는 trading.</p>
+<p>패턴: <strong>명절 직전 정부 비축물량 방출 + 조정관세 22% → 할당관세 인하 이벤트마다 수입업자 매입 러시 → 시장가 인위적 압박</strong>. 예측 가능한 systematic opportunity.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 단순 거시 스프레드 의존은 위험. <strong>"Precision Warehousing"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 정책 이벤트 캘린더 시스템화 ② 조정관세 완화 예상 시점 직전 남반구 성수기 물량을 보세 창고 재고로 풀기 ③ 방출 이벤트 직후 시중 본격 유통 — timing arbitrage로 마진 +15~25%p.</p>
+</div>`,
         source: "관세청 조정관세 공고 & 해수부 비축물량 방출 캘린더",
       }}
     />

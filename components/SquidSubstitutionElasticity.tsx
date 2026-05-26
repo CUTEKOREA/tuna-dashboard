@@ -27,8 +27,14 @@ export default function SquidSubstitutionElasticity() {
         </LineChart>
       }
       takeaway={{
-        situation: "국내산 살오징어의 단가 랠리(Rally)가 펀더멘털을 이탈하며, 강한 대체재인 남미산 대왕오징어(Jumbo Flying Squid)와의 톤당 스프레드가 한계치(KRW 7,000 Gap)를 돌파하는 극단적 밸류에이션 왜곡(Valuation Distortion) 상태입니다.",
-        actionPlan: "[Raw Material Substitution Execution] 프리미엄(살오징어) 라인업에 대한 B2B 프로모션을 전면 중단하십시오. 두 어종 간 가격 스프레드가 임계치(KRW 6,000)를 초과하는 즉시, 가공 및 식자재 투입 원료 100%를 초저가 남미산 대왕오징어로 강제 롤오버(Rollover)하는 '코스트 스위칭(Cost Switching)' 매뉴얼을 전 팩토리에 즉각 하달해야 합니다.",
+        situation: `<div>
+<p>"대체 탄력성(Substitution Elasticity)"이란 한 어종 가격이 일정선 넘으면 대체재로 강제 전환되는 임계점.</p>
+<p>현재 왜곡: <strong>국내산 살오징어 단가 랠리가 펀더멘털 이탈 → 남미 대왕오징어 spread KRW 7,000 한계치 돌파 — 극단적 밸류에이션 왜곡</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 스프레드 KRW 6,000 임계점은 자동 cost switching trigger.</p>
+<p><strong>3단계</strong>: ① 살오징어 B2B 프로모션 전면 중단 ② 임계치 초과 즉시 가공·식자재 원료 100% 남미 대왕오징어로 강제 롤오버 ③ "Cost Switching 매뉴얼" 전 팩토리 하달.</p>
+</div>`,
         source: "KMI & 무역통계",
       }}
     />
