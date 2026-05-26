@@ -46,8 +46,14 @@ export default function SalmonInsightDoubleMateriality() {
         </ScatterChart>
       }
       takeaway={{
-        situation: "EU 기업지속가능성보고지침(CSRD) 발효로 인해, 한국 수산 기업 역시 유럽 시장 진출 시 Scope 3(사료/물류) 탄소 배출량 및 공급망 인권 실사 결과를 투명하게 의무 공시해야 하는 이중 중대성(재무적+환경적) 압박에 직면했습니다.",
-        actionPlan: "ESG 공시를 단순 규제가 아닌 '프리미엄 시장 진입 장벽(Moat)'으로 활용하십시오. 녹색 채권(Green Bond) 자금을 조달하여 '친환경 사료 개발'과 '육상 양식장(RAS) 전환'에 집중 배정함으로써, 비규제 경쟁자들을 유럽 고급 시장에서 합법적으로 축출해야 합니다.",
+        situation: `<div>
+<p>"이중 중대성(Double Materiality)"이란 EU CSRD가 요구하는 재무적 + 환경적 영향 동시 공시.</p>
+<p>현실: <strong>EU CSRD 발효 → 한국 수산 기업 유럽 진출 시 Scope 3(사료·물류) 탄소 배출량 + 공급망 인권 실사 결과 투명 의무 공시</strong>. 이중 중대성 압박.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: ESG 공시는 단순 규제가 아닌 <strong>"프리미엄 시장 진입 장벽(Moat) instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① Green Bond 자금 조달 ② 친환경 사료 개발 + 육상 양식장(RAS) 전환 capex 집중 배정 ③ 비규제 경쟁자 유럽 고급 시장 축출 — first-mover regulatory moat 락업.</p>
+</div>`,
         source: "EU CSRD & TNFD Disclosure [📡 LIVE API 연동: Scope 3 배출량 및 생물다양성 실사]"
       }}
     />

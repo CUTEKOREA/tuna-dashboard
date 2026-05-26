@@ -240,8 +240,14 @@ export default function SalmonForecastSimulator() {
       telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
-        situation: `${selected.flag} ${selected.label} 기준 — FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}.${fc} 칠레·노르웨이는 FTA 양허 0%로 관세 면제, 호주·캐나다·영국은 10% 관세가 누적되어 착지원가 격차를 형성합니다.`,
-        actionPlan: "환율·운임·FOB 3대 변수의 LIVE 신호가 일치 방향으로 ±2% 이상 흔들리면 자동 헤지 알림을 트레이딩 데스크에 발사하고, 3개월 전망이 +3% 이상 상승 신뢰도 70% 이상일 때 선구매 비중을 30%P 확대합니다.",
+        situation: `<div>
+<p>"착지원가 시뮬레이터(Landed Cost Simulator)"는 origin·환율·운임·관세 4개 변수가 결합된 최종 매입 cost 동적 계산 instrument.</p>
+<p>국가별 비교: <strong>${selected.flag} ${selected.label} — FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}</strong>.${fc} <strong>칠레·노르웨이 FTA 양허 0% 관세 면제 vs 호주·캐나다·영국 10% 관세 누적</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 시뮬레이터는 단순 계산이 아닌 <strong>"systematic procurement timing trigger"</strong>.</p>
+<p><strong>3단계</strong>: ① 환율·운임·FOB 3대 변수 LIVE 신호 ±2% 흔들림 시 자동 헤지 알림 ② 3개월 전망 +3% 상승 신뢰도 70%+ 시 선구매 비중 +30%p 확대 ③ JP Morgan Macro Quant Desk와 ML 모델 collab.</p>
+</div>`,
         source: "Comtrade · KCS · WITS · ECOS + 한기욱(KMI 2024) 단기 전망모형 · 한기욱(KMI 2025) AI 무역전망체계",
       }}
     />

@@ -102,8 +102,17 @@ export default function SalmonPolicyImpact() {
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
-        situation: `선택 시나리오 "${scenario.title}" 기준 — 착지원가 ${scenario.impacts.landedCost.pct > 0 ? '+' : ''}${scenario.impacts.landedCost.pct}%, 수입물량 ${scenario.impacts.importVolume.pct > 0 ? '+' : ''}${scenario.impacts.importVolume.pct}%, 소매가 ${scenario.impacts.retailPrice.pct > 0 ? '+' : ''}${scenario.impacts.retailPrice.pct}%로 모델링됩니다. ${scenario.analysis}`,
-        actionPlan: scenario.tak,
+        situation: `<div>
+<p>"정책 충격 시나리오 시뮬레이션" — 글로벌 정책 이벤트가 한국 연어 시장에 미치는 정량 영향을 사전 모델링하는 instrument.</p>
+<p>선택 시나리오 <strong>"${scenario.title}"</strong> 기준:</p>
+<ul style="margin: 4px 0 0 18px; padding: 0;">
+<li>착지원가 <strong>${scenario.impacts.landedCost.pct > 0 ? '+' : ''}${scenario.impacts.landedCost.pct}%</strong></li>
+<li>수입물량 <strong>${scenario.impacts.importVolume.pct > 0 ? '+' : ''}${scenario.impacts.importVolume.pct}%</strong></li>
+<li>소매가 <strong>${scenario.impacts.retailPrice.pct > 0 ? '+' : ''}${scenario.impacts.retailPrice.pct}%</strong></li>
+</ul>
+<p>${scenario.analysis}</p>
+</div>`,
+        actionPlan: `<div><p><strong>재정의</strong>: 정책 시나리오는 단순 macro 정보가 아닌 <strong>"본업 P&amp;L의 systematic stress test"</strong>.</p><p>${scenario.tak}</p></div>`,
         source: '박혜진(2022) 수입수산물 대체관계 · 박혜진(2023) 전략품목 관리 · 박혜진(2025) SIMP 대응실태 · KMI(2026) 동북아 교역구조',
       }}
     />

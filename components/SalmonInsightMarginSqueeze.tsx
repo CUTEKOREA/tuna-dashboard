@@ -36,8 +36,14 @@ export default function SalmonInsightMarginSqueeze() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "EU 훈제 연어 단가가 2019년 15 EUR/kg에서 2023년 19 EUR/kg로 급등했습니다. 그러나 사료, 에너지, 물류 비용의 동반 폭등으로 실질 마진은 심각한 압박을 받고 있습니다. 폴란드는 7만 7천 톤(EU 전체의 48%)을 독점 처리하며 밸류체인 내 병목점(Chokepoint)으로 작용하고 있습니다.",
-        actionPlan: "경직된 장기 고정가 공급 계약(Long-term contract) 비중을 대폭 축소하고, 매입원가 연동형 유연 계약(Index-linked pricing) 모델을 즉각 도입하여 비용 상승분을 바이어에게 전가(Pass-through)할 수 있는 가격 결정력을 확보해야 합니다. 동시에 폴란드 집중 리스크를 분산하기 위해 동유럽 가공 허브 다변화를 추진.",
+        situation: `<div>
+<p>"마진 스퀴즈(Margin Squeeze)"란 판가 인상보다 cost 인상이 더 빨라 실질 마진이 축소되는 현상.</p>
+<p>EU 훈제 연어: <strong>2019 15 EUR/kg → 2023 19 EUR/kg 판가 급등에도 사료·에너지·물류 동반 폭등으로 실질 마진 압박</strong>. <strong>폴란드가 7.7만 톤(EU 48%) 독점 처리</strong>하며 밸류체인 chokepoint.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 고정가 계약은 dead model. <strong>"Index-linked pricing + 거점 분산"</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 장기 고정가 계약 대폭 축소 ② 매입원가 연동형 유연 계약(Index-linked) 즉각 도입 — 비용 상승분 바이어 전가 ③ 폴란드 집중 리스크 분산 — 동유럽(체코·헝가리) 가공 허브 다변화.</p>
+</div>`,
         source: "EUMOFA Trade Data [📡 LIVE API 연동: Eurostat PRODCOM]"
       }}
     />

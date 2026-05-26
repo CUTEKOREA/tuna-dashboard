@@ -34,8 +34,14 @@ export default function SalmonInsightAutomationYield() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "북미 및 유럽 가공 허브의 극심한 노동력 부족과 임금 인상이 가공 마진을 압박하고 있음. 수작업에 의존하는 기존 방식은 연간 10~15%의 생산성 손실과 품질 불균일성을 야기함.",
-        actionPlan: "BAADER 581 Pro와 같은 모듈형 자동화 시스템(필렛팅 및 트림 통합)을 전면 도입해야 함. 이는 수율을 3~4% 향상시키고 수작업 의존도(Exposure)를 40% 감소시켜 즉각적인 재무적 Bottom-line(순이익)을 창출하며, IoT 기반 예지보전으로 다운타임을 원천 차단함.",
+        situation: `<div>
+<p>"자동화 수율(Automation Yield)"은 수작업 vs 자동화 가공의 수율·인건비 비교 KPI.</p>
+<p>현 위기: <strong>북미·유럽 가공 허브 극심한 노동력 부족 + 임금 인상 → 수작업 의존 vendor 연간 -10~15% 생산성 손실 + 품질 불균일성</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 자동화는 단순 cost 절감이 아닌 <strong>"향후 5년 vendor 생존 instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① BAADER 581 Pro 모듈형 자동화(필렛팅·트림 통합) 전면 도입 ② 수율 +3~4% + 수작업 의존도 -40% ③ IoT 예지보전 — 다운타임 원천 차단.</p>
+</div>`,
         source: "The Global Salmon Industry Value Chain Outlook 2024-2026 / BAADER Data"
       }}
     />

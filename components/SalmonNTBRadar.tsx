@@ -120,8 +120,14 @@ export default function SalmonNTBRadar() {
       telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
-        situation: `6개 비관세 규제 트랙 모니터링 결과 — 정상 ${counts.safe}건, 모니터링 ${counts.monitor}건, 주의 ${counts.warning}건, 위험 ${counts.critical}건. 러시아산 OFAC/EU 제재가 critical, 미국 SIMP 확대(2026.01~)가 warning으로 진입했고, EU SPS·TBT는 노르웨이 EEA 우대로 모니터링 단계입니다.`,
-        actionPlan: "미국 SIMP 시행 D-30 시점에 노르웨이·칠레 1차 가공사와 디지털 이력추적 인증을 완료하고, 러시아산 제3국 우회 수출 의심 거래선을 즉시 차단합니다. 한-EFTA C/O 발급 요건 엄격화 대응으로 노르웨이 신선의 원산지 증명 프로세스를 사전 정비합니다.",
+        situation: `<div>
+<p>"NTB(Non-Tariff Barrier, 비관세 장벽) 레이더"는 글로벌 6개 비관세 규제 트랙을 실시간 모니터링하는 dashboard.</p>
+<p>현황: 정상 <strong>${counts.safe}건</strong> · 모니터링 ${counts.monitor}건 · 주의 ${counts.warning}건 · 위험 <strong>${counts.critical}건</strong>. <strong>러시아 OFAC/EU 제재 critical · 미국 SIMP 확대(2026.01~) warning</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: NTB는 단순 규제 정보가 아닌 <strong>"vendor whitelist 등재 instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① 미국 SIMP 시행 D-30 노르웨이·칠레 1차 가공사 디지털 이력추적 인증 완료 ② 러시아 제3국 우회 의심 거래선 즉시 차단 ③ 한-EFTA C/O 발급 요건 엄격화 대응 — 노르웨이 신선 원산지 증명 프로세스 사전 정비.</p>
+</div>`,
         source: "WITS NTM · OFAC SDN · MFDS · 박혜진(2023, 2025) · 이정미(2025) · KMI(2026)",
       }}
     />

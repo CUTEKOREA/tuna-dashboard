@@ -35,8 +35,14 @@ export default function SalmonInsightFeedBio() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "사료는 양식 매입원가의 50~55%를 차지하며, 해수온 상승 및 엘니뇨로 인한 남미 어획량 감소가 어분(Fishmeal) 가격의 극심한 변동성을 야기합니다. 글로벌 연어 양식업계는 이러한 매입원가 리스크를 피면하기 위해 대체 단백질 도입을 가속화하고 있습니다.",
-        actionPlan: "MOWI 등 선도 기업들은 가금류 부산물, 곤충 단백질, 미세조류를 적극 도입해 FIFO(자연산 어획 의존도(Exposure))를 0.77까지, 가공 부산물을 재활용한 rFIFO는 0.60까지 통제하는 데 성공했습니다. 우리 역시 대체 사료 파이프라인 및 원료 공급망 지분 투자를 통해 사료 매입원가 변동성을 구조적으로 헤징(Hedging)해야 합니다.",
+        situation: `<div>
+<p>"FIFO(Fish In, Fish Out)"는 양식 1kg 생산에 필요한 자연산 어분 kg. 양식 연어의 가장 큰 sustainability 변수.</p>
+<p>현실: <strong>사료 매입원가 50~55% 차지 + 해수온 상승·엘니뇨로 남미(페루) 어분 가격 극심한 변동성</strong>. 글로벌 leader 대체 단백질 가속화.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 어분 의존은 climate beta 100% 노출. <strong>"Alternative protein portfolio"</strong>가 본질.</p>
+<p><strong>3단계</strong>: ① MOWI 모델 차용 — 가금류 부산물·곤충 단백질·미세조류 도입 ② FIFO 0.77 + rFIFO 0.60 목표 ③ Alternative protein 스타트업 minority equity 인수 — Insectum·BioMar IP partnership.</p>
+</div>`,
         source: "MOWI Integrated Annual Report 2024 (Empirical Data)"
       }}
     />

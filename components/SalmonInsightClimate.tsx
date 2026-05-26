@@ -47,8 +47,14 @@ export default function SalmonInsightClimate() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "단기적인 수온 상승은 연어 성장을 앞당겨 출하 사이클을 단축시키나, 임계점(+1.5°C) 초과 시 해파리 및 조류 대발생으로 해상 폐사율이 폭증(2024년 16% 초과)합니다. 더 큰 치명타는 2030년 발효될 살인적인 톤당 탄소세(Carbon Tax) 폭탄입니다.",
-        actionPlan: "PEF 자본 조달 시 '수온 리스크 프리미엄'과 '잠재 탄소세 부채'를 재무 모델에 선제 반영하십시오. 디젤 기반 물류망과 사료 바지선을 전동화(Electrification) 및 수소 하이브리드로 즉시 교체하여 다가올 세금 폭탄과 Scope 3 규제를 원천 헷징해야 합니다.",
+        situation: `<div>
+<p>"기후 임계점 + 탄소세 폭탄"은 양식 연어의 가장 큰 medium-term existential 위협.</p>
+<p>현실: <strong>SST +1.5°C 임계점 초과 시 해파리·조류 대발생으로 해상 폐사율 폭증(2024 16% 초과)</strong>. 추가 치명타: <strong>2030 발효 톤당 탄소세 폭탄</strong>.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 기후+탄소세는 단순 ESG 변수가 아닌 <strong>"PEF 자본 조달 valuation 결정 변수"</strong>.</p>
+<p><strong>3단계</strong>: ① PEF 재무 모델에 "수온 리스크 프리미엄 + 잠재 탄소세 부채" 선제 반영 ② 디젤 물류망·사료 바지선 → 전동화·수소 하이브리드 교체 ③ Scope 3 원천 헷징 — 2030 탄소세 폭탄 회피.</p>
+</div>`,
         source: "IEA Net Zero & GSI Report [📡 LIVE API 연동: 실시간 탄소세율 및 해수온 모니터링]"
       }}
     />

@@ -34,8 +34,14 @@ export default function SalmonInsightProcessing() {
         </BarChart>
       }
       takeaway={{
-        situation: "유럽 및 북미 선진국 가공 허브의 극심한 노동력 부족 현상과 FDA의 이력 추적 의무화 등 까다로운 리테일 유통 기준 압박이 심화되고 있습니다. 수작업에 의존하는 기존 가공 공정은 더 이상 구조적 마진을 방어할 수 없습니다.",
-        actionPlan: "BAADER 시스템과 같은 뼈/내장 제거 통합 로보틱스 라인을 도입하여 인건비를 40% 절감하고 수율을 3~4% 극대화하십시오. AI 기반 재고 이력 관리(GenBI)와 슈퍼 칠링 기술을 신규 CAPEX 최우선 순위로 배정해야 합니다.",
+        situation: `<div>
+<p>"가공 자동화"는 EU·북미 가공 허브의 lifeline. 인건비 + 규제 압박이 동시 가속.</p>
+<p>현 위기: <strong>유럽·북미 가공 허브의 극심한 노동력 부족 + FDA 이력 추적 의무화 압박</strong>. 수작업 의존 vendor는 구조적 마진 방어 불가.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 가공 자동화는 단순 OPEX 절감이 아닌 <strong>"규제 compliance + 마진 방어 dual instrument"</strong>.</p>
+<p><strong>3단계</strong>: ① BAADER 통합 로보틱스 라인 도입 — 인건비 -40%, 수율 +3~4% ② AI 기반 재고 이력 관리(GenBI) 신규 capex ③ 슈퍼 칠링 기술 최우선 capex — FDA 이력 추적 의무화 사전 충족.</p>
+</div>`,
         source: "BAADER Group IR · Mowi Annual Report 2024 [📡 LIVE API 연동: 기업 공시]"
       }}
     />

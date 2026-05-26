@@ -43,8 +43,14 @@ export default function SalmonInsightFeed() {
         </ComposedChart>
       }
       takeaway={{
-        situation: "기후 변화(엘니뇨 등)로 인한 어분(Fishmeal) 가격의 변동성이 EBITDA 마진을 훼손하고 있습니다. 매입원가의 60%를 차지하는 사료 통제권 없이는 구조적 수익성 방어가 불가능합니다.",
-        actionPlan: "글로벌 1위 Mowi처럼 사료 밸류체인을 전면 내재화(In-house)하거나 독점 파트너십을 구축해야 합니다. 어분 의존도(Exposure)를 낮출 수 있는 곤충/미세조류 기반 대체 단백질 스타트업 M&A를 즉각 검토.",
+        situation: `<div>
+<p>"사료 통제권(Feed Control)"이란 매입원가 60%를 차지하는 사료 supply에 대한 수직 통합 권한.</p>
+<p>현 위기: <strong>기후 변화(엘니뇨)로 어분 가격 변동성 → EBITDA 마진 훼손</strong>. 사료 통제권 없이는 구조적 수익성 방어 불가.</p>
+</div>`,
+        actionPlan: `<div>
+<p><strong>재정의</strong>: 사료 통제권은 단순 원료 확보가 아닌 <strong>"본업 P&amp;L의 가장 큰 control point"</strong>.</p>
+<p><strong>3단계</strong>: ① Mowi 모델 차용 — 사료 밸류체인 전면 in-house화 ② 독점 파트너십(Cargill·Skretting·BioMar) 구축 ③ 곤충·미세조류 기반 대체 단백질 스타트업 M&amp;A 즉각 검토.</p>
+</div>`,
         source: "Mowi ASA Annual Report 2024 · BioMar Sustainability 2024 [📡 LIVE API 연동: FAO FishPrice]"
       }}
     />
