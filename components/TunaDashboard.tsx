@@ -36,6 +36,11 @@ import {
   InsightPriceTier,
   InsightCohortDoubleShock,
 } from './TunaJapan2050Insights';
+import {
+  InsightKmiBluefinYearly,
+  InsightKmiBluefinSupplyShift,
+  InsightKmiBluefin2026Signal,
+} from './TunaKmiFtaBluefinInsights';
 import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, KfasElderlyFunctionalFood } from './TunaKfasResearch';
 
 // Phase 4: 국정연 보고서 기반 신규 인텔리전스 (기획서 Phase 1~2 구현)
@@ -905,6 +910,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <InsightPerCapitaGamma />
               <InsightSegmentDecline />
               <InsightPriceTier />
+
+              {/* 6. KMI FTA 참다랑어 수입 인텔리전스 (2021~2026 Q1) */}
+              <InsightKmiBluefinYearly />
+              <InsightKmiBluefinSupplyShift />
+              <InsightKmiBluefin2026Signal />
             </div>
             <OperationalS4Widgets />
           </section>
