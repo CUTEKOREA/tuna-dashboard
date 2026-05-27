@@ -3,14 +3,6 @@
 import React, { useState } from 'react';
 import { InsightNauruSwitch, InsightIOCollapse, InsightEU18C } from './TunaNewInsightsA';
 import { InsightTunaExtract, InsightPillarTwo, InsightVietnamOEM } from './TunaNewInsightsB';
-import {
-  InsightJapanDemandCliff,
-  InsightPerCapitaGamma,
-  InsightSegmentDecline,
-  InsightSupplyStructure2022,
-  InsightPriceTier,
-  InsightCohortDoubleShock,
-} from './TunaJapan2050Insights';
 import styles from './TunaInsightsDashboard.module.css';
 import { 
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Cell,
@@ -267,8 +259,6 @@ export default function TunaInsightsDashboard() {
           source: 'OEC·UN Comtrade 신흥국 통조림 수입 추세 (2019-2024)',
         }}
       />
-
-      <InsightSegmentDecline />
     </>
   );
 
@@ -408,8 +398,6 @@ export default function TunaInsightsDashboard() {
           source: 'EU CSDDD · 미 강제노동법 (UFLPA) · MSC Chain of Custody',
         }}
       />
-
-      <InsightSupplyStructure2022 />
     </>
   );
 
@@ -499,8 +487,6 @@ export default function TunaInsightsDashboard() {
           source: 'OEC HS 0302/0303 수입 단가 (2024)',
         }}
       />
-
-      <InsightPriceTier />
     </>
   );
 
@@ -586,10 +572,6 @@ export default function TunaInsightsDashboard() {
           source: 'NOAA OISST · IPCC AR6 해양 시나리오',
         }}
       />
-
-      <InsightJapanDemandCliff />
-      <InsightPerCapitaGamma />
-      <InsightCohortDoubleShock />
     </>
   );
 

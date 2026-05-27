@@ -28,6 +28,14 @@ import TunaPriceDecoupling from './TunaPriceDecoupling';
 import PacificEezStrategicWidget from './PacificEezStrategicWidget';
 import { InsightNauruSwitch, InsightIOCollapse, InsightEU18C } from './TunaNewInsightsA';
 import { InsightTunaExtract, InsightPillarTwo, InsightVietnamOEM } from './TunaNewInsightsB';
+import {
+  InsightJapanDemandCliff,
+  InsightPerCapitaGamma,
+  InsightSegmentDecline,
+  InsightSupplyStructure2022,
+  InsightPriceTier,
+  InsightCohortDoubleShock,
+} from './TunaJapan2050Insights';
 import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, KfasElderlyFunctionalFood } from './TunaKfasResearch';
 
 // Phase 4: 국정연 보고서 기반 신규 인텔리전스 (기획서 Phase 1~2 구현)
@@ -754,6 +762,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <WidgetCard widget={tunaQuotaData} />
               <WidgetCard widget={tunaYenData} />
             </div>
+
+            {/* Kawamoto 2026 — 일본 공급 구조 (S1) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <InsightSupplyStructure2022 />
+            </div>
           </section>
         )}
 
@@ -886,6 +899,12 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <div style={{ gridColumn: 'span 2' }}>
                 <WidgetCard widget={tunaMacroData} />
               </div>
+
+              {/* 5. Kawamoto 2026 — 일본 사시미 장기 수요 절벽 */}
+              <InsightJapanDemandCliff />
+              <InsightPerCapitaGamma />
+              <InsightSegmentDecline />
+              <InsightPriceTier />
             </div>
             <OperationalS4Widgets />
           </section>
@@ -918,6 +937,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               ))}
               {/* Phase B4 신규: 동원·사조 RAS 시험 운영 */}
               <RasSystemWidget />
+
+              {/* Kawamoto 2026 — 인구·세대 구조 리스크 (장기 ESG) */}
+              <InsightCohortDoubleShock />
             </div>
             <OperationalS5Widgets />
           </section>
