@@ -15,6 +15,7 @@ import {
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ReeferCompetitorInflowWidget, ReeferPortCongestionWidget, ReeferSupplyPriceOverlayWidget, ReeferCarrierEfficiencyWidget } from './TunaReeferLogisticsWidgets';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -938,6 +939,10 @@ export const OperationalS3Widgets = () => (
                         <TakeawayBox id="import_bh" />
                       </div>
                     </div>
+        <ReeferCompetitorInflowWidget />
+        <ReeferPortCongestionWidget />
+        <ReeferSupplyPriceOverlayWidget />
+        <ReeferCarrierEfficiencyWidget />
       </div>
     </div>
   </>
