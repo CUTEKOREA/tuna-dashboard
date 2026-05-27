@@ -1,5 +1,19 @@
 # HANDOFF — 현재 작업 상태
 
+> 🇯🇵 **2026-05-27 — Kawamoto 2026 일본 사시미 수요 절벽 6 위젯 신규 탭** [CC]:
+> - **신규 컴포넌트**: `components/TunaJapan2050Insights.tsx` (6 위젯 export)
+>   - ① InsightJapanDemandCliff — 2022→2050 수요 절벽 (Pillar 4, ComposedChart)
+>   - ② InsightPerCapitaGamma — 1인당 감마 모델 (Pillar 4, LineChart + ReferenceLine)
+>   - ③ InsightSegmentDecline — 사시미/가츠오부시/캔 차등 감소 (Pillar 4, MultiLine)
+>   - ④ InsightSupplyStructure2022 — 어법×수입 분해 (Pillar 1, Vertical BarChart)
+>   - ⑤ InsightPriceTier — 3-Tier JPY/kg 매트릭스 (Pillar 4, Vertical BarChart)
+>   - ⑥ InsightCohortDoubleShock — 1인당×인구 곱셈 충격 (Pillar 5, ComposedChart)
+> - **TunaInsightsDashboard.tsx 통합**: 7번째 탭 `japan2050` (보라색 테마, CalendarClock 아이콘)
+> - **데이터 출처**: Kawamoto T (2026) Fisheries Science, DOI 10.1007/s12562-026-01984-9 (CC-BY 4.0 Open Access). 모든 수치 LWE 환산. 핵심 전망: 2050 총 사시미 수요 112천 톤(-69%), 1인당 0.775kg(-86%), 일본 인구 104.7M(-16%).
+> - **자료 아카이브**: `docs/2026_tuna_industry_sources.md` (2026년 발행 14건 인덱스). PDF 원본은 `docs/sources/2026_tuna/`에 다운로드 후 .gitignore (L-08).
+> - **L-03 빌드 통과** ✓ (4.1s, 117 정적 페이지 OK)
+> - **W-04 체크리스트**: cardDesc·TelemetryBadge·SIT/TAK·Pillar 매핑·X축 7자·단위 괄호·source 인용 모두 통과
+>
 > 📝 **2026-05-27 — SIT/TAK 톤 강화 메가 세션 (89 위젯, 6 commits push)** [CC]:
 > - **사용자 의도 확립**: SIT = 신입사원도 이해할 수 있게 자세하게(전문용어 풀네임 정의 + 본질 1문장 + 굵은 숫자 묶음 + 메타 통찰), TAK = C레벨 임원이 놀랄 엣지(재정의 통념 뒤집기 + 3단계 액션 + 패러다임 전환). ReactNode `<div><p>` 형식, WidgetCard.TakeawayProps `string|ReactNode` 확장 활용
 > - **완료 commodity 5개 (89 위젯)**:

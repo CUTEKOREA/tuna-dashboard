@@ -3,13 +3,21 @@
 import React, { useState } from 'react';
 import { InsightNauruSwitch, InsightIOCollapse, InsightEU18C } from './TunaNewInsightsA';
 import { InsightTunaExtract, InsightPillarTwo, InsightVietnamOEM } from './TunaNewInsightsB';
+import {
+  InsightJapanDemandCliff,
+  InsightPerCapitaGamma,
+  InsightSegmentDecline,
+  InsightSupplyStructure2022,
+  InsightPriceTier,
+  InsightCohortDoubleShock,
+} from './TunaJapan2050Insights';
 import styles from './TunaInsightsDashboard.module.css';
 import { 
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Cell,
   BarChart, Bar, AreaChart, Area
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { TrendingUp, Ship, Briefcase, Skull, ShieldAlert, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, TestTube2, Bone, Zap } from 'lucide-react';
+import { TrendingUp, Ship, Briefcase, Skull, ShieldAlert, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, TestTube2, Bone, Zap, CalendarClock } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
@@ -830,12 +838,19 @@ export default function TunaInsightsDashboard() {
           >
             <Lightbulb size={18} /> 5. 미래 혁신 및 부가가치
           </div>
-          <div 
+          <div
             className={`${styles.menuItem} ${activeTab === 'newIntel' ? styles.activeMenu : ''}`}
             onClick={() => setActiveTab('newIntel')}
             style={activeTab === 'newIntel' ? { background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.3)' } : {}}
           >
             <Zap size={18} /> 6. 🔥 신규 전략 인텔리전스
+          </div>
+          <div
+            className={`${styles.menuItem} ${activeTab === 'japan2050' ? styles.activeMenu : ''}`}
+            onClick={() => setActiveTab('japan2050')}
+            style={activeTab === 'japan2050' ? { background: 'rgba(168, 85, 247, 0.1)', color: '#a855f7', border: '1px solid rgba(168, 85, 247, 0.3)' } : {}}
+          >
+            <CalendarClock size={18} /> 7. 🇯🇵 일본 수요 절벽 (2050)
           </div>
         </aside>
 
@@ -862,6 +877,20 @@ export default function TunaInsightsDashboard() {
               <InsightTunaExtract />
               <InsightPillarTwo />
               <InsightVietnamOEM />
+            </>
+          )}
+          {activeTab === 'japan2050' && (
+            <>
+              <div style={{ background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#e9d5ff', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CalendarClock size={16} color="#a855f7" />
+                Kawamoto T (2026) Fisheries Science 학술 논문(CC-BY 4.0) 기반. 일본 사시미 시장 1993~2022 재구성 + 2050년 감마 모델 전망 6개 위젯.
+              </div>
+              <InsightJapanDemandCliff />
+              <InsightPerCapitaGamma />
+              <InsightSegmentDecline />
+              <InsightSupplyStructure2022 />
+              <InsightPriceTier />
+              <InsightCohortDoubleShock />
             </>
           )}
         </main>
