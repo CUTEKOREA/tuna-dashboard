@@ -34,31 +34,31 @@ const nationalVdsData: Record<string, VesselData[]> = {
     { vessel: "S/EXP", total: 8.17, consumed: 12.80, remaining: -4.63, weekly: 0.00, rate: 157 },
     { vessel: "S/PIO", total: 8.17, consumed: 0.30, remaining: 7.87, weekly: 0.00, rate: 4 },
     { vessel: "S/CHA", total: 8.17, consumed: 1.10, remaining: 7.07, weekly: 0.00, rate: 13 },
-    { vessel: "S/HAR", total: 8.17, consumed: 0.00, remaining: 8.17, weekly: 0.00, rate: 0 },
+    { vessel: "S/HAR", total: 8.17, consumed: 3.80, remaining: 4.37, weekly: 0.00, rate: 47 },
     { vessel: "S/JUP", total: 8.17, consumed: 0.70, remaining: 7.47, weekly: 0.00, rate: 9 },
     { vessel: "S/SPR", total: 8.17, consumed: 0.00, remaining: 8.17, weekly: 0.00, rate: 0 },
   ],
   "KIRIBATI": [
-    { vessel: "S/EXP", total: 64.00, consumed: 45.40, remaining: 18.60, weekly: 3.10, rate: 71 },
-    { vessel: "S/PIO", total: 64.00, consumed: 71.90, remaining: -7.90, weekly: 5.70, rate: 112 },
-    { vessel: "S/CHA", total: 64.00, consumed: 63.90, remaining: 0.10, weekly: 7.00, rate: 100 },
-    { vessel: "S/HAR", total: 64.00, consumed: 75.80, remaining: -11.80, weekly: 7.00, rate: 118 },
-    { vessel: "S/JUP", total: 64.00, consumed: 61.40, remaining: 2.60, weekly: 4.90, rate: 96 },
-    { vessel: "S/SPR", total: 64.00, consumed: 61.00, remaining: 3.00, weekly: 4.00, rate: 95 },
+    { vessel: "S/EXP", total: 77.33, consumed: 57.10, remaining: 20.23, weekly: 0.00, rate: 74 },
+    { vessel: "S/PIO", total: 77.33, consumed: 86.20, remaining: -8.87, weekly: 1.00, rate: 111 },
+    { vessel: "S/CHA", total: 77.33, consumed: 78.90, remaining: -1.57, weekly: 0.00, rate: 102 },
+    { vessel: "S/HAR", total: 77.33, consumed: 75.80, remaining: 1.53, weekly: 0.00, rate: 98 },
+    { vessel: "S/JUP", total: 77.33, consumed: 76.40, remaining: 0.93, weekly: 0.00, rate: 99 },
+    { vessel: "S/SPR", total: 77.33, consumed: 75.90, remaining: 1.43, weekly: 0.00, rate: 98 },
   ],
   "TUVALU": [
-    { vessel: "S/EXP", total: 17.00, consumed: 9.60, remaining: 7.40, weekly: 2.30, rate: 56 },
+    { vessel: "S/EXP", total: 17.00, consumed: 9.60, remaining: 7.40, weekly: 0.00, rate: 56 },
     { vessel: "S/PIO", total: 17.00, consumed: 18.70, remaining: -1.70, weekly: 0.00, rate: 110 },
     { vessel: "S/CHA", total: 17.00, consumed: 9.60, remaining: 7.40, weekly: 0.00, rate: 56 },
     { vessel: "S/HAR", total: 17.00, consumed: 12.30, remaining: 4.70, weekly: 0.00, rate: 72 },
-    { vessel: "S/JUP", total: 17.00, consumed: 24.90, remaining: -7.90, weekly: 0.50, rate: 146 },
-    { vessel: "S/SPR", total: 17.00, consumed: 17.40, remaining: -0.40, weekly: 2.30, rate: 102 },
+    { vessel: "S/JUP", total: 17.00, consumed: 24.90, remaining: -7.90, weekly: 0.00, rate: 146 },
+    { vessel: "S/SPR", total: 17.00, consumed: 17.40, remaining: -0.40, weekly: 0.00, rate: 102 },
   ],
   "NAURU": [
     { vessel: "S/EXP", total: 23.67, consumed: 21.30, remaining: 2.37, weekly: 0.00, rate: 90 },
     { vessel: "S/PIO", total: 23.67, consumed: 18.10, remaining: 5.57, weekly: 0.00, rate: 76 },
     { vessel: "S/CHA", total: 23.67, consumed: 28.50, remaining: -4.83, weekly: 0.00, rate: 120 },
-    { vessel: "S/HAR", total: 23.67, consumed: 13.20, remaining: 10.47, weekly: 0.00, rate: 56 },
+    { vessel: "S/HAR", total: 23.67, consumed: 14.30, remaining: 9.37, weekly: 0.00, rate: 60 },
     { vessel: "S/JUP", total: 23.67, consumed: 16.20, remaining: 7.47, weekly: 0.00, rate: 68 },
     { vessel: "S/SPR", total: 23.67, consumed: 24.40, remaining: -0.73, weekly: 0.00, rate: 103 },
   ],
@@ -75,7 +75,7 @@ const nationalVdsData: Record<string, VesselData[]> = {
     { vessel: "S/PIO", total: 8.63, consumed: 0.00, remaining: 8.63, weekly: 0.00, rate: 0 },
     { vessel: "S/CHA", total: 8.63, consumed: 0.00, remaining: 8.63, weekly: 0.00, rate: 0 },
     { vessel: "S/HAR", total: 8.63, consumed: 0.00, remaining: 8.63, weekly: 0.00, rate: 0 },
-    { vessel: "S/JUP", total: 8.63, consumed: 1.00, remaining: 7.63, weekly: 1.00, rate: 12 },
+    { vessel: "S/JUP", total: 8.63, consumed: 1.00, remaining: 7.63, weekly: 0.00, rate: 12 },
     { vessel: "S/SPR", total: 8.63, consumed: 0.00, remaining: 8.63, weekly: 0.00, rate: 0 },
   ],
 };
@@ -86,10 +86,10 @@ export const kiribatiVdsData: Record<string, VesselData[]> = {
     { vessel: "MOAKONA", total: 9.50, consumed: 7.60, remaining: 1.90, weekly: 0.00, rate: 80 },
   ],
   "KIRIBATI": [
-    { vessel: "MOAMARI", total: 45.25, consumed: 49.30, remaining: -4.05, weekly: 4.00, rate: 109 },
-    { vessel: "MOAKONA", total: 45.25, consumed: 46.00, remaining: -0.75, weekly: 7.00, rate: 102 },
-    { vessel: "NAOERO SUN", total: 45.25, consumed: 36.60, remaining: 8.65, weekly: 6.20, rate: 81 },
-    { vessel: "NAOERO STAR", total: 45.25, consumed: 49.70, remaining: -4.45, weekly: 3.00, rate: 110 },
+    { vessel: "MOAMARI", total: 57.75, consumed: 51.90, remaining: 5.85, weekly: 1.00, rate: 90 },
+    { vessel: "MOAKONA", total: 57.75, consumed: 53.40, remaining: 4.35, weekly: 0.00, rate: 92 },
+    { vessel: "NAOERO SUN", total: 57.75, consumed: 38.40, remaining: 19.35, weekly: 0.30, rate: 66 },
+    { vessel: "NAOERO STAR", total: 57.75, consumed: 58.00, remaining: -0.25, weekly: 0.40, rate: 100 },
   ],
   "FSM": [
     { vessel: "MOAMARI", total: 8.75, consumed: 4.00, remaining: 4.75, weekly: 0.00, rate: 46 },
@@ -122,10 +122,10 @@ export const kiribatiVdsData: Record<string, VesselData[]> = {
     { vessel: "NAOERO STAR", total: 15.00, consumed: 24.20, remaining: -9.20, weekly: 0.00, rate: 161 },
   ],
   "HIGH SEA": [
-    { vessel: "MOAMARI", total: 15.00, consumed: 15.00, remaining: 0.00, weekly: 2.00, rate: 100 },
-    { vessel: "MOAKONA", total: 3.00, consumed: 3.00, remaining: 0.00, weekly: 0.00, rate: 100 },
-    { vessel: "NAOERO SUN", total: 6.00, consumed: 6.00, remaining: 0.00, weekly: 1.00, rate: 100 },
-    { vessel: "NAOERO STAR", total: 9.00, consumed: 9.00, remaining: 0.00, weekly: 5.00, rate: 100 },
+    { vessel: "MOAMARI", total: 23.00, consumed: 23.00, remaining: 0.00, weekly: 0.00, rate: 100 },
+    { vessel: "MOAKONA", total: 11.00, consumed: 11.00, remaining: 0.00, weekly: 1.00, rate: 100 },
+    { vessel: "NAOERO SUN", total: 17.00, consumed: 17.00, remaining: 0.00, weekly: 0.00, rate: 100 },
+    { vessel: "NAOERO STAR", total: 16.00, consumed: 16.00, remaining: 0.00, weekly: 0.00, rate: 100 },
   ],
 };
 
@@ -175,7 +175,7 @@ export default function VesselVdsStatus() {
             margin: '0 0 4px 0'
           }}>
             <Ship color="var(--accent-primary)" size={20} />
-            수역별 VDS 소진 현황 &lt;5월 10일&gt;
+            수역별 VDS 소진 현황 &lt;5월 25일&gt;
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
             2026년 기준 선박별 <TermTooltip term="조업일수(VDS)" description="VDS(Vessel Day Scheme)는 태평양 도서국이 자국 배타적경제수역(EEZ) 내에서 조업을 허가하는 '권리'입니다. 한정된 VDS 일수를 초과하면 해당 수역에서 조업할 수 없거나 비싼 추가 비용을 내야 합니다." /> (배정일, 소진일, 주간 소모)

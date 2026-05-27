@@ -5,41 +5,40 @@ import s from './FleetCommandCenter.module.css';
 
 /* ── Data ── */
 const pacificFleet = [
-  { name: 'S/EXP', zone: 'KI', catch: 0, load: 319, capa: 1200, trend: [280, 295, 310, 305, 319], status: 'fishing', note: '' },
-  { name: 'S/PIO', zone: 'KI', catch: 0, load: 1035, capa: 1200, trend: [820, 870, 920, 980, 1035], status: 'fishing', note: '' },
-  { name: 'S/CHA', zone: 'KI', catch: 0, load: 440, capa: 1200, trend: [350, 380, 400, 420, 440], status: 'fishing', note: '' },
-  { name: 'S/HAR', zone: 'US', catch: 0, load: 1200, capa: 1200, trend: [1050, 1100, 1150, 1180, 1200], status: 'returning', note: '5/26 통영 입항' },
-  { name: 'S/JUP', zone: 'KI', catch: 0, load: 445, capa: 1200, trend: [360, 390, 410, 430, 445], status: 'fishing', note: '' },
-  { name: 'S/SPR', zone: 'KI', catch: 0, load: 544, capa: 1200, trend: [380, 420, 460, 500, 544], status: 'fishing', note: '' },
-  { name: 'MOAMARI', zone: 'H', catch: 5, load: 950, capa: 1200, trend: [850, 880, 910, 935, 950], status: 'transship', note: '5/21 TARAWA 전재' },
-  { name: 'MOAKONA', zone: 'KI', catch: 5, load: 402, capa: 1200, trend: [320, 350, 370, 390, 402], status: 'fishing', note: '' },
-  { name: 'N/SUN', zone: 'H', catch: 23, load: 797, capa: 1200, trend: [680, 720, 750, 775, 797], status: 'transship', note: '5/21 TARAWA 전재' },
-  { name: 'N/STAR', zone: 'KI', catch: 20, load: 900, capa: 1200, trend: [780, 820, 850, 880, 900], status: 'fishing', note: '' },
+  { name: 'S/EXP', zone: 'TARAWA', catch: 0, load: 13, capa: 1200, trend: [310, 305, 319, 15, 13], status: 'port', note: 'TARAWA 입항, M/E 수리 후 6/7 출항' },
+  { name: 'S/PIO', zone: 'KI', catch: 0, load: 1250, capa: 1200, trend: [920, 980, 1035, 1150, 1250], status: 'fishing', note: '5/27 TARAWA 입항 예정' },
+  { name: 'S/CHA', zone: 'KI', catch: 0, load: 450, capa: 1200, trend: [380, 400, 420, 440, 450], status: 'fishing', note: '' },
+  { name: 'S/HAR', zone: '통영', catch: 0, load: 1200, capa: 1200, trend: [1100, 1150, 1180, 1200, 1200], status: 'port', note: '5/26 통영 입항, 상가수리 6/7~6/21' },
+  { name: 'S/JUP', zone: 'KI', catch: 0, load: 515, capa: 1200, trend: [390, 410, 430, 445, 515], status: 'fishing', note: '' },
+  { name: 'S/SPR', zone: 'KI', catch: 25, load: 592, capa: 1200, trend: [420, 460, 500, 544, 592], status: 'fishing', note: '' },
+  { name: 'MOAMARI', zone: 'KI', catch: 0, load: 0, capa: 1200, trend: [910, 935, 950, 0, 0], status: 'fishing', note: '' },
+  { name: 'MOAKONA', zone: 'H', catch: 0, load: 402, capa: 1200, trend: [350, 370, 390, 402, 402], status: 'fishing', note: '' },
+  { name: 'N/SUN', zone: 'KI', catch: 0, load: 0, capa: 1200, trend: [750, 775, 797, 0, 0], status: 'fishing', note: '' },
+  { name: 'N/STAR', zone: 'TARAWA', catch: 0, load: 900, capa: 1200, trend: [820, 850, 880, 900, 900], status: 'transship', note: '5/26 TARAWA 전재' },
 ];
 
 const atlanticFleet = [
-  { name: 'P/MAS', zone: 'H', catch: 10, load: 540, capa: 1200, trend: [440, 470, 500, 520, 540], status: 'fishing', note: '' },
-  { name: 'P/DIS', zone: 'H', catch: 20, load: 720, capa: 1200, trend: [600, 640, 670, 700, 720], status: 'fishing', note: '' },
-  { name: 'P/FORE', zone: 'H', catch: 15, load: 550, capa: 1200, trend: [450, 480, 510, 530, 550], status: 'fishing', note: '' },
-  { name: 'P/PATH', zone: 'H', catch: 50, load: 410, capa: 1200, trend: [280, 320, 350, 380, 410], status: 'fishing', note: '' },
-  { name: 'P/COM', zone: 'H', catch: 35, load: 445, capa: 1200, trend: [330, 360, 390, 420, 445], status: 'fishing', note: '' },
-  { name: 'P/QUEEN', zone: 'H', catch: 15, load: 450, capa: 1200, trend: [360, 380, 410, 430, 450], status: 'fishing', note: '' },
-  { name: 'P/GRACE', zone: 'H', catch: 10, load: 315, capa: 1200, trend: [240, 260, 280, 300, 315], status: 'fishing', note: '' },
+  { name: 'P/MAS', zone: 'TEMA', catch: 0, load: 600, capa: 1200, trend: [470, 500, 520, 540, 600], status: 'port', note: 'TEMA 입항, 5/27 출항' },
+  { name: 'P/DIS', zone: 'H', catch: 35, load: 900, capa: 1200, trend: [640, 700, 760, 820, 900], status: 'fishing', note: '5/29 TEMA 입항' },
+  { name: 'P/FORE', zone: 'H', catch: 30, load: 900, capa: 1200, trend: [480, 550, 650, 770, 900], status: 'fishing', note: '5/31 TEMA 입항' },
+  { name: 'P/PATH', zone: 'H', catch: 10, load: 510, capa: 1200, trend: [320, 380, 420, 470, 510], status: 'fishing', note: '' },
+  { name: 'P/COM', zone: 'H', catch: 25, load: 575, capa: 1200, trend: [360, 420, 470, 520, 575], status: 'fishing', note: '' },
+  { name: 'P/QUEEN', zone: 'H', catch: 40, load: 740, capa: 1200, trend: [380, 450, 540, 640, 740], status: 'fishing', note: '' },
+  { name: 'P/GRACE', zone: 'H', catch: 0, load: 420, capa: 1200, trend: [260, 300, 340, 380, 420], status: 'fishing', note: '' },
 ];
 
 const longlineFleet = [
   { name: 'SY-56', status: '상가수리(5/14~5/27) → 6/1 출항', badge: '🚢 입항', badgeColor: '#38bdf8' },
   { name: 'P-505', status: '발전기 수리 · 5/27 타히티 입항 → 5/31 출항', badge: '🔧 수리', badgeColor: '#fbbf24' },
-  { name: 'GENTA MARU', status: '355t 하역 예정 (SY-52·P-502·P-501)', badge: '📦 하역', badgeColor: '#34d399' },
+  { name: 'GENTA MARU', status: 'P-502 하역완료(177t) / P-501 하역중 / SY-52 5/29 예정', badge: '📦 하역', badgeColor: '#34d399' },
 ];
 
 const carrierFleet = [
-  { name: 'DINOK', capa: 4500, load: 4534, pct: 101, status: 'done', note: 'BKK 하역 완료', color: '#64748b' },
-  { name: 'SHIN IZU', capa: 2400, load: 2301, pct: 96, status: 'unloading', note: '마산 하역 중', color: '#34d399' },
-  { name: 'SEIN PHOENIX', capa: 7100, load: 6955, pct: 98, status: 'waiting', note: 'BKK 하역 대기', color: '#f59e0b' },
-  { name: 'BAO LUCKY', capa: 5800, load: 4803, pct: 83, status: 'transit', note: '5/22 BKK 도착', color: '#38bdf8' },
-  { name: 'SHIN FUJI', capa: 3200, load: 1670, pct: 52, status: 'waiting', note: 'TARAWA 대기', color: '#38bdf8' },
-  { name: 'SEIN TOPAZ', capa: 7300, load: 100, pct: 1, status: 'waiting', note: 'TARAWA 대기', color: '#38bdf8' },
+  { name: 'SEIN PHOENIX', capa: 7100, load: 6955, pct: 98, status: 'unloading', note: 'BKK 하역 중', color: '#10b981' },
+  { name: 'SHIN IZU', capa: 2400, load: 2301, pct: 96, status: 'transit', note: '6/1 통영 하역 예정', color: '#38bdf8' },
+  { name: 'BAO LUCKY', capa: 5800, load: 4803, pct: 83, status: 'waiting', note: 'BKK 하역 대기 중', color: '#f59e0b' },
+  { name: 'SHIN FUJI', capa: 3200, load: 3096, pct: 97, status: 'unloading', note: 'TARAWA 전재 중', color: '#10b981' },
+  { name: 'SEIN TOPAZ', capa: 7300, load: 1130, pct: 15, status: 'waiting', note: 'TARAWA 대기', color: '#38bdf8' },
 ];
 
 /* ── Status helpers ── */
@@ -353,7 +352,7 @@ export default function FleetRosterGrid() {
           <SectionHeader
             icon={Navigation} color="#38bdf8"
             title="태평양 선망" count={pacificFleet.length}
-            summary="주간 923t · 월간 3,233t · 연간 19,760t"
+            summary="일간 25t · 월간 5,461t · 연간 31,290.5t"
           />
           <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
             {pacificFleet.map(v => (
@@ -371,7 +370,7 @@ export default function FleetRosterGrid() {
           <SectionHeader
             icon={Ship} color="#a78bfa"
             title="대서양 선망" count={atlanticFleet.length}
-            summary="주간 485t · 월간 1,747t · 연간 11,050t"
+            summary="일간 140t · 월간 4,645t · 연간 14,300t"
           />
           <div data-mobile-stack style={{ padding: 16, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
             {atlanticFleet.map(v => (
@@ -394,7 +393,7 @@ export default function FleetRosterGrid() {
 
         {/* Carriers */}
         <div className={s.rosterSection}>
-          <SectionHeader icon={Package} color="#34d399" title="운반선" count={carrierFleet.length} summary="선적 15,829t · 잔량 6,163t" />
+          <SectionHeader icon={Package} color="#34d399" title="운반선" count={carrierFleet.length} summary="선적 18,285t · 잔량 3,603t" />
           <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
             {carrierFleet.map(v => <CarrierCard key={v.name} {...v} />)}
           </div>

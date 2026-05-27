@@ -8,7 +8,7 @@ import GensanVesselStatus from './GensanVesselStatus';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 export default function UnloadingStatus() {
-  const [selectedVessel, setSelectedVessel] = useState('dinok');
+  const [selectedVessel, setSelectedVessel] = useState('sein-phoenix');
   const [liveData, setLiveData] = useState<any>(null);
 
   useEffect(() => {
@@ -19,6 +19,27 @@ export default function UnloadingStatus() {
   }, []);
 
   const data = {
+    'sein-phoenix': {
+      name: 'M/V SEIN PHOENIX',
+      dateRange: '2026.05.23 ~ 진행중',
+      location: 'BANGKOK, THAILAND',
+      buyer: 'FCF CO.,LTD',
+      motherVessel: '-',
+      status: '하역중 (In Progress)',
+      reportedTotal: 6955.000,
+      actualTotal: 587.670,
+      surplus: -6367.330,
+      species: [
+        { id: 'SJ', name: 'Skipjack', reported: 0, actual: 0, surplus: 0 },
+        { id: 'YF', name: 'Yellowfin', reported: 0, actual: 0, surplus: 0 }
+      ],
+      timeline: [
+        { date: '5/23', time: '08:10 ~ 20:30', targetHol: 'S/HAR(#2-A)', dailyAmount: 146.890, cumAmount: 146.890, quality: '어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.' },
+        { date: '5/24', time: '-', targetHol: '-', dailyAmount: 0, cumAmount: 146.890, quality: '일요일 휴무.' },
+        { date: '5/25', time: '08:10 ~ 19:00', targetHol: 'S/HAR(#2-A), S/EXP(#4-A)', dailyAmount: 216.090, cumAmount: 362.980, quality: '어창 온도 -21.0℃ ~ -24.0℃. 외관상태 양호.' },
+        { date: '5/26', time: '08:00 ~ 20:30', targetHol: 'S/SPR(#4-A, #4-B)', dailyAmount: 224.690, cumAmount: 587.670, quality: '어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/27) 약 245톤 하역 예정.' }
+      ]
+    },
     'hikari': {
       name: 'M/V HIKARI',
       dateRange: '2026.04.26 ~ 2026.05.02',
@@ -194,7 +215,7 @@ export default function UnloadingStatus() {
             {formatNum(vesselsList.reduce((s, v) => s + v.actualTotal, 0))} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>MT</span>
           </div>
           <div className={styles.execCardTakeaway}>
-            완료 선박: <strong>{completedVessels.length} 척</strong> (방콕 2, 젠산 1)
+            완료 선박: <strong>{completedVessels.length} 척</strong> (방콕 {completedVessels.filter(v => v.location.includes('BANGKOK')).length}, 젠산 {completedVessels.filter(v => v.location.includes('GENSAN') || v.location.includes('PHILIPPINES')).length})
           </div>
         </div>
       </div>

@@ -16,23 +16,23 @@ import TermTooltip from './TermTooltip';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const canneryData = [
-  { location: 'BANGKOK', name: 'THAI UNION', prodMax: 1300, prodCurrent: 600, storeMax: 62000, storeCurrent: 74000 },
-  { location: 'BANGKOK', name: 'SEA VALUE', prodMax: 1000, prodCurrent: 400, storeMax: 55000, storeCurrent: 54000 },
-  { location: 'BANGKOK', name: 'GOLDEN PRIZE', prodMax: 350, prodCurrent: 200, storeMax: 25000, storeCurrent: 8300 },
-  { location: 'BANGKOK', name: 'PATAYA FOOD', prodMax: 250, prodCurrent: 100, storeMax: 15000, storeCurrent: 3700 },
-  { location: 'BANGKOK', name: 'SPA', prodMax: 200, prodCurrent: 120, storeMax: 4000, storeCurrent: 5500 },
-  { location: 'BANGKOK', name: 'MMP', prodMax: 200, prodCurrent: 100, storeMax: 5000, storeCurrent: 5900 },
-  { location: 'BANGKOK', name: 'AAI', prodMax: 180, prodCurrent: 80, storeMax: 7000, storeCurrent: 1800 },
-  { location: 'BANGKOK', name: 'DIAMOND', prodMax: 100, prodCurrent: 30, storeMax: 1500, storeCurrent: 1400 },
-  { location: 'BANGKOK', name: 'R. MONKHON', prodMax: 90, prodCurrent: 30, storeMax: 2000, storeCurrent: 1000 },
-  { location: 'BANGKOK', name: 'R.S CANNERY', prodMax: 100, prodCurrent: 40, storeMax: 4000, storeCurrent: 1300 },
-  { location: 'BANGKOK', name: 'SK FOODS', prodMax: 120, prodCurrent: 60, storeMax: 7000, storeCurrent: 1500 },
+  { location: 'BANGKOK', name: 'THAI UNION', prodMax: 1300, prodCurrent: 600, storeMax: 62000, storeCurrent: 73000 },
+  { location: 'BANGKOK', name: 'SEA VALUE', prodMax: 1000, prodCurrent: 400, storeMax: 55000, storeCurrent: 52000 },
+  { location: 'BANGKOK', name: 'GOLDEN PRIZE', prodMax: 350, prodCurrent: 200, storeMax: 25000, storeCurrent: 8900 },
+  { location: 'BANGKOK', name: 'PATAYA FOOD', prodMax: 250, prodCurrent: 100, storeMax: 15000, storeCurrent: 3500 },
+  { location: 'BANGKOK', name: 'SPA', prodMax: 200, prodCurrent: 120, storeMax: 4000, storeCurrent: 5800 },
+  { location: 'BANGKOK', name: 'MMP', prodMax: 200, prodCurrent: 100, storeMax: 5000, storeCurrent: 6200 },
+  { location: 'BANGKOK', name: 'AAI', prodMax: 180, prodCurrent: 80, storeMax: 7000, storeCurrent: 1700 },
+  { location: 'BANGKOK', name: 'DIAMOND', prodMax: 100, prodCurrent: 30, storeMax: 1500, storeCurrent: 1200 },
+  { location: 'BANGKOK', name: 'R. MONKHON', prodMax: 90, prodCurrent: 30, storeMax: 2000, storeCurrent: 1100 },
+  { location: 'BANGKOK', name: 'R.S CANNERY', prodMax: 100, prodCurrent: 40, storeMax: 4000, storeCurrent: 1100 },
+  { location: 'BANGKOK', name: 'SK FOODS', prodMax: 120, prodCurrent: 60, storeMax: 7000, storeCurrent: 1300 },
   { location: 'BANGKOK', name: 'KINGFISHER', prodMax: 200, prodCurrent: 20, storeMax: 15000, storeCurrent: 200 },
-  { location: 'BANGKOK', name: 'GLOBAL FROZEN', prodMax: 50, prodCurrent: 40, storeMax: 5000, storeCurrent: 2100 },
-  { location: 'SONGKHLA', name: 'CMC', prodMax: 300, prodCurrent: 100, storeMax: 10000, storeCurrent: 2700 },
-  { location: 'SONGKHLA', name: 'SCC', prodMax: 250, prodCurrent: 50, storeMax: 7000, storeCurrent: 700 },
-  { location: 'SONGKHLA', name: 'SIAM', prodMax: 200, prodCurrent: 60, storeMax: 5000, storeCurrent: 1100 },
-  { location: 'SONGKHLA', name: 'TRP', prodMax: 150, prodCurrent: 70, storeMax: 5000, storeCurrent: 1700 }
+  { location: 'BANGKOK', name: 'GLOBAL FROZEN', prodMax: 50, prodCurrent: 40, storeMax: 5000, storeCurrent: 2300 },
+  { location: 'SONGKHLA', name: 'CMC', prodMax: 300, prodCurrent: 100, storeMax: 10000, storeCurrent: 3100 },
+  { location: 'SONGKHLA', name: 'SCC', prodMax: 250, prodCurrent: 50, storeMax: 7000, storeCurrent: 800 },
+  { location: 'SONGKHLA', name: 'SIAM', prodMax: 200, prodCurrent: 60, storeMax: 5000, storeCurrent: 1300 },
+  { location: 'SONGKHLA', name: 'TRP', prodMax: 150, prodCurrent: 70, storeMax: 5000, storeCurrent: 2000 }
 ];
 
 export default function CanneryStatusCharts() {

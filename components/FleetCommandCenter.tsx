@@ -30,9 +30,9 @@ export default function FleetCommandCenter() {
       {/* Final Takeaway */}
       <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', borderRadius: 'var(--card-radius)', padding: 24 }}>
         <TakeawayBox
-          situation={<>5/19 기준 태평양 일간 30t(월간 5,095t / 연간 30,924.5t), 대서양 일간 155t(월간 3,430t / 연간 13,085t). S/HAR(모승현) 5/11 현장발로 귀국 중(5/26 09:00 통영 입항 예정, 1,200t 선적). DINOK BKK 하역 완료, SEIN PHOENIX BKK 하역 대기 중, SHIN IZU 마산 하역 중, BAO LUCKY 5/22 BKK 도착 예정.</>}
-          actionPlan={<>① S/PIO(1,035t)·MOAMARI(950t)·N/STAR(900t) 선적량 증가 — 운반선 배정 시점 선제 검토. ② BAO LUCKY 5/22 BKK 도착 + DINOK 하역 완료 및 PHOENIX 하역 대기 → 체선료 리스크 모니터링. ③ SHIN IZU 마산 하역 중(2,301t, 161t 함정 물량 포함) — 통관 및 냉동창고 사전 확보. ④ SY-56 상가수리 6/1 완료 후 즉시 출항 일정 확인. ⑤ MOAMARI 5/21 Tarawa 입항 후 Shin Fuji 편 950t 전재 예정.</>}
-          source="해양수산본부 일일 업무보고 260520 (수)"
+          situation={<>5/26 기준 SEIN PHOENIX BKK 하역 중. 금일 224.690t(UC, S/SPR #4-A,#4-B) 하역, 누계 587.670t / 잔 6,367.330t. 제품 온도 -24.0~-26.0℃ 양호. 명일(5/27) 약 245t 예정. S/HAR 통영 입항 완료(상가수리 6/7~6/21). S/EXP TARAWA 입항, M/E 수리 후 6/7 출항. P/MAS TEMA 입항, 하역 후 5/27 출항.</>}
+          actionPlan={<>① SEIN PHOENIX 하역 진행 중(587.670t/6,955t, 진척 8.5%) — 일 평균 약 196t 하역 속도로 약 32일 소요 예상. ② BAO LUCKY BKK 하역 대기 중(4,803t) — PHOENIX 하역 완료 후 즉시 투입 조율. ③ SHIN FUJI TARAWA 전재 중(3,096t) — N/STAR 900t, S/PIO 1,250t 전재 예정. ④ SHIN IZU 6/1 통영 하역(2,301t, 함정 161t 포함) — 통관 및 냉동창고 확보. ⑤ GENTA MARU P-501 하역 중, 5/29 SY-52 97t 예정.</>}
+          source="해양수산본부 일일 업무보고 260526 (화) + SEIN PHOENIX 하역보고 5/26"
         />
       </div>
     </div>

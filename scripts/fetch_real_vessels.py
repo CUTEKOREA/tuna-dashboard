@@ -22,34 +22,29 @@ try:
         '오징어 (원양채낚기)': ['동해상사', '남북수산', '진양수산', '승진']
     }
 
-    # Default robust mock data (what was in the UI previously)
-    vessel_details = {
-      '참치 (원양선망)': [
-        { "name": "신라 주피터호", "callSign": "DSDE", "tonnage": "2,200", "launchDate": "2019-05-12", "purpose": "원양어선", "company": "신라교역" },
-        { "name": "신라 마스호", "callSign": "DSDN", "tonnage": "2,150", "launchDate": "2017-11-20", "purpose": "원양어선", "company": "신라교역" },
-        { "name": "동원 프론티어", "callSign": "DTXX", "tonnage": "2,500", "launchDate": "2021-03-10", "purpose": "원양어선", "company": "동원산업" },
-        { "name": "사조 콜롬비아", "callSign": "DSCO", "tonnage": "1,800", "launchDate": "2005-08-15", "purpose": "원양어선", "company": "사조산업" },
-      ],
-      '참치 (원양연승)': [
-        { "name": "동원 파이어니어", "callSign": "DTP1", "tonnage": "500", "launchDate": "2002-04-11", "purpose": "원양어선", "company": "동원산업" },
-        { "name": "사조 오리온", "callSign": "DSO2", "tonnage": "450", "launchDate": "2001-09-05", "purpose": "원양어선", "company": "사조산업" },
-        { "name": "오양 77호", "callSign": "DSOY", "tonnage": "420", "launchDate": "1998-12-01", "purpose": "원양어선", "company": "오양수산" },
-      ],
-      '명태 (북양트롤)': [
-        { "name": "한성 아그네스", "callSign": "DSH1", "tonnage": "5,500", "launchDate": "1995-02-28", "purpose": "원양어선", "company": "한성기업" },
-        { "name": "사조 오대양", "callSign": "DSSO", "tonnage": "4,800", "launchDate": "1996-07-14", "purpose": "원양어선", "company": "사조대림" },
-      ],
-      '고등어 (대형선망)': [
-        { "name": "금성 11호 (본선)", "callSign": "1234", "tonnage": "250", "launchDate": "1994-05-10", "purpose": "근해어선", "company": "금성수산" },
-        { "name": "대진 33호 (본선)", "callSign": "5678", "tonnage": "280", "launchDate": "1992-11-20", "purpose": "근해어선", "company": "대진수산" },
-      ],
-      '오징어 (원양채낚기)': [
-        { "name": "동해 1호", "callSign": "DSDH", "tonnage": "650", "launchDate": "1999-08-30", "purpose": "원양어선", "company": "동해상사" },
-        { "name": "남북 5호", "callSign": "DSNB", "tonnage": "720", "launchDate": "2000-01-15", "purpose": "원양어선", "company": "남북수산" },
-      ]
-    }
+    import os
+    whitelist_path = 'public/data/vessel_whitelist.json'
+    
+    # Load whitelist of verified real vessels to ensure they are always included
+    if os.path.exists(whitelist_path):
+        with open(whitelist_path, 'r', encoding='utf-8') as wf:
+            vessel_details = json.load(wf)
+        
+        # Ensure all categories exist even if missing from whitelist
+        default_cats = ['참치 (원양선망)', '참치 (원양연승)', '명태 (북양트롤)', '고등어 (대형선망)', '오징어 (원양채낚기)']
+        for cat in default_cats:
+            if cat not in vessel_details:
+                vessel_details[cat] = []
+    else:
+        vessel_details = {
+          '참치 (원양선망)': [],
+          '참치 (원양연승)': [],
+          '명태 (북양트롤)': [],
+          '고등어 (대형선망)': [],
+          '오징어 (원양채낚기)': []
+        }
 
-    # Append real data from API to the robust mock data list to enrich it
+    # Append real data from API
     for ship in vessels:
         comp = ship.get('소유사상호') or ship.get('소유자명') or ''
         name = ship.get('선박 한글명') or ship.get('선박 영문명') or 'Unknown'
@@ -62,28 +57,21 @@ try:
                 break
         
         if assigned_cat:
-            if '선망' in assigned_cat: tonnage = random.randint(1500, 2800); purpose = '원양어선 (선망)'
-            elif '연승' in assigned_cat: tonnage = random.randint(400, 700); purpose = '원양어선 (연승)'
-            elif '트롤' in assigned_cat: tonnage = random.randint(3500, 6000); purpose = '원양어선 (트롤)'
-            elif '대형선망' in assigned_cat: tonnage = random.randint(100, 350); purpose = '근해어선'
-            else: tonnage = random.randint(500, 900); purpose = '원양어선 (채낚기)'
-                
-            launch_year = random.randint(1995, 2023)
-            
-            # Avoid complete duplicates with mock data (basic name check)
+            # API does not provide tonnage, launchDate, or specific purpose, so we leave them blank
+            # DO NOT HALLUCINATE OR RANDOMIZE DATA
             if not any(v['name'] == name for v in vessel_details[assigned_cat]):
                 vessel_details[assigned_cat].append({
                     'name': name,
                     'callSign': call_sign,
-                    'tonnage': f"{tonnage:,}",
-                    'launchDate': f"{launch_year}-{random.randint(1,12):02d}-{random.randint(1,28):02d}",
-                    'purpose': purpose,
+                    'tonnage': "",
+                    'launchDate': "",
+                    'purpose': assigned_cat.split(" ")[1].replace("(", "").replace(")", ""),
                     'company': comp
                 })
 
     with open('public/data/vessel_master.json', 'w', encoding='utf-8') as f:
         json.dump(vessel_details, f, ensure_ascii=False, indent=2)
-    print("Successfully mapped and saved to public/data/vessel_master.json")
+    print("Successfully mapped and saved to public/data/vessel_master.json (100% Real Data Only)")
 
 except Exception as e:
     print("Error:", e)

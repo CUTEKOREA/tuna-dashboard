@@ -44,16 +44,16 @@ export default function MarketDashboard() {
     return () => ro.disconnect();
   }, []);
 
-  const [mgoData, setMgoData] = useState({ price: 1665, change: -45, date: '2026.05.20', loading: false });
-  const [fxData, setFxData] = useState({ usd_krw: 1455, date: '2026.05.22', loading: false });
+  const [mgoData, setMgoData] = useState({ price: 1144, change: -521, date: '2026.05.25', loading: false });
+  const [fxData, setFxData] = useState({ usd_krw: 1513, date: '2026.05.26', loading: false });
   const [atunaLatest, setAtunaLatest] = useState<{
     skjBkk: { price: number; date: string };
     yfSey: { price: number; date: string };
     latestDate: string | null;
     loading: boolean;
   }>({
-    skjBkk: { price: 1975, date: '2026-05-22' },
-    yfSey: { price: 2320, date: '2026-05-22' },
+    skjBkk: { price: 1850, date: '2026-05-22' },
+    yfSey: { price: 2000, date: '2026-05-20' },
     latestDate: '2026-05-22',
     loading: false,
   });
@@ -66,8 +66,8 @@ export default function MarketDashboard() {
       .then(data => {
         const hub = data.latestByHub || {};
         setAtunaLatest({
-          skjBkk: hub.skj_bkk || { price: 1975, date: '2026-05-22' },
-          yfSey: hub.yf_sey || { price: 2320, date: '2026-05-22' },
+          skjBkk: hub.skj_bkk || { price: 1850, date: '2026-05-22' },
+          yfSey: hub.yf_sey || { price: 2000, date: '2026-05-20' },
           latestDate: data.latestDate,
           loading: false,
         });
@@ -245,15 +245,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                원자재 / 운임
+                어가 급변 / 공급
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.20</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.22</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "IO 참치 '퍼펙트 스톰' — 인도양 선사 운영 중단 단행"
+              "SKJ 방콕 $1,850/t — 3주 연속 하락, IO 퍼펙트 스톰 지속"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              인도양 어획 부진·고유가·저단가 삼중고로 다수 IO 선사가 자선을 항구에 정박시켰습니다. Port Victoria MGO는 4월 말 USD 2,000/t → 5월 현재 USD 1,665/t으로 하락했고, Seychelles 스킵잭 스팟가는 EUR 1,490(USD 1,728)/t으로 3주 전 EUR 1,500 대비 -1%. 옐로핀 YF10:SEY는 EUR 2,000/t까지 상승하며 코로나 팬데믹과 달리 단기 개선 전망이 없는 구조적 위기입니다.
+              방콕 스킵잭이 $2,100(4/22) → $1,975(5/6) → $1,850(5/22)로 3주 연속 하락(-11.9%). 인도양 선사 운영 중단 장기화로 IO CPUE 급락, WCPO 공급 증가와 맞물려 단가 하락세. 싱가포르 MGO는 $1,144/t로 급락하며 유류 부담은 완화되나, IO 선사들의 복귀 시점이 늦어지면서 인도양 공급 공백 구조화. 옐로핀 세이셸은 역으로 $2,000/t(+5.3%)으로 반등 — SKJ↓ vs YF↑ 디커플링 심화.
             </p>
           </div>
 
@@ -269,7 +269,7 @@ export default function MarketDashboard() {
               "PNG 비스마르크해 해저화산 분출 — 핵심 WCPO 어장 위협"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              파푸아뉴기니 북쪽 Titan Ridge 해저화산이 5월 8일부터 분출을 가속화. 5월 16일 ash 3.6km 상승 + 4.3M 지진, 5월 18일 5.4M 추가. 비스마르크해는 대만·한국·일본·필리핀 원양 선망 선단의 주요 어장으로, 화산활동이 지속되면 참치는 산소가 풍부한 해역으로 이동하며 어장이 이전될 전망입니다. PNG 정부 VDS 입어료 수입 직접 타격 우려.
+              파푸아뉴기니 북쪽 Titan Ridge 해저화산이 5월 8일부터 분출 가속화. 5월 16일 ash 3.6km + 4.3M 지진, 5월 18일 5.4M 추가. 비스마르크해는 대만·한국·일본·필리핀 원양 선망 선단의 주요 어장으로, 화산활동이 지속되면 참치가 산소가 풍부한 해역으로 이동하며 어장 이전 전망. PNG 정부 VDS 입어료 수입 직접 타격 우려.
             </p>
           </div>
 
@@ -277,15 +277,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                규제 / 통상 리스크
+                환율 / 매크로
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.19~21</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>2026.05.26</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "US Section 301 청원 + UK-몰디브 20% 관세 면제 양극화"
+              "USD/KRW ₩1,513 + MGO $1,144/t — 원화 약세 속 유가 급락"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              미국 의회 20인 위원이 USTR에 태국·베트남·중국·인도네시아 등 17개국 대상 Section 301 unfair trade 조사를 요구. 한편 영국은 몰디브산 참치 20% 관세를 2028년까지 면제하며 풀앤라인 지속가능 참치에 시장을 개방. US 파우치 수입 Q1 25% 감소(MMPA + 관세 영향), 베트남은 1월부터 12개 어장 미국 수출 금지로 충격.
+              달러·원 환율 ₩1,513(개장 1,520.10)으로 원화 약세 지속. 수입 원가 부담 증가 요인이나, 싱가포르 MGO가 $1,144/t으로 4월 말 $2,000/t 대비 -43% 급락하며 선단 운영 비용은 대폭 완화. 연료비 절감 효과가 원화 약세 부담을 상쇄하는 구간. 참치 원료 달러 결제 단가가 하락 중이므로 원화 환산 매입가는 상대적으로 안정적.
             </p>
           </div>
 
@@ -293,15 +293,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                어획 할당량 / 어장
+                지역별 어가 스프레드
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.19~20</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>2026.05.22 기준</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "에콰도르 EPO 스킵잭 Q1 -35% + 스페인 IO 2026 쿼터 발표"
+              "SKJ 아비장 $1,500 vs 방콕 $1,850 — 대서양 프리미엄 역전"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              에콰도르 선단 Q1 2026 스킵잭 53,966 M/T로 전년 동기 -35%, 2024 record 대비 절반 수준 — 2024년 이전 정상 레벨로 회귀. EU 가공업체 수요 압박 가속. 한편 스페인은 IO yellowfin 42,903 M/T + bigeye 14,792 M/T 2026 쿼터를 14개 Bermeo 기반 선망에 배분. Atuna 독자 투표 93%가 "더 많은 어선이 운영 중단할 것"이라 응답.
+              SKJ 지역별 스프레드: 만타 $2,000 (최고) → 방콕 $1,850 → 비고 $1,750 → 아비장 $1,500 → 세이셸 $1,490 (최저). 만타-세이셸 스프레드 $510/t로 확대 중. YF는 아비장·비고 $2,500 vs 세이셸 $2,000으로 $500 스프레드. IO 선사 정박 장기화로 세이셸 공급 부족이 YF 가격을 끌어올리고 있으나, SKJ는 WCPO 풍어로 하락 압력 지속.
             </p>
           </div>
         </div>
@@ -324,9 +324,9 @@ export default function MarketDashboard() {
             telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.18~21' }}
             customBody={<></>}
             takeaway={{
-              situation: "IO는 어선들이 연료비 부담으로 항구 정박을 단행하며 'Perfect Storm' 진입(SJK 1,728 USD/t, MGO USD 1,665/t). EPO는 에콰도르 선단 Q1 스킵잭 -35%로 2024 이전 정상 레벨 회귀. WCPO는 PNG Bismarck Sea 해저화산 분출 가속화로 주요 선망 어장이 산소 결핍 위협을 받음.",
-              actionPlan: "3대양 동시 공급 충격기에는 단일 원산지 노출을 즉시 축소하고, 몰디브(UK 0% 관세 신규 개방)·태평양 SIDS 직거래·인도네시아 풀앤라인 등 '대체 풀'을 다각화해야 합니다. 5~7월 IO 부진 + 6월 PNG 화산 정세 미정 구간을 대비해 6개월 raw material 비축을 사전 확보하고, 단가 상승분을 캐너리·바이어에 단계적으로 전가하는 가격 패스스루 협상 카드를 준비.",
-              source: 'Atuna 2026.05.18~21 (IO Perfect Storm · EPO Skipjack · PNG Bismarck)',
+              situation: "SKJ 방콕 $1,850/t(3주 -11.9%), 만타 $2,000(보합), 세이셸 $1,490(-0.7%). YF 세이셸은 역으로 $2,000(+5.3%)으로 반등 — SKJ↓ vs YF↑ 디커플링 심화. MGO $1,144/t(-43% vs 4월), USD/KRW ₩1,513(약세 지속). IO 선사 정박 장기화, WCPO 풍어로 SKJ 하방 압력, PNG 화산 리스크(Risk) 지속.",
+              actionPlan: "**[Actionable Insight]** SKJ 하락 구간에서 WCPO 현물 매수를 가속하되, YF는 IO 공급 공백 장기화로 추가 상승 가능성이 높아 선물 계약 체결을 권장합니다. MGO 급락($1,144)으로 선단 운영 BEP가 대폭 개선된 만큼, IO 선사 복귀 전 선제적 물량 확보가 핵심. 원화 약세(₩1,513)에도 SKJ 달러 단가 하락이 원화 환산가를 상쇄하므로, 현 시점이 6개월 원료 비축의 골든타임(Golden Window)입니다. (Conviction Buy)",
+              source: 'Atuna 2026.05.22 + CSV 어가 업데이트 2026.05.26',
             }}
           />
 

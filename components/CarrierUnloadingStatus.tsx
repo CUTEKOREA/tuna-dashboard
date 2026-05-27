@@ -7,8 +7,8 @@ import TermTooltip from './TermTooltip';
 const currentUnloading = [
   { 
     sort: 'FCF', 
-    no: 4, 
-    carriers: 'HUA FU 107 (4,982 MT), ORANGE SEA (4,808 MT), DINOK (4,385 MT), HUA FU 207 (5,777 MT)'
+    no: 5, 
+    carriers: 'HUA FU 107 (4,982 MT), ORANGE SEA (4,808 MT), DINOK (4,385 MT), HUA FU 207 (5,777 MT), SEIN PHOENIX (6,955 MT)'
   },
   { 
     sort: 'TRI', 
@@ -28,7 +28,6 @@ const currentUnloading = [
 ];
 
 const incomingVessels = [
-  { name: 'SEIN PHOENIX', date: '01st of MAY' },
   { name: 'MING RUN', date: '05th of MAY' },
   { name: 'JOCHOH', date: '09th of MAY' },
   { name: 'CHERRY STAR', date: '12th of MAY' },
@@ -75,13 +74,13 @@ export default function CarrierUnloadingStatus() {
             ))}
             <tr style={{ background: 'rgba(16, 185, 129, 0.1)' }}>
               <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>Total</td>
-              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>10</td>
-              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>48,429 MT</td>
+              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>11</td>
+              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>55,384 MT</td>
             </tr>
           </tbody>
         </table>
         <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.2)' }}>
-          * The cumulative number of carriers was 4, and the cumulative unloading volume was 18,847 MT in MAY.
+          * The cumulative number of carriers was 5, and the cumulative unloading volume was 19,210 MT in MAY. SEIN PHOENIX 하역 중 (5/25 기준 누계 362.98t / 잔 6,592t).
         </div>
       </div>
 

@@ -14,7 +14,7 @@ const data2026 = [
   { month: 'Feb', FCF: 14155, ITOCHU: 0, 'TRI MARINE': 9486, 'Direct deal': 19840, Maldives: 0 },
   { month: 'Mar', FCF: 11700, ITOCHU: 4915, 'TRI MARINE': 2113, 'Direct deal': 11925, Maldives: 0 },
   { month: 'Apr', FCF: 14206, ITOCHU: 9963, 'TRI MARINE': 13933, 'Direct deal': 22181, Maldives: 0 },
-  { month: 'May', FCF: 28372, ITOCHU: 3371, 'TRI MARINE': 9413, 'Direct deal': 3485, Maldives: 0 },
+  { month: 'May', FCF: 32638, ITOCHU: 3371, 'TRI MARINE': 9413, 'Direct deal': 3485, Maldives: 0 },
 ];
 
 const COLORS = {
@@ -72,7 +72,7 @@ export default function TraderStatus() {
       <div data-mobile-stack style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
         <div style={{ padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', textAlign: 'center' }}>
           <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>FCF</div>
-          <div style={{ fontSize: '16px', fontWeight: 'bold', color: COLORS['FCF'] }}>94,777 <span style={{ fontSize: '10px' }}>MT</span></div>
+          <div style={{ fontSize: '16px', fontWeight: 'bold', color: COLORS['FCF'] }}>99,043 <span style={{ fontSize: '10px' }}>MT</span></div>
         </div>
         <div style={{ padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', textAlign: 'center' }}>
           <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>ITOCHU</div>
@@ -88,7 +88,7 @@ export default function TraderStatus() {
         </div>
         <div style={{ padding: '10px', background: 'rgba(255,255,255,0.03)', borderRadius: '6px', textAlign: 'center' }}>
           <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>TOTAL</div>
-          <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>235,008 <span style={{ fontSize: '10px' }}>MT</span></div>
+          <div style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>239,274 <span style={{ fontSize: '10px' }}>MT</span></div>
         </div>
       </div>
     </div>

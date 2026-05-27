@@ -7,16 +7,16 @@ import s from './FleetCommandCenter.module.css';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const rankData = [
-  { r: 1, cap: '김효원', name: 'S/SPR', weekly: 334.00, daily: 47.71, badge: 'gold' },
-  { r: 2, cap: '김태엽', name: 'N/STAR', weekly: 170.00, daily: 24.29, badge: 'silver' },
-  { r: 3, cap: '강창훈', name: 'S/JUP', weekly: 165.00, daily: 23.57, badge: 'bronze' },
-  { r: 4, cap: '김승현', name: 'S/PIO', weekly: 130.00, daily: 18.57, badge: '' },
-  { r: 5, cap: '최용석', name: 'S/CHA', weekly: 130.00, daily: 18.57, badge: '' },
-  { r: 6, cap: '김정훈', name: 'MARI', weekly: 130.00, daily: 18.57, badge: '' },
-  { r: 7, cap: '이평규', name: 'KONA', weekly: 130.00, daily: 18.57, badge: '' },
-  { r: 8, cap: '정윤채', name: 'S/EXP', weekly: 119.00, daily: 17.00, badge: '' },
-  { r: 9, cap: '김형주', name: 'N/SUN', weekly: 55.00, daily: 7.86, badge: '' },
-  { r: 10, cap: '모승현', name: 'S/HAR', weekly: 45.00, daily: 6.43, badge: '' },
+  { r: 1, cap: '김승현', name: 'S/PIO', weekly: 215.00, daily: 30.71, badge: 'gold' },
+  { r: 2, cap: '강창훈', name: 'S/JUP', weekly: 70.00, daily: 10.00, badge: 'silver' },
+  { r: 3, cap: '최용석', name: 'S/CHA', weekly: 50.00, daily: 7.14, badge: 'bronze' },
+  { r: 4, cap: '김효원', name: 'S/SPR', weekly: 48.00, daily: 6.86, badge: '' },
+  { r: 5, cap: '김정훈', name: 'MARI', weekly: 25.00, daily: 3.57, badge: '' },
+  { r: 6, cap: '김형주', name: 'N/SUN', weekly: 23.00, daily: 3.29, badge: '' },
+  { r: 7, cap: '김태엽', name: 'N/STAR', weekly: 20.00, daily: 2.86, badge: '' },
+  { r: 8, cap: '이평규', name: 'KONA', weekly: 5.00, daily: 0.71, badge: '' },
+  { r: 9, cap: '정윤채', name: 'S/EXP', weekly: 0, daily: 0, badge: '' },
+  { r: 10, cap: '모승현', name: 'S/HAR', weekly: 0, daily: 0, badge: '' },
 ];
 
 const tabs = [
@@ -47,8 +47,8 @@ export function FleetChartSection() {
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>SPR(김효원) 334t으로 주간 1위. HAR(모승현) 45t으로 일시적 부진 — 어장 이동에 따른 조업일수 감소 여파.</>}
-                actionPlan={<>HAR 하락 원인(어장 이동 및 기상 영향) 분석. SPR 일평균 47.71t으로 양호한 성과 지속 여부 모니터링.</>}
+                situation={<>PIO(김승현) 215t으로 주간 1위. S/EXP·S/HAR 입항 중으로 주간 어획량 없음 — 전체 주간 총 어획량 456t으로 전주 대비 급감.</>}
+                actionPlan={<>PIO 일평균 30.71t 양호한 성과. S/EXP M/E 수리 6/7 출항, S/HAR 상가수리 6/27 출항 예정 — 복귀 시점까지 잔여 선단 조업 효율 극대화 필요.</>}
               />
             </div>
           </>
@@ -58,8 +58,8 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>월간 어획 기준 SPR이 4,430t으로 최상위 유지, HAR이 4,160t으로 뒤를 이음. SUN은 3월 실적 부재 영향으로 1,772t에 머무름.</>}
-                actionPlan={<>SPR 및 HAR의 높은 월간 실적 유지 전략 점검. SUN의 3월 무조업 극복을 위한 2분기 조업 효율 극대화 방안 수립.</>}
+                situation={<>월간 어획 기준 SPR이 4,478t으로 최상위 유지, HAR이 4,160t으로 뒤를 이음. PIO가 5월 1,205t으로 급성장. SUN은 5월 실적 부재로 1,795t에 머물름.</>}
+                actionPlan={<>PIO 5월 급성장(1,205t) 후속 모니터링. SUN 5월 무조업 원인 파악 및 6월 조업 효율 극대화 방안 수립.</>}
               />
             </div>
           </>
@@ -69,8 +69,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>모승현(S/HAR) 일어획 30.6t으로 전체 1위. 김형주(N/SUN) 13.1t으로 최하위 — 평균 대비 -10.13t.</>}
-                actionPlan={<>N/SUN 저실적 구조적 원인(합작선 운영 효율, 어장 접근성) 심층 분석. KONA(이평규) 68일차 초기 단계로 추이 지속 관찰.</>}
+                situation={<>모승현(S/HAR) 일어획 30.1t으로 전체 1위. 김형주(N/SUN) 12.8t으로 최하위 — 평균 대비 -10.02t.</>}
+                actionPlan={<>N/SUN 저실적 구조적 원인(합작선 운영 효율, 어장 접근성) 심층 분석. KONA(이평규) 75일차 초기 단계로 추이 지속 관찰.</>}
               />
             </div>
           </>
@@ -148,8 +148,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>모승현(S/HAR) 374일간 11,460t 달성, '1만톤 클럽' 가입. 전체 일어획 평균 23.3t 대비 +7.38t로 성과. 반면 김형주(N/SUN)은 210일간 일어획 13.1t으로 평균 대비 -10.13t — 구조적 저실적 패턴.</>}
-              actionPlan={<>N/SUN 저실적 원인(합작선 한계 vs 어장 배정 문제) 긴급 분석 착수. KONA(이평규) 68일 조기 단계 — 60일 후 재평가. PIO(김승현) 116일차 일어획 23.2t, 안정 궤도 진입 확인.</>}
+              situation={<>모승현(S/HAR) 381일간 11,460t 달성, '1만톤 클럽' 가입. 전체 일어획 평균 22.8t 대비 +7.25t로 성과. 반면 김형주(N/SUN)은 217일간 일어획 12.8t으로 평균 대비 -10.02t — 구조적 저실적 패턴.</>}
+              actionPlan={<>N/SUN 저실적 원인(합작선 한계 vs 어장 배정 문제) 긴급 분석 착수. KONA(이평규) 75일 조기 단계 — 60일 후 재평가. PIO(김승현) 123일차 일어획 23.6t, 안정 궤도 진입 확인.</>}
             />
           </div>
         </div>
