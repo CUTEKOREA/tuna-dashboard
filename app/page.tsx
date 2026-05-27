@@ -421,18 +421,32 @@ export default function Home() {
       
       {/* Sidebar Area */}
       <aside className={`${styles.sidebar} ${isMobileSidebarOpen ? styles.sidebarOpen : ''}`}>
-        <div style={{ marginBottom: '2rem' }}>
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}
+          title="홈으로 이동 (전체 새로고침)"
+          style={{
+            display: 'block',
+            marginBottom: '2rem',
+            textDecoration: 'none',
+            color: 'inherit',
+            cursor: 'pointer',
+            transition: 'opacity 0.15s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.8'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+        >
           <img src="/logo1.png" alt="Company Logo" style={{ height: '48px', objectFit: 'contain', marginBottom: '8px' }} />
           <p className={styles.subtitle} style={{ fontSize: '0.75rem', marginBottom: '8px' }}>Tuna Market Intelligence</p>
-          <div style={{ 
-            fontSize: '0.65rem', 
-            color: 'var(--text-muted)', 
+          <div style={{
+            fontSize: '0.65rem',
+            color: 'var(--text-muted)',
             letterSpacing: '0.05em',
             borderTop: '1px solid rgba(255,255,255,0.05)',
             paddingTop: '8px',
             display: 'inline-block'
           }}>
-            Architected by <span style={{ 
+            Architected by <span style={{
               fontWeight: 'bold',
               fontSize: '0.85rem',
               letterSpacing: '1px',
@@ -441,7 +455,7 @@ export default function Home() {
               WebkitTextFillColor: 'transparent'
             }}>이동건</span>
           </div>
-        </div>
+        </a>
         
         <div className={styles.sidebarTitle}>📡 실시간 운영</div>
         
