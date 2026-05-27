@@ -57,6 +57,12 @@ import {
 } from './TunaIntelInsightsB4';
 import TunaLiveTicker from './TunaLiveTicker';
 import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
+import {
+  AtunaIoPerfectStormWidget,
+  AtunaBangkokPriceWidget,
+  AtunaEpoCatchDropWidget,
+  AtunaEuCatchSystemWidget
+} from './TunaAtunaMayNews';
 
 // Phase 2: Landing Cost & Supplier Hub
 import TunaLandingCost from './TunaLandingCost';
@@ -728,6 +734,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <ThaiImportShift1Q26 />
               <PerfectStormWidget />
             </div>
+            {/* Atuna May News (S1) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <AtunaIoPerfectStormWidget />
+              <AtunaEpoCatchDropWidget />
+            </div>
           </section>
         )}
 
@@ -824,6 +835,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
+              <AtunaEuCatchSystemWidget />
             </div>
             <OperationalS3Widgets />
           </section>
@@ -851,6 +863,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               
               {/* 3. 신규 수요 창출 (할랄 및 틈새 시장) */}
               <TunaGlobalHalalStrategy />
+              <AtunaBangkokPriceWidget />
             </div>
             <OperationalS4Widgets />
           </section>
