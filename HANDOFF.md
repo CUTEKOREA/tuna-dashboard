@@ -1,5 +1,19 @@
 # HANDOFF — 현재 작업 상태
 
+> 📝 **2026-05-27 — SIT/TAK 톤 강화 메가 세션 (89 위젯, 6 commits push)** [CC]:
+> - **사용자 의도 확립**: SIT = 신입사원도 이해할 수 있게 자세하게(전문용어 풀네임 정의 + 본질 1문장 + 굵은 숫자 묶음 + 메타 통찰), TAK = C레벨 임원이 놀랄 엣지(재정의 통념 뒤집기 + 3단계 액션 + 패러다임 전환). ReactNode `<div><p>` 형식, WidgetCard.TakeawayProps `string|ReactNode` 확장 활용
+> - **완료 commodity 5개 (89 위젯)**:
+>   - 752d75f L-01 영문 잔존 6건 (TunaChart Import/Export Volume, SalmonLiveTicker Fed Rate)
+>   - a9699ce **Mangosteen 14위젯** — ENSO·TRQ·1-MCP·FOPL·VHT·RCEP·MAP·잔토닌 등 도메인 풀네임 정의
+>   - b7841ea **Garlic 17위젯** — WSC·KAMIS·HORECA·TRQ·SCFI·FRA·NDF·Post-harvest Loss·EV/EBITDA Multiple·Contraction Quadrant·CPE·EPR·K-ETS·Value Migration·CV 등
+>   - 7dacad8 **Cocoa 20위젯** — CSSVD·COCOBOD·Stocks-to-Grindings·Butter/Powder Ratio·Backwardation/Contango·EUDR·CBE/CBS·Fine or Flavor·Shrinkflation·Origin Grinding·WTP·Cosmeceutical·JIC·Rolling Hedge 등
+>   - 012e824 **Carrot 28위젯** — VKFTA·TCU·PLS·IQF·MA·Bass Diffusion·CDD·LTV·Smile Curve·QoE·FAOSTAT SCL·Expeller·Scope 3·KAMIS Wholesale Cycle·OEC HHI 등
+>   - 3345919 **Cashew 4 inline 위젯** + WidgetSpec type 확장 — RCN·Origin Grinding·SCFI·CNSL·SAF 등
+> - **환경 정리**: main 13 ahead push 완료 (이전 SIT/TAK 177 위젯), 머지된 omo/* 12 브랜치 정리
+> - **Skip 결정**: UsedCar 8 / PetFood 17 / Whelk 27 / Shrimp 57 — 이미 직전 Phase D 톤(영문 동격·PE 전문 용어·TermTooltip)이 강하게 적용된 상태로 사용자 결정에 따라 보류
+> - **잔여 미작업 (외부 데이터 파일 패턴)**: Beef·Pork (`beefData.ts`/`porkData.ts` import), Cassava·Galchi·Jukkumi (`w.sit`/`w.strat` 외부 데이터) — 데이터 파일 구조 분석부터 별도 세션에서 진행 권장
+> - **누적**: 89 위젯 SIT/TAK 신입사원 친화 + C레벨 엣지 톤으로 재작성, 모두 main push 완료, L-03 빌드 통과 6/6
+>
 > 🚑 **2026-05-24 — A8 codemod 회귀 핫픽스: 패턴 URL → Okabe-Ito 솔리드 색상 (107 파일)**:
 > - **원인**: `<pattern fill="currentColor">`는 부모 SVG element의 CSS color 의존. Recharts `<Bar>`는 임의 props(`color`)를 SVG로 forward하지 않아 currentColor가 미설정 → 다크 테마에서 차트가 투명/검정으로 렌더링되는 회귀 발생 (커밋 ba1a882 부작용, Carrot S1 등 노출).
 > - **수정**: `scripts/revert_a11y_bar_fills.py` 신설 (`fill="url(#a11y-X)" color={Y}` → `fill={Y}` 일괄 변환) + `getA11yBarProps()` 반환을 솔리드 Okabe-Ito 색상으로 단순화 (Cell-loop 호환).
