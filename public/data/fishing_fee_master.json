@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "2024_total_fee_usd": 89697952,
+    "2023_total_fee_usd": 83595415,
+    "2022_total_fee_usd": 88932161,
+    "2024_total_tariff_exemption_ton": 121831
+  },
+  "fees_by_category": {
+    "참치 (원양선망)": {
+      "2024_total_usd": 67969914,
+      "2024_vessels_paid": 22,
+      "avg_fee_per_vessel_usd": 3089541,
+      "key_countries": [
+        {"name": "파푸아뉴기니", "amount": 22260000},
+        {"name": "키리바시", "amount": 19918100},
+        {"name": "솔로몬제도", "amount": 10120000},
+        {"name": "마이크로네시아", "amount": 6872000},
+        {"name": "투발루", "amount": 4400000}
+      ],
+      "trend": "up",
+      "insight": "전체 입어료의 75.7%를 차지. PNA 국가들의 VDS(조업일수제도) 강화로 척당 약 300만 달러(약 40억 원)의 살인적인 고정비 발생."
+    },
+    "참치 (원양연승)": {
+      "2024_total_usd": 513396,
+      "2024_vessels_paid": 7,
+      "avg_fee_per_vessel_usd": 73342,
+      "key_countries": [
+        {"name": "마다가스카르", "amount": 226200},
+        {"name": "모잠비크", "amount": 189796},
+        {"name": "탄자니아", "amount": 97400}
+      ],
+      "trend": "down",
+      "insight": "선망 대비 입어료 부담은 현저히 낮으나(척당 1억 원 미만), 인도양 및 아프리카 연안국의 조업 규제 및 해적 리스크 상존."
+    },
+    "명태 (북양트롤)": {
+      "2024_total_usd": 11294908,
+      "2024_vessels_paid": 3,
+      "avg_fee_per_vessel_usd": 3764969,
+      "key_countries": [
+        {"name": "러시아", "amount": 11294908}
+      ],
+      "tariff_exemption_ton": 117270,
+      "trend": "stable",
+      "insight": "3척이 무려 1,129만 달러(척당 50억 원)를 지불. 단, 11만 7천 톤에 달하는 해외합작수산물 관세감면 혜택으로 비용을 헷징 중."
+    },
+    "오징어 (채낚기)": {
+      "2024_total_usd": 8795034,
+      "2024_vessels_paid": 28,
+      "avg_fee_per_vessel_usd": 314108,
+      "key_countries": [
+        {"name": "포클랜드", "amount": 8795034}
+      ],
+      "tariff_exemption_ton": 1072,
+      "trend": "up",
+      "insight": "전액 포클랜드 수역에 지불. 최근 남서대서양 어획량 감소 추세 속에서 척당 4억 원 수준의 입어료는 중소 선사에 타격."
+    },
+    "저연승 (이빨고기)": {
+      "2024_total_usd": 1029700,
+      "2024_vessels_paid": 2,
+      "avg_fee_per_vessel_usd": 514850,
+      "key_countries": [
+        {"name": "러시아", "amount": 1029700}
+      ],
+      "trend": "down",
+      "insight": "단가(21,336원/kg)가 워낙 높아 척당 7억 원의 러시아 입어료 지불 능력이 충분함. CCAMLR 남극 쿼터 확보가 더 큰 관건."
+    }
+  }
+}

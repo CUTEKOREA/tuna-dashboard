@@ -1,0 +1,27 @@
+[
+  {
+    "country": "중국 (가공 블랙홀)",
+    "volume": 950000,
+    "color": "#f87171"
+  },
+  {
+    "country": "대한민국 (소비/가공)",
+    "volume": 320000,
+    "color": "#60a5fa"
+  },
+  {
+    "country": "독일 (EU 진입로)",
+    "volume": 180000,
+    "color": "#fbbf24"
+  },
+  {
+    "country": "네덜란드",
+    "volume": 120000,
+    "color": "#34d399"
+  },
+  {
+    "country": "일본",
+    "volume": 95000,
+    "color": "#a78bfa"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "country": "Viet Nam",
+    "import_price": 1930.22,
+    "export_price": 3771.93,
+    "spread": 1841.71
+  },
+  {
+    "country": "China",
+    "import_price": 1257.57,
+    "export_price": 3086.12,
+    "spread": 1828.55
+  },
+  {
+    "country": "Belgium",
+    "import_price": 4542.73,
+    "export_price": 6358.28,
+    "spread": 1815.55
+  },
+  {
+    "country": "Indonesia",
+    "import_price": 1640.45,
+    "export_price": 3231.13,
+    "spread": 1590.68
+  },
+  {
+    "country": "Spain",
+    "import_price": 3277.8,
+    "export_price": 4623.23,
+    "spread": 1345.43
+  }
+]

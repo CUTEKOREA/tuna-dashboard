@@ -1,0 +1,74 @@
+[
+  {
+    "country": "키리바시",
+    "countryEn": "Kiribati",
+    "areaSqKm": 3550000,
+    "location": "중부 태평양",
+    "vdsFee2024": 19918100,
+    "species": "가다랑어 80%, 황다랑어 15%",
+    "characteristics": "가장 넓은 EEZ 면적, 엘니뇨 시 어군 밀집, 입어료 비중 2위"
+  },
+  {
+    "country": "파푸아뉴기니",
+    "countryEn": "PNG",
+    "areaSqKm": 3120000,
+    "location": "서부 태평양",
+    "vdsFee2024": 22260000,
+    "species": "가다랑어 70%, 황다랑어 25%",
+    "characteristics": "PNA 최대 입어료 수입국, 육상 가공 허브(RD Tuna) 연계"
+  },
+  {
+    "country": "마이크로네시아",
+    "countryEn": "FSM",
+    "areaSqKm": 2990000,
+    "location": "서북 태평양",
+    "vdsFee2024": 6872000,
+    "species": "가다랑어 75%, 황다랑어 20%",
+    "characteristics": "서부태평양 핵심 회유 경로, 어획량 변동성 중간"
+  },
+  {
+    "country": "솔로몬제도",
+    "countryEn": "Solomon",
+    "areaSqKm": 1600000,
+    "location": "남서 태평양",
+    "vdsFee2024": 10120000,
+    "species": "가다랑어 65%, 황다랑어 30%",
+    "characteristics": "라니냐 시기 어군 밀집, 로컬 가공공장 합작 활발"
+  },
+  {
+    "country": "투발루",
+    "countryEn": "Tuvalu",
+    "areaSqKm": 900000,
+    "location": "중서부 태평양",
+    "vdsFee2024": 4400000,
+    "species": "가다랑어 85%, 기타 15%",
+    "characteristics": "VDS 소진율 가장 높음(위험 수준), 기후변화 취약국"
+  },
+  {
+    "country": "마샬군도",
+    "countryEn": "Marshall",
+    "areaSqKm": 2130000,
+    "location": "북서 태평양",
+    "vdsFee2024": 1500000,
+    "species": "가다랑어 70%, 빅아이 10%",
+    "characteristics": "마주로 항구 등 주요 환적(Transshipment) 기지 역할"
+  },
+  {
+    "country": "나우루",
+    "countryEn": "Nauru",
+    "areaSqKm": 320000,
+    "location": "중앙 태평양",
+    "vdsFee2024": 2800000,
+    "species": "가다랑어 80%, 황다랑어 15%",
+    "characteristics": "가장 작은 EEZ이나 대만-중국 단교 등 지정학적 리스크 존재"
+  },
+  {
+    "country": "팔라우",
+    "countryEn": "Palau",
+    "areaSqKm": 620000,
+    "location": "서부 태평양",
+    "vdsFee2024": 500000,
+    "species": "황다랑어 40%, 가다랑어 50%",
+    "characteristics": "해양보호구역(MPA) 비중이 높아 실제 상업 조업 수역 제한적"
+  }
+]

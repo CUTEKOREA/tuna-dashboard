@@ -1,0 +1,42 @@
+[
+  {
+    "year": 2019,
+    "China": 701751,
+    "Republic of Korea": 173859,
+    "Germany": 171953,
+    "Japan": 132604,
+    "France": 70987
+  },
+  {
+    "year": 2020,
+    "China": 621684,
+    "Republic of Korea": 202489,
+    "Germany": 170307,
+    "Japan": 103399,
+    "France": 71230
+  },
+  {
+    "year": 2021,
+    "China": 398403,
+    "Republic of Korea": 313010,
+    "Germany": 169621,
+    "Japan": 114135,
+    "France": 70002
+  },
+  {
+    "year": 2022,
+    "China": 619612,
+    "Republic of Korea": 360604,
+    "Germany": 175893,
+    "Japan": 115758,
+    "France": 73298
+  },
+  {
+    "year": 2023,
+    "China": 618396,
+    "Republic of Korea": 180559,
+    "Germany": 181574,
+    "Japan": 128754,
+    "France": 70060
+  }
+]

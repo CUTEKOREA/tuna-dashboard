@@ -1,0 +1,1652 @@
+{
+  "참치 (원양선망)": [
+    {
+      "name": "디올린다",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 606,
+      "length": 61.63,
+      "launchDate": "1982-01-15",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "미래로",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1826,
+      "length": 70.8,
+      "launchDate": "2014-02-28",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "바스코",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 986,
+      "length": 67.37,
+      "launchDate": "1991-12-12",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "본아미",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1862,
+      "length": 73.02,
+      "launchDate": "2019-06-05",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "블루오션",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 2023,
+      "length": 74.51,
+      "launchDate": "2008-01-31",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "세계로",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1826,
+      "length": 70.8,
+      "launchDate": "2013-12-22",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "아드리아",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1072,
+      "length": 70.66,
+      "launchDate": "1992-10-15",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "오션마스타",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1349.2,
+      "length": 68.29,
+      "launchDate": "1989-06-17",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "오션에이스",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1994,
+      "length": 74.37,
+      "launchDate": "2006-01-25",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "장보고",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 2009,
+      "length": 74.39,
+      "launchDate": "2008-07-03",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "주빌리",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1862,
+      "length": 72.02,
+      "launchDate": "2019-03-22",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "코스모스김",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 733,
+      "length": 61.67,
+      "launchDate": "1981-10-15",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "테라카",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1811,
+      "length": 70.8,
+      "launchDate": "2015-07-03",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "한아라",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 1811,
+      "length": 70.8,
+      "launchDate": "2015-08-12",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조알렉산드리아",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 1016,
+      "length": 70.76,
+      "launchDate": "2013-11-04",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조콘코디아",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 1105,
+      "length": 73.54,
+      "launchDate": "2014-10-27",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조콜롬비아",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 1014,
+      "length": 70.76,
+      "launchDate": "2012-04-30",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조패밀리아",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 1014,
+      "length": 70.76,
+      "launchDate": "2012-09-06",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조테티시아",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 777,
+      "length": 56.56,
+      "launchDate": "1996-05-02",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조포텐시아",
+      "company": "사조씨푸드",
+      "callSign": "N/A",
+      "tonnage": 1061,
+      "length": 63.08,
+      "launchDate": "2010-01-20",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "사조포세도니아",
+      "company": "사조오양",
+      "callSign": "N/A",
+      "tonnage": 1016,
+      "length": 70.76,
+      "launchDate": "2013-10-05",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "신라스프린터",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 1971,
+      "length": 73.82,
+      "launchDate": "2011-12-27",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "신라익스플로러",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 2060,
+      "length": 73.54,
+      "launchDate": "2014-10-14",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "신라쥬피터",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 780,
+      "length": 69.55,
+      "launchDate": "2001-04-01",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "신라챌린저",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 1349.2,
+      "length": 68.29,
+      "launchDate": "1990-03-10",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "신라파이어니어",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 2060,
+      "length": 73.54,
+      "launchDate": "2014-10-31",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "신라하비스터",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 1971,
+      "length": 73.82,
+      "launchDate": "2011-07-19",
+      "area": "삼대양",
+      "purpose": "참치선망"
+    },
+    {
+      "name": "바다로호",
+      "callSign": "D7MZ",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "원양선망",
+      "company": "동원산업(주)"
+    },
+    {
+      "name": "오셔너스호",
+      "callSign": "D7NG",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "원양선망",
+      "company": "동원산업(주)"
+    },
+    {
+      "name": "산와폰테인",
+      "callSign": "D7JZ",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "원양선망",
+      "company": "동원산업 주식회사"
+    }
+  ],
+  "참치 (원양연승)": [
+    {
+      "name": "경양 2",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 423,
+      "length": 49.91,
+      "launchDate": "1988-11-16",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 3",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 393,
+      "length": 48.11,
+      "launchDate": "1990-11-10",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 5",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 414,
+      "length": 49.62,
+      "launchDate": "1987-03-03",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 6",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 483,
+      "length": 51.19,
+      "launchDate": "1999-09-19",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 7",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 488,
+      "length": 51.19,
+      "launchDate": "1999-11-26",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 8",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 442,
+      "length": 49.77,
+      "launchDate": "1990-09-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 9",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 383,
+      "length": 47.21,
+      "launchDate": "1986-12-08",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "경양 21",
+      "company": "경양수산",
+      "callSign": "N/A",
+      "tonnage": 424,
+      "length": 49.77,
+      "launchDate": "1989-04-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "501 남궁",
+      "company": "남궁튜나",
+      "callSign": "N/A",
+      "tonnage": 411,
+      "length": 49.91,
+      "launchDate": "1987-09-17",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "518 남궁",
+      "company": "남궁튜나",
+      "callSign": "N/A",
+      "tonnage": 410,
+      "length": 49.91,
+      "launchDate": "1988-04-09",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 201",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.91,
+      "launchDate": "1990-03-03",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 202",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.91,
+      "launchDate": "1990-05-17",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 302",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 417,
+      "length": 49.91,
+      "launchDate": "1989-01-20",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 303",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 410,
+      "length": 49.91,
+      "launchDate": "1988-02-08",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 306",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.91,
+      "launchDate": "1987-11-24",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 308",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 423,
+      "length": 49.91,
+      "launchDate": "1988-11-21",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 309",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 376,
+      "length": 48.01,
+      "launchDate": "1986-02-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "대화 313",
+      "company": "대해수산",
+      "callSign": "N/A",
+      "tonnage": 392,
+      "length": 49.21,
+      "launchDate": "1991-03-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 121",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 388,
+      "length": 48.85,
+      "launchDate": "1989-11-03",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 203",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 397,
+      "length": 49.91,
+      "launchDate": "1988-04-16",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 207",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 47.21,
+      "launchDate": "1987-02-17",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 208",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.91,
+      "launchDate": "1990-08-30",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 211",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.91,
+      "launchDate": "1989-04-26",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 212",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.91,
+      "launchDate": "1990-07-24",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 216",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.91,
+      "launchDate": "1990-07-25",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 803",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 383,
+      "length": 47.21,
+      "launchDate": "1986-12-08",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "아툰트레스",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.61,
+      "launchDate": "1989-03-09",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "토니나 3",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.91,
+      "launchDate": "1989-06-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "토니나 5",
+      "company": "동원산업",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.61,
+      "launchDate": "1989-08-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 618",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 417,
+      "length": 49.91,
+      "launchDate": "1989-03-30",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 619",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 417,
+      "length": 49.91,
+      "launchDate": "1989-03-31",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 620",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 417,
+      "length": 49.91,
+      "launchDate": "1989-05-16",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 621",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 424,
+      "length": 49.62,
+      "launchDate": "1989-08-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 622",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 424,
+      "length": 49.62,
+      "launchDate": "1989-08-12",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 623",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 424,
+      "length": 49.61,
+      "launchDate": "1989-09-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 631",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 420,
+      "length": 49.61,
+      "launchDate": "1989-09-12",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 632",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 424,
+      "length": 49.62,
+      "launchDate": "1989-11-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 633",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 425,
+      "length": 49.61,
+      "launchDate": "1989-11-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 637",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.09,
+      "launchDate": "1991-06-18",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 638",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 419,
+      "length": 49.09,
+      "launchDate": "1990-11-02",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 639",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 442,
+      "length": 50.01,
+      "launchDate": "1990-07-17",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 650",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 439,
+      "length": 49.91,
+      "launchDate": "1991-05-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 651",
+      "company": "동원수산",
+      "callSign": "N/A",
+      "tonnage": 415,
+      "length": 49.61,
+      "launchDate": "1991-10-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 303",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 384,
+      "length": 47.21,
+      "launchDate": "1986-12-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 305",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 384,
+      "length": 47.21,
+      "launchDate": "1987-08-14",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 306",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 384,
+      "length": 47.21,
+      "launchDate": "1987-09-30",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 311",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 47.21,
+      "launchDate": "1988-02-17",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 315",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 47.21,
+      "launchDate": "1988-04-19",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 316",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 47.21,
+      "launchDate": "1990-10-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 353",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 386,
+      "length": 46.91,
+      "launchDate": "1987-02-03",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 355",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 48.01,
+      "launchDate": "1988-04-27",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 371",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 419,
+      "length": 49.61,
+      "launchDate": "1989-03-29",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 373",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 441,
+      "length": 51.01,
+      "launchDate": "1997-01-07",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 375",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 394,
+      "length": 49.33,
+      "launchDate": "1996-08-02",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 377",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 398,
+      "length": 48.11,
+      "launchDate": "1992-01-08",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 708",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 414,
+      "length": 49.9,
+      "launchDate": "1987-10-28",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 712",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.91,
+      "launchDate": "1988-05-11",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 715",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.61,
+      "launchDate": "1988-05-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 716",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.61,
+      "launchDate": "1988-05-30",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 717",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.61,
+      "launchDate": "1988-12-27",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 718",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.61,
+      "launchDate": "1988-12-27",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 722",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.61,
+      "launchDate": "1989-11-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 723",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 446,
+      "length": 49.61,
+      "launchDate": "1990-01-13",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 725",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 421,
+      "length": 49.61,
+      "launchDate": "1990-12-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 731",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 383,
+      "length": 46.91,
+      "launchDate": "1990-06-12",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 733",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 416,
+      "length": 49.61,
+      "launchDate": "1991-01-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 735",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 417,
+      "length": 49.16,
+      "launchDate": "1989-03-20",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 801",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 387,
+      "length": 47.51,
+      "launchDate": "1989-04-17",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 805",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 432,
+      "length": 49.01,
+      "launchDate": "1997-10-04",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 901",
+      "company": "사조산업",
+      "callSign": "N/A",
+      "tonnage": 199,
+      "length": 34.99,
+      "launchDate": "2019-02-23",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 317",
+      "company": "사조씨푸드",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 47.21,
+      "launchDate": "1990-09-21",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오룡 325",
+      "company": "사조씨푸드",
+      "callSign": "N/A",
+      "tonnage": 389,
+      "length": 47.99,
+      "launchDate": "1989-11-03",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오양 355",
+      "company": "사조오양",
+      "callSign": "N/A",
+      "tonnage": 411,
+      "length": 49.91,
+      "launchDate": "1989-06-16",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오양 371",
+      "company": "사조오양",
+      "callSign": "N/A",
+      "tonnage": 383,
+      "length": 46.91,
+      "launchDate": "1990-02-28",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "오양 372",
+      "company": "사조오양",
+      "callSign": "N/A",
+      "tonnage": 383,
+      "length": 46.91,
+      "launchDate": "1990-05-11",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "신영 51",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 401,
+      "length": 48.28,
+      "launchDate": "1988-03-08",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "신영 52",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 401,
+      "length": 48.28,
+      "launchDate": "1988-06-29",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "신영 55",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 424,
+      "length": 49.77,
+      "launchDate": "1989-04-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "신영 56",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 384,
+      "length": 46.9,
+      "launchDate": "1987-02-18",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "파나룩스 501",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 427,
+      "length": 49.47,
+      "launchDate": "1990-05-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "파나룩스 502",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 427,
+      "length": 49.47,
+      "launchDate": "1990-06-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "파나룩스 503",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 427,
+      "length": 49.47,
+      "launchDate": "1990-07-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "파나룩스 505",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 427,
+      "length": 49.47,
+      "launchDate": "1990-08-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "파나룩스 506",
+      "company": "신라교역",
+      "callSign": "N/A",
+      "tonnage": 427,
+      "length": 49.47,
+      "launchDate": "1990-09-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "502 남궁",
+      "company": "쓰리티오션",
+      "callSign": "N/A",
+      "tonnage": 411,
+      "length": 49.91,
+      "launchDate": "1987-09-07",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "503 남궁",
+      "company": "쓰리티오션",
+      "callSign": "N/A",
+      "tonnage": 398,
+      "length": 47.53,
+      "launchDate": "1989-06-28",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "카케하시 1",
+      "company": "쓰리티오션",
+      "callSign": "N/A",
+      "tonnage": 408,
+      "length": 49.91,
+      "launchDate": "1987-05-10",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "카케하시 2",
+      "company": "쓰리티오션",
+      "callSign": "N/A",
+      "tonnage": 414,
+      "length": 49.91,
+      "launchDate": "1989-08-04",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "아그네스 82",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 410,
+      "length": 49.91,
+      "launchDate": "1988-02-23",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "아그네스 83",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 417,
+      "length": 49.91,
+      "launchDate": "1990-07-25",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "아그네스 90",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 414,
+      "length": 49.91,
+      "launchDate": "1990-11-20",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "아그네스 95",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 353.02,
+      "length": 44.75,
+      "launchDate": "1985-10-26",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 201",
+      "company": "에스앤비인터내셔널",
+      "callSign": "N/A",
+      "tonnage": 410,
+      "length": 49.91,
+      "launchDate": "1988-01-06",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "동원 205",
+      "company": "에스앤비인터내셔널",
+      "callSign": "N/A",
+      "tonnage": 397,
+      "length": 49.91,
+      "launchDate": "1988-04-06",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "칠성 1",
+      "company": "한성기업",
+      "callSign": "N/A",
+      "tonnage": 385,
+      "length": 47.21,
+      "launchDate": "1988-06-16",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "한성 36",
+      "company": "한성기업",
+      "callSign": "N/A",
+      "tonnage": 384,
+      "length": 47.21,
+      "launchDate": "1987-06-19",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "한성 38",
+      "company": "한성기업",
+      "callSign": "N/A",
+      "tonnage": 385,
+      "length": 47.21,
+      "launchDate": "1988-06-02",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "한성 39",
+      "company": "한성기업",
+      "callSign": "N/A",
+      "tonnage": 385,
+      "length": 47.21,
+      "launchDate": "1991-03-16",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 11",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 438,
+      "length": 49.92,
+      "launchDate": "1990-07-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 22",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 390,
+      "length": 46.9,
+      "launchDate": "1988-06-10",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 101",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 423,
+      "length": 49.61,
+      "launchDate": "1989-01-15",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 202",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 380,
+      "length": 47.21,
+      "launchDate": "1988-03-21",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 303",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 384,
+      "length": 47.21,
+      "launchDate": "1987-09-26",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 707",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 423,
+      "length": 49.91,
+      "launchDate": "1989-02-21",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    },
+    {
+      "name": "해천 808",
+      "company": "해천물산",
+      "callSign": "N/A",
+      "tonnage": 405,
+      "length": 48.11,
+      "launchDate": "1990-11-01",
+      "area": "삼대양",
+      "purpose": "참치연승"
+    }
+  ],
+  "오징어 (원양채낚기)": [
+    {
+      "name": "동일 5",
+      "company": "경태",
+      "callSign": "N/A",
+      "tonnage": 338,
+      "length": 61.11,
+      "launchDate": "1991-11-05",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "해랑 101",
+      "company": "동신어업",
+      "callSign": "N/A",
+      "tonnage": 454,
+      "length": 50.55,
+      "launchDate": "1987-10-01",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "통영 808",
+      "company": "동원해사랑",
+      "callSign": "N/A",
+      "tonnage": 316,
+      "length": 60.49,
+      "launchDate": "1986-10-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "은해 101",
+      "company": "선민수산",
+      "callSign": "N/A",
+      "tonnage": 499,
+      "length": 51.69,
+      "launchDate": "1979-06-13",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "은해 107",
+      "company": "선민수산",
+      "callSign": "N/A",
+      "tonnage": 362,
+      "length": 62.64,
+      "launchDate": "1987-08-12",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "은해 109",
+      "company": "선민수산",
+      "callSign": "N/A",
+      "tonnage": 313,
+      "length": 60.17,
+      "launchDate": "1986-09-28",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "801 승진",
+      "company": "승진수산",
+      "callSign": "N/A",
+      "tonnage": 499,
+      "length": 66.36,
+      "launchDate": "2020-08-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "7 대양",
+      "company": "신해피셔리",
+      "callSign": "N/A",
+      "tonnage": 490,
+      "length": 49,
+      "launchDate": "1974-07-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 101",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 338,
+      "length": 61.59,
+      "launchDate": "1991-06-01",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 102",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 499.37,
+      "length": 51.45,
+      "launchDate": "1974-11-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 103",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 498.59,
+      "length": 51.45,
+      "launchDate": "1974-02-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 107",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 485,
+      "length": 50.23,
+      "launchDate": "1984-06-16",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 108",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 485,
+      "length": 50.23,
+      "launchDate": "1984-09-24",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 110",
+      "company": "아그네스수산",
+      "callSign": "N/A",
+      "tonnage": 499,
+      "length": 66.36,
+      "launchDate": "2020-07-17",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "세인 5",
+      "company": "정일산업",
+      "callSign": "N/A",
+      "tonnage": 359,
+      "length": 63.7,
+      "launchDate": "1987-11-01",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "세인 7",
+      "company": "정일산업",
+      "callSign": "N/A",
+      "tonnage": 539,
+      "length": 53.93,
+      "launchDate": "1990-11-22",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "세인 9",
+      "company": "정일산업",
+      "callSign": "N/A",
+      "tonnage": 661,
+      "length": 55.02,
+      "launchDate": "1988-10-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "아그네스 109",
+      "company": "정일산업",
+      "callSign": "N/A",
+      "tonnage": 437.87,
+      "length": 49.68,
+      "launchDate": "1973-12-15",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "해인 27",
+      "company": "해인수산",
+      "callSign": "N/A",
+      "tonnage": 361,
+      "length": 63.99,
+      "launchDate": "1987-08-01",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "은해 108",
+      "company": "현원수산",
+      "callSign": "N/A",
+      "tonnage": 361,
+      "length": 59.12,
+      "launchDate": "1987-08-01",
+      "area": "태, 대",
+      "purpose": "오징어채낚기"
+    },
+    {
+      "name": "엔젤패밀리호",
+      "callSign": "-",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "원양채낚기",
+      "company": "장승진"
+    },
+    {
+      "name": "대한5호",
+      "callSign": "-",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "원양채낚기",
+      "company": "장승진"
+    },
+    {
+      "name": "대한3호",
+      "callSign": "-",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "원양채낚기",
+      "company": "장승진"
+    }
+  ],
+  "명태 (북양트롤)": [
+    {
+      "name": "리베로호",
+      "callSign": "-",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "북양트롤",
+      "company": "한성훈"
+    },
+    {
+      "name": "한성 인천호",
+      "callSign": "D8BF",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "북양트롤",
+      "company": "(주)한성라인"
+    },
+    {
+      "name": "웨스턴 마린",
+      "callSign": "D7LN",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "북양트롤",
+      "company": "(주)한성라인"
+    },
+    {
+      "name": "제3001광진호",
+      "callSign": "D9NJ",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "북양트롤",
+      "company": "한성개발주식회사"
+    },
+    {
+      "name": "케이-1호",
+      "callSign": "D9KT",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "북양트롤",
+      "company": "한성해운(주)"
+    },
+    {
+      "name": "오션 캐리어",
+      "callSign": "V7AP8",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "북양트롤",
+      "company": "(주)한성라인"
+    }
+  ],
+  "고등어 (대형선망)": [
+    {
+      "name": "드래곤스타",
+      "callSign": "DSNC2",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "대형선망",
+      "company": "금성해운(주)"
+    },
+    {
+      "name": "청양",
+      "callSign": "DSPE2",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "대형선망",
+      "company": "금성해운주식회사"
+    },
+    {
+      "name": "진영호",
+      "callSign": "-",
+      "tonnage": "",
+      "launchDate": "",
+      "purpose": "대형선망",
+      "company": "금성택"
+    }
+  ]
+}

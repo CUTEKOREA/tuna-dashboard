@@ -1,0 +1,77 @@
+[
+  {
+    "country": "Canada",
+    "import_vol": 8127,
+    "import_price": 6035.05
+  },
+  {
+    "country": "Denmark",
+    "import_vol": 9004,
+    "import_price": 5504.09
+  },
+  {
+    "country": "Italy",
+    "import_vol": 12462,
+    "import_price": 5253.52
+  },
+  {
+    "country": "Belgium",
+    "import_vol": 8706,
+    "import_price": 4542.73
+  },
+  {
+    "country": "Netherlands (Kingdom of the)",
+    "import_vol": 38975,
+    "import_price": 4221.27
+  },
+  {
+    "country": "France",
+    "import_vol": 70060,
+    "import_price": 3811.61
+  },
+  {
+    "country": "United Kingdom of Great Britain and Northern Ireland",
+    "import_vol": 28368,
+    "import_price": 3797.08
+  },
+  {
+    "country": "Germany",
+    "import_vol": 181574,
+    "import_price": 3628.33
+  },
+  {
+    "country": "Poland",
+    "import_vol": 55902,
+    "import_price": 3590.96
+  },
+  {
+    "country": "United States of America",
+    "import_vol": 24094,
+    "import_price": 3567.21
+  },
+  {
+    "country": "Thailand",
+    "import_vol": 8976,
+    "import_price": 3127.54
+  },
+  {
+    "country": "Japan",
+    "import_vol": 128754,
+    "import_price": 2849.52
+  },
+  {
+    "country": "Republic of Korea",
+    "import_vol": 180559,
+    "import_price": 1750.67
+  },
+  {
+    "country": "Belarus",
+    "import_vol": 12711,
+    "import_price": 1331.61
+  },
+  {
+    "country": "China",
+    "import_vol": 618396,
+    "import_price": 1257.57
+  }
+]

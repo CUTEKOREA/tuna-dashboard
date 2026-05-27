@@ -1,0 +1,81 @@
+{
+  "marketGrowth": [
+    { "year": "2020", "export": 32, "domestic": 310 },
+    { "year": "2021", "export": 41, "domestic": 340 },
+    { "year": "2022", "export": 48, "domestic": 370 },
+    { "year": "2023", "export": 55, "domestic": 398 },
+    { "year": "2024", "export": 67, "domestic": 448 },
+    { "year": "2025", "export": 89, "domestic": 520 },
+    { "year": "2026E", "export": 105, "domestic": 590 },
+    { "year": "2028E", "export": 140, "domestic": 720 },
+    { "year": "2030E", "export": 180, "domestic": 926 }
+  ],
+  "countryRegulations": [
+    { "country": "🇳🇬 나이지리아", "ageLimit": 12, "importDuty": "20~35%", "vat": "7.5%", "special": "Green Tax 2026.7~", "risk": "high", "score": 72 },
+    { "country": "🇬🇭 가나", "ageLimit": 10, "importDuty": "5~20%", "vat": "15%", "special": "연식초과 페널티", "risk": "medium", "score": 85 },
+    { "country": "🇸🇳 세네갈", "ageLimit": 10, "importDuty": "5~20%", "vat": "18%", "special": "연식 8→10 완화", "risk": "low", "score": 78 },
+    { "country": "🇨🇮 코트디부아르", "ageLimit": 10, "importDuty": "10~35%", "vat": "18%", "special": "ECOWAS 규정", "risk": "medium", "score": 65 }
+  ],
+  "shippingComparison": [
+    { "method": "RoRo (자동차전용선)", "costRange": "$800~1,200", "transitDays": "35~45", "protection": "노출", "extraCargo": "불가", "bestFor": "주행가능 단일차량" },
+    { "method": "컨테이너 (40ft HC)", "costRange": "$2,700~4,500", "transitDays": "40~50", "protection": "완전보호", "extraCargo": "부품동반적재", "bestFor": "부품+차량 혼적" }
+  ],
+  "shippingCostChart": [
+    { "route": "인천→테마(가나)", "roro": 980, "container": 4500 },
+    { "route": "인천→라고스(나이지리아)", "roro": 1100, "container": 4800 },
+    { "route": "인천→다카르(세네갈)", "roro": 1050, "container": 4600 },
+    { "route": "인천→아비장(코트디부아르)", "roro": 1020, "container": 4650 }
+  ],
+  "marketShareTrend": [
+    { "year": "2019", "일본차": 62, "한국차": 18, "유럽차": 12, "기타": 8 },
+    { "year": "2020", "일본차": 58, "한국차": 22, "유럽차": 12, "기타": 8 },
+    { "year": "2021", "일본차": 53, "한국차": 27, "유럽차": 12, "기타": 8 },
+    { "year": "2022", "일본차": 48, "한국차": 31, "유럽차": 13, "기타": 8 },
+    { "year": "2023", "일본차": 44, "한국차": 35, "유럽차": 13, "기타": 8 },
+    { "year": "2024", "일본차": 40, "한국차": 38, "유럽차": 14, "기타": 8 },
+    { "year": "2025E", "일본차": 37, "한국차": 42, "유럽차": 13, "기타": 8 }
+  ],
+  "fuelPrices": [
+    { "country": "나이지리아", "price": 1.85 },
+    { "country": "가나", "price": 1.42 },
+    { "country": "세네갈", "price": 1.60 },
+    { "country": "코트디부아르", "price": 1.38 },
+    { "country": "카메룬", "price": 1.31 },
+    { "country": "케냐", "price": 1.45 }
+  ],
+  "hybridGrowth": [
+    { "year": "2024", "내연기관": 448, "하이브리드": 85, "전기차": 12 },
+    { "year": "2026E", "내연기관": 520, "하이브리드": 135, "전기차": 28 },
+    { "year": "2028E", "내연기관": 600, "하이브리드": 210, "전기차": 55 },
+    { "year": "2030E", "내연기관": 680, "하이브리드": 302, "전기차": 95 }
+  ],
+  "ghanaAgePenalty": [
+    { "range": "0~10년", "penalty": 0 },
+    { "range": "10~12년", "penalty": 5 },
+    { "range": "12~15년", "penalty": 20 },
+    { "range": "15~25년", "penalty": 50 }
+  ],
+  "kpiSummary": {
+    "totalExport2025": "$8.9B",
+    "exportGrowth": "+75.1%",
+    "exportUnits": "88만대",
+    "domesticCAGR": "12.7%",
+    "hybridCAGR": "15.9%",
+    "nigeriaEVCapacity": "30만대/년"
+  },
+  "jijiGhanaData": {
+    "totalScraped": 1424,
+    "avgPrice": {
+      "hyundai": 11499,
+      "kia": 11046
+    },
+    "topModels": [
+      { "brand": "Hyundai", "model": "Elantra", "count": 455 },
+      { "brand": "Hyundai", "model": "Santa Fe", "count": 155 },
+      { "brand": "Hyundai", "model": "Tucson", "count": 149 },
+      { "brand": "Kia", "model": "Sorento", "count": 96 },
+      { "brand": "Kia", "model": "Sportage", "count": 78 },
+      { "brand": "Kia", "model": "Morning", "count": 68 }
+    ]
+  }
+}

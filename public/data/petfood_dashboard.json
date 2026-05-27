@@ -1,0 +1,922 @@
+{
+  "d_w01": [
+    {
+      "year": "2017",
+      "size": 760
+    },
+    {
+      "year": "2019",
+      "size": 813
+    },
+    {
+      "year": "2022",
+      "size": 1172
+    },
+    {
+      "year": "2025(E)",
+      "size": 1584
+    },
+    {
+      "year": "2028(E)",
+      "size": 1797
+    },
+    {
+      "year": "2035(E)",
+      "size": 2477
+    }
+  ],
+  "d_w02": [
+    {
+      "country": "미국",
+      "size": 321.3
+    },
+    {
+      "country": "브라질",
+      "size": 40.6
+    },
+    {
+      "country": "일본",
+      "size": 38.4
+    },
+    {
+      "country": "영국",
+      "size": 38.3
+    },
+    {
+      "country": "독일",
+      "size": 38.2
+    },
+    {
+      "country": "프랑스",
+      "size": 33.7
+    },
+    {
+      "country": "중국",
+      "size": 30.8
+    },
+    {
+      "country": "러시아",
+      "size": 29.9
+    },
+    {
+      "country": "이탈리아",
+      "size": 25.1
+    },
+    {
+      "country": "한국",
+      "size": 7.7
+    }
+  ],
+  "d_w03": [
+    {
+      "name": "Mars (마즈)",
+      "value": 172.2
+    },
+    {
+      "name": "Nestlé Purina",
+      "value": 121.0
+    },
+    {
+      "name": "Big Heart",
+      "value": 23.0
+    },
+    {
+      "name": "Hill's",
+      "value": 22.6
+    },
+    {
+      "name": "Blue Buffalo",
+      "value": 11.5
+    },
+    {
+      "name": "기타",
+      "value": 450
+    }
+  ],
+  "d_w04": [
+    {
+      "year": "2015",
+      "china": 10.1,
+      "thai": 6.0,
+      "korea": 6.8
+    },
+    {
+      "year": "2019",
+      "china": 30.8,
+      "thai": 10.7,
+      "korea": 7.7
+    },
+    {
+      "year": "2023(E)",
+      "china": 71.9,
+      "thai": 13.2,
+      "korea": 8.9
+    },
+    {
+      "year": "2024",
+      "china": 80,
+      "thai": 16.0,
+      "korea": 9.0
+    }
+  ],
+  "d_w05": [
+    {
+      "market": "홍콩",
+      "sales": 7.55,
+      "premium": 75,
+      "importVal": 1.59
+    },
+    {
+      "market": "대만 (2026E)",
+      "sales": 11.6,
+      "premium": 50,
+      "importVal": 2.77
+    },
+    {
+      "market": "대만 (2031E)",
+      "sales": 15.6,
+      "premium": 60,
+      "importVal": 3.0
+    }
+  ],
+  "d_w06": [
+    {
+      "name": "펫푸드",
+      "value": 52.8
+    },
+    {
+      "name": "펫케어/용품",
+      "value": 25.2
+    },
+    {
+      "name": "의료",
+      "value": 15.0
+    },
+    {
+      "name": "기타",
+      "value": 7.0
+    }
+  ],
+  "d_w07": [
+    {
+      "year": "2009",
+      "size": 4789
+    },
+    {
+      "year": "2015",
+      "size": 6750
+    },
+    {
+      "year": "2020",
+      "size": 12651
+    },
+    {
+      "year": "2023",
+      "size": 16000
+    },
+    {
+      "year": "2026(E)",
+      "size": 19000
+    },
+    {
+      "year": "2027(E)",
+      "size": 22000
+    }
+  ],
+  "d_w08": [
+    {
+      "cat": "반려묘 사료",
+      "cagr": 15.4,
+      "share": 31
+    },
+    {
+      "cat": "간식",
+      "cagr": 14.2,
+      "share": 19
+    },
+    {
+      "cat": "전체 펫푸드",
+      "cagr": 9.1,
+      "share": 100
+    },
+    {
+      "cat": "반려견 사료",
+      "cagr": 4.0,
+      "share": 50
+    }
+  ],
+  "d_w09": [
+    {
+      "company": "로얄캐닌코리아",
+      "revenue": 2093,
+      "margin": 12.6
+    },
+    {
+      "company": "우리와",
+      "revenue": 1076,
+      "margin": -2.0
+    },
+    {
+      "company": "하림펫푸드",
+      "revenue": 521,
+      "margin": 6.0
+    },
+    {
+      "company": "한국마즈",
+      "revenue": 350,
+      "margin": 9.4
+    },
+    {
+      "company": "대주산업",
+      "revenue": 200,
+      "margin": 7.3
+    },
+    {
+      "company": "오에스피(ODM)",
+      "revenue": 170,
+      "margin": 15.4
+    }
+  ],
+  "d_w10": [
+    {
+      "year": "2011",
+      "exports": 1257,
+      "imports": 10113,
+      "deficit": -8856
+    },
+    {
+      "year": "2016",
+      "exports": 1352,
+      "imports": 17133,
+      "deficit": -15781
+    },
+    {
+      "year": "2020",
+      "exports": 6749,
+      "imports": 27073,
+      "deficit": -20324
+    },
+    {
+      "year": "2022",
+      "exports": 14907,
+      "imports": 34725,
+      "deficit": -19818
+    }
+  ],
+  "d_w11": [
+    {
+      "name": "일본",
+      "value": 5989
+    },
+    {
+      "name": "태국",
+      "value": 2568
+    },
+    {
+      "name": "대만",
+      "value": 2127
+    },
+    {
+      "name": "호주",
+      "value": 1884
+    },
+    {
+      "name": "베트남",
+      "value": 1000
+    }
+  ],
+  "d_w12": [
+    {
+      "country": "중국",
+      "value": 10020
+    },
+    {
+      "country": "미국",
+      "value": 4878
+    },
+    {
+      "country": "태국",
+      "value": 3763
+    },
+    {
+      "country": "캐나다",
+      "value": 3277
+    }
+  ],
+  "d_w13": [
+    {
+      "country": "미국",
+      "value": 8.68
+    },
+    {
+      "country": "일본",
+      "value": 3.29
+    },
+    {
+      "country": "호주",
+      "value": 1.67
+    },
+    {
+      "country": "이탈리아",
+      "value": 1.65
+    },
+    {
+      "country": "말레이시아",
+      "value": 1.38
+    }
+  ],
+  "d_w14": [
+    {
+      "name": "중국",
+      "value": 39
+    },
+    {
+      "name": "한국",
+      "value": 24
+    },
+    {
+      "name": "미국",
+      "value": 7
+    },
+    {
+      "name": "기타",
+      "value": 30
+    }
+  ],
+  "d_w15": [
+    {
+      "market": "인도네시아",
+      "usPrice": 3.38,
+      "thPrice": 1.3
+    },
+    {
+      "market": "사우디",
+      "usPrice": 7.09,
+      "thPrice": 1.03
+    }
+  ],
+  "d_w16": [
+    {
+      "factor": "참치 +10%",
+      "gpmImpact": -1.8,
+      "profitImpact": -8.5
+    },
+    {
+      "factor": "알루미늄 +10%",
+      "gpmImpact": -0.6,
+      "profitImpact": -2.9
+    },
+    {
+      "factor": "최저임금 +5%",
+      "gpmImpact": -0.5,
+      "profitImpact": -2.4
+    },
+    {
+      "factor": "바트 1THB 절상",
+      "gpmImpact": -1.0,
+      "profitImpact": -10.0
+    }
+  ],
+  "d_w17": [
+    {
+      "name": "곡물",
+      "value": 82.5
+    },
+    {
+      "name": "축산물",
+      "value": 14.2
+    },
+    {
+      "name": "수산물",
+      "value": 1.8
+    },
+    {
+      "name": "농산물",
+      "value": 1.5
+    }
+  ],
+  "d_w18": [
+    {
+      "country": "한국",
+      "online": 78
+    },
+    {
+      "country": "중국",
+      "online": 75
+    },
+    {
+      "country": "대만",
+      "online": 42
+    },
+    {
+      "country": "글로벌 평균",
+      "online": 33
+    },
+    {
+      "country": "미국",
+      "online": 30
+    },
+    {
+      "country": "일본",
+      "online": 38
+    },
+    {
+      "country": "홍콩",
+      "online": 20
+    }
+  ],
+  "d_w19": [
+    {
+      "product": "참치캔 본품",
+      "margin": 8
+    },
+    {
+      "product": "펫푸드(부산물)",
+      "margin": 25
+    },
+    {
+      "product": "오메가-3 오일",
+      "margin": 55
+    }
+  ],
+  "d_w20": [
+    {
+      "year": "2021",
+      "revenue": 145.3,
+      "gpm": 23.1,
+      "npm": 18.7
+    },
+    {
+      "year": "2024",
+      "revenue": 182.0,
+      "gpm": 25.1,
+      "npm": 20.6
+    },
+    {
+      "year": "2025 Q1",
+      "revenue": 42.5,
+      "gpm": 24.1,
+      "npm": 15.9
+    }
+  ],
+  "d_w21": [
+    {
+      "grade": "저가(Economy)",
+      "price": 2.4,
+      "cagr": 2.3
+    },
+    {
+      "grade": "중가(Standard)",
+      "price": 5.5,
+      "cagr": 4.5
+    },
+    {
+      "grade": "프리미엄(Premium)",
+      "price": 11.04,
+      "cagr": 6.1
+    }
+  ],
+  "d_w22": [
+    {
+      "year": "2020",
+      "revenue": 156,
+      "margin": 25.3,
+      "costRate": 67.1
+    },
+    {
+      "year": "2021",
+      "revenue": 157,
+      "margin": 17.9,
+      "costRate": 72.0
+    },
+    {
+      "year": "2022",
+      "revenue": 168,
+      "margin": 6.5,
+      "costRate": 78.6
+    },
+    {
+      "year": "2024(E)",
+      "revenue": 558,
+      "margin": 15.4,
+      "costRate": 70.0
+    }
+  ],
+  "d_w23": [
+    {
+      "year": "2021",
+      "revenue": 286,
+      "profit": 6,
+      "margin": 2.1
+    },
+    {
+      "year": "2022",
+      "revenue": 366,
+      "profit": 19,
+      "margin": 5.2
+    },
+    {
+      "year": "2024",
+      "revenue": 521,
+      "profit": 32,
+      "margin": 6.0
+    }
+  ],
+  "d_w24": [
+    {
+      "ingredient": "옥수수 글루텐",
+      "cost": 0.32
+    },
+    {
+      "ingredient": "어분(Fish Meal)",
+      "cost": 0.48
+    },
+    {
+      "ingredient": "가금류 부산물",
+      "cost": 1.25
+    },
+    {
+      "ingredient": "완두콩 단백질",
+      "cost": 2.5
+    },
+    {
+      "ingredient": "우육분",
+      "cost": 2.0
+    },
+    {
+      "ingredient": "대마 단백질",
+      "cost": 4.0
+    },
+    {
+      "ingredient": "배양육",
+      "cost": 4.95
+    }
+  ],
+  "d_w25": [
+    {
+      "year": "2009",
+      "online": 21.9,
+      "offline": 78.1
+    },
+    {
+      "year": "2014",
+      "online": 42.5,
+      "offline": 57.5
+    },
+    {
+      "year": "2019",
+      "online": 53.3,
+      "offline": 46.7
+    },
+    {
+      "year": "2022",
+      "online": 64.8,
+      "offline": 35.2
+    },
+    {
+      "year": "2023",
+      "online": 78.0,
+      "offline": 22.0
+    }
+  ],
+  "d_w26": [
+    {
+      "cat": "PB 펫푸드 (전체)",
+      "growth": 20.2
+    },
+    {
+      "cat": "PB (기타 채널)",
+      "growth": 22.6
+    },
+    {
+      "cat": "PB (전문점)",
+      "growth": 15.4
+    },
+    {
+      "cat": "프리미엄 브랜드",
+      "growth": 11.1
+    }
+  ],
+  "d_w27_radar": [
+    {
+      "subject": "Human-grade 인지율",
+      "A": 77
+    },
+    {
+      "subject": "프리미엄 CAGR(한국)",
+      "A": 63
+    },
+    {
+      "subject": "MSC 인증 성장률",
+      "A": 73
+    },
+    {
+      "subject": "기능성 처방식",
+      "A": 70
+    },
+    {
+      "subject": "프리미엄 가격배율",
+      "A": 92
+    }
+  ],
+  "d_w28": [
+    {
+      "year": "2023",
+      "size": 20
+    },
+    {
+      "year": "2025(E)",
+      "size": 28
+    },
+    {
+      "year": "2027(E)",
+      "size": 39
+    }
+  ],
+  "d_w30": [
+    {
+      "year": "2024",
+      "size": 60
+    },
+    {
+      "year": "2028(E)",
+      "size": 85
+    },
+    {
+      "year": "2032(E)",
+      "size": 105
+    },
+    {
+      "year": "2036(E)",
+      "size": 118
+    }
+  ],
+  "d_w31": [
+    {
+      "year": "2023",
+      "cannedExport": 415,
+      "petfoodDemand": 100
+    },
+    {
+      "year": "2024",
+      "cannedExport": 548.7,
+      "petfoodDemand": 132
+    },
+    {
+      "year": "2025(E)",
+      "cannedExport": 610,
+      "petfoodDemand": 145
+    },
+    {
+      "year": "2026(E)",
+      "cannedExport": 640,
+      "petfoodDemand": 155
+    },
+    {
+      "year": "2027(E)",
+      "cannedExport": 660,
+      "petfoodDemand": 165
+    }
+  ],
+  "d_w32": [
+    {
+      "scenario": "Current (No Tariff)",
+      "canned_margin": 15,
+      "petfood_margin": 25
+    },
+    {
+      "scenario": "Risk I (+10% Tariff)",
+      "canned_margin": 5,
+      "petfood_margin": 22
+    },
+    {
+      "scenario": "Risk II (+25% Tariff)",
+      "canned_margin": -10,
+      "petfood_margin": 18
+    }
+  ],
+  "d_w33": [
+    {
+      "criteria": "소비자 선호도(%)",
+      "carrageenan": 15,
+      "clean_label": 85
+    },
+    {
+      "criteria": "공급망 안정성(%)",
+      "carrageenan": 40,
+      "clean_label": 95
+    },
+    {
+      "criteria": "단가 멀티플(배)",
+      "carrageenan": 1.0,
+      "clean_label": 2.5
+    }
+  ],
+  "d_w34": [
+    {
+      "product": "일반 어분(Fishmeal)",
+      "margin": 15,
+      "waste": 80
+    },
+    {
+      "product": "단일원료(Single-ingredient) 건강 간식",
+      "margin": 65,
+      "waste": 0
+    }
+  ],
+  "d_w35": [
+    {
+      "year": "2020",
+      "copi_usage": 10,
+      "esg_premium": 5
+    },
+    {
+      "year": "2022",
+      "copi_usage": 45,
+      "esg_premium": 15
+    },
+    {
+      "year": "2024E",
+      "copi_usage": 120,
+      "esg_premium": 35
+    }
+  ],
+  "d_w36": [
+    {
+      "year": "2020",
+      "tuna_can": 500,
+      "petfood_demand": 50
+    },
+    {
+      "year": "2022",
+      "tuna_can": 650,
+      "petfood_demand": 180
+    },
+    {
+      "year": "2024E",
+      "tuna_can": 850,
+      "petfood_demand": 420
+    }
+  ],
+  "d_kfas_w01": {
+    "id": "kfas_w01_tuna_byproduct",
+    "title": "🔬 [KFAS] 참치 통조림 부산물 영양·안전성 포렌식: 펫푸드 원료 적격성 평가",
+    "source": "KFAS: Kim et al.(2025) '참치(Katsuwonus pelamis) 통조림 가공공정 중 발생하는 생 및 자숙 부산물의 위생안전성 및 영양학적 품질 특성 평가' (국립수산과학원)",
+    "reliability": 100,
+    "chartType": "composed",
+    "xKey": "part",
+    "bars": [
+      {"key": "단백질(g/100g)", "color": "#10b981"},
+      {"key": "조지방(g/100g)", "color": "#f59e0b"}
+    ],
+    "lines": [
+      {"key": "EAA비율(%)", "color": "#3b82f6", "yAxisId": "right"}
+    ],
+    "data": [
+      {"part": "자숙 혈합육", "단백질(g/100g)": 26.75, "조지방(g/100g)": 7.93, "EAA비율(%)": 42.3},
+      {"part": "자숙 꼬리", "단백질(g/100g)": 25.42, "조지방(g/100g)": 4.87, "EAA비율(%)": 41.8},
+      {"part": "자숙 머리", "단백질(g/100g)": 18.50, "조지방(g/100g)": 5.22, "EAA비율(%)": 40.5},
+      {"part": "자숙 중골", "단백질(g/100g)": 19.80, "조지방(g/100g)": 3.15, "EAA비율(%)": 39.7},
+      {"part": "생 내장", "단백질(g/100g)": 7.90, "조지방(g/100g)": 12.40, "EAA비율(%)": 38.2}
+    ],
+    "safety": [
+      {"항목": "히스타민", "자숙혼합": "불검출~미량", "기준치": "200 mg/kg", "적합": true},
+      {"항목": "카드뮴(머리)", "자숙혼합": "1.27 mg/kg", "기준치": "0.5 mg/kg(식용어류)", "적합": false},
+      {"항목": "납", "자숙혼합": "0.09 mg/kg", "기준치": "0.5 mg/kg", "적합": true},
+      {"항목": "VBN(휘발성염기질소)", "자숙혼합": "기준미만", "기준치": "부패판정기준", "적합": true}
+    ],
+    "byproduct_yield": [
+      {"부위": "머리", "비율(%)": 20.5},
+      {"부위": "내장(생)", "비율(%)": 15.3},
+      {"부위": "꼬리+중골", "비율(%)": 12.8},
+      {"부위": "혈합육(Dark muscle)", "비율(%)": 9.7},
+      {"부위": "기타(뼈+껍질)", "비율(%)": 1.2}
+    ],
+    "sit": "[KFAS 2025] 참치(가다랑어) 3.5kg 기준 통조림 가공 시 총 중량의 약 59.5%가 부산물로 발생합니다. 자숙 혈합육(dark muscle)의 단백질 함량이 26.75 g/100g으로 최고이며, 필수아미노산 비율(EAA)이 42.3%로 FAO/WHO 권장 기준(40%)을 초과하여 펫푸드 프리미엄 단백질원으로 최적입니다. 다만 내장과 머리 부위의 카드뮴 축적(1.27 mg/kg)에 주의가 필요합니다.",
+    "strat": "자숙 혈합육과 꼬리를 선별 분리하여 '단일원료(Single-ingredient) 프리미엄 펫 간식' 원료로 전환하면, 기존 어분 가공(마진 15%) 대비 65%의 초고마진을 확보할 수 있습니다. 내장·머리 부위는 중금속 리스크로 인해 어분/어유 추출 경로로 분리 처리하되, HACCP 기반 중금속 모니터링 프로토콜을 적용해야 합니다."
+  },
+  "d_kfas_w02": {
+    "id": "kfas_w02_tuna_roe_hydrolysate",
+    "title": "🔬 [KFAS] 황다랑어 알 효소가수분해물: 기능성 펫푸드 첨가제 개발",
+    "source": "KFAS: Heu et al.(2024) '황다랑어(Thunnus albacares) 알 농축분말로부터 제조한 효소 가수분해물의 식품기능성 및 생리활성' (부경대)",
+    "reliability": 100,
+    "chartType": "composed",
+    "xKey": "enzyme",
+    "bars": [
+      {"key": "가수분해도(%)", "color": "#8b5cf6"},
+      {"key": "DPPH라디컬소거(%)", "color": "#10b981"}
+    ],
+    "lines": [
+      {"key": "거품활성(%)", "color": "#f59e0b", "yAxisId": "right"}
+    ],
+    "data": [
+      {"enzyme": "Aroase AP-10", "가수분해도(%)": 19.4, "DPPH라디컬소거(%)": 35.2, "거품활성(%)": 145},
+      {"enzyme": "Protamex", "가수분해도(%)": 20.0, "DPPH라디컬소거(%)": 27.3, "거품활성(%)": 130},
+      {"enzyme": "Alcalase", "가수분해도(%)": 19.8, "DPPH라디컬소거(%)": 25.1, "거품활성(%)": 125},
+      {"enzyme": "Papain", "가수분해도(%)": 15.2, "DPPH라디컬소거(%)": 22.4, "거품활성(%)": 221},
+      {"enzyme": "Bromelain", "가수분해도(%)": 14.8, "DPPH라디컬소거(%)": 20.1, "거품활성(%)": 187},
+      {"enzyme": "Flavourzyme", "가수분해도(%)": 12.5, "DPPH라디컬소거(%)": 30.0, "거품활성(%)": 110}
+    ],
+    "functional_summary": {
+      "최고항산화": "Aroase AP-10 (DPPH 35.2%, NSI 35.2%)",
+      "최고거품성": "Papain (221%, 60분 안정성 63%)",
+      "최고유화능": "Papain (EAI 52.7 m²/g)",
+      "ACE저해활성": "확인됨 — 혈압 관리 기능성 소재",
+      "분자량분포": "10 kDa 이하 저분자 펩타이드 우세"
+    },
+    "sit": "[KFAS 2024] 황다랑어 알 농축분말(SDC)에서 6종 효소로 가수분해물을 제조한 결과, Aroase AP-10이 가수분해도 19.4%와 DPPH 라디칼 소거능 35.2%로 최고 항산화 효소로 선정되었습니다. Papain은 거품활성 221%와 유화능(EAI) 52.7 m²/g으로 식품 가공 적용에 최적입니다. ACE(안지오텐신전환효소) 저해활성도 확인되어 '혈압 관리' 기능성 펫푸드 소재로 활용 가능합니다.",
+    "strat": "참치 통조림 공정의 어란(Roe) 부산물을 Aroase AP-10 효소로 가수분해하여 '항산화 기능성 펫 서플리먼트'를 개발하면, 현재 $0.48/kg의 일반 어분 대비 $4~5/kg의 기능성 프리미엄을 확보할 수 있습니다. 특히 노령 반려동물용 '관절·혈압 케어' 라인에 적용 시 한국 프리미엄 펫푸드 시장(CAGR 6.1%)에서 차별화된 포지셔닝이 가능합니다."
+  },
+  "d_kfas_w03": {
+    "id": "kfas_w03_insect_protein_replacement",
+    "title": "🔬 [KFAS] 곤충단백질(BSF/갈색거저리) 어분 대체: 차세대 펫푸드 원료 혁명",
+    "source": "KFAS: Lee et al.(2023) '넙치 저어분 사료 내 어분 대체원으로써 동애등에(BSF)와 갈색거저리 이용성 평가' + Lim et al.(2024) '참돔 사료내 어분대체원 BSF분 대체율 평가' (제주대·부경대)",
+    "reliability": 100,
+    "chartType": "composed",
+    "xKey": "group",
+    "bars": [
+      {"key": "성장률(%)", "color": "#10b981"},
+      {"key": "사료효율(%)", "color": "#3b82f6"}
+    ],
+    "lines": [
+      {"key": "면역지표(Lysozyme)", "color": "#ef4444", "yAxisId": "right"}
+    ],
+    "data": [
+      {"group": "대조군(어분100%)", "성장률(%)": 100, "사료효율(%)": 100, "면역지표(Lysozyme)": 100},
+      {"group": "BSF 10% 대체", "성장률(%)": 92, "사료효율(%)": 95, "면역지표(Lysozyme)": 108},
+      {"group": "갈색거저리 10%", "성장률(%)": 88, "사료효율(%)": 91, "면역지표(Lysozyme)": 105},
+      {"group": "BSF+거저리 혼합", "성장률(%)": 90, "사료효율(%)": 93, "면역지표(Lysozyme)": 112},
+      {"group": "탈지BSF 5%(참돔)", "성장률(%)": 98, "사료효율(%)": 97, "면역지표(Lysozyme)": 118},
+      {"group": "비탈지BSF 5%(참돔)", "성장률(%)": 96, "사료효율(%)": 95, "면역지표(Lysozyme)": 115}
+    ],
+    "insect_nutrition": {
+      "BSF_단백질": "약 50% (건물 기준)",
+      "BSF_지방": "약 30% (lauric acid 풍부 → 항균 기능)",
+      "갈색거저리_단백질": "약 55%",
+      "탈지BSF_oleic_acid": "75~78% (단일불포화지방산)",
+      "키틴_함량": "약 5~8% → 소화율 저하 요인"
+    },
+    "sit": "[KFAS 2023-2024] 넙치·참돔 대상 어분 대체 시험에서 동애등에(BSF) 탈지분 5% 대체 시 성장률 98%, 사료효율 97%로 어분과 거의 동등한 성능을 보였습니다. 특히 BSF의 lauric acid(중쇄지방산)가 항균 기능을 발휘하여 면역지표(Lysozyme)가 대조군 대비 최대 18% 상승했습니다. 다만 10% 이상 대체 시 키틴(chitin)으로 인한 소화율 저하가 관찰되었습니다.",
+    "strat": "펫푸드 원료비의 핵심인 어분($0.48/kg) 가격이 글로벌 어획량 감소로 구조적 상승 추세입니다. BSF(동애등에) 탈지분을 5~10% 블렌딩하면 원가를 12~15% 절감하면서 면역 부스팅 효과를 마케팅 포인트로 활용할 수 있습니다. 'Insect Protein × Immune Health' 콘셉트의 프리미엄 펫푸드 라인을 선점하세요."
+  },
+  "d_kfas_w04": {
+    "id": "kfas_w04_microalgae_protein",
+    "title": "🔬 [KFAS] 미세조류 단백질 추출: 스피룰리나·클로렐라 펫푸드 슈퍼푸드 원료",
+    "source": "KFAS: Park et al.(2024) '스피룰리나(Arthrospira platensis) 필수아미노산 고함량 단백질 추출법 탐색' + Kim et al.(2024) '클로렐라(Chlorella pyrenoidosa) 친환경 단백질 추출법 탐색' (국립수산과학원)",
+    "reliability": 100,
+    "chartType": "composed",
+    "xKey": "method",
+    "bars": [
+      {"key": "단백질수율(%)", "color": "#10b981"},
+      {"key": "EAA함량(mg/g)", "color": "#8b5cf6"}
+    ],
+    "data": [
+      {"method": "스피룰리나-알칼리추출", "단백질수율(%)": 72.5, "EAA함량(mg/g)": 285},
+      {"method": "스피룰리나-효소추출", "단백질수율(%)": 65.3, "EAA함량(mg/g)": 312},
+      {"method": "스피룰리나-초음파", "단백질수율(%)": 58.7, "EAA함량(mg/g)": 295},
+      {"method": "클로렐라-알칼리추출", "단백질수율(%)": 45.2, "EAA함량(mg/g)": 265},
+      {"method": "클로렐라-효소추출", "단백질수율(%)": 38.6, "EAA함량(mg/g)": 290},
+      {"method": "클로렐라-초음파+효소", "단백질수율(%)": 52.8, "EAA함량(mg/g)": 278}
+    ],
+    "comparison": {
+      "스피룰리나_총단백질": "60~70% (건물기준)",
+      "클로렐라_총단백질": "50~60%",
+      "어분_총단백질": "60~72%",
+      "대두단백_총단백질": "44~48%",
+      "BSF_총단백질": "~50%"
+    },
+    "sit": "[KFAS 2024] 스피룰리나에서 알칼리 추출법으로 72.5%의 단백질 수율을 달성하였으며, 효소 추출법 적용 시 필수아미노산(EAA) 함량이 312 mg/g으로 최고를 기록했습니다. 클로렐라는 세포벽이 견고하여 수율이 상대적으로 낮지만(38~53%), 초음파+효소 병용법으로 52.8%까지 개선 가능합니다. 두 미세조류 모두 어분(60~72%)에 준하는 단백질 함량을 보유하여 식물성 프리미엄 펫푸드 원료로 잠재력이 큽니다.",
+    "strat": "글로벌 'Plant-based Pet Food' 시장(CAGR 12.5%)이 급성장 중입니다. 스피룰리나 효소추출 단백질을 5~8% 블렌딩한 'Superfood Pet Line'을 출시하면, 비건/식물성 트렌드에 민감한 MZ 반려인 소비자를 타겟팅할 수 있습니다. ESG 관점에서도 어획 의존도를 낮추는 '지속가능 단백질' 스토리를 구축할 수 있습니다."
+  },
+  "d_kfas_w05": {
+    "id": "kfas_w05_flounder_epa_dha",
+    "title": "🔬 [KFAS] 가자미 5종 지방산·아미노산 프로파일: 펫푸드 오메가-3 원료 포트폴리오",
+    "source": "KFAS: Jeong et al.(2024) '한국 연안산 가자미 5종의 일반성분, 지방산 및 총아미노산 함량 비교' (국립수산과학원 식품안전가공과)",
+    "reliability": 100,
+    "chartType": "composed",
+    "xKey": "species",
+    "bars": [
+      {"key": "EPA+DHA(mg/100g)", "color": "#3b82f6"},
+      {"key": "총아미노산(mg/100g)", "color": "#10b981"}
+    ],
+    "lines": [
+      {"key": "조지방(g/100g)", "color": "#f59e0b", "yAxisId": "right"}
+    ],
+    "data": [
+      {"species": "줄가자미", "EPA+DHA(mg/100g)": 620.24, "총아미노산(mg/100g)": 17850, "조지방(g/100g)": 4.07},
+      {"species": "홍가자미", "EPA+DHA(mg/100g)": 385.50, "총아미노산(mg/100g)": 18971, "조지방(g/100g)": 2.15},
+      {"species": "기름가자미", "EPA+DHA(mg/100g)": 410.30, "총아미노산(mg/100g)": 18200, "조지방(g/100g)": 2.80},
+      {"species": "문치가자미(도다리)", "EPA+DHA(mg/100g)": 290.15, "총아미노산(mg/100g)": 17650, "조지방(g/100g)": 1.25},
+      {"species": "물가자미", "EPA+DHA(mg/100g)": 195.80, "총아미노산(mg/100g)": 17420, "조지방(g/100g)": 0.48}
+    ],
+    "nutrition_highlight": {
+      "줄가자미_PUFA": "EPA+DHA 620.24 mg/100g — 가자미 중 최고",
+      "홍가자미_AA": "총 아미노산 18,971 mg/100g — 가자미 중 최고",
+      "수분_지방_역상관": "수분↑ → 지방↓ (r = -0.95 수준)",
+      "단백질_범위": "18.74~19.69 g/100g (종간 유의차 없음)",
+      "공통_특징": "모든 종 단백질 ~19%, 저지방 고단백 백색육"
+    },
+    "sit": "[KFAS 2024] 한국 연안산 가자미 5종의 영양 프로파일을 비교한 결과, 줄가자미(Clidoderma asperrimum)가 EPA+DHA 620.24 mg/100g으로 오메가-3 함량 최고를 기록했습니다. 홍가자미는 총 아미노산 18,971 mg/100g으로 최고 수준입니다. 모든 종이 단백질 약 19%의 저지방 고단백 백색육으로, 펫푸드 원료로서 소화율이 높은 프리미엄 어종입니다.",
+    "strat": "줄가자미 가공 부산물(뼈·껍질·내장)에서 오메가-3 농축 어유를 추출하면, 현재 오메가-3 오일 마진(55%)을 극대화할 수 있습니다. '국내산 줄가자미 유래 EPA+DHA 강화 펫 서플리먼트'로 브랜딩하면, 수입 연어유 대비 원산지 프리미엄과 트레이서빌리티를 동시에 확보하여 프리미엄 펫케어 시장(CAGR 6.1%)을 공략할 수 있습니다."
+  }
+}

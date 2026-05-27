@@ -76,3 +76,6 @@ update_macro.py
 
 # Daily audit auto-generated artifacts (대시보드 일일 감사 산출물)
 artifacts/daily_audit/
+
+# Sisyphus / Antigravity 작업 후 archive된 deprecated scripts
+scripts/_deprecated_fake_data/
