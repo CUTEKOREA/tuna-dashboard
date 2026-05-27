@@ -18,6 +18,15 @@ import {
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import JukkumiFTAQuarterly from './JukkumiFTAQuarterly';
+
+const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
+  S1: [],
+  S2: [],
+  S3: [JukkumiFTAQuarterly],
+  S4: [],
+  S5: [],
+};
 
 /* ─── Telemetry Badge (참치 패턴 동기화) ─── */
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
@@ -414,9 +423,12 @@ export default function JukkumiDashboard() {
               </span>
             </div>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              {pillarWidgets.length === 0
+              {pillarWidgets.length === 0 && (EXTRA_BY_PILLAR[activePart] || []).length === 0
                 ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
-                : pillarWidgets.map((w: any) => renderWidgetCard(w))}
+                : <>
+                    {pillarWidgets.map((w: any) => renderWidgetCard(w))}
+                    {(EXTRA_BY_PILLAR[activePart] || []).map((Comp, i) => <Comp key={`extra-${activePart}-${i}`} />)}
+                  </>}
             </div>
           </section>
         );

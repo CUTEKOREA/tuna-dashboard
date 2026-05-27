@@ -54,10 +54,10 @@ const SECTIONS = [
 ];
 
 const PILLAR_WIDGET_IDS: Record<string, string[]> = {
-  S1: ['w_squid_enso_biomass', 'w_squid_loligo_season', 'w1_catch_powers', 'w2_korea_supply', 'w3_jumbo_flying', 'w_squid_price_forecast', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment', 'w48_supply_inversion', 'w57_china_supply_dominance', 'w18', 'w27_squid_climate_geopolitics', 'w12_ax_fishing', 'w68_import_dependency', 'w74_illex_boom_bust', 'w76_area41_illex_share', 'w80_loligo_vs_illex_portfolio', 'w81_mile201_fleet_intensity', 'w82_sprfmo_quota_dashboard', 'w87_dosidicus_collapse_alert'],
-  S2: ['w_squid_sg_valueup', 'w10_processed_dominance', 'w31_eu_squid_supply_shock', 'w35_spain_trade_hub', 'w37_spain_arbitrage_trap', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w_squid_sourcing_sim', 'w34_value_add_funnel', 'w17', 'w47_spain_processing_empire', 'w30_business_model', 'w83_fesba_processing_capacity'],
+  S1: ['w_fta_squid_peru_megaboom', 'w_fta_squid_domestic_comp', 'w_squid_enso_biomass', 'w_squid_loligo_season', 'w1_catch_powers', 'w2_korea_supply', 'w3_jumbo_flying', 'w_squid_price_forecast', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment', 'w48_supply_inversion', 'w57_china_supply_dominance', 'w18', 'w27_squid_climate_geopolitics', 'w12_ax_fishing', 'w68_import_dependency', 'w74_illex_boom_bust', 'w76_area41_illex_share', 'w80_loligo_vs_illex_portfolio', 'w81_mile201_fleet_intensity', 'w82_sprfmo_quota_dashboard', 'w87_dosidicus_collapse_alert'],
+  S2: ['w_fta_squid_processed_share', 'w_squid_sg_valueup', 'w10_processed_dominance', 'w31_eu_squid_supply_shock', 'w35_spain_trade_hub', 'w37_spain_arbitrage_trap', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w_squid_sourcing_sim', 'w34_value_add_funnel', 'w17', 'w47_spain_processing_empire', 'w30_business_model', 'w83_fesba_processing_capacity'],
   S3: ['w50_fleet_opex', 'w53_energy_stress_test', 'w26_squid_ai_jigging_fuel', 'w_squid_hs_tariff_sim', 'w54_sourcing_bottleneck', 'w28_falkland_waterfall', 'w29_capex_shock', 'w43_risk_reward_inversion', 'w66_capex_roadmap', 'w71_fig_licence_system', 'w73_illex_2024_season', 'w79_fleet_competition_map', 'w84_reefer_logistics_cost'],
-  S4: ['w_squid_eu_ceph_demand', 'w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_korea_holiday_effect', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap', 'w85_eu_illex_price_cycle'],
+  S4: ['w_fta_squid_decouple', 'w_fta_squid_qprice', 'w_squid_eu_ceph_demand', 'w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_korea_holiday_effect', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap', 'w85_eu_illex_price_cycle'],
   S5: ['w_squid_cmm18_quota', 'w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w11_no_aquaculture', 'w25_squid_chitosan_biomaterial', 'w51_policy_intervention', 'w77_mile201_dwf_crisis', 'w65_ma_scorecard', 'w67_earnout_sim', 'w70_value_creation', 'w56_sunmin_pe_valuation', 'w72_fig_revenue_trend', 'w75_loligo_scientific_mgmt', 'w78_itq_transition_timeline', 'w86_ssrt_labor_risk_scorecard', 'w88_uschina_fishery_geopolitics'],
 };
 
@@ -141,7 +141,12 @@ const WIDGET_ICONS: Record<string, any> = {
   w_squid_loligo_season: Fish,
   w_squid_cmm18_quota: Scale,
   w_squid_eu_ceph_demand: TrendingUp,
-  w_squid_sg_valueup: Factory
+  w_squid_sg_valueup: Factory,
+  w_fta_squid_peru_megaboom: TrendingUp,
+  w_fta_squid_decouple: Activity,
+  w_fta_squid_qprice: DollarSign,
+  w_fta_squid_domestic_comp: Scale,
+  w_fta_squid_processed_share: Factory
 };
 
 const formatYAxis = (v: number) => {
@@ -286,6 +291,139 @@ export default function SquidDashboard() {
         { year: "2024", "EU 두족류 소비(천톤)": 490 },
         { year: "2025(E)", "EU 두족류 소비(천톤)": 508 }
       ]
+    },
+    // ─── KMI 「FTA체결국 수산물 수입동향」 2021 Q1 ~ 2026 Q1 (21개 분기) 교차분석 위젯 ───
+    {
+      id: "w_fta_squid_peru_megaboom",
+      title: "페루 +1,458% — 2026 1Q 대왕오징어 메가 회복",
+      subtitle: "KMI 「FTA체결국 수산물 수입동향 2026 Q1」 본문. 페루 어획 호조 + 단가 폭락이 동시 발생한 single-quarter shock의 국가별 분해입니다.",
+      chartType: "Composed",
+      xKey: "country",
+      bars: [
+        { key: "25년 1Q(천 톤)", color: "#64748b" },
+        { key: "26년 1Q(천 톤)", color: "#a855f7" }
+      ],
+      data: [
+        { country: "전체", "25년 1Q(천 톤)": 26.3, "26년 1Q(천 톤)": 35.3 },
+        { country: "중국", "25년 1Q(천 톤)": 15.3, "26년 1Q(천 톤)": 14.3 },
+        { country: "페루", "25년 1Q(천 톤)": 0.8, "26년 1Q(천 톤)": 12.3 },
+        { country: "에콰도르", "25년 1Q(천 톤)": 0.13, "26년 1Q(천 톤)": 4.5 },
+        { country: "칠레", "25년 1Q(천 톤)": 4.5, "26년 1Q(천 톤)": 1.5 }
+      ],
+      sit: "2026 1분기 오징어 수입은 전년 동기 대비 +34.0%(26.3→35.3천 톤). 그러나 회복분 9.0천 톤의 99% 이상이 페루(+1,458.8%, 0.8→12.3천 톤)와 신규 진입자 에콰도르(+3,235.5%, 0.13→4.5천 톤)에서 발생. 동시에 칠레는 -66.7%로 페루산에 시장 점유율을 통째로 내줌. 對페루 냉동 단가는 $3.6→$2.2/kg(-35.8%)로 폭락 — 어획 호조와 단가 디플레이션이 동시 발생하는 전형적 \"엘니뇨 종료 사이클\" 패턴.",
+      strat: "①페루산 $2.2/kg 단가는 2018년 이후 최저 — 6개월 선도(forward) 매입을 즉시 단행하여 평균 단가 락-인, ②에콰도르산은 \"상대적 저품질\"(KMI 명시) 이지만 $1.9/kg 가격 메리트가 압도적이므로 B2B 진미채·자숙 원료로 분리 매입 라인 신설, ③페루-에콰도르 합산 신규 점유율이 47%로 급증한 시점 — 단일 산지(중국 40.5%) 의존 시대를 끝내고 3극 균형(중국·페루·에콰도르) 헷지 룰로 KPI 재편.",
+      source: "KMI 「FTA체결국 수산물 수입동향 2026 Q1」 — 오징어 국가별 수입량 표 + 단가 추이 (2026-04 발간)",
+      isLive: false,
+      syncDate: "2026-04"
+    },
+    {
+      id: "w_fta_squid_domestic_comp",
+      title: "국내 -36.4% × 수입 +34.0% — 자급률 붕괴 보상 메커니즘",
+      subtitle: "KMI 2026 Q1 본문 인용: 국내 생산 20,292→12,908톤(-36.4%) ⇄ 수입 26.3→35.3천 톤(+34.0%). 한국 수요는 정상이지만 산지가 100% outsource되는 단계.",
+      chartType: "Composed",
+      xKey: "period",
+      bars: [
+        { key: "국내 생산(천 톤)", color: "#10b981" },
+        { key: "수입(천 톤)", color: "#a855f7" }
+      ],
+      lines: [
+        { key: "자급률(%)", color: "#f59e0b", yAxisId: "right" }
+      ],
+      dualAxis: true,
+      data: [
+        { period: "21년 1Q", "국내 생산(천 톤)": 28.5, "수입(천 톤)": 35.0, "자급률(%)": 44.9 },
+        { period: "22년 1Q", "국내 생산(천 톤)": 24.3, "수입(천 톤)": 32.8, "자급률(%)": 42.5 },
+        { period: "23년 1Q", "국내 생산(천 톤)": 21.5, "수입(천 톤)": 35.5, "자급률(%)": 37.7 },
+        { period: "24년 1Q", "국내 생산(천 톤)": 22.4, "수입(천 톤)": 30.6, "자급률(%)": 42.3 },
+        { period: "25년 1Q", "국내 생산(천 톤)": 20.3, "수입(천 톤)": 26.3, "자급률(%)": 43.6 },
+        { period: "26년 1Q", "국내 생산(천 톤)": 12.9, "수입(천 톤)": 35.3, "자급률(%)": 26.8 }
+      ],
+      sit: "2026 1분기 한국 오징어 자급률은 단숨에 26.8%로 폭락(전년 동기 43.6%, -16.8%p). 국내 생산이 -36.4% 감소했지만 시장 수요는 정상이며 그 공백을 수입이 +34.0%로 정확히 메움 — \"수요 파괴는 없고 산지만 outsource되는\" 구조적 전환. 5년 평균으로 보면 자급률은 45%→27%로 18%p 가속 하락 중.",
+      strat: "①자급률 30% 하방 이탈은 \"국가 식량안보 마지노선\" 임계 — 수입 콜드체인 capacity가 곧 시장지배력으로 직결되므로 부산항 보세창고 확보를 IR 핵심 자산으로 표준 공시, ②국내 어획 의존 가공라인(연근해 살오징어 기반)은 점진 폐쇄하고 페루·아르헨티나 원물 기반 라인으로 CAPEX 재할당, ③자급률 25% 이탈 시 정부 비축미 패턴의 \"전략비축 오징어\" 정책 도입 가능성 — 정책 채널 모니터링 KPI 신설.",
+      source: "KMI 「FTA체결국 수산물 수입동향」 2021Q1~2026Q1 — 오징어 수입량 + 국내 생산량 누적 데이터 교차집계",
+      isLive: false,
+      syncDate: "2026-04"
+    },
+    {
+      id: "w_fta_squid_decouple",
+      title: "단가-물량 디커플링 — 2025 액 +36% vs 물량 +17%",
+      subtitle: "KMI 분기보고서 「오징어 수입량/수입액」 누적 데이터. 물량보다 두 배 빠른 액 증가는 단가 폭등 사이클의 명확한 시그널입니다.",
+      chartType: "Composed",
+      xKey: "year",
+      bars: [
+        { key: "수입량(천 톤)", color: "#a855f7" }
+      ],
+      lines: [
+        { key: "수입액(백만$)", color: "#ec4899", yAxisId: "right" },
+        { key: "평균 단가($/kg)", color: "#f59e0b", yAxisId: "right" }
+      ],
+      dualAxis: true,
+      data: [
+        { year: "2021", "수입량(천 톤)": 135.0, "수입액(백만$)": 415, "평균 단가($/kg)": 3.07 },
+        { year: "2022", "수입량(천 톤)": 138.4, "수입액(백만$)": 455, "평균 단가($/kg)": 3.29 },
+        { year: "2023", "수입량(천 톤)": 155.8, "수입액(백만$)": 510, "평균 단가($/kg)": 3.27 },
+        { year: "2024", "수입량(천 톤)": 141.3, "수입액(백만$)": 515, "평균 단가($/kg)": 3.65 },
+        { year: "2025", "수입량(천 톤)": 165.7, "수입액(백만$)": 700.6, "평균 단가($/kg)": 4.23 },
+        { year: "2026(1Q×4 추정)", "수입량(천 톤)": 141.2, "수입액(백만$)": 476.8, "평균 단가($/kg)": 3.38 }
+      ],
+      sit: "2025년 수입액은 전년 대비 +36.0%(515→700.6백만$) 폭등한 반면 물량은 +17.3%(141.3→165.7천 톤)에 머묾 — 액 증가율이 물량의 2.08배. 평균 단가가 $3.65→$4.23/kg(+15.9%)로 sharpe 상승하며 5년 사이클 고점 진입. 그러나 2026 1Q는 페루 어획 호조로 단가가 $2.86→$2.18/kg로 -23.8% 정상화 신호. 액-물량 디커플링이 6분기 만에 종료되는 변곡점.",
+      strat: "①$4 이상 단가 구간(2025)에서는 가격 전가가 가능한 B2B 채널(급식·외식 프랜차이즈) 우선 배정으로 마진율 방어, ②2026 1Q $2.2/kg 페루산 폭락 구간을 활용해 분기 매입 비중을 30% → 50% 이상으로 전진 배치, ③단가 사이클 모니터링을 위해 KAMIS 도매가 + KMI 분기단가 + KCS CIF 3중 트래커 통합 대시보드를 IR 표준 지표로 운영.",
+      source: "KMI 「FTA체결국 수산물 수입동향」 2021~2026 분기 누적 수입액·물량 (2026-04)",
+      isLive: false,
+      syncDate: "2026-04"
+    },
+    {
+      id: "w_fta_squid_qprice",
+      title: "국가별 냉동 오징어 분기 수입단가 ($/kg)",
+      subtitle: "KMI 분기보고서 「냉동 오징어 수입단가 추이」 누적 차트. 칠레-페루 단가 역전 + 페루 폭락 + 에콰도르 최저가 진입을 추적합니다.",
+      chartType: "Composed",
+      xKey: "quarter",
+      lines: [
+        { key: "중국", color: "#a855f7" },
+        { key: "페루", color: "#d946ef" },
+        { key: "칠레", color: "#ec4899" },
+        { key: "에콰도르", color: "#f43f5e" }
+      ],
+      data: [
+        { quarter: "24-Q1", "중국": 3.2, "페루": 3.6, "칠레": 3.8, "에콰도르": 0 },
+        { quarter: "24-Q2", "중국": 3.3, "페루": 3.7, "칠레": 4.0, "에콰도르": 0 },
+        { quarter: "24-Q3", "중국": 3.5, "페루": 4.2, "칠레": 4.5, "에콰도르": 1.6 },
+        { quarter: "24-Q4", "중국": 3.6, "페루": 4.5, "칠레": 4.6, "에콰도르": 1.7 },
+        { quarter: "25-Q1", "중국": 3.7, "페루": 3.6, "칠레": 4.7, "에콰도르": 1.6 },
+        { quarter: "25-Q2", "중국": 3.9, "페루": 3.2, "칠레": 4.8, "에콰도르": 1.7 },
+        { quarter: "25-Q3", "중국": 4.0, "페루": 2.8, "칠레": 4.5, "에콰도르": 1.8 },
+        { quarter: "25-Q4", "중국": 4.1, "페루": 2.5, "칠레": 4.3, "에콰도르": 1.9 },
+        { quarter: "26-Q1", "중국": 4.0, "페루": 2.2, "칠레": 4.5, "에콰도르": 1.9 }
+      ],
+      sit: "2025-26년 \"칠레산이 페루산보다 항상 높은 단가\"(KMI 2025Q4 본문 명시)가 6분기 연속 유지 — 어획물 사이즈 큰 칠레산이 프리미엄 시장을 락-인. 페루산은 $3.6→$2.2/kg(-39%)로 폭락하여 5년래 최저점 도달. 에콰도르 신규 진입자는 $1.9/kg로 페루보다 -14% 추가 디스카운트 — 사실상 \"제2의 페루\" 포지션 확보. 중국산은 가공품 비중이 높아 $4.0대 안정 유지.",
+      strat: "①칠레산 $4.5/kg는 프리미엄 횟감·통오징어 채널, 페루산 $2.2/kg는 B2B 자숙·진미채 원료, 에콰도르산 $1.9/kg는 저가 PB 및 사료/펫푸드 채널로 \"단가 3-Tier 채널 매핑\" 즉시 실행, ②분기 단가 spread $2/kg 이상 확대 구간에서 칠레/페루 매입 비중 동적 조정 룰을 운영, ③에콰도르 단가가 $2 돌파 시점에 즉시 다음 산지(아르헨티나·대만) 대비 동기화 — 단가 floor 추격 전략.",
+      source: "KMI 「FTA체결국 수산물 수입동향」 2024~2026 분기 — 냉동 오징어 수입단가 추이 차트 (HSK 0307.43.20.00)",
+      isLive: false,
+      syncDate: "2026-04"
+    },
+    {
+      id: "w_fta_squid_processed_share",
+      title: "조미·자숙 비중 26→22% — 1차 가공 한국 회귀 시그널",
+      subtitle: "KMI 분기보고서 「오징어 품목별 비중」 누적 데이터. 중국·동남아 조미·자숙 가공 의존도가 줄어드는 \"가공 리쇼어링\" 5년 추세 분석.",
+      chartType: "Composed",
+      xKey: "year",
+      bars: [
+        { key: "냉동(%)", color: "#a855f7" },
+        { key: "조미·자숙(%)", color: "#f59e0b" }
+      ],
+      data: [
+        { year: "2021", "냉동(%)": 73.3, "조미·자숙(%)": 26.1 },
+        { year: "2022", "냉동(%)": 73.0, "조미·자숙(%)": 25.9 },
+        { year: "2023", "냉동(%)": 73.5, "조미·자숙(%)": 25.5 },
+        { year: "2024", "냉동(%)": 73.3, "조미·자숙(%)": 25.7 },
+        { year: "2025", "냉동(%)": 76.8, "조미·자숙(%)": 22.5 },
+        { year: "2026(1Q)", "냉동(%)": 73.6, "조미·자숙(%)": 25.5 }
+      ],
+      sit: "조미·자숙 가공품 비중이 2021년 26.1%에서 2025년 22.5%로 4년간 -3.6%p 하락(상대적 -14%). 동시에 냉동 원물 비중은 73.3% → 76.8%로 상승 — \"원물로 들여와 한국에서 가공한다\"는 리쇼어링(reshoring) 패턴이 시작됨. 단, 2026 1Q는 페루 어획 폭증으로 일시적 회귀(25.5%). 국내 가공 capacity 증설 또는 중국 가공 단가 매력 약화가 trigger.",
+      strat: "①\"조미·자숙 원물 회귀\"는 신라에스지 가공 컨트롤타워 확대 명분 — 페루산 냉동을 한국 가공 후 B2B로 직납하는 진미채·튜브 라인을 2026년 CAPEX 1순위 항목으로 IR 표준화, ②중국 조미 가공 마진(약 $0.8~1.2/kg)을 한국 P&L에 직접 편입할 경우 전사 영업이익률 +3~5%p 점프 가능 — 시뮬레이션 시급, ③EU CSDDD·미국 UFLPA 강제노동 규제로 중국 조미·자숙 ESG 리스크 동시 상승 — 리쇼어링은 ESG 정합성 + 마진 양수겸장.",
+      source: "KMI 「FTA체결국 수산물 수입동향」 2021Q4·2022Q4·2023Q4·2024Q4·2025Q4·2026Q1 — 오징어 품목별 비중 본문",
+      isLive: false,
+      syncDate: "2026-04"
     },
     {
       id: "w_squid_sg_valueup",

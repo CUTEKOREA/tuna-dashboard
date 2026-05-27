@@ -27,6 +27,7 @@ import MackerelClimatePredictor from './MackerelClimatePredictor';
 import MackerelAquaculture from './MackerelAquaculture';
 import MackerelAfricanExportROI from './MackerelAfricanExportROI';
 import MackerelSafetyPremium from './MackerelSafetyPremium';
+import MackerelFTAQuarterly from './MackerelFTAQuarterly';
 
 // 5-Pillar 네비게이터 메타 (Tuna 패턴 + 고등어 시그니처 그라디언트 cyan-700→sky-500)
 const SECTIONS = [
@@ -54,7 +55,7 @@ const PILLAR_WIDGET_IDS: Record<string, string[]> = {
 const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
   S1: [MackerelKoreaSupply, MackerelNorwayAlt, MackerelClimatePredictor],
   S2: [MackerelAquaculture],
-  S3: [MackerelAfricanExportROI],
+  S3: [MackerelFTAQuarterly, MackerelAfricanExportROI],
   S4: [],
   S5: [MackerelSafetyPremium],
 };

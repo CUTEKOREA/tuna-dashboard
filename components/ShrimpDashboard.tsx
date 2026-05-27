@@ -20,6 +20,15 @@ import styles from './ShrimpDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
+import ShrimpFTAQuarterly from './ShrimpFTAQuarterly';
+
+const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
+  S1: [],
+  S2: [],
+  S3: [ShrimpFTAQuarterly],
+  S4: [],
+  S5: [],
+};
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -625,9 +634,12 @@ export default function ShrimpDashboard() {
               </div>
               <p style={{ margin: '0 0 1.5rem 34px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
               <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                {pillarWidgets.length === 0
+                {pillarWidgets.length === 0 && (EXTRA_BY_PILLAR[sec.id] || []).length === 0
                   ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
-                  : pillarWidgets.map((w: any) => renderWidgetCard(w, sec.id as any))}
+                  : <>
+                      {pillarWidgets.map((w: any) => renderWidgetCard(w, sec.id as any))}
+                      {(EXTRA_BY_PILLAR[sec.id] || []).map((Comp, i) => <Comp key={`extra-${sec.id}-${i}`} />)}
+                    </>}
               </div>
             </section>
             {uncategorized.length > 0 && (

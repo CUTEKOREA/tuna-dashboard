@@ -20,6 +20,7 @@ import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import WhelkFTAQuarterly from './WhelkFTAQuarterly';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -553,6 +554,8 @@ export default function WhelkDashboard() {
                 actionPlan: <span>영국산 원물의 평균 수입단가 $12.75/kg 이면에 있는 가장 강력한 방어기제는 <TermTooltip term="한-영 FTA" description="영국의 브렉시트(Brexit) 이후 한국과 영국 간 체결된 자유무역협정. 수산물(골뱅이) 무관세 혜택의 핵심." />(수입 관세 0%) 혜택입니다. 무관세 특권으로 해운 운임($0.42)과 내륙 통관/보관료($0.15)를 합산해도 총 입고단가를 $13.32/kg 선에서 억제하는 총수명주기비용(LCC) 효율이 발생합니다. 경쟁국(관세 부과 시) 대비 10~20%의 원가 우위 해자로 작용하므로, 무역 파트는 영국 현지 패커들의 원산지 증명 갱신 및 행정적 컴플라이언스 이탈을 상시 모니터링해야 합니다.</span>,
                 source: 'KCS 관세청 수입 통관 통계',
               }} />
+
+            <WhelkFTAQuarterly />
           </>
       </>)}
       {activePart === 'S4' && (<>
