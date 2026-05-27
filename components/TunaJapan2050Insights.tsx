@@ -87,7 +87,7 @@ const supplyStructureData = [
   { 항목: '참다랑어 양식', value: 24, group: '국내 어법', fill: '#164e63' },
   { 항목: '원어 수입', value: 217, group: '수입', fill: '#38bdf8' },
   { 항목: '캔 수입', value: 78, group: '수입', fill: '#7dd3fc' },
-  { 항목: '가츠오부시 수입', value: 18, group: '수입', fill: '#bae6fd' },
+  { 항목: '가츠오부시', value: 18, group: '수입', fill: '#bae6fd' },
 ];
 
 // ⑤ 사시미 3-Tier 가격 — Kawamoto 2017 인용 (JPY/kg, 도매가 범위)
