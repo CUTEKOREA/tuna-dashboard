@@ -499,13 +499,10 @@ const PIE_COLORS = ['var(--color-danger)', 'var(--color-info)', 'var(--color-war
 export const OperationalS1Widgets = () => (
   <>
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      <h3 style={{ fontSize: '1.15rem', color: '#f8fafc', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        ⚡ 실무/현장 작전 인텔리전스 (Field Ops)
-      </h3>
       <div className={styles.grid}>
         <div className={styles.card}>
         
-                      <CardHeader title="기후 변동성과 어군 이동 역학" icon={Thermometer} term="SST Anomaly" desc="표층 수온 아노말리와 단위 노력당 어획량(CPUE) 및 연료비 변동 상관관계 예측 모델링." />
+                      <CardHeader title="기후 변동성과 어군 이동 역학" icon={Thermometer} term="수온 아노말리" desc="표층 수온 아노말리와 단위 노력당 어획량(CPUE) 및 연료비 변동 상관관계 예측 모델링." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -528,7 +525,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="스마트 FAD 어획 및 부수어획" icon={Target} term="Acoustic FADs" desc="음향 탐지기를 장착한 생분해성(Biodegradable) 스마트 FAD와 기존 FAD의 혼획/어획 목표 달성도 비교." />
+                      <CardHeader title="스마트 FAD 어획 및 부수어획" icon={Target} term="스마트 집어장치" desc="음향 탐지기를 장착한 생분해성(Biodegradable) 스마트 FAD와 기존 FAD의 혼획/어획 목표 달성도 비교." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -549,7 +546,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="조업 해역 고갈 및 이동 동향" icon={MapPin} term="Area Exhaustion" desc="FAO 주요 해역별 2000년 대비 2024년 생산량 비교 밀도 변화." />
+                      <CardHeader title="조업 해역 고갈 및 이동 동향" icon={MapPin} term="어장 고갈" desc="FAO 주요 해역별 2000년 대비 2024년 생산량 비교 밀도 변화." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -570,7 +567,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="ENSO 시나리오별 선단 최적 배치" icon={CloudRain} term="El Nino-La Nina" desc="MGWR-BME 연구모델 기반 엘니뇨/라니냐 발생 시 어군 중심축 동/서 표류 및 효율 변화." />
+                      <CardHeader title="ENSO 시나리오별 선단 최적 배치" icon={CloudRain} term="엘니뇨·라니냐" desc="MGWR-BME 연구모델 기반 엘니뇨/라니냐 발생 시 어군 중심축 동/서 표류 및 효율 변화." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -591,7 +588,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="알바코어 서식지의 남하 압력" icon={Navigation} term="Habitat Shift" desc="연대별 해수 온도 상승으로 알바코어 미성어의 조업 적정 위도가 변경되는 기후 압박." />
+                      <CardHeader title="알바코어 서식지의 남하 압력" icon={Navigation} term="서식지 이동" desc="연대별 해수 온도 상승으로 알바코어 미성어의 조업 적정 위도가 변경되는 기후 압박." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -612,7 +609,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="어종별 생산량 지각변동 (75년 추이)" icon={Leaf} term="Species Dominance" desc="1950년부터 2024년까지 가다랑어, 눈다랑어, 황다랑어 생산량의 구조적 변동을 추적." />
+                      <CardHeader title="어종별 생산량 지각변동 (75년 추이)" icon={Leaf} term="어종 점유율" desc="1950년부터 2024년까지 가다랑어, 눈다랑어, 황다랑어 생산량의 구조적 변동을 추적." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -633,7 +630,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="참치 헤게모니 역사적 이동" icon={Crown} term="Hegemony Shift" desc="주요 6개 국가의 참치 생산량 지배력의 1970~2024 변화 경로." />
+                      <CardHeader title="참치 헤게모니 역사적 이동" icon={Crown} term="패권 이동" desc="주요 6개 국가의 참치 생산량 지배력의 1970~2024 변화 경로." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -656,7 +653,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="프리미엄 어종 물량 교차점" icon={Diamond} term="Premium Peak Cross" desc="감소하는 야생 눈다랑어와 양식 확대로 증가하는 참다랑어의 생산 추이 교차 구간." />
+                      <CardHeader title="프리미엄 어종 물량 교차점" icon={Diamond} term="프리미엄 교차점" desc="감소하는 야생 눈다랑어와 양식 확대로 증가하는 참다랑어의 생산 추이 교차 구간." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -678,7 +675,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="참치 양식업의 성규모 단가 잠식" icon={Sprout} term="Aquaculture Disruption" desc="양식 참치 생산량과 생산금액(Value)의 폭발적 성장에 따른 야생 참치 위협 파동." />
+                      <CardHeader title="참치 양식업의 성규모 단가 잠식" icon={Sprout} term="양식업 파괴" desc="양식 참치 생산량과 생산금액(Value)의 폭발적 성장에 따른 야생 참치 위협 파동." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -700,7 +697,7 @@ export const OperationalS1Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="선망 vs 연승 마진 역전 (글로벌 vs 우리 현실)" icon={Scale} term="Profit Paradigm" desc="글로벌 프리미엄 연승(사시미급)의 마진 상승 추세 vs 신라교역 연승 적자의 구조적 괴리 분석." />
+                      <CardHeader title="선망 vs 연승 마진 역전 (글로벌 vs 우리 현실)" icon={Scale} term="수익 패러다임" desc="글로벌 프리미엄 연승(사시미급)의 마진 상승 추세 vs 신라교역 연승 적자의 구조적 괴리 분석." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -726,13 +723,10 @@ export const OperationalS1Widgets = () => (
 export const OperationalS2Widgets = () => (
   <>
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      <h3 style={{ fontSize: '1.15rem', color: '#f8fafc', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        ⚡ 실무/현장 작전 인텔리전스 (Field Ops)
-      </h3>
       <div className={styles.grid}>
         <div className={styles.card}>
         
-                      <CardHeader title="전통 통조림 허브 패권 분산" icon={Network} term="Decentralization" desc="태국의 임금 및 환율 상승으로 인해 가공 주문 물량이 중남미/인도네시아 등으로 찢어지는 현상." />
+                      <CardHeader title="전통 통조림 허브 패권 분산" icon={Network} term="가공 허브 분산" desc="태국의 임금 및 환율 상승으로 인해 가공 주문 물량이 중남미/인도네시아 등으로 찢어지는 현상." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -753,7 +747,7 @@ export const OperationalS2Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="프리미엄 RTE/파우치 성장성" icon={TrendingUp} term="Ready-To-Eat" desc="MZ 단백질 소비층을 겨냥한 부가가치 파우치(파우치 팩)의 마진율 및 연 성장성 비교." />
+                      <CardHeader title="프리미엄 RTE/파우치 성장성" icon={TrendingUp} term="즉석조리 식품" desc="MZ 단백질 소비층을 겨냥한 부가가치 파우치(파우치 팩)의 마진율 및 연 성장성 비교." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -774,7 +768,7 @@ export const OperationalS2Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="참치캔 부산물 고마진 수익화" icon={Cpu} term="By-products" desc="통조림 공정 중 버려지는 내장/뼈(15%)를 활용한 펫케어 및 피쉬밀 사업의 퀀텀 립." />
+                      <CardHeader title="참치캔 부산물 고마진 수익화" icon={Cpu} term="부산물 활용" desc="통조림 공정 중 버려지는 내장/뼈(15%)를 활용한 펫케어 및 피쉬밀 사업의 퀀텀 립." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -793,7 +787,7 @@ export const OperationalS2Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="글로벌 메이저 헷징 포트폴리오" icon={Briefcase} term="CVC Diversification" desc="Thai Union, Maruha Nichiro 등 메이저 참치 선단들이 캐시카우를 양식 및 부가가치 통조림으로 전환하는 동향." />
+                      <CardHeader title="글로벌 메이저 헷징 포트폴리오" icon={Briefcase} term="포트폴리오 다각화" desc="Thai Union, Maruha Nichiro 등 메이저 참치 선단들이 캐시카우를 양식 및 부가가치 통조림으로 전환하는 동향." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -821,13 +815,10 @@ export const OperationalS2Widgets = () => (
 export const OperationalS3Widgets = () => (
   <>
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      <h3 style={{ fontSize: '1.15rem', color: '#f8fafc', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        ⚡ 실무/현장 작전 인텔리전스 (Field Ops)
-      </h3>
       <div className={styles.grid}>
         <div className={styles.card}>
         
-                      <CardHeader title="금어기 물류 병목 & 콜드체인 대란" icon={Anchor} term="Logistics Bottleneck" desc="RFMO 관할 금어기(FAD Closure) 전후 하역 대기일, 리퍼 운임, 대기 손실의 이중 병목 구조 분석." />
+                      <CardHeader title="금어기 물류 병목 & 콜드체인 대란" icon={Anchor} term="물류 병목" desc="RFMO 관할 금어기(FAD Closure) 전후 하역 대기일, 리퍼 운임, 대기 손실의 이중 병목 구조 분석." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -850,7 +841,7 @@ export const OperationalS3Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="0% 특혜관세(GSP+) 차익" icon={DollarSign} term="Tariff Arbitrage" desc="EU 수출을 위한 하역 및 가공 경로에서 태국(관세 24%) 대비 0% 특혜 관세국의 순마진 비교" />
+                      <CardHeader title="0% 특혜관세(GSP+) 차익" icon={DollarSign} term="관세 차익" desc="EU 수출을 위한 하역 및 가공 경로에서 태국(관세 24%) 대비 0% 특혜 관세국의 순마진 비교" />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -871,7 +862,7 @@ export const OperationalS3Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="수출 시장의 목적지 집중도 리스크" icon={ArrowRightLeft} term="Export Share Risk" desc="일본 등 단일 고객사에 대한 극단적 의존도가 야기하는 외상·물량 리스크 수준." />
+                      <CardHeader title="수출 시장의 목적지 집중도 리스크" icon={ArrowRightLeft} term="수출 집중도 리스크" desc="일본 등 단일 고객사에 대한 극단적 의존도가 야기하는 외상·물량 리스크 수준." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -894,7 +885,7 @@ export const OperationalS3Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="한국 참다랑어 수입 다변화 체제" icon={Flag} term="Korea Import Radar" desc="최근 5년간 한국으로 들어오는 프리미엄 참치의 국가별 물량 의존도(톤)." />
+                      <CardHeader title="한국 참다랑어 수입 다변화 체제" icon={Flag} term="한국 수입 레이더" desc="최근 5년간 한국으로 들어오는 프리미엄 참치의 국가별 물량 의존도(톤)." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -917,7 +908,7 @@ export const OperationalS3Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="글로벌 수입 수요 블랙홀 지수" icon={Magnet} term="Import Blackhole" desc="세계 최대 소비시장이 참치를 흡수하는 물량 비대칭도 시뮬레이션." />
+                      <CardHeader title="글로벌 수입 수요 블랙홀 지수" icon={Magnet} term="수입 블랙홀" desc="세계 최대 소비시장이 참치를 흡수하는 물량 비대칭도 시뮬레이션." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -951,13 +942,10 @@ export const OperationalS3Widgets = () => (
 export const OperationalS4Widgets = () => (
   <>
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      <h3 style={{ fontSize: '1.15rem', color: '#f8fafc', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        ⚡ 실무/현장 작전 인텔리전스 (Field Ops)
-      </h3>
       <div className={styles.grid}>
         <div className={styles.card}>
         
-                      <CardHeader title="수입 블랙홀: 패닉 바잉 스프레드" icon={Box} term="Panic Buying" desc="지정학 이슈 및 쿼터 제한 뉴스 발생 시 EU/US 메이저의 물량 비축 속도와 도매 어가 곡선 상관도." />
+                      <CardHeader title="수입 블랙홀: 패닉 바잉 스프레드" icon={Box} term="패닉 매입" desc="지정학 이슈 및 쿼터 제한 뉴스 발생 시 EU/US 메이저의 물량 비축 속도와 도매 어가 곡선 상관도." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -979,7 +967,7 @@ export const OperationalS4Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="외식 vs 소매 스위칭" icon={TrendingUp} term="Economic Switching" desc="고금리, 인플레이션 장기화에 따른 B2B 레스토랑 수요 부진과 B2C 마트용 소매 수요 상승 교차 곡선." />
+                      <CardHeader title="외식 vs 소매 스위칭" icon={TrendingUp} term="경기 전환" desc="고금리, 인플레이션 장기화에 따른 B2B 레스토랑 수요 부진과 B2C 마트용 소매 수요 상승 교차 곡선." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1000,7 +988,7 @@ export const OperationalS4Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="화이트 미트 북미 제패" icon={Ship} term="Albacore Surge" desc="스킵잭 남획 이슈 대체품으로 급부상 중인 알바코어 참치의 점유율 침식 투입 모델." />
+                      <CardHeader title="화이트 미트 북미 제패" icon={Ship} term="알바코어 부상" desc="스킵잭 남획 이슈 대체품으로 급부상 중인 알바코어 참치의 점유율 침식 투입 모델." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1020,7 +1008,7 @@ export const OperationalS4Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="대체 해산물(Alt-Seafood) 위협" icon={Leaf} term="Alt-Tuna Intrustion" desc="배양육/식물성 식물 단백질로 만든 비건 참치의 향후 시장 잠식률 모의 침투 곡선." />
+                      <CardHeader title="대체 해산물(Alt-Seafood) 위협" icon={Leaf} term="대체 참치 침투" desc="배양육/식물성 식물 단백질로 만든 비건 참치의 향후 시장 잠식률 모의 침투 곡선." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1045,13 +1033,10 @@ export const OperationalS4Widgets = () => (
 export const OperationalS5Widgets = () => (
   <>
     <div style={{ marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      <h3 style={{ fontSize: '1.15rem', color: '#f8fafc', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        ⚡ 실무/현장 작전 인텔리전스 (Field Ops)
-      </h3>
       <div className={styles.grid}>
         <div className={styles.card}>
         
-                      <CardHeader title="전자 모니터링(EM) 방어선" icon={ShieldCheck} term="Electronic Monitoring" desc="인공지능 카메라(AI EM)와 VMS 시스템 결합을 통한 실시간 감독율 향상 및 페널티 방어 상관관계." />
+                      <CardHeader title="전자 모니터링(EM) 방어선" icon={ShieldCheck} term="전자 모니터링" desc="인공지능 카메라(AI EM)와 VMS 시스템 결합을 통한 실시간 감독율 향상 및 페널티 방어 상관관계." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1073,7 +1058,7 @@ export const OperationalS5Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="노동/인권 규제 블랙리스트" icon={Zap} term="Human Rights Tracing" desc="미국 관세국경보호청(CBP)의 화물 보류 조치(WRO) 빈도와 블록체인 발급 추적 등급 증가." />
+                      <CardHeader title="노동/인권 규제 블랙리스트" icon={Zap} term="인권 추적" desc="미국 관세국경보호청(CBP)의 화물 보류 조치(WRO) 빈도와 블록체인 발급 추적 등급 증가." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1095,7 +1080,7 @@ export const OperationalS5Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="어종별 쿼터 삭감 방어 모델" icon={FileWarning} term="Penalty Limit Exceedance" desc="유예없는 2027 빅아이/황다랑어 할당량 대거 삭감 예보와 초과 페널티 손익 시뮬레이션." />
+                      <CardHeader title="어종별 쿼터 삭감 방어 모델" icon={FileWarning} term="쿼터 초과 페널티" desc="유예없는 2027 빅아이/황다랑어 할당량 대거 삭감 예보와 초과 페널티 손익 시뮬레이션." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1116,7 +1101,7 @@ export const OperationalS5Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="MSC 획득 프리미엄 갭" icon={Briefcase} term="MSC Premium" desc="MSC 인증 확보 물량과 일반 물량의 도매 시장(태국, 스페인) 평균 거래가 차익 누적액 분기별 스팬." />
+                      <CardHeader title="MSC 획득 프리미엄 갭" icon={Briefcase} term="MSC 프리미엄" desc="MSC 인증 확보 물량과 일반 물량의 도매 시장(태국, 스페인) 평균 거래가 차익 누적액 분기별 스팬." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1137,7 +1122,7 @@ export const OperationalS5Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="AI 승선 모니터링 손익분기 역전" icon={Brain} term="BEP Crossover" desc="거대해지는 인간 옵서버 인건비와 AI 카메라 비용의 크로스오버 지점 타게팅." />
+                      <CardHeader title="AI 승선 모니터링 손익분기 역전" icon={Brain} term="손익분기 교차" desc="거대해지는 인간 옵서버 인건비와 AI 카메라 비용의 크로스오버 지점 타게팅." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
@@ -1157,7 +1142,7 @@ export const OperationalS5Widgets = () => (
                     </div>
         <div className={styles.card}>
         
-                      <CardHeader title="블루 카본 우대 파이낸스 스왑" icon={Leaf} term="Green Bond" desc="친환경 하이브리드 엔진 개조 또는 바이오 냉매 적용으로 인정받은 해양 탄소 감축 활동에 적용되는 대출 금리 갭." />
+                      <CardHeader title="블루 카본 우대 파이낸스 스왑" icon={Leaf} term="녹색 채권" desc="친환경 하이브리드 엔진 개조 또는 바이오 냉매 적용으로 인정받은 해양 탄소 감축 활동에 적용되는 대출 금리 갭." />
                       <div className={styles.cardBody}>
                         <div className={styles.chartContainer}>
                           <SafeResponsiveContainer width="100%" height="100%">
