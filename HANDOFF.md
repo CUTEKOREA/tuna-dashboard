@@ -1,5 +1,17 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌊 **2026-05-27 — KMI FTA 분기별 인사이트 8 commodity 라이브 배포** [CC]:
+> - **출처**: KMI 「FTA체결국 수산물 수입동향」 2021 Q1 ~ 2026 Q1 (21개 분기 PDF 교차분석)
+> - **신규 위젯 20개** (이번 세션 4 commodity):
+>   - Galchi 5개: 수입국 5년 대전환·오만 +154%·에콰도르 경유무역·드레스 갈치 대체·산지별 단가 ([components/GalchiDashboard.tsx](components/GalchiDashboard.tsx) 인라인 newWidgets)
+>   - Squid 5개: 페루 +1,458% 메가회복·자급률 26.8% 보상·단가-물량 디커플링·국가별 분기 단가·조미·자숙 비중 ([components/SquidDashboard.tsx](components/SquidDashboard.tsx))
+>   - Pollock 5개: 러시아 92→78%·가공 형태 시프트·2022→23 -47.3% 채찍·미국 +48.1%·러시아 vs 미국 단가 ([public/data/pollock_real_data_v4.json](public/data/pollock_real_data_v4.json))
+>   - Salmon 5개: 공급망 대전환·러시아 -84.8% 절벽·신선 피레트 신등장·칠레 +32.3%·액-물량 디커플링 ([public/data/salmon_real_data_v4.json](public/data/salmon_real_data_v4.json))
+> - **데이터 확장 2건**: Squid `w2_korea_supply` 2024-25 추가, Pollock `w4_korea_crisis`·`w7_usa_russia_unitprice` 실측 교체
+> - **직전 세션 미커밋분 동반 배포**: MackerelFTAQuarterly·JukkumiFTAQuarterly·ShrimpFTAQuarterly·WhelkFTAQuarterly 4개 컴포넌트 + Dashboard import 연결
+> - **L-03 통과** ✓ (4.2s, 117 정적 페이지), **W-04 체크리스트** 전 위젯 통과 (cardDesc·TelemetryBadge SYNCED 2026-04·SIT/TAK·source·X축 한글 ≤7자·단위 괄호)
+> - **PDF→TXT 변환물 캐시**: `~/agri_data/공통(General)/kmi_fta_quarterly/md/` (21개 .txt, 향후 commodity 분석에 재활용 가능)
+>
 > 🇯🇵 **2026-05-27 — Kawamoto 2026 일본 사시미 수요 절벽 6 위젯 신규 탭** [CC]:
 > - **신규 컴포넌트**: `components/TunaJapan2050Insights.tsx` (6 위젯 export)
 >   - ① InsightJapanDemandCliff — 2022→2050 수요 절벽 (Pillar 4, ComposedChart)
