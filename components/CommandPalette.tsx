@@ -35,6 +35,8 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
     { id: 'ranching', label: '참다랑어 축양', category: '페이지', icon: <Waves size={16} />, action: () => onNavigate('ranching') },
     { id: 'mackerel', label: '고등어 (Mackerel)', category: '페이지', icon: <Fish size={16} />, action: () => onNavigate('mackerel') },
     { id: 'squid', label: '오징어 (Squid)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('squid') },
+    { id: 'jukkumi', label: '주꾸미 (Webfoot Octopus)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('jukkumi') },
+    { id: 'octopus', label: '낙지 (Long-Arm Octopus)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('octopus') },
     { id: 'cashew', label: '캐슈넛 (Cashew Nut)', category: '페이지', icon: <Hexagon size={16} />, action: () => onNavigate('cashew') },
     { id: 'cassava', label: '카사바 (Cassava)', category: '페이지', icon: <Hexagon size={16} />, action: () => onNavigate('cassava') },
   ];

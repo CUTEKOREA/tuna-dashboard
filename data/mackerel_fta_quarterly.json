@@ -1,0 +1,41 @@
+{
+  "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021Q4~2026Q1 (21개 분기, 약 96MB 원본 PDF)",
+  "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
+  "extractedAt": "2026-05-27",
+  "yearly": [
+    { "year": "2020", "volume": 40.1, "value": 82.8, "note": "팬데믹 직전 기준" },
+    { "year": "2021", "volume": 50.3, "value": 102.2, "note": "리오프닝 수요 회복" },
+    { "year": "2022", "volume": 50.0, "value": 120.2, "note": "단가 상승 본격화" },
+    { "year": "2023", "volume": 57.0, "value": 145.1, "note": "노르웨이 의존 심화" },
+    { "year": "2024", "volume": 44.9, "value": 122.9, "note": "쿼터 1차 압박, 수입 둔화" },
+    { "year": "2025", "volume": 61.7, "value": 201.1, "note": "사상 최고치, 수입업계 선제 매집" }
+  ],
+  "quarter2025": [
+    { "q": "25Q1", "qVolume": 21.3, "cumVolume": 21.3, "cumValue": 60.4 },
+    { "q": "25Q2", "qVolume": 14.8, "cumVolume": 36.1, "cumValue": 106.5 },
+    { "q": "25Q3", "qVolume": 11.2, "cumVolume": 47.3, "cumValue": 146.0 },
+    { "q": "25Q4", "qVolume": 14.4, "cumVolume": 61.7, "cumValue": 201.1 },
+    { "q": "26Q1", "qVolume": 10.1, "cumVolume": 10.1, "cumValue": 45.6, "delta": -52.7 }
+  ],
+  "originShift": [
+    { "country": "노르웨이", "v2025Q1": 14.2, "v2026Q1": 6.1, "delta": -62.9, "share2026": 73.9 },
+    { "country": "영국", "v2025Q1": 0.3, "v2026Q1": 1.0, "delta": 216.1, "share2026": 12.1 },
+    { "country": "중국", "v2025Q1": 3.3, "v2026Q1": 1.9, "delta": -42.7, "share2026": 8.0 }
+  ],
+  "norwayUnitPrice": [
+    { "period": "23Q1", "usdPerKg": 2.1 },
+    { "period": "24Q1", "usdPerKg": 2.5 },
+    { "period": "25Q1", "usdPerKg": 2.7 },
+    { "period": "26Q1", "usdPerKg": 4.9 }
+  ],
+  "domesticProduction": [
+    { "period": "25년 1~2월", "kt": 31.8 },
+    { "period": "26년 1~2월", "kt": 47.6 }
+  ],
+  "facts": {
+    "frozenShare2026": 97.7,
+    "norwayValueShare2026": 73.9,
+    "ukValueShare2026": 12.1,
+    "chinaValueShare2026": 8.0
+  }
+}

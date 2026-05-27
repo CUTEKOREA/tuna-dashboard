@@ -1,0 +1,46 @@
+{
+  "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
+  "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
+  "extractedAt": "2026-05-27",
+  "note": "2025 Q3·Q4·2026 Q1 보고서에서 골뱅이가 주요 품목 narrative에서 제외됨 — H2 데이터는 향후 KMI 발표 시 보강 필요. 2025년부터 KMI 통계명이 '골뱅이' → '고둥'으로 재분류됨.",
+  "yearly": [
+    { "year": "2020", "volume": 5.92, "value": 67.6, "note": "팬데믹 직전 베이스라인" },
+    { "year": "2021", "volume": 5.18, "value": 60.3, "note": "−12.5% 감소세 시작" },
+    { "year": "2022", "volume": 4.67, "value": 47.2, "note": "러-우 전쟁 공급 부족, 가치 −21.7%" },
+    { "year": "2023", "volume": 3.55, "value": 36.5, "note": "−24.0% 추정, 영국 자원 위축 지속" },
+    { "year": "2024", "volume": 3.30, "value": 34.2, "note": "−7.1%, 감소세 축소" },
+    { "year": "2025H1", "volume": 1.50, "value": 20.1, "note": "H1만으로 +17.6%/+36.2% 회복 시그널" }
+  ],
+  "originShareVolume": [
+    { "year": "2020", "uk": 78, "ireland": 16, "other": 6 },
+    { "year": "2022", "uk": 74, "ireland": 20, "other": 6 },
+    { "year": "2024", "uk": 76.0, "ireland": 18.9, "other": 5.1 },
+    { "year": "2025H1", "uk": 84.7, "ireland": 14.4, "other": 0.9 }
+  ],
+  "unitPriceQuarterly": [
+    { "period": "23Q1", "uk": 11.5, "ireland": 12.5 },
+    { "period": "23Q2", "uk": 10.6, "ireland": 13.0 },
+    { "period": "23Q3", "uk": 10.1, "ireland": 12.7 },
+    { "period": "23Q4", "uk": 9.9,  "ireland": 12.4 },
+    { "period": "24Q1", "uk": 10.3, "ireland": 13.0 },
+    { "period": "24Q2", "uk": 10.9, "ireland": 13.2 },
+    { "period": "24Q3", "uk": 11.2, "ireland": 12.8 },
+    { "period": "24Q4", "uk": 11.5, "ireland": 13.2 },
+    { "period": "25Q1", "uk": 11.8, "ireland": 13.0 },
+    { "period": "25Q2", "uk": 11.8, "ireland": 14.6 }
+  ],
+  "yoy2025H1": [
+    { "country": "영국",   "volume": 1.20, "delta": 31.6 },
+    { "country": "아일랜드", "volume": 0.22, "delta": -18.2 }
+  ],
+  "facts": {
+    "decline2020to2024Volume": -44.3,
+    "decline2020to2024Value": -49.4,
+    "recovery2025H1Volume": 17.6,
+    "recovery2025H1Value": 36.2,
+    "ukShare2024": 76.0,
+    "ukShare2025H1": 84.7,
+    "ukPriceJump25Q2": 14.6,
+    "compositionAlmostAll": "조제저장 처리 99.9%"
+  }
+}

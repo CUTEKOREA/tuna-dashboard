@@ -49,6 +49,7 @@
   - 명태(한류 백색): `cyan-600 → sky-500` (#0891b2 → #0ea5e9)
   - 갈치/새우(연안): `emerald → teal`
   - 오징어/주꾸미(두족류): `purple → pink`
+  - 낙지(두족류 — 활·신선 외식 특이성): `indigo → violet` (#4f46e5 → #8b5cf6) — 양식 미개발 + 활낙지 29.8% 채널 분리 시각 차별화
   - 골뱅이(패류 껍데기): `amber → brown` (#fbbf24 → #92400e)
   - 연어(살색): `pink → rose` (#fb7185 → #be123c)
   - 망고스틴(열대과일): `purple → fuchsia → pink`

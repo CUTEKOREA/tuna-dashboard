@@ -1,0 +1,60 @@
+{
+  "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
+  "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
+  "extractedAt": "2026-05-27",
+  "yearly": [
+    { "year": "2020", "volume": 68.5, "value": 549.0, "note": "팬데믹 직전 기준" },
+    { "year": "2021", "volume": 72.6, "value": 620.0, "note": "리오프닝 +6.0%/+12.9%" },
+    { "year": "2022", "volume": 83.4, "value": 741.9, "note": "가치 정점 — 단가 폭등 사이클" },
+    { "year": "2023", "volume": 78.2, "value": 632.5, "note": "베트남 단가 폭락 −14.8%" },
+    { "year": "2024", "volume": 84.8, "value": 635.9, "note": "물량 회복 +8.5%, 가치 정체" },
+    { "year": "2025", "volume": 96.1, "value": 761.1, "note": "물량 정점 +5.0%, 가치 +10.6% 동반" }
+  ],
+  "quarter": [
+    { "q": "25Q1", "qVolume": 18.84, "cumVolume": 18.84, "cumValue": 148.6 },
+    { "q": "25Q2", "qVolume": 23.12, "cumVolume": 41.96, "cumValue": 332.7 },
+    { "q": "25Q3", "qVolume": 30.04, "cumVolume": 72.00, "cumValue": 553.0 },
+    { "q": "25Q4", "qVolume": 24.10, "cumVolume": 96.10, "cumValue": 761.1, "delta": -1.9 },
+    { "q": "26Q1", "qVolume": 22.06, "cumVolume": 22.06, "cumValue": 173.0, "delta": 17.1 }
+  ],
+  "originShift2025": [
+    { "country": "베트남", "volume2025": 42.9, "delta": -4.7, "shareVal": 44.4 },
+    { "country": "중국",   "volume2025": 21.5, "delta": 47.2, "shareVal": 21.2 },
+    { "country": "페루",   "volume2025": 7.7,  "delta": -19.2, "shareVal": 7.8 }
+  ],
+  "originShift2026Q1": [
+    { "country": "베트남", "v2025Q1": 9.1, "v2026Q1": 9.4, "delta": 2.8,  "shareVal": 40.0 },
+    { "country": "중국",   "v2025Q1": 4.6, "v2026Q1": 6.3, "delta": 36.6, "shareVal": 25.5 },
+    { "country": "페루",   "v2025Q1": 1.4, "v2026Q1": 2.3, "delta": 63.7, "shareVal": 9.2 }
+  ],
+  "unitPrice": [
+    { "period": "23 누적", "vietnam": 8.2, "china": 7.0, "peru": 7.6 },
+    { "period": "24 누적", "vietnam": 7.9, "china": 7.1, "peru": 7.5 },
+    { "period": "25 누적", "vietnam": 8.5, "china": 7.2, "peru": 7.7 },
+    { "period": "25 1~3월", "vietnam": 8.7, "china": 7.3, "peru": 7.5 },
+    { "period": "26 1~3월", "vietnam": 8.5, "china": 7.3, "peru": 7.4 }
+  ],
+  "domesticProduction": [
+    { "period": "24년 1~11월", "kt": 17.5 },
+    { "period": "25년 1~11월", "kt": 16.7 }
+  ],
+  "formMix2026Q1": [
+    { "name": "냉동", "value": 73.7, "color": "#10b981" },
+    { "name": "조미가공", "value": 23.5, "color": "#0d9488" },
+    { "name": "건조", "value": 2.4, "color": "#5eead4" },
+    { "name": "기타", "value": 0.4, "color": "#94a3b8" }
+  ],
+  "facts": {
+    "import2025Volume": 96.1,
+    "import2025Value": 761.1,
+    "import2026Q1Volume": 22.06,
+    "import2026Q1Value": 173.0,
+    "yoy2026Q1Volume": 17.1,
+    "vietnamValueShare2026Q1": 40.0,
+    "chinaValueShare2026Q1": 25.5,
+    "chinaVolumeGrowth2025": 47.2,
+    "chinaVolumeGrowth2026Q1": 36.6,
+    "peruRebound2026Q1": 63.7,
+    "domesticDecline": -4.6
+  }
+}

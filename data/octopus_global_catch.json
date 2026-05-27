@@ -1,0 +1,46 @@
+{
+  "source": "FAO FishStat — Capture Production, ASFIS species codes OCT/OCC/OCM/OCN/OCZ (문어류 통합, Octopus nei + species-specific)",
+  "filtered": "2010~2022, 누적 어획량 기준 상위 7개 생산국 (단위: 톤 live weight)",
+  "extractedAt": "2026-05-27",
+  "countries": {
+    "china": { "code": "156", "label": "중국" },
+    "morocco": { "code": "504", "label": "모로코" },
+    "japan": { "code": "392", "label": "일본" },
+    "mauritania": { "code": "478", "label": "모리타니" },
+    "korea": { "code": "410", "label": "한국" },
+    "mexico": { "code": "484", "label": "멕시코" },
+    "spain": { "code": "724", "label": "스페인" }
+  },
+  "yearly": [
+    { "year": "2010", "china": 126973, "morocco": 32006,   "japan": 41667, "mauritania": 15801,   "korea": 20759,   "mexico": 17459,   "spain": 16460 },
+    { "year": "2011", "china": 126965, "morocco": 32654,   "japan": 35186, "mauritania": 16716,   "korea": 19468,   "mexico": 17556,   "spain": 16422 },
+    { "year": "2012", "china": 125800, "morocco": 18411,   "japan": 33640, "mauritania": 25227,   "korea": 19510,   "mexico": 18330,   "spain": 13772 },
+    { "year": "2013", "china": 119169, "morocco": 57987,   "japan": 33700, "mauritania": 24733,   "korea": 16689,   "mexico": 16041,   "spain": 11427 },
+    { "year": "2014", "china": 121352, "morocco": 49237,   "japan": 34573, "mauritania": 20798,   "korea": 17726,   "mexico": 20233,   "spain":  7551 },
+    { "year": "2015", "china": 130245, "morocco": 64963,   "japan": 32568, "mauritania": 33249,   "korea": 18535,   "mexico": 14568,   "spain":  8160 },
+    { "year": "2016", "china": 124394, "morocco": 55319,   "japan": 36975, "mauritania": 30425,   "korea": 18090,   "mexico": 13163,   "spain":  8848 },
+    { "year": "2017", "china": 110835, "morocco": 52969,   "japan": 35473, "mauritania": 39013,   "korea": 19612,   "mexico": 16171,   "spain":  7309 },
+    { "year": "2018", "china": 107789, "morocco": 40620,   "japan": 36161, "mauritania": 29216,   "korea": 19241.2, "mexico": 14742,   "spain":  6537 },
+    { "year": "2019", "china": 106014, "morocco": 42383.7, "japan": 35175, "mauritania": 41506,   "korea": 19554,   "mexico": 14002,   "spain":  8889.89 },
+    { "year": "2020", "china": 104870, "morocco": 51906,   "japan": 32659, "mauritania": 39015,   "korea": 19366,   "mexico":  5523.77,"spain":  4762.51 },
+    { "year": "2021", "china": 106297, "morocco": 63540.7, "japan": 27347, "mauritania": 27276.8, "korea": 19049.1, "mexico": 10811.1, "spain":  5421.77 },
+    { "year": "2022", "china": 109971, "morocco": 52453.2, "japan": 22200, "mauritania": 32896,   "korea": 16068.7, "mexico": 13220.3, "spain":  6424.92 }
+  ],
+  "totals_2010_2022": {
+    "china": 1520674,
+    "morocco": 614450,
+    "japan": 437324,
+    "mauritania": 375872,
+    "korea": 243668,
+    "mexico": 191820,
+    "spain": 121985
+  },
+  "notes": [
+    "값은 ASFIS OCT/OCC/OCM/OCN/OCZ 코드의 모든 어업 통계해역 합계 (Q_tlw, 톤 live weight)",
+    "중국이 전 세계 어획량의 약 50% 차지, 2010년 12.7만톤에서 2022년 11.0만톤으로 감소세",
+    "모로코·모리타니는 북서아프리카 어장 변동성이 커서 연도별 등락폭이 큼",
+    "한국은 1.6~2.0만톤 범위에서 안정적이었으나 2022년 16,068톤으로 감소 신호",
+    "일본은 2010년 4.2만톤에서 2022년 2.2만톤으로 거의 절반 감소",
+    "스페인·멕시코는 2020년 이후 급감"
+  ]
+}

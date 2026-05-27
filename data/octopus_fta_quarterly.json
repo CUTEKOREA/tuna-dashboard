@@ -1,0 +1,52 @@
+{
+  "source": "KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4 ~ 2026 Q1 (21개 분기 원본 PDF)",
+  "indexPath": "agri_data/공통(General)/kmi_fta_quarterly/INDEX.md",
+  "extractedAt": "2026-05-27",
+  "yearly": [
+    { "year": "2020", "volume": 23.7, "value": 207.9, "note": "팬데믹 직전 베이스라인" },
+    { "year": "2021", "volume": 23.9, "value": 226.4, "note": "리오프닝 +0.9%/+8.9%" },
+    { "year": "2022", "volume": 31.3, "value": 290.5, "note": "보복수요 +31% 폭증 — 사상 최고" },
+    { "year": "2023", "volume": 30.4, "value": 264.6, "note": "−2.6%/−8.7% 정상화" },
+    { "year": "2024", "volume": 28.8, "value": 251.9, "note": "−5.3%/−4.8% 추가 감소" },
+    { "year": "2025", "volume": 28.9, "value": 262.9, "note": "+0.3%/+4.4% 안정화 진입" }
+  ],
+  "quarter": [
+    { "q": "25Q1", "qVolume": 5.66, "cumVolume": 5.66, "cumValue": 46.6 },
+    { "q": "25Q2", "qVolume": 6.69, "cumVolume": 12.35, "cumValue": 105.9 },
+    { "q": "25Q3", "qVolume": 6.76, "cumVolume": 19.11, "cumValue": 175.8 },
+    { "q": "25Q4", "qVolume": 9.76, "cumVolume": 28.87, "cumValue": 262.9, "delta": 2.1 },
+    { "q": "26Q1", "qVolume": 5.55, "cumVolume": 5.55, "cumValue": 42.9, "delta": -1.6 }
+  ],
+  "originShift2025": [
+    { "country": "중국",   "volume2025": 22.6, "delta": -1.8, "shareVal": 84.3 },
+    { "country": "베트남", "volume2025": 5.5,  "delta": 7.7,  "shareVal": 13.7 },
+    { "country": "태국",   "volume2025": 0.5,  "delta": 15.4, "shareVal": 1.4 }
+  ],
+  "originShift2026Q1": [
+    { "country": "중국",   "v2025Q1": 4.14, "v2026Q1": 4.20, "delta": 1.5,  "shareVal": 77.6 },
+    { "country": "베트남", "v2025Q1": 1.00, "v2026Q1": 0.95, "delta": -5.2, "shareVal": 20.3 },
+    { "country": "태국",   "v2025Q1": 0.13, "v2026Q1": 0.10, "delta": -23.1, "shareVal": 2.0 }
+  ],
+  "unitPriceVietnam": [
+    { "period": "23 누적", "vietnam": 6.5 },
+    { "period": "24 누적", "vietnam": 6.7 },
+    { "period": "25 누적", "vietnam": 6.6 },
+    { "period": "25 1~3월", "vietnam": 6.6 },
+    { "period": "26 1~3월", "vietnam": 6.9 }
+  ],
+  "formMix2026Q1": [
+    { "name": "냉동", "value": 70.2, "color": "#6366f1" },
+    { "name": "활·신선·냉장", "value": 29.8, "color": "#a78bfa" }
+  ],
+  "facts": {
+    "import2025Volume": 28.9,
+    "import2025Value": 262.9,
+    "import2026Q1Volume": 5.55,
+    "import2026Q1Value": 42.9,
+    "chinaValueShare2025": 84.3,
+    "vietnamValueShare2026Q1": 20.3,
+    "vietnamPriceJump26Q1": 4.8,
+    "freshChilledShare2026Q1": 29.8,
+    "frozenShare2026Q1": 70.2
+  }
+}
