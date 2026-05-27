@@ -1,5 +1,18 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐙 **2026-05-28 — 낙지 대시보드 신규 메뉴 라이브 배포 + KMI FTA JSON 게이팅** [CC] (commit 3456b69):
+> - **신규 메뉴**: `/octopus` 사이드바·CommandPalette 등록, 낙지(Octopus minor) 5-Pillar 셸 작성 ([components/OctopusDashboard.tsx](components/OctopusDashboard.tsx))
+> - **신규 위젯 2건 (Phase 1)**:
+>   - S3 [OctopusFTAQuarterly](components/OctopusFTAQuarterly.tsx): KMI 21분기 종합 — 2022 사상 최고 $290M → 2025 안정화 $262.9M·중국 84.3% 단일 의존·活·신선·냉장 29.8% (주꾸미 대비 +2.2배 외식 특이성)·베트남 단가 26 Q1 +4.8% 인상 시그널
+>   - S1 [OctopusDomesticCliff](components/OctopusDomesticCliff.tsx): FishStat 글로벌 어획 2010~2022 (한국 5위, 16천 톤·−22.6% 13년)·국내 1~11월 5.4→3.7천 톤(−30.9%) 절벽·TAC 직접 대상 미지정·제4차 수산자원관리기본계획(2026~2030) 정책 타임라인
+> - **시그니처 그라디언트 신규**: 낙지 indigo→violet (#4f46e5 → #8b5cf6) — 두족류 공용 purple→pink과 차별화하여 활·신선 외식 특이성 시각 분리 ([COMPREHENSIVE_RULEBOOK.md](COMPREHENSIVE_RULEBOOK.md) D-04 갱신)
+> - **데이터 JSON force-add 7건 (32KB, L-08 통과)**:
+>   - 신규 octopus 3건: fta_quarterly·global_catch·domestic_resource
+>   - 직전 commit f4d83da 누락 보강 4건: mackerel·jukkumi·shrimp·whelk fta_quarterly (`/data/` gitignore에 묻혀 Vercel 빌드 시 모듈 누락 가능성 차단)
+> - **에이전트 분배 (사용자 명시)**: Explore Agent A (agri_data 자료 탐사) + Explore Agent B (코드 점검) + General Agent A (Dashboard 셸 작성) + General Agent B (FishStat·자원관리계획 PDF 정제) + 메인(KMI 추출·위젯 작성·메뉴 등록·룰북). 5 에이전트 병렬 활용
+> - **Phase 2 (다음 세션)**: 낙지 양식 R&D (Nueva Pescanova·일본 와카야마)·KAMIS 도매가 (활낙지 vs 냉동)·EU 양식 윤리 규제·KOSIS 어업생산동향 월별·S2/S4/S5 위젯 8개+
+> - **L-03 통과** ✓ pre-push 6s, **W-04 체크리스트** 양 위젯 통과
+
 > 🌊 **2026-05-27 — KMI FTA 분기별 인사이트 8 commodity 라이브 배포** [CC]:
 > - **출처**: KMI 「FTA체결국 수산물 수입동향」 2021 Q1 ~ 2026 Q1 (21개 분기 PDF 교차분석)
 > - **신규 위젯 20개** (이번 세션 4 commodity):
