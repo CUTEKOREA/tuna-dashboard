@@ -64,6 +64,15 @@ import {
   AtunaEuCatchSystemWidget
 } from './TunaAtunaMayNews';
 
+// Phase: KMI FTA Insights (새로운 5대 밸류체인 위젯)
+import {
+  tunaColdChainData,
+  tunaQuotaData,
+  tunaOriginData,
+  tunaMacroData,
+  tunaYenData
+} from './TunaFtaInsightsWidgets';
+
 // Phase 2: Landing Cost & Supplier Hub
 import TunaLandingCost from './TunaLandingCost';
 
@@ -739,6 +748,12 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <AtunaIoPerfectStormWidget />
               <AtunaEpoCatchDropWidget />
             </div>
+            
+            {/* KMI FTA Insights (S1) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <WidgetCard widget={tunaQuotaData} />
+              <WidgetCard widget={tunaYenData} />
+            </div>
           </section>
         )}
 
@@ -836,6 +851,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <WidgetCard key={w.id} widget={w} />
               ))}
               <AtunaEuCatchSystemWidget />
+              <WidgetCard widget={tunaColdChainData} />
+              <WidgetCard widget={tunaOriginData} />
             </div>
             <OperationalS3Widgets />
           </section>
@@ -864,6 +881,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               {/* 3. 신규 수요 창출 (할랄 및 틈새 시장) */}
               <TunaGlobalHalalStrategy />
               <AtunaBangkokPriceWidget />
+              
+              {/* 4. KMI FTA Insights (Macro Demand) */}
+              <div style={{ gridColumn: 'span 2' }}>
+                <WidgetCard widget={tunaMacroData} />
+              </div>
             </div>
             <OperationalS4Widgets />
           </section>

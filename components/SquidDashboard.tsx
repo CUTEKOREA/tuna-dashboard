@@ -18,6 +18,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './SquidDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
+import { SquidVCFishing, SquidVCProcessing, SquidVCProduct, SquidVCLogistics, SquidVCMarket } from './SquidValueChainWidgets';
 
 /* ─── Telemetry Badge (참치 패턴 동기화) ─── */
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
@@ -766,8 +767,13 @@ export default function SquidDashboard() {
               </span>
             </div>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              {activePart === 'S1' && <SquidVCFishing />}
+              {activePart === 'S2' && <SquidVCProcessing />}
+              {activePart === 'S3' && <SquidVCLogistics />}
+              {activePart === 'S4' && <SquidVCProduct />}
+              {activePart === 'S5' && <SquidVCMarket />}
               {pillarWidgets.length === 0
-                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 위젯이 없습니다</div>
+                ? <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>이 단계에 추가 위젯이 없습니다</div>
                 : pillarWidgets.map((w: any) => renderWidgetCard(w))}
             </div>
           </section>

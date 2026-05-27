@@ -65,6 +65,7 @@ const MangosteenDashboard = dynamic(() => import('../components/MangosteenDashbo
 const ColdStorageDashboard = dynamic(() => import('../components/ColdStorageDashboard'));
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
+const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
 
 
 const initialChartData = [
@@ -109,9 +110,9 @@ export default function Home() {
   );
   const pathname = usePathname();
   
-  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'whelk' | 'used-car' | 'pollock' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab'>(() => {
+  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'whelk' | 'used-car' | 'pollock' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db'>(() => {
     const path = pathname?.replace('/', '');
-    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'whelk', 'used-car', 'pollock', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab'];
+    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'whelk', 'used-car', 'pollock', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db'];
     if (path && validMenus.includes(path)) return path as any;
     return 'market';
   });
@@ -574,6 +575,14 @@ export default function Home() {
           <span>국내 위판장 인텔리전스</span>
         </button>
 
+        <button 
+          className={`${styles.menuItem} ${activeMenu === 'purse-seiner-db' ? styles.menuItemActive : ''}`}
+          onClick={() => { handleMenuClick('purse-seiner-db'); setIsMobileSidebarOpen(false); }}
+        >
+          <Database size={18} />
+          <span>글로벌 선망선 DB <span style={{ fontSize: '0.7em', opacity: 0.7 }}>155척</span></span>
+        </button>
+
 
         <button 
           className={`${styles.menuItem} ${activeMenu === 'seasia-oem' ? styles.menuItemActive : ''}`}
@@ -889,6 +898,10 @@ export default function Home() {
 
               <KeepAlivePanel active={activeMenu === 'research-lab'}>
                 <ResearchLabDashboard />
+              </KeepAlivePanel>
+
+              <KeepAlivePanel active={activeMenu === 'purse-seiner-db'}>
+                <PurseSeinerDashboard />
               </KeepAlivePanel>
 
               </PageTransition>
