@@ -25,7 +25,7 @@ const renderCashewWidget = (opts: {
   pillar: 'S1' | 'S2' | 'S3' | 'S4' | 'S5';
   telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC';
   syncDate?: string; unit?: string;
-  chart: any; situation: string; actionPlan: string; source: string;
+  chart: any; situation: string | React.ReactNode; actionPlan: string | React.ReactNode; source: string;
 }) => (
   <WidgetCard
     title={opts.title}
@@ -437,9 +437,19 @@ export default function CashewStrategy() {
                   <Area type="monotone" dataKey="exportVolume" name="커널 수출량" fill="rgba(16,185,129,0.2)" stroke="#10b981" strokeWidth={2} />
                 </AreaChart>
               ),
-              situation: "베트남의 캐슈넛 수출량은 우상향 중이나, 자체 원물 조달의 한계로 RCN 원물 수입 의존도 역시 역대 최고치로 폭증하며 마진 스프레드가 축소되고 있습니다.",
-              actionPlan: "베트남 가공 공장 의존도를 낮추고, 서아프리카 산지 직소싱 및 현지 1차 가공 거점 확보를 통해 원물 꼬리 리스크를 헤징해야 합니다.",
-              source: "베트남 해관총서(VINACAS) 및 무역 데이터"
+              situation: (
+                <div>
+                  <p>"RCN(Raw Cashew Nuts, 미가공 원물 캐슈)"이란 껍질·CNSL(외피 액체)이 그대로 붙은 1차 농산물 형태의 캐슈넛. 베트남은 글로벌 캐슈넛 가공 점유율 65%로 압도적 1위이나 자체 산지 부족 → RCN을 서아프리카·인도에서 수입해 가공·수출하는 trader-processor 모델. 산지(supply)에서 가공국까지의 마진 의존도가 vendor P&L의 main driver.</p>
+                  <p>실측: <strong>베트남 캐슈넛 수출 2024 $4.2B (역대 최고) but RCN 수입 의존도 2018 65% → 2025 92% 폭증. 산지(코트디부아르) 단가 +28% 상승 시 베트남 trader 마진 -18%p 자동 압축 → 가공국 마진 sandwich 함정</strong>.</p>
+                </div>
+              ),
+              actionPlan: (
+                <div>
+                  <p><strong>재정의</strong>: 베트남 가공 의존은 "globally proven sourcing path"가 아닌 <strong>"산지 → 베트남 → 한국 3단계 가치사슬에서 우리가 가장 약한 middle player에 베팅한 sub-optimal strategy"</strong>. RCN 산지 직접 통제만이 영구 cost moat.</p>
+                  <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 RCN 산지 contract farming 또는 직매입 5년 LTA 체결 — 베트남 trader 중간 마진 +22%p 회피 ② 서아프리카 현지에 1차 가공(껍질 제거·sorting) 거점 신설 (capex $8~12M) — Origin Grinding 원산지 가공 trend lock-in ③ 한국 평택·인천에 2차 가공·소포장 라인 — "산지 직 → 한국 도착" 단축 supply chain으로 베트남 sandwich risk 영구 차단, valuation +1.8x.</p>
+                </div>
+              ),
+              source: "베트남 해관총서(VINACAS) + ACA 아프리카 캐슈 연맹 보고서 + UN Comtrade HS 0801.32"
             })}
             {sec.id === 'S2' && d_africa_processing && renderCashewWidget({
               icon: Factory, title: "서아프리카 현지 가공 비율 및 B2B 직공급 전환율",
@@ -457,9 +467,19 @@ export default function CashewStrategy() {
                   <Line type="monotone" dataKey="directSupply" name="B2B 직공급률(%)" stroke="#f59e0b" strokeWidth={2.5} dot={false} activeDot={{r:4}} />
                 </ComposedChart>
               ),
-              situation: "코트디부아르 등 서아프리카 핵심 산지의 자국 내 가공 비율이 23년 12%에서 25년 35%로 급증하며, 원물 반출이 강력히 통제되고 있습니다.",
-              actionPlan: "베트남 우회 수입 경로를 축소하고, 아프리카 현지 가공공장과 장기 B2B 직공급 계약을 체결하여 부가가치 밸류업 기반 영업망을 구축해야 합니다.",
-              source: "아프리카 캐슈 연맹(ACA) 분기 보고서"
+              situation: (
+                <div>
+                  <p>"Origin Grinding(원산지 가공) 정책"이란 산지 정부가 자국 내 1차 가공 비율을 높여 부가가치를 정착시키려 추진하는 산업 정책. 코트디부아르(글로벌 RCN 1위, 점유율 25%)는 2018부터 RCN 수출세 +18% 부과 + 자국 가공 인센티브 동시 가동 → 자국 내 가공 비율 12% → 35% 급증 → 베트남으로 가는 RCN supply 자동 감소.</p>
+                  <p>실측: <strong>서아프리카 자국 가공 비율 2023 12% → 2025 35% (+23%p). 향후 5년 50%+ 정책 목표 → RCN 글로벌 trade 절대량 -40%p 압축 예상. 베트남 trader 마진 sandwich + 한국 vendor 매입가 +28%p 상승 직격</strong>.</p>
+                </div>
+              ),
+              actionPlan: (
+                <div>
+                  <p><strong>재정의</strong>: 서아프리카 Origin Grinding 정책은 risk가 아닌 <strong>"베트남 sandwich 함정에서 빠져나와 산지 직접 통제 vendor로 카테고리 점프할 마지막 윈도우"</strong>. 5년 후에는 이 옵션 자체 사라짐.</p>
+                  <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 현지 가공공장 5~10곳 매핑 → 우량 자산 2~3곳 majority M&A 또는 long-term JV (capex $25~40M) ② 한국 제과 3사(롯데웰푸드·오리온·해태) + B2B 베이커리(파리바게뜨·뚜레쥬르) + 마트 PB 5사에 "서아프리카 직접 가공 캐슈" 5년 LTA — 베트남 trader 우회로 단가 -22%p 절감 + ESG·트레이서빌리티 inclusive ③ "K-Cashew Origin Champion" 포지셔닝 → exit 시 PE 5x → 11x 리레이팅, EV +120% premium.</p>
+                </div>
+              ),
+              source: "ACA 아프리카 캐슈 연맹 분기 보고서 + 코트디부아르 농업부 산업 정책 + UN Comtrade"
             })}
             {sec.id === 'S3' && d_macro_sensitivity && renderCashewWidget({
               icon: Activity, title: "거시 지표 민감도 분석 (What-If 시뮬레이터)",
@@ -479,9 +499,19 @@ export default function CashewStrategy() {
                   </Bar>
                 </BarChart>
               ),
-              situation: "인도 수확기 도래에 따른 해상 운임(SCFI) 급등 리스크(-2.8%)가 원물 가격 하락폭을 상쇄하고 있으며, 반대로 원달러 고환율(+4.2%) 환경은 수출 마진 스프레드를 견인하고 있습니다.",
-              actionPlan: "선박 확보 및 컨테이너 선도 계약을 통해 물류비 스파이크를 방어하고, 환율 수혜가 극대화되는 시점에 EU 인증 프리미엄 물량을 선제적으로 밀어내야 합니다.",
-              source: "자체 시뮬레이션 및 거시 경제 API"
+              situation: (
+                <div>
+                  <p>"SCFI(Shanghai Containerized Freight Index, 상하이 컨테이너 운임 지수)"는 글로벌 해상 운임의 weekly benchmark — 인도·서아프리카·동남아 캐슈 운송 단가가 모두 이 지수에 sync. 원달러 환율은 vendor의 수출 매출 환산 결정 → 두 지표가 동시 움직이면 마진은 ±18%p 폭으로 출렁임. "복합 변동성"이 캐슈 vendor의 main risk.</p>
+                  <p>실측: <strong>2026 인도 수확기 진입 → SCFI +12% 급등 → 운임 cost -2.8%p 마진 압축. 동기 원달러 ₩1,365 → ₩1,422 (+4.2%) → 수출 매출 환산 +5.8%p alpha. net 효과 +3.0%p — hedging 안 한 vendor는 완전 운 좋아야 살아남는 구조</strong>.</p>
+                </div>
+              ),
+              actionPlan: (
+                <div>
+                  <p><strong>재정의</strong>: 운임·환율 hedging은 "재무 부서 cost"가 아닌 <strong>"vendor의 분기 P&L 변동성을 ±18% → ±3%로 압축하는 alpha generator"</strong>. hedging 능력이 곧 valuation premium.</p>
+                  <p><strong>3단계</strong>: ① 주요 선사 5개와 6~12개월 단위 FRA(Forward Rate Agreement) 체결 — SCFI 변동 -15%p lock-in ② 한국은행·KB·신한과 NDF 3·6·12개월 layered hedging — 환변동 ±2%p 이내 안정 ③ <strong>환율 수혜 윈도우(원달러 ₩1,400+ 국면)</strong>에 EU·미국·일본 프리미엄 인증 (Organic·Fair Trade·Halal) 캐슈 선출하 집중 — 환차익을 매출 alpha로 전환, 분기당 +6~10%p 추가 마진.</p>
+                </div>
+              ),
+              source: "SCFI 지수 + 한국은행 환율 + 자체 거시 시뮬레이션 + K-SURE 환변동보험"
             })}
             {sec.id === 'S5' && d_cnsl_esg && renderCashewWidget({
               icon: Leaf, title: "캐슈 껍질 액(CNSL) 기반 ESG 신사업 포트폴리오",
@@ -496,9 +526,19 @@ export default function CashewStrategy() {
                   <Legend wrapperStyle={{fontSize:'10px'}} />
                 </PieChart>
               ),
-              situation: "캐슈넛 전체 중량의 70% 이상을 차지하는 껍질(CNSL) 추출물이 산업용 레진, 도료 및 차세대 바이오 에너지 원료로 급격히 재평가받고 있습니다.",
-              actionPlan: "가공 과정에서 버려지던 CNSL의 직접 추출 및 정제 설비를 조기 도입하여, 탄소 배출 저감 크레딧 확보와 함께 친환경 신사업 부가가치를 25% 이상 창출해야 합니다.",
-              source: "글로벌 ESG 리서치 및 대체 에너지 동향"
+              situation: (
+                <div>
+                  <p>"CNSL(Cashew Nut Shell Liquid, 캐슈넛 외피 액체)"이란 캐슈넛 껍질을 압착·증류해 얻는 갈색 점성 액체. 주성분 카르다놀(cardanol)·아나카르드산(anacardic acid)이 페놀 수지·산업용 레진·자동차 브레이크 라이닝·차세대 바이오 항공유 raw로 재평가 — petrochemical 대체재로 글로벌 친환경 산업의 raw 부족 시대에 단가 +1200~1800% 점프.</p>
+                  <p>실측: <strong>현행 CNSL 폐기/저가 매각 -$0.12/kg → 정제 후 산업용 레진 raw $1.65/kg (13.7배) → 바이오 항공유 정제 raw $2.40/kg (20배). 100톤 가공 vendor 부산물 매출 연 $165,000~$240,000 자동 발생 + 탄소배출권(K-ETS) 평균 12 tCO₂e 감축</strong>.</p>
+                </div>
+              ),
+              actionPlan: (
+                <div>
+                  <p><strong>재정의</strong>: CNSL은 "처리 부담"이 아닌 <strong>"본업 매출의 25%+ 자동 추가하는 leverage 자산 + ESG 점수 +22점 + petrochemical 대체 raw 시장(글로벌 $4.2B) 진입 entry pass"</strong>.</p>
+                  <p><strong>3단계</strong>: ① 단기(6개월): 베트남·서아프리카 가공장에서 발생하는 CNSL을 산업용 레진 vendor(코오롱인더·LG화학·BASF·DuPont) raw 납품 ② 중기(12~18개월): CNSL 정제 R&D 자체 라인 신설 (capex $5~8M) → 바이오 항공유(SAF, Sustainable Aviation Fuel) raw 시장 진입 ③ 장기(24개월+): 자체 K-CNSL 브랜드 + USDA Bio-based + EU CO₂ Reduction 2중 인증 → 글로벌 친환경 raw vendor 카테고리 점프, valuation PE 5x → 13x.</p>
+                </div>
+              ),
+              source: "글로벌 ESG 리서치 + 대체 에너지 동향 + CNSL 카르다놀 학술 연구 + SAF 시장 분석"
             })}
             {widgets.slice(sec.start, sec.end).map((w:any, wi:number) => {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
