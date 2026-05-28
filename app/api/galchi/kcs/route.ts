@@ -82,13 +82,16 @@ export async function GET(request: Request) {
       const dlr = impDlrMatch ? parseFloat(impDlrMatch[1]) : 0;
       const cc = (statCdMatch?.[1] || 'XX').trim();
 
-      totalWgt += wgt;
-      totalDlr += dlr;
-      if (cc === 'CN') { cnWgt += wgt; cnDlr += dlr; }
+      // 단위 변환: impWgt는 kg → 톤
+      const wgtT = wgt / 1000;
+      const dlrK = dlr / 1000; // USD → 천 USD
+      totalWgt += wgtT;
+      totalDlr += dlrK;
+      if (cc === 'CN') { cnWgt += wgtT; cnDlr += dlrK; }
 
       if (!byCountry[cc]) byCountry[cc] = { name: country, volume: 0, value: 0 };
-      byCountry[cc].volume += wgt;
-      byCountry[cc].value += dlr;
+      byCountry[cc].volume += wgtT;
+      byCountry[cc].value += dlrK;
     }
 
     if (totalWgt === 0) return NextResponse.json(FALLBACK_DATA);
