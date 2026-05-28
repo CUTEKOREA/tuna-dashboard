@@ -1,0 +1,68 @@
+source,file,id,title,pillar,axis1,axis2,axis3,axis4,avg,grade
+TSX,components/SalmonESGTracker.tsx,-,ESG 공급망 투명성 트래커,S5,60,95,80,100,83.8,B
+TSX,components/SalmonForecastSimulator.tsx,-,수급 전망 & 착지원가 시뮬레이터,S4,60,95,95,100,87.5,A
+TSX,components/SalmonInsightAutomationYield.tsx,-,[가공] AI 기반 수율 극대화 & 스마트 팩토리 CAPEX,S2,60,40,40,100,60.0,D
+TSX,components/SalmonInsightClimate.tsx,-,수온 상승의 역설 & 탄소세(Carbon Tax) 폭탄,S5,60,40,40,100,60.0,D
+TSX,components/SalmonInsightDoubleMateriality.tsx,-,[ESG] 이중 중대성 평가 (Double Materiality),S5,60,40,40,100,60.0,D
+TSX,components/SalmonInsightFeed.tsx,-,마진율 방어: 사료 내재화 & 기능성 대체 원료,S1,60,40,40,100,60.0,D
+TSX,components/SalmonInsightFeedBio.tsx,-,[원물] 사료 원가 리스크 헷징: 대체 단백질 & FIFO (Fish In-Fish Out),S1,60,40,40,100,60.0,D
+TSX,components/SalmonInsightGlobalSupplyPrice.tsx,-,[판매] 공급 변동성과 스팟 가격(Spot Price) 역상관관계,S4,60,40,40,100,60.0,D
+TSX,components/SalmonInsightLogisticsResilience.tsx,-,[물류] 거시 충격과 EU 연어 수입 물류 회복탄력성,S3,55,95,95,70,78.8,B
+TSX,components/SalmonInsightMarginSqueeze.tsx,-,[가공] EU 훈제 연어 마진 압박과 가격 결정력 (Pricing Power),S2,60,40,40,100,60.0,D
+TSX,components/SalmonInsightProcessing.tsx,-,무인화(Lights-out) 공장 & 슈퍼 칠링,S2,60,40,40,100,60.0,D
+TSX,components/SalmonInsightSmartColdChain.tsx,-,[물류] 콜드체인 고도화: 해운 전환 및 IoT 모니터링,S3,60,40,40,100,60.0,D
+TSX,components/SalmonInsightSmolt.tsx,-,생물학적 한계 돌파: 포스트 스몰트 & 심해 레이저,S1,60,40,40,100,60.0,D
+TSX,components/SalmonInsightTradeDown.tsx,-,[판매] 인플레이션 대체 단백질 가격 (Trade-Down),S4,55,95,95,70,78.8,B
+TSX,components/SalmonLiveTicker.tsx,-,실시간 연어 무역 인텔리전스,S4,90,40,40,100,67.5,C
+TSX,components/SalmonNTBRadar.tsx,-,비관세장벽 & 컴플라이언스 레이더,S3,90,95,95,100,95.0,A
+TSX,components/SalmonPolicyImpact.tsx,-,정책 임팩트 시뮬레이터,S3,60,95,55,100,77.5,B
+JSON,salmon_real_data_v4.json,w01_paradigm,글로벌 패러다임: 생산량 (어획 vs 양식),,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w02_aqua_value,글로벌 대서양 연어 가치 폭등 곡선,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w03_aqua_pie,양식 제국 독점: Top 5 국가 리더보드 (2022),,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w04_proc,글로벌 2차 가공 부가가치 산업의 폭발적 팽창,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w05_cash,자본 회수: 양식 매출(Cash-Flow) Top 국가,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w06_trade_vol,거대 트레이딩: 글로벌 무역 파이 팽창선,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w07_export,수출 지배자: 연어 무역 패권 Top 10,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w08_import,Everyday Luxury 현상: 미국 침체와 아시아 시장의 폭발,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w09_kr_import,한국의 취약성: 절대적 수입 의존 폭증 곡선,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w10_kr_deficit,한국 연어 무역 적자(Deficit Gap) 가속,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w11_kr_price,연어 플레이션: 글로벌 수입 단가율 추이,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w12_margin,단가 폭락 방어전: Volume-Push와 사상 최고 수출액,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w13_monopoly,글로벌 복점(Duopoly) — 노르웨이와 칠레의 양강 체제,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w14_value,노르웨이 양식 산업의 진화: 볼륨(Volume)에서 가치(Value)로,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w15_korea_deficit,연어 블랙홀 🇰🇷 — 매년 5억 달러 규모의 무역 적자,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w16_processing,"동유럽의 급부상 — 유럽의 연어 가공 허브, 폴란드",,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w17_tier,절대적 가치 밀도 — 연어 산업의 자본화,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w18_extinction,자연산 상업 어획의 멸종 — 양식 비율 99.9%,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w19_iceland,"다크호스 아이슬란드 — 14년간 4,500% 은밀한 팽창",,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w20_margin_paradox,"칠레의 역설 — 물량은 절반, 톤당 가치는 45% 프리미엄",,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w21_russia_blackhole,러시아 블랙홀 — 서방 제재 속 칠레산 흡수력,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w22_license_gold,노르웨이 연어 면허 = 디지털 금광,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w23_chile_chokepoint,한국의 초크포인트 — 노르웨이 신선 원물 수입 편중 70%,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w24_poland_hub,"폴란드 가공 모델 — 양식 제로, 재수출로 $840M 순이익 창출",,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,n1_hfs_paradox,HFS(하이브리드 유수식) 고수익성 역설,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,n2_tariff_hoarding,15% 관세 폭탄 무력화: 프론트로딩 헷징,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,n3_melanosis_upcycle,가치 방어전: 멜라닌 등급 강등과 업사이클링,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k1_ras_photoperiod,RAS 광주기 조절이 대서양연어 Parr 성장에 미치는 영향,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k2_smolt_offseason,Off-season Smolt 생산: 광주기+체크기 조합 최적화,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k3_temp_cataract,대서양연어 치어 수온별 백내장 발생률 및 성장,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k4_listeria,훈제 연어 리스테리아 오염도 실태 조사,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k5_nutrition,횟감용 연어 vs 광어·참돔: 영양 특성 비교,,55,40,40,40,43.8,D
+JSON,salmon_real_data_v4.json,k6_jerky,연어 육포 제조공정 최적화: RSM 기반 HMR 신제품,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k7_chum_coastal,남대천 방류 연어 치어의 연안 이동 경로 추적,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,k8_chinook,한국 최초 왕연어(Chinook) 출현 기록: 기후변화 시그널,,60,40,40,70,52.5,D
+JSON,salmon_real_data_v4.json,w36_supply_outlook,2026 글로벌 공급 전망,,55,95,70,40,65.0,C
+JSON,salmon_real_data_v4.json,w37_smolt_efficiency,대형 스몰트 혁명: 해상사이클 효율화,,55,75,70,40,60.0,D
+JSON,salmon_real_data_v4.json,w38_smoked_eu,EU 훈제연어 밸류체인 가격구조,,55,70,70,40,58.8,D
+JSON,salmon_real_data_v4.json,w39_hab_risk,칠레 HAB 리스크 인덱스,,55,75,70,40,60.0,D
+JSON,salmon_real_data_v4.json,w40_market_growth,글로벌 시장 성장 전망 2025-2034,,55,95,70,40,65.0,C
+JSON,salmon_real_data_v4.json,w41_feed_cost,사료 원가 구성 및 대체원료 전환,,55,75,70,40,60.0,D
+JSON,salmon_real_data_v4.json,w42_mortality_kpi,양식 폐사율 추이 및 목표,,55,75,70,40,60.0,D
+JSON,salmon_real_data_v4.json,w43_diversification,한국 수입 다변화 지수,,55,40,70,40,51.2,D
+JSON,salmon_real_data_v4.json,w44_scope3_carbon,연어 밸류체인 탄소발자국 분석,,55,75,70,40,60.0,D
+JSON,salmon_real_data_v4.json,w45_automation_roi,가공 자동화 투자 수익 분석,,55,75,70,40,60.0,D
+JSON,salmon_real_data_v4.json,w_fta_salmon_supply_pivot,"공급망 대전환 — 러시아 35.8%→0%, 노르웨이 60%→83%",,90,95,70,70,81.2,B
+JSON,salmon_real_data_v4.json,w_fta_salmon_russia_collapse,러시아 -84.8% 절벽 — 한국 가공 허브의 소멸,,90,95,70,70,81.2,B
+JSON,salmon_real_data_v4.json,w_fta_salmon_form_shift,신선 피레트 신등장 — 가공 형태 5단계 진화,,90,95,70,70,81.2,B
+JSON,salmon_real_data_v4.json,w_fta_salmon_chile_rebound,2026 1Q 칠레 +32.3% — 노르웨이 대체재 부상,,90,95,70,70,81.2,B
+JSON,salmon_real_data_v4.json,w_fta_salmon_value_volume,액 -2.4% vs 물량 -4.0% — 단가 회복 사이클 시그널,,90,95,70,70,81.2,B

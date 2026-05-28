@@ -15,7 +15,7 @@ export default function SalmonInsightMarginSqueeze() {
       iconColor="var(--color-success)"
       pillar="S2"
       cardDesc="EU 훈제 연어 생산량(천 톤) vs 단가(EUR/kg) 및 폴란드 점유율 추이"
-      telemetry={{ status: 'LIVE API' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>

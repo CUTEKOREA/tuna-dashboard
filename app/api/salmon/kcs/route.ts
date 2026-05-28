@@ -71,6 +71,7 @@ export async function POST(request: Request) {
           const items = data?.response?.body?.items?.item || [];
           
           return NextResponse.json({
+            isLive: true,
             source: 'Korea Customs Service (KCS) Live API',
             status: 'live',
             timestamp: new Date().toISOString(),
@@ -101,6 +102,7 @@ export async function POST(request: Request) {
     }
     
     return NextResponse.json({
+      isLive: false,
       source: 'Fallback (관세청 KCS 2023 verified cache)',
       status: 'fallback',
       timestamp: new Date().toISOString(),

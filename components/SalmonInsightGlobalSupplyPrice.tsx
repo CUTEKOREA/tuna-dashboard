@@ -26,7 +26,7 @@ export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { n
       icon={DollarSign}
       iconColor="#f97316"
       pillar="S4"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={simulatedData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

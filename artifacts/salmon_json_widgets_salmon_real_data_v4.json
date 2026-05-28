@@ -1,0 +1,452 @@
+[
+  {
+    "id": "w01_paradigm",
+    "title": "글로벌 패러다임: 생산량 (어획 vs 양식)",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "w02_aqua_value",
+    "title": "글로벌 대서양 연어 가치 폭등 곡선",
+    "subtitle": "단순 식량(Commodity)에서 블루칩 자산(Asset)으로 진화한 유일한 수산물",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ [📡 LIVE API 연동: 부가가치(Value-Added) 상승폭 추적] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w03_aqua_pie",
+    "title": "양식 제국 독점: Top 5 국가 리더보드 (2022)",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "w04_proc",
+    "title": "글로벌 2차 가공 부가가치 산업의 폭발적 팽창",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ · Global Processed Value [📡 LIVE API 연동: 수산물 가공 텔레메트리] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w05_cash",
+    "title": "자본 회수: 양식 매출(Cash-Flow) Top 국가",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ [📡 LIVE API 연동: 국가별 매출액] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w06_trade_vol",
+    "title": "거대 트레이딩: 글로벌 무역 파이 팽창선",
+    "subtitle": "전 세계 대서양 연어 글로벌 무역/공급 물량 (단위: 천 톤 WFE)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "MOWI · FAO FishStatJ [📡 LIVE API 연동: 국제 공급 텔레메트리] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w07_export",
+    "title": "수출 지배자: 연어 무역 패권 Top 10",
+    "subtitle": "2023년 국가별 대서양 연어 수출액 랭킹 (단위: 백만$)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "UN Comtrade · MOWI [📡 LIVE API 연동: 국제 무역 통계] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w08_import",
+    "title": "Everyday Luxury 현상: 미국 침체와 아시아 시장의 폭발",
+    "subtitle": "미국 수입 물량 6% 감소 vs 아시아 신선 연어 수입 12% 급증",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "UN Comtrade [📡 LIVE API 연동: 수입국 세관 데이터] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w09_kr_import",
+    "title": "한국의 취약성: 절대적 수입 의존 폭증 곡선",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "Korea Customs Service (KCS) [📡 LIVE API 연동: 장기 시계열 수입량] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w10_kr_deficit",
+    "title": "한국 연어 무역 적자(Deficit Gap) 가속",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KITA Trade Data [📡 LIVE API 연동: 수산업 무역 수지] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w11_kr_price",
+    "title": "연어 플레이션: 글로벌 수입 단가율 추이",
+    "subtitle": "대서양 연어(Atlantic Salmon) 주요 지표 동향",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "UN Comtrade [📡 LIVE API 연동: 단가 플레이션 추적] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w12_margin",
+    "title": "단가 폭락 방어전: Volume-Push와 사상 최고 수출액",
+    "subtitle": "2025년 단가 반토막($12.5→$6.7)에도 반기 수출 852억 크로네 달성",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "Norwegian Seafood Council (NSC) [📡 LIVE API 연동: 프리미엄 스프레드] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w13_monopoly",
+    "title": "글로벌 복점(Duopoly) — 노르웨이와 칠레의 양강 체제",
+    "subtitle": "전 세계 양식 생산량의 83%를 단 두 국가가 지배하는 경직된 밸류체인",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "w14_value",
+    "title": "노르웨이 양식 산업의 진화: 볼륨(Volume)에서 가치(Value)로",
+    "subtitle": "생산량은 통제되었으나 수익은 폭발하는 '가격 프리미엄화' 성공 사례",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "Oslo Børs Seafood Index (OBSFX) [📡 LIVE API 연동: 연어 산업 시가총액 추적] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w15_korea_deficit",
+    "title": "연어 블랙홀 🇰🇷 — 매년 5억 달러 규모의 무역 적자",
+    "subtitle": "한국의 연도별 대서양 연어 총 수입량(톤) 및 수입액(백만$)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "Korea Customs Service (KCS) [📡 LIVE API 연동: 냉동/가공 적자액] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w16_processing",
+    "title": "동유럽의 급부상 — 유럽의 연어 가공 허브, 폴란드",
+    "subtitle": "EU 훈제 연어 가공 점유율 과점 현상 (단위: 천 톤)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "EUMOFA · Eurostat PRODCOM [📡 LIVE API 연동: EU 가공 통계] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w17_tier",
+    "title": "절대적 가치 밀도 — 연어 산업의 자본화",
+    "subtitle": "명태의 5배, 참치의 2배에 달하는 안정적이고 폭발적인 채산성 부가",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "Oslo Børs Seafood Index (OBSFX) [📡 LIVE API 연동: 수산업 밸류에이션] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w18_extinction",
+    "title": "자연산 상업 어획의 멸종 — 양식 비율 99.9%",
+    "subtitle": "어선을 버리고 공장으로 — 상업성이 완전히 거세된 자연산 연어",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ · ICES Catch Data [📡 LIVE API 연동: UN 텔레메트리] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w19_iceland",
+    "title": "다크호스 아이슬란드 — 14년간 4,500% 은밀한 팽창",
+    "subtitle": "모두가 노르웨이·칠레 양강에 집중할 때, 아이슬란드가 조용히 양식 강국으로 부상",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ · Iceland Statistics [📡 LIVE API 연동: 북대서양 수산기구] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w20_margin_paradox",
+    "title": "칠레의 역설 — 물량은 절반, 톤당 가치는 45% 프리미엄",
+    "subtitle": "노르웨이가 물량 제왕이라면, 칠레는 마진 제왕. 전략의 본질적 차이",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ · Subpesca [📡 LIVE API 연동: 부가가치 갭 분석] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w21_russia_blackhole",
+    "title": "러시아 블랙홀 — 서방 제재 속 칠레산 흡수력",
+    "subtitle": "지정학 리스크에도 불구, 칠레→러시아 동맥이 글로벌 연어 무역의 핵심 축",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "Russia Customs Data · Undercurrent News [📡 LIVE API 연동: 글로벌 지정학 물동량] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w22_license_gold",
+    "title": "노르웨이 연어 면허 = 디지털 금광",
+    "subtitle": "물량은 정체, 매출은 2배. 어업이 아니라 라이선스 기반 자산 운용업",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "w23_chile_chokepoint",
+    "title": "한국의 초크포인트 — 노르웨이 신선 원물 수입 편중 70%",
+    "subtitle": "노르웨이 지정학적 리스크 1건이 한국 연어 시장을 붕괴시킬 수 있는 단일 실패점(SPOF)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "관세청 (KCS) · KMI [📡 LIVE API 연동: 한국 수출입 통계] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w24_poland_hub",
+    "title": "폴란드 가공 모델 — 양식 제로, 재수출로 $840M 순이익 창출",
+    "subtitle": "노르웨이산 원물 수입(비용) vs 훈제/필렛 재수출(수익) 차익거래 구조 (단위: 백만$)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "UN Comtrade · Poland Customs [📡 LIVE API 연동: 국제 무역 통계] · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "n1_hfs_paradox",
+    "title": "HFS(하이브리드 유수식) 고수익성 역설",
+    "subtitle": "막대한 에너지 비용(1-8kWh) 대비 생존율 97%의 압도적 마진",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "n2_tariff_hoarding",
+    "title": "15% 관세 폭탄 무력화: 프론트로딩 헷징",
+    "subtitle": "미국 15% 관세 도입에도 대미 수출 비중 9% (1989년 이래 최고)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "n3_melanosis_upcycle",
+    "title": "가치 방어전: 멜라닌 등급 강등과 업사이클링",
+    "subtitle": "수확물 20~30% 멜라닌 손실 vs 버려지던 혈액 상업화(SalmoFer)",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "FAO FishStatJ + KFAS [연어 시장 동향 보고서 교차 검증]",
+    "pillar": null
+  },
+  {
+    "id": "k1_ras_photoperiod",
+    "title": "RAS 광주기 조절이 대서양연어 Parr 성장에 미치는 영향",
+    "subtitle": "국내 순환여과양식 환경에서 LD16:8 vs LD24:0 성장축 유전자 비교",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 — 국내 RAS 환경에서 광주기 조절이 대서양연어 Parr의 성장에 미치는 영향",
+    "pillar": null
+  },
+  {
+    "id": "k2_smolt_offseason",
+    "title": "Off-season Smolt 생산: 광주기+체크기 조합 최적화",
+    "subtitle": "비수기 스몰트 전환율 85% 달성 — 연중 출하 체계 핵심",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 — 순환여과양식시스템에서 Off-season Smolt 생산에 미치는 영향",
+    "pillar": null
+  },
+  {
+    "id": "k3_temp_cataract",
+    "title": "대서양연어 치어 수온별 백내장 발생률 및 성장",
+    "subtitle": "12°C에서 최적 성장 — 16°C 이상 백내장 발생률 급증",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 — 대서양연어 치어의 생존, 성장 및 백내장 발생에 미치는 수온의 영향",
+    "pillar": null
+  },
+  {
+    "id": "k4_listeria",
+    "title": "훈제 연어 리스테리아 오염도 실태 조사",
+    "subtitle": "국내 유통 훈제연어 48건 중 L. monocytogenes 검출 현황",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 — 국내 유통 훈제 연어의 위생지표세균 및 L. monocytogenes 오염도 조사",
+    "pillar": null
+  },
+  {
+    "id": "k5_nutrition",
+    "title": "횟감용 연어 vs 광어·참돔: 영양 특성 비교",
+    "subtitle": "연어류의 DHA+EPA 합계가 광어·참돔의 2배 이상",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 — 국내 다소비 횟감용 어류의 영양 특성 비교",
+    "pillar": null
+  },
+  {
+    "id": "k6_jerky",
+    "title": "연어 육포 제조공정 최적화: RSM 기반 HMR 신제품",
+    "subtitle": "염도 1.2% · 건조온도 65°C · 건조시간 180분 — 관능평가 8.2/9.0",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 54(3), 2021 — 반응표면분석법을 활용한 연어 육포의 제조공정 최적화",
+    "pillar": null
+  },
+  {
+    "id": "k7_chum_coastal",
+    "title": "남대천 방류 연어 치어의 연안 이동 경로 추적",
+    "subtitle": "이석 표지 분석 — 남대천→속초 북상 이동 패턴 최초 실증",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 — 강원도 남대천 방류 연어 치어의 연안 분포 및 이동 특성",
+    "pillar": null
+  },
+  {
+    "id": "k8_chinook",
+    "title": "한국 최초 왕연어(Chinook) 출현 기록: 기후변화 시그널",
+    "subtitle": "속초 정치망 — O. tshawytscha 91.5cm 개체 최초 채집",
+    "telemetry": null,
+    "syncDate": null,
+    "source": "KFAS 한국수산과학회지 55(5), 2022 — 한국산 연어과 어류 1미기록종, O. tshawytscha",
+    "pillar": null
+  },
+  {
+    "id": "w36_supply_outlook",
+    "title": "2026 글로벌 공급 전망",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2026.04",
+    "source": "Kontali Salmon Insights · Pareto Securities · Rabobank Seafood Outlook",
+    "pillar": null
+  },
+  {
+    "id": "w37_smolt_efficiency",
+    "title": "대형 스몰트 혁명: 해상사이클 효율화",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2025.12",
+    "source": "Bakkafrost Annual Report 2025 · Mowi IR · SalMar Quarterly",
+    "pillar": null
+  },
+  {
+    "id": "w38_smoked_eu",
+    "title": "EU 훈제연어 밸류체인 가격구조",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2024.12",
+    "source": "EUMOFA Case Study: Smoked Salmon (Dec 2024)",
+    "pillar": null
+  },
+  {
+    "id": "w39_hab_risk",
+    "title": "칠레 HAB 리스크 인덱스",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2025.06",
+    "source": "Salmones Camanchaca Annual Report 2023 · SERNAPESCA",
+    "pillar": null
+  },
+  {
+    "id": "w40_market_growth",
+    "title": "글로벌 시장 성장 전망 2025-2034",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2026.03",
+    "source": "Research & Markets (GlobeNewswire, Mar 2026)",
+    "pillar": null
+  },
+  {
+    "id": "w41_feed_cost",
+    "title": "사료 원가 구성 및 대체원료 전환",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2025.03",
+    "source": "Mowi Annual Report 2024 · BioMar · Skretting/Nutreco",
+    "pillar": null
+  },
+  {
+    "id": "w42_mortality_kpi",
+    "title": "양식 폐사율 추이 및 목표",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2025.09",
+    "source": "Fiskeridirektoratet · Kontali · SERNAPESCA",
+    "pillar": null
+  },
+  {
+    "id": "w43_diversification",
+    "title": "한국 수입 다변화 지수",
+    "subtitle": "",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "KCS 관세청 수출입 통계 · KFAS",
+    "pillar": null
+  },
+  {
+    "id": "w44_scope3_carbon",
+    "title": "연어 밸류체인 탄소발자국 분석",
+    "subtitle": "",
+    "telemetry": "synced",
+    "syncDate": "2025.06",
+    "source": "Mowi ESG Report 2024 · SINTEF LCA · EU CSRD",
+    "pillar": null
+  },
+  {
+    "id": "w45_automation_roi",
+    "title": "가공 자동화 투자 수익 분석",
+    "subtitle": "",
+    "telemetry": "static",
+    "syncDate": "2025.02",
+    "source": "BAADER Group · Marel · IntelMarketResearch 가공장비 리포트",
+    "pillar": null
+  },
+  {
+    "id": "w_fta_salmon_supply_pivot",
+    "title": "공급망 대전환 — 러시아 35.8%→0%, 노르웨이 60%→83%",
+    "subtitle": "KMI 「FTA체결국 수산물 수입동향」 2021~2025 연차 누적. 러-우 전쟁 충격이 한국 연어 수입국 점유율 지도를 5년 만에 완전히 재편한 궤적.",
+    "telemetry": "synced",
+    "syncDate": "2026-04",
+    "source": "KMI 「FTA체결국 수산물 수입동향」 2021Q4·2022Q4·2023Q4·2024Q4·2025Q4·2026Q1 — 연어 국가별 수입량 표",
+    "pillar": null
+  },
+  {
+    "id": "w_fta_salmon_russia_collapse",
+    "title": "러시아 -84.8% 절벽 — 한국 가공 허브의 소멸",
+    "subtitle": "KMI 2022 Q4 본문 인용: \"러시아산 홍연어를 국내 반입 후 필렛·블록 형태로 가공되어 동남아·유럽 등지에 수출\". 한국 환적 가공 허브 기능의 단기 소멸 추적.",
+    "telemetry": "synced",
+    "syncDate": "2026-04",
+    "source": "KMI 「FTA체결국 수산물 수입동향」 2020Q4 ~ 2025Q4 — 연어 국가별 수입량 + 2022Q4·2024Q4 본문 인용",
+    "pillar": null
+  },
+  {
+    "id": "w_fta_salmon_form_shift",
+    "title": "신선 피레트 신등장 — 가공 형태 5단계 진화",
+    "subtitle": "KMI 분기보고서 「연어 품목별 비중」 누적. 2025년 \"신선·냉장 연어 피레트\"가 21.2%로 처음 진입하며 한국 시장 가공 형태가 5단계로 진화.",
+    "telemetry": "synced",
+    "syncDate": "2026-04",
+    "source": "KMI 「FTA체결국 수산물 수입동향」 2021Q4·2022Q4·2023Q4·2024Q4·2025Q4·2026Q1 — 연어 품목별 비중 본문",
+    "pillar": null
+  },
+  {
+    "id": "w_fta_salmon_chile_rebound",
+    "title": "2026 1Q 칠레 +32.3% — 노르웨이 대체재 부상",
+    "subtitle": "KMI 2026 Q1 본문 인용: \"노르웨이 양식장 작은 규격 출하 비중↑로 큰 규격 연어 가격 상승\". 가격 압박이 칠레 냉동 필렛으로 수요 전이된 첫 분기 실증.",
+    "telemetry": "synced",
+    "syncDate": "2026-04",
+    "source": "KMI 「FTA체결국 수산물 수입동향」 2023~2026 분기 — 연어 국가별 분기 수입 + 노르웨이 단가 본문",
+    "pillar": null
+  },
+  {
+    "id": "w_fta_salmon_value_volume",
+    "title": "액 -2.4% vs 물량 -4.0% — 단가 회복 사이클 시그널",
+    "subtitle": "KMI 「연어 수입량/수입액」 누적. 2025 액 감소율(-2.4%)이 물량 감소율(-4.0%)보다 작아 단가 회복 진행. 2026 1Q는 +19.6% / +11.9%로 정상 사이클 복귀.",
+    "telemetry": "synced",
+    "syncDate": "2026-04",
+    "source": "KMI 「FTA체결국 수산물 수입동향」 2021~2026 — 연어 수입량·수입액 분기 누적 + 산출 평균 단가",
+    "pillar": null
+  }
+]

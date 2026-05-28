@@ -13,7 +13,7 @@ export default function SalmonInsightSmartColdChain() {
       iconColor="#ec4899"
       pillar="S3"
       cardDesc="항공 운임 변동성을 회피하기 위한 해상 운송(Sea Freight) 전환 및 탄소 발자국 감축 효과"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

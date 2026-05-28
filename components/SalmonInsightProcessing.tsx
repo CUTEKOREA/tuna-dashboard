@@ -15,7 +15,7 @@ export default function SalmonInsightProcessing() {
       iconColor="#38bdf8"
       pillar="S2"
       cardDesc="가공 자동화로 수율 3~4% 극대화 및 GenBI 이력 추적으로 규제 대응"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <BarChart data={rawData} layout="vertical" margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>

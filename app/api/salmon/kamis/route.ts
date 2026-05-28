@@ -5,7 +5,7 @@ export const revalidate = 3600; // 1시간 캐시
 // KAMIS 품목코드 매핑
 const KAMIS_CONFIG = {
   API_URL: 'http://www.kamis.or.kr/service/price/xml.do',
-  CERT_KEY: '', // KAMIS_API_KEY
+  CERT_KEY: process.env.KAMIS_API_KEY || '',
   CERT_ID: process.env.KAMIS_CERT_ID || '7849' ,
   RETURN_TYPE: 'json',
 };
@@ -20,6 +20,7 @@ const PRODUCT_CODES: Record<string, { code: string; name: string }> = {
 // Fallback: 2024~2025년 노량진/가락시장 실측 기반
 const FALLBACK_PRICES = {
   timestamp: new Date().toISOString(),
+  isLive: false,
   source: 'Fallback (KAMIS 2024~2025 verified cache)',
   status: 'fallback',
   commodities: [
@@ -77,6 +78,7 @@ export async function GET(request: Request) {
           const data = await resp.json();
           if (data?.data?.item) {
             return NextResponse.json({
+              isLive: true,
               source: 'KAMIS Live API',
               status: 'live',
               timestamp: new Date().toISOString(),

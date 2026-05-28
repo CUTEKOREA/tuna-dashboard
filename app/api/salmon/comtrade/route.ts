@@ -85,6 +85,7 @@ export async function POST(request: Request) {
         if (resp.ok) {
           const data = await resp.json();
           return NextResponse.json({
+            isLive: true,
             source: 'UN Comtrade Live API',
             status: 'live',
             timestamp: new Date().toISOString(),
@@ -115,6 +116,7 @@ export async function POST(request: Request) {
     }
     
     return NextResponse.json({
+      isLive: false,
       source: 'Fallback (UN Comtrade 2023 verified cache)',
       status: 'fallback',
       timestamp: new Date().toISOString(),

@@ -1,0 +1,331 @@
+[
+  {
+    "file": "components/SalmonDashboard.tsx",
+    "widget_count": 0,
+    "widgets": [],
+    "api_calls": [
+      "/api/salmon/comtrade",
+      "/api/salmon/kamis",
+      "/api/salmon/kcs"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonESGTracker.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 122,
+        "title": "ESG 공급망 투명성 트래커",
+        "pillar": "S5",
+        "cardDesc": "원산지(노르웨이·칠레·러시아)별 강제노동·환경·이력추적 3축 ESG 점수 비교",
+        "unit": null,
+        "telemetry": {
+          "status": "SYNCED",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonForecastSimulator.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 234,
+        "title": "수급 전망 & 착지원가 시뮬레이터",
+        "pillar": "S4",
+        "cardDesc": "FOB·운임·관세·환율 5축 LIVE 결합 착지원가 + 3개월 가격 변동 전망",
+        "unit": null,
+        "telemetry": {
+          "status": "LIVE",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/landed-cost"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightAutomationYield.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 10,
+        "title": "[가공] AI 기반 수율 극대화 & 스마트 팩토리 CAPEX",
+        "pillar": "S2",
+        "cardDesc": "가공 장비(BAADER 등) 자동화에 따른 수율 향상 및 인건비 절감 효과 분석",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightClimate.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 12,
+        "title": "수온 상승의 역설 & 탄소세(Carbon Tax) 폭탄",
+        "pillar": "S5",
+        "cardDesc": "성장 가속의 단기 기회와 2030년 탄소 비용 폭증의 장기 리스크 혼재",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightDoubleMateriality.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 25,
+        "title": "[ESG] 이중 중대성 평가 (Double Materiality)",
+        "pillar": "S5",
+        "cardDesc": "EU CSDDD/CSRD 규제 대응을 위한 환경적, 재무적 영향 동시 모니터링",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightFeed.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 12,
+        "title": "마진율 방어: 사료 내재화 & 기능성 대체 원료",
+        "pillar": "S1",
+        "cardDesc": "양식 원가의 60%를 차지하는 사료를 전략적으로 내재화하고 기능성 단백질 도입",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightFeedBio.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 10,
+        "title": "[원물] 사료 원가 리스크 헷징: 대체 단백질 & FIFO (Fish In-Fish Out)",
+        "pillar": "S1",
+        "cardDesc": "해양 원료(어분/어유) 의존도 감소 및 미세조류/가금류 등 대체 사료 도입을 통한 원가율 통제",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightGlobalSupplyPrice.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 23,
+        "title": "[판매] 공급 변동성과 스팟 가격(Spot Price) 역상관관계",
+        "pillar": "S4",
+        "cardDesc": "글로벌 연어 공급 증감률과 Kontali 스팟 가격(EUR/kg)의 변동성 모니터링",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightLogisticsResilience.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 132,
+        "title": "[물류] 거시 충격과 EU 연어 수입 물류 회복탄력성",
+        "pillar": "S3",
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": {
+          "status": "LIVE",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightMarginSqueeze.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 12,
+        "title": "[가공] EU 훈제 연어 마진 압박과 가격 결정력 (Pricing Power)",
+        "pillar": "S2",
+        "cardDesc": "EU 훈제 연어 생산량(천 톤) vs 단가(EUR/kg) 및 폴란드 점유율 추이",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightProcessing.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 12,
+        "title": "무인화(Lights-out) 공장 & 슈퍼 칠링",
+        "pillar": "S2",
+        "cardDesc": "가공 자동화로 수율 3~4% 극대화 및 GenBI 이력 추적으로 규제 대응",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightSmartColdChain.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 10,
+        "title": "[물류] 콜드체인 고도화: 해운 전환 및 IoT 모니터링",
+        "pillar": "S3",
+        "cardDesc": "항공 운임 변동성을 회피하기 위한 해상 운송(Sea Freight) 전환 및 탄소 발자국 감축 효과",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightSmolt.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 12,
+        "title": "생물학적 한계 돌파: 포스트 스몰트 & 심해 레이저",
+        "pillar": "S1",
+        "cardDesc": "육상 사육 연장 및 심해 차폐 기술로 바다이(Sea lice) 리스크 원천 차단",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonInsightTradeDown.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 112,
+        "title": "[판매] 인플레이션 대체 단백질 가격 (Trade-Down)",
+        "pillar": "S4",
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": {
+          "status": "LIVE",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/salmon/kamis"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonLiveTicker.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 207,
+        "title": "실시간 연어 무역 인텔리전스",
+        "pillar": "S4",
+        "cardDesc": "ECOS(환율)·FRED(금리)·KCS(수입실적)·KAMIS(소매가) 5분 갱신 매크로 티커",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/macro-environment",
+      "/api/salmon/kamis",
+      "/api/salmon/kcs"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonNTBRadar.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 114,
+        "title": "비관세장벽 & 컴플라이언스 레이더",
+        "pillar": "S3",
+        "cardDesc": "WITS·OFAC·MFDS·KMI 정책연구 교차검증 6개국 컴플라이언스 상태",
+        "unit": null,
+        "telemetry": {
+          "status": "LIVE",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/risk-radar",
+      "/api/wits"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/SalmonPolicyImpact.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 96,
+        "title": "정책 임팩트 시뮬레이터",
+        "pillar": "S3",
+        "cardDesc": "FTA·SIMP·제재 정책 변화 4종 시나리오별 착지원가·물량·소매가 임팩트 분석",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  }
+]

@@ -13,7 +13,7 @@ export default function SalmonInsightFeedBio() {
       iconColor="var(--color-info)"
       pillar="S1"
       cardDesc="해양 원료(어분/어유) 의존도 감소 및 미세조류/가금류 등 대체 사료 도입을 통한 원가율 통제"
-      telemetry={{ status: 'STATIC' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

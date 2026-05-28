@@ -28,7 +28,7 @@ export default function SalmonInsightDoubleMateriality() {
       iconColor="var(--color-success)"
       pillar="S5"
       cardDesc="EU CSDDD/CSRD 규제 대응을 위한 환경적, 재무적 영향 동시 모니터링"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: -20 }}>

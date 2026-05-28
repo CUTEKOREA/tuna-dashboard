@@ -13,7 +13,7 @@ export default function SalmonInsightAutomationYield() {
       iconColor="var(--color-warning)"
       pillar="S2"
       cardDesc="가공 장비(BAADER 등) 자동화에 따른 수율 향상 및 인건비 절감 효과 분석"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

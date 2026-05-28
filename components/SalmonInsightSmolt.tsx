@@ -15,7 +15,7 @@ export default function SalmonInsightSmolt() {
       iconColor="var(--color-success)"
       pillar="S1"
       cardDesc="육상 사육 연장 및 심해 차폐 기술로 바다이(Sea lice) 리스크 원천 차단"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

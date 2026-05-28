@@ -15,7 +15,7 @@ export default function SalmonInsightFeed() {
       iconColor="var(--color-success)"
       pillar="S1"
       cardDesc="양식 원가의 60%를 차지하는 사료를 전략적으로 내재화하고 기능성 단백질 도입"
-      telemetry={{ status: 'LIVE API' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

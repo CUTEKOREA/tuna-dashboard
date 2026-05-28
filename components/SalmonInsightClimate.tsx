@@ -15,7 +15,7 @@ export default function SalmonInsightClimate() {
       iconColor="var(--color-warning)"
       pillar="S5"
       cardDesc="성장 가속의 단기 기회와 2030년 탄소 비용 폭증의 장기 리스크 혼재"
-      telemetry={{ status: 'LIVE API' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
         <ComposedChart data={rawData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

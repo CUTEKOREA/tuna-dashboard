@@ -1,0 +1,110 @@
+[
+  {
+    "id": "w01_paradigm",
+    "title": "글로벌 패러다임: 생산량 (어획 vs 양식)",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w02_aqua_value",
+    "title": "글로벌 양식 부가가치 수직 상승 곡선",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w03_aqua_pie",
+    "title": "양식 제국 독점: Top 5 국가 리더보드 (2022)",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w04_proc",
+    "title": "글로벌 가공 부가가치 산업의 축 이동",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w05_cash",
+    "title": "자본 회수: 양식 매출(Cash-Flow) Top 국가",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w06_trade_vol",
+    "title": "거대 트레이딩: 글로벌 무역 파이 팽창선",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w07_export",
+    "title": "수출 지배자: 연어 무역 패권 Top 10",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w08_import",
+    "title": "식탁의 블랙홀: 연어 거대 수입국 Top 10",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w09_kr_import",
+    "title": "한국의 취약성: 절대적 수입 의존 폭증 곡선",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w10_kr_deficit",
+    "title": "한국 연어 무역 적자(Deficit Gap) 가속",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w11_kr_price",
+    "title": "연어 플레이션: 글로벌 수입 단가율 추이",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  },
+  {
+    "id": "w12_margin",
+    "title": "노르웨이 프리미엄: 톤당 수출 단가 스프레드",
+    "subtitle": "",
+    "telemetry": null,
+    "syncDate": null,
+    "source": null,
+    "pillar": null
+  }
+]
