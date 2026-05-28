@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { parseDataGoKrXml, safeNum } from "@/app/api/_shared/parsers";
+import { parseDataGoKrXml, safeNum } from "../_shared/parsers";
 
 /**
  * 명태 관세청 수입 데이터 API
