@@ -69,7 +69,7 @@ export async function GET() {
       { month: '25.01', applePrice: 68000, mangoImport: 340 },
     ];
     const rawArbitrageData = await fetchWithFallback(
-      `http://www.kamis.or.kr/service/price/xml.do?action=monthlySalesList&p_cert_key=${process.env.KAMIS_API_KEY}&p_cert_id=222&p_returntype=json`,
+      `http://www.kamis.or.kr/service/price/xml.do?action=monthlySalesList&p_cert_key=${process.env.KAMIS_API_KEY}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returntype=json`,
       baselineArbitrageData
     );
     const arbitrageData = Array.isArray(rawArbitrageData) ? rawArbitrageData : baselineArbitrageData;

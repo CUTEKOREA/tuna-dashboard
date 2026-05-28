@@ -57,7 +57,7 @@ export async function GET(request: Request) {
       p_startday: fmt(startDate),
       p_endday: fmt(today),
       p_cert_key: KAMIS_KEY,
-      p_cert_id: "silla_co",
+      p_cert_id: process.env.KAMIS_CERT_ID || "7849",
       p_returntype: "json",
     });
 

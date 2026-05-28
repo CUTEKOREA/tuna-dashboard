@@ -6,7 +6,7 @@ export const revalidate = 3600; // 1시간 캐시
 const KAMIS_CONFIG = {
   API_URL: 'http://www.kamis.or.kr/service/price/xml.do',
   CERT_KEY: '', // KAMIS_API_KEY
-  CERT_ID: '5128',
+  CERT_ID: process.env.KAMIS_CERT_ID || '7849' ,
   RETURN_TYPE: 'json',
 };
 

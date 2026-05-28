@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   try {
     const data = await getCachedData('kamis_shrimp_price', async () => {
       const apiKey = process.env.KAMIS_API_KEY || "f3557f2e-fe2e-4609-9fc7-b01492beb192";
-      const url = `http://www.kamis.or.kr/service/price/xml.do?action=dailySalesList&p_cert_key=${apiKey}&p_cert_id=222&p_returndataype=json`;
+      const url = `http://www.kamis.or.kr/service/price/xml.do?action=dailySalesList&p_cert_key=${apiKey}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returndataype=json`;
       
       try {
         const res = await fetch(url, { timeout: 3000 } as RequestInit);

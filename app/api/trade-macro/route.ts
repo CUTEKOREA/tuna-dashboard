@@ -152,7 +152,7 @@ async function fetchWholesalePrice(itemName: string) {
     const params = new URLSearchParams({
       action: 'dailyPriceByCategoryList',
       p_cert_key: apiKey,
-      p_cert_id: 'silla-intelligence',
+      p_cert_id: process.env.KAMIS_CERT_ID || "7849",
       p_returntype: 'json',
       p_product_cls_code: '02',
       p_item_category_code: '200',

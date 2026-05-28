@@ -53,7 +53,7 @@ async function fetchKAMIS_Mackerel(): Promise<{ wholesale: number; retail: numbe
   try {
     // KAMIS 일별 품목별 도소매가격: itemcode 246 (고등어)
     const today = new Date().toISOString().split('T')[0];
-    const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList&p_product_cls_code=02&p_country_code=1101&p_regday=${today}&p_convert_kg_yn=Y&p_item_category_code=400&p_cert_key=${KAMIS_API_KEY}&p_cert_id=silla&p_returntype=json`;
+    const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList&p_product_cls_code=02&p_country_code=1101&p_regday=${today}&p_convert_kg_yn=Y&p_item_category_code=400&p_cert_key=${KAMIS_API_KEY}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returntype=json`;
     
     const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
     if (res.ok) {

@@ -28,7 +28,7 @@ async function fetchKamisPrice(productCode: string, productName: string): Promis
     const today = new Date();
     const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     const apiKey = process.env.KAMIS_API_KEY || '2d41cf53-ea88-42e2-b958-f21638f3528c';
-    const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailySalesList&p_cert_key=${apiKey}&p_cert_id=pef&p_returntype=json&p_product_cls_code=02&p_regday=${dateStr}&p_convert_kg_yn=Y&p_item_category_code=600`;
+    const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailySalesList&p_cert_key=${apiKey}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returntype=json&p_product_cls_code=02&p_regday=${dateStr}&p_convert_kg_yn=Y&p_item_category_code=600`;
     const res = await fetch(url, { next: { revalidate: 3600 } });
     if (res.ok) {
       const data = await res.json();

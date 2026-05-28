@@ -78,7 +78,7 @@ async function fetchKAMISRetailIndex(): Promise<{ value: string; trend: string; 
     // KAMIS 품목코드 614 = 참치통조림(캔)
     const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailySalesList` +
       `&p_regday=${regDay}&p_convert_kg_yn=N&p_item_category_code=600&p_country_code=1101` +
-      `&p_product_cls_code=02&p_item_code=614&p_unit=&p_cert_key=${key}&p_cert_id=5818&p_returntype=json`;
+      `&p_product_cls_code=02&p_item_code=614&p_unit=&p_cert_key=${key}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returntype=json`;
     const res = await fetch(url, { next: { revalidate: 300 } });
     if (!res.ok) return null;
     const json = await res.json();
