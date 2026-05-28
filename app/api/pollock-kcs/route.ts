@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
  */
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || "";
-const KCS_BASE = "https://unipass.customs.go.kr/ets/index.do";
+const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 
 // Fallback: 2024년 검증 완료 데이터 (관세청 파싱 결과)
 const FALLBACK_DATA = {
