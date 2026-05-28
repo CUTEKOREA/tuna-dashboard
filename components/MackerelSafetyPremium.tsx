@@ -34,8 +34,8 @@ export default function MackerelSafetyPremium() {
       icon={ShieldCheck}
       iconColor="#38bdf8"
       pillar="S4"
-      cardDesc="후쿠시마 등 대외 안전 악재 이전(Before)/이후(After) 아프리카 훈제 시장 내 한국산 원물이 얻게 된 판가 프리미엄 수준을 비교합니다."
-      telemetry={{ status: 'STATIC', syncDate: '2023-Q4' }}
+      cardDesc="KCS 관세청 + KATI 아프리카 시장 보고서 — 후쿠시마 등 대외 안전 악재 이전/이후 아프리카 훈제 시장 내 한국산 원물 판가 프리미엄 비교"
+      telemetry={{ status: 'STATIC', syncDate: 'KCS 2023-Q4 + KATI 2024' }}
       customBody={ChartObj}
       takeaway={{
         situation: `<div>

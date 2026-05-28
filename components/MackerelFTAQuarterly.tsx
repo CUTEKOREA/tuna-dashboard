@@ -196,7 +196,7 @@ export default function MackerelFTAQuarterly() {
       iconColor="#38bdf8"
       pillar="S3"
       cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 고등어 분기별 수입 시계열. 2025년 사상 최고치 직후 2026 Q1 쿼터 절벽이 노르웨이 단가 +78%와 영국산 +216% 대체 부상으로 동시에 나타난 구조 전환점."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: 'STATIC', syncDate: 'KMI FTA 수입동향 보고서 21건 수동 추출 (2021 Q4~2026 Q1)' }}
       customBody={Body}
       takeaway={{
         situation: `<div>

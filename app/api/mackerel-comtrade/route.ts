@@ -33,15 +33,14 @@ export async function GET() {
       });
       
       if (res.ok) {
-        // If the key is valid, we would parse the actual response.
-        // For demonstration, we mark it as Live and use the formatted fallback array structure.
-        isLive = true;
+        // NOTE: 응답 body 파싱 미구현. API 연결만 확인되었을 뿐 실제 데이터는 fallback 배열을 사용.
+        // 정직한 라벨링: 연결만 확인된 상태는 Live가 아닌 'connected fallback'.
+        // 실 파싱 구현 전까지 isLive = false 유지.
       }
     } else {
-      // UN Comtrade Public API (HS 030354) as fallback
+      // UN Comtrade Public API 연결 확인만 (Public API는 response 형식 다름, 파싱 미구현)
       const url = 'https://comtradeapi.un.org/public/v1/preview/C/A/HS?cmdCode=030354';
-      const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
-      if (res.ok) isLive = true;
+      await fetch(url, { signal: AbortSignal.timeout(5000) }).catch(() => null);
     }
   } catch (e) {
     console.warn('[UN Comtrade] 연동 실패, Fallback 데이터 사용');
@@ -50,7 +49,7 @@ export async function GET() {
   return NextResponse.json({
     timestamp: new Date().toISOString(),
     isLive,
-    source: isLive ? 'UN Comtrade API (실시간)' : 'UN Comtrade Fallback',
+    source: 'UN Comtrade Fallback (HS 030354 정적 매핑, API 파싱 미구현)',
     tradeFlows: flows
   }, {
     headers: { 'Cache-Control': 'no-store, max-age=0' },

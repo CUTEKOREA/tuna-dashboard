@@ -82,8 +82,8 @@ export default function MackerelProcessedWidgets() {
         icon={Factory}
         iconColor="#eab308"
         pillar="P1"
-        cardDesc=""
-        telemetry={{ status: 'STATIC', syncDate: '2023' }}
+        cardDesc="FAO FishStatJ Global Production & Non-Food Uses + IFFO — 칠레·페루 jack mackerel 어분(fishmeal) 가공 비중과 연어 양식·펫케어 매입원가 연동 구조"
+        telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023 + IFFO' }}
         customBody={ChartObj1}
         takeaway={{
           situation: `<div>
@@ -102,8 +102,8 @@ export default function MackerelProcessedWidgets() {
         icon={AlertTriangle}
         iconColor="var(--color-danger)"
         pillar="P1"
-        cardDesc=""
-        telemetry={{ status: 'STATIC', syncDate: '2023' }}
+        cardDesc="UN Comtrade + OEC — 중국의 fishmeal·식용 고등어 통합 매입 추이 (식용/사료 시장 경계 모호화 신호)"
+        telemetry={{ status: 'STATIC', syncDate: 'UN Comtrade 2023 + OEC' }}
         customBody={ChartObj2}
           takeaway={{
           situation: `<div>

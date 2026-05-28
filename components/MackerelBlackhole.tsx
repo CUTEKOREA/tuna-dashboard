@@ -99,8 +99,8 @@ export default function MackerelBlackhole() {
       icon={Radar}
       iconColor="#fbbf24"
       pillar="S4"
-      cardDesc="2019→2023 수입량 증가율 vs 절대 규모 — 폭발 성장 시장을 조기 포착"
-      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      cardDesc="UN Comtrade + KCS 관세청 통계 — 2019→2023 수입량 증가율 vs 절대 규모, 폭발 성장 시장 조기 포착"
+      telemetry={{ status: 'STATIC', syncDate: 'UN Comtrade 2019-2023 + KCS' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>

@@ -1,0 +1,460 @@
+[
+  {
+    "file": "components/MackerelAfricanExportROI.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 29,
+        "title": "가나 수출 수익률 기반 AI 운송 판별기",
+        "pillar": "S3",
+        "cardDesc": "상해컨테이너운임지수(SCFI) 변동을 변수로 한 서아프리카(가나) 냉동고등어 20ft 컨테이너당 수출 실 마진율 시뮬레이션입니다.",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2024-03"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelAltSourcingIndex.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 24,
+        "title": "대체 공급망 단가 매력도 지수",
+        "pillar": "S1",
+        "cardDesc": "노르웨이를 제치고 부상 중인 칠레, 아일랜드, 영국산 고등어의 C&F 수입단가(USD/kg) 상대 추이 트래킹입니다. 분기별 통관단가 기준",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelAquaculture.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 188,
+        "title": "양식 고등어의 부상과 블루오션",
+        "pillar": "S2",
+        "cardDesc": "자연산 vs 양식 생산 비중 추이 및 양식 프리미엄 단가 비교",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelBlackhole.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 97,
+        "title": "&quot;고등어 블랙홀&quot; 신흥 시장 발굴",
+        "pillar": "S4",
+        "cardDesc": "2019→2023 수입량 증가율 vs 절대 규모 — 폭발 성장 시장을 조기 포착",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelClimatePredictor.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 28,
+        "title": "지구온난화 대형어 흉작 예측 모델",
+        "pillar": "S1",
+        "cardDesc": "전년도 한반도 남해안 표층수온 상승 이상편차(SST Anomaly) 값을 X축으로 두고 당해 연도 고수익",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2024 (NOAA)"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelDashboard.tsx",
+    "widget_count": 0,
+    "widgets": [],
+    "api_calls": [
+      "/api/compliance",
+      "/api/eurostat",
+      "/api/fishery",
+      "/api/hs-ping",
+      "/api/import-yeti",
+      "/api/mackerel-comtrade",
+      "/api/mackerel-kcs",
+      "/api/mackerel-ticker",
+      "/api/oec",
+      "/api/osh",
+      "/api/tariffs"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelFTAQuarterly.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 193,
+        "title": "FTA 고등어 분기별 수입 동향 (KMI 21개 분기)",
+        "pillar": "S3",
+        "cardDesc": "KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 고등어 분기별 수입 시계열. 2025년 사상 최고치 직후 2026 Q1 쿼터 절벽이 노르웨이 단가 +78%와 영국산 +216% 대체 부상으로 동시에 나타난 구조 전환점.",
+        "unit": null,
+        "telemetry": {
+          "status": "SYNCED",
+          "syncDate": "2026-05"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelFeedRatio.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 18,
+        "title": "물가 착시 통계 (식용 vs 생사료 교차비)",
+        "pillar": "S2",
+        "cardDesc": "정부 무역/어획 통계에는 모두 고등어로 집계되지만, 실제 우럭이나 광어 등 양식장 사료(비식용)로 쓰이는 미성어 비중을 자체 추정한 교차지표입니다.",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2026-05-21"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelFilletPenetration.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 33,
+        "title": "순살 필렛(Fillet) HMR 체제 전환 가속",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelGhanaStrategy.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 161,
+        "title": "한국 태평양고등어 가나 수출 전략 (테스트 성과 보고)",
+        "pillar": "S5",
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2026-05"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelKoreaSupply.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 109,
+        "title": "🇰🇷 한국 고등어 자급률 위기 모니터",
+        "pillar": "S4",
+        "cardDesc": "국내 생산 붕괴와 수입 의존도 급증 — 자급률 데드크로스 진단",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelMacroCycle.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 124,
+        "title": "글로벌 고등어 호황/불황 사이클",
+        "pillar": "S4",
+        "cardDesc": "글로벌 어획량(공급) vs 무역 단가(가격) 48년 추이 — 최적 진입 타이밍 감지",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelNorwayAlt.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 74,
+        "title": "공급선 다변화: 노르웨이 독점 대항마",
+        "pillar": "S1",
+        "cardDesc": "글로벌 Top 12 수출국의 점유율 변화 — 신흥 소싱처 조기 감지",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelNorwaySpread.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 35,
+        "title": "노르웨이 직수입 원가 스프레드",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelProcessedWidgets.tsx",
+    "widget_count": 2,
+    "widgets": [
+      {
+        "line": 80,
+        "title": "칠레-페루 어분(Fishmeal) 제국의 탄생",
+        "pillar": "P1",
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023"
+        },
+        "takeaway": null
+      },
+      {
+        "line": 100,
+        "title": "중국의 스텔스 싹쓸이 (블랙홀)",
+        "pillar": "P1",
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelSafetyPremium.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 32,
+        "title": "후쿠시마 지정학적 안전 프리미엄",
+        "pillar": "S4",
+        "cardDesc": "후쿠시마 등 대외 안전 악재 이전(Before)/이후(After) 아프리카 훈제 시장 내 한국산 원물이 얻게 된 판가 프리미엄 수준을 비교합니다.",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2023-Q4"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelSankey.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 59,
+        "title": "가성비 단백질 배급망 (무역 플로우)",
+        "pillar": "S3",
+        "cardDesc": "2023 수출국 → 수입국 상위 무역 플로우 — 긴급 덤핑 루트 점검",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelSizePremium.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 33,
+        "title": "사이즈간 체급 프리미엄 배수",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelSpreadWinners.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 71,
+        "title": "가공 차익의 승자들",
+        "pillar": "S2",
+        "cardDesc": "2023년 기준 수입→수출 가공 스프레드 상위 국가 — 가공 인프라 투자 ROI 판단",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelStorageTurnover.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 25,
+        "title": "보세 냉동창고 매점매석/체화 추적기",
+        "pillar": "S3",
+        "cardDesc": "전국 냉동 보세창고의 수입 임치 물량 적재 면적과 해당 분기 도매상의 출하 속도(회전일수)를 상호 모니터링하여 병목과 담합을 탐지합니다.",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelStrategy.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 8,
+        "title": "한국 태평양고등어 가나 수출 전략 (테스트 성과 보고)",
+        "pillar": "S4",
+        "cardDesc": "2026년 2월 부산 출항 1컨테이너 파일럿 판매 결과 및 향후 물량 확대 전략 시나리오",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2026-Q1"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelTRQMeter.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 29,
+        "title": "정부 정책 TRQ 방출 임박 게이지",
+        "pillar": "S3",
+        "cardDesc": "물가 안정을 위해 수입 고등어에 배정되는 무관세 TRQ(연 1~2만 톤 내외) 실시간 소진율. 소진 완료 시 관세가 재부과됩니다.",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelTrioRadar.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 69,
+        "title": "조업 vs 가공 vs 소비 트리오 분석",
+        "pillar": "S1",
+        "cardDesc": "2023 주요국 생태계 포지션 — 조업·가공·소비 밸런스 진단",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/MackerelUnitPrice.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 67,
+        "title": "글로벌 단위 단가 랭킹: 프리미엄 타겟 시장",
+        "pillar": "S4",
+        "cardDesc": "2023년 가장 비싸게 고등어를 사가는 국가 Top 15 — 프리미엄 판로 배분 전략",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  }
+]

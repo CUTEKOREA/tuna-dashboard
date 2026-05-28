@@ -111,8 +111,8 @@ export default function MackerelKoreaSupply() {
       icon={AlertTriangle}
       iconColor="#f87171"
       pillar="S4"
-      cardDesc="국내 생산 붕괴와 수입 의존도 급증 — 자급률 데드크로스 진단"
-      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      cardDesc="해양수산부 수산물 자급률 통계 + KMI 수산업 전망보고서 + 통계청 어업생산동향 — 국내 생산 붕괴와 수입 의존도 급증, 자급률 데드크로스 진단"
+      telemetry={{ status: 'STATIC', syncDate: '해수부 + KMI 2026 + 통계청 2024' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>

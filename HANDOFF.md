@@ -1,5 +1,16 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟🟢 **2026-05-28 — mackerel 5-Pillar 103 위젯 전수 감사 + P0/P1 9건 정정 (참치 audit 방법론 재사용)** [CC]:
+> - **신규 도구**: [/widget-audit skill](file:///Users/idong-geon/.claude/skills/widget-audit/SKILL.md) (8-phase 멀티 에이전트 워크플로우) + [project_widget_audit_methodology.md memory](file:///Users/idong-geon/.claude/projects/-Users-idong-geon-----------/memory/project_widget_audit_methodology.md). 향후 다른 commodity 대시보드에도 재사용 가능.
+> - **Audit 결과** ([artifacts/](artifacts/)): `mackerel_audit_2026_05_28.md`, `mackerel_widget_inventory.json` (TSX 24 + JSON 79), `mackerel_4axis_scores.csv`, `mackerel_combined_audit_antigravity.md` + [docs/2026_mackerel_industry_sources.md](docs/2026_mackerel_industry_sources.md) 신규 15건.
+> - **4-Axis 평균 78.0 / B등급** (A 22 · B 45 · C 29 · **D 7**). 참치(78.7)와 비슷. D등급 7건은 모두 TSX의 출처/syncDate 표기 부족 (실제 데이터 무결성은 OK).
+> - **P0 2건 (즉시 정정)**: (1) [mackerel-comtrade/route.ts:33-37](app/api/mackerel-comtrade/route.ts#L33) 허위 `isLive=true` 라벨 제거 (참치 SANCTIONS_API_LIVE 패턴 재발견) (2) [MackerelFTAQuarterly.tsx:199](components/MackerelFTAQuarterly.tsx#L199) SYNCED → STATIC + KMI PDF 수동 추출 명시
+> - **P1 7건 (표현 정정)**: (3)~(8) D등급 7개 TSX 위젯(MackerelAquaculture·Blackhole·KoreaSupply·MacroCycle·ProcessedWidgets×2·SafetyPremium) cardDesc/syncDate에 1차 출처(FAO·SOFIA·UN Comtrade·KCS·KMI·해수부·통계청·KATI·IFFO·OEC) 명시. (9) JSON w14 노르웨이 의존도 subtitle 52% → 자체 데이터 67% + 외부 80~90% 일관화. (10) JSON w52 아프리카 수출 +167% → 다년 누적 vs YoY 구분. (11) JSON w66 영국산 +100% → 저기저 효과 명시.
+> - **Multi-Agent 토폴로지 ($0)**: Claude Opus 4.7 + **Antigravity Gemini 3.1 Pro** (1회 56KB 결합 API+클레임 audit) + **WebSearch** (출처 15건) + **Codex GPT-5.5** (5건 독립 검증, 4 EDIT 정당/1 KEEP false alarm).
+> - **Phase 6 결정**: 삭제·이동 대상 **0건** (참치와 달리 스코프 일치, 미래 시나리오 mock 없음). 위젯 총수 103 → 103 유지.
+> - **검증**: `npm run build` ✓ (4.2s, 117 pages, 에러 0).
+> - **잔여 작업 (별도 세션)**: P2 outlier 2건 (w42 노르웨이 TAC 격차 시나리오, w66 절대량 표기), JSON 위젯 53개 자체 reliability 100점 4-Axis 룰북 재산정.
+
 > 🐟 **2026-05-28 — value-chain (참치 대시보드) 5-Pillar 120 위젯 전수 감사 + P0/P1 11건 즉시 정정** [CC]:
 > - **Audit 산출물** ([artifacts/](artifacts/)): `value_chain_audit_2026_05_28.md` (4-Axis 평균 78.7/B등급, A 25·B 62·C 33·D 0), `value_chain_widget_inventory.json` (120 위젯 메타), `value_chain_4axis_scores.csv`, 보조 `api_routes_audit_antigravity.md` + `cross_validation_antigravity.md`.
 > - **Multi-Agent 토폴로지** (비용 $0): Claude Opus 4.7(메인) + Antigravity Gemini 3.1 Pro(API audit + 클레임 교차) + Codex GPT-5.5(독립 검증). Antigravity 의심 3건 중 1건을 Codex가 false alarm 판정 (PBF 양식 +667%는 저베이스 효과 정상).

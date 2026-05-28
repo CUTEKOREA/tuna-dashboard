@@ -1,0 +1,104 @@
+src,file,line,id,pillar,title,a1,a2,a3,a4,avg,grade,self_reliability
+TSX,components/MackerelAfricanExportROI.tsx,29,,S3,가나 수출 수익률 기반 AI 운송 판별기,60,70,55,100,71.2,C,
+TSX,components/MackerelAltSourcingIndex.tsx,24,,S1,대체 공급망 단가 매력도 지수,90,60,70,90,77.5,B,
+TSX,components/MackerelAquaculture.tsx,188,,S2,양식 고등어의 부상과 블루오션,60,40,55,100,63.8,D,
+TSX,components/MackerelBlackhole.tsx,97,,S4,&quot;고등어 블랙홀&quot; 신흥 시장 발굴,60,40,55,100,63.8,D,
+TSX,components/MackerelClimatePredictor.tsx,28,,S1,지구온난화 대형어 흉작 예측 모델,60,70,55,100,71.2,C,
+TSX,components/MackerelFTAQuarterly.tsx,193,,S3,FTA 고등어 분기별 수입 동향 (KMI 21개 분기),90,95,80,100,91.2,A,
+TSX,components/MackerelFeedRatio.tsx,18,,S2,물가 착시 통계 (식용 vs 생사료 교차비),60,95,55,100,77.5,B,
+TSX,components/MackerelFilletPenetration.tsx,33,,?,순살 필렛(Fillet) HMR 체제 전환 가속,60,60,70,70,65.0,C,
+TSX,components/MackerelGhanaStrategy.tsx,161,,S5,한국 태평양고등어 가나 수출 전략 (테스트 성과 보고),60,95,55,90,75.0,B,
+TSX,components/MackerelKoreaSupply.tsx,109,,S4,🇰🇷 한국 고등어 자급률 위기 모니터,60,40,55,100,63.8,D,
+TSX,components/MackerelMacroCycle.tsx,124,,S4,글로벌 고등어 호황/불황 사이클,60,40,55,100,63.8,D,
+TSX,components/MackerelNorwayAlt.tsx,74,,S1,공급선 다변화: 노르웨이 독점 대항마,60,60,70,90,70.0,C,
+TSX,components/MackerelNorwaySpread.tsx,35,,?,노르웨이 직수입 원가 스프레드,60,60,70,70,65.0,C,
+TSX,components/MackerelProcessedWidgets.tsx,80,,P1,칠레-페루 어분(Fishmeal) 제국의 탄생,60,40,55,90,61.2,D,
+TSX,components/MackerelProcessedWidgets.tsx,100,,P1,중국의 스텔스 싹쓸이 (블랙홀),60,40,55,90,61.2,D,
+TSX,components/MackerelSafetyPremium.tsx,32,,S4,후쿠시마 지정학적 안전 프리미엄,60,40,55,100,63.8,D,
+TSX,components/MackerelSankey.tsx,59,,S3,가성비 단백질 배급망 (무역 플로우),60,60,70,90,70.0,C,
+TSX,components/MackerelSizePremium.tsx,33,,?,사이즈간 체급 프리미엄 배수,60,60,70,70,65.0,C,
+TSX,components/MackerelSpreadWinners.tsx,71,,S2,가공 차익의 승자들,60,60,70,90,70.0,C,
+TSX,components/MackerelStorageTurnover.tsx,25,,S3,보세 냉동창고 매점매석/체화 추적기,60,60,70,90,70.0,C,
+TSX,components/MackerelStrategy.tsx,8,,S4,한국 태평양고등어 가나 수출 전략 (테스트 성과 보고),60,95,55,100,77.5,B,
+TSX,components/MackerelTRQMeter.tsx,29,,S3,정부 정책 TRQ 방출 임박 게이지,60,60,70,90,70.0,C,
+TSX,components/MackerelTrioRadar.tsx,69,,S1,조업 vs 가공 vs 소비 트리오 분석,60,60,70,90,70.0,C,
+TSX,components/MackerelUnitPrice.tsx,67,,S4,글로벌 단위 단가 랭킹: 프리미엄 타겟 시장,60,60,70,90,70.0,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w01,?,글로벌 고등어(Scomber) 어종별 연간 어획량 추이,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w02,?,상위 5개국 어획량 집중도 분석,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w03,?,어종별 어획 비중 구조 분석,90,75,70,100,83.8,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w04,?,한·일 연근해 고등어 어획량 감소 추이,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w05,?,고등어 양식 전환 가능성 평가,90,75,70,100,83.8,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w06,?,글로벌 고등어 수출입 규모 추이,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w07,?,한국 수출입 단가 역조 추이 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w08,?,글로벌 가공 허브 국가별 점유율 변동,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w09,?,중국·러시아 원양 고등어 공급 점유율 추이,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w10,?,네덜란드 중계무역 마진 구조 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w11,?,아프리카 수출시장 단가 및 물량 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w12,?,프리미엄 수산물 가격 전략 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w13,?,한국 고등어 자급률 추이 분석,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w14,?,노르웨이 수입 의존도 및 공급 집중 리스크,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w15,?,한국 수출 목적지별 비중 분석,90,70,70,100,82.5,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w16,?,고등어 피쉬밀·오일 생산량 10개년 추이,90,70,70,100,82.5,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w17,?,수출·수입·아프리카향 단가 추이 비교,90,75,70,100,83.8,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w18,?,네덜란드 중계무역 단가 마크업 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w19,?,가나 허브 차익거래 및 우회수출 마진,60,60,75,100,73.8,C,95
+JSON,public/data/mackerel_real_data_v13.json,0,w21,?,HMR 가공 전환 부가가치 분석,90,70,75,100,83.8,B,95
+JSON,public/data/mackerel_real_data_v13.json,0,w22,?,에코-안전 프리미엄 가격 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w23,?,해수면 온도(SST) 기반 어획 포트폴리오 전략,90,75,70,100,83.8,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w24,?,EU 고등어 가공 형태별 부가가치 추이,90,40,75,100,76.2,B,95
+JSON,public/data/mackerel_real_data_v13.json,0,w25,?,ITQ 쿼터 자산화 및 콜드체인 경쟁력 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w26,?,소형어 친환경 배합사료 전환 분석,90,70,75,100,83.8,B,95
+JSON,public/data/mackerel_real_data_v13.json,0,w27,?,AI 기반 D2C 구독 다이내믹 프라이싱,90,70,75,100,83.8,B,95
+JSON,public/data/mackerel_real_data_v13.json,0,w28,?,EU 국가별 고등어 단가 차익거래 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w29,?,고등어 사료 단가-참다랑어 양식 상관분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w30,?,EU 리테일 가격 마크업 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w31,?,EU-아프리카 수입 단가 양극화 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w32,?,EU 고등어 식품 인플레이션 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w33,?,폴란드·프랑스 가공 패권 이동 분석,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w34,?,콜드체인 기반 가격 차익거래 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w35,?,냉동·가공 형태별 부가가치 비교,90,40,70,100,75.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w36,?,네덜란드 중개 무역 수익 모델 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w37,?,고등어 스태그플레이션 지표 분석,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w38,?,한국 고등어 무역수지 역전 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w39,?,아이슬란드 소싱 차익거래 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w40,?,CN8 코드별 가공 부가가치 사다리,90,40,70,100,75.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w41,?,중국 고등어 가공·수출 확대 분석,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w42,?,노르웨이 TAC 쿼터 감축 영향 분석,90,75,70,100,83.8,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w44,?,NPFC/ICES 자원평가 건강성 스코어카드,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w48,?,2025 Q1 글로벌 수출 랭킹 (INFOFISH),90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w51,?,소비자 가격 분해 (유통 마진 구조),90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w52,?,아프리카 수출 급증 추이 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w43,?,EU 어획량 감소 및 어군 이동 분석,90,75,75,100,85.0,A,95
+JSON,public/data/mackerel_real_data_v13.json,0,w45,?,가공 형태별 마진율 비교 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w46,?,EU 산지별 1차 판매가 프리미엄 분석,90,70,75,100,83.8,B,95
+JSON,public/data/mackerel_real_data_v13.json,0,w49,?,FTA/관세 차익거래 매트릭스,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w50,?,IUU 불법어업 규제 준수 레이더,90,75,70,100,83.8,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w53,?,HMR 이커머스 시장 침투율 추이,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w54,?,MSC 인증 프리미엄 및 탄소 발자국 비교,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w55,?,선원 인권 및 임금체불 리스크 지수,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w56,?,OECD 수산 보조금 및 IUU 감시 레이더,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w57,?,EU 3중 충격 인덱스 (COVID·Brexit·우크라이나),90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w58,?,EU 수출시장 방향 전환 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w59,?,EU 밸류체인 가격 워터폴 분석,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w60,?,폴란드 가공 허브 성장 지표 분석,90,95,70,100,88.8,A,100
+JSON,public/data/mackerel_real_data_v13.json,0,w61,?,EU 정책 레질리언스 스코어카드,90,60,65,100,78.8,B,85
+JSON,public/data/mackerel_real_data_v13.json,0,w62,?,EU→아시아 해상운임 상승 영향 분석,60,60,70,100,72.5,C,100
+JSON,public/data/mackerel_real_data_v13.json,0,w63,?,인플레이션발 대체 단백질 소비 효과,90,60,70,100,80.0,B,100
+JSON,public/data/mackerel_real_data_v13.json,0,w64,?,2025 Q1 한국 수출 급증 분석 (+84%),90,95,75,100,90.0,A,92
+JSON,public/data/mackerel_real_data_v13.json,0,w65,?,노르웨이산 원물 가격 추이 및 최고가 분석,90,75,75,100,85.0,A,95
+JSON,public/data/mackerel_real_data_v13.json,0,w66,?,한-영 FTA 수혜 영국산 수입 급증 분석,90,95,75,100,90.0,A,93
+JSON,public/data/mackerel_real_data_v13.json,0,w67,?,삼각 가공 재수출 밸류체인 분석,90,75,65,100,82.5,B,85
+JSON,public/data/mackerel_real_data_v13.json,0,w68,?,TAC 관리전략평가(MSE) 의사결정 검증,90,60,60,100,77.5,B,
+JSON,public/data/mackerel_real_data_v13.json,0,w69,?,환경보정 CPUE 표준화 추이 분석,90,60,60,100,77.5,B,
+JSON,public/data/mackerel_real_data_v13.json,0,w70,?,시장가격-자원평가 통합 모델 기여도 분석,90,95,60,100,86.2,A,
+JSON,public/data/mackerel_real_data_v13.json,0,w71,?,부산물 지방산 프로파일링 및 고부가가치화,90,75,60,100,81.2,B,
+JSON,public/data/mackerel_real_data_v13.json,0,w72,?,AI 초분광 비파괴 신선도 분류 기술 평가,90,70,60,100,80.0,B,
+JSON,public/data/mackerel_real_data_v13.json,0,w73,?,남해 고등어 영양단계 및 먹이생태 분석,90,60,60,100,77.5,B,
+JSON,public/data/mackerel_real_data_v13.json,0,w74,?,고등어 기반 고령친화식품 물성 연구,90,60,60,100,77.5,B,
+JSON,public/data/mackerel_real_data_v13.json,0,w75,?,냉동 필렛 보냉팩 최적화 유통 연구,90,40,60,100,72.5,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w_us_boneless,?,미국 순살 고등어 경쟁사 프라이싱 레이더,60,60,60,90,67.5,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w_africa_coldchain,?,아프리카(가나/나이지리아) 콜드체인 리스크 지수,60,60,60,90,67.5,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w_global_b2c_channel,?,타깃 권역별 소비 채널 점유율 비교,60,60,60,90,67.5,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w_busan_procurement,?,부산공동어시장 원물 수매 단가 및 물량,60,60,60,90,67.5,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w_andong_salted,?,국내 프리미엄 가공(간고등어) 원물 규격 지표,60,60,60,90,67.5,C,
+JSON,public/data/mackerel_real_data_v13.json,0,w_domestic_retail,?,수도권 권역별 소매 채널 가격 스프레드,60,60,60,90,67.5,C,

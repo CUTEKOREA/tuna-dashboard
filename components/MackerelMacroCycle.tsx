@@ -126,8 +126,8 @@ export default function MackerelMacroCycle() {
       icon={TrendingUp}
       iconColor="#67e8f9"
       pillar="S4"
-      cardDesc="글로벌 어획량(공급) vs 무역 단가(가격) 48년 추이 — 최적 진입 타이밍 감지"
-      telemetry={{ status: 'STATIC', syncDate: '2023' }}
+      cardDesc="FAO FishStatJ Capture Production + UN Comtrade — 글로벌 어획량(공급) vs 무역 단가(가격) 48년 추이, 최적 진입 타이밍 감지"
+      telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023 + UN Comtrade' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
