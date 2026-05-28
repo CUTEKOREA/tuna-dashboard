@@ -9,7 +9,7 @@ import {
   BarChart, Bar, AreaChart, Area
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { TrendingUp, Ship, Briefcase, Skull, ShieldAlert, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, TestTube2, Bone, Zap } from 'lucide-react';
+import { TrendingUp, Ship, Briefcase, Skull, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, Bone, Zap } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
@@ -62,11 +62,6 @@ const mockHedgingMatrix = [
   { 연도: '2023년', 참치_지수: 90, 고등어_지수: 125 },
 ];
 
-const mockDarkTrading = [
-  { 지역: '서아프리카', 수출량: 120, 수입량: 85, 통관격차: 35 },
-  { 지역: '동남아시아', 수출량: 240, 수입량: 200, 통관격차: 40 },
-  { 지역: '태평양도서국', 수출량: 350, 수입량: 290, 통관격차: 60 },
-];
 
 const mockAquaculturePremium = [
   { 연도: 2005, 자연산_어획_단가: 12000, 양식_단가: 8000 },
@@ -120,13 +115,6 @@ const mockMSCPremium = [
   { 분류: '이중 인증 (MSC+돌고래안전)', 지수: 181.3 },
 ];
 
-const mockAlternativeProtein = [
-  { 연도: 2018, 대체_참치_시장: 520, 평균_FIFO_비율: 18 },
-  { 연도: 2021, 대체_참치_시장: 750, 평균_FIFO_비율: 19 },
-  { 연도: 2023, 대체_참치_시장: 945, 평균_FIFO_비율: 22 },
-  { 연도: 2026, 대체_참치_시장: 1210, 평균_FIFO_비율: 24 },
-  { 연도: 2030, 대체_참치_시장: 1590, 평균_FIFO_비율: 25 },
-];
 
 const mockByproductUpcycling = [
   { 연도: 2019, 통조림_마진율: 15, 펫케어_마진율: 18 },
@@ -360,49 +348,6 @@ export default function TunaInsightsDashboard() {
 </ol>
 </div>`,
           source: '내부 가격 지수 모델링 (2019-2023)',
-        }}
-      />
-
-      <WidgetCard
-        title="Insight 6. 다크 트레이딩 의심 경로"
-        icon={ShieldAlert}
-        iconColor="#3b82f6"
-        pillar="S5"
-        cardDesc="해구별 수출 통관량 vs 실제 수입 반영 물량의 격차 비교 — 해상 전재 기반 IUU 의심 루트 모니터링"
-        telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
-        termTooltip={{ term: 'IUU 통관 격차', description: '해구별 수출량과 실제 수입된 물량의 갭을 막대 차이로 직접 비교하여 불법 환적이나 단위 위반 의심 루트를 모니터링합니다.' }}
-        kpiPanel={[{ label: '최대 무역 격차', value: '60 K/t', sub: '태평양 도서국 루트', trendColor: '#64748b' }]}
-        chartHeight={280}
-        chart={
-          <BarChart data={mockDarkTrading} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-            <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.06)" />
-            <XAxis dataKey="지역" stroke="#94a3b8" />
-            <YAxis stroke="#94a3b8" />
-            <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-            <Legend />
-            <Bar dataKey="수출량" name="수출량 (K/t)" fill="#38bdf8" />
-            <Bar dataKey="수입량" name="수입량 (K/t)" fill="#3b82f6" />
-            <Bar dataKey="통관격차" name="통관 격차" fill="#64748b" />
-          </BarChart>
-        }
-        takeaway={{
-          situation: `<div>
-<p>"다크 트레이딩(Dark Trading)"은 어획된 참치가 합법적 통관 절차를 우회해 시장에 진입하는 경로를 말합니다. 차트는 태평양 도서국(키리바시·투발루·마셜제도 등)의 <strong>수출 통관량과 실제 수입 반영량의 격차가 60~100KMT(킬로톤)</strong>에 달함을 보여줍니다.</p>
-<p>이 격차의 정체: <strong>해상 전재(Transshipment)</strong>입니다. 어선이 항구에 들어오지 않고 공해에서 운반선에 옮겨 싣는 행위로, 어선의 어획 기록이 운반선에 옮겨질 때 누락·축소·재라벨링됩니다. 이를 IUU(Illegal, Unreported, Unregulated) 어업이라 부르며, 글로벌 참치의 <strong>약 20~30%가 IUU 의심</strong>(Pew Charitable Trusts 2024).</p>
-<p>왜 위험한가? <strong>2026~2028년 시행되는 규제 압박</strong> 때문입니다: ① EU CSDDD(공급망 실사 지침) — 공급망 내 IUU 1건만 입증되어도 EU 시장 진입 차단 ② 미 강제노동법(UFLPA) Withhold Release Order — IUU 의심 화물 미국 항구 압류 ③ 일본 SIMP(Seafood Import Monitoring Program) — 일본 시장도 확대 적용.</p>
-<p>리스크 매핑: 우리 소싱 파이프라인에 IUU 의심 원물이 단 1%라도 섞이면 월마트·ALDI·코스트코·이온 등 메이저 리테일러의 벤더 등록이 즉시 취소됩니다. 한 번 등록 취소되면 재진입에 최소 18~36개월 소요.</p>
-</div>`,
-          actionPlan: `<div>
-<p><strong>재정의</strong>: IUU 컴플라이언스는 더 이상 "ESG 비용"이 아니다. <strong>"채널 접근권의 license-to-operate fee"</strong>이며, 이 라이센스를 보유한 vendor만이 글로벌 modern trade에 입장 가능한 toll gate가 된다. 즉, 컴플라이언스 capex는 cost center가 아닌 <strong>moat-building investment</strong>로 재분류해야 한다.</p>
-<p><strong>3단계 실행</strong>:</p>
-<ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (6~12개월)</strong>: 전 어선·운반선에 <strong>VMS(Vessel Monitoring System) + AIS Tier-1 위성 추적 + EM(Electronic Monitoring) 카메라</strong> 3중 설치. 동시에 IBM Food Trust 또는 자체 hyperledger 기반 블록체인 이력 시스템 구축. 어획→운반→가공→수출의 전 단계가 해시값으로 immutable 기록되어 리테일러에게 API로 실시간 제공. 이 시스템 구축에 $25~40M 투자하면 향후 5년 IUU 적발 페널티(평균 $80~120M) 회피.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (12~24개월)</strong>: <strong>"IUU-clean Premium" 가격 책정 전략</strong>. 우리가 확보한 100% traceable 원물에 <strong>+8~12% 프리미엄</strong>을 책정하여 ALDI Premium·Whole Foods·일본 이온 톱밸류 채널에 공급. 일반 IUU-risk 원물 대비 30~50bp 마진 차이가 발생하며, 이는 컴플라이언스 capex의 18개월 회수 보장. 동시에 컴플라이언스 미달성 경쟁사를 가격에서 추월하는 <strong>regulatory squeeze 효과</strong>.</li>
-<li><strong>장기 (3~5년)</strong>: <strong>"Compliance-as-a-Service" 플랫폼 사업화</strong>. 우리가 구축한 traceability 시스템을 동남아 mid-tier 가공사 50~100곳에 SaaS 라이센싱 — 연 $200~500K/고객. 단순 컴플라이언스 도구가 아닌 <strong>"vendor onboarding documentation engine"</strong>으로 포지셔닝하여 글로벌 리테일러 admission process의 de facto standard화. 본업(가공)과 별개 SaaS 수익으로 multiple expansion(15x → 25x EV/EBITDA) 정당화. ICEYE·Spire Global과의 위성 데이터 파트너십으로 기술 우위 락업.</li>
-</ol>
-</div>`,
-          source: 'EU CSDDD · 미 강제노동법 (UFLPA) · MSC Chain of Custody',
         }}
       />
     </>
@@ -712,48 +657,6 @@ export default function TunaInsightsDashboard() {
 </ol>
 </div>`,
           source: 'Fisheries Research 2025 · MSC Chain of Custody',
-        }}
-      />
-
-      <WidgetCard
-        title="Insight 14. 하이브리드 포트폴리오 (비건/배양육)"
-        icon={TestTube2}
-        iconColor="#38bdf8"
-        pillar="S5"
-        cardDesc="식물성 + 세포배양 대체 참치 시장의 2018-2030 추세 — FIFO 한계가 만들어내는 푸드테크 옵션 가치 평가"
-        telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
-        termTooltip={{ term: 'FIFO', description: '어분 소모율(FIFO) 한계로 더 이상 어획 볼륨 확대가 불가능해진 틈을 타 폭발적으로 성장하는 비건(식물성)/세포배양 참치 시장 규모추이입니다.' }}
-        kpiPanel={[{ label: '대체 단백질 전망', value: '$1.59B', sub: '2030년 목표 (연 7.8% 성장)', trendColor: '#38bdf8' }]}
-        chartHeight={280}
-        chart={
-          <AreaChart data={mockAlternativeProtein} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-            <XAxis dataKey="연도" stroke="#94a3b8" />
-            <YAxis yAxisId="left" stroke="#38bdf8" />
-            <YAxis yAxisId="right" orientation="right" stroke="#3b82f6" domain={[10, 30]} />
-            <RechartsTooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
-            <Legend />
-            <Area yAxisId="left" type="monotone" dataKey="대체_참치_시장" name="식물성 참치 시장 (백만불)" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.6} />
-            <Line yAxisId="right" type="monotone" dataKey="평균_FIFO_비율" name="소모 어분 비율 (FIFO)" stroke="#3b82f6" strokeWidth={3} />
-          </AreaChart>
-        }
-        takeaway={{
-          situation: `<div>
-<p>"FIFO(Fish In, Fish Out)"란 양식 참치 1kg을 생산하기 위해 사료로 필요한 자연산 어분(fishmeal)이 몇 kg인가를 나타내는 지표입니다. 참치는 육식성이라 FIFO 비율이 평균 <strong>10~20:1</strong> — 즉 양식 참치 1kg 만들려고 자연산 멸치·정어리 10~20kg를 갈아 만든 사료를 먹입니다.</p>
-<p>이게 왜 문제? <strong>자연산 어분 자체가 제한된 자원</strong>입니다. 페루 안초비(글로벌 어분의 30%)·칠레 정어리(20%) 어획량이 ENSO·기후변화로 감소 중이고, 어분 가격이 2015년 톤당 $1,500에서 2024년 <strong>$2,800+</strong>로 폭등. 즉 양식이 늘수록 어분 매입원가가 올라가 양식 마진을 잠식하는 자기파괴 구조.</p>
-<p>탈출구: <strong>비건(식물성)·세포배양(cultivated)</strong> 대체 참치. 시장 규모는 $0.65B(2024)에서 <strong>$1.59B(2030)까지 CAGR 7.8% 성장</strong>(Good Food Institute). 주요 플레이어: BlueNalu(미국, cell-cultivated bluefin), Wildtype Foods(미국, cell-cultivated salmon→tuna), Good Catch(미국, plant-based), Ordinary Seafood(독일, plant-based).</p>
-<p>주의사항: 차트의 2018~2023은 실측, <strong>2026E·2030E는 forecast</strong>이며 점선 연결로 표시. 실제 도달은 cell-cultivated 단위 원가 하락 속도(현재 통조림 대비 50~100x)와 FDA·EFSA 승인 속도에 의존.</p>
-</div>`,
-          actionPlan: `<div>
-<p><strong>재정의</strong>: 대체 단백질은 "참치 산업의 위협"이 아니라 <strong>"FIFO trap에서 탈출할 수 있는 진화 경로(evolutionary exit)"</strong>다. 우리는 어획에 묶인 incumbent로 대체 단백질을 막을 게 아니라, <strong>우리가 그 시장의 leading shareholder가 되어 self-cannibalize</strong>해야 한다. Kodak이 디지털을 거부한 사례 vs Netflix가 DVD에서 streaming으로 self-cannibalize한 사례의 차이.</p>
-<p><strong>3단계 실행</strong>:</p>
-<ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>단기 (12개월)</strong>: 본사 직속 <strong>"CVC(Corporate Venture Capital) 조직 신설"</strong>. 초기 자본 $50~100M. cell-cultivated 수산물 스타트업 시리즈 A/B에 위치 잡기. 1차 후보: BlueNalu(시리즈 B 진행 중, valuation $500M~1B), Wildtype Foods(시리즈 B, $300~500M), Finless Foods. 1~2개 포지션, 각 5~10% equity. 동시에 plant-based 쪽은 Good Catch·Ordinary Seafood acquisition target으로 분석.</li>
-<li style="margin-bottom: 8px;"><strong>중기 (24~48개월)</strong>: <strong>"Hybrid SKU launch"</strong>. 자연산·양식 + 식물성 hybrid 통조림(예: 30% 자연산 가다랑어 + 70% 식물성 단백질) 출시. 가격은 자연산 통조림의 70%, 마진은 자연산 통조림의 1.2배. Z세대·밀레니얼 ESG 소비자 타겟. 동시에 본사 brand portfolio에 dedicated plant-based brand("Ocean Garden" 등) 신설하여 incumbent brand와 분리 운영. cross-cannibalization 방지.</li>
-<li><strong>장기 (5~10년)</strong>: <strong>"Cellular agriculture commercialization platform"</strong> 운영. cell-cultivated 기술이 단위 원가 break-even 도달(예상 2032~2035)하면 BlueNalu·Wildtype 등 보유 지분의 secondary 매각(IPO 또는 strategic acquirer에게 매각, 예상 IRR 12~18배). 동시에 우리는 <strong>"cellular ag manufacturing platform"</strong>으로 전환 — 우리 가공 라인의 30%를 bioreactor로 retrofit하여 OEM 위탁생산. Foxconn이 Apple iPhone OEM으로 진화한 모델 차용. 본업 자체가 "어획·통조림 가공"에서 "cellular protein manufacturing"으로 paradigm shift. JP Morgan Healthcare/Industrials 합산 cross-sector multiple(20~30x EV/EBITDA)로 valuation rerate.</li>
-</ol>
-</div>`,
-          source: 'Good Food Institute · BlueNalu·Wildtype Foods CVC 동향 (2018-2030)',
         }}
       />
 

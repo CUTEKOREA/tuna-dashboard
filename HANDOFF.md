@@ -14,6 +14,12 @@
 > - **P4-A (방금 처리)**: US 위젯 4개(UsTunaImport/MarketShare/PolicyImpact/PollockDetour) cardDesc에 USITC DataWeb / USTR 출처 추가 명시.
 > - **P4-B 결과 (보류 결정)**: S5 ESG STATIC 14개 SYNCED 강제 승격은 P0-2(SANCTIONS_API_LIVE 허위 라벨) 함정 재발 위험으로 거부. STATIC = 정직한 라벨. 실제 분기 갱신 가능한 위젯은 2~3개뿐 (TunaUpcyclingWidgets, TunaEsgRiskRadar). 라이브 API 연동은 별도 작업으로 분리.
 > - **다음 단계**: 라이브 API 연동 R&D (S5 ESG 분기 갱신 메커니즘) 검토 → 라이브 배포는 사용자 명시 요청 시에만.
+> - **2026-05-28 추가 — 신뢰도 위젯 3건 정리 (옵션 C 적용)**:
+>   - `UsPollockDetourWidget` value-chain에서 제거 (스코프 불일치, [PollockDashboard.tsx](components/PollockDashboard.tsx)에 이미 존재해 안전 분리)
+>   - `TunaInsightsDashboard.tsx` Insight 6 "다크 트레이딩 의심 경로" 삭제 (특정 국가 IUU "의심" 시각화의 법적 리스크)
+>   - `TunaInsightsDashboard.tsx` Insight 15 (재번호 후 14 위치) "하이브리드 포트폴리오 (비건/배양육)" 삭제 (2030~2050 미래 시나리오 mock, C레벨 의사결정 가치 낮음)
+>   - Dead code 정리: `mockDarkTrading`/`mockAlternativeProtein` 상수 + `ShieldAlert`/`TestTube2` 미사용 import 제거
+>   - 위젯 총수 120 → 117 (S4 −1, S5 −1, S3 −1)
 
 > 🐙 **2026-05-28 — 낙지 대시보드 Phase 2 (8 위젯 + customBody collapse 버그 수정 + 수동 배포 우회)** [CC]:
 > - **차트 collapse 버그 수정** ([components/OctopusDomesticCliff.tsx](components/OctopusDomesticCliff.tsx), [OctopusFTAQuarterly.tsx](components/OctopusFTAQuarterly.tsx)): WidgetCard `chart` prop은 `SafeResponsiveContainer` 자동 래핑이나 `customBody`는 raw 패스 — 두 위젯이 customBody 내부에 일반 `ResponsiveContainer` 8곳을 직접 써서 width=0 collapse → 빈 박스. 모두 `SafeResponsiveContainer`(200ms debounce + 0×0 무시 + ResizeObserver) 로 일괄 치환. commit `e23ba94`.

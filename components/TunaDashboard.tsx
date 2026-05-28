@@ -73,7 +73,6 @@ import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './Tun
 import UsTunaImportWidget from './UsTunaImportWidget';
 import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
 import UsPolicyImpactWidget from './UsPolicyImpactWidget';
-import UsPollockDetourWidget from './UsPollockDetourWidget';
 import {
   AtunaIoPerfectStormWidget,
   AtunaBangkokPriceWidget,
@@ -852,9 +851,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <WitsTradeFlowWidget />
               <TunaHSClassifier />
               <MofTradeBalanceWidget />
-              {/* 미국 인구조사국 무역 통계 — 참치캔 공급국·명태 우회 */}
+              {/* 미국 인구조사국 무역 통계 — 참치캔 공급국 (명태 우회는 PollockDashboard로 분리) */}
               <UsTunaMarketShareWidget />
-              <UsPollockDetourWidget />
 
               {/* 3. 전략적 물류 거점 (PNG 등) */}
               <TunaPngHubStrategy />
