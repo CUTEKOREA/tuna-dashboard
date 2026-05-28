@@ -20,13 +20,17 @@ import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import OctopusFTAQuarterly from './OctopusFTAQuarterly';
 import OctopusDomesticCliff from './OctopusDomesticCliff';
+import {
+  OctopusChannelMarginMatrix, OctopusColdChainYield, OctopusPriceTransmission, OctopusCephalopodElasticity,
+  OctopusAquacultureRace, OctopusTacCountdown, OctopusFtaTariffMatrix, OctopusSstCorrelation,
+} from './OctopusPhase2Widgets';
 
 const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
-  S1: [OctopusDomesticCliff],
-  S2: [],
-  S3: [OctopusFTAQuarterly],
-  S4: [],
-  S5: [],
+  S1: [OctopusDomesticCliff, OctopusSstCorrelation],
+  S2: [OctopusChannelMarginMatrix, OctopusColdChainYield],
+  S3: [OctopusFTAQuarterly, OctopusFtaTariffMatrix],
+  S4: [OctopusPriceTransmission, OctopusCephalopodElasticity],
+  S5: [OctopusAquacultureRace, OctopusTacCountdown],
 };
 
 /* ─── Telemetry Badge (참치 패턴 동기화) ─── */
