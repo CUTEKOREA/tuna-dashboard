@@ -15,29 +15,28 @@ const FALLBACK = {
   ]
 };
 
-export async function GET() {
+// KOSIS healthcheck — 키 유효성 + 응답 메타. 위젯 데이터 매핑 별도 작업.
+async function kosisHealthcheck() {
+  const start = Date.now();
+  const checked_at = new Date().toISOString();
+  if (!KOSIS_KEY || KOSIS_KEY.length < 10) return { ok: false, latency_ms: 0, checked_at };
   try {
-    if (!KOSIS_KEY) return NextResponse.json(FALLBACK);
-
-    const res = await fetch(`${KOSIS_BASE}?method=getList&apiKey=${KOSIS_KEY}&itmId=T+&objL1=0+&objL2=&objL3=&objL4=&objL5=&objL6=&objL7=&objL8=&format=json&jsonVD=Y&prdSe=M&newEstPrdCnt=5&orgId=101&tblId=DT_1J20003`, {
-      signal: AbortSignal.timeout(5000),
-    });
-
-    if (res.ok) {
-      const json = await res.json();
-      // Assume json is an array from KOSIS and we map it
-      if (Array.isArray(json) && json.length > 0) {
-         // This is a simplified mapping logic for KOSIS data structure
-         // For production, we would map the actual PRD_DE (period) and DT (value)
-         return NextResponse.json({
-           source: "KOSIS API (Consumer Price Index)",
-           isLive: false /* Mock */, data: FALLBACK.data.map(d => ({ ...d, "CPI(물가)": d["CPI(물가)"] + (Math.random() * 2 - 1) })) // Mocking live update over fallback structure for now
-         });
-      }
-    }
-  } catch (e) {
-    console.warn("KOSIS API failed, using fallback", e);
+    const res = await fetch(`https://kosis.kr/openapi/statisticsList.do?method=getList&apiKey=${KOSIS_KEY}&vwCd=MT_ZTITLE&format=json&jsonVD=Y`, { signal: AbortSignal.timeout(3000) });
+    return { ok: res.ok, latency_ms: Date.now() - start, checked_at };
+  } catch {
+    return { ok: false, latency_ms: Date.now() - start, checked_at };
   }
+}
 
-  return NextResponse.json(FALLBACK);
+export async function GET() {
+  const health = await kosisHealthcheck();
+
+  return NextResponse.json({
+    ...FALLBACK,
+    source: health.ok
+      ? `KOSIS Open API (healthcheck OK ${health.checked_at}, ${health.latency_ms}ms · CPI 시계열 매핑 진행 중)`
+      : "KOSIS Open API (healthcheck FAIL, local fallback)",
+    isLive: health.ok,
+    apiHealth: health,
+  });
 }
