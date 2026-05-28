@@ -25,7 +25,7 @@ export async function GET(req: Request) {
     const today = new Date().toISOString().split('T')[0];
     targetUrl = `https://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList&p_product_cls_code=02&p_regday=${today}&p_convert_kg_yn=Y&p_item_category_code=600&p_cert_key=${kamisKey}&p_cert_id=${kamisId}&p_returntype=json`;
   } else if (type === 'kcs') {
-    const kcsKey = process.env.DATA_GO_KR_NEW_KEY;
+    const kcsKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
     const today = new Date();
     const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
     const searchBgnDe = `${lastMonth.getFullYear()}${String(lastMonth.getMonth() + 1).padStart(2, '0')}`;

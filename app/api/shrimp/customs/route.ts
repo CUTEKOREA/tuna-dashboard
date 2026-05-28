@@ -35,7 +35,7 @@ async function fetchYearData(apiKey: string, year: string) {
 export async function GET(request: Request) {
   try {
     const data = await getCachedData('kcs_shrimp_import', async () => {
-      const apiKey = process.env.DATA_GO_KR_NEW_KEY;
+      const apiKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
       if (!apiKey) throw new Error("KCS_API_KEY is not defined");
       
       // Fetch 2024, 2025, 2026 concurrently

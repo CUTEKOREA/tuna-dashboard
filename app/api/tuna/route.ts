@@ -11,7 +11,7 @@ export const revalidate = 300; // 5분 캐시
 
 // 관세청 수출입무역통계 API (HS Code 1604.14 = 참치 조제품)
 async function fetchKCSImportPrice(): Promise<{ value: string; trend: string; desc: string } | null> {
-  const key = process.env.DATA_GO_KR_NEW_KEY;
+  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
   if (!key) return null;
   try {
     const now = new Date();
@@ -44,7 +44,7 @@ async function fetchKCSImportPrice(): Promise<{ value: string; trend: string; de
 
 // 관세청 → 총 수입액 (USD)
 async function fetchKCSImportVolume(): Promise<{ value: string; trend: string; desc: string } | null> {
-  const key = process.env.DATA_GO_KR_NEW_KEY;
+  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
   if (!key) return null;
   try {
     const now = new Date();

@@ -36,7 +36,7 @@ async function fetchWithProxy(targetUrl: string, revalidateTime: number) {
 
 // --- KCS: 참치 수입단가 (HS 160414) ---
 async function fetchKCSTunaPrice(): Promise<TickerItem | null> {
-  const key = process.env.DATA_GO_KR_NEW_KEY;
+  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
   if (!key) return null;
   try {
     const now = new Date();
@@ -152,7 +152,7 @@ async function fetchECOSExchangeRate(): Promise<TickerItem | null> {
 // --- KCS: 참치캔 수출단가 (HS 160414) ---
 // Replaces KAMIS as KAMIS does not track Canned Tuna.
 async function fetchKCSTunaExport(): Promise<TickerItem | null> {
-  const key = process.env.DATA_GO_KR_NEW_KEY;
+  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
   if (!key) return null;
   try {
     const now = new Date();
