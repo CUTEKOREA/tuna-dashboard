@@ -7,7 +7,7 @@ import { parseDataGoKrXml, safeNum } from "../../_shared/parsers";
  * HS Code: 0303899060 (냉동 갈치)
  */
 
-const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || "";
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 // 공공데이터포털 관세청 (nitemtrade 품목별 국가별, HS 10자리)
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 

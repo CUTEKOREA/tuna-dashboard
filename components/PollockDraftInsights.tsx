@@ -84,7 +84,7 @@ export default function PollockDraftInsights() {
         title="전체 글로벌 메가 트렌드 (1950~2024년 생산량 추이)"
         icon={Globe}
         pillar="S1"
-        telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+        telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
         cardDesc="지난 75년간 명태의 전 세계 생산량 변동 시계열"
         termTooltip={{ term: "Global Megatrend", description: "지난 75년간 명태의 전 세계 생산량 변동 시계열" }}
         chart={
@@ -120,7 +120,7 @@ export default function PollockDraftInsights() {
         title="대한민국 명태 자급률 vs 수입 의존도 시계열 분석"
         icon={ShieldCheck}
         pillar="S1"
-        telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+        telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
         cardDesc="국산 원양/연근해산 고갈 현상 및 100%에 달하는 수입 의존도 교차점 투영"
         termTooltip={{ term: "Self-Sufficiency vs Import", description: "국산 원양/연근해산 고갈 현상 및 100%에 달하는 수입 의존도 교차점 투영" }}
         chart={
@@ -151,7 +151,7 @@ export default function PollockDraftInsights() {
         title="최근 5개년 수입 블랙홀 국가 탐지 (2019-2023)"
         icon={Flag}
         pillar="S3"
-        telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+        telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
         cardDesc="가장 공격적으로 명태 물량을 흡수하는 상위 국가들의 시계열 동향"
         termTooltip={{ term: "Import Blackholes", description: "가장 공격적으로 명태 물량을 흡수하는 상위 국가들의 시계열 동향" }}
         chart={
@@ -181,7 +181,7 @@ export default function PollockDraftInsights() {
         title="마진율(Spread) 1위 2차 가공 국가 부가가치 스캔"
         icon={TrendingUp}
         pillar="S2"
-        telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+        telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
         cardDesc="수입 단가 대비 수출 단가의 차액을 극대화하여 2차 가공 이윤을 창출하는 승자 목록"
         termTooltip={{ term: "Spread Winners", description: "수입 단가 대비 수출 단가의 차액을 극대화하여 2차 가공 이윤을 창출하는 승자 목록" }}
         chart={
@@ -211,7 +211,7 @@ export default function PollockDraftInsights() {
         title="국가별 평균 수입 단가 산출을 통한 등급별 시장 분석"
         icon={Navigation}
         pillar="S4"
-        telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+        telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
         cardDesc="Top 15 수입국의 톤당 매입 단가를 분석하여 프리미엄 시장과 대중 매스 시장 분류"
         termTooltip={{ term: "Price Tiers by Country", description: "Top 15 수입국의 톤당 매입 단가를 분석하여 프리미엄 시장과 대중 매스 시장 분류" }}
         chart={

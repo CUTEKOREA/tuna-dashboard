@@ -7,7 +7,7 @@ import { parseDataGoKrXml, safeNum } from "../_shared/parsers";
  * HS Code: 030367 (냉동 명태)
  */
 
-const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || "";
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 
 // Fallback: 2024년 검증 완료 데이터 (관세청 파싱 결과)

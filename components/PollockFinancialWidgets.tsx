@@ -13,7 +13,7 @@ export function Widget17_OilMargin() {
       icon={Zap}
       iconColor="var(--color-danger)"
       pillar="S4"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       cardDesc="연료비가 전체 어선의 마진 단가를 초과 잠식시켜버리는 회계 자본 잠식회사 곡선"
       chart={
 <ComposedChart data={data}>
@@ -46,7 +46,7 @@ export function Widget18_FXMargin() {
       icon={DollarSign}
       iconColor="#8b5cf6"
       pillar="S4"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       cardDesc="원물 달러매입(USD) 수입 결제 구조하에서 달러 고환율에 파괴되는 국내 OPM"
       chart={
 <LineChart data={data}>
@@ -78,7 +78,7 @@ export function Widget19_CollagenSpinoff() {
       icon={Rocket}
       iconColor="var(--color-success)"
       pillar="S4"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       cardDesc="수산 폐기물 쓰레기로 버려지던 명태 어피(껍질)의 영업 이익 하드 펌핑 신화"
       chart={
 <BarChart data={data}>
@@ -110,7 +110,7 @@ export function Widget20_Portfolio2030() {
       icon={BarChart2}
       iconColor="#38bdf8"
       pillar="S4"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       cardDesc="사양화되는 기존 비즈니스와 캐시카우를 대체할 블루오션의 Bubble Map"
       chart={
 <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
