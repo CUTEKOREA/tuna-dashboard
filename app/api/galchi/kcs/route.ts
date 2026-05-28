@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { parseDataGoKrXml, safeNum } from "@/app/api/_shared/parsers";
 
 /**
  * 갈치 관세청 수입 데이터 API
@@ -7,7 +8,7 @@ import { NextResponse } from "next/server";
  */
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || "";
-// 공공데이터포털 관세청 (Newtrade 수출입총괄). DATA_GO_KR_NEW_KEY 사용
+// 공공데이터포털 관세청 (nitemtrade 품목별 국가별, HS 10자리)
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 
 // Fallback: 2024년 검증 완료 데이터 (관세청 XML 31파일 파싱 결과)
@@ -74,43 +75,43 @@ export async function GET(request: Request) {
 
     if (res.ok) {
       const text = await res.text();
-      if (text && !text.includes("Forbidden") && !text.includes("error")) {
-        try {
-          const json = JSON.parse(text);
-          const items = json?.items || json?.response?.body?.items?.item || [];
+      const parsed = parseDataGoKrXml(text);
+      if (parsed.ok && parsed.items.length > 0) {
+        let totalWgt = 0, totalDlr = 0, cnWgt = 0, cnDlr = 0;
+        const byCountry: Record<string, { name: string; volume: number; value: number }> = {};
 
-          let totalWgt = 0, totalDlr = 0, cnWgt = 0, cnDlr = 0;
-          const byCountry: Record<string, { volume: number; value: number }> = {};
+        for (const item of parsed.items) {
+          // "총계" row 제외
+          if (item.year === "총계" || item.statKor === "총계") continue;
+          const wgt = safeNum(item.impWgt);
+          const dlr = safeNum(item.impDlr);
+          const cc = item.statCd || "XX";
+          const ccName = item.statCdCntnKor1 || cc;
 
-          for (const item of items) {
-            const wgt = parseInt(item.wgt || item.impWgt || "0");
-            const dlr = parseInt(item.dlr || item.impDlr || "0");
-            const cc = item.cntrCd || item.cntyCd || "XX";
+          totalWgt += wgt;
+          totalDlr += dlr;
+          if (cc === "CN") { cnWgt += wgt; cnDlr += dlr; }
 
-            totalWgt += wgt;
-            totalDlr += dlr;
-            if (cc === "CN") { cnWgt += wgt; cnDlr += dlr; }
+          if (!byCountry[cc]) byCountry[cc] = { name: ccName, volume: 0, value: 0 };
+          byCountry[cc].volume += wgt;
+          byCountry[cc].value += dlr;
+        }
 
-            if (!byCountry[cc]) byCountry[cc] = { volume: 0, value: 0 };
-            byCountry[cc].volume += wgt;
-            byCountry[cc].value += dlr;
-          }
+        const cnPct = totalWgt > 0 ? Math.round(cnWgt / totalWgt * 1000) / 10 : 0;
+        const cifPerKg = totalWgt > 0 ? Math.round(totalDlr / totalWgt * 100) / 100 : 0;
 
-          const cnPct = totalWgt > 0 ? Math.round(cnWgt / totalWgt * 1000) / 10 : 0;
-          const cifPerKg = totalWgt > 0 ? Math.round(totalDlr / totalWgt * 100) / 100 : 0;
-
-          return NextResponse.json({
-            source: `관세청 실시간 (${year}${month ? "-" + month : ""})`,
-            isLive: true,
-            lastUpdated: new Date().toISOString(),
-            summary: { totalWgt, totalDlr, cnWgt, cnDlr, cnPct, cifPerKg },
-            byOrigin: Object.entries(byCountry)
-              .map(([cc, d]) => ({ origin: cc, volume: d.volume, value: d.value, share: Math.round(d.volume / totalWgt * 1000) / 10 }))
-              .sort((a, b) => b.volume - a.volume)
-              .slice(0, 10),
-            yearly: FALLBACK_DATA.yearly, // 시계열은 fallback 유지
-          });
-        } catch { /* parse error → fallback */ }
+        return NextResponse.json({
+          source: `관세청 nitemtrade 실시간 HS 0303899060 (${year}${month ? "-" + month : ""}, ${parsed.items.length}건)`,
+          isLive: true,
+          lastUpdated: new Date().toISOString(),
+          summary: { totalWgt, totalDlr, cnWgt, cnDlr, cnPct, cifPerKg },
+          byOrigin: Object.entries(byCountry)
+            .map(([cc, d]) => ({ origin: d.name, volume: d.volume, value: d.value, share: totalWgt > 0 ? Math.round(d.volume / totalWgt * 1000) / 10 : 0 }))
+            .sort((a, b) => b.volume - a.volume)
+            .slice(0, 10),
+          yearly: FALLBACK_DATA.yearly, // 시계열은 fallback 유지
+          apiHealth: { ok: true, resultCode: parsed.resultCode, items_count: parsed.items.length },
+        });
       }
     }
   } catch (e) {

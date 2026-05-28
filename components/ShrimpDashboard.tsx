@@ -233,7 +233,7 @@ export default function ShrimpDashboard() {
   const kpiKeys = Object.keys(kpis);
 
   const displayWidgets = widgets?.map((w: any) => {
-    let newW = { ...w };
+    const newW = { ...w };
     if (newW.title) {
        newW.title = newW.title.replace(/\s*\([A-Za-z\s]+\)/g, '');
     }

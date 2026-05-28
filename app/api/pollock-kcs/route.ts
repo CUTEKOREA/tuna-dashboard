@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { parseDataGoKrXml, safeNum } from "@/app/api/_shared/parsers";
 
 /**
  * 명태 관세청 수입 데이터 API
@@ -68,6 +69,37 @@ export async function GET(request: Request) {
 
     if (res.ok) {
       const text = await res.text();
+      const parsed = parseDataGoKrXml(text);
+      if (parsed.ok && parsed.items.length > 0) {
+        let totalWgt = 0, totalDlr = 0, ruWgt = 0, ruDlr = 0;
+        const byCountry: Record<string, { name: string; volume: number; value: number }> = {};
+        for (const item of parsed.items) {
+          if (item.year === "총계" || item.statKor === "총계") continue;
+          const wgt = safeNum(item.impWgt);
+          const dlr = safeNum(item.impDlr);
+          const cc = item.statCd || "XX";
+          const ccName = item.statCdCntnKor1 || cc;
+          totalWgt += wgt;
+          totalDlr += dlr;
+          if (cc === "RU") { ruWgt += wgt; ruDlr += dlr; }
+          if (!byCountry[cc]) byCountry[cc] = { name: ccName, volume: 0, value: 0 };
+          byCountry[cc].volume += wgt;
+          byCountry[cc].value += dlr;
+        }
+        const ruPct = totalWgt > 0 ? Math.round(ruWgt / totalWgt * 1000) / 10 : 0;
+        const cifPerKg = totalWgt > 0 ? Math.round(totalDlr / totalWgt * 100) / 100 : 0;
+        return NextResponse.json({
+          source: `관세청 nitemtrade 실시간 HS 030367 (${year}${month ? "-" + month : ""}, ${parsed.items.length}건)`,
+          isLive: true,
+          lastUpdated: new Date().toISOString(),
+          summary: { totalWgt, totalDlr, ruWgt, ruDlr, ruPct, cifPerKg },
+          byOrigin: Object.entries(byCountry).map(([cc, d]) => ({ origin: d.name, volume: d.volume, value: d.value, share: totalWgt > 0 ? Math.round(d.volume / totalWgt * 1000) / 10 : 0 })).sort((a, b) => b.volume - a.volume).slice(0, 10),
+          yearly: FALLBACK_DATA.yearly,
+          apiHealth: { ok: true, resultCode: parsed.resultCode, items_count: parsed.items.length },
+        });
+      }
+      // 기존 JSON 파싱 시도 (혹시 모를 fallback)
+      const _legacy_text = text;
       if (text && !text.includes("Forbidden") && !text.includes("error")) {
         try {
           const json = JSON.parse(text);

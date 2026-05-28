@@ -268,7 +268,7 @@ export default function ChickenDashboard() {
 
   const renderChart = (w: any) => {
     if (!w) return null;
-    let d = w.data;
+    const d = w.data;
     
     if (!d?.length) return (
       <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>

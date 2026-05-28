@@ -43,7 +43,7 @@ const renderCashewWidget = (opts: {
 
 const formatXAxis = (tickItem: any) => {
   if (!tickItem || typeof tickItem !== 'string') return tickItem;
-  let formatted = tickItem.replace(/\s*\([A-Za-z\s']+\)\s*/g, '');
+  const formatted = tickItem.replace(/\s*\([A-Za-z\s']+\)\s*/g, '');
   if (formatted.length > 7) {
     return formatted.substring(0, 7) + '..';
   }

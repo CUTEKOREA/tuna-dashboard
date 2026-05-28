@@ -418,8 +418,8 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
   const accentColor = '#38bdf8';
   
   const methodologyText = widget.logic || widget.methodology || '';
-  let situation = widget.sit || widget.situation || widget.desc || '';
-  let takeaway = widget.strat || widget.tak || widget.takeaway || '';
+  const situation = widget.sit || widget.situation || widget.desc || '';
+  const takeaway = widget.strat || widget.tak || widget.takeaway || '';
 
   return (
     <div className={styles.insightCard}>

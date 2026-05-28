@@ -124,7 +124,7 @@ export default function PretextTunaText({
         // We find the chord length at this specific y.
         const dy = y - localTunaY;
         
-        let availableSegments: {x: number, width: number}[] = [];
+        const availableSegments: {x: number, width: number}[] = [];
         
         if (Math.abs(dy) < ERY) {
           // Line intersects the tuna!

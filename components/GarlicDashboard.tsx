@@ -37,7 +37,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
             <span style={{ fontWeight: 600 }}>
               {(() => {
                 if (typeof entry.value !== 'number') return entry.value;
-                let valStr = entry.value.toLocaleString();
+                const valStr = entry.value.toLocaleString();
                 const n = (entry.name || '').toLowerCase();
                 const l = (label || '').toString().toLowerCase();
                 if (n.includes('margin') || n.includes('비중') || n.includes('마진') || n.includes('%') || l.includes('마진') || n.includes('growth') || n.includes('효율성') || n.includes('의존도') || n.includes('성장률') || n.includes('변동률')) {
@@ -189,7 +189,7 @@ export default function GarlicDashboard() {
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />;
   const xFmt = (v: any): string => {
     if (typeof v !== 'string') return v;
-    let s = v.replace(/\([^)]*\)/g, '').trim();
+    const s = v.replace(/\([^)]*\)/g, '').trim();
     return s;
   };
   const xAxisTextProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 }, tickFormatter: xFmt, minTickGap: 20 };

@@ -66,7 +66,7 @@ const BASE_PACIFIC_VESSELS = [
 ];
 
 const PACIFIC_VESSELS = BASE_PACIFIC_VESSELS.map((v, i) => {
-  const seedRandom = (seed: number) => { let x = Math.sin(seed) * 10000; return x - Math.floor(x); };
+  const seedRandom = (seed: number) => { const x = Math.sin(seed) * 10000; return x - Math.floor(x); };
   const totalLoad = parseInt(v.load.split('(')[0].replace(/,/g, '')) || 0;
   const holds: { id: string, capacity: number, filled: number, species: string }[] = [];
   let remaining = totalLoad;

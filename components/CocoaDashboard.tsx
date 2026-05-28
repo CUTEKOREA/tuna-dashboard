@@ -98,7 +98,7 @@ export default function CocoaDashboard() {
     const isForecast = d.month.includes('(F)');
     const nextIsForecast = i < arr.length - 1 && arr[i+1].month.includes('(F)');
     let priceForecast = isForecast ? d.Price : null;
-    let priceHist = !isForecast ? d.Price : null;
+    const priceHist = !isForecast ? d.Price : null;
     if (!isForecast && nextIsForecast) {
       priceForecast = d.Price;
     }

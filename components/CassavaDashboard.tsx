@@ -129,10 +129,10 @@ export default function CassavaDashboard() {
 
   const renderChart = (w: any) => {
     if (!w) return null;
-    let d = w.data;
+    const d = w.data;
     if (!d?.length && w.id !== 'w04') return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
-    const xFmt = (v: any) => { if (typeof v !== 'string') return v; let s = v.replace(/\([^)]*\)/g, '').trim(); return s.length > 6 ? s.slice(0,6)+'..' : s; };
+    const xFmt = (v: any) => { if (typeof v !== 'string') return v; const s = v.replace(/\([^)]*\)/g, '').trim(); return s.length > 6 ? s.slice(0,6)+'..' : s; };
     const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} angle={d?.length > 6 ? -20 : 0} textAnchor={d?.length > 6 ? "end" : "middle"} height={d?.length > 6 ? 40 : 30} tickFormatter={xFmt} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 

@@ -24,22 +24,22 @@ export default function PriceLagSimulator() {
     const releaseStart = accumulateStart + Math.floor(lagMonths * 0.8);
     const releaseEnd = accumulateEnd + lagMonths;
 
-    let chartData = [];
+    const chartData = [];
     let excessMarginAcc = 0;
 
     for(let i=0; i<24; i++) {
-        let b2cIndex = i - lagMonths;
+        const b2cIndex = i - lagMonths;
         // B2C price reacts slowly (Rockets and Feathers). Downward is slower by 'lagMonths'
-        let baseCost = b2cIndex >= 0 ? rawCosts[b2cIndex] : rawCosts[0];
+        const baseCost = b2cIndex >= 0 ? rawCosts[b2cIndex] : rawCosts[0];
         
         // Convert to retail index (baseline 100)
-        let cpi = 100 + ((baseCost - 1380) / 720) * 50; 
+        const cpi = 100 + ((baseCost - 1380) / 720) * 50; 
         
         // Calculate theoretical margin spread
         // Standard normal spread would be 0 (Cost correlates exactly to CPI)
         // Excess spread happens when CPI is high, but Cost is low.
-        let standardCpiBasedOnCost = 100 + ((rawCosts[i] - 1380) / 720) * 50;
-        let spread = cpi - standardCpiBasedOnCost;
+        const standardCpiBasedOnCost = 100 + ((rawCosts[i] - 1380) / 720) * 50;
+        const spread = cpi - standardCpiBasedOnCost;
         if (spread > 0) excessMarginAcc += spread;
 
         chartData.push({
