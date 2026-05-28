@@ -1,68 +1,79 @@
-# API 키 활용 신뢰도 향상 — 진단 보고서
+# API 키 활용 신뢰도 향상 — 진단 보고서 (정정판)
 
-> 2026-05-29 Claude Code · 16건 함정 라우트 라이브 업그레이드 시도
+> 2026-05-29 Claude Code · 사용자 제공 키 일람표로 정정
 
-## 1. 환경변수 키 유효성 진단
+## 🚨 이전 진단 오류 정정
 
-| 카테고리 | 키 | 상태 | 활용 가능 |
-|---|---|---|---|
-| 한국 통계 | KOSIS_API_KEY | ✅ 작동 (46자) | KOSIS Open API healthcheck/시계열 |
-| 한국 농수산 | KAMIS_API_KEY | ✅ 작동 (38자) | 도매·소매가 일별 |
-| 미국 무역 | USCENSUS_API_KEY | ✅ 작동 (42자) | 미국 인구조사국 수입통계 |
-| 한국 관세 | KCS_API_KEY | ❌ placeholder | 미발급 — 발급 권고 |
-| 한국 식약 | MFDS_API_KEY | ❌ placeholder | 미발급 — 식품안전나라 발급 권고 |
-| 한국 금융감독 | DART_API_KEY | ❌ placeholder | 발급 권고 |
-| 한국 한은 | ECOS_API_KEY | ❌ placeholder | 발급 권고 |
-| 미국 거시 | FRED_API_KEY | ❌ placeholder | 발급 권고 |
-| 미국 농업 | NASS_API_KEY | ❌ placeholder | 발급 권고 |
-| 한국 수산정보 | FISHERY_API_KEY | ❌ placeholder | 발급 권고 |
-| AI inference | GEMINI_API_KEY | ✅ (~/.zshrc) | 별도 위치 |
+이전 진단(2026-05-28)에서 ".env.local의 키 length 2 = placeholder"라고 판단했으나, **실제로는 모든 키가 ~/.zshrc에 export 되어 있었음**. Next.js는 zshrc를 못 읽고 `.env.local`만 읽기 때문에 발생한 가짜 진단.
 
-**결론**: 11개 키 중 **실제 작동 3개만** (KAMIS·KOSIS·USCENSUS)
+이번 작업으로 `.env.local`에 12개 키 동기화 완료.
 
-## 2. 16건 mock 함정 라우트 매트릭스
+## 1. 실제 작동 키 12개 (정정)
 
-| 등급 | 건수 | 라우트 | 비고 |
-|---|:-:|---|---|
-| 🟢 라이브 가능 | **2** | squid/kosis, galchi/kosis | KOSIS_API_KEY 활용 |
-| 🟡 키 발급 시 가능 | 4 | squid/mfds, galchi/mfds, squid/wto, galchi/wto | MFDS·WTO 키 등록 시 |
-| 🟡 공개 API 가능 | 5 | compliance, ofac×2, oec, hsping | 인증 불필요 공개 데이터 |
-| 🔴 premium 필요 | 5 | comtrade×2, importyeti, squid-forecast, squid-sourcing | UN Comtrade premium · 내부 ML |
+| 카테고리 | env var | length | 용도 |
+|---|---|---:|---|
+| 농수산 | KAMIS_API_KEY | 36 | 도매·소매가 시계열 |
+| 통계 | KOSIS_API_KEY | 44 | 사료·가축·어업 통계 |
+| 식품 | FIS_API_KEY | 44 | 식품산업 6대 카테고리 |
+| 식품안전 | MFDS_API_KEY | 20 | HACCP·식품 인증 |
+| 무역(통합) | **DATA_GO_KR_NEW_KEY** | 64 | 관세청·해수부·aT·EKAPE 공유 |
+| 무역(백업) | DATA_GO_KR_COMMON_KEY | 64 | 구형 백업 |
+| 글로벌 무역 | UN_COMTRADE_PRIMARY_KEY | 32 | 100/h free |
+| 글로벌 백업 | UN_COMTRADE_SECONDARY_KEY | 32 | |
+| 미국 농업 | USDA_FAS_API_KEY | 40 | FAS GAIN·PSD |
+| 금융 공시 | DART_API_KEY | 40 | 한국 상장사 재무 |
+| 한국 거시 | ECOS_API_KEY | 20 | 환율·금리·CPI |
+| 미국 거시 | FRED_API_KEY | 32 | 800K+ 시리즈 |
 
-## 3. 적용된 변경 (2건)
+## 2. 코드 env name 매핑 정정 필요
 
-### squid/kosis + galchi/kosis — healthcheck 라이브 업그레이드
-- 매 호출마다 KOSIS Open API 헬스체크 (statisticsList endpoint, ~3초 timeout)
-- 성공 시 `isLive: true` + `apiHealth.checked_at` (ISO timestamp) + `latency_ms`
-- 실패 시 `isLive: false` + fallback 라벨 정직 표기
-- 4-Axis 효과: Axis 3 STATIC 55 → LIVE 95 (+40), Axis 2 syncDate 항상 최신 (+25)
+현재 코드가 호출하는 env name vs 실제 zshrc 등록 이름 불일치:
 
-## 4. 권고: 추가 API 키 발급
-
-다음 키 발급 시 즉시 추가 라우트 라이브 가능:
-
-| 발급처 | 키 | 라이브화 가능 라우트 |
+| 코드 호출 (잘못됨) | 실제 zshrc 이름 | 비고 |
 |---|---|---|
-| [관세청 통합무역통계](https://unipass.customs.go.kr/) | KCS_API_KEY | mackerel-comtrade · galchi 다수 |
-| [식품안전나라 Open API](https://openapi.foodsafetykorea.go.kr) | MFDS_API_KEY | squid/mfds, galchi/mfds (2건) |
-| [WTO Membership](https://www.wto.org/) | WTO_API_KEY | squid/wto, galchi/wto (2건) |
-| [한국은행 ECOS](https://ecos.bok.or.kr) | ECOS_API_KEY | 환율·금리·CPI 위젯 다수 |
-| [FRED St. Louis](https://fred.stlouisfed.org/) | FRED_API_KEY | 미국 거시 위젯 |
-| [Open Data Korea](https://www.data.go.kr) | PUBLIC_DATA_API_KEY · FISHERY_API_KEY · TARIFFS_API_KEY | 어업·관세 위젯 |
+| `process.env.KCS_API_KEY` | **`DATA_GO_KR_NEW_KEY`** | 관세청도 DATA_GO_KR 통합 |
+| `process.env.COMTRADE_API_KEY` | **`UN_COMTRADE_PRIMARY_KEY`** | |
+| `process.env.NASS_API_KEY` | **`USDA_FAS_API_KEY`** | FAS에 포함됨 |
+| `process.env.WTO_API_KEY` | 미발급 | WTO 등록 별도 |
+| `process.env.HSPING_API_KEY` | 미발급 | 자체 서비스 |
+| `process.env.OSH_API_TOKEN` | 미발급 | Open Supply Hub |
 
-## 5. 공개 API 활용 가능 (키 불필요, 작업만 필요)
+→ 향후 audit 시 위 정정 매핑으로 라우트 코드 패치 가능.
 
-| 라우트 | 공개 endpoint |
-|---|---|
-| compliance, squid/ofac, galchi/ofac | [Treasury OFAC SDN public XML](https://www.treasury.gov/ofac/downloads/sdn.xml) |
-| galchi/oec | [OEC.world public API](https://oec.world/api/) |
-| squid/hsping | 자체 tariffs.io 서비스 등록 필요 |
+## 3. 16건 mock 함정 라우트 재평가
 
-## 6. 4-Axis 점수 효과 (예상)
+| 등급 | 건수 | 라우트 | 발급 키 |
+|---|:-:|---|---|
+| 🟢 즉시 라이브 가능 | **6** | squid/kosis, galchi/kosis, squid/mfds, galchi/mfds, squid/wto (DATA_GO_KR), galchi/wto (DATA_GO_KR) | 모두 키 작동 |
+| 🟢 키 정정만 필요 | **4** | mackerel-comtrade, galchi/comtrade (UN_COMTRADE), 기타 KCS_API_KEY 사용 라우트 | env name 정정 |
+| 🟡 공개 API | 3 | compliance, ofac×2 | OFAC SDN public |
+| 🔴 premium 필요 | 3 | importyeti, squid-forecast, squid-sourcing | 내부 ML/scraping |
 
-5 commodity 누적 437 위젯 평균 78.9 → KOSIS 2건 라이브 적용으로 +0.3 (미미). 추가 키 발급 시:
-- MFDS 발급: +1점
-- KCS 발급: +3점 (가장 큰 효과, 대부분 수입 위젯)
-- ECOS 발급: +1점
+→ **즉시 라이브 가능 10건** (기존 진단 2건에서 5배 증가)
 
-**KCS 발급이 최우선 권고** — 무역 관련 위젯 비중이 가장 높음.
+## 4. 4-Axis 점수 효과 (재추정)
+
+5 commodity 평균 78.9 → 모든 키 활용 시:
+- KOSIS 2건 라이브 적용: +0.3 (이미 적용)
+- DATA_GO_KR 다수 라우트: +5점 (가장 큰 효과)
+- MFDS 2건: +1점
+- DART 활용 위젯: +2점 (M&A·재무)
+- ECOS 환율 위젯: +1점
+- FRED 거시: +1점
+
+**잠재 평균: 78.9 → ~89 (A등급)**
+
+## 5. 다음 단계 우선순위
+
+1. **코드 env name 정정** (16개 라우트의 process.env.* 일괄 수정) — 30분
+2. **mackerel-comtrade 진짜 UN Comtrade API 파싱 구현** — 1시간
+3. **galchi 6개 라우트 (kosis 외) 진짜 파싱** — 1시간
+4. **squid 잔여 4개 라우트** — 1시간
+5. **공개 OFAC SDN 파싱** (3건) — 30분
+
+총 4시간 작업으로 **누적 16건 mock 함정 → 13건 라이브화** 가능 (premium 3건 제외).
+
+## 6. 신규 메모리 인프라
+
+- 사용자 제공 [API 키 일람표](file:///Users/idong-geon/.claude/projects/-Users-idong-geon-----------/memory/reference_korea_data_api_keys.md) — Claude 향후 세션 자동 참조
+
