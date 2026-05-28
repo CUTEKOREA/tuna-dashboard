@@ -261,15 +261,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                기후 / 공급망
+                수요 / 무역
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.21</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.27</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "PNG 비스마르크해 해저화산 분출 — 핵심 WCPO 어장 위협"
+              "미국 1분기 참치 로인 수입 4% 증가 — 태국 선전, 베트남 고전"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              파푸아뉴기니 북쪽 Titan Ridge 해저화산이 5월 8일부터 분출 가속화. 5월 16일 ash 3.6km + 4.3M 지진, 5월 18일 5.4M 추가. 비스마르크해는 대만·한국·일본·필리핀 원양 선망 선단의 주요 어장으로, 화산활동이 지속되면 참치가 산소가 풍부한 해역으로 이동하며 어장 이전 전망. PNG 정부 VDS 입어료 수입 직접 타격 우려.
+              미국의 1분기 냉동 Pre-cooked 참치 로인 수입량이 9,796톤으로 전년 대비 4% 증가했으며, 수입 단가는 톤당 $5,295로 상승. 관세(35%)를 피해 수입되는 로인 시장에서 태국산(4,717톤, +1,704톤)이 크게 선전한 반면, 베트남산은 미국의 지식재산권 우선감시대상국 지정 우려 등과 겹치며 판매가 급감.
             </p>
           </div>
 
@@ -293,15 +293,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                지역별 어가 스프레드
+                규제 / 리스크
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>2026.05.22 기준</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.27</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "SKJ 아비장 $1,500 vs 방콕 $1,850 — 대서양 프리미엄 역전"
+              "미국 환경단체, 에콰도르·대만 등 외국산 참치 수입 금지 소송"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              SKJ 지역별 스프레드: 만타 $2,000 (최고) → 방콕 $1,850 → 비고 $1,750 → 아비장 $1,500 → 세이셸 $1,490 (최저). 만타-세이셸 스프레드 $510/t로 확대 중. YF는 아비장·비고 $2,500 vs 세이셸 $2,000으로 $500 스프레드. IO 선사 정박 장기화로 세이셸 공급 부족이 YF 가격을 끌어올리고 있으나, SKJ는 WCPO 풍어로 하락 압력 지속.
+              천연자원방어협의회(NRDC) 등 3개 단체가 해양포유류보호법(MMPA)을 근거로 에콰도르, 대만, 인도, 바누아투 등 8개국 참치의 수입 금지를 요구하며 미 정부(NMFS)를 제소. 해당국의 연승 및 자망 어업이 미국 수준의 돌고래 혼획 방지 규제를 충족하지 못한다고 주장. 판결 시 글로벌 참치 무역 장벽이 격화될 위험 상존.
             </p>
           </div>
         </div>
@@ -339,9 +339,9 @@ export default function MarketDashboard() {
             telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.20' }}
             customBody={<></>}
             takeaway={{
-              situation: "MSC 인증 참치 미국 판매량 5년 동안 +330% 급증, 75,000톤으로 全 MSC 인증 수산물 33% 점유. Walmart 100% MSC 자체 라벨 전환 완료(37 SKU), Bumble Bee 49 SKU. 한편 참치 부산물 펩타이드 시장 USD 1.56B (2034 전망, CAGR 4.8%) — Thai Union이 USD 30M 투자로 ThalaCol 콜라겐 펩타이드 양산 개시.",
-              actionPlan: "(1) MSC 인증 + 풀앤라인 원료 비축으로 미국·UK 프리미엄 채널 진입을 가속. Walmart·Sainsbury's·Tesco 사례를 벤치마크로 한국 대형 마트 PB MSC 전환을 제안. (2) 참치 가공 부산물(머리·껍질)을 콜라겐/펩타이드/항산화 영양제로 업사이클링하는 R&D 파이프라인을 2027 출시 목표로 즉시 가동. 폐기물에서 톤당 수천 달러의 고부가 가치를 확보할 수 있는 '제로 코스트 마진' 모델.",
-              source: 'Atuna 2026.05.20 (MSC US Sustainable Market · Tuna Peptide Market)',
+              situation: "MSC 인증 참치 수요가 급증하며 독일이 세계 1위 MSC 참치 소비국(판매량 20%↑)으로 등극. 미국 역시 지속가능 인증 제품의 점유율이 33%를 상회함. 한편 참치 부산물 펩타이드 시장은 USD 1.56B(2034 전망)로 성장 기대 — Thai Union이 USD 30M 투자로 콜라겐 펩타이드 양산 개시.",
+              actionPlan: "(1) 세계 1~2위 MSC 소비국인 유럽 DACH(독일·오스트리아·스위스) 지역과 미국의 프리미엄 채널 진입을 가속. 한국 대형 마트 PB의 MSC 전환 선제안. (2) 참치 부산물(머리·껍질)을 콜라겐/펩타이드 영양제로 업사이클링하는 R&D 파이프라인 가동. 폐기물에서 고부가 가치를 창출하는 '제로 코스트 마진' 모델.",
+              source: 'Atuna 2026.05.27 (DACH MSC Growth) / 2026.05.20 (Tuna Peptide Market)',
             }}
           />
 
