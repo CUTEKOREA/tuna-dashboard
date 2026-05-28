@@ -327,8 +327,8 @@ export function Widget07_LatitudeShift() {
       icon={ArrowUp}
       iconColor="#fbbf24"
       pillar="S1"
-      cardDesc="오징어 떼 평균 서식지의 북상 이동 — 30년간 9도 위도 상승"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="오징어 주 조업 위도/분포의 북방 확장 — 30년간 9도 상승 (관측·모델 기반 추정치, 종·해역별 편차 큼)"
+      telemetry={{ status: 'STATIC', syncDate: '관측·모델 기반 추정 (2024 갱신)' }}
       chartHeight={250}
       chart={
         <LineChart data={data}>

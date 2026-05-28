@@ -108,7 +108,7 @@ export default function SquidUnitPrice() {
       icon={TrendingUp}
       iconColor="#4ade80"
       pillar="S4"
-      cardDesc="고부가 가공국(모로코·일본·스페인) vs 원물 벌크 수출국(페루·아르헨) 간 단가 격차 비교 — 수출액÷수출량으로 산출"
+      cardDesc="FAO FishStatJ + UN Comtrade 2000-2023 (2024-2025 갱신 가능) — 고부가 가공국(모로코·일본·스페인) vs 원물 벌크 수출국(페루·아르헨) 단가 격차, 수출액÷수출량 산출"
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       customBody={<>{toggles}{chart}</>}
       takeaway={{

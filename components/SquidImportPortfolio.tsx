@@ -63,7 +63,7 @@ export default function SquidImportPortfolio() {
       icon={Package}
       iconColor="#fbbf24"
       pillar="S2"
-      cardDesc={`냉동 원물 중심에서 양념·가공 오징어의 비중이 꾸준히 확대 — 양념 오징어 수입 +${seasonedGrowth}% 급증`}
+      cardDesc={`KCS 관세청 수입 통계 2010-2023 (2024-2025 갱신 가능) — 냉동 원물 중심에서 양념·가공 오징어 비중 확대, 양념 +${seasonedGrowth}% 급증`}
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       chartHeight={380}
       chart={
