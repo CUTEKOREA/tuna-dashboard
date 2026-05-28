@@ -715,9 +715,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <EnsoCorrelationWidget />
               <SkipjackForecastWidget />
-              <div style={{ gridColumn: 'span 2' }}>
-                <PacificEezStrategicWidget />
-              </div>
+              <PacificEezStrategicWidget />
             </div>
 
             {/* 2. 수역 및 할당량 확보 전략 */}
@@ -910,9 +908,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <AtunaBangkokPriceWidget />
               
               {/* 4. KMI FTA Insights (Macro Demand) */}
-              <div style={{ gridColumn: 'span 2' }}>
-                <WidgetCard widget={tunaMacroData} />
-              </div>
+              <WidgetCard widget={tunaMacroData} />
 
               {/* 5. Kawamoto 2026 — 일본 사시미 장기 수요 절벽 */}
               <InsightJapanDemandCliff />
