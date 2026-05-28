@@ -54,6 +54,7 @@ export async function GET(request: Request) {
       if (liveImportData.length > 0) {
         return {
           timestamp: new Date().toISOString(),
+          isLive: true,
           source: "Korea Customs Service API (LIVE)",
           liveImportData: liveImportData,
           metrics: {
@@ -72,6 +73,7 @@ export async function GET(request: Request) {
       // Fallback
       return {
         timestamp: new Date().toISOString(),
+        isLive: false,
         source: "Korea Customs Service API (Fallback/Mock)",
         liveImportData: [],
         metrics: {

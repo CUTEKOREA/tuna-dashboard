@@ -118,5 +118,9 @@ export async function GET() {
     }
   };
 
+  // Telemetry 표준화: 정적 JSON + 9개 livePriceData/quotaExhaustion 오버라이트는 SYNCED (정기 갱신 추정치)
+  data.isLive = false;
+  data.source = data.source || 'tuna_ranching_dashboard.json + 정기 갱신 추정치 (SYNCED)';
+  data.lastUpdated = data.lastUpdated || new Date().toISOString();
   return NextResponse.json(data);
 }
