@@ -1,6 +1,15 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🐙 **2026-05-28 — 주꾸미(jukkumi) 30 JSON 위젯 audit + P0 3 + P1 4 + source 14건 보강** [CC]:
+> - **역대 최소 규모**: 30 위젯 / API 0개 / Phase 3 생략. 평균 4-Axis 70.9 / B- (5종 중 최저).
+> - **P0 3건 (Codex EDIT 정당)**: w24 종 혼동 (주꾸미 vs 단완낙지) / w29 아프리카 리스크 S5 핵심 격하 / w5 모리타니아 ID-데이터 불일치 (Vibrio 한국 연안 정정)
+> - **P1 4건 + 일괄 14건**: 출처 매핑/Stale/영양 인용/source 보강 (KAMIS·KCS·MOF·KMI·NIFS)
+> - **신규**: [docs/2026_jukkumi_industry_sources.md](docs/2026_jukkumi_industry_sources.md) 11건 (WebSearch × 2)
+> - 도구: Antigravity Flash medium foreground 호출 (background hang 재발, foreground 안정), Grok 사용 안 함 (8KB 입력은 WebSearch만으로 충분)
+> - npm run build ✓ (4.2s)
+
+
 > 🐟 **2026-05-28 — 갈치(galchi) 28 JSON 위젯 + 14 API 감사 + P0 6 + P1 2 정정** [CC]:
 > - 4-Axis 평균 77.6 / B등급 (A 1 · B 19 · C 8 · D 0)
 > - **P0 6건 (시스템적 함정 재발견)**: comtrade·kosis·mfds·oec·ofac·wto 6개 API 라우트 모두 `isLive: true` 하드코딩 → `isLive: false /* Mock */` 일괄 정정. 4 commodity 누적 17건의 동일 패턴.

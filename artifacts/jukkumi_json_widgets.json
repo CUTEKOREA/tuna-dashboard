@@ -1,0 +1,307 @@
+{
+  "json_file": "public/data/jukkumi_real_data_v1.json",
+  "total_kpis": 8,
+  "total_widgets": 30,
+  "widgets": [
+    {
+      "id": "w1_global_catch",
+      "title": "글로벌 주꾸미 원물 소싱 현황 및 연안 자원량 지수",
+      "subtitle": "",
+      "unit": "톤",
+      "reliability": 95,
+      "source": "국내 해수부 연안 어획 데이터 & 동남아 수산청 API",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w2_korea_imports",
+      "title": "HMR(가정간편식) 가공 수율 및 제조 원가율 추이",
+      "subtitle": "",
+      "unit": "%, M원",
+      "reliability": 98,
+      "source": "내부 ERP 가공 원가 데이터",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w3_supply_demand",
+      "title": "FTA 체결국발 물류 원가 및 통관 리스크 지수",
+      "subtitle": "",
+      "unit": "$/MT, 일, %",
+      "reliability": 92,
+      "source": "관세청(KCS) OpenAPI & 해운 운임 지수",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w4_fbs_seafood",
+      "title": "유통 채널별 주꾸미 판매 단가 및 탄력성 지수",
+      "subtitle": "",
+      "unit": "원/kg, 지수",
+      "reliability": 88,
+      "source": "KAMIS & 도매시장 API",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w5_mauritania_risk",
+      "title": "콜드체인 병원성 리스크 및 보건 안전 지수 (Vibrio)",
+      "subtitle": "",
+      "unit": "도, 건수, 지수",
+      "reliability": 96,
+      "source": "기상청 해수온 & 품질검사소 API",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w6_bio_processing",
+      "title": "생물학적 가공 수율 최적화 지수 (월별 알/내장 비율)",
+      "subtitle": "",
+      "unit": "%, 원/kg",
+      "reliability": 94,
+      "source": "해양생물학 연구 데이터 & 내부 가공 수율",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w7_cannibalism_risk",
+      "title": "주꾸미 양식 공식(Cannibalism) 리스크 및 생존율",
+      "subtitle": "",
+      "unit": "%",
+      "reliability": 96,
+      "source": "생존 및 공식 연구 (해양수산연구소)",
+      "chartType": "composed",
+      "data_rows": 4
+    },
+    {
+      "id": "w8_recreational_tac",
+      "title": "로컬 유어낚시 어획량 및 TAC 규제 리스크 전망",
+      "subtitle": "",
+      "unit": "톤, 만명",
+      "reliability": 92,
+      "source": "충남/전남 해역 유어낚시 어획량 추정 연구",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w9_korea_fta_imports",
+      "title": "한국 수입 주꾸미 국가별 점유율 및 가공 원가 지수",
+      "subtitle": "",
+      "unit": "%, 지수",
+      "reliability": 98,
+      "source": "관세청 2026Q1 FTA 수산물 수입동향",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w10_species_map",
+      "title": "글로벌 두족류 종 분포 및 대체종 소싱 지도",
+      "subtitle": "",
+      "unit": "%, 톤",
+      "reliability": 90,
+      "source": "FAO Cephalopod Database × 동남아 계통분류 연구",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w11_spawn_cycle",
+      "title": "주꾸미 산란 주기 및 자원량 계절 변동 모델",
+      "subtitle": "",
+      "unit": "%, 톤, 원/kg",
+      "reliability": 94,
+      "source": "전남/충남 산란시기 연구 × 생식소 발달 논문",
+      "chartType": "composed",
+      "data_rows": 9
+    },
+    {
+      "id": "w12_generation_risk",
+      "title": "단년생 세대 회전율 및 기후 연동 리스크 지표",
+      "subtitle": "",
+      "unit": "도, 톤",
+      "reliability": 92,
+      "source": "기상청 해수온 API × 해양수산연구소",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w13_processing_auto",
+      "title": "산지별 원료 수율 및 1차 가공 단가 구조",
+      "subtitle": "",
+      "unit": "%, 원/kg",
+      "reliability": 88,
+      "source": "내부 ERP × 현지 가공장 월보",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w14_nutrition",
+      "title": "두족류 영양성분 프로파일 및 프리미엄 마케팅 지표",
+      "subtitle": "",
+      "unit": "mg, g, %",
+      "reliability": 90,
+      "source": "식품영양 DB × 생식소 발달 논문",
+      "chartType": "composed",
+      "data_rows": 4
+    },
+    {
+      "id": "w15_hsk_tariff",
+      "title": "HSK 세번별 주꾸미 수입 관세율 및 FTA 절감 매트릭스",
+      "subtitle": "",
+      "unit": "%, 톤",
+      "reliability": 96,
+      "source": "관세청 HSK DB × KORUS Tariff Schedule",
+      "chartType": "composed",
+      "data_rows": 4
+    },
+    {
+      "id": "w16_korus_schedule",
+      "title": "한미 FTA 두족류 양허 스케줄 및 수출 기회 전망",
+      "subtitle": "",
+      "unit": "%, 톤",
+      "reliability": 92,
+      "source": "KORUS Korea Tariff Schedule",
+      "chartType": "composed",
+      "data_rows": 7
+    },
+    {
+      "id": "w17_price_spread",
+      "title": "국내산 대 수입산 주꾸미 가격 스프레드 및 시장 분화",
+      "subtitle": "",
+      "unit": "원/kg, 배",
+      "reliability": 96,
+      "source": "KAMIS × 관세청 KCS",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w18_substitutes",
+      "title": "프랜차이즈 도매 납품가 및 대체재 교차 탄력성 분석",
+      "subtitle": "",
+      "unit": "%, 원/kg",
+      "reliability": 88,
+      "source": "KAMIS × KREI 수요탄력성 분석",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w19_vibrio_amr",
+      "title": "비브리오 항균제 내성 프로파일 및 보건 리스크",
+      "subtitle": "",
+      "unit": "%, 건수",
+      "reliability": 94,
+      "source": "보건환경연구원 × Vibrio vulnificus 논문",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w20_fip_esg",
+      "title": "산지별 지속가능성 인증 현황 및 해역 리스크 지수",
+      "subtitle": "",
+      "unit": "%",
+      "reliability": 90,
+      "source": "FisheryProgress API × SeaBOS 리포트",
+      "chartType": "composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w21_leisure_fishing_impact",
+      "title": "유어낚시 자원 잠식도",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "bar",
+      "data_rows": 2
+    },
+    {
+      "id": "w22_vietnam_trawl_fip",
+      "title": "베트남 저인망 FIP 진행률",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "area",
+      "data_rows": 4
+    },
+    {
+      "id": "w23_hmr_yield_optimization",
+      "title": "HMR 가공 수율 및 단가",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "composed",
+      "data_rows": 3
+    },
+    {
+      "id": "w24_china_aquaculture_rd",
+      "title": "중국 단완낙지 양식 생장률",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "line",
+      "data_rows": 4
+    },
+    {
+      "id": "w25_tariff_schedule_impact",
+      "title": "수입 관세 철폐 스케줄",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "bar",
+      "data_rows": 3
+    },
+    {
+      "id": "w26_coldchain_utilization",
+      "title": "동남아 콜드체인 인프라",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "radar",
+      "data_rows": 4
+    },
+    {
+      "id": "w27_japan_kfood_export",
+      "title": "일본 K-주꾸미 수출 성장세",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "line",
+      "data_rows": 4
+    },
+    {
+      "id": "w28_domestic_senior_hmr",
+      "title": "시니어 친화 간편식 침투율",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "bar",
+      "data_rows": 3
+    },
+    {
+      "id": "w29_africa_human_rights_risk",
+      "title": "아프리카 대체재 인권 리스크",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "composed",
+      "data_rows": 3
+    },
+    {
+      "id": "w30_tac_regulation_map",
+      "title": "2026 자원관리 TAC 압박도",
+      "subtitle": "",
+      "unit": null,
+      "reliability": null,
+      "source": "",
+      "chartType": "area",
+      "data_rows": 3
+    }
+  ]
+}
