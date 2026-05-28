@@ -2,10 +2,11 @@
 import React from 'react';
 import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  BarChart, Cell, ResponsiveContainer, PieChart, Pie,
+  BarChart, Cell, PieChart, Pie,
 } from 'recharts';
 import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
 import raw from '../data/octopus_fta_quarterly.json';
 
@@ -25,7 +26,7 @@ export default function OctopusFTAQuarterly() {
 
   const YearlyChart = (
     <div style={{ height: '240px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={yearly} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
@@ -48,13 +49,13 @@ export default function OctopusFTAQuarterly() {
           </Bar>
           <Line yAxisId="right" type="monotone" dataKey="value" name="수입액" stroke="#c4b5fd" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const QuarterChart = (
     <div style={{ height: '210px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={qSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="q" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
@@ -76,13 +77,13 @@ export default function OctopusFTAQuarterly() {
           </Bar>
           <Line yAxisId="right" type="monotone" dataKey="cumValue" name="누적 수입액" stroke="#a78bfa" strokeWidth={2} dot={{ r: 3 }} />
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const PriceChart = (
     <div style={{ height: '210px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={prices} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10 }} />
@@ -91,13 +92,13 @@ export default function OctopusFTAQuarterly() {
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Line type="monotone" dataKey="vietnam" name="베트남 냉동 단가" stroke="#8b5cf6" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const OriginBars = (
     <div style={{ height: '180px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={origin2026} layout="vertical" margin={{ top: 8, right: 30, left: 30, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(v) => `${v}%`} />
@@ -109,13 +110,13 @@ export default function OctopusFTAQuarterly() {
             ))}
           </Bar>
         </BarChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const FormPie = (
     <div style={{ height: '180px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie data={formMix} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={65} innerRadius={38} paddingAngle={2}
             label={({ name, value }) => `${name} ${value}%`} labelLine={false}
@@ -124,7 +125,7 @@ export default function OctopusFTAQuarterly() {
           </Pie>
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val}%`, '비중']} />
         </PieChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 

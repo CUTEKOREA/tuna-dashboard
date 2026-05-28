@@ -2,10 +2,11 @@
 import React from 'react';
 import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  AreaChart, Area, ResponsiveContainer, Cell,
+  AreaChart, Area, Cell,
 } from 'recharts';
 import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
 import domestic from '../data/octopus_domestic_resource.json';
 import global from '../data/octopus_global_catch.json';
@@ -38,7 +39,7 @@ export default function OctopusDomesticCliff() {
 
   const KoreaCatchChart = (
     <div style={{ height: '220px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={koreaSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <ChartPatternDefs />
           <defs>
@@ -53,13 +54,13 @@ export default function OctopusDomesticCliff() {
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '한국 어획']} />
           <Area type="monotone" dataKey="korea" name="한국 어획" stroke="#8b5cf6" strokeWidth={2.5} fill="url(#koreaCatchGradient)" />
         </AreaChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const CliffChart = (
     <div style={{ height: '180px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={productionSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
@@ -71,13 +72,13 @@ export default function OctopusDomesticCliff() {
             ))}
           </Bar>
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const GlobalShareChart = (
     <div style={{ height: '200px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={globalShare2022} layout="vertical" margin={{ top: 8, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
@@ -89,7 +90,7 @@ export default function OctopusDomesticCliff() {
             ))}
           </Bar>
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
