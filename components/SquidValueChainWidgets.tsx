@@ -18,7 +18,7 @@ export const SquidVCFishing = () => (
     icon={Anchor}
     term="어종별 생물학적 스펙트럼"
     desc="일렉스/롤리고(남서대서양) vs 훔볼트(동태평양) 조업 특성"
-    source="수산생물자원 기초 정보"
+    source="FAO FishStatJ + SPRFMO Species Profiles + INIDEP·IMARPE·FIG"
     situation="훔볼트 오징어는 외투막 최대 1.5m, 체중 50kg에 달하는 압도적 사이즈로 대량 어획이 가능하나 동태평양 기후(엘니뇨)에 민감. 반면 일렉스와 롤리고는 남서대서양에서 조업되며 크기가 상대적으로 작음."
     actionPlan="해역별(남서대서양 vs 동태평양) 어획 쿼터 및 기후 리스크를 분산시키는 투트랙 소싱 전략 구사 필수."
   >
@@ -52,7 +52,7 @@ export const SquidVCProcessing = () => (
     icon={Factory}
     term="어종별 전처리/가공 맵"
     desc="암모니아 제거(훔볼트) vs 원물 보존(롤리고)"
-    source="해양수산개발원 가공 보고서"
+    source="KMI 해양수산개발원 가공 보고서 + ANFACO-CECOPESCA(스페인) + EUMOFA Cephalopods"
     situation="훔볼트 오징어는 특유의 암모니아 향 제거를 위한 전처리와 해체 공정(다루마 가공)이 필수적이나 가공 후 부가가치(진미채 등)가 매우 높음. 롤리고는 선도 유지가 핵심."
     actionPlan="훔볼트 원물 수입 후 국내 가공 대신, 페루 현지 1차 가공 공장(Packer) 직접 투자를 통한 전처리 내재화 및 수율 방어."
   >
@@ -83,7 +83,7 @@ export const SquidVCProduct = () => (
     icon={ShoppingCart}
     term="어종별 타겟 소비 시장"
     desc="식자재(일렉스) vs 가공원료(훔볼트) vs 고급(롤리고)"
-    source="수산물 유통 시장 조사"
+    source="EUMOFA EU Cephalopod Market + KAMIS 한국 농수산식품유통공사"
     situation="각 어종의 물리적 특성(크기, 식감)으로 인해 용도가 완벽히 분할됨. 롤리고는 프리미엄 다이닝, 일렉스는 대중 식당의 볶음용 범용 식자재, 훔볼트는 HMR 및 스낵류 가공 원료로 소비됨."
     actionPlan="단일 어종 의존도를 낮추고 B2B(일렉스) - HMR(훔볼트) - 프리미엄(롤리고)을 잇는 통합 프로덕트 라인업(포트폴리오) 구축."
   >
@@ -115,7 +115,7 @@ export const SquidVCLogistics = () => (
     icon={Truck}
     term="유통 단계별 물동량"
     desc="벌크(Whole Round) vs 다루마(필렛) 물류"
-    source="무역 물동량 추이"
+    source="UN Comtrade + OEC + KCS 관세청 + Vigo(ES) Port Statistics"
     situation="초거대 훔볼트 오징어는 원물 이동 시 물류비가 과다하여 산지에서 1차 가공(수율 감소) 후 다루마 형태로 해상 운송됨. 반면 일렉스는 어획 직후 통째(Whole round) 냉동되어 벌크 물동량을 견인함."
     actionPlan="B2B 범용망(일렉스 냉동 블록)과 가공공장 직납망(훔볼트 다루마)을 이원화 설계하여 냉동창고 회전율(Turnover) 향상."
   >
@@ -150,7 +150,7 @@ export const SquidVCMarket = () => (
     icon={DollarSign}
     term="가치사슬별 단가 (USD/kg)"
     desc="저가 원물 매입 후 고부가가치 창출(훔볼트) vs 프리미엄(롤리고)"
-    source="수입 단가 및 소매가 동향"
+    source="KCS 관세청 수입 단가 + KAMIS 소매가 + EUMOFA First Sales"
     situation="원물 매입 단가는 훔볼트가 가장 저렴(저가)하나, 진미채 등 다단계 가공을 거치며 최종 소매 가치는 크게 뜀. 롤리고는 원물 자체가 고가 프리미엄 시장을 형성하며, 일렉스는 가장 안정적인 중간 가격대를 유지함."
     actionPlan="롤리고는 '고급 한정판' 브랜딩으로 객단가를 올리고, 훔볼트는 압도적 마진율을 노리는 '박리다매 고차가공' 모델로 이익 극대화."
   >

@@ -5,7 +5,7 @@ export async function GET() {
     id: "w_mfds_squid_safety",
     title: "통관 거부 및 이물질 적발 레이더",
     subtitle: "남미/중국산 가공품 중심",
-    isLiveApi: true,
+    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
     reliability: 95,
     chartType: "composed",
     xKey: "country",

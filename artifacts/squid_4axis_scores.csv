@@ -1,0 +1,157 @@
+src,file,line,id,pillar,title,a1,a2,a3,a4,avg,grade,self_reliability
+TSX,components/SquidArbitrageRadar.tsx,247,,S4,오징어 글로벌 마진 레이더 (Squid Arbitrage Radar),60,95,95,100,87.5,A,
+TSX,components/SquidAreaMap.tsx,249,,S1,해역별 어획량 팽창 지도,60,95,80,100,83.8,B,
+TSX,components/SquidB2BMarginTracker.tsx,11,,S4,B2B 직납 vs 유통 도매시장 채널수익 비교,60,95,55,90,75.0,B,
+TSX,components/SquidCPUEProfitability.tsx,11,,S1,실시간 조업 채산성 (CPUE) 트래커,60,95,95,90,85.0,A,
+TSX,components/SquidClimateRadar.tsx,11,,S1,수온 기반 공급망 스위칭(Switching) 레이더,60,95,95,90,85.0,A,
+TSX,components/SquidCollapseCountdown.tsx,10,,S1,연대기적 자원 붕괴 카운트다운 (Collapse Trajectory),60,95,80,100,83.8,B,
+TSX,components/SquidComplianceRisk.tsx,25,,S3,글로벌 ITQ 쿼터 및 IUU 컴플라이언스 리스크 매트릭스,60,95,80,90,81.2,B,
+TSX,components/SquidDemandDestruction.tsx,11,,S4,거시경제 연동 수산물 대체소비(Demand Destruction) 지표,60,95,80,100,83.8,B,
+TSX,components/SquidFXHedging.tsx,10,,S3,원-달러 환율 연동 수입/원가 헷징,60,95,95,90,85.0,A,
+TSX,components/SquidFuelBEP.tsx,11,,S2,유류비 손익분기점(BEP) 트래커,90,95,80,100,91.2,A,
+TSX,components/SquidGlobalHegemony.tsx,14,,S1,글로벌 어획 패권 블랙홀 (Hegemony Shift),60,95,80,90,81.2,B,
+TSX,components/SquidImportPortfolio.tsx,61,,S2,한국 오징어 수입 품목 포트폴리오 (2010-2023),60,95,80,100,83.8,B,
+TSX,components/SquidInventoryRelease.tsx,11,,S2,명절 및 성수기 재고 출회 윈도우(Window),60,95,80,90,81.2,B,
+TSX,components/SquidKoreaSupply.tsx,156,,S1,한국 오징어 수급 위기 모니터,60,95,80,100,83.8,B,
+TSX,components/SquidLogisticsOptimizer.tsx,11,,S3,콜드체인 물류·보관료 최적화 데드크로스,60,95,80,100,83.8,B,
+TSX,components/SquidOriginDiversification.tsx,11,,S3,공급망 리드타임(Lead-Time) 분산 레이더,60,95,80,100,83.8,B,
+TSX,components/SquidPolicyArbitrage.tsx,22,,S3,관세 및 정책 이벤트 연동 차익거래 (Policy Arbitrage),60,95,80,90,81.2,B,
+TSX,components/SquidProteinWar.tsx,10,,S4,글로벌 단백질 체급 100% 스택 전쟁 (Protein War),60,95,80,100,83.8,B,
+TSX,components/SquidQuotaExhaustion.tsx,10,,S1,어획 쿼터(ITQ) 실시간 소진율 마일스톤,60,95,95,90,85.0,A,
+TSX,components/SquidShrinkflation.tsx,33,,S4,슈링크플레이션 — 글로벌 오징어 공급↓ vs 무역액↑,60,95,80,100,83.8,B,
+TSX,components/SquidSizePremium.tsx,11,,S2,크기/중량별 시장 프리미엄 지수,60,95,80,90,81.2,B,
+TSX,components/SquidSubstitutionElasticity.tsx,10,,S4,대왕오징어 대체 탄력성 스위칭(Switch) 지표,60,95,80,90,81.2,B,
+TSX,components/SquidTab1Widgets.tsx,21,,S1,기후-어획량 상관관계 (해양대기청 ENSO vs 어획량),60,95,80,100,83.8,B,
+TSX,components/SquidTab1Widgets.tsx,73,,S1,자원 붕괴 카운트다운 오버레이,60,95,55,100,77.5,B,
+TSX,components/SquidTab1Widgets.tsx,121,,S1,해류 수온 편차 (해수면 온도 편차),90,95,95,100,95.0,A,
+TSX,components/SquidTab1Widgets.tsx,175,,S4,단백질원별 글로벌 수요 성장률,60,95,80,100,83.8,B,
+TSX,components/SquidTab1Widgets.tsx,223,,S1,글로벌 두족류 어종별 생산 비중,60,95,80,100,83.8,B,
+TSX,components/SquidTab1Widgets.tsx,276,,S1,해양보호구역(MPA) 및 조업 축소 시뮬,60,95,55,100,77.5,B,
+TSX,components/SquidTab1Widgets.tsx,325,,S1,기후 발(發) 군집 이동 위도선 (북상),60,95,80,100,83.8,B,
+TSX,components/SquidTab1Widgets.tsx,372,,S2,글로벌 어분/사료(Feed) 전락 비율,60,95,80,100,83.8,B,
+TSX,components/SquidTab1Widgets.tsx,420,,S3,IUU (불법/비보고 조업) 리스크 횟수,60,95,95,100,87.5,A,
+TSX,components/SquidTab1Widgets.tsx,469,,S1,총허용어획량(TAC) vs 실 조업물량 갭,60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,19,,S1,글로벌 어획 패권 블랙홀,60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,40,,S1,국가별/어장별 쿼터 소진 속도 (Burn Rate),90,95,95,100,95.0,A,
+TSX,components/SquidTab2Widgets.tsx,59,,S1,C국 초대형 원양 선단 팽창 다이내믹스,60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,79,,S3,연안국(아르헨/페루) 배타적 보호주의 지표,60,95,80,90,81.2,B,
+TSX,components/SquidTab2Widgets.tsx,98,,S1,등선 마력(HP) 기술력 vs 단위어획량(CPUE),60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,118,,S4,무역 흐름(Flow) 블랙홀 경로,60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,137,,S3,글로벌 거점 항구 하역 물동량 추이,60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,157,,S2,글로벌 임가공 거점 이동 (블랙홀 현상),60,95,80,100,83.8,B,
+TSX,components/SquidTab2Widgets.tsx,178,,S1,유류 보조금 vs 초과 남획 상관관계,60,95,55,100,77.5,B,
+TSX,components/SquidTab2Widgets.tsx,198,,S5,탄소 배출 규제(IMO) 한계 비용 교차점,60,95,55,100,77.5,B,
+TSX,components/SquidTab3Widgets.tsx,13,,S1,한국 연근해 수급 절벽 데드크로스,60,95,80,100,83.8,B,
+TSX,components/SquidTab3Widgets.tsx,32,,S3,원산지 다변화 허핀달-허쉬만 지수(HHI),60,95,80,100,83.8,B,
+TSX,components/SquidTab3Widgets.tsx,51,,S4,글로벌 수입산 시장 점유율 고착화 궤적,60,95,55,100,77.5,B,
+TSX,components/SquidTab3Widgets.tsx,70,,S3,거점별 냉동 컨테이너 리드타임 편차,60,95,80,100,83.8,B,
+TSX,components/SquidTab3Widgets.tsx,89,,S3,콜드체인 창고 체화량 vs 실제 소비 갭,60,95,95,100,87.5,A,
+TSX,components/SquidTab3Widgets.tsx,109,,S3,식약처 통관 비관세 장벽 딜레이 리스크,60,95,95,100,87.5,A,
+TSX,components/SquidTab3Widgets.tsx,128,,S4,상위 수입사(B2B Vendor) 카르텔 지배력,60,95,80,100,83.8,B,
+TSX,components/SquidTab3Widgets.tsx,147,,S4,B2B 수요 파괴(Demand Destruction) 임계점,60,95,95,100,87.5,A,
+TSX,components/SquidTab3Widgets.tsx,165,,S4,오징어 수산물가 지수 vs 돈/계육 인플레,60,95,80,100,83.8,B,
+TSX,components/SquidTab3Widgets.tsx,185,,S4,엔드유저 유통 채널(Channel Mix) 이탈,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,13,,S4,원산지별 C&F 수입 단가 스프레드 수렴,60,95,95,100,87.5,A,
+TSX,components/SquidTab4Widgets.tsx,33,,S4,제품량 삭감(Shrinkflation) 실중량 추적기,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,54,,S3,글로벌 정책/비관세 우회 가공 무역 차익,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,75,,S2,대형어 vs 소형어 사이즈 프리미엄 스퀴즈,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,94,,S3,환율 민감도 연동 원가 헷징 레벨,60,95,95,100,87.5,A,
+TSX,components/SquidTab4Widgets.tsx,115,,S2,가공 단계별 부가가치 전가 스프레드,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,134,,S3,WTI 유가 / BDI 연동 해상 물류비 프리미엄,60,95,95,100,87.5,A,
+TSX,components/SquidTab4Widgets.tsx,154,,S1,대왕오징어(훔볼트) 원가 퀀텀 점프 가속도,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,172,,S4,사전 선도계약(Forward) vs 스팟 펌핑 스프레드,60,95,80,100,83.8,B,
+TSX,components/SquidTab4Widgets.tsx,191,,S4,가격 상승폭 대비 레시피 대체 탄력성(Elasticity),60,95,80,100,83.8,B,
+TSX,components/SquidTab5Widgets.tsx,13,,S1,선단 운영 유류비 손익분기점(BEP) 임계선,60,95,95,100,87.5,A,
+TSX,components/SquidTab5Widgets.tsx,34,,S4,중간 도매상(Middlemen) 마진 붕괴 궤적,60,95,80,100,83.8,B,
+TSX,components/SquidTab5Widgets.tsx,53,,S4,밸류체인 스텝별 폭포수(Waterfall) 마진 분배,60,95,80,100,83.8,B,
+TSX,components/SquidTab5Widgets.tsx,72,,S3,존버 실패: 보관료 누적 vs 시세 차익 데드크로스,60,95,80,100,83.8,B,
+TSX,components/SquidTab5Widgets.tsx,92,,S2,물코기(Glazing) 수율 조작에 따른 손실 백테스트,60,95,80,100,83.8,B,
+TSX,components/SquidTab5Widgets.tsx,112,,S2,인건비 폭동 vs 스마트(H&G 자동화) 기기 도입 ROI,60,95,55,100,77.5,B,
+TSX,components/SquidTab5Widgets.tsx,131,,S4,B2B 식자재 타겟 영업 채널 조합 트래커,60,95,80,100,83.8,B,
+TSX,components/SquidTab5Widgets.tsx,151,,S1,조업일 당 순수익 (OP per Sea-Day) 마일스톤,60,95,95,100,87.5,A,
+TSX,components/SquidTab5Widgets.tsx,170,,S2,재고 회전율 악성 경보 지연,60,95,95,100,87.5,A,
+TSX,components/SquidTab5Widgets.tsx,189,,S4,B2B 거래처 현금 회수기일(DSO) 모니터링,60,95,95,100,87.5,A,
+TSX,components/SquidTradeMatrix.tsx,165,,S4,"글로벌 오징어 무역 매트릭스 (2023, Top 15)",60,95,80,100,83.8,B,
+TSX,components/SquidUnitPrice.tsx,106,,S4,주요국 오징어 수출 평균 단가 추이 (2000-2023),60,95,80,100,83.8,B,
+TSX,components/SquidValueChainMargin.tsx,11,,S2,페루산 가공 수직계열화 마진 추적기,60,95,80,100,83.8,B,
+TSX,components/SquidValueChainWidgets.tsx,16,,?,VC 1: 조업 및 어장 특성 (Fishing),60,60,70,70,65.0,C,
+TSX,components/SquidValueChainWidgets.tsx,50,,?,VC 2: 가공 난이도 및 수율 (Processing),60,60,70,70,65.0,C,
+TSX,components/SquidValueChainWidgets.tsx,81,,?,VC 3: B2B/B2C 제품 포지셔닝 (Product),60,60,70,70,65.0,C,
+TSX,components/SquidValueChainWidgets.tsx,113,,?,VC 4: 글로벌 콜드체인 볼륨 (Logistics),60,60,70,70,65.0,C,
+TSX,components/SquidValueChainWidgets.tsx,148,,?,VC 5: 가격 구조 및 전략 마진 (Market Strategy),60,60,70,70,65.0,C,
+TSX,components/SquidWinnersLosers.tsx,94,,S1,최근 10년의 승자와 패자 (2014 vs 2024),60,95,80,100,83.8,B,
+JSON,public/data/squid_real_data_v4.json,0,w1_catch_powers,?,동아시아 3국 어획량 트라이앵글 붕괴 — 한·중·일 역학조사,90,70,70,100,82.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w2_korea_supply,?,대한민국 오징어 자급률 붕괴 — 국가 식량안보 위기 (2000-2025),90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w3_jumbo_flying,?,대왕(훔볼트) 오징어 글로벌 지배력 — 저가 대체재의 부상 (1990-2024),90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w4_unit_price,?,글로벌 상위 5개국 평균 수출 단가 — 원물 가격 폭등 지수 ($/톤),90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w5_top_importers,?,"글로벌 5대 수입 블랙홀 — 주요국 수입액 및 의존도 (USD 1,000)",90,40,70,100,75.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w6_species_pie,?,글로벌 주요 오징어 종별 어획 비중 — 훔볼트 오징어의 부상 (상위 5종),90,70,70,90,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w7_korea_category,?,"대한민국 오징어 수입 포트폴리오 — 고부가가치 가공 시장의 성장 (USD 1,000)",90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w8_china_export,?,중국 오징어 수출 독점 수익 — 원양 선단 지배력 팽창 (1990-2023),90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w9_trade_deficit,?,세계 오징어 순수입 적자 랭킹 — 무역수지 불균형 TOP 5,90,60,70,90,77.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w10_processed_dominance,?,원양 한계 돌파 — 글로벌 2차 가공 패권 (2000-2023),90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w11_no_aquaculture,?,양식 불가의 리스크 — 100% 기후 의존성 증명,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w12_ax_fishing,?,원양 선단 노후화 및 신조선 투자 ROI — M&A 실사 기반 CAPEX 분석,90,75,70,100,83.8,B,100
+JSON,public/data/squid_real_data_v4.json,0,w13,?,"태국의 오징어 연금술 — 수입 $2,741 → 수출 $7,995",90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w14,?,한국 수입 원산지 집중도 — 중국+페루 76% 양국 종속,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w15,?,"일본의 침묵의 붕괴 — 어획량 97% 소멸, 적자 $728M",90,70,70,100,82.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w16,?,"포클랜드 — 인구 3,800명의 오징어 슈퍼파워",90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w17,?,페루의 냉동 제국 — 가공의 95%가 단순 냉동,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w18,?,동아시아 vs 남미 — 오징어 패권 대이동,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w25_squid_chitosan_biomaterial,?,오징어 부산물(폐기물)의 딥테크 혁명 — 400% 초과 마진의 비밀,60,70,70,100,75.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w26_squid_ai_jigging_fuel,?,선민수산 원양채낚기 연료비 구조와 LED 전환 경제성,90,75,65,100,82.5,B,80
+JSON,public/data/squid_real_data_v4.json,0,w27_squid_climate_geopolitics,?,엘니뇨-라니냐 시프트 — 해양 영토를 넘나드는 기후 지정학 아비트리지,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w28_falkland_waterfall,?,선민수산 수익성 폭포수 (2025 실제 제조원가 반영),90,75,75,100,85.0,A,90
+JSON,public/data/squid_real_data_v4.json,0,w29_capex_shock,?,2029년 환경 규제에 따른 현금흐름 쇼크,60,60,70,100,72.5,C,100
+JSON,public/data/squid_real_data_v4.json,0,w30_business_model,?,ITQ 합작 관세 폭탄 vs 유통 상사 전환 마진,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w31_eu_squid_supply_shock,?,EU 오징어 수입량 60% 붕괴,60,75,70,100,76.2,B,100
+JSON,public/data/squid_real_data_v4.json,0,w32_eu_squid_price_tier,?,EU 수입 오징어 단가(EUR/kg) 양극화 현상,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w33_eu_first_sale_spread,?,EU 위판장 오징어 품종별 단가 스프레드,90,75,70,100,83.8,B,100
+JSON,public/data/squid_real_data_v4.json,0,w34_value_add_funnel,?,오징어 유통 마진 (Value-Chain Arbitrage),90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w35_spain_trade_hub,?,유럽 오징어 밸류체인 블랙홀 — 스페인,60,60,70,100,72.5,C,100
+JSON,public/data/squid_real_data_v4.json,0,w36_stagflation_paradox,?,오징어 소비량 붕괴와 가격 폭등 패러독스,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w37_spain_arbitrage_trap,?,스페인의 무위험 차익거래,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w38_vigo_chokepoint_monopoly,?,비고 항구의 무위험 독점 네트워크,90,70,70,100,82.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w39_mediterranean_premium,?,지중해 로컬 오징어의 8.4배 초격차 프리미엄,90,70,70,100,82.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w40_value_chain_exploitation,?,오징어 밸류체인의 기형적 착취 구조,60,70,70,100,75.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w41_temporal_arbitrage,?,단순 냉동 보관만으로 발생하는 127% 초과 수익,60,70,70,100,75.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w42_macro_demand_destruction,?,이탈리아 내수 50% 붕괴 — 중간 유통 폭리가 부른 수요 파괴,90,70,70,100,82.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w43_risk_reward_inversion,?,원양어업의 자원의 저주 — 리스크-수익 역전 현상,60,60,70,100,72.5,C,100
+JSON,public/data/squid_real_data_v4.json,0,w44_trade_route_arbitrage,?,글로벌 무역로 차익거래의 붕괴,60,70,70,100,75.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w45_christmas_demand_spike,?,이탈리아 '크리스마스 효과' — 12월 소비 155% 폭증의 전략적 의미,90,95,70,100,88.8,A,100
+JSON,public/data/squid_real_data_v4.json,0,w46_korea_holiday_effect,?,한국 '명절 효과' — 명절 시즌 소비 125% 폭증의 전략적 의미,90,95,70,100,88.8,A,100
+JSON,public/data/squid_real_data_v4.json,0,w46_france_premium_paradox,?,프랑스 프리미엄 세탁기 역설,60,70,70,100,75.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w47_spain_processing_empire,?,스페인 '가공 제국' — EU 오징어 가공 시장의 80% 독점,60,40,70,100,67.5,C,100
+JSON,public/data/squid_real_data_v4.json,0,w48_supply_inversion,?,연근해 vs 원양 생산량 역전 추이,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w49_processing_funnel,?,HS코드별 오징어 가공품 수입 구조 해부,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w50_fleet_opex,?,선민수산 원양채낚기 원가구조 크로스밸리데이션,90,70,65,100,81.2,B,85
+JSON,public/data/squid_real_data_v4.json,0,w51_policy_intervention,?,정부 가격 인터벤션 맵,90,60,70,90,77.5,B,100
+JSON,public/data/squid_real_data_v4.json,0,w52_iuu_geopolitics,?,IUU 어업 리스크 및 중국 DWF 위협 지수,90,60,70,100,80.0,B,100
+JSON,public/data/squid_real_data_v4.json,0,w53_energy_stress_test,?,유가 쇼크 스트레스 테스트 — 구형 vs 신형 선단 생존율,90,95,70,100,88.8,A,100
+JSON,public/data/squid_real_data_v4.json,0,w54_sourcing_bottleneck,?,글로벌 오징어 원물 소싱 병목 — 중국-페루 과점 구조,60,75,70,100,76.2,B,100
+JSON,public/data/squid_real_data_v4.json,0,w55_export_concentration,?,태국 냉동 오징어 수출국 편중도 리스크,90,95,70,100,88.8,A,100
+JSON,public/data/squid_real_data_v4.json,0,w56_sunmin_pe_valuation,?,선민·현원 패키지 딜 밸류에이션,60,75,75,100,77.5,B,95
+JSON,public/data/squid_real_data_v4.json,0,w57_china_supply_dominance,?,글로벌 오징어 시장 및 중국 공급 장악력,60,95,75,90,80.0,B,98
+JSON,public/data/squid_real_data_v4.json,0,w58_iuu_blackbox_risk,?,IUU 리스크 및 규제 사각지대,60,95,75,90,80.0,B,95
+JSON,public/data/squid_real_data_v4.json,0,w59_kor_vie_chn_conflict,?,韓-越-中 글로벌 수급 경합 모델,60,95,75,90,80.0,B,96
+JSON,public/data/squid_real_data_v4.json,0,w60_twoway_price_simulator,?,양방향 가격 및 매크로 리스크 (Two-Way Risk),60,95,75,90,80.0,B,94
+JSON,public/data/squid_real_data_v4.json,0,w61_kfas_regime_shift,?,🔬 [KFAS] 살오징어 자원 Regime Shift — CPUE 73.8% 붕괴와 생물학적 경고,60,75,70,100,76.2,B,100
+JSON,public/data/squid_real_data_v4.json,0,w62_kfas_msy_assessment,?,🔬 [KFAS] 베이지안 자원평가 — MSY 13만톤 vs 실제 어획 — 남획 진단,60,40,70,100,67.5,C,100
+JSON,public/data/squid_real_data_v4.json,0,w63_kfas_mortality_model,?,🔬 [KFAS] 크기별 사망률 모델 — 유생→성어 생존율 시뮬레이션,60,75,70,100,76.2,B,100
+JSON,public/data/squid_real_data_v4.json,0,w64_kfas_trophic_acoustic,?,🔬 [KFAS] 생태적 지위(TL 4.10) 및 다중주파수 음향 자원조사,60,40,70,100,67.5,C,100
+JSON,public/data/squid_real_data_v4.json,0,w65_ma_scorecard,?,선민수산 M&A 종합 스코어카드,90,75,75,100,85.0,A,95
+JSON,public/data/squid_real_data_v4.json,0,w66_capex_roadmap,?,선대 교체 CAPEX 로드맵 (2026-2032),90,75,75,100,85.0,A,92
+JSON,public/data/squid_real_data_v4.json,0,w67_earnout_sim,?,어획량 Earn-out 시뮬레이터 (3년 가변 인수가),90,40,75,100,76.2,B,90
+JSON,public/data/squid_real_data_v4.json,0,w68_import_dependency,?,한국 오징어 시장 수입 의존도 분해,90,70,75,100,83.8,B,98
+JSON,public/data/squid_real_data_v4.json,0,w69_eu_supply_gap,?,EU 오징어 구조적 공급 부족 — 수출 기회 윈도우,90,70,75,100,83.8,B,95
+JSON,public/data/squid_real_data_v4.json,0,w70_value_creation,?,인수 후 100일 밸류 크리에이션 플랜,90,75,75,100,85.0,A,90
+JSON,public/data/squid_real_data_v4.json,0,w71_fig_licence_system,?,포클랜드 FIG 라이선스 체계 (9종 구조),90,75,75,100,85.0,A,95
+JSON,public/data/squid_real_data_v4.json,0,w72_fig_revenue_trend,?,포클랜드 제도 정부 어업 라이선스 수입 추이,90,70,75,100,83.8,B,95
+JSON,public/data/squid_real_data_v4.json,0,w73_illex_2024_season,?,2024 Illex argentinus 시즌 월별 어획 분석,90,70,75,100,83.8,B,95
+JSON,public/data/squid_real_data_v4.json,0,w74_illex_boom_bust,?,Illex 'Boom & Bust' 역사적 변동성 (2014-2024),90,75,75,100,85.0,A,93
+JSON,public/data/squid_real_data_v4.json,0,w75_loligo_scientific_mgmt,?,Loligo (D. gahi) 바이오매스 관리 체계,90,75,75,100,85.0,A,95
+JSON,public/data/squid_real_data_v4.json,0,w76_area41_illex_share,?,SW Atlantic (Area 41) Illex 국가별 어획 점유율,90,70,75,100,83.8,B,93
+JSON,public/data/squid_real_data_v4.json,0,w77_mile201_dwf_crisis,?,Mile 201 공해 위기 — 중국 DWF 지배와 붕괴 리스크,60,75,65,100,75.0,B,80
+JSON,public/data/squid_real_data_v4.json,0,w78_itq_transition_timeline,?,Illex ITQ 전환 정책 타임라인 (2026 업데이트),90,95,65,100,87.5,A,85
+JSON,public/data/squid_real_data_v4.json,0,w79_fleet_competition_map,?,포클랜드 해역 국가별 선단 경쟁 구도,90,75,65,100,82.5,B,85
+JSON,public/data/squid_real_data_v4.json,0,w80_loligo_vs_illex_portfolio,?,Loligo vs Illex — 이중 포트폴리오 리스크 분산,90,75,75,100,85.0,A,93

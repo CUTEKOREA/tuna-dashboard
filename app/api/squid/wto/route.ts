@@ -5,7 +5,7 @@ export async function GET() {
     id: "w_wto_squid_sps",
     title: "EU 위생검역(SPS) 장벽 발동 트렌드",
     subtitle: "수산물 및 두족류 대상",
-    isLiveApi: true,
+    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
     reliability: 90,
     chartType: "bar",
     xKey: "quarter",

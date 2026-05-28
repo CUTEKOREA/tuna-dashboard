@@ -1,5 +1,17 @@
 # HANDOFF — 현재 작업 상태
 
+> 🦑 **2026-05-28 — squid 5-Pillar 156 위젯 전수 감사 + P0 9건 + P1 8건 정정 (역대 최대 규모)** [CC]:
+> - **Audit**: TSX 81 + JSON 75 = **156 위젯** (역대 최대). 평균 4-Axis **81.5 / B+ 등급** (참치 78.7·고등어 78.0 대비 최고). A 32 · B 113 · C 11 · **D 0**.
+> - **P0 9건 (P0 8건이 시스템적 함정 확대 케이스)**:
+>   - 8개 squid API 라우트 모두 `isLiveApi: true` mock 허위 라이브 (참치 SANCTIONS·고등어 mackerel-comtrade 패턴이 **8개로 시스템적 확대**)
+>   - [SquidDashboard.tsx:255-272 w_squid_cmm18_quota](components/SquidDashboard.tsx) — "CMM 18-2025 쿼터 할당" → **Grok 발견으로 정정**: CMM-18은 effort-based, TAC 도입 부결 (2026-02~03 Panama 14차 위원회), 15% 선박 축소 (China 570·Korea 43·Taiwan 38)
+> - **P1 8건**: API source "Live" 표기 5건 + SquidValueChainWidgets VC1~5 1차 출처 5건 + w52_iuu_geopolitics·w14·w17 cardDesc 기준 명시
+> - **신규 인프라**: [docs/2026_squid_industry_sources.md](docs/2026_squid_industry_sources.md) 16건 (WebSearch × 6 + Grok CLI × 1 첫 정식 활용), [scripts/extract_squid_widgets.py](scripts/extract_squid_widgets.py)
+> - **Multi-Agent ($0)**: Claude Opus 4.7 + **Antigravity Gemini 3 Flash** (Pro 무응답으로 폴백, P0/P1 정상 발견) + **WebSearch × 6** + **Grok CLI × 1** (실시간 X/뉴스, SPRFMO TAC 부결·Operation Mare Nostrum XI 등 결정적 발견) + **Codex GPT-5.5** (의심 4건 모두 EDIT 정당, false alarm 0건)
+> - **검증**: `npm run build` ✓ (4.3s, 117 pages, 에러 0).
+> - **Phase 6 결정**: 삭제 0건 (FalklandSquidDashboard는 `/falkland` 별도 라우트로 스코프 분리됨, PEF M&A 위젯은 B등급 유지).
+> - **잔여**: w52/w14/w17 외 156 위젯 중 잠재 의심 추가 점검은 별도 세션 (Pro 무응답 이슈 해결 후).
+
 > 🐟🟢 **2026-05-28 — mackerel 5-Pillar 103 위젯 전수 감사 + P0/P1 9건 정정 (참치 audit 방법론 재사용)** [CC]:
 > - **신규 도구**: [/widget-audit skill](file:///Users/idong-geon/.claude/skills/widget-audit/SKILL.md) (8-phase 멀티 에이전트 워크플로우) + [project_widget_audit_methodology.md memory](file:///Users/idong-geon/.claude/projects/-Users-idong-geon-----------/memory/project_widget_audit_methodology.md). 향후 다른 commodity 대시보드에도 재사용 가능.
 > - **Audit 결과** ([artifacts/](artifacts/)): `mackerel_audit_2026_05_28.md`, `mackerel_widget_inventory.json` (TSX 24 + JSON 79), `mackerel_4axis_scores.csv`, `mackerel_combined_audit_antigravity.md` + [docs/2026_mackerel_industry_sources.md](docs/2026_mackerel_industry_sources.md) 신규 15건.

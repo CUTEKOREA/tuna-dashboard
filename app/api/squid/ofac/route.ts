@@ -5,7 +5,7 @@ export async function GET() {
     id: "w_ofac_iuu_radar",
     title: "IUU 불법조업 의심 선박 적발 추이",
     subtitle: "포클랜드 및 아르헨티나 공해상",
-    isLiveApi: true,
+    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
     reliability: 92,
     chartType: "area",
     xKey: "year",

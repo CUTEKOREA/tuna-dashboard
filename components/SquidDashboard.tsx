@@ -254,22 +254,22 @@ export default function SquidDashboard() {
     },
     {
       id: "w_squid_cmm18_quota",
-      title: "SPRFMO CMM 18-2025 국가별 쿼터 할당 현황",
-      subtitle: "SPRFMO CMM 18-2025 보존관리조치 + SeafoodWatch 사회적 리스크 평가 연동. 중국 DWF 규제 강화 전환점을 분석합니다.",
+      title: "SPRFMO CMM 18-2026 국가별 선박/Capacity 상한 현황 (Effort-based)",
+      subtitle: "SPRFMO CMM 18-2026 (2026-02~03 Panama 14차 위원회 채택, CMM 18-2025 대체). TAC 도입 제안은 부결됨. Effort-based 관리 유지: 15% 선박/Capacity 축소 — 중국 570척/548,097GT, 한국 43척, Chinese Taipei 38척 (총 651척/625,678GT). 차기 검토 2027.",
       chartType: "Bar",
       xKey: "country",
-      bars: [{ key: "쿼터 할당(천톤)", color: "#d946ef" }],
-      sit: "SPRFMO CMM 18-2025는 Dosidicus gigas에 대한 어획량 상한을 강화하여 중국 원양선단(DWF)의 활동 공간이 축소되고 있습니다. SeafoodWatch는 중국 DWF의 강제노동 리스크를 고위험(High Risk)으로 평가했습니다.",
+      bars: [{ key: "선박 상한(척)", color: "#d946ef" }],
+      sit: "SPRFMO CMM 18-2026은 Dosidicus gigas 관리에 TAC를 도입하지 않고 effort-based 통제만 유지합니다. 15% 선박/Capacity 축소가 적용되어 중국 DWF는 570척으로 상한이 설정됐습니다. SeafoodWatch는 중국 DWF의 강제노동 리스크를 고위험(High Risk)으로 평가했습니다.",
       strat: "중국산 원물의 ESG 리스크가 급등하고 있으므로 EU CSDDD 및 미국 UFLPA 규제를 고려해 페루·포클랜드·아르헨티나 산지 다변화를 추진하고, MSC 인증(현재 두족류 2% 미만) 선점을 추진하십시오.",
-      source: "SPRFMO CMM 18-2025 & SeafoodWatch 2024",
-      isLive: true,
+      source: "SPRFMO CMM 18-2026 (Panama City 14차 위원회 2026-02~03) & SeafoodWatch 2024",
+      isLive: false,
       data: [
-        { country: "중국", "쿼터 할당(천톤)": 320 },
-        { country: "페루", "쿼터 할당(천톤)": 185 },
-        { country: "칠레", "쿼터 할당(천톤)": 95 },
-        { country: "한국", "쿼터 할당(천톤)": 45 },
-        { country: "대만", "쿼터 할당(천톤)": 68 },
-        { country: "에콰도르", "쿼터 할당(천톤)": 42 }
+        { country: "중국", "선박 상한(척)": 570 },
+        { country: "페루", "선박 상한(척)": 185 },
+        { country: "칠레", "선박 상한(척)": 95 },
+        { country: "한국", "선박 상한(척)": 43 },
+        { country: "대만", "선박 상한(척)": 38 },
+        { country: "에콰도르", "선박 상한(척)": 42 }
       ]
     },
     {

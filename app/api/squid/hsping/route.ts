@@ -6,7 +6,7 @@ export async function GET() {
     id: "w_squid_hs_tariff_sim",
     title: "HS/Tariff 랜딩 코스트 시뮬레이터",
     subtitle: "남미산 원양 오징어 MFN/FTA",
-    isLiveApi: true,
+    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
     reliability: 96,
     chartType: "composed",
     xKey: "origin",
@@ -25,7 +25,7 @@ export async function GET() {
     ],
     sit: "[HS Ping] 페루산(FTA 체결)과 아르헨산(미체결)간의 관세 격차가 랜딩 코스트에 직결됨.",
     strat: "가공용(Tube/Ring)은 페루산 무관세 쿼터를 적극 활용하고, 아르헨산은 해상 전재를 통한 우회 전략 검토.",
-    source: "HS Ping & Tariffs.io Live"
+    source: "HS Ping & Tariffs.io (Mock fallback)"
   };
 
   return NextResponse.json(data);
