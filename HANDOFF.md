@@ -1,5 +1,23 @@
 # HANDOFF — 현재 작업 상태
 
+> 🇺🇸 **2026-05-28 — U.S. Census Bureau API 통합 (참치캔·명태 무역 인텔리전스 4 위젯)** [CC]:
+> - **API 키 저장**: `USCENSUS_API_KEY=57ed5d9332b5b042e538a9dd3abc83c00a5a66eb` ([.env.local:36](.env.local)) + [api_keys_catalog.md:218](api_keys_catalog.md) (이전 오타 `57ad…a06eb` 교정 확인). Census 무료 발급, 라이브 호출 검증 완료.
+> - **동시 작업 충돌 처리**: Antigravity가 09:08 prefetch 방식으로 route.ts + 위젯 5개를 선행 작성한 것을 발견. 사용자 결정에 따라 "wiring + 루타롤 재작업" 진행.
+> - **인테이크 모듈 신설** ([lib/usCensusData.ts](lib/usCensusData.ts)): AGENTS.md 함정 #4 (위젯의 JSON 직접 import) 회피 — 위젯 5개가 모두 `import rawData from '../data/...'` 패턴이었던 것을 단일 모듈 헬퍼(`monthlyTotals`·`monthlyCountryShare`·`annualSupplierBreakdown`·`monthlyByCountries`) 경유로 전환. 지역집계(APEC·ASEAN 등) 필터·국가명 한글 매핑·HS 라벨을 모듈에 집약. 향후 fetch 전환은 모듈 내부만 교체.
+> - **route.ts v2 정직화** ([app/api/us-census/route.ts](app/api/us-census/route.ts)): mode=trend/breakdown/raw 3가지로 외부 호출 가능. prefetch JSON을 정규화하여 서빙(지역집계 제외·점유율 자동 계산). 메타에 coverage·reliability·향후 Live 전환 가이드 주석 포함.
+> - **가짜 위젯 삭제**: `UsCensusCrossValidationWidget.tsx` — UN Comtrade 비교 데이터가 `val * 0.96`/`val * 0.4` 임의값이라 R-01(다중 소스 교차 검증)·P-03(무관용) 위반. 즉시 제거.
+> - **위젯 4개 룰북 준수형 재작성**:
+>   - S4 [UsTunaImportWidget](components/UsTunaImportWidget.tsx): 미국 참치캔(HS 160414) 월별 수입액 + 평균 단가 ($/kg), ComposedChart 좌·우축
+>   - S3 [UsTunaMarketShareWidget](components/UsTunaMarketShareWidget.tsx): 상위 5개 공급국 100% 누적 영역(태국 45~55% 압도)
+>   - S5 [UsPolicyImpactWidget](components/UsPolicyImpactWidget.tsx): UFLPA 2022-06 발효 ReferenceLine + 중국·베트남·인도네시아 라인
+>   - S3 [UsPollockDetourWidget](components/UsPollockDetourWidget.tsx): 대러 수산물 수입 금지 2022-03 ReferenceLine + 러시아 직접 소멸·중국 우회 가공 지속
+> - **정직성 교정**: 상대 작성본의 `telemetry={{ status: 'LIVE', syncDate: 'US Census API' }}` (사실은 prefetch JSON 읽기) → `status: 'SYNCED'` + 실제 데이터 마감일(2024-04)로 변경.
+> - **L-01 통과**: 제목·라벨·범례 영문 잔존 0건 (이전: "Market Share"·"Cross-validation"·"(Value)"·"Double-frozen" 등 다수).
+> - **TunaDashboard 등록**: S3 글로벌 무역 그룹 ×2 + S4 거시경제 그룹 ×1 + S5 컴플라이언스 레이더 ×1
+> - **L-03 빌드 통과** ✓ (`/api/us-census` dynamic 라우트 정상). 경고는 모두 cassava 기존 코드 (내 변경 외).
+> - **데이터 커버리지**: HS 160414·030343·030475, 2021-01 ~ 2024-04 월별. 갱신은 [scripts/fetch_us_census_data.js](scripts/fetch_us_census_data.js) 재실행.
+> - **다음 단계 후보**: ① prefetch 스크립트를 cron 등록해 매월 자동 갱신 ② Live API 직접 호출 모드 추가(현재 route에 헬퍼 주석 남김) ③ HS 030342(황다랑어)·030487(참치 필렛) 추가 수집
+
 > 🐙 **2026-05-28 — 낙지 대시보드 신규 메뉴 라이브 배포 + KMI FTA JSON 게이팅** [CC] (commit 3456b69):
 > - **신규 메뉴**: `/octopus` 사이드바·CommandPalette 등록, 낙지(Octopus minor) 5-Pillar 셸 작성 ([components/OctopusDashboard.tsx](components/OctopusDashboard.tsx))
 > - **신규 위젯 2건 (Phase 1)**:

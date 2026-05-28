@@ -215,7 +215,7 @@ WTO_API_KEY="9c11cd0e1f954c34865c8c427eb07174"
 
 ```bash
 # .env.local에 추가
-USCENSUS_API_KEY="57ad5d9332b5b942e539e9dd3a0c83c00a5a06eb"
+USCENSUS_API_KEY="57ed5d9332b5b042e538a9dd3abc83c00a5a66eb"
 ```
 
 ---

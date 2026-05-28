@@ -70,6 +70,10 @@ import {
 } from './TunaIntelInsightsB4';
 import TunaLiveTicker from './TunaLiveTicker';
 import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
+import UsTunaImportWidget from './UsTunaImportWidget';
+import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
+import UsPolicyImpactWidget from './UsPolicyImpactWidget';
+import UsPollockDetourWidget from './UsPollockDetourWidget';
 import {
   AtunaIoPerfectStormWidget,
   AtunaBangkokPriceWidget,
@@ -854,6 +858,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <WitsTradeFlowWidget />
               <TunaHSClassifier />
               <MofTradeBalanceWidget />
+              {/* 미국 인구조사국 무역 통계 — 참치캔 공급국·명태 우회 */}
+              <UsTunaMarketShareWidget />
+              <UsPollockDetourWidget />
 
               {/* 3. 전략적 물류 거점 (PNG 등) */}
               <TunaPngHubStrategy />
@@ -889,7 +896,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               {/* 1. 거시 경제 및 인플레이션 타격 */}
               <TunaPriceDecoupling />
-              
+              {/* 미국 시장 — 참치캔 수입 트렌드 + 평균 단가 */}
+              <UsTunaImportWidget />
+
               {/* 2. 주요 소비 시장 동향 (EU 및 글로벌 리테일) */}
               <InsightEU18C />
               {widgets?.filter((w: any) => ['w09_kr_import', 'w11_kr_price', 'w12_margin', 'w16_import_blackhole', 'w17_korea_margin', 'w21_korea_price_truth', 'w31_italy_multiplier', 'w34_germany_blackhole', 'w37_china_dumping', 'w38_italy_stagflation', 'w43_retail_price_map', 'w44_italy_retail_explosion', 'w51_gridflation', 'w56_eu_oligopsony', 'w59_inflation_downtrading', 'w65_export_price_benchmark', 'w69_china_consumption', 'w100_china_fukushima_switch'].includes(w.id)).map((w: any) => (
@@ -935,6 +944,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <TunaComplianceRadar />
               <PolicyRiskScorecard />
               <TunaEsgRiskRadar />
+              {/* 미국 UFLPA 발효 후 가공국 재편 (Census 무역 통계 근거) */}
+              <UsPolicyImpactWidget />
 
               {/* 2. 환경세 및 자원 보존 (TAC) 규제 */}
               <InsightPillarTwo />

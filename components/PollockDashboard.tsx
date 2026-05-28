@@ -26,6 +26,7 @@ import { PollockSanctionParadox, PollockFtaTariffMatrix, PollockRiskScorecard } 
 import { PollockPriceForecastChart, PollockScenarioSimulator } from './PollockPriceForecast';
 import { PollockLandedCostWaterfall, PollockRouteComparison } from './PollockLandedCost';
 import { PollockConcentrationIndex, PollockAlternativeSourcing, PollockSubstituteElasticity } from './PollockSupplyResilience';
+import UsPollockDetourWidget from './UsPollockDetourWidget';
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
   if (!status) return null;
@@ -102,7 +103,7 @@ const PILLARS = [
     id: "P3", num: "❸", label: "물류·통관",
     title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "러시아 극동 수산 클러스터 물동량 및 차익거래 트래커", color: "#2563eb", icon: Truck,
     widgets: ["w_fta_pollock_us_rebound", "w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "w35_eu_gateway", "w36_china_sanitary_pact", "w37_ntb_timeline", "n1_sanction_paradox", "n5_rcep_detour"],
-    customInject: ["PollockFtaTariffMatrix", "PollockRouteComparison", "PollockLandedCostWaterfall"]
+    customInject: ["PollockFtaTariffMatrix", "PollockRouteComparison", "PollockLandedCostWaterfall", "UsPollockDetourWidget"]
   },
   {
     id: "P4", num: "❹", label: "판매·수요",
@@ -632,6 +633,7 @@ export default function PollockDashboard() {
               {pillar.customInject?.includes("PollockSubstituteElasticity") && <PollockSubstituteElasticity />}
               {pillar.customInject?.includes("PollockRiskScorecard") && <PollockRiskScorecard />}
               {pillar.customInject?.includes("PollockSanctionParadox") && <PollockSanctionParadox />}
+              {pillar.customInject?.includes("UsPollockDetourWidget") && <UsPollockDetourWidget />}
             </div>
           </section>
         );

@@ -16,6 +16,9 @@ import TelemetryBadge from './TelemetryBadge';
 import WidgetCard from './WidgetCard';
 import { truncateKoreanLabel } from '../lib/chart-standards';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import UsTunaImportWidget from './UsTunaImportWidget';
+import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
+import UsPolicyImpactWidget from './UsPolicyImpactWidget';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -137,6 +140,10 @@ export default function TunaInsightsDashboard() {
 
   const renderMarginTrack = () => (
     <>
+      <UsTunaImportWidget />
+      <UsTunaMarketShareWidget />
+      <UsPolicyImpactWidget />
+      
       <WidgetCard
         title="Insight 1. 참치 차익거래 마진 레이더"
         icon={ArrowRightLeft}
@@ -162,7 +169,7 @@ export default function TunaInsightsDashboard() {
           situation: `<div>
 <p>참치 차익거래(Arbitrage)는 <strong>"한 곳에서 싸게 사서 다른 곳에 비싸게 파는"</strong> 가장 단순한 무역 사업입니다. 이 차트는 그 가격차(스프레드)를 추적합니다.</p>
 <p>태국 가공공장이 어선에서 원어를 사는 가격은 톤당 약 $1,800. 이것을 통조림으로 가공해 EU·미국에 파는 가격은 톤당 약 $5,250. <strong>그 차이가 $3,450</strong>입니다(1톤 ≈ 1,000kg 기준, 약 470만원). 이게 "스프레드"입니다.</p>
-<p>보통 이 스프레드는 해운비와 함께 움직입니다: 2021년 코로나로 해운비가 5배 폭등하자 스프레드도 함께 벌어졌고, 2024년 해운비가 정상으로 돌아오면 스프레드도 좁아져야 정상입니다. 그런데 <strong>스프레드는 좁혀지지 않고 그대로 유지</strong>되었습니다. 2022년 대비 오히려 +12.4% 더 벌어졌습니다.</p>
+<p>보통 이 스프레드는 해운비와 함께 움직입니다: 2021년 코로나로 해운비가 5배 폭등하자 스프레드도 함께 벌어졌고, 2024년 해운비가 정상으로 돌아오면 스프레드도 좁혀져야 정상입니다. 그런데 <strong>스프레드는 좁혀지지 않고 그대로 유지</strong>되었습니다. 2022년 대비 오히려 +12.4% 더 벌어졌습니다.</p>
 <p>이는 무엇을 뜻하나? 이제 참치 차익거래의 마진은 해운비 차이가 아니라, <strong>공장에서 만드는 부가가치 자체에 락인(고정)</strong>되어 있다는 신호입니다. 즉, 단순히 원물을 트럭째 사다 파는 트레이더는 마진을 못 가져가고, <strong>가공 공장만 마진을 가져갑니다</strong>.</p>
 </div>`,
           actionPlan: `<div>
@@ -308,7 +315,7 @@ export default function TunaInsightsDashboard() {
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (90일)</strong>: NOAA ENSO Index 0.5°C 돌파 시점에 자동으로 발동되는 <strong>"기후 헷지 발주 매뉴얼"</strong> 본사 통합 운영규정에 명문화. WCPO 선단 25~30%를 인도양 IOTC 라이센스 보유 거점(세이셸·모리셔스)으로 30일 내 재배치. 인도양 라이센스는 평시에 EUR 80~120/톤이나 ENSO 충격기에는 EUR 250+/톤으로 4배 폭등 — <strong>평시 long position을 미리 확보</strong>하여 라이센스 자체에서 spot trading 차익 발생.</li>
 <li style="margin-bottom: 8px;"><strong>중기 (6~24개월)</strong>: <strong>4대 어장 quota portfolio fund</strong> 조성. WCPO·EPO·IO·AO 각각의 PNA·IATTC·IOTC·ICCAT 쿼터를 ICE Brent의 calendar spread 구조처럼 분기 forward로 매입. 어선이 아닌 쿼터 자체를 자산으로 보유하여, 어획이 없는 분기에는 쿼터를 spot 시장에 매각하는 dual-monetization. 이 구조는 어획 P&amp;L과 쿼터 P&amp;L을 분리해 본사 BS에서 quota는 intangible asset, 어획은 inventory로 분리 인식.</li>
-<li><strong>장기 (3~10년)</strong>: <strong>climate-resilient species transition</strong>. 가다랑어(skipjack) 의존도 70%를 50%로 낮추고, 황다랑어(yellowfin) 30% + 백다랑어(albacore) 20%로 균형. 황다랑어는 더 깊은 수심에서도 어획 가능해 ENSO 내성이 높고, 백다랑어는 한대성으로 기후변화 시 위도 상승하면 신규 어장(베링해 일부, 북대서양) 출현. 동시에 RAS(Recirculating Aquaculture System) 기반 육상 양식 참치 minority equity 5~7%를 호주 Cleanseas Tuna 등에 선매수 — 4대 어장 동시 붕괴 시 양식이 backup option이 된다.</li>
+<li><strong>장기 (3~10년)</strong>: <strong>"Climate-resilient species transition"</strong>. 가다랑어(skipjack) 의존도 70%를 50%로 낮추고, 황다랑어(yellowfin) 30% + 백다랑어(albacore) 20%로 균형. 황다랑어는 더 깊은 수심에서도 어획 가능해 ENSO 내성이 높고, 백다랑어는 한대성으로 기후변화 시 위도 상승하면 신규 어장(베링해 일부, 북대서양) 출현. 동시에 RAS(Recirculating Aquaculture System) 기반 육상 양식 참치 minority equity 5~7%를 호주 Cleanseas Tuna 등에 선매수 — 4대 어장 동시 붕괴 시 양식이 backup option이 된다.</li>
 </ol>
 </div>`,
           source: 'FAO FishStat Capture v25 · Atuna May 2026 (Q1 WCPO Supply Drop)',
@@ -492,6 +499,8 @@ export default function TunaInsightsDashboard() {
 
   const renderMacroTrack = () => (
     <>
+      <UsPolicyImpactWidget />
+      
       <WidgetCard
         title="Insight 9. 공급 독과점 HHI 지수 경보"
         icon={Briefcase}
