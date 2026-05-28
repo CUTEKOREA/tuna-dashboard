@@ -19,11 +19,11 @@ const FALLBACK_FLOW = [
 ];
 
 export async function GET() {
-  let isLive = false;
-  let flows = FALLBACK_FLOW;
+  const isLive = false;
+  const flows = FALLBACK_FLOW;
 
   try {
-    const comtradeKey = process.env.COMTRADE_API_KEY;
+    const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
     if (comtradeKey && comtradeKey !== 'pending_issuance') {
       // UN Comtrade Premium API (HS 030354)
       const url = 'https://comtradeapi.un.org/data/v1/get/C/A/HS?cmdCode=030354&reporterCode=all&partnerCode=all&period=2023&flowCode=M,X';

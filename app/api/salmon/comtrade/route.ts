@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { type, reporter, partner, hsCode, period } = body;
     
-    const apiKey = process.env.COMTRADE_API_KEY;
+    const apiKey = process.env.UN_COMTRADE_PRIMARY_KEY;
     
     // Live API 호출 시도
     if (apiKey && apiKey !== 'your_key_here') {
@@ -140,6 +140,6 @@ export async function GET() {
         countryCodes: Object.keys(COUNTRY_CODES),
       }
     },
-    status: process.env.COMTRADE_API_KEY ? 'API Key configured' : 'Fallback mode',
+    status: process.env.UN_COMTRADE_PRIMARY_KEY ? 'API Key configured' : 'Fallback mode',
   });
 }

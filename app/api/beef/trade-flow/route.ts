@@ -116,7 +116,7 @@ async function fetchComtradeBeef(key: string | undefined): Promise<{ data: typeo
 }
 
 export async function GET() {
-  const key = process.env.COMTRADE_API_KEY;
+  const key = process.env.UN_COMTRADE_PRIMARY_KEY;
   let data = FALLBACK;
   let isLive = false;
   let source = '유엔 무역통계(UN Comtrade) 정적 미러';

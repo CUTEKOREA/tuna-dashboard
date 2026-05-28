@@ -58,7 +58,7 @@ export async function GET() {
       }
 
       // STRICTLY CFS (연결재무제표)
-      let cfsList = data.list.filter((i: any) => i.fs_div === 'CFS');
+      const cfsList = data.list.filter((i: any) => i.fs_div === 'CFS');
 
       if (cfsList.length === 0) {
         results.push({ name: company.name, ticker: company.ticker, error: true, insight: '연결재무제표(CFS) 데이터를 찾을 수 없습니다.' });

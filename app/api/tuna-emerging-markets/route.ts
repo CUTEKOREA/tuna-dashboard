@@ -20,7 +20,7 @@ import { NextRequest, NextResponse } from 'next/server';
  *  - 11개국 opportunity_usd_m은 보고서 추정치 보존 (외부 단일 출처 미확정)
  */
 
-const COMTRADE_KEY = process.env.COMTRADE_API_KEY || '';
+const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || '';
 
 // Emerging market opportunity data (국정연 보고서 기반)
 const EMERGING_MARKETS = {

@@ -9,7 +9,7 @@ import { getCachedData } from '../../../../lib/cache';
 export async function GET(request: Request) {
   try {
     const data = await getCachedData('shrimp_sourcing_sim', async () => {
-      const comtradeKey = process.env.COMTRADE_API_KEY;
+      const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
       
       // Attempt Comtrade live fetch for Korea's shrimp imports by partner
       let liveTradeData = null;

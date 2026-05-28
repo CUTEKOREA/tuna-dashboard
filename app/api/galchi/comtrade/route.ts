@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const COMTRADE_KEY = process.env.COMTRADE_API_KEY || "";
+const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || "";
 
 const FALLBACK = {
   source: "UN Comtrade HS 030389 (Forensic 파싱)",

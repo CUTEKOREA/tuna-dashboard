@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 
     flows = FALLBACK_FLOWS[cmdCode] || FALLBACK_FLOWS['160414'];
     
-    const comtradeKey = process.env.COMTRADE_API_KEY;
+    const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
     if (comtradeKey && comtradeKey !== 'pending_issuance') {
       const url = `https://comtradeapi.un.org/data/v1/get/C/A/HS?cmdCode=${cmdCode}&reporterCode=${reporterCode}&partnerCode=${partnerCode}&period=${period}&flowCode=${flowCode}`;
       const res = await fetch(url, { 

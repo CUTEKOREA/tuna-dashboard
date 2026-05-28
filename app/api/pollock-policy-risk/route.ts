@@ -16,7 +16,7 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 
 const WTO_KEY = process.env.WTO_API_KEY || '';
-const COMTRADE_KEY = process.env.COMTRADE_API_KEY || '';
+const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || '';
 
 // ═══ Pollock Policy Risk Matrix ═══
 const POLLOCK_POLICY_RISK_MATRIX = {

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
-const KCS_API_KEY = process.env.KCS_API_KEY;
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY;
 
 // Baseline trader shares (based on the static data provided)
 const TRADER_SHARES: Record<string, number> = {

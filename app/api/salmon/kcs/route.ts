@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { type, hsCode, startYear, endYear, countryCode } = body;
     
-    const apiKey = process.env.KCS_API_KEY;
+    const apiKey = process.env.DATA_GO_KR_NEW_KEY;
     
     // Live KCS API 호출 시도
     if (apiKey && type === 'live') {
@@ -127,6 +127,6 @@ export async function GET() {
       originBreakdown: '4 country groups',
       productBreakdown: '4 HS categories',
     },
-    status: process.env.KCS_API_KEY ? 'API Key configured' : 'Fallback mode',
+    status: process.env.DATA_GO_KR_NEW_KEY ? 'API Key configured' : 'Fallback mode',
   });
 }

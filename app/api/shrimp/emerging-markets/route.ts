@@ -8,7 +8,7 @@ import { getCachedData } from '../../../../lib/cache';
 export async function GET(request: Request) {
   try {
     const data = await getCachedData('shrimp_emerging_markets', async () => {
-      const comtradeKey = process.env.COMTRADE_API_KEY;
+      const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
       let liveChitosanData = null;
 
       if (comtradeKey) {

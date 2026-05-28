@@ -133,7 +133,7 @@ async function fetchNassSlaughter(key: string): Promise<typeof FALLBACK | null> 
 }
 
 export async function GET() {
-  const key = process.env.NASS_API_KEY;
+  const key = process.env.USDA_FAS_API_KEY;
   let data = FALLBACK;
   let isLive = false;
   let source = '미국 농업통계국(USDA NASS) + 호주 축산공사(MLA) 정적 미러';

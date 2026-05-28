@@ -10,7 +10,7 @@ export const revalidate = 300;
  * 용도: 고등어(HS 030354) 월별 수입 추이 및 주요 국가별 수입 점유율
  */
 
-const KCS_API_KEY = process.env.KCS_API_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 
 const FALLBACK_MONTHLY = [
   { month: '2023-08', volume: 11200, value: 21500 },

@@ -39,7 +39,7 @@ async function getExchangeRate(currency: string): Promise<number> {
 
 // --- KCS: 해상수출입 운송비용 ---
 async function getFreightCost(hsCode: string, countryCode: string): Promise<{ freightPerTon: number; source: string }> {
-  const apiKey = process.env.PUBLIC_DATA_API_KEY || process.env.KCS_API_KEY;
+  const apiKey = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_NEW_KEY;
   if (!apiKey) return { freightPerTon: 150, source: 'ESTIMATE' };
 
   const cleanHs = hsCode.replace(/\./g, '').substring(0, 6);

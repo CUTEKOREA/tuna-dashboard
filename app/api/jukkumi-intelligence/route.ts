@@ -10,7 +10,7 @@ export async function GET() {
 
     // TODO: 환경변수에 KCS_API_KEY, COMTRADE_API_KEY, FRED_API_KEY 등이 있을 경우
     // 외부 API를 호출하여 데이터를 덮어쓰는 로직을 여기에 구현합니다.
-    const hasKeys = process.env.KCS_API_KEY || process.env.FRED_API_KEY;
+    const hasKeys = process.env.DATA_GO_KR_NEW_KEY || process.env.FRED_API_KEY;
 
     if (hasKeys) {
       console.log('API Keys found. Executing live fetch pipeline...');

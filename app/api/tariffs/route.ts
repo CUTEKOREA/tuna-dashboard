@@ -49,7 +49,7 @@ const FALLBACK_DATA: Record<string, any> = {
 };
 
 export async function GET() {
-  const hasKey = !!process.env.TARIFFS_API_KEY;
+  const hasKey = !!process.env.DATA_GO_KR_NEW_KEY;
   return NextResponse.json({
     service: 'Tariffs.io Pipeline',
     status: hasKey ? 'operational' : 'fallback_only',
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
     let source: 'TARIFFS_LIVE' | 'TARIFFS_FALLBACK' = 'TARIFFS_FALLBACK';
     
     // 1) Try Live API
-    if (process.env.TARIFFS_API_KEY) {
+    if (process.env.DATA_GO_KR_NEW_KEY) {
       try {
         const ctrl = new AbortController();
         const tid = setTimeout(() => ctrl.abort(), TARIFFS_TIMEOUT);
@@ -78,7 +78,7 @@ export async function POST(req: Request) {
         const url = `${TARIFFS_BASE}/calculate?origin=${origin}&destination=${destination}&hs_code=${hsCode}`;
         const resp = await fetch(url, {
           headers: {
-            'Authorization': `Bearer ${process.env.TARIFFS_API_KEY}`,
+            'Authorization': `Bearer ${process.env.DATA_GO_KR_NEW_KEY}`,
             'Accept': 'application/json'
           },
           signal: ctrl.signal

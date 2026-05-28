@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
  * HS Code: 0303899060 (냉동 갈치)
  */
 
-const KCS_API_KEY = process.env.KCS_API_KEY || "";
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || "";
 const KCS_BASE = "https://unipass.customs.go.kr/ets/index.do";
 
 // Fallback: 2024년 검증 완료 데이터 (관세청 XML 31파일 파싱 결과)

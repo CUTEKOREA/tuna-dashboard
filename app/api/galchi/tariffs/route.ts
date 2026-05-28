@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const TARIFFS_KEY = process.env.TARIFFS_API_KEY || "";
+const TARIFFS_KEY = process.env.DATA_GO_KR_NEW_KEY || "";
 const TARIFFS_BASE = "https://api.tariffs.io/v1/calculate";
 
 const FALLBACK = {

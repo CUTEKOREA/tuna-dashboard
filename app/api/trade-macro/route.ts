@@ -85,7 +85,7 @@ Return ONLY valid JSON:
 
 // --- 2. KCS API: Real trade volume (관세청 수출입무역통계) ---
 async function fetchKCSVolume(hsCode: string, country: string, year: string) {
-  const apiKey = process.env.KCS_API_KEY;
+  const apiKey = process.env.DATA_GO_KR_NEW_KEY;
   if (!apiKey) return null;
 
   const countryCode = countryCodeMap[country] || '';
@@ -186,7 +186,7 @@ async function fetchWholesalePrice(itemName: string) {
 
   const seafoodMatch = Object.keys(seafoodItems).find(k => itemName.includes(k));
   if (seafoodMatch) {
-    const seafoodKey = process.env.PUBLIC_DATA_API_KEY;
+    const seafoodKey = process.env.DATA_GO_KR_NEW_KEY;
     if (!seafoodKey) return `${seafoodItems[seafoodMatch]} (수산물 도매 API 연동 대기, 내부 DB)`;
     
     // Simulate Public Data Portal Fetch for Seafood (e.g. MOF Consignment Sales)
@@ -372,7 +372,7 @@ export async function POST(req: Request) {
       : buildScorecardFromAI({}); // fallback with empty
 
     // === STEP 2: KCS API & UN Comtrade — Real trade volume ===
-    let tradeVolume: any[] = [];
+    const tradeVolume: any[] = [];
     if (hsCode !== 'Auto-Matched') {
       const kcsPromises = [];
       for (let year = 2022; year <= 2026; year++) {
@@ -381,7 +381,7 @@ export async function POST(req: Request) {
       const kcsResults = await Promise.all(kcsPromises);
 
       // Fetch UN Comtrade as fallback/global data if KCS is missing
-      const comtradeKey = process.env.COMTRADE_API_KEY;
+      const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
       let comtradeLive = false;
       let comtradeVolume = 0;
       let comtradeExport = 0;

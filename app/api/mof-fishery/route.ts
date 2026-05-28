@@ -13,8 +13,8 @@ import { NextRequest, NextResponse } from 'next/server';
  *  - (일반 2025-01) 해양수산 공공데이터 플랫폼 활용 제고 방안 연구
  */
 
-const SERVICE_KEY = process.env.PUBLIC_DATA_API_KEY || '';
-const KCS_KEY = process.env.KCS_API_KEY || '';
+const SERVICE_KEY = process.env.DATA_GO_KR_NEW_KEY || '';
+const KCS_KEY = process.env.DATA_GO_KR_NEW_KEY || '';
 
 // HS codes for tuna
 const TUNA_HS_CODES = ['0302', '030231', '030232', '030233', '030234', '030235', '030239', '160414'];

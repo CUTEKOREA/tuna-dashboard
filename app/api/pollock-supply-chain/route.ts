@@ -12,7 +12,7 @@ import { NextRequest, NextResponse } from 'next/server';
  * HS Codes: 0303.67 (냉동 명태), 0304.75 (필레), 160419 (가공)
  */
 
-const COMTRADE_KEY = process.env.COMTRADE_API_KEY || '';
+const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || '';
 
 // ═══ Global Pollock Supply Chain Map ═══
 const POLLOCK_SUPPLY_CHAIN = {

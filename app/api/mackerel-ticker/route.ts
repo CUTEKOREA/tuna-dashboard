@@ -10,7 +10,7 @@ import { NextResponse } from 'next/server';
 
 const ECOS_API_KEY = process.env.ECOS_API_KEY || '';
 const KAMIS_API_KEY = process.env.KAMIS_API_KEY || '';
-const KCS_API_KEY = process.env.KCS_API_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 
 export const runtime = 'nodejs';
 export const revalidate = 300; // 5분 캐시

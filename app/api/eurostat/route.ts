@@ -22,8 +22,8 @@ const FALLBACK_PROD = [
 
 export async function GET() {
   let isLive = false;
-  let imports = FALLBACK_IMPORT;
-  let prod = FALLBACK_PROD;
+  const imports = FALLBACK_IMPORT;
+  const prod = FALLBACK_PROD;
 
   try {
     // 유로스타트 오픈 API 연동 (별도 API 키 불필요)

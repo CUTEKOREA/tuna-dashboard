@@ -38,7 +38,7 @@ async function fetchMFDSRejections(itemName: string) {
 
 // --- KOTRA: 무역사기 사례 ---
 async function fetchKOTRAFraudCases(country: string) {
-  const apiKey = process.env.PUBLIC_DATA_API_KEY;
+  const apiKey = process.env.DATA_GO_KR_NEW_KEY;
   if (!apiKey) return { count: 0, cases: [], source: 'API_KEY_MISSING' };
 
   const kotraCountryMap: Record<string, string> = {
