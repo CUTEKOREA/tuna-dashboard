@@ -1,5 +1,19 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐙 **2026-05-28 — 낙지 대시보드 Phase 2 (8 위젯 + customBody collapse 버그 수정 + 수동 배포 우회)** [CC]:
+> - **차트 collapse 버그 수정** ([components/OctopusDomesticCliff.tsx](components/OctopusDomesticCliff.tsx), [OctopusFTAQuarterly.tsx](components/OctopusFTAQuarterly.tsx)): WidgetCard `chart` prop은 `SafeResponsiveContainer` 자동 래핑이나 `customBody`는 raw 패스 — 두 위젯이 customBody 내부에 일반 `ResponsiveContainer` 8곳을 직접 써서 width=0 collapse → 빈 박스. 모두 `SafeResponsiveContainer`(200ms debounce + 0×0 무시 + ResizeObserver) 로 일괄 치환. commit `e23ba94`.
+> - **Phase 2 위젯 8개 신설** ([components/OctopusPhase2Widgets.tsx](components/OctopusPhase2Widgets.tsx), 400 LoC):
+>   - **S1 +1** OctopusSstCorrelation — NOAA 서해 SST × NIFS 낙지 어획 산점도(2010~2025), Pearson r = -0.95
+>   - **S2 신규 2** OctopusChannelMarginMatrix(활 70%·자숙 25%·냉동 5% 채널별 마진율 43.8/30.8/14.3%) · OctopusColdChainYield(항공 활낙지 8h/생존 87% vs 해상 MAP 120h/신선도 92% vs 냉동 168h)
+>   - **S3 +1** OctopusFtaTariffMatrix — HSK 0307.51/52/59 + 1605.55 × MFN/KVFTA/RCEP/CPTPP. KVFTA 활·신선·냉동 모두 0% 최적 경로 가시화
+>   - **S4 신규 2** OctopusPriceTransmission(KAMIS 도매 17,800→29,800원, 전가율 22→41% 상승) · OctopusCephalopodElasticity(낙지-문어 r=0.94, 주꾸미 후행)
+>   - **S5 신규 2** OctopusAquacultureRace(Nueva Pescanova TRL 8/2027 3,000톤 → 자연산 가격 30~40% 붕괴 시나리오) · OctopusTacCountdown(2030 본격 TAC까지 4년)
+> - **EXTRA_BY_PILLAR 5-Pillar 전 영역 채워짐**: 이전 S1(1)·S3(1)만 → 현재 S1(2)·S2(2)·S3(2)·S4(2)·S5(2). 모든 신규 위젯 chart prop 사용으로 customBody 함정 회피. commit `f154ae9`.
+> - **모든 위젯 W-04 통과**: cardDesc · TelemetryBadge(SYNCED + 일자) · SIT 2~3문 + TAK 1~2문 · source · pillar · 단위 괄호 · L-01 영문 잔존 0.
+> - **수동 배포 우회 정착**: Vercel GitHub Integration 단절 상태 지속 — `vercel deploy --prod --yes` 패턴으로 수동 트리거 (이번 세션 3건 성공: `8d468e2` Census, `e23ba94` 차트 수정, `f154ae9` Phase 2). 사용자가 [vercel.com/cutekorea-3280s-projects/tuna-dashboard/settings/git](https://vercel.com/cutekorea-3280s-projects/tuna-dashboard/settings/git)에서 reconnect 하기 전까지는 모든 배포 수동.
+> - **L-03 빌드 통과** ✓ (8개 위젯 라이브 + 차트 collapse 0건), origin/main 동기화 완료.
+> - **다음 단계 후보**: ① KAMIS·KOSIS 실시간 API 연동으로 추정 시계열 교체 ② Nueva Pescanova IR 자동 모니터링 (S5 양식 R&D 시그널) ③ Vercel GitHub integration 재연결 (사용자 액션 필요)
+
 > 🇺🇸 **2026-05-28 — U.S. Census Bureau API 통합 (참치캔·명태 무역 인텔리전스 4 위젯)** [CC]:
 > - **API 키 저장**: `USCENSUS_API_KEY=57ed5d9332b5b042e538a9dd3abc83c00a5a66eb` ([.env.local:36](.env.local)) + [api_keys_catalog.md:218](api_keys_catalog.md) (이전 오타 `57ad…a06eb` 교정 확인). Census 무료 발급, 라이브 호출 검증 완료.
 > - **동시 작업 충돌 처리**: Antigravity가 09:08 prefetch 방식으로 route.ts + 위젯 5개를 선행 작성한 것을 발견. 사용자 결정에 따라 "wiring + 루타롤 재작업" 진행.
