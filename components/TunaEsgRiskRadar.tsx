@@ -43,7 +43,7 @@ export default function TunaEsgRiskRadar() {
       iconColor="#f59e0b"
       pillar="S5"
       cardDesc="강제노동·IUU·생태계 파괴·남획 4지표를 인도네시아 vs WCPFC/PNA 기준선 비교 — ILO 보고서 기반 100점 스케일"
-      telemetry={{ status: 'STATIC', syncDate: '2025-11' }}
+      telemetry={{ status: 'STATIC', syncDate: 'ISSF 2026 State of Global Tuna Sustainability' }}
       chartHeight={280}
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>

@@ -60,9 +60,9 @@ const TunaCannedMarketShare = () => (
     icon={ShoppingCart}
     iconColor="#22d3ee"
     pillar="S4"
-    cardDesc="닐슨IQ 2025 상반기 retail audit 기반 국내 참치 통조림 브랜드별 점유율"
+    cardDesc="닐슨IQ retail audit + 한국경제 2026-03 보도 기반 국내 참치 통조림 브랜드별 점유율 (동원 80% 돌파 신호 반영)"
     unit="(%)"
-    telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+    telemetry={{ status: 'STATIC', syncDate: '닐슨IQ 2025 + 한국경제 2026-03' }}
     termTooltip={{
       term: '닐슨IQ',
       description: '닐슨IQ(NielsenIQ)는 글로벌 소비재 시장 조사 기관으로, POS 기반 retail audit을 통해 브랜드별 시장점유율 데이터를 제공.',

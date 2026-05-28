@@ -80,17 +80,17 @@ export async function GET() {
       title: "글로벌 축양 쿼터 (ICCAT)",
       value: "48,283톤",
       trend: "유지",
-      desc: "대서양/지중해 배정 한도",
-      telemetry: "SYNCED",
-      syncDate: new Date().toLocaleDateString()
+      desc: "대서양/지중해 배정 한도 (ICCAT 2025 공시)",
+      telemetry: "STATIC",
+      syncDate: "2025 ICCAT"
     },
     kpi2: {
       title: "유럽 쿼터 소진율",
       value: "85.4%",
       trend: "+12.1%p",
-      desc: "단기 덤핑 리스크 경보",
-      telemetry: "SYNCED",
-      syncDate: new Date().toLocaleDateString()
+      desc: "단기 덤핑 리스크 경보 (2026 Q1 추정)",
+      telemetry: "STATIC",
+      syncDate: "2026-Q1 추정"
     },
     kpi3: {
       title: "두바이 프리미엄 단가 (UAE)",
@@ -112,9 +112,9 @@ export async function GET() {
       title: "양식 프리미엄",
       value: "+42.6%",
       trend: "확대",
-      desc: "vs 야생 어획 단가",
-      telemetry: "SYNCED",
-      syncDate: new Date().toLocaleDateString()
+      desc: "vs 야생 어획 단가 (추정치)",
+      telemetry: "STATIC",
+      syncDate: "2026-05 추정"
     }
   };
 

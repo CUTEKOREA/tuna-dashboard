@@ -80,7 +80,7 @@ export async function POST(req: Request) {
 
       result = { 
         ...matchData, 
-        source: 'SANCTIONS_API_LIVE', 
+        source: 'SANCTIONS_FALLBACK', 
         matchedQuery: query,
         aiAnalysis: ai_analysis 
       };
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
         eu: { status: 'clean', detail: 'No match found (Automated Screening)' }, 
         riskScore: 85, 
         riskLevel: 'LOW',
-        source: 'SANCTIONS_API_LIVE',
+        source: 'SANCTIONS_FALLBACK',
         aiAnalysis: { confidence: 0.88, falsePositiveRisk: 'LOW', recommendation: 'No significant risk patterns detected.' }
       };
     }
@@ -101,8 +101,8 @@ export async function POST(req: Request) {
       meta: {
         query: entity,
         timestamp: new Date().toISOString(),
-        reliability: { score: 95, grade: 'S', label: 'Live Compliance DB' },
-        source: 'SANCTIONS_API_LIVE'
+        reliability: { score: 70, grade: 'B', label: 'Mock Compliance DB (Static Fallback)' },
+        source: 'SANCTIONS_FALLBACK'
       },
       result
     });

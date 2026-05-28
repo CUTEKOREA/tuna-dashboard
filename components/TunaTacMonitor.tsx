@@ -91,7 +91,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
       iconColor="#ef4444"
       pillar="S5"
       cardDesc="ICCAT/IOTC 쿼터 축소 → 원물 가격 상승 → 자숙액 수급 불안정 연쇄 리스크 조기 경보"
-      telemetry={{ status: 'SYNCED', syncDate: 'IOTC/ICCAT 2025' }}
+      telemetry={{ status: 'SYNCED', syncDate: 'IOTC-2026-S30-INF04 + ICCAT 2026' }}
       termTooltip={{ term: 'TAC', description: '총허용어획량(Total Allowable Catch). ICCAT·IOTC 등 RFMO가 매년 어종별로 설정하는 최대 어획량 상한선. 초과 시 100~125% 페이백(삭감) 페널티.' }}
       customBody={<>{TacGauges}{ChartArea}</>}
       takeaway={{

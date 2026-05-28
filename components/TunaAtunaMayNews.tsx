@@ -40,9 +40,9 @@ export const AtunaBangkokPriceWidget = () => (
     icon={DollarSign}
     iconColor="#3b82f6"
     pillar="S4"
-    cardDesc="방콕 가다랑어 $1,850 하락 및 미국 소매업계의 $1,500 가격 통제 논란"
+    cardDesc="2026-05-27 Atuna 보도 기준 방콕 WCPO 가다랑어 산지가 $1,850/t (2025-08 고점 $1,845 대비 5월 회복 추세). 미국 소매업계는 $1,500/t 통제선 압박 — 출처: Atuna News (2026-05-20, 2026-05-26)"
     telemetry={{ status: 'LIVE', syncDate: '2026-05-27 Atuna' }}
-    kpiPanel={[{ label: '방콕 가다랑어', value: '$1,850/t', sub: '고점 대비 하락세' }]}
+    kpiPanel={[{ label: '방콕 가다랑어', value: '$1,850/t', sub: '2025-08 고점 $1,845 회복 추세' }]}
     chartHeight={200}
     chart={
       <BarChart data={mockPriceDropData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">

@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-28 — value-chain (참치 대시보드) 5-Pillar 120 위젯 전수 감사 + P0/P1 11건 즉시 정정** [CC]:
+> - **Audit 산출물** ([artifacts/](artifacts/)): `value_chain_audit_2026_05_28.md` (4-Axis 평균 78.7/B등급, A 25·B 62·C 33·D 0), `value_chain_widget_inventory.json` (120 위젯 메타), `value_chain_4axis_scores.csv`, 보조 `api_routes_audit_antigravity.md` + `cross_validation_antigravity.md`.
+> - **Multi-Agent 토폴로지** (비용 $0): Claude Opus 4.7(메인) + Antigravity Gemini 3.1 Pro(API audit + 클레임 교차) + Codex GPT-5.5(독립 검증). Antigravity 의심 3건 중 1건을 Codex가 false alarm 판정 (PBF 양식 +667%는 저베이스 효과 정상).
+> - **P0 4건 정정**: petfood route 허위 "실시간" → "STATIC/추정치", compliance SANCTIONS_API_LIVE→FALLBACK + grade S→B, TunaIntelInsightsB4 NotebookLM 명칭 → 동원·사조 IR + KFAS RAS 학술 문헌, TunaAtunaMayNews $1,850 Atuna 원문 수치·날짜·시장 조건 cardDesc/kpiPanel 병기.
+> - **P1 7건 갱신**: tuna-ranching KPI1·2·5 SYNCED→STATIC, oec 2023 fallback grade A→C + Stale 라벨, PacificEez WCPFC CMM 2025-02, TunaTacMonitor IOTC-2026-S30-INF04, TunaEsgRiskRadar ISSF 2026, TunaNewInsightsA EUMOFA+FFA 2026-02, TunaCannedMarketShare 한국경제 2026-03 동원 80% 반영.
+> - **검증**: `npm run build` ✓ (4.0s, 117 pages, 에러 0).
+> - **새 도구**: [scripts/extract_value_chain_widgets.py](scripts/extract_value_chain_widgets.py) — ADR-0005 WidgetCard props 일괄 메타 추출.
+> - **다음 단계**: P2 의심 검토 2건 (사시미 14배 격차 Kawamoto 2017 원본 재확인 / PetFoodDashboard 환율 민감도 재계산) → P3 클린업 (TunaDashboard.tsx:486~487 dead fetch 주석 제거) → P4 점수 개선 (US 위젯 한글 출처명 추가, S5 ESG STATIC 14개 SYNCED 승격 검토). 라이브 배포는 사용자 명시 요청 시에만.
+
 > 🐙 **2026-05-28 — 낙지 대시보드 Phase 2 (8 위젯 + customBody collapse 버그 수정 + 수동 배포 우회)** [CC]:
 > - **차트 collapse 버그 수정** ([components/OctopusDomesticCliff.tsx](components/OctopusDomesticCliff.tsx), [OctopusFTAQuarterly.tsx](components/OctopusFTAQuarterly.tsx)): WidgetCard `chart` prop은 `SafeResponsiveContainer` 자동 래핑이나 `customBody`는 raw 패스 — 두 위젯이 customBody 내부에 일반 `ResponsiveContainer` 8곳을 직접 써서 width=0 collapse → 빈 박스. 모두 `SafeResponsiveContainer`(200ms debounce + 0×0 무시 + ResizeObserver) 로 일괄 치환. commit `e23ba94`.
 > - **Phase 2 위젯 8개 신설** ([components/OctopusPhase2Widgets.tsx](components/OctopusPhase2Widgets.tsx), 400 LoC):

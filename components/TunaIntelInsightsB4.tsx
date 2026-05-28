@@ -248,7 +248,7 @@ export function RasSystemWidget() {
       pillar="S5"
       cardDesc="동원산업이 MSC 지속가능성 충족·비용 절감 위해 RAS 시험 운영. 전통 가두리 대비 생산성·용수·항생제·FIFO 일괄 비교"
       unit="(단위: 전통 양식 대비 배수)"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05 (NotebookLM 가나 노트북)' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05 동원·사조 IR + KFAS RAS 학술 문헌 (추정치)' }}
       chartHeight={240}
       chart={
         <BarChart data={rasComparisonData} layout="vertical" margin={{ top: 10, right: 20, left: 100, bottom: 10 }}>

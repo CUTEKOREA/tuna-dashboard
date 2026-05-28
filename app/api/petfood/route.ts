@@ -23,25 +23,25 @@ export async function GET() {
       "title": "글로벌 펫푸드 프리미엄 단가 (US/TH/KR)",
       "value": "$7.09 / $1.03 / $2.40",
       "trend": "▲ 한국산 단가 상승 중",
-      "desc": "ITC TradeMap 실시간"
+      "desc": "ITC TradeMap 기반 추정치 (STATIC)"
     },
     "arbitrage": {
       "title": "참치 원물 매각 vs 펫푸드 가공 스프레드",
       "value": "+17",
       "trend": "🟢 밸류업 극대화 구간",
-      "desc": "MOF/KCS 마진 실시간 비교"
+      "desc": "MOF/KCS 데이터 기반 추정 비교 (STATIC)"
     },
     "sensitivity": {
       "title": "i-Tail GPM 거시 민감도 (바트 절상 시)",
       "value": "-1.0",
       "trend": "⚠️ 환율 경고",
-      "desc": "SET 실적 데이터 기준"
+      "desc": "SET 실적 데이터 기준 (STATIC)"
     },
     "market_share": {
       "title": "대만 펫푸드 수입 시장 태국산 점유율",
       "value": "37",
       "trend": "▲ 2%p",
-      "desc": "대만 관세청 실시간"
+      "desc": "대만 관세청 공시 기반 추정 (STATIC)"
     }
   };
 

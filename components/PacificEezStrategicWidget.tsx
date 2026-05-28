@@ -126,7 +126,7 @@ export default function PacificEezStrategicWidget() {
       pillar="S1"
       cardDesc="WCPFC 과학위원회 + PNA 조업일수제도(VDS) — 8개국 합산 EEZ 1,430만 km² 거점별 입어 전략"
       unit="km², USD"
-      telemetry={{ status: 'STATIC', syncDate: 'WCPFC 2024' }}
+      telemetry={{ status: 'STATIC', syncDate: 'WCPFC CMM 2025-02 (2026-02 발효)' }}
       customBody={body}
       takeaway={{
         situation: '태평양도서국(PNA) 8개국의 합산 EEZ는 약 1,430만 km²로, 전 세계 가다랑어 공급의 약 50%를 장악하는 핵심 수역입니다.',

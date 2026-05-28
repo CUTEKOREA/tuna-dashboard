@@ -163,7 +163,9 @@ export async function POST(req: Request) {
         commodity: name, hs4, description: desc, year, source,
         oecUrl: `https://oec.world/en/profile/hs/${hs4}`,
         timestamp: new Date().toISOString(),
-        reliability: source === 'OEC_LIVE' ? { score: 92, grade: 'S' } : { score: 75, grade: 'A' },
+        reliability: source === 'OEC_LIVE'
+          ? { score: 92, grade: 'S' }
+          : { score: 55, grade: 'C', label: 'Stale (2023 BENCHMARKS fallback)' },
       },
       ...data,
     });

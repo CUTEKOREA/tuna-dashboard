@@ -41,8 +41,8 @@ export function InsightNauruSwitch() {
       icon={Globe}
       iconColor="#ef4444"
       pillar="S2"
-      cardDesc="중국이 태평양 도서국 현지 공장 대신 선전·광동 메가 캐너리로 EU ATQ 무관세 무기화. EUMOFA 2024 기준 Ecuador EU 참치 29%(volume)/48%(value), prepared/preserved 75% 점유"
-      telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }}
+      cardDesc="중국이 태평양 도서국 현지 공장 대신 선전·광동 메가 캐너리로 EU ATQ 무관세 무기화. EUMOFA 2024 기준 Ecuador EU 참치 29%(volume)/48%(value) + FFA 2026-02 보고서 신규 아시아 기업 진입 동향 반영"
+      telemetry={{ status: 'STATIC', syncDate: 'EUMOFA 2024 + FFA 2026-02' }}
       termTooltip={{ term: '나우루 스위치', description: '나우루의 대만→중국 외교 전환으로 촉발된 태평양 어업권 지각변동과 중국 본토 메가 캐너리 건설 동향을 추적합니다.' }}
       kpiPanel={[
         { label: '중국 EU 로인 점유율 (2026E)', value: '38%', sub: '▲ 2022 대비 +375%', trendColor: '#ef4444' },
