@@ -7,7 +7,13 @@
 > - **P1 7건 갱신**: tuna-ranching KPI1·2·5 SYNCED→STATIC, oec 2023 fallback grade A→C + Stale 라벨, PacificEez WCPFC CMM 2025-02, TunaTacMonitor IOTC-2026-S30-INF04, TunaEsgRiskRadar ISSF 2026, TunaNewInsightsA EUMOFA+FFA 2026-02, TunaCannedMarketShare 한국경제 2026-03 동원 80% 반영.
 > - **검증**: `npm run build` ✓ (4.0s, 117 pages, 에러 0).
 > - **새 도구**: [scripts/extract_value_chain_widgets.py](scripts/extract_value_chain_widgets.py) — ADR-0005 WidgetCard props 일괄 메타 추출.
-> - **다음 단계**: P2 의심 검토 2건 (사시미 14배 격차 Kawamoto 2017 원본 재확인 / PetFoodDashboard 환율 민감도 재계산) → P3 클린업 (TunaDashboard.tsx:486~487 dead fetch 주석 제거) → P4 점수 개선 (US 위젯 한글 출처명 추가, S5 ESG STATIC 14개 SYNCED 승격 검토). 라이브 배포는 사용자 명시 요청 시에만.
+> - **P2 의심 검토 2건 결과 (방금 처리)**:
+>   - 사시미 14배 격차 — 수학적으로 정확 (4,200÷300=14). KEEP + cardDesc에 비교 정의("프리미엄 PBF 상한가 ÷ 저가 SKJ 하한가") 명시 + syncDate "Kawamoto 2017"→"Kawamoto T 2026 Fig 6 + 일본 도요스 도매시장" 일관화.
+>   - PetFoodDashboard 환율 -10% — i-Tail 수출 93.6% × USD/THB 1 THB 절상(약 3%) → 영업 레버리지 -10% 정상. KEEP + cardDesc에 "USD/THB 1 THB 절상(약 3% 평가절상)" 표기 명확화 + Finansia/Globlex 출처 명시.
+> - **P3 (방금 처리)**: [TunaDashboard.tsx:486-487](components/TunaDashboard.tsx) dead fetch 주석 2건(`/api/tuna/arbitrage`, `/api/tuna/trq`) 제거.
+> - **P4-A (방금 처리)**: US 위젯 4개(UsTunaImport/MarketShare/PolicyImpact/PollockDetour) cardDesc에 USITC DataWeb / USTR 출처 추가 명시.
+> - **P4-B 결과 (보류 결정)**: S5 ESG STATIC 14개 SYNCED 강제 승격은 P0-2(SANCTIONS_API_LIVE 허위 라벨) 함정 재발 위험으로 거부. STATIC = 정직한 라벨. 실제 분기 갱신 가능한 위젯은 2~3개뿐 (TunaUpcyclingWidgets, TunaEsgRiskRadar). 라이브 API 연동은 별도 작업으로 분리.
+> - **다음 단계**: 라이브 API 연동 R&D (S5 ESG 분기 갱신 메커니즘) 검토 → 라이브 배포는 사용자 명시 요청 시에만.
 
 > 🐙 **2026-05-28 — 낙지 대시보드 Phase 2 (8 위젯 + customBody collapse 버그 수정 + 수동 배포 우회)** [CC]:
 > - **차트 collapse 버그 수정** ([components/OctopusDomesticCliff.tsx](components/OctopusDomesticCliff.tsx), [OctopusFTAQuarterly.tsx](components/OctopusFTAQuarterly.tsx)): WidgetCard `chart` prop은 `SafeResponsiveContainer` 자동 래핑이나 `customBody`는 raw 패스 — 두 위젯이 customBody 내부에 일반 `ResponsiveContainer` 8곳을 직접 써서 width=0 collapse → 빈 박스. 모두 `SafeResponsiveContainer`(200ms debounce + 0×0 무시 + ResizeObserver) 로 일괄 치환. commit `e23ba94`.

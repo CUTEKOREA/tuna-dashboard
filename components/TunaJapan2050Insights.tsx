@@ -449,8 +449,8 @@ export function InsightPriceTier() {
       icon={DollarSign}
       iconColor="#fbbf24"
       pillar="S4"
-      cardDesc="일본 도매가 어종·티어별 비교. 프리미엄(PBF·SBF)과 일상재(SKJ·ALB) 단가 격차 정량화. 단위 (JPY/kg)."
-      telemetry={{ status: 'STATIC', syncDate: 'Kawamoto 2017 인용 + 2026 갱신' }}
+      cardDesc="일본 도매가 어종·티어별 비교. 14배 = 프리미엄 PBF 상한가(JPY 4,200/kg) ÷ 저가 SKJ 하한가(JPY 300/kg). 통조림용 SKJ vs 양식 PBF 최상등급 양극단. 단위 (JPY/kg)."
+      telemetry={{ status: 'STATIC', syncDate: 'Kawamoto T 2026 Fig 6 + 일본 도요스 도매시장 시세' }}
       termTooltip={{
         term: '3-Tier',
         description: '프리미엄(참다랑어 — PBF Pacific bluefin, SBF Southern bluefin), 중급(눈다랑어 BET, 황다랑어 YFT), 저가(가다랑어 SKJ, 날개다랑어 ALB).',

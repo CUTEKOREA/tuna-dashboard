@@ -481,10 +481,6 @@ const TunaDashboard = React.memo(function TunaDashboard() {
       .then(res => res.json())
       .then(json => setData(json))
       .catch(err => console.error("Failed to load tuna data", err));
-      
-    // Future integration points for Tuna Live API
-    // fetch('/api/tuna/arbitrage').then(res => res.json()).then(data => setLiveArbitrage(data)).catch(console.error);
-    // fetch('/api/tuna/trq').then(res => res.json()).then(data => setLiveTrq(data)).catch(console.error);
   }, []);
 
   if (!data) return (

@@ -40,7 +40,7 @@ const UsTunaImportWidget = () => {
       icon={DollarSign}
       iconColor="#0ea5e9"
       pillar="S4"
-      cardDesc={`미국 인구조사국 월별 수입 통계 (HS 160414, ${HS_LABEL_KR['160414']}) — 총 수입액과 평균 단가 동시 추적`}
+      cardDesc={`미국 인구조사국(US Census Bureau) + USITC DataWeb 월별 수입 통계 (HS 160414, ${HS_LABEL_KR['160414']}) — 총 수입액과 평균 단가 동시 추적`}
       unit="(단위: $M / $/kg)"
       telemetry={{ status: META.status, syncDate: end }}
       chartHeight={320}

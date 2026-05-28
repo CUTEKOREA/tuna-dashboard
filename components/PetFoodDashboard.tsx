@@ -535,8 +535,8 @@ export default function PetFoodDashboard() {
               icon={Activity}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`Sensitivity — 참치 +10% → 순이익 -8.5%. 환율 1바트 절상 → -10%.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              cardDesc={`Sensitivity (Finansia/Globlex 모델) — 참치 매입가 +10% → 순이익 -8.5%. USD/THB 1 THB 절상(약 3% 평가절상) → i-Tail 수출 93.6% 노출로 순이익 -10%.`}
+              telemetry={{ status: 'STATIC', syncDate: 'Finansia/Globlex Securities Reports 2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">

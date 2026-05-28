@@ -32,7 +32,7 @@ const UsTunaMarketShareWidget = () => {
       icon={PieChartIcon}
       iconColor="#ef4444"
       pillar="S3"
-      cardDesc={`미국 인구조사국 수입액 기준 상위 5개국 월별 점유율 (HS 160414, ${HS_LABEL_KR['160414']})`}
+      cardDesc={`미국 인구조사국(US Census Bureau) + USITC DataWeb 수입액 기준 상위 5개국 월별 점유율 (HS 160414, ${HS_LABEL_KR['160414']})`}
       unit="(단위: %, 100% 누적)"
       telemetry={{ status: META.status, syncDate: end }}
       chartHeight={320}
