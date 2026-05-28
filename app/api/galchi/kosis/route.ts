@@ -31,8 +31,7 @@ export async function GET() {
          // For production, we would map the actual PRD_DE (period) and DT (value)
          return NextResponse.json({
            source: "KOSIS API (Consumer Price Index)",
-           isLive: true,
-           data: FALLBACK.data.map(d => ({ ...d, "CPI(물가)": d["CPI(물가)"] + (Math.random() * 2 - 1) })) // Mocking live update over fallback structure for now
+           isLive: false /* Mock */, data: FALLBACK.data.map(d => ({ ...d, "CPI(물가)": d["CPI(물가)"] + (Math.random() * 2 - 1) })) // Mocking live update over fallback structure for now
          });
       }
     }

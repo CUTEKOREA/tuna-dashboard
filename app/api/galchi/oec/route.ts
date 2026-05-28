@@ -26,8 +26,7 @@ export async function GET() {
       if (json && json.data) {
          return NextResponse.json({
            source: "OEC API (Economic Complexity)",
-           isLive: true,
-           data: FALLBACK.data // Demo data mapped for simplicity. In production, map `json.data` properly
+           isLive: false /* Mock */, data: FALLBACK.data // Demo data mapped for simplicity. In production, map `json.data` properly
          });
       }
     }

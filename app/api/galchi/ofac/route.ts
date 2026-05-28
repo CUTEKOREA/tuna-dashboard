@@ -21,7 +21,7 @@ export async function GET() {
     const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
 
     if (res.ok) {
-      return NextResponse.json({ ...FALLBACK, isLive: true, source: "US OFAC & EU Sanctions 실시간 조회" });
+      return NextResponse.json({ ...FALLBACK, isLive: false /* Mock */, source: "US OFAC & EU Sanctions 실시간 조회" });
     }
   } catch (e) {
     console.error("OFAC API error:", e);

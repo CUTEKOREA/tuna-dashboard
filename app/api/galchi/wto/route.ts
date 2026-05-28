@@ -30,8 +30,7 @@ export async function GET() {
          // Mocking translation of raw WTO data to chart format
          return NextResponse.json({
            source: "WTO Data Portal (SPS NTB)",
-           isLive: true,
-           data: FALLBACK.data.map(d => ({ ...d, "중국 SPS": d["중국 SPS"] + Math.floor(Math.random()*2) }))
+           isLive: false /* Mock */, data: FALLBACK.data.map(d => ({ ...d, "중국 SPS": d["중국 SPS"] + Math.floor(Math.random()*2) }))
          });
       }
     }

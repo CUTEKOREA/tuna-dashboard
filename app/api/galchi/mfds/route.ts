@@ -29,8 +29,7 @@ export async function GET() {
          // 실제 환경에서는 '갈치' 품목 및 수입국별 그룹핑 로직 추가 필요
          return NextResponse.json({
            source: "MFDS API (Food Safety Radar)",
-           isLive: true,
-           data: FALLBACK.data // Demo data mapped for simplicity
+           isLive: false /* Mock */, data: FALLBACK.data // Demo data mapped for simplicity
          });
       }
     }

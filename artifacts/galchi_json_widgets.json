@@ -1,0 +1,287 @@
+{
+  "json_file": "public/data/galchi_data.json",
+  "total_kpis": 6,
+  "total_widgets": 28,
+  "widgets": [
+    {
+      "id": "w01",
+      "title": "전국 갈치 위판 시계열 — 10년 가격·물량 동시 추적",
+      "subtitle": "해수부 위판통계 기반 전국 갈치 위판가와 위판량의 10개년 추이를 동시 추적합니다. 가격과 공급의 역상관 패턴을 분석합니다.",
+      "unit": "원/kg · 톤",
+      "reliability": null,
+      "source": "관세청 HS 0303.89.60 수입신고 (2024) + 해수부 위판통계 + KMI 수산관측센터",
+      "chartType": "Composed",
+      "data_rows": 6
+    },
+    {
+      "id": "w02",
+      "title": "유통 마진 폭포 — 산지→소비자 단계별 원가 해부",
+      "subtitle": "산지 위판가에서 최종 소비자가까지 각 유통 단계(1차도매→2차도매→소매)에서 발생하는 마진을 워터폴 차트로 투명하게 해부합니다.",
+      "unit": "원/kg · %",
+      "reliability": null,
+      "source": "해수부 수산물유통종합정보 (2025) + 부산공동어시장 위판 수수료 규정 + 쿠팡 로켓프레시 산지직송 사례",
+      "chartType": "Bar",
+      "data_rows": 5
+    },
+    {
+      "id": "w03",
+      "title": "조업 효율(CPUE) — 1마력당 어획량 한계 분석",
+      "subtitle": "선단 투입 노력(마력) 대비 어획량(CPUE)의 장기 하락 추이를 분석합니다. 자원 고갈의 선행 지표로 활용됩니다.",
+      "unit": "kg/HP",
+      "reliability": null,
+      "source": "KFAS: 갈치 끌낚시 어구 수심변화에 따른 어획 시험 + 국립수산과학원 어구연구실 + 현장 선주 인터뷰",
+      "chartType": "Area",
+      "data_rows": 4
+    },
+    {
+      "id": "w04",
+      "title": "해수면 온도(SST) 상승 — 어획량 감소 시나리오",
+      "subtitle": "NOAA SST 데이터 기반 수온 1°C 상승 시 갈치 어획량 20% 감소 시나리오를 시뮬레이션합니다. 기후변화가 자원량에 미치는 충격을 정량화합니다.",
+      "unit": "°C / %",
+      "reliability": null,
+      "source": "KFAS: 옹기호 외(2025) 제주 해역 어업어종 군집 분석(1970-2023) + 국립수산과학원 수온 관측",
+      "chartType": "Composed",
+      "data_rows": 9
+    },
+    {
+      "id": "w05",
+      "title": "중국 수입 의존도 95% — 구조적 취약점 분석",
+      "subtitle": "한국 갈치 수입의 95%가 중국산에 집중된 구조적 취약점을 분석합니다. 지정학 리스크, 환율 변동, 품질 편차 등 복합 리스크를 정량화합니다.",
+      "unit": "% · 백만 USD",
+      "reliability": null,
+      "source": "관세청 수출입무역통계 HS 0303899060 (2018-2024, XML 31파일 직접 파싱)",
+      "chartType": "Bar",
+      "data_rows": 6
+    },
+    {
+      "id": "w06",
+      "title": "학교급식 B2B 시장 전환 전략",
+      "subtitle": "갈치의 학교급식 시장 진입을 위한 가공 전환(순살 필렛, 토막 규격화) 전략과 단가 경쟁력을 분석합니다.",
+      "unit": "원/1인분",
+      "reliability": null,
+      "source": "교육부 학교급식 통계 + eaT 공공급식 통합플랫폼 + 대양수산 IR 자료 + KREI 식품산업 동향",
+      "chartType": "Composed",
+      "data_rows": 6
+    },
+    {
+      "id": "w07",
+      "title": "월별 매입 최적 타이밍 — 시즌별 가격 캘린더",
+      "subtitle": "5개년 월별 위판 단가 평균으로 구성한 매입 캘린더. 가격이 저점인 월(하반기 피크시즌)과 고점인 월(상반기 비수기)을 식별합니다.",
+      "unit": "원/kg",
+      "reliability": null,
+      "source": "KFAS: Seong et al.(2025) 서해 갈치 GSI + Kim et al.(2021) 제주 산란생태(n=4,384) + 해수부 위판 월별 단가",
+      "chartType": "Composed",
+      "data_rows": 12
+    },
+    {
+      "id": "w08",
+      "title": "한중 수산물 지정학 — 정치 리스크의 가격 전이",
+      "subtitle": "한중 관계 악화(사드, 대만 이슈 등) 시 중국산 수산물 수입에 미치는 비공식 제재와 가격 전이 메커니즘을 분석합니다.",
+      "unit": "% 변동",
+      "reliability": null,
+      "source": "수산물 유통산업 실태조사 (2024) + aT 식품산업통계정보 + 일본 水産タイムズ 시세표",
+      "chartType": "Bar",
+      "data_rows": 5
+    },
+    {
+      "id": "w09",
+      "title": "세네갈·대만 대체 공급선 검증 분석",
+      "subtitle": "중국 의존도 분산을 위한 대체 소싱처(세네갈, 대만)의 품질·가격·물류 경쟁력을 비교 검증합니다.",
+      "unit": "USD/kg",
+      "reliability": null,
+      "source": "WTO 수산보조금협정 (2025.9) + EU Fisheries Control Reg. (2026) + 해수부 수산물이력제 가이드라인",
+      "chartType": "Bar",
+      "data_rows": 5
+    },
+    {
+      "id": "w10",
+      "title": "해양수산부 정책 모니터링 — 규제·보조금 추적",
+      "subtitle": "해양수산부의 갈치 관련 정책(TAC 조정, 감척 사업, 보조금, 수입 규제 등) 변동을 모니터링하여 비즈니스 영향을 사전 평가합니다.",
+      "unit": "건 · 점수",
+      "reliability": null,
+      "source": "FAO FishStat (중국 어획 시계열) + 관세청 한중무역 + USDA GAIN Korea Seafood 2024 + 한중어업협정 현황",
+      "chartType": "Composed",
+      "data_rows": 7
+    },
+    {
+      "id": "w11",
+      "title": "KFAS 계군(Stock) 분석 — 해역별 자원량 추정",
+      "subtitle": "KFAS(한국수산과학원) 연구 기반 서해·남해·동중국해 갈치 계군의 현존량(Biomass)과 가입량(Recruitment) 추정치를 비교합니다.",
+      "unit": "톤",
+      "reliability": null,
+      "source": "KFAS: Seong et al.(2025) 서해 갈치 성숙(n=356) + Kim et al.(2021) 제주 갈치(n=4,384)",
+      "chartType": "Bar",
+      "data_rows": 5
+    },
+    {
+      "id": "w12",
+      "title": "KFAS 생식생물학 — 성숙도 및 GSI 분석",
+      "subtitle": "KFAS 연구 기반 갈치의 생식소지수(GSI), 성숙 체장, 산란기 패턴을 분석합니다. 어획 시기 최적화의 과학적 근거를 제공합니다.",
+      "unit": "GSI / cm",
+      "reliability": null,
+      "source": "KFAS: Seong et al.(2025) 포란수 F=0.0326×AL^4.0684 + Kim et al.(2021) 성비·산란 생태",
+      "chartType": "Composed",
+      "data_rows": 7
+    },
+    {
+      "id": "w13",
+      "title": "KFAS 해역별 산란 시차 — 릴레이 매입 전략",
+      "subtitle": "서해 GSI가 8월 피크 후 9월 급락할 때 제주는 GSI 3.96으로 산란 지속. 해역별 산란 시차를 활용한 릴레이 매입 전략을 수립합니다.",
+      "unit": "GSI 지수",
+      "reliability": null,
+      "source": "KFAS: Seong et al.(2025) 서해 GSI + Kim et al.(2021) 제주 GSI + Kwok & Ni(1999) 동중국해",
+      "chartType": "Composed",
+      "data_rows": 12
+    },
+    {
+      "id": "w14",
+      "title": "글로벌 갈치 어획 50년 추이 — 중국 독점 형성 과정",
+      "subtitle": "FAO FishStatJ 기반 1970~2022년 주요 어획국(중국, 한국, 일본, 인도 등)의 어획량 시계열을 추적하여 중국의 압도적 지배력 형성 과정을 분석합니다.",
+      "unit": "만 톤 (10k Tonnes)",
+      "reliability": null,
+      "source": "FAO FishStat Global Capture Production (1950-2022, 8,256행 직접 파싱)",
+      "chartType": "Area",
+      "data_rows": 8
+    },
+    {
+      "id": "w15",
+      "title": "국내 산지별 위판 구조 — 제주 57% 편중 리스크",
+      "subtitle": "해수부 수산물유통종합정보 1.94M건 집계 기반, 전국 위판장별 갈치 위판 비중을 분석합니다. 제주(57%)에 대한 단일 산지 의존 리스크를 정량화합니다.",
+      "unit": "%",
+      "reliability": null,
+      "source": "해수부 수산물유통종합정보 갈치 CSV (2021-2025, 1.94M행 집계)",
+      "chartType": "Composed",
+      "data_rows": 5
+    },
+    {
+      "id": "w16",
+      "title": "어업 방식별 단가 프리미엄 분석",
+      "subtitle": "근해연승(13,034원/kg) vs 근해안강망(6,516원/kg) 등 어업 방식에 따른 위판 단가 차이를 비교합니다. 연승·채낚기의 프리미엄 근거를 제시합니다.",
+      "unit": "원/kg",
+      "reliability": null,
+      "source": "해수부 수산물유통종합정보 — 어업구분별 위판 집계 (2024)",
+      "chartType": "Bar",
+      "data_rows": 6
+    },
+    {
+      "id": "w17",
+      "title": "관세청 7년 수입 추이 — 중국 의존도 고착 분석",
+      "subtitle": "관세청 HS 0303899060 XML 데이터(2018~2024, 31파일) 직접 파싱. 7년간 중국 의존도가 95% 전후에서 미동도 없는 고착 구조를 실증합니다.",
+      "unit": "톤 · 백만 USD",
+      "reliability": null,
+      "source": "관세청 수출입무역통계 HS 0303899060 XML (2018-2024, 31파일 직접 파싱)",
+      "chartType": "Composed",
+      "data_rows": 7
+    },
+    {
+      "id": "w18",
+      "title": "KAMIS 도매가격 — 산지-소비지 스프레드 추적",
+      "subtitle": "KAMIS 농수산물유통정보 1,386건 직접 파싱. 노량진·부산·인천 도매시장 실거래가와 산지 위판가 간 스프레드(유통 마진)를 실시간 추적합니다.",
+      "unit": "원/kg",
+      "reliability": null,
+      "source": "KAMIS 농수산물유통정보 — 품목코드 619 갈치 (1,386건 직접 파싱)",
+      "chartType": "Composed",
+      "data_rows": 10
+    },
+    {
+      "id": "w19",
+      "title": "TAC 소진율 — 할당량 대비 실제 어획 괴리 분석",
+      "subtitle": "해양수산부 TAC 배정량 대비 실제 위판량의 소진율을 추적합니다. 2024년 소진율 65.2%의 구조적 원인(자원 감소 vs 선단 능력)을 분석합니다.",
+      "unit": "톤 / %",
+      "reliability": null,
+      "source": "USDA GAIN Korea Seafood Report 2024 (TAC 시계열) + 해수부 위판통계",
+      "chartType": "Composed",
+      "data_rows": 4
+    },
+    {
+      "id": "w20",
+      "title": "일본 수출 프리미엄 — $11.15/kg 고부가 기회",
+      "subtitle": "UN Comtrade 기반 한국→일본 갈치 수출 단가($11.15/kg)가 국내 위판가의 1.6배, 중국 수입가의 5.4배인 구조적 프리미엄을 분석합니다.",
+      "unit": "USD/kg",
+      "reliability": null,
+      "source": "UN Comtrade — Japan HS 030389 Import (2019-2023, 209행) + 관세청 수출통계",
+      "chartType": "Composed",
+      "data_rows": 4
+    },
+    {
+      "id": "w22",
+      "title": "한국인 수산물 소비 — 세계 최상위권 내수 기반",
+      "subtitle": "FAOSTAT Food Balance Sheets 기반. 한국인 1인당 수산물 소비 52.82kg/년은 세계 평균(20.5kg)의 2.6배. 갈치 시장의 견고한 내수 기반을 제시합니다.",
+      "unit": "kg/인·년",
+      "reliability": null,
+      "source": "FAOSTAT Food Balance Sheets Korea 2023 (Item 2960, 982행) + USDA GAIN Korea Seafood 2024",
+      "chartType": "Bar",
+      "data_rows": 7
+    },
+    {
+      "id": "w23",
+      "title": "수산물 관세 구조 — 갈치 MFN 10% 무방비 분석",
+      "subtitle": "WTO Tariff Profile 기반 갈치(HS 0303.89) MFN 관세 10%의 취약성을 분석합니다. 명태(22% 조정관세) 대비 보호 장치가 없는 구조적 문제를 지적합니다.",
+      "unit": "%",
+      "reliability": null,
+      "source": "WTO Tariff Profile Korea 2024 + USDA GAIN Adjustment TRQs 2024 + KORUS FTA 양허표",
+      "chartType": "Bar",
+      "data_rows": 5
+    },
+    {
+      "id": "w24",
+      "title": "WITS 기반 착지원가(Landed Cost) 시뮬레이션",
+      "subtitle": "WITS API 연동. FOB 단가 + 해상운임 + 관세 + 통관비를 누적 계산하여 원산지별(중국, 세네갈, 대만) 실제 착지원가를 실시간 시뮬레이션합니다.",
+      "unit": "원/kg",
+      "reliability": null,
+      "source": "WITS Tariff & NTM Database + SCFI + KCS",
+      "chartType": "Bar",
+      "data_rows": 6
+    },
+    {
+      "id": "w25",
+      "title": "UN Comtrade 글로벌 갈치 교역 흐름 분석",
+      "subtitle": "UN Comtrade API 연동. 전 세계 갈치 수출입 물동량과 금액 흐름을 국가 간 파이프라인으로 시각화합니다.",
+      "unit": "백만 USD",
+      "reliability": null,
+      "source": "UN Comtrade API + OEC Trade Data",
+      "chartType": "Composed",
+      "data_rows": 6
+    },
+    {
+      "id": "w26",
+      "title": "OSH 주요 소싱국 팩토리 매핑 · 노동 리스크 분석",
+      "subtitle": "Open Supply Hub API 연동. 중국 해안가 수산 가공 공장의 위치·규모·노동 리스크를 매핑합니다. 강제노동 리스크 점수를 산출합니다.",
+      "unit": "점수 (0-100)",
+      "reliability": null,
+      "source": "Open Supply Hub API + Global Slavery Index",
+      "chartType": "Composed",
+      "data_rows": 6
+    },
+    {
+      "id": "w27",
+      "title": "OFAC·EU Sanctions 컴플라이언스 경보",
+      "subtitle": "OFAC SDN List + EU Sanctions Map 연동. IUU 어업·지정학적 제재 연루 수산/해운 기업의 적발 건수 추이를 실시간 모니터링합니다.",
+      "unit": "건",
+      "reliability": null,
+      "source": "US Treasury OFAC SDN List + EU Sanctions Map",
+      "chartType": "Area",
+      "data_rows": 6
+    },
+    {
+      "id": "w28",
+      "title": "ImportYeti B2B 벤더 발굴 — 직접 소싱 전략",
+      "subtitle": "ImportYeti(미국 세관 B/L 데이터) 연동. 세네갈·대만의 상위 수산 가공 수출기업을 선적 빈도·물량으로 필터링하여 직접 소싱 후보를 발굴합니다.",
+      "unit": "건",
+      "reliability": null,
+      "source": "ImportYeti (US Customs B/L Data) + U.S. ITA",
+      "chartType": "Bar",
+      "data_rows": 5
+    },
+    {
+      "id": "w29",
+      "title": "NOAA·KFAS 기후-가격 융합 예측 매트릭스",
+      "subtitle": "NOAA 해양기후 모델과 KFAS 자원평가 데이터를 결합하여, 이상수온 발생 시 가격 변동 폭을 사전 예측합니다.",
+      "unit": "°C / 원/kg",
+      "reliability": null,
+      "source": "NOAA Fisheries SST API + KFAS 해양기후 모델",
+      "chartType": "Composed",
+      "data_rows": 5
+    }
+  ]
+}

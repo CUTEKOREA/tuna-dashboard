@@ -1,0 +1,26 @@
+[
+  {
+    "file": "components/GalchiDashboard.tsx",
+    "widget_count": 0,
+    "widgets": [],
+    "api_calls": [
+      "/api/galchi/comtrade",
+      "/api/galchi/hsping",
+      "/api/galchi/importyeti",
+      "/api/galchi/intel",
+      "/api/galchi/kamis",
+      "/api/galchi/kcs",
+      "/api/galchi/kosis",
+      "/api/galchi/mfds",
+      "/api/galchi/noaa",
+      "/api/galchi/oec",
+      "/api/galchi/ofac",
+      "/api/galchi/osh",
+      "/api/galchi/tariffs",
+      "/api/galchi/wto"
+    ],
+    "external_urls": [
+      "https://notebooklm.google.com/notebook/73bd95c4-e9f8-49f3-aa90-1e907a3e1b00"
+    ]
+  }
+]

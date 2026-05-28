@@ -29,8 +29,8 @@ export async function GET() {
 
     if (res.ok) {
       // In a real scenario, we parse and reduce the JSON into the format used by the widget.
-      // For now, we return the fallback structure with isLive = true to simulate the live fallback.
-      return NextResponse.json({ ...FALLBACK, isLive: true, source: "UN Comtrade 실시간 API (HS 030389)" });
+      // For now, we return the fallback structure with isLive = false /* Mock fallback */ to simulate the live fallback.
+      return NextResponse.json({ ...FALLBACK, isLive: false /* Mock */, source: "UN Comtrade 실시간 API (HS 030389)" });
     }
   } catch (e) {
     console.error("Comtrade API error:", e);

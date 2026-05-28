@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+
+> 🐟 **2026-05-28 — 갈치(galchi) 28 JSON 위젯 + 14 API 감사 + P0 6 + P1 2 정정** [CC]:
+> - 4-Axis 평균 77.6 / B등급 (A 1 · B 19 · C 8 · D 0)
+> - **P0 6건 (시스템적 함정 재발견)**: comtrade·kosis·mfds·oec·ofac·wto 6개 API 라우트 모두 `isLive: true` 하드코딩 → `isLive: false /* Mock */` 일괄 정정. 4 commodity 누적 17건의 동일 패턴.
+> - **P1 2건 (Codex 검증)**: w05 중국 95% → HS 0303899060 범위 명시 / w19 TAC 소진율 → 해수부 1차 출처 승격
+> - 신규: [docs/2026_galchi_industry_sources.md](docs/2026_galchi_industry_sources.md) 14건
+> - Antigravity Flash background hang 재발 → foreground 호출로 해결. Grok CLI 무응답 (1바이트). 향후 안정성 보강 필요.
+> - `npm run build` ✓ (4.2s)
+
 > 🦑 **2026-05-28 — squid 5-Pillar 156 위젯 전수 감사 + P0 9건 + P1 8건 정정 (역대 최대 규모)** [CC]:
 > - **Audit**: TSX 81 + JSON 75 = **156 위젯** (역대 최대). 평균 4-Axis **81.5 / B+ 등급** (참치 78.7·고등어 78.0 대비 최고). A 32 · B 113 · C 11 · **D 0**.
 > - **P0 9건 (P0 8건이 시스템적 함정 확대 케이스)**:
