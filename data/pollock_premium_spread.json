@@ -1,0 +1,32 @@
+[
+  {
+    "year": 2019,
+    "usa_price": 2380,
+    "russia_price": 2131,
+    "china_price": 5792
+  },
+  {
+    "year": 2020,
+    "usa_price": 2223,
+    "russia_price": 1913,
+    "china_price": 5493
+  },
+  {
+    "year": 2021,
+    "usa_price": 2133,
+    "russia_price": 1546,
+    "china_price": 6931
+  },
+  {
+    "year": 2022,
+    "usa_price": 2545,
+    "russia_price": 1419,
+    "china_price": 2958
+  },
+  {
+    "year": 2023,
+    "usa_price": 2550,
+    "russia_price": 1704,
+    "china_price": 2559
+  }
+]

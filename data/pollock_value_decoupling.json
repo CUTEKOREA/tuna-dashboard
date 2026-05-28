@@ -1,0 +1,122 @@
+[
+  {
+    "year": 2000,
+    "global_vol_t": 579266,
+    "global_val_usd_k": 1057967
+  },
+  {
+    "year": 2001,
+    "global_vol_t": 656695,
+    "global_val_usd_k": 1209330
+  },
+  {
+    "year": 2002,
+    "global_vol_t": 699465,
+    "global_val_usd_k": 1296289
+  },
+  {
+    "year": 2003,
+    "global_vol_t": 751670,
+    "global_val_usd_k": 1300461
+  },
+  {
+    "year": 2004,
+    "global_vol_t": 752705,
+    "global_val_usd_k": 1378613
+  },
+  {
+    "year": 2005,
+    "global_vol_t": 724223,
+    "global_val_usd_k": 1460436
+  },
+  {
+    "year": 2006,
+    "global_vol_t": 759505,
+    "global_val_usd_k": 1651258
+  },
+  {
+    "year": 2007,
+    "global_vol_t": 816295,
+    "global_val_usd_k": 1775864
+  },
+  {
+    "year": 2008,
+    "global_vol_t": 764535,
+    "global_val_usd_k": 2056038
+  },
+  {
+    "year": 2009,
+    "global_vol_t": 691275,
+    "global_val_usd_k": 1945727
+  },
+  {
+    "year": 2010,
+    "global_vol_t": 731489,
+    "global_val_usd_k": 1932767
+  },
+  {
+    "year": 2011,
+    "global_vol_t": 811317,
+    "global_val_usd_k": 2138484
+  },
+  {
+    "year": 2012,
+    "global_vol_t": 1559780,
+    "global_val_usd_k": 3204072
+  },
+  {
+    "year": 2013,
+    "global_vol_t": 1594957,
+    "global_val_usd_k": 3195149
+  },
+  {
+    "year": 2014,
+    "global_vol_t": 1538489,
+    "global_val_usd_k": 3188590
+  },
+  {
+    "year": 2015,
+    "global_vol_t": 1553960,
+    "global_val_usd_k": 3062032
+  },
+  {
+    "year": 2016,
+    "global_vol_t": 1550336,
+    "global_val_usd_k": 2883769
+  },
+  {
+    "year": 2017,
+    "global_vol_t": 1695376,
+    "global_val_usd_k": 3038849
+  },
+  {
+    "year": 2018,
+    "global_vol_t": 1592937,
+    "global_val_usd_k": 3214266
+  },
+  {
+    "year": 2019,
+    "global_vol_t": 1601484,
+    "global_val_usd_k": 3618991
+  },
+  {
+    "year": 2020,
+    "global_vol_t": 1460546,
+    "global_val_usd_k": 3219721
+  },
+  {
+    "year": 2021,
+    "global_vol_t": 1367766,
+    "global_val_usd_k": 3220437
+  },
+  {
+    "year": 2022,
+    "global_vol_t": 1658313,
+    "global_val_usd_k": 4006032
+  },
+  {
+    "year": 2023,
+    "global_vol_t": 1497694,
+    "global_val_usd_k": 3527836
+  }
+]

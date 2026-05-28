@@ -1,0 +1,86 @@
+[
+  {
+    "Country": "China",
+    "y2014": 1217461,
+    "y2024": 921949,
+    "Change": -295512,
+    "ChangePct": -24.3
+  },
+  {
+    "Country": "Peru",
+    "y2014": 624971,
+    "y2024": 189235,
+    "Change": -435735,
+    "ChangePct": -69.7
+  },
+  {
+    "Country": "Republic of Korea",
+    "y2014": 339436,
+    "y2024": 96084,
+    "Change": -243351,
+    "ChangePct": -71.7
+  },
+  {
+    "Country": "Taiwan Province of China",
+    "y2014": 212114,
+    "y2024": 130050,
+    "Change": -82063,
+    "ChangePct": -38.7
+  },
+  {
+    "Country": "Japan",
+    "y2014": 210740,
+    "y2024": 50908,
+    "Change": -159832,
+    "ChangePct": -75.8
+  },
+  {
+    "Country": "Chile",
+    "y2014": 176622,
+    "y2024": 136470,
+    "Change": -40152,
+    "ChangePct": -22.7
+  },
+  {
+    "Country": "Argentina",
+    "y2014": 168845,
+    "y2024": 154996,
+    "Change": -13848,
+    "ChangePct": -8.2
+  },
+  {
+    "Country": "Indonesia",
+    "y2014": 168553,
+    "y2024": 127032,
+    "Change": -41520,
+    "ChangePct": -24.6
+  },
+  {
+    "Country": "United States of America",
+    "y2014": 121773,
+    "y2024": 73912,
+    "Change": -47861,
+    "ChangePct": -39.3
+  },
+  {
+    "Country": "Russian Federation",
+    "y2014": 111020,
+    "y2024": 108131,
+    "Change": -2889,
+    "ChangePct": -2.6
+  },
+  {
+    "Country": "Thailand",
+    "y2014": 91910,
+    "y2024": 78543,
+    "Change": -13366,
+    "ChangePct": -14.5
+  },
+  {
+    "Country": "Malaysia",
+    "y2014": 86938,
+    "y2024": 56981,
+    "Change": -29957,
+    "ChangePct": -34.5
+  }
+]

@@ -1,0 +1,398 @@
+[
+  {
+    "year": 1980,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 26.4,
+    "jp_import": 237.2,
+    "jp_balance": -210.7
+  },
+  {
+    "year": 1981,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 16.9,
+    "jp_import": 223.9,
+    "jp_balance": -207.0
+  },
+  {
+    "year": 1982,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 11.6,
+    "jp_import": 274.3,
+    "jp_balance": -262.7
+  },
+  {
+    "year": 1983,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 19.2,
+    "jp_import": 272.1,
+    "jp_balance": -252.9
+  },
+  {
+    "year": 1984,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 11.2,
+    "jp_import": 298.0,
+    "jp_balance": -286.8
+  },
+  {
+    "year": 1985,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 8.6,
+    "jp_import": 350.8,
+    "jp_balance": -342.1
+  },
+  {
+    "year": 1986,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 6.8,
+    "jp_import": 192.2,
+    "jp_balance": -185.4
+  },
+  {
+    "year": 1987,
+    "kr_export": 0.0,
+    "kr_import": 0.0,
+    "kr_balance": 0.0,
+    "jp_export": 8.5,
+    "jp_import": 218.3,
+    "jp_balance": -209.8
+  },
+  {
+    "year": 1988,
+    "kr_export": 91.0,
+    "kr_import": 16.7,
+    "kr_balance": 74.3,
+    "jp_export": 2.8,
+    "jp_import": 283.2,
+    "jp_balance": -280.3
+  },
+  {
+    "year": 1989,
+    "kr_export": 49.1,
+    "kr_import": 14.2,
+    "kr_balance": 34.8,
+    "jp_export": 5.4,
+    "jp_import": 268.5,
+    "jp_balance": -263.2
+  },
+  {
+    "year": 1990,
+    "kr_export": 53.1,
+    "kr_import": 30.3,
+    "kr_balance": 22.8,
+    "jp_export": 4.5,
+    "jp_import": 252.6,
+    "jp_balance": -248.2
+  },
+  {
+    "year": 1991,
+    "kr_export": 50.4,
+    "kr_import": 55.5,
+    "kr_balance": -5.2,
+    "jp_export": 8.0,
+    "jp_import": 259.4,
+    "jp_balance": -251.4
+  },
+  {
+    "year": 1992,
+    "kr_export": 36.7,
+    "kr_import": 50.7,
+    "kr_balance": -13.9,
+    "jp_export": 10.0,
+    "jp_import": 283.1,
+    "jp_balance": -273.1
+  },
+  {
+    "year": 1993,
+    "kr_export": 27.2,
+    "kr_import": 42.7,
+    "kr_balance": -15.5,
+    "jp_export": 9.6,
+    "jp_import": 289.3,
+    "jp_balance": -279.7
+  },
+  {
+    "year": 1994,
+    "kr_export": 20.0,
+    "kr_import": 49.7,
+    "kr_balance": -29.7,
+    "jp_export": 10.4,
+    "jp_import": 321.4,
+    "jp_balance": -311.0
+  },
+  {
+    "year": 1995,
+    "kr_export": 74.7,
+    "kr_import": 48.0,
+    "kr_balance": 26.7,
+    "jp_export": 15.0,
+    "jp_import": 295.7,
+    "jp_balance": -280.7
+  },
+  {
+    "year": 1996,
+    "kr_export": 60.9,
+    "kr_import": 76.2,
+    "kr_balance": -15.4,
+    "jp_export": 32.6,
+    "jp_import": 373.2,
+    "jp_balance": -340.6
+  },
+  {
+    "year": 1997,
+    "kr_export": 118.7,
+    "kr_import": 62.0,
+    "kr_balance": 56.7,
+    "jp_export": 15.9,
+    "jp_import": 279.4,
+    "jp_balance": -263.5
+  },
+  {
+    "year": 1998,
+    "kr_export": 74.6,
+    "kr_import": 18.9,
+    "kr_balance": 55.7,
+    "jp_export": 7.7,
+    "jp_import": 251.1,
+    "jp_balance": -243.4
+  },
+  {
+    "year": 1999,
+    "kr_export": 68.3,
+    "kr_import": 45.7,
+    "kr_balance": 22.6,
+    "jp_export": 3.7,
+    "jp_import": 319.9,
+    "jp_balance": -316.2
+  },
+  {
+    "year": 2000,
+    "kr_export": 92.2,
+    "kr_import": 40.4,
+    "kr_balance": 51.8,
+    "jp_export": 6.1,
+    "jp_import": 367.4,
+    "jp_balance": -361.4
+  },
+  {
+    "year": 2001,
+    "kr_export": 68.4,
+    "kr_import": 39.4,
+    "kr_balance": 29.0,
+    "jp_export": 21.5,
+    "jp_import": 318.1,
+    "jp_balance": -296.6
+  },
+  {
+    "year": 2002,
+    "kr_export": 65.1,
+    "kr_import": 38.7,
+    "kr_balance": 26.4,
+    "jp_export": 12.8,
+    "jp_import": 372.5,
+    "jp_balance": -359.7
+  },
+  {
+    "year": 2003,
+    "kr_export": 70.8,
+    "kr_import": 33.4,
+    "kr_balance": 37.5,
+    "jp_export": 12.4,
+    "jp_import": 318.1,
+    "jp_balance": -305.6
+  },
+  {
+    "year": 2004,
+    "kr_export": 113.0,
+    "kr_import": 48.9,
+    "kr_balance": 64.1,
+    "jp_export": 12.8,
+    "jp_import": 437.8,
+    "jp_balance": -425.0
+  },
+  {
+    "year": 2005,
+    "kr_export": 102.1,
+    "kr_import": 64.1,
+    "kr_balance": 38.0,
+    "jp_export": 12.0,
+    "jp_import": 475.6,
+    "jp_balance": -463.7
+  },
+  {
+    "year": 2006,
+    "kr_export": 47.4,
+    "kr_import": 86.0,
+    "kr_balance": -38.6,
+    "jp_export": 6.6,
+    "jp_import": 473.8,
+    "jp_balance": -467.3
+  },
+  {
+    "year": 2007,
+    "kr_export": 123.8,
+    "kr_import": 86.2,
+    "kr_balance": 37.6,
+    "jp_export": 5.6,
+    "jp_import": 482.1,
+    "jp_balance": -476.5
+  },
+  {
+    "year": 2008,
+    "kr_export": 126.5,
+    "kr_import": 75.8,
+    "kr_balance": 50.8,
+    "jp_export": 7.8,
+    "jp_import": 465.6,
+    "jp_balance": -457.8
+  },
+  {
+    "year": 2009,
+    "kr_export": 108.1,
+    "kr_import": 62.8,
+    "kr_balance": 45.2,
+    "jp_export": 6.6,
+    "jp_import": 444.4,
+    "jp_balance": -437.8
+  },
+  {
+    "year": 2010,
+    "kr_export": 114.8,
+    "kr_import": 90.1,
+    "kr_balance": 24.7,
+    "jp_export": 7.5,
+    "jp_import": 531.7,
+    "jp_balance": -524.2
+  },
+  {
+    "year": 2011,
+    "kr_export": 180.9,
+    "kr_import": 142.4,
+    "kr_balance": 38.6,
+    "jp_export": 14.1,
+    "jp_import": 704.9,
+    "jp_balance": -690.7
+  },
+  {
+    "year": 2012,
+    "kr_export": 119.7,
+    "kr_import": 165.3,
+    "kr_balance": -45.6,
+    "jp_export": 19.4,
+    "jp_import": 662.3,
+    "jp_balance": -642.9
+  },
+  {
+    "year": 2013,
+    "kr_export": 139.5,
+    "kr_import": 145.5,
+    "kr_balance": -6.0,
+    "jp_export": 18.8,
+    "jp_import": 651.7,
+    "jp_balance": -632.9
+  },
+  {
+    "year": 2014,
+    "kr_export": 116.4,
+    "kr_import": 187.7,
+    "kr_balance": -71.3,
+    "jp_export": 16.0,
+    "jp_import": 599.0,
+    "jp_balance": -583.1
+  },
+  {
+    "year": 2015,
+    "kr_export": 95.3,
+    "kr_import": 164.8,
+    "kr_balance": -69.4,
+    "jp_export": 11.6,
+    "jp_import": 507.2,
+    "jp_balance": -495.7
+  },
+  {
+    "year": 2016,
+    "kr_export": 112.5,
+    "kr_import": 202.1,
+    "kr_balance": -89.6,
+    "jp_export": 11.7,
+    "jp_import": 589.2,
+    "jp_balance": -577.5
+  },
+  {
+    "year": 2017,
+    "kr_export": 80.2,
+    "kr_import": 296.3,
+    "kr_balance": -216.1,
+    "jp_export": 32.4,
+    "jp_import": 845.2,
+    "jp_balance": -812.8
+  },
+  {
+    "year": 2018,
+    "kr_export": 31.5,
+    "kr_import": 514.3,
+    "kr_balance": -482.9,
+    "jp_export": 36.7,
+    "jp_import": 795.4,
+    "jp_balance": -758.7
+  },
+  {
+    "year": 2019,
+    "kr_export": 35.5,
+    "kr_import": 450.8,
+    "kr_balance": -415.4,
+    "jp_export": 34.1,
+    "jp_import": 767.7,
+    "jp_balance": -733.6
+  },
+  {
+    "year": 2020,
+    "kr_export": 36.8,
+    "kr_import": 491.5,
+    "kr_balance": -454.7,
+    "jp_export": 29.6,
+    "jp_import": 734.2,
+    "jp_balance": -704.6
+  },
+  {
+    "year": 2021,
+    "kr_export": 77.5,
+    "kr_import": 372.0,
+    "kr_balance": -294.5,
+    "jp_export": 34.8,
+    "jp_import": 695.6,
+    "jp_balance": -660.8
+  },
+  {
+    "year": 2022,
+    "kr_export": 56.7,
+    "kr_import": 424.0,
+    "kr_balance": -367.3,
+    "jp_export": 24.2,
+    "jp_import": 778.5,
+    "jp_balance": -754.3
+  },
+  {
+    "year": 2023,
+    "kr_export": 75.0,
+    "kr_import": 501.8,
+    "kr_balance": -426.8,
+    "jp_export": 24.1,
+    "jp_import": 752.5,
+    "jp_balance": -728.4
+  }
+]

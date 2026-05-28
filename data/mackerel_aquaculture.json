@@ -1,0 +1,322 @@
+[
+  {
+    "year": 1984,
+    "capture_t": 15153582,
+    "aquaculture_t": 7420,
+    "aqua_ratio_pct": 0.05,
+    "wild_price_usd": 556.91,
+    "aqua_price_usd": 1260.29
+  },
+  {
+    "year": 1985,
+    "capture_t": 13838785,
+    "aquaculture_t": 10016,
+    "aqua_ratio_pct": 0.07,
+    "wild_price_usd": 567.57,
+    "aqua_price_usd": 1267.2
+  },
+  {
+    "year": 1986,
+    "capture_t": 14261682,
+    "aquaculture_t": 9176,
+    "aqua_ratio_pct": 0.06,
+    "wild_price_usd": 650.15,
+    "aqua_price_usd": 2328.69
+  },
+  {
+    "year": 1987,
+    "capture_t": 15546739,
+    "aquaculture_t": 11124,
+    "aqua_ratio_pct": 0.07,
+    "wild_price_usd": 745.63,
+    "aqua_price_usd": 1615.62
+  },
+  {
+    "year": 1988,
+    "capture_t": 17441708,
+    "aquaculture_t": 12910,
+    "aqua_ratio_pct": 0.07,
+    "wild_price_usd": 821.35,
+    "aqua_price_usd": 6194.12
+  },
+  {
+    "year": 1989,
+    "capture_t": 17666748,
+    "aquaculture_t": 13310,
+    "aqua_ratio_pct": 0.08,
+    "wild_price_usd": 821.39,
+    "aqua_price_usd": 6190.0
+  },
+  {
+    "year": 1990,
+    "capture_t": 16914365,
+    "aquaculture_t": 11726,
+    "aqua_ratio_pct": 0.07,
+    "wild_price_usd": 870.66,
+    "aqua_price_usd": 5530.38
+  },
+  {
+    "year": 1991,
+    "capture_t": 17062608,
+    "aquaculture_t": 11778,
+    "aqua_ratio_pct": 0.07,
+    "wild_price_usd": 885.29,
+    "aqua_price_usd": 6285.96
+  },
+  {
+    "year": 1992,
+    "capture_t": 16139250,
+    "aquaculture_t": 14322,
+    "aqua_ratio_pct": 0.09,
+    "wild_price_usd": 792.04,
+    "aqua_price_usd": 5540.0
+  },
+  {
+    "year": 1993,
+    "capture_t": 18042960,
+    "aquaculture_t": 12908,
+    "aqua_ratio_pct": 0.07,
+    "wild_price_usd": 741.35,
+    "aqua_price_usd": 6260.57
+  },
+  {
+    "year": 1994,
+    "capture_t": 19638103,
+    "aquaculture_t": 12268,
+    "aqua_ratio_pct": 0.06,
+    "wild_price_usd": 798.27,
+    "aqua_price_usd": 6810.3
+  },
+  {
+    "year": 1995,
+    "capture_t": 21173154,
+    "aquaculture_t": 9998,
+    "aqua_ratio_pct": 0.05,
+    "wild_price_usd": 865.05,
+    "aqua_price_usd": 8834.89
+  },
+  {
+    "year": 1996,
+    "capture_t": 20471147,
+    "aquaculture_t": 7776,
+    "aqua_ratio_pct": 0.04,
+    "wild_price_usd": 908.41,
+    "aqua_price_usd": 8818.44
+  },
+  {
+    "year": 1997,
+    "capture_t": 19040939,
+    "aquaculture_t": 7052,
+    "aqua_ratio_pct": 0.04,
+    "wild_price_usd": 957.72,
+    "aqua_price_usd": 7912.81
+  },
+  {
+    "year": 1998,
+    "capture_t": 15279595,
+    "aquaculture_t": 6824,
+    "aqua_ratio_pct": 0.04,
+    "wild_price_usd": 880.28,
+    "aqua_price_usd": 6745.24
+  },
+  {
+    "year": 1999,
+    "capture_t": 13544100,
+    "aquaculture_t": 6104,
+    "aqua_ratio_pct": 0.05,
+    "wild_price_usd": 782.81,
+    "aqua_price_usd": 7907.18
+  },
+  {
+    "year": 2000,
+    "capture_t": 12681741,
+    "aquaculture_t": 6104,
+    "aqua_ratio_pct": 0.05,
+    "wild_price_usd": 766.01,
+    "aqua_price_usd": 7900.0
+  },
+  {
+    "year": 2001,
+    "capture_t": 15233816,
+    "aquaculture_t": 6622,
+    "aqua_ratio_pct": 0.04,
+    "wild_price_usd": 785.46,
+    "aqua_price_usd": 7897.76
+  },
+  {
+    "year": 2002,
+    "capture_t": 13122869,
+    "aquaculture_t": 6988,
+    "aqua_ratio_pct": 0.05,
+    "wild_price_usd": 853.97,
+    "aqua_price_usd": 7900.92
+  },
+  {
+    "year": 2003,
+    "capture_t": 13941984,
+    "aquaculture_t": 6854,
+    "aqua_ratio_pct": 0.05,
+    "wild_price_usd": 879.93,
+    "aqua_price_usd": 6200.85
+  },
+  {
+    "year": 2004,
+    "capture_t": 14976101,
+    "aquaculture_t": 4916,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 883.99,
+    "aqua_price_usd": 6946.94
+  },
+  {
+    "year": 2005,
+    "capture_t": 14729983,
+    "aquaculture_t": 4962,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 1071.36,
+    "aqua_price_usd": 7549.51
+  },
+  {
+    "year": 2006,
+    "capture_t": 15077596,
+    "aquaculture_t": 4406,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 986.18,
+    "aqua_price_usd": 7425.15
+  },
+  {
+    "year": 2007,
+    "capture_t": 14644786,
+    "aquaculture_t": 4202,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 1221.74,
+    "aqua_price_usd": 7478.65
+  },
+  {
+    "year": 2008,
+    "capture_t": 13947300,
+    "aquaculture_t": 3904,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 1434.8,
+    "aqua_price_usd": 8537.28
+  },
+  {
+    "year": 2009,
+    "capture_t": 13082212,
+    "aquaculture_t": 3878,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 1342.46,
+    "aqua_price_usd": 8809.51
+  },
+  {
+    "year": 2010,
+    "capture_t": 12391404,
+    "aquaculture_t": 3526,
+    "aqua_ratio_pct": 0.03,
+    "wild_price_usd": 1390.63,
+    "aqua_price_usd": 9713.07
+  },
+  {
+    "year": 2011,
+    "capture_t": 12422219,
+    "aquaculture_t": 2340,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1744.27,
+    "aqua_price_usd": 10907.65
+  },
+  {
+    "year": 2012,
+    "capture_t": 11550206,
+    "aquaculture_t": 2736,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1675.64,
+    "aqua_price_usd": 11039.26
+  },
+  {
+    "year": 2013,
+    "capture_t": 11655990,
+    "aquaculture_t": 2328,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1681.67,
+    "aqua_price_usd": 10517.11
+  },
+  {
+    "year": 2014,
+    "capture_t": 13382271,
+    "aquaculture_t": 2024,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1468.36,
+    "aqua_price_usd": 11542.63
+  },
+  {
+    "year": 2015,
+    "capture_t": 13206280,
+    "aquaculture_t": 1850,
+    "aqua_ratio_pct": 0.01,
+    "wild_price_usd": 1332.65,
+    "aqua_price_usd": 8877.55
+  },
+  {
+    "year": 2016,
+    "capture_t": 13172746,
+    "aquaculture_t": 2010,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1263.05,
+    "aqua_price_usd": 10642.75
+  },
+  {
+    "year": 2017,
+    "capture_t": 13427774,
+    "aquaculture_t": 2026,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1337.9,
+    "aqua_price_usd": 11049.6
+  },
+  {
+    "year": 2018,
+    "capture_t": 12904814,
+    "aquaculture_t": 2196,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1412.91,
+    "aqua_price_usd": 10956.31
+  },
+  {
+    "year": 2019,
+    "capture_t": 12590418,
+    "aquaculture_t": 2138,
+    "aqua_ratio_pct": 0.02,
+    "wild_price_usd": 1503.18,
+    "aqua_price_usd": 10395.35
+  },
+  {
+    "year": 2020,
+    "capture_t": 12392890,
+    "aquaculture_t": 1684,
+    "aqua_ratio_pct": 0.01,
+    "wild_price_usd": 1546.0,
+    "aqua_price_usd": 10584.54
+  },
+  {
+    "year": 2021,
+    "capture_t": 13722973,
+    "aquaculture_t": 1634,
+    "aqua_ratio_pct": 0.01,
+    "wild_price_usd": 1631.51,
+    "aqua_price_usd": 10435.83
+  },
+  {
+    "year": 2022,
+    "capture_t": 13632889,
+    "aquaculture_t": 1855,
+    "aqua_ratio_pct": 0.01,
+    "wild_price_usd": 1634.77,
+    "aqua_price_usd": 11517.35
+  },
+  {
+    "year": 2023,
+    "capture_t": 13673804,
+    "aquaculture_t": 1580,
+    "aqua_ratio_pct": 0.01,
+    "wild_price_usd": 1559.97,
+    "aqua_price_usd": 9818.27
+  }
+]

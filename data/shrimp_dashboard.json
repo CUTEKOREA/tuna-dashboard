@@ -1,0 +1,2716 @@
+{
+  "production_total": {
+    "timeline": [
+      {
+        "year": 1950,
+        "value": 585160
+      },
+      {
+        "year": 1951,
+        "value": 647720
+      },
+      {
+        "year": 1952,
+        "value": 645812
+      },
+      {
+        "year": 1953,
+        "value": 726932
+      },
+      {
+        "year": 1954,
+        "value": 731998
+      },
+      {
+        "year": 1955,
+        "value": 787612
+      },
+      {
+        "year": 1956,
+        "value": 795636
+      },
+      {
+        "year": 1957,
+        "value": 795820
+      },
+      {
+        "year": 1958,
+        "value": 780566
+      },
+      {
+        "year": 1959,
+        "value": 827616
+      },
+      {
+        "year": 1960,
+        "value": 860486
+      },
+      {
+        "year": 1961,
+        "value": 860192
+      },
+      {
+        "year": 1962,
+        "value": 907144
+      },
+      {
+        "year": 1963,
+        "value": 1001926
+      },
+      {
+        "year": 1964,
+        "value": 991510
+      },
+      {
+        "year": 1965,
+        "value": 1026106
+      },
+      {
+        "year": 1966,
+        "value": 1059646
+      },
+      {
+        "year": 1967,
+        "value": 1134454
+      },
+      {
+        "year": 1968,
+        "value": 1139590
+      },
+      {
+        "year": 1969,
+        "value": 1140834
+      },
+      {
+        "year": 1970,
+        "value": 1201104
+      },
+      {
+        "year": 1971,
+        "value": 1186354
+      },
+      {
+        "year": 1972,
+        "value": 1294076
+      },
+      {
+        "year": 1973,
+        "value": 1147582
+      },
+      {
+        "year": 1974,
+        "value": 1129560
+      },
+      {
+        "year": 1975,
+        "value": 1119440
+      },
+      {
+        "year": 1976,
+        "value": 1371382
+      },
+      {
+        "year": 1977,
+        "value": 1579687
+      },
+      {
+        "year": 1978,
+        "value": 1689690
+      },
+      {
+        "year": 1979,
+        "value": 1508010
+      },
+      {
+        "year": 1980,
+        "value": 1597176
+      },
+      {
+        "year": 1981,
+        "value": 1703596
+      },
+      {
+        "year": 1982,
+        "value": 1862068
+      },
+      {
+        "year": 1983,
+        "value": 1880405
+      },
+      {
+        "year": 1984,
+        "value": 1912910
+      },
+      {
+        "year": 1985,
+        "value": 2162368
+      },
+      {
+        "year": 1986,
+        "value": 2361852
+      },
+      {
+        "year": 1987,
+        "value": 2462752
+      },
+      {
+        "year": 1988,
+        "value": 2626172
+      },
+      {
+        "year": 1989,
+        "value": 2493762
+      },
+      {
+        "year": 1990,
+        "value": 2537446
+      },
+      {
+        "year": 1991,
+        "value": 2796238
+      },
+      {
+        "year": 1992,
+        "value": 2766988
+      },
+      {
+        "year": 1993,
+        "value": 2657346
+      },
+      {
+        "year": 1994,
+        "value": 2863496
+      },
+      {
+        "year": 1995,
+        "value": 3148028
+      },
+      {
+        "year": 1996,
+        "value": 3291874
+      },
+      {
+        "year": 1997,
+        "value": 3433192
+      },
+      {
+        "year": 1998,
+        "value": 3598376
+      },
+      {
+        "year": 1999,
+        "value": 3946266
+      },
+      {
+        "year": 2000,
+        "value": 3928936
+      },
+      {
+        "year": 2001,
+        "value": 3947178
+      },
+      {
+        "year": 2002,
+        "value": 4181838
+      },
+      {
+        "year": 2003,
+        "value": 5467808
+      },
+      {
+        "year": 2004,
+        "value": 5800350
+      },
+      {
+        "year": 2005,
+        "value": 6682972
+      },
+      {
+        "year": 2006,
+        "value": 7790926
+      },
+      {
+        "year": 2007,
+        "value": 8206793
+      },
+      {
+        "year": 2008,
+        "value": 7889783
+      },
+      {
+        "year": 2009,
+        "value": 8188366
+      },
+      {
+        "year": 2010,
+        "value": 8823089
+      },
+      {
+        "year": 2011,
+        "value": 9432558
+      },
+      {
+        "year": 2012,
+        "value": 9731652
+      },
+      {
+        "year": 2013,
+        "value": 10047649
+      },
+      {
+        "year": 2014,
+        "value": 10796845
+      },
+      {
+        "year": 2015,
+        "value": 11403301
+      },
+      {
+        "year": 2016,
+        "value": 11903658
+      },
+      {
+        "year": 2017,
+        "value": 13187742
+      },
+      {
+        "year": 2018,
+        "value": 14060486
+      },
+      {
+        "year": 2019,
+        "value": 14721668
+      },
+      {
+        "year": 2020,
+        "value": 14993533
+      },
+      {
+        "year": 2021,
+        "value": 16589006
+      },
+      {
+        "year": 2022,
+        "value": 17578693
+      },
+      {
+        "year": 2023,
+        "value": 18724170
+      },
+      {
+        "year": 2024,
+        "value": 19129390
+      }
+    ],
+    "latest_year": 2024,
+    "latest_value": 19129390,
+    "top10": [
+      {
+        "country": "China",
+        "value": 3118815
+      },
+      {
+        "country": "Ecuador",
+        "value": 1226775
+      },
+      {
+        "country": "India",
+        "value": 1218674
+      },
+      {
+        "country": "Indonesia",
+        "value": 1056464
+      },
+      {
+        "country": "Viet Nam",
+        "value": 998773
+      },
+      {
+        "country": "Thailand",
+        "value": 425473
+      },
+      {
+        "country": "Mexico",
+        "value": 257387
+      },
+      {
+        "country": "Argentina",
+        "value": 222163
+      },
+      {
+        "country": "Brazil",
+        "value": 166595
+      }
+    ]
+  },
+  "capture": {
+    "timeline": [
+      {
+        "year": 1950,
+        "value": 582800
+      },
+      {
+        "year": 1951,
+        "value": 644920
+      },
+      {
+        "year": 1952,
+        "value": 640472
+      },
+      {
+        "year": 1953,
+        "value": 724832
+      },
+      {
+        "year": 1954,
+        "value": 729438
+      },
+      {
+        "year": 1955,
+        "value": 783992
+      },
+      {
+        "year": 1956,
+        "value": 792516
+      },
+      {
+        "year": 1957,
+        "value": 792180
+      },
+      {
+        "year": 1958,
+        "value": 775846
+      },
+      {
+        "year": 1959,
+        "value": 822976
+      },
+      {
+        "year": 1960,
+        "value": 855346
+      },
+      {
+        "year": 1961,
+        "value": 854496
+      },
+      {
+        "year": 1962,
+        "value": 900544
+      },
+      {
+        "year": 1963,
+        "value": 997798
+      },
+      {
+        "year": 1964,
+        "value": 987350
+      },
+      {
+        "year": 1965,
+        "value": 1020724
+      },
+      {
+        "year": 1966,
+        "value": 1054722
+      },
+      {
+        "year": 1967,
+        "value": 1127286
+      },
+      {
+        "year": 1968,
+        "value": 1132206
+      },
+      {
+        "year": 1969,
+        "value": 1129390
+      },
+      {
+        "year": 1970,
+        "value": 1191420
+      },
+      {
+        "year": 1971,
+        "value": 1174388
+      },
+      {
+        "year": 1972,
+        "value": 1279748
+      },
+      {
+        "year": 1973,
+        "value": 1128488
+      },
+      {
+        "year": 1974,
+        "value": 1110838
+      },
+      {
+        "year": 1975,
+        "value": 1101290
+      },
+      {
+        "year": 1976,
+        "value": 1343458
+      },
+      {
+        "year": 1977,
+        "value": 1539410
+      },
+      {
+        "year": 1978,
+        "value": 1639758
+      },
+      {
+        "year": 1979,
+        "value": 1452044
+      },
+      {
+        "year": 1980,
+        "value": 1521058
+      },
+      {
+        "year": 1981,
+        "value": 1613018
+      },
+      {
+        "year": 1982,
+        "value": 1734324
+      },
+      {
+        "year": 1983,
+        "value": 1720122
+      },
+      {
+        "year": 1984,
+        "value": 1746142
+      },
+      {
+        "year": 1985,
+        "value": 1946518
+      },
+      {
+        "year": 1986,
+        "value": 2022862
+      },
+      {
+        "year": 1987,
+        "value": 1919222
+      },
+      {
+        "year": 1988,
+        "value": 1967552
+      },
+      {
+        "year": 1989,
+        "value": 1860332
+      },
+      {
+        "year": 1990,
+        "value": 1859336
+      },
+      {
+        "year": 1991,
+        "value": 1983224
+      },
+      {
+        "year": 1992,
+        "value": 1955026
+      },
+      {
+        "year": 1993,
+        "value": 2092120
+      },
+      {
+        "year": 1994,
+        "value": 2318252
+      },
+      {
+        "year": 1995,
+        "value": 2538656
+      },
+      {
+        "year": 1996,
+        "value": 2636978
+      },
+      {
+        "year": 1997,
+        "value": 2652980
+      },
+      {
+        "year": 1998,
+        "value": 2734882
+      },
+      {
+        "year": 1999,
+        "value": 3058546
+      },
+      {
+        "year": 2000,
+        "value": 3057750
+      },
+      {
+        "year": 2001,
+        "value": 2859442
+      },
+      {
+        "year": 2002,
+        "value": 2700976
+      },
+      {
+        "year": 2003,
+        "value": 3127304
+      },
+      {
+        "year": 2004,
+        "value": 2850718
+      },
+      {
+        "year": 2005,
+        "value": 2967376
+      },
+      {
+        "year": 2006,
+        "value": 3196662
+      },
+      {
+        "year": 2007,
+        "value": 3153550
+      },
+      {
+        "year": 2008,
+        "value": 2930278
+      },
+      {
+        "year": 2009,
+        "value": 3056456
+      },
+      {
+        "year": 2010,
+        "value": 3037207
+      },
+      {
+        "year": 2011,
+        "value": 3087424
+      },
+      {
+        "year": 2012,
+        "value": 3138603
+      },
+      {
+        "year": 2013,
+        "value": 3210668
+      },
+      {
+        "year": 2014,
+        "value": 3273746
+      },
+      {
+        "year": 2015,
+        "value": 3415162
+      },
+      {
+        "year": 2016,
+        "value": 3279073
+      },
+      {
+        "year": 2017,
+        "value": 3255491
+      },
+      {
+        "year": 2018,
+        "value": 3633651
+      },
+      {
+        "year": 2019,
+        "value": 3275781
+      },
+      {
+        "year": 2020,
+        "value": 2750629
+      },
+      {
+        "year": 2021,
+        "value": 3319475
+      },
+      {
+        "year": 2022,
+        "value": 3301790
+      },
+      {
+        "year": 2023,
+        "value": 3295331
+      },
+      {
+        "year": 2024,
+        "value": 3178877
+      }
+    ],
+    "latest_year": 2024,
+    "latest_value": 3178877,
+    "top10": [
+      {
+        "country": "China",
+        "value": 577844
+      },
+      {
+        "country": "Argentina",
+        "value": 222163
+      },
+      {
+        "country": "Indonesia",
+        "value": 217578
+      },
+      {
+        "country": "United States of America",
+        "value": 104085
+      },
+      {
+        "country": "Thailand",
+        "value": 56868
+      },
+      {
+        "country": "Mexico",
+        "value": 41432
+      },
+      {
+        "country": "India",
+        "value": 35221
+      },
+      {
+        "country": "Malaysia",
+        "value": 28853
+      },
+      {
+        "country": "Cameroon",
+        "value": 25715
+      }
+    ]
+  },
+  "aquaculture": {
+    "timeline": [
+      {
+        "year": 1950,
+        "value": 1180
+      },
+      {
+        "year": 1951,
+        "value": 1400
+      },
+      {
+        "year": 1952,
+        "value": 2670
+      },
+      {
+        "year": 1953,
+        "value": 1058
+      },
+      {
+        "year": 1954,
+        "value": 1378
+      },
+      {
+        "year": 1955,
+        "value": 1923
+      },
+      {
+        "year": 1956,
+        "value": 1710
+      },
+      {
+        "year": 1957,
+        "value": 1991
+      },
+      {
+        "year": 1958,
+        "value": 2561
+      },
+      {
+        "year": 1959,
+        "value": 2511
+      },
+      {
+        "year": 1960,
+        "value": 2738
+      },
+      {
+        "year": 1961,
+        "value": 3011
+      },
+      {
+        "year": 1962,
+        "value": 3506
+      },
+      {
+        "year": 1963,
+        "value": 2356
+      },
+      {
+        "year": 1964,
+        "value": 2437
+      },
+      {
+        "year": 1965,
+        "value": 3355
+      },
+      {
+        "year": 1966,
+        "value": 3316
+      },
+      {
+        "year": 1967,
+        "value": 4712
+      },
+      {
+        "year": 1968,
+        "value": 5185
+      },
+      {
+        "year": 1969,
+        "value": 8473
+      },
+      {
+        "year": 1970,
+        "value": 8925
+      },
+      {
+        "year": 1971,
+        "value": 11393
+      },
+      {
+        "year": 1972,
+        "value": 14267
+      },
+      {
+        "year": 1973,
+        "value": 17391
+      },
+      {
+        "year": 1974,
+        "value": 20633
+      },
+      {
+        "year": 1975,
+        "value": 22482
+      },
+      {
+        "year": 1976,
+        "value": 31280
+      },
+      {
+        "year": 1977,
+        "value": 44250
+      },
+      {
+        "year": 1978,
+        "value": 54302
+      },
+      {
+        "year": 1979,
+        "value": 63994
+      },
+      {
+        "year": 1980,
+        "value": 74169
+      },
+      {
+        "year": 1981,
+        "value": 91521
+      },
+      {
+        "year": 1982,
+        "value": 117675
+      },
+      {
+        "year": 1983,
+        "value": 149520
+      },
+      {
+        "year": 1984,
+        "value": 183223
+      },
+      {
+        "year": 1985,
+        "value": 223483
+      },
+      {
+        "year": 1986,
+        "value": 333155
+      },
+      {
+        "year": 1987,
+        "value": 517592
+      },
+      {
+        "year": 1988,
+        "value": 602328
+      },
+      {
+        "year": 1989,
+        "value": 647942
+      },
+      {
+        "year": 1990,
+        "value": 710705
+      },
+      {
+        "year": 1991,
+        "value": 875368
+      },
+      {
+        "year": 1992,
+        "value": 930128
+      },
+      {
+        "year": 1993,
+        "value": 861888
+      },
+      {
+        "year": 1994,
+        "value": 914433
+      },
+      {
+        "year": 1995,
+        "value": 963763
+      },
+      {
+        "year": 1996,
+        "value": 979047
+      },
+      {
+        "year": 1997,
+        "value": 992834
+      },
+      {
+        "year": 1998,
+        "value": 1068008
+      },
+      {
+        "year": 1999,
+        "value": 1152263
+      },
+      {
+        "year": 2000,
+        "value": 1355282
+      },
+      {
+        "year": 2001,
+        "value": 1568794
+      },
+      {
+        "year": 2002,
+        "value": 1721666
+      },
+      {
+        "year": 2003,
+        "value": 2438348
+      },
+      {
+        "year": 2004,
+        "value": 2764556
+      },
+      {
+        "year": 2005,
+        "value": 3091214
+      },
+      {
+        "year": 2006,
+        "value": 3558102
+      },
+      {
+        "year": 2007,
+        "value": 3759489
+      },
+      {
+        "year": 2008,
+        "value": 3837454
+      },
+      {
+        "year": 2009,
+        "value": 3962520
+      },
+      {
+        "year": 2010,
+        "value": 4048196
+      },
+      {
+        "year": 2011,
+        "value": 4419991
+      },
+      {
+        "year": 2012,
+        "value": 4534552
+      },
+      {
+        "year": 2013,
+        "value": 4668348
+      },
+      {
+        "year": 2014,
+        "value": 5022416
+      },
+      {
+        "year": 2015,
+        "value": 5291108
+      },
+      {
+        "year": 2016,
+        "value": 5629876
+      },
+      {
+        "year": 2017,
+        "value": 6278867
+      },
+      {
+        "year": 2018,
+        "value": 6590217
+      },
+      {
+        "year": 2019,
+        "value": 7041088
+      },
+      {
+        "year": 2020,
+        "value": 7432950
+      },
+      {
+        "year": 2021,
+        "value": 8001810
+      },
+      {
+        "year": 2022,
+        "value": 8551940
+      },
+      {
+        "year": 2023,
+        "value": 9186876
+      },
+      {
+        "year": 2024,
+        "value": 9501242
+      }
+    ],
+    "latest_year": 2024,
+    "latest_value": 9501242,
+    "top10": [
+      {
+        "country": "China",
+        "value": 3219603
+      },
+      {
+        "country": "India",
+        "value": 1304882
+      },
+      {
+        "country": "Viet Nam",
+        "value": 1289118
+      },
+      {
+        "country": "Ecuador",
+        "value": 1218000
+      },
+      {
+        "country": "Indonesia",
+        "value": 961322
+      },
+      {
+        "country": "Thailand",
+        "value": 432436
+      },
+      {
+        "country": "Mexico",
+        "value": 215954
+      },
+      {
+        "country": "Bangladesh",
+        "value": 157529
+      },
+      {
+        "country": "Brazil",
+        "value": 146982
+      },
+      {
+        "country": "Venezuela (Bolivarian Republic of)",
+        "value": 72500
+      }
+    ]
+  },
+  "aquaculture_value": {
+    "timeline": [
+      {
+        "year": 1984,
+        "value": 937515
+      },
+      {
+        "year": 1985,
+        "value": 1155707
+      },
+      {
+        "year": 1986,
+        "value": 1793720
+      },
+      {
+        "year": 1987,
+        "value": 3240024
+      },
+      {
+        "year": 1988,
+        "value": 4046695
+      },
+      {
+        "year": 1989,
+        "value": 4118849
+      },
+      {
+        "year": 1990,
+        "value": 4449429
+      },
+      {
+        "year": 1991,
+        "value": 5398477
+      },
+      {
+        "year": 1992,
+        "value": 5785144
+      },
+      {
+        "year": 1993,
+        "value": 5471204
+      },
+      {
+        "year": 1994,
+        "value": 6074871
+      },
+      {
+        "year": 1995,
+        "value": 6374705
+      },
+      {
+        "year": 1996,
+        "value": 6427153
+      },
+      {
+        "year": 1997,
+        "value": 6391339
+      },
+      {
+        "year": 1998,
+        "value": 6298938
+      },
+      {
+        "year": 1999,
+        "value": 6851152
+      },
+      {
+        "year": 2000,
+        "value": 7893928
+      },
+      {
+        "year": 2001,
+        "value": 8143346
+      },
+      {
+        "year": 2002,
+        "value": 8576640
+      },
+      {
+        "year": 2003,
+        "value": 9416238
+      },
+      {
+        "year": 2004,
+        "value": 10910055
+      },
+      {
+        "year": 2005,
+        "value": 12173099
+      },
+      {
+        "year": 2006,
+        "value": 14029791
+      },
+      {
+        "year": 2007,
+        "value": 15646346
+      },
+      {
+        "year": 2008,
+        "value": 17476190
+      },
+      {
+        "year": 2009,
+        "value": 18197143
+      },
+      {
+        "year": 2010,
+        "value": 20529718
+      },
+      {
+        "year": 2011,
+        "value": 24714182
+      },
+      {
+        "year": 2012,
+        "value": 26290854
+      },
+      {
+        "year": 2013,
+        "value": 30384744
+      },
+      {
+        "year": 2014,
+        "value": 32964859
+      },
+      {
+        "year": 2015,
+        "value": 33398644
+      },
+      {
+        "year": 2016,
+        "value": 36083669
+      },
+      {
+        "year": 2017,
+        "value": 40743759
+      },
+      {
+        "year": 2018,
+        "value": 44792284
+      },
+      {
+        "year": 2019,
+        "value": 46506566
+      },
+      {
+        "year": 2020,
+        "value": 48571091
+      },
+      {
+        "year": 2021,
+        "value": 52871909
+      },
+      {
+        "year": 2022,
+        "value": 55840606
+      },
+      {
+        "year": 2023,
+        "value": 59222638
+      },
+      {
+        "year": 2024,
+        "value": 61858074
+      }
+    ],
+    "latest_year": 2024,
+    "latest_value": 61858074,
+    "top10": [
+      {
+        "country": "China",
+        "value": 30818542
+      },
+      {
+        "country": "Viet Nam",
+        "value": 8749339
+      },
+      {
+        "country": "India",
+        "value": 5719026
+      },
+      {
+        "country": "Ecuador",
+        "value": 4384800
+      },
+      {
+        "country": "Indonesia",
+        "value": 4052472
+      },
+      {
+        "country": "Thailand",
+        "value": 1972350
+      },
+      {
+        "country": "Mexico",
+        "value": 990293
+      },
+      {
+        "country": "Bangladesh",
+        "value": 822079
+      },
+      {
+        "country": "Saudi Arabia",
+        "value": 627607
+      },
+      {
+        "country": "Brazil",
+        "value": 567426
+      }
+    ]
+  },
+  "trade_recent": {
+    "year": 2023,
+    "export_qty": 3964951,
+    "import_qty": 3851921,
+    "export_usd": 28100570,
+    "import_usd": 27518728,
+    "top_exporters_qty": [
+      {
+        "country": "Ecuador",
+        "value": 1220531
+      },
+      {
+        "country": "India",
+        "value": 717610
+      },
+      {
+        "country": "Viet Nam",
+        "value": 378691
+      },
+      {
+        "country": "Indonesia",
+        "value": 205765
+      },
+      {
+        "country": "China",
+        "value": 148388
+      },
+      {
+        "country": "Argentina",
+        "value": 140413
+      },
+      {
+        "country": "Thailand",
+        "value": 138545
+      },
+      {
+        "country": "Denmark",
+        "value": 95010
+      },
+      {
+        "country": "Netherlands (Kingdom of the)",
+        "value": 85161
+      },
+      {
+        "country": "Greenland",
+        "value": 79995
+      }
+    ],
+    "top_importers_qty": [
+      {
+        "country": "China",
+        "value": 1071920
+      },
+      {
+        "country": "United States of America",
+        "value": 788502
+      },
+      {
+        "country": "Japan",
+        "value": 200131
+      },
+      {
+        "country": "Spain",
+        "value": 175669
+      },
+      {
+        "country": "France",
+        "value": 124640
+      },
+      {
+        "country": "Denmark",
+        "value": 99531
+      },
+      {
+        "country": "Republic of Korea",
+        "value": 96299
+      },
+      {
+        "country": "Russian Federation",
+        "value": 91582
+      },
+      {
+        "country": "Italy",
+        "value": 86931
+      },
+      {
+        "country": "Netherlands (Kingdom of the)",
+        "value": 85590
+      }
+    ],
+    "top_exporters_usd": [
+      {
+        "country": "Ecuador",
+        "value": 7253083
+      },
+      {
+        "country": "India",
+        "value": 4915296
+      },
+      {
+        "country": "Viet Nam",
+        "value": 3202294
+      },
+      {
+        "country": "China",
+        "value": 1772084
+      },
+      {
+        "country": "Indonesia",
+        "value": 1602760
+      },
+      {
+        "country": "Thailand",
+        "value": 1329769
+      },
+      {
+        "country": "Argentina",
+        "value": 906417
+      },
+      {
+        "country": "Netherlands (Kingdom of the)",
+        "value": 886183
+      },
+      {
+        "country": "Denmark",
+        "value": 659781
+      },
+      {
+        "country": "Spain",
+        "value": 494283
+      }
+    ],
+    "top_importers_usd": [
+      {
+        "country": "United States of America",
+        "value": 6666630
+      },
+      {
+        "country": "China",
+        "value": 6015649
+      },
+      {
+        "country": "Japan",
+        "value": 1935406
+      },
+      {
+        "country": "Spain",
+        "value": 1218815
+      },
+      {
+        "country": "France",
+        "value": 911142
+      },
+      {
+        "country": "United Kingdom of Great Britain and Northern Ireland",
+        "value": 708260
+      },
+      {
+        "country": "Republic of Korea",
+        "value": 705994
+      },
+      {
+        "country": "Germany",
+        "value": 693621
+      },
+      {
+        "country": "Netherlands (Kingdom of the)",
+        "value": 691190
+      },
+      {
+        "country": "Italy",
+        "value": 656026
+      }
+    ],
+    "export_qty_timeline": [
+      {
+        "year": 1976,
+        "value": 315541
+      },
+      {
+        "year": 1977,
+        "value": 324383
+      },
+      {
+        "year": 1978,
+        "value": 336578
+      },
+      {
+        "year": 1979,
+        "value": 368597
+      },
+      {
+        "year": 1980,
+        "value": 402742
+      },
+      {
+        "year": 1981,
+        "value": 397365
+      },
+      {
+        "year": 1982,
+        "value": 437286
+      },
+      {
+        "year": 1983,
+        "value": 483003
+      },
+      {
+        "year": 1984,
+        "value": 536269
+      },
+      {
+        "year": 1985,
+        "value": 574540
+      },
+      {
+        "year": 1986,
+        "value": 713858
+      },
+      {
+        "year": 1987,
+        "value": 834108
+      },
+      {
+        "year": 1988,
+        "value": 876153
+      },
+      {
+        "year": 1989,
+        "value": 910400
+      },
+      {
+        "year": 1990,
+        "value": 984631
+      },
+      {
+        "year": 1991,
+        "value": 1078719
+      },
+      {
+        "year": 1992,
+        "value": 1134296
+      },
+      {
+        "year": 1993,
+        "value": 1152964
+      },
+      {
+        "year": 1994,
+        "value": 1283640
+      },
+      {
+        "year": 1995,
+        "value": 1205017
+      },
+      {
+        "year": 1996,
+        "value": 1250340
+      },
+      {
+        "year": 1997,
+        "value": 1314066
+      },
+      {
+        "year": 1998,
+        "value": 1445641
+      },
+      {
+        "year": 1999,
+        "value": 1389875
+      },
+      {
+        "year": 2000,
+        "value": 1497331
+      },
+      {
+        "year": 2001,
+        "value": 1627250
+      },
+      {
+        "year": 2002,
+        "value": 1740778
+      },
+      {
+        "year": 2003,
+        "value": 1938547
+      },
+      {
+        "year": 2004,
+        "value": 2103923
+      },
+      {
+        "year": 2005,
+        "value": 2255939
+      },
+      {
+        "year": 2006,
+        "value": 2475395
+      },
+      {
+        "year": 2007,
+        "value": 2412042
+      },
+      {
+        "year": 2008,
+        "value": 2330979
+      },
+      {
+        "year": 2009,
+        "value": 2343816
+      },
+      {
+        "year": 2010,
+        "value": 2583111
+      },
+      {
+        "year": 2011,
+        "value": 2743890
+      },
+      {
+        "year": 2012,
+        "value": 2511856
+      },
+      {
+        "year": 2013,
+        "value": 2468212
+      },
+      {
+        "year": 2014,
+        "value": 2721112
+      },
+      {
+        "year": 2015,
+        "value": 2654983
+      },
+      {
+        "year": 2016,
+        "value": 2871477
+      },
+      {
+        "year": 2017,
+        "value": 3217902
+      },
+      {
+        "year": 2018,
+        "value": 3404275
+      },
+      {
+        "year": 2019,
+        "value": 3483513
+      },
+      {
+        "year": 2020,
+        "value": 3331254
+      },
+      {
+        "year": 2021,
+        "value": 3826279
+      },
+      {
+        "year": 2022,
+        "value": 4039706
+      },
+      {
+        "year": 2023,
+        "value": 3964951
+      }
+    ],
+    "import_qty_timeline": [
+      {
+        "year": 1976,
+        "value": 376551
+      },
+      {
+        "year": 1977,
+        "value": 376034
+      },
+      {
+        "year": 1978,
+        "value": 378723
+      },
+      {
+        "year": 1979,
+        "value": 441577
+      },
+      {
+        "year": 1980,
+        "value": 458712
+      },
+      {
+        "year": 1981,
+        "value": 469788
+      },
+      {
+        "year": 1982,
+        "value": 501246
+      },
+      {
+        "year": 1983,
+        "value": 553696
+      },
+      {
+        "year": 1984,
+        "value": 582921
+      },
+      {
+        "year": 1985,
+        "value": 630262
+      },
+      {
+        "year": 1986,
+        "value": 725004
+      },
+      {
+        "year": 1987,
+        "value": 854773
+      },
+      {
+        "year": 1988,
+        "value": 988668
+      },
+      {
+        "year": 1989,
+        "value": 1030982
+      },
+      {
+        "year": 1990,
+        "value": 1091417
+      },
+      {
+        "year": 1991,
+        "value": 1145461
+      },
+      {
+        "year": 1992,
+        "value": 1176680
+      },
+      {
+        "year": 1993,
+        "value": 1215515
+      },
+      {
+        "year": 1994,
+        "value": 1301761
+      },
+      {
+        "year": 1995,
+        "value": 1236094
+      },
+      {
+        "year": 1996,
+        "value": 1282826
+      },
+      {
+        "year": 1997,
+        "value": 1284217
+      },
+      {
+        "year": 1998,
+        "value": 1362476
+      },
+      {
+        "year": 1999,
+        "value": 1419496
+      },
+      {
+        "year": 2000,
+        "value": 1582052
+      },
+      {
+        "year": 2001,
+        "value": 1714824
+      },
+      {
+        "year": 2002,
+        "value": 1822229
+      },
+      {
+        "year": 2003,
+        "value": 1922243
+      },
+      {
+        "year": 2004,
+        "value": 2091549
+      },
+      {
+        "year": 2005,
+        "value": 2134562
+      },
+      {
+        "year": 2006,
+        "value": 2275381
+      },
+      {
+        "year": 2007,
+        "value": 2301498
+      },
+      {
+        "year": 2008,
+        "value": 2224833
+      },
+      {
+        "year": 2009,
+        "value": 2232464
+      },
+      {
+        "year": 2010,
+        "value": 2383216
+      },
+      {
+        "year": 2011,
+        "value": 2422563
+      },
+      {
+        "year": 2012,
+        "value": 2340837
+      },
+      {
+        "year": 2013,
+        "value": 2292761
+      },
+      {
+        "year": 2014,
+        "value": 2393684
+      },
+      {
+        "year": 2015,
+        "value": 2340624
+      },
+      {
+        "year": 2016,
+        "value": 2402640
+      },
+      {
+        "year": 2017,
+        "value": 2551388
+      },
+      {
+        "year": 2018,
+        "value": 2777250
+      },
+      {
+        "year": 2019,
+        "value": 3272334
+      },
+      {
+        "year": 2020,
+        "value": 3182243
+      },
+      {
+        "year": 2021,
+        "value": 3644763
+      },
+      {
+        "year": 2022,
+        "value": 3906954
+      },
+      {
+        "year": 2023,
+        "value": 3851921
+      }
+    ],
+    "export_usd_timeline": [
+      {
+        "year": 1976,
+        "value": 1180732
+      },
+      {
+        "year": 1977,
+        "value": 1310282
+      },
+      {
+        "year": 1978,
+        "value": 1743100
+      },
+      {
+        "year": 1979,
+        "value": 2162338
+      },
+      {
+        "year": 1980,
+        "value": 2329317
+      },
+      {
+        "year": 1981,
+        "value": 2326971
+      },
+      {
+        "year": 1982,
+        "value": 2639847
+      },
+      {
+        "year": 1983,
+        "value": 2874871
+      },
+      {
+        "year": 1984,
+        "value": 2944405
+      },
+      {
+        "year": 1985,
+        "value": 2926499
+      },
+      {
+        "year": 1986,
+        "value": 4507329
+      },
+      {
+        "year": 1987,
+        "value": 5616315
+      },
+      {
+        "year": 1988,
+        "value": 6088921
+      },
+      {
+        "year": 1989,
+        "value": 6024233
+      },
+      {
+        "year": 1990,
+        "value": 6770099
+      },
+      {
+        "year": 1991,
+        "value": 7453559
+      },
+      {
+        "year": 1992,
+        "value": 7749396
+      },
+      {
+        "year": 1993,
+        "value": 8172899
+      },
+      {
+        "year": 1994,
+        "value": 9897404
+      },
+      {
+        "year": 1995,
+        "value": 10399164
+      },
+      {
+        "year": 1996,
+        "value": 9937189
+      },
+      {
+        "year": 1997,
+        "value": 10427286
+      },
+      {
+        "year": 1998,
+        "value": 10234436
+      },
+      {
+        "year": 1999,
+        "value": 9879518
+      },
+      {
+        "year": 2000,
+        "value": 11007942
+      },
+      {
+        "year": 2001,
+        "value": 10540604
+      },
+      {
+        "year": 2002,
+        "value": 10065057
+      },
+      {
+        "year": 2003,
+        "value": 11217050
+      },
+      {
+        "year": 2004,
+        "value": 11871488
+      },
+      {
+        "year": 2005,
+        "value": 12913972
+      },
+      {
+        "year": 2006,
+        "value": 14172799
+      },
+      {
+        "year": 2007,
+        "value": 14354569
+      },
+      {
+        "year": 2008,
+        "value": 15006532
+      },
+      {
+        "year": 2009,
+        "value": 14374935
+      },
+      {
+        "year": 2010,
+        "value": 16611710
+      },
+      {
+        "year": 2011,
+        "value": 19591975
+      },
+      {
+        "year": 2012,
+        "value": 18507137
+      },
+      {
+        "year": 2013,
+        "value": 21129946
+      },
+      {
+        "year": 2014,
+        "value": 25052921
+      },
+      {
+        "year": 2015,
+        "value": 20766810
+      },
+      {
+        "year": 2016,
+        "value": 22935966
+      },
+      {
+        "year": 2017,
+        "value": 26807463
+      },
+      {
+        "year": 2018,
+        "value": 26300701
+      },
+      {
+        "year": 2019,
+        "value": 25570118
+      },
+      {
+        "year": 2020,
+        "value": 24246875
+      },
+      {
+        "year": 2021,
+        "value": 29534298
+      },
+      {
+        "year": 2022,
+        "value": 31457920
+      },
+      {
+        "year": 2023,
+        "value": 28100570
+      }
+    ],
+    "import_usd_timeline": [
+      {
+        "year": 1976,
+        "value": 1583712
+      },
+      {
+        "year": 1977,
+        "value": 1721483
+      },
+      {
+        "year": 1978,
+        "value": 1964295
+      },
+      {
+        "year": 1979,
+        "value": 2795992
+      },
+      {
+        "year": 1980,
+        "value": 2644101
+      },
+      {
+        "year": 1981,
+        "value": 2781537
+      },
+      {
+        "year": 1982,
+        "value": 3196290
+      },
+      {
+        "year": 1983,
+        "value": 3526219
+      },
+      {
+        "year": 1984,
+        "value": 3488844
+      },
+      {
+        "year": 1985,
+        "value": 3508009
+      },
+      {
+        "year": 1986,
+        "value": 4898674
+      },
+      {
+        "year": 1987,
+        "value": 6218694
+      },
+      {
+        "year": 1988,
+        "value": 7184654
+      },
+      {
+        "year": 1989,
+        "value": 7002750
+      },
+      {
+        "year": 1990,
+        "value": 7615314
+      },
+      {
+        "year": 1991,
+        "value": 8175693
+      },
+      {
+        "year": 1992,
+        "value": 8320668
+      },
+      {
+        "year": 1993,
+        "value": 8718271
+      },
+      {
+        "year": 1994,
+        "value": 10280441
+      },
+      {
+        "year": 1995,
+        "value": 10923839
+      },
+      {
+        "year": 1996,
+        "value": 10507534
+      },
+      {
+        "year": 1997,
+        "value": 10519926
+      },
+      {
+        "year": 1998,
+        "value": 10787502
+      },
+      {
+        "year": 1999,
+        "value": 10611256
+      },
+      {
+        "year": 2000,
+        "value": 12155438
+      },
+      {
+        "year": 2001,
+        "value": 11455212
+      },
+      {
+        "year": 2002,
+        "value": 11001498
+      },
+      {
+        "year": 2003,
+        "value": 11742501
+      },
+      {
+        "year": 2004,
+        "value": 12777153
+      },
+      {
+        "year": 2005,
+        "value": 12942729
+      },
+      {
+        "year": 2006,
+        "value": 14286130
+      },
+      {
+        "year": 2007,
+        "value": 14565196
+      },
+      {
+        "year": 2008,
+        "value": 15329320
+      },
+      {
+        "year": 2009,
+        "value": 14309834
+      },
+      {
+        "year": 2010,
+        "value": 16174217
+      },
+      {
+        "year": 2011,
+        "value": 18980989
+      },
+      {
+        "year": 2012,
+        "value": 17902022
+      },
+      {
+        "year": 2013,
+        "value": 19763902
+      },
+      {
+        "year": 2014,
+        "value": 23315799
+      },
+      {
+        "year": 2015,
+        "value": 19514714
+      },
+      {
+        "year": 2016,
+        "value": 20075032
+      },
+      {
+        "year": 2017,
+        "value": 22194236
+      },
+      {
+        "year": 2018,
+        "value": 23217897
+      },
+      {
+        "year": 2019,
+        "value": 24788324
+      },
+      {
+        "year": 2020,
+        "value": 23618366
+      },
+      {
+        "year": 2021,
+        "value": 28481054
+      },
+      {
+        "year": 2022,
+        "value": 31571563
+      },
+      {
+        "year": 2023,
+        "value": 27518728
+      }
+    ]
+  },
+  "trade_long": {
+    "export_qty_timeline": [
+      {
+        "year": 2019,
+        "value": 3483512
+      },
+      {
+        "year": 2020,
+        "value": 3331254
+      },
+      {
+        "year": 2021,
+        "value": 3826279
+      },
+      {
+        "year": 2022,
+        "value": 4039706
+      },
+      {
+        "year": 2023,
+        "value": 3964951
+      }
+    ],
+    "import_qty_timeline": [
+      {
+        "year": 2019,
+        "value": 3272334
+      },
+      {
+        "year": 2020,
+        "value": 3182242
+      },
+      {
+        "year": 2021,
+        "value": 3644763
+      },
+      {
+        "year": 2022,
+        "value": 3906953
+      },
+      {
+        "year": 2023,
+        "value": 3851921
+      }
+    ],
+    "export_usd_timeline": [
+      {
+        "year": 2019,
+        "value": 25570118
+      },
+      {
+        "year": 2020,
+        "value": 24246875
+      },
+      {
+        "year": 2021,
+        "value": 29534298
+      },
+      {
+        "year": 2022,
+        "value": 31457920
+      },
+      {
+        "year": 2023,
+        "value": 28100570
+      }
+    ],
+    "import_usd_timeline": [
+      {
+        "year": 2019,
+        "value": 24788324
+      },
+      {
+        "year": 2020,
+        "value": 23618366
+      },
+      {
+        "year": 2021,
+        "value": 28481054
+      },
+      {
+        "year": 2022,
+        "value": 31571563
+      },
+      {
+        "year": 2023,
+        "value": 27518728
+      }
+    ]
+  },
+  "processed": {
+    "timeline": [
+      {
+        "year": 1976,
+        "value": 1028662
+      },
+      {
+        "year": 1977,
+        "value": 1003260
+      },
+      {
+        "year": 1978,
+        "value": 1071678
+      },
+      {
+        "year": 1979,
+        "value": 1060574
+      },
+      {
+        "year": 1980,
+        "value": 1065480
+      },
+      {
+        "year": 1981,
+        "value": 1092546
+      },
+      {
+        "year": 1982,
+        "value": 1137434
+      },
+      {
+        "year": 1983,
+        "value": 1223488
+      },
+      {
+        "year": 1984,
+        "value": 1327208
+      },
+      {
+        "year": 1985,
+        "value": 1412008
+      },
+      {
+        "year": 1986,
+        "value": 1600622
+      },
+      {
+        "year": 1987,
+        "value": 1775270
+      },
+      {
+        "year": 1988,
+        "value": 1992348
+      },
+      {
+        "year": 1989,
+        "value": 2034592
+      },
+      {
+        "year": 1990,
+        "value": 2293518
+      },
+      {
+        "year": 1991,
+        "value": 2439652
+      },
+      {
+        "year": 1992,
+        "value": 2592550
+      },
+      {
+        "year": 1993,
+        "value": 2718106
+      },
+      {
+        "year": 1994,
+        "value": 2816054
+      },
+      {
+        "year": 1995,
+        "value": 2629044
+      },
+      {
+        "year": 1996,
+        "value": 2612436
+      },
+      {
+        "year": 1997,
+        "value": 2712010
+      },
+      {
+        "year": 1998,
+        "value": 3034242
+      },
+      {
+        "year": 1999,
+        "value": 2927460
+      },
+      {
+        "year": 2000,
+        "value": 2892158
+      },
+      {
+        "year": 2001,
+        "value": 3110536
+      },
+      {
+        "year": 2002,
+        "value": 3257466
+      },
+      {
+        "year": 2003,
+        "value": 3593546
+      },
+      {
+        "year": 2004,
+        "value": 3901670
+      },
+      {
+        "year": 2005,
+        "value": 4226874
+      },
+      {
+        "year": 2006,
+        "value": 4669338
+      },
+      {
+        "year": 2007,
+        "value": 4676690
+      },
+      {
+        "year": 2008,
+        "value": 4520992
+      },
+      {
+        "year": 2009,
+        "value": 4509908
+      },
+      {
+        "year": 2010,
+        "value": 4782158
+      },
+      {
+        "year": 2011,
+        "value": 4929150
+      },
+      {
+        "year": 2012,
+        "value": 4929652
+      },
+      {
+        "year": 2013,
+        "value": 4686866
+      },
+      {
+        "year": 2014,
+        "value": 5208584
+      },
+      {
+        "year": 2015,
+        "value": 5453494
+      },
+      {
+        "year": 2016,
+        "value": 5915050
+      },
+      {
+        "year": 2017,
+        "value": 6361756
+      },
+      {
+        "year": 2018,
+        "value": 6728244
+      },
+      {
+        "year": 2019,
+        "value": 6789756
+      },
+      {
+        "year": 2020,
+        "value": 7053655
+      },
+      {
+        "year": 2021,
+        "value": 7991661
+      },
+      {
+        "year": 2022,
+        "value": 8191968
+      },
+      {
+        "year": 2023,
+        "value": 8564538
+      }
+    ],
+    "latest_year": 2023,
+    "latest_value": 8564538,
+    "top10": [
+      {
+        "country": "Ecuador",
+        "value": 1280852
+      },
+      {
+        "country": "India",
+        "value": 750132
+      },
+      {
+        "country": "Viet Nam",
+        "value": 667958
+      },
+      {
+        "country": "Mexico",
+        "value": 245354
+      },
+      {
+        "country": "Indonesia",
+        "value": 198220
+      },
+      {
+        "country": "China",
+        "value": 141174
+      },
+      {
+        "country": "Argentina",
+        "value": 141137
+      },
+      {
+        "country": "United States of America",
+        "value": 117075
+      },
+      {
+        "country": "Thailand",
+        "value": 101407
+      }
+    ]
+  },
+  "korea": {
+    "production": 27906,
+    "capture": 20140,
+    "import_qty": 96299,
+    "import_usd": 705994,
+    "export_qty": 1513,
+    "import_timeline": [
+      {
+        "year": 1981,
+        "value": 62
+      },
+      {
+        "year": 1982,
+        "value": 29
+      },
+      {
+        "year": 1983,
+        "value": 148
+      },
+      {
+        "year": 1984,
+        "value": 1078
+      },
+      {
+        "year": 1985,
+        "value": 530
+      },
+      {
+        "year": 1986,
+        "value": 676
+      },
+      {
+        "year": 1987,
+        "value": 1489
+      },
+      {
+        "year": 1988,
+        "value": 2466
+      },
+      {
+        "year": 1989,
+        "value": 1857
+      },
+      {
+        "year": 1990,
+        "value": 2566
+      },
+      {
+        "year": 1991,
+        "value": 1215
+      },
+      {
+        "year": 1992,
+        "value": 2002
+      },
+      {
+        "year": 1993,
+        "value": 2003
+      },
+      {
+        "year": 1994,
+        "value": 6240
+      },
+      {
+        "year": 1995,
+        "value": 6998
+      },
+      {
+        "year": 1996,
+        "value": 13388
+      },
+      {
+        "year": 1997,
+        "value": 23213
+      },
+      {
+        "year": 1998,
+        "value": 17108
+      },
+      {
+        "year": 1999,
+        "value": 25170
+      },
+      {
+        "year": 2000,
+        "value": 31068
+      },
+      {
+        "year": 2001,
+        "value": 41517
+      },
+      {
+        "year": 2002,
+        "value": 49990
+      },
+      {
+        "year": 2003,
+        "value": 55395
+      },
+      {
+        "year": 2004,
+        "value": 63188
+      },
+      {
+        "year": 2005,
+        "value": 61503
+      },
+      {
+        "year": 2006,
+        "value": 75060
+      },
+      {
+        "year": 2007,
+        "value": 76721
+      },
+      {
+        "year": 2008,
+        "value": 65861
+      },
+      {
+        "year": 2009,
+        "value": 63919
+      },
+      {
+        "year": 2010,
+        "value": 66934
+      },
+      {
+        "year": 2011,
+        "value": 77451
+      },
+      {
+        "year": 2012,
+        "value": 73173
+      },
+      {
+        "year": 2013,
+        "value": 60831
+      },
+      {
+        "year": 2014,
+        "value": 62907
+      },
+      {
+        "year": 2015,
+        "value": 77730
+      },
+      {
+        "year": 2016,
+        "value": 83003
+      },
+      {
+        "year": 2017,
+        "value": 89913
+      },
+      {
+        "year": 2018,
+        "value": 98697
+      },
+      {
+        "year": 2019,
+        "value": 99501
+      },
+      {
+        "year": 2020,
+        "value": 98093
+      },
+      {
+        "year": 2021,
+        "value": 102464
+      },
+      {
+        "year": 2022,
+        "value": 105480
+      },
+      {
+        "year": 2023,
+        "value": 96299
+      }
+    ]
+  },
+  "kpi": {
+    "global_production_tonnes": 19129390,
+    "global_production_year": 2024,
+    "aquaculture_share_pct": 49.7,
+    "top1_producer": "Totals - Tonnes - live weight",
+    "top1_share_pct": 50.0,
+    "global_trade_usd_k": 28100570
+  }
+}

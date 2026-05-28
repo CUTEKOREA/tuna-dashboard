@@ -1,0 +1,242 @@
+[
+  {
+    "year": 1976,
+    "catch_tonnes": 960513,
+    "trade_usd_million": 76
+  },
+  {
+    "year": 1977,
+    "catch_tonnes": 1015978,
+    "trade_usd_million": 47
+  },
+  {
+    "year": 1978,
+    "catch_tonnes": 1130970,
+    "trade_usd_million": 139
+  },
+  {
+    "year": 1979,
+    "catch_tonnes": 1334608,
+    "trade_usd_million": 203
+  },
+  {
+    "year": 1980,
+    "catch_tonnes": 1338946,
+    "trade_usd_million": 166
+  },
+  {
+    "year": 1981,
+    "catch_tonnes": 1139226,
+    "trade_usd_million": 188
+  },
+  {
+    "year": 1982,
+    "catch_tonnes": 1389930,
+    "trade_usd_million": 250
+  },
+  {
+    "year": 1983,
+    "catch_tonnes": 1396532,
+    "trade_usd_million": 339
+  },
+  {
+    "year": 1984,
+    "catch_tonnes": 1413697,
+    "trade_usd_million": 348
+  },
+  {
+    "year": 1985,
+    "catch_tonnes": 1532345,
+    "trade_usd_million": 387
+  },
+  {
+    "year": 1986,
+    "catch_tonnes": 1471799,
+    "trade_usd_million": 481
+  },
+  {
+    "year": 1987,
+    "catch_tonnes": 1970868,
+    "trade_usd_million": 702
+  },
+  {
+    "year": 1988,
+    "catch_tonnes": 1896552,
+    "trade_usd_million": 789
+  },
+  {
+    "year": 1989,
+    "catch_tonnes": 2234441,
+    "trade_usd_million": 839
+  },
+  {
+    "year": 1990,
+    "catch_tonnes": 2001848,
+    "trade_usd_million": 808
+  },
+  {
+    "year": 1991,
+    "catch_tonnes": 2145128,
+    "trade_usd_million": 1056
+  },
+  {
+    "year": 1992,
+    "catch_tonnes": 2349609,
+    "trade_usd_million": 1105
+  },
+  {
+    "year": 1993,
+    "catch_tonnes": 2270952,
+    "trade_usd_million": 1057
+  },
+  {
+    "year": 1994,
+    "catch_tonnes": 2329299,
+    "trade_usd_million": 1292
+  },
+  {
+    "year": 1995,
+    "catch_tonnes": 2411193,
+    "trade_usd_million": 1478
+  },
+  {
+    "year": 1996,
+    "catch_tonnes": 2644236,
+    "trade_usd_million": 1550
+  },
+  {
+    "year": 1997,
+    "catch_tonnes": 2923238,
+    "trade_usd_million": 1600
+  },
+  {
+    "year": 1998,
+    "catch_tonnes": 2291431,
+    "trade_usd_million": 1323
+  },
+  {
+    "year": 1999,
+    "catch_tonnes": 2987995,
+    "trade_usd_million": 1345
+  },
+  {
+    "year": 2000,
+    "catch_tonnes": 3089899,
+    "trade_usd_million": 1647
+  },
+  {
+    "year": 2001,
+    "catch_tonnes": 2746347,
+    "trade_usd_million": 1594
+  },
+  {
+    "year": 2002,
+    "catch_tonnes": 2679904,
+    "trade_usd_million": 1460
+  },
+  {
+    "year": 2003,
+    "catch_tonnes": 2834538,
+    "trade_usd_million": 1554
+  },
+  {
+    "year": 2004,
+    "catch_tonnes": 3029194,
+    "trade_usd_million": 1918
+  },
+  {
+    "year": 2005,
+    "catch_tonnes": 3082463,
+    "trade_usd_million": 2177
+  },
+  {
+    "year": 2006,
+    "catch_tonnes": 3468390,
+    "trade_usd_million": 2063
+  },
+  {
+    "year": 2007,
+    "catch_tonnes": 3558637,
+    "trade_usd_million": 2193
+  },
+  {
+    "year": 2008,
+    "catch_tonnes": 3513888,
+    "trade_usd_million": 2365
+  },
+  {
+    "year": 2009,
+    "catch_tonnes": 2701728,
+    "trade_usd_million": 2285
+  },
+  {
+    "year": 2010,
+    "catch_tonnes": 2849823,
+    "trade_usd_million": 3149
+  },
+  {
+    "year": 2011,
+    "catch_tonnes": 2995366,
+    "trade_usd_million": 3939
+  },
+  {
+    "year": 2012,
+    "catch_tonnes": 3174296,
+    "trade_usd_million": 4867
+  },
+  {
+    "year": 2013,
+    "catch_tonnes": 3206949,
+    "trade_usd_million": 5075
+  },
+  {
+    "year": 2014,
+    "catch_tonnes": 3926862,
+    "trade_usd_million": 5446
+  },
+  {
+    "year": 2015,
+    "catch_tonnes": 3954814,
+    "trade_usd_million": 5183
+  },
+  {
+    "year": 2016,
+    "catch_tonnes": 2693071,
+    "trade_usd_million": 5918
+  },
+  {
+    "year": 2017,
+    "catch_tonnes": 2900210,
+    "trade_usd_million": 7663
+  },
+  {
+    "year": 2018,
+    "catch_tonnes": 2892470,
+    "trade_usd_million": 8306
+  },
+  {
+    "year": 2019,
+    "catch_tonnes": 2809171,
+    "trade_usd_million": 8286
+  },
+  {
+    "year": 2020,
+    "catch_tonnes": 2895472,
+    "trade_usd_million": 7789
+  },
+  {
+    "year": 2021,
+    "catch_tonnes": 3121311,
+    "trade_usd_million": 9488
+  },
+  {
+    "year": 2022,
+    "catch_tonnes": 3096333,
+    "trade_usd_million": 10553
+  },
+  {
+    "year": 2023,
+    "catch_tonnes": 3259613,
+    "trade_usd_million": 9582
+  }
+]

@@ -1,0 +1,266 @@
+[
+  {
+    "year": "1980",
+    "spain": 76.069,
+    "thailand": 0.0,
+    "other": 1346.442
+  },
+  {
+    "year": "1981",
+    "spain": 92.451,
+    "thailand": 0.979,
+    "other": 1217.118
+  },
+  {
+    "year": "1982",
+    "spain": 95.439,
+    "thailand": 1.667,
+    "other": 1343.684
+  },
+  {
+    "year": "1983",
+    "spain": 85.2,
+    "thailand": 3.612,
+    "other": 1391.905
+  },
+  {
+    "year": "1984",
+    "spain": 93.983,
+    "thailand": 7.962,
+    "other": 1586.3
+  },
+  {
+    "year": "1985",
+    "spain": 120.133,
+    "thailand": 17.434,
+    "other": 1586.384
+  },
+  {
+    "year": "1986",
+    "spain": 105.408,
+    "thailand": 28.352,
+    "other": 1827.187
+  },
+  {
+    "year": "1987",
+    "spain": 112.608,
+    "thailand": 29.04,
+    "other": 1759.28
+  },
+  {
+    "year": "1988",
+    "spain": 203.692,
+    "thailand": 47.06,
+    "other": 1846.597
+  },
+  {
+    "year": "1989",
+    "spain": 224.561,
+    "thailand": 57.582,
+    "other": 1943.581
+  },
+  {
+    "year": "1990",
+    "spain": 251.688,
+    "thailand": 58.263,
+    "other": 2018.339
+  },
+  {
+    "year": "1991",
+    "spain": 327.824,
+    "thailand": 162.206,
+    "other": 2184.524
+  },
+  {
+    "year": "1992",
+    "spain": 336.831,
+    "thailand": 184.905,
+    "other": 2218.251
+  },
+  {
+    "year": "1993",
+    "spain": 360.325,
+    "thailand": 88.747,
+    "other": 2313.302
+  },
+  {
+    "year": "1994",
+    "spain": 358.015,
+    "thailand": 89.493,
+    "other": 2381.519
+  },
+  {
+    "year": "1995",
+    "spain": 410.388,
+    "thailand": 297.99,
+    "other": 2429.608
+  },
+  {
+    "year": "1996",
+    "spain": 388.401,
+    "thailand": 258.0,
+    "other": 2330.191
+  },
+  {
+    "year": "1997",
+    "spain": 379.348,
+    "thailand": 271.0,
+    "other": 2329.101
+  },
+  {
+    "year": "1998",
+    "spain": 400.568,
+    "thailand": 294.0,
+    "other": 2648.169
+  },
+  {
+    "year": "1999",
+    "spain": 464.631,
+    "thailand": 328.0,
+    "other": 2565.767
+  },
+  {
+    "year": "2000",
+    "spain": 491.7,
+    "thailand": 310.1,
+    "other": 2413.913
+  },
+  {
+    "year": "2001",
+    "spain": 465.51,
+    "thailand": 334.5,
+    "other": 2409.804
+  },
+  {
+    "year": "2002",
+    "spain": 504.85,
+    "thailand": 369.0,
+    "other": 2676.476
+  },
+  {
+    "year": "2003",
+    "spain": 506.21,
+    "thailand": 436.0,
+    "other": 2562.133
+  },
+  {
+    "year": "2004",
+    "spain": 456.908,
+    "thailand": 419.0,
+    "other": 2535.623
+  },
+  {
+    "year": "2005",
+    "spain": 367.648,
+    "thailand": 501.5,
+    "other": 2542.425
+  },
+  {
+    "year": "2006",
+    "spain": 381.828,
+    "thailand": 539.7,
+    "other": 2598.452
+  },
+  {
+    "year": "2007",
+    "spain": 420.063,
+    "thailand": 490.7,
+    "other": 2602.039
+  },
+  {
+    "year": "2008",
+    "spain": 429.799,
+    "thailand": 535.15,
+    "other": 2578.144
+  },
+  {
+    "year": "2009",
+    "spain": 422.339,
+    "thailand": 564.6,
+    "other": 2444.754
+  },
+  {
+    "year": "2010",
+    "spain": 404.246,
+    "thailand": 603.5,
+    "other": 2508.413
+  },
+  {
+    "year": "2011",
+    "spain": 461.105,
+    "thailand": 593.5,
+    "other": 2517.473
+  },
+  {
+    "year": "2012",
+    "spain": 463.565,
+    "thailand": 575.8,
+    "other": 2767.693
+  },
+  {
+    "year": "2013",
+    "spain": 481.232,
+    "thailand": 558.1,
+    "other": 2921.566
+  },
+  {
+    "year": "2014",
+    "spain": 520.346,
+    "thailand": 608.05,
+    "other": 3046.408
+  },
+  {
+    "year": "2015",
+    "spain": 506.166,
+    "thailand": 573.1,
+    "other": 3049.079
+  },
+  {
+    "year": "2016",
+    "spain": 474.3,
+    "thailand": 585.85,
+    "other": 2670.068
+  },
+  {
+    "year": "2017",
+    "spain": 477.377,
+    "thailand": 511.5,
+    "other": 2743.706
+  },
+  {
+    "year": "2018",
+    "spain": 522.347,
+    "thailand": 533.17,
+    "other": 2824.485
+  },
+  {
+    "year": "2019",
+    "spain": 522.091,
+    "thailand": 69.643,
+    "other": 2860.80676
+  },
+  {
+    "year": "2020",
+    "spain": 567.792,
+    "thailand": 598.932,
+    "other": 2789.17656
+  },
+  {
+    "year": "2021",
+    "spain": 536.404,
+    "thailand": 486.707,
+    "other": 2557.68272
+  },
+  {
+    "year": "2022",
+    "spain": 517.675,
+    "thailand": 537.537,
+    "other": 2609.9169699999998
+  },
+  {
+    "year": "2023",
+    "spain": 516.777,
+    "thailand": 462.71,
+    "other": 2598.31859
+  }
+]

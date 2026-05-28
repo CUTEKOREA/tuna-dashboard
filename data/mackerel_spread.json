@@ -1,0 +1,182 @@
+[
+  {
+    "country": "호주",
+    "import_price_usd": 4378.65,
+    "export_price_usd": 15887.11,
+    "margin_usd": 11508.46,
+    "margin_pct": 262.8,
+    "import_vol_t": 2787,
+    "export_vol_t": 316
+  },
+  {
+    "country": "폴란드",
+    "import_price_usd": 2199.02,
+    "export_price_usd": 5377.13,
+    "margin_usd": 3178.11,
+    "margin_pct": 144.5,
+    "import_vol_t": 43914,
+    "export_vol_t": 13740
+  },
+  {
+    "country": "체코",
+    "import_price_usd": 2937.57,
+    "export_price_usd": 5495.64,
+    "margin_usd": 2558.07,
+    "margin_pct": 87.1,
+    "import_vol_t": 4443,
+    "export_vol_t": 261
+  },
+  {
+    "country": "크로아티아",
+    "import_price_usd": 1348.24,
+    "export_price_usd": 3450.18,
+    "margin_usd": 2101.94,
+    "margin_pct": 155.9,
+    "import_vol_t": 5431,
+    "export_vol_t": 746
+  },
+  {
+    "country": "불가리아",
+    "import_price_usd": 2063.8,
+    "export_price_usd": 4005.04,
+    "margin_usd": 1941.24,
+    "margin_pct": 94.1,
+    "import_vol_t": 8560,
+    "export_vol_t": 1328
+  },
+  {
+    "country": "필리핀",
+    "import_price_usd": 1367.18,
+    "export_price_usd": 3249.5,
+    "margin_usd": 1882.32,
+    "margin_pct": 137.7,
+    "import_vol_t": 165532,
+    "export_vol_t": 4449
+  },
+  {
+    "country": "루마니아",
+    "import_price_usd": 2351.56,
+    "export_price_usd": 3923.46,
+    "margin_usd": 1571.89,
+    "margin_pct": 66.8,
+    "import_vol_t": 26707,
+    "export_vol_t": 306
+  },
+  {
+    "country": "인도네시아",
+    "import_price_usd": 1127.12,
+    "export_price_usd": 2547.98,
+    "margin_usd": 1420.86,
+    "margin_pct": 126.1,
+    "import_vol_t": 124301,
+    "export_vol_t": 36716
+  },
+  {
+    "country": "피지",
+    "import_price_usd": 1453.03,
+    "export_price_usd": 2843.28,
+    "margin_usd": 1390.26,
+    "margin_pct": 95.7,
+    "import_vol_t": 6133,
+    "export_vol_t": 879
+  },
+  {
+    "country": "네덜란드",
+    "import_price_usd": 1218.5,
+    "export_price_usd": 2184.14,
+    "margin_usd": 965.64,
+    "margin_pct": 79.2,
+    "import_vol_t": 176016,
+    "export_vol_t": 132691
+  },
+  {
+    "country": "프랑스",
+    "import_price_usd": 3221.23,
+    "export_price_usd": 4099.47,
+    "margin_usd": 878.24,
+    "margin_pct": 27.3,
+    "import_vol_t": 32569,
+    "export_vol_t": 7357
+  },
+  {
+    "country": "태국",
+    "import_price_usd": 1233.14,
+    "export_price_usd": 2082.31,
+    "margin_usd": 849.16,
+    "margin_pct": 68.9,
+    "import_vol_t": 322310,
+    "export_vol_t": 60156
+  },
+  {
+    "country": "벨라루스",
+    "import_price_usd": 1779.37,
+    "export_price_usd": 2567.67,
+    "margin_usd": 788.3,
+    "margin_pct": 44.3,
+    "import_vol_t": 21837,
+    "export_vol_t": 2158
+  },
+  {
+    "country": "라트비아",
+    "import_price_usd": 2431.57,
+    "export_price_usd": 3120.44,
+    "margin_usd": 688.87,
+    "margin_pct": 28.3,
+    "import_vol_t": 8751,
+    "export_vol_t": 8288
+  },
+  {
+    "country": "베트남",
+    "import_price_usd": 2000.98,
+    "export_price_usd": 2617.57,
+    "margin_usd": 616.59,
+    "margin_pct": 30.8,
+    "import_vol_t": 101972,
+    "export_vol_t": 57429
+  },
+  {
+    "country": "알바니아",
+    "import_price_usd": 2354.11,
+    "export_price_usd": 2895.75,
+    "margin_usd": 541.64,
+    "margin_pct": 23.0,
+    "import_vol_t": 524,
+    "export_vol_t": 127
+  },
+  {
+    "country": "남아프리카",
+    "import_price_usd": 1236.83,
+    "export_price_usd": 1766.4,
+    "margin_usd": 529.57,
+    "margin_pct": 42.8,
+    "import_vol_t": 15522,
+    "export_vol_t": 11366
+  },
+  {
+    "country": "덴마크",
+    "import_price_usd": 1838.12,
+    "export_price_usd": 2336.96,
+    "margin_usd": 498.85,
+    "margin_pct": 27.1,
+    "import_vol_t": 26573,
+    "export_vol_t": 67385
+  },
+  {
+    "country": "그리스",
+    "import_price_usd": 2709.55,
+    "export_price_usd": 3182.22,
+    "margin_usd": 472.68,
+    "margin_pct": 17.4,
+    "import_vol_t": 1687,
+    "export_vol_t": 674
+  },
+  {
+    "country": "튀르키예",
+    "import_price_usd": 1372.11,
+    "export_price_usd": 1814.05,
+    "margin_usd": 441.94,
+    "margin_pct": 32.2,
+    "import_vol_t": 18335,
+    "export_vol_t": 1959
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "year": "2015",
+    "sst_anomaly": 1.5,
+    "korea_catch": 150,
+    "peru_catch": 700
+  },
+  {
+    "year": "2016",
+    "sst_anomaly": 2.2,
+    "korea_catch": 120,
+    "peru_catch": 500
+  },
+  {
+    "year": "2017",
+    "sst_anomaly": 0.5,
+    "korea_catch": 80,
+    "peru_catch": 800
+  },
+  {
+    "year": "2018",
+    "sst_anomaly": 0.2,
+    "korea_catch": 46,
+    "peru_catch": 850
+  },
+  {
+    "year": "2019",
+    "sst_anomaly": 1.1,
+    "korea_catch": 50,
+    "peru_catch": 600
+  },
+  {
+    "year": "2020",
+    "sst_anomaly": 0.8,
+    "korea_catch": 56,
+    "peru_catch": 700
+  },
+  {
+    "year": "2021",
+    "sst_anomaly": -0.5,
+    "korea_catch": 60,
+    "peru_catch": 900
+  },
+  {
+    "year": "2022",
+    "sst_anomaly": -0.8,
+    "korea_catch": 36,
+    "peru_catch": 1000
+  },
+  {
+    "year": "2023",
+    "sst_anomaly": 1.7,
+    "korea_catch": 23,
+    "peru_catch": 400
+  },
+  {
+    "year": "2024",
+    "sst_anomaly": 2.0,
+    "korea_catch": 15,
+    "peru_catch": 1100
+  }
+]

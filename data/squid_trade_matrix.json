@@ -1,0 +1,808 @@
+{
+  "year": 2023,
+  "countries": [
+    "China",
+    "Peru",
+    "Spain",
+    "India",
+    "Argentina",
+    "Indonesia",
+    "Falkland Islands (Malvinas)",
+    "Chile",
+    "Viet Nam",
+    "United States of America",
+    "Malaysia",
+    "Thailand",
+    "Taiwan Province of China",
+    "Pakistan",
+    "Morocco"
+  ],
+  "flows": [
+    {
+      "exporter": "Peru",
+      "importer": "China",
+      "volume_t": 143766,
+      "value_usd_k": 285330,
+      "unit_price": 1985.0
+    },
+    {
+      "exporter": "Indonesia",
+      "importer": "China",
+      "volume_t": 85794,
+      "value_usd_k": 372643,
+      "unit_price": 4343.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Thailand",
+      "volume_t": 67033,
+      "value_usd_k": 735582,
+      "unit_price": 10973.0
+    },
+    {
+      "exporter": "Falkland Islands (Malvinas)",
+      "importer": "Spain",
+      "volume_t": 62837,
+      "value_usd_k": 211462,
+      "unit_price": 3365.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "Spain",
+      "volume_t": 56656,
+      "value_usd_k": 124393,
+      "unit_price": 2196.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "Thailand",
+      "volume_t": 44501,
+      "value_usd_k": 67187,
+      "unit_price": 1510.0
+    },
+    {
+      "exporter": "China",
+      "importer": "United States of America",
+      "volume_t": 32878,
+      "value_usd_k": 195004,
+      "unit_price": 5931.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Malaysia",
+      "volume_t": 32022,
+      "value_usd_k": 371445,
+      "unit_price": 11600.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "China",
+      "volume_t": 31818,
+      "value_usd_k": 84318,
+      "unit_price": 2650.0
+    },
+    {
+      "exporter": "India",
+      "importer": "Spain",
+      "volume_t": 28693,
+      "value_usd_k": 151418,
+      "unit_price": 5277.0
+    },
+    {
+      "exporter": "India",
+      "importer": "Thailand",
+      "volume_t": 27598,
+      "value_usd_k": 109847,
+      "unit_price": 3980.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "China",
+      "volume_t": 27261,
+      "value_usd_k": 62676,
+      "unit_price": 2299.0
+    },
+    {
+      "exporter": "Malaysia",
+      "importer": "China",
+      "volume_t": 26929,
+      "value_usd_k": 97061,
+      "unit_price": 3604.0
+    },
+    {
+      "exporter": "Indonesia",
+      "importer": "Viet Nam",
+      "volume_t": 23434,
+      "value_usd_k": 141570,
+      "unit_price": 6041.0
+    },
+    {
+      "exporter": "India",
+      "importer": "China",
+      "volume_t": 23265,
+      "value_usd_k": 64117,
+      "unit_price": 2756.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Spain",
+      "volume_t": 21493,
+      "value_usd_k": 81324,
+      "unit_price": 3784.0
+    },
+    {
+      "exporter": "Morocco",
+      "importer": "Spain",
+      "volume_t": 20801,
+      "value_usd_k": 203468,
+      "unit_price": 9781.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Taiwan Province of China",
+      "volume_t": 18012,
+      "value_usd_k": 182577,
+      "unit_price": 10137.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "Thailand",
+      "volume_t": 17947,
+      "value_usd_k": 41724,
+      "unit_price": 2325.0
+    },
+    {
+      "exporter": "Pakistan",
+      "importer": "China",
+      "volume_t": 17927,
+      "value_usd_k": 42819,
+      "unit_price": 2389.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Spain",
+      "volume_t": 16657,
+      "value_usd_k": 31724,
+      "unit_price": 1905.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Viet Nam",
+      "volume_t": 14503,
+      "value_usd_k": 119345,
+      "unit_price": 8229.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "Morocco",
+      "volume_t": 11705,
+      "value_usd_k": 44296,
+      "unit_price": 3784.0
+    },
+    {
+      "exporter": "Pakistan",
+      "importer": "Thailand",
+      "volume_t": 11305,
+      "value_usd_k": 31256,
+      "unit_price": 2765.0
+    },
+    {
+      "exporter": "Indonesia",
+      "importer": "Taiwan Province of China",
+      "volume_t": 11239,
+      "value_usd_k": 56859,
+      "unit_price": 5059.0
+    },
+    {
+      "exporter": "Falkland Islands (Malvinas)",
+      "importer": "Morocco",
+      "volume_t": 10101,
+      "value_usd_k": 32446,
+      "unit_price": 3212.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "China",
+      "volume_t": 9503,
+      "value_usd_k": 31156,
+      "unit_price": 3279.0
+    },
+    {
+      "exporter": "Viet Nam",
+      "importer": "China",
+      "volume_t": 9264,
+      "value_usd_k": 66903,
+      "unit_price": 7222.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "China",
+      "volume_t": 8871,
+      "value_usd_k": 27221,
+      "unit_price": 3069.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "China",
+      "volume_t": 8789,
+      "value_usd_k": 12666,
+      "unit_price": 1441.0
+    },
+    {
+      "exporter": "India",
+      "importer": "Malaysia",
+      "volume_t": 8756,
+      "value_usd_k": 30434,
+      "unit_price": 3476.0
+    },
+    {
+      "exporter": "India",
+      "importer": "Viet Nam",
+      "volume_t": 7596,
+      "value_usd_k": 34788,
+      "unit_price": 4580.0
+    },
+    {
+      "exporter": "Viet Nam",
+      "importer": "Thailand",
+      "volume_t": 7437,
+      "value_usd_k": 60360,
+      "unit_price": 8117.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "Taiwan Province of China",
+      "volume_t": 7400,
+      "value_usd_k": 13108,
+      "unit_price": 1771.0
+    },
+    {
+      "exporter": "India",
+      "importer": "United States of America",
+      "volume_t": 7112,
+      "value_usd_k": 48998,
+      "unit_price": 6890.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "United States of America",
+      "volume_t": 7100,
+      "value_usd_k": 28816,
+      "unit_price": 4059.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "Spain",
+      "volume_t": 7010,
+      "value_usd_k": 23939,
+      "unit_price": 3415.0
+    },
+    {
+      "exporter": "Thailand",
+      "importer": "China",
+      "volume_t": 6359,
+      "value_usd_k": 22106,
+      "unit_price": 3476.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "Morocco",
+      "volume_t": 5984,
+      "value_usd_k": 9796,
+      "unit_price": 1637.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Morocco",
+      "volume_t": 4654,
+      "value_usd_k": 12092,
+      "unit_price": 2598.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Indonesia",
+      "volume_t": 4561,
+      "value_usd_k": 32107,
+      "unit_price": 7039.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "Viet Nam",
+      "volume_t": 4525,
+      "value_usd_k": 11058,
+      "unit_price": 2444.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "United States of America",
+      "volume_t": 4321,
+      "value_usd_k": 21633,
+      "unit_price": 5006.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Taiwan Province of China",
+      "volume_t": 3919,
+      "value_usd_k": 6404,
+      "unit_price": 1634.0
+    },
+    {
+      "exporter": "Thailand",
+      "importer": "United States of America",
+      "volume_t": 3892,
+      "value_usd_k": 35581,
+      "unit_price": 9142.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "Viet Nam",
+      "volume_t": 3874,
+      "value_usd_k": 6689,
+      "unit_price": 1727.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "Spain",
+      "volume_t": 3318,
+      "value_usd_k": 12520,
+      "unit_price": 3774.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "Viet Nam",
+      "volume_t": 3300,
+      "value_usd_k": 8855,
+      "unit_price": 2683.0
+    },
+    {
+      "exporter": "Indonesia",
+      "importer": "Malaysia",
+      "volume_t": 2387,
+      "value_usd_k": 7604,
+      "unit_price": 3186.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "United States of America",
+      "volume_t": 2358,
+      "value_usd_k": 16525,
+      "unit_price": 7007.0
+    },
+    {
+      "exporter": "Viet Nam",
+      "importer": "United States of America",
+      "volume_t": 2332,
+      "value_usd_k": 12736,
+      "unit_price": 5461.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Viet Nam",
+      "volume_t": 2047,
+      "value_usd_k": 3893,
+      "unit_price": 1902.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Chile",
+      "volume_t": 1747,
+      "value_usd_k": 7128,
+      "unit_price": 4081.0
+    },
+    {
+      "exporter": "Viet Nam",
+      "importer": "Malaysia",
+      "volume_t": 1633,
+      "value_usd_k": 13513,
+      "unit_price": 8274.0
+    },
+    {
+      "exporter": "Thailand",
+      "importer": "Taiwan Province of China",
+      "volume_t": 1385,
+      "value_usd_k": 7039,
+      "unit_price": 5084.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Thailand",
+      "volume_t": 1382,
+      "value_usd_k": 1846,
+      "unit_price": 1336.0
+    },
+    {
+      "exporter": "Viet Nam",
+      "importer": "Taiwan Province of China",
+      "volume_t": 1310,
+      "value_usd_k": 7175,
+      "unit_price": 5477.0
+    },
+    {
+      "exporter": "Pakistan",
+      "importer": "Viet Nam",
+      "volume_t": 1241,
+      "value_usd_k": 5095,
+      "unit_price": 4105.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "Spain",
+      "volume_t": 1186,
+      "value_usd_k": 2895,
+      "unit_price": 2441.0
+    },
+    {
+      "exporter": "Thailand",
+      "importer": "Malaysia",
+      "volume_t": 1067,
+      "value_usd_k": 4185,
+      "unit_price": 3922.0
+    },
+    {
+      "exporter": "China",
+      "importer": "Peru",
+      "volume_t": 1025,
+      "value_usd_k": 3935,
+      "unit_price": 3838.0
+    },
+    {
+      "exporter": "Indonesia",
+      "importer": "Thailand",
+      "volume_t": 966,
+      "value_usd_k": 5360,
+      "unit_price": 5548.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "Viet Nam",
+      "volume_t": 897,
+      "value_usd_k": 2853,
+      "unit_price": 3182.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "United States of America",
+      "volume_t": 871,
+      "value_usd_k": 2138,
+      "unit_price": 2454.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "Taiwan Province of China",
+      "volume_t": 832,
+      "value_usd_k": 1850,
+      "unit_price": 2223.0
+    },
+    {
+      "exporter": "Falkland Islands (Malvinas)",
+      "importer": "Thailand",
+      "volume_t": 796,
+      "value_usd_k": 2293,
+      "unit_price": 2880.0
+    },
+    {
+      "exporter": "Viet Nam",
+      "importer": "Spain",
+      "volume_t": 767,
+      "value_usd_k": 3951,
+      "unit_price": 5154.0
+    },
+    {
+      "exporter": "India",
+      "importer": "Taiwan Province of China",
+      "volume_t": 746,
+      "value_usd_k": 5221,
+      "unit_price": 7004.0
+    },
+    {
+      "exporter": "Indonesia",
+      "importer": "United States of America",
+      "volume_t": 636,
+      "value_usd_k": 6347,
+      "unit_price": 9973.0
+    },
+    {
+      "exporter": "Malaysia",
+      "importer": "Thailand",
+      "volume_t": 624,
+      "value_usd_k": 2679,
+      "unit_price": 4293.0
+    },
+    {
+      "exporter": "Pakistan",
+      "importer": "United States of America",
+      "volume_t": 533,
+      "value_usd_k": 5037,
+      "unit_price": 9452.0
+    },
+    {
+      "exporter": "Malaysia",
+      "importer": "United States of America",
+      "volume_t": 504,
+      "value_usd_k": 3093,
+      "unit_price": 6141.0
+    },
+    {
+      "exporter": "Malaysia",
+      "importer": "Viet Nam",
+      "volume_t": 465,
+      "value_usd_k": 1784,
+      "unit_price": 3841.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "United States of America",
+      "volume_t": 457,
+      "value_usd_k": 753,
+      "unit_price": 1648.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "Thailand",
+      "volume_t": 435,
+      "value_usd_k": 1554,
+      "unit_price": 3571.0
+    },
+    {
+      "exporter": "Falkland Islands (Malvinas)",
+      "importer": "Viet Nam",
+      "volume_t": 403,
+      "value_usd_k": 1343,
+      "unit_price": 3330.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "Malaysia",
+      "volume_t": 392,
+      "value_usd_k": 1756,
+      "unit_price": 4473.0
+    },
+    {
+      "exporter": "Malaysia",
+      "importer": "Taiwan Province of China",
+      "volume_t": 389,
+      "value_usd_k": 2260,
+      "unit_price": 5803.0
+    },
+    {
+      "exporter": "Pakistan",
+      "importer": "Malaysia",
+      "volume_t": 349,
+      "value_usd_k": 1065,
+      "unit_price": 3052.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "Malaysia",
+      "volume_t": 317,
+      "value_usd_k": 710,
+      "unit_price": 2237.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "India",
+      "volume_t": 306,
+      "value_usd_k": 760,
+      "unit_price": 2480.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Morocco",
+      "volume_t": 295,
+      "value_usd_k": 417,
+      "unit_price": 1415.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "Thailand",
+      "volume_t": 240,
+      "value_usd_k": 625,
+      "unit_price": 2605.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "Peru",
+      "volume_t": 229,
+      "value_usd_k": 592,
+      "unit_price": 2583.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "Argentina",
+      "volume_t": 144,
+      "value_usd_k": 614,
+      "unit_price": 4263.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Peru",
+      "volume_t": 137,
+      "value_usd_k": 205,
+      "unit_price": 1499.0
+    },
+    {
+      "exporter": "Argentina",
+      "importer": "Peru",
+      "volume_t": 120,
+      "value_usd_k": 258,
+      "unit_price": 2160.0
+    },
+    {
+      "exporter": "Malaysia",
+      "importer": "Indonesia",
+      "volume_t": 111,
+      "value_usd_k": 283,
+      "unit_price": 2558.0
+    },
+    {
+      "exporter": "Chile",
+      "importer": "Argentina",
+      "volume_t": 108,
+      "value_usd_k": 464,
+      "unit_price": 4300.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "Indonesia",
+      "volume_t": 104,
+      "value_usd_k": 118,
+      "unit_price": 1131.0
+    },
+    {
+      "exporter": "Pakistan",
+      "importer": "Indonesia",
+      "volume_t": 103,
+      "value_usd_k": 271,
+      "unit_price": 2640.0
+    },
+    {
+      "exporter": "Peru",
+      "importer": "Chile",
+      "volume_t": 92,
+      "value_usd_k": 250,
+      "unit_price": 2719.0
+    },
+    {
+      "exporter": "Falkland Islands (Malvinas)",
+      "importer": "United States of America",
+      "volume_t": 91,
+      "value_usd_k": 537,
+      "unit_price": 5913.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "Viet Nam",
+      "volume_t": 88,
+      "value_usd_k": 384,
+      "unit_price": 4355.0
+    },
+    {
+      "exporter": "Morocco",
+      "importer": "Falkland Islands (Malvinas)",
+      "volume_t": 62,
+      "value_usd_k": 317,
+      "unit_price": 5122.0
+    },
+    {
+      "exporter": "Thailand",
+      "importer": "Viet Nam",
+      "volume_t": 58,
+      "value_usd_k": 1069,
+      "unit_price": 18353.0
+    },
+    {
+      "exporter": "Taiwan Province of China",
+      "importer": "Chile",
+      "volume_t": 54,
+      "value_usd_k": 115,
+      "unit_price": 2137.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "India",
+      "volume_t": 52,
+      "value_usd_k": 241,
+      "unit_price": 4629.0
+    },
+    {
+      "exporter": "United States of America",
+      "importer": "Chile",
+      "volume_t": 48,
+      "value_usd_k": 105,
+      "unit_price": 2188.0
+    },
+    {
+      "exporter": "Spain",
+      "importer": "Thailand",
+      "volume_t": 47,
+      "value_usd_k": 104,
+      "unit_price": 2198.0
+    }
+  ],
+  "summary": {
+    "top_exporters": [
+      {
+        "country": "China",
+        "volume_t": 498645.2999999999
+      },
+      {
+        "country": "Peru",
+        "volume_t": 409387.67
+      },
+      {
+        "country": "Spain",
+        "volume_t": 154333.00999999992
+      },
+      {
+        "country": "India",
+        "volume_t": 148396.00999999992
+      },
+      {
+        "country": "Argentina",
+        "volume_t": 136018.42
+      },
+      {
+        "country": "Indonesia",
+        "volume_t": 131877.11
+      },
+      {
+        "country": "Falkland Islands (Malvinas)",
+        "volume_t": 79353.89
+      },
+      {
+        "country": "Chile",
+        "volume_t": 67666.73
+      },
+      {
+        "country": "Viet Nam",
+        "volume_t": 57669.97
+      },
+      {
+        "country": "United States of America",
+        "volume_t": 52245.299999999996
+      }
+    ],
+    "top_importers": [
+      {
+        "country": "China",
+        "volume_t": 453223.56
+      },
+      {
+        "country": "Spain",
+        "volume_t": 246469.86000000007
+      },
+      {
+        "country": "Thailand",
+        "volume_t": 205455.12999999998
+      },
+      {
+        "country": "Republic of Korea",
+        "volume_t": 155702.72999999998
+      },
+      {
+        "country": "Japan",
+        "volume_t": 150306.59999999995
+      },
+      {
+        "country": "Italy",
+        "volume_t": 121232.34999999993
+      },
+      {
+        "country": "Malaysia",
+        "volume_t": 75670.46000000002
+      },
+      {
+        "country": "United States of America",
+        "volume_t": 58594.51000000001
+      },
+      {
+        "country": "Viet Nam",
+        "volume_t": 53767.729999999996
+      },
+      {
+        "country": "Philippines",
+        "volume_t": 40132.29
+      }
+    ]
+  }
+}

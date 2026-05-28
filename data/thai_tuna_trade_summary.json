@@ -1,0 +1,73 @@
+{
+  "yearly_totals": [
+    {
+      "year": "2019",
+      "exports": 122823.91,
+      "imports": 693485.89
+    },
+    {
+      "year": "2020",
+      "exports": 147047.19,
+      "imports": 818424.27
+    },
+    {
+      "year": "2021",
+      "exports": 131960.85,
+      "imports": 715612.46
+    },
+    {
+      "year": "2022",
+      "exports": 149561.21,
+      "imports": 757964.74
+    },
+    {
+      "year": "2023",
+      "exports": 130883.88,
+      "imports": 747614.03
+    }
+  ],
+  "top_commodities_2023": [
+    {
+      "name": "Tunas prepared or preserved, not minced, in airtight containers",
+      "value": 74357.65
+    },
+    {
+      "name": "Tunas, skipjack tuna and bonito (Sarda spp.), prepared or preserved",
+      "value": 28876.9
+    },
+    {
+      "name": "Yellowfin tuna, frozen, nei",
+      "value": 16184.09
+    },
+    {
+      "name": "Tunas (of the genus Thunnus), skipjack tuna (stripe-bellied bonito) (Katsuwonus pelamis), fillets, frozen",
+      "value": 6002.53
+    },
+    {
+      "name": "Tunas, fresh or chilled, nei",
+      "value": 3543.09
+    }
+  ],
+  "top_partners_2023": [
+    {
+      "name": "United States of America",
+      "value": 39177.57
+    },
+    {
+      "name": "Japan",
+      "value": 35857.48
+    },
+    {
+      "name": "Viet Nam",
+      "value": 10361.01
+    },
+    {
+      "name": "Libya",
+      "value": 5734.98
+    },
+    {
+      "name": "Australia",
+      "value": 5295.15
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  { "metric": "공치기 확률(Dry Sets)", "traditional_hunting": 25, "precision_harvesting": 2, "unit": "%" },
+  { "metric": "탐색 유류비 비율", "traditional_hunting": 40, "precision_harvesting": 18, "unit": "%" },
+  { "metric": "조업 효율성 향상", "traditional_hunting": 0, "precision_harvesting": 15, "unit": "%" },
+  { "metric": "어종 사전 식별률", "traditional_hunting": 10, "precision_harvesting": 85, "unit": "%" }
+]

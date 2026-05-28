@@ -1,0 +1,115 @@
+[
+  {
+    "carrier": "HANARO",
+    "date": "04.04.26",
+    "deliveries": {
+      "TUG": "1,275.00",
+      "TUM": "1,010",
+      "UC": "1,791",
+      "OTHER": "14A/ASH&MAR"
+    }
+  },
+  {
+    "carrier": "BOYANG CAPELLA",
+    "date": "07.04.26",
+    "deliveries": {
+      "AYA": "400",
+      "CMC": "1,173",
+      "ISA": "1,450",
+      "POP": "500",
+      "RS": "550",
+      "OTHER": "33B"
+    }
+  },
+  {
+    "carrier": "SEIN QUEEN",
+    "date": "20.04.26",
+    "deliveries": {
+      "UC": "3,003",
+      "OTHER": "11B"
+    }
+  },
+  {
+    "carrier": "LAKE PEARL",
+    "date": "21.04.26",
+    "deliveries": {
+      "ISA": "3,003",
+      "OTHER": ""
+    }
+  },
+  {
+    "carrier": "DINOK",
+    "date": "21.04.26",
+    "deliveries": {
+      "GPZ": "234",
+      "ISA": "200",
+      "I-TAIL": "500",
+      "MMP": "100",
+      "PTY": "560",
+      "UC": "202",
+      "OTHER": ""
+    }
+  },
+  {
+    "carrier": "HUA FU 107",
+    "date": "22.04.26",
+    "deliveries": {
+      "CMC": "1,000",
+      "FOOD": "1,000",
+      "ISA": "1,000",
+      "OTHER": "21A"
+    }
+  },
+  {
+    "carrier": "RYOWA",
+    "date": "27.04.26",
+    "deliveries": {
+      "CMC": "1,000",
+      "ISA": "190",
+      "TCC": "300",
+      "TUM": "1,100",
+      "OTHER": "11B"
+    }
+  },
+  {
+    "carrier": "PACIFIC JOURNEY",
+    "date": "05.05.26",
+    "deliveries": {
+      "CMC": "500",
+      "PCI": "525",
+      "PTY": "800",
+      "RS": "1,000",
+      "SK": "175",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "HUA FU 307",
+    "date": "09.05.26",
+    "deliveries": {
+      "GPZ": "500",
+      "ISA": "850",
+      "TUM": "1,231",
+      "UC": "1,279",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "GREENEAS BORNEO",
+    "date": "13.05.26",
+    "deliveries": {
+      "ASIAN": "830",
+      "ISA": "1,000",
+      "I-TAIL": "1,006.416",
+      "OTHER": ""
+    }
+  },
+  {
+    "carrier": "CHERRY STAR",
+    "date": "13.05.26",
+    "deliveries": {
+      "ISA": "500",
+      "OTHER": ""
+    }
+  }
+]

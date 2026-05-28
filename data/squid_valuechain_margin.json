@@ -1,0 +1,44 @@
+[
+  {
+    "year": "2018",
+    "peru_raw": 1200,
+    "china_processing": 800,
+    "kr_domestic": 3200
+  },
+  {
+    "year": "2019",
+    "peru_raw": 1500,
+    "china_processing": 900,
+    "kr_domestic": 3500
+  },
+  {
+    "year": "2020",
+    "peru_raw": 1400,
+    "china_processing": 950,
+    "kr_domestic": 3400
+  },
+  {
+    "year": "2021",
+    "peru_raw": 1100,
+    "china_processing": 1100,
+    "kr_domestic": 3600
+  },
+  {
+    "year": "2022",
+    "peru_raw": 1800,
+    "china_processing": 1200,
+    "kr_domestic": 4500
+  },
+  {
+    "year": "2023",
+    "peru_raw": 2800,
+    "china_processing": 1400,
+    "kr_domestic": 6500
+  },
+  {
+    "year": "2024",
+    "peru_raw": 1300,
+    "china_processing": 1450,
+    "kr_domestic": 6800
+  }
+]

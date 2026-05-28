@@ -1,0 +1,86 @@
+[
+  {
+    "country": "칠레",
+    "catch_t": 916213,
+    "import_t": 10309,
+    "export_t": 355526
+  },
+  {
+    "country": "중국",
+    "catch_t": 439421,
+    "import_t": 138260,
+    "export_t": 504743
+  },
+  {
+    "country": "인도네시아",
+    "catch_t": 592526,
+    "import_t": 124301,
+    "export_t": 36716
+  },
+  {
+    "country": "노르웨이",
+    "catch_t": 218499,
+    "import_t": 118213,
+    "export_t": 355450
+  },
+  {
+    "country": "일본",
+    "catch_t": 404369,
+    "import_t": 124038,
+    "export_t": 87751
+  },
+  {
+    "country": "인도",
+    "catch_t": 456615,
+    "import_t": 106,
+    "export_t": 136857
+  },
+  {
+    "country": "러시아",
+    "catch_t": 301810,
+    "import_t": 73217,
+    "export_t": 102148
+  },
+  {
+    "country": "태국",
+    "catch_t": 92098,
+    "import_t": 322310,
+    "export_t": 60156
+  },
+  {
+    "country": "영국",
+    "catch_t": 236022,
+    "import_t": 14263,
+    "export_t": 203579
+  },
+  {
+    "country": "한국",
+    "catch_t": 205671,
+    "import_t": 87106,
+    "export_t": 160841
+  },
+  {
+    "country": "페루",
+    "catch_t": 321997,
+    "import_t": 14731,
+    "export_t": 108352
+  },
+  {
+    "country": "모로코",
+    "catch_t": 324413,
+    "import_t": 1863,
+    "export_t": 94912
+  },
+  {
+    "country": "나미비아",
+    "catch_t": 190030,
+    "import_t": 3159,
+    "export_t": 159017
+  },
+  {
+    "country": "가나",
+    "catch_t": 0,
+    "import_t": 167467,
+    "export_t": 0
+  }
+]

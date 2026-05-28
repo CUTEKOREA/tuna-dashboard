@@ -1,0 +1,122 @@
+[
+  {
+    "year": 2000,
+    "imports_m_usd": 161.26,
+    "exports_m_usd": 184.87
+  },
+  {
+    "year": 2001,
+    "imports_m_usd": 144.91,
+    "exports_m_usd": 181.47
+  },
+  {
+    "year": 2002,
+    "imports_m_usd": 156.21,
+    "exports_m_usd": 162.1
+  },
+  {
+    "year": 2003,
+    "imports_m_usd": 119.72,
+    "exports_m_usd": 177.68
+  },
+  {
+    "year": 2004,
+    "imports_m_usd": 210.49,
+    "exports_m_usd": 281.95
+  },
+  {
+    "year": 2005,
+    "imports_m_usd": 201.34,
+    "exports_m_usd": 273.32
+  },
+  {
+    "year": 2006,
+    "imports_m_usd": 273.32,
+    "exports_m_usd": 302.98
+  },
+  {
+    "year": 2007,
+    "imports_m_usd": 310.6,
+    "exports_m_usd": 301.2
+  },
+  {
+    "year": 2008,
+    "imports_m_usd": 404.8,
+    "exports_m_usd": 324.74
+  },
+  {
+    "year": 2009,
+    "imports_m_usd": 329.36,
+    "exports_m_usd": 576.71
+  },
+  {
+    "year": 2010,
+    "imports_m_usd": 386.0,
+    "exports_m_usd": 907.62
+  },
+  {
+    "year": 2011,
+    "imports_m_usd": 595.08,
+    "exports_m_usd": 1168.48
+  },
+  {
+    "year": 2012,
+    "imports_m_usd": 683.27,
+    "exports_m_usd": 2023.75
+  },
+  {
+    "year": 2013,
+    "imports_m_usd": 747.9,
+    "exports_m_usd": 2396.2
+  },
+  {
+    "year": 2014,
+    "imports_m_usd": 721.27,
+    "exports_m_usd": 2577.28
+  },
+  {
+    "year": 2015,
+    "imports_m_usd": 582.06,
+    "exports_m_usd": 2721.69
+  },
+  {
+    "year": 2016,
+    "imports_m_usd": 477.42,
+    "exports_m_usd": 2886.85
+  },
+  {
+    "year": 2017,
+    "imports_m_usd": 812.2,
+    "exports_m_usd": 3212.28
+  },
+  {
+    "year": 2018,
+    "imports_m_usd": 916.36,
+    "exports_m_usd": 3405.84
+  },
+  {
+    "year": 2019,
+    "imports_m_usd": 1226.29,
+    "exports_m_usd": 3272.51
+  },
+  {
+    "year": 2020,
+    "imports_m_usd": 953.62,
+    "exports_m_usd": 3226.95
+  },
+  {
+    "year": 2021,
+    "imports_m_usd": 1322.15,
+    "exports_m_usd": 4278.86
+  },
+  {
+    "year": 2022,
+    "imports_m_usd": 1197.68,
+    "exports_m_usd": 4681.79
+  },
+  {
+    "year": 2023,
+    "imports_m_usd": 1550.72,
+    "exports_m_usd": 3583.11
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "year": 2000,
+    "prepared_export_m_usd": 15.6,
+    "jumbo_catch_t": 210063
+  },
+  {
+    "year": 2001,
+    "prepared_export_m_usd": 18.4,
+    "jumbo_catch_t": 244955
+  },
+  {
+    "year": 2002,
+    "prepared_export_m_usd": 20.6,
+    "jumbo_catch_t": 412428
+  },
+  {
+    "year": 2003,
+    "prepared_export_m_usd": 18.6,
+    "jumbo_catch_t": 402042
+  },
+  {
+    "year": 2004,
+    "prepared_export_m_usd": 22.5,
+    "jumbo_catch_t": 834754
+  },
+  {
+    "year": 2005,
+    "prepared_export_m_usd": 31.3,
+    "jumbo_catch_t": 779678
+  },
+  {
+    "year": 2006,
+    "prepared_export_m_usd": 18.5,
+    "jumbo_catch_t": 871335
+  },
+  {
+    "year": 2007,
+    "prepared_export_m_usd": 21.8,
+    "jumbo_catch_t": 684786
+  },
+  {
+    "year": 2008,
+    "prepared_export_m_usd": 51.8,
+    "jumbo_catch_t": 895329
+  },
+  {
+    "year": 2009,
+    "prepared_export_m_usd": 58.2,
+    "jumbo_catch_t": 642847
+  },
+  {
+    "year": 2010,
+    "prepared_export_m_usd": 67.7,
+    "jumbo_catch_t": 815968
+  },
+  {
+    "year": 2011,
+    "prepared_export_m_usd": 46.9,
+    "jumbo_catch_t": 906307
+  },
+  {
+    "year": 2012,
+    "prepared_export_m_usd": 1082.5,
+    "jumbo_catch_t": 950610
+  },
+  {
+    "year": 2013,
+    "prepared_export_m_usd": 1091.0,
+    "jumbo_catch_t": 847292
+  },
+  {
+    "year": 2014,
+    "prepared_export_m_usd": 1042.9,
+    "jumbo_catch_t": 1161690
+  },
+  {
+    "year": 2015,
+    "prepared_export_m_usd": 907.9,
+    "jumbo_catch_t": 1003774
+  },
+  {
+    "year": 2016,
+    "prepared_export_m_usd": 918.3,
+    "jumbo_catch_t": 747010
+  },
+  {
+    "year": 2017,
+    "prepared_export_m_usd": 1206.7,
+    "jumbo_catch_t": 763440
+  },
+  {
+    "year": 2018,
+    "prepared_export_m_usd": 1615.6,
+    "jumbo_catch_t": 892419
+  },
+  {
+    "year": 2019,
+    "prepared_export_m_usd": 1633.7,
+    "jumbo_catch_t": 906691
+  },
+  {
+    "year": 2020,
+    "prepared_export_m_usd": 1678.8,
+    "jumbo_catch_t": 905380
+  },
+  {
+    "year": 2021,
+    "prepared_export_m_usd": 2409.7,
+    "jumbo_catch_t": 997021
+  },
+  {
+    "year": 2022,
+    "prepared_export_m_usd": 2676.1,
+    "jumbo_catch_t": 1076428
+  },
+  {
+    "year": 2023,
+    "prepared_export_m_usd": 2397.1,
+    "jumbo_catch_t": 1225798
+  }
+]

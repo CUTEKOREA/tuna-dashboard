@@ -1,0 +1,37 @@
+[
+  {
+    "country": "\ud3ec\ud074\ub79c\ub4dc (Falkland)",
+    "itq_index": 85,
+    "iuu_risk": 15,
+    "volume": 120,
+    "color": "#06b6d4"
+  },
+  {
+    "country": "\ud398\ub8e8 (Peru)",
+    "itq_index": 45,
+    "iuu_risk": 65,
+    "volume": 500,
+    "color": "#f59e0b"
+  },
+  {
+    "country": "\uc544\ub974\ud5e8\ud2f0\ub098 (Argentina)",
+    "itq_index": 60,
+    "iuu_risk": 40,
+    "volume": 250,
+    "color": "#8b5cf6"
+  },
+  {
+    "country": "\uc911\uad6d \uacf5\ud574 (China HS)",
+    "itq_index": 10,
+    "iuu_risk": 95,
+    "volume": 800,
+    "color": "#ef4444"
+  },
+  {
+    "country": "\ud55c\uad6d (Korea \uc5f0\uc548)",
+    "itq_index": 50,
+    "iuu_risk": 20,
+    "volume": 30,
+    "color": "#3b82f6"
+  }
+]

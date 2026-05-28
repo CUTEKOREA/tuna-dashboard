@@ -1,0 +1,182 @@
+[
+  {
+    "country": "룩셈부르크",
+    "import_vol_t": 136,
+    "import_val_usd_k": 1020,
+    "unit_price_usd": 7479.39
+  },
+  {
+    "country": "오스트리아",
+    "import_vol_t": 1323,
+    "import_val_usd_k": 9689,
+    "unit_price_usd": 7321.53
+  },
+  {
+    "country": "모리셔스",
+    "import_vol_t": 537,
+    "import_val_usd_k": 3649,
+    "unit_price_usd": 6800.11
+  },
+  {
+    "country": "홍콩",
+    "import_vol_t": 2293,
+    "import_val_usd_k": 15152,
+    "unit_price_usd": 6607.6
+  },
+  {
+    "country": "스위스",
+    "import_vol_t": 433,
+    "import_val_usd_k": 2629,
+    "unit_price_usd": 6073.64
+  },
+  {
+    "country": "슬로베니아",
+    "import_vol_t": 359,
+    "import_val_usd_k": 2147,
+    "unit_price_usd": 5982.39
+  },
+  {
+    "country": "핀란드",
+    "import_vol_t": 269,
+    "import_val_usd_k": 1556,
+    "unit_price_usd": 5776.2
+  },
+  {
+    "country": "이탈리아",
+    "import_vol_t": 15434,
+    "import_val_usd_k": 84141,
+    "unit_price_usd": 5451.58
+  },
+  {
+    "country": "헝가리",
+    "import_vol_t": 325,
+    "import_val_usd_k": 1727,
+    "unit_price_usd": 5320.38
+  },
+  {
+    "country": "벨기에",
+    "import_vol_t": 3684,
+    "import_val_usd_k": 19505,
+    "unit_price_usd": 5294.35
+  },
+  {
+    "country": "보스니아",
+    "import_vol_t": 697,
+    "import_val_usd_k": 3618,
+    "unit_price_usd": 5188.57
+  },
+  {
+    "country": "방글라데시",
+    "import_vol_t": 4424,
+    "import_val_usd_k": 22927,
+    "unit_price_usd": 5182.53
+  },
+  {
+    "country": "슬로바키아",
+    "import_vol_t": 1169,
+    "import_val_usd_k": 5522,
+    "unit_price_usd": 4722.75
+  },
+  {
+    "country": "몬테네그로",
+    "import_vol_t": 107,
+    "import_val_usd_k": 490,
+    "unit_price_usd": 4559.34
+  },
+  {
+    "country": "아메리칸사모아",
+    "import_vol_t": 54,
+    "import_val_usd_k": 240,
+    "unit_price_usd": 4410.99
+  },
+  {
+    "country": "호주",
+    "import_vol_t": 2787,
+    "import_val_usd_k": 12203,
+    "unit_price_usd": 4378.65
+  },
+  {
+    "country": "바베이도스",
+    "import_vol_t": 1744,
+    "import_val_usd_k": 7498,
+    "unit_price_usd": 4298.7
+  },
+  {
+    "country": "영국",
+    "import_vol_t": 14263,
+    "import_val_usd_k": 61148,
+    "unit_price_usd": 4287.23
+  },
+  {
+    "country": "예멘",
+    "import_vol_t": 2749,
+    "import_val_usd_k": 11630,
+    "unit_price_usd": 4231.37
+  },
+  {
+    "country": "케이맨제도",
+    "import_vol_t": 318,
+    "import_val_usd_k": 1323,
+    "unit_price_usd": 4160.18
+  },
+  {
+    "country": "팔레스타인",
+    "import_vol_t": 418,
+    "import_val_usd_k": 1696,
+    "unit_price_usd": 4057.51
+  },
+  {
+    "country": "마카오",
+    "import_vol_t": 484,
+    "import_val_usd_k": 1915,
+    "unit_price_usd": 3955.24
+  },
+  {
+    "country": "앤티가바부다",
+    "import_vol_t": 57,
+    "import_val_usd_k": 221,
+    "unit_price_usd": 3849.81
+  },
+  {
+    "country": "키프로스",
+    "import_vol_t": 206,
+    "import_val_usd_k": 769,
+    "unit_price_usd": 3727.59
+  },
+  {
+    "country": "그린란드",
+    "import_vol_t": 112,
+    "import_val_usd_k": 415,
+    "unit_price_usd": 3713.95
+  },
+  {
+    "country": "에스토니아",
+    "import_vol_t": 565,
+    "import_val_usd_k": 2098,
+    "unit_price_usd": 3710.34
+  },
+  {
+    "country": "미국",
+    "import_vol_t": 27569,
+    "import_val_usd_k": 100503,
+    "unit_price_usd": 3645.52
+  },
+  {
+    "country": "독일",
+    "import_vol_t": 10895,
+    "import_val_usd_k": 39229,
+    "unit_price_usd": 3600.7
+  },
+  {
+    "country": "캐나다",
+    "import_vol_t": 8799,
+    "import_val_usd_k": 31434,
+    "unit_price_usd": 3572.3
+  },
+  {
+    "country": "세인트루시아",
+    "import_vol_t": 259,
+    "import_val_usd_k": 872,
+    "unit_price_usd": 3365.02
+  }
+]

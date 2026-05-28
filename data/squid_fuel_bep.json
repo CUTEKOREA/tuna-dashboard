@@ -1,0 +1,72 @@
+[
+  {
+    "month": "22.Jan",
+    "mgo_price": 850,
+    "squid_price": 5000,
+    "bep_metal": 1000,
+    "bep_led": 1300
+  },
+  {
+    "month": "22.Apr",
+    "mgo_price": 1200,
+    "squid_price": 5200,
+    "bep_metal": 1000,
+    "bep_led": 1300
+  },
+  {
+    "month": "22.Jul",
+    "mgo_price": 1471,
+    "squid_price": 5400,
+    "bep_metal": 1000,
+    "bep_led": 1300
+  },
+  {
+    "month": "22.Oct",
+    "mgo_price": 1350,
+    "squid_price": 5600,
+    "bep_metal": 1000,
+    "bep_led": 1300
+  },
+  {
+    "month": "23.Jan",
+    "mgo_price": 1150,
+    "squid_price": 6000,
+    "bep_metal": 1100,
+    "bep_led": 1400
+  },
+  {
+    "month": "23.Apr",
+    "mgo_price": 1050,
+    "squid_price": 6500,
+    "bep_metal": 1100,
+    "bep_led": 1400
+  },
+  {
+    "month": "23.Jul",
+    "mgo_price": 950,
+    "squid_price": 7200,
+    "bep_metal": 1100,
+    "bep_led": 1400
+  },
+  {
+    "month": "23.Oct",
+    "mgo_price": 1050,
+    "squid_price": 7800,
+    "bep_metal": 1100,
+    "bep_led": 1400
+  },
+  {
+    "month": "24.Jan",
+    "mgo_price": 1100,
+    "squid_price": 8500,
+    "bep_metal": 1200,
+    "bep_led": 1500
+  },
+  {
+    "month": "24.Apr",
+    "mgo_price": 1250,
+    "squid_price": 9500,
+    "bep_metal": 1200,
+    "bep_led": 1500
+  }
+]

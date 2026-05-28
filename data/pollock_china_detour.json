@@ -1,0 +1,27 @@
+[
+  {
+    "year": 2019,
+    "russia_to_china_t": 640376,
+    "china_to_west_t": 189558
+  },
+  {
+    "year": 2020,
+    "russia_to_china_t": 576090,
+    "china_to_west_t": 134034
+  },
+  {
+    "year": 2021,
+    "russia_to_china_t": 363111,
+    "china_to_west_t": 123287
+  },
+  {
+    "year": 2022,
+    "russia_to_china_t": 563848,
+    "china_to_west_t": 158480
+  },
+  {
+    "year": 2023,
+    "russia_to_china_t": 574827,
+    "china_to_west_t": 136753
+  }
+]

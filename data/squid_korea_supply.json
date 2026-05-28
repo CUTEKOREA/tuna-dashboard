@@ -1,0 +1,252 @@
+[
+  {
+    "year": 2000,
+    "production_t": 407074,
+    "import_volume_t": 18479,
+    "import_value_usd_k": 40407,
+    "total_supply_t": 425553,
+    "self_sufficiency_pct": 95.7,
+    "import_cost_per_ton": 2187.0,
+    "processed_t": 19815.0
+  },
+  {
+    "year": 2001,
+    "production_t": 391681,
+    "import_volume_t": 15259,
+    "import_value_usd_k": 39421,
+    "total_supply_t": 406940,
+    "self_sufficiency_pct": 96.3,
+    "import_cost_per_ton": 2583.0,
+    "processed_t": 24048.0
+  },
+  {
+    "year": 2002,
+    "production_t": 371249,
+    "import_volume_t": 17773,
+    "import_value_usd_k": 38657,
+    "total_supply_t": 389022,
+    "self_sufficiency_pct": 95.4,
+    "import_cost_per_ton": 2175.0,
+    "processed_t": 26660.0
+  },
+  {
+    "year": 2003,
+    "production_t": 358826,
+    "import_volume_t": 13910,
+    "import_value_usd_k": 33381,
+    "total_supply_t": 372736,
+    "self_sufficiency_pct": 96.3,
+    "import_cost_per_ton": 2400.0,
+    "processed_t": 15295.0
+  },
+  {
+    "year": 2004,
+    "production_t": 285706,
+    "import_volume_t": 26843,
+    "import_value_usd_k": 48916,
+    "total_supply_t": 312549,
+    "self_sufficiency_pct": 91.4,
+    "import_cost_per_ton": 1822.0,
+    "processed_t": 20923.0
+  },
+  {
+    "year": 2005,
+    "production_t": 275026,
+    "import_volume_t": 31702,
+    "import_value_usd_k": 64143,
+    "total_supply_t": 306728,
+    "self_sufficiency_pct": 89.7,
+    "import_cost_per_ton": 2023.0,
+    "processed_t": 18719.0
+  },
+  {
+    "year": 2006,
+    "production_t": 372029,
+    "import_volume_t": 43204,
+    "import_value_usd_k": 85972,
+    "total_supply_t": 415233,
+    "self_sufficiency_pct": 89.6,
+    "import_cost_per_ton": 1990.0,
+    "processed_t": 23466.0
+  },
+  {
+    "year": 2007,
+    "production_t": 405258,
+    "import_volume_t": 37019,
+    "import_value_usd_k": 86191,
+    "total_supply_t": 442277,
+    "self_sufficiency_pct": 91.6,
+    "import_cost_per_ton": 2328.0,
+    "processed_t": 11707.0
+  },
+  {
+    "year": 2008,
+    "production_t": 380057,
+    "import_volume_t": 33905,
+    "import_value_usd_k": 75750,
+    "total_supply_t": 413962,
+    "self_sufficiency_pct": 91.8,
+    "import_cost_per_ton": 2234.0,
+    "processed_t": 27276.0
+  },
+  {
+    "year": 2009,
+    "production_t": 286067,
+    "import_volume_t": 29580,
+    "import_value_usd_k": 62822,
+    "total_supply_t": 315647,
+    "self_sufficiency_pct": 90.6,
+    "import_cost_per_ton": 2124.0,
+    "processed_t": 169599.0
+  },
+  {
+    "year": 2010,
+    "production_t": 235893,
+    "import_volume_t": 35324,
+    "import_value_usd_k": 90063,
+    "total_supply_t": 271217,
+    "self_sufficiency_pct": 87.0,
+    "import_cost_per_ton": 2550.0,
+    "processed_t": 173166.0
+  },
+  {
+    "year": 2011,
+    "production_t": 249595,
+    "import_volume_t": 54162,
+    "import_value_usd_k": 142381,
+    "total_supply_t": 303757,
+    "self_sufficiency_pct": 82.2,
+    "import_cost_per_ton": 2629.0,
+    "processed_t": 198931.0
+  },
+  {
+    "year": 2012,
+    "production_t": 272965,
+    "import_volume_t": 60146,
+    "import_value_usd_k": 165312,
+    "total_supply_t": 333111,
+    "self_sufficiency_pct": 81.9,
+    "import_cost_per_ton": 2749.0,
+    "processed_t": 212610.0
+  },
+  {
+    "year": 2013,
+    "production_t": 264798,
+    "import_volume_t": 54394,
+    "import_value_usd_k": 145476,
+    "total_supply_t": 319192,
+    "self_sufficiency_pct": 83.0,
+    "import_cost_per_ton": 2674.0,
+    "processed_t": 214321.0
+  },
+  {
+    "year": 2014,
+    "production_t": 339436,
+    "import_volume_t": 77475,
+    "import_value_usd_k": 187651,
+    "total_supply_t": 416911,
+    "self_sufficiency_pct": 81.4,
+    "import_cost_per_ton": 2422.0,
+    "processed_t": 285404.0
+  },
+  {
+    "year": 2015,
+    "production_t": 315684,
+    "import_volume_t": 69353,
+    "import_value_usd_k": 164787,
+    "total_supply_t": 385037,
+    "self_sufficiency_pct": 82.0,
+    "import_cost_per_ton": 2376.0,
+    "processed_t": 267584.0
+  },
+  {
+    "year": 2016,
+    "production_t": 149861,
+    "import_volume_t": 76058,
+    "import_value_usd_k": 202105,
+    "total_supply_t": 225919,
+    "self_sufficiency_pct": 66.3,
+    "import_cost_per_ton": 2657.0,
+    "processed_t": 110642.0
+  },
+  {
+    "year": 2017,
+    "production_t": 145425,
+    "import_volume_t": 102582,
+    "import_value_usd_k": 296265,
+    "total_supply_t": 248007,
+    "self_sufficiency_pct": 58.6,
+    "import_cost_per_ton": 2888.0,
+    "processed_t": 97640.0
+  },
+  {
+    "year": 2018,
+    "production_t": 72069,
+    "import_volume_t": 142672,
+    "import_value_usd_k": 514326,
+    "total_supply_t": 214741,
+    "self_sufficiency_pct": 33.6,
+    "import_cost_per_ton": 3605.0,
+    "processed_t": 94306.0
+  },
+  {
+    "year": 2019,
+    "production_t": 84587,
+    "import_volume_t": 134558,
+    "import_value_usd_k": 450845,
+    "total_supply_t": 219145,
+    "self_sufficiency_pct": 38.6,
+    "import_cost_per_ton": 3351.0,
+    "processed_t": 74084.0
+  },
+  {
+    "year": 2020,
+    "production_t": 105994,
+    "import_volume_t": 156696,
+    "import_value_usd_k": 491513,
+    "total_supply_t": 262690,
+    "self_sufficiency_pct": 40.3,
+    "import_cost_per_ton": 3137.0,
+    "processed_t": 52261.0
+  },
+  {
+    "year": 2021,
+    "production_t": 116488,
+    "import_volume_t": 135189,
+    "import_value_usd_k": 372036,
+    "total_supply_t": 251677,
+    "self_sufficiency_pct": 46.3,
+    "import_cost_per_ton": 2752.0,
+    "processed_t": 76845.0
+  },
+  {
+    "year": 2022,
+    "production_t": 97900,
+    "import_volume_t": 138408,
+    "import_value_usd_k": 424011,
+    "total_supply_t": 236308,
+    "self_sufficiency_pct": 41.4,
+    "import_cost_per_ton": 3063.0,
+    "processed_t": 76538.0
+  },
+  {
+    "year": 2023,
+    "production_t": 86108,
+    "import_volume_t": 155703,
+    "import_value_usd_k": 501819,
+    "total_supply_t": 241811,
+    "self_sufficiency_pct": 35.6,
+    "import_cost_per_ton": 3223.0,
+    "processed_t": 53512.0
+  },
+  {
+    "year": 2024,
+    "production_t": 96084,
+    "import_volume_t": 0,
+    "import_value_usd_k": 0,
+    "total_supply_t": 96084,
+    "self_sufficiency_pct": 100.0,
+    "import_cost_per_ton": 0,
+    "processed_t": 0.0
+  }
+]

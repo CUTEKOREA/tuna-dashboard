@@ -1,0 +1,242 @@
+[
+  {
+    "year": 1976,
+    "catch_t": 532618,
+    "import_t": 0
+  },
+  {
+    "year": 1977,
+    "catch_t": 390566,
+    "import_t": 998
+  },
+  {
+    "year": 1978,
+    "catch_t": 361871,
+    "import_t": 11349
+  },
+  {
+    "year": 1979,
+    "catch_t": 297226,
+    "import_t": 26274
+  },
+  {
+    "year": 1980,
+    "catch_t": 286158,
+    "import_t": 17741
+  },
+  {
+    "year": 1981,
+    "catch_t": 278636,
+    "import_t": 17866
+  },
+  {
+    "year": 1982,
+    "catch_t": 262095,
+    "import_t": 14738
+  },
+  {
+    "year": 1983,
+    "catch_t": 367422,
+    "import_t": 25387
+  },
+  {
+    "year": 1984,
+    "catch_t": 398622,
+    "import_t": 32940
+  },
+  {
+    "year": 1985,
+    "catch_t": 451305,
+    "import_t": 19944
+  },
+  {
+    "year": 1986,
+    "catch_t": 618965,
+    "import_t": 46336
+  },
+  {
+    "year": 1987,
+    "catch_t": 430787,
+    "import_t": 110985
+  },
+  {
+    "year": 1988,
+    "catch_t": 312678,
+    "import_t": 104690
+  },
+  {
+    "year": 1989,
+    "catch_t": 385394,
+    "import_t": 66152
+  },
+  {
+    "year": 1990,
+    "catch_t": 321496,
+    "import_t": 66142
+  },
+  {
+    "year": 1991,
+    "catch_t": 197788,
+    "import_t": 107452
+  },
+  {
+    "year": 1992,
+    "catch_t": 335422,
+    "import_t": 69759
+  },
+  {
+    "year": 1993,
+    "catch_t": 226098,
+    "import_t": 54242
+  },
+  {
+    "year": 1994,
+    "catch_t": 311574,
+    "import_t": 57937
+  },
+  {
+    "year": 1995,
+    "catch_t": 345888,
+    "import_t": 61089
+  },
+  {
+    "year": 1996,
+    "catch_t": 226910,
+    "import_t": 111463
+  },
+  {
+    "year": 1997,
+    "catch_t": 223065,
+    "import_t": 85637
+  },
+  {
+    "year": 1998,
+    "catch_t": 236278,
+    "import_t": 57344
+  },
+  {
+    "year": 1999,
+    "catch_t": 146165,
+    "import_t": 116662
+  },
+  {
+    "year": 2000,
+    "catch_t": 86143,
+    "import_t": 104690
+  },
+  {
+    "year": 2001,
+    "catch_t": 197396,
+    "import_t": 111335
+  },
+  {
+    "year": 2002,
+    "catch_t": 24772,
+    "import_t": 208164
+  },
+  {
+    "year": 2003,
+    "catch_t": 22125,
+    "import_t": 300245
+  },
+  {
+    "year": 2004,
+    "catch_t": 20061,
+    "import_t": 242671
+  },
+  {
+    "year": 2005,
+    "catch_t": 26029,
+    "import_t": 227730
+  },
+  {
+    "year": 2006,
+    "catch_t": 26329,
+    "import_t": 223363
+  },
+  {
+    "year": 2007,
+    "catch_t": 20144,
+    "import_t": 261327
+  },
+  {
+    "year": 2008,
+    "catch_t": 25613,
+    "import_t": 211326
+  },
+  {
+    "year": 2009,
+    "catch_t": 38997,
+    "import_t": 209331
+  },
+  {
+    "year": 2010,
+    "catch_t": 46795,
+    "import_t": 262233
+  },
+  {
+    "year": 2011,
+    "catch_t": 48793,
+    "import_t": 258468
+  },
+  {
+    "year": 2012,
+    "catch_t": 39026,
+    "import_t": 254229
+  },
+  {
+    "year": 2013,
+    "catch_t": 24342,
+    "import_t": 231928
+  },
+  {
+    "year": 2014,
+    "catch_t": 31624,
+    "import_t": 212138
+  },
+  {
+    "year": 2015,
+    "catch_t": 20014,
+    "import_t": 223270
+  },
+  {
+    "year": 2016,
+    "catch_t": 20129,
+    "import_t": 250181
+  },
+  {
+    "year": 2017,
+    "catch_t": 23498,
+    "import_t": 248114
+  },
+  {
+    "year": 2018,
+    "catch_t": 9,
+    "import_t": 243307
+  },
+  {
+    "year": 2019,
+    "catch_t": 23915,
+    "import_t": 173859
+  },
+  {
+    "year": 2020,
+    "catch_t": 27196,
+    "import_t": 202489
+  },
+  {
+    "year": 2021,
+    "catch_t": 27779,
+    "import_t": 313010
+  },
+  {
+    "year": 2022,
+    "catch_t": 21591,
+    "import_t": 360604
+  },
+  {
+    "year": 2023,
+    "catch_t": 28432,
+    "import_t": 180559
+  }
+]

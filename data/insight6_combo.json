@@ -1,0 +1,170 @@
+[
+  {
+    "year": 2000,
+    "enso_index": -1.0,
+    "import_value_m_usd": 522.2,
+    "catch_k_tons": 984.4,
+    "catch_tons": 984392
+  },
+  {
+    "year": 2001,
+    "enso_index": -0.1,
+    "import_value_m_usd": 551.3,
+    "catch_k_tons": 750.4,
+    "catch_tons": 750418
+  },
+  {
+    "year": 2002,
+    "enso_index": 0.9,
+    "import_value_m_usd": 522.7,
+    "catch_k_tons": 540.4,
+    "catch_tons": 540413
+  },
+  {
+    "year": 2003,
+    "enso_index": 0.4,
+    "import_value_m_usd": 695.7,
+    "catch_k_tons": 503.6,
+    "catch_tons": 503611
+  },
+  {
+    "year": 2004,
+    "enso_index": 0.3,
+    "import_value_m_usd": 826.9,
+    "catch_k_tons": 179.0,
+    "catch_tons": 178974
+  },
+  {
+    "year": 2005,
+    "enso_index": -0.5,
+    "import_value_m_usd": 953.4,
+    "catch_k_tons": 287.6,
+    "catch_tons": 287590
+  },
+  {
+    "year": 2006,
+    "enso_index": 0.6,
+    "import_value_m_usd": 895.7,
+    "catch_k_tons": 703.8,
+    "catch_tons": 703804
+  },
+  {
+    "year": 2007,
+    "enso_index": -1.3,
+    "import_value_m_usd": 946.4,
+    "catch_k_tons": 955.0,
+    "catch_tons": 955044
+  },
+  {
+    "year": 2008,
+    "enso_index": -0.8,
+    "import_value_m_usd": 940.3,
+    "catch_k_tons": 837.9,
+    "catch_tons": 837935
+  },
+  {
+    "year": 2009,
+    "enso_index": 0.9,
+    "import_value_m_usd": 760.4,
+    "catch_k_tons": 261.2,
+    "catch_tons": 261227
+  },
+  {
+    "year": 2010,
+    "enso_index": -1.5,
+    "import_value_m_usd": 1075.3,
+    "catch_k_tons": 190.0,
+    "catch_tons": 189966
+  },
+  {
+    "year": 2011,
+    "enso_index": -1.0,
+    "import_value_m_usd": 1219.7,
+    "catch_k_tons": 187.6,
+    "catch_tons": 187576
+  },
+  {
+    "year": 2012,
+    "enso_index": 0.2,
+    "import_value_m_usd": 1183.8,
+    "catch_k_tons": 305.1,
+    "catch_tons": 305062
+  },
+  {
+    "year": 2013,
+    "enso_index": -0.3,
+    "import_value_m_usd": 1129.6,
+    "catch_k_tons": 491.9,
+    "catch_tons": 491937
+  },
+  {
+    "year": 2014,
+    "enso_index": 0.4,
+    "import_value_m_usd": 1189.6,
+    "catch_k_tons": 860.5,
+    "catch_tons": 860504
+  },
+  {
+    "year": 2015,
+    "enso_index": 2.3,
+    "import_value_m_usd": 1123.6,
+    "catch_k_tons": 1007.8,
+    "catch_tons": 1007786
+  },
+  {
+    "year": 2016,
+    "enso_index": -0.5,
+    "import_value_m_usd": 1505.0,
+    "catch_k_tons": 146.5,
+    "catch_tons": 146533
+  },
+  {
+    "year": 2017,
+    "enso_index": -0.9,
+    "import_value_m_usd": 2032.1,
+    "catch_k_tons": 332.7,
+    "catch_tons": 332720
+  },
+  {
+    "year": 2018,
+    "enso_index": 0.8,
+    "import_value_m_usd": 2327.2,
+    "catch_k_tons": 298.8,
+    "catch_tons": 298810
+  },
+  {
+    "year": 2019,
+    "enso_index": 0.3,
+    "import_value_m_usd": 2178.1,
+    "catch_k_tons": 170.8,
+    "catch_tons": 170834
+  },
+  {
+    "year": 2020,
+    "enso_index": -1.2,
+    "import_value_m_usd": 2024.2,
+    "catch_k_tons": 344.9,
+    "catch_tons": 344912
+  },
+  {
+    "year": 2021,
+    "enso_index": -0.8,
+    "import_value_m_usd": 2231.4,
+    "catch_k_tons": 490.8,
+    "catch_tons": 490845
+  },
+  {
+    "year": 2022,
+    "enso_index": 0.3,
+    "import_value_m_usd": 2505.1,
+    "catch_k_tons": 392.8,
+    "catch_tons": 392836
+  },
+  {
+    "year": 2023,
+    "enso_index": 1.6,
+    "import_value_m_usd": 2375.8,
+    "catch_k_tons": 400.8,
+    "catch_tons": 400824
+  }
+]

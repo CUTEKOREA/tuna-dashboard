@@ -1,0 +1,194 @@
+[
+  {
+    "year": 2000,
+    "production_t": 193917,
+    "import_t": 46599,
+    "self_sufficiency_pct": 80.6,
+    "import_price_usd": 856.31,
+    "processed_t": 52587.0
+  },
+  {
+    "year": 2001,
+    "production_t": 248367,
+    "import_t": 86369,
+    "self_sufficiency_pct": 74.2,
+    "import_price_usd": 906.3,
+    "processed_t": 85076.0
+  },
+  {
+    "year": 2002,
+    "production_t": 195304,
+    "import_t": 66425,
+    "self_sufficiency_pct": 74.6,
+    "import_price_usd": 938.43,
+    "processed_t": 115241.0
+  },
+  {
+    "year": 2003,
+    "production_t": 171230,
+    "import_t": 68725,
+    "self_sufficiency_pct": 71.4,
+    "import_price_usd": 829.16,
+    "processed_t": 91136.0
+  },
+  {
+    "year": 2004,
+    "production_t": 250082,
+    "import_t": 82174,
+    "self_sufficiency_pct": 75.3,
+    "import_price_usd": 948.72,
+    "processed_t": 132671.0
+  },
+  {
+    "year": 2005,
+    "production_t": 223310,
+    "import_t": 53869,
+    "self_sufficiency_pct": 80.6,
+    "import_price_usd": 1052.16,
+    "processed_t": 94475.0
+  },
+  {
+    "year": 2006,
+    "production_t": 176210,
+    "import_t": 68309,
+    "self_sufficiency_pct": 72.1,
+    "import_price_usd": 1045.59,
+    "processed_t": 69720.0
+  },
+  {
+    "year": 2007,
+    "production_t": 220435,
+    "import_t": 71832,
+    "self_sufficiency_pct": 75.4,
+    "import_price_usd": 1123.3,
+    "processed_t": 77711.0
+  },
+  {
+    "year": 2008,
+    "production_t": 266195,
+    "import_t": 48244,
+    "self_sufficiency_pct": 84.7,
+    "import_price_usd": 1241.92,
+    "processed_t": 121456.0
+  },
+  {
+    "year": 2009,
+    "production_t": 196245,
+    "import_t": 54270,
+    "self_sufficiency_pct": 78.3,
+    "import_price_usd": 1557.32,
+    "processed_t": 151889.0
+  },
+  {
+    "year": 2010,
+    "production_t": 159866,
+    "import_t": 62648,
+    "self_sufficiency_pct": 71.8,
+    "import_price_usd": 1659.21,
+    "processed_t": 80778.0
+  },
+  {
+    "year": 2011,
+    "production_t": 220484,
+    "import_t": 81827,
+    "self_sufficiency_pct": 72.9,
+    "import_price_usd": 2074.22,
+    "processed_t": 127570.0
+  },
+  {
+    "year": 2012,
+    "production_t": 201460,
+    "import_t": 58857,
+    "self_sufficiency_pct": 77.4,
+    "import_price_usd": 1925.24,
+    "processed_t": 122029.0
+  },
+  {
+    "year": 2013,
+    "production_t": 171346,
+    "import_t": 29860,
+    "self_sufficiency_pct": 85.2,
+    "import_price_usd": 2367.62,
+    "processed_t": 116352.0
+  },
+  {
+    "year": 2014,
+    "production_t": 194381,
+    "import_t": 52109,
+    "self_sufficiency_pct": 78.9,
+    "import_price_usd": 2242.93,
+    "processed_t": 112413.0
+  },
+  {
+    "year": 2015,
+    "production_t": 230438,
+    "import_t": 69192,
+    "self_sufficiency_pct": 76.9,
+    "import_price_usd": 1843.59,
+    "processed_t": 130961.0
+  },
+  {
+    "year": 2016,
+    "production_t": 223752,
+    "import_t": 59286,
+    "self_sufficiency_pct": 79.1,
+    "import_price_usd": 1719.46,
+    "processed_t": 120611.0
+  },
+  {
+    "year": 2017,
+    "production_t": 165328,
+    "import_t": 65591,
+    "self_sufficiency_pct": 71.6,
+    "import_price_usd": 1767.54,
+    "processed_t": 87910.0
+  },
+  {
+    "year": 2018,
+    "production_t": 202609,
+    "import_t": 86578,
+    "self_sufficiency_pct": 70.1,
+    "import_price_usd": 1494.1,
+    "processed_t": 215164.0
+  },
+  {
+    "year": 2019,
+    "production_t": 191707,
+    "import_t": 97330,
+    "self_sufficiency_pct": 66.3,
+    "import_price_usd": 1400.35,
+    "processed_t": 158973.0
+  },
+  {
+    "year": 2020,
+    "production_t": 157390,
+    "import_t": 80020,
+    "self_sufficiency_pct": 66.3,
+    "import_price_usd": 1613.26,
+    "processed_t": 129620.0
+  },
+  {
+    "year": 2021,
+    "production_t": 206237,
+    "import_t": 104070,
+    "self_sufficiency_pct": 66.5,
+    "import_price_usd": 1466.29,
+    "processed_t": 192018.0
+  },
+  {
+    "year": 2022,
+    "production_t": 186566,
+    "import_t": 84257,
+    "self_sufficiency_pct": 68.9,
+    "import_price_usd": 1897.22,
+    "processed_t": 177088.0
+  },
+  {
+    "year": 2023,
+    "production_t": 205671,
+    "import_t": 87106,
+    "self_sufficiency_pct": 70.2,
+    "import_price_usd": 1849.27,
+    "processed_t": 196631.0
+  }
+]

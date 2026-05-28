@@ -1,0 +1,770 @@
+{
+  "1950": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 5318200
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 118400
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 116300
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 71700
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 67018
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 51003
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 34100
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 9700
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 6300
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 2200
+    }
+  ],
+  "1960": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 6679400
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 254600
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 240300
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 193600
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 143900
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 73984
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 70076
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 48600
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 26700
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 18000
+    },
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 14900
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 100
+    }
+  ],
+  "1970": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 5975842
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 944724
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 814664
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 659293
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 244600
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 230016
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 214753
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 150480
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 124637
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 124256
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 117892
+    },
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 5858
+    }
+  ],
+  "1980": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 6805633
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 3693620
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 1576832
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 828791
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 618911
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 439033
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 397337
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 289352
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 287473
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 262840
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 65384
+    },
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 34399
+    }
+  ],
+  "1990": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 9097642
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 7667020
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 2338590
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 960770
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 832067
+    },
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 776793
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 688902
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 658789
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 405729
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 329354
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 252867
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 144073
+    }
+  ],
+  "2000": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 11425383
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 6499374
+    },
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 5350232
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 2633839
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 1438301
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 899320
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 872477
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 411761
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 344628
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 259979
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 226535
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 216631
+    }
+  ],
+  "2010": [
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 9347697
+    },
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 8960099
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 4816588
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 3074086
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 1343569
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 1215228
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 931596
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 527593
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 401915
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 246492
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 232718
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 191663
+    }
+  ],
+  "2020": [
+    {
+      "area": "Pacific, Southeast",
+      "label": "남동태평양",
+      "labelEn": "SE Pacific",
+      "lat": -20,
+      "lng": -90,
+      "catch": 4813164
+    },
+    {
+      "area": "Pacific, Northwest",
+      "label": "북서태평양",
+      "labelEn": "NW Pacific",
+      "lat": 38,
+      "lng": 145,
+      "catch": 3343757
+    },
+    {
+      "area": "Atlantic, Southwest",
+      "label": "남서대서양",
+      "labelEn": "SW Atlantic",
+      "lat": -42,
+      "lng": -50,
+      "catch": 2528465
+    },
+    {
+      "area": "Pacific, Western Central",
+      "label": "중서태평양",
+      "labelEn": "WC Pacific",
+      "lat": 5,
+      "lng": 130,
+      "catch": 1664129
+    },
+    {
+      "area": "Indian Ocean, Western",
+      "label": "서인도양",
+      "labelEn": "W Indian",
+      "lat": -5,
+      "lng": 55,
+      "catch": 1055333
+    },
+    {
+      "area": "Indian Ocean, Eastern",
+      "label": "동인도양",
+      "labelEn": "E Indian",
+      "lat": -10,
+      "lng": 95,
+      "catch": 551320
+    },
+    {
+      "area": "Atlantic, Eastern Central",
+      "label": "중동대서양",
+      "labelEn": "EC Atlantic",
+      "lat": 15,
+      "lng": -20,
+      "catch": 357433
+    },
+    {
+      "area": "Pacific, Eastern Central",
+      "label": "중동태평양",
+      "labelEn": "EC Pacific",
+      "lat": 10,
+      "lng": -120,
+      "catch": 222845
+    },
+    {
+      "area": "Atlantic, Northwest",
+      "label": "북서대서양",
+      "labelEn": "NW Atlantic",
+      "lat": 45,
+      "lng": -55,
+      "catch": 145036
+    },
+    {
+      "area": "Pacific, Southwest",
+      "label": "남서태평양",
+      "labelEn": "SW Pacific",
+      "lat": -35,
+      "lng": 170,
+      "catch": 131457
+    },
+    {
+      "area": "Atlantic, Northeast",
+      "label": "북동대서양",
+      "labelEn": "NE Atlantic",
+      "lat": 55,
+      "lng": -10,
+      "catch": 128905
+    },
+    {
+      "area": "Mediterranean and Black Sea",
+      "label": "지중해",
+      "labelEn": "Mediterranean",
+      "lat": 38,
+      "lng": 20,
+      "catch": 52703
+    }
+  ]
+}

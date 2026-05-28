@@ -1,0 +1,152 @@
+[
+  {
+    "source": "칠레",
+    "target": "나이지리아",
+    "volume_t": 132146
+  },
+  {
+    "source": "영국",
+    "target": "기타(미분류)",
+    "volume_t": 127710
+  },
+  {
+    "source": "칠레",
+    "target": "코트디부아르",
+    "volume_t": 110975
+  },
+  {
+    "source": "인도",
+    "target": "태국",
+    "volume_t": 107990
+  },
+  {
+    "source": "중국",
+    "target": "인도네시아",
+    "volume_t": 101168
+  },
+  {
+    "source": "러시아",
+    "target": "기타(미분류)",
+    "volume_t": 98001
+  },
+  {
+    "source": "중국",
+    "target": "필리핀",
+    "volume_t": 92872
+  },
+  {
+    "source": "모리타니아",
+    "target": "코트디부아르",
+    "volume_t": 75793
+  },
+  {
+    "source": "모리타니아",
+    "target": "콩고민주공화국",
+    "volume_t": 66245
+  },
+  {
+    "source": "노르웨이",
+    "target": "일본",
+    "volume_t": 64592
+  },
+  {
+    "source": "나미비아",
+    "target": "잠비아",
+    "volume_t": 62162
+  },
+  {
+    "source": "나미비아",
+    "target": "콩고민주공화국",
+    "volume_t": 53596
+  },
+  {
+    "source": "페루",
+    "target": "코트디부아르",
+    "volume_t": 53341
+  },
+  {
+    "source": "페로 제도",
+    "target": "러시아",
+    "volume_t": 52362
+  },
+  {
+    "source": "노르웨이",
+    "target": "중국",
+    "volume_t": 47321
+  },
+  {
+    "source": "중국",
+    "target": "태국",
+    "volume_t": 44673
+  },
+  {
+    "source": "모리타니아",
+    "target": "베냉",
+    "volume_t": 42754
+  },
+  {
+    "source": "노르웨이",
+    "target": "한국",
+    "volume_t": 41725
+  },
+  {
+    "source": "칠레",
+    "target": "부르키나파소",
+    "volume_t": 36150
+  },
+  {
+    "source": "덴마크",
+    "target": "페로 제도",
+    "volume_t": 36093
+  },
+  {
+    "source": "세네갈",
+    "target": "코트디부아르",
+    "volume_t": 35228
+  },
+  {
+    "source": "노르웨이",
+    "target": "베트남",
+    "volume_t": 32961
+  },
+  {
+    "source": "모리타니아",
+    "target": "가나",
+    "volume_t": 32726
+  },
+  {
+    "source": "일본",
+    "target": "베트남",
+    "volume_t": 30594
+  },
+  {
+    "source": "모리타니아",
+    "target": "말리",
+    "volume_t": 29536
+  },
+  {
+    "source": "독일",
+    "target": "기타(미분류)",
+    "volume_t": 28420
+  },
+  {
+    "source": "베트남",
+    "target": "필리핀",
+    "volume_t": 26460
+  },
+  {
+    "source": "중국",
+    "target": "말레이시아",
+    "volume_t": 26253
+  },
+  {
+    "source": "중국",
+    "target": "베트남",
+    "volume_t": 26243
+  },
+  {
+    "source": "나미비아",
+    "target": "모잠비크",
+    "volume_t": 26198
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "month": "1\uc6d4",
+    "import_price": 5000,
+    "domestic_price": 6000,
+    "policy_event": 6000,
+    "event_name": "\uc124 \ube44\ucd95\ubb3c\ub7c9 \ubc29\ucd9c"
+  },
+  {
+    "month": "2\uc6d4",
+    "import_price": 4800,
+    "domestic_price": 6200,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "3\uc6d4",
+    "import_price": 5200,
+    "domestic_price": 6500,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "4\uc6d4",
+    "import_price": 5500,
+    "domestic_price": 7000,
+    "policy_event": 7000,
+    "event_name": "\uae08\uc5b4\uae30 \ub3cc\uc785"
+  },
+  {
+    "month": "5\uc6d4",
+    "import_price": 5600,
+    "domestic_price": 7500,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "6\uc6d4",
+    "import_price": 5300,
+    "domestic_price": 7800,
+    "policy_event": 7800,
+    "event_name": "\uc870\uc815\uad00\uc138 \ud55c\uc2dc\uc801 \uc644\ud654"
+  },
+  {
+    "month": "7\uc6d4",
+    "import_price": 5100,
+    "domestic_price": 7200,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "8\uc6d4",
+    "import_price": 5200,
+    "domestic_price": 7400,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "9\uc6d4",
+    "import_price": 5800,
+    "domestic_price": 8000,
+    "policy_event": 8000,
+    "event_name": "\ucd94\uc11d \ube44\ucd95\ubb3c\ub7c9 \ubc29\ucd9c"
+  },
+  {
+    "month": "10\uc6d4",
+    "import_price": 5900,
+    "domestic_price": 8200,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "11\uc6d4",
+    "import_price": 6100,
+    "domestic_price": 8500,
+    "policy_event": null,
+    "event_name": ""
+  },
+  {
+    "month": "12\uc6d4",
+    "import_price": 6000,
+    "domestic_price": 8600,
+    "policy_event": null,
+    "event_name": ""
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "country": "코트디부아르",
+    "import_2019_t": 200799,
+    "import_2023_t": 363509,
+    "growth_pct": 81.0,
+    "import_value_2023_usd_k": 447087
+  },
+  {
+    "country": "태국",
+    "import_2019_t": 344464,
+    "import_2023_t": 322310,
+    "growth_pct": -6.4,
+    "import_value_2023_usd_k": 397454
+  },
+  {
+    "country": "네덜란드",
+    "import_2019_t": 101147,
+    "import_2023_t": 176016,
+    "growth_pct": 74.0,
+    "import_value_2023_usd_k": 214475
+  },
+  {
+    "country": "나이지리아",
+    "import_2019_t": 281666,
+    "import_2023_t": 171901,
+    "growth_pct": -39.0,
+    "import_value_2023_usd_k": 320131
+  },
+  {
+    "country": "가나",
+    "import_2019_t": 213119,
+    "import_2023_t": 167467,
+    "growth_pct": -21.4,
+    "import_value_2023_usd_k": 133469
+  },
+  {
+    "country": "콩고민주공화국",
+    "import_2019_t": 72337,
+    "import_2023_t": 167438,
+    "growth_pct": 131.5,
+    "import_value_2023_usd_k": 155401
+  },
+  {
+    "country": "필리핀",
+    "import_2019_t": 61831,
+    "import_2023_t": 165532,
+    "growth_pct": 167.7,
+    "import_value_2023_usd_k": 226311
+  },
+  {
+    "country": "중국",
+    "import_2019_t": 216896,
+    "import_2023_t": 138260,
+    "growth_pct": -36.3,
+    "import_value_2023_usd_k": 268097
+  },
+  {
+    "country": "부르키나파소",
+    "import_2019_t": 103437,
+    "import_2023_t": 125519,
+    "growth_pct": 21.3,
+    "import_value_2023_usd_k": 20845
+  },
+  {
+    "country": "인도네시아",
+    "import_2019_t": 53039,
+    "import_2023_t": 124301,
+    "growth_pct": 134.4,
+    "import_value_2023_usd_k": 140102
+  },
+  {
+    "country": "일본",
+    "import_2019_t": 135449,
+    "import_2023_t": 124038,
+    "growth_pct": -8.4,
+    "import_value_2023_usd_k": 386549
+  },
+  {
+    "country": "노르웨이",
+    "import_2019_t": 82806,
+    "import_2023_t": 118213,
+    "growth_pct": 42.8,
+    "import_value_2023_usd_k": 197178
+  },
+  {
+    "country": "베트남",
+    "import_2019_t": 87416,
+    "import_2023_t": 101972,
+    "growth_pct": 16.7,
+    "import_value_2023_usd_k": 204043
+  },
+  {
+    "country": "잠비아",
+    "import_2019_t": 77626,
+    "import_2023_t": 92556,
+    "growth_pct": 19.2,
+    "import_value_2023_usd_k": 151720
+  },
+  {
+    "country": "한국",
+    "import_2019_t": 97330,
+    "import_2023_t": 87106,
+    "growth_pct": -10.5,
+    "import_value_2023_usd_k": 161083
+  },
+  {
+    "country": "카메룬",
+    "import_2019_t": 86344,
+    "import_2023_t": 83362,
+    "growth_pct": -3.5,
+    "import_value_2023_usd_k": 93607
+  },
+  {
+    "country": "이집트",
+    "import_2019_t": 223888,
+    "import_2023_t": 78821,
+    "growth_pct": -64.8,
+    "import_value_2023_usd_k": 152575
+  },
+  {
+    "country": "러시아",
+    "import_2019_t": 73335,
+    "import_2023_t": 73217,
+    "growth_pct": -0.2,
+    "import_value_2023_usd_k": 138533
+  },
+  {
+    "country": "베냉",
+    "import_2019_t": 72259,
+    "import_2023_t": 70737,
+    "growth_pct": -2.1,
+    "import_value_2023_usd_k": 66633
+  },
+  {
+    "country": "모잠비크",
+    "import_2019_t": 33773,
+    "import_2023_t": 67313,
+    "growth_pct": 99.3,
+    "import_value_2023_usd_k": 100346
+  },
+  {
+    "country": "말레이시아",
+    "import_2019_t": 53370,
+    "import_2023_t": 62014,
+    "growth_pct": 16.2,
+    "import_value_2023_usd_k": 102150
+  },
+  {
+    "country": "우크라이나",
+    "import_2019_t": 54646,
+    "import_2023_t": 57057,
+    "growth_pct": 4.4,
+    "import_value_2023_usd_k": 109781
+  },
+  {
+    "country": "말리",
+    "import_2019_t": 3967,
+    "import_2023_t": 55581,
+    "growth_pct": 1300.9,
+    "import_value_2023_usd_k": 35061
+  },
+  {
+    "country": "토고",
+    "import_2019_t": 833,
+    "import_2023_t": 50229,
+    "growth_pct": 5932.7,
+    "import_value_2023_usd_k": 27945
+  },
+  {
+    "country": "폴란드",
+    "import_2019_t": 51815,
+    "import_2023_t": 43914,
+    "growth_pct": -15.2,
+    "import_value_2023_usd_k": 96568
+  },
+  {
+    "country": "스페인",
+    "import_2019_t": 25987,
+    "import_2023_t": 38157,
+    "growth_pct": 46.8,
+    "import_value_2023_usd_k": 65161
+  },
+  {
+    "country": "프랑스",
+    "import_2019_t": 31920,
+    "import_2023_t": 32569,
+    "growth_pct": 2.0,
+    "import_value_2023_usd_k": 104914
+  },
+  {
+    "country": "미국",
+    "import_2019_t": 27598,
+    "import_2023_t": 27569,
+    "growth_pct": -0.1,
+    "import_value_2023_usd_k": 100503
+  },
+  {
+    "country": "루마니아",
+    "import_2019_t": 26233,
+    "import_2023_t": 26707,
+    "growth_pct": 1.8,
+    "import_value_2023_usd_k": 62803
+  },
+  {
+    "country": "덴마크",
+    "import_2019_t": 34191,
+    "import_2023_t": 26573,
+    "growth_pct": -22.3,
+    "import_value_2023_usd_k": 48844
+  }
+]

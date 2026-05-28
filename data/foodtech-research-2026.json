@@ -1,0 +1,1284 @@
+{
+  "investment_trends": [
+    {
+      "period": "2021",
+      "b2b_infra": 250,
+      "b2c_brands": 1050
+    },
+    {
+      "period": "2022",
+      "b2b_infra": 320,
+      "b2c_brands": 576
+    },
+    {
+      "period": "2023",
+      "b2b_infra": 160,
+      "b2c_brands": 66
+    },
+    {
+      "period": "2024",
+      "b2b_infra": 125,
+      "b2c_brands": 14
+    }
+  ],
+  "ai_margin_expansion": [
+    {
+      "category": "\ucd08\uae30 \ub3c4\uc785 (Phase 1)",
+      "yield": 65,
+      "energy_eff": 40,
+      "ebitda_margin": 8
+    },
+    {
+      "category": "\ubd80\ubd84 \uc790\ub3d9\ud654 (Phase 2)",
+      "yield": 78,
+      "energy_eff": 55,
+      "ebitda_margin": 14
+    },
+    {
+      "category": "\ub370\uc774\ud130 \ud1b5\ud569 (Phase 3)",
+      "yield": 88,
+      "energy_eff": 75,
+      "ebitda_margin": 22
+    },
+    {
+      "category": "\uc790\uc728 \uc6b4\uc601 (Phase 4)",
+      "yield": 96,
+      "energy_eff": 92,
+      "ebitda_margin": 31
+    }
+  ],
+  "production_cost_parity": [
+    {
+      "year": "2022",
+      "cultured_meat": 150,
+      "precision_fermentation": 85,
+      "conventional": 4.5
+    },
+    {
+      "year": "2023",
+      "cultured_meat": 90,
+      "precision_fermentation": 50,
+      "conventional": 4.8
+    },
+    {
+      "year": "2024",
+      "cultured_meat": 45,
+      "precision_fermentation": 28,
+      "conventional": 5.1
+    },
+    {
+      "year": "2025(E)",
+      "cultured_meat": 18,
+      "precision_fermentation": 12,
+      "conventional": 5.3
+    },
+    {
+      "year": "2026(E)",
+      "cultured_meat": 8,
+      "precision_fermentation": 6,
+      "conventional": 5.6
+    },
+    {
+      "year": "2028(E)",
+      "cultured_meat": 4.5,
+      "precision_fermentation": 3,
+      "conventional": 6.2
+    }
+  ],
+  "canned_seafood_market": [
+    {
+      "year": "2021",
+      "market_size": 103.1
+    },
+    {
+      "year": "2022",
+      "market_size": 120.1
+    },
+    {
+      "year": "2023",
+      "market_size": 133.3
+    },
+    {
+      "year": "2024",
+      "market_size": 166.8
+    },
+    {
+      "year": "2025",
+      "market_size": 183.2
+    },
+    {
+      "year": "2026",
+      "market_size": 195.4
+    }
+  ],
+  "canned_cagr_by_country": [
+    {
+      "name": "A",
+      "cagr": 74.8
+    },
+    {
+      "name": "B",
+      "cagr": 73.0
+    },
+    {
+      "name": "C",
+      "cagr": 88.8
+    },
+    {
+      "name": "D",
+      "cagr": 90.7
+    },
+    {
+      "name": "E",
+      "cagr": 64.1
+    }
+  ],
+  "cultivated_investment_timeline": [
+    {
+      "year": "2021",
+      "amount": 90.1
+    },
+    {
+      "year": "2022",
+      "amount": 136.1
+    },
+    {
+      "year": "2023",
+      "amount": 139.1
+    },
+    {
+      "year": "2024",
+      "amount": 177.6
+    },
+    {
+      "year": "2025",
+      "amount": 174.2
+    },
+    {
+      "year": "2026",
+      "amount": 199.4
+    }
+  ],
+  "cultivated_companies_by_country": [
+    {
+      "country": "A",
+      "companies": 76.7
+    },
+    {
+      "country": "B",
+      "companies": 84.5
+    },
+    {
+      "country": "C",
+      "companies": 83.1
+    },
+    {
+      "country": "D",
+      "companies": 98.5
+    },
+    {
+      "country": "E",
+      "companies": 88.7
+    }
+  ],
+  "soft_robotics_market": [
+    {
+      "year": "2021",
+      "market": 98.4
+    },
+    {
+      "year": "2022",
+      "market": 114.6
+    },
+    {
+      "year": "2023",
+      "market": 155.6
+    },
+    {
+      "year": "2024",
+      "market": 155.7
+    },
+    {
+      "year": "2025",
+      "market": 185.6
+    },
+    {
+      "year": "2026",
+      "market": 201.1
+    }
+  ],
+  "alaska_salmon_forecast": [
+    {
+      "year": "2021",
+      "harvest": 92.5
+    },
+    {
+      "year": "2022",
+      "harvest": 122.2
+    },
+    {
+      "year": "2023",
+      "harvest": 140.2
+    },
+    {
+      "year": "2024",
+      "harvest": 179.0
+    },
+    {
+      "year": "2025",
+      "harvest": 195.9
+    },
+    {
+      "year": "2026",
+      "harvest": 192.5
+    }
+  ],
+  "foodtech_ai_market_growth": [
+    {
+      "year": "2021",
+      "market_size": 111.3
+    },
+    {
+      "year": "2022",
+      "market_size": 136.2
+    },
+    {
+      "year": "2023",
+      "market_size": 158.9
+    },
+    {
+      "year": "2024",
+      "market_size": 172.4
+    },
+    {
+      "year": "2025",
+      "market_size": 185.0
+    },
+    {
+      "year": "2026",
+      "market_size": 219.1
+    }
+  ],
+  "ai_qc_accuracy": [
+    {
+      "method": "A",
+      "accuracy": 85.4
+    },
+    {
+      "method": "B",
+      "accuracy": 63.7
+    },
+    {
+      "method": "C",
+      "accuracy": 93.2
+    },
+    {
+      "method": "D",
+      "accuracy": 93.5
+    },
+    {
+      "method": "E",
+      "accuracy": 69.2
+    }
+  ],
+  "ai_extrusion_efficiency": [
+    {
+      "name": "A",
+      "value": 73.7
+    },
+    {
+      "name": "B",
+      "value": 94.9
+    },
+    {
+      "name": "C",
+      "value": 72.5
+    },
+    {
+      "name": "D",
+      "value": 69.2
+    },
+    {
+      "name": "E",
+      "value": 97.2
+    }
+  ],
+  "fermentation_innovation": [
+    {
+      "phase": "A",
+      "efficiency": 86.5
+    },
+    {
+      "phase": "B",
+      "efficiency": 70.6
+    },
+    {
+      "phase": "C",
+      "efficiency": 91.1
+    },
+    {
+      "phase": "D",
+      "efficiency": 80.5
+    },
+    {
+      "phase": "E",
+      "efficiency": 64.9
+    }
+  ],
+  "alt_protein_cagr_2030": [
+    {
+      "sector": "A",
+      "cagr": 98.0
+    },
+    {
+      "sector": "B",
+      "cagr": 76.7
+    },
+    {
+      "sector": "C",
+      "cagr": 95.2
+    },
+    {
+      "sector": "D",
+      "cagr": 60.6
+    },
+    {
+      "sector": "E",
+      "cagr": 96.1
+    }
+  ],
+  "shiru_ai_rd_scale": [
+    {
+      "label": "A",
+      "proteins": 90.1
+    },
+    {
+      "label": "B",
+      "proteins": 91.0
+    },
+    {
+      "label": "C",
+      "proteins": 65.1
+    },
+    {
+      "label": "D",
+      "proteins": 81.3
+    },
+    {
+      "label": "E",
+      "proteins": 62.3
+    }
+  ],
+  "alt_seafood_funding": [
+    {
+      "company": "A",
+      "funding": 94.0
+    },
+    {
+      "company": "B",
+      "funding": 89.4
+    },
+    {
+      "company": "C",
+      "funding": 87.3
+    },
+    {
+      "company": "D",
+      "funding": 77.8
+    },
+    {
+      "company": "E",
+      "funding": 71.5
+    }
+  ],
+  "public_investment_policy": [
+    {
+      "year": "2021",
+      "investment": 96.6
+    },
+    {
+      "year": "2022",
+      "investment": 116.4
+    },
+    {
+      "year": "2023",
+      "investment": 133.6
+    },
+    {
+      "year": "2024",
+      "investment": 161.3
+    },
+    {
+      "year": "2025",
+      "investment": 182.4
+    },
+    {
+      "year": "2026",
+      "investment": 207.8
+    }
+  ],
+  "microbial_vc_deals": [
+    {
+      "year": "2021",
+      "value": 118.1
+    },
+    {
+      "year": "2022",
+      "value": 121.1
+    },
+    {
+      "year": "2023",
+      "value": 156.5
+    },
+    {
+      "year": "2024",
+      "value": 177.7
+    },
+    {
+      "year": "2025",
+      "value": 177.6
+    },
+    {
+      "year": "2026",
+      "value": 200.3
+    }
+  ],
+  "upcycling_consumer_acceptance": [
+    {
+      "category": "A",
+      "acceptance": 84.2
+    },
+    {
+      "category": "B",
+      "acceptance": 85.3
+    },
+    {
+      "category": "C",
+      "acceptance": 87.8
+    },
+    {
+      "category": "D",
+      "acceptance": 85.2
+    },
+    {
+      "category": "E",
+      "acceptance": 97.8
+    }
+  ],
+  "cultivated_social_sentiment": [
+    {
+      "region": "A",
+      "negative": 60.8,
+      "positive": 78.1
+    },
+    {
+      "region": "B",
+      "negative": 66.0,
+      "positive": 91.0
+    },
+    {
+      "region": "C",
+      "negative": 98.8,
+      "positive": 67.5
+    },
+    {
+      "region": "D",
+      "negative": 75.6,
+      "positive": 79.5
+    },
+    {
+      "region": "E",
+      "negative": 69.9,
+      "positive": 66.9
+    }
+  ],
+  "ajinomoto_cell_efficiency": [
+    {
+      "method": "A",
+      "efficiency": 72.0
+    },
+    {
+      "method": "B",
+      "efficiency": 84.8
+    },
+    {
+      "method": "C",
+      "efficiency": 95.2
+    },
+    {
+      "method": "D",
+      "efficiency": 87.7
+    },
+    {
+      "method": "E",
+      "efficiency": 78.9
+    }
+  ],
+  "pf_ai_optimization": [
+    {
+      "name": "A",
+      "value": 60.0
+    },
+    {
+      "name": "B",
+      "value": 80.9
+    },
+    {
+      "name": "C",
+      "value": 90.6
+    },
+    {
+      "name": "D",
+      "value": 96.0
+    },
+    {
+      "name": "E",
+      "value": 82.4
+    }
+  ],
+  "fda_ndi_review": [
+    {
+      "category": "A",
+      "days": 87.1
+    },
+    {
+      "category": "B",
+      "days": 62.1
+    },
+    {
+      "category": "C",
+      "days": 94.2
+    },
+    {
+      "category": "D",
+      "days": 61.5
+    },
+    {
+      "category": "E",
+      "days": 84.6
+    }
+  ],
+  "glp1_metabolic_market": [
+    {
+      "category": "A",
+      "value": 75.5
+    },
+    {
+      "category": "B",
+      "value": 66.1
+    },
+    {
+      "category": "C",
+      "value": 88.6
+    },
+    {
+      "category": "D",
+      "value": 84.7
+    },
+    {
+      "category": "E",
+      "value": 88.1
+    }
+  ],
+  "ai_extrusion_impact": [
+    {
+      "metric": "A",
+      "value": 87.6
+    },
+    {
+      "metric": "B",
+      "value": 73.3
+    },
+    {
+      "metric": "C",
+      "value": 71.2
+    },
+    {
+      "metric": "D",
+      "value": 75.5
+    },
+    {
+      "metric": "E",
+      "value": 68.7
+    }
+  ],
+  "microbial_market_forecast": [
+    {
+      "year": "2021",
+      "market_size": 95.4
+    },
+    {
+      "year": "2022",
+      "market_size": 132.6
+    },
+    {
+      "year": "2023",
+      "market_size": 155.7
+    },
+    {
+      "year": "2024",
+      "market_size": 155.7
+    },
+    {
+      "year": "2025",
+      "market_size": 193.5
+    },
+    {
+      "year": "2026",
+      "market_size": 193.3
+    }
+  ],
+  "insect_feed_market": [
+    {
+      "year": "2021",
+      "market_size": 110.7
+    },
+    {
+      "year": "2022",
+      "market_size": 110.4
+    },
+    {
+      "year": "2023",
+      "market_size": 152.7
+    },
+    {
+      "year": "2024",
+      "market_size": 167.0
+    },
+    {
+      "year": "2025",
+      "market_size": 197.8
+    },
+    {
+      "year": "2026",
+      "market_size": 192.7
+    }
+  ],
+  "cultivated_protein_market": [
+    {
+      "year": "2021",
+      "market_size": 107.9
+    },
+    {
+      "year": "2022",
+      "market_size": 125.1
+    },
+    {
+      "year": "2023",
+      "market_size": 156.4
+    },
+    {
+      "year": "2024",
+      "market_size": 162.2
+    },
+    {
+      "year": "2025",
+      "market_size": 173.0
+    },
+    {
+      "year": "2026",
+      "market_size": 196.0
+    }
+  ],
+  "ai_supply_chain_esg": [
+    {
+      "metric": "A",
+      "value": 67.8
+    },
+    {
+      "metric": "B",
+      "value": 80.7
+    },
+    {
+      "metric": "C",
+      "value": 99.6
+    },
+    {
+      "metric": "D",
+      "value": 86.9
+    },
+    {
+      "metric": "E",
+      "value": 67.1
+    }
+  ],
+  "alt_protein_2035_share": [
+    {
+      "name": "A",
+      "share": 75.7
+    },
+    {
+      "name": "B",
+      "share": 72.5
+    },
+    {
+      "name": "C",
+      "share": 98.9
+    },
+    {
+      "name": "D",
+      "share": 74.4
+    },
+    {
+      "name": "E",
+      "share": 93.4
+    }
+  ],
+  "geopolitical_rnd_funding": [
+    {
+      "region": "A",
+      "funding": 84.8
+    },
+    {
+      "region": "B",
+      "funding": 94.6
+    },
+    {
+      "region": "C",
+      "funding": 60.2
+    },
+    {
+      "region": "D",
+      "funding": 63.3
+    },
+    {
+      "region": "E",
+      "funding": 90.3
+    }
+  ],
+  "salmon_biomass_trend": [
+    {
+      "year": "2021",
+      "post_smolt_share": 106.1,
+      "supply_growth": 166.4
+    },
+    {
+      "year": "2022",
+      "post_smolt_share": 114.2,
+      "supply_growth": 172.4
+    },
+    {
+      "year": "2023",
+      "post_smolt_share": 142.0,
+      "supply_growth": 195.7
+    },
+    {
+      "year": "2024",
+      "post_smolt_share": 175.6,
+      "supply_growth": 209.4
+    },
+    {
+      "year": "2025",
+      "post_smolt_share": 189.6,
+      "supply_growth": 248.4
+    },
+    {
+      "year": "2026",
+      "post_smolt_share": 214.0,
+      "supply_growth": 248.1
+    }
+  ],
+  "shrimp_supply_decoupling": [
+    {
+      "year": "2021",
+      "ecuador_commodity": 118.1,
+      "india_value_added": 168.9
+    },
+    {
+      "year": "2022",
+      "ecuador_commodity": 112.3,
+      "india_value_added": 171.8
+    },
+    {
+      "year": "2023",
+      "ecuador_commodity": 136.3,
+      "india_value_added": 199.7
+    },
+    {
+      "year": "2024",
+      "ecuador_commodity": 151.3,
+      "india_value_added": 215.1
+    },
+    {
+      "year": "2025",
+      "ecuador_commodity": 179.9,
+      "india_value_added": 236.9
+    },
+    {
+      "year": "2026",
+      "ecuador_commodity": 213.9,
+      "india_value_added": 269.0
+    }
+  ],
+  "tuna_inflation_anchor": [
+    {
+      "quarter": "A",
+      "import_volume": 60.1,
+      "price_index": 70.9
+    },
+    {
+      "quarter": "B",
+      "import_volume": 77.5,
+      "price_index": 61.4
+    },
+    {
+      "quarter": "C",
+      "import_volume": 77.8,
+      "price_index": 83.2
+    },
+    {
+      "quarter": "D",
+      "import_volume": 75.9,
+      "price_index": 99.7
+    },
+    {
+      "quarter": "E",
+      "import_volume": 74.4,
+      "price_index": 89.2
+    }
+  ],
+  "reshoring_logistics_cost": [
+    {
+      "year": "2021",
+      "china_processing_share": 104.0,
+      "diesel_price": 140.0
+    },
+    {
+      "year": "2022",
+      "china_processing_share": 133.2,
+      "diesel_price": 166.3
+    },
+    {
+      "year": "2023",
+      "china_processing_share": 131.7,
+      "diesel_price": 184.5
+    },
+    {
+      "year": "2024",
+      "china_processing_share": 176.8,
+      "diesel_price": 223.1
+    },
+    {
+      "year": "2025",
+      "china_processing_share": 189.0,
+      "diesel_price": 238.8
+    },
+    {
+      "year": "2026",
+      "china_processing_share": 202.3,
+      "diesel_price": 252.1
+    }
+  ],
+  "marine_dx_savings": [
+    {
+      "metric": "A",
+      "value": 99.1
+    },
+    {
+      "metric": "B",
+      "value": 75.9
+    },
+    {
+      "metric": "C",
+      "value": 74.1
+    },
+    {
+      "metric": "D",
+      "value": 90.0
+    },
+    {
+      "metric": "E",
+      "value": 73.9
+    }
+  ],
+  "auv_market_forecast": [
+    {
+      "year": "2021",
+      "market_size": 107.9
+    },
+    {
+      "year": "2022",
+      "market_size": 137.9
+    },
+    {
+      "year": "2023",
+      "market_size": 138.5
+    },
+    {
+      "year": "2024",
+      "market_size": 153.2
+    },
+    {
+      "year": "2025",
+      "market_size": 197.4
+    },
+    {
+      "year": "2026",
+      "market_size": 193.9
+    }
+  ],
+  "marine_rnd_spending": [
+    {
+      "year": "2021",
+      "spending": 91.4
+    },
+    {
+      "year": "2022",
+      "spending": 136.3
+    },
+    {
+      "year": "2023",
+      "spending": 151.2
+    },
+    {
+      "year": "2024",
+      "spending": 175.9
+    },
+    {
+      "year": "2025",
+      "spending": 173.1
+    },
+    {
+      "year": "2026",
+      "spending": 201.4
+    }
+  ],
+  "usv_capabilities": [
+    {
+      "name": "A",
+      "value": 80.8
+    },
+    {
+      "name": "B",
+      "value": 70.2
+    },
+    {
+      "name": "C",
+      "value": 80.0
+    },
+    {
+      "name": "D",
+      "value": 87.0
+    },
+    {
+      "name": "E",
+      "value": 99.7
+    }
+  ],
+  "offshore_wind_capex": [
+    {
+      "year": "2021",
+      "capex_billion": 117.6
+    },
+    {
+      "year": "2022",
+      "capex_billion": 124.6
+    },
+    {
+      "year": "2023",
+      "capex_billion": 150.8
+    },
+    {
+      "year": "2024",
+      "capex_billion": 176.2
+    },
+    {
+      "year": "2025",
+      "capex_billion": 190.8
+    },
+    {
+      "year": "2026",
+      "capex_billion": 194.4
+    }
+  ],
+  "underwater_iot_market": [
+    {
+      "year": "2021",
+      "market_billion": 100.7
+    },
+    {
+      "year": "2022",
+      "market_billion": 133.5
+    },
+    {
+      "year": "2023",
+      "market_billion": 133.0
+    },
+    {
+      "year": "2024",
+      "market_billion": 167.1
+    },
+    {
+      "year": "2025",
+      "market_billion": 171.9
+    },
+    {
+      "year": "2026",
+      "market_billion": 201.1
+    }
+  ],
+  "pem_buoyancy_efficiency": [
+    {
+      "name": "A",
+      "value": 81.5
+    },
+    {
+      "name": "B",
+      "value": 76.1
+    },
+    {
+      "name": "C",
+      "value": 92.0
+    },
+    {
+      "name": "D",
+      "value": 94.0
+    },
+    {
+      "name": "E",
+      "value": 80.1
+    }
+  ],
+  "imta_roi_ghg": [
+    {
+      "name": "A",
+      "value": 91.7
+    },
+    {
+      "name": "B",
+      "value": 69.7
+    },
+    {
+      "name": "C",
+      "value": 98.4
+    },
+    {
+      "name": "D",
+      "value": 65.5
+    },
+    {
+      "name": "E",
+      "value": 90.3
+    }
+  ],
+  "bsf_ddgs_feed": [
+    {
+      "metric": "A",
+      "value": 65.2
+    },
+    {
+      "metric": "B",
+      "value": 90.8
+    },
+    {
+      "metric": "C",
+      "value": 70.5
+    },
+    {
+      "metric": "D",
+      "value": 93.1
+    },
+    {
+      "metric": "E",
+      "value": 69.3
+    }
+  ],
+  "catch_potential_drop": [
+    {
+      "scenario": "A",
+      "drop_rate": 88.6
+    },
+    {
+      "scenario": "B",
+      "drop_rate": 74.1
+    },
+    {
+      "scenario": "C",
+      "drop_rate": 69.6
+    },
+    {
+      "scenario": "D",
+      "drop_rate": 85.1
+    },
+    {
+      "scenario": "E",
+      "drop_rate": 84.5
+    }
+  ],
+  "qaoa_smart_aqua": [
+    {
+      "name": "A",
+      "value": 69.0
+    },
+    {
+      "name": "B",
+      "value": 67.3
+    },
+    {
+      "name": "C",
+      "value": 88.1
+    },
+    {
+      "name": "D",
+      "value": 81.8
+    },
+    {
+      "name": "E",
+      "value": 87.9
+    }
+  ],
+  "pbi_esg_paradox": [
+    {
+      "name": "A",
+      "value": 81.1
+    },
+    {
+      "name": "B",
+      "value": 69.7
+    },
+    {
+      "name": "C",
+      "value": 93.6
+    },
+    {
+      "name": "D",
+      "value": 82.3
+    },
+    {
+      "name": "E",
+      "value": 86.2
+    }
+  ],
+  "ras_biofloc_arbitrage": [
+    {
+      "metric": "A",
+      "value": 61.2
+    },
+    {
+      "metric": "B",
+      "value": 88.0
+    },
+    {
+      "metric": "C",
+      "value": 91.1
+    },
+    {
+      "metric": "D",
+      "value": 85.4
+    },
+    {
+      "metric": "E",
+      "value": 69.5
+    }
+  ],
+  "value_added_margin": [
+    {
+      "name": "A",
+      "margin": 67.3
+    },
+    {
+      "name": "B",
+      "margin": 75.1
+    },
+    {
+      "name": "C",
+      "margin": 81.8
+    },
+    {
+      "name": "D",
+      "margin": 70.3
+    },
+    {
+      "name": "E",
+      "margin": 75.3
+    }
+  ],
+  "fleet_modernization": [
+    {
+      "name": "A",
+      "value": 88.9
+    },
+    {
+      "name": "B",
+      "value": 64.3
+    },
+    {
+      "name": "C",
+      "value": 70.5
+    },
+    {
+      "name": "D",
+      "value": 95.5
+    },
+    {
+      "name": "E",
+      "value": 65.8
+    }
+  ],
+  "rights_based_quota": [
+    {
+      "name": "A",
+      "value": 61.4
+    },
+    {
+      "name": "B",
+      "value": 67.7
+    },
+    {
+      "name": "C",
+      "value": 93.8
+    },
+    {
+      "name": "D",
+      "value": 64.2
+    },
+    {
+      "name": "E",
+      "value": 63.3
+    }
+  ],
+  "harvest_processing_automation": [
+    {
+      "name": "A",
+      "value": 60.1
+    },
+    {
+      "name": "B",
+      "value": 65.9
+    },
+    {
+      "name": "C",
+      "value": 80.3
+    },
+    {
+      "name": "D",
+      "value": 62.0
+    },
+    {
+      "name": "E",
+      "value": 65.8
+    }
+  ],
+  "iuu_regulation_exposure": [
+    {
+      "metric": "A",
+      "value": 62.7
+    },
+    {
+      "metric": "B",
+      "value": 78.2
+    },
+    {
+      "metric": "C",
+      "value": 68.3
+    },
+    {
+      "metric": "D",
+      "value": 78.5
+    },
+    {
+      "metric": "E",
+      "value": 85.9
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "period": "2026-03",
+  "summary": {
+    "revenue": { "actual": 2333, "target": 10691, "progress": 21.8, "mom_diff": -186, "mom_diff_percent": -7 },
+    "operating_profit": { "actual": 53, "target": 353, "progress": 15.1, "mom_diff": -9, "mom_diff_percent": -14 },
+    "pre_tax_profit": { "actual": 171, "target": 399, "progress": 42.8, "mom_diff": 121, "mom_diff_percent": 240 },
+    "net_cash": { "amount": 771, "mom_diff": 139, "mom_diff_percent": 22 }
+  },
+  "affiliate_revenue": [
+    { "name": "신라교역", "current_actual": 273.8, "current_target": 311.2, "achievement_rate": 88.0, "cumulative_actual": 639.5, "yearly_target": 3800.0, "progress_rate": 16.8, "last_year_cumulative": 938.9, "yoy_diff": -299.4, "remarks": "선망 매출 355억 (37%↓)\n연승 매출 85억 (11%↑)\n캔 매출 168억 (32%↓)" },
+    { "name": "신라에스지", "current_actual": 60.8, "current_target": 59.3, "achievement_rate": 102.5, "cumulative_actual": 176.3, "yearly_target": 794.5, "progress_rate": 22.2, "last_year_cumulative": 164.5, "yoy_diff": 11.8, "remarks": "소시지 904톤 (13%↓)\n골뱅이 175,800 CAN\n축육 855톤 (27%↑)" },
+    { "name": "동화청과", "current_actual": 33.1, "current_target": 37.5, "achievement_rate": 88.1, "cumulative_actual": 101.5, "yearly_target": 408.0, "progress_rate": 24.9, "last_year_cumulative": 104.7, "yoy_diff": -3.2, "remarks": "양파: 물량 1%↓ / 금액 39%↓ / 단가 38%↓\n과일 거래금액: 국내 10%↑ / 수입 8%↓" },
+    { "name": "원일특강", "current_actual": 332.6, "current_target": 311.8, "achievement_rate": 106.7, "cumulative_actual": 898.5, "yearly_target": 3700.0, "progress_rate": 24.3, "last_year_cumulative": 808.4, "yoy_diff": 90.1, "remarks": "구조용강 34,432MT (6%↑)\n공구강 2,381MT (8%↑)\n후판 22,557MT (28%↑)" },
+    { "name": "비엠스틸", "current_actual": 80.7, "current_target": 63.4, "achievement_rate": 127.3, "cumulative_actual": 186.5, "yearly_target": 770.3, "progress_rate": 24.2, "last_year_cumulative": 207.3, "yoy_diff": -20.9, "remarks": "수출품(멕시코 등) 샘플 발송\n구조용강 13,400MT (7%↓)" },
+    { "name": "해원단조", "current_actual": 27.3, "current_target": 15.0, "achievement_rate": 182.0, "cumulative_actual": 70.9, "yearly_target": 220.0, "progress_rate": 32.2, "last_year_cumulative": 57.3, "yoy_diff": 13.6, "remarks": "선박엔진 2,209MT (17%↑)\n산업기자재 482MT (39%↑)" },
+    { "name": "엔지니어링", "current_actual": 61.5, "current_target": 50.0, "achievement_rate": 123.0, "cumulative_actual": 178.1, "yearly_target": 600.0, "progress_rate": 29.7, "last_year_cumulative": 163.8, "yoy_diff": 14.2, "remarks": "Press 매출 160억 (9%↑)\nMold 매출 18억 (6%↑)" },
+    { "name": "광장오토", "current_actual": 19.8, "current_target": 17.2, "achievement_rate": 114.9, "cumulative_actual": 56.8, "yearly_target": 221.2, "progress_rate": 25.7, "last_year_cumulative": 50.9, "yoy_diff": 5.9, "remarks": "판매 매출 18억 (2%↑)\n서비스 매출 39억 (17%↑)" },
+    { "name": "비전힐스", "current_actual": 12.4, "current_target": 20.1, "achievement_rate": 61.9, "cumulative_actual": 25.2, "yearly_target": 177.0, "progress_rate": 14.2, "last_year_cumulative": 23.2, "yoy_diff": 2.0, "remarks": "내방객 전년동기 대비 하락\n연습장 방문객 (4.2%↓)" }
+  ],
+  "affiliate_op": [
+    { "name": "신라교역", "current_actual": 32.0, "current_target": 16.9, "achievement_rate": 189.4, "cumulative_actual": 21.6, "yearly_target": 100.0, "progress_rate": 21.6, "last_year_cumulative": 9.3, "yoy_diff": 12.3, "remarks": "선망 영업이익 11억 (56%↓)\n연승 영업이익 8억 (150%↑)\n캔 영업이익 0.4억 (62%↓)" },
+    { "name": "신라에스지", "current_actual": -3.0, "current_target": -0.6, "achievement_rate": null, "cumulative_actual": -5.8, "yearly_target": 4.8, "progress_rate": null, "last_year_cumulative": -5.4, "yoy_diff": -0.4, "remarks": "골뱅이 라인 재배치 (3월 완료)\n축육소시지 생산체제 구축 중" },
+    { "name": "동화청과", "current_actual": 3.1, "current_target": 6.6, "achievement_rate": 47.1, "cumulative_actual": 13.5, "yearly_target": 54.8, "progress_rate": 24.6, "last_year_cumulative": 19.4, "yoy_diff": -5.9, "remarks": "신규 중도매인/매참인 영입 진행\n경매외 거래 확대 추진" },
+    { "name": "원일특강", "current_actual": 8.6, "current_target": 7.7, "achievement_rate": 111.3, "cumulative_actual": 11.1, "yearly_target": 93.0, "progress_rate": 11.9, "last_year_cumulative": 17.5, "yoy_diff": -6.4, "remarks": "대손상각 3억↑, 이자비용 1억↑" },
+    { "name": "비엠스틸", "current_actual": 3.3, "current_target": 2.0, "achievement_rate": 168.8, "cumulative_actual": 5.2, "yearly_target": 25.3, "progress_rate": 20.7, "last_year_cumulative": 9.3, "yoy_diff": -4.1, "remarks": "구조용강 영업이익 5억 (44%↓)" },
+    { "name": "해원단조", "current_actual": 1.6, "current_target": 0.6, "achievement_rate": 259.5, "cumulative_actual": 2.7, "yearly_target": 8.8, "progress_rate": 30.1, "last_year_cumulative": 0.2, "yoy_diff": 2.5, "remarks": "선박엔진 이익 1.6억\n산업기자재 이익 0.4억" },
+    { "name": "엔지니어링", "current_actual": -3.3, "current_target": 1.3, "achievement_rate": null, "cumulative_actual": -2.2, "yearly_target": 16.0, "progress_rate": null, "last_year_cumulative": 7.5, "yoy_diff": -9.7, "remarks": "Press 영업이익 0.3억\nMold 영업이익 -2.5억" },
+    { "name": "광장오토", "current_actual": 0.9, "current_target": -0.4, "achievement_rate": null, "cumulative_actual": 2.3, "yearly_target": 2.6, "progress_rate": 90.5, "last_year_cumulative": -0.1, "yoy_diff": 2.4, "remarks": "판매 이익 -1.2억\n서비스 이익 3.5억" },
+    { "name": "비전힐스", "current_actual": 4.9, "current_target": 7.1, "achievement_rate": 68.8, "cumulative_actual": 4.7, "yearly_target": 47.4, "progress_rate": 10.0, "last_year_cumulative": 4.1, "yoy_diff": 0.6, "remarks": "회원제 이익 -4.5억\n연습장 이익 0.2억" }
+  ],
+  "affiliate_ptp": [
+    { "name": "신라교역", "current_actual": 83.9, "current_target": 21.4, "achievement_rate": 391.4, "cumulative_actual": 133.0, "yearly_target": 150.0, "progress_rate": 88.7, "last_year_cumulative": -6.1, "yoy_diff": 139.1, "remarks": "환산이익 83억↑\n회원권 처분이익 57억↑" },
+    { "name": "신라에스지", "current_actual": -4.0, "current_target": -1.0, "achievement_rate": null, "cumulative_actual": -2.7, "yearly_target": -5.1, "progress_rate": null, "last_year_cumulative": -7.4, "yoy_diff": 4.8, "remarks": "속초공장 처분이익 5억↑" },
+    { "name": "동화청과", "current_actual": 3.8, "current_target": 6.7, "achievement_rate": 56.2, "cumulative_actual": 12.5, "yearly_target": 56.3, "progress_rate": 22.2, "last_year_cumulative": 23.0, "yoy_diff": -10.5, "remarks": "희망재단 기부금 등 3억↑" },
+    { "name": "원일특강", "current_actual": 2.5, "current_target": 5.8, "achievement_rate": 43.4, "cumulative_actual": 0.8, "yearly_target": 70.0, "progress_rate": 1.2, "last_year_cumulative": 12.4, "yoy_diff": -11.6, "remarks": "비엠스틸 배당금 1.5억↑\n환산손실 4억↑, 기계장치 처분손실 2억↑" },
+    { "name": "비엠스틸", "current_actual": 3.6, "current_target": 2.0, "achievement_rate": 180.5, "cumulative_actual": 6.0, "yearly_target": 25.1, "progress_rate": 24.0, "last_year_cumulative": 9.2, "yoy_diff": -3.2, "remarks": "" },
+    { "name": "해원단조", "current_actual": 1.4, "current_target": 0.4, "achievement_rate": 368.6, "cumulative_actual": 2.0, "yearly_target": 6.1, "progress_rate": 33.5, "last_year_cumulative": -0.7, "yoy_diff": 2.7, "remarks": "상품매출 비율 확대 (16억)\n고합금 및 스텐레스 매출 달성" },
+    { "name": "엔지니어링", "current_actual": 4.9, "current_target": 1.7, "achievement_rate": 292.0, "cumulative_actual": 6.9, "yearly_target": 20.0, "progress_rate": 34.7, "last_year_cumulative": 8.0, "yoy_diff": -1.1, "remarks": "환산이익 5억↑" },
+    { "name": "광장오토", "current_actual": 1.6, "current_target": 0.6, "achievement_rate": 263.2, "cumulative_actual": 3.5, "yearly_target": 9.1, "progress_rate": 38.6, "last_year_cumulative": 0.8, "yoy_diff": 2.7, "remarks": "정비 VC매출 달성 중" },
+    { "name": "비전힐스", "current_actual": 6.0, "current_target": 8.8, "achievement_rate": 68.0, "cumulative_actual": 8.8, "yearly_target": 67.5, "progress_rate": 13.0, "last_year_cumulative": 11.1, "yoy_diff": -2.3, "remarks": "잡이익 3억↑" }
+  ],
+  "affiliate_cash": [
+    { "name": "신라홀딩스", "cash_equivalents": 8, "borrowings": 190, "net_cash": -182 },
+    { "name": "신라교역", "cash_equivalents": 1134, "borrowings": 400, "net_cash": 734 },
+    { "name": "동화청과", "cash_equivalents": 210, "borrowings": 0, "net_cash": 210 },
+    { "name": "신라에스지", "cash_equivalents": 39, "borrowings": 233, "net_cash": -194 },
+    { "name": "원일특강", "cash_equivalents": 123, "borrowings": 692, "net_cash": -569 },
+    { "name": "비엠스틸", "cash_equivalents": 41, "borrowings": 30, "net_cash": 11 },
+    { "name": "해원단조", "cash_equivalents": 4, "borrowings": 0, "net_cash": 4 },
+    { "name": "엔지니어링", "cash_equivalents": 81, "borrowings": 0, "net_cash": 81 },
+    { "name": "비전힐스", "cash_equivalents": 629, "borrowings": 0, "net_cash": 629 },
+    { "name": "광장오토", "cash_equivalents": 47, "borrowings": 0, "net_cash": 47 },
+    { "name": "합계", "cash_equivalents": 2316, "borrowings": 1545, "net_cash": 771 }
+  ]
+}

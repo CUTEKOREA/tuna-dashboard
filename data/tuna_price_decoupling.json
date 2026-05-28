@@ -1,0 +1,17 @@
+[
+  { "month": "2023-01", "raw_price_usd": 1800, "retail_price_krw": 2800, "margin_spread": 0 },
+  { "month": "2023-02", "raw_price_usd": 1850, "retail_price_krw": 2850, "margin_spread": 0 },
+  { "month": "2023-03", "raw_price_usd": 1950, "retail_price_krw": 2900, "margin_spread": 0 },
+  { "month": "2023-04", "raw_price_usd": 2000, "retail_price_krw": 3000, "margin_spread": 0 },
+  { "month": "2023-05", "raw_price_usd": 1900, "retail_price_krw": 3000, "margin_spread": 100 },
+  { "month": "2023-06", "raw_price_usd": 1800, "retail_price_krw": 3000, "margin_spread": 200 },
+  { "month": "2023-07", "raw_price_usd": 1750, "retail_price_krw": 3050, "margin_spread": 300 },
+  { "month": "2023-08", "raw_price_usd": 1650, "retail_price_krw": 3100, "margin_spread": 450 },
+  { "month": "2023-09", "raw_price_usd": 1600, "retail_price_krw": 3100, "margin_spread": 500 },
+  { "month": "2023-10", "raw_price_usd": 1550, "retail_price_krw": 3150, "margin_spread": 600 },
+  { "month": "2023-11", "raw_price_usd": 1500, "retail_price_krw": 3150, "margin_spread": 650 },
+  { "month": "2023-12", "raw_price_usd": 1450, "retail_price_krw": 3200, "margin_spread": 750 },
+  { "month": "2024-01", "raw_price_usd": 1400, "retail_price_krw": 3300, "margin_spread": 900 },
+  { "month": "2024-02", "raw_price_usd": 1380, "retail_price_krw": 3300, "margin_spread": 920 },
+  { "month": "2024-03", "raw_price_usd": 1420, "retail_price_krw": 3350, "margin_spread": 930 }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "country": "China",
+    "frozen_price_usd_per_t": 2800,
+    "prepared_price_usd_per_t": 7500,
+    "spread": 4700,
+    "margin_pct": 168
+  },
+  {
+    "country": "Thailand",
+    "frozen_price_usd_per_t": 3100,
+    "prepared_price_usd_per_t": 9200,
+    "spread": 6100,
+    "margin_pct": 197
+  },
+  {
+    "country": "Spain",
+    "frozen_price_usd_per_t": 3500,
+    "prepared_price_usd_per_t": 8800,
+    "spread": 5300,
+    "margin_pct": 151
+  },
+  {
+    "country": "Peru",
+    "frozen_price_usd_per_t": 1900,
+    "prepared_price_usd_per_t": 3400,
+    "spread": 1500,
+    "margin_pct": 79
+  },
+  {
+    "country": "Korea, Rep",
+    "frozen_price_usd_per_t": 3800,
+    "prepared_price_usd_per_t": 6800,
+    "spread": 3000,
+    "margin_pct": 79
+  }
+]

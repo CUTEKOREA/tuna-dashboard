@@ -1,0 +1,227 @@
+[
+  {
+    "Year": 1980,
+    "Wild_Volume": 87073.0,
+    "Aqua_Volume": 0.0
+  },
+  {
+    "Year": 1981,
+    "Wild_Volume": 100149.0,
+    "Aqua_Volume": 0.0
+  },
+  {
+    "Year": 1982,
+    "Wild_Volume": 95386.0,
+    "Aqua_Volume": 0.0
+  },
+  {
+    "Year": 1983,
+    "Wild_Volume": 87273.0,
+    "Aqua_Volume": 0.0
+  },
+  {
+    "Year": 1984,
+    "Wild_Volume": 75140.0,
+    "Aqua_Volume": 50.0
+  },
+  {
+    "Year": 1985,
+    "Wild_Volume": 75908.0,
+    "Aqua_Volume": 38.0
+  },
+  {
+    "Year": 1986,
+    "Wild_Volume": 68907.0,
+    "Aqua_Volume": 60.0
+  },
+  {
+    "Year": 1987,
+    "Wild_Volume": 61210.0,
+    "Aqua_Volume": 109.0
+  },
+  {
+    "Year": 1988,
+    "Wild_Volume": 57892.0,
+    "Aqua_Volume": 47.0
+  },
+  {
+    "Year": 1989,
+    "Wild_Volume": 52215.0,
+    "Aqua_Volume": 237.0
+  },
+  {
+    "Year": 1990,
+    "Wild_Volume": 48973.0,
+    "Aqua_Volume": 358.0
+  },
+  {
+    "Year": 1991,
+    "Wild_Volume": 54679.0,
+    "Aqua_Volume": 16.0
+  },
+  {
+    "Year": 1992,
+    "Wild_Volume": 60089.0,
+    "Aqua_Volume": 354.0
+  },
+  {
+    "Year": 1993,
+    "Wild_Volume": 60387.0,
+    "Aqua_Volume": 655.0
+  },
+  {
+    "Year": 1994,
+    "Wild_Volume": 77917.0,
+    "Aqua_Volume": 1275.0
+  },
+  {
+    "Year": 1995,
+    "Wild_Volume": 91116.0,
+    "Aqua_Volume": 1942.0
+  },
+  {
+    "Year": 1996,
+    "Wild_Volume": 92720.0,
+    "Aqua_Volume": 2090.0
+  },
+  {
+    "Year": 1997,
+    "Wild_Volume": 88036.0,
+    "Aqua_Volume": 2122.0
+  },
+  {
+    "Year": 1998,
+    "Wild_Volume": 75418.0,
+    "Aqua_Volume": 2073.0
+  },
+  {
+    "Year": 1999,
+    "Wild_Volume": 83227.0,
+    "Aqua_Volume": 2128.0
+  },
+  {
+    "Year": 2000,
+    "Wild_Volume": 81779.0,
+    "Aqua_Volume": 3591.0
+  },
+  {
+    "Year": 2001,
+    "Wild_Volume": 71218.0,
+    "Aqua_Volume": 5663.0
+  },
+  {
+    "Year": 2002,
+    "Wild_Volume": 69187.0,
+    "Aqua_Volume": 6408.0
+  },
+  {
+    "Year": 2003,
+    "Wild_Volume": 61022.0,
+    "Aqua_Volume": 4786.0
+  },
+  {
+    "Year": 2004,
+    "Wild_Volume": 71301.0,
+    "Aqua_Volume": 21328.0
+  },
+  {
+    "Year": 2005,
+    "Wild_Volume": 79616.0,
+    "Aqua_Volume": 16453.0
+  },
+  {
+    "Year": 2006,
+    "Wild_Volume": 67766.0,
+    "Aqua_Volume": 25907.0
+  },
+  {
+    "Year": 2007,
+    "Wild_Volume": 65148.0,
+    "Aqua_Volume": 22963.0
+  },
+  {
+    "Year": 2008,
+    "Wild_Volume": 57149.29,
+    "Aqua_Volume": 22330.739999999998
+  },
+  {
+    "Year": 2009,
+    "Wild_Volume": 51556.0,
+    "Aqua_Volume": 23282.19
+  },
+  {
+    "Year": 2010,
+    "Wild_Volume": 44316.85,
+    "Aqua_Volume": 20470.93
+  },
+  {
+    "Year": 2011,
+    "Wild_Volume": 37077.9,
+    "Aqua_Volume": 18330.260000000002
+  },
+  {
+    "Year": 2012,
+    "Wild_Volume": 35751.52,
+    "Aqua_Volume": 28574.44
+  },
+  {
+    "Year": 2013,
+    "Wild_Volume": 36828.03,
+    "Aqua_Volume": 36657.33
+  },
+  {
+    "Year": 2014,
+    "Wild_Volume": 42343.39,
+    "Aqua_Volume": 43066.11
+  },
+  {
+    "Year": 2015,
+    "Wild_Volume": 42357.84,
+    "Aqua_Volume": 48351.340000000004
+  },
+  {
+    "Year": 2016,
+    "Wild_Volume": 47736.71,
+    "Aqua_Volume": 53904.79
+  },
+  {
+    "Year": 2017,
+    "Wild_Volume": 54303.270000000004,
+    "Aqua_Volume": 53699.31
+  },
+  {
+    "Year": 2018,
+    "Wild_Volume": 57426.05,
+    "Aqua_Volume": 66491.8
+  },
+  {
+    "Year": 2019,
+    "Wild_Volume": 59819.08,
+    "Aqua_Volume": 60954.43
+  },
+  {
+    "Year": 2020,
+    "Wild_Volume": 68953.29000000001,
+    "Aqua_Volume": 65929.56
+  },
+  {
+    "Year": 2021,
+    "Wild_Volume": 66207.53,
+    "Aqua_Volume": 67907.14
+  },
+  {
+    "Year": 2022,
+    "Wild_Volume": 66289.94,
+    "Aqua_Volume": 72435.34
+  },
+  {
+    "Year": 2023,
+    "Wild_Volume": 66715.9,
+    "Aqua_Volume": 67768.28
+  },
+  {
+    "Year": 2024,
+    "Wild_Volume": 70758.17,
+    "Aqua_Volume": 68443.03
+  }
+]

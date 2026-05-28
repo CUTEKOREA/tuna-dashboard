@@ -1,0 +1,247 @@
+[
+  {
+    "Year": 1990,
+    "SquidIndex": 100.0,
+    "TunaIndex": 100.0,
+    "SquidRaw": 2001848,
+    "TunaRaw": 3200000
+  },
+  {
+    "Year": 1991,
+    "SquidIndex": 107.2,
+    "TunaIndex": 106.2,
+    "SquidRaw": 2145128,
+    "TunaRaw": 3400000
+  },
+  {
+    "Year": 1992,
+    "SquidIndex": 117.4,
+    "TunaIndex": 109.4,
+    "SquidRaw": 2349609,
+    "TunaRaw": 3500000
+  },
+  {
+    "Year": 1993,
+    "SquidIndex": 113.4,
+    "TunaIndex": 112.5,
+    "SquidRaw": 2270952,
+    "TunaRaw": 3600000
+  },
+  {
+    "Year": 1994,
+    "SquidIndex": 116.4,
+    "TunaIndex": 115.6,
+    "SquidRaw": 2329299,
+    "TunaRaw": 3700000
+  },
+  {
+    "Year": 1995,
+    "SquidIndex": 120.4,
+    "TunaIndex": 118.8,
+    "SquidRaw": 2411193,
+    "TunaRaw": 3800000
+  },
+  {
+    "Year": 1996,
+    "SquidIndex": 132.1,
+    "TunaIndex": 121.9,
+    "SquidRaw": 2644236,
+    "TunaRaw": 3900000
+  },
+  {
+    "Year": 1997,
+    "SquidIndex": 146.0,
+    "TunaIndex": 125.0,
+    "SquidRaw": 2923237,
+    "TunaRaw": 4000000
+  },
+  {
+    "Year": 1998,
+    "SquidIndex": 114.5,
+    "TunaIndex": 121.9,
+    "SquidRaw": 2291430,
+    "TunaRaw": 3900000
+  },
+  {
+    "Year": 1999,
+    "SquidIndex": 149.3,
+    "TunaIndex": 128.1,
+    "SquidRaw": 2987995,
+    "TunaRaw": 4100000
+  },
+  {
+    "Year": 2000,
+    "SquidIndex": 154.4,
+    "TunaIndex": 131.2,
+    "SquidRaw": 3089899,
+    "TunaRaw": 4200000
+  },
+  {
+    "Year": 2001,
+    "SquidIndex": 137.2,
+    "TunaIndex": 128.1,
+    "SquidRaw": 2746347,
+    "TunaRaw": 4100000
+  },
+  {
+    "Year": 2002,
+    "SquidIndex": 133.9,
+    "TunaIndex": 134.4,
+    "SquidRaw": 2679904,
+    "TunaRaw": 4300000
+  },
+  {
+    "Year": 2003,
+    "SquidIndex": 141.6,
+    "TunaIndex": 137.5,
+    "SquidRaw": 2834537,
+    "TunaRaw": 4400000
+  },
+  {
+    "Year": 2004,
+    "SquidIndex": 151.3,
+    "TunaIndex": 140.6,
+    "SquidRaw": 3029193,
+    "TunaRaw": 4500000
+  },
+  {
+    "Year": 2005,
+    "SquidIndex": 154.0,
+    "TunaIndex": 143.8,
+    "SquidRaw": 3082463,
+    "TunaRaw": 4600000
+  },
+  {
+    "Year": 2006,
+    "SquidIndex": 173.3,
+    "TunaIndex": 143.8,
+    "SquidRaw": 3468389,
+    "TunaRaw": 4600000
+  },
+  {
+    "Year": 2007,
+    "SquidIndex": 177.8,
+    "TunaIndex": 146.9,
+    "SquidRaw": 3558637,
+    "TunaRaw": 4700000
+  },
+  {
+    "Year": 2008,
+    "SquidIndex": 175.5,
+    "TunaIndex": 150.0,
+    "SquidRaw": 3513887,
+    "TunaRaw": 4800000
+  },
+  {
+    "Year": 2009,
+    "SquidIndex": 135.0,
+    "TunaIndex": 146.9,
+    "SquidRaw": 2701728,
+    "TunaRaw": 4700000
+  },
+  {
+    "Year": 2010,
+    "SquidIndex": 142.4,
+    "TunaIndex": 143.8,
+    "SquidRaw": 2849823,
+    "TunaRaw": 4600000
+  },
+  {
+    "Year": 2011,
+    "SquidIndex": 149.6,
+    "TunaIndex": 150.0,
+    "SquidRaw": 2995365,
+    "TunaRaw": 4800000
+  },
+  {
+    "Year": 2012,
+    "SquidIndex": 158.6,
+    "TunaIndex": 153.1,
+    "SquidRaw": 3174296,
+    "TunaRaw": 4900000
+  },
+  {
+    "Year": 2013,
+    "SquidIndex": 160.2,
+    "TunaIndex": 156.2,
+    "SquidRaw": 3206948,
+    "TunaRaw": 5000000
+  },
+  {
+    "Year": 2014,
+    "SquidIndex": 196.2,
+    "TunaIndex": 159.4,
+    "SquidRaw": 3926862,
+    "TunaRaw": 5100000
+  },
+  {
+    "Year": 2015,
+    "SquidIndex": 197.6,
+    "TunaIndex": 162.5,
+    "SquidRaw": 3954813,
+    "TunaRaw": 5200000
+  },
+  {
+    "Year": 2016,
+    "SquidIndex": 134.5,
+    "TunaIndex": 159.4,
+    "SquidRaw": 2693070,
+    "TunaRaw": 5100000
+  },
+  {
+    "Year": 2017,
+    "SquidIndex": 144.9,
+    "TunaIndex": 165.6,
+    "SquidRaw": 2900209,
+    "TunaRaw": 5300000
+  },
+  {
+    "Year": 2018,
+    "SquidIndex": 144.5,
+    "TunaIndex": 168.8,
+    "SquidRaw": 2892469,
+    "TunaRaw": 5400000
+  },
+  {
+    "Year": 2019,
+    "SquidIndex": 140.3,
+    "TunaIndex": 165.6,
+    "SquidRaw": 2809170,
+    "TunaRaw": 5300000
+  },
+  {
+    "Year": 2020,
+    "SquidIndex": 144.6,
+    "TunaIndex": 156.2,
+    "SquidRaw": 2895471,
+    "TunaRaw": 5000000
+  },
+  {
+    "Year": 2021,
+    "SquidIndex": 155.9,
+    "TunaIndex": 162.5,
+    "SquidRaw": 3121310,
+    "TunaRaw": 5200000
+  },
+  {
+    "Year": 2022,
+    "SquidIndex": 154.7,
+    "TunaIndex": 165.6,
+    "SquidRaw": 3096333,
+    "TunaRaw": 5300000
+  },
+  {
+    "Year": 2023,
+    "SquidIndex": 162.8,
+    "TunaIndex": 168.8,
+    "SquidRaw": 3259613,
+    "TunaRaw": 5400000
+  },
+  {
+    "Year": 2024,
+    "SquidIndex": 133.7,
+    "TunaIndex": 171.9,
+    "SquidRaw": 2676791,
+    "TunaRaw": 5500000
+  }
+]
