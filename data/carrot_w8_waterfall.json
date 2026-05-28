@@ -1,0 +1,7 @@
+[
+  {"year": "1년차", "보수적(Conservative)": 3, "기본(Base)": 7, "낙관(Bull)": 12, "_source": "KREI 농업전망2026: B2B TAM=20.6만톤(국내공급), 순수입 11.4만톤 중 IQF 전처리 전환 가능 물량 기준"},
+  {"year": "2년차", "보수적(Conservative)": 8, "기본(Base)": 18, "낙관(Bull)": 30, "_source": "Bass Diffusion Model: 초기 침투율 p=0.03, 모방계수 q=0.38(HMR 대기업 바이어 확산)"},
+  {"year": "3년차", "보수적(Conservative)": 15, "기본(Base)": 32, "낙관(Bull)": 52, "_source": "자급률 47.2%→45.2% 하락 추세에서 수입 전처리 비중 확대 시나리오"},
+  {"year": "4년차", "보수적(Conservative)": 22, "기본(Base)": 45, "낙관(Bull)": 68, "_source": "1인당 공급량 4.1→4.3kg 증가 반영, HMR/급식 채널 성장률 연 7~8%"},
+  {"year": "5년차", "보수적(Conservative)": 30, "기본(Base)": 55, "낙관(Bull)": 78, "_source": "IndexBox Korea Carrot Market Report 2026: 시장 성장 + FTA 0% 관세 효과 복합"}
+]

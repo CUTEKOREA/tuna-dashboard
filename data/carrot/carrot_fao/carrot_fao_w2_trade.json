@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "name": "수입: 한국"
+    },
+    {
+      "name": "수출: China, mainland"
+    },
+    {
+      "name": "수출: 베트남"
+    }
+  ],
+  "links": [
+    {
+      "source": "수출: China, mainland",
+      "target": "수입: 한국",
+      "value": 88592
+    },
+    {
+      "source": "수출: 베트남",
+      "target": "수입: 한국",
+      "value": 7651
+    }
+  ]
+}
