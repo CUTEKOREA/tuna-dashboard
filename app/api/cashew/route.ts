@@ -9,7 +9,8 @@ export async function GET() {
     const fileContents = fs.readFileSync(dataPath, 'utf8');
     const data = JSON.parse(fileContents);
 
-    // 2. 신규 위젯용 실시간 텔레메트리 데이터 주입 (오버라이드)
+    // 2. 신규 위젯용 정적 fallback 데이터 오버라이드 (라이브 API 미구축 — L-09 정직 표기)
+    // 실제 라이브화 시 VINACAS/USDA FAS/관세청 API 연동 필요
     
     // [신규 위젯 1] 베트남 캐슈 가공 역설 (RCN 수입 갭)
     data.d_vietnam_paradox = [
@@ -44,11 +45,20 @@ export async function GET() {
       { name: "단순 폐기(기존)", value: 20, fill: "#64748b" }
     ];
 
-    // 기존 KPI 데이터에 동적 업데이트 표식 추가
+    // 기존 KPI 데이터에 fallback 오버라이드 (정적, 수동 갱신)
     if (data.kpis && data.kpis.k1) {
       data.kpis.k1.value = "$6,850";
       data.kpis.k1.trend = "up";
     }
+
+    // Telemetry 정직 표기 (L-09 준수)
+    data._metadata = {
+      isLive: false,
+      status: "STATIC",
+      source: "정적 JSON + 4개 위젯 fallback 오버라이드 (라이브 API 미구축)",
+      syncDate: "2026-05-29",
+      lastUpdated: new Date().toISOString(),
+    };
 
     return NextResponse.json(data);
   } catch (error) {

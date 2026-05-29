@@ -1,6 +1,19 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🥜 **2026-05-29 — 캐슈(cashew) audit 12번째 + 농산물 첫 audit + L-09 27건 누적** [CC]:
+> - **Audit**: 3 TSX + 1 API + 1 JSON (39 위젯). 정정 3건. 4-Axis 72.5 → 84 (S-Grade 통과).
+>   - **🚨 P0 (L-09 27번째)**: `app/api/cashew/route.ts`가 "실시간 텔레메트리 데이터 주입 (오버라이드)" 주석 + 정적 하드코딩 4 위젯 데이터 → "정적 fallback 오버라이드 (L-09 정직)" + isLive: false 명시.
+>   - 누적 L-09 27건 (참치 1 · 고등어 1 · 오징어 8 · 갈치 6 · 연어 9 · 골뱅이 1 · 캐슈 1)
+>   - 영문 잔여 10건 모두 API/기관 약어 (FAOSTAT·VINACAS·USDA FAS·DART·MFDS·World Bank·JRC/EFI) — L-01 화이트리스트 허용
+>   - 출처 14건: VINACAS·서아프리카 (코트디부아르·탄자니아·ACA)·인도 DCCD·EUDR·CNSL ([docs/2026_cashew_industry_sources.md](docs/2026_cashew_industry_sources.md))
+>   - 주요 트렌드: 베트남 가공 정점 (2025 $5.43B, 중국이 미국 추월), 아프리카 현지가공 가속 (코트디부아르 130만톤 목표), CNSL 바이오경제 CAGR 6.7%
+>   - 보고서: [artifacts/cashew_audit_2026_05_29.md](artifacts/cashew_audit_2026_05_29.md)
+> - **commodity 카테고리별 L-09 패턴**: 수산물 26건/10 (평균 2.6/commodity) > 농산물 1건/1 > 축산물 0건/1. 수산물이 가장 시스템적 함정 누적률 높음.
+> - **누적 12 commodity**: 763 위젯, 208건 정정, 평균 78.7 → 88.0
+> - 검증: `npm run build` ✓
+
+
 > 🐔 **2026-05-29 — 닭고기(chicken) audit 11번째 + 축산물 첫 audit (수산물 패턴 미적용)** [CC]:
 > - **Audit**: 6 TSX (18 WidgetCard) + **9 API 라우트**. 정정 2건. 4-Axis 81 → 85 (S-Grade 통과).
 >   - **🎉 9 API 라우트 mock 트랩 모두 0건**: corporates·trade-shift·feed-cost·arbitrage·processing·global-export·parts·eggs·global-production
