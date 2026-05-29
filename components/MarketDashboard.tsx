@@ -44,8 +44,8 @@ export default function MarketDashboard() {
     return () => ro.disconnect();
   }, []);
 
-  const [mgoData, setMgoData] = useState({ price: 1144, change: -521, date: '2026.05.25', loading: false });
-  const [fxData, setFxData] = useState({ usd_krw: 1513, date: '2026.05.26', loading: false });
+  const [mgoData, setMgoData] = useState({ price: 1144, change: -521, date: '2026.05.28', loading: false });
+  const [fxData, setFxData] = useState({ usd_krw: 1513, date: '2026.05.28', loading: false });
   const [atunaLatest, setAtunaLatest] = useState<{
     skjBkk: { price: number; date: string };
     yfSey: { price: number; date: string };
@@ -54,7 +54,7 @@ export default function MarketDashboard() {
   }>({
     skjBkk: { price: 1850, date: '2026-05-22' },
     yfSey: { price: 2000, date: '2026-05-20' },
-    latestDate: '2026-05-22',
+    latestDate: '2026-05-28',
     loading: false,
   });
 
@@ -234,7 +234,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna Weekly: 시장을 움직이는 핵심 시그널 4선
+          Atuna Daily Digest: 5월 28일 시장을 움직이는 핵심 시그널 4선
         </h3>
         <div data-mobile-stack style={{
           display: 'grid',
@@ -247,13 +247,13 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
                 어가 급변 / 공급
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.22</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.28</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "SKJ 방콕 $1,850/t — 3주 연속 하락, IO 퍼펙트 스톰 지속"
+              "SKJ 만타 $2,025/t — EPO 공급 부족 속 고가 유지, YF와 가격 동조화"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              방콕 스킵잭이 $2,100(4/22) → $1,975(5/6) → $1,850(5/22)로 3주 연속 하락(-11.9%). 인도양 선사 운영 중단 장기화로 IO CPUE 급락, WCPO 공급 증가와 맞물려 단가 하락세. 싱가포르 MGO는 $1,144/t로 급락하며 유류 부담은 완화되나, IO 선사들의 복귀 시점이 늦어지면서 인도양 공급 공백 구조화. 옐로핀 세이셸은 역으로 $2,000/t(+5.3%)으로 반등 — SKJ↓ vs YF↑ 디커플링 심화.
+              에콰도르 선단의 1~3월 스킵잭 어획량이 86,809톤으로 전년 대비 27% 급감, 원료 부족으로 만타 SKJ가 $2,025/t(+1.3% vs 5월 초)에 거래. EU 선주들은 더 높은 가격을 제시하나 통조림 공장은 방콕 하락세를 기대하며 거부. 옐로핀은 대형 개체(20kg+) 대량 입항으로 $2,050/t까지 하락하며 SKJ와 가격 동조화 발생. 에콰도르 연료비는 2월 대비 2배 이상 급등(프리미엄 디젤 $5.40/갤런, +14%).
             </p>
           </div>
 
@@ -261,15 +261,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                수요 / 무역
+                무역 / 규제
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.27</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.28</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "미국 1분기 참치 로인 수입 4% 증가 — 태국 선전, 베트남 고전"
+              "Anfaco, EU-멕시코 무역 협정에 경고 — 참치 통조림 완전 자유화 우려"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              미국의 1분기 냉동 Pre-cooked 참치 로인 수입량이 9,796톤으로 전년 대비 4% 증가했으며, 수입 단가는 톤당 $5,295로 상승. 관세(35%)를 피해 수입되는 로인 시장에서 태국산(4,717톤, +1,704톤)이 크게 선전한 반면, 베트남산은 미국의 지식재산권 우선감시대상국 지정 우려 등과 겹치며 판매가 급감.
+              5/22 EU-멕시코 정상회담에서 체결된 MGA·iTA에 참치 통조림이 포함, 7년차부터 제로 관세 적용 전망. 스페인 통조림 협회 Anfaco는 멕시코의 통합 참치 산업(연 21.1만톤 어획, +14% YoY) 구조가 유럽 가공업체에 심각한 위협이라 경고. 멕시코 Grupomar·Grupo Pinsa 등의 EU 시장 침투 본격화 가능성. 유럽 위원회에 시장 모니터링 메커니즘 도입을 촉구.
             </p>
           </div>
 
@@ -277,15 +277,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                환율 / 매크로
+                환경 / 블루이코노미
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>2026.05.26</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.28</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "USD/KRW ₩1,513 + MGO $1,144/t — 원화 약세 속 유가 급락"
+              "PNG, 21.4만 헥타르 MPA 지정 — 블루카본 본드 시장 진출 및 VDS 영향"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              달러·원 환율 ₩1,513(개장 1,520.10)으로 원화 약세 지속. 수입 원가 부담 증가 요인이나, 싱가포르 MGO가 $1,144/t으로 4월 말 $2,000/t 대비 -43% 급락하며 선단 운영 비용은 대폭 완화. 연료비 절감 효과가 원화 약세 부담을 상쇄하는 구간. 참치 원료 달러 결제 단가가 하락 중이므로 원화 환산 매입가는 상대적으로 안정적.
+              PNG 수산부 장관이 멜라네시아 해양정상회의에서 서부 마누스 해역 21.4만 헥타르 MPA 지정을 발표. 세이셸의 블루본드 모델을 벤치마킹, 보존 금융 확보 추진. 이 &apos;금어구&apos;가 PNG EEZ 내부에 위치해 VDS 수익에 직접 영향 불가피. 한편 비스마르크 해저 타이탄 리지 화산 활동이 5/16 이후 가속화되며 주요 참치 어장인 인근 해역의 선망 조업에 차질 우려 지속.
             </p>
           </div>
 
@@ -293,15 +293,15 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
-                규제 / 리스크
+                규제 / IUU 단속
               </div>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.27</span>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Atuna 2026.05.28</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              "미국 환경단체, 에콰도르·대만 등 외국산 참치 수입 금지 소송"
+              "미국, IUU 어업 관련 외국인 26명 비자 금지 + Bumble Bee 강제노동 소송 각하"
             </h4>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, flex: 1 }}>
-              천연자원방어협의회(NRDC) 등 3개 단체가 해양포유류보호법(MMPA)을 근거로 에콰도르, 대만, 인도, 바누아투 등 8개국 참치의 수입 금지를 요구하며 미 정부(NMFS)를 제소. 해당국의 연승 및 자망 어업이 미국 수준의 돌고래 혼획 방지 규제를 충족하지 못한다고 주장. 판결 시 글로벌 참치 무역 장벽이 격화될 위험 상존.
+              미 국무부가 IUU 어업 관련 26명에 대한 비자 제한을 발동, 아르헨티나·멕시코 관련자 실명 공개. 트럼프 &apos;미국 수산업 경쟁력 복원&apos; 행정명령과 연계. 한편 캘리포니아 연방법원은 인도네시아 어부들의 Bumble Bee 강제노동 소송을 각하 — &quot;원고가 현재 진행 중인 피해를 입증하지 못했다&quot;고 판시. Greenpeace는 &quot;금전적 배상 가능성이 기업 관행 변화를 이끌 수 있다&quot;고 논평.
             </p>
           </div>
         </div>
@@ -311,37 +311,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          Forensic Intelligence: 참치 산업 구조적 변화와 신라교역의 전략
+          Forensic Intelligence: 5/28 참치 산업 구조 변화와 전략적 시사점
         </h3>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="3대양 동시 공급 충격 — IO·EPO 부진 + WCPO 화산 리스크"
+            title="EPO 공급 경색 + 방콕 역행 — SKJ 거래소별 양극화 심화"
             icon={Search}
             iconColor="#818cf8"
             pillar="S1"
-            cardDesc="이번 주 인도양·동부태평양·서태평양 3대양 모두 공급 위기 단서 표면화"
-            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.18~21' }}
+            cardDesc="만타 $2,025(+1.3%) vs 방콕 $1,850(-6.3%) — EPO 원료 부족과 WCPO 풍어 병존"
+            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.28' }}
             customBody={<></>}
             takeaway={{
-              situation: "SKJ 방콕 $1,850/t(3주 -11.9%), 만타 $2,000(보합), 세이셸 $1,490(-0.7%). YF 세이셸은 역으로 $2,000(+5.3%)으로 반등 — SKJ↓ vs YF↑ 디커플링 심화. MGO $1,144/t(-43% vs 4월), USD/KRW ₩1,513(약세 지속). IO 선사 정박 장기화, WCPO 풍어로 SKJ 하방 압력, PNG 화산 리스크(Risk) 지속.",
-              actionPlan: "**[Actionable Insight]** SKJ 하락 구간에서 WCPO 현물 매수를 가속하되, YF는 IO 공급 공백 장기화로 추가 상승 가능성이 높아 선물 계약 체결을 권장합니다. MGO 급락($1,144)으로 선단 운영 BEP가 대폭 개선된 만큼, IO 선사 복귀 전 선제적 물량 확보가 핵심. 원화 약세(₩1,513)에도 SKJ 달러 단가 하락이 원화 환산가를 상쇄하므로, 현 시점이 6개월 원료 비축의 골든타임(Golden Window)입니다. (Conviction Buy)",
-              source: 'Atuna 2026.05.22 + CSV 어가 업데이트 2026.05.26',
+              situation: "EPO 에콰도르 선단의 Q1 SKJ 어획량 86,809톤(-27% YoY), 2024년 기록적 풍어의 정상화 과정. 만타 SKJ $2,025/t(+1.3%), YF 대형 개체 대량 입항으로 $2,050/t까지 하락해 SKJ와 가격 동조화 발생. 반면 방콕 SKJ는 $1,850(-6.3%, 3주 연속 ↓), 세이셸 $1,490(-0.7%). EPO 연료비 2월 대비 2배 급등(프리미엄 디젤 $5.40/갤런). PNG MPA 21.4만ha 지정으로 VDS 어장 축소 + 화산 리스크 지속.",
+              actionPlan: "**[Actionable Insight]** (1) 만타-방콕 스프레드(현재 $175/t)가 역사적 고점 — WCPO 현물 매수 가속(방콕 $1,850 구간). EPO 원료는 캐너리 경쟁 심화로 단기 프리미엄 유지 전망. (2) EU-멕시코 MGA 7년차 제로 관세 대비, 멕시코산 통조림의 EU 시장 침투에 선제 대응 — Grupomar/Pinsa 동향 모니터링 필수. (3) PNG MPA/화산으로 WCPO 조업일수 감소 시 SKJ 반등 가능성 → 현 시점 6개월 원료 비축 유효.",
+              source: 'Atuna 2026.05.28 + CSV 어가 업데이트 2026.05.29',
             }}
           />
 
           <WidgetCard
-            title="MSC 미국 30% 점유 + 참치 부산물 펩타이드 USD 1.56B 시장"
+            title="IUU 단속 글로벌 강화 + 멜라네시아 블루이코노미 부상"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="지속가능 인증 메인스트림화 + 폐기물 → 고부가 펩타이드 전환"
-            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.20' }}
+            cardDesc="미국 비자 금지 26명 + PNG 블루카본 본드 시장 개척 — ESG 패러다임 전환"
+            telemetry={{ status: 'SYNCED', syncDate: 'Atuna 2026.05.28' }}
             customBody={<></>}
             takeaway={{
-              situation: "MSC 인증 참치 수요가 급증하며 독일이 세계 1위 MSC 참치 소비국(판매량 20%↑)으로 등극. 미국 역시 지속가능 인증 제품의 점유율이 33%를 상회함. 한편 참치 부산물 펩타이드 시장은 USD 1.56B(2034 전망)로 성장 기대 — Thai Union이 USD 30M 투자로 콜라겐 펩타이드 양산 개시.",
-              actionPlan: "(1) 세계 1~2위 MSC 소비국인 유럽 DACH(독일·오스트리아·스위스) 지역과 미국의 프리미엄 채널 진입을 가속. 한국 대형 마트 PB의 MSC 전환 선제안. (2) 참치 부산물(머리·껍질)을 콜라겐/펩타이드 영양제로 업사이클링하는 R&D 파이프라인 가동. 폐기물에서 고부가 가치를 창출하는 '제로 코스트 마진' 모델.",
-              source: 'Atuna 2026.05.27 (DACH MSC Growth) / 2026.05.20 (Tuna Peptide Market)',
+              situation: "미국이 IUU 어업 관련 외국인 26명에 비자 제한 발동 — 트럼프 '수산업 경쟁력 복원' 행정명령, FISH Act 상원 통과, Section 301 조사 요청과 맞물린 다층적 규제 강화. Bumble Bee 강제노동 소송은 각하되었으나, TVPRA 공급망 소송 자체가 산업 전체의 ESG 리스크 인식을 높임. PNG는 블루카본 본드(세이셸 모델)로 보존 금융 확보 추진, MPA 지정이 VDS 기반 선망 조업 구조에 직접 영향.",
+              actionPlan: "(1) 미국향 수출 시 IUU·TVPRA 컴플라이언스 체크리스트 강화 — 공급망 내 중국 연승선 원료 사용 여부 재점검 필수. (2) PNG VDS 일수 구매 전략 재검토: MPA 확대 + 화산 리스크로 유효 조업 해역 축소 → 단가 상승 전망. (3) 멜라네시아 블루본드 발행 시 참여 가능성 검토 — ESG 투자+조업권 확보를 결합한 '전략적 보존 투자' 모델. Anfaco의 EU-멕시코 경고는 한국 통조림 수출 전략에도 시사점.",
+              source: 'Atuna 2026.05.28 (IUU Visa Ban / Bumble Bee / PNG MPA / Anfaco-Mexico)',
             }}
           />
 
