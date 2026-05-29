@@ -61,7 +61,8 @@ export async function fetchESRExports(params: {
   timeout?: number;
 }): Promise<ESRResult> {
   const { commodityCode, marketYear, timeout = 8000 } = params;
-  const url = `${FAS_BASE}/esr/exports/commodityCode/${commodityCode}/marketYear/${marketYear}`;
+  // 정확한 endpoint: /api/esr/exports/commodityCode/{code}/allCountries/marketYear/{year}
+  const url = `${FAS_BASE}/esr/exports/commodityCode/${commodityCode}/allCountries/marketYear/${marketYear}`;
 
   try {
     const res = await fetch(url, {
@@ -109,11 +110,9 @@ export async function fetchPSDCommodity(params: {
   marketYear?: number;      // 예: 2024
   timeout?: number;
 }): Promise<ESRResult> {
-  const { commodityCode, countryCode, marketYear, timeout = 8000 } = params;
-  const qs = new URLSearchParams();
-  if (countryCode) qs.set("countryCode", countryCode);
-  if (marketYear) qs.set("marketYear", String(marketYear));
-  const url = `${FAS_BASE}/psd/commodity/${commodityCode}?${qs}`;
+  const { commodityCode, countryCode = "US", marketYear = 2024, timeout = 8000 } = params;
+  // 정확한 endpoint: /api/psd/commodity/{code}/country/{cc}/year/{y}
+  const url = `${FAS_BASE}/psd/commodity/${commodityCode}/country/${countryCode}/year/${marketYear}`;
 
   try {
     const res = await fetch(url, {
