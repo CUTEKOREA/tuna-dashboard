@@ -132,7 +132,7 @@ const PILLARS = [
     widgets: ["w_chicken_arbitrage"] },
   { id: "P4", num: "❹", label: "판매·수요", title: "📈 Pillar IV — 판매 및 수요", desc: "프랜차이즈 직거래 스펙인을 통한 유통 마진 극대화", color: "#f97316",
     widgets: ["w_chicken_global_export", "w_chicken_protein_spread", "w_chicken_season_balance"] },
-  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "🌱 Pillar V — ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄 (재구성 중 — MSCI ESG·WOAH WAHIS 실측 연동 예정)", color: "#b45309",
+  { id: "P5", num: "❺", label: "ESG·지속가능성", title: "🌱 ❺ ESG 및 지속가능성", desc: "EUDR 반사이익 및 청정 프리미엄 (재구성 중 — MSCI ESG·WOAH WAHIS 실측 연동 예정)", color: "#b45309",
     widgets: [] } // archived 2026-05-24: w_chicken_eudr_esg, w_chicken_risk_radar (forensic grade C)
 ];
 

@@ -1,6 +1,20 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🐔 **2026-05-29 — 닭고기(chicken) audit 11번째 + 축산물 첫 audit (수산물 패턴 미적용)** [CC]:
+> - **Audit**: 6 TSX (18 WidgetCard) + **9 API 라우트**. 정정 2건. 4-Axis 81 → 85 (S-Grade 통과).
+>   - **🎉 9 API 라우트 mock 트랩 모두 0건**: corporates·trade-shift·feed-cost·arbitrage·processing·global-export·parts·eggs·global-production
+>     → 오징어 8건·갈치 6건 시스템적 함정과 정반대. **축산물 commodity는 audit 부담 낮음**.
+>   - **L-09 시스템적 함정 0건** (수산물 26건 누적과 대조)
+>   - 영문 잔여 6건 중 5건은 도메인 약어 (CBOT, HPAI, VMI, GFPT, Korea Special) — 룰북 L-01 화이트리스트 허용. 1건 "Pillar V" → "❺" 정정.
+>   - 출처 14건: USDA WASDE·OECD-FAO Outlook·WOAH WAHIS·ABPA·CBOT 선물 ([docs/2026_chicken_industry_sources.md](docs/2026_chicken_industry_sources.md))
+>   - 주요 트렌드: HPAI 재확산 (EU 2,514건), 브라질 수출 532만톤 사상최대, 사료비 하향 안정
+>   - 보고서: [artifacts/chicken_audit_2026_05_29.md](artifacts/chicken_audit_2026_05_29.md)
+> - **핵심 인사이트**: 수산물(10건) vs 축산물(첫 audit) 패턴 차이 — 축산물은 시스템적 함정 부재. audit 효율성 큰 차이.
+> - **누적 11 commodity**: 721 위젯, 205건 정정, 평균 78.8 → 88.0
+> - 검증: `npm run build` ✓
+
+
 > 🐌 **2026-05-29 — 골뱅이(whelk) audit 10번째 commodity + L-09 함정 26번째 누적** [CC]:
 > - **Audit**: 2 TSX (31 WidgetCard) + 1 API (whelk/live) + 1 JSON. 정정 8건. 4-Axis 77 → 87 (S-Grade 통과).
 >   - **🚨 P0 (L-09 시스템적 함정)**: `app/api/whelk/live/route.ts`가 정적 JSON 읽고 `status: "🟢 LIVE API"` 하드코딩 + `"integrity: Forensic Audit Verified"` 자기 검증 자칭. → 정직 STATIC + isLive: false 정정.
