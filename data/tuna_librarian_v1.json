@@ -1,0 +1,170 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "Librarian (Gemini 2.5 Flash) PDF 추출 — 2026-05-29",
+    "reports": [
+      "IATTC No.22 2024 자원평가",
+      "WCPFC Tuna Fishery Yearbook 2025 (TFY 2025)",
+      "IOTC Tropical tuna data 2024",
+      "IATTC SAR 24 2024 (Stocks 2022)"
+    ]
+  },
+  "kpis": {
+    "wcpfc_total_2024": {
+      "label": "WCPFC 2024 총 어획량",
+      "value": "3,060,090톤",
+      "subtitle": "역대 최고치 (Skipjack 70.1%)",
+      "source": "TFY 2025 p.133"
+    },
+    "korea_purse_seine_2024": {
+      "label": "한국 선망 어획량 2024",
+      "value": "276,961톤",
+      "subtitle": "PNG 다음 2위 (Skipjack 231,463톤)",
+      "source": "TFY 2025 p.143"
+    },
+    "iotc_indian_2023": {
+      "label": "인도양 열대 참치 2023",
+      "value": "약 110만톤",
+      "subtitle": "가다랑어 60% 이상",
+      "source": "IOTC 2024 p.9"
+    },
+    "iattc_data_quality": {
+      "label": "IOTC 보고 품질 2023",
+      "value": "61%",
+      "subtitle": "어획량 보고 / 크기빈도 51%",
+      "source": "IOTC 2024 p.15"
+    }
+  },
+  "widgets": [
+    {
+      "id": "w_wcpfc_species_5y",
+      "title": "WCPFC 참치 어종별 어획량 5년 추이",
+      "subtitle": "TFY 2025 — 2020~2024 4종 (가다랑어·황다랑어·눈다랑어·날개다랑어)",
+      "cardDesc": "TFY 2025 p.133 — WCPFC 4종 총 어획량 5년 시계열. 2024년 사상 최고 3.06M톤 달성.",
+      "chartType": "Composed",
+      "pillar": "S1",
+      "xKey": "year",
+      "bars": [
+        { "key": "skj", "name": "가다랑어", "color": "#0891b2" },
+        { "key": "yft", "name": "황다랑어", "color": "#0ea5e9" },
+        { "key": "bet", "name": "눈다랑어", "color": "#06b6d4" },
+        { "key": "alb", "name": "날개다랑어", "color": "#3b82f6" }
+      ],
+      "data": [
+        { "year": "2020", "skj": 1714955, "yft": 408639, "bet": 147165, "alb": 127300 },
+        { "year": "2021", "skj": 1715792, "yft": 412864, "bet": 147385, "alb": 90083 },
+        { "year": "2022", "skj": 1753614, "yft": 341314, "bet": 152859, "alb": 92587 },
+        { "year": "2023", "skj": 1673631, "yft": 426682, "bet": 148710, "alb": 110591 },
+        { "year": "2024", "skj": 2146139, "yft": 741861, "bet": 152062, "alb": 120405 }
+      ],
+      "unit": "톤",
+      "sit": "2024년 WCPFC 총 참치 어획량 3,060,090톤(전년比 +24.6%)으로 사상 최고. Skipjack 2.15M톤(+28.3%), Yellowfin 741.9K톤(+73.9%)로 두 어종이 폭발적 증가. 데이터 보고 개선·고기후·SKJ 자원 회복 복합 작용.",
+      "strat": "Skipjack 점유율 70.1% 고착화에 따른 통조림 원료 안정 공급 확보 + Yellowfin 회복기 진입을 활용한 사시미/필렛 라인 비중 확대. 한·일 PEF 컨소시엄과 PNG 가공기지 직투자 검토.",
+      "source": "TFY 2025 (WCPFC Tuna Fishery Yearbook) p.133 Table 93",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-29"
+    },
+    {
+      "id": "w_wcpfc_country_2024",
+      "title": "WCPFC 주요 어업국 선망 어획량",
+      "subtitle": "TFY 2025 — 2024 PNG·한국·대만·FSM·미국 5개국",
+      "cardDesc": "TFY 2025 p.143 — 한국 276,961톤으로 PNG 다음 2위. Skipjack 집중도 비교.",
+      "chartType": "Bar",
+      "pillar": "S1",
+      "xKey": "country",
+      "bars": [
+        { "key": "skj", "name": "가다랑어", "color": "#0891b2" },
+        { "key": "yft", "name": "황다랑어", "color": "#0ea5e9" },
+        { "key": "bet", "name": "눈다랑어", "color": "#06b6d4" }
+      ],
+      "data": [
+        { "country": "PNG", "skj": 192525, "yft": 122810, "bet": 2652 },
+        { "country": "한국", "skj": 231463, "yft": 41984, "bet": 3450 },
+        { "country": "대만", "skj": 201984, "yft": 24335, "bet": 3930 },
+        { "country": "FSM", "skj": 162212, "yft": 23288, "bet": 3554 },
+        { "country": "미국", "skj": 52919, "yft": 4693, "bet": 5684 }
+      ],
+      "unit": "톤",
+      "sit": "한국은 2024년 WCPFC 선망 276,961톤으로 PNG(319,093톤) 다음 2위. Skipjack 비중 83.6%로 5개국 중 최고. Yellowfin은 PNG(122,810톤)에 약 3배 뒤져 어종 다변화 여지 존재.",
+      "strat": "신라교역·동원산업·사조 등 한국 원양선단의 PNG 진출 협업 확대. Yellowfin·Bigeye 비중 단계적 확대로 어종 포트폴리오 분산 → 통조림 단일 의존 리스크 헤지.",
+      "source": "TFY 2025 p.143 Table 100",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-29"
+    },
+    {
+      "id": "w_iattc_stock_status",
+      "title": "IATTC 동태평양 4종 자원 상태",
+      "subtitle": "IATTC No.22 2024 — YFT/SKJ/BFT/ALB 평가 결과",
+      "cardDesc": "IATTC 2024 — 4종 모두 sustainable. BFT 2021 재건 목표 달성, 2023년 3월 조기 어업종료.",
+      "chartType": "Bar",
+      "pillar": "S5",
+      "xKey": "species",
+      "bars": [
+        { "key": "status_score", "name": "자원 건전성 지수", "color": "#10b981" }
+      ],
+      "data": [
+        { "species": "황다랑어", "status_score": 88, "note": "MSY 이상, 2023 +25%/10y" },
+        { "species": "가다랑어", "status_score": 95, "note": "SBR>0.3, 2023 388K톤 최고" },
+        { "species": "참다랑어", "status_score": 75, "note": "재건완료, 23.2%SSB0" },
+        { "species": "날개다랑어", "status_score": 90, "note": "N·S 태평양 모두 sustainable" }
+      ],
+      "unit": "지수 (100=완전 건전)",
+      "sit": "IATTC 2024 보고서 기준 동태평양 4종 모두 sustainable. 참다랑어(BFT)는 2021년 재건 두 번째 목표 달성, 2022년 SSB가 SSB0의 23.2%로 회복하여 2023년 3월 어획 할당량 조기 소진.",
+      "strat": "BFT 양식·축양 시장 진입 타이밍 임박 (재건 성공 → 쿼터 점진 확대 가능). 일본·지중해 BFT 양식 컨소시엄과 한국 축양장 합작 투자 검토. SKJ는 안정 공급 확정.",
+      "source": "IATTC No.22 2024 자원평가 p.49, 60, 77, 81",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-29"
+    },
+    {
+      "id": "w_iotc_gear_mix",
+      "title": "인도양 열대 참치 어업 유형별 비중",
+      "subtitle": "IOTC 2024 — 2019-2023 5년 평균",
+      "cardDesc": "IOTC 2024 — 선망 45.1% 압도, 자망·미끼·연승 순. 한국 원양 진출 후보 분석.",
+      "chartType": "Pie",
+      "pillar": "S1",
+      "xKey": "gear",
+      "pieDataKey": "share",
+      "data": [
+        { "gear": "선망", "share": 45.1, "fill": "#0891b2" },
+        { "gear": "자망", "share": 15.4, "fill": "#0ea5e9" },
+        { "gear": "미끼배", "share": 12.0, "fill": "#06b6d4" },
+        { "gear": "연승", "share": 3.5, "fill": "#3b82f6" },
+        { "gear": "기타", "share": 24.0, "fill": "#64748b" }
+      ],
+      "unit": "%",
+      "sit": "인도양 열대 참치 어획의 45.1%가 선망(2019-2023 평균). 자망 15.4%·미끼배 12.0%·연승 3.5%. 산업 어업 우위 명확. 데이터 보고 품질은 61%로 추정 불확실성 존재.",
+      "strat": "한국 원양선단의 인도양 선망 진출 기회 분석. EU·태국 강세 영역. CMM 18-2025 쿼터 검토 및 모리타니아·세이셸 항만 거점 확보 검토.",
+      "source": "IOTC 2024 Tropical tuna data p.12 Table 5",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-29"
+    },
+    {
+      "id": "w_wcpfc_billfish_5y",
+      "title": "WCPFC 연승 빌피쉬 혼획량 5년 추이",
+      "subtitle": "TFY 2025 — Blue Marlin·Swordfish·Striped/Black Marlin",
+      "cardDesc": "TFY 2025 p.159 — 빌피쉬 혼획 동향. 2024 Blue Marlin 12,534톤 급증 (+39%).",
+      "chartType": "Composed",
+      "pillar": "S5",
+      "xKey": "year",
+      "bars": [
+        { "key": "blue_marlin", "name": "청새치", "color": "#3b82f6" },
+        { "key": "swordfish", "name": "황새치", "color": "#10b981" },
+        { "key": "striped_marlin", "name": "줄무늬새치", "color": "#f59e0b" },
+        { "key": "black_marlin", "name": "흑새치", "color": "#1e293b" }
+      ],
+      "data": [
+        { "year": "2020", "blue_marlin": 8162, "swordfish": 14639, "striped_marlin": 2925, "black_marlin": 870 },
+        { "year": "2021", "blue_marlin": 7784, "swordfish": 14109, "striped_marlin": 2717, "black_marlin": 996 },
+        { "year": "2022", "blue_marlin": 7917, "swordfish": 13516, "striped_marlin": 2309, "black_marlin": 920 },
+        { "year": "2023", "blue_marlin": 8986, "swordfish": 13821, "striped_marlin": 2957, "black_marlin": 735 },
+        { "year": "2024", "blue_marlin": 12534, "swordfish": 11237, "striped_marlin": 3693, "black_marlin": 820 }
+      ],
+      "unit": "톤",
+      "sit": "2024 빌피쉬 혼획 28,284톤 (전년 +14.2%). Blue Marlin 12,534톤 (+39.5%)로 급증. Swordfish는 -18.7% 감소. 연승 어업의 혼획 통제 실패 시그널, ESG 평판 리스크 증대.",
+      "strat": "ESG 등급 노출되는 한국 통조림 브랜드(동원·사조 등)는 연승 협력선 모니터링 강화. 혼획 저감 장치(Circle Hook·Wire Leader 제거) 의무 도입 정책 제안 ICCAT·WCPFC 양 보드 동시 추진.",
+      "source": "TFY 2025 p.159 Table 109",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-29"
+    }
+  ]
+}
