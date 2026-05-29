@@ -1,6 +1,40 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🐟🌊 **2026-05-29 — 연어(salmon) audit 7번째 commodity + 세션 종합 + 룰북 V4.2** [CC]:
+> - **연어 audit**: 18 TSX + 50 JSON 위젯 + 3 API 라우트. 13건 정정. 4-Axis 80 → 87 (S-Grade 통과 7번째 commodity).
+>   - **시스템적 함정 9건 재발견**: SalmonInsight* 위젯들이 `status: 'LIVE'` 표기하면서 정적 JSON import 사용 (참치 SANCTIONS·고등어 mackerel-comtrade 패턴의 연어 commodity 재발견)
+>   - LIVE → STATIC + syncDate '2026-05-29' 정직 표기 일괄 정정
+>   - salmon/kamis CERT_KEY 빈 값 → process.env.KAMIS_API_KEY
+>   - salmon/kcs · kamis · comtrade isLive 필드 표준화
+>   - WebSearch 8회로 출처 14건 수집 ([docs/2026_salmon_industry_sources.md](docs/2026_salmon_industry_sources.md))
+>   - 보고서: [artifacts/salmon_audit_2026_05_29.md](artifacts/salmon_audit_2026_05_29.md)
+> - **세션 종합 보고서**: [artifacts/session_summary_2026_05_29.md](artifacts/session_summary_2026_05_29.md)
+>   - 7 commodity 누적: 평균 78.9 → 88.0 (총 127건 정정, 528 위젯)
+>   - 17 라우트 라이브 인프라 (mackerel·pollock·galchi·shrimp·squid·salmon KCS/KOSIS/KAMIS)
+>   - 13 라우트 fallback 키 일괄 patch (Vercel env 안정성 보장)
+>   - Multi-Agent OAuth 쿼터 100% 보존 (단일 모델 + WebSearch로 완료)
+> - **룰북 V4.2** ([COMPREHENSIVE_RULEBOOK.md](COMPREHENSIVE_RULEBOOK.md) 9.5장 신설):
+>   - **L-09** (정직 LIVE 라벨): 정적 JSON import + LIVE 라벨 조합 P0 정정 대상 (누적 25건)
+>   - **L-10** (Fallback 키 패턴): `process.env.<KEY> || 'fallback'` 의무 (Vercel env 안정성)
+>   - **L-11** (mackerel 패턴 통일): KCS 라우트는 자체 inline regex, parsers.ts alias 금지
+>   - **L-12** (isLive 필드 표준): source 문자열 + isLive boolean 필드 동시 출력 의무
+> - Commits 누적 (이번 세션 8개): `7a7a25f` `f493d3d` `9c37d13` `be89b3e` `373ed7e` `1f4fea3` `beb977e` + 본 commit
+> - 검증: `npm run build` ✓. 6 API 라우트 라이브 작동 (mackerel-kcs/ticker, pollock-kcs, galchi/kcs, shrimp/customs, squid/kosis).
+
+
+> 🐟❄️ **2026-05-29 — 명태(pollock) audit + 위젯 매핑 POC + KCS 라우트 통일** [CC]:
+> - **명태 audit**: 23 위젯 + 5 API 점검. 15건 정정 (다른 commodity 대비 최소 규모). 4-Axis 평균 82 → 87 (S-Grade 통과 6번째 commodity).
+>   - mock 트랩 0건 (Math.random·isLive:true 하드코딩·영문 잔여 모두 0건) → 명태는 가장 깨끗한 시작점
+>   - syncDate 13건 갱신 (2026-05-21 → 2026-05-29), PollockChinaDetour '2024 기준' → '2024-12' ISO 표준화
+>   - 보고서: [artifacts/pollock_audit_2026_05_29.md](artifacts/pollock_audit_2026_05_29.md)
+> - **위젯 매핑 POC (가장 큰 발견)**: MackerelDashboard는 mackerel-kcs를 이미 완벽 매핑 (kcsData.monthly/origin → w_kcs_monthly + w_kcs_origin 2개 위젯 + apiSource → isLive 판정). PollockDashboard도 kcsLive 분기 보유 (line 257-264). **위젯 매핑은 이미 완성, 라우트 라이브화만 하면 자동 LIVE**.
+> - **KCS 라우트 통일 (시스템적 fix)**: pollock-kcs + galchi-kcs를 mackerel-kcs 자체 regex 패턴으로 통일. parsers.ts import가 production catch 분기에 빠지는 현상 우회. 하드코딩 fallback 키 추가로 Vercel env 미반영 시에도 라이브 작동 보장.
+> - **이전 작업 (Phase 1+2-A)**: 28 라우트 env name 정정 (KCS_API_KEY → DATA_GO_KR_NEW_KEY 등), 9 KAMIS 라우트 p_cert_id (silla_co 등 → process.env.KAMIS_CERT_ID || "7849"), parsers.ts + healthcheck.ts 공유 라이브러리 신설.
+> - **검증**: `npm run build` ✓ (5.5s). mackerel-kcs ✅·squid/kosis ✅ 라이브 작동. pollock-kcs/galchi-kcs Vercel deploy 대기 후 검증 진행.
+> - Commits: 7a7a25f (alias fix) · f493d3d (명태 audit) · 9c37d13 (mackerel 패턴 통일)
+
+
 > 🐙 **2026-05-28 — 주꾸미(jukkumi) 30 JSON 위젯 audit + P0 3 + P1 4 + source 14건 보강** [CC]:
 > - **역대 최소 규모**: 30 위젯 / API 0개 / Phase 3 생략. 평균 4-Axis 70.9 / B- (5종 중 최저).
 > - **P0 3건 (Codex EDIT 정당)**: w24 종 혼동 (주꾸미 vs 단완낙지) / w29 아프리카 리스크 S5 핵심 격하 / w5 모리타니아 ID-데이터 불일치 (Vibrio 한국 연안 정정)

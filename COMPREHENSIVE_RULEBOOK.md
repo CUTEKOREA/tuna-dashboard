@@ -1,8 +1,8 @@
-# 🌐 글로벌 무역 인텔리전스 대시보드 — 종합 개발 규칙서 (V4.1 Global Commodity Standard)
+# 🌐 글로벌 무역 인텔리전스 대시보드 — 종합 개발 규칙서 (V4.2 Global Commodity Standard)
 
-> **Version:** 4.1 | **분석 기반:** V4.0 운영 중 발견된 30개 커밋·23개 deploy 로그·16개 일괄 리팩토링 스크립트의 패턴을 학습하여 강화
-> **최종 수정:** 2026-05-16
-> **변경 요약 (V4.0 → V4.1):** D-05 한글 라벨 6자 → 7자로 갱신, W-04(위젯 신설 체크리스트) 추가, 9장 「Lessons Learned」 신설(L-01~L-08)
+> **Version:** 4.2 | **분석 기반:** V4.0 운영 중 발견된 30개 커밋·23개 deploy 로그·16개 일괄 리팩토링 스크립트 + 7 commodity audit 시스템적 함정 25건 누적의 패턴을 학습하여 강화
+> **최종 수정:** 2026-05-29
+> **변경 요약 (V4.1 → V4.2):** 9.5장 신설 — L-09 (정직 LIVE 라벨), L-10 (Fallback 키 패턴), L-11 (mackerel 패턴 통일), L-12 (isLive 필드 표준). 7 commodity audit 누적 25건 시스템적 함정 명문화.
 > **적용 범위:** 수산물(Tuna, Squid, Mackerel, Shrimp 등), 농산물(Mangosteen, Apple 등), 축산물(Chicken, Beef 등) 및 전사 운영 대시보드 전체
 
 ---
@@ -181,3 +181,61 @@ V4.0 운영 중 누적된 30개 커밋·23개 deploy 로그·16개 일괄 리팩
   - FAOSTAT/USDA/UN Comtrade 등 외부 데이터셋 원본
   - 보관 위치: `Google Drive/내 드라이브/data/공통(General)/FAOSTAT/` (단일 출처). 위젯에서는 Drive 또는 API로 접근, 또는 정제된 경량 JSON(`<10MB`)만 `public/data/`에 둠.
   - 위반 시 V4.0 운영 중 발생한 "massive data size issue"로 `git history`를 재작성해야 함(2026-05-13 사례).
+
+### 9.5 시스템적 함정 (V4.2 신설, 2026-05-29)
+
+7 commodity audit 진행 중 누적된 **시스템적 함정 25건**에서 도출. audit 자동화의 핵심 게이트.
+
+- **L-09 (정직 LIVE 라벨 — 정적 import 위젯 검출):** 위젯의 `telemetry={{ status: 'LIVE' }}` 표기는 **실시간 API fetch 분기가 코드에 존재할 때만** 허용. 정적 JSON import (`import rawData from '../data/...json'`) + LIVE 라벨 조합은 P0 정정 대상.
+
+  ```bash
+  # 시스템적 함정 검출 (audit 자동화)
+  # 위젯이 status: 'LIVE' 표기 + 정적 JSON import → 정직 STATIC으로 정정 필요
+  for f in components/<Commodity>*.tsx; do
+    if grep -q "import.*from '../data/.*\.json'" "$f" && grep -qE "status:\s*['\"]LIVE" "$f"; then
+      echo "🚨 함정: $f"
+    fi
+  done
+  ```
+
+  - 정정 패턴: `status: 'LIVE'` → `status: 'STATIC', syncDate: '<오늘 ISO>'`
+  - **누적 발견 25건** (commodity별): 참치 1 / 고등어 1 / 오징어 8 / 갈치 6 / 연어 9
+  - 변형 패턴: `status: 'LIVE API'`, `SANCTIONS_API_LIVE`, `apiSource: '[LIVE API 연동]'` 등도 동일 검사 대상
+  - **예외**: API fetch + state 기반 동적 status 부여 (`status: isLive ? 'LIVE' : 'STATIC'`)는 정당. grep 단순 패턴이 false positive 낼 수 있으므로 사람 검수 필요.
+
+- **L-10 (Fallback 키 패턴 의무 — Vercel env 안정성):** 외부 API 호출 라우트는 `process.env.<KEY>` 단독 의존 금지. **하드코딩 fallback 키**를 `||` 우항에 명시하여 Vercel env 미반영·삭제·deploy lag 시에도 라이브 동작 보장.
+
+  ```typescript
+  // ❌ 단독 의존 — env 미반영 시 즉시 fallback
+  const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || '';
+  if (!KCS_API_KEY) return NextResponse.json(FALLBACK_DATA);
+
+  // ✅ fallback 키 보유 — env 우선, 없으면 하드코딩 키로 라이브 시도
+  const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb...';
+  ```
+
+  - **사례**: 2026-05-29 13 라우트 일괄 patch (mackerel-kcs 기준 패턴). production deploy lag로 인한 isLive=false 폴백 우회.
+  - **단, 다음은 예외**: `hasKeys` 같은 key-presence 검사용 변수는 의도된 env 의존 (jukkumi-intelligence 사례).
+  - **검증**: `grep -rE "process\.env\.[A-Z_]+\s*\|\|\s*['\"]['\"]" app/api/` 로 빈 fallback 검출.
+
+- **L-11 (라우트 mackerel 패턴 통일 — production-safe):** KCS/관세청 등 외부 API 라우트는 **자체 inline regex parsing** 사용. 공유 `parsers.ts` 같은 alias import는 production 빌드에서 catch 분기에 빠지는 현상 관측 (`apiHealth: None`).
+
+  - **기준 패턴**: `app/api/mackerel-kcs/route.ts` (자체 `xml.matchAll(/<item>.../g)` + 직접 필드 추출)
+  - **금지 패턴**: `import { parseDataGoKrXml } from "@/app/api/_shared/parsers"` (alias 우회로 상대경로로 변경해도 production catch에 빠지는 사례 있음)
+  - **단위 변환 의무**: KCS impWgt는 kg 단위 → `wgtT = wgt / 1000` (톤). impDlr USD → `dlrK = dlr / 1000` (천USD). cifPerKg = (천USD) / 톤 = USD/kg (단위 일관성).
+
+- **L-12 (isLive 필드 표준 — telemetry 표기 일관성):** API 라우트는 `source` 문자열에만 LIVE/Fallback을 표기하지 말고, **표준 `isLive: boolean` 필드를 반드시 출력**. SalmonInsight 같은 위젯이 라우트의 LIVE 상태를 일관되게 감지 가능.
+
+  ```typescript
+  // ❌ source 문자열만 표기 — 위젯에서 분기 어려움
+  return NextResponse.json({ source: "Korea Customs Service API (LIVE)" });
+
+  // ✅ isLive 필드 표준 + source 보조
+  return NextResponse.json({
+    isLive: true,
+    source: "Korea Customs Service API (LIVE)",
+  });
+  ```
+
+  - **누적 정정**: shrimp/customs · tuna-ranching · salmon/kcs · kamis · comtrade (2026-05-29)
+  - **fallback 분기도 `isLive: false` 명시** (정직 표기, 룰북 L-09 보완).
