@@ -1,6 +1,18 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🐟🏆 **2026-05-29 — 가자미(flatfish) audit 13번째 + 수산물 11/11 완성 마일스톤** [CC]:
+> - **Audit**: 1 TSX (FlatfishDashboard 357l) + 22 JSON 위젯 + 0 API. 정정 1건 (출처 14건만). 4-Axis 83 → 87 (S-Grade 통과).
+>   - **🎉 L-09 자동 검출 첫 적용**: `python3 scripts/detect_l09_traps.py --commodity flatfish` → 0건 (완전 깨끗)
+>   - renderWidgetCard 동적 telemetry로 22 위젯 모두 자동 부여 → 룰북 W-04 모범 사례
+>   - 출처 14건: NIFS·해수부·KOSIS·제주어류양식수협·IPHC·NOAA·일본 농림수산성·ICES ([docs/2026_flatfish_industry_sources.md](docs/2026_flatfish_industry_sources.md))
+>   - 주요 트렌드: 태평양 광어 자원 102년 최저 (TCEY 29.33Mlbs), 한국 광어 일본 수출 +8.7%, 유럽 sole +16.4%
+>   - 보고서: [artifacts/flatfish_audit_2026_05_29.md](artifacts/flatfish_audit_2026_05_29.md)
+> - **🏆 수산물 11/11 완성 마일스톤**: 참치·고등어·오징어·갈치·주꾸미·명태·연어·새우·낙지·골뱅이·가자미 모두 audit 완료
+> - **누적 13 commodity**: 786 위젯, 209건 정정, 평균 78.7 → 88.0
+> - 검증: `npm run build` ✓
+
+
 > 🥜 **2026-05-29 — 캐슈(cashew) audit 12번째 + 농산물 첫 audit + L-09 27건 누적** [CC]:
 > - **Audit**: 3 TSX + 1 API + 1 JSON (39 위젯). 정정 3건. 4-Axis 72.5 → 84 (S-Grade 통과).
 >   - **🚨 P0 (L-09 27번째)**: `app/api/cashew/route.ts`가 "실시간 텔레메트리 데이터 주입 (오버라이드)" 주석 + 정적 하드코딩 4 위젯 데이터 → "정적 fallback 오버라이드 (L-09 정직)" + isLive: false 명시.
