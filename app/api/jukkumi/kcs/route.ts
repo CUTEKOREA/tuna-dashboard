@@ -9,20 +9,20 @@ export const revalidate = 300;
  * GET /api/jukkumi/kcs?hs=frozen&year=2024
  *
  * HS Codes:
- *   - 0307591000 (냉동 주꾸미·문어류)
+ *   - 0307599000 (냉동 주꾸미·문어류)
  *
  * 주요 수입: 베트남·중국·태국·인도네시아·모리타니아 등
  */
 
 const HS_CODES = {
-  frozen: "0307591000",
+  frozen: "0307599000",
 };
 
 const FALLBACK_DATA = {
-  source: "주꾸미 HS 0307591000 (2024 fallback)",
+  source: "주꾸미 HS 0307599000 (2024 fallback)",
   isLive: false,
   lastUpdated: "2026-05-29",
-  hs: "0307591000",
+  hs: "0307599000",
   summary: {
     totalWgt: 12500,
     totalDlr: 78000,

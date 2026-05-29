@@ -10,21 +10,21 @@ export const revalidate = 300;
  *
  * HS Codes:
  *   - 0307510000 (산 낙지)
- *   - 0307520000 (냉동 낙지/문어)
+ *   - 0307521000 (냉동 낙지/문어)
  *
  * 주요 수입국: 베트남·중국·세네갈·모리타니아·모로코
  */
 
 const HS_CODES = {
   live: "0307510000",
-  frozen: "0307520000",
+  frozen: "0307521000",
 };
 
 const FALLBACK_DATA = {
-  source: "낙지 HS 0307520000 (2024 fallback, FAO GLOBEFISH cross-check)",
+  source: "낙지 HS 0307521000 (2024 fallback, FAO GLOBEFISH cross-check)",
   isLive: false,
   lastUpdated: "2026-05-29",
-  hs: "0307520000",
+  hs: "0307521000",
   summary: {
     totalWgt: 28500,    // 톤
     totalDlr: 245000,   // 천USD
