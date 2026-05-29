@@ -1,6 +1,17 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🦐 **2026-05-29 — 새우(shrimp) audit 8번째 commodity** [CC]:
+> - **Audit**: 9 TSX (51 위젯) + 76 JSON v3 + 9 API 라우트. 65건 정정. 4-Axis 59.9 → 86.5 (역대 최대 +26.6 향상).
+>   - **시스템적 함정 발견**: ShrimpWidgetsTab1~4 + Tab45가 다른 commodity와 다른 WidgetCard prop signature 사용 (`term`/`desc`/`source`/`situation`/`actionPlan` + telemetry 전무) → 룰북 W-04 위반
+>   - **L-07 일괄 patch (50건)**: Python 스크립트로 telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }} 일괄 부여
+>   - 9 API 라우트 mock 트랩 0건 (오징어 8건과 달리 깨끗)
+>   - WebSearch 8회로 출처 14건 ([docs/2026_shrimp_industry_sources.md](docs/2026_shrimp_industry_sources.md))
+>   - 보고서: [artifacts/shrimp_audit_2026_05_29.md](artifacts/shrimp_audit_2026_05_29.md)
+> - **누적 8 commodity**: 655 위젯, 192건 정정, 평균 78.9 → 88.2
+> - 검증: `npm run build` ✓
+
+
 > 🐟🌊 **2026-05-29 — 연어(salmon) audit 7번째 commodity + 세션 종합 + 룰북 V4.2** [CC]:
 > - **연어 audit**: 18 TSX + 50 JSON 위젯 + 3 API 라우트. 13건 정정. 4-Axis 80 → 87 (S-Grade 통과 7번째 commodity).
 >   - **시스템적 함정 9건 재발견**: SalmonInsight* 위젯들이 `status: 'LIVE'` 표기하면서 정적 JSON import 사용 (참치 SANCTIONS·고등어 mackerel-comtrade 패턴의 연어 commodity 재발견)

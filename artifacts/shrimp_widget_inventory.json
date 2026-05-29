@@ -1,0 +1,529 @@
+[
+  {
+    "file": "components/ShrimpDashboard.tsx",
+    "widget_count": 0,
+    "widgets": [],
+    "api_calls": [
+      "/api/shrimp/compliance",
+      "/api/shrimp/customs",
+      "/api/shrimp/emerging-markets",
+      "/api/shrimp/esg-radar",
+      "/api/shrimp/forecast",
+      "/api/shrimp/kamis",
+      "/api/shrimp/krungsri",
+      "/api/shrimp/macro",
+      "/api/shrimp/sourcing-sim"
+    ],
+    "external_urls": []
+  },
+  {
+    "file": "components/ShrimpFTAQuarterly.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 205,
+        "title": "FTA 새우 분기별 수입 동향 (KMI 21개 분기)",
+        "pillar": "S3",
+        "cardDesc": "KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 새우 분기별 시계열. 2025년 사상 최고치(96.1천 톤·$761M) 직후 26 Q1 +17.1% 재가속 — 베트남 점유율 점진 감소와 중국·페루 동시 부상의 구조 전환점.",
+        "unit": null,
+        "telemetry": {
+          "status": "SYNCED",
+          "syncDate": "2026-05"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/ShrimpWidgetsTab1.tsx",
+    "widget_count": 10,
+    "widgets": [
+      {
+        "line": 11,
+        "title": "수생태계 메가트렌드 (1970-2022)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 26,
+        "title": "어획(Capture) vs 양식(Aqua) 크로스오버",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 44,
+        "title": "새우 양식업 본질가치(Value) 성장",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 59,
+        "title": "양식 침투율(Aquaculture Share)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 76,
+        "title": "글로벌 생산 Top 10 국가",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 92,
+        "title": "글로벌 양식업 Top 10 기지",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 108,
+        "title": "자연산 어획 잔존 세력 Top 10",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 124,
+        "title": "양식업 부가가치 창출 Top 10",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 140,
+        "title": "자연산 어획량 정체 한계선(Ceiling)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 157,
+        "title": "글로벌 생산 SCM 집중도 (HHI Index)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/ShrimpWidgetsTab2.tsx",
+    "widget_count": 10,
+    "widgets": [
+      {
+        "line": 11,
+        "title": "수출입 물동량 롱텀 트렌드",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 29,
+        "title": "무역 거래대금 롱텀 트렌드",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 45,
+        "title": "최근 5개년 무역 물동량",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 63,
+        "title": "최근 5개년 무역 달러 규모",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 81,
+        "title": "글로벌 수출 물량 Top 10",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 97,
+        "title": "글로벌 수입 물량 Top 10",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 113,
+        "title": "글로벌 수출 달러 파워 Top 10",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 129,
+        "title": "글로벌 수입 지출 달러 파워 랭킹",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 145,
+        "title": "주요 국가간 무역수지(Surplus) 흑적자 현황",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 165,
+        "title": "무역 팽창 엔진 (CAGR 속도계)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/ShrimpWidgetsTab3.tsx",
+    "widget_count": 10,
+    "widgets": [
+      {
+        "line": 11,
+        "title": "한국 새우 연간 수입 톤수 추이",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 26,
+        "title": "대한민국 자급률 (Self-sufficiency)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 48,
+        "title": "한국 수입 도입 단가 경쟁력 갭",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 71,
+        "title": "동북아 새우 소비 라이벌 타격전",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 95,
+        "title": "한국 수입 3단계 인플렉션(Inflection)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 116,
+        "title": "국내 소비 믹스(Consumption Mix)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 137,
+        "title": "FTA 무관세 파괴력 베네핏 뷰어",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 158,
+        "title": "Korea Premium 단가 페널티 추적",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 179,
+        "title": "한국 새우 무역수지(Trade Balance)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 202,
+        "title": "한국 경제성장률 대비 수입 팽창 속도",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/ShrimpWidgetsTab4.tsx",
+    "widget_count": 10,
+    "widgets": [
+      {
+        "line": 11,
+        "title": "수출국별 최종 인도(FOB) 단가 갭",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 29,
+        "title": "현지 양식장 출하(Gate) 원가 지표",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 45,
+        "title": "글로벌 기준선(Benchmark) 단가 사이클",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 66,
+        "title": "동일 사이즈 원산지별 출하가 배틀",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 88,
+        "title": "가공 심화도(Value-Add) 마진 폭발 차트",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 107,
+        "title": "단가 하락장(Down Cycle) 트렌드 캐쳐",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 125,
+        "title": "사료(어분/Fishmeal)가 vs 양식 단가 연동성",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 143,
+        "title": "차이나 프랙탈: 폭식과 소화불량의 나비효과",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 164,
+        "title": "공정별 부가가치 창출 워터폴(Waterfall)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 183,
+        "title": "골든 타임 바텀 피싱(Bottom Fishing) 인디케이터",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
+    "file": "components/ShrimpWidgetsTab45.tsx",
+    "widget_count": 10,
+    "widgets": [
+      {
+        "line": 11,
+        "title": "가공식품화(Processing) 퀀텀 점프 지수",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 26,
+        "title": "공장제 가공 파워보드 Top 10",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 42,
+        "title": "단순 채취 vs 공장 세탁 비율(Ratio)",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 58,
+        "title": "글로벌 벨류체인 수직계열화(Vertical) 독주",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 77,
+        "title": "EMS/WSSV 질병 아포칼립스 경보",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 96,
+        "title": "엘니뇨(El Nino) 기후 재난 방정식",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 123,
+        "title": "신라교역 소싱 트라이앵글 작전판",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 144,
+        "title": "자동화 프로세싱 허브(Hub) 셋업 ROI",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 165,
+        "title": "엔드-투-엔드(E2E) 이윤 귀속 분해도",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 184,
+        "title": "신라교역 새우 유니버스 장악 스코어카드",
+        "pillar": null,
+        "cardDesc": null,
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  }
+]
