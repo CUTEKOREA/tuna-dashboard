@@ -117,6 +117,7 @@ import TunaSupplierHub from './TunaSupplierHub';
 import TunaComplianceRadar from './TunaComplianceRadar';
 import TunaHSClassifier from './TunaHSClassifier';
 import TunaRFMOLibrarian from './TunaRFMOLibrarian';
+import TunaAtuna8YPrice from './TunaAtuna8YPrice';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -922,6 +923,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <InsightKmiBluefin2026Signal />
             </div>
             <OperationalS4Widgets />
+
+            {/* 🆕 Atuna 8년 가격 timeline — 어종 평균 + 5 항만별 토글 */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <TunaAtuna8YPrice />
+            </div>
           </section>
         )}
 
