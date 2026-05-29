@@ -142,7 +142,8 @@ export function aggregateByCountry(
     const wgt = parseFloat(item.impWgt || "0") / 1000; // kg → 톤
     const dlr = parseFloat(item.impDlr || "0") / 1000; // USD → 천USD
     const cc = (item.statCd || "XX").trim();
-    const ccName = (item.statKor || item.statCdCntnKor1 || cc).trim();
+    // statCdCntnKor1이 국가명 (예: "베트남"), statKor는 HS 코드명 (예: "냉동 낙지")
+    const ccName = (item.statCdCntnKor1 || item.statKor || cc).trim();
 
     totalWgt += wgt;
     totalDlr += dlr;
