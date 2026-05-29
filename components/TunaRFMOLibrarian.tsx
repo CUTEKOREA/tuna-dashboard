@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import {
-  ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer, BarChart, PieChart, Pie, Cell,
+  ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, PieChart, Pie, Cell,
 } from 'recharts';
 import { Anchor, Globe, Shield, Compass, Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
@@ -27,77 +27,71 @@ type Widget = {
   syncDate: string;
 };
 
-const COMMA = (n: number) => n.toLocaleString();
+const COMMA = (n: number) => Number(n).toLocaleString();
 
-function renderChart(w: Widget) {
+function buildChart(w: Widget): React.ReactElement {
   const type = (w.chartType || '').toLowerCase();
   const data = w.data || [];
 
   if (type === 'pie') {
     const pieKey = w.pieDataKey || 'share';
     return (
-      <ResponsiveContainer width="100%" height={250}>
-        <PieChart>
-          <Pie
-            data={data}
-            dataKey={pieKey}
-            nameKey={w.xKey}
-            cx="50%" cy="50%"
-            innerRadius={45}
-            outerRadius={80}
-            paddingAngle={2}
-            label={(e: any) => `${e[w.xKey]} ${e[pieKey]}%`}
-          >
-            {data.map((d: any, i: number) => (
-              <Cell key={i} fill={d.fill || '#0ea5e9'} />
-            ))}
-          </Pie>
-          <Tooltip
-            contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)' }}
-            formatter={(v: any) => [`${v}${w.unit}`, '비중']}
-          />
-        </PieChart>
-      </ResponsiveContainer>
+      <PieChart>
+        <Pie
+          data={data}
+          dataKey={pieKey}
+          nameKey={w.xKey}
+          cx="50%" cy="50%"
+          innerRadius={45}
+          outerRadius={80}
+          paddingAngle={2}
+          label={(e: any) => `${e[w.xKey]} ${e[pieKey]}%`}
+        >
+          {data.map((d: any, i: number) => (
+            <Cell key={i} fill={d.fill || '#0ea5e9'} />
+          ))}
+        </Pie>
+        <Tooltip
+          contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+          formatter={(v: any) => [`${v}${w.unit}`, '비중']}
+        />
+      </PieChart>
     );
   }
 
   if (type === 'bar') {
     return (
-      <ResponsiveContainer width="100%" height={250}>
-        <BarChart data={data} margin={{ top: 10, right: 30, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 11 }} />
-          <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
-          <Tooltip
-            contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)' }}
-            formatter={(v: any) => COMMA(Number(v))}
-          />
-          <Legend wrapperStyle={{ fontSize: '11px' }} />
-          {(w.bars || []).map((b) => (
-            <Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color} />
-          ))}
-        </BarChart>
-      </ResponsiveContainer>
-    );
-  }
-
-  // Composed (default)
-  return (
-    <ResponsiveContainer width="100%" height={250}>
-      <ComposedChart data={data} margin={{ top: 10, right: 30, left: -10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-        <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 11 }} />
-        <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
+      <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
+        <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
         <Tooltip
-          contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)' }}
+          contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
           formatter={(v: any) => COMMA(Number(v))}
         />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
         {(w.bars || []).map((b) => (
-          <Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color} stackId="a" />
+          <Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color} />
         ))}
-      </ComposedChart>
-    </ResponsiveContainer>
+      </BarChart>
+    );
+  }
+
+  // Composed (default - stacked bar)
+  return (
+    <ComposedChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
+      <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
+      <Tooltip
+        contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+        formatter={(v: any) => COMMA(Number(v))}
+      />
+      <Legend wrapperStyle={{ fontSize: '11px' }} />
+      {(w.bars || []).map((b) => (
+        <Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color} stackId="a" />
+      ))}
+    </ComposedChart>
   );
 }
 
@@ -141,7 +135,7 @@ export default function TunaRFMOLibrarian() {
         </div>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(580px, 1fr))', gap: '1.5rem' }}>
         {widgets.map((w) => {
           const Icon = ICONS[w.id] || Fish;
           return (
@@ -153,10 +147,11 @@ export default function TunaRFMOLibrarian() {
               pillar={w.pillar as any}
               cardDesc={w.cardDesc}
               telemetry={{ status: w.telemetry, syncDate: w.syncDate }}
-              customBody={renderChart(w)}
+              chart={buildChart(w)}
+              chartHeight={260}
               takeaway={{
-                situation: `<p>${w.sit}</p>`,
-                actionPlan: `<p>${w.strat}</p>`,
+                situation: w.sit,
+                actionPlan: w.strat,
                 source: w.source,
               }}
             />
