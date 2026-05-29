@@ -27,17 +27,19 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 6955.000,
-      actualTotal: 587.670,
-      surplus: -6367.330,
+      actualTotal: 1115.600,
+      surplus: -5839.400,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 0, actual: 0, surplus: 0 },
-        { id: 'YF', name: 'Yellowfin', reported: 0, actual: 0, surplus: 0 }
+        { id: 'SJ', name: 'Skipjack', reported: 6645.000, actual: 1016.860, surplus: -5628.140 },
+        { id: 'YF', name: 'Yellowfin', reported: 305.000, actual: 88.860, surplus: -216.140 }
       ],
       timeline: [
         { date: '5/23', time: '08:10 ~ 20:30', targetHol: 'S/HAR(#2-A)', dailyAmount: 146.890, cumAmount: 146.890, quality: '어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.' },
         { date: '5/24', time: '-', targetHol: '-', dailyAmount: 0, cumAmount: 146.890, quality: '일요일 휴무.' },
         { date: '5/25', time: '08:10 ~ 19:00', targetHol: 'S/HAR(#2-A), S/EXP(#4-A)', dailyAmount: 216.090, cumAmount: 362.980, quality: '어창 온도 -21.0℃ ~ -24.0℃. 외관상태 양호.' },
-        { date: '5/26', time: '08:00 ~ 20:30', targetHol: 'S/SPR(#4-A, #4-B)', dailyAmount: 224.690, cumAmount: 587.670, quality: '어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/27) 약 245톤 하역 예정.' }
+        { date: '5/26', time: '08:00 ~ 20:30', targetHol: 'S/SPR(#4-A, #4-B)', dailyAmount: 224.690, cumAmount: 587.670, quality: '어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호.' },
+        { date: '5/27', time: '08:10 ~ 20:00', targetHol: 'S/SPR(#1-A, #4-B), S/HAR(#2-A)', dailyAmount: 239.990, cumAmount: 827.660, quality: '어창 개방 측정온도 -20.0℃ ~ -24.0℃. 외관상태 및 색택 전반적으로 양호.' },
+        { date: '5/28', time: '08:10 ~ 23:00', targetHol: 'S/SPR(#1-A, #4-B), MOAKONA(#2-A, #2-B)', dailyAmount: 287.940, cumAmount: 1115.600, quality: 'S/SPR: 어창 개방 측정온도 -20.0℃ ~ -24.0℃. MOAKONA: -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/29) 약 300톤 하역 예정.' }
       ]
     },
     'hikari': {
