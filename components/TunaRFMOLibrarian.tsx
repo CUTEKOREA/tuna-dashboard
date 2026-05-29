@@ -103,61 +103,44 @@ const ICONS: Record<string, any> = {
   w_wcpfc_billfish_5y: Anchor,
 };
 
-export default function TunaRFMOLibrarian() {
+/**
+ * Pillar별 RFMO 위젯 렌더링.
+ *
+ * - filterPillar 미지정: 5개 전체 (이전 standalone 페이지 호환)
+ * - filterPillar='S1': WCPFC 어종 5년 + WCPFC 어업국 + IOTC 어업유형 (3건)
+ * - filterPillar='S5': IATTC 자원상태 + WCPFC 빌피쉬 혼획 (2건)
+ *
+ * TunaDashboard의 5-Pillar section grid 내에서 Fragment로 들어감.
+ */
+export default function TunaRFMOLibrarian({ filterPillar }: { filterPillar?: 'S1' | 'S5' } = {}) {
   const widgets = (rawData as any).widgets as Widget[];
-  const meta = (rawData as any)._meta;
+  const filtered = filterPillar
+    ? widgets.filter((w) => w.pillar === filterPillar)
+    : widgets;
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
-      <header style={{ marginBottom: '2rem' }}>
-        <h1 style={{
-          fontSize: '1.75rem', fontWeight: 700,
-          background: 'linear-gradient(135deg, #e2e8f0, #38bdf8)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-          marginBottom: '0.5rem',
-        }}>
-          참치 RFMO 인텔리전스 (Librarian)
-        </h1>
-        <p style={{ color: '#94a3b8', fontSize: '0.95rem' }}>
-          {meta.source} — 4대 RFMO 1차 자료에서 추출한 정량 데이터
-        </p>
-        <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          {meta.reports.map((r: string, i: number) => (
-            <span key={i} style={{
-              padding: '0.3rem 0.6rem',
-              background: 'rgba(14,165,233,0.1)',
-              border: '1px solid rgba(14,165,233,0.3)',
-              borderRadius: '4px',
-              fontSize: '0.78rem',
-              color: '#7dd3fc',
-            }}>{r}</span>
-          ))}
-        </div>
-      </header>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(580px, 1fr))', gap: '1.5rem' }}>
-        {widgets.map((w) => {
-          const Icon = ICONS[w.id] || Fish;
-          return (
-            <WidgetCard
-              key={w.id}
-              title={w.title}
-              icon={Icon}
-              iconColor="#0ea5e9"
-              pillar={w.pillar as any}
-              cardDesc={w.cardDesc}
-              telemetry={{ status: w.telemetry, syncDate: w.syncDate }}
-              chart={buildChart(w)}
-              chartHeight={260}
-              takeaway={{
-                situation: w.sit,
-                actionPlan: w.strat,
-                source: w.source,
-              }}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <>
+      {filtered.map((w) => {
+        const Icon = ICONS[w.id] || Fish;
+        return (
+          <WidgetCard
+            key={w.id}
+            title={w.title}
+            icon={Icon}
+            iconColor="#0ea5e9"
+            pillar={w.pillar as any}
+            cardDesc={w.cardDesc}
+            telemetry={{ status: w.telemetry, syncDate: w.syncDate }}
+            chart={buildChart(w)}
+            chartHeight={260}
+            takeaway={{
+              situation: w.sit,
+              actionPlan: w.strat,
+              source: w.source,
+            }}
+          />
+        );
+      })}
+    </>
   );
 }

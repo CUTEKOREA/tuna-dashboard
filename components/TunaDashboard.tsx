@@ -116,6 +116,7 @@ import TunaSupplierHub from './TunaSupplierHub';
 // Phase 3: Compliance & HS Classification
 import TunaComplianceRadar from './TunaComplianceRadar';
 import TunaHSClassifier from './TunaHSClassifier';
+import TunaRFMOLibrarian from './TunaRFMOLibrarian';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -769,6 +770,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
               <InsightSupplyStructure2022 />
             </div>
+
+            {/* 🆕 RFMO Librarian — WCPFC/IATTC/IOTC 1차 자료 인텔리전스 (S1: 어획·조업) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <TunaRFMOLibrarian filterPillar="S1" />
+            </div>
           </section>
         )}
 
@@ -952,6 +958,12 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               {/* Kawamoto 2026 — 인구·세대 구조 리스크 (장기 ESG) */}
               <InsightCohortDoubleShock />
             </div>
+
+            {/* 🆕 RFMO Librarian — IATTC 자원평가 + WCPFC 빌피쉬 혼획 (S5: ESG·지속가능성) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <TunaRFMOLibrarian filterPillar="S5" />
+            </div>
+
             <OperationalS5Widgets />
           </section>
         )}
