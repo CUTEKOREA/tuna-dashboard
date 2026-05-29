@@ -68,11 +68,11 @@ const IMPORT_COLORS = ['var(--color-info)', 'var(--color-success)', 'var(--color
 
 // 5-Pillar 네비게이터 메타 (골뱅이 시그니처 그라디언트 — 영국 북해 + 흑해 amber/stone 조합)
 const SECTIONS = [
-  { id: 'S1', num: '❶', label: '원료 수급', title: 'Pillar 1. 원료 수급', desc: '글로벌 어획 헤게모니, 북해 어획량 변동, B. undatum 자원 동향', color: '#fbbf24' },
-  { id: 'S2', num: '❷', label: '가공·생산', title: 'Pillar 2. 가공 및 생산', desc: '살수율(20-25%), 한·영 가공 마진 구조, 가공 효율성', color: '#f59e0b' },
-  { id: 'S3', num: '❸', label: '물류·통관', title: 'Pillar 3. 물류 및 통관', desc: 'FTA 무관세 우위, 콜드체인, IUU/MCRS 규제 리스크', color: '#d97706' },
-  { id: 'S4', num: '❹', label: '판매·수요', title: 'Pillar 4. 판매 및 수요', desc: '한국 통조림 시장, 가격 갭, FX/이중 타격 헤지, 채널 다변화', color: '#b45309' },
-  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: 'Pillar 5. ESG 및 지속가능성', desc: '양식 불가 자원 + 영국 IFCA/MCRS 규제 + EU PPWR 포장 컴플라이언스', color: '#92400e' },
+  { id: 'S1', num: '❶', label: '원료 수급', title: '❶ 원료 수급', desc: '글로벌 어획 헤게모니, 북해 어획량 변동, B. undatum 자원 동향', color: '#fbbf24' },
+  { id: 'S2', num: '❷', label: '가공·생산', title: '❷ 가공 및 생산', desc: '살수율(20-25%), 한·영 가공 마진 구조, 가공 효율성', color: '#f59e0b' },
+  { id: 'S3', num: '❸', label: '물류·통관', title: '❸ 물류 및 통관', desc: 'FTA 무관세 우위, 콜드체인, IUU/MCRS 규제 리스크', color: '#d97706' },
+  { id: 'S4', num: '❹', label: '판매·수요', title: '❹ 판매 및 수요', desc: '한국 통조림 시장, 가격 갭, FX/이중 타격 헤지, 채널 다변화', color: '#b45309' },
+  { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '❺ ESG 및 지속가능성', desc: '양식 불가 자원 + 영국 IFCA/MCRS 규제 + EU PPWR 포장 컴플라이언스', color: '#92400e' },
 ];
 
 export default function WhelkDashboard() {
@@ -321,7 +321,7 @@ export default function WhelkDashboard() {
       {activePart === 'S1' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Fish size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 1. 원료 수급</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❶ 원료 수급</h2>
   </div>
   <>
             <WidgetCard title="글로벌 어획 생산량 상위 5개국" icon={Globe} iconColor="var(--color-info)" pillar="S1"
@@ -445,7 +445,7 @@ export default function WhelkDashboard() {
       {activePart === 'S2' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Factory size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 2. 가공 및 생산</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❷ 가공 및 생산</h2>
   </div>
   <>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={PieChart} iconColor="var(--color-info)" pillar="S3"
@@ -511,7 +511,7 @@ export default function WhelkDashboard() {
       {activePart === 'S3' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Ship size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 3. 물류 및 통관</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❸ 물류 및 통관</h2>
   </div>
   <>
             <WidgetCard title="국가별 원물 수율 기반 총사용원가 비교" icon={Scale} iconColor="var(--color-info)" pillar="S3"
@@ -561,7 +561,7 @@ export default function WhelkDashboard() {
       {activePart === 'S4' && (<>
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <TrendingUp size={20} color="var(--color-info)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 4. 판매 및 수요</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❹ 판매 및 수요</h2>
   </div>
   <>
             <WidgetCard title="B2C 통조림 브랜드 경쟁력 & 가성비 매핑" icon={Target} iconColor="var(--color-info)" pillar="S4"
@@ -652,7 +652,7 @@ export default function WhelkDashboard() {
         {/* Pillar 5: ESG & 지속가능성 */}
         <div style={{ gridColumn: '1 / -1', marginTop: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
     <Leaf size={20} color="var(--color-success)" />
-    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>Pillar 5. ESG 및 지속가능성</h2>
+    <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❺ ESG 및 지속가능성</h2>
   </div>
   <>
             <WidgetCard title="흑해산 R. venosa 공급 안정성 트렌드" icon={Ship} iconColor="var(--color-info)" pillar="S3"

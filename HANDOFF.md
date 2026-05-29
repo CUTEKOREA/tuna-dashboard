@@ -1,6 +1,18 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🐌 **2026-05-29 — 골뱅이(whelk) audit 10번째 commodity + L-09 함정 26번째 누적** [CC]:
+> - **Audit**: 2 TSX (31 WidgetCard) + 1 API (whelk/live) + 1 JSON. 정정 8건. 4-Axis 77 → 87 (S-Grade 통과).
+>   - **🚨 P0 (L-09 시스템적 함정)**: `app/api/whelk/live/route.ts`가 정적 JSON 읽고 `status: "🟢 LIVE API"` 하드코딩 + `"integrity: Forensic Audit Verified"` 자기 검증 자칭. → 정직 STATIC + isLive: false 정정.
+>   - 누적 26건의 동일 패턴 (참치 1 · 고등어 1 · 오징어 8 · 갈치 6 · 연어 9 · 골뱅이 1)
+>   - P1 (5건): WhelkDashboard "Pillar 1." 영문 접두사 → "❶" 한글 (L-01)
+>   - 출처: [docs/2026_whelk_industry_sources.md](docs/2026_whelk_industry_sources.md) — Defra FMP·D&S IFCA·Cefas SPiCT·DFO 캐나다·KAMIS·관세청
+>   - 주요 트렌드: 영국 MCRS 65mm 상향 정착, ICES WKWF 데이터-부족 자원평가 진화, 북대서양 양극화 (캐나다 3Ps 조기 소진)
+>   - 보고서: [artifacts/whelk_audit_2026_05_29.md](artifacts/whelk_audit_2026_05_29.md)
+> - **누적 10 commodity**: 703 위젯, 203건 정정, 평균 78.6 → 88.2. **L-09 함정 26건 누적** → 룰북 자동 검출 의무 강화.
+> - 검증: `npm run build` ✓
+
+
 > 🐙 **2026-05-29 — 낙지(octopus) audit 9번째 commodity** [CC]:
 > - **Audit**: 4 TSX + 17 WidgetCard + 0 API. mock 트랩 완전 0건 — 명태와 함께 가장 깨끗한 시작점.
 >   - 정정 3건: syncDate '2026-04 추정' → '2026-04' ISO 표준화 (2건) + 출처 14건 신설

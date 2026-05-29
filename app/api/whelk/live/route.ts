@@ -10,13 +10,14 @@ export async function GET() {
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(fileContents);
 
-    // Live API 텔레메트리 메타데이터 주입
+    // Telemetry 메타데이터 (정직 표기 — L-09 룰북 준수)
     data._metadata = {
-      source: "KCS/FAOSTAT/KFAS/aT",
-      status: "🟢 LIVE API",
+      source: "정적 JSON (public/data/whelk_real_data_v1.json)",
+      isLive: false,
+      status: "STATIC",
       lastUpdated: timestamp,
-      pipeline: "Live API First, Local JSON Fallback",
-      integrity: "Forensic Audit Verified"
+      pipeline: "정적 JSON 직접 로드. 라이브 API 미구축 (1차 출처: KCS/FAOSTAT/KFAS/aT 수동 갱신).",
+      syncDate: "2026-05-29"
     };
 
     return NextResponse.json(data);
