@@ -1,6 +1,21 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🎯 **2026-05-29 — 세션 최종: 13 commodity + 24 라이브 라우트 + DART/USDA FAS 인프라** [CC]:
+> - **DART 6 라우트 신설** + **USDA FAS 3 라우트 (키 재발급 대기)**: [app/api/_shared/dart-client.ts](app/api/_shared/dart-client.ts) + [usda-fas-client.ts](app/api/_shared/usda-fas-client.ts)
+>   - **실라이브 검증**: 신라교역 매출 $12,854억 ✅, CJ제일제당 $661,929억 ✅
+>   - **부분 라이브**: tuna/dart (1/3), salmon/dart (1/2), shrimp/dart (1/2), whelk/dart (1/2)
+>   - **⚠️ corp_code 재검증 필요** (다음 세션): 동원산업·사조산업·동원에프앤비·하림·한성기업·사조대림·동원홈푸드 corpCode.xml로 매핑 확정
+>   - **⚠️ USDA FAS 키 재발급 필요** (사용자 액션): HTTP 403, cutekorea@gmail.com 계정. 재발급 후 자동 라이브 전환
+> - **세션 종합**: [artifacts/session_final_2026_05_29.md](artifacts/session_final_2026_05_29.md)
+>   - 13 commodity 완료 (수산물 11/11 + 축산 1 + 농산 1), 786 위젯, 209 정정, 평균 78.7 → 88.0
+>   - 라이브 라우트 28개 (24 라이브 + 3 USDA 키 대기 + 1 정적)
+>   - L-09 자동 검출 스크립트로 46건 함정 정정 (수동 27 + 자동 19)
+>   - Multi-Agent OAuth 쿼터 100% 보존 ($0 비용)
+> - **이번 세션 commits 20개**: 7a7a25f → 0a520c3
+> - 검증: `npm run build` ✓
+
+
 > 🐟🏆 **2026-05-29 — 가자미(flatfish) audit 13번째 + 수산물 11/11 완성 마일스톤** [CC]:
 > - **Audit**: 1 TSX (FlatfishDashboard 357l) + 22 JSON 위젯 + 0 API. 정정 1건 (출처 14건만). 4-Axis 83 → 87 (S-Grade 통과).
 >   - **🎉 L-09 자동 검출 첫 적용**: `python3 scripts/detect_l09_traps.py --commodity flatfish` → 0건 (완전 깨끗)
