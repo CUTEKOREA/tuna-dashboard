@@ -1,6 +1,16 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🐙 **2026-05-29 — 낙지(octopus) audit 9번째 commodity** [CC]:
+> - **Audit**: 4 TSX + 17 WidgetCard + 0 API. mock 트랩 완전 0건 — 명태와 함께 가장 깨끗한 시작점.
+>   - 정정 3건: syncDate '2026-04 추정' → '2026-04' ISO 표준화 (2건) + 출처 14건 신설
+>   - 출처: [docs/2026_octopus_industry_sources.md](docs/2026_octopus_industry_sources.md) — 해수부·KOSIS·NIFS·KAMIS + FAO GLOBEFISH + 서아프리카 (모로코 ONP, 모리타니아 IMROP, 세네갈)
+>   - 주요 트렌드: 공급 타이트·가격 상승, 한국 수입 베트남 시프트, 모로코 쿼터 역설(+23.6% 상향 vs 양륙 -29%)
+>   - 보고서: [artifacts/octopus_audit_2026_05_29.md](artifacts/octopus_audit_2026_05_29.md)
+> - **누적 9 commodity**: 672 위젯, 195건 정정, 평균 78.8 → 88.2
+> - 검증: `npm run build` ✓
+
+
 > 🦐 **2026-05-29 — 새우(shrimp) audit 8번째 commodity** [CC]:
 > - **Audit**: 9 TSX (51 위젯) + 76 JSON v3 + 9 API 라우트. 65건 정정. 4-Axis 59.9 → 86.5 (역대 최대 +26.6 향상).
 >   - **시스템적 함정 발견**: ShrimpWidgetsTab1~4 + Tab45가 다른 commodity와 다른 WidgetCard prop signature 사용 (`term`/`desc`/`source`/`situation`/`actionPlan` + telemetry 전무) → 룰북 W-04 위반

@@ -42,7 +42,7 @@ export function OctopusChannelMarginMatrix() {
       pillar="S2"
       cardDesc="활(외식) vs 자숙(B2C) vs 냉동(B2B) 채널별 그램당 매출·원가·마진 — KMI 활·신선·냉장 29.8% 데이터 + 노량진·BBQ 외식 단가 기반 추정"
       unit="(단위: 원/kg, %)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-04 추정' }}
+      telemetry={{ status: 'SYNCED', syncDate: '2026-04' }}
       chartHeight={320}
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -83,7 +83,7 @@ export function OctopusColdChainYield() {
       pillar="S2"
       cardDesc="항공 활낙지(생존율 87%) vs 해상 MAP(신선도 92%) vs 해상 냉동(12개월 저장) 톤당 운송원가·폐기 손실·도착 순원가 비교"
       unit="(단위: 시간, %, 원/kg)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-04 추정' }}
+      telemetry={{ status: 'SYNCED', syncDate: '2026-04' }}
       chartHeight={320}
       chart={
         <ComposedChart data={routes} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
