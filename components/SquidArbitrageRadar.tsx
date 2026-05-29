@@ -250,7 +250,7 @@ export default function SquidArbitrageRadar() {
       iconColor="#38bdf8"
       pillar="S4"
       cardDesc="원물 수입가 vs 가공품 수출가 Spread 차액을 B2B 트레이딩 봇처럼 시각화 — 수익률 극대화 경로를 자동 탐지"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       customBody={body}
       takeaway={{
         situation: `<div>

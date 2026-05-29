@@ -31,7 +31,7 @@ export default function MackerelTRQMeter() {
       icon={Clock}
       pillar="S3"
       cardDesc="물가 안정을 위해 수입 고등어에 배정되는 무관세 TRQ(연 1~2만 톤 내외) 실시간 소진율. 소진 완료 시 관세가 재부과됩니다."
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chart={chart}
       takeaway={{
         situation: `<div>

@@ -13,7 +13,7 @@ export default function SquidFXHedging() {
       iconColor="#fcd34d"
       pillar="S3"
       cardDesc="강달러 국면에서 원화 결제 대금 폭증 위험성 트래킹"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={400}
       chart={
         <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>

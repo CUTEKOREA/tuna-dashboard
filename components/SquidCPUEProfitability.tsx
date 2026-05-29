@@ -14,7 +14,7 @@ export default function SquidCPUEProfitability() {
       iconColor="#10b981"
       pillar="S1"
       cardDesc="조업 운영비 대비 실시간 초과/적자 수익성"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>

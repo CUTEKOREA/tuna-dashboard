@@ -359,7 +359,7 @@ export default function MangosteenDashboard() {
           iconColor="#e879f9"
           pillar="S1"
           cardDesc="ENSO 기후 지수 vs 검역 통과 수율 — 수액병 발병 리스크 모니터"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <ComposedChart data={climateYieldData}>
@@ -410,7 +410,7 @@ export default function MangosteenDashboard() {
           iconColor="#c026d3"
           pillar="S2"
           cardDesc="할당관세 변동에 따른 생과 vs 냉동 퓨레 마진 안정성 비교"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <AreaChart data={marginData}>
@@ -533,7 +533,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-success)"
           pillar="S3"
           cardDesc="국가별 생과 반입 가능 여부 — 식물방역법 검역 기준"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           customBody={
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <li style={{ background: 'var(--bg-color)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #10b981' }}>
@@ -612,7 +612,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-warning)"
           pillar="S3"
           cardDesc="RCEP/FTA 활용 우회 무역 경로별 관세·마진 비교"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <BarChart data={rcepArbitrageData} layout="vertical" margin={{ left: 0 }}>
@@ -649,7 +649,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-warning)"
           pillar="S3"
           cardDesc="바트화/동화 환율 변동에 따른 결제통화별 마진 비교"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <ComposedChart data={fxMarginData}>
@@ -696,7 +696,7 @@ export default function MangosteenDashboard() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="국내 과일 물가 연동 스캐너" icon={Apple} iconColor={SECTIONS[3].color} pillar="S4"
           cardDesc="국내 사과 단가 vs 망고스틴 수입량 상관관계 — 가격 폭등기 대체 수요 캡처"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
           chart={
             <ComposedChart data={arbitrageData}>
               <ChartPatternDefs />
@@ -762,7 +762,7 @@ export default function MangosteenDashboard() {
 
         <WidgetCard title="최상급 품질 재수출 단가" icon={PackageCheck} iconColor={SECTIONS[3].color} pillar="S4"
           cardDesc="한국 허브 재수출 단가 추이 — 최상급 1% 물량의 프리미엄 가격대"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
           chart={
             <ComposedChart data={krExportData}>
               <ChartPatternDefs />
@@ -794,7 +794,7 @@ export default function MangosteenDashboard() {
 
         <WidgetCard title="중국 라이브 커머스 D2C 타격 리스크" icon={AlertTriangle} iconColor="#ef4444" pillar="S4"
           cardDesc="중국 D2C 채널별 매출 점유율 — 라이브 커머스 규제 위축 영향"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-17' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
           chart={
             <PieChart>
               <Pie data={liveCommerceData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} innerRadius={60} label={({ name, percent }: any) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}>

@@ -137,7 +137,7 @@ export default function SalmonInsightLogisticsResilience() {
       cardDesc={activePanel === 'eu'
         ? 'EU 역외 수입 물량·총액·단가 3축 회복탄력성 분석 (2019-2024)'
         : 'BDI·CCFI·EU 노선 운임 지수 거시 충격 트래킹 (2019-2024)'}
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       customBody={<>{tabs}{chartArea}</>}
       takeaway={takeaway}
     />

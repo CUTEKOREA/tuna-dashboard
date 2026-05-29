@@ -27,7 +27,7 @@ export default function MackerelStorageTurnover() {
       icon={Snowflake}
       pillar="S3"
       cardDesc="전국 냉동 보세창고의 수입 임치 물량 적재 면적과 해당 분기 도매상의 출하 속도(회전일수)를 상호 모니터링하여 병목과 담합을 탐지합니다."
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chart={chart}
       takeaway={{
         situation: `<div>

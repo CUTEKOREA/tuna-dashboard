@@ -13,7 +13,7 @@ export default function SquidQuotaExhaustion() {
       iconColor="#ef4444"
       pillar="S1"
       cardDesc="쿼터 소진 임박에 따른 시세 급등 대비 사전매입 전략선"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={400}
       chart={
         <AreaChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>

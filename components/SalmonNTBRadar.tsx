@@ -117,7 +117,7 @@ export default function SalmonNTBRadar() {
       iconColor="#3b82f6"
       pillar="S3"
       cardDesc="WITS·OFAC·MFDS·KMI 정책연구 교차검증 6개국 컴플라이언스 상태"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       customBody={body}
       takeaway={{
         situation: `<div>

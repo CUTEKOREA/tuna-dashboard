@@ -26,7 +26,7 @@ export default function MackerelAltSourcingIndex() {
       icon={Ship}
       pillar="S1"
       cardDesc="노르웨이를 제치고 부상 중인 칠레, 아일랜드, 영국산 고등어의 C&F 수입단가(USD/kg) 상대 추이 트래킹입니다. 분기별 통관단가 기준"
-      telemetry={{ status: 'LIVE' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chart={chart}
       takeaway={{
         situation: `<div>

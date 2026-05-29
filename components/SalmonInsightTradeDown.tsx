@@ -117,7 +117,7 @@ export default function SalmonInsightTradeDown() {
       cardDesc={activeTab === 'kr'
         ? 'KCS(수입/연어) 및 KAMIS(광어/닭) 도매 단가 실시간 트래킹'
         : 'EU 주요국 가정용 신선 연어 소비량(톤) vs 지출액 디커플링 추적'}
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       customBody={<>{tabs}{chartArea}</>}
       takeaway={takeaway}
     />

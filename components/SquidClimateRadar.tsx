@@ -14,7 +14,7 @@ export default function SquidClimateRadar() {
       iconColor="#fcd34d"
       pillar="S1"
       cardDesc="SST(표층수온) 이상 기온과 해역별 어획량 엇갈림"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
