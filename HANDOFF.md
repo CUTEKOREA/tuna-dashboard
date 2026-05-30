@@ -12,8 +12,9 @@
 >   - whelk: TSX 8건 정직화(KOSIS→FAO·허위LIVE 4·FAOSTAT2024→FishStat2022)
 > - **교차검증/Ground-truth가 막은 실제 오류**: squid orphan 4종이 라우트 주입 위젯(Codex 적발·복원) / galchi 환각 "한-세네갈 FTA" / **jukkumi 종합 자가정정마저 오류** → 3-에이전트 Ground-truth 워크플로우로 셀단위 재확정(주꾸미=2개 HS세번 0307512000+0307523000 30,480t, OCT=문어류합산, shareVol2025=76.9는 오류값)
 > - **변경 파일**: 8 JSON(`*_real_data*`/`galchi_data`, 각 `.bak_pre_p0` 백업) + 4 TSX(Shrimp·Squid·Galchi·Whelk 화이트리스트/라벨) + 9 보고서(`artifacts/*_agri_enrichment_2026_05_30.md`) + 3 스크립트(`scripts/apply_seafood_p0.py`·`apply_p0_enrichment.py`·`fix_salmon_live_labels.py`)
+> - **✅ API-route 패스 완료** (커밋 ae5eee7, 배포됨): whelk 어획 5위 정정(러시아 9,229t)·영국 과거 FAO실측 / mackerel-kcs FALLBACK 73.9%·제재레이더 IUU 리프레임 / squid EU두족류 EUMOFA실측·CPI168 제거 / salmon 4컴포넌트(Climate·DoubleMateriality·Logistics·NTBRadar) 허위LIVE 청산. 6 Explore 에이전트 edit spec → 경로정규화·검증 → 적용.
 > - **⚠️ 다음 단계 (미적용)**:
->   1. **API-route 패스**: whelk `/api/whelk/live`(한국 어획 4위→5위 정정·영국 과거 시계열 FAO 실측), 동적 위젯 14건(tuna w01 관세청단가 오버라이드 / mackerel w_kcs_origin·w_sanctions_radar / pollock w26 / salmon NTBRadar·Insight* 5 / squid w_kosis·w_eu_ceph 2)
+>   1. **API-route 패스 잔여**: pollock w26_inventory_freight(위치 불명확 — 데이터 소스 추가 조사), squid w_kosis_squid_cpi(부분 정정만), tuna w01(라이브 KCS 단가 유지 결정 — 정정 대상 아님)
 >   2. **PDF→MD 후(R-04)**: jukkumi 2건(베트남 FIP·아프리카 인권 — SeaBOS/MarinTrust PDF), whelk GAIN Table2 TAC
 >   3. **P1 티어**: 데이터 신선화·과장수식어(salmon 27건 등)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + 8 JSON 유효)
