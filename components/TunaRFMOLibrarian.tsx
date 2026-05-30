@@ -4,7 +4,7 @@ import {
   ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   BarChart, PieChart, Pie, Cell,
 } from 'recharts';
-import { Anchor, Globe, Shield, Compass, Fish } from 'lucide-react';
+import { Anchor, Globe, Shield, Compass, Fish, Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/tuna_librarian_v1.json';
 
@@ -98,6 +98,7 @@ function buildChart(w: Widget): React.ReactElement {
 const ICONS: Record<string, any> = {
   w_wcpfc_species_5y: Fish,
   w_wcpfc_country_2024: Globe,
+  w_china_dwf_fleet: Ship,
   w_iattc_stock_status: Shield,
   w_iotc_gear_mix: Compass,
   w_wcpfc_billfish_5y: Anchor,

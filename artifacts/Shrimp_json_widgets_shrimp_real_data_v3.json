@@ -1,0 +1,686 @@
+[
+  {
+    "id": "w01_paradigm_shift",
+    "title": "새우 생산 패러다임 전환: 양식이 어획을 압도 (1980-2024)",
+    "subtitle": "위젯 설명: FAOSTAT FishStatJ · 새우류(Shrimps & Prawns) 전용 필터링",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/2,3번 CSV 교차 연산",
+    "pillar": null
+  },
+  {
+    "id": "w02_aqua_value",
+    "title": "글로벌 새우 양식 부가가치 창출 곡선 (1984-2024)",
+    "subtitle": "위젯 설명: FAOSTAT FishStatJ · 새우류 양식 생산액 전용 (USD 1,000)",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/4. 새우 생산액(양식).csv",
+    "pillar": null
+  },
+  {
+    "id": "w03_processing",
+    "title": "고부가가치 가공(Value-added) 패러다임 전환",
+    "subtitle": "위젯 설명: [출처: FAO API 연동] 글로벌 상품 분류 중 'Processed' 생산 단위 물량 장기 시계열 누적 합산",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w04_top10_aqua",
+    "title": "새우 양식 생산 Top 10 국가 (2022)",
+    "subtitle": "위젯 설명: FAOSTAT FishStatJ · 새우류 양식 전용 필터링",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/3. 새우 생산량(양식).csv",
+    "pillar": null
+  },
+  {
+    "id": "w05_top10_catch",
+    "title": "자연산 어획 자원 독점 Top 10 국가 (2022)",
+    "subtitle": "위젯 설명: [출처: FAO API 연동] 2022년 자연산(Capture) 생산량 총량 기준 상위 10개국",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: FAO API 연동] FAO FishStatJ 2024.1.0 글로벌 어획량 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w06_top10_revenue",
+    "title": "글로벌 새우 양식 매출액(Farm-Gate Value) Top 7",
+    "subtitle": "위젯 설명: 순수 새우(Penaeus) 품종 생산액 기준. 에콰도르 수량/매출 동시 1위 달성",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ · 국가별 Farm-gate Price 교차검증 [📡 LIVE API 연동: FAO API]",
+    "pillar": null
+  },
+  {
+    "id": "w07_trade_scaleup",
+    "title": "국경 붕괴: 글로벌 무역 대금 스케일업 추이",
+    "subtitle": "위젯 설명: 단위: USD 1,000 (천 달러) — FAO Commodities Trade 기준 | 수출 금액(Export)과 수입 금액(Import) 총합 장기 추세 대조",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w08_top_exporter",
+    "title": "글로벌 새우 수출 패권 리더보드 Top 10",
+    "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수출물량 순위 [📡 LIVE API 연동: Trade Map API]",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5. 새우 무역량.csv [📡 LIVE API 연동: Trade Map API]",
+    "pillar": null
+  },
+  {
+    "id": "w09_top_importer",
+    "title": "거대 소비 블랙홀(수입) 국가 Top 10",
+    "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수입물량 순위 [📡 LIVE API 연동: Trade Map API]",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w10_kr_import",
+    "title": "붕괴된 한반도: 대한민국 절대 수입 의존도",
+    "subtitle": "위젯 설명: 대한민국 장기 수입량 vs 수출량 물량 기반 비교 (100% 종속 증명) [📡 LIVE API 연동: Korea Customs API (관세청)]",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 교차 연산 [📡 LIVE API 연동: Korea Customs API (관세청)]",
+    "pillar": null
+  },
+  {
+    "id": "w11_kr_deficit",
+    "title": "붉어진 지폐: 대한민국 달러 유출 곡선 (적자)",
+    "subtitle": "위젯 설명: 대한민국 장기 수입 결제 대금 (USD) 추이 [📡 LIVE API 연동: BOK API (한국은행 환율)]",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/6. 새우 무역액.csv [📡 LIVE API 연동: BOK API (한국은행 환율)]",
+    "pillar": null
+  },
+  {
+    "id": "w12_unit_price",
+    "title": "최상위 마진 트렌드: 단위당 프리미엄 상승",
+    "subtitle": "위젯 설명: 전체 무역 금액 / 물량을 통해 산출한 연도별 평균 거래 단가 [📡 LIVE API 연동: KAMIS API (농수산물유통정보) 및 IMF Benchmark]",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 교차 연산 [📡 LIVE API 연동: KAMIS API (농수산물유통정보)]",
+    "pillar": null
+  },
+  {
+    "id": "w13",
+    "title": "초격차 독주: 에콰도르 수출 스케일업 장기 시계열",
+    "subtitle": "위젯 설명: 2019년 647,797톤 → 2023년 1,220,531톤. 연간 $72.5억 수출로 세계 1위 독주",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 교차 연산",
+    "pillar": null
+  },
+  {
+    "id": "w14",
+    "title": "블랙홀 제국: 중국의 초저가 매수 및 재수출 마크업",
+    "subtitle": "위젯 설명: 세계 최대 수입국이자 동시에 고부가 가공 수출국. 수입 $5,612 → 수출 $11,942",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/7,8번 CSV 양자간 무역 교차 연산",
+    "pillar": null
+  },
+  {
+    "id": "w15",
+    "title": "종자 패러다임 전환: 타이거새우 vs 흰다리새우 생산 곡선",
+    "subtitle": "위젯 설명: FAOSTAT FishStatJ · 주요 양식 새우 품종별 글로벌 생산량 시계열 교차 대조",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · 품종(Species) 교차 필터링",
+    "pillar": null
+  },
+  {
+    "id": "w16",
+    "title": "가공도 패권: 국가별 수출 단가 계층 구조",
+    "subtitle": "위젯 설명: 같은 새우인데 2배의 가격 차이. 가공도 = 곧 단가",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 교차 연산",
+    "pillar": null
+  },
+  {
+    "id": "w17",
+    "title": "구조적 무역 적자: 대한민국 새우 수입-수출 격차 추세",
+    "subtitle": "위젯 설명: 96,346톤 수입($7,332/t) vs 1,513톤 수출 → 거의 전량이 적자로 전환",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 한국 필터링",
+    "pillar": null
+  },
+  {
+    "id": "w18",
+    "title": "가공 생태계 패권: 글로벌 가공 생산량 5강 추이",
+    "subtitle": "위젯 설명: 에콰도르가 인도(75만)·베트남(67만)을 제치고 가공량에서도 1위로 등극",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/9. 새우 가공 생산량.csv",
+    "pillar": null
+  },
+  {
+    "id": "w19_hyperspectral",
+    "title": "초정밀 탈각 가공(Value-Add) 심화도별 글로벌 수출 단가 워터폴",
+    "subtitle": "위젯 설명: 단순 원물(HOSO) 대비 딥테크 가공(Breaded) 적용 시 톤당 수출 단가 2.1배(117%) 수직 상승",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2024.1.0 · HS Code 가공도별 교차 연산 [📡 LIVE API 연동: UN Comtrade API]",
+    "pillar": null
+  },
+  {
+    "id": "w20_fcr_80",
+    "title": "급여 패러다임 붕괴: 사료요구율 개선 및 바이오플락 최적화",
+    "subtitle": "위젯 설명: 초정밀 자동급이 및 BFT 도입 시 사료요구율(FCR) 1.93 → 1.09 극단적 수율 개선 (운영비 40% 절감)",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT Aquaculture Production · 글로벌 BFT 실증 데이터 [📡 LIVE API 연동: EUMOFA API]",
+    "pillar": null
+  },
+  {
+    "id": "w21_peeling_esg",
+    "title": "ESG 리스크 발동: 인도·베트남 인건비 폭등 및 단가 역전",
+    "subtitle": "위젯 설명: 임금 구조적 상승과 글로벌 단가 하락이 맞물려 가공 벤더 파산 리스크 최고조 (지수 95 도달)",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ · World Bank Macro Data [📡 LIVE API 연동: World Bank API]",
+    "pillar": null
+  },
+  {
+    "id": "w22_microalgae",
+    "title": "집약화의 역설(폐사율 50%)과 미세조류 사료 혁신",
+    "subtitle": "위젯 설명: FAO Aquaculture Technical Paper 실증 데이터: 사육 밀도(마리/m²) 증가에 따른 EMS(조기폐사증후군) 발병률 및 수질 악화 함수. 어분(Fishmeal) 가격 변동성 대비 미세조류 기반 배합사료의 생존율 개선 마진 교차 연산.",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAO Fisheries & Aquaculture Technical Paper 634 [📡 LIVE API 연동: FAOSTAT]",
+    "pillar": null
+  },
+  {
+    "id": "w_raw1_production_trend",
+    "title": "글로벌 새우 생산량 추이 (2015-2024)",
+    "subtitle": "위젯 설명: FAOSTAT FishStatJ 기반 주요 7개국 생산량 · 단위: 톤",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w_raw2_unit_price",
+    "title": "주요 양식국 톤당 원가 경쟁력 (2025)",
+    "subtitle": "위젯 설명: 양식 생산액 기준 톤당 Farm-gate 산지 원가 비교 (단위: USD/t)",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT FishStatJ 2025 (국가별 산지 원가 교차 분석)",
+    "pillar": null
+  },
+  {
+    "id": "w_proc1_type_production",
+    "title": "가공형태별 글로벌 새우 생산량 (2022)",
+    "subtitle": "위젯 설명: FAO 가공 통계 · 80개국 174행 원본 데이터 기반",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w_proc2_kr_import_type",
+    "title": "한국 수입 가공형태별 구성 (2022)",
+    "subtitle": "위젯 설명: FAO 무역 통계 · 한국 새우 수입 품목 분류",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT · data/새우/5. 새우 무역량.csv",
+    "pillar": null
+  },
+  {
+    "id": "w_log1_spot_price",
+    "title": "글로벌 새우 국제 스팟 가격 추이 (2010-2023)",
+    "subtitle": "위젯 설명: World Bank Pink Sheet · USD/kg 연평균",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: World Bank API 연동] World Bank Commodity Pink Sheet 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w_log2_kr_sourcing",
+    "title": "한국 새우 수입 소싱국 변화 (2019-2023)",
+    "subtitle": "위젯 설명: FAO 양자간 무역 통계 · 단위: 톤",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT · data/새우/7. 새우 무역량(양자간).csv",
+    "pillar": null
+  },
+  {
+    "id": "w_log3_kr_import_value",
+    "title": "한국 새우 수입 금액 추이 (2000-2023)",
+    "subtitle": "위젯 설명: FAO 무역액 통계 · 단위: USD 백만 | [📡 LIVE API 연동: Korea Customs API (관세청)]",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: 관세청/FAO API 연동] KCS 무역 통계 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w_sales1_commodity_unit_price",
+    "title": "가공형태별 글로벌 수입 단가 비교 (2022)",
+    "subtitle": "위젯 설명: 무역액 ÷ 무역량 = USD/톤 · 전세계 수입 기준",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT · data/새우/5,6번 CSV 교차 연산",
+    "pillar": null
+  },
+  {
+    "id": "w_sales2_exporter_trend",
+    "title": "주요 수출국별 새우 수출액 추이",
+    "subtitle": "위젯 설명: FAO 무역액 통계 · 단위: USD 백만",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: FAOSTAT · data/새우/6. 새우 무역액.csv",
+    "pillar": null
+  },
+  {
+    "id": "w_esg1_compliance",
+    "title": "주요 양식국 ESG 지속가능성 스코어카드",
+    "subtitle": "위젯 설명: Seafood Watch·GSSI 2024 감사(Audit) 실증 데이터 기반",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: Seafood Watch · GSSI 2024 Audit Data [📡 LIVE API 연동: SSP Ecuador]",
+    "pillar": null
+  },
+  {
+    "id": "w_esg2_supply_risk",
+    "title": "새우 공급망 단계별 ESG 리스크 매트릭스",
+    "subtitle": "위젯 설명: ETI Shrimp Supply Chains · Seafood Watch 감사(Audit) 실증 데이터 기반",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: ETI & Seafood Watch ESG Audit [📡 LIVE API 연동: Sedex/SMETA 플랫폼]",
+    "pillar": null
+  },
+  {
+    "id": "w42_format_shift",
+    "title": "B2C 소비재 포맷 시프트",
+    "subtitle": "위젯 설명: 냉동 통새우에서 신선/RTE(간편식) 패키징으로의 이탈 가속화",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: EUMOFA 보고서 [📡 LIVE API 연동: EUMOFA API]",
+    "pillar": null
+  },
+  {
+    "id": "w43_feed_inflation",
+    "title": "양식 사료 인플레이션 타격",
+    "subtitle": "위젯 설명: 어분(Fishmeal) 및 대두(Soybean) 폭등에 따른 양식 새우 한계비용 상승",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: World Bank Commodity Data [📡 LIVE API 연동: World Bank API]",
+    "pillar": null
+  },
+  {
+    "id": "w44_ems_margin",
+    "title": "EMS 질병 리스크 & 태국 새우 양식 마진 붕괴",
+    "subtitle": "위젯 설명: 조기폐사증후군(EMS) 발병 후 태국 새우 생산량 급감 & 농장 순이익률 반토막 (610K→241K톤, 마진 34.4%→16.5%)",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "[출처: Krungsri API 연동] Krungsri Research / Dept. of Fisheries",
+    "pillar": null
+  },
+  {
+    "id": "w45_export_vuln",
+    "title": "에콰도르-중국 FTA 발효 & 아시아 새우 수출 점유율 침식",
+    "subtitle": "위젯 설명: 에콰도르 무관세 중국 진입 + 미국 반덤핑(0.57-5.34%) 이중 압박으로 태국/아시아 수출 경쟁력 구조적 하락",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: Krungsri Research (Industry Outlook 2025-2027) / Trade Map / US DOC Anti-Dumping [📡 LIVE API 연동: US DOC API & Trade Map API]",
+    "pillar": null
+  },
+  {
+    "id": "w46_ecuador_dominance",
+    "title": "에콰도르 공급 독점 및 아시아의 퇴조 (2020-2024)",
+    "subtitle": "위젯 설명:  | 본 위젯은 글로벌 동향 파악을 위한 데이터입니다.",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: INFOFISH 2025-2026: The Strategic Evolution of the Global Shrimp Industry",
+    "pillar": null
+  },
+  {
+    "id": "w47_tariff_paradox",
+    "title": "미국 반덤핑 관세의 역설 (2024)",
+    "subtitle": "위젯 설명:  | 본 위젯은 글로벌 동향 파악을 위한 데이터입니다.",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: US Department of Commerce (DOC) 2024 / INFOFISH",
+    "pillar": null
+  },
+  {
+    "id": "w48_vaccine_priming",
+    "title": "경구 백신 상용화와 질병 리스크 헤징",
+    "subtitle": "위젯 설명:  | 본 위젯은 글로벌 동향 파악을 위한 데이터입니다.",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: Dalan Animal Health 2024 / INFOFISH Disease Resilience Report",
+    "pillar": null
+  },
+  {
+    "id": "w49_black_tiger_revival",
+    "title": "고마진 블랙타이거의 귀환과 허브화",
+    "subtitle": "위젯 설명:  | 본 위젯은 글로벌 동향 파악을 위한 데이터입니다.",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: INFOFISH 2025-2026: Asian Market Hubs / Market Pricing Index",
+    "pillar": null
+  },
+  {
+    "id": "w50_kfas_bft_pathogen",
+    "title": "바이오플락 양식 병원체 모니터링: 국내 새우 양식 안전성 포렌식",
+    "subtitle": "위젯 설명: 서해권역 7개 BFT 양식장, 194마리 실증 — EHP 강화 검출, WSSV/AHPND 방어 확인",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: KFAS: Gye et al.(2023) '2021년 서해권역 BFT 흰다리새우 병원체 모니터링' + KOSIS 국내 생산량",
+    "pillar": null
+  },
+  {
+    "id": "w51_kfas_silymarin_feed",
+    "title": "Silymarin 기능성 사료: 성장 +17.2% · 면역력 +37.8% 최적 배합",
+    "subtitle": "위젯 설명: 제주대 실증 — 0.05% 첨가구에서 성장·사료효율·SOD·PO 동시 최적화 달성",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: KFAS: Shin et al.(2022) '사료 내 Silymarin 첨가가 흰다리새우 성장·면역력에 미치는 영향' (제주대)",
+    "pillar": null
+  },
+  {
+    "id": "w52_kfas_duplex_pcr",
+    "title": "AHPND+EHP 동시 진단 PCR: 양식 조기경보 인프라 혁신",
+    "subtitle": "위젯 설명: 경북대·NFQS 공동개발 — 1회 PCR로 2대 병원체 동시 검출, 해수·분변까지 적용",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: KFAS: Jeon et al.(2021) 'AHPND+EHP 동시 PCR 진단법 개발' (경북대+NFQS) + Han et al.(2020)",
+    "pillar": null
+  },
+  {
+    "id": "w53_kfas_3d_printed_shrimp",
+    "title": "3D 프린팅 대체 새우: 명태 수리미 기반 차세대 시장 파괴자",
+    "subtitle": "위젯 설명: 부경대 실증 — 수리미+타피오카전분+새우향으로 겔강도·관능 최적화 성공",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "1차 학술: Park et al. (2025) 'Development of 3D-Printed Alaska Pollock Surimi-Based Shrimp Analogs' Korean Journal of Fisheries and Aquatic Sciences, 부경대학교 식품공학과. 보조: Korean Society of Fisheries and Aquatic Science (KOSFAS) Annual Symposium 2025 Proceedings. 방법론: 압출 기반 3D 프린팅 + Texture Profile Analysis (TPA) + 관능평가 ANOVA p<0.05 (훈련된 panel 12명)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_price_forecast",
+    "title": "AI 가격 예측: 3개월 새우 수입단가 전망 (VAR 모형)",
+    "subtitle": "위젯 설명: FRED(유가/환율) + ECOS + KAMIS 연동 | KMI 무역전망모형 방법론",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: FRED API + ECOS API + KMI 수산물 무역 단기 전망모형(2024-08)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_macro_dashboard",
+    "title": "거시경제 환경 실시간 대시보드",
+    "subtitle": "위젯 설명: FRED + BOK ECOS 연동 | 환율·유가·금리 실시간",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: FRED API (DCOILWTICO, DEXKOUS) + BOK ECOS",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_sourcing_sim",
+    "title": "국가별 착지원가 실시간 비교 시뮬레이터",
+    "subtitle": "위젯 설명: Comtrade + WITS + HS Ping 연동 | 4개국 CIF+관세+물류 분석",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: UN Comtrade (HS 030617) + WITS + KMI 전략품목 관리(2023-10)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_concentration_risk",
+    "title": "소싱 편중도 레이더 (HHI 지수)",
+    "subtitle": "위젯 설명: 허핀달-허쉬만 지수 기반 | Comtrade 교역량 분석",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: UN Comtrade + KMI 수입수산물 전략품목 관리(2023-10)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_substitute_elasticity",
+    "title": "수입새우-국산 흰다리 대체탄력성 분석",
+    "subtitle": "위젯 설명: KMI 대체관계 분석(2022-11) 방법론 적용",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: KMI 수입수산물과 국산 간 대체관계 분석(2022-11)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_ntb_radar",
+    "title": "통상 규제 NTB 리스크 신호등",
+    "subtitle": "위젯 설명: WTO + MFDS + OFAC 연동 | 미국/EU/SIMP 실시간",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: WTO SPS/TBT + KMI 비관세장벽 영향(2025-15) + 신통상규범 대응(2024-06)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_antibiotic_tracker",
+    "title": "국가별 새우 잔류 항생제 검출률",
+    "subtitle": "위젯 설명: MFDS 부적합 이력 + KMI 안전성 분석",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: MFDS 수입식품 부적합 DB + KMI 안전성 분석",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_sps_alert",
+    "title": "WTO SPS 통보 기반 규제 변동 알림",
+    "subtitle": "위젯 설명: WTO Data Portal 연동 | 새우 관련 SPS/TBT",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: WTO Data Portal (SPS Notifications) + KMI SIMP 대응(2025-13)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_forced_labor_map",
+    "title": "국가별 강제노동 리스크 히트맵",
+    "subtitle": "위젯 설명: OSH + OFAC + ILO C188 기준 | KMI 강제노동 규범화(2025-04)",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: Open Supply Hub + OFAC SDN + KMI 수산업 강제노동 규범화(2025-04)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_mangrove_index",
+    "title": "양식국별 맹그로브 파괴 지수",
+    "subtitle": "위젯 설명: ESG 환경 점수 | EU Deforestation Regulation 대응",
+    "telemetry": "static",
+    "syncDate": "FAO FishStatJ 2024",
+    "source": "출처: Global Mangrove Watch + KMI ESG 도입(2021-09)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_cert_tracker",
+    "title": "글로벌 새우 양식 인증 획득률 추적",
+    "subtitle": "위젯 설명: ASC/BAP/GlobalG.A.P./유기 인증 현황",
+    "telemetry": "synced",
+    "syncDate": "2025-Q4 기준",
+    "source": "출처: ASC/BAP Annual Report + KMI 유기수산식품 동등성(2025-03)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_chitosan_opportunity",
+    "title": "새우 껍질 → 키토산 바이오소재 시장 기회",
+    "subtitle": "위젯 설명: Comtrade HS3913 + KMI 업사이클링(2025-11)",
+    "telemetry": "live",
+    "syncDate": "실시간 연동중",
+    "source": "출처: UN Comtrade (HS 391390) + KMI 수산물 업사이클링(2025-11)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_halal_export",
+    "title": "할랄 가공 새우 중동 직수출 기회 매트릭스",
+    "subtitle": "위젯 설명: OEC + KMI 차세대 수출 전략 품목(2019-14)",
+    "telemetry": "static",
+    "syncDate": "FAO FishStatJ 2024",
+    "source": "출처: OEC Trade Data + KMI 차세대 수출 전략 품목(2019-14)",
+    "pillar": null
+  },
+  {
+    "id": "w_shrimp_rte_format",
+    "title": "HMR/RTE 가공품 프리미엄 분석",
+    "subtitle": "위젯 설명: Eurostat + U.S. Census + KMI 소비자 맞춤형(2025-08)",
+    "telemetry": "static",
+    "syncDate": "FAO FishStatJ 2024",
+    "source": "출처: Eurostat PRODCOM + U.S. Census + KMI 소비자 맞춤형 식품(2025-08)",
+    "pillar": null
+  },
+  {
+    "id": "w54_commodity_trap_index",
+    "title": "상품화 함정 탈출 지수: 가공도별 마진 비교",
+    "subtitle": "PinkSheet 원물가 대비 가공형태별 수출 단가 마진율 시계열 추이",
+    "telemetry": "synced",
+    "syncDate": "PinkSheet 2026-03",
+    "source": "World Bank PinkSheet + OEC HS030613/030623 단가 교차분석",
+    "pillar": null
+  },
+  {
+    "id": "w55_india_species_shift",
+    "title": "인도 종자 전환: 바나메이 급감과 모노돈 복귀",
+    "subtitle": "Rabobank 서베이 기반 인도 흰다리/블랙타이거 생산 비율 추이",
+    "telemetry": "synced",
+    "syncDate": "Rabobank 2024",
+    "source": "Rabobank Global Shrimp Survey 2024 + FAO FishStatJ",
+    "pillar": null
+  },
+  {
+    "id": "w56_trade_diversion_flow",
+    "title": "무역 전환 효과: 미국 관세 회피 물량의 한국 유입",
+    "subtitle": "미국 반덤핑 관세 시행 후 베트남/인도 → 한국 수출 증가 추정",
+    "telemetry": "synced",
+    "syncDate": "OEC 2022 기준",
+    "source": "OEC HS030613 + NotebookLM 무역 분석 + KMI 중국 새우장 보고서",
+    "pillar": null
+  },
+  {
+    "id": "w57_csddd_readiness",
+    "title": "주요 양식국 공급망 실사 준비도 스코어",
+    "subtitle": "EU CSDDD 기준 인권·환경 실사 대응력 평가 (100점 만점)",
+    "telemetry": "static",
+    "syncDate": "2025-Q1 기준",
+    "source": "ETI Shrimp Supply Chain + Seafood Watch Vietnam Risk Profile",
+    "pillar": null
+  },
+  {
+    "id": "w58_vn_labor_audit",
+    "title": "베트남 새우 가공 노동 리스크 대시보드",
+    "subtitle": "Seafood Watch 기반 베트남 탈각 공장 노동 환경 지표",
+    "telemetry": "static",
+    "syncDate": "2025 보고서",
+    "source": "Seafood Watch — Warmwater Shrimp Social Risk Profile Vietnam",
+    "pillar": null
+  },
+  {
+    "id": "w59_feed_substitute_economics",
+    "title": "대체 사료 원료 경제성 비교",
+    "subtitle": "어분 vs 미세조류 vs 곤충 단백질 단가 및 FCR 개선 효과 비교",
+    "telemetry": "static",
+    "syncDate": "EUMOFA 2025",
+    "source": "EUMOFA Fishmeal 2025 + KFAS Silymarin 논문",
+    "pillar": null
+  },
+  {
+    "id": "w60_disease_dx_evolution",
+    "title": "양식 질병 진단 기술 진화도",
+    "subtitle": "PCR → qPCR → CRISPR-Cas12a: 민감도, 비용, 검출 시간 비교",
+    "telemetry": "static",
+    "syncDate": "KFAS 2024",
+    "source": "KFAS Duplex PCR 논문 + NotebookLM CRISPR 분석",
+    "pillar": null
+  },
+  {
+    "id": "w61_hhi_timeseries",
+    "title": "한국 새우 소싱 집중도 시계열 추이",
+    "subtitle": "HHI 지수로 측정한 수입 소싱 편중도 변화 (안전 구간: 0.15 이하)",
+    "telemetry": "synced",
+    "syncDate": "OEC 2022",
+    "source": "OEC HS030613 양자 무역 데이터 + KCS",
+    "pillar": null
+  },
+  {
+    "id": "w62_alt_seafood_disruption",
+    "title": "대체 해산물 시장 파괴 시나리오",
+    "subtitle": "식물성·발효·세포배양 단백질의 기존 새우 시장 침투율 전망",
+    "telemetry": "static",
+    "syncDate": "2025 전망",
+    "source": "KFAS 3D 프린팅 논문 + NotebookLM 대체 단백질 전망",
+    "pillar": null
+  },
+  {
+    "id": "w63_coldwater_shrimp_stock",
+    "title": "한류 새우 자원 상태: 북극·북대서양 모니터",
+    "subtitle": "NAFO SPiCT 평가 기반 그린란드/덴마크 한류 새우 자원 건강도",
+    "telemetry": "static",
+    "syncDate": "NAFO 2025",
+    "source": "NAFO SCR-25-043 + OEC 2022 무역 데이터",
+    "pillar": null
+  },
+  {
+    "id": "w64_us_cvd_tariff_matrix",
+    "title": "미국 CVD 관세율 매트릭스: 4대 수출국 비교",
+    "subtitle": "SEAI 보고 기준 미국 상계관세(CVD) + 반덤핑 관세 국가별 비교",
+    "telemetry": "synced",
+    "syncDate": "SEAI 2026-05",
+    "source": "SEAI 2025 공식 블로그 + Undercurrent News",
+    "pillar": null
+  },
+  {
+    "id": "w65_india_seafood_export_trajectory",
+    "title": "인도 수산물 수출 성장 궤적: 150억달러 목표",
+    "subtitle": "SEAI 보고 기반 인도 수산물 총수출 및 새우 비중 추이",
+    "telemetry": "synced",
+    "syncDate": "SEAI 2025-09",
+    "source": "SEAI IISS-2025 보고서 + MPEDA 통계",
+    "pillar": null
+  },
+  {
+    "id": "w66_vn_shrimp_export_peak",
+    "title": "베트남 새우 수출 사상 최고치 달성",
+    "subtitle": "VASEP 보고 기반 베트남 새우 수출액 연간 추이",
+    "telemetry": "synced",
+    "syncDate": "VASEP 2026-01",
+    "source": "VASEP 수출 데이터 + Undercurrent News",
+    "pillar": null
+  },
+  {
+    "id": "w67_indo_eu_fta_impact",
+    "title": "인도-EU FTA 발효 시 관세 시뮬레이션",
+    "subtitle": "SEAI 분석 기반 Indo-EU FTA 전후 수산물 관세 변화 추정",
+    "telemetry": "synced",
+    "syncDate": "SEAI 2026-05",
+    "source": "SEAI 2026 블로그 + The Hindu Business Line",
+    "pillar": null
+  },
+  {
+    "id": "w68_indonesia_shrimp_associations",
+    "title": "인도네시아 새우 업계 핵심 이슈 트래커",
+    "subtitle": "AP5I/GPMT/SCI 협회 발표 기반 인도네시아 새우 산업 이슈 빈도",
+    "telemetry": "static",
+    "syncDate": "2026-05 수집",
+    "source": "AP5I/GPMT/SCI 공식 협회 HTML 자료 (2023~2026)",
+    "pillar": null
+  },
+  {
+    "id": "w69_andhra_pradesh_risk",
+    "title": "안드라프라데시 집중 리스크: 인도 새우 공급 취약성",
+    "subtitle": "인도 새우 생산의 안드라프라데시 주 집중도 및 농가 경영 압박",
+    "telemetry": "synced",
+    "syncDate": "Reuters 2025-04",
+    "source": "Reuters 2025.04.14 + SEAI 블로그",
+    "pillar": null
+  },
+  {
+    "id": "w70_tariff_chaos_timeline",
+    "title": "미국 관세 혼란 타임라인: 주요 이벤트",
+    "subtitle": "2025년 미국 새우 관세 정책 변동 주요 이벤트 정리",
+    "telemetry": "synced",
+    "syncDate": "2025-04",
+    "source": "Undercurrent News + NFI + SEAI 블로그 종합",
+    "pillar": null
+  }
+]

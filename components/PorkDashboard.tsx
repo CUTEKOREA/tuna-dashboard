@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Factory, TrendingUp, Globe, ShoppingCart, Leaf, Database, Activity, Clock } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend, W7_KoreaSupply, W8_ImportPartners, W9_ASFSeafood, W10_Portfolio, W11_SelfSufficiency } from './PorkWidgets';
+import PorkUsdaWidgets from './PorkUsdaWidgets';
 
 const TelemetryBadge = ({ status, syncDate }: any) => {
   if (!status) return null;
@@ -125,6 +126,10 @@ export default function PorkDashboard() {
               if (!Comp) return null;
               return <Comp key={wId} accent={sec.color} />;
             })}
+            {/* 🆕 USDA FAS GAIN + ESR — 중국·스페인·ASF·한국 시계열·Top10 */}
+            {sec.id === 'P1' && <PorkUsdaWidgets filterPillar="S1" />}
+            {sec.id === 'P3' && <PorkUsdaWidgets filterPillar="S3" />}
+            {sec.id === 'P4' && <PorkUsdaWidgets filterPillar="S4" />}
           </div>
         </div>
       ))}

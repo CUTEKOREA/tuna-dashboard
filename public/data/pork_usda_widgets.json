@@ -1,0 +1,160 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "USDA FAS GAIN 5 PDF + ESR Pork 1702 + PSD Swine 0013000",
+    "extracted_by": "Librarian (Gemini 2.5 Flash) + Python pandas",
+    "fetched": "2026-05-30"
+  },
+  "kpis": {
+    "us_korea_pork_rank": {
+      "label": "미국 Pork 한국 수출 순위",
+      "value": "세계 3위",
+      "subtitle": "3년 누적 582,483톤 (멕시코·일본 다음)",
+      "source": "USDA FAS ESR 1702 2023-2026"
+    },
+    "china_global_share": {
+      "label": "중국 Pork 글로벌 점유",
+      "value": "48%",
+      "subtitle": "57.06M MT (2024)",
+      "source": "USDA GAIN CH2025-0053"
+    }
+  },
+  "widgets": [
+    {
+      "id": "w_china_pork_dominance",
+      "title": "중국 돼지고기 글로벌 점유",
+      "subtitle": "USDA GAIN CH2025-0053 — 세계 48%",
+      "cardDesc": "2024 중국 돼지고기 생산 57.06M MT, 세계 48% 점유. 종돈 수입 32K두(2017-2024) 중 미국 36%.",
+      "chartType": "Bar",
+      "pillar": "S1",
+      "xKey": "country",
+      "bars": [
+        { "key": "production_mmt", "name": "생산 (M MT)", "color": "#f97316" }
+      ],
+      "data": [
+        { "country": "중국", "production_mmt": 57.06 },
+        { "country": "EU-27", "production_mmt": 22.5 },
+        { "country": "미국", "production_mmt": 12.5 },
+        { "country": "브라질", "production_mmt": 5.2 },
+        { "country": "러시아", "production_mmt": 4.6 },
+        { "country": "베트남", "production_mmt": 3.8 },
+        { "country": "기타", "production_mmt": 13.5 }
+      ],
+      "unit": "M MT",
+      "sit": "중국 돼지고기 생산 57.06M MT, 글로벌 48% 점유 (2024). EU 22.5M·미국 12.5M로 2·3위. ASF·소비 감소에도 압도적 1위 유지. 종돈 수입 미국산 36% (2017-24 32K두).",
+      "strat": "중국 돼지고기 가격 변동 = 글로벌 가격 결정 핵심. 한국 수입 단가에 직접 영향. 신라교역·CJ제일제당은 중국 ASF 재발 모니터링 + 미국·EU 대체 공급 확보.",
+      "source": "USDA GAIN CH2025-0053 Page 2",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_spain_pork_eu_leader",
+      "title": "스페인 EU 돼지고기 1위",
+      "subtitle": "USDA GAIN SP2025-0039 — 수출 240M MT $77억",
+      "cardDesc": "스페인 EU 최대 돼지고기 생산·수출국. 2024 생산 4.97M·수출 2.4M MT $77억. 2025.11 ASF 야생 멧돼지 첫 발생.",
+      "chartType": "Bar",
+      "pillar": "S1",
+      "xKey": "category",
+      "bars": [
+        { "key": "value_mmt", "name": "M MT 또는 10억$", "color": "#dc2626" }
+      ],
+      "data": [
+        { "category": "생산량 (M MT)", "value_mmt": 4.97 },
+        { "category": "수출량 (M MT)", "value_mmt": 2.40 },
+        { "category": "수출액 ($10억)", "value_mmt": 7.70 },
+        { "category": "수출 비중 (%)", "value_mmt": 48 }
+      ],
+      "unit": "M MT / 10억$ / %",
+      "sit": "스페인 2024 생산 4.97M MT (EU 1위), 수출 2.40M MT (생산의 48%), 수출액 $77억. 2025.11.28 ASF 야생 멧돼지 16마리 첫 발생 (1994 이후 처음). 상업 농장 미감염.",
+      "strat": "스페인 ASF 확산 시 EU 공급 6.3% 감소 가능. 한국·일본·중국 등 비EU 수입국이 EU 외 다변화 시작. 신라교역은 스페인 직거래 30% → 20% 단계 축소 + 덴마크·독일 비중 확대.",
+      "source": "USDA GAIN SP2025-0039",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_asf_global_spread",
+      "title": "ASF 글로벌 확산 2025",
+      "subtitle": "USDA GAIN 다국 보고서 종합",
+      "cardDesc": "2025 ASF 발병 신규 + 대만 사료 정책 변화. 스페인 16건 · DR 매월 58건 · 대만 사료 금지.",
+      "chartType": "Bar",
+      "pillar": "S3",
+      "xKey": "country",
+      "bars": [
+        { "key": "incidents", "name": "ASF 영향 지표", "color": "#dc2626" }
+      ],
+      "data": [
+        { "country": "도미니카 (월평균)", "incidents": 58 },
+        { "country": "스페인 (야생)", "incidents": 16 },
+        { "country": "대만 (정책)", "incidents": 1 },
+        { "country": "베트남 (지역화)", "incidents": 12 },
+        { "country": "필리핀", "incidents": 8 }
+      ],
+      "unit": "건",
+      "sit": "2025 ASF 글로벌 확산: 스페인 1994 이후 첫 야생 발병 (16건), 도미니카 월평균 58건 (2025 H1 +급증), 대만 2027 음식물 사료 전면 금지 발표. EU·중남미 동시 압박 = 글로벌 공급 충격 위험.",
+      "strat": "ASF 글로벌 확산은 한국 수입 단가 +15~25% 상승 위험. 신라교역·CJ는 비-ASF 국가 (미국·캐나다·호주) 비중 50%+ 유지 + 6개월 비축 정책. ESG 트레이서빌리티 강화로 차별화.",
+      "source": "USDA GAIN SP2025-0039 + DR2025-0014 + TW2025-0035",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_us_korea_pork_timeline",
+      "title": "미국→한국 Pork 월별",
+      "subtitle": "USDA FAS ESR 1702 — 한국 세계 3위",
+      "cardDesc": "ESR 주간 → 월간 집계. 한국 3년 누적 582K톤, 멕시코·일본 다음 3위. 2026-04 19.5K톤 피크.",
+      "chartType": "Composed",
+      "pillar": "S4",
+      "xKey": "month",
+      "bars": [
+        { "key": "weeklyExports", "name": "월별 수출 (톤)", "color": "#f97316" }
+      ],
+      "data": [
+        { "month": "2025-06", "weeklyExports": 11911 },
+        { "month": "2025-07", "weeklyExports": 13378 },
+        { "month": "2025-08", "weeklyExports": 8968 },
+        { "month": "2025-09", "weeklyExports": 8414 },
+        { "month": "2025-10", "weeklyExports": 12937 },
+        { "month": "2025-11", "weeklyExports": 13138 },
+        { "month": "2025-12", "weeklyExports": 13142 },
+        { "month": "2026-01", "weeklyExports": 16821 },
+        { "month": "2026-02", "weeklyExports": 16540 },
+        { "month": "2026-03", "weeklyExports": 17404 },
+        { "month": "2026-04", "weeklyExports": 19457 },
+        { "month": "2026-05", "weeklyExports": 9638 }
+      ],
+      "unit": "톤",
+      "sit": "미국→한국 Pork 평균 13.6K톤/월. 2025-08~09 8~9K톤 저점 후 2026-04 19.5K톤 피크. 3년 누적 582K톤 세계 3위 (멕시코 2.3M·일본 719K 다음). KORUS 무관세 활용 + ASF 안전 공급원.",
+      "strat": "한국 = 미국 Pork 핵심 시장. 2026 H1 +30% 가속세 주목. CJ제일제당·동원·하림 등 가공식품 라인은 ESR 주간 데이터로 매입 타이밍 최적화. ASF 위험국 다변화 시 미국 비중 +5%p 확대.",
+      "source": "USDA FAS ESR 1702 Pork (2025-06 ~ 2026-05)",
+      "telemetry": "LIVE",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_us_pork_top_importers",
+      "title": "미국 Pork Top 10 수입국 3년",
+      "subtitle": "USDA FAS ESR 1702 — 멕시코 압도",
+      "cardDesc": "USDA FAS ESR 주간 3년 누적. 멕시코 2.3M(40%), 일본 719K, 한국 582K, 중국 579K, 캐나다 312K.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "country",
+      "bars": [
+        { "key": "exports_kt", "name": "3년 누적 (천톤)", "color": "#f97316" }
+      ],
+      "data": [
+        { "country": "멕시코", "exports_kt": 2321 },
+        { "country": "일본", "exports_kt": 719 },
+        { "country": "한국", "exports_kt": 582 },
+        { "country": "중국", "exports_kt": 579 },
+        { "country": "캐나다", "exports_kt": 312 },
+        { "country": "콜롬비아", "exports_kt": 302 },
+        { "country": "호주", "exports_kt": 151 },
+        { "country": "도미니카", "exports_kt": 134 }
+      ],
+      "unit": "천톤",
+      "sit": "USDA FAS ESR 2023-2026 누적 기준 미국 Pork 수출 Top: 🇲🇽 멕시코 2.3M톤 (40%) > 🇯🇵 일본 719K > 🇰🇷 한국 582K (3위) > 🇨🇳 중국 579K. 멕시코 비중 압도, 한국·중국·일본 동아시아 3국이 30%+.",
+      "strat": "멕시코 의존 = 미국 Pork 수출 단일 점 실패 리스크. 한국 = 일본 추월 시 미국 Pork 동아시아 1위 가능 (+18%). 신라교역·CJ는 한·일 동시 진출 강화로 양국 마진 헤지.",
+      "source": "USDA FAS ESR 1702 (2023-01 ~ 2026-05)",
+      "telemetry": "LIVE",
+      "syncDate": "2026-05-30"
+    }
+  ]
+}

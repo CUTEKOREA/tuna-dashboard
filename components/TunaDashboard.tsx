@@ -91,6 +91,17 @@ import {
 
 // Phase 2: Landing Cost & Supplier Hub
 import TunaLandingCost from './TunaLandingCost';
+import TunaUsLoinImports from './TunaUsLoinImports';
+import EuropeanMarketDashboard from './EuroTunaWidgets';
+
+// Phase MSC: MSC Yearbook 2026 기반 인텔리전스 (5개 위젯)
+import {
+  MscGlobalTunaGrowthTracker,
+  MscEuropeCountryPenetration,
+  MscBrandSourcingScorecard,
+  MscTunaStockHealthGauge,
+  MscConsumerInsightsRadar,
+} from './MscIntelligenceWidgets';
 
 // --- Absorbed Components for Hybrid Consolidation ---
 import TunaCrossroads from './TunaCrossroads';
@@ -119,6 +130,14 @@ import TunaHSClassifier from './TunaHSClassifier';
 import TunaRFMOLibrarian from './TunaRFMOLibrarian';
 import TunaAtuna8YPrice from './TunaAtuna8YPrice';
 import TunaUsdaKoreaSeafood from './TunaUsdaKoreaSeafood';
+
+// Phase FFA: 원료 수급 위젯 6종 (FFA/SPC/NOAA 데이터 기반)
+import FfaWcpoSupplyDashboard from './FfaWcpoSupplyDashboard';
+import FfaStockHealthGauge from './FfaStockHealthGauge';
+import FfaEnsoCatchCorrelation from './FfaEnsoCatchCorrelation';
+import FfaVdsMarketIndicator from './FfaVdsMarketIndicator';
+import FfaGlobalProcessingCapacity from './FfaGlobalProcessingCapacity';
+import FfaSupplyConcentrationRisk from './FfaSupplyConcentrationRisk';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -709,6 +728,22 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
               </div>
             </div>
+            {/* 🆕 FFA/SPC 공식 데이터 기반 원료 수급 인텔리전스 */}
+            <div style={{ marginBottom: '2rem', paddingBottom: '2rem', borderBottom: '1px dashed rgba(255,255,255,0.1)' }}>
+              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#22d3ee', background: 'rgba(34,211,238,0.1)', padding: '3px 10px', borderRadius: '6px' }}>FFA/SPC</span>
+                <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>공식 수급 인텔리전스 — 2024 WCPFC 통계 기반</span>
+              </div>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+                <FfaWcpoSupplyDashboard />
+                <FfaStockHealthGauge />
+                <FfaEnsoCatchCorrelation />
+                <FfaVdsMarketIndicator />
+                <FfaGlobalProcessingCapacity />
+                <FfaSupplyConcentrationRisk />
+              </div>
+            </div>
+
             {/* 1. 기후/환경 예측 */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <EnsoCorrelationWidget />
@@ -861,6 +896,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <MofTradeBalanceWidget />
               {/* 미국 인구조사국 무역 통계 — 참치캔 공급국 (명태 우회는 PollockDashboard로 분리) */}
               <UsTunaMarketShareWidget />
+              <TunaUsLoinImports />
 
               {/* 3. 전략적 물류 거점 (PNG 등) */}
               <TunaPngHubStrategy />
@@ -928,6 +964,24 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <InsightKmiBluefinSupplyShift />
               <InsightKmiBluefin2026Signal />
             </div>
+
+            {/* 7. 유럽 참치캔 마켓 (Macro Trade, Retail KPIs, ESG) */}
+            <EuropeanMarketDashboard />
+
+            {/* 🆕 MSC Yearbook 2026 기반 인텔리전스 — 유럽 다운스트림 심층 분석 */}
+            <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+              <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#10b981', background: 'rgba(16,185,129,0.1)', padding: '3px 10px', borderRadius: '6px' }}>MSC</span>
+                <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>MSC Yearbook 2026 기반 — 글로벌 인증 참치 인텔리전스</span>
+              </div>
+              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+                <MscGlobalTunaGrowthTracker />
+                <MscConsumerInsightsRadar />
+                <MscEuropeCountryPenetration />
+                <MscBrandSourcingScorecard />
+              </div>
+            </div>
+
             <OperationalS4Widgets />
 
             {/* 🆕 Atuna 8년 가격 timeline — 어종 평균 + 5 항만별 토글 */}
@@ -974,6 +1028,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
               {/* Kawamoto 2026 — 인구·세대 구조 리스크 (장기 ESG) */}
               <InsightCohortDoubleShock />
+            </div>
+
+            {/* 🆕 MSC Biodiversity Report 2025 — 참치 자원 건전성 게이지 */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <MscTunaStockHealthGauge />
             </div>
 
             {/* 🆕 RFMO Librarian — IATTC 자원평가 + WCPFC 빌피쉬 혼획 (S5: ESG·지속가능성) */}

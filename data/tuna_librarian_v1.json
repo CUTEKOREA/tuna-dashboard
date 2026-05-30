@@ -6,7 +6,8 @@
       "IATTC No.22 2024 자원평가",
       "WCPFC Tuna Fishery Yearbook 2025 (TFY 2025)",
       "IOTC Tropical tuna data 2024",
-      "IATTC SAR 24 2024 (Stocks 2022)"
+      "IATTC SAR 24 2024 (Stocks 2022)",
+      "FFA Markets Study 2025 UPDATE"
     ]
   },
   "kpis": {
@@ -90,6 +91,31 @@
       "source": "TFY 2025 p.143 Table 100",
       "telemetry": "SYNCED",
       "syncDate": "2026-05-29"
+    },
+    {
+      "id": "w_china_dwf_fleet",
+      "title": "중국 주요 4대 원양기업 실질 소유 선망선 및 국적",
+      "subtitle": "FFA Markets Study 2025 — 중국 대형 원양어업 기업들의 실익 소유(Beneficial Ownership) 선망선 및 합작 국적 분석",
+      "cardDesc": "FFA Markets Study 2025 p.32 표 2 — 중국 대형 4개사의 실질 지배 선망 어선 및 국적 분포. 자국 국적 외에 마샬제도(RMI), 키리바시 등 태평양 도서국(PIC) 합작 법인을 통한 우회 진입 전략 시각화.",
+      "chartType": "Bar",
+      "pillar": "S1",
+      "xKey": "company",
+      "bars": [
+        { "key": "china_flag", "name": "중국 국적선 (척)", "color": "#ef4444" },
+        { "key": "pic_flag", "name": "도서국 합작선 (척)", "color": "#38bdf8" }
+      ],
+      "data": [
+        { "company": "상해개창", "china_flag": 6, "pic_flag": 5, "vessels": 11, "catch": 211978, "profit": 723888194 },
+        { "company": "절강양가", "china_flag": 4, "pic_flag": 5, "vessels": 9, "catch": 73891, "profit": 245574139 },
+        { "company": "산동중로", "china_flag": 4, "pic_flag": 0, "vessels": 4, "catch": 61608, "profit": 302111320 },
+        { "company": "중어그룹", "china_flag": 3, "pic_flag": 0, "vessels": 3, "catch": 84892, "profit": 267234795 }
+      ],
+      "unit": "척",
+      "sit": "중국 원양어업(DWF) 선단은 자국 국적선 운영 외에도 태평양 도서국(PIC)과의 합작 법인(상해개창-마샬제도 5척, 절강양가-키리바시 5척)을 설립하여 PNA EEZ 수역에 우회 진입하고 조업권을 확보함. 4대 기업의 총 어획량은 432,369톤에 달하며, 특히 상해개창은 11척의 선망선으로 21.1만톤의 압도적인 어획을 기록하여 중국 참치 조업의 핵심 축을 담당함.",
+      "strat": "태평양 도서국의 자원 자국화 및 외국 자본 규제 강화에 대응해 중국 기업들이 취한 합작선(Flags of Convenience) 구조를 벤치마킹할 필요가 있음. 한국 선단도 단순 조업권 매입(VDS)을 넘어 PNA 국가(PNG, Kiribati 등)와의 지분 합작 및 국내화(Domestic Processing) 투자 모델을 결합해야 장기 조업 안정성을 보장받을 수 있음.",
+      "source": "FFA Markets Study 2025 UPDATE p.32 Table 2; WCPFC RFV",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
     },
     {
       "id": "w_iattc_stock_status",

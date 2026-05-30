@@ -9,7 +9,7 @@ import {
   BarChart, Bar, AreaChart, Area
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { TrendingUp, Ship, Briefcase, Skull, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, Bone, Zap } from 'lucide-react';
+import { TrendingUp, Ship, Briefcase, Skull, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, Bone, Zap, Fish } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
@@ -19,6 +19,12 @@ import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import UsTunaImportWidget from './UsTunaImportWidget';
 import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
 import UsPolicyImpactWidget from './UsPolicyImpactWidget';
+import FfaWcpoSupplyDashboard from './FfaWcpoSupplyDashboard';
+import FfaStockHealthGauge from './FfaStockHealthGauge';
+import FfaEnsoCatchCorrelation from './FfaEnsoCatchCorrelation';
+import FfaVdsMarketIndicator from './FfaVdsMarketIndicator';
+import FfaGlobalProcessingCapacity from './FfaGlobalProcessingCapacity';
+import FfaSupplyConcentrationRisk from './FfaSupplyConcentrationRisk';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -749,6 +755,13 @@ export default function TunaInsightsDashboard() {
           >
             <Zap size={18} /> 6. 🔥 신규 전략 인텔리전스
           </div>
+          <div
+            className={`${styles.menuItem} ${activeTab === 'ffa' ? styles.activeMenu : ''}`}
+            onClick={() => setActiveTab('ffa')}
+            style={activeTab === 'ffa' ? { background: 'rgba(34, 211, 238, 0.1)', color: '#22d3ee', border: '1px solid rgba(34, 211, 238, 0.3)' } : {}}
+          >
+            <Fish size={18} /> 7. 🌊 FFA 원료수급
+          </div>
         </aside>
 
         <main className={styles.content}>
@@ -774,6 +787,20 @@ export default function TunaInsightsDashboard() {
               <InsightTunaExtract />
               <InsightPillarTwo />
               <InsightVietnamOEM />
+            </>
+          )}
+          {activeTab === 'ffa' && (
+            <>
+              <div style={{ background: 'rgba(34, 211, 238, 0.1)', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#a5f3fc', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Fish size={16} color="#22d3ee" />
+                FFA/SPC 2024 공식 데이터 기반 WCPO 원료수급 6대 인사이트. S1(원료수급) + S2(가공생산) 필라 실데이터 위젯.
+              </div>
+              <FfaWcpoSupplyDashboard />
+              <FfaStockHealthGauge />
+              <FfaEnsoCatchCorrelation />
+              <FfaVdsMarketIndicator />
+              <FfaGlobalProcessingCapacity />
+              <FfaSupplyConcentrationRisk />
             </>
           )}
         </main>
