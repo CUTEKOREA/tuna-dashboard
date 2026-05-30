@@ -1,0 +1,184 @@
+{
+  "_meta": {
+    "source": "USDA FAS PSD Swine 0013000 + ESR Pork 1702",
+    "fetched": "2026-05-30"
+  },
+  "esr_top10_importers_3y": {
+    "MEXICO": 2321038,
+    "JAPAN": 719171,
+    "KOREA, REPUBLIC OF": 582483,
+    "CHINA, PEOPLES REPUBLIC OF": 579121,
+    "CANADA": 311852,
+    "COLOMBIA": 301551,
+    "AUSTRALIA": 150695,
+    "DOMINICAN REPUBLIC": 133712,
+    "HONDURAS": 112731,
+    "PHILIPPINES": 57026
+  },
+  "esr_korea_monthly": [
+    {
+      "month": "2023-01",
+      "weeklyExports": 9053
+    },
+    {
+      "month": "2023-02",
+      "weeklyExports": 9755
+    },
+    {
+      "month": "2023-03",
+      "weeklyExports": 13955
+    },
+    {
+      "month": "2023-04",
+      "weeklyExports": 15548
+    },
+    {
+      "month": "2023-05",
+      "weeklyExports": 12375
+    },
+    {
+      "month": "2023-06",
+      "weeklyExports": 13112
+    },
+    {
+      "month": "2023-07",
+      "weeklyExports": 6209
+    },
+    {
+      "month": "2023-08",
+      "weeklyExports": 11059
+    },
+    {
+      "month": "2023-09",
+      "weeklyExports": 10374
+    },
+    {
+      "month": "2023-10",
+      "weeklyExports": 10945
+    },
+    {
+      "month": "2023-11",
+      "weeklyExports": 20936
+    },
+    {
+      "month": "2023-12",
+      "weeklyExports": 16418
+    },
+    {
+      "month": "2024-01",
+      "weeklyExports": 14413
+    },
+    {
+      "month": "2024-02",
+      "weeklyExports": 25444
+    },
+    {
+      "month": "2024-03",
+      "weeklyExports": 21233
+    },
+    {
+      "month": "2024-04",
+      "weeklyExports": 21499
+    },
+    {
+      "month": "2024-05",
+      "weeklyExports": 21573
+    },
+    {
+      "month": "2024-06",
+      "weeklyExports": 11830
+    },
+    {
+      "month": "2024-07",
+      "weeklyExports": 9163
+    },
+    {
+      "month": "2024-08",
+      "weeklyExports": 10167
+    },
+    {
+      "month": "2024-09",
+      "weeklyExports": 7890
+    },
+    {
+      "month": "2024-10",
+      "weeklyExports": 11787
+    },
+    {
+      "month": "2024-11",
+      "weeklyExports": 12576
+    },
+    {
+      "month": "2024-12",
+      "weeklyExports": 13373
+    },
+    {
+      "month": "2025-01",
+      "weeklyExports": 16681
+    },
+    {
+      "month": "2025-02",
+      "weeklyExports": 16375
+    },
+    {
+      "month": "2025-03",
+      "weeklyExports": 21446
+    },
+    {
+      "month": "2025-04",
+      "weeklyExports": 19132
+    },
+    {
+      "month": "2025-05",
+      "weeklyExports": 16414
+    },
+    {
+      "month": "2025-06",
+      "weeklyExports": 11911
+    },
+    {
+      "month": "2025-07",
+      "weeklyExports": 13378
+    },
+    {
+      "month": "2025-08",
+      "weeklyExports": 8968
+    },
+    {
+      "month": "2025-09",
+      "weeklyExports": 8414
+    },
+    {
+      "month": "2025-10",
+      "weeklyExports": 12937
+    },
+    {
+      "month": "2025-11",
+      "weeklyExports": 13138
+    },
+    {
+      "month": "2025-12",
+      "weeklyExports": 13142
+    },
+    {
+      "month": "2026-01",
+      "weeklyExports": 16821
+    },
+    {
+      "month": "2026-02",
+      "weeklyExports": 16540
+    },
+    {
+      "month": "2026-03",
+      "weeklyExports": 17404
+    },
+    {
+      "month": "2026-04",
+      "weeklyExports": 19457
+    },
+    {
+      "month": "2026-05",
+      "weeklyExports": 9638
+    }
+  ]
+}
