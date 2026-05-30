@@ -23,6 +23,7 @@ import ChickenPartsWidget from './ChickenPartsWidget';
 import { InsightTimeGapArbitrage, InsightChannelMatrix, InsightVMILockin } from './ChickenThaiInsightsA';
 import { InsightKoreaSpecialLine, InsightRiskNexus, InsightPartnerMatch } from './ChickenThaiInsightsB';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
+import ChickenUsdaWidgets from './ChickenUsdaWidgets';
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
   if (!status) return null;
@@ -487,6 +488,10 @@ export default function ChickenDashboard() {
             {sec.id === 'P3' && <InsightTimeGapArbitrage />}
             {sec.id === 'P4' && <ChickenCorporateWidget />}
             {sec.id === 'P4' && <InsightPartnerMatch />}
+
+            {/* 🆕 USDA FAS GAIN — 한국·브라질·중국 닭고기 시장 (S1·S4) */}
+            {sec.id === 'P1' && <ChickenUsdaWidgets filterPillar="S1" />}
+            {sec.id === 'P4' && <ChickenUsdaWidgets filterPillar="S4" />}
           </div>
         </div>
       ))}

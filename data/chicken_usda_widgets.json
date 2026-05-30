@@ -1,0 +1,141 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "USDA FAS GAIN 5 PDF (Korea KS2025-0036 + China CH2026-0031·0066 + Brazil BR2025-0015·BR2026-0012)",
+    "extracted_by": "Librarian (Gemini 2.5 Flash)",
+    "fetched": "2026-05-30"
+  },
+  "widgets": [
+    {
+      "id": "w_brazil_chicken_production_7y",
+      "title": "브라질 닭고기 생산 7년",
+      "subtitle": "USDA GAIN BR2026-0012 — 세계 1위",
+      "cardDesc": "MY 2020~2026 브라질 닭고기 생산. 2026 15.7M MT 사상 최고, 세계 수출 35%+ 점유.",
+      "chartType": "Composed",
+      "pillar": "S1",
+      "xKey": "year",
+      "bars": [
+        { "key": "production_mmt", "name": "생산 (M MT)", "color": "#f59e0b" }
+      ],
+      "lines": [
+        { "key": "exports_mmt", "name": "수출 (M MT)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "year": "2020", "production_mmt": 14.0, "exports_mmt": 4.2 },
+        { "year": "2021", "production_mmt": 14.5, "exports_mmt": 4.6 },
+        { "year": "2022", "production_mmt": 15.0, "exports_mmt": 4.8 },
+        { "year": "2023", "production_mmt": 15.2, "exports_mmt": 5.0 },
+        { "year": "2024", "production_mmt": 15.5, "exports_mmt": 5.0 },
+        { "year": "2025", "production_mmt": 15.4, "exports_mmt": 5.0 },
+        { "year": "2026E", "production_mmt": 15.7, "exports_mmt": 5.2 }
+      ],
+      "unit": "M MT (백만톤)",
+      "sit": "브라질 닭고기 생산 2026E 15.7M MT 사상 최고 (+2%). 수출 5.2M MT (+4%)로 세계 1위·35%+ 점유. 사료비 -8.6%·통화 약세가 견인. 2025 HPAI에도 불구 시장 다변화 (UAE·일본·사우디 등 37%).",
+      "strat": "브라질 = 글로벌 닭고기 가격 결정자. 한국 수입 72% 의존 (브라질 매개). 신라교역·하림·체리부로는 브라질 단일 의존 리스크 인지 + 태국·우크라이나 대체 채널 동시 확보.",
+      "source": "USDA GAIN BR2026-0012 Figure 2, Table 1",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_chicken_balance",
+      "title": "한국 닭고기 생산·수입 추이",
+      "subtitle": "USDA GAIN KS2025-0036 — 수입 +9% 가속",
+      "cardDesc": "한국 닭고기 생산·수입 3년 (2024-2026E). 생산 정체 + 수입 +9% 증가.",
+      "chartType": "Composed",
+      "pillar": "S1",
+      "xKey": "year",
+      "bars": [
+        { "key": "production_kt", "name": "생산 (천MT)", "color": "#f59e0b" }
+      ],
+      "lines": [
+        { "key": "imports_kt", "name": "수입 (천MT)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "year": "2024", "production_kt": 935, "imports_kt": 250 },
+        { "year": "2025", "production_kt": 920, "imports_kt": 230 },
+        { "year": "2026E", "production_kt": 925, "imports_kt": 250 }
+      ],
+      "unit": "천MT",
+      "sit": "한국 닭고기 생산 2024 935K → 2026E 925K (정체). 수입은 2025 230K → 2026E 250K (+9%) 가속. PS 종계 공급 한계로 국내 생산 정체. 수입 비중 21% (250/1175) 확대 추세. HPAI 살처분 560만 마리 (2.8%) 영향.",
+      "strat": "국내 생산 한계 = 수입 의존 심화. 가공식품·외식 비용 인상 압박 (소비자 가격 +6% 추정). 신라교역·CJ는 가공식품 수익성 방어 + 수입선 다변화 (태국·우크라이나·미국)."  ,
+      "source": "USDA GAIN KS2025-0036 Table 1, Page 4",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_chicken_import_origin",
+      "title": "한국 닭고기 수입국 2024",
+      "subtitle": "USDA GAIN KS2025-0036 — 브라질 72% 위험",
+      "cardDesc": "2024년 한국 닭고기 수입의 72%가 브라질. HPAI 시 공급망 교란 직격.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "country",
+      "bars": [
+        { "key": "share_pct", "name": "점유율 (%)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "country": "브라질", "share_pct": 72 },
+        { "country": "태국", "share_pct": 21 },
+        { "country": "중국", "share_pct": 3 },
+        { "country": "미국", "share_pct": 1 },
+        { "country": "기타", "share_pct": 3 }
+      ],
+      "unit": "%",
+      "sit": "2024 한국 닭고기 수입 72%가 브라질. 태국 21% 2위, 미국 1% 미미. 단일 국가 70%+ 의존은 공급망 단일 점 실패 (single point of failure) 구조. 2025 브라질 HPAI 시 일시 수입중단 발생, 실제 손해 발생.",
+      "strat": "브라질 의존 72% → 60% 이하 단계 축소. 태국 비중 30% 확대 + 미국 5%+ 신규 진입. 신라교역은 다국 균형 조달 + 비축 6주 유지로 HPAI·수입중단 리스크 대응.",
+      "source": "USDA GAIN KS2025-0036 Graph 4, Page 12",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_chicken_price_gap",
+      "title": "한국 vs 수입 닭고기 가격",
+      "subtitle": "USDA GAIN KS2025-0036 — 국내 +151% 프리미엄",
+      "cardDesc": "2025 H1 평균. 국내 냉장 ₩7,176/kg vs 수입(브라질 냉동) ₩2,860/kg, 가격 갭 60%.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "type",
+      "bars": [
+        { "key": "price_krw", "name": "가격 (₩/kg)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "type": "국내 냉장 다리", "price_krw": 7176 },
+        { "type": "수입 냉동 다리 (브라질)", "price_krw": 2860 },
+        { "type": "수입 냉동 (태국)", "price_krw": 3200 },
+        { "type": "가격 갭 (₩/kg)", "price_krw": 4316 }
+      ],
+      "unit": "₩/kg",
+      "sit": "2025 H1 국내 닭고기 ₩7,176/kg vs 수입(브라질) ₩2,860/kg. 국내가 수입대비 +151% 프리미엄. ₩4,316 갭 = 가공식품·외식 마진 핵심 변수. 수입 의존도 가속 동력.",
+      "strat": "외식 BBQ·교촌·bhc 등 프랜차이즈 = 수입산 비중 50%+. 신라교역은 통조림·HMR용으로 브라질 직수입 우위 활용. 단, 한우·한돈 같은 한국산 프리미엄 라인 유지로 양극화 시장 동시 공략.",
+      "source": "USDA GAIN KS2025-0036 Table 5, Page 11",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_china_chicken_export_price",
+      "title": "중국 닭고기 수출 단가",
+      "subtitle": "USDA GAIN CH2026-0031 — 5년 -35%",
+      "cardDesc": "중국 닭고기 수출 단가 5년 시계열. 2020 $3.4K → 2025 $2.2K (-35%).",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "year",
+      "bars": [
+        { "key": "price_kusd_mt", "name": "단가 ($천/MT)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "year": "2020", "price_kusd_mt": 3.4 },
+        { "year": "2021", "price_kusd_mt": 3.4 },
+        { "year": "2022", "price_kusd_mt": 3.4 },
+        { "year": "2023", "price_kusd_mt": 3.2 },
+        { "year": "2024", "price_kusd_mt": 2.8 },
+        { "year": "2025", "price_kusd_mt": 2.2 }
+      ],
+      "unit": "$천/MT",
+      "sit": "중국 닭고기 수출 단가 2020 $3.4K/MT → 2025 $2.2K (-35%). 가격 경쟁력으로 수출 350K→1,085K톤(+210%) 폭증. 2026E 1,200K MT 추가 확대 전망. 글로벌 가격 디플레이션 압박 시작.",
+      "strat": "중국산 저가 공세 = 글로벌 닭고기 가격 하락 압력. 한국 수입은 브라질·태국 가격 협상력 강화 기회. 신라교역은 중국산 직수입 검토 (관세·검역 제약 분석).",
+      "source": "USDA GAIN CH2026-0031 Chart 5, Page 8",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    }
+  ]
+}
