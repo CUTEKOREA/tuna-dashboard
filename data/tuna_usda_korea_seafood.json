@@ -1,0 +1,139 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "USDA FAS GAIN Korea Seafood Market Update 2024/2025 + Spain 2026 + Indonesia Halal 2026 + China Tariff 2025",
+    "extracted_by": "Librarian (Gemini 2.5 Flash)",
+    "fetched": "2026-05-30"
+  },
+  "widgets": [
+    {
+      "id": "w_kr_seafood_total_import",
+      "title": "한국 수산물 총수입 2년 추이",
+      "subtitle": "USDA GAIN KS2024-0027 + KS2025-0046",
+      "cardDesc": "USDA FAS Seoul ATO 보고서 기준 한국 전체 수산물 수입액·물량. 2024년 $5.52B로 전년 대비 -6.9%.",
+      "chartType": "Composed",
+      "pillar": "S4",
+      "xKey": "year",
+      "bars": [
+        { "key": "import_value_b", "name": "수입액 (10억$)", "color": "#0ea5e9" }
+      ],
+      "lines": [
+        { "key": "import_volume_kt", "name": "수입량 (천톤)", "color": "#f59e0b" }
+      ],
+      "data": [
+        { "year": "2022", "import_value_b": 6.47, "import_volume_kt": 1500 },
+        { "year": "2023", "import_value_b": 5.93, "import_volume_kt": 1400 },
+        { "year": "2024", "import_value_b": 5.52, "import_volume_kt": 1300 }
+      ],
+      "unit": "10억$/천톤",
+      "sit": "한국 수산물 수입은 2022년 $64.7억 → 2024년 $55.2억으로 14.7% 감소. 수입량도 150만톤 → 130만톤으로 13% 감소. 글로벌 경기 둔화·고가 부담·국내 소비 위축이 복합 작용.",
+      "strat": "전체 시장 위축 기조 인지 + 고품질 프리미엄 라인 강화. 자급률 57% 활용 + 수입선 다변화로 변동성 대응. 신라교역은 통조림 외 가공·HMR 진출 가속.",
+      "source": "USDA FAS GAIN KS2024-0027·KS2025-0046",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_us_seafood_share",
+      "title": "미국산 수산물 한국 점유율",
+      "subtitle": "USDA GAIN — 미국 6위 (3.3% 점유)",
+      "cardDesc": "USDA Seoul ATO 보고서. 미국 수산물 한국 수입액 $182M, 시장 점유 3.3% (2024).",
+      "chartType": "Composed",
+      "pillar": "S4",
+      "xKey": "year",
+      "bars": [
+        { "key": "us_value_m", "name": "미국산 수입액 (백만$)", "color": "#10b981" }
+      ],
+      "lines": [
+        { "key": "us_share_pct", "name": "시장 점유율 (%)", "color": "#f59e0b" }
+      ],
+      "data": [
+        { "year": "2022", "us_value_m": 229, "us_share_pct": 3.5 },
+        { "year": "2023", "us_value_m": 203, "us_share_pct": 3.4 },
+        { "year": "2024", "us_value_m": 182, "us_share_pct": 3.3 }
+      ],
+      "unit": "백만$/%",
+      "sit": "미국산 한국 수입은 2022 $229M → 2024 $182M로 20.5% 감소. 시장 점유율도 3.5% → 3.3%로 하락, 6위 유지. 경쟁 심화 + 미국산 고가 부담 작용.",
+      "strat": "KORUS FTA 무관세 우위 활용. 알래스카 명태 등 명확한 우위 품목 안정 공급 강화. 프리미엄 포지션 대신 가공원료 시장 점유 확대.",
+      "source": "USDA FAS GAIN KS2024-0027·KS2025-0046 (P1, P9-10, P14)",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_us_seafood_items",
+      "title": "미국산 한국 수입 Top 품목",
+      "subtitle": "USDA GAIN KS2025-0046 — 명태 연육 압도",
+      "cardDesc": "2024년 미국산 한국 수입 Top 3 품목. 알래스카 명태 연육 $45.3M로 25% 비중.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "item",
+      "bars": [
+        { "key": "value_m", "name": "수입액 (백만$)", "color": "#0ea5e9" }
+      ],
+      "data": [
+        { "item": "명태 연육", "value_m": 45.3 },
+        { "item": "기타 냉동어", "value_m": 13.5 },
+        { "item": "가자미 필레", "value_m": 9.6 },
+        { "item": "랍스터", "value_m": 7.2 },
+        { "item": "기타", "value_m": 106.4 }
+      ],
+      "unit": "백만$",
+      "sit": "미국산 한국 수입의 25%(45.3M$)가 알래스카 명태 연육 단일 품목. 기타 냉동어 $13.5M·가자미 필레 $9.6M로 가공 원료 중심 구조 명확.",
+      "strat": "명태 연육 의존 리스크 인지하되 안정 공급망 유지. 가자미·랍스터 등 프리미엄 카테고리 확대로 포트폴리오 다변화. CJ·동원 통조림 라인은 명태 연육 안정성에 의존.",
+      "source": "USDA FAS GAIN KS2025-0046 P10",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_idn_halal_seafood",
+      "title": "인도네시아 가공 수산물 할랄",
+      "subtitle": "USDA GAIN ID2026-0023 — 2026.5.6 신규 의무화",
+      "cardDesc": "USDA Jakarta ATO 보고서. 가공 해산물 면제→필수, 2026.5.6 WTO 통보.",
+      "chartType": "Bar",
+      "pillar": "S3",
+      "xKey": "category",
+      "bars": [
+        { "key": "required", "name": "할랄 인증 필수", "color": "#dc2626" },
+        { "key": "exempt", "name": "면제", "color": "#10b981" }
+      ],
+      "data": [
+        { "category": "신선 해산물", "required": 0, "exempt": 100 },
+        { "category": "냉동 가공", "required": 100, "exempt": 0 },
+        { "category": "건조·염장", "required": 100, "exempt": 0 },
+        { "category": "통조림", "required": 100, "exempt": 0 }
+      ],
+      "unit": "%",
+      "sit": "인도네시아 BPJPH 법령 No.307/2025가 2026.5.6 WTO 통보. 가공·냉동·건조·통조림 해산물 전면 할랄 인증 의무화 (신선만 면제). 1989년 육류 의무화 이후 가공 수산물 첫 적용.",
+      "strat": "인도네시아 수출 가공 라인 전 품목 즉시 BPJPH 할랄 인증 신청. 집행 시점 모니터링 + 인증 준비 6개월 선제. 인증 완료 후 동남아 할랄 시장 (말레이시아·브루나이) 동시 진출 패키지.",
+      "source": "USDA FAS GAIN ID2026-0023",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_es_seafood_top_importers",
+      "title": "스페인 수산물 수입국 Top",
+      "subtitle": "USDA GAIN SP2026-0004 — 세계 4위 수입국",
+      "cardDesc": "스페인 2025년 총 수입 $108억 (세계 4위). EU 39억 1위, 모로코 12억 2위, 미국 0.08억 23위.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "country",
+      "bars": [
+        { "key": "value_b", "name": "수입액 (10억$)", "color": "#0ea5e9" }
+      ],
+      "data": [
+        { "country": "EU-27", "value_b": 3.9 },
+        { "country": "모로코", "value_b": 1.2 },
+        { "country": "스웨덴", "value_b": 0.9 },
+        { "country": "에콰도르", "value_b": 0.9 },
+        { "country": "포르투갈", "value_b": 0.8 },
+        { "country": "프랑스", "value_b": 0.8 },
+        { "country": "미국", "value_b": 0.08 }
+      ],
+      "unit": "10억$",
+      "sit": "스페인 2025년 수산물 수입 $108억 (세계 4위). 역내 EU-27이 39억으로 36% 점유, 역외 모로코 12억 1위. 1인당 소비 40.7kg (EU 2위). 미국은 0.08억 23위로 미미.",
+      "strat": "한국·미국 가공원료 (알래스카 폴락 $21M, 헤이크 필레 $16M)는 이미 스페인 수입 中 미국 우위 품목. 신라교역은 EU 통조림 직수출 + 한국 가공원료 공급선 확대 검토.",
+      "source": "USDA FAS GAIN SP2026-0004",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    }
+  ]
+}

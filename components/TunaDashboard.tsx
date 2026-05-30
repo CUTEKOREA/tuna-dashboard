@@ -118,6 +118,7 @@ import TunaComplianceRadar from './TunaComplianceRadar';
 import TunaHSClassifier from './TunaHSClassifier';
 import TunaRFMOLibrarian from './TunaRFMOLibrarian';
 import TunaAtuna8YPrice from './TunaAtuna8YPrice';
+import TunaUsdaKoreaSeafood from './TunaUsdaKoreaSeafood';
 
 export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
@@ -731,7 +732,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
             {/* 4. 기타 원물 생산 관련 지표 */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
+              {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w105_skj_spot', 'w104_rfmo_radar', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
             </div>
@@ -879,6 +880,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <WidgetCard widget={tunaOriginData} />
             </div>
             <OperationalS3Widgets />
+
+            {/* 🆕 USDA FAS — 인도네시아 할랄 가공 수산물 의무화 (S3 통관·규제) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <TunaUsdaKoreaSeafood filterPillar="S3" />
+            </div>
           </section>
         )}
 
@@ -927,6 +933,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* 🆕 Atuna 8년 가격 timeline — 어종 평균 + 5 항만별 토글 */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem', marginTop: '1.5rem' }}>
               <TunaAtuna8YPrice />
+            </div>
+
+            {/* 🆕 USDA FAS Korea Seafood — 한국 수입·미국산 점유·Top 품목·스페인 비교 (S4) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <TunaUsdaKoreaSeafood filterPillar="S4" />
             </div>
           </section>
         )}

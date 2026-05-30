@@ -1,0 +1,475 @@
+{
+  "_meta": {
+    "source": "USDA FAS PSD Cattle 0011000 + ESR Beef 1701",
+    "fetched": "2026-05-30",
+    "psd_unit": "1000 head (생체)",
+    "esr_unit": "metric tons"
+  },
+  "psd_production_top10_5y_sum": {
+    "India": 908690,
+    "Brazil": 268680,
+    "European Union": 139759,
+    "China": 95050,
+    "United States": 65847,
+    "Russia": 46419,
+    "New Zealand": 33112,
+    "Mexico": 25300,
+    "Egypt": 18100,
+    "United Kingdom": 13004
+  },
+  "psd_korea_yearly": [],
+  "esr_top10_importers_3y_sum_tons": {
+    "KOREA, REPUBLIC OF": 715878,
+    "JAPAN": 650662,
+    "CHINA, PEOPLES REPUBLIC OF": 288500,
+    "MEXICO": 249773,
+    "TAIWAN": 200151,
+    "CANADA": 144970,
+    "HONG KONG": 107507,
+    "INDONESIA": 35701,
+    "PHILIPPINES": 23898,
+    "NETHERLANDS": 20256
+  },
+  "esr_korea_monthly": [
+    {
+      "month": "2023-01",
+      "weeklyExports": 17266,
+      "accumulatedExports": 15949,
+      "outstandingSales": 49169
+    },
+    {
+      "month": "2023-02",
+      "weeklyExports": 17297,
+      "accumulatedExports": 33246,
+      "outstandingSales": 45651
+    },
+    {
+      "month": "2023-03",
+      "weeklyExports": 20511,
+      "accumulatedExports": 53757,
+      "outstandingSales": 46608
+    },
+    {
+      "month": "2023-04",
+      "weeklyExports": 18311,
+      "accumulatedExports": 72068,
+      "outstandingSales": 43080
+    },
+    {
+      "month": "2023-05",
+      "weeklyExports": 17172,
+      "accumulatedExports": 89240,
+      "outstandingSales": 42360
+    },
+    {
+      "month": "2023-06",
+      "weeklyExports": 19815,
+      "accumulatedExports": 109055,
+      "outstandingSales": 33711
+    },
+    {
+      "month": "2023-07",
+      "weeklyExports": 15204,
+      "accumulatedExports": 124259,
+      "outstandingSales": 38786
+    },
+    {
+      "month": "2023-08",
+      "weeklyExports": 18696,
+      "accumulatedExports": 142955,
+      "outstandingSales": 38744
+    },
+    {
+      "month": "2023-09",
+      "weeklyExports": 14900,
+      "accumulatedExports": 157855,
+      "outstandingSales": 34910
+    },
+    {
+      "month": "2023-10",
+      "weeklyExports": 14613,
+      "accumulatedExports": 172468,
+      "outstandingSales": 36311
+    },
+    {
+      "month": "2023-11",
+      "weeklyExports": 19779,
+      "accumulatedExports": 192247,
+      "outstandingSales": 22523
+    },
+    {
+      "month": "2023-12",
+      "weeklyExports": 18243,
+      "accumulatedExports": 210490,
+      "outstandingSales": 12125
+    },
+    {
+      "month": "2024-01",
+      "weeklyExports": 18055,
+      "accumulatedExports": 16225,
+      "outstandingSales": 39860
+    },
+    {
+      "month": "2024-02",
+      "weeklyExports": 21028,
+      "accumulatedExports": 37253,
+      "outstandingSales": 39436
+    },
+    {
+      "month": "2024-03",
+      "weeklyExports": 15933,
+      "accumulatedExports": 53186,
+      "outstandingSales": 37977
+    },
+    {
+      "month": "2024-04",
+      "weeklyExports": 14977,
+      "accumulatedExports": 68163,
+      "outstandingSales": 43598
+    },
+    {
+      "month": "2024-05",
+      "weeklyExports": 20295,
+      "accumulatedExports": 88458,
+      "outstandingSales": 38511
+    },
+    {
+      "month": "2024-06",
+      "weeklyExports": 15376,
+      "accumulatedExports": 103834,
+      "outstandingSales": 35875
+    },
+    {
+      "month": "2024-07",
+      "weeklyExports": 14407,
+      "accumulatedExports": 118241,
+      "outstandingSales": 34993
+    },
+    {
+      "month": "2024-08",
+      "weeklyExports": 16725,
+      "accumulatedExports": 134966,
+      "outstandingSales": 41350
+    },
+    {
+      "month": "2024-09",
+      "weeklyExports": 14721,
+      "accumulatedExports": 149687,
+      "outstandingSales": 42773
+    },
+    {
+      "month": "2024-10",
+      "weeklyExports": 21360,
+      "accumulatedExports": 171047,
+      "outstandingSales": 38971
+    },
+    {
+      "month": "2024-11",
+      "weeklyExports": 18238,
+      "accumulatedExports": 189285,
+      "outstandingSales": 23455
+    },
+    {
+      "month": "2024-12",
+      "weeklyExports": 16875,
+      "accumulatedExports": 206160,
+      "outstandingSales": 12157
+    },
+    {
+      "month": "2025-01",
+      "weeklyExports": 18677,
+      "accumulatedExports": 15859,
+      "outstandingSales": 38701
+    },
+    {
+      "month": "2025-02",
+      "weeklyExports": 15994,
+      "accumulatedExports": 31853,
+      "outstandingSales": 45468
+    },
+    {
+      "month": "2025-03",
+      "weeklyExports": 17569,
+      "accumulatedExports": 49422,
+      "outstandingSales": 40516
+    },
+    {
+      "month": "2025-04",
+      "weeklyExports": 21618,
+      "accumulatedExports": 71040,
+      "outstandingSales": 34402
+    },
+    {
+      "month": "2025-05",
+      "weeklyExports": 22184,
+      "accumulatedExports": 93224,
+      "outstandingSales": 29054
+    },
+    {
+      "month": "2025-06",
+      "weeklyExports": 17543,
+      "accumulatedExports": 110767,
+      "outstandingSales": 27192
+    },
+    {
+      "month": "2025-07",
+      "weeklyExports": 18566,
+      "accumulatedExports": 129333,
+      "outstandingSales": 27160
+    },
+    {
+      "month": "2025-08",
+      "weeklyExports": 12249,
+      "accumulatedExports": 141582,
+      "outstandingSales": 23151
+    },
+    {
+      "month": "2025-09",
+      "weeklyExports": 12156,
+      "accumulatedExports": 153738,
+      "outstandingSales": 29865
+    },
+    {
+      "month": "2025-10",
+      "weeklyExports": 16932,
+      "accumulatedExports": 170670,
+      "outstandingSales": 37426
+    },
+    {
+      "month": "2025-11",
+      "weeklyExports": 15012,
+      "accumulatedExports": 185682,
+      "outstandingSales": 23726
+    },
+    {
+      "month": "2025-12",
+      "weeklyExports": 17148,
+      "accumulatedExports": 202830,
+      "outstandingSales": 11322
+    },
+    {
+      "month": "2026-01",
+      "weeklyExports": 20989,
+      "accumulatedExports": 15743,
+      "outstandingSales": 35761
+    },
+    {
+      "month": "2026-02",
+      "weeklyExports": 17120,
+      "accumulatedExports": 32863,
+      "outstandingSales": 36113
+    },
+    {
+      "month": "2026-03",
+      "weeklyExports": 16518,
+      "accumulatedExports": 49381,
+      "outstandingSales": 32971
+    },
+    {
+      "month": "2026-04",
+      "weeklyExports": 21874,
+      "accumulatedExports": 71255,
+      "outstandingSales": 34872
+    },
+    {
+      "month": "2026-05",
+      "weeklyExports": 13932,
+      "accumulatedExports": 85187,
+      "outstandingSales": 26648
+    }
+  ],
+  "esr_top5_monthly_matrix": [
+    {
+      "month": "2024-06",
+      "CHINA, PEOPLES REPUBLIC OF": 8256,
+      "JAPAN": 16656,
+      "KOREA, REPUBLIC OF": 15376,
+      "MEXICO": 5688,
+      "TAIWAN": 6277
+    },
+    {
+      "month": "2024-07",
+      "CHINA, PEOPLES REPUBLIC OF": 9119,
+      "JAPAN": 16331,
+      "KOREA, REPUBLIC OF": 14407,
+      "MEXICO": 6097,
+      "TAIWAN": 5699
+    },
+    {
+      "month": "2024-08",
+      "CHINA, PEOPLES REPUBLIC OF": 10603,
+      "JAPAN": 16822,
+      "KOREA, REPUBLIC OF": 16725,
+      "MEXICO": 7631,
+      "TAIWAN": 6423
+    },
+    {
+      "month": "2024-09",
+      "CHINA, PEOPLES REPUBLIC OF": 8891,
+      "JAPAN": 12892,
+      "KOREA, REPUBLIC OF": 14721,
+      "MEXICO": 5817,
+      "TAIWAN": 4002
+    },
+    {
+      "month": "2024-10",
+      "CHINA, PEOPLES REPUBLIC OF": 12093,
+      "JAPAN": 16482,
+      "KOREA, REPUBLIC OF": 21360,
+      "MEXICO": 7067,
+      "TAIWAN": 4652
+    },
+    {
+      "month": "2024-11",
+      "CHINA, PEOPLES REPUBLIC OF": 8772,
+      "JAPAN": 13881,
+      "KOREA, REPUBLIC OF": 18238,
+      "MEXICO": 5814,
+      "TAIWAN": 4232
+    },
+    {
+      "month": "2024-12",
+      "CHINA, PEOPLES REPUBLIC OF": 9984,
+      "JAPAN": 12855,
+      "KOREA, REPUBLIC OF": 16875,
+      "MEXICO": 6213,
+      "TAIWAN": 4842
+    },
+    {
+      "month": "2025-01",
+      "CHINA, PEOPLES REPUBLIC OF": 11758,
+      "JAPAN": 17567,
+      "KOREA, REPUBLIC OF": 18677,
+      "MEXICO": 6359,
+      "TAIWAN": 4100
+    },
+    {
+      "month": "2025-02",
+      "CHINA, PEOPLES REPUBLIC OF": 8682,
+      "JAPAN": 15075,
+      "KOREA, REPUBLIC OF": 15994,
+      "MEXICO": 5478,
+      "TAIWAN": 3274
+    },
+    {
+      "month": "2025-03",
+      "CHINA, PEOPLES REPUBLIC OF": 10290,
+      "JAPAN": 14973,
+      "KOREA, REPUBLIC OF": 17569,
+      "MEXICO": 6023,
+      "TAIWAN": 3675
+    },
+    {
+      "month": "2025-04",
+      "CHINA, PEOPLES REPUBLIC OF": 3563,
+      "JAPAN": 15842,
+      "KOREA, REPUBLIC OF": 21618,
+      "MEXICO": 5102,
+      "TAIWAN": 4519
+    },
+    {
+      "month": "2025-05",
+      "CHINA, PEOPLES REPUBLIC OF": 567,
+      "JAPAN": 19645,
+      "KOREA, REPUBLIC OF": 22184,
+      "MEXICO": 6819,
+      "TAIWAN": 6678
+    },
+    {
+      "month": "2025-06",
+      "CHINA, PEOPLES REPUBLIC OF": 1378,
+      "JAPAN": 16348,
+      "KOREA, REPUBLIC OF": 17543,
+      "MEXICO": 5285,
+      "TAIWAN": 5044
+    },
+    {
+      "month": "2025-07",
+      "CHINA, PEOPLES REPUBLIC OF": 337,
+      "JAPAN": 18693,
+      "KOREA, REPUBLIC OF": 18566,
+      "MEXICO": 6590,
+      "TAIWAN": 5665
+    },
+    {
+      "month": "2025-08",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 14680,
+      "KOREA, REPUBLIC OF": 12249,
+      "MEXICO": 4552,
+      "TAIWAN": 4679
+    },
+    {
+      "month": "2025-09",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 13807,
+      "KOREA, REPUBLIC OF": 12156,
+      "MEXICO": 5226,
+      "TAIWAN": 4221
+    },
+    {
+      "month": "2025-10",
+      "CHINA, PEOPLES REPUBLIC OF": 9,
+      "JAPAN": 16350,
+      "KOREA, REPUBLIC OF": 16932,
+      "MEXICO": 5777,
+      "TAIWAN": 6881
+    },
+    {
+      "month": "2025-11",
+      "CHINA, PEOPLES REPUBLIC OF": 36,
+      "JAPAN": 13019,
+      "KOREA, REPUBLIC OF": 15012,
+      "MEXICO": 4309,
+      "TAIWAN": 4395
+    },
+    {
+      "month": "2025-12",
+      "CHINA, PEOPLES REPUBLIC OF": 171,
+      "JAPAN": 13525,
+      "KOREA, REPUBLIC OF": 17148,
+      "MEXICO": 5602,
+      "TAIWAN": 6675
+    },
+    {
+      "month": "2026-01",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 18218,
+      "KOREA, REPUBLIC OF": 20989,
+      "MEXICO": 6598,
+      "TAIWAN": 7222
+    },
+    {
+      "month": "2026-02",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 14438,
+      "KOREA, REPUBLIC OF": 17120,
+      "MEXICO": 5695,
+      "TAIWAN": 4546
+    },
+    {
+      "month": "2026-03",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 15028,
+      "KOREA, REPUBLIC OF": 16518,
+      "MEXICO": 5125,
+      "TAIWAN": 4605
+    },
+    {
+      "month": "2026-04",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 17111,
+      "KOREA, REPUBLIC OF": 21874,
+      "MEXICO": 6974,
+      "TAIWAN": 5326
+    },
+    {
+      "month": "2026-05",
+      "CHINA, PEOPLES REPUBLIC OF": 0,
+      "JAPAN": 9392,
+      "KOREA, REPUBLIC OF": 13932,
+      "MEXICO": 4068,
+      "TAIWAN": 3551
+    }
+  ]
+}
