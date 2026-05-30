@@ -124,6 +124,8 @@ export async function GET(request: Request) {
       // HHI (Herfindahl-Hirschman Index) for concentration risk
       const shares = sourcingMatrix.map(s => s.importShare_Percent);
       const hhi = Math.round(shares.reduce((sum, s) => sum + Math.pow(s, 2), 0));
+      // 편중 해석은 라이브 데이터 기준 최대 점유국으로 동적 산출(하드코딩 금지)
+      const topOrigin = [...sourcingMatrix].sort((a, b) => b.importShare_Percent - a.importShare_Percent)[0];
 
       return {
         timestamp: new Date().toISOString(),
@@ -136,8 +138,8 @@ export async function GET(request: Request) {
         concentrationRisk: {
           hhi,
           riskLevel: hhi > 2500 ? "High" : hhi > 1500 ? "Moderate" : "Low",
-          interpretation: hhi > 2500 
-            ? "⚠️ 에콰도르 편중 심각 — 대체 소싱처 다변화 시급"
+          interpretation: hhi > 2500
+            ? `⚠️ ${topOrigin.country} 편중 심각 (점유율 ${topOrigin.importShare_Percent}%) — 대체 소싱처 다변화 시급`
             : "소싱 다변화 양호"
         },
         optimalScenario: {
