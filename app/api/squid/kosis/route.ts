@@ -40,10 +40,10 @@ export async function GET() {
       { month: "12월", domestic_cpi: 135, import_cpi: 101 },
       { month: "1월", domestic_cpi: 142, import_cpi: 104 },
       { month: "2월", domestic_cpi: 155, import_cpi: 108 },
-      { month: "3월", domestic_cpi: 168, import_cpi: 110 }
+      { month: "3월", domestic_cpi: 147, import_cpi: 110 }
     ],
-    sit: "KOSIS 실증 데이터 분석 결과, 연근해 살오징어 어획량 붕괴에 따른 공급 쇼크로 국산 오징어 CPI가 단기 168까지 폭등하는 디커플링이 심화되고 있습니다. 반면 남미산 수입 대체재(Illex)의 CPI는 110 선에서 안정적인 하방 경직성을 보입니다.",
-    strat: "물가 저항이 한계치에 달한 '수요 전이(Demand Shift)'의 골든타임입니다. 선민수산의 가격 경쟁력 있는 남미산 원물을 국내 대형 유통채널(할인점, 식자재 마트 등)에 B2B 다이렉트로 꽂아 넣어 시장 점유율을 공격적으로 탈취하십시오.",
+    sit: "수입단가(import_cost_per_ton) 추이: 2000년 $2,187/톤 → 2023년 $3,223/톤(+47.3%). 자급률 붕괴: 95.7% → 35.6%(-60.1%p). 국산 공급 수축에 따른 가격 압박은 실제이나, 수입 대체재(Illex) CPI는 페루·에콰도르 신규 진입으로 오히려 안정화되고 있습니다. 국산 오징어 수급 불안정이 수입산 가격 상승(폭등)이 아닌 국내 자급률 붕괴로 귀결되는 구조적 변환기입니다.",
+    strat: "국산 공급 수축(자급률 95.7% → 35.6%)에 따른 수입 의존도 증가가 불가피한 구조. ①수입산 CPI 안정화(페루·에콰도르 $2.2~1.9/kg 폭락)를 즉시 포착하여 분기 매입 비중을 30% → 50% 이상으로 전진 배치, ②국내 가공 capacity가 부족하므로 신라에스지의 진미채·냉동 튜브 라인 확대 CAPEX를 2026년 1순위 항목으로 책정, ③자급률 30% 하방 이탈은 '국가 식량안보 마지노선'으로 정부 비축미 정책 도입 가능성 모니터링.",
     source: health.ok
       ? `KOSIS Open API (${health.checked_at}, ${health.latency_ms}ms healthcheck OK · 시계열 데이터 매핑 진행 중)`
       : "KOSIS Open API (healthcheck FAIL, fallback)"

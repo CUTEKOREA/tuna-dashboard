@@ -23,7 +23,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 export default function SalmonInsightDoubleMateriality() {
   return (
     <WidgetCard
-      title="[ESG] 이중 중대성 평가 (Double Materiality)"
+      title="[ESG] Double Materiality(이중 중대성) 평가"
       icon={ShieldCheck}
       iconColor="var(--color-success)"
       pillar="S5"
@@ -54,7 +54,7 @@ export default function SalmonInsightDoubleMateriality() {
 <p><strong>재정의</strong>: ESG 공시는 단순 규제가 아닌 <strong>"프리미엄 시장 진입 장벽(Moat) instrument"</strong>.</p>
 <p><strong>3단계</strong>: ① Green Bond 자금 조달 ② 친환경 사료 개발 + 육상 양식장(RAS) 전환 capex 집중 배정 ③ 비규제 경쟁자 유럽 고급 시장 축출 — first-mover regulatory moat 락업.</p>
 </div>`,
-        source: "EU CSRD & TNFD Disclosure [📡 LIVE API 연동: Scope 3 배출량 및 생물다양성 실사]"
+        source: "EU CSRD & TNFD Disclosure"
       }}
     />
   );

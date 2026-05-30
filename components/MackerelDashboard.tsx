@@ -401,8 +401,8 @@ export default function MackerelDashboard() {
       if (complianceData && complianceData.result) {
         const cr = complianceData.result;
         json.widgets.push({
-          id: 'w_sanctions_radar', title: '제재 우회 리스크 레이더 (OFAC/EU)',
-          subtitle: 'API 기반 글로벌 제재망 및 우회 수출 패턴 실시간 모니터링',
+          id: 'w_sanctions_radar', title: 'IUU·원산지 세탁 리스크 (러시아산 중국 경유)',
+          subtitle: 'OECD/EJF 기반 불법무역(IUU)·인권 위반 및 러시아산 중국 경유 원산지 위장 탐지',
           chartType: 'Bar', xKey: 'check',
           bars: [{ key: 'score', name: '컴플라이언스 점수', color: cr.riskLevel === 'CRITICAL' ? '#ef4444' : '#10b981' }],
           data: [
@@ -410,10 +410,10 @@ export default function MackerelDashboard() {
             { check: 'EU 제재', score: cr.eu?.status === 'clean' ? 100 : (cr.eu?.status === 'partial' ? 50 : 10) },
             { check: '종합 리스크', score: cr.riskScore }
           ],
-          badges: ['실시간 API', 'Verified'],
+          badges: ['STATIC', 'Verified'],
           sit: `검색된 공급사 "${cr.entity}"에 대해 OFAC(${cr.ofac?.status === 'clean' ? '적합' : '위험'}) 및 EU(${cr.eu?.status === 'clean' ? '적합' : cr.eu?.status === 'partial' ? '부분적합' : '위험'}) 제재 모니터링이 완료되었습니다. 종합 리스크 수준: ${cr.riskLevel}. 특히 러시아산 고등어의 중국 우회 가공 수출 사례가 강화된 감시 대상입니다.`,
           strat: '공급망의 실소유주(UBO)를 OFAC API를 통해 상시 교차 검증하십시오. 러시아 제재 강화 시 노르웨이 직수입 대비 중국 경유 수입의 원산지 세탁 리스크가 급상승할 수 있으며, EU CBAM 시행 시 탄소발자국 인증도 필수적으로 요구됩니다.',
-          apiSource: '📡 [LIVE API 연동: OFAC/EU Sanctions] 실시간 제재망 조회',
+          apiSource: 'OECD/EJF 이불법무역(IUU) 및 인권 위반 데이터베이스',
           source: 'Compliance API', unit: '점'
         });
       }

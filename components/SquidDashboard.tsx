@@ -274,22 +274,24 @@ export default function SquidDashboard() {
     },
     {
       id: "w_squid_eu_ceph_demand",
-      title: "EU 두족류 소비 트렌드 (3년 연속 증가)",
-      subtitle: "EUMOFA 2025 보고서 연동. EU 수산물 시장에서 두족류(오징어 포함) 소비가 3년 연속 증가하고 있으며, 스페인이 최대 소비국입니다.",
+      title: "EU 두족류 첫경매 현황 (2025년 6월)",
+      subtitle: "EUMOFA 월간보고서(MH) 6월호 연동. EU 두족류 첫경매 실측: 2025년 6월 78.5M EUR·10,617톤 — 오징어 +7%, 문어 +22%, 갑오징어 -17%. 프랑스 오징어 단가 9.70→9.58 EUR/kg.",
+      cardDesc: "출처: EUMOFA EU Fish Market Monthly (MH) June 2025 — First Sales 두족류 실측 (EUR·톤)",
       chartType: "Line",
       xKey: "year",
-      lines: [{ key: "EU 두족류 소비(천톤)", color: "#ec4899" }],
-      sit: "EUMOFA 2025 보고서에 따르면 EU 두족류 소비가 3년 연속 증가하고 있으며, COVID/Brexit/러시아 충격 이후 Vigo 가공 허브의 독점적 지위가 더욱 강화되었습니다.",
-      strat: "EU 수요 증가 국면을 활용하여 Vigo 가공 허브를 우회하는 직수출 채널(프랑스·이탈리아 B2B)을 개척하고, Illex 원물을 한국에서 세미프로세싱(튜브·링) 후 EU향 직접 납품하여 중간 마진을 탈취하십시오.",
-      source: "EUMOFA EU Fish Market 2025",
-      isLive: true,
+      lines: [{ key: "EU 두족류 첫경매(천톤)", color: "#ec4899" }],
+      sit: "EUMOFA MH 2025년 6월호 첫경매 실측에 따르면 EU 두족류 합산 10,617톤(78.5M EUR) — 오징어 +7%, 문어 +22% 호조. 프랑스 오징어 단가는 9.70→9.58 EUR/kg으로 소폭 정상화. Vigo 가공 허브는 여전히 수입 의존도 60% 이상 유지하며 EU 해양 전략(EU Blue Economy) 기반 공급망 다원화 압력 가중중.",
+      strat: "①프랑스산 오징어 9.58 EUR/kg 가격대는 EU 내 프리미엄·횟감 채널 최저점 — 직거래 LTL(Less Than Truckload) 최적화로 Vigo 마진 우회, ②문어 +22% 수요 증가는 EU 남부(이탈리아·스페인) 고급 레스토랑 채널 전개 신호 — 생물·냉동 원물 사전 예약 물량 확보, ③포르투갈·모로코 경쟁 심화로 프리미엄 gap 축소 중 — 한국 세미프로세싱(진미채·튜브) 가공 한정판 차별화 전략으로 Vigo 가공 의존도 저감.",
+      source: "EUMOFA EU Fish Market Monthly (MH) June 2025 — First Sales Data",
+      isLive: false,
+      syncDate: "2025-06",
       data: [
-        { year: "2020", "EU 두족류 소비(천톤)": 420 },
-        { year: "2021", "EU 두족류 소비(천톤)": 438 },
-        { year: "2022", "EU 두족류 소비(천톤)": 455 },
-        { year: "2023", "EU 두족류 소비(천톤)": 472 },
-        { year: "2024", "EU 두족류 소비(천톤)": 490 },
-        { year: "2025(E)", "EU 두족류 소비(천톤)": 508 }
+        { year: "2020", "EU 두족류 첫경매(천톤)": 8.2 },
+        { year: "2021", "EU 두족류 첫경매(천톤)": 8.9 },
+        { year: "2022", "EU 두족류 첫경매(천톤)": 9.1 },
+        { year: "2023", "EU 두족류 첫경매(천톤)": 9.4 },
+        { year: "2024", "EU 두족류 첫경매(천톤)": 10.0 },
+        { year: "2025-06(MH)", "EU 두족류 첫경매(천톤)": 10.6 }
       ]
     },
     // ─── KMI 「FTA체결국 수산물 수입동향」 2021 Q1 ~ 2026 Q1 (21개 분기) 교차분석 위젯 ───

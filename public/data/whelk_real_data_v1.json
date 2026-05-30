@@ -16,6 +16,11 @@
       "label": "B. undatum"
     },
     {
+      "name": "러시아",
+      "value": 9229,
+      "label": "B. borealis"
+    },
+    {
       "name": "한국",
       "value": 9062,
       "label": "B. opisoplectum"
@@ -30,17 +35,17 @@
     {
       "year": "2008",
       "canada": 7219,
-      "uk": 10393
+      "uk": 13786
     },
     {
       "year": "2013",
       "canada": 6302,
-      "uk": 11432
+      "uk": 19374
     },
     {
       "year": "2018",
       "canada": 2484,
-      "uk": 14197
+      "uk": 18354
     },
     {
       "year": "2022",

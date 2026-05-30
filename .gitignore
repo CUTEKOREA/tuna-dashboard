@@ -83,3 +83,4 @@ scripts/_deprecated_fake_data/
 # 2026-05-27: Kawamoto 2026 등 외부 자료 원본은 git 제외 (L-08)
 docs/sources/
 *.bak_pre_p0
+*.bak_api

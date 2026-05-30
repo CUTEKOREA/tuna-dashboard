@@ -22,10 +22,10 @@ const FALLBACK_MONTHLY = [
 ];
 
 const FALLBACK_ORIGIN = [
-  { name: '노르웨이', value: 85.2, fill: '#0ea5e9' },
-  { name: '중국', value: 8.5, fill: '#f59e0b' },
-  { name: '영국', value: 4.1, fill: '#10b981' },
-  { name: '기타', value: 2.2, fill: '#64748b' },
+  { name: '노르웨이', value: 73.9, fill: '#0ea5e9' },
+  { name: '영국', value: 12.1, fill: '#10b981' },
+  { name: '중국', value: 8.0, fill: '#f59e0b' },
+  { name: '기타', value: 6.0, fill: '#64748b' },
 ];
 
 export async function GET() {

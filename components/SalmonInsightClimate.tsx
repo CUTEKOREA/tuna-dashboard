@@ -55,7 +55,7 @@ export default function SalmonInsightClimate() {
 <p><strong>재정의</strong>: 기후+탄소세는 단순 ESG 변수가 아닌 <strong>"PEF 자본 조달 valuation 결정 변수"</strong>.</p>
 <p><strong>3단계</strong>: ① PEF 재무 모델에 "수온 리스크 프리미엄 + 잠재 탄소세 부채" 선제 반영 ② 디젤 물류망·사료 바지선 → 전동화·수소 하이브리드 교체 ③ Scope 3 원천 헷징 — 2030 탄소세 폭탄 회피.</p>
 </div>`,
-        source: "IEA Net Zero & GSI Report [📡 LIVE API 연동: 실시간 탄소세율 및 해수온 모니터링]"
+        source: "IEA Net Zero & GSI Report"
       }}
     />
   );
