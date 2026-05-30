@@ -22,7 +22,9 @@
 >   - jukkumi 2 ESG: w20 베트남FIP(MarinTrust 실측·MSC→MarinTrust 정정·status Gap·리스크지수) / w29 아프리카문어 IUU(SeaBOS TAC 30,744t·글로벌어획 179,042→497,000t·환각 ILO/EJF 출처 삭제)
 > - **⚠️ 다음 단계 (미적용)**:
 >   1. **whelk GAIN Table2 TAC**(PDF→MD 후), whelk 자체 P-03 스윕(이번 미포함), tuna w01(라이브 KCS 유지 결정)
->   2. **대규모 P1/P2 신규 위젯 제안**(각 `artifacts/*_agri_enrichment_2026_05_30.md`에 정리) — RFMO 레이더·현물가·HHI 등
+>   2. **대규모 P1/P2 신규 위젯 → 단일 백로그**: `artifacts/seafood_p1p2_widget_backlog_2026_05_30.md` (9 commodity, 신규 ~125 채택후보). **✅ Batch 1 배포 완료**: 신규 위젯 12건 주입(명태 5·연어 7, `scripts/apply_p1p2_batch1.py`). 정찰 3 에이전트(주입계약·기존id대조·진짜신규 판별) → Claude 위젯 작성(검증수치만, 날조0) → JSON append + 화이트리스트(PILLARS/cat*) 패치 → 빌드 게이트.
+>      - 명태: w_pollock_tac_matrix_2026(S1)·frozen_import_price(S4)·processing_form_surimi_roe(S2)·sst_climate_collapse(S5)·eu_tariff_atq_hsk(S3) / 연어: w46_proc_form_shift·w47_feed_fifo·w48_eu_import_price·w49_duopoly_crack·w50_smoked_value_chain·w51_yield_ladder·w54_asia_price_bench
+>      - **Batch 1 보류분(후속)**: 새우(렌더러 reliability>70→허위LIVE 버그 동반수정 필요), ADB무역원활화·연어 4건(데이터 재집계), waterfall/funnel/radar(미지원→remap). **Batch 2+**: 고등어 18·갈치 14·오징어 8·주꾸미 11(PDF선행)·골뱅이 11(TSX)·참치 value-chain.
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 

@@ -516,11 +516,11 @@ export default function SalmonDashboard() {
 
       {/* ═══ Dashboard Sections ═══ */}
       {(() => {
-        const catRaw = ['w_fta_salmon_supply_pivot', 'w_fta_salmon_russia_collapse', 'n1_hfs_paradox', 'w01_paradigm', 'w18_extinction', 'w03_aqua_pie', 'w13_monopoly', 'w19_iceland', 'w22_license_gold', 'w36_supply_outlook', 'w37_smolt_efficiency', 'w39_hab_risk', 'w41_feed_cost', 'k1_ras_photoperiod', 'k2_smolt_offseason', 'k3_temp_cataract', 'k7_chum_coastal', 'k8_chinook'];
-        const catProc = ['w_fta_salmon_form_shift', 'w04_proc', 'w16_processing', 'w24_poland_hub', 'w38_smoked_eu', 'w45_automation_roi', 'k5_nutrition', 'k6_jerky'];
-        const catLog = ['w_fta_salmon_chile_rebound', 'n2_tariff_hoarding', 'w06_trade_vol', 'w07_export', 'w08_import', 'w21_russia_blackhole', 'w23_chile_chokepoint', 'k4_listeria'];
+        const catRaw = ['w_fta_salmon_supply_pivot', 'w_fta_salmon_russia_collapse', 'n1_hfs_paradox', 'w01_paradigm', 'w18_extinction', 'w03_aqua_pie', 'w13_monopoly', 'w19_iceland', 'w22_license_gold', 'w36_supply_outlook', 'w37_smolt_efficiency', 'w39_hab_risk', 'w41_feed_cost', 'k1_ras_photoperiod', 'k2_smolt_offseason', 'k3_temp_cataract', 'k7_chum_coastal', 'k8_chinook', 'w48_eu_import_price', 'w49_duopoly_crack'];
+        const catProc = ['w_fta_salmon_form_shift', 'w04_proc', 'w16_processing', 'w24_poland_hub', 'w38_smoked_eu', 'w45_automation_roi', 'k5_nutrition', 'k6_jerky', 'w46_proc_form_shift', 'w50_smoked_value_chain', 'w51_yield_ladder'];
+        const catLog = ['w_fta_salmon_chile_rebound', 'n2_tariff_hoarding', 'w06_trade_vol', 'w07_export', 'w08_import', 'w21_russia_blackhole', 'w23_chile_chokepoint', 'k4_listeria', 'w54_asia_price_bench'];
         const catSales = ['w_fta_salmon_value_volume', 'w05_cash', 'w09_kr_import', 'w10_kr_deficit', 'w15_korea_deficit', 'w11_kr_price', 'w12_margin', 'w20_margin_paradox', 'w17_tier', 'w40_market_growth', 'w43_diversification'];
-        const catEsg = ['n3_melanosis_upcycle', 'w02_aqua_value', 'w14_value', 'w42_mortality_kpi', 'w44_scope3_carbon'];
+        const catEsg = ['n3_melanosis_upcycle', 'w02_aqua_value', 'w14_value', 'w42_mortality_kpi', 'w44_scope3_carbon', 'w47_feed_fifo'];
 
         const renderSection = (title: string, icon: any, keys: string[], pillarKey: string, desc?: string, customInsights?: React.ReactNode) => {
           const sectionWidgets = widgets.filter((w: any) => keys.includes(w.id));

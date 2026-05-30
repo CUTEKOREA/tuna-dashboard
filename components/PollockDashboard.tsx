@@ -90,31 +90,31 @@ const PILLARS = [
   {
     id: "P1", num: "❶", label: "원료 수급",
     title: "⚓ Pillar I — 원료 수급 (Raw Material & Sourcing)", desc: "베링해/오호츠크해 쿼터 및 미·러 독점 지정학 리스크 관리", color: "#0891b2", icon: Anchor,
-    widgets: ["w_fta_pollock_ru_dependency", "w_fta_pollock_2023_shock", "w1_global_catch", "w2_hegemony", "w3_diverging", "w24_opex_spread", "w31_catch_gap", "w32_sst_fleet_matrix", "w34_china_export_flow", "k5_hatch_temp", "k2_epa_larva"],
+    widgets: ["w_fta_pollock_ru_dependency", "w_fta_pollock_2023_shock", "w1_global_catch", "w2_hegemony", "w3_diverging", "w24_opex_spread", "w31_catch_gap", "w32_sst_fleet_matrix", "w34_china_export_flow", "k5_hatch_temp", "k2_epa_larva", "w_pollock_tac_matrix_2026"],
     customInject: ["PollockConcentrationIndex", "PollockAlternativeSourcing"]
   },
   {
     id: "P2", num: "❷", label: "가공·생산",
     title: "🏭 Pillar II — 가공 & 생산 (Processing & Value-chain)", desc: "수리미(Surimi) 전환 및 중국 우회 가공 클러스터 회피", color: "#0284c7", icon: Factory,
-    widgets: ["w_fta_pollock_form_mix", "w5_china_blackhole", "w9_surimi_megatrend", "w10_surimi_top3", "w12_proc_vs_surimi", "w17", "w20_whitefish_reshuffle", "w22_precision_release", "w25_processing_bottleneck", "k1_3d_surimi", "k3_gamma_roe", "k4_senior_food"],
+    widgets: ["w_fta_pollock_form_mix", "w5_china_blackhole", "w9_surimi_megatrend", "w10_surimi_top3", "w12_proc_vs_surimi", "w17", "w20_whitefish_reshuffle", "w22_precision_release", "w25_processing_bottleneck", "k1_3d_surimi", "k3_gamma_roe", "k4_senior_food", "w_pollock_processing_form_surimi_roe"],
     customInject: []
   },
   {
     id: "P3", num: "❸", label: "물류·통관",
     title: "🚢 Pillar III — 물류 & 통관 (Logistics & Trade Nexus)", desc: "러시아 극동 수산 클러스터 물동량 및 차익거래 트래커", color: "#2563eb", icon: Truck,
-    widgets: ["w_fta_pollock_us_rebound", "w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "w35_eu_gateway", "w36_china_sanitary_pact", "w37_ntb_timeline", "n1_sanction_paradox", "n5_rcep_detour"],
+    widgets: ["w_fta_pollock_us_rebound", "w8_korea_deficit", "w11_surimi_trade", "w13", "w15", "w16", "w18", "w19_tariff_engineering", "w21_b_season_hedge", "w26_inventory_freight", "w29_eu_derisk_pivot", "w35_eu_gateway", "w36_china_sanitary_pact", "w37_ntb_timeline", "n1_sanction_paradox", "n5_rcep_detour", "w_pollock_eu_tariff_atq_hsk"],
     customInject: ["PollockFtaTariffMatrix", "PollockRouteComparison", "PollockLandedCostWaterfall", "UsPollockDetourWidget"]
   },
   {
     id: "P4", num: "❹", label: "판매·수요",
     title: "📈 Pillar IV — 판매 & 수요 (Sales & B2B Market)", desc: "단가 인플레이션 방어 및 정부 조달(B2G) 바잉 파워 롤업", color: "#3b82f6", icon: DollarSign,
-    widgets: ["w_fta_pollock_qprice", "w6_inflation_unitprice", "w7_usa_russia_unitprice", "w27_substitute_spread", "w33_arbitrage_tracker", "w38_us_canned_boom", "w39_saithe_competition"],
+    widgets: ["w_fta_pollock_qprice", "w6_inflation_unitprice", "w7_usa_russia_unitprice", "w27_substitute_spread", "w33_arbitrage_tracker", "w38_us_canned_boom", "w39_saithe_competition", "w_pollock_frozen_import_price_monthly"],
     customInject: ["PollockPriceForecastChart", "PollockScenarioSimulator", "PollockSubstituteElasticity"]
   },
   {
     id: "P5", num: "❺", label: "ESG·지속가능성",
     title: "🌱 Pillar V — ESG & 지속가능성 (ESG & Compliance)", desc: "대러 제재(Sanctions) 리스크 및 수산 안보 방어", color: "#0ea5e9", icon: ShieldCheck,
-    widgets: ["w4_korea_crisis", "w14", "w23_upcycling_esg", "w28_esg_premium", "w30_traceability_risk", "w40_traceability_surge", "n6_waste_to_wealth"],
+    widgets: ["w4_korea_crisis", "w14", "w23_upcycling_esg", "w28_esg_premium", "w30_traceability_risk", "w40_traceability_surge", "n6_waste_to_wealth", "w_pollock_sst_climate_collapse"],
     customInject: ["PollockRiskScorecard", "PollockSanctionParadox"]
   }
 ];
