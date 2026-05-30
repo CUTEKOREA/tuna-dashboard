@@ -138,7 +138,7 @@ const SECTIONS = [
     id: "S2", num: "❷", label: "가공·생산",
     title: "🏭 Part II — 가공 산업 (Processing)",
     desc: "유통 단계별 마진 구조, 가공 전환 전략 및 B2B 급식 시장 개발",
-    ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06"],
+    ids: ["w_galchi_consumption","w_galchi_sg_valueup","w02","w06","w_galchi_fbs_pelagic"],
     accent: "#14b8a6", color: "#14b8a6",
     iconComp: Factory,
     pillar: "S2" as const
@@ -147,7 +147,7 @@ const SECTIONS = [
     id: "S3", num: "❸", label: "물류·통관",
     title: "🚢 Part III — 물류 및 무역 (Logistics & Trade)",
     desc: "수출입 통관, 관세·FTA 분석, 착지원가, 교역 흐름, 대체 공급망 및 지정학 리스크",
-    ids: ["w_fta_supply_pivot","w_fta_oman_dominance","w_fta_ecuador_arb","w05","w17","w20","w23","w24","w25","w08","w09","w28","w_galchi_hs_class","w_galchi_multi_cost","w_oec_galchi_export"],
+    ids: ["w_fta_supply_pivot","w_fta_oman_dominance","w_fta_ecuador_arb","w05","w17","w20","w23","w24","w25","w08","w09","w28","w_galchi_hs_class","w_galchi_multi_cost","w_oec_galchi_export","w_galchi_kr_import_rank"],
     accent: "#0d9488", color: "#0d9488",
     iconComp: Ship,
     pillar: "S3" as const
@@ -156,7 +156,7 @@ const SECTIONS = [
     id: "S4", num: "❹", label: "판매·수요",
     title: "📈 Part IV — 판매 및 수요 (Sales & Demand)",
     desc: "가격 동향, 매입 타이밍, 도매가 스프레드, 소비 트렌드 및 내수 물가 분석",
-    ids: ["w01","w07","w18","w22","w_kosis_cpi_spread","w_fta_unit_price"],
+    ids: ["w01","w07","w18","w22","w_kosis_cpi_spread","w_fta_unit_price","w_galchi_self_sufficiency","w_galchi_protein_cross"],
     accent: "#5eead4", color: "#5eead4",
     iconComp: TrendingUp,
     pillar: "S4" as const
@@ -165,7 +165,7 @@ const SECTIONS = [
     id: "S5", num: "❺", label: "ESG·지속가능성",
     title: "🌱 Part V — ESG 및 지속가능성 (Sustainability)",
     desc: "공급망 노동 리스크, OFAC/EU 제재 검증, 위생·식물위생 조치(SPS) 비관세 장벽, 식품 안전 및 정책 모니터링",
-    ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10"],
+    ids: ["w26","w27","w_wto_sps_radar","w_mfds_safety_radar","w10","w_galchi_no_aqua"],
     accent: "#99f6e4", color: "#99f6e4",
     iconComp: ShieldCheck,
     pillar: "S5" as const

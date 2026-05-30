@@ -24,7 +24,12 @@
 >   1. **whelk GAIN Table2 TAC**(PDF→MD 후), whelk 자체 P-03 스윕(이번 미포함), tuna w01(라이브 KCS 유지 결정)
 >   2. **대규모 P1/P2 신규 위젯 → 단일 백로그**: `artifacts/seafood_p1p2_widget_backlog_2026_05_30.md` (9 commodity, 신규 ~125 채택후보). **✅ Batch 1 배포 완료**: 신규 위젯 12건 주입(명태 5·연어 7, `scripts/apply_p1p2_batch1.py`). 정찰 3 에이전트(주입계약·기존id대조·진짜신규 판별) → Claude 위젯 작성(검증수치만, 날조0) → JSON append + 화이트리스트(PILLARS/cat*) 패치 → 빌드 게이트.
 >      - 명태: w_pollock_tac_matrix_2026(S1)·frozen_import_price(S4)·processing_form_surimi_roe(S2)·sst_climate_collapse(S5)·eu_tariff_atq_hsk(S3) / 연어: w46_proc_form_shift·w47_feed_fifo·w48_eu_import_price·w49_duopoly_crack·w50_smoked_value_chain·w51_yield_ladder·w54_asia_price_bench
->      - **Batch 1 보류분(후속)**: 새우(렌더러 reliability>70→허위LIVE 버그 동반수정 필요), ADB무역원활화·연어 4건(데이터 재집계), waterfall/funnel/radar(미지원→remap). **Batch 2+**: 고등어 18·갈치 14·오징어 8·주꾸미 11(PDF선행)·골뱅이 11(TSX)·참치 value-chain.
+>      - **Batch 1 보류분(후속)**: 새우(렌더러 reliability>70→허위LIVE 버그 동반수정 필요), ADB무역원활화·연어 4건(데이터 재집계), waterfall/funnel/radar(미지원→remap).
+>      - **✅ Batch 2 배포 완료**: 신규 위젯 15건(고등어 4·갈치 5·오징어 6, `scripts/apply_p1p2_batch2.py`). 정찰 3 에이전트 + 실데이터 시계열 추출(mackerel_fta_quarterly·squid_korea_supply).
+>        - 고등어: w_kosis_prod_value(S1)·w_fta_import_trend(S3)·w_origin_diversification(S3)·w_trq_scenario(S3) / 갈치: w_galchi_no_aqua(S5)·fbs_pelagic(S2)·kr_import_rank(S3)·self_sufficiency(S4)·protein_cross(S4) / 오징어: origin_diversification_2025(S3)·falkland_loligo_biomass(S1)·global_processing_yield(S2)·route_leadtime_compliance(S3·내부모델 STATIC)·forced_labor_dwf(S5)·import_unit_price_mt(S4)
+>        - Batch 2 보류(데이터 재집계 필요): 고등어 분기스프레드·아프리카손익분기·소비조사·ICES자원상태, 갈치 가공카테고리(절대값 비공개)·후쿠시마SPS(정성)
+>      - **발견(후속 P0성)**: 갈치 w24/w_galchi_multi_cost가 환각 '한-세네갈 FTA' 인용(갈치는 FTA TRQ 미적용·전공급국 MFN 10%) + w14 한국 라인 5,400(→54,000 오기) — 기존 위젯 정정 필요. 새우/갈치/오징어 렌더러 telemetry 정직화(허위LIVE) 별도 패스.
+>      - **Batch 3+**: 주꾸미 11(PDF선행)·골뱅이 11(TSX 인라인)·참치 value-chain.
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 

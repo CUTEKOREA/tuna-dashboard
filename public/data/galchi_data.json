@@ -1802,6 +1802,177 @@
       "telemetry": "static",
       "isLive": false,
       "syncDate": "2022년 기준 (FAO FishStat) / 2026-05-30"
+    },
+    {
+      "id": "w_galchi_no_aqua",
+      "title": "갈치 양식 부재 — 100% 야생어획 (FAO 전수)",
+      "subtitle": "FAO FishStat 전수 검증 — 갈치 생산 8,256행 전부 어획, 양식 0건",
+      "chartType": "Bar",
+      "xKey": "category",
+      "unit": "레코드 수",
+      "reliability": 95,
+      "telemetry": "SYNCED",
+      "syncDate": "FAO FishStat 2022",
+      "bars": [
+        {
+          "key": "records",
+          "name": "생산 레코드 수",
+          "color": "#14b8a6"
+        }
+      ],
+      "data": [
+        {
+          "category": "어획(Capture)",
+          "records": 8256
+        },
+        {
+          "category": "양식(Aquaculture)",
+          "records": 0
+        }
+      ],
+      "source": "FAO FishStat 갈치 글로벌 생산 전수(8,256행)",
+      "sit": "FAO FishStat 갈치 생산 8,256행이 전부 어획(Capture)이며 양식(Aquaculture)은 0건입니다. 공급 100%가 야생어획이라 가격 급등기에도 증산으로 완충할 수단이 구조적으로 부재합니다.",
+      "strat": "공급 완충 수단이 재고·선도계약뿐이므로, 어획 부진 사이클에 대비한 3개월분 의무 비축 룰을 명문화해 가격 변동성에 대응해야 합니다."
+    },
+    {
+      "id": "w_galchi_fbs_pelagic",
+      "title": "수산물 공급·이용 계정 (표층어류, 2020)",
+      "subtitle": "FAOSTAT FBS — 2010~2023 전 연도 flag E(추정) · 1인 단백 4.63g/일",
+      "chartType": "Bar",
+      "xKey": "category",
+      "unit": "천톤",
+      "reliability": 75,
+      "telemetry": "STATIC",
+      "syncDate": "FAOSTAT FBS 2020",
+      "bars": [
+        {
+          "key": "kt",
+          "name": "2020 (천톤)",
+          "color": "#0d9488"
+        }
+      ],
+      "data": [
+        {
+          "category": "생산",
+          "kt": 737
+        },
+        {
+          "category": "수입",
+          "kt": 660
+        },
+        {
+          "category": "식용",
+          "kt": 745
+        },
+        {
+          "category": "사료",
+          "kt": 252
+        }
+      ],
+      "source": "FAOSTAT FBS 표층어류 공급·이용 계정(2020, flag E 추정)",
+      "sit": "FAOSTAT 표층어류 2020년 공급·이용 계정은 생산 737·수입 660·식용 745·사료 252천톤이며 1인 단백 공급 4.63g/일입니다. 단 2010~2023 전 연도가 flag E(추정)이라 실측이 아닌 FAO 추정 시계열입니다.",
+      "strat": "표층어류 식용 공급의 수입 의존(660천톤)이 큰 구조이므로 갈치 수입 안정화를 핵심 리스크로 관리하되, 추정치임을 의사결정에 명시해야 합니다."
+    },
+    {
+      "id": "w_galchi_kr_import_rank",
+      "title": "한국 수산물 수입 공급국 (2023, 전체 기준)",
+      "subtitle": "USDA GAIN 2024 Table A1-1 — 수산물 전체 기준(갈치 단일 아님)",
+      "chartType": "Bar",
+      "xKey": "country",
+      "unit": "백만달러",
+      "reliability": 80,
+      "telemetry": "STATIC",
+      "syncDate": "GAIN 2024",
+      "bars": [
+        {
+          "key": "musd",
+          "name": "2023 수입액(백만$)",
+          "color": "#0d9488"
+        }
+      ],
+      "data": [
+        {
+          "country": "중국",
+          "musd": 1296
+        },
+        {
+          "country": "러시아",
+          "musd": 1090
+        },
+        {
+          "country": "기타",
+          "musd": 3543
+        }
+      ],
+      "source": "USDA GAIN Korea Seafood 2024 (Table A1-1)",
+      "sit": "2023년 한국 수산물 수입은 중국 $1,296M(+3.8%)·러시아 $1,090M(-23.1%)로 양강 구도이며 전체 $5,929M(-8.3%)로 축소됐습니다. 수산물 전체 기준이라 갈치 단일 품목이 아님을 명시합니다.",
+      "strat": "중국·러시아 양강 의존 구조에서 베트남·노르웨이를 보조 공급권으로 등급화해 단일 산지 충격에 대비해야 합니다."
+    },
+    {
+      "id": "w_galchi_self_sufficiency",
+      "title": "한국 수산물 자급률 추이 (전체 기준)",
+      "subtitle": "USDA GAIN 2024 Table 5 — 전체 기준(갈치 단일 아님), 2023 추정",
+      "chartType": "Composed",
+      "xKey": "year",
+      "unit": "%",
+      "reliability": 80,
+      "telemetry": "STATIC",
+      "syncDate": "GAIN 2024",
+      "lines": [
+        {
+          "key": "selfSufficiency",
+          "name": "자급률(%)",
+          "color": "#ef4444"
+        }
+      ],
+      "data": [
+        {
+          "year": "2016",
+          "selfSufficiency": 71.4
+        },
+        {
+          "year": "2021",
+          "selfSufficiency": 70.9
+        },
+        {
+          "year": "2023",
+          "selfSufficiency": 64.8
+        }
+      ],
+      "source": "USDA GAIN Korea Seafood 2024 (Table 5)",
+      "sit": "한국 수산물 자급률은 2016년 71.4%에서 2021년 70.9%, 2023년 64.8%(추정)로 하락했습니다. 자급률 하락은 수입 의존 심화를 의미합니다.",
+      "strat": "자급률 하락 추세에 맞춰 갈치 수입 공급망 다변화·비축을 내수 물가 방어의 핵심 KPI로 격상해야 합니다."
+    },
+    {
+      "id": "w_galchi_protein_cross",
+      "title": "대체단백 교차압력 — 1인당 수산소비 -11%",
+      "subtitle": "USDA GAIN 2024+FAOSTAT — 육류 CAGR 2.6% vs 수산 1.4%(2016-22)",
+      "chartType": "Composed",
+      "xKey": "year",
+      "unit": "kg/년",
+      "reliability": 75,
+      "telemetry": "STATIC",
+      "syncDate": "GAIN 2024",
+      "lines": [
+        {
+          "key": "perCapita",
+          "name": "1인당 수산소비(kg/년)",
+          "color": "#0ea5e9"
+        }
+      ],
+      "data": [
+        {
+          "year": "2011",
+          "perCapita": 59.53
+        },
+        {
+          "year": "2023",
+          "perCapita": 52.82
+        }
+      ],
+      "source": "USDA GAIN 2024 + FAOSTAT FBS (육류 vs 수산 1인당 소비)",
+      "sit": "한국 1인당 수산물 소비는 2011년 59.53kg에서 2023년 52.82kg으로 11% 감소했고, 같은 기간 육류 소비 증가율(CAGR 2.6%)이 수산(1.4%)을 앞서 2019~2022년 육류가 수산을 추월했습니다.",
+      "strat": "수산 수요 둔화와 육류 대체 압력을 전제로 갈치를 가격 경쟁이 아닌 프리미엄·간편식(HMR)으로 재포지셔닝해야 합니다."
     }
   ]
 }

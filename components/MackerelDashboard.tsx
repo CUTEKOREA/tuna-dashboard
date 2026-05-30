@@ -44,9 +44,9 @@ const SECTIONS = [
 ] as const;
 
 const PILLAR_WIDGET_IDS: Record<string, string[]> = {
-  S1: ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73'],
+  S1: ['w_busan_procurement', 'w01', 'w02', 'w03', 'w04', 'w05', 'w09', 'w14', 'w23', 'w42', 'w43', 'w44', 'w65', 'w68', 'w69', 'w70', 'w73', 'w_kosis_prod_value'],
   S2: ['w_andong_salted', 'w_us_boneless', 'w08', 'w16', 'w21', 'w24', 'w25', 'w33', 'w35', 'w40', 'w45', 'w60', 'w67', 'w71', 'w72', 'w74'],
-  S3: ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75'],
+  S3: ['w_africa_coldchain', 'w_arbitrage_live', 'w_kcs_monthly', 'w_kcs_origin', 'w_comtrade_flow', 'w_oec_benchmark', 'w_landing', 'w_multi_cost', 'w_tariff', 'w_hs_class', 'w_eu_import', 'w_import_yeti_suppliers', 'w06', 'w07', 'w10', 'w11', 'w15', 'w17', 'w18', 'w19', 'w28', 'w34', 'w36', 'w38', 'w39', 'w48', 'w49', 'w57', 'w58', 'w62', 'w64', 'w66', 'w75', 'w_fta_import_trend', 'w_origin_diversification', 'w_trq_scenario'],
   S4: ['w_domestic_retail', 'w_global_b2c_channel', 'w_dist_margin', 'w12', 'w13', 'w22', 'w27', 'w29', 'w30', 'w31', 'w32', 'w37', 'w41', 'w46', 'w51', 'w52', 'w53', 'w59', 'w63'],
   S5: ['w_sanctions_radar', 'w_osh_facilities', 'w26', 'w50', 'w54', 'w55', 'w56', 'w61'],
 };
