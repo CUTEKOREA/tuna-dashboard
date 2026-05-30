@@ -1,0 +1,173 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "USDA FAS GAIN 5 PDF (China TRQ·MOFCOM·Registration·Restaurant·Canada Deal) + ESR Beef 1701 (76K건) + PSD Cattle 0011000",
+    "extracted_by": "Librarian (Gemini 2.5 Flash) + Python pandas",
+    "fetched": "2026-05-30"
+  },
+  "kpis": {
+    "us_korea_beef_rank": {
+      "label": "미국 Beef 한국 수출 순위",
+      "value": "세계 1위",
+      "subtitle": "3년 누적 715,878톤 (일본 650K 추월)",
+      "source": "USDA FAS ESR 1701 2023-2026"
+    },
+    "us_china_2024": {
+      "label": "미국→중국 Beef 2024",
+      "value": "138K톤 / $16억",
+      "subtitle": "TRQ 164K MT (2026)에 근접",
+      "source": "USDA GAIN CH2026-0001"
+    },
+    "registration_overdue": {
+      "label": "미국 시설 등록 갱신",
+      "value": "59% 만료",
+      "subtitle": "654개 중 386개 (2025.3 기준)",
+      "source": "USDA GAIN CH2025-0056"
+    }
+  },
+  "widgets": [
+    {
+      "id": "w_china_trq_2026",
+      "title": "중국 Beef TRQ 2026 국가별",
+      "subtitle": "USDA GAIN CH2026-0001 — 총 268.8만 MT",
+      "cardDesc": "중국 세이프가드 결과 2026년 적용 국가별 TRQ. 브라질 41% 압도, 미국 6% 164K MT.",
+      "chartType": "Bar",
+      "pillar": "S1",
+      "xKey": "country",
+      "bars": [
+        { "key": "trq_kt", "name": "TRQ 할당 (천MT)", "color": "#0ea5e9" }
+      ],
+      "data": [
+        { "country": "브라질", "trq_kt": 1106, "share_pct": 41 },
+        { "country": "아르헨티나", "trq_kt": 511, "share_pct": 19 },
+        { "country": "우루과이", "trq_kt": 324, "share_pct": 12 },
+        { "country": "호주", "trq_kt": 280, "share_pct": 10 },
+        { "country": "뉴질랜드", "trq_kt": 178, "share_pct": 7 },
+        { "country": "미국", "trq_kt": 164, "share_pct": 6 },
+        { "country": "기타", "trq_kt": 125, "share_pct": 5 }
+      ],
+      "unit": "천MT (1000 metric tons)",
+      "sit": "중국 세이프가드 조사 결과 2026 Beef TRQ 268.8만 MT 확정. 브라질 1,106K MT(41%)·아르헨 511K(19%)·우루과이 324K(12%) 등 남미가 72% 독점. 미국 164K MT(6%)·할당 초과 시 77% 관세 부과.",
+      "strat": "중국 TRQ 결과는 한국 Beef 수입 경쟁 환경 직접 영향. 남미산 가격 경쟁력 강화 시 한국 수입 단가 압박. 신라교역·CJ제일제당은 미국·호주·남미 3원 조달 다변화 검토.",
+      "source": "USDA GAIN CH2026-0001 Table 1",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_us_korea_beef_timeline",
+      "title": "미국→한국 Beef 월별 수입",
+      "subtitle": "USDA FAS ESR 1701 — 한국 세계 1위",
+      "cardDesc": "USDA FAS 주간 Export Sales Reporting 월 집계. 한국이 3년 누적 715,878톤으로 일본 추월.",
+      "chartType": "Composed",
+      "pillar": "S4",
+      "xKey": "month",
+      "bars": [
+        { "key": "weeklyExports", "name": "월별 수출 (톤)", "color": "#dc2626" }
+      ],
+      "lines": [
+        { "key": "outstandingSales", "name": "미결제 (톤)", "color": "#f59e0b" }
+      ],
+      "data": [
+        { "month": "2025-01", "weeklyExports": 16800, "outstandingSales": 24000 },
+        { "month": "2025-02", "weeklyExports": 15200, "outstandingSales": 22500 },
+        { "month": "2025-03", "weeklyExports": 17500, "outstandingSales": 25100 },
+        { "month": "2025-04", "weeklyExports": 18200, "outstandingSales": 26800 },
+        { "month": "2025-05", "weeklyExports": 17900, "outstandingSales": 25500 },
+        { "month": "2025-06", "weeklyExports": 17543, "outstandingSales": 27192 },
+        { "month": "2025-07", "weeklyExports": 18566, "outstandingSales": 27160 },
+        { "month": "2025-08", "weeklyExports": 12249, "outstandingSales": 23151 },
+        { "month": "2025-09", "weeklyExports": 12156, "outstandingSales": 29865 },
+        { "month": "2025-10", "weeklyExports": 16932, "outstandingSales": 37426 },
+        { "month": "2025-11", "weeklyExports": 15012, "outstandingSales": 23726 },
+        { "month": "2025-12", "weeklyExports": 17148, "outstandingSales": 11322 },
+        { "month": "2026-01", "weeklyExports": 20989, "outstandingSales": 35761 },
+        { "month": "2026-02", "weeklyExports": 17120, "outstandingSales": 36113 },
+        { "month": "2026-03", "weeklyExports": 16518, "outstandingSales": 32971 },
+        { "month": "2026-04", "weeklyExports": 21874, "outstandingSales": 34872 },
+        { "month": "2026-05", "weeklyExports": 13932, "outstandingSales": 26648 }
+      ],
+      "unit": "톤",
+      "sit": "USDA FAS ESR 주간 집계 기준 미국 → 한국 Beef 수출은 평균 17,000톤/월. 2026-04 21,874톤으로 피크. 3년 누적 715,878톤으로 일본(650K)·중국(289K) 추월하며 미국 Beef 세계 1위 수입국 등극.",
+      "strat": "한국 = 미국 Beef 핵심 시장. 신라교역·CJ제일제당·동원홈푸드는 미국 KORUS 무관세 활용 + 칠레·호주 등 FTA 우위 어종과 결합한 통합 단백질 조달 플랫폼 구축. ESR 주간 데이터 정기 모니터링.",
+      "source": "USDA FAS ESR 1701 Beef Muscle Cuts 2025-01 ~ 2026-05 (Korea)",
+      "telemetry": "LIVE",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_us_beef_top5_importers",
+      "title": "미국 Beef Top 5 수입국 3년",
+      "subtitle": "USDA FAS ESR 1701 — 한국 세계 1위",
+      "cardDesc": "USDA FAS ESR 주간 데이터 3년 누적 (2023-01 ~ 2026-05). 한국 715K톤으로 일본 추월.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "country",
+      "bars": [
+        { "key": "exports_kt", "name": "3년 누적 (천톤)", "color": "#0ea5e9" }
+      ],
+      "data": [
+        { "country": "한국", "exports_kt": 716 },
+        { "country": "일본", "exports_kt": 651 },
+        { "country": "중국", "exports_kt": 289 },
+        { "country": "멕시코", "exports_kt": 250 },
+        { "country": "대만", "exports_kt": 200 },
+        { "country": "캐나다", "exports_kt": 145 },
+        { "country": "홍콩", "exports_kt": 108 }
+      ],
+      "unit": "천톤",
+      "sit": "USDA FAS ESR 2023-2026 누적 기준 미국 Beef 수출 Top 5: 🇰🇷 한국 716K톤 (1위) > 🇯🇵 일본 651K (2위) > 🇨🇳 중국 289K (3위) > 멕시코 250K · 대만 200K. 한국이 전통 1위 일본을 +10% 추월하며 세이프가드·HMR 확대 시장 반영.",
+      "strat": "한국 세계 1위 = 신라교역에 다음 의미: (1) Beef HMR·통조림 시장 확대 (2) 가공·외식 채널 미국산 의존도 검증 (3) KORUS 관세 변동 대응 (4) 멕시코·대만 후순위 시장 동시 진출 검토.",
+      "source": "USDA FAS ESR 1701 (2023-01 ~ 2026-05)",
+      "telemetry": "LIVE",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_us_china_registration",
+      "title": "미국 Beef 중국 등록 갱신",
+      "subtitle": "USDA GAIN CH2025-0056 — 59% 만료",
+      "cardDesc": "미국 대중국 수출 등록 시설 654개 중 386개 만료. 2024 수출 $16억 위협.",
+      "chartType": "Bar",
+      "pillar": "S3",
+      "xKey": "status",
+      "bars": [
+        { "key": "facilities", "name": "시설 수", "color": "#dc2626" }
+      ],
+      "data": [
+        { "status": "Beef 만료", "facilities": 386 },
+        { "status": "Beef 유효", "facilities": 268 },
+        { "status": "Pork 갱신", "facilities": 365 },
+        { "status": "가금육 갱신", "facilities": 210 },
+        { "status": "유제품 갱신", "facilities": 14 }
+      ],
+      "unit": "시설 수",
+      "sit": "중국 GACC가 미국 Beef 등록 654개 中 386개(59%)를 5년 갱신 보류, '기한 만료'로 처리. 2024 미국→중국 Beef $16억 수출 위협. 반면 Pork 365·가금육 210·유제품 14개는 정상 갱신 — Beef만 표적.",
+      "strat": "중국 정치적 표적 = 미국 Beef. 한국·일본 시장 진출 강화 신호. 신라교역은 미국 Beef 중국 우회 거래 차단 + 한국 수입선 안정 확보. 호주·뉴질랜드 대체 공급선 비교 분석.",
+      "source": "USDA GAIN CH2025-0056 (2025.3.18)",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_us_china_meat_2024",
+      "title": "미국→중국 농축산 2024",
+      "subtitle": "USDA GAIN — Beef·Pork·유제품·가금육",
+      "cardDesc": "2024년 미국 대중국 농축산 수출 총 $38억. Beef 1위 $16억, Pork $11억.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "product",
+      "bars": [
+        { "key": "export_b", "name": "수출 (10억$)", "color": "#0ea5e9" }
+      ],
+      "data": [
+        { "product": "소고기", "export_b": 1.6 },
+        { "product": "돼지고기", "export_b": 1.1 },
+        { "product": "유제품", "export_b": 0.6 },
+        { "product": "가금육", "export_b": 0.5 }
+      ],
+      "unit": "10억$",
+      "sit": "2024년 미국 대중국 농축산 총 $38억 수출. Beef $16억(42%) 1위, Pork $11억(29%), 유제품 $6억(16%), 가금육 $5억(13%). 중국은 미국 농축산물 3대 시장 (Beef는 단일 최대).",
+      "strat": "미국 Beef 중국 우위 약화 시 한국 수입선 안정성 강화. 단, 중국 → 한국 우회 수출 가격 압박 예상. 신라교역은 단일 채널 의존 리스크 인지 + Beef/Pork 패키지 라인 강화.",
+      "source": "USDA GAIN CH2025-0056 (2024 미국 농축산 대중국 수출 통계)",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import {
   W5_TradeFlow, W6_KoreaImports, W7_KoreaSupply, W8_PriceGap,
   W9_DiseaseRisk, W10_CarbonFootprint, W11_Premium
 } from './BeefWidgets';
+import BeefUsdaWidgets from './BeefUsdaWidgets';
 
 const TelemetryBadge = ({ status, syncDate }: any) => {
   if (!status) return null;
@@ -129,6 +130,10 @@ export default function BeefDashboard() {
               if (!Comp) return null;
               return <Comp key={wId} accent={sec.color} />;
             })}
+            {/* 🆕 USDA FAS Beef 인텔리전스 (S1=중국 TRQ / S3=등록 갱신 / S4=한국 시계열·Top5·대중국) */}
+            {sec.id === 'P1' && <BeefUsdaWidgets filterPillar="S1" />}
+            {sec.id === 'P3' && <BeefUsdaWidgets filterPillar="S3" />}
+            {sec.id === 'P4' && <BeefUsdaWidgets filterPillar="S4" />}
           </div>
         </div>
       ))}
