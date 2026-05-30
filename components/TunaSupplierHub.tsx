@@ -143,7 +143,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
       customBody={<>{CountryTabs}{FacilityList}</>}
       takeaway={{
         situation: `<div>
-<p>"Supplier Hub"는 글로벌 수산물 가공시설을 국가별로 시각화한 vendor mapping. <strong>\${COUNTRIES.find((c) => c.code === selectedCountry)?.flag || ''} \${selectedCountry}</strong> 가공시설 <strong>\${totalCount}개</strong> 확인. \${totalWorkers > 0 ? \`총 근로자 <strong>\${(totalWorkers / 1000).toFixed(0)}K+</strong> 규모.\` : ''} \${facilities[0]?.parentCompany ? \`최대 기업: <strong>\${facilities[0].parentCompany}</strong>.\` : ''}</p>
+<p>"Supplier Hub"는 글로벌 수산물 가공시설을 국가별로 시각화한 vendor mapping. <strong>${COUNTRIES.find((c) => c.code === selectedCountry)?.flag || ''} ${selectedCountry}</strong> 가공시설 <strong>${totalCount}개</strong> 확인. ${totalWorkers > 0 ? `총 근로자 <strong>${(totalWorkers / 1000).toFixed(0)}K+</strong> 규모.` : ''} ${facilities[0]?.parentCompany ? `최대 기업: <strong>${facilities[0].parentCompany}</strong>.` : ''}</p>
 <p>FFA 최신 리포트에 따르면, 노동 및 사회적 감사(Social Auditing)는 이제 글로벌 참치 산업의 필수 요건입니다. 단순 위치 파악을 넘어 강제 노동 및 불법 어업(IUU) 리스크의 <strong>동적 인증(Dynamic Certification) 검증</strong>이 요구됩니다.</p>
 </div>`,
         actionPlan: `<div>
@@ -155,7 +155,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
 <li><strong>"Vendor portfolio sharpe optimization"</strong>: 특정 국가 및 단일 벤더 의존도 한도 강제 및 분기별 포트폴리오 리밸런싱.</li>
 </ol>
 </div>`,
-        source: \`Open Supply Hub (CC BY-SA) + ISSF PVR + MSC DB 교차 검증 연동\`,
+        source: `Open Supply Hub (CC BY-SA) + ISSF PVR + MSC DB 교차 검증 연동`,
       }}
     />
   );

@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌊 **2026-05-30 — 참치 대시보드 가공·생산 위젯 2종(OSH, 베트남 OEM) 신뢰도 상향 (FFA 리포트 기반)** [CC]:
+> - **OSH 위젯 (TunaSupplierHub)**: 단순 정적 위치 매핑에서 ISSF PVR 및 MSC DB 동적 교차 검증 도구로 재정의. IUU 및 강제노동 리스크 식별 기능 제안 반영.
+> - **베트남 OEM 역전 위젯 (TunaVietnamOemStrategy)**: 베트남산 프리쿡 로인의 실제 미국 수출액(2024년 $54.9M)을 데이터 포인트로 추가하고, EU 무관세(EVFTA) 실증 등 액션 플랜 최신화.
+> - **검증**: `npm run build` ✓
 
 > 🌊 **2026-05-30 — agri_data 기반 8 commodity 위젯 신뢰도 캠페인 (멀티 벤더 에이전트 분업)** [CC]:
 > - **목표**: `~/agri_data/`의 1차 출처(FAO FishStat·KMI FTA·KCS 통관·EUMOFA·USDA GAIN 등)로 수산물 대시보드 위젯의 허위 LIVE·환각 출처·stale·사실오류를 P0 정정.
