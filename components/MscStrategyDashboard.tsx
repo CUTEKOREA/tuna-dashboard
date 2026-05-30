@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import {
   ShieldCheck,
   Globe,
@@ -10,6 +11,7 @@ import {
 } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TelemetryBadge from './TelemetryBadge';
+import ErrorBoundary from './ErrorBoundary';
 
 /* ─── Existing MSC Widgets (migrated from TunaDashboard) ─── */
 import {
@@ -20,29 +22,21 @@ import {
   MscConsumerInsightsRadar,
 } from './MscIntelligenceWidgets';
 
-/* ─── New MSC Strategy Widgets (Section 1) ─── */
-import MscSpeciesCoverageHeatmap from './msc-strategy/MscSpeciesCoverageHeatmap';
-import MscGearTypeTrends from './msc-strategy/MscGearTypeTrends';
-import MscCertificationPipeline from './msc-strategy/MscCertificationPipeline';
-
-/* ─── New MSC Strategy Widgets (Section 2: European Market) ─── */
-import MscEuropeRetailPrices from './msc-strategy/MscEuropeRetailPrices';
-import MscPbNbMatrix from './msc-strategy/MscPbNbMatrix';
-import MscConsumptionStructure from './msc-strategy/MscConsumptionStructure';
-import MscRetailChannelPenetration from './msc-strategy/MscRetailChannelPenetration';
-
-/* ─── New MSC Strategy Widgets (Section 3: Consumer) ─── */
-import MscUkShopperTrends from './msc-strategy/MscUkShopperTrends';
-import MscDemographicAcceptance from './msc-strategy/MscDemographicAcceptance';
-import MscEcolabelCompetition from './msc-strategy/MscEcolabelCompetition';
-import MscRetailerSkuMonitor from './msc-strategy/MscRetailerSkuMonitor';
-
-/* ─── New MSC Strategy Widgets (Section 4: South vs North) ─── */
-import MscSouthVsNorthEurope from './msc-strategy/MscSouthVsNorthEurope';
-
-/* ─── New MSC Strategy Widgets (Section 5: Risk) ─── */
-import MscRfmoAlignment from './msc-strategy/MscRfmoAlignment';
-import MscSuspensionHistory from './msc-strategy/MscSuspensionHistory';
+/* ─── New MSC Strategy Widgets — dynamic imports to avoid SSR issues ─── */
+const MscSpeciesCoverageHeatmap = dynamic(() => import('./msc-strategy/MscSpeciesCoverageHeatmap'), { ssr: false });
+const MscGearTypeTrends = dynamic(() => import('./msc-strategy/MscGearTypeTrends'), { ssr: false });
+const MscCertificationPipeline = dynamic(() => import('./msc-strategy/MscCertificationPipeline'), { ssr: false });
+const MscEuropeRetailPrices = dynamic(() => import('./msc-strategy/MscEuropeRetailPrices'), { ssr: false });
+const MscPbNbMatrix = dynamic(() => import('./msc-strategy/MscPbNbMatrix'), { ssr: false });
+const MscConsumptionStructure = dynamic(() => import('./msc-strategy/MscConsumptionStructure'), { ssr: false });
+const MscRetailChannelPenetration = dynamic(() => import('./msc-strategy/MscRetailChannelPenetration'), { ssr: false });
+const MscUkShopperTrends = dynamic(() => import('./msc-strategy/MscUkShopperTrends'), { ssr: false });
+const MscDemographicAcceptance = dynamic(() => import('./msc-strategy/MscDemographicAcceptance'), { ssr: false });
+const MscEcolabelCompetition = dynamic(() => import('./msc-strategy/MscEcolabelCompetition'), { ssr: false });
+const MscRetailerSkuMonitor = dynamic(() => import('./msc-strategy/MscRetailerSkuMonitor'), { ssr: false });
+const MscSouthVsNorthEurope = dynamic(() => import('./msc-strategy/MscSouthVsNorthEurope'), { ssr: false });
+const MscRfmoAlignment = dynamic(() => import('./msc-strategy/MscRfmoAlignment'), { ssr: false });
+const MscSuspensionHistory = dynamic(() => import('./msc-strategy/MscSuspensionHistory'), { ssr: false });
 
 /* ================================================================
    Section Configuration
@@ -212,21 +206,28 @@ export default function MscStrategyDashboard() {
               </div>
             </div>
 
-            {/* Migrated: Global Growth Tracker (Full Width) */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <MscGlobalTunaGrowthTracker />
-            </div>
+            <ErrorBoundary fallbackTitle="MSC Global Growth Tracker">
+              <div style={{ marginBottom: '1.5rem' }}>
+                <MscGlobalTunaGrowthTracker />
+              </div>
+            </ErrorBoundary>
 
-            {/* Migrated: Country Penetration + New: Species Heatmap */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              <MscEuropeCountryPenetration />
-              <MscSpeciesCoverageHeatmap />
+              <ErrorBoundary fallbackTitle="MscEuropeCountryPenetration">
+                <MscEuropeCountryPenetration />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscSpeciesCoverageHeatmap">
+                <MscSpeciesCoverageHeatmap />
+              </ErrorBoundary>
             </div>
 
-            {/* New: Gear Type Trends + Certification Pipeline */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <MscGearTypeTrends />
-              <MscCertificationPipeline />
+              <ErrorBoundary fallbackTitle="MscGearTypeTrends">
+                <MscGearTypeTrends />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscCertificationPipeline">
+                <MscCertificationPipeline />
+              </ErrorBoundary>
             </div>
           </section>
         )}
@@ -247,18 +248,27 @@ export default function MscStrategyDashboard() {
             </div>
 
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              <MscEuropeRetailPrices />
-              <MscPbNbMatrix />
+              <ErrorBoundary fallbackTitle="MscEuropeRetailPrices">
+                <MscEuropeRetailPrices />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscPbNbMatrix">
+                <MscPbNbMatrix />
+              </ErrorBoundary>
             </div>
 
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              <MscConsumptionStructure />
-              <MscRetailChannelPenetration />
+              <ErrorBoundary fallbackTitle="MscConsumptionStructure">
+                <MscConsumptionStructure />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscRetailChannelPenetration">
+                <MscRetailChannelPenetration />
+              </ErrorBoundary>
             </div>
 
-            {/* Migrated: Brand Scorecard */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <MscBrandSourcingScorecard />
+              <ErrorBoundary fallbackTitle="MscBrandSourcingScorecard">
+                <MscBrandSourcingScorecard />
+              </ErrorBoundary>
             </div>
           </section>
         )}
@@ -278,19 +288,28 @@ export default function MscStrategyDashboard() {
               </div>
             </div>
 
-            {/* Migrated: Consumer Insights Radar */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <MscConsumerInsightsRadar />
-            </div>
+            <ErrorBoundary fallbackTitle="MscConsumerInsightsRadar">
+              <div style={{ marginBottom: '1.5rem' }}>
+                <MscConsumerInsightsRadar />
+              </div>
+            </ErrorBoundary>
 
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              <MscUkShopperTrends />
-              <MscDemographicAcceptance />
+              <ErrorBoundary fallbackTitle="MscUkShopperTrends">
+                <MscUkShopperTrends />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscDemographicAcceptance">
+                <MscDemographicAcceptance />
+              </ErrorBoundary>
             </div>
 
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <MscEcolabelCompetition />
-              <MscRetailerSkuMonitor />
+              <ErrorBoundary fallbackTitle="MscEcolabelCompetition">
+                <MscEcolabelCompetition />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscRetailerSkuMonitor">
+                <MscRetailerSkuMonitor />
+              </ErrorBoundary>
             </div>
           </section>
         )}
@@ -310,7 +329,9 @@ export default function MscStrategyDashboard() {
               </div>
             </div>
 
-            <MscSouthVsNorthEurope />
+            <ErrorBoundary fallbackTitle="MscSouthVsNorthEurope">
+              <MscSouthVsNorthEurope />
+            </ErrorBoundary>
           </section>
         )}
 
@@ -329,14 +350,19 @@ export default function MscStrategyDashboard() {
               </div>
             </div>
 
-            {/* Migrated: Stock Health Gauge */}
-            <div style={{ marginBottom: '1.5rem' }}>
-              <MscTunaStockHealthGauge />
-            </div>
+            <ErrorBoundary fallbackTitle="MscTunaStockHealthGauge">
+              <div style={{ marginBottom: '1.5rem' }}>
+                <MscTunaStockHealthGauge />
+              </div>
+            </ErrorBoundary>
 
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <MscRfmoAlignment />
-              <MscSuspensionHistory />
+              <ErrorBoundary fallbackTitle="MscRfmoAlignment">
+                <MscRfmoAlignment />
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="MscSuspensionHistory">
+                <MscSuspensionHistory />
+              </ErrorBoundary>
             </div>
           </section>
         )}

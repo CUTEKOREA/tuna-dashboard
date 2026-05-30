@@ -63,6 +63,7 @@ function ScatterTooltipContent({ active, payload }: any) {
 
 function renderScatterLabel(props: any) {
   const { cx, cy, payload } = props;
+  if (!payload) return null;
   return (
     <text x={cx} y={cy - 14} textAnchor="middle" fill="#e2e8f0" fontSize={11} fontWeight={600}>
       {payload.country}
