@@ -1260,33 +1260,33 @@
       "data": [
         {
           "산지": "베트남VungTau",
-          "FIP진행률": 40,
-          "SeaBOS준수": 55,
-          "혼획율": 8
+          "FIP진행률": 25,
+          "SeaBOS준수": 30,
+          "리스크지수": 84
         },
         {
           "산지": "모리타니(단지)",
           "FIP진행률": 65,
           "SeaBOS준수": 72,
-          "혼획율": 3
+          "리스크지수": 30
         },
         {
           "산지": "모리타니(트롤)",
           "FIP진행률": 15,
           "SeaBOS준수": 20,
-          "혼획율": 35
+          "리스크지수": 80
         },
         {
           "산지": "태국만",
           "FIP진행률": 30,
           "SeaBOS준수": 45,
-          "혼획율": 12
+          "리스크지수": 50
         },
         {
           "산지": "중국하이저우",
           "FIP진행률": 10,
           "SeaBOS준수": 15,
-          "혼획율": 28
+          "리스크지수": 70
         }
       ],
       "xAxis": "산지",
@@ -1304,19 +1304,21 @@
           "yAxisId": "left"
         },
         {
-          "dataKey": "혼획율",
+          "dataKey": "리스크지수",
           "type": "line",
           "color": "#ef4444",
           "yAxisId": "right"
         }
       ],
-      "sit": "모리타니 등 저인망 혼획율(35%)이 글로벌 탑티어 유통사의 ESG/MSC 인증 기준을 미달하여 원양 소싱망의 지속 가능성 경보 발령.",
-      "tak": "<ul><li>FIP 인증 물량(모리타니 단지, 베트남 Vung Tau)을 선점하여 국내 대형마트 및 글로벌 ESG 펀드 연계 리테일에 착한 수산물 프리미엄 마케팅을 전개해야 합니다.</li></ul>",
-      "source": "MSC FIP DB + EJF Bright-lights 보고서 + 해수부 어선원 인권보고서 (1차 출처) | 2024-2026 갱신 가능",
+      "sit": "베트남 Vung Tau(BRVT) 저인망 FIP는 2016년 이해관계자 대화로 개시됐으나, MarinTrust 평가(2021)에서 Section 1 법제·기관·MCS 3개 항목이 모두 'Gap'(미달)이고 Section 2 리스크지수(0~100, 높을수록 위험)는 어획종 Part B 92, ETP종 84, 서식지 84, 생태계 100으로 모두 고위험으로 산정됐다. 저가잡어(trash fish) 비중이 동남부 저인망 39.2~51.5%, 남서부 저인망 최대 96%에 달하며, otter trawl 혼획 상위종은 Whiskered velvet 18.7%·Blunt-nose lizardfish 11.2%, pair trawl은 Bigeye scad 17.1%·Blunt-nose lizardfish 13.6%로 관찰됐다. 리스크지수 선은 각 산지의 최고 위험 차원을 표시하며, 모리타니·태국·중국 수치는 1차 문서로 미검증된 추정치다.",
+      "tak": "<ul><li>Vung Tau 원물은 현재 FIP 'Gap'(미달) 단계이므로 즉시 인증 프리미엄을 전제로 한 소싱은 보류하고, MarinTrust 개선조치(MCS·서식지) 이행 마일스톤을 계약 조건에 연동하는 단계적 오프테이크로 전환할 것을 권고합니다.</li></ul>",
+      "source": "MarinTrust 'Vung Tau (BRVT) Bottom Trawl FIP' 평가보고서(2021), RIMF 2015-16 관찰자 어획조성 데이터 (베트남 행 1차 검증) | 모리타니·태국·중국 행은 미검증 추정치 (1차 출처)",
       "unit": "%",
-      "reliability": 90,
+      "reliability": 75,
       "isLiveApi": false,
-      "strat": "ESG 규제 미달 소싱 기지를 점진적으로 숏(Short)하고, MSC/FIP 인증 진척도가 60% 이상인 청정 베트남/태국 소싱 벤더 위주로 포트폴리오 정렬."
+      "telemetry": "static",
+      "syncDate": "2021-12-31",
+      "strat": "FIP 'Gap' 단계인 Vung Tau 저인망 원물은 인증 프리미엄 가정을 배제하고, MarinTrust 개선조치(MCS·ETP·서식지) 이행률을 계약에 연동하는 조건부 소싱으로 한정. 리스크지수 60 미만 산지를 우선 풀로 정렬하되, 모리타니·태국·중국 수치는 추가 1차 검증 전 의사결정 가중치를 낮게 둔다."
     },
     {
       "id": "w21_leisure_fishing_impact",
@@ -1608,46 +1610,50 @@
     },
     {
       "id": "w29_africa_human_rights_risk",
-      "title": "대체재 비상 소싱 리스크 (아프리카 낙지·문어 인권 리스크) — 보조 지표",
+      "title": "대체재 비상 소싱 리스크 (서아프리카 문어 IUU·자원 과잉이용) — 보조 지표",
       "category": "part5",
       "format": "new",
       "chartType": "composed",
       "xKey": "name",
       "bars": [
         {
-          "key": "위험도",
-          "name": "위험도(지수)",
+          "key": "수출점유",
+          "name": "글로벌 문어 수출 점유율(%)",
           "color": "#F87171"
         }
       ],
       "lines": [
         {
-          "key": "수출감소",
-          "name": "수출 감소율(%)",
+          "key": "과잉이용",
+          "name": "자원 과잉이용 여부(1=과잉이용)",
           "color": "#3B82F6"
         }
       ],
-      "sit": "서아프리카(모리타니아) 원양 선단의 인권 규제 및 강제 노동 이슈가 부각되면서 ESG 실사 리스크와 통관 보류(WRO) 조치 임박.",
-      "strat": "모리타니산 문어/오징어 믹스를 전면 배제하고 리스크 프리존인 VKFTA 기반 베트남 수입선으로 자본을 일괄 피벗하여 공급 안정성 확보.",
+      "sit": "SeaBOS Brief3(2024) 실측 기준 글로벌 문어 어획량은 1980년 179,042톤에서 2021년 497,000톤으로 약 2.8배 증가했고, 2019년 어획 과소보고는 약 16%로 추정된다. 서아프리카 3국의 글로벌 문어 수출 점유율은 모로코 16%·모리타니 15%·세네갈 2%이며, 모리타니·모로코 자원은 과잉이용(overexploited), 세네갈은 완전이용(fully exploited) 상태다. 모리타니 문어 TAC(총허용어획량) 2024년은 30,744톤으로 소진 시 조업이 중단되며, 역내 전반에 IUU(불법·비보고·비규제) 어업 고위험이 보고된다.",
+      "strat": "<ul><li>서아프리카 문어는 주꾸미 주력 공급망(한·중·일·베트남 90%+)의 비상 대체 소싱처로만 한정 검토하되, 모리타니 TAC 소진형 조업중단(2024년 30,744톤 상한)과 IUU 고위험·16% 과소보고로 인한 통관·자원 변동성을 전제로 단발 스팟 계약에 한정하고, 상시 물량은 베트남(VKFTA) 중심 기존 공급망을 유지할 것을 제안합니다.</li></ul>",
       "data": [
         {
-          "name": "모리타니아",
-          "위험도": 85,
-          "수출감소": 15
+          "name": "모로코",
+          "수출점유": 16,
+          "과잉이용": 1
+        },
+        {
+          "name": "모리타니",
+          "수출점유": 15,
+          "과잉이용": 1
         },
         {
           "name": "세네갈",
-          "위험도": 78,
-          "수출감소": 12
-        },
-        {
-          "name": "모로코",
-          "위험도": 60,
-          "수출감소": 5
+          "수출점유": 2,
+          "과잉이용": 0
         }
       ],
-      "subtitle": "주꾸미 주력 공급망은 한·중·일·베트남(90%+). 아프리카 낙지·문어는 대체재 비상 소싱 시에만 검토. ESG 핵심 위젯 아닌 보조 모니터링.",
-      "source": "EJF Bright-lights 보고서 + Greenpeace Africa Fisheries + ILO 어선원 인권 보고서 (대체재 비상 보조) (1차 출처) | 2024-2026 갱신 가능"
+      "subtitle": "주꾸미 주력 공급망은 한·중·일·베트남(90%+). 서아프리카 문어는 비상 대체 소싱 시에만 검토하는 보조 모니터링 지표. 수치는 SeaBOS Brief3 실측 기반(합성 위험도지수 폐기).",
+      "unit": "%, 1=과잉이용",
+      "reliability": 78,
+      "isLiveApi": false,
+      "telemetry": "static",
+      "source": "SeaBOS Keystone Dialogue, Brief 3: Octopus fisheries of Morocco, Mauritania and Senegal (2024-09) — agri_data/jukkumi/05_Mauritania/SeaBOS_Brief3_Octopus_Morocco_Mauritania_Senegal.pdf (1차 출처)"
     },
     {
       "id": "w30_tac_regulation_map",

@@ -23,30 +23,29 @@ export async function GET() {
 
   const data = {
     id: "w_kosis_squid_cpi",
-    title: "국산 살오징어 vs 수입 대체 오징어 물가(CPI) 디커플링",
-    subtitle: "KOSIS 소비자물가지수 기반 국산-수입산 가격 전가력 비교",
-    isLiveApi: health.ok,
-    apiHealth: health,  // 헬스체크 메타데이터 (lastFetched timestamp + latency)
+    title: "오징어 수입단가 vs 자급률 디커플링",
+    subtitle: "squid_korea_supply.json 2000~2023 실측 기반 수입단가·자급률 비교",
+    isLiveApi: false,
+    apiHealth: health,  // KOSIS 키 헬스체크 메타데이터, 위젯 시계열은 정적 실측
     reliability: 98,
     chartType: "line",
-    xKey: "month",
+    xKey: "year",
     lines: [
-      { key: "domestic_cpi", color: "#ef4444", name: "국내 살오징어 CPI" },
-      { key: "import_cpi", color: "#3b82f6", name: "수입 일렉스 CPI" }
+      { key: "import_cost_per_ton", color: "#ef4444", name: "수입단가($/톤)" },
+      { key: "self_sufficiency_pct", color: "#3b82f6", name: "자급률(%)" }
     ],
     data: [
-      { month: "10월", domestic_cpi: 115, import_cpi: 95 },
-      { month: "11월", domestic_cpi: 122, import_cpi: 97 },
-      { month: "12월", domestic_cpi: 135, import_cpi: 101 },
-      { month: "1월", domestic_cpi: 142, import_cpi: 104 },
-      { month: "2월", domestic_cpi: 155, import_cpi: 108 },
-      { month: "3월", domestic_cpi: 147, import_cpi: 110 }
+      { year: "2000", import_cost_per_ton: 2187, self_sufficiency_pct: 95.7 },
+      { year: "2005", import_cost_per_ton: 2023, self_sufficiency_pct: 89.7 },
+      { year: "2010", import_cost_per_ton: 2550, self_sufficiency_pct: 87.0 },
+      { year: "2015", import_cost_per_ton: 2376, self_sufficiency_pct: 82.0 },
+      { year: "2018", import_cost_per_ton: 3605, self_sufficiency_pct: 33.6 },
+      { year: "2020", import_cost_per_ton: 3137, self_sufficiency_pct: 40.3 },
+      { year: "2023", import_cost_per_ton: 3223, self_sufficiency_pct: 35.6 }
     ],
-    sit: "수입단가(import_cost_per_ton) 추이: 2000년 $2,187/톤 → 2023년 $3,223/톤(+47.3%). 자급률 붕괴: 95.7% → 35.6%(-60.1%p). 국산 공급 수축에 따른 가격 압박은 실제이나, 수입 대체재(Illex) CPI는 페루·에콰도르 신규 진입으로 오히려 안정화되고 있습니다. 국산 오징어 수급 불안정이 수입산 가격 상승(폭등)이 아닌 국내 자급률 붕괴로 귀결되는 구조적 변환기입니다.",
-    strat: "국산 공급 수축(자급률 95.7% → 35.6%)에 따른 수입 의존도 증가가 불가피한 구조. ①수입산 CPI 안정화(페루·에콰도르 $2.2~1.9/kg 폭락)를 즉시 포착하여 분기 매입 비중을 30% → 50% 이상으로 전진 배치, ②국내 가공 capacity가 부족하므로 신라에스지의 진미채·냉동 튜브 라인 확대 CAPEX를 2026년 1순위 항목으로 책정, ③자급률 30% 하방 이탈은 '국가 식량안보 마지노선'으로 정부 비축미 정책 도입 가능성 모니터링.",
-    source: health.ok
-      ? `KOSIS Open API (${health.checked_at}, ${health.latency_ms}ms healthcheck OK · 시계열 데이터 매핑 진행 중)`
-      : "KOSIS Open API (healthcheck FAIL, fallback)"
+    sit: "squid_korea_supply.json 기준 오징어 수입단가는 2000년 $2,187/톤에서 2023년 $3,223/톤으로 상승했습니다. 같은 기간 자급률은 95.7%에서 35.6%로 낮아져, 가격 압력은 CPI 추정선이 아니라 국내 공급 기반 약화와 수입 의존 확대의 디커플링으로 봐야 합니다.",
+    strat: "수입단가와 자급률을 분리해 관리하십시오. 자급률 40% 하회 구간에서는 국내 어획 회복을 전제로 한 조달 계획보다 수입 원료 계약, 가공 라인 원료 규격, 환율 헤지를 함께 묶은 조달 포트폴리오가 우선입니다.",
+    source: `data/squid_korea_supply.json (2000~2023 정적 실측 시계열 · KOSIS healthcheck ${health.ok ? "OK" : "FAIL"})`
   };
 
   return NextResponse.json(data);

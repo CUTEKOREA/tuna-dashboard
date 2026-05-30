@@ -84,3 +84,5 @@ scripts/_deprecated_fake_data/
 docs/sources/
 *.bak_pre_p0
 *.bak_api
+*.bak_p3
+*.bak_codex

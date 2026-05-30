@@ -17,11 +17,14 @@
 > - **교차검증/Ground-truth가 막은 실제 오류**: squid orphan 4종이 라우트 주입 위젯(Codex 적발·복원) / galchi 환각 "한-세네갈 FTA" / **jukkumi 종합 자가정정마저 오류** → 3-에이전트 Ground-truth 워크플로우로 셀단위 재확정(주꾸미=2개 HS세번 0307512000+0307523000 30,480t, OCT=문어류합산, shareVol2025=76.9는 오류값)
 > - **변경 파일**: 8 JSON(`*_real_data*`/`galchi_data`, 각 `.bak_pre_p0` 백업) + 4 TSX(Shrimp·Squid·Galchi·Whelk 화이트리스트/라벨) + 9 보고서(`artifacts/*_agri_enrichment_2026_05_30.md`) + 3 스크립트(`scripts/apply_seafood_p0.py`·`apply_p0_enrichment.py`·`fix_salmon_live_labels.py`)
 > - **✅ API-route 패스 완료** (커밋 ae5eee7, 배포됨): whelk 어획 5위 정정(러시아 9,229t)·영국 과거 FAO실측 / mackerel-kcs FALLBACK 73.9%·제재레이더 IUU 리프레임 / squid EU두족류 EUMOFA실측·CPI168 제거 / salmon 4컴포넌트(Climate·DoubleMateriality·Logistics·NTBRadar) 허위LIVE 청산. 6 Explore 에이전트 edit spec → 경로정규화·검증 → 적용.
+> - **✅ 잔여작업 분업 패스 완료** (3 벤더 병렬): Gemini(PDF→사실 + P-03 과장수식어 맥락판단) · Codex(pollock w26 EUMOFA실측·squid CPI 디커플링 재구성) · Claude(검증·적용).
+>   - P-03 과장수식어 완화 **91건**(salmon 23·shrimp 24·squid 20·mackerel 17·galchi 4·pollock 3, 숫자·사실 보존 검증) / pollock w26 재고·Reefer지수→실측 / squid CPI→수입단가·자급률 디커플링(2000 $2,187→2023 $3,223·자급률 95.7→35.6%)
+>   - jukkumi 2 ESG: w20 베트남FIP(MarinTrust 실측·MSC→MarinTrust 정정·status Gap·리스크지수) / w29 아프리카문어 IUU(SeaBOS TAC 30,744t·글로벌어획 179,042→497,000t·환각 ILO/EJF 출처 삭제)
 > - **⚠️ 다음 단계 (미적용)**:
->   1. **API-route 패스 잔여**: pollock w26_inventory_freight(위치 불명확 — 데이터 소스 추가 조사), squid w_kosis_squid_cpi(부분 정정만), tuna w01(라이브 KCS 단가 유지 결정 — 정정 대상 아님)
->   2. **PDF→MD 후(R-04)**: jukkumi 2건(베트남 FIP·아프리카 인권 — SeaBOS/MarinTrust PDF), whelk GAIN Table2 TAC
->   3. **P1 티어**: 데이터 신선화·과장수식어(salmon 27건 등)
-> - 검증: `npm run build` ✓ (전 TSX 컴파일 + 8 JSON 유효)
+>   1. **whelk GAIN Table2 TAC**(PDF→MD 후), whelk 자체 P-03 스윕(이번 미포함), tuna w01(라이브 KCS 유지 결정)
+>   2. **대규모 P1/P2 신규 위젯 제안**(각 `artifacts/*_agri_enrichment_2026_05_30.md`에 정리) — RFMO 레이더·현물가·HHI 등
+>   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
+> - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 
 
 > 🎯 **2026-05-29 — 세션 최종: 13 commodity + 24 라이브 라우트 + DART/USDA FAS 인프라** [CC]:
