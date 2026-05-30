@@ -14,6 +14,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import GarlicUsdaWidgets from './GarlicUsdaWidgets';
 
 
 
@@ -419,6 +420,11 @@ export default function GarlicDashboard() {
         </div>
       </div>
 
+      {/* 🆕 USDA FAS — 한국 마늘 생산 8년 + 글로벌 중국 84% 점유 (S1 원료 수급) */}
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
+        <GarlicUsdaWidgets filterPillar="S1" />
+      </div>
+
       </>)}
       {activePart === 'processing' && (<>
       {/* Section 2: Processing */}
@@ -688,6 +694,11 @@ export default function GarlicDashboard() {
           }} />
       </div>
 
+      {/* 🆕 USDA FAS — 한국 마늘 수입 형태별 (냉동 72%, S3 통관) */}
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
+        <GarlicUsdaWidgets filterPillar="S3" />
+      </div>
+
       </>)}
       {activePart === 'sales' && (<>
       {/* Section 4: Sales */}
@@ -822,6 +833,11 @@ export default function GarlicDashboard() {
             ),
             source: "J.P. Morgan PEF 리서치 (식음료 vendor multiple 분석) + KREI AgTech 가치평가 모델",
           }} />
+      </div>
+
+      {/* 🆕 USDA FAS — 깐마늘 도매가 7개월 + 관세 360% 가격 갭 (S4 판매·수요) */}
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
+        <GarlicUsdaWidgets filterPillar="S4" />
       </div>
 
       </>)}

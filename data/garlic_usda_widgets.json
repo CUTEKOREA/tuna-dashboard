@@ -1,0 +1,143 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "KREI 양념채소 보고서 06·07·08호 (2024-2025) + WSC China Garlic 보고서 + OECD-FAO Outlook",
+    "extracted_by": "Librarian (Gemini 2.5 Flash)",
+    "fetched": "2026-05-30"
+  },
+  "widgets": [
+    {
+      "id": "w_kr_garlic_production_8y",
+      "title": "한국 마늘 생산·재배 시계열",
+      "subtitle": "KREI 양념채소 — 8년 추이",
+      "cardDesc": "한국 마늘 생산량·재배면적·자급률 8년 추이. 2023 생산 312K톤·자급률 86.6% 회복.",
+      "chartType": "Composed",
+      "pillar": "S1",
+      "xKey": "year",
+      "bars": [
+        { "key": "production_kt", "name": "생산 (천톤)", "color": "#f59e0b" }
+      ],
+      "lines": [
+        { "key": "area_kha", "name": "재배 (천ha)", "color": "#10b981" }
+      ],
+      "data": [
+        { "year": "2016", "production_kt": 276, "area_kha": 20.8 },
+        { "year": "2018", "production_kt": 332, "area_kha": 28.4 },
+        { "year": "2020", "production_kt": 363, "area_kha": 25.4 },
+        { "year": "2021", "production_kt": 308, "area_kha": 23.0 },
+        { "year": "2022", "production_kt": 291, "area_kha": 23.7 },
+        { "year": "2023", "production_kt": 312, "area_kha": 24.6 },
+        { "year": "2024", "production_kt": 320, "area_kha": 23.2 },
+        { "year": "2025E", "production_kt": 305, "area_kha": 22.9 }
+      ],
+      "unit": "천톤 / 천ha",
+      "sit": "한국 마늘 생산은 2018년 332K톤 정점 후 2022년 291K톤(-12%)으로 감소했다가 2023년 312K톤 회복. 재배면적은 2018년 28K ha → 2025E 23K ha로 -19% 축소. 농가 고령화·인건비 부담 영향. 자급률 86.6% (2023).",
+      "strat": "재배면적 장기 축소세 = 수입 의존도 자연 증가. 신라교역·CJ 등 가공식품 기업은 국내·수입 균형 조달 전략 필수. 2026 재배의향 22,913ha (-2.7% vs 평년)로 추가 감소 예상, 단가 +5~10% 상승 헤지 필요.",
+      "source": "KREI 양념채소 보고서 07·08호 (p.18, p.25)",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_global_garlic_china_dominance",
+      "title": "글로벌 마늘 공급 — 중국 84%",
+      "subtitle": "WSC China Garlic Crop Report",
+      "cardDesc": "글로벌 생마늘 800만톤 中 중국 84%·건조마늘 86%. 단일 국가 압도 점유 = 공급망 핵심 리스크.",
+      "chartType": "Pie",
+      "pillar": "S1",
+      "xKey": "country",
+      "pieDataKey": "share",
+      "data": [
+        { "country": "중국", "share": 84, "fill": "#dc2626" },
+        { "country": "인도", "share": 5, "fill": "#f59e0b" },
+        { "country": "이집트", "share": 3, "fill": "#10b981" },
+        { "country": "한국", "share": 2, "fill": "#3b82f6" },
+        { "country": "기타", "share": 6, "fill": "#64748b" }
+      ],
+      "unit": "%",
+      "sit": "글로벌 생마늘 800만톤 中 중국 84% (672만톤) 압도. 인도 5%·이집트 3% 등 후순위. 건조마늘은 중국 86%·미국 13%로 더 극단적. 중국 수출 150만톤(2010)으로 글로벌 가격 결정자.",
+      "strat": "중국 단일 의존 84% = single point of failure. 한국 가공식품·외식업체는 인도·이집트·아르헨티나 대체 공급원 발굴 + 6개월 비축 정책. 환율·관세 헤지로 가격 변동 ±20% 완충.",
+      "source": "11th World Spice Congress (Sun Ray Group)",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_garlic_wholesale_price",
+      "title": "한국 깐마늘 도매가 월별",
+      "subtitle": "KREI 양념채소 06호 — 김장철 상승",
+      "cardDesc": "한국 깐마늘 도매가 6개월 시계열. 9월 7,700원/kg (+8.9%), 김장철 10월 7,900원 전망.",
+      "chartType": "Composed",
+      "pillar": "S4",
+      "xKey": "month",
+      "bars": [
+        { "key": "price_krw", "name": "도매가 (₩/kg)", "color": "#f59e0b" }
+      ],
+      "lines": [
+        { "key": "import_kt", "name": "수입량 (천톤)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "month": "2025-04", "price_krw": 6800, "import_kt": 4.8 },
+        { "month": "2025-05", "price_krw": 6900, "import_kt": 5.2 },
+        { "month": "2025-06", "price_krw": 7100, "import_kt": 5.9 },
+        { "month": "2025-07", "price_krw": 7300, "import_kt": 6.4 },
+        { "month": "2025-08", "price_krw": 7500, "import_kt": 7.1 },
+        { "month": "2025-09", "price_krw": 7700, "import_kt": 7.67 },
+        { "month": "2025-10E", "price_krw": 7900, "import_kt": 8.2 }
+      ],
+      "unit": "₩/kg / 천톤",
+      "sit": "한국 깐마늘 도매가 2025.4 6,800원 → 9월 7,700원/kg (+13.2%). 김장철 10월 7,900원 추가 상승 전망. 동시에 9월 수입 7,669톤 (+64.1%) 급증, 중국 산지 약세 영향.",
+      "strat": "김장철 수요 피크 = 가격 상승 가속. 신라교역·식자재 유통기업은 9월~11월 매입 분산 (Forward 계약 8월부터 30% 사전). 수입 가격 갭 (₩7,100 vs 국내 ₩7,700) 활용한 직수입 비중 확대.",
+      "source": "KREI 양념채소 06호 p.6-7, 한국농수산식품유통공사",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_garlic_import_form",
+      "title": "한국 마늘 수입 형태별",
+      "subtitle": "KREI 양념채소 07호 — 냉동마늘 압도",
+      "cardDesc": "한국 마늘 수입 형태별 비중. 냉동마늘이 70%+로 외식업체·가공식품 핵심.",
+      "chartType": "Bar",
+      "pillar": "S3",
+      "xKey": "form",
+      "bars": [
+        { "key": "share_pct", "name": "수입 비중 (%)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "form": "냉동 마늘", "share_pct": 72 },
+        { "form": "깐 마늘", "share_pct": 12 },
+        { "form": "건조 마늘", "share_pct": 8 },
+        { "form": "초산조제", "share_pct": 5 },
+        { "form": "통마늘", "share_pct": 3 }
+      ],
+      "unit": "%",
+      "sit": "한국 마늘 수입 72%가 냉동 형태. 외식업체·식품가공 산업의 안정적 원료 공급 형태. 깐마늘 12%·건조 8%로 가공도 높은 형태도 일정 비중. 관세 360% 적용 (TRQ 외).",
+      "strat": "냉동 마늘 = B2B 수요 핵심. CJ제일제당·해태·롯데·외식 프랜차이즈 모두 의존. 신라교역은 냉동 마늘 직수입 채널 확보 (중국·인도·이집트) + TRQ 활용으로 관세 부담 완화.",
+      "source": "KREI 양념채소 07호 p.72",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_kr_garlic_price_gap_tariff",
+      "title": "한국 vs 수입 마늘 가격·관세",
+      "subtitle": "KREI 양념채소 06호 — 관세 360%",
+      "cardDesc": "국내 7,700원/kg vs 수입 마늘 도매 7,100원/kg. TRQ 외 관세 360% 적용, 국내 보호.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "category",
+      "bars": [
+        { "key": "price_krw", "name": "₩/kg 또는 %", "color": "#f59e0b" }
+      ],
+      "data": [
+        { "category": "국내 깐마늘 (9월)", "price_krw": 7700 },
+        { "category": "수입 출하가능가", "price_krw": 7100 },
+        { "category": "수입 원가 (관세 전)", "price_krw": 1700 },
+        { "category": "관세율 (%)", "price_krw": 360 }
+      ],
+      "unit": "₩/kg / %",
+      "sit": "한국 마늘 관세 360% (TRQ 외)는 세계 최고 수준. 수입 원가 ₩1,700/kg + 관세 후 시장 출하가 ₩7,100/kg. 국내 ₩7,700/kg과 +8.5% 갭. 360% 관세가 국내 산업 보호 핵심.",
+      "strat": "관세 360% = TRQ 쿼터 우선 확보 핵심. 신라교역·식품기업은 TRQ 입찰 적극 참여 + 정부 양념채소수급조정 협의회 인플루언싱. 관세 완화 정책 변동 모니터링.",
+      "source": "KREI 양념채소 06호 p.6",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    }
+  ]
+}
