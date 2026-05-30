@@ -37,7 +37,11 @@
 >        - 갈치 환각 '한-세네갈 FTA 특혜관세' 제거: w_galchi_multi_cost 텍스트 + `/api/galchi/tariffs` 데이터키('세네갈 FTA 원가'→'세네갈산 착지원가', 'MFN 관세원가'→'중국산 착지원가')·source 정직화. **갈치는 FTA TRQ 미적용·전공급국 MFN 10% 사실로 정정**. (실존 KORUS·KMI FTA보고서 인용은 보존)
 >        - **w14 5,400 오기 = 현재 파일에 없음(이미 54,000 정확)** — 전 연도 자릿수 검증 후 수정 불필요 확인.
 >        - telemetry 정직화(L-09): **갈치** 렌더러(w05/w17 하드코딩 LIVE 제거·STATIC 분기 추가) + 정적 인라인 3개 isLive→false + 라우트 6개 isLive→`liveX?.isLive`(동적). **새우** 렌더러(reliability>70→LIVE 버그 제거) + **허위 LIVE 7위젯 SYNCED 강등**(adversarial 검증이 적발: telemetry:'live'·'Live API' 배지만 있고 라우트 미연동 → JSON 라벨 제거). **주꾸미** w4/w5/w17 isLiveApi→false. 진짜 라이브(갈치 w25-w29·새우 라이브KPI) 보존 검증.
->      - **Batch 4(미착수)**: 참치 value-chain 신규(RFMO 레이더·SKJ 현물가·reefer·EU소매·가공패권). 새우 7위젯을 LIVE로 되살리려면 displayWidgets에서 apiData 라우트 바인딩 필요(현재 미연동).
+>      - **✅ Batch 4 배포 완료**: 참치 value-chain. 정찰 3 에이전트(주입계약·중복판별 + RFMO/가공/KCS 데이터 + SKJ/reefer/EU 데이터). **핵심 발견: 명시 5건 중 4건 이미 존재**(RFMO=w104 bar·SKJ=w105+Atuna8Y·reefer=ReeferCompetitorInflowWidget·EU소매=w43·가공패권=w15) → 중복 회피. **신규 2건만 추가**(`scripts/apply_p1p2_batch4.py`):
+>        - w106_kr_frozen_canned_gap(S3): KCS 냉동0303 vs 통조림160414 단가갭 2022-2025(갭 +$0.52→+$1.44 확대, 가공 부가가치 입증)
+>        - w107_rfmo_kobe_radar(S1): 5대 RFMO 어획강도 레이더(사용자 명시 'radar'는 w104가 bar뿐이라 신규) — IOTC 0.75·IATTC 0.54·WCPFC 0.35·CCSBT 0.46·ICCAT 0.89(전 해역 F/FMSY<1, CCSBT 자원량 orange)
+>        - telemetry: reliability/LIVE 트리거 생략 → STATIC 정직 표기(참치 렌더러 reliability>70→LIVE 트랩 회피)
+>      - **잔여(선택)**: 새우 7위젯 LIVE 복원(displayWidgets apiData 바인딩 필요), 참치 화이트리스트 고아 3건(w96/w97/w100 data 없음) 정리, whelk GAIN TAC·주꾸미 PDF→MD 후 신규.
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 

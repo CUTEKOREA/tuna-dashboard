@@ -767,7 +767,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
 
             {/* 4. 기타 원물 생산 관련 지표 */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
-              {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w105_skj_spot', 'w104_rfmo_radar', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching'].includes(w.id)).map((w: any) => (
+              {widgets?.filter((w: any) => ['w01_paradigm', 'w02_bluefin', 'w03_pie', 'w105_skj_spot', 'w104_rfmo_radar', 'w13_korea_empire', 'w14_species_polar', 'w19_ecuador_surge', 'w22_japan_decline', 'w45_skipjack_collapse', 'w46_seasonal_arbitrage', 'w48_vds_quota', 'w60_bluefin_ranching_defense', 'w71_bluefin_ranching_growth', 'w67_longline_cost', 'w68_vessel_productivity', 'w80_starvation_mortality', 'w81_enso_gdp_cascade', 'w82_indian_ocean_tuna', 'w93_mesotherm_energy', 'w53_enso_radar', 'w83_dfad_revenue_shock', 'w94_wcpo_record_catch', 'w95_eez_highseas_polarization', 'w96_iotc_msy_overshoot', 'w97_korea_fleet_switching', 'w107_rfmo_kobe_radar'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
             </div>
@@ -908,7 +908,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <EmergingMarketsHeatmap />
 
               {/* 5. 기타 물류 및 무역 지표 */}
-              {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock'].includes(w.id)).map((w: any) => (
+              {widgets?.filter((w: any) => ['w05_cash', 'w06_trade_vol', 'w07_export', 'w08_import', 'w10_kr_deficit', 'w23_korea_surplus', 'w35_species_channels', 'w39_nl_tollgate', 'w50_bunker_freight', 'w55_emerging_route', 'w62_fuel_impact', 'w58_atq_loin_export', 'w41_geopolitical_shift', 'w63_us_tariff_frontloading', 'w64_mena_halal_demand', 'w99_reciprocal_tariff_shock', 'w106_kr_frozen_canned_gap'].includes(w.id)).map((w: any) => (
                 <WidgetCard key={w.id} widget={w} />
               ))}
               <AtunaEuCatchSystemWidget />
