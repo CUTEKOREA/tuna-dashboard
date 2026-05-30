@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 import { ShieldCheck, TrendingUp, Anchor, Euro, ShoppingCart, Leaf, Factory, Globe, DollarSign } from 'lucide-react';
 
@@ -109,46 +109,85 @@ const valueChainStats = [
 // --- COMPONENTS ---
 
 export function EuroMacroTradeWidget() {
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/tuna-local?dataset=eurostat-flow')
+      .then(res => res.json())
+      .then(json => {
+        if (json.data && json.data.length > 0) {
+          // Process data to find Top EU Importers from Extra EU (latest year)
+          const latestYear = Math.max(...json.data.filter((d:any)=>!isNaN(parseInt(d.year))).map((d: any) => parseInt(d.year)));
+          const importsExtra = json.data.filter((d: any) => parseInt(d.year) === latestYear && d.flow === 'Import' && d.intra_extra_EU === 'Extra EU');
+          importsExtra.sort((a: any, b: any) => parseFloat(b.volume_kg) - parseFloat(a.volume_kg));
+          
+          const colors = ['#3b82f6', '#ef4444', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#64748b'];
+          const top5 = importsExtra.slice(0, 5).map((d: any, i: number) => ({
+            name: d.country,
+            value: parseFloat(d.volume_kg) / 1000, // tons
+            fill: colors[i % colors.length]
+          }));
+          
+          const othersVol = importsExtra.slice(5).reduce((sum: number, d: any) => sum + parseFloat(d.volume_kg), 0) / 1000;
+          if (othersVol > 0) {
+            top5.push({ name: '기타 (Others)', value: othersVol, fill: colors[6] });
+          }
+          setData(top5);
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setData(macroTradeData); // fallback
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <h3 className="flex items-center gap-2 text-lg font-bold text-slate-100">
           <Anchor className="w-5 h-5 text-blue-400" />
-          EU 역외 참치캔 수입 의존도 (Top Suppliers)
+          EU 역외 참치캔 최대 수입국 (Eurostat Live)
         </h3>
-        <span className="px-2.5 py-1 bg-blue-500/10 text-blue-400 text-xs font-semibold rounded-md border border-blue-500/20">
-          수입 의존도 66.5%
+        <span className="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-md border border-emerald-500/20">
+          실시간 연동 (API)
         </span>
       </div>
       <p className="text-sm text-slate-400 line-clamp-2">
-        유럽연합은 연간 약 76만 톤의 참치캔을 소비하며, EU 어획(38.5만t) 대비 자급률은 35%에 불과. 66.5%가 에콰도르, 중국, 필리핀 등 역외 국가로부터 유입됩니다.
+        유럽연합 회원국 중 역외 국가(에콰도르, 필리핀 등)로부터 가장 많은 참치캔 물량을 수입하는 국가 비중입니다. (단위: 톤, 최신 년도 기준)
       </p>
       <div className="h-[250px] w-full mt-2">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={macroTradeData}
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={90}
-              paddingAngle={2}
-              dataKey="value"
-              stroke="none"
-              isAnimationActive={false}
-            >
-              {macroTradeData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.fill} />
-              ))}
-            </Pie>
-            <RechartsTooltip 
-              contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#f1f5f9' }}
-              itemStyle={{ color: '#e2e8f0' }}
-              formatter={(value) => [`${value}%`, '점유율']}
-            />
-            <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{ fontSize: '12px', color: '#94a3b8' }} />
-          </PieChart>
-        </ResponsiveContainer>
+        {loading ? (
+           <div className="w-full h-full flex items-center justify-center text-slate-500">데이터 로딩 중...</div>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={90}
+                paddingAngle={2}
+                dataKey="value"
+                stroke="none"
+                isAnimationActive={false}
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.fill} />
+                ))}
+              </Pie>
+              <RechartsTooltip 
+                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#f1f5f9' }}
+                itemStyle={{ color: '#e2e8f0' }}
+                formatter={(value: any) => [`${Math.round(value).toLocaleString()} 톤`, '수입량']}
+              />
+              <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{ fontSize: '12px', color: '#94a3b8' }} />
+            </PieChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </div>
   );
@@ -265,80 +304,84 @@ export function EuroESGTrackerWidget() {
 }
 
 export function EuroValueChainWidget() {
+  const cardStyle: React.CSSProperties = {
+    background: 'rgba(15,23,42,0.95)',
+    border: '1px solid rgba(51,65,85,0.5)',
+    borderRadius: '12px',
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  };
+  const statBox: React.CSSProperties = {
+    background: 'rgba(30,41,59,0.5)',
+    border: '1px solid rgba(51,65,85,0.4)',
+    borderRadius: '8px',
+    padding: '12px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px',
+  };
+  const nodeStyle = (bg: string, border: string): React.CSSProperties => ({
+    width: 44, height: 44, borderRadius: '50%',
+    background: bg, border: `1px solid ${border}`,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    fontSize: '1.15rem',
+  });
+
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h3 className="flex items-center gap-2 text-lg font-bold text-slate-100">
-          <Factory className="w-5 h-5 text-cyan-400" />
+    <div style={cardStyle}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>
+          <Factory style={{ width: 20, height: 20, color: '#22d3ee' }} />
           EU 캔참치 밸류체인 구조
         </h3>
-        <span className="px-2 py-1 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold rounded border border-cyan-500/20 uppercase tracking-wider">
+        <span style={{ padding: '3px 8px', background: 'rgba(34,211,238,0.1)', color: '#22d3ee', fontSize: '10px', fontWeight: 700, borderRadius: '4px', border: '1px solid rgba(34,211,238,0.2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           공급 구조
         </span>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
         {valueChainStats.map((stat) => {
           const IconComp = stat.icon;
           return (
-            <div key={stat.label} className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-3 flex flex-col gap-1">
-              <div className="flex items-center gap-2">
-                <IconComp className="w-4 h-4 text-cyan-400" />
-                <span className="text-xs text-slate-400 font-medium">{stat.label}</span>
+            <div key={stat.label} style={statBox}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <IconComp style={{ width: 14, height: 14, color: '#22d3ee' }} />
+                <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500 }}>{stat.label}</span>
               </div>
-              <div className="text-lg font-bold text-slate-100">{stat.value}</div>
-              <div className="text-[10px] text-slate-500 leading-snug">{stat.sub}</div>
+              <div style={{ fontSize: '1.15rem', fontWeight: 700, color: '#f1f5f9' }}>{stat.value}</div>
+              <div style={{ fontSize: '0.65rem', color: '#64748b', lineHeight: 1.4 }}>{stat.sub}</div>
             </div>
           );
         })}
       </div>
 
       {/* Value Chain Flow Diagram */}
-      <div className="bg-slate-800/30 border border-slate-700/30 rounded-lg p-4 mt-1">
-        <div className="flex items-center justify-between gap-2 text-[10px] text-slate-400">
-          <div className="flex flex-col items-center gap-1 flex-1">
-            <div className="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center">
-              <span className="text-lg">🐟</span>
-            </div>
-            <span className="text-center font-medium">원물</span>
-            <span className="text-slate-500">1.3M t 필요</span>
-          </div>
-          <span className="text-slate-600 text-lg">→</span>
-          <div className="flex flex-col items-center gap-1 flex-1">
-            <div className="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
-              <span className="text-lg">⚓</span>
-            </div>
-            <span className="text-center font-medium">EU 어획</span>
-            <span className="text-slate-500">385K t (35%)</span>
-          </div>
-          <span className="text-slate-600 text-lg">+</span>
-          <div className="flex flex-col items-center gap-1 flex-1">
-            <div className="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center">
-              <span className="text-lg">📦</span>
-            </div>
-            <span className="text-center font-medium">역외 수입</span>
-            <span className="text-slate-500">66.5%</span>
-          </div>
-          <span className="text-slate-600 text-lg">→</span>
-          <div className="flex flex-col items-center gap-1 flex-1">
-            <div className="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-              <span className="text-lg">🏭</span>
-            </div>
-            <span className="text-center font-medium">가공</span>
-            <span className="text-slate-500">🇪🇸 65%+</span>
-          </div>
-          <span className="text-slate-600 text-lg">→</span>
-          <div className="flex flex-col items-center gap-1 flex-1">
-            <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center">
-              <span className="text-lg">🛒</span>
-            </div>
-            <span className="text-center font-medium">소비</span>
-            <span className="text-slate-500">~760K t</span>
-          </div>
+      <div style={{ background: 'rgba(30,41,59,0.3)', border: '1px solid rgba(51,65,85,0.3)', borderRadius: '8px', padding: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4px' }}>
+          {[
+            { emoji: '🐟', label: '원물', sub: '1.3M t 필요', bg: 'rgba(59,130,246,0.1)', border: 'rgba(59,130,246,0.3)' },
+            { emoji: '⚓', label: 'EU 어획', sub: '385K t (35%)', bg: 'rgba(34,211,238,0.1)', border: 'rgba(34,211,238,0.3)' },
+            { emoji: '📦', label: '역외 수입', sub: '66.5%', bg: 'rgba(245,158,11,0.1)', border: 'rgba(245,158,11,0.3)' },
+            { emoji: '🏭', label: '가공', sub: '🇪🇸 65%+', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)' },
+            { emoji: '🛒', label: '소비', sub: '~760K t', bg: 'rgba(168,85,247,0.1)', border: 'rgba(168,85,247,0.3)' },
+          ].map((node, i, arr) => (
+            <React.Fragment key={node.label}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', flex: 1 }}>
+                <div style={nodeStyle(node.bg, node.border)}>{node.emoji}</div>
+                <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 500, textAlign: 'center' }}>{node.label}</span>
+                <span style={{ fontSize: '0.6rem', color: '#64748b' }}>{node.sub}</span>
+              </div>
+              {i < arr.length - 1 && (
+                <span style={{ color: '#475569', fontSize: '1.1rem', flexShrink: 0 }}>{i === 1 ? '+' : '→'}</span>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
 
-      <div className="text-[10px] text-slate-500 mt-1">
+      <div style={{ fontSize: '0.65rem', color: '#64748b' }}>
         출처: MSC Tuna Yearbook 2026, Eurostat, EUMOFA. 시장 규모: USD 64.9억(2024) → USD 89.3억(2033), CAGR 3.77%
       </div>
     </div>
@@ -346,48 +389,57 @@ export function EuroValueChainWidget() {
 }
 
 export function EuroPremiumWidget() {
+  const cardStyle: React.CSSProperties = {
+    background: 'rgba(15,23,42,0.95)',
+    border: '1px solid rgba(51,65,85,0.5)',
+    borderRadius: '12px',
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  };
+
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h3 className="flex items-center gap-2 text-lg font-bold text-slate-100">
-          <DollarSign className="w-5 h-5 text-amber-400" />
+    <div style={cardStyle}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>
+          <DollarSign style={{ width: 20, height: 20, color: '#f59e0b' }} />
           MSC 가격 프리미엄 실증 분석
         </h3>
-        <span className="px-2 py-1 bg-amber-500/10 text-amber-400 text-[10px] font-bold rounded border border-amber-500/20 uppercase tracking-wider">
+        <span style={{ padding: '3px 8px', background: 'rgba(245,158,11,0.1)', color: '#f59e0b', fontSize: '10px', fontWeight: 700, borderRadius: '4px', border: '1px solid rgba(245,158,11,0.2)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           Hedonic 2025
         </span>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {premiumData.map((item) => (
-          <div key={item.label} className="flex flex-col gap-2">
-            <div className="flex justify-between items-end">
-              <span className="text-sm font-semibold text-slate-200 whitespace-pre-line">{item.label}</span>
-              <span className="text-2xl font-black" style={{ color: item.color }}>+{item.premium}%</span>
+          <div key={item.label} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+              <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#e2e8f0' }}>{item.label}</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 800, color: item.color, fontVariantNumeric: 'tabular-nums' }}>+{item.premium}%</span>
             </div>
-            <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
-              <div 
-                className="h-full rounded-full" 
-                style={{ 
-                  width: `${(item.premium / 100) * 100}%`, 
-                  background: `linear-gradient(90deg, ${item.color}40, ${item.color})`,
-                  boxShadow: `0 0 12px ${item.color}30`
-                }}
-              ></div>
+            <div style={{ width: '100%', background: 'rgba(30,41,59,0.8)', borderRadius: '6px', height: '10px', overflow: 'hidden' }}>
+              <div style={{
+                width: `${(item.premium / 100) * 100}%`,
+                height: '100%',
+                borderRadius: '6px',
+                background: `linear-gradient(90deg, ${item.color}66, ${item.color})`,
+                boxShadow: `0 0 12px ${item.color}40`,
+              }} />
             </div>
           </div>
         ))}
       </div>
 
-      <div className="bg-amber-500/5 border border-amber-500/15 rounded-lg p-3 mt-1">
-        <div className="text-xs text-slate-400 leading-relaxed">
-          <strong className="text-amber-400">💰 헤도닉 가격 모델 (Banguning Asgha et al., 2025):</strong>{' '}
-          MSC + Dolphin-Safe <strong className="text-purple-400">이중 라벨</strong> 전략 시 최대{' '}
-          <strong className="text-white">81.3%</strong> 프리미엄 확보 가능.
+      <div style={{ background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.15)', borderRadius: '8px', padding: '12px' }}>
+        <div style={{ fontSize: '0.75rem', color: '#94a3b8', lineHeight: 1.7 }}>
+          <strong style={{ color: '#f59e0b' }}>💰 헤도닉 가격 모델 (Banguning Asgha et al., 2025):</strong>{' '}
+          MSC + Dolphin-Safe <strong style={{ color: '#a78bfa' }}>이중 라벨</strong> 전략 시 최대{' '}
+          <strong style={{ color: '#fff' }}>81.3%</strong> 프리미엄 확보 가능.
           EU 시장 실무에서는 +10% ~ +14.2% 수렴 (유통사 네고 반영).
         </div>
       </div>
-      <div className="text-[10px] text-slate-500">
+      <div style={{ fontSize: '0.65rem', color: '#64748b' }}>
         출처: Banguning Asgha et al. 2025 (Hedonic Price Model), MSC Annual Reports, EU-specific MSC literature
       </div>
     </div>
@@ -396,24 +448,24 @@ export function EuroPremiumWidget() {
 
 export default function EuropeanMarketDashboard() {
   return (
-    <div className="w-full flex flex-col gap-6 my-8">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-          <Euro className="w-6 h-6 text-sky-400" />
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', margin: '32px 0' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', letterSpacing: '-0.01em', display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
+          <Euro style={{ width: 24, height: 24, color: '#38bdf8' }} />
           유럽 다운스트림 마켓 인텔리전스
         </h2>
-        <p className="text-slate-400 text-sm">
+        <p style={{ color: '#94a3b8', fontSize: '0.88rem', margin: 0 }}>
           글로벌 최대 참치캔 소비 시장(~760,000t, USD 64.9억)의 거시 무역, 리테일 점유율, ESG·MSC 침투율을 모니터링합니다.
-          <span className="ml-2 text-[10px] text-cyan-500 font-medium">MSC Yearbook 2026 기반</span>
+          <span style={{ marginLeft: '8px', fontSize: '0.65rem', color: '#06b6d4', fontWeight: 500 }}>MSC Yearbook 2026 기반</span>
         </p>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
         <EuroMacroTradeWidget />
         <EuroESGTrackerWidget />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
         <EuroValueChainWidget />
         <EuroPremiumWidget />
       </div>
