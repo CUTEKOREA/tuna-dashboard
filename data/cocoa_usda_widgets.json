@@ -1,0 +1,143 @@
+{
+  "_meta": {
+    "version": "v1",
+    "source": "USDA FAS GAIN 5 PDF (Cote d'Ivoire·Ghana·Colombia)",
+    "extracted_by": "Librarian (Gemini 2.5 Flash)",
+    "fetched": "2026-05-30"
+  },
+  "widgets": [
+    {
+      "id": "w_civ_production_5y",
+      "title": "코트디부아르 코코아 생산 5년",
+      "subtitle": "USDA GAIN IV2025-0001·0015 — 글로벌 1위",
+      "cardDesc": "MY 2020/21~2024/25 코트디부아르 코코아 생산량. CSSVD 질병으로 24% 급감 후 회복.",
+      "chartType": "Composed",
+      "pillar": "S1",
+      "xKey": "year",
+      "bars": [
+        { "key": "production_kt", "name": "생산량 (천MT)", "color": "#92400e" }
+      ],
+      "lines": [
+        { "key": "exports_kt", "name": "수출량 (천MT)", "color": "#f59e0b" }
+      ],
+      "data": [
+        { "year": "2020/21", "production_kt": 2230, "exports_kt": 1450 },
+        { "year": "2021/22", "production_kt": 2200, "exports_kt": 1380 },
+        { "year": "2022/23", "production_kt": 2300, "exports_kt": 1430 },
+        { "year": "2023/24", "production_kt": 1760, "exports_kt": 974 },
+        { "year": "2024/25", "production_kt": 1750, "exports_kt": 1058 }
+      ],
+      "unit": "천MT (1000 metric tons)",
+      "sit": "글로벌 1위 코트디부아르 코코아 생산은 MY2022/23 2,300K MT → 2023/24 1,760K (-24%)·2024/25 1,750K로 폭락 유지. CSSVD 질병·악천후 복합. 수출 1,058K MT, 국제가는 $10,092/MT 사상 최고 (2024.12).",
+      "strat": "글로벌 가격 폭등 시기 매입 차익 손실 → 장기 직거래 계약 확대로 가격 헤지. 코트디부아르 → 가나·콜롬비아·에콰도르 4원 다변화 권고. CJ제일제당·롯데·해태 제과 생산비 압박 대비.",
+      "source": "USDA GAIN IV2025-0001·IV2025-0015",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_ghana_production_recovery",
+      "title": "가나 코코아 생산 회복",
+      "subtitle": "USDA GAIN GH2025-0008·0048 — +25% 회복",
+      "cardDesc": "가나 MY 2020/21 1.04 MMT 최고 → 23/24 531K(-49%) 폭락 후 25/26 750K(+25%) 회복 전망.",
+      "chartType": "Bar",
+      "pillar": "S1",
+      "xKey": "year",
+      "bars": [
+        { "key": "production_kt", "name": "생산량 (천MT)", "color": "#a16207" }
+      ],
+      "data": [
+        { "year": "2020/21", "production_kt": 1040 },
+        { "year": "2021/22", "production_kt": 700 },
+        { "year": "2022/23", "production_kt": 654 },
+        { "year": "2023/24", "production_kt": 531 },
+        { "year": "2024/25", "production_kt": 600 },
+        { "year": "2025/26 전망", "production_kt": 750 }
+      ],
+      "unit": "천MT",
+      "sit": "가나(글로벌 2위) 생산은 2020/21 1,040K MT 최고치 → 2023/24 531K(-49%)로 반토막. 2025/26 750K (+25%) 회복 전망 — 기상 개선·정부 지원·나무 관리. 코트디부아르와 동반 회복기 진입.",
+      "strat": "가나·코트디부아르 동반 회복 = 2026 하반기 코코아 가격 안정 가능성. 단기 헤지 비중 유지 + 직거래 계약 비중 50% 이상 확보. COCOBOD 산지가 $3,100/MT 모니터링.",
+      "source": "USDA GAIN GH2025-0008·GH2025-0048",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_civ_domestic_processing",
+      "title": "코트디부아르 국내 가공률 정책",
+      "subtitle": "USDA GAIN IV2025-0015 — 2030 목표 100%",
+      "cardDesc": "코트디부아르 정부 코코아 부가가치 정책: 현재 42% → 2027/28 50% → 2030 100% 국내 가공.",
+      "chartType": "Bar",
+      "pillar": "S2",
+      "xKey": "stage",
+      "bars": [
+        { "key": "current_pct", "name": "현재 (%)", "color": "#92400e" },
+        { "key": "target_pct", "name": "목표 (%)", "color": "#f59e0b" }
+      ],
+      "data": [
+        { "stage": "현재 2024/25", "current_pct": 42, "target_pct": 0 },
+        { "stage": "2027/28 중기", "current_pct": 0, "target_pct": 50 },
+        { "stage": "2030 장기", "current_pct": 0, "target_pct": 100 }
+      ],
+      "unit": "%",
+      "sit": "코트디부아르 정부 산업 정책: 코코아 부가가치 창출 위해 국내 가공률 확대. 현재 42% → 2027/28 50% → 2030 100% 목표. MY 2024/25 가공량 685K MT (전년 -8.3%).",
+      "strat": "원두 수출 감소 + 가공 제품 수출 증가 구조 변화. CJ제일제당·롯데는 코트디부아르 현지 가공 합작 검토. 원두 직접 매입 → 코코아 매스/버터 형태 전환 시점 대응.",
+      "source": "USDA GAIN IV2025-0015",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_cocoa_international_price_8y",
+      "title": "코코아 국제·국내 가격 8년",
+      "subtitle": "USDA GAIN CO2025-0033 — $2.3 → $9.0/kg (+291%)",
+      "cardDesc": "국제 vs 콜롬비아 국내 카카오 가격 8년 시계열 (2018~2025E). 2024년 사상 최고 $10,092/MT.",
+      "chartType": "Composed",
+      "pillar": "S4",
+      "xKey": "year",
+      "bars": [
+        { "key": "domestic_usd", "name": "콜롬비아 국내 ($/kg)", "color": "#92400e" }
+      ],
+      "lines": [
+        { "key": "international_usd", "name": "국제 ($/kg)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "year": "2018", "international_usd": 2.3, "domestic_usd": 2.0 },
+        { "year": "2019", "international_usd": 2.3, "domestic_usd": 2.0 },
+        { "year": "2020", "international_usd": 2.4, "domestic_usd": 2.2 },
+        { "year": "2021", "international_usd": 2.4, "domestic_usd": 2.1 },
+        { "year": "2022", "international_usd": 2.4, "domestic_usd": 2.1 },
+        { "year": "2023", "international_usd": 3.3, "domestic_usd": 2.8 },
+        { "year": "2024", "international_usd": 7.4, "domestic_usd": 6.7 },
+        { "year": "2025E", "international_usd": 9.0, "domestic_usd": 6.9 }
+      ],
+      "unit": "USD/kg",
+      "sit": "국제 카카오 가격 2018 $2.3/kg → 2025E $9.0/kg (+291%). 2024 사상 최고 $10,092/MT 기록. 코트디부아르·가나 동반 생산 폭락이 원인. 콜롬비아 국내가 ($6.9)는 국제가 대비 -23% 디스카운트.",
+      "strat": "가격 변동성 헤지 = 핵심. 콜롬비아·에콰도르·페루 남미산 저렴 매입 + 직거래 계약 확대. CJ·롯데는 2026 하반기 가나·코트디부아르 회복 시 단계적 매입.",
+      "source": "USDA GAIN CO2025-0033 P5 + IV2025-0001",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    },
+    {
+      "id": "w_ghana_us_export_surge",
+      "title": "가나 대미 코코아 수출 +318%",
+      "subtitle": "USDA GAIN GH2025-0048 — CY2025 $5.8억",
+      "cardDesc": "가나의 미국향 코코아 수출이 1년만에 4.2배 급증. 미국 무역적자 $5.2억 핵심.",
+      "chartType": "Bar",
+      "pillar": "S4",
+      "xKey": "period",
+      "bars": [
+        { "key": "exports_m", "name": "수출액 (백만$)", "color": "#dc2626" }
+      ],
+      "data": [
+        { "period": "CY2023", "exports_m": 95 },
+        { "period": "CY2024", "exports_m": 139 },
+        { "period": "CY2025 (1-7월)", "exports_m": 582 },
+        { "period": "CY2025E 연환산", "exports_m": 997 }
+      ],
+      "unit": "백만$",
+      "sit": "가나 대미 코코아 수출이 CY2024 $139M → 2025.1-7 $582M (+318%) 급증. 연환산 $997M 도달 가능. 미국 對가나 농산물 무역적자 $5.2억의 핵심. 가나 회복 + 국제가 폭등 결합 효과.",
+      "strat": "미국 식품·제과 제조사 가나 코코아 의존도 급증 = 한국 수입과 경쟁. 신라교역·CJ는 가나·코트디부아르 동시 매입 채널 확보 + 미국 가공품(코코아 매스·버터) 우회 수입 검토.",
+      "source": "USDA GAIN GH2025-0048 P10",
+      "telemetry": "SYNCED",
+      "syncDate": "2026-05-30"
+    }
+  ]
+}

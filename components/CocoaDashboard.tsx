@@ -20,6 +20,7 @@ import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import CocoaUsdaWidgets from './CocoaUsdaWidgets';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {
@@ -406,6 +407,11 @@ export default function CocoaDashboard() {
 
       </div>
 
+      {/* 🆕 USDA FAS — 코트디부아르·가나 코코아 생산 (S1 원료 수급) */}
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
+        <CocoaUsdaWidgets filterPillar="S1" />
+      </div>
+
       </>)}
       {activePart === 'S2' && (<>
       {/* Part 2: Processing */}
@@ -541,6 +547,11 @@ export default function CocoaDashboard() {
             source: "ICE Cocoa Futures Curve (실시간 모니터링) + CFTC COT 보고서 + Bloomberg Commodity",
           }} />
 
+      </div>
+
+      {/* 🆕 USDA FAS — 코트디부아르 국내 가공률 정책 (S2 가공·생산) */}
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
+        <CocoaUsdaWidgets filterPillar="S2" />
       </div>
 
       </>)}
@@ -828,6 +839,11 @@ export default function CocoaDashboard() {
             source: "DART 전자공시 + 한국 제과 3사 IR + Silla Co. 내부 재무 모델링",
           }} />
 
+      </div>
+
+      {/* 🆕 USDA FAS — 국제·국내 가격 8년 + 가나 대미 수출 +318% (S4 판매·수요) */}
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
+        <CocoaUsdaWidgets filterPillar="S4" />
       </div>
 
       </>)}
