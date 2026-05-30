@@ -41,7 +41,9 @@
 >        - w106_kr_frozen_canned_gap(S3): KCS 냉동0303 vs 통조림160414 단가갭 2022-2025(갭 +$0.52→+$1.44 확대, 가공 부가가치 입증)
 >        - w107_rfmo_kobe_radar(S1): 5대 RFMO 어획강도 레이더(사용자 명시 'radar'는 w104가 bar뿐이라 신규) — IOTC 0.75·IATTC 0.54·WCPFC 0.35·CCSBT 0.46·ICCAT 0.89(전 해역 F/FMSY<1, CCSBT 자원량 orange)
 >        - telemetry: reliability/LIVE 트리거 생략 → STATIC 정직 표기(참치 렌더러 reliability>70→LIVE 트랩 회피)
->      - **잔여(선택)**: 새우 7위젯 LIVE 복원(displayWidgets apiData 바인딩 필요), 참치 화이트리스트 고아 3건(w96/w97/w100 data 없음) 정리, whelk GAIN TAC·주꾸미 PDF→MD 후 신규.
+>      - **✅ 참치 화이트리스트 고아 3건 정리 완료**: w96_iotc_msy_overshoot·w97_korea_fleet_switching(S1 770행)·w100_china_fukushima_switch(S4 945행) — data 부재로 렌더 안 되던 유령 id를 화이트리스트에서 제거.
+>      - **⛔ 새우 7위젯 LIVE 복원 = 정직하게 불가(조사 후 보류)**: 라우트 조사 결과 BINDABLE_LIVE 0/7. (1) forecast(VAR 추정·A-01 위반)·esg-radar·krungsri=mock, (2) sourcing-sim·emerging-markets·compliance=fetch는 하나 **차트 데이터 전량 하드코딩**(라이브는 source 라벨만 토글), (3) macro·chitosan·sps_alert·ntb_radar=shape 불일치(스칼라↔시계열). LIVE 묶으면 허위LIVE 재생산 → **SYNCED 유지가 정직**. 진짜 LIVE 하려면 라우트 백엔드 수정(fetch 데이터를 차트 배열에 실제 매핑) 필요. 참고: dart·usda-fas 라우트는 isLive 실측 제공하나 ShrimpDashboard fetch 9-endpoint에 미포함, kamis 라우트는 fetch 성공해도 json 무시하는 버그.
+>      - **잔여(선택)**: whelk GAIN TAC·주꾸미 PDF→MD 후 신규, (백엔드) 새우 라우트 실데이터 매핑 수정 후 LIVE.
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 
