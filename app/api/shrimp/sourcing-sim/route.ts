@@ -92,14 +92,46 @@ export async function GET(request: Request) {
         }
       ];
 
+      // ── UN Comtrade 실측 오버레이: CIF 단가(=수입액/순중량)·점유율을 라이브 데이터로 치환 ──
+      // CIF·점유율만 Comtrade 실측, 관세율·운임·물류일수는 정책/추정 유지(Comtrade 미제공).
+      let isLive = false;
+      if (liveTradeData && Array.isArray(liveTradeData)) {
+        const partnerMap: Record<number, string> = { 218: "Ecuador", 699: "India", 704: "Vietnam", 360: "Indonesia" };
+        const agg: Record<string, { value: number; wgt: number }> = {};
+        for (const rec of liveTradeData as any[]) {
+          const c = partnerMap[Number(rec.partnerCode)];
+          if (!c) continue;
+          const v = Number(rec.primaryValue) || 0;   // 수입액 (USD, CIF 기준)
+          const w = Number(rec.netWgt) || 0;          // 순중량 (kg)
+          if (!agg[c]) agg[c] = { value: 0, wgt: 0 };
+          agg[c].value += v; agg[c].wgt += w;
+        }
+        const totalValue = Object.values(agg).reduce((s, a) => s + a.value, 0);
+        if (totalValue > 0) {
+          for (const row of sourcingMatrix) {
+            const a = agg[row.country];
+            if (!a || a.wgt <= 0) continue;
+            const cif = Math.round((a.value / a.wgt) * 1000); // USD/MT
+            if (cif < 1000 || cif > 30000) continue;          // 단위 이상치 방어 → 하드코딩 유지
+            row.cifPrice_USD_MT = cif;
+            row.importShare_Percent = Math.round((a.value / totalValue) * 1000) / 10; // 4개국 내 점유율
+            row.landedCost_USD_MT = Math.round(cif * (1 + row.tariffRate_Percent / 100) + row.shippingCost_USD_MT);
+            isLive = true;
+          }
+        }
+      }
+
       // HHI (Herfindahl-Hirschman Index) for concentration risk
       const shares = sourcingMatrix.map(s => s.importShare_Percent);
       const hhi = Math.round(shares.reduce((sum, s) => sum + Math.pow(s, 2), 0));
 
       return {
         timestamp: new Date().toISOString(),
-        source: liveTradeData ? "UN Comtrade + WITS (LIVE)" : "Sourcing Model (Fallback/Estimated)",
-        methodology: "KMI 수입수산물 전략품목 관리 프레임워크 + HHI 편중도 분석",
+        isLive,
+        source: isLive
+          ? "UN Comtrade HS030617 2024 (LIVE) — CIF·점유율 실측, 관세·운임 정책/추정"
+          : "Sourcing Model (Fallback/Estimated)",
+        methodology: "UN Comtrade 한국 수입(reporter 410, partner 4개국) CIF=수입액/순중량 실측 + KMI 전략품목 HHI 편중도. 관세율은 FTA/MFN 정책값, 운임은 추정.",
         sourcingMatrix,
         concentrationRisk: {
           hhi,

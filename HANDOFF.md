@@ -43,7 +43,8 @@
 >        - telemetry: reliability/LIVE 트리거 생략 → STATIC 정직 표기(참치 렌더러 reliability>70→LIVE 트랩 회피)
 >      - **✅ 참치 화이트리스트 고아 3건 정리 완료**: w96_iotc_msy_overshoot·w97_korea_fleet_switching(S1 770행)·w100_china_fukushima_switch(S4 945행) — data 부재로 렌더 안 되던 유령 id를 화이트리스트에서 제거.
 >      - **⛔ 새우 7위젯 LIVE 복원 = 정직하게 불가(조사 후 보류)**: 라우트 조사 결과 BINDABLE_LIVE 0/7. (1) forecast(VAR 추정·A-01 위반)·esg-radar·krungsri=mock, (2) sourcing-sim·emerging-markets·compliance=fetch는 하나 **차트 데이터 전량 하드코딩**(라이브는 source 라벨만 토글), (3) macro·chitosan·sps_alert·ntb_radar=shape 불일치(스칼라↔시계열). LIVE 묶으면 허위LIVE 재생산 → **SYNCED 유지가 정직**. 진짜 LIVE 하려면 라우트 백엔드 수정(fetch 데이터를 차트 배열에 실제 매핑) 필요. 참고: dart·usda-fas 라우트는 isLive 실측 제공하나 ShrimpDashboard fetch 9-endpoint에 미포함, kamis 라우트는 fetch 성공해도 json 무시하는 버그.
->      - **잔여(선택)**: whelk GAIN TAC·주꾸미 PDF→MD 후 신규, (백엔드) 새우 라우트 실데이터 매핑 수정 후 LIVE.
+>      - **✅ 새우 sourcing-sim 진짜 LIVE 복원 완료**: `/api/shrimp/sourcing-sim` 라우트가 UN Comtrade(reporter 410·partner ECU/IND/VNM/IDN·HS030617·2024 수입)의 **CIF=수입액/순중량을 실측 산출해 sourcingMatrix에 오버레이**(이전엔 source 라벨만 토글). `isLive` 필드 추가. ShrimpDashboard displayWidgets에서 w_shrimp_sourcing_sim 바인딩(Comtrade 성공 시에만 LIVE, 실패 시 SYNCED — 정직 동적). 단위이상치 방어. 실측 검증: 베트남 $7,868·에콰도르 $5,534/MT(하드코딩 추정보다 낮음), 베트남 수입 $197M 압도. 관세=CIF×정책율·운임=추정 명시. (프로덕션은 Vercel UN_COMTRADE_PRIMARY_KEY 설정 시 LIVE)
+>      - **잔여(선택)**: whelk GAIN TAC·주꾸미 PDF→MD 후 신규. 새우 나머지 라우트(compliance MFDS→recentViolations, emerging chitosan, macro 시계열, dart·usda-fas wiring)도 동일 패턴으로 실데이터 매핑하면 LIVE 가능.
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 

@@ -241,6 +241,20 @@ export default function ShrimpDashboard() {
       const historicalData = newW.data.filter((d: any) => parseInt(d.year) < 2024);
       newW.data = [...historicalData, ...apiData.customs.liveImportData];
     }
+    // sourcing-sim: UN Comtrade 실측 CIF를 차트에 바인딩. isLive(Comtrade 성공) 시에만 LIVE 표기(정직).
+    if (newW.id === 'w_shrimp_sourcing_sim' && apiData.sourcing?.sourcingMatrix?.length > 0) {
+      newW.data = apiData.sourcing.sourcingMatrix.map((s: any) => ({
+        country: `${s.flag || ''} ${s.country}`.trim(),
+        cif: s.cifPrice_USD_MT,
+        tariff: Math.round((s.cifPrice_USD_MT * (s.tariffRate_Percent || 0)) / 100),
+        shipping: s.shippingCost_USD_MT,
+      }));
+      if (apiData.sourcing.isLive) {
+        newW.telemetry = 'live';
+        newW.badges = ['Live API'];
+        newW.syncDate = '실시간 연동중 (UN Comtrade)';
+      }
+    }
     return newW;
   });
 
