@@ -63,8 +63,8 @@ const SECTIONS = [
 
 const PILLAR_WIDGET_IDS: Record<string, string[]> = {
   S1: ['w1_global_catch', 'w7_cannibalism_risk', 'w10_species_map', 'w11_spawn_cycle', 'w12_generation_risk', 'w21_leisure_fishing_impact', 'w22_vietnam_trawl_fip'],
-  S2: ['w2_korea_imports', 'w6_bio_processing', 'w13_processing_auto', 'w14_nutrition', 'w23_hmr_yield_optimization', 'w24_china_aquaculture_rd'],
-  S3: ['w3_supply_demand', 'w9_korea_fta_imports', 'w15_hsk_tariff', 'w16_korus_schedule', 'w25_tariff_schedule_impact', 'w26_coldchain_utilization'],
+  S2: ['w2_korea_imports', 'w6_bio_processing', 'w13_processing_auto', 'w14_nutrition', 'w23_hmr_yield_optimization', 'w24_china_aquaculture_rd', 'w32_kcs_hs_import_price_volume'],
+  S3: ['w3_supply_demand', 'w9_korea_fta_imports', 'w15_hsk_tariff', 'w16_korus_schedule', 'w25_tariff_schedule_impact', 'w26_coldchain_utilization', 'w34_form_mix_frozen_live', 'w35_import_dependency'],
   S4: ['w4_fbs_seafood', 'w17_price_spread', 'w18_substitutes', 'w27_japan_kfood_export', 'w28_domestic_senior_hmr'],
   S5: ['w5_mauritania_risk', 'w8_recreational_tac', 'w19_vibrio_amr', 'w20_fip_esg', 'w29_africa_human_rights_risk', 'w30_tac_regulation_map'],
 };

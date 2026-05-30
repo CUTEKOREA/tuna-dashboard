@@ -29,7 +29,11 @@
 >        - 고등어: w_kosis_prod_value(S1)·w_fta_import_trend(S3)·w_origin_diversification(S3)·w_trq_scenario(S3) / 갈치: w_galchi_no_aqua(S5)·fbs_pelagic(S2)·kr_import_rank(S3)·self_sufficiency(S4)·protein_cross(S4) / 오징어: origin_diversification_2025(S3)·falkland_loligo_biomass(S1)·global_processing_yield(S2)·route_leadtime_compliance(S3·내부모델 STATIC)·forced_labor_dwf(S5)·import_unit_price_mt(S4)
 >        - Batch 2 보류(데이터 재집계 필요): 고등어 분기스프레드·아프리카손익분기·소비조사·ICES자원상태, 갈치 가공카테고리(절대값 비공개)·후쿠시마SPS(정성)
 >      - **발견(후속 P0성)**: 갈치 w24/w_galchi_multi_cost가 환각 '한-세네갈 FTA' 인용(갈치는 FTA TRQ 미적용·전공급국 MFN 10%) + w14 한국 라인 5,400(→54,000 오기) — 기존 위젯 정정 필요. 새우/갈치/오징어 렌더러 telemetry 정직화(허위LIVE) 별도 패스.
->      - **Batch 3+**: 주꾸미 11(PDF선행)·골뱅이 11(TSX 인라인)·참치 value-chain.
+>      - **✅ Batch 3 배포 완료**: 신규 위젯 6건(주꾸미 3·골뱅이 3, `scripts/apply_p1p2_batch3.py`). 정찰 2 에이전트(주입경로·진짜신규·PDF/EUC-KR 블로커 식별).
+>        - 주꾸미(JSON append): w32_kcs_hs_import_price_volume(S2·냉동 $6.68 vs 활신선 $13.6/kg)·w34_form_mix_frozen_live(S3·냉동 86.5%)·w35_import_dependency(S3·국내생산 -24.7%)
+>        - 골뱅이(**TSX 인라인** — 데이터키+구조분해+WidgetCard JSX 손삽입): koreaGlobalShareData(S1·한국 세계 5위 정정)·feedstockYoyData(S2·HS160559 -24.7%)·originCifGapData(S2·영국 $12.75 vs 세네갈 $4.73)
+>        - 주꾸미 보류(blocked): 일본볶음·제4차자원관리·IUCN(PDF→MD 선행)·두족류장기추세(EUC-KR) / 골뱅이 보류: HS6종 무역수지(미검증)·TAC NTB(GAIN PDF선행)
+>      - **Batch 4**: 참치 value-chain(P0/P1 신규 — RFMO 레이더·SKJ 현물가·reefer·EU소매·가공패권). 기존 위젯 정정 패스(갈치 환각 한-세네갈 FTA·w14 5,400→54,000, 새우/갈치/주꾸미 렌더러 telemetry 정직화).
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 

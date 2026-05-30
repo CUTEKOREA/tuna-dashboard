@@ -123,7 +123,10 @@ export default function WhelkDashboard() {
     postUkScorecardData = [],
     blackSeaSupplyData = [],
     fxAlertThresholds = [],
-    halalCollagenData = []
+    halalCollagenData = [],
+    koreaGlobalShareData = [],
+    feedstockYoyData = [],
+    originCifGapData = []
   } = data;
 
   // KFAS 연구 위젯 필터링
@@ -440,6 +443,27 @@ export default function WhelkDashboard() {
                 actionPlan: <span>포스트 영국(Post-UK) 전략의 핵심은 아일랜드(종합 82점)입니다. 동일 B. undatum 종이며 EU FTA 관세 0% 혜택, 영국과 인접한 물류 인프라를 보유합니다. 차선책인 아이슬란드(78점)는 저수온(7.2°C)으로 장기 자원 안정성이 최고이나, 현재 FTA 미체결로 관세 부담이 존재합니다. 조달팀은 아일랜드 벤더 2~3곳과의 시범 거래를 26Q3에 착수하고, 아이슬란드와의 HS030781 관세 협상 가능성을 외교 채널로 탐색해야 합니다.</span>,
                 source: 'FAOSTAT + ICES (2026 분석)',
               }} />
+
+            <WidgetCard title="한국 골뱅이 어획 글로벌 순위 (FAO 2022)" icon={Navigation} iconColor="var(--color-info)" pillar="S1"
+              cardDesc="FAO FishStat Capture 2022 — 한국 세계 5위(종코드 7종 합산)"
+              telemetry={{ status: 'STATIC', syncDate: 'FAO FishStat Capture 2022' }} chartHeight={300}
+              chart={
+                <BarChart data={koreaGlobalShareData} layout="vertical" margin={{ left: 20 }}>
+                  <ChartPatternDefs />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
+                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+                  <Bar dataKey="value" name="어획량(톤)" radius={[0, 4, 4, 0]}>
+                    {koreaGlobalShareData.map((entry: any, index: number) => (<Cell key={`kg-${index}`} fill={entry.name === '한국' ? 'var(--color-danger)' : 'var(--color-info)'} />))}
+                  </Bar>
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[FAO] 2022년 한국 골뱅이 어획은 9,062톤으로 세계 5위입니다(멕시코 17,782·영국 14,091·프랑스 10,117·러시아 9,229·한국 9,062 順).</span>,
+                actionPlan: <span>한국이 세계 5위 생산국이면서도 어획 물량 대부분이 신선 활어로 일본에 직수출돼 국내 가공용 원물은 수입에 의존하는 모순 구조입니다. 전략기획실은 국내 어획 일부를 가공용으로 전환하는 산지 직계약과, 활어 수출가 대비 수입 가공가의 차익 모델을 재검토해야 합니다. 종코드는 단일 GAS가 아닌 7종(GAS/RPW/WHE/WHX/WJT/WKO/WKQ) 합산 기준입니다.</span>,
+                source: 'FAO FishStat Capture 2022',
+              }} />
           </>
       </>)}
       {activePart === 'S2' && (<>
@@ -506,6 +530,49 @@ export default function WhelkDashboard() {
                 situation: <span>[SG 밸류업] 2026 운영방안에 따라 골뱅이 HMR 라인 6종을 개발 중이며, 혼술 에디션과 에어프라이어 키트가 26Q3 출시 목표로 가장 빠르게 진행 중입니다.</span>,
                 actionPlan: <span>SG 2026 밸류업 전략의 핵심은 '혼술 에디션 150g'(85% 완성)과 '에어프라이어 키트 200g'(70% 완성)의 26Q3 성수기 적시 출시입니다. 두 제품 합산 연간 매출 목표 37억 원이며, 이를 위해 편의점(CU/GS25) 입점 MOU를 6월까지 확정해야 합니다. 후속 제품인 '프리미엄 고형량65%+'는 경쟁사 대비 투명성 마케팅 차별화를 위해 포장 전면에 고형량 비율을 대형 표기하는 전략이 핵심입니다. 마케팅팀은 인플루언서 홈술 콘텐츠 마케팅을 Q3 출시 4주 전부터 선제 집행해야 합니다.</span>,
                 source: 'SG 2026 밸류업 운영방안',
+              }} />
+
+            <WidgetCard title="골뱅이 가공원물 투입량 YoY (HS160559)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
+              cardDesc="KCS HS160559 통관 — 가공원물 물량·금액·시사단가 YoY"
+              telemetry={{ status: 'SYNCED', syncDate: 'KCS 2024 연간' }} chartHeight={300}
+              chart={
+                <ComposedChart data={feedstockYoyData}>
+                  <ChartPatternDefs />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                  <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} height={50} />
+                  <YAxis yAxisId="left" tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '물량(톤)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
+                  <YAxis yAxisId="right" orientation="right" domain={[0, 12]} tick={{ fill: '#94a3b8', fontSize: 11 }} label={{ value: '$/kg', angle: 90, position: 'insideRight', fill: '#94a3b8' }} />
+                  <RechartsTooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar yAxisId="left" dataKey="volumeT" name="투입물량(톤)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
+                  <Line yAxisId="right" type="monotone" dataKey="unitPrice" name="시사단가($/kg)" stroke="var(--color-danger)" strokeWidth={2} dot={{ r: 4 }} />
+                </ComposedChart>
+              }
+              takeaway={{
+                situation: <span>[KCS] 가공원물(HS160559) 투입량이 2024년 6,215톤/$58.50M으로 전년(8,251톤/$68.98M) 대비 물량 -24.7%·금액 -15.2% 감소했고, 시사단가는 $8.36→$9.41/kg로 +12.6% 올랐습니다.</span>,
+                actionPlan: <span>원물 투입 감소가 공장 가동률 하락으로 직결되므로, 조달팀은 비수기 선매입으로 연간 6,000톤 이상 피드스톡을 락인하고 단가 상승분을 B2B 납품가에 분기 단위로 전가하는 가격 연동제를 도입해야 합니다.</span>,
+                source: 'KCS 관세청 HS160559 통관 (2023·2024)',
+              }} />
+
+            <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
+              cardDesc="KCS HS160559 원산지별 CIF($/kg) — 북해 vs 저단가 대체재"
+              telemetry={{ status: 'SYNCED', syncDate: 'KCS 2024 연간' }} chartHeight={300}
+              chart={
+                <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
+                  <ChartPatternDefs />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
+                  <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
+                  <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
+                  <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+                  <Bar dataKey="value" name="CIF 단가($/kg)" radius={[0, 4, 4, 0]}>
+                    {originCifGapData.map((entry: any, index: number) => (<Cell key={`cif-${index}`} fill={entry.value >= 12 ? 'var(--color-danger)' : entry.value <= 7 ? 'var(--color-success)' : 'var(--color-info)'} />))}
+                  </Bar>
+                </BarChart>
+              }
+              takeaway={{
+                situation: <span>[KCS] 2024년 원산지별 CIF 단가는 영국 $12.75/kg·아일랜드 $12.27 vs 중국 $6.37·세네갈 $4.73로 북해산이 저단가 대체재의 약 2배입니다.</span>,
+                actionPlan: <span>조달팀은 B2B 원가 방어 라인에 한해 세네갈·중국산을 20~30% 블렌딩해 CIF를 낮추되, 수율을 반영한 총사용원가(TCU) 검증을 통과한 물량만 채택하는 'Yield-Adjusted 구매' 기준을 적용해야 합니다.</span>,
+                source: 'KCS 관세청 HS160559 통관 (2024)',
               }} />
       </>)}
       {activePart === 'S3' && (<>

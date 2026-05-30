@@ -1288,5 +1288,67 @@
       "cagr": 7.1,
       "halalShare": 8
     }
+  ],
+  "koreaGlobalShareData": [
+    {
+      "name": "멕시코",
+      "value": 17782
+    },
+    {
+      "name": "영국",
+      "value": 14091
+    },
+    {
+      "name": "프랑스",
+      "value": 10117
+    },
+    {
+      "name": "러시아",
+      "value": 9229
+    },
+    {
+      "name": "한국",
+      "value": 9062
+    },
+    {
+      "name": "아일랜드",
+      "value": 4803
+    }
+  ],
+  "feedstockYoyData": [
+    {
+      "year": "2023",
+      "volumeT": 8251,
+      "valueM": 68.98,
+      "unitPrice": 8.36
+    },
+    {
+      "year": "2024",
+      "volumeT": 6215,
+      "valueM": 58.5,
+      "unitPrice": 9.41
+    }
+  ],
+  "originCifGapData": [
+    {
+      "name": "튀르키예",
+      "value": 13.39
+    },
+    {
+      "name": "영국",
+      "value": 12.75
+    },
+    {
+      "name": "아일랜드",
+      "value": 12.27
+    },
+    {
+      "name": "중국",
+      "value": 6.37
+    },
+    {
+      "name": "세네갈",
+      "value": 4.73
+    }
   ]
 }
