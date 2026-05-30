@@ -386,9 +386,9 @@ export default function WhelkDashboard() {
                 </AreaChart>
               }
               takeaway={{
-                situation: <span>[KOSIS] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>,
+                situation: <span>[FAO FishStat] 한국 바다에서도 골뱅이가 많이 잡히지만, 값비싼 신선(활어) 상태로 전량 일본에 직수출되고 있어 정작 국내 가공용은 수입에 100% 의존하고 있습니다.</span>,
                 actionPlan: <span>한국은 연안에서 연간 9,000톤 수준을 어획하는 글로벌 상위 생산국이나, 해당 원물은 프리미엄 단가를 쫓아 전량 <TermTooltip term="신선/냉장 활어" description="가공되지 않은 살아있는 상태로 주로 일본의 이자카야 및 고급 해산물 시장으로 직수출됨." /> 형태로 일본 시장에 직수출되고 있습니다. 반면, 국내 B2C 통조림 제조를 위한 대량의 가공 원물은 100% 수입산에 의존하는 기형적 '이중 가공무역' 구조에 갇혀 있습니다. 이러한 태생적 한계로 당사의 수익성은 글로벌 환율 및 해운 운임 변동성에 무방비로 노출되므로, 체질 개선을 위한 환헤지 및 통관 물류 효율화 투자가 필수불가결합니다.</span>,
-                source: 'KOSIS 어업생산 통계',
+                source: 'FAO FishStat Capture (한국 골뱅이 어획 실측, ~2022)',
               }} />
 
             <WidgetCard title="영국 MCRS 상향 시나리오별 공급쇼크 시뮬레이션" icon={AlertTriangle} iconColor="var(--color-danger)" pillar="S1"
@@ -489,7 +489,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="SG 2026 밸류업 × 골뱅이 HMR 신제품 로드맵" icon={Package} iconColor="var(--color-success)" pillar="S2"
               cardDesc="HMR 6종 개발 진행률 — 혼술 에디션·에어프라이어 키트 26Q3 출시"
-              telemetry={{ status: 'LIVE', syncDate: '2026 Q2' }} chartHeight={300}
+              telemetry={{ status: 'STATIC', syncDate: 'SG 내부기획 2026 Q2' }} chartHeight={300}
               chart={
                 <BarChart data={sgValueUpData} layout="vertical" margin={{ left: 50 }}>
                   <ChartPatternDefs />
@@ -657,7 +657,7 @@ export default function WhelkDashboard() {
   <>
             <WidgetCard title="흑해산 R. venosa 공급 안정성 트렌드" icon={Ship} iconColor="var(--color-info)" pillar="S3"
               cardDesc="튀르키예·불가리아·루마니아 흑해산 R. venosa 어획 추이"
-              telemetry={{ status: 'STATIC', syncDate: 'FAOSTAT 2024' }} chartHeight={300}
+              telemetry={{ status: 'STATIC', syncDate: 'FAO FishStat 2022' }} chartHeight={300}
               chart={
                 <BarChart data={blackSeaSupplyData} margin={{ top: 10 }}>
                   <ChartPatternDefs />
@@ -674,12 +674,12 @@ export default function WhelkDashboard() {
               takeaway={{
                 situation: <span>[FAOSTAT] 흑해산 R. venosa(뿔고둥)는 튀르키예가 연간 4,000~4,500톤을 안정적으로 생산하며, 영국산 B. undatum의 유일한 대규모 대체 공급원입니다.</span>,
                 actionPlan: <span>흑해산 R. venosa는 총사용원가(TCU) 기준으로 영국산 대비 15~20% 저렴하며, 맛과 식감이 유사하여 통조림 가공 적합성이 높습니다. 다만 불가리아(-31%)와 루마니아(-32%)의 어획량이 꾸준히 감소 중이므로, 사실상 튀르키예 단일 의존 구조입니다. 조달팀은 튀르키예 이스탄불 소재 대형 벤더(3곳)와 장기 공급계약(2~3년)을 체결하여 물량을 선제 확보하고, 한-튀르키예 FTA 발효 시 관세 인하 효과를 극대화할 전략을 준비해야 합니다.</span>,
-                source: 'FAOSTAT 2024',
+                source: 'FAO FishStat Capture 2022 (흑해 R. venosa 어획)',
               }} />
 
             <WidgetCard title="환율 1,500원 비상 경보 시스템" icon={AlertTriangle} iconColor="#dc2626" pillar="S3"
               cardDesc="USD/KRW 구간별 자동 경보 + 단계별 대응 매뉴얼"
-              telemetry={{ status: 'LIVE', syncDate: 'Real-time' }}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05-30 (환율 임계값 정의)' }}
               customBody={
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
                   {fxAlertThresholds.map((t: any, i: number) => (
@@ -703,7 +703,7 @@ export default function WhelkDashboard() {
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
               cardDesc="분기별 USD 단가 vs USD/KRW 환율 — 이중 타격(Double Whammy) 분석"
-              telemetry={{ status: 'LIVE', syncDate: 'Real-time' }} chartHeight={300}
+              telemetry={{ status: 'SYNCED', syncDate: 'KCS/한국은행 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
                   <ChartPatternDefs />
@@ -791,7 +791,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
               cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
-              telemetry={{ status: 'LIVE', syncDate: 'Real-time' }} chartHeight={300}
+              telemetry={{ status: 'SYNCED', syncDate: 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
                   <ChartPatternDefs />

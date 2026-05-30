@@ -921,7 +921,7 @@ export default function GalchiDashboard() {
 
   function renderWidgetCard(w: any, accentColor: string, pillar: 'S1'|'S2'|'S3'|'S4'|'S5') {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
-    const LIVE_WIDGETS = ['w01','w05','w17','w18'];
+    const LIVE_WIDGETS = ['w05','w17'];
     const isLiveWidget = LIVE_WIDGETS.includes(w.id) || w.isLive;
 
     return (

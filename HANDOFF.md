@@ -1,6 +1,24 @@
 # HANDOFF — 현재 작업 상태
 
 
+> 🌊 **2026-05-30 — agri_data 기반 8 commodity 위젯 신뢰도 캠페인 (멀티 벤더 에이전트 분업)** [CC]:
+> - **목표**: `~/agri_data/`의 1차 출처(FAO FishStat·KMI FTA·KCS 통관·EUMOFA·USDA GAIN 등)로 수산물 대시보드 위젯의 허위 LIVE·환각 출처·stale·사실오류를 P0 정정.
+> - **멀티 벤더 분업 토폴로지** (OMO 원칙, Claude 토큰 ~55% 절감):
+>   - **Gemini**(`gemini-2.5-flash`, Librarian) = agri_data 카탈로그 + 적용 후 QA. 호출기 `/tmp/gemini_call.mjs`(GEMINI_API_KEY), 매니페스트 `/tmp/build_manifest.sh`
+>   - **Claude** Workflow = 5-Pillar 제안·종합·스펙 추출 (재사용 스크립트 `/tmp/seafood_propose.js`·`seafood_editspecs.js`, args 파라미터화)
+>   - **Codex(GPT)+Grok(xAI)** CLI = P0 교차검증 (writer≠reviewer)
+> - **적용 8 commodity (~90 위젯 정정, 전부 로컬·배포 안 함)**:
+>   - tuna 9 (지표분리·신규2) / shrimp 13 / mackerel 6 / pollock 15 (isLiveApi 허위 12) / salmon 라벨21+w43(HHI조작→실측, `scripts/fix_salmon_live_labels.py`) / squid 7+orphan정리 / galchi 6+TSX / jukkumi 5
+>   - whelk: TSX 8건 정직화(KOSIS→FAO·허위LIVE 4·FAOSTAT2024→FishStat2022)
+> - **교차검증/Ground-truth가 막은 실제 오류**: squid orphan 4종이 라우트 주입 위젯(Codex 적발·복원) / galchi 환각 "한-세네갈 FTA" / **jukkumi 종합 자가정정마저 오류** → 3-에이전트 Ground-truth 워크플로우로 셀단위 재확정(주꾸미=2개 HS세번 0307512000+0307523000 30,480t, OCT=문어류합산, shareVol2025=76.9는 오류값)
+> - **변경 파일**: 8 JSON(`*_real_data*`/`galchi_data`, 각 `.bak_pre_p0` 백업) + 4 TSX(Shrimp·Squid·Galchi·Whelk 화이트리스트/라벨) + 9 보고서(`artifacts/*_agri_enrichment_2026_05_30.md`) + 3 스크립트(`scripts/apply_seafood_p0.py`·`apply_p0_enrichment.py`·`fix_salmon_live_labels.py`)
+> - **⚠️ 다음 단계 (미적용)**:
+>   1. **API-route 패스**: whelk `/api/whelk/live`(한국 어획 4위→5위 정정·영국 과거 시계열 FAO 실측), 동적 위젯 14건(tuna w01 관세청단가 오버라이드 / mackerel w_kcs_origin·w_sanctions_radar / pollock w26 / salmon NTBRadar·Insight* 5 / squid w_kosis·w_eu_ceph 2)
+>   2. **PDF→MD 후(R-04)**: jukkumi 2건(베트남 FIP·아프리카 인권 — SeaBOS/MarinTrust PDF), whelk GAIN Table2 TAC
+>   3. **P1 티어**: 데이터 신선화·과장수식어(salmon 27건 등)
+> - 검증: `npm run build` ✓ (전 TSX 컴파일 + 8 JSON 유효)
+
+
 > 🎯 **2026-05-29 — 세션 최종: 13 commodity + 24 라이브 라우트 + DART/USDA FAS 인프라** [CC]:
 > - **DART 6 라우트 신설** + **USDA FAS 3 라우트 (키 재발급 대기)**: [app/api/_shared/dart-client.ts](app/api/_shared/dart-client.ts) + [usda-fas-client.ts](app/api/_shared/usda-fas-client.ts)
 >   - **실라이브 검증**: 신라교역 매출 $12,854억 ✅, CJ제일제당 $661,929억 ✅
