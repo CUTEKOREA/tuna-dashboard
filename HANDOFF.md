@@ -33,7 +33,11 @@
 >        - 주꾸미(JSON append): w32_kcs_hs_import_price_volume(S2·냉동 $6.68 vs 활신선 $13.6/kg)·w34_form_mix_frozen_live(S3·냉동 86.5%)·w35_import_dependency(S3·국내생산 -24.7%)
 >        - 골뱅이(**TSX 인라인** — 데이터키+구조분해+WidgetCard JSX 손삽입): koreaGlobalShareData(S1·한국 세계 5위 정정)·feedstockYoyData(S2·HS160559 -24.7%)·originCifGapData(S2·영국 $12.75 vs 세네갈 $4.73)
 >        - 주꾸미 보류(blocked): 일본볶음·제4차자원관리·IUCN(PDF→MD 선행)·두족류장기추세(EUC-KR) / 골뱅이 보류: HS6종 무역수지(미검증)·TAC NTB(GAIN PDF선행)
->      - **Batch 4**: 참치 value-chain(P0/P1 신규 — RFMO 레이더·SKJ 현물가·reefer·EU소매·가공패권). 기존 위젯 정정 패스(갈치 환각 한-세네갈 FTA·w14 5,400→54,000, 새우/갈치/주꾸미 렌더러 telemetry 정직화).
+>      - **✅ 기존 위젯 P0성 정정 패스 완료**: 포렌식 3 에이전트(환각·오기·telemetry 조사) → Claude 적용 → adversarial 1 에이전트 검증(실제 결함 1건 적발) → 보강.
+>        - 갈치 환각 '한-세네갈 FTA 특혜관세' 제거: w_galchi_multi_cost 텍스트 + `/api/galchi/tariffs` 데이터키('세네갈 FTA 원가'→'세네갈산 착지원가', 'MFN 관세원가'→'중국산 착지원가')·source 정직화. **갈치는 FTA TRQ 미적용·전공급국 MFN 10% 사실로 정정**. (실존 KORUS·KMI FTA보고서 인용은 보존)
+>        - **w14 5,400 오기 = 현재 파일에 없음(이미 54,000 정확)** — 전 연도 자릿수 검증 후 수정 불필요 확인.
+>        - telemetry 정직화(L-09): **갈치** 렌더러(w05/w17 하드코딩 LIVE 제거·STATIC 분기 추가) + 정적 인라인 3개 isLive→false + 라우트 6개 isLive→`liveX?.isLive`(동적). **새우** 렌더러(reliability>70→LIVE 버그 제거) + **허위 LIVE 7위젯 SYNCED 강등**(adversarial 검증이 적발: telemetry:'live'·'Live API' 배지만 있고 라우트 미연동 → JSON 라벨 제거). **주꾸미** w4/w5/w17 isLiveApi→false. 진짜 라이브(갈치 w25-w29·새우 라이브KPI) 보존 검증.
+>      - **Batch 4(미착수)**: 참치 value-chain 신규(RFMO 레이더·SKJ 현물가·reefer·EU소매·가공패권). 새우 7위젯을 LIVE로 되살리려면 displayWidgets에서 apiData 라우트 바인딩 필요(현재 미연동).
 >   3. 소프트스팟 재검: squid EU두족류 2020-2024 보간점, jukkumi w20 모리타니/태국/중국 행 추정치(source에 명시됨)
 > - 검증: `npm run build` ✓ (전 TSX 컴파일 + JSON 유효)
 

@@ -665,7 +665,10 @@ export default function ShrimpDashboard() {
 
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const isLive = (w.reliability && w.reliability > 70) || (w.badges && w.badges?.includes('Live API')) || w.apiSource;
+    // L-09 정직 telemetry: reliability를 LIVE 판정에서 제거. 진짜 라이브(badges 'Live API'·apiSource·동적 isLiveApi·JSON telemetry 'live')만 LIVE.
+    const isGenuineLive = (w.badges && w.badges?.includes('Live API')) || w.apiSource || w.isLiveApi || (typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'live');
+    const honestStatus = isGenuineLive ? 'LIVE' : (w.telemetry || w.syncDate) ? 'SYNCED' : 'STATIC';
+    const honestSyncDate = isGenuineLive ? (w.syncDate || '실시간 연동중') : (w.syncDate || '2024년 기준');
     const cardDesc = [w.unit ? `단위: ${w.unit}` : '', w.subtitle || ''].filter(Boolean).join(' — ');
 
     return (
@@ -675,7 +678,7 @@ export default function ShrimpDashboard() {
         iconColor={accentColor}
         pillar={pillar}
         cardDesc={cardDesc}
-        telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? 'Real-time' : '2024년 기준' }}
+        telemetry={{ status: honestStatus, syncDate: honestSyncDate }}
         chartHeight={375}
         chart={renderChart(w)}
         takeaway={{

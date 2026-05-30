@@ -292,7 +292,7 @@ export default function GalchiDashboard() {
       sit: "글로벌 갈치 생산은 양식이 불가하여 기후 리스크에 극도로 취약합니다. 반면 한국의 갈치 TAC는 자원 회복 기조로 최근 4년간 74% 증가했습니다.",
       strat: "양식 불가능 리스크를 대비해 기후 변동에 따른 어획량 급감 전 선도거래 물량을 확보하고, 국내 증가분은 B2B 시장에 투입하여 수익성을 높이십시오.",
       source: "FAO 통계 연감 + USDA 글로벌 농업 정보 네트워크(GAIN)",
-      isLive: true,
+      isLive: false,
       data: [
         { year: "2020", "글로벌 생산량(톤)": 1050000, "한국 TAC(톤)": 30126 },
         { year: "2021", "글로벌 생산량(톤)": 1060000, "한국 TAC(톤)": 48908 },
@@ -310,7 +310,7 @@ export default function GalchiDashboard() {
       sit: "국내 갈치 시장은 수입 의존도가 높으며, 전체 유통 물량의 80% 이상이 염장 혹은 염수장 형태로 1차 가공되어 판매됩니다.",
       strat: "원물 직수입 후 국내 가공 방식에서 벗어나 세네갈 등 산지에서 1차 염장 후 수입(B2B 반제품)하여 마진율을 15% 이상 추가 개선하십시오.",
       source: "KMI 동향 리포트",
-      isLive: true,
+      isLive: false,
       data: [
         { type: "염장 가공", "비중(%)": 80 },
         { type: "생물/냉동", "비중(%)": 20 }
@@ -327,7 +327,7 @@ export default function GalchiDashboard() {
       sit: "현재 갈치 유통은 원물 중심 단순 도매에 머물러 있어 이익률이 낮습니다. SG 2026 밸류업 전략에 따르면 신라에스지의 가공 컨트롤타워 역할 확대가 시급합니다.",
       strat: "신라교역의 갈치 원물을 신라에스지가 B2B 급식용 HMR(순살 갈치 등)로 직접 가공·납품하는 ODM 방식으로 전환하여, 전사 영업이익률을 15%p 이상 개선하십시오.",
       source: "SG 2026 밸류업 내부 문건",
-      isLive: true,
+      isLive: false,
       data: [
         { year: "2023", "단순 원물 마진(%)": 5.2, "SG 내재화 마진(%)": 5.2 },
         { year: "2024", "단순 원물 마진(%)": 4.8, "SG 내재화 마진(%)": 10.5 },
@@ -345,21 +345,21 @@ export default function GalchiDashboard() {
       sit: "수입 가공 형태에 따라 10자리 HS 코드가 상이하며(냉동 갈치: 0303.89.60.00), 특히 토막(cut)과 필렛 간의 오분류 통관 사고가 지속 발생합니다.",
       strat: "HS Ping 실시간 매핑으로 통관 사고 Zero화 달성. ①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단.",
       source: "HS Ping API (실시간 HS 코드 분류 엔진)",
-      isLive: true,
+      isLive: liveHsPing?.isLive ?? false,
       data: liveHsPing?.data || []
     },
     {
       id: "w_galchi_multi_cost",
-      title: "착지원가 실시간 스태킹 — 최혜국대우(MFN) vs FTA 복합 시뮬레이션",
-      subtitle: "Tariffs API 연동. MFN 기본관세(10%)와 세네갈 FTA 특혜관세를 동시 적용한 착지원가를 월별로 비교하여, 관세 차익이 최대화되는 수입 타이밍을 식별합니다.",
+      title: "착지원가 실시간 스태킹 — 원산지별 MFN 10% 착지원가 시뮬레이션",
+      subtitle: "Tariffs API 연동. 냉동 갈치(HS 0303.89)는 KORUS 등 어떤 FTA TRQ에도 미포함이라 전 공급국에 동일하게 일반 수입관세(MFN) 10%가 적용됩니다. 원산지별 FOB·운임·관세·통관비 누적 착지원가를 월별로 비교하여 매수 타이밍을 식별합니다. (시나리오 추정치)",
       chartType: "Composed",
       xKey: "month",
-      bars: [{ key: "세네갈 FTA 원가", color: "#8b5cf6" }],
-      lines: [{ key: "MFN 관세원가", color: "#f43f5e" }],
-      sit: "WITS 데이터 래그(Lag)를 보완하여 실시간 협정 관세를 누적 계산합니다. 세네갈산은 FTA 특혜관세 적용 시 MFN 대비 착지원가가 8~12% 절감됩니다.",
-      strat: "①MFN-FTA 스프레드가 10% 이상인 월에 세네갈산 집중 선적, ②환율 변동(CNY/KRW) 연동 시뮬레이션으로 최적 계약 시점 포착.",
+      bars: [{ key: "세네갈산 착지원가", color: "#8b5cf6" }],
+      lines: [{ key: "중국산 착지원가", color: "#f43f5e" }],
+      sit: "갈치는 FTA 특혜관세가 없어 세네갈·중국 모두 동일한 MFN 10%가 적용되며, 원가 차이는 관세가 아닌 FOB 단가와 해상운임에서 발생합니다(시나리오 추정). 데이터 래그를 보완해 원산지별 착지원가를 월별로 누적 비교합니다.",
+      strat: "①관세 차익이 아닌 물류비(해상운임)·FOB 스프레드가 유리한 월에 산지별 선적량을 배분, ②환율 변동(CNY/KRW) 연동 시뮬레이션으로 최적 계약 시점 포착.",
       source: "Tariffs API",
-      isLive: true,
+      isLive: liveTariffs?.isLive ?? false,
       data: liveTariffs?.data || []
     },
     {
@@ -373,7 +373,7 @@ export default function GalchiDashboard() {
       sit: "소비자 물가(CPI) 상승기에 최종 소비 저항으로 도매가 전가가 2~3개월 지연됩니다. 이 괴리 구간이 유통 마진 압축의 핵심 리스크입니다.",
       strat: "①CPI-도매가 Spread가 15% 이상 확대 시 사전 비축 물량 방출로 이익률 극대화, ②Spread 축소 시 매입 확대하여 저가 재고 확보.",
       source: "KOSIS API (통계청 소비자물가지수) + KAMIS 도매가",
-      isLive: true,
+      isLive: liveKosis?.isLive ?? false,
       data: liveKosis?.data || []
     },
     {
@@ -386,7 +386,7 @@ export default function GalchiDashboard() {
       sit: "세네갈, 남아공 등 대체 소싱처에서 중금속(Cd, Pb)/이물질 적발 빈도가 증가 중입니다. 소싱 다변화 시 위생 리스크가 동반 상승하는 트레이드오프가 존재합니다.",
       strat: "①적발 건수 3건 이상 누적 국가 대상 사전 선적 검사(PSI) 의무화, ②적발 Zero 국가에 대해 '신뢰 공급자(Trusted Vendor)' 인증 부여.",
       source: "MFDS API (식품의약품안전처 수입식품 검사 통계)",
-      isLive: true,
+      isLive: liveMfds?.isLive ?? false,
       data: liveMfds?.data || []
     },
     {
@@ -402,7 +402,7 @@ export default function GalchiDashboard() {
       sit: "중국 및 아세안의 수산물 비관세 장벽(SPS)이 분기별로 심화 추세입니다. 특히 중국은 정치적 이슈 발생 시 SPS 조치를 '비공식 제재' 수단으로 활용하는 패턴이 관측됩니다.",
       strat: "①대중국 수출 전 사전 위생 증명서(Health Certificate) 요건 모니터링 체계 가동, ②SPS 발동 급증 분기에 대체 수출 루트(일본·홍콩) 사전 확보.",
       source: "WTO 데이터 포털(Data Portal)",
-      isLive: true,
+      isLive: liveWto?.isLive ?? false,
       data: liveWto?.data || []
     },
     {
@@ -415,7 +415,7 @@ export default function GalchiDashboard() {
       sit: "대중국 수출 의존도가 높아 지정학적 리스크 노출이 큽니다. 일본(현재 986톤)을 제외하면 수출 다변화가 거의 진행되지 않은 상태입니다.",
       strat: "①경제 복잡성 대비 잠재력이 높은 싱가포르·홍콩 프리미엄 시장 타겟팅, ②베트남 HMR 가공 기지 활용 후 일본 재수출 삼각무역 구조 검토.",
       source: "경제 복잡성 관측소(Observatory of Economic Complexity, OEC) API",
-      isLive: true,
+      isLive: liveOec?.isLive ?? false,
       data: liveOec?.data || []
     },
     // ─── KMI FTA 분기별 수입동향 인사이트 (2021 Q1 ~ 2026 Q1, 21개 분기 교차분석) ───
@@ -921,8 +921,12 @@ export default function GalchiDashboard() {
 
   function renderWidgetCard(w: any, accentColor: string, pillar: 'S1'|'S2'|'S3'|'S4'|'S5') {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
-    const LIVE_WIDGETS = ['w05','w17'];
-    const isLiveWidget = LIVE_WIDGETS.includes(w.id) || w.isLive;
+    // 정직 telemetry (L-09): 진짜 라이브는 라우트 fetch 성공(w.isLive===true)일 때만 LIVE.
+    // 정적 위젯은 JSON telemetry 필드(STATIC) 존중, 그 외엔 SYNCED.
+    const status: 'LIVE' | 'SYNCED' | 'STATIC' =
+      w.isLive === true ? 'LIVE'
+      : (typeof w.telemetry === 'string' && w.telemetry.toUpperCase() === 'STATIC') ? 'STATIC'
+      : 'SYNCED';
 
     return (
       <WidgetCard key={w.id}
@@ -931,7 +935,7 @@ export default function GalchiDashboard() {
         iconColor={accentColor}
         pillar={pillar}
         cardDesc={w.subtitle || ''}
-        telemetry={{ status: isLiveWidget ? 'LIVE' : 'SYNCED', syncDate: w.syncDate || 'KFAS 2024' }}
+        telemetry={{ status, syncDate: w.syncDate || 'KFAS 2024' }}
         chartHeight={375}
         chart={renderChart(w)}
         takeaway={{

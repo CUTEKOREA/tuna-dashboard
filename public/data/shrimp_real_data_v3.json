@@ -4182,15 +4182,13 @@
       ],
       "source": "출처: FRED API + ECOS API + KMI 수산물 무역 단기 전망모형(2024-08)",
       "reliability": 85,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "USD/MT",
       "yUnit": "USD/MT",
       "situation": "현황: VAR 5변수 모형(CIF단가, WTI유가, USD/KRW, 사료지수, ENSO)으로 향후 3개월 수입단가 예측. 7-8월 계절적 수요 증가로 $8,600/MT 피크 후 8월 하락 전환 예상.",
       "takeaway": "전략: 7월 피크 전 6월 선제 구매로 톤당 $110 절감 기회. 에콰도르 장기 계약 물량 확대 타이밍.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "VAR(벡터자기회귀) 모형 기반 AI 가격 예측 시스템이 3개월 후 수입 단가의 상승 임계점 돌파(Breakout) 시그널을 강력 발송 중입니다.",
       "strat": "데이터 사이언스 팀의 예측 지표를 기반으로, 단가 폭등 전 현물(Spot) 시장에서 물량을 융단 폭격식으로 싹쓸이(Buyout) 매집하여 3개월 뒤 차익 스프레드를 100% 캡처하는 퀀트 트레이딩 돌입."
     },
@@ -4248,15 +4246,13 @@
       ],
       "source": "출처: FRED API (DCOILWTICO, DEXKOUS) + BOK ECOS",
       "reliability": 90,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "Value",
       "yUnit": "Value",
       "situation": "현황: 원유 $72-74 박스권, 환율 1,380-1,400원대 안정. 사료 원가 지수 125.4로 전년비 3.5% 상승.",
       "takeaway": "전략: 환율 1,400원 돌파 시 착지원가 톤당 $200+ 상승 — 환헤지 포지션 점검 필요.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "환율, 유가, 물류비 지수를 복합 분석하는 실시간 거시경제 대시보드상 원가 압박(Cost Push) 시그널이 레드라인을 터치하며 수익성 악화 스톰(Perfect Storm) 임박.",
       "strat": "환율 헷징(Currency Forwards) 및 운임 스와프(FFA) 파생상품 비중을 80%로 끌어올려 외부 매크로 폭격을 방어하고, 변동비 노출 제로(0%)의 요새화된 P&L 포트폴리오 구축."
     },
@@ -4311,15 +4307,13 @@
       ],
       "source": "출처: UN Comtrade (HS 030617) + WITS + KMI 전략품목 관리(2023-10)",
       "reliability": 80,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "USD/MT",
       "yUnit": "USD/MT",
       "situation": "현황: 인도 착지원가 $7,534/MT로 최저. 베트남은 CIF 최고이나 FTA 관세 0%+근거리 물류로 착지원가 $8,495.",
       "takeaway": "전략: 인도 비중 25%로 확대 시 연 $2.1M 절감. 단, 항생제 검출 리스크(3.2%) 감안한 품질 관리 병행 필수.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "국가별 착지원가 실시간 시뮬레이터 가동 결과, 에콰도르의 규모의 경제를 넘어서 인도의 덤핑 투매 단가가 20% 스프레드 우위를 점하는 일시적 윈도우(Window) 관측.",
       "strat": "기존 거래선(베트남/태국)과의 의리를 버리고 시뮬레이터 상 최저가(Bottom-Fishing)가 찍히는 국가 단위로 월별 소싱 비중을 100% 극단적 리밸런싱(Rebalancing)하는 냉혹한 다이내믹 소싱 가동."
     },
@@ -4451,15 +4445,13 @@
       ],
       "source": "출처: WTO SPS/TBT + KMI 비관세장벽 영향(2025-15) + 신통상규범 대응(2024-06)",
       "reliability": 80,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "Score",
       "yUnit": "Score",
       "situation": "현황: EU CSDDD(2027 시행) 리스크 최고 — 새우 공급망 강제노동 실사 의무화. 미이행 시 글로벌 매출 5% 과징금.",
       "takeaway": "전략: CSDDD 선제 대응: 태국·인도산 공급업체 ESG 감사 2026년 내 완료. ASC/BAP 인증 확보 우선.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "EU, 미국 중심의 통상 규제(NTB: 비관세장벽) 리스크 신호등이 지속적 적색 경고를 발령 중. 원산지 증명, 항생제 제재 등 통관 보류(WRO) 폭탄이 언제든 터질 수 있는 지뢰밭 환경.",
       "strat": "통관 리스크 방어를 위해 현지 공장에 자사 품질 관리(QC) 인력을 무기한 상주 파견하고, FDA/EU 승인 기준을 상회하는 자체 초정밀 검역 매뉴얼을 협력사에 강제 적용하는 서플라이 체인 권력화 달성."
     },
@@ -4500,15 +4492,13 @@
       ],
       "source": "출처: MFDS 수입식품 부적합 DB + KMI 안전성 분석",
       "reliability": 85,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "%",
       "yUnit": "%",
       "situation": "현황: 인도산 Chloramphenicol 검출률 3.2%로 최고. 에콰도르는 0% 청정. 베트남 Enrofloxacin 1.8%.",
       "takeaway": "전략: 인도산 소싱 확대 시 LOT별 사전 검사 의무화. 검출 시 통관 거부 → 대체 물량 베트남으로 전환.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "인도, 베트남 등 특정 아시아 양식국의 잔류 항생제(Nitrofurans 등) 검출률 고공행진으로 브랜드 가치 훼손 및 전량 폐기 리스크(Recall Risk) 치명타 가능성 고조.",
       "strat": "항생제 검출률이 높은 국가의 물량은 B2C 리테일 채널 입고를 원천 차단하고 단가 후려치기(Haircut) 후 익명화된 B2B 저가 가공 식자재로만 밀어내는 리스크 분리(Ring-fencing) 철저 준수."
     },
@@ -4549,15 +4539,13 @@
       ],
       "source": "출처: WTO Data Portal (SPS Notifications) + KMI SIMP 대응(2025-13)",
       "reliability": 80,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "Count",
       "yUnit": "Count",
       "situation": "현황: EU가 갑각류 카드뮴 기준 강화 등 12건으로 최다 SPS 통보. 미국 SIMP 확대 8건.",
       "takeaway": "전략: EU 카드뮴 기준 하향 대비 — 에콰도르/인도산 중금속 사전 검사 체계 구축 시급.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "WTO SPS(위생식물검역) 통보 기반 실시간 분석 결과, 중금속 및 미생물 규제 기준이 선진국을 중심으로 기하급수적으로 상향 조정되며 수출입 장벽이 만리장성급으로 구축 중.",
       "strat": "느슨한 후진국 위생 기준 벤더들을 즉각 숏(Short) 컷아웃하고, 실시간 블록체인 및 IoT 온습도 로거가 완비된 최상위 5% 글로벌 벤더로만 소싱 라인을 결집하여 통관 프리패스 지위 획득."
     },
@@ -4736,15 +4724,13 @@
       ],
       "source": "출처: UN Comtrade (HS 391390) + KMI 수산물 업사이클링(2025-11)",
       "reliability": 70,
-      "badges": [
-        "Live API"
-      ],
+      "badges": [],
       "unit": "Value",
       "yUnit": "Value",
       "situation": "현황: 키토산 시장 CAGR 15.3%로 급성장. 국내 새우 가공 부산물(껍질) 연 ~12,000톤 → 키토산 전환 시 $180M 잠재.",
       "takeaway": "전략: 부산·동해 가공 인프라 활용, 키토산 추출 파일럿 플랜트 구축. 바이오의약/식품코팅 B2B 채널 선점.",
-      "telemetry": "live",
-      "syncDate": "실시간 연동중",
+      "telemetry": "synced",
+      "syncDate": "2026-05 스냅샷",
       "sit": "골칫거리 산업 폐기물이었던 새우 껍질(Head/Shell)이 헬스케어 및 바이오 플라스틱의 핵심 원료인 고순도 키토산(Chitosan)으로 부상하며 폐기물(Waste)에서 웰스(Wealth)로 환골탈태 중.",
       "strat": "단순 식품 회사의 굴레를 벗고 특수 바이오 케미컬 공정을 갖춘 화학 스타트업 조인트벤처(JV)를 설립. 껍질 폐기 마이너스 비용을 톤당 수천 달러짜리 하이엔드 의료 소재 매출로 연금술(Alchemy) 전환."
     },

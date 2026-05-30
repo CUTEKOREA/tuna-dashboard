@@ -273,7 +273,7 @@
       "source": "KAMIS & 도매시장 API | 보강: KAMIS·KCS·MOF 해수부·KMI 한국해양수산개발원·국립수산과학원(NIFS) 중심.",
       "unit": "원/kg, 지수",
       "reliability": 88,
-      "isLiveApi": true,
+      "isLiveApi": false,
       "strat": "고가 오프라인 리테일 노출도를 줄이고, 이커머스 전용 저가 냉동 팩 라인업을 강화하여 유통 마진 리바운드 유도. 판가 탄력성을 극대화하는 디지털 채널 집중."
     },
     {
@@ -338,7 +338,7 @@
       "source": "식약처 수입수산물 안전관리 + NIFS 해수온·Vibrio 모니터링 + 기상청 해양기후 데이터 (1차 출처) | 2024-2026 갱신 가능",
       "unit": "도, 건수, 지수",
       "reliability": 96,
-      "isLiveApi": true,
+      "isLiveApi": false,
       "strat": "콜드체인 모니터링을 실시간 IoT 센서로 업그레이드하고 HACCP 기준을 상회하는 살균/냉동 매뉴얼을 도입. 식품 보건 리스크를 비용이 아닌 진입 장벽(Moat)으로 재정의.",
       "subtitle": "한국 연안·수입 수산물 콜드체인 Vibrio·살모넬라 등 병원성 리스크. (위젯 ID 'mauritania_risk'는 과거 명명, 실제 데이터는 한국 해수온·기상청·품질검사소 API 기반)"
     },
@@ -1137,7 +1137,7 @@
       "source": "KAMIS 일별·도매가 + 관세청(KCS) 수입 통관 단가 + 노량진수산물도매시장 위판가 (1차 출처) | 2024-2026 갱신 가능",
       "unit": "원/kg, 배",
       "reliability": 96,
-      "isLiveApi": true,
+      "isLiveApi": false,
       "strat": "국내산은 극소수 파인 다이닝/백화점 채널로 럭셔리 마크업을 취하고, 볼륨 마진은 1.2만 원대 수입산 원물 기반의 매스 마켓 HMR로 장악하는 바벨(Barbell) 전략 포지셔닝."
     },
     {
