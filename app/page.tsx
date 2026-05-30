@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import CountUp from 'react-countup';
-import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Search, FlaskConical , ScanSearch, Octagon, Box, FlaskRound, Map, TestTube} from 'lucide-react';
+import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Search, FlaskConical , ScanSearch, Octagon, Box, FlaskRound, Map, TestTube, ShieldCheck} from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useRouter, usePathname } from 'next/navigation';
 import { playVHFRadioChatter } from '../lib/audio';
@@ -68,6 +68,7 @@ const ColdStorageDashboard = dynamic(() => import('../components/ColdStorageDash
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
 const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
+const MscStrategyDashboard = dynamic(() => import('../components/MscStrategyDashboard'));
 
 
 const initialChartData = [
@@ -112,9 +113,9 @@ export default function Home() {
   );
   const pathname = usePathname();
   
-  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'octopus' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'whelk' | 'used-car' | 'pollock' | 'flatfish' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db'>(() => {
+  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'octopus' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'whelk' | 'used-car' | 'pollock' | 'flatfish' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db' | 'msc'>(() => {
     const path = pathname?.replace('/', '');
-    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'whelk', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db'];
+    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'whelk', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc'];
     if (path && validMenus.includes(path)) return path as any;
     return 'market';
   });
@@ -168,7 +169,7 @@ export default function Home() {
       'market': '시장 동향', 'fleet': '선단 운영', 'logistics': '물류·가공',
       'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
       'squid': '오징어', 'jukkumi': '주꾸미', 'octopus': '낙지', 'pollock': '명태', 'flatfish': '가자미', 'shrimp': '새우', 'salmon': '연어',
-      'ranching': '참다랑어 축양', 'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓', 'cold-storage': '냉동창고',
+      'ranching': '참다랑어 축양', 'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓', 'cold-storage': '냉동창고', 'msc': 'MSC 전략',
       'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근', 'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'pork': '돼지고기', 'beef': '소고기', 'whelk': '골뱅이', 'used-car': '중고차', 'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스', 'research-lab': '연구 재료',
     };
     document.title = `${titles[activeMenu] || activeMenu} | 참치왕국`;
@@ -633,7 +634,13 @@ export default function Home() {
           <span>중고차 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Used Car)</span></span>
         </button>
 
-
+        <button 
+          className={`${styles.menuItem} ${activeMenu === 'msc' ? styles.menuItemActive : ''}`}
+          onClick={() => { handleMenuClick('msc'); setIsMobileSidebarOpen(false); }}
+        >
+          <ShieldCheck size={18} />
+          <span>MSC <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(지속가능성)</span></span>
+        </button>
 
         <button 
           className={`${styles.menuItem} ${activeMenu === 'research-lab' ? styles.menuItemActive : ''}`}
@@ -942,6 +949,10 @@ export default function Home() {
 
               <KeepAlivePanel active={activeMenu === 'purse-seiner-db'}>
                 <PurseSeinerDashboard />
+              </KeepAlivePanel>
+
+              <KeepAlivePanel active={activeMenu === 'msc'}>
+                <MscStrategyDashboard />
               </KeepAlivePanel>
 
               </PageTransition>

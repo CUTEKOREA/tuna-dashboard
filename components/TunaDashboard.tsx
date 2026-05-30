@@ -968,17 +968,21 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* 7. 유럽 참치캔 마켓 (Macro Trade, Retail KPIs, ESG) */}
             <EuropeanMarketDashboard />
 
-            {/* 🆕 MSC Yearbook 2026 기반 인텔리전스 — 유럽 다운스트림 심층 분석 */}
+            {/* MSC 위젯 → MSC 전략 분석 전용 페이지로 이전 완료 */}
             <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
-              <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#10b981', background: 'rgba(16,185,129,0.1)', padding: '3px 10px', borderRadius: '6px' }}>MSC</span>
-                <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>MSC Yearbook 2026 기반 — 글로벌 인증 참치 인텔리전스</span>
-              </div>
-              <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-                <MscGlobalTunaGrowthTracker />
-                <MscConsumerInsightsRadar />
-                <MscEuropeCountryPenetration />
-                <MscBrandSourcingScorecard />
+              <div
+                onClick={() => { if (typeof window !== 'undefined') window.history.replaceState(null, '', '/msc'); window.location.reload(); }}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+                  padding: '18px 24px', borderRadius: '12px', cursor: 'pointer',
+                  background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.2)',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.12)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.06)'; }}
+              >
+                <ShieldCheck size={20} style={{ color: '#10b981' }} />
+                <span style={{ fontSize: '0.88rem', fontWeight: 600, color: '#10b981' }}>MSC 전략 인텔리전스 센터에서 19개 위젯 상세 보기 →</span>
               </div>
             </div>
 
@@ -1030,9 +1034,22 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <InsightCohortDoubleShock />
             </div>
 
-            {/* 🆕 MSC Biodiversity Report 2025 — 참치 자원 건전성 게이지 */}
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
-              <MscTunaStockHealthGauge />
+            {/* MSC 자원 건전성 → MSC 전략 분석 전용 페이지로 이전 완료 */}
+            <div style={{ marginTop: '1.5rem' }}>
+              <div
+                onClick={() => { if (typeof window !== 'undefined') window.history.replaceState(null, '', '/msc'); window.location.reload(); }}
+                style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+                  padding: '14px 20px', borderRadius: '10px', cursor: 'pointer',
+                  background: 'rgba(16,185,129,0.06)', border: '1px solid rgba(16,185,129,0.15)',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.12)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(16,185,129,0.06)'; }}
+              >
+                <ShieldCheck size={18} style={{ color: '#10b981' }} />
+                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#10b981' }}>MSC 자원 건전성 · RFMO 정합성 → MSC 전략 분석 페이지에서 보기 →</span>
+              </div>
             </div>
 
             {/* 🆕 RFMO Librarian — IATTC 자원평가 + WCPFC 빌피쉬 혼획 (S5: ESG·지속가능성) */}
