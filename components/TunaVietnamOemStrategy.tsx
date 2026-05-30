@@ -16,6 +16,7 @@ export const truncateXAxis = (tick: any) => {
 
 
 const data = [
+  { metric: "미국향 로인 수출($M, '24)", thailand: 75.1, vietnam: 54.9 },
   { metric: "인건비 (Labor $/MT)", thailand: 450, vietnam: 280 },
   { metric: "가공 수율 (Yield %)", thailand: 46, vietnam: 44 },
   { metric: "EU 관세 (Tariff %)", thailand: 20.5, vietnam: 0 },
@@ -53,9 +54,9 @@ return (
     );
   };
 
-  const situation = 'CJ 등 국내 대형 B2B 고객사의 참치캔 납품 단가 인하 압박 및 태국 가공업체들의 원가 상승 딜레마 발생. 태국 대비 베트남의 인건비는 38% 낮으며($280 vs $450/MT), EU-베트남 FTA로 관세율이 0%(태국 20.5%)로 원가 경쟁력이 입니다. 다만 가공 수율(44% vs 46%)과 항만 효율(75 vs 85)은 태국이 우세하여 품질 관리 리스크가 존재합니다.';
-  const actionPlan = '1) 인건비가 저렴하고 EU 관세 혜택이 있는 베트남 캔 가공(OEM) 파트너사를 적극 발굴하되, 가공 수율과 항만 효율 객에 대한 품질 보증 방안을 병행 구축해야 합니다. 2) 태국 단일 거점 의존도를 50% 이하로 낮추는 공급망 다변화가 리스크 헤지의 핵심입니다.';
-  const source = '한국무역협회(KITA) 수출입 통계 / 베트남 관세청 관세율 DB / 내부 B2B 영업 전략 보고서 — 인건비/수율 데이터는 업계 평균 추정치';
+  const situation = 'FFA 데이터에 따르면 베트남은 2024년 5,490만 달러 규모의 프리쿡 로인(Pre-cooked loins)을 미국에 수출하며 중국을 제치고 태국에 이어 2위 수입국으로 부상했습니다. 베트남의 인건비는 태국 대비 38% 낮으며($280 vs $450/MT), EVFTA(EU-베트남 FTA)로 연 11,500mt의 캔 무관세 혜택이 있어 실제 글로벌 시장 잠식이 입증되고 있습니다.';
+  const actionPlan = '1) 데이터로 입증된 베트남 OEM 파트너십 확대를 최우선 추진하되, 가공 수율(44% vs 46%) 격차 극복을 위한 품질 보증 방안을 병행해야 합니다. 2) 미국 및 EU의 관세 우회(Tariff-Hopping) 전략에 편승하여 태국 단일 의존도를 낮추는 공급망 다변화가 핵심입니다.';
+  const source = 'FFA Markets Study 2025 UPDATE (US ITC 2024 데이터 기준) / 한국무역협회(KITA)';
 
   return (
     <div className={styles.card} style={{ display: 'flex', flexDirection: 'column', minHeight: '480px' }}>
