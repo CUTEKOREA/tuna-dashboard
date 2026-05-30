@@ -609,13 +609,6 @@ export default function Home() {
           <span>국내 위판장 인텔리전스</span>
         </button>
 
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'purse-seiner-db' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('purse-seiner-db'); setIsMobileSidebarOpen(false); }}
-        >
-          <Database size={18} />
-          <span>글로벌 선망선 DB <span style={{ fontSize: '0.7em', opacity: 0.7 }}>155척</span></span>
-        </button>
 
 
         <button 
@@ -737,16 +730,6 @@ export default function Home() {
 
         <div style={{ flex: 1 }} />
 
-        <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🛠 도구</div>
-
-        <button
-          className={styles.menuItem}
-          onClick={() => router.push('/manual')}
-          style={{ marginBottom: '8px', color: '#3B82F6' }}
-        >
-          <Wrench size={18} />
-          <span>데이터 수집 매뉴얼</span>
-        </button>
 
         <div style={{
           padding: '8px 12px', margin: '8px 0',
