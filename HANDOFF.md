@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐮 **2026-05-31 — beef 허위 LIVE 2위젯 정정 (멀티에이전트 감사)** [CC]:
+> - **감사**: 11-에이전트 워크플로우(4축 fan-out→적대적 검증). 고유 16위젯(BeefDashboard WIDGET_MAP은 BeefWidgets 11 재렌더=중복 제거) 중 허위 LIVE **2건**, mock/난수 0.
+> - **백엔드 우수**: 라우트 7개 전부 REAL(usda-fas·comtrade·NASS·FAOSTAT·KAMIS·KOSIS + 동적 isLive). BeefWidgets 11개 정직(W1~8 동적 isLive). KPI 6 synced.
+> - **위반 위치**: pork와 동일 — JSON 데이터(BeefUsdaWidgets 무가공 패스스루). `beef_usda_widgets.json` w_us_korea_beef_timeline(L93)·w_us_beef_top5_importers(L120) 정적 ESR인데 `"telemetry":"LIVE"`.
+> - **정정**: data/ + public/data/ 2파일 동시 `"LIVE"`→`"STATIC"`(4객체). byte-identical 유지. 컴포넌트 무수정.
+> - **검증**: LIVE 0 · JSON 유효 · `npm run build` ✓ · IDENTICAL. **로컬 커밋, 배포 대기**.
+
 > 🐷 **2026-05-31 — pork 허위 LIVE 2위젯 정정 (멀티에이전트 감사)** [CC]:
 > - **감사**: 10-에이전트 워크플로우. pork는 API 라우트 없는 순수 정적 대시보드. 27위젯 중 허위 LIVE **2건**(사용자 노출), mock/난수 0.
 > - **위반 위치**: 컴포넌트가 아닌 **JSON 데이터**. PorkUsdaWidgets가 JSON telemetry 무가공 패스스루. `pork_usda_widgets.json`의 w_us_korea_pork_timeline(L128)·w_us_pork_top_importers(L156)가 정적 ESR 아카이브인데 `"telemetry":"LIVE"`.
