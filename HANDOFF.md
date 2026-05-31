@@ -1,5 +1,17 @@
 # HANDOFF — 현재 작업 상태
 
+> 🍫 **2026-05-31 — /cocoa 허위 LIVE 11위젯 + mock 라우트 전면 정정 (멀티에이전트 감사+적대검증)** [CC]:
+> - **감사**: 4-에이전트 포렌식(컴포넌트·라우트·USDA 병렬→적대 검증). 총 **26위젯**(CocoaDashboard 인라인 21 + CocoaUsdaWidgets 5). 인라인 11 LIVE 전부 **허위**(7=난수지터 bound + 4=정적 오표기), 라우트 자체 mock.
+> - **근본원인**: `app/api/cocoa/dashboard/route.ts`가 정적 JSON에 `Math.random()` 지터 8곳 주입 + `apiStatus:"active_live_sim"` 라벨, 외부 API 0건. 컴포넌트는 5초 폴링·9-network 가짜 'live' 패널·가짜 시계로 라이브 연출.
+> - **추가 발견(치명)**: 라우트가 읽는 `data/cocoa_market_data.json`이 **gitignore된 로컬파일이며 소실**(백업·생성스크립트 from-scratch 경로 0). 페이지가 500→무한 스피너로 死. 16개 수작업 위젯 데이터는 날조 없이 복구 불가.
+> - **정정(route.ts)**: 난수 지터 8블록·`revalidate=0`·`active_live_sim` 전면 삭제 → `isLive:false`·STATIC. 파일 부재 시 catch에서 `data:null` 정직 반환(O-01).
+> - **정정(CocoaDashboard.tsx)**: 11 LIVE→STATIC(syncDate 원본 05-21 유지) · 무한 거짓 스피너→정직 "데이터 미연동" 빈상태 · KPI `'X API'`→`'X(스냅샷)'` · 범례 `(LIVE)`→`(시나리오)` · 9-network 패널(펄스점·"실시간 커맨드센터 동기화중"·`status:'live'`×9·가짜시계·"X API" chip명)→"데이터 출처/정적 스냅샷·실시간 미연동" · 5초 폴링 제거 · 위젯 source 8건 라이브API 단정("관세청 OpenAPI·KCS 실측·MFDS 검역 API·ICCO API·TCDP·Sentinel-2·COCOBOD 공시")→"정적 추정·실시간 미연동".
+> - **정직 유지**: CocoaUsdaWidgets 5개는 실 USDA GAIN(IV/GH/CO 2025) SYNCED=정직(무변경). SYNCED 7·STATIC 14 정합.
+> - **검증**: 적대 워크플로우(잔존허위 스캔+독립 정직성 심사)로 8 source 잔존 적발→정정. 최종 grep LIVE 0·난수 0·(LIVE) 0·시계 0·폴링 0. `npm run build` ✓.
+> - **base 데이터 재구축(소실 복구·"진짜 데이터로")**: 정찰 워크플로우로 21위젯 JSON 형상 + 디스크 실측 카탈로그(54값, GAIN MD 5종·Cocoa Barometer·ICCO 앵커) 추출. 재구축 워크플로우(위젯별 작성→**적대적 추적검증** 42에이전트)로 `data/cocoa_market_data.json`(10.6KB) 생성 — 실측(GAIN)/하이브리드/시나리오 분류, 모든 '실측' 주장을 카탈로그 대조(검증자가 가나 24/25=600·CI 1750 등 후속 하향치 정확 적용 확인, 미검증값은 추정 강등). 날조 0.
+> - **배포 안정화**: 파일이 `/data/` gitignore라 라우트를 `fs.readFile`(런타임 번들 누락 위험)→**정적 import `@/data/...`**(빌드타임 번들) 전환. 파생로직 호환 점검 통과(w2 '(F)'·w15 ReferenceLine '2024'·sankey 인덱스·w8 5 name·w6/w16 긴키). 실측 위젯 캡션 5건(w1·w2·w3 source/cardDesc) GAIN 출처·데이터 정합화. `npm run build` ✓.
+> - **상태**: 데이터 force-add 커밋 + main push → Vercel 배포. 21 인라인 위젯 실데이터 렌더(실측 ~7 + 시나리오 ~14, 전부 정직 라벨) + USDA 5 정상.
+
 > 🐮 **2026-05-31 — beef 허위 LIVE 2위젯 정정 (멀티에이전트 감사)** [CC]:
 > - **감사**: 11-에이전트 워크플로우(4축 fan-out→적대적 검증). 고유 16위젯(BeefDashboard WIDGET_MAP은 BeefWidgets 11 재렌더=중복 제거) 중 허위 LIVE **2건**, mock/난수 0.
 > - **백엔드 우수**: 라우트 7개 전부 REAL(usda-fas·comtrade·NASS·FAOSTAT·KAMIS·KOSIS + 동적 isLive). BeefWidgets 11개 정직(W1~8 동적 isLive). KPI 6 synced.

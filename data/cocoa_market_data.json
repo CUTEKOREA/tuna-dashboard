@@ -1,0 +1,841 @@
+{
+  "w1_production_climate": [
+    {
+      "year": "MY19/20",
+      "IvoryCoast": null,
+      "Ghana": null,
+      "CSSVD_Infection_Rate": 12.0
+    },
+    {
+      "year": "MY20/21",
+      "IvoryCoast": null,
+      "Ghana": 1040,
+      "CSSVD_Infection_Rate": 16.5
+    },
+    {
+      "year": "MY21/22",
+      "IvoryCoast": null,
+      "Ghana": null,
+      "CSSVD_Infection_Rate": 22.0
+    },
+    {
+      "year": "MY22/23",
+      "IvoryCoast": 2300,
+      "Ghana": null,
+      "CSSVD_Infection_Rate": 28.5
+    },
+    {
+      "year": "MY23/24",
+      "IvoryCoast": 1760,
+      "Ghana": 531,
+      "CSSVD_Infection_Rate": 35.4
+    },
+    {
+      "year": "MY24/25",
+      "IvoryCoast": 1750,
+      "Ghana": 600,
+      "CSSVD_Infection_Rate": 33.0
+    },
+    {
+      "year": "MY25/26(F)",
+      "IvoryCoast": null,
+      "Ghana": 750,
+      "CSSVD_Infection_Rate": 30.0
+    }
+  ],
+  "w2_price_shock": [
+    {
+      "month": "2024-08",
+      "Price": 7800,
+      "Trend": 7100
+    },
+    {
+      "month": "2024-09",
+      "Price": 7600,
+      "Trend": 7300
+    },
+    {
+      "month": "2024-10",
+      "Price": 7900,
+      "Trend": 7600
+    },
+    {
+      "month": "2024-11",
+      "Price": 9200,
+      "Trend": 8200
+    },
+    {
+      "month": "2024-12",
+      "Price": 10092,
+      "Trend": 8900
+    },
+    {
+      "month": "2025-01",
+      "Price": 9600,
+      "Trend": 9300
+    },
+    {
+      "month": "2025-02",
+      "Price": 8900,
+      "Trend": 9300
+    },
+    {
+      "month": "2025-03",
+      "Price": 8100,
+      "Trend": 9000
+    },
+    {
+      "month": "2025-04",
+      "Price": 8600,
+      "Trend": 8800
+    },
+    {
+      "month": "2025-05",
+      "Price": 9100,
+      "Trend": 8800
+    },
+    {
+      "month": "2025-06",
+      "Price": 9400,
+      "Trend": 8900
+    },
+    {
+      "month": "2025-07 (F)",
+      "Price": 9200,
+      "Trend": 9000
+    },
+    {
+      "month": "2025-08 (F)",
+      "Price": 9000,
+      "Trend": 9000
+    },
+    {
+      "month": "2025-09 (F)",
+      "Price": 8900,
+      "Trend": 8950
+    },
+    {
+      "month": "2025-10 (F)",
+      "Price": 9100,
+      "Trend": 8950
+    },
+    {
+      "month": "2025-11 (F)",
+      "Price": 9000,
+      "Trend": 8950
+    }
+  ],
+  "w3_processing_hubs": [
+    {
+      "name": "네덜란드",
+      "value": 33,
+      "fill": "#78350f"
+    },
+    {
+      "name": "코트디부아르",
+      "value": 14,
+      "fill": "#92400e"
+    },
+    {
+      "name": "인도네시아",
+      "value": 13,
+      "fill": "#b45309"
+    },
+    {
+      "name": "독일",
+      "value": 10,
+      "fill": "#d97706"
+    },
+    {
+      "name": "말레이시아",
+      "value": 8,
+      "fill": "#f59e0b"
+    }
+  ],
+  "w4_derivative_spread": [
+    {
+      "type": "코코아 버터",
+      "volume": 42,
+      "margin": 58
+    },
+    {
+      "type": "코코아 리쿼(매스)",
+      "volume": 30,
+      "margin": 22
+    },
+    {
+      "type": "코코아 케이크",
+      "volume": 35,
+      "margin": -8
+    },
+    {
+      "type": "코코아 파우더",
+      "volume": 48,
+      "margin": -15
+    },
+    {
+      "type": "CBE(대체유)",
+      "volume": 18,
+      "margin": 34
+    }
+  ],
+  "w5_sankey_nexus": {
+    "nodes": [
+      {
+        "name": "코트디부아르"
+      },
+      {
+        "name": "가나"
+      },
+      {
+        "name": "에콰도르"
+      },
+      {
+        "name": "말레이시아"
+      },
+      {
+        "name": "싱가포르"
+      },
+      {
+        "name": "한국"
+      }
+    ],
+    "links": [
+      {
+        "source": 0,
+        "target": 5,
+        "value": 32
+      },
+      {
+        "source": 1,
+        "target": 5,
+        "value": 18
+      },
+      {
+        "source": 2,
+        "target": 5,
+        "value": 10
+      },
+      {
+        "source": 3,
+        "target": 5,
+        "value": 28
+      },
+      {
+        "source": 4,
+        "target": 5,
+        "value": 12
+      }
+    ]
+  },
+  "w6_inventory_burn_rate": [
+    {
+      "timeline": "24Q1",
+      "재고회전일수(DIO)": 92,
+      "CriticalLine": 30,
+      "CompetitorMargin": 18.5
+    },
+    {
+      "timeline": "24Q2",
+      "재고회전일수(DIO)": 84,
+      "CriticalLine": 30,
+      "CompetitorMargin": 17.2
+    },
+    {
+      "timeline": "24Q3",
+      "재고회전일수(DIO)": 73,
+      "CriticalLine": 30,
+      "CompetitorMargin": 15.8
+    },
+    {
+      "timeline": "24Q4",
+      "재고회전일수(DIO)": 61,
+      "CriticalLine": 30,
+      "CompetitorMargin": 14.0
+    },
+    {
+      "timeline": "25Q1",
+      "재고회전일수(DIO)": 52,
+      "CriticalLine": 30,
+      "CompetitorMargin": 12.3
+    },
+    {
+      "timeline": "25Q2",
+      "재고회전일수(DIO)": 44,
+      "CriticalLine": 30,
+      "CompetitorMargin": 10.9
+    },
+    {
+      "timeline": "25Q3",
+      "재고회전일수(DIO)": 37,
+      "CriticalLine": 30,
+      "CompetitorMargin": 9.4
+    },
+    {
+      "timeline": "25Q4",
+      "재고회전일수(DIO)": 28,
+      "CriticalLine": 30,
+      "CompetitorMargin": 7.8
+    }
+  ],
+  "w7_sourcing_scatter": [
+    {
+      "country": "코트디부아르",
+      "cost": 5200,
+      "price": 9000,
+      "volume": 1750,
+      "fill": "#78350f"
+    },
+    {
+      "country": "가나",
+      "cost": 2400,
+      "price": 3100,
+      "volume": 600,
+      "fill": "#92400e"
+    },
+    {
+      "country": "콜롬비아",
+      "cost": 4800,
+      "price": 6700,
+      "volume": 68,
+      "fill": "#b45309"
+    },
+    {
+      "country": "에콰도르",
+      "cost": 4500,
+      "price": 8200,
+      "volume": 430,
+      "fill": "#d97706"
+    },
+    {
+      "country": "나이지리아",
+      "cost": 3200,
+      "price": 7500,
+      "volume": 280,
+      "fill": "#f59e0b"
+    },
+    {
+      "country": "카메룬",
+      "cost": 3000,
+      "price": 7300,
+      "volume": 290,
+      "fill": "#fbbf24"
+    }
+  ],
+  "w8_shrinkflation": [
+    {
+      "name": "기존 원가",
+      "value": 100,
+      "fill": "#78350f"
+    },
+    {
+      "name": "원물가 폭등",
+      "value": 120,
+      "fill": "#dc2626"
+    },
+    {
+      "name": "함량 축소",
+      "value": -30,
+      "fill": "#16a34a"
+    },
+    {
+      "name": "CBE(대체유) 사용",
+      "value": -20,
+      "fill": "#16a34a"
+    },
+    {
+      "name": "최종 B2B 단가",
+      "value": 170,
+      "fill": "#d97706"
+    }
+  ],
+  "w9_upcycling": [
+    {
+      "category": "코코아 허스크(껍질)",
+      "Theobromine_mg_g": 12.5,
+      "Catechin_mg_g": 2.8,
+      "Feed_Utility": 55
+    },
+    {
+      "category": "코코아 펄프(과육)",
+      "Theobromine_mg_g": 1.2,
+      "Catechin_mg_g": 0.9,
+      "Feed_Utility": 30
+    },
+    {
+      "category": "코코아 포드 허스크(꼬투리)",
+      "Theobromine_mg_g": 3.5,
+      "Catechin_mg_g": 1.5,
+      "Feed_Utility": 70
+    },
+    {
+      "category": "카카오닙 부산물(미분쇄)",
+      "Theobromine_mg_g": 18.0,
+      "Catechin_mg_g": 5.2,
+      "Feed_Utility": 40
+    }
+  ],
+  "w10_eudr_compliance": [
+    {
+      "origin": "코트디부아르",
+      "CMS_Registration": 85,
+      "Polygon_Mapped": 72,
+      "Export_Block_Risk": 28
+    },
+    {
+      "origin": "가나",
+      "CMS_Registration": 78,
+      "Polygon_Mapped": 65,
+      "Export_Block_Risk": 35
+    },
+    {
+      "origin": "에콰도르",
+      "CMS_Registration": 55,
+      "Polygon_Mapped": 48,
+      "Export_Block_Risk": 52
+    },
+    {
+      "origin": "콜롬비아",
+      "CMS_Registration": 48,
+      "Polygon_Mapped": 40,
+      "Export_Block_Risk": 58
+    },
+    {
+      "origin": "나이지리아",
+      "CMS_Registration": 30,
+      "Polygon_Mapped": 22,
+      "Export_Block_Risk": 74
+    }
+  ],
+  "w11_farmer_decoupling": [
+    {
+      "quarter": "2024 Q1",
+      "globalPrice": 6500,
+      "farmerPrice": 2152,
+      "FX_Cedi_USD": 13.1
+    },
+    {
+      "quarter": "2024 Q2",
+      "globalPrice": 8200,
+      "farmerPrice": 2400,
+      "FX_Cedi_USD": 14.5
+    },
+    {
+      "quarter": "2024 Q3",
+      "globalPrice": 7600,
+      "farmerPrice": 2700,
+      "FX_Cedi_USD": 15.6
+    },
+    {
+      "quarter": "2024 Q4",
+      "globalPrice": 10092,
+      "farmerPrice": 3100,
+      "FX_Cedi_USD": 14.8
+    },
+    {
+      "quarter": "2025 Q1",
+      "globalPrice": 9800,
+      "farmerPrice": 3100,
+      "FX_Cedi_USD": 14.9
+    },
+    {
+      "quarter": "2025 Q2",
+      "globalPrice": 9400,
+      "farmerPrice": 3100,
+      "FX_Cedi_USD": 15.4
+    },
+    {
+      "quarter": "2025 Q3",
+      "globalPrice": 9100,
+      "farmerPrice": 3200,
+      "FX_Cedi_USD": 12.5
+    },
+    {
+      "quarter": "2025 Q4",
+      "globalPrice": 9000,
+      "farmerPrice": 3200,
+      "FX_Cedi_USD": 11.8
+    }
+  ],
+  "w12_green_premium": [
+    {
+      "route": "직수입",
+      "BaseCost": 9500,
+      "Logistics": 420,
+      "EudrTax": 0
+    },
+    {
+      "route": "네덜란드경유",
+      "BaseCost": 9500,
+      "Logistics": 680,
+      "EudrTax": 760
+    },
+    {
+      "route": "독일경유",
+      "BaseCost": 9500,
+      "Logistics": 720,
+      "EudrTax": 810
+    },
+    {
+      "route": "싱가포르경유",
+      "BaseCost": 9500,
+      "Logistics": 560,
+      "EudrTax": 190
+    }
+  ],
+  "w13_dual_trap": [
+    {
+      "country": "콜롬비아",
+      "eudrRisk": 0.35,
+      "cadmiumLevel": 1.45,
+      "rejectionRate": 18.0,
+      "fill": "#dc2626"
+    },
+    {
+      "country": "에콰도르",
+      "eudrRisk": 0.4,
+      "cadmiumLevel": 1.2,
+      "rejectionRate": 15.0,
+      "fill": "#ea580c"
+    },
+    {
+      "country": "페루",
+      "eudrRisk": 0.45,
+      "cadmiumLevel": 1.05,
+      "rejectionRate": 12.0,
+      "fill": "#f59e0b"
+    },
+    {
+      "country": "코트디부아르",
+      "eudrRisk": 0.78,
+      "cadmiumLevel": 0.25,
+      "rejectionRate": 8.0,
+      "fill": "#78350f"
+    },
+    {
+      "country": "가나",
+      "eudrRisk": 0.62,
+      "cadmiumLevel": 0.2,
+      "rejectionRate": 6.0,
+      "fill": "#a16207"
+    },
+    {
+      "country": "인도네시아",
+      "eudrRisk": 0.55,
+      "cadmiumLevel": 0.35,
+      "rejectionRate": 9.0,
+      "fill": "#16a34a"
+    }
+  ],
+  "w14_mna_radar": [
+    {
+      "target": "가나 CPC (Cocoa Processing Co.)",
+      "capex": 180,
+      "yield": 78,
+      "capacity": 65000,
+      "fill": "#78350f"
+    },
+    {
+      "target": "Niche Cocoa (Ghana)",
+      "capex": 95,
+      "yield": 82,
+      "capacity": 60000,
+      "fill": "#92400e"
+    },
+    {
+      "target": "Cargill 테마항 라인",
+      "capex": 240,
+      "yield": 85,
+      "capacity": 80000,
+      "fill": "#b45309"
+    },
+    {
+      "target": "코트디부아르 Transcao SA",
+      "capex": 130,
+      "yield": 74,
+      "capacity": 50000,
+      "fill": "#a16207"
+    },
+    {
+      "target": "Barry Callebaut 아비장",
+      "capex": 310,
+      "yield": 88,
+      "capacity": 110000,
+      "fill": "#d97706"
+    },
+    {
+      "target": "인니 Bumitangerang",
+      "capex": 70,
+      "yield": 76,
+      "capacity": 40000,
+      "fill": "#ca8a04"
+    }
+  ],
+  "w15_ghana_distressed": [
+    {
+      "year": "2020",
+      "Capacity": 505,
+      "Utilization": 36,
+      "ExportRatio": 80
+    },
+    {
+      "year": "2021",
+      "Capacity": 505,
+      "Utilization": 38,
+      "ExportRatio": 79
+    },
+    {
+      "year": "2022",
+      "Capacity": 505,
+      "Utilization": 40,
+      "ExportRatio": 78
+    },
+    {
+      "year": "2023",
+      "Capacity": 505,
+      "Utilization": 42,
+      "ExportRatio": 77
+    },
+    {
+      "year": "2024",
+      "Capacity": 505,
+      "Utilization": 44,
+      "ExportRatio": 74
+    },
+    {
+      "year": "2025",
+      "Capacity": 560,
+      "Utilization": 54,
+      "ExportRatio": 69
+    },
+    {
+      "year": "2026",
+      "Capacity": 600,
+      "Utilization": 58,
+      "ExportRatio": 65
+    }
+  ],
+  "w16_cbe_rollup": [
+    {
+      "category": "가나 디스트레스 가공사",
+      "Agility": 42,
+      "EBITDA(세전·이자·감가상각비 차감 전 이익)": 9,
+      "CostBurden": 78
+    },
+    {
+      "category": "인니 중견 CBE 압착사",
+      "Agility": 58,
+      "EBITDA(세전·이자·감가상각비 차감 전 이익)": 14,
+      "CostBurden": 61
+    },
+    {
+      "category": "코트디부아르 통합 롤업 타겟",
+      "Agility": 74,
+      "EBITDA(세전·이자·감가상각비 차감 전 이익)": 21,
+      "CostBurden": 44
+    },
+    {
+      "category": "말레이시아 스페셜티 유지사",
+      "Agility": 66,
+      "EBITDA(세전·이자·감가상각비 차감 전 이익)": 17,
+      "CostBurden": 53
+    },
+    {
+      "category": "유럽 프리미엄 브랜드 벤더",
+      "Agility": 51,
+      "EBITDA(세전·이자·감가상각비 차감 전 이익)": 24,
+      "CostBurden": 38
+    }
+  ],
+  "w17_fta_triangle": {
+    "nodes": [
+      {
+        "name": "코트디부아르(원산지)"
+      },
+      {
+        "name": "가나(원산지)"
+      },
+      {
+        "name": "한국 가공허브"
+      },
+      {
+        "name": "일본(역수출)"
+      },
+      {
+        "name": "중국(역수출)"
+      },
+      {
+        "name": "미국(FTA 역수출)"
+      },
+      {
+        "name": "ASEAN(역수출)"
+      }
+    ],
+    "links": [
+      {
+        "source": 0,
+        "target": 2,
+        "value": 42000
+      },
+      {
+        "source": 1,
+        "target": 2,
+        "value": 18000
+      },
+      {
+        "source": 2,
+        "target": 3,
+        "value": 15000
+      },
+      {
+        "source": 2,
+        "target": 4,
+        "value": 21000
+      },
+      {
+        "source": 2,
+        "target": 5,
+        "value": 12000
+      },
+      {
+        "source": 2,
+        "target": 6,
+        "value": 9000
+      }
+    ]
+  },
+  "w18_asia_premium": [
+    {
+      "country": "한국",
+      "PremiumShare": 18,
+      "CBERatio": 42,
+      "Spread": 1250
+    },
+    {
+      "country": "일본",
+      "PremiumShare": 31,
+      "CBERatio": 25,
+      "Spread": 1680
+    },
+    {
+      "country": "중국",
+      "PremiumShare": 12,
+      "CBERatio": 55,
+      "Spread": 1450
+    },
+    {
+      "country": "대만",
+      "PremiumShare": 15,
+      "CBERatio": 48,
+      "Spread": 1120
+    },
+    {
+      "country": "싱가포르",
+      "PremiumShare": 22,
+      "CBERatio": 38,
+      "Spread": 1380
+    }
+  ],
+  "w19_kbeauty_bio": [
+    {
+      "channel": "코코아 폴리페놀 추출물(원료수출)",
+      "Margin": 62,
+      "Growth": 34,
+      "Polyphenol_mgGAE_g": 58.0,
+      "Antioxidant_DPPH": 82.5
+    },
+    {
+      "channel": "코코아버터 화장품 베이스",
+      "Margin": 48,
+      "Growth": 19,
+      "Polyphenol_mgGAE_g": 6.5,
+      "Antioxidant_DPPH": 41.0
+    },
+    {
+      "channel": "카카오닙스 기능성 식품소재",
+      "Margin": 41,
+      "Growth": 26,
+      "Polyphenol_mgGAE_g": 42.0,
+      "Antioxidant_DPPH": 74.0
+    },
+    {
+      "channel": "코코아 부산물(허스크) 바이오소재",
+      "Margin": 55,
+      "Growth": 45,
+      "Polyphenol_mgGAE_g": 33.0,
+      "Antioxidant_DPPH": 68.0
+    },
+    {
+      "channel": "K-뷰티 완제품(앰플·세럼)",
+      "Margin": 71,
+      "Growth": 52,
+      "Polyphenol_mgGAE_g": 12.0,
+      "Antioxidant_DPPH": 55.0
+    }
+  ],
+  "w20_local_confectionery_margin": [
+    {
+      "company": "롯데웰푸드",
+      "costBurden": 72,
+      "cbeRatio": 18,
+      "opMargin": 6.2
+    },
+    {
+      "company": "오리온",
+      "costBurden": 65,
+      "cbeRatio": 12,
+      "opMargin": 15.8
+    },
+    {
+      "company": "해태",
+      "costBurden": 76,
+      "cbeRatio": 25,
+      "opMargin": 4.5
+    }
+  ],
+  "w21_futures_curve_structure": [
+    {
+      "contract": "M1",
+      "Price2024": 10092,
+      "Price2025": 9000,
+      "Price2026": 8050
+    },
+    {
+      "contract": "M3",
+      "Price2024": 9400,
+      "Price2025": 8550,
+      "Price2026": 7800
+    },
+    {
+      "contract": "M5",
+      "Price2024": 8650,
+      "Price2025": 8150,
+      "Price2026": 7600
+    },
+    {
+      "contract": "M7",
+      "Price2024": 8000,
+      "Price2025": 7800,
+      "Price2026": 7450
+    },
+    {
+      "contract": "M9",
+      "Price2024": 7550,
+      "Price2025": 7500,
+      "Price2026": 7350
+    },
+    {
+      "contract": "M12",
+      "Price2024": 7400,
+      "Price2025": 7250,
+      "Price2026": 7300
+    }
+  ],
+  "_meta": {
+    "isLive": false,
+    "status": "STATIC",
+    "source": "위젯별 정적 스냅샷 — USDA GAIN(코트디부아르·가나·콜롬비아 2025)·Cocoa Barometer·ICCO 실측 앵커 + 시나리오 추정. 실시간 API 미연동.",
+    "syncDate": "2026-05-31",
+    "note": "base 데이터 재구축(소실 복구). 위젯별 실측/추정 구분은 각 위젯 source 캡션 참조."
+  }
+}
