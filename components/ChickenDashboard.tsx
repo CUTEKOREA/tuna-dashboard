@@ -68,11 +68,11 @@ const KPI_THEMES = [
 ];
 
 const CHICKEN_KPIS: Record<string, any> = {
-  k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: 'B2B 프랜차이즈 스펙인 적용', telemetry: 'live', syncDate: 'Today 14:00' },
+  k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: 'B2B 프랜차이즈 스펙인 적용', telemetry: 'static', syncDate: '전략 목표' },
   k2: { title: '한국 총 수입량 (2023 역대최대)', value: '23.5만톤', trend: '💰', desc: '관세 할당(TRQ) 최적화 효과', telemetry: 'synced', syncDate: 'KCS -1d' },
-  k3: { title: '태국 선도 계약 마진 스프레드', value: '+22.4%', trend: '🛡️', desc: '중매인 마진(4.3%) 완전 회피', telemetry: 'live', syncDate: 'Realtime' },
+  k3: { title: '태국 선도 계약 마진 스프레드', value: '+22.4%', trend: '🛡️', desc: '중매인 마진(4.3%) 완전 회피', telemetry: 'static', syncDate: '추정 (선도계약)' },
   k4: { title: '고부가가치(가공육) 수입 비중', value: '64.5%', trend: '🍗', desc: '글로벌 1위 허브 태국 독점', telemetry: 'static', syncDate: 'FAO 23Y' },
-  k5: { title: 'CBOT 옥수수 선물 (사료비)', value: '$4.15↓', trend: '📉', desc: '사육두수 헷징 골든크로스', telemetry: 'live', syncDate: 'CBOT -5m' },
+  k5: { title: 'CBOT 옥수수 선물 (사료비)', value: '$4.15↓', trend: '📉', desc: '사육두수 헷징 골든크로스', telemetry: 'static', syncDate: 'CBOT 스냅샷' },
   k6: { title: '수입국 HPAI 청정 진단', value: 'S-Grade', trend: '✨', desc: '태국: 2009년 이후 청정 유지', telemetry: 'synced', syncDate: 'OIE -12h' },
 };
 
@@ -161,8 +161,9 @@ export default function ChickenDashboard() {
           w.sit = ENHANCED_INSIGHTS[w.id].sit;
           w.strat = ENHANCED_INSIGHTS[w.id].strat;
         }
-        w.telemetryStatus = w.id.includes('arbitrage') || w.id.includes('feed') ? 'live' : 'synced';
-        w.syncDate = w.telemetryStatus === 'live' ? 'Realtime' : 'KCS -1d';
+        // 정직 SYNCED: arbitrage·feed 라우트도 정적 스냅샷(실시간 외부 fetch 없음) — 휴리스틱 'live' 승격 제거
+        w.telemetryStatus = 'synced';
+        w.syncDate = 'KCS -1d';
         return w;
       });
       
@@ -173,8 +174,8 @@ export default function ChickenDashboard() {
           subtitle: '오징어/새우 어획량 급감에 따른 육계 반사이익 마진',
           chartType: 'Composed',
           xKey: 'month',
-          telemetryStatus: 'live',
-          syncDate: 'Realtime',
+          telemetryStatus: 'static',
+          syncDate: 'FAOSTAT·KCS 스냅샷',
           sit: `<div>
 <p>"대체 단백질 가격 스프레드(Substitute Protein Spread)"란 어종·축종 간 가격 elasticity의 cross-section. 수산물 단가 급등 시 소비자는 자동으로 닭고기로 substitution — 닭고기는 수산물 단가의 mirror image instrument.</p>
 <p>실측: <strong>오징어·새우 어획량 감소로 글로벌 수산 단백질 단가 전년比 15~20% 급등 → 닭고기 substitution 수요 집중 구간. 5~8% 추가 마진 capture 가능 윈도우</strong>. 수산 위기는 닭고기 vendor의 windfall.</p>
@@ -231,8 +232,8 @@ export default function ChickenDashboard() {
           subtitle: '고환율 장기화에 따른 육계 농가 원가 변동 What-If',
           chartType: 'Composed',
           xKey: 'scenario',
-          telemetryStatus: 'live',
-          syncDate: 'Realtime',
+          telemetryStatus: 'static',
+          syncDate: 'What-If 시나리오',
           sit: `<div>
 <p>"What-if 시뮬레이션"이란 환율을 외생 변수로 두고 사료비·생산량 변동을 시나리오별로 정량 예측하는 risk model. 영세 농가는 환율 50원 변동에도 줄도산 가능 — 본질적으로 currency-sensitive 산업.</p>
 <p>실측: <strong>원/달러 환율 1,400원 돌파 시 수입 사료비 폭등 → 영세 농가 줄도산 + 국내 생산량 10% 감소 우려. Bull(1,400) 시나리오에서 원가 +12.8%, Extreme(1,450)에서 +18.5%</strong>. 환율은 한국 닭고기 산업의 single biggest external risk.</p>
@@ -389,13 +390,13 @@ export default function ChickenDashboard() {
                 🐔 육계 글로벌 밸류체인 장악 대시보드
               </h1>
               <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>
-                [V4.2 S-Grade] 실시간 API 기반 수출입 패권 변동 및 차익거래 마진 스프레드 분석
+                [V4.2 S-Grade] USDA FAS 실연동 + KCS·FAOSTAT 동기화 데이터 기반 수출입·차익거래 분석
               </p>
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
             <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: '1px solid rgba(255,255,255,0.05)', borderRadius:'8px', color:'#94a3b8' }}>
-              <span style={{ color:'var(--color-warning)' }}>PEF Command Center:</span> Live API Connected
+              <span style={{ color:'var(--color-warning)' }}>PEF Command Center:</span> USDA FAS 실연동 · 그 외 동기화/정적
             </div>
           </div>
         </div>

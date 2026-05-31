@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🟠 **2026-05-31 — chicken 허위 LIVE 10위젯+2 정정 (멀티에이전트 감사)** [CC]:
+> - **감사**: 17-에이전트 워크플로우(3축 fan-out→적대적 검증→종합). 24위젯 중 **허위 LIVE 10건(42%)** 확정. mock/난수/simulated URL **0건**(데이터 자체는 정직, telemetry 라벨만 과장).
+> - **정정 (ChickenDashboard.tsx)**: ① line164 휴리스틱 `id.includes('arbitrage'/'feed')→'live'` 제거→전량 'synced'(arbitrage·feed 위젯 해소) ② NEW_WIDGETS protein_spread·fx_simulator `telemetryStatus:'live'`→'static' ③ KPI k1·k3·k5 `telemetry:'live'`→'static' ④ 헤더 "Live API Connected"·"실시간 API 기반"→정직 표기(USDA FAS 실연동 1종 명시).
+> - **정정 (컴포넌트 6종)**: ThaiInsightsA·B·Parts·Empirical(arb+eggs)·Corporate `status:'LIVE'`→'SYNCED'(11건). Empirical cardDesc "실시간 트래킹"→"트래킹".
+> - **정직 유지**: usda-fas 라우트만 실호출(api.fas.usda.gov + 동적 isLive)=L-10·L-12 모범. 9개 정적 라우트는 LIVE 표기 없어 무변경.
+> - **검증**: `npm run build` ✓ · 위젯 LIVE 0(line467 매퍼 타입만 잔존, 실행 안 됨). **로컬 커밋, 배포 대기**.
+
 > 🥜 **2026-05-31 — /cashew 잔여 3위젯 출처 정직화 (워크플로우 검증으로 환각 차단)** [CC]:
 > - d_vietnam_paradox 실측 교체에 이어, 나머지 3위젯(africa_processing·macro_sensitivity·cnsl_esg) 실측화 시도 → **멀티에이전트 워크플로우(리서치→적대적 검증)**.
 > - **검증 핵심 발견**: 웹 리서치가 신뢰 불가 — WebSearch가 ACA 인용문('10%→30%') **환각 생성**, ComCashew/MarketResearchFuture 출처 **오귀속**, CNSL 20/70/10은 상충 보고서 짜깁기(한 출처는 "대표용일 뿐" 면책). 3개 모두 권위 단일 출처 부재 → **환각 수치 주입을 검증이 차단**(writer≠reviewer 가치).

@@ -84,7 +84,7 @@ export function InsightRiskNexus() {
       iconColor="#ef4444"
       pillar="S3"
       cardDesc="해상운임(10일 vs 56일)과 HPAI 청정 지위에서 태국이 우위. 중국산 덤핑만이 유일한 경계 대상"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       chartHeight={320}
       chart={
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={riskRadarData}>

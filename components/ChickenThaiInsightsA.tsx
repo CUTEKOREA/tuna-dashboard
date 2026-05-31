@@ -37,7 +37,7 @@ export function InsightTimeGapArbitrage() {
       iconColor="#ef4444"
       pillar="S4"
       cardDesc="브라질 HPAI 수입금지(5~7월) 기간 국내 도매가 +10% 폭등 — 6~12개월 타임갭이 태국산 전환의 핵심 차익거래 윈도우"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       chartHeight={320}
       chart={
         <ComposedChart data={arbitrageData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>

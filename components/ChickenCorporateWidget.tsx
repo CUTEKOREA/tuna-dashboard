@@ -73,7 +73,7 @@ export default function ChickenCorporateWidget() {
       iconColor="#ec4899"
       pillar="S2"
       cardDesc={data.subtitle}
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{ situation: data.sit, actionPlan: data.strat, source: data.source }}
     />

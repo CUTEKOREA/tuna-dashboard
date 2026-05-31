@@ -49,8 +49,8 @@ export default function ChickenEmpiricalInsights() {
           icon={BarChart2}
           iconColor="var(--color-success)"
           pillar="S4"
-          cardDesc="국내 vs 브라질 vs 태국 도매가 스프레드 실시간 트래킹"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          cardDesc="국내 vs 브라질 vs 태국 도매가 스프레드 트래킹"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
           chartHeight={240}
           chart={
             <LineChart data={arbData.data}>
@@ -99,7 +99,7 @@ export default function ChickenEmpiricalInsights() {
           iconColor="#ec4899"
           pillar="S4"
           cardDesc="액상·건조 계란 수입 vs 신선란 도매가 변동성"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
           chartHeight={280}
           chart={
             <ComposedChart data={eggsData.data}>
