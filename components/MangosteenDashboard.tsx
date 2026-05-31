@@ -208,13 +208,13 @@ export default function MangosteenDashboard() {
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '8px' }}>
               {[
-                { name: '관세청 API', desc: '수출입 물동량', status: 'live' },
-                { name: '도소매가 API', desc: '국내 단가 지수', status: 'live' },
-                { name: '식물검역 API', desc: '통관 및 규제', status: 'live' },
-                { name: '글로벌 무역 API', desc: '전 세계 교역', status: 'live' },
-                { name: '해상운임 API', desc: '물류 비용', status: 'live' },
-                { name: '기상청 API', 기상: '엘니뇨 및 기후', status: 'live' },
-                { name: '농업관측 API', desc: '산지 동향', status: 'live' },
+                { name: '관세청 API', desc: '수출입 물동량' },
+                { name: '도소매가 API', desc: '국내 단가 지수' },
+                { name: '식물검역 API', desc: '통관 및 규제' },
+                { name: '글로벌 무역 API', desc: '전 세계 교역' },
+                { name: '해상운임 API', desc: '물류 비용' },
+                { name: '기상청 API', 기상: '엘니뇨 및 기후' },
+                { name: '농업관측 API', desc: '산지 동향' },
               ].map((net, i) => (
                 <div key={i} style={{ 
                   background: '#282828', borderRadius: '16px', 

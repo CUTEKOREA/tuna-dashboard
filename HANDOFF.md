@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🟣 **2026-05-31 — mangosteen API 패널 dead 'live' 7건 제거** [CC]:
+> - **감사**: /mangosteen 14위젯 전부 STATIC/SYNCED(정직), KPI는 [BASELINE]/[VERIFIED] 정직 구분, mock 0. 사용자 노출 허위 LIVE 없음.
+> - **유일 이슈**: "API 연결 상태" 패널 배열이 7개 API에 `status:'live'` 하드코딩. 단 렌더(net.status 미사용)에 미표시 = dead code. dashboard 라우트 7 fetch 중 KAMIS·NOAA만 실 URL, 나머지(scfi·ecos/sim·fda/sim·uncomtrade/sim)는 simulated→fallback.
+> - **정정**: dead `status:'live'` 7건 제거(L-09 grep 오탐·오해 방지). 데이터 위젯·KPI는 정직하므로 무변경.
+> - **검증**: `npm run build` ✓ · 패널 status:'live' 0. **로컬 커밋, 배포 대기**.
+
 > 🥜 **2026-05-31 — /cashew 허위 LIVE 4건 정정 (이전 감사 누락분)** [CC]:
 > - **감사**: /cashew=CashewStrategy(43위젯=cashew_data.json 39 STATIC·정직 + 라우트 주입 4). 39개는 sources·reliability 보유 STATIC.
 > - **발견**: 라우트 주입 4위젯(d_vietnam_paradox S1·d_africa_processing S2·d_macro_sensitivity S3·d_cnsl_esg S5)이 `/api/cashew` 하드코딩 데이터(라우트 _metadata는 isLive:false·STATIC 정직)인데 **CashewStrategy가 `telemetryStatus:"LIVE"` 하드코딩**(428·457·487·519) → mock+허위LIVE. **2026-05-29 감사가 라우트는 고쳤으나 컴포넌트 LIVE 배지 4건 누락**.
