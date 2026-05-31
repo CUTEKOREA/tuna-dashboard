@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🇹🇭 **2026-05-31 — /seasia-oem 감사 + 출처/배지 정직화** [CC]:
+> - **감사**: 총 20위젯(벤더 카드 17 + 무역통계 차트 3). **허위 LIVE 0·mock 0** — 무역통계는 UN Comtrade 실측(소수점·공식 HS 라벨), 벤더는 실존 캔공장(KTCFOOD·Edison 등). 단 20개 전부 TelemetryBadge·출처 없음(A-02/W-04).
+> - **정정(①)**: 무역통계 3위젯에 `TelemetryBadge(SYNCED+UN Comtrade 날짜)`+출처 캡션, 벤더 탭에 출처·실사상태(meetingData 동적 카운트) 고지. 빌드 ✓. **로컬 커밋, 배포 대기**.
+> - **②라이브 검증 결론**: Comtrade 리버스엔지니어링 완료 — 연도별(냉동수입 clean·통조림수출 partner2 합으로 갭복원)·품목별은 LIVE 가능, **수출대상국 파이는 v1 한계(per-destination 안 떨어짐·partner2 이름 null·컨사인먼트 잡음)로 막힘**. 기존 JSON 통조림 74,357t은 실제 44.5만t의 과소 스냅샷이었음. 무리한 LIVE = 깨진 파이 → SYNCED 유지가 정직. (full live는 partner 코드맵+rate-limit 캐시 별도 작업)
+
 > 🌿 **2026-05-31 — cassava 대시보드 허위 LIVE+mock 3건 정직화 + 휴리스틱 제거** [CC]:
 > - **감사**: /cassava 13위젯 중 허위 LIVE+mock 3건(w_early_warning·w_arbitrage·w_esg). 비-w_ 10개는 cassava_real_data_v1.json(실 FAOSTAT) SYNCED로 정직.
 > - **근본 원인**: ①3개 enrichment 라우트가 실 API 미연동(주석 "In production would fetch")인 채 하드코딩 데이터를 `source: '...API (Live)'`로 표기, ②렌더러 line 398 `liveStatus = w.id.startsWith('w_') || source.includes('Live') ? 'LIVE'` 휴리스틱이 LIVE 배지 부여. (+P-03 위반: Strong Buy·Actionable Insight·Premium·Execution Recommended)

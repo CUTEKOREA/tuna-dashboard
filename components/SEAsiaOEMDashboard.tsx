@@ -49,6 +49,9 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
         <div>
           <h2 className={styles.title}>SE Asia OEM Intelligence</h2>
           <p className={styles.subtitle}>태국 및 베트남 참치 통조림/가공업체 심층 프로필 및 전략적 파트너십 벤더 풀</p>
+          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0.4rem 0 0 0', maxWidth: '720px', lineHeight: 1.4 }}>
+            출처: 공개 기업정보·인증현황(US FDA FCE·EU Code·MSC) 기반 큐레이션 — {vendorsData.filter((v: any) => v.meetingData).length}개사 현장 실사 완료, 나머지는 공개정보 기준(미실사). 생산능력·인증은 시점에 따라 변동 가능.
+          </p>
         </div>
         <div style={{ display: 'flex', gap: '8px', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
           <button 

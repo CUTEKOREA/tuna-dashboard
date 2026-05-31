@@ -18,6 +18,7 @@ import { Ship, TrendingUp, Globe, ShoppingCart, Info, Factory } from 'lucide-rea
 import { motion } from 'framer-motion';
 import tradeData from '../data/thai_tuna_trade_summary.json';
 import TakeawayBox from './TakeawayBox';
+import TelemetryBadge from './TelemetryBadge';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
@@ -69,7 +70,9 @@ export default React.memo(function ThaiTunaTradeStats() {
               <TrendingUp size={20} color="var(--color-info)" />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>태국 참치 무역량 추이 (2019-2023)</h3>
+            <div style={{ marginLeft: 'auto' }}><TelemetryBadge status="SYNCED" syncDate="UN Comtrade 2019–23" /></div>
           </div>
+          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국(reporter) 참치 HS1604·0303 연간 수출입 (2019–2023 스냅샷, 단위: 톤)</p>
           
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -109,7 +112,9 @@ export default React.memo(function ThaiTunaTradeStats() {
               <Factory size={20} color="var(--color-success)" />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>주요 수출 품목 (2023)</h3>
+            <div style={{ marginLeft: 'auto' }}><TelemetryBadge status="SYNCED" syncDate="UN Comtrade 2023" /></div>
           </div>
+          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국 참치 수출 품목(HS)별 2023 스냅샷 (단위: 톤)</p>
 
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -158,7 +163,9 @@ export default React.memo(function ThaiTunaTradeStats() {
               <Globe size={20} color="var(--color-warning)" />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc', margin: 0 }}>주요 수출 대상국 (2023)</h3>
+            <div style={{ marginLeft: 'auto' }}><TelemetryBadge status="SYNCED" syncDate="UN Comtrade 2023" /></div>
           </div>
+          <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0 0 1.2rem 0' }}>출처: UN Comtrade — 태국 참치 수출 대상국별 2023 스냅샷 (단위: 톤)</p>
 
           <div style={{ height: '300px', width: '100%' }}>
             <SafeResponsiveContainer width="100%" height="100%">
