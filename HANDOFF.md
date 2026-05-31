@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌿 **2026-05-31 — cassava 대시보드 허위 LIVE+mock 3건 정직화 + 휴리스틱 제거** [CC]:
+> - **감사**: /cassava 13위젯 중 허위 LIVE+mock 3건(w_early_warning·w_arbitrage·w_esg). 비-w_ 10개는 cassava_real_data_v1.json(실 FAOSTAT) SYNCED로 정직.
+> - **근본 원인**: ①3개 enrichment 라우트가 실 API 미연동(주석 "In production would fetch")인 채 하드코딩 데이터를 `source: '...API (Live)'`로 표기, ②렌더러 line 398 `liveStatus = w.id.startsWith('w_') || source.includes('Live') ? 'LIVE'` 휴리스틱이 LIVE 배지 부여. (+P-03 위반: Strong Buy·Actionable Insight·Premium·Execution Recommended)
+> - **정정**: 3개 라우트 → 정직 STATIC 모델(추정), `isLive:false`, source 'Live' 제거(→ '정적 추정'), sit/strat의 P-03 과장수식어 제거, '5월(Live)'→'5월'. 렌더러 line 398 → `w.isLive === true ? 'LIVE':'SYNCED'`(휴리스틱 폐기).
+> - **검증**: `npm run build` ✓ · 거짓 Live 0·isLive:false 3·P-03 0·휴리스틱 0. **로컬 커밋, 배포 대기**.
+
 > 🐟 **2026-05-31 — salmon 대시보드 하드코딩 LIVE 2건 동적화** [CC]:
 > - **감사**: /salmon 74위젯(JSON 57 + 독립컴포넌트 17) 중 하드코딩 LIVE 2건. JSON 57 clean(isLive 0·mock 0), 3라우트 isLive 동적(정직), 14컴포넌트 clean(이전 P0 'Climate·DoubleMateriality·Logistics·NTBRadar 허위LIVE 청산' 확인), GlobalSupplyPrice는 정직 시나리오 시뮬레이션.
 > - **2건 동적화**:

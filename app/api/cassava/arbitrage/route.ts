@@ -1,25 +1,17 @@
 import { NextResponse } from 'next/server';
 
+// 정직 STATIC: CBOT 밀 시세·KCS 타피오카 FOB 기반 HQCF 대체 경제성 모델(추정).
+// 외부 실시간 API 미연동 → isLive:false, source에서 'Live' 표기 제거.
 export async function GET() {
   try {
-    // 2. Live Data Fetching Simulation from CBOT and KCS
-    // Real implementation would fetch from CBOT for Corn/Wheat futures and KCS for Tapioca FOB.
-    
-    // Simulate current market prices ($/ton)
-    const wheatPriceCBOT = 245; // Live CBOT Wheat
-    const tapiocaFOB = 515;     // Live KCS Tapioca Starch FOB
-    const hqcfProductionCost = 310; // HQCF Production Cost in Ghana
-    
-    const hqcfMarketPrice = 550; // Wholesale price in Africa
-    const wheatFlourWholesale = 850; // Imported wheat flour price in Africa
-    
-    // Calculate Arbitrage Margin
+    const wheatFlourWholesale = 850; // 아프리카 수입 밀가루 도매가 추정 ($/t)
+    const hqcfMarketPrice = 550;     // HQCF 도매가 추정 ($/t)
     const hqcfSavingsPerTon = wheatFlourWholesale - hqcfMarketPrice;
-    
+
     const payload = {
       id: 'w_arbitrage',
       title: '글로벌 곡물 차익거래 & HQCF 대체율 계산기',
-      subtitle: 'CBOT 밀 선물 vs KCS 타피오카 (수입 밀가루 대체 경제성)',
+      subtitle: 'CBOT 밀 선물 vs KCS 타피오카 (수입 밀가루 대체 경제성 모델)',
       chartType: 'Composed',
       xKey: 'scenario',
       bars: [
@@ -35,10 +27,11 @@ export async function GET() {
         { scenario: 'HQCF 20% 대체', wheatCost: 400, hqcfCost: 340, savings: 60 },
         { scenario: 'HQCF 35% 대체', wheatCost: 400, hqcfCost: 295, savings: 105 },
       ],
-      sit: `[Live CBOT/KCS Spread] 수입 밀가루 도매가($${wheatFlourWholesale}/t) 대비 HQCF($${hqcfMarketPrice}/t) 활용 시 톤당 $${hqcfSavingsPerTon}의 비용(OPEX)이 절감되며 구조적 알파(Alpha)가 창출됩니다.`,
-      strat: `**[Actionable Insight]** 서아프리카(가나, 나이지리아) 제빵 시장에서 HQCF 20% 의무 혼합 법안 통과 시, 연간 최소 $60M 이상의 수입 대체 효과가 발생합니다. 즉각적인 CAPEX 투자가 타당합니다 (Strong Buy).`,
-      reliability: 95,
-      source: 'CBOT Wheat Futures & KCS Trade Data API (Live)'
+      sit: `[HQCF 대체 경제성] 수입 밀가루 도매가($${wheatFlourWholesale}/t) 대비 HQCF($${hqcfMarketPrice}/t) 활용 시 톤당 $${hqcfSavingsPerTon}의 비용(OPEX)이 절감되는 구조적 원가 우위가 추정됩니다.`,
+      strat: `서아프리카(가나·나이지리아) 제빵 시장에서 HQCF 20% 의무 혼합 법안이 통과되면 연간 약 $60M 규모의 수입 대체 효과가 추정되므로, 현지 HQCF 가공 CAPEX 투자의 타당성을 우선 검토하십시오.`,
+      reliability: 80,
+      isLive: false,
+      source: 'CBOT 밀 선물·KCS 타피오카 FOB 기반 HQCF 대체 경제성 모델 (정적 추정)'
     };
 
     return NextResponse.json(payload);

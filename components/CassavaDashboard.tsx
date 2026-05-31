@@ -395,7 +395,7 @@ export default function CassavaDashboard() {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[idx % ACCENT_COLORS.length] || sec.color;
               const isLastOdd = (sec.widgets.length % 2 !== 0) && (idx === sec.widgets.length - 1);
-              const liveStatus = w.id.startsWith('w_') || w.source?.includes('Live') ? 'LIVE' : 'SYNCED';
+              const liveStatus = w.isLive === true ? 'LIVE' : 'SYNCED';
               return (
                 <div key={w.id} style={{ gridColumn: isLastOdd ? '1 / -1' : 'auto' }}>
                   <WidgetCard
