@@ -424,7 +424,7 @@ export default function CashewStrategy() {
 
             {sec.id === 'S1' && d_vietnam_paradox && renderCashewWidget({
               icon: Globe, title: "베트남 캐슈 원물 수입 의존도 리스크 (역설)",
-              subtitle: "베트남 수출량 대비 원물(RCN) 수입량 격차",
+              subtitle: "커널 수출량 대비 원물(RCN) 수입량 격차 (만톤, UN Comtrade 실측)",
               iconColor: "var(--color-success)", pillar: "S1", telemetryStatus: "STATIC",
               chart: (
                 <AreaChart data={d_vietnam_paradox} margin={{top:5, right:10, left:-10, bottom:10}}>
@@ -440,7 +440,7 @@ export default function CashewStrategy() {
               situation: (
                 <div>
                   <p>"RCN(Raw Cashew Nuts, 미가공 원물 캐슈)"이란 껍질·CNSL(외피 액체)이 그대로 붙은 1차 농산물 형태의 캐슈넛. 베트남은 글로벌 캐슈넛 가공 점유율 65%로 압도적 1위이나 자체 산지 부족 → RCN을 서아프리카·인도에서 수입해 가공·수출하는 trader-processor 모델. 산지(supply)에서 가공국까지의 마진 의존도가 vendor P&L의 main driver.</p>
-                  <p>실측: <strong>베트남 캐슈넛 수출 2024 $4.2B (역대 최고) but RCN 수입 의존도 2018 65% → 2025 92% 폭증. 산지(코트디부아르) 단가 +28% 상승 시 베트남 trader 마진 -18%p 자동 압축 → 가공국 마진 sandwich 함정</strong>.</p>
+                  <p>실측(UN Comtrade): <strong>2023년 베트남 RCN(원물) 수입 237만톤 vs 커널 수출 48만톤 — 약 4.9배 격차. 커널 1톤에 RCN 약 4톤이 필요한 구조라 산지 원물가가 가공국 마진을 직접 좌우. 코트디부아르 단가 상승 시 베트남 trader 마진이 자동 압축되는 sandwich 함정</strong>.</p>
                 </div>
               ),
               actionPlan: (
@@ -449,7 +449,7 @@ export default function CashewStrategy() {
                   <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 RCN 산지 contract farming 또는 직매입 5년 LTA 체결 — 베트남 trader 중간 마진 +22%p 회피 ② 서아프리카 현지에 1차 가공(껍질 제거·sorting) 거점 신설 (capex $8~12M) — Origin Grinding 원산지 가공 trend lock-in ③ 한국 평택·인천에 2차 가공·소포장 라인 — "산지 직 → 한국 도착" 단축 supply chain으로 베트남 sandwich risk 영구 차단, valuation +1.8x.</p>
                 </div>
               ),
-              source: "베트남 해관총서(VINACAS) + ACA 아프리카 캐슈 연맹 보고서 + UN Comtrade HS 0801.32"
+              source: "UN Comtrade HS0801.31(RCN 수입)·0801.32(커널 수출) 실측 2021–23 + ACA 아프리카 캐슈 연맹"
             })}
             {sec.id === 'S2' && d_africa_processing && renderCashewWidget({
               icon: Factory, title: "서아프리카 현지 가공 비율 및 B2B 직공급 전환율",

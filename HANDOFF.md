@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🥜 **2026-05-31 — /cashew d_vietnam_paradox mock→UN Comtrade 실측 교체** [CC]:
+> - 직전 cashew 허위LIVE 4건 STATIC 정정에 이어, mock 데이터 자체를 실데이터로. d_vietnam_paradox(베트남 캐슈 역설)의 하드코딩(수출 57·수입 280 등)을 **UN Comtrade 실측 교체**: HS080131(in-shell RCN 수입)·080132(shelled 커널 수출), reporter 704, partner2=0·mot=0 클린집계, 만톤. 2021 50.7/253.5·2022 42.9/167·2023 48.2/237. (2024 베트남 미보고 제외)
+> - route 주석·_metadata source·위젯 subtitle/source/SIT 실측 정합(2023 수입237 vs 수출48 ≈4.9배). 연1회 갱신이라 STATIC 정직 유지(라이브 라우트 불요).
+> - **잔여 3 위젯**(d_africa_processing·d_macro_sensitivity·d_cnsl_esg)은 라이브 API 없는 **업계 추정/시나리오** — 출처 명시 STATIC 유지(날조 아님, 정밀 실측화는 별도 리서치). 빌드 ✓.
+
 > 🟣 **2026-05-31 — mangosteen API 패널 dead 'live' 7건 제거** [CC]:
 > - **감사**: /mangosteen 14위젯 전부 STATIC/SYNCED(정직), KPI는 [BASELINE]/[VERIFIED] 정직 구분, mock 0. 사용자 노출 허위 LIVE 없음.
 > - **유일 이슈**: "API 연결 상태" 패널 배열이 7개 API에 `status:'live'` 하드코딩. 단 렌더(net.status 미사용)에 미표시 = dead code. dashboard 라우트 7 fetch 중 KAMIS·NOAA만 실 URL, 나머지(scfi·ecos/sim·fda/sim·uncomtrade/sim)는 simulated→fallback.

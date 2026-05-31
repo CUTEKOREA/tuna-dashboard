@@ -9,16 +9,16 @@ export async function GET() {
     const fileContents = fs.readFileSync(dataPath, 'utf8');
     const data = JSON.parse(fileContents);
 
-    // 2. 신규 위젯용 정적 fallback 데이터 오버라이드 (라이브 API 미구축 — L-09 정직 표기)
-    // 실제 라이브화 시 VINACAS/USDA FAS/관세청 API 연동 필요
+    // 2. 신규 위젯 데이터 오버라이드 — 위젯1=UN Comtrade 실측, 위젯2~4=업계 추정/시나리오 (모두 정적, L-09 정직 표기)
+    // 위젯2~4(아프리카 가공률·마진민감도·CNSL ESG)는 라이브 API 부재 업계 지표 → 출처 명시 STATIC 유지
     
-    // [신규 위젯 1] 베트남 캐슈 가공 역설 (RCN 수입 갭)
+    // [위젯 1] 베트남 캐슈 가공 역설 — UN Comtrade 실측 (만톤)
+    // HS 080131(in-shell RCN, flowCode=M 수입) · 080132(shelled 커널, flowCode=X 수출), reporter 704.
+    // partner2=0·mot=0 클린 집계. 2024는 베트남 미보고로 제외. 연 1회 갱신 수동 스냅샷.
     data.d_vietnam_paradox = [
-      { year: "2021", exportVolume: 57, importVolume: 280 },
-      { year: "2022", exportVolume: 51, importVolume: 190 },
-      { year: "2023", exportVolume: 64, importVolume: 270 },
-      { year: "2024", exportVolume: 70, importVolume: 320 },
-      { year: "2025(E)", exportVolume: 75, importVolume: 360 }
+      { year: "2021", exportVolume: 50.7, importVolume: 253.5 },
+      { year: "2022", exportVolume: 42.9, importVolume: 167.0 },
+      { year: "2023", exportVolume: 48.2, importVolume: 237.0 }
     ];
 
     // [신규 위젯 2] 서아프리카 현지 가공 및 직공급 밸류업
@@ -55,7 +55,7 @@ export async function GET() {
     data._metadata = {
       isLive: false,
       status: "STATIC",
-      source: "정적 JSON + 4개 위젯 fallback 오버라이드 (라이브 API 미구축)",
+      source: "정적 JSON + d_vietnam_paradox=UN Comtrade 실측(2021-23, 만톤) + 위젯3종=업계 추정(ACA·시나리오)",
       syncDate: "2026-05-29",
       lastUpdated: new Date().toISOString(),
     };
