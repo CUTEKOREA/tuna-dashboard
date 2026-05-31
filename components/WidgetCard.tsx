@@ -59,7 +59,9 @@ export interface TakeawayProps {
 
 export interface WidgetCardProps {
   // === 헤더 ===
+  id?: string;               // 위젯 고유 ID (W-MSC01 등) — 선택
   title: string;
+  description?: string;      // title 아래 보조 설명 — 선택
   icon?: LucideIcon;
   iconColor?: string;
   termTooltip?: { term: string; description: string };
@@ -75,6 +77,7 @@ export interface WidgetCardProps {
   chartHeight?: number;
   kpiPanel?: KpiItem[];
   customBody?: React.ReactNode;     // chart로 표현 안 되는 인터랙티브 UI (list/search/탭)
+  children?: React.ReactNode;       // customBody 대안 — children으로 본문 직접 전달
 
   // === Takeaway ===
   takeaway: TakeawayProps;
@@ -132,7 +135,9 @@ function KpiPanel({ items }: { items: KpiItem[] }) {
 
 export default function WidgetCard(props: WidgetCardProps) {
   const {
+    id,
     title,
+    description,
     icon: Icon,
     iconColor = '#38bdf8',
     termTooltip,
@@ -144,6 +149,7 @@ export default function WidgetCard(props: WidgetCardProps) {
     chartHeight = 280,
     kpiPanel,
     customBody,
+    children,
     takeaway,
   } = props;
 
@@ -161,7 +167,7 @@ export default function WidgetCard(props: WidgetCardProps) {
   }
 
   return (
-    <div className={styles.insightCard} data-pillar={pillar}>
+    <div className={styles.insightCard} data-pillar={pillar} data-widget-id={id}>
       <div className={styles.cardHeader} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3 className={styles.cardTitle} style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
@@ -176,6 +182,11 @@ export default function WidgetCard(props: WidgetCardProps) {
               </span>
             )}
           </h3>
+          {description && (
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.78rem', color: '#64748b', lineHeight: 1.4 }}>
+              {description}
+            </p>
+          )}
           {cardDesc && (
             <p style={{ margin: '6px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
               {cardDesc}
@@ -195,6 +206,7 @@ export default function WidgetCard(props: WidgetCardProps) {
         )}
         {kpiPanel && kpiPanel.length > 0 && <KpiPanel items={kpiPanel} />}
         {customBody}
+        {children}
       </div>
 
       <div style={{ padding: '0 20px 20px 20px' }}>

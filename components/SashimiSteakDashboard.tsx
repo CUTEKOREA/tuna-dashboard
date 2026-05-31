@@ -9,11 +9,15 @@ import {
   Anchor,
   DollarSign,
   AlertTriangle,
+  Flag,
+  Target,
+  Factory,
+  Compass,
 } from 'lucide-react';
 import TelemetryBadge from './TelemetryBadge';
 import ErrorBoundary from './ErrorBoundary';
 
-/* ─── New Sashimi/Steak Widgets — dynamic imports ─── */
+/* ─── Existing Sashimi Widgets ─── */
 const SasTriadDynamics = dynamic(() => import('./sashimi-strategy/SasTriadDynamics'), { ssr: false });
 const SasMarketKPIs = dynamic(() => import('./sashimi-strategy/SasMarketKPIs'), { ssr: false });
 const SasSupplyChainSplit = dynamic(() => import('./sashimi-strategy/SasSupplyChainSplit'), { ssr: false });
@@ -27,35 +31,78 @@ const SasHedonicPriceFactors = dynamic(() => import('./sashimi-strategy/SasHedon
 const SasQuotaVolatility = dynamic(() => import('./sashimi-strategy/SasQuotaVolatility'), { ssr: false });
 const SasTraceabilityRatings = dynamic(() => import('./sashimi-strategy/SasTraceabilityRatings'), { ssr: false });
 
-/* ================================================================
-   Section Configuration
-================================================================ */
+/* ─── NEW Sashimi Widgets ─── */
+const SasKoreaProductionStructure = dynamic(() => import('./sashimi-strategy/SasKoreaProductionStructure'), { ssr: false });
+const SasKoreaJapanDependency = dynamic(() => import('./sashimi-strategy/SasKoreaJapanDependency'), { ssr: false });
+const SasKoreaMajorCompanies = dynamic(() => import('./sashimi-strategy/SasKoreaMajorCompanies'), { ssr: false });
+const SasKoreaFoodserviceD2C = dynamic(() => import('./sashimi-strategy/SasKoreaFoodserviceD2C'), { ssr: false });
+const SasKoreaMedBftImports = dynamic(() => import('./sashimi-strategy/SasKoreaMedBftImports'), { ssr: false });
+const SasFourCountryComparison = dynamic(() => import('./sashimi-strategy/SasFourCountryComparison'), { ssr: false });
+const SasJapanDemandDecline = dynamic(() => import('./sashimi-strategy/SasJapanDemandDecline'), { ssr: false });
+const SasKoreaTradeDecade = dynamic(() => import('./sashimi-strategy/SasKoreaTradeDecade'), { ssr: false });
+const SasGlobalHotspots = dynamic(() => import('./sashimi-strategy/SasGlobalHotspots'), { ssr: false });
+const SasSpeciesPriceTier = dynamic(() => import('./sashimi-strategy/SasSpeciesPriceTier'), { ssr: false });
+const SasExportPartnerStrategy = dynamic(() => import('./sashimi-strategy/SasExportPartnerStrategy'), { ssr: false });
+const SasExportChecklist = dynamic(() => import('./sashimi-strategy/SasExportChecklist'), { ssr: false });
+
+/* ─── Round 3: Thailand, UK, Toyosu, Outlook ─── */
+const SasThailandHub = dynamic(() => import('./sashimi-strategy/SasThailandHub'), { ssr: false });
+const SasUkMarket = dynamic(() => import('./sashimi-strategy/SasUkMarket'), { ssr: false });
+const SasToyosuAuction = dynamic(() => import('./sashimi-strategy/SasToyosuAuction'), { ssr: false });
+const SasGlobalOutlook2030 = dynamic(() => import('./sashimi-strategy/SasGlobalOutlook2030'), { ssr: false });
+
+/* ─── NEW: agri_data dossier(US/EU KPI) 교차분석 기반 4개 위젯 ─── */
+const SasUsSupplierOrigin = dynamic(() => import('./sashimi-strategy/SasUsSupplierOrigin'), { ssr: false });
+const SasUsSushiPokeMarket = dynamic(() => import('./sashimi-strategy/SasUsSushiPokeMarket'), { ssr: false });
+const SasEuFreshVsCanned = dynamic(() => import('./sashimi-strategy/SasEuFreshVsCanned'), { ssr: false });
+const SasEuImportSegmentation = dynamic(() => import('./sashimi-strategy/SasEuImportSegmentation'), { ssr: false });
+
+/* ================================================================ */
 const SECTIONS = [
-  { id: 'global', label: '글로벌 마켓', icon: Globe, color: '#38bdf8', desc: '세계 3대 시장 역학 · 성장 동력 · 축양 생산기지' },
-  { id: 'us', label: '미국 시장', icon: TrendingUp, color: '#10b981', desc: '초고속 성장 · 공급망 분리 · 일산화탄소 처리 이슈' },
-  { id: 'eu', label: '유럽 시장', icon: Anchor, color: '#a78bfa', desc: '생산 허브 · 라이브 매입/축양 수익성 · 지중해 쿼터' },
-  { id: 'price', label: '가격 모델링', icon: DollarSign, color: '#f59e0b', desc: '품질별 사다리 · 쾌락적(Hedonic) 프리미엄 모델' },
-  { id: 'risk', label: '리스크/규제', icon: AlertTriangle, color: '#ef4444', desc: '미국/EU 쿼터 압박 · 추적성(Traceability) 리스크' },
+  { id: 'korea', label: '🇰🇷 한국', icon: Flag, color: '#f59e0b', desc: '원양 생산·일본 의존·7대 기업·외식D2C·지중해 BFT' },
+  { id: 'global', label: '글로벌', icon: Globe, color: '#38bdf8', desc: '3대 시장 역학 · 4개국 비교 · 핫스팟' },
+  { id: 'us', label: '🇺🇸 미국', icon: TrendingUp, color: '#10b981', desc: '공급망 분리 · 공급국 출처 · 스시/포케 시장 · CO처리' },
+  { id: 'ukth', label: '🇬🇧🇹🇭 영국/태국', icon: Factory, color: '#22d3ee', desc: 'FTA 18%→0% · 태국 28.2% 가공허브' },
+  { id: 'eu', label: '🇪🇺 유럽', icon: Anchor, color: '#a78bfa', desc: '축양 수익성 · 지중해 쿼터 · 신선vs통조림 · 수입 세분' },
+  { id: 'japan', label: '🇯🇵 일본', icon: DollarSign, color: '#ef4444', desc: '도요스 경매 · 수요 감소 · $1.94B' },
+  { id: 'price', label: '가격/어종', icon: DollarSign, color: '#f59e0b', desc: '어종별 위계 · Hedonic 모델' },
+  { id: 'export', label: '수출 전략', icon: Target, color: '#f472b6', desc: '57개사 파트너 · 체크리스트' },
+  { id: 'outlook', label: '전망 2030', icon: Compass, color: '#10b981', desc: '$60B · 중동 7.6% · 기후 리스크' },
 ];
 
-/* ================================================================
-   Main Component
-================================================================ */
+const GRID_2: React.CSSProperties = {
+  display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px', alignItems: 'stretch', marginBottom: '24px',
+};
+
+function SectionHeader({ color, emoji, title, desc }: { color: string; emoji: string; title: string; desc: string }) {
+  return (
+    <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+      <div style={{ width: '4px', height: '28px', background: color, borderRadius: '2px', flexShrink: 0 }} />
+      <div>
+        <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+          {emoji} {title}
+        </h2>
+        <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{desc}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function SashimiSteakDashboard() {
-  const [activeSection, setActiveSection] = useState('global');
+  const [activeSection, setActiveSection] = useState('korea');
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: 'var(--text-primary)', minHeight: '100vh', fontFamily: "'CircularSp', 'Inter', sans-serif", backgroundColor: 'var(--bg-color)' }}>
 
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom: '2rem', paddingTop: '0.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
               width: '44px', height: '44px', borderRadius: '50%',
               background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
+              boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', flexShrink: 0,
             }}>
               <ShieldCheck size={24} color="var(--bg-color)" />
             </div>
@@ -64,7 +111,7 @@ export default function SashimiSteakDashboard() {
                 사시미/스테이크 시장 분석
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                미국 성장 동력, EU 축양 수익성, 그리고 일본의 쇠퇴 — 차세대 프리미엄 참치 전략
+                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 32개 위젯
               </p>
             </div>
           </div>
@@ -77,7 +124,7 @@ export default function SashimiSteakDashboard() {
           }}>
             <TelemetryBadge status="STATIC" syncDate="2025-26" />
             <span style={{ margin: '0 4px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>UN Comtrade · Eurostat · ICCAT · NOAA</span>
+            <span style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>Comtrade · DART · GLOBEFISH · NOAA · ICCAT</span>
           </div>
         </div>
       </header>
@@ -86,43 +133,36 @@ export default function SashimiSteakDashboard() {
       <div style={{
         position: 'relative',
         background: 'rgba(255,255,255,0.03)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
+        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
         border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: '16px',
-        padding: '6px',
-        marginBottom: '2rem',
+        borderRadius: '16px', padding: '6px', marginBottom: '2rem',
         boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-          padding: '4px 0 8px',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
-          marginBottom: '6px',
+          padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            사시미/스테이크 전략 네비게이터 — 아래 섹션을 클릭하여 탐색하세요
+            사시미/스테이크 전략 네비게이터 — 9개 섹션을 클릭하여 탐색하세요
           </span>
         </div>
-        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
-          {SECTIONS.map((s, idx) => {
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(9, 1fr)', gap: '4px' }}>
+          {SECTIONS.map((s) => {
             const isActive = activeSection === s.id;
             const SectionIcon = s.icon;
             return (
-              <button
+              <div
                 key={s.id}
                 onClick={() => setActiveSection(s.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && setActiveSection(s.id)}
                 style={{
-                  position: 'relative',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '4px',
-                  padding: '12px 8px 14px',
+                  position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',
+                  gap: '4px', padding: '12px 4px 14px',
                   background: isActive ? `${s.color}12` : 'transparent',
                   border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
-                  borderRadius: '12px',
-                  cursor: 'pointer',
+                  borderRadius: '12px', cursor: 'pointer',
                   transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
                   boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
                   overflow: 'hidden',
@@ -140,38 +180,28 @@ export default function SashimiSteakDashboard() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: isActive ? s.color : 'rgba(255,255,255,0.06)',
                   color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
-                  fontSize: '0.75rem', fontWeight: 800,
-                  transition: 'all 0.25s',
+                  fontSize: '0.75rem', fontWeight: 800, transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
                 }}>
                   <SectionIcon size={14} />
                 </div>
                 <span style={{
-                  fontSize: '0.78rem',
-                  fontWeight: isActive ? 700 : 500,
+                  fontSize: '0.72rem', fontWeight: isActive ? 700 : 500,
                   color: isActive ? s.color : 'var(--text-secondary)',
-                  transition: 'all 0.25s',
-                  whiteSpace: 'nowrap',
+                  transition: 'all 0.25s', whiteSpace: 'nowrap',
                 }}>
                   {s.label}
                 </span>
                 {isActive && (
                   <span style={{
-                    fontSize: '0.6rem',
-                    color: 'rgba(148,163,184,0.7)',
-                    textAlign: 'center',
-                    lineHeight: 1.3,
-                    maxWidth: '120px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical' as any,
+                    fontSize: '0.55rem', color: 'rgba(148,163,184,0.7)', textAlign: 'center',
+                    lineHeight: 1.3, maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis',
+                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
                   }}>
                     {s.desc.split('·')[0].trim()}
                   </span>
                 )}
-              </button>
+              </div>
             );
           })}
         </div>
@@ -180,138 +210,133 @@ export default function SashimiSteakDashboard() {
       {/* ═══ Section Content ═══ */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
 
-        {/* ═══════ Section 1: 글로벌 마켓 트라이어드 ═══════ */}
+        {/* ═══ 🇰🇷 한국 시장 ═══ */}
+        {activeSection === 'korea' && (
+          <section>
+            <SectionHeader color="#f59e0b" emoji="🇰🇷" title="한국 시장 — 원양 강국의 사시미 생태계" desc="세계 6위 생산국, 일본 의존 80%, 7대 기업, 외식 양극화, 지중해 BFT 수입" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasKoreaProductionStructure"><SasKoreaProductionStructure /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasKoreaJapanDependency"><SasKoreaJapanDependency /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasKoreaMajorCompanies"><SasKoreaMajorCompanies /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasKoreaFoodserviceD2C"><SasKoreaFoodserviceD2C /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasKoreaMedBftImports"><SasKoreaMedBftImports /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasKoreaTradeDecade"><SasKoreaTradeDecade /></ErrorBoundary>
+            </div>
+          </section>
+        )}
+
+        {/* ═══ 글로벌 마켓 ═══ */}
         {activeSection === 'global' && (
           <section>
-            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{ width: '4px', height: '28px', background: '#38bdf8', borderRadius: '2px' }} />
-              <div>
-                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                  🌍 글로벌 마켓 트라이어드
-                </h2>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  세계 3대 사시미 시장의 구조적 역학 관계
-                </p>
-              </div>
+            <SectionHeader color="#38bdf8" emoji="🌍" title="글로벌 마켓 & 4개국 비교" desc="세계 3대 사시미 시장의 구조적 역학 + US/EU/KR/JP 비교" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasTriadDynamics"><SasTriadDynamics /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasFourCountryComparison"><SasFourCountryComparison /></ErrorBoundary>
             </div>
-
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <ErrorBoundary fallbackTitle="SasTriadDynamics">
-                <SasTriadDynamics />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasMarketKPIs">
-                <SasMarketKPIs />
-              </ErrorBoundary>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasMarketKPIs"><SasMarketKPIs /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasGlobalHotspots"><SasGlobalHotspots /></ErrorBoundary>
             </div>
           </section>
         )}
 
-        {/* ═══════ Section 2: 미국 시장 딥다이브 ═══════ */}
+        {/* ═══ 미국 시장 ═══ */}
         {activeSection === 'us' && (
           <section>
-            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{ width: '4px', height: '28px', background: '#10b981', borderRadius: '2px' }} />
-              <div>
-                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                  🇺🇸 미국 시장 딥다이브
-                </h2>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  세계 1위 소비 시장의 양극화 구조 및 포케 열풍
-                </p>
-              </div>
+            <SectionHeader color="#10b981" emoji="🇺🇸" title="미국 시장 딥다이브" desc="세계 1위 소비 시장의 양극화 구조 및 포케 열풍" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasSupplyChainSplit"><SasSupplyChainSplit /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasCoTreatmentImpact"><SasCoTreatmentImpact /></ErrorBoundary>
             </div>
-
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <ErrorBoundary fallbackTitle="SasSupplyChainSplit">
-                <SasSupplyChainSplit />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasCoTreatmentImpact">
-                <SasCoTreatmentImpact />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasHawaiiDomesticNiche">
-                <SasHawaiiDomesticNiche />
-              </ErrorBoundary>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasUsSupplierOrigin"><SasUsSupplierOrigin /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasUsSushiPokeMarket"><SasUsSushiPokeMarket /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasHawaiiDomesticNiche"><SasHawaiiDomesticNiche /></ErrorBoundary>
             </div>
           </section>
         )}
 
-        {/* ═══════ Section 3: 유럽 시장 허브 ═══════ */}
+        {/* ═══ 🇬🇧🇹🇭 영국/태국 ═══ */}
+        {activeSection === 'ukth' && (
+          <section>
+            <SectionHeader color="#22d3ee" emoji="🇬🇧🇹🇭" title="영국 & 태국 — FTA 우위 + 세계 최대 가공 허브" desc="Korea-UK FTA 18%→0% 관세 우위, 태국 글로벌 캔 참치 수출 28.2% 점유" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasUkMarket"><SasUkMarket /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasThailandHub"><SasThailandHub /></ErrorBoundary>
+            </div>
+          </section>
+        )}
+
+        {/* ═══ 유럽 시장 ═══ */}
         {activeSection === 'eu' && (
           <section>
-            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{ width: '4px', height: '28px', background: '#a78bfa', borderRadius: '2px' }} />
-              <div>
-                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                  🇪🇺 유럽 시장 - 참다랑어 생산 허브
-                </h2>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  일본 수출 중심의 지중해 블루핀 축양 산업
-                </p>
-              </div>
+            <SectionHeader color="#a78bfa" emoji="🇪🇺" title="유럽 시장 — 참다랑어 생산 허브" desc="일본 수출 중심의 지중해 블루핀 축양 산업" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasBluefinRanchingEconomics"><SasBluefinRanchingEconomics /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasEuQuotaProduction"><SasEuQuotaProduction /></ErrorBoundary>
             </div>
-
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <ErrorBoundary fallbackTitle="SasBluefinRanchingEconomics">
-                <SasBluefinRanchingEconomics />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasEuQuotaProduction">
-                <SasEuQuotaProduction />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasDomesticRetailTrend">
-                <SasDomesticRetailTrend />
-              </ErrorBoundary>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasDomesticRetailTrend"><SasDomesticRetailTrend /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasEuFreshVsCanned"><SasEuFreshVsCanned /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasEuImportSegmentation"><SasEuImportSegmentation /></ErrorBoundary>
             </div>
           </section>
         )}
 
-        {/* ═══════ Section 4: 가격 및 품질 모델링 ═══════ */}
+        {/* ═══ 🇯🇵 일본 시장 ═══ */}
+        {activeSection === 'japan' && (
+          <section>
+            <SectionHeader color="#ef4444" emoji="🇯🇵" title="일본 시장 — 도요스 경매 & 구조적 수요 감소" desc="세계 최대 사시미 시장의 경매 구조, 장기 수요 감소, 쿼터 압박" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasToyosuAuction"><SasToyosuAuction /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasJapanDemandDecline"><SasJapanDemandDecline /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasQuotaVolatility"><SasQuotaVolatility /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasTraceabilityRatings"><SasTraceabilityRatings /></ErrorBoundary>
+            </div>
+          </section>
+        )}
+
+        {/* ═══ 가격/어종 ═══ */}
         {activeSection === 'price' && (
           <section>
-            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{ width: '4px', height: '28px', background: '#f59e0b', borderRadius: '2px' }} />
-              <div>
-                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                  💰 가격 및 품질 모델링
-                </h2>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  어종, 신선도, 처리 방식에 따른 프리미엄 결정 요인
-                </p>
-              </div>
+            <SectionHeader color="#f59e0b" emoji="💰" title="가격 모델링 & 어종별 위계" desc="5대 참치 어종 가격 사다리, Hedonic 프리미엄, 품질 등급" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasSpeciesPriceTier"><SasSpeciesPriceTier /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasSashimiPriceLadder"><SasSashimiPriceLadder /></ErrorBoundary>
             </div>
-
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <ErrorBoundary fallbackTitle="SasSashimiPriceLadder">
-                <SasSashimiPriceLadder />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasHedonicPriceFactors">
-                <SasHedonicPriceFactors />
-              </ErrorBoundary>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasHedonicPriceFactors"><SasHedonicPriceFactors /></ErrorBoundary>
             </div>
           </section>
         )}
 
-        {/* ═══════ Section 5: 리스크 및 규제 ═══════ */}
-        {activeSection === 'risk' && (
+        {/* ═══ 수출 전략 ═══ */}
+        {activeSection === 'export' && (
           <section>
-            <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-              <div style={{ width: '4px', height: '28px', background: '#ef4444', borderRadius: '2px' }} />
-              <div>
-                <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                  ⚠️ 지속가능성 및 규제
-                </h2>
-                <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  쿼터 압박과 어법별 리스크, 추적성 의무화
-                </p>
-              </div>
+            <SectionHeader color="#f472b6" emoji="🎯" title="수출 파트너 전략 & 진입요건" desc="미국·영국·일본 — 실명 파트너 57개사 + 시장별 진입 체크리스트" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasExportPartnerStrategy"><SasExportPartnerStrategy /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasExportChecklist"><SasExportChecklist /></ErrorBoundary>
             </div>
+          </section>
+        )}
 
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-              <ErrorBoundary fallbackTitle="SasQuotaVolatility">
-                <SasQuotaVolatility />
-              </ErrorBoundary>
-              <ErrorBoundary fallbackTitle="SasTraceabilityRatings">
-                <SasTraceabilityRatings />
-              </ErrorBoundary>
+        {/* ═══ 🔮 전망 2030 ═══ */}
+        {activeSection === 'outlook' && (
+          <section>
+            <SectionHeader color="#10b981" emoji="🔮" title="글로벌 사시미 시장 전망 2030+" desc="$44B→$60B 성장, 중동 CAGR 7.6%, WCPO 기록, 기후변화 리스크" />
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasGlobalOutlook2030"><SasGlobalOutlook2030 /></ErrorBoundary>
             </div>
           </section>
         )}

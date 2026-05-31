@@ -1,51 +1,74 @@
 'use client';
 
 import React from 'react';
-import {
-  ComposedChart,
-  Bar,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
-} from 'recharts';
+import { ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import WidgetCard from '../WidgetCard';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
 
-const data = [
-  { name: '미국 대서양(24년)', 사용량: 109, 쿼터기준: 100 },
-  { name: 'EU(현재)', 사용량: 95, 쿼터기준: 100 },
-  { name: 'EU(26-28년)', 사용량: 95, 쿼터기준: 119.3 }
+const QUOTA_DATA = [
+  { 
+    name: '미국 대서양 (Western BFT)', 
+    quota: 1341, 
+    status: 'Tight (자원 압박)',
+    color: '#ef4444'
+  },
+  { 
+    name: 'EU 지중해 (Eastern BFT)', 
+    quota: 21503, 
+    status: 'Recovered (쿼터 증대)',
+    color: '#3b82f6'
+  }
 ];
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div style={{ backgroundColor: 'rgba(30,41,59,0.95)', padding: 12, borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.06)' }}>
+        <p style={{ fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>{data.name}</p>
+        <p style={{ fontSize: 14, color: '#cbd5e1' }}>2024년 쿼터: {data.quota.toLocaleString()} 톤</p>
+        <p style={{ fontSize: 12, fontWeight: 600, marginTop: 4, color: data.color }}>{data.status}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function SasQuotaVolatility() {
   return (
     <WidgetCard
-      title="지역별 쿼터 변동성 및 소진율"
-      subtitle="미국 쿼터 초과 및 EU 쿼터 증대"
-      takeaway={{ situation: "미국은 20년 만에 쿼터 초과 달성 등 자원 압박이 거세나, EU는 ICCAT 쿼터 증대로 여유 확보.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
+      id="W-SAS11"
+      title="지역별 쿼터(Quota) 양극화 및 자원 압박"
+      description="ICCAT 기준 미국(서부) vs EU(동부/지중해) 참다랑어 할당량"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
-    >
-      <div className="h-64 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart
-            data={data}
-            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-            <YAxis unit="%" />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="사용량" fill="#3b82f6" isAnimationActive={false} />
-            <Line type="step" dataKey="쿼터기준" stroke="#ef4444" strokeWidth={2} isAnimationActive={false} />
-          </ComposedChart>
-        </ResponsiveContainer>
-      </div>
-    </WidgetCard>
+      takeaway={{ 
+        situation: "미국 연안의 서대서양 참다랑어는 자원 고갈 우려로 쿼터가 1,341톤에 묶여 조업 압박이 거센 반면, EU 지중해산은 자원 회복 판정을 받아 21,503톤으로 쿼터가 대폭 증대되었습니다.", 
+        actionPlan: "미국 내수산 블루핀의 공급 불안정성을 보완하기 위해, EU산 쿼터 증대 물량(Farmed)을 적극적으로 수입하여 라인업을 이원화(국내산 자연산 + EU산 축양) 해야 합니다.", 
+        source: "ICCAT 2024 Quota Report" 
+      }}
+      customBody={
+        <div style={{ height: 256, width: '100%', marginTop: 8 }}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            <ComposedChart
+              data={QUOTA_DATA}
+              margin={{ top: 30, right: 30, left: 20, bottom: 5 }}
+              layout="vertical"
+            >
+              <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} opacity={0.3} />
+              <XAxis type="number" tick={{ fontSize: 12, fill: '#94a3b8' }} axisLine={false} tickLine={false} tickFormatter={(val) => `${val / 1000}k`} />
+              <YAxis dataKey="name" type="category" width={160} tick={{ fontSize: 11, fontWeight: 600, fill: '#cbd5e1' }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.04)' }} />
+              <Bar dataKey="quota" barSize={36} radius={[0, 4, 4, 0]} isAnimationActive={false}>
+                {QUOTA_DATA.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
+            </ComposedChart>
+          </SafeResponsiveContainer>
+        </div>
+      }
+    />
   );
 }

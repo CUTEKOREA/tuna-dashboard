@@ -2,7 +2,8 @@
 
 import React from 'react';
 import WidgetCard from '../WidgetCard';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const HAWAII_DATA = [
   { year: '2020', price: 12.5, volume: 3200 },
@@ -16,66 +17,71 @@ export default function SasHawaiiDomesticNiche() {
   return (
     <WidgetCard
       id="W-SAS05"
-      title="하와이 호놀룰루 프리미엄 참치 경매 동향"
-      description="미국 내 최고급 생물 참치의 기준점(Benchmark)"
+      title="하와이 호놀룰루 참치 경매 동향"
+      description="미국 프리미엄 생물 참치의 품질 및 가격 벤치마크"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
-      takeaway={{ situation: "하와이 경매장은 미국 내 최고급 프리미엄 생물 참치의 기준점(Benchmark) 역할. Ahi(황다랑어)와 Bigeye(눈다랑어)의 현지 경매가는 $12~$14/lb 수준에서 안정적으로 유지되며, 고급 레스토랑 중심의 니치 마켓을 형성합니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
-    >
-      <div className="h-64 w-full mt-4">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={HAWAII_DATA} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-            <XAxis dataKey="year" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis 
-              yAxisId="left" 
-              domain={[10, 16]} 
-              tickFormatter={(val) => `$${val}`}
-              fontSize={12} 
-              tickLine={false} 
-              axisLine={false} 
-            />
-            <YAxis 
-              yAxisId="right" 
-              orientation="right" 
-              domain={[2000, 4000]}
-              fontSize={12} 
-              tickLine={false} 
-              axisLine={false} 
-            />
-            <Tooltip 
-              contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-            />
-            <Legend verticalAlign="top" height={36} iconType="circle" />
-            <Area 
-              yAxisId="left" 
-              type="monotone" 
-              dataKey="price" 
-              name="경매 단가 ($/lb)" 
-              stroke="#3b82f6" 
-              fill="#3b82f6" 
-              fillOpacity={0.3} 
-              isAnimationActive={false} 
-            />
-            <Area 
-              yAxisId="right" 
-              type="monotone" 
-              dataKey="volume" 
-              name="거래량 (톤)" 
-              stroke="#10b981" 
-              fill="#10b981" 
-              fillOpacity={0.1} 
-              isAnimationActive={false} 
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="mt-4 p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg">
-        <p className="text-sm text-slate-700 dark:text-slate-300">
-          <strong>인사이트:</strong> 하와이 경매장은 미국 내 최고급 프리미엄 생물 참치의 기준점(Benchmark) 역할. Ahi(황다랑어)와 Bigeye(눈다랑어)의 현지 경매가는 $12~$14/lb 수준에서 안정적으로 유지되며, 고급 레스토랑 중심의 니치 마켓을 형성합니다.
-        </p>
-      </div>
-    </WidgetCard>
+      takeaway={{ 
+        situation: "하와이 호놀룰루 경매장은 미국 내 최고급 프리미엄 생물 참치(Ahi, Bigeye)의 기준점 역할을 하며, $12~$14/lb 수준의 높은 단가를 유지하고 있습니다.", 
+        actionPlan: "대규모 유통망 진입보다는 하이엔드 오마카세 및 고급 씨푸드 레스토랑을 타겟으로 한 소량 다품종 프리미엄 브랜드 전략이 유효합니다.", 
+        source: "US NOAA / Honolulu Fish Auction Data" 
+      }}
+      customBody={
+        <div style={{ height: '256px', width: '100%', marginTop: '8px' }}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            <AreaChart data={HAWAII_DATA} margin={{ top: 20, right: 30, left: 10, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.3} vertical={false} />
+              <XAxis dataKey="year" fontSize={12} tickLine={false} axisLine={false} stroke="#64748b" />
+              <YAxis 
+                yAxisId="left" 
+                domain={[10, 16]} 
+                tickFormatter={(val) => `$${val}`}
+                fontSize={12} 
+                tickLine={false} 
+                axisLine={false}
+                stroke="#64748b"
+              />
+              <YAxis 
+                yAxisId="right" 
+                orientation="right" 
+                domain={[2000, 4000]}
+                fontSize={12} 
+                tickLine={false} 
+                axisLine={false} 
+                tickFormatter={(val) => `${val}t`}
+                stroke="#64748b"
+              />
+              <Tooltip 
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', background: '#1e293b', color: '#e2e8f0' }}
+              />
+              <Legend verticalAlign="top" height={36} iconType="circle" />
+              <Area 
+                yAxisId="left" 
+                type="monotone" 
+                dataKey="price" 
+                name="경매 단가 ($/lb)" 
+                stroke="#f59e0b" 
+                fill="#f59e0b" 
+                fillOpacity={0.2} 
+                strokeWidth={3}
+                isAnimationActive={false} 
+              />
+              <Area 
+                yAxisId="right" 
+                type="monotone" 
+                dataKey="volume" 
+                name="거래량 (톤)" 
+                stroke="#94a3b8" 
+                fill="#94a3b8" 
+                fillOpacity={0.1} 
+                strokeWidth={2}
+                isAnimationActive={false} 
+              />
+            </AreaChart>
+          </SafeResponsiveContainer>
+        </div>
+      }
+    />
   );
 }

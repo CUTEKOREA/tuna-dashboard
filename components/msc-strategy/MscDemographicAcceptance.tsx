@@ -14,178 +14,151 @@ const heatmapData = [
 const incomeLabels = ['저소득', '중위소득', '고소득'];
 const incomeKeys = ['low', 'mid', 'high'] as const;
 
-/**
- * Map value (0-100) to a green intensity color for heatmap cells.
- * High values → vivid emerald, low values → muted slate.
- */
-function getHeatColor(value: number): string {
-  if (value >= 80) return 'rgba(16,185,129,0.55)';
-  if (value >= 65) return 'rgba(16,185,129,0.38)';
-  if (value >= 50) return 'rgba(16,185,129,0.22)';
-  if (value >= 35) return 'rgba(16,185,129,0.12)';
-  return 'rgba(100,116,139,0.15)';
-}
-
-function getTextColor(value: number): string {
-  if (value >= 65) return '#e2e8f0';
-  if (value >= 50) return '#cbd5e1';
-  return '#94a3b8';
+function getHeatStyle(value: number): React.CSSProperties {
+  if (value >= 80) return { background: 'rgba(16,185,129,0.8)', color: '#ffffff' };
+  if (value >= 65) return { background: 'rgba(16,185,129,0.5)', color: '#ecfdf5' };
+  if (value >= 50) return { background: 'rgba(16,185,129,0.3)', color: '#d1fae5' };
+  if (value >= 35) return { background: 'rgba(16,185,129,0.15)', color: '#cbd5e1' };
+  return { background: 'rgba(100,116,139,0.1)', color: '#94a3b8' };
 }
 
 export default function MscDemographicAcceptance() {
+  const body = (
+    <div style={{ width: '100%', marginTop: '0.5rem' }}>
+      <div style={{
+        border: '1px solid rgba(255,255,255,0.06)',
+        borderRadius: '0.75rem',
+        overflow: 'hidden',
+        background: 'rgba(30,41,59,0.5)',
+      }}>
+        {/* Header row */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+        }}>
+          <div style={{
+            padding: '0.75rem',
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            color: '#64748b',
+            textTransform: 'uppercase',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            세대 \ 소득
+          </div>
+          {incomeLabels.map((label) => (
+            <div key={label} style={{
+              padding: '0.75rem',
+              textAlign: 'center',
+              fontSize: '0.875rem',
+              fontWeight: 700,
+              color: '#cbd5e1',
+            }}>
+              {label}
+            </div>
+          ))}
+        </div>
+
+        {/* Data rows */}
+        {heatmapData.map((row, rowIdx) => (
+          <div
+            key={row.gen}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              borderBottom: rowIdx < heatmapData.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
+            }}
+          >
+            {/* Row label */}
+            <div style={{
+              padding: '0.75rem',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              color: '#e2e8f0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}>
+              {row.gen}
+            </div>
+
+            {/* Value cells */}
+            {incomeKeys.map((key) => {
+              const val = row[key];
+              const heatStyle = getHeatStyle(val);
+              return (
+                <div key={key} style={{ padding: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <div style={{
+                    width: '100%',
+                    maxWidth: '80px',
+                    paddingTop: '0.75rem',
+                    paddingBottom: '0.75rem',
+                    borderRadius: '0.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'all 0.2s',
+                    ...heatStyle,
+                  }}>
+                    <span style={{ fontSize: '1.25rem', fontWeight: 900, fontVariantNumeric: 'tabular-nums' }}>
+                      {val}%
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+
+      {/* Legend */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: '1rem',
+        paddingLeft: '0.5rem',
+        paddingRight: '0.5rem',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>
+          <span>낮음</span>
+          <div style={{ display: 'flex', gap: '0.25rem' }}>
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(100,116,139,0.1)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.15)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.3)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.5)' }} />
+            <div style={{ width: '1.25rem', height: '0.75rem', borderRadius: '0.25rem', background: 'rgba(16,185,129,0.8)' }} />
+          </div>
+          <span>높음</span>
+        </div>
+        <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>
+          <span style={{ color: '#34d399', fontWeight: 700, marginRight: '0.25rem' }}>세대 격차 핵심:</span>
+          Z세대(62%) vs 부머(25%)
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <WidgetCard
-      title="W-MSC09. 세대 × 소득별 MSC 프리미엄 수용도"
+      id="W-MSC02"
+      title="세대 × 소득별 MSC 수용도 매트릭스"
+      description="세대 및 소득별 MSC 인증 프리미엄 지불 의향(%)"
       icon={Users}
       iconColor="#10b981"
       pillar="S5"
-      cardDesc="영국 소비자 조사 기반, 세대(Z~부머)와 소득(저~고) 교차 분석으로 MSC 인증 제품 프리미엄 지불 의향(%) 히트맵 시각화"
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
-      customBody={
-        <div style={{ padding: '0 20px 20px' }}>
-          {/* Heatmap Grid */}
-          <div style={{
-            background: 'rgba(0,0,0,0.2)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            borderRadius: 12,
-            overflow: 'hidden',
-          }}>
-            {/* Header row */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '160px repeat(3, 1fr)',
-              borderBottom: '1px solid rgba(255,255,255,0.08)',
-            }}>
-              <div style={{
-                padding: '12px 16px',
-                fontSize: '0.72rem',
-                color: '#64748b',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-              }}>
-                세대 \ 소득
-              </div>
-              {incomeLabels.map((label) => (
-                <div key={label} style={{
-                  padding: '12px 16px',
-                  textAlign: 'center',
-                  fontSize: '0.78rem',
-                  color: '#94a3b8',
-                  fontWeight: 600,
-                }}>
-                  {label}
-                </div>
-              ))}
-            </div>
-
-            {/* Data rows */}
-            {heatmapData.map((row, rowIdx) => (
-              <div
-                key={row.gen}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '160px repeat(3, 1fr)',
-                  borderBottom: rowIdx < heatmapData.length - 1
-                    ? '1px solid rgba(255,255,255,0.04)'
-                    : 'none',
-                }}
-              >
-                {/* Row label */}
-                <div style={{
-                  padding: '16px 16px',
-                  fontSize: '0.82rem',
-                  color: '#e2e8f0',
-                  fontWeight: 600,
-                  display: 'flex',
-                  alignItems: 'center',
-                }}>
-                  {row.gen}
-                </div>
-
-                {/* Value cells */}
-                {incomeKeys.map((key) => {
-                  const val = row[key];
-                  return (
-                    <div
-                      key={key}
-                      style={{
-                        padding: '12px 8px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: '100%',
-                          maxWidth: 100,
-                          padding: '14px 8px',
-                          borderRadius: 8,
-                          background: getHeatColor(val),
-                          textAlign: 'center',
-                          transition: 'all 0.2s',
-                        }}
-                      >
-                        <div style={{
-                          fontSize: '1.3rem',
-                          fontWeight: 800,
-                          color: getTextColor(val),
-                          fontVariantNumeric: 'tabular-nums',
-                        }}>
-                          {val}%
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
-
-          {/* Legend & Insight */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 12,
-            gap: 12,
-          }}>
-            {/* Color legend */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.72rem', color: '#64748b' }}>
-              <span>낮음</span>
-              <div style={{ display: 'flex', gap: 2 }}>
-                {[0.1, 0.18, 0.28, 0.4, 0.55].map((opacity, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: 20,
-                      height: 12,
-                      borderRadius: 2,
-                      background: `rgba(16,185,129,${opacity})`,
-                    }}
-                  />
-                ))}
-              </div>
-              <span>높음</span>
-            </div>
-
-            {/* Key gap metrics */}
-            <div style={{ display: 'flex', gap: 16, fontSize: '0.75rem' }}>
-              <div>
-                <span style={{ color: '#64748b' }}>세대 격차: </span>
-                <span style={{ color: '#10b981', fontWeight: 700 }}>63pp</span>
-                <span style={{ color: '#64748b' }}> (Z+고소득 88% vs 부머+저소득 25%)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
+      cardDesc="B2C 소비자 분석"
       takeaway={{
-        situation: "Z세대+고소득(88%)이 MSC 프리미엄 수용도 최고, 베이비부머+저소득(25%)이 최저. 세대 간 격차(Z→부머)가 소득 간 격차(고→저)보다 더 크며, 이는 MSC 수요가 장기적으로 구조적 성장할 것을 시사.",
-        actionPlan: "MZ세대 타겟 마케팅(SNS, 인플루언서 협업)에 MSC 라벨을 핵심 소구점으로 활용. 저소득층 접근성을 위해 PB MSC 제품의 가격 경쟁력 확보도 병행 — '모든 세대가 접근 가능한 지속가능성' 포지셔닝.",
-        source: "MSC UK Consumer Insights 2024, MSC Ireland Consumer Insights 2024",
+        situation: "Z세대+고소득층(88%)이 MSC 프리미엄 수용도 최고치를 기록한 반면, 베이비부머+저소득층(25%)은 최저치입니다. 소득 간 격차보다 세대 간 격차가 훨씬 더 뚜렷합니다.",
+        actionPlan: "SNS 기반의 MZ세대 타겟팅에는 'MSC 인증'을 주요 마케팅 소구점으로 부각하고, 시니어 대상 일반 리테일 시장에서는 가격 민감도를 고려하여 PB 위주의 가성비 접근이 필요합니다.",
+        source: "UK Consumer Insights 2024",
       }}
+      customBody={body}
     />
   );
 }

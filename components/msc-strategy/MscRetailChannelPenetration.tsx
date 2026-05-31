@@ -1,15 +1,8 @@
 'use client';
 
 import React from 'react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { ShoppingCart } from 'lucide-react';
 import WidgetCard from '../WidgetCard';
 
@@ -20,15 +13,6 @@ const channelData = [
   { channel: '편의점', uk: 45, de: 70, fr: 30, it: 20, es: 12 },
 ];
 
-const TOOLTIP_STYLE: React.CSSProperties = {
-  backgroundColor: 'rgba(15,23,42,0.95)',
-  border: '1px solid rgba(148,163,184,0.15)',
-  borderRadius: 8,
-  color: '#e2e8f0',
-  fontSize: '0.78rem',
-  padding: '8px 12px',
-};
-
 const countryBars = [
   { key: 'uk', name: '🇬🇧 영국', color: '#10b981' },
   { key: 'de', name: '🇩🇪 독일', color: '#38bdf8' },
@@ -37,60 +21,65 @@ const countryBars = [
   { key: 'es', name: '🇪🇸 스페인', color: '#ef4444' },
 ];
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{
+        backgroundColor: 'rgba(15,23,42,0.95)',
+        border: '1px solid rgba(148,163,184,0.15)',
+        borderRadius: '8px',
+        padding: '12px',
+        color: '#e2e8f0',
+        fontSize: '0.82rem',
+        boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
+      }}>
+        <div style={{ fontWeight: 700, marginBottom: '8px', color: '#ffffff' }}>{label} 채널</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          {payload.map((entry: any, index: number) => (
+            <div key={index} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', fontWeight: 600 }}>
+              <span style={{ color: entry.color }}>{entry.name}:</span>
+              <span>{entry.value}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
 export default function MscRetailChannelPenetration() {
   return (
     <WidgetCard
-      title="W-MSC07. 유통채널별 MSC 침투율"
+      id="W-MSC09"
+      title="유통채널별 MSC 침투율"
+      description="국가별 대형마트·디스카운트·온라인 채널 MSC 비중"
       icon={ShoppingCart}
       iconColor="#38bdf8"
       pillar="S5"
-      cardDesc="유럽 5개국의 대형마트·디스카운트·온라인·편의점 채널별 MSC 에코라벨 참치 침투율(%) 비교"
-      unit="%"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      chartHeight={320}
-      chart={
-        <BarChart
-          data={channelData}
-          layout="vertical"
-          margin={{ top: 10, right: 30, left: 10, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
-          <XAxis
-            type="number"
-            domain={[0, 100]}
-            stroke="rgba(255,255,255,0.4)"
-            tick={{ fill: '#94a3b8', fontSize: 11 }}
-            tickFormatter={(v: number) => `${v}%`}
-          />
-          <YAxis
-            type="category"
-            dataKey="channel"
-            width={80}
-            tick={{ fill: '#e2e8f0', fontSize: 12 }}
-          />
-          <Tooltip
-            contentStyle={TOOLTIP_STYLE}
-            formatter={(value: number) => [`${value}%`, '']}
-          />
-          <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.75rem' }} />
-          {countryBars.map((bar) => (
-            <Bar
-              key={bar.key}
-              dataKey={bar.key}
-              name={bar.name}
-              fill={bar.color}
-              radius={[0, 4, 4, 0]}
-              barSize={8}
-              isAnimationActive={false}
-            />
-          ))}
-        </BarChart>
-      }
+      cardDesc="B2B 유통 채널 동향"
       takeaway={{
-        situation: "독일은 모든 유통 채널에서 MSC 침투율 70%+로 시장 포화 수준. 온라인 채널이 평균적으로 가장 높은 MSC 침투율(61.6%)을 보이며, 편의점이 가장 낮음(35.4%). 스페인은 대형마트(38%)조차 MSC 침투율이 낮아 성장 잠재력 최대.",
-        actionPlan: "온라인 채널의 MSC 친화도가 가장 높으므로, 유럽 D2C/이커머스 진출 시 MSC 인증이 핵심 차별화 요소. 디스카운트 채널(Aldi/Lidl)의 MSC 의무화 추세가 남유럽으로 확산 중 — 선제적 대응 필요.",
-        source: "MSC UK/Ireland Market Report 2024, MSC Country Market Analysis 2025-2026",
+        situation: "독일은 온라인, 오프라인 모든 유통 채널에서 MSC 침투율 70%+ 이상으로 시장 포화 상태입니다. 반면 스페인은 주력 채널인 대형마트에서조차 38%로 침투율이 낮아 오히려 성장 잠재력이 큽니다.",
+        actionPlan: "유럽 이커머스(온라인) 진출 시 MSC 인증이 강력한 차별화 요소로 작용합니다. Aldi, Lidl 등 하드 디스카운트 채널의 MSC 의무화 규정이 남유럽으로 확산되고 있으므로 납품을 위해 사전 대비가 필수적입니다.",
+        source: "NielsenIQ Channel Data / MSC 2025",
       }}
+      customBody={
+        <div style={{ height: 320, width: '100%', marginTop: '8px' }}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            <BarChart data={channelData} layout="vertical" margin={{ top: 10, right: 30, left: 10, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" opacity={0.15} horizontal={false} />
+              <XAxis type="number" domain={[0, 100]} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="channel" width={75} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+              <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.75rem' }} iconType="circle" />
+              {countryBars.map((bar) => (
+                <Bar key={bar.key} dataKey={bar.key} name={bar.name} fill={bar.color} radius={[0, 4, 4, 0]} barSize={10} isAnimationActive={false} />
+              ))}
+            </BarChart>
+          </SafeResponsiveContainer>
+        </div>
+      }
     />
   );
 }

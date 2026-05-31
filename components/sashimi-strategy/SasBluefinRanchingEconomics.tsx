@@ -2,58 +2,90 @@
 
 import React from 'react';
 import WidgetCard from '../WidgetCard';
+import { Fish, TrendingUp, PlaneTakeoff } from 'lucide-react';
 
 export default function SasBluefinRanchingEconomics() {
   return (
     <WidgetCard
       id="W-SAS06"
       title="EU 참다랑어 축양 마진 구조 (Ranching Economics)"
-      description="저가 매입 후 고부가 수출로 이어지는 확실한 마진 창출"
+      description="저가 활어 매입 → 축양(Fattening) → 고부가 수출의 차익 거래 모델"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
-      takeaway={{ situation: "EU 축양업은 저가 활어 매입 후 고부가 수출로 이어지는 확실한 마진 구조(차익 거래)를 갖고 있습니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
+      takeaway={{ 
+        situation: "EU(특히 스페인/크로아티아 등 지중해 연안)의 참다랑어 축양업은 통째로 생체를 저가(€6.7/kg)에 매입하여 6~8개월간 사육한 뒤, €13.3/kg의 초저온 고부가가치 상품으로 일본 등에 수출하는 확실한 마진 구조를 가집니다.", 
+        actionPlan: "단순 원물 포획(Wild Catch)보다, EU 축양장과의 장기 수매(Off-take) 계약을 체결하거나 지분 투자를 통해 부가가치 창출 단계(Fattening)의 이익을 공유하는 구조를 만들어야 합니다.", 
+        source: "Eurostat 2023 / EUMOFA BFT Report" 
+      }}
       customBody={
-        <div className="flex flex-col h-full w-full justify-center space-y-6 pt-4 pb-2">
-          <div className="flex items-center justify-between w-full relative">
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', justifyContent: 'center', gap: '24px', paddingTop: '24px', paddingBottom: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', position: 'relative', padding: '0 16px' }}>
             {/* Background Line */}
-            <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-200 dark:bg-slate-700 -z-0 -translate-y-1/2"></div>
+            <div style={{
+              position: 'absolute', top: '50%', left: '16px', right: '16px',
+              height: '2px', background: 'rgba(255,255,255,0.08)', zIndex: 0, transform: 'translateY(-50%)',
+            }} />
             
             {/* Step 1 */}
-            <div className="flex flex-col items-center bg-white dark:bg-slate-800 p-3 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 w-1/3 mx-2 z-10">
-              <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-2">
-                <span className="text-blue-600 dark:text-blue-400 font-bold">1</span>
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              background: 'rgba(30,41,59,0.6)', padding: '16px', borderRadius: '12px',
+              border: '1px solid rgba(255,255,255,0.06)',
+              width: '31%', margin: '0 8px', zIndex: 10,
+              transition: 'transform 0.2s',
+            }}>
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                background: 'rgba(59,130,246,0.2)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px',
+              }}>
+                <Fish style={{ color: '#60a5fa' }} size={24} />
               </div>
-              <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100 text-center">활어 매입 (Live Input)</h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">지중해 조업</p>
-              <div className="mt-2 text-lg font-bold text-blue-600 dark:text-blue-400">€6.7 / kg</div>
+              <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#f1f5f9', textAlign: 'center', margin: 0 }}>1. 활어 조업 (Live)</h4>
+              <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>지중해 해상 포획<br/>(선망선)</p>
+              <div style={{ marginTop: '12px', fontSize: '18px', fontWeight: 900, color: '#60a5fa', letterSpacing: '-0.025em' }}>€6.7 / kg</div>
             </div>
 
             {/* Step 2 */}
-            <div className="flex flex-col items-center bg-white dark:bg-slate-800 p-3 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 w-1/3 mx-2 z-10">
-              <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center mb-2">
-                <span className="text-indigo-600 dark:text-indigo-400 font-bold">2</span>
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              background: 'rgba(30,41,59,0.6)', padding: '16px', borderRadius: '12px',
+              border: '1px solid rgba(255,255,255,0.06)',
+              width: '31%', margin: '0 8px', zIndex: 10,
+              transition: 'transform 0.2s',
+            }}>
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                background: 'rgba(99,102,241,0.2)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px',
+              }}>
+                <TrendingUp style={{ color: '#818cf8' }} size={24} />
               </div>
-              <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100 text-center">축양 (Fattening)</h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">6~8개월 사육</p>
-              <div className="mt-2 text-sm font-medium text-indigo-600 dark:text-indigo-400">가치 증대</div>
+              <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#f1f5f9', textAlign: 'center', margin: 0 }}>2. 해상 축양 (Fattening)</h4>
+              <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>6~8개월 먹이 급여<br/>(지방 축적)</p>
+              <div style={{ marginTop: '12px', fontSize: '14px', fontWeight: 700, color: '#818cf8' }}>가치 2배 증대</div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex flex-col items-center bg-white dark:bg-slate-800 p-3 rounded-lg shadow-sm border border-slate-200 dark:border-slate-700 w-1/3 mx-2 z-10">
-              <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center mb-2">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold">3</span>
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              background: 'rgba(30,41,59,0.6)', padding: '16px', borderRadius: '12px',
+              border: '1px solid rgba(255,255,255,0.06)',
+              width: '31%', margin: '0 8px', zIndex: 10,
+              transition: 'transform 0.2s',
+            }}>
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                background: 'rgba(16,185,129,0.2)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px',
+              }}>
+                <PlaneTakeoff style={{ color: '#34d399' }} size={24} />
               </div>
-              <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100 text-center">일본 수출 (-60°C)</h4>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">초저온 냉동</p>
-              <div className="mt-2 text-lg font-bold text-emerald-600 dark:text-emerald-400">€13.3 / kg</div>
+              <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#f1f5f9', textAlign: 'center', margin: 0 }}>3. 가공 및 수출 (-60°C)</h4>
+              <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textAlign: 'center', lineHeight: 1.3 }}>초저온 냉동 후<br/>주로 일본행</p>
+              <div style={{ marginTop: '12px', fontSize: '18px', fontWeight: 900, color: '#34d399', letterSpacing: '-0.025em' }}>€13.3 / kg</div>
             </div>
-          </div>
-
-          <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-700">
-            <p className="text-sm text-slate-700 dark:text-slate-300">
-              <strong>인사이트:</strong> EU 축양업은 저가 활어 매입 후 고부가 수출로 이어지는 확실한 마진 구조(차익 거래)를 갖고 있습니다.
-            </p>
           </div>
         </div>
       }

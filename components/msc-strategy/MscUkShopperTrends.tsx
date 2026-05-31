@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { TrendingUp, TrendingDown } from 'lucide-react';
+import { TrendingUp, TrendingDown, ArrowRight } from 'lucide-react';
 import WidgetCard from '../WidgetCard';
 
 const trendData = [
@@ -14,120 +14,110 @@ const trendData = [
 ];
 
 export default function MscUkShopperTrends() {
+  const body = (
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', marginTop: '0.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+        {trendData.map((item) => {
+          const diff = item.y2026 - item.y2023;
+          const isUp = diff > 0;
+
+          return (
+            <div
+              key={item.metric}
+              style={{
+                border: `1px solid ${isUp ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)'}`,
+                borderRadius: '0.75rem',
+                padding: '1rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+                background: isUp ? 'rgba(16,185,129,0.05)' : 'rgba(239,68,68,0.05)',
+              }}
+            >
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94a3b8' }}>
+                {item.metric}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                {/* 2023 value */}
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 600, marginBottom: '2px' }}>2023년</div>
+                  <div style={{ fontSize: '1.125rem', fontWeight: 700, color: '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>
+                    {item.y2023}{item.unit}
+                  </div>
+                </div>
+
+                {/* Arrow and diff */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    color: isUp ? '#34d399' : '#f87171',
+                  }}>
+                    {isUp ? <TrendingUp size={14} strokeWidth={3} /> : <TrendingDown size={14} strokeWidth={3} />}
+                    {isUp ? '+' : ''}{diff}pp
+                  </div>
+                  <ArrowRight style={{ color: '#475569', marginTop: '0.25rem' }} size={16} />
+                </div>
+
+                {/* 2026 value */}
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 600, marginBottom: '2px' }}>2026년</div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#f1f5f9', fontVariantNumeric: 'tabular-nums' }}>
+                    {item.y2026}{item.unit}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Summary callout */}
+      <div style={{
+        marginTop: '1rem',
+        padding: '1rem',
+        background: 'rgba(56,189,248,0.1)',
+        border: '1px solid rgba(56,189,248,0.3)',
+        borderRadius: '0.75rem',
+        fontSize: '0.875rem',
+        color: '#cbd5e1',
+        fontWeight: 500,
+      }}>
+        <span style={{ color: '#38bdf8', fontWeight: 700, marginRight: '0.5rem' }}>핵심 패턴:</span>
+        구매 빈도 하락(-4pp) + 지속가능성 중시(+15pp) + 프리미엄 지불 의향 상승(+12pp) =
+        <span style={{
+          color: '#f1f5f9',
+          fontWeight: 700,
+          marginLeft: '0.25rem',
+          padding: '0.125rem 0.375rem',
+          background: 'rgba(30,41,59,0.5)',
+          borderRadius: '0.25rem',
+        }}>
+          "트레이드업(가치소비)" 구조적 전환
+        </span>
+      </div>
+    </div>
+  );
+
   return (
     <WidgetCard
-      title="W-MSC08. 영국 참치 쇼퍼 행동 변화 (2023→2026)"
+      id="W-MSC10"
+      title="영국 참치 쇼퍼 행동 변화 (2023→2026)"
+      description="핵심 6개 소비 지표 변화 분석 (트레이드업 패턴)"
       icon={TrendingUp}
       iconColor="#22d3ee"
       pillar="S5"
-      cardDesc="영국 참치 소비자 6개 핵심 지표의 3개년 변화 추이. '덜 사지만 더 비싼 것을 산다'는 트레이드업 경향 포착"
       telemetry={{ status: 'STATIC', syncDate: '2026' }}
-      customBody={
-        <div style={{ padding: '0 20px 20px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10 }}>
-            {trendData.map((item) => {
-              const diff = item.y2026 - item.y2023;
-              const isUp = diff > 0;
-              const diffColor = isUp ? '#10b981' : '#ef4444';
-              const bgColor = isUp ? 'rgba(16,185,129,0.06)' : 'rgba(239,68,68,0.06)';
-              const borderColor = isUp ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)';
-
-              return (
-                <div
-                  key={item.metric}
-                  style={{
-                    background: bgColor,
-                    border: `1px solid ${borderColor}`,
-                    borderRadius: 10,
-                    padding: '14px 16px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 8,
-                  }}
-                >
-                  {/* Metric name */}
-                  <div style={{ fontSize: '0.78rem', color: '#94a3b8', fontWeight: 600, lineHeight: 1.3 }}>
-                    {item.metric}
-                  </div>
-
-                  {/* Value comparison row */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    {/* 2023 value */}
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: '0.65rem', color: '#64748b', marginBottom: 2 }}>2023</div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#94a3b8', fontVariantNumeric: 'tabular-nums' }}>
-                        {item.y2023}{item.unit}
-                      </div>
-                    </div>
-
-                    {/* Arrow */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                      <div style={{
-                        width: '100%',
-                        height: 2,
-                        background: `linear-gradient(90deg, #64748b, ${diffColor})`,
-                        borderRadius: 1,
-                        position: 'relative',
-                      }}>
-                        <div style={{
-                          position: 'absolute',
-                          right: -2,
-                          top: -3,
-                          width: 0,
-                          height: 0,
-                          borderLeft: `6px solid ${diffColor}`,
-                          borderTop: '4px solid transparent',
-                          borderBottom: '4px solid transparent',
-                        }} />
-                      </div>
-                      <div style={{
-                        fontSize: '0.72rem',
-                        fontWeight: 700,
-                        color: diffColor,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 2,
-                      }}>
-                        {isUp ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
-                        {isUp ? '+' : ''}{diff}pp
-                      </div>
-                    </div>
-
-                    {/* 2026 value */}
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ fontSize: '0.65rem', color: '#64748b', marginBottom: 2 }}>2026</div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#e2e8f0', fontVariantNumeric: 'tabular-nums' }}>
-                        {item.y2026}{item.unit}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Summary callout */}
-          <div style={{
-            marginTop: 12,
-            padding: '12px 16px',
-            background: 'rgba(34,211,238,0.06)',
-            border: '1px solid rgba(34,211,238,0.2)',
-            borderRadius: 8,
-            fontSize: '0.78rem',
-            color: '#94a3b8',
-            lineHeight: 1.6,
-          }}>
-            <span style={{ color: '#22d3ee', fontWeight: 700 }}>핵심 패턴:</span>{' '}
-            구매 빈도 ↓(-4pp) + 프리미엄 지불 의향 ↑(+12pp) + 지속가능성 중시 ↑(+15pp)
-            = <span style={{ color: '#e2e8f0', fontWeight: 600 }}>&quot;트레이드업&quot; 구조적 전환</span>
-          </div>
-        </div>
-      }
+      cardDesc="B2C 소비 트렌드"
       takeaway={{
-        situation: "영국 참치 쇼퍼 3년간 핵심 변화: MSC 인지도 47%→54%(+7pp), 지속가능성 중시 구매자 38%→53%(+15pp), 프리미엄 지불 의향 41%→53%(+12pp). 반면 주간 구매 빈도는 32%→28%(-4pp) 감소 — '덜 사지만, 더 비싼 것을 산다'는 트레이드업 경향.",
-        actionPlan: "영국의 '프리미엄화+빈도 감소' 패턴이 2~3년 시차로 남유럽에 전파될 전망. 수출 전략을 '대량 저가'에서 '소량 고가 인증 제품'으로 전환해야 장기 마진 방어 가능.",
-        source: "MSC UK Tuna Shopper Report 2023, MSC UK Tuna Shopper Report 2026",
+        situation: "최근 3년간 영국 소비자의 구매 빈도(주 1회 이상)는 32%에서 28%로 하락했으나, 지속가능성을 중시하는 비중은 53%로 크게 증가했고 프리미엄 지불 의향(53%)도 높아졌습니다. 즉, 빈도는 줄이고 단가는 높이는 현상이 뚜렷합니다.",
+        actionPlan: "대량 판매 중심의 저마진 모델에서 벗어나 프리미엄 라인업(유기농 용매, 프리미엄 어종 등) 비중을 확대하여 장기적인 이익률을 방어해야 합니다. 이 트렌드는 향후 2~3년 내 남유럽으로 확산될 것입니다.",
+        source: "MSC UK Tuna Shopper Report 2023/2026",
       }}
+      customBody={body}
     />
   );
 }

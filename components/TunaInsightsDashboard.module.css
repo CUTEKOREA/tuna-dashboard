@@ -117,6 +117,10 @@
   gap: 1.5rem;
   align-items: stretch;
 }
+.cardBody > * {
+  min-width: 0;
+  overflow: hidden;
+}
 
 .chartContainer {
   height: 400px;

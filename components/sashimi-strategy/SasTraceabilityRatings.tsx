@@ -1,88 +1,67 @@
 'use client';
 
 import React from 'react';
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
-} from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip, Legend } from 'recharts';
 import WidgetCard from '../WidgetCard';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
 
-const data = [
-  {
-    subject: '어구(Gear) 친환경성',
-    현재: 2,
-    권장: 5,
-    fullMark: 5,
-  },
-  {
-    subject: '참다랑어 지속성',
-    현재: 1,
-    권장: 3,
-    fullMark: 5,
-  },
-  {
-    subject: '미국 SIMP 준수',
-    현재: 3,
-    권장: 5,
-    fullMark: 5,
-  },
-  {
-    subject: 'EU CATCH (2026)',
-    현재: 2,
-    권장: 5,
-    fullMark: 5,
-  },
-  {
-    subject: '추적성 시스템',
-    현재: 2,
-    권장: 4,
-    fullMark: 5,
-  },
+const RISK_DATA = [
+  { subject: '어구(Gear) 친환경성', currentRisk: 4, safeTarget: 1 },
+  { subject: '참다랑어 자원량', currentRisk: 5, safeTarget: 2 },
+  { subject: 'US SIMP 준수 요구', currentRisk: 5, safeTarget: 1 },
+  { subject: 'EU CATCH 의무 (2026)', currentRisk: 4, safeTarget: 1 },
+  { subject: '강제노동/인권 리스크', currentRisk: 3, safeTarget: 1 },
 ];
 
 export default function SasTraceabilityRatings() {
   return (
     <WidgetCard
-      title="추적성 및 지속가능성 평가"
-      subtitle="규제 준수(SIMP/CATCH) 및 Seafood Watch 등급"
-      takeaway={{ situation: "모든 참다랑어는 Seafood Watch 'Red' 등급이며, EU CATCH 의무화로 2026년 추적성 리스크 심화.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
+      id="W-SAS12"
+      title="추적성(Traceability) 및 지속가능성 리스크"
+      description="규제 준수(SIMP/CATCH) 및 Seafood Watch 'Red' 등급 압박"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
-    >
-      <div className="h-64 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11 }} />
-            <PolarRadiusAxis angle={30} domain={[0, 5]} />
-            <Radar
-              name="현재 (고위험군)"
-              dataKey="현재"
-              stroke="#ef4444"
-              fill="#ef4444"
-              fillOpacity={0.4}
-              isAnimationActive={false}
-            />
-            <Radar
-              name="권장 (지속가능)"
-              dataKey="권장"
-              stroke="#10b981"
-              fill="#10b981"
-              fillOpacity={0.4}
-              isAnimationActive={false}
-            />
-            <Tooltip />
-            <Legend />
-          </RadarChart>
-        </ResponsiveContainer>
-      </div>
-    </WidgetCard>
+      takeaway={{ 
+        situation: "모든 자연산 참다랑어는 멸종 위기 및 혼획 문제로 Seafood Watch 'Red(기피)' 등급에 지정되어 있으며, 미국의 SIMP와 2026년 발효되는 EU의 CATCH IT 시스템으로 인해 완전한 어획 추적성이 강제되고 있습니다.", 
+        actionPlan: "블록체인 기반 추적성(Traceability) 시스템을 도입하여 'Catch to Plate' 데이터를 구매자에게 투명하게 제공하는 것이 리테일러의 공급망 퇴출을 방어하는 유일한 해법입니다.", 
+        source: "Monterey Bay Aquarium Seafood Watch / NOAA SIMP" 
+      }}
+      customBody={
+        <div style={{ height: 256, width: '100%', marginTop: 8 }}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            <RadarChart cx="50%" cy="50%" outerRadius="65%" data={RISK_DATA}>
+              <PolarGrid stroke="rgba(255,255,255,0.15)" />
+              <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 600 }} />
+              <PolarRadiusAxis angle={90} domain={[0, 5]} tick={false} axisLine={false} />
+              <Radar
+                name="현재 규제/환경 리스크 (Red Zone)"
+                dataKey="currentRisk"
+                stroke="#ef4444"
+                strokeWidth={2}
+                fill="#ef4444"
+                fillOpacity={0.3}
+                isAnimationActive={false}
+              />
+              <Radar
+                name="안전 목표 (Safe Zone)"
+                dataKey="safeTarget"
+                stroke="#10b981"
+                strokeWidth={2}
+                fill="#10b981"
+                fillOpacity={0.5}
+                isAnimationActive={false}
+              />
+              <Tooltip 
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                labelStyle={{ color: '#e2e8f0' }}
+                itemStyle={{ color: '#cbd5e1' }}
+              />
+              <Legend wrapperStyle={{ paddingTop: '10px', color: '#cbd5e1' }} iconType="circle" />
+            </RadarChart>
+          </SafeResponsiveContainer>
+        </div>
+      }
+    />
   );
 }

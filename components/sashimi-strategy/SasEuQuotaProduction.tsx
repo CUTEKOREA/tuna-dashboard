@@ -2,68 +2,75 @@
 
 import React from 'react';
 import WidgetCard from '../WidgetCard';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 
-const EU_PRODUCTION_DATA = [
-  { country: '스페인', volume: 6500, color: '#3b82f6' },
-  { country: '몰타', volume: 4200, color: '#6366f1' },
-  { country: '크로아티아', volume: 3100, color: '#8b5cf6' },
-  { country: '기타 EU', volume: 3500, color: '#94a3b8' },
+const EU_QUOTA_DATA = [
+  { country: '스페인 (Spain)', volume: 7465, color: '#3b82f6' },
+  { country: '프랑스 (France)', volume: 6962, color: '#6366f1' },
+  { country: '이탈리아 (Italy)', volume: 5617, color: '#8b5cf6' },
+  { country: '기타 (Malta 등)', volume: 1459, color: '#94a3b8' },
 ];
 
 export default function SasEuQuotaProduction() {
   return (
     <WidgetCard
       id="W-SAS07"
-      title="EU 참다랑어 국가별 쿼터 생산량"
-      description="ICCAT(대서양참치보존위원회) 할당량 52% 점유"
+      title="EU 참다랑어 국가별 생산 쿼터"
+      description="2024년 ICCAT 지중해/동대서양 쿼터 (총 21,503톤)"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
-      takeaway={{ situation: "스페인, 몰타가 지중해 참다랑어 생산의 절반 이상을 통제. EU 내 압도적인 조업 및 축양 경쟁력을 보여줍니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
-    >
-      <div className="h-64 w-full mt-4">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={EU_PRODUCTION_DATA} margin={{ top: 20, right: 30, left: 10, bottom: 0 }} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" opacity={0.3} horizontal={true} vertical={false} />
-            <XAxis 
-              type="number" 
-              fontSize={12} 
-              tickLine={false} 
-              axisLine={false} 
-              tickFormatter={(val) => `${val}t`} 
-            />
-            <YAxis 
-              dataKey="country" 
-              type="category" 
-              fontSize={12} 
-              tickLine={false} 
-              axisLine={false} 
-              width={70} 
-            />
-            <Tooltip
-              cursor={{ fill: 'rgba(0,0,0,0.05)' }}
-              contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-            />
-            <Bar 
-              dataKey="volume" 
-              name="생산량 (톤)" 
-              radius={[0, 4, 4, 0]} 
-              barSize={24} 
-              isAnimationActive={false}
-            >
-              {EU_PRODUCTION_DATA.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-700">
-        <p className="text-sm text-slate-700 dark:text-slate-300">
-          <strong>인사이트:</strong> 스페인, 몰타가 지중해 참다랑어 생산의 절반 이상을 통제. EU 내 압도적인 조업 및 축양 경쟁력을 보여줍니다.
-        </p>
-      </div>
-    </WidgetCard>
+      takeaway={{ 
+        situation: "2024년 기준 EU는 전체 ICCAT 쿼터(40,570t)의 약 53%인 21,503톤을 할당받았으며, 이 중 스페인, 프랑스, 이탈리아 3국이 EU 물량의 93%를 독점하고 있습니다.", 
+        actionPlan: "쿼터가 집중된 스페인(7,465t)과 이탈리아(5,617t)의 주요 선단 및 가공업체와의 B2B 네트워킹을 최우선으로 추진하여 원물 수급 안정성을 확보해야 합니다.", 
+        source: "ICCAT 2024 Quota Allocation Report" 
+      }}
+      customBody={
+        <div style={{ height: 256, width: '100%', marginTop: 8 }}>
+          <SafeResponsiveContainer width="100%" height="100%">
+            <BarChart data={EU_QUOTA_DATA} margin={{ top: 20, right: 30, left: 10, bottom: 0 }} layout="vertical">
+              <CartesianGrid strokeDasharray="3 3" opacity={0.3} horizontal={true} vertical={false} />
+              <XAxis 
+                type="number" 
+                fontSize={12} 
+                tickLine={false} 
+                axisLine={false} 
+                tickFormatter={(val) => `${val}t`} 
+                domain={[0, 8000]}
+                tick={{ fill: '#94a3b8' }}
+              />
+              <YAxis 
+                dataKey="country" 
+                type="category" 
+                fontSize={11} 
+                tickLine={false} 
+                axisLine={false} 
+                width={100} 
+                tick={{ fill: '#cbd5e1', fontWeight: 600 }}
+              />
+              <Tooltip
+                cursor={{ fill: 'rgba(255,255,255,0.04)' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                labelStyle={{ color: '#e2e8f0' }}
+                itemStyle={{ color: '#cbd5e1' }}
+                formatter={(value: number) => [`${value.toLocaleString()} 톤`, '할당 쿼터']}
+              />
+              <Bar 
+                dataKey="volume" 
+                name="할당 쿼터 (톤)" 
+                radius={[0, 4, 4, 0]} 
+                barSize={24} 
+                isAnimationActive={false}
+              >
+                {EU_QUOTA_DATA.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
+            </BarChart>
+          </SafeResponsiveContainer>
+        </div>
+      }
+    />
   );
 }

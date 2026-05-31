@@ -2,77 +2,76 @@
 
 import React from 'react';
 import WidgetCard from '../WidgetCard';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, LabelList } from 'recharts';
 
-const CONSUMPTION_DATA = [
-  { year: '2020', exportToJapan: 94, domesticEU: 6 },
-  { year: '2021', exportToJapan: 93, domesticEU: 7 },
-  { year: '2022', exportToJapan: 92, domesticEU: 8 },
-  { year: '2023', exportToJapan: 91, domesticEU: 9 },
-  { year: '2024', exportToJapan: 90, domesticEU: 10 },
+const PENETRATION_DATA = [
+  { country: '프랑스 (FR)', rate: 9.0, color: '#3b82f6' },
+  { country: '이탈리아 (IT)', rate: 7.1, color: '#6366f1' },
+  { country: '스페인 (ES)', rate: 6.3, color: '#8b5cf6' },
+  { country: '영국 (UK)', rate: 2.5, color: '#cbd5e1' },
+  { country: '독일 (DE)', rate: 1.2, color: '#cbd5e1' },
 ];
 
 export default function SasDomesticRetailTrend() {
   return (
     <WidgetCard
       id="W-SAS08"
-      title="EU 참다랑어 소비 및 수출 트렌드"
-      description="내수 소비 한계와 일본 시장 의존도"
+      title="EU 주요국 사시미/스테이크 소매 침투율"
+      description="남부 유럽 중심의 극도로 제한적인 내수 소비"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
-      takeaway={{ situation: "유럽 생산량의 90% 이상이 일본으로 수출되며, 내수 소비는 극히 제한적(생물 황다랑어 스테이크 중심)입니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
-    >
-      <div className="grid grid-cols-2 gap-4 mt-2">
-        <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">
-          <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">프랑스 참치 소매 침투율</p>
-          <div className="text-2xl font-bold text-slate-800 dark:text-slate-100">9.0%</div>
-          <p className="text-xs text-slate-400 mt-1">생물 황다랑어 스테이크 중심</p>
-        </div>
-        <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">
-          <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">일본 수출 비중</p>
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">&gt; 90%</div>
-          <p className="text-xs text-slate-400 mt-1">참다랑어 프리미엄 조업분</p>
-        </div>
-      </div>
+      takeaway={{ 
+        situation: "EU 생산 참다랑어의 90% 이상이 일본으로 직수출되며, 내수 시장은 캔 참치 대비 생물(주로 황다랑어 스테이크) 침투율이 9% 미만에 불과한 초기/니치 시장입니다.", 
+        actionPlan: "EU 현지 B2C 시장 진출 시, 참다랑어가 아닌 가성비가 좋은 황다랑어(Yellowfin) 스테이크 제품으로 프랑스/이탈리아를 우선 공략하는 것이 현실적입니다.", 
+        source: "EUMOFA 2024 Retail Analysis" 
+      }}
+      customBody={
+        <>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 8 }}>
+            <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
+              <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 4 }}>일본 수출 비중 (블루핀)</p>
+              <div style={{ fontSize: 24, fontWeight: 900, color: '#60a5fa', fontVariantNumeric: 'tabular-nums' }}>&gt; 90%</div>
+              <p style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>대부분 초저온 냉동 후 수출</p>
+            </div>
+            <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
+              <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 4 }}>최대 내수 시장 (프랑스)</p>
+              <div style={{ fontSize: 24, fontWeight: 900, color: '#818cf8', fontVariantNumeric: 'tabular-nums' }}>9.0%</div>
+              <p style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>생물 참치 가구당 구매 경험률</p>
+            </div>
+          </div>
 
-      <div className="h-48 w-full mt-4">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={CONSUMPTION_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.3} vertical={false} />
-            <XAxis dataKey="year" fontSize={12} tickLine={false} axisLine={false} />
-            <YAxis fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => `${val}%`} domain={[0, 100]} />
-            <Tooltip
-              contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-            />
-            <Legend verticalAlign="top" height={36} iconType="circle" />
-            <Line 
-              type="monotone" 
-              dataKey="exportToJapan" 
-              name="일본 수출 (%)" 
-              stroke="#3b82f6" 
-              strokeWidth={3} 
-              dot={{ r: 4 }} 
-              isAnimationActive={false} 
-            />
-            <Line 
-              type="monotone" 
-              dataKey="domesticEU" 
-              name="EU 내수 (%)" 
-              stroke="#f59e0b" 
-              strokeWidth={3} 
-              dot={{ r: 4 }} 
-              isAnimationActive={false} 
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-
-      <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-700">
-        <p className="text-sm text-slate-700 dark:text-slate-300">
-          <strong>인사이트:</strong> 유럽 생산량의 90% 이상이 일본으로 수출되며, 내수 소비는 극히 제한적(생물 황다랑어 스테이크 중심)입니다.
-        </p>
-      </div>
-    </WidgetCard>
+          <div style={{ height: 192, width: '100%', marginTop: 16 }}>
+            <SafeResponsiveContainer width="100%" height="100%">
+              <BarChart data={PENETRATION_DATA} margin={{ top: 20, right: 10, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" opacity={0.2} vertical={false} />
+                <XAxis dataKey="country" fontSize={11} tickLine={false} axisLine={false} tick={{ fill: '#94a3b8' }} />
+                <YAxis fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `${val}%`} domain={[0, 12]} tick={{ fill: '#94a3b8' }} />
+                <Tooltip
+                  cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
+                  labelStyle={{ color: '#e2e8f0' }}
+                  itemStyle={{ color: '#cbd5e1' }}
+                  formatter={(value: number) => [`${value}%`, '가구 침투율']}
+                />
+                <Bar 
+                  dataKey="rate" 
+                  name="침투율 (%)" 
+                  radius={[4, 4, 0, 0]} 
+                  barSize={32} 
+                  isAnimationActive={false}
+                >
+                  {PENETRATION_DATA.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                  <LabelList dataKey="rate" position="top" formatter={(val: number) => `${val}%`} fontSize={10} fill="#cbd5e1" fontWeight={600} />
+                </Bar>
+              </BarChart>
+            </SafeResponsiveContainer>
+          </div>
+        </>
+      }
+    />
   );
 }
