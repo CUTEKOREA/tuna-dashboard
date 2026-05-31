@@ -17,8 +17,8 @@ export default function SasSupplyChainSplit() {
       id="W-SAS03"
       title="미국 시장 서플라이 체인 양극화"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
       takeaway={{ situation: "미국 시장은 저가 대량 포케용(Bulk)과 항공운송 프리미엄(Fresh)으로 양극화.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
     >
       <ResponsiveContainer width="100%" height={260}>

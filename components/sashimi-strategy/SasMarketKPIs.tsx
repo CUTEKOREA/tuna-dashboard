@@ -9,8 +9,8 @@ export default function SasMarketKPIs() {
       id="W-SAS02"
       title="주요 시장 핵심 KPI"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
       takeaway={{ situation: "미국 시장의 폭발적 성장이 일본의 감소를 상쇄.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px', padding: '16px', height: '100%', boxSizing: 'border-box' }}>

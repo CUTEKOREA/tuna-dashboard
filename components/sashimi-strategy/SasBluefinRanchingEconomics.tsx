@@ -10,8 +10,8 @@ export default function SasBluefinRanchingEconomics() {
       title="EU 참다랑어 축양 마진 구조 (Ranching Economics)"
       description="저가 매입 후 고부가 수출로 이어지는 확실한 마진 창출"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
       customBody={
         <div className="flex flex-col h-full w-full justify-center space-y-6 pt-4 pb-2">
           <div className="flex items-center justify-between w-full relative">

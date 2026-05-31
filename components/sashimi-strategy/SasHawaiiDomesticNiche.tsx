@@ -19,8 +19,8 @@ export default function SasHawaiiDomesticNiche() {
       title="하와이 호놀룰루 프리미엄 참치 경매 동향"
       description="미국 내 최고급 생물 참치의 기준점(Benchmark)"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
     >
       <div className="h-64 w-full mt-4">
         <ResponsiveContainer width="100%" height="100%">

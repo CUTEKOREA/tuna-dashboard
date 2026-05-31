@@ -25,8 +25,8 @@ export default function SasSashimiPriceLadder() {
       subtitle="품질 및 보관 형태별 가격 차이"
       takeaway={{ situation: "품질 및 보관 형태(생물 vs 초저온 냉동)에 따라 가격 사다리가 명확하게 형성.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
     >
       <div className="h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">

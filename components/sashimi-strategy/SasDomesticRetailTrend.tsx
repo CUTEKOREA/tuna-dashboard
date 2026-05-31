@@ -19,8 +19,8 @@ export default function SasDomesticRetailTrend() {
       title="EU 참다랑어 소비 및 수출 트렌드"
       description="내수 소비 한계와 일본 시장 의존도"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
     >
       <div className="grid grid-cols-2 gap-4 mt-2">
         <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">

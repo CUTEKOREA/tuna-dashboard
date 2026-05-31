@@ -27,8 +27,8 @@ export default function SasQuotaVolatility() {
       subtitle="미국 쿼터 초과 및 EU 쿼터 증대"
       takeaway={{ situation: "미국은 20년 만에 쿼터 초과 달성 등 자원 압박이 거세나, EU는 ICCAT 쿼터 증대로 여유 확보.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
     >
       <div className="h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">

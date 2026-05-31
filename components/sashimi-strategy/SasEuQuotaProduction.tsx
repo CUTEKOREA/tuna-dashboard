@@ -18,8 +18,8 @@ export default function SasEuQuotaProduction() {
       title="EU 참다랑어 국가별 쿼터 생산량"
       description="ICCAT(대서양참치보존위원회) 할당량 52% 점유"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
-      cardDesc="사시미/스테이크 시장 동향"}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      cardDesc="사시미/스테이크 시장 동향"
     >
       <div className="h-64 w-full mt-4">
         <ResponsiveContainer width="100%" height="100%">
