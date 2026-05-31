@@ -515,7 +515,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 3: Producer Price Volatility */}
         <WidgetCard title='주요 산지별 생산자 가격 변동성 스프레드' icon={Activity} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: 'LIVE', syncDate: 'FAOSTAT' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'FAOSTAT' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoPriceLive}>
               <AreaChart data={faoPriceLive}>
@@ -554,7 +554,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='한국 도매가 폭등 및 베트남산 단가 스프레드 (여름 단경기)' icon={Layers} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: 'LIVE', syncDate: 'KAMIS & KCS' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'KAMIS & KCS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w1Live}>
               <AreaChart data={w1Live}>
@@ -627,7 +627,7 @@ export default function CarrotDashboard() {
         {/* New W15 Widget: Climate Hedge & Call Option */}
         <WidgetCard title='글로벌 기후 리스크 헷징 및 산지 콜옵션 가치' icon={Globe} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: 지수 및 변동률 %'
-          telemetry={{ status: 'LIVE', syncDate: 'NOAA' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'NOAA' }} chartHeight={375}
           chart={
             <ChartWrapper data={w15Live}>
               <ComposedChart data={w15Live}>
@@ -649,7 +649,7 @@ export default function CarrotDashboard() {
         {/* New W20 Widget: Phyto-Risk & PLS Compliance */}
         <WidgetCard title='식물방역 및 잔류농약 리스크 지수 실증 (Phyto-Risk)' icon={ShieldCheck} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: 건수, 톤'
-          telemetry={{ status: 'LIVE', syncDate: 'MFDS' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'MFDS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w20Live}>
               <ComposedChart data={w20Live}>
@@ -1018,7 +1018,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='B2B 스팟 시장 가격 변동성 vs 장기 계약 헤징 실증' icon={Dna} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 기준치 100'
-          telemetry={{ status: 'LIVE', syncDate: 'KCS' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'KCS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w7Live}>
               <LineChart data={w7Live}>
@@ -1124,7 +1124,7 @@ export default function CarrotDashboard() {
         {/* New W18 Widget: 인수합병(M&A) Acquisition Target Radar */}
         <WidgetCard title='인수합병(M&A) 인수 타겟 스코어카드 (3자 비교 CDD)' icon={Target} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 100점 만점'
-          telemetry={{ status: 'LIVE', syncDate: 'KAMIS & KCS & NOAA' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'KAMIS & KCS & NOAA' }} chartHeight={375}
           chart={
             <ChartWrapper data={w18Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w18Live}>
@@ -1243,7 +1243,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='비규격 폐기 방지 및 푸드 업사이클링 ROI' icon={Leaf} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 비율'
-          telemetry={{ status: 'LIVE', syncDate: 'UN Comtrade' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'UN Comtrade' }} chartHeight={375}
           chart={
             <ChartWrapper data={w9Live}>
               <BarChart data={w9Live} layout="vertical">
@@ -1378,7 +1378,7 @@ export default function CarrotDashboard() {
         {/* New W19 Widget: Exit Valuation Waterfall */}
         <WidgetCard title='엑시트 밸류에이션 워터폴: 5x → 15x 멀티플 브릿지 실증' icon={Landmark} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 밸류에이션 포인트'
-          telemetry={{ status: 'LIVE', syncDate: 'DART & PitchBook' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: 'DART & PitchBook' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW19Data}>
               <BarChart data={dynamicW19Data} margin={{ left: 10, right: 10 }}>

@@ -1,66 +1,42 @@
 import { NextResponse } from 'next/server';
 
-export const revalidate = 0; // Disable cache for live telemetry
-
+// 정직 STATIC: 베트남/중국산 냉동 다이스 당근 착지원가 비교 모델(정적 기준값).
+// 기존: 무작위 노이즈로 KAMIS 가격·환율 변동을 생성해 라이브로 위장 → 정적 기준값으로 교체, isLive:false.
 export async function GET() {
   try {
-    const now = new Date();
-    
-    // 1. Live KAMIS Price Simulation (Base: 2800, variance: +/- 300)
-    const baseKamis = 2800;
-    const kamisVariance = Math.floor(Math.random() * 600) - 300;
-    const domesticWholesalePrice_KRW_per_kg = baseKamis + kamisVariance;
+    // 정적 기준값 (KAMIS 도매가·환율 — 추정/스냅샷, 실시간 미연동)
+    const domesticWholesalePrice_KRW_per_kg = 2800; // KAMIS 국내 도매가 기준 (원/kg)
+    const VND_to_KRW = 0.054;
+    const USD_to_KRW = 1380;
 
-    // 2. Live Exchange Rates Simulation
-    const baseVnd = 0.054;
-    const vndVariance = (Math.random() * 0.004) - 0.002;
-    const VND_to_KRW = +(baseVnd + vndVariance).toFixed(4);
-
-    const baseUsd = 1380;
-    const usdVariance = Math.floor(Math.random() * 40) - 20;
-    const USD_to_KRW = baseUsd + usdVariance;
-
-    // 3. Dynamic Landed Costs
-    // Vietnam: Ocean Freight + 0% Tariff (FTA) + Processing
-    const vietnamFobUsd = 1.05; // $1.05 / kg
+    // 착지원가 모델
+    const vietnamFobUsd = 1.05; // $/kg
     const vietnamOceanFreightUsd = 0.15;
     const vietnamIQF_KRW_per_kg = Math.round((vietnamFobUsd + vietnamOceanFreightUsd) * USD_to_KRW);
 
-    // China: Ocean Freight + 30% Tariff (Base or TRQ exhausted)
-    const chinaFobUsd = 0.95; // Cheaper FOB
-    const chinaOceanFreightUsd = 0.08; // Closer
-    const chinaIQF_KRW_per_kg = Math.round((chinaFobUsd + chinaOceanFreightUsd) * USD_to_KRW * 1.30); // 30% tariff applied
+    const chinaFobUsd = 0.95;
+    const chinaOceanFreightUsd = 0.08;
+    const chinaIQF_KRW_per_kg = Math.round((chinaFobUsd + chinaOceanFreightUsd) * USD_to_KRW * 1.30); // 30% 관세
 
-    // 4. Arbitrage Calculation
     const savingsPerKg = domesticWholesalePrice_KRW_per_kg - vietnamIQF_KRW_per_kg;
-    let action = "Hold";
-    if (savingsPerKg > 1000) action = "Strong Buy (Immediate Hedging)";
-    else if (savingsPerKg > 500) action = "Accumulate (Build Inventory)";
+    let action = "관망";
+    if (savingsPerKg > 1000) action = "선제 매입·헤징 검토";
+    else if (savingsPerKg > 500) action = "재고 점진 확보";
 
     const response = {
-      timestamp: now.toISOString(),
+      isLive: false,
       domesticWholesalePrice_KRW_per_kg,
-      exchangeRates: {
-        THB_to_KRW: 37.5,
-        VND_to_KRW,
-        USD_to_KRW
-      },
-      sources: {
-        vietnamIQF_KRW_per_kg,
-        chinaIQF_KRW_per_kg,
-      },
+      exchangeRates: { THB_to_KRW: 37.5, VND_to_KRW, USD_to_KRW },
+      sources: { vietnamIQF_KRW_per_kg, chinaIQF_KRW_per_kg },
       recommendation: {
         bestSourcing: "Vietnam IQF (베트남산 냉동 다이스)",
-        savingsPerKg, 
-        action
+        savingsPerKg,
+        action,
       },
-      apiStatus: {
-        KAMIS: "active_live_sim",
-        BOT: "active_live_sim",
-        KCS: "active_live_sim"
-      }
+      apiStatus: { KAMIS: "static", BOT: "static", KCS: "static" },
+      source: "KAMIS 도매가·환율·KCS 관세 기반 착지원가 모델 (정적 기준값)",
     };
-    
+
     return NextResponse.json(response);
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch arbitrage data" }, { status: 500 });

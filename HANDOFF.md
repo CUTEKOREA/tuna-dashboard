@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🥕 **2026-05-31 — carrot 대시보드 허위 LIVE 8건 정직화 + arbitrage 조작 제거** [CC]:
+> - **감사**: /carrot 30위젯(인라인 JSX) 중 허위 LIVE 8건. 3라우트(arbitrage·trq·dashboard) 모두 외부fetch 0(dashboard=30 정적파일). garlic과 동일 미감사 패턴.
+> - **8건 허위 LIVE**: status:'LIVE' 하드코딩(syncDate에 FAOSTAT·KAMIS·NOAA·MFDS·KCS·Comtrade·DART 출처명)이나 데이터는 정적 파일 → 전부 `LIVE→SYNCED`.
+> - **arbitrage 라우트 조작 제거**: `Math.random()`으로 KAMIS 가격(±300)·환율 변동 생성 + `apiStatus:active_live_sim` + `(Strong Buy)`(P-03) → 정적 기준값(KAMIS 2800·USD 1380), isLive:false, action 한글 정직화, source '정적 기준값' 명시.
+> - **검증**: `npm run build` ✓ · status:'LIVE' 0(SYNCED 30) · arbitrage Math.random/Strong Buy/live_sim 0. **로컬 커밋, 배포 대기**.
+
 > 🧄 **2026-05-31 — garlic 대시보드 허위 LIVE 9건 정직화** [CC]:
 > - **감사**: /garlic 17위젯(인라인 JSX) 중 허위 LIVE 9건. 이전 P0가 galchi(갈치)는 정직화했으나 garlic(마늘)은 미감사 상태였음.
 > - **근본 원인**: `/api/garlic/widget`이 정적 JSON 파일(`fs.readFileSync('data/garlic_*.json')`, 19파일)만 읽는데, 9개 위젯이 `telemetry={{ status: 'LIVE' }}` 하드코딩. 그중 w12(환율 시뮬레이터)는 `simulatedW12Data` 하드코딩 mock.
