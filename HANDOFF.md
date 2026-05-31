@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧄 **2026-05-31 — garlic 대시보드 허위 LIVE 9건 정직화** [CC]:
+> - **감사**: /garlic 17위젯(인라인 JSX) 중 허위 LIVE 9건. 이전 P0가 galchi(갈치)는 정직화했으나 garlic(마늘)은 미감사 상태였음.
+> - **근본 원인**: `/api/garlic/widget`이 정적 JSON 파일(`fs.readFileSync('data/garlic_*.json')`, 19파일)만 읽는데, 9개 위젯이 `telemetry={{ status: 'LIVE' }}` 하드코딩. 그중 w12(환율 시뮬레이터)는 `simulatedW12Data` 하드코딩 mock.
+> - **정정**: 정적 파일 데이터 8개 `LIVE→SYNCED`(실데이터 스냅샷), w12 시뮬레이터 `LIVE→STATIC`(2026 시뮬레이션). 결과 telemetry: SYNCED 16·STATIC 1·LIVE 0.
+> - **검증**: `npm run build` ✓ · status:'LIVE' 0. **로컬 커밋, 배포 대기**.
+
 > 🇹🇭 **2026-05-31 — /seasia-oem 감사 + 출처/배지 정직화** [CC]:
 > - **감사**: 총 20위젯(벤더 카드 17 + 무역통계 차트 3). **허위 LIVE 0·mock 0** — 무역통계는 UN Comtrade 실측(소수점·공식 HS 라벨), 벤더는 실존 캔공장(KTCFOOD·Edison 등). 단 20개 전부 TelemetryBadge·출처 없음(A-02/W-04).
 > - **정정(①)**: 무역통계 3위젯에 `TelemetryBadge(SYNCED+UN Comtrade 날짜)`+출처 캡션, 벤더 탭에 출처·실사상태(meetingData 동적 카운트) 고지. 빌드 ✓. **로컬 커밋, 배포 대기**.

@@ -287,7 +287,7 @@ export default function GarlicDashboard() {
         
         <WidgetCard title="글로벌 마늘 생산 추이 및 중국 패권" icon={Layers} iconColor="#eab308" pillar="S1"
           cardDesc="국가별 생산량 (단위: 톤) — 중국 산둥성 재배면적 증가 + 기후 안정 수확량 +15% 전망"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <AreaChart data={w1Data}>
               <defs>
@@ -326,7 +326,7 @@ export default function GarlicDashboard() {
         <WidgetCard title={w2Mode === 'macro' ? "국가별 수출 단가 추이 (USD/톤)" : "KAMIS 도매가 하향 안정화 추이 (원/kg)"}
           icon={TrendingUp} iconColor="#eab308" pillar="S4"
           cardDesc="Macro(연간) vs Spot(KAMIS 월별) 토글로 매크로/스팟 모드 전환"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
           customBody={
             <div>
               <div style={{ display:'flex', background:'rgba(0,0,0,0.5)', borderRadius:'6px', padding:'2px', border: 'none', marginBottom: '1rem', width: 'fit-content' }}>
@@ -387,7 +387,7 @@ export default function GarlicDashboard() {
           <WidgetCard title="주요 산지 이상기후 및 벌마늘 리스크 모니터링"
             icon={Zap} iconColor="#ef4444" pillar="S1"
             cardDesc="좌축: 단수(전통 vs 정밀 농법), 우축: 비료 원가 지수 — 이상기후 헷징"
-            telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
               <ComposedChart data={i1Data}>
                 <ChartPatternDefs />
@@ -579,7 +579,7 @@ export default function GarlicDashboard() {
 
         <WidgetCard title="정부 TRQ 방출 및 통관 수입 모니터링" icon={Shield} iconColor="#84cc16" pillar="S3"
           cardDesc="원산지별 도착 원가 + 관세 페널티 — TRQ 방출 시그널 추적"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={w6Data}>
               <ChartPatternDefs />
@@ -612,7 +612,7 @@ export default function GarlicDashboard() {
         <div style={{ gridColumn: '1 / -1' }}>
           <WidgetCard title="홍해 사태(Red Sea Crisis) 물류 충격" icon={Anchor} iconColor="#65a30d" pillar="S3"
             cardDesc="아시아-유럽 라인 운송 기간(좌, 일) + 운임/리스크 지수(우)"
-            telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+            telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
               <ComposedChart data={i3Data}>
                 <ChartPatternDefs />
@@ -645,7 +645,7 @@ export default function GarlicDashboard() {
 
         <WidgetCard title="환율 변동성 대비 실질 수입 마진 시뮬레이터" icon={ShieldCheck} iconColor="#eab308" pillar="S3"
           cardDesc="원/달러 + 원/위안 슬라이더 기반 실질 수입 단가 차익 시뮬레이션"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026 시뮬레이션' }}
           customBody={
             <div>
               <div style={{ background:'#282828', border: 'none', padding:'0.8rem', borderRadius:'8px', marginBottom:'1rem' }}>
@@ -713,7 +713,7 @@ export default function GarlicDashboard() {
         
         <WidgetCard title="1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 USD]" icon={MapPin} iconColor="#ef4444" pillar="S4"
           cardDesc="국가별 1인당 소비와 시장 규모 + 성장률 — 가치 마이그레이션 매트릭스"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart>
               {grid}
@@ -745,7 +745,7 @@ export default function GarlicDashboard() {
 
         <WidgetCard title="무역 수지 및 적자/흑자 전환 (한국 기준, 백만 USD)" icon={Activity} iconColor="#facc15" pillar="S4"
           cardDesc="관세청(KCS) 실시간 누적 — 연간 $70M~$100M 구조적 적자"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w8Data}>
               <ChartPatternDefs />
@@ -887,7 +887,7 @@ export default function GarlicDashboard() {
 
         <WidgetCard title="수확량 변동성 및 기후 리스크 지수 (변동률 %)" icon={AlertTriangle} iconColor="#65a30d" pillar="S1"
           cardDesc="연간 생산 변동률 — 14~18% 변동 계수 (타 작물 대비 높음)"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w10Data}>
               <ChartPatternDefs />
