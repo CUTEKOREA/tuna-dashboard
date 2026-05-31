@@ -236,8 +236,8 @@ export default function SalmonForecastSimulator() {
       icon={Calculator}
       iconColor="#10b981"
       pillar="S4"
-      cardDesc="FOB·운임·관세·환율 5축 LIVE 결합 착지원가 + 3개월 가격 변동 전망"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      cardDesc="FOB·운임·관세·환율 5축 API 결합 착지원가 + 3개월 가격 변동 전망"
+      telemetry={{ status: breakdown ? 'SYNCED' : 'STATIC', syncDate: 'API (착지원가 Tariffs·FRED)' }}
       customBody={body}
       takeaway={{
         situation: `<div>

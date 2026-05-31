@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-31 — salmon 대시보드 하드코딩 LIVE 2건 동적화** [CC]:
+> - **감사**: /salmon 74위젯(JSON 57 + 독립컴포넌트 17) 중 하드코딩 LIVE 2건. JSON 57 clean(isLive 0·mock 0), 3라우트 isLive 동적(정직), 14컴포넌트 clean(이전 P0 'Climate·DoubleMateriality·Logistics·NTBRadar 허위LIVE 청산' 확인), GlobalSupplyPrice는 정직 시나리오 시뮬레이션.
+> - **2건 동적화**:
+>   - `SalmonForecastSimulator`: `status:'LIVE', syncDate:'2026-05-21'`(고정날짜 모순) → `breakdown ? 'SYNCED':'STATIC'`. /api/landed-cost(Tariffs·FRED 실호출) fetch 기반. cardDesc '5축 LIVE'→'5축 API'.
+>   - `SalmonLiveTicker`: `status:'LIVE'` 하드코딩 → `lastUpdate ? 'LIVE':'STATIC'`(macro·KCS·KAMIS 실 티커, 갱신 시에만 LIVE).
+> - **검증**: `npm run build` ✓ · 하드코딩 status:'LIVE' 0. **로컬 커밋, 배포 대기**.
+
 > 🐟 **2026-05-31 — pollock 대시보드 허위 LIVE 정직화 (잔존 6 + 동적화 4)** [CC]:
 > - **감사**: /pollock 69위젯(JSON 58 + customInject 11) 중 허위 LIVE 6 + 잠재 4. (k1_3d_surimi "Mock"은 모사 해산물=imitation seafood, 위반 아님)
 > - **6건 잔존 isLiveApi 허위**: w4_korea_crisis·w6_inflation_unitprice·w10_surimi_top3·w14·w25_processing_bottleneck·w29_eu_derisk_pivot — JSON `isLiveApi:true`(출처·라이브주입 없음, 렌더러 line 655가 LIVE 표기). 라이브 주입은 kpi4에만 적용 → **isLiveApi:true→false**(정직 STATIC). 이전 P0가 12건 정정했으나 6건 잔존이었음.
