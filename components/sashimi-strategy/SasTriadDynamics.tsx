@@ -9,8 +9,9 @@ export default function SasTriadDynamics() {
       id="W-SAS01"
       title="글로벌 트라이애드 동인 (미국/EU/일본)"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      takeaway="미국은 캔 참치 외 프리미엄 성장 동력, EU는 지중해 축양 생산기지, 일본은 구조적 하락장."
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
+      cardDesc="사시미/스테이크 시장 동향"}
+      takeaway={{ situation: "미국은 캔 참치 외 프리미엄 성장 동력, EU는 지중해 축양 생산기지, 일본은 구조적 하락장.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
       customBody={
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', padding: '16px', height: '100%', boxSizing: 'border-box' }}>
           <div style={{ backgroundColor: '#f9fafb', padding: '16px', borderRadius: '8px', border: '1px solid #e5e7eb', display: 'flex', flexDirection: 'column' }}>

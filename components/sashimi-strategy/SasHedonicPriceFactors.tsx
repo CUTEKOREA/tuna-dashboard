@@ -24,9 +24,10 @@ export default function SasHedonicPriceFactors() {
     <WidgetCard
       title="쾌락적(Hedonic) 가격 결정 요인"
       subtitle="경매 단가 프리미엄 및 할인 ($/lb)"
-      takeaway="쾌락적(Hedonic) 가격 모델 분석 결과, 어종 및 선도(조업일수)가 경매 단가에 절대적 영향."
+      takeaway={{ situation: "쾌락적(Hedonic) 가격 모델 분석 결과, 어종 및 선도(조업일수)가 경매 단가에 절대적 영향.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
+      cardDesc="사시미/스테이크 시장 동향"}
     >
       <div className="h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">

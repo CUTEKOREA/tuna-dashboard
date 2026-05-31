@@ -25,8 +25,9 @@ export default function SasCoTreatmentImpact() {
       id="W-SAS04"
       title="일산화탄소(CO) 처리 유무에 따른 단가 비교"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      takeaway="일산화탄소(CO) 처리 허용 국가(미국)에서의 저가 공세가 프리미엄 시장을 교란."
+      telemetry={{ status: 'STATIC', syncDate: '2025-26' }
+      cardDesc="사시미/스테이크 시장 동향"}
+      takeaway={{ situation: "일산화탄소(CO) 처리 허용 국가(미국)에서의 저가 공세가 프리미엄 시장을 교란.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
     >
       <ResponsiveContainer width="100%" height={260}>
         <BarChart
