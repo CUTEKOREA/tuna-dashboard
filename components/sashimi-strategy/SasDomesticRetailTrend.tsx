@@ -21,6 +21,7 @@ export default function SasDomesticRetailTrend() {
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
+      takeaway={{ situation: "유럽 생산량의 90% 이상이 일본으로 수출되며, 내수 소비는 극히 제한적(생물 황다랑어 스테이크 중심)입니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
     >
       <div className="grid grid-cols-2 gap-4 mt-2">
         <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">

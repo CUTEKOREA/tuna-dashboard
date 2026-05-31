@@ -51,7 +51,7 @@ export default function SasTraceabilityRatings() {
     <WidgetCard
       title="추적성 및 지속가능성 평가"
       subtitle="규제 준수(SIMP/CATCH) 및 Seafood Watch 등급"
-      takeaway="모든 참다랑어는 Seafood Watch 'Red' 등급이며, EU CATCH 의무화로 2026년 추적성 리스크 심화."
+      takeaway={{ situation: "모든 참다랑어는 Seafood Watch 'Red' 등급이며, EU CATCH 의무화로 2026년 추적성 리스크 심화.", actionPlan: "모니터링 유지", source: "Sashimi Market Report 2025" }}
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"

@@ -12,6 +12,7 @@ export default function SasBluefinRanchingEconomics() {
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
+      takeaway={{ situation: "EU 축양업은 저가 활어 매입 후 고부가 수출로 이어지는 확실한 마진 구조(차익 거래)를 갖고 있습니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
       customBody={
         <div className="flex flex-col h-full w-full justify-center space-y-6 pt-4 pb-2">
           <div className="flex items-center justify-between w-full relative">

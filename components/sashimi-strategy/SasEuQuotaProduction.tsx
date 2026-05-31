@@ -20,6 +20,7 @@ export default function SasEuQuotaProduction() {
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
+      takeaway={{ situation: "스페인, 몰타가 지중해 참다랑어 생산의 절반 이상을 통제. EU 내 압도적인 조업 및 축양 경쟁력을 보여줍니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
     >
       <div className="h-64 w-full mt-4">
         <ResponsiveContainer width="100%" height="100%">

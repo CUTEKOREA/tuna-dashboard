@@ -21,6 +21,7 @@ export default function SasHawaiiDomesticNiche() {
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="사시미/스테이크 시장 동향"
+      takeaway={{ situation: "하와이 경매장은 미국 내 최고급 프리미엄 생물 참치의 기준점(Benchmark) 역할. Ahi(황다랑어)와 Bigeye(눈다랑어)의 현지 경매가는 $12~$14/lb 수준에서 안정적으로 유지되며, 고급 레스토랑 중심의 니치 마켓을 형성합니다.", actionPlan: "시장 변화에 따른 전략적 대응", source: "Sashimi Market Report 2025" }}
     >
       <div className="h-64 w-full mt-4">
         <ResponsiveContainer width="100%" height="100%">
