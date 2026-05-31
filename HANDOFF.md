@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🥜 **2026-05-31 — /cashew 허위 LIVE 4건 정정 (이전 감사 누락분)** [CC]:
+> - **감사**: /cashew=CashewStrategy(43위젯=cashew_data.json 39 STATIC·정직 + 라우트 주입 4). 39개는 sources·reliability 보유 STATIC.
+> - **발견**: 라우트 주입 4위젯(d_vietnam_paradox S1·d_africa_processing S2·d_macro_sensitivity S3·d_cnsl_esg S5)이 `/api/cashew` 하드코딩 데이터(라우트 _metadata는 isLive:false·STATIC 정직)인데 **CashewStrategy가 `telemetryStatus:"LIVE"` 하드코딩**(428·457·487·519) → mock+허위LIVE. **2026-05-29 감사가 라우트는 고쳤으나 컴포넌트 LIVE 배지 4건 누락**.
+> - **정정**: 4건 `"LIVE"`→`"STATIC"`(라우트와 일치). 빌드 ✓·잔여 "LIVE" 0. (잔여: 4위젯 하드코딩 데이터 자체 VINACAS/Comtrade 실연동 또는 JSON 편입은 별도)
+
 > 🥕 **2026-05-31 — carrot 대시보드 허위 LIVE 8건 정직화 + arbitrage 조작 제거** [CC]:
 > - **감사**: /carrot 30위젯(인라인 JSX) 중 허위 LIVE 8건. 3라우트(arbitrage·trq·dashboard) 모두 외부fetch 0(dashboard=30 정적파일). garlic과 동일 미감사 패턴.
 > - **8건 허위 LIVE**: status:'LIVE' 하드코딩(syncDate에 FAOSTAT·KAMIS·NOAA·MFDS·KCS·Comtrade·DART 출처명)이나 데이터는 정적 파일 → 전부 `LIVE→SYNCED`.

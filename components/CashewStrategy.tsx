@@ -425,7 +425,7 @@ export default function CashewStrategy() {
             {sec.id === 'S1' && d_vietnam_paradox && renderCashewWidget({
               icon: Globe, title: "베트남 캐슈 원물 수입 의존도 리스크 (역설)",
               subtitle: "베트남 수출량 대비 원물(RCN) 수입량 격차",
-              iconColor: "var(--color-success)", pillar: "S1", telemetryStatus: "LIVE",
+              iconColor: "var(--color-success)", pillar: "S1", telemetryStatus: "STATIC",
               chart: (
                 <AreaChart data={d_vietnam_paradox} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
@@ -454,7 +454,7 @@ export default function CashewStrategy() {
             {sec.id === 'S2' && d_africa_processing && renderCashewWidget({
               icon: Factory, title: "서아프리카 현지 가공 비율 및 B2B 직공급 전환율",
               subtitle: "현지 가공률 상승과 직공급 전환 궤적",
-              iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: "LIVE",
+              iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: "STATIC",
               chart: (
                 <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
@@ -484,7 +484,7 @@ export default function CashewStrategy() {
             {sec.id === 'S3' && d_macro_sensitivity && renderCashewWidget({
               icon: Activity, title: "거시 지표 민감도 분석 (What-If 시뮬레이터)",
               subtitle: "운임, 환율, 기후 및 프리미엄 변동에 따른 마진 임팩트",
-              iconColor: "var(--color-warning)", pillar: "S3", telemetryStatus: "LIVE",
+              iconColor: "var(--color-warning)", pillar: "S3", telemetryStatus: "STATIC",
               chart: (
                 <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
@@ -516,7 +516,7 @@ export default function CashewStrategy() {
             {sec.id === 'S5' && d_cnsl_esg && renderCashewWidget({
               icon: Leaf, title: "캐슈 껍질 액(CNSL) 기반 ESG 신사업 포트폴리오",
               subtitle: "부산물(CNSL) 업사이클링을 통한 부가수익 창출 비율 추정",
-              iconColor: "#8b5cf6", pillar: "S5", telemetryStatus: "LIVE",
+              iconColor: "#8b5cf6", pillar: "S5", telemetryStatus: "STATIC",
               chart: (
                 <PieChart>
                   <Pie data={d_cnsl_esg} cx="50%" cy="50%" outerRadius={85} innerRadius={40} dataKey="value" nameKey="name" label={({name,percent}) => `${name} ${(percent*100).toFixed(0)}%`} labelLine={false} fontSize={9}>
