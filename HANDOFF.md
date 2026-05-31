@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐷 **2026-05-31 — pork 허위 LIVE 2위젯 정정 (멀티에이전트 감사)** [CC]:
+> - **감사**: 10-에이전트 워크플로우. pork는 API 라우트 없는 순수 정적 대시보드. 27위젯 중 허위 LIVE **2건**(사용자 노출), mock/난수 0.
+> - **위반 위치**: 컴포넌트가 아닌 **JSON 데이터**. PorkUsdaWidgets가 JSON telemetry 무가공 패스스루. `pork_usda_widgets.json`의 w_us_korea_pork_timeline(L128)·w_us_pork_top_importers(L156)가 정적 ESR 아카이브인데 `"telemetry":"LIVE"`.
+> - **정정**: data/ + public/data/ 2파일 동시 `"LIVE"`→`"STATIC"` (4객체). byte-identical 유지. 컴포넌트 무수정.
+> - **검증**: LIVE 0 · JSON 유효 · `npm run build` ✓ · 두 파일 IDENTICAL. **로컬 커밋, 배포 대기**.
+
 > 🟠 **2026-05-31 — chicken 허위 LIVE 10위젯+2 정정 (멀티에이전트 감사)** [CC]:
 > - **감사**: 17-에이전트 워크플로우(3축 fan-out→적대적 검증→종합). 24위젯 중 **허위 LIVE 10건(42%)** 확정. mock/난수/simulated URL **0건**(데이터 자체는 정직, telemetry 라벨만 과장).
 > - **정정 (ChickenDashboard.tsx)**: ① line164 휴리스틱 `id.includes('arbitrage'/'feed')→'live'` 제거→전량 'synced'(arbitrage·feed 위젯 해소) ② NEW_WIDGETS protein_spread·fx_simulator `telemetryStatus:'live'`→'static' ③ KPI k1·k3·k5 `telemetry:'live'`→'static' ④ 헤더 "Live API Connected"·"실시간 API 기반"→정직 표기(USDA FAS 실연동 1종 명시).
