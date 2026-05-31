@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌊 **2026-05-31 — MSC·사시미/스테이크 대시보드 agri_data 교차분석 위젯 9종 추가 + 라이브 배포** [CC]:
+> - **MSC 전략 (25→30 위젯)**: `agri_data/.../03_sustainability/MSC/` 연례보고서 부속 엑셀(faomap·improvement·liveproductvolume·liveproductcount) + ecolabel 등록부 교차분석.
+>   - 신규 5종: `MscFaoAreaPenetration`(FAO 19해역 침투율, WCPO 9%·인도양 2-3.6% 갭) · `MscImprovementsDelivered`(개선 2,625건/최근3년 558) · `MscProductVolumeGrowth`(제품볼륨 2009 18.5만→2025 138.5만MT) · `MscProductCountByCountry`(이탈리아 10→1,105개 110배) · `MscEcolabelRegistryScale`(FOTS 4,907척·Dolphin Safe 933개사)
+> - **사시미/스테이크 (28→32 위젯)**: `sashimi_steak_market/00_dossier/` US/EU KPI CSV 교차분석.
+>   - 신규 4종: `SasUsSupplierOrigin`(인니+베트남 냉동필렛 72%·멕시코+스페인 신선BFT 92%) · `SasUsSushiPokeMarket`(스시급 $2.1B·포케 3,108점포) · `SasEuFreshVsCanned`(佛 신선 21.8 vs 통조림 10.8€/kg) · `SasEuImportSegmentation`(단가로 진짜사시미/가공로인/축양원어 식별)
+> - **검증**: `npm run build` ✓ (136 페이지, L-03 게이트) · L-01 영문잔존 통과 · ErrorBoundary 래핑
+> - **✅ 라이브 배포 완료** (커밋 eec165a): 누적 대시보드 작업 64파일 일괄 커밋 → origin/main push → Vercel 자동 배포. 임시 스크립트(fix_*.js 3종)는 커밋 제외.
+> - **다음 단계**: agri_data MSC PDF 24건·사시미 PDF 41건 MD 변환본 미비(R-04) — 인용 핵심 리포트부터 MD 짝 생성 권장.
+
 > 🌊 **2026-05-30 — 참치 대시보드 가공·생산 위젯 2종(OSH, 베트남 OEM) 신뢰도 상향 (FFA 리포트 기반)** [CC]:
 > - **OSH 위젯 (TunaSupplierHub)**: 단순 정적 위치 매핑에서 ISSF PVR 및 MSC DB 동적 교차 검증 도구로 재정의. IUU 및 강제노동 리스크 식별 기능 제안 반영.
 > - **베트남 OEM 역전 위젯 (TunaVietnamOemStrategy)**: 베트남산 프리쿡 로인의 실제 미국 수출액(2024년 $54.9M)을 데이터 포인트로 추가하고, EU 무관세(EVFTA) 실증 등 액션 플랜 최신화.
