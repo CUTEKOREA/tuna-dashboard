@@ -195,17 +195,14 @@ export default function SashimiSteakDashboard() {
               </div>
             </div>
 
-            <ErrorBoundary fallbackTitle="SasTriadDynamics">
-              <div style={{ marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <ErrorBoundary fallbackTitle="SasTriadDynamics">
                 <SasTriadDynamics />
-              </div>
-            </ErrorBoundary>
-
-            <ErrorBoundary fallbackTitle="SasMarketKPIs">
-              <div style={{ marginBottom: '1.5rem' }}>
+              </ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasMarketKPIs">
                 <SasMarketKPIs />
-              </div>
-            </ErrorBoundary>
+              </ErrorBoundary>
+            </div>
           </section>
         )}
 
@@ -224,20 +221,17 @@ export default function SashimiSteakDashboard() {
               </div>
             </div>
 
-            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               <ErrorBoundary fallbackTitle="SasSupplyChainSplit">
                 <SasSupplyChainSplit />
               </ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasCoTreatmentImpact">
                 <SasCoTreatmentImpact />
               </ErrorBoundary>
-            </div>
-
-            <ErrorBoundary fallbackTitle="SasHawaiiDomesticNiche">
-              <div style={{ marginBottom: '1.5rem' }}>
+              <ErrorBoundary fallbackTitle="SasHawaiiDomesticNiche">
                 <SasHawaiiDomesticNiche />
-              </div>
-            </ErrorBoundary>
+              </ErrorBoundary>
+            </div>
           </section>
         )}
 
@@ -256,13 +250,10 @@ export default function SashimiSteakDashboard() {
               </div>
             </div>
 
-            <ErrorBoundary fallbackTitle="SasBluefinRanchingEconomics">
-              <div style={{ marginBottom: '1.5rem' }}>
-                <SasBluefinRanchingEconomics />
-              </div>
-            </ErrorBoundary>
-
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+              <ErrorBoundary fallbackTitle="SasBluefinRanchingEconomics">
+                <SasBluefinRanchingEconomics />
+              </ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasEuQuotaProduction">
                 <SasEuQuotaProduction />
               </ErrorBoundary>
