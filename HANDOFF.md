@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐙 **2026-05-31 — jukkumi 대시보드 허위 LIVE 정직화 (Math.random 지터 제거)** [CC]:
+> - **감사**: /jukkumi 34위젯(JSON 33 + JukkumiFTAQuarterly 1) 중 허위 LIVE 3건(+KPI 4건).
+> - **근본 원인**: `/api/jukkumi-intelligence`가 API 키 존재 시 **실제 외부 호출 없이** `Math.random()` 지터를 정적 데이터(w3 해상운임·w4 단가·w9 베트남%)에 입히고 `isLiveApi=true`로 표기. 코드 주석에 "Live Jitter 적용하여 통신 상태 증명" 명시 — 이전 P0가 JSON isLiveApi를 false로 정직화했으나 라우트가 덮어쓰며 무력화.
+> - **정정**: ①라우트의 지터 블록 전면 제거 → 검증된 정적 데이터 그대로 반환(w3/w4/w9 honest STATIC). ②JSON KPI 4건(kpi1·kpi4·kpi6·kpi7) `telemetry:'live'→'synced'`(정적 값인데 live 표기). 실 KCS 라이브는 별도 w32 라우트 담당.
+> - **검증**: `npm run build` ✓ · 라우트 Math.random/지터 0 · JSON telemetry:'live' 0. **로컬 커밋, 배포 대기**.
+
 > 🐟 **2026-05-31 — galchi 대시보드 demo/mock 3건 정직화 (실데이터 리프레임)** [CC]:
 > - **감사**: /galchi 47위젯(JSON 33 + 라이브주입 14) 중 demo/mock 3건. telemetry는 전부 정직(isLive 동적 전파, 하드코딩 LIVE 0 — 이전 P0 결과). JSON 33 clean.
 > - **3건 모두 실호출 결과를 버리고 demo 반환하던 순수 mock**(wto는 Math.random 노이즈까지) → galchi_data 검증 데이터(w24·w25)로 리프레임:

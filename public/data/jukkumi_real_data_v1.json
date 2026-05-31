@@ -5,7 +5,7 @@
       "value": "16,069 톤",
       "trend": "연속 하락세",
       "desc": "유어낚시 포획량 증가 및 산란기 자원 감소 · 출처: 해수부",
-      "telemetry": "live",
+      "telemetry": "synced",
       "syncDate": "2026-05"
     },
     "kpi2": {
@@ -26,8 +26,8 @@
       "title": "물류 전환(항공→MAP) 비용 절감",
       "value": "$1.5M",
       "trend": "수입 원가 절감",
-      "desc": "환율/해운 운임 리스크 상쇄 · 출처: KCS OpenAPI",
-      "telemetry": "live"
+      "desc": "환율/해운 운임 리스크 상쇄 · 출처: KCS OpenAPI (정적 추정)",
+      "telemetry": "synced"
     },
     "kpi5": {
       "title": "B2C 프리미엄 상품 이익률",
@@ -41,14 +41,14 @@
       "value": "100%",
       "trend": "프리미엄 전환",
       "desc": "기후변화 대비 콜드체인 모니터링 · 출처: 품질검사소",
-      "telemetry": "live"
+      "telemetry": "synced"
     },
     "kpi7": {
       "title": "국내산/수입산 가격 스프레드",
       "value": "×2.7배",
       "trend": "역대 최고",
       "desc": "도매가 격차 확대 · 출처: KAMIS×KCS",
-      "telemetry": "live",
+      "telemetry": "synced",
       "syncDate": "2026-05"
     },
     "kpi8": {
