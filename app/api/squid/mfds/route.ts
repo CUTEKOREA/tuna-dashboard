@@ -1,31 +1,29 @@
 import { NextResponse } from 'next/server';
 
+// 정직 STATIC: 식약처 식품공전 중금속 기준(실측) + 한국 수입검사 프로토콜 보고서.
+// 기존 mock(국가별 적발률 가공치) → 실제 규제 한도·종별 리스크로 교체.
 export async function GET() {
   const data = {
     id: "w_mfds_squid_safety",
-    title: "통관 거부 및 이물질 적발 레이더",
-    subtitle: "남미/중국산 가공품 중심",
-    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
-    reliability: 95,
-    chartType: "composed",
-    xKey: "country",
+    title: "MFDS 수입 중금속 기준 & 종별 반송 리스크",
+    subtitle: "식약처 식품공전 한도 — 대왕오징어(Dosidicus) 카드뮴 리스크",
+    isLiveApi: false,
+    isLive: false,
+    reliability: 93,
+    chartType: "bar",
+    xKey: "item",
     bars: [
-      { key: "inspections", color: "#64748b", name: "총 검사 건수", yAxisId: "left" },
-      { key: "rejections", color: "#f43f5e", name: "적발 건수", yAxisId: "left" }
-    ],
-    lines: [
-      { key: "rejectionRate", color: "#f59e0b", name: "적발률 (%)", yAxisId: "right" }
+      { key: "limit", color: "#10b981", name: "한도 (mg/kg)" }
     ],
     data: [
-      { country: "중국", inspections: 120, rejections: 45, rejectionRate: 37.5 },
-      { country: "베트남", inspections: 80, rejections: 12, rejectionRate: 15.0 },
-      { country: "페루", inspections: 50, rejections: 8, rejectionRate: 16.0 },
-      { country: "칠레", inspections: 20, rejections: 3, rejectionRate: 15.0 }
+      { item: "카드뮴 Cd (일반 두족류)", limit: 2.0 },
+      { item: "카드뮴 Cd (건강식품용)", limit: 1.0 },
+      { item: "납 Pb", limit: 0.5 }
     ],
-    sit: "[식약처 검역 레이더] 최근 중국산 조미오징어 및 진미채 가공품의 적발률이 37.5%로 급상승하며 식품안전(Food Safety) 리스크가 부각됨.",
-    strat: "[OEM 소싱처 다변화] 고위험군인 중국산 OEM 비중을 축소하고, 위생검역 통과율이 높은 베트남(적발률 15%) 등 동남아시아로 소싱 다변화 추진.",
-    source: "MFDS Import Safety Radar"
+    unit: "mg/kg",
+    sit: "[식약처 중금속 기준] 일반 두족류 카드뮴 ≤2.0 mg/kg, 납 ≤0.5 mg/kg가 통관 기준입니다. 페루·칠레산 대왕오징어(Dosidicus gigas)는 살오징어(Todarodes)보다 카드뮴 축적이 높고 특히 내장에 집중되어 정밀검사·반송 리스크가 큽니다. 참고로 EU는 두족류 카드뮴 1.0 mg/kg로 한국보다 엄격합니다.",
+    strat: "페루·칠레산 대왕오징어 매입 시 내장 제거 가공 및 선적 전 카드뮴 사전검사를 의무화하고, EU 수출 물량은 EU 1.0 mg/kg 기준으로 별도 라인 관리하십시오.",
+    source: "식약처(MFDS) 식품의 기준 및 규격(식품공전) 중금속 기준 + 한국 수입검사 프로토콜 분석 보고서(agri_data) + EU Reg 1881/2006"
   };
-
   return NextResponse.json(data);
 }

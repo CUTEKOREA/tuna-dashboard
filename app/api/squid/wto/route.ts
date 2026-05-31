@@ -1,30 +1,28 @@
 import { NextResponse } from 'next/server';
 
+// 정직 STATIC: EU/한국/일본 실제 중금속 한도 + IUU 통상 규정(실측). 기존 mock(분기별 SPS 발동 건수) 제거.
 export async function GET() {
   const data = {
     id: "w_wto_squid_sps",
-    title: "EU 위생검역(SPS) 장벽 발동 트렌드",
-    subtitle: "수산물 및 두족류 대상",
-    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
-    reliability: 90,
+    title: "시장별 중금속·IUU 수입 규제 매트릭스",
+    subtitle: "카드뮴 한도(mg/kg) 및 IUU 통상 장벽 비교",
+    isLiveApi: false,
+    isLive: false,
+    reliability: 88,
     chartType: "bar",
-    xKey: "quarter",
+    xKey: "market",
     bars: [
-      { key: "sps_heavy_metal", color: "#f97316", name: "중금속 관련 규제" },
-      { key: "sps_additives", color: "#ec4899", name: "첨가물 관련 규제" }
+      { key: "cd_limit", color: "#a855f7", name: "카드뮴 한도 (mg/kg)" }
     ],
     data: [
-      { quarter: "23.1Q", sps_heavy_metal: 12, sps_additives: 5 },
-      { quarter: "23.2Q", sps_heavy_metal: 15, sps_additives: 8 },
-      { quarter: "23.3Q", sps_heavy_metal: 22, sps_additives: 12 },
-      { quarter: "23.4Q", sps_heavy_metal: 18, sps_additives: 10 },
-      { quarter: "24.1Q", sps_heavy_metal: 25, sps_additives: 15 },
-      { quarter: "24.2Q", sps_heavy_metal: 30, sps_additives: 18 }
+      { market: "EU", cd_limit: 1.0 },
+      { market: "한국", cd_limit: 2.0 },
+      { market: "일본", cd_limit: 2.0 }
     ],
-    sit: "[WTO SPS 통상 알림] 스페인, 이탈리아 등 핵심 EU 회원국을 중심으로 남미산 두족류 대상 중금속(카드뮴 등) 위생검역(SPS) 장벽이 가파른 상승세를 보이고 있음.",
-    strat: "[선제적 수출 리스크 헷징] EU 직수출 물량에 대해 포클랜드/아르헨티나 어획 해역별 자체 중금속 축적도 전수 사전 검사를 실시하고, 통관 지연 및 반송 리스크를 원천 차단할 것.",
-    source: "WTO SPS Data Portal"
+    unit: "mg/kg",
+    sit: "[시장별 비관세 장벽] 카드뮴 한도가 EU(1.0 mg/kg)는 한국·일본(2.0)보다 2배 엄격합니다. EU는 추가로 IUU 규정(EC 1005/2008)의 어획증명서를, 미국은 SIMP(수입 수산물 추적 프로그램)를 요구해 시장별 통관 요건이 상이합니다.",
+    strat: "EU 수출 라인은 카드뮴 1.0 기준 + IUU 어획증명을 충족하는 합법 선단 원물로 분리 관리하고, 규제가 상대적으로 완화된 한국·일본향과 생산 라인을 이원화하십시오.",
+    source: "EU Reg 1881/2006(중금속)·1005/2008(IUU) + 식약처 식품공전 + US SIMP (NOAA)"
   };
-
   return NextResponse.json(data);
 }

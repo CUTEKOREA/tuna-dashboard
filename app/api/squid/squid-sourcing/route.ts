@@ -1,34 +1,30 @@
 import { NextResponse } from 'next/server';
 
+// 정직 STATIC: agri_data squid_unit_price.json 실측(2023). 기존 mock fallback 제거.
 export async function GET() {
   const data = {
     id: "w_squid_sourcing_sim",
-    title: "소싱 최적화 시뮬레이터 (원산지별 총비용)",
-    subtitle: "페루 vs 아르헨 vs 포클랜드 vs 중국 가공품",
-    isLiveApi: false,  // Mock data: API 파싱 미구현, 정직 라벨링
-    reliability: 91,
-    chartType: "composed",
+    title: "오징어 원물 소싱 단가 비교 (원산지별)",
+    subtitle: "2023년 원산지별 수입단가 — 원물(남미) vs 가공품(중국·스페인)",
+    isLiveApi: false,
+    isLive: false,
+    reliability: 85,
+    chartType: "bar",
     xKey: "origin",
     bars: [
-      { key: "raw_cost", color: "#3b82f6", name: "원물 단가 ($/t)" },
-      { key: "logistics", color: "#f97316", name: "물류비 ($/t)" },
-      { key: "tariff_cost", color: "#ef4444", name: "관세 비용 ($/t)" }
-    ],
-    lines: [
-      { key: "total_landed", color: "#10b981", name: "최종 착지원가 ($/t)", yAxisId: "right" }
+      { key: "price", color: "#3b82f6", name: "수입단가 ($/t)" }
     ],
     data: [
-      { origin: "페루 (FTA)", raw_cost: 2800, logistics: 350, tariff_cost: 0, total_landed: 3150 },
-      { origin: "아르헨티나", raw_cost: 2600, logistics: 400, tariff_cost: 520, total_landed: 3520 },
-      { origin: "포클랜드", raw_cost: 2900, logistics: 450, tariff_cost: 580, total_landed: 3930 },
-      { origin: "중국 (진미채)", raw_cost: 3200, logistics: 150, tariff_cost: 384, total_landed: 3734 },
-      { origin: "베트남 (OEM)", raw_cost: 3000, logistics: 200, tariff_cost: 0, total_landed: 3200 }
+      { origin: "페루", price: 2060 },
+      { origin: "아르헨티나", price: 2269 },
+      { origin: "한국", price: 4583 },
+      { origin: "스페인", price: 4847 },
+      { origin: "중국", price: 6901 }
     ],
     unit: "USD/Ton",
-    sit: "[Sourcing Sim] 페루산 FTA 무관세 혜택으로 착지원가 $3,150/t 최저. 아르헨산은 MFN 20% 관세 부담으로 $370/t 추가 비용 발생. 중국산 가공품은 물류비 절감에도 불구하고 원물 단가 자체가 높음.",
-    strat: "Tier 1: 페루산 FTA 물량 최대 확보 → Tier 2: 베트남 OEM 가공라인 확보(ASEAN FTA 무관세) → Tier 3: 아르헨산은 포클랜드 쿼터 JV와 연계 시에만 투입.",
-    source: "HS Ping · KCS 관세율 · KITA 무역통계 (Mock fallback)"
+    sit: "[소싱 단가 맵] 2023년 기준 페루($2,060/t)·아르헨티나($2,269/t)가 최저가 원물 소싱처이며, 중국($6,901/t)·스페인($4,847/t)은 가공품 비중이 높아 단가가 높습니다. 한국 자체 조달은 $4,583/t로 남미산 원물의 2배 이상입니다.",
+    strat: "가공용(진미채·튜브·링) 원물은 페루·아르헨티나 트롤 원물로 직소싱해 원가 우위를 확보하고, 고단가 중국 가공품 의존도를 단계적으로 축소하십시오.",
+    source: "FAO/UN Comtrade 수입단가 실측 2023 (agri_data squid_unit_price.json)"
   };
-
   return NextResponse.json(data);
 }

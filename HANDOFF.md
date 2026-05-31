@@ -1,5 +1,18 @@
 # HANDOFF — 현재 작업 상태
 
+> 🦑 **2026-05-31 — squid 대시보드 허위/mock 데이터 10건 정직화 (agri_data 실측 교체)** [CC]:
+> - **감사 결과**: /squid 97위젯 중 10건이 허위 LIVE 또는 mock — ① 코드 내장 isLive:true 3건(enso·loligo·sg_valueup), ② API 라우트 mock 7건(kosis만 실호출, 나머지 7개 하드코딩).
+> - **① 허위 LIVE 3건 → 정직 STATIC**: `SquidDashboard.tsx` newResearchWidgets isLive:true→false (데이터는 SPRFMO/FIG 실보고서 출처 유지).
+> - **② mock 7건 → agri_data 실측 교체** (`app/api/squid/*/route.ts`, 전부 isLiveApi:false·isLive:false·실출처):
+>   - `ofac`: 중국선단 IUU 가공치 → UN Comtrade 거울통계 갭(아르헨→한국 28,393t 등) + EJF 2025 Mile201
+>   - `squid-forecast`: 'AI 예측' → 국가별 수입단가 실측 2018-23(squid_unit_price.json)
+>   - `squid-sourcing`: mock 총비용 → 2023 원산지별 단가 실측(페루 $2,060·아르헨 $2,269·중국 $6,901/t)
+>   - `hsping`: MFN 20% 추정 → 조정관세 22%(관세법 §69) + FTA 협정세율 + Comtrade CIF
+>   - `mfds`: 국가별 적발률 가공 → 식약처 식품공전 중금속 한도(Cd 2.0·Pb 0.5) + 대왕오징어 Cd 리스크
+>   - `wto`: 분기 SPS 건수 가공 → 시장별 Cd 한도(EU 1.0 vs 한·일 2.0) + IUU 규정(EC 1005/2008·SIMP)
+>   - `importyeti`: 벤더 TEU 가공 → Comtrade 2023 EU 수입비중(스페인 72%, 재수출 주석) + EJF
+> - **검증**: `npm run build` ✓ · isLive:true 0·"Mock" 0·isLiveApi:true 0 재확인. **로컬 커밋, 배포 대기**(명시 요청 시 push).
+
 > 🌊 **2026-05-31 — MSC·사시미/스테이크 대시보드 agri_data 교차분석 위젯 9종 추가 + 라이브 배포** [CC]:
 > - **MSC 전략 (25→30 위젯)**: `agri_data/.../03_sustainability/MSC/` 연례보고서 부속 엑셀(faomap·improvement·liveproductvolume·liveproductcount) + ecolabel 등록부 교차분석.
 >   - 신규 5종: `MscFaoAreaPenetration`(FAO 19해역 침투율, WCPO 9%·인도양 2-3.6% 갭) · `MscImprovementsDelivered`(개선 2,625건/최근3년 558) · `MscProductVolumeGrowth`(제품볼륨 2009 18.5만→2025 138.5만MT) · `MscProductCountByCountry`(이탈리아 10→1,105개 110배) · `MscEcolabelRegistryScale`(FOTS 4,907척·Dolphin Safe 933개사)

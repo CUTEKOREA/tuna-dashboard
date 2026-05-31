@@ -161,8 +161,7 @@ export default function SquidDashboard() {
   const [apiWidgets, setApiWidgets] = useState<any[]>([]);
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
-  const [mgoPrice, setMgoPrice] = useState(107);
-  const [fxRate, setFxRate] = useState(1350);
+
   const [apiStatus, setApiStatus] = useState("연결됨");
   const [apiCount, setApiCount] = useState(0);
 
@@ -219,7 +218,7 @@ export default function SquidDashboard() {
       sit: "SPRFMO SC13 2025 자원평가에 따르면 Dosidicus gigas 개체군은 ENSO 주기와 강한 상관관계를 보이며, 엘니뇨 시 어획량이 30~50% 급감합니다. 현재 ENSO neutral에서 라니냐 전환 가능성이 높아 2026 시즌 공급 불확실성이 큽니다.",
       strat: "ENSO 전환 시그널 감지 즉시 페루산 Illex 선도거래 물량을 확보하고, 라니냐 시즌 어획량 증가 시 가공 물량을 적극 매입하여 재고를 확대하십시오.",
       source: "SPRFMO SC13-SQ07 (2025)",
-      isLive: true,
+      isLive: false,
       data: [
         { year: "2019", "어획량(천톤)": 780, "ENSO 지수": 0.5 },
         { year: "2020", "어획량(천톤)": 620, "ENSO 지수": -1.1 },
@@ -240,7 +239,7 @@ export default function SquidDashboard() {
       sit: "Loligo gahi 2025 자원평가에서 바이오매스 회복세가 확인되었으나(S1: +12%), ENSO neutral 전환 시 S2 시즌의 불확실성이 잔존합니다. 반면 Illex는 2024 시즌 총어획량이 전년대비 -18% 감소했습니다.",
       strat: "Loligo 회복 구간에서 채낚기 라이선스를 추가 확보(입어료 +3.2% 반영)하여 프리미엄 원물 확보 채널을 강화하고, Illex 부족분은 페루·아르헨티나 트롤선 원물로 대체 조달하십시오.",
       source: "FIG Loligo Stock Assessment 2025 S1/S2",
-      isLive: true,
+      isLive: false,
       data: [
         { season: "2022 S1", "바이오매스 지수": 62 },
         { season: "2022 S2", "바이오매스 지수": 58 },
@@ -438,7 +437,7 @@ export default function SquidDashboard() {
       sit: "SG 2026 밸류업 문건에 따르면 현재 오징어 유통은 원물 도매에 머물러 이익률이 낮습니다. 진미채·냉동 튜브 등 다운스트림 가공 역량이 부재하며, 신라에스지의 가공 컨트롤타워 역할 확대가 시급합니다.",
       strat: "포클랜드 Illex 원물을 신라에스지가 진미채·냉동 튜브·오징어 볼 등 B2B 급식용 HMR로 전환하여 단순 원물 대비 영업이익률을 20%p 이상 개선하십시오. ODM 방식으로 대형 급식업체에 직접 납품하는 것이 최적입니다.",
       source: "SG 2026 밸류업 내부 문건",
-      isLive: true,
+      isLive: false,
       data: [
         { year: "2023", "단순 원물 마진(%)": 4.8, "SG 가공 내재화 마진(%)": 4.8 },
         { year: "2024", "단순 원물 마진(%)": 4.2, "SG 가공 내재화 마진(%)": 12.5 },
@@ -723,67 +722,7 @@ export default function SquidDashboard() {
         })}
       </div>
 
-      {/* ═══ API COMMAND CENTER ═══ */}
-      <section data-mobile-stack style={{ marginBottom: '3rem', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-        {/* Scenario Simulator */}
-        <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.2rem', color: 'var(--color-success)' }}>
-            <Activity size={20} />
-            <h3 style={{ margin: 0, fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)' }}>실시간 시나리오 시뮬레이터</h3>
-          </div>
-          
-          <div style={{ marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Rotterdam MGO (선박유)</span>
-              <span style={{ fontSize: '0.88rem', color: 'var(--color-danger)', fontWeight: 700 }}>${mgoPrice}/bbl</span>
-            </div>
-            <input 
-              type="range" min="60" max="150" value={mgoPrice} 
-              onChange={(e) => setMgoPrice(Number(e.target.value))}
-              style={{ width: '100%', accentColor: 'var(--color-danger)' }} 
-            />
-          </div>
-          
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-              <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>USD/KRW 환율 (관세 타격)</span>
-              <span style={{ fontSize: '0.88rem', color: 'var(--color-info)', fontWeight: 700 }}>₩{fxRate}</span>
-            </div>
-            <input 
-              type="range" min="1200" max="1500" value={fxRate} 
-              onChange={(e) => setFxRate(Number(e.target.value))}
-              style={{ width: '100%', accentColor: 'var(--color-info)' }} 
-            />
-          </div>
-        </div>
 
-        {/* Intelligence Feed / Alert Drawer */}
-        <div className="ds-card" style={{background: '#181818', padding: '1.5rem', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.2rem', color: 'var(--color-success)' }}>
-            <Globe size={20} />
-            <h3 style={{ margin: 0, fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)' }}>API Intelligence 피드</h3>
-            <span style={{ marginLeft: 'auto', fontSize: '0.66rem', background: 'var(--color-success)', color: 'var(--bg-color)', padding: '2px 8px', borderRadius: '500px', fontWeight: 700, textTransform: 'uppercase' }}>LIVE</span>
-          </div>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-            <div style={{ display: 'flex', gap: '10px', padding: '0.8rem', background: 'var(--surface-2)', borderRadius: '6px', borderLeft: '3px solid #f3727f' }}>
-              <AlertTriangle size={16} color="#8b5cf6" style={{ marginTop: '2px', flexShrink: 0 }} />
-              <div>
-                <p style={{ margin: '0 0 0.2rem 0', fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>[기상청 API] ENSO 임계치 돌파</p>
-                <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>태평양 SST 이상 기온 지속. 공해상 조업 확대 지시가 필요합니다.</p>
-              </div>
-            </div>
-            
-            <div style={{ display: 'flex', gap: '10px', padding: '0.8rem', background: 'var(--surface-2)', borderRadius: '6px', borderLeft: '3px solid #539df5' }}>
-              <TrendingUp size={16} color="#a855f7" style={{ marginTop: '2px', flexShrink: 0 }} />
-              <div>
-                <p style={{ margin: '0 0 0.2rem 0', fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>[EUMOFA API] Vigo항 단가 급등</p>
-                <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Illex 도소매 스프레드 42% 도달. B2B 직수출 최적 타이밍입니다.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ═══ VALUE CHAIN FRAMEWORK ═══ */}
 
