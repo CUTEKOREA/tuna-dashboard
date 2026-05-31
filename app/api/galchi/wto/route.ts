@@ -1,42 +1,19 @@
 import { NextResponse } from 'next/server';
 
-const WTO_KEY = process.env.WTO_API_KEY || "";
-const WTO_BASE = "https://api.wto.org/timeseries/v1/data";
-
-const FALLBACK = {
-  source: "WTO Data Portal (Local DB Fallback)",
+// 정직 STATIC: 갈치(HS 0303)는 한-중·한-아세안 FTA 양허 제외 품목 — 전 공급국 MFN 10% 동일 적용.
+// 기존: 실호출 결과를 버리고 무작위 노이즈를 더한 가상 데이터 반환 → 실측 관세 구조로 교체.
+const DATA = {
+  source: "USDA GAIN Korea Seafood 2024 Table 6 + WITS (갈치 HS 0303 MFN 10%, FTA 양허제외)",
   isLive: false,
   data: [
-    { period: "Q1", "중국 SPS": 4, "아세안 SPS": 2 },
-    { period: "Q2", "중국 SPS": 5, "아세안 SPS": 3 },
-    { period: "Q3", "중국 SPS": 7, "아세안 SPS": 5 },
-    { period: "Q4", "중국 SPS": 9, "아세안 SPS": 6 },
-  ]
+    { country: "중국", "기본관세율(%)": 10 },
+    { country: "세네갈", "기본관세율(%)": 10 },
+    { country: "오만", "기본관세율(%)": 10 },
+    { country: "대만", "기본관세율(%)": 10 },
+    { country: "모리타니아", "기본관세율(%)": 10 },
+  ],
 };
 
 export async function GET() {
-  try {
-    if (!WTO_KEY) return NextResponse.json(FALLBACK);
-
-    // WTO API example query for Non-Tariff Measures (NTM) / SPS
-    const res = await fetch(`${WTO_BASE}?i=NTM_SPS_IN_F_M&r=all&p=000&fmt=json`, {
-      headers: { 'Ocp-Apim-Subscription-Key': WTO_KEY },
-      signal: AbortSignal.timeout(5000),
-    });
-
-    if (res.ok) {
-      const json = await res.json();
-      if (json && json.Dataset) {
-         // Mocking translation of raw WTO data to chart format
-         return NextResponse.json({
-           source: "WTO Data Portal (SPS NTB)",
-           isLive: false /* Mock */, data: FALLBACK.data.map(d => ({ ...d, "중국 SPS": d["중국 SPS"] + Math.floor(Math.random()*2) }))
-         });
-      }
-    }
-  } catch (e) {
-    console.warn("WTO API failed, using fallback", e);
-  }
-
-  return NextResponse.json(FALLBACK);
+  return NextResponse.json(DATA);
 }

@@ -378,43 +378,42 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_mfds_safety_radar",
-      title: "MFDS 수입 수산물 위생 통관 레이더",
-      subtitle: "식약처(MFDS) API 연동. 수입국별 갈치 제품의 중금속·이물질·미생물 적발 건수와 통관 보류 이력을 실시간 추적합니다.",
+      title: "원산지별 수입 검역·비관세 비용",
+      subtitle: "USDA GAIN 2024 착지원가 — 갈치 수입 시 원산지별 검역·비관세 비용($/MT) 비교.",
       chartType: "Bar",
       xKey: "country",
-      bars: [{ key: "적발 건수", color: "var(--color-danger)" }],
-      sit: "세네갈, 남아공 등 대체 소싱처에서 중금속(Cd, Pb)/이물질 적발 빈도가 증가 중입니다. 소싱 다변화 시 위생 리스크가 동반 상승하는 트레이드오프가 존재합니다.",
-      strat: "①적발 건수 3건 이상 누적 국가 대상 사전 선적 검사(PSI) 의무화, ②적발 Zero 국가에 대해 '신뢰 공급자(Trusted Vendor)' 인증 부여.",
-      source: "MFDS API (식품의약품안전처 수입식품 검사 통계)",
+      bars: [{ key: "검역·비관세비용($/MT)", color: "var(--color-danger)" }],
+      sit: "서아프리카(세네갈) 대체 소싱처는 콜드체인·검역 비용이 톤당 $250로 중국산($150)의 1.7배입니다. 소싱 다변화 시 위생·검역 비용이 동반 상승하는 트레이드오프가 존재합니다.",
+      strat: "①서아프리카 원물은 선적 전 검사(PSI)로 반송 리스크 차단, ②검역비 상승분을 상쇄할 FOB 단가 우위($2,400 vs $2,750)가 확보될 때만 투입.",
+      source: "USDA GAIN Korea Seafood 2024 Table 6 (검역·비관세 비용)",
       isLive: liveMfds?.isLive ?? false,
       data: liveMfds?.data || []
     },
     {
       id: "w_wto_sps_radar",
-      title: "WTO 위생·식물위생(SPS) 비관세 장벽 발동 트렌드",
-      subtitle: "WTO 데이터 포털(Data Portal) 연동. 중국·아세안의 수산물 위생검역(SPS) 조치 발동 건수를 분기별로 추적합니다. 수출 시 비관세 장벽 충격을 사전 대비합니다.",
-      chartType: "Area",
-      xKey: "period",
-      areas: [
-        { key: "중국 SPS", color: "#ec4899" },
-        { key: "아세안 SPS", color: "#06b6d4" }
+      title: "갈치 수입 관세 구조 — 전 원산지 MFN 10%",
+      subtitle: "갈치(HS 0303)는 한-중·한-아세안 FTA 양허 제외 품목 — 전 공급국 기본관세 10% 동일 적용.",
+      chartType: "Bar",
+      xKey: "country",
+      bars: [
+        { key: "기본관세율(%)", color: "#ec4899" }
       ],
-      sit: "중국 및 아세안의 수산물 비관세 장벽(SPS)이 분기별로 심화 추세입니다. 특히 중국은 정치적 이슈 발생 시 SPS 조치를 '비공식 제재' 수단으로 활용하는 패턴이 관측됩니다.",
-      strat: "①대중국 수출 전 사전 위생 증명서(Health Certificate) 요건 모니터링 체계 가동, ②SPS 발동 급증 분기에 대체 수출 루트(일본·홍콩) 사전 확보.",
-      source: "WTO 데이터 포털(Data Portal)",
+      sit: "갈치는 FTA TRQ 미적용으로 중국·세네갈·오만 등 전 공급국에 기본관세 10%가 동일 적용됩니다. 원산지 전환만으로는 관세를 줄일 수 없는 구조입니다.",
+      strat: "①관세로는 원가 차별화가 불가하므로 FOB 단가·운임·검역비 등 비관세 원가에서 우위 확보, ②세네갈산은 운임 부담으로 착지원가가 중국산보다 높은 점을 매입 단가 협상에 반영.",
+      source: "USDA GAIN Korea Seafood 2024 Table 6 + WITS (갈치 HS 0303 MFN 10%, FTA 양허제외)",
       isLive: liveWto?.isLive ?? false,
       data: liveWto?.data || []
     },
     {
       id: "w_oec_galchi_export",
-      title: "OEC 수출 대체시장 잠재력 분석",
-      subtitle: "OEC API 연동. 경제복잡성지수(ECI) 기반 갈치 수출 대체시장(홍콩, 싱가포르, 베트남 등)의 진출 잠재력을 점수화합니다.",
+      title: "글로벌 갈치 수출 경쟁 구도",
+      subtitle: "UN Comtrade 글로벌 갈치(HS 030389) 국가별 수출액($M) — 한국의 수출 경쟁 포지션.",
       chartType: "Bar",
       xKey: "target",
-      bars: [{ key: "수출 잠재력", color: "#10b981" }],
-      sit: "대중국 수출 의존도가 높아 지정학적 리스크 노출이 큽니다. 일본(현재 986톤)을 제외하면 수출 다변화가 거의 진행되지 않은 상태입니다.",
-      strat: "①경제 복잡성 대비 잠재력이 높은 싱가포르·홍콩 프리미엄 시장 타겟팅, ②베트남 HMR 가공 기지 활용 후 일본 재수출 삼각무역 구조 검토.",
-      source: "경제 복잡성 관측소(Observatory of Economic Complexity, OEC) API",
+      bars: [{ key: "수출액($M)", color: "#10b981" }],
+      sit: "글로벌 갈치 수출은 중국이 $185M로 압도하며, 한국은 $20M의 소규모 수출국입니다. 세네갈($55M)·대만($35M)이 신흥 수출 경쟁국으로 부상 중입니다.",
+      strat: "①물량 경쟁이 아닌 프리미엄(선동결·구이용 가공) 차별화로 일본·홍콩 고가 시장 공략, ②베트남 HMR 가공 기지 활용 후 일본 재수출 삼각무역 구조 검토.",
+      source: "UN Comtrade 글로벌 갈치(HS 030389) 수출 (galchi_data w25 교차)",
       isLive: liveOec?.isLive ?? false,
       data: liveOec?.data || []
     },
@@ -756,37 +755,7 @@ export default function GalchiDashboard() {
         </div>
       )}
 
-      {/* ═══ AI Chatbot (NotebookLM Link) ═══ */}
-      <div style={{ marginBottom: '2rem' }}>
-        <div className="ds-card" style={{background: '#181818', 
-          padding: '1.5rem', borderRadius: '8px', 
-          boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', 
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          gap: '1rem', flexWrap: 'wrap'}}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <div style={{ background: 'var(--surface-2)', padding: '1rem', borderRadius: '50%', flexShrink: 0 }}>
-              <Database size={24} color="var(--color-success)" />
-            </div>
-            <div>
-              <h3 style={{ color: 'var(--text-primary)', margin: '0 0 0.4rem 0', fontSize: '1.13rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Zap size={18} color="var(--color-success)" /> 갈치 지식 AI 챗봇 (NotebookLM)
-              </h3>
-            </div>
-          </div>
-          <a href="https://notebooklm.google.com/notebook/73bd95c4-e9f8-49f3-aa90-1e907a3e1b00" target="_blank" rel="noreferrer" style={{ 
-            background: 'var(--text-primary)', color: 'var(--bg-color)', 
-            padding: '12px 32px', borderRadius: '500px', fontSize: '0.88rem', fontWeight: 700, 
-            textTransform: 'uppercase', letterSpacing: '1.4px', textDecoration: 'none', 
-            display: 'flex', alignItems: 'center', gap: '8px', transition: 'transform 0.1s', whiteSpace: 'nowrap'
-          }}
-            onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.96)'; }}
-            onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-          >
-            <Activity size={18} /> 챗봇 시작하기
-          </a>
-        </div>
-      </div>
+
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{

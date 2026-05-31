@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-31 — galchi 대시보드 demo/mock 3건 정직화 (실데이터 리프레임)** [CC]:
+> - **감사**: /galchi 47위젯(JSON 33 + 라이브주입 14) 중 demo/mock 3건. telemetry는 전부 정직(isLive 동적 전파, 하드코딩 LIVE 0 — 이전 P0 결과). JSON 33 clean.
+> - **3건 모두 실호출 결과를 버리고 demo 반환하던 순수 mock**(wto는 Math.random 노이즈까지) → galchi_data 검증 데이터(w24·w25)로 리프레임:
+>   - `w_wto_sps_radar`: 가상 SPS건수 → **갈치 전 원산지 MFN 10%**(FTA 양허제외, USDA GAIN+WITS)
+>   - `w_mfds_safety_radar`: 가상 적발건수 → **원산지별 검역·비관세 비용**(중국 $150 vs 세네갈 $250/MT, GAIN Table6)
+>   - `w_oec_galchi_export`: 가상 복잡성지수 → **글로벌 갈치 수출 경쟁**(중국 $185M·세네갈 55·대만 35·한국 20, Comtrade w25)
+> - 라우트 3개 실 STATIC 데이터+isLive:false, 대시보드 주입블록 title/chart/sit/strat/source 리프레임.
+> - **검증**: `npm run build` ✓ · 3라우트 Math.random/demo/Mock 0건. **로컬 커밋, 배포 대기**.
+
 > 🐟 **2026-05-31 — mackerel 대시보드 허위/mock 1건 정직화** [CC]:
 > - **감사**: /mackerel ≈104위젯(JSON 83 + 라이브주입 14 + 독립컴포넌트 7) 중 허위/mock 1건. JSON 83 clean(isLive:true 0), 컴포넌트 7 정적, 라이브 13개 실 외부호출, w23·w25는 시뮬 정직라벨.
 > - **w_import_yeti_suppliers (허위 LIVE+mock→실 Comtrade)**: `/api/import-yeti`가 하드코딩 `SUPPLIER_DB`(// Simulated, 회사 TEU 박제)를 반환하는데 주입부가 `badges:['실시간 API']`+`apiSource:'LIVE API 연동 ImportYeti'`로 LIVE 표기 → **UN Comtrade 2024 한국 냉동고등어 수입 공급국 실측**(노르웨이 $83.1M·77% + 베트남/중국/네덜란드)으로 교체. 라우트 isLive:false·source Comtrade, 주입부 실시간배지/apiSource 제거 → telemetry SYNCED/2024.
