@@ -1,117 +1,129 @@
 import { NextResponse } from 'next/server';
 
 // ============================================================================
-// Compliance & Sanctions Radar API Pipeline
-// OFAC SDN List & EU Consolidated Sanctions List Screening
+// Compliance & Sanctions Radar API
+// 1차: OFAC SDN(Specially Designated Nationals) 목록 실시간 조회 (공개 CSV, 키 불필요)
+// 2차: 조회 실패 시 — 수산 분야 알려진 제재·IUU 엔티티 참조 DB로 폴백 (정직 STATIC)
 // ============================================================================
 
-// --- Simulated OFAC/EU Sanctions DB (Fallback/Lightweight) ---
-// In a real production scenario, this would query the downloaded OFAC XML/CSV
-// or connect to a 3rd party screening API (e.g. Descartes, Trademo).
-const SANCTIONS_DB: Record<string, any> = {
-  'thai union': { entity: 'Thai Union Group PCL', ofac: { status: 'clean', detail: 'No match in SDN' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 95, riskLevel: 'LOW' },
-  'dongwon': { entity: 'Dongwon Industries', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 97, riskLevel: 'LOW' },
-  'silla': { entity: 'Silla Co., Ltd.', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 98, riskLevel: 'LOW' },
-  'sajo': { entity: 'Sajo Industries', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 96, riskLevel: 'LOW' },
-  'nirsa': { entity: 'Nirsa S.A.', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 90, riskLevel: 'LOW' },
-  'minh phu': { entity: 'Minh Phu Seafood', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'partial', detail: 'Similar name — manual review' }, riskScore: 72, riskLevel: 'MEDIUM' },
-  'dalian ocean': { entity: 'Dalian Ocean Fishing', ofac: { status: 'partial', detail: 'Subsidiary flagged (OFAC)' }, eu: { status: 'partial', detail: 'IUU vessel overlap' }, riskScore: 35, riskLevel: 'HIGH' },
-  'pescanova': { entity: 'Nueva Pescanova', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 92, riskLevel: 'LOW' },
-  'fcf': { entity: 'FCF Fishery', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 89, riskLevel: 'LOW' },
-  'pingtan': { entity: 'Pingtan Marine Enterprise', ofac: { status: 'flagged', detail: 'SDN List: Forced Labor' }, eu: { status: 'partial', detail: 'IUU Watchlist' }, riskScore: 10, riskLevel: 'CRITICAL' },
-  'norebo': { entity: 'Norebo Holding', ofac: { status: 'flagged', detail: 'SDN List: Targeted Sanctions (Russia)' }, eu: { status: 'partial', detail: 'Enhanced Due Diligence required' }, riskScore: 15, riskLevel: 'CRITICAL' },
-  'pelagia': { entity: 'Pelagia AS', ofac: { status: 'clean', detail: 'No match' }, eu: { status: 'clean', detail: 'No match' }, riskScore: 99, riskLevel: 'LOW' },
+// OFAC SDN 공개 CSV (인증 불필요, 현행 Sanctions List Service 직행 엔드포인트). 실패 시 참조 DB 폴백.
+const OFAC_SDN_URL = 'https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.CSV';
+
+// --- 수산 분야 알려진 제재/IUU 참조 DB (실제 공개 사실 기반, 폴백용) ---
+// Pingtan(강제노동/IUU), Norebo(러시아 제재), Dalian Ocean(IUU) 등은 공개 보도·정부 자료 근거.
+const REFERENCE_DB: Record<string, any> = {
+  'thai union': { entity: 'Thai Union Group PCL', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 95, riskLevel: 'LOW' },
+  'dongwon': { entity: 'Dongwon Industries', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 97, riskLevel: 'LOW' },
+  'silla': { entity: 'Silla Co., Ltd.', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 98, riskLevel: 'LOW' },
+  'sajo': { entity: 'Sajo Industries', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 96, riskLevel: 'LOW' },
+  'nirsa': { entity: 'Nirsa S.A.', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 90, riskLevel: 'LOW' },
+  'minh phu': { entity: 'Minh Phu Seafood', eu: { status: 'partial', detail: '유사명 — 수동 검토 권고' }, riskScore: 72, riskLevel: 'MEDIUM' },
+  'dalian ocean': { entity: 'Dalian Ocean Fishing', eu: { status: 'partial', detail: 'IUU 선박 중첩(보도)' }, riskScore: 35, riskLevel: 'HIGH' },
+  'pingtan': { entity: 'Pingtan Marine Enterprise', eu: { status: 'partial', detail: 'IUU·강제노동 우려(보도)' }, riskScore: 15, riskLevel: 'HIGH' },
+  'norebo': { entity: 'Norebo Holding', eu: { status: 'partial', detail: '러시아 제재 EDD 필요' }, riskScore: 18, riskLevel: 'HIGH' },
+  'pescanova': { entity: 'Nueva Pescanova', eu: { status: 'clean', detail: 'EU 참조 DB 무매칭' }, riskScore: 92, riskLevel: 'LOW' },
 };
+
+// OFAC SDN CSV에서 엔티티명 매칭 (실시간). 성공 시 {live:true, matches}, 실패 시 {live:false}.
+async function queryOfacSdn(query: string): Promise<{ live: boolean; matches: string[] }> {
+  if (query.length < 4) return { live: false, matches: [] };
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 7000);
+    const res = await fetch(OFAC_SDN_URL, {
+      signal: ctrl.signal,
+      headers: { 'User-Agent': 'tuna-dashboard-compliance/1.0' },
+      next: { revalidate: 86400 }, // 일 1회 캐시 (OFAC 명단은 매일 갱신)
+    });
+    clearTimeout(timer);
+    if (!res.ok) return { live: false, matches: [] };
+    const text = await res.text();
+    const q = query.toLowerCase();
+    const matches: string[] = [];
+    // SDN.csv 형식: ent_num,"SDN_Name","SDN_Type","Program",...
+    for (const line of text.split('\n')) {
+      const m = line.match(/^\s*\d+,"([^"]*)"/);
+      if (m) {
+        const name = m[1];
+        if (name.toLowerCase().includes(q)) {
+          matches.push(name);
+          if (matches.length >= 5) break;
+        }
+      }
+    }
+    return { live: true, matches };
+  } catch {
+    return { live: false, matches: [] };
+  }
+}
 
 export async function GET() {
   return NextResponse.json({
     service: 'Compliance & Sanctions API',
-    version: '1.0.0',
-    status: 'operational',
-    sources: ['OFAC SDN List', 'EU Consolidated Sanctions List', 'IUU Watchlist'],
-    coverage: 'Global Seafood & Fishing Entities',
-    endpoints: {
-      POST: {
-        body: { entity: 'string — Supplier or buyer name to screen' },
-        response: 'ScreeningResult { entity, ofac, eu, riskScore, riskLevel }'
-      }
-    }
+    version: '2.0.0',
+    primarySource: 'OFAC SDN List (live CSV)',
+    fallbackSource: 'Seafood sanctions/IUU reference DB (static)',
+    endpoints: { POST: { body: { entity: 'string' }, response: 'ScreeningResult' } },
   });
 }
 
 export async function POST(req: Request) {
   try {
     const { entity } = await req.json();
-    
     if (!entity || typeof entity !== 'string') {
       return NextResponse.json({ error: 'entity name is required' }, { status: 400 });
     }
-
     const query = entity.toLowerCase().trim();
-    
-    // Simulate network delay for API
-    await new Promise(resolve => setTimeout(resolve, 800));
 
-    // Fuzzy matching logic
-    const matchedKey = Object.keys(SANCTIONS_DB).find(k => 
-      query.includes(k) || k.includes(query) ||
-      k.split(' ').some(word => word.length > 3 && query.includes(word))
+    // 참조 DB 매칭 (EU·IUU 컨텍스트 + 폴백)
+    const refKey = Object.keys(REFERENCE_DB).find(
+      (k) => query.includes(k) || k.includes(query) || k.split(' ').some((w) => w.length > 3 && query.includes(w)),
     );
+    const ref = refKey ? REFERENCE_DB[refKey] : null;
 
-    let result;
-    if (matchedKey) {
-      const matchData = SANCTIONS_DB[matchedKey];
-      
-      // Simulate AI False Positive Analysis
-      let ai_analysis = { confidence: 0.95, falsePositiveRisk: 'LOW', recommendation: 'Proceed with standard monitoring' };
-      if (matchData.riskLevel === 'MEDIUM' || matchData.riskLevel === 'HIGH') {
-        ai_analysis = { 
-          confidence: 0.82, 
-          falsePositiveRisk: 'HIGH', 
-          recommendation: 'Potential Name Overlap (False Positive). Trigger manual human review and enhanced due diligence.' 
-        };
-      } else if (matchData.riskLevel === 'CRITICAL') {
-        ai_analysis = { 
-          confidence: 0.99, 
-          falsePositiveRisk: 'LOW', 
-          recommendation: 'Exact SDN match. Immediately freeze all transactions.' 
-        };
-      }
+    // 1차: OFAC SDN 실시간 조회
+    const ofac = await queryOfacSdn(query);
 
-      result = { 
-        ...matchData, 
-        source: 'SANCTIONS_FALLBACK', 
-        matchedQuery: query,
-        aiAnalysis: ai_analysis 
+    if (ofac.live) {
+      const flagged = ofac.matches.length > 0;
+      const result = {
+        entity,
+        ofac: flagged
+          ? { status: 'flagged', detail: `OFAC SDN 일치: ${ofac.matches[0]}${ofac.matches.length > 1 ? ` 외 ${ofac.matches.length - 1}건` : ''}` }
+          : { status: 'clean', detail: 'OFAC SDN 목록 무매칭 (실시간 조회)' },
+        eu: ref?.eu ?? { status: 'clean', detail: 'EU 참조 DB 무매칭' },
+        riskScore: flagged ? 10 : (ref?.riskScore ?? 85),
+        riskLevel: flagged ? 'CRITICAL' : (ref?.riskLevel ?? 'LOW'),
+        isLive: true,
+        source: 'OFAC_SDN_LIVE',
       };
-    } else {
-      // Default fallback for unknown entities
-      result = { 
-        entity: entity, 
-        ofac: { status: 'clean', detail: 'No match found (Automated Screening)' }, 
-        eu: { status: 'clean', detail: 'No match found (Automated Screening)' }, 
-        riskScore: 85, 
-        riskLevel: 'LOW',
-        source: 'SANCTIONS_FALLBACK',
-        aiAnalysis: { confidence: 0.88, falsePositiveRisk: 'LOW', recommendation: 'No significant risk patterns detected.' }
-      };
+      return NextResponse.json({
+        meta: {
+          query: entity,
+          reliability: { score: 92, grade: 'A', label: 'OFAC SDN 실시간 조회' },
+          source: 'OFAC_SDN_LIVE',
+          isLive: true,
+        },
+        result,
+      });
     }
+
+    // 2차: 폴백 — 참조 DB (정직 STATIC)
+    const result = ref
+      ? { entity: ref.entity, ofac: { status: 'clean', detail: 'OFAC 실시간 조회 실패 — 참조 DB 기준' }, eu: ref.eu, riskScore: ref.riskScore, riskLevel: ref.riskLevel, isLive: false, source: 'OFAC_REFERENCE_DB' }
+      : { entity, ofac: { status: 'partial', detail: 'OFAC 실시간 조회 실패 — 참조 DB 무매칭' }, eu: { status: 'partial', detail: '참조 DB 무매칭' }, riskScore: 60, riskLevel: 'MEDIUM', isLive: false, source: 'OFAC_REFERENCE_DB' };
 
     return NextResponse.json({
       meta: {
         query: entity,
-        timestamp: new Date().toISOString(),
-        reliability: { score: 70, grade: 'B', label: 'Mock Compliance DB (Static Fallback)' },
-        source: 'SANCTIONS_FALLBACK'
+        reliability: { score: 70, grade: 'B', label: '사전심사 참조 DB (OFAC 실시간 조회 실패)' },
+        source: 'OFAC_REFERENCE_DB',
+        isLive: false,
       },
-      result
+      result,
     });
-
   } catch (error: any) {
     console.error('[Compliance API] Error:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error', message: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal Server Error', message: error.message }, { status: 500 });
   }
 }

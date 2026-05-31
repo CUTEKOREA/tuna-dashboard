@@ -14,6 +14,8 @@ interface ScreeningResult {
   eu: { status: string; detail: string };
   riskScore: number;
   riskLevel: string;
+  isLive?: boolean;
+  source?: string;
   aiAnalysis?: { confidence: number; falsePositiveRisk: string; recommendation: string };
 }
 
@@ -121,8 +123,8 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
       icon={ShieldCheck}
       iconColor="#0ECB81"
       pillar="S5"
-      cardDesc="OFAC SDN(미국 해외자산통제국) + EU 통합 제재 목록 실시간 듀얼 스크리닝. AI 오탐지 분석 엔진으로 정확도 보강"
-      telemetry={{ status: 'LIVE', syncDate: 'Real-time' }}
+      cardDesc="거래처명 입력 시 OFAC SDN(미국 해외자산통제국) 목록을 실시간 조회(공개 CSV)하고, EU·IUU 참조 DB로 보강. 조회 실패 시 사전심사 참조 DB로 폴백."
+      telemetry={{ status: result?.isLive ? 'LIVE' : 'STATIC', syncDate: result?.isLive ? '실시간 OFAC SDN' : 'OFAC 조회 시 갱신' }}
       customBody={Body}
       takeaway={{
         situation: result && !showHist ? `<div>
@@ -138,7 +140,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
 </div>` : `<div>
 <p><strong>"전 거래처 월 1회 자동 스크리닝"</strong>: OFAC·EU 명단은 매주 갱신되므로 monthly auto-screening 필수. 본사 compliance desk가 ML 기반 risk scoring 모델로 자동화 — 분기마다 임계치 돌파 vendor alert. JP Morgan Compliance Tech Desk와 협력해 platform 통합.</p>
 </div>`,
-        source: 'OFAC SDN + EU 통합제재목록 · 사전심사 DB',
+        source: 'OFAC SDN(실시간 공개 CSV) + EU·IUU 수산 참조 DB · 조회 실패 시 사전심사 DB 폴백',
       }}
     />
   );

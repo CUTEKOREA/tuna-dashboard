@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-31 — value-chain(TunaDashboard) 허위/mock 2건 정직화** [CC]:
+> - **감사**: /value-chain ≈139위젯(JSON 93 + 독립컴포넌트 41 + FTA카드 5) 중 허위/mock 2건. (헤더는 JSON 93만 표기)
+> - **TunaAtuna8YPrice**(허위 LIVE→SYNCED): 정적 CSV(skjbkk.csv)를 `status:'live'/'Real-time (API)'`로 표기 → `SYNCED/2026-05`, 제목 "(API Live)"→"(월별)", cardDesc 실시간→월별·YFT 추정 명시. 데이터는 실측 유지.
+> - **TunaComplianceRadar**(mock→실 OFAC 연동): `/api/compliance`가 하드코딩 "Simulated Sanctions DB" 반환 → **실제 OFAC SDN 공개 CSV 실시간 조회**(sanctionslistservice.ofac.treas.gov, 19,014 엔티티, Pingtan 등 실 적발 확인) + 실패 시 수산 IUU 참조 DB 폴백. 위젯 telemetry `result.isLive` 동적화(LIVE/STATIC), cardDesc·source 정직화, 'AI 오탐지 엔진' 과장 패널 제거.
+> - **검증**: `npm run build` ✓ · OFAC SDN 실 도달성·정규식 파싱 검증 완료. **로컬 커밋, 배포 대기**(명시 요청 시 push).
+
 > 🦑 **2026-05-31 — squid 대시보드 허위/mock 데이터 10건 정직화 (agri_data 실측 교체)** [CC]:
 > - **감사 결과**: /squid 97위젯 중 10건이 허위 LIVE 또는 mock — ① 코드 내장 isLive:true 3건(enso·loligo·sg_valueup), ② API 라우트 mock 7건(kosis만 실호출, 나머지 7개 하드코딩).
 > - **① 허위 LIVE 3건 → 정직 STATIC**: `SquidDashboard.tsx` newResearchWidgets isLive:true→false (데이터는 SPRFMO/FIG 실보고서 출처 유지).
