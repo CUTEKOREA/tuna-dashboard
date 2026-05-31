@@ -421,16 +421,16 @@ export default function MackerelDashboard() {
       // ═══ ImportYeti & Veridion 기반 신규 위젯 (Phase 3) ═══
       if (supplierData && supplierData.data) {
         json.widgets.push({
-          id: 'w_import_yeti_suppliers', title: '노르웨이 대체 공급망 발굴 (ImportYeti)',
-          subtitle: '글로벌 B2B 무역 스크래핑 데이터 기반 벤더 평가',
-          chartType: 'Bar', xKey: 'supplier',
-          bars: [{ key: 'volumeTeu', name: '누적 수출량 (TEU)', color: '#3b82f6' }],
+          id: 'w_import_yeti_suppliers', title: '노르웨이 대체 공급망 — 한국 수입 공급국 (2024)',
+          subtitle: 'UN Comtrade 한국 냉동고등어(HS 030354) 수입액 기준 공급국 집중도',
+          chartType: 'Bar', xKey: 'origin',
+          bars: [{ key: 'valueUsdM', name: '한국 수입액 ($M)', color: '#3b82f6' }],
           data: supplierData.data,
-          badges: ['실시간 API', 'Verified', 'Forecast'],
-          sit: `노르웨이 메이저 벤더(Pelagia, Nils) 외에 영국(Highland), 아일랜드(Killybegs), 아이슬란드(Ísfélag)의 꾸준한 B2B 수출 기록이 검증되었습니다. TEU 기준 Pelagia가 1위이며, 대체 벤더들은 각각 200~800 TEU 규모로 중소형 공급업체입니다.`,
-          strat: '노르웨이의 할당량 감축에 대비하여 유럽 북부 대체 벤더들과의 선제적 스팟 계약 풀(Pool)을 구축해야 합니다. Highland·Ísfélag 등과 연간 500 TEU 규모의 예비 계약을 체결하면, Pelagia 공급 차질 시 즉시 대체 물량 확보가 가능합니다.',
-          apiSource: '📡 [LIVE API 연동: ImportYeti] B2B 수출입 스크래핑',
-          source: 'ImportYeti / Veridion', unit: 'TEU'
+          badges: ['Comtrade 실측'],
+          syncDate: '2024',
+          sit: `2024년 한국 냉동고등어 수입은 노르웨이가 $83.1M(76.7%)로 압도적이며, 나머지는 베트남($11.2M)·중국($6.3M)·네덜란드($1.9M) 등 가공·중계 물량입니다. 1국 의존도 77%는 노르웨이 어획쿼터·수출규제·환율 변동에 그대로 노출되는 구조적 리스크입니다.`,
+          strat: '노르웨이 쿼터 감축에 대비해 동일 북동대서양 자원을 어획하는 영국·아일랜드·아이슬란드·페로(공개 무역통계상 주요 고등어 수출국)와 예비 스팟 계약 풀을 구축하고, 베트남·중국 가공라인을 보조 채널로 이원화해 1국 의존도를 70% 이하로 낮추십시오.',
+          source: 'UN Comtrade 2024 (HS 030354, 한국 수입)', unit: '$M'
         });
       }
 

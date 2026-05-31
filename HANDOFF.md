@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-31 — mackerel 대시보드 허위/mock 1건 정직화** [CC]:
+> - **감사**: /mackerel ≈104위젯(JSON 83 + 라이브주입 14 + 독립컴포넌트 7) 중 허위/mock 1건. JSON 83 clean(isLive:true 0), 컴포넌트 7 정적, 라이브 13개 실 외부호출, w23·w25는 시뮬 정직라벨.
+> - **w_import_yeti_suppliers (허위 LIVE+mock→실 Comtrade)**: `/api/import-yeti`가 하드코딩 `SUPPLIER_DB`(// Simulated, 회사 TEU 박제)를 반환하는데 주입부가 `badges:['실시간 API']`+`apiSource:'LIVE API 연동 ImportYeti'`로 LIVE 표기 → **UN Comtrade 2024 한국 냉동고등어 수입 공급국 실측**(노르웨이 $83.1M·77% + 베트남/중국/네덜란드)으로 교체. 라우트 isLive:false·source Comtrade, 주입부 실시간배지/apiSource 제거 → telemetry SYNCED/2024.
+> - **검증**: `npm run build` ✓ · import-yeti mock/simulated 0·주입부 허위LIVE배지 0. **로컬 커밋, 배포 대기**.
+
 > 🐟 **2026-05-31 — value-chain(TunaDashboard) 허위/mock 2건 정직화** [CC]:
 > - **감사**: /value-chain ≈139위젯(JSON 93 + 독립컴포넌트 41 + FTA카드 5) 중 허위/mock 2건. (헤더는 JSON 93만 표기)
 > - **TunaAtuna8YPrice**(허위 LIVE→SYNCED): 정적 CSV(skjbkk.csv)를 `status:'live'/'Real-time (API)'`로 표기 → `SYNCED/2026-05`, 제목 "(API Live)"→"(월별)", cardDesc 실시간→월별·YFT 추정 명시. 데이터는 실측 유지.
