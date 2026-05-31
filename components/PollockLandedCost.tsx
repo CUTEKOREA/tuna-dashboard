@@ -42,7 +42,7 @@ export function PollockLandedCostWaterfall() {
       iconColor="#22c55e"
       pillar="S3"
       cardDesc="러시아 직수입 / 중국 우회 / 미국 MSC 3개 경로의 FOB→착지원가 워터폴 + 환율 민감도 시뮬레이션 (Tariffs/WITS/FRED API)"
-      telemetry={{ status: 'LIVE', syncDate: '/api/pollock-landed-cost' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (Tariffs·WITS·FRED)' }}
       customBody={
         <>
           <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
@@ -120,7 +120,7 @@ export function PollockRouteComparison() {
       iconColor="#8b5cf6"
       pillar="S3"
       cardDesc="러시아·중국·미국 경로별 착지원가/마진/리스크/ESG 점수 비교 + FRED 환율 시나리오별 ₩/kg 변동"
-      telemetry={{ status: 'LIVE', syncDate: '/api/pollock-landed-cost' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (Tariffs·WITS·FRED)' }}
       customBody={
         <>
           <div style={{ overflowX: 'auto', marginBottom: '12px' }}>

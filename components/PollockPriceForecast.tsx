@@ -38,8 +38,8 @@ export function PollockPriceForecastChart() {
       icon={TrendingUp}
       iconColor="#3b82f6"
       pillar="S1"
-      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 기반 통명태/수리미/명란 분기별 가격 예측 (FRED Live)"
-      telemetry={{ status: 'LIVE', syncDate: '/api/pollock-forecast' }}
+      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 기반 통명태/수리미/명란 분기별 가격 예측 (FRED API)"
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (FRED·예측모형)' }}
       customBody={
         <>
           <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
@@ -125,7 +125,7 @@ export function PollockScenarioSimulator() {
       iconColor="#f59e0b"
       pillar="S1"
       cardDesc="5대 시나리오별(기준·쿼터감축·제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST"
-      telemetry={{ status: 'LIVE', syncDate: '/api/pollock-forecast' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (FRED·예측모형)' }}
       customBody={
         <>
           <div style={{ display: 'grid', gap: '6px' }}>

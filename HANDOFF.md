@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-05-31 — pollock 대시보드 허위 LIVE 정직화 (잔존 6 + 동적화 4)** [CC]:
+> - **감사**: /pollock 69위젯(JSON 58 + customInject 11) 중 허위 LIVE 6 + 잠재 4. (k1_3d_surimi "Mock"은 모사 해산물=imitation seafood, 위반 아님)
+> - **6건 잔존 isLiveApi 허위**: w4_korea_crisis·w6_inflation_unitprice·w10_surimi_top3·w14·w25_processing_bottleneck·w29_eu_derisk_pivot — JSON `isLiveApi:true`(출처·라이브주입 없음, 렌더러 line 655가 LIVE 표기). 라이브 주입은 kpi4에만 적용 → **isLiveApi:true→false**(정직 STATIC). 이전 P0가 12건 정정했으나 6건 잔존이었음.
+> - **4건 동적화**: PollockLandedCostWaterfall·RouteComparison(PollockLandedCost.tsx)·PriceForecastChart·ScenarioSimulator(PollockPriceForecast.tsx) — `status:'LIVE'` 하드코딩(실 FRED 라우트 fetch하나 라벨 비동적) → `status: data ? 'SYNCED':'STATIC'` 동적화, cardDesc 'FRED Live'→'FRED API'.
+> - **검증**: `npm run build` ✓ · JSON isLiveApi:true 0 · 하드코딩 LIVE 0. **로컬 커밋, 배포 대기**.
+
 > 🐙 **2026-05-31 — jukkumi 대시보드 허위 LIVE 정직화 (Math.random 지터 제거)** [CC]:
 > - **감사**: /jukkumi 34위젯(JSON 33 + JukkumiFTAQuarterly 1) 중 허위 LIVE 3건(+KPI 4건).
 > - **근본 원인**: `/api/jukkumi-intelligence`가 API 키 존재 시 **실제 외부 호출 없이** `Math.random()` 지터를 정적 데이터(w3 해상운임·w4 단가·w9 베트남%)에 입히고 `isLiveApi=true`로 표기. 코드 주석에 "Live Jitter 적용하여 통신 상태 증명" 명시 — 이전 P0가 JSON isLiveApi를 false로 정직화했으나 라우트가 덮어쓰며 무력화.
