@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🥜 **2026-05-31 — /cashew 잔여 3위젯 출처 정직화 (워크플로우 검증으로 환각 차단)** [CC]:
+> - d_vietnam_paradox 실측 교체에 이어, 나머지 3위젯(africa_processing·macro_sensitivity·cnsl_esg) 실측화 시도 → **멀티에이전트 워크플로우(리서치→적대적 검증)**.
+> - **검증 핵심 발견**: 웹 리서치가 신뢰 불가 — WebSearch가 ACA 인용문('10%→30%') **환각 생성**, ComCashew/MarketResearchFuture 출처 **오귀속**, CNSL 20/70/10은 상충 보고서 짜깁기(한 출처는 "대표용일 뿐" 면책). 3개 모두 권위 단일 출처 부재 → **환각 수치 주입을 검증이 차단**(writer≠reviewer 가치).
+> - **조치(날조 금지)**: 데이터 무변경, **출처/부제 라벨만 정직 정정** — 검증된 앵커(CI 가공커넬=수출액 30% Ecofin·운임 +24%YoY)만 명시, 나머지는 "추정/시나리오·실측 아님" 명시. 빌드 ✓.
+> - 결론: 3위젯은 라이브 API·권위 데이터셋 없는 업계 추정/시나리오 — 정직 STATIC 추정 라벨이 최종 상태.
+
 > 🥜 **2026-05-31 — /cashew d_vietnam_paradox mock→UN Comtrade 실측 교체** [CC]:
 > - 직전 cashew 허위LIVE 4건 STATIC 정정에 이어, mock 데이터 자체를 실데이터로. d_vietnam_paradox(베트남 캐슈 역설)의 하드코딩(수출 57·수입 280 등)을 **UN Comtrade 실측 교체**: HS080131(in-shell RCN 수입)·080132(shelled 커널 수출), reporter 704, partner2=0·mot=0 클린집계, 만톤. 2021 50.7/253.5·2022 42.9/167·2023 48.2/237. (2024 베트남 미보고 제외)
 > - route 주석·_metadata source·위젯 subtitle/source/SIT 실측 정합(2023 수입237 vs 수출48 ≈4.9배). 연1회 갱신이라 STATIC 정직 유지(라이브 라우트 불요).

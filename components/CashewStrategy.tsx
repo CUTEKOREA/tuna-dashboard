@@ -453,7 +453,7 @@ export default function CashewStrategy() {
             })}
             {sec.id === 'S2' && d_africa_processing && renderCashewWidget({
               icon: Factory, title: "서아프리카 현지 가공 비율 및 B2B 직공급 전환율",
-              subtitle: "현지 가공률 상승과 직공급 전환 궤적",
+              subtitle: "현지 가공률 상승과 직공급 전환 궤적 (추정 — 실측 시계열 출처 없음)",
               iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: "STATIC",
               chart: (
                 <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
@@ -479,11 +479,11 @@ export default function CashewStrategy() {
                   <p><strong>3단계</strong>: ① 코트디부아르·가나·탄자니아 현지 가공공장 5~10곳 매핑 → 우량 자산 2~3곳 majority M&A 또는 long-term JV (capex $25~40M) ② 한국 제과 3사(롯데웰푸드·오리온·해태) + B2B 베이커리(파리바게뜨·뚜레쥬르) + 마트 PB 5사에 "서아프리카 직접 가공 캐슈" 5년 LTA — 베트남 trader 우회로 단가 -22%p 절감 + ESG·트레이서빌리티 inclusive ③ "K-Cashew Origin Champion" 포지셔닝 → exit 시 PE 5x → 11x 리레이팅, EV +120% premium.</p>
                 </div>
               ),
-              source: "ACA 아프리카 캐슈 연맹 분기 보고서 + 코트디부아르 농업부 산업 정책 + UN Comtrade"
+              source: "검증된 앵커: 코트디부아르 가공 커넬 = 캐슈 수출액 약 30%(Ecofin 2024). 분기 가공률·직공급 시계열은 단일 권위 출처 부재 — 예시 추정(실측 아님)"
             })}
             {sec.id === 'S3' && d_macro_sensitivity && renderCashewWidget({
               icon: Activity, title: "거시 지표 민감도 분석 (What-If 시뮬레이터)",
-              subtitle: "운임, 환율, 기후 및 프리미엄 변동에 따른 마진 임팩트",
+              subtitle: "운임·환율·기후·프리미엄 변동에 따른 마진 임팩트 (시나리오 모델)",
               iconColor: "var(--color-warning)", pillar: "S3", telemetryStatus: "STATIC",
               chart: (
                 <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
@@ -511,7 +511,7 @@ export default function CashewStrategy() {
                   <p><strong>3단계</strong>: ① 주요 선사 5개와 6~12개월 단위 FRA(Forward Rate Agreement) 체결 — SCFI 변동 -15%p lock-in ② 한국은행·KB·신한과 NDF 3·6·12개월 layered hedging — 환변동 ±2%p 이내 안정 ③ <strong>환율 수혜 윈도우(원달러 ₩1,400+ 국면)</strong>에 EU·미국·일본 프리미엄 인증 (Organic·Fair Trade·Halal) 캐슈 선출하 집중 — 환차익을 매출 alpha로 전환, 분기당 +6~10%p 추가 마진.</p>
                 </div>
               ),
-              source: "SCFI 지수 + 한국은행 환율 + 자체 거시 시뮬레이션 + K-SURE 환변동보험"
+              source: "시나리오 민감도 모델(실측 아님). 방향성 앵커: 컨테이너 운임 +24% YoY(Trading Economics 2026-05)·원물가 +18% 마진침식(CPT Corp 2024). impact%는 모델 가정"
             })}
             {sec.id === 'S5' && d_cnsl_esg && renderCashewWidget({
               icon: Leaf, title: "캐슈 껍질 액(CNSL) 기반 ESG 신사업 포트폴리오",
@@ -538,7 +538,7 @@ export default function CashewStrategy() {
                   <p><strong>3단계</strong>: ① 단기(6개월): 베트남·서아프리카 가공장에서 발생하는 CNSL을 산업용 레진 vendor(코오롱인더·LG화학·BASF·DuPont) raw 납품 ② 중기(12~18개월): CNSL 정제 R&D 자체 라인 신설 (capex $5~8M) → 바이오 항공유(SAF, Sustainable Aviation Fuel) raw 시장 진입 ③ 장기(24개월+): 자체 K-CNSL 브랜드 + USDA Bio-based + EU CO₂ Reduction 2중 인증 → 글로벌 친환경 raw vendor 카테고리 점프, valuation PE 5x → 13x.</p>
                 </div>
               ),
-              source: "글로벌 ESG 리서치 + 대체 에너지 동향 + CNSL 카르다놀 학술 연구 + SAF 시장 분석"
+              source: "CNSL 용도별 비중 추정(실측 아님) — 연료 ~20%만 Business Research Insights 일치, 단일 일관 출처 없음·'단순 폐기' 비중은 잔차 추정"
             })}
             {widgets.slice(sec.start, sec.end).map((w:any, wi:number) => {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
