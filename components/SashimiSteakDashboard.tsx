@@ -98,6 +98,11 @@ const SasExEmergingMena = dynamic(() => import('./sashimi-strategy/SasExEmerging
 const SasOlClimateMigration = dynamic(() => import('./sashimi-strategy/SasOlClimateMigration'), { ssr: false });
 const SasOlCellBased = dynamic(() => import('./sashimi-strategy/SasOlCellBased'), { ssr: false });
 
+/* ─── NEW: 동원산업 슈퍼튜나 + 어종별 등급 결정요인 ─── */
+const SasKrSuperTuna = dynamic(() => import('./sashimi-strategy/SasKrSuperTuna'), { ssr: false });
+const SasPrGradeBySpecies = dynamic(() => import('./sashimi-strategy/SasPrGradeBySpecies'), { ssr: false });
+const SasGlConsumptionMatrix = dynamic(() => import('./sashimi-strategy/SasGlConsumptionMatrix'), { ssr: false });
+
 /* ================================================================ */
 const SECTIONS = [
   { id: 'korea', label: '🇰🇷 한국', icon: Flag, color: '#f59e0b', desc: '원양 생산·일본 의존·7대 기업·외식D2C·지중해 BFT' },
@@ -152,7 +157,7 @@ export default function SashimiSteakDashboard() {
                 사시미/스테이크 시장 분석
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 65개 위젯
+                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 68개 위젯
               </p>
             </div>
           </div>
@@ -273,6 +278,7 @@ export default function SashimiSteakDashboard() {
             </div>
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasKrByproduct"><SasKrByproduct /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasKrSuperTuna"><SasKrSuperTuna /></ErrorBoundary>
             </div>
           </section>
         )}
@@ -295,6 +301,7 @@ export default function SashimiSteakDashboard() {
             </div>
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasGlTradeFlows"><SasGlTradeFlows /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasGlConsumptionMatrix"><SasGlConsumptionMatrix /></ErrorBoundary>
             </div>
           </section>
         )}
@@ -418,6 +425,7 @@ export default function SashimiSteakDashboard() {
             </div>
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasPrAuctionDirect"><SasPrAuctionDirect /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasPrGradeBySpecies"><SasPrGradeBySpecies /></ErrorBoundary>
             </div>
           </section>
         )}
