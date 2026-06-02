@@ -57,6 +57,20 @@ const SasUsSushiPokeMarket = dynamic(() => import('./sashimi-strategy/SasUsSushi
 const SasEuFreshVsCanned = dynamic(() => import('./sashimi-strategy/SasEuFreshVsCanned'), { ssr: false });
 const SasEuImportSegmentation = dynamic(() => import('./sashimi-strategy/SasEuImportSegmentation'), { ssr: false });
 
+/* ─── NEW: 미국 카테고리 보강 5개 (규제·관세·마진·경쟁·수요) ─── */
+const SasUsImportBarriers = dynamic(() => import('./sashimi-strategy/SasUsImportBarriers'), { ssr: false });
+const SasUsTariffLadder = dynamic(() => import('./sashimi-strategy/SasUsTariffLadder'), { ssr: false });
+const SasUsMarginWaterfall = dynamic(() => import('./sashimi-strategy/SasUsMarginWaterfall'), { ssr: false });
+const SasUsCompetitorMap = dynamic(() => import('./sashimi-strategy/SasUsCompetitorMap'), { ssr: false });
+const SasUsDemandSeasonality = dynamic(() => import('./sashimi-strategy/SasUsDemandSeasonality'), { ssr: false });
+
+/* ─── NEW: 영국/태국 카테고리 보강 5개 (공급국·채널·원료·ESG·한국연결) ─── */
+const SasUkSupplierTariff = dynamic(() => import('./sashimi-strategy/SasUkSupplierTariff'), { ssr: false });
+const SasUkChannelSplit = dynamic(() => import('./sashimi-strategy/SasUkChannelSplit'), { ssr: false });
+const SasThaiSourcing = dynamic(() => import('./sashimi-strategy/SasThaiSourcing'), { ssr: false });
+const SasThaiEsgRisk = dynamic(() => import('./sashimi-strategy/SasThaiEsgRisk'), { ssr: false });
+const SasKrDualRoute = dynamic(() => import('./sashimi-strategy/SasKrDualRoute'), { ssr: false });
+
 /* ================================================================ */
 const SECTIONS = [
   { id: 'korea', label: '🇰🇷 한국', icon: Flag, color: '#f59e0b', desc: '원양 생산·일본 의존·7대 기업·외식D2C·지중해 BFT' },
@@ -111,7 +125,7 @@ export default function SashimiSteakDashboard() {
                 사시미/스테이크 시장 분석
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 32개 위젯
+                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 42개 위젯
               </p>
             </div>
           </div>
@@ -247,7 +261,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 미국 시장 ═══ */}
         {activeSection === 'us' && (
           <section>
-            <SectionHeader color="#10b981" emoji="🇺🇸" title="미국 시장 딥다이브" desc="세계 1위 소비 시장의 양극화 구조 및 포케 열풍" />
+            <SectionHeader color="#10b981" emoji="🇺🇸" title="미국 시장 딥다이브" desc="세계 1위 소비 시장 — 양극화·포케 + 규제 3중관문·2025 관세·유통 마진·경쟁 지도·수요 드라이버" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasSupplyChainSplit"><SasSupplyChainSplit /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasCoTreatmentImpact"><SasCoTreatmentImpact /></ErrorBoundary>
@@ -258,6 +272,15 @@ export default function SashimiSteakDashboard() {
             </div>
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasHawaiiDomesticNiche"><SasHawaiiDomesticNiche /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasUsImportBarriers"><SasUsImportBarriers /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasUsTariffLadder"><SasUsTariffLadder /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasUsMarginWaterfall"><SasUsMarginWaterfall /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasUsCompetitorMap"><SasUsCompetitorMap /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasUsDemandSeasonality"><SasUsDemandSeasonality /></ErrorBoundary>
             </div>
           </section>
         )}
@@ -265,10 +288,21 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 🇬🇧🇹🇭 영국/태국 ═══ */}
         {activeSection === 'ukth' && (
           <section>
-            <SectionHeader color="#22d3ee" emoji="🇬🇧🇹🇭" title="영국 & 태국 — FTA 우위 + 세계 최대 가공 허브" desc="Korea-UK FTA 18%→0% 관세 우위, 태국 글로벌 캔 참치 수출 28.2% 점유" />
+            <SectionHeader color="#22d3ee" emoji="🇬🇧🇹🇭" title="영국 & 태국 — FTA 우위 + 세계 최대 가공 허브" desc="영국 수입 공급국·채널 + 태국 원료조달·ESG + 한국 두 경로(원물 vs 직수출)" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasUkMarket"><SasUkMarket /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasThailandHub"><SasThailandHub /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasUkSupplierTariff"><SasUkSupplierTariff /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasUkChannelSplit"><SasUkChannelSplit /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasThaiSourcing"><SasThaiSourcing /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasThaiEsgRisk"><SasThaiEsgRisk /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasKrDualRoute"><SasKrDualRoute /></ErrorBoundary>
             </div>
           </section>
         )}
