@@ -55,6 +55,31 @@ export default function UnloadingStatus() {
         { date: '6/2', time: '08:20 ~ 14:00', targetHol: 'S/SPR(#1-A), MOAMARI(#4-C)', dailyAmount: 198.780, cumAmount: 2304.990, quality: 'S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/3)은 약 235톤 하역 진행 예정.' }
       ]
     },
+    'bao-lucky': {
+      name: 'M/V BAO LUCKY',
+      dateRange: '2026.06.02 ~ 진행중',
+      location: 'BANGKOK, THAILAND',
+      buyer: 'FCF CO.,LTD',
+      motherVessel: '-',
+      status: '하역중 (In Progress)',
+      reportedTotal: 4803.000,
+      actualTotal: 229.160,
+      surplus: -4573.840,
+      species: [
+        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 204.460, surplus: -3971.540 },
+        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 24.700, surplus: -602.300 }
+      ],
+      timeline: [
+        { 
+          date: '6/2', 
+          time: '09:00 ~ 17:10', 
+          targetHol: 'S/EXP(#4-A), N/STAR(#1-A)', 
+          dailyAmount: 229.160, 
+          cumAmount: 229.160, 
+          quality: 'S/EXP(#4-A): 어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호. N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/3)은 약 176톤 하역 진행 예정.' 
+        }
+      ]
+    },
     'hikari': {
       name: 'M/V HIKARI',
       dateRange: '2026.04.26 ~ 2026.05.02',

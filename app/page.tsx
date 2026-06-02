@@ -1117,6 +1117,10 @@ export default function Home() {
                   </h3>
                   <div className={styles.landingUpdatesGrid}>
                     <div className={styles.updateItem}>
+                      <span className={styles.updateDate}>26.06.02</span>
+                      <span className={styles.updateContent}>물류 현황 패널: BAO LUCKY BKK 하역 개시 (진척률 4.8%) 및 1일차 결과 반영</span>
+                    </div>
+                    <div className={styles.updateItem}>
                       <span className={styles.updateDate}>26.05.31</span>
                       <span className={styles.updateContent}>선단 운영 커맨드 센터: 5월 4주차 주간/월간 선장 실적 및 어획량 차트 갱신</span>
                     </div>
