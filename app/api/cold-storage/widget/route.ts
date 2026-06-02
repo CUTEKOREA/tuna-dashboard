@@ -20,6 +20,9 @@ const fileMap: Record<string, string> = {
   'k06': 'cold_storage/cold_storage_k06.json',
   'k07': 'cold_storage/cold_storage_k07.json',
   'k08': 'cold_storage/cold_storage_k08.json',
+  'us01': 'cold_storage/cold_storage_us01.json',
+  'us02': 'cold_storage/cold_storage_us02.json',
+  'us03': 'cold_storage/cold_storage_us03.json',
 };
 
 export async function GET(request: Request) {

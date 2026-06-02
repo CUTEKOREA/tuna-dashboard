@@ -58,6 +58,7 @@ const WIDGET_ICONS: Record<string, any> = {
   n01: TrendingUp, n02: DollarSign, n03: Globe,
   k01: Snowflake, k02: BarChart2, k03: ShieldCheck, k04: ShieldAlert,
   k05: Zap, k06: Factory, k07: Activity, k08: Anchor,
+  us01: Snowflake, us02: Factory, us03: ShieldCheck,
 };
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
@@ -370,6 +371,48 @@ export default function ColdStorageDashboard() {
           strat: '냉동 입고 전 전처리(Pre-treatment) 서비스를 핵심 수익 모델화. 드립 1%p 발생 시 킬로당 ₩100~200의 원가 손실이 발생하는 화주들에게, 품질 방어를 미끼로 프리미엄 전처리 과금을 청구하여 엑스트라 알파(Extra Alpha) 수익을 지속 창출할 것.',
           source: 'KFAS 한국수산과학회지 — TGase+다당류 활용 동결 무지개송어 물성개선 및 저장성 향상',
           unit: '% / 지수'
+        },
+        {
+          id: 'us01',
+          title: '미국 주요 냉동창고 실측 최저온도 비교',
+          subtitle: '멀티에이전트 조사 · 사시미급 -60°C 적합성 판별',
+          chartType: 'Bar',
+          xKey: '시설',
+          bars: [{key: '최저온도', color: '#38bdf8'}],
+          data: [{"시설":"퍼스앰보이","최저온도":-62},{"시설":"라콜드","최저온도":-60},{"시설":"프리즈팩","최저온도":-60},{"시설":"우오리키","최저온도":-60},{"시설":"뮤추얼","최저온도":-60},{"시설":"KPAC","최저온도":-51},{"시설":"버논","최저온도":-34},{"시설":"포트뉴왁","최저온도":-18},{"시설":"뉴잉글랜드","최저온도":-12},{"시설":"이스트코스트","최저온도":4}],
+          sit: <>미국 전역에서 사시미급 -60°C를 실제 구현하는 냉동창고는 극소수다. 80개 후보 중 44개가 -18~-30°C 일반 냉동으로 반박됐고, 검색 상위의 포트뉴왁(-18°C)·뉴잉글랜드(-12°C)·이스트코스트(냉장 4°C)는 사시미 보관에 부적합하다. 실측 -60°C는 퍼스앰보이(-62°C)·라콜드·프리즈팩·우오리키·뮤추얼 등 손에 꼽힌다.</>,
+          strat: <>"cold storage" 간판만 보고 계약하지 말 것. 입고 전 실측 -60°C 유지 능력을 온도 로그·USDC 검사 이력으로 서면 검증하고, -51°C에 그치는 KPAC나 표준냉동 버논(-34°C)을 서부 ULT로 오인하는 리스크를 원천 차단하라.</>,
+          source: '미국 ULT 사시미급 냉동창고 멀티에이전트 조사 (2026-06-02)',
+          unit: '°C',
+          syncDate: '2026.06.02'
+        },
+        {
+          id: 'us02',
+          title: '백업용 초저온 컨테이너 임대 온도 스펙트럼',
+          subtitle: '3PL 팔레트 품귀 대비 · 자가 ULT 구축 장비 비교',
+          chartType: 'Bar',
+          xKey: '제공사',
+          bars: [{key: '최저온도', color: '#8b5cf6'}],
+          data: [{"제공사":"KTI","최저온도":-110},{"제공사":"타이탄","최저온도":-75},{"제공사":"써모킹","최저온도":-70},{"제공사":"아틱스토어","최저온도":-65},{"제공사":"클린지","최저온도":-60}],
+          sit: <>임대 가능한 public 3PL ULT 팔레트가 희소해 성수기 공간 부족 리스크가 크다. 이를 대비한 이동·고정식 슈퍼프리저 컨테이너는 클린지 -60°C부터 타이탄 -75°C까지 사시미 기준을 충분히 충족하며, KTI -110°C는 참치엔 과사양이다.</>,
+          strat: <>3PL 앵커 2곳 타진과 동시에 타이탄·아틱스토어 컨테이너 견적을 병행 확보해, 팔레트 품귀 시 자가 ULT로 즉시 전환하는 이중화 전략을 구축하라. 과사양 KTI는 비용만 키우므로 -60~-75°C 구간에서 선택할 것.</>,
+          source: '미국 ULT 사시미급 냉동창고 멀티에이전트 조사 (2026-06-02)',
+          unit: '°C',
+          syncDate: '2026.06.02'
+        },
+        {
+          id: 'us03',
+          title: '미국 ULT 후보 검증 깔때기',
+          subtitle: '80개 후보 → 적대적 검증 → 임대가능 사시미 앵커',
+          chartType: 'Bar',
+          xKey: '단계',
+          bars: [{key: '시설수', color: '#10b981'}],
+          data: [{"단계":"초기후보","시설수":80},{"단계":"ULT확정유력","시설수":36},{"단계":"임대앵커","시설수":2}],
+          sit: <>8각도 웹 스윕으로 80개 후보를 수집해 -18~-30°C 일반 냉동 44개를 반박하고, -60°C ULT 확정 18 + 유력 18 = 36개로 압축했다. 그중 제3자 임대가 실제 가능한 사시미급 public 3PL 앵커는 동·서부 단 2곳(퍼스앰보이·라콜드)뿐이다(public 3PL 자체는 48개).</>,
+          strat: <>임대 가능한 -60°C는 구조적으로 희소하므로 2개 앵커에만 의존하지 말 것. 수입업체 자가창고 제휴(우오리키·뮤추얼)와 자가 컨테이너를 동시 추진하는 3중 백업으로 공급 안정성을 확보하라.</>,
+          source: '미국 ULT 사시미급 냉동창고 멀티에이전트 조사 (2026-06-02)',
+          unit: '개',
+          syncDate: '2026.06.02'
         }
       ]
     };
@@ -648,6 +691,66 @@ export default function ColdStorageDashboard() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
             {widgets.filter((w: any) => ['k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
+          </div>
+        </section>
+
+        <section>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
+            <Anchor size={24} color="#38bdf8" />
+            <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>6. 미국 초저온(ULT) 사시미급 보관 인프라</h2>
+            <span style={{ marginLeft: 'auto', fontSize: '0.8rem', color: '#94a3b8', background: 'rgba(56, 189, 248, 0.1)', padding: '4px 10px', borderRadius: '12px' }}>멀티에이전트 조사 2026.06.02 · 동·서부 ULT</span>
+          </div>
+
+          {/* 미국 ULT 핵심 지표 */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+            {[
+              { t: '임대가능 -60°C 앵커', v: '2곳', d: '동부 퍼스앰보이 · 서부 라콜드', c: '#38bdf8' },
+              { t: '후보 검증', v: '80 → 36', d: 'ULT 확정 18 + 유력 18', c: 'var(--color-success)' },
+              { t: '동부 최우선', v: '-62°C', d: 'Lineage 퍼스앰보이 · 600팔레트', c: '#38bdf8' },
+              { t: '서부 최우선', v: '-60°C', d: 'LaCold · 현장 USDC 검사관', c: '#f43f5e' },
+            ].map((k, i) => (
+              <div key={i} style={{ background: 'rgba(24, 24, 24, 0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '4px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{k.t}</span>
+                <span style={{ fontSize: '1.4rem', fontWeight: 700, color: k.c }}>{k.v}</span>
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{k.d}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* 임대가능 앵커 상세 카드 */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            {[
+              { region: '동부 (East Coast)', rc: '#38bdf8', name: 'Lineage Logistics — 퍼스앰보이', sub: '구 Preferred Freezer Services', temp: '-60 ~ -62°C', spec: 'ULT 약 600팔레트 · 사시미급 명시', addr: '536 Fayette St, Perth Amboy, NJ', contact: '(732) 324-2000', grade: '확정~유력 · 신뢰도 高' },
+              { region: '서부 (West Coast)', rc: '#f43f5e', name: 'LaCold — LA 콜드스토리지', sub: 'Los Angeles Cold Storage Co.', temp: '-60°C / -76°F', spec: '현장 USDC 수산검사관 · 사시미급 참치 명시', addr: '440 S Central Ave, LA 90013', contact: '213.624.1831', grade: '확정 · 신뢰도 高' },
+            ].map((f, i) => (
+              <div key={i} className="ds-card" style={{ background: 'rgba(24,24,24,0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: `1px solid ${f.rc}33`, borderLeft: `3px solid ${f.rc}`, borderRadius: '8px', padding: '1.2rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 800, color: f.rc, background: `${f.rc}1f`, padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.5px' }}>{f.region}</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.68rem', color: 'var(--text-secondary)' }}>{f.grade}</span>
+                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>{f.name}</div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '10px' }}>{f.sub}</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '8px' }}>
+                  <Snowflake size={16} color={f.rc} />
+                  <span style={{ fontSize: '1.3rem', fontWeight: 800, color: f.rc }}>{f.temp}</span>
+                </div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-primary)', marginBottom: '10px' }}>{f.spec}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                  <span>📍 {f.addr}</span>
+                  <span>☎ {f.contact}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 보조·참고 시설 노트 */}
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '0.85rem 1rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            <strong style={{ color: 'var(--text-primary)' }}>보조·참고</strong> — FreezPak(서부 -60°C 표방·수산 특화 미확인·검증 中, ☎213-737-5900) · KPAC(서부 -51°C 비공개) · 우오리키/뮤추얼(-60°C 자가창고 → 수입업체 제휴 대상, 직접 임대 불가)
+          </div>
+
+          {/* US 위젯 차트 */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
+            {widgets.filter((w: any) => ['us01', 'us02', 'us03'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
           </div>
         </section>
 

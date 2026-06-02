@@ -1,5 +1,22 @@
 # HANDOFF — 현재 작업 상태
 
+> 🇺🇸 **2026-06-02 — /cold-storage 미국 ULT 인프라 섹션 신설 (Claude 작성 + Codex·Grok 교차검증)** [CC]:
+> - **작업**: 미국 초저온(-60°C) 사시미급 참치 보관 냉동창고 조사(`us_ult_tuna_cold_storage_2026.md`, 169에이전트 리서치)를 `ColdStorageDashboard`에 **섹션 6 "미국 초저온(ULT) 사시미급 보관 인프라"**로 반영(add-only, 기존 아세안 보드 무변경).
+> - **구성**: 핵심지표 4 + 임대앵커 상세카드 2(동부 Lineage 퍼스앰보이 -62°C·600팔레트·(732)324-2000 / 서부 LaCold -60°C·213.624.1831) + 보조노트(FreezPak·KPAC·우오리키·뮤추얼) + 위젯 3종(us01 시설별 최저온도 비교 / us02 백업 컨테이너 온도 스펙트럼 / us03 ULT 검증 깔때기 80→36→2).
+> - **멀티에이전트 오케스트레이션**: Claude=작성, **codex(gpt-5.5)+grok=독립 팩트체커**(작성/검증 분리, OMO Oracle 원칙). 두 모델 모두 추출 수치(시설온도·컨테이너·깔때기·연락처) **불일치 0·근거없음 0** 교차 확인.
+> - **데이터**: 인라인 mockData + `public/data/cold_storage/cold_storage_us0{1,2,3}.json` + `app/api/cold-storage/widget` fileMap us01-03 추가(w/k 패턴 통일). 전부 정직 **STATIC**(syncDate 2026.06.02, L-09 위반 0).
+> - **검증**: L-01 영문 잔여분 정리(importer→수입업체, sushi-grade→사시미급; 3PL/ULT/USDC·브랜드명 유지). `npm run build` ✓(Compiled successfully, 정적 140/140, 에러 0). dev 스모크: API us01-03 정상 서빙·`/cold-storage` HTTP 200.
+> - **상태**: 로컬 반영 완료. **배포 대기**(사용자 명시 요청 시). 변경 3파일+JSON 3.
+
+> 🍣 **2026-06-02 — sashimi-steak 32위젯 신뢰도 감사 + P0 정정 (멀티에이전트 포렌식)** [CC]:
+> - **감사**: 4-Axis 결정론적 스코어링(Python) + 클레임 수준 포렌식 워크플로우(9섹션 병렬→의심건 적대적 재검증, **20에이전트**). 대상: `SashimiSteakDashboard` 9섹션·32위젯. 산출물 `artifacts/sashimi_audit_2026_06_02.md`·`sashimi_4axis_scores.csv`·`sashimi_widget_inventory.json`·`sashimi_forensic_raw.json` + `scripts/extract_sashimi_widgets.py`·`merge_sashimi_audit.py`.
+> - **결과**: 4-Axis 평균 **77.5**, A1·B26·C5·D0. 허위 LIVE 0건(전부 정직 STATIC=L-09 위반 없음). a3(검증가능성)이 32개 전부 STATIC=55로 고정→평균 천장. Confirmed 이슈 2종, **false alarm 7건 차단**(CO처리·UsSupplier·스시포케·UK·일본수요·Outlook — 단일모델이면 오정정).
+> - **P0 정정(EDIT 4위젯, 적용완료)**: ① `$908M`vs`$841M` 동일지표 상충 — 서술형 3위젯(Triad·Hotspots·FourCountry)을 검증가능한 Census `$841M`(SasMarketKPIs 시계열)으로 정합화, 유령출처 2건(`Sashimi Market Report 2025`·`US_EU_KR_Japan_comparison.md`)→실제 출처(US Census/Comtrade HS0302-0304·KCS·KMI·GLOBEFISH) 교체. ② SasHawaiiDomesticNiche `$12~14/lb`를 '경매 평균'(실제 NOAA ~$4/lb)→'사시미 최상급(#1) 단가'로 재라벨+평균 병기, 차트 시리즈명 정정.
+> - **검증**: `$908M` 잔존 0·유령출처 0·tsc 변경파일 클린·`npm run build` ✓(exit 0, 140/140 정적). Triad·FourCountry C→B 상승.
+> - **P1 cardDesc 정련(적용완료)**: 제너릭 플레이스홀더 `"사시미/스테이크 시장 동향"` **11위젯**을 멀티에이전트(11병렬)로 실제 출처+데이터 grounding cardDesc로 교체(W-01), 영문 어종명 L-01 한글화. `scripts/apply_sashimi_carddesc.py`(L-07 일괄). a4 90→100 + 추출기 false-negative 교정(FDA·Thai Union). **평균 77.5→78.8, A1·B28·C3**. 잔존 C3(FoodserviceD2C·TradeDecade·HedonicPriceFactors)=1차 기관출처 부재 정직 C(날조 없이 유지). `npm run build` ✓(140/140).
+> - **P2 라이브 연동(적용완료)**: ① SasMarketKPIs를 `/api/us-census`에 정직 SYNCED 연동 — `fetch_us_census_data.js` HS확장(030232/34/35·030342-45·030487)+2021-2025 재페치, `compute_sashimi_census.py`로 국가합산 집계(2024 $829M), useEffect 런타임 동기화검증(Harness fallback), STATIC→SYNCED → **80.0(B)→86.2(A)**. ② **자기검증**: 라이브 초기집계 "$1.29B/54%과소" 오판→지역그룹 중복합산 오류였음, `TOTAL` 라인대조로 위젯 $841M 정확 재확인→권위값 $829M 통일(서술형 3위젯 포함). ③ **comtrade 가짜라이브 수정**(L-09 신규적발): 응답 미파싱 isLive:true → 실파싱 구현+파싱시만 isLive(소비처 0, 무위험). 잔존 C3(자체모델·franchise CSV)=정직 STATIC 유지. **평균 78.8→79.0, A2·B27·C3**. `npm run build` ✓(140/140).
+> - **누적**: 초기 77.0(A1·C7) → P0/P1/P2 → **79.0(A2·C3)**. 변경 16위젯+comtrade라우트+census스크립트2+prefetch. 산출물 `artifacts/sashimi_*` 4종. **배포 대기**(사용자 명시 요청 시).
+
 > 🍫 **2026-05-31 — /cocoa 허위 LIVE 11위젯 + mock 라우트 전면 정정 (멀티에이전트 감사+적대검증)** [CC]:
 > - **감사**: 4-에이전트 포렌식(컴포넌트·라우트·USDA 병렬→적대 검증). 총 **26위젯**(CocoaDashboard 인라인 21 + CocoaUsdaWidgets 5). 인라인 11 LIVE 전부 **허위**(7=난수지터 bound + 4=정적 오표기), 라우트 자체 mock.
 > - **근본원인**: `app/api/cocoa/dashboard/route.ts`가 정적 JSON에 `Math.random()` 지터 8곳 주입 + `apiStatus:"active_live_sim"` 라벨, 외부 API 0건. 컴포넌트는 5초 폴링·9-network 가짜 'live' 패널·가짜 시계로 라이브 연출.
