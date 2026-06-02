@@ -81,6 +81,23 @@ const SasEuDistantFleet = dynamic(() => import('./sashimi-strategy/SasEuDistantF
 const SasEuClosedCycle = dynamic(() => import('./sashimi-strategy/SasEuClosedCycle'), { ssr: false });
 const SasEuRetailInflation = dynamic(() => import('./sashimi-strategy/SasEuRetailInflation'), { ssr: false });
 
+/* ─── NEW: 6개 섹션 보강 15개 (한국3·글로벌3·일본3·가격2·수출2·전망2) ─── */
+const SasKrFleetEconomics = dynamic(() => import('./sashimi-strategy/SasKrFleetEconomics'), { ssr: false });
+const SasKrAccessQuota = dynamic(() => import('./sashimi-strategy/SasKrAccessQuota'), { ssr: false });
+const SasKrByproduct = dynamic(() => import('./sashimi-strategy/SasKrByproduct'), { ssr: false });
+const SasGlWcpoSupply = dynamic(() => import('./sashimi-strategy/SasGlWcpoSupply'), { ssr: false });
+const SasGlChinaDemand = dynamic(() => import('./sashimi-strategy/SasGlChinaDemand'), { ssr: false });
+const SasGlTradeFlows = dynamic(() => import('./sashimi-strategy/SasGlTradeFlows'), { ssr: false });
+const SasJpAquaculture = dynamic(() => import('./sashimi-strategy/SasJpAquaculture'), { ssr: false });
+const SasJpImportYen = dynamic(() => import('./sashimi-strategy/SasJpImportYen'), { ssr: false });
+const SasJpDistribution = dynamic(() => import('./sashimi-strategy/SasJpDistribution'), { ssr: false });
+const SasPrGradeSystem = dynamic(() => import('./sashimi-strategy/SasPrGradeSystem'), { ssr: false });
+const SasPrAuctionDirect = dynamic(() => import('./sashimi-strategy/SasPrAuctionDirect'), { ssr: false });
+const SasExColdLogistics = dynamic(() => import('./sashimi-strategy/SasExColdLogistics'), { ssr: false });
+const SasExEmergingMena = dynamic(() => import('./sashimi-strategy/SasExEmergingMena'), { ssr: false });
+const SasOlClimateMigration = dynamic(() => import('./sashimi-strategy/SasOlClimateMigration'), { ssr: false });
+const SasOlCellBased = dynamic(() => import('./sashimi-strategy/SasOlCellBased'), { ssr: false });
+
 /* ================================================================ */
 const SECTIONS = [
   { id: 'korea', label: '🇰🇷 한국', icon: Flag, color: '#f59e0b', desc: '원양 생산·일본 의존·7대 기업·외식D2C·지중해 BFT' },
@@ -135,7 +152,7 @@ export default function SashimiSteakDashboard() {
                 사시미/스테이크 시장 분석
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 50개 위젯
+                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 65개 위젯
               </p>
             </div>
           </div>
@@ -250,6 +267,13 @@ export default function SashimiSteakDashboard() {
               <ErrorBoundary fallbackTitle="SasKoreaMedBftImports"><SasKoreaMedBftImports /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasKoreaTradeDecade"><SasKoreaTradeDecade /></ErrorBoundary>
             </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasKrFleetEconomics"><SasKrFleetEconomics /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasKrAccessQuota"><SasKrAccessQuota /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasKrByproduct"><SasKrByproduct /></ErrorBoundary>
+            </div>
           </section>
         )}
 
@@ -264,6 +288,13 @@ export default function SashimiSteakDashboard() {
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasMarketKPIs"><SasMarketKPIs /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasGlobalHotspots"><SasGlobalHotspots /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasGlWcpoSupply"><SasGlWcpoSupply /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasGlChinaDemand"><SasGlChinaDemand /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasGlTradeFlows"><SasGlTradeFlows /></ErrorBoundary>
             </div>
           </section>
         )}
@@ -363,6 +394,13 @@ export default function SashimiSteakDashboard() {
               <ErrorBoundary fallbackTitle="SasQuotaVolatility"><SasQuotaVolatility /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasTraceabilityRatings"><SasTraceabilityRatings /></ErrorBoundary>
             </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasJpAquaculture"><SasJpAquaculture /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasJpImportYen"><SasJpImportYen /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasJpDistribution"><SasJpDistribution /></ErrorBoundary>
+            </div>
           </section>
         )}
 
@@ -376,6 +414,10 @@ export default function SashimiSteakDashboard() {
             </div>
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasHedonicPriceFactors"><SasHedonicPriceFactors /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasPrGradeSystem"><SasPrGradeSystem /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasPrAuctionDirect"><SasPrAuctionDirect /></ErrorBoundary>
             </div>
           </section>
         )}
@@ -388,6 +430,10 @@ export default function SashimiSteakDashboard() {
               <ErrorBoundary fallbackTitle="SasExportPartnerStrategy"><SasExportPartnerStrategy /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasExportChecklist"><SasExportChecklist /></ErrorBoundary>
             </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasExColdLogistics"><SasExColdLogistics /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasExEmergingMena"><SasExEmergingMena /></ErrorBoundary>
+            </div>
           </section>
         )}
 
@@ -397,6 +443,10 @@ export default function SashimiSteakDashboard() {
             <SectionHeader color="#10b981" emoji="🔮" title="글로벌 사시미 시장 전망 2030+" desc="$44B→$60B 성장, 중동 CAGR 7.6%, WCPO 기록, 기후변화 리스크" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasGlobalOutlook2030"><SasGlobalOutlook2030 /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasOlClimateMigration"><SasOlClimateMigration /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasOlCellBased"><SasOlCellBased /></ErrorBoundary>
             </div>
           </section>
         )}
