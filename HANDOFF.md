@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-06-02 — /cold-storage 밸류체인 네비게이터 신설** [CC]:
+> - **요청**: cold-storage 페이지도 sashimi 등 다른 페이지처럼 클릭형 밸류체인 네비게이터 추가.
+> - **구현 (`components/ColdStorageDashboard.tsx`)**: 모듈레벨 `SECTIONS` 6개 정의(입고·수급/보관·가동률/물류·통관/수익성·투자/품질과학/미국 ULT, 각 Lucide 아이콘+색상+desc) + `activeSection` state. 헤더·6 KPI 아래에 sashimi 패턴 glassmorphism 네비게이터 바 삽입. 기존 6개 `<section>`(이미 S1~S5+US로 그룹됨)을 각각 `{activeSection === 'sX' && (...)}`로 조건부 렌더 래핑.
+> - **L-05 회피**: display:none 대신 조건부 unmount 채택 — 탭 전환 시 Recharts 0-width collapse 버그 방지(sashimi와 동일 방식).
+> - **검증**: 6 open/6 close 래퍼 균형, `tsc --noEmit` 클린, `npm run build` ✓(exit 0, 140/140 정적). 6 KPI는 항상 표시(전역 요약), 위젯 24개는 섹션별 전환.
+> - **미반영**: 위젯 데이터·내용 변경 없음(네비게이션 UX만 추가).
+
 > 🇺🇸 **2026-06-02 — /cold-storage 미국 ULT 인프라 섹션 신설 (Claude 작성 + Codex·Grok 교차검증)** [CC]:
 > - **작업**: 미국 초저온(-60°C) 사시미급 참치 보관 냉동창고 조사(`us_ult_tuna_cold_storage_2026.md`, 169에이전트 리서치)를 `ColdStorageDashboard`에 **섹션 6 "미국 초저온(ULT) 사시미급 보관 인프라"**로 반영(add-only, 기존 아세안 보드 무변경).
 > - **구성**: 핵심지표 4 + 임대앵커 상세카드 2(동부 Lineage 퍼스앰보이 -62°C·600팔레트·(732)324-2000 / 서부 LaCold -60°C·213.624.1831) + 보조노트(FreezPak·KPAC·우오리키·뮤추얼) + 위젯 3종(us01 시설별 최저온도 비교 / us02 백업 컨테이너 온도 스펙트럼 / us03 ULT 검증 깔때기 80→36→2).

@@ -6,7 +6,7 @@ import WidgetCard from '../WidgetCard';
 const countries = [
   {
     flag: '🇺🇸', name: '미국', role: '사시미 소비(수입)',
-    trade2024: '수입 $908M', rawMaterial: '80-85% 수입',
+    trade2024: '수입 $829M', rawMaterial: '80-85% 수입',
     bluefin: '수입 $147M (MX/ES)', keyCompany: 'True World Foods',
     japanDep: '—', keyRisk: 'CO 처리, 2025 관세',
     color: '#10b981',
@@ -56,7 +56,7 @@ export default function SasFourCountryComparison() {
       takeaway={{
         situation: "글로벌 사시미 공급망은 '삼각형+1' 구조입니다. EU→일본 BFT(90%) + 한국→일본 사시미(80%) = 일본의 공급 백본. 한국만이 생산자+수출자+프리미엄 수입자(혼마구로)의 3중 역할을 동시에 수행하는 유일한 국가입니다.",
         actionPlan: "일본 수요 감소는 EU(축양)+ 한국(연승) 모두에게 구조적 리스크입니다. EU는 Balfegó가 미국(38%)/중국(15%)으로 다변화 중이며, 한국도 동일한 수출 다변화 전략이 시급합니다.",
-        source: 'US_EU_KR_Japan_comparison.md',
+        source: 'US Census/UN Comtrade(HS0302-0304), KCS, KMI, GLOBEFISH',
       }}
       customBody={
         <div>

@@ -1,0 +1,103 @@
+{
+  "coverage": {
+    "start": "2021-01",
+    "end": "2025-12"
+  },
+  "importData": [
+    {
+      "year": "2021",
+      "fresh": 250,
+      "frozen": 478,
+      "total": 728
+    },
+    {
+      "year": "2022",
+      "fresh": 297,
+      "frozen": 786,
+      "total": 1083
+    },
+    {
+      "year": "2023",
+      "fresh": 311,
+      "frozen": 487,
+      "total": 799
+    },
+    {
+      "year": "2024",
+      "fresh": 319,
+      "frozen": 509,
+      "total": 829
+    },
+    {
+      "year": "2025",
+      "fresh": 292,
+      "frozen": 468,
+      "total": 760
+    }
+  ],
+  "partners": [
+    {
+      "name": "🇮🇩 인도네시아",
+      "value": 196,
+      "pct": 23.7,
+      "color": "#10b981"
+    },
+    {
+      "name": "🇻🇳 베트남",
+      "value": 183,
+      "pct": 22.1,
+      "color": "#38bdf8"
+    },
+    {
+      "name": "🇲🇽 멕시코",
+      "value": 78,
+      "pct": 9.4,
+      "color": "#f59e0b"
+    },
+    {
+      "name": "🇪🇸 스페인",
+      "value": 59,
+      "pct": 7.1,
+      "color": "#a78bfa"
+    },
+    {
+      "name": "🇹🇭 태국",
+      "value": 38,
+      "pct": 4.6,
+      "color": "#ef4444"
+    }
+  ],
+  "species": [
+    {
+      "name": "참치 필렛(로인)",
+      "value": 474,
+      "pct": 57.2,
+      "color": "#38bdf8"
+    },
+    {
+      "name": "황다랑어",
+      "value": 173,
+      "pct": 20.8,
+      "color": "#10b981"
+    },
+    {
+      "name": "참다랑어(대서양)",
+      "value": 140,
+      "pct": 16.9,
+      "color": "#ef4444"
+    },
+    {
+      "name": "눈다랑어",
+      "value": 41,
+      "pct": 5.0,
+      "color": "#a78bfa"
+    },
+    {
+      "name": "가다랑어",
+      "value": 0,
+      "pct": 0.0,
+      "color": "#64748b"
+    }
+  ],
+  "total2024": 829
+}

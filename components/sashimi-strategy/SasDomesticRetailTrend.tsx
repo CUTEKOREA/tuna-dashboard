@@ -21,7 +21,7 @@ export default function SasDomesticRetailTrend() {
       description="남부 유럽 중심의 극도로 제한적인 내수 소비"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="사시미/스테이크 시장 동향"
+      cardDesc="EUMOFA 2024 소매 분석 — 생물 참치 가구 침투율 프랑스 9.0%·독일 1.2%, 참다랑어 90%+ 일본 직수출"
       takeaway={{ 
         situation: "EU 생산 참다랑어의 90% 이상이 일본으로 직수출되며, 내수 시장은 캔 참치 대비 생물(주로 황다랑어 스테이크) 침투율이 9% 미만에 불과한 초기/니치 시장입니다.", 
         actionPlan: "EU 현지 B2C 시장 진출 시, 참다랑어가 아닌 가성비가 좋은 황다랑어(Yellowfin) 스테이크 제품으로 프랑스/이탈리아를 우선 공략하는 것이 현실적입니다.", 

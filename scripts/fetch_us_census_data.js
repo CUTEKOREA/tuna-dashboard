@@ -4,8 +4,18 @@ const path = require('path');
 const API_KEY = "57ed5d9332b5b042e538a9dd3abc83c00a5a66eb";
 const BASE_URL = "https://api.census.gov/data/timeseries/intltrade/imports/hs";
 
-const HS_CODES = ["160414", "030343", "030475"];
-const TIME_RANGE = "from+2021-01+to+2024-04";
+// 비통조림(사시미급) 참치 수입 HS6 — 신선(0302)·냉동(0303)·필렛(0304) + 기존 코드 보존
+//  신선: 030232 황다랑어 · 030234 눈다랑어 · 030235 대서양 참다랑어
+//  냉동: 030342 황다랑어 · 030343 가다랑어(기존) · 030344 눈다랑어 · 030345 대서양 참다랑어
+//  필렛: 030487 냉동 참치 필렛 · 030475 냉동 어류 필렛(기존)
+//  통조림: 160414 (기존, 범위 밖이나 다른 소비처 보존)
+const HS_CODES = [
+  "160414",
+  "030232", "030234", "030235",
+  "030342", "030343", "030344", "030345",
+  "030487", "030475",
+];
+const TIME_RANGE = "from+2021-01+to+2025-12";
 
 async function fetchCensusData(hsCode) {
     const url = `${BASE_URL}?get=GEN_VAL_MO,CTY_CODE,CTY_NAME&I_COMMODITY=${hsCode}&time=${TIME_RANGE}&key=${API_KEY}`;
@@ -42,7 +52,15 @@ function parseData(rawData) {
 }
 
 async function main() {
-    const results = {};
+    // 기존 prefetch를 로드해 merge 베이스로 사용 (신규 fetch가 빈 코드는 기존 값 보존)
+    const outDirEarly = path.join(__dirname, '..', 'public', 'data');
+    const outFileEarly = path.join(outDirEarly, 'us_census_timeseries.json');
+    let results = {};
+    try {
+        if (fs.existsSync(outFileEarly)) results = JSON.parse(fs.readFileSync(outFileEarly, 'utf8'));
+        console.log(`기존 prefetch 로드: ${Object.keys(results).join(', ')}`);
+    } catch (e) { console.warn('기존 prefetch 로드 실패, 신규 생성'); }
+
     for (const hs of HS_CODES) {
         console.log(`Processing HS: ${hs}`);
         const raw6 = await fetchCensusData(hs);
@@ -79,9 +97,15 @@ async function main() {
         });
         
         finalList.sort((a, b) => a.time.localeCompare(b.time));
-        results[hs] = finalList;
+        // 신규 fetch가 빈 결과면 기존 데이터 보존 (부분 실패 방어)
+        if (finalList.length > 0) {
+            results[hs] = finalList;
+            console.log(`  HS ${hs}: ${finalList.length}행 갱신`);
+        } else {
+            console.warn(`  HS ${hs}: 신규 fetch 0행 → 기존 데이터 보존(${(results[hs] || []).length}행)`);
+        }
     }
-    
+
     const outDir = path.join(__dirname, '..', 'public', 'data');
     if (!fs.existsSync(outDir)) {
         fs.mkdirSync(outDir, { recursive: true });

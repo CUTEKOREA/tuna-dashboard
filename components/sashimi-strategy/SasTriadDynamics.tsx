@@ -12,11 +12,11 @@ export default function SasTriadDynamics() {
       description="세계 3대 사시미 시장의 구조적 역할 및 성장/쇠퇴 역학"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="사시미/스테이크 시장 동향"
+      cardDesc="US Census·UN Comtrade(HS0302-0304)·GLOBEFISH·MAFF — 미국 수입 $829M(2위)·EU 축양 허브·일본 소비 -51%"
       takeaway={{ 
         situation: "미국은 수입 주도의 폭발적 성장, EU는 블루핀 축양 수출 허브, 일본은 인구구조 변화로 인한 구조적 수요 감소장으로 재편되었습니다.", 
         actionPlan: "쇠퇴하는 일본 대신, 프리미엄 단가가 형성된 미국 B2C 채널과 EU 축양 밸류체인 진입에 자원을 집중해야 합니다.", 
-        source: "Sashimi Market Report 2025" 
+        source: "US Census·UN Comtrade (비통조림 참치 HS0302-0304, 2024) / GLOBEFISH / MAFF"
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', justifyContent: 'space-between', gap: '16px', padding: '16px' }}>
@@ -46,7 +46,7 @@ export default function SasTriadDynamics() {
               </div>
               <div style={{ fontSize: '12px', fontWeight: 600, color: '#34d399', marginBottom: '4px', letterSpacing: '0.05em' }}>성장 엔진 (Growth Engine)</div>
               <p style={{ fontSize: '12px', color: '#94a3b8', lineHeight: 1.6, marginTop: 'auto', margin: 0 }}>
-                스시/포케 외식 체인 주도의 폭발적 성장. 비통조림 참치 수입 <strong>$908M</strong> 도달 (2024년 기준 2위).
+                스시/포케 외식 체인 주도의 폭발적 성장. 비통조림 참치 수입 <strong>$829M</strong> 도달 (2024년 기준 2위).
               </p>
             </div>
 

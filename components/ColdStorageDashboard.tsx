@@ -82,8 +82,19 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   );
 };
 
+/* ─── 밸류체인 네비게이터 섹션 정의 ─── */
+const SECTIONS = [
+  { id: 's1', label: '입고·수급', icon: Activity, color: '#38bdf8', desc: '구역 수익성·기업 재무·베트남 시장 성장' },
+  { id: 's2', label: '보관·가동률', icon: ShieldAlert, color: '#ef4444', desc: '냉동설비 무역수지·재고 담보인정비율' },
+  { id: 's3', label: '물류·통관', icon: Globe, color: '#f59e0b', desc: '태국·베트남 운영비·쿨링 리스크' },
+  { id: 's4', label: '수익성·투자', icon: TrendingUp, color: '#8b5cf6', desc: '빙축열·냉매규제·부동산 수익률' },
+  { id: 's5', label: '품질과학', icon: Snowflake, color: '#06b6d4', desc: 'KFAS 논문 8편 선도·품질 실증' },
+  { id: 'us', label: '미국 ULT', icon: Anchor, color: '#10b981', desc: '동·서부 -60°C 사시미급 보관 거점' },
+];
+
 export default function ColdStorageDashboard() {
   const [data, setData] = useState<any>(null);
+  const [activeSection, setActiveSection] = useState('s1');
 
   useEffect(() => {
     const mockData = {
@@ -640,9 +651,88 @@ export default function ColdStorageDashboard() {
         })}
       </div>
 
+      {/* ═══ 밸류체인 네비게이터 ═══ */}
+      <div style={{
+        position: 'relative',
+        background: 'rgba(255,255,255,0.03)',
+        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: '16px', padding: '6px', marginBottom: '2rem',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+          padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px',
+        }}>
+          <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            콜드체인 밸류체인 네비게이터 — {SECTIONS.length}개 섹션을 클릭하여 탐색하세요
+          </span>
+        </div>
+        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: `repeat(${SECTIONS.length}, 1fr)`, gap: '4px' }}>
+          {SECTIONS.map((s) => {
+            const isActive = activeSection === s.id;
+            const SectionIcon = s.icon;
+            return (
+              <div
+                key={s.id}
+                onClick={() => setActiveSection(s.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && setActiveSection(s.id)}
+                style={{
+                  position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center',
+                  gap: '4px', padding: '12px 4px 14px',
+                  background: isActive ? `${s.color}12` : 'transparent',
+                  border: `1.5px solid ${isActive ? s.color : 'transparent'}`,
+                  borderRadius: '12px', cursor: 'pointer',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none',
+                  overflow: 'hidden',
+                }}
+              >
+                {isActive && (
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px',
+                    background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`,
+                    borderRadius: '3px 3px 0 0',
+                  }} />
+                )}
+                <div style={{
+                  width: '28px', height: '28px', borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
+                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  transition: 'all 0.25s',
+                  boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
+                }}>
+                  <SectionIcon size={14} />
+                </div>
+                <span style={{
+                  fontSize: '0.72rem', fontWeight: isActive ? 700 : 500,
+                  color: isActive ? s.color : 'var(--text-secondary)',
+                  transition: 'all 0.25s', whiteSpace: 'nowrap',
+                }}>
+                  {s.label}
+                </span>
+                {isActive && (
+                  <span style={{
+                    fontSize: '0.55rem', color: 'rgba(148,163,184,0.7)', textAlign: 'center',
+                    lineHeight: 1.3, maxWidth: '130px', overflow: 'hidden', textOverflow: 'ellipsis',
+                    display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any,
+                  }}>
+                    {s.desc}
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Widgets Grid */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-        
+
+        {activeSection === 's1' && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Activity size={24} color="#38bdf8" />
@@ -652,7 +742,9 @@ export default function ColdStorageDashboard() {
             {widgets.filter((w: any) => ['w01', 'w03', 'n01'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S1'))}
           </div>
         </section>
+        )}
 
+        {activeSection === 's2' && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <ShieldAlert size={24} color="var(--color-danger)" />
@@ -662,7 +754,9 @@ export default function ColdStorageDashboard() {
             {widgets.filter((w: any) => ['w02', 'w04'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S2'))}
           </div>
         </section>
+        )}
 
+        {activeSection === 's3' && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Globe size={24} color="var(--color-warning)" />
@@ -672,7 +766,9 @@ export default function ColdStorageDashboard() {
             {widgets.filter((w: any) => ['w05', 'w06', 'n03'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
           </div>
         </section>
+        )}
 
+        {activeSection === 's4' && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <TrendingUp size={24} color="#8b5cf6" />
@@ -682,7 +778,9 @@ export default function ColdStorageDashboard() {
             {widgets.filter((w: any) => ['w07', 'w08', 'w09', 'n02'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S4'))}
           </div>
         </section>
+        )}
 
+        {activeSection === 's5' && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Snowflake size={24} color="#06b6d4" />
@@ -693,7 +791,9 @@ export default function ColdStorageDashboard() {
             {widgets.filter((w: any) => ['k01', 'k02', 'k03', 'k04', 'k05', 'k06', 'k07', 'k08'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S5'))}
           </div>
         </section>
+        )}
 
+        {activeSection === 'us' && (
         <section>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
             <Anchor size={24} color="#38bdf8" />
@@ -753,6 +853,7 @@ export default function ColdStorageDashboard() {
             {widgets.filter((w: any) => ['us01', 'us02', 'us03'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
           </div>
         </section>
+        )}
 
       </div>
     </div>

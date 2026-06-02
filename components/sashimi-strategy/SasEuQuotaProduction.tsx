@@ -20,7 +20,7 @@ export default function SasEuQuotaProduction() {
       description="2024년 ICCAT 지중해/동대서양 쿼터 (총 21,503톤)"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="사시미/스테이크 시장 동향"
+      cardDesc="ICCAT 2024 쿼터 할당 보고서 — EU 참다랑어 21,503톤, 스페인·프랑스·이탈리아 3국이 93% 독점"
       takeaway={{ 
         situation: "2024년 기준 EU는 전체 ICCAT 쿼터(40,570t)의 약 53%인 21,503톤을 할당받았으며, 이 중 스페인, 프랑스, 이탈리아 3국이 EU 물량의 93%를 독점하고 있습니다.", 
         actionPlan: "쿼터가 집중된 스페인(7,465t)과 이탈리아(5,617t)의 주요 선단 및 가공업체와의 B2B 네트워킹을 최우선으로 추진하여 원물 수급 안정성을 확보해야 합니다.", 

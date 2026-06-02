@@ -34,7 +34,7 @@ export default function SasSupplyChainSplit() {
       description="2024년 비통조림 참치 수입액 기준 (형태별 분리)"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="사시미/스테이크 시장 동향"
+      cardDesc="US Census 2024 비통조림 참치 수입 — 냉동 사쿠($487M·67%)·생물 참치($381M·33%) 이원 공급망 분리"
       takeaway={{ 
         situation: "미국 시장은 전체 물량의 67%를 차지하는 저가 대량 냉동 포케용($487M)과, 항공운송되는 프리미엄 생물 사시미($381M)의 두 가지 독립적 공급망으로 완벽히 분리되어 있습니다.", 
         actionPlan: "시장 진입 시 명확한 타겟팅이 필요합니다. 물량 중심의 프랜차이즈 공급(냉동 Saku)과 하이엔드 레스토랑 직판(생물/ULT) 중 어느 차선에서 경쟁할지 결정해야 합니다.", 

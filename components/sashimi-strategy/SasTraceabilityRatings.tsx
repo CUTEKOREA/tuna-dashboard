@@ -21,7 +21,7 @@ export default function SasTraceabilityRatings() {
       description="규제 준수(SIMP/CATCH) 및 Seafood Watch 'Red' 등급 압박"
       pillar="S5"
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="사시미/스테이크 시장 동향"
+      cardDesc="Seafood Watch·NOAA SIMP — 자연산 참다랑어 'Red'(회피) 등급, US SIMP·EU CATCH(2026) 5대 리스크"
       takeaway={{ 
         situation: "모든 자연산 참다랑어는 멸종 위기 및 혼획 문제로 Seafood Watch 'Red(기피)' 등급에 지정되어 있으며, 미국의 SIMP와 2026년 발효되는 EU의 CATCH IT 시스템으로 인해 완전한 어획 추적성이 강제되고 있습니다.", 
         actionPlan: "블록체인 기반 추적성(Traceability) 시스템을 도입하여 'Catch to Plate' 데이터를 구매자에게 투명하게 제공하는 것이 리테일러의 공급망 퇴출을 방어하는 유일한 해법입니다.", 

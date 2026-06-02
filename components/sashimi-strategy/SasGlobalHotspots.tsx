@@ -10,7 +10,7 @@ const hotspots = [
     metrics: [
       { label: '스시 레스토랑', value: '$33.2B', sub: '17,301개 (+1.6% YoY)' },
       { label: '포케 전문점', value: '$2.0B', sub: '3,108개 (CAGR 22.3%)' },
-      { label: '사시미급 수입', value: '$908M', sub: '80-85% 수입 의존' },
+      { label: '사시미급 수입', value: '$829M', sub: '80-85% 수입 의존' },
     ],
   },
   {
