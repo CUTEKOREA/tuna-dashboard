@@ -10,10 +10,10 @@ import {
   CartesianGrid,
   Tooltip,
   Cell,
-  LabelList,
-  ResponsiveContainer,
+  LabelList
 } from 'recharts';
 import WidgetCard from '../WidgetCard';
+import SafeResponsiveContainer from '../SafeResponsiveContainer';
 
 /* ── Data: 국가별 '판매 중인 MSC 라벨 소비자 제품 수(SKU)' ───────────────────
    출처: MSC Annual Report 2024-25 Supplementary Data (liveproductcount 시트)
@@ -76,7 +76,7 @@ export default function MscProductCountByCountry() {
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%' }}>
           <div style={{ width: '100%', height: 300 }}>
-            <ResponsiveContainer width="100%" height="100%">
+            <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={countryData} layout="vertical" margin={{ top: 4, right: 52, left: 8, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
                 <XAxis type="number" domain={[0, 2600]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => v.toLocaleString()} />
@@ -89,7 +89,7 @@ export default function MscProductCountByCountry() {
                   <LabelList dataKey="mult" position="right" style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
-            </ResponsiveContainer>
+            </SafeResponsiveContainer>
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px',

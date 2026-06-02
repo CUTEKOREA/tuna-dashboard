@@ -5,6 +5,7 @@ import { Factory, TrendingUp, Globe, ShoppingCart, Leaf, Database, Activity, Clo
 import styles from './MackerelStrategy.module.css';
 import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend, W7_KoreaSupply, W8_ImportPartners, W9_ASFSeafood, W10_Portfolio, W11_SelfSufficiency } from './PorkWidgets';
 import PorkUsdaWidgets from './PorkUsdaWidgets';
+import { InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio } from './PorkEmpiricalInsights';
 
 const TelemetryBadge = ({ status, syncDate }: any) => {
   if (!status) return null;
@@ -130,6 +131,10 @@ export default function PorkDashboard() {
             {sec.id === 'P1' && <PorkUsdaWidgets filterPillar="S1" />}
             {sec.id === 'P3' && <PorkUsdaWidgets filterPillar="S3" />}
             {sec.id === 'P4' && <PorkUsdaWidgets filterPillar="S4" />}
+            {/* 🆕 실증 인사이트 (Empirical Insights) */}
+            {sec.id === 'P1' && <InsightAsfChinaFactor accent={sec.color} />}
+            {sec.id === 'P2' && <InsightHogCornRatio accent={sec.color} />}
+            {sec.id === 'P3' && <InsightPorkSupplyChain accent={sec.color} />}
           </div>
         </div>
       ))}

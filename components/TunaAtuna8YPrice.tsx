@@ -94,67 +94,68 @@ export default function TunaAtuna8YPrice() {
 
   const currentKeys = VIEW_MODES[mode].keys;
 
-  const chart = (
-    <div>
-      <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.6rem', flexWrap: 'wrap' }}>
-        {(Object.keys(VIEW_MODES) as Array<keyof typeof VIEW_MODES>).map((k) => (
-          <button
-            key={k}
-            onClick={() => setMode(k)}
-            style={{
-              padding: '0.3rem 0.7rem',
-              background: mode === k ? 'rgba(14,165,233,0.25)' : 'rgba(255,255,255,0.05)',
-              border: mode === k ? '1px solid rgba(14,165,233,0.5)' : '1px solid rgba(255,255,255,0.1)',
-              borderRadius: '4px',
-              fontSize: '0.74rem',
-              color: mode === k ? '#7dd3fc' : '#94a3b8',
-              cursor: 'pointer',
-            }}
-          >
-            {VIEW_MODES[k].label}
-          </button>
-        ))}
-      </div>
-      <LineChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-        <XAxis
-          dataKey="month"
-          stroke="rgba(255,255,255,0.3)"
-          tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 10 }}
-          interval={11}
-        />
-        <YAxis
-          stroke="rgba(255,255,255,0.2)"
-          tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 10 }}
-          tickFormatter={(v: number) => `$${v}`}
-          domain={['auto', 'auto']}
-        />
-        <Tooltip
-          contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0', fontSize: '0.78rem' }}
-          formatter={(v: any) => v ? COMMA(Number(v)) + '/톤' : '-'}
-        />
-        <Legend wrapperStyle={{ fontSize: '10px' }} iconSize={8} />
-        {/* 8년 평균선 (avg 모드만) */}
-        {mode === 'avg' && (
-          <>
-            <ReferenceLine y={stats.skjAvg} stroke="#0ea5e9" strokeDasharray="3 3" opacity={0.4} label={{ value: `SKJ 평균 $${stats.skjAvg}`, position: 'insideRight', fill: '#0ea5e9', fontSize: 10 }} />
-            <ReferenceLine y={stats.yfAvg} stroke="#f59e0b" strokeDasharray="3 3" opacity={0.4} label={{ value: `YFT 평균 $${stats.yfAvg}`, position: 'insideRight', fill: '#f59e0b', fontSize: 10 }} />
-          </>
-        )}
-        {currentKeys.map((k) => (
-          <Line
-            key={k.key}
-            type="monotone"
-            dataKey={k.key}
-            name={k.name}
-            stroke={k.color}
-            strokeWidth={2}
-            dot={false}
-            connectNulls
-          />
-        ))}
-      </LineChart>
+  const buttons = (
+    <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.6rem', flexWrap: 'wrap' }}>
+      {(Object.keys(VIEW_MODES) as Array<keyof typeof VIEW_MODES>).map((k) => (
+        <button
+          key={k}
+          onClick={() => setMode(k)}
+          style={{
+            padding: '0.3rem 0.7rem',
+            background: mode === k ? 'rgba(14,165,233,0.25)' : 'rgba(255,255,255,0.05)',
+            border: mode === k ? '1px solid rgba(14,165,233,0.5)' : '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '4px',
+            fontSize: '0.74rem',
+            color: mode === k ? '#7dd3fc' : '#94a3b8',
+            cursor: 'pointer',
+          }}
+        >
+          {VIEW_MODES[k].label}
+        </button>
+      ))}
     </div>
+  );
+
+  const chart = (
+    <LineChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <XAxis
+        dataKey="month"
+        stroke="rgba(255,255,255,0.3)"
+        tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 10 }}
+        interval={11}
+      />
+      <YAxis
+        stroke="rgba(255,255,255,0.2)"
+        tick={{ fill: 'rgba(255,255,255,0.55)', fontSize: 10 }}
+        tickFormatter={(v: number) => `$${v}`}
+        domain={['auto', 'auto']}
+      />
+      <Tooltip
+        contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0', fontSize: '0.78rem' }}
+        formatter={(v: any) => v ? COMMA(Number(v)) + '/톤' : '-'}
+      />
+      <Legend wrapperStyle={{ fontSize: '10px' }} iconSize={8} />
+      {/* 8년 평균선 (avg 모드만) */}
+      {mode === 'avg' && (
+        <>
+          <ReferenceLine y={stats.skjAvg} stroke="#0ea5e9" strokeDasharray="3 3" opacity={0.4} label={{ value: `SKJ 평균 $${stats.skjAvg}`, position: 'insideRight', fill: '#0ea5e9', fontSize: 10 }} />
+          <ReferenceLine y={stats.yfAvg} stroke="#f59e0b" strokeDasharray="3 3" opacity={0.4} label={{ value: `YFT 평균 $${stats.yfAvg}`, position: 'insideRight', fill: '#f59e0b', fontSize: 10 }} />
+        </>
+      )}
+      {currentKeys.map((k) => (
+        <Line
+          key={k.key}
+          type="monotone"
+          dataKey={k.key}
+          name={k.name}
+          stroke={k.color}
+          strokeWidth={2}
+          dot={false}
+          connectNulls
+        />
+      ))}
+    </LineChart>
   );
 
   const sit = `Atuna.com 일별 거래가 8년 시계열 (2017-06 ~ ${stats.lastMonth}, 108건). 최신 ${stats.lastMonth}: 가다랑어 $${stats.lastSkj}/톤·황다랑어 $${stats.lastYf}/톤. 8년 평균은 SKJ $${stats.skjAvg}·YFT $${stats.yfAvg}로 황다랑어가 SKJ 대비 58% 프리미엄. SKJ 변동폭 $${stats.skjMin}~$${stats.skjMax} (122% 진폭), YFT $${stats.yfMin}~$${stats.yfMax} (68%).`;
@@ -169,6 +170,7 @@ export default function TunaAtuna8YPrice() {
       pillar="S4"
       cardDesc="로컬 CSV (skjbkk.csv) 월별 파싱 — 방콕 기준 가다랑어 최근 8년 월별 거래가(최신 2026-05). YFT는 SKJ 대비 58% 역사적 프리미엄 적용 추정치."
       telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      customBody={buttons}
       chart={loading ? <div style={{ color: '#64748b', textAlign: 'center', marginTop: '100px' }}>데이터 로딩 중...</div> : chart}
       chartHeight={280}
       takeaway={{

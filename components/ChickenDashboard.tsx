@@ -17,11 +17,11 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
-import ChickenEmpiricalInsights from './ChickenEmpiricalInsights';
+
 import ChickenCorporateWidget from './ChickenCorporateWidget';
 import ChickenPartsWidget from './ChickenPartsWidget';
-import { InsightTimeGapArbitrage, InsightChannelMatrix, InsightVMILockin } from './ChickenThaiInsightsA';
-import { InsightKoreaSpecialLine, InsightRiskNexus, InsightPartnerMatch } from './ChickenThaiInsightsB';
+import { InsightTimeGapArbitrage } from './ChickenThaiInsightsA';
+import { InsightPartnerMatch } from './ChickenThaiInsightsB';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import ChickenUsdaWidgets from './ChickenUsdaWidgets';
 
@@ -497,22 +497,7 @@ export default function ChickenDashboard() {
         </div>
       ))}
 
-      {/* ═══ Residual Insights & Data ═══ */}
-      <div style={{ marginBottom: '4rem' }}>
-         <div style={{ marginBottom:'1.5rem', display:'flex', alignItems:'center', gap:'0.8rem' }}>
-            <div style={{ width:'4px', height:'28px', background:`linear-gradient(180deg,#64748b,#64748b99)`, borderRadius:'2px' }} />
-            <div>
-              <h2 style={{ margin:0, fontSize:'1.2rem', fontWeight:800, color:'#f8fafc', letterSpacing:'-0.3px' }}>📋 보조 인텔리전스</h2>
-            </div>
-          </div>
-        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
-          <ChickenEmpiricalInsights />
-          <InsightChannelMatrix />
-          <InsightVMILockin />
-          <InsightKoreaSpecialLine />
-          <InsightRiskNexus />
-        </div>
-      </div>
+
 
     </div>
   );

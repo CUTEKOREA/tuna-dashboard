@@ -9,6 +9,7 @@ import {
   W9_DiseaseRisk, W10_CarbonFootprint, W11_Premium
 } from './BeefWidgets';
 import BeefUsdaWidgets from './BeefUsdaWidgets';
+import { InsightFeedCostSpread, InsightCutTracker, InsightDiseaseRadar } from './BeefEmpiricalInsights';
 
 const TelemetryBadge = ({ status, syncDate }: any) => {
   if (!status) return null;
@@ -134,6 +135,10 @@ export default function BeefDashboard() {
             {sec.id === 'P1' && <BeefUsdaWidgets filterPillar="S1" />}
             {sec.id === 'P3' && <BeefUsdaWidgets filterPillar="S3" />}
             {sec.id === 'P4' && <BeefUsdaWidgets filterPillar="S4" />}
+            {/* 🆕 실증 인사이트 (Empirical Insights) */}
+            {sec.id === 'P2' && <InsightFeedCostSpread accent={sec.color} />}
+            {sec.id === 'P4' && <InsightCutTracker accent={sec.color} />}
+            {sec.id === 'P4' && <InsightDiseaseRadar accent={sec.color} />}
           </div>
         </div>
       ))}
