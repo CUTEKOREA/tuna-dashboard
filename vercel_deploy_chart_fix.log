@@ -1,88 +1,225 @@
+Vercel CLI 54.6.1 (Node.js 24.14.1)
 Retrieving project…
 Deploying cutekorea-3280s-projects/tuna-dashboard
-Uploading [--------------------] (0.0B/52KB)
-Uploading [=======-------------] (19.9KB/52KB)
-Uploading [=============-------] (35.9KB/52KB)
-Uploading [===============-----] (41.6KB/52KB)
-Uploading [====================] (52.0KB/52KB)
-Inspect: https://vercel.com/cutekorea-3280s-projects/tuna-dashboard/8WxENfAWFi2ggXNtg8SdZjjc8wpj [5s]
-Production: https://tuna-dashboard-9dccc9kqd-cutekorea-3280s-projects.vercel.app [5s]
-https://tuna-dashboard-9dccc9kqd-cutekorea-3280s-projects.vercel.appBuilding...
-Building...
-Building: Running build in Washington, D.C., USA (East) – iad1
-Building: Build machine configuration: 2 cores, 8 GB
-Building: Retrieving list of deployment files...
-Building: Downloading 1266 deployment files...
-Building: Restored build cache from previous deployment (4PNR7ioskSGvw1MKBiuZhfyieCXa)
-Building: Running "vercel build"
-Building: Vercel CLI 51.6.1
-Building: Installing dependencies...
-Building: up to date in 1s
-Building: 155 packages are looking for funding
-Building: run `npm fund` for details
-Building: Detected Next.js version: 16.2.1
-Building: Running "npm run build"
-Building: > tuna-dashboard@0.1.0 build
-Building: > next build
-Building: Applying modifyConfig from Vercel
-Building: ▲ Next.js 16.2.1 (Turbopack)
-Building: Creating an optimized production build ...
-Building: ✓ Compiled successfully in 25.7s
-Building: Skipping validation of types
-Building: Finished TypeScript config validation in 21ms ...
-Building: Collecting page data using 1 worker ...
-Building: Generating static pages using 1 worker (0/30) ...
-Building: Generating static pages using 1 worker (7/30)
-Building: Generating static pages using 1 worker (14/30)
-Building: Generating static pages using 1 worker (22/30)
-Building: ✓ Generating static pages using 1 worker (30/30) in 402ms
-Building: Finalizing page optimization ...
-Building: Running onBuildComplete from Vercel
-Building: Route (app)                Revalidate  Expire
-Building: ┌ ○ /
-Building: ├ ○ /_not-found
-Building: ├ ƒ /[category]
-Building: ├ ○ /api/carrot/arbitrage          1h      1y
-Building: ├ ƒ /api/carrot/fao
-Building: ├ ƒ /api/carrot/kamis
-Building: ├ ○ /api/carrot/trq                1h      1y
-Building: ├ ○ /api/carrot/w1-spread          1h      1y
-Building: ├ ○ /api/carrot/w20-phyto          1h      1y
-Building: ├ ƒ /api/carrot/widget
-Building: ├ ○ /api/cassava/cbot              1h      1y
-Building: ├ ○ /api/cassava/dfi               1h      1y
-Building: ├ ○ /api/cassava/noaa              1h      1y
-Building: ├ ƒ /api/consignment
-Building: ├ ƒ /api/dart-insight
-Building: ├ ƒ /api/exchange
-Building: ├ ƒ /api/financial-risk
-Building: ├ ƒ /api/fishery
-Building: ├ ƒ /api/garlic/widget
-Building: ├ ƒ /api/mgo
-Building: ├ ƒ /api/petfood
-Building: ├ ƒ /api/salmon/kamis
-Building: ├ ƒ /api/shrimp/customs
-Building: ├ ƒ /api/shrimp/kamis
-Building: ├ ƒ /api/shrimp/krungsri
-Building: ├ ƒ /api/shrimp/macro
-Building: ├ ○ /api/tuna                      5m      1y
-Building: ├ ƒ /api/tuna-live
-Building: ├ ƒ /api/tuna-ranching
-Building: ├ ƒ /api/typhoon
-Building: ├ ƒ /api/used-car
-Building: ├ ○ /financial-risk
-Building: └ ○ /management
-Building: ○  (Static)   prerendered as static content
-Building: ƒ  (Dynamic)  server-rendered on demand
-Building: Build Completed in /vercel/output [30s]
-Building: Deploying outputs...
-Building: Deployment completed
-Building: Creating build cache...
-[2K[1A[2K[GProduction: https://tuna-dashboard-9dccc9kqd-cutekorea-3280s-projects.vercel.app [2m]
-Completing...
-Aliased: https://tuna-dashboard-kappa.vercel.app [2m]
-
-Common next commands:
-- `vercel inspect tuna-dashboard-9dccc9kqd-cutekorea-3280s-projects.vercel.app --logs`
-- `vercel redeploy tuna-dashboard-9dccc9kqd-cutekorea-3280s-projects.vercel.app`
-> Tip: Run `npx plugins add vercel/vercel-plugin` to enhance your agent experience
+Uploading [--------------------] (0.0B/21.3KB)
+Uploading [======--------------] (7.1KB/21.3KB)
+Uploading [====================] (21.3KB/21.3KB)
+  Inspect     https://vercel.com/cutekorea-3280s-projects/tuna-dashboard/7Nzfiitgmbxq3dqexN3pUhC2q2Qu
+▲ Production  https://tuna-dashboard-kxlovrfc9-cutekorea-3280s-projects.vercel.app
+Building…
+Building…
+Running build in Washington, D.C., USA (East) – iad1
+Build machine configuration: 2 cores, 8 GB
+Retrieving list of deployment files...
+Downloading 2592 deployment files...
+Restored build cache from previous deployment (6WMaNTrURXcK56UsDY3yDcUhC5RB)
+Running "vercel build"
+Vercel CLI 54.4.1
+Installing dependencies...
+up to date in 959ms
+158 packages are looking for funding
+run `npm fund` for details
+Detected Next.js version: 16.2.1
+Running "npm run build"
+> tuna-dashboard@0.1.0 build
+> next build
+⚠ `eslint` configuration in next.config.mjs is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.mjs options detected:
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+Applying modifyConfig from Vercel
+▲ Next.js 16.2.1 (Turbopack)
+Creating an optimized production build ...
+✓ Compiled successfully in 36.1s
+Skipping validation of types
+Finished TypeScript config validation in 18ms ...
+Collecting page data using 1 worker ...
+Generating static pages using 1 worker (0/138) ...
+Generating static pages using 1 worker (34/138)
+Generating static pages using 1 worker (68/138)
+[KCS CIF] API failed, using fallback
+[KCS API] 연동 실패, Fallback 데이터 사용
+Generating static pages using 1 worker (103/138)
+✓ Generating static pages using 1 worker (138/138) in 16.4s
+Finalizing page optimization ...
+Running onBuildComplete from Vercel
+Route (app)                         Revalidate  Expire
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[category]
+├ ƒ /api/atuna-daily
+├ ƒ /api/atuna-prices
+├ ƒ /api/beef/global-production
+├ ƒ /api/beef/hanwoo-price
+├ ƒ /api/beef/korea-imports
+├ ƒ /api/beef/korea-supply
+├ ƒ /api/beef/slaughter-rate
+├ ƒ /api/beef/trade-flow
+├ ƒ /api/beef/usda-fas
+├ ƒ /api/carrot/arbitrage
+├ ○ /api/carrot/dashboard                   1h      1y
+├ ƒ /api/carrot/fao
+├ ƒ /api/carrot/kamis
+├ ƒ /api/carrot/trq
+├ ƒ /api/carrot/w1-spread
+├ ○ /api/carrot/w20-phyto                   1h      1y
+├ ƒ /api/cashew
+├ ƒ /api/cashew/kcs
+├ ƒ /api/cashew/usda-fas
+├ ƒ /api/cassava
+├ ƒ /api/cassava/arbitrage
+├ ○ /api/cassava/cbot                       1h      1y
+├ ○ /api/cassava/dfi                        1h      1y
+├ ƒ /api/cassava/early-warning
+├ ƒ /api/cassava/esg
+├ ○ /api/cassava/noaa                       1h      1y
+├ ƒ /api/chicken/arbitrage
+├ ƒ /api/chicken/corporates
+├ ƒ /api/chicken/eggs
+├ ƒ /api/chicken/feed-cost
+├ ƒ /api/chicken/global-export
+├ ƒ /api/chicken/global-production
+├ ƒ /api/chicken/parts
+├ ƒ /api/chicken/processing
+├ ƒ /api/chicken/trade-shift
+├ ƒ /api/chicken/usda-fas
+├ ƒ /api/cocoa/dashboard
+├ ƒ /api/cold-storage/widget
+├ ƒ /api/compliance
+├ ƒ /api/comtrade
+├ ƒ /api/consignment
+├ ƒ /api/dart-insight
+├ ƒ /api/eurostat
+├ ƒ /api/exchange
+├ ƒ /api/financial-risk
+├ ƒ /api/fishery
+├ ƒ /api/flatfish/kcs
+├ ƒ /api/galchi/comtrade
+├ ƒ /api/galchi/hsping
+├ ƒ /api/galchi/importyeti
+├ ƒ /api/galchi/intel
+├ ƒ /api/galchi/kamis
+├ ƒ /api/galchi/kcs
+├ ƒ /api/galchi/kosis
+├ ƒ /api/galchi/mfds
+├ ƒ /api/galchi/noaa
+├ ƒ /api/galchi/oec
+├ ƒ /api/galchi/ofac
+├ ƒ /api/galchi/osh
+├ ƒ /api/galchi/tariffs
+├ ƒ /api/galchi/wto
+├ ƒ /api/garlic/widget
+├ ƒ /api/generate-rfq
+├ ƒ /api/hermes
+├ ƒ /api/hs-ping
+├ ƒ /api/import-yeti
+├ ƒ /api/jukkumi-intelligence
+├ ƒ /api/jukkumi/kcs
+├ ƒ /api/landed-cost
+├ ƒ /api/logistics/congestion
+├ ƒ /api/logistics/freight
+├ ƒ /api/logistics/trader-import
+├ ƒ /api/mackerel-comtrade
+├ ○ /api/mackerel-kcs                       5m      1y
+├ ○ /api/mackerel-ticker                    5m      1y
+├ ƒ /api/mackerel/dart
+├ ƒ /api/macro-environment
+├ ƒ /api/mangosteen/dashboard
+├ ƒ /api/mgo
+├ ƒ /api/mof-fishery
+├ ƒ /api/octopus/kcs
+├ ƒ /api/oec
+├ ƒ /api/osh
+├ ƒ /api/petfood
+├ ƒ /api/pollock-forecast
+├ ƒ /api/pollock-kcs
+├ ƒ /api/pollock-landed-cost
+├ ƒ /api/pollock-policy-risk
+├ ƒ /api/pollock-supply-chain
+├ ƒ /api/pollock/dart
+├ ƒ /api/research
+├ ƒ /api/risk-radar
+├ ƒ /api/salmon/comtrade
+├ ƒ /api/salmon/dart
+├ ƒ /api/salmon/kamis
+├ ƒ /api/salmon/kcs
+├ ƒ /api/salmon/usda-fas
+├ ƒ /api/shrimp/compliance
+├ ƒ /api/shrimp/customs
+├ ƒ /api/shrimp/dart
+├ ƒ /api/shrimp/emerging-markets
+├ ƒ /api/shrimp/esg-radar
+├ ƒ /api/shrimp/forecast
+├ ƒ /api/shrimp/kamis
+├ ƒ /api/shrimp/krungsri
+├ ƒ /api/shrimp/macro
+├ ƒ /api/shrimp/sourcing-sim
+├ ƒ /api/shrimp/usda-fas
+├ ƒ /api/squid/hsping
+├ ƒ /api/squid/importyeti
+├ ƒ /api/squid/kosis
+├ ƒ /api/squid/mfds
+├ ƒ /api/squid/ofac
+├ ƒ /api/squid/squid-forecast
+├ ƒ /api/squid/squid-sourcing
+├ ƒ /api/squid/wto
+├ ƒ /api/tariffs
+├ ƒ /api/trade-macro
+├ ○ /api/tuna                               5m      1y
+├ ƒ /api/tuna-emerging-markets
+├ ƒ /api/tuna-extract
+├ ƒ /api/tuna-forecast
+├ ƒ /api/tuna-live
+├ ƒ /api/tuna-local
+├ ƒ /api/tuna-policy-risk
+├ ƒ /api/tuna-ranching
+├ ƒ /api/tuna/dart
+├ ƒ /api/tuna/test-proxy
+├ ○ /api/tuna/ticker                        5m      1y
+├ ƒ /api/tuna/usda-fas
+├ ƒ /api/typhoon
+├ ƒ /api/us-census
+├ ƒ /api/us-ita
+├ ƒ /api/used-car
+├ ƒ /api/whelk/dart
+├ ƒ /api/whelk/kcs
+├ ƒ /api/whelk/live
+├ ƒ /api/wits
+├ ƒ /api/wto
+├ ○ /falkland
+├ ○ /ffa-report
+├ ○ /financial-risk
+├ ○ /management
+├ ○ /manual
+└ ○ /omo-preview
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+Build Completed in /vercel/output [58s]
+Deploying outputs...
+Deployment completed
+Creating build cache...
+[2K[1A[2K[G▲ Production  https://tuna-dashboard-kxlovrfc9-cutekorea-3280s-projects.vercel.app
+Completing…
+▲ Aliased     https://leedonggun.co.kr
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_7Nzfiitgmbxq3dqexN3pUhC2q2Qu",
+    "url": "https://tuna-dashboard-kxlovrfc9-cutekorea-3280s-projects.vercel.app",
+    "inspectorUrl": "https://vercel.com/cutekorea-3280s-projects/tuna-dashboard/7Nzfiitgmbxq3dqexN3pUhC2q2Qu",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_7Nzfiitgmbxq3dqexN3pUhC2q2Qu"
+  },
+  "message": "Deployment tuna-dashboard-kxlovrfc9-cutekorea-3280s-projects.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel inspect tuna-dashboard-kxlovrfc9-cutekorea-3280s-projects.vercel.app",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod",
+      "when": "Promote to production"
+    }
+  ]
+}

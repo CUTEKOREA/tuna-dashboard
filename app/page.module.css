@@ -422,13 +422,69 @@
   min-height: calc(100vh - 40px);
   z-index: 50;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 100px;
+  justify-content: flex-start;
+  padding: 8vh var(--space-8) var(--space-8) var(--space-8);
+  gap: 60px;
   background: radial-gradient(circle at 30% 50%, rgba(10, 15, 30, 0.6) 0%, rgba(5, 8, 15, 0.4) 100%);
   backdrop-filter: blur(8px);
-  padding: var(--space-8);
   border-radius: var(--radius-xl);
+}
+
+.landingTopRow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+  width: 100%;
+}
+
+.landingUpdates {
+  width: 100%;
+  max-width: 980px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+}
+
+.landingUpdatesTitle {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+
+.landingUpdatesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.updateItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 12px;
+  border-left: 2px solid var(--accent-primary);
+}
+
+.updateDate {
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.updateContent {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+
 }
 
 /* ─── LANDING HERO — Brand Messaging ─── */

@@ -7,15 +7,15 @@ import s from './FleetCommandCenter.module.css';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const rankData = [
-  { r: 1, cap: '김승현', name: 'S/PIO', weekly: 215.00, daily: 30.71, badge: 'gold' },
-  { r: 2, cap: '강창훈', name: 'S/JUP', weekly: 70.00, daily: 10.00, badge: 'silver' },
-  { r: 3, cap: '최용석', name: 'S/CHA', weekly: 50.00, daily: 7.14, badge: 'bronze' },
-  { r: 4, cap: '김효원', name: 'S/SPR', weekly: 48.00, daily: 6.86, badge: '' },
-  { r: 5, cap: '김정훈', name: 'MARI', weekly: 25.00, daily: 3.57, badge: '' },
-  { r: 6, cap: '김형주', name: 'N/SUN', weekly: 23.00, daily: 3.29, badge: '' },
-  { r: 7, cap: '김태엽', name: 'N/STAR', weekly: 20.00, daily: 2.86, badge: '' },
-  { r: 8, cap: '이평규', name: 'KONA', weekly: 5.00, daily: 0.71, badge: '' },
-  { r: 9, cap: '정윤채', name: 'S/EXP', weekly: 0, daily: 0, badge: '' },
+  { r: 1, cap: '김효원', name: 'S/SPR', weekly: 667, daily: 95.29, badge: 'gold' },
+  { r: 2, cap: '최용석', name: 'S/CHA', weekly: 370, daily: 52.86, badge: 'silver' },
+  { r: 3, cap: '강창훈', name: 'S/JUP', weekly: 330, daily: 47.14, badge: 'bronze' },
+  { r: 4, cap: '김정훈', name: 'MARI', weekly: 275, daily: 39.29, badge: '' },
+  { r: 5, cap: '김형주', name: 'N/SUN', weekly: 210, daily: 30.00, badge: '' },
+  { r: 6, cap: '이평규', name: 'KONA', weekly: 194, daily: 27.71, badge: '' },
+  { r: 7, cap: '김태엽', name: 'N/STAR', weekly: 100, daily: 14.29, badge: '' },
+  { r: 8, cap: '정윤채', name: 'S/EXP', weekly: 0, daily: 0, badge: '' },
+  { r: 9, cap: '김승현', name: 'S/PIO', weekly: 0, daily: 0, badge: '' },
   { r: 10, cap: '모승현', name: 'S/HAR', weekly: 0, daily: 0, badge: '' },
 ];
 
@@ -47,8 +47,8 @@ export function FleetChartSection() {
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>PIO(김승현) 215t으로 주간 1위. S/EXP·S/HAR 입항 중으로 주간 어획량 없음 — 전체 주간 총 어획량 456t으로 전주 대비 급감.</>}
-                actionPlan={<>PIO 일평균 30.71t 양호한 성과. S/EXP M/E 수리 6/7 출항, S/HAR 상가수리 6/27 출항 예정 — 복귀 시점까지 잔여 선단 조업 효율 극대화 필요.</>}
+                situation={<>SPR(김효원) 667t으로 압도적 주간 1위. 주간 총 어획량 2,146t으로 선단 전체 조업 호조 지속.</>}
+                actionPlan={<>SPR 일평균 95.29t 훌륭한 성과 유지. 하위권(S/EXP, S/PIO, S/HAR)은 현재 입항/수리/전재 중이므로 복귀 시점 이후 조업 효율 향상 방안 마련 필요.</>}
               />
             </div>
           </>
@@ -58,8 +58,8 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>월간 어획 기준 SPR이 4,478t으로 최상위 유지, HAR이 4,160t으로 뒤를 이음. PIO가 5월 1,205t으로 급성장. SUN은 5월 실적 부재로 1,795t에 머물름.</>}
-                actionPlan={<>PIO 5월 급성장(1,205t) 후속 모니터링. SUN 5월 무조업 원인 파악 및 6월 조업 효율 극대화 방안 수립.</>}
+                situation={<>월간 어획 기준 SPR이 5월 1,234t을 더해 지속적 상승세 유지, PIO 역시 5월 1,205t으로 괄목할 성과. 월간 총 어획량 7,582t 달성.</>}
+                actionPlan={<>PIO와 SPR의 5월 호실적(각각 1,200t 이상) 요인 분석 및 타 선박 전파. 연간 누계 33,412t 순항 중이므로 현 페이스 유지에 만전.</>}
               />
             </div>
           </>
@@ -69,8 +69,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>모승현(S/HAR) 일어획 30.1t으로 전체 1위. 김형주(N/SUN) 12.8t으로 최하위 — 평균 대비 -10.02t.</>}
-                actionPlan={<>N/SUN 저실적 구조적 원인(합작선 운영 효율, 어장 접근성) 심층 분석. KONA(이평규) 75일차 초기 단계로 추이 지속 관찰.</>}
+                situation={<>김효원(S/SPR) 일어획 30.1t으로 전체 1위 등극. 모승현(S/HAR)은 29.5t으로 2위. 반면 김형주(N/SUN)는 13.4t으로 최하위 — 평균 23.0t 대비 -9.67t.</>}
+                actionPlan={<>N/SUN 저실적 원인(합작선 운영 효율, 어장 접근성 등) 심층 분석 지속. SPR 1위 탈환을 이끈 조업 패턴 및 어장 이동 전략 벤치마킹.</>}
               />
             </div>
           </>
@@ -148,8 +148,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>모승현(S/HAR) 381일간 11,460t 달성, '1만톤 클럽' 가입. 전체 일어획 평균 22.8t 대비 +7.25t로 성과. 반면 김형주(N/SUN)은 217일간 일어획 12.8t으로 평균 대비 -10.02t — 구조적 저실적 패턴.</>}
-              actionPlan={<>N/SUN 저실적 원인(합작선 한계 vs 어장 배정 문제) 긴급 분석 착수. KONA(이평규) 75일 조기 단계 — 60일 후 재평가. PIO(김승현) 123일차 일어획 23.6t, 안정 궤도 진입 확인.</>}
+              situation={<>김효원(S/SPR) 247일간 7,423t 달성하며 전체 일어획 1위(30.1t) 탈환. 모승현(S/HAR) 29.5t으로 2위. 전체 일어획 평균 23.0t.</>}
+              actionPlan={<>N/SUN 저실적 원인 긴급 분석 유지. KONA(이평규) 82일차 일어획 18.7t으로 아직 평균 이하 — 적응기 후 실적 개선 여부 관찰 요망.</>}
             />
           </div>
         </div>

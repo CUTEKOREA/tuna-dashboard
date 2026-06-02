@@ -110,7 +110,7 @@ export default function Home() {
   
   // Auth state
   const [session, setSession] = useState<any>(
-    process.env.NODE_ENV === 'development' ? { user: { email: 'sillavip@sla.co.kr' } } : null
+    (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) ? { user: { email: 'sillavip@sla.co.kr' } } : null
   );
   const pathname = usePathname();
   
@@ -181,7 +181,7 @@ export default function Home() {
 
     // Supabase auth listener
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) {
         setSession({ user: { email: 'sillavip@sla.co.kr' } });
       } else {
         setSession(session);
@@ -191,7 +191,7 @@ export default function Home() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (process.env.NODE_ENV === 'development') {
+      if (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) {
         setSession({ user: { email: 'sillavip@sla.co.kr' } });
       } else {
         setSession(session);

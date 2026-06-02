@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import CanneryStatusCharts from './CanneryStatusCharts';
 import GensanCanneryStatusCharts from './GensanCanneryStatusCharts';
-import ReeferFreightChart from './ReeferFreightChart';
 import ReeferMovement from './ReeferMovement';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import CountUp from 'react-countup';
@@ -161,21 +160,6 @@ export default function LogisticsDashboard() {
               situation: '현재 방콕항 묘박지 대기 선박 및 체선율 지수가 실시간으로 모니터링되고 있습니다. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
               actionPlan: '체선일이 10일을 초과하는 선박에 대해서는 선하증권(B/L) 분할 양륙 및 인근 송클라 또는 젠산 항구로의 목적지 변경(Diversion)을 적극 검토해야 합니다.',
               source: '방콕항 체선율 모니터링',
-            }}
-          />
-
-          <WidgetCard
-            title="냉동 컨테이너 해상 운임 (Reefer Freight)"
-            icon={Truck}
-            iconColor="var(--color-info)"
-            pillar="S3"
-            cardDesc="Reefer 40'HC 컨테이너 운임 추이 — 주요 허브 비교"
-            telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
-            customBody={<ReeferFreightChart />}
-            takeaway={{
-              situation: "주요 허브(태국, 필리핀, 스페인 등)로 향하는 냉동 컨테이너(Reefer 40'HC) 운임이 지정학적 불안과 파나마/수에즈 운하 이슈로 인해 전반적인 상승 압력을 받고 있습니다.",
-              actionPlan: '해상 운임 급등기에는 개별 컨테이너 선적보다 대형 냉동 운반선(Reefer Carrier) 벌크 용선의 경제성이 우월해집니다. 물류비를 방어하기 위해 관계사들과의 Joint Shipment 물량을 집중 구성해야 합니다.',
-              source: '글로벌 해상 운임 인텔리전스',
             }}
           />
         </div>

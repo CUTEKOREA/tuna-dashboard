@@ -884,18 +884,16 @@ export default function SquidDashboard() {
         
         {/* Card Header */}
         <div style={{ position: 'relative', marginBottom: '1.2rem' }}>
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '1.13rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 0.4rem 0', flex: 1, minWidth: 0 }}>
             <IconComp size={20} color={accentColor} />
-            {w.title} 
-            
-            <div style={{ marginLeft: '6px' }}>
-              <TelemetryBadge status={telemetryStatus} syncDate={w.syncDate || '2026-05'} />
-            </div>
-            
-            <div style={{ marginLeft: 'auto', flexShrink: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-              {w.unit && <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', fontWeight: 500 }}>(단위: {w.unit})</span>}
-            </div>
+            {w.title}
           </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
+            <TelemetryBadge status={telemetryStatus} syncDate={w.syncDate || '2026-05'} />
+            {w.unit && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 500, whiteSpace: 'nowrap' }}>(단위: {w.unit})</span>}
+          </div>
+        </div>
           {cardDesc && (
             <p style={{ margin: '8px 0 0 0', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
               {cardDesc}

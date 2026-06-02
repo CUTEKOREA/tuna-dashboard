@@ -4362,7 +4362,7 @@
     },
     {
       "id": "w61_kfas_regime_shift",
-      "title": "🔬 [KFAS] 살오징어 자원 Regime Shift — CPUE 73.8% 붕괴와 생물학적 경고",
+      "title": "🔬 살오징어 자원 Regime Shift — CPUE 73.8% 붕괴와 생물학적 경고",
       "subtitle": "1994-2023 채낚기어업 표준화 CPUE 기반 3시기 체제전환 분석 (조민진 외, 2025)",
       "chartType": "composed",
       "unit": "CPUE / cm",
@@ -4420,7 +4420,7 @@
     },
     {
       "id": "w62_kfas_msy_assessment",
-      "title": "🔬 [KFAS] 베이지안 자원평가 — MSY 13만톤 vs 실제 어획 — 남획 진단",
+      "title": "🔬 베이지안 자원평가 — MSY 13만톤 vs 실제 어획 — 남획 진단",
       "subtitle": "상태공간 Schaefer 잉여생산모델 + 자원복원력 사전확률분포 (김진우 외, 2022 / 안동영 외, 2023)",
       "chartType": "composed",
       "unit": "만 톤",
@@ -4506,7 +4506,7 @@
     },
     {
       "id": "w63_kfas_mortality_model",
-      "title": "🔬 [KFAS] 크기별 사망률 모델 — 유생→성어 생존율 시뮬레이션",
+      "title": "🔬 크기별 사망률 모델 — 유생→성어 생존율 시뮬레이션",
       "subtitle": "겨울계군 일별 성장-사망 모의실험 — 200,000알 → 2마리 생존 (이다민 외, 2025)",
       "chartType": "bar",
       "unit": "생존율 / 사망계수",
@@ -4554,7 +4554,7 @@
     },
     {
       "id": "w64_kfas_trophic_acoustic",
-      "title": "🔬 [KFAS] 생태적 지위(TL 4.10) 및 다중주파수 음향 자원조사",
+      "title": "🔬 생태적 지위(TL 4.10) 및 다중주파수 음향 자원조사",
       "subtitle": "위내용물 분석(n=1,084) + 38/70/120kHz 분포밀도 추정 (박현솔 외, 2023 / 신형호 외, 2021)",
       "chartType": "bar",
       "unit": "%RI",

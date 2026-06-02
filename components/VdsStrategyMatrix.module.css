@@ -1,0 +1,306 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+  font-family: inherit;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  font-size: var(--font-lg);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.titleIcon {
+  color: #38bdf8;
+}
+
+.subtitle {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Year Tabs ─── */
+.yearTabs {
+  display: flex;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.4);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+}
+
+.yearTab {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: var(--weight-semi);
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.yearTab:hover {
+  color: var(--text-primary);
+}
+
+.activeYear {
+  background: var(--accent-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* ─── Select Dropdown ─── */
+.zoneSelect {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--panel-border);
+  color: var(--text-primary);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: var(--weight-semi);
+  outline: none;
+  cursor: pointer;
+}
+
+.zoneSelect:focus {
+  border-color: var(--accent-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+/* ─── Panel Styles ─── */
+.panel {
+  background: var(--surface-1);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+}
+
+.panelTitle {
+  font-size: var(--font-md);
+  font-weight: var(--weight-semi);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ─── Heatmap Styles ─── */
+.heatmapTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+.heatmapTh {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: var(--weight-semi);
+  text-transform: uppercase;
+  padding-bottom: 8px;
+}
+
+.heatmapCompany {
+  font-size: 0.75rem;
+  font-weight: var(--weight-semi);
+  color: var(--text-secondary);
+  text-align: right;
+  padding-right: 12px;
+  width: 70px;
+}
+
+.heatmapCell {
+  padding: 8px 4px;
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  transition: transform 0.2s;
+  cursor: default;
+}
+
+.heatmapCell:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.cellValue {
+  font-size: 0.8rem;
+  font-weight: var(--weight-bold);
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.cellRate {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  color: #fff;
+}
+
+/* Color codes based on consumption */
+.cellSafe { background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); }
+.cellSafe .cellValue { color: #34d399; }
+.cellSafe .cellRate { color: rgba(52, 211, 153, 0.7); }
+
+.cellWarning { background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); }
+.cellWarning .cellValue { color: #fbbf24; }
+.cellWarning .cellRate { color: rgba(251, 191, 36, 0.7); }
+
+.cellDanger { background: rgba(239, 68, 68, 0.25); border: 1px solid rgba(239, 68, 68, 0.5); }
+.cellDanger .cellValue { color: #f87171; }
+.cellDanger .cellRate { color: rgba(248, 113, 113, 0.8); }
+
+.cellCritical { background: rgba(220, 38, 38, 0.6); border: 1px solid #ef4444; }
+.cellCritical .cellValue { color: #fff; }
+.cellCritical .cellRate { color: rgba(255, 255, 255, 0.8); }
+
+
+/* ─── Silla Asset Bars ─── */
+.assetList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+  justify-content: center;
+}
+
+.assetRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.assetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.assetZone {
+  font-size: 0.8rem;
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  width: 60px;
+}
+
+.assetStats {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  display: flex;
+  gap: 8px;
+}
+
+.assetRemaining {
+  font-size: 0.8rem;
+  font-weight: var(--weight-bold);
+  color: #38bdf8;
+}
+
+.barTrack {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+/* ─── Intelligence Feed ─── */
+.feedContainer {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.feedContainer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 30px;
+  background: linear-gradient(to bottom, #0f172a, transparent);
+  z-index: 2;
+}
+.feedContainer::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 30px;
+  background: linear-gradient(to top, #0f172a, transparent);
+  z-index: 2;
+}
+
+.feedItem {
+  display: flex;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+
+.feedItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.feedDate {
+  font-size: 0.65rem;
+  color: #10b981;
+  font-weight: var(--weight-semi);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.feedMsg {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

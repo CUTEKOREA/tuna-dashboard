@@ -457,11 +457,8 @@ export default function SalmonDashboard() {
         })}
       </div>
 
-      {/* ═══ Module A: 실시간 연어 무역 인텔리전스 티커 ═══ */}
-      <SalmonLiveTicker />
 
-      {/* ═══ Macro Simulator ═══ */}
-      <ExchangeSimulator onSimulationChange={setSimulationFactors} />
+
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{

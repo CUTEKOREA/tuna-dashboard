@@ -1,14 +1,11 @@
-const puppeteer = require('puppeteer');
-
-(async () => {
-  const browser = await puppeteer.launch({ headless: 'new' });
-  const page = await browser.newPage();
-  
-  page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-  page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
-  
-  await page.goto('http://localhost:3000/carrot', { waitUntil: 'networkidle0' });
-  
-  console.log('Page loaded');
-  await browser.close();
-})();
+const quality = "어창 개방 측정온도 -26.0℃. 초저온 동결 상태 양호.";
+const normalizedQuality = quality.replace(/[\u2212\u2013\u2014]/g, "-");
+const clauses = normalizedQuality.split(/;|\n|\.(?!\d)/);
+console.log("Clauses:", clauses);
+const tempRegex = /([+-]?\d+(?:\.\d+)?)\s*(?:℃|°C|°|C)/gi;
+clauses.forEach(clause => {
+  let tempMatch;
+  while ((tempMatch = tempRegex.exec(clause)) !== null) {
+    console.log("Match:", tempMatch[0], "Val:", parseFloat(tempMatch[1]));
+  }
+});

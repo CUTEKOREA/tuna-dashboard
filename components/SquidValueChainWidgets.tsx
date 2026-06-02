@@ -35,12 +35,12 @@ export const SquidVCFishing = () => (
     situation="훔볼트 오징어는 외투막 최대 1.5m, 체중 50kg에 달하는 압도적 사이즈로 대량 어획이 가능하나 동태평양 기후(엘니뇨)에 민감. 반면 일렉스와 롤리고는 남서대서양에서 조업되며 크기가 상대적으로 작음."
     actionPlan="해역별(남서대서양 vs 동태평양) 어획 쿼터 및 기후 리스크를 분산시키는 투트랙 소싱 전략 구사 필수."
   >
-    <div style={{ height: 280, width: '100%' }}>
+    <div style={{ height: 340, width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
-      <ScatterChart margin={{ top: 30, right: 30, bottom: 20, left: 20 }}>
+      <ScatterChart margin={{ top: 40, right: 30, bottom: 20, left: 20 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
         <XAxis type="number" dataKey="size" name="크기 (cm)" stroke="#94a3b8" tickFormatter={(v) => v + 'cm'} />
-        <YAxis type="number" dataKey="lifespan" name="수명 (년)" stroke="#94a3b8" tickFormatter={(v) => v + '년'} />
+        <YAxis type="number" dataKey="lifespan" name="수명 (년)" stroke="#94a3b8" tickFormatter={(v) => v + '년'} domain={[0, 1.8]} />
         <ZAxis type="number" dataKey="volume" range={[200, 1500]} name="조업 규모" />
         <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={tooltipStyle} itemStyle={{ color: '#fff' }} />
         <Scatter name="어종" data={fishingData}>

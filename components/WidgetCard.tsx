@@ -176,11 +176,6 @@ export default function WidgetCard(props: WidgetCardProps) {
             {termTooltip && (
               <TermTooltip term={termTooltip.term} description={termTooltip.description} />
             )}
-            {unit && (
-              <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 500 }}>
-                {unit}
-              </span>
-            )}
           </h3>
           {description && (
             <p style={{ margin: '4px 0 0 0', fontSize: '0.78rem', color: '#64748b', lineHeight: 1.4 }}>
@@ -193,7 +188,14 @@ export default function WidgetCard(props: WidgetCardProps) {
             </p>
           )}
         </div>
-        <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
+          <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} />
+          {unit && (
+            <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500, whiteSpace: 'nowrap' }}>
+              {unit}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className={styles.cardBody}>
