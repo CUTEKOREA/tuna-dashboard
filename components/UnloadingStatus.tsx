@@ -10,15 +10,23 @@ import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 export default function UnloadingStatus() {
   const [selectedVessel, setSelectedVessel] = useState('sein-phoenix');
   const [liveData, setLiveData] = useState<any>(null);
+  const [dbData, setDbData] = useState<any>({});
 
   useEffect(() => {
     fetch('/api/tuna-live')
       .then(res => res.json())
       .then(d => setLiveData(d.unloading))
       .catch(err => console.error("Failed to fetch live data", err));
+      
+    fetch('/api/unloading-db')
+      .then(res => res.json())
+      .then(d => {
+        if (d.success && d.data) setDbData(d.data);
+      })
+      .catch(err => console.error("Failed to fetch DB data", err));
   }, []);
 
-  const data = {
+  const staticData = {
     'sein-phoenix': {
       name: 'M/V SEIN PHOENIX',
       dateRange: '2026.05.23 ~ 진행중',
@@ -27,11 +35,11 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 6955.000,
-      actualTotal: 1433.710,
-      surplus: -5521.290,
+      actualTotal: 2304.990,
+      surplus: -4650.010,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 6645.000, actual: 1016.860, surplus: -5628.140 },
-        { id: 'YF', name: 'Yellowfin', reported: 305.000, actual: 88.860, surplus: -216.140 }
+        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 2172.490, surplus: -4473.510 },
+        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 132.500, surplus: -176.500 }
       ],
       timeline: [
         { date: '5/23', time: '08:10 ~ 20:30', targetHol: 'S/HAR(#2-A)', dailyAmount: 146.890, cumAmount: 146.890, quality: '어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.' },
@@ -40,7 +48,11 @@ export default function UnloadingStatus() {
         { date: '5/26', time: '08:00 ~ 20:30', targetHol: 'S/SPR(#4-A, #4-B)', dailyAmount: 224.690, cumAmount: 587.670, quality: '어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호.' },
         { date: '5/27', time: '08:10 ~ 20:00', targetHol: 'S/SPR(#1-A, #4-B), S/HAR(#2-A)', dailyAmount: 239.990, cumAmount: 827.660, quality: '어창 개방 측정온도 -20.0℃ ~ -24.0℃. 외관상태 및 색택 전반적으로 양호.' },
         { date: '5/28', time: '08:10 ~ 23:00', targetHol: 'S/SPR(#1-A, #4-B), MOAKONA(#2-A, #2-B)', dailyAmount: 287.940, cumAmount: 1115.600, quality: 'S/SPR: 어창 개방 측정온도 -20.0℃ ~ -24.0℃. MOAKONA: -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호.' },
-        { date: '5/29', time: '08:30 ~ 21:00', targetHol: 'MOAKONA(#2-B), S/SPR(#4-B)', dailyAmount: 318.110, cumAmount: 1433.710, quality: 'S/SPR(#4-B): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. MOAKONA(#2-B): -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/30) 약 310톤 하역 진행 예정.' }
+        { date: '5/29', time: '08:30 ~ 21:00', targetHol: 'MOAKONA(#2-B), S/SPR(#4-B)', dailyAmount: 318.110, cumAmount: 1433.710, quality: 'S/SPR(#4-B): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. MOAKONA(#2-B): -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/30) 약 310톤 하역 진행 예정.' },
+        { date: '5/30', time: '08:10 ~ 19:00', targetHol: 'S/SPR(#1-A, #4-B, #4-C)', dailyAmount: 307.410, cumAmount: 1741.120, quality: '어창 개방 측정온도 -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/31) 약 300톤 하역 진행 예정.' },
+        { date: '5/31', time: '08:10 ~ 13:00', targetHol: 'MOAKONA(#2-B)', dailyAmount: 93.560, cumAmount: 1834.680, quality: '어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/1) 약 300톤 하역 진행 예정.' },
+        { date: '6/1', time: '08:20 ~ 20:20', targetHol: 'MOAKONA(#2-B), MOAMARI(#4-C)', dailyAmount: 271.530, cumAmount: 2106.210, quality: 'MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -20.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/2)은 약 250톤 하역 진행 예정.' },
+        { date: '6/2', time: '08:20 ~ 14:00', targetHol: 'S/SPR(#1-A), MOAMARI(#4-C)', dailyAmount: 198.780, cumAmount: 2304.990, quality: 'S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/3)은 약 235톤 하역 진행 예정.' }
       ]
     },
     'hikari': {
@@ -162,7 +174,20 @@ export default function UnloadingStatus() {
     }
   };
 
-  const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...d }))
+  const data = { ...staticData };
+  Object.keys(dbData).forEach(key => {
+    if (!data[key]) {
+      data[key] = dbData[key];
+    } else {
+      const staticVessel = data[key] as any;
+      const dbVessel = dbData[key] as any;
+      if (dbVessel.timeline && staticVessel.timeline && dbVessel.timeline.length > staticVessel.timeline.length) {
+        data[key] = dbVessel;
+      }
+    }
+  });
+
+  const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...(d as any) }))
     .sort((a, b) => (b.status.includes('하역중') ? 1 : 0) - (a.status.includes('하역중') ? 1 : 0));
   const activeVessels = vesselsList.filter(v => v.status.includes('하역중'));
   const completedVessels = vesselsList.filter(v => v.status.includes('하역완료'));
@@ -278,26 +303,141 @@ export default function UnloadingStatus() {
           </div>
         </div>
 
-        {/* Chart - Full Width */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '20px', overflow: 'hidden' }}>
-          <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)' }}>일일 및 누적 하역 추이 (MT)</h4>
-          <div style={{ width: '100%', overflowX: 'auto' }}>
-            <ComposedChart width={Math.max(chartData.length * 60, 600)} height={300} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
-              <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
-              <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} angle={0} textAnchor="middle" height={50} />
-              <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
-              <RechartsTooltip 
-                contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
-                itemStyle={{ color: '#e2e8f0' }}
-                formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
-              />
-              <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px' }} />
-              <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
-              <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="#10b981" strokeWidth={2.5} dot={{ r: 3, fill: '#10b981', strokeWidth: 0 }} />
-            </ComposedChart>
-          </div>
-        </div>
+        {/* Analytics Layout */}
+        {(() => {
+          const timelineWithAmount = selectedData.timeline.filter(t => t.dailyAmount > 0);
+          const workingDays = timelineWithAmount.length;
+          const avgDailyAmount = workingDays > 0 ? timelineWithAmount.reduce((sum, t) => sum + t.dailyAmount, 0) / workingDays : 0;
+          
+          let totalWorkingHours = 0;
+          let daysWithTime = 0;
+          timelineWithAmount.forEach(t => {
+            if (t.time && t.time !== '-' && t.time.includes('~')) {
+              const parts = t.time.split('~').map(s => s.trim());
+              if (parts.length === 2) {
+                const start = parts[0].split(':').map(Number);
+                const end = parts[1].split(':').map(Number);
+                if (start.length === 2 && end.length === 2 && !isNaN(start[0]) && !isNaN(end[0])) {
+                  let startHour = start[0] + start[1]/60;
+                  let endHour = end[0] + end[1]/60;
+                  if (endHour < startHour) endHour += 24; 
+                  totalWorkingHours += (endHour - startHour);
+                  daysWithTime++;
+                }
+              }
+            }
+          });
+          const avgWorkingHours = daysWithTime > 0 ? totalWorkingHours / daysWithTime : 0;
+          const avgBurnRate = avgWorkingHours > 0 ? avgDailyAmount / avgWorkingHours : 0;
+
+          const remainingTotal = selectedData.reportedTotal - selectedData.actualTotal;
+          const estimatedDaysLeft = avgDailyAmount > 0 ? Math.ceil(remainingTotal / avgDailyAmount) : 0;
+          const today = new Date();
+          const etaDate = new Date(today);
+          etaDate.setDate(etaDate.getDate() + estimatedDaysLeft);
+
+          const canneryMap = new Map<string, number>();
+          const destinations = ['S/SPR', 'MOAKONA', 'S/HAR', 'S/EXP', 'S/CHA', 'S/JUP', 'MOAMARI'];
+          timelineWithAmount.forEach(t => {
+            if (t.targetHol && t.targetHol !== '-') {
+              let count = destinations.filter(d => t.targetHol.includes(d)).length;
+              if (count === 0) count = 1;
+              const amt = t.dailyAmount / count;
+              destinations.forEach(dest => {
+                if (t.targetHol.includes(dest)) {
+                  canneryMap.set(dest, (canneryMap.get(dest) || 0) + amt);
+                }
+              });
+            }
+          });
+          const totalCanneryAmount = Array.from(canneryMap.values()).reduce((sum, v) => sum + v, 0);
+
+          return (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}>
+              {/* Chart - Left */}
+              <div style={{ flex: '1 1 600px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+                <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)' }}>일일 및 누적 하역 추이 (MT)</h4>
+                <div style={{ width: '100%', overflowX: 'auto' }}>
+                  <ComposedChart width={Math.max(chartData.length * 60, 600)} height={300} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
+                    <ChartPatternDefs />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
+                    <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} angle={0} textAnchor="middle" height={50} />
+                    <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
+                    <RechartsTooltip 
+                      contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
+                      itemStyle={{ color: '#e2e8f0' }}
+                      formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
+                    />
+                    <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px' }} />
+                    <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
+                    <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="#10b981" strokeWidth={2.5} dot={{ r: 3, fill: '#10b981', strokeWidth: 0 }} />
+                  </ComposedChart>
+                </div>
+              </div>
+
+              {/* Insights Panel - Right */}
+              <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                  <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <BarChart3 size={16} /> 하역 효율 지표
+                  </h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>일평균 하역량</div>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{avgDailyAmount.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>MT/일</span></div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>평균 작업시간</div>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{avgWorkingHours.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>시간</span></div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>시간당 하역속도</div>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{avgBurnRate.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>MT/hr</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                  <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Clock size={16} /> 진척 현황 및 예측 (ETA)
+                  </h4>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>잔여 목표량</span>
+                    <span style={{ fontWeight: 'bold' }}>{formatNum(remainingTotal)} MT</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '8px' }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>예상 종료 시점</span>
+                    <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#10b981' }}>{remainingTotal > 0 ? `+${estimatedDaysLeft}일 필요` : '하역 완료'}</span>
+                  </div>
+                </div>
+
+                {totalCanneryAmount > 0 && (
+                  <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', flex: 1 }}>
+                    <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <MapPin size={16} /> 캐너리(양륙처) 비중
+                    </h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      {Array.from(canneryMap.entries()).sort((a,b) => b[1] - a[1]).map(([name, amount]) => {
+                        const percent = (amount / totalCanneryAmount) * 100;
+                        return (
+                          <div key={name}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '4px' }}>
+                              <span>{name}</span>
+                              <span style={{ color: 'var(--text-muted)' }}>{percent.toFixed(1)}%</span>
+                            </div>
+                            <div style={{ width: '100%', background: 'rgba(255,255,255,0.1)', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
+                              <div style={{ width: `${percent}%`, background: '#f59e0b', height: '100%' }}></div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Timeline Log - Full Width */}
         <div style={{ background: 'var(--panel-bg)', borderRadius: '8px', padding: '20px', border: '1px solid var(--panel-border)' }}>

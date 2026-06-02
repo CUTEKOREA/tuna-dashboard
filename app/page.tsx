@@ -957,59 +957,78 @@ export default function Home() {
 
             {!session && (
               <div className={styles.landingOverlay}>
-                {/* Premium Hero Section */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className={styles.landingHero}
-                >
+                <div className={styles.landingTopRow}>
+                  {/* Premium Hero Section */}
                   <motion.div 
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.8 }}
-                    className={styles.landingBrand}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className={styles.landingHero}
                   >
-                    <img src="/logo1.png" alt="Silla Co." className={styles.landingLogo} />
-                    <h1 className={styles.landingTitle}>TUNA KINGDOM</h1>
-                    <p className={styles.landingSubtitle}>S-Grade Executive Intelligence</p>
+                    <motion.div 
+                      initial={{ scale: 0.95, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.2, duration: 0.8 }}
+                      className={styles.landingBrand}
+                    >
+                      <img src="/logo1.png" alt="Silla Co." className={styles.landingLogo} />
+                      <h1 className={styles.landingTitle}>TUNA KINGDOM</h1>
+                      <p className={styles.landingSubtitle}>S-Grade Executive Intelligence</p>
+                    </motion.div>
+                    
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 1 }}
+                      className={styles.landingMessage}
+                    >
+                      <p>글로벌 수산·물류 밸류체인의 핵심 동향을 실시간으로 통제합니다.</p>
+                      <p>오직 인가된 임원진을 위한 최상위 전략 의사결정 커맨드 센터.</p>
+                    </motion.div>
                   </motion.div>
-                  
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 1 }}
-                    className={styles.landingMessage}
-                  >
-                    <p>글로벌 수산·물류 밸류체인의 핵심 동향을 실시간으로 통제합니다.</p>
-                    <p>오직 인가된 임원진을 위한 최상위 전략 의사결정 커맨드 센터.</p>
-                  </motion.div>
-                </motion.div>
 
-                {/* Login Form Panel */}
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className={styles.loginPanel}
-                >
-                  <Lock size={36} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
-                  <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-main)' }}>
-                    {isSignUp ? '가입 신청하기' : '대시보드 로그인'}
-                  </h2>
-                  <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.5 }}>
-                    {isSignUp 
-                      ? '가입 신청 후 관리자가 Supabase에서 이메일을 승인(Verify)하면 접속할 수 있습니다.' 
-                      : '실시간 시장 정보, 선단 동향 및 데이터를 열람하기 위해 로그인해주세요.'}
-                  </p>
-                  
-                  <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {isSignUp && (
+                  {/* Login Form Panel */}
+                  <motion.div 
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    className={styles.loginPanel}
+                  >
+                    <Lock size={36} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
+                    <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-main)' }}>
+                      {isSignUp ? '가입 신청하기' : '대시보드 로그인'}
+                    </h2>
+                    <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '24px', lineHeight: 1.5 }}>
+                      {isSignUp 
+                        ? '가입 신청 후 관리자가 Supabase에서 이메일을 승인(Verify)하면 접속할 수 있습니다.' 
+                        : '실시간 시장 정보, 선단 동향 및 데이터를 열람하기 위해 로그인해주세요.'}
+                    </p>
+                    
+                    <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                      {isSignUp && (
+                        <input
+                          type="text"
+                          placeholder="이름 (Name)"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          style={{
+                            padding: '12px 14px',
+                            borderRadius: '8px',
+                            border: '1px solid var(--panel-border)',
+                            backgroundColor: 'rgba(0,0,0,0.3)',
+                            color: 'var(--text-main)',
+                            fontSize: '14px',
+                            outline: 'none',
+                            transition: 'border-color 0.2s'
+                          }}
+                          required
+                        />
+                      )}
                       <input
-                        type="text"
-                        placeholder="이름 (Name)"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        type="email"
+                        placeholder="이메일 (ID)"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         style={{
                           padding: '12px 14px',
                           borderRadius: '8px',
@@ -1022,84 +1041,98 @@ export default function Home() {
                         }}
                         required
                       />
-                    )}
-                    <input
-                      type="email"
-                      placeholder="이메일 (ID)"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      style={{
-                        padding: '12px 14px',
-                        borderRadius: '8px',
-                        border: '1px solid var(--panel-border)',
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        color: 'var(--text-main)',
-                        fontSize: '14px',
-                        outline: 'none',
-                        transition: 'border-color 0.2s'
-                      }}
-                      required
-                    />
-                    <input
-                      type="password"
-                      placeholder="내선번호 (비밀번호)"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      style={{
-                        padding: '12px 14px',
-                        borderRadius: '8px',
-                        border: '1px solid var(--panel-border)',
-                        backgroundColor: 'rgba(0,0,0,0.3)',
-                        color: 'var(--text-main)',
-                        fontSize: '14px',
-                        outline: 'none',
-                        transition: 'border-color 0.2s'
-                      }}
-                      required
-                    />
-                    {authError && <div style={{ color: 'var(--accent-danger)', fontSize: '12px', textAlign: 'left', marginTop: '-4px' }}>{authError}</div>}
-                    {authSuccess && <div style={{ color: '#10b981', fontSize: '12px', textAlign: 'left', marginTop: '-4px', fontWeight: 'bold' }}>{authSuccess}</div>}
+                      <input
+                        type="password"
+                        placeholder="내선번호 (비밀번호)"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{
+                          padding: '12px 14px',
+                          borderRadius: '8px',
+                          border: '1px solid var(--panel-border)',
+                          backgroundColor: 'rgba(0,0,0,0.3)',
+                          color: 'var(--text-main)',
+                          fontSize: '14px',
+                          outline: 'none',
+                          transition: 'border-color 0.2s'
+                        }}
+                        required
+                      />
+                      {authError && <div style={{ color: 'var(--accent-danger)', fontSize: '12px', textAlign: 'left', marginTop: '-4px' }}>{authError}</div>}
+                      {authSuccess && <div style={{ color: '#10b981', fontSize: '12px', textAlign: 'left', marginTop: '-4px', fontWeight: 'bold' }}>{authSuccess}</div>}
+                      <button
+                        type="submit"
+                        disabled={authLoading}
+                        style={{
+                          padding: '14px',
+                          borderRadius: '8px',
+                          backgroundColor: 'var(--accent-primary)',
+                          color: '#fff',
+                          fontWeight: 'bold',
+                          fontSize: '14px',
+                          border: 'none',
+                          cursor: authLoading ? 'default' : 'pointer',
+                          opacity: authLoading ? 0.7 : 1,
+                          marginTop: '10px',
+                          transition: 'background-color 0.2s, transform 0.1s'
+                        }}
+                        onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                        onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                      >
+                        {authLoading ? '처리중...' : (isSignUp ? '신청 완료' : '보안 접속 승인')}
+                      </button>
+                    </form>
                     <button
-                      type="submit"
-                      disabled={authLoading}
-                      style={{
-                        padding: '14px',
-                        borderRadius: '8px',
-                        backgroundColor: 'var(--accent-primary)',
-                        color: '#fff',
-                        fontWeight: 'bold',
-                        fontSize: '14px',
-                        border: 'none',
-                        cursor: authLoading ? 'default' : 'pointer',
-                        opacity: authLoading ? 0.7 : 1,
-                        marginTop: '10px',
-                        transition: 'background-color 0.2s, transform 0.1s'
+                      onClick={() => {
+                        setIsSignUp(!isSignUp);
+                        setAuthError('');
+                        setAuthSuccess('');
                       }}
-                      onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-                      onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                      style={{
+                        marginTop: '16px',
+                        background: 'none',
+                        border: 'none',
+                        color: 'var(--text-muted)',
+                        fontSize: '12px',
+                        cursor: 'pointer',
+                        textDecoration: 'underline'
+                      }}
                     >
-                      {authLoading ? '처리중...' : (isSignUp ? '신청 완료' : '보안 접속 승인')}
+                      {isSignUp ? '이미 승인된 계정이 있으신가요? 로그인' : '권한이 없으신가요? 가입 신청하기'}
                     </button>
-                  </form>
-                  <button
-                    onClick={() => {
-                      setIsSignUp(!isSignUp);
-                      setAuthError('');
-                      setAuthSuccess('');
-                    }}
-                    style={{
-                      marginTop: '16px',
-                      background: 'none',
-                      border: 'none',
-                      color: 'var(--text-muted)',
-                      fontSize: '12px',
-                      cursor: 'pointer',
-                      textDecoration: 'underline'
-                    }}
-                  >
-                    {isSignUp ? '이미 승인된 계정이 있으신가요? 로그인' : '권한이 없으신가요? 가입 신청하기'}
-                  </button>
+                  </motion.div>
+                </div>
+
+                {/* Recent Updates Section */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className={styles.landingUpdates}
+                >
+                  <h3 className={styles.landingUpdatesTitle}>
+                    <Radio size={16} color="var(--accent-primary)" />
+                    최근 시스템 주요 업데이트
+                  </h3>
+                  <div className={styles.landingUpdatesGrid}>
+                    <div className={styles.updateItem}>
+                      <span className={styles.updateDate}>26.05.31</span>
+                      <span className={styles.updateContent}>선단 운영 커맨드 센터: 5월 4주차 주간/월간 선장 실적 및 어획량 차트 갱신</span>
+                    </div>
+                    <div className={styles.updateItem}>
+                      <span className={styles.updateDate}>26.05.31</span>
+                      <span className={styles.updateContent}>물류 현황 패널: SEIN PHOENIX BKK 하역 진척률(33.1%) 실시간 연동 반영</span>
+                    </div>
+                    <div className={styles.updateItem}>
+                      <span className={styles.updateDate}>26.05.30</span>
+                      <span className={styles.updateContent}>참치(Tuna) 밸류체인: 태국산 가다랑어(SKJ) 수입 단가 및 Bangkok MGO 유가 업데이트</span>
+                    </div>
+                    <div className={styles.updateItem}>
+                      <span className={styles.updateDate}>26.05.29</span>
+                      <span className={styles.updateContent}>가자미(Flatfish) 대시보드 신규 런칭 및 글로벌 해상 운임(SCFI) 실시간 연동</span>
+                    </div>
+                  </div>
                 </motion.div>
               </div>
             )}
