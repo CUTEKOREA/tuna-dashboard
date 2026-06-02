@@ -71,6 +71,16 @@ const SasThaiSourcing = dynamic(() => import('./sashimi-strategy/SasThaiSourcing
 const SasThaiEsgRisk = dynamic(() => import('./sashimi-strategy/SasThaiEsgRisk'), { ssr: false });
 const SasKrDualRoute = dynamic(() => import('./sashimi-strategy/SasKrDualRoute'), { ssr: false });
 
+/* ─── NEW: 유럽 카테고리 보강 8개 (규제·관세·브랜드·가공·MSC·원양선단·완전양식·인플레) ─── */
+const SasEuCatchGate = dynamic(() => import('./sashimi-strategy/SasEuCatchGate'), { ssr: false });
+const SasEuTariffRegime = dynamic(() => import('./sashimi-strategy/SasEuTariffRegime'), { ssr: false });
+const SasEuBrandMap = dynamic(() => import('./sashimi-strategy/SasEuBrandMap'), { ssr: false });
+const SasEuProcessingHub = dynamic(() => import('./sashimi-strategy/SasEuProcessingHub'), { ssr: false });
+const SasEuMscGate = dynamic(() => import('./sashimi-strategy/SasEuMscGate'), { ssr: false });
+const SasEuDistantFleet = dynamic(() => import('./sashimi-strategy/SasEuDistantFleet'), { ssr: false });
+const SasEuClosedCycle = dynamic(() => import('./sashimi-strategy/SasEuClosedCycle'), { ssr: false });
+const SasEuRetailInflation = dynamic(() => import('./sashimi-strategy/SasEuRetailInflation'), { ssr: false });
+
 /* ================================================================ */
 const SECTIONS = [
   { id: 'korea', label: '🇰🇷 한국', icon: Flag, color: '#f59e0b', desc: '원양 생산·일본 의존·7대 기업·외식D2C·지중해 BFT' },
@@ -125,7 +135,7 @@ export default function SashimiSteakDashboard() {
                 사시미/스테이크 시장 분석
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 42개 위젯
+                한국·미국·EU·영국·태국·일본·중동·중국 — 9개 섹션 · 50개 위젯
               </p>
             </div>
           </div>
@@ -310,7 +320,7 @@ export default function SashimiSteakDashboard() {
         {/* ═══ 유럽 시장 ═══ */}
         {activeSection === 'eu' && (
           <section>
-            <SectionHeader color="#a78bfa" emoji="🇪🇺" title="유럽 시장 — 참다랑어 생산 허브" desc="일본 수출 중심의 지중해 블루핀 축양 산업" />
+            <SectionHeader color="#a78bfa" emoji="🇪🇺" title="유럽 시장 — 참다랑어 생산 허브 + 규제·관세·가공·자원" desc="지중해 블루핀 축양 + CATCH 규제·관세 우회로·스페인 가공·MSC·IOTC 원양선단·완전양식" />
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasBluefinRanchingEconomics"><SasBluefinRanchingEconomics /></ErrorBoundary>
               <ErrorBoundary fallbackTitle="SasEuQuotaProduction"><SasEuQuotaProduction /></ErrorBoundary>
@@ -321,6 +331,22 @@ export default function SashimiSteakDashboard() {
             </div>
             <div data-mobile-stack style={GRID_2}>
               <ErrorBoundary fallbackTitle="SasEuImportSegmentation"><SasEuImportSegmentation /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasEuCatchGate"><SasEuCatchGate /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasEuTariffRegime"><SasEuTariffRegime /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasEuProcessingHub"><SasEuProcessingHub /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasEuBrandMap"><SasEuBrandMap /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasEuMscGate"><SasEuMscGate /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasEuDistantFleet"><SasEuDistantFleet /></ErrorBoundary>
+              <ErrorBoundary fallbackTitle="SasEuClosedCycle"><SasEuClosedCycle /></ErrorBoundary>
+            </div>
+            <div data-mobile-stack style={GRID_2}>
+              <ErrorBoundary fallbackTitle="SasEuRetailInflation"><SasEuRetailInflation /></ErrorBoundary>
             </div>
           </section>
         )}

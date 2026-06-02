@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🇪🇺 **2026-06-03 — sashimi 유럽 카테고리 8개 위젯 보강 (멀티에이전트 2-pass 리서치+검증)** [CC]:
+> - **요청**: sashimi-steak 유럽 카테고리 추가 정보. 워크플로우 2회(1차 5차원 + 2차 4차원, 18에이전트) 리서치·적대검증 후 ⑨(신선사시미=기존 SasEuFreshVsCanned 중복) 제외 8개 제작.
+> - **신규 위젯 8개 (`SasEu*.tsx`, W-SAS40~47)**: ① CATCH 디지털인증 규제게이트(2026-01-10·레드카드4국·한국KDE) ② 관세 우회로(로인 ATQ 35K·EVFTA·Pacific EPA·한-EU FTA) ③ 국가별 브랜드(Rio Mare·Petit Navire·스페인70%) ④ 가공허브 스페인(생산70%·€1.1B·고용62K, Pillar2) ⑤ MSC게이트(310만t·블루라벨+39%·英49%) ⑥ 원양선단 IOTC황다랑어(410K>MSY349K·30%감축·2024green) ⑦ 완전양식(IEO300만·NextTuna €70M·Nortuna피벗) ⑧ 원료가변동성·다운트레이딩(PB80%·€62.8B).
+> - **검증 정정**: ②24%반복제거→ATQ/EPA/FTA / ③RioMare34%→선도·Calvo수출 / ④자급률충돌회피 / ⑤인지율47%삭제·TraceabilityRatings차별 / ⑥정밀톤수→'약1/3'·연대기 / ⑦NextTuna=부유식RAS·Kindai6국삭제 / ⑧'원료하락'체리픽→변동성. 전부 STATIC.
+> - **연결**: import 8 + 유럽섹션 7행(13위젯), 헤더 42→50. `tsc`클린·L-01 OK(EU·MSC약어)·`npm run build` ✓140/140. **배포 대기**.
+
 > 🚢 **2026-06-02 — M/V BAO LUCKY 하역 1일차 결과 반영 및 SEIN PHOENIX 6/2 하역 결과 staticData 갱신** [Antigravity]:
 > - **요청**: M/V SEIN PHOENIX 및 M/V BAO LUCKY 하역 결과 반영 요청.
 > - **SEIN PHOENIX**: 6/2 일일 하역량 `198.780 MT`, 하역 누계 `2,304.990 MT`, 잔량 `-4,650.010 MT` 및 6/2 타임라인 기록 staticData 반영. 랜딩페이지 진척률 33.1% 업데이트.

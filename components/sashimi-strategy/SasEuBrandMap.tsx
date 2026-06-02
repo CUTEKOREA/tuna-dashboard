@@ -1,0 +1,55 @@
+'use client';
+
+import React from 'react';
+import WidgetCard from '../WidgetCard';
+
+/* ── EU 캔참치 국가별 시장·브랜드 과점 구도 (검증 정정 반영) ──
+   검증(solid): 스페인 EU 캔참치 생산 ~70%(FAO GLOBEFISH). 정정: Rio Mare '34%'는 미검증→'선도 브랜드',
+   Calvo '25%'는 내수 아닌 수출시장 점유. per-capita는 산정기준 상이로 본문서 단정 회피. */
+const COUNTRIES = [
+  { flag: '🇮🇹', name: '이탈리아', rc: '#10b981', role: '브랜드 프리미엄 시장',
+    rows: [['선도 브랜드', 'Rio Mare (Bolton)'], ['특징', 'EU 최강 단일 브랜드 지위'], ['진입장벽', '자국 챔피언 브랜드 충성도']] },
+  { flag: '🇫🇷', name: '프랑스', rc: '#38bdf8', role: 'Thai Union 종속',
+    rows: [['선도 브랜드', 'Petit Navire·John West'], ['소유', 'Thai Union(태국) 계열'], ['특징', '글로벌 가공사 수직지배']] },
+  { flag: '🇪🇸', name: '스페인', rc: '#f59e0b', role: 'EU 최대 생산 거점',
+    rows: [['EU 캔 생산 비중', '약 70%'], ['주요사', 'Calvo·Jealsa·Frinsa·Isabel'], ['강점', '갈리시아 가공 클러스터']] },
+];
+
+export default function SasEuBrandMap() {
+  return (
+    <WidgetCard
+      id="W-SAS42"
+      title="EU 캔참치 국가별 시장·브랜드 구도"
+      description="이탈리아 브랜드·스페인 생산·프랑스 Thai Union 종속의 3분할"
+      pillar="S4"
+      telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
+      cardDesc="EU 3대 캔참치 소비국×챔피언 브랜드 경쟁 지형 — FAO GLOBEFISH·MSC·업계 자료"
+      takeaway={{
+        situation: "EU 캔참치는 3대 소비국이 시장을 분할하고 각국마다 단일 챔피언 브랜드가 지배합니다. 이탈리아는 Bolton의 Rio Mare가 유럽 최강 단일 브랜드 지위를 점하고, 프랑스는 Thai Union(Petit Navire·John West)이 글로벌 가공사로 수직 지배하며, 스페인은 자국 가공거점(Calvo·Jealsa·Frinsa·Isabel)이 EU 캔참치 생산의 약 70%를 등에 업고 시장을 잡습니다. 기존 위젯(소매침투·신선vs통조림·수입단가)이 다루지 않은 '국가×브랜드 경쟁 지형'을 한 화면에 보여줍니다.",
+        actionPlan: "EU 캔/가공 채널 진입 또는 M&A 타깃 스크리닝 시 '이탈리아=브랜드 프리미엄·스페인=생산능력·프랑스=Thai Union 종속'이라는 구조적 진입장벽을 인지하십시오. 신선·축양 고부가 라인은 이 캔 과점 구도와 직접 경쟁하지 않으므로, 남유럽 소매 진열대 협상 시 자국 챔피언 브랜드와 정면 충돌을 피하는 프리미엄·비(非)캔 사시미 포지셔닝이 유효합니다. 캔 진입이 목적이면 스페인 가공 거점 제휴(70% 생산 인프라 활용)가 브랜드 신설보다 현실적입니다.",
+        source: "FAO GLOBEFISH·SeafoodSource(스페인 EU 캔 생산 ~70%) / MSC Italy Tuna Market(Rio Mare 선도) / 업계 자료(Petit Navire·John West=Thai Union, 스페인 가공사)",
+      }}
+      customBody={
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
+          {COUNTRIES.map((c) => (
+            <div key={c.name} style={{ background: `${c.rc}0d`, border: `1px solid ${c.rc}2e`, borderLeft: `3px solid ${c.rc}`, borderRadius: '10px', padding: '11px 13px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '7px' }}>
+                <span style={{ fontSize: '1.05rem' }}>{c.flag}</span>
+                <span style={{ fontSize: '0.84rem', fontWeight: 700, color: '#f1f5f9' }}>{c.name}</span>
+                <span style={{ marginLeft: 'auto', fontSize: '0.6rem', color: c.rc, background: `${c.rc}1f`, padding: '2px 7px', borderRadius: '4px', fontWeight: 600 }}>{c.role}</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
+                {c.rows.map(([k, v]) => (
+                  <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+                    <span style={{ fontSize: '0.56rem', color: '#64748b' }}>{k}</span>
+                    <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#e2e8f0' }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      }
+    />
+  );
+}
