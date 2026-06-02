@@ -47,6 +47,13 @@ export default function LogisticsDashboard() {
     { n: 2, suffix: '곳', label: '핵심 양륙항', icon: Anchor },
     { n: 0, suffix: '', label: '운반선·체선 실시간 추적', icon: Ship, live: true },
   ];
+  // ── 물류 경로 미니 지도 핀 (동남아 가공허브 → 부산) ──
+  const PINS: { x: number; y: number; name: string; status: string; c: string; anchor: 'start' | 'end' | 'middle' }[] = [
+    { x: 92, y: 116, name: '방콕', status: '체선 6일', c: '#f59e0b', anchor: 'start' },
+    { x: 104, y: 156, name: '송클라', status: '대체항', c: '#38bdf8', anchor: 'start' },
+    { x: 184, y: 150, name: '젠산', status: '가동 ↓', c: '#94a3b8', anchor: 'start' },
+    { x: 322, y: 56, name: '부산', status: '수출 도착', c: '#10b981', anchor: 'end' },
+  ];
   const scrollTo = (id: string | null) => { if (id && typeof document !== 'undefined') document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
 
   return (
@@ -161,6 +168,55 @@ export default function LogisticsDashboard() {
             );
           })}
         </div>
+      </div>
+
+      {/* ═══ 물류 경로 미니 지도 (동남아 가공허브 → 부산) ═══ */}
+      <div className="ds-card" style={{
+        background: 'linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.02))',
+        border: '1px solid rgba(16,185,129,0.15)', borderRadius: '18px', padding: '1.1rem 1.25rem 1.25rem',
+        marginBottom: '3rem', boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
+        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.8rem' }}>
+          <Globe size={16} color="#34d399" />
+          <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>물류 경로 — 동남아 가공허브 → 부산</span>
+          <span style={{ marginLeft: 'auto', fontSize: '0.6rem', color: '#34d399' }}>냉동 운반선 항로</span>
+        </div>
+        <svg viewBox="0 0 400 190" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }} role="img" aria-label="동남아 가공허브에서 부산까지 냉동 운반선 항로 지도">
+          <defs>
+            <linearGradient id="lgOcean" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#0b1220" /><stop offset="100%" stopColor="#0a0f1a" />
+            </linearGradient>
+            <linearGradient id="lgRoute" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#059669" /><stop offset="100%" stopColor="#34d399" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="400" height="190" fill="url(#lgOcean)" />
+          {[40, 80, 120, 160].map((y) => (<line key={y} x1="0" y1={y} x2="400" y2={y} stroke="rgba(255,255,255,0.03)" strokeWidth="1" />))}
+          {/* 육괴(장식) — 동남아 / 한반도 */}
+          <path d="M40 108 Q72 92 122 104 Q162 110 178 142 Q150 178 88 172 Q44 160 40 108 Z" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.22)" strokeWidth="1" />
+          <path d="M298 28 Q336 24 346 56 Q350 82 324 92 Q303 82 298 56 Z" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.22)" strokeWidth="1" />
+          {/* 항로 + 흐름 애니메이션 */}
+          <path id="lgRoutePath" d="M120 138 Q240 116 322 58" fill="none" stroke="url(#lgRoute)" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="7 7">
+            <animate attributeName="stroke-dashoffset" values="28;0" dur="0.9s" repeatCount="indefinite" />
+          </path>
+          {/* 운반선 마커 */}
+          <circle r="4.5" fill="#34d399" stroke="#0a0f1a" strokeWidth="1.5">
+            <animateMotion dur="6s" repeatCount="indefinite" rotate="auto"><mpath href="#lgRoutePath" /></animateMotion>
+          </circle>
+          {/* 핀 */}
+          {PINS.map((p) => (
+            <g key={p.name}>
+              <circle cx={p.x} cy={p.y} r="5" fill="none" stroke={p.c} strokeWidth="1.5">
+                <animate attributeName="r" values="5;10;5" dur="2.4s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite" />
+              </circle>
+              <circle cx={p.x} cy={p.y} r="3.5" fill={p.c} />
+              <text x={p.anchor === 'end' ? p.x - 9 : p.x + 9} y={p.y - 2} fill="#e2e8f0" fontSize="10" fontWeight="700" textAnchor={p.anchor}>{p.name}</text>
+              <text x={p.anchor === 'end' ? p.x - 9 : p.x + 9} y={p.y + 9} fill={p.c} fontSize="8" textAnchor={p.anchor}>{p.status}</text>
+            </g>
+          ))}
+        </svg>
       </div>
 
       {/* ═══ Section 1: TRADER Status ═══ */}
