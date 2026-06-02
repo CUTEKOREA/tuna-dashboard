@@ -1,5 +1,25 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚢 **2026-06-02 — M/V BAO LUCKY 하역 1일차 결과 반영 및 SEIN PHOENIX 6/2 하역 결과 staticData 갱신** [Antigravity]:
+> - **요청**: M/V SEIN PHOENIX 및 M/V BAO LUCKY 하역 결과 반영 요청.
+> - **SEIN PHOENIX**: 6/2 일일 하역량 `198.780 MT`, 하역 누계 `2,304.990 MT`, 잔량 `-4,650.010 MT` 및 6/2 타임라인 기록 staticData 반영. 랜딩페이지 진척률 33.1% 업데이트.
+> - **BAO LUCKY**: 신규 선박 `M/V BAO LUCKY` staticData 등록. 6/2 일일 하역량 `229.160 MT`, 하역 누계 `229.160 MT`, 잔량 `-4,573.840 MT` 및 6/2 타임라인 기록 반영. 랜딩페이지 업데이트 목록에 6/2 BAO LUCKY 하역 개시 반영.
+> - **검증**: `npm run build` 성공.
+
+> 🇬🇧🇹🇭 **2026-06-02 — sashimi 영국/태국 카테고리 5개 위젯 보강 (멀티에이전트 리서치+검증)** [CC]:
+> - **요청**: sashimi-steak 영국/태국 카테고리 추가 정보. 워크플로우(5차원 병렬 리서치→적대검증, 10에이전트) 후 5개 전부 제작.
+> - **신규 위젯 5개 (`SasUkSupplierTariff·SasUkChannelSplit·SasThaiSourcing·SasThaiEsgRisk·SasKrDualRoute`)**: ① 영국 수입 공급국·관세비대칭(에콰도르31%·모리셔스14%·세이셸12% 무관세 vs 태국 MFN20%, IndexBox·영국 trade-tariff) ② 영국 채널 이원화(Itsu £175.9M·Wasabi £121.6M·YO! £138.3M·캔 66%/71%) ③ 태국 원료조달·EU관세(수입의존 50.5%·가다랑어 $1.01B·EU 24% vs 에콰0%) ④ 태국 ESG(EU옐로카드 2015→2019·US TIP Tier2 4년·처벌완화법안, Pillar5 공백) ⑤ 한국 두 경로(태국行 $150M·14.8%·3위 vs 영국 FTA 0% 직수출).
+> - **검증 정정 반영**: ③ 미국 관세·캔점유 축 제거(방금 추가한 SasUsTariffLadder·SasUsCompetitorMap과 중복 회피)→EU·원료 재초점 / ④ '59% 동료살해'(2009 노후)·SIMP상위3국(미검증) 삭제 / ⑤ 부가가치 7~12x 배수(어종비교 오류) 삭제 / ① EPA쿼터 10,000t·라운딩 서술 삭제 / ② 캔 시점 명기. 전부 STATIC.
+> - **연결 (`SashimiSteakDashboard.tsx`)**: dynamic import 5 + 영국/태국 섹션 4행(7위젯), 헤더 37→42위젯.
+> - **검증**: `tsc` 클린, L-01 OK(EU 약어 false positive만), `npm run build` ✓ 140/140. **로컬 반영, 배포 대기**.
+
+> 🇺🇸 **2026-06-02 — sashimi 미국 카테고리 5개 위젯 보강 (멀티에이전트 리서치+검증)** [CC]:
+> - **요청**: sashimi-steak 미국 카테고리 추가 정보. 워크플로우(5차원 병렬 리서치 → 적대적 수치검증, 10에이전트)로 갭 도출·검증 후 5개 전부 제작.
+> - **신규 위젯 5개 (`components/sashimi-strategy/SasUs*.tsx`)**: ① SasUsImportBarriers — SIMP·수은·히스타민 3중 규제관문(FDA 수은 1.0ppm·히스타민 35/200ppm 2024강화·SIMP 24개월, FDA·NOAA 1차검증) ② SasUsTariffLadder — 2025 상호관세 사다리(한국 15% vs 인니·태국 19%·베트남 20%·멕시코 USMCA 0%, Federal Register 검증) ③ SasUsMarginWaterfall — 수입CIF→도매→외식 단계별 $/kg(Tridge·Selina 검증) ④ SasUsCompetitorMap — TWF 23센터·8,200레스토랑·FCF $1.7B·동원 캔47.5%(1차검증, 미검증분 삭제) ⑤ SasUsDemandSeasonality — NFI 2.2lb·IFIC 단백질71%·FMI 54% + 계절 수요 정성인덱스.
+> - **검증 정정 반영**: 관세 발효일 11.14(8.7 아님)·에콰도르 제외·MFN기저율 정성화 / SIMP 가다랑어 단서·국가별 거부% 제외 / 경쟁 TWF매출·Anova·FCF$45B오류 삭제 / 수요 가격밴드(블로그) 삭제·IFIC 2025. 전부 STATIC 정직 라벨.
+> - **연결 (`SashimiSteakDashboard.tsx`)**: dynamic import 5 + 미국 섹션 5행(10위젯)으로 확장, 헤더 32→37위젯.
+> - **검증**: `tsc` 클린, L-01 영문 cardDesc 1건 정정, `npm run build` ✓ 140/140. **로컬 반영, 배포 대기**.
+
 > 🧊 **2026-06-02 — /cold-storage 미국 ULT 섹션 6대 정보 보강** [CC]:
 > - **요청**: "6. 미국 초저온(ULT)" 섹션에 추가 정보. 리서치(WebSearch 3건: ULT 보관료·시설·FTZ)로 C레벨 의사결정 갭 6개 도출 후 전부 구현.
 > - **신규 위젯 3개 (`ColdStorageDashboard.tsx` widgets 배열 us04~us06)**: ① us04 ULT 보관 단가($/팔레트·월 — 일반 $12 vs ULT ~$50, 온도 티어링 전략) ② us05 앵커 항만 근접성(퍼스앰보이 13km·라콜드 32km·바인랜드 60km) ③ us06 저장온도별 사시미 보관한계(-18°C 0.5개월 vs -60°C 24개월, 미쓰비시 2년 비축 근거). 모두 Bar·SIT/TAK·source·STATIC, smartFormat ฿충돌 회피 키명.
