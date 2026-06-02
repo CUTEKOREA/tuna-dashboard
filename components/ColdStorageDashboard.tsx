@@ -424,6 +424,48 @@ export default function ColdStorageDashboard() {
           source: '미국 ULT 사시미급 냉동창고 멀티에이전트 조사 (2026-06-02)',
           unit: '개',
           syncDate: '2026.06.02'
+        },
+        {
+          id: 'us04',
+          title: 'ULT 보관 단가 구조 (월 팔레트당)',
+          subtitle: '일반 냉동 실측 벤치마크 + 사시미급 -60°C 프리미엄 추정',
+          chartType: 'Bar',
+          xKey: '보관유형',
+          bars: [{key: '월단가', color: '#f59e0b'}],
+          data: [{"보관유형":"일반냉동(-18°C)","월단가":12},{"보관유형":"냉장(2~5°C)","월단가":25},{"보관유형":"심냉동(-35°C)","월단가":30},{"보관유형":"ULT(-60°C)","월단가":50}],
+          sit: <>미국 일반 냉동 보관료는 팔레트당 월 $8~25(평균 ~$12), climate-controlled는 $22~30이다. 사시미급 -60°C ULT는 deep-freeze 에너지·설비 프리미엄으로 통상 일반 냉동의 2~3배인 월 $40~60대로 추정되며, 블라스트 동결 핸들링 수수료가 별도 가산된다. 단, -60°C 전용 공개 요율표는 없어 실계약은 직접 견적이 필수다.</>,
+          strat: <>ULT 보관료가 일반 냉동의 약 3배이므로, 회전율 낮은 장기 비축은 ULT 비용이 마진을 잠식한다. 고회전 사시미급만 ULT에 두고 가공·통조림용 저등급은 -18°C 일반 냉동으로 분리하는 '온도 티어링'으로 보관원가를 30~40% 절감하라.</>,
+          source: '미국 콜드스토리지 팔레트 보관료 벤치마크(2025-26) + ULT 프리미엄 추정',
+          unit: '$/월',
+          syncDate: '2026.06'
+        },
+        {
+          id: 'us05',
+          title: '앵커 시설 항만 근접성',
+          subtitle: '입항지~ULT 창고 거리 — 사시미 드레이지 원가 좌우',
+          chartType: 'Bar',
+          xKey: '시설',
+          bars: [{key: '항만거리', color: '#38bdf8'}],
+          data: [{"시설":"퍼스앰보이","항만거리":13},{"시설":"라콜드","항만거리":32},{"시설":"바인랜드","항만거리":60}],
+          sit: <>사시미는 항공(생물)·해상(냉동 로인) 이원 유입이라 입항지 근접성이 드레이지·리드타임을 좌우한다. 동부 퍼스앰보이는 미 동부 최대 컨테이너항 Port NY/NJ에 약 13km(JFK·뉴어크 공항 인접), 서부 라콜드는 Port of LA/롱비치에 약 32km(LAX 약 22km)로 둘 다 입항지 근접 우위가 크다. 보강 후보 바인랜드(Americold)는 필라델피아항 약 60km다.</>,
+          strat: <>앵커 2곳 모두 항만 10~30km 권역이라 드레이지가 짧아 콜드체인 단절 리스크가 낮다. 생물 사시미는 공항 인접 퍼스앰보이·라콜드로 항공 직결하고, 냉동 로인 대량분은 항만 근접 ULT에서 통관·재포장 후 내륙 배송하는 '온도·물류 이원 라우팅'을 설계하라.</>,
+          source: '시설 주소 기반 입항지·공항 직선거리 근사(2026) · Port NY-NJ / LA-Long Beach',
+          unit: 'km',
+          syncDate: '2026.06'
+        },
+        {
+          id: 'us06',
+          title: '저장온도별 사시미급 보관 한계',
+          subtitle: '-18°C 수주 vs -60°C 2년 — 미쓰비시 비축의 과학적 근거',
+          chartType: 'Bar',
+          xKey: '저장온도',
+          bars: [{key: '사시미보관한계', color: '#06b6d4'}],
+          data: [{"저장온도":"-18°C","사시미보관한계":0.5},{"저장온도":"-35°C","사시미보관한계":6},{"저장온도":"-50°C","사시미보관한계":12},{"저장온도":"-60°C","사시미보관한계":24}],
+          sit: <>표준 냉동(-18°C)에서 참치 적색육은 미오글로빈 산화로 수주 내 갈변해 사시미 가치를 잃는다. 반면 -50~-60°C 초저온에서는 12~24개월간 선홍색·식감이 유지된다. 미쓰비시(자회사 도요레이조)가 참다랑어를 -60°C에서 최대 2년 비축하는 것이 이 과학의 상업적 증거다.</>,
+          strat: <>보관 한계가 온도에 따라 48배(0.5→24개월) 벌어지므로 -60°C ULT는 비용이 아니라 '시간을 사는' 투자다. 어획 성수기 저가 매입분을 -60°C에 비축했다가 비수기 고가에 출하하는 캘린더 스프레드(시간차 차익)로 ULT 프리미엄을 상쇄하라.</>,
+          source: '수산 콜드체인 학술·업계 컨센서스 + 미쓰비시 -60°C 2년 비축 사례(2026)',
+          unit: '개월',
+          syncDate: '2026.06'
         }
       ]
     };
@@ -845,12 +887,34 @@ export default function ColdStorageDashboard() {
 
           {/* 보조·참고 시설 노트 */}
           <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '0.85rem 1rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-            <strong style={{ color: 'var(--text-primary)' }}>보조·참고</strong> — FreezPak(서부 -60°C 표방·수산 특화 미확인·검증 中, ☎213-737-5900) · KPAC(서부 -51°C 비공개) · 우오리키/뮤추얼(-60°C 자가창고 → 수입업체 제휴 대상, 직접 임대 불가)
+            <strong style={{ color: 'var(--text-primary)' }}>보조·참고</strong> — FreezPak(서부 -60°C 표방·수산 특화 미확인·검증 中, ☎213-737-5900) · KPAC(서부 -51°C 비공개) · 우오리키/뮤추얼(-60°C 자가창고 → 수입업체 제휴 대상, 직접 임대 불가)<br />
+            <strong style={{ color: 'var(--text-primary)' }}>확장 후보</strong> — Americold 바인랜드 NJ(필라델피아·NY/NJ항 지원, 동부 최대급 · 사시미급 -60°C 여부 실사 필요) · 도요레이조(미쓰비시 냉동 자회사 · 글로벌 ULT 운영사)
+          </div>
+
+          {/* 전략 인텔리전스: 관세 이연 + 경쟁 비축 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem' }}>
+            <DollarSign size={18} color="#10b981" />
+            <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>전략 인텔리전스 — 관세 이연 & 공급 통제</h3>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+            {[
+              { rc: '#10b981', badge: '관세 전략', title: '보세창고·FTZ 관세 이연', body: '보세창고(Bonded) 최대 5년 · FTZ(자유무역지대) 무기한 관세 이연. 보세 상태로 재라벨·품질검사·재포장·재수출이 무관세로 가능하며, 보세↔FTZ 이전도 듀티를 트리거하지 않는다.', foot: 'ULT 재고를 보세·FTZ에 두면 듀티 납부를 출고 시점까지 이연해 현금흐름을 개선하고, 재수출분(일본·EU 재판매)은 미국 관세를 영구 회피한다.' },
+              { rc: '#f43f5e', badge: '경쟁 인텔', title: 'ULT 비축 = 공급 통제 무기', body: '미쓰비시(냉동 자회사 도요레이조)는 참다랑어를 -60°C 초저온에서 최대 2년 비축해 어종을 선점하고 공급·가격을 통제한다. ULT는 단순 비용이 아니라 시간을 사는 차익 자산이다.', foot: '신라교역도 성수기 저가 매입 → -60°C 비축 → 비수기 고가 출하의 캘린더 스프레드로 ULT 프리미엄을 상쇄하고 공급 협상력을 확보할 수 있다.' },
+            ].map((c, i) => (
+              <div key={i} className="ds-card" style={{ background: 'rgba(24,24,24,0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: `1px solid ${c.rc}33`, borderLeft: `3px solid ${c.rc}`, borderRadius: '8px', padding: '1.2rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span style={{ fontSize: '0.7rem', fontWeight: 800, color: c.rc, background: `${c.rc}1f`, padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.5px' }}>{c.badge}</span>
+                  <span style={{ fontSize: '1.0rem', fontWeight: 700, color: 'var(--text-primary)' }}>{c.title}</span>
+                </div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-primary)', lineHeight: 1.6, marginBottom: '10px' }}>{c.body}</div>
+                <div style={{ fontSize: '0.78rem', color: c.rc, lineHeight: 1.55, background: `${c.rc}12`, borderRadius: '6px', padding: '8px 10px' }}>💡 {c.foot}</div>
+              </div>
+            ))}
           </div>
 
           {/* US 위젯 차트 */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 560px), 1fr))', gap: '1.5rem' }}>
-            {widgets.filter((w: any) => ['us01', 'us02', 'us03'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
+            {widgets.filter((w: any) => ['us01', 'us02', 'us03', 'us04', 'us05', 'us06'].includes(w.id)).map((w: any) => renderWidgetCard(w, 'S3'))}
           </div>
         </section>
         )}

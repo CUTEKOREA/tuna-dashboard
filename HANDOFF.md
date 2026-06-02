@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧊 **2026-06-02 — /cold-storage 미국 ULT 섹션 6대 정보 보강** [CC]:
+> - **요청**: "6. 미국 초저온(ULT)" 섹션에 추가 정보. 리서치(WebSearch 3건: ULT 보관료·시설·FTZ)로 C레벨 의사결정 갭 6개 도출 후 전부 구현.
+> - **신규 위젯 3개 (`ColdStorageDashboard.tsx` widgets 배열 us04~us06)**: ① us04 ULT 보관 단가($/팔레트·월 — 일반 $12 vs ULT ~$50, 온도 티어링 전략) ② us05 앵커 항만 근접성(퍼스앰보이 13km·라콜드 32km·바인랜드 60km) ③ us06 저장온도별 사시미 보관한계(-18°C 0.5개월 vs -60°C 24개월, 미쓰비시 2년 비축 근거). 모두 Bar·SIT/TAK·source·STATIC, smartFormat ฿충돌 회피 키명.
+> - **전략 카드 2개 (인라인 JSX)**: ② 보세창고·FTZ 관세 이연(5년/무기한, 재수출 면세) · ④ ULT=공급통제 무기(미쓰비시 도요레이조 -60°C 2년 비축 → 캘린더 스프레드). 앵커카드 패턴 재사용.
+> - **노트 확장 (⑥)**: Americold 바인랜드 NJ + 도요레이조 확장 후보 추가.
+> - **데이터 정직성**: ULT 요율은 공개 벤치마크+프리미엄 추정(직접견적 필요 명시), 항만거리는 주소기반 근사, 온도별 보관한계는 학술·업계 컨센서스+미쓰비시 사례. mock 아님.
+> - **검증**: us04~06은 API 미존재시 인라인 data 폴백(안전), `tsc` 클린, L-01 영문제목 0, `npm run build` ✓ 140/140. 위젯 24→27개. **로컬 반영, 배포 대기**(명시 요청 시).
+
 > 🧭 **2026-06-02 — /cold-storage 밸류체인 네비게이터 신설** [CC]:
 > - **요청**: cold-storage 페이지도 sashimi 등 다른 페이지처럼 클릭형 밸류체인 네비게이터 추가.
 > - **구현 (`components/ColdStorageDashboard.tsx`)**: 모듈레벨 `SECTIONS` 6개 정의(입고·수급/보관·가동률/물류·통관/수익성·투자/품질과학/미국 ULT, 각 Lucide 아이콘+색상+desc) + `activeSection` state. 헤더·6 KPI 아래에 sashimi 패턴 glassmorphism 네비게이터 바 삽입. 기존 6개 `<section>`(이미 S1~S5+US로 그룹됨)을 각각 `{activeSection === 'sX' && (...)}`로 조건부 렌더 래핑.
