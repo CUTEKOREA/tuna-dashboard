@@ -45,7 +45,7 @@ export default function GensanCanneryStatusCharts() {
           <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-                <TermTooltip term="필리핀 젠산 CANNERY 일 생산량" description="각 가공 공장(Cannery)이 하루에 생산할 수 있는 최대 가능 생산량(CAPA) 대비 실제 오늘 가동된 일 생산량 실적(MT)을 보여줍니다." />
+                <TermTooltip term="필리핀 젠산 공장 일 생산량" description="각 가공 공장(Cannery)이 하루에 생산할 수 있는 최대 가능 생산량(CAPA) 대비 실제 오늘 가동된 일 생산량 실적(MT)을 보여줍니다." />
               </h2>
               <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
                 필리핀 제너럴 산토스(Gensan) 가공 공장 CAPA 대비 실적 (Metric Tons)
@@ -71,14 +71,15 @@ export default function GensanCanneryStatusCharts() {
                 <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={100} />
                 <Tooltip 
                   cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                  contentStyle={{ backgroundColor: '#0F172A', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)' }}
+                  contentStyle={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
                   itemStyle={{ fontSize: '13px' }}
                   labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
                   formatter={(value: any) => [`${Number(value).toLocaleString()} 톤`, undefined]}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
-                <Bar dataKey="prodCurrent" name="일 생산량" fill="var(--color-success)" radius={[0, 4, 4, 0]} barSize={12} />
+                <defs><linearGradient id="gradProdG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#10b981" stopOpacity={0.95} /><stop offset="100%" stopColor="#34d399" stopOpacity={0.65} /></linearGradient></defs>
+                <Bar dataKey="prodMax" name="최대 가능 생산량" fill="rgba(255,255,255,0.07)" radius={[0, 5, 5, 0]} barSize={12} />
+                <Bar dataKey="prodCurrent" name="일 생산량" fill="url(#gradProdG)" radius={[0, 5, 5, 0]} barSize={12} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>
@@ -97,7 +98,7 @@ export default function GensanCanneryStatusCharts() {
           <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-                <TermTooltip term="필리핀 젠산 CANNERY 원어 보관량" description="각 가공 공장의 냉동창고 보유 최대 CAPA 대비 현재 냉동 참치(원어) 재고량을 보여줍니다." />
+                <TermTooltip term="필리핀 젠산 공장 원어 보관량" description="각 가공 공장의 냉동창고 보유 최대 CAPA 대비 현재 냉동 참치(원어) 재고량을 보여줍니다." />
               </h2>
               <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
                 필리핀 제너럴 산토스(Gensan) 가공 공장 보관창고 CAPACITY 대비 확보 현황
@@ -130,17 +131,18 @@ export default function GensanCanneryStatusCharts() {
                 <YAxis dataKey="name" type="category" stroke="var(--text-main)" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 'bold' }} width={100} />
                 <Tooltip 
                   cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                  contentStyle={{ backgroundColor: '#0F172A', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)' }}
+                  contentStyle={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
                   itemStyle={{ fontSize: '13px' }}
                   labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
                   formatter={(value: any, name: any, props: any) => {
-                    const extra = name === "현 보관량" ? ` (Processing: ${props.payload.procDays} Days)` : '';
+                    const extra = name === "현 보관량" ? ` (가공 ${props.payload.procDays}일)` : '';
                     return [`${Number(value).toLocaleString()} 톤${extra}`, undefined];
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.1)" radius={[0, 4, 4, 0]} barSize={12} />
-                <Bar dataKey="storeCurrent" name="현 보관량" fill="var(--color-info)" radius={[0, 4, 4, 0]} barSize={12} />
+                <defs><linearGradient id="gradStoreG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#38bdf8" stopOpacity={0.95} /><stop offset="100%" stopColor="#0ea5e9" stopOpacity={0.6} /></linearGradient></defs>
+                <Bar dataKey="storeMax" name="최대 가능 보관량" fill="rgba(255,255,255,0.07)" radius={[0, 5, 5, 0]} barSize={12} />
+                <Bar dataKey="storeCurrent" name="현 보관량" fill="url(#gradStoreG)" radius={[0, 5, 5, 0]} barSize={12} />
               </BarChart>
             </SafeResponsiveContainer>
           </div>

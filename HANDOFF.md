@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🎨 **2026-06-03 — /logistics 나머지 4개 위젯 디자인 향상 (시범 확대 완료)** [CC]:
+> - TraderStatus 시범 승인 후 나머지 4개에 동일 패턴 적용. **데이터·수치 무수정, 시각 레이어+한글화만.**
+> - **CanneryStatusCharts·GensanCanneryStatusCharts**: 현재값 막대 그라디언트(green/blue)·track 미세화·라운드 + 글래스 툴팁 + 한글화(CANNERY→공장·Value Chain→밸류체인·E2E 순마진·가공 N일).
+> - **CarrierUnloadingStatus**: 테이블 헤더 그라디언트·행 hover·입항카드 hover lift + 전면 한글화(제목·헤더 구분/척수/운반선·합계·도착예정·날짜 5월N일·DIRECT→직거래). 운반선명·MT 유지.
+> - **ReeferMovement**: 라인 그라디언트 stroke + 글래스 툴팁 + 한글화(제목·체선율 지수·평균 대기 일수·묘박지 대기 선박·운반선 이동 스케줄·대기 추세·N일).
+> - 데이터 보존 확인(THAI UNION 1300/73000·Gentuna 800/600·Carrier 55,384/19,210 등). `tsc`클린·`npm run build` ✓(에러0). /logistics 5개 위젯 디자인 향상 **5/5 완료**.
+
 > 🎨 **2026-06-03 — /logistics 기존 위젯 디자인 향상 (TraderStatus 시범)** [CC]:
 > - 직전 인포그래픽 추가물(스파인·KPI·지도)은 '부정확한 콘텐츠 추가'라 사용자 요청으로 ae3ab48에서 전량 삭제·원본 복원. 진짜 요청=기존 위젯 시각 디자인 향상.
 > - 사용자 선택: 1개 위젯(TraderStatus) 시범 먼저 + 한글화 포함. **데이터·수치 무수정, 시각 레이어만.**
