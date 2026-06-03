@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🎨 **2026-06-03 — /logistics 기존 위젯 디자인 향상 (TraderStatus 시범)** [CC]:
+> - 직전 인포그래픽 추가물(스파인·KPI·지도)은 '부정확한 콘텐츠 추가'라 사용자 요청으로 ae3ab48에서 전량 삭제·원본 복원. 진짜 요청=기존 위젯 시각 디자인 향상.
+> - 사용자 선택: 1개 위젯(TraderStatus) 시범 먼저 + 한글화 포함. **데이터·수치 무수정, 시각 레이어만.**
+> - `TraderStatus.tsx`: ① 막대 그라디언트(linearGradient) ② 라운드·barCategoryGap ③ 글래스 툴팁(blur·green glow·MT포맷) ④ 축/그리드 폴리시 ⑥ 스탯카드 상단보더·컬러점·hover lift ⑦ 막대 진입·카드 transition. 한글화: 월명 1~5월·Direct deal→직거래·Maldives→몰디브·제목(고유명 FCF/ITOCHU/TRI MARINE·MT 유지). 수치 100% 보존(99,043·239,274 등). build ✓.
+> - **다음 단계**: 방향 확인 후 나머지 4개(Cannery·Gensan·Carrier·Reefer)에 동일 적용 + 가동률 게이지화.
+
 > 🎨 **2026-06-03 — /logistics 인포그래픽 디자인 업그레이드 (플로우 스파인)** [CC]:
 > - 요청: /logistics 그래픽을 '한 장면 인포그래픽'처럼. 사용자 선택=플로우 스파인 풀구현 + 현 상태 위 작업.
 > - `LogisticsDashboard.tsx`에 그래픽 레이어만 추가(데이터·telemetry 무수정): ① 밸류체인 플로우 스파인(어획→운반선→항만→가공→트레이더→수출 6노드, 흐르는 점선 애니메이션 flowMove·부유 floatY·클릭 스크롤 sec-trader/processing/logistics 앵커) ② 히어로 KPI 밴드(6단계·가공허브3·양륙항2·LIVE, CountUp) ③ 글래스모피즘 장면 컨테이너+배경 글로우 ④ 시그니처 그라디언트 대제목.
