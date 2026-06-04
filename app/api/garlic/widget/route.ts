@@ -33,8 +33,12 @@ export async function GET(request: Request) {
     }
 
     const filename = fileMap[id];
-    const filePath = path.join(process.cwd(), 'data', filename);
-    
+    // public/data/ 우선 (Vercel 배포 호환), data/ 폴백 (로컬). 기존 data/ 단독은 .gitignore /data/ 로 미배포 → 프로덕션 빈 위젯이었음.
+    let filePath = path.join(process.cwd(), 'public', 'data', filename);
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(process.cwd(), 'data', filename);
+    }
+
     if (!fs.existsSync(filePath)) {
       return NextResponse.json({ error: `File not found: ${filename}` }, { status: 404 });
     }
