@@ -1,16 +1,82 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
 
 // 웹훅 보안을 위한 커스텀 토큰 
-// SendGrid 등에서 webhook URL 설정 시: https://.../api/webhooks/unloading?token=YOUR_SECRET_TOKEN
 const WEBHOOK_SECRET = process.env.UNLOADING_WEBHOOK_SECRET || 'secret123';
 
-// Supabase 클라이언트 (Vercel 환경 변수 사용)
-// 서버 사이드이므로 SERVICE_ROLE_KEY를 사용하여 RLS를 우회할 수 있습니다. (설정된 경우)
-// 없으면 ANON_KEY를 사용하되 RLS 정책으로 보호해야 합니다.
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Supabase 클라이언트 (Vercel 환경 변수 사용 및 trailing newline 제거)
+let globalSupabase: any = null;
+
+function getSupabaseClient() {
+  if (globalSupabase) return globalSupabase;
+  const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const rawKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!rawUrl || !rawKey) return null;
+  const supabaseUrl = rawUrl.trim().replace(/\\n$/, '').replace(/\n$/, '');
+  const supabaseKey = rawKey.trim().replace(/\\n$/, '').replace(/\n$/, '');
+  globalSupabase = createClient(supabaseUrl, supabaseKey);
+  return globalSupabase;
+}
+
+const LOCAL_DB_PATH = path.join(process.cwd(), 'public/data/unloading/local_db.json');
+
+async function getLocalDb() {
+  if (fs.existsSync(LOCAL_DB_PATH)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8'));
+      if (data && data.unloading_vessels && data.unloading_reports && data.unloading_species) {
+        return data;
+      }
+    } catch {
+      // Fall through to seed
+    }
+  }
+
+  // Fetch seed data from remote DB (since select policy allows public read)
+  const supabase = getSupabaseClient();
+  if (!supabase) {
+    console.warn("Supabase client not initialized. Seeding local DB with empty arrays.");
+    return {
+      unloading_vessels: [],
+      unloading_reports: [],
+      unloading_species: []
+    };
+  }
+
+  const { data: vessels } = await supabase.from('unloading_vessels').select('*');
+  const { data: reports } = await supabase.from('unloading_reports').select('*');
+  const { data: species } = await supabase.from('unloading_species').select('*');
+
+  const db = {
+    unloading_vessels: vessels || [],
+    unloading_reports: reports || [],
+    unloading_species: species || []
+  };
+
+  // Baseline correction for sein-phoenix
+  db.unloading_species.forEach((s: any) => {
+    if (s.vessel_id === 'sein-phoenix') {
+      if (s.species_id === 'SJ') {
+        s.actual_amount = 2022.490;
+      } else if (s.species_id === 'YF') {
+        s.actual_amount = 83.720;
+      }
+    }
+  });
+
+  saveLocalDb(db);
+  return db;
+}
+
+function saveLocalDb(db: any) {
+  const dir = path.dirname(LOCAL_DB_PATH);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(db, null, 2), 'utf8');
+}
 
 export async function POST(req: Request) {
   try {
@@ -23,7 +89,6 @@ export async function POST(req: Request) {
     // 2. 이메일 데이터 추출 (SendGrid Inbound Parse는 multipart/form-data 형식으로 전송됨)
     const formData = await req.formData();
     const textBody = formData.get('text') as string;
-    const subject = formData.get('subject') as string;
     
     if (!textBody) {
       return NextResponse.json({ error: 'No text body found in email' }, { status: 400 });
@@ -39,8 +104,6 @@ export async function POST(req: Request) {
     const holdsMatch = [...textBody.matchAll(/([A-Z/]+)\(#[^)]+\)/g)].map(m => m[0]);
     const uniqueHolds = [...new Set(holdsMatch)];
     
-    const cmcMatch = textBody.match(/CMC\s*([\d,\.]+)\s*MT/);
-    const tumMatch = textBody.match(/TUM\s*([\d,\.]+)\s*MT/);
     const tomorrowMatch = textBody.match(/명일.*약\s*([\d,]+)\s*톤/);
     
     const qualitySectionMatch = textBody.match(/제품상태:([\s\S]*?)5\.\s*명일/);
@@ -55,59 +118,332 @@ export async function POST(req: Request) {
     }
 
     const reportDate = dateMatch[1];
-    // 이메일 선박명 매핑 (예: SEIN PHOENIX -> sein-phoenix)
     const vesselRaw = vesselMatch[1].trim();
-    const vesselId = vesselRaw.toLowerCase().replace(/\s+/g, '-');
+    
+    // vesselId 정규화: 소문자화, 공백을 하이픈으로, m/v- 이나 mv- 접두사 제거
+    const vesselId = vesselRaw.toLowerCase().trim()
+      .replace(/^m\/v\s*-?\s*|^mv\s*-?\s*/, '')
+      .replace(/\s+/g, '-');
 
     const dailyAmount = dailyMatch ? parseFloat(dailyMatch[1].replace(/,/g, '')) : 0;
     const cumAmount = cumMatch ? parseFloat(cumMatch[1].replace(/,/g, '')) : 0;
     const remAmount = remMatch ? parseFloat(remMatch[1].replace(/,/g, '')) : 0;
     
     const workTime = timeMatch ? `${timeMatch[1]} ~ ${timeMatch[2]}` : '-';
-    let targetHolds = uniqueHolds.length > 0 ? uniqueHolds.join(', ') : '-';
+    const targetHolds = uniqueHolds.length > 0 ? uniqueHolds.join(', ') : '-';
     
     // 추가 퀄리티 노트에 내일 예정 물량 추가
     if (tomorrowMatch) {
        qualityNotes += ` 명일(${new Date().getMonth()+1}/${new Date().getDate()+1}) 약 ${tomorrowMatch[1]}톤 하역 진행 예정.`;
     }
 
-    // 4. Supabase DB 저장
-    // 먼저 vessel이 존재하는지 확인하거나 upsert (vessel_id 기준으로)
-    // 참고: 실제 운영에서는 vessel 데이터를 미리 등록해두는 것을 권장합니다.
-    
-    // 4-1. 일일 리포트 저장
-    const { data: reportData, error: reportError } = await supabase
+    // 4. DB 저장 (로컬 JSON/Supabase 하이브리드)
+    const useLocalDb = !getSupabaseClient() || (!process.env.SUPABASE_SERVICE_ROLE_KEY && fs.existsSync(LOCAL_DB_PATH));
+
+    if (useLocalDb) {
+      const db = await getLocalDb();
+
+      // 1. Vessel upsert
+      let existingVessel = db.unloading_vessels.find((v: any) => v.vessel_id === vesselId);
+      if (!existingVessel) {
+        existingVessel = {
+          vessel_id: vesselId,
+          name: vesselRaw,
+          location: 'BANGKOK, THAILAND',
+          buyer: 'FCF CO.,LTD',
+          status: '하역중 (In Progress)',
+          reported_total: cumAmount + remAmount,
+          date_range: '2026.05.23 ~ 진행중',
+          mother_vessel: '-'
+        };
+        db.unloading_vessels.push(existingVessel);
+      } else {
+        existingVessel.reported_total = cumAmount + remAmount;
+        existingVessel.status = '하역중 (In Progress)';
+      }
+
+      // 2. Report upsert
+      let existingReport = db.unloading_reports.find((r: any) => r.vessel_id === vesselId && r.report_date === reportDate);
+      const isNewReport = !existingReport;
+      if (isNewReport) {
+        existingReport = {
+          vessel_id: vesselId,
+          report_date: reportDate,
+          work_time: workTime,
+          target_holds: targetHolds,
+          daily_amount: dailyAmount,
+          cumulative_amount: cumAmount,
+          quality_notes: qualityNotes
+        };
+        db.unloading_reports.push(existingReport);
+      } else {
+        existingReport.work_time = workTime;
+        existingReport.target_holds = targetHolds;
+        existingReport.daily_amount = dailyAmount;
+        existingReport.cumulative_amount = cumAmount;
+        existingReport.quality_notes = qualityNotes;
+      }
+
+      // 3. Species upsert
+      const speciesList = ['UC', 'TUM', 'CMC', 'ISA', 'MMP', 'AAI', 'SJ', 'YF'];
+      const parsedSpecies: { [key: string]: number } = {};
+      for (const sp of speciesList) {
+        const regex = new RegExp(`\\b${sp}\\s*([\\d,\\.]+)\\s*(?:MT|톤)?`, 'i');
+        const match = textBody.match(regex);
+        if (match) {
+          parsedSpecies[sp] = parseFloat(match[1].replace(/,/g, ''));
+        }
+      }
+
+      const speciesMapping: { [key: string]: string } = {
+        TUM: 'YF',
+        YF: 'YF',
+        UC: 'SJ',
+        CMC: 'SJ',
+        ISA: 'SJ',
+        MMP: 'SJ',
+        AAI: 'SJ',
+        SJ: 'SJ'
+      };
+
+      const dailySpeciesAmounts: { [key: string]: number } = {};
+      for (const [sp, amt] of Object.entries(parsedSpecies)) {
+        const targetId = speciesMapping[sp.toUpperCase()];
+        if (targetId) {
+          dailySpeciesAmounts[targetId] = (dailySpeciesAmounts[targetId] || 0) + amt;
+        }
+      }
+
+      if (isNewReport) {
+        for (const [targetId, dailyAmt] of Object.entries(dailySpeciesAmounts)) {
+          if (dailyAmt > 0) {
+            let existingSpec = db.unloading_species.find((s: any) => s.vessel_id === vesselId && s.species_id === targetId);
+            if (existingSpec) {
+              existingSpec.actual_amount = (Number(existingSpec.actual_amount) || 0) + dailyAmt;
+            } else {
+              const speciesName = targetId === 'SJ' ? 'Skipjack' : 'Yellowfin';
+              let reportedAmount = 0;
+              if (vesselId === 'sein-phoenix') {
+                reportedAmount = targetId === 'SJ' ? 6646.000 : 309.000;
+              }
+              existingSpec = {
+                vessel_id: vesselId,
+                species_id: targetId,
+                species_name: speciesName,
+                reported_amount: reportedAmount,
+                actual_amount: dailyAmt
+              };
+              db.unloading_species.push(existingSpec);
+            }
+          }
+        }
+      }
+
+      saveLocalDb(db);
+      return NextResponse.json({ success: true, parsed: { vesselId, reportDate, dailyAmount } });
+    }
+
+    const supabase = getSupabaseClient();
+    if (!supabase) {
+      console.error("Supabase client not initialized (missing environment variables)");
+      return NextResponse.json({ error: 'Supabase client not initialized' }, { status: 500 });
+    }
+
+    // 4-1. Vessel 존재 여부 확인 및 upsert
+    const { data: existingVessel, error: vFetchErr } = await supabase
+      .from('unloading_vessels')
+      .select('*')
+      .eq('vessel_id', vesselId)
+      .maybeSingle();
+
+    if (vFetchErr) {
+      console.error("Error fetching vessel:", vFetchErr);
+    }
+
+    if (!existingVessel) {
+      const { error: vInsertErr } = await supabase
+        .from('unloading_vessels')
+        .insert({
+          vessel_id: vesselId,
+          name: vesselRaw,
+          location: 'BANGKOK, THAILAND',
+          buyer: 'FCF CO.,LTD',
+          status: '하역중 (In Progress)',
+          reported_total: cumAmount + remAmount,
+          date_range: '2026.05.23 ~ 진행중'
+        });
+      if (vInsertErr) {
+        console.error("Error inserting vessel:", vInsertErr);
+      }
+    } else {
+      const { error: vUpdateErr } = await supabase
+        .from('unloading_vessels')
+        .update({
+          reported_total: cumAmount + remAmount,
+          status: '하역중 (In Progress)'
+        })
+        .eq('vessel_id', vesselId);
+      if (vUpdateErr) {
+        console.error("Error updating vessel:", vUpdateErr);
+      }
+    }
+
+    // 4-2. 이미 해당 날짜의 일일 리포트가 존재하는지 확인 (멱등성 보장)
+    const { data: existingReport, error: rFetchErr } = await supabase
       .from('unloading_reports')
-      .upsert({
-        vessel_id: vesselId,
-        report_date: reportDate,
-        work_time: workTime,
-        target_holds: targetHolds,
-        daily_amount: dailyAmount,
-        cumulative_amount: cumAmount,
-        quality_notes: qualityNotes
-      }, { onConflict: 'vessel_id, report_date' })
-      .select();
+      .select('*')
+      .eq('vessel_id', vesselId)
+      .eq('report_date', reportDate)
+      .maybeSingle();
+
+    if (rFetchErr) {
+      console.error("Error checking existing report:", rFetchErr);
+    }
+
+    const isNewReport = !existingReport;
+
+    let reportError;
+    if (isNewReport) {
+      const { error } = await supabase
+        .from('unloading_reports')
+        .insert({
+          vessel_id: vesselId,
+          report_date: reportDate,
+          work_time: workTime,
+          target_holds: targetHolds,
+          daily_amount: dailyAmount,
+          cumulative_amount: cumAmount,
+          quality_notes: qualityNotes
+        });
+      reportError = error;
+    } else {
+      const { error } = await supabase
+        .from('unloading_reports')
+        .update({
+          work_time: workTime,
+          target_holds: targetHolds,
+          daily_amount: dailyAmount,
+          cumulative_amount: cumAmount,
+          quality_notes: qualityNotes
+        })
+        .eq('vessel_id', vesselId)
+        .eq('report_date', reportDate);
+      reportError = error;
+    }
 
     if (reportError) {
       console.error("Supabase insert error:", reportError);
       return NextResponse.json({ error: reportError.message }, { status: 500 });
     }
 
-    // 4-2. Vessel 요약 정보 업데이트 (actual_total)
-    await supabase
-      .from('unloading_vessels')
-      .update({ 
-        reported_total: cumAmount + remAmount, // 하역누계 + 잔량 = 총 적재량
-      })
-      .eq('vessel_id', vesselId);
+    // 4-3. Species 업데이트 (UC, TUM, CMC, ISA, MMP, AAI, SJ, YF 파싱 및 매핑)
+    const speciesList = ['UC', 'TUM', 'CMC', 'ISA', 'MMP', 'AAI', 'SJ', 'YF'];
+    const parsedSpecies: { [key: string]: number } = {};
+    for (const sp of speciesList) {
+      const regex = new RegExp(`\\b${sp}\\s*([\\d,\\.]+)\\s*(?:MT|톤)?`, 'i');
+      const match = textBody.match(regex);
+      if (match) {
+        parsedSpecies[sp] = parseFloat(match[1].replace(/,/g, ''));
+      }
+    }
 
-    // 4-3. Species 업데이트 (CMC=SJ, TUM=YF 가정)
-    if (cmcMatch) {
-      // 기존 값을 덮어쓰거나 누적을 업데이트하는 로직 (단순화를 위해 여기서는 처리 생략 또는 직접 구현)
-      // Excel처럼 정확한 SJ 누계를 얻으려면 추가 로직이 필요하지만, 
-      // 이메일에 포함된 일일 CMC 량을 DB 어딘가에 누적해야 합니다.
-      // (Option C 1단계 완료)
+    const speciesMapping: { [key: string]: string } = {
+      TUM: 'YF',
+      YF: 'YF',
+      UC: 'SJ',
+      CMC: 'SJ',
+      ISA: 'SJ',
+      MMP: 'SJ',
+      AAI: 'SJ',
+      SJ: 'SJ'
+    };
+
+    const dailySpeciesAmounts: { [key: string]: number } = {};
+    for (const [sp, amt] of Object.entries(parsedSpecies)) {
+      const targetId = speciesMapping[sp.toUpperCase()];
+      if (targetId) {
+        dailySpeciesAmounts[targetId] = (dailySpeciesAmounts[targetId] || 0) + amt;
+      }
+    }
+
+    // 4-4. 신규 리포트인 경우에만 누계(actual_amount) 업데이트
+    if (isNewReport) {
+      // sein-phoenix의 최초 baseline 보정 (1902.23 -> 2022.49, 203.98 -> 83.72)
+      if (vesselId === 'sein-phoenix') {
+        const { data: specRecords } = await supabase
+          .from('unloading_species')
+          .select('*')
+          .eq('vessel_id', 'sein-phoenix');
+
+        if (specRecords) {
+          const sjSpec = specRecords.find((s: any) => s.species_id === 'SJ');
+          const yfSpec = specRecords.find((s: any) => s.species_id === 'YF');
+          
+          if (sjSpec && Number(sjSpec.actual_amount) === 1902.23) {
+            await supabase
+              .from('unloading_species')
+              .update({ actual_amount: 2022.49 })
+              .eq('vessel_id', 'sein-phoenix')
+              .eq('species_id', 'SJ');
+          }
+          if (yfSpec && Number(yfSpec.actual_amount) === 203.98) {
+            await supabase
+              .from('unloading_species')
+              .update({ actual_amount: 83.72 })
+              .eq('vessel_id', 'sein-phoenix')
+              .eq('species_id', 'YF');
+          }
+        }
+      }
+
+      // 각 어종별로 누적치 업데이트 또는 새로 삽입
+      for (const [targetId, dailyAmt] of Object.entries(dailySpeciesAmounts)) {
+        if (dailyAmt > 0) {
+          const { data: existingSpec, error: sFetchErr } = await supabase
+            .from('unloading_species')
+            .select('*')
+            .eq('vessel_id', vesselId)
+            .eq('species_id', targetId)
+            .maybeSingle();
+
+          if (sFetchErr) {
+            console.error(`Error fetching species ${targetId}:`, sFetchErr);
+            continue;
+          }
+
+          if (existingSpec) {
+            const newActual = (Number(existingSpec.actual_amount) || 0) + dailyAmt;
+            const { error: sUpdateErr } = await supabase
+              .from('unloading_species')
+              .update({ actual_amount: newActual })
+              .eq('vessel_id', vesselId)
+              .eq('species_id', targetId);
+
+            if (sUpdateErr) {
+              console.error(`Error updating species ${targetId}:`, sUpdateErr);
+            }
+          } else {
+            const speciesName = targetId === 'SJ' ? 'Skipjack' : 'Yellowfin';
+            let reportedAmount = 0;
+            if (vesselId === 'sein-phoenix') {
+              reportedAmount = targetId === 'SJ' ? 6646.000 : 309.000;
+            }
+            const { error: sInsertErr } = await supabase
+              .from('unloading_species')
+              .insert({
+                vessel_id: vesselId,
+                species_id: targetId,
+                species_name: speciesName,
+                reported_amount: reportedAmount,
+                actual_amount: dailyAmt
+              });
+
+            if (sInsertErr) {
+              console.error(`Error inserting species ${targetId}:`, sInsertErr);
+            }
+          }
+        }
+      }
     }
 
     return NextResponse.json({ success: true, parsed: { vesselId, reportDate, dailyAmount } });

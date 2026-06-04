@@ -1,0 +1,167 @@
+{
+  "unloading_vessels": [
+    {
+      "id": "1af1e709-13c6-49ac-ae5c-8f8b027db408",
+      "vessel_id": "sein-phoenix",
+      "name": "M/V SEIN PHOENIX",
+      "location": "BANGKOK, THAILAND",
+      "buyer": "FCF CO.,LTD",
+      "mother_vessel": "-",
+      "status": "하역중 (In Progress)",
+      "reported_total": 6955,
+      "date_range": "2026.05.23 ~ 진행중",
+      "created_at": "2026-06-01T22:42:57.072021+00:00",
+      "updated_at": "2026-06-01T22:42:57.072021+00:00"
+    }
+  ],
+  "unloading_reports": [
+    {
+      "id": "a9a8f1f8-a2cf-47bc-98de-54fb37511e8d",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/23",
+      "work_time": "08:10 ~ 20:30",
+      "target_holds": "S/HAR(#2-A)",
+      "daily_amount": 146.89,
+      "cumulative_amount": 146.89,
+      "quality_notes": "어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "44b0096e-1f3e-4211-9f20-8d35ee0802d7",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/24",
+      "work_time": "-",
+      "target_holds": "-",
+      "daily_amount": 0,
+      "cumulative_amount": 146.89,
+      "quality_notes": "일요일 휴무.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "fdaed80b-40e2-499a-a43d-8a9ad6c55820",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/25",
+      "work_time": "08:10 ~ 19:00",
+      "target_holds": "S/HAR(#2-A), S/EXP(#4-A)",
+      "daily_amount": 216.09,
+      "cumulative_amount": 362.98,
+      "quality_notes": "어창 온도 -21.0℃ ~ -24.0℃. 외관상태 양호.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "a374d650-bfb2-4e7d-b752-78db11f44710",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/26",
+      "work_time": "08:00 ~ 20:30",
+      "target_holds": "S/SPR(#4-A, #4-B)",
+      "daily_amount": 224.69,
+      "cumulative_amount": 587.67,
+      "quality_notes": "어창 개방 측정온도 -24.0℃ ~ -26.0℃. 외관상태 및 색택 전반적으로 양호.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "5e45b5a4-81cc-40d0-83d4-fb43b1764f75",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/27",
+      "work_time": "08:10 ~ 20:00",
+      "target_holds": "S/SPR(#1-A, #4-B), S/HAR(#2-A)",
+      "daily_amount": 239.99,
+      "cumulative_amount": 827.66,
+      "quality_notes": "어창 개방 측정온도 -20.0℃ ~ -24.0℃. 외관상태 및 색택 전반적으로 양호.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "4141957d-ea0e-4c90-8f13-3b49d95dd2d2",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/28",
+      "work_time": "08:10 ~ 23:00",
+      "target_holds": "S/SPR(#1-A, #4-B), MOAKONA(#2-A, #2-B)",
+      "daily_amount": 287.94,
+      "cumulative_amount": 1115.6,
+      "quality_notes": "S/SPR: 어창 개방 측정온도 -20.0℃ ~ -24.0℃. MOAKONA: -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "11f2b24a-7a67-410c-a6a0-6bb2f0225af5",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/29",
+      "work_time": "08:30 ~ 21:00",
+      "target_holds": "MOAKONA(#2-B), S/SPR(#4-B)",
+      "daily_amount": 318.11,
+      "cumulative_amount": 1433.71,
+      "quality_notes": "S/SPR(#4-B): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. MOAKONA(#2-B): -22.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/30) 약 310톤 하역 진행 예정.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "cb5577da-1f6e-41c2-8f7a-fc4baf231b4b",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/30",
+      "work_time": "08:10 ~ 19:00",
+      "target_holds": "S/SPR(#1-A, #4-B, #4-C)",
+      "daily_amount": 307.41,
+      "cumulative_amount": 1741.12,
+      "quality_notes": "어창 개방 측정온도 -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/31) 약 300톤 하역 진행 예정.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "201da328-8507-4fa2-95cc-dc13c3b0144b",
+      "vessel_id": "sein-phoenix",
+      "report_date": "5/31",
+      "work_time": "08:10 ~ 13:00",
+      "target_holds": "MOAKONA(#2-B)",
+      "daily_amount": 93.56,
+      "cumulative_amount": 1834.68,
+      "quality_notes": "어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/1) 약 300톤 하역 진행 예정.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "7681717d-304e-42d7-a909-67f58e9df7db",
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/1",
+      "work_time": "08:20 ~ 20:20",
+      "target_holds": "MOAKONA(#2-B), MOAMARI(#4-C)",
+      "daily_amount": 271.53,
+      "cumulative_amount": 2106.21,
+      "quality_notes": "MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -20.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/2)은 약 250톤 하역 진행 예정.",
+      "created_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/2",
+      "work_time": "08:20 ~ 14:00",
+      "target_holds": "S/SPR(#1-A), MOAMARI(#4-C)",
+      "daily_amount": 198.78,
+      "cumulative_amount": 2304.99,
+      "quality_notes": "S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호.MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 235톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/3",
+      "work_time": "08:10 ~ 18:40",
+      "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
+      "daily_amount": 236.14,
+      "cumulative_amount": 2541.13,
+      "quality_notes": "S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호.MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 330톤 하역 진행 예정."
+    }
+  ],
+  "unloading_species": [
+    {
+      "id": "a23c0558-9eca-4283-badc-9b8795e8030d",
+      "vessel_id": "sein-phoenix",
+      "species_id": "SJ",
+      "species_name": "Skipjack",
+      "reported_amount": 6646,
+      "actual_amount": 2398.5299999999997,
+      "updated_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "id": "d596a051-506a-409c-a9a6-ee84f91ff127",
+      "vessel_id": "sein-phoenix",
+      "species_id": "YF",
+      "species_name": "Yellowfin",
+      "reported_amount": 309,
+      "actual_amount": 142.6,
+      "updated_at": "2026-06-01T22:42:57.072021+00:00"
+    }
+  ]
+}

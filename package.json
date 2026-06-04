@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "echo 'Skipping lint'"
+    "lint": "echo 'Skipping lint'",
+    "simulate": "node scripts/simulate_webhooks.js"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",

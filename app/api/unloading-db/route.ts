@@ -2,21 +2,62 @@ export const dynamic = 'force-dynamic';
 
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+let globalSupabase: any = null;
+
+function getSupabaseClient() {
+  if (globalSupabase) return globalSupabase;
+  const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const rawKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!rawUrl || !rawKey) return null;
+  const supabaseUrl = rawUrl.trim().replace(/\\n$/, '').replace(/\n$/, '');
+  const supabaseKey = rawKey.trim().replace(/\\n$/, '').replace(/\n$/, '');
+  globalSupabase = createClient(supabaseUrl, supabaseKey);
+  return globalSupabase;
+}
+
+const LOCAL_DB_PATH = path.join(process.cwd(), 'public/data/unloading/local_db.json');
 
 export async function GET() {
   try {
-    const { data: vessels, error: vErr } = await supabase.from('unloading_vessels').select('*');
-    if (vErr) throw vErr;
-    
-    const { data: reports, error: rErr } = await supabase.from('unloading_reports').select('*').order('report_date', { ascending: true });
-    if (rErr) throw rErr;
+    let vessels: any[] = [];
+    let reports: any[] = [];
+    let species: any[] = [];
 
-    const { data: species, error: sErr } = await supabase.from('unloading_species').select('*');
-    if (sErr) throw sErr;
+    const useLocalDb = !getSupabaseClient() || (!process.env.SUPABASE_SERVICE_ROLE_KEY && fs.existsSync(LOCAL_DB_PATH));
+    if (useLocalDb) {
+      try {
+        const db = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8'));
+        vessels = db.unloading_vessels || [];
+        reports = db.unloading_reports || [];
+        species = db.unloading_species || [];
+        
+        // Sort reports ascending by report_date
+        reports.sort((a, b) => a.report_date.localeCompare(b.report_date));
+      } catch {
+        // Fallback
+      }
+    }
+
+    if (vessels.length === 0) {
+      const supabase = getSupabaseClient();
+      if (!supabase) {
+        throw new Error('Supabase client not initialized (missing environment variables)');
+      }
+      const { data: vData, error: vErr } = await supabase.from('unloading_vessels').select('*');
+      if (vErr) throw vErr;
+      vessels = vData || [];
+      
+      const { data: rData, error: rErr } = await supabase.from('unloading_reports').select('*').order('report_date', { ascending: true });
+      if (rErr) throw rErr;
+      reports = rData || [];
+
+      const { data: sData, error: sErr } = await supabase.from('unloading_species').select('*');
+      if (sErr) throw sErr;
+      species = sData || [];
+    }
 
     const mergedData: any = {};
 
