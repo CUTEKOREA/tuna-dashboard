@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔬 **2026-06-05 — 신규 sashimi 36위젯 4-Axis 포렌식 audit + P1/P2 정정 + 배포** [CC]:
+> - **하네스 오케스트레이션 레이어 첫 실전 가동**(orchestrate+agents+vendor.sh). audit 워크플로우 85에이전트: 위젯별 4축 채점 → adversarial-reviewer 적대반증(writer≠reviewer) → Codex+Grok 교차벤더(쟁점 12건).
+> - **audit 결과**: P0(L-09 가짜LIVE) **0건**(36개 전부 정직 STATIC). 단 A-gate(≥85) 통과 **0/36**, 조정평균 78.0→71.7. 본질=a1(출처)·a3(검증성) — 출처 명의도용·차트-텍스트 모순·stale 적발. 산출물 `artifacts/sashimi_new36_audit_2026_06_04.md`+`_4axis_scores.csv`.
+> - **정정 워크플로우 36에이전트**: 보고서 기반 위젯별 P1/P2 적용. **총 166 edits·데이터값변경 157·허위주장 제거 27·헷지/미해결 44**. 철칙=날조 금지(검증값만 정정, 없으면 제거/헷지), STATIC 유지, 디자인 보존.
+> - **주요 정정**: SasKrByproduct(FMI $64.8B 날조귀속·Springer 명의도용 제거), SasPrAuctionDirect(PLOS One 가격선도 REFUTED→톤다운), SasGlWcpoSupply(황다랑어 700→741천t), SasEuDistantFleet/SasEuMscGate(차트-출처 모순 화해), SasUsDemandSeasonality(FMI 54% 삭제·NFI 2.2→2.0lb·IFIC 2025→2024), SasUsTariffLadder(EO 2025-15010→14326), 이모지/dangling주석 제거·syncDate ISO·L-01 한글화.
+> - **SasUsMarginWaterfall**: 정정 에이전트 Edit 실패(0 edits)로 **직접 수정** — 5개 막대값 검증불가(Codex합의)라 날조 없이 '자체 추정' 명시+L-01 한글화+출처-단계 오인 교정.
+> - **검증**: 36/36 변경 git 확인, Sas* 신규 타입에러 0(기존 Recharts Formatter 선재에러만), `npm run build` ✓. 배포 진행.
+> - **다음 단계**: ★정정 7건 후 4축 재채점→A-gate 재평가; Grok(xAI 503) 복구 후 단일모델 의존 교차벤더 8건 재대조; 미해결 44건(1차출처 확보 시 헷지→확정).
+
 > 🎨 **2026-06-03 — /logistics 나머지 4개 위젯 디자인 향상 (시범 확대 완료)** [CC]:
 > - TraderStatus 시범 승인 후 나머지 4개에 동일 패턴 적용. **데이터·수치 무수정, 시각 레이어+한글화만.**
 > - **CanneryStatusCharts·GensanCanneryStatusCharts**: 현재값 막대 그라디언트(green/blue)·track 미세화·라운드 + 글래스 툴팁 + 한글화(CANNERY→공장·Value Chain→밸류체인·E2E 순마진·가공 N일).

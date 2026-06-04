@@ -6,8 +6,9 @@ import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, LabelList } from 'recharts';
 
 /* ── 한국 원양 태평양 입어료(VDS)·도서국 협상력 (PNA 1차) ──
-   검증(solid): VDS 최저기준 $8,000/day(현물 $12~14K), 한국 WCPO 활성 선망 22·연승 94(ISC25 2024),
-   선망 highliner 1만+mt/척, 키리바시 입어료 정부수입 70%+ 의존, PNA 8국 연 입어수입 약 $5억. */
+   검증(solid): VDS 최저기준 $8,000/day(2015 적용 명목 상수), 한국 WCPO 활성 선망 22·연승 94(ISC25 2024),
+   키리바시 입어료 정부수입 70%+ 의존, PNA 8국 연 입어수입 약 $5억.
+   업계 추정(unverified): 현물 $12~14K, 선망 highliner 1만+mt/척. */
 const VDS = [
   { stage: '출발가(2012)', usd: 5000, color: '#64748b' },
   { stage: '최저기준', usd: 8000, color: '#38bdf8' },
@@ -24,9 +25,9 @@ export default function SasKrAccessQuota() {
       telemetry={{ status: 'STATIC', syncDate: '2024' }}
       cardDesc="PNA 조업일제도(VDS) 단가·한국 WCPO 선단·도서국 입어 의존 — PNA 공식·ISC25"
       takeaway={{
-        situation: "한국은 WCPO 가다랑어·황다랑어를 사실상 PNA 8개 도서국 EEZ에 의존합니다(활성 선망 22척·연승 94척, 선망 어획의 ~97%가 가다랑어). 그런데 입어권은 어획량이 아니라 VDS '조업일' 단가로 가격결정됩니다 — 최저기준가가 출발기 대비 $8,000/day로 올랐고 수요초과로 현물은 $12,000~14,000까지 거래됩니다. 키리바시처럼 정부수입의 70%+를 입어료에 의존하는 도서국이 협상력 우위로 매년 인상을 요구해, 한국 원양 선망의 변동비를 구조적으로 압박합니다(PNA 8국 연 입어수입 약 $5억).",
+        situation: "한국은 WCPO 가다랑어·황다랑어를 사실상 PNA 8개 도서국 EEZ에 의존합니다(활성 선망 22척·연승 94척, WCPFC 실측 기준 선망 어획의 약 75~87%가 가다랑어). 그런데 입어권은 어획량이 아니라 VDS '조업일' 단가로 가격결정됩니다 — VDS 최저기준가는 2015년 적용 이래 $8,000/day(명목 상수)로 책정돼 있고, 수요초과 시 현물은 $12,000~14,000까지 거래된 것으로 업계는 추정합니다. 키리바시처럼 정부수입의 70%+를 입어료에 의존하는 도서국이 협상력 우위로 매년 인상을 요구해, 한국 원양 선망의 변동비를 구조적으로 압박합니다(PNA 8국 연 입어수입 약 $5억).",
         actionPlan: "원물의 '입어료 사다리' 리스크를 손익에 명시적으로 반영하십시오. ① VDS 조업일 단가가 $8,000→$13,000대로 재가격될 경우 척당 변동비 민감도를 시나리오화하고, ② 단일 도서국 의존을 낮추기 위해 PNA 내 조업일 다변화·장기 입어계약 락인으로 단가 변동을 헤지하며, ③ 어획쿼터가 아닌 '일수' 제약 구조이므로 척당 어획효율(CPUE) 제고가 곧 단위원가 방어 레버임을 자본배분 우선순위로 두십시오.",
-        source: "PNA 공식(VDS 최저기준 $8,000/day) / ISC25 Korea National Report(활성 선망 22·연승 94, 2024) / FFA·World Bank(키리바시 입어료 정부수입 70%+·PNA 8국 약 $5억)",
+        source: "PNA 공식(VDS 최저기준 $8,000/day, 2015 적용 명목 상수) / ISC25 한국 국가보고서(활성 선망 22·연승 94, 2024) / FFA·세계은행(키리바시 입어료 정부수입 70%+·PNA 8국 약 $5억) / 현물 $12~14K·선망 highliner 1만+mt/척은 업계 추정",
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
@@ -46,7 +47,7 @@ export default function SasKrAccessQuota() {
             </SafeResponsiveContainer>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '0.62rem', color: '#94a3b8', flexWrap: 'wrap' }}>
-            <span>한국 WCPO 선망 <span style={{ color: '#38bdf8', fontWeight: 700 }}>22척</span>(highliner 1만+mt/척)</span>
+            <span>한국 WCPO 선망 <span style={{ color: '#38bdf8', fontWeight: 700 }}>22척</span>(highliner 1만+mt/척, 업계 추정)</span>
             <span>키리바시 입어료 의존 <span style={{ color: '#ef4444', fontWeight: 700 }}>70%+</span></span>
           </div>
         </div>
