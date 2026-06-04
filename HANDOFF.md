@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔬 **2026-06-05 — sashimi Round2 정정: 라이브 데이터오류 + 내부정합 + 헷지→1차검증값** [CC]:
+> - **재채점(★7) + Grok 재대조(8) + 1차출처 보강(24→20확보)** 워크플로우(27에이전트) 결과로 Round2 교정(21에이전트) 발사. 총 **79 edits·20위젯 변경**(SasJpDistribution 정당 미변경).
+> - **라이브 데이터오류 수정**: SasEuDistantFleet **F/FMSY 0.2→0.75**(IOTC SC27 ES04 1차), MSY 점추정/상한 430K 분리; SasGlWcpoSupply **막대합 3,100→3,059 정합·%합 101→100%**(WCPFC ST-GN-01로 어종값 일원화, 황다랑어 741 vs 678 충돌 해소).
+> - **헷지→1차검증값**: SasKrFleetEconomics 50세+ 81→**82.3%**(선원복지센터); SasPrAuctionDirect PNA $350M→**$450M**; SasGlConsumptionMatrix 중국 일식당 4만→**78,760**(MAFF 2023)·참다랑어 72→80%; SasEuProcessingHub €1.1B(INTERATUN 미존재)→**ANFACO 2024** 정정·70→65%+; SasEuCatchGate 레드카드 4→**5개국**; SasEuBrandMap RioMare 유럽1위(Bolton FY2024).
+> - **내부정합 35건 해소**: 같은 파일 내 수치모순(SasKrByproduct 살코기 40/55→55%, SasUsMarginWaterfall 1.7~2.2배 제거·수율 46~55% 통일, SasEuMscGate 310→305만t·2023추정 시각구분) 전부 단일화.
+> - **재채점 결과(정정 전)**: A-gate 2/7(SasPrAuctionDirect 85.25·SasJpAquaculture 85.5). Round2로 라이브오류·내부정합 해소 → 재채점 시 추가 상향 기대.
+> - **방식 개선**: 로컬 서버 next start→**dev 모드 전환**(배포 build와 .next/dev 분리로 chunk desync 면역). 산출물 `artifacts/sashimi_round2_brief.md`. `npm run build` ✓. 배포 진행.
+> - **다음 단계**: Round2 후 ★재채점으로 A-gate 재확인; 미해결 46건(1차출처 여전 부재분) 헷지 유지; Grok 단일모델 의존분 재대조.
+
 > 🔬 **2026-06-05 — 신규 sashimi 36위젯 4-Axis 포렌식 audit + P1/P2 정정 + 배포** [CC]:
 > - **하네스 오케스트레이션 레이어 첫 실전 가동**(orchestrate+agents+vendor.sh). audit 워크플로우 85에이전트: 위젯별 4축 채점 → adversarial-reviewer 적대반증(writer≠reviewer) → Codex+Grok 교차벤더(쟁점 12건).
 > - **audit 결과**: P0(L-09 가짜LIVE) **0건**(36개 전부 정직 STATIC). 단 A-gate(≥85) 통과 **0/36**, 조정평균 78.0→71.7. 본질=a1(출처)·a3(검증성) — 출처 명의도용·차트-텍스트 모순·stale 적발. 산출물 `artifacts/sashimi_new36_audit_2026_06_04.md`+`_4axis_scores.csv`.
