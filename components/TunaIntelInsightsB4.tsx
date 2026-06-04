@@ -158,7 +158,7 @@ export function FrimeAcquisitionWidget() {
 <li><strong>장기</strong>: <strong>"MSC 100% 인증 어장 supply" 표준화</strong>. Frime의 MSC 100% 조달 모델을 한국 KMI 표준으로 정착 — 우리도 EU 채널에 MSC 100% 어장 vendor로 자리매김. 동시에 한국 농수산식품유통공사(aT)에 EU 가공 거점 협력 사업 제안 — 정부 자금으로 EU 거점 minority equity 확보.</li>
 </ol>
 </div>`,
-        source: 'Atuna May 2026 News 6 sources · NotebookLM EU·스페인 참치 가공사 노트북 · ANFACO-CECOPESCA 산업 통계',
+        source: 'Atuna May 2026 News 6 sources · ANFACO-CECOPESCA 산업 통계',
       }}
     />
   );
@@ -284,7 +284,7 @@ export function RasSystemWidget() {
 <li><strong>장기</strong>: <strong>아프리카(가나·세네갈) 가공 거점에 WASTE2TASTE 결합</strong>. 본사 RAS + 아프리카 가공 부산물 = 순환 경제 듀얼 엔진. World Bank IFC Blue Economy Fund + AfDB 협력으로 자본 조달. 5년 후 우리는 단순 한국 수산사가 아닌 <strong>"global circular protein platform"</strong>으로 valuation rerate (EV/EBITDA 8x → 18~22x).</li>
 </ol>
 </div>`,
-        source: 'NotebookLM 가나 서아프리카 참치 노트북 · WASTE2TASTE 프로젝트 · MSC 양식 표준',
+        source: 'WASTE2TASTE 프로젝트 · MSC 양식 표준',
       }}
     />
   );

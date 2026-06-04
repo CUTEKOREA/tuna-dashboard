@@ -226,7 +226,7 @@ export default function PetFoodDashboard() {
                   </SafeResponsiveContainer>
                 </div>
               </>}
-              takeaway={{ situation: "해조류 추출물인 카라기난은 펫푸드 핵심 겔화제이나, 소비자 네거티브 캠페인 확산 및 기후 변화(갯병 발생)로 인한 심각한 공급망 리스크에 노출되어 프리미엄 브랜드에서 전면 퇴출되고 있습니다.", actionPlan: "단기적으로 제품 포뮬러를 한천(Agar)이나 펙틴(Pectin) 등 '클린 라벨(Clean Label)' 규격으로 즉각 리뉴얼하고, 무첨가(Free-from) 마케팅을 전개하여 소비자 불신을 해소하고 가격 방어력을 2.5배 이상 견인해야 합니다.", source: "NotebookLM 펫푸드 포렌식 리서치 (1339bce3-e447-40f5-a5f3-51451ffe2128)" }}
+              takeaway={{ situation: "해조류 추출물인 카라기난은 펫푸드 핵심 겔화제이나, 소비자 네거티브 캠페인 확산 및 기후 변화(갯병 발생)로 인한 심각한 공급망 리스크에 노출되어 프리미엄 브랜드에서 전면 퇴출되고 있습니다.", actionPlan: "단기적으로 제품 포뮬러를 한천(Agar)이나 펙틴(Pectin) 등 '클린 라벨(Clean Label)' 규격으로 즉각 리뉴얼하고, 무첨가(Free-from) 마케팅을 전개하여 소비자 불신을 해소하고 가격 방어력을 2.5배 이상 견인해야 합니다.", source: "펫푸드 산업 리서치 종합 (기업 IR·학술 기반)" }}
             />
             {/* W10 */}
             <WidgetCard
@@ -501,7 +501,7 @@ export default function PetFoodDashboard() {
                   </SafeResponsiveContainer>
                 </div>
               </>}
-              takeaway={{ situation: "과거 어분(Fishmeal)으로 소진되거나 80%가 폐기되던 틸라피아 생선 껍질이, 현재는 풍부한 오메가-3와 치아 관리 기능을 내세운 '단일 원료(Single-ingredient) 프리미엄 수제 간식'으로 부상했습니다.", actionPlan: "저마진 사료용 가공 라인을 프리미엄 단일 원료 간식 제조 라인업으로 전환하는 '폐기물 제로(Zero-Waste) 업사이클링(Up-cycling)' 전략을 투입하여 기존 폐기 비용을 초고부가가치(GPM 65%) 수익 센터로 역전시켜야 합니다.", source: "NotebookLM 펫푸드 포렌식 리서치 (1339bce3-e447-40f5-a5f3-51451ffe2128)" }}
+              takeaway={{ situation: "과거 어분(Fishmeal)으로 소진되거나 80%가 폐기되던 틸라피아 생선 껍질이, 현재는 풍부한 오메가-3와 치아 관리 기능을 내세운 '단일 원료(Single-ingredient) 프리미엄 수제 간식'으로 부상했습니다.", actionPlan: "저마진 사료용 가공 라인을 프리미엄 단일 원료 간식 제조 라인업으로 전환하는 '폐기물 제로(Zero-Waste) 업사이클링(Up-cycling)' 전략을 투입하여 기존 폐기 비용을 초고부가가치(GPM 65%) 수익 센터로 역전시켜야 합니다.", source: "펫푸드 산업 리서치 종합 (기업 IR·학술 기반)" }}
             />
             {/* W09 */}
             <WidgetCard
