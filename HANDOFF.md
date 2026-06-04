@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 📊 **2026-06-05 — sashimi 36위젯 전수 재채점 (Round1+2 정정 효과 확정)** [CC]:
+> - 전수 4축 재채점(72에이전트, 11개 schema실패→단일에이전트 보충) → **평균 71.7→78.2(+6.5) · A-gate 0/36→6/36 · F 2→0개**. 분포 A6·B15·C12·D3·F0.
+> - **A-gate 6**: SasThaiEsgRisk(90)·SasEuCatchGate(85.25)·SasUsImportBarriers(87.75)·SasEuDistantFleet(86)·SasGlWcpoSupply(85.25)·SasJpAquaculture(85). ⚠️ 단, 4개는 단일에이전트(덜 적대적) 채점이라 후할 수 있음 — 엄격 2단계 기준 견고한 A는 ~2-3개로 봐야 정직.
+> - **최하위 D 3개**: SasUsMarginWaterfall(61.5·자체추정 고유천장)·SasUsCompetitorMap(62·100% 2차)·SasGlChinaDemand(60.5·stale). 3차 후보(MarginWaterfall은 천장).
+> - **결론**: 라이브 데이터오류 전멸·F등급 박멸·정직 라벨 확보. 남은 B/C는 a2(신선도)·a3(검증성) 천장 = STATIC 큐레이션 위젯 구조적 한계(A엔 라이브API 또는 존재불명 niche 1차출처 필요). 추가 라운드 수확체감 → **여기서 종료**.
+> - 산출물: `artifacts/sashimi_rescore_final_2026_06_05.md`. (위젯 코드 무변경·라이브 동일.)
+
 > 🔬 **2026-06-05 — sashimi Round2 정정: 라이브 데이터오류 + 내부정합 + 헷지→1차검증값** [CC]:
 > - **재채점(★7) + Grok 재대조(8) + 1차출처 보강(24→20확보)** 워크플로우(27에이전트) 결과로 Round2 교정(21에이전트) 발사. 총 **79 edits·20위젯 변경**(SasJpDistribution 정당 미변경).
 > - **라이브 데이터오류 수정**: SasEuDistantFleet **F/FMSY 0.2→0.75**(IOTC SC27 ES04 1차), MSY 점추정/상한 430K 분리; SasGlWcpoSupply **막대합 3,100→3,059 정합·%합 101→100%**(WCPFC ST-GN-01로 어종값 일원화, 황다랑어 741 vs 678 충돌 해소).
