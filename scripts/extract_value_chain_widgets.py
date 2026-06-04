@@ -60,6 +60,20 @@ def parse_prop(block: str, prop_name: str, max_len: int = 800):
     return None
 
 
+def parse_prop_dynamic(block: str, prop_name: str):
+    """변수 바인딩 prop={expr} 의 expr 추출 (리터럴이 아닌 동적 렌더).
+
+    예: <WidgetCard title={w.title} cardDesc={w.cardDesc} /> 처럼 .map() 으로
+    동적 렌더되는 WidgetCard. parse_prop(리터럴 전용)가 못 잡아 통째로 드롭되던
+    위젯을 살리기 위함. 단순 멤버 접근(w.title, item.desc[0] 등)만 대상.
+    """
+    m = re.search(
+        rf"{prop_name}=\s*\{{\s*([A-Za-z_][\w.\[\]'\"?]*)\s*\}}",
+        block,
+    )
+    return m.group(1).strip() if m else None
+
+
 def parse_telemetry(block: str):
     """telemetry={{ status: 'LIVE', syncDate: '...' }} 파싱."""
     m = re.search(
@@ -101,16 +115,26 @@ def extract_file(filepath: Path):
     blocks = find_widgetcards(src)
     widget_records = []
     for b in blocks:
+        title = parse_prop(b["block"], "title", 200)
+        card_desc = parse_prop(b["block"], "cardDesc", 500)
+        # 리터럴이 없으면 동적 바인딩(예: title={w.title}) 확인 → 통째 드롭 방지
+        title_dyn = None if title else parse_prop_dynamic(b["block"], "title")
+        desc_dyn = None if card_desc else parse_prop_dynamic(b["block"], "cardDesc")
         rec = {
             "line": b["line"],
-            "title": parse_prop(b["block"], "title", 200),
+            "title": title,
             "pillar": parse_prop(b["block"], "pillar", 10),
-            "cardDesc": parse_prop(b["block"], "cardDesc", 500),
+            "cardDesc": card_desc,
             "unit": parse_prop(b["block"], "unit", 100),
             "telemetry": parse_telemetry(b["block"]),
             "takeaway": parse_takeaway(b["block"]),
         }
-        if rec["title"] or rec["cardDesc"]:
+        if title_dyn or desc_dyn:
+            # .map() 등으로 런타임에 채워지는 동적 위젯 — 정적 추출 불가, 카운트는 유지
+            rec["dynamic"] = True
+            rec["title_binding"] = title_dyn
+            rec["cardDesc_binding"] = desc_dyn
+        if rec["title"] or rec["cardDesc"] or title_dyn or desc_dyn:
             widget_records.append(rec)
 
     # API 호출 추출 (fetch path)
@@ -134,9 +158,21 @@ def extract_file(filepath: Path):
     }
 
 
-def main():
-    # 대상: Tuna* + value-chain에 import되는 외부 파일들
-    targets = sorted({
+def value_chain_targets():
+    """value-chain closure = TunaDashboard.tsx가 직접 import하는 컴포넌트 파일
+    ∪ 기존 휴리스틱(Tuna* + 하드코딩). union이므로 기존에 잡히던 것은 보존하고
+    glob이 놓치던 import 파일(Ffa* 등)을 추가로 포함."""
+    # (a) 엔트리의 실제 import closure: import ... from './X'
+    imported = set()
+    entry = COMP / "TunaDashboard.tsx"
+    if entry.exists():
+        esrc = entry.read_text()
+        for m in re.finditer(r"from\s+['\"]\./([A-Za-z0-9_]+)['\"]", esrc):
+            cand = COMP / f"{m.group(1)}.tsx"
+            if cand.exists():
+                imported.add(cand)
+    # (b) 기존 휴리스틱 (회귀 방지)
+    heur = {
         f for f in COMP.glob("*.tsx")
         if (f.name.startswith("Tuna")
             or f.name in {
@@ -147,7 +183,12 @@ def main():
                 "UsPolicyImpactWidget.tsx",
                 "UsPollockDetourWidget.tsx",
             })
-    })
+    }
+    return sorted(imported | heur)
+
+
+def main():
+    targets = value_chain_targets()
 
     out = []
     for f in targets:
