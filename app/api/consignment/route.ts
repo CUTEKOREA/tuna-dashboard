@@ -67,7 +67,8 @@ async function fetchSSTAnomaly(): Promise<number | null> {
 
 export async function GET(request: Request) {
   try {
-    const filePath = path.join(process.cwd(), 'data', 'consignment_3year.json');
+    // public/data 는 배포에 포함됨(기존 data/ 는 .gitignore /data/ 로 미배포 → 프로덕션 빈 차트 원인이었음)
+    const filePath = path.join(process.cwd(), 'public', 'data', 'consignment_3year.json');
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const baseData = JSON.parse(fileContents);
 
