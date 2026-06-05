@@ -1,5 +1,17 @@
 # HANDOFF — 현재 작업 상태
 
+> 📊 **2026-06-05 — /market (MarketDashboard.tsx) 6월 1~4일 Atuna 주요 뉴스 및 인텔리전스 업데이트 및 배포** [Antigravity]:
+> - **요청**: `https://leedonggun.co.kr/market` 페이지의 뉴스 소식을 NotebookLM의 6월 뉴스 소스를 참고하여 업데이트.
+> - **Atuna Daily Digest (ROW 3)**:
+>   - **원가/조업**: WCPO 선단 마진 스퀴즈 및 연료비($1,061/t) vs 방콕 원어가($1,850/t) 엇박자 정합화 (Atuna 2026.06.01).
+>   - **무역/관세**: USTR 강제노동 발동에 따른 301조 추가 관세 예고(태국/베트남 10%, 남미/EU 12.5%, Atuna 2026.06.04).
+>   - **기후/환경**: WMO 슈퍼 엘니뇨 경고(+2°C 해수온 상승) 및 미 NSF의 심해 관측망(OOI, $386M) 6월 16일 전면 철수 공백 (Atuna 2026.06.04).
+>   - **시장/규제**: 유럽 MSC 지속가능 참치 판매 급성장(스페인 +32%, 이탈리아 21,000t+) 및 Europêche의 2027년 로인 ATQ 쿼터 폐지 강력 촉구 (Atuna 2026.06.04).
+> - **Forensic Intelligence (ROW 4)**:
+>   - **S1 위젯**: "WCPO 선망선 마진 스퀴즈 & 슈퍼 엘니뇨·관측망 공백 위기" (어가 하락 vs 고비용, OOI 철수로 인한 어군 예측 불확실성에 대비한 매수 비축 및 dFAD 자체 추적 강화 액션플랜 반영).
+>   - **S3 위젯**: "미국 강제노동 관세 장벽 예고 및 유럽 ATQ 로인 특혜 폐지 공방" (USTR 추가 관세안 대비 ESG 검증 체계 정비 및 EU 시장 수입 급감에 따른 신흥국 판로 다변화 액션플랜 반영).
+> - **검증**: `npm run build` Turbopack production build 컴파일 통과(에러 0) 및 main 브랜치 push 성공. Vercel 자동 배포 진행 중.
+
 > 📊 **2026-06-05 — sashimi 36위젯 전수 재채점 (Round1+2 정정 효과 확정)** [CC]:
 > - 전수 4축 재채점(72에이전트, 11개 schema실패→단일에이전트 보충) → **평균 71.7→78.2(+6.5) · A-gate 0/36→6/36 · F 2→0개**. 분포 A6·B15·C12·D3·F0.
 > - **A-gate 6**: SasThaiEsgRisk(90)·SasEuCatchGate(85.25)·SasUsImportBarriers(87.75)·SasEuDistantFleet(86)·SasGlWcpoSupply(85.25)·SasJpAquaculture(85). ⚠️ 단, 4개는 단일에이전트(덜 적대적) 채점이라 후할 수 있음 — 엄격 2단계 기준 견고한 A는 ~2-3개로 봐야 정직.
