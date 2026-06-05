@@ -24,7 +24,9 @@ export async function GET() {
   try {
     const url = new URL("https://comtradeapi.un.org/data/v1/get/C/A/HS");
     url.searchParams.set("cmdCode", "030389");
-    url.searchParams.set("reporterCode", "all");
+    // 2026-06-05 수정: reporterCode=all 과대쿼리(premium 거부) → 주요 갈치 교역국 한정
+    // 중국156·한국410·일본392·베트남704·미국842·러시아643·노르웨이578·칠레152
+    url.searchParams.set("reporterCode", "156,410,392,704,842,643,578,152");
     url.searchParams.set("partnerCode", "0");
     url.searchParams.set("period", "2023");
     url.searchParams.set("flowCode", "M,X");

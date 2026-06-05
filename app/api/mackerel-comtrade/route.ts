@@ -34,15 +34,18 @@ export async function GET() {
 
   try {
     const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
+    // 2026-06-05 수정: reporterCode=all&partnerCode=all 과대쿼리(거부/타임아웃) → 주요 고등어 교역국으로 한정.
+    // 노르웨이578·중국156·한국410·일본392·네덜란드528·영국826·러시아643·칠레152
+    const REPORTERS = '578,156,410,392,528,826,643,152';
     const url = comtradeKey && comtradeKey !== 'pending_issuance'
-      ? 'https://comtradeapi.un.org/data/v1/get/C/A/HS?cmdCode=030354&reporterCode=all&partnerCode=all&period=2023&flowCode=M,X'
-      : 'https://comtradeapi.un.org/public/v1/preview/C/A/HS?cmdCode=030354&period=2023&flowCode=M,X';
+      ? `https://comtradeapi.un.org/data/v1/get/C/A/HS?cmdCode=030354&reporterCode=${REPORTERS}&partnerCode=all&period=2023&flowCode=M,X`
+      : `https://comtradeapi.un.org/public/v1/preview/C/A/HS?cmdCode=030354&reporterCode=${REPORTERS}&period=2023&flowCode=M,X`;
     const headers = comtradeKey && comtradeKey !== 'pending_issuance'
       ? { 'Ocp-Apim-Subscription-Key': comtradeKey }
       : {};
     const res = await fetch(url, {
       headers,
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(12000),
     });
 
     if (res.ok) {

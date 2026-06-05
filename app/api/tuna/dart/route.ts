@@ -12,9 +12,9 @@ export const revalidate = 3600;
  */
 
 const COMPANIES = [
-  { name: "동원산업", code: "00128524" },
+  { name: "동원산업", code: "00118026" },  // 2026-06-05 정정: 00128524는 오류(DART CORPCODE 검증, stock:006040)
   { name: "사조산업", code: "00237717" },
-  { name: "신라교역", code: "00857727" },
+  { name: "신라교역", code: "00857727" },  // 비상장 가능성 — CFS/OFS 미작성 시 graceful skip
 ];
 
 const FALLBACK_DATA = {
@@ -72,10 +72,13 @@ export async function GET(request: Request) {
       })
     );
 
-    const allOk = results.every(r => r.revenue !== null);
+    const fetched = results.filter(r => r.revenue !== null).length;
+    const allOk = fetched === COMPANIES.length;
+    const anyOk = fetched > 0;
     return NextResponse.json({
-      source: `DART 사업보고서 ${year} 실시간 (${COMPANIES.length}사 ${allOk ? '전체 조회' : '일부 조회 실패'})`,
-      isLive: allOk,
+      // isLive: 1사 이상 실재무 조회 성공 시 LIVE(신라교역 등 비상장사 부재는 정직 graceful). 전체 조회 여부는 라벨로 구분.
+      source: `DART 사업보고서 ${year} 실시간 (${COMPANIES.length}사 중 ${fetched}사 조회${allOk ? '·전체' : ''})`,
+      isLive: anyOk,
       lastUpdated: new Date().toISOString(),
       year,
       companies: results,
