@@ -184,7 +184,7 @@ export default function TunaInsightsDashboard() {
         icon={Globe}
         iconColor="#38bdf8"
         pillar="S2"
-        cardDesc="1990s 미·일 80%에서 2023 에콰도르 26%/베트남 14%로 이동한 글로벌 참치 가공 허브의 30년 이동 궤적"
+        cardDesc="1990년대 미·일 80%에서 2023 에콰도르 26%/베트남 14%로 이동한 글로벌 참치 가공 허브의 30년 이동 궤적"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '가공 허브 이동', description: '과거 전통적인 가공 중심지에서 동남아/중남미 등으로 이동하는 무역량의 면적 확대를 통해 글로벌 공급망의 수직적 이동을 포착합니다.' }}
         kpiPanel={[{ label: '신흥 가공 허브: 에콰도르', value: '26% 점유율', sub: 'EU 무관세 혜택 수혜', trendColor: '#3b82f6' }]}
@@ -273,7 +273,7 @@ export default function TunaInsightsDashboard() {
         cardDesc="FAO FishStat Capture v25 — WCPO vs 대서양 어획량 30년 추세와 ENSO 충격 시점의 시소 패턴 추적"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '제로섬 헷지', description: '태평양과 대서양의 어획량을 면적 겹침(Stack)으로 나타내어, 엘니뇨 등 기상 이변 시 시소 게임처럼 서로 보완되는 헷징 효과를 증명합니다.' }}
-        kpiPanel={[{ label: '대서양 보전율', value: '+42%', sub: '태평양 충격기', trendColor: '#3b82f6' }]}
+        kpiPanel={[{ label: '대서양 보완 비율', value: '+42%', sub: '태평양 충격기 (자체추정)', trendColor: '#3b82f6' }]}
         chartHeight={280}
         chart={
           <AreaChart data={mockZeroSumData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -324,7 +324,7 @@ export default function TunaInsightsDashboard() {
         cardDesc="참치 vs 고등어 가격 지수의 역상관(-0.78) 추적 — 흉어 사이클에서 펠라직 어종이 자연 헷지 역할"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
         termTooltip={{ term: '펠라직 헷징', description: '참치 어획량이 무너질 때 고등어 등 펠라직 어종 수요가 급상승하는 역상관관계 라인을 통해 리스크 상쇄 포인트를 시각화합니다.' }}
-        kpiPanel={[{ label: '상관계수 (참치-고등어)', value: '-0.78', sub: '강한 음의 상관 (헷징 가능)', trendColor: '#3b82f6' }]}
+        kpiPanel={[{ label: '상관계수 (참치-고등어)', value: '-0.78', sub: '강한 음의 상관 — 내부 추정 (차트는 예시)', trendColor: '#3b82f6' }]}
         chartHeight={280}
         chart={
           <LineChart data={mockHedgingMatrix} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -544,7 +544,7 @@ export default function TunaInsightsDashboard() {
         pillar="S2"
         cardDesc="3D 소나 + AI FAD 결합 선단의 CPUE +15% / MGO 효율 -28% 추세 — 호르무즈 외생 충격을 제외한 평시 효율 변화"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
-        termTooltip={{ term: 'Precision Fishing', description: 'AI 음향 부표 및 3D 소나를 활용한 타겟 어종 정확도 향상을 통해 선박 경유(MGO) 비용을 획기적으로 감축하는 기술 전환 지표입니다.' }}
+        termTooltip={{ term: '정밀 조업', description: 'AI 음향 부표 및 3D 소나를 활용한 타겟 어종 정확도 향상을 통해 선박 경유(MGO) 비용을 획기적으로 감축하는 기술 전환 지표입니다.' }}
         kpiPanel={[{ label: '연료비 절감', value: '-28%', sub: '2018년 대비', trendColor: '#38bdf8' }]}
         chartHeight={280}
         chart={
@@ -575,7 +575,7 @@ export default function TunaInsightsDashboard() {
 <li><strong>장기 (5~10년)</strong>: <strong>"Autonomous fleet conversion"</strong>. AI + satellite + autonomous navigation 결합으로 무인 어선 운영. 인건비 30~40% 절감(선원 비용이 OPEX의 25~35%), 운항 시간 24/7 가능, IUU 리스크 0(인간 개입 없음 → 자동 보고). 1차 pilot은 일본 Mitsui OSK + Kongsberg Maritime(노르웨이)과 공동 개발 무인 선망어선 5척, 2030년 commissioning. 동시에 무인 어선 IP를 GE/Siemens급 industrial OEM에 라이센싱 — 우리가 어획자에서 <strong>maritime industrial tech licensor</strong>로 정체성 전환. EV/EBITDA 8x에서 25x로 multiple expansion 정당화.</li>
 </ol>
 </div>`,
-          source: 'KMI 정밀 조업 사례 분석 · IMO MGO 가격 지수 (2018-2024)',
+          source: 'KMI 정밀 조업 사례 분석 · 업계추정 (선박연료 가격·효율 지수, 2018-2024)',
         }}
       />
 
@@ -586,7 +586,7 @@ export default function TunaInsightsDashboard() {
         pillar="S3"
         cardDesc="USTR 2025-07-31 상호관세(태국 19%·베트남 20%·에콰도르 15%) 후 미국 현지 FDI·USMCA 멕시코로의 거점 이동 추적"
         telemetry={{ status: 'STATIC', syncDate: '참고용 (Reference Only)' }}
-        termTooltip={{ term: 'Tariff Hopping', description: '미국 발 상호 관세 부과에 대응하여 태국 등 전통적 수출국의 물량이 붕괴되고, 미국 내 또는 무관세 지역으로 직투자가 이동하는 과정을 추적합니다.' }}
+        termTooltip={{ term: '관세 회피(Tariff Hopping)', description: '미국 발 상호 관세 부과에 대응하여 태국 등 전통적 수출국의 물량이 붕괴되고, 미국 내 또는 무관세 지역으로 직투자가 이동하는 과정을 추적합니다.' }}
         kpiPanel={[{ label: '동남아 가공 마진 압박', value: '15~20%p', sub: '관세 부담분(추정)', trendColor: '#3b82f6' }]}
         chartHeight={280}
         chart={
@@ -767,7 +767,7 @@ export default function TunaInsightsDashboard() {
         <main className={styles.content}>
           <div style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '12px 16px', borderRadius: '8px', color: '#bae6fd', fontSize: '0.9rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#38bdf8', boxShadow: '0 0 10px #38bdf8' }} />
-            데이터 파이프라인 연계 완료. 74년치 참치 데이터에 기반한 15가지 인사이트 시각화 차트가 100% 가동 중입니다.
+            정적(STATIC) 참고 데이터 기반. 74년치 참치 데이터에 기반한 15가지 인사이트 시각화 차트 제공 중 (실시간 API 미연동).
           </div>
 
           {activeTab === 'margin' && renderMarginTrack()}

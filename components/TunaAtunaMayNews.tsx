@@ -17,7 +17,7 @@ export const AtunaIoPerfectStormWidget = () => (
     iconColor="#f43f5e"
     pillar="S1"
     cardDesc="인도양(IO) 연료비 폭등 및 어획 부진으로 인한 선단 조업 중단 사태"
-    telemetry={{ status: 'LIVE', syncDate: '2026-05-27 Atuna' }}
+    telemetry={{ status: 'STATIC', syncDate: '2026-05-27 Atuna' }}
     termTooltip={{ term: '퍼펙트 스톰', description: '연료비 상승과 어획 부진이 동시에 겹치면서 조업을 포기하고 항구로 회항하는 최악의 경영 환경을 의미합니다.' }}
     kpiPanel={[{ label: '긴급 지원금 (프랑스)', value: '€13M', sub: 'EU EC 승인' }]}
     takeaway={{
@@ -41,7 +41,7 @@ export const AtunaBangkokPriceWidget = () => (
     iconColor="#3b82f6"
     pillar="S4"
     cardDesc="2026-05-27 Atuna 보도 기준 방콕 WCPO 가다랑어 산지가 $1,850/t (2025-08 고점 $1,845 대비 5월 회복 추세). 미국 소매업계는 $1,500/t 통제선 압박 — 출처: Atuna News (2026-05-20, 2026-05-26)"
-    telemetry={{ status: 'LIVE', syncDate: '2026-05-27 Atuna' }}
+    telemetry={{ status: 'STATIC', syncDate: '2026-05-27 Atuna' }}
     kpiPanel={[{ label: '방콕 가다랑어', value: '$1,850/t', sub: '2025-08 고점 $1,845 회복 추세' }]}
     chartHeight={200}
     chart={
@@ -75,7 +75,7 @@ export const AtunaEpoCatchDropWidget = () => (
     iconColor="#f59e0b"
     pillar="S1"
     cardDesc="에콰도르 동태평양(EPO) 1분기 가다랑어 어획량 -28% 급감"
-    telemetry={{ status: 'LIVE', syncDate: '2026-05-27 Atuna' }}
+    telemetry={{ status: 'STATIC', syncDate: '2026-05-27 Atuna' }}
     kpiPanel={[{ label: 'EPO 1분기 어획', value: '-28%', sub: '전년 동기 대비 급감', trendColor: '#f43f5e' }]}
     takeaway={{
       situation: `<div>
@@ -98,7 +98,7 @@ export const AtunaEuCatchSystemWidget = () => (
     iconColor="#8b5cf6"
     pillar="S3"
     cardDesc="디지털 이력 추적(EU CATCH) 시스템 오류로 인한 최대 50% 수입 거절 리스크"
-    telemetry={{ status: 'LIVE', syncDate: '2026-05-27 Atuna' }}
+    telemetry={{ status: 'STATIC', syncDate: '2026-05-27 Atuna' }}
     kpiPanel={[{ label: '서류 오류 거절률', value: '25~50%', sub: '수입 인증 지연' }]}
     takeaway={{
       situation: `<div>

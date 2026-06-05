@@ -153,7 +153,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>태국 원료 의존도 분산</strong>: 에콰도르(EU 무관세) 30% + 인도네시아(AKFTA 0%) 30% + 태국 40%로 재배치. 단일 거점 risk 회피.</li>
-<li style="margin-bottom: 8px;"><strong>미국·EU·일본 3대 소비 시장 프리미엄 가공품 수출 파이프라인 구축</strong> — 단순 통조림이 아닌 retort pouch·sashimi-grade frozen·HMR ready-meal 같은 고부가 SKU로 차별화.</li>
+<li style="margin-bottom: 8px;"><strong>미국·EU·일본 3대 소비 시장 프리미엄 가공품 수출 파이프라인 구축</strong> — 단순 통조림이 아닌 레토르트 파우치·사시미급 냉동·간편식 즉석조리(HMR) 같은 고부가 SKU로 차별화.</li>
 <li><strong>밸류체인 상위 이동</strong>: 한국이 가공·브랜드를 잡고 동남아 OEM이 backend로 빠지는 <strong>"K-brand globalization"</strong> 모델. 본사 점유율 글로벌 5~8% 도달 시 sole price-maker.</li>
 </ol>
 </div>`,
@@ -213,16 +213,16 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
 <li>수출액: 약 <strong>$17.5M</strong> (수입의 4.7%)</li>
 <li>수입 의존율: <strong>95%+</strong></li>
 </ul>
-<p>의미: 한국은 황다랑어의 거의 모든 물량을 수입에 의존하며, <strong>공급 차질 시 가격 100% 노출</strong>. ENSO·관세·전쟁 등 외생 변수 발생 시 한국 소비자가 직접 충격 흡수. 2026 Q2 호르무즈 위기로 황다랑어 단가 +18% 폭등하는 동안 한국 수입사는 hedge 도구 부재로 마진 -8%p 직격.</p>
-<p>구조적 약점: 한국은 황다랑어 어획 capacity 부족 + 가공 capacity는 있음. 어획-가공의 vertical integration 실패가 단점.</p>
+<p>의미: 한국은 황다랑어의 거의 모든 물량을 수입에 의존하며, <strong>공급 차질 시 가격 100% 노출</strong>. ENSO·관세·분쟁 등 외생 변수 발생 시 한국 소비자가 직접 충격 흡수. 헤지 수단 부재로 단가 급등 시 수입사 마진이 직접 타격받는 구조.</p>
+<p>구조적 약점: 한국은 황다랑어 어획 처리역량 부족 + 가공 처리역량은 있음. 어획-가공의 수직통합 미달이 구조적 단점.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 95% 수입 의존은 단순 무역 패턴이 아닌 <strong>"가격 변동성에 100% 노출된 single-stock 포지션"</strong>. 본사는 수입 hedge instrument를 systematic하게 운용해야 한다.</p>
+<p><strong>재정의</strong>: 95% 수입 의존은 단순 무역 패턴이 아닌 <strong>"가격 변동성에 100% 노출된 단일집중 포지션"</strong>. 본사는 수입 헤지 수단을 체계적으로 운용해야 한다.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>공급 다변화</strong>: 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도 완화. 4-거점(태국·인도네시아·에콰도르·인도) 분산으로 single-point dependency 회피.</li>
-<li style="margin-bottom: 8px;"><strong>"Long-term forward contract + price collar" 패키지</strong> — 5년 fixed price 계약에 floor-cap collar 결합. 매입가 변동성 ±15% 박스로 락업. 본사 trading desk가 매 분기 mark-to-market.</li>
-<li><strong>한국 어획 capacity 자체 확보</strong>: 한국 원양 황다랑어 어선 5~10척 신규 건조 또는 인수 (척당 $25~40M). 자체 어획 비중을 5% → 15~20%로 확대하면 가격 협상력 + 가격 시그널 directional indicator로 활용 가능. 동시에 ICCAT·WCPFC 황다랑어 쿼터 forward 매입.</li>
+<li style="margin-bottom: 8px;"><strong>공급 다변화</strong>: 인도네시아·에콰도르 신규 공급선 확보로 태국 의존도 완화. 4-거점(태국·인도네시아·에콰도르·인도) 분산으로 단일거점 의존 리스크 회피.</li>
+<li style="margin-bottom: 8px;"><strong>장기 선도매입 + 가격 밴드 계약 패키지</strong> — 5년 고정가 계약에 하한·상한 밴드(price collar)를 결합. 매입가 변동성 ±15% 범위로 고정. 본사 트레이딩 데스크가 매 분기 시가 재평가(mark-to-market) 수행.</li>
+<li><strong>한국 어획 역량 자체 확보</strong>: 한국 원양 황다랑어 어선 5~10척 신규 건조 또는 인수 (척당 $25~40M). 자체 어획 비중을 5% → 15~20%로 확대하면 가격 협상력 강화 + 시장 가격 방향성 지표로 활용 가능. 동시에 ICCAT·WCPFC 황다랑어 쿼터 선물 매입 병행.</li>
 </ol>
 </div>`,
         source: `World Bank WITS / UN Comtrade · ${isLive ? 'LIVE' : 'Snapshot'} · Reliability: ${data?.meta?.reliability?.grade || 'A'}`,

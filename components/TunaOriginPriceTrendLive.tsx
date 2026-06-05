@@ -47,7 +47,7 @@ const TunaOriginPriceTrendLive = () => {
 
   return (
     <WidgetCard
-      title="참치 산지 단가 추이 (Live)"
+      title="참치 산지 단가 추이"
       icon={MapPin}
       iconColor="#22d3ee"
       pillar="S1"
@@ -100,9 +100,9 @@ const TunaOriginPriceTrendLive = () => {
 <p><strong>재정의</strong>: 5개 항구 가격 격차는 단순 비교가 아닌 <strong>"global arbitrage map"</strong>. 어디서 사고 어디서 가공·판매하느냐의 routing 결정이 마진을 좌우.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>"Abidjan 원물 + Vigo 가공" 코스트 시뮬레이션</strong>: 1주 내 실행 — Q2 어획 시즌(5-8월) 진입 전 매입 routing 결정. 예상 마진 +8~12%p.</li>
+<li style="margin-bottom: 8px;"><strong>"Abidjan 원물 + Vigo 가공" 코스트 시뮬레이션</strong>: Q2 어획 시즌(5-8월) 진입 전 매입 routing 결정. 물류·가공 원가 절감 여부는 시뮬레이션 후 확인 필요.</li>
 <li style="margin-bottom: 8px;"><strong>"Origin-Destination matrix optimization"</strong>: 5개 항구 × 3개 가공 거점(태국·에콰도르·베트남) × 4개 최종 시장(미국·EU·일본·중동) = 60가지 조합. ML 모델로 quarterly 최적 routing 산출.</li>
-<li><strong>"Skipjack benchmark trading"</strong>: 5개 항구 가격 spread를 ICE OTC swap으로 paper hedge. 본업 매입 외 trading P&amp;L로 EBITDA +2~4%p 추가.</li>
+<li><strong>"Skipjack 가격 모니터링 체계화"</strong>: 5개 항구 가격 spread를 정기 추적하여 매입 타이밍·산지 선택의 근거 자료로 활용. Skipjack 선물/파생상품 시장은 미성숙 상태로 현물 매입 최적화가 현실적 대안.</li>
 </ol>
 </div>`,
         source: 'Atuna 시장가 인덱스 (Bangkok·Manta·Seychelles·Abidjan·Vigo, 2026-03-31~2026-05-12 latest)',

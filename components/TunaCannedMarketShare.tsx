@@ -92,17 +92,17 @@ const TunaCannedMarketShare = () => (
     }
     takeaway={{
       situation: `<div>
-<p>한국 참치 통조림 시장은 사실상 <strong>"듀오폴리(Duopoly)"</strong> 구조. <strong>동원 71.2% + 사조 14.8% = 86% 점유</strong>. 나머지 14%를 신라교역(3.9%)·CJ·기타가 나눠 가짐.</p>
-<p>이 구도가 의미하는 바: B2C 통조림 시장은 정면 진입 불가능. 동원·사조의 마케팅 예산(연 400~600억원)과 retail 매대 점유율은 후발 vendor가 따라잡을 수 없는 자본 격차.</p>
-<p>신라교역 위치: B2B(가공·도매·HMR/OEM)는 강하지만 retail brand로 transfer 못함. 이건 약점이 아니라 differentiation 기회 — B2C 동원과 정면 충돌하지 않으면서 프리미엄 niche로 진입 가능.</p>
+<p>한국 참치 통조림 시장은 사실상 <strong>"양강 과점"</strong> 구조. <strong>동원 71.2% + 사조 14.8% = 86% 점유</strong>. 나머지 14%를 신라교역(3.9%)·CJ·기타가 나눠 가짐.</p>
+<p>이 구도가 의미하는 바: 소비자직판 통조림 시장은 정면 진입이 어려움. 동원·사조의 마케팅 예산(업계 추정 수천억원 규모)과 소매 매대 점유율은 후발 업체가 단기간에 따라잡기 어려운 자본 격차.</p>
+<p>신라교역 위치: 기업 간 거래(가공·도매·가정간편식/주문자 생산)는 강하지만 소비자 직접 판매 브랜드로 전환하지 못하는 상황. 이는 약점이 아니라 차별화 기회 — 동원과의 정면 충돌 없이 프리미엄 틈새 시장으로 진입 가능.</p>
 </div>`,
       actionPlan: `<div>
-<p><strong>재정의</strong>: 통조림 B2C 정면 진입 금지. 대신 <strong>"프리미엄 niche + HMR cross-sell"</strong>로 differentiation. 점유율보다 마진율이 KPI.</p>
+<p><strong>재정의</strong>: 통조림 소비자직판 정면 진입 지양. 대신 <strong>"프리미엄 틈새 + 가정간편식 교차 판매"</strong>로 차별화. 점유율보다 마진율이 핵심 성과 지표.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>프리미엄 횟감·자숙액 활용 HMR niche</strong>: 즉석국·찌개·죽 같은 HMR SKU로 동원·사조가 약한 segment 침투. ASP +30~50% 프리미엄.</li>
-<li style="margin-bottom: 8px;"><strong>B2B → B2C transfer 점진적</strong>: 기존 OEM 거래처(이마트 PB·노브랜드)에서 우리 own brand로 점진 전환. 향후 3년 점유율 +2~3%p.</li>
-<li><strong>"DTC + HMR + Pet Food" 3-track expansion</strong>: 통조림 본업은 B2B 유지, B2C는 HMR·DTC·pet food로 우회. EV/EBITDA를 통조림 8x → multi-category brand 15~18x로 multiple rerate.</li>
+<li style="margin-bottom: 8px;"><strong>프리미엄 횟감·자숙액 활용 가정간편식 틈새</strong>: 즉석국·찌개·죽 같은 가정간편식(HMR) 품목으로 동원·사조가 약한 세그먼트 침투. 평균 판매 단가 +30~50% 프리미엄 목표(자체 추정).</li>
+<li style="margin-bottom: 8px;"><strong>기업 간 거래 → 소비자 직판 점진적 전환</strong>: 기존 주문자 생산(OEM) 거래처(이마트 PB·노브랜드)에서 자사 브랜드로 점진 전환. 시나리오상 3년 내 점유율 +2~3%p 가능.</li>
+<li><strong>"직접 판매(DTC) + 가정간편식 + 반려동물 사료" 3트랙 확장</strong>: 통조림 본업은 기업 간 거래 유지, 소비자 채널은 가정간편식·직접 판매·반려동물 사료로 우회. EV/EBITDA 멀티플을 통조림 단일 사업 수준에서 복합 카테고리 브랜드 수준으로 재평가받는 전략(illustrative 시나리오).</li>
 </ol>
 </div>`,
       source: '닐슨IQ 2025 H1 국내 참치 통조림 시장점유율 (Stage 1 mock)',

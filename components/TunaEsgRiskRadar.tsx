@@ -63,20 +63,20 @@ export default function TunaEsgRiskRadar() {
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>인도네시아 원양 어업 강제노동 위험도 85점/100</strong> — 매우 높음</li>
 <li>WCPFC/PNA 관리 구역(태평양) <strong>35점</strong> — 낮음</li>
-<li>한국·일본 원양 <strong>15~25점</strong> — 매우 낮음</li>
+<li>한국·일본 원양 <strong>15~25점 추정</strong> — 매우 낮음 (업계 추정치, 미검증)</li>
 </ul>
-<p>실질 영향: 서구권 EU CSDDD + 미국 UFLPA 시행으로 인도네시아산 참치는 향후 5년 EU·미국 시장 진입 차질 가시화. 인도네시아 의존 vendor는 사실상 채널 잃음. 반면 태평양 원양(한국·WCPFC) 어획물은 자동 sustainable supplier 지위.</p>
+<p>실질 영향: 서구권 EU CSDDD + 미국 UFLPA 시행으로 인도네시아산 참치는 향후 5년 EU·미국 시장 진입 차질 가시화. 인도네시아 의존 공급업체는 사실상 채널 잃음. 반면 태평양 원양(한국·WCPFC) 어획물은 자동 지속가능 공급자 지위.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: ESG 리스크 격차는 단순 ESG 보고가 아닌 <strong>"한국 태평양 원양 vendor의 자동 regulatory moat"</strong>. 인도네시아·동남아 경쟁자가 사라지는 무대에서 우리만 남는다.</p>
+<p><strong>재정의</strong>: ESG 리스크 격차는 단순 ESG 보고가 아닌 <strong>"한국 태평양 원양 공급업체의 자동 규제 해자(regulatory moat)"</strong>. 인도네시아·동남아 경쟁자가 사라지는 무대에서 우리만 남는다.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>"Clean Supply Chain Premium" 마케팅</strong>: 신라교역 태평양 원양 어획물에 ILO 35점·ESG 인증 라벨. EU·미국 retail에 +12~20% 프리미엄.</li>
-<li style="margin-bottom: 8px;"><strong>인도네시아 vendor ESG 실사 강화</strong>: 분기별 재평가, ESG 미달 vendor 자동 blacklist. supply chain 정화로 우리 reputation 차별화.</li>
-<li><strong>"ESG arbitrage trading"</strong>: 인도네시아 distress vendor의 정상화 cost를 우리가 capital 공급 + 우리 ESG 표준 통합 — equity 인수 후 5년 후 ESG-rated valuation으로 매각. JP Morgan ESG Fund와 partnership.</li>
+<li style="margin-bottom: 8px;"><strong>"청정 공급망 프리미엄" 마케팅</strong>: 신라교역 태평양 원양 어획물에 ILO 35점·ESG 인증 라벨. EU·미국 소매 채널에 +12~20% 프리미엄(illustrative).</li>
+<li style="margin-bottom: 8px;"><strong>인도네시아 공급업체 ESG 실사 강화</strong>: 분기별 재평가, ESG 미달 공급업체 자동 블랙리스트. 공급망 정화로 우리 신뢰도 차별화.</li>
+<li><strong>"ESG 차익거래"</strong>: 인도네시아 부실 공급업체의 정상화 비용을 우리가 자본 공급 + 우리 ESG 표준 통합 — 지분 인수 후 5년 후 ESG 평가 기반 밸류에이션으로 매각. 글로벌 ESG 펀드와 파트너십 검토.</li>
 </ol>
 </div>`,
-        source: '국제 노동 기구(ILO) · 인도네시아 해양수산부 · 내부 ESG 실사 보고서',
+        source: '국제 노동 기구(ILO) · 인도네시아 해양수산부 · 업계 추정',
       }}
     />
   );

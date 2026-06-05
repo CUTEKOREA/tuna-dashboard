@@ -90,17 +90,17 @@ const TunaCatchVolumeTrend = () => (
     }
     takeaway={{
       situation: `<div>
-<p>참치 어획은 양어종이지만 계절성(seasonality)이 매우 강합니다. <strong>7-8월 peak에서 1-2월 trough</strong>까지 어획량이 약 2배 진폭으로 변동.</p>
-<p>실측: <strong>peak 401천 톤(8월) vs trough 198천 톤(1-2월)</strong>. 9월부터 빠르게 하강하며 동절기 공급 부족 리스크 잠재. 가격 패턴: peak 시즌 단가 -15~20%, trough 시즌 단가 +25~30% 전형.</p>
-<p>의미: 계절성은 단순 현상이 아니라 <strong>"예측 가능한 trading window"</strong>. 매년 동일 패턴이므로 미리 비축·헷지 가능한 systematic opportunity.</p>
+<p>참치 어획은 양어종이지만 계절성이 매우 강합니다. <strong>7-8월 성수기에서 1-2월 비수기</strong>까지 어획량이 약 2배 진폭으로 변동.</p>
+<p>추정치(업계추정): <strong>성수기 401천 톤(8월) vs 비수기 198천 톤(1-2월)</strong>. 9월부터 빠르게 하강하며 동절기 공급 부족 리스크 잠재. 업계 추정 가격 패턴: 성수기 단가 -15~20%, 비수기 단가 +25~30% 수준.</p>
+<p>의미: 계절성은 단순 현상이 아니라 <strong>예측 가능한 매입·비축 기회 구간</strong>. 매년 동일 패턴이므로 미리 비축·헷징 가능한 구조적 기회.</p>
 </div>`,
       actionPlan: `<div>
-<p><strong>재정의</strong>: 계절성은 predictable arbitrage opportunity. 본사 매입·재고 desk가 매년 5-7월 사전 비축 → 11-2월 spot 매도 cycle을 systematic하게 운영.</p>
+<p><strong>전략 방향</strong>: 계절성은 예측 가능한 매입 기회. 매년 5-7월 성수기 진입 전 사전 비축 → 11-2월 동절기 현물 매도 사이클을 체계적으로 운영할 것.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>5-7월 사전 비축</strong>: peak 진입 전 매입가 -10~15% 절감. 동절기 단가 상승(+25~30%) 회피.</li>
-<li style="margin-bottom: 8px;"><strong>콜드체인 가용 capa 사전 점검</strong>: Q3에 capa 한계 도달 시 마진 -1.5pp. 외부 cold storage 임대 forward contract으로 확보.</li>
-<li><strong>"Seasonal arbitrage trading book"</strong>: 매년 cyclic trading을 systematic strategy로 운영. backtest sharpe 2.5+. JP Morgan Commodity Quant Desk와 collab.</li>
+<li style="margin-bottom: 8px;"><strong>5-7월 사전 비축</strong>: 성수기 진입 전 매입가 -10~15% 절감(업계추정). 동절기 단가 상승 회피.</li>
+<li style="margin-bottom: 8px;"><strong>냉동창고 가용 용량 사전 점검</strong>: Q3 용량 한계 도달 시 마진 악화 우려. 외부 냉동창고 임대 계약을 사전에 확보.</li>
+<li><strong>계절성 매입 규칙 수립</strong>: 매년 반복되는 어획 사이클을 매입 규칙(rule-based buying)으로 정형화. 담당자 교체에 무관하게 일관 운영.</li>
 </ol>
 </div>`,
       source: 'WCPFC 2025 Catch Statistics + IATTC 보고 (Stage 1 mock)',

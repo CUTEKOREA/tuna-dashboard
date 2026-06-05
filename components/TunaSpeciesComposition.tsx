@@ -66,7 +66,7 @@ const TunaSpeciesComposition = () => (
     icon={Fish}
     iconColor="#22d3ee"
     pillar="S1"
-    cardDesc="ISSF 2025 Status of the Stocks 기반 글로벌 참치 5개 어종 어획 구성비"
+    cardDesc="ISSF 2025 Status of the Stocks 기반 글로벌 참치 5개 어종 어획 구성비 (illustrative)"
     unit="(%)"
     telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     termTooltip={{
@@ -98,20 +98,20 @@ const TunaSpeciesComposition = () => (
     }
     takeaway={{
       situation: `<div>
-<p>한국 참치 어획 구성: <strong>가다랑어(Skipjack) 58.3%</strong>가 압도적 1위. 황다랑어(Yellowfin) 21.7% 합쳐 상위 2개 어종이 <strong>80% 점유</strong>. 눈다랑어(Bigeye) 12.4%, 날개다랑어(Albacore) 5.8%는 비중 작지만 단가 프리미엄(가다랑어의 3~5배).</p>
-<p>왜 가다랑어 의존이 위험? 가다랑어는 표층 회유성 어종으로 <strong>ENSO·라니냐 한 번에 글로벌 공급의 20~25% 휘청</strong>. 우리 어획의 60%가 단일 climate variable에 100% 노출된 단일 자산 포지션.</p>
+<p>글로벌 참치 어획 구성: <strong>가다랑어(Skipjack) 58.3%</strong>가 압도적 1위. 황다랑어(Yellowfin) 21.7% 합쳐 상위 2개 어종이 <strong>80% 점유</strong>. 눈다랑어(Bigeye) 12.4%, 날개다랑어(Albacore) 5.8%는 비중 작지만 단가 프리미엄(가다랑어의 3~5배).</p>
+<p>가다랑어는 표층 회유성 어종으로 ENSO·라니냐 충격 시 글로벌 공급이 <strong>약 20~25% 수준 위축(업계추정)</strong>. 가다랑어 의존도 60%는 단일 기후 변수에 대한 집중 리스크 포지션.</p>
 <p>의미: 어종 다변화는 단순 portfolio가 아닌 <strong>"climate beta hedge"</strong>. 황다랑어·날개다랑어는 더 깊은 수심으로 ENSO 내성 높아 자연 헷지.</p>
 </div>`,
       actionPlan: `<div>
-<p><strong>재정의</strong>: 단일 어종 60% 의존은 climate beta 100% 노출. 4어종 분산으로 sharpe ratio 2배 개선.</p>
+<p><strong>재정의</strong>: 단일 어종 60% 의존은 기후 변수 집중 노출. 4어종 분산으로 공급 변동성 완화 및 ASP 개선 가능(자체추정).</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>황다랑어 신규 어획권 확보</strong>: IATTC·WCPFC 황다랑어 쿼터 forward 매입. 비중 21.7% → 30%로 확대.</li>
-<li style="margin-bottom: 8px;"><strong>날개다랑어 차세대 진입</strong>: 북태평양 백다랑어 어장 라이센스 선매수 — 기후변화로 위도 상승 시 신규 어장 출현.</li>
-<li><strong>"Species portfolio sharpe optimization"</strong>: 4어종을 modern portfolio theory 기반 quarterly rebalancing. 공급 변동성 -30% + ASP +12~18% 회수.</li>
+<li style="margin-bottom: 8px;"><strong>황다랑어 신규 어획권 확보</strong>: IATTC·WCPFC 황다랑어 쿼터 forward 매입. 비중 21.7% → 30%로 단계적 확대.</li>
+<li style="margin-bottom: 8px;"><strong>날개다랑어 차세대 진입</strong>: 북태평양 날개다랑어 어장 라이센스 선매수 — 기후 변화에 따른 회유 패턴 변화를 선제 대응.</li>
+<li><strong>어종 포트폴리오 리밸런싱</strong>: 4어종을 공급 변동성 기반으로 분기 단위 조정. 리스크 분산 효과 모니터링.</li>
 </ol>
 </div>`,
-      source: 'ISSF 2025 Status of the Stocks (Stage 1 mock)',
+      source: 'ISSF 2025 Status of the Stocks (illustrative)',
     }}
   />
 );

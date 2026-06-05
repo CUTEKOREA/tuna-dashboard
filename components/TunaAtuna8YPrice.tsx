@@ -57,7 +57,7 @@ export default function TunaAtuna8YPrice() {
               month: `${yyyy.substring(2)}-${mm}`,
               skj_bkk: parseFloat(d.value),
               skj_avg: parseFloat(d.value), // Assuming BKK is the global benchmark for now
-              yf_avg: parseFloat(d.value) * 1.58, // Mocking YFT 58% premium for visualization
+              yf_avg: parseFloat(d.value) * 1.58, // illustrative: SKJ 대비 58% 역사적 프리미엄 적용 추정치 (실데이터 아님)
             };
           }).filter((d: any) => !isNaN(d.skj_bkk));
 
@@ -158,7 +158,7 @@ export default function TunaAtuna8YPrice() {
     </LineChart>
   );
 
-  const sit = `Atuna.com 일별 거래가 8년 시계열 (2017-06 ~ ${stats.lastMonth}, 108건). 최신 ${stats.lastMonth}: 가다랑어 $${stats.lastSkj}/톤·황다랑어 $${stats.lastYf}/톤. 8년 평균은 SKJ $${stats.skjAvg}·YFT $${stats.yfAvg}로 황다랑어가 SKJ 대비 58% 프리미엄. SKJ 변동폭 $${stats.skjMin}~$${stats.skjMax} (122% 진폭), YFT $${stats.yfMin}~$${stats.yfMax} (68%).`;
+  const sit = `Atuna.com 로컬 CSV 기반 8년 시계열 (2017-06 ~ ${stats.lastMonth}). 최신 ${stats.lastMonth}: 가다랑어 $${stats.lastSkj}/톤·황다랑어 $${stats.lastYf}/톤(업계 추정, SKJ × 1.58 적용). 8년 평균은 SKJ $${stats.skjAvg}·YFT $${stats.yfAvg}(illustrative). SKJ 실거래 변동폭 $${stats.skjMin}~$${stats.skjMax}.`;
 
   const strat = `Skipjack은 ${stats.lastSkj > stats.skjAvg ? '평균 상회' : '평균 하회'} 구간 — ${stats.lastSkj > stats.skjAvg ? '재고 소진 + Forward 매도' : '저점 매입 + 통조림 라인 풀가동'}. Yellowfin 프리미엄 격차(현재 $${(stats.lastYf || 0) - (stats.lastSkj || 0)}/톤)를 활용한 사시미·필렛 mix 비중 조정. 항만별 차익(아비장-방콕 스프레드) 모니터링하여 글로벌 조달 라우팅 최적화.`;
 
@@ -176,7 +176,7 @@ export default function TunaAtuna8YPrice() {
       takeaway={{
         situation: sit,
         actionPlan: strat,
-        source: "Atuna.com 방콕 가다랑어 가격 (Live CSV API)",
+        source: "Atuna.com 방콕 가다랑어 가격 (로컬 CSV, /api/tuna-local). YFT는 SKJ×1.58 업계 추정치.",
       }}
     />
   );

@@ -173,7 +173,7 @@ export function InsightJapanDemandCliff() {
             </p>
             <ol style={{ margin: '4px 0 0 18px', padding: 0 }}>
               <li style={{ marginBottom: 8 }}>
-                <strong>단기 (12개월)</strong>: 일본향 사시미급 매출 비중이 30% 이상인 사업부에 <strong>"non-Japan ratio 50%+ 5년 로드맵"</strong> 강제. 분기 KPI에 일본 의존도 감축률 추가.
+                <strong>단기 (12개월)</strong>: 일본향 사시미급 매출 비중이 30% 이상인 사업부에 <strong>"비일본 비중 50%+ 5년 로드맵"</strong> 강제. 분기 KPI에 일본 의존도 감축률 추가.
               </li>
               <li style={{ marginBottom: 8 }}>
                 <strong>중기 (3년)</strong>: 미국(글로벌 사시미 8~10% 점유, 2위)·EU·동남아 신흥 사시미 시장에 <strong>고급 부위(toro·akami) 채널 직진출</strong>. 일본 도매시장 경유 마진을 직거래로 흡수.
@@ -445,15 +445,15 @@ export function InsightSupplyStructure2022() {
 export function InsightPriceTier() {
   return (
     <WidgetCard
-      title="사시미 3-Tier 가격 매트릭스 — 14배 격차"
+      title="사시미 3단계 가격 매트릭스 — 14배 격차"
       icon={DollarSign}
       iconColor="#fbbf24"
       pillar="S4"
-      cardDesc="일본 도매가 어종·티어별 비교. 14배 = 프리미엄 PBF 상한가(JPY 4,200/kg) ÷ 저가 SKJ 하한가(JPY 300/kg). 통조림용 SKJ vs 양식 PBF 최상등급 양극단. 단위 (JPY/kg)."
-      telemetry={{ status: 'STATIC', syncDate: 'Kawamoto T 2026 Fig 6 + 일본 도요스 도매시장 시세' }}
+      cardDesc="일본 도매가 어종·등급별 비교. 14배 = 프리미엄 PBF 상한가(JPY 4,200/kg) ÷ 저가 SKJ 하한가(JPY 300/kg). Kawamoto(2017) 인용 추정치. 단위 (JPY/kg)."
+      telemetry={{ status: 'STATIC', syncDate: '2026-04-30' }}
       termTooltip={{
-        term: '3-Tier',
-        description: '프리미엄(참다랑어 — PBF Pacific bluefin, SBF Southern bluefin), 중급(눈다랑어 BET, 황다랑어 YFT), 저가(가다랑어 SKJ, 날개다랑어 ALB).',
+        term: '3단계 가격대',
+        description: '프리미엄(참다랑어 — PBF 태평양참다랑어, SBF 남방참다랑어), 중급(눈다랑어 BET, 황다랑어 YFT), 저가(가다랑어 SKJ, 날개다랑어 ALB).',
       }}
       kpiPanel={[
         {

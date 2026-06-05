@@ -93,7 +93,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
             <div style={{ background: 'rgba(6, 182, 212, 0.08)', border: '1px solid rgba(6, 182, 212, 0.15)', borderRadius: '8px', padding: '10px 14px', marginBottom: '1rem', display: 'flex', gap: '10px' }}>
               <ShieldCheck size={18} color="#06b6d4" style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#06b6d4', marginBottom: '4px' }}>AI 오탐지 분석 엔진</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#06b6d4', marginBottom: '4px' }}>AI 오탐지 분석</div>
                 <div style={{ fontSize: '0.75rem', color: '#f8fafc', marginBottom: '4px' }}>오탐지 위험도: <strong style={{ color: result.aiAnalysis.falsePositiveRisk === 'HIGH' ? '#F6465D' : '#0ECB81' }}>{result.aiAnalysis.falsePositiveRisk}</strong> (신뢰도: {(result.aiAnalysis.confidence * 100).toFixed(1)}%)</div>
                 <div style={{ fontSize: '0.7rem', color: '#94a3b8', lineHeight: 1.4 }}>{result.aiAnalysis.recommendation}</div>
               </div>
@@ -128,19 +128,19 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
       customBody={Body}
       takeaway={{
         situation: result && !showHist ? `<div>
-<p><strong>"Sanction Screening"</strong>이란 거래 상대방이 미국 OFAC SDN(Specially Designated Nationals)·EU 통합제재목록·UN 안보리 제재 명단에 올라있는지 확인하는 절차. 등재된 vendor와 거래 시 우리 회사도 secondary sanction 대상 — 글로벌 은행 거래 차단 + 미국 시장 영구 추방.</p>
-<p>스크리닝 결과: <strong>${result.entity} — Risk Score ${result.riskScore}/100 (${result.riskLevel})</strong>. OFAC: ${result.ofac.status}, EU: ${result.eu.status}.</p>
+<p><strong>"Sanction Screening"</strong>이란 거래 상대방이 미국 OFAC SDN(Specially Designated Nationals)·EU 통합제재목록·UN 안보리 제재 명단에 올라있는지 확인하는 절차. 등재된 vendor와 거래 시 우리 회사도 2차 제재(secondary sanction) 대상 — 글로벌 은행 거래 차단 + 미국 시장 영구 추방.</p>
+<p>스크리닝 결과: <strong>${result.entity} — 위험점수 ${result.riskScore}/100 (${result.riskLevel})</strong>. OFAC: ${result.ofac.status}, EU: ${result.eu.status}.</p>
 <p>점수 해석: 90+ 적합(거래 가능), 80~89 주의(추가 실사), 80 미만 위험(Enhanced Due Diligence 필수), 60 미만 거래 차단.</p>
 </div>` : `<div>
-<p><strong>"Sanction Screening"</strong>은 글로벌 비즈니스의 가장 중요한 컴플라이언스 절차. OFAC·EU·UN 제재 명단 등재 vendor와 거래 시 secondary sanction 대상 — 글로벌 은행 거래 차단 + 미국 시장 영구 추방 가능성.</p>
+<p><strong>"Sanction Screening"</strong>은 글로벌 비즈니스의 가장 중요한 컴플라이언스 절차. OFAC·EU·UN 제재 명단 등재 vendor와 거래 시 2차 제재(secondary sanction) 대상 — 글로벌 은행 거래 차단 + 미국 시장 영구 추방 가능성.</p>
 <p>주요 5개사 스크리닝 결과: <strong>Silla(98), Dongwon(97), Thai Union(95) 적합. Minh Phu(72) 주의</strong>. Minh Phu는 추가 실사 + 거래 조건 강화 필요.</p>
 </div>`,
         actionPlan: result && result.riskScore < 80 ? `<div>
-<p><strong>Enhanced Due Diligence(EDD)</strong> 즉시 실시: ${result.entity}의 ① ultimate beneficial owner(UBO) 확인 ② 자금 출처(source of funds) ③ 정치적 노출(PEP) ④ negative media screening — 4중 검증. EDD 미통과 시 거래 보류 또는 종료.</p>
+<p><strong>강화 실사(EDD, Enhanced Due Diligence)</strong> 즉시 실시: ${result.entity}의 ① 최종 실소유자(UBO) 확인 ② 자금 출처 ③ 정치적 노출(PEP) ④ 부정적 언론 스크리닝 — 4중 검증. EDD 미통과 시 거래 보류 또는 종료.</p>
 </div>` : `<div>
-<p><strong>"전 거래처 월 1회 자동 스크리닝"</strong>: OFAC·EU 명단은 매주 갱신되므로 monthly auto-screening 필수. 본사 compliance desk가 ML 기반 risk scoring 모델로 자동화 — 분기마다 임계치 돌파 vendor alert. JP Morgan Compliance Tech Desk와 협력해 platform 통합.</p>
+<p><strong>"전 거래처 월 1회 자동 스크리닝"</strong>: OFAC·EU 명단은 매주 갱신되므로 월간 자동 스크리닝 필수. 본사 컴플라이언스 데스크가 머신러닝 기반 위험 점수 모델로 자동화 — 분기마다 임계치 돌파 vendor 알림 발송.</p>
 </div>`,
-        source: 'OFAC SDN(실시간 공개 CSV) + EU·IUU 수산 참조 DB · 조회 실패 시 사전심사 DB 폴백',
+        source: 'OFAC SDN 공개 CSV + EU 통합제재·IUU 참조 DB · 조회 실패 시 내부 사전심사 DB 폴백',
       }}
     />
   );

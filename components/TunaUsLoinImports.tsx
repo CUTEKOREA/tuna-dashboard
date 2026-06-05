@@ -23,7 +23,7 @@ const usLoinData = [
 export default function TunaUsLoinImports() {
   return (
     <WidgetCard
-      title="미국의 전가열 참치 로인(Loin) 수입 추이 및 관세 영향"
+      title="미국의 전가열 참치 로인 수입 추이 및 관세 영향"
       icon={Landmark}
       iconColor="#38bdf8"
       pillar="S3"

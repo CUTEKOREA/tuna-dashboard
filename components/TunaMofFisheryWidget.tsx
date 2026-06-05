@@ -50,7 +50,7 @@ export function MofFishMarketWidget() {
       pillar="S3"
       cardDesc="해양수산부 수산정보포털(FIS) API에서 국내 5대 위판장 냉동 눈다랑어 위탁판매 데이터를 수집해 시장별 거래량·평균 단가 비교"
       unit="(단위: MT / ₩/kg)"
-      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? 'Real-time' : '2026년 기준' }}
+      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? '실시간' : '2026년 기준' }}
       chartHeight={280}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -67,15 +67,15 @@ export function MofFishMarketWidget() {
       }
       takeaway={{
         situation: `<div>
-<p><strong>눈다랑어(Bigeye)</strong>는 참치 중 사시미·횟감용 최고급 어종으로, 한국 내수에서 kg당 가격이 가다랑어의 5~8배. 한국에서 거래되는 모든 냉동 눈다랑어는 위탁판매(consignment) 방식으로 4개 주요 항구의 위판장에서 거래됩니다.</p>
-<p>2026 1분기 분포:</p>
+<p><strong>눈다랑어(Bigeye)</strong>는 참치 중 사시미·횟감용 최고급 어종으로, 한국 내수에서 kg당 가격이 가다랑어의 5~8배. 한국에서 거래되는 모든 냉동 눈다랑어는 위탁판매(consignment) 방식으로 5개 주요 위판장에서 거래됩니다.</p>
+<p>2026년 기준 추정 분포(자체추정 — FIS API 미연동 시 업계추정치 적용):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>부산공동어시장</strong>: 12,450 MT (43% 집중, 평균가 ₩6,800/kg)</li>
+<li><strong>부산공동어시장</strong>: 12,450 MT (43% 집중, 평균가 ₩8,200/kg)</li>
 <li><strong>제주 한림</strong>: 3,200 MT (11%, 평균가 <strong>₩9,100/kg 전국 최고가</strong>)</li>
-<li>인천·통영 등 기타: 13,500 MT (46%, 평균가 ₩6,200/kg)</li>
+<li>통영·여수·속초 기타: 12,800 MT (46%, 평균가 ₩7,600~8,500/kg)</li>
 </ul>
-<p>핵심 패턴: 부산은 물량 많고 가공용 범용 단가, 제주 한림은 물량 적고 <strong>선도 프리미엄</strong>으로 +33% 추가 단가. 같은 어종도 양륙 위치에 따라 채널이 갈리고 가격이 갈립니다.</p>
-<p>의미: 부산 집중은 물류 병목 + 범용 매대 가격 압박. 제주 한림은 한정 capacity로 일본·오마카세 채널 sweet spot.</p>
+<p>핵심 패턴: 부산은 물량 많고 가공용 범용 단가, 제주 한림은 물량 적고 <strong>선도 프리미엄</strong>으로 약 +11% 추가 단가. 같은 어종도 양륙 위치에 따라 채널이 갈리고 가격이 갈립니다.</p>
+<p>의미: 부산 집중은 물류 병목 + 범용 매대 가격 압박. 제주 한림은 한정 capacity로 일본·오마카세 채널 선호 위판장.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 위판장 채널은 단순 물류가 아닌 <strong>"가격 결정 채널 선택의 strategic optionality"</strong>. 같은 원물도 어느 위판장에 양륙하느냐로 ASP ±35% 차이.</p>
@@ -108,7 +108,7 @@ export function MofTradeBalanceWidget() {
       pillar="S3"
       cardDesc="관세청 KCS API + 해양수산부 통계 연동. 참치 HS 코드 기준 월별 수출액·수입액·무역수지 추이 — 구조적 적자 해소 전략 시사점"
       unit="(단위: USD Million)"
-      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? 'Real-time' : '2024년 기준' }}
+      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? '실시간' : '2024년 기준' }}
       chartHeight={280}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -166,7 +166,7 @@ export function MofShippingCostWidget() {
       pillar="S3"
       cardDesc="KMI 해운지수 + 해운조합 컨테이너 운임으로 주요 수출입 노선(부산→방콕·LA·로테르담 등)의 20ft/40ft 운임 동향 추적"
       unit="(단위: USD/컨테이너)"
-      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? 'Real-time' : '2026년 기준' }}
+      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? '실시간' : '2026년 기준' }}
       customBody={
         <div style={{ display: 'grid', gap: '12px', background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '1rem', border: '1px dashed rgba(148, 163, 184, 0.1)' }}>
           {data.map((r, i) => (

@@ -91,7 +91,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
       iconColor="#ef4444"
       pillar="S5"
       cardDesc="ICCAT/IOTC 쿼터 축소 → 원물 가격 상승 → 자숙액 수급 불안정 연쇄 리스크 조기 경보"
-      telemetry={{ status: 'SYNCED', syncDate: 'IOTC-2026-S30-INF04 + ICCAT 2026' }}
+      telemetry={{ status: 'STATIC', syncDate: 'IOTC-2026-S30-INF04 · ICCAT-2026 기준 (정적)' }}
       termTooltip={{ term: 'TAC', description: '총허용어획량(Total Allowable Catch). ICCAT·IOTC 등 RFMO가 매년 어종별로 설정하는 최대 어획량 상한선. 초과 시 100~125% 페이백(삭감) 페널티.' }}
       customBody={<>{TacGauges}{ChartArea}</>}
       takeaway={{
@@ -116,7 +116,7 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
 <li><strong>"쿼터 소진율 85%+ 자동 경보 트리거"</strong>: AI 기반 monitoring + 본사 trading desk 직보 시스템. 동시에 쿼터 보유 sovereign과 equity-level partnership으로 long-term access 보장.</li>
 </ol>
 </div>`,
-        source: 'IOTC Compendium of Active Conservation Measures · ICCAT Compendium · FAO SOFIA 2022 · Macroeconomic impact of international fishery regulation (Marine Policy)',
+        source: 'IOTC Compendium of Active Conservation Measures · ICCAT Compendium · FAO SOFIA 2022 · 가격-쿼터 연동 지수는 업계추정(illustrative)',
       }}
     />
   );

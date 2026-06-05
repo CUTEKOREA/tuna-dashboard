@@ -56,7 +56,7 @@ export function KfasByproductValueChain() {
       telemetry={{ status: 'STATIC', syncDate: 'KFAS 2026' }}
       kpiPanel={[
         { label: '부산물 비중', value: '30~60%', sub: '총 어류 생산량 대비', trendColor: '#10b981' },
-        { label: '한국 다랑어 어획량', value: '290천톤', sub: 'MOF 2024 기준', trendColor: '#f59e0b' },
+        { label: '한국 다랑어 어획량', value: '290천톤', sub: '해양수산부(MOF) 2024 기준', trendColor: '#f59e0b' },
       ]}
       chartHeight={280}
       chart={
@@ -76,7 +76,7 @@ export function KfasByproductValueChain() {
         situation: `<div>
 <p>한국 다랑어류 어획량은 연 <strong>29만 톤</strong>(MOF 2024). 이 중 가공 부산물(머리·껍질·뼈·내장·알)이 <strong>30~60%</strong>를 차지합니다(Klomklao &amp; Benjakul 2016). 즉 <strong>연 9~17만 톤이 폐기물로 처리</strong>되어 왔습니다.</p>
 <p>한국수산과학회(KFAS) 최신 연구로 그 폐기물의 분자 가치가 정량화되었습니다: ① <strong>가다랑어 부산물 6개 부위</strong> 화학·영양학 프로파일 완성 ② <strong>황다랑어 알(Roe) Alcalase 가수분해물</strong>의 ACE(혈압 조절 효소) 억제활성 82% · DPPH(항산화) 78% 측정 ③ 통조림 부산물 위생안전성 MFDS 기준치 이하 검증 — 즉 식품·바이오 소재로 즉시 사용 가능.</p>
-<p>의미: 폐기물 처리비를 들이고 버리던 부산물이 사실은 <strong>고부가 바이오 원료의 광맥</strong>이었음. 톤당 $50~80 처리비를 톤당 $4,000~12,000 매출로 전환 가능한 잠재 자산.</p>
+<p>의미: 폐기물 처리비를 들이고 버리던 부산물이 사실은 <strong>고부가 바이오 원료의 광맥</strong>이었음. 톤당 $50~80 처리비를 톤당 $4,000~12,000 매출로 전환 가능한 잠재 자산(업계추정).</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 다랑어 부산물은 폐기물이 아니라 <strong>"미회수 바이오 원료 광맥(unrealized bio-asset)"</strong>이다. 본사는 단순 가공사에서 <strong>"marine bio-active ingredient platform"</strong>으로 진화하여 EV/EBITDA를 가공사 8x에서 specialty ingredient 18~22x로 multiple rerate 정당화.</p>
@@ -200,7 +200,7 @@ export function KfasElderlyFunctionalFood() {
       cardDesc="눈다랑어 기반 연화식 제품(함박/완탕/스프) 및 참치-황새치 어육패티의 품질특성 검증 — 한국 고령화 시대의 신성장 동력"
       telemetry={{ status: 'STATIC', syncDate: 'KFAS 2023-2025' }}
       kpiPanel={[
-        { label: '고령친화식품 시장(KR)', value: '₩5조', sub: '2025E · CAGR 15%+', trendColor: '#8b5cf6' },
+        { label: '고령친화식품 시장(KR)', value: '₩5조', sub: '2025년 추정 · CAGR 15%+', trendColor: '#8b5cf6' },
         { label: '최적 배합비', value: '40:60', sub: '참치적색육:황새치백색육', trendColor: '#10b981' },
       ]}
       chartHeight={280}

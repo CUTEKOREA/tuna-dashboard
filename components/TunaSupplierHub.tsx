@@ -110,7 +110,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
               <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>{f.productType}</div>
               <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
                 {f.parentCompany && <span style={{ color: '#c4b5fd' }}>{f.parentCompany}</span>}
-                {f.parentCompany && <span style={{ marginLeft: '6px', color: '#10b981', fontSize: '0.65rem' }}>✓ ISSF/MSC Verified</span>}
+                {f.parentCompany && <span style={{ marginLeft: '6px', color: '#94a3b8', fontSize: '0.65rem' }}>ISSF/MSC 미확인</span>}
               </div>
               <div style={{ textAlign: 'right' }}>
                 {f.workers && (
@@ -132,9 +132,9 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
       icon={Factory}
       iconColor="#9B72CB"
       pillar="S2"
-      cardDesc="Open Supply Hub(OSH) API로 6개국(태국·베트남·인도네시아·중국·에콰도르·한국)의 수산물 가공시설 위치·근로자·모기업·ESG 인증 교차 분석"
-      telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? 'Today' : '2026-H1' }}
-      termTooltip={{ term: 'OSH & ESG', description: 'Open Supply Hub(OSH) 공공 DB에 ISSF PVR 및 MSC 인증 DB를 실시간 교차 검증하여 출력합니다.' }}
+      cardDesc="Open Supply Hub(OSH) API로 6개국(태국·베트남·인도네시아·중국·에콰도르·한국)의 수산물 가공시설 위치·근로자·모기업·ESG 인증 교차 참조"
+      telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? '오늘' : '2026-H1' }}
+      termTooltip={{ term: 'OSH & ESG', description: 'Open Supply Hub(OSH) 공공 DB에 ISSF PVR 및 MSC 인증 DB를 교차 참조를 시도합니다. 인증 여부는 별도 확인 필요.' }}
       kpiPanel={[
         { label: '시설 수', value: totalCount, trendColor: '#f8fafc' },
         { label: '총 근로자', value: totalWorkers > 0 ? `${(totalWorkers / 1000).toFixed(0)}K+` : '-', trendColor: '#FCD535' },
@@ -147,12 +147,12 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
 <p>FFA 최신 리포트에 따르면, 노동 및 사회적 감사(Social Auditing)는 이제 글로벌 참치 산업의 필수 요건입니다. 단순 위치 파악을 넘어 강제 노동 및 불법 어업(IUU) 리스크의 <strong>동적 인증(Dynamic Certification) 검증</strong>이 요구됩니다.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: Supplier Hub는 단순 vendor 리스트가 아닌 <strong>"공급망 ESG Risk & Portfolio optimization tool"</strong>.</p>
+<p><strong>재정의</strong>: Supplier Hub는 단순 vendor 리스트가 아닌 <strong>"공급망 ESG 리스크 및 포트폴리오 최적화 도구"</strong>로 고도화 필요.</p>
 <p><strong>3단계 실무 적용</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>실시간 인증 DB 연동</strong>: OSH 데이터에 ISSF PVR 및 MSC Chain of Custody DB 실시간 교차 검증 적용. 인증 만료 및 박탈 시 대시보드 내 즉각 Alert.</li>
-<li style="margin-bottom: 8px;"><strong>IUU·강제노동 리스크 자동 배제</strong>: NGO 리포트 및 EU CSDDD/미국 UFLPA 리스트 실시간 모니터링을 통한 위험 벤더 블랙리스트화.</li>
-<li><strong>"Vendor portfolio sharpe optimization"</strong>: 특정 국가 및 단일 벤더 의존도 한도 강제 및 분기별 포트폴리오 리밸런싱.</li>
+<li style="margin-bottom: 8px;"><strong>인증 DB 연동 검토</strong>: OSH 데이터에 ISSF PVR 및 MSC Chain of Custody DB 정기 교차 참조 도입 검토. 인증 만료·박탈 시 경보 체계 마련 권고.</li>
+<li style="margin-bottom: 8px;"><strong>IUU·강제노동 리스크 관리</strong>: NGO 리포트 및 EU CSDDD/미국 UFLPA 리스트 정기 검토를 통한 위험 벤더 식별 및 관리.</li>
+<li><strong>벤더 포트폴리오 분산</strong>: 특정 국가 및 단일 벤더 의존도 모니터링 및 분기별 포트폴리오 재검토 권고.</li>
 </ol>
 </div>`,
         source: `Open Supply Hub (CC BY-SA) + ISSF PVR + MSC DB 교차 검증 연동`,

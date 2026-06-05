@@ -83,16 +83,16 @@ export function PolicyRiskScorecard() {
 <p>핵심 2 리스크:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>미국 상호관세 (92점)</strong>: USTR이 한국 가공품 HSK 1604.14에 MFN 12.5~35% 추가 부과 시 한국 수출 연 약 <strong>$280M 차익 손실</strong> 추정.</li>
-<li><strong>미국 강제노동법(UFLPA) (88점)</strong>: 공급망 강제노동 의심 vendor 입증 시 미국 항구 화물 압류. blacklist 18~36개월.</li>
+<li><strong>미국 강제노동법(UFLPA) (88점)</strong>: 공급망 강제노동 의심 업체 입증 시 미국 항구 화물 압류. 블랙리스트 18~36개월.</li>
 </ul>
-<p>의미: 두 리스크 모두 한국이 통제 불가능한 외부 변수지만, 미리 대비하지 않으면 EBITDA의 8~15% 잠재 손실. 정책 리스크는 reactive가 아닌 <strong>proactive instrument</strong>로.</p>
+<p>의미: 두 리스크 모두 한국이 통제 불가능한 외부 변수지만, 미리 대비하지 않으면 EBITDA의 8~15% 잠재 손실. 정책 리스크는 사후 대응이 아닌 <strong>선제적 경영 수단</strong>으로.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 정책 리스크는 단순 ESG 보고서 항목이 아닌 <strong>"본업 EBITDA를 좌우하는 derivative position"</strong>. risk desk가 매 분기 6대 리스크 점수를 마진 매트릭스에 reflect.</p>
+<p><strong>재정의</strong>: 정책 리스크는 단순 ESG 보고서 항목이 아닌 <strong>"본업 EBITDA를 좌우하는 파생적 위험 포지션"</strong>. 리스크 담당 데스크가 매 분기 6대 리스크 점수를 마진 매트릭스에 반영.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>미국 관세 리스크 제로화</strong>: KORUS FTA + 원산지 증명서 자동화로 미국 수출 관세 0% 락업. 멕시코 USMCA contingent capacity 확보.</li>
-<li style="margin-bottom: 8px;"><strong>강제노동법 컴플라이언스</strong>: 블록체인 이력추적(IBM Food Trust)으로 UFLPA 압류 100% 회피. 인증 자산을 SaaS 라이센싱(Compliance-as-a-Service).</li>
+<li style="margin-bottom: 8px;"><strong>미국 관세 리스크 제로화</strong>: KORUS FTA + 원산지 증명서 자동화로 미국 수출 관세 0% 락업. 멕시코 USMCA 조건부 생산 용량 확보.</li>
+<li style="margin-bottom: 8px;"><strong>강제노동법 컴플라이언스</strong>: 블록체인 이력추적(공급망 추적 플랫폼)으로 UFLPA 압류 100% 회피. 인증 자산을 컴플라이언스 서비스화(구독형 라이센싱).</li>
 <li><strong>EU CBAM 대비 탄소 인벤토리</strong>: Scope 1·2·3 탄소 배출 정량화. EU CBAM 2027 발효 전 carbon offset 선매수.</li>
 </ol>
 </div>`,
@@ -150,7 +150,7 @@ export function FtaTariffOptimizer() {
       customBody={Body}
       takeaway={{
         situation: `<div>
-<p>FTA(Free Trade Agreement) 관세차익은 한국 수산업의 가장 중요한 가격 경쟁력. 한국→미국/EU 수출 시 FTA 미적용 vendor 대비 6~35%p 가격 우위.</p>
+<p>FTA(Free Trade Agreement) 관세차익은 한국 수산업의 가장 중요한 가격 경쟁력. 한국→미국/EU 수출 시 FTA 미적용 업체 대비 6~35%p 가격 우위.</p>
 <p>주요 루트:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>Korea→US</strong>: KORUS FTA로 MFN 12.5% → 0% (in oil은 35% → 0%)</li>
@@ -158,15 +158,15 @@ export function FtaTariffOptimizer() {
 <li><strong>Korea→ASEAN</strong>: AKFTA/RCEP로 MFN 5~20% → 0%</li>
 </ul>
 <p>차익 계산: 한국 대미 수출액 × MFN 12.5% (또는 in oil 35%) = 연간 <strong>$12M+ 절감 효과</strong> 추정. 단순 비용 절감이 아닌 <strong>경쟁사 대비 가격 협상 자유도</strong>로 작용해 추가 마진 +5~8%p 회수.</p>
-<p>한 가지 더: FTA는 원산지 증명서(C/O) 발급해야 적용. 현재 한국 수산 vendor 평균 FTA 적용률 70~80% — 20~30%는 그냥 MFN 관세 내고 있음. 이 갭이 즉시 회수 가능한 hidden margin.</p>
+<p>한 가지 더: FTA는 원산지 증명서(C/O) 발급해야 적용. 업계추정: 한국 수산 업체 평균 FTA 적용률 70~80% — 20~30%는 MFN 관세를 그대로 내고 있음. 이 갭이 즉시 회수 가능한 숨겨진 마진.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: FTA 관세차익은 단순 cost saving이 아닌 <strong>"한국 vendor만의 regulatory moat"</strong>. 우리는 buyer가 아닌 trade arbitrage trader로 포지셔닝.</p>
+<p><strong>재정의</strong>: FTA 관세차익은 단순 비용 절감이 아닌 <strong>"한국 수출업체만의 규제 해자(경쟁 장벽)"</strong>. 우리는 단순 구매자가 아닌 관세 차익 거래자(Trade Arbitrageur)로 포지셔닝.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>원산지 증명서 자동화 시스템</strong>: FTA 특혜관세 적용률 70% → 95%+ 달성. 즉시 회수되는 $5~8M/년 hidden margin.</li>
+<li style="margin-bottom: 8px;"><strong>원산지 증명서 자동화 시스템</strong>: FTA 특혜관세 적용률 70% → 95%+ 달성. 즉시 회수되는 연 $5~8M 숨겨진 마진.</li>
 <li style="margin-bottom: 8px;"><strong>한-ASEAN FTA 활용 태국 경유 가공 루트</strong>: 한국 원물 → 태국 가공(AKFTA) → EU 수출(EU-Thai FTA 일부 적용) — 단가 추가 -8~12% 절감.</li>
-<li><strong>WITS API 실시간 모니터링</strong>: 관세 변동 즉시 대응 프로토콜 자동화. 본사 trade desk가 7개 FTA를 매주 monitoring 후 trading book에 reflect. 동시에 FTA 활용 노하우를 다른 한국 수산 vendor에 컨설팅 라이센싱.</li>
+<li><strong>WITS API 실시간 모니터링</strong>: 관세 변동 즉시 대응 프로토콜 자동화. 본사 무역 데스크가 7개 FTA를 매주 모니터링 후 거래 장부에 반영. 동시에 FTA 활용 노하우를 다른 한국 수산 업체에 컨설팅 라이센싱.</li>
 </ol>
 </div>`,
         source: '추정치 — 박혜진(2024-06) 국정연 · KORUS FTA 양허 0% · WITS API',

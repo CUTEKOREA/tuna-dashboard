@@ -124,7 +124,7 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
       iconColor="#2196F3"
       pillar="S3"
       cardDesc="품목명(한/영) → HS 6~10자리 자동 매핑. 7개국 관세 분류체계 지원. FTA 원산지 증명서·관세 신고에 즉시 활용"
-      telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? 'Real-time' : '사전분류 DB' }}
+      telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? '실시간' : '사전분류 DB' }}
       customBody={<>{SearchBar}{QuickTags}{ResultList}</>}
       takeaway={{
         situation: results.length > 0 ? `<div>
@@ -138,9 +138,9 @@ const TunaHSClassifier = React.memo(function TunaHSClassifier() {
 <p><strong>재정의</strong>: HS 코드 정밀 분류는 단순 사무 작업이 아닌 <strong>"FTA 관세차익 회수의 1차 게이트"</strong>. 분류 오류 시 연간 수억원 관세 손실.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>FTA 원산지 증명서 HS 코드 기재에 본 분류 결과 활용</strong>: AI 분류 + 사람 검증 dual-check로 분류 오류 90% 감소.</li>
+<li style="margin-bottom: 8px;"><strong>FTA 원산지 증명서 HS 코드 기재에 본 분류 결과 활용</strong>: AI 분류 + 담당자 교차검증 이중체계로 분류 오류 실질 감소.</li>
 <li style="margin-bottom: 8px;"><strong>수입 통관 시 품목분류 사전심사 신청</strong>: 관세청에 사전심사를 받으면 향후 5년 동일 품목 통관 시 분쟁 없이 처리. 통관 시간 50% 단축.</li>
-<li><strong>"HS Code Automation SaaS"</strong>: 우리 자체 분류 시스템을 동남아·중남미 mid-tier vendor에 라이센싱 — 연 $50~150K/고객. 본업 외 SaaS 수익원.</li>
+<li><strong>HS 분류 자동화 SaaS 외판</strong>: 자체 분류 시스템을 동남아·중남미 중소 수출업체에 라이센싱 — 연 수천만 원/고객 규모(illustrative 추정). 본업 외 부가 수익원.</li>
 </ol>
 </div>`,
         source: `HS Ping API · ${isLive ? '실시간' : '사전분류 DB'} · 신뢰도: ${meta?.reliability?.grade || 'A'}`,

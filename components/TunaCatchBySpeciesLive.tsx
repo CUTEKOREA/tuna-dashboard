@@ -31,10 +31,10 @@ export default function TunaCatchBySpeciesLive() {
 
   return (
     <WidgetCard
-      title="참치 어종별 글로벌 어획량 추이 (Live)"
+      title="참치 어종별 글로벌 어획량 추이"
       pillar="S1"
-      unit="(톤, live weight)"
-      cardDesc="FAO FishStat 2015-2022 Capture Quantity (Q_tlw, 톤 live weight) 기반 3대 참치 어종 어획량 시계열"
+      unit="(톤, 생중량 Q_tlw)"
+      cardDesc="FAO FishStat 2015-2022 어획량 통계(Q_tlw, 톤 생중량) 기반 3대 참치 어종 어획량 시계열"
       telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
       termTooltip={{
         term: 'FishStat · Q_tlw',
@@ -74,15 +74,15 @@ export default function TunaCatchBySpeciesLive() {
         situation: `<div>
 <p>FAO FishStat 글로벌 참치 어획량 실측(2022): <strong>가다랑어(Skipjack) 3,061,304톤(61%)</strong> · 황다랑어(Yellowfin) 1,563,619톤(31%) · 눈다랑어(Bigeye) 357,628톤(7%).</p>
 <p>8년 추세(2015-2022): 가다랑어 ~3M톤 박스권 안정(어획 한계 도달), 황다랑어 1.4 → 1.6M톤 점진 증가, 눈다랑어 0.35M톤 박스권(자원 회복 우려로 IOTC TAC 강화).</p>
-<p>의미: 글로벌 참치 어획은 가다랑어 60% 단일 의존 구조. ENSO·라니냐 한 번에 글로벌 공급 60%가 휘청. 황다랑어 추가 capacity가 sweet spot이지만 쿼터 강화 속도 빠름.</p>
+<p>의미: 글로벌 참치 어획은 가다랑어 60% 단일 의존 구조. ENSO·라니냐 한 번에 글로벌 공급 60%가 휘청. 황다랑어 추가 어획 여력이 최적 확장 여지이지만 쿼터 강화 속도 빠름.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 가다랑어 60% 의존은 climate beta 100% 노출 single-stock. 황다랑어·날개다랑어 분산이 sharpe ratio 2배 개선 instrument.</p>
+<p><strong>재정의</strong>: 가다랑어 60% 의존은 기후 베타 100% 노출 단일 어종 구조. 황다랑어·날개다랑어 분산이 샤프지수 2배 개선 수단.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>황다랑어 비중 30% → 35%+ 확대</strong>: IATTC·WCPFC 황다랑어 쿼터 forward 매입 + 황다랑어 어획권 보유 선사와 5년 장기 공급 계약.</li>
-<li style="margin-bottom: 8px;"><strong>"Species portfolio sharpe ratio" KPI</strong>: 본사 risk 부서가 매 분기 species 비중을 modern portfolio theory 기반 dynamic rebalancing.</li>
-<li><strong>차세대 어종(날개다랑어·청새치) 선제 진입</strong>: 기후변화로 위도 상승 시 신규 어장 출현 — 미리 라이센스 forward 매입.</li>
+<li style="margin-bottom: 8px;"><strong>황다랑어 비중 30% → 35%+ 확대</strong>: IATTC·WCPFC 황다랑어 쿼터 선도 매입 + 황다랑어 어획권 보유 선사와 5년 장기 공급 계약.</li>
+<li style="margin-bottom: 8px;"><strong>'어종 포트폴리오 샤프지수' KPI</strong>: 본사 리스크 부서가 매 분기 어종 비중을 현대 포트폴리오 이론 기반 동적 재조정.</li>
+<li><strong>차세대 어종(날개다랑어·청새치) 선제 진입</strong>: 기후변화로 서식 위도 상승 시 신규 어장 출현 — 미리 어업 라이선스 선도 매입.</li>
 </ol>
 </div>`,
         source: 'FAO FishStat Capture Statistics 2015-2022 (Q_tlw, 자료수집 매뉴얼 v28.4 §2 FishStat 3 zip)'

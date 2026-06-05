@@ -48,7 +48,7 @@ const TunaExportShare = () => (
     iconColor="#ef4444"
     pillar="S4"
     cardDesc="FAO FishStatJ 무역 데이터에서 양식 생산 10개국 발 수출만 추출. 고부가가치 참다랑어의 극단적 일본 단일 시장 종속 구조 시각화"
-    telemetry={{ status: 'SYNCED', syncDate: 'FAO FishStatJ' }}
+    telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023' }}
     chartHeight={380}
     chart={
       <BarChart data={rawData as any[]} margin={{ top: 10, right: 30, left: 10, bottom: 5 }}>
@@ -66,16 +66,16 @@ const TunaExportShare = () => (
     takeaway={{
       situation: `<div>
 <p>"모든 길은 도쿄로" — 고부가가치 양식 참다랑어 글로벌 수출의 극단적 일본 집중 패턴. 글로벌 양식 참다랑어 수출의 <strong>60~75%가 일본 단독 행</strong>.</p>
-<p>이 구조의 위험성: 일본 단일 시장에 의존하는 vendor는 ① 일본 내수 침체 시 매출 50%+ 직격 ② 엔저 심화 시 수익성 즉각 붕괴 ③ 일본 상사(미쓰비시·미쓰이) 매입 협상력에 100% 종속.</p>
-<p>의미: 수출 다변화 없는 vendor는 환율·매크로 변수에 single-stock 노출. 그러나 일본 외 시장(미국·UAE·홍콩)도 이미 일본 비교 가격으로 묶여있어 vendor brand power 없이는 진입 어려움.</p>
+<p>이 구조의 위험성: 일본 단일 시장에 의존하는 공급자는 ① 일본 내수 침체 시 매출 50%+ 직격 ② 엔저 심화 시 수익성 즉각 붕괴 ③ 일본 상사(미쓰비시·미쓰이) 매입 협상력에 100% 종속.</p>
+<p>의미: 수출 다변화 없는 공급자는 환율·거시경제 변수에 단일종목 노출. 그러나 일본 외 시장(미국·UAE·홍콩)도 이미 일본 비교 가격으로 묶여있어 자체 브랜드 파워 없이는 진입 어려움.</p>
 </div>`,
       actionPlan: `<div>
-<p><strong>재정의</strong>: 일본 의존 탈피는 단순 채널 분산이 아닌 <strong>"K-Bluefin sovereign brand 구축"</strong>. 일본 바이어 화이트라벨에서 독립한 자체 brand만이 글로벌 다변화 가능.</p>
+<p><strong>재정의</strong>: 일본 의존 탈피는 단순 채널 분산이 아닌 <strong>"한국산 참다랑어 독자 브랜드 구축"</strong>. 일본 바이어 위탁 라벨에서 독립한 자체 브랜드만이 글로벌 다변화 가능.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>강제 다변화</strong>: 일본 비중 75% → 50%로 강제 축소. 미국 25% + UAE 15% + 홍콩 10%로 4-국가 portfolio.</li>
-<li style="margin-bottom: 8px;"><strong>"K-Bluefin Premium" 자체 brand 출시</strong>: 일본 화이트라벨 거래 → 한국 brand 직접 수출 전환. LA·NY·두바이·홍콩 미슐랭 스시 직거래 채널 락업.</li>
-<li><strong>"K-Bluefin sovereign brand" 글로벌 marketing</strong>: 한국 정부 (해양수산부·aT) 협력 — 글로벌 K-food 마케팅 budget에 K-Bluefin 편입. K-pop·K-drama cross-promotion으로 brand awareness 가속.</li>
+<li style="margin-bottom: 8px;"><strong>강제 다변화</strong>: 일본 비중 75% → 50%로 강제 축소. 미국 25% + UAE 15% + 홍콩 10%로 4개국 포트폴리오 구성.</li>
+<li style="margin-bottom: 8px;"><strong>"K-블루핀 프리미엄" 자체 브랜드 출시</strong>: 일본 위탁 라벨 거래 → 한국 브랜드 직접 수출 전환. LA·NY·두바이·홍콩 미슐랭 스시 직거래 채널 선점.</li>
+<li><strong>"한국산 참다랑어" 글로벌 마케팅</strong>: 한국 정부(해양수산부·aT) 협력 — 글로벌 한식 마케팅 예산에 한국산 참다랑어 편입. 한류 콘텐츠 연계 홍보로 브랜드 인지도 가속.</li>
 </ol>
 </div>`,
       source: 'FAO FishStatJ Farmed Export Destination Share',

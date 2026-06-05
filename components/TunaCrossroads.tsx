@@ -28,12 +28,12 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const TunaCrossroads = () => (
   <WidgetCard
-    title="글로벌 참다랑어 생산량 크로스로드 (Catch vs Farmed)"
+    title="글로벌 참다랑어 생산량 크로스로드 (어획 vs 양식)"
     icon={Anchor}
     iconColor="#8b5cf6"
     pillar="S1"
-    cardDesc="참다랑어 자연 어획량(쿼터로 1980년 이후 정체) vs 축양/양식량(우상향 돌파)을 ComposedChart로 결합"
-    telemetry={{ status: 'SYNCED', syncDate: 'FAO FishStatJ' }}
+    cardDesc="참다랑어 자연 어획량(쿼터로 1980년 이후 정체) vs 축양/양식량(우상향 돌파)을 ComposedChart로 결합 — 출처: FAO FishStatJ"
+    telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
     chartHeight={350}
     chart={
       <ComposedChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>

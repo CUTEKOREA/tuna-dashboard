@@ -312,7 +312,7 @@ export default function TunaExtractDashboard() {
           iconColor="#8b5cf6"
           pillar="S2"
           cardDesc="USD/KRW 환율 슬라이더 기반 참치액 vs 멸치·까나리 마진 시뮬레이션"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'STATIC', syncDate: '내부 원가 모델' }}
           customBody={
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', background: '#0f172a', padding: '1rem', borderRadius: '8px' }}>
@@ -564,8 +564,8 @@ export default function TunaExtractDashboard() {
           icon={Globe}
           iconColor="#f59e0b"
           pillar="S3"
-          cardDesc="국가별 지정학 리스크 vs 조달 단가 vs 볼륨의 3축 버블 차트 — 차이나 플러스 원(China+1) 다변화 후보 평가"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          cardDesc="국가별 지정학 리스크 vs 조달 단가 vs 볼륨의 3축 버블 차트 — 차이나 플러스 원(China+1) 다변화 후보 평가 (업계 추정치 기반 illustrative)"
+          telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
           chartHeight={280}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
@@ -608,7 +608,7 @@ export default function TunaExtractDashboard() {
           iconColor="#ef4444"
           pillar="S4"
           cardDesc="aT 가공식품 세분시장 트렌드 — 참치액·식물성 연두·멸치/까나리액젓의 현재 사용률 vs 향후 사용 의향 스택 비교"
-          telemetry={{ status: 'LIVE', syncDate: '2026-Q1' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-Q1' }}
           chartHeight={280}
           chart={
             <BarChart data={d_w07_2026} layout="vertical" margin={{ left: 40 }}>
@@ -638,7 +638,7 @@ export default function TunaExtractDashboard() {
 <li><strong>장기 (5~15년)</strong>: <strong>"Korean umami as global category"</strong> 정의. 우리가 sole category creator로 K-umami를 global ingredient industry term으로 등재. McCormick·Givaudan·Symrise(글로벌 향료 leader) 인수 또는 partnership으로 우리 umami profile을 그들의 ingredient catalog에 default 등재. 동시에 K-pop·K-드라마 GMV 콘텐츠와 K-food 결합한 cross-promotion (BLACKPINK Lisa "참치액 만두" YouTube short 같은 콜라보). 25년 후 우리는 단순 조미료 회사가 아닌 <strong>"global umami platform company"</strong>로 valuation rerate (EV/EBITDA 8x → 25x).</li>
 </ol>
 </div>`,
-            source: '2026 aT 가공식품 세분시장 트렌드 업데이트 (LIVE 연동)',
+            source: '2026 aT 가공식품 세분시장 트렌드 업데이트',
           }}
         />
 
@@ -647,8 +647,8 @@ export default function TunaExtractDashboard() {
           icon={TrendingUp}
           iconColor="#ef4444"
           pillar="S4"
-          cardDesc="국내 멸치/까나리 어획량 지수 vs 참치액 B2B 발주량 지수의 역상관 패턴 — 풍선 효과(Balloon Effect) 추적"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          cardDesc="국내 멸치/까나리 어획량 지수 vs 참치액 B2B 발주량 지수의 역상관 패턴 — 풍선 효과(Balloon Effect) 추적 (해양수산부·내부 데이터 기반)"
+          telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
           chartHeight={280}
           chart={
             <ComposedChart data={d_substitute_corr}>
@@ -693,7 +693,7 @@ export default function TunaExtractDashboard() {
           iconColor="#ec4899"
           pillar="S5"
           cardDesc="FDA·EU·일본·중국 등 주요 수출국 히스타민 통관 기준치와 한국산 참치 자숙액·경쟁 액젓류 실측 수치 레이더 비교"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
           customBody={data.d_w06 ? (
             <SafeResponsiveContainer height={280}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data.d_w06}>

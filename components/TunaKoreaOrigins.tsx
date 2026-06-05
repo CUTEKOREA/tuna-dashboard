@@ -55,7 +55,7 @@ const TunaKoreaOrigins = () => (
     iconColor="#8b5cf6"
     pillar="S3"
     cardDesc="FAO FishStatJ 한국 참다랑어 수입 5년치를 양식 Top 10 국가 발만 추출 — 튀르키예·스페인 등 지중해 축양이 한국 프리미엄 시장 장악"
-    telemetry={{ status: 'SYNCED', syncDate: '관세청 + FAO FishStatJ' }}
+    telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
     chartHeight={300}
     chart={
       <BarChart data={koreaOriginsData as any[]} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} barSize={40}>
@@ -75,15 +75,15 @@ const TunaKoreaOrigins = () => (
       situation: `<div>
 <p>한국 참다랑어(Bluefin) 수입 원산지 비중이 지난 10년간 큰 변화. 과거: 일본 단순 중계 + 호주 자연산 + 멕시코 축양. 현재: <strong>지중해권(튀르키예·스페인·몰타) 축양 물량이 한국 프리미엄 시장 장악</strong>.</p>
 <p>왜 이런 변화? ① 자연산 참다랑어 ICCAT 쿼터 강화로 공급 -25%p ② 지중해 축양은 사료·지방률·체급 정밀 통제로 일본 미슐랭 셰프 선호 증가 ③ 한국이 일본 토요스 의존을 벗어나 직접 수입 확대.</p>
-<p>의미: 한국 프리미엄 참다랑어 시장은 <strong>"양식 + 직수입"</strong>이 신표준. 자연산·중계 의존 vendor는 점점 채널 잃음.</p>
+<p>의미: 한국 프리미엄 참다랑어 시장은 <strong>"양식 + 직수입"</strong>이 신표준. 자연산·중계 의존 공급사는 점점 채널 잃음.</p>
 </div>`,
       actionPlan: `<div>
-<p><strong>재정의</strong>: 지중해 축양 vendor와의 long-term equity 관계가 한국 프리미엄 시장 채널 락업의 핵심. 일본 상사 경유 패시브 소싱은 zero-margin commodity.</p>
+<p><strong>재정의</strong>: 지중해 축양 공급사와의 장기 지분 관계가 한국 프리미엄 시장 채널 락업의 핵심. 일본 상사 경유 패시브 소싱은 마진 없는 범용 조달.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>지중해 탑티어 팜과 5년 exclusive 직접 구매 계약</strong>: 스페인 Balfegó·튀르키예 Sirkir·몰타 Malta Fish Farming Co. 등 minority equity 5~10% 인수 + 매입권 락업.</li>
-<li style="margin-bottom: 8px;"><strong>일본 상사 경유 우회</strong>: 직수입 비중 현재 35% → 70%로 확대. 중간 마진 200~400bp 직접 회수.</li>
-<li><strong>지방 함량(Otoro) 균일성·체급 customization 마케팅 전면</strong>: "Made in Mediterranean + Aged in Korea" 차별화 brand로 한국 미쉐린 스시·럭셔리 호텔 채널 락업. ASP +30~50% 프리미엄.</li>
+<li style="margin-bottom: 8px;"><strong>지중해 탑티어 팜과 5년 독점 직접 구매 계약</strong>: 스페인 발페고(Balfegó)·튀르키예 시르킬(Sirkir)·몰타 몰타피시파밍 등 소수 지분 5~10% 인수 + 매입권 락업.</li>
+<li style="margin-bottom: 8px;"><strong>일본 상사 경유 우회</strong>: 직수입 비중 확대(자체추정: 현재 35% → 70% 목표). 중간 마진 직접 회수.</li>
+<li><strong>지방 함량(오토로) 균일성·체급 맞춤 마케팅 전면</strong>: "지중해산 + 한국 숙성" 차별화 브랜드로 한국 미쉐린 스시·럭셔리 호텔 채널 락업. 단가 상승 여력(자체추정: 30~50%) 확보.</li>
 </ol>
 </div>`,
       source: '관세청 수입통계 HSK 0303.41/0303.42 + FAO FishStatJ',

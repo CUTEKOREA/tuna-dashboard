@@ -72,7 +72,7 @@ export default function TunaPetCareMargin() {
       icon={Recycle}
       iconColor="#22c55e"
       pillar="S2"
-      cardDesc="Thai Union 2024 재무 기준 펫케어 매출총이익률 분석. 참치 통조림 마진 4~9% vs 프리미엄 펫푸드 원료 28.5%(증권사 추정)"
+      cardDesc="Thai Union 2024 재무 기준 펫케어 매출총이익률 참고. 수율 모델(가식부 48%/부산물 52%)은 illustrative 추정. 참치 통조림 마진 4~9% vs 프리미엄 펫푸드 원료 28.5%(비공개 증권사 추정)"
       unit="(단위: %)"
       telemetry={{ status: 'STATIC', syncDate: '2024 (Thai Union)' }}
       customBody={DualChart}

@@ -103,18 +103,18 @@ const TunaColdChainCostGap = () => (
     }
     takeaway={{
       situation: `<div>
-<p>참치 운송에는 2가지 모드. <strong>해상</strong>(컨테이너선, 느림·저렴)과 <strong>항공</strong>(빠름·비쌈). 신선 참치는 frozen·시간 압박 때문에 일부 항공 의존.</p>
-<p>비용 격차: <strong>해상 평균 91만원 vs 항공 평균 1,368만원 = 15배</strong>. 항공이 압도적으로 비쌈. 그런데 콜드체인 손실(부패·품질 저하)을 감안하면 <strong>해상 1.8% 손실 vs 항공 0.3% 손실</strong>로 실효 격차는 8~10배로 축소.</p>
-<p>여기서 trade-off: 항공은 비싸지만 손실 적음, 해상은 싸지만 손실 큼. 핵심 질문: <strong>해상 손실율을 낮출 수 있다면?</strong> 그게 가능합니다.</p>
-<p>해결책: <strong>MAP(Modified Atmosphere Packaging, 변경기체포장)</strong>. 산소 비율을 낮추고 질소·CO2 비율을 높여 보존성 강화. 해상 손실율을 1.8% → 0.7%로 낮출 수 있음.</p>
+<p>참치 운송에는 2가지 모드. <strong>해상</strong>(컨테이너선, 느림·저렴)과 <strong>항공</strong>(빠름·비쌈). 신선 참치는 동결·시간 압박 때문에 일부 항공 의존.</p>
+<p>비용 격차: <strong>해상 평균 91만원 vs 항공 평균 1,368만원 = 15배</strong>. 항공이 압도적으로 비쌈. 그런데 콜드체인 손실(부패·품질 저하)을 감안하면 <strong>해상 손실 약 1.8% vs 항공 약 0.3%(업계 추정)</strong>로 실효 격차는 8~10배 수준으로 축소.</p>
+<p>절충 구조: 항공은 비싸지만 손실 적음, 해상은 싸지만 손실 큼. 핵심 질문: <strong>해상 손실율을 낮출 수 있다면?</strong> 그게 가능합니다.</p>
+<p>해결책: <strong>MAP(변경기체포장, Modified Atmosphere Packaging)</strong>. 산소 비율을 낮추고 질소·CO2 비율을 높여 보존성 강화. 해상 손실율을 1.8% → 0.7% 수준으로 낮출 수 있음(자체추정).</p>
 </div>`,
       actionPlan: `<div>
-<p><strong>재정의</strong>: MAP 해상 전환은 단순 cost saving이 아닌 <strong>"항공 의존 paradigm shift"</strong>. 본사 물류 KPI를 항공 비중에서 해상 MAP 전환률로 전환.</p>
+<p><strong>재정의</strong>: MAP 해상 전환은 단순 비용 절감이 아닌 <strong>"항공 의존 구조 전환"</strong>. 본사 물류 KPI를 항공 비중에서 해상 MAP 전환률로 재설정.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>Q4 MAP 시범 운영</strong>: 부산→LA 노선 컨테이너 10대 pilot. 해상 손실율 1.8% → 0.7% 검증.</li>
-<li style="margin-bottom: 8px;"><strong>Q1 2026 전사 전환 로드맵</strong>: 항공 의존 30% → 10%로 축소. 연간 운송비 -38% 절감.</li>
-<li><strong>"MAP 패키징 IP 라이센싱"</strong>: 우리 MAP 솔루션을 동남아·중남미 수산 vendor에 라이센싱 — 연 $200~500K/고객. JP Morgan Logistics Desk와 partnership으로 cold chain finance 패키지 출시.</li>
+<li style="margin-bottom: 8px;"><strong>Q4 MAP 시범 운영</strong>: 부산→LA 노선 컨테이너 10대 파일럿. 해상 손실율 1.8% → 0.7% 목표치 검증.</li>
+<li style="margin-bottom: 8px;"><strong>Q1 2026 전사 전환 로드맵</strong>: 항공 의존 30% → 10%로 축소. 연간 운송비 절감 목표는 파일럿 결과 확정 후 산정.</li>
+<li><strong>MAP 패키징 기술 외부화</strong>: 자사 MAP 솔루션을 동남아·중남미 수산 협력사에 제공 — 수익 규모는 협력사 규모·계약 구조에 따라 결정되며 별도 검토 필요.</li>
 </ol>
 </div>`,
       source: 'KMI 2025 Q3 해상물류통계 + 항공운임 자체조사 (Stage 1 mock)',

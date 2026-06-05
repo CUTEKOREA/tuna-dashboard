@@ -40,7 +40,7 @@ export default function TunaPrecisionFishing() {
       telemetry={{ status: 'STATIC', syncDate: '2024년 기준' }}
       kpiPanel={[
         { label: '타겟 어군 식별률', value: '85%', sub: 'AI 3D 소나 도입 시', trendColor: '#38bdf8' },
-        { label: '조업 효율 향상', value: '+15%', sub: '탐색 유류비 제로화', trendColor: '#10b981' },
+        { label: '조업 효율 향상', value: '+15%', sub: '탐색 유류비 비율 18%로 감소', trendColor: '#10b981' },
       ]}
       chartHeight={280}
       chart={
@@ -60,10 +60,10 @@ export default function TunaPrecisionFishing() {
 <p>치명적 리스크:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>유류비 폭등</strong>: ENSO 시즌 동안 어군 위치 변화로 항공유·MGO 소비 +40~60%</li>
-<li><strong>공치기(Dry sets)</strong>: 그물을 내려도 가치 낮은 어종만 잡히거나 빈 그물. 공치기 비율 평시 15% → ENSO 시즌 35%+</li>
+<li><strong>공치기(Dry sets)</strong>: 그물을 내려도 가치 낮은 어종만 잡히거나 빈 그물. 공치기 비율 평시 15% → ENSO 시즌 업계추정 35%+</li>
 <li><strong>인건비</strong>: 비효율 조업 시간 늘면서 선원 OPEX 함께 증가</li>
 </ul>
-<p>"정밀 조업(Precision Fishing)" 해결책: 무인 드론·AI 3D 소나로 어군 사전 식별 후 핀포인트 수확. 결과: <strong>타겟 어군 85% 사전 식별, 유류비 -28%, CPUE +15%</strong>.</p>
+<p>"정밀 조업(Precision Fishing)" 해결책: 무인 드론·AI 3D 소나로 어군 사전 식별 후 핀포인트 수확. 결과: <strong>타겟 어군 85% 사전 식별, 탐색 유류비 비중 -22%p(40%→18%), CPUE +15%</strong>.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 정밀 조업은 단순 OPEX 절감이 아닌 <strong>"climate beta resilience capex"</strong>. ENSO 사이클이 강해질수록 정밀 vendor와 일반 vendor의 cost gap이 벌어진다.</p>

@@ -452,9 +452,9 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
           <IconComp size={18} style={{ color: accentColor }} />
           {widget.title}
           <div style={{ marginLeft: '12px', display: 'flex', alignItems: 'center' }}>
-            <TelemetryBadge 
-              status={((widget.reliability && widget.reliability > 70) || (widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? 'live' : 'static'} 
-              syncDate={((widget.reliability && widget.reliability > 70) || (widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? 'Real-time' : '2024년 기준'} 
+            <TelemetryBadge
+              status={((widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? 'live' : 'static'}
+              syncDate={((widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? '실시간' : '2024년 기준'}
             />
           </div>
           

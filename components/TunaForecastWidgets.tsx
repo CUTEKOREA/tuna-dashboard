@@ -83,7 +83,7 @@ export function SkipjackForecastWidget() {
 <p><strong>시나리오 재정렬</strong>: 이전 forecast(Q3 $1,950)는 이미 outdated. 새 시나리오 <strong>2026-Q3 $1,700~$1,800 박스권</strong> (캐너리 오퍼가 사실상 floor) → 2026-Q4 $1,650~$1,750 → 2027-Q1 $1,600~$1,700 평시 회귀.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 게임이 바뀌었다. Q2 정점에서 매도자 우위였던 시장이 <strong>2주 만에 매입자 우위로 전환</strong>(공급 증가 + 캐너리 매입 reluctance). 본사 매입 데스크는 reactive에서 <strong>aggressive procurement mode</strong>로 즉시 전환 — 가격 추가 하락 전에 1700 박스권 적극 매수.</p>
+<p><strong>재정의</strong>: 게임이 바뀌었다. Q2 정점에서 매도자 우위였던 시장이 <strong>2주 만에 매입자 우위로 전환</strong>(공급 증가 + 캐너리 매입 소극화). 본사 매입 데스크는 수동 대응에서 <strong>공격적 매입 모드</strong>로 즉시 전환 — 가격 추가 하락 전에 1700 박스권 적극 매수.</p>
 <p><strong>4단계 즉시 실행</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>1순위 — "캐너리 floor 매입" 즉시 가동 ($1,700~$1,800)</strong>: SV·TU 오퍼 $1,700 초반을 floor reference로 활용. <strong>$1,750 이하 100% 적극 매수, $1,800 이상은 단순 보충용 소량 매수</strong>. 향후 4~6주에 걸쳐 분할 매입 — 평균 매입가 $1,720 타게팅 (Q2 정점 $2,008 대비 -14%, 이전 forecast $1,950 대비 -12%). 1개월 안에 90일치 안전 재고 풀로딩.</li>
@@ -146,7 +146,7 @@ export function EnsoCorrelationWidget() {
 <p>중요한 caveat: <strong>2026 Q2 현재 가격 변동성의 1차 변수는 ENSO가 아닌 호르무즈 봉쇄 외생 MGO 충격</strong>. ENSO 시그널만 보고 매입 결정하면 호르무즈 변수를 놓침 — 두 변수 동시 모니터링 필수.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: ENSO 분석은 중장기(6~24개월) 어장 시그널이며 단기 매입은 호르무즈 변수가 dominant. <strong>"Time-horizon별 변수 분리 trading"</strong>으로 두 신호를 독립적으로 활용.</p>
+<p><strong>재정의</strong>: ENSO 분석은 중장기(6~24개월) 어장 시그널이며 단기 매입은 호르무즈 변수가 주도적. <strong>"시계열 구간별 변수 분리 매입 전략"</strong>으로 두 신호를 독립적으로 활용.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
 <li style="margin-bottom: 8px;"><strong>단기 (2~4주 매입)</strong>: 호르무즈 정상화 여부가 1차 시그널. ENSO는 무시. 박스권 trading.</li>
@@ -199,16 +199,16 @@ export function LandingCostSensitivity() {
 <li><strong>미국 301 관세 시나리오</strong>: 미국이 한국 가공품에 301조 관세 부과 시 착지매입원가 <strong>+20% 급등</strong>. 마진 -8~12%p 직접 압박.</li>
 <li><strong>원화 약세 시나리오</strong>: USD/KRW 환율 ₩1,385 → ₩1,450(₩65 추가 절하) 시 kg당 약 <strong>₩420 매입원가 상승</strong>, 추가 마진 -5.1%p 압축.</li>
 </ul>
-<p>의미: 두 시나리오가 동시 발생 시(미국 정치 불확실성 + 한국 경상수지 악화 결합 가능) 마진 -13~17%p의 catastrophic 시나리오. 본사 EBITDA 마진 8%면 사실상 적자 전환.</p>
+<p>의미: 두 시나리오가 동시 발생 시(미국 정치 불확실성 + 한국 경상수지 악화 결합 가능) 마진 -13~17%p의 최악 시나리오. 본사 EBITDA 마진 8%면 사실상 적자 전환.</p>
 <p>현재 visibility: ① 미국 USTR이 한국 가공품 301조 검토 중(2026 하반기 결정) ② 한국 경상수지 적자 누적으로 KRW 약세 압력 지속. 두 트리거가 12~18개월 내 동시 발동 가능성 20~30%.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 착지원가는 단순 회계 변수가 아닌 <strong>"3중 외생 충격에 노출된 derivative position"</strong>. 본사 risk desk가 매주 환율·관세·운임을 종합 모니터링해 자동 헷지 발동.</p>
+<p><strong>재정의</strong>: 착지원가는 단순 회계 변수가 아닌 <strong>"3중 외생 충격에 노출된 파생 포지션"</strong>. 본사 리스크 데스크가 매주 환율·관세·운임을 종합 모니터링해 자동 헷지 발동.</p>
 <p><strong>3중 방어 전략</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>환율 헷지</strong>: 3개월 선물환 계약으로 <strong>₩1,400 이하 락인</strong>. 매입 물량의 70% hedge, 30% spot 노출 — 환율 변동성 ±10% 한도 내로 제한.</li>
+<li style="margin-bottom: 8px;"><strong>환율 헷지</strong>: 3개월 선물환 계약으로 <strong>₩1,400 이하 락인</strong>. 매입 물량의 70% 헷지, 30% 현물 노출 — 환율 변동성 ±10% 한도 내로 제한.</li>
 <li style="margin-bottom: 8px;"><strong>FTA 우회</strong>: 한-ASEAN FTA로 <strong>태국 경유 관세 0%</strong> 활용. 미국 301 관세 시나리오 발동 시 즉시 supply route를 한국 직수출 → 태국→미국으로 자동 우회. 관세 부담 0.</li>
-<li><strong>ECOS/KCS API 실시간 모니터링 자동화 프로토콜</strong>: 한국은행 ECOS + 관세청 KCS API로 환율·관세 변동을 실시간 catch. 임계치 돌파 시 본사 risk desk에 자동 alert + 헷지 instrument 자동 발동. JP Morgan FX·관세 desk와 결합해 24/7 monitoring.</li>
+<li><strong>ECOS/KCS API 실시간 모니터링 자동화 프로토콜</strong>: 한국은행 ECOS + 관세청 KCS API로 환율·관세 변동을 실시간 감지. 임계치 돌파 시 본사 리스크 데스크에 자동 경보 + 헷지 수단 자동 발동. JP Morgan FX·관세 데스크와 결합해 24시간 모니터링.</li>
 </ol>
 </div>`,
         source: '한국은행 ECOS API · 관세청 KCS API · FTA 관세양허표',
