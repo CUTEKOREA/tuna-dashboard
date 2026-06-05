@@ -225,6 +225,8 @@ export async function POST(req: Request) {
               let reportedAmount = 0;
               if (vesselId === 'sein-phoenix') {
                 reportedAmount = targetId === 'SJ' ? 6646.000 : 309.000;
+              } else if (vesselId === 'bao-lucky') {
+                reportedAmount = targetId === 'SJ' ? 4176.000 : 627.000;
               }
               existingSpec = {
                 vessel_id: vesselId,
@@ -427,6 +429,8 @@ export async function POST(req: Request) {
             let reportedAmount = 0;
             if (vesselId === 'sein-phoenix') {
               reportedAmount = targetId === 'SJ' ? 6646.000 : 309.000;
+            } else if (vesselId === 'bao-lucky') {
+              reportedAmount = targetId === 'SJ' ? 4176.000 : 627.000;
             }
             const { error: sInsertErr } = await supabase
               .from('unloading_species')

@@ -12,6 +12,16 @@
       "date_range": "2026.05.23 ~ 진행중",
       "created_at": "2026-06-01T22:42:57.072021+00:00",
       "updated_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "name": "M/V BAO LUCKY",
+      "location": "BANGKOK, THAILAND",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역중 (In Progress)",
+      "reported_total": 4803,
+      "date_range": "2026.05.23 ~ 진행중",
+      "mother_vessel": "-"
     }
   ],
   "unloading_reports": [
@@ -142,6 +152,33 @@
       "daily_amount": 236.14,
       "cumulative_amount": 2541.13,
       "quality_notes": "S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호.MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 330톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/2",
+      "work_time": "09:00 ~ 17:10",
+      "target_holds": "S/EXP(#4-A), N/STAR(#1-A)",
+      "daily_amount": 229.16,
+      "cumulative_amount": 229.16,
+      "quality_notes": "S/EXP(#4-A): 어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호.N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 176톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/3",
+      "work_time": "08:00 ~ 18:00",
+      "target_holds": "S/EXP(#4-B)",
+      "daily_amount": 500,
+      "cumulative_amount": 729.16,
+      "quality_notes": "S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호. 명일(6/6) 약 0톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/4",
+      "work_time": "-",
+      "target_holds": "-",
+      "daily_amount": 0,
+      "cumulative_amount": 729.16,
+      "quality_notes": "일요일 휴무. 명일(6/6) 약 3800톤 하역 진행 예정."
     }
   ],
   "unloading_species": [
@@ -162,6 +199,20 @@
       "reported_amount": 309,
       "actual_amount": 142.6,
       "updated_at": "2026-06-01T22:42:57.072021+00:00"
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "species_id": "SJ",
+      "species_name": "Skipjack",
+      "reported_amount": 4176,
+      "actual_amount": 704.46
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "species_id": "YF",
+      "species_name": "Yellowfin",
+      "reported_amount": 627,
+      "actual_amount": 24.7
     }
   ]
 }
