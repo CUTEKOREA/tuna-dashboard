@@ -12,14 +12,14 @@ export const revalidate = 3600;
  */
 
 const COMPANIES = [
-  { name: "CJ제일제당", code: "00164779" },
-  { name: "동원홈푸드", code: "00128596" },
+  { name: "CJ제일제당", code: "00635134" }, // DART corpCode.xml 검증 (stock: 097950)
+  { name: "동원F&B", code: "00340917" },    // 동원홈푸드 비상장·비공시 → 상장 모회사 동원F&B (stock: 049770)
 ];
 
 const FALLBACK_DATA = {
   source: "DART 새우 관련사 fallback (재무 데이터 미보유)",
   isLive: false,
-  lastUpdated: "2026-05-29",
+  lastUpdated: "2026-06-05",
   companies: COMPANIES.map(c => ({
     corp_name: c.name,
     corp_code: c.code,

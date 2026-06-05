@@ -37,11 +37,23 @@ export async function GET(request: Request) {
   try {
     const results = await Promise.all(
       COMPANIES.map(async (c) => {
-        const acnt = await fetchSinglAcnt({
+        // CFS(연결재무제표) 우선 조회 — 없으면 OFS(별도재무제표) 폴백
+        // 신라교역 등 중소 가공·유통사는 CFS 미작성으로 list:[] 반환 → isLive=false 원인
+        let acnt = await fetchSinglAcnt({
           corp_code: c.code,
           bsns_year: year,
           reprt_code: "11011",
+          fs_div: "CFS",
         });
+        if (!acnt.ok || acnt.list.length === 0) {
+          // CFS 실패 → OFS 재시도
+          acnt = await fetchSinglAcnt({
+            corp_code: c.code,
+            bsns_year: year,
+            reprt_code: "11011",
+            fs_div: "OFS",
+          });
+        }
         if (!acnt.ok || acnt.list.length === 0) {
           return {
             corp_name: c.name,

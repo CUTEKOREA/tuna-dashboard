@@ -12,8 +12,8 @@ export const revalidate = 3600;
  */
 
 const COMPANIES = [
-  { name: "한성기업", code: "00100823" },
-  { name: "동원에프앤비", code: "00128573" },
+  { name: "한성기업", code: "00161860", fs_div: "OFS" as const },  // stock_code 003680, 수산물 가공
+  { name: "동원F&B", code: "00340917", fs_div: "CFS" as const },   // stock_code 049770, 참치·고등어 통조림
 ];
 
 const FALLBACK_DATA = {
@@ -40,6 +40,7 @@ export async function GET(request: Request) {
           corp_code: c.code,
           bsns_year: year,
           reprt_code: "11011",
+          fs_div: c.fs_div,
         });
         if (!acnt.ok || acnt.list.length === 0) {
           return {

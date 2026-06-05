@@ -13,7 +13,7 @@ export const revalidate = 3600;
 
 const COMPANIES = [
   { name: "CJ제일제당", code: "00164779" },
-  { name: "동원에프앤비", code: "00128573" },
+  { name: "동원에프앤비", code: "00340917" },
 ];
 
 const FALLBACK_DATA = {

@@ -12,6 +12,9 @@ import { NextResponse } from "next/server";
 const MOF_API_BASE = "https://apis.data.go.kr/1192000/select0040List/getselect0040List";
 const MOF_API_KEY = process.env.FISHERY_API_KEY || "6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030";
 
+// KCS 관세청 — 고등어 (HS 030354) mackerel-kcs 패턴 동일
+const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || "fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c";
+
 // Fallback 1: EUMOFA 2026 (EU-27 어획량 및 가치)
 const FALLBACK_EUMOFA = {
   source: "EUMOFA 2026 / ICES Stock Annex",
@@ -62,6 +65,102 @@ export async function GET(request: Request) {
   };
 
   try {
+    // ── KCS 관세청 실시간 분기 (mackerel-kcs 패턴 준수) ──
+    if (source === "kcs") {
+      const now = new Date();
+      const past = new Date(now.getFullYear(), now.getMonth() - 5, 1);
+      const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}`;
+      const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, "0")}`;
+      const kcsUrl =
+        `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
+        `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030354`;
+
+      const kcsRes = await fetch(kcsUrl, { signal: AbortSignal.timeout(6000) });
+      if (kcsRes.ok) {
+        const xml = await kcsRes.text();
+        const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
+        if (items.length > 0) {
+          const monthlyTotals: Record<string, { volume: number; value: number }> = {};
+          const originTotals: Record<string, number> = {};
+          let totalWgt = 0;
+
+          for (const match of items) {
+            const itemStr = match[1];
+            const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
+            const statKorMatch = itemStr.match(/<statKor>([\s\S]*?)<\/statKor>/);
+            if (!yearMatch || yearMatch[1] === "총계") continue;
+            const rawYear = yearMatch[1].replace(/\D/g, "");
+            if (rawYear.length !== 6) continue;
+            const monthKey = `${rawYear.substring(0, 4)}-${rawYear.substring(4, 6)}`;
+
+            const impDlrMatch = itemStr.match(/<impDlr>([\d.]+)<\/impDlr>/);
+            const impWgtMatch = itemStr.match(/<impWgt>([\d.]+)<\/impWgt>/);
+            const wgt = impWgtMatch ? parseFloat(impWgtMatch[1]) : 0;
+            const amt = impDlrMatch ? parseFloat(impDlrMatch[1]) : 0;
+
+            if (!monthlyTotals[monthKey]) monthlyTotals[monthKey] = { volume: 0, value: 0 };
+            monthlyTotals[monthKey].volume += wgt / 1000; // kg → 톤
+            monthlyTotals[monthKey].value += amt;
+
+            if (wgt > 0 && statKorMatch) {
+              const country = statKorMatch[1].trim();
+              if (country && country !== "총계" && country.length > 0) {
+                if (!originTotals[country]) originTotals[country] = 0;
+                originTotals[country] += wgt;
+                totalWgt += wgt;
+              }
+            }
+          }
+
+          const sortedMonths = Object.keys(monthlyTotals).sort().slice(-6);
+          if (sortedMonths.length > 0) {
+            const monthly = sortedMonths.map((m) => ({
+              month: m,
+              volume: Math.round(monthlyTotals[m].volume),
+              value: Math.round(monthlyTotals[m].value),
+            }));
+
+            let origin: { name: string; value: number; fill: string }[] = [];
+            if (totalWgt > 0) {
+              let norway = 0, china = 0, uk = 0, other = 0;
+              Object.entries(originTotals).forEach(([c, w]) => {
+                const pct = (w / totalWgt) * 100;
+                if (c.includes("노르웨이") || c.includes("노루웨이")) norway += pct;
+                else if (c.includes("중국") || c.includes("중화")) china += pct;
+                else if (c.includes("영국") || c.includes("그레이트")) uk += pct;
+                else other += pct;
+              });
+              if (norway > 0 || china > 0) {
+                origin = [
+                  { name: "노르웨이", value: Math.round(norway * 10) / 10, fill: "#0ea5e9" },
+                  { name: "중국", value: Math.round(china * 10) / 10, fill: "#f59e0b" },
+                  { name: "영국", value: Math.round(uk * 10) / 10, fill: "#10b981" },
+                  { name: "기타", value: Math.round(other * 10) / 10, fill: "#64748b" },
+                ];
+              }
+            }
+
+            return NextResponse.json(
+              {
+                timestamp: new Date().toISOString(),
+                isLive: true,
+                source: "관세청 KCS OpenAPI (실시간)",
+                description: "고등어(HS 030354) 월별 수입 추이 및 국가별 점유율",
+                monthly,
+                origin: origin.length > 0 ? origin : FALLBACK_KCS.data,
+              },
+              { headers: { "Cache-Control": "no-store, max-age=0" } }
+            );
+          }
+        }
+      }
+      // KCS 파싱 실패 시 fallback으로 낙하
+      return NextResponse.json(
+        { ...FALLBACK_KCS, isLive: false },
+        { headers: { "X-Data-Source": "kcs-Fallback", "Cache-Control": "no-store, max-age=0" } }
+      );
+    }
+
     if (source === "mof") {
       // 1차: 해양수산부 공공데이터포털 실시간 API 호출
       const apiUrl = `${MOF_API_BASE}?serviceKey=${encodeURIComponent(MOF_API_KEY)}&pageNo=1&numOfRows=100&type=json${date ? `&yyyyMMdd=${date}` : ""}`;
@@ -149,7 +248,7 @@ export async function GET(request: Request) {
 
       return NextResponse.json({
         source: isLiveMOF ? "해양수산부 및 관세청 (실시간 연동)" : "해양수산부 및 관세청 (Fallback + Dynamic Calc)",
-        isLive: true,
+        isLive: isLiveMOF,
         data: liveDataItems,
         arbitrage: {
           norway_cif_krw_kg: currentNorwayCifKg,

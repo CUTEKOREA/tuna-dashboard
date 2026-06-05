@@ -12,12 +12,12 @@ export const revalidate = 3600;
  */
 
 const COMPANIES = [
-  { name: "동원에프앤비", code: "00128573" },
+  { name: "동원F&B", code: "00340917" }, // 동원에프앤비 → 정확한 DART corp_code
   { name: "CJ제일제당", code: "00164779" },
 ];
 
 const FALLBACK_DATA = {
-  source: "DART 골뱅이 관련사 fallback (재무 데이터 미보유)",
+  source: "DART 골뱅이 관련사 fallback (재무 데이터 미조회)",
   isLive: false,
   lastUpdated: "2026-05-29",
   companies: COMPANIES.map(c => ({

@@ -12,14 +12,14 @@ export const revalidate = 3600;
  */
 
 const COMPANIES = [
-  { name: "사조대림", code: "00237708" },
-  { name: "동원산업", code: "00128524" },
+  { name: "사조대림", code: "00109718" }, // stock: 003960 (DART CORPCODE.xml verified)
+  { name: "동원산업", code: "00118026" }, // stock: 006040 (DART CORPCODE.xml verified)
 ];
 
 const FALLBACK_DATA = {
   source: "DART 명태 관련사 fallback (재무 데이터 미보유)",
   isLive: false,
-  lastUpdated: "2026-05-29",
+  lastUpdated: "2026-06-05",
   companies: COMPANIES.map(c => ({
     corp_name: c.name,
     corp_code: c.code,

@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 
-const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || "";
+// L-10: fallback 키 보유 — env 우선, 없으면 하드코딩 키로 라이브 시도
+const COMTRADE_KEY =
+  process.env.UN_COMTRADE_PRIMARY_KEY ||
+  process.env.UN_COMTRADE_SECONDARY_KEY ||
+  "61063fe9f1d2483ea97a9e526daf20a6";
 
 const FALLBACK = {
-  source: "UN Comtrade HS 030389 (Forensic 파싱)",
+  source: "UN Comtrade HS 030389 (Forensic 파싱 캐시)",
   isLive: false,
   lastUpdated: new Date().toISOString(),
   data: [
@@ -18,22 +22,55 @@ const FALLBACK = {
 
 export async function GET() {
   try {
-    if (!COMTRADE_KEY) return NextResponse.json(FALLBACK);
+    const url = new URL("https://comtradeapi.un.org/data/v1/get/C/A/HS");
+    url.searchParams.set("cmdCode", "030389");
+    url.searchParams.set("reporterCode", "all");
+    url.searchParams.set("partnerCode", "0");
+    url.searchParams.set("period", "2023");
+    url.searchParams.set("flowCode", "M,X");
 
-    // Call actual Comtrade API (simplified for demonstration)
-    const url = `https://comtradeapi.un.org/data/v1/get/C/A/HS?cmdCode=030389&reporterCode=all&partnerCode=0&period=2023&flowCode=M,X`;
-    const res = await fetch(url, {
-      headers: { "Ocp-Apim-Subscription-Key": COMTRADE_KEY },
-      signal: AbortSignal.timeout(5000)
+    const res = await fetch(url.toString(), {
+      headers: {
+        "Ocp-Apim-Subscription-Key": COMTRADE_KEY,
+        "Accept": "application/json",
+      },
+      signal: AbortSignal.timeout(10000),
     });
 
     if (res.ok) {
-      // In a real scenario, we parse and reduce the JSON into the format used by the widget.
-      // For now, we return the fallback structure with isLive = false /* Mock fallback */ to simulate the live fallback.
-      return NextResponse.json({ ...FALLBACK, isLive: false /* Mock */, source: "UN Comtrade 실시간 API (HS 030389)" });
+      const json = await res.json();
+      const rows: Array<{ reporterCode: number; reporterDesc: string; flowCode: string; primaryValue: number }> =
+        json.data || [];
+
+      // 국가별 수출/수입 집계
+      const countryMap: Record<string, { country: string; exportVal: number; importVal: number }> = {};
+      for (const row of rows) {
+        const key = String(row.reporterCode);
+        if (!countryMap[key]) {
+          countryMap[key] = { country: row.reporterDesc || key, exportVal: 0, importVal: 0 };
+        }
+        const valMt = (row.primaryValue || 0) / 1_000_000; // USD → 백만USD
+        if (row.flowCode === "X") countryMap[key].exportVal += valMt;
+        else if (row.flowCode === "M") countryMap[key].importVal += valMt;
+      }
+
+      const data = Object.values(countryMap)
+        .sort((a, b) => b.exportVal + b.importVal - (a.exportVal + a.importVal))
+        .slice(0, 10);
+
+      if (data.length > 0) {
+        return NextResponse.json({
+          isLive: true,
+          source: "UN Comtrade 실시간 API (HS 030389)",
+          lastUpdated: new Date().toISOString(),
+          data,
+        });
+      }
     }
+
+    console.warn("[galchi/comtrade] API 응답 비정상, fallback 반환. status:", res.status);
   } catch (e) {
-    console.error("Comtrade API error:", e);
+    console.error("[galchi/comtrade] API 호출 오류:", e);
   }
   return NextResponse.json(FALLBACK);
 }

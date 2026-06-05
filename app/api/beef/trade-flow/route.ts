@@ -54,22 +54,17 @@ function ko(code: number, fallback: string) {
   return COUNTRY_KO[String(code)] || fallback;
 }
 
-async function fetchComtradeBeef(key: string | undefined): Promise<{ data: typeof FALLBACK; via: 'premium' | 'preview' } | null> {
+async function fetchComtradeBeef(): Promise<{ data: typeof FALLBACK; via: 'preview' } | null> {
   // 가장 최근 완료 연도 — 보통 전년도
   const year = new Date().getFullYear() - 1;
   // HS 0201 (신선/냉장) + 0202 (냉동) — 합산
-  const isPremium = !!(key && key !== 'pending_issuance');
-  const base = isPremium
-    ? 'https://comtradeapi.un.org/data/v1/get/C/A/HS'
-    : 'https://comtradeapi.un.org/public/v1/preview/C/A/HS';
+  // Public Preview 고정 (korea-imports 검증 패턴 준수)
+  // Premium API(reporterCode=all)는 HTTP 400 반환 확인 → preview 단일화
   // 핵심 수출 6개국 (브라질·호주·미국·뉴질랜드·우루과이·아르헨티나)
-  // Premium은 reporter=all 가능, Preview는 specific 필요
-  const reporterParam = isPremium ? 'all' : '76,36,840,554,858,32';
-  const url = `${base}?cmdCode=0201,0202&reporterCode=${reporterParam}&period=${year}&flowCode=X${isPremium ? '&partnerCode=all&maxRecords=5000' : ''}`;
+  const url = `https://comtradeapi.un.org/public/v1/preview/C/A/HS?cmdCode=0201,0202&reporterCode=76,36,840,554,858,32&period=${year}&flowCode=X`;
 
   try {
     const res = await fetch(url, {
-      headers: isPremium ? { 'Ocp-Apim-Subscription-Key': key as string } : {},
       signal: AbortSignal.timeout(20000),
       next: { revalidate: 86400 * 7 }, // 1w cache (월간 갱신으로 충분)
     });
@@ -109,26 +104,22 @@ async function fetchComtradeBeef(key: string | undefined): Promise<{ data: typeo
         };
       });
 
-    return { data: top8, via: isPremium ? 'premium' : 'preview' };
+    return { data: top8, via: 'preview' };
   } catch {
     return null;
   }
 }
 
 export async function GET() {
-  const key = process.env.UN_COMTRADE_PRIMARY_KEY;
   let data = FALLBACK;
   let isLive = false;
   let source = '유엔 무역통계(UN Comtrade) 정적 미러';
 
-  const live = await fetchComtradeBeef(key);
+  const live = await fetchComtradeBeef();
   if (live && live.data.length >= 3) {
     data = live.data;
     isLive = true;
-    const channel = live.via === 'premium' ? 'Premium API' : 'Public Preview (무인증, 500 records)';
-    source = `UN Comtrade ${channel} — HS 0201+0202 ${new Date().getFullYear() - 1} 수출, 1주 캐시`;
-  } else if (key) {
-    source = 'UN Comtrade Premium 응답 부족 — 정적 미러';
+    source = `UN Comtrade Public Preview — HS 0201+0202 ${new Date().getFullYear() - 1} 수출, 1주 캐시`;
   } else {
     source = 'UN Comtrade Public Preview 실패 — 정적 미러';
   }
