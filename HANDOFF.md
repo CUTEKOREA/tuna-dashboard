@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-06-05 — 후속 rebuild: fetch 위젯 telemetry 정직화 (가짜LIVE 61 추가 박멸)** [CC] [f1d614a]:
+> - **rebuild 현실 진단**: 실 curl 결과 로컬 라우트 대부분 fallback(salmon/kamis isLive=false), mackerel-kcs만 진짜 LIVE. **진짜-LIVE는 프로덕션 env 키/L-10 fallback 키 작동에 의존**(사용자 영역 결정).
+> - **widget-side rebuild**: fetch는 하면서 telemetry 고정이던 50파일을 `status: data ? 'SYNCED' : 'STATIC'` 동적패턴으로(PollockLandedCost 정답 패턴). **171위젯 동적전환·가짜LIVE 61건 추가 박멸**(honesty 스윕이 놓친 고정-telemetry 과대표기; ShrimpDashboard 14·Galchi 10 등). supplementary fetch·진짜 LIVE는 보존(10파일 무변경). `npm run build` ✓.
+> - **누적 가짜LIVE 박멸**: sweep 209 + rebuild 61 = **270건**.
+> - **다음 단계(사용자 결정)**: ① 진짜-LIVE 활성화 = Vercel env 키 설정 또는 L-10 하드코딩 fallback 키(보안 트레이드오프) → prod 라우트가 live 데이터 반환 ② value_chain/PollockDraftInsights/ReeferMovement = Antigravity 소관. **배포 대기**(사용자 "배포" 시 일괄 push).
+
 > 🏁 **2026-06-05 — 사이트 전 품목 신뢰도 sweep 완료 (12품목 1,317위젯, 가짜LIVE 209건 박멸)** [CC]:
 > - **전 commodity 결합 audit+정책D 정정**(Sonnet 비용최적, value_chain=AG 제외): 품목별 결합 패스→빌드게이트→커밋.
 > - **사이트 평균 69.5→77.1(+7.6) · 가짜LIVE(L-09) 209건 정직 STATIC화**(난수 가짜실시간·'[LIVE API 연동]' 유령태그·허위 SYNCED).
