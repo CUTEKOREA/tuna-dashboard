@@ -86,7 +86,7 @@ export default function SquidKoreaSupply() {
         <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.2)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
           <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)' }}>2023 수입량</div>
           <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--color-danger)' }}>{Math.round(latest.import_volume_t).toLocaleString()}톤</div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--color-warning)' }}>세계 4위</div>
+          <div style={{ fontSize: '0.7rem', color: 'var(--color-warning)' }}>업계추정 세계 상위권</div>
         </div>
         <div style={{ background: 'rgba(236, 72, 153, 0.1)', border: '1px solid rgba(236, 72, 153, 0.2)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
           <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)' }}>2023 가공 수요</div>
@@ -159,16 +159,16 @@ export default function SquidKoreaSupply() {
       iconColor="#f87171"
       pillar="S1"
       cardDesc="국내 생산 붕괴(-79%)와 수입 의존도 급증을 자급률·수입비용 이중 관점으로 분석"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2023-12-31' }}
       customBody={body}
       takeaway={{
         situation: `<div>
-<p>한국 오징어 자급률 붕괴의 정량 기록.</p>
-<p>30년 추이: <strong>과거 20만 톤 → 2024년 1.3만 톤 (-93%) 붕괴</strong>. 공급 83.1%를 원양/수입 의존. 만성적 "금(金)징어" 소매가 +38% 폭등 고착화.</p>
+<p>한국 오징어 자급률 붕괴의 정량 기록 (FAO FishStatJ, 2000-2023).</p>
+<p>23년 추이: <strong>2000년 40.7만 톤 → 2023년 8.6만 톤 (-79%) 감소</strong>. 2023년 자급률 35.6% — 수입의존도 64.4%로 악화. 수입량 15.6만 톤, 수입단가 $3,223/t 고착화.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 연안 어획 회복 불가. <strong>"원양 + 수직 계열화 동시 진입"</strong>.</p>
-<p><strong>3단계</strong>: ① 2025년 원양 선복량 한도 폐지 맞춰 남서대서양(FAO 41 공해상) 긴급 투입 — 어획 히스토리 선점 ② 페루 대왕오징어 현지 1차 가공(B2B 진미채) 수직 계열화 ③ 조정관세 22% 회피 — 조달 원가 원천 통제.</p>
+<p><strong>재정의</strong>: 연안 어획 회복 불가 구조. <strong>"원양 + 수직 계열화 동시 진입"</strong> 검토.</p>
+<p><strong>3단계</strong>: ① 원양 선복량 규제 동향 모니터링 — 남서대서양(FAO 41 공해상) 진입 타이밍 선점 ② 페루 대왕오징어 현지 1차 가공(B2B 진미채) 수직 계열화 타당성 검토 ③ 수입 조달 원가 구조 재검토 — 업계 관세율 확인 후 루트 최적화.</p>
 </div>`,
         source: "FAO FishStatJ - Korea Capture + Trade Statistics (2000-2023)",
       }}

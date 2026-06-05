@@ -13,7 +13,7 @@ export default function SquidClimateRadar() {
       icon={ThermometerSun}
       iconColor="#fcd34d"
       pillar="S1"
-      cardDesc="SST(표층수온) 이상 기온과 해역별 어획량 엇갈림"
+      cardDesc="SST(표층수온) 편차와 해역별 어획량 엇갈림 (NOAA SST + FAO FishStatJ 교차분석)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={400}
       chart={
@@ -39,11 +39,11 @@ export default function SquidClimateRadar() {
       takeaway={{
         situation: `<div>
 <p>"기후 디커플링(Climate Decoupling)"이란 동일 climate 충격(SST 상승)이 두 지역에 정반대 효과를 만드는 현상.</p>
-<p>한국 vs 페루 비대칭: <strong>동해 SST +1.5℃ 시 한국 살오징어는 심해·북측 국경 이탈로 전멸 vs 페루 대왕오징어는 오히려 생산량 폭증</strong>. 같은 엘니뇨가 위협 + 기회 동시 발동.</p>
+<p>한국 vs 페루 비대칭: <strong>동해 SST +1.5℃ 수준 상승 시 한국 살오징어는 심해·북측 국경 이탈로 어획량이 급감하는 반면, 페루 대왕오징어는 생산량이 증가하는 경향이 관찰됨</strong>. 같은 엘니뇨가 위협 + 기회를 동시에 발동.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: SST 모니터링은 단순 알람이 아닌 <strong>"supply chain switching trigger"</strong>.</p>
-<p><strong>3단계</strong>: ① 실시간 SST 모니터링 임계점 자동 경보 ② 국내 연근해 매입 비중 축소 ③ 페루산 냉각품 선도 계약 확대 — climate decoupling을 alpha generator로 활용.</p>
+<p><strong>재정의</strong>: SST 모니터링은 단순 알람이 아닌 <strong>"공급망 전환 트리거"</strong>로 포지셔닝.</p>
+<p><strong>3단계</strong>: ① SST 이상 편차 임계점(+1℃ 초과) 도달 시 조달 비중 전환 검토 ② 국내 연근해 매입 비중 축소 ③ 페루산 냉동품 선도 계약 확대 — 기후 디커플링을 조달 알파 원천으로 활용.</p>
 </div>`,
         source: "NOAA SST + FAO FishStatJ 해역별 어획량 교차분석",
       }}

@@ -23,8 +23,8 @@ export function Widget01_ClimateYieldRadar() {
       icon={Thermometer}
       iconColor="#67e8f9"
       pillar="S1"
-      cardDesc="ENSO(엘니뇨/라니냐) 수온 편차와 페루 연안 어획량의 즉시 반응 곡선"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="ENSO(엘니뇨/라니냐) 수온 편차와 페루 연안 어획량의 즉시 반응 곡선 (NOAA ENSO Index + FAO 어획량 시계열 기반)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <ComposedChart data={data}>
@@ -90,9 +90,9 @@ export function Widget02_CollapseCountdown() {
       }
       takeaway={{
         situation: `<div>
-<p>"자원 붕괴 카운트다운"이란 어종이 회복 불가능한 임계점(point of no return)까지 남은 시간을 추적하는 dashboard. 한국 살오징어가 정확히 그 궤도에 있습니다.</p>
-<p>역사적 비교: <strong>1990년대 한국 대구(Cod) 사태 당시 T-4년 시점의 어획량 감소 기울기와 현재 살오징어 궤적이 98% 일치</strong>. 대구는 그 후 영구 멸종 수준으로 떨어져 30년이 지난 지금도 회복 0%.</p>
-<p>의미: 자율 규제(TAC·금어기·체장 제한)는 이미 실패 단계. <strong>V자 반등 가능성 통계적으로 봉쇄</strong>. 한국 살오징어 의존 사업 모델은 향후 3~5년 내 수산 자원으로서 zero가 될 것을 BS에 사전 반영해야 함.</p>
+<p>"자원 붕괴 카운트다운"이란 어종이 회복 불가능한 임계점(point of no return)까지 남은 시간을 추적하는 dashboard. 한국 살오징어가 유사한 궤도에 있다는 우려가 제기됩니다.</p>
+<p>역사적 비교: 1990년대 캐나다 대구(Cod) 붕괴 사례는 가장 잘 기록된 어자원 붕괴 사례. 당시 T-4년 시점의 어획량 감소 기울기가 현재 살오징어 감소 추세와 유사한 패턴을 보임. 대구는 붕괴 후 30년 이상 회복이 더딘 상태.</p>
+<p>의미: 자율 규제(TAC·금어기·체장 제한)가 추세를 역전시키지 못할 경우 살오징어 의존 사업 모델의 리스크는 실재. V자 반등 가능성은 현 데이터 기준 낮다는 것이 학계 중론. BS에 사전 반영 검토 필요.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 살오징어 자원 회복 시나리오를 모든 사업 계획에서 영구 제거. <strong>"국내산 의존도 0%"</strong>를 목표로 100% 수입·원양 체제 즉시 전환.</p>
@@ -123,8 +123,8 @@ export function Widget03_SSTAnomaly() {
       icon={Flame}
       iconColor="#f59e0b"
       pillar="S1"
-      cardDesc="FAO 해역별 평년비 수온 델타 — 1.5℃ 초과 시 냉수성 어종 서식 불가"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      cardDesc="FAO 해역별 평년비 수온 델타 업계추정 — 1.5℃ 초과 시 냉수성 어종 서식 불가 (실측 수치는 NOAA OISST 직접 확인 필요)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <BarChart data={data} layout="vertical">
@@ -177,8 +177,8 @@ export function Widget04_ProteinGrowth() {
       icon={TrendingUp}
       iconColor="#06b6d4"
       pillar="S4"
-      cardDesc="주요 단백질 6종의 연평균 글로벌 수요 성장률 — 두족류는 헬스푸드 트렌드 진입"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="주요 단백질 6종의 연평균 글로벌 수요 성장률(업계추정) — 두족류는 헬스푸드 트렌드 진입 (FAO Food Balance Sheets 기반)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <BarChart data={data}>
@@ -225,8 +225,8 @@ export function Widget05_SpeciesMix() {
       icon={Layers}
       iconColor="#8b5cf6"
       pillar="S1"
-      cardDesc="2010-2023년 4어종 점유율 변화 — 대왕오징어 격상 vs 살오징어 멸종"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="2010-2023년 4어종 점유율 변화 — 대왕오징어 격상 vs 살오징어 급감 (FAO FishStatJ 기반 추정)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <AreaChart data={data}>
@@ -241,13 +241,13 @@ export function Widget05_SpeciesMix() {
       }
       takeaway={{
         situation: `<div>
-<p>글로벌 두족류 어종별 생산 비중의 15년 paradigm shift:</p>
+<p>글로벌 두족류 어종별 생산 비중의 13년 paradigm shift (FAO FishStatJ 2010-2023):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>대왕오징어(Jumbo squid, Dosidicus gigas)</strong>: 2010년 25% → 2025년 <strong>60%</strong> (이단아 → 글로벌 표준)</li>
-<li><strong>살오징어(Common squid, Todarodes pacificus)</strong>: 2010년 35% → 2025년 <strong>8%</strong> (글로벌 표준 → 멸종 위기)</li>
-<li>일렉스·문어·갑오징어: 32% (안정)</li>
+<li><strong>대왕오징어(Jumbo squid, Dosidicus gigas)</strong>: 2010년 약 20% → 2023년 약 <strong>60%</strong> (이단아 → 글로벌 표준)</li>
+<li><strong>살오징어(Common squid, Todarodes pacificus)</strong>: 2010년 약 40% → 2023년 약 <strong>8%</strong> (글로벌 표준 → 급감)</li>
+<li>아르헨티나 일렉스 등 기타: 약 32%</li>
 </ul>
-<p>의미: 대왕오징어가 사실상의 "글로벌 표준 오징어"가 됨. 한국 가공 라인이 살오징어 spec에 맞춰져 있으면 향후 5년 매입 원물 70% 가공 불가능 — 라인 자체가 stranded asset.</p>
+<p>의미: 대왕오징어가 사실상의 "글로벌 표준 오징어"로 부상. 한국 가공 라인이 살오징어 spec에 맞춰져 있으면 원물 조달 비중 불균형으로 가공 라인 활용도 저하 우려 — 설비 전환 투자 검토 필요.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 살오징어 라인 vs 대왕오징어 라인은 단순 어종 차이가 아닌 <strong>"생산 capacity 자체의 영구 paradigm shift"</strong>.</p>
@@ -374,8 +374,8 @@ export function Widget08_FishmealRatio() {
       icon={Recycle}
       iconColor="#ec4899"
       pillar="S2"
-      cardDesc="어획물 중 식용 가공 vs 사료/폐기 분기 — 어체 왜소화로 사료 전락분 가속 증가"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="어획물 중 식용 가공 vs 사료/폐기 분기 — 어체 왜소화로 사료 전락분 가속 증가 (FAO 보고 기반 추정치)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <AreaChart data={data}>
@@ -422,8 +422,8 @@ export function Widget09_IUURadar() {
       icon={ShieldAlert}
       iconColor="#f43f5e"
       pillar="S3"
-      cardDesc="선박자동식별장치(AIS) 이탈/배타적 경제수역(EEZ) 침범 등 불법조업(IUU) 사례 — 적색카드(Red Card) 제재 트리거 모니터링"
-      telemetry={{ status: 'LIVE', syncDate: '2026-05-21' }}
+      cardDesc="선박자동식별장치(AIS) 이탈/배타적 경제수역(EEZ) 침범 등 불법조업(IUU) 사례 — 적색카드(Red Card) 제재 트리거 모니터링 (자체추정 기준)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <BarChart data={data}>
@@ -437,17 +437,17 @@ export function Widget09_IUURadar() {
       }
       takeaway={{
         situation: `<div>
-<p>"IUU(Illegal, Unreported, Unregulated, 불법·비보고·비규제) 조업"의 글로벌 1위 의심 어종이 바로 오징어. 특히 중국 원양 선단이 핵심 타깃.</p>
-<p>현 상황: <strong>특정 거대 선단(중국 원양 ~3,000척)의 상습적 AIS(선박자동식별장치) 끄기 + EEZ 침범 연간 450회+ 위반</strong>. 글로벌 시민단체(Sea Shepherd·OPIS)가 위성 데이터로 추적 중.</p>
-<p>임박 트리거: <strong>EU/미국 적색카드(Red Card, 수입 금지 제재) 발동 대기 중</strong>. 발동 시 중국 가공품 EU·미국 시장 진입 즉시 차단 — 한국 vendor가 그 빈자리 흡수 가능한 일생 한 번 기회.</p>
+<p>"IUU(Illegal, Unreported, Unregulated, 불법·비보고·비규제) 조업"의 주요 의심 어종에 오징어가 포함되며, 특히 일부 원양 선단의 AIS 끄기 행위가 국제 감시 대상.</p>
+<p>현 상황: 특정 거대 선단(일부 중국 원양 선단 추정)의 AIS(선박자동식별장치) 이탈 및 EEZ 침범 사례가 위성 추적 기관(OceanMind·Global Fishing Watch)에 의해 연간 수백 회 기록됨. 수치는 기관별·기준별 상이. (차트 수치는 업계 추정 기반)</p>
+<p>모니터링 포인트: EU·미국의 IUU 제재(적색카드·수입 금지) 동향은 공급망 선별 기준에 영향. 인증된 클린 공급망 확보가 중장기 시장 접근성의 핵심 변수.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: IUU는 단순 ESG 변수가 아닌 <strong>"글로벌 가공 패권 재편의 trigger"</strong>. 한국 vendor는 미리 "Clean Supply Chain" 인증으로 무장.</p>
+<p><strong>재정의</strong>: IUU는 단순 ESG 변수가 아닌 공급망 리스크 관리의 핵심. "Clean Supply Chain" 인증은 EU·미국 시장 접근성의 전제 조건.</p>
 <p><strong>3단계</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>IUU 고위험국 가공품 직접 매입 100% 차단</strong>: 중국 다롄·청도 OEM 비중 즉시 축소.</li>
-<li style="margin-bottom: 8px;"><strong>SIMP(미국 수산물수입모니터링) 인증 100% 획득</strong>: 제3국 가공거점만 사용. C/O 위변조 검증 의무화.</li>
-<li><strong>"Clean Catch Certified" 자체 라벨 자산화</strong>: VDS + 블록체인 이력 + 위성 추적 3중 검증. EU 적색카드 발동 시 즉시 +20~30% 시장 점유 흡수.</li>
+<li style="margin-bottom: 8px;"><strong>IUU 고위험 가공품 매입 비중 축소</strong>: OEM 거점별 IUU 리스크 등급 평가 후 단계적 조달 다변화.</li>
+<li style="margin-bottom: 8px;"><strong>SIMP(미국 수산물수입모니터링) 인증 확보</strong>: 제3국 가공거점 C/O 검증 의무화. 인증 범위 점진 확대.</li>
+<li><strong>"Clean Catch Certified" 자체 라벨 구축</strong>: VDS + 블록체인 이력 + 위성 추적 3중 검증. 규제 강화 시 인증 공급망이 협상력 강화 요인.</li>
 </ol>
 </div>`,
         source: "OceanMind AIS Tracking + Global Fishing Watch IUU Index (2024)",
@@ -471,8 +471,8 @@ export function Widget10_TACGap() {
       icon={Scale}
       iconColor="#eab308"
       pillar="S1"
-      cardDesc="과학적 한계(TAC) 대비 실제 어획량의 초과 폭 — 자원 고갈 가속 시그널"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="과학적 한계(TAC) 대비 실제 어획량의 초과 폭 — 자원 고갈 가속 시그널 (RFMO 보고 기반 추정치)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={250}
       chart={
         <LineChart data={data}>
@@ -487,8 +487,8 @@ export function Widget10_TACGap() {
       takeaway={{
         situation: `<div>
 <p>"TAC(Total Allowable Catch, 총허용어획량)"는 정부·국제 수산기구가 자원 보호 위해 설정하는 어획 상한. 정상 시장이라면 실 조업량 ≤ TAC.</p>
-<p>현 위기: <strong>규제 당국이 매년 TAC를 60~90% 수준으로 삭감함에도 실 조업량이 TAC 곡선을 5년 연속 하향 돌파</strong>. 즉 줄어든 쿼터마저 충족 못 하는 자원 고갈 단계.</p>
-<p>의미: 단순 무허가 싹쓸이가 아닌 <strong>"오징어 자원 자체의 영구 고갈"</strong> 시그널. V자 반등 통계적으로 불가능. 향후 5년 글로벌 공급 -30~50% 시나리오에 대비 필수.</p>
+<p>현 추세: <strong>규제 당국이 매년 TAC를 삭감함에도 실 조업량이 TAC를 5년 연속 초과</strong>. 이는 오징어 자원 압박이 가중되고 있음을 나타냄. (차트 수치는 RFMO 보고 기반 추정치)</p>
+<p>의미: 자원 자체의 급감 시그널로 해석 가능. 단기 V자 반등 가능성은 현 데이터 기준 제한적. 향후 5년 공급 감소 시나리오(-30~50% 가능성)에 대한 대비 검토가 필요.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: TAC 갭은 자원 회복 시나리오 영구 폐기 시그널. <strong>"TAC 절대 준수 인증 선단"만 1차 벤더로 등록</strong>이 본업 sustainability의 핵심.</p>

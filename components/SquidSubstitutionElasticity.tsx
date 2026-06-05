@@ -8,12 +8,12 @@ import data from '../data/squid_substitution.json';
 export default function SquidSubstitutionElasticity() {
   return (
     <WidgetCard
-      title="대왕오징어 대체 탄력성 스위칭(Switch) 지표"
+      title="대왕오징어 대체 탄력성 전환 지표"
       icon={GitCompare}
       iconColor="#06b6d4"
       pillar="S4"
       cardDesc="가공 공장 원료 투입선 변경 타이밍 (스프레드 한계점)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={400}
       chart={
         <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
@@ -28,12 +28,12 @@ export default function SquidSubstitutionElasticity() {
       }
       takeaway={{
         situation: `<div>
-<p>"대체 탄력성(Substitution Elasticity)"이란 한 어종 가격이 일정선 넘으면 대체재로 강제 전환되는 임계점.</p>
-<p>현재 왜곡: <strong>국내산 살오징어 단가 랠리가 펀더멘털 이탈 → 남미 대왕오징어 spread KRW 7,000 한계치 돌파 — 극단적 밸류에이션 왜곡</strong>.</p>
+<p>"대체 탄력성(Substitution Elasticity)"이란 한 어종 가격이 일정선 넘으면 대체재로 전환 압력이 높아지는 임계점 개념.</p>
+<p>국내산 살오징어 단가가 지속 상승하며 남미 대왕오징어와의 가격 스프레드가 KRW 7,000 수준에 근접 — 가공 원료 투입선 재검토 시점으로 판단(업계추정).</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 스프레드 KRW 6,000 임계점은 자동 cost switching trigger.</p>
-<p><strong>3단계</strong>: ① 살오징어 B2B 프로모션 전면 중단 ② 임계치 초과 즉시 가공·식자재 원료 100% 남미 대왕오징어로 강제 롤오버 ③ "Cost Switching 매뉴얼" 전 팩토리 하달.</p>
+<p><strong>전환 기준선 설정</strong>: 스프레드 KRW 6,000 도달 시 원료 투입선 전환 검토를 개시하는 내부 트리거로 운영 권장.</p>
+<p><strong>3단계 대응</strong>: ① 살오징어 B2B 프로모션 축소 검토 ② 임계치 초과 시 가공·식자재 원료 비중을 남미 대왕오징어로 단계적 전환 ③ "원료 전환 절차" 현장 공유.</p>
 </div>`,
         source: "KMI & 무역통계",
       }}

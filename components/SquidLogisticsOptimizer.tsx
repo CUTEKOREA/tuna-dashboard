@@ -13,8 +13,8 @@ export default function SquidLogisticsOptimizer() {
       icon={Snowflake}
       iconColor="#06b6d4"
       pillar="S3"
-      cardDesc="누적 보관료 vs 시세 상승분 교차 지점 (강제 출하 트리거)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="누적 보관료 vs 시세 상승분 교차 지점 (강제 출하 트리거) — 업계 추정 illustrative"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={400}
       chart={
         <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
@@ -32,14 +32,14 @@ export default function SquidLogisticsOptimizer() {
       }
       takeaway={{
         situation: `<div>
-<p>"네거티브 롤일드(Negative Roll-Yield)"란 재고 보관 cost가 시세 상승률보다 큰 임계점.</p>
-<p>실측: <strong>콜드체인 보관 12주(W12) 시 창고료·기회비용 누적이 단기 시세차익 기대치 완전 초과 — 데드크로스</strong>. 추가 보관할수록 손실 가속.</p>
+<p>"네거티브 롤일드(Negative Roll-Yield)"란 재고 보관 비용이 시세 상승률보다 커지는 임계점.</p>
+<p>업계 추정: <strong>콜드체인 보관 12주(W12) 시 창고료·기회비용 누적이 단기 시세차익 기대치를 초과할 수 있음 — 데드크로스 구간 진입 가능성</strong>. 보관 기간 연장 시 손실 구조가 심화되는 경향이 관측됨.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 투기적 재고 holding 전면 금지. <strong>"Inventory Duration Cap"</strong> 시스템 의무.</p>
 <p><strong>3단계</strong>: ① 콜드체인 체류 10주(W10) 강제 청산 상한선 시스템 하드코딩 ② 11주 차 돌입 전 도매 시장 시장가 선도 덤핑 ③ "Aging dashboard" — SKU별 weekly monitoring + CFO 직보.</p>
 </div>`,
-        source: "국내 냉장창고 단가표 & 물류팀",
+        source: "국내 냉장창고 단가표 & 물류팀 (자체 추정 / illustrative)",
       }}
     />
   );

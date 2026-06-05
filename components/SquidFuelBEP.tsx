@@ -13,8 +13,8 @@ export default function SquidFuelBEP() {
       icon={Fuel}
       iconColor="#f59e0b"
       pillar="S2"
-      cardDesc="수협 면세유 고시가 × 오징어 수협 위판 단가 — 메탈할라이드/LED 집어등 BEP 임계선 추적"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      cardDesc="수협 면세유 고시가 × 오징어 수협 위판 단가 — 자체추정 BEP 모델 기반 메탈할라이드/LED 집어등 임계선 추적 (illustrative)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
@@ -36,11 +36,11 @@ export default function SquidFuelBEP() {
       takeaway={{
         situation: `<div>
 <p>"유류 BEP(손익분기점)"란 어선 출항이 흑자가 되는 최소 어획량. 채낚기 선단(집어등)은 전기·유류비 비중이 매우 큼.</p>
-<p>역사적 비교: <strong>면세 경유가 1,471원/L 돌파 시 메탈할라이드 노후 선단은 BEP 붕괴로 집단 출어 포기</strong> vs <strong>고효율 LED 선단은 조업 유지 + 독점 마진 시현</strong>. 단가 결정권(pricing power) 확보.</p>
+<p>자체 BEP 추정 모델 기준: <strong>면세 경유가 약 1,471원/L 초과 시 메탈할라이드 노후 선단은 BEP 붕괴로 출어 포기 가능성</strong> vs <strong>고효율 LED 선단은 조업 유지 + 차별적 마진 확보 가능</strong>. 단가 결정권(pricing power) 우위.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: LED 집어등은 단순 설비가 아닌 <strong>"고유가 시점 pricing power instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① 채낚기 선단 인수·합작 시 "LED 집어등 100% 전환" 필수 계약 조건 명시 ② MGO 단가 1,100원 돌파 시 경쟁사 출항 포기를 역이용 단가 결정권 확보 ③ "LED 락업 vendor 비중 +50%p" — 시장 지배력 확대.</p>
+<p><strong>3단계</strong>: ① 채낚기 선단 인수·합작 시 "LED 집어등 100% 전환" 필수 계약 조건 명시 ② MGO 단가 자체 BEP 임계선 돌파 시 경쟁사 출항 감소 국면을 활용한 단가 협상력 강화 ③ LED 탑재 선단 비중 단계적 확대 — 업계추정 기준 원가 절감 효과 기대.</p>
 </div>`,
         source: '수협 면세유 고시가 · 자체 BEP 추정 모델',
       }}

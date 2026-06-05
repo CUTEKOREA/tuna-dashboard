@@ -162,7 +162,7 @@ export default function SquidDashboard() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [apiStatus, setApiStatus] = useState("연결됨");
+  const [apiStatus, setApiStatus] = useState("정적 데이터");
   const [apiCount, setApiCount] = useState(0);
 
   useEffect(() => {
@@ -429,7 +429,7 @@ export default function SquidDashboard() {
     {
       id: "w_squid_sg_valueup",
       title: "SG 2026 밸류업: 진미채·냉동 튜브 가공 내재화",
-      subtitle: "공통 전략 문건(SG '26년 운영방안) 연동. 포클랜드 Illex 원물을 신라에스지가 직접 가공·납품할 때의 마진율 개선 예측입니다.",
+      subtitle: "공통 전략 문건(SG '26년 운영방안) 연동. 포클랜드 Illex 원물을 신라에스지가 직접 가공·납품할 때의 마진율 개선 예측입니다. [2024(E)~2026(E)는 내부 추정치(illustrative) — 실적 확정치 아님]",
       chartType: "Composed",
       xKey: "year",
       bars: [{ key: "단순 원물 마진(%)", color: "#64748b" }],
@@ -677,8 +677,8 @@ export default function SquidDashboard() {
             background: '#181818', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span>{apiCount || 8} APIs <span style={{ color: 'var(--color-success)' }}>{apiStatus}</span></span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#64748B' }} />
+            <span>{apiCount || 8} APIs <span style={{ color: '#64748B' }}>{apiStatus}</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>HS Ping · KOSIS · MFDS · WTO · OFAC · ImportYeti</span>
           </div>

@@ -57,6 +57,14 @@ export default function SquidArbitrageRadar() {
   const w = mapWidth || 600;
   const h = Math.min(w * 0.55, 450);
 
+  const productKorMap: Record<string, string> = {
+    'Sashimi Grade': '사시미 등급',
+    'Calamari Rings': '칼라마리 링',
+    'Frozen Tubes': '냉동 튜브형',
+    'Fried/Semi-Dried': '튀김/반건조',
+    'Processed': '가공품',
+  };
+
   const sortedRoutes = [...(routeData as Route[])].sort((a, b) => b.margin - a.margin);
 
   const body = (
@@ -157,8 +165,7 @@ export default function SquidArbitrageRadar() {
             alignItems: 'center',
             gap: '4px',
           }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#38bdf8', animation: 'pulse 1.5s infinite' }} />
-            LIVE SQUID ARBITRAGE
+            오징어 차익거래 레이더 (추정치)
           </span>
         </div>
       </div>
@@ -213,7 +220,7 @@ export default function SquidArbitrageRadar() {
               </div>
 
               <p style={{ margin: '0 0 8px 0', fontSize: '0.8rem', color: route.color, fontWeight: 600 }}>
-                품목: {route.product}
+                품목: {productKorMap[route.product] ?? route.product}
               </p>
 
               <div data-mobile-stack style={{
@@ -249,25 +256,25 @@ export default function SquidArbitrageRadar() {
       icon={Radar}
       iconColor="#38bdf8"
       pillar="S4"
-      cardDesc="원물 수입가 vs 가공품 수출가 Spread 차액을 B2B 트레이딩 봇처럼 시각화 — 수익률 극대화 경로를 자동 탐지"
+      cardDesc="원물 수입가 vs 가공품 수출가 Spread 차액 시각화 — 업계 추정 단가 기반 illustrative 합성치, 실측치 아님"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       customBody={body}
       takeaway={{
         situation: `<div>
 <p>"차익거래 밴드(Arbitrage Band)"란 글로벌 vendor가 생산국 매입 가격과 소비국 판매 가격 사이의 spread를 추적하는 instrument.</p>
-<p>실측: <strong>인도네시아·페루 매입 + 1차 가공(할복·탈피) + 일본·중국 재수출 시 톤당 $200~$410 차익거래 밴드 실시간 포착</strong>. 특히 <strong>인도네시아-일본 Sashimi Grade 라우트는 운송비 제하고도 톤당 $410 초과 이익</strong>.</p>
-<p>의미: 단순 원물 무역은 마진 0, <strong>"3각 무역(현지 가공 + 직납)"</strong>이 진짜 P&amp;L generator. 우리가 outside buyer에서 local processor + global trader로 정체성 격상 필요.</p>
+<p>업계 추정(illustrative): <strong>인도네시아·페루 매입 + 1차 가공(할복·탈피) + 일본·중국 재수출 시 톤당 $200~$410 수준의 차익 밴드가 형성되는 것으로 추정</strong>. 특히 <strong>인도네시아→일본 사시미 등급 라우트는 운송비 제하고도 톤당 $400 이상 마진이 가능할 것으로 업계에서 추산</strong>.</p>
+<p>의미: 단순 원물 무역은 마진이 낮고, <strong>"3각 무역(현지 가공 + 직납)"</strong>이 P&amp;L 개선에 유리한 구조. 실측 단가 검증 후 전략 결정 필요.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 차익거래는 단순 trading이 아닌 <strong>"수직 통합형 trade infrastructure"</strong>.</p>
-<p><strong>3단계</strong>:</p>
+<p><strong>검토 방향</strong>: 차익거래 구조를 단순 trading이 아닌 <strong>"수직 통합형 trade infrastructure"</strong>로 재정의할 수 있는지 타당성 검토 필요.</p>
+<p><strong>3단계 검토 과제</strong>:</p>
 <ol style="margin: 4px 0 0 18px; padding: 0;">
-<li style="margin-bottom: 8px;"><strong>페루 파이타(Paita) + 인도네시아 수라바야 현지 1차 전처리 JV 셋업</strong>: minority equity 5~10% + supply 락업.</li>
-<li style="margin-bottom: 8px;"><strong>3각 무역 모델 구축</strong>: 현지 가공 → FOB 직납 일본·중국. 한국 반입 우회로 관세·물류비 -25~35% 절감.</li>
-<li><strong>"Origin-Destination Arbitrage Trading Desk"</strong> — 매일 origin·destination 가격 매트릭스 자동 monitoring + ML 모델 routing 최적화. JP Morgan Trade Finance와 partnership으로 cross-border invoice factoring.</li>
+<li style="margin-bottom: 8px;"><strong>페루 파이타(Paita) + 인도네시아 수라바야 현지 1차 전처리 JV 가능성 검토</strong>: minority equity 5~10% + supply 락업 구조의 실현 가능성 및 리스크 평가.</li>
+<li style="margin-bottom: 8px;"><strong>3각 무역 모델 타당성 검토</strong>: 현지 가공 → FOB 직납 일본·중국. 관세·물류비 절감 효과는 실측 단가 기반 재검증 필요.</li>
+<li><strong>가격 모니터링 체계 구축 검토</strong>: origin·destination 가격 매트릭스 자동 추적 및 routing 최적화 가능 여부 검토. 실제 도입 전 파일럿 규모로 시작 권장.</li>
 </ol>
 </div>`,
-        source: "FAO FishStatJ & 관세청 수입·수출 단가 비교",
+        source: "업계 추정 / 자체 추정 (illustrative) — FAO FishStatJ·관세청 단가 기반 시뮬레이션, 실측치 아님",
       }}
     />
   );

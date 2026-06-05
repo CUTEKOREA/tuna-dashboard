@@ -31,11 +31,11 @@ export default function SquidB2BMarginTracker() {
       takeaway={{
         situation: `<div>
 <p>"B2B 채널 마진 비교"는 같은 원물도 어느 채널로 파느냐로 영업이익률이 결정되는 dashboard.</p>
-<p>채널별 실측: <strong>전통 재래 도매(경매 수수료 4% + 다단계 물류비)로 OPM 누수 -5~8%p vs 대형 마트 1차 벤더 직납은 초기 패키징 capex 부담해도 +12~18%p 프리미엄</strong>. 같은 원물도 +20%p 마진 차이.</p>
+<p>채널별 내부 추정: <strong>전통 재래 도매(경매 수수료 4% + 다단계 물류비)로 OPM 누수 -5~8%p vs 대형 마트 1차 벤더 직납은 초기 패키징 capex 부담해도 +12~18%p 프리미엄</strong>. 같은 원물도 최대 +20%p 마진 차이 가능.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 도매 vs 직납은 단순 채널이 아닌 <strong>"OPM 결정 trigger"</strong>.</p>
-<p><strong>3단계</strong>: ① 전통 도매 의존도 즉시 underweight ② 이마트·코스트코·롯데마트 1차 벤더 직납 70%+ 집중 ③ 도매 시장은 단순 덤핑 처리장으로 격하 — 잉여 물량 유동성 관리용.</p>
+<p><strong>3단계</strong>: ① 전통 도매 의존도 즉시 underweight ② 이마트·코스트코·롯데마트 1차 벤더 직납 비중 확대(목표 70%+) ③ 도매 시장은 잉여 물량 유동성 관리용으로 역할 재정립.</p>
 </div>`,
         source: "내부 영업 관리 시스템",
       }}

@@ -97,18 +97,18 @@ export default function SquidWinnersLosers() {
       iconColor="#10b981"
       pillar="S1"
       cardDesc="2014년 대비 2024년 어획량 변화. 선의 기울기가 급할수록 극적인 변화를 의미합니다."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
         situation: `<div>
-<p>"승자가 없는(No Winners)" 시나리오란 모든 vendor가 동반 몰락하는 산업 위기.</p>
-<p>10년 추이(2014-2023): <strong>일본 -75.8% · 한국 -71.7% · 페루 -69.7% 어획량 기하급수 증발</strong>. 중국·아르헨티나도 감소세. 자원 고갈 사태 현실화.</p>
+<p>"승자가 없는(No Winners)" 시나리오란 모든 주요 어업국이 동반 감소하는 산업 위기.</p>
+<p>10년 변화(2014→2024): <strong>일본 -75.8% · 한국 -71.7% · 페루 -69.7% 어획량 급감</strong>. 중국·아르헨티나도 감소세. 자원 고갈 압력 현실화.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 전통 조업 모델 붕괴. <strong>"양식 + 대체 어종 portfolio 다변화"</strong>가 본질.</p>
 <p><strong>3단계</strong>: ① 연근해·남대서양·포클랜드 조업 의존도 대폭 축소 ② Off-take 선도 거래로 수입 물량 안정 확보 ③ 양식 기술 투자 + 펠라직 대체 어종(고등어·갈치) 포트폴리오 다변화.</p>
 </div>`,
-        source: "FAO FishStatJ Squid Catch Data (2014-2023)",
+        source: "FAO FishStatJ 오징어 어획 통계 (2014-2024, 정적 데이터)",
       }}
     />
   );

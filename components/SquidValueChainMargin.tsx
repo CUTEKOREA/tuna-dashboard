@@ -13,8 +13,8 @@ export default function SquidValueChainMargin() {
       icon={Factory}
       iconColor="#a855f7"
       pillar="S2"
-      cardDesc="페루 원물 × 중국 가공 비용 × 한국 소비자가 — 대왕오징어 글로벌 아웃소싱 채산성"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      cardDesc="페루 원물 × 중국 가공 비용 × 한국 소비자가 — 대왕오징어 글로벌 아웃소싱 채산성 (업계추정 illustrative)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
@@ -37,9 +37,9 @@ export default function SquidValueChainMargin() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 중국 편중 가공망 탈피. <strong>"가공 밸류체인 직접 통제"</strong>가 본질.</p>
-<p><strong>3단계</strong>: ① 베트남·인도네시아 직접 가공 공장 합작 이전 ② 한국 부산 자체 가공 라인 capex 확대 ③ B2C 진미채 등 고마진 카테고리 직접 통제 — 마진 +12~18%p 회수.</p>
+<p><strong>3단계</strong>: ① 베트남·인도네시아 직접 가공 공장 합작 이전 ② 한국 부산 자체 가공 라인 capex 확대 ③ B2C 진미채 등 고마진 카테고리 직접 통제 — 마진 회수 가능성이 있으나 실제 효과는 공장·계약 조건에 따라 상이.</p>
 </div>`,
-        source: '페루 IMARPE · 중국 NBSC 인건비 통계 · 한국 KAMIS 도매단가',
+        source: '페루 IMARPE · 중국 NBSC 인건비 통계 · 한국 KAMIS 도매단가 (업계추정 기반 illustrative 합성치)',
       }}
     />
   );

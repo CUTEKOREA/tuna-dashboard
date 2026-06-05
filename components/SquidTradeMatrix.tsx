@@ -168,16 +168,16 @@ export default function SquidTradeMatrix() {
       iconColor="#67e8f9"
       pillar="S4"
       cardDesc="수출국(행) → 수입국(열) 양자 간 무역량 히트맵 — 중국은 수출·수입 동시 1위의 글로벌 가공 허브"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
         situation: `<div>
 <p>"양자 간 무역 매트릭스(Bilateral Trade Matrix)"는 글로벌 오징어 밸류체인의 정점 vs 변방 관계를 정량화한 indicator.</p>
-<p>2023 실측: <strong>중국이 정점 — 페루 35%·인도네시아 65%·미국 60% 원물이 중국 가공 거점으로 흡수 (수입 45만 톤)</strong> → 가공품이 태국·일본·한국·대만으로 재유출. <strong>거대한 거미줄 독점망</strong>.</p>
+<p>2023 매트릭스 기준: <strong>중국이 허브 — 페루 수출의 약 54%·인도네시아 약 69%·미국 약 91%가 중국 가공 거점으로 유입 (매트릭스 내 수입 합산 약 40만 톤)</strong> → 가공품이 태국·베트남·대만으로 재유출. <strong>글로벌 공급망 내 중국 집중 구조</strong>.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 대중국 원물 집중화 우회. <strong>"다이렉트 소싱 파트너십"</strong>이 본질.</p>
-<p><strong>3단계</strong>: ① 베트남(가공 단가 유리)·인도네시아(원물 조달 유리)에 자체 가공·물류 spoke 배치 ② 중국 칭다오 우회 — 중국 수출 통제 리스크·중간 마진 최소화 ③ "Multi-spoke direct sourcing platform" — 중국 의존도 60% → 30% 분산.</p>
+<p><strong>3단계</strong>: ① 베트남(가공 단가 유리)·인도네시아(원물 조달 유리)에 자체 가공·물류 spoke 배치 ② 중국 칭다오 우회 — 중국 수출 통제 리스크·중간 마진 최소화 ③ 대중국 원물 의존 비중을 단계적으로 분산하는 Multi-spoke 직소싱 체계 구축 검토.</p>
 </div>`,
         source: "FAO FishStatJ Squid Trade Flow Matrix (2023)",
       }}

@@ -113,14 +113,14 @@ export default function SquidUnitPrice() {
       customBody={<>{toggles}{chart}</>}
       takeaway={{
         situation: `<div>
-<p>국가별 오징어 수입 단가 매트릭스 — 글로벌 가치 사슬 위치 정량화.</p>
+<p>국가별 오징어 수출 단가 매트릭스 — 글로벌 가치 사슬 위치 정량화.</p>
 <p>실측: <strong>일본 $11,894/t · 모로코 $10,072/t (최고)</strong>; 태국 $7,995/t · 베트남 $6,292/t (가공 거점); 페루 $2,060/t · 칠레 $1,677/t (원물 생산국). <strong>5~6배 갭</strong>. 한국 $4,583/t — 스페인 수준이나 역성장 중.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 한국 단순 유통 모델 폐기. <strong>"고부가가치 K-Snack 변환"</strong>이 본질.</p>
 <p><strong>3단계</strong>: ① 이탈리아·스페인 타파스 HMR 벤치마킹 ② 일본 세븐일레븐 프리미엄 안주류 벤치마킹 ③ "K-안주(K-Snack) Premium" 자체 brand — 일본·EU·미국 수출.</p>
 </div>`,
-        source: "FAO FishStatJ Squid Import Unit Price by Country",
+        source: "FAO FishStatJ + UN Comtrade 오징어 수출 단가 (국별)",
       }}
     />
   );

@@ -20,12 +20,12 @@ const CustomDot = (props: any) => {
 export default function SquidPolicyArbitrage() {
   return (
     <WidgetCard
-      title="관세 및 정책 이벤트 연동 차익거래 (Policy Arbitrage)"
+      title="관세 및 정책 이벤트 연동 차익거래"
       icon={Activity}
       iconColor="#fca5a5"
       pillar="S3"
-      cardDesc="금어기·비축물량·조정관세 통제 모델"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="금어기·비축물량·조정관세 패턴 기반 illustrative 시나리오 (관세청 공고·해수부 캘린더 참조)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={400}
       chart={
         <LineChart data={data} margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
@@ -47,14 +47,14 @@ export default function SquidPolicyArbitrage() {
       }
       takeaway={{
         situation: `<div>
-<p>"정책 아비트라지(Policy Arbitrage)"란 정부 정책 이벤트(비축 방출·조정관세 인하)가 시장가에 미치는 인위적 영향을 활용하는 trading.</p>
-<p>패턴: <strong>명절 직전 정부 비축물량 방출 + 조정관세 22% → 할당관세 인하 이벤트마다 수입업자 매입 러시 → 시장가 인위적 압박</strong>. 예측 가능한 systematic opportunity.</p>
+<p>정책 차익거래란 정부 정책 이벤트(비축 방출·조정관세 인하)가 시장가에 미치는 인위적 영향을 활용하는 매매 전략이다. 차트는 illustrative 시나리오 기반.</p>
+<p>패턴: <strong>명절 직전 정부 비축물량 방출 + 조정관세 22% → 할당관세 인하 이벤트마다 수입업자 매입 러시 → 시장가 인위적 압박</strong>. 예측 가능한 반복 패턴.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 단순 거시 스프레드 의존은 위험. <strong>"Precision Warehousing"</strong>이 본질.</p>
-<p><strong>3단계</strong>: ① 정책 이벤트 캘린더 시스템화 ② 조정관세 완화 예상 시점 직전 남반구 성수기 물량을 보세 창고 재고로 풀기 ③ 방출 이벤트 직후 시중 본격 유통 — timing arbitrage로 마진 +15~25%p.</p>
+<p><strong>재정의</strong>: 단순 거시 스프레드 의존은 위험. <strong>정밀 창고 전략(Precision Warehousing)</strong>이 본질.</p>
+<p><strong>3단계</strong>: ① 정책 이벤트 캘린더 시스템화 ② 조정관세 완화 예상 시점 직전 남반구 성수기 물량을 보세 창고 재고로 풀기 ③ 방출 이벤트 직후 시중 본격 유통 — 타이밍 차익거래로 마진 개선 여지.</p>
 </div>`,
-        source: "관세청 조정관세 공고 & 해수부 비축물량 방출 캘린더",
+        source: "관세청 조정관세 공고·해수부 비축물량 방출 캘린더 참조 (illustrative 시나리오)",
       }}
     />
   );

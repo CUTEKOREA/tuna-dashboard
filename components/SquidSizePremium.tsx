@@ -13,8 +13,8 @@ export default function SquidSizePremium() {
       icon={Scissors}
       iconColor="#8b5cf6"
       pillar="S2"
-      cardDesc="해수온 상승발 대형개체 품귀 및 고부가가치 타겟팅"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="해수온 상승발 대형개체 품귀 및 고부가가치 타겟팅 (업계추정·illustrative)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={400}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
@@ -31,14 +31,14 @@ export default function SquidSizePremium() {
       }
       takeaway={{
         situation: `<div>
-<p>"중량 프리미엄(Size Premium)"이란 어체 사이즈에 따른 도매 단가 격차. 기상 이변으로 어체 왜소화 가속.</p>
-<p>실측: <strong>대형 규격(Large/Jumbo) 품귀 → 소형 대비 도매 톤당 단가 스프레드 기하급수 폭발</strong>. 초격차 size premium 시대.</p>
+<p>"중량 프리미엄(크기 프리미엄)"이란 어체 사이즈에 따른 도매 단가 격차. 기상 이변으로 어체 왜소화 경향이 관측되고 있음.</p>
+<p>업계추정 기준: 대형 규격 품귀 심화 → 소형 대비 도매 톤당 단가 스프레드가 2020년 대비 2024년 약 3.6배 수준으로 확대되는 추세(illustrative 합성치, 수협 시장 동향 기반 업계추정).</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 무차별 도매 출하 중단. <strong>"Premium Arbitrage Optimization"</strong>.</p>
-<p><strong>3단계</strong>: ① 그레이딩 자동화 설비로 대형 개체 100% Skimming ② 호텔·고급 일식체인 VVIP 직납 ③ 조업 타겟팅 알고리즘을 대형 개체 서식 수온·수심으로 재조정 — ASP +200~300% 프리미엄.</p>
+<p><strong>재정의</strong>: 무차별 도매 출하 중단. 크기별 차별 출하 전략("프리미엄 차익 최적화")으로 전환.</p>
+<p><strong>3단계</strong>: ① 그레이딩 자동화 설비로 대형 개체 선별 집중 ② 호텔·고급 일식체인 직납 채널 확보 ③ 조업 타겟팅을 대형 개체 서식 수온·수심으로 재조정 — 단가 스프레드 확대 추세를 마진으로 전환 가능.</p>
 </div>`,
-        source: "수협 위탁 단가 및 수산 시장 동향",
+        source: "업계추정 (수협 시장 동향 기반 illustrative 합성치, 실측 API 미연동)",
       }}
     />
   );

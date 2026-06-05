@@ -35,8 +35,8 @@ export default function SquidShrinkflation() {
       icon={TrendingUp}
       iconColor="#ef4444"
       pillar="S4"
-      cardDesc="기후 위기·남획으로 어획량은 감소(파란 영역) 하지만 단가 상승으로 글로벌 수출액(빨간 선)은 사상 최고치 — 프리미엄화 시그널"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="FAO FishStatJ 정적 데이터(illustrative) — 기후 위기·남획으로 어획량은 감소(파란 영역)하지만 단가 상승으로 글로벌 수출액(빨간 선)은 고점 수준 유지 — 프리미엄화 시그널"
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={380}
       chart={
         <ComposedChart data={data} margin={{ top: 10, right: 20, left: 10, bottom: 5 }}>
@@ -59,14 +59,14 @@ export default function SquidShrinkflation() {
       }
       takeaway={{
         situation: `<div>
-<p>"슈링크플레이션(Shrinkflation)" 글로벌 거시 패턴: 생산량 감소 + 무역액 증가의 역설.</p>
-<p>실측: <strong>글로벌 생산량 2015 피크 → 2023 -17% 급감 vs 동일 기간 글로벌 수출액 $95억 유지(2021 최고 $100억+)</strong>. 즉 한 마리당 가격 폭증으로 총 매출 유지. 오징어가 commodity → "초 프리미엄 원자재" 격상.</p>
+<p>"슈링크플레이션(Shrinkflation)" 글로벌 거시 패턴: 생산량 감소 + 무역액 증가의 역설. (FAO FishStatJ 기반 illustrative 추정)</p>
+<p>추정치: <strong>글로벌 생산량 2015 피크 대비 2023 약 -17% 감소 추세 vs 동일 기간 글로벌 수출액 $95억 내외 유지(2021 전후 최고점 추정)</strong>. 즉 단가 상승으로 총 무역액 유지 추세. 오징어가 commodity → 프리미엄 원자재로 위상 변화 가능성.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 박리다매 폐기. <strong>"Value-Adding 체제"</strong>로 전환.</p>
-<p><strong>3단계</strong>: ① 소형어 → 내장·먹물 활용 소스·펫푸드 개발 ② 중대형어 → 스시·통구이 하이엔드 유통 ③ 수율(yield) 최적화 공정 도입 — 같은 원물에서 마진 +20~30%p 회수.</p>
+<p><strong>재정의</strong>: 박리다매 탈피. <strong>"Value-Adding 체제"</strong>로 전환.</p>
+<p><strong>3단계</strong>: ① 소형어 → 내장·먹물 활용 소스·펫푸드 개발 ② 중대형어 → 스시·통구이 하이엔드 유통 ③ 수율(yield) 최적화 공정 도입 — 같은 원물에서 마진 개선 가능(업계 추정, illustrative).</p>
 </div>`,
-        source: "FAO FishStatJ Global Squid Production & Trade",
+        source: "FAO FishStatJ 글로벌 오징어 생산·무역 (illustrative 정적 데이터)",
       }}
     />
   );

@@ -63,8 +63,8 @@ export default function SquidImportPortfolio() {
       icon={Package}
       iconColor="#fbbf24"
       pillar="S2"
-      cardDesc={`KCS 관세청 수입 통계 2010-2023 (2024-2025 갱신 가능) — 냉동 원물 중심에서 양념·가공 오징어 비중 확대, 양념 +${seasonedGrowth}% 급증`}
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc={`관세청(KCS) HS 수입통계 2010-2023 (illustrative; 2024-2025 갱신 필요) — 냉동 원물 중심에서 양념·가공 오징어 비중 확대, 양념 수량 +${seasonedGrowth}% 증가(2010→2023)`}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       chartHeight={380}
       chart={
         <BarChart data={portfolioData} margin={{ top: 10, right: 20, left: 20, bottom: 20 }}>
@@ -81,14 +81,14 @@ export default function SquidImportPortfolio() {
       }
       takeaway={{
         situation: `<div>
-<p>"수입 포트폴리오의 질적 편재화"란 단순 원물 → 가공품으로 수입 구성이 paradigm shift하는 현상.</p>
-<p>실측: <strong>"양념 오징어" 수입 +245%</strong> (10년). 자국 어획 1.3만 톤 붕괴 + 페루 훔볼트 + 중국산 진미채가 하위 원자재 장악.</p>
+<p>"수입 포트폴리오의 질적 편재화"란 단순 원물 → 가공품으로 수입 구성이 구조 전환하는 현상.</p>
+<p>실측: <strong>"양념 오징어" 수입 +76%</strong> (2010→2023, 관세청 통계). 자국 어획 감소(업계 추정) 및 중국·페루산 원료 의존 심화 추세.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 단순 원물 수입 시대 종료. <strong>"완제품 해외 OEM 소싱"</strong>이 본질.</p>
-<p><strong>3단계</strong>: ① 베트남 경유 HMR·양념육 완성 형태 우회 포트폴리오 ② 수입 후 국내 가공은 최저임금·조정관세(22%) 부담으로 역마진 리스크 ③ 완제품 해외 OEM 소싱 비율 60%+ 끌어올리기.</p>
+<p><strong>재정의</strong>: 단순 원물 수입 시대 축소세. <strong>"완제품 해외 OEM 소싱"</strong> 비중 확대 방향 검토.</p>
+<p><strong>3단계</strong>: ① 베트남 경유 HMR·양념육 완성 형태 포트폴리오 ② 수입 후 국내 가공은 최저임금·조정관세(22%) 부담으로 역마진 리스크 주의 ③ 완제품 해외 OEM 소싱 비율 단계적 확대 검토.</p>
 </div>`,
-        source: "옵시디안 오징어_마스터_인덱스 & FAO FishStatJ Trade Flow / 관세청 HS코드 수입통계",
+        source: "관세청 HS코드 수입통계 (KCS, 2010-2023) / 업계추정",
       }}
     />
   );

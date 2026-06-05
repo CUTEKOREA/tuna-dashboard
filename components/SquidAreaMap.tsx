@@ -252,16 +252,16 @@ export default function SquidAreaMap() {
       iconColor="#6ee7b7"
       pillar="S1"
       cardDesc="북서태평양 자원 고갈 → 남미 앞바다(남동태평양·남서대서양)로 전 세계 선단이 집중되는 '풍선 효과'를 공간적으로 시각화"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
         situation: `<div>
-<p>"오징어 생산 코어 전이"란 글로벌 어획 지도의 70년 paradigm shift. 단순 흉어가 아닌 영구적 어장 이동.</p>
-<p>실측: <strong>과거 북서태평양(한국·일본 앞바다) 중심 → 남미 해역(페루·아르헨티나) 완벽 전이</strong>. FAO Area 6 → Area 41·87로 비가역적 풍선 효과. 한국 연안은 향후 회복 불가.</p>
+<p>"오징어 생산 코어 전이"란 글로벌 어획 지도의 70년 구조 전환. 단순 흉어가 아닌 장기 어장 이동 흐름.</p>
+<p>FAO 통계 기준: <strong>과거 북서태평양(한국·일본 앞바다) 중심 → 남미 해역(페루·아르헨티나) 대규모 전이</strong>. FAO Area 6 → Area 41·87로 풍선 효과 관측. 한국 연안 어획량은 수십 년간 감소 추세 지속.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 한국 연안 어획은 영구 dead asset. <strong>"남미 원양 직접 확보 + 식량 주권 선제 확보"</strong>가 본질.</p>
-<p><strong>3단계</strong>: ① 단기 수입 의존 탈피 — 남미 원양 선단 직접 확보 capex ② 페루·아르헨 메이저 조업사와 5~10년 Off-take 계약 ③ 한국 정부(해수부)와 partnership으로 식량 안보 산업 자금 활용.</p>
+<p><strong>재정의</strong>: 한국 연안 어획 경제성은 사실상 소멸 수준. <strong>"남미 원양 직접 확보 + 식량 주권 선제 확보"</strong>가 본질.</p>
+<p><strong>3단계</strong>: ① 단기 수입 의존 탈피 — 남미 원양 선단 직접 확보 capex ② 페루·아르헨 메이저 조업사와 5~10년 Off-take 계약 ③ 한국 정부(해수부)와 협력으로 식량 안보 산업 자금 활용.</p>
 </div>`,
         source: "FAO FishStatJ Squid Catch by FAO Area (1950-2020)",
       }}
