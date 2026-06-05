@@ -160,73 +160,6 @@ mackerel,w_global_b2c_channel,타깃 권역별 소비 채널 점유율 비교,?,
 mackerel,w_busan_procurement,부산공동어시장 원물 수매 단가 및 물량,?,,60.0,60.0,60.0,90.0,67.5,C,mackerel_4axis_scores.csv,forensic_4axis_audit,
 mackerel,w_andong_salted,국내 프리미엄 가공(간고등어) 원물 규격 지표,?,,60.0,60.0,60.0,90.0,67.5,C,mackerel_4axis_scores.csv,forensic_4axis_audit,
 mackerel,w_domestic_retail,수도권 권역별 소매 채널 가격 스프레드,?,,60.0,60.0,60.0,90.0,67.5,C,mackerel_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,ESG 공급망 투명성 트래커,S5,,60.0,95.0,80.0,100.0,83.8,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,수급 전망 & 착지원가 시뮬레이터,S4,,60.0,95.0,95.0,100.0,87.5,A,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[가공] AI 기반 수율 극대화 & 스마트 팩토리 CAPEX,S2,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,수온 상승의 역설 & 탄소세(Carbon Tax) 폭탄,S5,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[ESG] 이중 중대성 평가 (Double Materiality),S5,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,마진율 방어: 사료 내재화 & 기능성 대체 원료,S1,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[원물] 사료 원가 리스크 헷징: 대체 단백질 & FIFO (Fish In-Fish Out),S1,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[판매] 공급 변동성과 스팟 가격(Spot Price) 역상관관계,S4,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[물류] 거시 충격과 EU 연어 수입 물류 회복탄력성,S3,,55.0,95.0,95.0,70.0,78.8,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[가공] EU 훈제 연어 마진 압박과 가격 결정력 (Pricing Power),S2,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,무인화(Lights-out) 공장 & 슈퍼 칠링,S2,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[물류] 콜드체인 고도화: 해운 전환 및 IoT 모니터링,S3,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,생물학적 한계 돌파: 포스트 스몰트 & 심해 레이저,S1,,60.0,40.0,40.0,100.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,[판매] 인플레이션 대체 단백질 가격 (Trade-Down),S4,,55.0,95.0,95.0,70.0,78.8,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,실시간 연어 무역 인텔리전스,S4,,90.0,40.0,40.0,100.0,67.5,C,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,비관세장벽 & 컴플라이언스 레이더,S3,,90.0,95.0,95.0,100.0,95.0,A,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,-,정책 임팩트 시뮬레이터,S3,,60.0,95.0,55.0,100.0,77.5,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w01_paradigm,글로벌 패러다임: 생산량 (어획 vs 양식),,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w02_aqua_value,글로벌 대서양 연어 가치 폭등 곡선,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w03_aqua_pie,양식 제국 독점: Top 5 국가 리더보드 (2022),,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w04_proc,글로벌 2차 가공 부가가치 산업의 폭발적 팽창,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w05_cash,자본 회수: 양식 매출(Cash-Flow) Top 국가,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w06_trade_vol,거대 트레이딩: 글로벌 무역 파이 팽창선,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w07_export,수출 지배자: 연어 무역 패권 Top 10,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w08_import,Everyday Luxury 현상: 미국 침체와 아시아 시장의 폭발,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w09_kr_import,한국의 취약성: 절대적 수입 의존 폭증 곡선,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w10_kr_deficit,한국 연어 무역 적자(Deficit Gap) 가속,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w11_kr_price,연어 플레이션: 글로벌 수입 단가율 추이,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w12_margin,단가 폭락 방어전: Volume-Push와 사상 최고 수출액,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w13_monopoly,글로벌 복점(Duopoly) — 노르웨이와 칠레의 양강 체제,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w14_value,노르웨이 양식 산업의 진화: 볼륨(Volume)에서 가치(Value)로,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w15_korea_deficit,연어 블랙홀 🇰🇷 — 매년 5억 달러 규모의 무역 적자,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w16_processing,"동유럽의 급부상 — 유럽의 연어 가공 허브, 폴란드",,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w17_tier,절대적 가치 밀도 — 연어 산업의 자본화,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w18_extinction,자연산 상업 어획의 멸종 — 양식 비율 99.9%,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w19_iceland,"다크호스 아이슬란드 — 14년간 4,500% 은밀한 팽창",,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w20_margin_paradox,"칠레의 역설 — 물량은 절반, 톤당 가치는 45% 프리미엄",,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w21_russia_blackhole,러시아 블랙홀 — 서방 제재 속 칠레산 흡수력,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w22_license_gold,노르웨이 연어 면허 = 디지털 금광,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w23_chile_chokepoint,한국의 초크포인트 — 노르웨이 신선 원물 수입 편중 70%,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w24_poland_hub,"폴란드 가공 모델 — 양식 제로, 재수출로 $840M 순이익 창출",,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,n1_hfs_paradox,HFS(하이브리드 유수식) 고수익성 역설,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,n2_tariff_hoarding,15% 관세 폭탄 무력화: 프론트로딩 헷징,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,n3_melanosis_upcycle,가치 방어전: 멜라닌 등급 강등과 업사이클링,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k1_ras_photoperiod,RAS 광주기 조절이 대서양연어 Parr 성장에 미치는 영향,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k2_smolt_offseason,Off-season Smolt 생산: 광주기+체크기 조합 최적화,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k3_temp_cataract,대서양연어 치어 수온별 백내장 발생률 및 성장,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k4_listeria,훈제 연어 리스테리아 오염도 실태 조사,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k5_nutrition,횟감용 연어 vs 광어·참돔: 영양 특성 비교,,,55.0,40.0,40.0,40.0,43.8,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k6_jerky,연어 육포 제조공정 최적화: RSM 기반 HMR 신제품,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k7_chum_coastal,남대천 방류 연어 치어의 연안 이동 경로 추적,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,k8_chinook,한국 최초 왕연어(Chinook) 출현 기록: 기후변화 시그널,,,60.0,40.0,40.0,70.0,52.5,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w36_supply_outlook,2026 글로벌 공급 전망,,,55.0,95.0,70.0,40.0,65.0,C,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w37_smolt_efficiency,대형 스몰트 혁명: 해상사이클 효율화,,,55.0,75.0,70.0,40.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w38_smoked_eu,EU 훈제연어 밸류체인 가격구조,,,55.0,70.0,70.0,40.0,58.8,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w39_hab_risk,칠레 HAB 리스크 인덱스,,,55.0,75.0,70.0,40.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w40_market_growth,글로벌 시장 성장 전망 2025-2034,,,55.0,95.0,70.0,40.0,65.0,C,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w41_feed_cost,사료 원가 구성 및 대체원료 전환,,,55.0,75.0,70.0,40.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w42_mortality_kpi,양식 폐사율 추이 및 목표,,,55.0,75.0,70.0,40.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w43_diversification,한국 수입 다변화 지수,,,55.0,40.0,70.0,40.0,51.2,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w44_scope3_carbon,연어 밸류체인 탄소발자국 분석,,,55.0,75.0,70.0,40.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w45_automation_roi,가공 자동화 투자 수익 분석,,,55.0,75.0,70.0,40.0,60.0,D,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w_fta_salmon_supply_pivot,"공급망 대전환 — 러시아 35.8%→0%, 노르웨이 60%→83%",,,90.0,95.0,70.0,70.0,81.2,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w_fta_salmon_russia_collapse,러시아 -84.8% 절벽 — 한국 가공 허브의 소멸,,,90.0,95.0,70.0,70.0,81.2,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w_fta_salmon_form_shift,신선 피레트 신등장 — 가공 형태 5단계 진화,,,90.0,95.0,70.0,70.0,81.2,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w_fta_salmon_chile_rebound,2026 1Q 칠레 +32.3% — 노르웨이 대체재 부상,,,90.0,95.0,70.0,70.0,81.2,B,salmon_4axis_scores.csv,forensic_4axis_audit,
-salmon,w_fta_salmon_value_volume,액 -2.4% vs 물량 -4.0% — 단가 회복 사이클 시그널,,,90.0,95.0,70.0,70.0,81.2,B,salmon_4axis_scores.csv,forensic_4axis_audit,
 sashimi,W-SAS14,한국-일본 수출 의존도 추이,S5,STATIC,90.0,75.0,55.0,100.0,80.0,B,sashimi_4axis_scores.csv,forensic_4axis_audit,
 sashimi,W-SAS15,한국 주요 참치 기업 현황,S5,STATIC,90.0,75.0,55.0,100.0,80.0,B,sashimi_4axis_scores.csv,forensic_4axis_audit,
 sashimi,W-SAS17,한국의 지중해 BFT 수입 지도,S5,STATIC,90.0,75.0,55.0,100.0,80.0,B,sashimi_4axis_scores.csv,forensic_4axis_audit,
@@ -710,3 +643,91 @@ shrimp,shrimp_128,w_kr_shrimp_import_quarterly 한국 새우 수입 분기 동�
 shrimp,shrimp_129,한국 새우 무역수지(Trade Balance),,STATIC / syncDate 2026-05-29,88,84,90,88,88,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"수입 96,299톤·수출 1,513톤이 JSON과 정확히 일치하고 천톤 환산(96.3/1.5)도 내부정합. STATIC이라 a2 상한이 유일한 "
 shrimp,shrimp_130,w_kr_shrimp_origin_price 한국 수입 원산지별 새우 단가 추이,,synced/KMI 2026Q1,88,86,88,90,88,A,shrimp_corrected_2026_06_05,forensic_4axis_real,KMI 실측 단가÷물량 산출식·단가차% 계산식 [(8.5-7.3)/7.3] 명시·'가공형태/품종 미통제 혼합단가' 면책까지—검증성 모범. 최고점
 shrimp,shrimp_131,한국 새우 연간 수입 톤수 추이,,STATIC / syncDate 2026-05-29,90,84,92,90,89,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"STATIC 라벨이므로 a2 만점 불가하나, 1994~2023 FAOSTAT 시계열·2023=96,299톤이 JSON과 정확히 일치하는 최강 위"
+salmon,salmon_001,w08 식탁의 블랙홀: 연어 거대 수입국 Top 10,,SYNCED 2024-Q4 (정적·2022),32,36,25,24,29.25,F,salmon_real_audit_2026_06_05,forensic_4axis_real,SIT '미국·EU 선진국 60% 흡수' 주장하나 차트엔 미국·EU 부재·러시아 1위 — 출처 환각 + 영문 국가명 다수
+salmon,salmon_002,w07 수출 지배자: 연어 무역 패권 Top 10,,SYNCED 2024-Q4 (정적·2022),35,36,28,25,31,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"SIT는 'Mowi·노르웨이 카르텔 80%'인데 차트는 칠레 1위·노르웨이 $189M으로 환각 모순, 수출액 규모 비현실적"
+salmon,salmon_003,[판매] 인플레이션 대체 단백질 가격 (Trade-Down),,STATIC / syncDate 2026-05-29,32,50,20,40,35.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,STATIC 배지인데 SIT/TAK source가 양 탭 모두 '[LIVE API 연동]' 환각 라벨(L-09/L-12 위반). 게다가 KR 차
+salmon,salmon_004,w10 한국 연어 무역 적자 가속,,SYNCED 2024-Q4 (정적·2022),42,38,38,36,38.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,무역수지(USD) 한국 시계열은 KCS/Comtrade 소관인데 출처를 'FAO FishStatJ'로 오귀속 — 1차 추적 불가
+salmon,salmon_005,w05 자본 회수: 양식 매출 Top 국가,,SYNCED 2024-Q4 (정적·2022),50,38,42,28,39.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,Y축 tickFormatter가 v/1000 'k' 고정 — 106억USD가 '10657653k'로 깨져 단위 무결성 붕괴 + UK 영문 잔존
+salmon,salmon_006,w12 노르웨이 프리미엄: 톤당 수출 단가 스프레드,,SYNCED 2024-Q4 (정적·2022 종료),46,40,42,38,41.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,'구조적·영구적 초과마진' 등 과장 단정(P-03 인접) + 두 시계열 모두 소수점 파생치로 1차 검증 불가
+salmon,salmon_007,w09 한국의 취약성: 절대적 수입 의존 폭증 곡선,,SYNCED 2024-Q4 (정적·2022 종료),48,38,40,42,42,F,salmon_real_audit_2026_06_05,forensic_4axis_real,한국수입량이 2015 정점 후 2022 급감(3537t)인데 SIT는 '통제불능 수직 폭등'으로 차트와 정면 모순
+salmon,salmon_008,[가공] AI 기반 수율 극대화 & 스마트 팩토리 CAPEX,,STATIC / syncDate 2026-05-29 (,28,52,22,66,42,F,salmon_real_audit_2026_06_05,forensic_4axis_real,출처 'The Global Salmon Industry Value Chain Outlook 2024-2026 / BAADER Data'가 리포지
+salmon,salmon_009,w11 연어플레이션: 글로벌 수입 단가율 추이,,SYNCED 2024-Q4 (정적·2022 종료),48,40,42,40,42.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"수입단가 소수점 15자리 파생 산출치인데 출처·산식 미명시(cardDesc는 '자동 정제' 폴백), 추적 불가"
+salmon,salmon_010,w06 거대 트레이딩: 글로벌 무역 파이 팽창선,,SYNCED 2024-Q4 (정적·2022 종료),52,38,48,40,44.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"글로벌수입량이 2014 정점 후 2022 하락인데 SIT는 '지수함수적 팽창·셀러 우위'로 추세 역행, 단위 불명"
+salmon,salmon_011,w02 글로벌 양식 부가가치 수직 상승 곡선,,SYNCED 2024-Q4 (정적·2022 종료),55,36,52,40,45.75,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"양식단가(USD/T)가 소수점 15자리 합성치(5673.979988…)로 1차 추적 불가, 출처 FAO 일괄 표기"
+salmon,salmon_012,w03 양식 제국 독점: Top 5 국가 리더보드 (2022),,SYNCED 2024-Q4 (정적·2022 스냅샷),58,40,55,30,45.75,F,salmon_real_audit_2026_06_05,forensic_4axis_real,파이 라벨에 영문 원형 'United Kingdom of Great Britain…' 노출 — L-01 한글화 위반 + 라벨 오버플로
+salmon,salmon_013,w04 글로벌 가공 부가가치 산업의 축 이동,,SYNCED 2024-Q4 (정적·2022 종료),55,38,50,40,45.75,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"가공품 물동량이 등락 반복인데 SIT는 '퀀텀 점프 우상향'으로 차트와 불일치, 출처 FAO 블랭킷"
+salmon,salmon_014,수급 전망 & 착지원가 시뮬레이터,,status: breakdown ? 'SYNCED' :,42,58,30,55,46.25,F,salmon_real_audit_2026_06_05,forensic_4axis_real,3개월 전망(+3.2%·신뢰도72%)·변동요인·FOB 기본값·관세율(0%/10%)이 모두 하드코딩이며 한기욱 KMI 2024/2025 출처는 추
+salmon,salmon_015,[물류] 콜드체인 고도화: 해운 전환 및 IoT 모니터링,,STATIC · syncDate 2026-05-29 (,42,50,25,70,46.75,F,salmon_real_audit_2026_06_05,forensic_4axis_real,source 문자열이 '[📡 LIVE API 연동: 물류 배출량 추적]'을 주장하나 위젯에 fetch/useEffect/api 호출이 전무하고 
+salmon,salmon_016,마진율 방어: 사료 내재화 & 기능성 대체 원료,,STATIC / syncDate 2026-05-29,48,55,22,62,46.75,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"차트 전 수치가 합성 라운드값(어분 50→20% 완벽 -5등차, 절감액 0~55M)이고 Mowi/BioMar 1차보고서로 추적 불가 + sour"
+salmon,salmon_017,무인화(Lights-out) 공장 & 슈퍼 칠링,,STATIC / syncDate 2026-05-29,38,58,25,70,47.75,F,salmon_real_audit_2026_06_05,forensic_4axis_real,source에 '[📡 LIVE API 연동: 기업 공시]' 유령 LIVE 태그를 달았으나 BAADER/Mowi용 API 라우트가 전혀 없고 정적
+salmon,salmon_018,w01 글로벌 패러다임: 생산량 (어획 vs 양식),,"SYNCED 2024-Q4 (하드코딩, 실제는 정적 J",60,38,58,42,49.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"static JSON(2022 종료)을 telemetry SYNCED 2024-Q4로 표기 — L-09 위반, 신선도 라벨 자체가 허위"
+salmon,salmon_019,HFS(하이브리드 유수식) 고수익성 역설,,SYNCED,45,55,40,60,50,F,salmon_real_audit_2026_06_05,forensic_4axis_real,"생존율 83/97·에너지비용 2점만 — 출처 '교차검증' 유령, 수치 합성."
+salmon,salmon_020,가치 방어전: 멜라닌 등급 강등과 업사이클링,,SYNCED,46,58,40,56,50,F,salmon_real_audit_2026_06_05,forensic_4axis_real,손실/창출가치 2점·'800% 역마진' 과장·출처 'FAO+교차검증' 유령.
+salmon,salmon_021,ESG 공급망 투명성 트래커 — 러시아,,SYNCED · syncDate 2026-05-21 (,30,55,35,82,50.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,환경 details의 'EU Yellow Card 이력' 주장은 러시아가 EU IUU 옐로카드 대상국에 등재된 사실이 없어 환각/혼동 소지가 크
+salmon,salmon_022,[ESG] Double Materiality(이중 중대성) 평가,,STATIC / syncDate 2026-05-29 (,42,55,35,72,51,F,salmon_real_audit_2026_06_05,forensic_4axis_real,산점도 7개 좌표(온실가스 9.5/9.0 등)가 모두 JSON 하드코딩 합성치 — source 'EU CSRD & TNFD Disclosure'
+salmon,salmon_023,15% 관세 폭탄 무력화: 프론트로딩 헷징,,SYNCED,48,62,42,58,52.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,선확보물량지수 100→250 합성·미국점유율 round·출처 'FAO+교차검증' 유령.
+salmon,salmon_024,노르웨이 연어 면허 = 디지털 금광,,SYNCED,50,58,45,58,52.8,F,salmon_real_audit_2026_06_05,forensic_4axis_real,총매출/생산량 매끈 곡선 합성·reliability100인데 STATIC 미표기·출처 '교차검증' 유령.
+salmon,salmon_025,절대적 가치 밀도 — 연어 산업의 자본화,,SYNCED,58,62,46,52,54.5,F,salmon_real_audit_2026_06_05,forensic_4axis_real,composed 물량(백만)·단가(천)를 단일 좌축에 동시표시 — 단가선이 0으로 뭉개지는 차트 결함.
+salmon,salmon_026,생물학적 한계 돌파: 포스트 스몰트 & 심해 레이저,,STATIC syncDate 2026-05-29 (정직,42,72,30,78,55.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,source가 실존 1차자료(Mowi 2024·Grieg Q4-2024 IR)를 인용하나 '[📡 LIVE API 연동: Oslo Børs]' 유
+salmon,salmon_027,[가공] EU 훈제 연어 마진 압박과 가격 결정력 (Pricing Power),,STATIC syncDate 2026-05-29 (정직,52,60,40,70,55.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,source에 '📡 LIVE API 연동: Eurostat PRODCOM' 유령 LIVE 라벨 부착(L-09 위반) — 위젯은 정적 JSON i
+salmon,salmon_028,ESG 공급망 투명성 트래커 — 노르웨이,,SYNCED · syncDate 2026-05-21 (,38,58,45,82,55.75,D,salmon_real_audit_2026_06_05,forensic_4axis_real,"95/72/90 점수와 FCR 1.15·RAS 35% 등 핵심 수치가 모두 하드코딩 JSON이며, 인용된 박찬엽·이남수(2025)는 강제노동·업"
+salmon,salmon_029,[원물] 사료 원가 리스크 헷징: 대체 단백질 & FIFO (Fish In-Fish Out),,STATIC / syncDate 2026-05-29 (,52,60,38,74,56,D,salmon_real_audit_2026_06_05,forensic_4axis_real,차트 5개 시계열(FIFO 1.05→0.77·marine·alt)이 라운드·단조 하드코딩 합성치이며 출처가 자기참조(salmonInsightFe
+salmon,salmon_030,수온 상승의 역설 & 탄소세(Carbon Tax) 폭탄,,STATIC / syncDate 2026-05-29,52,58,40,74,56,D,salmon_real_audit_2026_06_05,forensic_4axis_real,carbonTax 30→150 EUR/톤 램프와 mortality %가 6포인트 하드코딩 JSON 합성치 — IEA NZE/GSI는 노르웨이 양
+salmon,salmon_031,정책 임팩트 시뮬레이터,,STATIC · syncDate 2026-05-21 (,52,60,28,86,56.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,"4개 시나리오의 모든 임팩트 수치(착지원가 8.5%·물량 -15%·소매가 6.2% 등)와 세부수치(탄력성 -0.85, ₩1,200/kg, FOB"
+salmon,salmon_032,ESG 공급망 투명성 트래커 — 칠레,,SYNCED · syncDate 2026-05-21 (,40,58,46,82,56.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,85/58/75 점수가 합성 하드코딩이며 SRS·FCR 1.40·2016 적조 대규모 폐사 등 정성 서술만 실재할 뿐 점수의 1차 추적이 불가(
+salmon,salmon_033,한국의 초크포인트 — 노르웨이 신선 원물 수입 편중 70%,,SYNCED,62,64,48,55,57.2,D,salmon_real_audit_2026_06_05,forensic_4axis_real,SIT는 '칠레 쏠림'이라는데 제목·데이터는 노르웨이 70% — 텍스트 환각형 내부 모순.
+salmon,salmon_034,[판매] 공급 변동성과 스팟 가격(Spot Price) 역상관관계,,STATIC · syncDate 2026-05-29,55,70,35,72,58,D,salmon_real_audit_2026_06_05,forensic_4axis_real,source 줄이 '[📡 LIVE API 연동: Spot Price & 환율 헷징]'을 주장하나 위젯은 정적 JSON import뿐 — 실제 f
+salmon,salmon_035,가공 자동화 투자 수익 분석,,STATIC,60,68,50,60,59.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,BAADER/Marel+'IntelMarketResearch' 출처 혼재·수율/ROI 합성치.
+salmon,salmon_036,"다크호스 아이슬란드 — 14년간 4,500% 은밀한 팽창",,SYNCED,60,64,52,62,59.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,"'4,500%'·소수 round 수치 일러스트·아일랜드 감소 등 출처 불명확."
+salmon,salmon_037,남대천 방류 연어 치어의 연안 이동 경로 추적,,STATIC,70,55,50,66,60.2,D,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 논문 출처·밀도/체장 4점 합성·telemetry null.
+salmon,salmon_038,글로벌 복점(Duopoly) — 노르웨이와 칠레의 양강 체제,,SYNCED,62,62,55,64,60.8,D,salmon_real_audit_2026_06_05,forensic_4axis_real,2015-2024 노르/칠레 매끈 증가 합성·자막 '83%'와 데이터 점유율 불일치 소지.
+salmon,salmon_039,한국 최초 왕연어(Chinook) 출현 기록: 기후변화 시그널,,STATIC,72,58,52,64,61.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,왕연어 1미기록 논문(vol/issue 명시) 출처 양호하나 파이 종조성 합성치.
+salmon,salmon_040,RAS 광주기 조절이 대서양연어 Parr 성장에 미치는 영향,,STATIC,72,55,52,70,62.2,D,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 논문 실재하나 증체율85→155 등 수치 일러스트·reliability/telemetry null.
+salmon,salmon_041,Off-season Smolt 생산: 광주기+체크기 조합 최적화,,STATIC,72,55,52,70,62.2,D,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 논문 출처 양호·전환율25→85 합성치·telemetry null.
+salmon,salmon_042,[물류] 거시 충격과 EU 연어 수입 물류 회복탄력성,,STATIC / syncDate 2026-05-29,58,70,47,74,62.25,D,salmon_real_audit_2026_06_05,forensic_4axis_real,정적 하드코딩 JSON(6행+6행)이 유일 데이터원인데 출처를 'EUMOFA'·'Krungsri·UNCTAD' 1차로 자처 — 어느 수치도 라우
+salmon,salmon_043,Everyday Luxury 현상: 미국 침체와 아시아 시장의 폭발,,SYNCED,64,72,54,62,63,D,salmon_real_audit_2026_06_05,forensic_4axis_real,2025E 포함·아시아/미국 성장률 4·8·15·-4 등 합성 round.
+salmon,salmon_044,칠레 HAB 리스크 인덱스,,SYNCED,66,66,55,66,63.2,D,salmon_real_audit_2026_06_05,forensic_4axis_real,Camanchaca AR/SERNAPESCA 출처·2016 피해100→2025 8 인덱스 합성·reliability80.
+salmon,salmon_045,노르웨이 양식 산업의 진화: 볼륨에서 가치로,,SYNCED,66,68,56,64,63.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,Oslo Børs 출처·생산량/매출 round 매끈·딥테크 서사 합성.
+salmon,salmon_046,거대 트레이딩: 글로벌 무역 파이 팽창선,,SYNCED,66,64,58,66,63.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,MOWI+FAO 출처·글로벌무역량 450→2880 round 추세 합성.
+salmon,salmon_047,대서양연어 치어 수온별 백내장 발생률 및 성장,,STATIC,74,55,55,70,63.5,D,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 논문 출처 양호하나 백내장률 곡선 일러스트·telemetry null.
+salmon,salmon_048,횟감용 연어 vs 광어·참돔: 영양 특성 비교,,STATIC,74,55,56,70,63.8,D,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 영양비교 논문 출처·DHA_EPA 등 수치 일러스트·telemetry null.
+salmon,salmon_049,글로벌 대서양 연어 가치 폭등 곡선,,SYNCED,66,66,58,66,64,D,salmon_real_audit_2026_06_05,forensic_4axis_real,FAO 출처·단가 4500→8900 round 11점·SYNCED라 만점불가.
+salmon,salmon_050,러시아 수입 집중 — 서방 제재 속 칠레산 흡수력,,SYNCED,68,68,56,64,64,D,salmon_real_audit_2026_06_05,forensic_4axis_real,Russia Customs/Undercurrent 출처 모호·수입액 천$ round·STATIC 미표기.
+salmon,salmon_051,훈제 연어 리스테리아 오염도 실태 조사,,STATIC,76,55,56,70,64.2,D,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 논문(48건 표본 명시) 출처 양호하나 검출률 수치 일러스트·telemetry null.
+salmon,salmon_052,"폴란드 가공 모델 — 양식 제로, 재수출로 $840M 순이익",,SYNCED,66,70,58,66,65,C,salmon_real_audit_2026_06_05,forensic_4axis_real,$840M 순이익 round·가공/원물/순익 매끈 증가로 합성 추정.
+salmon,salmon_053,비관세장벽 & 컴플라이언스 레이더,,STATIC · syncDate 2026-05-29 (,62,80,40,80,65.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,fetchComplianceData가 /api/wits·/api/risk-radar를 호출하나 응답을 읽지 않고 무조건 setItems(stat
+salmon,salmon_054,"지속가능 사료 전환 — FIFO 1.05→0.77, 대체원료 35%",,SYNCED,66,72,58,68,66,C,salmon_real_audit_2026_06_05,forensic_4axis_real,출처 salmonInsightFeedBio.json 파일 미존재(유령)·FIFO 데이터 2점뿐.
+salmon,salmon_055,연어 육포 제조공정 최적화: RSM 기반 HMR 신제품,,STATIC,78,58,58,70,66,C,salmon_real_audit_2026_06_05,forensic_4axis_real,KFAS 54(3) 2021 vol 명시 출처 양호하나 RSM 관능평가 5점 합성·telemetry null.
+salmon,salmon_056,사료 원가 구성 및 대체원료 전환,,SYNCED,68,72,60,66,66.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,Mowi/BioMar 출처 양호하나 파이 비중 round 일러스트(사료비 60% 등).
+salmon,salmon_057,연어 밸류체인 탄소발자국 분석,,SYNCED,70,72,60,66,67,C,salmon_real_audit_2026_06_05,forensic_4axis_real,Mowi ESG/SINTEF LCA 출처 양호하나 단계별 탄소치 6점 모두 round 합성.
+salmon,salmon_058,자본 회수: 양식 매출(Cash-Flow) Top 국가,,SYNCED,72,66,64,66,67,C,salmon_real_audit_2026_06_05,forensic_4axis_real,FAO 출처·매출액 USD round 대형수치·STATIC 미표기 SYNCED.
+salmon,salmon_059,글로벌 2차 가공 부가가치 산업의 급격한 성장,,SYNCED,70,66,64,68,67,C,salmon_real_audit_2026_06_05,forensic_4axis_real,FAO+'Global Processed Value' 모호 출처·2022까지.
+salmon,salmon_060,한국 연어 무역 적자(Deficit Gap) 가속,,SYNCED,72,66,64,66,67,C,salmon_real_audit_2026_06_05,forensic_4axis_real,KITA 출처·무역수지 2022까지·STATIC 미표기 SYNCED.
+salmon,salmon_061,2026 글로벌 공급 전망,,SYNCED,72,82,60,55,67.2,C,salmon_real_audit_2026_06_05,forensic_4axis_real,SIT에 러시아어 'биологическая' 잔존(L-01 한글 위반)·2026E 전망 합성치.
+salmon,salmon_062,실시간 연어 무역 인텔리전스 (매크로·무역 Live Ticker),,status: lastUpdate ? 'LIVE' : ,74,62,55,78,67.25,C,salmon_real_audit_2026_06_05,forensic_4axis_real,KAMIS 타일은 data.data.price를 읽지만 라우트 live(data.data.item)·fallback(prices[]) 어느 쪽도
+salmon,salmon_063,아시아 수입단가 벤치마크 — 한국 최고가,,SYNCED,70,68,62,72,68,C,salmon_real_audit_2026_06_05,forensic_4axis_real,출처 salmon_asia_benchmark.json 파일 미존재(유령 경로)·데이터 자체는 추적가능.
+salmon,salmon_064,"칠레의 역설 — 물량은 절반, 톤당 가치는 45% 프리미엄",,SYNCED,72,70,62,68,68,C,salmon_real_audit_2026_06_05,forensic_4axis_real,Subpesca 출처·노르/칠레 $/톤 round 매끈 증가로 합성 의심.
+salmon,salmon_065,한국의 취약성: 절대적 수입 의존 폭증 곡선,,SYNCED,74,66,66,68,68.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,KCS 출처 양호하나 2022까지·area인데 lines 폴백 렌더.
+salmon,salmon_066,연어 플레이션: 글로벌 수입 단가율 추이,,SYNCED,74,66,66,68,68.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,UN Comtrade 출처·2022까지·과도한 소수점이 오히려 출처 가공 불투명.
+salmon,salmon_067,글로벌 시장 성장 전망 2025-2034,,SYNCED,70,82,58,64,68.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,R&Markets 2026.03 출처·2025-2034 16.52→30.24 CAGR 외삽 전망치.
+salmon,salmon_068,대형 스몰트 혁명: 해상사이클 효율화,,SYNCED,70,80,58,68,69,C,salmon_real_audit_2026_06_05,forensic_4axis_real,Bakkafrost/Mowi IR 출처 양호하나 2026E 면허활용률 등 합성 전망.
+salmon,salmon_069,양식 제국 독점: Top 5 국가 리더보드 (2022),,SYNCED,76,60,72,70,69.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,2022 스냅샷으로 T-3y 경계·STATIC 미표기 SYNCED.
+salmon,salmon_070,수출 지배자: 연어 무역 패권 Top 10,,SYNCED,74,70,66,68,69.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,UN Comtrade 출처·국가별 수출액 round(11500 등)로 1차추적 약화.
+salmon,salmon_071,양식 폐사율 추이 및 목표,,SYNCED,72,76,62,68,69.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,Fiskeridir/Kontali 출처 양호하나 2026T 목표·폐사율 round 합성치.
+salmon,salmon_072,"동유럽의 급부상 — 유럽의 연어 가공 허브, 폴란드",,SYNCED,74,72,66,70,70.5,C,salmon_real_audit_2026_06_05,forensic_4axis_real,EUMOFA/Eurostat 출처 양호·폴/독/영 점유 수치 round 처리.
+salmon,salmon_073,자연산 상업 어획의 멸종 — 양식 비율 99.9%,,SYNCED,74,68,70,72,71,C,salmon_real_audit_2026_06_05,forensic_4axis_real,FAO/ICES 출처 양호하나 일부 round 처리·SYNCED라 만점불가.
+salmon,salmon_074,연어 수입 의존 심화 🇰🇷 — 매년 5억 달러 규모의 무역 적자,,SYNCED,76,72,68,72,72,C,salmon_real_audit_2026_06_05,forensic_4axis_real,KCS 출처 양호하나 총수입량/액 round(74000/510)·2023까지로 신선도 경계.
+salmon,salmon_075,단가 폭락 방어전: Volume-Push와 사상 최고 수출액,,SYNCED,74,78,66,70,72,C,salmon_real_audit_2026_06_05,forensic_4axis_real,NSC 출처·2025E 포함·수출액/단가 일부 round 합성.
+salmon,salmon_076,글로벌 패러다임: 생산량 (어획 vs 양식),,SYNCED,78,72,74,68,73,C,salmon_real_audit_2026_06_05,forensic_4axis_real,chartType=area인데 areas 미정의(lines 폴백)·1980 자연산>양식이 SIT '99.9% 대체완료'와 시점 충돌.
+salmon,salmon_077,한국 수입 다변화 지수,,SYNCED,78,78,70,76,75.5,B,salmon_real_audit_2026_06_05,forensic_4axis_real,출처 salmon_hhi.json 파일이 public/data에 미존재(유령 경로)·HHI 실측 서술은 양호.
+salmon,salmon_078,가공 표준수율 사다리 — 어체→필렛 60%,,STATIC,82,74,76,80,78,B,salmon_real_audit_2026_06_05,forensic_4axis_real,EUMOFA 표준수율표 출처 양호하나 특정연도 아닌 일반 표준치라 신선도 한계.
+salmon,salmon_079,EU 훈제연어 밸류체인 가격구조,,SYNCED,84,76,76,80,79,B,salmon_real_audit_2026_06_05,forensic_4axis_real,EUMOFA Case Study(2024.12) 출처 양호·4단계 가격 round 처리.
+salmon,salmon_080,노르웨이·페로 EU 수입단가 — 원물 동반 약세,,SYNCED,84,84,74,80,80.5,B,salmon_real_audit_2026_06_05,forensic_4axis_real,EUMOFA MH 1/2026 출처 양호하나 데이터 2점(직전/현재)뿐 추세성 빈약.
+salmon,salmon_081,EU 훈제 밸류체인 가격구조 (프랑스 2022),,SYNCED,86,76,80,82,81,B,salmon_real_audit_2026_06_05,forensic_4axis_real,EUMOFA PTAT FR 2022 출처 양호·2022 단년 스냅샷.
+salmon,salmon_082,칠레 감산 vs 노르웨이 안정 — 복점 균열,,SYNCED,86,80,82,82,82.5,B,salmon_real_audit_2026_06_05,forensic_4axis_real,FAO FishStatJ 2024 실측 양호하나 데이터 2년치(2023/2024)만.
+salmon,salmon_083,"글로벌 가공유형 전환 — 정점 후 수축, 조제 비중 상승",,STATIC,88,78,82,82,82.5,B,salmon_real_audit_2026_06_05,forensic_4axis_real,FAO FishStat 1990-2023 실측·내역 명시 추적가능하나 데이터 3점만 표시.
+salmon,salmon_084,신선 피레트 신등장 — 가공 형태 5단계 진화,,SYNCED,90,90,82,86,87,A,salmon_real_audit_2026_06_05,forensic_4axis_real,SUB '피레트' 오타(필레)·reliability null. KMI 품목별 비중 본문 인용은 양호.
+salmon,salmon_085,러시아 -84.8% 절벽 — 한국 가공 허브의 소멸,,SYNCED,90,90,82,88,87.5,A,salmon_real_audit_2026_06_05,forensic_4axis_real,KMI 2022Q4 본문 인용 강위젯. reliability null·SYNCED라 만점불가.
+salmon,salmon_086,2026 1Q 칠레 +32.3% — 노르웨이 대체재 부상,,SYNCED,90,90,84,86,87.5,A,salmon_real_audit_2026_06_05,forensic_4axis_real,KMI 분기 단가 본문 인용으로 추적성 높음. reliability null.
+salmon,salmon_087,액 -2.4% vs 물량 -4.0% — 단가 회복 사이클 시그널,,SYNCED,90,90,84,86,87.5,A,salmon_real_audit_2026_06_05,forensic_4axis_real,평균단가 산출식 명시로 검증성 높음. reliability null.
+salmon,salmon_088,"공급망 대전환 — 러시아 35.8%→0%, 노르웨이 60%→83%",,SYNCED,90,90,84,90,88.5,A,salmon_real_audit_2026_06_05,forensic_4axis_real,KMI 분기보고서 직접 인용·국가별 수입량 추적 가능. reliability 필드 null이 유일 흠.

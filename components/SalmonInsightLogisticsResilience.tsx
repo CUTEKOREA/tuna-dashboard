@@ -36,14 +36,14 @@ export default function SalmonInsightLogisticsResilience() {
 
   const takeaway = activePanel === 'eu'
     ? {
-        situation: "코로나19, 브렉시트 통관 지연, 러-우 전쟁발 운임 폭등이라는 3중 거시 충격에도 EU의 연어 수입 물량(약 100만 톤)은 견고합니다. 그러나 물류 병목으로 수입 단가가 2019년 6.46 EUR/kg에서 2024년 8.40 EUR/kg(+30%)로 구조적 상승을 겪고 있으며, 신선육 중심의 JIT(적시 생산) 체계가 타격을 입고 있습니다.",
-        actionPlan: "물류 지연 리스크를 근본적으로 회피하기 위해, 신선육(Fresh) 수입 비중을 낮추고 보관 유연성이 극대화된 냉동/2차 가공품(Frozen & Value-added) 포트폴리오를 대폭 확대해야 합니다. 동시에 노르웨이(80%)에 편중된 단일 공급망을 북미/아이슬란드로 헷징(Hedging).",
-        source: "EUMOFA Trade Analytics",
+        situation: "코로나19, 브렉시트 통관 지연, 러-우 전쟁발 운임 변동이라는 거시 충격 국면에도 EU의 연어 수입 물량(약 100만 톤)은 980~1,010천 톤 박스권에서 견고하게 유지됩니다. 다만 같은 기간 수입 단가는 2019년 6.46 EUR/kg에서 2024년 8.40 EUR/kg(+30%)로 상승했습니다(이상 수치는 EUMOFA 무역통계 추이를 토대로 한 자체 추정·시나리오값).",
+        actionPlan: "물류 지연 리스크를 줄이기 위해, 신선육(Fresh) 수입 비중을 낮추고 보관 유연성이 큰 냉동/2차 가공품(Frozen & Value-added) 포트폴리오를 확대하는 방안을 검토할 만합니다. 동시에 노르웨이에 편중된 단일 공급망을 북미/아이슬란드로 분산(Hedging)하는 전략을 함께 고려합니다.",
+        source: "자체 추정·시나리오 (illustrative) · EUMOFA 무역통계 참조",
       }
     : {
-        situation: "2024년 홍해 분쟁 발발로 BDI 및 CCFI 운임 지수가 재폭등했으며, 특히 유럽 노선 20ft 컨테이너 운임이 전년비 +218% 폭증했습니다. 여기에 IMO 2023(EEXI/CII) 환경 규제에 따른 선박 감속 운항이 더해져 신선 연어의 운송 리드타임과 물류 매입원가가 급증하고 있습니다.",
-        actionPlan: "운임 변동성 리스크를 차단하기 위해 장기 운송 계약(COA) 비중을 즉시 60% 이상으로 확대하십시오. 감속 운항에 대응할 수 있는 해상 콜드체인(Super-chilling) 역량을 확보하지 못하는 벤더는 공급망 벤더 리스트에서 영구 퇴출해야 합니다.",
-        source: "Krungsri Research · UNCTAD",
+        situation: "2023년 말 촉발된 홍해 분쟁이 2024년 심화되며 BDI·CCFI 운임 지수가 재상승했고, 특히 유럽 노선 운임(YoY)이 2024년 +218%로 표기됩니다. 여기에 2023년 발효된 IMO EEXI/CII 환경 규제에 따른 선박 감속 운항이 더해져 신선 연어의 운송 리드타임과 물류 매입원가 부담이 커지는 국면입니다(운임 수치는 공개 지수 추이를 토대로 한 자체 추정·시나리오값).",
+        actionPlan: "운임 변동성 리스크를 완화하기 위해 장기 운송 계약(COA) 비중을 확대하고, 감속 운항에 대응할 해상 콜드체인(Super-chilling) 역량을 갖춘 벤더 위주로 공급망을 재편하는 방안을 검토합니다.",
+        source: "자체 추정·시나리오 (illustrative) · Krungsri·UNCTAD 공개자료 참조",
       };
 
   const tabs = (
@@ -135,8 +135,8 @@ export default function SalmonInsightLogisticsResilience() {
       iconColor="#06b6d4"
       pillar="S3"
       cardDesc={activePanel === 'eu'
-        ? 'EU 역외 수입 물량·총액·단가 3축 회복탄력성 분석 (2019-2024)'
-        : 'BDI·CCFI·EU 노선 운임 지수 거시 충격 트래킹 (2019-2024)'}
+        ? 'EU 역외 수입 물량·총액·단가 3축 회복탄력성 (2019-2024) · 자체 추정·시나리오(illustrative)'
+        : 'BDI·CCFI·EU 노선 운임 지수 거시 충격 트래킹 (2019-2024) · 자체 추정·시나리오(illustrative)'}
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       customBody={<>{tabs}{chartArea}</>}
       takeaway={takeaway}

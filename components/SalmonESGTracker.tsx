@@ -124,13 +124,13 @@ export default function SalmonESGTracker() {
       icon={Leaf}
       iconColor="#10b981"
       pillar="S5"
-      cardDesc="원산지(노르웨이·칠레·러시아)별 강제노동·환경·이력추적 3축 ESG 점수 비교"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+      cardDesc="원산지(노르웨이·칠레·러시아)별 강제노동·환경·이력추적 3축 ESG 점수 비교 — 점수는 정성 지표 기반 자체 추정(illustrative), 1차 출처 미연동"
+      telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
       customBody={body}
       takeaway={{
         situation: tk.situation,
         actionPlan: tk.actionPlan,
-        source: '윤미경(2021) 원양 ESG · 박찬엽(2025) 강제노동 규범화 · 이남수(2025) 수산 업사이클링',
+        source: '점수: 자체 추정(illustrative, 정성 지표 점수화) · 정성 근거 참고문헌: 윤미경(2021) 원양 ESG · 박찬엽(2025) 강제노동 규범화 · 이남수(2025) 수산 업사이클링 (해당 문헌은 ESG 점수의 1차 출처 아님)',
       }}
     />
   );

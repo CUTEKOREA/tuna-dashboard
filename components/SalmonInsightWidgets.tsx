@@ -26,6 +26,29 @@ const PILLAR_BY_ID: Record<string, Pillar> = {
 
 const formatNum = (v: number) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(v);
 
+// Scale-aware compact axis formatter: avoids "10657653k" by stepping B/M/k.
+const compactAxis = (v: number) => {
+  if (v == null || isNaN(v)) return '';
+  const abs = Math.abs(v);
+  if (abs >= 1e9) return (v / 1e9).toFixed(1) + 'B';
+  if (abs >= 1e6) return (v / 1e6).toFixed(1) + 'M';
+  if (abs >= 1e3) return (v / 1e3).toFixed(0) + 'k';
+  return String(v);
+};
+
+// Render-time Korean mapping for chart name/pie labels (L-01: no English residuals).
+const KO_NAME: Record<string, string> = {
+  'United Kingdom of Great Britain and Northern Ireland': '영국',
+  'Netherlands (Kingdom of the)': '네덜란드',
+  'China, Hong Kong SAR': '홍콩',
+  'Taiwan Province of China': '대만',
+  'Colombia': '콜롬비아',
+  'Kazakhstan': '카자흐스탄',
+  'Thailand': '태국',
+  'Myanmar': '미얀마',
+};
+const koName = (n: string) => KO_NAME[n] || n;
+
 export const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -83,7 +106,7 @@ export default function SalmonInsightWidgets() {
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -96,7 +119,7 @@ export default function SalmonInsightWidgets() {
         <LineChart data={w.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => (
@@ -109,8 +132,8 @@ export default function SalmonInsightWidgets() {
         <BarChart data={w.data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} layout="vertical">
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
-          <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} />
+          <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
+          <YAxis dataKey={w.xAxis} type="category" stroke="#f8fafc" fontSize={10} width={120} tick={{fill: '#e2e8f0'}} tickFormatter={koName} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => {
@@ -123,7 +146,7 @@ export default function SalmonInsightWidgets() {
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey={w.xAxis} stroke="#94a3b8" fontSize={11} tickMargin={8} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => (v / 1000).toFixed(0) + 'k'} />
+          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={compactAxis} />
           <RechartsTooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {(w.series || w.lines || w.bars || []).map((s: any, idx: number) => {
@@ -144,7 +167,7 @@ export default function SalmonInsightWidgets() {
             innerRadius={50}
             fill="#8884d8"
             dataKey="value"
-            label={({ name, percent }: any) => `${name} ${((percent || 0) * 100).toFixed(1)}%`}
+            label={({ name, percent }: any) => `${koName(name)} ${((percent || 0) * 100).toFixed(1)}%`}
           >
             {w.data.map((_entry: any, index: number) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -163,14 +186,14 @@ export default function SalmonInsightWidgets() {
         icon={Icon}
         iconColor="var(--color-info)"
         pillar={PILLAR_BY_ID[w.id] || 'S1'}
-        cardDesc={w.methodology || '백엔드 스크립트를 통한 데이터 자동 정제'}
-        telemetry={{ status: 'SYNCED', syncDate: '2024-Q4' }}
+        cardDesc={w.cardDesc || w.methodology || 'FAOSTAT 정적 데이터셋 기반 (최신 관측 2022년)'}
+        telemetry={{ status: 'STATIC', syncDate: w.syncDate || '2022 (FAOSTAT)' }}
         chart={ChartComponent as React.ReactElement}
         chartHeight={360}
         takeaway={{
           situation: w.situation,
           actionPlan: w.takeaway,
-          source: 'FAO FishStatJ 2024',
+          source: w.source || 'FAOSTAT (FishStatJ) — 최신 관측연도 2022',
         }}
       />
     );

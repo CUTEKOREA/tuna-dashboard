@@ -88,6 +88,9 @@ export default function SalmonPolicyImpact() {
         <div style={{ fontSize: '0.6rem', color: '#475569', fontStyle: 'italic' }}>
           📚 {scenario.researchBasis}
         </div>
+        <div style={{ fontSize: '0.58rem', color: '#475569', marginTop: '0.35rem' }}>
+          ※ 임팩트 수치(착지원가·물량·소매가 %, 탄력성·단가 등)는 자체 추정 시나리오 가정치(illustrative)이며 노출된 계량 모델 산출값이 아님.
+        </div>
       </div>
     </div>
   );
@@ -98,12 +101,12 @@ export default function SalmonPolicyImpact() {
       icon={Building2}
       iconColor="#f59e0b"
       pillar="S3"
-      cardDesc="FTA·SIMP·제재 정책 변화 4종 시나리오별 착지원가·물량·소매가 임팩트 분석"
+      cardDesc="FTA·SIMP·제재 정책 변화 4종 시나리오별 착지원가·물량·소매가 임팩트 (자체 추정 what-if 시나리오, illustrative — 노출된 산출 모델 없음)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{
         situation: `<div>
-<p>"정책 충격 시나리오 시뮬레이션" — 글로벌 정책 이벤트가 한국 연어 시장에 미치는 정량 영향을 사전 모델링하는 instrument.</p>
+<p>"정책 충격 시나리오 시뮬레이션" — 글로벌 정책 이벤트가 한국 연어 시장에 미칠 방향성을 가늠하는 <strong>자체 추정 what-if 시나리오(illustrative)</strong>입니다. 아래 임팩트 수치는 노출된 계량 모델 산출값이 아닌 시나리오 가정치이므로 의사결정 보조 참고용입니다.</p>
 <p>선택 시나리오 <strong>"${scenario.title}"</strong> 기준:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li>착지원가 <strong>${scenario.impacts.landedCost.pct > 0 ? '+' : ''}${scenario.impacts.landedCost.pct}%</strong></li>
@@ -113,7 +116,7 @@ export default function SalmonPolicyImpact() {
 <p>${scenario.analysis}</p>
 </div>`,
         actionPlan: `<div><p><strong>재정의</strong>: 정책 시나리오는 단순 macro 정보가 아닌 <strong>"본업 P&amp;L의 systematic stress test"</strong>.</p><p>${scenario.tak}</p></div>`,
-        source: '박혜진(2022) 수입수산물 대체관계 · 박혜진(2023) 전략품목 관리 · 박혜진(2025) SIMP 대응실태 · KMI(2026) 동북아 교역구조',
+        source: '배경 참고문헌(정성): 박혜진(2022) 수입수산물 대체관계 · 박혜진(2023) 전략품목 관리 · 박혜진(2025) SIMP 대응실태 · KMI(2026) 동북아 교역구조 / 임팩트 수치는 자체 추정 시나리오 가정치(illustrative)이며 해당 문헌의 1차 산출값이 아님',
       }}
     />
   );

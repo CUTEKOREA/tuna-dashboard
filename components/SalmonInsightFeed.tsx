@@ -14,7 +14,7 @@ export default function SalmonInsightFeed() {
       icon={DollarSign}
       iconColor="var(--color-success)"
       pillar="S1"
-      cardDesc="양식 원가의 60%를 차지하는 사료를 전략적으로 내재화하고 기능성 단백질 도입"
+      cardDesc="사료 비중 축소·대체 단백질 전환 시나리오 (자체 추정·illustrative, 1차 출처 미확정)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -51,7 +51,7 @@ export default function SalmonInsightFeed() {
 <p><strong>재정의</strong>: 사료 통제권은 단순 원료 확보가 아닌 <strong>"본업 P&amp;L의 가장 큰 control point"</strong>.</p>
 <p><strong>3단계</strong>: ① Mowi 모델 차용 — 사료 밸류체인 전면 in-house화 ② 독점 파트너십(Cargill·Skretting·BioMar) 구축 ③ 곤충·미세조류 기반 대체 단백질 스타트업 M&amp;A 즉각 검토.</p>
 </div>`,
-        source: "Mowi ASA Annual Report 2024 · BioMar Sustainability 2024 [📡 LIVE API 연동: FAO FishPrice]"
+        source: "자체 추정·시나리오 (illustrative) — 정량치 1차 출처 미확정. 정성 맥락 참고: Mowi ASA Annual Report 2024, BioMar Sustainability 2024 · STATIC 2026-05-29"
       }}
     />
   );

@@ -14,7 +14,7 @@ export default function SalmonInsightClimate() {
       icon={AlertTriangle}
       iconColor="var(--color-warning)"
       pillar="S5"
-      cardDesc="성장 가속의 단기 기회와 2030년 탄소 비용 폭증의 장기 리스크 혼재"
+      cardDesc="성장 가속의 단기 기회와 2030년 탄소 비용 상승의 장기 리스크 (탄소세·폐사율 수치는 자체 추정 시나리오 illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -29,14 +29,14 @@ export default function SalmonInsightClimate() {
             itemStyle={{ fontSize: '0.85rem' }}
             formatter={(value: any, name: any) => {
               if (name === 'mortality') return [`${value}%`, '고수온에 따른 해상 폐사율'];
-              if (name === 'carbonTax') return [`${value} EUR/톤`, '노르웨이 탄소세 전망(IEA NZE)'];
+              if (name === 'carbonTax') return [`${value} EUR/톤`, '노르웨이 탄소세 전망(자체 추정)'];
               return [value, name];
             }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           
           <Bar yAxisId="left" dataKey="mortality" name="고수온에 따른 해상 폐사율" fill="url(#colorMortality)" radius={[4, 4, 0, 0]} barSize={20} />
-          <Line yAxisId="right" type="monotone" dataKey="carbonTax" name="노르웨이 탄소세 전망(IEA NZE)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+          <Line yAxisId="right" type="monotone" dataKey="carbonTax" name="노르웨이 탄소세 전망(자체 추정)" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
           
           <defs>
             <linearGradient id="colorMortality" x1="0" y1="0" x2="0" y2="1">
@@ -48,14 +48,14 @@ export default function SalmonInsightClimate() {
       }
       takeaway={{
         situation: `<div>
-<p>"기후 임계점 + 탄소세 폭탄"은 양식 연어의 가장 큰 medium-term existential 위협.</p>
-<p>현실: <strong>SST +1.5°C 임계점 초과 시 해파리·조류 대발생으로 해상 폐사율 폭증(2024 16% 초과)</strong>. 추가 치명타: <strong>2030 발효 톤당 탄소세 폭탄</strong>.</p>
+<p>"기후 임계점 + 탄소세 상승"은 양식 연어의 주요 중기 리스크로 평가된다.</p>
+<p>본 차트는 자체 추정 시나리오로, <strong>고수온기 해상 폐사율이 2024년 16%대까지 상승한 것으로 가정</strong>하고 <strong>2030년까지 톤당 탄소세가 단계적으로 인상되는 경로</strong>를 함께 표시했다. (실측 라인아이템 아닌 파생 매핑)</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 기후+탄소세는 단순 ESG 변수가 아닌 <strong>"PEF 자본 조달 valuation 결정 변수"</strong>.</p>
-<p><strong>3단계</strong>: ① PEF 재무 모델에 "수온 리스크 프리미엄 + 잠재 탄소세 부채" 선제 반영 ② 디젤 물류망·사료 바지선 → 전동화·수소 하이브리드 교체 ③ Scope 3 원천 헷징 — 2030 탄소세 폭탄 회피.</p>
+<p><strong>재정의</strong>: 기후+탄소세는 단순 ESG 변수가 아닌 <strong>밸류에이션(자본 조달) 결정 변수</strong>로 다룬다.</p>
+<p><strong>3단계</strong>: ① 재무 모델에 "수온 리스크 프리미엄 + 잠재 탄소세 부채" 선제 반영 ② 디젤 물류망·사료 바지선 → 전동화·수소 하이브리드 교체 ③ Scope 3 원천 헷징으로 2030년 탄소세 인상 노출 완화.</p>
 </div>`,
-        source: "IEA Net Zero & GSI Report"
+        source: "자체 추정 시나리오 (IEA NZE·GSI 파생 매핑, 1차 라인아이템 출처 아님)"
       }}
     />
   );

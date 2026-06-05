@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-06-05 — salmon 블랙홀 실감사+정책D 정정 (L-09 가짜LIVE 18건 박멸)** [CC]:
+> - salmon 스코어카드도 stub(67행 vs 실제 19파일) → **실감사**(19파일 88위젯): 평균 **61.31**·F25+D26=51·illustrative 51. **L-09 가짜LIVE 다수**(`[📡 LIVE API 연동]` 유령 태그·정적인데 SYNCED 2024-Q4).
+> - **정책 D(혼합) 정정**(17파일·80edits·38위젯): **L-09 가짜LIVE 18건 정직 STATIC화**·기만/과대단정 제거(러시아 EU옐로카드 환각·800% 역마진 등)·차트-SIT 모순 해소·유령출처(BAADER) 제거·illustrative 라벨. 날조금지·`npm run build` ✓.
+> - **재채점(Sonnet, 비용최적)**: 61.31→**66.15(+4.8)**. 잔존 F=구조적 illustrative(정직 라벨됐으나 데이터 합성 → rebuild 필요).
+> - **rebuild 후보 22건 결정화**(`artifacts/salmon_rebuild_candidates.md`): FAO/FAOSTAT 11·Comtrade 5·KAMIS 2·KCS 2·EUMOFA·Nasdaq Salmon Index — 실데이터 존재, 라이브 배선 시 a2·a3 천장 돌파(마스터플랜 I-6).
+> - **비용 교훈**: 이 세션 ~270 에이전트 대부분 Opus(ultracode). 재채점부터 **Sonnet 적용**(granular audit엔 Opus, delta엔 Sonnet). 향후 기계적 fan-out=Sonnet·배치=Gemini Direct·검증=Codex/Grok로 라우팅.
+> - **두 블랙홀 remediation 완료**: shrimp 65.7→71.9·salmon 61.3→66.2. 배포 보류(로컬).
+
 > 🦐 **2026-06-05 — shrimp 신뢰도 블랙홀 실감사+정정 (stub 폭로→실측→정직화)** [CC]:
 > - 원장이 지목한 salmon/shrimp F블랙홀 진단 → **shrimp 스코어카드가 stub**(avg 9개 고유값·widget_id 공란·127행 vs 실제 위젯수 불일치) 폭로.
 > - **shrimp 실감사**(7파일 137위젯): 평균 **65.72 · 진짜 F 32개**(하드코딩 목업·유령출처 'FAO Aquaculture Processing Engine'·차트-SIT 모순·'2024 절대바닥' 환각·dead telemetry prop).

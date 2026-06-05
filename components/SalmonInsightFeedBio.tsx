@@ -12,7 +12,7 @@ export default function SalmonInsightFeedBio() {
       icon={Fish}
       iconColor="var(--color-info)"
       pillar="S1"
-      cardDesc="해양 원료(어분/어유) 의존도 감소 및 미세조류/가금류 등 대체 사료 도입을 통한 원가율 통제"
+      cardDesc="해양 원료(어분/어유) 의존도 감소 및 미세조류/가금류 등 대체 사료 도입을 통한 원가율 통제 (수치는 업계 추세 기반 자체 추정/시나리오 — illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -41,9 +41,9 @@ export default function SalmonInsightFeedBio() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 어분 의존은 climate beta 100% 노출. <strong>"Alternative protein portfolio"</strong>가 본질.</p>
-<p><strong>3단계</strong>: ① MOWI 모델 차용 — 가금류 부산물·곤충 단백질·미세조류 도입 ② FIFO 0.77 + rFIFO 0.60 목표 ③ Alternative protein 스타트업 minority equity 인수 — Insectum·BioMar IP partnership.</p>
+<p><strong>3단계</strong>: ① MOWI 모델 차용 — 가금류 부산물·곤충 단백질·미세조류 도입 ② 차트상 FIFO 0.77 수준의 의존도 유지·추가 하향 목표 ③ Alternative protein 스타트업 minority equity 인수 — Innovafeed·Protix 등 곤충단백질 + BioMar IP partnership.</p>
 </div>`,
-        source: "MOWI Integrated Annual Report 2024 (Empirical Data)"
+        source: "자체 추정/시나리오 (MOWI·BioMar 공개 보고서의 대체 단백질 전환 방향을 참고한 illustrative 시계열 — 개별 수치는 1차 출처 미추적)"
       }}
     />
   );

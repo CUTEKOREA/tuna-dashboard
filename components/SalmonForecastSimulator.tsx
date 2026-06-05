@@ -94,9 +94,9 @@ export default function SalmonForecastSimulator() {
       factors: [
         '칠레 SRS 감염률 상승 → 공급 축소 예상',
         'NOK 강세 지속 → 노르웨이산 가격 상승 압력',
-        '한국 연어 소비 증가 추세 (YoY +8.5%)',
+        '한국 연어 소비 증가 추세',
       ],
-      basis: '「수산물 무역 단기 전망모형 구축」(한기욱, KMI 2024)',
+      basis: '자체 추정 시나리오(illustrative) — 실측 모델 산출 아님',
     });
 
     setLoading(false);
@@ -236,19 +236,19 @@ export default function SalmonForecastSimulator() {
       icon={Calculator}
       iconColor="#10b981"
       pillar="S4"
-      cardDesc="FOB·운임·관세·환율 5축 API 결합 착지원가 + 3개월 가격 변동 전망"
-      telemetry={{ status: breakdown ? 'SYNCED' : 'STATIC', syncDate: 'API (착지원가 Tariffs·FRED)' }}
+      cardDesc="착지원가는 운임·관세·환율 API 결합 산출 / 3개월 가격 전망은 자체 추정 시나리오(illustrative)"
+      telemetry={{ status: breakdown ? 'SYNCED' : 'STATIC', syncDate: '착지원가: 관세·환율 API · 전망: 자체 추정' }}
       customBody={body}
       takeaway={{
         situation: `<div>
-<p>"착지원가 시뮬레이터(Landed Cost Simulator)"는 origin·환율·운임·관세 4개 변수가 결합된 최종 매입 cost 동적 계산 instrument.</p>
-<p>국가별 비교: <strong>${selected.flag} ${selected.label} — FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}</strong>.${fc} <strong>칠레·노르웨이 FTA 양허 0% 관세 면제 vs 호주·캐나다·영국 10% 관세 누적</strong>.</p>
+<p>착지원가 시뮬레이터는 산지·환율·운임·관세 4개 변수를 결합해 최종 매입원가를 산출하는 도구입니다.</p>
+<p>국가별 비교: <strong>${selected.flag} ${selected.label} — FOB $${selected.fobDefault}/kg, 총 착지원가 ${totalKRW}</strong>.${fc} <strong>칠레·노르웨이 FTA 양허 0% 관세 면제 vs 호주·캐나다·영국 10% 관세 누적</strong>. 3개월 전망 수치는 자체 추정 시나리오(illustrative)입니다.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 시뮬레이터는 단순 계산이 아닌 <strong>"systematic procurement timing trigger"</strong>.</p>
-<p><strong>3단계</strong>: ① 환율·운임·FOB 3대 변수 LIVE 신호 ±2% 흔들림 시 자동 헤지 알림 ② 3개월 전망 +3% 상승 신뢰도 70%+ 시 선구매 비중 +30%p 확대 ③ JP Morgan Macro Quant Desk와 ML 모델 collab.</p>
+<p><strong>활용</strong>: 시뮬레이터는 산지·환율·관세 변화에 따른 매입 시점 의사결정 보조 도구.</p>
+<p><strong>3단계</strong>: ① 환율·운임·FOB 변수 ±2% 흔들림 시 헤지 검토 ② 가격 상승 시나리오 발생 시 선구매 비중 확대 검토 ③ 전망 가정은 자체 추정 시나리오(illustrative)이므로 실측 무역 데이터로 주기적 보정 필요.</p>
 </div>`,
-        source: "Comtrade · KCS · WITS · ECOS + 한기욱(KMI 2024) 단기 전망모형 · 한기욱(KMI 2025) AI 무역전망체계",
+        source: "착지원가: UN Comtrade · 관세청(KCS) · 환율 API / 3개월 전망: 자체 추정 시나리오(illustrative)",
       }}
     />
   );

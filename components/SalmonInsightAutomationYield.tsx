@@ -12,7 +12,7 @@ export default function SalmonInsightAutomationYield() {
       icon={Factory}
       iconColor="var(--color-warning)"
       pillar="S2"
-      cardDesc="가공 장비(BAADER 등) 자동화에 따른 수율 향상 및 인건비 절감 효과 분석"
+      cardDesc="자동화 수율·인건비·CAPEX 지수는 업계 통념 기반 자체 추정 시나리오(illustrative) — 특정 1차 출처 미연동"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -36,13 +36,13 @@ export default function SalmonInsightAutomationYield() {
       takeaway={{
         situation: `<div>
 <p>"자동화 수율(Automation Yield)"은 수작업 vs 자동화 가공의 수율·인건비 비교 KPI.</p>
-<p>현 위기: <strong>북미·유럽 가공 허브 극심한 노동력 부족 + 임금 인상 → 수작업 의존 vendor 연간 -10~15% 생산성 손실 + 품질 불균일성</strong>.</p>
+<p>현 위기: <strong>북미·유럽 가공 허브의 노동력 부족 + 임금 인상으로 수작업 의존 vendor의 생산성·품질 균일성 압박</strong> (정량 손실폭은 자체 추정 시나리오).</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 자동화는 단순 cost 절감이 아닌 <strong>"향후 5년 vendor 생존 instrument"</strong>.</p>
-<p><strong>3단계</strong>: ① BAADER 581 Pro 모듈형 자동화(필렛팅·트림 통합) 전면 도입 ② 수율 +3~4% + 수작업 의존도 -40% ③ IoT 예지보전 — 다운타임 원천 차단.</p>
+<p><strong>3단계</strong>: ① 모듈형 가공 자동화(필렛팅·트림 통합) 단계적 도입 ② 수율 개선 및 수작업 의존도 축소 목표 설정(개선폭은 자체 추정) ③ IoT 예지보전으로 다운타임 저감.</p>
 </div>`,
-        source: "The Global Salmon Industry Value Chain Outlook 2024-2026 / BAADER Data"
+        source: "자체 추정 시나리오 (illustrative) — 가공 자동화 수율·CAPEX 통념 기반, 검증된 1차 출처 미연동"
       }}
     />
   );

@@ -403,7 +403,7 @@ export default function SalmonDashboard() {
             background: '#181818', border: '1px solid rgba(236, 72, 153, 0.2)', 
             borderRadius: '8px', color: '#94a3b8', fontWeight: 500
           }}>
-            <span style={{ color: SALMON_THEME.primary }}>FishStatJ 1950-2024 + KFAS</span> · Claude Verified
+            <span style={{ color: SALMON_THEME.primary }}>FishStatJ 1950-2024 + KFAS</span> · 정적 데이터셋
           </div>
         </div>
       </header>
@@ -432,12 +432,16 @@ export default function SalmonDashboard() {
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.2, wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                     {kpi.title}
                   </span>
-                  {(kpi.telemetry || (key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs)) && (
-                    <TelemetryBadge 
-                      status={((key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs)) ? 'live' : kpi.telemetry as any} 
-                      syncDate={((key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs)) ? '실시간 연동중' : kpi.syncDate} 
-                    />
-                  )}
+                  {(() => {
+                    // L-09: kpi3/kpi6은 JSON telemetry='live'지만, 실제 API(apiData.kamis/kcs)가
+                    // 응답했을 때만 LIVE로 표기한다. 미응답 시 정직 STATIC 폴백(가짜 LIVE 방지).
+                    const liveResolved = (key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs);
+                    const jsonStatic = kpi.telemetry && String(kpi.telemetry).toLowerCase() !== 'live';
+                    const badgeStatus = liveResolved ? 'live' : (jsonStatic ? kpi.telemetry : 'static');
+                    const badgeSync = liveResolved ? '실시간 연동중' : (jsonStatic ? kpi.syncDate : 'FishStatJ 2024');
+                    if (!kpi.telemetry && !liveResolved) return null;
+                    return <TelemetryBadge status={badgeStatus as any} syncDate={badgeSync} />;
+                  })()}
                 </div>
                 <IconComp size={16} style={{ color: theme.text, flexShrink: 0 }} />
               </div>
@@ -627,12 +631,18 @@ export default function SalmonDashboard() {
     const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
     const cardDesc = cardDescParts.join(' — ') || '연어 인텔리전스 위젯';
 
+    // L-09: 이 위젯들은 정적 JSON(/data/salmon_real_data_v4.json, FAO FishStatJ 1950-2024)을
+    // import할 뿐 실시간 fetch 분기가 없다. isLiveApi가 참인 위젯이 실재하지 않으므로
+    // 기본값을 SYNCED(허위 신선도)가 아닌 STATIC으로 둔다. SYNCED는 실 API 연동 시에만.
     const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' =
-      isLive ? 'LIVE'
-      : (w.telemetry && String(w.telemetry).toLowerCase() === 'static') ? 'STATIC'
-      : isEstimate ? 'STATIC'
-      : 'SYNCED';
-    const syncDate = w.syncDate || (isLive ? new Date().toISOString().split('T')[0] : '2026-05');
+      isLive ? 'LIVE' : 'STATIC';
+    // 정적 데이터셋의 실제 빈티지를 정직 표기. JSON syncDate가 '2026-05' 같은 빌드일을 담아
+    // 2026년 신선도를 허위로 암시하므로(L-09), 비실시간 위젯은 데이터 출처 빈티지로 통일한다.
+    // KFAS 학술 위젯은 자체 연구연도(예: '2024-01')를 보존.
+    const isAcademic = String(w.source || '').includes('KFAS') && /\d{4}[-.]\d{2}/.test(String(w.syncDate || ''));
+    const syncDate = isLive
+      ? new Date().toISOString().split('T')[0]
+      : (isAcademic ? w.syncDate : 'FishStatJ 1950-2024');
 
     return (
       <WidgetCard
@@ -646,7 +656,7 @@ export default function SalmonDashboard() {
         telemetry={{ status: telemetryStatus, syncDate }}
         chartHeight={250}
         chart={renderChart(w)}
-        takeaway={{ situation, actionPlan: takeaway, source: w.source || 'FAO FishStatJ · NASF · KMI 연어 시장 보고서' }}
+        takeaway={{ situation, actionPlan: takeaway, source: w.source || 'FAO FishStatJ 1950-2024 (정적 데이터셋) · 일부 지표 자체 추정' }}
       />
     );
   }

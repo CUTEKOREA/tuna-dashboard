@@ -14,7 +14,7 @@ export default function SalmonInsightSmolt() {
       icon={ShieldCheck}
       iconColor="var(--color-success)"
       pillar="S1"
-      cardDesc="육상 사육 연장 및 심해 차폐 기술로 바다이(Sea lice) 리스크 원천 차단"
+      cardDesc="육상 사육 연장 및 심해 차폐 기술로 바다이(Sea lice) 리스크 원천 차단 · 비중·폐사율 추이는 업계 정성 동향 기반 자체 추정(시나리오, illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
       chartHeight={250}
       chart={
@@ -50,10 +50,10 @@ export default function SalmonInsightSmolt() {
 <p>전통 모델 한계: <strong>해상 가두리 양식은 바다이(Sea lice) + 수온 상승으로 폐사율 15% 돌파</strong>. 연안 양식 면허 신규 발급 전면 중단.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 전통 해상 양식은 dead model. <strong>"RAS 포스트 스몰트 + 심해 잠수식 가두리"</strong>가 미래.</p>
+<p><strong>재정의</strong>: 전통 해상 가두리 양식은 한계에 직면. <strong>"RAS 포스트 스몰트 + 심해 잠수식 가두리"</strong>로의 전환이 핵심 흐름.</p>
 <p><strong>3단계</strong>: ① 육상 RAS 포스트 스몰트 설비 capex 가속 — 초기 생존율 극대화 ② 바다이 차단 심해 잠수식 가두리 (SalMar Ocean Farm 1) 투자 ③ Mowi·Salmar·Grieg 같은 leader와 minority equity partnership — 차세대 양식 IP 라이센싱.</p>
 </div>`,
-        source: "Mowi ASA Annual Report 2024 · Grieg Seafood Q4-2024 IR [📡 LIVE API 연동: Oslo Børs]"
+        source: "Mowi ASA Annual Report 2024 · Grieg Seafood Q4-2024 IR (정성 동향) · 비중/폐사율 수치는 자체 추정(illustrative)"
       }}
     />
   );
