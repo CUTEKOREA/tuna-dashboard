@@ -41,7 +41,7 @@ const ChartWrapper = ({ data, children, ...rest }: { data: any, children: React.
       <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
         <AlertTriangle size={24} style={{marginBottom:'8px',opacity:0.5}}/>
         <span style={{fontSize:'0.85rem',fontWeight:600}}>데이터 집계 중</span>
-        <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>실시간 파이프라인 동기화 대기</span>
+        <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>데이터 로딩 중</span>
       </div>
     );
   }
@@ -257,8 +257,8 @@ export default function CarrotDashboard() {
             </div>
           </div>
           <div className="ds-card" style={{fontSize:'0.88rem', padding:'8px 16px', borderRadius:'500px', display:'flex', alignItems:'center', gap:'8px' }}>
-            <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'#ea580c', boxShadow:'0 0 8px #ea580c', animation:'pulse 2s infinite' }} />
-            <span>9 APIs <span style={{ color:'#ea580c' }}>Connected</span></span>
+            <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'#64748b' }} />
+            <span>9개 데이터 소스 <span style={{ color:'#ea580c' }}>연동</span></span>
             <span style={{ margin:'0 8px', color:'#4d4d4d' }}>|</span>
             <span style={{ color:'var(--text-primary)' }}>FAOSTAT · KAMIS · KCS</span>
           </div>
@@ -271,8 +271,8 @@ export default function CarrotDashboard() {
           {/* Live Arbitrage */}
           <div style={{ borderRight:'1px dashed rgba(255,255,255,0.1)', paddingRight:'1.5rem' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
-              <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><RefreshCcw size={16} color="#ea580c" /> 실시간 차익거래 봇 (BOT & KAMIS API)</h3>
-              <span style={{ fontSize:'0.66rem', background:'#ea580c', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>{liveArbitrage?.timestamp ? 'LIVE' : 'SYNCING'}</span>
+              <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><RefreshCcw size={16} color="#ea580c" /> 차익거래 착지원가 비교 (KAMIS 기준값)</h3>
+              <span style={{ fontSize:'0.66rem', background:'#64748b', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>STATIC</span>
             </div>
             {liveArbitrage ? (
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
@@ -296,7 +296,7 @@ export default function CarrotDashboard() {
           {/* TRQ Tracking */}
           <div>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
-              <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><ShieldCheck size={16} color="#fbbf24" /> KCS 통관 TRQ 모니터링 (관세청 API)</h3>
+              <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><ShieldCheck size={16} color="#fbbf24" /> KCS 통관 TRQ 현황 (정적 기준값 — 실시간 미연동)</h3>
               {liveTrq?.alerts?.length > 0 && (
                 <span style={{ fontSize:'0.65rem', background:'rgba(239,68,68,0.2)', color:'#f59e0b', padding:'2px 6px', borderRadius:'4px', display:'flex', alignItems:'center', gap:'3px' }}>
                   <AlertTriangle size={10} /> {liveTrq.alerts[0].level}
@@ -644,7 +644,7 @@ export default function CarrotDashboard() {
               </ComposedChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "NOAA 엘니뇨 지표와 베트남 MARD 연동 분석 결과, 극단적 기후 재난 발현 시 동북아시아 농산물 공급망이 마비되며 스팟 가격이 폭등하는 기후 꼬리 리스크(Tail Risk)가 일상화됨.", actionPlan: "지정학적/기후적 타격권에서 완전히 벗어난 베트남 달랏을 '기후 프리미엄 콜옵션' 산지로 포지셔닝하여, 공급망 붕괴 시점에도 100% 이행 가능한 거시적 조달망을 무기로 프리미엄 단가를 확보할 것.", source: "* 📡 [LIVE API 연동: NOAA Climate API x MARD] 글로벌 기후 지수 동향" }} />
+          takeaway={{ situation: "NOAA 엘니뇨 지표와 베트남 MARD 연동 분석 결과, 극단적 기후 재난 발현 시 동북아시아 농산물 공급망이 마비되며 스팟 가격이 폭등하는 기후 꼬리 리스크(Tail Risk)가 일상화됨.", actionPlan: "지정학적/기후적 타격권에서 완전히 벗어난 베트남 달랏을 '기후 프리미엄 콜옵션' 산지로 포지셔닝하여, 공급망 붕괴 시점에도 100% 이행 가능한 거시적 조달망을 무기로 프리미엄 단가를 확보할 것.", source: "NOAA 기후 지수 (자체추정) + 베트남 MARD 농업 동향 + KREI 기후 리스크 분석" }} />
 
         {/* New W20 Widget: Phyto-Risk & PLS Compliance */}
         <WidgetCard title='식물방역 및 잔류농약 리스크 지수 실증 (Phyto-Risk)' icon={ShieldCheck} iconColor="#ea580c" pillar="S1"
@@ -666,7 +666,7 @@ export default function CarrotDashboard() {
               </ComposedChart>
             </ChartWrapper>
           }
-          takeaway={{ situation: "최근 식약처(MFDS) 수입식품 검사에서 한국 수입량의 절대다수를 차지하던 중국산 당근에서 잔류농약(클로티아니딘 14.4배 초과 등)이 대거 적발되어 전량 폐기 사태가 발생, B2B 신뢰가 붕괴됨.", actionPlan: "중국산의 치명적 식품 안전성(Food Safety) 붕괴 사태를 반면교사 삼아, 파종부터 수확까지 엄격히 통제된 달랏의 무결점 인증(VietGAP) 당근을 '대체 불가한 안전 프랜차이즈 원료'로 프리미엄화할 것.", source: "* 📡 [LIVE API 연동: MFDS(식약처) Open API] 수입식품 안전성 검사결과 및 회수·판매중지 실데이터" }} />
+          takeaway={{ situation: "최근 식약처(MFDS) 수입식품 검사에서 한국 수입량의 절대다수를 차지하던 중국산 당근에서 잔류농약(클로티아니딘 14.4배 초과 등)이 대거 적발되어 전량 폐기 사태가 발생, B2B 신뢰가 붕괴됨.", actionPlan: "중국산의 치명적 식품 안전성(Food Safety) 붕괴 사태를 반면교사 삼아, 파종부터 수확까지 엄격히 통제된 달랏의 무결점 인증(VietGAP) 당근을 '대체 불가한 안전 프랜차이즈 원료'로 프리미엄화할 것.", source: "식약처(MFDS) 수입식품 안전성 검사결과 + MFDS 회수·판매중지 이력 + PQIS 통관 불합격 통계" }} />
 
       </div>
 
@@ -1049,9 +1049,9 @@ export default function CarrotDashboard() {
             source: "aT KAMIS 도매가격 지수 변동성 + KCS 수입 단가 실측 + B2B 5사 vendor churn 분석",
           }} />
 
-        <WidgetCard title='공급 개런티 기반 B2B 시장 점유율 탈환 (Predictive)' icon={Banknote} iconColor="#ea580c" pillar="S4"
-          cardDesc='단위: %'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+        <WidgetCard title='공급 개런티 기반 B2B 시장 점유율 탈환 (예측 시나리오)' icon={Banknote} iconColor="#ea580c" pillar="S4"
+          cardDesc='단위: % (Bass 확산 모형 기반 자체추정 시나리오)'
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w8Live}>
               <AreaChart data={w8Live}>
@@ -1084,7 +1084,7 @@ export default function CarrotDashboard() {
                 <p><strong>3단계</strong>: ① 향후 5년 capex roadmap: 베트남 달랏 IQF capa를 매년 +25%씩 확장 (5년 누계 +200%) → Bass Model 기본 시나리오 capa 충당 ② B2B HMR·급식·외식 핵심 5사 + 대형마트 PB 5사에 동시 우선 입점 — Bass curve early adopter 단계에서 lock-in 완료 ③ "K-Carrot IQF" 자체 브랜드 + KFI(한국식품안전관리인증) + Halal·Kosher 인증 패키지 → 일본·중동·동남아 K-veggie 수출 확장, valuation +2.0x.</p>
               </div>
             ),
-            source: "KREI 농업전망2026 + Bass Diffusion Model 마케팅 R&D + 한국 B2B HMR 시장 분석",
+            source: "KREI 농업전망2026 + Bass 확산 모형(자체추정 시나리오) + 한국 B2B HMR 시장 분석",
           }} />
 
         {/* New W12 Widget: Nutritional Spec Radar */}
@@ -1123,8 +1123,8 @@ export default function CarrotDashboard() {
 
         {/* New W18 Widget: 인수합병(M&A) Acquisition Target Radar */}
         <WidgetCard title='인수합병(M&A) 인수 타겟 스코어카드 (3자 비교 CDD)' icon={Target} iconColor="#ea580c" pillar="S4"
-          cardDesc='단위: 100점 만점'
-          telemetry={{ status: 'SYNCED', syncDate: 'KAMIS & KCS & NOAA' }} chartHeight={375}
+          cardDesc='단위: 100점 만점 (업계추정 CDD 스코어카드)'
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w18Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w18Live}>
@@ -1152,7 +1152,7 @@ export default function CarrotDashboard() {
                 <p><strong>3단계</strong>: ① 1순위 달랏 농장 A 매수 또는 majority JV (capex $8~15M 추정) — 산지 capa lock-in + CDD score +18점 자동 ② 평택·인천에 IQF 전처리 라인 신설 (capex $4~6M) → 가공 vendor 카테고리 진입, CDD score +10점 ③ CDD 90점+ 달성 후 24~36개월 내 strategic exit 추진 — 한국 식품 대기업(CJ제일제당·풀무원·하림) 또는 글로벌 PE에 매각, EV/EBITDA 4x → 12x 리레이팅 +200% premium.</p>
               </div>
             ),
-            source: "DART 자체 딜 소싱 M&A 스코어카드 + 회계법인 (PwC·Deloitte·KPMG) CDD 프레임워크",
+            source: "업계추정 M&A 스코어카드 (PwC·Deloitte·KPMG CDD 프레임워크 기반) + DART 공시 데이터",
           }} />
 
         {/* New W23 Widget: Vendor Lock-in LTV */}
@@ -1327,7 +1327,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"마진 스마일 커브(Smile Curve)"란 가치사슬 양 끝(R&D·브랜드)이 높고 중간(생산·유통)이 낮은 U자 마진 분포 패턴 — Acer 창업자 스탠 시(Stan Shih)가 1992 제시한 IT 산업 모델이 농식품에도 그대로 적용. 단순 1차 농산물 유통은 마진 3~8% 함정. 그러나 양 끝(종자 IP + 가공·바이오 업사이클링) 동시 통제 시 EBITDA 22~35% 영역으로 점프.</p>
-                <p>실측: <strong>전통 수입 유통 vendor: 마진 3~8% / EV/EBITDA 4~5x. 종자 IP + IQF 가공 + 업사이클링 통합 vendor: 마진 22~35% / EV/EBITDA 12~15x (PEF Buy & Build 실증). 매출 동일해도 EV 차이 +280%, 자본 시장 가치 -75% discount vs +180% premium 차이</strong>.</p>
+                <p>업계추정: <strong>전통 수입 유통 vendor: 마진 3~8% / EV/EBITDA 4~5x. 종자 IP + IQF 가공 + 업사이클링 통합 vendor: 마진 22~35% / EV/EBITDA 12~15x (PEF Buy & Build 사례 기반 추정 — 실제 multiple은 시장 상황에 따라 상이). 매출 동일해도 EV 차이 +280%, 자본 시장 가치 -75% discount vs +180% premium 차이</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -1336,7 +1336,7 @@ export default function CarrotDashboard() {
                 <p><strong>3단계</strong>: ① 전방 통제: 한국 고당도 종자 IP 5년 독점 라이센스 + 베트남 contract farming → 종자 IP vendor 자격 ② 후방 통제: IQF·MA·Expeller 가공 + 베타카로틴 업사이클링 통합 라인 — 가공 vendor + biotech vendor 동시 자격 ③ 24~36개월 내 strategic exit 추진 — CJ제일제당·풀무원·하림·SPC 또는 글로벌 PE(KKR·블랙스톤 Asia) 타겟 → "K-foodtech roll-up champion" valuation EV $250~400M.</p>
               </div>
             ),
-            source: "대형 PEF 농식품 Buy & Build 가치평가 실증 + Stan Shih Smile Curve 1992 + 한국 푸드테크 IPO 사례",
+            source: "업계추정 PEF 농식품 Buy & Build 가치평가 (illustrative) + Stan Shih Smile Curve 1992 + 한국 푸드테크 IPO 사례",
           }} />
 
         {/* New W24 Widget: ESG Upcycling */}
@@ -1399,7 +1399,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"QoE(Quality of Earnings, 이익의 질)"란 vendor EBITDA가 얼마나 sustainable·predictable·diversified한지 측정하는 PE·IB 실사 핵심 지표. 동일 EBITDA여도 QoE가 높으면 multiple +50~120% premium. "Valuation Waterfall(밸류에이션 워터폴)"은 base multiple(5x)에 각 가치 동인을 단계별로 더해 최종 multiple(15x)에 도달하는 시각화 모델.</p>
-                <p>실측: <strong>단순 농산물 수입 vendor EV/EBITDA 5x base → +기후 hedging 1x → +VKFTA 영세율 1.5x → +PLS·잔류농약 zero lock-in 1.5x → +IQF 가공 2x → +Smile Curve 종자 IP 2x → +업사이클링·메디푸드 2x = <strong>최종 15x</strong> (총 +200% premium). 동일 EBITDA $10M 기준 EV $50M → $150M</strong>.</p>
+                <p>업계추정: <strong>단순 농산물 수입 vendor EV/EBITDA 5x base → +기후 헤징 1x → +VKFTA 영세율 1.5x → +PLS·잔류농약 zero lock-in 1.5x → +IQF 가공 2x → +Smile Curve 종자 IP 2x → +업사이클링·메디푸드 2x = 최종 15x (총 +200% premium). 동일 EBITDA $10M 기준 EV $50M → $150M (illustrative, 실제 multiple은 시장 상황에 따라 상이)</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -1408,7 +1408,7 @@ export default function CarrotDashboard() {
                 <p><strong>3단계</strong>: ① 9대 API망(KAMIS·KCS·FAOSTAT·NOAA·KREI·OEC·KOTRA·EUDR·PitchBook) 통합 dashboard를 IR 자료의 living KPI section으로 전시 ② 분기마다 EBITDA multiple waterfall 자료를 LP·은행·PE에 disclosure → 매분기 multiple 가시화 ③ 18~30개월 내 strategic exit 또는 IPO 추진 — CJ·하림·블랙스톤·KKR Asia 등 buyer pool 동시 sound, EV $150~250M target.</p>
               </div>
             ),
-            source: "PitchBook 글로벌 애그테크 M&A 트랜잭션 + DART 한국 PE 실증 multiple + PE Buy & Build 가치평가",
+            source: "PitchBook 글로벌 애그테크 M&A 트랜잭션 + DART 공시 데이터 + 업계추정 PE Buy & Build 가치평가 (illustrative)",
           }} />
 
         {/* ═══ NEW SECTION: 데이터 인텔리전스 고도화 (Data Intelligence Upgrade) ═══ */}

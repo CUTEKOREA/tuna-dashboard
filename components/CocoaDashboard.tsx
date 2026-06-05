@@ -434,7 +434,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="글로벌 가공 허브 포트폴리오 (점유율 %)" icon={Factory} iconColor="#b45309" pillar="S2"
           cardDesc="네덜란드·코트디부아르·인니·독일·말련 등 국가별 가공허브 점유율"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <PieChart>
               <Pie data={cocoaData.w3_processing_hubs} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={5} dataKey="value">
@@ -448,7 +448,7 @@ export default function CocoaDashboard() {
             situation: (
               <div>
                 <p>"Origin Grinding(원산지 가공)"이란 카카오 원두를 생산국 또는 인접 지역에서 1차 가공(리쿼·버터·파우더)해 부가가치를 현지에 정착시키는 산업 정책. 코트디부아르·가나·인도네시아가 정부 차원에서 강력 추진 — 향후 10년 글로벌 가공 capa의 무게 중심이 유럽 → 아시아·아프리카로 이동하는 정해진 미래.</p>
-                <p>실측: <strong>2023/24 글로벌 가공 점유율: 유럽 35.8% (171만톤) → 아프리카 22.9% / 아시아 22.2%로 추격. 인도네시아 단독 가공 파생품 수출 38.6만 톤 (원두 수출국에서 가공국으로 전환). 향후 5년 유럽 점유율 → 28% 예상, 아시아 28%+ 예상</strong>. supply chain의 geographic axis가 영구 이동 중.</p>
+                <p>실측: <strong>2023/24 글로벌 가공 점유율: 유럽 35.8% (171만톤) → 아프리카 22.9% / 아시아 22.2%로 추격. 인도네시아 단독 가공 파생품 수출 38.6만 톤 (원두 수출국에서 가공국으로 전환). 향후 5년 유럽 점유율 28% 수준, 아시아 28%+ 추정 (업계 시나리오, 확정치 아님)</strong>. supply chain의 geographic 무게 중심이 점진 이동 중.</p>
               </div>
             ),
             actionPlan: (
@@ -457,7 +457,7 @@ export default function CocoaDashboard() {
                 <p><strong>3단계</strong>: ① 인도네시아(자카르타·수라바야)·말레이시아(말라카)·코트디부아르(아비장) 가공 vendor 5~10곳 매핑 → 우량 자산 2~3곳 PE 공동 투자 또는 majority acquisition ② 아시아 역내 가공 vendor roll-up 전략 — 인도네시아·말레이·베트남·인도 가공사 5~7곳 통합 후 "아시아 통합 vendor"로 자본 시장 IPO 또는 strategic exit ③ 유럽 의존 F&B 포트폴리오는 점진적 hedge — 아시아 가공품 비중을 18%까지 단계 확대, 매년 +6%p씩 rotate.</p>
               </div>
             ),
-            source: "Cocoa Barometer 2025·ICCO Bulletin 글로벌 가공허브 점유율 앵커 — 정적 스냅샷·실시간 미연동(confidence medium)",
+            source: "Cocoa Barometer 2025·ICCO Bulletin 글로벌 가공허브 점유율 앵커 — 정적 스냅샷·실시간 미연동",
           }} />
 
         <WidgetCard title="파생품 마진 스프레드 (거래량 지수, 프리미엄 %)" icon={Scale} iconColor="#d97706" pillar="S2"
@@ -489,7 +489,7 @@ export default function CocoaDashboard() {
                 <p><strong>3단계</strong>: ① 포트폴리오 grinder 대상 평가 기준 변경: <strong>"butter/powder ratio 변동에 대응한 가공 mix 조정 역량"</strong>을 vendor DD score 1순위로 ② 베이커리·음료 B2B captive 채널 보유 grinder를 우선 매수 — 파우더 수요 강한 시기에 캡티브로 매출 lock-in, 변동성 hedge ③ ICE Butter·Powder 선물 동시 운영 derivatives desk 자체 구축 — ratio 3.4 이상에서는 buttera short / powder long pair trade, 분기당 +8~12%p 알파.</p>
               </div>
             ),
-            source: "Bloomberg Commodity + ICE Cocoa Futures + ICCO Quarterly Bulletin",
+            source: "ICCO Quarterly Bulletin·ICE Cocoa Futures 공개 데이터 + 업계추정 참조 — 정적 스냅샷·실시간 미연동",
           }} />
 
         <WidgetCard title="실사 기반 가공 공장 인수합병 타겟" icon={Landmark} iconColor="#b45309" pillar="S2"
@@ -521,7 +521,7 @@ export default function CocoaDashboard() {
                 <p><strong>3단계</strong>: ① 가나·코트디부아르 가공 vendor 20곳 financial health 실시간 트래킹 → 부채비율 200%+·DSO 90일+ vendor를 LOI 리스트 ② <strong>국영 CPC 유휴 라인을 M&A + 민간 Niche Cocoa와 JV 동시</strong> 진행 — 국영 자산은 capex 투자로 가동률 35% → 85% 끌어올림, 민간 JV는 즉시 capa 활용 ③ 인수 후 한국 제과 3사 (롯데·오리온·해태) 스펙 맞춤 origin liquor 직생산 — 매입원가 -22%p 절감 + valuation 8x→12x 리레이팅 가능.</p>
               </div>
             ),
-            source: "Silla Co. 내부 실사 DB + COCOBOD 연례 보고서 + Niche Cocoa IR + KOTRA 가나 시장조사",
+            source: "COCOBOD 연례 보고서 + Niche Cocoa IR + KOTRA 가나 시장조사 + 자체추정",
           }} />
 
         <WidgetCard title="코코아 선물 커브 구조 및 백워데이션 전환 지표 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
@@ -577,7 +577,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="가나 현지 가공 인프라 디스트레스 차익거래 (천톤, %)" icon={TrendingUp} iconColor="#78350f" pillar="S3"
           cardDesc="CPC vs Niche Cocoa 등 가나 가공 인프라 가동률 + 무가공 원물 수출비율"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w15_ghana_distressed}>
               <ChartPatternDefs />
@@ -652,7 +652,7 @@ export default function CocoaDashboard() {
                 ))}
               </Bar>
               <Line yAxisId="left" type="step" dataKey="CriticalLine" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" name="공장 가동 중단(Red Alert) 기준선" dot={false} />
-              <Line yAxisId="right" type="monotone" dataKey="CompetitorMargin" stroke="var(--color-warning)" strokeWidth={3} name="경쟁사 영업이익률(OPM) 하락(DART API)" dot={{ r: 5 }} />
+              <Line yAxisId="right" type="monotone" dataKey="CompetitorMargin" stroke="var(--color-warning)" strokeWidth={3} name="경쟁사 영업이익률(OPM) 추이" dot={{ r: 5 }} />
             </ComposedChart>
           }
           takeaway={{
@@ -720,7 +720,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="기업간(B2B) 코코아 대체유(CBE) 벤더 롤업 가치 평가" icon={Scale} iconColor="#d97706" pillar="S2"
           cardDesc="대체유 벤더의 시장대응력 vs EBITDA(세전·이자·감가상각비 차감 전 이익) vs 원가부담 — 롤업 매수 매트릭스"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
@@ -743,16 +743,16 @@ export default function CocoaDashboard() {
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: CBE 시장은 "임시 대체재"가 아닌 <strong>"카카오 cycle volatility hedging의 영구 instrument로 자리잡을 $4B 시장"</strong>. 지금 vendor roll-up하면 5년 후 시장의 절대 강자.</p>
-                <p><strong>3단계</strong>: ① 동남아(말레이·인도네시아) 팔유 정제 vendor + 서아프리카 시어버터 vendor 5~8곳 매핑 → 3~4곳 majority M&A로 글로벌 CBE roll-up (총 $80~120M deal value 추정) ② B2B 식품소재 포트폴리오에 CBE R&D 라인 신설 — 한국 제과 3사 captive supply 5년 LTA ③ valuation 전략: 단순 raw material vendor PE 5x → CBE 통합 R&D + 글로벌 supply chain vendor PE 12x로 카테고리 전환 - exit 시 EV +135% premium 가능.</p>
+                <p><strong>재정의</strong>: CBE 시장은 "임시 대체재"가 아닌 <strong>"카카오 cycle 변동성 hedging 수단으로 자리잡을 가능성이 있는 성장 시장"</strong>. 선점 효과는 있으나 절대 강자 보장은 실행 역량에 달려 있음.</p>
+                <p><strong>3단계</strong>: ① 동남아(말레이·인도네시아) 팔유 정제 vendor + 서아프리카 시어버터 vendor 5~8곳 매핑 → 3~4곳 majority M&A로 글로벌 CBE roll-up (총 $80~120M deal value, 업계추정) ② B2B 식품소재 포트폴리오에 CBE R&D 라인 신설 — 한국 제과 3사 captive supply 5년 LTA ③ valuation 전략: 단순 raw material vendor 대비 CBE 통합 R&D + 글로벌 supply chain vendor의 카테고리 전환 시 멀티플 개선 기대 — exit premium 폭은 시장 상황 및 실행 결과에 따라 상이.</p>
               </div>
             ),
-            source: "Krungsri Research 팔유 산업 전망 + 식약처 식품원료 통계 + Silla Co. 내부 CBE 모델",
+            source: "Krungsri Research 팔유 산업 전망 + 식약처 식품원료 통계 + 자체추정",
           }} />
 
         <WidgetCard title="대체 공급처 발굴 수익성 분석 (물류비·원물가·공급량)" icon={Target} iconColor="#b45309" pillar="S1"
           cardDesc="에콰도르·브라질 등 남미 산지 대안 — 다변화 펀드 매트릭스"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               {grid}
@@ -779,12 +779,12 @@ export default function CocoaDashboard() {
                 <p><strong>3단계</strong>: ① 에콰도르 과야킬·만타 항구 인접 cocoa 집하·발효·건조·수출 인프라 자산 3~5곳에 전략적 지분 투자 (총 $15~25M 예상) ② Fine or Flavor 코코아 origin 보호 + ESG·트레이서빌리티 인증 통합 패키지로 craft chocolate 글로벌 브랜드(Pacari·Valrhona·Amedei) 5년 직납 계약 ③ 자체 K-craft chocolate 브랜드 (가칭 "EcuadorOne") 출시 — 미국·일본·유럽 D2C 진출, 한국 vendor를 craft chocolate global player로 reframe.</p>
               </div>
             ),
-            source: "Silla Co. 소싱 DB·관세청·ICCO Fine or Flavor 분류 참조 — 정적 추정(실시간 미연동)",
+            source: "관세청·ICCO Fine or Flavor 분류 참조·자체추정 — 정적 스냅샷·실시간 미연동",
           }} />
 
         <WidgetCard title="슈링크플레이션 기반 B2B 단가 워터폴" icon={RefreshCcw} iconColor="#b45309" pillar="S4"
-          cardDesc="원가 변동 요소별 워터폴 — 슈링크플레이션 + CBE 전환 마진 방어"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          cardDesc="원가 변동 요소별 워터폴 — 슈링크플레이션 + CBE 전환 마진 방어 (illustrative)"
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={waterfallData} layout="vertical">
               <ChartPatternDefs />
@@ -812,7 +812,7 @@ export default function CocoaDashboard() {
                 <p><strong>3단계</strong>: ① 대중 시장 (편의점·마트·할인점) SKU는 <strong>"가성비 워터폴"</strong> 전략 — 팔유/CBE 4~5% + 카카오 22~25% + 슈링크 12% — net 마진 +14%p ② 프리미엄 시장 (백화점·premium grocery·D2C) SKU는 <strong>"코코아 100% Origin 인증 + Single Origin 표기"</strong> 라인 신설 → 단가 +85% 프리미엄 가능, 가격 저항 낮음 ③ 두 라인 분리 운영의 P&L 가시성 향상 + 글로벌 트렌드(barbell strategy)와 일치 → 자본 시장 valuation premium +1.4x.</p>
               </div>
             ),
-            source: "KAMIS 도매물가·관세청·닐슨 한국 SKU 분석 참조 — 정적 추정(실시간 미연동)",
+            source: "KAMIS 도매물가·관세청·닐슨 한국 SKU 분석 참조·자체추정 — 정적 스냅샷·실시간 미연동 (워터폴 수치 illustrative)",
           }} />
 
         <WidgetCard title="국내 제과 3사 원가율 및 마진 방어력 벤치마크 (%)" icon={Scale} iconColor="#b45309" pillar="S4"
@@ -844,7 +844,7 @@ export default function CocoaDashboard() {
                 <p><strong>3단계</strong>: ① 포트폴리오 long-short pair trade: <strong>오리온 Long (해외 hedging) + 해태 Short (내수 단일)</strong> — 18개월 동안 분기당 +6~10%p alpha 기대 ② 롯데웰푸드는 CBE R&D 가속도 모니터링 → 자체 CBE 라이센스 확보 시 valuation +1.5x premium ③ 한국 mid-cap 제과 vendor (네스레·CJ푸드·삼립) 중 1~2곳을 distressed 가격으로 매수 → 우리 글로벌 sourcing + EUDR DD + CBE 통합 패키지로 turnaround → 3년 후 strategic exit 또는 IPO.</p>
               </div>
             ),
-            source: "DART 전자공시 + 한국 제과 3사 IR + Silla Co. 내부 재무 모델링",
+            source: "DART 전자공시 + 한국 제과 3사 IR + 자체추정 — 정적 스냅샷·실시간 미연동",
           }} />
 
       </div>
@@ -933,7 +933,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="FTA 삼각 무역 및 역수출 흐름도" icon={MapPin} iconColor="#b45309" pillar="S3"
           cardDesc="FTA 활용 무관세 우회 — 한국 동북아 가공·유통 허브 진화"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <Sankey data={cocoaData.w17_fta_triangle} node={renderSankeyNode} nodePadding={30} margin={{ top: 10, right: 10, bottom: 10, left: 10 }} link={{ stroke: 'rgba(255,255,255,0.1)' }}>
               <RechartsTooltip content={<CustomTooltip />} />
@@ -990,7 +990,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="K-뷰티/바이오 소재 전환 ROI (마진율 %)" icon={TestTube} iconColor="#f59e0b" pillar="S2"
           cardDesc="채널별 EBITDA(세전·이자·감가상각비 차감 전 이익)·성장률 + 폴리페놀·항산화 측정치 — 코스메슈티컬 ROI"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w19_kbeauty_bio}>
               <ChartPatternDefs />
@@ -1015,8 +1015,8 @@ export default function CocoaDashboard() {
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 코코아 vendor의 진짜 게임은 "식품 마진 1~2%p 개선"이 아닌 <strong>"코스메슈티컬 카테고리 진입으로 PE multiple 4x → 14x 리레이팅"</strong>. 카테고리 점프가 영업 효율보다 자본 시장에서 100배 강력.</p>
-                <p><strong>3단계</strong>: ① 가나·에콰도르 카카오 부산물 (껍질·꼬투리)에서 폴리페놀·테오브로민 추출 R&D 라인 신설 — 식약처 MFDS 기능성 원료 등록 (24개월 fast track) ② 아모레퍼시픽·LG생활건강·코스맥스·한국콜마 코스메슈티컬 R&D 부문 raw 납품 5년 LTA — 단가 +30배 가치 점프 ③ 자체 K-cocoa skincare 브랜드 (가칭 "CacaoLab") 출시 → 미국·일본·유럽 D2C 진출 → 식품 vendor PE 4x → 코스메슈티컬 brand PE 14x 자본 시장 카테고리 점프, exit 시 EV +1,200% premium 가능.</p>
+                <p><strong>재정의</strong>: 코코아 vendor의 진짜 게임은 "식품 마진 1~2%p 개선"이 아닌 <strong>"코스메슈티컬 카테고리 진입으로 PE multiple이 대폭 리레이팅될 수 있는 구조"</strong>. 카테고리 전환 효과는 영업 효율 개선보다 자본 시장 반응이 더 클 수 있음.</p>
+                <p><strong>3단계</strong>: ① 가나·에콰도르 카카오 부산물 (껍질·꼬투리)에서 폴리페놀·테오브로민 추출 R&D 라인 신설 — 식약처 MFDS 기능성 원료 등록 (24개월 fast track) ② 아모레퍼시픽·LG생활건강·코스맥스·한국콜마 코스메슈티컬 R&D 부문 raw 납품 5년 LTA — 단가 상당 수준 가치 점프 기대 ③ 자체 K-cocoa skincare 브랜드 (가칭 "CacaoLab") 출시 → 미국·일본·유럽 D2C 진출 → 식품 vendor 대비 코스메슈티컬 brand의 자본 시장 valuation premium 기대 (업계추정, 실현 보장 없음).</p>
               </div>
             ),
             source: "식약처 MFDS 기능성 원료 DB + Mintel K-뷰티 시장 리서치 + B2B 코스메슈티컬 단가",

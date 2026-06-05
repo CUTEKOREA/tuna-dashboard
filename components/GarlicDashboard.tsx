@@ -100,7 +100,7 @@ const KPI_THEMES = [
 const GARLIC_KPIS: Record<string, any> = {
   k1: { title: '글로벌 생산량 (2024)', value: '28M', trend: '📈', desc: '전세계 마늘 연간 2,800만 톤' },
   k2: { title: '중국 생산 독점률', value: '70%', trend: '⚠️', desc: '패권 및 차이나 리스크 상존' },
-  k3: { title: '흑마늘 마진율 (2034E)', value: '48%', trend: '💰', desc: '고부가가치 2차 가공(Processing) 마진 방어' },
+  k3: { title: '흑마늘 마진율 (2034년 추정)', value: '48%', trend: '💰', desc: '고부가가치 2차 가공 마진 방어 (illustrative)' },
   k4: { title: '홍해 사태 보험료', value: '50x', trend: '🚢', desc: '희망봉 우회 시 물류비 폭등' },
   k5: { title: '한국 1인당 소비량', value: '6.7kg', trend: '🇰🇷', desc: 'KREI 2025년산 실측치. 2000년 9.2kg에서 지속 감소' },
   k6: { title: '기후 변동성 리스크', value: 'High', trend: '⛈️', desc: '단수(Yield) 기후 민감도 극상' },
@@ -180,9 +180,9 @@ export default function GarlicDashboard() {
   // 5-Pillar 네비게이터 메타 (마늘 시그니처 그라디언트 — yellow/amber)
   const SECTIONS = [
     { id: 'raw', num: '❶', label: '원료 수급', title: '원물 확보 및 글로벌 생산', desc: '중국 주도의 시장 패권 및 기후/병해충으로 인한 생산 변동성 및 가격 인플레이션 점검', color: '#eab308' },
-    { id: 'processing', num: '❷', label: '가공·생산', title: '가공(Processing) 및 부가가치 창출 (Processing)', desc: '건조, 추출(Allicin), 흑마늘 등 용도 전환에 따른 마진 캡쳐 및 기술 파이프라인', color: '#ca8a04' },
-    { id: 'logistics', num: '❸', label: '물류·통관', title: '물류 및 유통 (Logistics & Trading)', desc: '주요 잉여국의 수출 경로 및 수입국의 종속 리스크, 홍해 사태 등 공급망 헷징 지표', color: '#d97706' },
-    { id: 'sales', num: '❹', label: '판매·수요', title: '수요 및 시장 성장 (Sales & Demand)', desc: '1인당 소비량(한국 등) vs 글로벌 시장 규모 상관관계 및 무역 수지 변동 추이', color: '#a16207' },
+    { id: 'processing', num: '❷', label: '가공·생산', title: '가공 및 부가가치 창출', desc: '건조, 알리신 추출, 흑마늘 등 용도 전환에 따른 마진 캡쳐 및 기술 파이프라인', color: '#ca8a04' },
+    { id: 'logistics', num: '❸', label: '물류·통관', title: '물류 및 유통', desc: '주요 잉여국의 수출 경로 및 수입국의 종속 리스크, 홍해 사태 등 공급망 헷징 지표', color: '#d97706' },
+    { id: 'sales', num: '❹', label: '판매·수요', title: '수요 및 시장 성장', desc: '1인당 소비량(한국 등) vs 글로벌 시장 규모 상관관계 및 무역 수지 변동 추이', color: '#a16207' },
     { id: 'esg', num: '❺', label: 'ESG·지속가능성', title: '지속가능성 및 미래 헷징 (ESG)', desc: '기후 변화에 따른 단위 면적당 수확량(Yield) 리스크 및 폐기물 업사이클링', color: '#854d0e' }
   ];
 
@@ -212,11 +212,11 @@ export default function GarlicDashboard() {
               <h1 style={{ margin: 0, fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 마늘 (Garlic) 글로벌 인텔리전스
               </h1>
-              <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>C-Level Strategic Value Chain Insights</p>
+              <p style={{ margin: '4px 0 0 0', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>C레벨 전략 밸류체인 인텔리전스</p>
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
-            <TelemetryBadge status="live" syncDate="2026.05.17" />
+            <TelemetryBadge status="synced" syncDate="2026.05.17" />
             <div style={{ fontSize: '0.85rem', padding: '0.5rem 1.2rem', background: '#282828', borderRadius: '20px', color: 'var(--text-secondary)', fontWeight: 600 }}>
             <span style={{ color: '#eab308' }}>Global Market 2026</span> · Sourcing · Hubs · ESG
             </div>
@@ -286,7 +286,7 @@ export default function GarlicDashboard() {
       <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="글로벌 마늘 생산 추이 및 중국 패권" icon={Layers} iconColor="#eab308" pillar="S1"
-          cardDesc="국가별 생산량 (단위: 톤) — 중국 산둥성 재배면적 증가 + 기후 안정 수확량 +15% 전망"
+          cardDesc="국가별 생산량 (단위: 톤) — 중국 산둥성 재배면적 증가 + 기후 안정 수확량 +15% 전망 (업계추정)"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <AreaChart data={w1Data}>
@@ -320,7 +320,7 @@ export default function GarlicDashboard() {
                 <p><strong>3단계</strong>: ① WSC 발표 1주 이내 산둥·란저우 산지 직접 매입 계약 발동 — 가격 하락 직전 lock-in으로 +12%p 마진 확보 ② 중국 의존도 75% → 60%로 단계 축소하며 인도(우다이푸르) + 이집트(엘 와디 엘 가디드) raw 헷지 라인 신설 — 산둥 흉작 시나리오에 single-point failure 차단 ③ 국내 농가에는 <strong>"중국발 가격 충격 보상형 LTA"</strong>(3년) 제안 — 중국산 spot 가격 하락 시에도 국내 매입을 정해진 단가로 유지, 농가 신뢰 + 한국 산지 capacity 보존이라는 정치적 자산 동시 획득.</p>
               </div>
             ),
-            source: "WSC China Crop Report 2026 · FAOSTAT QCL · 산둥성 농업부 작황 통계",
+            source: "FAOSTAT QCL · 산둥성 농업부 작황 통계 · 업계추정 (World Spice Congress 작황 분석 준용)",
           }} />
 
         <WidgetCard title={w2Mode === 'macro' ? "국가별 수출 단가 추이 (USD/톤)" : "KAMIS 도매가 하향 안정화 추이 (원/kg)"}
@@ -711,7 +711,7 @@ export default function GarlicDashboard() {
       </div>
       <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        <WidgetCard title="1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 USD]" icon={MapPin} iconColor="#ef4444" pillar="S4"
+        <WidgetCard title="1인당 소비량 vs 시장 규모 [X: kg/인, Y: 백만 달러]" icon={MapPin} iconColor="#ef4444" pillar="S4"
           cardDesc="국가별 1인당 소비와 시장 규모 + 성장률 — 가치 마이그레이션 매트릭스"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
@@ -822,7 +822,7 @@ export default function GarlicDashboard() {
             situation: (
               <div>
                 <p>"EV/EBITDA Multiple(엔터프라이즈 밸류 / 상각전 영업이익 배수)"이란 PE·IB가 vendor 가치를 평가하는 핵심 지표. 동일 EBITDA여도 산업·tech 내재화 정도에 따라 multiple이 3~5배 차이 — 같은 매출의 회사가 valuation으로는 5배 차이 나는 게 capital market의 reality.</p>
-                <p>실측: <strong>단순 농산물 도매 PE 4~5x · 가공 기술 내재화 PE 8x · AgTech(수확량 예측 AI·smart farm·콜드체인 통합) 내재화 PE 15x+ (J.P. Morgan PEF 리서치). 동일 EBITDA $10M 기준 EV $40M ↔ $150M (3.75배 차이) — 카테고리 전환만으로 자본 시장 가치 +110M</strong>.</p>
+                <p>실측: <strong>단순 농산물 도매 PE 4~5x · 가공 기술 내재화 PE 8x · 농업기술(수확량 예측 AI·스마트팜·콜드체인 통합) 내재화 PE 15x+ (업계추정). 동일 EBITDA $10M 기준 EV $40M ↔ $150M (3.75배 차이) — 카테고리 전환만으로 자본 시장 가치 +110M</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -831,7 +831,7 @@ export default function GarlicDashboard() {
                 <p><strong>3단계</strong>: ① <strong>흑마늘 발효 + 기능성 추출물(알리신·S-allyl cysteine)</strong> R&D 라인 신설 — 종근당건강·아모레퍼시픽 헬스케어 supply 계약 → 가공 vendor PE 8x 자격 획득 ② 수확량 예측 AI 모델(KREI·기상청·산지 IoT 센서 통합)을 자체 SaaS로 외부 vendor에 라이센싱 — AgTech vendor PE 12x+ 자격 획득 ③ ESG·디지털·기능성 3축을 IR deck에 통합 → 24~36개월 내 PE/IB exit 추진, EBITDA $10M 기준 EV $120M+ 가능성 (현 도매업 valuation 대비 +$80M).</p>
               </div>
             ),
-            source: "J.P. Morgan PEF 리서치 (식음료 vendor multiple 분석) + KREI AgTech 가치평가 모델",
+            source: "업계추정 (식음료 PEF multiple 분석 준용) + KREI 농업기술 가치평가 연구",
           }} />
       </div>
 

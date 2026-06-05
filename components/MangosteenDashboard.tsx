@@ -436,7 +436,7 @@ export default function MangosteenDashboard() {
                 <p><strong>3단계</strong>: ① 냉동 퓨레(B2B 식자재·아이스크림·스무디 체인) 포트폴리오 비중을 현재 18% → <strong>40%+</strong>로 확대 — 변동성 절감으로 IR·은행 신용평가 등급 상승 가능 ② TRQ 만료 3개월 전 생과 invoice를 <strong>퓨레 OEM 위탁 가공 contract</strong>으로 자동 전환하는 hedging playbook 운영 ③ 냉동 퓨레 5~10년 LTA(연장형 장기계약)을 카페·아이스크림 체인과 체결 — 변동성 0의 lock-in 매출 base 확보.</p>
               </div>
             ),
-            source: '관세청 할당관세 캘린더 + 내부 영업 채널별 마진 분석 (2024~2026)',
+            source: '관세청 할당관세 캘린더 + 내부 영업 채널별 마진 자체추정 (2024~2026)',
           }}
         />
 
@@ -602,7 +602,7 @@ export default function MangosteenDashboard() {
                 <p><strong>3단계</strong>: ① 향후 12개월 내 항공 비중 80% → 30%로 단계 축소, 나머지 70%는 <strong>해상 + MAP</strong>으로 전환 — 연간 운임 $1.2M 절감 추정 ② 항공은 최상급 1% 프리미엄 라인(리조트·고급 호텔용)으로만 한정 — 단가 $12/kg 받는 곳에만 $5.5 비용 정당화 ③ 해상 운송 도착일을 KAMIS 사과·배 가격 폭등기와 sync — 가격 spike 윈도우에 정확히 도착시켜 도매가 +15% 프리미엄 동시 캡처.</p>
               </div>
             ),
-            source: '내부 선사·항공 운임 단가 (2026-Q1) · MAP 수율 R&D 데이터',
+            source: '업계 선사·항공 운임 단가 자체추정 (2026-Q1) · MAP 수율 내부 R&D 데이터',
           }}
         />
 
@@ -714,7 +714,7 @@ export default function MangosteenDashboard() {
             situation: (
               <div>
                 <p>"교차 가격 탄력성(Cross Price Elasticity)"이란 A 상품 가격이 1% 오를 때 B 상품 수요가 몇 % 움직이는지 측정하는 지표. 한국 소비자는 "1개 4,000원"이라는 absolute price threshold를 넘은 사과·배를 만나면 즉시 망고스틴·아보카도·체리 같은 수입 과일로 substitute — 이게 우리에게 비정상적 수요 spike의 본질.</p>
-                <p>실측: <strong>2023~2024 사과 가격 폭등기(평년 +60%) → 동기간 망고스틴 수입량 +180% 폭증. 사과 단가가 임계선 9,500원/kg 돌파한 주간에 망고스틴 도매가는 정확히 +24% 동반 상승</strong>. 우리는 망고스틴이 아니라 "한국 사과 risk premium"을 파는 사업.</p>
+                <p>실측: <strong>2023~2024 사과 가격 폭등기(평년 +60%) → 동기간 망고스틴 수입량 +180% 폭증. 사과 단가가 임계선 9,500원/kg 돌파한 주간에 망고스틴 도매가는 약 +24% 동반 상승(업계 추정)</strong>. 우리는 망고스틴이 아니라 "한국 사과 risk premium"을 파는 사업.</p>
               </div>
             ),
             actionPlan: (
@@ -780,7 +780,7 @@ export default function MangosteenDashboard() {
             situation: (
               <div>
                 <p>"슈퍼 프리미엄 등급(Super Premium Grade)"이란 외관·당도·과피 광택을 5단계 selection으로 거른 상위 1% 물량. Hermes·Louis Vuitton이 동일 가죽 raw에서 0.5%만 추출해 가격 100배를 받는 luxury 구조 — 식품에서도 동일 원리 적용 가능한 영역이 망고스틴.</p>
-                <p>실측: <strong>일반 재수출 단가 $5.8/kg vs 슈퍼 프리미엄 1% 등급 $12.4/kg (2.1배). 몽골·괌·블라디 리조트 호텔·면세점이 가격 저항 없이 흡수 — 부산 자갈치 도매가 대비 마진 +340%</strong>. 같은 농장의 같은 나무에서 나온 망고스틴이 selection만으로 luxury 가격 책정 가능.</p>
+                <p>실측: <strong>일반 재수출 단가 $5.8/kg vs 슈퍼 프리미엄 1% 등급 $12.4/kg (2.1배). 몽골·괌·블라디 리조트 호텔·면세점이 가격 저항 없이 흡수</strong>. 같은 농장의 같은 나무에서 나온 망고스틴이 selection만으로 luxury 가격 책정 가능.</p>
               </div>
             ),
             actionPlan: (
@@ -789,7 +789,7 @@ export default function MangosteenDashboard() {
                 <p><strong>3단계</strong>: ① 자체 브랜드(가칭 "QueenMG", "TropikLux") 등록 + 패키지 디자인 luxury 톤(검정·골드, 한자 캘리그래피) — 산지 OEM이 절대 모방 못하는 design moat 구축 ② 괌 Hyatt·Hilton·시내 면세점 buyer 직접 상담 + 사이판·팔라우 리조트 1·2위 체인 직납 — 도매 중간상 1단계 cut으로 +24%p 마진 추가 확보 ③ 몽골 울란바토르 신흥 부유층(러시아 매도자 카르텔, 신생 banking 가문)에 <strong>"한국 직배송 시즌 멤버십"</strong>(연 50kg, 회원료 $4,500) recurring revenue 모델 — luxury 식품의 subscription화.</p>
               </div>
             ),
-            source: '관세청 HS 0804 수출 통계 + 몽골·괌 리조트 호텔 buyer 인터뷰',
+            source: '관세청 HS 0804 수출 통계 + 프리미엄 시장 단가 업계 추정',
           }} />
 
         <WidgetCard title="중국 라이브 커머스 D2C 타격 리스크" icon={AlertTriangle} iconColor="#ef4444" pillar="S4"
@@ -855,7 +855,7 @@ export default function MangosteenDashboard() {
             situation: (
               <div>
                 <p>"순환경제(Circular Economy)"란 폐기물을 다시 raw material로 활용해 zero waste를 달성하는 산업 모델. 망고스틴 과피는 전체 중량의 60~70%로 가공 후 폐기물 비중 1위 — 그런데 이 껍질에는 폴리페놀의 일종인 <strong>"잔토닌(Xanthone)"</strong>이 g당 18~24mg 농축되어 있어 항산화 화장품·펫푸드·기능성 음료 raw로 kg당 $48~$120 단가 형성.</p>
-                <p>실측: <strong>현행 폐기 비용 -$0.24/kg → 펫푸드 추출(B2B) 변환 시 +$1.85/kg → 잔토닌 추출(화장품·기능식 raw) 변환 시 +$4.20/kg. 폐기 → 펫푸드 8.7배 → 잔토닌 18배 가치 점프</strong>. 같은 톤(ton)이 어디로 가느냐에 따라 차이 천 배 — "쓰레기"라는 라벨 자체가 가장 비싼 함정.</p>
+                <p>시나리오 추정(illustrative): <strong>현행 폐기 비용 -$0.24/kg → 펫푸드 추출(B2B) 전환 시 +$1.85/kg → 잔토닌 추출(화장품·기능식 raw) 전환 시 +$4.20/kg. 폐기 → 펫푸드 8.7배 → 잔토닌 18배 가치 점프(학술 문헌 기반 자체추정)</strong>. 같은 톤(ton)이 어디로 가느냐에 따라 차이 천 배 — "쓰레기"라는 라벨 자체가 가장 비싼 함정.</p>
               </div>
             ),
             actionPlan: (
@@ -864,7 +864,7 @@ export default function MangosteenDashboard() {
                 <p><strong>3단계</strong>: ① 단기(6개월): 펫푸드 사업부에 껍질 100% 이관 — 폐기 cost zero + 펫푸드 magin +18%p ② 중기(12~18개월): 잔토닌 추출 R&D 라인 신설(국내 대학교 천연물 연구실과 산학 컨소시엄) — 화장품(아모레퍼시픽·LG생건) raw 납품 진입 ③ 장기(24개월+): 자체 기능성 식품 브랜드 <strong>"XanthGuard"</strong> 출시 — 면역·항산화 컨셉 정기구독 모델, 망고스틴 본업 매출 +32% 확장 + ESG 점수 동시 상승.</p>
               </div>
             ),
-            source: '내부 R&D + 폴리페놀·잔토닌 추출 학술 연구 + 펫푸드·화장품 raw 단가 비교',
+            source: '잔토닌 추출 학술 문헌 기반 자체추정 + 펫푸드·화장품 raw 단가 업계 추정',
           }} />
       </div>
       </>)}

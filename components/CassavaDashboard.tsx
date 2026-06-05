@@ -78,7 +78,7 @@ const KPI_THEMES = [
 
 const CASSAVA_KPIS: Record<string, any> = {
   k1: { title: '글로벌 가공 시장 (2026)', value: '$107.3B', trend: '📈', desc: '34년 $1,657억 구조적 메가트렌드 진입' },
-  k2: { title: '한중 메콩 2국 의존도', value: '99.9%', trend: '⚠️', desc: '포트폴리오 다변화(Diversification) 필수' },
+  k2: { title: '한중 메콩 2국 의존도', value: '99.9%', trend: '⚠️', desc: '공급선 다변화 필수 — 단일 산지 집중 리스크' },
   k3: { title: '바이오플라스틱 프리미엄', value: '25x', trend: '🚀', desc: '칩($250) vs 완제품($6,400)' },
   k4: { title: '제약용 붕해제 영업이익률', value: '90%+', trend: '💊', desc: '파마슈티컬 B2B 밸류체인 내 구조적 초과 마진' },
   k5: { title: '가나 밀 수입 대체 시장', value: '$400M', trend: '📉', desc: 'HQCF 혼합 의무화 수혜 기대' },
@@ -121,7 +121,7 @@ export default function CassavaDashboard() {
   if (widgets.length === 0) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
       <RefreshCcw size={32} style={{ color:CASSAVA_THEME.tertiary, animation:'spin 1s linear infinite' }} />
-      <p style={{ color:'#94a3b8' }}>Loading High-Fidelity Cassava Intelligence...</p>
+      <p style={{ color:'#94a3b8' }}>카사바 인텔리전스 데이터를 불러오는 중...</p>
     </div>
   );
 
@@ -287,7 +287,7 @@ export default function CassavaDashboard() {
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
             <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: '1px solid rgba(255,255,255,0.05)', borderRadius:'8px', color:'#94a3b8' }}>
-              <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> 2026-05-07 (Live API Connected)
+              <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> 2026-05-07 (정적 데이터)
             </div>
           </div>
         </div>
@@ -348,7 +348,7 @@ export default function CassavaDashboard() {
               <div>
                 <h3 style={{ color:CASSAVA_THEME.tertiary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><AlertTriangle size={15}/> 가나(Ghana) 중심의 식량안보 & 헷징 전략</h3>
                 <p style={{ color:'#cbd5e1', fontSize:'0.82rem', lineHeight:1.6, margin:0 }}>
-                  한국의 수입 99.9%가 태국/베트남에 편중되어 있습니다. 이를 탈피하기 위해 가나를 서아프리카 HQCF(고품질 카사바 가루) 전초기지로 육성하여, $400M 규모의 현지 밀가루 수입 대체를 주도하고 글로벌 글로벌 공급망 쇼크(Supply Chain Shock)라는 꼬리 리스크(Tail Risk)를 원천 차단하는 <strong>수직 계열화 롤업 모델</strong>이 최우선 과제입니다.
+                  한국의 수입 99.9%가 태국/베트남에 편중되어 있습니다. 이를 탈피하기 위해 가나를 서아프리카 HQCF(고품질 카사바 가루) 전초기지로 육성하여, $400M 규모의 현지 밀가루 수입 대체를 주도하고 글로벌 공급망 쇼크라는 꼬리 리스크를 분산하는 <strong>수직 계열화 롤업 모델</strong>이 최우선 과제입니다.
                 </p>
               </div>
             </div>
@@ -395,7 +395,7 @@ export default function CassavaDashboard() {
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[idx % ACCENT_COLORS.length] || sec.color;
               const isLastOdd = (sec.widgets.length % 2 !== 0) && (idx === sec.widgets.length - 1);
-              const liveStatus = w.isLive === true ? 'LIVE' : 'SYNCED';
+              const liveStatus = w.isLive === true ? 'LIVE' : 'STATIC';
               return (
                 <div key={w.id} style={{ gridColumn: isLastOdd ? '1 / -1' : 'auto' }}>
                   <WidgetCard
