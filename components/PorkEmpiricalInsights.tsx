@@ -58,7 +58,7 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
       iconColor={accent}
       pillar="S3"
       cardDesc="신선 순살(Fresh Boneless) vs 가공 소시지(Sausages) 한국 수입 파트너 점유율 비교"
-      telemetry={{ status: 'SYNCED', syncDate: 'KCS TM 22Y' }}
+      telemetry={{ status: 'SYNCED', syncDate: '관세청 TM 2022' }}
       chartHeight={300}
       takeaway={{
         situation: "신선육은 EU(스페인/네덜란드) 중심의 안정적인 공급망 분산이 이루어졌으나, 소시지 등 가공품은 95%가 미국 단일 국가에 의존하는 기형적 구조입니다.",
@@ -116,7 +116,7 @@ export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
       iconColor={accent}
       pillar="S1"
       cardDesc="글로벌 돈육 시장의 절대 강자(중국 51%) 사육 두수 증감과 아시아 지역 ASF 발병 추이 결합"
-      telemetry={{ status: 'LIVE', syncDate: 'USDA PSD & WOAH WAHIS -1w' }}
+      telemetry={{ status: 'STATIC', syncDate: 'USDA PSD/WOAH 업계추정 2024' }}
       chartHeight={300}
       takeaway={{
         situation: "중국 내 사육 두수(Swine Inventory)가 2019년 ASF 사태로 30% 급감했을 당시, 글로벌 돼지고기 단가는 50% 이상 수직 상승하는 커플링 구조를 보였습니다.",
@@ -159,7 +159,7 @@ const hogCornData = [
 export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
   return (
     <WidgetCard
-      title="Hog-Corn Ratio (돈가-옥수수 마진 지수)"
+      title="돈가-옥수수 마진 지수 (Hog-Corn Ratio)"
       icon={Activity}
       iconColor={accent}
       pillar="S2"
@@ -168,7 +168,7 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
       chartHeight={300}
       takeaway={{
         situation: "최근 옥수수 선물 가격 급락(CBOT 185$/t)으로 돈가-옥수수 비율(Hog-Corn Ratio)이 12.5에서 19.8로 극적인 호전을 보이고 있습니다. 이는 농가의 양돈 사육 유인을 강력히 촉발합니다.",
-        actionPlan: "마진 개선으로 인해 글로벌 농가가 모돈(어미돼지) 두수를 늘리는 증식 사이클로 전환했습니다. 향후 6~9개월 뒤 본격적인 공급 확대(시장 가격 하락)가 예상되므로, 장기 선도 계약보다는 6개월 후 Spot(스팟) 비중을 확대하는 전략이 절대적으로 유리합니다.",
+        actionPlan: "마진 개선으로 인해 글로벌 농가가 모돈(어미돼지) 두수를 늘리는 증식 사이클로 전환했습니다. 향후 6~9개월 뒤 공급 확대(시장 가격 하락)가 예상되므로, 장기 선도 계약보다는 6개월 후 스팟(Spot) 비중을 확대하는 전략이 유효할 수 있습니다.",
         source: "CBOT Corn Futures, CME Lean Hog"
       }}
       chart={

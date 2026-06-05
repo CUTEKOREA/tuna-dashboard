@@ -170,7 +170,7 @@ export function W1_ProductionTrend({ accent }: any) {
     sub="세계 소고기(쇠고기) 생산량(천 톤) 및 글로벌 산지 가격 지수 | FAOSTAT 작물가축통계(QCL) 2015-2024"
     telemetry={isLive ? 'FAOSTAT REST (1h 캐시)' : 'FAOSTAT QCL 2015-2024'}
     sit={`${latest.year}년 글로벌 생산량 ${(latest.production / 10).toFixed(0)}만톤 — 10년간 ${Number(growth) > 0 ? '+' : ''}${growth}% 성장. 가격 지수는 100→${latest.price}로 +${latest.price - 100}% 변동, 공급 대비 신흥국 수요가 우세.`}
-    strat="중국·동남아 수요 급증으로 인한 구조적 가격 상승 사이클. 브라질·호주 산지 직매입선 확보로 중간 마진 30% 절감 가능."
+    strat="중국·동남아 수요 급증으로 인한 구조적 가격 상승 사이클. 브라질·호주 산지 직매입선 확보 시 중간 유통 마진 대폭 절감 가능(업계 추정)."
     source={source}>
     <ComposedChart data={productionTrend}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
@@ -216,7 +216,7 @@ export function W3_SlaughterUtil({ accent }: any) {
     sub="미국·호주 주요 도축장 가동률(%) + 평균 도체중(kg) 추이 | 미국 농업통계국(USDA NASS) + 호주 축산공사(MLA)"
     telemetry={isLive ? 'NASS QuickStats (1d 캐시)' : 'USDA NASS + MLA 정적'}
     sit={`호주 가동률이 ${first.month} ${first.auUtil}% → ${latest.month} ${latest.auUtil}% ${auDelta > 0 ? '급등' : '감소'} — 미·호 사이클 ${auDelta > 5 ? '역전' : '안정'}. 미국 최신 ${latest.usUtil}% / 호주 ${latest.auUtil}%, 도체중 미 ${latest.usCarcassKg}kg / 호 ${latest.auCarcassKg}kg.`}
-    strat="2025년 호주 공급 사이클 정점 진입. 24-Q1~Q3 호주산 장기 선도 계약 체결로 단가 4-6% 절감 가능."
+    strat="2025년 호주 공급 사이클 정점 진입. 호주산 장기 선도 계약 조기 체결로 단가 절감 기회(업계 추정 4-6%) 확보 검토."
     source={source}>
     <ComposedChart data={data}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
@@ -262,7 +262,7 @@ export function W5_TradeFlow({ accent }: any) {
     sub="국가간 소고기 무역 흐름 상위 8개 경로 — 무역액(백만 달러) 및 물량(천 톤) | 유엔 무역통계(UN Comtrade) HS 0201+0202"
     telemetry={isLive ? 'UN Comtrade (1w 캐시)' : 'UN Comtrade 정적'}
     sit={`${top1.route} 단일 경로 $${top1Bn}B(${top1.volume.toLocaleString()}천톤) — 글로벌 최대. Top 3 합산 전체의 ${top3Pct}%로 고집중. 한국이 미·호 양강의 4대 시장.`}
-    strat="브·중 단일축이 흔들리면 (브라질 ESG 제재 등) 호주산 공급 부족 즉시 발생. 우루과이·뉴질랜드 백업 라인 24Q3까지 구축."
+    strat="브·중 단일축이 흔들리면 (브라질 ESG 제재 등) 호주산 공급 부족 즉시 발생. 우루과이·뉴질랜드 백업 라인 조기 구축 권장."
     source={source}>
     <BarChart data={data} layout="vertical" margin={{ left: 5 }}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
@@ -282,7 +282,7 @@ export function W6_KoreaImports({ accent }: any) {
     sub="한국 소고기 수입 파트너 국가별 물량(톤) + 2018→2023년 점유율 변화 | 관세청(KCS) 무역통계(TM)"
     telemetry={isLive ? 'KCS 관세청 (1w 캐시)' : 'KCS 정적'}
     sit={`미·호 양강 ${usAuPct}% 장악 (${data[0]?.country} ${data[0]?.pct}% / ${data[1]?.country} ${data[1]?.pct}%). 2018년 90.7% 대비 ${(90.7 - Number(usAuPct)).toFixed(1)}%p 감소 — 광우병 우려 점진 해소 + 다변화 진행.`}
-    strat="미·호 의존도 80% 이하로 낮추기 위해 우루과이·아르헨티나 직거래선 확장. 평균 단가 8-12% 절감 + 광우병 리스크 분산."
+    strat="미·호 의존도 80% 이하로 낮추기 위해 우루과이·아르헨티나 직거래선 확장. 단가 절감 및 광우병 리스크 분산 동시 도모(업계 추정 8-12% 절감)."
     source={source}>
     <BarChart data={data} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
@@ -305,7 +305,7 @@ export function W7_KoreaSupply({ accent }: any) {
     sub="한국 국내 생산·수입·1인당 연간 소비량 시계열 | 국가통계포털(KOSIS) + 한국농촌경제연구원(KREI) 식량수급표"
     telemetry={isLive ? 'KOSIS API (1w 캐시)' : 'KOSIS + KREI 정적'}
     sit={`1인당 소비 ${first.year}~${last.year} ${first.perCapita}→${last.perCapita}kg(+${perCapitaDelta}%). 자급률 ${first.selfRate}%→${last.selfRate}%로 ${selfDelta}%p ${Number(selfDelta) < 0 ? '폭락' : '변동'} — 수입 의존 구조 더욱 심화.`}
-    strat="자급률 갭이 매년 1%p씩 확대 — 안정적 수입 인프라(콜드체인+장기 계약) 선점 기업이 향후 5년 시장 주도. 콜드체인 CAPEX 우선 배정."
+    strat="자급률 갭이 지속 확대 추세 — 안정적 수입 인프라(콜드체인+장기 계약) 선점 기업이 향후 5년 시장 주도. 콜드체인 CAPEX 우선 배정."
     source={source}>
     <ComposedChart data={data}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
@@ -368,7 +368,7 @@ export function W10_CarbonFootprint({ accent }: any) {
   return <W title="단백질별 탄소 발자국 비교" icon={Leaf} accent={accent} pillar="S5"
     sub="1kg 생산 당 온실가스 배출량(kg CO2e/kg) — 소고기 vs 타 단백질 원천 | 식량농업기구(FAO) LEAP + Poore & Nemecek 2018"
     telemetry="FAO LEAP + Poore & Nemecek 2018"
-    sit="소고기 99.5kg CO2e/kg — 돈육(12.3) 대비 8배, 수산물(2.9) 대비 34배. EU 탄소국경조정제도(CBAM) 적용 시 kg당 €0.5~1.2 추가 비용."
+    sit="소고기 99.5kg CO2e/kg — 돈육(12.3) 대비 8배, 수산물(2.9) 대비 34배. EU 탄소국경조정제도(CBAM) 적용 시 추가 비용 발생 예상(업계 추정 kg당 €0.5~1.2)."
     strat="ESG 보고서에서 소고기는 '리스크 항목'으로 분류, 가능한 수산물·가금류 비중 확대. 소고기 라인은 그래스피드·탄소상쇄 인증 한정으로만 유지."
     source="식량농업기구(FAO) Livestock Environmental Assessment + Poore & Nemecek(2018) Science 360:987">
     <BarChart data={D.carbonFootprintData} layout="vertical">
@@ -385,8 +385,8 @@ export function W11_Premium({ accent }: any) {
   return <W title="그래스피드·유기농 프리미엄 시장 분포" icon={Zap} accent={accent} pillar="S5"
     sub="소고기 세분 시장별 평균 소매가(달러/kg) + 점유율(%) | 미국 농업마케팅서비스(USDA AMS) Retail Report + 닐슨(Nielsen) 2023"
     telemetry="USDA AMS + Nielsen 2023"
-    sit="관행 76% / 그래스피드 12% / 유기농 7% / 듀얼인증 3% / 와규·한우 2%. 듀얼인증 단가 $38.7/kg — 관행 대비 2.1배, 마진율 +40%."
-    strat="와규·한우 + 듀얼인증 프리미엄 라인(합산 5%)이 절대 마진 60% 차지. 듀얼인증 호주 그래스피드 직소싱으로 차별화된 고마진 라인업 구축."
+    sit="관행 76% / 그래스피드 12% / 유기농 7% / 듀얼인증 3% / 와규·한우 2%. 듀얼인증 단가 $38.7/kg — 관행($18.5) 대비 2.1배, 마진율 우위(업계 추정)."
+    strat="와규·한우 + 듀얼인증 프리미엄 라인(합산 5%)이 가격 프리미엄 집중 구간. 듀얼인증 호주 그래스피드 직소싱으로 차별화된 고마진 라인업 구축."
     source="미국 농업마케팅서비스(USDA AMS) Retail Lamb·Beef Report + 닐슨(Nielsen) Premium Meat Tracker 2023">
     <ComposedChart data={D.premiumData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />

@@ -53,12 +53,12 @@ export function InsightFeedCostSpread({ accent = '#e11d48' }: any) {
       iconColor={accent}
       pillar="S2"
       cardDesc="미국산 옥수수(CBOT) 및 브라질 대두박(WB) 단가에 따른 한우 사육 원가 압박 분석"
-      telemetry={{ status: 'SYNCED', syncDate: 'CBOT & WB Pink Sheet -1d' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
       chartHeight={300}
       takeaway={{
-        situation: "미국 옥수수 선물 200달러 붕괴 및 브라질 대두박 하락세 지속. 곡물가 하락으로 한우 농가 사육 원가 지수(115→87) 대폭 완화.",
-        actionPlan: "한우 조기 출하 압력이 감소하여 향후 6개월 한우 도매가 상승(공급 제한) 우려. 외식 B2B는 단가 연동 하락 중인 미국/호주산 수입육 장기계약 비중 확대 필수.",
-        source: "CBOT Corn Futures, World Bank Pink Sheet (Soybean Meal), KCS"
+        situation: "CBOT 옥수수 선물 하락 및 브라질 대두박 약세 지속 추세(illustrative). 곡물가 완화에 따른 한우 사육 원가 지수 하락(115→87 추정) 패턴이 관측됨.",
+        actionPlan: "한우 조기 출하 압력이 감소할 경우 향후 한우 도매가 상승(공급 제한) 우려가 있음. 외식 B2B는 단가 하락세인 미국/호주산 수입육 장기계약 비중 확대를 검토할 것.",
+        source: "CBOT Corn Futures·세계은행 Pink Sheet(대두박)·KCS 기반 업계추정 (illustrative)"
       }}
       chart={
         <div style={{ height: 300, width: '100%' }}>
@@ -101,13 +101,13 @@ export function InsightCutTracker({ accent = '#fb923c' }: any) {
       icon={Target}
       iconColor={accent}
       pillar="S4"
-      cardDesc="미국산 소고기 수입 부위별(순살 870 vs 뼈 867) 물량 및 단가 분리 트래킹"
-      telemetry={{ status: 'SYNCED', syncDate: 'FAOSTAT QCL & KCS -1M' }}
+      cardDesc="미국산 소고기 수입 부위별(순살 HS0201.30 vs 뼈 HS0201.20) 물량 및 단가 분리 트래킹 (업계추정)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
       chartHeight={300}
       takeaway={{
-        situation: "한국은 순살(Boneless) 수입 비중이 압도적(32만톤)이나, 미국산 뼈고기(With-bone) 수출의 53%가 한국(15만톤)에 집중됨. 명절 시즌(Q1, Q3) 뼈고기 단가 급등 발생.",
-        actionPlan: "LA갈비 등 뼈고기는 명절 3개월 전 선취 매입 필수. B2B 프랜차이즈용 순살 부위는 단가 하락 안정세이므로 단기 스팟 매입 비중 확대로 재고 비용 절감.",
-        source: "FAOSTAT Detailed Trade Matrix, KCS Import Data"
+        situation: "한국은 순살(Boneless) 수입 비중이 압도적(업계추정 약 32만톤)이나, 미국산 뼈고기(With-bone) 대한 수출 집중도가 높음(업계추정). 명절 시즌(Q1, Q3) 뼈고기 단가 급등 패턴이 관측됨(illustrative).",
+        actionPlan: "LA갈비 등 뼈고기는 명절 3개월 전 선취 매입 검토 권고. B2B 프랜차이즈용 순살 부위는 단가 안정세 시 단기 스팟 매입 비중 확대로 재고 비용 절감 가능.",
+        source: "FAOSTAT Detailed Trade Matrix·KCS Import Data 기반 업계추정 (illustrative)"
       }}
       chart={
         <div style={{ height: 300, width: '100%' }}>
@@ -148,13 +148,13 @@ export function InsightDiseaseRadar({ accent = '#ef4444' }: any) {
       icon={ShieldAlert}
       iconColor={accent}
       pillar="S4"
-      cardDesc="WOAH 질병(BSE/FMD) 데이터 기반 수입 중단 꼬리 위험(Tail Risk) 및 대체 시나리오"
-      telemetry={{ status: 'LIVE', syncDate: 'WOAH WAHIS -12h' }}
+      cardDesc="WOAH 질병(BSE/FMD) 공개 보고 기반 수입 중단 꼬리 위험(Tail Risk) 및 대체 시나리오 (자체추정)"
+      telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
       chartHeight={300}
       takeaway={{
-        situation: "미국/호주는 질병 리스크 최저(5~10%)이나 발생 시 한국 수입망 마비. 브라질은 BSE 발생 이력으로 수출 의존도 낮음.",
-        actionPlan: "북미/오세아니아 셧다운(BSE 발동) 시 즉각 남미(아르헨/우루과이) 가공육 및 부분육 라인으로 전환하는 비상 매뉴얼 상시 가동. (Risk Trigger: WOAH Level 3 알럿)",
-        source: "WOAH (World Organisation for Animal Health) WAHIS DB"
+        situation: "미국/호주는 질병 리스크 최저(5~10% 자체추정)이나 발생 시 한국 수입 차질이 우려되는 주 의존 공급국. 브라질은 BSE 발생 이력으로 대한(對韓) 수출 의존도 낮음.",
+        actionPlan: "북미/오세아니아 BSE 발생 시 남미(아르헨/우루과이) 가공육 및 부분육 라인으로 전환하는 비상 조달 매뉴얼을 선제 수립 권고. WOAH 공식 공고 기준으로 트리거 조건을 사전 정의할 것.",
+        source: "WOAH (World Organisation for Animal Health) 공개 보고 기반 자체추정 — illustrative"
       }}
       chart={
         <div style={{ height: 300, width: '100%' }}>

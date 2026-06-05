@@ -38,7 +38,7 @@ export default function ChickenEmpiricalInsights() {
           </div>
           <div>
             <h2 style={{ margin: 0, fontSize: '1.4rem', color: '#f8fafc', fontWeight: 800 }}>S-Grade 닭고기 인텔리전스: 실증 인사이트</h2>
-            <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>실시간 API 통합 (차익거래, 리스크 헤징, 가공 밸류체인, 계란 가격 변동성)</p>
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: '#94a3b8' }}>업계추정 기반 인사이트 (차익거래, 리스크 헤징, 가공 밸류체인, 계란 가격 변동성) [STATIC]</p>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function ChickenEmpiricalInsights() {
           iconColor="var(--color-success)"
           pillar="S4"
           cardDesc="국내 vs 브라질 vs 태국 도매가 스프레드 트래킹"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
           chartHeight={240}
           chart={
             <LineChart data={arbData.data}>
@@ -75,7 +75,7 @@ export default function ChickenEmpiricalInsights() {
           iconColor="var(--color-warning)"
           pillar="S2"
           cardDesc="단계별 인건비 비중 vs 부가가치 곡선"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
           chartHeight={280}
           chart={
             <ComposedChart data={procData.data}>
@@ -99,7 +99,7 @@ export default function ChickenEmpiricalInsights() {
           iconColor="#ec4899"
           pillar="S4"
           cardDesc="액상·건조 계란 수입 vs 신선란 도매가 변동성"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
           chartHeight={280}
           chart={
             <ComposedChart data={eggsData.data}>

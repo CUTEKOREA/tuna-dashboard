@@ -171,7 +171,7 @@ export default function PetFoodDashboard() {
                   </SafeResponsiveContainer>
                 </div>
               </>}
-              takeaway={{ situation: "오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로 급락하며 단가가 폭등($4,200/t)하고 있습니다. 반면 식물성 대체 단백질인 참깨 단가는 안정적인 박스권을 유지 중입니다.", actionPlan: "매입원가 방어를 위해 오징어/참치 믹스에서 참깨 등 대체 단백질의 비율을 상향 조정하는 레시피 튜닝을 즉각 실시.", source: "아르헨티나 INIDEP 주간 어획 리포트" }}
+              takeaway={{ situation: "오징어(Illex) 어획량이 Semana 10 기준 3,200톤으로 급락하며 단가가 폭등($4,200/t)하고 있습니다. 반면 식물성 대체 단백질인 참깨 단가는 안정적인 박스권을 유지 중입니다.", actionPlan: "매입원가 방어를 위해 오징어/참치 믹스에서 참깨 등 대체 단백질의 비율을 상향 조정하는 레시피 튜닝을 즉각 실시.", source: "업계 추정 (아르헨티나 INIDEP 어획 패턴 참고, illustrative)" }}
             />
 
             {/* NEW WIDGET 2 */}
@@ -199,17 +199,17 @@ export default function PetFoodDashboard() {
                   </SafeResponsiveContainer>
                 </div>
               </>}
-              takeaway={{ situation: "동물성 단백질(어분/오징어)의 단가 변동성이 극심한 가운데, 식물성(참깨 등) 단백질 믹스 비율을 30%로 상향할 경우 톤당 매입원가가 $2,600 수준으로 하락하며 마진이 27%까지 개선됩니다.", actionPlan: "식물성 믹스 비율을 높인 하이브리드 포뮬러를 신제품 라인업으로 기획하여 매입원가 충격을 완충(Buffer)하는 전략을 수립.", source: "글로벌 어분 단가 및 식물성 단백질 데이터" }}
+              takeaway={{ situation: "동물성 단백질(어분/오징어)의 단가 변동성이 극심한 가운데, 식물성(참깨 등) 단백질 믹스 비율을 30%로 상향할 경우 톤당 매입원가가 $2,600 수준으로 하락하며 마진이 27%까지 개선됩니다.", actionPlan: "식물성 믹스 비율을 높인 하이브리드 포뮬러를 신제품 라인업으로 기획하여 매입원가 충격을 완충(Buffer)하는 전략을 수립.", source: "자체 추정 시뮬레이션 (illustrative, 업계 단가 패턴 참고)" }}
             />
 
             {/* W33: Clean Label Risk */}
             <WidgetCard
-              title="클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API"
+              title="클린 라벨 전환: 카라기난 리스크 방어"
               icon={ShieldCheck}
               iconColor="var(--color-info)"
               pillar="S5"
               cardDesc={`Carrageenan — 카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력`}
-              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
@@ -331,12 +331,12 @@ export default function PetFoodDashboard() {
             />
             {/* W24 */}
             <WidgetCard
-              title="단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API"
+              title="단백질 원자재별 톤당 글로벌 단가 비교 ($/kg)"
               icon={Scale}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`어분 최저 — 어분 $0.45~0.50/kg으로 최저 동물성 단백질원.`}
-              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              cardDesc={`어분 최저 — 어분 $0.45~0.50/kg으로 최저 동물성 단백질원. (업계 추정치)`}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -357,12 +357,12 @@ export default function PetFoodDashboard() {
             />
             {/* W28 */}
             <WidgetCard
-              title="대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API"
+              title="대체 단백질 시장의 폭발적 성장성 전망 (억$)"
               icon={Leaf}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`연평균성장률(CAGR) 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망.`}
-              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              cardDesc={`연평균성장률(CAGR) 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망. (업계 추정치)`}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.kpiRow}>
             <KpiCard label="연평균성장률(CAGR)" value="8.7" unit="%" />
@@ -479,12 +479,12 @@ export default function PetFoodDashboard() {
           <div className={styles.grid}>
             {/* W34: Tilapia Skin Upcycling */}
             <WidgetCard
-              title="틸라피아 껍질 업사이클링 수익성 🟢 Live API"
+              title="틸라피아 껍질 업사이클링 수익성"
               icon={Recycle}
               iconColor="var(--color-info)"
               pillar="S2"
-              cardDesc={`Single-ingredient — 단일 원료(Single-ingredient) 반려견 간식 부가가치`}
-              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              cardDesc={`단일 원료 반려견 간식 부가가치 — 업사이클링 마진 자체추정`}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
@@ -591,12 +591,12 @@ export default function PetFoodDashboard() {
             />
             {/* W22 */}
             <WidgetCard
-              title="오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API"
+              title="오에스피(OSP) 매출 및 V자 이익률 회복 (%)"
               icon={LineChartIcon}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`V자 회복 — 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복.`}
-              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              cardDesc={`V자 회복 — 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복. (공시 기반 추정)`}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -647,12 +647,12 @@ export default function PetFoodDashboard() {
             />
             {/* W26 */}
             <WidgetCard
-              title="카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API"
+              title="카테고리별 글로벌 펫푸드 성장률 비교 (%)"
               icon={Award}
               iconColor="var(--color-info)"
               pillar="S4"
-              cardDesc={`자체 브랜드(PB) 20.2% — 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배.`}
-              telemetry={{ status: 'LIVE', syncDate: '실시간 연동' }}
+              cardDesc={`자체 브랜드(PB) 20.2% — 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배. (업계 추정치)`}
+              telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">

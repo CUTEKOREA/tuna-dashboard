@@ -69,11 +69,11 @@ const KPI_THEMES = [
 
 const CHICKEN_KPIS: Record<string, any> = {
   k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: 'B2B 프랜차이즈 스펙인 적용', telemetry: 'static', syncDate: '전략 목표' },
-  k2: { title: '한국 총 수입량 (2023 역대최대)', value: '23.5만톤', trend: '💰', desc: '관세 할당(TRQ) 최적화 효과', telemetry: 'synced', syncDate: 'KCS -1d' },
+  k2: { title: '한국 총 수입량 (2023 역대최대)', value: '23.5만톤', trend: '💰', desc: '관세 할당(TRQ) 최적화 효과', telemetry: 'static', syncDate: 'KITA 2023' },
   k3: { title: '태국 선도 계약 마진 스프레드', value: '+22.4%', trend: '🛡️', desc: '중매인 마진(4.3%) 완전 회피', telemetry: 'static', syncDate: '추정 (선도계약)' },
   k4: { title: '고부가가치(가공육) 수입 비중', value: '64.5%', trend: '🍗', desc: '글로벌 1위 허브 태국 독점', telemetry: 'static', syncDate: 'FAO 23Y' },
   k5: { title: 'CBOT 옥수수 선물 (사료비)', value: '$4.15↓', trend: '📉', desc: '사육두수 헷징 골든크로스', telemetry: 'static', syncDate: 'CBOT 스냅샷' },
-  k6: { title: '수입국 HPAI 청정 진단', value: 'S-Grade', trend: '✨', desc: '태국: 2009년 이후 청정 유지', telemetry: 'synced', syncDate: 'OIE -12h' },
+  k6: { title: '수입국 HPAI 청정 진단', value: 'S-Grade', trend: '✨', desc: '태국: 2009년 이후 청정 유지', telemetry: 'static', syncDate: 'OIE/WOAH 스냅샷' },
 };
 
 const WIDGET_ICONS: Record<string, any> = {
@@ -106,8 +106,8 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
 <p>실측: <strong>CBOT 옥수수 $4.15로 전년 대비 하락세 유지 — 사료비 역대 저점 구간. 단, 브라질 HPAI 확산으로 글로벌 사육두수 감축 + 곡물 수요 감소 동시 진행</strong>. 단기 lock-in 윈도우 1~2분기 한정.</p>
 </div>`,
     strat: `<div>
-<p><strong>재정의</strong>: 곡물가 하락은 단순 cost 절감이 아닌 <strong>"사료비를 다음 12개월 fix해 마진 변동성을 100% 헷지할 black swan-proof 기회"</strong>.</p>
-<p><strong>3단계</strong>: ① CBOT 옥수수 forward 선매수 — 12개월 사료비 lock-in ② B2B 프랜차이즈 연간 공급 물량 픽스 — 원가 변동성 100% 헷징 ③ 사료비 상승 시나리오 대비 OTC swap contract 체결 (downside protection).</p>
+<p><strong>재정의</strong>: 곡물가 하락은 단순 원가 절감이 아닌 <strong>"사료비를 12개월 고정하여 마진 변동성을 상당 폭 제어할 수 있는 계약 타이밍 기회"</strong>.</p>
+<p><strong>3단계</strong>: ① CBOT 옥수수 forward 선매수 — 12개월 사료비 lock-in ② B2B 프랜차이즈 연간 공급 물량 고정 — 원가 변동성 완충 ③ 사료비 반등 시나리오 대비 태국 공급사와 장기 고정가 계약(LTA) 병행 검토.</p>
 </div>`
   },
   // archived 2026-05-24 — w_chicken_eudr_esg (forensic grade C, _archive/api/chicken/eudr-esg/)
@@ -161,9 +161,9 @@ export default function ChickenDashboard() {
           w.sit = ENHANCED_INSIGHTS[w.id].sit;
           w.strat = ENHANCED_INSIGHTS[w.id].strat;
         }
-        // 정직 SYNCED: arbitrage·feed 라우트도 정적 스냅샷(실시간 외부 fetch 없음) — 휴리스틱 'live' 승격 제거
-        w.telemetryStatus = 'synced';
-        w.syncDate = 'KCS -1d';
+        // 정직 STATIC: 모든 API 라우트는 실시간 외부 fetch 없는 정적 스냅샷 — L-09 준수
+        w.telemetryStatus = 'static';
+        if (!w.syncDate) w.syncDate = '스냅샷';
         return w;
       });
       
@@ -178,7 +178,7 @@ export default function ChickenDashboard() {
           syncDate: 'FAOSTAT·KCS 스냅샷',
           sit: `<div>
 <p>"대체 단백질 가격 스프레드(Substitute Protein Spread)"란 어종·축종 간 가격 elasticity의 cross-section. 수산물 단가 급등 시 소비자는 자동으로 닭고기로 substitution — 닭고기는 수산물 단가의 mirror image instrument.</p>
-<p>실측: <strong>오징어·새우 어획량 감소로 글로벌 수산 단백질 단가 전년比 15~20% 급등 → 닭고기 substitution 수요 집중 구간. 5~8% 추가 마진 capture 가능 윈도우</strong>. 수산 위기는 닭고기 vendor의 windfall.</p>
+<p>업계추정: <strong>오징어·새우 어획량 감소로 수산 단백질 단가 상승 국면에서 닭고기 대체 수요가 증가하는 경향이 관측됨. 대체 수요 전환 시 5~8% 추가 마진 확보 가능성 있음</strong>. 단, 수산 단가와 닭고기 수요 간 교차탄력성은 품목별·시기별 편차가 크므로 실측 확인 필요.</p>
 </div>`,
           strat: `<div>
 <p><strong>재정의</strong>: 대체재 상승은 외부 변수가 아닌 <strong>"수산 위기를 닭고기 마진 확장으로 자동 변환할 substitution arbitrage 시그널"</strong>.</p>
@@ -202,8 +202,8 @@ export default function ChickenDashboard() {
           subtitle: '초복/중복/말복 스팟가 방어를 위한 출하량 조절',
           chartType: 'Bar',
           xKey: 'week',
-          telemetryStatus: 'synced',
-          syncDate: 'KAMIS -1d',
+          telemetryStatus: 'static',
+          syncDate: 'KAMIS 스냅샷',
           sit: `<div>
 <p>"삼복(三伏)"이란 초복·중복·말복 7~8월 한국 닭고기 소비 최절정 시즌. 주간 수요가 평시 대비 2~3배 폭증, vendor의 연간 P&L 결정 분기.</p>
 <p>실측: <strong>여름철 삼복 스팟 수요 폭증 (W27 초복 28,000톤 vs 평시 12,000톤) → 국내 냉동 비축 출하 지연으로 일시적 shortage 발생. 스팟가 최고점 도달 전 출하 timing이 마진의 결정 변수</strong>. 출하 1주 늦으면 단가 30% 차이.</p>
@@ -240,7 +240,7 @@ export default function ChickenDashboard() {
 </div>`,
           strat: `<div>
 <p><strong>재정의</strong>: 고환율은 국내 vendor의 위협이 아닌 <strong>"태국 직수입 비중을 자동 확대시키는 sourcing rebalancing 트리거"</strong>. 국내 생산 감소가 곧 수입 vendor의 점유율 expansion.</p>
-<p><strong>3단계</strong>: ① Base 시나리오(1,350원) 초과 환율 발생 시 태국산 직수입 비중 즉시 25%까지 확대 ② USD/THB 분기별 forward 헷지로 환차손 lock-in ③ Extreme 시나리오(1,450) 대비 SPV로 환위험 자본화 — JP Morgan FX Desk OTC contract 체결.</p>
+<p><strong>3단계</strong>: ① Base 시나리오(1,350원) 초과 환율 발생 시 태국산 직수입 비중 25%까지 단계적 확대 ② USD/THB 분기별 forward 헷지로 환차손 완충 ③ Extreme 시나리오(1,450) 대비 외환 위험 헷지 수단(NDF·선물환 등) 검토.</p>
 </div>`,
           source: 'CBOT · FX Macro',
           bars: [{key: 'costIncrease', color: '#ea580c', name: '원가 상승폭(%)'}],
@@ -262,7 +262,7 @@ export default function ChickenDashboard() {
   if (widgets.length === 0) return (
     <div style={{ display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', flexDirection:'column', gap:'1rem' }}>
       <RefreshCcw size={32} style={{ color:'var(--color-success)', animation:'spin 1s linear infinite' }} />
-      <p style={{ color:'#94a3b8' }}>Loading S-Grade Chicken Intelligence...</p>
+      <p style={{ color:'#94a3b8' }}>닭고기 인텔리전스 데이터 로딩 중...</p>
     </div>
   );
 
@@ -276,7 +276,7 @@ export default function ChickenDashboard() {
       <div style={{height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',color:'#64748b',background:'rgba(255,255,255,0.02)',borderRadius:'8px',border:'1px dashed rgba(255,255,255,0.1)'}}>
         <AlertTriangle size={24} style={{marginBottom:'8px',opacity:0.5}}/>
         <span style={{fontSize:'0.85rem',fontWeight:600}}>데이터 집계 중</span>
-        <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>실시간 파이프라인 동기화 대기</span>
+        <span style={{fontSize:'0.7rem',opacity:0.7,marginTop:'4px'}}>정적 스냅샷 데이터 로딩 중</span>
       </div>
     );
     const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
@@ -390,13 +390,13 @@ export default function ChickenDashboard() {
                 🐔 육계 글로벌 밸류체인 장악 대시보드
               </h1>
               <p style={{ margin:0, fontSize:'0.8rem', color:'#94a3b8' }}>
-                [V4.2 S-Grade] USDA FAS 실연동 + KCS·FAOSTAT 동기화 데이터 기반 수출입·차익거래 분석
+                [V4.2 S-Grade] USDA FAS·KITA·FAOSTAT 스냅샷 기반 수출입·차익거래 분석
               </p>
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
             <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: '1px solid rgba(255,255,255,0.05)', borderRadius:'8px', color:'#94a3b8' }}>
-              <span style={{ color:'var(--color-warning)' }}>PEF Command Center:</span> USDA FAS 실연동 · 그 외 동기화/정적
+              <span style={{ color:'var(--color-warning)' }}>PEF Command Center:</span> USDA FAS·KITA·FAOSTAT 스냅샷 기반 정적 데이터
             </div>
           </div>
         </div>
@@ -478,7 +478,7 @@ export default function ChickenDashboard() {
                   takeaway={{
                     situation: w.sit || '',
                     actionPlan: w.strat || '',
-                    source: w.source || 'Silla Co. Intelligence Network',
+                    source: w.source || '자체추정',
                   }}
                 />
               );

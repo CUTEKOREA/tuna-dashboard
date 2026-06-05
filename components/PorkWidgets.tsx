@@ -53,10 +53,10 @@ export function W1_ASFCycle({ accent }: any) {
 }
 
 export function W2_FeedMargin({ accent }: any) {
-  return <W title="곡물가(사료) 연동 마진 압박 지수" icon={TrendingUp} accent={accent} pillar="S2" sub="사료곡물 가격 지수 대비 가공 마진율(%) 추이 | 시카고상품거래소(CBOT) 2022-2023"
+  return <W title="곡물가(사료) 연동 마진 압박 지수" icon={TrendingUp} accent={accent} pillar="S2" sub="사료곡물 가격 지수 대비 가공 마진율(%) 추이 — illustrative | CBOT 옥수수·대두 방향성 참고"
     telemetry="시카고상품거래소(CBOT) 2022-2023"
-    sit="사료비가 원가의 60% 이상. 2022년 곡물가 피크 당시 가공 마진이 적자(-2%)로 전환."
-    strat="곡물가 상승 시 고마진 특수 부위(삼겹살/항정살) 직판 비율 확대, 저마진 부위는 B2B 급식 전환." source="시카고상품거래소(CBOT) 옥수수·대두">
+    sit="사료비가 원가의 60% 이상. 2022년 곡물가 피크 당시 가공 마진이 적자(-2%)로 전환(업계추정 방향성)."
+    strat="곡물가 상승 시 고마진 특수 부위(삼겹살/항정살) 직판 비율 확대, 저마진 부위는 B2B 급식 전환." source="시카고상품거래소(CBOT) 옥수수·대두 방향성 참고 — 업계추정">
     <ComposedChart data={D.feedCostData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="quarter" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
@@ -68,10 +68,10 @@ export function W2_FeedMargin({ accent }: any) {
 }
 
 export function W3_TradeSpread({ accent }: any) {
-  return <W title="주요 대륙간 무역 단가 스프레드" icon={Globe} accent={accent} pillar="S3" sub="EU·북미·아시아 간 수출입 돈육 평균 단가(달러/톤) | OEC 2023"
+  return <W title="주요 대륙간 무역 단가 스프레드" icon={Globe} accent={accent} pillar="S3" sub="EU·북미·아시아 간 수출입 돈육 평균 단가(달러/톤) — illustrative | OEC 2023 방향성 참고"
     telemetry="OEC 2023"
-    sit="EU 환경 규제에 따른 생산량 감소로 EU산 단가가 북미산을 추월. 아시아 시장의 높은 소비력."
-    strat="단가가 안정적인 북미 및 남미(브라질)산 비중을 높여 다변화 전략 시급." source="OEC 무역 데이터">
+    sit="EU 환경 규제에 따른 생산량 감소로 EU산 단가가 북미산을 추월. 아시아 시장의 높은 소비력(업계추정 방향성)."
+    strat="단가가 안정적인 북미 및 남미(브라질)산 비중을 높여 다변화 전략 시급." source="OEC 무역 데이터 방향성 참고 — 업계추정">
     <LineChart data={D.tradeSpreadData}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
       <Line type="monotone" dataKey="asiaPrice" name="아시아 도착가" stroke="#f43f5e" strokeWidth={2.5} /><Line type="monotone" dataKey="euPrice" name="EU 수출가" stroke="#3b82f6" strokeWidth={2} strokeDasharray="5 5" />
@@ -124,7 +124,7 @@ export function W6_Trend({ accent }: any) {
 export function W7_KoreaSupply({ accent }: any) {
   return <W title="한국 돈육 수급 구조 분석" icon={ShoppingCart} accent={accent} pillar="S4" sub="한국 국내 생산·수입·1인당 소비 시계열 | FAOSTAT 작물가축통계(QCL)·식량수급표(FBS) 2015-2023"
     telemetry="FAOSTAT QCL·FBS 2015-2023"
-    sit="한국 1인당 돈육 소비 10년간 30.9→41.4kg(+34%) 폭증. 생산 증가율(+20%)이 소비를 못따라감."
+    sit="한국 1인당 돈육 소비 2015~2022년간 35.9→41.4kg(+15%) 증가. 생산 증가율(+18%)과 유사하나 수입 의존도가 지속 확대."
     strat="기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보." source="FAOSTAT 식량수급표(FBS)">
     <ComposedChart data={D.koreaSupplyData}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
@@ -149,10 +149,10 @@ export function W8_ImportPartners({ accent }: any) {
 }
 
 export function W9_ASFSeafood({ accent }: any) {
-  return <W title="ASF 발병 → 수산물 반사수혜 시뮬레이션" icon={Zap} accent={accent} pillar="S1" sub="중국 돈육 생산량 급감 시 수산물 도매가 지수 반등 상관관계 | FAOSTAT QCL 2017-2023"
+  return <W title="ASF 발병 → 수산물 반사수혜 시뮬레이션" icon={Zap} accent={accent} pillar="S1" sub="중국 돈육 생산량 급감 시 수산물 도매가 지수 반등 — illustrative | FAOSTAT QCL 2017-2023 + 자체추정"
     telemetry="FAOSTAT QCL 2017-2023"
-    sit="2018-2019 중국 ASF로 돈육 생산 20.9% 붕괴 시, 수산물 도매가 100→135로 35% 동반 폭등."
-    strat="세계동물보건기구(WOAH) ASF 경보 발령 즉시, 자사 핵심 수산물 재고 최대 확보 및 판가 선제적 인상." source="FAOSTAT 작물가축통계(QCL) + 수산물 가격 지수(Fish Price Index)">
+    sit="2018-2019 중국 ASF로 돈육 생산 20.9% 붕괴 시, 수산물 도매가 지수가 100→135로 상승(자체추정 지수 기준)."
+    strat="세계동물보건기구(WOAH) ASF 경보 발령 즉시, 자사 핵심 수산물 재고 최대 확보 및 판가 선제적 인상." source="FAOSTAT QCL 중국 생산량 + 수산물 도매가 지수 자체추정">
     <ComposedChart data={D.asfSeafoodData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
@@ -164,10 +164,10 @@ export function W9_ASFSeafood({ accent }: any) {
 }
 
 export function W10_Portfolio({ accent }: any) {
-  return <W title="단백질 포트폴리오 최적 배분 비교" icon={Target} accent={accent} pillar="S4" sub="돈육 vs 수산물 vs 가금류 — 5개 핵심 지표 비교 | FAO/USDA 종합 2024"
+  return <W title="단백질 포트폴리오 최적 배분 비교" icon={Target} accent={accent} pillar="S4" sub="돈육 vs 수산물 vs 가금류 — 5개 핵심 지표 비교 — illustrative | FAO·USDA 방향성 기반 자체추정"
     telemetry="FAO/USDA 종합 2024"
-    sit="돈육은 저렴하나 ASF 리스크 85점으로 극심, 탄소 배출 높음. 수산물은 ESG 85점 최고, 마진율 70% 최고."
-    strat="'돈육 30% + 수산물 50% + 가금류 20%' 리스크 헤지 포트폴리오 구축." source="FAO · USDA 생산공급분배(PSD)">
+    sit="돈육은 저렴하나 ASF 리스크가 극심하고 탄소 배출이 높음. 수산물은 ESG·마진율에서 우위(자체추정 지수 기준)."
+    strat="'돈육 30% + 수산물 50% + 가금류 20%' 리스크 헤지 포트폴리오 구축." source="FAO · USDA 방향성 참고 — 업계추정 종합지수">
     <BarChart data={D.proteinPortfolioData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="metric" stroke="#64748b" tick={{ fontSize: 8, fill: '#64748b' }} /><YAxis stroke="#64748b" tick={{ fontSize: 9 }} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
