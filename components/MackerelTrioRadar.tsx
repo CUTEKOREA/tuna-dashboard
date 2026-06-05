@@ -71,19 +71,19 @@ export default function MackerelTrioRadar() {
       icon={Target}
       iconColor="#818cf8"
       pillar="S1"
-      cardDesc="2023 주요국 생태계 포지션 — 조업·가공·소비 밸런스 진단"
+      cardDesc="2023 주요국 생태계 포지션 — 조업·가공·소비 밸런스 진단 (FAO FishStatJ 2023, 자체추정(illustrative))"
       telemetry={{ status: 'STATIC' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>"조업-수입-수출 3축 레이더"는 글로벌 주요국의 밸류체인 포지션 비교.</p>
-<p>국가별: <strong>노르웨이(조업국) · 칠레(가공 허브) · 한국(98% 수입 의존 소비국)</strong>. 한국은 자력 조업 사실상 상실 + 아프리카·개도국 재수출 중계국으로 전락. <strong>환율·노르웨이 수출 정책에 식량 안보 100% 노출</strong>.</p>
+<p>"조업-수입-수출 3축 레이더"는 글로벌 주요국의 밸류체인 포지션 비교(FAO FishStatJ 2023, 자체추정(illustrative)).</p>
+<p>국가별: <strong>칠레(조업 강국, 어획 71%) · 노르웨이(가공 허브, 수출 51%) · 한국(복합형 — 어획 45%·수출 36%·수입 19%)</strong>. 한국은 상당한 자체 어획 기반을 유지하면서 동시에 수출 비중(36%)도 높아 단순 소비국이 아닌 복합 포지션. 다만 노르웨이·중국산 원료 수입 의존이 병존하여 <strong>환율·수출국 정책 리스크는 실재</strong>한다.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: "기형적 소비-중계" 모델 탈피. <strong>"칠레형 가공 산업 포지션"</strong>으로 전환.</p>
-<p><strong>3단계</strong>: ① 노르웨이산 H&amp;G 대량 보세 수입 — 부산·감포 단지 집중 ② 순살·양념 고부가 제품 전환 ③ 글로벌 C/S 채널(미국 한인마트·아시안 슈퍼) 역수출.</p>
+<p><strong>포지션 고도화</strong>: 한국의 복합형(어획+수출) 강점을 활용해 원료 조달 다변화(노르웨이·모로코·페루) + 부산 가공 단지 수율 개선으로 수출 부가가치를 확대할 여지 있음.</p>
+<p><strong>리스크 관리</strong>: 수입 의존 19% 구간에서 환율·원산지 정책 변동에 대한 완충 재고 전략을 검토할 것.</p>
 </div>`,
-        source: "FAO FishStatJ & 해양수산부 수산정보포털"
+        source: "FAO FishStatJ 2023, 해양수산부 수산정보포털 (자체추정(illustrative) — 검증된 공식 수치로 갱신 필요)"
       }}
     />
   );

@@ -36,13 +36,13 @@ export default function MackerelClimatePredictor() {
       takeaway={{
         situation: `<div>
 <p>"SST(Sea Surface Temperature) Anomaly"란 해당 해역의 30년 평균 표층수온 대비 편차. 한반도 남해안의 +1.5℃ 돌파는 회유어 isotherm(등온선) 영구 북상의 tipping point.</p>
-<p>실측: <strong>SST +1.5℃ 임계점 돌파 시 타겟 어군 회유 경로 영구 붕괴 → 국내 EEZ 대형어 수확량 65% 증발 tail risk. 인적 직관 발주 모델은 climate stochasticity 앞에 무력</strong>. 매년 ENSO phase shift에 따라 매입 volume이 ±300% 변동해야 정상.</p>
+<p>연구 사례: <strong>SST(표층수온) +1.5℃ 임계점 돌파 시 타겟 어군 회유 경로가 북상하며 국내 EEZ 대형어 어획량의 급격한 감소 위험이 높아진다. 인적 직관 발주 모델은 기후 불확실성 앞에서 한계를 가진다</strong>. ENSO(엘니뇨·라니냐) 국면 전환에 따라 매입 물량 계획의 탄력적 조정이 요구된다.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 기후 리스크는 단순 cost 변수가 아닌 <strong>"전사 P&L의 가장 큰 미헤지 노출 — 자산 운용사 수준 quant 헤징 필수"</strong>.</p>
-<p><strong>3단계</strong>: ① NOAA ENSO 지수 +1.5℃ 돌파 즉시 알고리즘 트리거 — 차기 노르웨이산 forward 3배 lock-in ② 인적 직관 발주 폐기 → "Climate-Quant" 자동 매입 알고리즘 도입 ③ JP Morgan 어종 weather derivative OTC 헤지 contract 체결 — tail risk 자본화.</p>
+<p><strong>재정의</strong>: 기후 리스크는 단순 비용 변수가 아닌 <strong>전사 손익(P&L)의 구조적 노출 — 기후 지표 연동 구매 계획 수립이 필수</strong>.</p>
+<p><strong>3단계</strong>: ① NOAA ENSO 지수 +1.5℃ 돌파 신호 감지 시 노르웨이산 등 대체 원료 선구매 비중 확대 검토 ② 발주 계획에 ENSO 국면 시나리오(라니냐·엘니뇨) 민감도 분석 반영 ③ 업계 기후 파생상품(날씨 헤지 상품) 활용 가능성 검토 — tail risk 관리 방안 마련.</p>
 </div>`,
-        source: "NASA · NOAA ENSO Data (자체 SST anomaly 모델 결합)",
+        source: "NOAA ENSO Data (자체 SST anomaly 분석, 업계 추정)",
       }}
     />
   );

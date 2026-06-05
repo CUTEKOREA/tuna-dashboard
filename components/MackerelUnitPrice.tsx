@@ -5,7 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recha
 import { Globe } from 'lucide-react';
 import rawData from '../data/mackerel_unit_price.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function MackerelUnitPrice() {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -70,18 +70,18 @@ export default function MackerelUnitPrice() {
       iconColor="#fbbf24"
       pillar="S4"
       cardDesc="2023년 가장 비싸게 고등어를 사가는 국가 Top 15 — 프리미엄 판로 배분 전략"
-      telemetry={{ status: 'STATIC' }}
+      telemetry={{ status: 'STATIC', syncDate: '2023' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>고등어 글로벌 수입 단가 격차: <strong>룩셈부르크 $7,479/t · 오스트리아 $7,321/t (최상위, 프리미엄 완제품) vs 아프리카향 $1,500/t (벌크)</strong>. <strong>5배 격차</strong>.</p>
-<p>의미: 한국의 아프리카 벌크 의존은 마진 0에 가까움. 프리미엄 niche가 단가수익률 5배 cash cow.</p>
+<p>고등어 글로벌 수입 단가 격차(FAO FishStatJ 2023): <strong>룩셈부르크 $7,479/t · 오스트리아 $7,321/t (프리미엄 완제품 상위권) vs 아프리카·아시아 벌크 시장(업계 추정 $1,500~2,000/t)</strong>. 프리미엄 대비 3~5배 격차.</p>
+<p>의미: 아프리카 벌크 시장은 구조적으로 마진이 얇음. 프리미엄 niche는 단가 기준 현저히 유리한 구조.</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 벌크 출혈 경쟁 폐기. <strong>"MSC/ASC 인증 = 프리미엄 시장 entry license"</strong>.</p>
 <p><strong>3단계</strong>: ① 자체 조업망 MSC 인증 획득 capex 최우선 ② 인증 지연 시 아이슬란드·노르웨이 인증 파트너 물량 국내 특수 OEM 가공 ③ 선진국 메이저 리테일 재수출 라인 신설.</p>
 </div>`,
-        source: "FAO FishStatJ - Trade by Partner (2023)"
+        source: "FAO FishStatJ - Trade by Partner (2023) | 벌크 단가: 업계 추정"
       }}
     />
   );

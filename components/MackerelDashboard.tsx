@@ -289,9 +289,8 @@ export default function MackerelDashboard() {
           subtitle: 'KCS 실시간 통관 데이터 기반 원산지 비중',
           chartType: 'Pie', xKey: 'name',
           pieDataKey: 'value', data: kcsData.origin, badges: ['실시간 API', 'Verified'],
-          sit: `노르웨이산 점유율이 85%를 넘어서며 사실상 독점적 지위를 지니고 있습니다. 단일 국가 의존도가 극단적으로 높아, 노르웨이 해역의 쿼터 삭감, 기후 변동, 또는 지정학적 리스크 발생 시 원재료 관점의 심각한 공급 차질이 예상됩니다.`,
-          strat: '노르웨이 수입 의존도가 극도로 높아 북대서양 쿼터 축소 시 심각한 원가 압박이 예상됩니다. 중국·영국·아일랜드 등 대체 원산지 발굴과 동시에, 장기 공급 계약(2년 이상) 비율을 현재 30% → 60%로 확대하여 가격 변동 리스크를 헤지해야 합니다.',
-          apiSource: '📡 [LIVE API 연동: 관세청 KCS] 실시간 국가별 점유율',
+          sit: `관세청 통관 실적 기준 노르웨이산이 한국 냉동고등어 수입의 상당 비중(UN Comtrade 2024 기준 약 77%)을 차지하고 있다. 단일 국가 의존도가 높아 노르웨이 쿼터 변동, 기후·지정학적 리스크 발생 시 공급 차질 가능성이 있다.`,
+          strat: '노르웨이 의존도가 높은 만큼 영국·아이슬란드·페로제도 등 대체 원산지 발굴을 진행하고, 장기 공급 계약 비율을 높여 가격 변동 리스크를 완화하십시오.',
           source: '관세청 수출입무역통계', unit: '%'
         });
       }
@@ -369,11 +368,10 @@ export default function MackerelDashboard() {
             { product: '고등어 필렛(순살)', hsCode: '0304.89', confidence: 95 },
             { product: '자반/염장 고등어', hsCode: '0305.63', confidence: 96 }
           ],
-          badges: ['실시간 API', 'Verified'],
-          sit: `입력된 주요 가공 형태에 대해 HS Ping API가 국가별 최적 HS 코드를 매핑 완료했습니다. (원물: 0303.54, 필렛: 0304.89)`,
+          badges: ['STATIC', 'Verified'],
+          sit: '주요 가공 형태별 HS 코드 매핑이다. 냉동 원물 0303.54, 순살 필렛 0304.89, 자반·염장 0305.63으로 분류된다. 신뢰도 수치는 자체 추정(illustrative)이며 실제 통관 시 관세청 확인이 필요하다.',
           strat: 'HMR용 순살 필렛의 경우 수입 통관 시 HS 0304.89로 분류되어 원물과 다른 수입 요건 및 관세가 적용되므로 주의가 필요합니다.',
-          apiSource: '📡 [LIVE API 연동: HS Ping] 실시간 HS 자동 분류',
-          source: 'HS Ping API', unit: '%'
+          source: '관세청 HS 분류 체계 기반 자체 추정 (illustrative)', unit: '%'
         });
       }
 
@@ -662,8 +660,8 @@ export default function MackerelDashboard() {
             background: '#181818', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span><span style={{ color: 'var(--color-success)' }}>EUMOFA 2026 + INFOFISH 2025 + KFAS</span> · {widgets?.length || 0} Widgets · {tickerData ? `${tickerData.liveSourceCount}/${tickerData.totalSources} Live` : 'Loading...'}</span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerData ? 'var(--color-success)' : '#64748b', boxShadow: tickerData ? '0 0 8px #1ed760' : 'none', animation: tickerData ? 'pulse 2s infinite' : 'none' }} />
+            <span><span style={{ color: 'var(--text-secondary)' }}>EUMOFA 2026 + INFOFISH 2025 + KFAS</span> · {widgets?.length || 0} Widgets · {tickerData ? `${tickerData.liveSourceCount}/${tickerData.totalSources} Live API` : '정적 데이터'}</span>
           </div>
         </div>
       </header>

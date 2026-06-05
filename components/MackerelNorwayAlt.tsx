@@ -77,18 +77,18 @@ export default function MackerelNorwayAlt() {
       iconColor="#60a5fa"
       pillar="S1"
       cardDesc="글로벌 Top 12 수출국의 점유율 변화 — 신흥 소싱처 조기 감지"
-      telemetry={{ status: 'STATIC' }}
+      telemetry={{ status: 'STATIC', syncDate: '2024-12' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
 <p>"TAC(Total Allowable Catch, 총허용어획량)"란 어종별 자원량 평가를 바탕으로 ICES·NEAFC가 매년 결정하는 국제 어획 쿼터. MSC 인증은 글로벌 retailer(EU·일본·한국 대형마트) 진입의 사실상 lock.</p>
-<p>실측: <strong>노르웨이 TAC 52% 삭감 (16.5만 → 7.9만 톤) + MSC 인증 상실 + 환율 급등 트리플 펀치 → 수입 단가 전년比 20~30% 폭등. 한국 수입의 80~90% 단일 의존이 즉시 P&L 폭탄으로 전환</strong>.</p>
+<p>차트 기준(2019-2023): 노르웨이 점유율은 정점(2021년 최대 비중) 이후 완만한 하락세. 동기간 칠레·모리타니아·인도 등 신흥 소싱처 확대 추세 확인. 노르웨이 TAC 삭감·MSC 인증 변동 및 환율 요인은 단가 상승 압력으로 작용할 수 있으나, 정확한 삭감 폭·단가 변동폭은 ICES/NEAFC 공식 발표 및 관세청 데이터로 별도 확인 필요.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 노르웨이 의존 80%는 단순 sourcing 편중이 아닌 <strong>"북동대서양 단일 fish stock 의존 = paper company"</strong> 수준의 fundamental risk.</p>
-<p><strong>3단계</strong>: ① 칠레·영국·네덜란드 장기 공급 계약 즉시 체결 (분산 sourcing) ② 정부 TRQ 0% 제도 선제 활용 + 재고 헤지 ③ MSC 인증 미회복 장기화 대비 — 가나/아프리카 비인증 시장 판매 destination 전환 포트폴리오 구축.</p>
+<p><strong>방향</strong>: 단일 국가·fish stock 집중 소싱은 TAC 삭감·MSC 인증 변동·환율 충격이 겹칠 때 P&amp;L 변동성을 키우는 구조적 리스크. 차트에서 확인되는 칠레·모리타니아·영국 성장세를 활용한 분산 소싱이 실행 가능한 대안.</p>
+<p><strong>3단계</strong>: ① 칠레·영국·네덜란드 장기 공급 계약 체결 (분산 소싱) ② 정부 TRQ 0% 제도 선제 활용 + 재고 헤지 ③ MSC 인증 미회복 장기화 대비 — 비인증 시장 판매 destination 분산 포트폴리오 구축.</p>
 </div>`,
-        source: "고등어 마스터 인덱스 · ICES TAC Advisory · 관세청 TRQ 고시"
+        source: "자체 추정(illustrative, 2019-2023) · ICES TAC Advisory · 관세청 TRQ 고시"
       }}
     />
   );

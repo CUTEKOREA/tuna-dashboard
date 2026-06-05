@@ -18,8 +18,8 @@ export default function MackerelStrategy() {
 <p>실측: <strong>1컨테이너 매출 $60,311, 순수익 $2,550, 마진율 6.21% — 2019년 1.93% 대비 3.2배 개선. 단, 매입원가 $34,482의 67%인 $23,278이 가나 세금(관세+VAT+NHIL+GETFund)에 전가</strong>. 부산-테마항 50일 콜드체인 무사고 통관 성공.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 가나 수출은 "마진 게임"이 아닌 <strong>"참치 어획 사이클의 음(陰)면 헤징 instrument"</strong>. 라니냐로 참치 어획이 저조한 분기에 고등어를 대체 단백질로 푸쉬.</p>
-<p><strong>3단계</strong>: ① Q2 성수기 2컨테이너 집중 + Q1 매입 최저가 줍줍($26.5/카톤) — 마진 16% 목표 ② B2B 직납 구조로 20% 간접세 전가 ③ 참치-고등어 cross-hedge로 연간 6컨테이너 안정 운영.</p>
+<p><strong>재정의</strong>: 가나 수출은 "마진 게임"이 아닌 <strong>"참치 어획 사이클의 음(陰)면 헤징 수단"</strong>. 라니냐로 참치 어획이 저조한 분기에 고등어를 대체 단백질로 푸쉬.</p>
+<p><strong>3단계</strong>: ① Q2 성수기 2컨테이너 집중 + Q1 매입 최저가 줍줍($26.5/카톤) — 마진 16% 시나리오 목표 ② B2B 직납 구조로 20% 간접세 전가 ③ 참치-고등어 교차 헤징으로 연간 6컨테이너 안정 운영(시나리오 추정).</p>
 </div>`,
         source: '내부 수출 시뮬레이션 · 가나 테마항 파일럿 실증 데이터 (2026 Q1)'
       }}
@@ -166,7 +166,7 @@ export default function MackerelStrategy() {
               <div className={styles.roadmapDetail}>
                 <div className={styles.detailRow}>
                   <span>선적 일정 (Lead Time 45일)</span>
-                  <span className={styles.detailValue}>전년도 4분기말 발송</span>
+                  <span className={styles.detailValue}>당해 전분기(4분기말) 선적</span>
                 </div>
                 <div className={styles.detailRow}>
                   <span>적용 매입 단가 (2025기준)</span>
@@ -174,7 +174,7 @@ export default function MackerelStrategy() {
                 </div>
                 <div className={styles.detailRow}>
                   <span>기대 수익률 (마진)</span>
-                  <span className={styles.detailValue} style={{ color: 'var(--color-info)' }}>14.5%</span>
+                  <span className={styles.detailValue} style={{ color: 'var(--color-info)' }}>14.5% (추정)</span>
                 </div>
               </div>
             </div>
@@ -197,7 +197,7 @@ export default function MackerelStrategy() {
                 </div>
                 <div className={styles.detailRow}>
                   <span>기대 수익률 (마진)</span>
-                  <span className={styles.detailValue} style={{ color: 'var(--color-success)' }}>16.0%</span>
+                  <span className={styles.detailValue} style={{ color: 'var(--color-success)' }}>16.0% (추정)</span>
                 </div>
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function MackerelStrategy() {
                 </div>
                 <div className={styles.detailRow}>
                   <span>기대 수익률 (마진)</span>
-                  <span className={styles.detailValue} style={{ color: 'var(--color-warning)' }}>12.0%</span>
+                  <span className={styles.detailValue} style={{ color: 'var(--color-warning)' }}>12.0% (추정)</span>
                 </div>
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function MackerelStrategy() {
                 </div>
                 <div className={styles.detailRow}>
                   <span>기대 수익률 (마진)</span>
-                  <span className={styles.detailValue} style={{ color: '#8B5CF6' }}>13.0%</span>
+                  <span className={styles.detailValue} style={{ color: '#8B5CF6' }}>13.0% (추정)</span>
                 </div>
               </div>
             </div>

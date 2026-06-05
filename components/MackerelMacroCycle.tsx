@@ -22,7 +22,7 @@ export default function MackerelMacroCycle() {
     return () => { clearTimeout(t); ro.disconnect(); };
   }, []);
 
-  const data = macroData as any[];
+  const data = rawData as any[];
   const latest = data[data.length - 1];
   const peak = data.reduce((a: any, b: any) => a.production_t > b.production_t ? a : b);
   const highPrice = data.reduce((a: any, b: any) => a.unit_price_usd > b.unit_price_usd ? a : b);
@@ -131,12 +131,12 @@ export default function MackerelMacroCycle() {
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>"Commodity Super-Cycle"이란 수년~수십년 단위로 반복되는 호황기·불황기·안정기 cyclical 패턴. 어종 commodity는 stock biology(자원 회복) + 기후(엘니뇨/라니냐) + 지정학(TAC·MSC)이 3축 결정 요인.</p>
-<p>실측: <strong>2000년대 피크 ${(peak.production_t / 1000000).toFixed(0)}M톤 → 2023년 ${(latest.production_t / 1000000).toFixed(1)}M톤 감소 추세. 단가 1976년 $${data[0].unit_price_usd.toLocaleString()}/t → 2023년 $${latest.unit_price_usd.toLocaleString()}/t로 ${((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승 — 현재 ${phase} 국면</strong>. 공급 감소 + 단가 상승의 stagflation 구조.</p>
+<p>"Commodity Super-Cycle"이란 수년~수십년 단위로 반복되는 호황기·불황기·안정기 사이클 패턴. 어종 commodity는 자원 회복(stock biology) + 기후(엘니뇨/라니냐) + 지정학(TAC·MSC)이 3축 결정 요인.</p>
+<p>실측: <strong>역대 피크 ${peak.year}년 ${(peak.production_t / 1000000).toFixed(1)}M톤 → 2023년 ${(latest.production_t / 1000000).toFixed(1)}M톤 감소 추세. 단가 1976년 $${data[0].unit_price_usd.toLocaleString()}/t → 2023년 $${latest.unit_price_usd.toLocaleString()}/t로 ${((latest.unit_price_usd / data[0].unit_price_usd - 1) * 100).toFixed(0)}% 상승 — 현재 ${phase} 국면</strong>. 공급 감소 + 단가 상승의 동반 압박 구조.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: ${phase}는 단기 가격 위기가 아닌 <strong>"북동대서양 stock 영구 shrinkage + 기후 phase shift의 multi-decade 신호"</strong>.</p>
-<p><strong>3단계</strong>: ① 재고 방어적 선매입 + 장기 계약 단가 고정 ② 노르웨이 TAC 삭감·한국 연근해 고수온 복합 리스크 대비 추가 매입 트리거 셋팅 ③ ENSO 전환기 어획 변동에 대비 forward 계약·OTC 어종 swap 헤지 instrument 확보.</p>
+<p><strong>재정의</strong>: ${phase}는 단기 가격 변동이 아닌 <strong>"북동대서양 자원 장기 축소 + 기후 phase shift의 복합 multi-decade 신호"</strong>로 해석 가능(자원 회복 시나리오 병존).</p>
+<p><strong>3단계</strong>: ① 재고 방어적 선매입 + 장기 계약 단가 고정 ② 노르웨이 TAC 삭감·한국 연근해 고수온 복합 리스크 대비 추가 매입 트리거 셋팅 ③ ENSO 전환기 어획 변동에 대비 forward 계약·공급선 다변화(아프리카·남미 어장 비중 확대) 우선 검토.</p>
 </div>`,
         source: "FAO FishStatJ Global Capture & Trade Statistics (1976-2023)",
       }}

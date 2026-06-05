@@ -104,12 +104,12 @@ export default function MackerelBlackhole() {
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>"Demand Black Hole(수요 블랙홀)"이란 5년 사이 수입량이 50~5000% 폭증한 신흥 시장. 인구 증가율 + 단백질 결핍 + 저소득층 식량 안보 정책이 결합해 무역 흐름이 빨려 들어가는 country cluster.</p>
-<p>실측: <strong>토고 +5,932%, 말리 +1,300%, 필리핀 +167%, 코트디부아르 +81% 5년 성장률. 가나·나이지리아 전통 마켓은 saturation 진입, 인근 서아프리카 위성 시장에 신규 무역풍 형성</strong>. early-mover advantage 가능한 window가 1~2년 한정.</p>
+<p>"수요 블랙홀"이란 5년 사이 수입량이 50~5,000% 폭증한 신흥 시장. 인구 증가율 + 단백질 결핍 + 저소득층 식량 안보 정책이 결합해 무역 흐름이 빨려 들어가는 국가군.</p>
+<p>실측: <strong>토고 +5,932%, 말리 +1,300%, 필리핀 +167%, 코트디부아르 +81% 5년 성장률. 가나·나이지리아 전통 시장은 포화 진입, 인근 서아프리카 위성 시장에 신규 무역풍 형성</strong>. 선점 우위를 확보할 수 있는 기회 창이 1~2년으로 제한적이다.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 신흥 시장은 단순 분산이 아닌 <strong>"가나·나이지리아 saturation 전환 전 서아프리카 전체 hub network lock-in 기회"</strong>.</p>
-<p><strong>3단계</strong>: ① 코트디부아르·필리핀·콩고민주공화국을 신규 전략 시장 즉시 지정 — 정기 컨테이너 수출 라인 개설 ② 300g 미만 소형어 monetization 채널로 전환 ③ 가나 거점 인프라(테마항 콜드체인) 활용해 인근 5개국 distribution hub 확장 — 서아프리카 5국 점유 영구화.</p>
+<p><strong>재정의</strong>: 신흥 시장은 단순 분산이 아닌 <strong>"가나·나이지리아 포화 전환 전 서아프리카 전체 거점 네트워크 선점 기회"</strong>.</p>
+<p><strong>3단계</strong>: ① 코트디부아르·필리핀·콩고민주공화국을 신규 전략 시장으로 즉시 지정 — 정기 컨테이너 수출 라인 개설 ② 300g 미만 소형어를 수익화 채널로 전환 ③ 가나 거점 인프라(테마항 콜드체인)를 활용해 인근 5개국 유통 허브로 확장 — 서아프리카 다국가 공급망 선점.</p>
 </div>`,
         source: "FAO FishStatJ Trade by Partner (2019-2023)",
       }}

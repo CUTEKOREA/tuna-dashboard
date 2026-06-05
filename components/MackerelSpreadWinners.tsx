@@ -78,14 +78,14 @@ export default function MackerelSpreadWinners() {
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>"가공 스프레드(Processing Spread)"란 원물 수입 단가와 가공품 수출 단가의 차이 = 가공 인프라의 ROI 측정 지표. 톤당 $1,000 미만은 단순 중계 무역, $3,000+ 는 진정한 부가가치 창출.</p>
-<p>실측: <strong>호주 $11,508/t로 최고 마진 (프리미엄 시장 침투) · 폴란드 $3,178/t · 체코 $2,558/t (동유럽 밸류업 팩토리) vs 한국은 벌크 원물 단순 재수출로 부가가치 거의 없음</strong>. 한국 가공 인프라 ROI는 글로벌 하위권.</p>
+<p>"가공 스프레드(Processing Spread)"란 원물 수입 단가와 가공품 수출 단가의 차이 = 가공 인프라 부가가치의 간접 지표. 톤당 $1,000 미만은 단순 중계 무역 수준, $3,000+ 는 고부가가치 가공 구간으로 추정.</p>
+<p>데이터 기준: <strong>호주 $11,508/t(수출량 316t 소량 — 프리미엄 틈새 시장) · 폴란드 $3,178/t · 체코 $2,558/t(동유럽 가공 밸류업)</strong>. 한국은 본 데이터셋에 포함되지 않아 직접 비교 불가; 별도 KCS 통관 데이터 교차 확인 필요.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 가공 인프라 부재는 단순 capex 부족이 아닌 <strong>"한국 어업의 글로벌 가치사슬 최하단 갇힘(Commodity Trap)"</strong>.</p>
-<p><strong>3단계</strong>: ① 폴란드 모델 벤치마킹 — HMR·구이 필레·양념 2차 가공 라인 capex 즉시 ② 호주 모델 — 저가 벌크 / 고가 프리미엄 이원화 프라이싱 ③ 5년 내 가공 스프레드 $3,000/t 돌파 — EV/EBITDA rerate 트리거.</p>
+<p><strong>방향</strong>: 단순 원물 수출(상품 경쟁)에서 벗어나 고부가가치 2차 가공(가공 스프레드 확대)으로 이동하는 것이 수익성 개선의 경로. 이를 '원자재 함정(Commodity Trap)'으로 부른다.</p>
+<p><strong>3단계</strong>: ① 폴란드 모델 벤치마킹 — HMR·구이 필레·양념 2차 가공 라인 capex 검토 ② 호주 모델 참고 — 저가 벌크 / 고가 프리미엄 이원화 프라이싱 구조 ③ 가공 스프레드 $3,000/t 수준 도달을 중기 목표로 설정해 투자 ROI 재평가 기준으로 활용.</p>
 </div>`,
-        source: "FAO FishStatJ Mackerel Import/Export Price Spread (2023)"
+        source: "FAO FishStatJ 고등어 수입·수출 단가 (2023) — 수입→수출 단가 차이를 가공 부가가치 지표로 해석한 자체 추정(illustrative); 품목 혼재 가능"
       }}
     />
   );

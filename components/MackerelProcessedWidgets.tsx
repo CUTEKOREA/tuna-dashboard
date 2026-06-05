@@ -14,7 +14,7 @@ const getKorCountry = (engName: string) => {
     'Chile': '칠레',
     'Peru': '페루',
     'China': '중국',
-    'other': '기타 식민지',
+    'other': '기타',
   };
   return map[engName] || engName;
 };
@@ -82,13 +82,13 @@ export default function MackerelProcessedWidgets() {
         icon={Factory}
         iconColor="#eab308"
         pillar="P1"
-        cardDesc="FAO FishStatJ Global Production & Non-Food Uses + IFFO — 칠레·페루 jack mackerel 어분(fishmeal) 가공 비중과 연어 양식·펫케어 매입원가 연동 구조"
+        cardDesc="FAO FishStatJ Global Production & Non-Food Uses + IFFO — 칠레·페루 고등어류(jack mackerel) 연간 가공량 추이 및 연어 양식·펫케어 매입원가 연동 구조 (자체추정 포함, illustrative)"
         telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023 + IFFO' }}
         customBody={ChartObj1}
         takeaway={{
           situation: `<div>
 <p>"Fishmeal(어분)"이란 펠라직 어종을 분쇄·건조해 만든 양식 사료·반려동물 식품 원료. 칠레/페루 jack mackerel(잭마커렐)이 글로벌 어분 시장의 단가 결정자(price setter).</p>
-<p>실측: <strong>칠레 50.7만 톤 + 페루 17.6만 톤 고등어류 조업 중 10만 톤 이상이 식용 아닌 fishmeal로 집중 가공 — 식용 시장과 어분 시장이 단일 원물 풀에서 경쟁</strong>. 연어 양식·펫케어 시장의 폭발 성장이 floor price를 영구 받쳐주는 구조.</p>
+<p>실측: <strong>칠레 50.7만 톤 + 페루 17.6만 톤(2023년 FAO FishStatJ 고등어류 가공량 기준) — 식용 시장과 어분 시장이 단일 원물 풀에서 경쟁하는 구조로, 상당 비중이 fishmeal로 가공되는 것으로 업계 추정</strong>. 연어 양식·펫케어 시장의 성장이 floor price를 지지하는 구조.</p>
 </div>`,
           actionPlan: `<div>
 <p><strong>재정의</strong>: 고등어 단가는 더 이상 "서민 식탁"이 결정하는 변수가 아닌 <strong>"연어 양식·펫케어 매입원가에 연동된 derivative commodity"</strong>.</p>
@@ -102,8 +102,8 @@ export default function MackerelProcessedWidgets() {
         icon={AlertTriangle}
         iconColor="var(--color-danger)"
         pillar="P1"
-        cardDesc="UN Comtrade + OEC — 중국의 fishmeal·식용 고등어 통합 매입 추이 (식용/사료 시장 경계 모호화 신호)"
-        telemetry={{ status: 'STATIC', syncDate: 'UN Comtrade 2023 + OEC' }}
+        cardDesc="FAO FishStatJ 가공량 통계 — 중국의 고등어 가공량 연간 추이 (훠궈·어묵 내수 수요 견인, 식용/사료 시장 경계 모호화 신호)"
+        telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023' }}
         customBody={ChartObj2}
           takeaway={{
           situation: `<div>
@@ -114,7 +114,7 @@ export default function MackerelProcessedWidgets() {
 <p><strong>재정의</strong>: 중국 가공량 폭증은 단순 경쟁 증가가 아닌 <strong>"한국이 글로벌 buyer 지위에서 price taker로 강등되는 마지막 골든 window"</strong>.</p>
 <p><strong>3단계</strong>: ① 노르웨이·아일랜드 vendor와 3~5년 장기 take-or-pay 계약 즉시 체결 — 중국 매집 전 lock-in ② 한국 가공·HMR 라인 capex 가속 — 원물 종속 → 가공품 export로 전환 ③ 일본·EU 프리미엄 시장 진출 — 중국이 진입 불가능한 brand moat 구축.</p>
 </div>`,
-          source: "FAO FishStatJ Processed volume statistics",
+          source: "FAO FishStatJ 가공량 통계",
         }}
       />
     </>

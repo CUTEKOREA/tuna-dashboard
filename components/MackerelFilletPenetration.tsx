@@ -7,6 +7,7 @@ import WidgetCard from './WidgetCard';
 import TakeawayBox from './TakeawayBox';
 import { ShoppingCart } from 'lucide-react';
 import rawData from '../data/MackerelFilletPenetration.json';
+// 데이터: 정적 JSON (업계 역산 추정치, STATIC)
 
 export default function MackerelFilletPenetration() {
   const chartData = useMemo(() => rawData, []);
@@ -31,21 +32,23 @@ export default function MackerelFilletPenetration() {
 
   return (
     <WidgetCard
-      title="순살 필렛(Fillet) HMR 체제 전환 가속"
-      subtitle="HS 코드가 병합되어 공공 통계에서는 잡히지 않는 B2C 마트 판매 데이터를 역산한, 대가리/뼈를 제거한 HMR 가공재형의 B2C 시장 침투율입니다."
+      title="순살 필렛 HMR 체제 전환 가속"
+      subtitle="가공형태별 B2C 내수 침투율 추이 (자체추정·illustrative)"
+      cardDesc="출처: 업계 역산 추정치 — HS 코드 병합으로 공공통계 미포착 B2C 마트 판매량 기반. STATIC 2025-01-01"
       icon={ShoppingCart}
+      telemetry={{ status: 'STATIC', syncDate: '2025-01-01' }}
     >
       <div style={{ width: '100%', height: 350 }}>
         {ChartArea}
       </div>
       <TakeawayBox
         situation={`<div>
-<p>"H&G(Head & Gut removed)"란 머리·내장 제거 단계로, 원물의 1차 전처리 등급. "Fillet(순살 필렛)"은 뼈·껍질까지 제거한 HMR 최종 가공품으로 B2C 직접 소비 가능한 최고 부가가치 등급.</p>
-<p>실측: <strong>1인 가구 폭증 + 에어프라이어 보급으로 재래식 H&G(원물) 소비 멸종 → 순살 필렛 내수 침투율 62% 돌파. 단순 원물 트레이딩 시대 종료, HMR 가공품 시장이 B2C 가치사슬의 본질로 전환</strong>. HS 코드 병합으로 공공통계에 포착되지 않는 sub-market 폭증.</p>
+<p>"머리·내장 제거(H&amp;G)" 단계는 원물 1차 전처리 등급이며, "순살 필렛"은 뼈·껍질까지 제거한 HMR 최종 가공품으로 B2C 직접 소비 가능한 최고 부가가치 등급입니다.</p>
+<p>업계 추정치 기준: <strong>1인 가구 증가 + 에어프라이어 보급이 맞물려 순살 필렛 내수 침투율이 2024년 62% 수준까지 상승한 것으로 추산됨.</strong> HS 코드 병합으로 공공통계에 직접 포착되지 않는 세부 시장의 구조적 전환 신호로 해석됩니다. (자체추정·illustrative — 공식 통계 아님)</p>
 </div>`}
         actionPlan={`<div>
-<p><strong>재정의</strong>: 가공은 부가 옵션이 아닌 <strong>"원물 수율 손실 리스크를 해외 패커에게 사전 전가하는 supply chain front-loading 무기"</strong>.</p>
-<p><strong>3단계</strong>: ① 노르웨이 공급망 계약 시 최소 H&G 등급 이상 spec 선확보 조항 독점 강제 ② 자동화 필레팅 라인 수율·capa 사수 capex ③ B2C HMR 필렛 직판 채널(쿠팡·마켓컬리) 직접 운영 — 60% 마진 수직 통합.</p>
+<p><strong>전략 방향</strong>: 가공은 부가 옵션이 아닌 원물 수율 손실 리스크를 해외 패커에게 사전 전가하는 공급망 선행 무기로 재정의할 수 있음.</p>
+<p><strong>검토 과제</strong>: ① 노르웨이 공급망 계약 시 H&amp;G 등급 이상 스펙 선확보 조항 검토 ② 자동화 필레팅 라인 수율·가동용량 투자 타당성 점검 ③ B2C 직판 채널(쿠팡·마켓컬리) 진출 가능성 검토 — 마진 구조는 공식 사업계획 수립 시 별도 산출 필요.</p>
 </div>`}
       />
     </WidgetCard>

@@ -163,17 +163,17 @@ export default function MackerelGhanaStrategy() {
       icon={Target}
       iconColor="var(--text-primary)"
       pillar="S5"
-      cardDesc=""
+      cardDesc="실측치: 2026.02 1x20ft 컨테이너 수출 원가·세금·매출 실기록 / 관세청 수출통계·aT 수출정보 기반 추정 (자체추정·illustrative)"
       telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
 <p>"Sub-Sahara Pelagic Protein Gap"이란 서아프리카(가나·나이지리아 등)의 단백질 결핍을 채우는 펠라직(원양·연안 표층어) 단백질 수입 의존 시장. 러시아·노르웨이 공급 cliff가 한국산 소형어의 신흥 수익원으로 전환.</p>
-<p>실측: <strong>국내 사료용 폐기되던 300g 미만 소형 고등어가 가나/나이지리아 프리미엄 단백질로 부상 — 역대 최대 14.4만 톤 수출 달성. 1컨테이너 매출 $60,311, 마진 6.21%</strong>. 지정학적 windfall과 잉여 자원 monetization이 결합한 보기 드문 구조.</p>
+<p>실측: <strong>국내 사료용 폐기되던 300g 미만 소형 고등어가 가나/나이지리아 프리미엄 단백질로 부상 — 관세청 수출통계 기준 14.4만 톤 수출(연간 추정). 이번 테스트 선적 1컨테이너 매출 $60,311, 마진 6.21%</strong>. 지정학적 windfall과 잉여 자원 monetization이 결합한 구조.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 가나 수출은 단순 dumping 아닌 <strong>"서아프리카 1억 명 단백질 시장의 30년 occupation entry"</strong>. 러시아 제재 해제 전 brand·인프라 lock-in 필수.</p>
-<p><strong>3단계</strong>: ① 가나 테마항에 글로벌 콜드체인 물류망 자체 구축 + 현지 합작 가공 공장 (3년 내) ② 냉동 원물 수출 → "Korea Pacific Mackerel" 브랜드 직접 수익 모델로 격상 ③ ODA(공적개발원조) 연계 비즈니스 선점 — 러시아 제재 해제 시 가격 경쟁 방어막 영구화.</p>
+<p><strong>재정의</strong>: 가나 수출은 단순 dumping 아닌 서아프리카 단백질 수입 시장의 장기 거점 확보 기회. 러시아 공급 공백 지속 기간 내 브랜드·인프라 구축이 선결 과제.</p>
+<p><strong>3단계</strong>: ① 가나 테마항 콜드체인 물류망 자체 구축 + 현지 합작 가공 공장 검토 (중장기) ② 냉동 원물 수출 → "Korea Pacific Mackerel" 브랜드 직납 모델로 전환 검토 ③ ODA 연계 비즈니스 가능성 탐색 — 러시아 공급 재개 시 가격 경쟁력 유지 방안 사전 검토 필요.</p>
 </div>`,
         source: "고등어 마스터 인덱스 · 관세청 수출통계 · aT 수출정보",
       }}

@@ -31,19 +31,19 @@ export default function MackerelAfricanExportROI() {
       icon={Target}
       iconColor="#ef4444"
       pillar="S3"
-      cardDesc="상해컨테이너운임지수(SCFI) 변동을 변수로 한 서아프리카(가나) 냉동고등어 20ft 컨테이너당 수출 실 마진율 시뮬레이션입니다."
+      cardDesc="상해컨테이너운임지수(SCFI) 변동 기반 서아프리카(가나) 냉동고등어 20ft 컨테이너당 수출 마진율 시뮬레이션. 자체추정(illustrative) — SCFI 연동 마진 elasticity 추정치이며 실거래 데이터가 아닙니다."
       telemetry={{ status: 'STATIC', syncDate: '2024-03' }}
       customBody={ChartObj}
       takeaway={{
         situation: `<div>
-<p>"SCFI(Shanghai Containerized Freight Index)"란 상해→글로벌 컨테이너 해상 운임 변동 벤치마크. 가나/서아프리카 라인은 hub-and-spoke가 아닌 long-leg single line이라 SCFI 변동에 마진이 1:1 종속.</p>
-<p>실측: <strong>SCFI 임계치 돌파 시 가나 수출 OPM 즉시 적자 전환 — 원물 cost가 아닌 운임이 마진의 결정 변수. 운임 elasticity 거의 1.0에 가까운 극단 구조</strong>. 일반 commodity 트레이딩 risk model은 적용 불가능 영역.</p>
+<p>SCFI(상해컨테이너운임지수)는 상해→글로벌 컨테이너 해상 운임 변동 벤치마크. 가나/서아프리카 라인은 환적 없는 단일 직항 구조라 SCFI 변동이 마진에 직접 전가되는 경향이 있음(자체 추정 모델 기반).</p>
+<p>추정: <strong>SCFI 임계치 돌파 시 가나 수출 OPM(영업이익률) 적자 전환 가능성 높음 — 원물 원가보다 운임이 마진 변동의 핵심 변수로 작용할 수 있음.</strong> 단, 본 시뮬레이션은 illustrative 추정치이며 elasticity 수치는 실거래 검증이 필요합니다.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 운임 변동은 통제 불가 외생변수가 아닌 <strong>"룰베이스 손절 자동화로 working capital을 보존할 시스템 디자인 문제"</strong>.</p>
-<p><strong>3단계</strong>: ① SCFI 내부 하한선 모델링 → 임계치 이탈 즉시 선적 force majeure급 보류 ② 보류 물량은 국내 양식장 생사료 체인으로 즉시 dump — working capital 긴급 회수 ③ 손절 rule-based switching 매뉴얼 전사 적용 + AI 자동 트리거 도입.</p>
+<p><strong>재정의</strong>: 운임 변동은 통제 불가 외생변수가 아닌 <strong>"룰베이스 손절 자동화로 운전자본을 보존할 시스템 디자인 문제"</strong>.</p>
+<p><strong>3단계 검토</strong>: ① SCFI 내부 하한선 기준 수립 → 임계치 이탈 시 선적 보류 의사결정 체계화 ② 보류 물량을 국내 생사료 체인으로 전환 — 운전자본 긴급 회수 옵션 ③ 손절 기준 매뉴얼화 + 단계적 자동화 검토. (본 시나리오는 illustrative 모델 기반 방향 제시이며, 실거래 데이터 검증 후 적용 권고.)</p>
 </div>`,
-        source: "상하이해운거래소 SCFI · 자체 운임-마진 elasticity 모델",
+        source: "상하이해운거래소 SCFI(참고) · 자체추정(illustrative) 운임-마진 elasticity 모델",
       }}
     />
   );

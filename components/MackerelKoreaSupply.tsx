@@ -97,7 +97,7 @@ export default function MackerelKoreaSupply() {
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
             <Area type="monotone" dataKey="production_t" name="🏭 국내 생산 (톤)" stroke="var(--color-info)" fill="url(#krProdGrad)" strokeWidth={2} stackId="1" />
             <Area type="monotone" dataKey="import_t" name="📦 수입량 (톤)" stroke="var(--color-danger)" fill="url(#krImpGrad)" strokeWidth={2} stackId="1" />
-            <Line type="monotone" dataKey="processed_t" name="🔪 가공 수요 데드크로스 (톤)" stroke="#ec4899" strokeWidth={3} dot={false} strokeDasharray="5 5" />
+            <Line type="monotone" dataKey="processed_t" name="🔪 가공 수요 (톤)" stroke="#ec4899" strokeWidth={3} dot={false} strokeDasharray="5 5" />
             <Line type="monotone" dataKey="self_sufficiency_pct" name="📊 자급률 (%)" stroke="#fbbf24" strokeWidth={2.5} dot={false} yAxisId="pct" strokeDasharray="3 3" />
           </ComposedChart>
         )}
@@ -107,23 +107,23 @@ export default function MackerelKoreaSupply() {
 
   return (
     <WidgetCard
-      title="🇰🇷 한국 고등어 자급률 위기 모니터"
+      title="🇰🇷 한국 고등어 자급률 하락 모니터"
       icon={AlertTriangle}
       iconColor="#f87171"
       pillar="S4"
-      cardDesc="해양수산부 수산물 자급률 통계 + KMI 수산업 전망보고서 + 통계청 어업생산동향 — 국내 생산 붕괴와 수입 의존도 급증, 자급률 데드크로스 진단"
+      cardDesc="해양수산부 수산물 자급률 통계 + KMI 수산업 전망보고서 + 통계청 어업생산동향 — 국내 생산 정체·수입 의존도 상승 추세 진단(2023년 자급률 70.2%, 자체추정 포함)"
       telemetry={{ status: 'STATIC', syncDate: '해수부 + KMI 2026 + 통계청 2024' }}
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>"자급률 데드크로스"란 국내 생산이 수입에 역전되어 수입 의존도가 50%를 초과하는 구조적 전환점. 한 번 발생하면 회복이 어려우며 모든 가격 결정력이 해외로 이전됨.</p>
-<p>실측: <strong>해양 고수온으로 연근해 총어업 53년 만의 최저치(84.1만 톤). 고등어 대형어(300g+) 비중 1~4.6% 불과 → 소매가 1만원 돌파 "금(金)등어"</strong>. 어획량보다 size composition collapse가 본질 — 소비자가 원하는 사이즈 자체가 사라짐.</p>
+<p>"자급률 하락 추세"란 국내 생산이 정체·감소하는 동안 수입 의존도가 점진적으로 상승하는 구조적 변화. 2023년 실측 자급률 70.2%(생산 20.6만 톤 대 수입 8.7만 톤) — 아직 역전은 발생하지 않았으나 2018년 이후 자급률이 70%대 초반으로 낮아진 추세는 유의해야 함.</p>
+<p>실측: <strong>해양 고수온으로 연근해 총어업이 감소세, 고등어 대형어(300g+) 비중 축소 → 소매가 급등 "금(金)등어" 현상</strong>. 어획량 감소와 함께 소비자가 원하는 크기 구성 변화가 가격 상승을 주도.</p>
 </div>`,
         actionPlan: `<div>
-<p><strong>재정의</strong>: 중소형(200~300g) 원물은 "low value" 부산물이 아닌 <strong>"1인 가구 HMR 시장의 unmonetized golden raw material"</strong>.</p>
-<p><strong>3단계</strong>: ① 200~300g 원물 즉시 매집 → 프리미엄 HMR(전자레인지 순살구이) 라인 capex ② 대형어 산지 직계약 + 선별 경매 입찰가 정밀 조정 투트랙 ③ 고수온 장기화 대비 수입 다변화 비상계획 — 자급률 데드크로스 영구화 전제.</p>
+<p><strong>재정의</strong>: 중소형(200~300g) 원물은 저가 부산물이 아닌 <strong>1인 가구 간편가정식 시장의 미활용 원료</strong>로 재포지셔닝 가능. 자급률 70%대 유지 여부가 향후 가격 협상력 핵심 변수.</p>
+<p><strong>3단계</strong>: ① 200~300g 원물 즉시 매집 → 프리미엄 간편가정식(전자레인지 순살구이) 라인 설비투자 ② 대형어 산지 직계약 + 선별 경매 입찰가 정밀 조정 투트랙 ③ 고수온 장기화 대비 수입 다변화 비상계획 — 자급률 추가 하락 시나리오 대비.</p>
 </div>`,
-        source: "고등어 마스터 인덱스 · 해양수산부 수산정보포털",
+        source: "해양수산부 수산정보포털 · 통계청 어업생산동향(자체추정 포함)",
       }}
     />
   );
