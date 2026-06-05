@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 📒 **2026-06-05 — 신뢰도 마스터플랜 Phase 0: 9 CSV → 단일 신뢰도 원장 (I-2)** [CC]:
+> - `scripts/normalize_scorecards.py`로 6종 스키마 9개 4축 CSV를 canonical 14열로 정규화 → `artifacts/trust_ledger_baseline.csv` (**707 위젯행**, value_chain은 읽기만·Antigravity 미커밋분).
+> - **사이트 베이스라인**: 평균 **73.8 · A-gate(≥85) 118/707(17%) · F(<55) 92/707(13%)**.
+> - 🔴 **최대 발견**: **salmon(59.8·F36) + shrimp(59.9·F50) = F 92개 중 86개 집중** — 신뢰도 블랙홀(다음 audit→정정 1순위). 건강: squid 81.5·jukkumi 83.8·value_chain 78.6.
+> - ⚠️ **caveat**: 원장은 audit시점 점수 — sashimi_new36은 71.8(adjusted_avg)로 표시되나 최신은 Round1+2 재채점 **78.2**(원장 미반영). 정본 reconcile 후속.
+> - **다음 단계**: salmon·shrimp audit→정정(sashimi 패턴 재사용) / Top1 I-1(verify_claims block) 착수 / 원장에 rescore 반영.
+
 > 📊 **2026-06-05 — /market (MarketDashboard.tsx) 6월 1~4일 Atuna 주요 뉴스 및 인텔리전스 업데이트 및 배포** [Antigravity]:
 > - **요청**: `https://leedonggun.co.kr/market` 페이지의 뉴스 소식을 NotebookLM의 6월 뉴스 소스를 참고하여 업데이트.
 > - **Atuna Daily Digest (ROW 3)**:
@@ -11,6 +18,8 @@
 >   - **S1 위젯**: "WCPO 선망선 마진 스퀴즈 & 슈퍼 엘니뇨·관측망 공백 위기" (어가 하락 vs 고비용, OOI 철수로 인한 어군 예측 불확실성에 대비한 매수 비축 및 dFAD 자체 추적 강화 액션플랜 반영).
 >   - **S3 위젯**: "미국 강제노동 관세 장벽 예고 및 유럽 ATQ 로인 특혜 폐지 공방" (USTR 추가 관세안 대비 ESG 검증 체계 정비 및 EU 시장 수입 급감에 따른 신흥국 판로 다변화 액션플랜 반영).
 > - **검증**: `npm run build` Turbopack production build 컴파일 통과(에러 0) 및 main 브랜치 push 성공. Vercel 자동 배포 진행 중.
+
+> 📋 **2026-06-05 — 사이트 신뢰도 향상 마스터 플랜 합성 (6차원 설계+적대검증 → 단일 기획안)** [CC]: `artifacts/RELIABILITY_MASTER_PLAN_2026_06.md` 생성. 적대검증 keep/fix 반영·cut 제외(TelemetryBadge 등급칩·675전수 라이브전환·25품목 풀세트·34대시보드 fan-out)·중복 7건 통합. 분모 확정(sashimi 68/정적import 105/빈fallback **21건** 실측). Top5 ROI: ①verify_claims warn→block(S/H) ②9 CSV 정규화+단일원장(L/H) ③빈fallback 21건 일괄패치(M/H) ④L-09 가짜LIVE 린트 pre-push(M/H, 중복통합) ⑤source 행ID 핀고정+클릭링크(M/H). 6대 이니셔티브·로드맵Phase0~3·에이전트토폴로지·거버넌스 포함. **다음 단계: I-1(verify_claims 1주 경고모드 관찰) 착수 — 사용자 승인 후.**
 
 > 📊 **2026-06-05 — sashimi 36위젯 전수 재채점 (Round1+2 정정 효과 확정)** [CC]:
 > - 전수 4축 재채점(72에이전트, 11개 schema실패→단일에이전트 보충) → **평균 71.7→78.2(+6.5) · A-gate 0/36→6/36 · F 2→0개**. 분포 A6·B15·C12·D3·F0.
