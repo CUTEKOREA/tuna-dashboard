@@ -130,8 +130,9 @@ def main():
     bgm = os.path.join(outdir, 'music', 'bgm.mp3')
     final = os.path.join(outdir, 'final.mp4')
     if os.path.exists(bgm) and not dry:
-        subprocess.run(['ffmpeg', '-y', '-i', concat, '-i', bgm,
-                        '-filter_complex', '[1:a]volume=0.18[bg];[0:a][bg]amix=inputs=2:duration=first:dropout_transition=2[a]',
+        # BGM을 -stream_loop로 영상 전체에 깔고 0.15 볼륨으로 더킹(내레이션 우선). -shortest로 영상 길이에 맞춤.
+        subprocess.run(['ffmpeg', '-y', '-i', concat, '-stream_loop', '-1', '-i', bgm,
+                        '-filter_complex', '[1:a]volume=0.15[bg];[0:a][bg]amix=inputs=2:duration=first:dropout_transition=0[a]',
                         '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-shortest', final],
                        check=True, capture_output=True)
     else:
