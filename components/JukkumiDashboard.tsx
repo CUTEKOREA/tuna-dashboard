@@ -441,7 +441,12 @@ export default function JukkumiDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const status = w.isLiveApi ? 'LIVE' : (w.reliability && w.reliability < 70 ? 'STATIC' : 'SYNCED');
+    // L-09: 이 라우트는 정적 JSON(jukkumi_real_data_v1.json)을 반환하므로 isLiveApi 기반 LIVE 표기 금지.
+    // 위젯 자체의 telemetry 필드(synced/static)를 우선 적용하고, 없으면 STATIC.
+    const status: 'live' | 'synced' | 'static' =
+      w.isLiveApi
+        ? 'static'  // 이 대시보드에서 isLiveApi=true는 허위 표기이므로 강제 static
+        : (w.telemetry === 'synced' ? 'synced' : 'static');
 
     return (
       <WidgetCard
@@ -452,7 +457,7 @@ export default function JukkumiDashboard() {
         pillar={(w.pillar || 'S1') as any}
         cardDesc={w.subtitle || w.unit ? (w.subtitle || `단위: ${w.unit}`) : '주꾸미 인텔리전스 위젯'}
         unit={w.unit ? `(단위: ${w.unit})` : undefined}
-        telemetry={{ status, syncDate: '2026-05-15' }}
+        telemetry={{ status, syncDate: w.syncDate || '2026-05' }}
         chart={renderChart(w)}
         chartHeight={375}
         takeaway={{ situation, actionPlan: takeaway, source: w.source || '' }}

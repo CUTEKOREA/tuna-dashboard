@@ -208,7 +208,7 @@ export default function JukkumiFTAQuarterly() {
       iconColor="#8b5cf6"
       pillar="S3"
       cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 주꾸미 분기별 시계열. 2025년 정체기 이후 25 Q4·26 Q1 2분기 연속 감소 — 베트남·태국 단가 동시 인상과 중국산의 침체기 점유율 회수가 동시에 진행."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={Body}
       takeaway={{
         situation: `<div>
