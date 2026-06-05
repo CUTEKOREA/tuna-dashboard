@@ -179,6 +179,15 @@
       "daily_amount": 417.35,
       "cumulative_amount": 826.85,
       "quality_notes": "제품상태:N/STAR(#1-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.S/EXP(#2-A,#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/4",
+      "work_time": "08:20 ~ 18:30",
+      "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
+      "daily_amount": 322.87,
+      "cumulative_amount": 2864,
+      "quality_notes": "S/PIO(#3-A)- 어창 개방 측정온도는 -18.0℃ ~ -21.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다.  MOAKONA(#2-B)- 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 580톤 하역 진행 예정."
     }
   ],
   "unloading_species": [
@@ -188,7 +197,7 @@
       "species_id": "SJ",
       "species_name": "Skipjack",
       "reported_amount": 6646,
-      "actual_amount": 2398.5299999999997,
+      "actual_amount": 2689.5,
       "updated_at": "2026-06-01T22:42:57.072021+00:00"
     },
     {
@@ -197,7 +206,7 @@
       "species_id": "YF",
       "species_name": "Yellowfin",
       "reported_amount": 309,
-      "actual_amount": 142.6,
+      "actual_amount": 164.5,
       "updated_at": "2026-06-01T22:42:57.072021+00:00"
     },
     {
