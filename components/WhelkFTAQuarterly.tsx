@@ -146,7 +146,7 @@ export default function WhelkFTAQuarterly() {
         </div>
         <div style={PanelStyle}>
           <div style={PanelTitle}>⚠️ 데이터 공백 주의</div>
-          <div style={PanelDesc}>2025 Q3·Q4·2026 Q1 KMI 보고서에서 골뱅이가 주요 품목 narrative에서 제외됨. <strong>KMI 통계명이 2025년부터 '골뱅이' → '고둥'으로 재분류</strong>됨. 향후 H2 데이터는 발표 시 보강 필요.</div>
+          <div style={PanelDesc}>2025 Q3·Q4·2026 Q1 KMI 보고서에서 골뱅이가 주요 품목 기재에서 제외됨. <strong>KMI 통계명이 2025년부터 '골뱅이' → '고둥'으로 재분류</strong>됨. 향후 H2 데이터는 발표 시 보강 필요.</div>
           <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(251, 191, 36, 0.08)', borderLeft: '3px solid #fbbf24', borderRadius: '4px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
             <strong style={{ color: '#fbbf24' }}>주요 사건 타임라인</strong><br/>
             <span style={{ color: 'rgba(255,255,255,0.5)' }}>2022:</span> 러-우 전쟁 공급 부족, 다운스펙 가공 시작<br/>
@@ -189,7 +189,7 @@ export default function WhelkFTAQuarterly() {
       iconColor="#fbbf24"
       pillar="S3"
       cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 골뱅이 시계열. 2020~2024 4년간 −44.3% 반토막 사이클 + 2025 H1 영국 조업 시즌 개시로 +17.6% 회복 점화 — 영국 단일 의존 심화 구간."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={Body}
       takeaway={{
         situation: `<div>
@@ -199,9 +199,9 @@ export default function WhelkFTAQuarterly() {
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 골뱅이 조달은 단가 협상이 아닌 <strong>"영국 단일 의존 84.7%·양식 불가·다년 자원 절벽이라는 삼중 제약 하에서 회복 사이클을 락인하는 시점 선점 게임"</strong>.</p>
-<p><strong>3단계</strong>: ① 2025 H1 영국 +31.6% 회복 모멘텀이 살아있을 때 <strong>다년 선도 계약(2-3년)</strong> 즉시 협상 — 단가 $11.8/kg 상단 락인하여 2026~2027 단가 +20% 추가 인상 리스크 헤지. ② 아일랜드 라인(−18.2%) 축소 대신 비중 유지 — 단가는 비싸지만 영국 충격 시 유일한 EU 대체 ($14.6/kg는 보험 비용으로 수용). ③ KMI가 2025년부터 통계명을 '고둥'으로 재분류, 주요 품목 narrative 제외 — <strong>분기 보고서가 아닌 KCS 직접 조회(HSK 1605591090) 모니터링 라인 신설</strong> 의무화.</p>
+<p><strong>3단계</strong>: ① 2025 H1 영국 +31.6% 회복 모멘텀이 살아있을 때 <strong>다년 선도 계약(2-3년)</strong> 즉시 협상 — 단가 $11.8/kg 상단 락인하여 2026~2027 단가 +20% 추가 인상 리스크 헤지. ② 아일랜드 라인(−18.2%) 축소 대신 비중 유지 — 단가는 비싸지만 영국 충격 시 유일한 EU 대체 ($14.6/kg는 보험 비용으로 수용). ③ KMI가 2025년부터 통계명을 '고둥'으로 재분류, 주요 품목 기재 제외 — <strong>분기 보고서가 아닌 KCS 직접 조회(HSK 1605591090) 모니터링 라인 신설</strong> 의무화.</p>
 </div>`,
-        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4~2025 Q2 (골뱅이 narrative 포함 16개 분기) · HSK 1605591090 기타 조제저장처리 골뱅이',
+        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4~2025 Q2 (골뱅이 기재 포함 16개 분기) · HSK 1605591090 기타 조제저장처리 골뱅이',
       }}
     />
   );

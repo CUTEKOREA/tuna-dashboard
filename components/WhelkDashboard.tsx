@@ -157,8 +157,8 @@ export default function WhelkDashboard() {
             background: '#181818', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ECB81', boxShadow: '0 0 8px #0ECB81', animation: 'pulse 2s infinite' }} />
-            <span>5 APIs <span style={{ color: '#0ECB81' }}>Connected</span></span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#64748b' }} />
+            <span>5개 출처 <span style={{ color: '#94a3b8' }}>STATIC</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>KCS · IFCA · MMO · EFSA · aT FIS</span>
           </div>
@@ -172,7 +172,7 @@ export default function WhelkDashboard() {
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>영국산 수입 의존도</span>
-            <TelemetryBadge status="live" />
+            <TelemetryBadge status="synced" syncDate="2024.2H" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>52.1%</div>
           <div style={{ fontSize: '0.88rem', color: 'var(--color-info)', fontWeight: 600 }}>
@@ -185,7 +185,7 @@ export default function WhelkDashboard() {
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>영국산 평균 입고단가</span>
-            <TelemetryBadge status="live" />
+            <TelemetryBadge status="synced" syncDate="2024.2H" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>$12.8/kg</div>
           <div style={{ fontSize: '0.88rem', color: 'var(--color-success)', fontWeight: 600 }}>
@@ -228,7 +228,7 @@ export default function WhelkDashboard() {
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#a78bfa' }}>{kfasWidgets.length}건</div>
           <div style={{ fontSize: '0.88rem', color: '#8b5cf6', fontWeight: 600 }}>
-            <span style={{ background: '#8b5cf620', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>신뢰도 100%</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>수산과학원</span>
+            <span style={{ background: '#8b5cf620', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>학술 검증</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>국립수산과학원</span>
           </div>
         </div>
       </div>
