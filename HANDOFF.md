@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🦐 **2026-06-05 — shrimp 신뢰도 블랙홀 실감사+정정 (stub 폭로→실측→정직화)** [CC]:
+> - 원장이 지목한 salmon/shrimp F블랙홀 진단 → **shrimp 스코어카드가 stub**(avg 9개 고유값·widget_id 공란·127행 vs 실제 위젯수 불일치) 폭로.
+> - **shrimp 실감사**(7파일 137위젯): 평균 **65.72 · 진짜 F 32개**(하드코딩 목업·유령출처 'FAO Aquaculture Processing Engine'·차트-SIT 모순·'2024 절대바닥' 환각·dead telemetry prop).
+> - **정정**(6파일·66 edits·53 F/D위젯): 목업→'자체추정/illustrative' 라벨·유령출처 제거(35)·차트-SIT 모순 해소(24)·환각 헷지·무책임 TAK 톤다운. 날조 금지·STATIC 유지·`npm run build` ✓.
+> - **재채점**: 평균 65.72→**71.92(+6.2) · F 32→17(절반)** · A 14→21. **사이트 전체: 평균 73.8→76.0 · F 92→59 · A-gate 118→138.**
+> - ⚠️ **남은 17 F**: 정직 라벨됐으나 데이터가 구조적 illustrative(Tab45 가정치·ShrimpDashboard reliability:100/synced↔illustrative 라벨 모순) — 정직화 천장. 실데이터 연동/제거 필요(깊은 결정).
+> - **다음**: ShrimpDashboard telemetry 과대표기(reliability:100 vs illustrative) 수정 / salmon 실감사 / 잔존 illustrative 위젯 처리 결정. 배포 보류(로컬).
+
 > 📒 **2026-06-05 — 신뢰도 마스터플랜 Phase 0: 9 CSV → 단일 신뢰도 원장 (I-2)** [CC]:
 > - `scripts/normalize_scorecards.py`로 6종 스키마 9개 4축 CSV를 canonical 14열로 정규화 → `artifacts/trust_ledger_baseline.csv` (**707 위젯행**, value_chain은 읽기만·Antigravity 미커밋분).
 > - **사이트 베이스라인**: 평균 **73.8 · A-gate(≥85) 118/707(17%) · F(<55) 92/707(13%)**.

@@ -8,7 +8,7 @@ import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // W11: TradeVolLong
 export const W11_TradeVolLong = () => (
-  <WidgetCard title="수출입 물동량 롱텀 트렌드" icon={Truck} term="Trade Volume LT" desc="1976년 이후 물동량" source="FAO Trade Timeline Qty" situation="스마트 양식 기술의 대량생산과 글로벌 콜드체인(Cold Chain) 물류망의 결합으로 거시적 관점의 수출 물동량(Trade Volume) 곡선이 구조적 메가 트렌드(Mega-trend)에 진입했습니다." actionPlan="[Commoditization Arbitrage] 새우 원물 자체의 강한 글로벌 상품화(Commoditization)가 종료되었습니다. 복잡한 현지 생산 라인보다는 글로벌 환율 및 판가 스프레드를 타겟팅하는 환차익 무역(Arbitrage Trading) 데스크에 자본금(Capital)을 우선 배치." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="수출입 물동량 롱텀 트렌드" icon={Truck} term="Trade Volume LT" desc="1976~2023년 글로벌 수출입 통관량(톤)" source="FAO FishStatJ 무역 시계열(수출입 물량, 1976~2023) · STATIC, 동기화 2026-05-29" situation="글로벌 새우 수출 통관량은 1976년 약 32만 톤에서 2023년 약 396만 톤으로 장기 우상향했고, 수입 물량도 동반 확대되며 양식 대량생산과 콜드체인 물류망 확장이 구조적 추세로 이어지고 있습니다." actionPlan="[상품화 차익] 새우 원물의 글로벌 상품화가 성숙기에 진입했습니다. 현지 생산 라인 신설보다 환율·판가 스프레드를 겨냥한 무역 차익(아비트라지) 데스크에 자본을 우선 배치하는 전략을 검토하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={tradeQtyMerged} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
@@ -26,7 +26,7 @@ export const W11_TradeVolLong = () => (
 
 // W12: TradeUsdLong
 export const W12_TradeUsdLong = () => (
-  <WidgetCard title="무역 거래대금 롱텀 트렌드" icon={DollarSign} term="Trade Value LT" desc="1976년 이후 달러 환산 규모" source="FAO Trade Timeline USD" situation="단순 수율 향상을 초월하는 초정밀 탈각/포장 밸류에드(Value-Add) 공정의 고도화로, 물리적 톤수(Volume) 대비 절대적 달러 가치(Value)의 상승 계수(Multiplier)가 으로 치솟고 있습니다." actionPlan="[Processing Hub Internalization] 단순 포대(Bulk) 수입 브로커리지 모델은 폐기해야 합니다. 수입 1차 원물을 국내 허브 클린룸에서 B2C 프리미엄 팩으로 소분(Re-packaging)하여 스프레드 마진을 100% 흡수하는 자체 밸류에드 라인(Value-Add Line)을 구축." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="무역 거래대금 롱텀 트렌드" icon={DollarSign} term="Trade Value LT" desc="1976~2023년 달러 환산 수출입 거래대금" source="FAO FishStatJ 무역 시계열(수출입 거래대금, 1976~2023) · STATIC, 동기화 2026-05-29" situation="물리적 톤수 대비 달러 거래대금이 장기적으로 더 가파르게 상승해, 탈각·포장 등 가공 고도화가 단위가치를 끌어올리는 추세를 보였습니다. 수출·수입 거래대금이 동반 확대되며 시장 규모가 구조적으로 커졌습니다." actionPlan="[가공 허브 내재화] 단순 벌크 수입 브로커리지 모델 의존도를 낮추십시오. 수입 1차 원물을 국내 허브에서 B2C 프리미엄 팩으로 소분해 스프레드 마진을 내부화하는 밸류에드 라인 구축을 검토하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={tradeUsdMerged} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
@@ -35,6 +35,7 @@ export const W12_TradeUsdLong = () => (
         <RechartsTooltip contentStyle={tooltipStyle} />
         <Legend wrapperStyle={{ fontSize: 11 }} />
         <Area type="monotone" dataKey="export" name="수출 대금($)" stroke="var(--color-warning)" fill="var(--color-warning)" fillOpacity={0.4} />
+        <Area type="monotone" dataKey="import" name="수입 대금($)" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.25} />
       </AreaChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -42,7 +43,7 @@ export const W12_TradeUsdLong = () => (
 
 // W13: RecentTradeQty
 export const W13_RecentTradeQty = () => (
-  <WidgetCard title="최근 5개년 무역 물동량" icon={TrendingUp} term="Recent Qty" desc="최근 5년간 수출입 톤수 비교" source="FAO Recent Trade Data" situation="팬데믹(COVID-19) 및 지정학적 물류 대란(Disruption)이라는 매크로 쇼크에도 기초 소비 물동량의 훼손이 전혀 발생하지 않는 극단적인 필수재(Inelastic Good) 방어력을 입증했습니다." actionPlan="[Speculative Inventory Operation] 수급 펀더멘털의 미스매치(Mismatch)가 발생하는 마이크로 윈도우를 포착하십시오. 물동량의 병목(Bottleneck) 구간에서 냉동 보관 주차를 극단적으로 조절하는 전술적 롱 포지션(Speculative Long Position) 투기 전략을 승인합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="최근 5개년 무역 물동량" icon={TrendingUp} term="Recent Qty" desc="2019~2023년 수출입 물량(톤) 비교" source="FAO FishStatJ 무역 데이터(2019~2023) · STATIC, 동기화 2026-05-29" situation="팬데믹과 지정학적 물류 대란 국면에서도 2019~2023년 기초 소비 물동량의 큰 훼손 없이 유지되어, 새우의 비교적 낮은 수요 탄력성(필수재 성격)을 시사합니다." actionPlan="[재고 운영 정교화] 수급 미스매치가 발생하는 구간을 모니터링하되, 검증되지 않은 투기성 포지션은 지양하고 냉동 보관·조달 타이밍을 조절하는 운영 차원의 재고 헤지로 한정하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={recent5yr} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
@@ -60,7 +61,7 @@ export const W13_RecentTradeQty = () => (
 
 // W14: RecentTradeUsd
 export const W14_RecentTradeUsd = () => (
-  <WidgetCard title="최근 5개년 무역 달러 규모" icon={DollarSign} term="Recent Value" desc="최근 5년간 거래 대금 단위 비교" source="FAO Recent Trade Data" situation="초인플레이션 국면에서 판가를 100% 전가(Pass-through)할 수 있는 최강의 헤지(Hedge) 자산으로, 전년 동기 대비 USD 거래 스케일의 레벨업(Level-up) 랠리가 지속 중입니다." actionPlan="[Trade Finance Preemption] 전사 재무 데스크(Treasury)에 즉시 지시하십시오. 폭증하는 수입 대금 스케일을 감당하기 위해 글로벌 은행의 무역 금융(Trade Finance) 한도 및 L/C 라인을 현재 대비 최소 30% 이상 선제적 오버부킹(Overbooking) 해야 캐시 플로우 마비를 막습니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="최근 5개년 무역 달러 규모" icon={DollarSign} term="Recent Value" desc="2019~2023년 수출입 거래대금(USD) 비교" source="FAO FishStatJ 무역 데이터(거래대금, 원자료 천USD 단위, 2019~2023) · STATIC, 동기화 2026-05-29" situation="2019~2023년 USD 거래 규모가 물량 대비 상대적으로 견조하게 유지되어 단가 전가가 일정 부분 작동했음을 시사합니다. 다만 '판가 100% 전가' 같은 단정은 본 데이터로 직접 확인되지 않습니다." actionPlan="[무역 금융 선제 관리] 수입 대금 규모 확대에 대비해 무역 금융 한도와 L/C 라인을 점검하되, 일률적 오버부킹 대신 실제 조달 계획에 연동한 단계적 한도 확보를 권고합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={recent5yr} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
@@ -78,7 +79,7 @@ export const W14_RecentTradeUsd = () => (
 
 // W15: ExpTop10Qty
 export const W15_ExpTop10Qty = () => (
-  <WidgetCard title="글로벌 수출 물량 Top 10" icon={Truck} term="Export Volume" desc="가장 많이 수출하는 국가" source="FAO Trade Recent" situation="에콰도르(LATAM)와 인도(Asia) 양대 국가가 글로벌 덤핑 출하 물량의 50%를 장악하며 글로벌 공급을 쌍끌이하는 강한 양강 체제(Duopoly)를 구축했습니다." actionPlan="[Targeted Long-Term Contracting] 신규 벤더 확충 시 동남아권 브로커리지를 패스하십시오. 물량의 정점인 에콰도르 과야킬(Guayaquil) 메이저 수출 팩토리(Supplier) 대표단과의 다이렉트 롱텀(Long-term) 독점 소싱 계약에 협상 자원을 전면 투입해야 합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="글로벌 수출 물량 Top 10" icon={Truck} term="Export Volume" desc="수출 물량(톤) 상위 10개국" source="FAO FishStatJ 무역 데이터(수출 물량 상위국, 2023) · STATIC, 동기화 2026-05-29" situation="에콰도르와 인도 양대 국가가 수출 물량 Top 10 합계의 약 60%를 차지하며 공급을 주도합니다(Top 10 기준이며 전 세계 전량 대비 비중은 아님). 두 나라 중심의 강한 양강 구조가 관측됩니다." actionPlan="[전략적 장기 계약] 신규 벤더 확충 시 물량 정점인 에콰도르 주요 수출 팩토리와의 다이렉트 장기 소싱 계약에 협상 자원을 우선 배치하는 방안을 검토하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topExportersQty} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
@@ -94,7 +95,7 @@ export const W15_ExpTop10Qty = () => (
 
 // W16: ImpTop10Qty
 export const W16_ImpTop10Qty = () => (
-  <WidgetCard title="글로벌 수입 물량 Top 10" icon={ShoppingCart} term="Import Volume" desc="가장 많이 블랙홀처럼 빨아들이는 국가" source="FAO Trade Recent" situation="미국, 중국, 유럽연합(EU) 3대 메가 컨슈머 마켓이 전 세계 새우 물동량을 진공청소기처럼 빨아들이는 극단적인 수요 쏠림(Demand Tri-Polarization) 상태입니다." actionPlan="[Macro Disruption Arbitrage] 미중 무역 전쟁 텐션 및 중국의 내부 소비 셧다운 시 글로벌 시장에 강제 출하되는 '고아 물량(Orphaned Cargo)'을 실시간 모니터링 하십시오. 이를 초저가 덤핑으로 가로채어 한국 로컬 마켓에 쏟아붓는 극강의 아비트라지 채널을 세팅해야 합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="글로벌 수입 물량 Top 10" icon={ShoppingCart} term="Import Volume" desc="수입 물량(톤) 상위 10개국" source="FAO FishStatJ 무역 데이터(수입 물량 상위국, 2023) · STATIC, 동기화 2026-05-29" situation="미국·중국이 양대 수입 마켓을 형성하고, 데이터상 유럽은 단일 EU 집계가 아니라 스페인·프랑스·독일·네덜란드 등 개별 국가로 분산되어 있습니다. 수요가 소수 거대 시장에 집중되는 구조입니다." actionPlan="[수급 변동 대응] 미중 무역 긴장이나 중국 내수 둔화로 글로벌 시장에 풀리는 잉여 물량을 모니터링해, 한국 로컬 수요에 맞춘 기회적 조달 채널을 점검하는 방안을 검토하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topImportersQty} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
@@ -110,7 +111,7 @@ export const W16_ImpTop10Qty = () => (
 
 // W17: ExpTop10Usd
 export const W17_ExpTop10Usd = () => (
-  <WidgetCard title="글로벌 수출 달러 파워 Top 10" icon={DollarSign} term="Export Value" desc="수출 금액(USD) 기준 랭킹" source="FAO Trade Recent" situation="순수 톤수(Volume) 랭킹을 완전히 무시하는, 초고정밀 탈각/자숙 밸류에드(Value-Add) 마진 장착 국가들의 경이적인 달러 매출 점유율 전복(Disruption) 현상이 목격됩니다." actionPlan="[Margin Defense via Value-Add Sourcing] 원물 단가 싸움에서 패배를 인정하십시오. 무식한 캐파를 앞세운 에콰도르 대신, 가공 기술의 정점에 선 베트남/태국 팩토리의 완제품(Finished Goods) 브랜드를 B2B로 다이렉트 꽂아 넣는 것이 로컬 마진(OPM) 수성에 절대적으로 유리합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="글로벌 수출 달러 파워 Top 10" icon={DollarSign} term="Export Value" desc="수출 금액(USD) 기준 상위 10개국" source="FAO FishStatJ 무역 데이터(수출 거래대금 상위국, 2023) · STATIC, 동기화 2026-05-29" situation="물량 순위와 달러 매출 순위가 일부 어긋나, 탈각·자숙 등 가공 부가가치를 더한 국가들이 금액 기준에서 상대적으로 강세를 보입니다(데이터상 에콰도르가 수출 금액 1위)." actionPlan="[부가가치 소싱으로 마진 방어] 원물 단가 경쟁 일변도 대신, 가공 역량이 높은 베트남·태국 팩토리의 완제품 브랜드를 B2B로 직접 연계하는 것이 로컬 영업이익률 방어에 유리할 수 있습니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topExportersUsd} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
@@ -126,7 +127,7 @@ export const W17_ExpTop10Usd = () => (
 
 // W18: ImpTop10Usd
 export const W18_ImpTop10Usd = () => (
-  <WidgetCard title="글로벌 수입 지출 달러 파워 랭킹" icon={Flag} term="Import Value" desc="달러를 가장 많이 쓰는 수입국" source="FAO Trade Recent" situation="한국도 무시할 수 없는 수준(Top 10 끝자락)으로 많은 외환 기재를 수입 새우에 태우고 있습니다." actionPlan="단순 수입을 넘어, 한국 본사 자본으로 베트남이나 인니에 선급금(Pre-funding)을 지급하고 통물량을 장악하는 글로벌 트레이딩 하우스 입지를 굳히십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="글로벌 수입 지출 달러 파워 랭킹" icon={Flag} term="Import Value" desc="수입 금액(USD) 기준 상위 10개국" source="FAO FishStatJ 무역 데이터(수입 거래대금 상위국, 2023) · STATIC, 동기화 2026-05-29" situation="데이터상 한국은 수입 금액 기준 약 7위로, 미국·중국·일본 등 거대 수입국에 이어 상위권에서 적지 않은 외환을 새우 수입에 지출하고 있습니다." actionPlan="단순 수입을 넘어, 본사 자본으로 베트남·인도네시아 등에 선급금을 지급해 조달 물량 확보력을 키우는 트레이딩 하우스 입지 강화를 검토하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topImportersUsd} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
@@ -142,7 +143,7 @@ export const W18_ImpTop10Usd = () => (
 
 // W19: TradeBalance
 export const W19_TradeBalance = () => (
-  <WidgetCard title="주요 국가간 무역수지(Surplus) 흑적자 현황" icon={Scale} term="Trade Surplus" desc="수출액 - 수입액" source="FAO Data Processed" situation="절대적 흑자를 기록하는 공급 허브와, 블랙홀처럼 빨아들여 적자를 내는 거대 소비 시장(미/일/유)의 양극화 구조." actionPlan="수출 흑자국(공급 파워셀러)과 수입 적자국(소비 타겟)을 연결하는 크로스보더(Cross-border) 브로커리지 팀을 신설하여 물류 마진을 추가 창출." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="주요 국가간 무역수지(Surplus) 흑적자 현황" icon={Scale} term="Trade Surplus" desc="수출액 Top10 − 수입액 Top10 매칭 차액(자체 산출, 근사치)" source="FAO FishStatJ 수출·수입 거래대금 상위국 매칭 차액(자체 산출) · 한쪽 Top10에만 포함된 국가는 반대편이 0으로 처리되어 실제 전체 무역수지와 다를 수 있음 · STATIC, 동기화 2026-05-29" situation="수출 상위국은 흑자, 거대 소비국(미국·일본 등)은 적자로 나타나는 공급-소비 양극화가 관측됩니다. 단, 본 차액은 수출·수입 상위 10개국만 매칭한 근사치로, 한쪽 순위에만 든 국가는 반대편 값이 0으로 처리되어 정밀 무역수지와는 차이가 있습니다." actionPlan="수출 흑자국(공급)과 수입 적자국(소비)을 잇는 크로스보더 브로커리지로 물류 마진을 추가 창출하는 방안을 검토하십시오." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={tradeBalanceCountry.slice(0, 10).concat(tradeBalanceCountry.slice(-3))} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
@@ -162,14 +163,14 @@ export const W19_TradeBalance = () => (
 
 // W20: TradeCAGR
 export const W20_TradeCAGR = () => (
-  <WidgetCard title="무역 팽창 엔진 (CAGR 속도계)" icon={TrendingUp} term="Compound Annual Growth Rate" desc="수출 물동량 장기 연평균 성장률" source="FAO Data Processed" situation={`1976년 이래 새우 글로벌 무역 물동량은 연평균 성장률 약 8%라는 경이로운 장기 우상향 복리 엔진을 가동해 왔습니다.`} actionPlan="수산업 전 종목 중 가장 강력한 복리 방어력을 가진 상품입니다. 사모펀드 자금을 유치하여 창고 인프라를 무한 확장하더라도 미스매칭(Mismatching) 리스크가 0에 수렴합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="무역 팽창 엔진 (CAGR 속도계)" icon={TrendingUp} term="Compound Annual Growth Rate" desc="수출 물량 장기 연평균 성장률(1976~2023, 자체 산출)" source="FAO FishStatJ 수출 물량 시계열(1976~2023) 기반 CAGR 자체 산출 · STATIC, 동기화 2026-05-29" situation={`1976~2023년 글로벌 새우 수출 물량은 연평균 약 ${cagr1976}%로 장기 우상향했습니다. 다만 1976년 기저(약 32만 톤)가 작아 초기 구간의 성장률 영향이 큰 점은 감안해야 합니다.`} actionPlan="장기적으로 견조한 성장세를 보인 품목이나, 단가·수급 변동 리스크는 상존하므로 창고·인프라 확장은 수요 가시성에 연동해 단계적으로 진행하는 것을 권고합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '8px' }}>1976 - Present CAGR</div>
       <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--color-warning)', fontFamily: 'monospace' }}>
         +{cagr1976}%
       </div>
       <div style={{ fontSize: '13px', color: '#cbd5e1', marginTop: '16px', textAlign: 'center', padding: '0 20px' }}>
-        전통 수산업 중 <strong>유일하게 침체기를 모르는</strong> 우하향 불가역 섹터. 매일 배럴 단위로 소비량이 증가합니다.
+        수산물 중 <strong>장기 우상향 추세</strong>가 비교적 견조한 섹터로, 양식 확대와 글로벌 소비 증가가 성장을 뒷받침해 왔습니다.
       </div>
     </div>
   </WidgetCard>

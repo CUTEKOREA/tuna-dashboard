@@ -56,7 +56,7 @@ export const W03_AquaValue = () => (
 
 // W04: AquaShare
 export const W04_AquaShare = () => (
-  <WidgetCard title="양식 침투율(Aquaculture Share)" icon={TrendingUp} term="Aqua Penetration" desc="전체 생산 중 양식이 차지하는 비중" source="FAO FishStatJ - Timeline Analysis" situation="글로벌 새우 공급망의 65% 이상이 양식업 베이스로 완전히 재편(Market Penetration)되며, 양식 매입원가 경쟁력이 시장의 표준(Standard)으로 자리 잡았습니다." actionPlan="[Two-Track SCM Strategy] 포트폴리오를 철저히 이원화(Two-track)하십시오. 자연산은 최고가 파인다이닝향 니치 마켓(Niche Market) 전용으로 격리하고, 볼륨을 책임지는 B2B 프랜차이즈 체인은 100% 매입원가 통제가 가능한 양식 기반 SCM으로 전면 개편(Restructuring)해야 생존 가능합니다. (Re-rating Expected)" telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="양식 침투율(Aquaculture Share)" icon={TrendingUp} term="Aqua Penetration" desc="전체 생산 중 양식이 차지하는 비중" source="FAO FishStatJ 양식·어획 시계열 (양식÷(양식+어획) 자체 산출)" situation="FAO 시계열 기준 글로벌 새우 생산의 양식 비중은 2024년 약 74.9%로, 공급망의 3분의 2 이상이 양식 베이스로 재편되며 양식 매입원가 경쟁력이 시장의 표준(Standard)으로 자리 잡았습니다. (산출 기준에 따라 비중이 달라질 수 있어 차트 시계열 정의를 기준으로 표기)" actionPlan="[Two-Track SCM Strategy] 포트폴리오를 철저히 이원화(Two-track)하십시오. 자연산은 최고가 파인다이닝향 니치 마켓(Niche Market) 전용으로 격리하고, 볼륨을 책임지는 B2B 프랜차이즈 체인은 100% 매입원가 통제가 가능한 양식 기반 SCM으로 전면 개편(Restructuring)해야 생존 가능합니다. (Re-rating Expected)" telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={aquaShareData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
@@ -105,7 +105,7 @@ export const W06_Top10Aqua = () => (
 
 // W07: Top10Cap
 export const W07_Top10Cap = () => (
-  <WidgetCard title="자연산 어획 잔존 세력 Top 10" icon={Anchor} term="Capture Remnants" desc="야생 새우 어획 선단 유지 국가" source="FAO FishStatJ - Capture by Country" situation="범용 양식업의 폭발적 팽창 속에서도, 중국과 아르헨티나는 거대 조업 선단을 활용해 붉은새우(Argentine Red Shrimp) 등 고부가가치 특수 어종 생태계(Niche Market)를 강력하게 장악하고 있습니다." actionPlan="[Targeted Allocation Strategy] 양식(Vannamei)과 자연산 붉은새우(Argentine Red)의 타겟 소비층(Target Audience)은 완전히 디커플링(Decoupling)되어 있습니다. B2B 하이엔드 파인다이닝 전용으로 자연산 희귀 어획 물량을 독점 락인하여 초격차 경쟁력을 확보." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="자연산 어획 잔존 세력 Top 10" icon={Anchor} term="Capture Remnants" desc="야생 새우 어획 선단 유지 국가" source="FAO FishStatJ 국가별 어획량(국가 합계, 어종 분해 없음)" situation="범용 양식업의 폭발적 팽창 속에서도 중국(약 57.8만t)과 아르헨티나(약 22.2만t)가 자연산 새우 어획 상위 국가를 유지하고 있습니다. (본 차트는 국가 합계 어획량으로, 붉은새우 등 특정 어종 단위 비중은 어종 분해 데이터가 없어 직접 확인되지 않음.)" actionPlan="[자연산 니치 포지셔닝] 자연산 어획과 양식(흰다리새우)의 타겟 소비층은 사실상 분리되어 있습니다. 아르헨티나 등 자연산 어획 강국과의 소싱 라인을 확보해 B2B 하이엔드·파인다이닝 전용 희귀 물량을 선점하는 전략이 유효합니다." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Cap} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
@@ -137,7 +137,7 @@ export const W08_Top10AquaVal = () => (
 
 // W09: CapCeiling
 export const W09_CapCeiling = () => (
-  <WidgetCard title="자연산 어획량 정체 한계선(Ceiling)" icon={Activity} term="Catch Ceiling" desc="환경적 요인으로 인한 어획 한계" source="FAO FishStatJ - Capture Timeline Analysis" situation="극심한 해양 생태계 파괴 여파로 지난 20년간 글로벌 자연산 어획량은 3.5M 톤(Tonnes)의 강한 횡보 박스권(Stagnation Box)에 갇혀 한계치(Ceiling)에 도달했습니다." actionPlan="[ESG Premium Exploitation] 자연산 새우의 희소 가치(Scarcity Value)는 영구적으로 치솟을 것입니다. MSC(해양관리협의회) 지속가능성 라벨링이 가능한 합법적 조업 쿼터를 프리미엄 가격에 선제 싹쓸이(Buyout)하여 럭셔리 VVIP 라인업을 즉각 런칭." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="자연산 어획량 정체 한계선(Ceiling)" icon={Activity} term="Catch Ceiling" desc="환경적 요인으로 인한 어획 한계" source="FAO FishStatJ 자연산 어획 시계열 (한계선은 자체 표기 박스권 상단)" situation="지난 20년간(2004년 이후) 글로벌 자연산 새우 어획량은 약 2.75~3.63M톤 박스권에서 횡보하고 있으며, 2024년은 약 3.18M톤입니다. 차트의 3.5M톤 선은 과학적 생태 한계가 아니라 관측 박스권 상단을 표시한 자체 참고선입니다." actionPlan="[ESG Premium Exploitation] 자연산 새우의 희소 가치(Scarcity Value)는 영구적으로 치솟을 것입니다. MSC(해양관리협의회) 지속가능성 라벨링이 가능한 합법적 조업 쿼터를 프리미엄 가격에 선제 싹쓸이(Buyout)하여 럭셔리 VVIP 라인업을 즉각 런칭." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={captureCeiling} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
@@ -146,7 +146,7 @@ export const W09_CapCeiling = () => (
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} domain={[0, 'auto']} />
         <RechartsTooltip contentStyle={tooltipStyle} />
         <Bar dataKey="value" fill="#64748b" opacity={0.6} />
-        <ReferenceLine y={3500000} stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '생태계 허용 한계량 (3.5M Ton)', fill: 'var(--color-danger)', fontSize: 11 }} />
+        <ReferenceLine y={3500000} stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '관측 박스권 상단 (약 3.5M톤, 자체 표기)', fill: 'var(--color-danger)', fontSize: 11 }} />
       </ComposedChart>
     </SafeResponsiveContainer>
   </WidgetCard>
@@ -154,7 +154,7 @@ export const W09_CapCeiling = () => (
 
 // W10: HHI
 export const W10_HHI = () => (
-  <WidgetCard title="글로벌 생산 SCM 집중도 (HHI Index)" icon={Target} term="HHI Concentration" desc="Herfindahl-Hirschman Index 독점 체제 분석" source="Macro Intelligence Data derived from FAO" situation={`[HHI Supply Concentration] 현재 글로벌 HHI(허핀달-허쉬만 지수)는 약 ${Math.round(hhi)} 포인트 수준으로, 메이저 상위 3개국이 전체 서플라이 체인의 멱법칙(Power Law)을 완벽히 주도하는 강력한 중독점(Oligopoly) 체제를 시사합니다.`} actionPlan="[Supply Chain Diversification Leverage] 공급망 다변화(Supply Chain Diversification) 헷징(Hedging)을 위해 멕시코, 베트남 등 '고성장 신흥 기지'의 Tier-2 벤더 물량을 의무적으로 15% 이상 할당(Allocation)하여, 메이저 3국과의 단가 협상 시 강력한 지렛대(Negotiation Leverage)로 활용." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
+  <WidgetCard title="글로벌 생산 SCM 집중도 (HHI Index)" icon={Target} term="HHI Concentration" desc="Herfindahl-Hirschman Index 독점 체제 분석" source="FAO FishStatJ 국가별 생산량 기반 HHI 자체 산출(Σ(점유율%)²)" situation={`[HHI 공급 집중도] FAO 생산량으로 산출한 글로벌 HHI(허핀달-허쉬만 지수)는 약 ${Math.round(hhi)} 포인트로, 통상 기준(HHI<1500=비집중·경쟁적)상 아직 비집중 구간입니다. 다만 중국·에콰도르·인도 상위 3개국이 물량의 상당 부분을 점유해 집중도가 점진적으로 높아지는 추세이므로, 특정국 공급 충격에 대한 모니터링은 여전히 필요합니다.`} actionPlan="[Supply Chain Diversification Leverage] 공급망 다변화(Supply Chain Diversification) 헷징(Hedging)을 위해 멕시코, 베트남 등 '고성장 신흥 기지'의 Tier-2 벤더 물량을 의무적으로 15% 이상 할당(Allocation)하여, 메이저 3국과의 단가 협상 시 강력한 지렛대(Negotiation Leverage)로 활용." telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}>
     <div style={{ padding: '0 10px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
         <span style={{ color: '#94a3b8', fontSize: '12px' }}>Total Volume</span>

@@ -295,133 +295,6 @@ sashimi_new36,SasOlClimateMigration,기후 어장 이동 — 가다랑어 동·�
 sashimi_new36,SasPrAuctionDirect,경매 가격발견 vs 직거래 부두값,S4,STATIC,74.0,58.0,72.0,88.0,59.75,F,sashimi_new36_4axis_scores.csv,forensic_4axis_audit,audit_avg=73.0;p0=0;p1=4;p2=3
 sashimi_new36,SasPrGradeBySpecies,어종별 사시미 등급 결정 요인,S4,STATIC,53.0,80.0,44.0,80.0,64.25,C,sashimi_new36_4axis_scores.csv,forensic_4axis_audit,audit_avg=69.5;p0=0;p1=2;p2=2
 sashimi_new36,SasPrGradeSystem,참치 사시미 등급 체계 (#1~#3),S4,STATIC,74.0,72.0,74.0,85.0,76.25,C,sashimi_new36_4axis_scores.csv,forensic_4axis_audit,audit_avg=69.5;p0=0;p1=1;p2=3
-shrimp,-,FTA 새우 분기별 수입 동향 (KMI 21개 분기),S3,,90.0,95.0,80.0,100.0,91.2,A,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,수생태계 메가트렌드 (1970-2022),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,어획(Capture) vs 양식(Aqua) 크로스오버,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,새우 양식업 본질가치(Value) 성장,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,양식 침투율(Aquaculture Share),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 생산 Top 10 국가,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 양식업 Top 10 기지,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,자연산 어획 잔존 세력 Top 10,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,양식업 부가가치 창출 Top 10,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,자연산 어획량 정체 한계선(Ceiling),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 생산 SCM 집중도 (HHI Index),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,수출입 물동량 롱텀 트렌드,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,무역 거래대금 롱텀 트렌드,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,최근 5개년 무역 물동량,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,최근 5개년 무역 달러 규모,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 수출 물량 Top 10,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 수입 물량 Top 10,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 수출 달러 파워 Top 10,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 수입 지출 달러 파워 랭킹,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,주요 국가간 무역수지(Surplus) 흑적자 현황,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,무역 팽창 엔진 (CAGR 속도계),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,한국 새우 연간 수입 톤수 추이,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,대한민국 자급률 (Self-sufficiency),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,한국 수입 도입 단가 경쟁력 갭,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,동북아 새우 소비 라이벌 타격전,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,한국 수입 3단계 인플렉션(Inflection),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,국내 소비 믹스(Consumption Mix),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,FTA 무관세 파괴력 베네핏 뷰어,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,Korea Premium 단가 페널티 추적,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,한국 새우 무역수지(Trade Balance),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,한국 경제성장률 대비 수입 팽창 속도,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,수출국별 최종 인도(FOB) 단가 갭,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,현지 양식장 출하(Gate) 원가 지표,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 기준선(Benchmark) 단가 사이클,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,동일 사이즈 원산지별 출하가 배틀,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,가공 심화도(Value-Add) 마진 폭발 차트,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,단가 하락장(Down Cycle) 트렌드 캐쳐,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,사료(어분/Fishmeal)가 vs 양식 단가 연동성,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,차이나 프랙탈: 폭식과 소화불량의 나비효과,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,공정별 부가가치 창출 워터폴(Waterfall),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,골든 타임 바텀 피싱(Bottom Fishing) 인디케이터,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,가공식품화(Processing) 퀀텀 점프 지수,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,공장제 가공 파워보드 Top 10,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,단순 채취 vs 공장 세탁 비율(Ratio),,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,글로벌 벨류체인 수직계열화(Vertical) 독주,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,EMS/WSSV 질병 아포칼립스 경보,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,엘니뇨(El Nino) 기후 재난 방정식,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,신라교역 소싱 트라이앵글 작전판,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,자동화 프로세싱 허브(Hub) 셋업 ROI,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,엔드-투-엔드(E2E) 이윤 귀속 분해도,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,-,신라교역 새우 유니버스 장악 스코어카드,,,55.0,40.0,40.0,40.0,43.8,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w01_paradigm_shift,새우 생산 패러다임 전환: 양식이 어획을 압도 (1980-2024),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w02_aqua_value,글로벌 새우 양식 부가가치 창출 곡선 (1984-2024),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w03_processing,고부가가치 가공(Value-added) 패러다임 전환,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w04_top10_aqua,새우 양식 생산 Top 10 국가 (2022),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w05_top10_catch,자연산 어획 자원 독점 Top 10 국가 (2022),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w06_top10_revenue,글로벌 새우 양식 매출액(Farm-Gate Value) Top 7,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w07_trade_scaleup,국경 붕괴: 글로벌 무역 대금 스케일업 추이,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w08_top_exporter,글로벌 새우 수출 패권 리더보드 Top 10,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w09_top_importer,거대 소비 블랙홀(수입) 국가 Top 10,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w10_kr_import,붕괴된 한반도: 대한민국 절대 수입 의존도,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w11_kr_deficit,붉어진 지폐: 대한민국 달러 유출 곡선 (적자),,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w12_unit_price,최상위 마진 트렌드: 단위당 프리미엄 상승,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w13,초격차 독주: 에콰도르 수출 스케일업 장기 시계열,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w14,블랙홀 제국: 중국의 초저가 매수 및 재수출 마크업,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w15,종자 패러다임 전환: 타이거새우 vs 흰다리새우 생산 곡선,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w16,가공도 패권: 국가별 수출 단가 계층 구조,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w17,구조적 무역 적자: 대한민국 새우 수입-수출 격차 추세,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w18,가공 생태계 패권: 글로벌 가공 생산량 5강 추이,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w19_hyperspectral,초정밀 탈각 가공(Value-Add) 심화도별 글로벌 수출 단가 워터폴,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w20_fcr_80,급여 패러다임 붕괴: 사료요구율 개선 및 바이오플락 최적화,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w21_peeling_esg,ESG 리스크 발동: 인도·베트남 인건비 폭등 및 단가 역전,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w22_microalgae,집약화의 역설(폐사율 50%)과 미세조류 사료 혁신,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_raw1_production_trend,글로벌 새우 생산량 추이 (2015-2024),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_raw2_unit_price,주요 양식국 톤당 원가 경쟁력 (2025),,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_proc1_type_production,가공형태별 글로벌 새우 생산량 (2022),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_proc2_kr_import_type,한국 수입 가공형태별 구성 (2022),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_log1_spot_price,글로벌 새우 국제 스팟 가격 추이 (2010-2023),,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_log2_kr_sourcing,한국 새우 수입 소싱국 변화 (2019-2023),,,85.0,75.0,70.0,40.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_log3_kr_import_value,한국 새우 수입 금액 추이 (2000-2023),,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_sales1_commodity_unit_price,가공형태별 글로벌 수입 단가 비교 (2022),,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_sales2_exporter_trend,주요 수출국별 새우 수출액 추이,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_esg1_compliance,주요 양식국 ESG 지속가능성 스코어카드,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_esg2_supply_risk,새우 공급망 단계별 ESG 리스크 매트릭스,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w42_format_shift,B2C 소비재 포맷 시프트,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w43_feed_inflation,양식 사료 인플레이션 타격,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w44_ems_margin,EMS 질병 리스크 & 태국 새우 양식 마진 붕괴,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w45_export_vuln,에콰도르-중국 FTA 발효 & 아시아 새우 수출 점유율 침식,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w46_ecuador_dominance,에콰도르 공급 독점 및 아시아의 퇴조 (2020-2024),,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w47_tariff_paradox,미국 반덤핑 관세의 역설 (2024),,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w48_vaccine_priming,경구 백신 상용화와 질병 리스크 헤징,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w49_black_tiger_revival,고마진 블랙타이거의 귀환과 허브화,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w50_kfas_bft_pathogen,바이오플락 양식 병원체 모니터링: 국내 새우 양식 안전성 포렌식,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w51_kfas_silymarin_feed,Silymarin 기능성 사료: 성장 +17.2% · 면역력 +37.8% 최적 배합,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w52_kfas_duplex_pcr,AHPND+EHP 동시 진단 PCR: 양식 조기경보 인프라 혁신,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w53_kfas_3d_printed_shrimp,3D 프린팅 대체 새우: 명태 수리미 기반 차세대 시장 파괴자,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_price_forecast,AI 가격 예측: 3개월 새우 수입단가 전망 (VAR 모형),,,90.0,40.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_macro_dashboard,거시경제 환경 실시간 대시보드,,,90.0,40.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_sourcing_sim,국가별 착지원가 실시간 비교 시뮬레이터,,,90.0,40.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_concentration_risk,소싱 편중도 레이더 (HHI 지수),,,60.0,40.0,70.0,70.0,60.0,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_substitute_elasticity,수입새우-국산 흰다리 대체탄력성 분석,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_ntb_radar,통상 규제 NTB 리스크 신호등,,,60.0,40.0,70.0,70.0,60.0,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_antibiotic_tracker,국가별 새우 잔류 항생제 검출률,,,90.0,40.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_sps_alert,WTO SPS 통보 기반 규제 변동 알림,,,60.0,40.0,70.0,70.0,60.0,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_forced_labor_map,국가별 강제노동 리스크 히트맵,,,90.0,75.0,70.0,70.0,76.2,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_mangrove_index,양식국별 맹그로브 파괴 지수,,,60.0,70.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_cert_tracker,글로벌 새우 양식 인증 획득률 추적,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_chitosan_opportunity,새우 껍질 → 키토산 바이오소재 시장 기회,,,90.0,40.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_halal_export,할랄 가공 새우 중동 직수출 기회 매트릭스,,,90.0,70.0,70.0,70.0,75.0,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w_shrimp_rte_format,HMR/RTE 가공품 프리미엄 분석,,,90.0,70.0,70.0,70.0,75.0,B,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w54_commodity_trap_index,상품화 함정 탈출 지수: 가공도별 마진 비교,,,60.0,95.0,70.0,70.0,73.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w55_india_species_shift,인도 종자 전환: 바나메이 급감과 모노돈 복귀,,,60.0,70.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w56_trade_diversion_flow,무역 전환 효과: 미국 관세 회피 물량의 한국 유입,,,60.0,40.0,70.0,70.0,60.0,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w57_csddd_readiness,주요 양식국 공급망 실사 준비도 스코어,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w58_vn_labor_audit,베트남 새우 가공 노동 리스크 대시보드,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w59_feed_substitute_economics,대체 사료 원료 경제성 비교,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w60_disease_dx_evolution,양식 질병 진단 기술 진화도,,,60.0,70.0,70.0,70.0,67.5,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w61_hhi_timeseries,한국 새우 소싱 집중도 시계열 추이,,,60.0,40.0,70.0,70.0,60.0,D,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w62_alt_seafood_disruption,대체 해산물 시장 파괴 시나리오,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w63_coldwater_shrimp_stock,한류 새우 자원 상태: 북극·북대서양 모니터,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w64_us_cvd_tariff_matrix,미국 CVD 관세율 매트릭스: 4대 수출국 비교,,,60.0,95.0,70.0,70.0,73.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w65_india_seafood_export_trajectory,인도 수산물 수출 성장 궤적: 150억달러 목표,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w66_vn_shrimp_export_peak,베트남 새우 수출 사상 최고치 달성,,,55.0,95.0,70.0,40.0,65.0,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w67_indo_eu_fta_impact,인도-EU FTA 발효 시 관세 시뮬레이션,,,60.0,95.0,70.0,70.0,73.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w68_indonesia_shrimp_associations,인도네시아 새우 업계 핵심 이슈 트래커,,,60.0,95.0,70.0,70.0,73.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w69_andhra_pradesh_risk,안드라프라데시 집중 리스크: 인도 새우 공급 취약성,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
-shrimp,w70_tariff_chaos_timeline,미국 관세 혼란 타임라인: 주요 이벤트,,,60.0,75.0,70.0,70.0,68.8,C,shrimp_4axis_scores.csv,forensic_4axis_audit,
 squid,components/SquidArbitrageRadar.tsx,오징어 글로벌 마진 레이더 (Squid Arbitrage Radar),S4,,60.0,95.0,95.0,100.0,87.5,A,squid_4axis_scores.csv,forensic_4axis_audit,
 squid,components/SquidAreaMap.tsx,해역별 어획량 팽창 지도,S1,,60.0,95.0,80.0,100.0,83.8,B,squid_4axis_scores.csv,forensic_4axis_audit,
 squid,components/SquidB2BMarginTracker.tsx,B2B 직납 vs 유통 도매시장 채널수익 비교,S4,,60.0,95.0,55.0,90.0,75.0,B,squid_4axis_scores.csv,forensic_4axis_audit,
@@ -706,3 +579,134 @@ value_chain,components/UsPolicyImpactWidget.tsx,UFLPA 발효 후 동남아·중�
 value_chain,components/UsPollockDetourWidget.tsx,러시아산 명태 우회 무역 추이,S3,,50.0,55.0,55.0,35.0,48.8,D,value_chain_4axis_scores.csv,forensic_4axis_audit,
 value_chain,components/UsTunaImportWidget.tsx,미국 참치캔 수입 추이 및 단가,S4,,50.0,55.0,55.0,35.0,48.8,D,value_chain_4axis_scores.csv,forensic_4axis_audit,
 value_chain,components/UsTunaMarketShareWidget.tsx,미국 참치캔 공급국 점유율,S3,,50.0,55.0,55.0,35.0,48.8,D,value_chain_4axis_scores.csv,forensic_4axis_audit,
+shrimp,shrimp_001,EMS/WSSV 질병 리스크 경보,,STATIC 2026-05-29,30,35,28,60,38.25,F,shrimp_corrected_2026_06_05,forensic_4axis_real,차트 전체가 illustrative 임의값(년도 '10~'22 축약·근거 없는 지수)이며 1차 출처 미확보 — '경보' 위젯이 검증 불가한 가공
+shrimp,shrimp_002,자동화 프로세싱 허브 셋업 비교(가정치),,STATIC 2026-05-29,30,38,28,60,39,F,shrimp_corrected_2026_06_05,forensic_4axis_real,Capex·ROI 수치가 실측 산출식 없는 illustrative 가정치 — ROI 85%/70%가 근거 없이 재무 의사결정 차트로 제시됨(면책
+shrimp,shrimp_003,엘니뇨(El Nino) 수온-출하량 개념도,,STATIC 2026-05-29,32,38,30,62,40.5,F,shrimp_corrected_2026_06_05,forensic_4axis_real,수온·출하량 모두 NOAA MEI·FAO 미구현의 임의 예시값 — 정량 관측치가 아닌 개념도를 이중축 정밀 차트로 표현해 과신 위험(면책은 명시
+shrimp,shrimp_004,밸류체인 단계별 이윤 귀속(가정치),,STATIC 2026-05-29,34,38,36,64,43,F,shrimp_corrected_2026_06_05,forensic_4axis_real,마진 배분(15/35/10/40%)이 1차 원가회계 없는 임의 가정치 — 합계 100% 내부정합은 있으나 근거 데이터 부재로 검증 불가(면책은 
+shrimp,shrimp_005,신라교역 새우 사업 역량 스코어카드,,STATIC 2026-05-29,40,40,38,66,46,F,shrimp_corrected_2026_06_05,forensic_4axis_real,5개 역량 점수가 외부 1차 출처 없는 내부 정성 평가 — 자사 역량을 자체 채점한 자기참조 지표로 객관 검증 불가(정직 라벨링만 방어).
+shrimp,shrimp_006,국가별 소싱 역량 정성 평가,,STATIC 2026-05-29,42,40,40,66,47,F,shrimp_corrected_2026_06_05,forensic_4axis_real,5축 점수가 외부 1차 출처 없는 내부 정성 추정치 — 검증 불가하나 정직하게 '자체 정성 평가'로 라벨링한 점만 통합 점수를 방어.
+shrimp,shrimp_007,사료가 vs 양식 단가 연동성 (W37_FeedCost),,STATIC · 2026-05-29,36,44,38,84,50.5,F,shrimp_corrected_2026_06_05,forensic_4axis_real,어분가-출하가 4점 산점만으로 상관·리드타임 통계 단정 불가 — '원가 60% 어분'·'6~8개월 선행' 본문 수치도 미검증(SIT가 자인).
+shrimp,shrimp_008,공정별 부가가치 단계 단가 (W39_ValueAddWaterfall),,STATIC · 2026-05-29,38,45,40,80,50.75,F,shrimp_corrected_2026_06_05,forensic_4axis_real,명칭은 워터폴이나 실제 단순 바 차트 + 수율표 부재 예시 4점 — title/차트 불일치를 SIT가 자인(내부 정합성 결함).
+shrimp,shrimp_009,국내 소비 믹스(Consumption Mix),,STATIC / syncDate 2026-05-29,42,48,38,76,51,F,shrimp_corrected_2026_06_05,forensic_4axis_real,채널 비중 45/35/20이 특정 보고서·연도 미확인의 자체 추정으로 1차 출처 추적 불가(cardDesc 자인). 연도 미상이라 신선도도 평가
+shrimp,shrimp_010,공장제 가공 파워보드 Top 10,,STATIC 2026-05-29,48,52,46,58,51,F,shrimp_corrected_2026_06_05,forensic_4axis_real,"source가 'FAO Processed by Country'로 도메인·연도·단위 없는 모호한 영문 1줄이고, SIT의 '완벽히 초토화 및 독식"
+shrimp,shrimp_011,단가 지수 저점 인디케이터 (W40_GoldenLockin),,STATIC · 2026-05-29,37,44,40,84,51.25,F,shrimp_corrected_2026_06_05,forensic_4axis_real,실측 10년 MA 아닌 예시 지수 + 임의 기준선 50 — '역사상 최저'·'데드 바닥' 단정 근거 불가. 기준선 임의성을 SIT가 자인.
+shrimp,shrimp_012,중국 수입량과 글로벌 단가 연동 (W38_ChinaDemand),,STATIC · 2026-05-29,37,45,39,85,51.5,F,shrimp_corrected_2026_06_05,forensic_4axis_real,중국 세관(GACC) 실측 아닌 4개년 예시값 — '3개월 선행 변곡' 인과·시차 단정 불가. 정직 면책은 했으나 데이터가 허구.
+shrimp,shrimp_013,한·일 매입 단가 비교,,STATIC / syncDate 2026-05-29,44,50,40,74,52,F,shrimp_corrected_2026_06_05,forensic_4axis_real,단일 데이터포인트(KR 6.5 vs JP 6.8 USD/kg)가 검증된 거래 단가 아닌 자체 추정 예시값. 표본 1건이라 한·일 격차 주장 자체
+shrimp,shrimp_014,단가 하락장 트렌드 (W36_PriceCycle),,STATIC · 2026-05-29,38,45,42,85,52.5,F,shrimp_corrected_2026_06_05,forensic_4axis_real,$/kg 연도별 6점이 실측 시세 아닌 사이클 형태 예시값 — 출처 부재. '10년래 절대바닥' 단정 불가를 SIT가 자인.
+shrimp,shrimp_015,동일 사이즈 원산지별 출하가 비교 (W34_OriginCompare),,STATIC · 2026-05-29,40,45,42,86,53.25,F,shrimp_corrected_2026_06_05,forensic_4axis_real,실거래가 아닌 자체 추정 일러스트 3행 — 출처·검증 불가. 제목·source·SIT가 '(예시)'를 정직 명시해 오용 위험은 낮으나 데이터 본
+shrimp,shrimp_016,가공 심화도 마진 구조 (W35_ProcMargin),,STATIC · 2026-05-29,40,45,43,86,53.5,F,shrimp_corrected_2026_06_05,forensic_4axis_real,3·8·15·35% 마진은 실측 회계치 아닌 방향성 예시값 — 1차 추적 불가. 정직 면책은 양호하나 절대 마진율 인용 불가가 본질 한계.
+shrimp,shrimp_017,한국 경제성장률 대비 수입 팽창 속도,,STATIC / syncDate 2026-05-29,46,52,40,76,54,F,shrimp_corrected_2026_06_05,forensic_4axis_real,"GDP·수입 지수(2015=100, 122 vs 170)가 검증된 GDP·통관 시계열 매시업 아닌 자체 추정 예시값. 탈동조화 주장의 두 라인 "
+shrimp,shrimp_018,한국 수입 3단계 인플렉션(Inflection),,STATIC / syncDate 2026-05-29,50,55,42,78,56,D,shrimp_corrected_2026_06_05,forensic_4axis_real,"전체 시계열(20~92천톤)이 추세 도식용 자체 추정 예시값으로 1차 출처 미확보. W21의 실측 96,299톤과 결이 달라 정밀 검증 불가."
+shrimp,shrimp_019,w21_peeling_esg ESG 리스크: 인도·베트남 인건비 폭등,,synced/2025-Q4,56,60,54,78,62,D,shrimp_corrected_2026_06_05,forensic_4axis_real,리스크 지수 20→95가 자체 합성지표(1차 아님)임을 정직 고지하나 reliability:100·synced 라벨과 모순. 검증 불가 합성지수
+shrimp,shrimp_020,w42_format_shift B2C 소비재 포맷 시프트,,synced/2025-Q4,56,60,54,78,62,D,shrimp_corrected_2026_06_05,forensic_4axis_real,포맷별 비중이 'EUMOFA 추세참고+illustrative 예시값·EUMOFA 미연동 STATIC' 고지에도 reliability:100·sy
+shrimp,shrimp_021,w22_microalgae 집약화의 역설(폐사율 50%)과 미세조류 사료,,synced/2025-Q4,58,60,54,78,62.5,D,shrimp_corrected_2026_06_05,forensic_4axis_real,"FAO Tech Paper 634 '개념 인용'+illustrative 합성값 정직 고지하나 폐사율 곡선·수익성 Index 검증 불가, reli"
+shrimp,shrimp_022,FTA 무관세 혜택 비교,,STATIC / syncDate 2026-05-29,58,62,52,80,63,D,shrimp_corrected_2026_06_05,forensic_4axis_real,관세율 0/5/20%가 협정 양허표 직접 인용 아닌 하드코딩 예시값(자인). VKFTA 0% 외 인도 5%·에콰도르 20%는 HSK 10자리 미
+shrimp,shrimp_023,양식업 부가가치 창출 Top 10,,STATIC · 2026-05-29,70,70,52,62,63.5,D,shrimp_corrected_2026_06_05,forensic_4axis_real,SIT가 'Value Top3 = Volume Top3 완벽 동기화'라 단언하나 실제 2·3위가 뒤바뀜(Value:중국/베트남/인도 vs Vol
+shrimp,shrimp_024,w_esg2_supply_risk 새우 공급망 단계별 ESG 리스크 매트릭스,,synced/2025-Q4,58,60,56,80,63.5,D,shrimp_corrected_2026_06_05,forensic_4axis_real,단계별 리스크 점수 0~100이 ETI·Seafood Watch '참고한 자체 합성지표·1차 아님' 정직 고지인데 reliability:100·
+shrimp,shrimp_025,w62_alt_seafood_disruption 대체 해산물 시장 파괴 시나리오,,static/2025 전망,60,62,56,76,63.5,D,shrimp_corrected_2026_06_05,forensic_4axis_real,2050 침투율 35~55%가 '자체추정 장기전망·검증불가' 정직 고지하나 reliability 공란·2050년 예측이라 검증성 본질적 최하. 
+shrimp,shrimp_026,w19_hyperspectral 초정밀 탈각 가공 심화도별 수출 단가 워터폴,,synced/2025-Q4,58,62,56,80,64,D,shrimp_corrected_2026_06_05,forensic_4axis_real,source 정직하게 '자체추정 illustrative·UN Comtrade 미연동 STATIC' 고지하나 telemetry는 synced·re
+shrimp,shrimp_027,w20_fcr_80 급여 패러다임: FCR 개선 및 바이오플락,,synced/2025-Q4,58,62,56,80,64,D,shrimp_corrected_2026_06_05,forensic_4axis_real,source 'FCR 1.93→1.09 자체추정·특정 1차 보고서 미특정·EUMOFA 미연동 STATIC' 고지에도 telemetry synce
+shrimp,shrimp_028,w48_vaccine_priming 경구 백신 상용화와 질병 리스크 헤징,,synced/2025-Q4,58,62,56,80,64,D,shrimp_corrected_2026_06_05,forensic_4axis_real,Dalan 백신 '사실 인용'+M1~M4 폐사율 illustrative 예시값 정직 고지하나 reliability:95 부여 모순. SIT가 예
+shrimp,shrimp_029,w_shrimp_rte_format HMR/RTE 가공품 프리미엄 분석,,static/FAO FishStatJ 2024,62,64,56,78,65,C,shrimp_corrected_2026_06_05,forensic_4axis_real,Eurostat+Census+KMI 출처하나 premium%(0~25)는 합성 비교지수·syncDate 'FAO FishStatJ 2024'가 
+shrimp,shrimp_030,w70_tariff_chaos_timeline 미국 관세 혼란 타임라인,,synced/2025-04,62,74,54,70,65,C,shrimp_corrected_2026_06_05,forensic_4axis_real,'충격강도' 지수(60/95)가 완전 주관 합성값·1차 정량 없음. chartType bar에 타임라인 부적합·reliability 공란. TA
+shrimp,shrimp_031,w59_feed_substitute_economics 대체 사료 원료 경제성 비교,,static/EUMOFA 2025,62,68,58,74,65.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,EUMOFA+KFAS 출처하나 어분/미세조류/곤충 단가·FCR개선%가 합성 비교값·reliability 공란. '30% 원가절감 검증' 주장 1
+shrimp,shrimp_032,w56_trade_diversion_flow 무역 전환 효과: 미국 관세 회피 물량,,synced/OEC 2022,62,72,56,74,66,C,shrimp_corrected_2026_06_05,forensic_4axis_real,subtitle 스스로 '한국 유입 증가 추정'·전환물량추정 컬럼 0값 다수로 모델 미완성. reliability 공란·NotebookLM 분석
+shrimp,shrimp_033,w_raw2_unit_price 주요 양식국 톤당 원가 경쟁력 (2025),,synced/2025-Q4,60,66,58,82,66.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"톤당 원가 3,600~5,800은 'illustrative 라운드 추정·FAOSTAT 실측 아님' 정직 고지하나 reliability:95 부여"
+shrimp,shrimp_034,w43_feed_inflation 양식 사료 인플레이션 타격,,synced/2025-Q4,62,66,58,80,66.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"source '[World Bank API 연동]' 표기하나 FeedPriceIndex 100기준 정규화값=추정 구조, ProductionCos"
+shrimp,shrimp_035,w60_disease_dx_evolution 양식 질병 진단 기술 진화도,,static/KFAS 2024,64,70,58,74,66.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,KFAS PCR 논문+NotebookLM CRISPR(2차) 출처·reliability 공란. '연 40억달러 증발'·'CIFE-SPOT 상용화
+shrimp,shrimp_036,w57_csddd_readiness 주요 양식국 공급망 실사 준비도 스코어,,static/2025-Q1,64,72,58,74,67,C,shrimp_corrected_2026_06_05,forensic_4axis_real,ETI+Seafood Watch 출처하나 인권/환경/이력추적 점수(55/60/70 등)는 자체 평가 추정·reliability 공란. STATI
+shrimp,shrimp_037,글로벌 생산 Top 10 국가,,STATIC · 2026-05-29,74,70,60,66,67.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,제목 'Top 10'이나 top10 배열에 9개국만 존재(데이터-라벨 불일치) — 표시 개수와 제목 수치가 어긋남.
+shrimp,shrimp_038,w15 종자 패러다임: 타이거 vs 흰다리새우 생산 곡선,,synced/2025-Q4,62,66,60,82,67.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,subtitle·source 모두 '자체추정 illustrative·선형보간' 정직 고지하나 reliability:100 표기는 모순—추정 데이
+shrimp,shrimp_039,동북아 새우 소비 규모 비교,,STATIC / syncDate 2026-05-29,64,70,58,80,68,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"한국 96,299톤만 실측이고 일본 180,000·대만 45,000은 1차 출처 없는 자체 추정(illustrative)이라 비교의 핵심 두 막"
+shrimp,shrimp_040,w_shrimp_halal_export 할랄 가공 새우 중동 직수출 기회,,static/FAO FishStatJ 2024,68,64,62,78,68,C,shrimp_corrected_2026_06_05,forensic_4axis_real,OEC+KMI(2019-14) 출처하나 syncDate 'FAO FishStatJ 2024'가 출처와 불일치(라벨 오기)·import 규모(사우
+shrimp,shrimp_041,w67_indo_eu_fta_impact 인도-EU FTA 발효 시 관세 시뮬레이션,,synced/SEAI 2026-05,66,74,58,74,68,C,shrimp_corrected_2026_06_05,forensic_4axis_real,subtitle 스스로 '관세 변화 추정'·FTA 미발효 가정 시나리오라 검증 불가. SEAI 블로그+The Hindu(2차) 출처·reliab
+shrimp,shrimp_042,수생태계 메가트렌드 (1970-2022),,STATIC · 2026-05-29,78,68,62,66,68.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,제목 '(1970-2022)'이 오기 — 실제 차트는 megatrendData(production_total)를 2024년까지 렌더링하므로 제목
+shrimp,shrimp_043,w_shrimp_mangrove_index 양식국별 맹그로브 파괴 지수,,static/FAO FishStatJ 2024,68,66,62,78,68.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,Global Mangrove Watch+KMI 출처 양호하나 syncDate 'FAO FishStatJ 2024'가 출처(맹그로브)와 불일치—라
+shrimp,shrimp_044,w54_commodity_trap_index 상품화 함정 탈출 지수,,synced/PinkSheet 2026-03,66,74,60,74,68.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,reliability 필드 자체가 비어있음(공란). PinkSheet+OEC 교차 표방하나 원물/PD/RTE 마진% 시계열은 합성 추정—1차 단
+shrimp,shrimp_045,w58_vn_labor_audit 베트남 새우 가공 노동 리스크,,static/2025 보고서,68,72,60,74,68.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,Seafood Watch VN 프로파일 1차 출처하나 성과급97%·여성78% 등 수치가 보고서 직접 추출인지 추정인지 불명·reliability
+shrimp,shrimp_046,w_shrimp_substitute_elasticity 수입새우-국산 흰다리 대체탄력성,,synced/2025-Q4,66,70,60,80,69,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"KMI 대체관계 분석(2022-11) 방법론만 인용·domestic_demand 100기준 지수=합성, 탄력성 계수 자체는 차트에 없음. rel"
+shrimp,shrimp_047,가공식품화(Processing) 물동량 추이,,STATIC 2026-05-29,72,60,66,80,69.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,FAOSTAT 가공 도메인 출처는 1차이나 차트가 참조하는 연도 범위·구체 테이블이 카드에 명시되지 않아 '장기 우상향' 주장을 카드만으로 추적
+shrimp,shrimp_048,원물 대비 가공 처리 비율,,STATIC 2026-05-29,68,60,70,80,69.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,산출식(가공량÷생산량%)은 투명하나 분자·분모의 FAOSTAT 연도/대상연도 정합이 카드에 없어 비율값의 1차 재현이 어려움.
+shrimp,shrimp_049,w06_top10_revenue 글로벌 새우 양식 매출액 Top 7,,synced/2025-Q4,66,70,62,80,69.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,source에 '[LIVE API 연동: FAO API]' 표기하나 정적 데이터—거짓 LIVE 라벨(L-09). 매출액 라운드값 1차 추적 불가
+shrimp,shrimp_050,w61_hhi_timeseries 한국 새우 소싱 집중도 시계열(HHI),,synced/OEC 2022,72,72,62,72,69.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"OEC+KCS 출처하나 HHI를 0.12~0.15 소수 스케일로 표기—w_concentration_risk의 HHI 2,975(0~10000 스"
+shrimp,shrimp_051,w68_indonesia_shrimp_associations 인도네시아 새우 업계 이슈 트래커,,static/2026-05 수집,70,76,60,72,69.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,AP5I/GPMT/SCI 협회 HTML 1차 출처는 양호하나 '언급빈도' 건수는 자체 집계 코딩값(주관)·reliability 공란. STATI
+shrimp,shrimp_052,국가별 원물 생산 vs 가공 처리량 비교,,STATIC 2026-05-29,68,60,70,82,70,C,shrimp_corrected_2026_06_05,forensic_4axis_real,'수직계열화'라는 제목/term과 달리 기업 단위 계열화 데이터는 없음 — SIT에 면책은 했으나 제목·term이 데이터보다 과대 표현됨.
+shrimp,shrimp_053,w63_coldwater_shrimp_stock 한류 새우 자원 상태(NAFO),,static/NAFO 2025,74,72,62,72,70,C,shrimp_corrected_2026_06_05,forensic_4axis_real,NAFO SCR-25-043 1차 평가서 출처 양호하나 생물량지수85·해수온변화1.2 등 복합지수가 SPiCT 직접값인지 가공값인지 불명·rel
+shrimp,shrimp_054,w44_ems_margin EMS 질병 리스크 & 태국 새우 마진 붕괴,,synced/2025-Q4,72,72,58,80,70.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"subtitle '마진 34.4%→16.5%'가 data(38.2→14.2)와 불일치, '241K톤'은 2020·21·22 동일 평탄화로 실측 "
+shrimp,shrimp_055,w_shrimp_ntb_radar 통상 규제 NTB 리스크 신호등,,synced/2026-05 스냅샷,64,82,58,80,71,C,shrimp_corrected_2026_06_05,forensic_4axis_real,WTO+MFDS+OFAC '연동' 표방하나 riskScore(55~85)는 주관 점수—1차 정량 출처 없음. badges 빈배열로 라이브 미증명
+shrimp,shrimp_056,w_shrimp_cert_tracker 글로벌 새우 양식 인증 획득률 추적,,synced/2025-Q4,70,72,64,78,71,C,shrimp_corrected_2026_06_05,forensic_4axis_real,ASC/BAP Annual Report 출처하나 coverage%(BAP18·ASC12)가 글로벌인지 아시아인지 모집단 불명·reliabilit
+shrimp,shrimp_057,w55_india_species_shift 인도 종자 전환: 바나메이 급감·모노돈 복귀,,synced/Rabobank 2024,72,74,64,74,71,C,shrimp_corrected_2026_06_05,forensic_4axis_real,Rabobank Survey 2024+FAO 출처 양호하나 reliability 공란·바나메이/모노돈 천톤값 라운드 추정으로 보임. 폐사율 컬럼
+shrimp,shrimp_058,w04_top10_aqua 새우 양식 생산 Top 10 국가 (2022),,synced/2025-Q4,72,70,62,82,71.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"제목 2022인데 중국 1,550,000·에콰도르 1,300,000 등 라운드값이 FAOSTAT 2022 실측과 어긋남(에콰도르 과대)—라운드 "
+shrimp,shrimp_059,글로벌 양식업 Top 10 기지,,STATIC · 2026-05-29,74,72,70,72,72,C,shrimp_corrected_2026_06_05,forensic_4axis_real,cardDesc가 '집중 육성 국가 순위'로 산출방법 모호하고 SIT가 정성 서술 위주 — top10 수치(중국 약 322만t 등)가 본문에 부
+shrimp,shrimp_060,w_shrimp_chitosan_opportunity 새우 껍질→키토산 바이오소재 시장,,synced/2026-05 스냅샷,66,82,60,80,72,C,shrimp_corrected_2026_06_05,forensic_4axis_real,Comtrade HS391390+KMI 업사이클링 출처·신선하나 market 4.2/CAGR15.3은 시장규모 추정—HS391390은 키토산 아
+shrimp,shrimp_061,w08_top_exporter 글로벌 새우 수출 패권 리더보드 Top 10,,synced/2025-Q4,66,72,72,80,72.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,subtitle/source에 'LIVE API 연동: Trade Map API' 표기하나 실제는 FishStatJ 정적 CSV—거짓 LIVE 
+shrimp,shrimp_062,w49_black_tiger_revival 고마진 블랙타이거의 귀환과 허브화,,synced/2025-Q4,72,72,66,80,72.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,INFOFISH Market Pricing Index 출처. data 3점뿐(원물/PD/RTE 마진)으로 시계열 없고 '귀환 트렌드' 주장 차트
+shrimp,shrimp_063,w64_us_cvd_tariff_matrix 미국 CVD 관세율 매트릭스: 4대 수출국,,synced/SEAI 2026-05,74,78,64,74,72.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,SEAI 블로그+Undercurrent(준1차) 출처·신선. 단 '트럼프 추가관세 최대46%·7/9 발효'는 정책 변동성 큰 미확정 수치로 검증
+shrimp,shrimp_064,w65_india_seafood_export_trajectory 인도 수산물 수출 성장 궤적,,synced/SEAI 2025-09,76,76,64,74,72.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,SEAI IISS-2025+MPEDA 출처 양호하나 총수출 억달러·새우비중% 시계열이 보고서 직접 추출인지 불명·reliability 공란. 회
+shrimp,shrimp_065,w05_top10_catch 자연산 어획 자원 독점 Top 10 (2022),,synced/2025-Q4,74,70,68,82,73.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,subtitle은 'FAO API 연동' 주장하나 정적 JSON—라이브 아님(L-09 위반 소지). 수치 라운드화로 1차 추적 약화.
+shrimp,shrimp_066,w09_top_importer 주요 수입 국가 Top 10,,synced/2025-Q4,68,72,74,80,73.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,subtitle 'LIVE API 연동: Trade Map API' vs source 'FAO API 연동'—출처 자기모순 + 정적 데이터에 L
+shrimp,shrimp_067,w10_kr_import 붕괴된 한반도: 대한민국 절대 수입 의존도,,synced/2025-Q4,70,72,72,80,73.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,'LIVE API 연동: Korea Customs API' 표기하나 FishStatJ 정적 CSV 연산—거짓 LIVE. w_log3에서만 실제 
+shrimp,shrimp_068,w11_kr_deficit 붉어진 지폐: 대한민국 달러 유출 곡선,,synced/2025-Q4,70,72,72,80,73.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"'LIVE API 연동: BOK API' 표기하나 정적 FishStatJ 무역액 CSV—환율 BOK 연동 흔적 없음(거짓 LIVE, L-09)."
+shrimp,shrimp_069,w69_andhra_pradesh_risk 안드라프라데시 집중 리스크,,synced/Reuters 2025-04,76,78,66,74,73.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,Reuters(2025-04)+SEAI 준1차 출처·신선. 'AP가 미국향 92%' 비중은 추적 가능하나 '10% 하락→30만 농가 도산'은 시
+shrimp,shrimp_070,w17 구조적 무역 적자: 대한민국 수입-수출 격차,,synced/2025-Q4,74,76,66,80,74,C,shrimp_corrected_2026_06_05,forensic_4axis_real,"subtitle '96,346톤·$7,332/t·1,513톤'이 어떤 data 행과도 불일치(2024=100,085/$7,814/602톤)—내부"
+shrimp,shrimp_071,w_log1_spot_price 글로벌 새우 국제 스팟 가격 (2010-2023),,synced/2025-Q4,72,72,70,82,74,C,shrimp_corrected_2026_06_05,forensic_4axis_real,source '[World Bank API 연동]' 표기하나 정적 데이터—Pink Sheet 라이브 fetch 흔적 없음(거짓 연동 라벨).
+shrimp,shrimp_072,w_shrimp_sps_alert WTO SPS 통보 기반 규제 변동 알림,,synced/2026-05 스냅샷,70,82,64,80,74,C,shrimp_corrected_2026_06_05,forensic_4axis_real,WTO Data Portal+KMI 출처·신선하나 count(EU 12·USA 8)가 어느 기간 SPS 통보 집계인지 미명시·실시간 fetch 
+shrimp,shrimp_073,w66_vn_shrimp_export_peak 베트남 새우 수출 사상 최고치,,synced/VASEP 2026-01,76,80,66,74,74,C,shrimp_corrected_2026_06_05,forensic_4axis_real,VASEP+Undercurrent 출처·신선(2026-01). 46억달러 최고치는 VASEP 공식과 부합하나 미국/일본 비중% 라운드값 직접 추
+shrimp,shrimp_074,w45_export_vuln 에콰도르-중국 FTA & 아시아 수출 점유율 침식,,synced/2025-Q4,76,72,68,82,74.5,C,shrimp_corrected_2026_06_05,forensic_4axis_real,source에 'LIVE API 연동: US DOC & Trade Map' 표기하나 정적 데이터—거짓 LIVE. 반덤핑 0.57-5.34% 수치
+shrimp,shrimp_075,새우 양식업 본질가치(Value) 성장,,STATIC · 2026-05-29,78,72,74,76,75,B,shrimp_corrected_2026_06_05,forensic_4axis_real,'천문학적 스케일' 등 정성 과장 표현이 SIT를 지배하고 구체 수치(2024 약 $618.6억)가 본문에 없어 출처-수치 1차추적이 차트 의존
+shrimp,shrimp_076,w47_tariff_paradox 미국 반덤핑 관세의 역설 (2024),,synced/2025-Q4,76,74,70,80,75,B,shrimp_corrected_2026_06_05,forensic_4axis_real,US DOC 2024/INFOFISH 출처 양호하나 관세율(에콰도르10.6%·베트남22.5%) 및 점유율 성장값 1차 문서 직접 추적 부분 불명
+shrimp,shrimp_077,w_shrimp_price_forecast AI 가격 예측: 3개월 수입단가 전망(VAR),,synced/2026-05 스냅샷,72,84,62,82,75,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FRED+ECOS+KMI 모형 출처 명시·신선(2026-05)하나 예측값 6점은 본질적 검증 불가(미래값)·reliability:85 자기표기.
+shrimp,shrimp_078,w_log3_kr_import_value 한국 새우 수입 금액 추이 (2000-2023),,synced/2025-Q4,74,74,72,82,75.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,실제 customs API fetch 분기가 코드에 존재(displayWidgets에서 liveImportData 병합)하나 데이터 9점뿐이고 
+shrimp,shrimp_079,w_shrimp_antibiotic_tracker 국가별 새우 잔류 항생제 검출률,,synced/2026-05 스냅샷,74,82,66,80,75.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,MFDS 부적합 DB 1차 출처 양호·신선하나 검출률(인도3.2%·베트남1.8%) 라운드값이 어느 기간 집계인지 불명·실시간 fetch 미증명.
+shrimp,shrimp_080,w46_ecuador_dominance 에콰도르 공급 독점 및 아시아 퇴조,,synced/2025-Q4,78,74,72,80,76,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"INFOFISH 2025-2026 보고서 1차 출처 양호하나 국가별 생산량 라운드값(715,000 등)이라 정밀 추적 한계. subtitle 비"
+shrimp,shrimp_081,w_shrimp_macro_dashboard 거시경제 환경 실시간 대시보드,,synced/2026-05 스냅샷,74,84,66,80,76,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"FRED(DCOILWTICO,DEXKOUS)+ECOS 출처·신선하나 '실시간' 표방 대비 telemetry synced·badges 빈배열—실제"
+shrimp,shrimp_082,w_esg1_compliance 주요 양식국 ESG 지속가능성 스코어카드,,static/2026-03,74,80,68,84,76.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,SHAPHARI 실측(25농장·16부화장) 1차 근거 명시·STATIC 정직하나 ASC/저탄소 점수는 Seafood Watch 상대 비교 추정—
+shrimp,shrimp_083,어획(Capture) vs 양식(Aqua) 크로스오버,,STATIC · 2026-05-29,80,72,78,80,77.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,'영구적 골든크로스'를 단언하나 cardDesc에 교차연도(데이터상 2005년) 미명시 — 핵심 변곡점이 SIT에 수치로 박혀있지 않아 검증성이
+shrimp,shrimp_084,FTA 새우 분기별 수입 동향 (KMI 21개 분기),,SYNCED / syncDate 2026-05,78,88,64,82,78,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"원산지 26Q1 막대(베트남 9.1→9.4)가 표기 delta +2.8%와 불일치(실계산 +3.6%), KPI 셀은 '중국 +47.2%(2025"
+shrimp,shrimp_085,w07_trade_scaleup 국경 붕괴: 글로벌 무역 대금 스케일업,,synced/2025-Q4,80,72,76,84,78,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FAO Commodities Trade 1차 출처 양호하나 TAK '환차손 리스크 0% 완벽 차단'은 과장된 비현실 주장.
+shrimp,shrimp_086,w14 중국의 저가 매수 및 재수출 마크업,,synced/2025-Q4,78,76,74,84,78,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"양자간 무역 CSV 교차연산 양호하나 subtitle 수입$5,612→수출$11,942와 data 2019값($6,190/$11,084) 불일치"
+shrimp,shrimp_087,w18 가공 생태계 패권: 글로벌 가공 생산량 5강,,synced/2025-Q4,78,74,76,84,78,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FishStatJ 가공 CSV 1차 출처 양호. subtitle '에콰도르 1위' 주장 대비 데이터 초기연도(2014) 베트남 우위라 시점 명시
+shrimp,shrimp_088,w_shrimp_sourcing_sim 국가별 착지원가 실시간 비교 시뮬레이터,,synced→live(동적)/2026-05,76,82,70,84,78,B,shrimp_corrected_2026_06_05,forensic_4axis_real,코드에 실제 Comtrade fetch 분기 존재(isLive 시 LIVE 동적 부여)로 정직. 단 정적 fallback 시 CIF 라운드값(7
+shrimp,shrimp_089,w_sales2_exporter_trend 주요 수출국별 새우 수출액 추이,,synced/2025-Q4,80,74,76,84,78.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FAOSTAT 무역액 CSV 1차 출처 양호. 인도 미국 반덤핑 직격 서술이 차트 데이터로 직접 확인 어려움.
+shrimp,shrimp_090,w13 초격차 독주: 에콰도르 수출 스케일업,,synced/2025-Q4,80,76,76,84,79,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FishStatJ 1차 출처 양호. 2019→2023 수치 명시되나 라운드값이라 미세 검증 한계.
+shrimp,shrimp_091,w16 가공도 패권: 국가별 수출 단가 계층 구조,,synced/2025-Q4,80,74,78,84,79,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FishStatJ 단가 교차연산 양호. unit이 'USD'(톤당 단가인데 라벨 모호)—단위 정밀성 약함.
+shrimp,shrimp_092,w_sales1_commodity_unit_price 가공형태별 글로벌 수입 단가 (2022),,synced/2025-Q4,80,74,78,84,79,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FAOSTAT 무역액÷무역량 산출식 명시로 검증 양호. Peeled 프리미엄 40% 주장이 data로 추적 가능.
+shrimp,shrimp_093,주요 국가간 무역수지(Surplus) 흑적자 현황,,STATIC · 2026-05-29,82,74,80,86,80.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,수출USD−수입USD Top10 매칭 자체산출 근사치(중국 -42억 등)·한쪽순위만 든 국가 0처리 한계를 source/SIT 양쪽에 정직 고지
+shrimp,shrimp_094,w01_paradigm_shift 새우 생산 패러다임 전환: 양식이 어획을 압도,,synced/2025-Q4,82,74,78,88,80.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"양식 1980 시드값 70,000은 라운드 추정으로 보이나 source는 FishStatJ CSV로만 표기—초기 구간 보간 여부 미고지."
+shrimp,shrimp_095,자연산 어획 잔존 세력 Top 10,,STATIC · 2026-05-29,84,72,84,84,81,B,shrimp_corrected_2026_06_05,forensic_4axis_real,중국 57.8만t·아르헨티나 22.2만t가 JSON과 정확 일치하고 '어종 분해 없음' 면책까지 명시 — STATIC 신선도 상한 외 결함 경미
+shrimp,shrimp_096,w_proc2_kr_import_type 한국 수입 가공형태별 구성 (2026Q1),,synced/2026-Q1,80,86,74,84,81,B,shrimp_corrected_2026_06_05,forensic_4axis_real,KMI FTA 2026Q1 1차·신선하나 reliability:70 자기표기로 신뢰 낮음 인정—formMix 출처 단일 분기 의존.
+shrimp,shrimp_097,최근 5개년 무역 물동량,,STATIC · 2026-05-29,84,76,82,84,81.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"데이터소스 변수명 역설(trade_long=2019~2023이 '최근', trade_recent=1976~2023이 '롱텀')로 내부 혼동 소지"
+shrimp,shrimp_098,무역 팽창 엔진 (CAGR 속도계),,STATIC · 2026-05-29,84,74,83,85,81.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,cagr1976=5.5% 코드 재산출과 일치하고 '저기저효과 감안' 단서까지 명시; 자체산출(파생치)이라 1차추적성과 STATIC 신선도가 A 
+shrimp,shrimp_099,글로벌 수출 달러 파워 Top 10,,STATIC · 2026-05-29,85,76,82,84,81.75,B,shrimp_corrected_2026_06_05,forensic_4axis_real,에콰도르 수출금액 1위 검증; 단 actionPlan의 '베트남·태국 가공강세'는 차트(에콰도르·인도 금액 우위)와 일부 비정합한 서술.
+shrimp,shrimp_100,글로벌 수입 지출 달러 파워 랭킹,,STATIC · 2026-05-29,86,76,85,80,81.75,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"한국 수입금액 7위 데이터와 정확 일치하나, actionPlan에 타 위젯에 있는 [대괄호 액션태그]가 누락돼 SIT/TAK 포맷 일관성 결함."
+shrimp,shrimp_101,w02_aqua_value 글로벌 새우 양식 부가가치 창출 곡선,,synced/2025-Q4,85,74,82,88,82.25,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FAOSTAT 생산액 1차 출처 명확하나 syncDate가 '2025-Q4 기준'으로 실제 데이터 끝(2024)과 표기 불일치 소지.
+shrimp,shrimp_102,글로벌 생산 SCM 집중도 (HHI Index),,STATIC · 2026-05-29,86,74,86,84,82.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,HHI 약 414(Σ(점유율%)² 자체산출)가 코드 재계산값과 일치하고 'HHI<1500=비집중' 해석도 정직 — actionPlan의 멕시코/
+shrimp,shrimp_103,무역 거래대금 롱텀 트렌드,,STATIC · 2026-05-29,87,72,84,88,82.75,B,shrimp_corrected_2026_06_05,forensic_4axis_real,'가공 고도화가 단가 견인' 인과는 데이터로 직접 입증 안 됨(추정)이나 SIT가 '추세를 보였다'로 톤다운해 방어; STATIC 신선도 상한.
+shrimp,shrimp_104,양식 침투율(Aquaculture Share),,STATIC · 2026-05-29,86,74,86,86,83,B,shrimp_corrected_2026_06_05,forensic_4axis_real,산출식(양식÷(양식+어획))·2024년 74.9% 모두 JSON과 정확히 일치하고 산출기준 면책까지 명시 — 결함은 STATIC 캡으로 인한 신
+shrimp,shrimp_105,자연산 어획량 정체 한계선(Ceiling),,STATIC · 2026-05-29,86,74,86,86,83,B,shrimp_corrected_2026_06_05,forensic_4axis_real,2.75~3.63M 박스권·2024년 3.18M·'3.5M선은 과학적 한계가 아닌 자체 박스권 상단' 면책 모두 JSON과 일치 — STATIC
+shrimp,shrimp_106,최근 5개년 무역 달러 규모,,STATIC · 2026-05-29,86,76,84,86,83,B,shrimp_corrected_2026_06_05,forensic_4axis_real,cardDesc에 원자료 단위(천USD) 명시·SIT가 '판가 100% 전가' 단정을 스스로 반증해 회의적 균형 우수; STATIC 신선도만 상
+shrimp,shrimp_107,w_raw1_production_trend 글로벌 새우 생산량 추이 (2015-2024),,synced/2026-05,84,82,82,88,84,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FishStatJ 1차·2024 실측·CAGR 5.9% 산출식 추적 가능·정적 스냅샷 정직 표기. syncDate 2026-05로 신선. 거의 
+shrimp,shrimp_108,w_log2_kr_sourcing 한국 새우 수입 소싱국 변화,,synced/KMI 26Q1·FAO 2023,84,84,82,86,84,B,shrimp_corrected_2026_06_05,forensic_4axis_real,FAO 양자무역+KMI originShift 이중 출처 명확·동일분기 비교 방법론 명시. 막대(2023)와 서술(26Q1) 시점 혼합이 약점.
+shrimp,shrimp_109,w_shrimp_concentration_risk 한국 수입 새우 소싱 편중도(HHI),,synced/2026-Q1,84,84,82,86,84,B,shrimp_corrected_2026_06_05,forensic_4axis_real,"KMI FTA 2026Q1 1차·HHI 2,975 산출식 추적 가능·신선. 베트남40%·중국25.5% 점유율 명확. reliability:82 "
+shrimp,shrimp_110,글로벌 수입 물량 Top 10,,STATIC · 2026-05-29,87,76,86,89,84.5,B,shrimp_corrected_2026_06_05,forensic_4axis_real,미·중 양강·EU 개별국 분산 모두 데이터와 일치; cardDesc/SIT 정합 양호하나 STATIC(2023) 신선도가 85 직전에서 제한.
+shrimp,shrimp_111,수출입 물동량 롱텀 트렌드,,STATIC · 2026-05-29,88,72,90,90,85,A,shrimp_corrected_2026_06_05,forensic_4axis_real,1976 32만톤→2023 396만톤·FAO FishStatJ 1차 출처 정확 검증; STATIC(최신연도 2023)이라 신선도만 상한.
+shrimp,shrimp_112,w_proc1_type_production 가공형태별 글로벌 새우 생산량 (2023),,synced/FAOSTAT 2023 스냅샷,86,80,86,88,85,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"FishStatJ 2023·80개국 174행·총4,282,269톤 명시로 1차 추적 강함. NEI 85.3% w03과 일관. 결함 미미."
+shrimp,shrimp_113,w50_kfas_bft_pathogen 바이오플락 양식 병원체 모니터링,,synced/2025-Q4,90,78,86,86,85,A,shrimp_corrected_2026_06_05,forensic_4axis_real,KFAS Gye et al.(2023) 1차 학술논문·7농장 194마리 실증으로 출처/검증 최상급. syncDate '2025-Q4'가 논문 2
+shrimp,shrimp_114,w51_kfas_silymarin_feed Silymarin 기능성 사료: 성장·면역력,,synced/2025-Q4,90,78,86,86,85,A,shrimp_corrected_2026_06_05,forensic_4axis_real,Shin et al.(2022) 제주대 1차 논문·+17.2%/+37.8% 실측 추적 가능. syncDate 2025-Q4 vs 논문 2022 
+shrimp,shrimp_115,w52_kfas_duplex_pcr AHPND+EHP 동시 진단 PCR,,synced/2025-Q4,90,78,86,86,85,A,shrimp_corrected_2026_06_05,forensic_4axis_real,Jeon et al.(2021) 경북대+NFQS 1차 논문 명시·검출 성공률 100% 실측. syncDate 2025-Q4가 2021 논문과 불
+shrimp,shrimp_116,w_india_shaphari 인도 무항생제(SHAPHARI) 인증 농장 현황,,static/2026-03,86,84,84,86,85,A,shrimp_corrected_2026_06_05,forensic_4axis_real,MPEDA 2026-03-04 원본 PDF 1차·25농장313ha·'13건 만료' 한계 정직 명시·STATIC 정직. syncDate 정확. 모
+shrimp,shrimp_117,글로벌 수출 물량 Top 10,,STATIC · 2026-05-29,87,76,88,90,85.25,A,shrimp_corrected_2026_06_05,forensic_4axis_real,에콰도르+인도=Top10의 60.4% 재현 검증·'전세계 전량 아닌 Top10 기준' 스코프 명시로 과대표현 차단; 신선도만 상한.
+shrimp,shrimp_118,w53_kfas_3d_printed_shrimp 3D 프린팅 대체 새우,,synced/2025-Q4,88,84,84,86,85.5,A,shrimp_corrected_2026_06_05,forensic_4axis_real,Park et al.(2025) 부경대 1차 논문·TPA·관능 ANOVA p<0.05·panel 12명 방법론까지 명시로 출처 최상급. real
+shrimp,shrimp_119,주요 수출국 단가 비교 (2023),,STATIC / syncDate 2026-05-29,86,84,88,87,86,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"에콰도르5,943·인도6,850·베트남8,456 단가가 수출액/물량 재계산과 정확히 일치. 한국 매입가 미확보를 cardDesc·SIT에 정직 "
+shrimp,shrimp_120,w12_unit_price 한국 수입 새우 원산지별 단가,,synced/2026-05-27,86,86,84,88,86,A,shrimp_corrected_2026_06_05,forensic_4axis_real,KMI FTA 2026Q1 1차 출처·2026-05-27 syncDate·원산지별 단가 추적 가능. 4점 구간이라 시계열 짧음이 유일 약점.
+shrimp,shrimp_121,양식 생산액 톤당 환산 단가 지표 (W32_AquaUnitCost),,STATIC · 2026-05-29,83,82,90,91,86.5,A,shrimp_corrected_2026_06_05,forensic_4axis_real,양식 생산액÷생산량 통계 파생값이라 실측 팜게이트가가 아님 — 어종·규격 믹스 차이가 단가에 섞여 효율성 직접지표로 오독될 소지.
+shrimp,shrimp_122,w_vn_traceability_risk 베트남 새우 공급망 이력추적 단절 리스크,,static/2026-01,88,84,84,90,86.5,A,shrimp_corrected_2026_06_05,forensic_4axis_real,Seafood Watch SSRT V2(2026-01-07) 1차·70%미들맨/20만영세농/EU 옐로카드 추적 가능·STATIC badges 정
+shrimp,shrimp_123,대한민국 자급률 (Self-sufficiency),,STATIC / syncDate 2026-05-29,88,84,90,86,87,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"산출식(27,906/(27,906+96,299))이 코드상 22.5%로 재현 검증됨. cardDesc의 27,906/96,299도 JSON 일치"
+shrimp,shrimp_124,수출국별 평균 수출 단가 갭 (W31_PriceGap),,STATIC · 2026-05-29,84,82,90,92,87,A,shrimp_corrected_2026_06_05,forensic_4axis_real,FAO 수출액÷물량 파생 단가라 혼합 HS 평균(FOB 아님) — cardDesc가 한계를 명시하나 1차 원물가와 혼동 위험은 구조적 잔존.
+shrimp,shrimp_125,글로벌 기준선 단가 사이클 (W33_PriceTrend),,STATIC · 2026-05-29,84,80,92,92,87,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"FAO 시계열이 2023년에서 끝나 2024~ 단가 부재 — cardDesc가 2023 $7,087·최저점 2004 $5,643을 정확히 자기검"
+shrimp,shrimp_126,w03_processing 글로벌 새우 가공품 생산 물량 추이,,synced/2024.1.0 스냅샷,88,80,90,90,87,A,shrimp_corrected_2026_06_05,forensic_4axis_real,가장 정직한 위젯—2026-05-30 검증일·물량≠금액 면책·교차참조(w16/w19) 명시. 결함 거의 없음.
+shrimp,shrimp_127,w_shrimp_forced_labor_map 베트남 새우 공급망 추적성 갭,,static/2026-01,90,84,86,90,87.5,A,shrimp_corrected_2026_06_05,forensic_4axis_real,Seafood Watch SSRT V2(2026-01-07) 1차·STATIC 정직·'강제노동 증거 없음' 정확 인용·70%/65%/C188 추
+shrimp,shrimp_128,w_kr_shrimp_import_quarterly 한국 새우 수입 분기 동향 및 원산지 대체,,synced/2026-05-27,88,88,86,88,87.5,A,shrimp_corrected_2026_06_05,forensic_4axis_real,KMI FTA 21개 분기 원본 PDF 1차·2025/2026Q1 실측·물량+17.1%·점유율 재편 모두 추적 가능·신선. 최상급 정합. 흠 거
+shrimp,shrimp_129,한국 새우 무역수지(Trade Balance),,STATIC / syncDate 2026-05-29,88,84,90,88,88,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"수입 96,299톤·수출 1,513톤이 JSON과 정확히 일치하고 천톤 환산(96.3/1.5)도 내부정합. STATIC이라 a2 상한이 유일한 "
+shrimp,shrimp_130,w_kr_shrimp_origin_price 한국 수입 원산지별 새우 단가 추이,,synced/KMI 2026Q1,88,86,88,90,88,A,shrimp_corrected_2026_06_05,forensic_4axis_real,KMI 실측 단가÷물량 산출식·단가차% 계산식 [(8.5-7.3)/7.3] 명시·'가공형태/품종 미통제 혼합단가' 면책까지—검증성 모범. 최고점
+shrimp,shrimp_131,한국 새우 연간 수입 톤수 추이,,STATIC / syncDate 2026-05-29,90,84,92,90,89,A,shrimp_corrected_2026_06_05,forensic_4axis_real,"STATIC 라벨이므로 a2 만점 불가하나, 1994~2023 FAOSTAT 시계열·2023=96,299톤이 JSON과 정확히 일치하는 최강 위"
