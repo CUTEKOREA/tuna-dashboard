@@ -167,18 +167,18 @@
       "report_date": "6/3",
       "work_time": "08:00 ~ 18:00",
       "target_holds": "S/EXP(#4-B)",
-      "daily_amount": 500,
-      "cumulative_amount": 729.16,
-      "quality_notes": "S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호. 명일(6/6) 약 0톤 하역 진행 예정."
+      "daily_amount": 180.34,
+      "cumulative_amount": 409.5,
+      "quality_notes": "S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호. 명일(6/6) 약 410톤 하역 진행 예정."
     },
     {
       "vessel_id": "bao-lucky",
       "report_date": "6/4",
-      "work_time": "-",
-      "target_holds": "-",
-      "daily_amount": 0,
-      "cumulative_amount": 729.16,
-      "quality_notes": "일요일 휴무. 명일(6/6) 약 3800톤 하역 진행 예정."
+      "work_time": "08:20 ~ 15:20",
+      "target_holds": "N/STAR(#1-A), S/EXP(#2-A,#4-A), MOAKONA(#2-A)",
+      "daily_amount": 417.35,
+      "cumulative_amount": 826.85,
+      "quality_notes": "제품상태:N/STAR(#1-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.S/EXP(#2-A,#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
     }
   ],
   "unloading_species": [
@@ -205,14 +205,14 @@
       "species_id": "SJ",
       "species_name": "Skipjack",
       "reported_amount": 4176,
-      "actual_amount": 704.46
+      "actual_amount": 718.45
     },
     {
       "vessel_id": "bao-lucky",
       "species_id": "YF",
       "species_name": "Yellowfin",
       "reported_amount": 627,
-      "actual_amount": 24.7
+      "actual_amount": 108.4
     }
   ]
 }

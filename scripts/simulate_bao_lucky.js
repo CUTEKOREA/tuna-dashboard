@@ -19,29 +19,46 @@ N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 �
 명일(6/3)은 약 176톤 하역 진행 예정.`;
 
 const emailJune3 = `금일(6/3) M/V BAO LUCKY 하역결과
-일일 하역량 500.00 MT
-하역 누계 729.16 MT
-잔 량 4073.84 MT
+일일 하역량 180.34 MT
+하역 누계 409.50 MT
+잔 량 4393.50 MT
 작업 시간: 08:00 ~ 18:00
 작업 어창: S/EXP(#4-B)
 어종별 하역량:
-SJ 500.00 MT
+SJ 156.84 MT
+YF 23.50 MT
 제품상태:
 S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호.
 5. 명일
-명일(6/4)은 약 0톤 하역 진행 예정.`;
+명일(6/4)은 약 410톤 하역 진행 예정.`;
 
-const emailJune4 = `금일(6/4) M/V BAO LUCKY 하역결과
-일일 하역량 0.00 MT
-하역 누계 729.16 MT
-잔 량 4073.84 MT
-작업 시간: -
-작업 어창: -
-어종별 하역량:
+const emailJune4 = `수신: 해양수산본부
+발신: 방콕사무소
+
+1. 업무에 노고가 많으십니다.
+
+2. 금일(6/4) BAO LUCKY 하역결과를 아래와 같이 보고 드립니다.
+
+* TUM:                125.040 MT (N/STAR:#1-A)
+  AAI:                130.350 MT (S/EXP:#2-A, KONA:#2-A)
+  MMP:                161.960 MT (S/EXP:#4-A)
+-------------------------------------------------------------------------------
+일일  하역량:            417.350 MT
+하 역 누 계:            826.850 MT
+잔      량:  -        3,976.150 MT (총 적재량 : 4,803 MT)
+
+3. 금일(6/4) 하역작업은 08:20 ~ 15:20 까지 진행하였습니다.
+
+4. 금일(6/4) 하역 시 관찰된 제품상태 관하여 다음과 같이 보고 드립니다.
+
 제품상태:
-일요일 휴무.
-5. 명일
-명일(6/5)은 약 3800톤 하역 진행 예정.`;
+N/STAR(#1-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.
+S/EXP(#2-A,#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.
+MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.
+
+5. 명일(6/5)은 약 270톤 하역 진행 예정입니다.
+
+6. 수고하십시오.`;
 
 function postEmail(emailBody, subject) {
   return new Promise((resolve, reject) => {
@@ -118,7 +135,7 @@ async function run() {
     console.log('June 3 Response:', res3);
 
     console.log(`Sending June 4 email webhook simulation...`);
-    const res4 = await postEmail(emailJune4, 'Fwd: M/V BAO LUCKY 하역결과 (6/4)');
+    const res4 = await postEmail(emailJune4, 'Fwd: BAO LUCKY 일일 하역결과보고(6/4)');
     console.log('June 4 Response:', res4);
 
     console.log('Fetching database data via API to verify...');
@@ -144,8 +161,8 @@ async function run() {
         });
       }
       
-      const expectedSj = 704.460;
-      const expectedYf = 24.700;
+      const expectedSj = 718.450;
+      const expectedYf = 108.400;
       
       console.log(`\nExpected Skipjack (SJ): ${expectedSj}, Got: ${sjActual}`);
       console.log(`Expected Yellowfin (YF): ${expectedYf}, Got: ${yfActual}`);
