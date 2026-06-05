@@ -173,7 +173,7 @@ export default function OctopusFTAQuarterly() {
         </div>
         <div style={PanelStyle}>
           <div style={PanelTitle}>🐙 26 Q1 가공 형태 (낙지 특이성)</div>
-          <div style={PanelDesc}>활·신선·냉장 29.8% — 주꾸미(13.5%)·새우(0.4%) 대비 압도적. 산낙지·연포탕 외식 수요가 채널 분리.</div>
+          <div style={PanelDesc}>활·신선·냉장 29.8% — 주꾸미(13.5%) 대비 2.2배. 산낙지·연포탕 외식 수요가 채널 분리.</div>
           {FormPie}
         </div>
       </div>
@@ -211,12 +211,12 @@ export default function OctopusFTAQuarterly() {
       iconColor="#6366f1"
       pillar="S3"
       cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 낙지 분기별 시계열. 2022 사상 최고치 이후 정상화 → 2025 안정화 진입 시그널과 동시에 중국 84.3% 단일 의존이 26 Q1까지 고착. 활·신선·냉장 29.8% 비중은 두족류 중 압도적으로 한국 외식 수요 특이성을 노출."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={Body}
       takeaway={{
         situation: `<div>
 <p>"단일국 고착(Single-Origin Lock-in)"이란 한 commodity의 가치 비중이 한 국가에서 80%+ 고착되어 가격·정치·검역 충격이 1:1로 한국 소매가에 전이되는 구조. 낙지는 양식이 사실상 미개발(FishStat 양식 156행)이라 자연산 어획에 의존, 한국 자체 자원도 −30.9% 절벽으로 buffer 부재.</p>
-<p>실측: <strong>2025년 對FTA 낙지 수입 28.9천 톤·$262.9M으로 +0.3%/+4.4% 안정화. 그러나 중국 가치 비중 84.3%·26 Q1 77.6%로 단일국 의존 고착, 베트남 13.7%·태국 1.4%로 분산 효과 미미</strong>. 동시에 <strong>활·신선·냉장 29.8%</strong> — 주꾸미(13.5%)·새우(0.4%) 대비 2~70배 — 한국 외식 채널(산낙지·연포탕·세발낙지)이 절대적 수요 베이스.</p>
+<p>실측: <strong>2025년 對FTA 낙지 수입 28.9천 톤·$262.9M으로 +0.3%/+4.4% 안정화. 그러나 중국 가치 비중 84.3%·26 Q1 77.6%로 단일국 의존 고착, 베트남 13.7%·태국 1.4%로 분산 효과 미미</strong>. 동시에 <strong>활·신선·냉장 29.8%</strong> — 주꾸미(13.5%) 대비 2.2배 — 한국 외식 채널(산낙지·연포탕·세발낙지)이 절대적 수요 베이스.</p>
 <p>구조 시그널: <strong>對베트남 냉동 단가 26 Q1 +4.8%($6.6→$6.9/kg)</strong>로 베트남 다변화 옵션도 cost-push 노출 시작. 2022년 보복수요 정점 후 3년 하향이 끝나고 다시 단가 인상 사이클 진입 가능성.</p>
 </div>`,
         actionPlan: `<div>

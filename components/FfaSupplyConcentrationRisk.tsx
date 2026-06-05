@@ -136,7 +136,7 @@ export default function FfaSupplyConcentrationRisk() {
         description: '허핀달-허슈만 지수. 시장 집중도 측정 지표. 1,500 미만=저집중, 1,500-2,500=중간, 2,500 초과=고집중.',
       }}
       kpiPanel={[
-        { label: 'HHI 지수', value: '1,604', sub: '중간 집중', trendColor: '#f59e0b' },
+        { label: 'HHI 지수', value: '1,435', sub: '저집중 근접', trendColor: '#f59e0b' },
         { label: 'PNG 점유율', value: '28%', sub: '856,521 MT' },
         { label: '상위 3국 합계', value: '58%', sub: 'PNG+키리바시+공해' },
       ]}
@@ -188,7 +188,7 @@ export default function FfaSupplyConcentrationRisk() {
       }
       customBody={<RiskLegend />}
       takeaway={{
-        situation: 'PNG가 WCPO 어획량의 28%를 점유하여 단일 국가 의존도 높음. HHI 1,604로 중간 집중 수준. 상위 3개 공급원(PNG+키리바시+공해)이 58% 점유. PNG는 MPA 확대·화산 활동 리스크, 키리바시는 ENSO 민감도 높음.',
+        situation: 'PNG가 WCPO 어획량의 28%를 점유하여 단일 국가 의존도 높음. HHI 1,435로 저집중·중간 경계 수준(1,500 미만). 상위 3개 공급원(PNG+키리바시+공해)이 58% 점유. PNG는 MPA 확대·화산 활동 리스크, 키리바시는 ENSO 민감도 높음.',
         actionPlan: 'PNG 의존도 분산 필수. FSM·마셜 등 중소국 조업권 확보, PNA 외 어장(대서양, 동태평양) 대안 공급링 검토. 엘니뇨 주기 연동 허리케인 리스크 대비 필수.',
         source: 'FFA/WCPFC 2024 어획 통계',
       }}

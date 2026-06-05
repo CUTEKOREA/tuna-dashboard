@@ -38,8 +38,8 @@ export function PollockPriceForecastChart() {
       icon={TrendingUp}
       iconColor="#3b82f6"
       pillar="S1"
-      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 기반 통명태/수리미/명란 분기별 가격 예측 (FRED API)"
-      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (FRED·예측모형)' }}
+      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 기반 통명태/수리미/명란 분기별 가격 예측 (연방준비은행 FRED API)"
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (연방준비은행·예측모형)' }}
       customBody={
         <>
           <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
@@ -102,7 +102,7 @@ export function PollockPriceForecastChart() {
       takeaway={{
         situation: '통명태 FOB 상승 추세(2025Q3 $1,580 예측). 수리미는 구조적 상승(아시아 HMR 수요). 명란은 프리미엄 성장(D2C $10,800).',
         actionPlan: '통명태: A-시즌 종료 전 선제 매입. 수리미: 실꼬리돔 블렌딩 최적화. 명란: D2C 프리미엄 전환으로 마진 7배 확보.',
-        source: '(기본 2024-08) 수산물 무역 단기 전망모형 · FRED API',
+        source: '(기준 2024-08 자체추정) 수산물 무역 단기 전망모형 · 연방준비은행(FRED) API',
       }}
     />
   );
@@ -125,7 +125,7 @@ export function PollockScenarioSimulator() {
       iconColor="#f59e0b"
       pillar="S1"
       cardDesc="5대 시나리오별(기준·쿼터감축·제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST"
-      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (FRED·예측모형)' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (연방준비은행·예측모형)' }}
       customBody={
         <>
           <div style={{ display: 'grid', gap: '6px' }}>
@@ -164,7 +164,7 @@ export function PollockScenarioSimulator() {
       takeaway={{
         situation: '기준 시나리오(45% 확률) 마진 12.5%. 쿼터 감축 시 마진 8.2%로 급락. 러시아 제재 강화 시 5.8%까지 하락 리스크.',
         actionPlan: '쿼터 감축·제재 강화 동시 발생(15%) 시 대체 어종 블렌딩 + 미국 MSC 전환 즉시 실행.',
-        source: '(기본 2024-08) 전망모형 · NOAA SST 데이터',
+        source: '(기준 2024-08 자체추정) 전망모형 · 미국해양대기청(NOAA) SST 데이터',
       }}
     />
   );

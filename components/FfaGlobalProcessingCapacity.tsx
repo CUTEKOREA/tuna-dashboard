@@ -67,16 +67,16 @@ export default function FfaGlobalProcessingCapacity() {
       icon={Factory}
       iconColor="#f59e0b"
       pillar="S2"
-      cardDesc="국가별 참치 통조림 가공 용량 및 가동률 비교"
+      cardDesc="국가별 참치 통조림 가공 용량 및 가동률 비교 (FFA/업계 추정, 2024)"
       telemetry={{ status: 'STATIC', syncDate: '2024 FFA/업계 추정' }}
       termTooltip={{
         term: '가공 캐파',
-        description: '참치 통조림 연간 가공 용량(MT/년). 태국이 글로벌 60-65% 점유로 압도적 1위.',
+        description: '참치 통조림 연간 가공 용량(MT/년). 상위 6개국 합계 기준 태국이 약 54%(1,200K MT/년) 점유로 1위(업계 추정).',
       }}
       kpiPanel={[
         { label: '총 글로벌 용량', value: '2,220K MT/년', sub: '상위 6개국 합계' },
         { label: '태국 점유율', value: '54%', sub: '1,200K MT/년' },
-        { label: '베트남 성장', value: '급성장', sub: '150K MT, 확장 중', trendColor: '#10b981' },
+        { label: '베트남 용량', value: '150K MT/년', sub: '6개국 중 5위, 추정치', trendColor: '#10b981' },
       ]}
       chartHeight={300}
       chart={

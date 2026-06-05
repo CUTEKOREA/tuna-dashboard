@@ -10,16 +10,16 @@ export function Widget9_FilletRatio() {
   useEffect(() => { fetch('/data/pollock_fillet_hg.json').then(r => r.json()).then(setData); }, []);
   return (
     <WidgetCard
-      title="선상 혁신: H&G 대신 Fillet(필레) 생산 트렌드 장악력"
+      title="선상 가공 전환: H&G 대비 필레 생산 비율 추이"
       icon={Ship}
       iconColor="var(--color-success)"
       pillar="S2"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
-      cardDesc="더 비싼 고수익 1차 동결(FAS) 필레 가공 비율의 점진적인 퀀텀 도약 지표"
+      cardDesc="선상 1차 동결(FAS) 필레 가공 비율 추이 (업계추정치, 예시 데이터)"
       takeaway={{
-        situation: "어선들의 가공 트렌드가 급변하고 있습니다. 단순 H&G(벌크형 투척 품목) 중심에서, 바다 한가운데서 잡은 즉시 배 안에서 싱글 프로즌(Single-Frozen) 처리하여 뼈 없는 최고급 필레로 뽑아내는 테크놀로지 배합률이 기하급수적으로 폭증 중입니다.",
-        actionPlan: "해동을 거치지 않은 최상위 신선도의 선상 가공품(FAS) 라인 파이프를 먼저 뚫어내는 기업이 글로벌 B2B 프리미엄 다이닝 납품 입찰전을 쓸어 담습니다. 구형 H&G 매입 비중을 줄이고 최첨단 FAS 선박들과의 전속 거래 예산을 최대로 배분.",
-        source: "FAO Fisheries & Aquaculture Production Data"
+        situation: "어선들의 가공 트렌드가 전환 중입니다. 단순 H&G(머리·내장 제거) 중심에서, 선상 즉시 싱글 프로즌(FAS) 처리한 필레 생산 비율이 2000년대 이후 점진적으로 상승하는 추세를 보입니다.",
+        actionPlan: "FAS 선상 가공품 라인 확보에 선제 투자한 기업이 B2B 프리미엄 납품 입찰에서 유리합니다. H&G 매입 비중을 점진적으로 줄이고 FAS 선박 전속 거래를 검토할 필요가 있습니다.",
+        source: "업계추정 (FAO 어획·생산 통계 기반 추산, 선상가공 비율은 자체추정)"
       }}
       customBody={
         <div style={{ height: 280 }}>
@@ -50,11 +50,11 @@ export function Widget10_SurimiGrowth() {
       iconColor="var(--color-warning)"
       pillar="S2"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
-      cardDesc="블록(Block) 형태의 생 소비를 뛰어넘는 수리미 기반 범용 원자재 시장의 폭발"
+      cardDesc="명태 연육(Surimi) 글로벌 생산량 추이 (업계추정치, 참고용)"
       takeaway={{
-        situation: "어묵 배합, 인조 게맛살(크래미), 패스트푸드 가공의 필수 베이스이자 미래 대체육 라인인명태 연육(Surimi) 생산량 그래프의 가파른 상승 저항선을 보여줍니다. 이제 명태는 더 이상 원형 생선이 아니라 화학적 식품 원료로서 그 가치가 복리 우상향 중입니다.",
-        actionPlan: "수리미 공급권은 당사 그룹 매출의 생명줄입니다. SA / FA 등급 등 최상위 하이엔드 수리미를 뽑아내는 상위 3개 러시아계 공장의 연간 쿼터를 싹쓸이하여 경쟁사들이 B급 원료로 밀려나게 만드는 압사 치킨게임을 지시합니다.",
-        source: "Global Surimi Production & Trade Annual Index"
+        situation: "어묵·크래미·패스트푸드 등 다양한 가공식품의 원료인 명태 연육(Surimi) 글로벌 생산량은 2000년대 이후 증가 추세를 보입니다. 원형 어류에서 가공 원자재로의 전환이 진행 중입니다.",
+        actionPlan: "SA/FA 등급 고품질 수리미 공급망 우선 확보가 중요합니다. 상위 러시아계 공장과의 안정적 장기 거래 관계 구축을 검토할 필요가 있습니다.",
+        source: "업계추정 (수리미 생산 추이는 자체추정, FAO·GLOBEFISH 통계 기반)"
       }}
       customBody={
         <div style={{ height: 280 }}>
@@ -86,9 +86,9 @@ export function Widget11_SurimiSpread() {
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       cardDesc="고가 명태 연육과 저가 동남아 실꼬리돔(Itoyori) 사이클 이격도 분석"
       takeaway={{
-        situation: "프리미엄 명태 연육과 동남아산 값싼 열대어(Tropical)의 가격 갭(Spread)을 관찰합니다. 이 가격 갭이 2배율(2.0x)을 초과 돌파하는 임계점에 진입하면 대량 B2B 어묵 제조사들은 매입원가 절감을 위해 맛이 조악해짐에도 싼 열대어 원료 레시피 교체를 단행합니다.",
-        actionPlan: "핵심 클라이언트인 식품 공장들이 염가 제품 라인으로 이탈하는 엑소더스를 차단해야 합니다. 100% 명태만 고집하지 말고, 자사 차원에서 명태 70%와 가성비 열대어 30%를 황금 비율로 사전 혼합한 중간 마진 가격대의 새로운 방어형 아이템을 출시하여야 합니다.",
-        source: "Urner Barry Seafood Market Analytics"
+        situation: "프리미엄 명태 연육과 동남아산 열대어(Tropical) 연육의 가격 차이(Spread)를 보여줍니다. 이 가격 격차가 확대될수록 B2B 어묵 제조사들의 대체 원료 전환 유인이 커지는 경향이 있습니다.",
+        actionPlan: "주요 식품 공장 거래처의 원료 전환 리스크에 대응해 명태와 열대어 혼합 중간 가격대 제품군을 선제적으로 검토할 필요가 있습니다.",
+        source: "Urner Barry Seafood Market Analytics (참고가격, 계약조건에 따라 상이)"
       }}
       customBody={
         <div style={{ height: 280 }}>
@@ -114,16 +114,16 @@ export function Widget12_RoePremium() {
   useEffect(() => { fetch('/data/pollock_roe_waterfall.json').then(r => r.json()).then(setData); }, []);
   return (
     <WidgetCard
-      title="히든 프로핏: 프리미엄 명란(Roe) 폭발적 D2C 마진율"
+      title="부위별 가치 구조: 명란 고단가 마진 가능성"
       icon={Database}
       iconColor="#fbbf24"
       pillar="S2"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
-      cardDesc="전체 물량의 초소형 파이를 차지하나 순이익금 상회를 주도하는 히든 부위 폭발성"
+      cardDesc="명태 가공 부위별 가치 구조 (업계추정치, 실제 수익구조는 계약·시황에 따라 상이)"
       takeaway={{
-        situation: "명태 전신을 분해할 때 명란(Roe) 부위가 전체 톤수 중량에서 차지하는 포션은 채 3%에 불과하나, 특수 발효/염장 상품화되었을 때 벌어들이는 1g 당 영업 무형 마진은 타 부위를 압살하며 전체 수익 곡선을 홀로 띄웁니다.",
-        actionPlan: "원물 처리 공정에서 소중한 란(Roe)이 포함된 완전 개체급 생물과 기타 부위를 한국 오프라인 도매상에게 '통나무형 벌크'로 싸게 하역 덤핑하는 행태를 멈추십시오. 명란만 독점 추출하는 D2C 자체 브랜딩 패키지 부서를 본사에 설립해야 합니다.",
-        source: "일본 관세청 명란(Mentaiko) 수입 및 도매 유통 단가 DB"
+        situation: "명태 전신 대비 명란(Roe) 부위는 중량 기준 약 2~3%에 불과하나, 발효·염장 가공 후 단가는 타 부위 대비 현저히 높아 마진 기여도가 큰 것으로 업계에서 추정됩니다.",
+        actionPlan: "명란을 벌크 원물에 묶어 낮은 가격으로 처리하는 방식 대신, 명란만 별도 추출해 고단가 가공 채널(D2C 또는 전문 유통)로 분리 판매하는 구조 검토가 필요합니다.",
+        source: "업계추정 (일본 관세청 수입 통계·도매가 참고, 내부 수익구조는 자체추정)"
       }}
       customBody={
         <div style={{ height: 280 }}>

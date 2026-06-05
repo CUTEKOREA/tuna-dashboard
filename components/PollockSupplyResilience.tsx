@@ -32,12 +32,12 @@ export function PollockConcentrationIndex() {
       telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
       cardDesc="근거: (일반 2023-10) 전략품목 관리 | HHI 2,500+ 고집중, 6,000+ 극단적 집중 | KCS + Comtrade"
       takeaway={{
-        situation: "HHI 7,100 — 극단적 양두독점(러시아 42% + 중국 48% = 90%). 공급 쇼크 시 대체 소싱 불가 리스크.",
+        situation: "HHI 7,100(2025년 추정) — 극단적 양두독점(러시아 42% + 중국 48% = 90%). 공급 쇼크 시 대체 소싱 가용 물량 극히 제한적.",
         actionPlan: "미국 MSC(5%) 비중을 15%까지 확대 + 노르웨이·아이슬란드 대서양 명태 신규 소싱 채널 구축.",
         source: "(일반 2023-10) 전략품목 관리 + KCS 수출입통계"
       }}
       customBody={
-        loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading...</div> : (
+        loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>불러오는 중...</div> : (
           <>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
               <div style={{ flex: 1, background: 'rgba(239,68,68,0.12)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
@@ -51,7 +51,7 @@ export function PollockConcentrationIndex() {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(245,158,11,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇨🇳 중국</span>
-                  <span style={{ fontWeight: 700, color: '#f59e0b' }}>{trend.at(-1)?.china_relay}%</span>
+                  <span style={{ fontWeight: 700, color: '#f59e0b' }}>{trend.at(-1)?.china_pct}%</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 8px', background: 'rgba(59,130,246,0.06)', borderRadius: '6px', fontSize: '0.68rem' }}>
                   <span style={{ color: 'var(--text-secondary)' }}>🇺🇸 미국</span>
@@ -66,7 +66,7 @@ export function PollockConcentrationIndex() {
                 <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                 <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
                 <Area type="monotone" dataKey="russia_pct" stackId="1" stroke="#ef4444" fill="#ef444466" name="러시아 %" />
-                <Area type="monotone" dataKey="china_relay" stackId="1" stroke="#f59e0b" fill="#f59e0b66" name="중국 %" />
+                <Area type="monotone" dataKey="china_pct" stackId="1" stroke="#f59e0b" fill="#f59e0b66" name="중국 %" />
                 <Area type="monotone" dataKey="us_pct" stackId="1" stroke="#3b82f6" fill="#3b82f666" name="미국 %" />
                 <Area type="monotone" dataKey="other_pct" stackId="1" stroke="#6b7280" fill="#6b728066" name="기타 %" />
               </AreaChart>
@@ -106,8 +106,8 @@ export function PollockAlternativeSourcing() {
       cardDesc="근거: (일반 2024-05) 공급망 관리 개선 | 5개국 6축 평가 (원가/품질/신뢰성/ESG/장벽)"
       takeaway={{
         situation: "미국 알래스카(85점) 최우수 대체 소싱. 노르웨이(72점)/아이슬란드(68점) 중위. 베트남(62점) 가공 허브로 부상.",
-        actionPlan: "단기: 미국 MSC 비중 3배 확대(5→15%). 중장기: 베트남 가공기지 JV 검토로 중국 가공 의존도(Exposure) 축소.",
-        source: "(일반 2024-05) 공급망 관리 + Open Supply Hub"
+        actionPlan: "단기: 미국 MSC 비중 3배 확대(5→15%). 중장기: 베트남 가공기지 합작투자 검토로 중국 가공 의존도 축소.",
+        source: "(일반 2024-05) 공급망 관리 + 업계추정"
       }}
       customBody={
         <>

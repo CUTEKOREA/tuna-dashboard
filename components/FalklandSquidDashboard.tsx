@@ -568,7 +568,7 @@ export default function FalklandSquidDashboard() {
       >
         <h1 className="ds-title">
           <Anchor size={28} className="text-[var(--color-primary)]" />
-          2026 포크랜드 오징어채낚기 실적 인텔리전스
+          2026 포클랜드 오징어채낚기 실적 인텔리전스
         </h1>
         <p className="ds-subtitle">
           일일/월별 누계 어획량 분석 기반 선단 및 개별 선박 퍼포먼스 리뷰 (기준: 2026년 5월 말)
@@ -579,7 +579,7 @@ export default function FalklandSquidDashboard() {
         {/* Widget 1: Monthly Catch Trend */}
         <WidgetCard title="월별 전체 어획량 추이" icon={TrendingUp} iconColor="var(--color-primary)" pillar="S1"
           cardDesc="단위: 톤 (Ton) — 일일·월별 누계 어획량"
-          telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
+          telemetry={{ status: 'STATIC', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
           chart={
             <AreaChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <defs>
@@ -602,13 +602,13 @@ export default function FalklandSquidDashboard() {
           takeaway={{
             situation: <>3월과 4월에 전체 어획량의 <strong>55.8%</strong>가 집중되었으며, 4월에 연중 최고치인 <strong>약 6,487톤</strong>을 기록함.</>,
             actionPlan: <>봄철 성어기(3~4월) 집중 투입 전략 유지 및 이 시기 선박 회전율 극대화 모니터링 필요.</>,
-            source: '일일/월별 누계수량 데이터',
+            source: '일일/월별 누계수량 데이터 (자체추정/업계추정)',
           }} />
 
         {/* Widget 2: Company Performance */}
         <WidgetCard title="업체별 누계 실적 및 보유 선박 수" icon={Ship} iconColor="var(--color-secondary)" pillar="S2"
           cardDesc="단위: 톤 (Ton) — 업체별 어획·선박 효율"
-          telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
+          telemetry={{ status: 'STATIC', syncDate: '2026 포클랜드 채낚기' }} chartHeight={300}
           chart={
             <ComposedChart data={companyData.slice(0, 8)} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <ChartPatternDefs />
@@ -625,9 +625,9 @@ export default function FalklandSquidDashboard() {
             </ComposedChart>
           }
           takeaway={{
-            situation: <>규모 면에서 <strong>정일산업(5척, 약 4,041톤)</strong>이 1위이나, 단일 선박 생산성 측면에서는 1척으로 <strong>1,021톤</strong>을 기록한 <strong>㈜피에이아이</strong>의 효율성이 임.</>,
+            situation: <>규모 면에서 <strong>정일산업(5척, 약 4,041톤)</strong>이 1위이나, 단일 선박 생산성 측면에서는 1척으로 <strong>1,021톤</strong>을 기록한 <strong>㈜피에이아이</strong>의 효율성이 두드러짐.</>,
             actionPlan: <>물량 확보(정일산업 모델)와 고효율(피에이아이 모델) 중 전략적 방향성 설정 시 피에이아이의 조업 노하우 벤치마킹 필요.</>,
-            source: '2026년 포크 오징어채낚기 어획현황',
+            source: '2026년 포클랜드 오징어채낚기 어획현황 (자체추정/업계추정)',
           }} />
       </div>
 
@@ -635,7 +635,7 @@ export default function FalklandSquidDashboard() {
         {/* Widget 3: Individual Vessel Rankings */}
         <WidgetCard title={`개별 선박 실적 랭킹 (${vesselData.length}척)`} icon={Ship} iconColor="var(--color-primary)" pillar="S1"
           cardDesc="선박명·업체 검색 + 월별 어획량 + 누계·비중·선령·교체 상태"
-          telemetry={{ status: 'SYNCED', syncDate: '2026 포클랜드 채낚기' }}
+          telemetry={{ status: 'STATIC', syncDate: '2026 포클랜드 채낚기' }}
           customBody={<>
             <div className="flex justify-end mb-3">
               <div className="relative">
@@ -767,7 +767,7 @@ export default function FalklandSquidDashboard() {
           takeaway={{
             situation: '상위 5개 선박이 전체 어획량의 핵심을 견인. 월별 수치는 원본(팬 단위) 그대로 표기.',
             actionPlan: '환산 누계(KG)는 1팬=20kg 기준 적용. 선령·교체 상태 데이터를 활용해 노후 선박 교체·신조 투자 의사결정에 반영.',
-            source: '2026년 포크 오징어채낚기 어획현황',
+            source: '2026년 포클랜드 오징어채낚기 어획현황 (자체추정/업계추정)',
           }} />
       </div>
     </div>

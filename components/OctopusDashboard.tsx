@@ -244,10 +244,10 @@ export default function OctopusDashboard() {
             </ComposedChart>
           );
         default:
-          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원하지 않는 형식</div>;
       }
     }
-    return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported Format</div>;
+    return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원하지 않는 형식</div>;
   };
 
   return (
@@ -445,7 +445,7 @@ export default function OctopusDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const status = w.isLiveApi ? 'LIVE' : (w.reliability && w.reliability < 70 ? 'STATIC' : 'SYNCED');
+    const status = w.reliability && w.reliability < 70 ? 'STATIC' : 'SYNCED'; // isLiveApi LIVE 분기 제거 — /api/octopus-intelligence 라우트 미존재, L-09
 
     return (
       <WidgetCard

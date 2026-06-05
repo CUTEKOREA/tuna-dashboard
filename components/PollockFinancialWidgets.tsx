@@ -29,9 +29,9 @@ export function Widget17_OilMargin() {
           </ComposedChart>
       }
       takeaway={{
-        situation: "시장 형성 어획 단가 대비 기름값(유가 상승 속도)이 너무도 가팔라, 특정 MGO 임계 유가선(예: 톤당 700불)을 상향 돌파 시 선원들이 몸을 갈아넣어 만선 회항을 하여도 은행 잔고는 적자로 잠식되는 수학적 절망 구간이 공표되었습니다.",
-        actionPlan: "부서 내 유가 모니터링 경보를 DEFCON 2레벨로 대기 격상시키십시오. 고유가 장기 늪으로 진입하여 매입원가 보전을 실패할 경우, 글로벌 금융권 선박 MGO 파생상품 옵션을 즉각 매수 헷징하는 선제 조항을 본사 매뉴얼에 즉시 편입할 것을 긴급 발의합니다.",
-        source: "Silla Financial Operations Internal System & S&P Global Platts"
+        situation: "시장 형성 어획 단가 대비 유가(MGO) 상승 속도가 빠르게 확대되고 있으며, 특정 임계 유가선(업계추정: 톤당 700달러 수준) 돌파 시 만선 회항 조업에서도 조업 마진이 음수로 전환되는 구간이 발생할 수 있습니다.",
+        actionPlan: "유가 모니터링 임계 알림 체계를 구축하고, 고유가 장기화 시나리오 대비 MGO 파생상품 헤지 옵션 검토를 재무 담당에 요청하는 것이 바람직합니다.",
+        source: "자체추정(운항원가 모델) / S&P Global Platts 참고"
       }}
     />
   );
@@ -61,9 +61,9 @@ export function Widget18_FXMargin() {
           </LineChart>
       }
       takeaway={{
-        situation: "강달러 1,300원대~1,400원선 뉴노멀 악재가 수년째 도래함에 따라, 무역 지부가 식당들에게 현행 정상 마진율에 물건을 열심히 팔아도 연말 결산 시 환차손 데미지로 인해 영업 무역 장부가 산산조각 박살 나는 역상관의 충격 현장입니다.",
-        actionPlan: "당장의 스팟 달러 구매를 전부 스톱 홀딩하십시오. 주요 외국계 1금융권과 통화 선도 분할(FRA) 계약 체결을 즉각 발동시켜 차기 조업 시즌 1년 치 결제 펀드 자본을 강력 고정 락인하고 경영진 보호막을 두르셔야 생존합니다.",
-        source: "Bank of Korea Exchange Rate & Corporate Finance Data"
+        situation: "원/달러 환율이 1,300원대~1,400원대로 장기화되면서, 달러 결제 원물 수입 비중이 높은 무역 구조에서는 매출이 유지되더라도 환차손으로 인해 영업이익률이 하락하는 역상관 관계가 나타나는 것으로 추정됩니다.",
+        actionPlan: "스팟 달러 매입 비중 축소와 통화 선도(FRA) 계약 등 헤지 수단 검토를 재무팀과 협의하고, 다음 조업 시즌 결제 구조에 반영하는 방안을 고려할 수 있습니다.",
+        source: "한국은행 환율 공시 / 내부 재무 추정(자체추정)"
       }}
     />
   );
@@ -79,7 +79,7 @@ export function Widget19_CollagenSpinoff() {
       iconColor="var(--color-success)"
       pillar="S4"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
-      cardDesc="수산 폐기물 쓰레기로 버려지던 명태 어피(껍질)의 영업 이익 하드 펌핑 신화"
+      cardDesc="수산 부산물로 처리되던 명태 어피(껍질)의 고부가가치 전환 가능성 비교(부문별 매출비중·이익기여도 / 자체추정)"
       chart={
 <BarChart data={data}>
   <ChartPatternDefs />
@@ -93,9 +93,9 @@ export function Widget19_CollagenSpinoff() {
           </BarChart>
       }
       takeaway={{
-        situation: "kg당 100원 남짓 동물의 먹이나 쓰레기장 수산 폐기물로 버려지던 하급 어피(껍질)가 초미세 흡수율을 자랑하는 푸드테크(마린 콜라겐 펩타이드) 화장품 원료로 폭발하면서, 기존 생선 뼈째 파는 본업의 Bottom-line(순이익)률을 수십 배 비웃는 현금 창출 괴물로 탈바꿈했습니다.",
-        actionPlan: "단순 어피 수집 하청과 공장 청소를 곁다리 업무 취급하던 인식을 뒤엎으십시오. 어피 분자 고도화 가공을 그룹 이사회 최우선 혁신 태스크포스(TF)로 단독 출범시키고, 글로벌 톱티어 에스테틱 제약 및 뷰티 계열사와 조인트 벤처 양해 각서를 체결하여 기술 우위를 독식.",
-        source: "Global Marine Pharmaceuticals Valuation Intelligence"
+        situation: "어피(껍질)는 기존 수산 부산물 대비 마린 콜라겐 펩타이드 원료로 전환 시 이익기여도가 매출 비중 대비 현저히 높을 수 있다는 업계추정이 있으며, 글로벌 마린 콜라겐 시장은 성장세를 보이고 있습니다(구체적 수치는 공개 보고서 교차 검증 필요).",
+        actionPlan: "어피 고도화 가공의 수익성과 투자 규모를 정량적으로 분석한 뒤, 결과에 따라 파일럿 검토 또는 외부 파트너십 탐색을 고려할 수 있습니다.",
+        source: "업계추정 / 글로벌 마린 콜라겐 시장 동향 참고(출처 교차검증 권고)"
       }}
     />
   );
@@ -111,7 +111,7 @@ export function Widget20_Portfolio2030() {
       iconColor="#38bdf8"
       pillar="S4"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
-      cardDesc="사양화되는 기존 비즈니스와 캐시카우를 대체할 블루오션의 Bubble Map"
+      cardDesc="사양화되는 기존 사업과 신규 블루오션 후보군의 이익률·성장성·시장규모 비교(자체추정 / 버블 크기=시장규모)"
       chart={
 <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
@@ -127,9 +127,9 @@ export function Widget20_Portfolio2030() {
           </ScatterChart>
       }
       takeaway={{
-        situation: "매출 절대다수(Volume) 규모의 환상을 심어주며 임원진의 눈을 가렸던 옛 영광의 1차 벌크형 도매 비즈니스는 성장성과 Bottom-line(순이익)률이 모두 박살 난 왼쪽 하단 사분면 침수 늪으로 추락한 명백한 재무 데이터를 고발합니다.",
-        actionPlan: "현 상태에 안주하여 재래식 냉동 창고에 흑자 도산의 무덤을 파지 마십시오. 오늘 회장단 최고위 협의체에서 2030 플랜을 기안하십시오. 회사의 향후 모든 수 백억 대 CapEx(시설 투자 자본) 신규 확충의 100%를 오로지 자사 브랜딩 D2C 멸균 제품, 파생 화학 수리미, 바이오 제약 콜라겐 인프라에 전면 융단 폭격 이동할 것을 의결 선언해야 합니다.",
-        source: "Silla Strategy Consulting Group: 2030 Value Roadmap"
+        situation: "본 차트는 자체추정 기반 포트폴리오 시뮬레이션으로, 1차 벌크형 도매 사업이 이익률·성장성 양면에서 신규 사업 후보 대비 열위에 놓일 수 있음을 시각적으로 나타냅니다. 실제 수치는 내부 재무 데이터로 검증이 필요합니다.",
+        actionPlan: "2030 포트폴리오 전환 방향(자사 브랜드 D2C, 수리미, 콜라겐 인프라 등)의 투자 우선순위를 내부 수익성 분석 결과에 근거해 단계적으로 검토하는 것이 적절합니다.",
+        source: "자체추정(전략 시뮬레이션) / 내부 전략 검토 참고"
       }}
     />
   );

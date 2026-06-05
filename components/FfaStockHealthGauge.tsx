@@ -191,7 +191,7 @@ function SemiGauge({ ratio, lrp, species, abbr, safetyMargin, speciesColor }: {
 
 // ─── KPI 패널 데이터 ─────────────────────────────────────────────────────────
 const KPI_ITEMS = [
-  { label: '전체 판정', value: '4종 모두 건강', sub: 'NOT overfished / NOT overfishing', trendColor: '#34d399' },
+  { label: '전체 판정', value: '4종 모두 건강', sub: '남획 없음 / 과잉어획 없음', trendColor: '#34d399' },
   { label: 'SKJ 안전배수', value: '2.55×', sub: 'SBrecent/SBF=0 = 0.51' },
   { label: 'LRP 초과 확률', value: '0%', sub: '4종 모두 LRP 이하 확률 0%', trendColor: '#34d399' },
   { label: 'BET MSY', value: '~164,640 MT', sub: '현재 어획 MSY 미만' },
@@ -355,7 +355,7 @@ export default function FfaStockHealthGauge() {
       customBody={customBody}
       takeaway={{
         situation: `<div>
-<p>2024년 WCPO 4대 참치 자원 평가 결과, <strong>4종 모두 "NOT overfished, NOT overfishing"</strong> 판정. 가다랑어(SKJ) SBrecent/SBF=0 = 0.51로 LRP(0.20) 대비 <strong>2.55배 안전 마진</strong>.</p>
+<p>2024년 WCPO 4대 참치 자원 평가 결과, <strong>4종 모두 "남획 없음·과잉어획 없음(not overfished, not overfishing)"</strong> 판정. 가다랑어(SKJ) SBrecent/SBF=0 = 0.51로 LRP(0.20) 대비 <strong>2.55배 안전 마진</strong>.</p>
 <p>황다랑어(YFT)·눈다랑어(BET)·날개다랑어(ALB) 모두 LRP 이하 확률 0%. BET의 MSY는 ~164,640 MT으로 현재 어획량(151,611 MT)이 MSY 미만 수준 유지.</p>
 <p>다만, 2024년 SKJ 어획량이 역대 최고(+24%)를 기록한 만큼, 지속적인 고강도 어획 시 자원량 하락 가능성 모니터링 필요. 특히 ENSO 사이클에 따른 SKJ 자원 변동성 주시 필요.</p>
 </div>`,

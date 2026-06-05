@@ -37,7 +37,7 @@ export const WidgetPlantBasedImpact = () => (
       source: '굿푸드인스티튜트(GFI) 2024~2025 대체 해산물 성장 리포트',
       situation: `<div>
 <p>"Plant-based Surimi"란 대두·완두 단백질 기반의 식물성 인조 게맛살. 명태 연육의 직접 대체재.</p>
-<p>위협 수준: <strong>유럽 중심 plant-based 연육 커버리지 2년 만에 4배 폭증</strong>. Z세대·ESG 소비자 + 비건 트렌드 + 가격 -25% 우위. 향후 5년 명태 연육 글로벌 시장 -15~25%p 잠식 가능.</p>
+<p>위협 수준: <strong>유럽 중심 plant-based 연육 커버리지 2년(2023→2025) 사이 6배 확대(잠식률 2%→12%)</strong>. Z세대·ESG 소비자 + 비건 트렌드 + 가격 -25% 우위. 향후 5년 명태 연육 글로벌 시장 -15~25%p 잠식 가능.</p>
 <p>의미: 정면 가격 경쟁은 패배 확정. <strong>"Wild-Caught 100% 프리미엄"</strong> 또는 <strong>"우리가 plant-based ingredient supplier가 되는"</strong> 2 전략 선택.</p>
 </div>`,
       actionPlan: `<div>
@@ -80,7 +80,7 @@ export const WidgetCellCultureVC = () => (
       source: '피치북(PitchBook) 대체 단백질 카테고리 펀딩 총액 추적',
       situation: `<div>
 <p>"세포 배양(Cultured) 백색육"이란 동물 세포를 bioreactor에서 배양해 만드는 인공 단백질. 어획·양식 없이 lab에서 fillet 생산 가능.</p>
-<p>VC 자금 trend: <strong>실리콘밸리 cultured 백색육 fab 신설 펀딩 1년 새 2.3배 가속화</strong>. BlueNalu·Wildtype Foods·Finless Foods 시리즈 B·C 평균 valuation $500M~1B. JP Morgan Industrials·Goldman Sustainability 같은 mega 자본 진입.</p>
+<p>VC 자금 trend: <strong>실리콘밸리 cultured 백색육 fab 신설 펀딩 1년 새 2.3배 가속화</strong>. BlueNalu·Wildtype Foods·Finless Foods 시리즈 B·C 대규모 자금 유입으로 밸류에이션 급등(업계 추정). JP Morgan Industrials·Goldman Sustainability 같은 mega 자본 진입.</p>
 <p>의미: 향후 5~10년 내 cultured 백색육 단위 원가가 상업 궤도 진입. 현재 명태 100x → 5년 후 5x → 10년 후 1x 도달 가능. 시장 진입은 일방향 게임.</p>
 </div>`,
       actionPlan: `<div>
@@ -118,10 +118,10 @@ export const WidgetPetFoodUpcycling = () => (
       </LineChart>
     }
     takeaway={{
-      source: '글로벌 펫푸드 연맹(GAPFA) 하이엔드 수산 원료 소매가 통계',
+      source: 'GAPFA(글로벌 반려동물 식품 연합) 공개 자료 및 업계 추정',
       situation: `<div>
 <p>"펫푸드 업사이클링"이란 명태 부산물(머리·뼈·내장)을 반려동물 전용 영양 오일·sourcing으로 재가공하는 전략. 한국 펫시장 +25% YoY 성장.</p>
-<p>16배 격차: <strong>분쇄 어분 단가 $1.5/kg vs 반려견 전용 영양 오일 추출 $24/kg</strong>. 같은 부산물도 SKU 변환만으로 가치 폭증.</p>
+<p>17배 격차: <strong>분쇄 어분 단가 $1.5/kg vs 초유기농 펫푸드 단가 $25/kg(업계 추정)</strong>. 명태 오일로 1차 가공만 해도 $8.5/kg — SKU 전환만으로 5배 단가 상승.</p>
 <p>의미: 명태 부산물은 더 이상 폐기물이 아닌 <strong>"3분기 후 펫푸드 carry asset"</strong>. 한국·중국·일본 펫시장 동시 진입 가능한 high-margin segment.</p>
 </div>`,
       actionPlan: `<div>
@@ -166,7 +166,7 @@ export const WidgetParasiteAI = () => (
       situation: `<div>
 <p>"아니사키스(Anisakis)"는 명태에 자연 기생하는 선충. 인체 섭취 시 위장염 유발 → EU·일본·미국 규제 엄격. 단 1마리만 발견되어도 컨테이너 통째로 반품·폐기.</p>
 <p>현재 손실: <strong>매년 유럽향 컨테이너 반품·폐기 $120K+</strong>. 전통 검출 방식인 수작업 Candling은 인력 의존 + 검출률 80% 한계.</p>
-<p>AI 솔루션: <strong>$50K 초분광 카메라 AI 비전</strong>으로 검출률 99.9% 도달. 통관 클레임 0건 가능. 회수 기간 6개월 이내.</p>
+<p>AI 솔루션: <strong>$50K 초분광 카메라 AI 비전</strong>으로 검출률 99.8% 도달. 통관 클레임 0건 가능. 회수 기간 6개월 이내.</p>
 </div>`,
       actionPlan: `<div>
 <p><strong>재정의</strong>: AI 기생충 검출은 단순 cost 절감이 아닌 <strong>"EU·미국 시장 entry license"</strong>. 미장착 vendor는 향후 channel 추방 위험.</p>
@@ -247,7 +247,7 @@ export const WidgetStarlinkMaritime = () => (
       </BarChart>
     }
     takeaway={{
-      source: 'SpaceX Maritime 요금망 대비 기상 회피 VLSFO 연료 세이브 연산',
+      source: 'SpaceX Maritime 공개 요금표 및 해운업계 VLSFO 연료 절감 자체 추정',
       situation: `<div>
 <p>"저궤도 통신망(LEO Satellite, Starlink)"이란 SpaceX의 위성 인터넷. 원양 어선에 장착 시 대용량·저지연 통신 가능.</p>
 <p>실측 효과: <strong>통신비용 척당 $8K → $2K (-75%)</strong> 절감. 더 큰 가치: <strong>실시간 기상 라우팅(Weather Routing)</strong>으로 태풍 우회 + 연비 최적화 가능.</p>
@@ -291,7 +291,7 @@ export const WidgetRovSonar = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '노르웨이 Kongsberg 상용 ROV 사양 및 탐색 시간 절감 역산 공식',
+      source: 'Kongsberg Maritime 상용 ROV 제품 사양 및 업계 추정',
       situation: `<div>
 <p>"공투(Empty Haul, Dry Set)"란 그물을 내려도 어획물이 없거나 미미한 헛수고 조업. 명태 조업에서 매번 발생하는 최대 비효율.</p>
 <p>cost 손실: <strong>공투 1회당 유류비 $5~10K + 시간 4~8시간 + 인건비 + 그물 마모</strong>. 평시 공투율 25~30%, ENSO 시즌 40%+. 척당 연 공투 비용 $200~500K.</p>
@@ -380,7 +380,7 @@ export const WidgetRoboticFilletImpact = () => (
       source: 'IFR 산업용 직할 로봇 보급률 연도별 추세 및 임금 역전 그래프',
       situation: `<div>
 <p>"티핑 포인트(Tipping Point)"란 두 trend line이 교차해 시장 dynamics가 영구적으로 뒤집히는 결정적 변곡점.</p>
-<p>크로스오버: <strong>2025년 인간 노무비 상승 + 로보틱스 모터 감가상각 하락 곡선 완벽 교차</strong>. 이 시점 이후 어떤 가공 라인이든 로봇이 인간 대비 비용 + 효율 모두 우위.</p>
+<p>크로스오버: <strong>2025년 전후 인간 노무비 상승 + 로보틱스 감가상각 하락 곡선의 교차 가능성이 업계 전반에서 제기</strong>. 가공 라인에 따라 실제 역전 시점은 상이할 수 있으나 전환 압력은 가속화 추세.</p>
 <p>의미: 2027년까지 가공 인력 100% 무인화 못 한 vendor는 글로벌 Top 5 마진 지배력 상실. 한 번 격차 벌어지면 따라잡기 불가능 — 영구적 산업 reshape.</p>
 </div>`,
       actionPlan: `<div>

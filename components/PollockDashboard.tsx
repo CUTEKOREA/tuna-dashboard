@@ -453,7 +453,7 @@ export default function PollockDashboard() {
                 background: 'linear-gradient(135deg, #06b6d4, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 명태 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Pollock Strategic Command Center — 48 Widgets · 8 KPIs · 6 Live API Pipelines</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>명태 전략 커맨드센터 — 위젯 58개 · KPI 8개 · API 파이프라인 6개</p>
             </div>
           </div>
           <div style={{ 

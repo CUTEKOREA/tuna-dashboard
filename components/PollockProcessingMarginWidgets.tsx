@@ -34,10 +34,10 @@ export function WidgetRoeMarginSpread() {
         </ComposedChart>
       }
       takeaway={{
-        source: '식품산업통계정보(FIS) 명란젓 동향',
+        source: 'FIS 명란젓 시장 동향 + 자체추정 (마진 수치 채널별 추정)',
         situation: `<div>
 <p>"명란(Roe)"이란 명태의 알. 명태 전체 포트폴리오(필레·수리미·로) 중 가장 부가가치 높은 부위로, 한국 시장에서 핵심 밥도둑 반찬으로 자리매김.</p>
-<p>마진 격차: <strong>벌크 B2B 납품(식당 도매상) 마진 8%</strong> vs <strong>고부가 선물세트·저염 명란 브랜드 D2C 마진 55%</strong> — 6.9배 격차. 같은 어란을 어떤 채널로 어떤 SKU로 파느냐가 마진을 결정.</p>
+<p>채널별 마진 추정: <strong>벌크 B2B 납품(식당 도매상) 마진 약 8%</strong> vs <strong>고부가 선물세트·저염 명란 브랜드 D2C 마진 약 55%</strong> — 약 6.9배 격차 추정. 같은 어란을 어떤 채널로 어떤 SKU로 파느냐가 마진을 결정.</p>
 <p>왜 이 격차? ① 한국 명란 시장은 사실상 한·일 양국 demand가 글로벌의 95%+ — 압도적 demand pool ② D2C 채널은 중간 유통 마진 300~500bp 직접 회수 ③ 선물세트·저염 SKU는 가격 민감도 낮은 luxury segment ④ 명란은 vegetarian 대체 불가능한 차별화 성분(콜레스테롤·EPA).</p>
 </div>`,
         actionPlan: `<div>
@@ -86,10 +86,10 @@ export function WidgetPriceTransferResistance() {
         </ScatterChart>
       }
       takeaway={{
-        source: '내부 ERP 판매 이력 및 소비자 탄력성 시뮬레이터',
+        source: '자체추정 (SKU별 가격탄력성 시뮬레이션)',
         situation: `<div>
 <p>"가격 전가 저항선(Price Pass-through Resistance)"이란 매입원가 상승을 소비자가에 얼마나 전가할 수 있는지의 한계. 동일 원물(명태)이라도 SKU에 따라 차이가 큽니다.</p>
-<p>실측 결과: <strong>벌크 통마리/동태</strong> — 시장 판매가 +20% 인상 시 수요 -40~50% (소비자가 오징어·돼지고기로 이탈). <strong>프랜차이즈 피쉬버거 필레·영유아 순살 패키지</strong> — 가격 +25% 인상해도 이탈 10% 미만.</p>
+<p>시뮬레이션 기반 추정: <strong>벌크 통마리/동태</strong> — 시장 판매가 +20% 인상 시 수요 -40~50% (소비자가 오징어·돼지고기로 이탈 추정). <strong>프랜차이즈 피쉬버거 필레·영유아 순살 패키지</strong> — 가격 +25% 인상해도 이탈 10% 미만 추정.</p>
 <p>왜 격차? 벌크 동태는 대체재(다른 단백질) 많고 소비자 정보 비대칭 낮음. 반면 가공 필레·영유아 SKU는 ① 가공·위생 신뢰 ② B2B 계약 락업 (피쉬버거 프랜차이즈) ③ 영유아 카테고리는 가격 무탄력 — switching cost 매우 높음.</p>
 </div>`,
         actionPlan: `<div>
@@ -137,7 +137,7 @@ export function WidgetMSCPremiumSpread() {
         </AreaChart>
       }
       takeaway={{
-        source: 'UN FAO 글로벌 에코라벨 지표 추이',
+        source: 'UN FAO 에코라벨 지표 + 업계추정 (MSC 프리미엄 가격 스프레드)',
         situation: `<div>
 <p><strong>MSC(Marine Stewardship Council)</strong>는 지속가능 수산물 인증의 글로벌 골드 스탠다드. 명태(Pollock) segment에서 MSC가 사실상의 entry license가 됨.</p>
 <p>매대 차단 트리거: <strong>맥도날드(글로벌 피쉬버거 1위)·이케아·서브웨이</strong>가 "100% MSC 명태만 사용" 의무화. 결과: 비인증 명태는 글로벌 외식 B2B에서 사실상 매대 차단.</p>
@@ -190,7 +190,7 @@ export function WidgetFactoryAutomation() {
         </ComposedChart>
       }
       takeaway={{
-        source: '보스턴컨설팅그룹 수산가공 리포트 & 당사 CAPEX 시뮬레이션',
+        source: '업계추정 (BCG 제조업 자동화 지표 참조 + 자체 CAPEX 시뮬레이션)',
         situation: `<div>
 <p>전통적으로 명태 가공은 <strong>중국 다롄·칭다오</strong>의 저임 노동력에 의존했습니다. 그러나 두 변수의 X자 교차로 인해 게임이 바뀌고 있습니다.</p>
 <p>변수 1: <strong>중국 임가공비 폭증</strong> — 다롄·칭다오 시급 5년간 +85%, 동시에 젊은 숙련공이 어류 가공 기피로 구인난 심화. 변수 2: <strong>AI 비전 자동화 단가 하락</strong> — Pin-bone removal 머신·자동 필레팅 머신 도입 단가가 규모의 경제로 -40~50%.</p>
@@ -242,7 +242,7 @@ export const WidgetReeferCapacity = () => {
         </ComposedChart>
       }
       takeaway={{
-        source: '다롄·부산 수산물 냉동 창고 비용 리포트',
+        source: '업계추정 (부산·인천 냉동창고 운영업체 평균 단가 참조)',
         situation: `<div>
 <p><strong>"Reefer Cold Storage"</strong>는 -18℃ 이하 유지되는 냉동 컨테이너·창고. 명태는 100% 냉동 유통이므로 reefer capa가 곧 비즈니스 capa.</p>
 <p>병목 현상: 동남아 우회 물류(홍해·수에즈 대체) + 명태 가공 적체로 부산·인천 reefer 창고 <strong>가동률 95% 초과</strong>. Full Capacity 초과 시 보관 단가가 평시 +200~400% 페널티급 폭등.</p>
@@ -294,7 +294,7 @@ export const WidgetCrewShortage = () => {
         </ComposedChart>
       }
       takeaway={{
-        source: '글로벌 선원(Seafarer) 수급 동향 평가서',
+        source: '업계추정 (BIMCO/ITF 선원 수급 보고서 참조)',
         situation: `<div>
 <p>북태평양 혹한기 명태 조업은 극한 환경 노동 — 영하 30℃ + 풍랑 + 한 번 출항 시 3~6개월. 젊은 인력이 절대적으로 기피하는 직종.</p>
 <p>고령화 현실: <strong>한국 원양 선원 평균 연령 56세</strong>로 초고령화. 신규 진입 거의 0, 은퇴 가속. 동시에 외인 선원(인도네시아·필리핀·베트남) 프리미엄 임금 매해 두 자릿수 폭등 — 5년간 +85%.</p>
@@ -344,7 +344,7 @@ export const WidgetFXHedging = () => {
         </BarChart>
       }
       takeaway={{
-        source: '재무팀 선물환(Forward) 헷징 시뮬레이션',
+        source: '자체추정 (환율별 마진 시뮬레이션)',
         situation: `<div>
 <p>명태 비즈니스의 가장 큰 hidden risk: <strong>환율</strong>. 매입(러시아·알래스카·미국)은 100% USD 베이스, 국내 매출(통조림·필레·황태)은 100% KRW 베이스. 즉 currency mismatch가 본업 마진의 가장 큰 외생 변수.</p>
 <p>임계점: <strong>USD/KRW ₩1,380 초과</strong> 시 가공 마진이 환차손으로 빈 껍데기. 평시 마진 8%가 환율 ₩1,400 도달 시 1~2%로 압축.</p>
@@ -394,10 +394,10 @@ export const WidgetAITimePredict = () => (
       </BarChart>
     }
     takeaway={{
-      source: '엔진 제조사(Wärtsilä) AI 도입 실증 선박 예방정비율 리포트',
+      source: '업계추정 (Wärtsilä 예지보전 도입 사례 참조 + 자체 추정)',
       situation: `<div>
-<p>"예지보전(Predictive Maintenance)"이란 IoT 센서로 장비 이상 징후를 사전 감지해 고장 전 정비하는 방식. 사후 대처(고장 → 수리) 대비 cost 90% 절감 가능.</p>
-<p>명태 어선의 실측 cost: 해상에서 엔진 결함으로 <strong>표류(Downtime)하는 1일 기회비용 $50,000+</strong> (조업 손실 + 표류 견인 + 어선원 대기 인건비). 평균 표류 5~10일 → 척당 사고 비용 $250K~500K.</p>
+<p>"예지보전(Predictive Maintenance)"이란 IoT 센서로 장비 이상 징후를 사전 감지해 고장 전 정비하는 방식. 사후 대처(고장 → 수리) 대비 cost 최대 90% 절감 가능(업계 참고치).</p>
+<p>추정 기준: 해상에서 엔진 결함으로 <strong>표류(Downtime)하는 1일 기회비용 $50,000+</strong> (조업 손실 + 표류 견인 + 어선원 대기 인건비 합산 추정). 평균 표류 5~10일 → 척당 사고 비용 $250K~500K 수준.</p>
 <p>의미: 노후 선박 + 사후 대처 모델은 사실상 매년 1~2척 발생하는 재앙 비용을 BS에 잠재 부담. AI 예지보전으로 이를 80% 회피 가능.</p>
 </div>`,
       actionPlan: `<div>
@@ -444,7 +444,7 @@ export const WidgetPortTurnaround = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: 'NotebookLM 보관 항만 대리점 입출항 리드타임 분해 데이터',
+      source: '자체추정 (항만 대리점 입출항 리드타임 분해 참조)',
       situation: `<div>
 <p>"턴어라운드(Turn-around) 타임"이란 선박이 항구에 도착해서 하역 → 정비 → 재출항까지 걸리는 시간. 짧을수록 어선 활용도(utilization rate) 높음.</p>
 <p>병목: 만선(만재흘수) 이후 항구 선석 승인 지연으로 <strong>피크 시즌(6~7월) 턴어라운드 타임이 평시의 2배</strong>로 폭증. 부산·인천·러시아 블라디보스토크 항구 모두 동일.</p>
@@ -494,10 +494,10 @@ export const WidgetVesselCapex = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '한국선급(KR) 내구연한 수칙 및 해양수산부 스마트 선박 보조금 펀딩 현황',
+      source: 'KR 내구연한 수칙·해양수산부 보조금 정책 + 업계추정 (노후 선단 비율)',
       situation: `<div>
 <p>"선령(Vessel Age)"이란 선박이 건조된 후 경과 연수. 한국 명태 원양 선단의 평균 선령이 위험 수준.</p>
-<p>현실: <strong>선령 25년 초과 노후 선단 비율 60%+</strong>. 25년 초과 시 유지보수율(OPEX) 한계점 돌파 — 매년 보수 비용이 기하급수적으로 증가. 30년 도달 시 사실상 운영 불가능.</p>
+<p>업계 추정: <strong>선령 25년 초과 노후 선단 비율 60%+ 추정</strong>. 25년 초과 시 유지보수율(OPEX) 한계점 돌파 — 매년 보수 비용이 기하급수적으로 증가. 30년 도달 시 사실상 운영 불가능.</p>
 <p>의미: 향후 5년 노후 선단 대량 폐선 시점 도래. 신조선 발주 비용 척당 $30~50M, IMO 2030 탄소 규제 충족하려면 수소/하이브리드 추진 추가 capex $5~10M. 기습적 capex 타격 예상.</p>
 </div>`,
       actionPlan: `<div>
@@ -542,7 +542,7 @@ export const WidgetRobotTCO = () => (
       </LineChart>
     }
     takeaway={{
-      source: 'IFR 산업용 수산가공 로봇 보급률 및 Marel Filleting 머신 단가표',
+      source: '업계추정 (IFR 산업용 로봇 보급 통계 + Marel 공개 단가 참조)',
       situation: `<div>
 <p>"TCO(Total Cost of Ownership)"란 설비의 초기 도입비 + 5~10년 운영비를 합산한 총소유비용. ROI 의사결정의 정확한 지표.</p>
 <p>크로스오버 시점: <strong>5년 차에 동남아 인건비 총액이 로봇 자동화 TCO를 역전</strong>. 즉 5년 이상 운영하면 무조건 로봇이 인건비보다 저렴.</p>
@@ -586,7 +586,7 @@ export const WidgetAirVsOcean = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '프레이토스 발틱 해상운임(FBX) 및 항공운임지수(TAC) 스프레드 비교',
+      source: '업계추정 (Freightos FBX 해상운임·TAC 항공운임지수 참조)',
       situation: `<div>
 <p>"모달 쉬프트(Modal Shift)"란 운송 수단(해운·항공·복합)을 선택하는 의사결정. 명태 등급에 따라 최적 수단이 다릅니다.</p>
 <p>특별 케이스: <strong>초하이엔드 신선 명란/생물(S-Class) 원물</strong>은 해운 45일 운송 시 <strong>선도 하락 30% 패널티</strong>. ASP 손실이 항공 추가 운임비 +$2~3/kg보다 큼.</p>

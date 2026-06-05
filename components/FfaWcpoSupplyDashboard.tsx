@@ -16,7 +16,7 @@ import {
 } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { truncateKoreanLabel } from '../lib/chart-standards';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 
 // ─── 어종별 2024 WCPFC 어획 데이터 (FFA/SPC 검증) ───────────────────────────
@@ -286,8 +286,8 @@ export default function FfaWcpoSupplyDashboard() {
       kpiPanel={KPI_ITEMS}
       customBody={customBody}
       takeaway={{
-        situation: '<div><p>2024년 WCPFC 총 어획량 <strong>3,059,005 MT</strong>로 전년 대비 +15% 증가, <strong>역대 최고 기록</strong>을 경신. 가다랑어(SKJ)가 2,045,720 MT(67%)로 전년 대비 +24% 급증하며 전체 성장 견인.</p><p>반면 총 가치는 <strong>$5.6B으로 전년 대비 -6% 하락</strong>. 물량 증가에도 가격 하락 압력 우세. 황다랑어(YFT) 가치 -20%, 눈다랑어(BET) 가치 -26% 급감으로 고급 어종 수익성 악화.</p><p>SKJ 67% 단일 어종 편중 심화. 라니냐·엘니뇨 사이클에 전체 공급의 2/3가 직접 노출되는 climate beta 리스크 구조.</p></div>',
-        actionPlan: '<div><p><strong>재정의</strong>: 물량 최대 vs 가치 하락의 디커플링. MT당 가치($/MT)를 핵심 KPI로 전환.</p><ol style="margin: 4px 0 0 18px; padding: 0;"><li style="margin-bottom: 8px;"><strong>어종 포트폴리오 리밸런싱</strong>: SKJ 67% 편중에서 YFT·ALB 비중 확대로 단가 방어. 황다랑어 선물 forward 매입 검토.</li><li style="margin-bottom: 8px;"><strong>가격 하락기 재고 전략</strong>: BET·YFT 가치 급감 국면에서 전략적 재고 축적하여 가격 반등 시 마진 극대화.</li><li><strong>기후 리스크 헷지</strong>: ENSO 예보 기반 어획량 변동 시나리오별 조달 계획 수립. 2개 해역 이상 분산 소싱 의무화.</li></ol></div>',
+        situation: '<div><p>2024년 WCPFC 총 어획량 <strong>3,059,005 MT</strong>로 전년 대비 +15% 증가, <strong>역대 최고 기록</strong>을 경신. 가다랑어(SKJ)가 2,045,720 MT(67%)로 전년 대비 +24% 급증하며 전체 성장 견인.</p><p>반면 총 가치는 <strong>$5.6B으로 전년 대비 -6% 하락</strong>. 물량 증가에도 가격 하락 압력 우세. 황다랑어(YFT) 가치 -20%, 눈다랑어(BET) 가치 -26% 급감으로 고급 어종 수익성 악화.</p><p>SKJ 67% 단일 어종 편중 심화. 라니냐·엘니뇨 사이클에 전체 공급의 2/3가 직접 노출되는 기후 변동성 리스크 구조.</p></div>',
+        actionPlan: '<div><p><strong>재정의</strong>: 물량 최대 vs 가치 하락의 디커플링. MT당 가치($/MT)를 핵심 KPI로 전환.</p><ol style="margin: 4px 0 0 18px; padding: 0;"><li style="margin-bottom: 8px;"><strong>어종 포트폴리오 리밸런싱</strong>: SKJ 67% 편중에서 YFT·ALB 비중 확대로 단가 방어. 황다랑어 선도계약(forward) 매입 검토.</li><li style="margin-bottom: 8px;"><strong>가격 하락기 재고 전략</strong>: BET·YFT 가치 급감 국면에서 전략적 재고 축적하여 가격 반등 시 마진 극대화.</li><li><strong>기후 리스크 헷지</strong>: ENSO(엘니뇨-남방진동) 예보 기반 어획량 변동 시나리오별 조달 계획 수립. 2개 해역 이상 분산 소싱 의무화.</li></ol></div>',
         source: 'FFA/SPC WCPFC Tuna Fishery Report 2024, WCPFC Statistical Yearbook',
       }}
     />

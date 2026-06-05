@@ -41,8 +41,8 @@ export function PollockLandedCostWaterfall() {
       icon={DollarSign}
       iconColor="#22c55e"
       pillar="S3"
-      cardDesc="러시아 직수입 / 중국 우회 / 미국 MSC 3개 경로의 FOB→착지원가 워터폴 + 환율 민감도 시뮬레이션 (Tariffs/WITS/FRED API)"
-      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (Tariffs·WITS·FRED)' }}
+      cardDesc="러시아 직수입 / 중국 우회 / 미국 MSC 3개 경로의 FOB→착지원가 워터폴 + 환율 민감도 시뮬레이션 (국정연 2건·업계추정, FRED 환율 선택적)"
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '자체추정 · FRED 환율(키 설정 시)' }}
       customBody={
         <>
           <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
@@ -56,7 +56,7 @@ export function PollockLandedCostWaterfall() {
               </button>
             ))}
           </div>
-          {loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>Loading cost data...</div> : (
+          {loading ? <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>비용 데이터 로드 중...</div> : (
             <>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
                 <div style={{ flex: 1, background: 'rgba(34,197,94,0.08)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
@@ -97,7 +97,7 @@ export function PollockLandedCostWaterfall() {
       takeaway={{
         situation: '러시아 직수입(₩2,883/kg) 최저가. 중국 우회(₩3,851) +33.6% 프리미엄. 미국 MSC(₩4,582) 최고가이나 관세 0%.',
         actionPlan: '매입원가 최우선: 러시아 직수입. ESG/감사 최우선: 미국 MSC. 경로 갭 15% 미만 시 자동 스위칭 Alert.',
-        source: '(일반 2024-06) 신통상규범 · Tariffs/WITS API',
+        source: '(일반 2024-06) 신통상규범 · (기본 2025-10) 물가안정화 · FRED 환율(선택적)',
       }}
     />
   );
@@ -119,8 +119,8 @@ export function PollockRouteComparison() {
       icon={ArrowRight}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="러시아·중국·미국 경로별 착지원가/마진/리스크/ESG 점수 비교 + FRED 환율 시나리오별 ₩/kg 변동"
-      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (Tariffs·WITS·FRED)' }}
+      cardDesc="러시아·중국·미국 경로별 착지원가/마진/리스크/ESG 점수 비교 + FRED 환율 시나리오별 ₩/kg 변동 (업계추정, FRED 환율 선택적)"
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '자체추정 · FRED 환율(키 설정 시)' }}
       customBody={
         <>
           <div style={{ overflowX: 'auto', marginBottom: '12px' }}>
@@ -169,7 +169,7 @@ export function PollockRouteComparison() {
       takeaway={{
         situation: '전 환율 구간에서 러시아 직수입이 매입원가 최저. 단, 리스크(85점) + ESG(35점) 최하위.',
         actionPlan: '리스크 가중 매입원가 산정 시 미국 MSC 전환점 존재. ESG 바이어 대응 시 미국 경로 자동 전환.',
-        source: '(기본 2025-10) 물가 안정화 · FRED FX Live',
+        source: '(기본 2025-10) 물가 안정화 연구 · FRED 환율(키 설정 시 실시간)',
       }}
     />
   );

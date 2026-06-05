@@ -11,7 +11,7 @@ const tacData = [
   { year: '2023', usaTac: 130, rusTac: 188, priceSpot: 1550 },
   { year: '2024', usaTac: 125, rusTac: 180, priceSpot: 1650 },
   { year: '2025', usaTac: 120, rusTac: 175, priceSpot: 1850 },
-  { year: '2026', usaTac: 110, rusTac: 165, priceSpot: 2100 }, 
+  { year: '2026(추정)', usaTac: 110, rusTac: 165, priceSpot: 2100 },
 ];
 
 export const WidgetTACGapTracker = () => (
@@ -86,11 +86,11 @@ export const WidgetOriginWashAlert = () => (
       </ScatterChart>
     }
     takeaway={{
-      source: '한국 관세청 더블프로즌 적발 통계 종합',
+      source: '자체추정 — 한국 관세청 원산지 단속 사례 기반 업계추정 리스크 지수',
       situation: `<div>
 <p>"더블프로즌(Double-frozen)"이란 원물을 1차 냉동 → 운송 → 가공 → 재냉동하는 가공 방식. 명태 산업에서 표준이었으나 현재 규제 압박 임계점.</p>
 <p>전통 루트: 러시아산 명태 원물 → 중국 다롄 가공 → 더블프로즌 한국 수입. 한국 식품가 한 단가의 60%가 이 루트.</p>
-<p><strong>규제 위기</strong>: 미국 OFAC 러시아 제재 강화 + 한국 관세청 원산지 표기 단속. <strong>중국 우회 더블프로즌 적발 리스크 90%+</strong>. 적발 시 화물 압류 + 소급 관세 + vendor blacklist.</p>
+<p><strong>규제 위기</strong>: 미국 OFAC 러시아 제재 강화 + 한국 관세청 원산지 표기 단속. <strong>중국 우회 더블프로즌 적발 리스크 업계 추정 80~90%대</strong>. 적발 시 화물 압류 + 소급 관세 + 거래선 제외 가능성.</p>
 <p>의미: 중국 우회 라인은 단기 매입원가 -10% 우위이지만, 향후 12~24개월 내 자유 낙하 시점 도달. preemptive rerouting이 생존 전제.</p>
 </div>`,
       actionPlan: `<div>
@@ -143,7 +143,7 @@ export const WidgetBunkerArbitrage = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: '글로벌 벙커 가격 지수(Global Bunker Price Index) & 러시아 어선 운용 재무제표',
+      source: '글로벌 벙커 가격 지수(Global Bunker Price Index) & 업계추정 합작선사 원가 구조',
       situation: `<div>
 <p>한국 원양 명태 사업은 대부분 <strong>러시아·미국 현지 선사와의 합작(JV) 형태</strong>. 한국이 자본·기술 공급, 현지가 쿼터·어선 제공하는 5:5 분담 모델.</p>
 <p>현재 위기: <strong>명태 원물 단가보다 간접비(인건비 + Reefer 보관료 + MGO 유류비) 폭발이 더 큰 손익 파괴 요인</strong>. 2025년 이후 물류 동맥 경화로 합작선사 마진 마이너스 임계점 진입.</p>
@@ -168,7 +168,7 @@ const migrationData = [
   { year: '2019', tempIncrease: 0.8, distanceKm: 25, fuelCostIdx: 105 },
   { year: '2023', tempIncrease: 1.5, distanceKm: 65, fuelCostIdx: 125 },
   { year: '2026', tempIncrease: 2.1, distanceKm: 110, fuelCostIdx: 160 },
-  { year: '2030', tempIncrease: 3.0, distanceKm: 180, fuelCostIdx: 210 }, 
+  { year: '2030(추정)', tempIncrease: 3.0, distanceKm: 180, fuelCostIdx: 210 },
 ];
 
 export const WidgetBeringSeaMigration = () => (
@@ -196,7 +196,7 @@ export const WidgetBeringSeaMigration = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: 'NOAA 베링해 표층수온 관측소 및 C.P.(선단 원가) 리포트',
+      source: 'NOAA 베링해 표층수온 관측 데이터 및 업계추정 선단 원가 지수',
       situation: `<div>
 <p>명태는 <strong>한대성 어종</strong>으로 0~5℃ 수온에서 서식. 기후변화로 베링해·오호츠크해 SST(해수면 온도)가 +1~2℃ 상승하면서 명태 떼가 본래 서식지를 떠나고 있습니다.</p>
 <p>이동 trend: 러시아 <strong>캄차카 반도 북쪽 및 북극해 방향으로 매년 수십 km씩 이탈(Migration)</strong>. 향후 10~20년 누적 시 어장이 수백 km 북상.</p>
@@ -270,7 +270,7 @@ const dataIUUIndex = [
   { year: '2019', officialTAC: 320, shadow: 40 },
   { year: '2021', officialTAC: 310, shadow: 65 },
   { year: '2023', officialTAC: 300, shadow: 85 },
-  { year: '2025(E)', officialTAC: 280, shadow: 110 }
+  { year: '2025(추정)', officialTAC: 280, shadow: 110 }
 ];
 
 export const WidgetIUUShadowIndex = () => (
@@ -295,10 +295,10 @@ export const WidgetIUUShadowIndex = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: 'IUU(불법/비보고/비규제) 어업 방지 태스크포스 활동 보고서 재구성',
+      source: '업계추정 — MRAG·FAO IUU 보고서 기반 재구성 (2023~2025 추정치)',
       situation: `<div>
 <p>"섀도우 플릿(Shadow Fleet)"이란 공식 등록·규제망을 우회하는 불법 어선. TAC 축소 시점에 역으로 IUU(불법·비보고·비규제) 물량이 암시장에 쏟아지는 역설적 현상.</p>
-<p>2026 현실: 베링해·러시아 TAC -15~22% 축소 발표 후 <strong>섀도우 플릿 IUU 물량이 +35~50% 증가</strong>. 블랙마켓 가격은 정상가의 -40~50% 덤핑. 일부 한국 mid-tier vendor 이 유혹에 흔들림.</p>
+<p>2025~2026 업계추정: 베링해·러시아 TAC 축소 압박 하에 <strong>섀도우 플릿 IUU 덤핑 물량 증가 추세</strong> (정확한 규모는 추정치). 블랙마켓 가격은 정상가 대비 대폭 할인 수준으로 알려져 있으며, 일부 한국 mid-tier 업체의 유혹 가능성 상존.</p>
 <p>위험: EU IUU 규제(2026 강화) 발효 시 IUU 물량은 <strong>일순간 통관 압류 + vendor blacklist</strong>. 단기 cost 절감 → 장기 채널 추방.</p>
 </div>`,
       actionPlan: `<div>
@@ -320,7 +320,7 @@ const dataElNino = [
   { year: '2016', enso: -0.5, catchDiff: 5 },
   { year: '2019', enso: 0.9, catchDiff: -8 },
   { year: '2021', enso: -1.0, catchDiff: 12 },
-  { year: '2024(E)', enso: 1.8, catchDiff: -22 }
+  { year: '2024(추정)', enso: 1.8, catchDiff: -22 }
 ];
 
 export const WidgetElNinoImpact = () => (
@@ -341,15 +341,15 @@ export const WidgetElNinoImpact = () => (
         <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} domain={[-30, 20]} tickFormatter={(v)=>`${v}%`} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Line yAxisId="left" type="monotone" dataKey="enso" name="엘니뇨 강도 (SST 편차)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} />
+        <Line yAxisId="left" type="monotone" dataKey="enso" name="엘니뇨 강도 (해수면온도 편차)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} />
         <Bar yAxisId="right" dataKey="catchDiff" name="어획량 증감 추이 (%)" fill="var(--color-danger)" radius={[4,4,0,0]} barSize={20} />
       </ComposedChart>
     }
     takeaway={{
-      source: 'WMO(세계기상기구) 폭염 지수 및 한국 수산자원관리공단 어황 예측 모델',
+      source: 'WMO(세계기상기구) ENSO 지수 및 업계추정 명태 어황 영향 (NOAA ENSO 역사 데이터 기반)',
       situation: `<div>
 <p>"엘니뇨(El Niño)"는 적도 태평양 해수면 온도가 평균보다 +0.5℃ 이상 상승하는 자연 현상. +1.5℃ 이상이면 "수퍼 엘니뇨"로 분류.</p>
-<p>명태 영향: 한대성 어종인 명태는 수온에 매우 민감. <strong>수퍼 엘니뇨 발생 시 어획량 최대 -22% 실종</strong>. 2015~2016, 2023~2024 사이클에서 검증된 패턴.</p>
+<p>명태 영향: 한대성 어종인 명태는 수온에 매우 민감. <strong>수퍼 엘니뇨 발생 시 어획량 -10~22% 감소 추정</strong>. 2015~2016 사이클에서 유사 패턴 관측 (2024 데이터는 추정치).</p>
 <p>의미: ENSO 시그널은 6개월 후행하는 어획·가격 폭등의 leading indicator. WMO ENSO Index를 매월 monitoring하면 사실상 6개월 앞서 매입 의사결정 가능.</p>
 </div>`,
       actionPlan: `<div>
@@ -395,10 +395,10 @@ export const WidgetCBPDetentionRisk = () => (
       </ComposedChart>
     }
     takeaway={{
-      source: 'NotebookLM 추출 미국 CBP 일일 통관 보류(WRO) 적발 사례집',
+      source: '자체추정 — 미국 CBP/UFLPA 공개 단속 통계 기반 업계추정 (2024~2025)',
       situation: `<div>
 <p>"통관 억류 리스크"란 미국 항구에서 우리 화물이 압류되거나 영구 차단되는 확률. 미국 시장 진입의 가장 큰 hidden cost.</p>
-<p>현재: <strong>미국 관세국경보호청(CBP)의 대러제재 + 강제노동방지법(UFLPA) 실사 강화로 중국/러시아 발 화물 적발·영구 압류 확률 80%+</strong>. 한 번 압류되면 vendor blacklist 18~36개월.</p>
+<p>현재: <strong>미국 관세국경보호청(CBP)의 대러제재 + 강제노동방지법(UFLPA) 실사 강화로 중국/러시아 발 화물 단속 강도 급상승</strong> (업계추정 고리스크 구간). 한 번 압류되면 거래선 제외 가능성 12~36개월.</p>
 <p>의미: 중국 다롄 가공 비중이 높은 vendor는 향후 12~18개월 미국 시장에서 사실상 사라짐. 단기 cost 우위를 노렸던 vendor 다수가 채널 추방.</p>
 </div>`,
       actionPlan: `<div>
@@ -420,7 +420,7 @@ const dataEEZ = [
   { year: '2021', conflicts: 22 },
   { year: '2022', conflicts: 45 },
   { year: '2023', conflicts: 68 },
-  { year: '2024(E)', conflicts: 94 }
+  { year: '2024(추정)', conflicts: 94 }
 ];
 
 export const WidgetEEZConflict = () => (
@@ -443,10 +443,10 @@ export const WidgetEEZConflict = () => (
       </AreaChart>
     }
     takeaway={{
-      source: '국제해양법재판소(ITLOS) 및 한·러·일 연안국 해경 나포 통계',
+      source: '자체추정 — ITLOS 판례 및 공개 어선 나포 사례 기반 업계추정 (확인 통계 부재)',
       situation: `<div>
 <p>"EEZ(Exclusive Economic Zone, 배타적경제수역)"란 연안국이 200해리까지 어업·자원 권리를 가진 해역. 평소 외교적으로 조정되지만 지정학 긴장 시 군사 도발화.</p>
-<p>현재: <strong>환동해(한·일·러) EEZ 경계 통제가 군사 도발 수준으로 격상</strong>. 한·일, 한·러, 일·러 간 어선 나포/억류 빈도 폭발적 증가. 2025년 한국 어선 12척 러시아 억류 (vs 평년 2~3척).</p>
+<p>현재: <strong>환동해(한·일·러) EEZ 경계 통제가 군사 도발 수준으로 격상</strong>. 한·일, 한·러, 일·러 간 어선 나포/억류 빈도 증가 추세. 2024년 이후 러시아 EEZ 내 한국 어선 나포 건수 업계추정 증가 (확인된 공식 통계 부재).</p>
 <p>의미: 한국 명태 원양 선단은 러시아 EEZ 의존도 60%+. 정치 긴장 시 선단 활동 자체가 위협받음. 단 1척 나포로 척당 $5~20M 손실 + 외교 분쟁.</p>
 </div>`,
       actionPlan: `<div>
@@ -489,11 +489,11 @@ export const WidgetFoodSecurityPremium = () => (
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
         <Line yAxisId="left" type="monotone" dataKey="cropIndex" name="글로벌 곡물 가격 지수 (FFPI)" stroke="var(--color-success)" strokeWidth={3} dot={{ r: 4 }} />
-        <Line yAxisId="right" type="monotone" dataKey="pollockPrice" name="명태 B2B 경매 단가 (USD/MT)" stroke="#38bdf8" strokeWidth={3} dot={{ r: 4 }} />
+        <Line yAxisId="right" type="monotone" dataKey="pollockPrice" name="명태 도매 경매 단가 (달러/톤, 업계추정)" stroke="#38bdf8" strokeWidth={3} dot={{ r: 4 }} />
       </ComposedChart>
     }
     takeaway={{
-      source: 'FAO 식량가격지수(FFPI) 및 시카고상품거래소(CBOT) 데이터',
+      source: 'FAO 식량가격지수(FFPI) 및 업계추정 명태 B2B 도매단가 (정형 데이터 부재)',
       situation: `<div>
 <p>"식량안보 프리미엄(Food Security Premium)"이란 곡물 가격 폭등 시 대체 단백질(백색육·명태) 수요가 급증하며 형성되는 가격 레버리지.</p>
 <p>발동 트리거: <strong>밀·대두 등 곡물 선물 지수 상승 시 명태 수요 +30~50% 폭증</strong>. 서민 가구가 비싸진 곡물에서 가격 효율이 좋은 단백질(명태·계란·닭)로 이동.</p>
@@ -538,8 +538,8 @@ export const WidgetPortCongestion = () => (
         <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" fontSize={11} domain={[0, 6000]} />
         <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', color: 'var(--text-primary)' }} />
         <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
-        <Bar yAxisId="left" dataKey="waitDays" name="외항 체선 대기일(Days)" fill="#ec4899" radius={[4,4,0,0]} barSize={20} />
-        <Line yAxisId="right" type="monotone" dataKey="backlog" name="컨테이너 적체(Backlog TEU)" stroke="#f472b6" strokeWidth={2} dot={{ r: 4 }} />
+        <Bar yAxisId="left" dataKey="waitDays" name="외항 체선 대기일" fill="#ec4899" radius={[4,4,0,0]} barSize={20} />
+        <Line yAxisId="right" type="monotone" dataKey="backlog" name="컨테이너 적체량(TEU)" stroke="#f472b6" strokeWidth={2} dot={{ r: 4 }} />
       </ComposedChart>
     }
     takeaway={{

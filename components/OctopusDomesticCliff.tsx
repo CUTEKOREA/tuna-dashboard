@@ -186,7 +186,7 @@ export default function OctopusDomesticCliff() {
       iconColor="#ef4444"
       pillar="S1"
       cardDesc="FAO FishStat 글로벌 어획(2010~2022) + 해수부 제4차 수산자원관리기본계획(2026~2030) + 2023 시행계획 + KMI FTA 25Q4 국내 생산. 한국 낙지가 양식 미개발 상태에서 13년 −22.6% 어획 감소를 지속하다 2025년 1~11월 −30.9% 절벽으로 진입한 자원 위기와 정책 대응 시계열."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={Body}
       takeaway={{
         situation: `<div>

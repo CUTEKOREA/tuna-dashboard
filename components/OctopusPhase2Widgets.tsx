@@ -42,7 +42,7 @@ export function OctopusChannelMarginMatrix() {
       pillar="S2"
       cardDesc="활(외식) vs 자숙(B2C) vs 냉동(B2B) 채널별 그램당 매출·원가·마진 — KMI 활·신선·냉장 29.8% 데이터 + 노량진·BBQ 외식 단가 기반 추정"
       unit="(단위: 원/kg, %)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-04' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-04' }}
       chartHeight={320}
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -58,7 +58,7 @@ export function OctopusChannelMarginMatrix() {
         </ComposedChart>
       }
       takeaway={{
-        situation: '활낙지 외식 채널은 ㎏당 마진 14,000원(마진율 43.8%)으로 자숙(5,700원, 30.8%)·냉동(1,600원, 14.3%) 대비 압도적입니다. KMI 21분기 데이터의 활·신선·냉장 29.8% 비중은 사실상 외식 채널이 매출 70%를 흡수하는 구조라, 신라교역의 낙지 사업 손익은 외식 경기에 직접 종속됩니다.',
+        situation: '활낙지 외식 채널은 ㎏당 마진 14,000원(마진율 43.8%)으로 자숙(5,700원, 30.8%)·냉동(1,600원, 14.3%) 대비 현저히 높습니다. KMI 21분기 데이터의 활·신선·냉장 29.8% 비중을 기준으로 추정하면 외식 채널이 매출 70%를 흡수하는 구조이며, 신라교역의 낙지 사업 손익은 외식 경기에 높은 영향을 받는 구조입니다.',
         actionPlan: '외식 경기 둔화 시 활→자숙 자동 전환 트리거를 운영하고, 활 채널 의존도 70% → 55%로 단계 축소하며 자숙 SKU(편의점·홈쇼핑 PB) 확대로 마진 변동성을 ±5%p 박스에 고정한다.',
         source: 'KMI FTA 21분기 + 노량진 도매·BBQ/CJ 외식 단가 추정 · Reliability: A',
       }}
@@ -72,7 +72,7 @@ export function OctopusChannelMarginMatrix() {
 export function OctopusColdChainYield() {
   const routes = [
     { mode: '항공 활낙지', leadTime: 8, survivalPct: 87, freightPerKg: 4200, lossPerKg: 2080, netCostPerKg: 6280 },
-    { mode: '해상 MAP', leadTime: 120, survivalPct: 0, freightPerKg: 950, lossPerKg: 1280, netCostPerKg: 2230 },
+    { mode: '해상 개스압포장', leadTime: 120, survivalPct: 0, freightPerKg: 950, lossPerKg: 1280, netCostPerKg: 2230 },
     { mode: '해상 냉동', leadTime: 168, survivalPct: 0, freightPerKg: 620, lossPerKg: 310, netCostPerKg: 930 },
   ];
   return (
@@ -81,9 +81,9 @@ export function OctopusColdChainYield() {
       icon={Snowflake}
       iconColor="#6366f1"
       pillar="S2"
-      cardDesc="항공 활낙지(생존율 87%) vs 해상 MAP(신선도 92%) vs 해상 냉동(12개월 저장) 톤당 운송원가·폐기 손실·도착 순원가 비교"
+      cardDesc="항공 활낙지(생존율 87%) vs 해상 개스압포장(신선도 92%) vs 해상 냉동(12개월 저장) 톤당 운송원가·폐기 손실·도착 순원가 비교 — 자체추정 + Krungsri 보고서(2024)"
       unit="(단위: 시간, %, 원/kg)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-04' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-04' }}
       chartHeight={320}
       chart={
         <ComposedChart data={routes} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -99,9 +99,9 @@ export function OctopusColdChainYield() {
         </ComposedChart>
       }
       takeaway={{
-        situation: '항공 활낙지는 ㎏당 운송비 4,200원·폐기 손실 2,080원으로 도착 순원가가 6,280원이지만 활 채널 ㎏당 매출 32,000원을 회수합니다. 해상 MAP은 신선도 92% 유지로 횟감 시장 진입 가능하나 활 가치 소실. 해상 냉동은 폐기 손실이 최소이나 활 프리미엄 80% 상실.',
-        actionPlan: '활낙지는 외식 직배달·관광지 한정 항공으로, 그 외 물량은 해상 MAP으로 전환해 분기당 운송비 35% 절감을 목표한다. 동시에 인천공항-부산항 듀얼 허브 운영으로 항공 결항·해상 지연 양쪽 risk를 hedge.',
-        source: '신라교역 콜드체인 실측 + Krungsri 베트남 수산 보고서(2024) · Reliability: A',
+        situation: '항공 활낙지는 ㎏당 운송비 4,200원·폐기 손실 2,080원으로 도착 순원가가 6,280원이지만 활 채널 ㎏당 매출 32,000원을 회수합니다. 해상 개스압포장(MAP)은 신선도 92% 유지로 횟감 시장 진입 가능하나 활 가치 소실. 해상 냉동은 폐기 손실이 최소이나 활 프리미엄 80% 상실.',
+        actionPlan: '활낙지는 외식 직배달·관광지 한정 항공으로, 그 외 물량은 해상 개스압포장(MAP)으로 전환해 분기당 운송비 35% 절감을 목표한다. 동시에 인천공항-부산항 듀얼 허브 운영으로 항공 결항·해상 지연 양쪽 리스크를 분산한다.',
+        source: '자체추정(베트남→한국 냉장 물류 원가) + Krungsri 베트남 수산 보고서(2024) · Reliability: B+',
       }}
     />
   );
@@ -134,7 +134,7 @@ export function OctopusPriceTransmission() {
       pillar="S4"
       cardDesc="KAMIS 가락시장 ㎏당 활낙지 도매가 + 낙지전문점 1인분(낙지볶음) 소매가 — 도매가 인상이 소매가에 전가되는 비율 추적"
       unit="(단위: 원/kg, 원/인분, %)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-02' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-02' }}
       chartHeight={320}
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -181,7 +181,7 @@ export function OctopusCephalopodElasticity() {
       pillar="S4"
       cardDesc="3종 두족류 ㎏당 도매가 동행성 — 낙지 ㎏당 20,000원 돌파 시 주꾸미/문어로의 메뉴 전환 속도 추적 (가락시장 + 노량진)"
       unit="(단위: 원/kg)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-01' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-01' }}
       chartHeight={320}
       chart={
         <LineChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -197,7 +197,7 @@ export function OctopusCephalopodElasticity() {
         </LineChart>
       }
       takeaway={{
-        situation: '낙지와 문어의 도매가 동행성 상관계수는 0.94로 거의 완전 동조이고, 주꾸미는 0.88로 후행 추격하며 격차가 좁아지는 중. 낙지 ㎏당 20,000원을 돌파한 25-01부터 외식 메뉴에서 "낙지볶음→주꾸미볶음" 대체가 가속해 주꾸미 도매가 1년 +59% 급등을 견인했습니다.',
+        situation: '낙지와 문어의 도매가 동행성은 시계열상 강한 양의 상관이 관찰되며, 주꾸미는 후행하여 격차가 좁아지는 흐름입니다. 낙지 ㎏당 20,000원을 돌파한 25-01 이후 주꾸미 도매가도 연간 +59% 상승하였는데, 외식 메뉴 전환(낙지→주꾸미)이 수요 견인에 일정 부분 기여한 것으로 추정됩니다.',
         actionPlan: '낙지 가격이 ㎏당 30,000원을 추가 돌파하면 주꾸미마저 임계 20k에 진입하므로, 신라교역은 두족류 3종 동시 조달 포트폴리오를 운영하고 종간 차익(낙지-주꾸미 스프레드 1.3배 유지)이 깨질 때 자동 비중 재배분한다.',
         source: 'KAMIS 가락시장 + 노량진 도매가 3종 · Reliability: A',
       }}
@@ -222,9 +222,9 @@ export function OctopusAquacultureRace() {
       icon={FlaskConical}
       iconColor="#10b981"
       pillar="S5"
-      cardDesc="Nueva Pescanova(스페인)·일본 와카야마·중국 후저우·한국 NIFS 4 진영의 기술 성숙도(TRL)·연간 양산 capacity 비교"
+      cardDesc="Nueva Pescanova(스페인)·일본 와카야마·중국 후저우·한국 NIFS 4 진영의 기술 성숙도(TRL)·연간 양산 용량(톤/년) 비교"
       unit="(단위: TRL 1~9, 톤/년)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-03' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-03' }}
       chartHeight={320}
       chart={
         <ComposedChart data={data} layout="vertical" margin={{ top: 16, right: 30, left: 70, bottom: 5 }}>
@@ -240,7 +240,7 @@ export function OctopusAquacultureRace() {
         </ComposedChart>
       }
       takeaway={{
-        situation: 'Nueva Pescanova는 TRL 8(상업 양식 인가 대기) 단계로 2027년 연 3,000톤 capacity로 글로벌 자연산 6%를 대체 가능한 임계 규모에 도달할 전망. 일본 와카야마(TRL 6)·중국 후저우(TRL 5)가 뒤를 잇고, 한국 NIFS는 TRL 3으로 사실상 R&D 사각지대입니다. 양식 양산이 시작되면 자연산 ㎏당 가격이 30~40% 붕괴될 가능성이 산업 컨센서스.',
+        situation: 'Nueva Pescanova는 TRL 8(상업 양식 인가 대기) 단계로 2027년 연 3,000톤 양산 용량에 도달할 것으로 기업 IR(2024)이 발표했습니다. 일본 와카야마(TRL 6)·중국 후저우(TRL 5)가 뒤를 잇고, 한국 NIFS는 TRL 3으로 초기 연구 단계입니다. 양식 양산이 본격화되면 자연산 가격 압력이 발생할 수 있으나 구체적인 가격 영향 폭은 미확정입니다.',
         actionPlan: '신라교역은 2027~2028 양식 양산 임계점 도래 전에 Nueva Pescanova 지분 5~10% 투자 또는 일본 와카야마 라이선스 계약을 선제 체결해 자연산 가격 붕괴 시나리오에서 양식 마진으로 헤지한다.',
         source: '기업 IR(Nueva Pescanova 2024 Annual) + Wakayama Univ./Zhejiang Ocean Univ. publications · Reliability: B+',
       }}
@@ -268,7 +268,7 @@ export function OctopusTacCountdown() {
       pillar="S5"
       cardDesc="제4차 수산자원관리기본계획(2026~2030) 낙지 직접 TAC 지정 ETA — 모니터링 → 후보 → 시범 → 본격 4단계 진척"
       unit="(단위: 연도)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-04 해수부 고시' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-04 해수부 고시' }}
       chartHeight={320}
       chart={
         <BarChart data={stages} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -284,7 +284,7 @@ export function OctopusTacCountdown() {
         </BarChart>
       }
       takeaway={{
-        situation: `현재 모니터링 단계(2026)에서 본격 TAC(2030) 적용까지 ${remainingYrs}년 남았습니다. 자원량이 13년 −22.6% + 25년 1~11월 −30.9% 절벽을 동시에 보이는 만큼 해수부의 TAC 의무 적용은 2028년 시범 단계가 1년 앞당겨질 가능성도 산업 내부에서 거론되는 상태입니다.`,
+        situation: `현재 모니터링 단계(2026)에서 본격 TAC(2030) 적용까지 ${remainingYrs}년 남았습니다. 자원량이 13년 −22.6%, 25년 1~11월 −30.9% 감소하는 가운데 해수부의 TAC 의무 적용이 2028년 시범 단계에서 일부 앞당겨질 가능성이 업계 내에서 거론되고 있습니다.`,
         actionPlan: '신라교역은 2027년 시범 TAC 지정 전에 한국 어획 쿼터 또는 쿼터 임차권을 선제 확보(연 어획량의 30% 분량)하고, 동시에 베트남·중국 수입선 다변화로 한국 어획 의존도를 60% → 40%로 줄여 쿼터 부족 위험을 분산한다.',
         source: '해양수산부 제4차 수산자원관리기본계획(2026~2030 고시안) · Reliability: S',
       }}
@@ -311,7 +311,7 @@ export function OctopusFtaTariffMatrix() {
       pillar="S3"
       cardDesc="0307.51(활)·0307.52(신선)·0307.59(냉동)·1605.55(조제) × MFN·KVFTA·RCEP·CPTPP 4단 매트릭스 — 최적 관세 0% 경로 시각화"
       unit="(단위: %)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-04 KCS' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-04 KCS' }}
       chartHeight={320}
       chart={
         <BarChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
@@ -327,7 +327,7 @@ export function OctopusFtaTariffMatrix() {
         </BarChart>
       }
       takeaway={{
-        situation: '4개 HSK 모두 MFN 20%인데 베트남 원산지는 KVFTA로 0307 시리즈 활·신선·냉동 모두 0% 도착, 조제는 5%로 최저. CPTPP·RCEP는 단계 인하 중이라 8~14% 박스에서 작동하므로 베트남 경유가 압도적으로 우월한 경로입니다.',
+        situation: '4개 HSK 모두 MFN 20%인데 베트남 원산지는 KVFTA로 0307 시리즈 활·신선·냉동 모두 0% 도착, 조제는 5%로 최저입니다. CPTPP·RCEP는 단계 인하 중이라 8~14% 수준에서 작동하므로, 베트남 원산지 경로가 현행 관세 구조에서 가장 유리한 선택지입니다.',
         actionPlan: '베트남 원산지 증명서 발급 자동화로 KVFTA 0% 경로를 default로 고정하고, 조제 SKU는 베트남 가공보다 한국 자체 가공 + 1605.55 5% 부담을 선택해 부가가치를 한국 내에 유지한다. 매트릭스 변화는 매 분기 KCS 갱신.',
         source: 'KCS HSK 10자리 + KVFTA/RCEP/CPTPP 양허표 · Reliability: S',
       }}
@@ -366,7 +366,7 @@ export function OctopusSstCorrelation() {
       pillar="S1"
       cardDesc={`NOAA 서해 SST 연평균(℃) × NIFS 한국 낙지 어획(천 톤) 산점도, 2010~2025 — Pearson 상관계수 r = ${r}`}
       unit="(단위: ℃, 천 톤)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-03' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026-03' }}
       chartHeight={320}
       chart={
         <ScatterChart margin={{ top: 16, right: 10, left: 0, bottom: 10 }}>
@@ -382,7 +382,7 @@ export function OctopusSstCorrelation() {
         </ScatterChart>
       }
       takeaway={{
-        situation: `서해 SST(13.1℃ → 15.4℃, +2.3℃)와 한국 낙지 어획(20.8 → 8.1 천 톤, −61%)이 Pearson r = ${r}의 강한 역상관을 보입니다. 2023년부터 SST 15℃ 임계를 돌파하며 어획 감소가 가속한 패턴은 낙지 산란·치어 생존이 SST 15℃ 부근에서 급격히 악화되는 어종 생태와 일치하고, 기후 변동성이 자원 위기의 leading indicator로 확정된 상태입니다.`,
+        situation: `서해 SST(13.1℃ → 15.4℃, +2.3℃)와 한국 낙지 어획(20.8 → 8.1 천 톤, −61%)이 Pearson r = ${r}의 강한 역상관을 보입니다. 2023년부터 SST 15℃ 수준을 돌파하며 어획 감소가 가속한 패턴은 낙지 산란·치어 생존이 고수온에서 저하된다는 생태 연구와 방향이 일치하며, 기후 변동성이 자원 변동의 주요 선행지표로 기능할 가능성이 있습니다.`,
         actionPlan: '신라교역은 NOAA 서해 SST 월별 시계열을 자동 수집해 SST 15.5℃ 돌파 시 즉시 베트남·중국 수입 비중을 +15%p 자동 상향하는 룰베이스 트리거를 운영하고, 한국 어획 의존도 60% → 30%로 5년 안에 단계 축소한다.',
         source: 'NOAA OISST v2.1 서해 영역 평균 + 국립수산과학원(NIFS) 어업생산통계 · Reliability: A',
       }}

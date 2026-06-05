@@ -14,7 +14,7 @@ export function Widget13_Decoupling() {
       iconColor="var(--color-danger)"
       pillar="S3"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
-      cardDesc="서방 제재 유탄 맞은 러시아산 투매 파괴와 이격되는 미국산 프리미엄 현상"
+      cardDesc="OFAC 제재 후 분기별 가격 추이 — 자체추정(산업 인터뷰 기반), 참고용"
       chart={
 <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
@@ -27,9 +27,9 @@ export function Widget13_Decoupling() {
           </LineChart>
       }
       takeaway={{
-        situation: "우크라이나 이슈 이후 서방 금융망 제재 발동으로 단일 시세를 유지하던 궤도가 붕괴, 투트랙 스프레드(Decoupling)가 발생했습니다. EU/북미 하역을 금지당한 러시아산 덤핑 매물과 폭우성 초과수요가 박힌 프리미엄 미국산 단가로 분리 진화 중입니다.",
-        actionPlan: "제재망이 적용되지 않는 대한민국 및 아시아 제3세계 내수 유통 파이프라인에는 덤핑 하락한 빈사 상태의 러시아산 블록을 초저가로 흡수해 매입 단가를 혁파하십시오. 반면 까다로운 서방 수출 D2C 라인은 미국산 MSC 물동량으로 이원화 매칭 전략을 가동해야 합니다.",
-        source: "US Treasury OFAC Sanctions Index & FAS Global"
+        situation: "2022년 OFAC 제재 발동 이후 러시아산 명태의 EU·북미 하역이 제한되면서 가격 트랙이 분리 진행 중입니다. 미국산 알래스카 MSC 물동량은 공급 제약으로 단가 상승 압력을 받고 있으며, 러시아산은 아시아 채널로 유입되며 단가 하락세를 보이고 있습니다. 다만 아래 수치는 업계추정 기반으로 공식 통계와 차이가 있을 수 있습니다.",
+        actionPlan: "제재 비적용 아시아 채널의 러시아산 가격 경쟁력을 모니터링하되, 컴플라이언스 리스크(이중 사용 우려 조항)를 법무팀과 사전 확인할 것을 권고합니다. 서방 수출 라인은 미국산 MSC 인증 물량으로 대응하는 투트랙 소싱 검토가 유효합니다.",
+        source: "업계추정 (OFAC 공시·FAS 무역통계 참조, 공식 확정치 아님)"
       }}
     />
   );
@@ -45,7 +45,7 @@ export function Widget14_MscRatio() {
       iconColor="var(--color-success)"
       pillar="S3"
       telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
-      cardDesc="글로벌 상위 프랜차이즈 식자재 입점 불허 기준선 역할을 하는 MSC 인증률 폭발 추이"
+      cardDesc="MSC 연간 보고서 기반 명태 인증 물량 비율 추이 — 자체추정, 공식 MSC 공표치 확인 필요"
       chart={
 <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />

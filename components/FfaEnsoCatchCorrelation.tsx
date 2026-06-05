@@ -183,11 +183,11 @@ export default function FfaEnsoCatchCorrelation() {
       icon={Thermometer}
       iconColor="#22d3ee"
       pillar="S1"
-      cardDesc="NOAA ONI 지수와 WCPO 참치 총 어획량(천 MT)의 연도별 상관관계 시각화"
+      cardDesc="NOAA(미국 해양대기청) ONI 지수와 WCPO(서중태평양) 참치 총 어획량(천 MT)의 연도별 상관관계 시각화"
       telemetry={{ status: 'STATIC', syncDate: '2025-Q4' }}
       termTooltip={{
         term: 'ONI',
-        description: 'Oceanic Niño Index. NOAA가 산출하는 ENSO 모니터링 핵심 지표로, Niño 3.4 해역(5°N–5°S, 120°–170°W) 해수면 온도 편차의 3개월 이동평균.',
+        description: '해양 엘니뇨 지수(Oceanic Niño Index). NOAA가 산출하는 ENSO 모니터링 핵심 지표로, 니뇨 3.4 해역(5°N–5°S, 120°–170°W) 해수면 온도 편차의 3개월 이동평균.',
       }}
       kpiPanel={[
         { label: '상관계수(r)', value: correlation.toFixed(2), sub: 'ONI vs 어획량' },
@@ -278,9 +278,9 @@ export default function FfaEnsoCatchCorrelation() {
         </ComposedChart>
       }
       takeaway={{
-        situation: `2012–2024년 NOAA ONI 지수와 WCPO 참치 어획량의 피어슨 상관계수는 ${correlation.toFixed(2)}로, 단순 선형 상관은 약합니다. 그러나 ENSO는 어획 '총량'보다 '어장 분포'에 핵심적 영향을 미칩니다. 엘니뇨 시기(2015, 2023) warm pool이 동쪽으로 확장하면서 PNA(태평양도서국) 배타적 경제수역(EEZ) 밖으로 어장이 이동해 VDS 조업일수 가치가 변동합니다. 반대로 라니냐(2020–2022) 기간에는 서적도 해역에 어장이 집중되어 PNA EEZ 내 어획 효율이 높아집니다.`,
-        actionPlan: `ENSO 예보(NOAA CFS v2, ECMWF SEAS5)를 분기별로 모니터링하여 원료 소싱 전략을 조정할 것을 권고합니다. 엘니뇨 전환 시 중·동태평양 선단 배치 확대 및 PNA 외 공해 조업 라이선스 사전 확보가 필요하며, 라니냐 전환 시 PNA VDS 조업일 확보에 집중하여 단위 비용을 절감하는 전략이 유효합니다.`,
-        source: 'NOAA CPC ONI + WCPFC Tuna Fishery Yearbook (2012–2024)',
+        situation: `2012–2024년 NOAA ONI 지수와 WCPO 참치 어획량의 피어슨 상관계수는 ${correlation.toFixed(2)}로, 단순 선형 상관은 약합니다. 그러나 ENSO는 어획 '총량'보다 '어장 분포'에 실질적 영향을 줍니다. 엘니뇨 시기(2015, 2023) 난수역(warm pool)이 동쪽으로 확장하면서 PNA(태평양도서국) 배타적 경제수역 밖으로 어장이 이동해 VDS 조업일수 가치가 변동합니다. 반대로 라니냐(2020–2022) 기간에는 서적도 해역에 어장이 집중되어 PNA EEZ 내 어획 효율이 높아지는 경향이 나타납니다.`,
+        actionPlan: `ENSO 예보(NOAA CFS v2, ECMWF SEAS5)를 분기별로 모니터링하여 원료 소싱 전략을 조정할 것을 권고합니다. 엘니뇨 전환 시 중·동태평양 선단 배치 확대 및 PNA 외 공해 조업 라이선스 사전 확보를 검토하고, 라니냐 전환 시 PNA VDS 조업일 확보에 집중하여 단위 비용을 절감하는 전략을 고려할 수 있습니다.`,
+        source: 'NOAA CPC ONI + WCPFC 참치 어업 연감(Tuna Fishery Yearbook, 2012–2024)',
       }}
     />
   );

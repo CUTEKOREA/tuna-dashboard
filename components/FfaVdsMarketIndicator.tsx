@@ -138,7 +138,7 @@ export default function FfaVdsMarketIndicator() {
         {
           label: '조업일수',
           value: `${(fleetStats.psFishingDays / 1000).toFixed(1)}K`,
-          sub: `+${fleetStats.psFishingDaysChange}% YoY`,
+          sub: `+${fleetStats.psFishingDaysChange}% 전년 대비`,
           trendColor: '#10b981',
         },
         {

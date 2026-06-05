@@ -39,8 +39,8 @@ export default function PollockKoreaCrisis() {
           <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}k`} />
           <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any) => [`${value.toFixed(1)}k tons`, '']} />
           <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
-          <Area type="monotone" dataKey="catch_k" name="한국 자체 어획량 (Catch)" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCatch)" />
-          <Area type="monotone" dataKey="import_k" name="한국 절대 수입량 (Import)" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorImport)" />
+          <Area type="monotone" dataKey="catch_k" name="한국 자체 어획량" stroke="var(--color-success)" fillOpacity={1} fill="url(#colorCatch)" />
+          <Area type="monotone" dataKey="import_k" name="한국 절대 수입량" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorImport)" />
         </AreaChart>
       }
       takeaway={{
