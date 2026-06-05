@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔋 **2026-06-05 — fallback 고가치 라우트 13개 LIVE 전환** [CC] [840d030]:
+> - prod GET+isLive 라우트 전수스캔: 68개 중 LIVE 19·fallback 38·필드없음 11. 고가치 키보유 fallback 16개 진단(Sonnet, working 형제 비교) → **13 fixed·3 needs-review**.
+> - **DART 6개**(tuna·pollock·whelk·shrimp·mackerel·salmon): corp_code 오류(동원에프앤비→서울창업투자 등 오매핑) 정정+에이전트가 실 DART API로 검증. `_shared/dart-client.ts` 공유맵 동기화.
+> - galchi/kamis(salmon/kamis 동일수정)·fishery(KCS배선)·mackerel/galchi comtrade(파싱신설)·beef trade-flow/slaughter-rate.
+> - **needs-review 3**(tuna/shrimp/salmon usda-fas): 수산물은 USDA ESR 미지원(농산물 44품목만) → 블라인드수정 안 함, 정직 STATIC 유지. NOAA Fisheries 별도소스 필요.
+> - 빌드 ✓. 외부 API라 로컬검증 불가 → **프로덕션 배포 후 isLive 전수검증**. Antigravity 병렬 L-09 작업(carrot/cassava/chicken route) 제외.
+> - 예상: 배포 시 prod LIVE 19→최대 32. 다음: 배포 검증 후 false 잔존분 응답보고 추가조정.
+
 > 🐟 **2026-06-05 — KAMIS 라우트 쿼리 버그 수정** [CC] [8b609ab]:
 > - 진단: salmon/kamis isLive=false 원인은 **cert/rate 아닌 malformed 쿼리** — `action=periodProductList`인데 `p_regday`(daily용)·`p_itemcategorycode=247`(부류코드 오용)·`p_itemcode` 누락·`http://`.
 > - 수정: `action=dailyPriceByCategoryList`·`p_item_category_code=600`(수산물)·`p_product_cls_code=02`·`p_convert_kg_yn=Y`·https. 응답 dpr1/dpr2→commodities 방어매핑, error_code 체크, 시계열은 검증캐시 유지(정직), isLive 실파싱시만 true. `npm run build` ✓.
