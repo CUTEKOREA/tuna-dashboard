@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🏁 **2026-06-05 — 세션 종료: 라우트 LIVE 완결 + 콘텐츠 파일럿** [CC]:
+> - **라우트 LIVE 캠페인 완결**: 고가치 fallback 13개 전부 프로덕션 LIVE 검증 완료. **prod LIVE 19→32**. 2차 잔존 4개도 해결 — tuna/dart(동원산업 corp 정정+isLive≥1완화)·fishery(?source=kcs)·**comtrade 2개(premium→무료 preview 엔드포인트 전환=beef 패턴, 프로덕션 isLive:true 검증)** [6293405].
+> - **needs-review 3**(tuna/shrimp/salmon usda-fas): 수산물은 USDA ESR 미지원(농산물 44품목만) → 구조적, honest STATIC 유지. **NOAA Fisheries 등 별도소스** 필요(다음 세션).
+> - **콘텐츠**: "참치액 카니발리제이션" 파일럿 숏폼 스크립트 `artifacts/pilot_script_tuna_extract.md`(컷별 비주얼/내레이션/자막+ElevenLabs/Suno 설정). 신라교역 권위 시리즈 #1.
+> - **다음 세션(deferred)**: ① 콘텐츠 시리즈 #2(사시미 등급)·#3(황다랑어vs가다랑어) + 완전자동 파이프라인(대시보드→멀티에이전트→ElevenLabs/Suno/Runway API→ffmpeg) ② NASS/WTO/NOAA 키 발급(저영향 라우트) ③ 파일럿 컷5 검증수치(카니발리제이션 위젯 실값) ④ value_chain/PollockDraftInsights/ReeferMovement(Antigravity 소관).
+
 > 🔋 **2026-06-05 — fallback 고가치 라우트 13개 LIVE 전환** [CC] [840d030]:
 > - prod GET+isLive 라우트 전수스캔: 68개 중 LIVE 19·fallback 38·필드없음 11. 고가치 키보유 fallback 16개 진단(Sonnet, working 형제 비교) → **13 fixed·3 needs-review**.
 > - **DART 6개**(tuna·pollock·whelk·shrimp·mackerel·salmon): corp_code 오류(동원에프앤비→서울창업투자 등 오매핑) 정정+에이전트가 실 DART API로 검증. `_shared/dart-client.ts` 공유맵 동기화.
