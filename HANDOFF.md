@@ -3,8 +3,8 @@
 > 🐟 **2026-06-05 — KAMIS 라우트 쿼리 버그 수정** [CC] [8b609ab]:
 > - 진단: salmon/kamis isLive=false 원인은 **cert/rate 아닌 malformed 쿼리** — `action=periodProductList`인데 `p_regday`(daily용)·`p_itemcategorycode=247`(부류코드 오용)·`p_itemcode` 누락·`http://`.
 > - 수정: `action=dailyPriceByCategoryList`·`p_item_category_code=600`(수산물)·`p_product_cls_code=02`·`p_convert_kg_yn=Y`·https. 응답 dpr1/dpr2→commodities 방어매핑, error_code 체크, 시계열은 검증캐시 유지(정직), isLive 실파싱시만 true. `npm run build` ✓.
-> - ⚠️ KAMIS가 샌드박스서 차단(timeout)돼 로컬검증 불가 → **프로덕션 배포 후 curl isLive 검증 필요**. 방어적이라 응답 예상외면 honest fallback(회귀 없음).
-> - 다음: 배포 후 prod isLive 확인. false면 country_code(1101)·부류·필드명 미세조정.
+> - ✅ **프로덕션 검증 완료**: 배포 후 `https://leedonggun.co.kr/api/salmon/kamis` → **isLive:true · commodities 21건**(고등어·갈치 등 수산물 일별 도매가). KAMIS fallback→진짜 LIVE 전환 성공.
+> - 참고: dailyPriceByCategoryList는 수산물 부류 전체(600) 반환 → 위젯에서 연어 관련 품목만 필터링하면 더 정밀(선택적 refinement).
 
 > 🔌 **2026-06-05 — 후속 rebuild: fetch 위젯 telemetry 정직화 (가짜LIVE 61 추가 박멸)** [CC] [f1d614a]:
 > - **rebuild 현실 진단**: 실 curl 결과 로컬 라우트 대부분 fallback(salmon/kamis isLive=false), mackerel-kcs만 진짜 LIVE. **진짜-LIVE는 프로덕션 env 키/L-10 fallback 키 작동에 의존**(사용자 영역 결정).
