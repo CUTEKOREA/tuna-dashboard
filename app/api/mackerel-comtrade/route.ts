@@ -33,18 +33,12 @@ export async function GET() {
   let flows: { source: string; target: string; value: number }[] = FALLBACK_FLOW;
 
   try {
-    const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
-    // 2026-06-05 수정: reporterCode=all&partnerCode=all 과대쿼리(거부/타임아웃) → 주요 고등어 교역국으로 한정.
-    // 노르웨이578·중국156·한국410·일본392·네덜란드528·영국826·러시아643·칠레152
-    const REPORTERS = '578,156,410,392,528,826,643,152';
-    const url = comtradeKey && comtradeKey !== 'pending_issuance'
-      ? `https://comtradeapi.un.org/data/v1/get/C/A/HS?cmdCode=030354&reporterCode=${REPORTERS}&partnerCode=all&period=2023&flowCode=M,X`
-      : `https://comtradeapi.un.org/public/v1/preview/C/A/HS?cmdCode=030354&reporterCode=${REPORTERS}&period=2023&flowCode=M,X`;
-    const headers = comtradeKey && comtradeKey !== 'pending_issuance'
-      ? { 'Ocp-Apim-Subscription-Key': comtradeKey }
-      : {};
+    // 2026-06-05 2차수정: premium(data/v1/get+키) 실패 확인 → working 형제 beef/korea-imports의 무료 preview 엔드포인트로 전환.
+    // 주요 고등어 교역국 한정(노르웨이578·중국156·한국410·일본392, preview 레코드 한도 고려해 4개국). partnerCode 미지정=전 파트너.
+    const REPORTERS = '578,156,410,392';
+    const url = `https://comtradeapi.un.org/public/v1/preview/C/A/HS?cmdCode=030354&reporterCode=${REPORTERS}&period=2023&flowCode=M,X`;
     const res = await fetch(url, {
-      headers,
+      headers: { Accept: 'application/json' },
       signal: AbortSignal.timeout(12000),
     });
 

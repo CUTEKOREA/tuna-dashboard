@@ -22,7 +22,8 @@ const FALLBACK = {
 
 export async function GET() {
   try {
-    const url = new URL("https://comtradeapi.un.org/data/v1/get/C/A/HS");
+    // 2026-06-05 2차수정: premium(data/v1/get) 실패 → 무료 preview 엔드포인트(beef/korea-imports 검증 패턴)
+    const url = new URL("https://comtradeapi.un.org/public/v1/preview/C/A/HS");
     url.searchParams.set("cmdCode", "030389");
     // 2026-06-05 수정: reporterCode=all 과대쿼리(premium 거부) → 주요 갈치 교역국 한정
     // 중국156·한국410·일본392·베트남704·미국842·러시아643·노르웨이578·칠레152
@@ -32,11 +33,8 @@ export async function GET() {
     url.searchParams.set("flowCode", "M,X");
 
     const res = await fetch(url.toString(), {
-      headers: {
-        "Ocp-Apim-Subscription-Key": COMTRADE_KEY,
-        "Accept": "application/json",
-      },
-      signal: AbortSignal.timeout(10000),
+      headers: { "Accept": "application/json" },  // preview는 키 불필요
+      signal: AbortSignal.timeout(12000),
     });
 
     if (res.ok) {
