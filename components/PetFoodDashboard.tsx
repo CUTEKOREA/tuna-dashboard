@@ -152,7 +152,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S1"
               cardDesc={`조업 리스크 — 최근 주차 어획량과 참깨/오징어 대체 단가 추이`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
@@ -181,7 +181,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S2"
               cardDesc={`What-If — 동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
                 <div className={styles.chartContainer}>
                   <SafeResponsiveContainer width="100%" height="100%">
@@ -235,7 +235,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S3"
               cardDesc={`무역적자 — 수출이 연 25.2% 급성장했으나 여전히 수입의 2.3배가 적자.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -262,7 +262,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S4"
               cardDesc={`Price Gap — 동일 시장에서 미국산이 태국산 대비 3~7배 고가.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -288,7 +288,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S4"
               cardDesc={`수산물 1.8% — 한국 판매 펫푸드 내 수산물 비중이 단 1.8%.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -310,7 +310,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S4"
               cardDesc={`Empirical Data — 태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -390,7 +390,7 @@ export default function PetFoodDashboard() {
             iconColor="var(--color-info)"
             pillar="S4"
             cardDesc={`EPA+DHA 620 — 줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고`}
-            telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+            telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
             customBody={<>
                   <div className={styles.chartContainer}>
                     <SafeResponsiveContainer width="100%" height="100%">
@@ -416,7 +416,7 @@ export default function PetFoodDashboard() {
   iconColor="var(--color-info)"
   pillar="S1"
   cardDesc={`FAD -4%/년 — FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피.`}
-  telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+  telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
   customBody={<>
                 <div className={styles.kpiRow}>
                   <KpiCard label="2025 TAC" value="73,011" unit="톤" />
@@ -448,7 +448,7 @@ export default function PetFoodDashboard() {
   iconColor="var(--color-info)"
   pillar="S1"
   cardDesc={`-15~30% — 중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망.`}
-  telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+  telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
   customBody={<>
                 <div className={styles.kpiRow}>
                   <KpiCard label="500kg 한계수온" value="20" unit="°C" />
@@ -510,7 +510,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S4"
               cardDesc={`Scoreboard — 로얄캐닌 2,093억 원으로 1위.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -562,7 +562,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S3"
               cardDesc={`매출총이익률(GPM) 25% — 마즈·스머커 등 OEM으로 98.7% 매출. 매출총이익률(GPM) 25%.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.kpiRow}>
             <KpiCard label="주문자 상표 부착 생산(OEM) 비중" value="98.7" unit="%" />
@@ -624,7 +624,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S4"
               cardDesc={`Vertical Integration — 계열사 닭고기 원가 직접 공급으로 흑자 전환.`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -678,7 +678,7 @@ export default function PetFoodDashboard() {
               iconColor="var(--color-info)"
               pillar="S3"
               cardDesc={`Empirical Data — 태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계`}
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+              telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
               customBody={<>
             <div className={styles.chartContainer}>
             <SafeResponsiveContainer width="100%" height="100%">
@@ -704,7 +704,7 @@ export default function PetFoodDashboard() {
             iconColor="var(--color-info)"
             pillar="S2"
             cardDesc={`항산화 35.2% — Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%`}
-            telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+            telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
             customBody={<>
                   <div className={styles.chartContainer}>
                     <SafeResponsiveContainer width="100%" height="100%">
@@ -731,7 +731,7 @@ export default function PetFoodDashboard() {
   iconColor="var(--color-info)"
   pillar="S2"
   cardDesc={`수율 72.5% — 스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g`}
-  telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+  telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
   customBody={<>
                   <div className={styles.chartContainer}>
                     <SafeResponsiveContainer width="100%" height="100%">

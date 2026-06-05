@@ -30,7 +30,7 @@ export function PollockSanctionParadox() {
       icon={Shield}
       iconColor="#ef4444"
       pillar="S3"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: data?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: '2026-05-21' }}
       cardDesc="근거: (기본 2019-12) 원양산업 사회적 책임 + (일반 2024-06) 신통상규범 | Comtrade + OFAC API"
       takeaway={{
         situation: "제재 강도 92점까지 상승했으나 러시아산 명태 점유율은 42%로 유지 — '중국 우회 가공' 62%로 폭증. 원산지 세탁의 구조적 역설.",
@@ -94,7 +94,7 @@ export function PollockFtaTariffMatrix() {
       icon={TrendingUp}
       iconColor="#22c55e"
       pillar="S3"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: data?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: '2026-05-21' }}
       cardDesc="근거: (일반 2024-06) 신통상규범 + (수시 2025-15) 비관세장벽 | WTO + WITS API"
       takeaway={{
         situation: "KORUS FTA 적용 시 미국→한국, 한국→US 루트 관세 0%. 중국 FTA 적용 시 필레 관세 5%(MFN 10% 대비 50% 절감).",
@@ -151,7 +151,7 @@ export function PollockRiskScorecard() {
       icon={AlertTriangle}
       iconColor="#ef4444"
       pillar="S3"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-24' }}
+      telemetry={{ status: data?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: '2026-05-24' }}
       cardDesc="국정연 6건 교차분석 + WTO API 관세(키 설정 시) | 6대 리스크 수치 업계추정"
       takeaway={{
         situation: "명태 종합 리스크 86점(A-) — 全품목 최고. 지정학적 제재(93) + 공급 집중도(92). 국정연 6건(2019-2025) 보고서 정성 분석 기반 업계추정 가중합산.",

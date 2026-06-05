@@ -78,21 +78,25 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <div style={{
             width: '8px', height: '8px', borderRadius: '50%',
-            background: isFullyLive ? '#0ECB81' : '#F0B90B',
-            boxShadow: isFullyLive ? '0 0 8px #0ECB81' : '0 0 8px #F0B90B',
-            animation: 'pulse 2s infinite',
+            background: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : '#64748b',
+            boxShadow: isFullyLive ? '0 0 8px #0ECB81' : ticker.length > 0 ? '0 0 8px #F0B90B' : 'none',
+            animation: ticker.length > 0 ? 'pulse 2s infinite' : 'none',
           }} />
           <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.5px' }}>
             실시간 인텔리전스 티커
           </span>
           <span style={{
             fontSize: '0.65rem', fontWeight: 600,
-            background: isFullyLive ? 'rgba(14,203,129,0.15)' : 'rgba(240,185,11,0.15)',
-            color: isFullyLive ? '#0ECB81' : '#F0B90B',
+            background: isFullyLive ? 'rgba(14,203,129,0.15)' : ticker.length > 0 ? 'rgba(240,185,11,0.15)' : 'rgba(100,116,139,0.15)',
+            color: isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : '#64748b',
             padding: '2px 8px', borderRadius: '500px',
-            border: `1px solid ${isFullyLive ? '#0ECB81' : '#F0B90B'}`,
+            border: `1px solid ${isFullyLive ? '#0ECB81' : ticker.length > 0 ? '#F0B90B' : '#64748b'}`,
           }}>
-            {liveCount}/{ticker.length} LIVE
+            {ticker.length === 0
+              ? 'STATIC'
+              : liveCount > 0
+                ? `${liveCount}/${ticker.length} LIVE`
+                : `${ticker.length} SYNCED`}
           </span>
         </div>
 

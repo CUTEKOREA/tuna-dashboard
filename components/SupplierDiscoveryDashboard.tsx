@@ -412,7 +412,7 @@ export default function SupplierDiscoveryDashboard() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <DollarSign size={16} color="#06b6d4" />
                   <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>원/{envData.exchangeRate?.currency || 'USD'} 환율</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#164e63', color: '#06b6d4', padding: '2px 6px', borderRadius: '4px' }}>ECOS 실시간</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#164e63', color: '#06b6d4', padding: '2px 6px', borderRadius: '4px' }}>{envData?.exchangeRate?.isLive ? 'ECOS 실시간' : 'ECOS 캐시'}</span>
                 </div>
                 <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f8fafc' }}>
                   ₩{envData.exchangeRate?.currentRate?.toLocaleString() || 'N/A'}
@@ -424,7 +424,7 @@ export default function SupplierDiscoveryDashboard() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <TrendingUp size={16} color="#f59e0b" />
                   <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>미국 기준금리 (Fed Funds Rate)</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: '#f59e0b', padding: '2px 6px', borderRadius: '4px' }}>FRED 실시간</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: '#f59e0b', padding: '2px 6px', borderRadius: '4px' }}>{envData?.fedRate?.isLive ? 'FRED 실시간' : 'FRED 캐시'}</span>
                 </div>
                 <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f8fafc' }}>
                   {envData.fedRate?.latest?.value?.toFixed(2) || 'N/A'}%
@@ -436,7 +436,7 @@ export default function SupplierDiscoveryDashboard() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <Activity size={16} color="#10b981" />
                   <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>미국 CPI (물가지수)</span>
-                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#052e16', color: '#10b981', padding: '2px 6px', borderRadius: '4px' }}>FRED 실시간</span>
+                  <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#052e16', color: '#10b981', padding: '2px 6px', borderRadius: '4px' }}>{envData?.cpi?.isLive ? 'FRED 실시간' : 'FRED 캐시'}</span>
                 </div>
                 <div style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#f8fafc' }}>
                   {envData.cpi?.latest?.value?.toFixed(1) || 'N/A'}
@@ -449,7 +449,7 @@ export default function SupplierDiscoveryDashboard() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                     <Newspaper size={16} color="#8b5cf6" />
                     <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>KOTRA 해외시장 뉴스</span>
-                    <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#2e1065', color: '#8b5cf6', padding: '2px 6px', borderRadius: '4px' }}>KOTRA 실시간</span>
+                    <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#2e1065', color: '#8b5cf6', padding: '2px 6px', borderRadius: '4px' }}>{envData?.marketNewsIsLive ? 'KOTRA 실시간' : 'KOTRA 캐시'}</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {envData.marketNews.slice(0, 3).map((news: any, i: number) => (
@@ -486,7 +486,7 @@ export default function SupplierDiscoveryDashboard() {
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
                           <span style={{ color: '#94a3b8', fontSize: '0.9rem', display: 'block' }}>AI HS Code 매핑</span>
-                          <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>LIVE API: HS Ping</span>
+                          <span style={{ fontSize: '0.65rem', background: 'rgba(16, 185, 129, 0.2)', color: '#10b981', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>{macroData?.isLive ? 'LIVE API: HS Ping' : 'SYNCED: HS 매핑'}</span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', flexWrap: 'wrap' }}>
                           <strong style={{ color: '#f8fafc', fontSize: '1.5rem', display: 'block' }}>{macroData.hsCode}</strong>
@@ -540,7 +540,9 @@ export default function SupplierDiscoveryDashboard() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                       <h4 style={{ margin: 0, color: '#f8fafc', fontSize: '1.1rem' }}>한국 ↔ {macroCountry} 누적 물동량 (MT) 추이</h4>
                       <span style={{ fontSize: '0.7rem', background: 'rgba(59, 130, 246, 0.2)', color: '#60a5fa', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
-                        {macroData.tradeVolume?.[0]?.source?.includes('COMTRADE') ? 'LIVE API: UN Comtrade' : 'LIVE API: KCS 관세청'}
+                        {macroData?.isLive
+                          ? (macroData.tradeVolume?.[0]?.source?.includes('COMTRADE') ? 'LIVE API: UN Comtrade' : 'LIVE API: KCS 관세청')
+                          : (macroData ? 'SYNCED: 관세청' : 'STATIC')}
                       </span>
                     </div>
                     <div style={{ width: '100%', height: 260 }}>

@@ -474,7 +474,7 @@ export default function WhelkDashboard() {
   <>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={PieChart} iconColor="var(--color-info)" pillar="S3"
               cardDesc="HS160559 국가별 수입 점유율 — 영국·아일랜드 65% 단일 해역 리스크"
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05-15' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || '2026-05-15' }} chartHeight={300}
               chart={
                 <PieChart>
                   <Pie data={importMarketShare} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
@@ -492,7 +492,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
               cardDesc="월별 수입액·물량 추이 — 5~8월 성수기 집중, Reefer 운임 급등"
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05-15' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || '2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={seasonalityData}>
                   <ChartPatternDefs />
@@ -534,7 +534,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="골뱅이 가공원물 투입량 YoY (HS160559)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
               cardDesc="KCS HS160559 통관 — 가공원물 물량·금액·시사단가 YoY"
-              telemetry={{ status: 'SYNCED', syncDate: 'KCS 2024 연간' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <ComposedChart data={feedstockYoyData}>
                   <ChartPatternDefs />
@@ -556,7 +556,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
               cardDesc="KCS HS160559 원산지별 CIF($/kg) — 북해 vs 저단가 대체재"
-              telemetry={{ status: 'SYNCED', syncDate: 'KCS 2024 연간' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
@@ -603,7 +603,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
               cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 한-영 FTA 무관세 방어"
-              telemetry={{ status: 'SYNCED', syncDate: '2026-05-15' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || '2026-05-15' }} chartHeight={300}
               chart={
                 <BarChart data={waterfallData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
@@ -770,7 +770,7 @@ export default function WhelkDashboard() {
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
               cardDesc="분기별 USD 단가 vs USD/KRW 환율 — 이중 타격(Double Whammy) 분석"
-              telemetry={{ status: 'SYNCED', syncDate: 'KCS/한국은행 2026-05-15' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS/한국은행 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
                   <ChartPatternDefs />
@@ -858,7 +858,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
               cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
-              telemetry={{ status: 'SYNCED', syncDate: 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
+              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
                   <ChartPatternDefs />

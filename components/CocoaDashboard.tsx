@@ -313,7 +313,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="기후 위기와 서아프리카 원두 생산 충격 (단위: 톤)" icon={CloudRain} iconColor="#b45309" pillar="S1"
           cardDesc="가나·코트디부아르 생산량 vs CSSVD 감염률 — 구조적 회복 5~10년"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w1_production_climate}>
               <ChartPatternDefs />
@@ -346,7 +346,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="코코아 원두 선물 가격 패닉 바잉 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
           cardDesc="국제 코코아가 추이·전망·추세선 — 2024-12 $10,092/MT 사상최고 후 조정"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <AreaChart data={processedPriceData}>
               <defs>
@@ -382,7 +382,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="글로벌 시장가 대비 현지 농가 수매가 디커플링 (USD/MT)" icon={Scale} iconColor="#b45309" pillar="S4"
           cardDesc="글로벌 선물가 vs 가나 농가 수매가 + Cedi/USD 환율 — 밀수 트리거"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w11_farmer_decoupling}>
               <ChartPatternDefs />
@@ -434,7 +434,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="글로벌 가공 허브 포트폴리오 (점유율 %)" icon={Factory} iconColor="#b45309" pillar="S2"
           cardDesc="네덜란드·코트디부아르·인니·독일·말련 등 국가별 가공허브 점유율"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <PieChart>
               <Pie data={cocoaData.w3_processing_hubs} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={5} dataKey="value">
@@ -462,7 +462,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="파생품 마진 스프레드 (거래량 지수, 프리미엄 %)" icon={Scale} iconColor="#d97706" pillar="S2"
           cardDesc="버터·파우더 등 파생품별 거래량 + 부가가치 마진율 비교"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w4_derivative_spread}>
               <ChartPatternDefs />
@@ -494,7 +494,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="실사 기반 가공 공장 인수합병 타겟" icon={Landmark} iconColor="#b45309" pillar="S2"
           cardDesc="X: 자본적 지출(CAPEX) 매력도, Y: 수율, Z: 가공 생산능력(Capa) — 디스트레스드 인수합병(M&A) 매트릭스"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               {grid}
@@ -526,7 +526,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="코코아 선물 커브 구조 및 백워데이션 전환 지표 (USD/MT)" icon={TrendingUp} iconColor="#b45309" pillar="S4"
           cardDesc="2024·2025·2026년 선물 가격 커브 — 백워데이션 → 콘탱고 전환 시그널"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <LineChart data={cocoaData.w21_futures_curve_structure}>
               {grid}
@@ -577,7 +577,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="가나 현지 가공 인프라 디스트레스 차익거래 (천톤, %)" icon={TrendingUp} iconColor="#78350f" pillar="S3"
           cardDesc="CPC vs Niche Cocoa 등 가나 가공 인프라 가동률 + 무가공 원물 수출비율"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w15_ghana_distressed}>
               <ChartPatternDefs />
@@ -611,7 +611,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="한국의 이중 수입 넥서스 흐름도" icon={Anchor} iconColor="#b45309" pillar="S3"
           cardDesc="가나 원두 80% 편중 + 네덜란드/말레이시아 우회 가공품 — Sankey 다이어그램"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <Sankey data={cocoaData.w5_sankey_nexus} node={renderSankeyNode}
               link={{ stroke: '#b45309', strokeOpacity: 0.3 }} margin={{ left: 20, right: 80, top: 20, bottom: 20 }}>
@@ -636,7 +636,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="공급 충격 시나리오: 재고 소진율 트래커" icon={Shield} iconColor="#d97706" pillar="S2"
           cardDesc="재고회전일수(DIO) + 공장 가동 중단 임계선 + 경쟁사 영업이익률(OPM) 동향"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w6_inventory_burn_rate}>
               <ChartPatternDefs />
@@ -673,7 +673,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="허브 경유에 따른 EUDR 그린 프리미엄 원가 전가" icon={Anchor} iconColor="#b45309" pillar="S3"
           cardDesc="EUDR 컴플라이언스 텍스 + 해상 물류비 + 원물 가격 — 그린 프리미엄 누적"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={cocoaData.w12_green_premium}>
               <ChartPatternDefs />
@@ -720,7 +720,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="기업간(B2B) 코코아 대체유(CBE) 벤더 롤업 가치 평가" icon={Scale} iconColor="#d97706" pillar="S2"
           cardDesc="대체유 벤더의 시장대응력 vs EBITDA(세전·이자·감가상각비 차감 전 이익) vs 원가부담 — 롤업 매수 매트릭스"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />
@@ -752,7 +752,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="대체 공급처 발굴 수익성 분석 (물류비·원물가·공급량)" icon={Target} iconColor="#b45309" pillar="S1"
           cardDesc="에콰도르·브라질 등 남미 산지 대안 — 다변화 펀드 매트릭스"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               {grid}
@@ -784,7 +784,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="슈링크플레이션 기반 B2B 단가 워터폴" icon={RefreshCcw} iconColor="#b45309" pillar="S4"
           cardDesc="원가 변동 요소별 워터폴 — 슈링크플레이션 + CBE 전환 마진 방어 (illustrative)"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={waterfallData} layout="vertical">
               <ChartPatternDefs />
@@ -817,7 +817,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="국내 제과 3사 원가율 및 마진 방어력 벤치마크 (%)" icon={Scale} iconColor="#b45309" pillar="S4"
           cardDesc="롯데웰푸드·해태·오리온 등 원가 부담률 + CBE 전환율 + 영업이익률"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w20_local_confectionery_margin} layout="vertical">
               <ChartPatternDefs />
@@ -868,7 +868,7 @@ export default function CocoaDashboard() {
         
         <WidgetCard title="부산물 업사이클링 수익 포트폴리오 (매출 기여도 %)" icon={Recycle} iconColor="#d97706" pillar="S5"
           cardDesc="Husks·Pods 부산물의 테오브로민·카테킨·사료 가치 — Cash Cow 전환"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={cocoaData.w9_upcycling}>
               <ChartPatternDefs />
@@ -900,7 +900,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="EUDR 이력 추적 준수도 및 페널티 리스크 (준수율%, 위험도)" icon={Gavel} iconColor="#78350f" pillar="S5"
           cardDesc="CMS 농가 등록률·폴리곤 매핑 vs 수출 차단 리스크 — EU 매출 4% 벌금 압박"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w10_eudr_compliance}>
               <ChartPatternDefs />
@@ -933,7 +933,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="FTA 삼각 무역 및 역수출 흐름도" icon={MapPin} iconColor="#b45309" pillar="S3"
           cardDesc="FTA 활용 무관세 우회 — 한국 동북아 가공·유통 허브 진화"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <Sankey data={cocoaData.w17_fta_triangle} node={renderSankeyNode} nodePadding={30} margin={{ top: 10, right: 10, bottom: 10, left: 10 }} link={{ stroke: 'rgba(255,255,255,0.1)' }}>
               <RechartsTooltip content={<CustomTooltip />} />
@@ -957,7 +957,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="아시아 내 프리미엄 차익거래" icon={Landmark} iconColor="#b45309" pillar="S4"
           cardDesc="국가별 프리미엄 비중 + CBE 비중 + 현물/선물 스프레드"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w18_asia_premium}>
               <ChartPatternDefs />
@@ -990,7 +990,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="K-뷰티/바이오 소재 전환 ROI (마진율 %)" icon={TestTube} iconColor="#f59e0b" pillar="S2"
           cardDesc="채널별 EBITDA(세전·이자·감가상각비 차감 전 이익)·성장률 + 폴리페놀·항산화 측정치 — 코스메슈티컬 ROI"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ComposedChart data={cocoaData.w19_kbeauty_bio}>
               <ChartPatternDefs />
@@ -1024,7 +1024,7 @@ export default function CocoaDashboard() {
 
         <WidgetCard title="이중 규제의 덫 리스크 매트릭스" icon={Gavel} iconColor="#b45309" pillar="S5"
           cardDesc="X: EUDR 추적위험도, Y: 카드뮴 수치, Z: 식약처 통관 거절률"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
+          telemetry={{ status: cocoaData ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               {grid}

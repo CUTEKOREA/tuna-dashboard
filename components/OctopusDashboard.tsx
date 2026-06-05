@@ -445,7 +445,7 @@ export default function OctopusDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Fish;
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const status = w.reliability && w.reliability < 70 ? 'STATIC' : 'SYNCED'; // isLiveApi LIVE 분기 제거 — /api/octopus-intelligence 라우트 미존재, L-09
+    const status = w?.isLive ? 'LIVE' : (data?.widgets?.length > 0 ? 'SYNCED' : 'STATIC'); // L-12: isLive 필드 우선, fetch 성공 시 SYNCED, 실패/빈응답 시 STATIC
 
     return (
       <WidgetCard

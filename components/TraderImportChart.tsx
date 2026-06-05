@@ -163,23 +163,21 @@ export default function TraderImportChart() {
           </p>
         </div>
         
-        {meta && (
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '8px', 
-            fontSize: '11px', 
-            fontWeight: 600,
-            background: 'rgba(16, 185, 129, 0.1)',
-            color: 'var(--color-success)',
-            padding: '4px 12px',
-            borderRadius: '12px',
-            border: '1px solid rgba(16, 185, 129, 0.2)'
-          }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #10b981' }}></div>
-            Live 🟢 KCS API Connected
-          </div>
-        )}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          fontSize: '11px',
+          fontWeight: 600,
+          background: meta ? 'rgba(16, 185, 129, 0.1)' : 'rgba(148, 163, 184, 0.1)',
+          color: meta ? 'var(--color-success)' : 'var(--text-muted)',
+          padding: '4px 12px',
+          borderRadius: '12px',
+          border: meta ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid rgba(148, 163, 184, 0.2)'
+        }}>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: meta ? 'var(--color-success)' : 'var(--text-muted)', boxShadow: meta ? '0 0 8px #10b981' : 'none' }}></div>
+          {meta ? 'SYNCED · KCS API' : 'STATIC'}
+        </div>
       </div>
 
       <div style={{ display: 'flex', gap: rc.isMobile ? '12px' : '24px', width: '100%', height: rc.isMobile ? 'auto' : '350px', flexDirection: rc.isTablet ? 'column' : 'row' }}>

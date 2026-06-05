@@ -237,9 +237,17 @@ export default function ShrimpDashboard() {
     if (newW.title) {
        newW.title = newW.title.replace(/\s*\([A-Za-z\s]+\)/g, '');
     }
-    if (newW.id === 'w_log3_kr_import_value' && apiData.customs?.liveImportData?.length > 0) {
-      const historicalData = newW.data.filter((d: any) => parseInt(d.year) < 2024);
-      newW.data = [...historicalData, ...apiData.customs.liveImportData];
+    if (newW.id === 'w_log3_kr_import_value') {
+      if (apiData.customs?.liveImportData?.length > 0) {
+        const historicalData = newW.data.filter((d: any) => parseInt(d.year) < 2024);
+        newW.data = [...historicalData, ...apiData.customs.liveImportData];
+        newW.telemetry = apiData.customs.isLive ? 'live' : 'synced';
+        newW.syncDate = apiData.customs.isLive ? '실시간 연동중 (관세청)' : (newW.syncDate || '2025-Q4 기준');
+      } else if (apiData.customs !== undefined) {
+        // customs fetch 완료됐지만 liveImportData 없음 → 정적 JSON 데이터
+        newW.telemetry = 'synced';
+      }
+      // customs가 null(fetch 실패)이면 JSON 원본 telemetry 유지
     }
     // sourcing-sim: UN Comtrade 실측 CIF를 차트에 바인딩. isLive(Comtrade 성공) 시에만 LIVE 표기(정직).
     if (newW.id === 'w_shrimp_sourcing_sim' && apiData.sourcing?.sourcingMatrix?.length > 0) {
@@ -679,9 +687,11 @@ export default function ShrimpDashboard() {
 
     const situation = w.sit || w.situation || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    // L-09 정직 telemetry: reliability를 LIVE 판정에서 제거. 진짜 라이브(badges 'Live API'·apiSource·동적 isLiveApi·JSON telemetry 'live')만 LIVE.
-    const isGenuineLive = (w.badges && w.badges?.includes('Live API')) || w.apiSource || w.isLiveApi || (typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'live');
-    const honestStatus = isGenuineLive ? 'LIVE' : (w.telemetry || w.syncDate) ? 'SYNCED' : 'STATIC';
+    // L-09 정직 telemetry: reliability를 LIVE 판정에서 제거. 진짜 라이브(badges 'Live API'·동적 isLive 분기)만 LIVE.
+    // w.apiSource·w.isLiveApi는 JSON 하드코딩 가능성 있으므로 단독 LIVE 근거로 사용 금지.
+    const isGenuineLive = (w.badges && w.badges?.includes('Live API')) || (typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'live');
+    const isExplicitStatic = typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'static';
+    const honestStatus = isGenuineLive ? 'LIVE' : isExplicitStatic ? 'STATIC' : (w.telemetry || w.syncDate) ? 'SYNCED' : 'STATIC';
     const honestSyncDate = isGenuineLive ? (w.syncDate || '실시간 연동중') : (w.syncDate || '2024년 기준');
     const cardDesc = [w.unit ? `단위: ${w.unit}` : '', w.subtitle || ''].filter(Boolean).join(' — ');
 

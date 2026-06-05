@@ -210,7 +210,16 @@ export default function SalmonLiveTicker() {
       iconColor="#ec4899"
       pillar="S4"
       cardDesc="ECOS(환율)·FRED(금리)·KCS(수입실적)·KAMIS(소매가) 5분 갱신 매크로 티커"
-      telemetry={{ status: lastUpdate ? 'LIVE' : 'STATIC', syncDate: lastUpdate || '대기 중' }}
+      telemetry={{
+        status: tickers.some(t => t.source === 'OFFLINE')
+          ? 'STATIC'
+          : tickers.some(t => t.source?.includes('LIVE'))
+            ? 'LIVE'
+            : tickers.length > 0
+              ? 'SYNCED'
+              : 'STATIC',
+        syncDate: lastUpdate || '대기 중',
+      }}
       customBody={body}
       takeaway={{
         situation: `<div>

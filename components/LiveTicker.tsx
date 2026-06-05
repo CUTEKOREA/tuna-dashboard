@@ -6,22 +6,26 @@ import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 export default function LiveTicker() {
   const [items, setItems] = useState<any[]>([]);
+  const [isMgoLive, setIsMgoLive] = useState<boolean>(false);
 
   useEffect(() => {
     async function fetchLiveMarketData() {
       try {
-        // 1. FX rates as of 2026.04.27
-        const usdkrw = 1476.42; 
+        // 1. FX rates as of 2026.04.27 (static hardcoded)
+        const usdkrw = 1476.42;
         const jpykrw = 948.50;
-        
+
         // 2. Fetch live MGO Rates (Scraped real-time from Ship&Bunker)
         const mgoRes = await fetch('/api/mgo', { cache: 'no-store' });
         let mgoPrice = 1061.00; let mgoChange = -333.00;
+        let mgoFetchedOk = false;
         if (mgoRes.ok) {
            const mgoData = await mgoRes.json();
            mgoPrice = mgoData.price || 1061.00;
            mgoChange = mgoData.change || -333.00;
+           mgoFetchedOk = true;
         }
+        setIsMgoLive(mgoFetchedOk);
 
         const mgoTrend = mgoChange > 0 ? 'up' : mgoChange < 0 ? 'down' : 'neutral';
         const mgoDiff = mgoChange > 0 ? `+${mgoChange.toFixed(2)}` : `${mgoChange.toFixed(2)}`;
@@ -55,7 +59,7 @@ export default function LiveTicker() {
   if (items.length === 0) {
     return (
       <div className={styles.tickerWrap}>
-        <div className={styles.tickerPrefix}>LIVE UPDATE</div>
+        <div className={styles.tickerPrefix}>CONNECTING</div>
         <div className={styles.tickerInner} style={{ animation: 'none', paddingLeft: 160, fontSize: 13, color: 'var(--text-muted)' }}>
           📡 Connecting to Global Markets...
         </div>
@@ -66,7 +70,7 @@ export default function LiveTicker() {
   return (
     <div className={styles.tickerWrap}>
       <div className={styles.tickerPrefix}>
-        LIVE UPDATE
+        {isMgoLive ? 'LIVE UPDATE' : 'SYNCED UPDATE'}
       </div>
       <div className={styles.tickerInner}>
         {items.map((item, idx) => (

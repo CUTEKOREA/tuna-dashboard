@@ -29,7 +29,7 @@ export function PollockConcentrationIndex() {
       icon={Globe}
       iconColor="#ef4444"
       pillar="S1"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }}
       cardDesc="근거: (일반 2023-10) 전략품목 관리 | HHI 2,500+ 고집중, 6,000+ 극단적 집중 | KCS + Comtrade"
       takeaway={{
         situation: "HHI 7,100(2025년 추정) — 극단적 양두독점(러시아 42% + 중국 48% = 90%). 공급 쇼크 시 대체 소싱 가용 물량 극히 제한적.",
@@ -102,7 +102,7 @@ export function PollockAlternativeSourcing() {
       icon={RefreshCw}
       iconColor="#3b82f6"
       pillar="S1"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }}
       cardDesc="근거: (일반 2024-05) 공급망 관리 개선 | 5개국 6축 평가 (원가/품질/신뢰성/ESG/장벽)"
       takeaway={{
         situation: "미국 알래스카(85점) 최우수 대체 소싱. 노르웨이(72점)/아이슬란드(68점) 중위. 베트남(62점) 가공 허브로 부상.",
@@ -152,7 +152,7 @@ export function PollockSubstituteElasticity() {
       icon={Anchor}
       iconColor="#8b5cf6"
       pillar="S1"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }}
       cardDesc="근거: (일반 2022-11) 수입수산물과 국산 간의 대체관계 분석 | 명태 수리미 → 대체 어종 전환점 분석"
       takeaway={{
         situation: "명태 수리미 CIF $3,800/MT 돌파 시 실꼬리돔 블렌딩 30%까지 확대 가능 (매입원가 18% 절감).",

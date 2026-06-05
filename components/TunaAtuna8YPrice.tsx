@@ -169,7 +169,7 @@ export default function TunaAtuna8YPrice() {
       iconColor="#0ea5e9"
       pillar="S4"
       cardDesc="로컬 CSV (skjbkk.csv) 월별 파싱 — 방콕 기준 가다랑어 최근 8년 월별 거래가(최신 2026-05). YFT는 SKJ 대비 58% 역사적 프리미엄 적용 추정치."
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: data.length > 0 ? 'SYNCED' : 'STATIC', syncDate: data.length > 0 ? stats.lastMonth : undefined }}
       customBody={buttons}
       chart={loading ? <div style={{ color: '#64748b', textAlign: 'center', marginTop: '100px' }}>데이터 로딩 중...</div> : chart}
       chartHeight={280}

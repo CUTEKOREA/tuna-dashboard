@@ -54,7 +54,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
         <div>
           <h3 style={{ margin: '0 0 0.25rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-warning)', fontSize: '1.2rem', fontWeight: 700 }}>
             <Activity size={20} /> Macro Impact Simulator (매크로 스트레스 테스트 엔진)
-            <span style={{ display:'inline-flex', alignItems:'center', background:'rgba(16, 185, 129, 0.2)', color:'var(--color-success)', fontSize:'0.7rem', padding:'2px 6px', borderRadius:'4px', border:'1px solid #10b981' }}>🟢 Live API 연동됨</span>
+            <span style={{ display:'inline-flex', alignItems:'center', background: liveRates ? 'rgba(16, 185, 129, 0.2)' : 'rgba(100, 116, 139, 0.2)', color: liveRates ? 'var(--color-success)' : '#94a3b8', fontSize:'0.7rem', padding:'2px 6px', borderRadius:'4px', border: liveRates ? '1px solid #10b981' : '1px solid #475569' }}>{liveRates ? '🟢 SYNCED' : '⚫ STATIC'}</span>
           </h3>
           <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.85rem' }}>
             실시간 환율/유가 데이터에 충격을 가하여 전체 밸류체인 마진을 자동 재계산합니다. (기준일: {liveRates?.date || 'Today'})

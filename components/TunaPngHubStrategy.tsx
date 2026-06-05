@@ -29,7 +29,7 @@ export default function TunaPngHubStrategy() {
       iconColor="#f59e0b"
       pillar="S2"
       cardDesc="동원 RD Tuna Canners PNG 거점의 산지 1차 가공 vs 국내 직조달 비용유형별 단가 비교"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: data && data.length > 0 ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
       chartHeight={280}
       chart={
         <BarChart data={data} layout="vertical" margin={{ left: 50 }}>

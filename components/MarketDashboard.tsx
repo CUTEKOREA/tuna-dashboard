@@ -321,7 +321,7 @@ export default function MarketDashboard() {
             iconColor="#818cf8"
             pillar="S1"
             cardDesc="어가 하락 ($1,850/t) 및 고비용 구조 속 슈퍼 엘니뇨 도래와 OOI 기후 센서 철수 충격"
-            telemetry={{ status: 'SYNCED', syncDate: '2026.06.04 (Atuna)' }}
+            telemetry={{ status: 'STATIC', syncDate: '2026.06.04 (Atuna)' }}
             customBody={<></>}
             takeaway={{
               situation: "싱가포르 MGO 가격은 톤당 1,061달러로 전월비 소폭 하락했으나 전년($605) 대비 여전히 높은 비용 부담을 유발합니다. 여기에 방콕 SKJ 어가가 $1,850/t으로 6.3% 하락하며 선망선단의 채산성이 한계에 직면했습니다. 또한, 태평양 어군 분포에 치명적 변화를 부르는 '슈퍼 엘니뇨' 경고에도 불구하고 미 NSF가 3.8억 달러 규모의 심해 관측 인프라(OOI)를 6월 16일부터 철수하기로 결정해 어군 예측력 저하 우려를 키우고 있습니다.",
@@ -336,7 +336,7 @@ export default function MarketDashboard() {
             iconColor="#818cf8"
             pillar="S3"
             cardDesc="USTR 무역법 301조 추가 관세안 제안 & Europêche 로인 관세할당(ATQ) 폐지 촉구"
-            telemetry={{ status: 'SYNCED', syncDate: '2026.06.04 (Atuna)' }}
+            telemetry={{ status: 'STATIC', syncDate: '2026.06.04 (Atuna)' }}
             customBody={<></>}
             takeaway={{
               situation: "미 USTR은 강제노동 미조치 60개국을 대상으로 무역법 301조 추가 관세를 제안했습니다. 주요 참치 수출국인 태국·베트남은 10%, 인도네시아·에콰도르·멕시코·EU 등은 12.5%의 추가 관세 위험에 노출되었습니다. 한편, 유럽 Europêche는 2025년 로인 수입 사상 최고치(194,258톤) 기록과 아시아 국가들과의 FTA 협상을 계기로 로인 무관세 혜택(ATQ)을 2027년부터 전면 폐지하라고 강력히 요구하고 있습니다.",

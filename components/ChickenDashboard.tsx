@@ -161,8 +161,9 @@ export default function ChickenDashboard() {
           w.sit = ENHANCED_INSIGHTS[w.id].sit;
           w.strat = ENHANCED_INSIGHTS[w.id].strat;
         }
-        // 정직 STATIC: 모든 API 라우트는 실시간 외부 fetch 없는 정적 스냅샷 — L-09 준수
-        w.telemetryStatus = 'static';
+        // L-12: isLive 필드 기반 동적 telemetry (API 라우트가 isLive를 반환하면 반영)
+        // 현재 모든 chicken API 라우트는 isLive 미반환(정적 스냅샷) → STATIC 유지
+        w.telemetryStatus = w.isLive ? 'live' : (w.telemetryStatus === 'synced' ? 'synced' : 'static');
         if (!w.syncDate) w.syncDate = '스냅샷';
         return w;
       });

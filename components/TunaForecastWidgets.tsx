@@ -33,7 +33,7 @@ export function SkipjackForecastWidget() {
       pillar="S1"
       cardDesc="Atuna skjbkk 분기 평균(실측) + 단기 시나리오 forecast — 호르무즈·WCPO·가공업체 저항 3요인 통합"
       unit="(단위: USD/MT)"
-      telemetry={{ status: 'LIVE', syncDate: '/api/tuna-forecast' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '/api/tuna-forecast' }}
       customBody={
         loading ? (
           <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>예측 데이터 로딩 중...</div>
@@ -121,7 +121,7 @@ export function EnsoCorrelationWidget() {
       pillar="S1"
       cardDesc="NOAA ENSO Index와 가다랑어·황다랑어 어획량의 5단계 위상별 상관 — La Niña/El Niño/Neutral 별 가격 영향"
       unit="(단위: 어획량 변동 %)"
-      telemetry={{ status: 'LIVE', syncDate: 'NOAA ENSO Index' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'NOAA ENSO Index · /api/tuna-forecast' }}
       kpiPanel={[
         { label: '현재 ENSO', value: enso?.current_enso?.phase || '로딩 중...', sub: `Index: ${enso?.current_enso?.index ?? 'N/A'}`, trendColor: '#06b6d4' },
         { label: '전망', value: enso?.forecast?.slice(0, 24) || '...', trendColor: '#FCD535' },
@@ -177,7 +177,7 @@ export function LandingCostSensitivity() {
       pillar="S3"
       cardDesc="ECOS 환율 + KCS 통관 시나리오로 5가지 변수(원화 약세·강세·유가 급등·관세 인상)별 착지원가 시뮬레이션"
       unit="(단위: ₩/kg)"
-      telemetry={{ status: 'LIVE', syncDate: 'ECOS + KCS API' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'ECOS + KCS API · /api/tuna-forecast' }}
       customBody={
         <div style={{ display: 'grid', gap: '6px' }}>
           {scenarios.map((s: any, i: number) => (

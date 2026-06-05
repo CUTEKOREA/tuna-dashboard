@@ -29,7 +29,7 @@ export default function TunaGlobalHalalStrategy() {
       pillar="S4"
       cardDesc="글로벌 피시소스 시장($4.5B)·할랄 시장($1.2B) vs 한국 참치액(700~1,000억원) 규모 비교"
       unit="(단위: 십억 달러)"
-      telemetry={{ status: 'SYNCED', syncDate: '2026-05' }}
+      telemetry={{ status: data && data.length > 0 ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
       chartHeight={280}
       chart={
         <PieChart>

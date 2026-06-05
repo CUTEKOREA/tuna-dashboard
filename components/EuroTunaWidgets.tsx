@@ -126,6 +126,7 @@ const valueChainStats = [
 export function EuroMacroTradeWidget() {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isSynced, setIsSynced] = useState(false);
 
   useEffect(() => {
     fetch('/api/tuna-local?dataset=eurostat-flow')
@@ -144,10 +145,11 @@ export function EuroMacroTradeWidget() {
           const othersVol = importsExtra.slice(5).reduce((sum: number, d: any) => sum + parseFloat(String(d.volume_kg).trim()), 0) / 1000;
           if (othersVol > 0) top5.push({ name: '기타', value: othersVol, fill: colors[6] });
           setData(top5);
-        } else { setData(macroTradeDataFallback); }
+          setIsSynced(true);
+        } else { setData(macroTradeDataFallback); setIsSynced(false); }
         setLoading(false);
       })
-      .catch(() => { setData(macroTradeDataFallback); setLoading(false); });
+      .catch(() => { setData(macroTradeDataFallback); setIsSynced(false); setLoading(false); });
   }, []);
 
   return (
@@ -158,9 +160,11 @@ export function EuroMacroTradeWidget() {
           <Anchor style={{ width: 20, height: 20, color: COLORS.accent.blue }} />
           EU 역외 참치캔 최대 수입국
         </h3>
-        <span style={badge(COLORS.accent.emerald)}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: COLORS.accent.emerald, display: 'inline-block', animation: 'pulse 2s infinite' }} />
-          Live API
+        <span style={badge(isSynced ? COLORS.accent.emerald : COLORS.accent.amber)}>
+          {isSynced && (
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: COLORS.accent.emerald, display: 'inline-block', animation: 'pulse 2s infinite' }} />
+          )}
+          {isSynced ? 'SYNCED' : 'STATIC'}
         </span>
       </div>
       <p style={{ fontSize: '0.85rem', color: COLORS.textMuted, margin: 0, lineHeight: 1.6, position: 'relative', zIndex: 2 }}>

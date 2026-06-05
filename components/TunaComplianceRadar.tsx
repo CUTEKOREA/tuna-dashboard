@@ -124,7 +124,7 @@ const TunaComplianceRadar = React.memo(function TunaComplianceRadar() {
       iconColor="#0ECB81"
       pillar="S5"
       cardDesc="거래처명 입력 시 OFAC SDN(미국 해외자산통제국) 목록을 실시간 조회(공개 CSV)하고, EU·IUU 참조 DB로 보강. 조회 실패 시 사전심사 참조 DB로 폴백."
-      telemetry={{ status: result?.isLive ? 'LIVE' : 'STATIC', syncDate: result?.isLive ? '실시간 OFAC SDN' : 'OFAC 조회 시 갱신' }}
+      telemetry={{ status: result?.isLive ? 'LIVE' : (result ? 'SYNCED' : 'STATIC'), syncDate: result?.isLive ? '실시간 OFAC SDN' : (result ? result.source ?? 'OFAC 조회 완료' : 'OFAC 조회 시 갱신') }}
       customBody={Body}
       takeaway={{
         situation: result && !showHist ? `<div>

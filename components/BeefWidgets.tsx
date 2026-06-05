@@ -13,12 +13,13 @@ function useKcsImports() {
     data: typeof D.koreaImportPartnersData;
     isLive: boolean;
     source: string;
-  }>({ data: D.koreaImportPartnersData, isLive: false, source: '관세청 정적 캐시' });
+    fetched: boolean;
+  }>({ data: D.koreaImportPartnersData, isLive: false, source: '관세청 정적 캐시', fetched: false });
   useEffect(() => {
     let alive = true;
     fetch('/api/beef/korea-imports', { signal: AbortSignal.timeout(20000) })
       .then(r => r.json())
-      .then(d => { if (alive && d.data) setState(d); })
+      .then(d => { if (alive && d.data) setState({ ...d, fetched: true }); })
       .catch(() => {});
     return () => { alive = false; };
   }, []);
@@ -31,12 +32,13 @@ function useKosisSupply() {
     data: typeof D.koreaSupplyData;
     isLive: boolean;
     source: string;
-  }>({ data: D.koreaSupplyData, isLive: false, source: 'KOSIS + KREI 정적 캐시' });
+    fetched: boolean;
+  }>({ data: D.koreaSupplyData, isLive: false, source: 'KOSIS + KREI 정적 캐시', fetched: false });
   useEffect(() => {
     let alive = true;
     fetch('/api/beef/korea-supply', { signal: AbortSignal.timeout(20000) })
       .then(r => r.json())
-      .then(d => { if (alive && d.data) setState(d); })
+      .then(d => { if (alive && d.data) setState({ ...d, fetched: true }); })
       .catch(() => {});
     return () => { alive = false; };
   }, []);
@@ -49,12 +51,13 @@ function useKamisHanwoo() {
     data: typeof D.priceGapData;
     isLive: boolean;
     source: string;
-  }>({ data: D.priceGapData, isLive: false, source: 'KAMIS 정적 캐시' });
+    fetched: boolean;
+  }>({ data: D.priceGapData, isLive: false, source: 'KAMIS 정적 캐시', fetched: false });
   useEffect(() => {
     let alive = true;
     fetch('/api/beef/hanwoo-price', { signal: AbortSignal.timeout(20000) })
       .then(r => r.json())
-      .then(d => { if (alive && d.data) setState(d); })
+      .then(d => { if (alive && d.data) setState({ ...d, fetched: true }); })
       .catch(() => {});
     return () => { alive = false; };
   }, []);
@@ -67,13 +70,14 @@ function useComtradeBeef() {
     data: typeof D.tradeFlowData;
     isLive: boolean;
     source: string;
-  }>({ data: D.tradeFlowData, isLive: false, source: 'UN Comtrade 정적 캐시' });
+    fetched: boolean;
+  }>({ data: D.tradeFlowData, isLive: false, source: 'UN Comtrade 정적 캐시', fetched: false });
 
   useEffect(() => {
     let alive = true;
     fetch('/api/beef/trade-flow', { signal: AbortSignal.timeout(25000) })
       .then(r => r.json())
-      .then(d => { if (alive && d.data) setState(d); })
+      .then(d => { if (alive && d.data) setState({ ...d, fetched: true }); })
       .catch(() => { /* fallback 유지 */ });
     return () => { alive = false; };
   }, []);
@@ -87,13 +91,14 @@ function useNassSlaughter() {
     data: typeof D.slaughterData;
     isLive: boolean;
     source: string;
-  }>({ data: D.slaughterData, isLive: false, source: 'USDA NASS + MLA 정적 캐시' });
+    fetched: boolean;
+  }>({ data: D.slaughterData, isLive: false, source: 'USDA NASS + MLA 정적 캐시', fetched: false });
 
   useEffect(() => {
     let alive = true;
     fetch('/api/beef/slaughter-rate', { signal: AbortSignal.timeout(20000) })
       .then(r => r.json())
-      .then(d => { if (alive && d.data) setState(d); })
+      .then(d => { if (alive && d.data) setState({ ...d, fetched: true }); })
       .catch(() => { /* fallback 유지 */ });
     return () => { alive = false; };
   }, []);
@@ -109,19 +114,21 @@ function useFaostatProduction() {
     isLive: boolean;
     source: string;
     fetchedAt: string;
+    fetched: boolean;
   }>({
     productionTrend: D.productionTrendData,
     top5: D.top5ProducersData,
     isLive: false,
     source: 'FAOSTAT 정적 캐시',
     fetchedAt: '',
+    fetched: false,
   });
 
   useEffect(() => {
     let alive = true;
     fetch('/api/beef/global-production', { signal: AbortSignal.timeout(20000) })
       .then(r => r.json())
-      .then(d => { if (alive && d.productionTrend) setState(d); })
+      .then(d => { if (alive && d.productionTrend) setState({ ...d, fetched: true }); })
       .catch(() => { /* fallback 유지 */ });
     return () => { alive = false; };
   }, []);
@@ -161,14 +168,14 @@ const W = ({ title, icon, sub, accent, telemetry, sit, strat, source, pillar, st
 );
 
 export function W1_ProductionTrend({ accent }: any) {
-  const { productionTrend, isLive, source } = useFaostatProduction();
+  const { productionTrend, isLive, fetched, source } = useFaostatProduction();
   const latest = productionTrend[productionTrend.length - 1];
   const first = productionTrend[0];
   const growth = ((latest.production - first.production) / first.production * 100).toFixed(1);
   return <W title="글로벌 소고기 생산량 10년 추이" icon={Globe} accent={accent} pillar="S1"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="세계 소고기(쇠고기) 생산량(천 톤) 및 글로벌 산지 가격 지수 | FAOSTAT 작물가축통계(QCL) 2015-2024"
-    telemetry={isLive ? 'FAOSTAT REST (1h 캐시)' : 'FAOSTAT QCL 2015-2024'}
+    telemetry={isLive ? 'FAOSTAT REST (1h 캐시)' : (fetched ? 'FAOSTAT REST (캐시)' : 'FAOSTAT QCL 2015-2024')}
     sit={`${latest.year}년 글로벌 생산량 ${(latest.production / 10).toFixed(0)}만톤 — 10년간 ${Number(growth) > 0 ? '+' : ''}${growth}% 성장. 가격 지수는 100→${latest.price}로 +${latest.price - 100}% 변동, 공급 대비 신흥국 수요가 우세.`}
     strat="중국·동남아 수요 급증으로 인한 구조적 가격 상승 사이클. 브라질·호주 산지 직매입선 확보 시 중간 유통 마진 대폭 절감 가능(업계 추정)."
     source={source}>
@@ -185,12 +192,12 @@ export function W1_ProductionTrend({ accent }: any) {
 }
 
 export function W2_Top5Producers({ accent }: any) {
-  const { top5, isLive, source } = useFaostatProduction();
+  const { top5, isLive, fetched, source } = useFaostatProduction();
   const sumPct = top5.reduce((a, b) => a + b.pct, 0);
   return <W title="글로벌 Top 5 생산국 점유율" icon={Target} accent={accent} pillar="S1"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="국가별 소고기 생산량(천 톤) 및 글로벌 점유율 | FAOSTAT 작물가축통계(QCL) 2023"
-    telemetry={isLive ? 'FAOSTAT REST (1h 캐시)' : 'FAOSTAT QCL 2023'}
+    telemetry={isLive ? 'FAOSTAT REST (1h 캐시)' : (fetched ? 'FAOSTAT REST (캐시)' : 'FAOSTAT QCL 2023')}
     sit={`${top5[0]?.country}(${top5[0]?.pct}%)·${top5[1]?.country}(${top5[1]?.pct}%) 양강 ${(top5[0]?.pct + top5[1]?.pct).toFixed(1)}% 장악. 상위 5국 합산 ${sumPct.toFixed(1)}% — 돼지고기(중국 단독 44%) 대비 분산도 우수.`}
     strat="단일국 의존 리스크는 낮으나 브라질 BSE/벌목 환경 리스크는 EU 그린딜 규제 강화 시 즉시 발화 가능. 호주·미국 이중 헤지 권장."
     source={source}>
@@ -207,14 +214,14 @@ export function W2_Top5Producers({ accent }: any) {
 }
 
 export function W3_SlaughterUtil({ accent }: any) {
-  const { data, isLive, source } = useNassSlaughter();
+  const { data, isLive, fetched, source } = useNassSlaughter();
   const latest = data[data.length - 1];
   const first = data[0];
   const auDelta = latest.auUtil - first.auUtil;
   return <W title="호주·미국 도축장 가동률 + 도체중" icon={Factory} accent={accent} pillar="S2"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="미국·호주 주요 도축장 가동률(%) + 평균 도체중(kg) 추이 | 미국 농업통계국(USDA NASS) + 호주 축산공사(MLA)"
-    telemetry={isLive ? 'NASS QuickStats (1d 캐시)' : 'USDA NASS + MLA 정적'}
+    telemetry={isLive ? 'NASS QuickStats (1d 캐시)' : (fetched ? 'NASS QuickStats (캐시)' : 'USDA NASS + MLA 정적')}
     sit={`호주 가동률이 ${first.month} ${first.auUtil}% → ${latest.month} ${latest.auUtil}% ${auDelta > 0 ? '급등' : '감소'} — 미·호 사이클 ${auDelta > 5 ? '역전' : '안정'}. 미국 최신 ${latest.usUtil}% / 호주 ${latest.auUtil}%, 도체중 미 ${latest.usCarcassKg}kg / 호 ${latest.auCarcassKg}kg.`}
     strat="2025년 호주 공급 사이클 정점 진입. 호주산 장기 선도 계약 조기 체결로 단가 절감 기회(업계 추정 4-6%) 확보 검토."
     source={source}>
@@ -252,15 +259,15 @@ export function W4_FeedMargin({ accent }: any) {
 }
 
 export function W5_TradeFlow({ accent }: any) {
-  const { data, isLive, source } = useComtradeBeef();
+  const { data, isLive, fetched, source } = useComtradeBeef();
   const top1 = data[0];
   const top1Bn = (top1.value / 1000).toFixed(1);
   const total = data.reduce((a, b) => a + b.value, 0);
   const top3Pct = ((data.slice(0, 3).reduce((a, b) => a + b.value, 0) / total) * 100).toFixed(0);
   return <W title="글로벌 무역 흐름 Top 8 경로" icon={Truck} accent={accent} pillar="S3"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="국가간 소고기 무역 흐름 상위 8개 경로 — 무역액(백만 달러) 및 물량(천 톤) | 유엔 무역통계(UN Comtrade) HS 0201+0202"
-    telemetry={isLive ? 'UN Comtrade (1w 캐시)' : 'UN Comtrade 정적'}
+    telemetry={isLive ? 'UN Comtrade (1w 캐시)' : (fetched ? 'UN Comtrade (캐시)' : 'UN Comtrade 정적')}
     sit={`${top1.route} 단일 경로 $${top1Bn}B(${top1.volume.toLocaleString()}천톤) — 글로벌 최대. Top 3 합산 전체의 ${top3Pct}%로 고집중. 한국이 미·호 양강의 4대 시장.`}
     strat="브·중 단일축이 흔들리면 (브라질 ESG 제재 등) 호주산 공급 부족 즉시 발생. 우루과이·뉴질랜드 백업 라인 조기 구축 권장."
     source={source}>
@@ -275,12 +282,12 @@ export function W5_TradeFlow({ accent }: any) {
 }
 
 export function W6_KoreaImports({ accent }: any) {
-  const { data, isLive, source } = useKcsImports();
+  const { data, isLive, fetched, source } = useKcsImports();
   const usAuPct = ((data.find(d => d.country === '미국')?.pct || 0) + (data.find(d => d.country === '호주')?.pct || 0)).toFixed(1);
   return <W title="한국 수입 파트너 다변화 추이" icon={Globe} accent={accent} pillar="S3"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="한국 소고기 수입 파트너 국가별 물량(톤) + 2018→2023년 점유율 변화 | 관세청(KCS) 무역통계(TM)"
-    telemetry={isLive ? 'KCS 관세청 (1w 캐시)' : 'KCS 정적'}
+    telemetry={isLive ? 'KCS 관세청 (1w 캐시)' : (fetched ? 'KCS 관세청 (캐시)' : 'KCS 정적')}
     sit={`미·호 양강 ${usAuPct}% 장악 (${data[0]?.country} ${data[0]?.pct}% / ${data[1]?.country} ${data[1]?.pct}%). 2018년 90.7% 대비 ${(90.7 - Number(usAuPct)).toFixed(1)}%p 감소 — 광우병 우려 점진 해소 + 다변화 진행.`}
     strat="미·호 의존도 80% 이하로 낮추기 위해 우루과이·아르헨티나 직거래선 확장. 단가 절감 및 광우병 리스크 분산 동시 도모(업계 추정 8-12% 절감)."
     source={source}>
@@ -295,15 +302,15 @@ export function W6_KoreaImports({ accent }: any) {
 }
 
 export function W7_KoreaSupply({ accent }: any) {
-  const { data, isLive, source } = useKosisSupply();
+  const { data, isLive, fetched, source } = useKosisSupply();
   const first = data[0];
   const last = data[data.length - 1];
   const perCapitaDelta = (((last.perCapita - first.perCapita) / first.perCapita) * 100).toFixed(0);
   const selfDelta = (last.selfRate - first.selfRate).toFixed(1);
   return <W title="한국 소고기 수급 구조 + 1인당 소비량" icon={ShoppingCart} accent={accent} pillar="S4"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="한국 국내 생산·수입·1인당 연간 소비량 시계열 | 국가통계포털(KOSIS) + 한국농촌경제연구원(KREI) 식량수급표"
-    telemetry={isLive ? 'KOSIS API (1w 캐시)' : 'KOSIS + KREI 정적'}
+    telemetry={isLive ? 'KOSIS API (1w 캐시)' : (fetched ? 'KOSIS API (캐시)' : 'KOSIS + KREI 정적')}
     sit={`1인당 소비 ${first.year}~${last.year} ${first.perCapita}→${last.perCapita}kg(+${perCapitaDelta}%). 자급률 ${first.selfRate}%→${last.selfRate}%로 ${selfDelta}%p ${Number(selfDelta) < 0 ? '폭락' : '변동'} — 수입 의존 구조 더욱 심화.`}
     strat="자급률 갭이 지속 확대 추세 — 안정적 수입 인프라(콜드체인+장기 계약) 선점 기업이 향후 5년 시장 주도. 콜드체인 CAPEX 우선 배정."
     source={source}>
@@ -321,14 +328,14 @@ export function W7_KoreaSupply({ accent }: any) {
 }
 
 export function W8_PriceGap({ accent }: any) {
-  const { data, isLive, source } = useKamisHanwoo();
+  const { data, isLive, fetched, source } = useKamisHanwoo();
   const latest = data[data.length - 1];
   const gapUs = (latest.hanwoo / latest.usImport).toFixed(2);
   const gapAu = (latest.hanwoo / latest.auImport).toFixed(2);
   return <W title="한우 vs 수입육 도매 가격 갭" icon={TrendingUp} accent={accent} pillar="S4"
-    status={isLive ? 'LIVE' : 'STATIC'}
+    status={isLive ? 'LIVE' : (fetched ? 'SYNCED' : 'STATIC')}
     sub="한우 1등급 vs 미국·호주 수입육 도매가(원/kg) 분기 시계열 | 한국농수산식품유통공사(KAMIS)"
-    telemetry={isLive ? 'KAMIS (1d 캐시)' : 'KAMIS 정적'}
+    telemetry={isLive ? 'KAMIS (1d 캐시)' : (fetched ? 'KAMIS (캐시)' : 'KAMIS 정적')}
     sit={`최신 ${latest.month}: 한우 ₩${latest.hanwoo.toLocaleString()}/kg, 미국산 ₩${latest.usImport.toLocaleString()} (갭 ${gapUs}배), 호주산 ₩${latest.auImport.toLocaleString()} (갭 ${gapAu}배) — 외식·B2B 채널 미·호산 압도적 우위.`}
     strat="한우는 명절·선물 프리미엄 채널에만 집중, 일반 외식 B2B는 호주산 위주로 매입. 호주산 단가 변동성 헤지 위해 6개월 선도 매입 계약."
     source={source}>

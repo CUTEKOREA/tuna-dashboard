@@ -652,7 +652,8 @@ export default function PollockDashboard() {
     const unit = WIDGET_UNITS[w.id] ? `단위: ${WIDGET_UNITS[w.id]}` : '';
     const subtitle = w.subtitle || '';
     const cardDesc = [unit, subtitle].filter(Boolean).join(' — ');
-    const liveStatus: 'LIVE'|'SYNCED'|'STATIC' = w.isLiveApi ? 'LIVE' : (w.syncDate ? 'SYNCED' : 'STATIC');
+    // 위젯 표시 데이터는 정적 JSON(/data/pollock_real_data_v4.json)에서 옴 → 항상 STATIC (L-09)
+    const liveStatus: 'LIVE'|'SYNCED'|'STATIC' = 'STATIC';
 
     return (
       <WidgetCard key={w.id}

@@ -37,7 +37,7 @@ export function EmergingMarketsHeatmap() {
       pillar="S4"
       cardDesc="국정연 아프리카 수산협력·할랄 수출전략·ASEAN 무역 보고서 기반 아프리카·중동·ASEAN 권역의 참치 수입 성장률·시장 규모·진입 장벽 복합 분석"
       unit="(단위: USD Million)"
-      telemetry={{ status: 'SYNCED', syncDate: '2025-12', source: 'UN Comtrade + 국정연' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2025-12', source: 'UN Comtrade + 국정연' }}
       customBody={
         loading ? (
           <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>로딩 중...</div>

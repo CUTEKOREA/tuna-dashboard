@@ -322,7 +322,7 @@ export default function MangosteenDashboard() {
           iconColor={SECTIONS[0].color}
           pillar="S1"
           cardDesc="국가별 생산량 vs 수출량 — 인도네시아 절대량 1위 vs 태국 수출 독점 디커플링"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }}
+          telemetry={{ status: productionVsTradeData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
           chartHeight={375}
           chart={
             <ComposedChart data={productionVsTradeData} layout="vertical" margin={{ left: 50 }}>
@@ -359,7 +359,7 @@ export default function MangosteenDashboard() {
           iconColor="#e879f9"
           pillar="S1"
           cardDesc="ENSO 기후 지수 vs 검역 통과 수율 — 수액병 발병 리스크 모니터"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
+          telemetry={{ status: climateYieldData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <ComposedChart data={climateYieldData}>
@@ -410,7 +410,7 @@ export default function MangosteenDashboard() {
           iconColor="#c026d3"
           pillar="S2"
           cardDesc="할당관세 변동에 따른 생과 vs 냉동 퓨레 마진 안정성 비교"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
+          telemetry={{ status: marginData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <AreaChart data={marginData}>
@@ -446,7 +446,7 @@ export default function MangosteenDashboard() {
           iconColor="#c026d3"
           pillar="S2"
           cardDesc="일반 냉장 vs 특수 가스 처리 — 25일 해상 운송 시 수율 격차"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-17' }}
+          telemetry={{ status: coldchainData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
           chartHeight={375}
           chart={
             <LineChart data={coldchainData}>
@@ -575,7 +575,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-success)"
           pillar="S3"
           cardDesc="해상/항공/가스 치환 패키지별 단가 vs 유효 수율"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-17' }}
+          telemetry={{ status: logisticsData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
           chartHeight={375}
           chart={
             <ComposedChart data={logisticsData} layout="vertical" margin={{ left: 30 }}>
@@ -612,7 +612,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-warning)"
           pillar="S3"
           cardDesc="RCEP/FTA 활용 우회 무역 경로별 관세·마진 비교"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
+          telemetry={{ status: rcepArbitrageData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <BarChart data={rcepArbitrageData} layout="vertical" margin={{ left: 0 }}>
@@ -696,7 +696,7 @@ export default function MangosteenDashboard() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="국내 과일 물가 연동 스캐너" icon={Apple} iconColor={SECTIONS[3].color} pillar="S4"
           cardDesc="국내 사과 단가 vs 망고스틴 수입량 상관관계 — 가격 폭등기 대체 수요 캡처"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
+          telemetry={{ status: arbitrageData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
           chart={
             <ComposedChart data={arbitrageData}>
               <ChartPatternDefs />
@@ -728,7 +728,7 @@ export default function MangosteenDashboard() {
 
         <WidgetCard title="글로벌 무역 가치사슬 흐름" icon={Workflow} iconColor={SECTIONS[3].color} pillar="S4"
           cardDesc="국가간 양자 무역 흐름 — 한국 허브 재수출 가치 vs 직수입 비교"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }} chartHeight={375}
+          telemetry={{ status: bilateralReExportData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <BarChart data={bilateralReExportData} layout="vertical" margin={{ left: 140 }}>
               <ChartPatternDefs />
@@ -837,7 +837,7 @@ export default function MangosteenDashboard() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="망고스틴 껍질 업사이클링 시뮬레이션" icon={Leaf} iconColor={SECTIONS[4].color} pillar="S5"
           cardDesc="껍질 폐기 vs 펫푸드/항산화 추출 시나리오별 매출 + 순마진"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-17' }} chartHeight={375}
+          telemetry={{ status: upcyclingData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <ComposedChart data={upcyclingData} layout="vertical" margin={{ left: 0 }}>
               <ChartPatternDefs />

@@ -9,16 +9,10 @@ import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 const glass = { background: '#181818', border: 'none', borderRadius: '8px', padding: '1.5rem' } as const;
 const cardTitle = { margin: '0 0 1rem 0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' } as const;
 
-const LiveAPIBadge = ({ source }: { source?: string }) => (
-  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'var(--color-success)', background: 'rgba(16,185,129,0.15)', padding: '2px 8px', borderRadius: '12px', border: 'none', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap', animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
-    <style dangerouslySetInnerHTML={{__html: `
-      @keyframes pulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.7; transform: scale(1.02); }
-      }
-    `}} />
-    <span style={{ width: '6px', height: '6px', background: 'var(--color-success)', borderRadius: '50%', marginRight: '4px', boxShadow: '0 0 8px #10b981' }}></span>
-    [LIVE] {source || 'API 연동'}
+const DataBadge = ({ source, isLoaded }: { source?: string; isLoaded: boolean }) => (
+  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: isLoaded ? 'var(--color-info)' : '#94a3b8', background: isLoaded ? 'rgba(59,130,246,0.15)' : 'rgba(148,163,184,0.1)', padding: '2px 8px', borderRadius: '12px', border: 'none', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+    <span style={{ width: '6px', height: '6px', background: isLoaded ? 'var(--color-info)' : '#64748b', borderRadius: '50%', marginRight: '4px' }}></span>
+    {isLoaded ? 'SYNCED' : 'STATIC'} {source ? `· ${source}` : ''}
   </span>
 );
 
@@ -195,7 +189,7 @@ export default function UsedCarExport() {
       {/* ROW 1: Market Growth + Market Share */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
-          <h3 style={cardTitle}><TrendingUp size={18} color="var(--color-success)" /> 한국 중고차 시장 규모 & 수출 추이 <LiveAPIBadge source="KCS API & MOLIT" />
+          <h3 style={cardTitle}><TrendingUp size={18} color="var(--color-success)" /> 한국 중고차 시장 규모 & 수출 추이 <DataBadge source="KCS API & MOLIT" isLoaded={!!data} />
             
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
@@ -209,7 +203,7 @@ export default function UsedCarExport() {
           />
         </div>
         <div style={glass}>
-          <h3 style={cardTitle}><Globe size={18} color="var(--color-info)" /> 서아프리카 중고차 시장 점유율 변동 <LiveAPIBadge source="KCS 수출통계 API" />
+          <h3 style={cardTitle}><Globe size={18} color="var(--color-info)" /> 서아프리카 중고차 시장 점유율 변동 <DataBadge source="KCS 수출통계 API" isLoaded={!!data} />
             
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
@@ -226,7 +220,7 @@ export default function UsedCarExport() {
 
       {/* ROW 2: Country Regulations Table */}
       <div style={glass}>
-        <h3 style={cardTitle}><ShieldCheck size={18} color="var(--color-warning)" /> 서아프리카 4개국 중고차 수입 규제 비교 <LiveAPIBadge source="GRA / NCS API" />
+        <h3 style={cardTitle}><ShieldCheck size={18} color="var(--color-warning)" /> 서아프리카 4개국 중고차 수입 규제 비교 <DataBadge source="GRA / NCS API" isLoaded={!!data} />
           
         </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
@@ -244,7 +238,7 @@ export default function UsedCarExport() {
 
       {/* ROW 2.5: Jiji Ghana Real-time Insight */}
       <div style={glass}>
-        <h3 style={cardTitle}><AlertTriangle size={18} color="#ec4899" /> Jiji 가나 실시간 매물 & 차익거래 레이더 <LiveAPIBadge source="Jiji API & Freightos" />
+        <h3 style={cardTitle}><AlertTriangle size={18} color="#ec4899" /> Jiji 가나 실시간 매물 & 차익거래 레이더 <DataBadge source="Jiji API & Freightos" isLoaded={!!data} />
           
         </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
@@ -370,7 +364,7 @@ export default function UsedCarExport() {
           />
         </div>
         <div style={glass}>
-          <h3 style={cardTitle}><Fuel size={18} color="var(--color-danger)" /> 서아프리카 연료 가격 동향 (2026.4) <LiveAPIBadge source="GlobalPetrol API" />
+          <h3 style={cardTitle}><Fuel size={18} color="var(--color-danger)" /> 서아프리카 연료 가격 동향 (2026.4) <DataBadge source="GlobalPetrol API" isLoaded={!!data} />
             
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
@@ -388,7 +382,7 @@ export default function UsedCarExport() {
       {/* ROW 4: Hybrid Growth + Ghana Penalty */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
-          <h3 style={cardTitle}><Zap size={18} color="#8b5cf6" /> 한국 중고차 파워트레인별 성장 전망 <LiveAPIBadge source="KOTRA / KAMA" />
+          <h3 style={cardTitle}><Zap size={18} color="#8b5cf6" /> 한국 중고차 파워트레인별 성장 전망 <DataBadge source="KOTRA / KAMA" isLoaded={!!data} />
             
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>

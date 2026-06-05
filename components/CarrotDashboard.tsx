@@ -272,7 +272,7 @@ export default function CarrotDashboard() {
           <div style={{ borderRight:'1px dashed rgba(255,255,255,0.1)', paddingRight:'1.5rem' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
               <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><RefreshCcw size={16} color="#ea580c" /> 차익거래 착지원가 비교 (KAMIS 기준값)</h3>
-              <span style={{ fontSize:'0.66rem', background:'#64748b', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>STATIC</span>
+              <span style={{ fontSize:'0.66rem', background:'#64748b', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>{liveArbitrage ? 'SYNCED' : 'STATIC'}</span>
             </div>
             {liveArbitrage ? (
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
@@ -478,7 +478,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 1: Production vs Yield */}
         <WidgetCard title='핵심 산지 수확 효율 및 한계 돌파 분석' icon={Layers} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: ha, ton/ha'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: faoProdLive.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoProdLive}>
               <ComposedChart data={faoProdLive}>
@@ -515,7 +515,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 3: Producer Price Volatility */}
         <WidgetCard title='주요 산지별 생산자 가격 변동성 스프레드' icon={Activity} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'FAOSTAT' }} chartHeight={375}
+          telemetry={{ status: faoPriceLive.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'FAOSTAT' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoPriceLive}>
               <AreaChart data={faoPriceLive}>
@@ -554,7 +554,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='한국 도매가 폭등 및 베트남산 단가 스프레드 (여름 단경기)' icon={Layers} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'KAMIS & KCS' }} chartHeight={375}
+          telemetry={{ status: w1Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KAMIS & KCS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w1Live}>
               <AreaChart data={w1Live}>
@@ -592,7 +592,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='종자 역수출 수율 및 당도 경쟁력 실증 비교' icon={TrendingUp} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: %, Brix'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w2Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w2Live}>
               <ComposedChart data={w2Live}>
@@ -627,7 +627,7 @@ export default function CarrotDashboard() {
         {/* New W15 Widget: Climate Hedge & Call Option */}
         <WidgetCard title='글로벌 기후 리스크 헷징 및 산지 콜옵션 가치' icon={Globe} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: 지수 및 변동률 %'
-          telemetry={{ status: 'SYNCED', syncDate: 'NOAA' }} chartHeight={375}
+          telemetry={{ status: w15Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'NOAA' }} chartHeight={375}
           chart={
             <ChartWrapper data={w15Live}>
               <ComposedChart data={w15Live}>
@@ -649,7 +649,7 @@ export default function CarrotDashboard() {
         {/* New W20 Widget: Phyto-Risk & PLS Compliance */}
         <WidgetCard title='식물방역 및 잔류농약 리스크 지수 실증 (Phyto-Risk)' icon={ShieldCheck} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: 건수, 톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'MFDS' }} chartHeight={375}
+          telemetry={{ status: w20Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'MFDS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w20Live}>
               <ComposedChart data={w20Live}>
@@ -684,7 +684,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='B2B 수입산 전처리(IQF) 원가 절감 시뮬레이션' icon={Recycle} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: KRW/10kg'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w3Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w3Live}>
               <BarChart data={w3Live}>
@@ -718,7 +718,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='식물 검역(PLS) 완전 우회 및 IQF 가공 수율 실증 (100%)' icon={TestTube} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: %'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w11Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w11Live}>
               <BarChart data={w11Live} layout="vertical" margin={{ left: 20 }}>
@@ -753,7 +753,7 @@ export default function CarrotDashboard() {
         {/* New W16 Widget: Demographic Labor Arbitrage */}
         <WidgetCard title='인구구조 붕괴와 가공 인건비 실증 (엑소더스)' icon={Banknote} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: USD/톤 전처리 인건비'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w16Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w16Live}>
               <LineChart data={w16Live}>
@@ -787,7 +787,7 @@ export default function CarrotDashboard() {
         {/* New W21 Widget: B2B HMR Form-factor Demand Shift */}
         <WidgetCard title='B2B HMR 폼팩터별 수요 전환율 (Demand Shift)' icon={Layers} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: 비중 %'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w21Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w21Live}>
               <AreaChart data={w21Live}>
@@ -835,7 +835,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 2: Trade Dependencies */}
         <WidgetCard title='한국 당근 수입 무역 편중도 (블랙홀 구조)' icon={Globe} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: 톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: (faoTradeLive as any).links ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
               <PieChart>
                 <Pie data={(faoTradeLive as any).links ? (faoTradeLive as any).links.map((l: any) => ({ name: l.source.replace('수출: ',''), value: l.value })) : []} cx="50%" cy="50%" innerRadius={50} outerRadius={90} paddingAngle={3} dataKey="value" label={({name, percent}: any) => `${name} ${(percent*100).toFixed(1)}%`}>
@@ -865,7 +865,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='수입 단가 시뮬레이션 (KREI 관세 vs VKFTA 영세율)' icon={Truck} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w5Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w5Live}>
               <BarChart data={w5Live}>
@@ -900,7 +900,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='MA 특수 포장재 도입 시 선도 유지 지표' icon={ShieldCheck} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: 비율 및 보관일수'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w6Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w6Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w6Live}>
@@ -933,7 +933,7 @@ export default function CarrotDashboard() {
         {/* New W17 Widget: Floating Storage Arbitrage */}
         <WidgetCard title="운전자본 제로 '해상 이동식 창고' 지연 전략 실증" icon={Anchor} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: USD, 10톤(20ft) 기준 누적 냉동보관료'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w17Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w17Live}>
               <AreaChart data={w17Live}>
@@ -970,7 +970,7 @@ export default function CarrotDashboard() {
         {/* New W22 Widget: TRQ Dependency vs. Free Trade Arbitrage */}
         <WidgetCard title='WTO TRQ 배분 의존도 vs FTA 영구 차익' icon={Scale} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: 관세율 %, 수입원가 USD'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w22Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW22Data}>
               <ComposedChart data={dynamicW22Data}>
@@ -1018,7 +1018,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='B2B 스팟 시장 가격 변동성 vs 장기 계약 헤징 실증' icon={Dna} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 기준치 100'
-          telemetry={{ status: 'SYNCED', syncDate: 'KCS' }} chartHeight={375}
+          telemetry={{ status: w7Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KCS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w7Live}>
               <LineChart data={w7Live}>
@@ -1090,7 +1090,7 @@ export default function CarrotDashboard() {
         {/* New W12 Widget: Nutritional Spec Radar */}
         <WidgetCard title='핵심 스펙 (당도·영양) 실증 분석 레이더' icon={Dna} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 스코어 지수'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w12Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w12Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={w12Live}>
@@ -1158,7 +1158,7 @@ export default function CarrotDashboard() {
         {/* New W23 Widget: Vendor Lock-in LTV */}
         <WidgetCard title='대형 벤더 장기 락인 누적 생애가치 (LTV)' icon={Banknote} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 누적 잉여현금흐름 인덱스 및 이탈률 %'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w23Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW23Data}>
               <ComposedChart data={dynamicW23Data}>
@@ -1207,7 +1207,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 4: Supply Utilization and Loss */}
         <WidgetCard title='원물 손실률(Loss) 및 잉여 가공 전환 잠재력' icon={Recycle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: faoLossLive.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoLossLive}>
               <BarChart data={faoLossLive} stackOffset="expand">
@@ -1243,7 +1243,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='비규격 폐기 방지 및 푸드 업사이클링 ROI' icon={Leaf} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 비율'
-          telemetry={{ status: 'SYNCED', syncDate: 'UN Comtrade' }} chartHeight={375}
+          telemetry={{ status: w9Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'UN Comtrade' }} chartHeight={375}
           chart={
             <ChartWrapper data={w9Live}>
               <BarChart data={w9Live} layout="vertical">
@@ -1276,7 +1276,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='바이어 Scope 3 감축 연계 및 ESG 파트너십' icon={AlertTriangle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 평가 지수'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w10Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w10Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w10Live}>
@@ -1308,7 +1308,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='가치사슬 통합 마진 스마일 커브 (PEF 롤업 모델)' icon={Layers} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: EBITDA 영업이익률 %'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w14Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w14Live}>
               <ComposedChart data={w14Live}>
@@ -1342,7 +1342,7 @@ export default function CarrotDashboard() {
         {/* New W24 Widget: ESG Upcycling */}
         <WidgetCard title='푸드 업사이클링 프리미엄 및 Scope 3 감축 효과 실증' icon={Leaf} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 톤, 마진율 %, tCO2e'
-          telemetry={{ status: 'SYNCED', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: w24Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w24Live}>
               <ComposedChart data={w24Live}>
@@ -1378,7 +1378,7 @@ export default function CarrotDashboard() {
         {/* New W19 Widget: Exit Valuation Waterfall */}
         <WidgetCard title='엑시트 밸류에이션 워터폴: 5x → 15x 멀티플 브릿지 실증' icon={Landmark} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 밸류에이션 포인트'
-          telemetry={{ status: 'SYNCED', syncDate: 'DART & PitchBook' }} chartHeight={375}
+          telemetry={{ status: w19Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'DART & PitchBook' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW19Data}>
               <BarChart data={dynamicW19Data} margin={{ left: 10, right: 10 }}>
@@ -1424,7 +1424,7 @@ export default function CarrotDashboard() {
         {/* W25: OEC 글로벌 수출 패권 30년 변천사 */}
         <WidgetCard title='글로벌 당근 수출 패권 30년 변천사 (HS 070610)' icon={Globe} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: USD'
-          telemetry={{ status: 'SYNCED', syncDate: 'OEC 실측' }} chartHeight={375}
+          telemetry={{ status: w25Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'OEC 실측' }} chartHeight={375}
           chart={
             <ChartWrapper data={w25Live}>
               <AreaChart data={w25Live}>
@@ -1461,7 +1461,7 @@ export default function CarrotDashboard() {
         {/* W26: OEC 수입국 벤치마크 (한국 포지션) */}
         <WidgetCard title='글로벌 당근 수입 벤치마크: 한국 vs 주요 수입국' icon={Target} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: USD'
-          telemetry={{ status: 'SYNCED', syncDate: 'OEC 실측' }} chartHeight={375}
+          telemetry={{ status: w26Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'OEC 실측' }} chartHeight={375}
           chart={
             <ChartWrapper data={w26Live}>
               <LineChart data={w26Live}>
@@ -1498,7 +1498,7 @@ export default function CarrotDashboard() {
         {/* W27: KAMIS 월별 도매가 실측 히트맵 */}
         <WidgetCard title='KAMIS 실측 도매가 4개년 비교 (상품 20kg)' icon={Banknote} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: ₩/20kg'
-          telemetry={{ status: 'SYNCED', syncDate: 'KAMIS 실측' }} chartHeight={375}
+          telemetry={{ status: w27Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KAMIS 실측' }} chartHeight={375}
           chart={
             <ChartWrapper data={w27Live}>
               <LineChart data={w27Live}>
@@ -1534,7 +1534,7 @@ export default function CarrotDashboard() {
         {/* W28: FAOSTAT SCL 글로벌 수확후 손실률 비교 */}
         <WidgetCard title='글로벌 당근 수확후 손실률 비교 (FAOSTAT SCL)' icon={Recycle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: %, 톤'
-          telemetry={{ status: 'SYNCED', syncDate: 'FAOSTAT 실측' }} chartHeight={375}
+          telemetry={{ status: w28Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'FAOSTAT 실측' }} chartHeight={375}
           chart={
             <ChartWrapper data={w28Live}>
               <ComposedChart data={w28Live} margin={{ left: 10, right: 10 }}>

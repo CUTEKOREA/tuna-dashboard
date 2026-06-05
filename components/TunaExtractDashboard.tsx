@@ -226,7 +226,7 @@ export default function TunaExtractDashboard() {
           iconColor="#3b82f6"
           pillar="S1"
           cardDesc="참치캔 가공 후 폐기되던 자숙액을 완제품으로 전환할 때의 단계별 부가가치 vs 가공비용 비교"
-          telemetry={{ status: 'STATIC', syncDate: '내부 원가 모델' }}
+          telemetry={{ status: data.d_w03 ? 'SYNCED' : 'STATIC', syncDate: '내부 원가 모델' }}
           customBody={data.d_w03 ? (
             <SafeResponsiveContainer height={280}>
               <BarChart data={data.d_w03} layout="vertical" margin={{ left: 20 }}>
@@ -266,7 +266,7 @@ export default function TunaExtractDashboard() {
           iconColor="#ef4444"
           pillar="S1"
           cardDesc="IOTC 관할 소형 다랑어(Bullet/Frigate)의 연도별 실 어획량 vs 권고 쿼터 추이 — 자원 고갈 임계점 추적"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          telemetry={{ status: data.d_iotc_quota ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
           chartHeight={280}
           chart={
             <ComposedChart data={d_iotc_quota}>
@@ -409,7 +409,7 @@ export default function TunaExtractDashboard() {
                 iconColor="#8b5cf6"
                 pillar="S2"
                 cardDesc="자숙 부산물 안전·속성발효·저염 코지·디비터링 등 8개 실증 트랙별 데이터 검증"
-                telemetry={{ status: 'SYNCED', syncDate: 'KFAS' }}
+                telemetry={{ status: (data.d_k01_byproduct_safety || data.d_k05_rapid_anchovy || data.d_k07_kanari_koji || data.d_k08_debit_sauce) ? 'SYNCED' : 'STATIC', syncDate: 'KFAS' }}
                 customBody={
                   <div>
                     <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
@@ -529,7 +529,7 @@ export default function TunaExtractDashboard() {
           iconColor="#f59e0b"
           pillar="S3"
           cardDesc="상하이운임지수(SCFI)와 실제 톤당 물류비의 시차 추적 — 운임 급등이 원가에 반영되는 3~4개월 지연 구간 시각화"
-          telemetry={{ status: 'LIVE', syncDate: '2026-05' }}
+          telemetry={{ status: data.d_scfi_lagging ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
           chartHeight={280}
           chart={
             <ComposedChart data={d_scfi_lagging}>
@@ -693,7 +693,7 @@ export default function TunaExtractDashboard() {
           iconColor="#ec4899"
           pillar="S5"
           cardDesc="FDA·EU·일본·중국 등 주요 수출국 히스타민 통관 기준치와 한국산 참치 자숙액·경쟁 액젓류 실측 수치 레이더 비교"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
+          telemetry={{ status: data.d_w06 ? 'SYNCED' : 'STATIC', syncDate: '2026-05' }}
           customBody={data.d_w06 ? (
             <SafeResponsiveContainer height={280}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data.d_w06}>

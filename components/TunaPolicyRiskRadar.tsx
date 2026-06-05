@@ -75,7 +75,7 @@ export function PolicyRiskScorecard() {
       pillar="S5"
       cardDesc="국정연 보고서 8건 교차분석으로 참치 산업에 영향을 미치는 6대 통상정책 리스크를 심각도×발생확률 가중 합산으로 정량화"
       unit="(단위: 리스크 점수 0~100)"
-      telemetry={{ status: 'SYNCED', syncDate: '국정연 보고서 8건' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '국정연 보고서 8건' }}
       customBody={Body}
       takeaway={{
         situation: `<div>
@@ -134,7 +134,7 @@ export function FtaTariffOptimizer() {
       pillar="S3"
       cardDesc="WTO MFN 관세율 vs FTA 특혜관세율 루트별 비교로 최적 관세 절감 경로 식별 (KORUS·한-ASEAN·한-EU FTA WITS API 연동)"
       unit="(단위: 관세율 %)"
-      telemetry={{ status: 'LIVE', syncDate: 'WITS API' }}
+      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'WITS API' }}
       chartHeight={200}
       chart={
         <BarChart data={chartData} barGap={2}>

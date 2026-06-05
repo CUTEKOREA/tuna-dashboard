@@ -867,7 +867,8 @@ export default function MackerelDashboard() {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
     const situation = w.sit || w.situation || w.desc || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
-    const isLive = (w.badges && w.badges.includes('실시간 API')) || w.apiSource || w.id === 'w_arbitrage_live';
+    const isStatic = w.badges && w.badges.includes('STATIC');
+    const isLive = !isStatic && ((w.badges && w.badges.includes('실시간 API')) || w.apiSource || w.id === 'w_arbitrage_live');
     const isEstimate = (w.reliability && w.reliability <= 70) || (w.badges && w.badges.includes('Estimate'));
     const isForecast = w.badges && w.badges.includes('Forecast');
     const isSimulation = SIMULATION_WIDGET_IDS.includes(w.id);
@@ -883,7 +884,7 @@ export default function MackerelDashboard() {
     const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
     const cardDesc = cardDescParts.join(' — ') || '고등어 인텔리전스 위젯';
 
-    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = isLive ? 'LIVE' : (isSimulation || isEstimate ? 'STATIC' : 'SYNCED');
+    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = isLive ? 'LIVE' : (isStatic || isSimulation || isEstimate ? 'STATIC' : 'SYNCED');
     const syncDate = isLive ? new Date().toISOString().split('T')[0] : (w.syncDate || '2026-05');
 
     const source = w.apiSource

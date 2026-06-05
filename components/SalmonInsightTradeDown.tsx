@@ -108,6 +108,15 @@ export default function SalmonInsightTradeDown() {
     </div>
   );
 
+  const telemetry = activeTab === 'kr'
+    ? {
+        status: (kamisData as any)?.isLive ? 'LIVE' : (kamisData ? 'SYNCED' : 'STATIC'),
+        syncDate: (kamisData as any)?.timestamp
+          ? (kamisData as any).timestamp.slice(0, 10)
+          : '2026-05-29',
+      } as const
+    : { status: 'STATIC' as const, syncDate: '2026-05-29' };
+
   return (
     <WidgetCard
       title="[판매] 인플레이션 대체 단백질 가격 (Trade-Down)"
@@ -117,7 +126,7 @@ export default function SalmonInsightTradeDown() {
       cardDesc={activeTab === 'kr'
         ? 'KAMIS 수산물 도매 단가(연어·광어·닭) 추적 — API 키 미설정 시 검증 캐시 폴백'
         : 'EU 주요국 가정용 신선 연어 소비량(톤) vs 지출액 디커플링 추적(정적 스냅샷)'}
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
+      telemetry={telemetry}
       customBody={<>{tabs}{chartArea}</>}
       takeaway={takeaway}
     />

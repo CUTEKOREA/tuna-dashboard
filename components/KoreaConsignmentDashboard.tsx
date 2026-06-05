@@ -317,7 +317,7 @@ export default function KoreaConsignmentDashboard() {
           iconColor="#38bdf8"
           pillar="S4"
           cardDesc="단위: 원 — 노량진·자갈치 등 위판장 통계 집계"
-          telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+          telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026.05' }}
           chartHeight={325}
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
@@ -343,7 +343,7 @@ export default function KoreaConsignmentDashboard() {
           iconColor="#38bdf8"
           pillar="S3"
           cardDesc="단위: kg — 노량진·자갈치 등 위판장 물량 집계"
-          telemetry={{ status: 'SYNCED', syncDate: '2026.05' }}
+          telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026.05' }}
           chartHeight={325}
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>

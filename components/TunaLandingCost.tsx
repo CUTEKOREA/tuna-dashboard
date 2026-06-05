@@ -49,7 +49,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
   const [useFTA, setUseFTA] = useState(true);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<CostBreakdown | null>(null);
-  const [liveData, setLiveData] = useState<{ fxRate: number; wti: number; source: string } | null>(null);
+  const [liveData, setLiveData] = useState<{ fxRate: number; wti: number; source: string; isLive: boolean } | null>(null);
 
   const simulate = useCallback(async () => {
     setLoading(true);
@@ -58,6 +58,8 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       let fxRate = 1385;
       let wtiPrice = 61.2;
       let source = 'Cached';
+      let isLive = false;
+      let fetchedData = false;
       try {
         const tickerRes = await fetch('/api/tuna/ticker');
         if (tickerRes.ok) {
@@ -67,7 +69,8 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
           if (fxItem) {
             const fxMatch = fxItem.value.match(/([\d,.]+)/);
             if (fxMatch) fxRate = parseFloat(fxMatch[1].replace(/,/g, ''));
-            if (fxItem.isLive) source = 'Live API';
+            if (fxItem.isLive) { isLive = true; source = 'Live API'; }
+            fetchedData = true;
           }
           if (wtiItem) {
             const wtiMatch = wtiItem.value.match(/([\d.]+)/);
@@ -76,7 +79,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
         }
       } catch { /* use defaults */ }
 
-      setLiveData({ fxRate, wti: wtiPrice, source });
+      setLiveData({ fxRate, wti: wtiPrice, source, isLive: isLive && fetchedData });
 
       // 2) Calculate
       const fobPrice = Math.round(origin.fob * product.basePrice);
@@ -122,7 +125,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
         <h3 className={styles.cardTitle}>
           <Calculator size={18} style={{ color: '#FCD535' }} />
           [착지원가] 착지원가 실시간 시뮬레이터
-          <TelemetryBadge status={liveData?.source === 'Live API' ? 'LIVE' : 'STATIC'} syncDate={liveData?.source === 'Live API' ? 'Real-time' : '2024년 기준'} />
+          <TelemetryBadge status={liveData?.isLive ? 'LIVE' : (liveData ? 'SYNCED' : 'STATIC')} syncDate={liveData?.isLive ? 'Real-time' : (liveData ? liveData.source : '2024년 기준')} />
         </h3>
         <p className={styles.cardDesc}>
           원산지(태국/에콰도르/인도네시아 등)별 FOB 가격에서 한국 도착까지의 총비용(운임+보험+관세+수수료)을 실시간 계산합니다. WITS(관세율), ECOS(환율), Yahoo Finance(유가) API를 연동하여 정밀한 착지원가를 산출합니다.

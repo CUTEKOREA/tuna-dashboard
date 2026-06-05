@@ -279,6 +279,15 @@ export default function GalchiDashboard() {
   applyLive('w28', liveImportYeti);
   applyLive('w29', liveNoaa);
 
+  // _liveState: fetch-driven 위젯의 telemetry 동적 결정용 (L-09)
+  // fetch 성공 시 SYNCED/LIVE, 실패(null) 시 STATIC 표기
+  ['w25','w26','w27','w28','w29'].forEach(id => {
+    if (widgetMap[id]) {
+      const liveMap: Record<string,any> = { w25: liveComtrade, w26: liveOsh, w27: liveOfac, w28: liveImportYeti, w29: liveNoaa };
+      widgetMap[id]._liveState = liveMap[id];
+    }
+  });
+
   // Inject New Live Widgets
   const newWidgets = [
     {
@@ -346,7 +355,8 @@ export default function GalchiDashboard() {
       strat: "HS Ping 실시간 매핑으로 통관 사고 Zero화 달성. ①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단.",
       source: "HS Ping 로컬 DB (가공 형태별 HS 코드 내부 매핑표)",
       isLive: liveHsPing?.isLive ?? false,
-      data: liveHsPing?.data || []
+      data: liveHsPing?.data || [],
+      _liveState: liveHsPing,
     },
     {
       id: "w_galchi_multi_cost",
@@ -360,7 +370,8 @@ export default function GalchiDashboard() {
       strat: "①관세 차익이 아닌 물류비(해상운임)·FOB 스프레드가 유리한 월에 산지별 선적량을 배분, ②환율 변동(CNY/KRW) 연동 시뮬레이션으로 최적 계약 시점 포착.",
       source: "착지원가 구성요소 업계추정 (FOB·SCFI 운임·MFN 10%·검역비 기반 시나리오, illustrative)",
       isLive: liveTariffs?.isLive ?? false,
-      data: liveTariffs?.data || []
+      data: liveTariffs?.data || [],
+      _liveState: liveTariffs,
     },
     {
       id: "w_kosis_cpi_spread",
@@ -374,7 +385,8 @@ export default function GalchiDashboard() {
       strat: "①CPI-도매가 Spread가 15% 이상 확대 시 사전 비축 물량 방출로 이익률 극대화, ②Spread 축소 시 매입 확대하여 저가 재고 확보.",
       source: "통계청 소비자물가지수(KOSIS) + KAMIS 도매가 (KOSIS API 연결 확인 중, 현재 표본 데이터)",
       isLive: liveKosis?.isLive ?? false,
-      data: liveKosis?.data || []
+      data: liveKosis?.data || [],
+      _liveState: liveKosis,
     },
     {
       id: "w_mfds_safety_radar",
@@ -387,7 +399,8 @@ export default function GalchiDashboard() {
       strat: "①서아프리카 원물은 선적 전 검사(PSI)로 반송 리스크 차단, ②검역비 상승분을 상쇄할 FOB 단가 우위($2,400 vs $2,750)가 확보될 때만 투입.",
       source: "USDA GAIN Korea Seafood 2024 Table 6 (검역·비관세 비용)",
       isLive: liveMfds?.isLive ?? false,
-      data: liveMfds?.data || []
+      data: liveMfds?.data || [],
+      _liveState: liveMfds,
     },
     {
       id: "w_wto_sps_radar",
@@ -402,7 +415,8 @@ export default function GalchiDashboard() {
       strat: "①관세로는 원가 차별화가 불가하므로 FOB 단가·운임·검역비 등 비관세 원가에서 우위 확보, ②세네갈산은 운임 부담으로 착지원가가 중국산보다 높은 점을 매입 단가 협상에 반영.",
       source: "USDA GAIN Korea Seafood 2024 Table 6 + WITS (갈치 HS 0303 MFN 10%, FTA 양허제외)",
       isLive: liveWto?.isLive ?? false,
-      data: liveWto?.data || []
+      data: liveWto?.data || [],
+      _liveState: liveWto,
     },
     {
       id: "w_oec_galchi_export",
@@ -415,7 +429,8 @@ export default function GalchiDashboard() {
       strat: "①물량 경쟁이 아닌 프리미엄(선동결·구이용 가공) 차별화로 일본·홍콩 고가 시장 공략, ②베트남 HMR 가공 기지 활용 후 일본 재수출 삼각무역 구조 검토.",
       source: "UN Comtrade 글로벌 갈치(HS 030389) 수출 (galchi_data w25 교차)",
       isLive: liveOec?.isLive ?? false,
-      data: liveOec?.data || []
+      data: liveOec?.data || [],
+      _liveState: liveOec,
     },
     // ─── KMI FTA 분기별 수입동향 인사이트 (2021 Q1 ~ 2026 Q1, 21개 분기 교차분석) ───
     {
@@ -890,12 +905,13 @@ export default function GalchiDashboard() {
 
   function renderWidgetCard(w: any, accentColor: string, pillar: 'S1'|'S2'|'S3'|'S4'|'S5') {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
-    // 정직 telemetry (L-09): 진짜 라이브는 라우트 fetch 성공(w.isLive===true)일 때만 LIVE.
-    // 정적 위젯은 JSON telemetry 필드(STATIC) 존중, 그 외엔 SYNCED.
+    // 정직 telemetry (L-09):
+    // _liveState가 있는 위젯 = fetch-driven → LIVE/SYNCED/STATIC 동적 결정
+    // _liveState가 없는 위젯 = 순수 정적 → STATIC 고정
     const status: 'LIVE' | 'SYNCED' | 'STATIC' =
-      w.isLive === true ? 'LIVE'
-      : (typeof w.telemetry === 'string' && w.telemetry.toUpperCase() === 'STATIC') ? 'STATIC'
-      : 'SYNCED';
+      ('_liveState' in w)
+        ? (w._liveState?.isLive === true ? 'LIVE' : (w._liveState ? 'SYNCED' : 'STATIC'))
+        : 'STATIC';
 
     return (
       <WidgetCard key={w.id}

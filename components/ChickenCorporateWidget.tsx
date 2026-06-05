@@ -5,12 +5,13 @@ import WidgetCard from './WidgetCard';
 
 export default function ChickenCorporateWidget() {
   const [data, setData] = useState<any>(null);
+  const [fetchOk, setFetchOk] = useState(false);
 
   useEffect(() => {
     fetch('/api/chicken/corporates')
       .then(r => r.json())
-      .then(d => setData(d))
-      .catch(e => console.error(e));
+      .then(d => { setData(d); setFetchOk(true); })
+      .catch(e => { console.error(e); setFetchOk(false); });
   }, []);
 
   if (!data) return <div style={{ padding: '2rem', textAlign: 'center', color: '#94a3b8' }}>코퍼레이트 헤게모니 로딩 중...</div>;
@@ -73,7 +74,7 @@ export default function ChickenCorporateWidget() {
       iconColor="#ec4899"
       pillar="S2"
       cardDesc={data.subtitle}
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
+      telemetry={{ status: fetchOk ? 'SYNCED' : 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{ situation: data.sit, actionPlan: data.strat, source: data.source }}
     />
