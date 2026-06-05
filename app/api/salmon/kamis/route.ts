@@ -2,20 +2,21 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 3600; // 1시간 캐시
 
-// KAMIS 품목코드 매핑
+// KAMIS API 설정 (2026-06-05 수정: 잘못된 쿼리 파라미터 교정 — periodProductList+p_regday → dailyPriceByCategoryList+부류600, https)
 const KAMIS_CONFIG = {
-  API_URL: 'http://www.kamis.or.kr/service/price/xml.do',
+  API_URL: 'https://www.kamis.or.kr/service/price/xml.do',
   CERT_KEY: process.env.KAMIS_API_KEY || '',
-  CERT_ID: process.env.KAMIS_CERT_ID || '7849' ,
+  CERT_ID: process.env.KAMIS_CERT_ID || '7849',
   RETURN_TYPE: 'json',
+  CATEGORY_FISH: '600', // 수산물 부류코드
 };
 
-// 연어 대체재 비교용 품목코드
-const PRODUCT_CODES: Record<string, { code: string; name: string }> = {
-  salmon: { code: '247', name: '연어(수입)' },     // 수산물 > 연어
-  flatfish: { code: '253', name: '광어(국산)' },    // 수산물 > 넙치
-  shrimp: { code: '251', name: '새우(수입)' },      // 수산물 > 새우
-};
+// KAMIS 응답 가격문자열 → 숫자 ("24,500"→24500, "-"→null)
+function parseKamisPrice(v: unknown): number | null {
+  if (v == null) return null;
+  const n = Number(String(v).replace(/[,\s]/g, ''));
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
 
 // Fallback: 2024~2025년 노량진/가락시장 실측 기반
 const FALLBACK_PRICES = {
@@ -46,55 +47,78 @@ const FALLBACK_PRICES = {
   },
 };
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const period = searchParams.get('period') || '1m';
-  const productCode = searchParams.get('product') || 'salmon';
-
+export async function GET() {
   try {
     const apiKey = process.env.KAMIS_API_KEY;
-    
-    // Live KAMIS API 호출 시도
+
+    // Live KAMIS API 호출 시도 (수산물 부류 일별 도매가)
     if (apiKey) {
       try {
-        const today = new Date();
-        const regDay = today.toISOString().split('T')[0].replace(/-/g, '-');
-        const product = PRODUCT_CODES[productCode] || PRODUCT_CODES.salmon;
-        
+        const regDay = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+        // 올바른 액션·파라미터: dailyPriceByCategoryList + 부류코드 600(수산물)
         const url = new URL(KAMIS_CONFIG.API_URL);
-        url.searchParams.set('action', 'periodProductList');
-        url.searchParams.set('p_productclscode', '02');  // 수산물
-        url.searchParams.set('p_itemcategorycode', product.code);
+        url.searchParams.set('action', 'dailyPriceByCategoryList');
+        url.searchParams.set('p_product_cls_code', '02');           // 02=도매
+        url.searchParams.set('p_item_category_code', KAMIS_CONFIG.CATEGORY_FISH); // 600=수산물
+        url.searchParams.set('p_country_code', '1101');             // 서울(노량진 권역)
         url.searchParams.set('p_regday', regDay);
+        url.searchParams.set('p_convert_kg_yn', 'Y');
         url.searchParams.set('p_cert_key', apiKey);
         url.searchParams.set('p_cert_id', KAMIS_CONFIG.CERT_ID);
         url.searchParams.set('p_returntype', KAMIS_CONFIG.RETURN_TYPE);
-        
-        const resp = await fetch(url.toString(), {
-          signal: AbortSignal.timeout(8000),
-        });
-        
+
+        const resp = await fetch(url.toString(), { signal: AbortSignal.timeout(8000) });
+
         if (resp.ok) {
           const data = await resp.json();
-          if (data?.data?.item) {
-            return NextResponse.json({
-              isLive: true,
-              source: 'KAMIS Live API',
-              status: 'live',
-              timestamp: new Date().toISOString(),
-              product: product.name,
-              data: data.data.item,
-            });
+          const items = data?.data?.item;
+          const errorCode = data?.data?.error_code ?? data?.condition?.[0]?.error_code;
+          // error_code '000' = 정상, item 배열 존재 시에만 LIVE
+          if (Array.isArray(items) && items.length > 0 && errorCode !== '900' && errorCode !== '200') {
+            // KAMIS 일별가격 → 위젯 commodities 구조로 방어적 매핑 (dpr1=당일, dpr2=1일전)
+            const commodities = items
+              .map((it: any) => {
+                const cur = parseKamisPrice(it.dpr1);
+                const prev = parseKamisPrice(it.dpr2);
+                if (cur == null) return null;
+                const change = prev != null && prev > 0 ? ((cur - prev) / prev) * 100 : null;
+                return {
+                  id: String(it.productno ?? it.item_name ?? '').slice(0, 24),
+                  name: (it.item_name ?? it.product_name ?? '').trim(),
+                  market: '도매(KAMIS)',
+                  unit: (it.unit ?? 'kg').trim(),
+                  currentPrice: cur,
+                  prevPrice: prev,
+                  trend: change == null ? 'flat' : change > 0 ? 'up' : change < 0 ? 'down' : 'flat',
+                  change: change == null ? null : `${change >= 0 ? '+' : ''}${change.toFixed(1)}%`,
+                };
+              })
+              .filter(Boolean);
+
+            if (commodities.length > 0) {
+              return NextResponse.json({
+                isLive: true,
+                source: 'KAMIS Live API (dailyPriceByCategoryList · 수산물 600)',
+                status: 'live',
+                timestamp: new Date().toISOString(),
+                regday: regDay,
+                commodities,
+                // 시계열·프리미엄 지수는 KAMIS 일별 단건에서 산출 불가 → 검증된 캐시 시계열 유지(정직)
+                historicalSpread: FALLBACK_PRICES.historicalSpread,
+                salmonPremiumIndex: FALLBACK_PRICES.salmonPremiumIndex,
+              });
+            }
           }
         }
       } catch (apiErr) {
         console.warn('[Salmon KAMIS] Live API failed, using fallback:', apiErr);
       }
     }
-    
-    // Fallback 반환
+
+    // Fallback 반환 (isLive:false 정직 표기)
     return NextResponse.json(FALLBACK_PRICES);
-    
+
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to fetch KAMIS salmon price data', details: String(error) },
