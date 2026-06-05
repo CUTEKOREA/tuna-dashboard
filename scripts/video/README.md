@@ -7,7 +7,7 @@
 스크립트(.md) → parse_script.py → cuts.json
   → gen_narration.py (ElevenLabs)  → narration/cut_NN.mp3
   → gen_music.py     (Suno)        → music/bgm.mp3
-  → gen_visuals.py   (fal/Kling)   → visuals/cut_NN.mp4
+  → gen_visuals.py   (Runway)      → visuals/cut_NN.mp4
   → assemble.py      (ffmpeg)      → final.mp4 (1080x1920 9:16)
 오케스트레이터: run.sh (키 없는 단계는 graceful skip)
 ```
@@ -25,7 +25,8 @@ cp .env.example .env          # 이미 생성됨
 |---|---|---|
 | `ELEVENLABS_API_KEY` | 내레이션 | 무음 |
 | `SUNO_API_KEY` (+`SUNO_API_BASE`) | BGM | BGM 없음 |
-| `FAL_KEY` | 비주얼(Kling text→video) | 색배경 |
+| `RUNWAYML_API_SECRET` | 비주얼(Runway text→video, gen4.5) | 색배경 |
+| `RUNWAY_MODEL` | Runway 모델 교체(기본 gen4.5) | gen4.5 |
 | `ELEVEN_VOICE_ID` | 보이스 교체 | 기본(George) |
 | `SKIP_VISUAL_IDX` | 비주얼 제외 컷(기본 `4,6`=차트·CTA) | — |
 

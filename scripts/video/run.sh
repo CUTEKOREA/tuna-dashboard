@@ -31,7 +31,7 @@ fi
 
 echo ""
 echo "🎥 [4/5] 비주얼 (Runway/Kling)"
-if grep -q "^RUNWAY_API_KEY=.\+\|^KLING_API_KEY=.\+\|^FAL_KEY=.\+" .env 2>/dev/null; then
+if grep -q "^RUNWAYML_API_SECRET=.\+\|^RUNWAY_API_KEY=.\+\|^KLING_API_KEY=.\+\|^FAL_KEY=.\+" .env 2>/dev/null; then
   python3 gen_visuals.py "$CUTS" || echo "  ⚠️ 비주얼 실패 — 색배경으로 진행"
 else
   echo "  ⏭  비주얼 키 미설정 — 색배경 스킵(컷5는 대시보드 화면녹화 권장)"
