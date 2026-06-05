@@ -28,7 +28,7 @@ def load_env():
     return env
 
 
-def gen_one(client, model, prompt, out_path):
+def gen_one(client, model, prompt, out_path, vertex):
     cfg = types.GenerateVideosConfig(aspect_ratio='9:16', number_of_videos=1,
                                      person_generation='allow_adult')
     op = client.models.generate_videos(model=model, prompt=prompt, config=cfg)
@@ -40,13 +40,20 @@ def gen_one(client, model, prompt, out_path):
             print('     ⚠️ 타임아웃(10분)'); return False
     if getattr(op, 'error', None):
         print(f"     ⚠️ Veo 오류: {op.error}"); return False
-    vids = op.response.generated_videos
+    vids = op.response.generated_videos if op.response else None
     if not vids:
         rf = getattr(op.response, 'rai_media_filtered_reasons', None)
         print(f"     ⚠️ 생성물 없음(콘텐츠필터?): {rf}"); return False
     v = vids[0].video
-    client.files.download(file=v)
-    v.save(out_path)
+    # Vertex: video_bytes 직접 저장 / Gemini Dev: files.download
+    data = getattr(v, 'video_bytes', None)
+    if data:
+        with open(out_path, 'wb') as f:
+            f.write(data)
+    elif getattr(v, 'uri', None) and not vertex:
+        client.files.download(file=v); v.save(out_path)
+    else:
+        client.files.download(file=v); v.save(out_path)
     return True
 
 
@@ -61,13 +68,21 @@ def main():
     cuts_path = pos[0] if pos else os.path.join(HERE, 'out', 'pilot_script_tuna_extract', 'cuts.json')
 
     env = load_env()
-    key = env.get('GEMINI_API_KEY') or env.get('GOOGLE_API_KEY') or os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
-    if not key:
-        print('⏭  GEMINI_API_KEY/GOOGLE_API_KEY 없음 — 비주얼 스킵(색배경)')
-        return
-    model = env.get('VEO_MODEL', 'veo-3.1-generate-preview')  # 최고 품질 (full Veo 3.1)
+    vertex = env.get('VEO_VERTEX', '1') == '1'  # 기본 Vertex(Cloud 크레딧 사용). API키 prepay 소진 우회.
+    if vertex:
+        project = env.get('VEO_PROJECT') or os.environ.get('GOOGLE_CLOUD_PROJECT', 'gen-lang-client-0963198205')
+        location = env.get('VEO_LOCATION', 'us-central1')
+        model = env.get('VEO_MODEL', 'veo-3.0-generate-001')  # Vertex 고품질(Veo3 audio). 3.1-preview는 Vertex 404.
+        client = genai.Client(vertexai=True, project=project, location=location)
+        print(f"  (Vertex AI: {project}/{location}, {model})")
+    else:
+        key = env.get('GEMINI_API_KEY') or env.get('GOOGLE_API_KEY') or os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
+        if not key:
+            print('⏭  GEMINI_API_KEY/GOOGLE_API_KEY 없음 — 비주얼 스킵(색배경)')
+            return
+        model = env.get('VEO_MODEL', 'veo-3.1-generate-preview')
+        client = genai.Client(api_key=key)
     skip = set(int(x) for x in env.get('SKIP_VISUAL_IDX', '4,6').replace(' ', '').split(',') if x)
-    client = genai.Client(api_key=key)
     cuts = json.load(open(cuts_path, encoding='utf-8'))
     outdir = os.path.join(os.path.dirname(cuts_path), 'visuals')
     os.makedirs(outdir, exist_ok=True)
@@ -85,7 +100,7 @@ def main():
         print(f"  🎥 컷 {c['idx']} Veo 생성중({model})… '{c['visual_en'][:42]}'")
         t0 = time.time()
         try:
-            if gen_one(client, model, c['visual_en'], mp4):
+            if gen_one(client, model, c['visual_en'], mp4, vertex):
                 c['visual_path'] = os.path.relpath(mp4, HERE)
                 made += 1
                 print(f"     ✅ {os.path.getsize(mp4)//1024}KB · {int(time.time()-t0)}s")
