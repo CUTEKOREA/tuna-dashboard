@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🏁 **2026-06-05 — 사이트 전 품목 신뢰도 sweep 완료 (12품목 1,317위젯, 가짜LIVE 209건 박멸)** [CC]:
+> - **전 commodity 결합 audit+정책D 정정**(Sonnet 비용최적, value_chain=AG 제외): 품목별 결합 패스→빌드게이트→커밋.
+> - **사이트 평균 69.5→77.1(+7.6) · 가짜LIVE(L-09) 209건 정직 STATIC화**(난수 가짜실시간·'[LIVE API 연동]' 유령태그·허위 SYNCED).
+> - 커밋: mackerel(74.4→79.4)[b468e49]·squid(53.9→75.5,L-09 67)[a9f5cec]·galchi/jukkumi[a68ad2a]·whelk(78→85)[22ee68d]·tuna 47파일(77.1→80.8)[5b92ade]·농산물(69.8→77.8)[f5233ea+960c89e]·축산(71.6→77.7)[5f15c9d]·pollock+기타[2e98427]. + sashimi/shrimp/salmon(배포완료).
+> - **정책D**: 기만(가짜LIVE·유령출처·차트SIT모순·환각·무책임단정) 제거 / 시나리오는 illustrative 라벨 / 실데이터 위젯은 rebuild 후보.
+> - **잔여**: ① 합성 illustrative 위젯 점수천장→rebuild(실API, I-6)만 돌파 ② value_chain(AG 활성)·PollockDraftInsights(AG WIP) 미처리 ③ cocoa/garlic UsdaWidgets data/(gitignore) → public/data 동기화.
+> - 산출물 `artifacts/site_reliability_sweep_2026_06_05.md`. 전부 **빌드 통과·로컬 커밋**. **배포 대기**(사용자 "배포" 시 일괄 push).
+
 > 🐟 **2026-06-05 — salmon 블랙홀 실감사+정책D 정정 (L-09 가짜LIVE 18건 박멸)** [CC]:
 > - salmon 스코어카드도 stub(67행 vs 실제 19파일) → **실감사**(19파일 88위젯): 평균 **61.31**·F25+D26=51·illustrative 51. **L-09 가짜LIVE 다수**(`[📡 LIVE API 연동]` 유령 태그·정적인데 SYNCED 2024-Q4).
 > - **정책 D(혼합) 정정**(17파일·80edits·38위젯): **L-09 가짜LIVE 18건 정직 STATIC화**·기만/과대단정 제거(러시아 EU옐로카드 환각·800% 역마진 등)·차트-SIT 모순 해소·유령출처(BAADER) 제거·illustrative 라벨. 날조금지·`npm run build` ✓.
