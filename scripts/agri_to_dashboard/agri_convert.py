@@ -69,6 +69,28 @@ def comtrade_years(name: str) -> list[int]:
     return sorted(yrs)
 
 
+def latest_complete_year(name: str, threshold: float = 0.7) -> int | None:
+    """Latest year whose reporter coverage is ≥ threshold of the best year.
+
+    Comtrade's current calendar year is always partial (countries still reporting),
+    so naive max(year) understates global totals. This picks the latest year that is
+    'complete enough' by distinct-reporter count — auto-advancing as 2025, 2026… fill
+    in. Used so Comtrade widgets always sit on a complete year without hardcoding 2024.
+    """
+    rows = load(name, "comtrade")
+    by_year: dict = {}
+    for r in rows:
+        y = str(r.get("refYear", ""))
+        if y.isdigit():
+            by_year.setdefault(int(y), set()).add(r.get("reporterISO"))
+    if not by_year:
+        return None
+    counts = {y: len(reps) for y, reps in by_year.items()}
+    best = max(counts.values()) or 1
+    complete = [y for y, c in counts.items() if c >= threshold * best]
+    return max(complete) if complete else max(counts)
+
+
 def comtrade_agg(name: str, flow: str = "Import", partner: str = "World",
                  year: int | None = None, hs_codes: list[str] | None = None) -> dict:
     """Aggregate primaryValue + netWgt by reporter (summing across cmdCodes).

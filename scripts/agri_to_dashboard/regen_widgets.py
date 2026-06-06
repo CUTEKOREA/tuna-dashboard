@@ -96,6 +96,46 @@ GENERATORS = {
     "petfood_customs.json": regen_petfood_customs,
 }
 
+# 인플레이스 JSON 위젯 패치 (별도 데이터 파일의 특정 위젯 data를 갱신)
+DASH_DATA = Path(__file__).resolve().parents[2] / "public" / "data"
+SQUID_CORE_HS = ["030741", "030742", "030743", "030749", "160554"]  # 160559(catch-all) 제외
+
+
+def _patch_widget(doc: dict, wid: str, patch: dict):
+    for w in doc.get("widgets", []):
+        if isinstance(w, dict) and w.get("id") == wid:
+            w.update(patch)
+            return True
+    return False
+
+
+def regen_squid_inplace():
+    """squid_real_data_v4.json — w5(글로벌 수입국, Comtrade 자동완료연도)·w14(한국 원산지, 관세청)."""
+    p = DASH_DATA / "squid_real_data_v4.json"
+    doc = json.loads(p.read_text(encoding="utf-8"))
+    yr = a.latest_complete_year("squid")  # 2025 완성 시 자동 전환
+    # w5: 글로벌 5대 수입국 (천USD)
+    imp = a.top_reporters("squid", "Import", 5, yr, SQUID_CORE_HS)
+    KN = {"ESP": "스페인", "CHN": "중국", "ITA": "이탈리아", "JPN": "일본", "KOR": "한국",
+          "PRT": "포르투갈", "FRA": "프랑스", "USA": "미국"}
+    _patch_widget(doc, "w5_top_importers", {
+        "data": [{"국가": KN.get(r["iso"], r["country"]),
+                  "수입액 (USD k)": round(r["value_usd"] / 1000)} for r in imp],
+        "telemetry": {"status": "SYNCED", "syncDate": TODAY}, "isLive": False,
+        "source": f"UN Comtrade {yr} via agri_data (총계행 dedup)"})
+    # w14: 한국 수입 원산지 (관세청, 월간 누적)
+    ci = a.customs_korea_by_country("squid", "imp")[:7]
+    months = a.customs_months("squid")
+    _patch_widget(doc, "w14", {
+        "data": [{"name": r["country"], "value": round(r["value_usd"] / 1000)} for r in ci],
+        "telemetry": {"status": "SYNCED", "syncDate": TODAY}, "isLive": False,
+        "source": f"관세청 nitemtrade via agri_data, {months[0]}~{months[-1]} (월간 누적)" if months else "관세청"})
+    p.write_text(json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8")
+    return f"squid w5(Comtrade {yr})·w14(관세청 {len(months)}개월)"
+
+
+INPLACE = [regen_squid_inplace]
+
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
@@ -108,8 +148,13 @@ def main():
             print(f"  ✓ {fname}  ({n} rows, syncDate={TODAY})")
         except Exception as exc:  # noqa: BLE001
             print(f"  ✗ {fname}  FAILED: {exc}")
-    print(f"재생성 완료 → {OUT}")
-    print("참고: Comtrade 글로벌무역 위젯은 연 단위(완료연도) — 2025 완성 시 별도 갱신.")
+    for fn in INPLACE:
+        try:
+            print(f"  ✓ inplace: {fn()}")
+        except Exception as exc:  # noqa: BLE001
+            print(f"  ✗ inplace {fn.__name__} FAILED: {exc}")
+    print(f"재생성 완료 → {OUT} + 인플레이스 위젯")
+    print("참고: 라우트 내장 Comtrade 위젯(salmon·chicken·tuna)은 .ts 코드라 별도 codemod 필요.")
 
 
 if __name__ == "__main__":
