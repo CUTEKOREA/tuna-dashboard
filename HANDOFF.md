@@ -1,5 +1,15 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-06-06 — SEAsia OEM 벤더 풀 심층 보강 + 신규 발굴 (17→35개사)** [CC]:
+> - **요청**: `/seasia-oem` 페이지([SEAsiaOEMDashboard.tsx](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/components/SEAsiaOEMDashboard.tsx) + [seasia_oem_vendors.json](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/data/seasia_oem_vendors.json)) 각 회사 세부정보 보강 + 추가 업체 발굴.
+> - **멀티에이전트 2 워크플로우**(병렬): ① 기존17 보강(51 에이전트, research→adversarial verify→synth, 1차출처 EU TRACES/NAFIQAD·MSC cert-finder·ISSF·美세관/Panjiva·VASEP) ② 신규 발굴(45 에이전트, 6앵글 스윕→중복제거→검증). 합계 ~400만 토큰.
+> - **반영**: 17개사 전부 `publicProfile`(설립·본사·소유·공장·인증·최근동향·검증메모·출처) 병합 + 모달에 "공개 기업 정보" 섹션 신설("공개정보 기반·미실사" 태그 + 신뢰도 배지로 Tan Phat 실사 데이터와 구분). 신규 고신뢰 18개사 카드 추가(NEW 배지). capacityMT 미확인 시 "공개정보 미확인" 정직 표기.
+> - **정직성 정정(L-09 류, 11건)**: MSC 공개등록부 0건인 과대표기 6건(highland-dragon·ktcfood·ycc·everwin·aec-canning·golden-ocean) msc→false. everwin·halong-canfoco FDA→true(美세관 정황), halong-canfoco EU→true(DH203). chotiwat 370→400 t/day(공식연혁). 신규카드 MSC도 검증분만 true.
+> - **⚠️ 재확인 플래그(reviewFlag, 미자동변경)**: golden-ocean(기존 FDA/EU/MSC·cap이 동명 타사 데이터 혼입 정황, 전면 재확인 필요) / halong-canfoco(EU+美수출 확인 → "내수용 Tier3" 재분류 검토).
+> - **신규 발굴 제외 정확**: Unicord(=Sea Value 자회사), Marine Frozen·NTSF·Tradelinks(비참치/무역상) 자동 배제. maybe 1건(I-TAIL=Thai Union 계열). medium 11개사는 미추가(보고서에만).
+> - **산출물**: 보고서 [docs/seasia_oem_vendor_research_2026-06-06.md](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/docs/seasia_oem_vendor_research_2026-06-06.md), 원본백업 `data/seasia_oem_vendors.backup_2026-06-06.json`, 워크데이터 `docs/_workdata/`. **`npm run build` 통과(L-03)**. ⚠️ **미배포**(로컬만) — 사용자 "배포" 시 push.
+> - **다음(deferred)**: ① medium 11개사 추가 여부 ② Hai Vuong FDA Import Alert 16-105 실사 확인 ③ golden-ocean/halong-canfoco 재분류 결정 ④ 신규카드 publicProfile capacityNote→capacityMT 정밀화.
+
 > 🍠 **2026-06-06 — 카사바 대시보드 위젯 2열 그리드 교정 및 프로덕션 배포 완료** [Antigravity]:
 > - **위젯 그리드 레이아웃 교정**: 카사바 대시보드([CassavaDashboard.tsx](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/components/CassavaDashboard.tsx))의 홀수 위젯이 100% 너비로 늘어나는 `gridColumn` 오버라이드(`isLastOdd` 스타일 적용 부분)를 제거하여, PC 뷰포트에서 모든 위젯이 항상 1열당 2개씩 균등하게 정렬되도록(빈 공간은 빈 채로 유지) 교정하였습니다.
 > - **프로덕션 빌드 및 Vercel 배포 완료**: Next.js production build가 에러 없이 성공적으로 컴파일됨을 검증하고 Vercel을 통해 실시간 라이브 서버(`leedonggun.co.kr`)에 배포 완료하였습니다.
