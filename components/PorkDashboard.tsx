@@ -23,7 +23,7 @@ const TelemetryBadge = ({ status, syncDate }: any) => {
 const KPIS = [
   { title: '글로벌 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 소폭 감소', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },
   { title: '한국 1인당 소비량', value: '41.4kg', trend: '📈', desc: '10년간 +34% 폭증', telemetry: 'synced', syncDate: 'FBS 22Y', color: '#ec4899' },
-  { title: '한국 총 수입량 (2022)', value: '663천톤', trend: '🚢', desc: '스페인+미국 52.8% 장악', telemetry: 'synced', syncDate: 'TM 22Y', color: '#8b5cf6' },
+  { title: '한국 총 수입량 (2024)', value: '594천톤', trend: '🚢', desc: '$22.1억 · 미국+스페인 양강', telemetry: 'synced', syncDate: 'Comtrade 24Y', color: '#8b5cf6' },
   { title: 'ASF 최대 충격폭', value: '-20.9%', trend: '⚠️', desc: '2019 중국 생산량 급감', telemetry: 'synced', syncDate: 'QCL', color: '#ef4444' },
   { title: '돈육 탄소 배출', value: '12.3kg', trend: '🌱', desc: 'CO2e/kg — 수산물 대비 6배', telemetry: 'synced', syncDate: 'FAO', color: '#10b981' },
   { title: '한국 돈육 자급률', value: '66%', trend: '🎯', desc: '34% 구조적 수입 의존', telemetry: 'synced', syncDate: 'PSD', color: '#f59e0b' },

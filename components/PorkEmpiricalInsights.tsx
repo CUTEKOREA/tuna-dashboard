@@ -35,18 +35,20 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   );
 };
 
-// 1. Supply Chain Data (Pie)
+// 1. Supply Chain Data (Pie) — 관세청 HS6별 점유율 via agri_data (2026.03-04, 2개월 누적)
+//   신선 0203 / 가공 1601+1602. 점유율=물량 기준. 컨버터 재현가능.
 const freshMeatData = [
-  { name: '스페인', value: 27 },
-  { name: '미국', value: 26 },
-  { name: '캐나다', value: 11 },
-  { name: '네덜란드', value: 9 },
-  { name: '칠레', value: 6 },
-  { name: '기타 EU', value: 21 },
+  { name: '미국', value: 29.6 },
+  { name: '스페인', value: 27.4 },
+  { name: '캐나다', value: 10.5 },
+  { name: '네덜란드', value: 6.6 },
+  { name: '독일', value: 6.1 },
+  { name: '기타', value: 19.8 },
 ];
 const processedMeatData = [
-  { name: '미국', value: 95 },
-  { name: '기타', value: 5 },
+  { name: '미국', value: 86 },
+  { name: '덴마크', value: 10.3 },
+  { name: '기타', value: 3.7 },
 ];
 const COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#64748b'];
 
@@ -57,18 +59,18 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
       icon={GitFork}
       iconColor={accent}
       pillar="S3"
-      cardDesc="신선 순살(Fresh Boneless) vs 가공 소시지(Sausages) 한국 수입 파트너 점유율 비교"
-      telemetry={{ status: 'SYNCED', syncDate: '관세청 TM 2022' }}
+      cardDesc="신선육(HS 0203) vs 가공육(HS 1601·1602) 한국 수입 파트너 점유율 비교 | 관세청 2026.03-04(2개월 누적)"
+      telemetry={{ status: 'SYNCED', syncDate: '관세청 2026.03-04(2개월)' }}
       chartHeight={300}
       takeaway={{
-        situation: "신선육은 EU(스페인/네덜란드) 중심의 안정적인 공급망 분산이 이루어졌으나, 소시지 등 가공품은 95%가 미국 단일 국가에 의존하는 기형적 구조입니다.",
-        actionPlan: "미국 내 돼지 질병 발생 또는 서부 항만 물류 파업 발동 시, 삼겹살/목살 등 원육 수급보다 B2B 외식 프랜차이즈의 소시지/베이컨 대란 리스크가 압도적으로 높습니다. B2B 식자재 벤더는 가공품 유럽 대체선 발굴이 시급합니다.",
-        source: "관세청 KCS TM 통계 분석"
+        situation: "신선육(HS 0203)은 미국 29.6%·스페인 27.4%·캐나다 10.5%로 분산된 반면, 가공육(소시지·HS 1601/1602)은 미국 86%·덴마크 10.3%로 미국 단일 의존이 극심합니다 (관세청 2026.03-04, 2개월 누적, 물량 기준).",
+        actionPlan: "미국 내 돼지 질병 발생 또는 서부 항만 물류 파업 발동 시, 삼겹살/목살 등 원육 수급보다 B2B 외식 프랜차이즈의 소시지/베이컨 대란 리스크가 압도적으로 높습니다. B2B 식자재 벤더는 가공품 유럽(덴마크) 대체선 확대가 시급합니다.",
+        source: "관세청 수입통계 HS6별 분석 (2026.03-04, 2개월 누적)"
       }}
       chart={
         <div style={{ height: 300, width: '100%', display: 'flex', gap: '10px' }}>
           <div style={{ flex: 1, position: 'relative' }}>
-            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>신선 순살 (54.3만톤)</p>
+            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>신선육 HS 0203 (118.4천톤·2개월)</p>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
@@ -79,13 +81,12 @@ export function InsightPorkSupplyChain({ accent = '#8b5cf6' }: any) {
             </SafeResponsiveContainer>
           </div>
           <div style={{ flex: 1, position: 'relative' }}>
-            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>가공 소시지 (0.9만톤)</p>
+            <p style={{ position: 'absolute', top: 10, left: 0, right: 0, textAlign: 'center', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>가공육 HS 1601·1602 (1.87천톤·2개월)</p>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Tooltip content={<CustomTooltip />} />
                 <Pie data={processedMeatData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={2} dataKey="value" stroke="none">
-                  <Cell fill="#f59e0b" />
-                  <Cell fill="#64748b" />
+                  {processedMeatData.map((entry, index) => <Cell key={`pcell-${index}`} fill={['#f59e0b', '#10b981', '#64748b'][index % 3]} />)}
                 </Pie>
               </PieChart>
             </SafeResponsiveContainer>

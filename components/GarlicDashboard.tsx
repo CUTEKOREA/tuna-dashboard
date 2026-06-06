@@ -118,6 +118,7 @@ export default function GarlicDashboard() {
   const [w6Data, setW6Data] = useState<any[]>([]);
   const [w7Data, setW7Data] = useState<any[]>([]);
   const [w8Data, setW8Data] = useState<any[]>([]);
+  const [wImportOriginData, setWImportOriginData] = useState<any[]>([]);
   const [w9Data, setW9Data] = useState<any[]>([]);
   const [w10Data, setW10Data] = useState<any[]>([]);
   const [w11Data, setW11Data] = useState<any[]>([]);
@@ -150,6 +151,7 @@ export default function GarlicDashboard() {
     fetchWidgetData('w6', setW6Data);
     fetchWidgetData('w7', setW7Data);
     fetchWidgetData('w8', setW8Data);
+    fetchWidgetData('w_import_origin', setWImportOriginData);
     fetchWidgetData('w9', setW9Data);
     fetchWidgetData('w10', setW10Data);
     fetchWidgetData('w11', setW11Data);
@@ -743,9 +745,9 @@ export default function GarlicDashboard() {
             source: "FAOSTAT QCL + USDA Organic + EU Organic 인증 단가 + Amazon·iHerb 마늘 SKU 분석",
           }} />
 
-        <WidgetCard title="무역 수지 및 적자/흑자 전환 (한국 기준, 백만 USD)" icon={Activity} iconColor="#facc15" pillar="S4"
-          cardDesc="관세청(KCS) 실시간 누적 — 연간 $70M~$100M 구조적 적자"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+        <WidgetCard title="한국 마늘 무역수지 (2026.03-04, 2개월 누적, 백만 USD)" icon={Activity} iconColor="#facc15" pillar="S4"
+          cardDesc="관세청(KCS) 국가별 집계 — 2026.03-04 2개월 누적 수출 vs 수입 vs 수지"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
             <BarChart data={w8Data}>
               <ChartPatternDefs />
@@ -754,23 +756,51 @@ export default function GarlicDashboard() {
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="value" fill="#facc15" name="무역 적자 추이" />
+              <Bar dataKey="value" fill="#facc15" name="무역수지" />
             </BarChart>
           }
           takeaway={{
             situation: (
               <div>
-                <p>"Post-harvest Loss(수확 후 감모율)"란 수확 직후~소비자 도달까지 발생하는 부패·증산·해충 손실. FAO 글로벌 평균은 곡물 5~10%, 채소 25~35% 수준이나 한국 마늘은 <strong>15~22%</strong>로 채소 평균보다는 양호하지만 수입 가공 마늘(2~4%)보다는 5~7배 — 국내산 unit economics를 구조적으로 떨어뜨리는 hidden tax.</p>
-                <p>실측: <strong>한국 마늘 무역수지 연간 -$70M~-$100M 적자(수출 $35M vs 수입 $115M). KREI 분석: 무역적자의 38%가 보관 감모로 인한 수입 추가 의존 — 단순 생산 기반 붕괴가 아닌 인프라 부재 문제</strong>. 1차 산업 commodity인 듯 보이나 사실은 콜드체인 인프라 산업.</p>
+                <p>"무역수지(Trade Balance)"란 한 품목의 수출액에서 수입액을 뺀 순액. 관세청(KCS) HSK 단위 통관 실적으로 집계하며, 적자는 그만큼 국내 수요를 수입에 의존한다는 의미. 마늘은 360% 고관세에도 가공·냉동 형태 수입이 신선 국산을 잠식하며 만성 수입 초과 구조.</p>
+                <p>실측(관세청, 2026.03-04 2개월 누적): <strong>수입 $10.81M vs 수출 $0.73M → 무역수지 -$10.08M 적자. 수출은 수입의 6.7% 수준에 불과. 2개월만으로 -$10M 적자 → 연환산 시 -$60M 내외 구조적 적자 추정</strong>. 1차 산업 commodity로 보이나 사실상 수입 의존형 가공식품 시장.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 무역적자 -$100M은 risk가 아닌 <strong>"CA 저장 인프라에 capex $40~60M 투입 시 IRR 28%+로 회수 가능한 capital arbitrage 기회"</strong>.</p>
+                <p><strong>재정의</strong>: 2개월 -$10M(연환산 -$60M 내외) 무역적자는 risk가 아닌 <strong>"CA 저장 인프라에 capex 투입 시 수입 의존을 줄여 회수 가능한 capital arbitrage 기회"</strong>.</p>
                 <p><strong>3단계</strong>: ① 의성·남해·창녕 권역에 <strong>CA(Controlled Atmosphere) 저온창고 3개소 신설 또는 M&A</strong> — 감모율 22% → 5% 압축, 산지 매입가 +12%p 농가 보상 + vendor 마진 +18%p 동시 확보 ② 수확 후 단계별 처리(예건·세척·박피·소포장) 자동화 라인 동시 구축 → 인건비 -35% 절감 ③ 한국농어촌공사 + 농업정책자금(KAFFC) 저리 융자 활용 (3% 이내) → capex burden 분산 + 정부 ESG 점수 동시 획득, exit 시 "스마트팜 인프라 vendor"로 valuation +4x 재평가.</p>
               </div>
             ),
-            source: "관세청 마늘 HSK 0703.20 무역 통계 + KREI 마늘 Post-harvest Loss 연구 (2022~2026)",
+            source: "관세청(KCS) 마늘 HS 070320·071290 국가별 통관 실적 (2026.03-04, 2개월 누적)",
+          }} />
+
+        <WidgetCard title="한국 마늘 수입 원산지 점유 (수입액 기준, %)" icon={Globe} iconColor="#dc2626" pillar="S4"
+          cardDesc="관세청(KCS) 수입액 기준 원산지 점유 — 중국 79.4% 단일 의존 (2026.03-04 2개월 누적)"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-06-06' }} chartHeight={375}
+          chart={
+            <PieChart>
+              <RechartsTooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{fontSize:'10px'}} />
+              <Pie data={wImportOriginData} dataKey="share" nameKey="country" cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2}>
+                {wImportOriginData.map((entry:any, idx:number) => (<Cell key={`origin-${idx}`} fill={entry.fill} />))}
+              </Pie>
+            </PieChart>
+          }
+          takeaway={{
+            situation: (
+              <div>
+                <p>"원산지 집중도(Sourcing Concentration)"란 한 품목의 수입을 몇 개 국가가 차지하는지의 지표 — 단일 국가 비중이 높을수록 그 나라의 작황·관세·환율·외교 리스크에 P&L이 직접 노출되는 single-point failure 구조.</p>
+                <p>실측(관세청, 2026.03-04 2개월 누적, 수입액 기준): <strong>중국 79.4%로 압도적 단일 의존, 미얀마 5.3%·덴마크 4.1%·네덜란드 2.6%·미국 2.4%·독일 2.2%·베트남 1.3% 순. 상위 7개국이 97.4%를 차지하며 중국 외 대체 산지는 모두 한 자릿수</strong>. 사실상 중국 산둥성 작황이 한국 마늘 수입 단가의 single anchor.</p>
+              </div>
+            ),
+            actionPlan: (
+              <div>
+                <p><strong>재정의</strong>: 중국 79.4% 의존은 "최저가 조달 효율"이 아닌 <strong>"산둥성 흉작·중국 수출규제·관세분쟁 한 번에 조달의 80%가 흔들리는 노출"</strong>. 분산 자체가 hedge 자산.</p>
+                <p><strong>3단계</strong>: ① 중국 비중을 79% → 60%대로 단계 축소하며 미얀마·베트남(아시아 근거리) + 이집트·인도 raw 라인을 +10%p씩 신설 — 산둥 흉작 시나리오에 fallback capa 확보 ② 덴마크·네덜란드(EU 종구·고품질) 소량 라인은 프리미엄 B2C SKU 원료로 분리 활용 — 가격이 아닌 품질 차별화 채널 ③ 관세청 원산지별 통관 데이터를 월별 트래킹해 중국 점유율 변동·신규 진입국을 조기 감지하는 sourcing dashboard 상시 운영.</p>
+              </div>
+            ),
+            source: "관세청(KCS) 마늘 HS 070320·071290 국가별 수입액 (2026.03-04, 2개월 누적)",
           }} />
 
         <div style={{ gridColumn: '1 / -1' }}>
@@ -852,9 +882,9 @@ export default function GarlicDashboard() {
       </div>
       <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        <WidgetCard title="기후 변화에 따른 단수 효율성 (Yield, kg/ha)" icon={Leaf} iconColor="#d97706" pillar="S1"
-          cardDesc="국가별 단수 시계열 — 한국 '수축 사분면' 진입"
-          telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
+        <WidgetCard title="기후 변화에 따른 단수 효율성 (Yield, 톤/ha)" icon={Leaf} iconColor="#d97706" pillar="S1"
+          cardDesc="FAOSTAT QCL 주요 생산국 단수 시계열 (톤/ha, 2000~2024) — 한국 정체 vs 중국·이집트 상승"
+          telemetry={{ status: 'SYNCED', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
             <LineChart data={w9Data}>
               {grid}
@@ -872,8 +902,8 @@ export default function GarlicDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"단수(Yield, kg/ha)"란 1헥타르당 작물 생산량 = 농업 생산성의 single most-important indicator. 보통 농업 인구 고령화로 재배면적이 줄어도 기계화·정밀농업으로 단수가 보완되어야 정상 구조 — 그러나 한국 마늘은 면적·단수 동반 하락이라는 <strong>"수축 사분면(Contraction Quadrant)"</strong> 진입, 농업 인프라 자체가 붕괴.</p>
-                <p>실측: <strong>한국 마늘 재배면적 2015 28,500ha → 2026 18,200ha (-36%). 단수도 동기간 10.5톤/ha → 8.2톤/ha (-22%) 동반 하락 → 총 생산량 -50% 압축. 농업기계화율도 27% (네덜란드 92%·이스라엘 84% 대비 1/3 수준)</strong>. 단순 vendor 문제가 아닌 국가 농업 생태계의 systemic collapse.</p>
+                <p>"단수(Yield, 톤/ha)"란 1헥타르당 작물 생산량 = 농업 생산성의 single most-important indicator. 보통 농업 인구 고령화로 재배면적이 줄어도 기계화·정밀농업으로 단수가 보완되어야 정상 구조 — 그러나 한국 마늘은 25년간 단수가 거의 정체된 <strong>"생산성 stagnation"</strong> 국면으로, 경쟁 산지 대비 상대적 후퇴.</p>
+                <p>실측(FAOSTAT QCL): <strong>한국 마늘 단수 2000년 10.6톤/ha → 2024년 12.2톤/ha (+15%, 사실상 정체). 같은 기간 중국 13.4 → 26.0톤/ha (+94%), 이집트 21.3 → 25.8톤/ha로 상승해 한국 단수의 2배 수준. 인도·방글라데시는 7~8톤/ha로 절대 단수는 낮으나 한국보다 가파른 상승세</strong>. 한국은 절대 면적·생산은 유지되나 단위 생산성 경쟁에서 구조적으로 밀리는 국면.</p>
               </div>
             ),
             actionPlan: (
@@ -882,7 +912,7 @@ export default function GarlicDashboard() {
                 <p><strong>3단계</strong>: ① <strong>중국 (산둥) + 인도 (구자라트) + 이집트 (엘 와디) + 베트남 (닌투안) 4-country sourcing</strong> 체계 즉시 구축 — 단일 국가 흉작 시나리오에 +35%p capa fallback 보유 ② 의성·창녕 농가와 "산지 컨소시엄" 합자 — capex 일부 분담하며 우리는 안정 supply lock-in, 농가는 기계화 자본 확보하는 win-win ③ 정부(농식품부 농지보전·청년농 지원) 정책 자금 연계 → 향후 5년 내 한국 마늘 농업의 reorganize 단계에서 industry consolidator로 포지셔닝, exit 시 "마늘 industry champion" valuation +6~8x.</p>
               </div>
             ),
-            source: "KREI 농업관측센터 + 농촌진흥청 재배면적·단수 통계 (2015~2026)",
+            source: "FAOSTAT QCL 단수(Yield, Element 5412) — 중국·인도·한국·이집트·방글라데시 (2000~2024)",
           }} />
 
         <WidgetCard title="수확량 변동성 및 기후 리스크 지수 (변동률 %)" icon={AlertTriangle} iconColor="#65a30d" pillar="S1"

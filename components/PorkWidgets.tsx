@@ -122,10 +122,10 @@ export function W6_Trend({ accent }: any) {
 }
 
 export function W7_KoreaSupply({ accent }: any) {
-  return <W title="한국 돈육 수급 구조 분석" icon={ShoppingCart} accent={accent} pillar="S4" sub="한국 국내 생산·수입·1인당 소비 시계열 | FAOSTAT 작물가축통계(QCL)·식량수급표(FBS) 2015-2023"
+  return <W title="한국 돈육 수급 구조 분석" icon={ShoppingCart} accent={accent} pillar="S4" sub="한국 국내 생산·수입·1인당 소비 시계열 | FAOSTAT 작물가축통계(QCL)·식량수급표(FBS) 2015-2023 · 수입 UN Comtrade 교차검증"
     telemetry="FAOSTAT QCL·FBS 2015-2023"
-    sit="한국 1인당 돈육 소비 2015~2022년간 35.9→41.4kg(+15%) 증가. 생산 증가율(+18%)과 유사하나 수입 의존도가 지속 확대."
-    strat="기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보." source="FAOSTAT 식량수급표(FBS)">
+    sit="한국 1인당 돈육 소비 2015~2022년간 35.9→41.4kg(+15%) 증가. 생산 증가율(+18%)과 유사하나 수입 의존도가 지속 확대. UN Comtrade 기준 2024년 수입은 594천톤($22.1억)으로 검증됨."
+    strat="기존 수산물 콜드체인을 돈육까지 확장하는 '단백질 통합 솔루션' 전략으로 시장 주도권 확보." source="FAOSTAT 식량수급표(FBS) · UN Comtrade 2024 수입 교차검증">
     <ComposedChart data={D.koreaSupplyData}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[30, 45]} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -137,9 +137,9 @@ export function W7_KoreaSupply({ accent }: any) {
 
 export function W8_ImportPartners({ accent }: any) {
   return <W title="한국 수입 파트너 의존도" icon={Globe} accent={accent} pillar="S3" sub="한국 돈육 수입 파트너 국가별 물량 | 관세청 2026.03-04(2개월) — 미국이 스페인 추월 1위"
-    telemetry="FAOSTAT 무역매트릭스(TM) 2022"
-    sit="스페인(27.1%) + 미국(25.7%) 양강 체제가 전체의 52.8% 장악. 가공품은 미국 95% 단일 의존."
-    strat="칠레/브라질/멕시코 등 신흥국과 장기 수매 계약 체결, 미국 가공품 의존도 단계적 저감." source="FAOSTAT 무역매트릭스(TM) HS1038">
+    telemetry="관세청 2026.03-04(2개월)"
+    sit="미국(28.7%) + 스페인(25.6%) 양강 체제가 전체의 54.3% 장악(관세청 2026.03-04, 2개월 누적, 물량 기준). 가공품(HS 1601/1602)은 미국 86% 단일 의존."
+    strat="칠레/브라질/멕시코 등 신흥국과 장기 수매 계약 체결, 미국 가공품 의존도 단계적 저감." source="관세청 수입통계 by 국가 (2026.03-04, 2개월 누적)">
     <BarChart data={D.koreaImportPartnersData} layout="vertical">
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} /><YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={60} /><RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />

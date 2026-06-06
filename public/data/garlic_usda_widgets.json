@@ -9,8 +9,8 @@
     {
       "id": "w_kr_garlic_production_8y",
       "title": "한국 마늘 생산·재배 시계열",
-      "subtitle": "KREI 양념채소 — 8년 추이",
-      "cardDesc": "한국 마늘 생산량·재배면적·자급률 8년 추이. 2023 생산 312K톤·자급률 86.6% 회복.",
+      "subtitle": "FAOSTAT QCL — 8년 추이",
+      "cardDesc": "FAOSTAT QCL 한국 마늘 생산량(천톤)·재배면적(천ha) 8년 추이 (2017~2024).",
       "chartType": "Composed",
       "pillar": "S1",
       "xKey": "year",
@@ -21,21 +21,21 @@
         { "key": "area_kha", "name": "재배 (천ha)", "color": "#10b981" }
       ],
       "data": [
-        { "year": "2016", "production_kt": 276, "area_kha": 20.8 },
+        { "year": "2017", "production_kt": 304, "area_kha": 24.9 },
         { "year": "2018", "production_kt": 332, "area_kha": 28.4 },
+        { "year": "2019", "production_kt": 388, "area_kha": 27.7 },
         { "year": "2020", "production_kt": 363, "area_kha": 25.4 },
-        { "year": "2021", "production_kt": 308, "area_kha": 23.0 },
-        { "year": "2022", "production_kt": 291, "area_kha": 23.7 },
-        { "year": "2023", "production_kt": 312, "area_kha": 24.6 },
-        { "year": "2024", "production_kt": 320, "area_kha": 23.2 },
-        { "year": "2025E", "production_kt": 305, "area_kha": 22.9 }
+        { "year": "2021", "production_kt": 309, "area_kha": 22.0 },
+        { "year": "2022", "production_kt": 273, "area_kha": 22.4 },
+        { "year": "2023", "production_kt": 318, "area_kha": 24.7 },
+        { "year": "2024", "production_kt": 285, "area_kha": 23.3 }
       ],
       "unit": "천톤 / 천ha",
-      "sit": "한국 마늘 생산은 2018년 332K톤 정점 후 2022년 291K톤(-12%)으로 감소했다가 2023년 312K톤 회복. 재배면적은 2018년 28K ha → 2025E 23K ha로 -19% 축소. 농가 고령화·인건비 부담 영향. 자급률 86.6% (2023).",
-      "strat": "재배면적 장기 축소세 = 수입 의존도 자연 증가. 신라교역·CJ 등 가공식품 기업은 국내·수입 균형 조달 전략 필수. 2026 재배의향 22,913ha (-2.7% vs 평년)로 추가 감소 예상, 단가 +5~10% 상승 헤지 필요.",
-      "source": "KREI 양념채소 보고서 07·08호 (p.18, p.25)",
+      "sit": "한국 마늘 생산은 2019년 388K톤 정점 후 2022년 273K톤(-30%)까지 감소, 2023년 318K톤 반등 뒤 2024년 285K톤으로 다시 하락하는 변동성 구조. 재배면적은 2018년 28.4K ha → 2024년 23.3K ha로 -18% 축소. 농가 고령화·인건비 부담이 면적 감소의 주동인.",
+      "strat": "재배면적 장기 축소세 = 수입 의존도 자연 증가. 신라교역·CJ 등 가공식품 기업은 국내·수입 균형 조달 전략 필수. 생산량이 273~388K톤으로 ±20% 진폭이 큰 만큼 흉작 연도 대비 6개월 비축·단가 +5~10% 상승 헤지 필요.",
+      "source": "FAOSTAT QCL — 한국(Republic of Korea) 마늘 생산량(Element 5510)·재배면적(5312) (2017~2024)",
       "telemetry": "SYNCED",
-      "syncDate": "2026-05-30"
+      "syncDate": "2026-06-06"
     },
     {
       "id": "w_global_garlic_china_dominance",

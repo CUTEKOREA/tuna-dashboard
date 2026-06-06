@@ -12,6 +12,7 @@ const fileMap: Record<string, string> = {
   w6: 'garlic_w6_arbitrage.json',
   w7: 'garlic_w7_scatter.json',
   w8: 'garlic_w8_waterfall.json',
+  w_import_origin: 'garlic_w_import_origin.json',
   w9: 'garlic_w9_yield.json',
   w10: 'garlic_w10_volatility.json',
   w11: 'garlic_w11_valuation.json',

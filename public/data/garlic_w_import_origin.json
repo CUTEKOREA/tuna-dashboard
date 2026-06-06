@@ -1,0 +1,42 @@
+[
+  {
+    "country": "중국",
+    "share": 79.4,
+    "fill": "#dc2626"
+  },
+  {
+    "country": "미얀마",
+    "share": 5.3,
+    "fill": "#f59e0b"
+  },
+  {
+    "country": "덴마크",
+    "share": 4.1,
+    "fill": "#10b981"
+  },
+  {
+    "country": "네덜란드",
+    "share": 2.6,
+    "fill": "#3b82f6"
+  },
+  {
+    "country": "미국",
+    "share": 2.4,
+    "fill": "#8b5cf6"
+  },
+  {
+    "country": "독일",
+    "share": 2.2,
+    "fill": "#06b6d4"
+  },
+  {
+    "country": "베트남",
+    "share": 1.3,
+    "fill": "#84cc16"
+  },
+  {
+    "country": "기타",
+    "share": 2.7,
+    "fill": "#64748b"
+  }
+]

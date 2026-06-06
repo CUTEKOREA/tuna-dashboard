@@ -47,5 +47,34 @@
     "domesticDecline2025": -24.7,
     "vietnamPriceJump25to26": 6.3,
     "thailandPriceJump25to26": 8.0
+  },
+  "customs": {
+    "source": "관세청(KCS) 수출입무역통계 — HS 0307(낙지·주꾸미·문어 살아있는·신선·냉동) + 1605(조제·저장 문어). agri_data/jukkumi/customs_kr",
+    "scope": "HS6 030751·030752·030759·160555 통합. 주꾸미(Amphioctopus)·낙지·문어가 같은 HS6에 묶여 종(種) 분리 불가 → '두족류 통합' 기준",
+    "periodLabel": "2026.03-04 2개월 누적",
+    "extractedAt": "2026-06-06",
+    "totalImportValueM": 90.2,
+    "totalImportWeightT": 11403,
+    "overallCifPerKg": 7.91,
+    "byCountryValue": [
+      { "country": "중국", "share": 55.3, "valM": 49.9, "weightT": 6108, "color": "#8b5cf6" },
+      { "country": "베트남", "share": 28.0, "valM": 25.2, "weightT": 3617, "color": "#a855f7" },
+      { "country": "태국", "share": 6.1, "valM": 5.5, "weightT": 706, "color": "#d946ef" },
+      { "country": "필리핀", "share": 5.0, "valM": 4.5, "weightT": 423, "color": "#ec4899" },
+      { "country": "모리타니", "share": 3.9, "valM": 3.5, "weightT": 308, "color": "#fb7185" },
+      { "country": "기타", "share": 1.7, "valM": 1.6, "weightT": 241, "color": "#64748b" }
+    ],
+    "unitPriceByPartner": [
+      { "country": "모리타니", "usdkg": 11.50 },
+      { "country": "필리핀", "usdkg": 10.55 },
+      { "country": "중국", "usdkg": 8.17 },
+      { "country": "태국", "usdkg": 7.78 },
+      { "country": "베트남", "usdkg": 6.97 }
+    ],
+    "formMixWeight": [
+      { "name": "냉동", "value": 70.9, "weightT": 8089, "color": "#8b5cf6" },
+      { "name": "활·신선·냉장", "value": 20.5, "weightT": 2333, "color": "#ec4899" },
+      { "name": "조제·저장", "value": 8.6, "weightT": 981, "color": "#fb923c" }
+    ]
   }
 }

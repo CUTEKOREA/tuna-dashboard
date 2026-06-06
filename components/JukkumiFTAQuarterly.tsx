@@ -23,6 +23,17 @@ export default function JukkumiFTAQuarterly() {
   const prices = raw.unitPrice as Array<{ period: string; vietnam: number; thailand: number; china: number }>;
   const formMix = raw.formMix2026Q1 as Array<{ name: string; value: number; color: string }>;
 
+  // ── 관세청(KCS) HS 0307·1605 두족류 통합 — 2026.03-04 2개월 누적 ──
+  const cu = (raw as any).customs as {
+    byCountryValue: Array<{ country: string; share: number; valM: number; weightT: number; color: string }>;
+    unitPriceByPartner: Array<{ country: string; usdkg: number }>;
+    formMixWeight: Array<{ name: string; value: number; weightT: number; color: string }>;
+    totalImportValueM: number; totalImportWeightT: number; overallCifPerKg: number;
+  };
+  const cuCountry = cu.byCountryValue;
+  const cuPrice = cu.unitPriceByPartner;
+  const cuForm = cu.formMixWeight;
+
   const YearlyChart = (
     <div style={{ height: '240px', width: '100%' }}>
       <ResponsiveContainer width="100%" height="100%">
@@ -126,6 +137,54 @@ export default function JukkumiFTAQuarterly() {
     </div>
   );
 
+  const CustomsCountryPie = (
+    <div style={{ height: '200px', width: '100%' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie data={cuCountry} dataKey="share" nameKey="country" cx="50%" cy="50%" outerRadius={70} innerRadius={40} paddingAngle={2}
+            label={({ country, share }) => `${country} ${share}%`} labelLine={false}
+            style={{ fontSize: '11px', fill: '#e2e8f0' }}>
+            {cuCountry.map((d, i) => <Cell key={i} fill={d.color} />)}
+          </Pie>
+          <Tooltip contentStyle={tooltipStyle} formatter={(val: any, _n: any, p: any) => [`${val}% ($${p?.payload?.valM}M · ${p?.payload?.weightT}톤)`, p?.payload?.country]} />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  );
+
+  const CustomsPriceBars = (
+    <div style={{ height: '200px', width: '100%' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={cuPrice} layout="vertical" margin={{ top: 8, right: 36, left: 24, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(v) => `$${v}`} domain={[0, 13]} />
+          <YAxis type="category" dataKey="country" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} width={56} />
+          <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`$${val}/kg`, '평균 수입단가']} />
+          <Bar dataKey="usdkg" name="평균 수입단가" radius={[0, 4, 4, 0]}>
+            {cuPrice.map((d, i) => (
+              <Cell key={i} fill={d.usdkg >= cu.overallCifPerKg ? '#fb7185' : '#8b5cf6'} opacity={0.85} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+
+  const CustomsFormPie = (
+    <div style={{ height: '200px', width: '100%' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie data={cuForm} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} innerRadius={40} paddingAngle={2}
+            label={({ name, value }) => `${name} ${value}%`} labelLine={false}
+            style={{ fontSize: '11px', fill: '#e2e8f0' }}>
+            {cuForm.map((d, i) => <Cell key={i} fill={d.color} />)}
+          </Pie>
+          <Tooltip contentStyle={tooltipStyle} formatter={(val: any, _n: any, p: any) => [`${val}% (${p?.payload?.weightT}톤)`, p?.payload?.name]} />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  );
+
   const PanelStyle: React.CSSProperties = {
     background: 'rgba(15, 23, 42, 0.4)',
     border: '1px solid rgba(255,255,255,0.06)',
@@ -178,6 +237,39 @@ export default function JukkumiFTAQuarterly() {
       <div
         style={{
           ...PanelStyle,
+          borderColor: 'rgba(217, 70, 239, 0.18)',
+          background: 'rgba(30, 18, 40, 0.45)',
+        }}
+      >
+        <div style={PanelTitle}>🛃 관세청 실측 보조 — 두족류 통합(HS 0307·1605) · 2026.03-04 2개월 누적</div>
+        <div style={PanelDesc}>
+          KMI 주꾸미 시계열(상단)은 종(種) 특정 통계이고, 아래는 관세청 원자료를 그대로 집계한 보조 패널이다.
+          HS6 030751·030752·030759·160555에는 <strong>주꾸미·낙지·문어가 함께 묶여 종 분리가 불가</strong>하므로
+          상단 KMI 점유율(베트남 76.9%)과 직접 비교는 불가하고, 두족류 전체 조달 구조의 보조 지표로만 읽는다.
+          2개월 누적이라 절대값(수입액 $90.2M·물량 11,403톤)보다 <strong>점유율·단가·형태 비중</strong>이 유효하다.
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '6px' }}>
+          <div>
+            <div style={{ ...PanelTitle, fontSize: '0.72rem', color: '#a855f7' }}>🌏 한국 수입 국가별 점유율 (수입액 기준)</div>
+            <div style={PanelDesc}>중국 55.3% · 베트남 28.0%로 두족류 통합 기준 중국이 최대 공급국. 베트남 단일 의존이 두드러진 주꾸미(KMI)와 달리 낙지·문어 포함 시 중국 비중이 크게 상승.</div>
+            {CustomsCountryPie}
+          </div>
+          <div>
+            <div style={{ ...PanelTitle, fontSize: '0.72rem', color: '#a855f7' }}>💵 산지별 평균 수입단가 ($/kg)</div>
+            <div style={PanelDesc}>전체 평균 $7.91/kg. 모리타니 $11.50 · 필리핀 $10.55(원양 자숙·활문어 프리미엄) vs 베트남 $6.97(최저, 냉동 절단 비중↑). 분홍 막대는 평균 초과 산지.</div>
+            {CustomsPriceBars}
+          </div>
+        </div>
+        <div style={{ marginTop: '12px' }}>
+          <div style={{ ...PanelTitle, fontSize: '0.72rem', color: '#a855f7' }}>❄️ 형태 믹스 (물량 비중)</div>
+          <div style={PanelDesc}>냉동 70.9% · 활·신선·냉장 20.5% · 조제·저장 8.6%. 두족류 통합 기준으로도 냉동이 절대 우위이나, 활·신선 비중(20.5%)이 KMI 주꾸미 단독(13.5%)보다 높은 건 활낙지·활문어 외식 수요가 더해진 결과.</div>
+          <div style={{ maxWidth: '420px', margin: '0 auto' }}>{CustomsFormPie}</div>
+        </div>
+      </div>
+
+      <div
+        style={{
+          ...PanelStyle,
           background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(217, 70, 239, 0.10))',
           borderColor: 'rgba(139, 92, 246, 0.25)',
           display: 'grid',
@@ -207,8 +299,8 @@ export default function JukkumiFTAQuarterly() {
       icon={Ship}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 주꾸미 분기별 시계열. 2025년 정체기 이후 25 Q4·26 Q1 2분기 연속 감소 — 베트남·태국 단가 동시 인상과 중국산의 침체기 점유율 회수가 동시에 진행."
-      telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
+      cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 주꾸미 분기별 시계열 + 관세청(KCS) HS 0307·1605 두족류 통합 실측(2026.03-04 2개월 누적) 보조 패널. 2025년 정체기 이후 25 Q4·26 Q1 2분기 연속 감소 — 베트남·태국 단가 동시 인상과 중국산의 침체기 점유율 회수가 동시에 진행."
+      telemetry={{ status: 'SYNCED', syncDate: '2026.03-04(2개월 누적)' }}
       customBody={Body}
       takeaway={{
         situation: `<div>
@@ -220,7 +312,7 @@ export default function JukkumiFTAQuarterly() {
 <p><strong>재정의</strong>: 주꾸미 조달은 단가 헤지 옵션이 아닌 <strong>"베트남 단일 노출 76.9%·국내산 1.6천 톤 절벽이라는 이중 취약성을 다국·다형태로 분산하는 운영 의무"</strong>.</p>
 <p><strong>3단계</strong>: ① 베트남 비중 75% 가드레일 설정 — 중국산 냉동 절단형(단가 우위) 비중 8.1%→15% 이상으로 의도적 확대. ② 태국 활·신선($7.8/kg, 13.5% 비중) 라인은 HMR이 아닌 프리미엄 채널(횟감·요리주점) 전속 배정 — 단가 전가율 90%+ 채널에만 유통. ③ 분기 KMI 발표일 +5영업일 내 단가 변동 임계치(베트남 $6.5/kg, 태국 $8.0/kg) 트리거 → S&OP 위원회 자동 호출.</p>
 </div>`,
-        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4~2026 Q1 (21개 분기 원본 PDF, agri_data/공통(General)/kmi_fta_quarterly/)',
+        source: 'KMI 한국해양수산개발원 — FTA 체결국 수산물 수입동향 2021 Q4~2026 Q1 (21개 분기 원본 PDF, agri_data/공통(General)/kmi_fta_quarterly/) · 보조 패널: 관세청(KCS) 수출입무역통계 HS 0307·1605 두족류 통합(주꾸미·낙지·문어, 종 분리 불가), 2026.03-04 2개월 누적 (agri_data/jukkumi/customs_kr)',
       }}
     />
   );
