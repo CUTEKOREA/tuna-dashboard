@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧄 **2026-06-06 — 마늘 대시보드 빈 그래프 렌더링 수정 및 프로덕션 배포 완료** [Antigravity]:
+> - **빈 그래프 원인 파싱**: `garlic_w11_valuation.json` 파일이 비어 있고 `garlic_w6_arbitrage.json` 데이터 키가 ComposedChart 스키마와 불일치하던 부분을 복원했으나, 브라우저가 오래된 빈 응답 JSON을 캐싱하고 있어 그래프가 계속해서 비어 보이는 현상이 발생했음.
+> - **캐시 방지 솔루션 도입**: `components/GarlicDashboard.tsx`의 fetch 요청에 `&t=${Date.now()}` 타임스탬프를 덧붙여 브라우저 및 CDN 캐시를 완전히 무력화(cache-busting). 또한 `app/api/garlic/widget/route.ts` API 라우트의 헤더에 `Cache-Control: no-store, max-age=0, must-revalidate`를 설정하여 엣지 서버와 브라우저 단에서의 캐싱을 완전히 차단.
+> - **프로덕션 빌드 및 배포 완료**: Next.js 프로덕션 빌드 성공(`npm run build`) 확인 및 Vercel 배포 완료(`leedonggun.co.kr` 연동). 라이브로 데이터를 확인한 결과, `글로벌 흑마늘/추출물 가치평가` 및 `정부 TRQ 방출 및 통관 수입 모니터링` 차트 모두 정상 데이터로 선과 막대가 문제없이 렌더링됨을 검증 완료.
+
 > 🌾 **2026-06-06 — agri_data 월간 파이프라인 → 대시보드 위젯 12개 SYNCED + 일괄 배포** [CC]:
 > - **agri_data 월간 갱신 파이프라인** 신규 구축(`agri_data/_pipeline/`, launchd 매월1일): 46품목 Comtrade·관세청·KAMIS·ECOS·FRED 232K행. 컨버터 `tuna-dashboard/scripts/agri_to_dashboard/agri_convert.py`로 위젯 JSON 생성.
 > - **위젯 12개 보완**(전부 빌드 통과, 정적-SYNCED·isLive:false): KAMIS(shrimp·carrot도매) · 관세청(petfood 수입원) · Comtrade(salmon·chicken·tuna캔점유율·carrot W25/26·squid w5수입국·cassava·pollock). 미러통계로 베트남(cassava)·러시아(pollock) 복원.
