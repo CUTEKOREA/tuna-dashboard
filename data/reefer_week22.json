@@ -1,0 +1,157 @@
+[
+  {
+    "carrier": "LAKE PEARL",
+    "date": "21.04.26",
+    "deliveries": {
+      "DIMCN": "500",
+      "GPZ": "3,000",
+      "MMP": "525.00",
+      "PTY": "1,000",
+      "RS": "700",
+      "SHIP": "1,452.00",
+      "OTHER": "4%KCMF"
+    }
+  },
+  {
+    "carrier": "PACIFIC JOURNEY",
+    "date": "05.05.26",
+    "deliveries": {
+      "DIMCN": "300",
+      "MMP": "525.00",
+      "PTY": "800",
+      "RS": "700",
+      "TUM": "900",
+      "SHIP": "2,734.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "HUA FU 207",
+    "date": "08.05.26",
+    "deliveries": {
+      "AYA": "130",
+      "DIMCN": "253",
+      "GPZ": "850",
+      "KF": "600",
+      "MMP": "600.00",
+      "PTY": "650",
+      "SK": "175",
+      "TUG": "1,270.00",
+      "TUM": "1,231",
+      "SHIP": "276.00",
+      "OTHER": "21B"
+    }
+  },
+  {
+    "carrier": "CHERRY STAR",
+    "date": "13.05.26",
+    "deliveries": {
+      "DIMCN": "500",
+      "GPZ": "95",
+      "ISA": "1,000",
+      "MMP": "500.00",
+      "SCC": "1,300",
+      "SHIP": "276.00",
+      "OTHER": "19"
+    }
+  },
+  {
+    "carrier": "JOCHOH",
+    "date": "15.05.26",
+    "deliveries": {
+      "RMK": "1,000.07",
+      "SPA": "1,200",
+      "SCC": "2,800",
+      "SHIP": "413.00",
+      "OTHER": "27A/23C"
+    }
+  },
+  {
+    "carrier": "SEIN PHOENIX",
+    "date": "20.05.26",
+    "deliveries": {
+      "DIMCN": "700",
+      "I-TAIL": "475",
+      "MMP": "900.00",
+      "SK": "25",
+      "SHIP": "2,734.00",
+      "OTHER": "18"
+    }
+  },
+  {
+    "carrier": "SEA WEALTH",
+    "date": "22.05.26",
+    "deliveries": {
+      "PTY": "1,000",
+      "RMK": "100",
+      "SPA": "2,200",
+      "SHIP": "895.00",
+      "OTHER": "41"
+    }
+  },
+  {
+    "carrier": "MINING RUN 03",
+    "date": "25.05.26",
+    "deliveries": {
+      "DIMCN": "500",
+      "GPZ": "382.3",
+      "I-TAIL": "405",
+      "MMP": "563.00",
+      "TUG": "1,731.00",
+      "TUM": "1,038.00",
+      "SHIP": "952.00",
+      "OTHER": "30B"
+    }
+  },
+  {
+    "carrier": "KATAH",
+    "date": "28.05.26",
+    "deliveries": {
+      "CMC": "300",
+      "GPZ": "80",
+      "PTY": "124",
+      "RS": "500",
+      "SIF": "270",
+      "UC": "500",
+      "SHIP": "1,274.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "BAD LUCKY",
+    "date": "29.05.26",
+    "deliveries": {
+      "CMC": "1,000",
+      "DIMCN": "727",
+      "MMP": "900.00",
+      "PTY": "124",
+      "TUG": "299.00",
+      "TUM": "1,010",
+      "SHIP": "330.00",
+      "OTHER": "21B/21A"
+    }
+  },
+  {
+    "carrier": "HARU",
+    "date": "29.05.26",
+    "deliveries": {
+      "DIMCN": "416",
+      "ISA": "450",
+      "SPA": "200",
+      "TUG": "1,000.00",
+      "TUM": "1,000",
+      "SHIP": "438.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "SANWA FONTAINE",
+    "date": "03.06.26",
+    "deliveries": {
+      "AYA": "526",
+      "CMC": "79",
+      "SHIP": "2,176.00",
+      "OTHER": "23"
+    }
+  }
+]
