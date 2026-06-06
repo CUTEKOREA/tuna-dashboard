@@ -47,32 +47,131 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
     return true;
   });
 
+  // KPI computations
+  const totalVendors = vendorsData.length;
+  const vietnamCount = vendorsData.filter((v: any) => v.country === 'Vietnam').length;
+  const thailandCount = vendorsData.filter((v: any) => v.country === 'Thailand').length;
+  const fdaCount = vendorsData.filter((v: any) => v.hasFDA).length;
+  const euCount = vendorsData.filter((v: any) => v.hasEU).length;
+  const maxCapacity = Math.max(...vendorsData.map((v: any) => v.capacityMT || 0));
+
+  // Filter count helper
+  const getFilterCount = (f: string) => {
+    const baseData = activeCountry === 'All' ? vendorsData : vendorsData.filter((v: any) => v.country === activeCountry);
+    if (f === 'All') return baseData.length;
+    if (f === 'Volume Provider') return baseData.filter((v: any) => v.tier.includes('Volume')).length;
+    if (f === 'Tier 1: Sweet Spot') return baseData.filter((v: any) => v.tier.includes('Sweet Spot')).length;
+    if (f === 'Tier 1: Global Giants') return baseData.filter((v: any) => v.tier.includes('Global Giants')).length;
+    if (f === 'Specialized') return baseData.filter((v: any) => v.tier.includes('Specialized')).length;
+    return 0;
+  };
+
+  const getCountryCount = (c: string) => {
+    if (c === 'All') return vendorsData.length;
+    return vendorsData.filter((v: any) => v.country === c).length;
+  };
+
   return (
     <div className={styles.container}>
-      <header style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+      {/* ── Hero Header with gradient background ── */}
+      <header style={{
+        marginBottom: '2rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        position: 'relative',
+        padding: '2rem 2rem 1.5rem',
+        background: 'linear-gradient(135deg, rgba(6,182,212,0.06) 0%, rgba(139,92,246,0.06) 50%, rgba(16,185,129,0.04) 100%)',
+        borderRadius: '16px',
+        border: '1px solid rgba(255,255,255,0.06)',
+        overflow: 'hidden',
+      }}>
+        {/* Decorative glow behind header */}
+        <div style={{
+          position: 'absolute',
+          top: '-40%',
+          left: '-10%',
+          width: '50%',
+          height: '200%',
+          background: 'radial-gradient(ellipse, rgba(6,182,212,0.08) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
         <div>
-          <h2 className={styles.title}>SE Asia OEM Intelligence</h2>
+          <h2
+            className={styles.title}
+            style={{
+              background: 'linear-gradient(135deg, #06B6D4, #8B5CF6, #10B981)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontSize: '1.65rem',
+              letterSpacing: '-0.5px',
+            }}
+          >
+            글로벌 OEM 벤더 인텔리전스
+          </h2>
           <p className={styles.subtitle}>태국 및 베트남 참치 통조림/가공업체 심층 프로필 및 전략적 파트너십 벤더 풀</p>
           <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0.4rem 0 0 0', maxWidth: '720px', lineHeight: 1.4 }}>
             출처: 공개 기업정보·인증현황(US FDA FCE·EU Code·MSC) 기반 큐레이션 — {vendorsData.filter((v: any) => v.meetingData).length}개사 현장 실사 완료, 나머지는 공개정보 기준(미실사). 생산능력·인증은 시점에 따라 변동 가능.
           </p>
+
+          {/* ── KPI Stats Row ── */}
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            marginTop: '1.25rem',
+            flexWrap: 'wrap',
+          }}>
+            {[
+              { label: '전체 벤더', value: totalVendors, color: '#06B6D4', icon: '🏭' },
+              { label: '🇻🇳 베트남', value: vietnamCount, color: '#10B981', icon: '' },
+              { label: '🇹🇭 태국', value: thailandCount, color: '#F59E0B', icon: '' },
+              { label: 'FDA 인증', value: fdaCount, color: '#8B5CF6', icon: '✓' },
+              { label: 'EU 인증', value: euCount, color: '#38BDF8', icon: '✓' },
+            ].map((kpi, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 0.9rem',
+                background: 'rgba(0,0,0,0.25)',
+                borderRadius: '10px',
+                border: `1px solid ${kpi.color}22`,
+                backdropFilter: 'blur(8px)',
+              }}>
+                <span style={{
+                  fontSize: '1.3rem',
+                  fontWeight: 800,
+                  color: kpi.color,
+                  lineHeight: 1,
+                }}>{kpi.value}</span>
+                <span style={{
+                  fontSize: '0.7rem',
+                  color: '#94A3B8',
+                  fontWeight: 500,
+                  whiteSpace: 'nowrap',
+                }}>{kpi.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: '8px', background: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <div style={{ display: 'flex', gap: '8px', background: 'rgba(0,0,0,0.3)', padding: '5px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)' }}>
           <button 
             onClick={() => setActiveTab('vendors')}
             style={{
-              padding: '8px 16px',
-              borderRadius: '6px',
+              padding: '9px 18px',
+              borderRadius: '8px',
               border: 'none',
-              background: activeTab === 'vendors' ? 'var(--color-info)' : 'transparent',
-              color: activeTab === 'vendors' ? 'var(--text-primary)' : '#94a3b8',
+              background: activeTab === 'vendors' ? 'linear-gradient(135deg, rgba(6,182,212,0.35), rgba(139,92,246,0.2))' : 'transparent',
+              color: activeTab === 'vendors' ? '#fff' : '#94a3b8',
               fontSize: '0.85rem',
               fontWeight: 600,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              transition: 'all 0.2s'
+              transition: 'all 0.3s ease',
+              boxShadow: activeTab === 'vendors' ? '0 2px 12px rgba(6,182,212,0.2)' : 'none',
             }}
           >
             <Users size={16} /> 벤더 프로필
@@ -80,24 +179,32 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
           <button 
             onClick={() => setActiveTab('stats')}
             style={{
-              padding: '8px 16px',
-              borderRadius: '6px',
+              padding: '9px 18px',
+              borderRadius: '8px',
               border: 'none',
-              background: activeTab === 'stats' ? 'var(--color-info)' : 'transparent',
-              color: activeTab === 'stats' ? 'var(--text-primary)' : '#94a3b8',
+              background: activeTab === 'stats' ? 'linear-gradient(135deg, rgba(6,182,212,0.35), rgba(139,92,246,0.2))' : 'transparent',
+              color: activeTab === 'stats' ? '#fff' : '#94a3b8',
               fontSize: '0.85rem',
               fontWeight: 600,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              transition: 'all 0.2s'
+              transition: 'all 0.3s ease',
+              boxShadow: activeTab === 'stats' ? '0 2px 12px rgba(6,182,212,0.2)' : 'none',
             }}
           >
             <BarChart3 size={16} /> 무역 통계
           </button>
         </div>
       </header>
+
+      {/* ── Decorative divider ── */}
+      <div style={{
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.3), rgba(139,92,246,0.2), transparent)',
+        margin: '-1rem 0 0.5rem 0',
+      }} />
 
       {activeTab === 'vendors' ? (
         <>
@@ -109,18 +216,45 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 onClick={() => setActiveCountry('All')}
               >
                 <Globe2 size={14} /> 전체
+                <span style={{
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  background: activeCountry === 'All' ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.08)',
+                  color: activeCountry === 'All' ? '#06B6D4' : '#64748b',
+                  padding: '1px 6px',
+                  borderRadius: '8px',
+                  marginLeft: '2px',
+                }}>{getCountryCount('All')}</span>
               </button>
               <button 
                 className={`${styles.countryBtn} ${activeCountry === 'Vietnam' ? styles.active : ''}`}
                 onClick={() => setActiveCountry('Vietnam')}
               >
                 🇻🇳 베트남
+                <span style={{
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  background: activeCountry === 'Vietnam' ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.08)',
+                  color: activeCountry === 'Vietnam' ? '#06B6D4' : '#64748b',
+                  padding: '1px 6px',
+                  borderRadius: '8px',
+                  marginLeft: '2px',
+                }}>{getCountryCount('Vietnam')}</span>
               </button>
               <button 
                 className={`${styles.countryBtn} ${activeCountry === 'Thailand' ? styles.active : ''}`}
                 onClick={() => setActiveCountry('Thailand')}
               >
                 🇹🇭 태국
+                <span style={{
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  background: activeCountry === 'Thailand' ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.08)',
+                  color: activeCountry === 'Thailand' ? '#06B6D4' : '#64748b',
+                  padding: '1px 6px',
+                  borderRadius: '8px',
+                  marginLeft: '2px',
+                }}>{getCountryCount('Thailand')}</span>
               </button>
             </div>
             
@@ -133,13 +267,51 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 onClick={() => setActiveFilter(f)}
               >
                 {f.replace('Tier 1: ', '')}
+                <span style={{
+                  fontSize: '0.6rem',
+                  fontWeight: 700,
+                  background: activeFilter === f ? 'rgba(6,182,212,0.2)' : 'rgba(255,255,255,0.06)',
+                  color: activeFilter === f ? '#06B6D4' : '#64748b',
+                  padding: '1px 5px',
+                  borderRadius: '6px',
+                  marginLeft: '5px',
+                }}>{getFilterCount(f)}</span>
               </button>
             ))}
           </div>
 
           <div className={styles.masonryGrid}>
-            {filteredData.map((vendor: any) => (
+            {filteredData.map((vendor: any, cardIndex: number) => (
               <div key={vendor.id} className={styles.glassCard} onClick={() => setSelectedVendor(vendor)}>
+                {/* ── Gradient top accent bar ── */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '2px',
+                  borderRadius: '8px 8px 0 0',
+                  background: vendor.tier.includes('Tier 1')
+                    ? 'linear-gradient(90deg, #10B981, #06B6D4)'
+                    : vendor.tier.includes('Volume')
+                    ? 'linear-gradient(90deg, #38BDF8, #8B5CF6)'
+                    : 'linear-gradient(90deg, #F59E0B, #F43F5E)',
+                }} />
+
+                {/* ── Card index number ── */}
+                <div style={{
+                  position: 'absolute',
+                  top: '12px',
+                  right: '14px',
+                  fontSize: '1.6rem',
+                  fontWeight: 900,
+                  color: 'rgba(255,255,255,0.04)',
+                  lineHeight: 1,
+                  letterSpacing: '-1px',
+                  pointerEvents: 'none',
+                  fontVariantNumeric: 'tabular-nums',
+                }}>{String(cardIndex + 1).padStart(2, '0')}</div>
+
                 <div className={styles.cardHeader}>
                   <div>
                     <h3 className={styles.cardTitle}>
@@ -160,16 +332,76 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
 
                 <div className={styles.metricsRow}>
                   <div className={styles.metricBox}>
-                    <div className={styles.metricLabel}>Daily Capacity</div>
+                    <div className={styles.metricLabel}>일일 생산능력</div>
                     <div className={styles.metricValue}>
                       {vendor.capacityMT ? (<>{vendor.capacityMT}<span>MT/day</span></>) : (<span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>공개정보 미확인</span>)}
                     </div>
+                    {/* ── Mini capacity progress bar ── */}
+                    {vendor.capacityMT > 0 && maxCapacity > 0 && (
+                      <div style={{
+                        marginTop: '6px',
+                        height: '3px',
+                        borderRadius: '2px',
+                        background: 'rgba(255,255,255,0.06)',
+                        overflow: 'hidden',
+                      }}>
+                        <div style={{
+                          height: '100%',
+                          width: `${Math.min((vendor.capacityMT / maxCapacity) * 100, 100)}%`,
+                          borderRadius: '2px',
+                          background: 'linear-gradient(90deg, #06B6D4, #8B5CF6)',
+                          transition: 'width 0.6s ease',
+                        }} />
+                      </div>
+                    )}
                   </div>
                   <div className={styles.metricBox}>
-                    <div className={styles.metricLabel}>Certifications</div>
-                    <div className={styles.metricValue} style={{ fontSize: '1rem' }}>
-                      {vendor.hasEU ? 'EU • ' : ''}{vendor.hasFDA ? 'FDA • ' : ''}{vendor.msc ? 'MSC' : ''}
-                      {!vendor.hasEU && !vendor.hasFDA && !vendor.msc && 'Domestic'}
+                    <div className={styles.metricLabel}>인증 현황</div>
+                    <div className={styles.metricValue} style={{ fontSize: '0.9rem', display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                      {vendor.hasEU && (
+                        <span style={{
+                          fontSize: '0.68rem',
+                          padding: '2px 7px',
+                          borderRadius: '6px',
+                          background: 'rgba(139,92,246,0.12)',
+                          color: '#C084FC',
+                          border: '1px solid rgba(139,92,246,0.3)',
+                          fontWeight: 600,
+                        }}>EU</span>
+                      )}
+                      {vendor.hasFDA && (
+                        <span style={{
+                          fontSize: '0.68rem',
+                          padding: '2px 7px',
+                          borderRadius: '6px',
+                          background: 'rgba(16,185,129,0.12)',
+                          color: '#10B981',
+                          border: '1px solid rgba(16,185,129,0.3)',
+                          fontWeight: 600,
+                        }}>FDA</span>
+                      )}
+                      {vendor.msc && (
+                        <span style={{
+                          fontSize: '0.68rem',
+                          padding: '2px 7px',
+                          borderRadius: '6px',
+                          background: 'rgba(56,189,248,0.12)',
+                          color: '#38BDF8',
+                          border: '1px solid rgba(56,189,248,0.3)',
+                          fontWeight: 600,
+                        }}>MSC</span>
+                      )}
+                      {!vendor.hasEU && !vendor.hasFDA && !vendor.msc && (
+                        <span style={{
+                          fontSize: '0.68rem',
+                          padding: '2px 7px',
+                          borderRadius: '6px',
+                          background: 'rgba(255,255,255,0.05)',
+                          color: '#64748b',
+                          border: '1px solid rgba(255,255,255,0.08)',
+                          fontWeight: 600,
+                        }}>Domestic</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -180,8 +412,17 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   </div>
                 </div>
                 
-                <div style={{ marginTop: '1rem', textAlign: 'right', fontSize: '0.75rem', color: '#06B6D4', fontWeight: 600 }}>
-                  Click to view Silla Takeaway ➔
+                <div style={{
+                  marginTop: '1rem',
+                  textAlign: 'right',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  background: 'linear-gradient(90deg, #06B6D4, #8B5CF6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>
+                  상세 프로필 보기 →
                 </div>
               </div>
             ))}
@@ -195,6 +436,17 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
       {selectedVendor && (
         <div className={styles.modalOverlay} onClick={() => setSelectedVendor(null)}>
           <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
+            {/* ── Modal gradient header bar ── */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '3px',
+              borderRadius: '8px 8px 0 0',
+              background: 'linear-gradient(90deg, #06B6D4, #8B5CF6, #10B981)',
+            }} />
+
             <button className={styles.closeBtn} onClick={() => setSelectedVendor(null)}><X size={24} /></button>
             <h2 style={{ fontSize: '1.4rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
               {selectedVendor.country === 'Vietnam' ? '🇻🇳 ' : '🇹🇭 '}
@@ -205,14 +457,38 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               <span className={styles.tierBadge} style={{ background: 'rgba(255,255,255,0.1)' }}>{selectedVendor.tier}</span>
             </div>
 
+            {/* ── Section divider ── */}
+            <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)', margin: '0 0 1.2rem 0' }} />
+
             <div className={styles.specialtyBox}>
-              <strong>Focus area:</strong> {selectedVendor.specialty}
+              <strong>전문 분야:</strong> {selectedVendor.specialty}
             </div>
 
             <div className={styles.certRow}>
-              <span className={`${styles.certBadge} ${selectedVendor.hasFDA ? styles.active : ''}`}>US FDA FCE</span>
-              <span className={`${styles.certBadge} ${selectedVendor.hasEU ? styles.active : ''}`}>EU Code</span>
-              <span className={`${styles.certBadge} ${selectedVendor.msc ? styles.active : ''}`}>MSC / ISSF</span>
+              <span className={`${styles.certBadge} ${selectedVendor.hasFDA ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{
+                  width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
+                  background: selectedVendor.hasFDA ? '#10B981' : '#64748b',
+                  boxShadow: selectedVendor.hasFDA ? '0 0 6px rgba(16,185,129,0.5)' : 'none',
+                }} />
+                US FDA FCE
+              </span>
+              <span className={`${styles.certBadge} ${selectedVendor.hasEU ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{
+                  width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
+                  background: selectedVendor.hasEU ? '#10B981' : '#64748b',
+                  boxShadow: selectedVendor.hasEU ? '0 0 6px rgba(16,185,129,0.5)' : 'none',
+                }} />
+                EU Code
+              </span>
+              <span className={`${styles.certBadge} ${selectedVendor.msc ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                <span style={{
+                  width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
+                  background: selectedVendor.msc ? '#10B981' : '#64748b',
+                  boxShadow: selectedVendor.msc ? '0 0 6px rgba(16,185,129,0.5)' : 'none',
+                }} />
+                MSC / ISSF
+              </span>
             </div>
 
             <div className={styles.takeawayBox} style={{ marginTop: '2rem' }}>
@@ -224,6 +500,8 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
 
             {selectedVendor.meetingData && (
               <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                {/* ── Section divider ── */}
+                <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.15), transparent)', margin: '0 0 1rem 0' }} />
                 <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <ClipboardList size={18} color="#06B6D4" /> 벤더사 미팅/실사 결과 보고
                 </h3>
@@ -293,6 +571,8 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               const sources = (pp.sources || []) as any[];
               return (
                 <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid rgba(56, 189, 248, 0.15)' }}>
+                  {/* ── Section divider ── */}
+                  <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(56,189,248,0.2), transparent)', margin: '0 0 0.75rem 0' }} />
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Building2 size={18} color="#38BDF8" /> 공개 기업 정보
@@ -334,14 +614,24 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
 
                   {certs.length > 0 && (
                     <div style={{ marginBottom: '1.25rem' }}>
+                      {/* ── Section divider ── */}
+                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.9rem', color: '#E2E8F0', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <ShieldCheck size={15} color="#38BDF8" /> 인증 현황 (1차 출처 검증)
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {certs.map((c: any, idx: number) => (
-                          <div key={idx} style={{ fontSize: '0.82rem', color: 'var(--text-main)', lineHeight: 1.45, paddingLeft: '0.5rem', borderLeft: '2px solid rgba(56,189,248,0.3)' }}>
-                            <strong style={{ color: '#E2E8F0' }}>{c.standard}{c.code ? ` (${c.code})` : ''}</strong>
-                            {c.note && <span style={{ color: '#94A3B8' }}> — {c.note}</span>}
+                          <div key={idx} style={{ fontSize: '0.82rem', color: 'var(--text-main)', lineHeight: 1.45, paddingLeft: '0.5rem', borderLeft: '2px solid rgba(56,189,248,0.3)', display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                            <span style={{
+                              width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block', flexShrink: 0,
+                              background: c.code ? '#10B981' : '#F59E0B',
+                              boxShadow: c.code ? '0 0 4px rgba(16,185,129,0.4)' : '0 0 4px rgba(245,158,11,0.4)',
+                              marginTop: '2px',
+                            }} />
+                            <span>
+                              <strong style={{ color: '#E2E8F0' }}>{c.standard}{c.code ? ` (${c.code})` : ''}</strong>
+                              {c.note && <span style={{ color: '#94A3B8' }}> — {c.note}</span>}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -350,6 +640,8 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
 
                   {devs.length > 0 && (
                     <div style={{ marginBottom: '1.25rem' }}>
+                      {/* ── Section divider ── */}
+                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.9rem', color: '#E2E8F0', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <Newspaper size={15} color="#38BDF8" /> 최근 동향
                       </h4>
@@ -373,6 +665,8 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
 
                   {sources.length > 0 && (
                     <div>
+                      {/* ── Section divider ── */}
+                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <ExternalLink size={14} /> 출처
                       </h4>
