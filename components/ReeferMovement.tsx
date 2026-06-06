@@ -7,7 +7,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ReeferMovement.module.css';
 import TermTooltip from './TermTooltip';
 
-import BANGKOK_PORT_DATA from '../data/reefer_week19.json';
+import BANGKOK_PORT_DATA from '../data/reefer_week22.json';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // ── helpers ──
@@ -227,7 +227,7 @@ export default function ReeferMovement() {
       {/* ── REEFER MOVEMENT SCHEDULE Header ── */}
       <div style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <AlertTriangle size={16} color="var(--color-warning)" />
-        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 방콕 항구로 입항 예정인 운반선(Reefer)들의 세부 일정과 각 공장(Cannery)별 분배 예정 물량을 보여줍니다. 이를 통해 특정 캔 공장의 원재료 수급 현황을 파악할 수 있습니다." /> (08/05/26 - 14/05/26) : WEEK 19
+        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 방콕 항구로 입항 예정인 운반선(Reefer)들의 세부 일정과 각 공장(Cannery)별 분배 예정 물량을 보여줍니다. 이를 통해 특정 캔 공장의 원재료 수급 현황을 파악할 수 있습니다." /> (28/05/26 - 04/06/26) : WEEK 22
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', background: '#10b98118', padding: '3px 10px', borderRadius: 99, fontWeight: 600 }}>
             {BANGKOK_PORT_DATA.length}척 · {Math.round(grandTotal).toLocaleString()} MT

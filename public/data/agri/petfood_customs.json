@@ -1,0 +1,39 @@
+{
+  "isLive": false,
+  "status": "SYNCED",
+  "syncDate": "2026-06-06",
+  "source": "관세청 nitemtrade(HS6 필터) via agri_data, 202603~202604 누적",
+  "unit": "천USD",
+  "d_w12": [
+    {
+      "country": "중국",
+      "value": 26650,
+      "share": 26.3
+    },
+    {
+      "country": "미국",
+      "value": 17663,
+      "share": 17.4
+    },
+    {
+      "country": "태국",
+      "value": 9590,
+      "share": 9.5
+    },
+    {
+      "country": "호주",
+      "value": 5430,
+      "share": 5.4
+    },
+    {
+      "country": "프랑스",
+      "value": 5059,
+      "share": 5.0
+    },
+    {
+      "country": "캐나다",
+      "value": 5021,
+      "share": 5.0
+    }
+  ]
+}

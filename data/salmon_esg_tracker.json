@@ -38,7 +38,7 @@
       },
       {
         "category": "환경 영향", "score": 45, "maxScore": 100, "status": "high", "iconName": "Thermometer",
-        "details": ["IUU 어업 우려 (EU Yellow Card 이력)", "환경 모니터링 체계 취약", "폐수 관리 규정 미비"]
+        "details": ["IUU 어업 우려 제기 (서방 규제기관)", "환경 모니터링 체계 취약", "폐수 관리 규정 미비"]
       },
       {
         "category": "이력 추적성", "score": 30, "maxScore": 100, "status": "high", "iconName": "Shield",

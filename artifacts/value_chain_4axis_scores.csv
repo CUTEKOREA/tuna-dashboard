@@ -1,121 +1,129 @@
-file,line,pillar,title,axis1_source,axis2_freshness,axis3_verify,axis4_completeness,avg,grade
-components/PacificEezStrategicWidget.tsx,122,S1,태평양 도서국(PNA) 배타적 경제수역(EEZ) 포트폴리오,90,70,55,100,78.8,B
-components/PetFoodDashboard.tsx,113,S4,시장 진입 시나리오 예측기 (Phase 3),60,95,55,100,77.5,B
-components/PetFoodDashboard.tsx,149,S1,오징어(Illex) 어획 부진 및 원가 리스크 맵,60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,178,S2,식물성 믹스 원가 방어율 예측기,60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,206,S5,클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API,60,60,95,100,78.8,B
-components/PetFoodDashboard.tsx,232,S3,한국 펫푸드 무역수지 추이 (달러),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,259,S4,수출 단가 국가별 격차 ($/kg),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,285,S4,펫푸드 내 원자재 구성비 해부 (%),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,307,S4,글로벌 참치 펫푸드 밸류업 마진 비교 (%),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,333,S4,단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API,60,60,95,100,78.8,B
-components/PetFoodDashboard.tsx,359,S4,대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API,60,60,95,100,78.8,B
-components/PetFoodDashboard.tsx,387,S4,,60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,413,S1,RFMO 쿼터 축소 → 원물 공급 리스크,60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,445,S1,기후변화 → 참치 서식지 이동 전망 (2050/2100),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,481,S2,틸라피아 껍질 업사이클링 수익성 🟢 Live API,60,60,95,100,78.8,B
-components/PetFoodDashboard.tsx,507,S4,주요 기업 매출 및 이익률 비교 (억 원),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,533,S4,펫푸드 원자재 및 환율 민감도 분석 (%),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,559,S3,i-Tail 글로벌 ODM 매출 및 이익률 구조 (%),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,593,S4,오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API,60,60,95,100,78.8,B
-components/PetFoodDashboard.tsx,621,S4,하림펫푸드 매출 및 수직계열화 이익 성장 (억 원),60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,649,S4,카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API,60,60,95,100,78.8,B
-components/PetFoodDashboard.tsx,675,S3,태국 휴먼그레이드 참치 수출 및 펫푸드 지수,60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,701,S2,,60,95,80,100,83.8,B
-components/PetFoodDashboard.tsx,728,S2,,60,95,80,100,83.8,B
-components/TunaAquaHegemony.tsx,39,S1,양식 참다랑어 생산 패권,90,60,80,100,82.5,B
-components/TunaAtunaMayNews.tsx,14,S1,IO 선망선단 퍼펙트 스톰,60,95,95,100,87.5,A
-components/TunaAtunaMayNews.tsx,38,S4,방콕 원어가 하락과 미국 통제력,60,95,95,100,87.5,A
-components/TunaAtunaMayNews.tsx,72,S1,EPO 어획 급감 및 미 파우치 지각변동,60,95,95,100,87.5,A
-components/TunaAtunaMayNews.tsx,95,S3,EU CATCH 물류 병목 현실화,60,95,95,100,87.5,A
-components/TunaBioUpcyclingGap.tsx,33,S5,W13. 수산 부산물 업사이클링 격차,60,40,80,100,70.0,C
-components/TunaCannedMarketShare.tsx,58,S4,참치 통조림 시장점유,60,95,55,100,77.5,B
-components/TunaCatchBySpeciesLive.tsx,33,S1,참치 어종별 글로벌 어획량 추이 (Live),90,95,80,100,91.2,A
-components/TunaCatchVolumeTrend.tsx,48,S1,참치 어획량 추이,90,95,55,100,85.0,A
-components/TunaColdChainCostGap.tsx,49,S3,콜드체인 운송비 격차,90,95,55,100,85.0,A
-components/TunaComplianceRadar.tsx,119,S5,컴플라이언스 레이더 — 제재 스크리닝,60,70,95,100,81.2,B
-components/TunaCrossroads.tsx,30,S1,글로벌 참다랑어 생산량 크로스로드 (Catch vs Farmed),60,60,80,100,75.0,B
-components/TunaEmergingMarkets.tsx,33,S4,글로벌 사우스 참치 시장 기회 레이더,60,60,80,100,75.0,B
-components/TunaEsgRiskRadar.tsx,40,S5,인도네시아 참치 ESG 리스크 모니터링,90,75,55,100,80.0,B
-components/TunaExportShare.tsx,45,S4,양식 참다랑어 글로벌 수출 점유율,90,60,80,100,82.5,B
-components/TunaExtractDashboard.tsx,223,S1,제로 코스트의 마법: 자숙액 부가가치,60,60,55,100,68.8,C
-components/TunaExtractDashboard.tsx,263,S1,인도양 소형 다랑어 쿼터 압박 경고,90,95,95,100,95.0,A
-components/TunaExtractDashboard.tsx,309,S2,[신규] 환율 기반 원가 방어 시뮬레이터,60,95,95,100,87.5,A
-components/TunaExtractDashboard.tsx,406,S2,통합 수산과학 실증 연구 (K01~K08),60,60,80,100,75.0,B
-components/TunaExtractDashboard.tsx,526,S3,SCFI 기반 운임 3개월 지연(Lagging) 반영,60,95,95,100,87.5,A
-components/TunaExtractDashboard.tsx,562,S3,인도/베트남 소싱 다변화 효율성,60,95,95,100,87.5,A
-components/TunaExtractDashboard.tsx,605,S4,간장 대체 소비자 선호도 (2026 최신),60,95,95,100,87.5,A
-components/TunaExtractDashboard.tsx,645,S4,대체 액젓류 역상관관계 교차 분석,60,95,95,100,87.5,A
-components/TunaExtractDashboard.tsx,690,S5,글로벌 히스타민 규제 리스크 맵,60,95,95,100,87.5,A
-components/TunaForecastWidgets.tsx,29,S1,가다랑어 방콕 산지가격 실측 + 단기 시나리오,90,60,95,100,86.2,A
-components/TunaForecastWidgets.tsx,117,S1,ENSO-어획량 상관관계 분석기,90,60,95,100,86.2,A
-components/TunaForecastWidgets.tsx,173,S3,환율-착지원가 민감도 분석,90,60,95,100,86.2,A
-components/TunaGlobalHalalStrategy.tsx,25,S4,N2. K-피시소스 글로벌 할랄 침투 포텐셜,60,95,80,100,83.8,B
-components/TunaHSClassifier.tsx,121,S3,HS 자동분류 (HS Ping),60,60,70,90,70.0,C
-components/TunaImportBlackhole.tsx,36,S4,참다랑어 양식 블랙홀 수입국 분석,90,60,80,100,82.5,B
-components/TunaInsightsDashboard.tsx,147,S4,Insight 1. 참치 차익거래 마진 레이더,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,188,S2,Insight 2. 가공 허브 패권 지도,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,230,S4,Insight 3. 신흥 소비 블랙홀 마켓,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,274,S1,Insight 4. 어장 제로섬 역학 뷰어,90,60,55,100,76.2,B
-components/TunaInsightsDashboard.tsx,325,S1,Insight 5. 대체 수산물 헷징 매트릭스,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,366,S5,Insight 6. 다크 트레이딩 의심 경로,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,413,S4,Insight 7. 양식 vs 어획 패러다임 역전,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,454,S4,Insight 8. 최고가 미식 소비 국가 맵,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,504,S1,Insight 9. 공급 독과점 HHI 지수 경보,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,544,S1,Insight 10. 기후 쇼크 타임머신,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,589,S2,Insight 11. 정밀 조업(Precision Fishing) 패러다임 전환,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,631,S3,Insight 12. 관세 회피(Tariff Hopping) 밸류체인 진화,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,674,S5,Insight 13. 지속가능성(MSC) 더블 프리미엄,60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,718,S5,Insight 14. 하이브리드 포트폴리오 (비건/배양육),60,60,55,100,68.8,C
-components/TunaInsightsDashboard.tsx,760,S5,Insight 15. 펫케어/해양 콜라겐 업사이클링,60,60,55,100,68.8,C
-components/TunaIntelInsightsB4.tsx,35,S1,태국 가공 허브 1Q26 원어 수입 — 인도양 대체 확대,60,95,80,100,83.8,B
-components/TunaIntelInsightsB4.tsx,110,S2,Frime SA 인수 — 스페인 최대 황다랑어 가공사 소유권 변경,60,95,80,100,83.8,B
-components/TunaIntelInsightsB4.tsx,183,S1,퍼펙트 스톰 — 호르무즈 + WCPO + 가공업체 저항,60,95,80,100,83.8,B
-components/TunaIntelInsightsB4.tsx,244,S5,동원·사조 RAS 시스템 — 부유식 순환여과양식 시험 운영,60,95,55,100,77.5,B
-components/TunaJapan2050Insights.tsx,116,S4,일본 사시미 수요 절벽 — 2050년 1/3 토막,60,95,55,100,77.5,B
-components/TunaJapan2050Insights.tsx,199,S4,1인당 사시미 소비 감마곡선 — 2050년 27%,60,95,55,100,77.5,B
-components/TunaJapan2050Insights.tsx,280,S4,3개 세그먼트 차등 감소 — 캔만 견뎠다,60,95,55,100,77.5,B
-components/TunaJapan2050Insights.tsx,363,S1,일본 2022 공급 구조 — 연승·원어수입이 절반,60,95,55,100,77.5,B
-components/TunaJapan2050Insights.tsx,447,S4,사시미 3-Tier 가격 매트릭스 — 14배 격차,60,95,55,100,77.5,B
-components/TunaJapan2050Insights.tsx,530,S5,코호트 × 인구 더블 쇼크 — 자연 회복 불가,60,95,55,100,77.5,B
-components/TunaKfasResearch.tsx,50,S5,참치 부산물 → 고부가 바이오 소재 전환 파이프라인,60,95,55,100,77.5,B
-components/TunaKfasResearch.tsx,98,S1,한국 원양 다랑어 연승어업 60년 구조 변동,60,75,55,100,72.5,C
-components/TunaKfasResearch.tsx,147,S5,인도양 다랑어어업 생태계 위험도 레이더,90,75,55,100,80.0,B
-components/TunaKfasResearch.tsx,195,S4,눈다랑어 고령친화식품 & 기능성 신시장,60,75,55,100,72.5,C
-components/TunaKmiFtaBluefinInsights.tsx,48,S4,참다랑어 수입 V자 반등 (FTA 5년),90,95,55,100,85.0,A
-components/TunaKmiFtaBluefinInsights.tsx,145,S4,공급국 지각변동 — EU → 튀르키예·모로코,60,75,55,100,72.5,C
-components/TunaKmiFtaBluefinInsights.tsx,238,S4,2026 Q1 시그널 — 프랑스 폭증·국내 양식 발진,60,95,55,100,77.5,B
-components/TunaKoreaOrigins.tsx,52,S3,한국의 양식 참다랑어 수입 출처,90,60,80,100,82.5,B
-components/TunaKoreaPosition.tsx,35,S3,한국의 양식 참다랑어 수입 경쟁력,90,60,80,100,82.5,B
-components/TunaMofFisheryWidget.tsx,46,S3,냉동 눈다랑어(Bigeye) 위탁판매 현황 (2026),60,60,70,90,70.0,C
-components/TunaMofFisheryWidget.tsx,104,S3,참치 수출입 무역수지 추이,90,60,70,90,77.5,B
-components/TunaMofFisheryWidget.tsx,162,S3,해상운임 물류비 트래커,90,60,70,90,77.5,B
-components/TunaNewInsightsA.tsx,39,S2,나우루 스위치 — 중국 캐너리 온쇼어링,90,70,55,100,78.8,B
-components/TunaNewInsightsA.tsx,89,S1,인도양 공급 붕괴 — 라스트 리조트의 임계점,60,95,55,100,77.5,B
-components/TunaNewInsightsA.tsx,148,S5,EU -18℃ 규제 무기화 — €200M 가격 갭,60,95,55,100,77.5,B
-components/TunaNewInsightsB.tsx,37,S5,가다랑어(Skipjack) 액젓 분말화 (2026),60,95,55,100,77.5,B
-components/TunaNewInsightsB.tsx,87,S4,OECD Pillar Two 세금 쇼크 (황다랑어 밸류체인),90,95,55,100,85.0,A
-components/TunaNewInsightsB.tsx,135,S2,베트남 OEM 역전 — 황다랑어 가공 생태계 장악,60,95,55,100,77.5,B
-components/TunaOriginPriceTrend.tsx,48,S1,참치 산지 단가 추이,90,95,55,100,85.0,A
-components/TunaOriginPriceTrendLive.tsx,49,S1,참치 산지 단가 추이 (Live),90,95,80,100,91.2,A
-components/TunaPeptideEfficacy.tsx,29,S5,W14. 저분자 펩타이드 생리활성 검증,60,95,55,100,77.5,B
-components/TunaPetCareMargin.tsx,70,S2,부산물 업사이클링: 프리미엄 펫케어,60,70,55,100,71.2,C
-components/TunaPngHubStrategy.tsx,26,S2,N1. 태평양 가공 허브 (PNG) vs 국내 조달 원가율 비교,60,95,80,100,83.8,B
-components/TunaPolicyRiskRadar.tsx,71,S5,글로벌 통상정책 충격 스코어카드,60,60,80,100,75.0,B
-components/TunaPolicyRiskRadar.tsx,130,S3,FTA 관세 차익 최적화 매트릭스,90,60,95,100,86.2,A
-components/TunaPrecisionFishing.tsx,34,S1,AI 기반 스마트 정밀 조업,60,70,55,100,71.2,C
-components/TunaPriceDecoupling.tsx,39,S4,원가 vs 소매가: 강한 디커플링,60,70,55,100,71.2,C
-components/TunaProcessingYield.tsx,58,S2,참치 가공 수율 비교,90,95,55,100,85.0,A
-components/TunaSdgCircular.tsx,55,S5,W-NEW. 순환경제 SDG 기여도 대시보드,60,40,80,100,70.0,C
-components/TunaSpeciesComposition.tsx,64,S1,참치 어종 구성비,90,95,55,100,85.0,A
-components/TunaSupplierHub.tsx,129,S2,글로벌 참치 공급업체 발굴 허브,60,60,70,90,70.0,C
-components/TunaTacMonitor.tsx,88,S5,W-NEW. 글로벌 TAC 쿼터 소진율 & 원료 가격 전망,90,75,80,100,86.2,A
-components/TunaTradeIntelWidgets.tsx,49,S3,WITS 수입 관세율 벤치마크,90,60,70,90,77.5,B
-components/TunaTradeIntelWidgets.tsx,107,S3,OEC 글로벌 참치 가공 허브 단가 비교,60,60,70,90,70.0,C
-components/TunaTradeIntelWidgets.tsx,184,S3,한국 황다랑어 수출입 추이 (WITS),90,60,70,90,77.5,B
-components/TunaUpcyclingWidgets.tsx,32,S5,참치 부산물 업사이클링 기회 분석,60,75,55,100,72.5,C
-components/TunaUpcyclingWidgets.tsx,94,S5,바이오 업사이클 마진 매트릭스,60,75,55,100,72.5,C
-components/UsPolicyImpactWidget.tsx,30,S5,UFLPA 발효 후 동남아·중국 가공국 수출 추이,60,60,70,90,70.0,C
-components/UsPollockDetourWidget.tsx,30,S3,러시아산 명태 우회 무역 추이,60,60,70,80,67.5,C
-components/UsTunaImportWidget.tsx,38,S4,미국 참치캔 수입 추이 및 단가,60,60,70,80,67.5,C
-components/UsTunaMarketShareWidget.tsx,30,S3,미국 참치캔 공급국 점유율,60,60,70,80,67.5,C
+file,line,pillar,title,axis1_source,axis2_freshness,axis3_verify,axis4_completeness,avg,grade,dynamic
+components/FfaEnsoCatchCorrelation.tsx,181,S1,ENSO × 어획량 상관 분석,95,75,55,100,81.2,B,
+components/FfaGlobalProcessingCapacity.tsx,65,S2,글로벌 가공 캐파 모니터,50,70,55,65,60.0,D,
+components/FfaStockHealthGauge.tsx,343,S1,자원 건강도 게이지,95,70,55,100,80.0,B,
+components/FfaSupplyConcentrationRisk.tsx,127,S1,공급 집중도 리스크,95,70,55,100,80.0,B,
+components/FfaVdsMarketIndicator.tsx,114,S1,VDS 시장 인디케이터,95,75,55,100,81.2,B,
+components/FfaWcpoSupplyDashboard.tsx,275,S1,WCPO 수급 대시보드,95,70,55,100,80.0,B,
+components/PacificEezStrategicWidget.tsx,122,S1,태평양 도서국(PNA) 배타적 경제수역(EEZ) 포트폴리오,95,95,55,100,86.2,A,
+components/PetFoodDashboard.tsx,113,S4,시장 진입 시나리오 예측기 (Phase 3),65,95,55,100,78.8,B,
+components/PetFoodDashboard.tsx,149,S1,오징어(Illex) 어획 부진 및 원가 리스크 맵,65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,178,S2,식물성 믹스 원가 방어율 예측기,80,95,80,100,88.8,A,
+components/PetFoodDashboard.tsx,206,S5,클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API,65,70,95,100,82.5,B,
+components/PetFoodDashboard.tsx,232,S3,한국 펫푸드 무역수지 추이 (달러),65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,259,S4,수출 단가 국가별 격차 ($/kg),65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,285,S4,펫푸드 내 원자재 구성비 해부 (%),65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,307,S4,글로벌 참치 펫푸드 밸류업 마진 비교 (%),80,95,80,100,88.8,A,
+components/PetFoodDashboard.tsx,333,S4,단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API,65,70,95,100,82.5,B,
+components/PetFoodDashboard.tsx,359,S4,대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API,65,70,95,100,82.5,B,
+components/PetFoodDashboard.tsx,387,S4,[동적]d_kfas_w05.title,65,95,80,100,85.0,DYN,Y
+components/PetFoodDashboard.tsx,413,S1,RFMO 쿼터 축소 → 원물 공급 리스크,65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,445,S1,기후변화 → 참치 서식지 이동 전망 (2050/2100),65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,481,S2,틸라피아 껍질 업사이클링 수익성 🟢 Live API,65,70,95,100,82.5,B,
+components/PetFoodDashboard.tsx,507,S4,주요 기업 매출 및 이익률 비교 (억 원),65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,533,S4,펫푸드 원자재 및 환율 민감도 분석 (%),65,95,55,100,78.8,B,
+components/PetFoodDashboard.tsx,559,S3,i-Tail 글로벌 ODM 매출 및 이익률 구조 (%),65,95,80,100,85.0,A,
+components/PetFoodDashboard.tsx,593,S4,오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API,65,70,95,100,82.5,B,
+components/PetFoodDashboard.tsx,621,S4,하림펫푸드 매출 및 수직계열화 이익 성장 (억 원),80,95,80,100,88.8,A,
+components/PetFoodDashboard.tsx,649,S4,카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API,65,70,95,100,82.5,B,
+components/PetFoodDashboard.tsx,675,S3,태국 휴먼그레이드 참치 수출 및 펫푸드 지수,80,95,80,100,88.8,A,
+components/PetFoodDashboard.tsx,701,S2,[동적]d_kfas_w02.title,65,95,80,100,85.0,DYN,Y
+components/PetFoodDashboard.tsx,728,S2,[동적]d_kfas_w04.title,65,95,80,100,85.0,DYN,Y
+components/TunaAquaHegemony.tsx,39,S1,양식 참다랑어 생산 패권,95,55,80,100,82.5,B,
+components/TunaAtuna8YPrice.tsx,166,S4,Atuna 가다랑어 8년 가격 (월별),65,95,80,100,85.0,A,
+components/TunaAtunaMayNews.tsx,14,S1,IO 선망선단 퍼펙트 스톰,65,95,95,100,88.8,A,
+components/TunaAtunaMayNews.tsx,38,S4,방콕 원어가 하락과 미국 통제력,95,95,95,100,96.2,A,
+components/TunaAtunaMayNews.tsx,72,S1,EPO 어획 급감 및 미 파우치 지각변동,65,95,95,100,88.8,A,
+components/TunaAtunaMayNews.tsx,95,S3,EU CATCH 물류 병목 현실화,80,95,95,100,92.5,A,
+components/TunaBioUpcyclingGap.tsx,33,S5,W13. 수산 부산물 업사이클링 격차,65,40,80,100,71.2,C,
+components/TunaCannedMarketShare.tsx,58,S4,참치 통조림 시장점유,65,95,55,100,78.8,B,
+components/TunaCatchBySpeciesLive.tsx,33,S1,참치 어종별 글로벌 어획량 추이 (Live),95,95,80,100,92.5,A,
+components/TunaCatchVolumeTrend.tsx,48,S1,참치 어획량 추이,95,95,55,100,86.2,A,
+components/TunaColdChainCostGap.tsx,49,S3,콜드체인 운송비 격차,80,95,55,100,82.5,B,
+components/TunaComplianceRadar.tsx,121,S5,컴플라이언스 레이더 — 제재 스크리닝,65,55,55,70,61.2,D,
+components/TunaCrossroads.tsx,30,S1,글로벌 참다랑어 생산량 크로스로드 (Catch vs Farmed),65,55,80,100,75.0,B,
+components/TunaEmergingMarkets.tsx,33,S4,글로벌 사우스 참치 시장 기회 레이더,65,55,80,100,75.0,B,
+components/TunaEsgRiskRadar.tsx,40,S5,인도네시아 참치 ESG 리스크 모니터링,95,95,55,100,86.2,A,
+components/TunaExportShare.tsx,45,S4,양식 참다랑어 글로벌 수출 점유율,95,55,80,100,82.5,B,
+components/TunaExtractDashboard.tsx,223,S1,제로 코스트의 마법: 자숙액 부가가치,65,55,55,100,68.8,C,
+components/TunaExtractDashboard.tsx,263,S1,인도양 소형 다랑어 쿼터 압박 경고,80,95,95,100,92.5,A,
+components/TunaExtractDashboard.tsx,309,S2,[신규] 환율 기반 원가 방어 시뮬레이터,65,95,95,100,88.8,A,
+components/TunaExtractDashboard.tsx,406,S2,통합 수산과학 실증 연구 (K01~K08),65,55,80,100,75.0,B,
+components/TunaExtractDashboard.tsx,526,S3,SCFI 기반 운임 3개월 지연(Lagging) 반영,65,95,95,100,88.8,A,
+components/TunaExtractDashboard.tsx,562,S3,인도/베트남 소싱 다변화 효율성,65,95,95,100,88.8,A,
+components/TunaExtractDashboard.tsx,605,S4,간장 대체 소비자 선호도 (2026 최신),80,95,95,100,92.5,A,
+components/TunaExtractDashboard.tsx,645,S4,대체 액젓류 역상관관계 교차 분석,65,95,95,100,88.8,A,
+components/TunaExtractDashboard.tsx,690,S5,글로벌 히스타민 규제 리스크 맵,65,95,95,100,88.8,A,
+components/TunaForecastWidgets.tsx,29,S1,가다랑어 방콕 산지가격 실측 + 단기 시나리오,95,55,95,100,86.2,A,
+components/TunaForecastWidgets.tsx,117,S1,ENSO-어획량 상관관계 분석기,80,55,95,100,82.5,B,
+components/TunaForecastWidgets.tsx,173,S3,환율-착지원가 민감도 분석,95,55,95,100,86.2,A,
+components/TunaGlobalHalalStrategy.tsx,25,S4,N2. K-피시소스 글로벌 할랄 침투 포텐셜,65,95,80,100,85.0,A,
+components/TunaHSClassifier.tsx,121,S3,HS 자동분류 (HS Ping),65,55,55,70,61.2,D,
+components/TunaImportBlackhole.tsx,36,S4,참다랑어 양식 블랙홀 수입국 분석,95,55,80,100,82.5,B,
+components/TunaInsightsDashboard.tsx,141,S4,Insight 1. 참치 차익거래 마진 레이더,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,182,S2,Insight 2. 가공 허브 패권 지도,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,224,S4,Insight 3. 신흥 소비 블랙홀 마켓,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,268,S1,Insight 4. 어장 제로섬 역학 뷰어,95,55,55,100,76.2,B,
+components/TunaInsightsDashboard.tsx,319,S1,Insight 5. 대체 수산물 헷징 매트릭스,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,364,S4,Insight 7. 양식 vs 어획 패러다임 역전,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,405,S4,Insight 8. 최고가 미식 소비 국가 맵,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,455,S1,Insight 9. 공급 독과점 HHI 지수 경보,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,495,S1,Insight 10. 기후 쇼크 타임머신,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,540,S2,Insight 11. 정밀 조업(Precision Fishing) 패러다임 전환,65,55,55,100,68.8,C,
+components/TunaInsightsDashboard.tsx,582,S3,Insight 12. 관세 회피(Tariff Hopping) 밸류체인 진화,80,55,55,100,72.5,C,
+components/TunaInsightsDashboard.tsx,625,S5,Insight 13. 지속가능성(MSC) 더블 프리미엄,80,55,55,100,72.5,C,
+components/TunaInsightsDashboard.tsx,669,S5,Insight 15. 펫케어/해양 콜라겐 업사이클링,65,55,55,100,68.8,C,
+components/TunaIntelInsightsB4.tsx,35,S1,태국 가공 허브 1Q26 원어 수입 — 인도양 대체 확대,80,95,80,100,88.8,A,
+components/TunaIntelInsightsB4.tsx,110,S2,Frime SA 인수 — 스페인 최대 황다랑어 가공사 소유권 변경,80,95,80,100,88.8,A,
+components/TunaIntelInsightsB4.tsx,183,S1,퍼펙트 스톰 — 호르무즈 + WCPO + 가공업체 저항,65,95,80,100,85.0,A,
+components/TunaIntelInsightsB4.tsx,244,S5,동원·사조 RAS 시스템 — 부유식 순환여과양식 시험 운영,80,95,55,100,82.5,B,
+components/TunaJapan2050Insights.tsx,116,S4,일본 사시미 수요 절벽 — 2050년 1/3 토막,65,95,55,100,78.8,B,
+components/TunaJapan2050Insights.tsx,199,S4,1인당 사시미 소비 감마곡선 — 2050년 27%,65,95,55,100,78.8,B,
+components/TunaJapan2050Insights.tsx,280,S4,3개 세그먼트 차등 감소 — 캔만 견뎠다,65,95,55,100,78.8,B,
+components/TunaJapan2050Insights.tsx,363,S1,일본 2022 공급 구조 — 연승·원어수입이 절반,65,95,55,100,78.8,B,
+components/TunaJapan2050Insights.tsx,447,S4,사시미 3-Tier 가격 매트릭스 — 14배 격차,65,95,55,100,78.8,B,
+components/TunaJapan2050Insights.tsx,530,S5,코호트 × 인구 더블 쇼크 — 자연 회복 불가,65,95,55,100,78.8,B,
+components/TunaKfasResearch.tsx,50,S5,참치 부산물 → 고부가 바이오 소재 전환 파이프라인,65,95,55,100,78.8,B,
+components/TunaKfasResearch.tsx,98,S1,한국 원양 다랑어 연승어업 60년 구조 변동,65,75,55,100,73.8,C,
+components/TunaKfasResearch.tsx,147,S5,인도양 다랑어어업 생태계 위험도 레이더,65,75,55,100,73.8,C,
+components/TunaKfasResearch.tsx,195,S4,눈다랑어 고령친화식품 & 기능성 신시장,65,75,55,100,73.8,C,
+components/TunaKmiFtaBluefinInsights.tsx,48,S4,참다랑어 수입 V자 반등 (FTA 5년),80,95,55,100,82.5,B,
+components/TunaKmiFtaBluefinInsights.tsx,145,S4,공급국 지각변동 — EU → 튀르키예·모로코,65,75,55,100,73.8,C,
+components/TunaKmiFtaBluefinInsights.tsx,238,S4,2026 Q1 시그널 — 프랑스 폭증·국내 양식 발진,65,95,55,100,78.8,B,
+components/TunaKoreaOrigins.tsx,52,S3,한국의 양식 참다랑어 수입 출처,95,55,80,100,82.5,B,
+components/TunaKoreaPosition.tsx,35,S3,한국의 양식 참다랑어 수입 경쟁력,95,55,80,100,82.5,B,
+components/TunaMofFisheryWidget.tsx,46,S3,냉동 눈다랑어(Bigeye) 위탁판매 현황 (2026),80,55,55,70,65.0,C,
+components/TunaMofFisheryWidget.tsx,104,S3,참치 수출입 무역수지 추이,95,55,55,70,68.8,C,
+components/TunaMofFisheryWidget.tsx,162,S3,해상운임 물류비 트래커,80,55,55,70,65.0,C,
+components/TunaNewInsightsA.tsx,39,S2,나우루 스위치 — 중국 캐너리 온쇼어링,95,95,55,100,86.2,A,
+components/TunaNewInsightsA.tsx,89,S1,인도양 공급 붕괴 — 라스트 리조트의 임계점,80,95,55,100,82.5,B,
+components/TunaNewInsightsA.tsx,148,S5,EU -18℃ 규제 무기화 — €200M 가격 갭,65,95,55,100,78.8,B,
+components/TunaNewInsightsB.tsx,37,S5,가다랑어(Skipjack) 액젓 분말화 (2026),65,95,55,100,78.8,B,
+components/TunaNewInsightsB.tsx,87,S4,OECD Pillar Two 세금 쇼크 (황다랑어 밸류체인),80,95,55,100,82.5,B,
+components/TunaNewInsightsB.tsx,135,S2,베트남 OEM 역전 — 황다랑어 가공 생태계 장악,65,95,55,100,78.8,B,
+components/TunaOriginPriceTrend.tsx,48,S1,참치 산지 단가 추이,95,95,55,100,86.2,A,
+components/TunaOriginPriceTrendLive.tsx,49,S1,참치 산지 단가 추이 (Live),95,95,80,100,92.5,A,
+components/TunaPeptideEfficacy.tsx,29,S5,W14. 저분자 펩타이드 생리활성 검증,65,95,55,100,78.8,B,
+components/TunaPetCareMargin.tsx,70,S2,부산물 업사이클링: 프리미엄 펫케어,80,70,55,100,76.2,B,
+components/TunaPngHubStrategy.tsx,26,S2,N1. 태평양 가공 허브 (PNG) vs 국내 조달 원가율 비교,65,95,80,100,85.0,A,
+components/TunaPolicyRiskRadar.tsx,71,S5,글로벌 통상정책 충격 스코어카드,65,55,80,100,75.0,B,
+components/TunaPolicyRiskRadar.tsx,130,S3,FTA 관세 차익 최적화 매트릭스,80,55,95,100,82.5,B,
+components/TunaPrecisionFishing.tsx,34,S1,AI 기반 스마트 정밀 조업,65,70,55,100,72.5,C,
+components/TunaPriceDecoupling.tsx,39,S4,원가 vs 소매가: 강한 디커플링,65,70,55,100,72.5,C,
+components/TunaProcessingYield.tsx,58,S2,참치 가공 수율 비교,80,95,55,100,82.5,B,
+components/TunaRFMOLibrarian.tsx,127,,[동적]w.title,50,55,70,25,50.0,DYN,Y
+components/TunaSdgCircular.tsx,55,S5,W-NEW. 순환경제 SDG 기여도 대시보드,65,40,80,100,71.2,C,
+components/TunaSpeciesComposition.tsx,64,S1,참치 어종 구성비,95,95,55,100,86.2,A,
+components/TunaSupplierHub.tsx,130,S2,글로벌 참치 공급업체 발굴 허브,65,55,55,70,61.2,D,
+components/TunaTacMonitor.tsx,88,S5,W-NEW. 글로벌 TAC 쿼터 소진율 & 원료 가격 전망,95,95,80,100,92.5,A,
+components/TunaTradeIntelWidgets.tsx,49,S3,WITS 수입 관세율 벤치마크,95,55,55,70,68.8,C,
+components/TunaTradeIntelWidgets.tsx,107,S3,OEC 글로벌 참치 가공 허브 단가 비교,80,55,55,70,65.0,C,
+components/TunaTradeIntelWidgets.tsx,184,S3,한국 황다랑어 수출입 추이 (WITS),95,55,55,70,68.8,C,
+components/TunaUpcyclingWidgets.tsx,32,S5,참치 부산물 업사이클링 기회 분석,65,75,55,100,73.8,C,
+components/TunaUpcyclingWidgets.tsx,94,S5,바이오 업사이클 마진 매트릭스,65,75,55,100,73.8,C,
+components/TunaUsLoinImports.tsx,25,S3,미국의 전가열 참치 로인(Loin) 수입 추이 및 관세 영향,80,95,80,100,88.8,A,
+components/TunaUsdaKoreaSeafood.tsx,101,,[동적]w.title,50,55,70,25,50.0,DYN,Y
+components/UsPolicyImpactWidget.tsx,30,S5,UFLPA 발효 후 동남아·중국 가공국 수출 추이,95,55,55,70,68.8,C,
+components/UsPollockDetourWidget.tsx,30,S3,러시아산 명태 우회 무역 추이,50,55,55,35,48.8,D,
+components/UsTunaImportWidget.tsx,38,S4,미국 참치캔 수입 추이 및 단가,50,55,55,35,48.8,D,
+components/UsTunaMarketShareWidget.tsx,30,S3,미국 참치캔 공급국 점유율,50,55,55,35,48.8,D,

@@ -190,12 +190,13 @@ export async function GET() {
       syncDate: `${new Date().getFullYear()}.${String(new Date().getMonth() + 1).padStart(2,'0')}.${String(new Date().getDate()).padStart(2,'0')} 기준`
     },
     kpi_market_share: {
-      title: '글로벌 캔 참치 무역 점유율 (한국 vs 태국)',
-      value: '3.2% / 29.7%',
-      trend: '▲ 0.4%p',
-      desc: '에콰도르·중국 추격 심화 · 출처: UN Comtrade, 2024년 잠정치',
-      telemetry: 'static',
-      syncDate: '2024년 잠정치'
+      title: '글로벌 캔 참치 수출 점유율 (한국 vs 태국)',
+      value: '0.3% / 29.0%',
+      trend: '태국 1위 유지',
+      desc: 'HS 160414 수출액 기준(전 보고국 합 $8.6B, Comtrade 총계행) · 태국 29.0% 1위, 에콰도르 16.3%·중국 12.2%·스페인 9.2% · 한국은 0.3%(캔 수출 미미) · 출처: UN Comtrade 2024 via agri_data',
+      telemetry: 'synced',
+      syncDate: '2026-06-06',
+      isLive: false
     }
   };
 

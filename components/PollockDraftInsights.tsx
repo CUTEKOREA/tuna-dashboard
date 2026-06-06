@@ -124,8 +124,7 @@ export default function PollockDraftInsights() {
         cardDesc="국산 원양/연근해산 고갈 현상 및 100%에 달하는 수입 의존도 교차점 투영"
         termTooltip={{ term: "Self-Sufficiency vs Import", description: "국산 원양/연근해산 고갈 현상 및 100%에 달하는 수입 의존도 교차점 투영" }}
         chart={
-<ComposedChart data={koreaCrisis.filter(d=>
-  <ChartPatternDefs />d.year>=1990)} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
+<ComposedChart data={koreaCrisis.filter(d=> d.year>=1990)} margin={{ top: 20, right: 30, left: 10, bottom: 5 }}>
   <ChartPatternDefs />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                 <XAxis dataKey="year" stroke="#94a3b8" />

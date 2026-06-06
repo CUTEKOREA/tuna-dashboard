@@ -39,20 +39,23 @@
 - **[aT/축평원]** `katRealTime2` (실시간 경매정보), `grade` (축산물경락가격)
 - 조회 형식: XML/JSON, 인증: API Key (ServiceKey)
 
-### 🌐 해외 경제/금융 API
+### 🌐 금융 / 증권 / 경제 API
 
 | # | API 이름 | 환경변수 | 용도 | 상태 |
 |:-:|:---------|:---------|:-----|:----:|
-| 5 | **FRED** — Federal Reserve | `FRED_API_KEY` | 미국 경제지표 (금리, CPI, 환율) | ✅ 활성 |
-| 6 | **한국은행 ECOS** | `ECOS_API_KEY` | 한국 경제통계 (환율, 금리, GDP) | ✅ 활성 |
+| 6 | **FRED** — Federal Reserve | `FRED_API_KEY` | 미국 경제지표 (금리, CPI, 환율) | ✅ 활성 |
+| 7 | **한국은행 ECOS** | `ECOS_API_KEY` | 한국 경제통계 (환율, 금리, GDP) | ✅ 활성 |
+| 8 | **한국투자증권 (KIS)** | `KIS_APPKEY` / `KIS_API_KEY` | 국내/해외 주식 및 지수 시세 조회 | ✅ 활성 |
+
+**한국투자증권 API AppKey (`KIS_APPKEY` / `KIS_API_KEY`):** `PSwAxk872rHNPUPSVAm0Uci7SP1u5AztjI0g`
 
 ### 🤖 AI / 인프라
 
 | # | API 이름 | 환경변수 | 용도 | 상태 |
 |:-:|:---------|:---------|:-----|:----:|
-| 7 | **Gemini API** | `GEMINI_API_KEY` | AI 분석/요약 엔진 | ✅ 활성 |
-| 8 | **Supabase** | `NEXT_PUBLIC_SUPABASE_*` | 데이터베이스/인증 | ✅ 활성 |
-| 9 | **GitHub PAT** | `GITHUB_PAT` | CI/CD, 레포 접근 | ✅ 활성 |
+| 9 | **Gemini API** | `GEMINI_API_KEY` | AI 분석/요약 엔진 | ✅ 활성 |
+| 10 | **Supabase** | `NEXT_PUBLIC_SUPABASE_*` | 데이터베이스/인증 | ✅ 활성 |
+| 11 | **GitHub PAT** | `GITHUB_PAT` | CI/CD, 레포 접근 | ✅ 활성 |
 
 ---
 
@@ -443,7 +446,7 @@ ITA_API_KEY="your_key_here"
 | 카테고리 | 등록 완료 | 신규 추가 | 합계 |
 |:---------|:--------:|:--------:|:----:|
 | 🇰🇷 한국 공공 API | 4 | 0 | 4 |
-| 🌐 경제/금융 API | 2 | 0 | 2 |
+| 🌐 경제/금융 API | 3 | 0 | 3 |
 | 🤖 AI/인프라 | 3 | 0 | 3 |
 | 📊 글로벌 무역 인텔리전스 | 0 | **9** | 9 |
 | 🐟 명태 전용 인텔리전스 | 0 | **4** | 4 |
@@ -451,7 +454,7 @@ ITA_API_KEY="your_key_here"
 | 🏢 바이어/공급업체 | 0 | **3** | 3 |
 | 🛡️ 제재/컴플라이언스 | 0 | **2** | 2 |
 | 🏛️ 국정연 정책연구 기반 | 0 | **4** | 4 |
-| **합계** | **9** | **24** | **33** |
+| **합계** | **10** | **24** | **34** |
 
 ---
 

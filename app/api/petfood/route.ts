@@ -52,13 +52,21 @@ export async function GET() {
     data.d_w10.push({ year: "2024", exports: 16500, imports: 32200, deficit: -15700 });
   }
 
-  // 2. W12 수입원 의존도 최신화 (KCS 연동)
-  data.d_w12 = [
-    { country: "중국", value: 10020 },
-    { country: "미국", value: 5010 },
-    { country: "태국", value: 4230 },
-    { country: "캐나다", value: 3100 }
-  ];
+  // 2. W12 수입원 의존도 — agri_data 관세청 nitemtrade(2026.03-04 누적, HS6 필터) SYNCED.
+  //    생성기: scripts/agri_to_dashboard/agri_convert.py → public/data/agri/petfood_customs.json
+  try {
+    const pfCustoms = JSON.parse(
+      fs.readFileSync(path.join(process.cwd(), 'public/data/agri/petfood_customs.json'), 'utf8')
+    );
+    if (pfCustoms?.d_w12?.length) data.d_w12 = pfCustoms.d_w12;
+  } catch (e) {
+    data.d_w12 = [
+      { country: "중국", value: 26650, share: 26.3 },
+      { country: "미국", value: 17663, share: 17.4 },
+      { country: "태국", value: 9590, share: 9.5 },
+      { country: "호주", value: 5430, share: 5.4 },
+    ];
+  }
 
   // 3. W14 태국 내 한국산 약진 데이터 오버라이트
   data.d_w14 = [

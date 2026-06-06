@@ -1,27 +1,37 @@
 [
   {
-    "country": "중국 (가공 블랙홀)",
-    "volume": 950000,
+    "country": "독일",
+    "volume": 349106,
     "color": "#f87171"
   },
   {
-    "country": "대한민국 (소비/가공)",
-    "volume": 320000,
-    "color": "#60a5fa"
+    "country": "일본",
+    "volume": 133446,
+    "color": "#a78bfa"
   },
   {
-    "country": "독일 (EU 진입로)",
-    "volume": 180000,
+    "country": "프랑스",
+    "volume": 109657,
     "color": "#fbbf24"
   },
   {
-    "country": "네덜란드",
-    "volume": 120000,
+    "country": "미국",
+    "volume": 75779,
+    "color": "#fb923c"
+  },
+  {
+    "country": "대한민국",
+    "volume": 70160,
+    "color": "#60a5fa"
+  },
+  {
+    "country": "중국",
+    "volume": 66020,
     "color": "#34d399"
   },
   {
-    "country": "일본",
-    "volume": 95000,
-    "color": "#a78bfa"
+    "country": "폴란드",
+    "volume": 58998,
+    "color": "#94a3b8"
   }
 ]

@@ -19,15 +19,18 @@ const COUNTRY_CODES: Record<string, string> = {
   'Russia': '643', 'FaroeIslands': '234',
 };
 
-// Fallback 데이터 — 2023년 기준 UN Comtrade 실측치 기반
+// Fallback (수출) — agri_data UN Comtrade 2025 SYNCED (전체 연어 HS, 생산국 기준).
+//   재수출 허브(스웨덴·폴란드·네덜란드·덴마크 = 노르웨이 연어 환적) 제외 → 생산국 수출력만.
+//   생성: scripts/agri_to_dashboard/agri_convert.py top_reporters('salmon','Export') · motCode=0.
+//   단위 백만USD. (기존 2023 폴백과 3% 내 일치, 2025 갱신)
 const FALLBACK_EXPORT_RANKING = [
-  { name: '노르웨이', value: 11500, year: '2023', hs: '030214' },
-  { name: '칠레', value: 6200, year: '2023', hs: '030214' },
-  { name: '영국', value: 1100, year: '2023', hs: '030214' },
-  { name: '캐나다', value: 950, year: '2023', hs: '030214' },
-  { name: '페로제도', value: 650, year: '2023', hs: '030214' },
-  { name: '아이슬란드', value: 420, year: '2023', hs: '030214' },
-  { name: '호주', value: 380, year: '2023', hs: '030214' },
+  { name: '노르웨이', value: 11833, year: '2025', hs: 'salmon' },
+  { name: '칠레', value: 6058, year: '2025', hs: 'salmon' },
+  { name: '영국', value: 1233, year: '2025', hs: 'salmon' },
+  { name: '미국', value: 1097, year: '2025', hs: 'salmon' },
+  { name: '페로제도', value: 917, year: '2025', hs: 'salmon' },
+  { name: '캐나다', value: 823, year: '2025', hs: 'salmon' },
+  { name: '아이슬란드', value: 344, year: '2025', hs: 'salmon' },
 ];
 
 const FALLBACK_IMPORT_RANKING = [

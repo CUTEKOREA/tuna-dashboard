@@ -116,9 +116,9 @@ export const carbonFootprintData = [
 
 // W11 그래스피드·유기농 프리미엄 (USDA AMS Retail + Nielsen 2023 평균 소매가, USD/kg)
 export const premiumData = [
-  { segment: '관행 (Conventional)', price: 18.5, share: 76 },
-  { segment: '그래스피드 (Grass-fed)', price: 28.4, share: 12 },
-  { segment: '유기농 (USDA Organic)', price: 32.1, share: 7 },
+  { segment: '관행', price: 18.5, share: 76 },
+  { segment: '그래스피드', price: 28.4, share: 12 },
+  { segment: '유기농', price: 32.1, share: 7 },
   { segment: '유기농+그래스피드', price: 38.7, share: 3 },
   { segment: '와규/한우 프리미엄', price: 56.2, share: 2 },
 ];

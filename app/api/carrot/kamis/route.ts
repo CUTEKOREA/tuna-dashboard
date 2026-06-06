@@ -1,34 +1,33 @@
 import { NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 export const revalidate = 3600;
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const period = searchParams.get('period') || '1y';
+// 당근 국내 도매가 — agri_data 월간 파이프라인 SYNCED.
+// 데이터: public/data/agri/carrot_kamis.json
+//   (KAMIS periodProductList item 258/cls02 도매·무세척 1kg, 단위 원/kg)
+//   생성기: scripts/agri_to_dashboard/agri_convert.py — 매월 agri_data 갱신 후 재실행.
+// 룰북 L-09/L-12: 정적 SYNCED 데이터이므로 isLive:false.
 
+const FALLBACK = {
+  isLive: false,
+  status: 'SYNCED',
+  syncDate: null as string | null,
+  commodity: '당근',
+  market: 'KAMIS 도매',
+  unit: '원/kg',
+  currentPrice: 1580,
+  historicalTrends: [] as { date: string; price: number }[],
+};
+
+export async function GET() {
   try {
-    // Simulated KAMIS Price Data 
-    // In production, fetch from: http://www.kamis.or.kr/service/price/xml.do?action=periodProductList&p_cert_key=f3557f2e-fe2e-4609-9fc7-b01492beb192...
-    
-    const response = {
-      timestamp: new Date().toISOString(),
-      commodity: "Carrot (당근)",
-      market: "Garak Wholesale (가락도매)",
-      unit: "20kg",
-      currentPrice: 76000,
-      historicalTrends: [
-        { date: "2026-05-01", price: 74000 },
-        { date: "2026-05-02", price: 75500 },
-        { date: "2026-05-03", price: 78000 },
-        { date: "2026-05-04", price: 76000 },
-      ],
-      apiStatus: {
-        KAMIS: "active"
-      }
-    };
-    
-    return NextResponse.json(response);
+    const file = path.join(process.cwd(), 'public', 'data', 'agri', 'carrot_kamis.json');
+    const raw = await fs.readFile(file, 'utf-8');
+    return NextResponse.json(JSON.parse(raw));
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch KAMIS data" }, { status: 500 });
+    console.error('carrot/kamis agri_data read failed:', error);
+    return NextResponse.json(FALLBACK);
   }
 }

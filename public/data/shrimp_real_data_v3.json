@@ -1824,7 +1824,7 @@
     {
       "id": "w15",
       "title": "종자 패러다임 전환: 타이거새우 vs 흰다리새우 생산 곡선",
-      "subtitle": "위젯 설명: FAOSTAT FishStatJ · 주요 양식 새우 품종별 글로벌 생산량 시계열 교차 대조",
+      "subtitle": "위젯 설명: 품종별 생산 곡선은 패러다임 전환을 도식화한 자체 추정(illustrative) 예시 데이터이며, 초기 구간은 선형 보간값입니다. FAOSTAT 원자료의 품종 단위 직접 추출값이 아닙니다.",
       "chartType": "area",
       "data": [
         {
@@ -2004,7 +2004,7 @@
         }
       ],
       "yUnit": "Tonne",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · 품종(Species) 교차 필터링",
+      "source": "출처: 자체 추정(illustrative) — 품종 전환 패러다임 도식화용 예시 데이터. FAOSTAT 품종 단위 실측 시계열 미연동.",
       "reliability": 100,
       "xAxis": "Year",
       "series": [
@@ -2300,7 +2300,7 @@
     {
       "id": "w19_hyperspectral",
       "title": "초정밀 탈각 가공(Value-Add) 심화도별 글로벌 수출 단가 워터폴",
-      "subtitle": "위젯 설명: 단순 원물(HOSO) 대비 딥테크 가공(Breaded) 적용 시 톤당 수출 단가 2.1배(117%) 수직 상승",
+      "subtitle": "위젯 설명: 가공 심화도별 단가 4단계(4,500~9,800 USD/t)는 자체 추정(illustrative) 예시값 — 단순 원물(HOSO) 대비 딥테크 가공(Breaded) 시 약 2.1배 상승을 도식화. HS 단위 실측 단가 미연동.",
       "chartType": "Composed",
       "xKey": "가공형태",
       "bars": [
@@ -2328,11 +2328,11 @@
         }
       ],
       "logic": "FAOSTAT 2023 글로벌 수출 데이터 기준, HS Code 세부 품목별(냉동 통새우 vs 조제/보존 새우) 톤당 평균 수출 단가 역산 산출",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · HS Code 가공도별 교차 연산 [📡 LIVE API 연동: UN Comtrade API]",
+      "source": "출처: 자체 추정(illustrative) — 가공도별 단가 4,500~9,800 USD/t는 업계 통념 기반 예시값. UN Comtrade API 실시간 연동 아님(STATIC).",
       "yUnit": "USD",
       "reliability": 100,
       "unit": "USD",
-      "situation": "현황: 단순 블록(HOSO) 수출의 글로벌 평균 단가는 $4,500/t 수준에서 정체되어 있으나, 탈각(PTO) 및 브레딩(Breaded) 등 고부가 딥테크 가공을 거친 제품의 경우 $9,800/t으로 단가가 2.1배(117%) 급증하는 기적의 부가가치 워터폴(Value Waterfall) 구조가 고착화되었습니다.",
+      "situation": "현황(예시 데이터 기반): 단순 블록(HOSO) 단가를 약 $4,500/t으로 두면, 탈각(PTO)·브레딩(Breaded) 등 고부가 가공 단계로 갈수록 단가가 약 $9,800/t(약 2.1배)까지 상승하는 부가가치 단계 구조를 도식화한 것입니다. 4단계 단가는 자체 추정 예시값이며 실측 HS 단가가 아닙니다.",
       "takeaway": "전략: 동남아 원물을 벌크로 들여오는 구시대적 브로커리지는 중단하십시오. 현지 특A급 팩토리 라인을 '통임대(Tolling)'하여 1차 반가공 마진을 선취한 후, 최종 럭셔리 라스트마일(Premium Packaging) 코팅을 입히는 하이브리드 SCM을 완성해야 합니다.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -2370,7 +2370,7 @@
         }
       ],
       "logic": "글로벌 BFT(Biofloc Technology) 흰다리새우 실증 통제 실험 데이터 및 EUMOFA 양식장 생산성 지표 교차 연산",
-      "source": "출처: FAOSTAT Aquaculture Production · 글로벌 BFT 실증 데이터 [📡 LIVE API 연동: EUMOFA API]",
+      "source": "출처: 업계 추정 — FCR 1.93→1.09 개선폭은 바이오플락(BFT) 실증 사례 기반 자체 추정값(특정 1차 보고서 미특정). EUMOFA API 실시간 연동 아님(STATIC).",
       "yUnit": "Ratio",
       "reliability": 100,
       "unit": "Ratio",
@@ -2384,7 +2384,7 @@
     {
       "id": "w21_peeling_esg",
       "title": "ESG 리스크 발동: 인도·베트남 인건비 폭등 및 단가 역전",
-      "subtitle": "위젯 설명: 임금 구조적 상승과 글로벌 단가 하락이 맞물려 가공 벤더 파산 리스크 최고조 (지수 95 도달)",
+      "subtitle": "위젯 설명: 임금 상승·단가 하락을 결합한 자체 추정(illustrative) 리스크 지수. 95는 자체 산정 임계 예시값이며 외부 1차 지수가 아닙니다.",
       "chartType": "Composed",
       "xKey": "year",
       "bars": [
@@ -2430,7 +2430,7 @@
         }
       ],
       "logic": "World Bank 글로벌 인플레이션 지표 기반 주요 생산국(인도/베트남) 최저임금 인상률과 FAO 수출 단가 교차 연산 산출",
-      "source": "출처: FAOSTAT FishStatJ · World Bank Macro Data [📡 LIVE API 연동: World Bank API]",
+      "source": "출처: 자체 추정 — 리스크 지수(20→95)는 임금 추세·단가 하락을 결합한 자체 합성 지표이며 1차 실측 시계열이 아닙니다. World Bank API 실시간 연동 아님(STATIC).",
       "yUnit": "Index",
       "reliability": 100,
       "unit": "Index",
@@ -2489,10 +2489,10 @@
       ],
       "situation": "현황: 아시아 양식장의 '물량 밀어내기식' 초고밀도(Intensification) 사육은 수질 악화 및 질병 저항력 상실을 초래하여 평균 50%라는 '집약화의 데스밸리(Death Valley)'를 낳고 있습니다.",
       "takeaway": "전략: 초고가 어분(Fishmeal)을 대체하는 미세조류(Microalgae) 배합 사료로 자본을 집중해야 합니다. 수질 오염을 막는 바인더 젤 기술과 유전적 개량(SPF) 중심의 2세대 양식업 전환 벤더만 밸류체인에 남기십시오.",
-      "source": "출처: FAO Fisheries & Aquaculture Technical Paper 634 [📡 LIVE API 연동: FAOSTAT]",
+      "source": "출처: FAO Fisheries & Aquaculture Technical Paper 634(개념 인용) + 자체 추정 — 밀도별 폐사율(5~52%) 곡선 및 수익성 Index는 illustrative 합성값. FAOSTAT 실시간 연동 아님(STATIC).",
       "yUnit": "%",
       "reliability": 100,
-      "subtitle": "위젯 설명: FAO Aquaculture Technical Paper 실증 데이터: 사육 밀도(마리/m²) 증가에 따른 EMS(조기폐사증후군) 발병률 및 수질 악화 함수. 어분(Fishmeal) 가격 변동성 대비 미세조류 기반 배합사료의 생존율 개선 마진 교차 연산.",
+      "subtitle": "위젯 설명: 사육 밀도 증가에 따른 폐사율 상승 경향을 도식화한 자체 추정(illustrative) 곡선. 폐사율(%)·미세조류 대체 수익성 Index(상대지수, 무단위)는 예시값이며 FAO 보고서 직접 추출값이 아닙니다.",
       "unit": "%",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -2652,7 +2652,7 @@
     {
       "id": "w_raw2_unit_price",
       "title": "주요 양식국 톤당 원가 경쟁력 (2025)",
-      "subtitle": "위젯 설명: 양식 생산액 기준 톤당 Farm-gate 산지 원가 비교 (단위: USD/t)",
+      "subtitle": "위젯 설명: 국가별 톤당 산지 원가(USD/t) 비교 — 자체 추정(illustrative) 라운드값. 실측 Farm-gate 단가가 아닌 원가 수준 도식화입니다.",
       "chartType": "bar",
       "xAxis": "name",
       "series": [
@@ -2693,7 +2693,7 @@
           "value": 3600
         }
       ],
-      "source": "출처: FAOSTAT FishStatJ 2025 (국가별 산지 원가 교차 분석)",
+      "source": "출처: 자체 추정 — 국가별 톤당 원가(3,600~5,800 USD/t)는 산지 원가 수준을 라운드값으로 정리한 illustrative 추정치이며 FAOSTAT 2025 실측 산지원가 직접 추출값이 아닙니다.",
       "reliability": 95,
       "unit": "USD",
       "situation": "현황: 에콰도르(USD 3,600/톤)와 인도(USD 3,900/톤)가 큰 규모의 경제를 달성하며 글로벌 최저 원가 경쟁력을 확보했습니다. 반면 멕시코(USD 5,800/톤)를 비롯한 베트남, 태국 등 아시아권은 인건비 상승과 빈발하는 질병(EMS, EHP)에 따른 폐사율 증가로 산지 원가(Farm-gate Price)가 지속적으로 상승하는 구조적 딜레마에 빠져 있습니다.",
@@ -3263,7 +3263,7 @@
     {
       "id": "w_esg2_supply_risk",
       "title": "새우 공급망 단계별 ESG 리스크 매트릭스",
-      "subtitle": "위젯 설명: ETI Shrimp Supply Chains · Seafood Watch 감사(Audit) 실증 데이터 기반",
+      "subtitle": "위젯 설명: 공급망 단계별 ESG 리스크 점수(0~100)는 ETI·Seafood Watch 공개 자료를 참고한 자체 추정(illustrative) 합성 지표입니다.",
       "chartType": "composed",
       "xKey": "stage",
       "bars": [
@@ -3314,7 +3314,7 @@
           "env": 35
         }
       ],
-      "source": "출처: ETI & Seafood Watch ESG Audit [📡 LIVE API 연동: Sedex/SMETA 플랫폼]",
+      "source": "출처: 자체 추정 — 단계별 ESG 리스크 점수는 ETI·Seafood Watch 공개 자료를 참고한 자체 합성 지표(0~100)이며 1차 실측 점수가 아닙니다. Sedex/SMETA 플랫폼 실시간 연동 아님(STATIC).",
       "reliability": 100,
       "unit": "Score",
       "yUnit": "Score",
@@ -3376,11 +3376,11 @@
         }
       ],
       "reliability": 100,
-      "logic": "EUMOFA(2026) 보고서 2.5항 'Household consumption' 포장형태별 Retail Scanner Data 추세 기반 [📡 LIVE API 연동: EUMOFA API]",
-      "source": "출처: EUMOFA 보고서 [📡 LIVE API 연동: EUMOFA API]",
+      "logic": "EUMOFA 소비 보고서의 포장형태별 추세를 참고한 자체 추정(illustrative) 비중. 냉동 42% / 신선·RTE 58%는 예시값이며 EUMOFA API 실시간 연동 아님(STATIC).",
+      "source": "출처: EUMOFA 소비 보고서(추세 참고) + 자체 추정 — 포맷별 비중은 illustrative 예시값. EUMOFA API 실시간 연동 아님(STATIC).",
       "unit": "%",
       "yUnit": "%",
-      "situation": "현황: 고물가 장기화로 외식 수요가 위축되면서, 집에서도 레스토랑 수준의 품질을 구현하려는 '프리미엄 홈쿡' 트렌드가 정착되었습니다. EUMOFA 소매 스캐너 데이터에 따르면, 조리가 번거로운 대용량 냉동(Frozen) 원물의 시장 점유율은 42%로 급락한 반면, 해동 없이 즉시 활용 가능한 신선/RTE(간편식) 수요는 58%를 돌파하며 시장의 주류로 자리 잡았습니다.",
+      "situation": "현황: 고물가 장기화로 외식 수요가 위축되면서, 집에서도 레스토랑 수준의 품질을 구현하려는 '프리미엄 홈쿡' 트렌드가 자리 잡고 있습니다. EUMOFA 소비 보고서의 포장형태 추세를 참고한 자체 추정(예시값) 기준, 조리가 번거로운 대용량 냉동(Frozen) 비중은 약 42%, 해동 없이 즉시 활용 가능한 신선/RTE(간편식) 비중은 약 58%로 도식화됩니다. 정확한 점유율 수치는 1차 스캐너 데이터로 재검증이 필요합니다.",
       "takeaway": "전략: 단순 냉동 수산물 유통을 넘어 '종합 F&B 솔루션 기업'으로 진화해야 합니다. 1차 원물 도매 구조에서 벗어나, 베트남 등 산지에서의 소분 가공(Portioning) 및 브레딩(Breaded) 등 2차 가공 밸류체인을 내재화하여 대형 유통채널의 프리미엄 간편식(HMR) 매대를 선점하십시오.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -3784,15 +3784,15 @@
           "color": "#10b981"
         }
       ],
-      "source": "출처: Dalan Animal Health 2024 / INFOFISH Disease Resilience Report",
+      "source": "출처: Dalan Animal Health(백신 개발 사실 인용) + 자체 추정 — M1~M4 폐사율 곡선은 illustrative 예시값이며 특정 임상 보고서의 실측 시계열이 아닙니다.",
       "reliability": 95,
-      "subtitle": "위젯 설명:  | 본 위젯은 글로벌 동향 파악을 위한 데이터입니다.",
+      "subtitle": "위젯 설명: 사육 경과(M1~M4)별 일반 양식 누적 폐사율 대비 백신 접종군 폐사율을 비교한 자체 추정(illustrative) 곡선. 수치는 예시값입니다.",
       "unit": "%",
-      "situation": "현황: Dalan Animal Health사에서 세계 최초 무척추동물용 백신(Maternal Immune Priming)을 개발하여 상용화에 성공했습니다. 과거 WSSV, EMS 등 질병 리스크를 단순 수질 관리(환수)로만 통제하던 시대를 지나, 모체 면역을 통한 유전적 생존율 확보 시대가 열렸습니다.",
+      "situation": "현황(예시 데이터 기반): Dalan Animal Health사가 무척추동물용 모체 면역(Maternal Immune Priming) 백신을 개발했습니다. 본 차트의 예시값 기준, 사육 후기(M4)에 일반 양식 누적 폐사율이 약 92%에 이르는 데 비해 백신 접종군은 약 10% 수준으로 억제되는 효과를 도식화했습니다.",
       "takeaway": "전략: 새우 조달 시 '백신 접종 SPF(무병원체) 종묘' 사용 여부를 필수 벤더 심사 기준으로 격상해야 합니다. 폐사율 변동성(기후/질병)으로 인한 원가 폭등 리스크를 헷징하기 위해, 백신 도입 양식장과의 조인트 벤처(JV) 또는 장기 구매 계약(Off-take)을 우선 추진하십시오.",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
-      "sit": "수산 질병의 근본적 해결책인 경구 백신 상용화가 임박하여 질병 리스크 헤징의 게임 체인저로 등극. 50% 폐사율을 5% 미만으로 억제하는 테크놀로지 브레이크스루.",
+      "sit": "수산 질병의 근본적 헤징 수단으로 무척추동물용 모체 면역 백신이 부상하고 있습니다. 본 위젯의 예시값 기준, 후기 누적 폐사율을 일반 약 92%에서 백신군 약 10% 수준으로 낮추는 효과를 도식화했습니다(실측값 아님).",
       "strat": "바이오 제약사와의 조인트 벤처를 통해 백신 첨가 사료(Medicated Feed)의 아시아 독점 유통 판권을 확보. 백신을 볼모로 아시아 영세 양식 농가를 자사 서플라이 체인(계열화)으로 강제 예속시키는 플랫폼(Platform) 플레이 구사."
     },
     {
@@ -5323,7 +5323,7 @@
     {
       "id": "w62_alt_seafood_disruption",
       "title": "대체 해산물 시장 파괴 시나리오",
-      "subtitle": "식물성·발효·세포배양 단백질의 기존 새우 시장 침투율 전망",
+      "subtitle": "식물성·발효·세포배양 단백질의 새우 시장 침투율 — 자체 추정 장기 시나리오(2050L/2050H 분기, 검증 불가)",
       "chartType": "area",
       "xKey": "연도",
       "areas": [
@@ -5337,9 +5337,9 @@
         }
       ],
       "unit": "%",
-      "sit": "2050년 대체 단백질 점유율 50% 시대 진입. 3D 프린팅 명태 연육 새우, 정밀 발효 기술이 기존 생물 양식 단가를 뚫고 내려오는 기술적 디스럽션(Disruption) 특이점 도달.",
-      "tak": "① 대체 해산물의 기존 새우 시장 잠식률 모니터링 체계 구축 ② 3D 프린팅 대체 새우 상용화 시 자사 가공 라인 통합 가능성 검토 ③ 소비자 수용도 조사 선행.",
-      "source": "KFAS 3D 프린팅 논문 + NotebookLM 대체 단백질 전망",
+      "sit": "식물성·정밀 발효·세포 배양 단백질이 새우 시장을 잠식하는 장기 시나리오 전망(자체 추정)입니다. 본 위젯의 시나리오 기준, 2050년 대체 단백질 점유율은 보수(2050L) 약 35% ~ 공격(2050H) 약 55% 범위로 분기하며, 이는 검증 불가한 장기 추정 전망입니다.",
+      "tak": "① 대체 해산물의 새우 시장 잠식률을 정기 모니터링하는 체계를 구축한다 ② 3D 프린팅·세포배양 대체 새우 상용화 진척 시 자사 가공 라인 통합 가능성을 단계적으로 검토한다 ③ 소비자 수용도 조사를 선행해 투자 의사결정의 근거로 삼는다.",
+      "source": "출처: 자체 추정 — 2025~2050 침투율은 KFAS 3D 프린팅 연구 등을 참고한 자체 장기 전망 시나리오(2050L/2050H 분기)이며 검증된 실측·합의 전망치가 아닙니다.",
       "telemetry": "static",
       "syncDate": "2025 전망",
       "data": [
@@ -5379,7 +5379,7 @@
           "대체해산물": 55
         }
       ],
-      "strat": "레거시(Legacy) 양식 인프라에 대한 투자를 즉각 중단하고, 3D 프린팅 및 세포 배양(Cell-based) 해산물 CVC 펀드에 현금을 올인(All-in). 단백질 생산 한계비용을 '0'에 수렴시키는 무한 캐파(Capa) 플레이 런칭."
+      "strat": "기존 양식 인프라 신규 투자는 회수기간을 보수적으로 재산정하되, 3D 프린팅·세포 배양(Cell-based) 해산물에는 CVC를 통한 단계적 소액 옵션 투자로 기술 옵션을 확보한다. 침투율 시나리오가 공격(2050H) 경로로 가시화될 때 비중을 확대하는 스테이지 게이트(Stage-gate) 방식이 적절하다."
     },
     {
       "id": "w63_coldwater_shrimp_stock",

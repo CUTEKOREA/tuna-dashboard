@@ -1,0 +1,348 @@
+app/api/beef/trade-flow/route.ts(39,18): error TS1117: An object literal cannot have multiple properties with the same name.
+app/page.tsx(724,44): error TS2367: This comparison appears to be unintentional because the types '"mackerel" | "market" | "salmon" | "flatfish" | "shrimp" | "fleet" | "logistics" | "unloading" | "value-chain" | "squid" | "jukkumi" | "octopus" | "cashew" | "cassava" | "pollock" | ... 16 more ... | "sashimi-steak"' and '"beef"' have no overlap.
+app/page.tsx(906,39): error TS2367: This comparison appears to be unintentional because the types '"mackerel" | "market" | "salmon" | "flatfish" | "shrimp" | "fleet" | "logistics" | "unloading" | "value-chain" | "squid" | "jukkumi" | "octopus" | "cashew" | "cassava" | "pollock" | ... 16 more ... | "sashimi-steak"' and '"beef"' have no overlap.
+components/FfaGlobalProcessingCapacity.tsx(122,15): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/FfaSupplyConcentrationRisk.tsx(184,15): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/MackerelFilletPenetration.tsx(35,7): error TS2322: Type '{ children: Element[]; title: string; subtitle: string; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; }' is not assignable to type 'IntrinsicAttributes & WidgetCardProps'.
+  Property 'subtitle' does not exist on type 'IntrinsicAttributes & WidgetCardProps'.
+components/MackerelMacroCycle.tsx(25,16): error TS2304: Cannot find name 'macroData'.
+components/MackerelNorwaySpread.tsx(37,7): error TS2322: Type '{ children: Element[]; title: string; subtitle: string; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; }' is not assignable to type 'IntrinsicAttributes & WidgetCardProps'.
+  Property 'subtitle' does not exist on type 'IntrinsicAttributes & WidgetCardProps'.
+components/MackerelProcessedWidgets.tsx(84,9): error TS2322: Type '"P1"' is not assignable to type 'Pillar'.
+components/MackerelProcessedWidgets.tsx(104,9): error TS2322: Type '"P1"' is not assignable to type 'Pillar'.
+components/MackerelSizePremium.tsx(35,7): error TS2322: Type '{ children: Element[]; title: string; subtitle: string; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; }' is not assignable to type 'IntrinsicAttributes & WidgetCardProps'.
+  Property 'subtitle' does not exist on type 'IntrinsicAttributes & WidgetCardProps'.
+components/MackerelStrategy.tsx(4,24): error TS2307: Cannot find module '@/components/widgets/WidgetCard' or its corresponding type declarations.
+components/msc-strategy/MscCanadaGrowthCase.tsx(72,19): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/msc-strategy/MscFaoAreaPenetration.tsx(107,15): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/msc-strategy/MscImprovementsDelivered.tsx(106,63): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/msc-strategy/MscOpenConditions.tsx(54,9): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/msc-strategy/MscVsFipComparison.tsx(72,13): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/MscIntelligenceWidgets.tsx(178,53): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/MscIntelligenceWidgets.tsx(180,126): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/MscIntelligenceWidgets.tsx(383,57): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/MscIntelligenceWidgets.tsx(428,57): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/MscIntelligenceWidgets.tsx(519,53): error TS2322: Type '(value: number) => [string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/PurseSeinerDashboard.tsx(87,13): error TS2322: Type '(v: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/PurseSeinerDashboard.tsx(174,13): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/PurseSeinerDashboard.tsx(261,13): error TS2322: Type '(v: number, _: any, props: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _: any, props: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasCoTreatmentImpact.tsx(51,17): error TS2322: Type '(value: number, name: string, props: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string, props: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasDomesticRetailTrend.tsx(56,19): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasDomesticRetailTrend.tsx(68,60): error TS2322: Type '(val: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'val' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuDistantFleet.tsx(41,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuDistantFleet.tsx(45,57): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuFreshVsCanned.tsx(75,65): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuImportSegmentation.tsx(81,63): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuMscGate.tsx(39,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuQuotaProduction.tsx(57,17): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuRetailInflation.tsx(45,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuTariffRegime.tsx(44,19): error TS2322: Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasEuTariffRegime.tsx(48,60): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasExColdLogistics.tsx(40,122): error TS2322: Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasExColdLogistics.tsx(43,61): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasGlTradeFlows.tsx(54,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasGlTradeFlows.tsx(57,57): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasGlWcpoSupply.tsx(41,122): error TS2322: Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasGlWcpoSupply.tsx(44,59): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasHedonicPriceFactors.tsx(45,17): error TS2322: Type '(value: number, name: string, props: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string, props: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasJapanDemandDecline.tsx(75,19): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasJpAquaculture.tsx(39,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasJpImportYen.tsx(45,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKoreaMajorCompanies.tsx(169,23): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKoreaMedBftImports.tsx(121,19): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKoreaTradeDecade.tsx(65,19): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrAccessQuota.tsx(40,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrAccessQuota.tsx(43,59): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrByproduct.tsx(42,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrByproduct.tsx(45,59): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrFleetEconomics.tsx(41,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrFleetEconomics.tsx(44,57): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrSuperTuna.tsx(45,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasKrSuperTuna.tsx(48,59): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasMarketKPIs.tsx(94,19): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasMarketKPIs.tsx(95,19): error TS2322: Type '(label: string) => string' is not assignable to type '((label: ReactNode, payload: readonly Payload<ValueType, NameType>[]) => ReactNode) & ((label: any, payload: TooltipPayload) => ReactNode)'.
+  Type '(label: string) => string' is not assignable to type '(label: ReactNode, payload: readonly Payload<ValueType, NameType>[]) => ReactNode'.
+    Types of parameters 'label' and 'label' are incompatible.
+      Type 'ReactNode' is not assignable to type 'string'.
+        Type 'undefined' is not assignable to type 'string'.
+components/sashimi-strategy/SasOlClimateMigration.tsx(41,122): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasOlClimateMigration.tsx(45,59): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasSupplyChainSplit.tsx(57,17): error TS2322: Type '(value: number, name: string, props: any) => [string, string] | [number, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string, props: any) => [string, string] | [number, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasThaiSourcing.tsx(42,19): error TS2322: Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasThaiSourcing.tsx(46,60): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasToyosuAuction.tsx(66,21): error TS2322: Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUkChannelSplit.tsx(42,19): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUkChannelSplit.tsx(46,59): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUkMarket.tsx(71,19): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUkSupplierTariff.tsx(43,19): error TS2322: Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUkSupplierTariff.tsx(47,61): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUsDemandSeasonality.tsx(53,19): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUsMarginWaterfall.tsx(44,19): error TS2322: Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUsMarginWaterfall.tsx(48,61): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUsSupplierOrigin.tsx(73,63): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUsTariffLadder.tsx(45,19): error TS2322: Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number, _n: string, p: any) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/sashimi-strategy/SasUsTariffLadder.tsx(49,60): error TS2322: Type '(v: number) => string' is not assignable to type 'LabelFormatter'.
+  Types of parameters 'v' and 'label' are incompatible.
+    Type 'RenderableText' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+components/SquidValueChainWidgets.tsx(187,54): error TS2322: Type '(v: number) => string' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(v: number) => string' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'v' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/TraderStatus.tsx(67,15): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/TunaAtuna8YPrice.tsx(163,30): error TS18047: 'stats.lastSkj' is possibly 'null'.
+components/TunaAtuna8YPrice.tsx(163,87): error TS18047: 'stats.lastSkj' is possibly 'null'.
+components/TunaCatchBySpeciesLive.tsx(63,13): error TS2322: Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType> & ((value: ValueType, name: NameType, item: TooltipPayloadEntry, index: number, payload: TooltipPayload) => ReactNode | [...])'.
+  Type '(value: number, name: string) => [string, string]' is not assignable to type 'Formatter<ValueType, NameType>'.
+    Types of parameters 'value' and 'value' are incompatible.
+      Type 'ValueType | undefined' is not assignable to type 'number'.
+        Type 'undefined' is not assignable to type 'number'.
+components/UnloadingStatus.tsx(668,7): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ 'sein-phoenix': { name: string; dateRange: string; location: string; buyer: string; motherVessel: string; status: string; reportedTotal: number; actualTotal: number; surplus: number; species: { id: string; name: string; reported: number; actual: number; surplus: number; }[]; timeline: { ...; }[]; }; ... 4 more ......'.
+  No index signature with a parameter of type 'string' was found on type '{ 'sein-phoenix': { name: string; dateRange: string; location: string; buyer: string; motherVessel: string; status: string; reportedTotal: number; actualTotal: number; surplus: number; species: { id: string; name: string; reported: number; actual: number; surplus: number; }[]; timeline: { ...; }[]; }; ... 4 more ......'.
+lib/usCensusData.ts(113,12): error TS2322: Type 'Record<string, any>[]' is not assignable to type '(Record<string, string | number> & { time: string; })[]'.
+  Type 'Record<string, any>' is not assignable to type 'Record<string, string | number> & { time: string; }'.
+    Property 'time' is missing in type 'Record<string, any>' but required in type '{ time: string; }'.
+lib/usCensusData.ts(146,3): error TS2322: Type 'Record<string, any>[]' is not assignable to type '(Record<string, string | number> & { time: string; })[]'.
+  Type 'Record<string, any>' is not assignable to type 'Record<string, string | number> & { time: string; }'.
+    Property 'time' is missing in type 'Record<string, any>' but required in type '{ time: string; }'.

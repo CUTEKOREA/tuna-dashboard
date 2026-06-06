@@ -83,7 +83,7 @@ const KPI_THEMES = [
 ];
 
 const CARROT_KPIS: Record<string, any> = {
-  k1: { title: '글로벌 1위 생산국 (생산/수출)', value: '중국 50%/22.5%', trend: '🇨🇳', desc: 'FAOSTAT QCL 1,866만t 생산 · OEC 수출 $3.85억(2024)' },
+  k1: { title: '글로벌 1위 생산국 (생산/수출)', value: '중국 50%/23.4%', trend: '🇨🇳', desc: 'FAOSTAT QCL 1,866만t 생산 · UN Comtrade 수출 $4.78억(2024)' },
   k2: { title: '한국 도매가 (2024 연평균)', value: '₩73,178/20kg', trend: '📈', desc: 'KAMIS 실측 +26% vs 평년 ₩57,923 · 2026 ₩30,634 정상화' },
   k3: { title: '신시장 성장률 (업사이클링)', value: '112조 원', trend: '♻️', desc: '당근 폐기물 바이오 플라스틱 전환' },
   k4: { title: '수입산 잔류농약 초과비율', value: '14배', trend: '⚠️', desc: '중국산 48톤 긴급 회수 리스크' },
@@ -1424,7 +1424,7 @@ export default function CarrotDashboard() {
         {/* W25: OEC 글로벌 수출 패권 30년 변천사 */}
         <WidgetCard title='글로벌 당근 수출 패권 30년 변천사 (HS 070610)' icon={Globe} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: USD'
-          telemetry={{ status: w25Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'OEC 실측' }} chartHeight={375}
+          telemetry={{ status: w25Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
             <ChartWrapper data={w25Live}>
               <AreaChart data={w25Live}>
@@ -1446,22 +1446,22 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"OEC(Observatory of Economic Complexity)"는 MIT 미디어랩에서 시작된 글로벌 무역 데이터 시각화·분석 플랫폼. 30년 시계열 양자 무역 데이터를 HS 6자리·10자리 단위로 제공 → vendor의 시장 구조 변화 long-term trend 분석에 필수. "글로벌 무역 집중도(HHI)"가 낮을수록 sourcing 다변화가 쉽고, 높을수록 monopoly 시장.</p>
-                <p>실측: <strong>당근 수출 글로벌 분포 (2024): 중국 22.5% / 네덜란드 12% / 미국 11% / 이탈리아 10% / 스페인 10% / 이스라엘 5%. 마늘(중국 65.6%) 대비 훨씬 분산된 구조 → HHI 낮음 → 다변화 현실적. 이스라엘은 2020 이후 -68% 급감 (전쟁 risk) → 베트남이 점유율 흡수 기회</strong>.</p>
+                <p>실측: <strong>당근 수출 글로벌 분포 (2024, UN Comtrade): 중국 23.4% / 스페인 11.4% / 네덜란드 11.1% / 미국 7.0% / 이탈리아 5.0% / 이스라엘 1.5%. 마늘(중국 65.6%) 대비 훨씬 분산된 구조 → HHI 낮음 → 다변화 현실적. 이스라엘은 2020($46M) 대비 2024($30M)로 -35% 급감 (전쟁 risk) → 베트남이 점유율 흡수 기회</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
                 <p><strong>재정의</strong>: 당근 수출 시장의 분산 구조는 "단순 글로벌 통계"가 아닌 <strong>"vendor가 China+1·China+3 전략을 실현 가능하게 만드는 충분한 supply alternatives — 마늘과 달리 당근은 진짜 다변화 가능"</strong>.</p>
-                <p><strong>3단계</strong>: ① 중국 의존 90% → 50%로 18~24개월 내 축소 + 베트남 30%·호주·이스라엘·이탈리아 합산 20% multi-sourcing ② 이스라엘 supply 공백(전쟁 risk로 -68% 급감)을 베트남이 흡수하는 글로벌 트렌드에 맞춰 한국 vendor가 동시 호치민·달랏·하노이 hub 강화 → 글로벌 capa 흡수 ③ "OEC 30년 데이터 기반 sourcing intelligence vendor"로 IR 포지셔닝 → exit valuation +1.5x.</p>
+                <p><strong>3단계</strong>: ① 중국 의존 90% → 50%로 18~24개월 내 축소 + 베트남 30%·호주·이스라엘·이탈리아 합산 20% multi-sourcing ② 이스라엘 supply 공백(전쟁 risk로 -35% 급감)을 베트남이 흡수하는 글로벌 트렌드에 맞춰 한국 vendor가 동시 호치민·달랏·하노이 hub 강화 → 글로벌 capa 흡수 ③ "OEC 30년 데이터 기반 sourcing intelligence vendor"로 IR 포지셔닝 → exit valuation +1.5x.</p>
               </div>
             ),
-            source: "OEC 실측 HS 070610 국가별 수출액 (1995~2024) + UN Comtrade + 이스라엘 농업부",
+            source: "UN Comtrade 2024 via agri_data (HS 070610 국가별 수출액, 2024 갱신) + OEC 시계열(2000~2022)",
           }} />
 
         {/* W26: OEC 수입국 벤치마크 (한국 포지션) */}
         <WidgetCard title='글로벌 당근 수입 벤치마크: 한국 vs 주요 수입국' icon={Target} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: USD'
-          telemetry={{ status: w26Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'OEC 실측' }} chartHeight={375}
+          telemetry={{ status: w26Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
             <ChartWrapper data={w26Live}>
               <LineChart data={w26Live}>
@@ -1483,7 +1483,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"자급률(Self-sufficiency Rate)"이란 국내 소비 중 국내 생산이 차지하는 비중. 한국 당근은 47.2%(2024) → 45.2%(2035E, KREI) 지속 하락 — 인구 감소에도 1인당 소비는 +4.3kg(2035)로 증가하며 절대 수입량 자동 확대. 식량안보·외환 부담 risk 동시 증가.</p>
-                <p>실측: <strong>한국 당근 수입액 $3.1M(2000) → $51M(2024) (16배). 미국 $21M → $210M (10배, 글로벌 1위 수입국). 일본 $19~52M 정체 (인구 감소). 한국 자급률 45%는 OECD 평균 78% 대비 -33%p, 일본 80%·중국 95% 대비도 압도적 부족 → 글로벌 hub 진입 동력</strong>.</p>
+                <p>실측: <strong>한국 당근 수입액 $3.1M(2000) → $51M(2024) (16배). 미국 $21M → $212M (10배), 독일 $400M(2024, 글로벌 1위 수입국·EU 재수출 hub). 일본 $19~38M 정체 (인구 감소). 한국 자급률 47%는 OECD 평균 78% 대비 -31%p, 일본 80%·중국 95% 대비도 압도적 부족 → 글로벌 hub 진입 동력</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -1492,7 +1492,7 @@ export default function CarrotDashboard() {
                 <p><strong>3단계</strong>: ① 중국 90% → 50% 축소 + 베트남 30%·호주 10%·이탈리아 10% multi-sourcing 확립 ② 일본 시장($38M, 정체 중) 동시 진출 — 한국·일본 통합 sourcing 규모의 경제로 단가 -12%p 절감 ③ "K-Carrot food security partner" 포지셔닝 → 식약처·농식품부·전략비축 입찰 우선 vendor 지위 확보 → 정부 LTA 매출 base 안정 + valuation +1.5x premium.</p>
               </div>
             ),
-            source: "OEC 실측 HS 070610 국가별 수입액 + KREI 자급률 전망 + 농식품부 식량안보 통계",
+            source: "UN Comtrade 2024 via agri_data (HS 070610 국가별 수입액, 2024 갱신) + OEC 시계열(2000~2022) + KREI 자급률 전망",
           }} />
 
         {/* W27: KAMIS 월별 도매가 실측 히트맵 */}

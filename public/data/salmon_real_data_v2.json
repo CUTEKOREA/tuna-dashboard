@@ -256,9 +256,12 @@
           "fillOpacity": 0.5
         }
       ],
-      "situation": "[Commoditization via Smart-Farm] 과거 자연산 어획에 의존하던 원시적 서플라이 체인은 완전히 붕괴되었으며, 현재 대서양 연어(Atlantic Salmon) 물동량의 99.9%는 데이터 기반 스마트 양식(Smart Aquaculture) 인프라를 통해 생산되는 완벽한 공산품(Commodity)으로 진화했습니다.",
-      "takeaway": "[Capital & Bio-Tech Monopoly] 수산물의 100% 공산품화(Industrialization)가 달성된 종목입니다. 거대 자본력(Capex)과 딥테크(Bio/IT) 수율 관리 능력을 보유한 극소수 과점 기업만이 글로벌 팜게이트(Farm-Gate) 프라이싱을 통제하는 구조입니다.",
-      "reliability": 100
+      "situation": "과거 자연산 어획 중심이던 대서양 연어 공급 구조는 양식으로 전환되어, 2022년 기준 양식이 전체 물동량의 약 99.9%를 차지합니다(자연산 약 1,086톤 대 양식 약 277만 톤). 다만 이는 양식 산업화의 결과일 뿐, 가공품의 '완벽한 공산품화'를 단정할 근거는 아닙니다.",
+      "takeaway": "양식 의존도가 사실상 100%에 도달한 종목으로, 대규모 설비투자(CAPEX)와 수율 관리 역량을 가진 소수 기업이 팜게이트 가격에 큰 영향력을 행사합니다. '독점·통제' 단정 대신 과점 구조로 이해하고 듀얼 소싱·계약 헷징을 검토하십시오.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022",
+      "cardDesc": "FAOSTAT 어획/양식 생산량 시계열 1980-2022 (정적)",
+      "syncDate": "2022 (FAOSTAT)"
     },
     {
       "id": "w02_aqua_value",
@@ -429,9 +432,11 @@
           "stroke": "#f59e0b"
         }
       ],
-      "situation": "[Supply Rigidity & Margin Squeeze] 연안 양식 면허(License) 발급의 환경적, 물리적 임계점 도달로 글로벌 공급 곡선이 극도로 경직(Rigidity)되었으며, 이로 인해 톤당 생산 부가가치(USD)가 수직 폭등(Spike)하는 슈퍼 사이클에 진입했습니다.",
-      "takeaway": "[Oligopoly Margin Maximization] 메이저 양식 카르텔의 독점적 초과 이익(Alpha Margin) 극대화 구간입니다. 물량 밀어내기(Volume)가 아닌 단위당 마진(Unit Economics)의 지수함수적 성장이 전체 밸류에이션 리레이팅(Re-rating)을 견인하고 있습니다.",
-      "reliability": 100
+      "situation": "양식 톤당 부가가치(USD/T)는 1984년 약 5,674에서 2022년 약 7,813으로 장기 우상향했습니다(약 +38%). '수직 폭등'이라기보다 면허 발급 제약 등으로 공급이 경직되며 완만히 상승한 추세입니다. 단가는 생산량÷매출의 파생 산출치(illustrative)로 1차 추적에 한계가 있습니다.",
+      "takeaway": "단위당 부가가치가 장기 상승하는 구조이므로, 물량 경쟁보다 단가·품질 차별화에 자본을 배분하는 편이 유리합니다. '지수함수적 성장'·'카르텔 독점' 같은 단정은 데이터로 뒷받침되지 않으니 보수적으로 해석하십시오.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022 — 톤당 단가는 매출/물량 파생 추정치(illustrative)",
+      "cardDesc": "양식단가 = 매출/생산량 파생 추정치 (자체 산출, illustrative)"
     },
     {
       "id": "w03_aqua_pie",
@@ -459,9 +464,11 @@
           "value": 81045.38
         }
       ],
-      "situation": "[Geographic Moat Monopoly] 피오르드(Fjord) 등 한랭 해만 조건을 독점한 극소수 국가(노르웨이, 칠레)가 전 세계 원물 생산의 90% 이상을 틀어쥐는 압도적 지리적 해자(Geographic Moat)를 구축했습니다.",
-      "takeaway": "[RAS Pivot Requirement] 해상 독점 생태계는 완벽히 고착화되었습니다. 신규 자본은 기존 거대 벤더의 하청으로 편입되거나, 수조 원대 CAPEX를 투하해 차세대 순환여과양식(RAS, Recirculating Aquaculture Systems) 딥테크로 전면 우회(Pivot)하는 전략 외엔 진입로가 차단되었습니다.",
-      "reliability": 100
+      "situation": "2022년 양식 생산은 노르웨이(약 156만 톤)와 칠레가 압도적 1·2위를 차지하며 상위 소수 국가에 집중되어 있습니다. 피오르드 등 한랭 해만이라는 지리적 조건이 진입 장벽으로 작용합니다.",
+      "takeaway": "해상 양식은 입지 조건상 신규 진입이 어렵습니다. 신규 자본은 기존 벤더와의 제휴 또는 순환여과양식(RAS) 등 육상 양식 기술로 우회하는 전략을 검토할 수 있습니다.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022",
+      "cardDesc": "FAOSTAT 2022 양식 생산량 상위 5개국 (정적)"
     },
     {
       "id": "w04_proc",
@@ -609,9 +616,11 @@
           "fill": "#a855f7"
         }
       ],
-      "situation": "[Value-Add Processing Explosion] 단순 원물(Raw) 유통을 넘어 훈제(Smoked), 필렛(Fillet) 등 하이엔드 2차 가공품(Processed Value-Add) 라인의 글로벌 물동량이 퀀텀 점프(Quantum Jump)하며 우상향 중입니다.",
-      "takeaway": "[Post-Brokerage Margin Capture] 단순 블록 브로커리지 시대는 종말을 고했습니다. 강력한 B2C/B2B 직납망(Direct-to-Consumer)과 무인화 2차 가공 클린룸(Cleanroom)을 내재화한 기업만이 라스트마일 마진(Last-mile Margin)을 방어하고 독식합니다.",
-      "reliability": 100
+      "situation": "가공품(훈제·필렛 등) 물동량은 1990년 약 5.1만 톤에서 2022년 약 23.2만 톤으로 장기 증가했으나, 중간 연도에는 등락을 반복했습니다. '퀀텀 점프'식 일방 우상향이라기보다 변동을 동반한 완만한 성장입니다.",
+      "takeaway": "단순 원물 브로커리지의 마진은 축소되는 추세이므로, B2B/B2C 직납망과 2차 가공 역량 내재화로 라스트마일 마진을 확보하는 전략이 유효합니다.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022",
+      "cardDesc": "FAOSTAT 가공품 물동량 시계열 1990-2022 (정적)"
     },
     {
       "id": "w05_cash",
@@ -646,9 +655,11 @@
           "fill": "#f97316"
         }
       ],
-      "situation": "[Cash-cow Compounding] 탑 티어 국가들의 매출 규모가 천문학적 달러 팽창(Dollar Expansion)을 거듭 중입니다. 해양공학과 바이오테크가 결합되어 연간 30% 이상의 영업이익(OPM)을 확정적으로 뽑아내는 구조적 캐시카우(Cash-cow)입니다.",
-      "takeaway": "[Sovereign Wealth Equivalent] 노르웨이의 연어 비즈니스는 단일 기업을 넘어선 '국가 국부 펀드(Sovereign Wealth)' 급 코어 산업입니다. 어설픈 중소 유통 자본으로 자본 집약적 전면전(Head-to-head)을 벌이는 것은 재무적 자살 행위입니다.",
-      "reliability": 100
+      "situation": "양식 매출 규모는 노르웨이가 약 106억 달러로 압도적 1위이며, 칠레·영국·호주·페로 제도가 뒤를 잇습니다. 상위 국가의 매출이 장기간 확대되어 왔습니다. 매출액은 생산량×단가의 파생 추정치(illustrative)입니다.",
+      "takeaway": "노르웨이는 연어 양식이 국가 기간 산업급으로 자리잡은 시장입니다. 중소 유통 자본이 동일 영역에서 정면 경쟁하기보다, 가공·유통 차별화 포지션을 찾는 편이 현실적입니다.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022 — 매출은 생산량×단가 파생 추정치(illustrative)",
+      "cardDesc": "매출액 = 생산량×단가 파생 추정치 (자체 산출, illustrative)"
     },
     {
       "id": "w06_trade_vol",
@@ -835,9 +846,11 @@
           "stroke": "#10b981"
         }
       ],
-      "situation": "[Global Demand Super-cycle] 아시아/남미 신흥국 중산층의 폭발적 증가와 하이엔드 일식(Sushi)/샐러드 헬스케어 메가트렌드가 결합되어 글로벌 무역 볼륨이 지수함수적(Exponential)으로 팽창 중입니다.",
-      "takeaway": "[Permanent Seller's Market] 전 세계 소비 시장이 원물을 블랙홀처럼 흡수(Absorbing)하고 있습니다. 수요 폭발이 물리적 공급 캡(Cap)을 영구적으로 돌파하며, 완벽하고도 영구적인 셀러 우위(Seller's Market) 프라이싱 파워가 확립되었습니다.",
-      "reliability": 100
+      "situation": "글로벌 연어 수입 물동량은 1980년 약 1,215톤에서 장기 증가해 2010년대 중반 고점을 형성한 뒤 최근 연도에는 다소 둔화·하락하는 구간이 관측됩니다. '지수함수적 무한 팽창'이라는 단정은 차트 추세와 일치하지 않습니다.",
+      "takeaway": "수요는 견조하나 물동량 증가세가 둔화되는 신호가 있어, 영구적 셀러 우위를 전제로 한 의사결정은 위험합니다. 산지 다변화와 가격 헷징으로 변동성에 대비하십시오.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022",
+      "cardDesc": "FAOSTAT 글로벌 수입 물동량 시계열 1980-2022 (정적)"
     },
     {
       "id": "w07_export",
@@ -892,9 +905,11 @@
           "fill": "#3b82f6"
         }
       ],
-      "situation": "[Cartel Profit Concentration] Mowi, SalMar 등 글로벌 탑 4 메가 트레이더들이 전 세계 연어 수출 마진의 80% 이상을 흡수하는 노골적인 카르텔(Cartel) 독식 구조가 완성되었습니다.",
-      "takeaway": "[Global Hegemony Replication] 자국 내전(Local Market)에 머무르지 마십시오. 글로벌 식음료 룰(Rule-setting)을 지배하는 거대 생산 카르텔의 현금 창출 밸류체인을 수직 분석하여 당사 SCM에 강제 이식(Replication)해야 합니다.",
-      "reliability": 100
+      "situation": "2022년 수출액 기준 1위는 칠레(약 6.9억 달러), 2위는 노르웨이이며 덴마크·네덜란드 등이 뒤를 잇습니다. 상위 소수 국가에 수출이 집중되어 있으나, 'Mowi·노르웨이 카르텔이 마진 80% 독식'이라는 서술은 차트 데이터로 확인되지 않습니다.",
+      "takeaway": "수출 상위국에 거래가 집중된 구조이므로, 이들 산지의 공급망과 가격 결정 구조를 분석해 조달 전략에 반영하십시오. 특정 기업 카르텔 단정은 근거가 부족합니다.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022",
+      "cardDesc": "FAOSTAT 2022 국가별 수출액 상위 10개국 (정적)"
     },
     {
       "id": "w08_import",
@@ -949,9 +964,11 @@
           "fill": "#8b5cf6"
         }
       ],
-      "situation": "[Mega-Market Consumption Gravity] 미국, EU 등 1인당 GDP 최상위 선진국 블록(Developed Block)이 글로벌 전체 무역 거래액의 60% 이상을 블랙홀처럼 빨아들이는 거대한 소비 중력(Consumption Gravity)을 형성 중입니다.",
-      "takeaway": "[Tier-1 Buyer Penetration] 선진국 메가 바이어 벤더십 확보가 생존의 알파입니다. 당사가 글로벌 무역 데스크를 셋업하려면, 이들 초거대 유통망(Walmart, Costco)의 중앙 조달 시스템(Central Sourcing)을 직타격(Direct Penetration)해야 합니다.",
-      "reliability": 100
+      "situation": "2022년 수입액 기준 본 데이터셋 상위권은 러시아(약 2.1억 달러)·중국·홍콩 등으로, 흔히 거론되는 미국·EU 대형 수입국은 이 상위 10개 목록에 포함되어 있지 않습니다. 따라서 '미국·EU 선진국이 60% 흡수'라는 서술은 차트와 일치하지 않습니다.",
+      "takeaway": "본 데이터셋 기준 수입 상위 시장(러시아·중화권 등)의 조달 구조를 우선 분석하되, 미국·EU 등 주요 시장은 별도 데이터(Comtrade)로 교차 확인 후 진입 전략을 수립하십시오.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022 — 수입 상위국은 본 데이터셋 기준(미국·EU 미포함)",
+      "cardDesc": "FAOSTAT 2022 국가별 수입액 상위 10개국 (정적, 데이터셋 한정)"
     },
     {
       "id": "w09_kr_import",
@@ -1099,9 +1116,11 @@
           "fill": "#ef4444"
         }
       ],
-      "situation": "[Domestic Infrastructure Vacuum] 자국 내 RAS 양식 등 대체 인프라(Infrastructure Vacuum)의 완벽한 부재 속에서, 폭발하는 내수 수요를 감당하기 위해 한국의 수입 물동량이 통제 불능의 수직 폭등장(Vertical Spike)을 연출하고 있습니다.",
-      "takeaway": "[Hedging / JV Mandate] 단일 어종 의존에 따른 식량 안보 붕괴 리스크입니다. 칠레/호주 등 대체 산지 듀얼 소싱(Dual-Sourcing) 또는 글로벌 티어 1 팩토리와의 조인트 벤처(JV) 락인 없이는 인플레이션 가격 폭탄을 100% 흡수해야 합니다.",
-      "reliability": 100
+      "situation": "한국 연어 수입 물동량은 1990년 약 102톤에서 장기 증가해 2010년대 중반 고점을 기록한 뒤, 2022년에는 약 3,537톤 수준으로 고점 대비 감소했습니다. '통제 불능의 수직 폭등'이라는 서술은 최근 감소 추세와 모순됩니다.",
+      "takeaway": "수입 의존도는 여전히 높으나 물동량이 고점 대비 둔화된 만큼, 칠레·호주 등 산지 다변화와 주요 팩토리 합작(JV)으로 단일 의존 리스크를 관리하는 것이 핵심입니다.",
+      "reliability": 100,
+      "source": "UN Comtrade / 관세청(KCS) 한국 수입 통계 (정적, 재배선 예정)",
+      "cardDesc": "한국 연어 수입 물동량 시계열 1990-2022 (정적)"
     },
     {
       "id": "w10_kr_deficit",
@@ -1208,9 +1227,11 @@
           "fill": "#ef4444"
         }
       ],
-      "situation": "[Structural Trade Deficit] 연어 단일 품목에 의한 압도적인 수입 초과로 국가 및 당사 차원의 거대한 달러 유출(Dollar Drain) 펀더멘털 적자가 매년 누적되고 있습니다.",
-      "takeaway": "[Value-Add Arbitrage Strategy] 무역 적자를 역이용하는 전략(Arbitrage)이 필요합니다. 수입된 H&G(머리/내장 제거) 원물을 국내 최첨단 자동화 라인에 태워(Filleting/Portioning) 초격차 2차 프리미엄 가공품으로 전환, 아시아 타겟으로 역수출하는 밸류에드 포지션(Value-add Position)이 유일한 해답입니다.",
-      "reliability": 100
+      "situation": "한국은 연어 단일 품목에서 수입이 수출을 크게 초과해, 2000년 약 -1,059만 달러에서 2022년 약 -3,018만 달러로 무역 적자가 누적·확대되어 왔습니다.",
+      "takeaway": "수입 H&G 원물을 국내 자동화 라인에서 필렛·포션 가공해 아시아로 역수출하는 부가가치 전환 전략이 적자 구조를 완화하는 현실적 대안입니다.",
+      "reliability": 100,
+      "source": "관세청(KCS) / UN Comtrade 한국 무역수지 (정적, 재배선 예정)",
+      "cardDesc": "한국 연어 무역수지(USD) 시계열 2000-2022 — 출처 KCS/Comtrade (정적)"
     },
     {
       "id": "w11_kr_price",
@@ -1297,9 +1318,11 @@
           "stroke": "#10b981"
         }
       ],
-      "situation": "[Price-Taker Vulnerability] 글로벌 1차 벤더 카르텔의 팜게이트 단가(FOB) 랠리에 한국의 로컬 브로커들이 아무런 헷징 툴 없이 무방비 노출되는 치명적인 프라이스 테이커(Price-Taker) 포지션에 갇혀 있습니다.",
-      "takeaway": "[Forward Hedging & SCM Lock-in] 구시대적 스팟(Spot) 매입을 폐기하십시오. 북유럽 메인 팜과의 연간 하드 락인(Hard Lock-in) 선도 계약(Forward Hedging)을 체결하고 자체 풀콜드체인(Full Cold-Chain)을 내재화하는 SCM 수직화 부서 신설을 지시합니다.",
-      "reliability": 100
+      "situation": "글로벌 수입 단가율은 2005년 약 4,231 USD/T에서 2022년 약 8,642 USD/T로 장기 상승했습니다. 한국은 헷징 수단이 부족한 가격 수용자(Price-Taker) 위치에 있습니다. 단가는 수입액/물량의 파생 산출치라 1차 추적에 한계가 있습니다.",
+      "takeaway": "스팟 매입 의존을 줄이고 북유럽 주요 산지와의 연간 선도 계약 및 자체 콜드체인 내재화로 단가 변동성에 대비하는 SCM 수직화를 검토하십시오.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022 — 수입단가는 수입액/물량 파생 추정치(illustrative)",
+      "cardDesc": "수입단가 = 수입액/물량 파생 추정치 (자체 산출, illustrative)"
     },
     {
       "id": "w12_margin",
@@ -1383,9 +1406,11 @@
           "stroke": "#94a3b8"
         }
       ],
-      "situation": "[Brand Premium Spread] 전 세계 평균 벤치마크 단가 대비, 노르웨이산(Norwegian Origin) 연어가 압도적 브랜드 IP를 바탕으로 구조적이고 영구적인 초과 마진 갭(Premium Spread)을 방어해내고 있습니다.",
-      "takeaway": "[High-Margin IP Exploitation] 기구축된 노르웨이 프리미엄 IP 파워에 무임승차(Free-riding)하십시오. 국내 B2C 런칭 시 '노르웨이 직항 항공 직송 생연어(Chilled)' 카테고리에 전사 마케팅 예산을 융단폭격하여 최고 마진율(Max OPM)을 창출해야 합니다.",
-      "reliability": 100
+      "situation": "노르웨이산 수출 단가는 글로벌 평균을 상회하는 프리미엄을 유지해 왔습니다(2022년 노르웨이 약 8,644 대 글로벌 평균 약 7,172 USD/T). 다만 이 갭이 '구조적·영구적'으로 보장된다고 단정할 근거는 없으며, 단가는 파생 산출치(illustrative)입니다.",
+      "takeaway": "노르웨이 프리미엄을 활용한 '냉장 생연어' 카테고리 마케팅은 유효하나, 프리미엄 갭의 지속성은 환율·공급 상황에 따라 변동할 수 있으므로 마진 가정을 보수적으로 설정하십시오.",
+      "reliability": 100,
+      "source": "FAOSTAT (FishStatJ) — 최신 관측연도 2022 — 단가는 수출액/물량 파생 추정치(illustrative)",
+      "cardDesc": "노르웨이/글로벌 수출단가 = 파생 추정치 비교 (자체 산출, illustrative)"
     }
   ]
 }

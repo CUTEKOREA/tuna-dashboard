@@ -1,58 +1,47 @@
 import { NextResponse } from 'next/server';
 
-export const revalidate = 0; 
+// 정직 STATIC: KCS TRQ 실시간 API 미연동. 아래 수치는 2024년 기준 정적 추정값.
+// 실제 TRQ 소진율은 관세청(KCS) 수입통관 실적에서만 확인 가능.
+export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const now = new Date();
-    
-    // Simulate TRQ exhaustion based on the current month/day
-    // Assuming 50,000 MT total. Starts at 0 in Jan, hits 100% near Oct.
-    const startOfYear = new Date(now.getFullYear(), 0, 1);
-    const daysPassed = Math.floor((now.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24));
-    
+    // 정적 기준값 — 2024년 연간 평균 소진율 추정 (KREI 자료 기반)
     const totalQuota_MT = 50000;
-    
-    // Base daily consumption ~ 140 MT + random noise
-    const baseConsumption = daysPassed * 145;
-    const noise = Math.floor(Math.random() * 2000) - 1000;
-    
-    let consumed_MT = baseConsumption + noise;
-    if (consumed_MT < 0) consumed_MT = 0;
-    if (consumed_MT > totalQuota_MT) consumed_MT = totalQuota_MT;
-    
+    const consumed_MT = 34500; // 2024년 연평균 소진 추정 (약 69%)
     const remaining_MT = totalQuota_MT - consumed_MT;
     const exhaustionRate_percent = +( (consumed_MT / totalQuota_MT) * 100 ).toFixed(1);
 
     let alertLevel = "INFO";
-    let alertMessage = "TRQ remaining volume is stable.";
+    let alertMessage = "TRQ 잔여 쿼터 안정적 (정적 기준값, 실시간 미연동).";
 
     if (exhaustionRate_percent >= 95) {
       alertLevel = "CRITICAL";
-      alertMessage = "TRQ nearly exhausted. Immediate switch to FTA-origin (Vietnam) required to avoid 30% tariff.";
+      alertMessage = "TRQ 쿼터 소진 임박 — 베트남(VKFTA 0%) 전환 검토 필요.";
     } else if (exhaustionRate_percent >= 80) {
       alertLevel = "WARNING";
-      alertMessage = `TRQ exhaustion at ${exhaustionRate_percent}%. High risk of reverting to 30% out-of-quota tariff.`;
+      alertMessage = `TRQ 소진율 ${exhaustionRate_percent}% — 30% 쿼터 외 관세 적용 위험.`;
     }
 
     const response = {
-      timestamp: now.toISOString(),
+      isLive: false,
       itemCode: "0706101000",
-      itemName: "Carrots (Fresh or Chilled)",
+      itemName: "당근 (신선/냉장)",
       trqStatus: {
         totalQuota_MT,
-        consumed_MT: Math.floor(consumed_MT),
-        remaining_MT: Math.floor(remaining_MT),
+        consumed_MT,
+        remaining_MT,
         exhaustionRate_percent
       },
       alerts: [
         { level: alertLevel, message: alertMessage }
       ],
       apiStatus: {
-        KCS: "active_live_sim"
-      }
+        KCS: "static"
+      },
+      source: "KREI WTO TRQ 분석 (2024 기준 정적 추정값)"
     };
-    
+
     return NextResponse.json(response);
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch TRQ data" }, { status: 500 });

@@ -91,7 +91,7 @@
       "id": "w_kr_chicken_price_gap",
       "title": "한국 vs 수입 닭고기 가격",
       "subtitle": "USDA GAIN KS2025-0036 — 국내 +151% 프리미엄",
-      "cardDesc": "2025 H1 평균. 국내 냉장 ₩7,176/kg vs 수입(브라질 냉동) ₩2,860/kg, 가격 갭 60%.",
+      "cardDesc": "2025 H1 평균. 국내 냉장 ₩7,176/kg vs 수입(브라질 냉동) ₩2,860/kg, 수입 대비 국내가 +151% 프리미엄.",
       "chartType": "Bar",
       "pillar": "S4",
       "xKey": "type",

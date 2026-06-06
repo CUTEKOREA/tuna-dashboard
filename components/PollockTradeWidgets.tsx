@@ -10,16 +10,16 @@ export function Widget5_Importers() {
   useEffect(() => { fetch('/data/pollock_top_importers.json').then(r => r.json()).then(setData); }, []);
   return (
     <WidgetCard
-      title="무역의 블랙홀: 중국향 가공 쏠림 현상"
+      title="명태 최종 소비시장: 독일·일본 수입 쌍두마차"
       icon={Globe}
       iconColor="#38bdf8"
       pillar="S3"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
-      cardDesc="전 세계를 상대로 수입 볼륨 1위를 기록하는 중국의 하청 재가공 베이스캠프 전락 리스크"
+      telemetry={{ status: 'SYNCED', syncDate: '2026-06-06' }}
+      cardDesc="UN Comtrade 2024 기준 명태(HS 0302·0304·0305·160420) 국가별 수입 물동량 랭킹"
       takeaway={{
-        situation: "명태 전 세계 수입국의 랭킹을 도식화했습니다. 중국이 1위로 나타나지만, 이는 중국인의 내수 소비가 목적이 아니라 노동집약적인 수작업 공정(뼈 발라내기 등)을 거쳐 전 세계로 비싸게 우회 수출하기 위한 거대 베이스캠프 역할 때문입니다.",
-        actionPlan: "가공의 권력을 쥔 중국 벤더에 대한 협상력 상실은 자사 제품의 매입원가 통제력 붕괴로 직결됩니다. 중국 다롄이나 칭다오 항구 소재의 가공 공장 일부에 합작 지분을 꽂아 넣어 투명한 임가공비 내역을 상시 보고받을 수 있는 지위에 편입해야 합니다.",
-        source: "FAO FishStatJ / 글로벌 관세 수입 통계 (자체 집계)"
+        situation: "2024년 명태(필렛·연육·건제품 포함) 글로벌 수입 물동량 1위는 독일(약 34.9만 톤)이며, 일본(13.3만 톤)·프랑스(11.0만 톤)·미국(7.6만 톤)이 뒤를 잇습니다. 대한민국은 7.0만 톤으로 5위, 중국은 6.6만 톤으로 6위(자기보고 기준)입니다. 중국의 막대한 러시아산 원물 재가공 물량은 원산지 러시아가 통관 미보고국이라 수입국 자기보고 통계에는 부분만 잡힙니다.",
+        actionPlan: "최대 소비처가 중국 내수가 아니라 독일·일본 EU·동아시아 완제품 시장임이 확인됩니다. 독일 함부르크·브레머하펜 콜드체인 거점을 우회하는 직판 루트를 확보하고, 러시아산 원물의 중국 경유 재가공 의존도를 베트남·동남아 가공 벨트로 분산해 원산지 리스크를 헤지해야 합니다.",
+        source: "UN Comtrade 2024 via agri_data (수입국 자기보고, 톤 기준)"
       }}
       customBody={
         <div style={{ height: 280 }}>
@@ -50,12 +50,12 @@ export function Widget6_UnitPrice() {
       icon={Activity}
       iconColor="var(--color-danger)"
       pillar="S3"
-      telemetry={{ status: 'STATIC', syncDate: '2026-05-21' }}
-      cardDesc="원산지(러시아)의 원물 폭등을 따라가지 못해 압사당하는 기업간(B2B) 중간상인(한국향) 이익 구조"
+      telemetry={{ status: 'SYNCED', syncDate: '2026-06-06' }}
+      cardDesc="러시아 수출 단가(통관 미보고 → 교역상대국 미러 통계)와 한국·독일 수입 CIF 단가 추이 ($/kg)"
       takeaway={{
-        situation: "최하단(러시아 원물가)과 최상단(독일·한국 소비재 판가) 단가 트렌드를 겹쳐 마진 여유폭을 도출했습니다. 원물 공급상이 가격을 무자비하게 올려도, 급식/식자재 중간 상인들의 판가가 이를 전가시키지 못해 영업마진이 박살 나고 있습니다.",
+        situation: "러시아 원물 수출 단가(2024년 약 $2.51/kg, 통관 미보고로 상대국 미러 통계 산출)와 한국($3.61/kg)·독일($2.94/kg) 수입 단가를 겹쳤습니다. 2024년 들어 한국 수입 단가가 독일을 추월하며 역전됐는데, 이는 한국의 건명태·연육 등 고부가 품목 비중과 환율 부담이 동시에 작용한 결과로 마진 여유폭이 더 좁아졌음을 시사합니다.",
         actionPlan: "원물 수입에 머무는 단순 트레이딩(매구입) 기능을 점진적으로 축소하거나 철회하십시오. 마진 공간이 허락되는 유일한 구명조끼는 소비자 직접 판매(온라인 몰·직영 리테일) 브랜드를 만들어 최종 소비자 가격 재량권을 갖는 방안뿐입니다.",
-        source: "Undercurrent News 가격 지수 / 자체 추정 (원물·수입·소비재 단가 비교)"
+        source: "UN Comtrade 2024 via agri_data (러시아=미러, 한국·독일=수입 CIF 단가)"
       }}
       customBody={
         <div style={{ height: 280 }}>
@@ -66,9 +66,9 @@ export function Widget6_UnitPrice() {
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
               <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
-              <Bar dataKey="수출_러시아단가" fill="#64748b" name="러시아산 원물 항구 수출 단가" radius={[4,4,0,0]} />
-              <Line type="monotone" dataKey="수입_한국단가" stroke="var(--color-info)" strokeWidth={3} name="한국 내수 기업간 도매 단가" dot={{r:3}} />
-              <Line type="monotone" dataKey="수입_독일단가" stroke="#fbbf24" strokeWidth={3} name="독일 소매(판매가) 단가" dot={{r:3}} />
+              <Bar dataKey="수출_러시아단가" fill="#64748b" name="러시아산 원물 수출 단가 (미러)" radius={[4,4,0,0]} />
+              <Line type="monotone" dataKey="수입_한국단가" stroke="var(--color-info)" strokeWidth={3} name="한국 수입 단가 (CIF)" dot={{r:3}} />
+              <Line type="monotone" dataKey="수입_독일단가" stroke="#fbbf24" strokeWidth={3} name="독일 수입 단가 (CIF)" dot={{r:3}} />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
             </ComposedChart>
           </SafeResponsiveContainer>

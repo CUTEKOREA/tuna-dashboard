@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌾 **2026-06-06 — agri_data 월간 파이프라인 → 대시보드 위젯 12개 SYNCED + 일괄 배포** [CC]:
+> - **agri_data 월간 갱신 파이프라인** 신규 구축(`agri_data/_pipeline/`, launchd 매월1일): 46품목 Comtrade·관세청·KAMIS·ECOS·FRED 232K행. 컨버터 `tuna-dashboard/scripts/agri_to_dashboard/agri_convert.py`로 위젯 JSON 생성.
+> - **위젯 12개 보완**(전부 빌드 통과, 정적-SYNCED·isLive:false): KAMIS(shrimp·carrot도매) · 관세청(petfood 수입원) · Comtrade(salmon·chicken·tuna캔점유율·carrot W25/26·squid w5수입국·cassava·pollock). 미러통계로 베트남(cassava)·러시아(pollock) 복원.
+> - **적대검증(writer≠reviewer)이 결함 5종 차단**: Comtrade motCode/partner2/customsCode **3중 중복계산** 버그(총계행만 집계 `_is_total_row`), 거짓"미보고"정당화(태국은 2024 자기보고—블로커는 2025 현재연도 미완 artifact였음), 형제텍스트 모순. → 컨버터 triple-dedup 확정.
+> - **미적용 2개(정직)**: mangosteen(라우트 하드코딩), galchi(HS030389 잔여코드 오염).
+> - **데이터 주의**: Comtrade 점유율 위젯은 **2024 완료연도** 사용(2025 보고 진행중·미완). customs_kr 2개월 누적중. 진단·매핑 `agri_data/_pipeline/reports/DASHBOARD_UPDATE_*.md`.
+> - 본 배포: 사용자 "라이브 배포" 명시 요청 → 누적 미커밋 일괄 push(81파일, 위젯15+타에이전트66). 빌드 ✓.
+
 > 🏁 **2026-06-05 — 세션 종료: 라우트 LIVE 완결 + 콘텐츠 파일럿** [CC]:
 > - **라우트 LIVE 캠페인 완결**: 고가치 fallback 13개 전부 프로덕션 LIVE 검증 완료. **prod LIVE 19→32**. 2차 잔존 4개도 해결 — tuna/dart(동원산업 corp 정정+isLive≥1완화)·fishery(?source=kcs)·**comtrade 2개(premium→무료 preview 엔드포인트 전환=beef 패턴, 프로덕션 isLive:true 검증)** [6293405].
 > - **needs-review 3**(tuna/shrimp/salmon usda-fas): 수산물은 USDA ESR 미지원(농산물 44품목만) → 구조적, honest STATIC 유지. **NOAA Fisheries 등 별도소스** 필요(다음 세션).

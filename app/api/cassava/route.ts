@@ -9,54 +9,18 @@ export async function GET() {
     const fileContents = await fs.readFile(dataPath, 'utf8');
     const baseData = JSON.parse(fileContents);
 
-    // 2. Simulate TTTA (Thai Tapioca Trade Association) Live API Injection for W05
-    const w05Index = baseData.widgets.findIndex((w: any) => w.id === 'w05');
-    if (w05Index !== -1) {
-      const widget = baseData.widgets[w05Index];
-      // Keep existing data but append the latest 2026-May real-time fluctuations
-      const latestExportPrice = 478 + (Math.random() * 20 - 10);
-      const latestDomesticPrice = 396 + (Math.random() * 15 - 7);
-      
-      const updatedData = [
-        ...widget.data,
-        {
-          month: "26-May (Live)",
-          exportPrice: Number(latestExportPrice.toFixed(0)),
-          domesticPrice: Number(latestDomesticPrice.toFixed(0))
-        }
-      ];
+    // 2. W05: 정적 JSON 그대로 반환 (TTTA 실시간 API 미연동 — 난수 기반 라이브 시뮬레이션 제거)
+    // L-09: Math.random() 기반 가짜 실시간 데이터 주입 금지. 실제 TTTA fetch 연동 시에만 Live 표기 허용.
 
-      baseData.widgets[w05Index] = {
-        ...widget,
-        data: updatedData,
-        title: "태국 수출 단가(FOB) vs 국내 도매가 갭 분석 (Live API 연동)",
-        subtitle: "TTTA 실데이터: 실시간 아비트라지 모니터링"
-      };
-    }
+    // 3. W04 Sankey: 정적 메타데이터만 유지 (lastUpdated 동적 생성 제거)
 
-    // 3. W04 Sankey SVG dynamic binding metadata
-    const w04Index = baseData.widgets.findIndex((w: any) => w.id === 'w04');
-    if (w04Index !== -1) {
-      baseData.widgets[w04Index] = {
-        ...baseData.widgets[w04Index],
-        _liveMetadata: {
-          thailandVietnamDependency: "99.9%",
-          chinaAbsorptionRate: "60~95%",
-          lastUpdated: new Date().toISOString()
-        }
-      };
-    }
-
-    // Merge and return
+    // Merge and return (isLive:false — 정적 JSON 파일 기반)
     const apiPayload = {
       ...baseData,
+      isLive: false,
       _metadata: {
-        lastSynced: new Date().toISOString(),
-        networksStatus: {
-          TTTA: 'Online',
-          FAOSTAT: 'Online',
-          NOAA: 'Online'
-        }
+        lastSynced: '2026-05-07',
+        source: '정적 JSON 파일 (TTTA·FAOSTAT·NOAA 실시간 API 미연동)'
       }
     };
 
