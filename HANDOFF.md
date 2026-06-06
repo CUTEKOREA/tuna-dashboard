@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🍠 **2026-06-06 — 카사바 대시보드 위젯 2열 그리드 교정 및 프로덕션 배포 완료** [Antigravity]:
+> - **위젯 그리드 레이아웃 교정**: 카사바 대시보드([CassavaDashboard.tsx](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/components/CassavaDashboard.tsx))의 홀수 위젯이 100% 너비로 늘어나는 `gridColumn` 오버라이드(`isLastOdd` 스타일 적용 부분)를 제거하여, PC 뷰포트에서 모든 위젯이 항상 1열당 2개씩 균등하게 정렬되도록(빈 공간은 빈 채로 유지) 교정하였습니다.
+> - **프로덕션 빌드 및 Vercel 배포 완료**: Next.js production build가 에러 없이 성공적으로 컴파일됨을 검증하고 Vercel을 통해 실시간 라이브 서버(`leedonggun.co.kr`)에 배포 완료하였습니다.
+
 > 🧄 **2026-06-06 — 마늘 대시보드 빈 그래프 렌더링 수정 및 프로덕션 배포 완료** [Antigravity]:
 > - **빈 그래프 원인 파싱**: `garlic_w11_valuation.json` 파일이 비어 있고 `garlic_w6_arbitrage.json` 데이터 키가 ComposedChart 스키마와 불일치하던 부분을 복원했으나, 브라우저가 오래된 빈 응답 JSON을 캐싱하고 있어 그래프가 계속해서 비어 보이는 현상이 발생했음.
 > - **캐시 방지 솔루션 도입**: `components/GarlicDashboard.tsx`의 fetch 요청에 `&t=${Date.now()}` 타임스탬프를 덧붙여 브라우저 및 CDN 캐시를 완전히 무력화(cache-busting). 또한 `app/api/garlic/widget/route.ts` API 라우트의 헤더에 `Cache-Control: no-store, max-age=0, must-revalidate`를 설정하여 엣지 서버와 브라우저 단에서의 캐싱을 완전히 차단.
