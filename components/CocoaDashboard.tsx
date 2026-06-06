@@ -309,7 +309,7 @@ export default function CocoaDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[0].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="기후 위기와 서아프리카 원두 생산 충격 (단위: 톤)" icon={CloudRain} iconColor="#b45309" pillar="S1"
           cardDesc="가나·코트디부아르 생산량 vs CSSVD 감염률 — 구조적 회복 5~10년"
@@ -412,11 +412,6 @@ export default function CocoaDashboard() {
             ),
             source: "가나 COCOBOD·ICE 선물·EFI 코코아 인사이트 2025·IMF 가나 분석 참조 — 정적 추정(실시간 미연동)",
           }} />
-
-      </div>
-
-      {/* 🆕 USDA FAS — 코트디부아르·가나 코코아 생산 (S1 원료 수급) */}
-      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
         <CocoaUsdaWidgets filterPillar="S1" />
       </div>
 
@@ -430,7 +425,7 @@ export default function CocoaDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[1].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="글로벌 가공 허브 포트폴리오 (점유율 %)" icon={Factory} iconColor="#b45309" pillar="S2"
           cardDesc="네덜란드·코트디부아르·인니·독일·말련 등 국가별 가공허브 점유율"
@@ -554,11 +549,6 @@ export default function CocoaDashboard() {
             ),
             source: "ICE Cocoa Futures Curve (정적 스냅샷·실시간 미연동) + CFTC COT 보고서 + Bloomberg Commodity",
           }} />
-
-      </div>
-
-      {/* 🆕 USDA FAS — 코트디부아르 국내 가공률 정책 (S2 가공·생산) */}
-      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
         <CocoaUsdaWidgets filterPillar="S2" />
       </div>
 
@@ -572,7 +562,7 @@ export default function CocoaDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[2].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         
         <WidgetCard title="가나 현지 가공 인프라 디스트레스 차익거래 (천톤, %)" icon={TrendingUp} iconColor="#78350f" pillar="S3"
@@ -715,7 +705,7 @@ export default function CocoaDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[3].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         
         <WidgetCard title="기업간(B2B) 코코아 대체유(CBE) 벤더 롤업 가치 평가" icon={Scale} iconColor="#d97706" pillar="S2"
@@ -846,11 +836,6 @@ export default function CocoaDashboard() {
             ),
             source: "DART 전자공시 + 한국 제과 3사 IR + 자체추정 — 정적 스냅샷·실시간 미연동",
           }} />
-
-      </div>
-
-      {/* 🆕 USDA FAS — 국제·국내 가격 8년 + 가나 대미 수출 +318% (S4 판매·수요) */}
-      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
         <CocoaUsdaWidgets filterPillar="S4" />
       </div>
 
@@ -864,7 +849,7 @@ export default function CocoaDashboard() {
           <p style={{ margin:0, fontSize:'0.75rem', color:'var(--text-secondary)' }}>{SECTIONS[4].desc}</p>
         </div>
       </div>
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginBottom:'2.5rem' }}>
+      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
         <WidgetCard title="부산물 업사이클링 수익 포트폴리오 (매출 기여도 %)" icon={Recycle} iconColor="#d97706" pillar="S5"
           cardDesc="Husks·Pods 부산물의 테오브로민·카테킨·사료 가치 — Cash Cow 전환"

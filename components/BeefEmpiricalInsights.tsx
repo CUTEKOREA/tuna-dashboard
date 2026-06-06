@@ -61,23 +61,19 @@ export function InsightFeedCostSpread({ accent = '#e11d48' }: any) {
         source: "CBOT Corn Futures·세계은행 Pink Sheet(대두박)·KCS 기반 업계추정 (illustrative)"
       }}
       chart={
-        <div style={{ height: 300, width: '100%' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={feedCostData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[150, 600]} />
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 12]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-              <Area yAxisId="left" type="monotone" dataKey="corn" name="옥수수(US$/t)" fill="url(#pattern-amber)" stroke="#f59e0b" fillOpacity={0.3} />
-              <Area yAxisId="left" type="monotone" dataKey="soy" name="대두박(US$/t)" fill="url(#pattern-rose)" stroke="#e11d48" fillOpacity={0.3} />
-              <Line yAxisId="right" type="monotone" dataKey="hanwooCost" name="한우원가지수" stroke="#dc2626" strokeWidth={3} dot={{ r: 4 }} />
-              <Line yAxisId="right" type="monotone" dataKey="usBeefPrice" name="미국산단가($/kg)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
-            </ComposedChart>
-          </ResponsiveContainer>
-        </div>
+        <ComposedChart data={feedCostData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[50, 600]} />
+          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 12]} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+          <Area yAxisId="left" type="monotone" dataKey="corn" name="옥수수(US$/t)" fill="url(#a11y-diag)" stroke="#f59e0b" fillOpacity={0.3} />
+          <Area yAxisId="left" type="monotone" dataKey="soy" name="대두박(US$/t)" fill="url(#a11y-dots)" stroke="#e11d48" fillOpacity={0.3} />
+          <Line yAxisId="left" type="monotone" dataKey="hanwooCost" name="한우원가지수" stroke="#dc2626" strokeWidth={3} dot={{ r: 4 }} />
+          <Line yAxisId="right" type="monotone" dataKey="usBeefPrice" name="미국산단가($/kg)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
+        </ComposedChart>
       }
     />
   );
@@ -110,22 +106,18 @@ export function InsightCutTracker({ accent = '#fb923c' }: any) {
         source: "FAOSTAT Detailed Trade Matrix·KCS Import Data 기반 업계추정 (illustrative)"
       }}
       chart={
-        <div style={{ height: 300, width: '100%' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={cutTrackerData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} />
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 14]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-              <Bar yAxisId="left" dataKey="bonelessVol" name="순살 수입량(천톤)" fill="#fb923c" radius={[4, 4, 0, 0]} barSize={20} />
-              <Bar yAxisId="left" dataKey="boneVol" name="뼈 수입량(천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} barSize={20} />
-              <Line yAxisId="right" type="monotone" dataKey="bonelessPrice" name="순살 단가($/kg)" stroke="#fcd34d" strokeWidth={2} dot={{ r: 3 }} />
-              <Line yAxisId="right" type="monotone" dataKey="bonePrice" name="뼈 단가($/kg)" stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} />
-            </ComposedChart>
-          </ResponsiveContainer>
-        </div>
+        <ComposedChart data={cutTrackerData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} />
+          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 14]} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+          <Bar yAxisId="left" dataKey="bonelessVol" name="순살 수입량(천톤)" fill="#fb923c" radius={[4, 4, 0, 0]} barSize={20} />
+          <Bar yAxisId="left" dataKey="boneVol" name="뼈 수입량(천톤)" fill="#dc2626" radius={[4, 4, 0, 0]} barSize={20} />
+          <Line yAxisId="right" type="monotone" dataKey="bonelessPrice" name="순살 단가($/kg)" stroke="#fcd34d" strokeWidth={2} dot={{ r: 3 }} />
+          <Line yAxisId="right" type="monotone" dataKey="bonePrice" name="뼈 단가($/kg)" stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} />
+        </ComposedChart>
       }
     />
   );
@@ -157,19 +149,15 @@ export function InsightDiseaseRadar({ accent = '#ef4444' }: any) {
         source: "WOAH (World Organisation for Animal Health) 공개 보고 기반 자체추정 — illustrative"
       }}
       chart={
-        <div style={{ height: 300, width: '100%' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={diseaseRadarData}>
-              <PolarGrid stroke="rgba(255,255,255,0.1)" />
-              <PolarAngleAxis dataKey="country" tick={{ fill: '#94a3b8', fontSize: 10 }} />
-              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9, fill: '#64748b' }} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="bottom" wrapperStyle={{ fontSize: '10px' }} />
-              <Radar name="질병 리스크 지수" dataKey="riskLevel" stroke="#ef4444" fill="#ef4444" fillOpacity={0.4} />
-              <Radar name="대체 공급 여력" dataKey="altCapacity" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.4} />
-            </RadarChart>
-          </ResponsiveContainer>
-        </div>
+        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={diseaseRadarData}>
+          <PolarGrid stroke="rgba(255,255,255,0.1)" />
+          <PolarAngleAxis dataKey="country" tick={{ fill: '#94a3b8', fontSize: 10 }} />
+          <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9, fill: '#64748b' }} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend verticalAlign="bottom" wrapperStyle={{ fontSize: '10px' }} />
+          <Radar name="질병 리스크 지수" dataKey="riskLevel" stroke="#ef4444" fill="#ef4444" fillOpacity={0.4} />
+          <Radar name="대체 공급 여력" dataKey="altCapacity" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.4} />
+        </RadarChart>
       }
     />
   );

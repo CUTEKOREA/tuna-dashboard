@@ -1,1 +1,12 @@
-[{"target": "\uc778\ub3c4\ub124\uc2dc\uc544", "value": 550000}, {"target": "\ubca0\ud2b8\ub0a8", "value": 320000}, {"target": "\ub9d0\ub808\uc774\uc2dc\uc544", "value": 180000}, {"target": "\ubbf8\uad6d", "value": 150000}, {"target": "\uc544\ub78d\uc5d0\ubbf8\ub9ac\ud2b8", "value": 120000}, {"target": "\ubc29\uae00\ub77c\ub370\uc2dc", "value": 90000}, {"target": "\ud0dc\uad6d", "value": 85000}, {"target": "\ud544\ub9ac\ud540", "value": 70000}, {"target": "\ube0c\ub77c\uc9c8", "value": 65000}, {"target": "\uc0ac\uc6b0\ub514", "value": 50000}]
+[
+  {"source": "중국", "target": "인도네시아", "value": 230806},
+  {"source": "중국", "target": "베트남", "value": 185000},
+  {"source": "중국", "target": "말레이시아", "value": 130500},
+  {"source": "중국", "target": "미국", "value": 85000},
+  {"source": "중국", "target": "한국", "value": 64000},
+  {"source": "중국", "target": "필리핀", "value": 58000},
+  {"source": "아르헨티나", "target": "브라질", "value": 68000},
+  {"source": "베트남", "target": "한국", "value": 54000},
+  {"source": "중국", "target": "방글라데시", "value": 45000},
+  {"source": "스페인", "target": "독일", "value": 35000}
+]

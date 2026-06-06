@@ -1,1 +1,7 @@
-[{"category": "\ub0c9\ub3d9 \ub2e4\uc9c4\ub9c8\ub298", "Price_USD_MT": 1200, "Margin": 25}, {"category": "\uac74\uc870 \ub9c8\ub298", "Price_USD_MT": 2500, "Margin": 35}, {"category": "\ud398\uc774\uc2a4\ud2b8", "Price_USD_MT": 1800, "Margin": 28}, {"category": "\uc2e0\uc120 \uae50\ub9c8\ub298", "Price_USD_MT": 900, "Margin": 10}, {"category": "\ud1b5\ub9c8\ub298", "Price_USD_MT": 700, "Margin": 5}]
+[
+  {"category": "신선/깐마늘", "Margin": 8, "ValueAdd": 100, "Price_USD_MT": 2000},
+  {"category": "건조/분말", "Margin": 18, "ValueAdd": 250, "Price_USD_MT": 5000},
+  {"category": "페이스트/소스", "Margin": 28, "ValueAdd": 380, "Price_USD_MT": 7500},
+  {"category": "흑마늘/숙성", "Margin": 45, "ValueAdd": 800, "Price_USD_MT": 16000},
+  {"category": "알리신 추출물", "Margin": 65, "ValueAdd": 1500, "Price_USD_MT": 30000}
+]

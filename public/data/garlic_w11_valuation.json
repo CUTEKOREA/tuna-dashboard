@@ -1,1 +1,8 @@
-[]
+[
+  { "year": "2024", "BlackGarlic": 600, "Supplements": 1200 },
+  { "year": "2026", "BlackGarlic": 688, "Supplements": 1415 },
+  { "year": "2028", "BlackGarlic": 789, "Supplements": 1669 },
+  { "year": "2030", "BlackGarlic": 905, "Supplements": 1968 },
+  { "year": "2032", "BlackGarlic": 1038, "Supplements": 2321 },
+  { "year": "2035", "BlackGarlic": 1200, "Supplements": 2700 }
+]

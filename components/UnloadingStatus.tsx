@@ -498,11 +498,11 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 6955.000,
-      actualTotal: 2304.990,
-      surplus: -4650.010,
+      actualTotal: 3768.010,
+      surplus: -3186.990,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 2172.490, surplus: -4473.510 },
-        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 132.500, surplus: -176.500 }
+        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 3562.310, surplus: -3083.690 },
+        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 205.700, surplus: -103.300 }
       ],
       timeline: [
         { date: '5/23', time: '08:10 ~ 20:30', targetHol: 'S/HAR(#2-A)', dailyAmount: 146.890, cumAmount: 146.890, quality: '어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.' },
@@ -515,7 +515,11 @@ export default function UnloadingStatus() {
         { date: '5/30', time: '08:10 ~ 19:00', targetHol: 'S/SPR(#1-A, #4-B, #4-C)', dailyAmount: 307.410, cumAmount: 1741.120, quality: '어창 개방 측정온도 -18.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(5/31) 약 300톤 하역 진행 예정.' },
         { date: '5/31', time: '08:10 ~ 13:00', targetHol: 'MOAKONA(#2-B)', dailyAmount: 93.560, cumAmount: 1834.680, quality: '어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/1) 약 300톤 하역 진행 예정.' },
         { date: '6/1', time: '08:20 ~ 20:20', targetHol: 'MOAKONA(#2-B), MOAMARI(#4-C)', dailyAmount: 271.530, cumAmount: 2106.210, quality: 'MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -20.0℃ ~ -23.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/2)은 약 250톤 하역 진행 예정.' },
-        { date: '6/2', time: '08:20 ~ 14:00', targetHol: 'S/SPR(#1-A), MOAMARI(#4-C)', dailyAmount: 198.780, cumAmount: 2304.990, quality: 'S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/3)은 약 235톤 하역 진행 예정.' }
+        { date: '6/2', time: '08:20 ~ 14:00', targetHol: 'S/SPR(#1-A), MOAMARI(#4-C)', dailyAmount: 198.780, cumAmount: 2304.990, quality: 'S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/3)은 약 235톤 하역 진행 예정.' },
+        { date: '6/3', time: '08:10 ~ 18:40', targetHol: 'S/PIO(#3-A), MOAKONA(#2-B)', dailyAmount: 236.140, cumAmount: 2541.130, quality: 'S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/4) 약 330톤 하역 진행 예정.' },
+        { date: '6/4', time: '08:20 ~ 18:30', targetHol: 'S/PIO(#3-A), MOAKONA(#2-B)', dailyAmount: 322.870, cumAmount: 2864.000, quality: 'S/PIO(#3-A)- 어창 개방 측정온도는 -18.0℃ ~ -21.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B)- 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/5) 약 580톤 하역 진행 예정.' },
+        { date: '6/5', time: '08:10 ~ 18:20', targetHol: 'S/HAR(#1-B), MOAKONA(#2-B), S/PIO(#3-A,#3-B), MOAMARI(#4-C,#4-D)', dailyAmount: 438.050, cumAmount: 3302.050, quality: 'S/PIO(#3-A,#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#4-C,#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 450톤 하역 진행 예정.' },
+        { date: '6/6', time: '08:10 ~ 18:00', targetHol: 'S/PIO(#3-B), S/SPR(#4-D), N/STAR(#2-C)', dailyAmount: 465.960, cumAmount: 3768.010, quality: 'S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역작업이 없으며, 재명일(6/8) 약 586톤 하역 진행 예정.' }
       ]
     },
     'bao-lucky': {
@@ -526,11 +530,11 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 4803.000,
-      actualTotal: 229.160,
-      surplus: -4573.840,
+      actualTotal: 1413.410,
+      surplus: -3389.590,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 204.460, surplus: -3971.540 },
-        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 24.700, surplus: -602.300 }
+        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 1261.910, surplus: -2914.090 },
+        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 151.500, surplus: -475.500 }
       ],
       timeline: [
         { 
@@ -540,6 +544,38 @@ export default function UnloadingStatus() {
           dailyAmount: 229.160, 
           cumAmount: 229.160, 
           quality: 'S/EXP(#4-A): 어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호. N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/3)은 약 176톤 하역 진행 예정.' 
+        },
+        {
+          date: '6/3',
+          time: '08:00 ~ 18:00',
+          targetHol: 'S/EXP(#4-B)',
+          dailyAmount: 180.340,
+          cumAmount: 409.500,
+          quality: 'S/EXP(#4-B): 어창 개방 측정온도 -20.0℃. 양호. 명일(6/4) 약 410톤 하역 진행 예정.'
+        },
+        {
+          date: '6/4',
+          time: '08:20 ~ 15:20',
+          targetHol: 'N/STAR(#1-A), S/EXP(#2-A,#4-A), MOAKONA(#2-A)',
+          dailyAmount: 417.350,
+          cumAmount: 826.850,
+          quality: '제품상태:N/STAR(#1-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.S/EXP(#2-A,#4-A) - 어창 개방 측정온도는 -19.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다.MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/5) 약 270톤 하역 진행 예정.'
+        },
+        {
+          date: '6/5',
+          time: '08:00 ~ 16:50',
+          targetHol: 'S/PIO(#3-A), N/STAR(#1-A), S/EXP(#4-A)',
+          dailyAmount: 309.670,
+          cumAmount: 1136.520,
+          quality: 'S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정.'
+        },
+        {
+          date: '6/6',
+          time: '08:20 ~ 15:50',
+          targetHol: 'S/EXP(#4-A), N/STAR(#1-A), MOAMARI(#2-A)',
+          dailyAmount: 276.890,
+          cumAmount: 1413.410,
+          quality: 'S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역 작업이 없으며, 재명일(6/8) 약 550톤 하역 진행 예정.'
         }
       ]
     },

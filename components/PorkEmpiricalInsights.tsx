@@ -125,22 +125,18 @@ export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
         source: "USDA PSD (Swine Inventory), WOAH WAHIS"
       }}
       chart={
-        <div style={{ height: 300, width: '100%' }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={chinaFactorData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9 }} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[200, 500]} />
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 200]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-              <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#pattern-rose)" stroke="#ef4444" radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
-              <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#pattern-amber)" stroke="#f59e0b" fillOpacity={0.2} />
-              <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke="#38bdf8" strokeWidth={2.5} dot={{ r: 3 }} />
-            </ComposedChart>
-          </SafeResponsiveContainer>
-        </div>
+        <ComposedChart data={chinaFactorData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[200, 500]} />
+          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 200]} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+          <Bar yAxisId="right" dataKey="asfOutbreaks" name="아시아 ASF 발병(건)" fill="url(#a11y-diag)" stroke="#ef4444" radius={[4, 4, 0, 0]} barSize={20} fillOpacity={0.4} />
+          <Area yAxisId="left" type="monotone" dataKey="chinaInv" name="중국 사육 두수(백만)" fill="url(#a11y-dots)" stroke="#f59e0b" fillOpacity={0.2} />
+          <Line yAxisId="right" type="step" dataKey="globalPrice" name="글로벌 돈가 지수" stroke="#38bdf8" strokeWidth={2.5} dot={{ r: 3 }} />
+        </ComposedChart>
       }
     />
   );
@@ -173,24 +169,20 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
         source: "CBOT Corn Futures, CME Lean Hog"
       }}
       chart={
-        <div style={{ height: 300, width: '100%' }}>
-          <SafeResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={hogCornData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-              <XAxis dataKey="qtr" stroke="#64748b" tick={{ fontSize: 9 }} />
-              <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[150, 300]} />
-              <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 25]} />
-              <Tooltip content={<CustomTooltip />} />
-              <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
-              <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill="#f59e0b" stroke="#f59e0b" fillOpacity={0.1} />
-              <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
-              <Bar yAxisId="right" dataKey="ratio" name="Hog-Corn 비율" fill={accent} radius={[4, 4, 0, 0]} barSize={25}>
-                {hogCornData.map((e, index) => <Cell key={`cell-${index}`} fillOpacity={e.ratio > 15 ? 0.8 : 0.4} />)}
-              </Bar>
-            </ComposedChart>
-          </SafeResponsiveContainer>
-        </div>
+        <ComposedChart data={hogCornData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <ChartPatternDefs />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="qtr" stroke="#64748b" tick={{ fontSize: 9 }} />
+          <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[150, 300]} />
+          <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 25]} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
+          <Area yAxisId="left" type="monotone" dataKey="cornPrice" name="옥수수 단가($/t)" fill="#f59e0b" stroke="#f59e0b" fillOpacity={0.1} />
+          <Line yAxisId="left" type="monotone" dataKey="porkWholesale" name="돈육 도매($/100lb)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
+          <Bar yAxisId="right" dataKey="ratio" name="Hog-Corn 비율" fill={accent} radius={[4, 4, 0, 0]} barSize={25}>
+            {hogCornData.map((e, index) => <Cell key={`cell-${index}`} fillOpacity={e.ratio > 15 ? 0.8 : 0.4} />)}
+          </Bar>
+        </ComposedChart>
       }
     />
   );

@@ -132,7 +132,7 @@ export default function GarlicDashboard() {
   React.useEffect(() => {
     const fetchWidgetData = async (id: string, setter: any) => {
       try {
-        const response = await fetch(`/api/garlic/widget?id=${id}`);
+        const response = await fetch(`/api/garlic/widget?id=${id}&t=${Date.now()}`);
         if (response.ok) {
           const result = await response.json();
           setter(result.data);
@@ -385,9 +385,8 @@ export default function GarlicDashboard() {
             source: "KAMIS 가락동 도매가 (2020~2026) · FAOSTAT TM/PP",
           }} />
 
-        <div style={{ gridColumn: '1 / -1' }}>
-          <WidgetCard title="주요 산지 이상기후 및 벌마늘 리스크 모니터링"
-            icon={Zap} iconColor="#ef4444" pillar="S1"
+        <WidgetCard title="주요 산지 이상기후 및 벌마늘 리스크 모니터링"
+          icon={Zap} iconColor="#ef4444" pillar="S1"
             cardDesc="좌축: 단수(전통 vs 정밀 농법), 우축: 비료 원가 지수 — 이상기후 헷징"
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
@@ -419,11 +418,6 @@ export default function GarlicDashboard() {
               ),
               source: "KREI 농업전망 2026 + 기상청 RDAPS + 농촌진흥청 벌마늘 발생률 통계",
             }} />
-        </div>
-      </div>
-
-      {/* 🆕 USDA FAS — 한국 마늘 생산 8년 + 글로벌 중국 84% 점유 (S1 원료 수급) */}
-      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
         <GarlicUsdaWidgets filterPillar="S1" />
       </div>
 
@@ -502,8 +496,7 @@ export default function GarlicDashboard() {
             source: "OEC + 관세청 HSK 0703.20·0712.90 수입 통계 · 외식업 인건비 분석 (2020~2026)",
           }} />
 
-        <div style={{ gridColumn: '1 / -1' }}>
-          <WidgetCard title="영업 채널 이원화 마진 분석: B2B vs 프리미엄 B2C" icon={TestTube} iconColor="#ca8a04" pillar="S4"
+        <WidgetCard title="영업 채널 이원화 마진 분석: B2B vs 프리미엄 B2C" icon={TestTube} iconColor="#ca8a04" pillar="S4"
             cardDesc="흑마늘 시장 규모(좌, $B) + 영업 마진율(우, %) — 채널 이원화 심화"
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
@@ -534,7 +527,6 @@ export default function GarlicDashboard() {
               ),
               source: "aT 한국식품정보원 + KOTRA 해외시장조사 + 마켓컬리·SSG 마늘 SKU 단가 비교",
             }} />
-        </div>
       </div>
 
       </>)}
@@ -611,8 +603,7 @@ export default function GarlicDashboard() {
             source: "관세청 마늘 HSK 0703.20 관세율표 + 농식품부 보도자료 (2020~2026 TRQ 발동 이력)",
           }} />
 
-        <div style={{ gridColumn: '1 / -1' }}>
-          <WidgetCard title="홍해 사태(Red Sea Crisis) 물류 충격" icon={Anchor} iconColor="#65a30d" pillar="S3"
+        <WidgetCard title="홍해 사태(Red Sea Crisis) 물류 충격" icon={Anchor} iconColor="#65a30d" pillar="S3"
             cardDesc="아시아-유럽 라인 운송 기간(좌, 일) + 운임/리스크 지수(우)"
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
@@ -643,7 +634,6 @@ export default function GarlicDashboard() {
               ),
               source: "SCFI 지수 + 해양수산부 글로벌 운임 트래킹 + 후티 공격 발생 통계 (UN MARSEC)",
             }} />
-        </div>
 
         <WidgetCard title="환율 변동성 대비 실질 수입 마진 시뮬레이터" icon={ShieldCheck} iconColor="#eab308" pillar="S3"
           cardDesc="원/달러 + 원/위안 슬라이더 기반 실질 수입 단가 차익 시뮬레이션"
@@ -694,10 +684,6 @@ export default function GarlicDashboard() {
             ),
             source: "한국은행 일일 환율 + K-SURE 환변동보험 데이터 + SCFI 운임 지수",
           }} />
-      </div>
-
-      {/* 🆕 USDA FAS — 한국 마늘 수입 형태별 (냉동 72%, S3 통관) */}
-      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
         <GarlicUsdaWidgets filterPillar="S3" />
       </div>
 
@@ -803,8 +789,7 @@ export default function GarlicDashboard() {
             source: "관세청(KCS) 마늘 HS 070320·071290 국가별 수입액 (2026.03-04, 2개월 누적)",
           }} />
 
-        <div style={{ gridColumn: '1 / -1' }}>
-          <WidgetCard title="2025 스마트 패키징(Smart Packaging) (단위: %)" icon={ShieldCheck} iconColor="#84cc16" pillar="S5"
+        <WidgetCard title="2025 스마트 패키징(Smart Packaging) (단위: %)" icon={ShieldCheck} iconColor="#84cc16" pillar="S5"
             cardDesc="친환경 패키징 도입 비중 vs 리테일 마진 프리미엄"
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
@@ -831,7 +816,6 @@ export default function GarlicDashboard() {
               ),
               source: "KOTRA ESG 글로벌 동향 + 환경부 자원순환법 + Walmart/Costco/Whole Foods ESG 벤더 점수표",
             }} />
-        </div>
 
         <WidgetCard title="글로벌 흑마늘/추출물 가치평가 (백만 USD)" icon={TrendingUp} iconColor="#d97706" pillar="S2"
           cardDesc="흑마늘 + 마늘 건기식 시장 규모 추이 — 가공 기술 내재화 시 15x EV"
@@ -863,10 +847,6 @@ export default function GarlicDashboard() {
             ),
             source: "업계추정 (식음료 PEF multiple 분석 준용) + KREI 농업기술 가치평가 연구",
           }} />
-      </div>
-
-      {/* 🆕 USDA FAS — 깐마늘 도매가 7개월 + 관세 360% 가격 갭 (S4 판매·수요) */}
-      <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%,540px), 1fr))', gap:'1.5rem', marginTop:'1.5rem' }}>
         <GarlicUsdaWidgets filterPillar="S4" />
       </div>
 
@@ -945,8 +925,7 @@ export default function GarlicDashboard() {
             source: "UN Comtrade + KRX 농산물 선물거래 + Shanghai Garlic Index (2020~2026)",
           }} />
 
-        <div style={{ gridColumn: '1 / -1' }}>
-          <WidgetCard title="마늘 감모/폐기물 업사이클링 (Circular Economy, %)" icon={Recycle} iconColor="#84cc16" pillar="S5"
+        <WidgetCard title="마늘 감모/폐기물 업사이클링 (Circular Economy, %)" icon={Recycle} iconColor="#84cc16" pillar="S5"
             cardDesc="폴리사카라이드·바이오연료·친환경 포장재 등 업사이클링 비중"
             telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
             chart={
@@ -977,7 +956,6 @@ export default function GarlicDashboard() {
               ),
               source: "농촌진흥청 바이오매스 연구 + 환경부 K-ETS + 알리신 추출 학술 연구",
             }} />
-        </div>
       </div>
       </>)}
 

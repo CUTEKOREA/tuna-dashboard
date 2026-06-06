@@ -1,1 +1,5 @@
-[]
+[
+  { "route": "수에즈 운하 (정상)", "TransitTime": 35, "FreightCost": 2000, "CapacityImpact": 0 },
+  { "route": "희망봉 우회 (Red Sea Crisis)", "TransitTime": 45, "FreightCost": 10000, "CapacityImpact": -9 },
+  { "route": "이집트 현지 가공 (Hedging)", "TransitTime": 0, "FreightCost": 0, "CapacityImpact": 0 }
+]

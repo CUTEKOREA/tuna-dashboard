@@ -1,1 +1,4 @@
-[{"route": "2023 (Suez Canal)", "TransitDays": 25, "InsurancePremium": 10}, {"route": "2024 (Cape of Good Hope)", "TransitDays": 39, "InsurancePremium": 500}]
+[
+  { "route": "2023 (Suez 통항)", "TransitDays": 25, "InsurancePremium": 1025 },
+  { "route": "2024 (희망봉 우회)", "TransitDays": 39, "InsurancePremium": 3545 }
+]

@@ -188,6 +188,42 @@
       "daily_amount": 322.87,
       "cumulative_amount": 2864,
       "quality_notes": "S/PIO(#3-A)- 어창 개방 측정온도는 -18.0℃ ~ -21.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다.  MOAKONA(#2-B)- 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 580톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/5",
+      "work_time": "08:00 ~ 16:50",
+      "target_holds": "S/PIO(#3-A), N/STAR(#1-A), S/EXP(#4-A)",
+      "daily_amount": 309.67,
+      "cumulative_amount": 1136.52,
+      "quality_notes": "S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 270톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/5",
+      "work_time": "08:10 ~ 18:20",
+      "target_holds": "S/HAR(#1-B), MOAKONA(#2-B), S/PIO(#3-A,#3-B), MOAMARI(#4-C,#4-D)",
+      "daily_amount": 438.05,
+      "cumulative_amount": 3302.05,
+      "quality_notes": "S/PIO(#3-A,#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#4-C,#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 450톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/6",
+      "work_time": "08:20 ~ 15:50",
+      "target_holds": "S/EXP(#4-A), N/STAR(#1-A), MOAMARI(#2-A)",
+      "daily_amount": 276.89,
+      "cumulative_amount": 1413.41,
+      "quality_notes": "S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역 작업이 없으며, 재명일(6/8) 약 550톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/6",
+      "work_time": "08:10 ~ 18:00",
+      "target_holds": "S/PIO(#3-B), S/SPR(#4-D), N/STAR(#2-C)",
+      "daily_amount": 465.96,
+      "cumulative_amount": 3768.01,
+      "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역작업이 없으며, 재명일(6/8) 약 586톤 하역 진행 예정."
     }
   ],
   "unloading_species": [
@@ -197,7 +233,7 @@
       "species_id": "SJ",
       "species_name": "Skipjack",
       "reported_amount": 6646,
-      "actual_amount": 2689.5,
+      "actual_amount": 3562.31,
       "updated_at": "2026-06-01T22:42:57.072021+00:00"
     },
     {
@@ -206,7 +242,7 @@
       "species_id": "YF",
       "species_name": "Yellowfin",
       "reported_amount": 309,
-      "actual_amount": 164.5,
+      "actual_amount": 205.7,
       "updated_at": "2026-06-01T22:42:57.072021+00:00"
     },
     {
@@ -214,14 +250,14 @@
       "species_id": "SJ",
       "species_name": "Skipjack",
       "reported_amount": 4176,
-      "actual_amount": 718.45
+      "actual_amount": 1261.91
     },
     {
       "vessel_id": "bao-lucky",
       "species_id": "YF",
       "species_name": "Yellowfin",
       "reported_amount": 627,
-      "actual_amount": 108.4
+      "actual_amount": 151.5
     }
   ]
 }
