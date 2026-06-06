@@ -6,7 +6,9 @@
 > - **적대검증(writer≠reviewer)이 결함 5종 차단**: Comtrade motCode/partner2/customsCode **3중 중복계산** 버그(총계행만 집계 `_is_total_row`), 거짓"미보고"정당화(태국은 2024 자기보고—블로커는 2025 현재연도 미완 artifact였음), 형제텍스트 모순. → 컨버터 triple-dedup 확정.
 > - **미적용 2개(정직)**: mangosteen(라우트 하드코딩), galchi(HS030389 잔여코드 오염).
 > - **데이터 주의**: Comtrade 점유율 위젯은 **2024 완료연도** 사용(2025 보고 진행중·미완). customs_kr 2개월 누적중. 진단·매핑 `agri_data/_pipeline/reports/DASHBOARD_UPDATE_*.md`.
-> - 본 배포: 사용자 "라이브 배포" 명시 요청 → 누적 미커밋 일괄 push(81파일, 위젯15+타에이전트66). 빌드 ✓.
+> - **라이브 배포 완료**: 사용자 "라이브 배포" → 누적 81파일 일괄 push. ⚠️ **1차 Vercel 빌드 실패**(Vercel MCP 로그로 진단): `ReeferMovement.tsx`가 week19→**week22 import 변경됐는데 `/data/` gitignore로 week22.json 미배포**(타 에이전트 미완) → 'Module not found'. week19 선례대로 `git add -f`로 force-add 후 재푸시 → **빌드 성공·프로덕션 LIVE 검증**(shrimp 12,050·chicken 태국46.4/67.7·carrot 1,580·salmon 노르웨이11,833 실데이터 확인). **교훈: /data/ gitignore + 빌드타임 import 조합은 로컬통과·Vercel실패 반복 함정**(garlic·consignment에 이어 3번째) — data import는 force-add 또는 public/data 이전 필수.
+> - **월간 자동화 루프 완성**: `regen_widgets.py`(KAMIS·관세청 위젯 JSON 재생성)를 agri_data `monthly_refresh.sh`에 연결 — 매월 수집 후 위젯 데이터 자동 갱신(라이브 배포는 사용자 요청 시 별도, 보호).
+> - 시크릿 사고 차단: 타 에이전트 `scripts/interact_supabase_mcp.js`의 라이브 Supabase PAT를 GitHub push protection이 차단 → env변수로 redact 후 푸시(원격 미도달). 구 토큰 회전 완료.
 
 > 🏁 **2026-06-05 — 세션 종료: 라우트 LIVE 완결 + 콘텐츠 파일럿** [CC]:
 > - **라우트 LIVE 캠페인 완결**: 고가치 fallback 13개 전부 프로덕션 LIVE 검증 완료. **prod LIVE 19→32**. 2차 잔존 4개도 해결 — tuna/dart(동원산업 corp 정정+isLive≥1완화)·fishery(?source=kcs)·**comtrade 2개(premium→무료 preview 엔드포인트 전환=beef 패턴, 프로덕션 isLive:true 검증)** [6293405].
