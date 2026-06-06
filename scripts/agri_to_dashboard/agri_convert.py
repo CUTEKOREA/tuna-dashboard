@@ -221,6 +221,74 @@ def kamis_series(name: str, cls: str | None = None) -> list[dict]:
     return out
 
 
+# ---------- FAOSTAT QCL (production / area / yield) ----------
+FAOSTAT_ELEM = {"production": "5510", "area": "5312", "yield": "5412"}
+# FAOSTAT aggregate Area Codes to exclude from country rankings (regions/World; and the
+# 'China' rollup 351 — keep 'China, mainland' 41 to avoid double-count).
+_FAO_AGG_EXCLUDE = {"351"}  # plus any Area Code >= 5000 (regions/World)
+
+
+def load_faostat(commodity: str, domain: str = "QCL") -> list[dict]:
+    """Read a commodity's FAOSTAT raw CSV (e.g. raw_data/QCL_garlic.csv)."""
+    d = commodity_dir(commodity) / "raw_data"
+    if not d.exists():
+        return []
+    files = (sorted(d.glob(f"{domain}_{agri_name(commodity)}*.csv"))
+             or sorted(d.glob(f"*{domain}*.csv")))
+    if not files:
+        return []
+    with open(files[0], encoding="utf-8-sig", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def faostat_years(commodity: str, element: str = "production") -> list[int]:
+    ec = FAOSTAT_ELEM.get(element, element)
+    ys = {int(r["Year"]) for r in load_faostat(commodity, "QCL")
+          if str(r.get("Element Code")) == ec and str(r.get("Year", "")).isdigit()}
+    return sorted(ys)
+
+
+def faostat_by_country(commodity: str, element: str = "production",
+                       year: int | None = None, top: int | None = None) -> dict:
+    """{year, unit, data:[(country,value)…]} for a FAOSTAT element, country-only.
+
+    Excludes regional/World aggregates (Area Code ≥ 5000) and the 'China' rollup
+    (351; keeps 'China, mainland' 41) to avoid double-counting in rankings.
+    """
+    rows = load_faostat(commodity, "QCL")
+    ec = FAOSTAT_ELEM.get(element, element)
+    sel = [r for r in rows if str(r.get("Element Code")) == ec]
+    years = sorted({int(r["Year"]) for r in sel if str(r.get("Year", "")).isdigit()})
+    if year is None:
+        year = years[-1] if years else None
+    agg: dict = {}
+    unit = ""
+    for r in sel:
+        if str(r.get("Year")) != str(year):
+            continue
+        code = str(r.get("Area Code", ""))
+        if code in _FAO_AGG_EXCLUDE or (code.isdigit() and int(code) >= 5000):
+            continue
+        area = r.get("Area", "")
+        agg[area] = agg.get(area, 0.0) + _fnum(r.get("Value"))
+        unit = r.get("Unit", unit)
+    items = sorted(agg.items(), key=lambda kv: -kv[1])
+    if top:
+        items = items[:top]
+    return {"year": year, "unit": unit, "data": items}
+
+
+def faostat_country_series(commodity: str, area: str, element: str = "production") -> list[dict]:
+    """Time series for one country: [{year, value}…]."""
+    rows = load_faostat(commodity, "QCL")
+    ec = FAOSTAT_ELEM.get(element, element)
+    out = [{"year": int(r["Year"]), "value": _fnum(r.get("Value"))}
+           for r in rows if str(r.get("Element Code")) == ec
+           and r.get("Area") == area and str(r.get("Year", "")).isdigit()]
+    out.sort(key=lambda x: x["year"])
+    return out
+
+
 # ---------- Comtrade MIRROR (non-reporter trade) ----------
 def mirror_country(name: str, partner_iso: str, flow: str = "Export",
                    year: int | None = None) -> dict | None:

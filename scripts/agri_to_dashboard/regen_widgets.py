@@ -134,7 +134,52 @@ def regen_squid_inplace():
     return f"squid w5(Comtrade {yr})·w14(관세청 {len(months)}개월)"
 
 
-INPLACE = [regen_squid_inplace]
+def regen_garlic_inplace():
+    """garlic_w1_hegemony.json(FAOSTAT 생산 최신연도)·garlic_w2_kamis_monthly.json(y2026 도매가)."""
+    import statistics as _st
+    KN = {"China, mainland": "중국", "India": "인도", "Republic of Korea": "한국",
+          "Egypt": "이집트", "Bangladesh": "방글라데시"}
+    msgs = []
+    # W1 생산
+    p1 = DASH_DATA / "garlic_w1_hegemony.json"
+    if p1.exists():
+        w1 = json.loads(p1.read_text(encoding="utf-8"))
+        fao = a.faostat_by_country("garlic", "production")
+        yr = fao["year"]
+        prod = {KN.get(c, c): v for c, v in fao["data"]}
+        named = ["중국", "인도", "한국", "이집트", "방글라데시"]
+        total = sum(v for _, v in fao["data"])
+        row = {"year": str(yr)}
+        for n in named:
+            row[n] = round(prod.get(n, 0))
+        row["기타"] = round(total - sum(row[n] for n in named))
+        if w1 and w1[-1].get("year") == str(yr):
+            w1[-1] = row
+        elif w1 and int(w1[-1]["year"]) < int(yr):
+            w1.append(row)
+        p1.write_text(json.dumps(w1, ensure_ascii=False, indent=2), encoding="utf-8")
+        msgs.append(f"w1(FAOSTAT 생산 {yr})")
+    # W2 도매가 y2026
+    p2 = DASH_DATA / "garlic_w2_kamis_monthly.json"
+    if p2.exists():
+        w2 = json.loads(p2.read_text(encoding="utf-8"))
+        bym: dict = {}
+        for r in a.kamis_series("garlic", "02"):
+            if r["date"] and r["price"]:
+                bym.setdefault(int(r["date"][5:7]), []).append(r["price"])
+        cur = {m: round(_st.mean(v)) for m, v in bym.items()}
+        ycol = "y" + (max(a.kamis_series("garlic", "02"),
+                          key=lambda r: r["date"] or "")["date"][:4] if cur else "2026")
+        for row in w2:
+            mn = int(row["month"].replace("월", ""))
+            if mn in cur and ycol in row:
+                row[ycol] = cur[mn]
+        p2.write_text(json.dumps(w2, ensure_ascii=False, indent=2), encoding="utf-8")
+        msgs.append(f"w2(KAMIS {ycol})")
+    return "garlic " + "·".join(msgs)
+
+
+INPLACE = [regen_squid_inplace, regen_garlic_inplace]
 
 
 def main():

@@ -84,18 +84,19 @@ export const koreaSupplyData = [
   { year: '2023', production: 1435, imports: 690, perCapita: 39.7 },
 ];
 
-// L2-⑨ 한국 수입 파트너 (TM 2022 실데이터, boneless 1038)
+// L2-⑨ 한국 수입 파트너 — 관세청 nitemtrade 2026.03-04(2개월 누적, HS6 필터) via agri_data.
+//   2022(FAOSTAT TM) 대비 미국이 스페인을 추월해 1위(28.7% vs 25.6%). volume=2개월 톤, pct=점유율.
 export const koreaImportPartnersData = [
-  { country: '스페인', volume: 147404, pct: 27.1 },
-  { country: '미국', volume: 139600, pct: 25.7 },
-  { country: '캐나다', volume: 60341, pct: 11.1 },
-  { country: '네덜란드', volume: 51208, pct: 9.4 },
-  { country: '칠레', volume: 33435, pct: 6.2 },
-  { country: '오스트리아', volume: 28479, pct: 5.2 },
-  { country: '덴마크', volume: 21083, pct: 3.9 },
-  { country: '아일랜드', volume: 10043, pct: 1.8 },
-  { country: '멕시코', volume: 9811, pct: 1.8 },
-  { country: '프랑스', volume: 9342, pct: 1.7 },
+  { country: '미국', volume: 38458, pct: 28.7 },
+  { country: '스페인', volume: 33109, pct: 25.6 },
+  { country: '캐나다', volume: 13049, pct: 11.4 },
+  { country: '독일', volume: 8050, pct: 6.6 },
+  { country: '네덜란드', volume: 7842, pct: 7.6 },
+  { country: '칠레', volume: 5835, pct: 6.3 },
+  { country: '오스트리아', volume: 3835, pct: 3.4 },
+  { country: '덴마크', volume: 3700, pct: 2.2 },
+  { country: '브라질', volume: 2546, pct: 1.5 },
+  { country: '프랑스', volume: 1634, pct: 1.6 },
 ];
 
 // L3-⑩ ASF → 수산물 반사수혜 (QCL 중국 + 수산물 도매가 참고)

@@ -136,7 +136,7 @@ export function W7_KoreaSupply({ accent }: any) {
 }
 
 export function W8_ImportPartners({ accent }: any) {
-  return <W title="한국 수입 파트너 의존도" icon={Globe} accent={accent} pillar="S3" sub="한국 돈육(뼈 없는 부분육) 수입 파트너 국가별 물량 | FAOSTAT 무역매트릭스(TM) 2022"
+  return <W title="한국 수입 파트너 의존도" icon={Globe} accent={accent} pillar="S3" sub="한국 돈육 수입 파트너 국가별 물량 | 관세청 2026.03-04(2개월) — 미국이 스페인 추월 1위"
     telemetry="FAOSTAT 무역매트릭스(TM) 2022"
     sit="스페인(27.1%) + 미국(25.7%) 양강 체제가 전체의 52.8% 장악. 가공품은 미국 95% 단일 의존."
     strat="칠레/브라질/멕시코 등 신흥국과 장기 수매 계약 체결, 미국 가공품 의존도 단계적 저감." source="FAOSTAT 무역매트릭스(TM) HS1038">
