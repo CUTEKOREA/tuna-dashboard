@@ -4,13 +4,15 @@ import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Cell } fro
 import { CloudLightning } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_climate_predictor.json';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 
 export default function MackerelClimatePredictor() {
   const data = rawData as any[];
 
   const ChartObj = (
     <div style={{ height: '250px', width: '100%' }}>
-      <ScatterChart margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
+      <SafeResponsiveContainer width="100%" height="100%">
+        <ScatterChart margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
         <XAxis type="number" dataKey="tempRise" name="수온 편차" unit="°C 상승" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
         <YAxis type="number" dataKey="catchRate" name="대형어 어획량 변동" unit="%" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
@@ -21,6 +23,7 @@ export default function MackerelClimatePredictor() {
           ))}
         </Scatter>
       </ScatterChart>
+      </SafeResponsiveContainer>
     </div>
   );
 

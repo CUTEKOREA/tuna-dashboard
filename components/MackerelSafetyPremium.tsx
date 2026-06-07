@@ -5,13 +5,15 @@ import { ShieldCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import rawData from '../data/mackerel_safety_premium.json';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 
 export default function MackerelSafetyPremium() {
   const data = rawData as any[];
 
   const ChartObj = (
     <div style={{ height: '250px', width: '100%' }}>
-      <BarChart data={data} layout="vertical" margin={{ top: 20, right: 30, left: 25, bottom: 5 }}>
+      <SafeResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} layout="vertical" margin={{ top: 20, right: 30, left: 25, bottom: 5 }}>
         <ChartPatternDefs />
         <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
         <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
@@ -25,6 +27,7 @@ export default function MackerelSafetyPremium() {
           })}
         </Bar>
       </BarChart>
+      </SafeResponsiveContainer>
     </div>
   );
 

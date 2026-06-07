@@ -274,16 +274,14 @@ export default function GalchiDashboard() {
   };
   
   applyLive('w25', liveComtrade);
-  applyLive('w26', liveOsh);
-  applyLive('w27', liveOfac);
   applyLive('w28', liveImportYeti);
   applyLive('w29', liveNoaa);
 
   // _liveState: fetch-driven 위젯의 telemetry 동적 결정용 (L-09)
   // fetch 성공 시 SYNCED/LIVE, 실패(null) 시 STATIC 표기
-  ['w25','w26','w27','w28','w29'].forEach(id => {
+  ['w25','w28','w29'].forEach(id => {
     if (widgetMap[id]) {
-      const liveMap: Record<string,any> = { w25: liveComtrade, w26: liveOsh, w27: liveOfac, w28: liveImportYeti, w29: liveNoaa };
+      const liveMap: Record<string,any> = { w25: liveComtrade, w28: liveImportYeti, w29: liveNoaa };
       widgetMap[id]._liveState = liveMap[id];
     }
   });

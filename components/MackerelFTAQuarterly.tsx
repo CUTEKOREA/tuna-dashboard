@@ -2,11 +2,12 @@
 import React from 'react';
 import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  BarChart, Cell, ResponsiveContainer,
+  BarChart, Cell,
 } from 'recharts';
 import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+import SafeResponsiveContainer from './SafeResponsiveContainer';
 import raw from '../data/mackerel_fta_quarterly.json';
 
 const tooltipStyle = {
@@ -24,7 +25,7 @@ export default function MackerelFTAQuarterly() {
 
   const YearlyChart = (
     <div style={{ height: '260px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={yearly} margin={{ top: 20, right: 20, left: -10, bottom: 5 }}>
           <ChartPatternDefs />
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
@@ -43,13 +44,13 @@ export default function MackerelFTAQuarterly() {
           <Bar yAxisId="left" dataKey="volume" name="수입량" fill="#38bdf8" opacity={0.75} radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="value" name="수입액" stroke="#f59e0b" strokeWidth={2.5} dot={{ r: 4 }} />
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const QuarterChart = (
     <div style={{ height: '220px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={qSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="q" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
@@ -71,13 +72,13 @@ export default function MackerelFTAQuarterly() {
           </Bar>
           <Line yAxisId="right" type="monotone" dataKey="cumValue" name="누적 수입액" stroke="#a78bfa" strokeWidth={2} dot={{ r: 3 }} />
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const OriginChart = (
     <div style={{ height: '200px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={origin} layout="vertical" margin={{ top: 8, right: 30, left: 30, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(v) => `${v}%`} />
@@ -95,13 +96,13 @@ export default function MackerelFTAQuarterly() {
             ))}
           </Bar>
         </BarChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
   const NorwayPriceChart = (
     <div style={{ height: '180px', width: '100%' }}>
-      <ResponsiveContainer width="100%" height="100%">
+      <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={norwayPrice} margin={{ top: 12, right: 20, left: -10, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
@@ -109,7 +110,7 @@ export default function MackerelFTAQuarterly() {
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`$${val}/kg`, '냉동 단가']} />
           <Line type="monotone" dataKey="usdPerKg" name="냉동 단가" stroke="#fb923c" strokeWidth={3} dot={{ r: 5, fill: '#fb923c' }} />
         </ComposedChart>
-      </ResponsiveContainer>
+      </SafeResponsiveContainer>
     </div>
   );
 
