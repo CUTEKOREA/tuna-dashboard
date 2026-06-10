@@ -1,6 +1,6 @@
 # Atuna 일일 자동 동기화 (ADR 0007 확장 — 사용자 요청 2026-05-22)
 
-매일 GDrive `내 드라이브/61. Atuna/<YYYY.MM.DD>` Google Docs에 업로드된 뉴스를 **자동으로 fetch → Gemini 구조화 → dashboard endpoint 반영**.
+매일 GDrive `내 드라이브/agri_data/01_수산물(Seafood) 2/tuna/Atuna/<YYYY.MM.DD>` Google Docs에 업로드된 뉴스를 **자동으로 fetch → Gemini 구조화 → dashboard endpoint 반영**.
 
 > **2026-06-10 변경 (B-1):** LLM 경로를 Vertex AI(gemini-2.5-pro, Cloud 청구) → **Direct Gemini API**(gemini-3.1-pro-preview, `GEMINI_API_KEY`, 월 $100 크레딧)로 전환. Cloud 청구 금지 룰 준수. 실패 시 macOS 알림 + `artifacts/atuna_daily/_sync_failures.log` 기록 (성공 시 무음).
 

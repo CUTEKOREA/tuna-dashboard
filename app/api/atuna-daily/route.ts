@@ -8,7 +8,7 @@ import path from 'path';
  * Atuna 일일 시장 인텔리전스 endpoint
  *
  * 데이터 소스:
- * - 사용자가 매일 GDrive `내 드라이브/61. Atuna/YYYY.MM.DD` Google Docs에 뉴스 업로드
+ * - 사용자가 매일 GDrive `내 드라이브/agri_data/01_수산물(Seafood) 2/tuna/Atuna/YYYY.MM.DD` Google Docs에 뉴스 업로드
  * - `scripts/atuna_daily_sync.sh` (launchd 매일 22:00 자동 실행)
  *   → Drive API로 fetch → Gemini Pro로 구조화 JSON 추출
  *   → `data/atuna_daily/<date>.json` 저장
@@ -127,7 +127,7 @@ export async function GET(request: Request) {
     status: 'SYNCED',
     syncDate: available[0] || null,
     ...l12(available),
-    note: '사용자 매일 GDrive `61. Atuna/` 업로드 + 자동 Gemini Pro 추출. 자동화: scripts/atuna_daily_sync.sh',
+    note: '사용자 매일 GDrive `agri_data/01_수산물(Seafood) 2/tuna/Atuna/` 업로드 + 자동 Gemini Pro 추출. 자동화: scripts/atuna_daily_sync.sh',
     available_dates: available.slice(0, 30),
     requested_days: days,
     items: recent,

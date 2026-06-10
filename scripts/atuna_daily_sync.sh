@@ -2,7 +2,7 @@
 # Atuna 일일 뉴스 → /api/atuna-daily 자동 동기화 (rclone 경로)
 #
 # 흐름:
-#   1. rclone으로 GDrive `61. Atuna/<DATE>.docx` 다운로드
+#   1. rclone으로 GDrive `agri_data/01_수산물(Seafood) 2/tuna/Atuna/<DATE>.docx`(gdoc export) 다운로드
 #   2. macOS textutil로 docx → txt 변환
 #   3. Gemini 구조화 JSON 추출 — Direct Gemini API (generativelanguage.googleapis.com)
 #      ⚠️ Vertex AI(aiplatform.googleapis.com) 경유 금지: Google Cloud 청구 금지 룰 (2026-06-10 전환)
@@ -11,7 +11,7 @@
 #
 # 요구사항:
 #   - rclone 설치 + `gdrive` remote 설정 완료 (drive.readonly scope)
-#     검증: rclone lsf "gdrive:61. Atuna/" | head
+#     검증: rclone lsf "gdrive:agri_data/01_수산물(Seafood) 2/tuna/Atuna/" | head
 #   - macOS textutil (기본 내장)
 #   - GEMINI_API_KEY (~/.zshrc export — Direct API 호출용. gcloud/Vertex 미사용)
 #
@@ -33,7 +33,7 @@ GDRIVE_DOCX="${DATE//-/.}.docx"   # 2026-05-21 → 2026.05.21.docx
 OUT_FILE="data/atuna_daily/${DATE}.json"
 PROMPT_FILE="${ATUNA_EXTRACT_PROMPT:-/tmp/atuna_extract_prompt.txt}"
 RCLONE_REMOTE="${ATUNA_RCLONE_REMOTE:-gdrive}"
-ATUNA_DIR="${ATUNA_GDRIVE_DIR:-61. Atuna}"   # GDrive 내 입력 폴더명 (이동/개명 시 env로 override)
+ATUNA_DIR="${ATUNA_GDRIVE_DIR:-agri_data/01_수산물(Seafood) 2/tuna/Atuna}"   # GDrive 내 입력 폴더 (2026-06-11 이전: "61. Atuna" → agri_data 트리로 이동)
 GDRIVE_PATH="${RCLONE_REMOTE}:${ATUNA_DIR}/${GDRIVE_DOCX}"
 FAIL_LOG="artifacts/atuna_daily/_sync_failures.log"
 

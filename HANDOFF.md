@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 📂 **2026-06-11 — Atuna 폴더 신경로 반영 + 신선도 훅 등록 완료, 백필은 API키 블로커** [CC]:
+> - **진상 정정**: "사용자 업로드 중단"이 아니었음 — 폴더가 `61. Atuna` → `agri_data/01_수산물(Seafood) 2/tuna/Atuna`로 이동(6/1경)되며 rclone 경로만 끊긴 것. 사용자는 06-04까지 계속 업로드(.gdoc, rclone이 docx로 export).
+> - **신경로 반영 3파일**: atuna_daily_sync.sh(기본 ATUNA_DIR)·verify_atuna_freshness.sh·atuna-daily route 주석. rclone 가시성 검증 완료.
+> - **훅 등록 완료(사용자 승인)**: settings.json PostToolUse Bash + manifest.yaml 동기화(백업 .bak_2026-06-11). 실작동: docx 6일·가격 14일 경고 정확 발화.
+> - **🚫 블로커: Gemini API 키 무효(API_KEY_INVALID)** — zshrc의 GEMINI_API_KEY·GOOGLE_GENERATIVE_AI_API_KEY 동일값(AIzaSyDh…)이 revoked. 파이프라인은 rclone fetch→뉴스 14.8KB 추출까지 정상, LLM 단계에서 400. **사용자: aistudio.google.com/apikey 새 키 발급 → zshrc 갱신 필요.** 키 갱신 시 백필 대상 9일자(05-22·05-26~29·06-01~04) 즉시 처리 가능 — 처리되면 뉴스 어트리뷰션 P1 모순도 자연 해소.
+
 > 🌾 **2026-06-11 — agri 월간 파이프라인 소실·복구·비-Drive 이전** [CC]:
 > - **사고**: Google Drive 동기화가 `agri_data/_pipeline`(코드·레지스트리)+전 commodity `processed_data`(232K행)를 통째로 되돌려 소실(2026-06-08). 원인=수집물을 Drive 동기화 폴더에 직접 기록. **라이브 대시보드는 git 스냅샷이라 무손상.** (⚠️ 동일 Drive 손실이 Atuna `61. Atuna/`에도 발생 — 계정 전반 동기화 문제 의심.)
 > - **복구**: 파이프라인을 **`~/agri_pipeline/`(로컬 git repo, 비-Drive)**로 재구축·이전. 패키지 재작성, 레지스트리 재건(46종 HS6 적대검증·92에이전트, HS2017→2022 정정 다수), 전수 재수집 124 OK(comtrade46·mirror10·customs46·kamis13·fred11·ecos1), 축산 KAMIS rank='1' 정정.
