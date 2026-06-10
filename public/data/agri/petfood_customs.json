@@ -1,7 +1,7 @@
 {
   "isLive": false,
   "status": "SYNCED",
-  "syncDate": "2026-06-06",
+  "syncDate": "2026-06-11",
   "source": "관세청 nitemtrade(HS6 필터) via agri_data, 202603~202604 누적",
   "unit": "천USD",
   "d_w12": [

@@ -14,6 +14,10 @@ import os
 from collections import defaultdict
 from pathlib import Path
 
+# 2026-06-10 재구축: 파이프라인 코드·레지스트리·수집데이터 = LOCAL ~/agri_pipeline (비-Drive).
+#   Drive(AGRI)는 raw_data·FAOSTAT 읽기전용 원천으로만 사용.
+PIPELINE = Path(os.environ.get("AGRI_PIPELINE") or (Path.home() / "agri_pipeline")).expanduser()
+PIPE_DATA = PIPELINE / "data"
 AGRI = Path(os.environ.get("AGRI_DATA")
             or "/Users/idong-geon/Library/CloudStorage/GoogleDrive-cutekorea@gmail.com/내 드라이브/agri_data")
 _REG = None
@@ -25,7 +29,7 @@ NAME_MAP = {"galchi": "hairtail"}
 def registry() -> dict:
     global _REG
     if _REG is None:
-        p = AGRI / "_pipeline" / "registry" / "commodities.json"
+        p = PIPELINE / "registry" / "commodities.json"
         _REG = json.loads(p.read_text(encoding="utf-8")).get("commodities", {})
     return _REG
 
@@ -35,6 +39,14 @@ def agri_name(name: str) -> str:
 
 
 def commodity_dir(name: str) -> Path:
+    """processed_data 읽기용 LOCAL 폴더 (~/agri_pipeline/data)."""
+    a = agri_name(name)
+    cat = registry().get(a, {}).get("category", "")
+    return PIPE_DATA / cat / a
+
+
+def drive_commodity_dir(name: str) -> Path:
+    """raw_data·FAOSTAT 읽기용 Drive 원천 폴더(READ-ONLY)."""
     a = agri_name(name)
     cat = registry().get(a, {}).get("category", "")
     return AGRI / cat / a
@@ -229,8 +241,8 @@ _FAO_AGG_EXCLUDE = {"351"}  # plus any Area Code >= 5000 (regions/World)
 
 
 def load_faostat(commodity: str, domain: str = "QCL") -> list[dict]:
-    """Read a commodity's FAOSTAT raw CSV (e.g. raw_data/QCL_garlic.csv)."""
-    d = commodity_dir(commodity) / "raw_data"
+    """Read a commodity's FAOSTAT raw CSV (e.g. raw_data/QCL_garlic.csv). Drive 원천."""
+    d = drive_commodity_dir(commodity) / "raw_data"
     if not d.exists():
         return []
     files = (sorted(d.glob(f"{domain}_{agri_name(commodity)}*.csv"))
