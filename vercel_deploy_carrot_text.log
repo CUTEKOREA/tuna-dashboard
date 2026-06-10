@@ -1,8 +1,0 @@
-Retrieving project…
-Deploying cutekorea-3280s-projects/tuna-dashboard
-Uploading [--------------------] (0.0B/165.3KB)
-Uploading [======--------------] (54.2KB/165.3KB)
-Uploading [==========----------] (86.2KB/165.3KB)
-Uploading [================----] (133.4KB/165.3KB)
-Uploading [====================] (165.3KB/165.3KB)
-Error: Resource is limited - try again in 24 hours (more than 100, code: "api-deployments-free-per-day").
