@@ -33,7 +33,20 @@ GDRIVE_DOCX="${DATE//-/.}.docx"   # 2026-05-21 → 2026.05.21.docx
 OUT_FILE="data/atuna_daily/${DATE}.json"
 PROMPT_FILE="${ATUNA_EXTRACT_PROMPT:-/tmp/atuna_extract_prompt.txt}"
 RCLONE_REMOTE="${ATUNA_RCLONE_REMOTE:-gdrive}"
-ATUNA_DIR="${ATUNA_GDRIVE_DIR:-agri_data/01_수산물(Seafood) 2/tuna/Atuna}"   # GDrive 내 입력 폴더 (2026-06-11 이전: "61. Atuna" → agri_data 트리로 이동)
+# GDrive 입력 폴더 (2026-06-11: "61. Atuna" 소실 후 agri_data 트리로 이동).
+# Drive 폴더 충돌로 정식 "01_수산물(Seafood)"와 중복 "01_수산물(Seafood) 2"가 공존 →
+# 정식 경로 우선, 원격 미도달 시 " 2" 폴백 자동 선택(사용자가 Drive 통합하면 정식으로 수렴).
+# ATUNA_GDRIVE_DIR 환경변수 지정 시 그 값을 최우선 사용(프로브 생략).
+if [ -n "${ATUNA_GDRIVE_DIR:-}" ]; then
+  ATUNA_DIR="$ATUNA_GDRIVE_DIR"
+else
+  ATUNA_DIR="agri_data/01_수산물(Seafood)/tuna/Atuna"
+  for _cand in "agri_data/01_수산물(Seafood)/tuna/Atuna" "agri_data/01_수산물(Seafood) 2/tuna/Atuna"; do
+    if rclone lsf "${RCLONE_REMOTE}:${_cand}/" --max-depth 1 >/dev/null 2>&1; then
+      ATUNA_DIR="$_cand"; break
+    fi
+  done
+fi
 GDRIVE_PATH="${RCLONE_REMOTE}:${ATUNA_DIR}/${GDRIVE_DOCX}"
 FAIL_LOG="artifacts/atuna_daily/_sync_failures.log"
 
