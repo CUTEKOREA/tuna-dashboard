@@ -4,48 +4,150 @@ import React, { useState, useEffect } from 'react';
 import styles from './LiveTicker.module.css';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
+type Trend = 'up' | 'down' | 'neutral';
+
+interface TickerItem {
+  label: string;
+  value: string;
+  diff?: string;
+  trend?: Trend;
+}
+
+// 'YYYY-MM-DD' | 'YYYY.MM.DD' -> 'MM.DD' (else null — 미상 포맷은 표기 생략)
+function toMonthDay(dateStr: string): string | null {
+  const m = dateStr.match(/^\d{4}[-.](\d{2})[-.](\d{2})/);
+  return m ? `${m[1]}.${m[2]}` : null;
+}
+
+// /api/atuna-prices history에서 해당 허브의 최신 비결측 행 + 직전 비결측 행 대비 Δ% 계산
+// (페이월 데이터 보호: 정적 import 금지 — 번들 노출 차단, 인증된 API 경유만)
+function buildAtunaItem(
+  history: Array<Record<string, unknown>>,
+  key: 'skj_bkk' | 'yf_sey',
+  name: string
+): TickerItem | null {
+  const rows = history
+    .filter((r) => typeof r[key] === 'number' && (r[key] as number) > 0 && typeof r.date === 'string')
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  if (rows.length === 0) return null;
+
+  const latest = rows[rows.length - 1];
+  const price = latest[key] as number;
+  const date = latest.date as string;
+
+  let diff: string | undefined;
+  let trend: Trend | undefined;
+  if (rows.length > 1) {
+    const prevPrice = rows[rows.length - 2][key] as number;
+    const pct = ((price - prevPrice) / prevPrice) * 100;
+    diff = `${pct > 0 ? '+' : ''}${pct.toFixed(1)}%`;
+    trend = pct > 0 ? 'up' : pct < 0 ? 'down' : 'neutral';
+  }
+
+  const asOf = toMonthDay(date);
+  return {
+    label: asOf ? `${name} · ${asOf}` : name,
+    value: `$${price.toLocaleString()}`,
+    diff,
+    trend,
+  };
+}
+
+// /api/mgo — isLive·dataAsOf 필드가 있으면 사용, 없으면 기존 방식(응답 OK 시 표시) 유지
+async function fetchMgoItem(): Promise<TickerItem | null> {
+  try {
+    const res = await fetch('/api/mgo', { cache: 'no-store' });
+    if (!res.ok) return null;
+    const data = await res.json();
+
+    const price = typeof data?.price === 'number' && data.price > 0 ? data.price : null;
+    if (price === null) return null;
+
+    // 방어적 분기: isLive가 boolean으로 오면 신뢰 (false = 라우트 fallback → 미표시)
+    if (typeof data?.isLive === 'boolean' && !data.isLive) return null;
+
+    const change = typeof data?.change === 'number' ? data.change : 0;
+    const asOfRaw =
+      typeof data?.dataAsOf === 'string' ? data.dataAsOf : typeof data?.date === 'string' ? data.date : null;
+    const asOf = asOfRaw ? toMonthDay(asOfRaw) : null;
+
+    // A-4: 라우트가 고백한 추정치 성격(isEstimate)을 화면 라벨까지 전달
+    const baseName = data?.isEstimate === true ? 'MGO 싱가포르(환산추정)' : 'MGO 싱가포르';
+    return {
+      label: asOf ? `${baseName} · ${asOf}` : baseName,
+      value: `$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+      diff: change > 0 ? `+${change.toFixed(2)}` : change.toFixed(2),
+      trend: change > 0 ? 'up' : change < 0 ? 'down' : 'neutral',
+    };
+  } catch {
+    return null; // fetch 실패 시 미표시 (가짜값 금지)
+  }
+}
+
+// /api/exchange — 실패·fallback 응답이면 미표시 (가짜값 금지)
+async function fetchFxItems(): Promise<TickerItem[]> {
+  try {
+    const res = await fetch('/api/exchange', { cache: 'no-store' });
+    if (!res.ok) return [];
+    const fx = await res.json();
+    if (fx?.source === 'fallback') return [];
+
+    const items: TickerItem[] = [];
+    const usdKrw = typeof fx?.usd_krw === 'number' && fx.usd_krw > 0 ? fx.usd_krw : null;
+    if (usdKrw === null) return [];
+
+    items.push({
+      label: 'USD/KRW',
+      value: usdKrw.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+    });
+
+    const usdJpy = typeof fx?.usd_jpy === 'number' && fx.usd_jpy > 0 ? fx.usd_jpy : null;
+    if (usdJpy !== null) {
+      const jpy100Krw = (usdKrw / usdJpy) * 100; // 100엔당 원화 환산 (크로스레이트)
+      items.push({
+        label: 'JPY/KRW (100엔)',
+        value: jpy100Krw.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      });
+    }
+    return items;
+  } catch {
+    return []; // fetch 실패 시 미표시 (가짜값 금지)
+  }
+}
+
 export default function LiveTicker() {
-  const [items, setItems] = useState<any[]>([]);
-  const [isMgoLive, setIsMgoLive] = useState<boolean>(false);
+  const [items, setItems] = useState<TickerItem[]>([]);
 
   useEffect(() => {
+    async function fetchAtunaHistory(): Promise<Array<Record<string, unknown>>> {
+      try {
+        const res = await fetch('/api/atuna-prices', { cache: 'no-store' });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return Array.isArray(data?.history) ? data.history : [];
+      } catch {
+        return []; // fetch 실패 시 SKJ/YF 미표시 (가짜값 금지)
+      }
+    }
+
     async function fetchLiveMarketData() {
       try {
-        // 1. FX rates as of 2026.04.27 (static hardcoded)
-        const usdkrw = 1476.42;
-        const jpykrw = 948.50;
+        const [mgoItem, fxItems, atunaHistory] = await Promise.all([
+          fetchMgoItem(),
+          fetchFxItems(),
+          fetchAtunaHistory(),
+        ]);
 
-        // 2. Fetch live MGO Rates (Scraped real-time from Ship&Bunker)
-        const mgoRes = await fetch('/api/mgo', { cache: 'no-store' });
-        let mgoPrice = 1061.00; let mgoChange = -333.00;
-        let mgoFetchedOk = false;
-        if (mgoRes.ok) {
-           const mgoData = await mgoRes.json();
-           mgoPrice = mgoData.price || 1061.00;
-           mgoChange = mgoData.change || -333.00;
-           mgoFetchedOk = true;
-        }
-        setIsMgoLive(mgoFetchedOk);
+        const next: TickerItem[] = [];
+        const skj = buildAtunaItem(atunaHistory, 'skj_bkk', 'SKJ 방콕');
+        if (skj) next.push(skj);
+        const yf = buildAtunaItem(atunaHistory, 'yf_sey', 'YF 세이셸');
+        if (yf) next.push(yf);
+        if (mgoItem) next.push(mgoItem);
+        next.push(...fxItems);
 
-        const mgoTrend = mgoChange > 0 ? 'up' : mgoChange < 0 ? 'down' : 'neutral';
-        const mgoDiff = mgoChange > 0 ? `+${mgoChange.toFixed(2)}` : `${mgoChange.toFixed(2)}`;
-
-        const LIVE_DATA = [
-          { label: '🔴 BREAKING', value: '싱가포르 MGO $1,061/t 하락 불구 마진 압박 지속... 서중태평양 선단 운영 위기', diff: 'CRISIS', trend: 'down' },
-          { label: '🔴 BREAKING', value: 'IATTC 투하 FAD 10만개 추적, WCPFC 해역 무단 표류 확인... 해역 간 규제 갈등 비화', diff: 'ALERT', trend: 'up' },
-          { label: '🟢 CEPA', value: '한-UAE CEPA D-4 — 5.1 발효 시 수산물 관세 5%→0% 전환, 일본 대비 관세 우위 선점', diff: 'D-4', trend: 'up' },
-          { label: '🌐 NEW', value: '인도네시아 비악 참치 양식 벤처 추진... 신흥국 밸류체인 진입 시도 본격화', diff: 'VENTURE', trend: 'neutral' },
-          { label: '⛽ FUEL', value: '고정비용 천정부지 + 판가 하락 = 선망선 마진 스퀴즈 (Margin Squeeze) 심화', diff: 'CRISIS', trend: 'down' },
-          { label: '📊 SUPPLY', value: '글로벌 참치 총 어획량 전년 대비 -7% 감소 (3월 누적)... 원어가 상승 압력', diff: '-7%', trend: 'down' },
-          { label: 'SKJ (BKK)', value: '$1,850', diff: '-6.3%', trend: 'down' }, 
-          { label: 'YFT (BKK)', value: '$2,850', diff: '+1.7%', trend: 'up' },
-          { label: 'Brent Crude', value: '$106.2', diff: '+2.1%', trend: 'up' },
-          { label: 'Singapore MGO', value: `$${mgoPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}`, diff: mgoDiff, trend: mgoTrend },
-          { label: 'USD/KRW', value: usdkrw.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }), diff: '₩1,476', trend: 'up' },
-        ];
-
-        setItems([...LIVE_DATA, ...LIVE_DATA]);
-
+        // 항목 수 감소 보정: 4배 복제 (translateX(-50%) 루프 → 짝수 배 유지로 무한 스크롤 보존)
+        setItems(next.length > 0 ? [...next, ...next, ...next, ...next] : []);
       } catch (err) {
         console.error('Ticker fetch error', err);
       }
@@ -59,9 +161,9 @@ export default function LiveTicker() {
   if (items.length === 0) {
     return (
       <div className={styles.tickerWrap}>
-        <div className={styles.tickerPrefix}>CONNECTING</div>
+        <div className={styles.tickerPrefix}>연결 중</div>
         <div className={styles.tickerInner} style={{ animation: 'none', paddingLeft: 160, fontSize: 13, color: 'var(--text-muted)' }}>
-          📡 Connecting to Global Markets...
+          📡 글로벌 시장 데이터 연결 중...
         </div>
       </div>
     );
@@ -69,16 +171,14 @@ export default function LiveTicker() {
 
   return (
     <div className={styles.tickerWrap}>
-      <div className={styles.tickerPrefix}>
-        {isMgoLive ? 'LIVE UPDATE' : 'SYNCED UPDATE'}
-      </div>
+      <div className={styles.tickerPrefix}>시장 시세</div>
       <div className={styles.tickerInner}>
         {items.map((item, idx) => (
           <div key={idx} className={styles.tickerItem}>
             <span className={styles.label}>{item.label}</span>
             <span className={styles.value}>{item.value}</span>
             {item.diff && (
-              <span className={styles[item.trend] || styles.neutral} style={{ display: 'flex', alignItems: 'center', fontSize: '11px', fontWeight: 'bold' }}>
+              <span className={styles[item.trend || 'neutral'] || styles.neutral} style={{ display: 'flex', alignItems: 'center', fontSize: '11px', fontWeight: 'bold' }}>
                 {item.trend === 'up' && <TrendingUp size={12} style={{ marginRight: '2px' }} />}
                 {item.trend === 'down' && <TrendingDown size={12} style={{ marginRight: '2px' }} />}
                 {item.trend === 'neutral' && <Minus size={12} style={{ marginRight: '2px' }} />}

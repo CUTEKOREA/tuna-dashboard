@@ -12,9 +12,7 @@ import { playVHFRadioChatter } from '../lib/audio';
 import { motion } from 'framer-motion';
 
 // ─── Always-loaded (lightweight or market page essentials) ───
-import TunaChart from '../components/TunaChart';
 import NotebookLMInsight from '../components/NotebookLMInsight';
-import MgoChartModal from '../components/MgoChartModal';
 import LiveTicker from '../components/LiveTicker';
 import TermTooltip from '../components/TermTooltip';
 import PageTransition from '../components/PageTransition';
@@ -24,6 +22,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import KeepAlivePanel from '../components/KeepAlivePanel';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
+const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
 const FleetCommandCenter = dynamic(() => import('../components/FleetCommandCenter'));
 const FishingDaysStatus = dynamic(() => import('../components/FishingDaysStatus'));
 const VesselVdsStatus = dynamic(() => import('../components/VesselVdsStatus'));
@@ -112,6 +111,10 @@ export default function Home() {
   const [session, setSession] = useState<any>(
     (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) ? { user: { email: 'sillavip@sla.co.kr' } } : null
   );
+  // 세션 확정 여부 — getSession() 완료 전에는 대시보드/로그인 어느 쪽도 마운트하지 않음 (플래시 방지)
+  const [authChecked, setAuthChecked] = useState<boolean>(
+    (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
+  );
   const pathname = usePathname();
   
   const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'octopus' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'whelk' | 'used-car' | 'pollock' | 'flatfish' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db' | 'msc' | 'sashimi-steak'>(() => {
@@ -186,6 +189,7 @@ export default function Home() {
       } else {
         setSession(session);
       }
+      setAuthChecked(true);
     });
 
     const {
@@ -196,6 +200,7 @@ export default function Home() {
       } else {
         setSession(session);
       }
+      setAuthChecked(true);
     });
     
       // Fetch live MGO Price
@@ -795,6 +800,21 @@ export default function Home() {
       {/* Main Content Area */}
       <div className={styles.mainContent}>
         <main className={styles.container}>
+          {/* A-5 인증 게이팅: 세션 확정 전 → 로딩 / 미로그인 → 로그인 랜딩만 / 로그인 → 대시보드 마운트 */}
+          {!authChecked ? (
+            <div style={{
+              minHeight: 'calc(100vh - 40px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              color: 'var(--text-muted)',
+              fontSize: '14px'
+            }}>
+              <Activity size={16} /> 접속 권한 확인 중...
+            </div>
+          ) : session ? (
+          <>
           {activeMenu === 'market' && (
             <>
               <LiveTicker />
@@ -803,10 +823,6 @@ export default function Home() {
 
           <div style={{ position: 'relative' }}>
             <div style={{
-              filter: !session ? 'blur(12px) grayscale(50%)' : 'none',
-              pointerEvents: !session ? 'none' : 'auto',
-              userSelect: !session ? 'none' : 'auto',
-              transition: 'filter 0.4s ease-in-out',
               display: 'flex',
               flexDirection: 'column',
               gap: '1.5rem'
@@ -954,9 +970,13 @@ export default function Home() {
               </PageTransition>
 
             </div>
+          </div>
 
-            {!session && (
-              <div className={styles.landingOverlay}>
+          {isMgoModalOpen && <MgoChartModal currentPrice={mgoData.price} onClose={() => setIsMgoModalOpen(false)} />}
+          </>
+          ) : (
+              /* 미로그인 — 대시보드 미마운트, 정적 소개 + 로그인 랜딩만 렌더 (atuna 페이월 fetch 없음 — 단 상단 useEffect의 mgo/exchange/tuna-live 공개 API 호출은 세션 무관 실행됨) */
+              <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto' }}>
                 <div className={styles.landingTopRow}>
                   {/* Premium Hero Section */}
                   <motion.div 
@@ -984,6 +1004,22 @@ export default function Home() {
                     >
                       <p>글로벌 수산·물류 밸류체인의 핵심 동향을 실시간으로 통제합니다.</p>
                       <p>오직 인가된 임원진을 위한 최상위 전략 의사결정 커맨드 센터.</p>
+                      <div style={{
+                        marginTop: '18px',
+                        padding: '14px 16px',
+                        background: 'rgba(15, 23, 42, 0.5)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderRadius: '10px',
+                        fontSize: '12.5px',
+                        lineHeight: 1.9,
+                        color: 'var(--text-muted)'
+                      }}>
+                        <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '6px' }}>제공 메뉴 미리보기</div>
+                        <div>📡 실시간 운영 — 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공</div>
+                        <div>🐟 어종별 인텔리전스 — 참치 · 고등어 · 갈치 · 오징어 · 명태 · 새우 · 연어 외</div>
+                        <div>🔬 전략 분석 — 냉동창고 · 선대 분석 · 글로벌 OEM · MSC · 사시미/스테이크</div>
+                        <div>🌾 농·축산물 — 캐슈넛 · 카사바 · 코코아 · 망고스틴 · 닭 · 돼지고기 · 소고기</div>
+                      </div>
                     </motion.div>
                   </motion.div>
 
@@ -1139,10 +1175,7 @@ export default function Home() {
                   </div>
                 </motion.div>
               </div>
-            )}
-          </div>
-
-          {isMgoModalOpen && <MgoChartModal currentPrice={mgoData.price} onClose={() => setIsMgoModalOpen(false)} />}
+          )}
         </main>
       </div>
     </div>

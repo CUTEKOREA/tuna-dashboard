@@ -1,5 +1,24 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔧 **2026-06-10 — V-Next Phase 1 구현 완료 (정직화·게이팅·파이프라인·위생)** [CC]:
+> - **방법**: 구현 5에이전트(파일 디스조인트 병렬) + 적대 리뷰 2에이전트(writer≠reviewer) → 리뷰 기각 10건 일괄 정정 → 빌드+로컬 prod 스모크 검증. **⚠️ 미배포** — 사용자 "배포" 시 push.
+> - **A-1/A-2/A-3 첫화면 정직화**: LiveTicker 하드코딩 7건 삭제(만료 CEPA D-4·YFT $2,850·Brent $106.2·BREAKING 등), SKJ/YF/MGO/환율 전부 동적 바인딩+기준일 표기. MarketDashboard KPI 초기 하드코딩 제거(스켈레톤), '오늘자' 라벨 조건부화, Δ% 동적 계산(SKJ -6.3%·YF +5.3%), 7일 초과 호박색 'N일 전' 뱃지. 환율 이중값(1476vs1529)·Brent 모순 해소.
+> - **A-4/B-3 라우트 정직화(L-12)**: mgo·exchange·atuna-prices·atuna-daily 전 분기 isLive/dataAsOf/staleDays (additive-only). mgo는 isEstimate+method('Brent×1.18×7.45 환산 추정') 명시→**UI 라벨 '(환산추정)'까지 전달**, fallback 가짜 오늘날짜→실캐시일(2026-05-13, 근거 커밋 8852504), fallback change=null(허구 '+$1,200' 차단). exchange live 분기 EUR/NOK 하드코딩 혼입→null(ExchangeSimulator 가드 추가). 프론트 isLive:false 일괄 미표시.
+> - **A-5 인증 게이팅 실체화 (P0)**: lib/supabase.ts→@supabase/ssr 쿠키 세션(**기존 사용자 1회 재로그인 필요**). 미로그인 시 대시보드 미마운트(blur 폐지). atuna-prices 무인증→90일 트림+restricted, atuna-daily→401. **리뷰가 잡은 보안극장 봉쇄**: atuna_prices.json·atuna_daily/ `public/`→`data/` 이전(직접 GET 404 검증)+컴포넌트 정적 import 제거(번들 누출 0 검증, grep)+outputFileTracingIncludes. 로컬 prod 스모크 4종 통과(404/트림16행/401/번들0).
+> - **B-1/B-2 파이프라인 재가동**: 사망 원인 2중 — ①macOS BTM disallowed(plist 정상인데 차단) ②**GDrive `61. Atuna/` 폴더 원격 소실**(휴지통에도 없음). launchctl enable+bootstrap 완료(22:00 재가동), Vertex→**Direct Gemini API**(gemini-3.1-pro-preview, 금지룰 해소)+모델가드, 실패 시 osascript 알림+`artifacts/atuna_daily/_sync_failures.log`. kickstart 테스트 exit7(폴더미발견 경로) 정상. 신선도 훅 `~/.claude/harness/verify/verify_atuna_freshness.sh` 작성·테스트 완료 — **settings.json 등록은 사용자 결정 대기**(자가수정 차단됨).
+> - **C-1/C-4/C-8 구조·위생**: TunaChart 죽은 import 삭제+MgoChartModal dynamic(recharts 초기번들 제거). pre-push에 C-4 데이터 정합성 게이트(scripts/check_data_imports.py, 147건 전수 추적 확인). 루트 스크래치 337개→`_archive/scratch_root_2026-06-10/` 격리. **.git 708MB→29MB**(reflog expire+gc — 히스토리 재작성 아님).
+> - **부수 사건**: 세션 시작 시 MarketDashboard.tsx가 타 에이전트의 미완성 편집(6월 2주차 뉴스 갱신)으로 2곳 절단·빌드불가 상태 → 새 뉴스 콘텐츠 보존하며 수복(백업 /tmp/MarketDashboard.broken_backup_2026-06-10.tsx). 뉴스 핵심 사실(필리핀 M7.8, 사망 35)은 PHIVOLCS·Inquirer·NPR 교차 확인됨.
+> - **사용자 액션 필요**: ① GDrive `61. Atuna/` 폴더 복구+docx 업로드 재개(또는 ATUNA_GDRIVE_DIR로 새 경로 지정) ② 시스템 설정>로그인 항목에서 "zsh" 백그라운드 항목 허용(BTM 재차단 방지) ③ verify_atuna_freshness.sh settings.json 등록 여부 ④ 배포 시 재로그인 공지.
+> - **deferred(P2~P3)**: 뉴스 어트리뷰션(Atuna 06.0x — 6월분 docx 적재 시 자연 해소), getUser() 쿠키회전 setAll noop, /api/* 전면 게이팅, page.tsx 내 fetchExchangeRate dead state 잔재, MgoChartModal 열기 dead feature, KST 자정 stale 1일 과대.
+
+> 📋 **2026-06-10 — 참치왕국 V-Next 기획서 제출 (멀티에이전트 6렌즈 진단)** [CC]:
+> - **요청**: leedonggun.co.kr/market 문제점·개선점 진단 + 한 단계 버전업 기획서.
+> - **방법**: 44에이전트 워크플로우 — 인벤토리 4방향(코드·제품구조·라이브실측·기존문서) → 6렌즈 진단(UX/IA·신선도·성능·아키텍처·콘텐츠·벤치마크) → P0/P1 전건 적대적 검증(writer≠reviewer, 기각 0·정정 11) → 합성. 오케스트레이터 스폿체크 3건 추가 통과.
+> - **산출물**: [docs/market_vnext_plan_2026-06-10.md](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/docs/market_vnext_plan_2026-06-10.md) — 확정 발견 33건(병합 24: P0 5·P1 19) + P2 20건, 4테마(A 첫화면 정직화+인증 / B 무소음실패 차단 / C 구조부채 / D 포지션 결정 도구화), 3-Phase 로드맵, Non-goals 9건.
+> - **P0 요지**: ① LiveTicker 10/11 하드코딩+동일화면 환율·Brent 모순+만료 D-4 ② '오늘자' 라벨 8일 전 고정+실존하지 않는 syncDate SSR 노출 ③ 인증=blur뿐, Atuna 페이월 730행 무인증 API 노출(약관 리스크) ④ 메뉴 5~6중 중복→beef 딥링크 회귀+게이트 미연결 ⑤ rewrites 누락 7경로 CSR 스피너+초기번들 1.44MB.
+> - **운영 발견(긴급)**: atuna-daily 파이프라인 05-27 이후 사망(launchd 미적재·소비처 0건) — 13일간 무알림. 기획서 B-1·B-2가 복구안.
+> - **다음**: 사용자 승인 시 Phase 1(1~2주: A-1~A-4·C-1·B-1~B-3·C-4·C-8·A-5) 착수. ⚠️ 코드 변경 0건 — 진단·기획만, 미배포.
+
 > 🎨 **2026-06-06 — SE Asia OEM 대시보드 프리미엄 UI 리디자인 완료** [Antigravity]:
 > - **요청**: `/seasia-oem` 페이지를 프로 디자이너가 작업한 듯한 전문적 분위기로 개선.
 > - **CSS 모듈 전면 재작성** ([SEAsiaOEMDashboard.module.css](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/components/SEAsiaOEMDashboard.module.css)): 글래스모피즘 카드(backdrop-filter, 그라디언트 오버레이, inner glow), 그라디언트 텍스트 타이틀, staggered cardAppear 애니메이션, 프로스티드 글라스 필터 필, 티어별 glow 배지, 커스텀 다크 스크롤바, slideUp 모달 애니메이션.

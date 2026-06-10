@@ -4,15 +4,18 @@
 # 흐름:
 #   1. rclone으로 GDrive `61. Atuna/<DATE>.docx` 다운로드
 #   2. macOS textutil로 docx → txt 변환
-#   3. Gemini 2.5 Pro로 구조화 JSON 추출 (Vertex AI Pro)
-#   4. public/data/atuna_daily/<DATE>.json 저장
+#   3. Gemini 구조화 JSON 추출 — Direct Gemini API (generativelanguage.googleapis.com)
+#      ⚠️ Vertex AI(aiplatform.googleapis.com) 경유 금지: Google Cloud 청구 금지 룰 (2026-06-10 전환)
+#   4. data/atuna_daily/<DATE>.json 저장
 #   5. (선택) git auto-commit + push
 #
 # 요구사항:
 #   - rclone 설치 + `gdrive` remote 설정 완료 (drive.readonly scope)
 #     검증: rclone lsf "gdrive:61. Atuna/" | head
 #   - macOS textutil (기본 내장)
-#   - gcloud OAuth (Vertex AI Pro 호출용, 별도 — librarian_audit.sh 동일)
+#   - GEMINI_API_KEY (~/.zshrc export — Direct API 호출용. gcloud/Vertex 미사용)
+#
+# 실패 시: macOS 알림(osascript) + artifacts/atuna_daily/_sync_failures.log 기록. 성공 시 무음.
 #
 # 사용:
 #   ./scripts/atuna_daily_sync.sh                # 오늘 날짜
@@ -27,12 +30,29 @@ cd "$(dirname "$0")/.."
 
 DATE="${1:-$(date +%Y-%m-%d)}"
 GDRIVE_DOCX="${DATE//-/.}.docx"   # 2026-05-21 → 2026.05.21.docx
-GDRIVE_PATH="gdrive:61. Atuna/${GDRIVE_DOCX}"
-OUT_FILE="public/data/atuna_daily/${DATE}.json"
+OUT_FILE="data/atuna_daily/${DATE}.json"
 PROMPT_FILE="${ATUNA_EXTRACT_PROMPT:-/tmp/atuna_extract_prompt.txt}"
 RCLONE_REMOTE="${ATUNA_RCLONE_REMOTE:-gdrive}"
+ATUNA_DIR="${ATUNA_GDRIVE_DIR:-61. Atuna}"   # GDrive 내 입력 폴더명 (이동/개명 시 env로 override)
+GDRIVE_PATH="${RCLONE_REMOTE}:${ATUNA_DIR}/${GDRIVE_DOCX}"
+FAIL_LOG="artifacts/atuna_daily/_sync_failures.log"
 
 mkdir -p "$(dirname "$OUT_FILE")"
+
+# ── 실패 알림 (B-1b, 2026-06-10): 비정상 종료 시 macOS 알림 + 실패 로그. 성공 시 무음 ──
+STAGE="초기화"
+TMP_DIR=""
+on_exit() {
+  local code=$?
+  [ -n "$TMP_DIR" ] && rm -rf "$TMP_DIR"
+  if [ "$code" -ne 0 ]; then
+    mkdir -p "$(dirname "$FAIL_LOG")"
+    printf '%s | exit=%s | stage=%s | target=%s\n' \
+      "$(date '+%Y-%m-%d %H:%M:%S')" "$code" "$STAGE" "$DATE" >> "$FAIL_LOG"
+    osascript -e "display notification \"단계: ${STAGE} (exit ${code}, 대상 ${DATE})\" with title \"🐟 Atuna 일일 동기화 실패\" sound name \"Basso\"" 2>/dev/null || true
+  fi
+}
+trap on_exit EXIT
 
 # prompt 파일 없으면 자동 생성 (cron 환경 대비)
 if [ ! -f "$PROMPT_FILE" ]; then
@@ -70,16 +90,25 @@ schema:
 PROMPT_EOF
 fi
 
-# tmp 작업 dir
+# tmp 작업 dir (정리는 on_exit trap에서)
 TMP_DIR=$(mktemp -d -t atuna_sync.XXXX)
-trap 'rm -rf "$TMP_DIR"' EXIT
+
+# Step 0: GDrive 입력 폴더 존재 확인 (폴더 삭제/이동/개명 사고 조기 검출 — 2026-06 '61. Atuna' 소실 사례)
+STAGE="GDrive 폴더 확인"
+if ! rclone lsf "${RCLONE_REMOTE}:${ATUNA_DIR}/" --max-depth 1 >/dev/null 2>&1; then
+  echo "❌ GDrive 입력 폴더 '${ATUNA_DIR}' 자체가 미발견 — 삭제/이동/개명 여부 확인 필요." >&2
+  echo "   폴더를 복구하거나 ATUNA_GDRIVE_DIR 환경변수로 새 경로를 지정하세요." >&2
+  STAGE="GDrive 폴더 미발견(${ATUNA_DIR})"
+  exit 7
+fi
 
 # Step 1: rclone으로 .docx 다운로드 (이름 변형 fallback 포함)
+STAGE="rclone docx 다운로드"
 GDRIVE_DATE_STEM="${DATE//-/.}"
 CANDIDATES=(
-  "61. Atuna/${GDRIVE_DATE_STEM}.docx"
-  "61. Atuna/${GDRIVE_DATE_STEM} .docx"         # trailing 공백 (사용자 실수 fallback)
-  "61. Atuna/${GDRIVE_DATE_STEM}의 사본.docx"   # 사본 패턴
+  "${ATUNA_DIR}/${GDRIVE_DATE_STEM}.docx"
+  "${ATUNA_DIR}/${GDRIVE_DATE_STEM} .docx"         # trailing 공백 (사용자 실수 fallback)
+  "${ATUNA_DIR}/${GDRIVE_DATE_STEM}의 사본.docx"   # 사본 패턴
 )
 
 FOUND_PATH=""
@@ -95,8 +124,9 @@ for CAND in "${CANDIDATES[@]}"; do
 done
 
 if [ -z "$FOUND_PATH" ]; then
+  STAGE="docx 미발견(업로드 안 됨?)"
   echo "❌ Atuna 파일 미발견 (${DATE}). GDrive list:" >&2
-  rclone lsf "${RCLONE_REMOTE}:61. Atuna/" 2>&1 | grep "${GDRIVE_DATE_STEM}" >&2 || echo "  → 검색 매치 0건" >&2
+  rclone lsf "${RCLONE_REMOTE}:${ATUNA_DIR}/" 2>&1 | grep "${GDRIVE_DATE_STEM}" >&2 || echo "  → 검색 매치 0건" >&2
   exit 2
 fi
 
@@ -108,6 +138,7 @@ if [ ! -s "$TMP_DIR/news.docx" ]; then
 fi
 
 # Step 2: macOS textutil로 docx → txt
+STAGE="textutil 변환"
 textutil -convert txt "$TMP_DIR/news.docx" -output "$TMP_DIR/news.txt" 2>&1
 
 if [ ! -s "$TMP_DIR/news.txt" ]; then
@@ -118,10 +149,19 @@ fi
 SIZE=$(wc -c < "$TMP_DIR/news.txt")
 echo "📰 뉴스 추출: ${SIZE}B"
 
-# Step 3: Gemini 2.5 Pro 구조화 추출 (librarian_audit.sh 재사용)
-LIBRARIAN_PROMPT="$PROMPT_FILE" ./scripts/librarian_audit.sh "$TMP_DIR/news.txt" "$TMP_DIR/audit.json" gemini-2.5-pro 2>&1 | tail -1
+# Step 3: Gemini 구조화 추출 (librarian_audit.sh 재사용)
+# 모델은 반드시 gemini-3.x 계열 → librarian_audit.sh가 Direct API(generativelanguage)로 분기.
+# gemini-2.5-* 는 Vertex AI(aiplatform = Cloud 청구) 경유라 금지 (2026-06-10 전환).
+STAGE="Gemini 추출(Direct API)"
+ATUNA_MODEL="${ATUNA_GEMINI_MODEL:-gemini-3.1-pro-preview}"
+case "$ATUNA_MODEL" in
+  gemini-3*) ;;
+  *) echo "❌ ATUNA_GEMINI_MODEL='${ATUNA_MODEL}' — gemini-3.x(Direct API)만 허용. Vertex 청구 금지 룰." >&2; exit 8 ;;
+esac
+LIBRARIAN_PROMPT="$PROMPT_FILE" ./scripts/librarian_audit.sh "$TMP_DIR/news.txt" "$TMP_DIR/audit.json" "$ATUNA_MODEL" 2>&1 | tail -1
 
-# Step 4: violations 필드에서 dict 추출 → public/data로 저장
+# Step 4: violations 필드에서 dict 추출 → data/로 저장 (public 정적 서빙 금지)
+STAGE="JSON 파싱/저장"
 python3 - "$TMP_DIR/audit.json" "$OUT_FILE" "$DATE" <<'PYEOF'
 import json, sys, pathlib
 r = json.load(open(sys.argv[1]))
@@ -140,6 +180,7 @@ print(f"   signals: {n_sig}건")
 PYEOF
 
 # Step 5: (선택) git auto-commit + push
+STAGE="git commit/push"
 if [ "${AUTO_COMMIT:-0}" = "1" ]; then
   git add "$OUT_FILE"
   if git diff --cached --quiet; then

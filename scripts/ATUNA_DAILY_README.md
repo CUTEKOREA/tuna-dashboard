@@ -1,12 +1,14 @@
 # Atuna 일일 자동 동기화 (ADR 0007 확장 — 사용자 요청 2026-05-22)
 
-매일 GDrive `내 드라이브/61. Atuna/<YYYY.MM.DD>` Google Docs에 업로드된 뉴스를 **자동으로 fetch → Gemini Pro 구조화 → dashboard endpoint 반영**.
+매일 GDrive `내 드라이브/61. Atuna/<YYYY.MM.DD>` Google Docs에 업로드된 뉴스를 **자동으로 fetch → Gemini 구조화 → dashboard endpoint 반영**.
+
+> **2026-06-10 변경 (B-1):** LLM 경로를 Vertex AI(gemini-2.5-pro, Cloud 청구) → **Direct Gemini API**(gemini-3.1-pro-preview, `GEMINI_API_KEY`, 월 $100 크레딧)로 전환. Cloud 청구 금지 룰 준수. 실패 시 macOS 알림 + `artifacts/atuna_daily/_sync_failures.log` 기록 (성공 시 무음).
 
 ## 자산
 
 | 파일 | 역할 |
 |---|---|
-| `scripts/atuna_daily_sync.sh` | 일일 동기화 스크립트 (gcloud Drive API + Gemini Pro) |
+| `scripts/atuna_daily_sync.sh` | 일일 동기화 스크립트 (rclone + Direct Gemini API) |
 | `app/api/atuna-daily/route.ts` | 동기화 결과 노출 endpoint |
 | `public/data/atuna_daily/<YYYY-MM-DD>.json` | 일자별 구조화 시그널 (git 추적) |
 
@@ -113,8 +115,14 @@ GET /api/atuna-daily?date=2026-05-21  # 특정 일자
 
 ## 비용 추정
 
-- Gemini 2.5 Pro 추출: ~$0.015/일 (5KB 뉴스 input → 4KB 구조화 output)
-- 월 ~$0.50 / paid 한도 $100 → **0.5% 사용**
+- gemini-3.1-pro-preview (Direct API) 추출: ~$0.02/일 (5KB 뉴스 input → 4KB 구조화 output)
+- 월 ~$0.60 / Direct API 무료 크레딧 $100 → **0.6% 사용** (Cloud 청구 0원)
+- 모델 변경: `ATUNA_GEMINI_MODEL=gemini-3.5-flash ./scripts/atuna_daily_sync.sh` (gemini-3.x만 허용, 2.5-* 는 Vertex라 차단됨)
+
+## 실패 알림 & 신선도 감시 (2026-06-10, B-1b/B-2)
+
+- 스크립트 비정상 종료 시(폴더 미발견 exit 7 / docx 미발견 exit 2 / 변환·LLM·파싱 실패) macOS `display notification` + `artifacts/atuna_daily/_sync_failures.log` 1줄 기록. 성공 시 무음.
+- `~/.claude/harness/verify/verify_atuna_freshness.sh` 훅: GDrive docx 최신 업로드 3일 초과 또는 `public/data/atuna_prices.json` 최신 행 10일 초과 시 Claude Code 세션에서 경고. (2026-05-22 업로드 중단 → 13일 무감지 사고 재발 방지)
 
 ## 인터랙티브 fallback (gcloud Drive scope 활성화 전 임시)
 
