@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌾 **2026-06-11 — agri 월간 파이프라인 소실·복구·비-Drive 이전** [CC]:
+> - **사고**: Google Drive 동기화가 `agri_data/_pipeline`(코드·레지스트리)+전 commodity `processed_data`(232K행)를 통째로 되돌려 소실(2026-06-08). 원인=수집물을 Drive 동기화 폴더에 직접 기록. **라이브 대시보드는 git 스냅샷이라 무손상.** (⚠️ 동일 Drive 손실이 Atuna `61. Atuna/`에도 발생 — 계정 전반 동기화 문제 의심.)
+> - **복구**: 파이프라인을 **`~/agri_pipeline/`(로컬 git repo, 비-Drive)**로 재구축·이전. 패키지 재작성, 레지스트리 재건(46종 HS6 적대검증·92에이전트, HS2017→2022 정정 다수), 전수 재수집 124 OK(comtrade46·mirror10·customs46·kamis13·fred11·ecos1), 축산 KAMIS rank='1' 정정.
+> - **컨버터 변경(이 커밋)**: `scripts/agri_to_dashboard/agri_convert.py` 경로 분리 — registry·processed_data=`~/agri_pipeline`(로컬), FAOSTAT raw=Drive 읽기전용. regen으로 위젯 정적 JSON 재생성(shrimp/carrot KAMIS·petfood·squid w5/w14·garlic w1/w2, 전부 SYNCED). **미배포.**
+> - **검증**: garlic 2024수출 중국64%·tuna 태국#1(dedup 정상)·shrimp 12,050원/kg(06-09).
+> - **사용자 액션**: ① Drive raw 아카이브(FAOSTAT·리포트 PDF) 7개 카테고리 복구 확인(드라이브 웹/휴지통/클라이언트 재시작 — 카테고리07은 재동기화 확인됨) ② launchd는 새 경로로 이전 완료(매월 1일 04:00).
+> - **룰 갱신**: `agri_data/CLAUDE.md` v3(비-Drive 수집 원칙 명문화) + `~/agri_pipeline/README.md`.
+
 > 🔧 **2026-06-10 — V-Next Phase 1 구현 완료 (정직화·게이팅·파이프라인·위생)** [CC]:
 > - **방법**: 구현 5에이전트(파일 디스조인트 병렬) + 적대 리뷰 2에이전트(writer≠reviewer) → 리뷰 기각 10건 일괄 정정 → 빌드+로컬 prod 스모크 검증. **⚠️ 미배포** — 사용자 "배포" 시 push.
 > - **A-1/A-2/A-3 첫화면 정직화**: LiveTicker 하드코딩 7건 삭제(만료 CEPA D-4·YFT $2,850·Brent $106.2·BREAKING 등), SKJ/YF/MGO/환율 전부 동적 바인딩+기준일 표기. MarketDashboard KPI 초기 하드코딩 제거(스켈레톤), '오늘자' 라벨 조건부화, Δ% 동적 계산(SKJ -6.3%·YF +5.3%), 7일 초과 호박색 'N일 전' 뱃지. 환율 이중값(1476vs1529)·Brent 모순 해소.
