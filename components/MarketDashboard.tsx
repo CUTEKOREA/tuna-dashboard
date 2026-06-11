@@ -177,7 +177,46 @@ export default function MarketDashboard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      
+
+      {/* Visual-only scoped styles (no data/logic) — KPI signature top bars, hover glow */}
+      <style>{`
+        .mkt-kpi { position: relative; overflow: hidden; }
+        .mkt-kpi::before {
+          content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+          background: var(--kpi-grad); z-index: 1;
+        }
+        .mkt-kpi::after {
+          content: ''; position: absolute; top: -30px; left: -10%; right: -10%; height: 70px;
+          background: var(--kpi-grad); opacity: 0.10; filter: blur(26px); pointer-events: none;
+        }
+        .mkt-kpi.ds-card:hover {
+          border-color: var(--kpi-border, var(--card-hover-border));
+          box-shadow: 0 14px 40px -14px var(--kpi-glow), 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+        .mkt-news-grid > .ds-card {
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .mkt-news-grid > .ds-card:hover {
+          transform: translateY(-3px);
+          border-color: var(--news-glow-border, rgba(56, 189, 248, 0.35));
+          box-shadow: 0 16px 44px -16px var(--news-glow, rgba(56, 189, 248, 0.30)), 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+        .mkt-insights > div {
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .mkt-insights > div:hover {
+          transform: translateY(-3px);
+          border-color: rgba(129, 140, 248, 0.35);
+          box-shadow: 0 16px 44px -16px rgba(129, 140, 248, 0.38), 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+        [data-theme='light'] .mkt-kpi::after { opacity: 0.07; }
+        [data-theme='light'] .mkt-kpi.ds-card:hover,
+        [data-theme='light'] .mkt-news-grid > .ds-card:hover,
+        [data-theme='light'] .mkt-insights > div:hover {
+          box-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.18);
+        }
+      `}</style>
+
       {/* ROW 1: CORE MACRO KPIs */}
       <section style={{
         display: 'grid',
@@ -185,15 +224,15 @@ export default function MarketDashboard() {
         gap: '16px'
       }}>
         {/* KPI 1 */}
-        <div className="ds-card">
+        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #22d3ee, #3b82f6)', '--kpi-glow': 'rgba(56, 189, 248, 0.35)', '--kpi-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>SKJ 가다랑어 (방콕)</span>
               {renderStaleBadge(atunaLatest.skjBkk?.date)}
             </span>
-            <Ship size={16} color="#38bdf8" />
+            <Ship size={16} color="#38bdf8" style={{ filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.6))' }} />
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
+          <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {atunaLatest.skjBkk ? `$${atunaLatest.skjBkk.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           {atunaLatest.skjDeltaPct !== null && (
@@ -210,15 +249,15 @@ export default function MarketDashboard() {
         </div>
 
         {/* KPI 2 */}
-        <div className="ds-card">
+        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #6366f1, #8b5cf6)', '--kpi-glow': 'rgba(139, 92, 246, 0.35)', '--kpi-border': 'rgba(139, 92, 246, 0.35)' } as React.CSSProperties}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>YF 황다랑어 (세이셸)</span>
               {renderStaleBadge(atunaLatest.yfSey?.date)}
             </span>
-            <Anchor size={16} color="#818cf8" />
+            <Anchor size={16} color="#818cf8" style={{ filter: 'drop-shadow(0 0 6px rgba(139, 92, 246, 0.6))' }} />
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
+          <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {atunaLatest.yfSey ? `$${atunaLatest.yfSey.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           {atunaLatest.yfDeltaPct !== null && (
@@ -235,15 +274,15 @@ export default function MarketDashboard() {
         </div>
 
         {/* KPI 3 */}
-        <div className="ds-card">
+        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #ef4444, #f59e0b)', '--kpi-glow': 'rgba(239, 68, 68, 0.32)', '--kpi-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>싱가포르 MGO 유가{mgoData.isEstimate ? ' (Brent 환산추정)' : ''}</span>
               {renderStaleBadge(mgoData.date)}
             </span>
-            <Activity size={16} color="#ef4444" />
+            <Activity size={16} color="#ef4444" style={{ filter: 'drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))' }} />
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
+          <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {mgoData.price !== null ? `$${mgoData.price.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/ton</span>
           </div>
           {mgoData.change !== null && mgoData.price !== null && (
@@ -258,15 +297,15 @@ export default function MarketDashboard() {
         </div>
 
         {/* KPI 4 */}
-        <div className="ds-card">
+        <div className="ds-card mkt-kpi" style={{ '--kpi-grad': 'linear-gradient(90deg, #10b981, #14b8a6)', '--kpi-glow': 'rgba(16, 185, 129, 0.32)', '--kpi-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontWeight: 600 }}>달러·원 환율</span>
               {renderStaleBadge(fxData.date)}
             </span>
-            <Globe size={16} color="#10b981" />
+            <Globe size={16} color="#10b981" style={{ filter: 'drop-shadow(0 0 6px rgba(16, 185, 129, 0.6))' }} />
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--text-main)' }}>
+          <div style={{ fontSize: '1.85rem', fontWeight: 800, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color: 'var(--text-main)' }}>
             {fxData.usd_krw !== null ? `₩${fxData.usd_krw.toLocaleString()}` : '—'} <span style={{ fontSize: '1rem', color: 'var(--text-muted)', fontWeight: 400 }}>/$</span>
           </div>
           {fxData.change !== null && fxData.usd_krw !== null && (
@@ -301,17 +340,23 @@ export default function MarketDashboard() {
                 가다랑어 (SKJ)
               </h4>
               <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={priceData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                <defs>
+                  <linearGradient id="mktGradSkj" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#22d3ee" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
-                <RechartsTooltip 
-                  contentStyle={{ backgroundColor: 'rgba(10, 10, 10, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', backdropFilter: 'blur(8px)' }}
+                <RechartsTooltip
+                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />
-                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                
-                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="#38bdf8" strokeWidth={2} dot={false} activeDot={{ r: 6 }} connectNulls={true} />
+                <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
+
+                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="url(#mktGradSkj)" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#38bdf8', strokeWidth: 0, style: { filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.85))' } }} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="SKJ 만타" stroke="#2dd4bf" strokeWidth={2} dot={false} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="SKJ 아비장" stroke="#f472b6" strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="SKJ 세이셸" stroke="#facc15" strokeWidth={2} dot={false} connectNulls={true} />
@@ -327,17 +372,23 @@ export default function MarketDashboard() {
                 황다랑어 (YF)
               </h4>
               <LineChart width={chartWidth > 900 ? (chartWidth - 24) / 2 : chartWidth} height={350} data={priceData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
+                <defs>
+                  <linearGradient id="mktGradYf" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#818cf8" />
+                    <stop offset="100%" stopColor="#c084fc" />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
-                <RechartsTooltip 
-                  contentStyle={{ backgroundColor: 'rgba(10, 10, 10, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', backdropFilter: 'blur(8px)' }}
+                <RechartsTooltip
+                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />
-                <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                
-                <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="YF 아비장" stroke="#818cf8" strokeWidth={2} dot={false} connectNulls={true} />
+                <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
+
+                <Line yAxisId="left" type="monotone" dataKey="yf_abj" name="YF 아비장" stroke="url(#mktGradYf)" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#818cf8', strokeWidth: 0, style: { filter: 'drop-shadow(0 0 6px rgba(139, 92, 246, 0.85))' } }} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="yf_sey" name="YF 세이셸" stroke="#c084fc" strokeWidth={2} dot={false} strokeDasharray="3 3" connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="yf_vig" name="YF 비고" stroke="#a78bfa" strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
               </LineChart>
@@ -353,15 +404,15 @@ export default function MarketDashboard() {
           <Newspaper size={20} color="#f59e0b" />
           Atuna 주간 다이제스트: 6월 2주차 시장을 뒤흔드는 핵심 시그널
         </h3>
-        <div data-mobile-stack style={{
+        <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '16px'
         }}>
           {/* News 1 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 공급망 / 재난
               </div>
               <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.09</span>
@@ -375,9 +426,9 @@ export default function MarketDashboard() {
           </div>
 
           {/* News 2 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 무역 / 관세
               </div>
               <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.04</span>
@@ -391,9 +442,9 @@ export default function MarketDashboard() {
           </div>
 
           {/* News 3 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 시장 / 수입
               </div>
               <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.08</span>
@@ -407,9 +458,9 @@ export default function MarketDashboard() {
           </div>
 
           {/* News 4 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 8px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 600, width: 'fit-content' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 규제 / ESG
               </div>
               <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.08</span>
@@ -430,7 +481,7 @@ export default function MarketDashboard() {
           <Search size={20} color="#818cf8" />
           전략 인사이트: 필리핀 지진 충격 & 글로벌 관세 연쇄 파장
         </h3>
-        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
+        <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
             title="필리핀 지진 공급망 마비 & 연료비 고공행진의 이중 악재"

@@ -15,6 +15,9 @@
   border-radius: 0;
   display: flex;
   align-items: center;
+  /* Right-edge gradient fade mask — items dissolve as they exit */
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 96px), transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 96px), transparent 100%);
 }
 
 /* Fade edges for seamless scroll illusion */
@@ -24,19 +27,19 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 60px;
+  width: 90px;
   z-index: 5;
   pointer-events: none;
 }
 
 .tickerWrap::before {
   left: 120px;
-  background: linear-gradient(90deg, rgba(2, 10, 20, 0.6), transparent);
+  background: linear-gradient(90deg, rgba(2, 10, 20, 0.9), rgba(2, 10, 20, 0.45) 45%, transparent);
 }
 
 .tickerWrap::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(2, 10, 20, 0.6), transparent);
+  background: linear-gradient(270deg, rgba(2, 10, 20, 0.9), rgba(2, 10, 20, 0.45) 45%, transparent);
 }
 
 .tickerPrefix {
@@ -44,7 +47,8 @@
   left: 0;
   top: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  /* Signature gradient fill for the prefix label badge (red -> amber, market-live) */
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 45%, #f59e0b 140%);
   color: #fff;
   padding: 0 18px;
   display: flex;
@@ -52,9 +56,10 @@
   font-weight: 800;
   font-size: 10px;
   z-index: 10;
-  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.6);
+  box-shadow: 4px 0 16px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.22);
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .tickerInner {
@@ -71,12 +76,27 @@
 .tickerItem {
   display: inline-flex;
   align-items: center;
-  margin-right: 56px;
+  position: relative;
+  /* 28 + 28 = 56px total spacing preserved -> identical scroll distance/speed */
+  padding-right: 28px;
+  margin-right: 28px;
   font-size: 12.5px;
   font-weight: 600;
   color: var(--text-main);
   font-family: 'Inter', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   letter-spacing: 0.02em;
+}
+
+/* Micro glass separator between ticker items */
+.tickerItem::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(180deg, transparent, rgba(148, 163, 184, 0.35), transparent);
 }
 
 .label {
@@ -89,6 +109,7 @@
 .value {
   margin-right: 6px;
   font-variant-numeric: tabular-nums;
+  font-weight: 700;
 }
 
 .up {
@@ -121,11 +142,11 @@
 }
 
 [data-theme='light'] .tickerWrap::before {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), transparent);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5) 45%, transparent);
 }
 
 [data-theme='light'] .tickerWrap::after {
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0.9), transparent);
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5) 45%, transparent);
 }
 
 [data-theme='light'] .tickerPrefix {
@@ -133,6 +154,11 @@
   color: #FF3B30; /* Apple Red */
   box-shadow: 4px 0 16px rgba(0, 0, 0, 0.03);
   border-right: 1px solid rgba(255, 59, 48, 0.15);
+  text-shadow: none;
+}
+
+[data-theme='light'] .tickerItem::after {
+  background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.18), transparent);
 }
 
 [data-theme='light'] .up {
@@ -150,6 +176,8 @@
   .tickerWrap {
     padding: 7px 0;
     margin-bottom: 12px;
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 56px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 56px), transparent 100%);
   }
 
   .tickerPrefix {
@@ -160,11 +188,11 @@
 
   .tickerWrap::before {
     left: 80px;
-    width: 40px;
+    width: 52px;
   }
 
   .tickerWrap::after {
-    width: 40px;
+    width: 52px;
   }
 
   .tickerInner {
@@ -173,8 +201,14 @@
   }
 
   .tickerItem {
-    margin-right: 32px;
+    /* 16 + 16 = 32px total spacing preserved */
+    padding-right: 16px;
+    margin-right: 16px;
     font-size: 11px;
+  }
+
+  .tickerItem::after {
+    height: 12px;
   }
 
   .label {
@@ -184,6 +218,11 @@
 }
 
 @media (max-width: 480px) {
+  .tickerWrap {
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 44px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 44px), transparent 100%);
+  }
+
   .tickerPrefix {
     padding: 0 8px;
     font-size: 7px;
@@ -199,8 +238,14 @@
   }
 
   .tickerItem {
-    margin-right: 24px;
+    /* 12 + 12 = 24px total spacing preserved */
+    padding-right: 12px;
+    margin-right: 12px;
     font-size: 10px;
+  }
+
+  .tickerItem::after {
+    height: 10px;
   }
 
   .label {

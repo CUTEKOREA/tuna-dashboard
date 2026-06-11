@@ -1,0 +1,62 @@
+/*
+ * TakeawayBox section identity (2026-06-11 design upgrade)
+ * SIT = slate gradient left border / TAK = cyan→blue gradient left border + glass highlight.
+ * Scoped here (NOT in globals.css) so other consumers of .ds-situation-box /
+ * .ds-takeaway-box are untouched. Doubled class selectors (.sit.sit) intentionally
+ * outrank the global rules regardless of CSS bundle order.
+ */
+
+/* ── SIT (현황 분석) — slate identity ── */
+.sit.sit {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(180deg, rgba(148, 163, 184, 0.9), rgba(100, 116, 139, 0.35)) 1;
+  background: rgba(148, 163, 184, 0.05);
+}
+
+.sit.sit li {
+  background: rgba(148, 163, 184, 0.05);
+  border-color: rgba(148, 163, 184, 0.14);
+}
+.sit.sit li:hover {
+  background: rgba(148, 163, 184, 0.1);
+  border-color: rgba(148, 163, 184, 0.28);
+}
+.sit.sit li::before {
+  color: #94a3b8;
+}
+.sit.sit li strong {
+  color: #cbd5e1;
+}
+
+/* ── TAK (실행 전략) — cyan→blue identity + subtle glass highlight ── */
+.tak.tak {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(180deg, #22d3ee, #3b82f6) 1;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.07), rgba(59, 130, 246, 0.04));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.tak.tak li {
+  background: rgba(34, 211, 238, 0.05);
+  border-color: rgba(34, 211, 238, 0.15);
+}
+.tak.tak li:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.3);
+}
+.tak.tak li::before {
+  color: #22d3ee;
+}
+.tak.tak li strong {
+  color: #38bdf8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sit.sit li,
+  .tak.tak li {
+    transition: none;
+  }
+  .tak.tak li:hover {
+    transform: none;
+  }
+}

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import styles from './TakeawayBox.module.css';
 
 export default function TakeawayBox({ situation, actionPlan, takeaway, source }: { situation: React.ReactNode, actionPlan?: React.ReactNode, takeaway?: React.ReactNode, source?: string }) {
   return (
@@ -19,9 +20,10 @@ export default function TakeawayBox({ situation, actionPlan, takeaway, source }:
         wordBreak: 'keep-all',
       }}
     >
-      <div className="ds-situation-box" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-info)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          📊 현황 분석
+      <div className={`ds-situation-box ${styles.sit}`} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <span aria-hidden="true" style={{ fontSize: '0.8rem', lineHeight: 1 }}>📊</span>
+          현황 분석
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
           {typeof situation === 'string' ? (
@@ -34,9 +36,10 @@ export default function TakeawayBox({ situation, actionPlan, takeaway, source }:
         </div>
       </div>
       
-      <div className="ds-takeaway-box" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-success)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          ⚡️ 실행 전략
+      <div className={`ds-takeaway-box ${styles.tak}`} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#22d3ee', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <span aria-hidden="true" style={{ fontSize: '0.8rem', lineHeight: 1 }}>⚡️</span>
+          실행 전략
         </span>
         <div style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
           {typeof (takeaway || actionPlan) === 'string' ? (

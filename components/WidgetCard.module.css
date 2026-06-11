@@ -1,0 +1,54 @@
+/*
+ * WidgetCard visual layer (2026-06-11 design upgrade)
+ * - Pillar-tinted 1.5px top accent bar (driven by existing data-pillar attr)
+ * - Hover lift + glow (transform / box-shadow / border-color only)
+ * - prefers-reduced-motion guard
+ * Visual-only: no layout/props/render-contract change. Pairs with
+ * TunaInsightsDashboard.module.css `.insightCard` (base card chrome).
+ */
+
+.card {
+  position: relative;
+}
+
+/* ── Top accent bar — default: tuna signature cyan→blue ── */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  border-radius: var(--card-radius, 12px) var(--card-radius, 12px) 0 0;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 5-Pillar accent mapping (UI_RULES premium palette: blue/amber/violet/rose/emerald) */
+.card[data-pillar='S1']::before { background: linear-gradient(90deg, #06b6d4, #3b82f6); } /* 원료 수급 */
+.card[data-pillar='S2']::before { background: linear-gradient(90deg, #f59e0b, #fb923c); } /* 가공·생산 */
+.card[data-pillar='S3']::before { background: linear-gradient(90deg, #8b5cf6, #6366f1); } /* 물류·통관 */
+.card[data-pillar='S4']::before { background: linear-gradient(90deg, #f43f5e, #fb7185); } /* 판매·수요 */
+.card[data-pillar='S5']::before { background: linear-gradient(90deg, #10b981, #34d399); } /* ESG·지속가능성 */
+
+/* ── Hover lift + glow ──
+ * Transition itself comes from .insightCard (`transition: all 0.3s ease`),
+ * so we only declare the hover end-state here (no duplicate transition). */
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.18);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(56, 189, 248, 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* doubled class = deterministic win over .insightCard regardless of bundle order */
+  .card.card,
+  .card.card:hover {
+    transition: none;
+    transform: none;
+  }
+}

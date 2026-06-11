@@ -34,6 +34,7 @@ import { TelemetryBadge } from './TelemetryBadge';
 
 export type TelemetryStatus = 'LIVE' | 'SYNCED' | 'STATIC';
 import styles from './TunaInsightsDashboard.module.css';
+import cardStyles from './WidgetCard.module.css';
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -167,11 +168,21 @@ export default function WidgetCard(props: WidgetCardProps) {
   }
 
   return (
-    <div className={styles.insightCard} data-pillar={pillar} data-widget-id={id}>
+    <div className={`${styles.insightCard} ${cardStyles.card}`} data-pillar={pillar} data-widget-id={id}>
       <div className={styles.cardHeader} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <h3 className={styles.cardTitle} style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
-            {Icon && <Icon size={18} color={iconColor} />}
+            {Icon && (
+              <Icon
+                size={18}
+                color={iconColor}
+                style={{
+                  flexShrink: 0,
+                  // Subtle same-hue glow; gracefully ignored if color-mix unsupported
+                  filter: `drop-shadow(0 0 5px color-mix(in srgb, ${iconColor} 45%, transparent))`,
+                }}
+              />
+            )}
             <span>{title}</span>
             {termTooltip && (
               <TermTooltip term={termTooltip.term} description={termTooltip.description} />
@@ -183,7 +194,7 @@ export default function WidgetCard(props: WidgetCardProps) {
             </p>
           )}
           {cardDesc && (
-            <p style={{ margin: '6px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+            <p style={{ margin: '6px 0 0 0', fontSize: '0.82rem', color: '#cbd5e1', lineHeight: 1.55 }}>
               {cardDesc}
             </p>
           )}

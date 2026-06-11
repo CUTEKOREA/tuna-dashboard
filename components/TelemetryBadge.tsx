@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import styles from './TelemetryBadge.module.css';
 
 export interface TelemetryBadgeProps {
   status: 'LIVE' | 'SYNCED' | 'STATIC' | 'live' | 'synced' | 'static' | undefined;
@@ -14,16 +15,25 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate
   const normalizedStatus = status.toUpperCase() as 'LIVE' | 'SYNCED' | 'STATIC';
   const isLive = normalizedStatus === 'LIVE';
   const isSynced = normalizedStatus === 'SYNCED';
-  
+
+  // Visual identity per status (status semantics/text/syncDate logic unchanged):
+  // LIVE = cyan pulse dot / SYNCED = amber static dot / STATIC = slate, no dot
+  const accent = isLive ? '#22d3ee' : isSynced ? '#f59e0b' : '#94a3b8';
+  const borderTint = isLive
+    ? 'rgba(34, 211, 238, 0.25)'
+    : isSynced
+      ? 'rgba(245, 158, 11, 0.22)'
+      : 'rgba(148, 163, 184, 0.16)';
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
-      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {isLive && (
-          <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />
-        )}
-        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
-      </div>
-      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(15, 23, 42, 0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', padding: '2px 7px', borderRadius: '5px', border: `1px solid ${borderTint}` }}>
+      {(isLive || isSynced) && (
+        <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {isLive && <div className={styles.pulse} />}
+          <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: accent, boxShadow: isLive ? '0 0 6px rgba(34, 211, 238, 0.6)' : 'none' }} />
+        </div>
+      )}
+      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: accent, letterSpacing: '0.5px' }}>
         {normalizedStatus}
       </span>
       {!isLive && syncDate && (

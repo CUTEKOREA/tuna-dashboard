@@ -80,8 +80,8 @@
 
   /* ===== TEXT COLOR HIERARCHY (5계층) — Crisp & Luminous ===== */
   --text-primary: #ffffff;                   /* 제목, 핵심 수치 — pure white */
-  --text-secondary: #b3b3b3;                   /* 본문 텍스트 */
-  --text-tertiary: #b3b3b3;                   /* 보조 설명 */
+  --text-secondary: #cbd5e1;                   /* 본문 텍스트 — Slate 300 */
+  --text-tertiary: #94a3b8;                   /* 보조 설명 — Slate 400 */
   --text-dim: #7c7c7c; /* 비활성, 캡션 — Slate 500 */
   --text-disabled: #4d4d4d; /* 플레이스홀더 — Slate 600 */
 
@@ -112,6 +112,53 @@
   --surface-1: rgba(15, 23, 42, 0.6);            /* 카드/패널 */
   --surface-2: rgba(30, 41, 59, 0.7);            /* 떠있는 요소 (모달, 인사이트 카드) */
   --surface-3: rgba(51, 65, 85, 0.8);            /* 최상위 (드롭다운, 툴팁) */
+
+  /* ==========================================================
+   * WAR ROOM DEPTH & GLOW TOKENS (additive, 2026-06-11)
+   * Deep-sea layered glow presets — do not rename existing vars
+   * ========================================================== */
+  /* box-shadow presets */
+  --glow-cyan:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(34, 211, 238, 0.14),
+    0 0 1px rgba(56, 189, 248, 0.45);
+  --glow-accent:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(139, 92, 246, 0.16),
+    0 0 1px rgba(139, 92, 246, 0.45);
+
+  /* 1px gradient border ring (used by .ds-card::after mask) */
+  --card-border-gradient: linear-gradient(
+    160deg,
+    rgba(56, 189, 248, 0.32) 0%,
+    rgba(148, 163, 184, 0.10) 30%,
+    rgba(255, 255, 255, 0.05) 55%,
+    rgba(99, 102, 241, 0.26) 100%
+  );
+  --card-border-gradient-hover: linear-gradient(
+    160deg,
+    rgba(34, 211, 238, 0.55) 0%,
+    rgba(148, 163, 184, 0.14) 40%,
+    rgba(129, 140, 248, 0.45) 100%
+  );
+
+  /* hover lift (transform-only, GPU-friendly) */
+  --ds-card-hover-lift: translateY(-2px);
+
+  /* hero/section title gradient — cyan → blue → violet 3-stop */
+  --title-gradient: linear-gradient(135deg, #e0f2fe 0%, #67e8f9 28%, #3b82f6 62%, #8b5cf6 100%);
+  --title-glow: drop-shadow(0 0 14px rgba(56, 189, 248, 0.25));
+
+  /* layered abyss background — cyan glow (top-left) + indigo glow (bottom-right) */
+  --bg-abyss:
+    radial-gradient(ellipse 72% 56% at 12% -8%, rgba(34, 211, 238, 0.09) 0%, transparent 62%),
+    radial-gradient(ellipse 78% 62% at 94% 106%, rgba(99, 102, 241, 0.11) 0%, transparent 60%),
+    radial-gradient(circle at 50% -20%, #1e293b 0%, rgba(30, 41, 59, 0) 58%),
+    linear-gradient(168deg, #0d1626 0%, #0f172a 46%, #0a101f 100%);
+
+  /* slim scrollbar tint */
+  --scrollbar-thumb-tint: linear-gradient(180deg, rgba(34, 211, 238, 0.32), rgba(59, 130, 246, 0.22));
+  --scrollbar-thumb-tint-hover: linear-gradient(180deg, rgba(34, 211, 238, 0.5), rgba(59, 130, 246, 0.4));
 }
 
 /* ==========================================================
@@ -120,6 +167,7 @@
 
 /* ===== Card Unified System ===== */
 .ds-card {
+  position: relative;
   background: var(--surface-1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -132,12 +180,38 @@
 .ds-card:hover {
   background: var(--surface-2);
   border-color: var(--card-hover-border);
-  box-shadow: var(--card-hover-shadow);
-  transform: translateY(-2px);
+  box-shadow: var(--glow-cyan);
+  transform: var(--ds-card-hover-lift);
+}
+
+/* 1px gradient border ring — masked ::after technique.
+ * ::after (not ::before) on purpose: widget-level accents already use
+ * ::before on the same element (e.g. SquidDashboard .glassCard::before).
+ * max-width: none overrides the global `*::after { max-width: 100% }`
+ * so the ring can extend 1px past the padding box on every side. */
+.ds-card::after,
+.ds-card-insight::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  max-width: none;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--card-border-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.ds-card:hover::after,
+.ds-card-insight:hover::after {
+  background: var(--card-border-gradient-hover);
 }
 
 /* Insight card variant — slightly raised */
 .ds-card-insight {
+  position: relative;
   background: var(--surface-2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -150,8 +224,8 @@
 .ds-card-insight:hover {
   background: var(--surface-3);
   border-color: var(--card-hover-border);
-  box-shadow: var(--card-hover-shadow);
-  transform: translateY(-2px);
+  box-shadow: var(--glow-accent);
+  transform: var(--ds-card-hover-lift);
 }
 
 /* ===== Typography Hierarchy ===== */
@@ -359,10 +433,21 @@
   --color-purple:   #7C3AED;
 
   /* ===== SURFACE ELEVATION OVERRIDES (Light Mode) ===== */
-  --surface-0:  #F8F7F4;            
-  --surface-1:  #FFFFFF;         
-  --surface-2:  #F1F5F9;         
+  --surface-0:  #F8F7F4;
+  --surface-1:  #FFFFFF;
+  --surface-2:  #F1F5F9;
   --surface-3:  #E2E8F0;
+
+  /* ===== WAR ROOM GLOW OVERRIDES (Light Mode — keep it quiet) ===== */
+  --glow-cyan: 0 8px 24px rgba(37, 99, 235, 0.10);
+  --glow-accent: 0 8px 24px rgba(124, 58, 237, 0.10);
+  --card-border-gradient: linear-gradient(160deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.04));
+  --card-border-gradient-hover: linear-gradient(160deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.06));
+  --title-gradient: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+  --title-glow: none;
+  --bg-abyss: none;
+  --scrollbar-thumb-tint: rgba(0, 0, 0, 0.18);
+  --scrollbar-thumb-tint-hover: rgba(0, 0, 0, 0.3);
 }
 
 /* Decorative keyframes removed for institutional precision */
@@ -412,6 +497,37 @@
   --card-subtitle-color: rgba(252, 165, 165, 0.7);
   --chart-height: 350px;
   --chart-bar-radius: 6px;
+
+  /* ===== WAR ROOM GLOW OVERRIDES (Crisis Mode — red-shifted) ===== */
+  --glow-cyan:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(239, 68, 68, 0.16),
+    0 0 1px rgba(239, 68, 68, 0.45);
+  --glow-accent:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(248, 113, 113, 0.18),
+    0 0 1px rgba(248, 113, 113, 0.45);
+  --card-border-gradient: linear-gradient(
+    160deg,
+    rgba(239, 68, 68, 0.40) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(239, 68, 68, 0.25) 100%
+  );
+  --card-border-gradient-hover: linear-gradient(
+    160deg,
+    rgba(239, 68, 68, 0.60) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(248, 113, 113, 0.45) 100%
+  );
+  --title-gradient: linear-gradient(135deg, #fee2e2 0%, #f87171 50%, #ef4444 100%);
+  --title-glow: drop-shadow(0 0 14px rgba(239, 68, 68, 0.3));
+  --bg-abyss:
+    radial-gradient(ellipse 72% 56% at 12% -8%, rgba(239, 68, 68, 0.10) 0%, transparent 62%),
+    radial-gradient(ellipse 78% 62% at 94% 106%, rgba(153, 27, 27, 0.14) 0%, transparent 60%),
+    radial-gradient(circle at 50% -20%, #2a0e0e 0%, rgba(42, 14, 14, 0) 58%),
+    linear-gradient(168deg, #1c0a0a 0%, #1a0808 50%, #140505 100%);
+  --scrollbar-thumb-tint: linear-gradient(180deg, rgba(239, 68, 68, 0.35), rgba(153, 27, 27, 0.3));
+  --scrollbar-thumb-tint-hover: linear-gradient(180deg, rgba(239, 68, 68, 0.55), rgba(153, 27, 27, 0.45));
 }
 
 @keyframes crisis-pulse {
@@ -436,7 +552,9 @@
 
 body {
   background: var(--bg-color);
-  background-image: radial-gradient(circle at 50% -20%, #1e293b, #0f172a 80%);
+  /* Layered abyss: cyan glow (top-left) + indigo glow (bottom-right)
+   * over a deep-navy vertical fade. Fixed attachment keeps depth on scroll. */
+  background-image: var(--bg-abyss);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: 'Sora', 'Plus Jakarta Sans', 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -469,13 +587,18 @@ a {
   text-decoration: none;
 }
 
-/* Selection color */
+/* Selection color — cyan signal */
 ::selection {
-  background: rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.32);
   color: #F8FAFC;
 }
 
-/* Scrollbar — GDWEB-grade invisible scrollbar */
+/* Scrollbar — slim dark scrollbar with cyan tint */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -486,12 +609,12 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.15);
+  background: var(--scrollbar-thumb-tint);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.3);
+  background: var(--scrollbar-thumb-tint-hover);
 }
 
 /* -------------------------------------
@@ -802,5 +925,24 @@ h1, h2, h3, h4, .ds-heading-page, .ds-heading-section, .ds-heading-card {
  * styles otherwise win cascade. */
 @media (max-width: 768px) {
   [data-mobile-stack] { grid-template-columns: 1fr !important; }
+}
+
+/* ==========================================================
+ * REDUCED MOTION — disable all transitions/animations
+ * (covers crisis-pulse, button-pulse, card lifts, hovers)
+ * ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+  .ds-card:hover,
+  .ds-card-insight:hover {
+    transform: none;
+  }
 }
 

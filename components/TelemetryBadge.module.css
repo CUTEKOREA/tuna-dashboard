@@ -1,0 +1,34 @@
+/*
+ * TelemetryBadge pulse (LIVE only — existing semantics).
+ * The previous inline `animation: ping ...` referenced a keyframe that was never
+ * defined anywhere (Tailwind is not imported in globals.css), so the LIVE pulse
+ * was silently dead. This restores it, CSS-module-scoped, with a reduced-motion guard.
+ */
+
+.pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #22d3ee;
+  animation: badgePing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes badgePing {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  75%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+    opacity: 0;
+  }
+}
