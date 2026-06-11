@@ -29,11 +29,12 @@ async function getExchangeRate() {
   return FALLBACK;
 }
 
-// ⚠️ 데이터 원천 재검증 중 (2026-06-11): 아래 착지원가·매크로 영향 계산의 입력값
-// (CIF $2.08, 연간 26,797톤)은 HSK 0303899060 통관 집계 기반 — 갈치 귀속 미확인.
-// HSK 재확인·재수집 전까지 프런트는 이 수치를 갈치 단정 수치로 노출하지 않는다.
-const DATA_QUALITY_NOTE =
-  "입력값(CIF·연간 수입량)이 HSK 0303899060 통관 집계 기반 — 품목 귀속 재검증 중(HSK 재확인 필요)";
+// ✅ HSK 재검증 완료 (2026-06-11): 착지원가·매크로 영향 계산 입력값을
+// 관세청 HSK 0303.89-2000(냉동 갈치, nitemtrade 품목명 "갈치" 확인) 2025 실측으로 교체.
+// CIF $3.61/kg · 연간 수입 13,327톤 (구 0303899060=아귀 입력값 폐기).
+const GALCHI_CIF_USD = 3.61;      // 2025 연간 평균 CIF (USD/kg, HSK 0303892000 실측)
+const GALCHI_ANNUAL_TONS = 13327; // 2025 연간 수입량 (톤, HSK 0303892000 실측)
+const HSK_NOTE = "HSK 0303.89-2000 냉동 갈치 검증 완료 (2026-06-11, 2025 실측 CIF $3.61/kg · 13,327톤)";
 
 // ═══ Landing Cost Calculator (WITS-based) ═══
 function calcLandingCost(cifUsd: number, usdKrw: number) {
@@ -63,16 +64,16 @@ function calcLandingCost(cifUsd: number, usdKrw: number) {
 function getMacroRisk(usdKrw: number) {
   const baseline = 1350;
   const delta = usdKrw - baseline;
-  const costImpactPerKg = Math.round(2.08 * delta * 0.1) / 10; // CIF $2.08 기준
-  const annualImpact = Math.round(costImpactPerKg * 26797); // 연간 수입 26,797톤
+  const costImpactPerKg = Math.round(GALCHI_CIF_USD * delta * 10) / 10; // 원/kg (CIF $3.61/kg 실측 기준)
+  const annualImpactM = Math.round(costImpactPerKg * GALCHI_ANNUAL_TONS / 1000); // 백만원 (연간 13,327톤)
 
   return {
     usdKrw,
     baseline,
     delta,
     costImpactPerKg: `${costImpactPerKg >= 0 ? "+" : ""}${costImpactPerKg}원/kg`,
-    annualImpactMillion: `${annualImpact >= 0 ? "+" : ""}${Math.round(annualImpact / 100) / 10}백만원`,
-    sensitivity: "원/달러 10원 변동 → 수입원가 ±20.8원/kg → 연간 ±5.6천만원",
+    annualImpactMillion: `${annualImpactM >= 0 ? "+" : ""}${annualImpactM.toLocaleString()}백만원`,
+    sensitivity: "원/달러 10원 변동 → 수입원가 ±36.1원/kg → 연간 ±4.8억원 (2025 실측 기준)",
     riskLevel: Math.abs(delta) > 50 ? "HIGH" : Math.abs(delta) > 20 ? "MEDIUM" : "LOW",
   };
 }
@@ -82,8 +83,8 @@ export async function GET(request: Request) {
   const type = searchParams.get("type") || "all";
 
   const exchange = await getExchangeRate();
-  const landingCost = { ...calcLandingCost(2.08, exchange.usdKrw), dataQualityNote: DATA_QUALITY_NOTE };
-  const macroRisk = { ...getMacroRisk(exchange.usdKrw), dataQualityNote: DATA_QUALITY_NOTE };
+  const landingCost = { ...calcLandingCost(GALCHI_CIF_USD, exchange.usdKrw), hskNote: HSK_NOTE };
+  const macroRisk = { ...getMacroRisk(exchange.usdKrw), hskNote: HSK_NOTE };
 
   if (type === "exchange") return NextResponse.json({ exchange });
   if (type === "wits") return NextResponse.json({ landingCost });
@@ -98,10 +99,10 @@ export async function GET(request: Request) {
     macroRisk,
     // Comtrade 글로벌 포지셔닝 (fallback — 등록 후 라이브 전환)
     globalPosition: {
-      source: "UN Comtrade HS 030389 (2023, fallback)",
+      source: "UN Comtrade HS 030389 (2023, fallback) · 한국 행은 관세청 HSK 0303.89-2000 실측(2024) — 타국은 광역 HS6 집계라 갈치 외 어종 포함",
       isLive: false,
       topImporters: [
-        { rank: 1, country: "한국", volume: 26797, value: 55800 },
+        { rank: 1, country: "한국", volume: 13430, value: 43176 },
         { rank: 2, country: "일본", volume: 83724, value: 302000 },
         { rank: 3, country: "스페인", volume: 18500, value: 42000 },
         { rank: 4, country: "포르투갈", volume: 12300, value: 28000 },

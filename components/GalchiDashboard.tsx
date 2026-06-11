@@ -232,9 +232,33 @@ export default function GalchiDashboard() {
   let { kpis, widgets } = data;
   kpis = { ...kpis };
 
-  // ⚠️ KCS(HS 0303899060) 파생 KPI 주입 중단 — 데이터 원천 재검증 중(HSK 재확인 필요).
-  // 해당 코드의 갈치 귀속이 확인될 때까지 통관 수치(중국 비중·CIF)를 KPI로 주장하지 않는다.
-  // 정적 kpi2·kpi4는 galchi_data.json에서 보류 표기로 유지된다.
+  // ✅ KCS(HSK 0303.89-2000 냉동 갈치, 검증 완료 2026-06-11) 파생 KPI 주입 복원.
+  // 관세청 nitemtrade 품목명(statKor) "갈치" 확인 — 구 0303899060(아귀) 폐기.
+  if (liveKcs?.summary?.cifPerKg) {
+    const kcsYear = liveKcs.year || "2025";
+    const prevYr = liveKcs.yearly?.find((y: any) => y.year === String(Number(kcsYear) - 1));
+    const cifTrend = prevYr?.cifPerKg
+      ? `${liveKcs.summary.cifPerKg >= prevYr.cifPerKg ? "+" : ""}${Math.round((liveKcs.summary.cifPerKg / prevYr.cifPerKg - 1) * 1000) / 10}%`
+      : "—";
+    kpis.kpi2 = {
+      title: "수입 단가(CIF)",
+      value: `$${liveKcs.summary.cifPerKg}`,
+      trend: cifTrend,
+      desc: `USD/kg · 관세청 HSK 0303.89-2000 (${kcsYear}) — HSK 검증 완료`,
+      telemetry: liveKcs.isLive ? 'live' : 'static',
+      syncDate: liveKcs.lastUpdated?.slice(0, 10),
+    };
+    const auctionTons2025 = 31400; // 해수부 위판통계 2025 위판중량(톤)
+    const depPct = Math.round(liveKcs.summary.totalWgt / (liveKcs.summary.totalWgt + auctionTons2025) * 1000) / 10;
+    kpis.kpi4 = {
+      title: "수입 의존도",
+      value: `${depPct}%`,
+      trend: `중국 ${liveKcs.summary.cnPct}%`,
+      desc: `${kcsYear}년 수입 ${Math.round(liveKcs.summary.totalWgt).toLocaleString()}톤÷(위판 31,400톤+수입) · HSK 검증 완료`,
+      telemetry: liveKcs.isLive ? 'live' : 'static',
+      syncDate: liveKcs.lastUpdated?.slice(0, 10),
+    };
+  }
 
   if (liveKamis?.current) {
     kpis.kpi1 = {
@@ -332,12 +356,12 @@ export default function GalchiDashboard() {
     {
       id: "w_galchi_hs_class",
       title: "통관 HS 코드 정밀 분류 — 가공 형태별 검증",
-      subtitle: "자체 분류 기준(HS Ping 로컬 DB) — 가공 형태별 분류 정확도 검증. ⚠️ 냉동 갈치 원물의 10자리 HSK 매핑은 데이터 원천 재검증 중(HSK 재확인 필요).",
+      subtitle: "자체 분류 기준(HS Ping 로컬 DB) — 가공 형태별 분류 정확도 검증. 냉동 갈치 원물의 10자리 HSK는 0303.89-2000으로 확정(관세청 품목명 '갈치' 검증, 2026-06-11).",
       chartType: "Bar",
       xKey: "form",
       bars: [{ key: "conf", name: "분류 정확도(%)", color: "#38bdf8" }],
-      sit: "수입 가공 형태(통·토막·순살·건염장)에 따라 10자리 HS 코드가 상이하며, 토막과 순살 간 오분류 통관 사고가 지속 발생합니다. 냉동 갈치 원물의 정확한 HSK는 현재 재확인 중입니다.",
-      strat: "①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단. HSK 재확인 결과가 확정되기 전까지 신규 신고 건은 관세사 이중 검증을 거치십시오.",
+      sit: "수입 가공 형태(통·토막·순살·건염장)에 따라 10자리 HS 코드가 상이하며, 토막과 순살 간 오분류 통관 사고가 지속 발생합니다. 냉동 갈치 원물은 HSK 0303.89-2000으로 확정 — 유사 코드 0303.89-9060(아귀)·0303.89-6000(학꽁치)과의 혼동이 실제 오귀속 사고 사례입니다.",
+      strat: "①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단. 냉동 원물은 0303.89-2000, 신선·냉장은 0302.89-2000을 표준 코드로 고정하고 신규 신고 건은 관세사 이중 검증을 거치십시오.",
       source: "HS Ping 로컬 DB (가공 형태별 HS 코드 내부 매핑표)",
       isLive: liveHsPing?.isLive ?? false,
       data: liveHsPing?.data || [],
@@ -346,14 +370,14 @@ export default function GalchiDashboard() {
     {
       id: "w_galchi_multi_cost",
       title: "착지원가 실시간 스태킹 — 원산지별 MFN 10% 착지원가 시뮬레이션",
-      subtitle: "착지원가 시나리오 추정 (illustrative). 냉동 갈치(HS 0303.89)는 KORUS 등 어떤 FTA TRQ에도 미포함이라 전 공급국에 동일하게 일반 수입관세(MFN) 10%가 적용됩니다. 원산지별 FOB·운임·관세·통관비 누적 착지원가를 월별로 비교하여 매수 타이밍을 식별합니다. ⚠️ 중국산 단가 입력값은 데이터 원천 재검증 중(HSK 재확인 필요).",
+      subtitle: "관세청 HSK 0303.89-2000 실측 월별 CIF(2025) × 환율 1,380원 가정 + MFN 10% + 통관비 50원/kg 누적 착지원가. 냉동 갈치는 KORUS 등 어떤 FTA TRQ에도 미포함이라 전 공급국에 동일하게 일반 수입관세(MFN) 10%가 적용됩니다.",
       chartType: "Composed",
       xKey: "month",
       bars: [{ key: "세네갈산 착지원가", color: "#8b5cf6" }],
       lines: [{ key: "중국산 착지원가", color: "#f43f5e" }],
-      sit: "갈치는 FTA 특혜관세가 없어 세네갈·중국 모두 동일한 MFN 10%가 적용되며, 원가 차이는 관세가 아닌 FOB 단가와 해상운임에서 발생합니다(시나리오 추정). 데이터 래그를 보완해 원산지별 착지원가를 월별로 누적 비교합니다.",
-      strat: "①관세 차익이 아닌 물류비(해상운임)·FOB 스프레드가 유리한 월에 산지별 선적량을 배분, ②환율 변동(CNY/KRW) 연동 시뮬레이션으로 최적 계약 시점 포착.",
-      source: "착지원가 구성요소 업계추정 (FOB·SCFI 운임·MFN 10%·검역비 기반 시나리오, illustrative)",
+      sit: "갈치는 FTA 특혜관세가 없어 세네갈·중국 모두 동일한 MFN 10%가 적용됩니다. 2025년 실측 CIF 기준 중국산 착지원가는 월 평균 8,000원/kg대, 세네갈산은 5,900원/kg대로 중국산이 일관되게 높습니다 — 과거 '중국산 저가' 가정은 아귀 코드 오귀속의 산물로 폐기.",
+      strat: "①세네갈산 CIF 저점 월(5~6월, 10월)에 선적량을 전진 배분, ②중국산은 소량 프리미엄 규격 전용으로 별도 단가 협상, ③환율 변동(USD/KRW) 연동 시뮬레이션으로 최적 계약 시점 포착.",
+      source: "관세청 HSK 0303.89-2000 월별 실측 CIF (2025, 검증 완료 2026-06-11) + MFN 10% + 통관비 50원/kg (환율 1,380원 가정)",
       isLive: liveTariffs?.isLive ?? false,
       data: liveTariffs?.data || [],
       _liveState: liveTariffs,
@@ -646,7 +670,7 @@ export default function GalchiDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span><span style={{ color: 'var(--color-success)' }}>Forensic v2</span> · 해수부·FAO 교차검증 · 관세청 HSK 재검증 중</span>
+            <span><span style={{ color: 'var(--color-success)' }}>Forensic v2</span> · 해수부·FAO 교차검증 · 관세청 HSK 검증 완료(0303.89-2000)</span>
           </div>
         </div>
       </header>
@@ -694,8 +718,7 @@ export default function GalchiDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
             <Zap size={14} color="var(--color-success)" />
             <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>실시간 인텔리전스 피드</span>
-            {/* KCS(HS 0303899060)는 품목 귀속 재검증 중 — LIVE 판정에서 제외 */}
-            {(liveIntel?.exchange?.isLive || liveKamis?.isLive) && (
+            {(liveIntel?.exchange?.isLive || liveKcs?.isLive || liveKamis?.isLive) && (
               <span style={{ fontSize: '0.65rem', color: 'var(--color-success)', background: 'rgba(30,215,96,0.1)', padding: '2px 8px', borderRadius: '500px', fontWeight: 700 }}>● LIVE</span>
             )}
           </div>
@@ -711,24 +734,25 @@ export default function GalchiDashboard() {
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>CNY/KRW ₩{liveIntel.exchange.cnyKrw}</div>
               </div>
             )}
-            {/* Landing Cost — 입력 CIF가 HS 0303899060(품목 귀속 재검증 중) 통관 단가라 수치 표시 보류 */}
+            {/* Landing Cost — 입력 CIF는 HSK 0303.89-2000 실측 통관 단가 (검증 완료 2026-06-11) */}
             {liveIntel?.landingCost && (
               <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Package size={12} /> 착지원가 시뮬레이션
                 </div>
-                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f97316' }}>재검증 중</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', marginTop: '2px' }}>⚠️ 데이터 원천 재검증 중(HSK 재확인 필요)</div>
+                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#f97316' }}>₩{liveIntel.landingCost.landedKrw?.toLocaleString()}<span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>/kg</span></div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '2px' }}>CIF ${liveIntel.landingCost.cifUsd}/kg + 관세 10% · 위판가 대비 {liveIntel.landingCost.spreadPct}%</div>
               </div>
             )}
-            {/* KCS Import — HS 0303899060 갈치 귀속 재확인 전까지 수치 주장 보류 */}
-            {liveKcs && (
+            {/* KCS Import — HSK 0303.89-2000 냉동 갈치 통관 실측 (검증 완료 2026-06-11) */}
+            {liveKcs?.summary && (
               <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Ship size={12} /> 수입 통관 현황
+                  {liveKcs.isLive && <span style={{ color: 'var(--color-success)', fontSize: '0.6rem' }}>●</span>}
                 </div>
-                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#8b5cf6' }}>재검증 중</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', marginTop: '2px' }}>⚠️ 데이터 원천 재검증 중(HSK 재확인 필요)</div>
+                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#8b5cf6' }}>{Math.round(liveKcs.summary.totalWgt).toLocaleString()}<span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>톤</span></div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: '2px' }}>{liveKcs.year || '2025'}년 HSK 0303.89-2000 · 중국 {liveKcs.summary.cnPct}% · CIF ${liveKcs.summary.cifPerKg}/kg</div>
               </div>
             )}
             {/* KAMIS Wholesale */}
@@ -751,8 +775,8 @@ export default function GalchiDashboard() {
                 <div style={{ fontSize: '1.3rem', fontWeight: 700, color: liveIntel.macroRisk.riskLevel === 'HIGH' ? 'var(--color-danger)' : liveIntel.macroRisk.riskLevel === 'MEDIUM' ? 'var(--color-warning)' : 'var(--color-success)' }}>
                   {liveIntel.macroRisk.riskLevel === 'HIGH' ? '높음' : liveIntel.macroRisk.riskLevel === 'MEDIUM' ? '중간' : '낮음'}
                 </div>
-                {/* 원가 영향액은 HS 0303899060 통관 단가 기반 — 품목 귀속 재검증 중이라 표시 보류 */}
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>원가 영향 산출 보류 — HSK 재확인 필요</div>
+                {/* 원가 영향액은 HSK 0303.89-2000 실측 CIF $3.61/kg(2025) 기반 (검증 완료 2026-06-11) */}
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>원가 영향 {liveIntel.macroRisk.costImpactPerKg} · 연간 {liveIntel.macroRisk.annualImpactMillion}</div>
               </div>
             )}
           </div>
