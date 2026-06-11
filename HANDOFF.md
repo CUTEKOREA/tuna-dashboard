@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔍 **2026-06-11 — 전 페이지 전수 검토 완료 (33유닛 · 확정 353건)** [CC]:
+> - **방법**: 67에이전트 워크플로우 — 페이지별 리뷰 33유닛(9항목 체크리스트) → P0/P1 전건 적대검증(기각 0·PARTIAL 정정 6) → 시스템 패턴 합성. ⚠️ **검토만, 코드 수정 0건**.
+> - **산출물**: [docs/all_pages_review_2026-06-11.md](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/docs/all_pages_review_2026-06-11.md) — **P0 52 · P1 127 · P2 174**. P0 최다: galchi 6(아귀 HSK 오귀속!)·_standalone 4·logistics/mackerel/shrimp 각 3.
+> - **시스템 패턴 11종(A~K)**: A 가짜LIVE 위장 14페이지 / B truthiness 격상(`data?'SYNCED':'STATIC'`) 9페이지 / C Math.random·발명상수(A-01 위반) 7페이지 / D 동일지표 페이지내 모순 20페이지 / E syncDate 일괄 fallback(squid 60·shrimp 40…) / F 만료 D-day·ETA 현재형 / G SIT-차트 비동기 / H 렌더러 키계약 파괴(jukkumi 10개 'Unsupported Format') / I 헤더 카운트 허위 재발 / J W-04 전면 부재(research-lab 44블록) / K **종·HS코드 오귀속(갈치=아귀, 주꾸미=문어류OCT, 돈육 글로벌=중국단독 — 자동화 불가, 개별 재수집 필요)**.
+> - **무결 페이지**: purse-seiner-db·sashimi-steak·seasia-oem·squid·flatfish·chicken·msc (P0 0).
+> - **다음**: 사용자 수정 승인 시 — ① 패턴 B·E·H·I는 L-07 스크립트 일괄수정 ② 패턴 A·C·F는 페이지별 ③ 패턴 K는 데이터 재수집 트랙 별도.
+
 > 📂 **2026-06-11 — Atuna 폴더 신경로 반영 + 신선도 훅 등록 완료, 백필은 API키 블로커** [CC]:
 > - **진상 정정**: "사용자 업로드 중단"이 아니었음 — 폴더가 `61. Atuna` → `agri_data/01_수산물(Seafood) 2/tuna/Atuna`로 이동(6/1경)되며 rclone 경로만 끊긴 것. 사용자는 06-04까지 계속 업로드(.gdoc, rclone이 docx로 export).
 > - **신경로 반영 3파일**: atuna_daily_sync.sh(기본 ATUNA_DIR)·verify_atuna_freshness.sh·atuna-daily route 주석. rclone 가시성 검증 완료.
