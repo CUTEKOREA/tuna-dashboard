@@ -347,6 +347,36 @@ function getCompartmentCoords(vesselId: string, holdId: string) {
   return { type: 'rect', x: xStart, y: yStart, width, height };
 }
 
+// W-04 freshness: derive the latest report date ('M/D' text, year from dateRange)
+// for a vessel so each block can display its data base date.
+function vesselLatestReport(v: { dateRange?: string; timeline?: { date: string }[] }): { label: string; sortKey: number } | null {
+  const yearMatch = String(v?.dateRange || '').match(/20\d{2}/);
+  const year = yearMatch ? parseInt(yearMatch[0], 10) : 2026;
+  let maxKey: number | null = null;
+  (v?.timeline || []).forEach(t => {
+    // Take the last 'M/D' token so ranges like '4/30~5/01' resolve to the end date.
+    const tokens = String(t?.date || '').match(/\d{1,2}\/\d{1,2}/g);
+    if (!tokens || tokens.length === 0) return;
+    const [m, d] = tokens[tokens.length - 1].split('/').map(Number);
+    if (isNaN(m) || isNaN(d)) return;
+    const key = m * 100 + d;
+    if (maxKey === null || key > maxKey) maxKey = key;
+  });
+  if (maxKey === null) return null;
+  const mm = String(Math.floor(maxKey / 100)).padStart(2, '0');
+  const dd = String(maxKey % 100).padStart(2, '0');
+  return { label: `${year}.${mm}.${dd}`, sortKey: year * 10000 + maxKey };
+}
+
+function BaseDateTag({ date }: { date: string | null }) {
+  if (!date) return null;
+  return (
+    <span style={{ marginLeft: 'auto', fontSize: '0.68rem', fontWeight: 'normal', color: 'var(--text-muted)', background: 'rgba(148, 163, 184, 0.12)', border: '1px solid rgba(148, 163, 184, 0.2)', padding: '1px 8px', borderRadius: '10px', whiteSpace: 'nowrap' }}>
+      기준일 {date}
+    </span>
+  );
+}
+
 function getTemperatureColor(temp: number | null): { color: string, name: string } {
   if (temp === null) return { color: '#14b8a6', name: 'Safe' };
   if (temp < -24.0) return { color: '#0284c7', name: 'Super-Freezing (Optimal)' };
@@ -498,11 +528,11 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 6955.000,
-      actualTotal: 3768.010,
-      surplus: -3186.990,
+      actualTotal: 4485.440,
+      surplus: -2469.560,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 3562.310, surplus: -3083.690 },
-        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 205.700, surplus: -103.300 }
+        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 4239.740, surplus: -2406.260 },
+        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 245.700, surplus: -63.300 }
       ],
       timeline: [
         { date: '5/23', time: '08:10 ~ 20:30', targetHol: 'S/HAR(#2-A)', dailyAmount: 146.890, cumAmount: 146.890, quality: '어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.' },
@@ -519,7 +549,10 @@ export default function UnloadingStatus() {
         { date: '6/3', time: '08:10 ~ 18:40', targetHol: 'S/PIO(#3-A), MOAKONA(#2-B)', dailyAmount: 236.140, cumAmount: 2541.130, quality: 'S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/4) 약 330톤 하역 진행 예정.' },
         { date: '6/4', time: '08:20 ~ 18:30', targetHol: 'S/PIO(#3-A), MOAKONA(#2-B)', dailyAmount: 322.870, cumAmount: 2864.000, quality: 'S/PIO(#3-A)- 어창 개방 측정온도는 -18.0℃ ~ -21.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B)- 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다.- 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/5) 약 580톤 하역 진행 예정.' },
         { date: '6/5', time: '08:10 ~ 18:20', targetHol: 'S/HAR(#1-B), MOAKONA(#2-B), S/PIO(#3-A,#3-B), MOAMARI(#4-C,#4-D)', dailyAmount: 438.050, cumAmount: 3302.050, quality: 'S/PIO(#3-A,#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#4-C,#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/6) 약 450톤 하역 진행 예정.' },
-        { date: '6/6', time: '08:10 ~ 18:00', targetHol: 'S/PIO(#3-B), S/SPR(#4-D), N/STAR(#2-C)', dailyAmount: 465.960, cumAmount: 3768.010, quality: 'S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역작업이 없으며, 재명일(6/8) 약 586톤 하역 진행 예정.' }
+        { date: '6/6', time: '08:10 ~ 18:00', targetHol: 'S/PIO(#3-B), S/SPR(#4-D), N/STAR(#2-C)', dailyAmount: 465.960, cumAmount: 3768.010, quality: 'S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역작업이 없으며, 재명일(6/8) 약 586톤 하역 진행 예정.' },
+        { date: '6/7', time: '-', targetHol: '-', dailyAmount: 0, cumAmount: 3768.010, quality: '공휴일 휴무.' },
+        { date: '6/8', time: '08:10 ~ 16:50', targetHol: 'N/STAR(#2-C:128.460), S/SPR(#4-D:143.560), S/HAR(#1-B:78.060), S/PIO(#3-B:152.410)', dailyAmount: 502.530, cumAmount: 4270.540, quality: 'S/PIO(#3-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/9)은 약 250톤 하역 진행 예정.' },
+        { date: '6/9', time: '08:10 ~ 14:00', targetHol: 'N/STAR(#2-C), S/PIO(#3-B)', dailyAmount: 214.900, cumAmount: 4485.440, quality: 'S/PIO(#3-B) - 어창 개방 측정온도는 -17.0℃ ~ -18.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/10)은 약 185톤 하역 진행 예정.' }
       ]
     },
     'bao-lucky': {
@@ -530,11 +563,11 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 4803.000,
-      actualTotal: 1413.410,
-      surplus: -3389.590,
+      actualTotal: 1936.700,
+      surplus: -2866.300,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 1261.910, surplus: -2914.090 },
-        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 151.500, surplus: -475.500 }
+        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 1763.100, surplus: -2412.900 },
+        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 173.600, surplus: -453.400 }
       ],
       timeline: [
         { 
@@ -576,6 +609,30 @@ export default function UnloadingStatus() {
           dailyAmount: 276.890,
           cumAmount: 1413.410,
           quality: 'S/EXP(#4-A) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#1-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAMARI(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/7,공휴일)은 하역 작업이 없으며, 재명일(6/8) 약 550톤 하역 진행 예정.'
+        },
+        {
+          date: '6/7',
+          time: '-',
+          targetHol: '-',
+          dailyAmount: 0,
+          cumAmount: 1413.410,
+          quality: '공휴일 휴무.'
+        },
+        {
+          date: '6/8',
+          time: '08:00 ~ 20:20',
+          targetHol: 'N/STAR(#1-B:207.750), MOAKONA(#2-A:89.070), S/PIO(#3-A:70.380), S/EXP(#4-A:59.245,#4-B:59.245)',
+          dailyAmount: 485.690,
+          cumAmount: 1899.100,
+          quality: 'N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/EXP(#4-A,#4-B) - 어창 개방 측정온도는 -18.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/9)은 약 70톤 하역 진행 예정.'
+        },
+        {
+          date: '6/9',
+          time: '08:30 ~ 11:50',
+          targetHol: 'S/PIO(#3-A)',
+          dailyAmount: 37.600,
+          cumAmount: 1936.700,
+          quality: 'S/PIO(#3-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/10)은 약 335톤 하역 진행 예정.'
         }
       ]
     },
@@ -742,6 +799,20 @@ export default function UnloadingStatus() {
     };
   });
 
+  // W-04 freshness: latest report date across all vessels (global) and for the
+  // selected vessel; earliest unloading start for honest cumulative-period labeling.
+  const globalBaseDate = vesselsList
+    .map(v => vesselLatestReport(v))
+    .reduce<{ label: string; sortKey: number } | null>(
+      (acc, cur) => (cur && (!acc || cur.sortKey > acc.sortKey) ? cur : acc),
+      null
+    )?.label || null;
+  const earliestStart = vesselsList
+    .map(v => (String(v.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/) || [])[0])
+    .filter(Boolean)
+    .sort()[0] || null;
+  const selectedBaseDate = vesselLatestReport(selectedData as any)?.label || null;
+
   if (apiError) {
     return (
       <div style={{ padding: '40px', textAlign: 'center', color: '#ef4444', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px', border: '1px solid #ef4444', margin: '20px' }}>
@@ -762,7 +833,7 @@ export default function UnloadingStatus() {
       <div className={styles.execGrid}>
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
           <div className={styles.execCardTitle}>
-            <Ship size={16} /> 진행 중인 하역 선박 (Active)
+            <Ship size={16} /> 진행 중인 하역 선박 (Active) <BaseDateTag date={globalBaseDate} />
           </div>
           <div className={styles.execCardValue}>{activeVessels.length} 척</div>
           <div className={styles.execCardTakeaway}>
@@ -772,32 +843,37 @@ export default function UnloadingStatus() {
         
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
           <div className={styles.execCardTitle}>
-            <AlertCircle size={16} /> 글로벌 항구 병목 (Congestion)
+            <AlertCircle size={16} /> 글로벌 항구 병목 (Congestion) <BaseDateTag date={globalBaseDate} />
           </div>
           <div className={styles.execCardValue} style={{ color: 'var(--color-danger)' }}>
             High <span style={{ fontSize: '1rem', fontWeight: 'normal', color: 'var(--text-muted)' }}>(방콕)</span>
           </div>
           <div className={styles.execCardTakeaway}>
-            <TermTooltip term="체선료(Demurrage)" description="선박이 정해진 정박 기간을 초과하여 항구에 머물 때 발생하는 지연 배상금입니다." /> 리스크 증가: <strong>예상 지연 3~4일</strong>
+            <TermTooltip term="체선료(Demurrage)" description="선박이 정해진 정박 기간을 초과하여 항구에 머물 때 발생하는 지연 배상금입니다." /> 리스크 증가: <strong>예상 지연 3~4일</strong> ({globalBaseDate ? `${globalBaseDate} 하역 보고 기준` : '최근 하역 보고 기준'})
           </div>
         </div>
 
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
           <div className={styles.execCardTitle}>
-            <BarChart3 size={16} /> 주간 통합 하역량 (Weekly Volume)
+            <BarChart3 size={16} /> 누적 통합 하역량 (2026년) <BaseDateTag date={globalBaseDate} />
           </div>
           <div className={styles.execCardValue}>
             {formatNum(vesselsList.reduce((s, v) => s + v.actualTotal, 0))} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>MT</span>
           </div>
           <div className={styles.execCardTakeaway}>
             완료 선박: <strong>{completedVessels.length} 척</strong> (방콕 {completedVessels.filter(v => v.location.includes('BANGKOK')).length}, 젠산 {completedVessels.filter(v => v.location.includes('GENSAN') || v.location.includes('PHILIPPINES')).length})
+            {earliestStart && globalBaseDate && (
+              <span style={{ display: 'block', fontSize: '0.75rem', marginTop: '2px' }}>
+                집계 기간: {earliestStart} ~ {globalBaseDate} (전 선박 누적)
+              </span>
+            )}
           </div>
         </div>
       </div>
 
       {/* 2. Fleet Grid */}
       <div style={{ marginTop: '16px' }}>
-        <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '16px' }}>전체 선박 하역 상태</h3>
+        <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>전체 선박 하역 상태 <BaseDateTag date={globalBaseDate} /></h3>
         <div className={styles.fleetGrid}>
           {vesselsList.map(v => {
             const isProgress = v.status.includes('하역중');
@@ -858,7 +934,7 @@ export default function UnloadingStatus() {
           </div>
           <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
             <Clock size={14} style={{display:'inline', marginRight: '4px'}}/> 
-            {selectedData.dateRange} | 판매처: {selectedData.buyer || '-'}
+            {selectedData.dateRange} | 판매처: {selectedData.buyer || '-'}{selectedBaseDate ? ` | 최종 보고 ${selectedBaseDate}` : ''}
           </div>
         </div>
 
@@ -867,6 +943,7 @@ export default function UnloadingStatus() {
           <h4 style={{ marginBottom: '16px', fontSize: '1rem', fontWeight: 'bold', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Ship size={18} color="var(--accent-primary)" />
             선박 화물창 적재도 (Cargo Hold Stowage Schematic)
+            <BaseDateTag date={selectedBaseDate} />
           </h4>
           <div className={styles.schematicLayout}>
             {/* Left Column: Ship Graphic */}
@@ -1082,8 +1159,8 @@ export default function UnloadingStatus() {
             {/* Right Column: Selected Compartment Details */}
             <div className={styles.holdDetailsCard}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', paddingBottom: '10px' }}>
-                <h4 style={{ fontWeight: 'bold', fontSize: '1rem', color: '#fff' }}>
-                  어창 {activeSelectedHold} 상세 정보
+                <h4 style={{ fontWeight: 'bold', fontSize: '1rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  어창 {activeSelectedHold} 상세 정보 <BaseDateTag date={selectedBaseDate} />
                 </h4>
                 <span className={`${styles.statusBadge} ${selectedHoldInfo.dischargedVolume >= selectedHoldInfo.nominalCapacity ? styles.completed : selectedHoldInfo.dischargedVolume > 0 ? styles.progress : ''}`} style={{ alignSelf: 'center' }}>
                   {selectedHoldInfo.dischargedVolume >= selectedHoldInfo.nominalCapacity ? '하역완료' : selectedHoldInfo.dischargedVolume > 0 ? '하역중' : '대기중'}
@@ -1216,7 +1293,7 @@ export default function UnloadingStatus() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}>
               {/* Chart - Left */}
               <div style={{ flex: '1 1 600px', background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
-                <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)' }}>일일 및 누적 하역 추이 (MT)</h4>
+                <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
                 <div style={{ width: '100%', overflowX: 'auto' }}>
                   <ComposedChart width={Math.max(chartData.length * 60, 600)} height={300} data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
                     <ChartPatternDefs />
@@ -1239,7 +1316,7 @@ export default function UnloadingStatus() {
               <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
                   <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <BarChart3 size={16} /> 하역 효율 지표
+                    <BarChart3 size={16} /> 하역 효율 지표 <BaseDateTag date={selectedBaseDate} />
                   </h4>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div>
@@ -1260,7 +1337,7 @@ export default function UnloadingStatus() {
                 {/* Dynamic ETA gauge */}
                 <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
                   <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Clock size={16} /> 진척 현황 및 예측 (ETA)
+                    <Clock size={16} /> 진척 현황 및 예측 (ETA) <BaseDateTag date={selectedBaseDate} />
                   </h4>
                   <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                     <RadialGauge 
@@ -1288,7 +1365,7 @@ export default function UnloadingStatus() {
                 {totalCanneryAmount > 0 && (
                   <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', flex: 1 }}>
                     <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <MapPin size={16} /> 캐너리(양륙처) 비중
+                      <MapPin size={16} /> 캐너리(양륙처) 비중 <BaseDateTag date={selectedBaseDate} />
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       {Array.from(canneryMap.entries()).sort((a,b) => b[1] - a[1]).map(([name, amount]) => {
@@ -1316,7 +1393,7 @@ export default function UnloadingStatus() {
         {/* Timeline Log - Stylized Vertical Shipping Lane */}
         <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
           <h4 style={{ marginBottom: '20px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span>작업 기록 (Vertical Shipping Lane Timeline)</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>작업 기록 (Vertical Shipping Lane Timeline) <BaseDateTag date={selectedBaseDate} /></span>
             <span style={{ fontSize: '0.8rem' }}><TermTooltip term="어창(Hold)" description="하역 중인 선박의 냉동창고 번호입니다." /></span>
           </h4>
           

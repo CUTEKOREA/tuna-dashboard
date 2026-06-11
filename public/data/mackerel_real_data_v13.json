@@ -1979,7 +1979,7 @@
     {
       "id": "w24",
       "title": "EU 고등어 가공 형태별 부가가치 추이",
-      "subtitle": "Eurostat·EUMOFA 데이터 기반 EU 역내 고등어 가공 형태(훈제, 통조림, 필렛)별 부가가치 변동을 실시간 추적합니다.",
+      "subtitle": "Eurostat·EUMOFA 데이터 기반 EU 역내 고등어 가공 형태(훈제, 통조림, 필렛)별 부가가치 변동을 추적합니다 (2014-2023 정적 시계열).",
       "unit": "천톤, 백만EUR",
       "chartType": "Composed",
       "xKey": "year",
@@ -2068,10 +2068,12 @@
       ],
       "dualAxis": true,
       "badges": [
-        "Verified"
+        "Verified",
+        "STATIC"
       ],
       "reliability": 95,
-      "source": "EUMOFA European Price Report 2023, EU PRODCOM Statistics"
+      "source": "EUMOFA European Price Report 2023, EU PRODCOM Statistics",
+      "syncDate": "2023"
     },
     {
       "id": "w25",
@@ -3672,10 +3674,12 @@
       ],
       "dualAxis": true,
       "badges": [
-        "Verified"
+        "Verified",
+        "STATIC"
       ],
       "reliability": 95,
-      "source": "국립수산과학원 2024 기후변화 보고서, ICES Mackerel WG Report 2024, ARDL 분석 논문, INFOFISH Magazine Issue 5/2025 (MSC Climate Migration Study)"
+      "source": "국립수산과학원 2024 기후변화 보고서, ICES Mackerel WG Report 2024, ARDL 분석 논문, INFOFISH Magazine Issue 5/2025 (MSC Climate Migration Study)",
+      "syncDate": "2023"
     },
     {
       "id": "w45",

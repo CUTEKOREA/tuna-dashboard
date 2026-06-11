@@ -4,15 +4,13 @@ export const revalidate = 3600;
 
 export async function GET(request: Request) {
   try {
-    // Simulated CBOT Corn Futures Data
-    // In production, fetch from CME/CBOT API or financial data provider
-    
-    // Simulate real-time price fluctuation around the critical $300 threshold
-    const basePrice = 295;
-    const currentPrice = basePrice + Math.random() * 10 - 2; // Returns a value between 293 and 303
-    
+    // Static CBOT Corn Futures snapshot (실시간 API 미연동)
+    // A-01: Math.random 기반 가짜 실시간 변동 생성 금지 — 정적 기준가만 반환
+    const currentPrice = 298.5; // historicalTrends 마지막 관측치(2026-05-04)와 일치하는 정적 스냅샷
+
     const response = {
-      timestamp: new Date().toISOString(),
+      isLive: false,
+      asOf: '2026-05-04',
       commodity: "Corn Futures (ZCc1)",
       exchange: "CBOT",
       unit: "USd/bu",
@@ -25,7 +23,7 @@ export async function GET(request: Request) {
         { date: "2026-05-04", price: 298.50 },
       ],
       apiStatus: {
-        CBOT: "active"
+        CBOT: "static" // 실시간 미연동 — L-09 정직 표기
       }
     };
     

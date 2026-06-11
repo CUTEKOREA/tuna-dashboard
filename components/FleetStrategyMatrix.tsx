@@ -78,15 +78,25 @@ export default function FleetStrategyMatrix() {
   if (selectedCategory) {
     const details = vesselDetails[selectedCategory] || [];
     const currentStats = statsData[selectedCategory] || { vessels: '데이터 대기중', crew: '데이터 대기중', production: '데이터 대기중', export: '데이터 대기중', price: '데이터 대기중' };
-    
-    // 선령 분포 계산
-    const ages = details.map((s: any) => 2026 - parseInt(s.launchDate?.split('-')[0] || '2000'));
-    const avgAge = ages.length > 0 ? (ages.reduce((a: number, b: number) => a + b, 0) / ages.length).toFixed(1) : '-';
+    const CURRENT_YEAR = new Date().getFullYear();
+    const hasRoster = details.length > 0;
+
+    // 선령 분포 계산 — 진수일이 실재하는 선박만 집계 (빈값을 임의 연도로 대체하지 않음)
+    const ages = details
+      .map((s: any) => parseInt((s.launchDate || '').split('-')[0], 10))
+      .filter((y: number) => Number.isFinite(y) && y > 1900)
+      .map((y: number) => CURRENT_YEAR - y);
+    const hasAges = ages.length > 0;
+    const avgAge = hasAges ? (ages.reduce((a: number, b: number) => a + b, 0) / ages.length).toFixed(1) : null;
     const oldCount = ages.filter((a: number) => a >= 30).length;
     const newCount = ages.filter((a: number) => a < 15).length;
     const companies = [...new Set(details.map((s: any) => s.company))];
-    const tonnages = details.map((s: any) => s.tonnage || 0);
-    const avgTonnage = tonnages.length > 0 ? Math.round(tonnages.reduce((a: number, b: number) => a + b, 0) / tonnages.length) : 0;
+    const tonnages = details.map((s: any) => s.tonnage).filter((t: any) => typeof t === 'number' && t > 0);
+    const avgTonnage = tonnages.length > 0 ? Math.round(tonnages.reduce((a: number, b: number) => a + b, 0) / tonnages.length) : null;
+    // 명부에서 선령 산출이 불가하면 통계연보 집계 평균(matrixData.age)을 표기용으로 사용
+    const yearbookAge = matchedMatrix?.age;
+    const ageDisplay = hasAges ? `${avgAge}년` : (yearbookAge ? `${yearbookAge} (연보)` : '미수집');
+    const ageForColor = hasAges ? Number(avgAge) : parseFloat(yearbookAge || '');
 
     return (
       <div className={styles.glassCard} style={{ borderColor: matchedMatrix?.color || 'rgba(59, 130, 246, 0.3)', marginTop: '20px', animation: 'fadeIn 0.3s ease-out' }}>
@@ -105,7 +115,9 @@ export default function FleetStrategyMatrix() {
               <Ship size={22} /> {selectedCategory}
             </h3>
             <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', margin: '4px 0 0 0' }}>
-              전수조사 검증 완료 · {details.length}척 · {companies.length}개사 · 평균톤수 {avgTonnage}톤
+              {hasRoster
+                ? `상세 명부 ${details.length}척 · ${companies.length}개사${avgTonnage ? ` · 평균톤수 ${avgTonnage}톤` : ''}`
+                : '상세 선박 명부 미수집 — 아래 지표는 2025 원양산업 통계연보 집계 기준'}
             </p>
           </div>
         </div>
@@ -119,7 +131,7 @@ export default function FleetStrategyMatrix() {
             { icon: <TrendingUp size={20} />, label: '단가', value: currentStats.price, color: '#fb7185' },
             { icon: <Activity size={20} />, label: '척당 매출', value: (matchedMatrix as any)?.perVessel || '-', color: '#fbbf24' },
             { icon: <Users size={20} />, label: '승선 인력', value: currentStats.crew, color: '#34d399' },
-            { icon: <AlertTriangle size={20} />, label: '평균 선령', value: `${avgAge}년`, color: Number(avgAge) >= 30 ? 'var(--color-danger)' : '#34d399' },
+            { icon: <AlertTriangle size={20} />, label: '평균 선령', value: ageDisplay, color: !Number.isFinite(ageForColor) ? '#94a3b8' : ageForColor >= 30 ? 'var(--color-danger)' : '#34d399' },
           ].map((kpi, i) => (
             <div key={i} style={{ background: 'rgba(0,0,0,0.2)', border: `1px solid ${kpi.color}22`, borderRadius: '10px', padding: '14px', textAlign: 'center' }}>
               <div style={{ color: kpi.color, marginBottom: '6px', display: 'flex', justifyContent: 'center' }}>{kpi.icon}</div>
@@ -192,25 +204,35 @@ export default function FleetStrategyMatrix() {
           {/* 선령 분포 분석 */}
           <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '16px' }}>
             <h5 style={{ color: '#fbbf24', margin: '0 0 12px 0', fontSize: '0.9rem' }}>⏳ 선령 분포 분석</h5>
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
-              <div style={{ flex: 1, background: 'rgba(239,68,68,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-danger)' }}>{oldCount}</div>
-                <div style={{ fontSize: '0.7rem', color: '#fca5a5' }}>30년 이상 (위험)</div>
-              </div>
-              <div style={{ flex: 1, background: 'rgba(251,191,36,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fbbf24' }}>{ages.length - oldCount - newCount}</div>
-                <div style={{ fontSize: '0.7rem', color: '#fde68a' }}>15~29년 (주의)</div>
-              </div>
-              <div style={{ flex: 1, background: 'rgba(52,211,153,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
-                <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#34d399' }}>{newCount}</div>
-                <div style={{ fontSize: '0.7rem', color: '#6ee7b7' }}>15년 미만 (건전)</div>
-              </div>
-            </div>
-            {ages.length > 0 && (
-              <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)' }}>
-                최고령: <span style={{ color: 'var(--color-danger)', fontWeight: 600 }}>{Math.max(...ages)}년</span> · 
-                최신조: <span style={{ color: '#34d399', fontWeight: 600 }}>{Math.min(...ages)}년</span> · 
-                노후화율: <span style={{ color: oldCount / ages.length > 0.5 ? 'var(--color-danger)' : '#fbbf24', fontWeight: 600 }}>{(oldCount / ages.length * 100).toFixed(0)}%</span>
+            {hasAges ? (
+              <>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+                  <div style={{ flex: 1, background: 'rgba(239,68,68,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--color-danger)' }}>{oldCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: '#fca5a5' }}>30년 이상 (위험)</div>
+                  </div>
+                  <div style={{ flex: 1, background: 'rgba(251,191,36,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fbbf24' }}>{ages.length - oldCount - newCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: '#fde68a' }}>15~29년 (주의)</div>
+                  </div>
+                  <div style={{ flex: 1, background: 'rgba(52,211,153,0.1)', borderRadius: '8px', padding: '10px', textAlign: 'center' }}>
+                    <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#34d399' }}>{newCount}</div>
+                    <div style={{ fontSize: '0.7rem', color: '#6ee7b7' }}>15년 미만 (건전)</div>
+                  </div>
+                </div>
+                <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)' }}>
+                  최고령: <span style={{ color: 'var(--color-danger)', fontWeight: 600 }}>{Math.max(...ages)}년</span> ·
+                  최신조: <span style={{ color: '#34d399', fontWeight: 600 }}>{Math.min(...ages)}년</span> ·
+                  노후화율: <span style={{ color: oldCount / ages.length > 0.5 ? 'var(--color-danger)' : '#fbbf24', fontWeight: 600 }}>{(oldCount / ages.length * 100).toFixed(0)}%</span>
+                  {ages.length < details.length && (
+                    <span style={{ color: 'rgba(255,255,255,0.4)' }}> · 진수일 미수집 {details.length - ages.length}척 제외</span>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, padding: '8px 0' }}>
+                상세 명부에 진수일 정보가 미수집되어 선령 분포를 산출할 수 없습니다.
+                {yearbookAge && <> 통계연보 집계 평균 선령: <span style={{ color: '#fbbf24', fontWeight: 600 }}>{yearbookAge}</span></>}
               </div>
             )}
           </div>
@@ -254,34 +276,39 @@ export default function FleetStrategyMatrix() {
             </thead>
             <tbody>
               {details.length > 0 ? details.map((ship: any, idx: number) => {
-                const launchYear = parseInt(ship.launchDate.split('-')[0]);
-                const age = 2026 - launchYear;
-                const isSilla = ship.company.includes('신라');
-                const status = age >= 35 ? '⛔ 교체시급' : age >= 25 ? '⚠️ 노후' : age >= 15 ? '🟡 주의' : '✅ 건전';
-                const statusColor = age >= 35 ? 'var(--color-danger)' : age >= 25 ? 'var(--color-warning)' : age >= 15 ? '#fbbf24' : '#34d399';
+                const launchYear = parseInt((ship.launchDate || '').split('-')[0], 10);
+                const hasLaunch = Number.isFinite(launchYear) && launchYear > 1900;
+                const age = hasLaunch ? CURRENT_YEAR - launchYear : null;
+                const isSilla = (ship.company || '').includes('신라');
+                const status = !hasLaunch ? '미수집' : age! >= 35 ? '⛔ 교체시급' : age! >= 25 ? '⚠️ 노후' : age! >= 15 ? '🟡 주의' : '✅ 건전';
+                const statusColor = !hasLaunch ? 'rgba(255,255,255,0.4)' : age! >= 35 ? 'var(--color-danger)' : age! >= 25 ? 'var(--color-warning)' : age! >= 15 ? '#fbbf24' : '#34d399';
                 return (
                   <tr key={idx} style={{ borderBottom: idx !== details.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', background: isSilla ? 'rgba(56, 189, 248, 0.06)' : 'transparent' }}>
                     <td style={{ padding: '10px 16px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.85rem' }}>{ship.name}</td>
                     <td style={{ padding: '10px 16px', color: isSilla ? '#38bdf8' : 'rgba(255,255,255,0.8)', fontSize: '0.8rem', fontWeight: isSilla ? 700 : 400 }}>{ship.company}</td>
                     <td style={{ padding: '10px 16px', color: 'rgba(255,255,255,0.6)', fontSize: '0.8rem' }}>{ship.area || '-'}</td>
-                    <td style={{ padding: '10px 16px', color: '#34d399', fontSize: '0.8rem', fontWeight: 600 }}>{ship.tonnage}톤</td>
-                    <td style={{ padding: '10px 16px', color: age >= 25 ? 'var(--color-danger)' : '#e2e8f0', fontSize: '0.8rem' }}>
-                      {ship.launchDate} <span style={{ opacity: 0.6 }}>({age}년)</span>
+                    <td style={{ padding: '10px 16px', color: '#34d399', fontSize: '0.8rem', fontWeight: 600 }}>{typeof ship.tonnage === 'number' && ship.tonnage > 0 ? `${ship.tonnage}톤` : '-'}</td>
+                    <td style={{ padding: '10px 16px', color: hasLaunch && age! >= 25 ? 'var(--color-danger)' : '#e2e8f0', fontSize: '0.8rem' }}>
+                      {hasLaunch ? (<>{ship.launchDate} <span style={{ opacity: 0.6 }}>({age}년)</span></>) : (<span style={{ color: 'rgba(255,255,255,0.4)' }}>정보 미수집</span>)}
                     </td>
                     <td style={{ padding: '10px 16px', fontSize: '0.8rem', color: statusColor, fontWeight: 600 }}>{status}</td>
                   </tr>
                 );
               }) : (
-                <tr><td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: 'rgba(255,255,255,0.5)' }}>데이터가 없습니다.</td></tr>
+                <tr><td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: 'rgba(255,255,255,0.5)' }}>상세 선박 명부가 아직 수집되지 않았습니다. 위 지표는 2025 원양산업 통계연보 집계값입니다.</td></tr>
               )}
             </tbody>
           </table>
         </div>
         
         <TakeawayBox
-          source={`2025 원양산업 통계연보 · ${selectedCategory} 전수조사 검증 데이터`}
-          situation={`[${selectedCategory}] ${details.length}척(${companies.length}개사)이 연간 ${currentStats.production}을 생산하여 ${currentStats.export}을 창출. 단가 ${currentStats.price}, 척당 매출 ${(matchedMatrix as any)?.perVessel || '-'}. 평균 선령 ${avgAge}년 중 30년 이상 노후선 ${oldCount}척(${ages.length > 0 ? (oldCount/ages.length*100).toFixed(0) : 0}%).`}
-          actionPlan={`${(matchedMatrix as any)?.insight || '해당 선단의 수익성과 선령 위험도를 종합적으로 고려한 포트폴리오 재편이 필요합니다.'} 신라교역은 이 선단에서 ${details.filter((s: any) => s.company?.includes('신라')).length}척을 보유 중이며, 경쟁사 노후선 스크랩 시 M&A 기회를 선점해야 합니다.`}
+          source={hasRoster ? `2025 원양산업 통계연보 · ${selectedCategory} 상세 명부 ${details.length}척` : '2025 원양산업 통계연보 (상세 선박 명부 미수집)'}
+          situation={`[${selectedCategory}] ${currentStats.vessels}척이 연간 ${currentStats.production}을 생산하여 ${currentStats.export}을 창출. 단가 ${currentStats.price}, 척당 매출 ${(matchedMatrix as any)?.perVessel || '-'}. ${hasAges
+            ? `명부 기준 평균 선령 ${avgAge}년, 30년 이상 노후선 ${oldCount}척(${(oldCount / ages.length * 100).toFixed(0)}%).`
+            : `평균 선령은 통계연보 집계 기준 ${yearbookAge || '미수집'}이며, 상세 명부의 진수일 정보는 미수집 상태.`}`}
+          actionPlan={`${(matchedMatrix as any)?.insight || '해당 선단의 수익성과 선령 위험도를 종합적으로 고려한 포트폴리오 재편이 필요합니다.'} ${hasRoster
+            ? `신라교역은 이 선단 명부에서 ${details.filter((s: any) => s.company?.includes('신라')).length}척을 보유 중이며, 경쟁사 노후선 스크랩 시 M&A 기회를 선점해야 합니다.`
+            : '경쟁사 노후선 스크랩 시 M&A 기회를 선점해야 합니다.'}`}
         />
       </div>
     );

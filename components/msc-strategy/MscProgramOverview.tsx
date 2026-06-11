@@ -123,17 +123,17 @@ export default function MscProgramOverview() {
   return (
     <WidgetCard
       id="W-MSC16"
-      title="MSC 프로그램 Overview"
+      title="MSC 프로그램 개요"
       icon={Award}
       iconColor="#38bdf8"
       pillar="S5"
       cardDesc="MSC 인증 프로그램의 규모·구조·3대 원칙을 한눈에 조망하는 인포그래픽"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
+      telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
       customBody={<div>{kpiGrid}{principlesSection}</div>}
       takeaway={{
-        situation: "MSC는 1997년 설립 이래 전 세계 592개 어업, 63개국, 204개 어종을 인증하며 $14B 규모의 글로벌 지속가능 수산물 시장을 선도하고 있습니다. CoC(관리연속성) 인증만 51,260개 사업장이 확보하여, 어획부터 소매까지 추적 가능한 공급망을 구축했습니다.",
+        situation: "MSC는 1997년 설립 이래 전 세계 592개 어업, 63개국, 204개 어종을 인증했으며, MSC 라벨 제품의 연간 소매 판매 가치는 US$14B(2024/25 회계연도)에 달합니다. CoC(관리연속성) 인증만 51,260개 사업장이 확보하여, 어획부터 소매까지 추적 가능한 공급망을 구축했습니다.",
         actionPlan: "MSC 인증은 3대 원칙(자원·생태계·관리)을 모두 충족해야 하며, 5년 주기로 재인증을 받아야 합니다. 한국 원양 선단의 인증 전략 수립 시 P1(수확전략)이 가장 큰 허들이므로, RFMO별 HCR 채택 현황을 먼저 파악해야 합니다.",
-        source: "MSC Annual Report 2024-2025",
+        source: "MSC Annual Report 2024-25 (어업·국가·어종·CoC·소매가치 전 지표 2025-03-31 기준)",
       }}
     />
   );

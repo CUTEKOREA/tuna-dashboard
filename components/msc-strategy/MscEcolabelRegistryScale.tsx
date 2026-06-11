@@ -15,7 +15,7 @@ const labels = [
     full: '해양관리협의회',
     metric: '1,480만 MT',
     metricNote: '연간 인증 어획량 (전 어종)',
-    sub: '참치 305만 MT · 자연산 어업 단위 심사',
+    sub: '참치 285만 MT (참여 기준 305만) · 자연산 어업 단위 심사',
     scope: '자연산',
     color: '#10b981',
     icon: ShieldCheck,
@@ -104,7 +104,7 @@ export default function MscEcolabelRegistryScale() {
         </div>
       }
       takeaway={{
-        situation: 'MSC는 연간 1,480만 톤(참치 305만 톤)의 자연산 어획량을 제3자 현장심사로 인증하는 반면, Friend of the Sea는 4,907척 선박 등록, Dolphin Safe는 82개국 933개 기업을 돌고래 혼획 단일 이슈로 승인합니다. ASC는 양식 전용이라 자연산 참치캔과는 무관합니다.',
+        situation: 'MSC는 연간 1,480만 톤(참치 285만 톤, 2024/25 회계연도)의 자연산 어획량을 제3자 현장심사로 인증하는 반면, Friend of the Sea는 4,907척 선박 등록, Dolphin Safe는 82개국 933개 기업을 돌고래 혼획 단일 이슈로 승인합니다. ASC는 양식 전용이라 자연산 참치캔과는 무관합니다.',
         actionPlan: '바이어가 요구하는 에코라벨이 무엇인지부터 확인해야 합니다. EU·영국 주류 리테일러는 MSC를 사실상 표준으로 요구하므로 MSC를 1순위로, 미국 시장은 Dolphin Safe를 병행 취득해 두 시장의 매대 진입 요건을 동시에 충족하는 듀얼 라벨 전략이 비용 대비 효과적입니다.',
         source: 'MSC 2024-25 Supplementary Data, Friend of the Sea 선박 등록부(2026-04), EII Dolphin Safe 기업목록(2026-05)',
       }}

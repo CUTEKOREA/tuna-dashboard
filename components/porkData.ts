@@ -1,6 +1,6 @@
 // 돈육(Pork) 인텔리전스 대시보드 — 실데이터 (FAOSTAT QCL/TCL/TM/FBS/PP + USDA PSD)
 
-// L1-① 글로벌 생산량 & ASF 사이클 (QCL 실데이터, 천톤)
+// L1-① 중국 생산량 & ASF 사이클 (QCL 실데이터, 천톤 — 중국 단독, productionTrendData.중국과 동일)
 export const asfCycleData = [
   { year: '2015', production: 57416, price: 99 },
   { year: '2016', production: 55207, price: 105 },

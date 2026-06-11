@@ -9,10 +9,11 @@ import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 const glass = { background: '#181818', border: 'none', borderRadius: '8px', padding: '1.5rem' } as const;
 const cardTitle = { margin: '0 0 1rem 0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' } as const;
 
-const DataBadge = ({ source, isLoaded }: { source?: string; isLoaded: boolean }) => (
-  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: isLoaded ? 'var(--color-info)' : '#94a3b8', background: isLoaded ? 'rgba(59,130,246,0.15)' : 'rgba(148,163,184,0.1)', padding: '2px 8px', borderRadius: '12px', border: 'none', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
-    <span style={{ width: '6px', height: '6px', background: isLoaded ? 'var(--color-info)' : '#64748b', borderRadius: '50%', marginRight: '4px' }}></span>
-    {isLoaded ? 'SYNCED' : 'STATIC'} {source ? `· ${source}` : ''}
+// L-09/L-12: LIVE 판정은 라우트가 출력한 isLive === true 단일 기준. fetch 완료 여부로 SYNCED 격상 금지.
+const DataBadge = ({ source, isLive = false, asOf }: { source?: string; isLive?: boolean; asOf?: string }) => (
+  <span style={{ fontSize: '0.65rem', fontWeight: 600, color: isLive ? 'var(--color-success)' : '#94a3b8', background: isLive ? 'rgba(16,185,129,0.15)' : 'rgba(148,163,184,0.1)', padding: '2px 8px', borderRadius: '12px', border: 'none', marginLeft: '8px', display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+    <span style={{ width: '6px', height: '6px', background: isLive ? 'var(--color-success)' : '#64748b', borderRadius: '50%', marginRight: '4px' }}></span>
+    {isLive ? 'LIVE' : 'STATIC'} {source ? `· ${source}` : ''}{asOf ? ` · ${asOf}` : ''}
   </span>
 );
 
@@ -153,15 +154,24 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
 
 export default function UsedCarExport() {
   const [data, setData] = useState<any>(null);
+  const [fx, setFx] = useState<any>(null); // 원/달러 환율 — /api/exchange 소비 (isLive 판정 포함)
   const [activeCountry, setActiveCountry] = useState('all');
 
   useEffect(() => {
     fetch('/api/used-car').then(r => r.json()).then(setData).catch(console.error);
+    fetch('/api/exchange').then(r => r.json()).then(setFx).catch(() => {});
   }, []);
 
-  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>Loading intelligence...</div>;
+  if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>데이터를 불러오는 중입니다...</div>;
 
-  const { marketGrowth, countryRegulations, shippingCostChart, marketShareTrend, fuelPrices, hybridGrowth, ghanaAgePenalty, kpiSummary, jijiGhanaData, liveIntelligence } = data;
+  const { marketGrowth, countryRegulations, shippingCostChart, marketShareTrend, fuelPrices, hybridGrowth, ghanaAgePenalty, kpiSummary, jijiGhanaData, arbitrageRadar } = data;
+  const isLive = data?.isLive === true; // L-12: 라우트가 정직 표기한 라이브 여부 (현재 정적 스냅샷 = false)
+
+  // 가나 GRA 연식 페널티 — 렌더 시점 계산 (하드코딩 연도 동결 방지)
+  const nowYear = new Date().getFullYear();
+  const age2012 = nowYear - 2012;
+  const penalty2012 = age2012 > 15 ? 50 : age2012 > 12 ? 20 : age2012 > 10 ? 5 : 0; // 관세 시뮬레이터와 동일 구간 기준
+  const year50For2012 = 2012 + 16; // 경과 연수 > 15년부터 50% 구간 (시뮬레이터 산식과 동일)
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', animation: 'fadeIn 0.5s ease-out' }}>
@@ -189,11 +199,11 @@ export default function UsedCarExport() {
       {/* ROW 1: Market Growth + Market Share */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
-          <h3 style={cardTitle}><TrendingUp size={18} color="var(--color-success)" /> 한국 중고차 시장 규모 & 수출 추이 <DataBadge source="KCS API & MOLIT" isLoaded={!!data} />
-            
+          <h3 style={cardTitle}><TrendingUp size={18} color="var(--color-success)" /> 한국 중고차 시장 규모 & 수출 추이 <DataBadge source="Grand View Research·Just Auto 2025" isLive={isLive} />
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          서아프리카(나이지리아, 가나 중심) 중고차 수입 시장에서 한국차, 일본차, 유럽차의 연도별 점유율(%) 변화를 Stacked Bar로 시각화합니다. 한국차가 일본차를 역전하는  KED Global의 수출 통계, Arirang News의 시장 분석, 현지 딜러 인터뷰 데이터를 종합하여 국가별 수입 대수 기준 비율을 산출했습니다.
+          한국 중고차 수출 규모(막대)와 국내 중고차 시장 규모(면적)의 연도별 추이를 2030년 전망치까지 복합 차트로 시각화합니다. Just Auto·KED Global의 2025년 수출 실적 통계와 Grand View Research·Research and Markets의 국내 시장 전망 보고서를 결합해 구성했습니다.
         </p>
           <MarketGrowthChart data={marketGrowth} />
           <TakeawayBox
@@ -203,11 +213,11 @@ export default function UsedCarExport() {
           />
         </div>
         <div style={glass}>
-          <h3 style={cardTitle}><Globe size={18} color="var(--color-info)" /> 서아프리카 중고차 시장 점유율 변동 <DataBadge source="KCS 수출통계 API" isLoaded={!!data} />
-            
+          <h3 style={cardTitle}><Globe size={18} color="var(--color-info)" /> 서아프리카 중고차 시장 점유율 변동 <DataBadge source="KED Global·Arirang News" isLive={isLive} />
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          나이지리아, 가나, 세네갈, 코트디부아르의 중고차 수입 관련 핵심 규제(연식 제한, 관세율, 부가세, 특이사항)를 한 눈에 비교합니다.  각국 관세청 공식 문서, Wheelzar/WC Shipping의 실무 가이드, Seneweb/CNBC Africa의 최신 규제 변경 보도를 교차 검증하여 정리했습니다. 매력도 스코어는 (관세 부담 역수 40% + 시장 규모 30% + 물류 인프라 30%)로 산출됩니다.
+          서아프리카(나이지리아, 가나 중심) 중고차 수입 시장에서 한국차, 일본차, 유럽차의 연도별 점유율(%) 변화를 Stacked Bar로 시각화합니다. 한국차가 일본차를 역전하는 교차 구간을 확인할 수 있습니다. KED Global의 수출 통계, Arirang News의 시장 분석, 현지 딜러 인터뷰 데이터를 종합하여 국가별 수입 대수 기준 비율을 산출했습니다.
         </p>
           <MarketShareChart data={marketShareTrend} />
           <TakeawayBox
@@ -220,11 +230,11 @@ export default function UsedCarExport() {
 
       {/* ROW 2: Country Regulations Table */}
       <div style={glass}>
-        <h3 style={cardTitle}><ShieldCheck size={18} color="var(--color-warning)" /> 서아프리카 4개국 중고차 수입 규제 비교 <DataBadge source="GRA / NCS API" isLoaded={!!data} />
-          
+        <h3 style={cardTitle}><ShieldCheck size={18} color="var(--color-warning)" /> 서아프리카 4개국 중고차 수입 규제 비교 <DataBadge source="GRA·NCS 공식 규정" isLive={isLive} />
+
         </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          가나 최대 온라인 마켓플레이스 Jiji에 등록된 현대/기아차 1,424대의 실거래 희망가(Asking Price)를 스크래핑하여 분석한 실시간 인사이트입니다. 2026년 4월 27일 기준 최신 매물 1,424개(현대 1,027대, 기아 397대)를 Python 기반 자체 크롤러로 전수 조사 후 달러 환산(1 USD = 14.5 GHS)을 적용했습니다.
+          나이지리아, 가나, 세네갈, 코트디부아르의 중고차 수입 관련 핵심 규제(연식 제한, 관세율, 부가세, 특이사항)를 한 눈에 비교합니다. 각국 관세청 공식 문서, Wheelzar/WC Shipping의 실무 가이드, Seneweb/CNBC Africa의 최신 규제 변경 보도를 교차 검증하여 정리했습니다. 매력도 스코어는 (관세 부담 역수 40% + 시장 규모 30% + 물류 인프라 30%)로 산출됩니다.
         </p>
         <RegTable data={countryRegulations} />
         <div style={{ marginTop: '1rem' }}>
@@ -236,13 +246,13 @@ export default function UsedCarExport() {
         </div>
       </div>
 
-      {/* ROW 2.5: Jiji Ghana Real-time Insight */}
+      {/* ROW 2.5: Jiji Ghana Insight (2026-04-27 스크래핑 스냅샷) */}
       <div style={glass}>
-        <h3 style={cardTitle}><AlertTriangle size={18} color="#ec4899" /> Jiji 가나 실시간 매물 & 차익거래 레이더 <DataBadge source="Jiji API & Freightos" isLoaded={!!data} />
-          
+        <h3 style={cardTitle}><AlertTriangle size={18} color="#ec4899" /> Jiji 가나 매물 & 차익거래 레이더 <DataBadge source="Jiji 가나 스크래핑" isLive={isLive} asOf={data?.dataAsOf} />
+
         </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          인천항에서 서아프리카 4개 항구(테마, 라고스, 다카르, 아비장)까지의 해상 운송 비용을 RoRo(자동차 전용선)와 40ft HC 컨테이너 두 방식으로 비교합니다. Linear Shipping, Alkady Cars, WC Shipping, Ship Overseas 등 복수의 해운 포워더 견적을 크로스체크하여 2026년 기준 평균 운임을 산출했습니다. RoRo는 단일 차량 기준, 컨테이너는 40ft HC 1개 기준입니다.
+          가나 최대 온라인 마켓플레이스 Jiji에 등록된 현대/기아차 1,424대의 실거래 희망가(Asking Price)를 스크래핑하여 분석한 인사이트입니다. 2026년 4월 27일 기준 매물 1,424개(현대 1,027대, 기아 397대)를 Python 기반 자체 크롤러로 전수 조사 후 달러 환산(1 USD = 14.5 GHS)을 적용했습니다.
         </p>
         
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
@@ -287,7 +297,7 @@ export default function UsedCarExport() {
             <div style={{ padding: '1rem', background: 'rgba(16,185,129,0.08)', borderRadius: '8px', borderLeft: '3px solid #10b981' }}>
               <div style={{ color: '#34d399', fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px' }}>명분 2: 기아 모닝(Morning)의 폭발적 가성비</div>
               <div style={{ color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.5 }}>
-                기아 모닝이 68건으로 전체 3위를 기록하며 현지 라이드헤일링(Uber/Bolt) 택시용 수요를 입증했습니다. 배기량 1,000cc 미만으로 가나 최저 수입 관세(5%) 혜택을 누릴 수 있습니다.
+                기아 모닝이 68건으로 기아 모델 중 3위를 기록하며 현지 라이드헤일링(Uber/Bolt) 택시용 수요를 입증했습니다. 배기량 1,000cc 미만으로 가나 최저 수입 관세(5%) 혜택을 누릴 수 있습니다.
               </div>
             </div>
             <div style={{ padding: '1rem', background: 'rgba(236,72,153,0.08)', borderRadius: '8px', borderLeft: '3px solid #ec4899' }}>
@@ -299,15 +309,15 @@ export default function UsedCarExport() {
           </div>
         </div>
 
-        {/* --- 실시간 차익거래 레이더 (Arbitrage Radar) --- */}
-        {liveIntelligence && liveIntelligence.arbitrageOpportunities && (
+        {/* --- 차익거래 레이더 (Arbitrage Radar) — 2026.04 정적 기준값 기반 추정 예시 --- */}
+        {arbitrageRadar && arbitrageRadar.arbitrageOpportunities && (
           <div style={{ marginTop: '1rem', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', padding: '1.25rem', border: 'none' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
               <h4 style={{ margin: 0, fontSize: '1rem', color: '#34d399', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Target size={18} /> 실시간 차익거래 레이더 (Arbitrage Radar)
+                <Target size={18} /> 차익거래 레이더 (2026.04 기준 추정 예시)
               </h4>
               <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
-                실시간 환율: 1 USD = {liveIntelligence.exchangeRates.GHS_USD} GHS | 실시간 운임(40ft): ${liveIntelligence.liveFreightRates.Tema_40ft}
+                기준 환율({arbitrageRadar.asOf || '2026-04-27'}): 1 USD = {arbitrageRadar.exchangeRates?.GHS_USD} GHS | 운임 기준값(40ft, 포워더 견적): ${Number(arbitrageRadar.freightRates?.Tema_40ft || 0).toLocaleString()}
               </div>
             </div>
             
@@ -316,7 +326,7 @@ export default function UsedCarExport() {
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8', textAlign: 'left' }}>
                     <th style={{ padding: '8px' }}>타겟 차종</th>
-                    <th style={{ padding: '8px' }}>FOB 매입가 (KCS)</th>
+                    <th style={{ padding: '8px' }}>FOB 매입가 (추정)</th>
                     <th style={{ padding: '8px' }}>현지 소매가 (Jiji)</th>
                     <th style={{ padding: '8px' }}>예상 제세공과금</th>
                     <th style={{ padding: '8px' }}>대당 순마진 (Net)</th>
@@ -324,14 +334,14 @@ export default function UsedCarExport() {
                   </tr>
                 </thead>
                 <tbody>
-                  {liveIntelligence.arbitrageOpportunities.map((opp: any, idx: number) => (
+                  {arbitrageRadar.arbitrageOpportunities.map((opp: any, idx: number) => (
                     <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                       <td style={{ padding: '10px 8px', color: '#e2e8f0', fontWeight: 600 }}>{opp.model}</td>
                       <td style={{ padding: '10px 8px', color: '#94a3b8' }}>${opp.fobKorea.toLocaleString()}</td>
                       <td style={{ padding: '10px 8px', color: '#94a3b8' }}>${opp.retailGhana.toLocaleString()}</td>
                       <td style={{ padding: '10px 8px', color: 'var(--color-danger)' }}>-${opp.estTaxes.toLocaleString()}</td>
                       <td style={{ padding: '10px 8px', color: 'var(--color-success)', fontWeight: 700 }}>
-                        ${Math.round(opp.netMargin).toLocaleString()} {opp.trend === 'up' ? '📈' : '➖'}
+                        ${Math.round(opp.netMargin).toLocaleString()}
                       </td>
                       <td style={{ padding: '10px 8px' }}>
                         <button style={{ background: 'var(--color-info)', color: 'var(--text-primary)', border: 'none', padding: '4px 12px', borderRadius: '4px', fontSize: '0.75rem', cursor: 'pointer' }}>
@@ -350,11 +360,11 @@ export default function UsedCarExport() {
       {/* ROW 3: Shipping + Fuel + Ghana Age Penalty */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
-          <h3 style={cardTitle}><Ship size={18} color="var(--color-success)" /> 해상 운송 비용 비교 (RoRo vs 컨테이너)
-            
+          <h3 style={cardTitle}><Ship size={18} color="var(--color-success)" /> 해상 운송 비용 비교 (RoRo vs 컨테이너) <DataBadge source="포워더 견적 2026.04" isLive={isLive} />
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          서아프리카 주요 6개국의 2026년 4월 기준 휘발유 소매가($/L)를 비교합니다. $1.50/L 이상인 국가는 빨간색, 미만은 주황색으로 표시하여 고유가 리스크 지역을 시각적으로 구분합니다. Business Insider Africa의 
+          인천항에서 서아프리카 4개 항구(테마, 라고스, 다카르, 아비장)까지의 해상 운송 비용을 RoRo(자동차 전용선)와 40ft HC 컨테이너 두 방식으로 비교합니다. Linear Shipping, Alkady Cars, WC Shipping, Ship Overseas 등 복수의 해운 포워더 견적을 크로스체크하여 2026년 기준 평균 운임을 산출했습니다. RoRo는 단일 차량 기준, 컨테이너는 40ft HC 1개 기준입니다.
         </p>
           <ShippingCostChart data={shippingCostChart} />
           <TakeawayBox
@@ -364,11 +374,11 @@ export default function UsedCarExport() {
           />
         </div>
         <div style={glass}>
-          <h3 style={cardTitle}><Fuel size={18} color="var(--color-danger)" /> 서아프리카 연료 가격 동향 (2026.4) <DataBadge source="GlobalPetrol API" isLoaded={!!data} />
-            
+          <h3 style={cardTitle}><Fuel size={18} color="var(--color-danger)" /> 서아프리카 연료 가격 동향 (2026.4) <DataBadge source="GlobalPetrolPrices 2026.04" isLive={isLive} />
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          한국 국내 중고차 시장을 내연기관, 하이브리드, 전기차 세 카테고리로 분류하여 2024~2030년 시장 규모(억 달러) 전망을 Stacked Bar로 시각화합니다. 하이브리드가 CAGR 15.9%로 가장 빠른 성장을 보입니다. Coherent Market Insights의 Hybrid Vehicles Market 보고서(2026-2033)와 Research and Markets의 한국 중고차 시장 보고서(2025-2034)의 파워트레인별 세분화 데이터를 결합했습니다.
+          서아프리카 주요 6개국의 2026년 4월 기준 휘발유 소매가($/L)를 비교합니다. $1.50/L 이상인 국가는 빨간색, 미만은 주황색으로 표시하여 고유가 리스크 지역을 시각적으로 구분합니다. Business Insider Africa의 2026년 4월 보도와 GlobalPetrolPrices 집계 데이터를 기반으로 정리했습니다.
         </p>
           <FuelPriceChart data={fuelPrices} />
           <TakeawayBox
@@ -382,11 +392,11 @@ export default function UsedCarExport() {
       {/* ROW 4: Hybrid Growth + Ghana Penalty */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
-          <h3 style={cardTitle}><Zap size={18} color="#8b5cf6" /> 한국 중고차 파워트레인별 성장 전망 <DataBadge source="KOTRA / KAMA" isLoaded={!!data} />
-            
+          <h3 style={cardTitle}><Zap size={18} color="#8b5cf6" /> 한국 중고차 파워트레인별 성장 전망 <DataBadge source="Coherent MI·R&M 2025" isLive={isLive} />
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          가나(GRA/ICUMS)의 중고차 수입 시 차량 연식에 따른 추가 페널티율(CIF 가격 대비 %)을 시각화합니다. 연식이 오래될수록 기하급수적으로 페널티가 증가하는 구조입니다. 가나 관세청(GRA) 공식 규정 및 WC Shipping의 
+          한국 국내 중고차 시장을 내연기관, 하이브리드, 전기차 세 카테고리로 분류하여 2024~2030년 시장 규모(억 달러) 전망을 Stacked Bar로 시각화합니다. 하이브리드가 CAGR 15.9%로 가장 빠른 성장을 보입니다. Coherent Market Insights의 Hybrid Vehicles Market 보고서(2026-2033)와 Research and Markets의 한국 중고차 시장 보고서(2025-2034)의 파워트레인별 세분화 데이터를 결합했습니다.
         </p>
           <HybridGrowthChart data={hybridGrowth} />
           <TakeawayBox
@@ -396,11 +406,11 @@ export default function UsedCarExport() {
           />
         </div>
         <div style={glass}>
-          <h3 style={cardTitle}><AlertTriangle size={18} color="var(--color-warning)" /> 가나 연식 초과 페널티 구조
-            
+          <h3 style={cardTitle}><AlertTriangle size={18} color="var(--color-warning)" /> 가나 연식 초과 페널티 구조 <DataBadge source="GRA·WC Shipping 규정" isLive={isLive} />
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          서아프리카에서 한국 중고차 및 부품이 유통되는 핵심 거점(마켓, 항만)의 현황과 디지털화 수준을 정리합니다. 부품 생태계 확보가 잔존가치 방어의 핵심입니다. Wikipedia(Ladipo Market), Apple App Store(Abossey Okai), Jiji Ghana, LadipoExpress 등의 실제 서비스를 직접 확인하고, 현지 보도 자료를 교차 검증하여 정리했습니다.
+          가나(GRA/ICUMS)의 중고차 수입 시 차량 연식에 따른 추가 페널티율(CIF 가격 대비 %)을 시각화합니다. 연식이 오래될수록 기하급수적으로 페널티가 증가하는 구조입니다. 가나 관세청(GRA) 공식 규정 및 WC Shipping의 통관 실무 가이드를 교차 검증하여 구간별 페널티율을 정리했습니다.
         </p>
           <AgePenaltyChart data={ghanaAgePenalty} />
           <div style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(239,68,68,0.05)', border: 'none', borderRadius: '8px' }}>
@@ -408,7 +418,11 @@ export default function UsedCarExport() {
               <AlertTriangle size={14} /> 15년 초과 시 CIF 50% 폭탄 페널티
             </div>
             <div style={{ color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>
-              2012년식 차량은 2026년 기준 14년 경과로 <strong>20% 페널티</strong> 구간입니다. 2027년 이후 선적 시 50% 구간에 진입하므로 <strong>올해 내 통관이 필수</strong>입니다.
+              2012년식 차량은 {nowYear}년 기준 {age2012}년 경과로 <strong>{penalty2012}% 페널티</strong> 구간입니다. {age2012 > 15 ? (
+                <>이미 50% 페널티 구간에 진입한 상태입니다.</>
+              ) : (
+                <>경과 연수가 15년을 초과하는 {year50For2012}년부터 50% 구간에 진입하므로 <strong>그 전 통관이 필수</strong>입니다.</>
+              )}
             </div>
           </div>
         </div>
@@ -418,15 +432,15 @@ export default function UsedCarExport() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         <div style={glass}>
           <h3 style={cardTitle}><Target size={18} color="#ec4899" /> 현지 핵심 유통 허브
-            
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          2025년 1월 체결된 나이지리아 정부와 한국 AEDC 간의 전기차 제조·충전 인프라 파트너십의 핵심 내용을 정리합니다. 아프리카 최초의 대규모 EV 생산 시설로, 한국 기업의 부품 공급 및 기술 이전 기회를 제공합니다. Business Insider Africa와 West Africa Automotive의 공식 보도 자료, 나이지리아 정부 발표문을 기반으로 정리했습니다.
+          서아프리카에서 한국 중고차 및 부품이 유통되는 핵심 거점(마켓, 항만)의 현황과 디지털화 수준을 정리합니다. 부품 생태계 확보가 잔존가치 방어의 핵심입니다. Wikipedia(Ladipo Market), Apple App Store(Abossey Okai), Jiji Ghana, LadipoExpress 등의 실제 서비스를 직접 확인하고, 현지 보도 자료를 교차 검증하여 정리했습니다.
         </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {[
               { flag: '🇳🇬', name: 'Ladipo Market (라고스)', desc: '아프리카 최대 자동차 부품 허브. LadipoExpress 앱을 통해 한국 정품부품 온라인 주문 체계 구축 완료', color: 'var(--color-success)' },
-              { flag: '🇬🇭', name: 'Abossey Okai (아크라)', desc: '가나 최대 부품 마켓. 전용 앱으로 현대/기아 부품 실시간 재고 확인 및 가격 비교 가능', color: 'var(--color-info)' },
+              { flag: '🇬🇭', name: 'Abossey Okai (아크라)', desc: '가나 최대 부품 마켓. 전용 앱으로 현대/기아 부품 재고 확인 및 가격 비교 가능', color: 'var(--color-info)' },
               { flag: '🇬🇭', name: 'Tema Port', desc: '서아프리카 최대 컨테이너 항만. 인천→테마 직항 40~50일. GRA/ICUMS 전자통관 시스템 운영', color: 'var(--color-warning)' },
             ].map((hub, i) => (
               <div key={i} style={{ padding: '1rem', background: '#181818', borderRadius: '10px', borderLeft: `3px solid ${hub.color}` }}>
@@ -438,10 +452,10 @@ export default function UsedCarExport() {
         </div>
         <div style={glass}>
           <h3 style={cardTitle}><Zap size={18} color="var(--color-success)" /> 나이지리아-한국 EV 합작 파트너십
-            
+
           </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          2012년식 기아 모닝 12대를 인천항에서 가나 테마항으로 컨테이너(40ft HC × 2) 선적 시의 총 비용 구조를 산출합니다. 매입가, 서류/적재비, 해상 운임을 합산하여 대당 랜딩 코스트를 도출합니다. 인천항 포워더 실견적(2026.4 기준) 및 AutoWini 플랫폼의 2012 KIA Morning 평균 매입가를 기반으로 산출했습니다. 해상 운임은 WiniLogis 및 Cargo Naija의 최신 견적을 교차 검증했습니다.
+          2025년 1월 체결된 나이지리아 정부와 한국 AEDC 간의 전기차 제조·충전 인프라 파트너십의 핵심 내용을 정리합니다. 아프리카 최초의 대규모 EV 생산 시설로, 한국 기업의 부품 공급 및 기술 이전 기회를 제공합니다. Business Insider Africa와 West Africa Automotive의 공식 보도 자료, 나이지리아 정부 발표문을 기반으로 정리했습니다.
         </p>
           <div style={{ padding: '1.25rem', background: '#181818', borderRadius: '8px', border: 'none', marginBottom: '1rem' }}>
             <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#34d399', marginBottom: '8px' }}>🏭 아프리카 최초 대규모 EV 공장 (2025.1 체결)</div>
@@ -462,11 +476,18 @@ export default function UsedCarExport() {
       {/* FINANCIAL SIMULATION (기존 유지) */}
       <div style={{ ...glass, gridColumn: '1 / -1' }}>
         <h3 style={cardTitle}><DollarSign size={18} color="var(--color-info)" /> 파일럿 재무 시뮬레이션 (KIA Morning 12대 → Tema, Ghana)
-          
+
         </h3>
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
-          가나 국세청(GRA)의 수입 관세 공식을 내재화한 시뮬레이터입니다. FOB, 배기량, 연식에 따라 실시간 랜딩 코스트를 산출합니다. ICUMS 시스템과 동일하게 CIF 기준으로 5~20%의 배기량별 기본 관세율, 연식 초과 페널티(최대 50%), 및 VAT/ECOWAS/EXIM 등 부가 제세를 합산하여 랜딩 코스트를 계산합니다.
+          2012년식 기아 모닝 12대를 인천항에서 가나 테마항으로 컨테이너(40ft HC × 2) 선적 시의 총 비용 구조를 산출합니다. 매입가, 서류/적재비, 해상 운임을 합산하여 대당 랜딩 코스트를 도출합니다. 인천항 포워더 실견적(2026.4 기준) 및 AutoWini 플랫폼의 2012 KIA Morning 평균 매입가를 기반으로 산출했습니다. 해상 운임은 WiniLogis 및 Cargo Naija의 최신 견적을 교차 검증했습니다.
         </p>
+        {fx && typeof fx.usd_krw === 'number' && (
+          <p style={{ margin: '6px 0 0 0', fontSize: '0.78rem', color: '#64748b' }}>
+            참고 원/달러 환율: 1 USD = ₩{Number(fx.usd_krw).toLocaleString()}
+            {fx.isLive === true ? ' (환율 API 연동' : ' (캐시 환율'}
+            {fx.dataAsOf ? ` · 기준일 ${fx.dataAsOf})` : ')'} — 위 원화 수치는 2026.4 견적 시점 환산값입니다.
+          </p>
+        )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem', marginBottom: '1rem' }}>
           <KpiCard icon={<CarFront size={14}/>} label="매입 총액 (12대)" value="₩27,600,000" sub="단가 ₩2,300,000/대" color="#e2e8f0" />
           <KpiCard icon={<Package size={14}/>} label="Doc & Loading (2 CNTR)" value="₩1,100,000" sub="₩550,000 / 40ft HC" color="#e2e8f0" />
@@ -485,9 +506,12 @@ export default function UsedCarExport() {
       <div style={glass}>
         <h3 style={cardTitle}>
           <Calculator size={18} color="#8b5cf6" /> 가나 관세 시뮬레이터 (GRA ICUMS 기반)
-          
+
         </h3>
-        <GhanaCustomsCalculator exchangeRate={Number(liveIntelligence?.exchangeRates?.GHS_USD) || 14.5} />
+        <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
+          가나 국세청(GRA)의 수입 관세 공식을 내재화한 시뮬레이터입니다. FOB, 배기량, 연식 입력값에 따라 즉시 랜딩 코스트를 산출합니다. ICUMS 시스템과 동일하게 CIF 기준으로 5~20%의 배기량별 기본 관세율, 연식 초과 페널티(최대 50%), 및 VAT/ECOWAS/EXIM 등 부가 제세를 합산하여 랜딩 코스트를 계산합니다. 적용 환율은 1 USD = 14.5 GHS(2026-04-27 기준 고정값)입니다.
+        </p>
+        <GhanaCustomsCalculator exchangeRate={Number(arbitrageRadar?.exchangeRates?.GHS_USD) || 14.5} />
       </div>
 
       {/* Execution Playbook */}
@@ -509,7 +533,7 @@ export default function UsedCarExport() {
           <div style={{ background: 'rgba(239,68,68,0.05)', border: 'none', borderRadius: '8px', padding: '1rem' }}>
             <div style={{ color: 'var(--color-danger)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}><AlertTriangle size={14}/> Critical Risk Alerts</div>
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: '#94a3b8', fontSize: '0.82rem', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <li><strong style={{ color: 'var(--color-danger)' }}>가나:</strong> 2012년식 차량 2027년 이후 선적 시 50% 페널티 폭탄 진입</li>
+              <li><strong style={{ color: 'var(--color-danger)' }}>가나:</strong> 2012년식 차량 {year50For2012}년 이후 선적 시 50% 페널티 구간 진입</li>
               <li><strong style={{ color: 'var(--color-danger)' }}>나이지리아:</strong> 2026.7월 Green Tax 시행 — 대배기량 차종 원가 급등</li>
               <li><strong style={{ color: 'var(--color-danger)' }}>환율:</strong> 가나 세디(GHS) 변동성 극심 (10.2~15.5 GHS/USD)</li>
               <li><strong style={{ color: 'var(--color-danger)' }}>중국:</strong> 저가 중국 중고차 공세 본격화 — 가격 경쟁력 방어 필수</li>
@@ -582,7 +606,7 @@ export default function UsedCarExport() {
             </div>
             <ul style={{ margin: 0, paddingLeft: '1rem', color: '#cbd5e1', fontSize: '0.82rem', lineHeight: 1.7 }}>
               <li>가나 수입 필수: <strong style={{ color: '#34d399' }}>좌핸들(LHD)</strong> 차량만 허용 — 한국차 100% 적합</li>
-              <li>연식 제한: 제조일 기준 <strong>10년 이내</strong> (2026년 기준 2016년식 이후)</li>
+              <li>연식 제한: 제조일 기준 <strong>10년 이내</strong> ({nowYear}년 기준 {nowYear - 10}년식 이후)</li>
               <li>배기 기준: <strong>Euro 2 이상</strong> — 한국차 기본 충족</li>
               <li>일본차(우핸들) <strong style={{ color: 'var(--color-danger)' }}>수입 금지</strong> → 한국차에 구조적 우위</li>
             </ul>

@@ -452,14 +452,10 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
           <IconComp size={18} style={{ color: accentColor }} />
           {widget.title}
           <div style={{ marginLeft: '12px', display: 'flex', alignItems: 'center' }}>
+            {/* L-09/L-12: LIVE 판정은 라우트의 isLive === true 단일 기준. syncDate 부재 시 날짜 생략(위조 금지) */}
             <TelemetryBadge
-              status={
-                widget?.isLive === true ? 'live'
-                : widget?.isLive === false ? 'static'
-                : ((widget.badges && widget.badges?.includes('Live API')) || widget.apiSource || (widget.source && widget.source.includes('LIVE'))) ? 'synced'
-                : 'static'
-              }
-              syncDate={widget?.syncDate || (widget?.isLive === true ? '실시간' : '2024년 기준')}
+              status={widget?.isLive === true ? 'live' : 'static'}
+              syncDate={widget?.syncDate}
             />
           </div>
           
@@ -538,7 +534,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 참치 (Tuna) 글로벌 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>참치 전략 커맨드 센터 — {widgets?.length || 0}개 위젯 · {kpiKeys.length || 0}개 KPI</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>참치 전략 커맨드 센터 — 데이터 위젯 {widgets?.length || 0}개 + 전용 인사이트 위젯 · KPI {kpiKeys.length || 0}개</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -546,8 +542,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600,
             display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0ECB81', boxShadow: '0 0 8px #0ECB81', animation: 'pulse 2s infinite' }} />
-            <span>16 APIs <span style={{ color: '#0ECB81' }}>연결됨</span></span>
+            {/* L-09: 연결 상태 미검증 — 펄스/'연결됨' 상태 주장 제거, 연동 대상 기관만 중립 표기 */}
+            <span>연동 API</span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · KAMIS · WITS · OEC · FRED · OSH · HS Ping</span>
           </div>

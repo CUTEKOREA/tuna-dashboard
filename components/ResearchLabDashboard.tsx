@@ -5,6 +5,7 @@ import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Toolti
 import { Microscope, Atom, TrendingUp, Fish, Recycle, HeartPulse, ChevronDown, ChevronUp, Star, ArrowRight, Target, Briefcase, Factory, Gem, Sparkles, FlaskConical } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import TelemetryBadge from './TelemetryBadge';
 
 const B2B_PILLAR_META: Record<string, {name:string, color:string, icon:any}> = {
   collagen: { name: '뷰티/콜라겐 원료', color: '#f472b6', icon: Sparkles },
@@ -18,10 +19,10 @@ const B2B_PILLAR_META: Record<string, {name:string, color:string, icon:any}> = {
 const B2B_MODELS = [
   {
     id: 'petfood',
-    title: '프리미엄 펫푸드 소재 (High-Yield Pet Nutrition)',
+    title: '프리미엄 펫푸드 소재',
     source: '적색육(Dark Muscle), 가공 잔여물',
-    profitability: 'High Margin (GPM 25%+)',
-    difficulty: 'Low Tech (하)',
+    profitability: '고마진 (GPM 25%+)',
+    difficulty: '하 (저기술)',
     target: '글로벌 Tier-1 펫케어 브랜드',
     color: '#f43f5e',
     icon: Gem,
@@ -29,10 +30,10 @@ const B2B_MODELS = [
   },
   {
     id: 'collagen',
-    title: '마린 콜라겐 펩타이드 (Marine Collagen Peptides)',
+    title: '마린 콜라겐 펩타이드',
     source: '어피 (Tuna Skin)',
-    profitability: 'Premium Margin (GPM 40%+)',
-    difficulty: 'Mid-High Tech (중상)',
+    profitability: '프리미엄 마진 (GPM 40%+)',
+    difficulty: '중상 (효소 가수분해)',
     target: '글로벌 더마코스메틱 & 이너뷰티 기업',
     color: '#f472b6',
     icon: Sparkles,
@@ -40,10 +41,10 @@ const B2B_MODELS = [
   },
   {
     id: 'omega3',
-    title: '고순도 EPA/DHA 추출물 (rTG Omega-3 API)',
+    title: '고순도 EPA/DHA 추출물 (rTG 오메가3)',
     source: '두부, 안와지방, 부산물 내장',
-    profitability: 'Value-Added Premium',
-    difficulty: 'Mid Tech (중)',
+    profitability: '고부가가치 프리미엄',
+    difficulty: '중 (정제 파트너십)',
     target: '글로벌 제약사(API) 및 메디컬 뉴트리션',
     color: '#fbbf24',
     icon: Fish,
@@ -51,10 +52,10 @@ const B2B_MODELS = [
   },
   {
     id: 'fishmeal',
-    title: '고단백 어분 및 바이오 비료 (Aqua-feed & Bio-fertilizer)',
+    title: '고단백 어분 및 바이오 비료',
     source: '경골(Bone), 지느러미, 잔여 내장',
-    profitability: 'Steady Cash Generator',
-    difficulty: 'Lowest Tech (최하)',
+    profitability: '안정적 현금창출',
+    difficulty: '최하 (렌더링)',
     target: '글로벌 아쿠아컬처(연어/새우) 사료 벤더',
     color: '#34d399',
     icon: Factory,
@@ -115,12 +116,15 @@ export default function ResearchLabDashboard() {
   if (!data) return (
     <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'60vh',flexDirection:'column',gap:'1rem'}}>
       <Briefcase size={32} style={{color:'#8b5cf6',animation:'bounce 2s infinite'}} />
-      <p style={{color:'#94a3b8'}}>Loading B2B Business Intelligence & Live APIs...</p>
+      <p style={{color:'#94a3b8'}}>B2B 인텔리전스 데이터를 불러오는 중...</p>
     </div>
   );
 
-  const { papers, pillars, trlDistribution, speciesDistribution } = data;
+  const { papers, pillars, trlDistribution, speciesDistribution, meta } = data;
   const filteredPapers = activePillar === 'all' ? papers : papers.filter((p:any) => p.pillar === activePillar);
+  const liveCount = papers.filter((p:any) => String(p.id).startsWith('live_')).length;
+  const archiveCount = papers.length - liveCount;
+  const archiveDate = meta?.lastUpdated || '2026-05-14'; // research_materials.json 데이터 기준일
 
   return (
     <div style={{padding:'0 1.5rem 3rem',color:'var(--text-primary)',minHeight:'100vh',fontFamily:"'CircularSp','Inter',sans-serif",backgroundColor:'var(--bg-color)'}}>
@@ -135,11 +139,11 @@ export default function ResearchLabDashboard() {
             <div>
               <h1 style={{margin:0,fontSize:'1.5rem',fontWeight:700,letterSpacing:'-0.5px'}}>B2B 신사업 인텔리전스</h1>
               <p style={{margin:0,fontSize:'0.88rem',color:'var(--text-secondary)', display:'flex', alignItems:'center', gap:6}}>
-                원양 조업사 특화 부산물 기반 고부가가치 비즈니스 파이프라인 (Value-Add Pipeline)
+                원양 조업사 특화 부산물 기반 고부가가치 비즈니스 파이프라인
                 {liveDataStatus === 'success' && (
                   <span style={{background:'#22c55e20', color:'#22c55e', padding:'2px 6px', borderRadius:4, fontSize:'0.7rem', fontWeight:600, display:'flex', alignItems:'center', gap:4}}>
                     <span style={{width:6,height:6,background:'#22c55e',borderRadius:'50%',animation:'pulse 2s infinite'}}></span>
-                    Live API Sync
+                    라이브 논문 수집 연동(CrossRef)
                   </span>
                 )}
               </p>
@@ -147,16 +151,23 @@ export default function ResearchLabDashboard() {
           </div>
           <div style={{fontSize:'0.88rem',padding:'8px 16px',background:'#181818',borderRadius:500,color:'var(--text-secondary)',fontWeight:600,display:'flex',alignItems:'center',gap:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <Microscope size={16} color="#8b5cf6" />
-            <span>학술/특허 인텔리전스 {papers.length}건 교차 검증 완료 (Validated)</span>
+            <span>
+              검증 아카이브 {archiveCount}건 (기준일 {archiveDate})
+              {liveCount > 0 && ` · 라이브 수집 ${liveCount}건(미평가)`}
+            </span>
           </div>
         </div>
       </header>
 
       {/* Hero: Top 4 B2B Models */}
       <div style={{marginBottom:'3rem'}}>
-        <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'1.2rem',display:'flex',alignItems:'center',gap:8}}>
-          <Target size={22} color="#8b5cf6" /> 조업사 마진 극대화 Top 4 비즈니스 파이프라인 (Margin-Maximized Top 4 Pipelines)
+        <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'0.4rem',display:'flex',alignItems:'center',gap:8}}>
+          <Target size={22} color="#8b5cf6" /> 조업사 마진 극대화 Top 4 비즈니스 파이프라인
         </h2>
+        <p style={{margin:'0 0 1.2rem',fontSize:'0.75rem',color:'var(--text-secondary)',display:'flex',alignItems:'center',gap:8,flexWrap:'wrap'}}>
+          출처: 자체 B2B 전략 분석(정적 콘텐츠) · 수익성·난이도는 내부 평가 등급
+          <TelemetryBadge status="STATIC" />
+        </p>
         <div data-mobile-stack style={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)',gap:'1.2rem'}}>
           {B2B_MODELS.map((model, idx) => {
             const Icon = model.icon;
@@ -177,7 +188,7 @@ export default function ResearchLabDashboard() {
                 {/* Metrics */}
                 <div data-mobile-stack style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0.8rem',marginBottom:16}}>
                   <div style={{background:'var(--surface-2)',padding:'0.6rem',borderRadius:6}}>
-                    <div style={{fontSize:'0.7rem',color:'var(--text-secondary)',marginBottom:2}}>수익성 (Margin)</div>
+                    <div style={{fontSize:'0.7rem',color:'var(--text-secondary)',marginBottom:2}}>수익성 (마진)</div>
                     <div style={{fontSize:'0.85rem',fontWeight:700,color:model.color}}>{model.profitability}</div>
                   </div>
                   <div style={{background:'var(--surface-2)',padding:'0.6rem',borderRadius:6}}>
@@ -208,10 +219,14 @@ export default function ResearchLabDashboard() {
       </div>
 
       {/* R&D Evidences */}
-      <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'1.2rem',display:'flex',alignItems:'center',gap:8}}>
-        <Atom size={22} color="#8b5cf6" /> 사업화 타당성(Feasibility) 검증용 R&D 및 특허 딥다이브
+      <h2 style={{fontSize:'1.2rem',fontWeight:700,marginBottom:'0.4rem',display:'flex',alignItems:'center',gap:8}}>
+        <Atom size={22} color="#8b5cf6" /> 사업화 타당성 검증용 R&D·특허 딥다이브
       </h2>
-      
+      <p style={{margin:'0 0 1.2rem',fontSize:'0.75rem',color:'var(--text-secondary)'}}>
+        출처: 자체 구축 학술·특허 아카이브 {archiveCount}건 (기준일 {archiveDate})
+        {liveCount > 0 && ` + CrossRef 라이브 수집 ${liveCount}건 — 라이브 수집분의 TRL·상업성 점수는 미평가`}
+      </p>
+
       {/* Pillar Tabs */}
       <div style={{display:'flex',gap:8,marginBottom:'1.5rem',flexWrap:'wrap'}}>
         <button onClick={()=>setActivePillar('all')} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:activePillar==='all'?'#8b5cf6':'#181818',color:activePillar==='all'?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px'}}>
@@ -273,21 +288,29 @@ export default function ResearchLabDashboard() {
                   <div data-mobile-stack style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1rem',marginBottom:'0.8rem'}}>
                     <div style={{background:'var(--surface-2)',borderRadius:6,padding:'0.8rem'}}>
                       <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>상용화 기술성숙도 (TRL)</div>
-                      <div style={{display:'flex',alignItems:'center',gap:8}}>
-                        <div style={{flex:1,height:6,background:'#272727',borderRadius:3,overflow:'hidden'}}>
-                          <div style={{width:`${(p.trl/9)*100}%`,height:'100%',background:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8',borderRadius:3,transition:'width 0.5s'}} />
+                      {typeof p.trl === 'number' ? (
+                        <div style={{display:'flex',alignItems:'center',gap:8}}>
+                          <div style={{flex:1,height:6,background:'#272727',borderRadius:3,overflow:'hidden'}}>
+                            <div style={{width:`${(p.trl/9)*100}%`,height:'100%',background:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8',borderRadius:3,transition:'width 0.5s'}} />
+                          </div>
+                          <span style={{fontSize:'0.85rem',fontWeight:700,color:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8'}}>TRL {p.trl}</span>
                         </div>
-                        <span style={{fontSize:'0.85rem',fontWeight:700,color:p.trl>=6?'#34d399':p.trl>=4?'#818cf8':'#94a3b8'}}>TRL {p.trl}</span>
-                      </div>
+                      ) : (
+                        <span style={{display:'inline-block',fontSize:'0.75rem',fontWeight:600,color:'#94a3b8',background:'#272727',padding:'3px 10px',borderRadius:500}}>미평가 (신규 수집)</span>
+                      )}
                     </div>
                     <div style={{background:'var(--surface-2)',borderRadius:6,padding:'0.8rem'}}>
-                      <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>TAM 확장 매력도 (Commercial Viability)</div>
-                      <div style={{display:'flex',alignItems:'center',gap:4}}>
-                        {[1,2,3,4,5].map(s => (
-                          <Star key={s} size={16} fill={s<=p.commercialScore?'#fbbf24':'transparent'} color={s<=p.commercialScore?'#fbbf24':'#4a4a4a'} />
-                        ))}
-                        <span style={{fontSize:'0.8rem',fontWeight:600,color:'#fbbf24',marginLeft:4}}>{p.commercialScore}/5</span>
-                      </div>
+                      <div style={{fontSize:'0.75rem',color:'var(--text-secondary)',marginBottom:4}}>TAM 확장 매력도</div>
+                      {typeof p.commercialScore === 'number' ? (
+                        <div style={{display:'flex',alignItems:'center',gap:4}}>
+                          {[1,2,3,4,5].map(s => (
+                            <Star key={s} size={16} fill={s<=p.commercialScore?'#fbbf24':'transparent'} color={s<=p.commercialScore?'#fbbf24':'#4a4a4a'} />
+                          ))}
+                          <span style={{fontSize:'0.8rem',fontWeight:600,color:'#fbbf24',marginLeft:4}}>{p.commercialScore}/5</span>
+                        </div>
+                      ) : (
+                        <span style={{display:'inline-block',fontSize:'0.75rem',fontWeight:600,color:'#94a3b8',background:'#272727',padding:'3px 10px',borderRadius:500}}>미평가 (신규 수집)</span>
+                      )}
                     </div>
                   </div>
                   <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
@@ -306,9 +329,15 @@ export default function ResearchLabDashboard() {
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,480px),1fr))',gap:'1.5rem',marginBottom:'2.5rem'}}>
         {/* TRL Distribution */}
         <div style={{background:'#181818',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-          <h3 style={{margin:'0 0 1rem',fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
-            <Target size={20} color="#8b5cf6" /> 기술성숙도(TRL) 포트폴리오 분포
-          </h3>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8}}>
+            <h3 style={{margin:0,fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
+              <Target size={20} color="#8b5cf6" /> 기술성숙도(TRL) 포트폴리오 분포
+            </h3>
+            <TelemetryBadge status="STATIC" syncDate={archiveDate} />
+          </div>
+          <p style={{margin:'4px 0 1rem',fontSize:'0.72rem',color:'var(--text-secondary)'}}>
+            출처: 자체 학술·특허 아카이브 — 수록분 TRL 평가치 집계 (라이브 수집 논문 제외)
+          </p>
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={trlDistribution} layout="vertical" margin={{left:20}}>
@@ -327,9 +356,15 @@ export default function ResearchLabDashboard() {
 
         {/* Species Distribution */}
         <div style={{background:'#181818',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-          <h3 style={{margin:'0 0 1rem',fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
-            <Fish size={20} color="#8b5cf6" /> 타겟 어종별 상용화 집중도 (Species Concentration)
-          </h3>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8}}>
+            <h3 style={{margin:0,fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
+              <Fish size={20} color="#8b5cf6" /> 타겟 어종별 상용화 집중도
+            </h3>
+            <TelemetryBadge status="STATIC" syncDate={archiveDate} />
+          </div>
+          <p style={{margin:'4px 0 1rem',fontSize:'0.72rem',color:'var(--text-secondary)'}}>
+            출처: 자체 학술·특허 아카이브 — 수록분 대상 어종 분류 집계 (라이브 수집 논문 제외)
+          </p>
           <div style={{height:250}}>
             <SafeResponsiveContainer width="100%" height="100%">
               <PieChart>

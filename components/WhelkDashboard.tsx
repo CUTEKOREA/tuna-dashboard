@@ -75,6 +75,10 @@ const SECTIONS = [
   { id: 'S5', num: '❺', label: 'ESG·지속가능성', title: '❺ ESG 및 지속가능성', desc: '양식 불가 자원 + 영국 IFCA/MCRS 규제 + EU PPWR 포장 컴플라이언스', color: '#92400e' },
 ];
 
+// 패턴 I: 본문 JSX WidgetCard 30개 + WhelkFTAQuarterly 1개 — JSX 위젯 추가/삭제 시 이 상수를 갱신할 것.
+// (KFAS 학술 위젯은 데이터 기반 동적 렌더이므로 kfasWidgets.length로 합산)
+const INLINE_WIDGET_COUNT = 31;
+
 export default function WhelkDashboard() {
   const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
@@ -131,7 +135,15 @@ export default function WhelkDashboard() {
 
   // KFAS 연구 위젯 필터링
   const kfasWidgets = widgets.filter((w: any) => w.id?.startsWith('w5'));
-  
+
+  // 패턴 B(L-12): 라우트 _metadata의 정직 신호(isLive·status)를 직접 소비.
+  // `data ? 'SYNCED' : 'STATIC'` 식 truthiness 격상 금지 — 라우트가 STATIC을 선언하면 STATIC.
+  const metaStatus: 'LIVE' | 'SYNCED' | 'STATIC' =
+    data?._metadata?.isLive === true ? 'LIVE'
+    : data?._metadata?.status === 'SYNCED' ? 'SYNCED'
+    : 'STATIC';
+  const metaSyncDate = data?._metadata?.syncDate;
+
   return (
     <div style={{ padding:'0 1.5rem 3rem', color:'#f8fafc', minHeight:'100vh', fontFamily:"'Inter',sans-serif" }}>
       {/* HEADER */}
@@ -150,7 +162,7 @@ export default function WhelkDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 골뱅이 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — 33개 위젯 · 5-Pillar 프레임워크</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>골뱅이 전략 커맨드 센터 — {INLINE_WIDGET_COUNT + kfasWidgets.length}개 위젯 · 5-Pillar 프레임워크</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -172,11 +184,11 @@ export default function WhelkDashboard() {
              onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(15, 23, 42, 0.6)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', wordBreak: 'keep-all', maxWidth: '75%', lineHeight: '1.2' }}>영국산 수입 의존도</span>
-            <TelemetryBadge status="synced" syncDate="2024.2H" />
+            <TelemetryBadge status="synced" syncDate="KCS 2024 연간" />
           </div>
           <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>52.1%</div>
           <div style={{ fontSize: '0.88rem', color: 'var(--color-info)', fontWeight: 600 }}>
-            <span style={{ background: '#3b82f620', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>HS160559</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>2024년 2H 기준</span>
+            <span style={{ background: '#3b82f620', padding: '2px 6px', borderRadius: '4px', marginRight: '6px' }}>HS160559</span> <span style={{ color: 'var(--text-secondary)', fontWeight: 400 }}>2024년 연간 수입액 $30.46M/$58.5M</span>
           </div>
         </div>
 
@@ -473,8 +485,8 @@ export default function WhelkDashboard() {
   </div>
   <>
             <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={PieChart} iconColor="var(--color-info)" pillar="S3"
-              cardDesc="HS160559 국가별 수입 점유율 — 영국·아일랜드 65% 단일 해역 리스크"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || '2026-05-15' }} chartHeight={300}
+              cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함) — 영국·아일랜드 합산 65% 단일 해역 리스크"
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <PieChart>
                   <Pie data={importMarketShare} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
@@ -485,14 +497,14 @@ export default function WhelkDashboard() {
                 </PieChart>
               }
               takeaway={{
-                situation: <span>[KCS] 수입 물량의 절반 이상을 영국과 아일랜드에 의존하고 있어, 해당 지역에 문제가 생기면 공급망 전체가 마비될 위험이 큽니다.</span>,
-                actionPlan: <span>영국산 원물 수입액이 $30.4M(30.46%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>,
+                situation: <span>[KCS] 2024년 연간 수입금액 기준 영국(52.1%)·아일랜드(12.9%) 두 나라에 65%를 의존하고 있어, 해당 지역에 문제가 생기면 공급망 전체가 마비될 위험이 큽니다.</span>,
+                actionPlan: <span>영국산 원물 수입액이 $30.4M(2024년 연간 수입액 $58.5M의 52.1%)으로 1위를 수성 중이며, 지리적으로 연접한 아일랜드 물량($7.6M)까지 합산 시 북해 해역에 대한 <TermTooltip term="HS160559" description="조제하거나 보존처리한 연체동물(골뱅이 포함)의 무역 품목 분류 코드." /> 의존도가 65%에 육박하는 등 단일 해역 리스크가 한계치를 초과했습니다. 저단가인 튀르키예 및 중국산(R. venosa)은 B2B 시장의 원가 방어를 위한 블렌딩 용도로만 제한적으로 활용 가능합니다. 거시적 공급 충격에 대비하여 노르웨이, 아이슬란드 등 신규 북대서양 어장 개척 및 프리미엄 라인업 다변화 검증 테스트가 시급합니다.</span>,
                 source: 'KCS 관세청 (2026-05-15)',
               }} />
 
             <WidgetCard title="영국산 원물 월별 수입 계절성" icon={Snowflake} iconColor="var(--color-info)" pillar="S3"
               cardDesc="월별 수입액·물량 추이 — 5~8월 성수기 집중, Reefer 운임 급등"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || '2026-05-15' }} chartHeight={300}
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={seasonalityData}>
                   <ChartPatternDefs />
@@ -534,7 +546,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="골뱅이 가공원물 투입량 YoY (HS160559)" icon={Factory} iconColor="var(--color-info)" pillar="S2"
               cardDesc="KCS HS160559 통관 — 가공원물 물량·금액·시사단가 YoY"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS 2024 연간' }} chartHeight={300}
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <ComposedChart data={feedstockYoyData}>
                   <ChartPatternDefs />
@@ -556,7 +568,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="원산지별 CIF 단가 격차 — 대체재 탄력성" icon={Package} iconColor="var(--color-warning)" pillar="S4"
               cardDesc="KCS HS160559 원산지별 CIF($/kg) — 북해 vs 저단가 대체재"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS 2024 연간' }} chartHeight={300}
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2024 연간' }} chartHeight={300}
               chart={
                 <BarChart data={originCifGapData} layout="vertical" margin={{ left: 20 }}>
                   <ChartPatternDefs />
@@ -603,7 +615,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="영국산 수입 통관 원가 폭포수 구조" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
               cardDesc="FOB → CIF → 관세 → 내륙 통관 단계별 — 한-영 FTA 무관세 방어"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || '2026-05-15' }} chartHeight={300}
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <BarChart data={waterfallData} margin={{ top: 20 }}>
                   <ChartPatternDefs />
@@ -770,7 +782,7 @@ export default function WhelkDashboard() {
               }} />
             <WidgetCard title="환율 및 수입 단가 복합 변동성" icon={DollarSign} iconColor="var(--color-info)" pillar="S3"
               cardDesc="분기별 USD 단가 vs USD/KRW 환율 — 이중 타격(Double Whammy) 분석"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS/한국은행 2026-05-15' }} chartHeight={300}
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS/한국은행 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={fxCorrelationData}>
                   <ChartPatternDefs />
@@ -858,7 +870,7 @@ export default function WhelkDashboard() {
 
             <WidgetCard title="1인 가구 혼술 트렌드 및 채널 수입량 변동" icon={ShoppingBag} iconColor="var(--color-success)" pillar="S4"
               cardDesc="냉동 자숙 골뱅이육 수입 +105% — 혼술 이코노미 구조적 전환"
-              telemetry={{ status: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: data?._metadata?.syncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
+              telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 월별 통관 2026-05-15' }} chartHeight={300}
               chart={
                 <ComposedChart data={importSurgeData}>
                   <ChartPatternDefs />

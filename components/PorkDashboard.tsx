@@ -6,6 +6,7 @@ import styles from './MackerelStrategy.module.css';
 import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend, W7_KoreaSupply, W8_ImportPartners, W9_ASFSeafood, W10_Portfolio, W11_SelfSufficiency } from './PorkWidgets';
 import PorkUsdaWidgets from './PorkUsdaWidgets';
 import { InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio } from './PorkEmpiricalInsights';
+import porkUsdaRaw from '../data/pork_usda_widgets.json';
 
 const TelemetryBadge = ({ status, syncDate }: any) => {
   if (!status) return null;
@@ -21,7 +22,7 @@ const TelemetryBadge = ({ status, syncDate }: any) => {
 };
 
 const KPIS = [
-  { title: '글로벌 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 소폭 감소', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },
+  { title: '중국 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 감소 · 글로벌 1위', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },
   { title: '한국 1인당 소비량', value: '41.4kg', trend: '📈', desc: '10년간 +34% 폭증', telemetry: 'synced', syncDate: 'FBS 22Y', color: '#ec4899' },
   { title: '한국 총 수입량 (2024)', value: '594천톤', trend: '🚢', desc: '$22.1억 · 미국+스페인 양강', telemetry: 'synced', syncDate: 'Comtrade 24Y', color: '#8b5cf6' },
   { title: 'ASF 최대 충격폭', value: '-20.9%', trend: '⚠️', desc: '2019 중국 생산량 급감', telemetry: 'synced', syncDate: 'QCL', color: '#ef4444' },
@@ -44,6 +45,12 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
   W9: W9_ASFSeafood, W10: W10_Portfolio, W11: W11_SelfSufficiency,
 };
 
+// 헤더 위젯 카운트 — 하드코딩 금지(패턴 I), 실렌더 구성에서 동적 산출
+const INSIGHT_COMPONENTS = [InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio];
+const TOTAL_WIDGET_COUNT = Object.keys(WIDGET_MAP).length
+  + ((porkUsdaRaw as any).widgets?.length || 0)
+  + INSIGHT_COMPONENTS.length;
+
 export default function PorkDashboard() {
   const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
 
@@ -62,7 +69,7 @@ export default function PorkDashboard() {
                 🐷 돼지고기(Pork) 글로벌 밸류체인 대시보드
               </h1>
               <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>
-                [V4.2 S-Grade] FAOSTAT 실데이터 기반 글로벌 돈육 공급망 · 수산물 대체 탄력성 분석 (11개 위젯)
+                [V4.2 S-Grade] FAOSTAT 실데이터 기반 글로벌 돈육 공급망 · 수산물 대체 탄력성 분석 ({TOTAL_WIDGET_COUNT}개 위젯)
               </p>
             </div>
           </div>

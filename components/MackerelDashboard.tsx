@@ -187,10 +187,12 @@ export default function MackerelDashboard() {
           stratText = `현재 국내산 스프레드가 확대(저평가)된 구간으로, 노르웨이산 선물 계약 물량을 일부 연기하고 부산 산지 즉시 매입 비중을 높여 단기 마진을 확보해야 합니다.`;
         }
 
+        // L-12: 라우트의 isLive 신호만 LIVE로 인정 (폴백 응답은 STATIC)
+        const mofLive = mofData.isLive === true;
         const arbitrageWidget = {
           id: 'w_arbitrage_live',
-          title: '실시간 수입산 vs 국내산 차익거래 레이더',
-          subtitle: '해양수산부 실시간 위판가 기반 매입 타점 포착',
+          title: '수입산 vs 국내산 차익거래 레이더',
+          subtitle: '해양수산부 위판가 기반 매입 타점 포착',
           chartType: 'Composed',
           xKey: 'market',
           bars: [
@@ -200,12 +202,13 @@ export default function MackerelDashboard() {
             { key: 'norwayPriceBox', name: '노르웨이산 환산가 (15kg)', color: 'var(--color-warning)' }
           ],
           data: enrichedData,
-          badges: ['실시간 API'],
-          sit: `해양수산부 공공데이터 기준 금일 부산공동어시장(대) 위판가는 ${mofData.data[0]?.price.toLocaleString()}원입니다. 노르웨이산 환산 단가 대비 실시간 스프레드는 ${spread}%로 확인됩니다.`,
+          isLive: mofLive,
+          sit: `해양수산부 공공데이터 기준 부산공동어시장(대) 위판가는 ${mofData.data[0]?.price.toLocaleString()}원입니다. 노르웨이산 환산 단가 대비 스프레드는 ${spread}%로 확인됩니다.`,
           strat: stratText,
-          logic: '해양수산부 위탁판매 현황 API 실시간 연동 및 관세청 기준 CIF 추정가 대비 스프레드 맵핑 (15kg 박스 기준 환산)',
-          apiSource: '📡 [LIVE API 연동: 해양수산부 & 관세청] 실시간 무역통계 및 위판 현황',
-          source: '해양수산부 및 관세청 (실시간 공공데이터 API)',
+          logic: '해양수산부 위탁판매 현황 API 연동 및 관세청 기준 CIF 추정가 대비 스프레드 맵핑 (15kg 박스 기준 환산)',
+          source: mofLive
+            ? '해양수산부 위탁판매 현황 + 관세청 CIF (공공데이터 API 라이브)'
+            : '해양수산부/관세청 폴백 기준값 (정적)',
           unit: '원 (KRW)'
         };
         json.widgets.unshift(arbitrageWidget);
@@ -213,28 +216,29 @@ export default function MackerelDashboard() {
 
       // ═══ Ticker API 기반 신규 위젯 동적 주입 ═══
       if (tickerData) {
-        // W_TARIFF: 글로벌 관세율 비교
+        // W_TARIFF: 글로벌 관세율 비교 — 라우트 내 정적 관세율표 (라이브 아님)
         if (tickerData.tariffComparison) {
           json.widgets.push({
             id: 'w_tariff', title: '고등어(HS 030354) 글로벌 관세율 비교',
-            subtitle: 'WITS + KCS 기반 MFN/FTA 실적관세율 벤치마크',
+            subtitle: 'WITS + KCS 기반 MFN/FTA 실적관세율 벤치마크 (정적 관세율표)',
             chartType: 'Composed', xKey: 'country',
             bars: [{ key: 'mfn', name: 'MFN 관세율 (%)', color: '#f59e0b' }, { key: 'fta', name: 'FTA 적용 (%)', color: 'var(--color-success)' }],
             data: tickerData.tariffComparison,
-            badges: ['실시간 API', 'Verified'],
+            badges: ['Verified', 'STATIC'],
+            isLive: false,
             sit: `한국의 냉동고등어 MFN 관세율은 ${tickerData.tariff?.mfn}%이며, RCEP FTA 적용 시 ${tickerData.tariff?.fta}%로 면세 수입이 가능합니다. 노르웨이는 EEA 협정으로 관세 0%입니다.`,
             strat: 'RCEP/한-노르웨이 FTA 활용 시 관세 10%p 절감 가능. 연간 수입 13.6만 톤 기준 약 $26M 절감 효과로, FTA C/O(원산지증명서) 100% 확보가 최우선 과제입니다.',
-            apiSource: '📡 [LIVE API 연동: WITS + KCS] 관세율 실시간 비교',
-            source: 'World Bank WITS / 관세청 KCS (실시간)',
+            source: 'World Bank WITS + 관세청 고시 관세율표 (정적)',
             unit: '%'
           });
         }
-        // W_LANDING: 착지원가 시뮬레이터
+        // W_LANDING: 착지원가 시뮬레이터 — 환율(ECOS)·CIF(KCS) 모두 라이브일 때만 LIVE
         if (tickerData.landingCost) {
           const lc = tickerData.landingCost;
+          const landingLive = tickerData.fx?.isLive === true && tickerData.kcs?.isLive === true;
           json.widgets.push({
             id: 'w_landing', title: '착지원가 시뮬레이터 (MFN vs FTA)',
-            subtitle: `CIF × 환율(${tickerData.fx?.usdKrw}) × 관세 × VAT 실시간 계산`,
+            subtitle: `CIF × 환율(${tickerData.fx?.usdKrw}) × 관세 × VAT 산출`,
             chartType: 'Bar', xKey: 'scenario',
             bars: [{ key: 'cost', name: '착지원가 (원/kg)', color: '#38bdf8' }],
             data: [
@@ -242,29 +246,32 @@ export default function MackerelDashboard() {
               { scenario: 'FTA (0%)', cost: lc.ftaKrwKg },
               { scenario: '절감액', cost: lc.savingsKg },
             ],
-            badges: ['실시간 API'],
-            sit: `현재 환율 ${tickerData.fx?.usdKrw}원 기준, 노르웨이산 고등어 MFN 착지원가는 ${lc.mfnKrwKg?.toLocaleString()}원/kg, FTA 적용 시 ${lc.ftaKrwKg?.toLocaleString()}원/kg입니다.`,
+            isLive: landingLive,
+            sit: `환율 ${tickerData.fx?.usdKrw}원 기준, 노르웨이산 고등어 MFN 착지원가는 ${lc.mfnKrwKg?.toLocaleString()}원/kg, FTA 적용 시 ${lc.ftaKrwKg?.toLocaleString()}원/kg입니다.`,
             strat: `FTA 활용 시 kg당 ${lc.savingsKg}원(${lc.savingsPct}%) 절감. 연 13.6만 톤 수입 시 약 ${Math.round(lc.savingsKg * 136000 / 1e8)}억원 절감 가능.`,
-            apiSource: '📡 [LIVE API 연동: ECOS + KCS + WITS] 실시간 착지원가 계산',
-            source: 'ECOS 환율 + KCS CIF + WITS 관세 (실시간 합산)',
+            source: landingLive
+              ? 'ECOS 환율 + KCS CIF + WITS 관세 (라이브 합산)'
+              : 'ECOS/KCS 폴백 기준값 합산 (정적)',
             unit: '원/kg'
           });
         }
-        // W_MARGIN: 유통단계별 마진
+        // W_MARGIN: 유통단계별 마진 — KAMIS 라이브 여부 그대로 소비
         if (tickerData.distributionMargin) {
+          const kamisLive = tickerData.kamis?.isLive === true;
           json.widgets.push({
             id: 'w_dist_margin', title: '고등어 유통단계별 가격·마진 구조',
-            subtitle: 'KAMIS 도매가 + 해양수산부 위판가 기반 실시간 마진 분석',
+            subtitle: 'KAMIS 도매가 + 해양수산부 위판가 기반 마진 분석',
             chartType: 'Composed', xKey: 'stage',
             bars: [{ key: 'price', name: '단가 (원/kg)', color: '#38bdf8' }],
             lines: [{ key: 'margin', name: '마진율 (%)', color: 'var(--color-warning)' }],
             dualAxis: true,
             data: tickerData.distributionMargin,
-            badges: ['실시간 API'],
-            sit: `현재 KAMIS 기준 고등어 도매가 ${tickerData.kamis?.wholesaleKg?.toLocaleString()}원/kg, 소매가 ${tickerData.kamis?.retailKg?.toLocaleString()}원/kg입니다. 도매→소매 마진은 약 ${Math.round(((tickerData.kamis?.retailKg - tickerData.kamis?.wholesaleKg) / tickerData.kamis?.wholesaleKg) * 100)}%입니다.`,
+            isLive: kamisLive,
+            sit: `KAMIS 기준 고등어 도매가 ${tickerData.kamis?.wholesaleKg?.toLocaleString()}원/kg, 소매가 ${tickerData.kamis?.retailKg?.toLocaleString()}원/kg입니다. 도매→소매 마진은 약 ${Math.round(((tickerData.kamis?.retailKg - tickerData.kamis?.wholesaleKg) / tickerData.kamis?.wholesaleKg) * 100)}%입니다.`,
             strat: '산지-도매 구간 마진이 가장 높아, 산지 직구매(위판장 직접 낙찰) 비중 확대 시 원가 경쟁력 확보 가능합니다.',
-            apiSource: '📡 [LIVE API 연동: KAMIS + 해양수산부] 유통 단계별 실시간 가격',
-            source: 'KAMIS 농산물유통정보 + 해양수산부 (실시간)',
+            source: kamisLive
+              ? 'KAMIS 농산물유통정보 (라이브) + 산지·소매 환산 계수'
+              : 'KAMIS 폴백 기준값 (정적) + 산지·소매 환산 계수',
             unit: '원/kg, %'
           });
         }
@@ -272,41 +279,57 @@ export default function MackerelDashboard() {
 
       // ═══ KCS, Eurostat, OSH 기반 신규 위젯 주입 ═══
       if (kcsData) {
+        const kcsLive = kcsData.isLive === true;
         json.widgets.push({
           id: 'w_kcs_monthly', title: '관세청 월별 고등어 수입 실적 (HS 030354)',
-          subtitle: 'KCS 실시간 통관 데이터 기반 수입량 및 수입액 추이',
+          subtitle: 'KCS 통관 데이터 기반 수입량 및 수입액 추이',
           chartType: 'Composed', xKey: 'month',
           bars: [{ key: 'volume', name: '수입량 (톤)', color: '#38bdf8' }],
           lines: [{ key: 'value', name: '수입액 (천불)', color: '#10b981' }],
-          dualAxis: true, data: kcsData.monthly, badges: ['실시간 API', 'Verified'],
+          dualAxis: true, data: kcsData.monthly, badges: ['Verified'],
+          isLive: kcsLive,
+          syncDate: kcsLive ? undefined : '2024-01',
           sit: `관세청 통관 실적 기준 냉동고등어(HS 030354) 월별 수입량은 약 1.3만 톤 수준을 유지 중이며, CIF 단가는 톤당 $1,500~1,800 구간에서 등락을 반복하고 있습니다. 가을 시즌(9~11월) 에는 노르웨이산 조업 시기와 맞물려 수입량이 증가하는 패턴이 확인됩니다.`,
           strat: '월별 통관 물량 변동성을 국내 산지 위판가와 역상관관계로 분석하여, 대량 통관 시기에는 국내산 매입을 억제하고 수입산 우선 소진 전략을 구사해야 합니다. CIF 단가 급등 시 월별 매입 물량을 사전 조절하는 헤지 전략이 필요합니다.',
-          apiSource: '📡 [LIVE API 연동: 관세청 KCS] 실시간 월별 통관 실적',
-          source: '관세청 수출입무역통계', unit: '톤, $1,000'
+          source: kcsLive ? '관세청 KCS OpenAPI (라이브 통관 실적)' : '관세청 수출입무역통계 폴백 (2023-08~2024-01 정적)',
+          unit: '톤, $1,000'
         });
         json.widgets.push({
           id: 'w_kcs_origin', title: '관세청 국가별 수입 점유율',
-          subtitle: 'KCS 실시간 통관 데이터 기반 원산지 비중',
+          subtitle: 'KCS 통관 데이터 기반 원산지 비중',
           chartType: 'Pie', xKey: 'name',
-          pieDataKey: 'value', data: kcsData.origin, badges: ['실시간 API', 'Verified'],
+          pieDataKey: 'value', data: kcsData.origin, badges: ['Verified'],
+          isLive: kcsLive,
+          syncDate: kcsLive ? undefined : '2024',
           sit: `관세청 통관 실적 기준 노르웨이산이 한국 냉동고등어 수입의 상당 비중(UN Comtrade 2024 기준 약 77%)을 차지하고 있다. 단일 국가 의존도가 높아 노르웨이 쿼터 변동, 기후·지정학적 리스크 발생 시 공급 차질 가능성이 있다.`,
           strat: '노르웨이 의존도가 높은 만큼 영국·아이슬란드·페로제도 등 대체 원산지 발굴을 진행하고, 장기 공급 계약 비율을 높여 가격 변동 리스크를 완화하십시오.',
-          source: '관세청 수출입무역통계', unit: '%'
+          source: kcsLive ? '관세청 KCS OpenAPI (라이브 통관 실적)' : '관세청 수출입무역통계 폴백 (정적)',
+          unit: '%'
         });
       }
 
-      if (eurostatData) {
+      if (eurostatData && Array.isArray(eurostatData.imports) && eurostatData.imports.length > 0) {
+        // L-09: 라우트가 실데이터 파싱에 성공한 경우(isLive)에만 LIVE. 폴백은 정적 추정치로 정직 표기.
+        const euLive = eurostatData.isLive === true;
+        const euRows = eurostatData.imports;
+        const euLast = euRows[euRows.length - 1];
+        const euFirst = euRows[0];
+        const euGrowthPct = euFirst?.value > 0 ? Math.round(((euLast.value - euFirst.value) / euFirst.value) * 100) : null;
         json.widgets.push({
           id: 'w_eu_import', title: 'EU-27 고등어 수입 실적 추이',
-          subtitle: 'Eurostat SDMX 실시간 동기화 데이터',
+          subtitle: euLive
+            ? `Eurostat Comext 역외(Extra-EU) 수입 실측 (HS 030354, ~${euLast.year})`
+            : 'Eurostat 정적 추정치 (2019-2023 폴백)',
           chartType: 'Composed', xKey: 'year',
           bars: [{ key: 'volume', name: '수입량 (천톤)', color: '#8b5cf6' }],
           lines: [{ key: 'value', name: '수입액 (백만 유로)', color: '#f59e0b' }],
-          dualAxis: true, data: eurostatData.imports, badges: ['실시간 API'],
-          sit: `EU-27 고등어 수입 시장은 연간 26만 톤 이상으로 성장하여 글로벌 수입 시장의 주요 권역으로 자리매김하고 있습니다. 네덜란드·독일·프랑스가 주요 수입국이며, 수입액 기준 5년간 연평균 8% 성장을 기록하고 있습니다.`,
+          dualAxis: true, data: euRows,
+          isLive: euLive,
+          syncDate: euLive ? undefined : (eurostatData.dataAsOf || '2023-12-31'),
+          sit: `${euLive ? 'Eurostat Comext 실측' : '정적 추정치'} 기준 ${euLast.year}년 EU-27 ${euLive ? '역외 ' : ''}고등어 수입은 약 ${euLast.volume?.toLocaleString()}천 톤, ${euLast.value?.toLocaleString()}백만 유로 규모입니다.${euGrowthPct !== null ? ` ${euFirst.year}년 대비 수입액은 ${euGrowthPct >= 0 ? '+' : ''}${euGrowthPct}% 변동했습니다.` : ''}`,
           strat: 'EU 내수 수요 증가는 글로벌 고등어 단가 상승을 견인하므로, 선도 거래 비율을 30% 이상으로 확대하여 헤지해야 합니다. 단, EU의 IUU 규제 강화 시 인증 도태 모듈의 선제적 도입이 필요합니다.',
-          apiSource: '📡 [LIVE API 연동: Eurostat SDMX] EU 회원국 실시간 무역 데이터',
-          source: 'Eurostat', unit: '천톤, 백만 유로'
+          source: eurostatData.source || 'Eurostat',
+          unit: '천톤, 백만 유로'
         });
       }
 
@@ -316,43 +339,60 @@ export default function MackerelDashboard() {
           acc[f.country] = (acc[f.country] || 0) + 1; return acc;
         }, {});
         const oData = Object.entries(counts).map(([name, value], i) => ({ name, value, fill: ['#0ea5e9', '#f59e0b', '#10b981', '#8b5cf6'][i%4] }));
+        const oshLive = oshData.meta?.source === 'OSH_LIVE';
+        // 패턴 K 정직화: OSH 식품 섹터 표본은 참치·새우 등 일반 수산가공사 — '고등어 시설'로 표기하지 않는다
         json.widgets.push({
-          id: 'w_osh_facilities', title: '글로벌 고등어 취급 시설 매핑',
-          subtitle: 'Open Supply Hub 실시간 등록 시설(가공/냉동창고) 국가별 비중',
-          chartType: 'Pie', xKey: 'name', pieDataKey: 'value', data: oData, badges: ['실시간 API'],
-          sit: `OSH 플랫폼에 등록된 고등어 취급 시설 총 ${oshData.meta?.count || oshData.facilities.length}개 중 아시아(CN/ID/TH/VN) 및 북유럽(KR/EC) 시설이 다수 확인됩니다. 국가별 시설 분포는 글로벌 공급망의 재가공 허브 위치를 반영하며, 중국·태국이 1차 가공 허브로 기능하고 있습니다.`,
+          id: 'w_osh_facilities', title: '글로벌 수산식품 가공 시설 분포 (OSH 등록)',
+          subtitle: 'Open Supply Hub 식품 섹터 등록 시설 국가별 비중 — 참치·새우 등 포함, 고등어 전용 아님',
+          chartType: 'Pie', xKey: 'name', pieDataKey: 'value', data: oData,
+          isLive: oshLive,
+          sit: `OSH 플랫폼 식품(Food) 섹터에 등록된 수산식품 가공·취급 시설 ${oshData.meta?.count || oshData.facilities.length}개소의 국가별 분포입니다. 표본에는 참치·새우 등 일반 수산가공사가 포함되며, OSH는 고등어 전용 시설 필터를 제공하지 않습니다. 중국·태국·베트남 등 아시아권이 1차 가공 허브로 기능하고 있습니다.`,
           strat: '글로벌 공급망 투명성 제고를 위해 노르웨이 1차 가공 공장들의 OSH 데이터와 HACCP/ISO 22000 위생 등급을 교차 검증해야 합니다. ESG 공시 의무화 대비 시 공급업체 위생 인증 현황을 선제적으로 확보하십시오.',
-          apiSource: '📡 [LIVE API 연동: Open Supply Hub] 글로벌 시설 위치',
-          source: 'Open Supply Hub', unit: '개소'
+          source: oshLive
+            ? 'Open Supply Hub 시설 API (라이브 조회)'
+            : 'Open Supply Hub 큐레이션 폴백 DB (수산식품 시설, 고등어 전용 아님)',
+          unit: '개소'
         });
       }
 
       // ═══ OEC & UN Comtrade 기반 신규 위젯 주입 ═══
-      if (comtradeData && comtradeData.tradeFlows) {
+      if (comtradeData && comtradeData.tradeFlows && comtradeData.tradeFlows.length > 0) {
+        const ctLive = comtradeData.isLive === true;
+        // 라이브 파싱 데이터는 교역액(USD), 폴백 매핑은 교역량(톤) — 단위 정직 표기
+        const ctUnit = ctLive ? '$ (교역액)' : '톤';
+        const ctName = ctLive ? '교역액 ($)' : '교역량 (톤)';
+        const ctTop = comtradeData.tradeFlows[0];
         json.widgets.push({
           id: 'w_comtrade_flow', title: '글로벌 고등어 교역 매트릭스',
-          subtitle: 'UN Comtrade 기반 수출국 → 수입국 무역 흐름',
+          subtitle: `UN Comtrade 기반 수출국 → 수입국 무역 흐름 (${ctLive ? '2023년 실측, 교역액 기준' : '정적 매핑, 교역량 기준'})`,
           chartType: 'Bar', xKey: 'source', // Sankey 미지원 → Bar Fallback
-          bars: [{ key: 'value', name: '교역량 (톤)', color: '#38bdf8' }],
-          data: comtradeData.tradeFlows, badges: ['실시간 API'],
-          sit: `노르웨이를 허브로 EU·중국·일본·한국 향 수출이 전 세계 고등어 교역량의 과반을 차지합니다. 특히 노르웨이→EU 항로가 85,000톤으로 최대이며, 노르웨이→한국은 35,000톤으로 4위입니다.`,
-          strat: '노르웨이발 수입 루트 병목 현상 발생 시 영국·아일랜드 대서양 루트를 즐시 가동할 수 있도록 대체 공급처 다변화 채널을 상시 유지해야 합니다. 영국→나이지리아 항로(25,000톤)는 아프리카 시장의 성장성을 나타내며, 신시장 진출 검토 시 참고할 만합니다.',
-          apiSource: '📡 [LIVE API 연동: UN Comtrade] 글로벌 무역 흐름망',
-          source: 'UN Comtrade (실시간)', unit: '톤'
+          bars: [{ key: 'value', name: ctName, color: '#38bdf8' }],
+          data: comtradeData.tradeFlows,
+          isLive: ctLive,
+          syncDate: ctLive ? undefined : '2023',
+          sit: `노르웨이를 허브로 EU·중국·일본·한국 향 수출이 글로벌 고등어 교역의 중심축입니다. 표시 흐름 중 최대는 ${ctTop?.source}→${ctTop?.target}(${ctTop?.value?.toLocaleString()}${ctLive ? '$' : '톤'})입니다.`,
+          strat: '노르웨이발 수입 루트 병목 현상 발생 시 영국·아일랜드 대서양 루트를 즉시 가동할 수 있도록 대체 공급처 다변화 채널을 상시 유지해야 합니다. 영국·아일랜드발 아프리카(나이지리아) 항로는 신시장 진출 검토 시 참고할 만합니다.',
+          source: comtradeData.source || 'UN Comtrade',
+          unit: ctUnit
         });
       }
 
-      if (oecData && oecData.topExporters) {
+      if (oecData && oecData.topExporters && oecData.topExporters.length > 0) {
+        const oecLive = oecData.meta?.source === 'OEC_LIVE';
+        const oecTop3 = oecData.topExporters.slice(0, 3);
+        const oecTop3Share = Math.round(oecTop3.reduce((s: number, d: any) => s + (d.share || 0), 0));
         json.widgets.push({
           id: 'w_oec_benchmark', title: 'OEC 글로벌 수출 경쟁력 벤치마크',
-          subtitle: `OEC Tesseract OLAP 엔진 기반 주요 수출국 점유율 (총 교역규모: $${oecData.globalTradeValueM}M)`,
+          subtitle: `OEC Tesseract OLAP 엔진 기반 주요 수출국 점유율 (총 교역규모: $${oecData.globalTradeValueM}M, ${oecData.year || '2023'}년)`,
           chartType: 'Bar', xKey: 'country',
           bars: [{ key: 'share', name: '수출 점유율 (%)', color: '#10b981' }],
-          data: oecData.topExporters, badges: ['실시간 API', 'Verified'],
-          sit: `OEC 데이터 기준 고등어(HS 0303) 글로벌 수출 시장은 중국(15.2%)·노르웨이(14.1%)·러시아(8.9%) 3국이 전체의 38%를 집중 장악하고 있으며, HHI 지수 기준 중위권 집중도로 공급망 리스크가 존재합니다.`,
-          strat: '노르웨이·러시아의 어획 쿼터 변동 뉴스를 Live Ticker와 연동하여 조기 경보 시스템을 가동해야 합니다. 중국의 수입·수출 동시 점유 위치는 중국 역내 재가공 후 재수출하는 구조로, 원산지 세탁 리스크를 주시해야 합니다.',
-          apiSource: '📡 [LIVE API 연동: OEC] Observatory of Economic Complexity',
-          source: 'OEC.world', unit: '%'
+          data: oecData.topExporters, badges: ['Verified'],
+          isLive: oecLive,
+          syncDate: oecLive ? undefined : '2023',
+          sit: `OEC 데이터 기준 고등어(HS 0303) 글로벌 수출 시장은 ${oecTop3.map((d: any) => `${d.country}(${d.share}%)`).join('·')} 상위 3국이 전체의 약 ${oecTop3Share}%를 장악하고 있으며, 공급망 집중 리스크가 존재합니다.`,
+          strat: '노르웨이·러시아의 어획 쿼터 변동 뉴스를 조기 경보 시스템과 연동해야 합니다. 중국의 수입·수출 동시 점유 위치는 중국 역내 재가공 후 재수출하는 구조로, 원산지 세탁 리스크를 주시해야 합니다.',
+          source: oecLive ? 'OEC Tesseract API (라이브)' : 'OEC 2023 벤치마크 (정적 폴백)',
+          unit: '%'
         });
       }
 
@@ -360,7 +400,7 @@ export default function MackerelDashboard() {
       if (hsData && hsData.classifications) {
         json.widgets.push({
           id: 'w_hs_class', title: '고등어 가공형태별 HS 분류기',
-          subtitle: 'HS Ping API 실시간 품목분류 (원물, 필렛, 염장)',
+          subtitle: 'HS Ping 품목분류 참조표 (원물, 필렛, 염장)',
           chartType: 'Bar', xKey: 'product',
           bars: [{ key: 'confidence', name: '분류 신뢰도 (%)', color: '#10b981' }],
           data: [
@@ -377,6 +417,7 @@ export default function MackerelDashboard() {
 
       if (tariffsData && tariffsData.data) {
         const td = tariffsData.data;
+        const tariffsLive = tariffsData.meta?.source === 'TARIFFS_LIVE';
         json.widgets.push({
           id: 'w_multi_cost', title: '복합 착지원가 시뮬레이터 (노르웨이→한국)',
           subtitle: 'Tariffs API 기반 입체적 관세(MFN, EFTA) 누적 산출',
@@ -387,11 +428,12 @@ export default function MackerelDashboard() {
             { type: 'EFTA 협정관세', rate: td.additionalDuties?.[0]?.rate || -10 },
             { type: '최종 적용세율', rate: td.totalDutyRate || 0 }
           ],
-          badges: ['실시간 API', 'Verified'],
-          sit: `현재 노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이나, 한-EFTA FTA 적용으로 최종 0%가 적용됩니다.`,
-          strat: 'FTA 100% 활용을 위해 노르웨이 수출업체의 원산지 증명서(C/O) 발급을 계약서에 명문화하고 실시간 추적해야 합니다.',
-          apiSource: '📡 [LIVE 연동: Tariffs.io] 실시간 복합 관세율',
-          source: 'Tariffs API', unit: '%'
+          badges: ['Verified'],
+          isLive: tariffsLive,
+          sit: `노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이나, 한-EFTA FTA 적용으로 최종 0%가 적용됩니다.`,
+          strat: 'FTA 100% 활용을 위해 노르웨이 수출업체의 원산지 증명서(C/O) 발급을 계약서에 명문화하고 추적해야 합니다.',
+          source: tariffsLive ? 'Tariffs API (라이브 조회)' : 'Tariffs 큐레이션 관세 모델 (정적 폴백)',
+          unit: '%'
         });
       }
 
@@ -409,10 +451,13 @@ export default function MackerelDashboard() {
             { check: '종합 리스크', score: cr.riskScore }
           ],
           badges: ['STATIC', 'Verified'],
+          isLive: cr.isLive === true,
           sit: `검색된 공급사 "${cr.entity}"에 대해 OFAC(${cr.ofac?.status === 'clean' ? '적합' : '위험'}) 및 EU(${cr.eu?.status === 'clean' ? '적합' : cr.eu?.status === 'partial' ? '부분적합' : '위험'}) 제재 모니터링이 완료되었습니다. 종합 리스크 수준: ${cr.riskLevel}. 특히 러시아산 고등어의 중국 우회 가공 수출 사례가 강화된 감시 대상입니다.`,
           strat: '공급망의 실소유주(UBO)를 OFAC API를 통해 상시 교차 검증하십시오. 러시아 제재 강화 시 노르웨이 직수입 대비 중국 경유 수입의 원산지 세탁 리스크가 급상승할 수 있으며, EU CBAM 시행 시 탄소발자국 인증도 필수적으로 요구됩니다.',
-          apiSource: 'OECD/EJF 이불법무역(IUU) 및 인권 위반 데이터베이스',
-          source: 'Compliance API', unit: '점'
+          source: cr.isLive === true
+            ? 'OFAC SDN 라이브 조회 + OECD/EJF 불법어업(IUU)·인권 위반 참조 DB'
+            : 'OECD/EJF 불법어업(IUU)·인권 위반 참조 DB (정적)',
+          unit: '점'
         });
       }
 
@@ -425,6 +470,8 @@ export default function MackerelDashboard() {
           bars: [{ key: 'valueUsdM', name: '한국 수입액 ($M)', color: '#3b82f6' }],
           data: supplierData.data,
           badges: ['Comtrade 실측'],
+          isLive: false,
+          telemetryStatus: 'SYNCED', // 2024 Comtrade 실측 동기화 (라이브 아님)
           syncDate: '2024',
           sit: `2024년 한국 냉동고등어 수입은 노르웨이가 $83.1M(76.7%)로 압도적이며, 나머지는 베트남($11.2M)·중국($6.3M)·네덜란드($1.9M) 등 가공·중계 물량입니다. 1국 의존도 77%는 노르웨이 어획쿼터·수출규제·환율 변동에 그대로 노출되는 구조적 리스크입니다.`,
           strat: '노르웨이 쿼터 감축에 대비해 동일 북동대서양 자원을 어획하는 영국·아일랜드·아이슬란드·페로(공개 무역통계상 주요 고등어 수출국)와 예비 스팟 계약 풀을 구축하고, 베트남·중국 가공라인을 보조 채널로 이원화해 1국 의존도를 70% 이하로 낮추십시오.',
@@ -458,20 +505,31 @@ export default function MackerelDashboard() {
   let { kpis, widgets } = data;
 
   // 동적 KPI 계산 로직 — 6개 전수 연동 (Dynamic Calculation)
+  // 연간 확정 행만 사용: '2025Q1'(분기)·'2025E'(추정) 등 비연간 행은 KPI 산출에서 제외하고,
+  // 타이틀의 기준연도를 실제 사용한 행의 연도로 동적 생성한다 (타이틀·기준연도·값 일치).
   if (widgets && widgets.length > 0) {
+    const isAnnualYear = (y: any) => /^\d{4}$/.test(String(y));
     const getLastVal = (wid: string, key: string) => {
       const wd = widgets.find((w:any)=>w.id===wid)?.data;
       return wd ? wd[wd.length-1]?.[key] : null;
     };
+    const getLastAnnualRow = (wid: string) => {
+      const wd = widgets.find((w:any)=>w.id===wid)?.data;
+      if (!wd) return null;
+      const annual = wd.filter((r: any) => isAnnualYear(r.year));
+      return annual.length > 0 ? annual[annual.length - 1] : null;
+    };
 
-    // kpi1: 글로벌 총 어획량 (w01) — Scomber 4종 합산
-    const w01d = widgets.find((w:any)=>w.id==='w01')?.data;
-    const latestCatch = w01d ? (() => { const last = w01d[w01d.length-1]; return (last?.['태평양참고등어']||0)+(last?.['대서양고등어']||0)+(last?.['대서양참고등어']||0)+(last?.['블루고등어']||0); })() : null;
-    // kpi2: 글로벌 무역 규모 (w06 수출+수입 최신연도 → 단가 환산)
-    const latestExport = getLastVal('w06', '글로벌수출');
-    const latestImport = getLastVal('w06', '글로벌수입');
-    // kpi3: 글로벌 평균 수출 단가 (w17 노르웨이_수출단가 최신)
-    const latestNorwayPrice = getLastVal('w17', '노르웨이_수출단가');
+    // kpi1: 글로벌 총 어획량 (w01) — Scomber 4종 합산, 연간 확정 행 기준
+    const w01Last = getLastAnnualRow('w01');
+    const latestCatch = w01Last ? (w01Last['태평양참고등어']||0)+(w01Last['대서양고등어']||0)+(w01Last['대서양참고등어']||0)+(w01Last['블루고등어']||0) : null;
+    // kpi2: 글로벌 무역 규모 (w06 최신 연간 행) — 수출액 기준(수출량 × 평균단가 $1,573/t, 수출+수입 합산은 이중계상이라 미사용)
+    const w06Last = getLastAnnualRow('w06');
+    const latestExport = w06Last ? w06Last['글로벌수출'] : null;
+    // kpi3: 노르웨이 수출 단가 (w17 최신 시점 — 월별 시계열)
+    const w17d = widgets.find((w:any)=>w.id==='w17')?.data;
+    const w17Last = w17d ? w17d[w17d.length-1] : null;
+    const latestNorwayPrice = w17Last?.['노르웨이_수출단가'] ?? null;
     // kpi4: 수입 의존도 (w13)
     const latestDep = getLastVal('w13', '수입의존도');
     // kpi5: 피쉬밀 증가율 (w16 첫해→마지막해)
@@ -483,14 +541,14 @@ export default function MackerelDashboard() {
 
     kpis = {
       ...kpis,
-      ...(latestCatch != null && {
-        kpi1: { ...kpis.kpi1, value: `${(latestCatch / 10000).toLocaleString()}만 톤` }
+      ...(latestCatch != null && latestCatch > 0 && {
+        kpi1: { ...kpis.kpi1, title: `${w01Last.year} Scomber속 순수 고등어 총어획량`, value: `${(latestCatch / 10000).toLocaleString()}만 톤` }
       }),
-      ...(latestExport != null && latestImport != null && {
-        kpi2: { ...kpis.kpi2, value: `$${((latestExport + latestImport) * 1573 / 1e9).toFixed(2)} Billion` }
+      ...(latestExport != null && latestExport > 0 && {
+        kpi2: { ...kpis.kpi2, title: `${w06Last.year} 글로벌 무역 시장 규모 (연간)`, value: `$${(latestExport * 1573 / 1e9).toFixed(2)} Billion` }
       }),
       ...(latestNorwayPrice != null && {
-        kpi3: { ...kpis.kpi3, value: `$${latestNorwayPrice.toLocaleString()} / 톤` }
+        kpi3: { ...kpis.kpi3, title: `노르웨이 수출 단가 (${w17Last.year})`, value: `$${latestNorwayPrice.toLocaleString()} / 톤` }
       }),
       ...(latestDep != null && {
         kpi4: { ...kpis.kpi4, value: `${latestDep}%` }
@@ -504,6 +562,17 @@ export default function MackerelDashboard() {
     };
   }
   const kpiKeys = Object.keys(kpis);
+
+  // 헤더 카운트 동적 산출: 실제 렌더되는 위젯(5-Pillar 매핑 위젯 + 외부 통합 위젯)만 집계 (패턴 I)
+  const renderedWidgetCount = (Object.keys(PILLAR_WIDGET_IDS) as string[]).reduce(
+    (sum, pid) =>
+      sum +
+      (widgets?.filter((w: any) => PILLAR_WIDGET_IDS[pid].includes(w.id)).length || 0) +
+      (EXTRA_BY_PILLAR[pid]?.length || 0),
+    0
+  );
+  // 티커 라이브 여부: 라우트가 보고한 라이브 소스 수 > 0일 때만 (L-12)
+  const tickerHasLive = (tickerData?.liveSourceCount ?? 0) > 0;
 
   /* ─── Chart Renderer ─── */
   const renderChart = (widget: any) => {
@@ -653,15 +722,15 @@ export default function MackerelDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 고등어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Mackerel Strategic Command Center — {widgets?.length || 0} 위젯 · 6 KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>Mackerel Strategic Command Center — {renderedWidgetCount} 위젯 · {kpiKeys.length} KPI</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
             background: '#181818', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerData ? 'var(--color-success)' : '#64748b', boxShadow: tickerData ? '0 0 8px #1ed760' : 'none', animation: tickerData ? 'pulse 2s infinite' : 'none' }} />
-            <span><span style={{ color: 'var(--text-secondary)' }}>EUMOFA 2026 + INFOFISH 2025 + KFAS</span> · {widgets?.length || 0} Widgets · {tickerData ? `${tickerData.liveSourceCount}/${tickerData.totalSources} Live API` : '정적 데이터'}</span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerHasLive ? 'var(--color-success)' : '#64748b', boxShadow: tickerHasLive ? '0 0 8px #1ed760' : 'none', animation: tickerHasLive ? 'pulse 2s infinite' : 'none' }} />
+            <span><span style={{ color: 'var(--text-secondary)' }}>EUMOFA 2026 + INFOFISH 2025 + KFAS</span> · {renderedWidgetCount} 위젯 · {tickerData ? `라이브 API ${tickerData.liveSourceCount}/${tickerData.totalSources}` : '정적 데이터'}</span>
           </div>
         </div>
       </header>
@@ -708,21 +777,23 @@ export default function MackerelDashboard() {
       {tickerData && (
         <div style={{ marginBottom: '2rem', padding: '1rem 1.5rem', background: '#181818', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', overflow: 'hidden' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-success)', textTransform: 'uppercase', letterSpacing: '1px' }}>LIVE TICKER</span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: tickerHasLive ? 'var(--color-success)' : '#64748b', boxShadow: tickerHasLive ? '0 0 8px #1ed760' : 'none', animation: tickerHasLive ? 'pulse 2s infinite' : 'none' }} />
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: tickerHasLive ? 'var(--color-success)' : 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>{tickerHasLive ? 'LIVE 티커' : '정적 티커 (폴백 기준값)'}</span>
           </div>
           {[{
-            label: 'USD/KRW', value: tickerData.fx?.usdKrw?.toLocaleString(), change: tickerData.fx?.change, live: tickerData.fx?.isLive
+            label: 'USD/KRW', value: tickerData.fx?.usdKrw?.toLocaleString(), change: tickerData.fx?.change, live: tickerData.fx?.isLive === true
           }, {
-            label: 'CIF 단가', value: `$${tickerData.kcs?.cifUsdTon?.toLocaleString()}/t`, change: tickerData.kcs?.change, live: tickerData.kcs?.isLive
+            label: 'CIF 단가', value: `$${tickerData.kcs?.cifUsdTon?.toLocaleString()}/t`, change: tickerData.kcs?.change, live: tickerData.kcs?.isLive === true
           }, {
-            label: 'KAMIS 도매', value: `₩${tickerData.kamis?.wholesaleKg?.toLocaleString()}/kg`, change: tickerData.kamis?.change, live: tickerData.kamis?.isLive
+            label: 'KAMIS 도매', value: `₩${tickerData.kamis?.wholesaleKg?.toLocaleString()}/kg`, change: tickerData.kamis?.change, live: tickerData.kamis?.isLive === true
           }, {
-            label: 'MFN 관세', value: `${tickerData.tariff?.mfn}%`, change: null, live: true
+            // 관세율은 라우트 정적 고시값 — 라이브 점 표시 안 함 (L-09)
+            label: 'MFN 관세', value: `${tickerData.tariff?.mfn}%`, change: null, live: false
           }, {
-            label: 'FTA(RCEP)', value: `${tickerData.tariff?.fta}%`, change: null, live: true
+            label: 'FTA(RCEP)', value: `${tickerData.tariff?.fta}%`, change: null, live: false
           }, {
-            label: '착지원가(FTA)', value: `₩${tickerData.landingCost?.ftaKrwKg?.toLocaleString()}/kg`, change: null, live: true
+            // 착지원가는 환율(ECOS)·CIF(KCS) 모두 라이브일 때만 라이브로 표기
+            label: '착지원가(FTA)', value: `₩${tickerData.landingCost?.ftaKrwKg?.toLocaleString()}/kg`, change: null, live: tickerData.fx?.isLive === true && tickerData.kcs?.isLive === true
           }].map((item, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 12px', borderLeft: i > 0 ? '1px solid #272727' : 'none' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600 }}>{item.label}</span>
@@ -868,7 +939,9 @@ export default function MackerelDashboard() {
     const situation = w.sit || w.situation || w.desc || '';
     const takeaway = w.strat || w.tak || w.takeaway || '';
     const isStatic = w.badges && w.badges.includes('STATIC');
-    const isLive = !isStatic && ((w.badges && w.badges.includes('실시간 API')) || w.apiSource || w.id === 'w_arbitrage_live');
+    // L-09/L-12: LIVE 판정은 라우트가 선언한 isLive === true 단일 기준.
+    // apiSource 존재·배지 문자열 등 휴리스틱으로 LIVE를 격상하지 않는다.
+    const isLive = w.isLive === true;
     const isEstimate = (w.reliability && w.reliability <= 70) || (w.badges && w.badges.includes('Estimate'));
     const isForecast = w.badges && w.badges.includes('Forecast');
     const isSimulation = SIMULATION_WIDGET_IDS.includes(w.id);
@@ -884,8 +957,14 @@ export default function MackerelDashboard() {
     const cardDescParts = [w.subtitle, badgeSuffix].filter(Boolean);
     const cardDesc = cardDescParts.join(' — ') || '고등어 인텔리전스 위젯';
 
-    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = isLive ? 'LIVE' : (isStatic || isSimulation || isEstimate ? 'STATIC' : 'SYNCED');
-    const syncDate = isLive ? new Date().toISOString().split('T')[0] : (w.syncDate || '2026-05');
+    // 라우트 isLive:false(폴백) 응답은 STATIC으로 강등. 주입부가 명시한 telemetryStatus는 존중.
+    const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' = isLive
+      ? 'LIVE'
+      : w.telemetryStatus === 'SYNCED'
+        ? 'SYNCED'
+        : (isStatic || isSimulation || isEstimate || w.isLive === false ? 'STATIC' : 'SYNCED');
+    // 신선도 위조 금지: 라이브일 때만 오늘 날짜, 그 외엔 위젯이 가진 실제 데이터 빈티지만 표기 (없으면 생략)
+    const syncDate = isLive ? new Date().toISOString().split('T')[0] : w.syncDate;
 
     const source = w.apiSource
       ? w.apiSource

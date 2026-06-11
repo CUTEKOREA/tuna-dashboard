@@ -10,6 +10,7 @@ import {
 } from './BeefWidgets';
 import BeefUsdaWidgets from './BeefUsdaWidgets';
 import { InsightFeedCostSpread, InsightCutTracker, InsightDiseaseRadar } from './BeefEmpiricalInsights';
+import beefUsdaRaw from '../data/beef_usda_widgets.json';
 
 const TelemetryBadge = ({ status, syncDate }: any) => {
   if (!status) return null;
@@ -48,6 +49,12 @@ const WIDGET_MAP: Record<string, React.FC<any>> = {
   W9: W9_DiseaseRisk, W10: W10_CarbonFootprint, W11: W11_Premium,
 };
 
+// 헤더 위젯 카운트 — 하드코딩 금지(패턴 I), 실렌더 구성에서 동적 산출
+const INSIGHT_COMPONENTS = [InsightFeedCostSpread, InsightCutTracker, InsightDiseaseRadar];
+const TOTAL_WIDGET_COUNT = Object.keys(WIDGET_MAP).length
+  + ((beefUsdaRaw as any).widgets?.length || 0)
+  + INSIGHT_COMPONENTS.length;
+
 export default function BeefDashboard() {
   const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
 
@@ -66,7 +73,7 @@ export default function BeefDashboard() {
                 🐂 소고기(Beef) 글로벌 밸류체인 대시보드
               </h1>
               <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>
-                [V4.2 S-Grade] FAOSTAT·KOSIS·KAMIS·WOAH 실데이터 기반 한우/수입육 공급망 + 광우병 리스크 분석 (11개 위젯)
+                [V4.2 S-Grade] FAOSTAT·KOSIS·KAMIS·WOAH 실데이터 기반 한우/수입육 공급망 + 광우병 리스크 분석 ({TOTAL_WIDGET_COUNT}개 위젯)
               </p>
             </div>
           </div>

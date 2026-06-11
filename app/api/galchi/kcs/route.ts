@@ -6,16 +6,24 @@ export const revalidate = 300;
 /**
  * 갈치 관세청 수입 데이터 API
  * GET /api/galchi/kcs?year=2025&month=04
- * HS Code: 0303899060 (냉동 갈치)
+ * HS Code: 0303899060
+ *
+ * ⚠️ 데이터 원천 재검증 중 (2026-06-11): HSK 0303899060의 갈치 귀속이 확인되지 않음.
+ * 갈치 통관 실측은 별도 HSK(0303892000 추정)로 재수집 예정 — 별도 트랙.
+ * 그 전까지 본 라우트 응답은 "갈치" 데이터로 단정해 소비하지 말 것 (dataQualityNote 참조).
  *
  * mackerel-kcs와 동일 패턴 (자체 regex parsing).
  */
+
+const DATA_QUALITY_NOTE =
+  "HSK 0303899060의 품목 귀속 재검증 중(HSK 재확인 필요) — 갈치 통관 데이터로 단정 금지";
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
 
 const FALLBACK_DATA = {
-  source: "관세청 HS 0303899060 (2018-2025, Forensic 파싱)",
+  source: "관세청 HS 0303899060 (2018-2025, Forensic 파싱 · 품목 귀속 재검증 중)",
+  dataQualityNote: DATA_QUALITY_NOTE,
   isLive: false,
   lastUpdated: "2026-05-29",
   summary: {
@@ -100,7 +108,8 @@ export async function GET(request: Request) {
     const cifPerKg = Math.round(totalDlr / totalWgt * 100) / 100;
 
     return NextResponse.json({
-      source: `관세청 nitemtrade 실시간 HS 0303899060 (${year}${month ? "-" + month : ""}, ${items.length}건)`,
+      source: `관세청 nitemtrade 실시간 HS 0303899060 (${year}${month ? "-" + month : ""}, ${items.length}건 · 품목 귀속 재검증 중)`,
+      dataQualityNote: DATA_QUALITY_NOTE,
       isLive: true,
       lastUpdated: new Date().toISOString(),
       summary: { totalWgt, totalDlr, cnWgt, cnDlr, cnPct, cifPerKg },

@@ -7,13 +7,13 @@ import WidgetCard from '../WidgetCard';
 const markets = [
   {
     flag: '🇺🇸', name: '미국', color: '#10b981',
-    character: '사시미·포케/스시 소비대국, 냉동 saku/loin 수요',
-    tariff: '신선/냉동 무관세 (2025~26 상호관세 사전심사)',
+    character: '사시미·포케/스시 소비대국, 냉동 사쿠·로인 수요',
+    tariff: '상호관세 15% (2025-11-14 발효) — 인니·태국 19%·베트남 20% 대비 4~5%p 우위',
     entry: 'SIMP + FDA(CO 라벨) + 히스타민 HACCP',
     topPartner: 'True World Foods (NJ)',
-    partnerNote: '이미 한국산 bigeye saku 매입 중',
+    partnerNote: '이미 한국산 빅아이 사쿠 매입 중',
     top5: [
-      { name: 'True World Foods', note: '한국산 saku 실매입' },
+      { name: 'True World Foods', note: '한국산 사쿠 실매입' },
       { name: 'Sea Delight', note: '전 포맷 일치' },
       { name: 'Anova Food', note: 'CO·소매 전문' },
       { name: 'H-Mart', note: '한국 직수입 테스트' },
@@ -31,7 +31,7 @@ const markets = [
       { name: 'NESI', note: '英 최대 슈퍼프로즌 수입' },
       { name: 'Atari-Ya/T&S', note: '빠른 파일럿 가능' },
       { name: 'Direct Seafoods', note: '사시미급 라인 보유' },
-      { name: 'Taiko Foods', note: 'YO! Sushi, 대량 YF' },
+      { name: 'Taiko Foods', note: 'YO! Sushi, 대량 황다랑어' },
       { name: 'M&J Seafood', note: '전국 외식망' },
     ],
   },
@@ -67,11 +67,11 @@ export default function SasExportPartnerStrategy() {
       iconColor="#f59e0b"
       pillar="S2"
       cardDesc="부산 감천항 기반 -60℃ 사시미 가공공장의 3대 시장별 최우선 파트너 & 진입 전략"
-      telemetry={{ status: 'STATIC', syncDate: '2025' }}
+      telemetry={{ status: 'STATIC', syncDate: '2025-11' }}
       takeaway={{
-        situation: "한국 사시미 가공공장의 수출 전략은 3대 시장별로 명확히 차별화됩니다. 미국은 True World Foods가 이미 한국산 bigeye saku를 매입 중이며, 영국은 Korea-UK FTA(MFN 18% 회피)가 동남아 대비 결정적 가격 우위입니다. 일본은 한국 횟감의 80%가 이미 진입해 있으나, 상사(東洋冷蔵)·仲卸(やま幸) 채널 다변화가 필요합니다.",
-        actionPlan: "3단계 접근이 권장됩니다. ① 빠른 파일럿(H-Mart·Atari-Ya·やま幸, 소량 직거래로 검증), ② 볼륨 확대(BRC/SQF/MSC 인증 후 Sea Delight·NESI·東洋冷蔵), ③ OEM(Netuno·Annasea 포케 cube/saku 규격공급). 공통 준비물: SIMP/IUU 어획 데이터, -60℃ 콜드체인 문서, BRC/MSC 인증, 영문/일문 스펙시트.",
-        source: "KR_Export_Partners_Dossier (KOTRA·SeafoodSource·Seafish·도쿄도 중앙도매시장·NOAA SIMP)",
+        situation: "한국 사시미 가공공장의 수출 전략은 3대 시장별로 명확히 차별화됩니다. 미국은 2025-11-14 발효된 상호관세 15%로 한·미 자유무역협정(KORUS FTA) 무관세 우위가 침식됐으나 경쟁국 인니·태국(19%)·베트남(20%) 대비 4~5%p 낮은 위치이며, True World Foods가 이미 한국산 빅아이 사쿠를 매입 중입니다. 영국은 Korea-UK FTA(MFN 18% 회피)가 동남아 대비 결정적 가격 우위입니다. 일본은 한국 횟감의 80%가 이미 진입해 있으나, 상사(東洋冷蔵)·仲卸(やま幸) 채널 다변화가 필요합니다.",
+        actionPlan: "3단계 접근이 권장됩니다. ① 빠른 파일럿(H-Mart·Atari-Ya·やま幸, 소량 직거래로 검증), ② 볼륨 확대(BRC/SQF/MSC 인증 후 Sea Delight·NESI·東洋冷蔵), ③ OEM(Netuno·Annasea 포케 큐브·사쿠 규격공급). 공통 준비물: SIMP/IUU 어획 데이터, -60℃ 콜드체인 문서, BRC/MSC 인증, 영문/일문 스펙시트.",
+        source: "KR_Export_Partners_Dossier (KOTRA·SeafoodSource·Seafish·도쿄도 중앙도매시장·NOAA SIMP) / 對美 관세: Federal Register 2025-21940 (한국 15%, 2025-11-14 발효) — 상세는 미국 관세 사다리 위젯 참조",
       }}
       customBody={
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>

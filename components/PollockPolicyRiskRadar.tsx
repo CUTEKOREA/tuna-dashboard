@@ -33,7 +33,7 @@ export function PollockSanctionParadox() {
       telemetry={{ status: data?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: '2026-05-21' }}
       cardDesc="근거: (기본 2019-12) 원양산업 사회적 책임 + (일반 2024-06) 신통상규범 | Comtrade + OFAC API"
       takeaway={{
-        situation: "제재 강도 92점까지 상승했으나 러시아산 명태 점유율은 42%로 유지 — '중국 우회 가공' 62%로 폭증. 원산지 세탁의 구조적 역설.",
+        situation: "제재 강도 92점(2025E)까지 상승했으나 글로벌 명태 공급에서 러시아 점유율은 42%(2025E 추정)로 유지 — '중국 우회 가공' 62%로 폭증. 원산지 세탁의 구조적 역설. ※스코프: 글로벌 공급(어획) 기준 — 한국 수입 의존도(냉동 원물 HS 030367 원산지 기준 94.8%, 2024 관세청)와 집계 모수가 다름.",
         actionPlan: "① 중국 가공 의존도(Exposure) 70% 이하 유지 ② 폴란드·베트남 대체 가공기지 확보 ③ 블록체인 원산지 증명 체계 구축",
         source: "(기본 2019-12) 원양산업 사회적 책임 + Comtrade 교차검증"
       }}

@@ -24,6 +24,50 @@ interface Vendor {
   reviewFlag?: string;
 }
 
+// ── L-01 한글 매핑 (JSON 키는 영문 유지, 렌더 시점만 한글) ──
+const TIER_KO: Record<string, string> = {
+  'Tier 1: Sweet Spot': '티어1 · 최적 파트너',
+  'Tier 1: Premium R&D': '티어1 · 프리미엄 R&D',
+  'Tier 1: Volume Provider': '티어1 · 물량 공급형',
+  'Tier 1: Global Giants': '티어1 · 글로벌 대기업',
+  'Tier 1: Strategic': '티어1 · 전략 파트너',
+  'Tier 2: Specialized': '티어2 · 특화형',
+  'Tier 2: Global Giants': '티어2 · 글로벌 대기업',
+  'Tier 2: Volume Provider': '티어2 · 물량 공급형',
+  'Tier 3: Niche': '티어3 · 틈새 특화',
+  'Tier 3: Domestic': '티어3 · 내수형',
+};
+
+const REGION_KO: Record<string, string> = {
+  South: '남부', North: '북부', Central: '중부',
+  'Samut Sakhon': '사뭇사콘', 'Samut Prakan': '사뭇쁘라깐', Songkhla: '송클라',
+  'Khanh Hoa': '칸호아', 'Phu Yen': '푸옌', 'Binh Dinh': '빈딘', 'Ho Chi Minh': '호찌민',
+  Vietnam: '베트남', Thailand: '태국',
+};
+
+const COUNTRY_KO: Record<string, string> = { Vietnam: '베트남', Thailand: '태국' };
+
+const FILTER_KO: Record<string, string> = {
+  All: '전체',
+  'Tier 1: Sweet Spot': '최적 파트너',
+  'Tier 1: Global Giants': '글로벌 대기업',
+  'Volume Provider': '물량 공급형',
+  Specialized: '특화형',
+};
+
+const tierKo = (t: string) => TIER_KO[t] || t;
+
+const vendorLocation = (v: { region: string; country: string }) => {
+  const r = REGION_KO[v.region] || v.region;
+  const c = COUNTRY_KO[v.country] || v.country;
+  return r === c ? c : `${r}, ${c}`;
+};
+
+// 자체 검증메모(verificationSummary)가 인증 주장(FDA/EU/MSC)을 입증하지 못한
+// 신뢰도 '낮음' 업체는 인증 배지를 단정 표시하지 않고 '미확인'으로 렌더한다.
+const isCertUnverified = (v: { publicProfileMeta?: any }) =>
+  ((v.publicProfileMeta || {}).dataConfidence === 'low');
+
 const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
   const [activeTab, setActiveTab] = useState<'vendors' | 'stats'>('vendors');
   const [activeCountry, setActiveCountry] = useState<string>('All');
@@ -51,8 +95,10 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
   const totalVendors = vendorsData.length;
   const vietnamCount = vendorsData.filter((v: any) => v.country === 'Vietnam').length;
   const thailandCount = vendorsData.filter((v: any) => v.country === 'Thailand').length;
-  const fdaCount = vendorsData.filter((v: any) => v.hasFDA).length;
-  const euCount = vendorsData.filter((v: any) => v.hasEU).length;
+  // 인증 KPI는 검증메모상 입증된 업체만 집계 (신뢰도 '낮음' = 인증 미입증 → 제외)
+  const fdaCount = vendorsData.filter((v: any) => v.hasFDA && !isCertUnverified(v)).length;
+  const euCount = vendorsData.filter((v: any) => v.hasEU && !isCertUnverified(v)).length;
+  const certUnverifiedCount = vendorsData.filter((v: any) => (v.hasFDA || v.hasEU || v.msc) && isCertUnverified(v)).length;
   const maxCapacity = Math.max(...vendorsData.map((v: any) => v.capacityMT || 0));
 
   // Filter count helper
@@ -112,7 +158,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
           </h2>
           <p className={styles.subtitle}>태국 및 베트남 참치 통조림/가공업체 심층 프로필 및 전략적 파트너십 벤더 풀</p>
           <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0.4rem 0 0 0', maxWidth: '720px', lineHeight: 1.4 }}>
-            출처: 공개 기업정보·인증현황(US FDA FCE·EU Code·MSC) 기반 큐레이션 — {vendorsData.filter((v: any) => v.meetingData).length}개사 현장 실사 완료, 나머지는 공개정보 기준(미실사). 생산능력·인증은 시점에 따라 변동 가능.
+            출처: 공개 기업정보·인증현황(US FDA FCE·EU 승인코드·MSC) 기반 큐레이션 — {vendorsData.filter((v: any) => v.meetingData).length}개사 현장 실사 완료, 나머지는 공개정보 기준(미실사). 생산능력·인증은 시점에 따라 변동 가능. 검증메모상 인증 미입증 업체({certUnverifiedCount}개사)는 '미확인'으로 표기하고 인증 집계에서 제외.
           </p>
 
           {/* ── KPI Stats Row ── */}
@@ -266,7 +312,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 className={`${styles.filterBtn} ${activeFilter === f ? styles.active : ''}`}
                 onClick={() => setActiveFilter(f)}
               >
-                {f.replace('Tier 1: ', '')}
+                {FILTER_KO[f] || f.replace('Tier 1: ', '')}
                 <span style={{
                   fontSize: '0.6rem',
                   fontWeight: 700,
@@ -318,14 +364,17 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                       {vendor.country === 'Vietnam' ? '🇻🇳 ' : '🇹🇭 '}
                       {vendor.name}
                     </h3>
-                    <div className={styles.cardRegion}><MapPin size={10} style={{ display: 'inline', marginRight: '3px' }}/>{vendor.region}, {vendor.country}</div>
+                    <div className={styles.cardRegion}><MapPin size={10} style={{ display: 'inline', marginRight: '3px' }}/>{vendorLocation(vendor)}</div>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-end' }}>
                     {vendor.isNew && (
-                      <span style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(6, 182, 212, 0.18)', color: '#06B6D4', border: '1px solid rgba(6, 182, 212, 0.45)', letterSpacing: '0.5px' }}>NEW · 공개정보</span>
+                      <span style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(6, 182, 212, 0.18)', color: '#06B6D4', border: '1px solid rgba(6, 182, 212, 0.45)', letterSpacing: '0.5px' }}>신규 · 공개정보</span>
+                    )}
+                    {vendor.reviewFlag && (
+                      <span title={vendor.reviewFlag} style={{ fontSize: '0.6rem', fontWeight: 800, padding: '2px 6px', borderRadius: '6px', background: 'rgba(245, 158, 11, 0.15)', color: '#F59E0B', border: '1px solid rgba(245, 158, 11, 0.45)', letterSpacing: '0.5px' }}>⚠️ 재확인 필요</span>
                     )}
                     <div className={`${styles.tierBadge} ${vendor.tier.includes('Tier 1') ? styles.tier1 : vendor.tier.includes('Tier 2') ? styles.tier2 : styles.tier3}`}>
-                      {vendor.tier}
+                      {tierKo(vendor.tier)}
                     </div>
                   </div>
                 </div>
@@ -334,7 +383,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   <div className={styles.metricBox}>
                     <div className={styles.metricLabel}>일일 생산능력</div>
                     <div className={styles.metricValue}>
-                      {vendor.capacityMT ? (<>{vendor.capacityMT}<span>MT/day</span></>) : (<span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>공개정보 미확인</span>)}
+                      {vendor.capacityMT ? (<>{vendor.capacityMT}<span>MT/일</span></>) : (<span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>공개정보 미확인</span>)}
                     </div>
                     {/* ── Mini capacity progress bar ── */}
                     {vendor.capacityMT > 0 && maxCapacity > 0 && (
@@ -358,50 +407,66 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   <div className={styles.metricBox}>
                     <div className={styles.metricLabel}>인증 현황</div>
                     <div className={styles.metricValue} style={{ fontSize: '0.9rem', display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                      {vendor.hasEU && (
-                        <span style={{
-                          fontSize: '0.68rem',
-                          padding: '2px 7px',
-                          borderRadius: '6px',
-                          background: 'rgba(139,92,246,0.12)',
-                          color: '#C084FC',
-                          border: '1px solid rgba(139,92,246,0.3)',
-                          fontWeight: 600,
-                        }}>EU</span>
-                      )}
-                      {vendor.hasFDA && (
-                        <span style={{
-                          fontSize: '0.68rem',
-                          padding: '2px 7px',
-                          borderRadius: '6px',
-                          background: 'rgba(16,185,129,0.12)',
-                          color: '#10B981',
-                          border: '1px solid rgba(16,185,129,0.3)',
-                          fontWeight: 600,
-                        }}>FDA</span>
-                      )}
-                      {vendor.msc && (
-                        <span style={{
-                          fontSize: '0.68rem',
-                          padding: '2px 7px',
-                          borderRadius: '6px',
-                          background: 'rgba(56,189,248,0.12)',
-                          color: '#38BDF8',
-                          border: '1px solid rgba(56,189,248,0.3)',
-                          fontWeight: 600,
-                        }}>MSC</span>
-                      )}
-                      {!vendor.hasEU && !vendor.hasFDA && !vendor.msc && (
-                        <span style={{
-                          fontSize: '0.68rem',
-                          padding: '2px 7px',
-                          borderRadius: '6px',
-                          background: 'rgba(255,255,255,0.05)',
-                          color: '#64748b',
-                          border: '1px solid rgba(255,255,255,0.08)',
-                          fontWeight: 600,
-                        }}>Domestic</span>
-                      )}
+                      {(() => {
+                        // 검증 미입증(신뢰도 '낮음') 업체의 인증 주장은 단정 표시하지 않음
+                        const unv = isCertUnverified(vendor);
+                        const unvStyle = {
+                          background: 'rgba(245,158,11,0.10)',
+                          color: '#F59E0B',
+                          border: '1px dashed rgba(245,158,11,0.45)',
+                        };
+                        return (
+                          <>
+                            {vendor.hasEU && (
+                              <span style={{
+                                fontSize: '0.68rem',
+                                padding: '2px 7px',
+                                borderRadius: '6px',
+                                background: 'rgba(139,92,246,0.12)',
+                                color: '#C084FC',
+                                border: '1px solid rgba(139,92,246,0.3)',
+                                fontWeight: 600,
+                                ...(unv ? unvStyle : {}),
+                              }}>EU{unv ? ' 미확인' : ''}</span>
+                            )}
+                            {vendor.hasFDA && (
+                              <span style={{
+                                fontSize: '0.68rem',
+                                padding: '2px 7px',
+                                borderRadius: '6px',
+                                background: 'rgba(16,185,129,0.12)',
+                                color: '#10B981',
+                                border: '1px solid rgba(16,185,129,0.3)',
+                                fontWeight: 600,
+                                ...(unv ? unvStyle : {}),
+                              }}>FDA{unv ? ' 미확인' : ''}</span>
+                            )}
+                            {vendor.msc && (
+                              <span style={{
+                                fontSize: '0.68rem',
+                                padding: '2px 7px',
+                                borderRadius: '6px',
+                                background: 'rgba(56,189,248,0.12)',
+                                color: '#38BDF8',
+                                border: '1px solid rgba(56,189,248,0.3)',
+                                fontWeight: 600,
+                                ...(unv ? unvStyle : {}),
+                              }}>MSC{unv ? ' 미확인' : ''}</span>
+                            )}
+                            {!vendor.hasEU && !vendor.hasFDA && !vendor.msc && (
+                              <span style={{
+                                fontSize: '0.68rem',
+                                padding: '2px 7px',
+                                borderRadius: '6px',
+                                background: 'rgba(255,255,255,0.05)',
+                                color: '#64748b',
+                                border: '1px solid rgba(255,255,255,0.08)',
+                                fontWeight: 600,
+                              }}>국제인증 없음</span>
+                            )}
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
                 </div>
@@ -453,47 +518,47 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               {selectedVendor.name}
             </h2>
             <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
-              <span className={styles.cardRegion}><MapPin size={12} style={{ display: 'inline', marginRight: '3px' }}/>{selectedVendor.region}, {selectedVendor.country}</span>
-              <span className={styles.tierBadge} style={{ background: 'rgba(255,255,255,0.1)' }}>{selectedVendor.tier}</span>
+              <span className={styles.cardRegion}><MapPin size={12} style={{ display: 'inline', marginRight: '3px' }}/>{vendorLocation(selectedVendor)}</span>
+              <span className={styles.tierBadge} style={{ background: 'rgba(255,255,255,0.1)' }}>{tierKo(selectedVendor.tier)}</span>
             </div>
 
             {/* ── Section divider ── */}
             <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)', margin: '0 0 1.2rem 0' }} />
+
+            {selectedVendor.reviewFlag && (
+              <div style={{ background: 'rgba(245, 158, 11, 0.07)', border: '1px solid rgba(245, 158, 11, 0.3)', padding: '0.75rem 1rem', borderRadius: '8px', margin: '0 0 1.2rem 0', fontSize: '0.82rem', color: '#FBBF24', lineHeight: 1.55 }}>
+                ⚠️ <strong>재확인 필요</strong> — {selectedVendor.reviewFlag}
+              </div>
+            )}
 
             <div className={styles.specialtyBox}>
               <strong>전문 분야:</strong> {selectedVendor.specialty}
             </div>
 
             <div className={styles.certRow}>
-              <span className={`${styles.certBadge} ${selectedVendor.hasFDA ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                <span style={{
-                  width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
-                  background: selectedVendor.hasFDA ? '#10B981' : '#64748b',
-                  boxShadow: selectedVendor.hasFDA ? '0 0 6px rgba(16,185,129,0.5)' : 'none',
-                }} />
-                US FDA FCE
-              </span>
-              <span className={`${styles.certBadge} ${selectedVendor.hasEU ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                <span style={{
-                  width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
-                  background: selectedVendor.hasEU ? '#10B981' : '#64748b',
-                  boxShadow: selectedVendor.hasEU ? '0 0 6px rgba(16,185,129,0.5)' : 'none',
-                }} />
-                EU Code
-              </span>
-              <span className={`${styles.certBadge} ${selectedVendor.msc ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                <span style={{
-                  width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
-                  background: selectedVendor.msc ? '#10B981' : '#64748b',
-                  boxShadow: selectedVendor.msc ? '0 0 6px rgba(16,185,129,0.5)' : 'none',
-                }} />
-                MSC / ISSF
-              </span>
+              {(() => {
+                const unv = isCertUnverified(selectedVendor);
+                const certs: { label: string; held: boolean }[] = [
+                  { label: 'US FDA FCE', held: selectedVendor.hasFDA },
+                  { label: 'EU 승인코드', held: selectedVendor.hasEU },
+                  { label: 'MSC / ISSF', held: selectedVendor.msc },
+                ];
+                return certs.map((c) => (
+                  <span key={c.label} className={`${styles.certBadge} ${c.held && !unv ? styles.active : ''}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                    <span style={{
+                      width: '6px', height: '6px', borderRadius: '50%', display: 'inline-block',
+                      background: c.held ? (unv ? '#F59E0B' : '#10B981') : '#64748b',
+                      boxShadow: c.held ? (unv ? '0 0 6px rgba(245,158,11,0.5)' : '0 0 6px rgba(16,185,129,0.5)') : 'none',
+                    }} />
+                    {c.label}{c.held && unv ? ' (미확인)' : ''}
+                  </span>
+                ));
+              })()}
             </div>
 
             <div className={styles.takeawayBox} style={{ marginTop: '2rem' }}>
               <div className={styles.takeawayTitle}>
-                <Target size={16} /> Silla Strategic Takeaway
+                <Target size={16} /> 신라교역 전략 시사점
               </div>
               <p className={styles.takeawayText}>{selectedVendor.takeaway}</p>
             </div>
@@ -508,11 +573,11 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
                   <div style={{ background: 'rgba(16, 185, 129, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid #10B981' }}>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--color-success)', fontWeight: 600, marginBottom: '0.5rem' }}>강점 (Strength)</div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--color-success)', fontWeight: 600, marginBottom: '0.5rem' }}>강점</div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{selectedVendor.meetingData.summary.strength}</div>
                   </div>
                   <div style={{ background: 'rgba(244, 63, 94, 0.05)', padding: '1rem', borderRadius: '8px', borderLeft: '3px solid #F43F5E' }}>
-                    <div style={{ fontSize: '0.85rem', color: '#F43F5E', fontWeight: 600, marginBottom: '0.5rem' }}>약점 (Weakness)</div>
+                    <div style={{ fontSize: '0.85rem', color: '#F43F5E', fontWeight: 600, marginBottom: '0.5rem' }}>약점</div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{selectedVendor.meetingData.summary.weakness}</div>
                   </div>
                 </div>
@@ -617,7 +682,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                       {/* ── Section divider ── */}
                       <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.9rem', color: '#E2E8F0', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                        <ShieldCheck size={15} color="#38BDF8" /> 인증 현황 (1차 출처 검증)
+                        <ShieldCheck size={15} color="#38BDF8" /> 인증 현황 (출처 검증 결과 — 녹색: 코드 확인 · 황색: 번호 미확인)
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {certs.map((c: any, idx: number) => (

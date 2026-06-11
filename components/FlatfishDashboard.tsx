@@ -207,7 +207,7 @@ export default function FlatfishDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px' }} verticalAlign="top" height={36} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={i} type="monotone" dataKey={a.key} stroke={a.color} fill={`url(#fArea${widget.id}_${i})`} strokeWidth={2.5} />
+                <Area key={i} type="monotone" dataKey={a.key || a.dataKey} stroke={a.color} fill={`url(#fArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
             </AreaChart>
           );
@@ -224,10 +224,10 @@ export default function FlatfishDashboard() {
               <Legend wrapperStyle={{ fontSize: '11px' }} verticalAlign="top" height={36} />
               {widget.bars?.map((b: any, i: number) => {
                 const p = getA11yBarProps(i);
-                return <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6, 6, 0, 0]} fillOpacity={0.85} />;
+                return <Bar key={`b${i}`} yAxisId={b.yAxisId || 'left'} dataKey={b.key || b.dataKey} fill={p.fill} color={b.color || p.color} radius={[6, 6, 0, 0]} fillOpacity={0.85} />;
               })}
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+                <Line key={`l${i}`} yAxisId={l.yAxisId || 'left'} type="monotone" dataKey={l.key || l.dataKey} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
               ))}
             </ComposedChart>
           );
@@ -251,7 +251,7 @@ export default function FlatfishDashboard() {
         iconColor={FLATFISH_THEME.primary}
         pillar={pillar}
         cardDesc={cardDesc}
-        telemetry={{ status: liveStatus, syncDate: w.syncDate || '2026-04' }}
+        telemetry={{ status: liveStatus, syncDate: w.syncDate }}
         chartHeight={375}
         chart={renderChart(w)}
         takeaway={{ situation: w.sit || '', actionPlan: w.strat || '', source: w.source || 'KMI 「FTA체결국 수산물 수입동향」 분기보고서' }}
@@ -272,7 +272,7 @@ export default function FlatfishDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', background: 'linear-gradient(135deg, #3b82f6, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 가자미 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>Flatfish Strategic Command Center — {widgets.length} Widgets · {kpiKeys.length} KPIs · KMI 21Q + KFAS + NAFO</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>가자미 전략 커맨드센터 — 위젯 {widgets.length}개 · KPI {kpiKeys.length}개 · KMI 21Q + KFAS + NAFO</p>
             </div>
           </div>
           <div style={{ fontSize: '0.8rem', padding: '0.5rem 1rem', background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(30,58,138,0.3)', borderRadius: '8px', color: '#94a3b8', fontWeight: 500 }}>

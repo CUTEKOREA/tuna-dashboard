@@ -305,11 +305,11 @@ export function OctopusFtaTariffMatrix() {
   ];
   return (
     <WidgetCard
-      title="낙지 HSK 10자리 × FTA 관세 매트릭스"
+      title="문어류(낙지 포함) HS × FTA 관세 매트릭스"
       icon={Scale}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="0307.51(활)·0307.52(신선)·0307.59(냉동)·1605.55(조제) × MFN·KVFTA·RCEP·CPTPP 4단 매트릭스 — 최적 관세 0% 경로 시각화"
+      cardDesc="0307.51(활)·0307.52(신선)·0307.59(냉동)·1605.55(조제) × MFN·KVFTA·RCEP·CPTPP 4단 매트릭스 — HS 0307.5x·1605.55는 문어류 공통 코드(낙지 단독 아님), 최적 관세 0% 경로 시각화"
       unit="(단위: %)"
       telemetry={{ status: 'STATIC', syncDate: '2026-04 KCS' }}
       chartHeight={320}
@@ -360,11 +360,11 @@ export function OctopusSstCorrelation() {
   }, []);
   return (
     <WidgetCard
-      title="서해 SST × 낙지 어획 상관"
+      title="서해 SST × 문어류(낙지 포함) 어획 상관"
       icon={Thermometer}
       iconColor="#ef4444"
       pillar="S1"
-      cardDesc={`NOAA 서해 SST 연평균(℃) × NIFS 한국 낙지 어획(천 톤) 산점도, 2010~2025 — Pearson 상관계수 r = ${r}`}
+      cardDesc={`NOAA 서해 SST 연평균(℃) × 한국 문어류(낙지 포함) 어획(천 톤) 산점도, 2010~2025 — 어획은 문어류 합산 집계(낙지 단독 아님), Pearson 상관계수 r = ${r}`}
       unit="(단위: ℃, 천 톤)"
       telemetry={{ status: 'STATIC', syncDate: '2026-03' }}
       chartHeight={320}
@@ -372,9 +372,9 @@ export function OctopusSstCorrelation() {
         <ScatterChart margin={{ top: 16, right: 10, left: 0, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
           <XAxis dataKey="sst" name="서해 SST" type="number" domain={[12.8, 15.6]} stroke="#94a3b8" tick={{ fontSize: 10 }} unit="℃" />
-          <YAxis dataKey="catch" name="낙지 어획" type="number" stroke="#94a3b8" tick={{ fontSize: 10 }} unit="kt" />
+          <YAxis dataKey="catch" name="문어류 어획" type="number" stroke="#94a3b8" tick={{ fontSize: 10 }} unit="kt" />
           <ZAxis dataKey="year" range={[60, 60]} />
-          <Tooltip contentStyle={tooltipStyle} cursor={{ strokeDasharray: '3 3' }} formatter={(v: any, n: any) => n === '낙지 어획' ? `${v} 천 톤` : `${v}℃`} />
+          <Tooltip contentStyle={tooltipStyle} cursor={{ strokeDasharray: '3 3' }} formatter={(v: any, n: any) => n === '문어류 어획' ? `${v} 천 톤` : `${v}℃`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
           <Scatter name={`연도별 (r=${r})`} data={points} fill="#a78bfa">
             {points.map((p, i) => <Cell key={i} fill={p.year >= 2023 ? '#ef4444' : p.year >= 2020 ? '#f59e0b' : '#a78bfa'} />)}
@@ -382,7 +382,7 @@ export function OctopusSstCorrelation() {
         </ScatterChart>
       }
       takeaway={{
-        situation: `서해 SST(13.1℃ → 15.4℃, +2.3℃)와 한국 낙지 어획(20.8 → 8.1 천 톤, −61%)이 Pearson r = ${r}의 강한 역상관을 보입니다. 2023년부터 SST 15℃ 수준을 돌파하며 어획 감소가 가속한 패턴은 낙지 산란·치어 생존이 고수온에서 저하된다는 생태 연구와 방향이 일치하며, 기후 변동성이 자원 변동의 주요 선행지표로 기능할 가능성이 있습니다.`,
+        situation: `서해 SST(13.1℃ → 15.4℃, +2.3℃)와 한국 문어류(낙지 포함) 어획(20.8 → 8.1 천 톤, −61%)이 Pearson r = ${r}의 강한 역상관을 보입니다. 2023년부터 SST 15℃ 수준을 돌파하며 어획 감소가 가속한 패턴은 낙지 산란·치어 생존이 고수온에서 저하된다는 생태 연구와 방향이 일치하며, 기후 변동성이 자원 변동의 주요 선행지표로 기능할 가능성이 있습니다.`,
         actionPlan: '신라교역은 NOAA 서해 SST 월별 시계열을 자동 수집해 SST 15.5℃ 돌파 시 즉시 베트남·중국 수입 비중을 +15%p 자동 상향하는 룰베이스 트리거를 운영하고, 한국 어획 의존도 60% → 30%로 5년 안에 단계 축소한다.',
         source: 'NOAA OISST v2.1 서해 영역 평균 + 국립수산과학원(NIFS) 어업생산통계 · Reliability: A',
       }}

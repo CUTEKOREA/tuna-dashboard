@@ -16,12 +16,15 @@ interface CountryItem {
   value: number;
 }
 
+/* MSC Annual Report 2024-25 부속 데이터 liveproductvolume 시트 (전 어종, 2024-25 회계연도)
+   성장률은 2023-24 대비 YoY 실측: 냉동 510,333→507,296(-0.6%), 캔 269,425→334,746(+24.2%),
+   칠드 188,249→191,046(+1.5%), 펫푸드 92,856→120,092(+29.3%), 푸드투고 30,843→36,562(+18.5%) */
 const categoryData: CategoryItem[] = [
-  { name: '캔/통조림', volume: 334700, growth: 24.2, fill: '#38bdf8' },
-  { name: '펫푸드', volume: 120100, growth: 29.3, fill: '#f59e0b' },
-  { name: '푸드투고(Food-to-Go)', volume: 36500, growth: 18.5, fill: '#10b981' },
-  { name: '냉동/신선', volume: 25000, growth: 12.0, fill: '#a78bfa' },
-  { name: '기타', volume: 15000, growth: 8.0, fill: '#64748b' },
+  { name: '냉동', volume: 507296, growth: -0.6, fill: '#a78bfa' },
+  { name: '캔/통조림', volume: 334746, growth: 24.2, fill: '#38bdf8' },
+  { name: '칠드/냉장', volume: 191046, growth: 1.5, fill: '#64748b' },
+  { name: '펫푸드', volume: 120092, growth: 29.3, fill: '#f59e0b' },
+  { name: '푸드투고', volume: 36562, growth: 18.5, fill: '#10b981' },
 ];
 
 const countryWholesale: CountryItem[] = [
@@ -47,7 +50,7 @@ export default function MscMarketCategorySize() {
       {/* Section 1: Category Treemap Blocks */}
       <div style={{ marginBottom: 8 }}>
         <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 10 }}>
-          카테고리별 MSC 참치 판매량 (톤)
+          카테고리별 MSC 라벨 제품 판매량 (전 어종 상위 5, 톤)
         </div>
 
         {/* Treemap — top row (large blocks) */}
@@ -92,7 +95,7 @@ export default function MscMarketCategorySize() {
                   }}
                 >
                   <span style={{ fontSize: '0.72rem', fontWeight: 700, color: item.fill }}>
-                    +{item.growth}%
+                    {item.growth >= 0 ? '+' : ''}{item.growth}%
                   </span>
                   <span style={{ fontSize: '0.68rem', color: '#94a3b8' }}>YoY</span>
                 </div>
@@ -125,7 +128,7 @@ export default function MscMarketCategorySize() {
                   <span style={{ fontSize: '0.68rem', fontWeight: 500, color: '#94a3b8', marginLeft: 3 }}>톤</span>
                 </div>
                 <div style={{ fontSize: '0.68rem', fontWeight: 700, color: item.fill, marginTop: 4 }}>
-                  +{item.growth}%
+                  {item.growth >= 0 ? '+' : ''}{item.growth}%
                 </div>
               </div>
             );
@@ -196,10 +199,10 @@ export default function MscMarketCategorySize() {
       >
         <div style={{ flex: 1, textAlign: 'center' }}>
           <div style={{ fontSize: 18, fontWeight: 900, color: '#38bdf8', fontVariantNumeric: 'tabular-nums' }}>
-            53.1<span style={{ fontSize: 12, fontWeight: 600 }}>만 톤</span>
+            138.5<span style={{ fontSize: 12, fontWeight: 600 }}>만 톤</span>
           </div>
           <div style={{ fontSize: 11, color: '#7dd3fc', fontWeight: 600, marginTop: 2 }}>
-            MSC 참치 총 판매량
+            MSC 라벨 총 판매량 (전 어종, 2024/25)
           </div>
         </div>
         <div style={{ width: 1, background: 'rgba(56,189,248,0.15)' }} />
@@ -227,18 +230,18 @@ export default function MscMarketCategorySize() {
   return (
     <WidgetCard
       id="W-MSC21"
-      title="MSC 참치 시장 카테고리 구조"
-      description="제품 카테고리별 판매량 및 주요 국가 B2B 도매 시장 규모"
+      title="MSC 라벨 시장 카테고리 구조"
+      description="전 어종 MSC 라벨 제품 카테고리별 판매량 및 주요 국가 B2B 도매 시장 규모"
       icon={ShoppingCart}
       iconColor="#38bdf8"
       pillar="S5"
-      telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
-      cardDesc="MSC 연례보고서 기반 참치 제품 카테고리 트리맵 및 국가별 도매 시장 규모 분석"
+      telemetry={{ status: 'STATIC', syncDate: '2024-25' }}
+      cardDesc="MSC 연례보고서 2024-25 부속 데이터(liveproductvolume, 전 어종) 기준 — 참치 단독 라벨 판매량은 별도(2024/25 약 30만 톤)"
       customBody={body}
       takeaway={{
-        situation: "MSC 라벨 참치 시장은 캔/통조림(33.5만 톤)이 주도하지만, 펫푸드(12만 톤, +29.3%)의 성장률이 캔(+24.2%)을 초과합니다. 반려동물 사료 시장에서도 지속가능성 라벨이 핵심 구매 요인으로 부상 중입니다.",
+        situation: "MSC 라벨 제품 시장(전 어종, 2024/25 총 138.5만 톤)은 냉동(50.7만 톤)이 최대 카테고리이나, 캔/통조림(33.5만 톤, +24.2%)과 펫푸드(12.0만 톤, +29.3%)가 성장을 주도합니다. 참치 단독 라벨 판매량은 2024/25 약 30만 톤(연감 2025)에서 2025/26 40만 톤+(연감 2025-26)로 증가했습니다.",
         actionPlan: "MSC 참치의 B2B 도매 시장은 미국($1,572M)이 독일($1,283M)을 추월하여 최대 시장이 되었습니다. 미국 향 OEM 수출에 MSC 인증을 적용하면, 기존 비인증 제품 대비 +44.6%의 가격 프리미엄 확보가 가능합니다.",
-        source: "MSC Annual Report 2024-2025",
+        source: "MSC Annual Report 2024-25 부속 데이터(liveproductvolume 시트, 전 어종) / 참치 라벨 판매량: MSC Sustainable Tuna Yearbook 2025·2025-26",
       }}
     />
   );

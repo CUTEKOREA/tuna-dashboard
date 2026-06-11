@@ -30,6 +30,19 @@ const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
   S5: [],
 };
 
+// 패턴 I: 페이지가 실제 호출하는 새우 API 라우트 목록 — 헤더 카운트의 단일 출처 (하드코딩 숫자 금지)
+const SHRIMP_API_SOURCES: Array<{ key: string; url: string }> = [
+  { key: 'customs', url: '/api/shrimp/customs' },
+  { key: 'kamis', url: '/api/shrimp/kamis' },
+  { key: 'macro', url: '/api/shrimp/macro' },
+  { key: 'krungsri', url: '/api/shrimp/krungsri' },
+  { key: 'forecast', url: '/api/shrimp/forecast' },
+  { key: 'sourcing', url: '/api/shrimp/sourcing-sim' },
+  { key: 'compliance', url: '/api/shrimp/compliance' },
+  { key: 'esg', url: '/api/shrimp/esg-radar' },
+  { key: 'emerging', url: '/api/shrimp/emerging-markets' },
+];
+
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -195,20 +208,14 @@ export default function ShrimpDashboard() {
       .then(json => setData(json))
       .catch(err => console.error("Failed to load shrimp data", err));
 
-    // Fetch API Data (V2.0: 9 endpoints)
-    Promise.all([
-      fetch('/api/shrimp/customs').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/kamis').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/macro').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/krungsri').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/forecast').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/sourcing-sim').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/compliance').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/esg-radar').then(r => r.ok ? r.json() : null),
-      fetch('/api/shrimp/emerging-markets').then(r => r.ok ? r.json() : null)
-    ]).then(([customs, kamis, macro, krungsri, forecast, sourcing, compliance, esg, emerging]) => {
-      setApiData({ customs, kamis, macro, krungsri, forecast, sourcing, compliance, esg, emerging });
-      if (macro?.metrics?.rate) setSimExchangeRate(macro.metrics.rate);
+    // Fetch API Data — SHRIMP_API_SOURCES가 단일 출처 (패턴 I)
+    Promise.all(
+      SHRIMP_API_SOURCES.map(s => fetch(s.url).then(r => r.ok ? r.json() : null).catch(() => null))
+    ).then(results => {
+      const next: Record<string, any> = {};
+      SHRIMP_API_SOURCES.forEach((s, i) => { next[s.key] = results[i]; });
+      setApiData(next);
+      if (next.macro?.metrics?.rate) setSimExchangeRate(next.macro.metrics.rate);
     }).catch(console.error);
   }, []);
 
@@ -232,6 +239,11 @@ export default function ShrimpDashboard() {
   const { kpis, widgets } = data;
   const kpiKeys = Object.keys(kpis);
 
+  // 패턴 I: 카운트는 실측으로만 산출 (하드코딩 금지)
+  const connectedApiCount = SHRIMP_API_SOURCES.filter(s => apiData[s.key] && !apiData[s.key].error).length;
+  // L-09/L-12: 라우트가 isLive === true를 명시한 경우에만 LIVE로 취급
+  const liveApiActive = SHRIMP_API_SOURCES.some(s => apiData[s.key]?.isLive === true);
+
   const displayWidgets = widgets?.map((w: any) => {
     const newW = { ...w };
     if (newW.title) {
@@ -242,7 +254,8 @@ export default function ShrimpDashboard() {
         const historicalData = newW.data.filter((d: any) => parseInt(d.year) < 2024);
         newW.data = [...historicalData, ...apiData.customs.liveImportData];
         newW.telemetry = apiData.customs.isLive ? 'live' : 'synced';
-        newW.syncDate = apiData.customs.isLive ? '실시간 연동중 (관세청)' : (newW.syncDate || '2025-Q4 기준');
+        // 패턴 E: 일괄 fallback 문자열 금지 — 라이브가 아니면 JSON의 syncDate(데이터 빈티지)를 그대로 둠
+        if (apiData.customs.isLive) newW.syncDate = '실시간 연동중 (관세청)';
       } else if (apiData.customs !== undefined) {
         // customs fetch 완료됐지만 liveImportData 없음 → 정적 JSON 데이터
         newW.telemetry = 'synced';
@@ -303,7 +316,7 @@ export default function ShrimpDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={i} type="monotone" dataKey={a.key} stroke={a.color} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
+                <Area key={i} type="monotone" dataKey={a.key} name={a.name || a.key} stroke={a.color} fill={`url(#sArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
             </AreaChart>
           );
@@ -321,10 +334,10 @@ export default function ShrimpDashboard() {
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.bars?.map((b: any, i: number) => {
                 const p = getA11yBarProps(i);
-                return <Bar key={`b${i}`} yAxisId="left" dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+                return <Bar key={`b${i}`} yAxisId="left" dataKey={b.key} name={b.name || b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
               })}
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={hasDualAxis ? "right" : "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={`l${i}`} yAxisId={hasDualAxis ? "right" : "left"} type="monotone" dataKey={l.key} name={l.name || l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </ComposedChart>
           );
@@ -361,7 +374,7 @@ export default function ShrimpDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
-              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
+              <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.dataKey} stroke={s.color} strokeWidth={2.5} dot={false} activeDot={{ r: 5 }} />
             ))}
           </LineChart>
         );
@@ -374,7 +387,7 @@ export default function ShrimpDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => (
-              <Area key={i} type="monotone" dataKey={s.dataKey} stroke={s.color} fill={s.color} fillOpacity={0.5} strokeWidth={2} />
+              <Area key={i} type="monotone" dataKey={s.dataKey} name={s.name || s.dataKey} stroke={s.color} fill={s.color} fillOpacity={0.5} strokeWidth={2} />
             ))}
           </AreaChart>
         );
@@ -389,7 +402,7 @@ export default function ShrimpDashboard() {
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => {
               const p = getA11yBarProps(i);
-              return <Bar key={i} dataKey={s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
+              return <Bar key={i} dataKey={s.dataKey} name={s.name || s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
             })}
           </BarChart>
         );
@@ -404,10 +417,10 @@ export default function ShrimpDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => {
-              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
-              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color} />;
+              if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} name={s.name || s.dataKey} stroke={s.color} strokeWidth={2.5} dot={{r: 3}} />;
+              if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.dataKey} fill={s.color} />;
               const p = getA11yBarProps(i);
-              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
+              return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} name={s.name || s.dataKey} fill={p.fill} color={s.color || p.color} radius={[6, 6, 0, 0]} />;
             })}
           </ComposedChart>
         );
@@ -435,15 +448,15 @@ export default function ShrimpDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 새우 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>새우 전략 종합 커맨드 센터 — {displayWidgets?.length || 47}개 위젯 · 6개 핵심지표 · 16개 API 연동</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>새우 전략 종합 커맨드 센터 — {displayWidgets?.length ?? 0}개 위젯 · {kpiKeys.length}개 핵심지표 · {SHRIMP_API_SOURCES.length}개 API 연동</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
             background: '#181818', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span>9개 API <span style={{ color: 'var(--color-success)' }}>연동됨</span></span>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: connectedApiCount > 0 ? 'var(--color-success)' : 'var(--color-warning)', boxShadow: connectedApiCount > 0 ? '0 0 8px #1ed760' : 'none', animation: 'pulse 2s infinite' }} />
+            <span>{connectedApiCount}/{SHRIMP_API_SOURCES.length}개 API <span style={{ color: connectedApiCount > 0 ? 'var(--color-success)' : 'var(--color-warning)' }}>응답</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
             <span style={{ color: 'var(--text-primary)' }}>FishStatJ 1950-2024</span>
           </div>
@@ -473,19 +486,19 @@ export default function ShrimpDashboard() {
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', lineHeight: 1.2, wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                     {kpi.title}
                   </span>
-                  {(kpi.telemetry || (key === 'kpi3' && apiData.customs) || (key === 'kpi6' && apiData.macro)) && (
-                    <TelemetryBadge 
-                      status={((key === 'kpi3' && apiData.customs) || (key === 'kpi6' && apiData.macro)) ? 'live' : kpi.telemetry as any} 
-                      syncDate={((key === 'kpi3' && apiData.customs) || (key === 'kpi6' && apiData.macro)) ? '실시간 연동중' : kpi.syncDate} 
-                    />
+                  {/* P0 정정: kpi3·kpi6은 라우트 응답이 mock/합성 산식이므로 LIVE 위장 금지 —
+                      JSON의 정직한 telemetry(static)+기준연도만 표기 (L-09) */}
+                  {kpi.telemetry && (
+                    <TelemetryBadge status={kpi.telemetry as any} syncDate={kpi.syncDate} />
                   )}
                 </div>
                 <IconComp size={16} style={{ color: theme.text, flexShrink: 0 }} />
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                {key === 'kpi3' && apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()} / 톤` 
-                 : key === 'kpi6' && apiData.macro ? `$${Math.floor(693 * (apiData.macro.metrics.rate / 1385))}M`
-                 : parsed ? (
+                {/* P0 정정: kpi3 라우트 값은 양쪽 분기 모두 하드코딩 mock($8,113)이고,
+                    kpi6의 693×(환율/1385)은 USD 적자를 KRW 환율로 스케일링한 무의미 산식 — 둘 다 제거.
+                    JSON 원값(기준연도 명시)만 정직 표기. */}
+                {parsed ? (
                   <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
                 ) : kpi.value}
               </div>
@@ -503,16 +516,18 @@ export default function ShrimpDashboard() {
         <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-success)' }} />
         <h2 style={{ margin: '0 0 1rem 0', fontSize: '1.13rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Activity color="var(--color-success)" size={20} /> 관세/환율 충격 시뮬레이터
-          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color:'var(--color-success)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>LIVE API 연동</span>
+          <span style={{ display:'inline-flex', alignItems:'center', gap:'3px', background:'var(--surface-2)', color: liveApiActive ? 'var(--color-success)' : 'var(--color-warning)', fontSize:'0.66rem', fontWeight:600, padding:'2px 8px', borderRadius:'500px', letterSpacing:'0.2px', marginLeft:'6px', textTransform: 'uppercase' }}>{liveApiActive ? 'LIVE API 연동' : 'API 폴백·정적 기준'}</span>
         </h2>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
           
           <div style={{ background: 'var(--surface-2)', padding: '1.2rem', borderRadius: '6px' }}>
             <h3 style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: '0 0 0.8rem 0' }}>API 데이터 연동 현황</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.88rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>관세청 (한국 수입가):</span> <strong style={{ color: apiData.customs ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()}/톤` : '로딩중...'}</strong></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>KAMIS (국내 도매가):</span> <strong style={{ color: apiData.kamis ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.kamis ? `₩${apiData.kamis.metrics.wholesalePrice_KRW_per_KG.toLocaleString()}/kg` : '로딩중...'}</strong></div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>한국은행 (환율):</span> <strong style={{ color: apiData.macro ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.macro ? `₩${apiData.macro.metrics.rate.toLocaleString()}` : '로딩중...'}</strong></div>
+              {/* L-09: isLive !== true면 폴백/정적 값임을 명시 (mock을 라이브처럼 보이게 금지)
+                  관세청 avgUnitPrice_USD는 라우트 양쪽 분기 모두 고정 상수이므로 isLive와 무관하게 항상 고정 기준값으로 표기 */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>관세청 (한국 수입가):</span> <strong style={{ color: 'var(--color-warning)' }}>{apiData.customs ? `$${apiData.customs.metrics.avgUnitPrice_USD.toLocaleString()}/톤 (고정 기준값)` : '로딩중...'}</strong></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>KAMIS (국내 도매가):</span> <strong style={{ color: apiData.kamis?.isLive ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.kamis ? `₩${apiData.kamis.metrics.wholesalePrice_KRW_per_KG.toLocaleString()}/kg${apiData.kamis.isLive ? '' : ' (정적)'}` : '로딩중...'}</strong></div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-primary)' }}><span>환율 (USD/KRW):</span> <strong style={{ color: apiData.macro?.isLive ? 'var(--color-success)' : 'var(--color-warning)' }}>{apiData.macro ? `₩${apiData.macro.metrics.rate.toLocaleString()}${apiData.macro.isLive ? '' : ' (폴백)'}` : '로딩중...'}</strong></div>
             </div>
           </div>
 
@@ -533,7 +548,7 @@ export default function ShrimpDashboard() {
           </div>
 
           <div style={{ background: '#181818', padding: '1.2rem', borderRadius: '6px', border: '1px solid #1f1f1f', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <h3 style={{ fontSize: '0.88rem', color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}><TrendingUp size={16} /> 실시간 추정 이익률</h3>
+            <h3 style={{ fontSize: '0.88rem', color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}><TrendingUp size={16} /> What-If 추정 이익률</h3>
             <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               {(simBaseMargin - ((simExchangeRate - 1385)/100) - simTariff).toFixed(1)}%
             </div>
@@ -692,7 +707,8 @@ export default function ShrimpDashboard() {
     const isGenuineLive = (w.badges && w.badges?.includes('Live API')) || (typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'live');
     const isExplicitStatic = typeof w.telemetry === 'string' && w.telemetry.toLowerCase() === 'static';
     const honestStatus = isGenuineLive ? 'LIVE' : isExplicitStatic ? 'STATIC' : (w.telemetry || w.syncDate) ? 'SYNCED' : 'STATIC';
-    const honestSyncDate = isGenuineLive ? (w.syncDate || '실시간 연동중') : (w.syncDate || '2024년 기준');
+    // 패턴 E: 일괄 fallback 문자열('2024년 기준'·'실시간 연동중') 제거 — syncDate 부재 시 배지가 날짜를 생략(정직)
+    const honestSyncDate = w.syncDate;
     const cardDesc = [w.unit ? `단위: ${w.unit}` : '', w.subtitle || ''].filter(Boolean).join(' — ');
 
     return (

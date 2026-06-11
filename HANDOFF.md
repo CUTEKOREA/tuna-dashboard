@@ -1,5 +1,31 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-06-11 — 전 페이지 전수 수정 완료 (P0 52/52 + 패턴 일괄, 24유닛 + 적대 리뷰 2)** [CC]:
+> - **방법**: 보고서(docs/all_pages_review_2026-06-11.md) 기반 3-Wave 페이지 소유권 분할 — Wave1 어종 9유닛 → Wave2 운영/전략 9유닛(세션한도 사망 1회 → 부분수정 검증·완결 재투입) → Wave3 농축산 6유닛. 최종 적대 리뷰 2(공유표면 7항목 전부 통과 / 스폿체크가 신규 P0 1건 적발→즉시 정정).
+> - **P0 52건 전건 처리**: 가짜 LIVE/실시간 일소(isLive===true 단일 기준 전면화), Math.random·발명계수 제거(research-lab TRL·used-car·financial-risk·logistics 라우트 3종 410 비활성), 동일지표 모순 해소(스코프 명기 또는 데이터 검증 단일화 — whelk 52.1%·salmon KCS 단일화·cocoa $10,092·갈치/주꾸미/낙지/돼지 오귀속 정직 라벨링), syncDate 위조 fallback 약 250건 제거, 만료 D-day 렌더시점 계산 전환, 헤더 카운트 동적화, SIT-차트 재검산(carrot 13곳·garlic 7곳 등).
+> - **부수 해결**: page.tsx 'beef' 유니언 누락(기준선 TS2367 2건 + /beef 딥링크 폴백의 진범) 수정. tsc 86→74(신규 0). fleet 6/8↔6/10 반동기화 완결. garlic w8은 6/6 정정본의 캐시커밋 회귀 사고 복원. public/data *.bak 26개 → _archive/ 격리(공개 서빙 차단).
+> - **빌드**: npm run build ✓ (140→138은 logistics 410 라우트 2개의 의도된 동적 전환 — 리뷰 검증).
+> - **스테일 기록 정정**: 아래 logistics 엔트리의 "TS2367 2건"·standalone 엔트리의 "79건"은 본 배치에서 해소됨(현재 74).
+> - **잔여(deferred)**: ① IC메모 영문(P2 — dart-insight emit+파서 동시 수정 필요) ② ReeferFreightChart·TraderImportChart 고아 파일 삭제(사용자 확인 필요) ③ garlic SSOT 모순 2건(800만t vs 2,969만t 등 — 원출처 확정 필요) ④ 갈치 KCS HSK 재수집(아귀→갈치, 별도 트랙) ⑤ SEIN TOPAZ 예정분 포함 표시(P2). ⚠️ **미배포** — "배포" 요청 시 push.
+
+> 🚢 **2026-06-11 — /logistics 결함 수정 완료 (P0 3건 #4~6 + 패턴 A·C·F·L-01)** [CC]:
+> - **범위**: /logistics 클로저만 — LogisticsDashboard·TraderStatus·CarrierUnloadingStatus·ReeferMovement·CanneryStatusCharts·GensanCanneryStatusCharts + app/api/logistics/* + app/page.tsx 죽은 import 2줄. 직전 에이전트의 중단 수정 검토: 수치 전건 검산 일치(트레이더 합계 239,274MT·하역 11척 55,384MT·WEEK22 12척·CHERRY STAR 5/13·JOCHOH 5/15)로 **전량 보존**, 미완분 완결.
+> - **P0 #4·5 (가짜 LIVE)**: TraderStatus·CarrierUnloadingStatus 래퍼 LIVE/Realtime → STATIC+기준일(2026-05 / 2026-05-25), 헤더 'LIVE Connected' 펄스 → '정적 주간 보고 기반·위젯별 기준일 표기'. (직전 에이전트 작업 보존+보강)
+> - **P0 #6 (만료 ETA 4척)**: '입항 예정' → '입항 예정이었던(5월 보고 당시)' + 경과 각주(2척 WEEK22 접안 확인). (보존)
+> - **패턴 C 제거 (A-01)**: ① /api/logistics/freight — FRED TSI×발명 민감도계수(0.5~2.5)×임의 베이스라인 운임 합성 + 'A-Grade' 허위 표기 ② /congestion — 체선율=(TSI-110)×1.8·대기일=TSI/35·척수=TSI/15·백로그=×2500 합성 ③ /trader-import — KCS 국가총량×발명 고정점유율(35/30/15/12/8%)을 'S-Grade Empirical' 위장. 3개 라우트 모두 산식 전면 제거 → 410+isLive:false 정직 비활성(사유 명기). 소비자였던 ReeferFreightChart·TraderImportChart는 **어디에도 렌더 안 되는 죽은 코드**임을 확인, page.tsx의 dynamic import 2줄만 제거(컴포넌트 파일 삭제는 사용자 확인 필요라 보류). ReeferMovement의 congestion 위젯 의존 제거(직전 에이전트)도 정당 확인.
+> - **패턴 F·L-01**: ReeferMovement 영문 잔존 한글화(Berthing→접안일·Wharf/Remark→부두/비고·factories→공장 N곳·레거시 표 헤더), '입고 예정'→'배분 (WEEK 22 보고 기준)', SHIP(비공장 키) 집계 제외 보존. CanneryStatusCharts 초록 펄스 배지(STATIC 데이터에)→중립 배지+기준일, '마진율 인덱스 (실시간 예측)'→'(시나리오 추정, 2026-05-20 기준)', 'E2E'→'전구간(추정)'. 캐너리 SIT 2건 과거형+기준일. 위젯 제목 영문 병기 3건 제거(W-01).
+> - **검증**: tsc — 스코프 파일 신규 에러 0(기존 TraderStatus formatter 타입 에러 1건도 수정). 수치 발명 0(모든 신규 문구는 reefer_week22.json·기존 보고값에서 검산). **⚠️ 미커밋·미배포**. app/page.tsx 'beef' 비교 TS2367 2건은 타 에이전트 동시 작업분(스코프 외).
+> - **다음**: ReeferFreightChart·TraderImportChart 컴포넌트 파일 삭제 여부 사용자 결정. 실측 운임(Freightos 등)·실측 항만 데이터 연동 시 라우트 재개.
+
+> 🛠️ **2026-06-11 — /_standalone 6라우트 결함 수정 완료 (P0 4건 #49~52 + P1·P2 기계적)** [CC]:
+> - **범위**: app/falkland·ffa-report·financial-risk·management·manual·omo-preview만 (components/ 공용 대시보드 불변). 직전 에이전트의 중단된 부분 수정(financial-risk·management) 검토 후 보존·완결.
+> - **financial-risk (P0 #49·50·51)**: ① LIVE 배지 → 라우트 표준 `isLive` 분기(LIVE+조회시각 / STATIC·폴백 예시 + 경고 배너) ② Math.random WTI 14D 차트 제거 ③ 'GEMINI 3 PRO ANALYSIS' → '룰 기반 리스크 메모 (자동 생성 · WTI 변동률 기준)' — fetch_financial_risk.py 검증 결과 라벨과 산식 일치 확인. +추가: 지구본 지정학 이벤트 5건 한글화(script+route fallback 동일), '정적 큐레이션(실시간 피드 아님)' 명기, 메모 헤더 한글화, 파이썬 함수명 `generate_mock_gemini_analysis`→`generate_rule_based_analysis`, 리스크 상태 3단 매핑(심각/경계/낮음).
+> - **management (P0 #52)**: 'DART LIVE' 티커(3개월 전 공시 2건 하드코딩+펄스+XBRL 배지) → `dart_news` JSON 최신 3건 동적 렌더 + 'DART 공시 (2026-05-14 동기화)' 정직 라벨, 펄스·'XBRL 크로스체크 일치' 배지 제거, 로딩 문구 '실시간…PE 분석 엔진' → 'DART CFS 데이터 조회 중'. +L-01 일괄 한글화(~30곳: 헤더·IC메모·차트제목·M&A 카드·리스크 등급 Low/Medium/High→낮음/중간/높음).
+> - **ffa-report (P1·P2)**: 원시 `**` 마크다운 노출 5곳 → `<strong>` 치환, L-01(Cover Slide→표지, PREV/NEXT→이전/다음 등 7곳), '실시간 대시보드' 버튼(정적 페이지 링크) → '메인 대시보드' 정직화.
+> - **falkland·manual·omo-preview**: 결함 없음 확인(falkland은 components/ 위임이라 범위 외, manual·omo-preview는 한글·정직 라벨 기준 통과).
+> - **검증**: `tsc --noEmit` — 6라우트+관련 라우트/스크립트 신규 에러 0 (기존 79건은 전부 components/·lib/ 소재 기존 결함). `py_compile` 통과. 수치 발명 0. **⚠️ 미커밋·미배포** — 사용자 승인 대기.
+> - **다음**: 보고서의 나머지 P0 48건(타 페이지)은 별도 트랙. dart-insight 라우트의 영문 IC메모 생성 텍스트는 라우트 파일이 6라우트 범위 외라 보류(페이지 측 startsWith 파싱과 결합돼 있어 동시 수정 필요).
+
 > 🔍 **2026-06-11 — 전 페이지 전수 검토 완료 (33유닛 · 확정 353건)** [CC]:
 > - **방법**: 67에이전트 워크플로우 — 페이지별 리뷰 33유닛(9항목 체크리스트) → P0/P1 전건 적대검증(기각 0·PARTIAL 정정 6) → 시스템 패턴 합성. ⚠️ **검토만, 코드 수정 0건**.
 > - **산출물**: [docs/all_pages_review_2026-06-11.md](file:///Users/idong-geon/연구자동화애이전트들/tuna-dashboard/docs/all_pages_review_2026-06-11.md) — **P0 52 · P1 127 · P2 174**. P0 최다: galchi 6(아귀 HSK 오귀속!)·_standalone 4·logistics/mackerel/shrimp 각 3.

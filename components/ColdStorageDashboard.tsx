@@ -19,32 +19,31 @@ import WidgetCard from './WidgetCard';
 import styles from './MackerelStrategy.module.css'; // 재사용
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
-const smartFormat = (v: any, dataKey?: string): string | any => {
+// Number formatting only — unit attachment happens once in CustomTooltip
+// (keyword-based unit synthesis caused double/false units, e.g. w03 12,120(10억원) shown as '12,120억원')
+const formatNumber = (v: any): string | any => {
   if (Array.isArray(v)) {
-    return v.map(val => smartFormat(val, dataKey)).join(' ~ ');
+    return v.map(val => formatNumber(val)).join(' ~ ');
   }
   if (typeof v !== 'number') return v;
-  const str = v % 1 === 0 ? v.toLocaleString() : v.toLocaleString(undefined, { maximumFractionDigits: 3 });
-  if (!dataKey) return str;
-  const k = dataKey.toLowerCase();
-  if (k.includes('비율') || k.includes('가동률') || k.includes('점유율') || k.includes('roic') || k.includes('성장률')) return `${str}%`;
-  if (k.includes('보관료') || k.includes('비용')) return `฿${str}`;
-  if (k.includes('자본') || k.includes('매출') || k.includes('영업이익')) return `${str}억원`;
-  if (k.includes('수출액') || k.includes('수입액')) return `$${str}M`;
-  return str;
+  return v % 1 === 0 ? v.toLocaleString() : v.toLocaleString(undefined, { maximumFractionDigits: 3 });
 };
 
-const CustomTooltip = ({ active, payload, label, unit }: any) => {
+const CustomTooltip = ({ active, payload, label, unit, unitMap }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className={styles.customTooltip}>
         <p className={styles.tooltipLabel}>{label}</p>
-        {payload.map((entry: any, index: any) => (
-          <div key={index} className={styles.tooltipValue}>
-            <span style={{ color: entry.color }}>■ {entry.name}</span>
-            <strong>{smartFormat(entry.value, entry.dataKey)} {unit && !entry.dataKey?.toLowerCase().includes('비율') && !entry.dataKey?.toLowerCase().includes('roic') ? unit : ''}</strong>
-          </div>
-        ))}
+        {payload.map((entry: any, index: any) => {
+          // Per-series unit (unitMap) wins over widget-level unit; attach exactly once
+          const u = unitMap && entry.dataKey in unitMap ? unitMap[entry.dataKey] : (unit || '');
+          return (
+            <div key={index} className={styles.tooltipValue}>
+              <span style={{ color: entry.color }}>■ {entry.name}</span>
+              <strong>{formatNumber(entry.value)}{u ? ` ${u}` : ''}</strong>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -100,11 +99,11 @@ export default function ColdStorageDashboard() {
     const mockData = {
       kpis: {
         kpi1: { title: "일반 상온 창고 입주율", value: "88% ↘", desc: "공급 과잉 상태 직면 (Trap)", trend: "위험", icon: "TrendingDown" },
-        kpi2: { title: "초저온 맞춤형(BTS) 점유율", value: "98% ↗", desc: "고수익 하이엔드 인프라 품귀", trend: "Grade S", icon: "TrendingUp" },
+        kpi2: { title: "초저온 맞춤형(BTS) 점유율", value: "98% ↗", desc: "고수익 하이엔드 인프라 품귀", trend: "S급", icon: "TrendingUp" },
         kpi3: { title: "태국 Category II 인증자", value: "420명", desc: "첨단 자동화 고장 시 치명적 리스크", trend: "경고", icon: "AlertTriangle" },
         kpi4: { title: "태국 BOI 면세 조건 달성", value: "기술 이전", desc: "매년 감사 미달 시 세금 소급 추징", trend: "주의", icon: "ShieldAlert" },
         kpi5: { title: "IoT 실시간 무결성 인증", value: "LTV 극대화", desc: "은행 담보 70% 이상 초저금리 확보", trend: "기회", icon: "DollarSign" },
-        kpi6: { title: "투 트랙(Bi-Node) 거점", value: "TH-VN 연계", desc: "베트남(가공/수출) - 태국(RDC 허브)", trend: "전략", icon: "Globe" },
+        kpi6: { title: "투 트랙(Bi-Node) 거점", value: "태국-베트남 연계", desc: "베트남(가공/수출) - 태국(RDC 허브)", trend: "전략", icon: "Globe" },
       },
       widgets: [
         {
@@ -120,7 +119,8 @@ export default function ColdStorageDashboard() {
           sit: <>일반 상온 창고(Dry/Ready-built)는 극단적 공급 과잉으로 2027년까지 입주율 85% 하락 및 레이스 투 더 바텀(Race-to-the-bottom)의 단가 경쟁 리스크에 직면. 반면, A급 맞춤형 초저온 인프라(BTS, -50°C 이하)는 수익성이 4배 이상 높으며 구조적 품귀 현상이 지속 중임.</>,
           strat: <>맹목적인 볼륨 확보 위주의 일반 상온 창고 투자는 전면 숏(Short) 포지션 구축. 향후 자본 배분은 메자닌 층을 활용한 수직적 공간 최적화(Vertical Optimization) 및 다양한 정밀 온도 구역(Multi-temp Zone)을 제공하는 하이엔드 냉동 인프라에 집중하여, 임대 프리미엄 및 장기 수익성을 창출할 것.</>,
           source: '업계추정 — 아세안 냉동창고 구역별 수익성 시나리오 (2026)',
-          unit: '지수 / %'
+          unit: '지수 / %',
+          unitMap: { '수익성_지수': '', '예상_입주율': '%' }
         },
         {
           id: 'w02',
@@ -146,7 +146,7 @@ export default function ColdStorageDashboard() {
           sit: <>국내 콜드체인 시장은 매수자 우위(Buyer\'s Market)의 극단적 오버서플라이 환경으로, LNG 냉열 등 핵심 기술을 보유한 기업조차 유동성 위기 및 영업 적자를 면치 못하고 있음. 반면, 아세안 콜드체인 사업자들은 극심한 인프라 숏티지를 기반으로 견고한 마진율을 방어 중임.</>,
           strat: <>국내 시장의 밸류에이션 붕괴 및 유동성 위기를 역이용하여, 기술력(LNG 냉열 쿨링 등)을 보유한 국내 한계 기업을 대상으로 Distressed M&A 및 핵심 자산 스핀오프(Spinoff) 딜소싱을 적극 타진할 것. 이를 아세안 확장 시 기술적 해자로 활용하여 밸류업(Value-up)을 도모.</>,
           source: 'DART 2024년 사업보고서 및 연결재무제표',
-          unit: '10억원'
+          unit: '십억원'
         },
         {
           id: 'w04',
@@ -174,7 +174,8 @@ export default function ColdStorageDashboard() {
           sit: <>베트남은 태국 대비 전력료와 인건비(지수 38 vs 100)가 모두 저렴하나 통관 지연 및 전력망 불안정 리스크에 노출. 반면 태국은 운영비(OPEX)는 높지만 아세안 물류 허브로서의 통제력과 전문 인프라를 보유, 구조적 프리미엄을 향유 중임.</>,
           strat: <>단일 국가 집중 리스크를 분산하기 위해, 태국을 고부가가치 참치 재고의 컨트롤 타워(RDC)로 지정하고, 베트남은 저비용 1차 가공 및 단기 B2B 수출 기지로 이원화하는 투 트랙(Bi-Node) 운영 시나리오를 가동할 것. 이를 통해 지정학적 리스크를 헷징하고 공급망 유연성을 확보.</>,
           source: '태국 PEA / 베트남 EVN 실측 데이터 분석',
-          unit: '수치'
+          unit: '$/kWh / 지수',
+          unitMap: { '전력료': '$/kWh', '인건비지수': '' }
         },
         {
           id: 'w06',
@@ -187,7 +188,8 @@ export default function ColdStorageDashboard() {
           sit: <>태국 내 Category II 암모니아 냉매 인증 기술자는 420명에 불과하며, 막대한 자본을 투입한 AS/RS 무인 스마트 창고도 전력망 마비 시 재고 전량 부패라는 극단적 테일 리스크(Tail Risk)에 노출되어 있음. \'420명의 저주\'로 인한 수복 지연 병목이 실재함.</>,
           strat: <>맹목적인 첨단 제어 시스템(100% Active) 의존도를 탈피하고, 정전 시에도 자체 온도를 -20°C 이하로 유지하는 상변화물질(PCM) 기반 패시브 쿨링(Passive Cooling) 기술을 로우테크(Low-tech) 헷징 장치로 설계에 필수 편입할 것. 이는 보험료(Premium) 인하 및 재무 건전성 방어의 핵심.</>,
           source: '업계추정 — 냉동창고 설비 자동화 vs 패시브 쿨링 리스크 시나리오 (2026)',
-          unit: '위험도 (0-100)'
+          unit: '점 (0~100)',
+          unitMap: { '자동화': '점', '패시브': '점' }
         },
         {
           id: 'w07',
@@ -202,7 +204,8 @@ export default function ColdStorageDashboard() {
           sit: <>태국 등 아세안의 산업용 시간대별 요금제(TOU Rate) 하에서 주간(Peak) 전력료는 심야 대비 1.8배에 달함. 기존 냉각 시스템을 주간에 최대 부하로 가동할 경우, 극심한 전력비용 상승으로 인해 영업이익률(OP Margin)이 훼손되는 구조적 한계에 직면함.</>,
           strat: <>심야 저비용 전력을 활용해 냉기를 비축하고 주간에 방출하는 빙축열 시스템(Ice Thermal Storage)을 전면 도입할 것. 이를 통해 연간 냉각 전력 비용(OPEX)을 40% 이상 선제적으로 삭감하고, 장기 인플레이션 및 유가 변동성 리스크를 원천 헷징(Hedging)해야 함.</>,
           source: '태국 전력청(PEA) TOU 요금 체계 모델링',
-          unit: '만 바트'
+          unit: '만 바트 / %',
+          unitMap: { '전통적_냉각_비용': '만 바트', '빙축열_냉각_비용': '만 바트', '절감액_비율': '%' }
         },
         {
           id: 'w08',
@@ -225,7 +228,7 @@ export default function ColdStorageDashboard() {
           subtitle: '기관 리포트 기반 · 드라이/냉장/냉동/초저온 4유형',
           chartType: 'Bar',
           xKey: 'propertyType',
-          bars: [{key: 'Cap_Rate', color: 'var(--color-success)'}],
+          bars: [{key: 'Cap_Rate', name: '자본환원율', color: 'var(--color-success)'}],
           data: [{"propertyType":"노후 상온","Cap_Rate":7.5},{"propertyType":"A급 상온","Cap_Rate":6.0},{"propertyType":"일반 냉동","Cap_Rate":5.2},{"propertyType":"BTS 초저온","Cap_Rate":4.0}],
           sit: <>아세안 물류 부동산 시장 내 일반 상온 창고(Dry)의 Cap Rate는 상승(가치 하락) 중이나, 우량 화주와 장기 임대차(Master Lease)가 체결된 초저온 창고는 Cap Rate 4%대까지 하락하며 글로벌 기관 투자자(LP)들의 매수 1순위 자산으로 부상 중임.</>,
           strat: <>단순 물류 운영 수익(OpEx)에 안주하지 말고, 완공 후 5년 내 우량 화주(당사 등)와의 10년 장기 임대차 계약을 기반으로 싱가포르 등 글로벌 리츠(REITs)에 최고가로 매각하는 자본 차익(Capital Gain) 중심의 엑시트(Exit) 플랜을 병행 추진할 것.</>,
@@ -245,7 +248,8 @@ export default function ColdStorageDashboard() {
           sit: '베트남 콜드체인 시장은 CAGR 12.4% 성장 중(2024년 1.3M → 2028년 1.7M 팔레트 전망, Ken Research 추정)이나, 인프라 미충족률이 80%에 육박함. 현 공급 부족 구조가 유지되는 향후 3~5년이 초과 수익 창출을 위한 유효한 진입 구간으로 판단됨.',
           strat: '베트남 남부 핵심 물류 노드(HCMC·Long An)에 IQF 수산 특화 시설(5,000~15,000 팔레트) 중심의 그린필드(Greenfield) 투자를 공격적으로 집행. 외국인 100% 지분 구조와 우량 앵커 임차(Hung Vuong 등) 확보를 통해 36~48개월 내 BEP 달성 및 ROIC 20~30% 타겟팅.',
           source: 'GCCA Global Report + Ken Research Vietnam 2025 + Trade.gov',
-          unit: 'K팔레트 / %'
+          unit: '천 팔레트 / %',
+          unitMap: { '팔레트_용량': '천 팔레트', '미충족률': '%' }
         },
         {
           id: 'n02',
@@ -273,7 +277,8 @@ export default function ColdStorageDashboard() {
           sit: '태국(RDC 허브)과 베트남(가공·수출 기지)을 연계한 Bi-Node 이원화 전략은 시나리오 가정상 단일 거점 대비 5년 NPV 추정치가 약 75% 높게 산출됨(자체 추정, 실제 수치는 입지·임차 조건에 따라 변동). 태국의 전력망 안정성·BOI 인센티브, 베트남의 원가 경쟁력이 상호 보완 관계로 작용함.',
           strat: '총 가용 자본 1,300억 원 상회 시 Bi-Node 전략을 최우선 가동. 자본 500억 원 하회 시 단기 ROIC(추정 25%)가 우수한 베트남 그린필드 투자로 집중. 장기적으로 3국 통합 운영(2,000억 원 규모)으로 스케일업하여 아세안 수산 물류 핵심 사업자로 포지셔닝할 것.',
           source: '자체추정 — 투자 시나리오 분석 (NPV·ROIC 수치는 예시적 추정, 2026)',
-          unit: '억원 / %'
+          unit: '억원 / %',
+          unitMap: { '5년_NPV': '억원', '투자액': '억원', 'ROIC': '%' }
         },
         {
           id: 'k01',
@@ -286,7 +291,8 @@ export default function ColdStorageDashboard() {
           sit: '보냉팩 3개 이상 적용 시 냉동 넙치·고등어 필렛은 12시간까지 선도 안전 구간(K값 30% 미만) 방어가 가능(KFAS 실증). 단, 고등어는 K값 상승 속도가 1.6배 빨라, 지방 산화가 선도 열화를 촉발하는 핵심 리스크 요인으로 판명됨.',
           strat: '라스트마일 콜드체인 표준으로 보냉팩 3개+스티로폼 이중포장을 벤치마크화하여 12시간 안전 구간을 강제. 고지방 어종(고등어, 연어 등)은 보냉팩 4개+진공포장(Vacuum Packing)을 의무화하여, 유통 과정 내 C/S 클레임 및 반품 손실(Shrinkage)을 50% 이상 원천 차단할 것.',
           source: 'KFAS 한국수산과학회지 — 시판 보냉팩 개수별 냉동 수산물 선도유지능 비교평가',
-          unit: '% (K값)'
+          unit: '% (K값)',
+          unitMap: { '넙치K값': '%', '고등어K값': '%' }
         },
         {
           id: 'k02',
@@ -299,7 +305,8 @@ export default function ColdStorageDashboard() {
           sit: '어종별 선도 민감도 팩터 분석 결과, 백색육(넙치)은 K값(스코어 92점)이, 적색육(고등어)은 VBN(95점) 및 히스타민(90점)이 절대적 신호 지표로 확인됨. 획일적인 품질 검사 프로토콜은 리소스 낭비이자 판별 오류의 주범임.',
           strat: '냉동창고 QC 프로토콜을 어종별로 즉각 파편화(Segmentation). 넙치류는 신속 K값 키트로, 고등어·참치류는 VBN+히스타민 듀얼 검사로 표준화하여 불필요한 검사 비용(OPEX)을 30% 절감하고 타겟 판별 정확도를 95% 이상으로 상향 평준화.',
           source: 'KFAS 한국수산과학회지 — 시판 보냉팩 및 스티로폼 박스 상온유통 시 수산물 선도지표 설정',
-          unit: '민감도 (점)'
+          unit: '민감도 (점)',
+          unitMap: { '넙치': '점', '고등어': '점' }
         },
         {
           id: 'k03',
@@ -307,7 +314,7 @@ export default function ColdStorageDashboard() {
           subtitle: 'KFAS 논문 기반 · MAP+레몬 추출물 복합 처리',
           chartType: 'Composed',
           xKey: '저장일',
-          lines: [{key: 'MAP_레몬', color: '#10b981'}, {key: '대조군', color: '#64748b'}],
+          lines: [{key: 'MAP_레몬', name: 'MAP+레몬 처리', color: '#10b981'}, {key: '대조군', color: '#64748b'}],
           data: [{"저장일":"0일","MAP_레몬":3.2,"대조군":3.2},{"저장일":"3일","MAP_레몬":3.5,"대조군":5.1},{"저장일":"7일","MAP_레몬":4.2,"대조군":7.8},{"저장일":"10일","MAP_레몬":5.0,"대조군":8.5},{"저장일":"14일","MAP_레몬":5.8,"대조군":9.2}],
           sit: '생굴에 MAP(CO₂ 50%/N₂ 50%) 및 레몬 추출물을 복합 처리 시, 7일 차 총균수가 99.99% 억제(4.2 log)되며 기존 유통기한(3~5일)을 14일로 무려 3배 연장하는 파괴적 혁신을 입증(KFAS 데이터).',
           strat: 'MAP 포장 기술을 하이엔드 횟감(생굴, 생참치 등)에 즉각 적용. 창고 내 가스치환포장 설비(In-house MAP Line)를 구축해 부가 서비스를 제공함으로써, 타사로의 이탈을 막는 절대적 해자(Moat)를 형성하고 톤당 수수료 마진을 극대화할 것.',
@@ -317,15 +324,15 @@ export default function ColdStorageDashboard() {
         {
           id: 'k04',
           title: '냉동 전복 위해요소 검출 수준 및 안전성',
-          subtitle: 'KFAS 논문 기반 · 중금속/미생물/패독 3항목',
+          subtitle: 'KFAS 논문 기반 · 중금속 3종(납·카드뮴·수은, mg/kg)·일반세균(log CFU/g) 검출값 vs 기준치',
           chartType: 'Bar',
           xKey: '항목',
           bars: [{key: '기준치', color: '#64748b'}, {key: '검출값', color: '#38bdf8'}],
-          data: [{"항목":"납 (mg/kg)","검출값":0.02,"기준치":2.0},{"항목":"카드미움","검출값":0.15,"기준치":2.0},{"항목":"수은","검출값":0.01,"기준치":0.5},{"항목":"세균 (log)","검출값":2.8,"기준치":5.0}],
+          data: [{"항목":"납 (mg/kg)","검출값":0.02,"기준치":2.0},{"항목":"카드뮴 (mg/kg)","검출값":0.15,"기준치":2.0},{"항목":"수은 (mg/kg)","검출값":0.01,"기준치":0.5},{"항목":"일반세균 (log CFU/g)","검출값":2.8,"기준치":5.0}],
           sit: '유통 냉동 전복 실사 결과 중금속 및 미생물 등 위해요소는 식품공전 기준을 100% 하회하여 적합. 그러나 해동 후 재냉동 시 발생하는 드립(Drip) 증가 및 텍스처(Texture) 열화 현상이 상품성을 훼손하는 최대 밸류 디스트로이어(Value Destroyer)임.',
           strat: '해당 무결성 데이터를 기반으로 당사 보관 수산물에 대한 \'안전성 프리미엄 인증서\' 발급 비즈니스를 신설. 특히 대(對) 일본·EU 수출 물량에 대해 건당 프리미엄 수수료를 과금(Monetization)하여 단순 임대업을 초월한 인증 비즈니스로 수익 파이프라인을 다각화.',
           source: 'KFAS 한국수산과학회지 57(3), 2024 — 냉동전복 위해요소분석 및 안전성 평가',
-          unit: 'mg/kg · log'
+          unit: '' // 항목별 단위 상이(mg/kg · log CFU/g) — cardDesc에 명기
         },
         {
           id: 'k05',
@@ -338,7 +345,8 @@ export default function ColdStorageDashboard() {
           sit: '초분광 영상(400~1000nm) 및 딥러닝 기반 선도 판별 모델은 평균 정확도 93.2%를 기록, 숙련 검사원의 관능검사(71.7%)를 압도함. 비파괴 방식으로 초당 5마리 이상 실시간 팩터링이 가능한 처리량(Throughput)을 입증.',
           strat: '물류센터 게이트(Gate)에 AI 초분광 선도 스캐너를 전면 도입. 입고 시 불량 원물을 시스템 단위에서 100% 컷오프(Cut-off)하고, 출고 시 선도 등급별 오토 프라이싱(Auto-pricing)을 연동. 이를 통해 \'AI 퀄리티 개런티\' 명목으로 타사 대비 20~30% 프리미엄 단가를 징수할 것.',
           source: 'KFAS 한국수산과학회지 — 초분광 영상 기반 고등어 신선도 등급 분류 및 판정',
-          unit: '% (정확도)'
+          unit: '% (정확도)',
+          unitMap: { '정확도': '%', '기존방식': '%' }
         },
         {
           id: 'k06',
@@ -353,7 +361,8 @@ export default function ColdStorageDashboard() {
           sit: '동결건조(HMR) 수산 블록은 -20°C에서 36개월, 25°C 상온에서도 14개월의 장기 유통이 가능(KFAS 실증). 고온 노출 시 TBA(지방산화) 급증 리스크만 통제하면 냉동창고 운영 비중을 대폭 줄일 수 있어 콜드체인 비용 구조 개선에 유효한 수단임.',
           strat: '동결건조 HMR 포트폴리오를 대폭 확대하여 비싼 냉동창고 캡을 비우고 상온 창고로 재고를 이전(Shift). 이를 화주들에게 \'콜드체인 비용 절감 컨설팅\'으로 패키징하여 제공함으로써 물류 효율(Efficiency)의 한계를 돌파하고 마진 스프레드를 확대할 것.',
           source: 'KFAS 한국수산과학회지 55(4), 2022 — 동결건조 블록 품질 변화 및 유통기한 추정',
-          unit: '개월 / mg·kg⁻¹'
+          unit: '개월 / mg·kg⁻¹',
+          unitMap: { '유통기한': '개월', 'TBA값': 'mg/kg' }
         },
         {
           id: 'k07',
@@ -366,7 +375,8 @@ export default function ColdStorageDashboard() {
           sit: '수리미(Surimi) 원료에 이오타-카라기난 1% 처리 시 14일 냉장 보관 후에도 겔 강도가 초기 대비 85% 유지됨(대조군은 37.6%로 붕괴). 이는 냉장 유통 어육 가공품의 쉘프라이프(Shelf-life)를 2배(7일→14일) 연장시키는 핵심 팩터임.',
           strat: '화주들에게 \'해동 후 14일 품질 개런티(Guarantee)\' 밸류-애드(Value-add) 서비스를 제안. 수리미 가공 파트너사들의 재고 회전(Inventory Turnover) 압박을 해소해주며 당사 물류 센터로의 종속성을 강화, 장기 임대차 계약의 지렛대로 적극 활용할 것.',
           source: 'KFAS 한국수산과학회지 — 카라기난 첨가 수리미의 냉장 저장 중 특성 변화',
-          unit: 'gf (겔강도)'
+          unit: 'gf (겔강도)',
+          unitMap: { '카라기난': 'gf', '대조군': 'gf' }
         },
         {
           id: 'k08',
@@ -381,7 +391,8 @@ export default function ColdStorageDashboard() {
           sit: '동결 송어육에 TGase 및 카파-카라기난 복합 처리 시, 해동 드립률이 45% 억제(8.5%→4.7%)되고 겔 강도가 2.1배 상승. 이는 냉동 수산물의 고질적 아킬레스건인 \'해동 후 품질 폭락\' 리스크를 펀더멘털 단위에서 방어하는 기술적 우위임.',
           strat: '냉동 입고 전 전처리(Pre-treatment) 서비스를 핵심 수익 모델화. 드립 1%p 발생 시 킬로당 ₩100~200의 원가 손실이 발생하는 화주들에게, 품질 방어를 미끼로 프리미엄 전처리 과금을 청구하여 엑스트라 알파(Extra Alpha) 수익을 지속 창출할 것.',
           source: 'KFAS 한국수산과학회지 — TGase+다당류 활용 동결 무지개송어 물성개선 및 저장성 향상',
-          unit: '% / 지수'
+          unit: '% / 지수',
+          unitMap: { '드립률': '%', '겔강도': '' }
         },
         {
           id: 'us01',
@@ -559,10 +570,10 @@ export default function ColdStorageDashboard() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
-            <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
+            <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar key={i} dataKey={b.key} name={b.name || String(b.key).replace(/_/g, ' ')} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
           </BarChart>
         );
@@ -576,13 +587,13 @@ export default function ColdStorageDashboard() {
             {widget.dualAxis && (
               <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             )}
-            <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
+            <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.bars?.map((b: any, i: number) => (
-              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
+              <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} name={b.name || String(b.key).replace(/_/g, ' ')} fill={b.color} radius={[6,6,0,0]} fillOpacity={0.85} />
             ))}
             {widget.lines?.map((l: any, i: number) => (
-              <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={{r:4}} activeDot={{r:6}} />
+              <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} name={l.name || String(l.key).replace(/_/g, ' ')} stroke={l.color} strokeWidth={2.5} dot={{r:4}} activeDot={{r:6}} />
             ))}
           </ComposedChart>
         );
@@ -592,7 +603,7 @@ export default function ColdStorageDashboard() {
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
             <PolarAngleAxis dataKey={widget.xKey} tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatXAxis} />
             <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-            <RechartsTooltip content={<CustomTooltip unit={widget.unit} />} />
+            <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{fontSize:'11px'}} />
             {widget.radars?.map((r: any, i: number) => (
               <Radar key={i} name={r.name} dataKey={r.key} stroke={r.color} fill={r.color} fillOpacity={0.4} />
@@ -600,7 +611,7 @@ export default function ColdStorageDashboard() {
           </RadarChart>
         );
       default:
-        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported Chart: {widget.chartType}</div>;
+        return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원되지 않는 차트 형식: {widget.chartType}</div>;
     }
   };
 
@@ -611,12 +622,13 @@ export default function ColdStorageDashboard() {
 
     return (
       <WidgetCard key={w.id}
-        title={w.title || 'Data Widget'}
+        title={w.title || '데이터 위젯'}
         icon={IconComp}
         iconColor={accentColor}
         pillar={pillar}
         cardDesc={w.subtitle || ''}
-        telemetry={{ status: liveStatus, syncDate: w.syncDate || '2026.05.15' }}
+        unit={w.unit || undefined}
+        telemetry={{ status: liveStatus, syncDate: w.syncDate }}
         chartHeight={375}
         chart={renderChart(w)}
         takeaway={{
@@ -862,8 +874,8 @@ export default function ColdStorageDashboard() {
           {/* 임대가능 앵커 상세 카드 */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
             {[
-              { region: '동부 (East Coast)', rc: '#38bdf8', name: 'Lineage Logistics — 퍼스앰보이', sub: '구 Preferred Freezer Services', temp: '-60 ~ -62°C', spec: 'ULT 약 600팔레트 · 사시미급 명시', addr: '536 Fayette St, Perth Amboy, NJ', contact: '(732) 324-2000', grade: '확정~유력 · 신뢰도 高' },
-              { region: '서부 (West Coast)', rc: '#f43f5e', name: 'LaCold — LA 콜드스토리지', sub: 'Los Angeles Cold Storage Co.', temp: '-60°C / -76°F', spec: '현장 USDC 수산검사관 · 사시미급 참치 명시', addr: '440 S Central Ave, LA 90013', contact: '213.624.1831', grade: '확정 · 신뢰도 高' },
+              { region: '미국 동부', rc: '#38bdf8', name: 'Lineage Logistics — 퍼스앰보이', sub: '구 Preferred Freezer Services', temp: '-60 ~ -62°C', spec: 'ULT 약 600팔레트 · 사시미급 명시', addr: '536 Fayette St, Perth Amboy, NJ', contact: '(732) 324-2000', grade: '확정~유력 · 신뢰도 高' },
+              { region: '미국 서부', rc: '#f43f5e', name: 'LaCold — LA 콜드스토리지', sub: 'Los Angeles Cold Storage Co.', temp: '-60°C / -76°F', spec: '현장 USDC 수산검사관 · 사시미급 참치 명시', addr: '440 S Central Ave, LA 90013', contact: '213.624.1831', grade: '확정 · 신뢰도 高' },
             ].map((f, i) => (
               <div key={i} className="ds-card" style={{ background: 'rgba(24,24,24,0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: `1px solid ${f.rc}33`, borderLeft: `3px solid ${f.rc}`, borderRadius: '8px', padding: '1.2rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>

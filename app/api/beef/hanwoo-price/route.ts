@@ -15,7 +15,9 @@ import { logApiFail, logApiSuccess, logSchemaIssue } from '@/lib/api-debug';
 const KAMIS_KEY = process.env.KAMIS_API_KEY || '';
 const KAMIS_BASE = 'https://www.kamis.or.kr/service/price/xml.do';
 
-const FALLBACK = [
+type PricePoint = { month: string; hanwoo: number; usImport: number | null; auImport: number | null };
+
+const FALLBACK: PricePoint[] = [
   { month: '23-01', hanwoo: 22500, usImport: 12800, auImport: 11200 },
   { month: '23-04', hanwoo: 21800, usImport: 13100, auImport: 11400 },
   { month: '23-07', hanwoo: 23200, usImport: 13500, auImport: 11600 },
@@ -103,15 +105,17 @@ async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCo
 }
 
 export async function GET() {
-  let data = FALLBACK;
+  let data: PricePoint[] = FALLBACK;
   let isLive = false;
+  let partialLive = false; // 일부 시리즈만 라이브일 때 true (위젯이 정직 표기에 사용)
+  let seriesLive = { hanwoo: false, usImport: false, auImport: false };
   let source = '한국농수산식품유통공사(KAMIS) 정적 미러';
 
   if (KAMIS_KEY) {
     try {
       // KAMIS 검증 매핑 (URL 추출 확인):
       //   한우: itemcategorycode=500, itemcode=4304, kindcode=27, productrankcode=1
-      //   수입 쇠고기: 동일 카테고리, 별도 itemcode (4307 미국산 등) 추정
+      //   수입 쇠고기: itemcode 4307은 오류 코드로 확인 — 올바른 코드 조사는 별도 과제
       const [hanwoo, imported] = await Promise.all([
         fetchKamisItem('4304', '500', '27', '1'),
         fetchKamisItem('4307', '500', '27', '1'),
@@ -119,22 +123,20 @@ export async function GET() {
 
       const quarters = Object.keys(hanwoo).sort();
       if (quarters.length >= 4) {
-        // 수입육 itemcode 4307은 잘못된 코드 — 데이터 없음
-        // 한우만 LIVE, 수입육은 FALLBACK 정적 값 유지 (정확한 itemcode 조사 별도 작업)
+        // A-01: 합성 산식(us×0.85)·동결 상수 대입 금지.
+        // 산출 불가 시리즈는 null → 위젯에서 해당 시리즈 미표시.
         // KAMIS 한우는 100g 단위 가격 → kg 단위(× 10)로 정규화 (차트 일관성)
         const importedHasData = Object.keys(imported).length > 0;
-        data = quarters.slice(-8).map(q => {
-          const us = imported[q] || 0;
-          const fb = FALLBACK[FALLBACK.length - 1];
-          return {
-            month: q,
-            hanwoo: (hanwoo[q] || 0) * 10, // 100g → kg 환산
-            usImport: us > 0 ? us * 10 : fb.usImport,
-            auImport: us > 0 ? Math.round(us * 0.85) * 10 : fb.auImport,
-          };
-        });
+        data = quarters.slice(-8).map(q => ({
+          month: q,
+          hanwoo: (hanwoo[q] || 0) * 10, // 100g → kg 환산
+          usImport: imported[q] ? imported[q] * 10 : null,
+          auImport: null, // 호주산 KAMIS 코드 미확보 — 추정값 미생성
+        }));
         isLive = true;
-        source = `KAMIS API (한우 4304/27 LIVE, kg 환산, ${quarters.length} quarters${importedHasData ? ' + 수입육 LIVE' : ' + 수입육 fallback'}, 1d 캐시)`;
+        seriesLive = { hanwoo: true, usImport: importedHasData, auImport: false };
+        partialLive = !(seriesLive.usImport && seriesLive.auImport);
+        source = `KAMIS API (한우 4304/27 LIVE, kg 환산, ${quarters.length} quarters${importedHasData ? ' + 미국산 LIVE' : ''}, 수입육 시리즈 ${importedHasData ? '부분' : ''}미연동, 1d 캐시)`;
       } else {
         source = 'KAMIS 한우 응답 부족 — 정적 미러';
       }
@@ -147,6 +149,8 @@ export async function GET() {
 
   return NextResponse.json({
     isLive,
+    partialLive,
+    seriesLive,
     source,
     fetchedAt: new Date().toISOString(),
     data,

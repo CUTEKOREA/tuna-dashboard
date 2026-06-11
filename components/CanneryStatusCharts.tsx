@@ -52,9 +52,9 @@ export default function CanneryStatusCharts() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
       {liveData && (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '20px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #10b981' }}></span>
-            <span style={{ color: 'var(--color-success)', fontSize: '13px', fontWeight: 'bold' }}>{liveData.status} ({liveData.source})</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(148, 163, 184, 0.1)', border: '1px solid rgba(148, 163, 184, 0.25)', borderRadius: '20px' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-muted)' }}></span>
+            <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: 'bold' }}>{liveData.status}{liveData.syncDate ? ` · ${liveData.syncDate} 기준` : ''} ({liveData.source})</span>
           </div>
         </div>
       )}
@@ -66,8 +66,8 @@ export default function CanneryStatusCharts() {
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>밸류체인 마진율 인덱스 (실시간 예측)</h3>
-              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(16, 185, 129, 0.1)', color: 'var(--color-success)', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>E2E 순마진: {liveData.marginIndex.netMargin}</span>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold', color: 'var(--text-main)' }}>밸류체인 마진율 인덱스 (시나리오 추정{liveData.syncDate ? `, ${liveData.syncDate} 기준` : ''})</h3>
+              <span style={{ fontSize: '12px', padding: '2px 8px', background: 'rgba(148, 163, 184, 0.1)', color: 'var(--text-muted)', borderRadius: '12px', border: '1px solid rgba(148, 163, 184, 0.25)' }}>전구간 순마진(추정): {liveData.marginIndex.netMargin}</span>
             </div>
             <div style={{ display: 'flex', gap: '16px', marginBottom: '8px' }}>
               <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>원어 원가: <strong style={{color: 'var(--text-main)'}}>${liveData.marginIndex.rawCost}</strong></span>
@@ -96,7 +96,7 @@ export default function CanneryStatusCharts() {
         <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
             <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-              <TermTooltip term="공장별 일일 생산량" description="[그래프 설명] 각 가공 공장(Cannery)이 하루에 생산할 수 있는 전체 라인 CAPA(최대 가능 생산량) 대비 실제 오늘 가동된 일 생산량(실적)을 보여줍니다. 실적이 낮으면 고장, 노사문제 혹은 원어 부족을 의미할 수 있습니다." />
+              <TermTooltip term="공장별 일일 생산량" description="[그래프 설명] 각 가공 공장(Cannery)이 하루에 생산할 수 있는 전체 라인 CAPA(최대 가능 생산량) 대비 보고 시점에 가동된 일 생산량(실적)을 보여줍니다. 실적이 낮으면 고장, 노사문제 혹은 원어 부족을 의미할 수 있습니다." />
             </h2>
             <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
               태국 방콕 및 송클라 지역 캔 공장 일일 <TermTooltip term="CAPA" description="Capacity의 약자로 공장의 최대 가용 생산/보관 능력을 의미합니다." /> 대비 실적 (Metric Tons)

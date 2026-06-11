@@ -170,7 +170,7 @@ const WIDGET_UNITS: Record<string, string> = {
   w24_opex_spread: '(USD/t)',
   w25_processing_bottleneck: '(일)',
   w26_inventory_freight: '(지수)',
-  w27_substitute_spread: '(USD/t)',
+  w27_substitute_spread: '(RUB/kg)',
   w28_esg_premium: '(지수)',
   w29_eu_derisk_pivot: '(%)',
   w30_traceability_risk: '(지수)',
@@ -258,13 +258,19 @@ export default function PollockDashboard() {
     kpis.kpi4 = {
       ...kpis.kpi4,
       value: `${kcsLive.summary.ruPct}%`,
-      desc: `${kcsLive.summary.totalWgt.toLocaleString()}톤 중 ${kcsLive.summary.ruWgt.toLocaleString()}톤이 러시아산`,
+      desc: `냉동 원물(HS 030367) ${kcsLive.summary.totalWgt.toLocaleString()}톤 중 ${kcsLive.summary.ruWgt.toLocaleString()}톤이 러시아산`,
       telemetry: kcsLive.isLive ? 'live' : 'synced',
       syncDate: kcsLive.source,
     };
   }
 
   const kpiKeys = Object.keys(kpis);
+
+  // 헤더 카운트 동적 산출 (하드코딩 금지 — 실렌더 기준)
+  const totalWidgetCount = PILLARS.reduce(
+    (acc, p) => acc + (widgets?.filter((w: any) => p.widgets.includes(w.id)).length || 0) + (p.customInject?.length || 0),
+    0
+  );
 
   /* ─── Unified Chart Renderer ─── */
   const renderChart = (widget: any) => {
@@ -303,7 +309,7 @@ export default function PollockDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.areas?.map((a: any, i: number) => (
-                <Area key={i} type="monotone" dataKey={a.key} stroke={a.color} fill={`url(#pArea${widget.id}_${i})`} strokeWidth={2.5} />
+                <Area key={i} type="monotone" dataKey={a.key || a.dataKey} stroke={a.color} fill={`url(#pArea${widget.id}_${i})`} strokeWidth={2.5} />
               ))}
             </AreaChart>
           );
@@ -321,10 +327,10 @@ export default function PollockDashboard() {
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
               {widget.bars?.map((b: any, i: number) => {
                 const p = getA11yBarProps(i);
-                return <Bar key={`b${i}`} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+                return <Bar key={`b${i}`} yAxisId={b.yAxisId || "left"} dataKey={b.key || b.dataKey} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
               })}
               {widget.lines?.map((l: any, i: number) => (
-                <Line key={`l${i}`} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+                <Line key={`l${i}`} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key || l.dataKey} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
               ))}
             </ComposedChart>
           );
@@ -453,7 +459,7 @@ export default function PollockDashboard() {
                 background: 'linear-gradient(135deg, #06b6d4, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 명태 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>명태 전략 커맨드센터 — 위젯 58개 · KPI 8개 · API 파이프라인 6개</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>명태 전략 커맨드센터 — 위젯 {totalWidgetCount}개 · KPI {kpiKeys.length}개 · API 파이프라인 6개</p>
             </div>
           </div>
           <div style={{ 
@@ -662,7 +668,7 @@ export default function PollockDashboard() {
         iconColor={accentColor}
         pillar={pillar}
         cardDesc={cardDesc}
-        telemetry={{ status: liveStatus, syncDate: w.syncDate || '2026.05' }}
+        telemetry={{ status: liveStatus, syncDate: w.syncDate }}
         chartHeight={375}
         chart={renderChart(w)}
         takeaway={{

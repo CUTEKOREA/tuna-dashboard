@@ -14,8 +14,6 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 
-import oecExportData from '../data/mangosteen_oec_export.json';
-import oecImportData from '../data/mangosteen_oec_import.json';
 import krExportData from '../data/mangosteen_kr_export.json';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
@@ -91,7 +89,9 @@ export default function MangosteenDashboard() {
   const [coldchainData, setColdchainData] = useState<any[]>([]);
   const [rcepArbitrageData, setRcepArbitrageData] = useState<any[]>([]);
   const [mangosteenKpis, setMangosteenKpis] = useState<Record<string, any>>({});
-  const [lastUpdate, setLastUpdate] = useState<string>('');
+  // L-12: 라우트의 isLive 표준 필드 소비 — 현재 라우트는 정적 베이스라인이므로 항상 false
+  const [isLive, setIsLive] = useState<boolean>(false);
+  const [dataBaseline, setDataBaseline] = useState<string>('');
 
   const [liveCommerceData] = useState([
     { name: '오프라인 도매', value: 75, fill: '#c026d3' },
@@ -124,16 +124,16 @@ export default function MangosteenDashboard() {
           setColdchainData(json.data.coldchainData || []);
           setRcepArbitrageData(json.data.rcepArbitrageData || []);
           setMangosteenKpis(json.data.kpis);
-          setLastUpdate(new Date(json.timestamp).toLocaleTimeString());
+          setIsLive(json.isLive === true);
+          setDataBaseline(json.lastSynced || '');
         }
       } catch (err) {
-        console.error('망고스틴 라이브 데이터 로드 실패:', err);
+        console.error('망고스틴 베이스라인 데이터 로드 실패:', err);
       }
     };
-    
+
+    // 정적 베이스라인 1회 로드 — 가짜 '5초 시계' 폴링 제거 (2026-06-11 정직화)
     fetchData();
-    const interval = setInterval(fetchData, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
@@ -176,7 +176,7 @@ export default function MangosteenDashboard() {
           <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#fbcfe8', fontSize: '0.9rem', lineHeight: 1.6 }}>
             <li><strong>수급 패권:</strong> 한국 수입의 <strong>96.5~98.7%가 태국산</strong> — 사실상 완전 독점. 베트남/인니발 가공품 우회 라인 확보 시급.</li>
             <li><strong>물류 대전환:</strong> 항공($5.5/kg) 대신 <strong>해상 및 특수포장($2.95/kg)</strong> 전면 도입으로 마진율 즉각 +18%p 개선 가능.</li>
-            <li><strong>하이엔드 차익 거래:</strong> 국내 대체 과일 단가 폭등 시 <strong>물량 공격적 투입</strong>, 최상급 물량은 프리미엄 해외 시장으로 <strong>12.4$/kg 단가 재수출</strong>.</li>
+            <li><strong>하이엔드 차익 거래:</strong> 국내 대체 과일 단가 폭등 시 <strong>물량 공격적 투입</strong>, 최상급 물량은 프리미엄 해외 시장 재수출 — 단가 <strong>$12.4/kg (몽골향 2026-03 KCS 실측, 연간 물량 1톤 미만 실증 단계)</strong>.</li>
           </ul>
         </div>
       </div>
@@ -246,7 +246,7 @@ export default function MangosteenDashboard() {
               <span style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: 600 }}> / 100</span>
             </div>
             <div style={{ fontSize: '0.7rem', color: 'var(--color-warning)', fontWeight: 600 }}>공급망 스트레스 지표</div>
-            <div suppressHydrationWarning style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: '6px' }}>최종 업데이트: {lastUpdate || "로딩 중..."}</div>
+            <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: '6px' }}>데이터 기준일: {dataBaseline || "로딩 중..."}</div>
           </div>
         </div>
       </div>
@@ -322,7 +322,7 @@ export default function MangosteenDashboard() {
           iconColor={SECTIONS[0].color}
           pillar="S1"
           cardDesc="국가별 생산량 vs 수출량 — 인도네시아 절대량 1위 vs 태국 수출 독점 디커플링"
-          telemetry={{ status: productionVsTradeData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
           chartHeight={375}
           chart={
             <ComposedChart data={productionVsTradeData} layout="vertical" margin={{ left: 50 }}>
@@ -359,7 +359,7 @@ export default function MangosteenDashboard() {
           iconColor="#e879f9"
           pillar="S1"
           cardDesc="ENSO 기후 지수 vs 검역 통과 수율 — 수액병 발병 리스크 모니터"
-          telemetry={{ status: climateYieldData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <ComposedChart data={climateYieldData}>
@@ -410,7 +410,7 @@ export default function MangosteenDashboard() {
           iconColor="#c026d3"
           pillar="S2"
           cardDesc="할당관세 변동에 따른 생과 vs 냉동 퓨레 마진 안정성 비교"
-          telemetry={{ status: marginData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <AreaChart data={marginData}>
@@ -446,7 +446,7 @@ export default function MangosteenDashboard() {
           iconColor="#c026d3"
           pillar="S2"
           cardDesc="일반 냉장 vs 특수 가스 처리 — 25일 해상 운송 시 수율 격차"
-          telemetry={{ status: coldchainData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
           chartHeight={375}
           chart={
             <LineChart data={coldchainData}>
@@ -575,7 +575,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-success)"
           pillar="S3"
           cardDesc="해상/항공/가스 치환 패키지별 단가 vs 유효 수율"
-          telemetry={{ status: logisticsData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }}
           chartHeight={375}
           chart={
             <ComposedChart data={logisticsData} layout="vertical" margin={{ left: 30 }}>
@@ -612,7 +612,7 @@ export default function MangosteenDashboard() {
           iconColor="var(--color-warning)"
           pillar="S3"
           cardDesc="RCEP/FTA 활용 우회 무역 경로별 관세·마진 비교"
-          telemetry={{ status: rcepArbitrageData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }}
           chartHeight={375}
           chart={
             <BarChart data={rcepArbitrageData} layout="vertical" margin={{ left: 0 }}>
@@ -696,7 +696,7 @@ export default function MangosteenDashboard() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="국내 과일 물가 연동 스캐너" icon={Apple} iconColor={SECTIONS[3].color} pillar="S4"
           cardDesc="국내 사과 단가 vs 망고스틴 수입량 상관관계 — 가격 폭등기 대체 수요 캡처"
-          telemetry={{ status: arbitrageData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-29' }} chartHeight={375}
           chart={
             <ComposedChart data={arbitrageData}>
               <ChartPatternDefs />
@@ -727,8 +727,8 @@ export default function MangosteenDashboard() {
           }} />
 
         <WidgetCard title="글로벌 무역 가치사슬 흐름" icon={Workflow} iconColor={SECTIONS[3].color} pillar="S4"
-          cardDesc="국가간 양자 무역 흐름 — 한국 허브 재수출 가치 vs 직수입 비교"
-          telemetry={{ status: bilateralReExportData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }} chartHeight={375}
+          cardDesc="국가간 양자 무역 흐름 — 한국→몽골 재수출은 KCS 실측(2024년 355kg), 기타 흐름은 업계 추정 구조치"
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <BarChart data={bilateralReExportData} layout="vertical" margin={{ left: 140 }}>
               <ChartPatternDefs />
@@ -737,7 +737,7 @@ export default function MangosteenDashboard() {
               <YAxis dataKey="flow" type="category" {...yAxisProps} width={130} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }} />
-              <Bar dataKey="value" name="물동량(톤)" fill="#c026d3" radius={[0, 4, 4, 0]} barSize={20}>
+              <Bar dataKey="value" name="물동량(톤/연)" fill="#c026d3" radius={[0, 4, 4, 0]} barSize={20}>
                 {bilateralReExportData?.map((entry: any, index: number) => (
                   <Cell key={`cell-${index}`} fill={index > 2 ? 'var(--color-warning)' : '#c026d3'} />
                 ))}
@@ -747,8 +747,8 @@ export default function MangosteenDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"재수출 hub 모델(Re-export Hub Model)"이란 한 국가가 raw·원물을 수입한 뒤 가공·포장·재선별만 거쳐 제3국으로 다시 수출하는 transshipment 구조. 싱가포르가 원유·반도체에서, 네덜란드가 화훼·과일에서 GDP의 핵심 축으로 운영하는 모델 — 한국 망고스틴 시장도 이미 이 단계로 진입.</p>
-                <p>실측: <strong>태국 → 한국 라인은 물량 대량(연 8,000톤)이나 단가 $5.8/kg. 한국 → 몽골·괌·블라디보스토크 재수출 라인은 물량 작으나(연 350톤) 단가 $11.2/kg — kg당 마진이 1.9배</strong>. 가장 큰 수입 경로가 가장 작은 마진, 가장 작은 수출 경로가 가장 큰 마진인 비대칭 구조.</p>
+                <p>"재수출 hub 모델(Re-export Hub Model)"이란 한 국가가 raw·원물을 수입한 뒤 가공·포장·재선별만 거쳐 제3국으로 다시 수출하는 transshipment 구조. 싱가포르가 원유·반도체에서, 네덜란드가 화훼·과일에서 GDP의 핵심 축으로 운영하는 모델 — 한국 망고스틴은 아직 이 모델의 초입 실증 단계.</p>
+                <p>실측(KCS 수출 통계): <strong>한국 재수출은 2024년 355kg(평균 $8.5/kg)·2025년 246kg($11.0/kg) — 연 1톤 미만의 마이크로 물량, 2020년 이후 전량 몽골향</strong>. 2014~2019년에는 괌·북마리아나 중심 연 4~6톤이었으나 이후 축소. 수입 라인(태국→한국, 대량·저단가) 대비 재수출 단가는 높지만, "재수출 허브"가 아닌 프리미엄 니치 실증 물량이 현 위치.</p>
               </div>
             ),
             actionPlan: (
@@ -757,7 +757,7 @@ export default function MangosteenDashboard() {
                 <p><strong>3단계</strong>: ① 인천공항·평택항 보세창고에 망고스틴 전용 cold chain hub 설치 — 동북아 6개국(몽골·블라디보스토크·사할린·울란바토르·캄차카·하바롭스크) 직배송 capa 확보 ② 괌·사이판·팔라우 미국 자치령 prime resort 채널에 <strong>"한국 원산지 + VHT 인증"</strong> 프리미엄 라벨로 침투 — 검역 통제력이 우리만의 진입장벽 ③ 일본 츠키지·오사카 도매시장 재수출 라인 신설 — 일본은 자체 망고스틴 수입 인프라가 약해 한국 hub로 우회하는 trade lane 신규 창출.</p>
               </div>
             ),
-            source: 'OEC 양자 무역 흐름 (2023~2025) · 관세청 망고스틴 수출 통계 (HS 0804)',
+            source: '한국 재수출: 관세청(KCS) 수출 실측 (HS 0804, 2013~2026) · 기타 흐름: 업계 추정 구조치',
           }} />
 
         <WidgetCard title="최상급 품질 재수출 단가" icon={PackageCheck} iconColor={SECTIONS[3].color} pillar="S4"
@@ -780,7 +780,7 @@ export default function MangosteenDashboard() {
             situation: (
               <div>
                 <p>"슈퍼 프리미엄 등급(Super Premium Grade)"이란 외관·당도·과피 광택을 5단계 selection으로 거른 상위 1% 물량. Hermes·Louis Vuitton이 동일 가죽 raw에서 0.5%만 추출해 가격 100배를 받는 luxury 구조 — 식품에서도 동일 원리 적용 가능한 영역이 망고스틴.</p>
-                <p>실측: <strong>일반 재수출 단가 $5.8/kg vs 슈퍼 프리미엄 1% 등급 $12.4/kg (2.1배). 몽골·괌·블라디 리조트 호텔·면세점이 가격 저항 없이 흡수</strong>. 같은 농장의 같은 나무에서 나온 망고스틴이 selection만으로 luxury 가격 책정 가능.</p>
+                <p>실측(KCS): <strong>재수출 단가 2013년 평균 $4.2/kg → 2024년 $8.5/kg → 2026-03 $12.4/kg로 약 3배 상승. 물량은 2014~2019년 연 4~6톤(괌·북마리아나)에서 2020년 이후 연 0.2~0.4톤(몽골 단일)으로 축소</strong> — 단가 상승·물량 축소가 동시 진행되는 초프리미엄 마이크로 니치.</p>
               </div>
             ),
             actionPlan: (
@@ -837,7 +837,7 @@ export default function MangosteenDashboard() {
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
         <WidgetCard title="망고스틴 껍질 업사이클링 시뮬레이션" icon={Leaf} iconColor={SECTIONS[4].color} pillar="S5"
           cardDesc="껍질 폐기 vs 펫푸드/항산화 추출 시나리오별 매출 + 순마진"
-          telemetry={{ status: upcyclingData.length > 0 ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }} chartHeight={375}
+          telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: '2026-05-17' }} chartHeight={375}
           chart={
             <ComposedChart data={upcyclingData} layout="vertical" margin={{ left: 0 }}>
               <ChartPatternDefs />

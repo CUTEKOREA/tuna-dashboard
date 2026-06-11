@@ -29,6 +29,12 @@ async function getExchangeRate() {
   return FALLBACK;
 }
 
+// ⚠️ 데이터 원천 재검증 중 (2026-06-11): 아래 착지원가·매크로 영향 계산의 입력값
+// (CIF $2.08, 연간 26,797톤)은 HSK 0303899060 통관 집계 기반 — 갈치 귀속 미확인.
+// HSK 재확인·재수집 전까지 프런트는 이 수치를 갈치 단정 수치로 노출하지 않는다.
+const DATA_QUALITY_NOTE =
+  "입력값(CIF·연간 수입량)이 HSK 0303899060 통관 집계 기반 — 품목 귀속 재검증 중(HSK 재확인 필요)";
+
 // ═══ Landing Cost Calculator (WITS-based) ═══
 function calcLandingCost(cifUsd: number, usdKrw: number) {
   const mfnRate = 0.10; // 갈치 MFN 10%
@@ -76,8 +82,8 @@ export async function GET(request: Request) {
   const type = searchParams.get("type") || "all";
 
   const exchange = await getExchangeRate();
-  const landingCost = calcLandingCost(2.08, exchange.usdKrw);
-  const macroRisk = getMacroRisk(exchange.usdKrw);
+  const landingCost = { ...calcLandingCost(2.08, exchange.usdKrw), dataQualityNote: DATA_QUALITY_NOTE };
+  const macroRisk = { ...getMacroRisk(exchange.usdKrw), dataQualityNote: DATA_QUALITY_NOTE };
 
   if (type === "exchange") return NextResponse.json({ exchange });
   if (type === "wits") return NextResponse.json({ landingCost });

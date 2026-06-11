@@ -27,7 +27,8 @@ export async function GET() {
       { quarter: "23.Q3", processingRate: 15, directSupply: 10 },
       { quarter: "24.Q1", processingRate: 21, directSupply: 14 },
       { quarter: "24.Q3", processingRate: 28, directSupply: 19 },
-      { quarter: "25.Q1(E)", processingRate: 35, directSupply: 25 }
+      // 25.Q1은 이미 경과한 분기이나 실측 미확보 — 전망(E)이 아닌 '추정'으로 정직 표기
+      { quarter: "25.Q1(추정)", processingRate: 35, directSupply: 25 }
     ];
 
     // [신규 위젯 3] 운임 및 환율 임팩트 마진 민감도
@@ -57,7 +58,7 @@ export async function GET() {
       status: "STATIC",
       source: "정적 JSON + d_vietnam_paradox=UN Comtrade 실측(2021-23, 만톤) + 위젯3종=업계 추정(ACA·시나리오)",
       syncDate: "2026-05-29",
-      lastUpdated: new Date().toISOString(),
+      // lastUpdated(요청 시각 스탬프)는 데이터 갱신일로 오인될 수 있어 제거 — syncDate가 단일 기준일
     };
 
     return NextResponse.json(data);

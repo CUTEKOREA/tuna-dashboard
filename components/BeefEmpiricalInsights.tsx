@@ -42,7 +42,7 @@ const feedCostData = [
   { month: '23-Q4', corn: 210, soy: 460, hanwooCost: 98, usBeefPrice: 8.9 },
   { month: '24-Q1', corn: 200, soy: 430, hanwooCost: 92, usBeefPrice: 8.7 },
   { month: '24-Q2', corn: 190, soy: 420, hanwooCost: 89, usBeefPrice: 8.5 },
-  { month: '24-Q3(F)', corn: 185, soy: 410, hanwooCost: 87, usBeefPrice: 8.4 },
+  { month: '24-Q3(추정)', corn: 185, soy: 410, hanwooCost: 87, usBeefPrice: 8.4 },
 ];
 
 export function InsightFeedCostSpread({ accent = '#e11d48' }: any) {
@@ -52,11 +52,11 @@ export function InsightFeedCostSpread({ accent = '#e11d48' }: any) {
       icon={Activity}
       iconColor={accent}
       pillar="S2"
-      cardDesc="미국산 옥수수(CBOT) 및 브라질 대두박(WB) 단가에 따른 한우 사육 원가 압박 분석"
-      telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
+      cardDesc="미국산 옥수수(CBOT) 및 브라질 대두박(WB) 단가에 따른 한우 사육 원가 압박 분석 | 자체구성 2023-Q1~2024-Q3(추정)"
+      telemetry={{ status: 'STATIC', syncDate: '자체구성 2024-Q3 기준' }}
       chartHeight={300}
       takeaway={{
-        situation: "CBOT 옥수수 선물 하락 및 브라질 대두박 약세 지속 추세(illustrative). 곡물가 완화에 따른 한우 사육 원가 지수 하락(115→87 추정) 패턴이 관측됨.",
+        situation: "2023~2024-Q3 구간 CBOT 옥수수 선물 하락과 브라질 대두박 약세가 이어졌습니다(자체구성 예시 지수). 곡물가 완화에 따른 한우 사육 원가 지수 하락(115→87 추정) 패턴이 관측됐습니다.",
         actionPlan: "한우 조기 출하 압력이 감소할 경우 향후 한우 도매가 상승(공급 제한) 우려가 있음. 외식 B2B는 단가 하락세인 미국/호주산 수입육 장기계약 비중 확대를 검토할 것.",
         source: "CBOT Corn Futures·세계은행 Pink Sheet(대두박)·KCS 기반 업계추정 (illustrative)"
       }}
@@ -87,7 +87,7 @@ const cutTrackerData = [
   { month: '23-Q4', bonelessVol: 79, boneVol: 38, bonelessPrice: 8.1, bonePrice: 11.5 },
   { month: '24-Q1', bonelessVol: 88, boneVol: 42, bonelessPrice: 7.9, bonePrice: 12.0 }, // 설날
   { month: '24-Q2', bonelessVol: 91, boneVol: 30, bonelessPrice: 7.6, bonePrice: 11.0 },
-  { month: '24-Q3(F)', bonelessVol: 93, boneVol: 48, bonelessPrice: 7.5, bonePrice: 12.8 }, // 추석 예상
+  { month: '24-Q3(추정)', bonelessVol: 93, boneVol: 48, bonelessPrice: 7.5, bonePrice: 12.8 }, // 추석 시즌 추정치 (작성 시점 전망)
 ];
 
 export function InsightCutTracker({ accent = '#fb923c' }: any) {
@@ -97,11 +97,11 @@ export function InsightCutTracker({ accent = '#fb923c' }: any) {
       icon={Target}
       iconColor={accent}
       pillar="S4"
-      cardDesc="미국산 소고기 수입 부위별(순살 HS0201.30 vs 뼈 HS0201.20) 물량 및 단가 분리 트래킹 (업계추정)"
-      telemetry={{ status: 'STATIC', syncDate: '2026-06-05' }}
+      cardDesc="미국산 소고기 수입 부위별(순살 HS0201.30 vs 뼈 HS0201.20) 물량 및 단가 분리 트래킹 (업계추정) | 자체구성 2023-Q1~2024-Q3(추정)"
+      telemetry={{ status: 'STATIC', syncDate: '자체구성 2024-Q3 기준' }}
       chartHeight={300}
       takeaway={{
-        situation: "한국은 순살(Boneless) 수입 비중이 압도적(업계추정 약 32만톤)이나, 미국산 뼈고기(With-bone) 대한 수출 집중도가 높음(업계추정). 명절 시즌(Q1, Q3) 뼈고기 단가 급등 패턴이 관측됨(illustrative).",
+        situation: "한국은 순살(Boneless) 수입 비중이 압도적(업계추정 약 32만톤)이나, 미국산 뼈고기(With-bone) 대한 수출 집중도가 높음(업계추정). 2023~2024-Q3 구간에서 명절 시즌(Q1, Q3) 뼈고기 단가 급등 패턴이 관측됐습니다(자체구성 예시 지수).",
         actionPlan: "LA갈비 등 뼈고기는 명절 3개월 전 선취 매입 검토 권고. B2B 프랜차이즈용 순살 부위는 단가 안정세 시 단기 스팟 매입 비중 확대로 재고 비용 절감 가능.",
         source: "FAOSTAT Detailed Trade Matrix·KCS Import Data 기반 업계추정 (illustrative)"
       }}

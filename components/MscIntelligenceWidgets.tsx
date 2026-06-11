@@ -52,16 +52,16 @@ const TOOLTIP_STYLE: React.CSSProperties = {
    Widget 1: MscGlobalTunaGrowthTracker
 ================================================================ */
 const growthTrend = [
-  { year: '2023-24', sales: 242, certified: 2500 },
-  { year: '2024-25', sales: 300, certified: 2800 },
+  { year: '2023-24', sales: 242, certified: 2678 },
+  { year: '2024-25', sales: 300, certified: 2849 },
   { year: '2025-26', sales: 400, certified: 3100 },
 ];
 
 const growthKPIs = [
-  { label: 'MSC 라벨 참치 판매', value: '400,000+ MT', sub: 'YoY +39%', borderColor: '#38bdf8' },
-  { label: 'MSC 인증 어획량', value: '3.1M MT', sub: '전 세계 50%+', borderColor: '#10b981' },
-  { label: 'MSC 인증 어업', value: '71개', sub: '5개 심사 중', borderColor: '#a78bfa' },
-  { label: 'MSC 라벨 소매 가치', value: 'US$13.4B', sub: '글로벌 최대', borderColor: '#f59e0b' },
+  { label: 'MSC 라벨 참치 판매', value: '400,000+ MT', sub: '연감 2025-26판 · YoY +39%', borderColor: '#38bdf8' },
+  { label: 'MSC 인증 어획량', value: '3.1M MT', sub: '전 세계 어획의 51.7% (2025년 말)', borderColor: '#10b981' },
+  { label: 'MSC 인증 어업', value: '71개', sub: '5개 심사 중 (ISSF 2026-03)', borderColor: '#a78bfa' },
+  { label: 'MSC 라벨 전체 소매가치', value: 'US$14B', sub: '전 어종 합계 (2024/25)', borderColor: '#f59e0b' },
 ];
 
 export function MscGlobalTunaGrowthTracker() {
@@ -74,7 +74,7 @@ export function MscGlobalTunaGrowthTracker() {
           <TelemetryBadge status="STATIC" syncDate="2025-26" />
         </h3>
         <p className={styles.cardDesc}>
-          MSC 인증 참치 프로그램의 3개년 성장 추이 및 핵심 KPI. 전 세계 참치 어획량의 50% 이상이 MSC 프로그램에 참여.
+          MSC 연감 2025-26판·연례보고서 부속 데이터 기준 3개년 성장 추이 — 전 세계 참치 어획의 51.7%가 MSC 인증(참여 기준 59%).
         </p>
       </div>
 
@@ -132,9 +132,9 @@ export function MscGlobalTunaGrowthTracker() {
         </div>
 
         <TakeawayBox
-          situation="MSC 인증 참치는 3년 연속 두 자릿수 성장률(+24% → +39%)을 기록하며, 전체 MSC 프로그램 성장의 최대 동력. 전 세계 참치 어획량의 50% 이상이 이미 MSC 인증 어업에서 나오고 있으며, 182개 어업이 프로그램에 참여."
+          situation="MSC 라벨 참치 판매는 2년 연속 두 자릿수 성장률(2024/25 +24% → 2025/26 +39%)을 기록하며 전체 MSC 프로그램 성장의 최대 동력. 전 세계 참치 어획량의 절반 이상(2025년 말 51.7%)이 이미 MSC 인증 어업에서 나오고 있으며, 182개 어업이 프로그램에 참여(이 중 인증 완료는 71개, ISSF 2026-03 기준)."
           actionPlan="글로벌 유통사(Walmart, Tesco, Aldi)의 100% MSC 전환 공약이 실질적 구매력으로 전환. 한국 선단의 MSC 인증 확대가 유럽·미국 시장 접근권 확보의 핵심 전제조건."
-          source="MSC Sustainable Tuna Yearbook 2025/2026, MSC Annual Report 2024-2025"
+          source="MSC Sustainable Tuna Yearbook 2025-26(라벨 판매·인증 어획), MSC Annual Report 2024-25 부속 데이터(인증 어획 2023-24·2024-25 회계연도 합계), ISSF MSC 인증 현황(2026-03)"
         />
       </div>
     </div>
@@ -513,8 +513,8 @@ export function MscConsumerInsightsRadar() {
               <PolarGrid stroke="rgba(255,255,255,0.1)" />
               <PolarAngleAxis dataKey="subject" tick={{ fill: '#94a3b8', fontSize: 11 }} />
               <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 10 }} axisLine={false} />
-              <Radar name="Global 평균" dataKey="global" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
-              <Radar name="UK" dataKey="uk" stroke="#a78bfa" fill="#a78bfa" fillOpacity={0.15} strokeWidth={2} isAnimationActive={false} />
+              <Radar name="글로벌 평균" dataKey="global" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
+              <Radar name="영국" dataKey="uk" stroke="#a78bfa" fill="#a78bfa" fillOpacity={0.15} strokeWidth={2} isAnimationActive={false} />
               <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.78rem' }} />
               <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: number) => [`${value}%`]} />
             </RadarChart>

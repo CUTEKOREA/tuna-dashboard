@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Globe, MapPin, TrendingUp, FileText, Activity } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/garlic_usda_widgets.json';
+// SSOT: public/data 신버전(FAOSTAT QCL, 2024=285K톤)만 사용.
+// 구버전 ../data/garlic_usda_widgets.json(KREI, 2024=320K톤) import가 페이지 내 모순(285K vs 320K)의 원인이었음.
+import rawData from '../public/data/garlic_usda_widgets.json';
 
 type Widget = {
   id: string; title: string; subtitle: string; cardDesc: string; chartType: string;

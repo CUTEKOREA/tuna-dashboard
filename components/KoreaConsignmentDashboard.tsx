@@ -14,6 +14,19 @@ import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
+// 9대 데이터망 한글 표기 (L-01) — 약어(KAMIS·NOAA·FAO 등)는 화이트리스트 허용
+const NETWORK_LABELS: Record<string, string> = {
+  mof_consignment: '해수부 위판',
+  kcs_customs: '관세청 통관',
+  kamis_retail: 'KAMIS 시세',
+  nifs_ocean: '수산과학원',
+  mgo_energy: '선박유 시세',
+  bok_exchange: '환율(USD)',
+  noaa_climate: 'NOAA 기후',
+  fao_global: 'FAO 통계',
+  fbx_freight: '해상 운임',
+};
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -60,6 +73,17 @@ export default function KoreaConsignmentDashboard() {
   const meta = data?._meta;
   const yearlyTop = data?.yearlyTop || {};
   const monthlyDetail = data?.monthlyDetail || {};
+
+  // 집계 기간·동기화 기준월은 하드코딩하지 않고 실데이터 월 목록에서 산출
+  const dataMonths: string[] = (meta?.months && Array.isArray(meta.months) && meta.months.length > 0)
+    ? [...meta.months].sort()
+    : Object.keys(monthlyDetail).sort();
+  const coverageLabel = dataMonths.length > 0
+    ? `${dataMonths[0].replace('-', '.')} - ${dataMonths[dataMonths.length - 1].replace('-', '.')}`
+    : null;
+  const lastDataMonth = dataMonths.length > 0 ? dataMonths[dataMonths.length - 1].replace('-', '.') : undefined;
+  const live = data?._liveIntelligence;
+  const liveBaseTime = live?.timestamp ? new Date(live.timestamp).toLocaleString('ko-KR') : null;
 
   // For "All (3-Year)" tab, we can aggregate top 15 across all years or just show yearly totals
   const getTabChartData = () => {
@@ -149,7 +173,7 @@ export default function KoreaConsignmentDashboard() {
             background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.15)',
             borderRadius: '8px', padding: '8px 14px', marginTop: '0.75rem', fontSize: '0.75rem', color: '#94a3b8'
           }}>
-            <span>📅 집계 기간: <strong style={{color:'var(--color-success)'}}>2024.01 - 2026.05</strong></span>
+            <span>📅 집계 기간: <strong style={{color:'var(--color-success)'}}>{coverageLabel || '집계 월 미상'}</strong></span>
             <span>📊 총 레코드: <strong style={{color:'var(--color-success)'}}>{Number(meta.totalRecords).toLocaleString()}건</strong></span>
             <span>🐟 전체 어종: <strong style={{color:'var(--color-success)'}}>{meta.totalSpecies}종</strong></span>
             <span>🕐 데이터 갱신: <strong style={{color:'var(--color-success)'}}>{new Date(meta.generatedAt).toLocaleString('ko-KR')}</strong></span>
@@ -166,9 +190,14 @@ export default function KoreaConsignmentDashboard() {
       {data?._liveIntelligence && (
         <div style={{ marginBottom: '2.5rem' }}>
           <div style={{ marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: '0 0 1rem 0', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: '0 0 1rem 0', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
               <Activity size={20} color="var(--color-success)" />
-              9대 데이터망 실시간 관제 센터
+              9대 데이터망 연동 상태 관제
+              {liveBaseTime && (
+                <span style={{ fontSize: '0.7rem', fontWeight: 500, color: '#64748b', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', padding: '2px 8px', borderRadius: '10px' }}>
+                  조회 기준 시각: {liveBaseTime}
+                </span>
+              )}
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
               {Object.entries(data._liveIntelligence.networksStatus).map(([key, status]: any) => {
@@ -179,7 +208,7 @@ export default function KoreaConsignmentDashboard() {
                     background: 'rgba(0, 0, 0, 0.2)', border: `1px solid ${statusColor}33`, 
                     padding: '8px 12px', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between'
                   }}>
-                    <span style={{ fontSize: '0.7rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 600 }}>{key.split('_')[0]}</span>
+                    <span style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600 }}>{NETWORK_LABELS[key] || key.split('_')[0].toUpperCase()}</span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.7rem', color: statusColor, fontWeight: 700 }}>
                       <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: statusColor, display: 'inline-block', boxShadow: `0 0 8px ${statusColor}` }}></span>
                       {statusLabel}
@@ -193,26 +222,30 @@ export default function KoreaConsignmentDashboard() {
           <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
             {/* Widget 1: Arbitrage Radar */}
             <div className={styles.glassCard} style={{ padding: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.05rem', color: '#38bdf8', margin: '0 0 1.2rem 0', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>
-                <DollarSign size={18} /> 실시간 아비트리지 레이더
+              <h3 style={{ fontSize: '1.05rem', color: '#38bdf8', margin: '0 0 0.4rem 0', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700 }}>
+                <DollarSign size={18} /> 수입·국내 도매 아비트리지 레이더
               </h3>
+              <p style={{ margin: '0 0 1.2rem 0', fontSize: '0.7rem', color: '#64748b', lineHeight: 1.5 }}>
+                {data._liveIntelligence.metrics.arbitrage.basis}
+                {liveBaseTime && <> · 환율 조회 기준 {liveBaseTime}</>}
+              </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {/* Mackerel */}
                 <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>고등어</span>
                     <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
-                      {data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? '수입 매입 권장' : '위판장 직매입'}
+                      {data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? '수입 매입 우위' : '국내 매입 우위'}
                     </span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>예상 수입 단가 (통관+환율)</div>
+                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>추정 수입단가 (CIF 기준치×환율)</div>
                       <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.arbitrage.mackerel.importPriceKrw.toLocaleString()}</div>
                     </div>
                     <div style={{ fontSize: '0.8rem', color: '#475569', fontWeight: 600, paddingBottom: '4px' }}>대</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>국내 평균 위판가</div>
+                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>국내 도매가 (KAMIS{data._liveIntelligence.metrics.arbitrage.mackerel.isLocalLive ? ' 당일' : ' 조회 실패 — 고정 기준치'})</div>
                       <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.arbitrage.mackerel.localPriceKrw.toLocaleString()}</div>
                     </div>
                   </div>
@@ -222,17 +255,17 @@ export default function KoreaConsignmentDashboard() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>오징어</span>
                     <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
-                      {data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? '수입 매입 권장' : '위판장 직매입'}
+                      {data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? '수입 매입 우위' : '국내 매입 우위'}
                     </span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>예상 수입 단가 (통관+환율)</div>
+                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>추정 수입단가 (CIF 기준치×환율)</div>
                       <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.arbitrage.squid.importPriceKrw.toLocaleString()}</div>
                     </div>
                     <div style={{ fontSize: '0.8rem', color: '#475569', fontWeight: 600, paddingBottom: '4px' }}>대</div>
                     <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>국내 평균 위판가</div>
+                      <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '2px' }}>국내 도매가 (KAMIS{data._liveIntelligence.metrics.arbitrage.squid.isLocalLive ? ' 당일' : ' 조회 실패 — 고정 기준치'})</div>
                       <div style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.arbitrage.squid.localPriceKrw.toLocaleString()}</div>
                     </div>
                   </div>
@@ -248,11 +281,11 @@ export default function KoreaConsignmentDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', flex: 1 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>MGO 선박유 (조업 비용)</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>MGO 선박유 ($/MT) {data._liveIntelligence.metrics.isMgoLive ? '— 브렌트 프록시 환산' : '— 고정 기준치 (조회 실패)'}</div>
                     <div style={{ fontSize: '1.3rem', color: 'var(--text-primary)', fontWeight: 700 }}>${data._liveIntelligence.metrics.mgoPrice.toLocaleString()} <span style={{fontSize:'0.8rem', color:'#64748b', fontWeight:400}}>/ MT</span></div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>NOAA ONI 표층 수온 편차</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>NOAA ONI 표층 수온 편차{data._liveIntelligence.metrics.isSstLive === false ? ' — 조회 실패 (0 표시)' : ''}</div>
                     <div style={{ fontSize: '1.3rem', color: data._liveIntelligence.metrics.seaTemperatureAnomaly > 0.5 ? 'var(--color-danger)' : data._liveIntelligence.metrics.seaTemperatureAnomaly > 0 ? 'var(--color-warning)' : 'var(--color-success)', fontWeight: 700 }}>{data._liveIntelligence.metrics.seaTemperatureAnomaly > 0 ? '+' : ''}{data._liveIntelligence.metrics.seaTemperatureAnomaly}°C</div>
                   </div>
                 </div>
@@ -272,6 +305,9 @@ export default function KoreaConsignmentDashboard() {
                         ? '유가 및 해황 조건이 보통 수준입니다. 단기적 공급 불안은 제한적이나, MGO 가격과 수온 편차를 지속 모니터링하시기 바랍니다.'
                         : '조업 환경이 안정적입니다. 국내 위판장 공급 물량은 정상 범위 내에 있으며, 안정적인 소싱이 가능합니다.'}
                   </p>
+                  <p style={{ margin: '8px 0 0 0', fontSize: '0.68rem', color: '#94a3b8', lineHeight: 1.5 }}>
+                    ※ {data._liveIntelligence.metrics.fishingRiskBasis || '자체 산식 기반 추정 점수 — 실측 출어 통계 아님'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -284,24 +320,24 @@ export default function KoreaConsignmentDashboard() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', flex: 1, justifyContent: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: 'rgba(2, 14, 28, 0.4)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
                   <div style={{ textAlign: 'center', flex: 1 }}>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '6px' }}>해수부 산지 평균 위판가</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '6px' }}>산지 평균 위판가 ({data._liveIntelligence.metrics.latestAuctionMonth} 실측)</div>
                     <div style={{ fontSize: '1.2rem', color: '#38bdf8', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.retailMarginTracker.localAuctionAvg.toLocaleString()}</div>
                   </div>
                   <div style={{ color: '#475569', fontWeight: 800, padding: '0 10px' }}>➔</div>
                   <div style={{ textAlign: 'center', flex: 1 }}>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '6px' }}>aT 소비자가 (소매가)</div>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '6px' }}>추정 소매가 (산지가 ×{data._liveIntelligence.metrics.retailMarginTracker.retailMultiplier ?? 2.0})</div>
                     <div style={{ fontSize: '1.2rem', color: 'var(--color-warning)', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.retailMarginTracker.retailAvg.toLocaleString()}</div>
                   </div>
                 </div>
-                
+
                 <div style={{ background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '16px', borderRadius: '8px', textAlign: 'center', marginTop: 'auto' }}>
-                  <div style={{ fontSize: '0.85rem', color: '#6ee7b7', fontWeight: 600 }}>유통 마진 스프레드</div>
+                  <div style={{ fontSize: '0.85rem', color: '#6ee7b7', fontWeight: 600 }}>유통 마진 스프레드 (추정)</div>
                   <div style={{ fontSize: '1.8rem', color: 'var(--color-success)', fontWeight: 800, margin: '8px 0' }}>
-                    ₩{data._liveIntelligence.metrics.retailMarginTracker.marginSpread.toLocaleString()} 
+                    ₩{data._liveIntelligence.metrics.retailMarginTracker.marginSpread.toLocaleString()}
                     <span style={{fontSize:'0.9rem', fontWeight:500, color: '#6ee7b7', marginLeft: '4px'}}>/ kg</span>
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: '#a7f3d0', lineHeight: 1.4 }}>
-                    위판장 산지 직매입 후 가공 유통 시 마진율 극대화 구간 진입 (수익 구간)
+                  <div style={{ fontSize: '0.72rem', color: '#a7f3d0', lineHeight: 1.5 }}>
+                    {data._liveIntelligence.metrics.retailMarginTracker.retailBasis || '추정 소매가 = 산지 위판가 × 추정 계수 — 실측 소매가 아님'}
                   </div>
                 </div>
               </div>
@@ -317,7 +353,7 @@ export default function KoreaConsignmentDashboard() {
           iconColor="#38bdf8"
           pillar="S4"
           cardDesc="단위: 원 — 노량진·자갈치 등 위판장 통계 집계"
-          telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026.05' }}
+          telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: lastDataMonth }}
           chartHeight={325}
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
@@ -343,7 +379,7 @@ export default function KoreaConsignmentDashboard() {
           iconColor="#38bdf8"
           pillar="S3"
           cardDesc="단위: kg — 노량진·자갈치 등 위판장 물량 집계"
-          telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: '2026.05' }}
+          telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: lastDataMonth }}
           chartHeight={325}
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>

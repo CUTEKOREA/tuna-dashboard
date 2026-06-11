@@ -38,10 +38,10 @@ const W = ({ title, icon, sub, accent, telemetry, sit, strat, source, pillar, ch
 );
 
 export function W1_ASFCycle({ accent }: any) {
-  return <W title="글로벌 생산량 및 질병(ASF) 사이클" icon={Globe} accent={accent} pillar="S1" sub="중국 중심 글로벌 돈육 생산량(천 톤) 및 산지 가격 지수 | FAOSTAT QCL 2015-2024"
+  return <W title="중국 생산량 및 질병(ASF) 사이클" icon={Globe} accent={accent} pillar="S1" sub="중국 돈육 생산량(천 톤) 및 산지 가격 지수 — 글로벌 1위 생산국 단독 시계열 | FAOSTAT QCL 2015-2024"
     telemetry="FAOSTAT QCL 2015-2024"
-    sit="2019년 중국 ASF 사태로 글로벌 생산량 54,992→43,498천톤(-20.9%) 급감. 3~4년 주기 질병 충격이 반복됨."
-    strat="세계동물보건기구(WOAH) ASF 모니터링 + 시카고상업거래소(CME) Lean Hogs 선물을 수산물 가격 전략 선행 지표로 삼아 동적 가격 전략 실행." source="FAOSTAT QCL Item 1035">
+    sit="2019년 중국 ASF 사태로 중국 생산량 54,992→43,498천톤(-20.9%) 급감. 3~4년 주기 질병 충격이 반복됨."
+    strat="세계동물보건기구(WOAH) ASF 모니터링 + 시카고상업거래소(CME) Lean Hogs 선물을 수산물 가격 전략 선행 지표로 삼아 동적 가격 전략 실행." source="FAOSTAT QCL Item 1035 (중국)">
     <ComposedChart data={D.asfCycleData}>
       <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} /><YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />

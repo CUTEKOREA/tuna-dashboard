@@ -83,8 +83,8 @@ const KPI_THEMES = [
 ];
 
 const CARROT_KPIS: Record<string, any> = {
-  k1: { title: '글로벌 1위 생산국 (생산/수출)', value: '중국 50%/23.4%', trend: '🇨🇳', desc: 'FAOSTAT QCL 1,866만t 생산 · UN Comtrade 수출 $4.78억(2024)' },
-  k2: { title: '한국 도매가 (2024 연평균)', value: '₩73,178/20kg', trend: '📈', desc: 'KAMIS 실측 +26% vs 평년 ₩57,923 · 2026 ₩30,634 정상화' },
+  k1: { title: '글로벌 1위 생산국 (생산/수출)', value: '중국 44.5%/23.4%', trend: '🇨🇳', desc: 'FAOSTAT QCL 1,866만t 생산 · UN Comtrade 수출 $4.78억(2024)' },
+  k2: { title: '한국 도매가 (2024 연평균)', value: '₩73,474/20kg', trend: '📈', desc: 'KAMIS 실측 +26% vs 평년 ₩58,098 · 2026.1~4월 ₩30,491 정상화' },
   k3: { title: '신시장 성장률 (업사이클링)', value: '112조 원', trend: '♻️', desc: '당근 폐기물 바이오 플라스틱 전환' },
   k4: { title: '수입산 잔류농약 초과비율', value: '14배', trend: '⚠️', desc: '중국산 48톤 긴급 회수 리스크' },
   k5: { title: '베타카로틴 추출 마진', value: '2.5배', trend: '💊', desc: 'B2B 일반 식자재 대비 프리미엄' },
@@ -253,12 +253,12 @@ export default function CarrotDashboard() {
               <h1 style={{ margin:0, fontSize:'1.5rem', fontWeight:700, letterSpacing:'-0.5px', color:'var(--text-primary)' }}>
                 당근 (Carrot) 글로벌 인텔리전스
               </h1>
-              <p style={{ margin:0, fontSize:'0.88rem', color:'var(--text-secondary)' }}>당근 전략 지휘소 — 32개 위젯 · 6 KPIs · FAOSTAT+KAMIS+OEC</p>
+              <p style={{ margin:0, fontSize:'0.88rem', color:'var(--text-secondary)' }}>당근 전략 지휘소 — 30개 위젯 · 6 KPIs · FAOSTAT+KAMIS+OEC</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize:'0.88rem', padding:'8px 16px', borderRadius:'500px', display:'flex', alignItems:'center', gap:'8px' }}>
             <div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'#64748b' }} />
-            <span>9개 데이터 소스 <span style={{ color:'#ea580c' }}>연동</span></span>
+            <span>9개 데이터 소스 <span style={{ color:'#ea580c' }}>인용</span></span>
             <span style={{ margin:'0 8px', color:'#4d4d4d' }}>|</span>
             <span style={{ color:'var(--text-primary)' }}>FAOSTAT · KAMIS · KCS</span>
           </div>
@@ -272,7 +272,7 @@ export default function CarrotDashboard() {
           <div style={{ borderRight:'1px dashed rgba(255,255,255,0.1)', paddingRight:'1.5rem' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.8rem' }}>
               <h3 style={{ margin:0, fontSize:'0.9rem', color:'var(--text-primary)', display:'flex', alignItems:'center', gap:'0.5rem' }}><RefreshCcw size={16} color="#ea580c" /> 차익거래 착지원가 비교 (KAMIS 기준값)</h3>
-              <span style={{ fontSize:'0.66rem', background:'#64748b', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>{liveArbitrage ? 'SYNCED' : 'STATIC'}</span>
+              <span style={{ fontSize:'0.66rem', background:'#64748b', color:'var(--bg-color)', padding:'2px 8px', borderRadius:'500px', fontWeight:700, textTransform:'uppercase' as const }}>{liveArbitrage?.isLive ? 'LIVE' : 'STATIC'}</span>
             </div>
             {liveArbitrage ? (
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
@@ -336,7 +336,7 @@ export default function CarrotDashboard() {
               <AlertTriangle size={14} /> 기후/수율 리스크 대응 (Jeju vs Dalat)
             </h3>
             <p style={{ margin:0, fontSize:'0.8rem', color:'var(--text-secondary)', lineHeight:1.5 }}>
-              제주산 당근 수율 저하(65.4%) 및 도매가 폭등에 대응하여, 고도 1,500m 베트남 달랏(Dalat)의 무결점 농장을 <b>기후 프리미엄 콜옵션</b>으로 활용. 기후 재난에 무관한 연중 20도 안팎의 안정적 수급망 확보.
+              제주산 당근 수율 저하(60%) 및 도매가 폭등에 대응하여, 고도 1,500m 베트남 달랏(Dalat)의 무결점 농장을 <b>기후 프리미엄 콜옵션</b>으로 활용. 기후 재난에 무관한 연중 20도 안팎의 안정적 수급망 확보.
             </p>
           </div>
           <div>
@@ -478,7 +478,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 1: Production vs Yield */}
         <WidgetCard title='핵심 산지 수확 효율 및 한계 돌파 분석' icon={Layers} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: ha, ton/ha'
-          telemetry={{ status: faoProdLive.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoProdLive}>
               <ComposedChart data={faoProdLive}>
@@ -499,13 +499,13 @@ export default function CarrotDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"단위 면적당 수율(Yield, t/ha)"이란 1헥타르 농지에서 1년에 생산되는 작물 중량. 농업 생산성의 single most-important indicator — 면적은 늘어도 수율이 정체되면 vendor의 단가는 정체 또는 상승. 중국 산둥성·간쑤성·하남성은 글로벌 당근 면적 65%를 차지하나 토양 노후화(이어짓기 피해)·기후 변동·노후 품종 3중 압박으로 수율 plateau 진입.</p>
-                <p>실측: <strong>중국 당근 수확면적 +6% 증가에도 수율 38t/ha 정체 (10년 전 36t/ha 대비 +5.5%에 그침). 베트남 달랏 산지는 면적 1/30 수준이나 수율 65t/ha (중국의 1.7배) — "양적 팽창" 모델의 한계와 "정밀 농업" 모델의 우위 동시 노출</strong>.</p>
+                <p>"단위 면적당 수율(Yield, t/ha)"이란 1헥타르 농지에서 1년에 생산되는 작물 중량. 농업 생산성의 single most-important indicator — 면적이 줄고 수율 개선이 경쟁 산지에 못 미치면 vendor의 단가 결정력은 약화. 중국 산둥성·간쑤성·하남성 주산지는 토양 노후화(이어짓기 피해)·기후 변동·농촌 고령화 3중 압박으로 재배 면적 축소 추세.</p>
+                <p>실측: <strong>중국 당근 수확면적 2010년 449,971ha → 2022년 424,620ha로 -5.6% 감소. 수율은 34.8 → 44.7t/ha(+28%)로 개선됐으나 베트남 달랏의 88.0t/ha(중국의 2.0배) 대비 절반 수준. 달랏은 면적 22,500ha(중국의 약 1/19)에 불과 — "양적 팽창" 모델의 둔화와 "정밀 농업" 모델의 우위 동시 노출</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 중국 sourcing 의존은 "역사적 단가 우위" 추종이 아닌 <strong>"수율 정체로 단가 결정력 잃은 sinking origin에 long position 유지"</strong>. 면적이 아닌 수율이 다음 사이클 alpha의 원천.</p>
+                <p><strong>재정의</strong>: 중국 sourcing 의존은 "역사적 단가 우위" 추종이 아닌 <strong>"재배 면적이 -5.6% 축소되고 수율 격차가 2배 벌어진 origin에 long position 유지"</strong>. 면적이 아닌 수율이 다음 사이클 alpha의 원천.</p>
                 <p><strong>3단계</strong>: ① 중국 sourcing 비중 75% → 55%로 18개월 내 축소 ② 베트남 달랏(해발 1,500m·연중 15~25°C)·인도 우다이푸르·이집트 엘 와디 sourcing 동시 신설 — 수율·기후 risk diversification ③ 한국형 고수율 종자(농촌진흥청 개발 품종)를 베트남에 contract farming 방식으로 역수출 → "K-종자 + 베트남 기후 + 한국 vendor" 통합 모델 lock-in.</p>
               </div>
             ),
@@ -515,7 +515,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 3: Producer Price Volatility */}
         <WidgetCard title='주요 산지별 생산자 가격 변동성 스프레드' icon={Activity} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: faoPriceLive.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'FAOSTAT' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'FAOSTAT' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoPriceLive}>
               <AreaChart data={faoPriceLive}>
@@ -539,7 +539,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"가격 변동성(Price Volatility)"이란 vendor의 매입원가 예측 적중률을 결정짓는 핵심 시장 risk. 한국 제주(겨울 작형)·강원(여름 고랭지)은 폭우·태풍·일조 부족 등 기후 변동으로 도매가 변동성이 글로벌 평균의 2.4배. 중국 산둥(칭다오)도 내수 물가 인상 + 수출 제한 정책으로 hedging 기능 상실 — 한·중 양대 sourcing이 동시에 무너진 게 본질.</p>
-                <p>실측: <strong>한국 당근 도매가 연간 변동폭 ±42% (2020~2026). 중국산 수입 단가도 ±28%로 동반 불안정. 베트남 달랏 산지는 변동폭 ±6% — 해발 1,500m·연중 평균 18°C 미세 기후가 자연 hedging 역할</strong>. vendor가 통제 가능한 유일한 변수가 sourcing 지리.</p>
+                <p>실측: <strong>한국 생산자 가격(FAOSTAT)은 2012~2022년 $378~$1,401/톤 사이를 진동 — 최대 연간 변동 -70%(2021)~+80%(2020). 중국은 $250 → $437/톤으로 완만한 단방향 상승(+75%). 베트남은 $147~$153/톤, 변동폭 ±2% — 해발 1,500m·연중 평균 18°C 미세 기후가 자연 hedging 역할</strong>. vendor가 통제 가능한 유일한 변수가 sourcing 지리.</p>
               </div>
             ),
             actionPlan: (
@@ -554,7 +554,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='한국 도매가 폭등 및 베트남산 단가 스프레드 (여름 단경기)' icon={Layers} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: w1Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KAMIS & KCS' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KAMIS & KCS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w1Live}>
               <AreaChart data={w1Live}>
@@ -578,12 +578,12 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"단경기(Lean Season)"란 한 작물의 국내 출하가 끊기는 공급 공백기. 한국 당근은 강원 고랭지(6월) 종료 → 제주 겨울 출하(11월) 시작 사이 7~10월이 단경기 — 매년 도매가 +180~250% spike의 구조적 patternized event. "한-베트남 FTA(VKFTA, Korea-Vietnam Free Trade Agreement)"는 2015 발효된 양자 FTA로 베트남산 당근 관세를 27% → 0% 영세율로 즉시 인하 → 단경기 sourcing arbitrage의 결정적 leverage.</p>
-                <p>실측: <strong>2024 7~9월 한국 도매가 ₩2,100/kg → ₩5,400/kg (+157% spike). 동기 베트남 달랏 산지가 ₩1,150/kg + VKFTA 0% 관세 + 물류비 ₩320/kg = 한국 도착 ₩1,470/kg → 단경기 대비 -73% 우위, 마진 +85%p</strong>. 매년 반복되는 정해진 패턴 — 모르는 vendor만 손해.</p>
+                <p>실측: <strong>한국 도매가 1월 $764/톤(제주) → 9월 $1,957/톤(강원)으로 +156% spike. 동기 베트남 달랏 수입가는 $380/톤 + VKFTA 0% 관세 → 한국산 대비 -81% (차액 $1,577/톤)</strong>. 매년 반복되는 정해진 패턴 — 모르는 vendor만 손해.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 7~10월 단경기 spike는 random risk가 아닌 <strong>"매년 동일 시점에 반복되는 정량적 arbitrage event — 사전 capa lock-in한 vendor만 +85%p 마진 자동 수령"</strong>.</p>
+                <p><strong>재정의</strong>: 7~10월 단경기 spike는 random risk가 아닌 <strong>"매년 동일 시점에 반복되는 정량적 arbitrage event — 사전 capa lock-in한 vendor만 -81% 단가 우위(차액 $1,577/톤)를 자동 수령"</strong>.</p>
                 <p><strong>3단계</strong>: ① 매년 3월(단경기 4개월 전) 베트남 달랏 산지 capa 60~80% 사전 lock-in — 현지 vendor와 fixed price contract ② 단경기 진입 직전(6월 말) 한국 보세창고에 1차 비축 5,000톤 + 7~10월 매월 추가 배송 ③ 대형 B2B 바이어(CJ·아워홈·풀무원·이마트)에 <strong>"단경기 가격 lock LTA"</strong> 제안 — 시장가 +120%p 상승 시에도 약정가 유지, 우리는 마진 +60%p + 차기 5년 재계약 우선권 lock-in.</p>
               </div>
             ),
@@ -592,7 +592,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='종자 역수출 수율 및 당도 경쟁력 실증 비교' icon={TrendingUp} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: %, Brix'
-          telemetry={{ status: w2Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w2Live}>
               <ComposedChart data={w2Live}>
@@ -612,13 +612,13 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"Brix(당도, 굴절당도)"란 100g 액체에 녹아 있는 당분 g수 — 과채류의 시장 단가를 결정짓는 핵심 spec. 당근은 Brix 7.0 = 표준 / 8.0+ = 프리미엄 / 9.0+ = 슈퍼 프리미엄. 종자가 같으면 기후가 95% 결정 — 한국 종자를 베트남 달랏 미세 기후(고지대·일교차 큰 환경)에 심으면 본토보다 더 좋은 spec 가능한 게 농업의 paradox.</p>
-                <p>실측: <strong>중국산(일본 종자) Brix 6.8 / 수율 84%. 제주산(한국 종자) Brix 8.5 / 수율 65.4% (기후 변동 충격). 베트남 달랏에 한국 종자 contract farming 시 Brix 8.9 + 수율 92.5% — 두 우위 동시 달성, 본토 vs 해외 sourcing의 traditional trade-off 무력화</strong>.</p>
+                <p>실측: <strong>중국산(일본 종자) Brix 6.5 / 수율 85%. 제주산(한국 종자) Brix 8.5 / 수율 60% (기후 변동 충격). 베트남 달랏에 한국 종자 contract farming 시 Brix 8.8 + 수율 93% — 두 우위 동시 달성, 본토 vs 해외 sourcing의 traditional trade-off 무력화</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
                 <p><strong>재정의</strong>: 종자 역수출은 단순 농업 거래가 아닌 <strong>"한국 R&D 종자 IP + 베트남 기후 + 한국 vendor 유통이 결합된 영구 supply moat 구축 instrument"</strong>. 경쟁사가 모방하려면 종자 협상 + 기후 + 농가 신뢰 3중 lockup 필요.</p>
-                <p><strong>3단계</strong>: ① 농촌진흥청·국립종자원의 한국 고당도 종자 라이센스 5년 독점권 확보 (현지 베트남 라이센서가 절대 못 받는 조건) ② 달랏 농가 12~15곳과 5년 contract farming + 자체 종자 무상 제공 → 수율 +28%p 우위로 농가에는 +35% 추가 수입, 우리에는 안정 supply ③ 출하 spec "Brix 8.9+·수율 92.5%·VHT 검역 통과" 통합 라벨 → 대형 B2B 5년 LTA 단가 +24% 프리미엄 + 일본·홍콩·싱가포르 K-veggie 수출 라인 신설.</p>
+                <p><strong>3단계</strong>: ① 농촌진흥청·국립종자원의 한국 고당도 종자 라이센스 5년 독점권 확보 (현지 베트남 라이센서가 절대 못 받는 조건) ② 달랏 농가 12~15곳과 5년 contract farming + 자체 종자 무상 제공 → 제주 대비 수율 +33%p 우위로 농가에는 +35% 추가 수입, 우리에는 안정 supply ③ 출하 spec "Brix 8.8·수율 93%·VHT 검역 통과" 통합 라벨 → 대형 B2B 5년 LTA 단가 +24% 프리미엄 + 일본·홍콩·싱가포르 K-veggie 수출 라인 신설.</p>
               </div>
             ),
             source: "KREI 겨울당근 생육 동향 + 농촌진흥청 종자 R&D + aT 베트남 시장조사",
@@ -627,7 +627,7 @@ export default function CarrotDashboard() {
         {/* New W15 Widget: Climate Hedge & Call Option */}
         <WidgetCard title='글로벌 기후 리스크 헷징 및 산지 콜옵션 가치' icon={Globe} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: 지수 및 변동률 %'
-          telemetry={{ status: w15Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'NOAA' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'NOAA' }} chartHeight={375}
           chart={
             <ChartWrapper data={w15Live}>
               <ComposedChart data={w15Live}>
@@ -649,7 +649,7 @@ export default function CarrotDashboard() {
         {/* New W20 Widget: Phyto-Risk & PLS Compliance */}
         <WidgetCard title='식물방역 및 잔류농약 리스크 지수 실증 (Phyto-Risk)' icon={ShieldCheck} iconColor="#ea580c" pillar="S1"
           cardDesc='단위: 건수, 톤'
-          telemetry={{ status: w20Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'MFDS' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'MFDS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w20Live}>
               <ComposedChart data={w20Live}>
@@ -684,7 +684,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='B2B 수입산 전처리(IQF) 원가 절감 시뮬레이션' icon={Recycle} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: KRW/10kg'
-          telemetry={{ status: w3Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w3Live}>
               <BarChart data={w3Live}>
@@ -704,13 +704,13 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"IQF(Individual Quick Freezing, 개별 급속냉동)"란 -35°C 이하 급속냉동 터널에서 각 조각을 개별 동결해 조직 손상을 최소화하는 가공 기술. B2B HORECA·HMR·급식 vendor 입장에서는 박피·다이스·세척·동결 공정을 외주화함으로써 자체 인건비(주방 1인 월 320만원) + 폐기물 처리비 + 수분 감모 cost 동시 0화 — kg당 매입원가 absolute floor를 한 단계 내림.</p>
-                <p>실측: <strong>한국 자체 전처리 시 ₩81,000/10kg (원물 ₩52K + 인건비 ₩21K + 폐기 ₩8K). 베트남 IQF 직수입 시 ₩45,000/10kg (-44%) — 동일 spec, 일관된 품질, 결품 zero. 한국 1분기 도매가 +78.9% 폭등 국면에서 cost lever 차이가 분기 P&L의 main driver</strong>.</p>
+                <p>실측: <strong>한국 자체 전처리 시 ₩81,730/10kg (원물 ₩61.7K + 인건비 ₩15K + 폐기 ₩5K). 베트남 IQF 직수입 시 ₩45,000/10kg (-45%) — 동일 spec, 일관된 품질, 결품 zero. 2024년형 도매가 폭등 국면(9월 ₩104,748/20kg 피크)에서 cost lever 차이가 분기 P&L의 main driver</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: B2B 바이어의 진짜 cost는 "원물 단가"가 아닌 <strong>"전처리·검역·인건비·폐기까지 합산한 총사용원가(TCU) — 매입원가가 비싸 보여도 TCU가 -44%면 곧 승리"</strong>.</p>
-                <p><strong>3단계</strong>: ① 베트남 달랏 IQF 가공 라인 직접 capa 확보 (자체 또는 JV) — 박피·다이스(10×10mm)·세척·급속냉동 통합 ② CJ프레시웨이·아워홈·풀무원·신세계푸드 5대 B2B 바이어에 <strong>"TCU -44% 보장 계약"</strong> 5년 LTA — 원물 단가가 아닌 TCU 단위로 가격 협상 framework 전환 ③ HMR 급성장 채널(밀키트·이유식·시니어식)에 IQF 전처리 당근 특화 SKU 직납 → 단가 +24% 프리미엄 흡수.</p>
+                <p><strong>재정의</strong>: B2B 바이어의 진짜 cost는 "원물 단가"가 아닌 <strong>"전처리·검역·인건비·폐기까지 합산한 총사용원가(TCU) — 매입원가가 비싸 보여도 TCU가 -45%면 곧 승리"</strong>.</p>
+                <p><strong>3단계</strong>: ① 베트남 달랏 IQF 가공 라인 직접 capa 확보 (자체 또는 JV) — 박피·다이스(10×10mm)·세척·급속냉동 통합 ② CJ프레시웨이·아워홈·풀무원·신세계푸드 5대 B2B 바이어에 <strong>"TCU -45% 보장 계약"</strong> 5년 LTA — 원물 단가가 아닌 TCU 단위로 가격 협상 framework 전환 ③ HMR 급성장 채널(밀키트·이유식·시니어식)에 IQF 전처리 당근 특화 SKU 직납 → 단가 +24% 프리미엄 흡수.</p>
               </div>
             ),
             source: "KREI 농업전망 2026 + aT IQF 전처리 보고서 + B2B 5사 인건비 비교",
@@ -718,7 +718,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='식물 검역(PLS) 완전 우회 및 IQF 가공 수율 실증 (100%)' icon={TestTube} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: %'
-          telemetry={{ status: w11Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w11Live}>
               <BarChart data={w11Live} layout="vertical" margin={{ left: 20 }}>
@@ -753,7 +753,7 @@ export default function CarrotDashboard() {
         {/* New W16 Widget: Demographic Labor Arbitrage */}
         <WidgetCard title='인구구조 붕괴와 가공 인건비 실증 (엑소더스)' icon={Banknote} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: USD/톤 전처리 인건비'
-          telemetry={{ status: w16Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w16Live}>
               <LineChart data={w16Live}>
@@ -771,8 +771,8 @@ export default function CarrotDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"인구 보너스(Demographic Dividend)"란 생산가능인구(15~64세) 비중이 부양인구 대비 높아 노동 공급·임금·소비가 동시에 vendor에게 유리한 시기. 중국은 2012 정점 → 본격 인구 감소·고령화 진입(농촌 인구 -32%, 평균 연령 49세) → 농산물 가공 인건비 매년 +8~10% 상승. 베트남은 평균 연령 32세·생산가능 인구 67%로 향후 15년 인구 보너스 잔존 → 영구 cost advantage.</p>
-                <p>실측: <strong>중국 농촌 가공 인건비 (당근 전처리 기준) $148/톤 (2014) → $315/톤 (2026, +113%). 베트남 달랏 동일 spec $42/톤 — 중국 대비 -87% 차이. 향후 10년 격차 예상 +18%p 추가 확대</strong>. 인구 구조는 거짓말하지 않음.</p>
+                <p>"인구 보너스(Demographic Dividend)"란 생산가능인구(15~64세) 비중이 부양인구 대비 높아 노동 공급·임금·소비가 동시에 vendor에게 유리한 시기. 중국은 2012 정점 → 본격 인구 감소·고령화 진입(농촌 인구 -32%, 평균 연령 49세) → 농산물 가공 인건비 연 +15% 수준 상승(2015~2025 CAGR). 베트남은 평균 연령 32세·생산가능 인구 67%로 향후 15년 인구 보너스 잔존 → 영구 cost advantage.</p>
+                <p>실측: <strong>중국 농촌 가공 인건비 (당근 전처리 기준) $50/톤 (2015) → $205/톤 (2025E, 4.1배). 베트남 달랏 동일 spec $41/톤 — 중국 대비 -80% 차이. 한국은 $360/톤으로 이미 한계 도달</strong>. 인구 구조는 거짓말하지 않음.</p>
               </div>
             ),
             actionPlan: (
@@ -787,7 +787,7 @@ export default function CarrotDashboard() {
         {/* New W21 Widget: B2B HMR Form-factor Demand Shift */}
         <WidgetCard title='B2B HMR 폼팩터별 수요 전환율 (Demand Shift)' icon={Layers} iconColor="#ea580c" pillar="S2"
           cardDesc='단위: 비중 %'
-          telemetry={{ status: w21Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w21Live}>
               <AreaChart data={w21Live}>
@@ -807,13 +807,13 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"폼팩터(Form-factor)"란 상품의 물리적 형태·가공 단계 — 동일 commodity라도 흙당근·세척·전처리(절단)·IQF 냉동 4단계로 분기되며 단가·마진·바이어 segmentation이 완전히 분리. HMR(Home Meal Replacement, 가정간편식)·급식·외식 채널 성장이 흙당근 → IQF 수요 이동을 가속 → 가공도 높은 형태일수록 단가·마진 동시 상승.</p>
-                <p>실측: <strong>2026 폼팩터별 비중: 흙당근 38% → 32% (2035E) / 세척 29% → 24% / 전처리 22% → 28% / IQF 11% → 16%. 단가는 흙당근 ₩1,200/kg → IQF ₩3,800/kg (3.2배). 매출 mix만 IQF +6%p 변화해도 vendor 평균 마진 +9%p 상승</strong>.</p>
+                <p>실측: <strong>폼팩터별 비중(2020 → 2028E): 흙당근 65% → 5% / 세척 25% → 19% / 전처리 8% → 40% / IQF 2% → 36%. 2026E 기준 전처리+IQF 합산 58%로 원물(13%)의 4배 — 가공형 이동 가속. 단가는 흙당근 ₩1,200/kg → IQF ₩3,800/kg (3.2배)</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
                 <p><strong>재정의</strong>: 폼팩터 mix 관리는 단순 SKU 결정이 아닌 <strong>"vendor의 EBITDA를 결정하는 portfolio rebalancing — High-margin segment 선점이 곧 자본 시장 valuation premium"</strong>.</p>
-                <p><strong>3단계</strong>: ① 베트남 달랏 가공 hub에 IQF 라인 확대 capex — 매출 mix 흙당근 38% → 25% / IQF 11% → 30%로 5년 내 강제 rebalance ② HMR 1~3위 (CJ제일제당·풀무원·오뚜기) + 밀키트 (마이셰프·프레시지·테이스티나인) + 시니어식 (정식품·매일유업)에 IQF 직납 5년 LTA ③ IQF 매출 비중 30%+ 달성 시 IR 자료에 "HMR-aligned premium vendor" 포지셔닝 → exit PE 5x → 9x 리레이팅 가능.</p>
+                <p><strong>3단계</strong>: ① 베트남 달랏 가공 hub에 IQF 라인 확대 capex — 매출 mix 흙당근 13% → 5% / IQF 24% → 36%(2028E 차트 경로 선행)로 강제 rebalance ② HMR 1~3위 (CJ제일제당·풀무원·오뚜기) + 밀키트 (마이셰프·프레시지·테이스티나인) + 시니어식 (정식품·매일유업)에 IQF 직납 5년 LTA ③ IQF 매출 비중 30%+ 달성 시 IR 자료에 "HMR-aligned premium vendor" 포지셔닝 → exit PE 5x → 9x 리레이팅 가능.</p>
               </div>
             ),
             source: "KREI 농업전망2026 엽근채소 + aT 가공식품 세분시장 현황조사 + 닐슨 HMR 데이터",
@@ -835,7 +835,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 2: Trade Dependencies */}
         <WidgetCard title='한국 당근 수입 무역 편중도 (블랙홀 구조)' icon={Globe} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: 톤'
-          telemetry={{ status: (faoTradeLive as any).links ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
               <PieChart>
                 <Pie data={(faoTradeLive as any).links ? (faoTradeLive as any).links.map((l: any) => ({ name: l.source.replace('수출: ',''), value: l.value })) : []} cx="50%" cy="50%" innerRadius={50} outerRadius={90} paddingAngle={3} dataKey="value" label={({name, percent}: any) => `${name} ${(percent*100).toFixed(1)}%`}>
@@ -850,13 +850,13 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"China+1 전략(China Plus One)"이란 글로벌 vendor가 중국 단일 의존 risk를 회피하고자 2~3개 대체 sourcing 국가를 동시에 운영하는 supply chain 다변화 패러다임. 2020 COVID 봉쇄 + 2021 요소수 수출 통제 + 2024 PLS 사태로 중국 100% 의존은 가장 큰 vendor risk로 부상 — 그러나 한국 당근 수입은 여전히 중국 90% 이상으로 글로벌 트렌드에 역행.</p>
-                <p>실측: <strong>한국 당근 수입 국가별: 중국 90.4% / 베트남 6.2% / 기타 3.4%. 일본(50% 미만)·EU(35%)·미국(48%) 등 선진국 vendor는 모두 China+1 30~50% 비중 보유 → 한국이 글로벌 트렌드에서 가장 뒤처짐. 단일 사고 시 -90% 공급 충격 시나리오 확정</strong>.</p>
+                <p>실측: <strong>한국 당근 수입(FAOSTAT TM, 중·베 합산 96,243톤 기준): 중국 88,592톤(92.0%) / 베트남 7,651톤(8.0%). 일본(50% 미만)·EU(35%)·미국(48%) 등 선진국 vendor는 모두 China+1 30~50% 비중 보유 → 한국이 글로벌 트렌드에서 가장 뒤처짐. 단일 사고 시 -92% 공급 충격 시나리오 확정</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 중국 90% 의존은 "역사적 단가 우위"가 아닌 <strong>"분기 P&L의 90%를 외국 정부 정책에 위임한 single-point failure — 자본 시장 valuation discount 1.5x"</strong>.</p>
-                <p><strong>3단계</strong>: ① 18개월 내 중국 비중 90% → 60%로 축소 + 베트남 25% / 인도·이집트 15% 동시 구축 ② sourcing 국가 다변화 자체를 vendor DD score 항목으로 표준화 — IR·은행·PE 실사 시 score +12점 자동 ③ "China+1 carrot champion" 포지셔닝 → 일본·홍콩·싱가포르 K-veggie 수출 시 trust premium 단가 +18% 가능, exit valuation +2.0x.</p>
+                <p><strong>재정의</strong>: 중국 92% 의존은 "역사적 단가 우위"가 아닌 <strong>"분기 P&L의 9할을 외국 정부 정책에 위임한 single-point failure — 자본 시장 valuation discount 1.5x"</strong>.</p>
+                <p><strong>3단계</strong>: ① 18개월 내 중국 비중 92% → 60%로 축소 + 베트남 25% / 인도·이집트 15% 동시 구축 ② sourcing 국가 다변화 자체를 vendor DD score 항목으로 표준화 — IR·은행·PE 실사 시 score +12점 자동 ③ "China+1 carrot champion" 포지셔닝 → 일본·홍콩·싱가포르 K-veggie 수출 시 trust premium 단가 +18% 가능, exit valuation +2.0x.</p>
               </div>
             ),
             source: "FAOSTAT TM + 관세청 수입국별 통계 + KOTRA China+1 글로벌 동향",
@@ -865,7 +865,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='수입 단가 시뮬레이션 (KREI 관세 vs VKFTA 영세율)' icon={Truck} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: USD/톤'
-          telemetry={{ status: w5Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w5Live}>
               <BarChart data={w5Live}>
@@ -885,13 +885,13 @@ export default function CarrotDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"Landed Cost(도착가)"란 매입 단가 + 물류비 + 관세 + 보험 + 통관 fee 모두 합산한 최종 매입원가 — vendor 협상에서 단가 비교의 진짜 기준선. 중국 당근 기본관세 30% vs 베트남 VKFTA 0% — 같은 단가라도 한국 도착 시 Landed Cost 격차 +24%p 이상 자동 발생.</p>
-                <p>실측: <strong>중국 칭다오 매입 $480/MT + 해상 $35 + 관세 30% ($154) = Landed $669/MT. 베트남 달랏 매입 $440/MT + 해상 $65 + MA 포장 $42 + 관세 0% = Landed $547/MT. 베트남이 단가는 비싸 보이나 Landed Cost -18% 우위 — "단가"가 아니라 "도착가"로 비교해야 진실 보임</strong>.</p>
+                <p>"Landed Cost(도착가)"란 매입 단가 + 물류비 + 관세 + 보험 + 통관 fee 모두 합산한 최종 매입원가 — vendor 협상에서 단가 비교의 진짜 기준선. 중국 당근 기본관세 30% vs 베트남 VKFTA 0% — 같은 단가라도 한국 도착 시 관세분만으로 Landed Cost 격차 +30%p 자동 발생.</p>
+                <p>실측: <strong>중국 산둥 매입 $350/MT + 포장·물류 $30 + 관세 30%($114) = Landed $494/MT. 베트남 달랏 매입 $380/MT + MA 특수 포장·물류 $80 + 관세 0% = Landed $460/MT. 베트남이 단가는 비싸 보이나 Landed Cost -7%(-$34/MT) 우위 — "단가"가 아니라 "도착가"로 비교해야 진실 보임</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 중국산 우위 인식은 "단가 환상" — <strong>"VKFTA 0% 관세가 모든 부가 cost를 흡수하고도 -18%p 우위, 매분기 +6%p 마진 자동 발생하는 영구 cost moat"</strong>.</p>
+                <p><strong>재정의</strong>: 중국산 우위 인식은 "단가 환상" — <strong>"VKFTA 0% 관세가 MA 포장 등 부가 cost를 흡수하고도 Landed Cost -7%(-$34/MT) 우위가 자동 발생하는 영구 cost moat"</strong>.</p>
                 <p><strong>3단계</strong>: ① 모든 B2B 견적·내부 매입 의사결정을 단가 → <strong>Landed Cost</strong> 표준으로 강제 전환 ② MA 특수 포장은 capex 회수가 6개월 — 자체 패키징 라인 신설로 단가 -$15/MT 추가 절감 ③ "VKFTA Landed Cost Champion" 포지셔닝을 IR 자료에 KPI화 → exit 시 PE 실사에서 단가 협상력 정량 증명 → +1.4x valuation premium.</p>
               </div>
             ),
@@ -900,7 +900,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='MA 특수 포장재 도입 시 선도 유지 지표' icon={ShieldCheck} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: 비율 및 보관일수'
-          telemetry={{ status: w6Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w6Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w6Live}>
@@ -917,14 +917,14 @@ export default function CarrotDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"MA 포장(Modified Atmosphere Packaging, 가스 치환 포장)"이란 패키지 내부 산소를 N₂·CO₂로 치환해 호흡·산화·미생물 증식을 동시 차단하는 후수확 기술. 당근은 수확 직후 호흡량이 높아 일반 박스 포장 시 7일 만에 당도·수분 +20% 손실. MA 적용 시 최장 45일까지 spec 유지 — 베트남 해상 운송(7~12일) 시간 risk를 형식적으로 무력화.</p>
-                <p>실측: <strong>일반 포장 + 베트남 해상 12일 → 도착 후 불량 폐기율 18%, 잔여 수율 82%. MA 포장 동일 조건 → 폐기율 2%, 수율 98% + 보관일 +33일 (총 45일) 연장. 동일 단가에서 수율 차이 +16%p, 보관 buffer +33일</strong>.</p>
+                <p>"MA 포장(Modified Atmosphere Packaging, 가스 치환 포장)"이란 패키지 내부 산소를 N₂·CO₂로 치환해 호흡·산화·미생물 증식을 동시 차단하는 후수확 기술. 당근은 수확 직후 호흡량이 높아 일반 박스 포장 시 저온에서도 보관 10일이 한계. MA 적용 시 최장 45일까지 spec 유지 — 베트남 해상 운송(7~12일) 시간 risk를 형식적으로 무력화.</p>
+                <p>실측: <strong>일반 포장은 저온 보관 10일·수분 손실률 25%·당도 유지율 60%에 그치나, MA 특수 포장은 저온 보관 45일(+35일)·수분 손실률 2%(-23%p)·당도 유지율 95%. 선박 운송 적합도도 40 → 98로 상승해 동일 단가에서 보관 buffer +35일</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: MA 포장은 "물류 cost"가 아닌 <strong>"수율 +16%p + 보관 buffer +33일을 자동 매수하는 영구 leverage 자산 — capex 회수 6개월짜리 자명한 ROI"</strong>.</p>
-                <p><strong>3단계</strong>: ① 베트남 달랏 산지 옆 MA 포장 라인 자체 capex (회수 6개월) — 단가 +$42/MT 비용 대비 폐기 -16%p 절감으로 net +$98/MT 마진 ② 보관 buffer +33일을 leverage해 한국 도착 일정을 KAMIS 사과·배 가격 spike와 sync — 단경기 폭등 윈도우에 정확히 도착시켜 도매가 +18% 프리미엄 동시 캡처 ③ B2B 바이어에 "MA-supported zero waste 보장 LTA" — 결품 risk 0 조건의 5년 lock-in 협상 무기.</p>
+                <p><strong>재정의</strong>: MA 포장은 "물류 cost"가 아닌 <strong>"수분 손실 -23%p + 보관 buffer +35일을 자동 매수하는 영구 leverage 자산 — capex 회수 6개월짜리 자명한 ROI"</strong>.</p>
+                <p><strong>3단계</strong>: ① 베트남 달랏 산지 옆 MA 포장 라인 자체 capex (회수 6개월) — 포장 비용 추가 대비 수분 손실 -23%p·보관 +35일의 효익 ② 보관 buffer +35일을 leverage해 한국 도착 일정을 KAMIS 당근 도매가 spike와 sync — 단경기 폭등 윈도우에 정확히 도착시켜 도매가 +18% 프리미엄 동시 캡처 ③ B2B 바이어에 "MA-supported zero waste 보장 LTA" — 결품 risk 0 조건의 5년 lock-in 협상 무기.</p>
               </div>
             ),
             source: "수입식품 신선도 관리 가이드라인 + MA 포장 호흡 억제 R&D + 베트남 해상 운송 사례",
@@ -933,7 +933,7 @@ export default function CarrotDashboard() {
         {/* New W17 Widget: Floating Storage Arbitrage */}
         <WidgetCard title="운전자본 제로 '해상 이동식 창고' 지연 전략 실증" icon={Anchor} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: USD, 10톤(20ft) 기준 누적 냉동보관료'
-          telemetry={{ status: w17Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w17Live}>
               <AreaChart data={w17Live}>
@@ -970,7 +970,7 @@ export default function CarrotDashboard() {
         {/* New W22 Widget: TRQ Dependency vs. Free Trade Arbitrage */}
         <WidgetCard title='WTO TRQ 배분 의존도 vs FTA 영구 차익' icon={Scale} iconColor="#ea580c" pillar="S3"
           cardDesc='단위: 관세율 %, 수입원가 USD'
-          telemetry={{ status: w22Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW22Data}>
               <ComposedChart data={dynamicW22Data}>
@@ -1018,7 +1018,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='B2B 스팟 시장 가격 변동성 vs 장기 계약 헤징 실증' icon={Dna} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 기준치 100'
-          telemetry={{ status: w7Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KCS' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KCS' }} chartHeight={375}
           chart={
             <ChartWrapper data={w7Live}>
               <LineChart data={w7Live}>
@@ -1090,7 +1090,7 @@ export default function CarrotDashboard() {
         {/* New W12 Widget: Nutritional Spec Radar */}
         <WidgetCard title='핵심 스펙 (당도·영양) 실증 분석 레이더' icon={Dna} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 스코어 지수'
-          telemetry={{ status: w12Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w12Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={w12Live}>
@@ -1108,13 +1108,13 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"베타카로틴(β-Carotene)"이란 당근의 주황색을 만드는 카로티노이드 색소로, 체내에서 비타민A로 전환되는 항산화 활성 영양소. 100g당 함량이 식약처 영양성분 표시 의무 spec 중 하나 — 5,000μg+ 프리미엄 / 3,000~5,000μg 일반 / 3,000μg 미만 저급. "VietGAP(Vietnam Good Agricultural Practices)"는 베트남 농업부 인증으로 잔류농약·환경관리 기준 — GlobalGAP 호환.</p>
-                <p>실측: <strong>중국산 일본 종자: Brix 6.2 / 베타카로틴 2,800μg / VietGAP 인증 없음. 베트남 달랏 한국 종자: Brix 12.8 (2.1배) / 베타카로틴 8,400μg (3.0배) / VietGAP·GlobalGAP 인증. 동일 commodity인데 spec 만 보면 완전 다른 상품</strong>.</p>
+                <p>실측: <strong>스펙 스코어(달랏=100 환산): 당도 — 중국산 48 vs 달랏 100 (2.1배), 베타카로틴 — 57 vs 100 (1.8배), 식이섬유 — 56 vs 100, 잔류농약 안전성 — 30 vs 95. 조리 편의성(95 vs 40)만 중국산 우위. 동일 commodity인데 spec 만 보면 완전 다른 상품</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
                 <p><strong>재정의</strong>: 베트남 달랏 당근은 "값싼 원재료"가 아닌 <strong>"식약처 영양 spec + VietGAP 인증으로 프리미엄 B2C(밀키트·유기농 이유식·시니어식) 진입 자격을 가진 differentiated product"</strong>. 인증 자체가 가격 결정력.</p>
-                <p><strong>3단계</strong>: ① B2C 채널(마켓컬리·올리브영·SSG·이마트 PB·삼다·정관장) 입점 — "고당도 12.8 Brix + 베타카로틴 8,400μg" 라벨로 단가 +85% 프리미엄 ② 프리미엄 밀키트(마이셰프·프레시지·테이스티나인) + 유기농 이유식(베베쿡·아이배냇) + 시니어식(매일유업·정식품) 5년 LTA — segment별 customization SKU ③ 자체 K-Carrot Premium 브랜드 출시 → 일본 백화점·홍콩·싱가포르 K-veggie 채널 직진출, valuation +2.2x.</p>
+                <p><strong>3단계</strong>: ① B2C 채널(마켓컬리·올리브영·SSG·이마트 PB·삼다·정관장) 입점 — "고당도 Brix 8.8 + 베타카로틴 스코어 1.8배" 라벨로 단가 +85% 프리미엄 ② 프리미엄 밀키트(마이셰프·프레시지·테이스티나인) + 유기농 이유식(베베쿡·아이배냇) + 시니어식(매일유업·정식품) 5년 LTA — segment별 customization SKU ③ 자체 K-Carrot Premium 브랜드 출시 → 일본 백화점·홍콩·싱가포르 K-veggie 채널 직진출, valuation +2.2x.</p>
               </div>
             ),
             source: "식약처 영양성분DB + VietGAP·GlobalGAP 인증 + Enza Zaden 종자 R&D",
@@ -1158,7 +1158,7 @@ export default function CarrotDashboard() {
         {/* New W23 Widget: Vendor Lock-in LTV */}
         <WidgetCard title='대형 벤더 장기 락인 누적 생애가치 (LTV)' icon={Banknote} iconColor="#ea580c" pillar="S4"
           cardDesc='단위: 누적 잉여현금흐름 인덱스 및 이탈률 %'
-          telemetry={{ status: w23Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW23Data}>
               <ComposedChart data={dynamicW23Data}>
@@ -1179,7 +1179,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"LTV(Lifetime Value, 고객 생애가치)"란 한 vendor가 단일 고객으로부터 평생 창출하는 누적 수익. B2B에서는 ACV(연간 계약금) × 평균 lock-in 기간 × 마진율. 스팟 공급은 평균 lock-in 1.8년 (churn 60%), 장기 LTA는 5~7년 (churn 8%) — 동일 고객이 vendor에게 만드는 LTV 격차 4~5배.</p>
-                <p>실측: <strong>스팟 모델: ACV $1.2M × 1.8년 × 마진 12% = LTV $259K. 장기 LTA 모델: ACV $1.5M × 6년 × 마진 22% = LTV $1,980K (7.6배). 3년차부터 LTA 모델 누적 FCF가 스팟 대비 +280%, 5년차 +540%로 곡선 발산</strong>.</p>
+                <p>실측: <strong>스팟 모델: ACV $1.2M × 1.8년 × 마진 12% = LTV $259K. 장기 LTA 모델: ACV $1.5M × 6년 × 마진 22% = LTV $1,980K (7.6배). 누적 FCF 인덱스는 1년차 -10% 양보 후 3년차 +33%(320 vs 240), 5년차 +103%(630 vs 310)로 곡선 발산</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -1207,7 +1207,7 @@ export default function CarrotDashboard() {
         {/* FAO Chart 4: Supply Utilization and Loss */}
         <WidgetCard title='원물 손실률(Loss) 및 잉여 가공 전환 잠재력' icon={Recycle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 톤'
-          telemetry={{ status: faoLossLive.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={faoLossLive}>
               <BarChart data={faoLossLive} stackOffset="expand">
@@ -1228,7 +1228,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"어글리 롯(Ugly Lot, 비규격품)"이란 크기·형태가 기준 외라 상품성 미달로 분류되는 농산물. 당근은 수확량의 15~30%가 어글리 롯으로 폐기 — 영양가는 동일하나 외관상 retail 진열대에 못 오름. "수확 후 손실(Post-harvest Loss)"은 별도로 보관·운송·검역 단계 폐기율 — 한국은 두 항목 합산 27.3%로 글로벌 최악.</p>
-                <p>실측: <strong>한국 연간 당근 생산 약 9.7만톤 중 손실 ~3.1만톤 (32%, FAOSTAT SCL). 동기 미국 8.9% / 중국 5.0% / 독일 15% 대비 2~5배 높음. 손실량 ~3.1만톤이 그대로 베타카로틴·펫푸드·메디푸드 원료 전환 시 부가가치 +$24M/년 추정</strong>.</p>
+                <p>실측: <strong>한국 연간 당근 생산 약 11.2만톤 중 손실 ~3.1만톤 (생산 대비 27.3%, FAOSTAT SCL). 동기 미국 8.9% / 중국 5.0% / 독일 15% 대비 2~5배 높음. 손실량 ~3.1만톤이 그대로 베타카로틴·펫푸드·메디푸드 원료 전환 시 부가가치 +$24M/년 추정</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -1243,7 +1243,7 @@ export default function CarrotDashboard() {
         
         <WidgetCard title='비규격 폐기 방지 및 푸드 업사이클링 ROI' icon={Leaf} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 비율'
-          telemetry={{ status: w9Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'UN Comtrade' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'UN Comtrade' }} chartHeight={375}
           chart={
             <ChartWrapper data={w9Live}>
               <BarChart data={w9Live} layout="vertical">
@@ -1276,7 +1276,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='바이어 Scope 3 감축 연계 및 ESG 파트너십' icon={AlertTriangle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 평가 지수'
-          telemetry={{ status: w10Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w10Live}>
               <RadarChart cx="50%" cy="50%" outerRadius="70%" data={w10Live}>
@@ -1308,7 +1308,7 @@ export default function CarrotDashboard() {
 
         <WidgetCard title='가치사슬 통합 마진 스마일 커브 (PEF 롤업 모델)' icon={Layers} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: EBITDA 영업이익률 %'
-          telemetry={{ status: w14Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w14Live}>
               <ComposedChart data={w14Live}>
@@ -1342,7 +1342,7 @@ export default function CarrotDashboard() {
         {/* New W24 Widget: ESG Upcycling */}
         <WidgetCard title='푸드 업사이클링 프리미엄 및 Scope 3 감축 효과 실증' icon={Leaf} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 톤, 마진율 %, tCO2e'
-          telemetry={{ status: w24Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KREI 2026' }} chartHeight={375}
           chart={
             <ChartWrapper data={w24Live}>
               <ComposedChart data={w24Live}>
@@ -1376,9 +1376,9 @@ export default function CarrotDashboard() {
           }} />
 
         {/* New W19 Widget: Exit Valuation Waterfall */}
-        <WidgetCard title='엑시트 밸류에이션 워터폴: 5x → 15x 멀티플 브릿지 실증' icon={Landmark} iconColor="#ea580c" pillar="S5"
+        <WidgetCard title='엑시트 밸류에이션 워터폴: 5x → 20x 멀티플 브릿지 (업계추정)' icon={Landmark} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: 밸류에이션 포인트'
-          telemetry={{ status: w19Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'DART & PitchBook' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'DART & PitchBook' }} chartHeight={375}
           chart={
             <ChartWrapper data={dynamicW19Data}>
               <BarChart data={dynamicW19Data} margin={{ left: 10, right: 10 }}>
@@ -1398,14 +1398,14 @@ export default function CarrotDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"QoE(Quality of Earnings, 이익의 질)"란 vendor EBITDA가 얼마나 sustainable·predictable·diversified한지 측정하는 PE·IB 실사 핵심 지표. 동일 EBITDA여도 QoE가 높으면 multiple +50~120% premium. "Valuation Waterfall(밸류에이션 워터폴)"은 base multiple(5x)에 각 가치 동인을 단계별로 더해 최종 multiple(15x)에 도달하는 시각화 모델.</p>
-                <p>업계추정: <strong>단순 농산물 수입 vendor EV/EBITDA 5x base → +기후 헤징 1x → +VKFTA 영세율 1.5x → +PLS·잔류농약 zero lock-in 1.5x → +IQF 가공 2x → +Smile Curve 종자 IP 2x → +업사이클링·메디푸드 2x = 최종 15x (총 +200% premium). 동일 EBITDA $10M 기준 EV $50M → $150M (illustrative, 실제 multiple은 시장 상황에 따라 상이)</strong>.</p>
+                <p>"QoE(Quality of Earnings, 이익의 질)"란 vendor EBITDA가 얼마나 sustainable·predictable·diversified한지 측정하는 PE·IB 실사 핵심 지표. 동일 EBITDA여도 QoE가 높으면 multiple +50~120% premium. "Valuation Waterfall(밸류에이션 워터폴)"은 base multiple(5x)에 각 가치 동인을 단계별로 더해 최종 multiple(차트 기준 20.6x)에 도달하는 시각화 모델.</p>
+                <p>업계추정: <strong>단순 농산물 수입 vendor EV/EBITDA 5x base → +달랏 산지 독점계약 2.5x → +IQF 자체가공 3.5x → +종자 IP 라이선싱 4.0x → +ESG 업사이클링 2.3x → +기후헷지 프리미엄 3.3x = 최종 20.6x (총 +312% premium). 동일 EBITDA $10M 기준 EV $50M → $206M (illustrative, 실제 multiple은 시장 상황에 따라 상이)</strong>.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: vendor의 진짜 게임은 "EBITDA 1~2%p 개선"이 아닌 <strong>"각 가치 동인을 IR 자료에 정량 disclosure해 multiple을 5x → 15x로 단계별 빌드업 — 카테고리 reframing이 영업보다 100배 강력"</strong>.</p>
-                <p><strong>3단계</strong>: ① 9대 API망(KAMIS·KCS·FAOSTAT·NOAA·KREI·OEC·KOTRA·EUDR·PitchBook) 통합 dashboard를 IR 자료의 living KPI section으로 전시 ② 분기마다 EBITDA multiple waterfall 자료를 LP·은행·PE에 disclosure → 매분기 multiple 가시화 ③ 18~30개월 내 strategic exit 또는 IPO 추진 — CJ·하림·블랙스톤·KKR Asia 등 buyer pool 동시 sound, EV $150~250M target.</p>
+                <p><strong>재정의</strong>: vendor의 진짜 게임은 "EBITDA 1~2%p 개선"이 아닌 <strong>"각 가치 동인을 IR 자료에 정량 disclosure해 multiple을 5x → 20x로 단계별 빌드업 — 카테고리 reframing이 영업보다 100배 강력"</strong>.</p>
+                <p><strong>3단계</strong>: ① 9대 데이터 소스(KAMIS·KCS·FAOSTAT·NOAA·KREI·OEC·KOTRA·DART·PitchBook) 통합 dashboard를 IR 자료의 living KPI section으로 전시 ② 분기마다 EBITDA multiple waterfall 자료를 LP·은행·PE에 disclosure → 매분기 multiple 가시화 ③ 18~30개월 내 strategic exit 또는 IPO 추진 — CJ·하림·블랙스톤·KKR Asia 등 buyer pool 동시 sound, EV $150~250M target.</p>
               </div>
             ),
             source: "PitchBook 글로벌 애그테크 M&A 트랜잭션 + DART 공시 데이터 + 업계추정 PE Buy & Build 가치평가 (illustrative)",
@@ -1424,7 +1424,7 @@ export default function CarrotDashboard() {
         {/* W25: OEC 글로벌 수출 패권 30년 변천사 */}
         <WidgetCard title='글로벌 당근 수출 패권 30년 변천사 (HS 070610)' icon={Globe} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: USD'
-          telemetry={{ status: w25Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: '2026-06-06' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
             <ChartWrapper data={w25Live}>
               <AreaChart data={w25Live}>
@@ -1461,7 +1461,7 @@ export default function CarrotDashboard() {
         {/* W26: OEC 수입국 벤치마크 (한국 포지션) */}
         <WidgetCard title='글로벌 당근 수입 벤치마크: 한국 vs 주요 수입국' icon={Target} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: USD'
-          telemetry={{ status: w26Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: '2026-06-06' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
             <ChartWrapper data={w26Live}>
               <LineChart data={w26Live}>
@@ -1498,7 +1498,7 @@ export default function CarrotDashboard() {
         {/* W27: KAMIS 월별 도매가 실측 히트맵 */}
         <WidgetCard title='KAMIS 실측 도매가 4개년 비교 (상품 20kg)' icon={Banknote} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: ₩/20kg'
-          telemetry={{ status: w27Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'KAMIS 실측' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'KAMIS 실측' }} chartHeight={375}
           chart={
             <ChartWrapper data={w27Live}>
               <LineChart data={w27Live}>
@@ -1519,7 +1519,7 @@ export default function CarrotDashboard() {
             situation: (
               <div>
                 <p>"KAMIS 도매가 사이클(Wholesale Price Cycle)"이란 한국 당근 시장의 정해진 가격 패턴 — 7~9월 단경기 spike → 10~12월 출하 polit → 1~4월 저가 안정. 이 패턴이 매년 반복되나 단경기 충격 강도(평년 vs spike 연도)는 기후·중국산 회수 사태·정책에 따라 ±60%p 변동. vendor 매입 timing 전략의 base data.</p>
-                <p>실측: <strong>KAMIS 4년 시계열: 2023 ₩57,923/20kg (평년 base) / 2024 ₩73,178 (+26% spike, 9월 피크 ₩104,748 역대 최고) / 2025 ₩52,400 (-9% 회복) / 2026-1~4월 ₩28,131~35,578 (-48% 정상화). 단경기 7~9월이 모든 진폭의 90% 차지</strong>.</p>
+                <p>실측: <strong>KAMIS 4년 시계열: 2023 연평균 ₩56,096/20kg (평년 ₩58,098 수준) / 2024 ₩73,474 (평년 대비 +26% spike, 9월 피크 ₩104,748 역대 최고) / 2025 ₩44,725 (-39% 회복) / 2026-1~4월 ₩28,131~35,578 (평년 동기 대비 -50% 정상화). 단경기 7~9월이 모든 진폭의 90% 차지</strong>.</p>
               </div>
             ),
             actionPlan: (
@@ -1534,7 +1534,7 @@ export default function CarrotDashboard() {
         {/* W28: FAOSTAT SCL 글로벌 수확후 손실률 비교 */}
         <WidgetCard title='글로벌 당근 수확후 손실률 비교 (FAOSTAT SCL)' icon={Recycle} iconColor="#ea580c" pillar="S5"
           cardDesc='단위: %, 톤'
-          telemetry={{ status: w28Live.length > 0 ? 'SYNCED' : 'STATIC', syncDate: 'FAOSTAT 실측' }} chartHeight={375}
+          telemetry={{ status: 'STATIC', syncDate: 'FAOSTAT 실측' }} chartHeight={375}
           chart={
             <ChartWrapper data={w28Live}>
               <ComposedChart data={w28Live} margin={{ left: 10, right: 10 }}>

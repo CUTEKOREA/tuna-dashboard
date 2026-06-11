@@ -52,17 +52,18 @@ function getDistanceNM(lat1: number, lon1: number, lat2: number, lon2: number) {
   return Math.round(12742 * Math.asin(Math.sqrt(a)) * 0.539957);
 }
 
+// 일일 업무보고 26.06.10 기준 (좌표는 보고 위치 문자열의 도분 표기를 십진수로 기계 변환)
 const BASE_PACIFIC_VESSELS = [
-  { name: 'S/EXP', lat: 1.45, lng: 173.00, locationText: 'TARAWA', dailyCatch: '-', load: '-', notice: '4/25 17:30 TARAWA 입항, BAO LUCKY 및 SHIN IZU 편 약 890톤 전재, 발전기 수리 및 EU 검사, 선급검사, 어창온도 모니터링 설비 설치 후 5/1 출항 예정' },
-  { name: 'S/PIO', lat: -3.35, lng: 178.40, locationText: 'S0321 E17824 (KI)', dailyCatch: '35', load: '45', notice: '-' },
-  { name: 'S/CHA', lat: -3.18, lng: 178.38, locationText: 'S0311 E17823 (KI)', dailyCatch: '15', load: '15', notice: '-' },
-  { name: 'S/HAR', lat: 0.96, lng: 177.91, locationText: 'N0058 E17755 (KI)', dailyCatch: '-', load: '620', notice: '-' },
-  { name: 'S/JUP', lat: 1.45, lng: 173.00, locationText: 'TARAWA', dailyCatch: '-', load: '-', notice: '4/26 08:20 TARAWA 입항, SHIN IZU 편 약 730톤 전재 및 EU 검사, 선급검사, 어창온도 모니터링 설비 설치 후 4/30 출항 예정' },
-  { name: 'S/SPR', lat: 1.56, lng: 177.26, locationText: 'N0134 E17716 (KI)', dailyCatch: '60', load: '1,005', notice: '5/1 09:00 TARAWA 입항, SHIN IZU 편 약 1,005톤 전재 후 5/4 출항 예정' },
-  { name: 'MOAMARI', lat: 0.95, lng: 177.90, locationText: 'N0057 E17754 (KI)', dailyCatch: '-', load: '160', notice: '-' },
-  { name: 'MOAKONA', lat: 0.38, lng: 178.05, locationText: 'N0023 E17803 (KI)', dailyCatch: '-', load: '-', notice: '-' },
-  { name: 'NAOERO SUN', lat: -2.71, lng: 179.41, locationText: 'S0243 E17925 (KI)', dailyCatch: '-', load: '502', notice: '-' },
-  { name: 'NAOERO STAR', lat: -3.43, lng: -177.80, locationText: 'S0326 W17748 (H)', dailyCatch: '215', load: '555', notice: '-' },
+  { name: 'S/EXP', lat: 1.45, lng: 173.00, locationText: 'TARAWA', dailyCatch: '-', load: '13', notice: '5/24 13:45 TARAWA 입항, SHIN FUJI 편 BRINE 약 306톤 전재 및 구망 인계 완료, 어기교대(정윤채 → 공준식), M/E 수리 후 6/16 출항 예정' },
+  { name: 'S/PIO', lat: -1.72, lng: -170.30, locationText: 'S0143 W17018 (KI)', dailyCatch: '14', load: '205', notice: '-' },
+  { name: 'S/CHA', lat: 1.35, lng: 172.92, locationText: 'TARAWA', dailyCatch: '-', load: '990', notice: '6/8 13:00 TARAWA 입항, SEIN TOPAZ 편 약 990톤 전재 후 6/11 출항 예정' },
+  { name: 'S/HAR', lat: 35.10, lng: 129.04, locationText: '부산', dailyCatch: '-', load: '-', notice: '6/1 13:45 부산 오리엔트 조선 안벽 접안, 상가수리(6/9~6/23) 후 6/27 출항 예정' },
+  { name: 'S/JUP', lat: 0.33, lng: -178.85, locationText: 'N0020 W17851 (US)', dailyCatch: '-', load: '980', notice: '6/10 MOAMARI 편 M/E 부품 인수, 6/13 TARAWA 입항 후 SEIN TOPAZ 편 약 980톤 전재 예정' },
+  { name: 'S/SPR', lat: -2.80, lng: -175.63, locationText: 'S0248 W17538 (KI)', dailyCatch: '30', load: '164', notice: '-' },
+  { name: 'MOAMARI', lat: -1.60, lng: -171.02, locationText: 'S0136 W17101 (KI)', dailyCatch: '-', load: '890', notice: '6/10 S/JUP M/E 부품 인계, 6/13 FUNAFUTI 입항 후 SEIN GALAXY 편 약 890톤 전재 예정' },
+  { name: 'MOAKONA', lat: -8.52, lng: 179.20, locationText: 'FUNAFUTI', dailyCatch: '-', load: '1,106', notice: '6/10 08:00 FUNAFUTI 입항, SEIN GALAXY 편 약 1,106톤 전재 후 6/13 출항 예정' },
+  { name: 'NAOERO SUN', lat: -1.63, lng: -163.88, locationText: 'S0138 W16353 (H)', dailyCatch: '-', load: '575', notice: '-' },
+  { name: 'NAOERO STAR', lat: -1.75, lng: -170.23, locationText: 'S0145 W17014 (KI)', dailyCatch: '-', load: '560', notice: '-' },
 ];
 
 const PACIFIC_VESSELS = BASE_PACIFIC_VESSELS.map((v, i) => {
@@ -800,8 +801,8 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
         })() : (
           <>
             <h4 style={{ margin: '0 0 8px 0', fontSize: '13px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '6px', color: typhoonActive ? 'var(--color-danger)' : 'inherit', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <span>{typhoonActive ? '🚨 DEFCON 선단 현황' : 'BB. 태평양 선망 : 4/29'}</span>
-              {!typhoonActive && <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 'normal' }}>(일간: 325톤 / 월간 누계: 6,051톤 / 연간 누계: 25,789.5톤)</span>}
+              <span>{typhoonActive ? '🚨 DEFCON 선단 현황' : '태평양 선망 : 6/10'}</span>
+              {!typhoonActive && <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 'normal' }}>(일간: 44톤 / 월간 누계: 2,568톤 / 연간 누계: 35,979.5톤) · 일일 업무보고 26.06.10 기준</span>}
             </h4>
             <table style={{ width: '100%', fontSize: '12px', borderCollapse: 'collapse' }}>
               <thead>

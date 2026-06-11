@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ComposedChart, Line, Legend, ReferenceLine, CartesianGrid, Area, AreaChart, LineChart } from 'recharts';
-import { ArrowUpRight, ArrowDownRight, Building2, TrendingUp, DollarSign, Wallet, FileText, PieChart, Info, AlertTriangle, Activity, Bell, FileSearch, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Building2, TrendingUp, DollarSign, Wallet, FileText, PieChart, AlertTriangle, Bell, FileSearch } from 'lucide-react';
 import performData from '../../data/management-performance-2026-03.json';
 import competitorData from '../../data/competitor-data.json';
 import listedCompaniesData from '../../data/listed-companies-data.json';
@@ -242,6 +242,12 @@ export default function ManagementDashboard() {
     fetchDart();
   }, []);
 
+  // DART disclosure feed — static JSON snapshot, honestly dated (no fake 'LIVE')
+  const dartNews: any[] = ((listedCompaniesData as any).dart_news || [])
+    .slice()
+    .sort((a: any, b: any) => (a.date < b.date ? 1 : -1));
+  const dartNewsSyncDate = dartNews.length > 0 ? dartNews[0].date : null;
+
   let dataList: any[] = [];
   if (activeTab === 'revenue') dataList = performData.affiliate_revenue;
   if (activeTab === 'op') dataList = performData.affiliate_op;
@@ -266,13 +272,13 @@ export default function ManagementDashboard() {
           <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: theme.gold, borderRadius: '4px 0 0 4px' }} />
           <div style={{ padding: '24px 32px' }}>
             <h3 style={{ margin: '0 0 20px 0', color: theme.navy, fontSize: '16px', fontFamily: 'serif', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <FileSearch size={18} color={theme.gold}/> [Investment Committee Memorandum] Valuation & Peer Benchmarking
+              <FileSearch size={18} color={theme.gold}/> [투자심의 메모] 밸류에이션·동종업계 벤치마킹
             </h3>
             <div style={{ color: '#374151', fontSize: '14.5px', lineHeight: 1.7 }}>
-              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>1. Profitability & Asset Efficiency</div>
+              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>1. 수익성·자산 효율</div>
               신라교역의 <strong style={{ color: theme.success, fontWeight: 600 }}>영업이익률(OPM)은 3.38%</strong>로 안정적인 Cash-cow 역할을 수행 중입니다. <strong style={{ color: theme.success, fontWeight: 600 }}>재고자산 회전율(2.8배)</strong>은 고부가가치 어종 선별 보관 전략(Premium Pricing Strategy)에 기인하며, 동종업계 대비 다소 보수적이나 이익률 방어에 효과적으로 작용하고 있습니다.
               
-              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '16px', marginBottom: '4px', fontSize: '15px' }}>2. Valuation Multiple & Re-rating Potential</div>
+              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '16px', marginBottom: '4px', fontSize: '15px' }}>2. 밸류에이션 배수·재평가(Re-rating) 여력</div>
               반면, 당사의 <strong style={{ color: theme.danger, fontWeight: 600 }}>PBR은 0.32배</strong>로 경쟁사인 동원산업(0.58배), 사조산업 대비 현저한 Deep-Value 구간에 머물러 있습니다. 이는 보유 자산의 내재가치가 시장에서 완전히 할인(Discount)되고 있음을 의미하며, 향후 배당 성향 확대 및 자사주 매입 등 주주환원(Value-up) 정책을 통해 즉각적인 Re-rating 및 기업가치 제고 여력이 매우 높다고 판단됩니다.
             </div>
           </div>
@@ -292,13 +298,13 @@ export default function ManagementDashboard() {
           <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: theme.danger, borderRadius: '4px 0 0 4px' }} />
           <div style={{ padding: '24px 32px' }}>
             <h3 style={{ margin: '0 0 20px 0', color: theme.danger, fontSize: '16px', fontFamily: 'serif', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <AlertTriangle size={18} color={theme.danger}/> [Investment Committee Memorandum] Liquidity & Debt Service Assessment
+              <AlertTriangle size={18} color={theme.danger}/> [투자심의 메모] 유동성·차입 상환능력 점검
             </h3>
             <div style={{ color: '#374151', fontSize: '14.5px', lineHeight: 1.7 }}>
-              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>1. Leverage Risk Mitigation</div>
+              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>1. 레버리지 리스크 완화</div>
               그룹 내 <strong style={{ color: theme.danger, fontWeight: 600 }}>원일특강(순현금 -569억)</strong> 및 <strong style={{ color: theme.danger, fontWeight: 600 }}>신라에스지(-194억)</strong>의 단기 차입금 비중이 그룹 내 가장 높은 수준입니다. 매크로 고금리 기조를 감안할 때, 해당 계열사들의 Refinancing Risk 점검 및 비핵심 자산 매각(Carve-out)을 통한 De-leveraging 전략이 즉각적으로 요구됩니다.
               
-              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '16px', marginBottom: '4px', fontSize: '15px' }}>2. Cash-Cow & Dry-Powder Allocation</div>
+              <div style={{ color: theme.navy, fontWeight: 700, marginTop: '16px', marginBottom: '4px', fontSize: '15px' }}>2. 캐시카우·투자 여력(Dry-powder) 배분</div>
               반면, <strong style={{ color: theme.success, fontWeight: 600 }}>신라교역(+734억)</strong>과 <strong style={{ color: theme.success, fontWeight: 600 }}>비전힐스(+629억)</strong>는 견고한 잉여현금흐름(FCF)을 바탕으로 전월 대비 현금보유고를 늘리며 그룹 내 핵심 Cash-Cow 역할을 지속 수행 중입니다. 확보된 유동성은 향후 Inorganic Growth(M&A)를 위한 Dry-powder로 활용하거나 그룹 전반의 유동성 버퍼로 기능할 것입니다.
             </div>
           </div>
@@ -319,10 +325,10 @@ export default function ManagementDashboard() {
           <div style={{ padding: '24px 32px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h3 style={{ margin: 0, color: theme.navy, fontSize: '16px', fontFamily: 'serif', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <FileSearch size={18} color={theme.gold}/> [Investment Committee Memorandum] 2026 FoodTech Deep-Dive & Buy-out Strategy
+                <FileSearch size={18} color={theme.gold}/> [투자심의 메모] 2026 푸드테크 심층분석·인수 전략
               </h3>
               <span style={{ fontSize: '12px', fontWeight: 600, color: theme.muted, background: theme.cream, padding: '4px 10px', borderRadius: '4px', letterSpacing: '0.05em' }}>
-                SOURCE: Future Food-Tech 2026 (San Francisco)
+                출처: Future Food-Tech 2026 (샌프란시스코)
               </span>
             </div>
             <div style={{ color: '#374151', fontSize: '14.5px', lineHeight: 1.7 }}>
@@ -352,10 +358,10 @@ export default function ManagementDashboard() {
     const significant = dataList.filter(d => d.remarks && d.remarks.length > 5 && d.name !== '합계').slice(0, 3);
     if (significant.length === 0) return null;
 
-    let titlePrefix = "Operating Performance";
-    if (activeTab === 'revenue') titlePrefix = "Top-Line Growth";
-    if (activeTab === 'op') titlePrefix = "Margin & Profitability";
-    if (activeTab === 'ptp') titlePrefix = "Pre-tax Profit";
+    let titlePrefix = "영업 실적";
+    if (activeTab === 'revenue') titlePrefix = "매출 성장";
+    if (activeTab === 'op') titlePrefix = "마진·수익성";
+    if (activeTab === 'ptp') titlePrefix = "세전이익";
 
     return (
       <div style={{ 
@@ -369,13 +375,13 @@ export default function ManagementDashboard() {
         <div style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: '4px', background: theme.gold, borderRadius: '4px 0 0 4px' }} />
         <div style={{ padding: '24px 32px' }}>
           <h3 style={{ margin: '0 0 20px 0', color: theme.navy, fontSize: '16px', fontFamily: 'serif', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <FileSearch size={18} color={theme.gold}/> [Investment Committee Memorandum] {titlePrefix} & Value Creation
+            <FileSearch size={18} color={theme.gold}/> [투자심의 메모] {titlePrefix} · 가치 창출
           </h3>
           <div style={{ color: '#374151', fontSize: '14.5px', lineHeight: 1.7 }}>
             {significant.map((item, idx) => (
               <div key={idx} style={{ marginBottom: idx === significant.length - 1 ? 0 : '16px' }}>
                 <div style={{ color: theme.navy, fontWeight: 700, marginTop: '8px', marginBottom: '4px', fontSize: '15px' }}>
-                  {idx + 1}. {item.name} - Value Creation Assessment
+                  {idx + 1}. {item.name} — 가치 창출 평가
                 </div>
                 {item.remarks.split('\n').map((line: string, lIdx: number) => (
                   <div key={lIdx} style={{ paddingLeft: '8px', borderLeft: `2px solid ${theme.border}`, marginLeft: '4px', marginBottom: '4px' }}>
@@ -398,7 +404,7 @@ export default function ManagementDashboard() {
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255,255,255,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
               <div style={{ background: theme.navy, color: theme.white, padding: '12px 24px', borderRadius: '24px', fontSize: '14px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                 <div style={{ width: '16px', height: '16px', border: `2px solid ${theme.gold}`, borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                실시간 DART 연결재무제표(CFS) 파싱 및 PE 분석 엔진 가동 중...
+                DART 연결재무제표(CFS) 데이터 조회 중...
               </div>
             </div>
           )}
@@ -430,7 +436,7 @@ export default function ManagementDashboard() {
                     <span style={{ background: 'rgba(255,255,255,0.1)', padding: '4px 10px', borderRadius: '4px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.05em' }}>{co.ticker}</span>
                   </div>
                   <div style={{ fontSize: '12px', fontWeight: 600, opacity: 0.8, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                    Latest DART Data: FY2025 Investment Tear Sheet (CFS)
+                    DART 최신 공시 기준 · FY2025 투자 요약(연결재무제표)
                   </div>
                 </div>
 
@@ -441,7 +447,7 @@ export default function ManagementDashboard() {
                     {/* Col 1: P&L Summary */}
                     <div style={{ border: `1px solid ${theme.border}`, borderRadius: '4px', padding: '20px', background: theme.cream }}>
                       <h4 style={{ margin: '0 0 16px 0', color: theme.navy, fontSize: '14px', borderBottom: `1px solid ${theme.border}`, paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <Wallet size={16} color={theme.gold} /> P&L Snapshot
+                        <Wallet size={16} color={theme.gold} /> 손익 요약(P&L)
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -472,7 +478,7 @@ export default function ManagementDashboard() {
                     {/* Col 2: Margin Profile */}
                     <div style={{ border: `1px solid ${theme.border}`, borderRadius: '4px', padding: '20px', background: theme.cream }}>
                       <h4 style={{ margin: '0 0 16px 0', color: theme.navy, fontSize: '14px', borderBottom: `1px solid ${theme.border}`, paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <TrendingUp size={16} color={theme.gold} /> Margin Profile
+                        <TrendingUp size={16} color={theme.gold} /> 마진 구조
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                         <div>
@@ -499,7 +505,7 @@ export default function ManagementDashboard() {
                     {/* Col 3: Capital Structure */}
                     <div style={{ border: `1px solid ${theme.border}`, borderRadius: '4px', padding: '20px', background: theme.cream }}>
                       <h4 style={{ margin: '0 0 16px 0', color: theme.navy, fontSize: '14px', borderBottom: `1px solid ${theme.border}`, paddingBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <Building2 size={16} color={theme.gold} /> Capital Structure
+                        <Building2 size={16} color={theme.gold} /> 자본 구조
                       </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -565,7 +571,7 @@ export default function ManagementDashboard() {
             {/* OPM Chart */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>Operating Margin (OPM) Trajectory</h4>
+                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>영업이익률(OPM) 추이</h4>
                 <InfoTooltip theme="light" title="OPM 산출 근거 (신라교역)" description="• 26.1Q: 누적 영업이익(21.6억) ÷ 누적 매출(639.5억) = 3.38%&#10;• 25.1Q: 전년 누적 영업이익(9.3억) ÷ 전년 누적 매출(938.9억) = 0.99%" />
               </div>
               <SafeResponsiveContainer width="100%" height={290}>
@@ -584,7 +590,7 @@ export default function ManagementDashboard() {
             {/* Inventory Turnover */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>Inventory Turnover (Asset Efficiency)</h4>
+                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>재고자산 회전율(자산 효율)</h4>
                 <InfoTooltip theme="light" title="재고자산 회전율 산출 기준" description="연환산 매출원가를 평균 재고자산으로 나눈 지표입니다.&#10;수산업의 특성상 어가 변동 및 재고 비축 전략에 따라 변동성이 크며, 신라교역은 고부가가치 어종 선별 보관으로 인해 다소 보수적인 회전율을 보입니다." />
               </div>
               <SafeResponsiveContainer width="100%" height={290}>
@@ -604,7 +610,7 @@ export default function ManagementDashboard() {
             {/* PBR Chart */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>Price-to-Book (PBR) Valuation</h4>
+                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>주가순자산비율(PBR) 밸류에이션</h4>
                 <InfoTooltip theme="light" title="PBR 및 밸류에이션 근거" description="현재가(26.1Q 기준)를 직전 사업연도 말 주당순자산(BPS)으로 나눈 값입니다.&#10;당사 PBR은 0.32배 수준으로 극심한 저평가 상태이며, 배당 확대 및 자사주 매입 등 밸류업(Value-up) 정책을 통해 추가 상승 여력이 매우 높음을 시사합니다." />
               </div>
               <SafeResponsiveContainer width="100%" height={290}>
@@ -634,7 +640,7 @@ export default function ManagementDashboard() {
             {/* Chart 1: Investment Capital Flow */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>FoodTech VC Capital Flow</h4>
+                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>푸드테크 VC 자금 흐름</h4>
                 <InfoTooltip theme="light" title="자금 스름의 전환 (B2C -> B2B)" description="B2C 브랜드 투자는 급감한 반면, 정밀 발효 및 바이오 인프라(B2B)로 자본이 구조적으로 이동하고 있습니다." />
               </div>
               <SafeResponsiveContainer width="100%" height={290}>
@@ -663,7 +669,7 @@ export default function ManagementDashboard() {
             {/* Chart 2: AI Margin Expansion */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>AI-Driven Margin Expansion</h4>
+                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>AI 기반 마진 개선</h4>
                 <InfoTooltip theme="light" title="운영 알파 (Operational Alpha)" description="AI 통합 단계가 고도화될수록 수율 및 에너지 효율이 극대화되어 EBITDA 마진이 2배 이상 개선됩니다." />
               </div>
               <SafeResponsiveContainer width="100%" height={290}>
@@ -683,7 +689,7 @@ export default function ManagementDashboard() {
             {/* Chart 3: Cost Parity Projection */}
             <div style={{ height: '350px', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
               <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>Production Cost Parity</h4>
+                <h4 style={{ margin: 0, color: theme.navy, fontSize: '14px', fontFamily: 'serif' }}>생산 단가 동등화(Cost Parity)</h4>
                 <InfoTooltip theme="light" title="단가 경쟁력 (Cost Parity)" description="정밀 발효 기술의 단가가 급격히 하락하며 2026-2028년 사이 기존 전통 방식(Conventional)과 Cost Parity를 이룰 전망입니다." />
               </div>
               <SafeResponsiveContainer width="100%" height={290}>
@@ -710,7 +716,7 @@ export default function ManagementDashboard() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 24px', background: theme.navy, color: theme.white, borderRadius: '8px', borderBottom: `3px solid ${theme.gold}` }}>
             <Building2 size={24} color={theme.gold} />
-            <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'serif', letterSpacing: '0.02em' }}>Inorganic Growth: 2026 M&A Target Pipeline</h3>
+            <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'serif', letterSpacing: '0.02em' }}>비유기적 성장: 2026 M&A 타깃 파이프라인</h3>
           </div>
           
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
@@ -735,9 +741,9 @@ export default function ManagementDashboard() {
 
                 {/* Financials */}
                 <div style={{ borderLeft: `1px solid ${theme.borderLight}`, paddingLeft: '24px' }}>
-                  <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '16px' }}>KEY FINANCIALS (FY25)</div>
+                  <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '16px' }}>핵심 재무 (FY25)</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '14px' }}>
-                    <span style={{ color: theme.muted }}>Revenue</span>
+                    <span style={{ color: theme.muted }}>매출</span>
                     <span style={{ fontWeight: 700, color: theme.navy }}>{target.revenue}억</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '14px' }}>
@@ -745,20 +751,20 @@ export default function ManagementDashboard() {
                     <span style={{ fontWeight: 700, color: target.ebitda < 0 ? theme.danger : theme.navy }}>{target.ebitda}억</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px' }}>
-                    <span style={{ color: theme.muted }}>Margin</span>
+                    <span style={{ color: theme.muted }}>마진</span>
                     <span style={{ fontWeight: 700, color: target.margin < 0 ? theme.danger : theme.success }}>{target.margin}%</span>
                   </div>
                 </div>
 
                 {/* Valuation */}
                 <div style={{ borderLeft: `1px solid ${theme.borderLight}`, paddingLeft: '24px' }}>
-                  <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '16px' }}>ESTIMATED VALUATION</div>
+                  <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '16px' }}>추정 밸류에이션</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '14px' }}>
-                    <span style={{ color: theme.muted }}>Multiple</span>
+                    <span style={{ color: theme.muted }}>적용 배수</span>
                     <span style={{ fontWeight: 700, color: theme.navy }}>{target.valuationMultiple}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px' }}>
-                    <span style={{ color: theme.muted }}>Est. EV</span>
+                    <span style={{ color: theme.muted }}>추정 기업가치(EV)</span>
                     <span style={{ fontWeight: 800, color: theme.navy, fontSize: '16px' }}>{target.ev}억</span>
                   </div>
                 </div>
@@ -766,18 +772,18 @@ export default function ManagementDashboard() {
                 {/* Status & Risk */}
                 <div style={{ borderLeft: `1px solid ${theme.borderLight}`, paddingLeft: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '8px' }}>RISK PROFILE</div>
+                    <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '8px' }}>리스크 등급</div>
                     <span style={{ 
                       fontSize: '12px', fontWeight: 700, padding: '4px 10px', borderRadius: '4px',
                       background: target.risk === 'Low' ? '#ecfdf5' : (target.risk === 'Medium' ? '#fef3c7' : '#fef2f2'),
                       color: target.risk === 'Low' ? theme.success : (target.risk === 'Medium' ? '#d97706' : theme.danger),
                       border: `1px solid ${target.risk === 'Low' ? '#bbf7d0' : (target.risk === 'Medium' ? '#fde68a' : '#fecaca')}`
                     }}>
-                      {target.risk} Risk
+                      {target.risk === 'Low' ? '낮음' : target.risk === 'Medium' ? '중간' : '높음'} 리스크
                     </span>
                   </div>
                   <div>
-                    <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '8px' }}>DEAL STATUS</div>
+                    <div style={{ fontSize: '12px', color: theme.muted, fontWeight: 600, marginBottom: '8px' }}>딜 진행 단계</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 700, color: theme.navy }}>
                       <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: target.status === 'LOI 제출' ? theme.success : theme.gold }} />
                       {target.status}
@@ -797,7 +803,7 @@ export default function ManagementDashboard() {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ height: '450px', width: '100%', background: theme.white, borderRadius: '4px', padding: '20px 20px 0 0', border: `1px solid ${theme.border}` }}>
             <div style={{ display: 'flex', alignItems: 'center', margin: '0 0 10px 20px', gap: '8px' }}>
-              <h4 style={{ margin: 0, color: theme.navy, fontSize: '15px', fontFamily: 'serif' }}>Liquidity Profile & Net Cash Generation</h4>
+              <h4 style={{ margin: 0, color: theme.navy, fontSize: '15px', fontFamily: 'serif' }}>유동성 현황·순현금 창출</h4>
             </div>
             <SafeResponsiveContainer width="100%" height={390}>
               <ComposedChart data={cashChartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
@@ -821,10 +827,10 @@ export default function ManagementDashboard() {
       );
     }
 
-    let chartTitle = "Operating Performance KPI Snapshot";
-    if (activeTab === 'revenue') chartTitle = "Top-Line Growth KPI Snapshot";
-    if (activeTab === 'op') chartTitle = "Margin & Profitability KPI Snapshot";
-    if (activeTab === 'ptp') chartTitle = "Pre-tax Profit KPI Snapshot";
+    let chartTitle = "영업 실적 KPI 현황";
+    if (activeTab === 'revenue') chartTitle = "매출 성장 KPI 현황";
+    if (activeTab === 'op') chartTitle = "마진·수익성 KPI 현황";
+    if (activeTab === 'ptp') chartTitle = "세전이익 KPI 현황";
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -935,24 +941,21 @@ export default function ManagementDashboard() {
         {/* Decorative gold line */}
         <div style={{ height: '3px', background: theme.goldGradient }} />
         
-        {/* DART Feed Ticker */}
-        <div style={{ 
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+        {/* DART Feed Ticker — static JSON snapshot, honestly dated (no fake 'LIVE' / pulse / XBRL badge) */}
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           padding: '10px 4rem',
           borderBottom: '1px solid rgba(255,255,255,0.06)',
           fontSize: '12px', color: 'rgba(255,255,255,0.7)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 8px rgba(34,197,94,0.6)', animation: 'pulse 2s infinite' }} />
             <Bell size={13} color={theme.gold} />
-            <strong style={{ color: theme.gold, letterSpacing: '0.08em', fontSize: '11px' }}>DART LIVE</strong>
+            <strong style={{ color: theme.gold, letterSpacing: '0.08em', fontSize: '11px' }}>
+              DART 공시{dartNewsSyncDate ? ` (${dartNewsSyncDate} 동기화)` : ''}
+            </strong>
             <span style={{ opacity: 0.8 }}>
-              [원일특강] 임원ㆍ주요주주특정증권등소유상황보고서 (2026-03-18) &nbsp;·&nbsp; 
-              [신라교역] 현금ㆍ현물배당결정 (2026-03-10)
+              {dartNews.slice(0, 3).map((n: any) => `[${n.company}] ${n.title} (${n.date})`).join(' · ')}
             </span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px' }}>
-            <FileSearch size={12} color={theme.gold} /> XBRL 크로스체크 <span style={{ color: '#22c55e', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '3px' }}><CheckCircle2 size={12}/> 일치</span>
           </div>
         </div>
 
@@ -964,11 +967,11 @@ export default function ManagementDashboard() {
                 <Building2 size={20} color={theme.gold} />
               </div>
               <h1 style={{ fontSize: '1.75rem', letterSpacing: '-0.02em', margin: 0, color: '#FFFFFF', fontFamily: 'Georgia, "Times New Roman", serif', fontWeight: 700 }}>
-                Group Management Dashboard
+                그룹 경영 대시보드
               </h1>
             </div>
-            <p style={{ fontSize: '0.85rem', color: 'rgba(201,160,80,0.9)', marginTop: '4px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.12em', marginLeft: '52px' }}>
-              Silla Group Consolidated Performance <TermTooltip term="NPS-Style" description="국민연금 등 대형 기관투자자의 정제된 보고서 양식을 차용한 프리미엄 클래식 뷰입니다."/>
+            <p style={{ fontSize: '0.85rem', color: 'rgba(201,160,80,0.9)', marginTop: '4px', fontWeight: 500, letterSpacing: '0.12em', marginLeft: '52px' }}>
+              신라그룹 연결 경영실적 <TermTooltip term="NPS-Style" description="국민연금 등 대형 기관투자자의 정제된 보고서 양식을 차용한 프리미엄 클래식 뷰입니다."/>
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -982,7 +985,7 @@ export default function ManagementDashboard() {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = theme.gold; e.currentTarget.style.color = theme.gold; e.currentTarget.style.background = 'rgba(201,160,80,0.08)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
             >
-              ← Back to Tuna Market
+              ← 참치 대시보드로
             </Link>
             <div style={{ 
               background: 'rgba(201,160,80,0.1)', 
@@ -991,7 +994,7 @@ export default function ManagementDashboard() {
               display: 'flex', alignItems: 'center', gap: '8px',
               letterSpacing: '0.02em',
             }}>
-              <FileText size={14} color={theme.gold} /> {performData.period} (Cumulative)
+              <FileText size={14} color={theme.gold} /> {performData.period} (누적)
             </div>
           </div>
         </div>

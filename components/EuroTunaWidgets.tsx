@@ -438,7 +438,7 @@ export default function EuropeanMarketDashboard() {
           </span>
         </h2>
         <p style={{ color: COLORS.textMuted, fontSize: '0.88rem', margin: 0, marginLeft: '56px', fontWeight: 500 }}>
-          글로벌 최대 참치캔 소비 시장(~760,000t, USD 64.9억)의 무역 흐름 및 ESG 지표를 실시간 분석합니다.
+          글로벌 최대 참치캔 소비 시장(~760,000t, USD 64.9억)의 무역 흐름 및 ESG 지표를 분석합니다.
           <span style={{ marginLeft: '8px', fontSize: '0.65rem', color: COLORS.accent.cyan, fontWeight: 600 }}>MSC Yearbook 2026 기반</span>
         </p>
       </div>

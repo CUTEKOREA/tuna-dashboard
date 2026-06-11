@@ -105,7 +105,7 @@ export default function ChickenPartsWidget() {
       iconColor="#f59e0b"
       pillar="S2"
       cardDesc={data.subtitle}
-      telemetry={{ status: data?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'), syncDate: '2026-05-21' }}
+      telemetry={{ status: data?.isLive === true ? 'LIVE' : 'STATIC', syncDate: '2026-05-21' }}
       customBody={body}
       takeaway={{ situation: data.sit, actionPlan: data.strat, source: data.source }}
     />

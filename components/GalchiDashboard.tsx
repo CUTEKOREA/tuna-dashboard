@@ -123,6 +123,12 @@ const WIDGET_ICONS: Record<string, any> = {
   w_fta_unit_price: DollarSign
 };
 
+// 갈치 API 연동 채널 — useEffect fetch 루프와 헤더 카운트가 이 목록을 단일 출처로 공유 (패턴 I: 하드코딩 카운트 금지)
+const GALCHI_API_PATHS = [
+  'intel', 'kcs', 'kamis', 'comtrade', 'osh', 'ofac', 'importyeti',
+  'noaa', 'hsping', 'tariffs', 'kosis', 'mfds', 'wto', 'oec',
+] as const;
+
 // 5-Pillar 네비게이터 메타 (Mackerel/Tuna 패턴 + 갈치 시그니처 그라디언트 emerald → teal)
 const SECTIONS = [
   {
@@ -200,24 +206,20 @@ export default function GalchiDashboard() {
       .then(json => { setData(json); })
       .catch(err => console.error("Failed to load galchi data", err));
 
-    // Live API calls
-    fetch('/api/galchi/intel?t=' + Date.now()).then(r => r.json()).then(setLiveIntel).catch(() => {});
-    fetch('/api/galchi/kcs?t=' + Date.now()).then(r => r.json()).then(setLiveKcs).catch(() => {});
-    fetch('/api/galchi/kamis?t=' + Date.now()).then(r => r.json()).then(setLiveKamis).catch(() => {});
-    
-    fetch('/api/galchi/comtrade?t=' + Date.now()).then(r => r.json()).then(setLiveComtrade).catch(() => {});
-    fetch('/api/galchi/osh?t=' + Date.now()).then(r => r.json()).then(setLiveOsh).catch(() => {});
-    fetch('/api/galchi/ofac?t=' + Date.now()).then(r => r.json()).then(setLiveOfac).catch(() => {});
-    fetch('/api/galchi/importyeti?t=' + Date.now()).then(r => r.json()).then(setLiveImportYeti).catch(() => {});
-    fetch('/api/galchi/noaa?t=' + Date.now()).then(r => r.json()).then(setLiveNoaa).catch(() => {});
-    
-    // New APIs
-    fetch('/api/galchi/hsping?t=' + Date.now()).then(r => r.json()).then(setLiveHsPing).catch(() => {});
-    fetch('/api/galchi/tariffs?t=' + Date.now()).then(r => r.json()).then(setLiveTariffs).catch(() => {});
-    fetch('/api/galchi/kosis?t=' + Date.now()).then(r => r.json()).then(setLiveKosis).catch(() => {});
-    fetch('/api/galchi/mfds?t=' + Date.now()).then(r => r.json()).then(setLiveMfds).catch(() => {});
-    fetch('/api/galchi/wto?t=' + Date.now()).then(r => r.json()).then(setLiveWto).catch(() => {});
-    fetch('/api/galchi/oec?t=' + Date.now()).then(r => r.json()).then(setLiveOec).catch(() => {});
+    // Live API calls — GALCHI_API_PATHS 단일 목록 순회 (헤더 API 채널 카운트와 동기화)
+    const setters: Record<string, (v: any) => void> = {
+      intel: setLiveIntel, kcs: setLiveKcs, kamis: setLiveKamis,
+      comtrade: setLiveComtrade, osh: setLiveOsh, ofac: setLiveOfac,
+      importyeti: setLiveImportYeti, noaa: setLiveNoaa,
+      hsping: setLiveHsPing, tariffs: setLiveTariffs, kosis: setLiveKosis,
+      mfds: setLiveMfds, wto: setLiveWto, oec: setLiveOec,
+    };
+    GALCHI_API_PATHS.forEach(path => {
+      fetch(`/api/galchi/${path}?t=` + Date.now())
+        .then(r => r.json())
+        .then(setters[path])
+        .catch(() => {});
+    });
   }, []);
 
   if (!data) return (
@@ -230,32 +232,17 @@ export default function GalchiDashboard() {
   let { kpis, widgets } = data;
   kpis = { ...kpis };
 
-  if (liveKcs?.summary) {
-    kpis.kpi2 = {
-      title: "중국산 CIF",
-      value: `$${liveKcs.summary.cifPerKg}`,
-      trend: liveKcs.summary.yoy || "LIVE",
-      desc: "관세청 실측 통관 단가",
-      telemetry: liveKcs.isLive ? 'live' : 'synced',
-      syncDate: liveKcs.lastUpdated?.slice(0, 10),
-    };
-    kpis.kpi4 = {
-      title: "수입 의존도 (중국산 비중)",
-      value: `${liveKcs.summary.cnPct}%`,
-      trend: "LIVE",
-      desc: `총 수입량 중 중국산 비중`,
-      telemetry: liveKcs.isLive ? 'live' : 'synced',
-      syncDate: liveKcs.lastUpdated?.slice(0, 10),
-    };
-  }
+  // ⚠️ KCS(HS 0303899060) 파생 KPI 주입 중단 — 데이터 원천 재검증 중(HSK 재확인 필요).
+  // 해당 코드의 갈치 귀속이 확인될 때까지 통관 수치(중국 비중·CIF)를 KPI로 주장하지 않는다.
+  // 정적 kpi2·kpi4는 galchi_data.json에서 보류 표기로 유지된다.
 
   if (liveKamis?.current) {
     kpis.kpi1 = {
-      title: "위판 평균단가",
+      title: "도매 평균단가(KAMIS)",
       value: `${liveKamis.current.avgPrice.toLocaleString()}`,
       trend: liveKamis.current.weekChange,
-      desc: "aT KAMIS 도매 시세 · 어획 감소로 역대급 단가 형성 중",
-      telemetry: liveKamis.isLive ? 'live' : 'synced',
+      desc: "aT KAMIS 도매 시세 (원/kg) — 위판(산지 경매) 단가와 구분",
+      telemetry: liveKamis.isLive ? 'live' : 'static',
       syncDate: liveKamis.lastUpdated?.slice(0, 10),
     };
   }
@@ -344,13 +331,13 @@ export default function GalchiDashboard() {
     },
     {
       id: "w_galchi_hs_class",
-      title: "통관 HS 코드 정밀 분류 (0303.89.60.00)",
-      subtitle: "자체 분류 기준(HS Ping 로컬 DB). 냉동 갈치 핵심 타겟인 0303.89.60.00 코드를 기준으로 가공 형태별 코드 검증을 수행합니다.",
+      title: "통관 HS 코드 정밀 분류 — 가공 형태별 검증",
+      subtitle: "자체 분류 기준(HS Ping 로컬 DB) — 가공 형태별 분류 정확도 검증. ⚠️ 냉동 갈치 원물의 10자리 HSK 매핑은 데이터 원천 재검증 중(HSK 재확인 필요).",
       chartType: "Bar",
       xKey: "form",
-      bars: [{ key: "분류 정확도(%)", color: "#38bdf8" }],
-      sit: "수입 가공 형태에 따라 10자리 HS 코드가 상이하며(냉동 갈치: 0303.89.60.00), 특히 토막(cut)과 필렛 간의 오분류 통관 사고가 지속 발생합니다.",
-      strat: "HS Ping 실시간 매핑으로 통관 사고 Zero화 달성. ①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단.",
+      bars: [{ key: "conf", name: "분류 정확도(%)", color: "#38bdf8" }],
+      sit: "수입 가공 형태(통·토막·순살·건염장)에 따라 10자리 HS 코드가 상이하며, 토막과 순살 간 오분류 통관 사고가 지속 발생합니다. 냉동 갈치 원물의 정확한 HSK는 현재 재확인 중입니다.",
+      strat: "①수입 신고 전 자동검증 프로세스 도입, ②오분류 이력 DB화로 반복 실수 차단. HSK 재확인 결과가 확정되기 전까지 신규 신고 건은 관세사 이중 검증을 거치십시오.",
       source: "HS Ping 로컬 DB (가공 형태별 HS 코드 내부 매핑표)",
       isLive: liveHsPing?.isLive ?? false,
       data: liveHsPing?.data || [],
@@ -359,7 +346,7 @@ export default function GalchiDashboard() {
     {
       id: "w_galchi_multi_cost",
       title: "착지원가 실시간 스태킹 — 원산지별 MFN 10% 착지원가 시뮬레이션",
-      subtitle: "착지원가 시나리오 추정 (illustrative). 냉동 갈치(HS 0303.89)는 KORUS 등 어떤 FTA TRQ에도 미포함이라 전 공급국에 동일하게 일반 수입관세(MFN) 10%가 적용됩니다. 원산지별 FOB·운임·관세·통관비 누적 착지원가를 월별로 비교하여 매수 타이밍을 식별합니다.",
+      subtitle: "착지원가 시나리오 추정 (illustrative). 냉동 갈치(HS 0303.89)는 KORUS 등 어떤 FTA TRQ에도 미포함이라 전 공급국에 동일하게 일반 수입관세(MFN) 10%가 적용됩니다. 원산지별 FOB·운임·관세·통관비 누적 착지원가를 월별로 비교하여 매수 타이밍을 식별합니다. ⚠️ 중국산 단가 입력값은 데이터 원천 재검증 중(HSK 재확인 필요).",
       chartType: "Composed",
       xKey: "month",
       bars: [{ key: "세네갈산 착지원가", color: "#8b5cf6" }],
@@ -556,6 +543,9 @@ export default function GalchiDashboard() {
 
   newWidgets.forEach(w => { widgetMap[w.id] = w; });
 
+  // 패턴 I: 헤더 카운트 동적 산출 — 실제 5-Pillar에 배치되어 렌더되는 위젯 수
+  const totalWidgetCount = SECTIONS.reduce((n, s) => n + s.ids.filter(id => widgetMap[id]).length, 0);
+
   /* ─── Chart Renderer ─── */
   const renderChart = (widget: any) => {
     const d = widget.data;
@@ -584,7 +574,7 @@ export default function GalchiDashboard() {
             <RechartsTooltip content={<CustomTooltip />} />
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.areas?.map((a: any, i: number) => (
-              <Area key={i} type="monotone" dataKey={a.key} stroke={a.color} fill={`url(#mArea${widget.id}_${i})`} strokeWidth={2.5} stackId={widget.stacked ? 'stack1' : undefined} />
+              <Area key={i} type="monotone" dataKey={a.key} name={a.name || a.key} stroke={a.color} fill={`url(#mArea${widget.id}_${i})`} strokeWidth={2.5} stackId={widget.stacked ? 'stack1' : undefined} />
             ))}
           </AreaChart>
         );
@@ -599,7 +589,7 @@ export default function GalchiDashboard() {
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.bars?.map((b: any, i: number) => {
               const p = getA11yBarProps(i);
-              return <Bar key={i} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+              return <Bar key={i} dataKey={b.key} name={b.name || b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
             })}
           </BarChart>
         );
@@ -617,10 +607,10 @@ export default function GalchiDashboard() {
             <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" height={36} />
             {widget.bars?.map((b: any, i: number) => {
               const p = getA11yBarProps(i);
-              return <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
+              return <Bar key={i} yAxisId={b.yAxisId || "left"} dataKey={b.key} name={b.name || b.key} fill={p.fill} color={b.color || p.color} radius={[6,6,0,0]} fillOpacity={0.85} />;
             })}
             {widget.lines?.map((l: any, i: number) => (
-              <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
+              <Line key={i} yAxisId={l.yAxisId || "left"} type="monotone" dataKey={l.key} name={l.name || l.key} stroke={l.color} strokeWidth={2.5} dot={false} activeDot={{r:5}} />
             ))}
           </ComposedChart>
         );
@@ -648,7 +638,7 @@ export default function GalchiDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 갈치 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>최고경영진 브리핑 — {widgets?.length || 0}개 위젯 · {kpiKeys.length}개 KPI · 17개 데이터 소스</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>최고경영진 브리핑 — {totalWidgetCount}개 위젯 · {kpiKeys.length}개 KPI · {GALCHI_API_PATHS.length}개 API 채널</p>
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -656,7 +646,7 @@ export default function GalchiDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
-            <span><span style={{ color: 'var(--color-success)' }}>Forensic v2</span> · 관세청·해수부·FAO 교차검증</span>
+            <span><span style={{ color: 'var(--color-success)' }}>Forensic v2</span> · 해수부·FAO 교차검증 · 관세청 HSK 재검증 중</span>
           </div>
         </div>
       </header>
@@ -704,7 +694,8 @@ export default function GalchiDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
             <Zap size={14} color="var(--color-success)" />
             <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>실시간 인텔리전스 피드</span>
-            {(liveIntel?.exchange?.isLive || liveKcs?.isLive || liveKamis?.isLive) && (
+            {/* KCS(HS 0303899060)는 품목 귀속 재검증 중 — LIVE 판정에서 제외 */}
+            {(liveIntel?.exchange?.isLive || liveKamis?.isLive) && (
               <span style={{ fontSize: '0.65rem', color: 'var(--color-success)', background: 'rgba(30,215,96,0.1)', padding: '2px 8px', borderRadius: '500px', fontWeight: 700 }}>● LIVE</span>
             )}
           </div>
@@ -720,25 +711,24 @@ export default function GalchiDashboard() {
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>CNY/KRW ₩{liveIntel.exchange.cnyKrw}</div>
               </div>
             )}
-            {/* Landing Cost */}
+            {/* Landing Cost — 입력 CIF가 HS 0303899060(품목 귀속 재검증 중) 통관 단가라 수치 표시 보류 */}
             {liveIntel?.landingCost && (
               <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Package size={12} /> 중국산 착지원가
+                  <Package size={12} /> 착지원가 시뮬레이션
                 </div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#f97316' }}>₩{liveIntel.landingCost.landedKrw?.toLocaleString()}<span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>/kg</span></div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-success)', marginTop: '2px' }}>위판가 대비 +{liveIntel.landingCost.spreadPct}% 스프레드</div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f97316' }}>재검증 중</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', marginTop: '2px' }}>⚠️ 데이터 원천 재검증 중(HSK 재확인 필요)</div>
               </div>
             )}
-            {/* KCS Import */}
-            {liveKcs?.summary && (
+            {/* KCS Import — HS 0303899060 갈치 귀속 재확인 전까지 수치 주장 보류 */}
+            {liveKcs && (
               <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Ship size={12} /> 수입 현황
-                  {liveKcs.isLive && <span style={{ color: 'var(--color-success)', fontSize: '0.6rem' }}>●</span>}
+                  <Ship size={12} /> 수입 통관 현황
                 </div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#8b5cf6' }}>{(liveKcs.summary.totalWgt / 1000).toFixed(1)}K<span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>톤</span></div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>중국 {liveKcs.summary.cnPct}% · CIF ${liveKcs.summary.cifPerKg}/kg</div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#8b5cf6' }}>재검증 중</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-warning)', marginTop: '2px' }}>⚠️ 데이터 원천 재검증 중(HSK 재확인 필요)</div>
               </div>
             )}
             {/* KAMIS Wholesale */}
@@ -759,9 +749,10 @@ export default function GalchiDashboard() {
                   <Activity size={12} /> 환율 리스크
                 </div>
                 <div style={{ fontSize: '1.3rem', fontWeight: 700, color: liveIntel.macroRisk.riskLevel === 'HIGH' ? 'var(--color-danger)' : liveIntel.macroRisk.riskLevel === 'MEDIUM' ? 'var(--color-warning)' : 'var(--color-success)' }}>
-                  {liveIntel.macroRisk.riskLevel}
+                  {liveIntel.macroRisk.riskLevel === 'HIGH' ? '높음' : liveIntel.macroRisk.riskLevel === 'MEDIUM' ? '중간' : '낮음'}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>{liveIntel.macroRisk.costImpactPerKg} 원가 변동</div>
+                {/* 원가 영향액은 HS 0303899060 통관 단가 기반 — 품목 귀속 재검증 중이라 표시 보류 */}
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>원가 영향 산출 보류 — HSK 재확인 필요</div>
               </div>
             )}
           </div>
@@ -903,12 +894,13 @@ export default function GalchiDashboard() {
 
   function renderWidgetCard(w: any, accentColor: string, pillar: 'S1'|'S2'|'S3'|'S4'|'S5') {
     const IconComp = WIDGET_ICONS[w.id] || Anchor;
-    // 정직 telemetry (L-09):
-    // _liveState가 있는 위젯 = fetch-driven → LIVE/SYNCED/STATIC 동적 결정
+    // 정직 telemetry (L-09 / 패턴 B):
+    // _liveState가 있는 위젯 = fetch-driven → 라우트 메타 isLive === true일 때만 LIVE.
+    // 라우트가 fallback(isLive: false)을 반환하면 정적 데이터이므로 STATIC (응답 truthiness로 격상 금지).
     // _liveState가 없는 위젯 = 순수 정적 → STATIC 고정
     const status: 'LIVE' | 'SYNCED' | 'STATIC' =
       ('_liveState' in w)
-        ? (w._liveState?.isLive === true ? 'LIVE' : (w._liveState ? 'SYNCED' : 'STATIC'))
+        ? (w._liveState?.isLive === true ? 'LIVE' : 'STATIC')
         : 'STATIC';
 
     return (
@@ -918,13 +910,13 @@ export default function GalchiDashboard() {
         iconColor={accentColor}
         pillar={pillar}
         cardDesc={w.subtitle || ''}
-        telemetry={{ status, syncDate: w.syncDate || 'KFAS 2024' }}
+        telemetry={{ status, syncDate: w.syncDate }}
         chartHeight={375}
         chart={renderChart(w)}
         takeaway={{
           situation: w.sit || '',
           actionPlan: w.strat || '',
-          source: w.source || 'KFAS / KMI / FAOSTAT',
+          source: w.source || '',
         }} />
     );
   }

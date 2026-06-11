@@ -26,7 +26,8 @@ export async function GET() {
     strat: '브라질 HPAI 수입금지 → 정상화 6개월~1년 타임갭이 신라교역의 핵심 차익거래 윈도우입니다. ①태국 GFPT/Betagro와 장기공급계약(LTA) 체결 ②0% 관세할당(TRQ) 물량 선점 ③콜드체인 비축 후 수급 공백 시 B2B 방출로 20~30% 마진 확보. 사료비 하락(시카고선물거래소 기준 약 $4.15/부셸)으로 태국 공급사 원가도 역대 최저 → 고정가 계약 최적 타이밍입니다.',
     reliability: 71,
     methodology: '4축 포렌식 감사 — SRC:23 FRS:19 VRF:12 INT:17. 브라질 0원=수입금지 시각적 오독 가능(-10), TCU 계산식 미공개(-5)',
-    source: 'KAMIS 육계 도매가(2025.11 기준) & KCS HS 0207 수입단가 기반 자체추정. ⚠️ 브라질산 0=수입금지(가격 아님). 태국산 원가는 CIF+관세+마진 포함 추정치. [STATIC — 실시간 API 미연동]'
+    source: 'KAMIS 육계 도매가(2025.11 기준) & KCS HS 0207 수입단가 기반 자체추정. ⚠️ 브라질산 0=수입금지(가격 아님). 태국산 원가는 CIF+관세+마진 포함 추정치. [STATIC — 실시간 API 미연동]',
+    isLive: false // L-12: 정적 스냅샷 — 실시간 API 미연동
   };
 
   return NextResponse.json(data);

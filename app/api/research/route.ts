@@ -7,7 +7,7 @@ function categorizePaper(title: string, abstract: string) {
   let pillar = 'market';
   let species = '참치(일반)';
   let byproduct = '복합';
-  const tags: string[] = ['Live API'];
+  const tags: string[] = ['라이브 수집'];
 
   // Pillar 분류
   if (text.includes('collagen')) {
@@ -91,7 +91,7 @@ export async function GET() {
 
         return {
           id: `live_${item.DOI || index}`,
-          title: `[Live API] ${titleKo}`,
+          title: `[라이브] ${titleKo}`,
           pillar,
           species,
           byproduct,
@@ -101,10 +101,11 @@ export async function GET() {
             `발행일: ${new Date(item.created['date-time']).toLocaleDateString()}`,
             `저자: ${item.author ? item.author.map((a:any) => a.family).join(', ') : '미상'}`
           ],
-          trl: Math.floor(Math.random() * 3) + 2,
-          commercialScore: Math.floor(Math.random() * 2) + 3,
+          // A-01: TRL·상업성 점수는 전문가 평가 산출물 — 라이브 수집 논문은 미평가 상태로 정직 표기 (난수 생성 금지)
+          trl: null,
+          commercialScore: null,
           tags,
-          source: 'Live Academic API',
+          source: '라이브 학술 API',
           lang: 'ko'
         };
       }));

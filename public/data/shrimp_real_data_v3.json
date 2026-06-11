@@ -17,7 +17,7 @@
       "syncDate": "2024년 기준"
     },
     "kpi3": {
-      "title": "대한민국 수입단가율 (2022)",
+      "title": "대한민국 수입단가 (2022)",
       "value": "$8,113 / 톤",
       "trend": "국내 100% 수입 의존",
       "desc": "환율 변동성 및 인플레이션의 전면 타격",
@@ -41,7 +41,7 @@
       "syncDate": "2024년 기준"
     },
     "kpi6": {
-      "title": "한국 무역적자",
+      "title": "한국 무역적자 (2024)",
       "value": "$693M",
       "trend": "▼ 순유출",
       "desc": "수입 96,346t vs 수출 1,513t",
@@ -831,9 +831,9 @@
       "situation": "현황: 자연산 새우 어획량은 수십 년간 성장이 정체되었으나, 글로벌 2위 규모인 아르헨티나(붉은새우/홍새우)를 비롯해 중국, 멕시코 등 주요 자원 보유국들은 자국 연안 조업 쿼터를 강력하게 통제하며 자원 독점 체계를 굳히고 있습니다.",
       "takeaway": "전략: 대량 유통이 불가능해진 자연산 새우(아르헨티나 홍새우 등)를 최고급 외식 라인(Premium Sushi / Fine Dining) 전용 한정판 식재료로 리포지셔닝하고, 산지 선단과의 직계약을 통해 VVIP 시장 장악을 위한 럭셔리 마케팅 지렛대로 활용해야 합니다.",
       "yUnit": "Tonne",
-      "source": "[출처: FAO API 연동] FAO FishStatJ 2024.1.0 글로벌 어획량 데이터",
+      "source": "출처: FAO FishStatJ 2024.1.0 글로벌 어획량 데이터 — 정적 스냅샷",
       "reliability": 100,
-      "subtitle": "위젯 설명: [출처: FAO API 연동] 2022년 자연산(Capture) 생산량 총량 기준 상위 10개국",
+      "subtitle": "위젯 설명: 2022년 자연산(Capture) 생산량 총량 기준 상위 10개국",
       "unit": "Tonne",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -883,7 +883,7 @@
         }
       ],
       "logic": "FAOSTAT 생산량 데이터와 국가별 Farm-Gate 평균 단가 교차 연산 산출 (기존 전체 양식/연어 데이터 혼입 오류 교정)",
-      "source": "출처: FAOSTAT FishStatJ · 국가별 Farm-gate Price 교차검증 [📡 LIVE API 연동: FAO API]",
+      "source": "출처: FAOSTAT FishStatJ · 국가별 Farm-gate Price 교차검증 — 정적 스냅샷",
       "reliability": 100,
       "unit": "Thousand USD",
       "yUnit": "Thousand USD",
@@ -1035,7 +1035,7 @@
       "situation": "현황: 과거 자국 생산-자국 소비 패턴에서 벗어나, 콜드체인 물류 혁신과 신흥국 수요 폭발이 맞물리며 연간 300억 달러(수출/수입 각각 약 314억 달러 규모)를 상회하는 거대한 글로벌 컨테이너 단백질 교역망이 구축 완료되었습니다.",
       "takeaway": "전략: 무역의 물리적 국경 장벽이 약화되었습니다. 실시간 무역 가격 변동성을 선행 분석하는 퀀트 트레이딩 조직을 신설하고, 글로벌 최저가 Spot 물량이 출현할 때마다 즉시 매집할 수 있는 대규모 보세 냉동 인프라(CAPEX) 확보가 최상위 전략입니다.",
       "yUnit": "Thousand USD",
-      "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 데이터 — 정적 스냅샷",
       "reliability": 95,
       "unit": "Thousand USD",
       "telemetry": "synced",
@@ -1099,9 +1099,9 @@
       "situation": "현황: 인도, 에콰도르, 베트남 등 글로벌 콜드체인을 선도하는 거점 가공 수출국(Exporter)들이 전 세계 해상 컨테이너의 핵심 출발지로 군림하며 수급 라인을 완벽하게 지배 중입니다.",
       "takeaway": "전략: 이 10대 수출국가 네트워크 내부에 Silla의 전진기지(가공 공장 지분투자)를 심어, 벤더사(공급자) 우위의 시장 환경에서 벗어난 선제 물량 배정 혜택을 쟁취해야 합니다.",
       "yUnit": "Tonne",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5. 새우 무역량.csv [📡 LIVE API 연동: Trade Map API]",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5. 새우 무역량.csv",
       "reliability": 100,
-      "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수출물량 순위 [📡 LIVE API 연동: Trade Map API]",
+      "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수출물량 순위",
       "unit": "Tonne",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -1164,9 +1164,9 @@
       "situation": "현황: 중국이 미국(84만 톤)을 추월하여 95만 톤을 흡수하는 세계 1위의 주요 소비국으로 등극했습니다. 미국, 중국, 그리고 스페인·프랑스를 위시한 유럽 연합이 글로벌 잉여 물량을 소화하는 '주요 3각 수입 축'을 형성하고 있습니다.",
       "takeaway": "전략: 중국의 큰 수입 수요를 역이용해야 합니다. 국내 잉여 물량이나 저가 소싱 물량을 중국 내륙 시장에 리버스(Reverse) 수출하거나, 미국/유럽 대형 마트 PB망에 자사의 고부가 팩(Pack) 상품을 직납하는 B2C 우회 전략을 즉각 실행하십시오.",
       "yUnit": "Tonne",
-      "source": "[출처: FAO API 연동] FAOSTAT FishStatJ 2024.1.0 데이터",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 데이터 — 정적 스냅샷",
       "reliability": 95,
-      "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수입물량 순위 [📡 LIVE API 연동: Trade Map API]",
+      "subtitle": "위젯 설명: 최신 연도(2022) 기준 글로벌 국가별 총 수입물량 순위",
       "unit": "Tonne",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -1418,9 +1418,9 @@
       "situation": "현황: 2024년 기준 새우 수입량이 10만 톤(100,085t)을 재돌파한 반면, 수출량은 602톤으로 급감하며 완전한 수입 종속 상태(수입 의존도 99.4%)가 고착화되었습니다.",
       "takeaway": "전략: 수입 대체 시나리오는 불가능합니다. 오직 에콰도르/베트남 등 1차 생산국과의 B2B 도매 다이렉트 소싱(Direct Sourcing) 및 국내 유통망을 꽉 쥔 소분 재포장(Repacking) 인프라 구축만이 생존 요새(Moat)입니다.",
       "yUnit": "Tonne",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 교차 연산 [📡 LIVE API 연동: Korea Customs API (관세청)]",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/5,6번 CSV 교차 연산",
       "reliability": 100,
-      "subtitle": "위젯 설명: 대한민국 장기 수입량 vs 수출량 물량 기반 비교 (100% 종속 증명) [📡 LIVE API 연동: Korea Customs API (관세청)]",
+      "subtitle": "위젯 설명: 대한민국 장기 수입량 vs 수출량 물량 기반 비교 (100% 종속 증명)",
       "unit": "Tonne",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -1623,9 +1623,9 @@
       "situation": "현황: 2022년 $8.5억(USD)으로 정점을 찍었던 수입 결제 대금은 2023~2024년 글로벌 단가 하락에도 불구하고 연평균 $7.6억(USD)이라는 구조적인 초고가 달러 유출 고원(Plateau)을 형성하고 있습니다.",
       "takeaway": "전략: 연 1조 원에 육박하는 막대한 달러가 해외로 빠져나갑니다. Silla 재무팀(CFO 조직)의 강력한 환 헤지(FX Hedging) 방어선 구축과 함께, 수입 대금을 상쇄할 수 있는 고마진 수출 포트폴리오 육성이 필수적입니다.",
       "yUnit": "Thousand USD",
-      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/6. 새우 무역액.csv [📡 LIVE API 연동: BOK API (한국은행 환율)]",
+      "source": "출처: FAOSTAT FishStatJ 2024.1.0 · data/새우/6. 새우 무역액.csv",
       "reliability": 100,
-      "subtitle": "위젯 설명: 대한민국 장기 수입 결제 대금 (USD) 추이 [📡 LIVE API 연동: BOK API (한국은행 환율)]",
+      "subtitle": "위젯 설명: 대한민국 장기 수입 결제 대금 (USD) 추이",
       "unit": "Thousand USD",
       "telemetry": "synced",
       "syncDate": "2025-Q4 기준",
@@ -2348,7 +2348,8 @@
       "bars": [
         {
           "key": "FCR",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "사료요구율(FCR)"
         }
       ],
       "data": [
@@ -2508,31 +2509,38 @@
       "bars": [
         {
           "key": "China",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "중국"
         },
         {
           "key": "Ecuador",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "에콰도르"
         },
         {
           "key": "India",
-          "color": "#3b82f6"
+          "color": "#3b82f6",
+          "name": "인도"
         },
         {
           "key": "Indonesia",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "인도네시아"
         },
         {
           "key": "Viet Nam",
-          "color": "#8b5cf6"
+          "color": "#8b5cf6",
+          "name": "베트남"
         },
         {
           "key": "Thailand",
-          "color": "#ec4899"
+          "color": "#ec4899",
+          "name": "태국"
         },
         {
           "key": "Mexico",
-          "color": "#06b6d4"
+          "color": "#06b6d4",
+          "name": "멕시코"
         }
       ],
       "lines": [],
@@ -2659,7 +2667,8 @@
         {
           "dataKey": "value",
           "color": "#f59e0b",
-          "type": "bar"
+          "type": "bar",
+          "name": "톤당 원가 (USD/t)"
         }
       ],
       "yUnit": "USD",
@@ -2794,7 +2803,8 @@
       "series": [
         {
           "dataKey": "price",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "스팟 가격 (USD/kg)"
         }
       ],
       "yUnit": "USD/kg",
@@ -2856,7 +2866,7 @@
           "price": 10.19
         }
       ],
-      "source": "[출처: World Bank API 연동] World Bank Commodity Pink Sheet 데이터",
+      "source": "출처: World Bank Commodity Pink Sheet — 정적 발췌 (API 실시간 연동 아님)",
       "reliability": 95,
       "unit": "USD/kg",
       "situation": "현황: 2013-2014년 태국 발 EMS(조기폐사증후군) 충격으로 스팟 가격이 USD 14에서 17.8까지 급등했으나, 2023년 에콰도르와 인도의 동시 증산 파동으로 인해 고점 대비 약 43% 폭락한 USD 10.19까지 주저앉았습니다. 현재 전례 없는 글로벌 공급 과잉 국면입니다.",
@@ -2875,31 +2885,38 @@
       "bars": [
         {
           "key": "Viet Nam",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "베트남"
         },
         {
           "key": "China",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "중국"
         },
         {
           "key": "Ecuador",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "에콰도르"
         },
         {
           "key": "Thailand",
-          "color": "#ec4899"
+          "color": "#ec4899",
+          "name": "태국"
         },
         {
           "key": "India",
-          "color": "#3b82f6"
+          "color": "#3b82f6",
+          "name": "인도"
         },
         {
           "key": "Peru",
-          "color": "#8b5cf6"
+          "color": "#8b5cf6",
+          "name": "페루"
         },
         {
           "key": "Malaysia",
-          "color": "#06b6d4"
+          "color": "#06b6d4",
+          "name": "말레이시아"
         }
       ],
       "lines": [],
@@ -2969,13 +2986,14 @@
     {
       "id": "w_log3_kr_import_value",
       "title": "한국 새우 수입 금액 추이 (2000-2023)",
-      "subtitle": "위젯 설명: FAO 무역액 통계 · 단위: USD 백만 | [📡 LIVE API 연동: Korea Customs API (관세청)]",
+      "subtitle": "위젯 설명: FAO 무역액 통계(2000-2023) · 단위: USD 백만 | 2024년 이후 구간은 관세청 연동 성공 시에만 갱신·LIVE 표기",
       "chartType": "area",
       "xAxis": "year",
       "series": [
         {
           "dataKey": "value",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "수입액 (USD 백만)"
         }
       ],
       "yUnit": "M USD",
@@ -3017,7 +3035,7 @@
           "value": 706.5
         }
       ],
-      "source": "[출처: 관세청/FAO API 연동] KCS 무역 통계 데이터",
+      "source": "출처: FAO 무역액 통계(2000-2023) + 관세청 수입실적(2024~, 연동 성공 시에만 LIVE)",
       "reliability": 95,
       "logic": "관세청 HS코드 매핑 수입액 동기화",
       "unit": "M USD",
@@ -3038,7 +3056,8 @@
         {
           "dataKey": "value",
           "color": "#8b5cf6",
-          "type": "bar"
+          "type": "bar",
+          "name": "수입 단가 (USD/톤)"
         }
       ],
       "yUnit": "USD/톤",
@@ -3087,27 +3106,33 @@
       "lines": [
         {
           "key": "Ecuador",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "에콰도르"
         },
         {
           "key": "India",
-          "color": "#3b82f6"
+          "color": "#3b82f6",
+          "name": "인도"
         },
         {
           "key": "Viet Nam",
-          "color": "#8b5cf6"
+          "color": "#8b5cf6",
+          "name": "베트남"
         },
         {
           "key": "Thailand",
-          "color": "#ec4899"
+          "color": "#ec4899",
+          "name": "태국"
         },
         {
           "key": "Indonesia",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "인도네시아"
         },
         {
           "key": "China",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "중국"
         }
       ],
       "bars": [],
@@ -3196,19 +3221,23 @@
       "bars": [
         {
           "key": "Ecuador",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "에콰도르"
         },
         {
           "key": "Vietnam",
-          "color": "#8b5cf6"
+          "color": "#8b5cf6",
+          "name": "베트남"
         },
         {
           "key": "India",
-          "color": "#3b82f6"
+          "color": "#3b82f6",
+          "name": "인도"
         },
         {
           "key": "Thailand",
-          "color": "#ec4899"
+          "color": "#ec4899",
+          "name": "태국"
         }
       ],
       "lines": [],
@@ -3269,17 +3298,20 @@
       "bars": [
         {
           "key": "risk",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "종합 리스크 점수"
         }
       ],
       "lines": [
         {
           "key": "human_rights",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "인권 리스크"
         },
         {
           "key": "env",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "환경 리스크"
         }
       ],
       "data": [
@@ -3334,13 +3366,15 @@
       "bars": [
         {
           "key": "Frozen",
-          "color": "#3b82f6"
+          "color": "#3b82f6",
+          "name": "냉동"
         }
       ],
       "lines": [
         {
           "key": "Fresh_RTE",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "신선·RTE"
         }
       ],
       "data": [
@@ -3396,13 +3430,15 @@
       "bars": [
         {
           "key": "ProductionCost",
-          "color": "#94a3b8"
+          "color": "#94a3b8",
+          "name": "생산 원가 지수"
         }
       ],
       "lines": [
         {
           "key": "FeedPriceIndex",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "사료 가격 지수"
         }
       ],
       "data": [
@@ -3438,8 +3474,8 @@
         }
       ],
       "reliability": 100,
-      "logic": "World Bank 원자재 가격 지수(대두/어분) 및 EUMOFA 양식 생산 원가 모니터링 데이터 교차 연산 [📡 LIVE API 연동: World Bank API]",
-      "source": "출처: World Bank Commodity Data [📡 LIVE API 연동: World Bank API]",
+      "logic": "World Bank 원자재 가격 지수(대두/어분) 및 EUMOFA 양식 생산 원가 모니터링 데이터 교차 연산",
+      "source": "출처: World Bank Commodity Data — 정적 발췌 (API 실시간 연동 아님)",
       "unit": "Index",
       "yUnit": "Index",
       "situation": "현황: 우크라이나 전쟁(곡물 파동)과 남미 엘니뇨(어획량 감소)가 겹치면서 새우 양식 사료의 핵심 원료인 대두(Soybean)와 어분(Fishmeal) 가격이 폭등했습니다. EUMOFA(2026)는 사료비가 전체 양식 원가의 50~60%를 차지하는 상황에서 이같은 인플레이션이 양식 농가의 한계비용(Marginal Cost)을 임계점까지 끌어올렸다고 경고합니다.",
@@ -3531,7 +3567,7 @@
           "NetProfitMargin": 14.2
         }
       ],
-      "source": "[출처: Krungsri API 연동] Krungsri Research / Dept. of Fisheries",
+      "source": "출처: Krungsri Research / Dept. of Fisheries — 정적 스냅샷",
       "logic": "태국 수산부 공식 양식 등록 통계 기반. 순이익률은 Krungsri 보고서(2020-2022) 원문 16.5% 데이터 추출",
       "reliability": 95,
       "unit": "%",
@@ -3618,8 +3654,8 @@
           "TH_AvgPrice": 9350
         }
       ],
-      "source": "출처: Krungsri Research (Industry Outlook 2025-2027) / Trade Map / US DOC Anti-Dumping [📡 LIVE API 연동: US DOC API & Trade Map API]",
-      "logic": "수출량은 Trade Map/MOC 공식 통관 데이터, 반덤핑 관세율은 미국 상무부(US DOC) 발표, FTA 발효 시점은 에콰도르 정부 공식 발표 기준. 2024E 수출량은 Krungsri Research의 5M25 YTD 추세 기반 연환산 추정치. [📡 LIVE API 연동: US DOC API & Trade Map API]",
+      "source": "출처: Krungsri Research (Industry Outlook 2025-2027) / Trade Map / US DOC Anti-Dumping",
+      "logic": "수출량은 Trade Map/MOC 공식 통관 데이터, 반덤핑 관세율은 미국 상무부(US DOC) 발표, FTA 발효 시점은 에콰도르 정부 공식 발표 기준. 2024E 수출량은 Krungsri Research의 5M25 YTD 추세 기반 연환산 추정치.",
       "reliability": 100,
       "unit": "Tonne",
       "yUnit": "Tonne",
@@ -3671,17 +3707,20 @@
       "bars": [
         {
           "key": "Ecuador",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "에콰도르"
         }
       ],
       "lines": [
         {
           "key": "India",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "인도"
         },
         {
           "key": "Vietnam",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "베트남"
         }
       ],
       "source": "출처: INFOFISH 2025-2026: The Strategic Evolution of the Global Shrimp Industry",
@@ -3726,13 +3765,15 @@
       "lines": [
         {
           "key": "Tariff_Rate",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "관세율(%)"
         }
       ],
       "bars": [
         {
           "key": "US_Market_Share_Growth",
-          "color": "#3b82f6"
+          "color": "#3b82f6",
+          "name": "미국 시장 점유율 증가율(%)"
         }
       ],
       "source": "출처: US Department of Commerce (DOC) 2024 / INFOFISH",
@@ -3777,11 +3818,13 @@
       "areas": [
         {
           "key": "Traditional_Mortality",
-          "color": "#ef4444"
+          "color": "#ef4444",
+          "name": "일반 양식 폐사율(%)"
         },
         {
           "key": "Vaccinated_Mortality",
-          "color": "#10b981"
+          "color": "#10b981",
+          "name": "백신 접종 폐사율(%)"
         }
       ],
       "source": "출처: Dalan Animal Health(백신 개발 사실 인용) + 자체 추정 — M1~M4 폐사율 곡선은 illustrative 예시값이며 특정 임상 보고서의 실측 시계열이 아닙니다.",
@@ -3824,17 +3867,20 @@
       "bars": [
         {
           "key": "Raw_Material_Cost",
-          "color": "#94a3b8"
+          "color": "#94a3b8",
+          "name": "원료 원가($/kg)"
         },
         {
           "key": "Margin",
-          "color": "#ec4899"
+          "color": "#ec4899",
+          "name": "마진($/kg)"
         }
       ],
       "lines": [
         {
           "key": "Export_Price",
-          "color": "#f59e0b"
+          "color": "#f59e0b",
+          "name": "수출 단가($/kg)"
         }
       ],
       "source": "출처: INFOFISH 2025-2026: Asian Market Hubs / Market Pricing Index",
@@ -4194,8 +4240,8 @@
     },
     {
       "id": "w_shrimp_macro_dashboard",
-      "title": "거시경제 환경 실시간 대시보드",
-      "subtitle": "위젯 설명: FRED + BOK ECOS 연동 | 환율·유가·금리 실시간",
+      "title": "거시경제 환경 대시보드",
+      "subtitle": "위젯 설명: FRED(WTI 유가·환율) + BOK ECOS 기반 | 2026-05 정적 스냅샷",
       "chartType": "composed",
       "xKey": "date",
       "bars": [
@@ -4253,13 +4299,13 @@
       "takeaway": "전략: 환율 1,400원 돌파 시 착지원가 톤당 $200+ 상승 — 환헤지 포지션 점검 필요.",
       "telemetry": "synced",
       "syncDate": "2026-05 스냅샷",
-      "sit": "환율, 유가, 물류비 지수를 복합 분석하는 실시간 거시경제 대시보드상 원가 압박(Cost Push) 시그널이 레드라인을 터치하며 수익성 악화 스톰(Perfect Storm) 임박.",
+      "sit": "환율, 유가, 물류비 지수를 복합 분석하는 거시경제 대시보드상(2026-05 스냅샷) 원가 압박(Cost Push) 시그널이 레드라인을 터치하며 수익성 악화 스톰(Perfect Storm) 임박.",
       "strat": "환율 헷징(Currency Forwards) 및 운임 스와프(FFA) 파생상품 비중을 80%로 끌어올려 외부 매크로 폭격을 방어하고, 변동비 노출 제로(0%)의 요새화된 P&L 포트폴리오 구축."
     },
     {
       "id": "w_shrimp_sourcing_sim",
-      "title": "국가별 착지원가 실시간 비교 시뮬레이터",
-      "subtitle": "위젯 설명: Comtrade + WITS + HS Ping 연동 | 4개국 CIF+관세+물류 분석",
+      "title": "국가별 착지원가 비교 시뮬레이터",
+      "subtitle": "위젯 설명: UN Comtrade(HS 030617) 연동 성공 시에만 LIVE 갱신 | 4개국 CIF+관세+물류 분석",
       "chartType": "bar",
       "xKey": "country",
       "bars": [
@@ -4314,7 +4360,7 @@
       "takeaway": "전략: 인도 비중 25%로 확대 시 연 $2.1M 절감. 단, 항생제 검출 리스크(3.2%) 감안한 품질 관리 병행 필수.",
       "telemetry": "synced",
       "syncDate": "2026-05 스냅샷",
-      "sit": "국가별 착지원가 실시간 시뮬레이터 가동 결과, 에콰도르의 규모의 경제를 넘어서 인도의 덤핑 투매 단가가 20% 스프레드 우위를 점하는 일시적 윈도우(Window) 관측.",
+      "sit": "국가별 착지원가 시뮬레이터 분석 결과, 에콰도르의 규모의 경제를 넘어서 인도의 덤핑 투매 단가가 20% 스프레드 우위를 점하는 일시적 윈도우(Window) 관측.",
       "strat": "기존 거래선(베트남/태국)과의 의리를 버리고 시뮬레이터 상 최저가(Bottom-Fishing)가 찍히는 국가 단위로 월별 소싱 비중을 100% 극단적 리밸런싱(Rebalancing)하는 냉혹한 다이내믹 소싱 가동."
     },
     {
@@ -4415,7 +4461,7 @@
     {
       "id": "w_shrimp_ntb_radar",
       "title": "통상 규제 NTB 리스크 신호등",
-      "subtitle": "위젯 설명: WTO + MFDS + OFAC 연동 | 미국/EU/SIMP 실시간",
+      "subtitle": "위젯 설명: WTO SPS/TBT + KMI 보고서 기반 | 미국/EU/SIMP 리스크 — 2026-05 정적 스냅샷",
       "chartType": "bar",
       "xKey": "regulation",
       "bars": [
@@ -4505,7 +4551,7 @@
     {
       "id": "w_shrimp_sps_alert",
       "title": "WTO SPS 통보 기반 규제 변동 알림",
-      "subtitle": "위젯 설명: WTO Data Portal 연동 | 새우 관련 SPS/TBT",
+      "subtitle": "위젯 설명: WTO Data Portal(SPS 통보) 기반 | 새우 관련 SPS/TBT — 2026-05 정적 스냅샷",
       "chartType": "bar",
       "xKey": "notifier",
       "bars": [
@@ -4546,7 +4592,7 @@
       "takeaway": "전략: EU 카드뮴 기준 하향 대비 — 에콰도르/인도산 중금속 사전 검사 체계 구축 시급.",
       "telemetry": "synced",
       "syncDate": "2026-05 스냅샷",
-      "sit": "WTO SPS(위생식물검역) 통보 기반 실시간 분석 결과, 중금속 및 미생물 규제 기준이 선진국을 중심으로 기하급수적으로 상향 조정되며 수출입 장벽이 만리장성급으로 구축 중.",
+      "sit": "WTO SPS(위생식물검역) 통보 기반 분석 결과, 중금속 및 미생물 규제 기준이 선진국을 중심으로 기하급수적으로 상향 조정되며 수출입 장벽이 만리장성급으로 구축 중.",
       "strat": "느슨한 후진국 위생 기준 벤더들을 즉각 숏(Short) 컷아웃하고, 실시간 블록체인 및 IoT 온습도 로거가 완비된 최상위 5% 글로벌 벤더로만 소싱 라인을 결집하여 통관 프리패스 지위 획득."
     },
     {

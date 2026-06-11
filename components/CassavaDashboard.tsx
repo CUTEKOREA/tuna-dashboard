@@ -102,9 +102,10 @@ const SECTIONS = [
 
 export default function CassavaDashboard() {
   const [widgets, setWidgets] = useState<any[]>([]);
+  const [meta, setMeta] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [showEdu, setShowEdu] = useState(true);
-  
+
   useEffect(() => {
     Promise.all([
       fetch('/api/cassava').then(r => r.json()),
@@ -114,6 +115,7 @@ export default function CassavaDashboard() {
     ])
     .then(([base, ew, arb, esg]) => {
       setWidgets([...(base.widgets || []), ew, arb, esg]);
+      setMeta(base._metadata || null);
     })
     .catch(e => console.error(e));
   }, []);
@@ -137,27 +139,27 @@ export default function CassavaDashboard() {
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
     if (w.id === 'w04') {
-      const sankeyData = {
-        nodes: [
-          { name: '태국/베트남' },
-          { name: '가나 (신규 Hub)' },
-          { name: '중국 (블랙홀)' },
-          { name: '기타 아시아' },
-          { name: '한국' }
-        ],
-        links: [
-          { source: 0, target: 2, value: 75 },
-          { source: 0, target: 3, value: 15 },
-          { source: 0, target: 4, value: 5 },
-          { source: 1, target: 4, value: 5 }
-        ]
-      };
-      
+      // Sankey 데이터는 JSON(w.data)의 UN Comtrade 2024 집계를 그대로 소비 (하드코딩 금지).
+      // 실측 데이터 미확보 시 위젯 보류를 정직 표기.
+      const sankeyData = d && Array.isArray(d.nodes) && d.nodes.length > 0 && Array.isArray(d.links) && d.links.length > 0
+        ? { nodes: d.nodes, links: d.links }
+        : null;
+      if (!sankeyData) {
+        return (
+          <div style={{ height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'8px', color:'#94a3b8', textAlign:'center', padding:'0 1rem' }}>
+            <EyeOff size={22} color="#64748b" />
+            <strong style={{ color:'#cbd5e1', fontSize:'0.85rem' }}>위젯 보류 — 무역 흐름 실측 데이터 미연동</strong>
+            <span style={{ fontSize:'0.75rem' }}>UN Comtrade 실측 집계 연동 후 표시됩니다.</span>
+          </div>
+        );
+      }
+
       const renderCustomNode = ({ x, y, width, height, index, payload }: any) => {
-        const isTarget = index >= 2;
+        // 0~2: 수출국(tertiary) / 3: 허브(secondary) / 4~: 수입국(primary)
+        const fill = index >= 4 ? CASSAVA_THEME.primary : index === 3 ? CASSAVA_THEME.secondary : CASSAVA_THEME.tertiary;
         return (
           <g>
-            <rect x={x} y={y} width={width} height={height} fill={isTarget ? CASSAVA_THEME.primary : CASSAVA_THEME.tertiary} rx="2" />
+            <rect x={x} y={y} width={width} height={height} fill={fill} rx="2" />
             <text x={x + width / 2} y={y - 8} fill="#f8fafc" fontSize="11" textAnchor="middle" fontWeight="bold">
               {payload.name}
             </text>
@@ -287,7 +289,8 @@ export default function CassavaDashboard() {
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
             <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: '1px solid rgba(255,255,255,0.05)', borderRadius:'8px', color:'#94a3b8' }}>
-              <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> 2026-05-07 (정적 데이터)
+              {/* 단일 출처: /api/cassava 라우트 _metadata.lastSynced (하드코딩 금지) */}
+              <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> {meta?.lastSynced ?? '동기화 정보 없음'} (정적 데이터)
             </div>
           </div>
         </div>
@@ -397,7 +400,9 @@ export default function CassavaDashboard() {
               if (!w) return null;
               const Icon = WIDGET_ICONS[w.id] || Hexagon;
               const accent = ACCENT_COLORS[idx % ACCENT_COLORS.length] || sec.color;
-              const liveStatus = w.isLive === true ? 'LIVE' : (w ? 'SYNCED' : 'STATIC');
+              // L-09/패턴 B 정정: 라우트가 isLive:false(정적 JSON)를 선언하므로 truthiness로 SYNCED 격상 금지.
+              // 날짜는 라우트가 주입한 위젯별 syncDate만 사용 (부재 시 배지에서 날짜 생략 — 패턴 E 정정).
+              const liveStatus = w.isLive === true ? 'LIVE' : 'STATIC';
               return (
                 <div key={w.id}>
                   <WidgetCard
@@ -406,7 +411,7 @@ export default function CassavaDashboard() {
                     iconColor={accent}
                     pillar={sec.id as any}
                     cardDesc={w.subtitle || '카사바 인텔리전스 위젯'}
-                    telemetry={{ status: liveStatus, syncDate: '2026-05-15' }}
+                    telemetry={{ status: liveStatus, syncDate: w.syncDate }}
                     chart={renderChart(w)}
                     chartHeight={260}
                     takeaway={{ situation: w.sit, actionPlan: w.strat, source: w.source }}

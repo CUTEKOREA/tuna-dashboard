@@ -3,89 +3,27 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const FRED_API_KEY = process.env.FRED_API_KEY;
-
-// Baseline rates for May 2025 (from the static data)
-const BASELINES: Record<string, number> = {
-  JPN: 1210,
-  PHL: 1450,
-  VNM: 1620,
-  THA: 1780,
-  ESP: 4600,
-  MEX: 5200
-};
-
-// Route sensitivity to global index changes
-// (Distance/Risk factors)
-const SENSITIVITY: Record<string, number> = {
-  JPN: 0.5,  // Short distance, less volatile
-  PHL: 0.8,
-  VNM: 0.9,
-  THA: 1.1,  // Standard
-  ESP: 2.2,  // High risk (Suez/Conflict)
-  MEX: 2.5   // High risk (Panama/Distance)
-};
-
-async function fetchFredFreightIndex() {
-  if (!FRED_API_KEY) return null;
-  
-  const seriesId = "TSIFRGHT";
-  const url = `https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&api_key=${FRED_API_KEY}&file_type=json&sort_order=desc&limit=12`;
-  
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    const json = await res.json();
-    return json.observations.reverse(); // Back to chronological
-  } catch (e) {
-    console.error("FRED API Error:", e);
-    return null;
-  }
-}
-
+/**
+ * [DEPRECATED 2026-06-11] 패턴 C (A-01 위반) 정정.
+ *
+ * 기존 구현은 FRED 글로벌 화물 TSI(TSIFRGHT) 지수 1개에
+ * 발명된 노선별 민감도 계수(JPN 0.5 ~ MEX 2.5)와 2025-05 기준 임의
+ * 베이스라인 운임을 곱해 6개 노선의 "실시간 해상 운임($/40'HC)"을
+ * 합성 생성하면서 'A-Grade / verifiability High'로 표기했다.
+ * 노선별 실측 운임 출처가 없으므로 합성 산식을 전면 제거한다.
+ *
+ * 소비 컴포넌트(ReeferFreightChart)는 어디에도 렌더되지 않는 죽은
+ * 코드였으며, 실측 운임 소스(Freightos/Xeneta 등) 연동 전까지 본
+ * 라우트는 비활성 상태를 유지한다.
+ */
 export async function GET() {
-  const observations = await fetchFredFreightIndex();
-  
-  if (!observations) {
-    return NextResponse.json({ error: "Failed to fetch live freight data" }, { status: 500 });
-  }
-
-  // Calculate trends
-  // We use the Feb 2026 data as the "Latest" anchor (since it's the latest in FRED)
-  // And interpolate/project for Apr 2026.
-  
-  const baseObservation = observations.find((o: any) => o.date === '2025-05-01')?.value || 135;
-  
-  const processedData = observations.map((obs: any) => {
-    const globalVal = parseFloat(obs.value);
-    const multiplier = globalVal / parseFloat(baseObservation);
-    
-    // Format date for chart (e.g., 'May 25')
-    const dateObj = new Date(obs.date);
-    const monthStr = dateObj.toLocaleString('en-US', { month: 'short', year: '2-digit' });
-    
-    const entry: any = { month: monthStr };
-    
-    Object.keys(BASELINES).forEach(route => {
-      // Adjusted rate = Baseline * (Global Trend * Sensitivity)
-      // We apply sensitivity to the *change* from baseline
-      const change = (multiplier - 1) * SENSITIVITY[route];
-      entry[route] = Math.round(BASELINES[route] * (1 + change));
-    });
-    
-    return entry;
-  });
-
-  return NextResponse.json({
-    status: 'success',
-    timestamp: new Date().toISOString(),
-    source: "FRED (Global Freight TSI) / Institutional Proxy",
-    auditStatus: {
-      isAudited: true,
-      protocol: "Harness 4-Axis Reliability",
-      grade: "A-Grade (Proxy Anchored)",
-      verifiability: "High (Institutional FRED Source)"
+  return NextResponse.json(
+    {
+      isLive: false,
+      deprecated: true,
+      reason:
+        '합성 산식(글로벌 TSI x 발명 민감도 계수) 기반 노선별 운임 생성이 데이터 무결성 원칙(A-01)에 위배되어 2026-06-11 비활성화. 노선별 실측 운임 소스 연동 후 재개 예정.',
     },
-    data: processedData
-  });
+    { status: 410 },
+  );
 }

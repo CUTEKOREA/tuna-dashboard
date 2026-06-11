@@ -1,10 +1,15 @@
 /**
  * MOF Fishery 3개 위젯 — ADR-0005 WidgetCard 마이그레이션 (2026-05-21)
  * Before 181줄 → After 140줄 (-23%)
+ *
+ * 2026-06-11 정직화: /api/mof-fishery 연동은 구조적으로 사망 상태였음
+ * (POST endpoint 명칭 'fish-market' 등이 라우트 키 'consignment_sales' 등과 불일치,
+ *  응답 키 fishMarket/tradeBalance/shippingCost는 라우트가 반환한 적 없음 → live 분기 도달 불가).
+ * 죽은 fetch 제거 + STATIC/실데이터 기준일로 정직 표기. 재연동 시 isLive 분기 복원할 것.
  */
 
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Line, Legend, ComposedChart } from 'recharts';
 import { Ship, Globe, Building2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
@@ -35,12 +40,7 @@ const FALLBACK_SHIPPING = [
 ];
 
 export function MofFishMarketWidget() {
-  const [data, setData] = useState(FALLBACK_FISH);
-  const [live, setLive] = useState(false);
-  useEffect(() => {
-    fetch('/api/mof-fishery', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: 'fish-market' }) })
-      .then((r) => r.json()).then((d) => { if (d.fishMarket) { setData(d.fishMarket); setLive(true); } }).catch(() => {});
-  }, []);
+  const data = FALLBACK_FISH;
 
   return (
     <WidgetCard
@@ -48,9 +48,9 @@ export function MofFishMarketWidget() {
       icon={Building2}
       iconColor="#0ea5e9"
       pillar="S3"
-      cardDesc="해양수산부 수산정보포털(FIS) API에서 국내 5대 위판장 냉동 눈다랑어 위탁판매 데이터를 수집해 시장별 거래량·평균 단가 비교"
+      cardDesc="해양수산부 수산정보포털(FIS) 위판장 통계 양식 기반 업계 추정치(자체 구성, API 미연동) — 국내 5대 위판장 냉동 눈다랑어 거래량·평균 단가 비교"
       unit="(단위: MT / ₩/kg)"
-      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? '실시간' : '2026년 기준' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026 업계 추정' }}
       chartHeight={280}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -68,7 +68,7 @@ export function MofFishMarketWidget() {
       takeaway={{
         situation: `<div>
 <p><strong>눈다랑어(Bigeye)</strong>는 참치 중 사시미·횟감용 최고급 어종으로, 한국 내수에서 kg당 가격이 가다랑어의 5~8배. 한국에서 거래되는 모든 냉동 눈다랑어는 위탁판매(consignment) 방식으로 5개 주요 위판장에서 거래됩니다.</p>
-<p>2026년 기준 추정 분포(자체추정 — FIS API 미연동 시 업계추정치 적용):</p>
+<p>2026년 기준 추정 분포(자체추정 — FIS API 미연동, 업계추정치 적용):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>부산공동어시장</strong>: 12,450 MT (43% 집중, 평균가 ₩8,200/kg)</li>
 <li><strong>제주 한림</strong>: 3,200 MT (11%, 평균가 <strong>₩9,100/kg 전국 최고가</strong>)</li>
@@ -86,19 +86,14 @@ export function MofFishMarketWidget() {
 <li><strong>"Landing port arbitrage logistics"</strong>: 어선 양륙 결정을 실시간 가격 시그널 기반 dynamic routing — 제주 한림 capacity 여유 + 가격 premium 시 자동 한림 양륙. AI logistics platform 자체 개발 — 5년 후 사조·동원 SaaS 라이센싱.</li>
 </ol>
 </div>`,
-        source: '해양수산부 수산정보포털(FIS) 위판장 위탁판매 데이터 (2026)',
+        source: '해양수산부 수산정보포털(FIS) 위판장 통계 양식 기반 업계 추정치 (2026, 자체 구성)',
       }}
     />
   );
 }
 
 export function MofTradeBalanceWidget() {
-  const [data, setData] = useState(FALLBACK_TRADE);
-  const [live, setLive] = useState(false);
-  useEffect(() => {
-    fetch('/api/mof-fishery', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: 'trade-balance' }) })
-      .then((r) => r.json()).then((d) => { if (d.tradeBalance) { setData(d.tradeBalance); setLive(true); } }).catch(() => {});
-  }, []);
+  const data = FALLBACK_TRADE;
 
   return (
     <WidgetCard
@@ -106,9 +101,9 @@ export function MofTradeBalanceWidget() {
       icon={Globe}
       iconColor="#10b981"
       pillar="S3"
-      cardDesc="관세청 KCS API + 해양수산부 통계 연동. 참치 HS 코드 기준 월별 수출액·수입액·무역수지 추이 — 구조적 적자 해소 전략 시사점"
+      cardDesc="관세청 수출입 무역통계·해양수산부 통계 기반 자체 구성(2024-07~12, API 미연동). 참치 HS 코드 기준 월별 수출액·수입액·무역수지 추이"
       unit="(단위: USD Million)"
-      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? '실시간' : '2024년 기준' }}
+      telemetry={{ status: 'STATIC', syncDate: '2024-12 기준' }}
       chartHeight={280}
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -125,7 +120,7 @@ export function MofTradeBalanceWidget() {
       }
       takeaway={{
         situation: `<div>
-<p>"무역수지"란 수출액 - 수입액. 양수면 흑자, 음수면 적자. 한국 참치 무역수지는 <strong>월평균 -$147M 적자</strong>가 만성적으로 지속됩니다.</p>
+<p>"무역수지"란 수출액 - 수입액. 양수면 흑자, 음수면 적자. 한국 참치 무역수지는 <strong>월평균 -$147M 적자</strong>가 만성적으로 지속돼 왔습니다(2024년 하반기 기준).</p>
 <p>월별 패턴:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>12월 수입 $210M으로 연중 최대</strong> (연말 가공·소비 재고 확보)</li>
@@ -151,12 +146,7 @@ export function MofTradeBalanceWidget() {
 }
 
 export function MofShippingCostWidget() {
-  const [data, setData] = useState(FALLBACK_SHIPPING);
-  const [live, setLive] = useState(false);
-  useEffect(() => {
-    fetch('/api/mof-fishery', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: 'shipping-cost' }) })
-      .then((r) => r.json()).then((d) => { if (d.shippingCost) { setData(d.shippingCost); setLive(true); } }).catch(() => {});
-  }, []);
+  const data = FALLBACK_SHIPPING;
 
   return (
     <WidgetCard
@@ -164,9 +154,9 @@ export function MofShippingCostWidget() {
       icon={Ship}
       iconColor="#8b5cf6"
       pillar="S3"
-      cardDesc="KMI 해운지수 + 해운조합 컨테이너 운임으로 주요 수출입 노선(부산→방콕·LA·로테르담 등)의 20ft/40ft 운임 동향 추적"
+      cardDesc="KMI 해운지수·해운조합 컨테이너 운임 참고 자체 추정치(2026 초, API 미연동) — 주요 수출입 노선(부산→방콕·LA·로테르담 등) 20ft/40ft 운임 비교"
       unit="(단위: USD/컨테이너)"
-      telemetry={{ status: live ? 'LIVE' : 'STATIC', syncDate: live ? '실시간' : '2026년 기준' }}
+      telemetry={{ status: 'STATIC', syncDate: '2026 초 추정' }}
       customBody={
         <div style={{ display: 'grid', gap: '12px', background: 'rgba(0, 0, 0, 0.2)', padding: '20px', borderRadius: '1rem', border: '1px dashed rgba(148, 163, 184, 0.1)' }}>
           {data.map((r, i) => (
@@ -182,7 +172,7 @@ export function MofShippingCostWidget() {
       takeaway={{
         situation: `<div>
 <p>해상운임은 글로벌 수산 무역 cost의 8~15%를 차지하는 핵심 변수. 노선별 추이를 보면 향후 6~12개월 우리 채널 전략이 결정됩니다.</p>
-<p>2026 현재 노선별 운임 (20ft 컨테이너):</p>
+<p>2026년 초 기준 노선별 운임 (20ft 컨테이너, 자체 추정):</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li><strong>부산→LA</strong>: <strong>$2,200 (+15% YoY)</strong> — 홍해 분쟁 여파로 지속 상승</li>
 <li><strong>부산→오사카</strong>: $620 (+1%) — 아시아 노선 상대적 안정</li>

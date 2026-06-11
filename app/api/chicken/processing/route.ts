@@ -16,7 +16,8 @@ export async function GET() {
     strat: '신라교역의 자본·냉동 인프라를 활용하여 "가공육 환매조건부 비축 및 벤더관리재고(VMI)" 전략을 도입해야 합니다. 태국 가공육을 국내 창고에 선비축하고, 프랜차이즈 본사가 사용한 만큼만 매월 정산하게 하여 장기 고객으로 고착화합니다.',
     reliability: 81,
     methodology: '4축 포렌식 감사 — SRC:22 FRS:20 VRF:20 INT:19. SVG 하드코딩 사문화 코드 제거 및 Recharts 데이터 바인딩 완료. 인건비/부가가치 출처 확보(+29점 향상)',
-    source: '태국 축산개발부(DLD) 2023 가공수율 보고서 & CP Foods 2023 밸류체인 분석 기반 자체추정. [STATIC — 실시간 API 미연동]'
+    source: '태국 축산개발부(DLD) 2023 가공수율 보고서 & CP Foods 2023 밸류체인 분석 기반 자체추정. [STATIC — 실시간 API 미연동]',
+    isLive: false // L-12: 정적 스냅샷 — 실시간 API 미연동
   };
 
   return NextResponse.json(payload);

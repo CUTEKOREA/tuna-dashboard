@@ -3,10 +3,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
-import { 
+import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, Scatter
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
+  ResponsiveContainer, Legend, Scatter,
+  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import { 
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
@@ -167,12 +168,15 @@ export default function JukkumiDashboard() {
   if (!data) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: '#FCD535', animation: 'spin 1s linear infinite' }} />
-      <p style={{ color: '#848E9C', fontSize: '1rem' }}>Loading Strategic Intelligence...</p>
+      <p style={{ color: '#848E9C', fontSize: '1rem' }}>주꾸미 전략 인텔리전스 로딩 중...</p>
     </div>
   );
 
   const { kpis, widgets } = data;
-  const kpiKeys = Object.keys(kpis);
+  const kpiKeys = Object.keys(kpis || {});
+  // 패턴 I: 헤더 카운트는 실제 렌더 대상(JSON 위젯 + EXTRA 컴포넌트)에서 동적 산출
+  const extraWidgetCount = Object.values(EXTRA_BY_PILLAR).reduce((n, arr) => n + arr.length, 0);
+  const totalWidgetCount = (widgets?.length || 0) + extraWidgetCount;
   
   /* ─── Unified Chart Renderer ─── */
   const renderChart = (widget: any) => {
@@ -185,17 +189,53 @@ export default function JukkumiDashboard() {
 
     const chartType = (widget.chartType || '').toLowerCase();
 
-    // NEW FORMAT — uses xKey, bars, lines, areas, series
-    // First, check if we're using series
-    if (widget.series) {
-      const xAxis = widget.xAxis || 'Year';
-      const series = widget.series || [];
+    // 신형 포맷(radar): radarKey + radars[{key,name,color}]
+    if (chartType === 'radar' && Array.isArray(widget.radars) && widget.radars.length > 0) {
+      return (
+        <RadarChart data={d} cx="50%" cy="50%" outerRadius="70%">
+          <PolarGrid stroke="rgba(255,255,255,0.1)" />
+          <PolarAngleAxis dataKey={widget.radarKey || 'subject'} tick={{ fill: '#94a3b8', fontSize: 11 }} />
+          <PolarRadiusAxis tick={{ fill: '#94a3b8', fontSize: 10 }} stroke="rgba(255,255,255,0.1)" axisLine={false} />
+          <RechartsTooltip content={<CustomTooltip />} />
+          <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
+          {widget.radars.map((r: any, i: number) => (
+            <Radar key={i} name={r.name || r.key || r.dataKey} dataKey={r.key || r.dataKey}
+              stroke={r.color || getMonolithicColor(i)} fill={r.color || getMonolithicColor(i)} fillOpacity={0.35} />
+          ))}
+        </RadarChart>
+      );
+    }
+
+    // 신형 포맷(xKey + bars/lines/areas) → series 포맷으로 정규화하여 기존 렌더 경로 재사용
+    const toSeries = (arr: any[], type: string) =>
+      (arr || []).map((s: any) => ({
+        type,
+        dataKey: s.key || s.dataKey,
+        name: s.name || s.key || s.dataKey,
+        color: s.color,
+        yAxisId: s.yAxisId,
+      }));
+    const normalizedSeries = widget.series || (
+      (widget.bars || widget.lines || widget.areas)
+        ? [
+            ...toSeries(widget.bars, 'bar'),
+            ...toSeries(widget.lines, 'line'),
+            ...toSeries(widget.areas, 'area'),
+          ]
+        : null
+    );
+
+    if (normalizedSeries) {
+      const xAxis = widget.xAxis || widget.xKey || 'Year';
+      const series = normalizedSeries;
+      // 신형 포맷의 bar/line/area chartType은 series별 type을 가지므로 composed 경로에서 일괄 렌더
+      const effectiveType = widget.series ? chartType : (chartType === 'pie' ? 'pie' : 'composed');
       const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
       const isTextAxis = xAxis !== 'Year' && d.length > 0 && d[0][xAxis] !== undefined && typeof d[0][xAxis] === 'string' && isNaN(Number(d[0][xAxis]));
       const xTickProps = { fill: '#94a3b8', fontSize: 10, angle: 0, textAnchor: 'middle' as const, dy: 5 };
       const chartMargin = { top: 20, right: 30, left: -10, bottom: 10 };
 
-      switch(chartType) {
+      switch(effectiveType) {
         case "pie":
           return (
             <PieChart>
@@ -217,7 +257,7 @@ export default function JukkumiDashboard() {
               <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
               <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => (
-                <Bar key={i} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
+                <Bar key={i} dataKey={s.dataKey || s.key} name={s.name || s.dataKey || s.key} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />
               ))}
             </BarChart>
           );
@@ -232,18 +272,20 @@ export default function JukkumiDashboard() {
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
               {series.map((s: any, i: number) => {
-                if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
-                if (s.type === 'area') return <Area key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={s.dataKey} stroke={s.color || getMonolithicColor(i)} fill={s.color || getMonolithicColor(i)} fillOpacity={0.4} strokeWidth={2} />;
-                if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} />;
-                return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={s.dataKey} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
+                const sKey = s.dataKey || s.key;
+                const sName = s.name || sKey;
+                if (s.type === 'line') return <Line key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={sKey} name={sName} stroke={s.color || getMonolithicColor(i)} strokeWidth={2.5} dot={{r: 3}} />;
+                if (s.type === 'area') return <Area key={i} yAxisId={s.yAxisId || "left"} type="monotone" dataKey={sKey} name={sName} stroke={s.color || getMonolithicColor(i)} fill={s.color || getMonolithicColor(i)} fillOpacity={0.4} strokeWidth={2} />;
+                if (s.type === 'scatter') return <Scatter key={i} yAxisId={s.yAxisId || "left"} dataKey={sKey} name={sName} fill={s.color || getMonolithicColor(i)} />;
+                return <Bar key={i} yAxisId={s.yAxisId || "left"} dataKey={sKey} name={sName} fill={s.color || getMonolithicColor(i)} radius={[6, 6, 0, 0]} />;
               })}
             </ComposedChart>
           );
         default:
-          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
+          return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 형식</div>;
       }
     }
-    return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported Format</div>;
+    return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>지원하지 않는 차트 형식</div>;
   };
 
   return (
@@ -264,7 +306,7 @@ export default function JukkumiDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 주꾸미 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>주꾸미 커맨드 센터 — 총 {widgets?.length || 5}개 위젯 · {kpiKeys?.length || 6}개 핵심지표</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>주꾸미 커맨드 센터 — 총 {totalWidgetCount}개 위젯 · {kpiKeys.length}개 핵심지표</p>
             </div>
           </div>
         </div>
@@ -419,7 +461,7 @@ export default function JukkumiDashboard() {
                 <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{sec.desc}</p>
               </div>
               <span style={{ marginLeft: 'auto', fontSize: '0.7rem', color: sec.color, background: `${sec.color}15`, padding: '3px 10px', borderRadius: '500px', fontWeight: 600 }}>
-                {pillarWidgets.length} 위젯
+                {pillarWidgets.length + (EXTRA_BY_PILLAR[activePart] || []).length} 위젯
               </span>
             </div>
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
@@ -455,9 +497,9 @@ export default function JukkumiDashboard() {
         icon={IconComp}
         iconColor="var(--color-success)"
         pillar={(w.pillar || 'S1') as any}
-        cardDesc={w.subtitle || w.unit ? (w.subtitle || `단위: ${w.unit}`) : '주꾸미 인텔리전스 위젯'}
+        cardDesc={w.subtitle || (w.unit ? `단위: ${w.unit}` : (w.source ? `출처: ${w.source}` : '주꾸미 인텔리전스 위젯'))}
         unit={w.unit ? `(단위: ${w.unit})` : undefined}
-        telemetry={{ status, syncDate: w.syncDate || '2026-05' }}
+        telemetry={{ status, syncDate: w.syncDate }}
         chart={renderChart(w)}
         chartHeight={375}
         takeaway={{ situation, actionPlan: takeaway, source: w.source || '' }}

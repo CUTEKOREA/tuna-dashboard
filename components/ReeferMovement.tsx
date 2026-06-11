@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from 'react';
-import { Ship, TrendingUp, AlertTriangle, ChevronDown, ChevronUp, Anchor, Factory, Package, Table2 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, LineChart, Line, Cell } from 'recharts';
+import React, { useMemo, useState } from 'react';
+import { Ship, AlertTriangle, ChevronDown, ChevronUp, Anchor, Factory, Package, Table2 } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, Cell } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ReeferMovement.module.css';
 import TermTooltip from './TermTooltip';
@@ -32,14 +32,6 @@ const BAR_COLORS = [
   '#ec4899', '#14b8a6', '#f97316', '#06b6d4', '#a855f7',
   '#64748b', '#e11d48', '#84cc16', '#6366f1', '#0ea5e9',
   '#d946ef', '#f43f5e', '#22d3ee', 'var(--color-warning)', '#fb923c',
-];
-
-const congestionTrend = [
-  { day: 'D-13', wait: 0 }, { day: 'D-12', wait: 0 }, { day: 'D-11', wait: 0 },
-  { day: 'D-10', wait: 0 }, { day: 'D-9', wait: 0 }, { day: 'D-8', wait: 0 },
-  { day: 'D-7', wait: 0 }, { day: 'D-6', wait: 0 }, { day: 'D-5', wait: 0 },
-  { day: 'D-4', wait: 0 }, { day: 'D-3', wait: 0 }, { day: 'D-2', wait: 0 },
-  { day: 'D-1', wait: 0 }, { day: 'Today', wait: 0 }
 ];
 
 // Legacy table columns
@@ -80,31 +72,13 @@ function CanneryTooltip({ active, payload, label }: any) {
 export default function ReeferMovement() {
   const [showLegacy, setShowLegacy] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
-  const [congestionData, setCongestionData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchCongestion() {
-      try {
-        const res = await fetch('/api/logistics/congestion');
-        if (!res.ok) throw new Error('Failed to fetch congestion data');
-        const json = await res.json();
-        setCongestionData(json);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchCongestion();
-  }, []);
 
   // ── Aggregate: cannery totals ──
   const canneryAgg = useMemo(() => {
     const agg: Record<string, { total: number; vesselCount: number; vessels: string[] }> = {};
     BANGKOK_PORT_DATA.forEach((row) => {
       Object.entries(row.deliveries).forEach(([key, val]) => {
-        if (key === 'OTHER') return;
+        if (key === 'OTHER' || key === 'SHIP') return;
         const num = parseNum(val);
         if (num <= 0) return;
         if (!agg[key]) agg[key] = { total: 0, vesselCount: 0, vessels: [] };
@@ -122,7 +96,7 @@ export default function ReeferMovement() {
   const carrierCards = useMemo(() => {
     return BANGKOK_PORT_DATA.map((row) => {
       const deliveryEntries = Object.entries(row.deliveries)
-        .filter(([k]) => k !== 'OTHER')
+        .filter(([k]) => k !== 'OTHER' && k !== 'SHIP')
         .map(([k, v]) => ({ cannery: k, amount: parseNum(v) }))
         .filter(d => d.amount > 0)
         .sort((a, b) => b.amount - a.amount);
@@ -139,98 +113,32 @@ export default function ReeferMovement() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <h2 className={styles.header} style={{ marginBottom: 0 }}>
           <Ship size={24} />
-          방콕항(BANGKOK) 체선 & 운반선 이동
+          방콕항(BANGKOK) 운반선 이동 스케줄
         </h2>
-        {congestionData && (
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '8px', 
-            fontSize: '11px', 
-            fontWeight: 600,
-            background: 'rgba(16, 185, 129, 0.1)',
-            color: 'var(--color-success)',
-            padding: '4px 12px',
-            borderRadius: '12px',
-            border: '1px solid rgba(16, 185, 129, 0.2)'
-          }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #10b981' }}></div>
-            Live 🟢 Port Telemetry
-          </div>
-        )}
-      </div>
-      
-      {/* ── KPI Summary Cards ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '24px' }}>
-        <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', padding: '16px', borderRadius: '8px', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ display: 'inline-block', width: '10px', height: '10px', background: 'var(--color-info)', borderRadius: '50%' }} />
-            <TermTooltip term="체선율 지수" description="체선율(항만 혼잡도): 항만의 하역 능력 대비 대기 중인 운반선의 비율입니다. 체선율이 높을수록 배에서 참치를 내리기까지 걸리는 시간이 길어져 원어 수급 일정에 차질이 빚어질 수 있습니다." />
-          </div>
-          <div style={{ fontSize: '26px', fontWeight: 'bold', color: 'var(--text-main)', marginTop: '12px' }}>
-            {loading ? '...' : `${congestionData?.metrics?.congestionIndex || 42}%`}
-          </div>
-          <div style={{ fontSize: '12px', color: '#64748b', marginTop: '6px' }}>
-            {congestionData?.auditStatus?.grade || 'Analyzing...'}
-          </div>
-          <div style={{ 
-            position: 'absolute', bottom: 0, left: 0, height: '4px', 
-            width: `${congestionData?.metrics?.congestionIndex || 0}%`, 
-            background: 'linear-gradient(90deg, #3b82f6, #10b981)',
-            opacity: 0.5
-          }} />
-        </div>
-
-        <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', padding: '16px', borderRadius: '8px' }}>
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}><TermTooltip term="평균 대기 일수" description="평균 대기 일수: 운반선이 방콕항 묘박지에 도착한 시점부터 실제로 하역 부두에 접안하기까지 걸리는 평균 일수입니다." /></div>
-          <div style={{ fontSize: '26px', fontWeight: 'bold', color: 'var(--text-main)', marginTop: '8px' }}>
-            {loading ? '...' : congestionData?.metrics?.avgWaitDays} <span style={{fontSize: '14px', color: 'var(--text-muted)'}}>Days</span>
-          </div>
-          <div style={{ fontSize: '13px', color: 'var(--color-success)', marginTop: '8px', display: 'flex', alignItems: 'center', fontWeight: 'bold' }}>
-            <TrendingUp size={16} style={{ marginRight: '6px'}} /> 
-            {loading ? 'Syncing' : 'Operational'}
-          </div>
-        </div>
-
-        <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', padding: '16px', borderRadius: '8px' }}>
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}><TermTooltip term="묘박지 대기 선박" description="묘박지 대기 선박: 하역 차례를 기다리며 항구 앞바다(묘박지, Anchorage)에 닻을 내리고 대기 중인 냉동 운반선의 척수입니다." /></div>
-          <div style={{ fontSize: '26px', fontWeight: 'bold', color: 'var(--text-main)', marginTop: '8px' }}>
-            {loading ? '...' : congestionData?.metrics?.vesselsAtAnchorage} <span style={{fontSize: '14px', color: 'var(--text-muted)'}}>Carriers</span>
-          </div>
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '8px' }}>
-            Est. {loading ? '...' : congestionData?.metrics?.backlogMT?.toLocaleString()} MT Backlog
-          </div>
-        </div>
-
-        <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', padding: '16px', borderRadius: '8px', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '8px' }}>대기 추세 (14일)</div>
-          <div style={{ flex: 1, minHeight: '60px' }}>
-            {!loading && congestionData?.metrics?.trend && (
-              <SafeResponsiveContainer width="100%" height={80}>
-                <LineChart data={congestionData.metrics.trend}>
-                  <defs><linearGradient id="reeferLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#059669" /><stop offset="100%" stopColor="#34d399" /></linearGradient></defs>
-                  <YAxis domain={['dataMin - 1', 'dataMax + 1']} hide />
-                  <RechartsTooltip 
-                    contentStyle={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', fontSize: '12px', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
-                    itemStyle={{ color: 'var(--color-success)' }}
-                    formatter={(value: any) => [`${value}일`, '대기']}
-                    labelStyle={{ color: '#8b949e' }}
-                  />
-                  <Line type="monotone" dataKey="wait" stroke="url(#reeferLine)" strokeWidth={2.5} dot={{ r: 2, fill: '#34d399' }} activeDot={{ r: 4 }} />
-                </LineChart>
-              </SafeResponsiveContainer>
-            )}
-          </div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          fontSize: '11px',
+          fontWeight: 600,
+          background: 'rgba(148, 163, 184, 0.1)',
+          color: 'var(--text-muted)',
+          padding: '4px 12px',
+          borderRadius: '12px',
+          border: '1px solid rgba(148, 163, 184, 0.2)'
+        }}>
+          <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--text-muted)' }}></div>
+          WEEK 22 주간 보고 (2026-06-04 기준)
         </div>
       </div>
 
       {/* ── REEFER MOVEMENT SCHEDULE Header ── */}
       <div style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <AlertTriangle size={16} color="var(--color-warning)" />
-        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 방콕 항구로 입항 예정인 운반선(Reefer)들의 세부 일정과 각 공장(Cannery)별 분배 예정 물량을 보여줍니다. 이를 통해 특정 캔 공장의 원재료 수급 현황을 파악할 수 있습니다." /> (28/05/26 - 04/06/26) : WEEK 22
+        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] WEEK 22 주간 보고에 기록된 방콕 항구 운반선(Reefer)별 접안 일정과 각 캔 공장(Cannery)별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-05-28 ~ 06-04) : WEEK 22 주간 보고
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', background: '#10b98118', padding: '3px 10px', borderRadius: 99, fontWeight: 600 }}>
-            {BANGKOK_PORT_DATA.length}척 · {Math.round(grandTotal).toLocaleString()} MT
+            {BANGKOK_PORT_DATA.length}척 · 공장 배분 {Math.round(grandTotal).toLocaleString()} MT
           </span>
         </div>
       </div>
@@ -244,7 +152,7 @@ export default function ReeferMovement() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <Factory size={16} color="var(--color-info)" />
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 입고 예정 총량</span>
+          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (WEEK 22 보고 기준)</span>
           <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: 4 }}>(단위: MT)</span>
         </div>
         <div style={{ height: Math.max(canneryAgg.length * 36 + 30, 200), width: '100%' }}>
@@ -304,15 +212,15 @@ export default function ReeferMovement() {
                     {card.carrier}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 2 }}>
-                    Berthing: {card.date}
-                    {card.other && <span style={{ marginLeft: 8, color: '#475569' }}>Wharf: {card.other}</span>}
+                    접안일: {card.date}
+                    {card.other && <span style={{ marginLeft: 8, color: '#475569' }}>부두: {card.other}</span>}
                   </div>
                 </div>
                 <div style={{ textAlign: 'right', marginRight: 8 }}>
                   <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-success)' }}>
                     {Math.round(card.totalMT).toLocaleString()}
                   </div>
-                  <div style={{ fontSize: '0.65rem', color: '#64748b' }}>MT · {card.deliveries.length} factories</div>
+                  <div style={{ fontSize: '0.65rem', color: '#64748b' }}>MT · 공장 {card.deliveries.length}곳</div>
                 </div>
                 {isExpanded
                   ? <ChevronUp size={16} color="#64748b" />
@@ -367,7 +275,7 @@ export default function ReeferMovement() {
                       marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.06)',
                       fontSize: '0.72rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: 4
                     }}>
-                      <Package size={12} /> Remark: {card.other}
+                      <Package size={12} /> 비고(부두): {card.other}
                     </div>
                   )}
                 </div>
@@ -401,9 +309,9 @@ export default function ReeferMovement() {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th rowSpan={2} className={styles.stickyHeader} style={{ minWidth: '180px' }}>CARRIER</th>
-                <th rowSpan={2} style={{ minWidth: '100px' }}>BERTHING DATE</th>
-                <th colSpan={COLUMNS.length} className={styles.portHeader}>BANGKOK PORT (Canneries & Destinations)</th>
+                <th rowSpan={2} className={styles.stickyHeader} style={{ minWidth: '180px' }}>운반선</th>
+                <th rowSpan={2} style={{ minWidth: '100px' }}>접안일</th>
+                <th colSpan={COLUMNS.length} className={styles.portHeader}>방콕항 (캔 공장·배분처)</th>
               </tr>
               <tr>
                 {COLUMNS.map(col => (

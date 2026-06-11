@@ -1039,7 +1039,7 @@
     "country": "Vietnam",
     "name": "Golden Ocean Seafood",
     "region": "South",
-    "capacityMT": 15,
+    "capacityMT": 0,
     "hasFDA": true,
     "hasEU": true,
     "msc": false,
@@ -1114,7 +1114,7 @@
       "verificationSummary": "신원·소재지·VASEP 회원 자격·참치 및 다종 수산물 제품 라인은 공식 사이트와 VASEP 기록(동일 전화 +84 918169147)으로 교차 확인됐다. 반면 설립연도(2019 vs 2024 미확정), FDA/EU(DL) 등록, MSC 인증, 생산능력 15 MT/일은 어떤 1차 출처로도 입증되지 않았고, 15 MT/일·일부 FDA·생산 수치는 동명의 별개 업체에서 혼입된 것으로 확인돼 본 업체에 귀속할 수 없다.",
       "dataConfidence": "low"
     },
-    "reviewFlag": "기존 FDA/EU/MSC·생산능력이 동명 타사(Golden Shrimp/Golden Seafood VN) 데이터 혼입 정황 — 전면 재확인 필요(MSC만 정정 반영)."
+    "reviewFlag": "기존 FDA/EU/MSC·생산능력이 동명 타사(Golden Shrimp/Golden Seafood VN) 데이터 혼입 정황 — 전면 재확인 필요(MSC·생산능력 정정 반영, FDA/EU는 미확인 표기)."
   },
   {
     "id": "kifocan",

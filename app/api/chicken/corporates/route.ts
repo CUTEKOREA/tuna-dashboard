@@ -23,7 +23,8 @@ export async function GET() {
     strat: '신라교역은 브라질 JBS·BRF의 단순 원물 유통 마진 한계에서 벗어나, 태국 GFPT(신규 도축장 일 15만수 가동) 및 Betagro(친환경 스마트팩토리) 등 가공 특화 선도 기업과의 독점 소싱 파트너십을 최우선으로 추진해야 합니다.',
     reliability: 84,
     methodology: '4축 포렌식 감사 — SRC:22 FRS:22 VRF:20 INT:20. IR 보고서 연도(FY2023) 및 구체적 Product Mix 페이지 번호 인용 완료(+22점 향상)',
-    source: 'JBS Management Report FY2023 (p.28), BRF Annual Report 2023 (p.45), GFPT Annual Report 2023 (p.14 Product Mix), CPF Integrated Report 2023 (p.52)'
+    source: 'JBS Management Report FY2023 (p.28), BRF Annual Report 2023 (p.45), GFPT Annual Report 2023 (p.14 Product Mix), CPF Integrated Report 2023 (p.52)',
+    isLive: false // L-12: 정적 스냅샷 — 실시간 API 미연동
   };
 
   return NextResponse.json(data);

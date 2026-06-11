@@ -27,8 +27,8 @@ const FleetCommandCenter = dynamic(() => import('../components/FleetCommandCente
 const FishingDaysStatus = dynamic(() => import('../components/FishingDaysStatus'));
 const VesselVdsStatus = dynamic(() => import('../components/VesselVdsStatus'));
 const ReeferMovement = dynamic(() => import('../components/ReeferMovement'));
-const ReeferFreightChart = dynamic(() => import('../components/ReeferFreightChart'));
-const TraderImportChart = dynamic(() => import('../components/TraderImportChart'));
+// ReeferFreightChart·TraderImportChart 제거 (2026-06-11): 렌더되지 않는 죽은 import였고,
+// 각각 합성 산식 라우트(/api/logistics/freight·trader-import, A-01 위반으로 비활성화)에 의존.
 const GensanImportChart = dynamic(() => import('../components/GensanImportChart'));
 const CanneryStatusCharts = dynamic(() => import('../components/CanneryStatusCharts'));
 const GensanCanneryStatusCharts = dynamic(() => import('../components/GensanCanneryStatusCharts'));
@@ -117,9 +117,9 @@ export default function Home() {
   );
   const pathname = usePathname();
   
-  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'octopus' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'whelk' | 'used-car' | 'pollock' | 'flatfish' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db' | 'msc' | 'sashimi-steak'>(() => {
+  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'octopus' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'beef' | 'whelk' | 'used-car' | 'pollock' | 'flatfish' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db' | 'msc' | 'sashimi-steak'>(() => {
     const path = pathname?.replace('/', '');
-    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'whelk', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak'];
+    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'beef', 'whelk', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak'];
     if (path && validMenus.includes(path)) return path as any;
     return 'market';
   });
@@ -129,7 +129,7 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const currentPath = window.location.pathname.replace('/', '');
-      const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'whelk', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak'];
+      const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'beef', 'whelk', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak'];
       
       if (isFirstMount.current) {
         isFirstMount.current = false;

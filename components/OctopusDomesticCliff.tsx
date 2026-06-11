@@ -51,8 +51,8 @@ export default function OctopusDomesticCliff() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fill: '#8b5cf6', fontSize: 10 }} />
-          <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '한국 어획']} />
-          <Area type="monotone" dataKey="korea" name="한국 어획" stroke="#8b5cf6" strokeWidth={2.5} fill="url(#koreaCatchGradient)" />
+          <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '한국 문어류 어획']} />
+          <Area type="monotone" dataKey="korea" name="한국 문어류 어획" stroke="#8b5cf6" strokeWidth={2.5} fill="url(#koreaCatchGradient)" />
         </AreaChart>
       </SafeResponsiveContainer>
     </div>
@@ -115,8 +115,8 @@ export default function OctopusDomesticCliff() {
   const Body = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
       <div style={PanelStyle}>
-        <div style={PanelTitle}>📉 한국 낙지 어획 장기 추세 (FishStat 2010~2022)</div>
-        <div style={PanelDesc}>2010 20.8천 톤 → 2022 16.1천 톤(−22.6%). 13년간 완만한 하향, 2022년 추가 급락 — 자원 회복 신호 없음.</div>
+        <div style={PanelTitle}>📉 한국 문어류(낙지 포함) 어획 장기 추세 (FishStat OCT 2010~2022)</div>
+        <div style={PanelDesc}>문어류(OCT) 합산 — 낙지 단독 통계 아님. 2010 20.8천 톤 → 2022 16.1천 톤(−22.6%). 13년간 완만한 하향, 2022년 추가 급락 — 자원 회복 신호 없음.</div>
         {KoreaCatchChart}
       </div>
 
@@ -127,7 +127,7 @@ export default function OctopusDomesticCliff() {
       </div>
 
       <div style={PanelStyle}>
-        <div style={PanelTitle}>🌍 글로벌 어획 헤게모니 2022 (FishStat OCT)</div>
+        <div style={PanelTitle}>🌍 글로벌 어획 헤게모니 2022 (FishStat OCT 문어류 합산)</div>
         <div style={PanelDesc}>중국 110천 톤(31%) · 모로코 52천 톤 · 모리타니 33천 톤 · 일본 22천 톤 · <strong>한국 16천 톤(5위)</strong>. 양식 사실상 미개발(FishStat 양식 156행).</div>
         {GlobalShareChart}
       </div>
@@ -164,9 +164,9 @@ export default function OctopusDomesticCliff() {
         }}
       >
         {[
-          { label: '국내 생산 절벽', value: '−30.9%', sub: '24년→25년 1~11월', color: '#ef4444' },
-          { label: '글로벌 순위', value: '5위', sub: '16.1천 톤 (2022)', color: '#fb923c' },
-          { label: '13년 어획 감소', value: '−22.6%', sub: '2010→2022', color: '#a78bfa' },
+          { label: '국내 낙지 생산 절벽', value: '−30.9%', sub: '24년→25년 1~11월 (KMI)', color: '#ef4444' },
+          { label: '글로벌 순위 (문어류)', value: '5위', sub: '문어류 16.1천 톤 (2022)', color: '#fb923c' },
+          { label: '13년 문어류 어획 감소', value: '−22.6%', sub: '2010→2022 (OCT 합산)', color: '#a78bfa' },
           { label: 'TAC 직접 대상', value: '미지정', sub: '모니터링 17종에 포함', color: '#6366f1' },
         ].map((k, i) => (
           <div key={i} style={{ borderLeft: `3px solid ${k.color}`, paddingLeft: '10px' }}>
@@ -185,13 +185,13 @@ export default function OctopusDomesticCliff() {
       icon={AlertTriangle}
       iconColor="#ef4444"
       pillar="S1"
-      cardDesc="FAO FishStat 글로벌 어획(2010~2022) + 해수부 제4차 수산자원관리기본계획(2026~2030) + 2023 시행계획 + KMI FTA 25Q4 국내 생산. 한국 낙지가 양식 미개발 상태에서 13년 −22.6% 어획 감소를 지속하다 2025년 1~11월 −30.9% 절벽으로 진입한 자원 위기와 정책 대응 시계열."
+      cardDesc="FAO FishStat 글로벌 어획(2010~2022, OCT 문어류 합산 — 낙지 단독 아님) + 해수부 제4차 수산자원관리기본계획(2026~2030) + 2023 시행계획 + KMI FTA 25Q4 국내 낙지 생산. 한국 문어류 어획이 13년 −22.6% 감소를 지속하다 국내 낙지 생산이 2025년 1~11월 −30.9% 절벽으로 진입한 자원 위기와 정책 대응 시계열."
       telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={Body}
       takeaway={{
         situation: `<div>
 <p>"양식 미개발 자원(Wild-Only Stock)"이란 양식 기술이 산업화되지 않아 100% 자연산 어획에 의존하는 자원 카테고리. 낙지(Octopus minor)는 FAO FishStat 양식 보고가 156행에 불과 — 사실상 양식 미개발. 자연산 자원 감소가 곧 공급 감소로 직결되는 가장 취약한 카테고리.</p>
-<p>실측: <strong>한국 낙지 어획 2010년 20.8천 톤 → 2022년 16.1천 톤(−22.6%) 13년 완만한 하향 후, 2025년 1~11월 5.4→3.7천 톤(−30.9%) 절벽 진입</strong>. 글로벌로는 중국 110천 톤(31%)·모로코 52천 톤·모리타니 33천 톤·일본 22천 톤에 이어 <strong>한국 16천 톤(5위)</strong>이지만 양식 buffer 없음.</p>
+<p>실측: <strong>한국 문어류(낙지 포함, FishStat OCT 합산) 어획 2010년 20.8천 톤 → 2022년 16.1천 톤(−22.6%) 13년 완만한 하향 후, 국내 낙지 생산(KMI)은 2025년 1~11월 5.4→3.7천 톤(−30.9%) 절벽 진입</strong>. 글로벌 문어류 기준으로는 중국 110천 톤(31%)·모로코 52천 톤·모리타니 33천 톤·일본 22천 톤에 이어 <strong>한국 16천 톤(5위)</strong>이지만 양식 완충재 없음.</p>
 <p>정책 시그널: <strong>TAC 직접 대상에 미지정</strong>, 자원회복 모니터링 17종 + 산란·서식장 조성사업 16종 대상으로만 관리. 2026~2030 제4차 기본계획에서도 낙지는 TAC 신규 편입 명시 없음 — 자원관리 직접 수단 부재. 지자체 분권형 금어기·금지체장 관리로 일자별 보호 강도가 지자체별로 상이.</p>
 </div>`,
         actionPlan: `<div>

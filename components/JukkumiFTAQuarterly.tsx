@@ -142,7 +142,7 @@ export default function JukkumiFTAQuarterly() {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie data={cuCountry} dataKey="share" nameKey="country" cx="50%" cy="50%" outerRadius={70} innerRadius={40} paddingAngle={2}
-            label={({ country, share }) => `${country} ${share}%`} labelLine={false}
+            label={(p: any) => `${p.country} ${p.share}%`} labelLine={false}
             style={{ fontSize: '11px', fill: '#e2e8f0' }}>
             {cuCountry.map((d, i) => <Cell key={i} fill={d.color} />)}
           </Pie>

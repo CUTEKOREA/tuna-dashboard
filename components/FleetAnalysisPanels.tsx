@@ -7,16 +7,16 @@ import s from './FleetCommandCenter.module.css';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const rankData = [
-  { r: 1, cap: '김효원', name: 'S/SPR', weekly: 667, daily: 95.29, badge: 'gold' },
-  { r: 2, cap: '최용석', name: 'S/CHA', weekly: 370, daily: 52.86, badge: 'silver' },
-  { r: 3, cap: '강창훈', name: 'S/JUP', weekly: 330, daily: 47.14, badge: 'bronze' },
-  { r: 4, cap: '김정훈', name: 'MARI', weekly: 275, daily: 39.29, badge: '' },
-  { r: 5, cap: '김형주', name: 'N/SUN', weekly: 210, daily: 30.00, badge: '' },
-  { r: 6, cap: '이평규', name: 'KONA', weekly: 194, daily: 27.71, badge: '' },
-  { r: 7, cap: '김태엽', name: 'N/STAR', weekly: 100, daily: 14.29, badge: '' },
+  { r: 1, cap: '이평규', name: 'KONA', weekly: 510, daily: 72.86, badge: 'gold' },
+  { r: 2, cap: '김정훈', name: 'MARI', weekly: 495, daily: 70.71, badge: 'silver' },
+  { r: 3, cap: '김태엽', name: 'N/STAR', weekly: 435, daily: 62.14, badge: 'bronze' },
+  { r: 4, cap: '김형주', name: 'N/SUN', weekly: 285, daily: 40.71, badge: '' },
+  { r: 5, cap: '김승현', name: 'S/PIO', weekly: 191, daily: 27.29, badge: '' },
+  { r: 6, cap: '최용석', name: 'S/CHA', weekly: 170, daily: 24.29, badge: '' },
+  { r: 7, cap: '강창훈', name: 'S/JUP', weekly: 135, daily: 19.29, badge: '' },
   { r: 8, cap: '정윤채', name: 'S/EXP', weekly: 0, daily: 0, badge: '' },
-  { r: 9, cap: '김승현', name: 'S/PIO', weekly: 0, daily: 0, badge: '' },
-  { r: 10, cap: '모승현', name: 'S/HAR', weekly: 0, daily: 0, badge: '' },
+  { r: 9, cap: '모승현', name: 'S/HAR', weekly: 0, daily: 0, badge: '' },
+  { r: 10, cap: '김효원', name: 'S/SPR', weekly: 0, daily: 0, badge: '' },
 ];
 
 const tabs = [
@@ -41,14 +41,15 @@ export function FleetChartSection() {
           {tabs.map(t => (
             <button key={t.id} className={`${s.chartTab} ${activeTab === t.id ? s.chartTabActive : ''}`} onClick={() => setActiveTab(t.id)}>{t.label}</button>
           ))}
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.06.10 보고 기준</span>
         </div>
         {activeTab === 'weekly' && (
           <>
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>SPR(김효원) 667t으로 압도적 주간 1위. 주간 총 어획량 2,146t으로 선단 전체 조업 호조 지속.</>}
-                actionPlan={<>SPR 일평균 95.29t 훌륭한 성과 유지. 하위권(S/EXP, S/PIO, S/HAR)은 현재 입항/수리/전재 중이므로 복귀 시점 이후 조업 효율 향상 방안 마련 필요.</>}
+                situation={<>KONA(이평규) 510t, MARI(김정훈) 495t으로 주간 1·2위 차지. 주간 총 어획량 2,221t으로 선단 전체 조업 호조 지속. 일평균 70t 이상으로 탁월한 성과.</>}
+                actionPlan={<>KONA 일평균 72.86t, MARI 70.71t 호실적 유지. S/EXP·S/HAR는 입항·수리 중, S/SPR은 6/6 전재 완료 후 조업 복귀(누적 164t) — 복귀 선박의 조업 효율 향상 방안 마련 필요.</>}
               />
             </div>
           </>
@@ -58,8 +59,8 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>월간 어획 기준 SPR이 5월 1,234t을 더해 지속적 상승세 유지, PIO 역시 5월 1,205t으로 괄목할 성과. 월간 총 어획량 7,582t 달성.</>}
-                actionPlan={<>PIO와 SPR의 5월 호실적(각각 1,200t 이상) 요인 분석 및 타 선박 전파. 연간 누계 33,412t 순항 중이므로 현 페이스 유지에 만전.</>}
+                situation={<>연간 누적 기준 S/SPR 5,145t으로 최다 어획 달성. S/HAR 4,160t, MARI 4,065t, N/STAR 4,025t 순. 6월 첫째주 2,221t 어획으로 월간 실적 순항 중.</>}
+                actionPlan={<>SPR의 누적 실적 최고점 요인 분석 및 타 선박 전파. 태평양 선망 연간 누계 35,979.5t 순항 중이므로 현 페이스 유지에 만전.</>}
               />
             </div>
           </>
@@ -69,8 +70,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>김효원(S/SPR) 일어획 30.1t으로 전체 1위 등극. 모승현(S/HAR)은 29.5t으로 2위. 반면 김형주(N/SUN)는 13.4t으로 최하위 — 평균 23.0t 대비 -9.67t.</>}
-                actionPlan={<>N/SUN 저실적 원인(합작선 운영 효율, 어장 접근성 등) 심층 분석 지속. SPR 1위 탈환을 이끈 조업 패턴 및 어장 이동 전략 벤치마킹.</>}
+                situation={<>김효원(S/SPR) 일어획 29.2t으로 전체 1위 유지. 모승현(S/HAR) 29.0t으로 2위. 반면 김형주(N/SUN)는 14.2t으로 최하위 — 평균 23.2t 대비 -9.06t.</>}
+                actionPlan={<>N/SUN 저실적 원인(합작선 운영 효율, 어장 접근성 등) 심층 분석 지속. KONA(이평규) 89일차 일어획 23.0t으로 평균 근접 — 빠른 적응 성과 유지.</>}
               />
             </div>
           </>
@@ -81,6 +82,7 @@ export function FleetChartSection() {
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>일일 업무보고 26.06.10 기준</span>
         </h3>
         <table className={s.rankTable}>
           <thead>
@@ -116,7 +118,7 @@ export function FleetDetailPanel() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <BarChart3 size={18} color="var(--accent-primary)" />
           <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>선장 현어기 누적 실적 상세</span>
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명)</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · 26.06.10 보고 기준</span>
         </div>
         <ChevronDown size={18} className={`${s.expandChevron} ${isOpen ? s.expandChevronOpen : ''}`} color="var(--text-muted)" />
       </div>
@@ -148,8 +150,8 @@ export function FleetDetailPanel() {
           </div>
           <div style={{ marginTop: 16 }}>
             <TakeawayBox
-              situation={<>김효원(S/SPR) 247일간 7,423t 달성하며 전체 일어획 1위(30.1t) 탈환. 모승현(S/HAR) 29.5t으로 2위. 전체 일어획 평균 23.0t.</>}
-              actionPlan={<>N/SUN 저실적 원인 긴급 분석 유지. KONA(이평규) 82일차 일어획 18.7t으로 아직 평균 이하 — 적응기 후 실적 개선 여부 관찰 요망.</>}
+              situation={<>김효원(S/SPR) 254일간 7,423t 달성하며 전체 일어획 1위(29.2t) 유지. 모승현(S/HAR) 29.0t으로 2위. 전체 일어획 평균 23.2t.</>}
+              actionPlan={<>N/SUN 저실적 원인 긴급 분석 유지. KONA(이평규) 89일차 일어획 23.0t으로 평균 도달 — 적응기 후 괄목할 성과 개선 중.</>}
             />
           </div>
         </div>

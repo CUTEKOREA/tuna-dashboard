@@ -45,7 +45,7 @@ export default function GensanCanneryStatusCharts() {
           <div style={{ marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
-                <TermTooltip term="필리핀 젠산 공장 일 생산량" description="각 가공 공장(Cannery)이 하루에 생산할 수 있는 최대 가능 생산량(CAPA) 대비 실제 오늘 가동된 일 생산량 실적(MT)을 보여줍니다." />
+                <TermTooltip term="필리핀 젠산 공장 일 생산량" description="각 가공 공장(Cannery)이 하루에 생산할 수 있는 최대 가능 생산량(CAPA) 대비 보고 시점에 가동된 일 생산량 실적(MT)을 보여줍니다." />
               </h2>
               <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
                 필리핀 제너럴 산토스(Gensan) 가공 공장 CAPA 대비 실적 (Metric Tons)

@@ -157,6 +157,12 @@ const SALMON_SECTIONS = [
   { id: 'S5', num: '❺', label: 'ESG·지속가능성', pillarKey: 'esg', color: '#be123c' },
 ];
 
+// 패턴 I: 헤더 위젯 카운트는 하드코딩 금지 — JSON widgets.length + 인사이트 모듈 수로 동적 산출.
+// 인사이트 모듈 16종: S1(Smolt·Feed·FeedBio·ForecastSimulator) + S2(Processing·AutomationYield·MarginSqueeze)
+// + S3(SmartColdChain·LogisticsResilience·NTBRadar) + S4(GlobalSupplyPrice·TradeDown)
+// + S5(Climate·DoubleMateriality·ESGTracker·PolicyImpact). 모듈 추가/삭제 시 이 상수를 갱신할 것.
+const INSIGHT_MODULE_COUNT = 16;
+
 export default function SalmonDashboard() {
   const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
@@ -199,6 +205,13 @@ export default function SalmonDashboard() {
 
   const { kpis, widgets } = data;
   const kpiKeys = Object.keys(kpis);
+
+  // L-09/L-12: 라우트가 isLive === true 로 응답하고 실데이터가 있을 때만 LIVE.
+  // 폴백 응답도 truthy 객체이므로 객체 존재 여부만으로 LIVE 격상 금지 (가짜 LIVE 방지).
+  const kamisSalmon = apiData.kamis?.isLive === true && Array.isArray(apiData.kamis?.commodities)
+    ? apiData.kamis.commodities.find((c: any) => String(c.name || '').includes('연어')) || null
+    : null;
+  const kcsLive = apiData.kcs?.isLive === true && Array.isArray(apiData.kcs?.data) && apiData.kcs.data.length > 0;
 
   /* ─── Unified Chart Renderer ─── */
   const renderChart = (widget: any) => {
@@ -395,7 +408,7 @@ export default function SalmonDashboard() {
                 background: SALMON_THEME.gradientText, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 대서양 연어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>V4.2 커맨드 센터 — 45 위젯 · 5 필라 · 6 KPI · 3 라이브 API</p>
+              <p style={{ margin: 0, fontSize: '0.8rem', color: '#64748b' }}>V4.2 커맨드 센터 — {widgets.length + INSIGHT_MODULE_COUNT} 위젯 · {SALMON_SECTIONS.length} 필라 · {kpiKeys.length} KPI · API 연동 3종(KCS·KAMIS·Comtrade)</p>
             </div>
           </div>
           <div style={{ 
@@ -433,12 +446,11 @@ export default function SalmonDashboard() {
                     {kpi.title}
                   </span>
                   {(() => {
-                    // L-09: kpi3/kpi6은 JSON telemetry='live'지만, 실제 API(apiData.kamis/kcs)가
-                    // 응답했을 때만 LIVE로 표기한다. 미응답 시 정직 STATIC 폴백(가짜 LIVE 방지).
-                    const liveResolved = (key === 'kpi3' && apiData.kamis) || (key === 'kpi6' && apiData.kcs);
-                    const jsonStatic = kpi.telemetry && String(kpi.telemetry).toLowerCase() !== 'live';
-                    const badgeStatus = liveResolved ? 'live' : (jsonStatic ? kpi.telemetry : 'static');
-                    const badgeSync = liveResolved ? '실시간 연동중' : (jsonStatic ? kpi.syncDate : 'FishStatJ 2024');
+                    // L-09: kpi3(KAMIS 시세)·kpi6(KCS 무역수지)은 라우트가 isLive:true로 응답하고
+                    // 실데이터가 있을 때만 LIVE 표기. 그 외에는 JSON telemetry(STATIC)+기준일 정직 노출.
+                    const liveResolved = (key === 'kpi3' && !!kamisSalmon) || (key === 'kpi6' && kcsLive);
+                    const badgeStatus = liveResolved ? 'live' : String(kpi.telemetry || 'static').toLowerCase();
+                    const badgeSync = liveResolved ? '실시간 연동중' : kpi.syncDate;
                     if (!kpi.telemetry && !liveResolved) return null;
                     return <TelemetryBadge status={badgeStatus as any} syncDate={badgeSync} />;
                   })()}
@@ -446,8 +458,8 @@ export default function SalmonDashboard() {
                 <IconComp size={16} style={{ color: theme.text, flexShrink: 0 }} />
               </div>
               <div style={{ fontSize: '1.5rem', fontWeight: 800, color: '#f8fafc' }}>
-                {key === 'kpi3' && apiData.kamis && Array.isArray(apiData.kamis.data) && apiData.kamis.data.length > 0 ? `₩${parseInt(apiData.kamis.data[0].price).toLocaleString()} / 100g` 
-                 : key === 'kpi6' && apiData.kcs && Array.isArray(apiData.kcs.data) ? `$${Math.floor(apiData.kcs.data.reduce((acc: number, item: any) => acc + (item.balPayments || 0), 0) / 1000).toLocaleString()}K`
+                {key === 'kpi3' && kamisSalmon ? `₩${Math.round(kamisSalmon.currentPrice).toLocaleString()} / ${kamisSalmon.unit || 'kg'}`
+                 : key === 'kpi6' && kcsLive ? `$${Math.abs(Math.floor(apiData.kcs.data.reduce((acc: number, item: any) => acc + (item.balPayments || 0), 0) / 1000)).toLocaleString()}K`
                  : parsed ? (
                   <CountUp end={parsed.numberVal} duration={2} separator="," decimals={parsed.decimals} prefix={parsed.prefix} suffix={parsed.suffix} />
                 ) : kpi.value}
@@ -636,13 +648,11 @@ export default function SalmonDashboard() {
     // 기본값을 SYNCED(허위 신선도)가 아닌 STATIC으로 둔다. SYNCED는 실 API 연동 시에만.
     const telemetryStatus: 'LIVE' | 'SYNCED' | 'STATIC' =
       isLive ? 'LIVE' : 'STATIC';
-    // 정적 데이터셋의 실제 빈티지를 정직 표기. JSON syncDate가 '2026-05' 같은 빌드일을 담아
-    // 2026년 신선도를 허위로 암시하므로(L-09), 비실시간 위젯은 데이터 출처 빈티지로 통일한다.
-    // KFAS 학술 위젯은 자체 연구연도(예: '2024-01')를 보존.
-    const isAcademic = String(w.source || '').includes('KFAS') && /\d{4}[-.]\d{2}/.test(String(w.syncDate || ''));
+    // 패턴 E: 일괄 '2026-05' 빌드월 스탬프는 JSON에서 제거 완료 — 남은 syncDate는 실제
+    // 데이터 빈티지이므로 그대로 노출하고, 미기재 시 기본 데이터셋 빈티지 라벨로 폴백(L-09).
     const syncDate = isLive
       ? new Date().toISOString().split('T')[0]
-      : (isAcademic ? w.syncDate : 'FishStatJ 1950-2024');
+      : (w.syncDate || 'FishStatJ 1950-2024');
 
     return (
       <WidgetCard

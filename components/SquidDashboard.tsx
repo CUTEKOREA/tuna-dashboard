@@ -54,10 +54,10 @@ const SECTIONS = [
 ];
 
 const PILLAR_WIDGET_IDS: Record<string, string[]> = {
-  S1: ['w_fta_squid_peru_megaboom', 'w_fta_squid_domestic_comp', 'w_squid_enso_biomass', 'w_squid_loligo_season', 'w1_catch_powers', 'w2_korea_supply', 'w3_jumbo_flying', 'w_squid_price_forecast', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment', 'w48_supply_inversion', 'w57_china_supply_dominance', 'w18', 'w27_squid_climate_geopolitics', 'w12_ax_fishing', 'w68_import_dependency', 'w74_illex_boom_bust', 'w76_area41_illex_share', 'w80_loligo_vs_illex_portfolio', 'w81_mile201_fleet_intensity', 'w82_sprfmo_quota_dashboard', 'w87_dosidicus_collapse_alert', 'w_squid_falkland_loligo_biomass'],
-  S2: ['w_fta_squid_processed_share', 'w_squid_sg_valueup', 'w10_processed_dominance', 'w31_eu_squid_supply_shock', 'w35_spain_trade_hub', 'w37_spain_arbitrage_trap', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w_squid_sourcing_sim', 'w34_value_add_funnel', 'w17', 'w47_spain_processing_empire', 'w30_business_model', 'w83_fesba_processing_capacity', 'w_squid_global_processing_yield'],
+  S1: ['w_fta_squid_peru_megaboom', 'w_fta_squid_domestic_comp', 'w_squid_enso_biomass', 'w_squid_loligo_season', 'w1_catch_powers', 'w2_korea_supply', 'w3_jumbo_flying', 'w_squid_price_forecast', 'w61_kfas_regime_shift', 'w62_kfas_msy_assessment', 'w48_supply_inversion', 'w57_china_supply_dominance', 'w18', 'w27_squid_climate_geopolitics', 'w12_ax_fishing', 'w68_import_dependency', 'w74_illex_boom_bust', 'w76_area41_illex_share', 'w80_loligo_vs_illex_portfolio', 'w_squid_falkland_loligo_biomass'],
+  S2: ['w_fta_squid_processed_share', 'w_squid_sg_valueup', 'w10_processed_dominance', 'w31_eu_squid_supply_shock', 'w35_spain_trade_hub', 'w37_spain_arbitrage_trap', 'w40_value_chain_exploitation', 'w49_processing_funnel', 'w_squid_sourcing_sim', 'w34_value_add_funnel', 'w17', 'w47_spain_processing_empire', 'w30_business_model', 'w_squid_global_processing_yield'],
   S3: ['w50_fleet_opex', 'w53_energy_stress_test', 'w26_squid_ai_jigging_fuel', 'w_squid_hs_tariff_sim', 'w54_sourcing_bottleneck', 'w28_falkland_waterfall', 'w29_capex_shock', 'w43_risk_reward_inversion', 'w66_capex_roadmap', 'w71_fig_licence_system', 'w73_illex_2024_season', 'w79_fleet_competition_map', 'w_squid_origin_diversification_2025', 'w_squid_route_leadtime_compliance'],
-  S4: ['w_fta_squid_decouple', 'w_fta_squid_qprice', 'w_squid_eu_ceph_demand', 'w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_korea_holiday_effect', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap', 'w85_eu_illex_price_cycle', 'w_squid_import_unit_price_mt'],
+  S4: ['w_fta_squid_decouple', 'w_fta_squid_qprice', 'w_squid_eu_ceph_demand', 'w_kosis_squid_cpi', 'w4_unit_price', 'w6_species_pie', 'w7_korea_category', 'w8_china_export', 'w9_trade_deficit', 'w32_eu_squid_price_tier', 'w33_eu_first_sale_spread', 'w36_stagflation_paradox', 'w55_export_concentration', 'w60_twoway_price_simulator', 'w_importyeti_eu_buyers', 'w42_macro_demand_destruction', 'w38_vigo_chokepoint_monopoly', 'w39_mediterranean_premium', 'w41_temporal_arbitrage', 'w44_trade_route_arbitrage', 'w45_christmas_demand_spike', 'w46_korea_holiday_effect', 'w46_france_premium_paradox', 'w5_top_importers', 'w69_eu_supply_gap', 'w_squid_import_unit_price_mt'],
   S5: ['w_squid_cmm18_quota', 'w_ofac_iuu_radar', 'w_wto_squid_sps', 'w_mfds_squid_safety', 'w58_iuu_blackbox_risk', 'w52_iuu_geopolitics', 'w11_no_aquaculture', 'w25_squid_chitosan_biomaterial', 'w51_policy_intervention', 'w77_mile201_dwf_crisis', 'w65_ma_scorecard', 'w67_earnout_sim', 'w70_value_creation', 'w56_sunmin_pe_valuation', 'w72_fig_revenue_trend', 'w75_loligo_scientific_mgmt', 'w78_itq_transition_timeline', 'w_squid_forced_labor_dwf_carbon'],
 };
 
@@ -219,6 +219,7 @@ export default function SquidDashboard() {
       strat: "ENSO 전환 시그널 감지 즉시 페루산 Illex 선도거래 물량을 확보하고, 라니냐 시즌 어획량 증가 시 가공 물량을 적극 매입하여 재고를 확대하십시오.",
       source: "SPRFMO SC13-SQ07 (2025)",
       isLive: false,
+      syncDate: "2025",
       data: [
         { year: "2019", "어획량(천톤)": 780, "ENSO 지수": 0.5 },
         { year: "2020", "어획량(천톤)": 620, "ENSO 지수": -1.1 },
@@ -240,6 +241,7 @@ export default function SquidDashboard() {
       strat: "Loligo 회복 구간에서 채낚기 라이선스를 추가 확보(입어료 +3.2% 반영)하여 프리미엄 원물 확보 채널을 강화하고, Illex 부족분은 페루·아르헨티나 트롤선 원물로 대체 조달하십시오.",
       source: "FIG Loligo Stock Assessment 2025 S1/S2",
       isLive: false,
+      syncDate: "2025",
       data: [
         { season: "2022 S1", "바이오매스 지수": 62 },
         { season: "2022 S2", "바이오매스 지수": 58 },
@@ -262,6 +264,7 @@ export default function SquidDashboard() {
       strat: "중국산 원물의 ESG 리스크가 급등하고 있으므로 EU CSDDD 및 미국 UFLPA 규제를 고려해 페루·포클랜드·아르헨티나 산지 다변화를 추진하고, MSC 인증(현재 두족류 2% 미만) 선점을 추진하십시오.",
       source: "SPRFMO CMM 18-2026 (Panama City 14차 위원회 2026-02~03) & SeafoodWatch 2024",
       isLive: false,
+      syncDate: "2026-03",
       data: [
         { country: "중국", "선박 상한(척)": 570 },
         { country: "페루", "선박 상한(척)": 185 },
@@ -348,7 +351,7 @@ export default function SquidDashboard() {
     {
       id: "w_fta_squid_decouple",
       title: "단가-물량 디커플링 — 2025 액 +36% vs 물량 +17%",
-      subtitle: "KMI 분기보고서 「오징어 수입량/수입액」 누적 데이터. 물량보다 두 배 빠른 액 증가는 단가 폭등 사이클의 명확한 시그널입니다.",
+      subtitle: "KMI 분기보고서 「오징어 수입량/수입액」 누적 데이터. 물량보다 두 배 빠른 액 증가는 단가 폭등 사이클의 명확한 시그널입니다. [집계 스코프: KMI 오징어 품목 협의 기준 — 2024년 141.3천 톤. 갑오징어·건조·조미가공까지 포함한 관세청 HS 0307·1605 13개 코드 광의 통합(2024년 207천 톤, '수입 의존도 분해' 위젯)과는 집계 범위가 달라 수치가 다름]",
       chartType: "Composed",
       xKey: "year",
       bars: [
@@ -449,6 +452,11 @@ export default function SquidDashboard() {
 
   // Merge live API widgets + new research widgets with JSON widgets
   const widgets = [...jsonWidgets, ...apiWidgets, ...newResearchWidgets];
+
+  // 헤더 카운트 동적 산출 — 5-Pillar 매핑에 실재하는 위젯만 집계 (하드코딩 카운트 금지)
+  const pillarIdSet = new Set(Object.values(PILLAR_WIDGET_IDS).flat());
+  const VALUE_CHAIN_WIDGET_COUNT = 5; // SquidVCFishing·Processing·Logistics·Product·Market — Pillar당 1개 고정 렌더
+  const renderedWidgetCount = widgets.filter((w: any) => pillarIdSet.has(w.id)).length + VALUE_CHAIN_WIDGET_COUNT;
 
   /* ─── Unified Chart Renderer (supports both old series and new bars/lines/areas format) ─── */
   const renderChart = (widget: any) => {
@@ -670,7 +678,7 @@ export default function SquidDashboard() {
               <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
                 오징어 전략 인텔리전스
               </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>오징어 전략 커맨드 센터 — {widgets?.length || 18} 위젯 · {kpiKeys?.length || 6} KPIs</p>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>오징어 전략 커맨드 센터 — {renderedWidgetCount} 위젯 · {kpiKeys.length} KPIs</p>
             </div>
           </div>
                     <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
@@ -678,9 +686,9 @@ export default function SquidDashboard() {
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#64748B' }} />
-            <span>{apiCount || 8} APIs <span style={{ color: '#64748B' }}>{apiStatus}</span></span>
+            <span>{apiCount} APIs <span style={{ color: '#64748B' }}>{apiStatus}</span></span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>HS Ping · KOSIS · MFDS · WTO · OFAC · ImportYeti</span>
+            <span style={{ color: 'var(--text-primary)' }}>HS Ping · KOSIS · MFDS · WTO · OFAC · ImportYeti · 가격예측 · 소싱시뮬</span>
           </div>
         </div>
       </header>
@@ -876,8 +884,13 @@ export default function SquidDashboard() {
     
     // cardDesc 표준화
     const cardDesc = w.cardDesc || w.subtitle || methodologyText;
-    // Telemetry 상태 결정
-    const telemetryStatus = w.isLive || w.isLiveApi ? 'live' : (w.reliability && w.reliability < 70 ? 'static' : 'synced');
+    // Telemetry 상태 결정 — 위젯 선언값(telemetry) 우선, 미선언 시 STATIC으로 정직 표기 (truthiness 격상 금지)
+    const declaredStatus = typeof w.telemetry === 'string' ? w.telemetry : w.telemetry?.status;
+    const telemetryStatus = (w.isLive || w.isLiveApi)
+      ? 'live'
+      : ((declaredStatus?.toLowerCase?.() as 'synced' | 'static' | undefined) || 'static');
+    // syncDate는 위젯이 실제 보유한 값만 노출 — 일괄 fallback 금지 (부재 시 TelemetryBadge가 날짜 생략)
+    const telemetrySyncDate = w.syncDate || (typeof w.telemetry === 'object' ? w.telemetry?.syncDate : undefined);
     
     return (
       <div key={w.id} className={`${styles.glassCard} ds-card`} style={{display: 'flex', flexDirection: 'column', minHeight: '600px'}}>
@@ -890,7 +903,7 @@ export default function SquidDashboard() {
             {w.title}
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
-            <TelemetryBadge status={telemetryStatus} syncDate={w.syncDate || '2026-05'} />
+            <TelemetryBadge status={telemetryStatus} syncDate={telemetrySyncDate} />
             {w.unit && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 500, whiteSpace: 'nowrap' }}>(단위: {w.unit})</span>}
           </div>
         </div>

@@ -36,11 +36,11 @@ export default function GensanVesselStatus() {
             <TermTooltip term="Gensan Fish Port Complex (GSFPC) Status" description="필리핀 제너럴 산토스 항구의 원어 하역 완료 및 입항 예정 선박 현황입니다." />
           </h2>
           <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-            Weekly Report (Prepared by GMTS) | 2026/05/06 기준
+            주간 보고 (GMTS 작성) | 기준일 2026/05/06 — 보고 시점 고정 자료
           </p>
         </div>
         <div style={{ padding: '8px 16px', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '8px', color: '#60a5fa', fontSize: '13px', fontWeight: 'bold', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-          <span>Gensan Tuna Fish Price</span>
+          <span>젠산 참치 어가 (2026/05/06 기준)</span>
           <span style={{ fontSize: '18px', color: 'var(--text-primary)' }}>GSP (Non-MSC): <strong style={{ color: 'var(--color-success)' }}>$1,900</strong></span>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function GensanVesselStatus() {
         <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px' }}>
           <h3 style={{ fontSize: '14px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', margin: '0 0 16px 0' }}>
             <CheckCircle2 size={16} color="var(--color-success)" />
-            Completed Discharging Vessels (2)
+            하역 완료 선박 (2척)
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {completedVessels.map((v, i) => (
@@ -76,7 +76,7 @@ export default function GensanVesselStatus() {
         <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px' }}>
           <h3 style={{ fontSize: '14px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', margin: '0 0 16px 0' }}>
             <Clock size={16} color="var(--color-warning)" />
-            Incoming Vessels (3)
+            입항 예정 선박 (3척 · 2026/05/06 보고 당시)
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {incomingVessels.map((v, i) => (
@@ -87,7 +87,7 @@ export default function GensanVesselStatus() {
                 </div>
                 <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: 'var(--text-muted)' }}>
                   <div>Total Cargo: <strong style={{ color: 'var(--text-main)' }}>{v.cargo}</strong></div>
-                  <div>ETA: <strong style={{ color: 'var(--color-success)' }}>{v.eta}</strong></div>
+                  <div>ETA (보고 당시 예정): <strong style={{ color: 'var(--color-success)' }}>{v.eta}</strong></div>
                   <div style={{ gridColumn: '1 / -1' }}>Consignee: {v.consignee}</div>
                 </div>
               </div>

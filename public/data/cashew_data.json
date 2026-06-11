@@ -1209,7 +1209,7 @@
     {
       "id": "w13",
       "title": "수매가 및 마진 방어선 분석 (Spread)",
-      "subtitle": "글로벌 도매 시세 vs 아프리카 최저 수매가(Minimum Producer Price)",
+      "subtitle": "글로벌 도매 시세 vs 아프리카 최저 수매가(Minimum Producer Price) (E 표기 연도는 작성 시점 추정치 — 실측 미반영)",
       "chartType": "Area",
       "xKey": "year",
       "areas": [
@@ -1636,7 +1636,7 @@
     {
       "id": "w20",
       "title": "글로벌 캐슈넛 수요 트렌드 (2020–2030E) [📊 Data Pipeline Verified]",
-      "subtitle": "건강 스낵·캐슈밀크·비건 치즈 — $8.2B에서 $12.7B 시장으로",
+      "subtitle": "건강 스낵·캐슈밀크·비건 치즈 — $8.2B에서 $12.7B 시장으로 (E 표기 연도는 작성 시점 추정치 — 실측 미반영)",
       "chartType": "Area",
       "xKey": "year",
       "areas": [
@@ -2394,7 +2394,7 @@
     {
       "id": "w11",
       "title": "글로벌 공급망 전환 레이더 (베트남(Vietnam) vs 서아프리카) [📊 Data Pipeline Verified]",
-      "subtitle": "베트남(Vietnam) 원물 수입 정체 및 아프리카 현지 가공 캐파 증가 트렌드",
+      "subtitle": "베트남(Vietnam) 원물 수입 정체 및 아프리카 현지 가공 캐파 증가 트렌드 (E 표기 연도는 작성 시점 추정치 — 실측 미반영)",
       "chartType": "Composed",
       "xKey": "year",
       "bars": [

@@ -33,9 +33,6 @@ export async function GET() {
         vessels = db.unloading_vessels || [];
         reports = db.unloading_reports || [];
         species = db.unloading_species || [];
-        
-        // Sort reports ascending by report_date
-        reports.sort((a, b) => a.report_date.localeCompare(b.report_date));
       } catch {
         // Fallback
       }
@@ -58,6 +55,16 @@ export async function GET() {
       if (sErr) throw sErr;
       species = sData || [];
     }
+
+    // Sort reports chronologically. report_date is 'M/D' text, so lexicographic
+    // ordering breaks at two-digit days ('6/10' < '6/9') and would also corrupt
+    // actualTotal below (taken from the last report's cumulative amount).
+    // Applies to both local-DB and Supabase paths (DB .order() is lexicographic too).
+    const reportDateKey = (s: any): number => {
+      const m = String(s || '').match(/(\d{1,2})\s*\/\s*(\d{1,2})/);
+      return m ? parseInt(m[1], 10) * 100 + parseInt(m[2], 10) : 0;
+    };
+    reports.sort((a: any, b: any) => reportDateKey(a.report_date) - reportDateKey(b.report_date));
 
     const mergedData: any = {};
 

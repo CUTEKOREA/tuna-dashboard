@@ -40,7 +40,7 @@ export default function TraderStatus() {
           <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
             <TermTooltip term="트레이더별 반입 현황 (2026)" description="월별 트레이더별 반입 물량(MT) 추이" />
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 월별 트레이더 실적 (Metric Tons)</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 1~5월 트레이더별 반입 실적 (MT) — 사내 집계, 2026-05 기준</p>
         </div>
       </div>
 
@@ -64,7 +64,7 @@ export default function TraderStatus() {
               contentStyle={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
               itemStyle={{ fontSize: '13px' }}
               labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
-              formatter={(value: number, name: string) => [`${value.toLocaleString()} MT`, name]}
+              formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
             />
             <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
             <Bar dataKey="FCF" name="FCF" stackId="a" fill="url(#tFcf)" radius={[0, 0, 5, 5]} />

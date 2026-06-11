@@ -261,7 +261,7 @@ export default function TunaRanching() {
           {quotaExhaustion && (
             <div style={{ marginBottom: '20px', padding: '15px', background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ fontSize: '0.85rem', color: '#e2e8f0', fontWeight: 'bold' }}>⚠️ 덤핑 경보: 실시간 유럽 쿼터 소진율</span>
+                <span style={{ fontSize: '0.85rem', color: '#e2e8f0', fontWeight: 'bold' }}>⚠️ 덤핑 경보: 유럽 쿼터 소진율 (2026 Q1 추정)</span>
                 <span style={{ fontSize: '0.85rem', color: 'var(--color-danger)', fontWeight: 'bold' }}>{quotaExhaustion.euExhaustionRate}%</span>
               </div>
               <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', overflow: 'hidden' }}>

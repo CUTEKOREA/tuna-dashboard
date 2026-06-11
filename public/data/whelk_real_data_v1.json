@@ -126,6 +126,10 @@
       "name": "세네갈",
       "value": 3.63,
       "unitPrice": 4.73
+    },
+    {
+      "name": "기타",
+      "value": 7.79
     }
   ],
   "seasonalityData": [

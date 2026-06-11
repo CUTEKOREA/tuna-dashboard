@@ -9,11 +9,42 @@ import {
 } from 'recharts';
 import { Ship, Globe, Flag, Building2, Link2, Search, Download, ChevronUp, ChevronDown, X, Filter, Database, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import {
-  vessels, RFMO_COLORS, RFMO_NAMES, TOTAL_VESSELS, MULTI_RFMO_COUNT,
+  vessels, RFMO_COLORS, TOTAL_VESSELS, MULTI_RFMO_COUNT,
   TOTAL_FLAGS, TOTAL_OPERATORS, TOTAL_RFMOS,
   getRfmoStats, getFlagStats, getOperatorStats, getContinentStats,
   FLAG_EMOJI, type PurseSeinerVessel
 } from '../data/purseSeinerData';
+import TelemetryBadge from './TelemetryBadge';
+
+/* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
+const DATA_DATE = '2026-05-27';
+
+/* ───────── L-01 한글 매핑 (데이터 키는 영문 유지, 렌더링만 한글) ───────── */
+const RFMO_NAMES_KO: Record<string, string> = {
+  WCPFC: '중서부태평양수산위원회',
+  IOTC: '인도양참치위원회',
+  IATTC: '전미열대참치위원회',
+  ICCAT: '대서양참치보존위원회',
+};
+
+const FLAG_KO: Record<string, string> = {
+  'South Korea': '한국', 'Chinese Taipei': '대만', 'China': '중국', 'Japan': '일본',
+  'Spain': '스페인', 'France': '프랑스', 'Ecuador': '에콰도르', 'Mexico': '멕시코',
+  'Seychelles': '세이셸', 'Mauritius': '모리셔스', 'Iran': '이란', 'Indonesia': '인도네시아',
+  'Philippines': '필리핀', 'Thailand': '태국', 'Ghana': '가나', 'Colombia': '콜롬비아',
+  'Panama': '파나마', 'Italy': '이탈리아', 'Oman': '오만', 'Kenya': '케냐',
+  'Tanzania': '탄자니아', 'Venezuela': '베네수엘라', 'Turkey': '튀르키예', 'Senegal': '세네갈',
+  'Brazil': '브라질', "Côte d'Ivoire": '코트디부아르', 'FSM (Micronesia)': '미크로네시아',
+  'Marshall Islands': '마셜제도',
+};
+
+const CONTINENT_KO: Record<string, string> = {
+  'Asia': '아시아', 'Europe': '유럽', 'Americas': '아메리카', 'Africa': '아프리카',
+  'Indian Ocean Islands': '인도양 도서국', 'Middle East': '중동',
+  'Pacific Islands': '태평양 도서국', 'Other': '기타',
+};
+
+const flagKo = (f: string) => FLAG_KO[f] || f;
 
 /* ───────── Styles ───────── */
 const card = (extra?: React.CSSProperties): React.CSSProperties => ({
@@ -34,6 +65,19 @@ const badge = (color: string): React.CSSProperties => ({
   fontSize: 11, fontWeight: 600, color: '#fff',
   background: color, lineHeight: '18px',
 });
+
+/* ───────── W-04 위젯 헤더 (제목 + cardDesc + TelemetryBadge) ───────── */
+function WidgetHead({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <div style={{ ...sectionTitle, marginBottom: 4, justifyContent: 'space-between' }}>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>{icon} {title}</span>
+        <TelemetryBadge status="STATIC" syncDate={DATA_DATE} />
+      </div>
+      <p style={{ margin: 0, fontSize: 11, color: '#64748b', lineHeight: 1.5 }}>{desc}</p>
+    </div>
+  );
+}
 
 /* ───────── KPI Card ───────── */
 function KpiCard({ icon, label, value, sub, color }: {
@@ -72,9 +116,11 @@ function RfmoDonut() {
 
   return (
     <div style={{ ...card(), flex: '1 1 340px' }}>
-      <div style={sectionTitle}>
-        <Globe size={18} style={{ color: '#3b82f6' }} /> RFMO별 분포
-      </div>
+      <WidgetHead
+        icon={<Globe size={18} style={{ color: '#3b82f6' }} />}
+        title="RFMO별 분포"
+        desc="출처: 4개 RFMO(지역수산관리기구) 공개 선박 레지스트리 — IMO 검증 통과 선박의 RFMO 등록 수 집계 (다중 등록 선박은 기구별 중복 집계)"
+      />
       <ResponsiveContainer width="100%" height={280}>
         <PieChart>
           <Pie data={data} cx="50%" cy="50%" innerRadius={65} outerRadius={110}
@@ -84,7 +130,7 @@ function RfmoDonut() {
           </Pie>
           <Tooltip
             contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
-            formatter={(v: number, name: string) => [`${v}척`, RFMO_NAMES[name] || name]}
+            formatter={(v: number, name: string) => [`${v}척`, RFMO_NAMES_KO[name] || name]}
           />
         </PieChart>
       </ResponsiveContainer>
@@ -106,9 +152,11 @@ function RfmoCards({ onFilter }: { onFilter: (rfmo: string) => void }) {
 
   return (
     <div style={{ ...card(), flex: '1 1 340px' }}>
-      <div style={sectionTitle}>
-        <Database size={18} style={{ color: '#10b981' }} /> RFMO 상세
-      </div>
+      <WidgetHead
+        icon={<Database size={18} style={{ color: '#10b981' }} />}
+        title="RFMO 상세"
+        desc="RFMO별 선박 수·상위 선적국·주요 운영사 집계 — 카드 클릭 시 하단 명부 필터 적용"
+      />
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {Object.entries(rfmoStats)
           .sort((a, b) => b[1].count - a[1].count)
@@ -129,12 +177,12 @@ function RfmoCards({ onFilter }: { onFilter: (rfmo: string) => void }) {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={badge(RFMO_COLORS[rfmo])}>{rfmo}</span>
-                    <span style={{ fontSize: 12, color: '#94a3b8' }}>{RFMO_NAMES[rfmo]}</span>
+                    <span style={{ fontSize: 12, color: '#94a3b8' }}>{RFMO_NAMES_KO[rfmo] || rfmo}</span>
                   </div>
                   <span style={{ fontSize: 18, fontWeight: 700, color: '#e2e8f0' }}>{s.count}척</span>
                 </div>
                 <div style={{ fontSize: 11, color: '#64748b', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                  <span>🏳 {topFlags.map(([f, c]) => `${FLAG_EMOJI[f] || ''} ${f} ${c}`).join(', ')}</span>
+                  <span>🏳 {topFlags.map(([f, c]) => `${FLAG_EMOJI[f] || ''} ${flagKo(f)} ${c}`).join(', ')}</span>
                 </div>
                 {topOps.length > 0 && (
                   <div style={{ fontSize: 11, color: '#64748b', marginTop: 2 }}>
@@ -154,16 +202,18 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
   const flagStats = useMemo(() => getFlagStats().slice(0, 15), []);
 
   const data = flagStats.map(s => ({
-    name: `${FLAG_EMOJI[s.flag] || ''} ${s.flag}`,
+    name: `${FLAG_EMOJI[s.flag] || ''} ${flagKo(s.flag)}`,
     flag: s.flag,
     count: s.count,
   }));
 
   return (
     <div style={{ ...card(), flex: '1 1 420px' }}>
-      <div style={sectionTitle}>
-        <Flag size={18} style={{ color: '#f59e0b' }} /> 국가별 선박 수 (Top 15)
-      </div>
+      <WidgetHead
+        icon={<Flag size={18} style={{ color: '#f59e0b' }} />}
+        title="국가별 선박 수 (상위 15개국)"
+        desc="선적국(Flag State) 기준 보유 선박 수 상위 15개국 집계 — 막대 클릭 시 하단 명부 필터 적용"
+      />
       <ResponsiveContainer width="100%" height={400}>
         <BarChart data={data} layout="vertical" margin={{ left: 130, right: 20, top: 5, bottom: 5 }}
           onClick={(e: any) => { if (e?.activePayload?.[0]) onFilter(e.activePayload[0].payload.flag); }}>
@@ -189,7 +239,7 @@ function ContinentTreemap() {
   const continentStats = useMemo(() => getContinentStats(), []);
   const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
   const data = continentStats.map((s, i) => ({
-    name: s.continent,
+    name: CONTINENT_KO[s.continent] || s.continent,
     size: s.count,
     fill: colors[i % colors.length],
   }));
@@ -211,9 +261,11 @@ function ContinentTreemap() {
 
   return (
     <div style={{ ...card(), flex: '1 1 340px' }}>
-      <div style={sectionTitle}>
-        <Globe size={18} style={{ color: '#8b5cf6' }} /> 대륙별 분포
-      </div>
+      <WidgetHead
+        icon={<Globe size={18} style={{ color: '#8b5cf6' }} />}
+        title="대륙·권역별 분포"
+        desc="선적국의 대륙·권역 매핑 기준 선박 수 집계 (인도양·태평양 도서국은 별도 권역 분류)"
+      />
       <ResponsiveContainer width="100%" height={280}>
         <Treemap data={data} dataKey="size" nameKey="name"
           content={<CustomContent />} animationDuration={800} />
@@ -237,9 +289,11 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
 
   return (
     <div style={{ ...card(), flex: '1 1 420px' }}>
-      <div style={sectionTitle}>
-        <Building2 size={18} style={{ color: '#ec4899' }} /> 주요 운영사 (Top 15)
-      </div>
+      <WidgetHead
+        icon={<Building2 size={18} style={{ color: '#ec4899' }} />}
+        title="주요 운영사 (상위 15개사)"
+        desc="운영사 식별 선박만 집계(미식별 제외) — 운영사명은 레지스트리 원문 표기, 막대 클릭 시 하단 명부 필터 적용"
+      />
       {naCount > 0 && (
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8,
@@ -292,9 +346,11 @@ function OperatorRfmoMatrix() {
 
   return (
     <div style={{ ...card(), flex: '1 1 340px' }}>
-      <div style={sectionTitle}>
-        <Link2 size={18} style={{ color: '#06b6d4' }} /> 운영사 × RFMO 매트릭스
-      </div>
+      <WidgetHead
+        icon={<Link2 size={18} style={{ color: '#06b6d4' }} />}
+        title="운영사 × RFMO 매트릭스"
+        desc="상위 12개 운영사의 RFMO별 등록 선박 수 교차 집계 — 다중 해역 조업 운영사 식별용"
+      />
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 3, fontSize: 12 }}>
           <thead>
@@ -406,7 +462,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
     URL.revokeObjectURL(url);
   };
 
-  const allFlags = [...new Set(vessels.map(v => v.flag))].sort();
+  const allFlags = [...new Set(vessels.map(v => v.flag))].sort((a, b) => flagKo(a).localeCompare(flagKo(b), 'ko'));
   const allOps = [...new Set(vessels.map(v => v.operator).filter(o => o !== 'N/A'))].sort();
 
   const SortIcon = ({ col }: { col: string }) => {
@@ -418,9 +474,11 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
 
   return (
     <div style={card()} id="vessel-table-section">
-      <div style={{ ...sectionTitle, marginBottom: 12 }}>
-        <Search size={18} style={{ color: '#06b6d4' }} /> 전체 선박 검색
-      </div>
+      <WidgetHead
+        icon={<Search size={18} style={{ color: '#06b6d4' }} />}
+        title="전체 선박 검색"
+        desc="IMO 체크디짓 검증 통과 선박 전수 명부 — 선박명·IMO·운영사 검색, RFMO·선적국·운영사 필터, CSV 내려받기 지원"
+      />
 
       {/* Filter Bar */}
       <div style={{
@@ -448,7 +506,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
         <select value={flagFilter} onChange={e => { setFlagFilter(e.target.value); setPage(1); }}
           style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1e293b', color: '#e2e8f0', fontSize: 12, cursor: 'pointer', maxWidth: 150 }}>
           <option value="">전체 국가</option>
-          {allFlags.map(f => <option key={f} value={f}>{FLAG_EMOJI[f] || ''} {f}</option>)}
+          {allFlags.map(f => <option key={f} value={f}>{FLAG_EMOJI[f] || ''} {flagKo(f)}</option>)}
         </select>
         <select value={opFilter} onChange={e => { setOpFilter(e.target.value); setPage(1); }}
           style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1e293b', color: '#e2e8f0', fontSize: 12, cursor: 'pointer', maxWidth: 180 }}>
@@ -489,11 +547,11 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
               <th style={{ padding: '10px 8px', color: '#64748b', textAlign: 'left', fontSize: 11, fontWeight: 600 }}>#</th>
               {[
-                { key: 'name', label: 'Vessel Name', w: 200 },
-                { key: 'imo', label: 'IMO', w: 90 },
-                { key: 'operator', label: 'Owner / Operator', w: 200 },
-                { key: 'gt', label: 'GT', w: 70 },
-                { key: 'flag', label: 'Flag', w: 130 },
+                { key: 'name', label: '선박명', w: 200 },
+                { key: 'imo', label: 'IMO 번호', w: 90 },
+                { key: 'operator', label: '선주/운영사', w: 200 },
+                { key: 'gt', label: '총톤수(GT)', w: 70 },
+                { key: 'flag', label: '선적국', w: 130 },
               ].map(col => (
                 <th key={col.key}
                   onClick={() => handleSort(col.key)}
@@ -526,13 +584,13 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
                 <td style={{ padding: '8px', color: '#e2e8f0', fontWeight: 500 }}>{v.name}</td>
                 <td style={{ padding: '8px', color: '#94a3b8', fontFamily: 'monospace', fontSize: 12 }}>{v.imo}</td>
                 <td style={{ padding: '8px', color: v.operator === 'N/A' ? '#475569' : '#cbd5e1', fontStyle: v.operator === 'N/A' ? 'italic' : 'normal' }}>
-                  {v.operator}
+                  {v.operator === 'N/A' ? '미식별' : v.operator}
                 </td>
                 <td style={{ padding: '8px', color: v.gt ? '#e2e8f0' : '#475569', textAlign: 'right' }}>
                   {v.gt ? v.gt.toLocaleString() : '—'}
                 </td>
                 <td style={{ padding: '8px', color: '#cbd5e1', fontSize: 12 }}>
-                  {FLAG_EMOJI[v.flag] || ''} {v.flag}
+                  {FLAG_EMOJI[v.flag] || ''} {flagKo(v.flag)}
                 </td>
                 <td style={{ padding: '8px' }}>
                   <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
@@ -614,7 +672,7 @@ export default function PurseSeinerDashboard() {
         </h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 13, color: '#64748b' }}>
-            IMO 체크디짓 검증 완료 · {TOTAL_VESSELS}척 · 최종 검증: 2026-05-27
+            IMO 체크디짓 검증 완료 · {TOTAL_VESSELS}척 · 최종 검증: {DATA_DATE}
           </span>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: 4,
@@ -622,7 +680,7 @@ export default function PurseSeinerDashboard() {
             background: 'rgba(16, 185, 129, 0.15)', color: '#34d399',
             border: '1px solid rgba(16, 185, 129, 0.3)',
           }}>
-            <CheckCircle2 size={12} /> IMO Verified
+            <CheckCircle2 size={12} /> IMO 검증 통과
           </span>
         </div>
       </motion.div>

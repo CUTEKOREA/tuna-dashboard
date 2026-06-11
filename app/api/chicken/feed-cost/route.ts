@@ -28,7 +28,8 @@ export async function GET() {
     strat: '[Margin Window Strategy] Silla Co.는 현재의 \"사료비 하락 → 생산 마진 확대\" 윈도우를 적극 활용해야 합니다. 태국 공급사의 원가 절감 효과가 최대인 지금이 장기 고정가 계약(LTA) 체결의 최적 타이밍입니다. 향후 곡물가 반등 시 Silla Co.는 잠긴(Locked-in) 저가에 소싱하여 국내 경쟁사 대비 원가 우위를 확보할 수 있습니다.',
     reliability: 75,
     methodology: '4축 포렌식 감사 — SRC:24 FRS:20 VRF:16 INT:15. 2025E/2026E 예측 2개(-3), 태국 통합 마진 지수=자체 산출(-6), 태국 현지 곡물가 출처 미명시(-7)',
-    source: 'CBOT Corn Futures (2021-2024 실데이터) & USDA WASDE 2025. ⚠️ "태국 통합 마진 지수"는 자체 생성 복합 지표이며 외부 기관 발행이 아님. 2025E/2026E는 WASDE 전망 기반 추정'
+    source: 'CBOT Corn Futures (2021-2024 실데이터) & USDA WASDE 2025. ⚠️ "태국 통합 마진 지수"는 자체 생성 복합 지표이며 외부 기관 발행이 아님. 2025E/2026E는 WASDE 전망 기반 추정',
+    isLive: false // L-12: 정적 스냅샷 — 실시간 API 미연동
   };
 
   return NextResponse.json(data);

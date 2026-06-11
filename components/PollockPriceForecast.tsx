@@ -25,6 +25,9 @@ export function PollockPriceForecastChart() {
     ...(productData?.historical || []).map((h: any) => ({ period: h.period, actual: h.actual, predicted: h.predicted })),
     ...(productData?.forecast || []).map((f: any) => ({ period: f.period, predicted: f.predicted, lower: f.lower_95, upper: f.upper_95 })),
   ];
+  // 시점 정직화: 데이터는 2025-Q1에 동결된 백테스트 시나리오 — '현재/다음 분기'로 위장 금지
+  const lastObservedPeriod = productData?.historical?.at(-1)?.period;
+  const firstForecastPeriod = productData?.forecast?.[0]?.period;
 
   const products = [
     { key: 'frozen_whole', label: '통명태 H&G', color: '#3b82f6' },
@@ -34,12 +37,12 @@ export function PollockPriceForecastChart() {
 
   return (
     <WidgetCard
-      title="W-PF1 · 명태 AI 가격 예측 엔진 (VAR 모형)"
+      title="W-PF1 · 명태 가격 VAR 모형 — 2025-Q1 기준 분석 (과거 백테스트)"
       icon={TrendingUp}
       iconColor="#3b82f6"
       pillar="S1"
-      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 기반 통명태/수리미/명란 분기별 가격 예측 (연방준비은행 FRED API)"
-      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (연방준비은행·예측모형)' }}
+      cardDesc="5변수 VAR(러시아FOB·MGO·SST·KRW/USD·중국가동률) 통명태/수리미/명란 분기별 모형 — 2025-Q1 동결 시나리오의 과거 백테스트이며 현재 시점 미래 예측이 아님"
+      telemetry={{ status: 'STATIC', syncDate: '2025-Q1 기준 백테스트' }}
       customBody={
         <>
           <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
@@ -57,12 +60,12 @@ export function PollockPriceForecastChart() {
             <>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
                 <div style={{ flex: 1, background: 'rgba(59,130,246,0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>현재 가격</div>
+                  <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>최종 관측치{lastObservedPeriod ? ` (${lastObservedPeriod})` : ''}</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#60a5fa' }}>${productData?.historical?.at(-1)?.actual?.toLocaleString() || 'N/A'}</div>
                   <div style={{ fontSize: '0.6rem', color: '#93c5fd' }}>{productData?.unit}</div>
                 </div>
                 <div style={{ flex: 1, background: 'rgba(34,197,94,0.08)', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>다음 Q 예측</div>
+                  <div style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>모형 예측{firstForecastPeriod ? ` (${firstForecastPeriod} · 백테스트)` : ' (백테스트)'}</div>
                   <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#22c55e' }}>${productData?.forecast?.[0]?.predicted?.toLocaleString() || 'N/A'}</div>
                   <div style={{ fontSize: '0.6rem', color: '#86efac' }}>95% CI</div>
                 </div>
@@ -100,9 +103,9 @@ export function PollockPriceForecastChart() {
         </>
       }
       takeaway={{
-        situation: '통명태 FOB 상승 추세(2025Q3 $1,580 예측). 수리미는 구조적 상승(아시아 HMR 수요). 명란은 프리미엄 성장(D2C $10,800).',
-        actionPlan: '통명태: A-시즌 종료 전 선제 매입. 수리미: 실꼬리돔 블렌딩 최적화. 명란: D2C 프리미엄 전환으로 마진 7배 확보.',
-        source: '(기준 2024-08 자체추정) 수산물 무역 단기 전망모형 · 연방준비은행(FRED) API',
+        situation: '2025-Q1 시점 동결 백테스트: 당시 모형은 통명태 FOB 상승(2025-Q3 $1,580), 수리미 구조적 상승(아시아 HMR 수요), 명란 프리미엄 성장(2026-Q1 $10,800)을 예측. 이후 분기의 실측 검증(wiring)은 미완 상태.',
+        actionPlan: '백테스트 시그널(통명태 선제 매입·수리미 블렌딩 최적화·명란 D2C 전환)은 방향성 참고로만 활용하고, Atuna·NMFS 실측 데이터 연동 후 모형을 재추정해 의사결정에 반영.',
+        source: '(기준 2025-Q1 동결 시나리오 · 2024-08 자체추정 모형) 수산물 무역 단기 전망모형',
       }}
     />
   );
@@ -124,8 +127,8 @@ export function PollockScenarioSimulator() {
       icon={AlertTriangle}
       iconColor="#f59e0b"
       pillar="S1"
-      cardDesc="5대 시나리오별(기준·쿼터감축·제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST"
-      telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: 'API (연방준비은행·예측모형)' }}
+      cardDesc="5대 시나리오별(기준·쿼터감축·제재강화·SST 양·동시충격) 명태 FOB/수리미 CIF/마진 영향 + 베링해 SST — 2024-08 자체추정 시나리오(동결)"
+      telemetry={{ status: 'STATIC', syncDate: '2024-08 기준 시나리오' }}
       customBody={
         <>
           <div style={{ display: 'grid', gap: '6px' }}>

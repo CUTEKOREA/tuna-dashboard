@@ -1,12 +1,12 @@
 {
   "kpis": {
     "kpi1": {
-      "title": "국내 연안 주꾸미 상업 어획량",
+      "title": "연안 문어류(주꾸미 포함) 어획량",
       "value": "16,069 톤",
       "trend": "연속 하락세",
-      "desc": "유어낚시 포획량 증가 및 산란기 자원 감소 · 출처: 해수부",
+      "desc": "FAO FishStat 한국 보고 문어류(OCT) 합산 2022년 확정값 — 주꾸미 단일종 분리 통계 아님 · 출처: FAO FishStat",
       "telemetry": "synced",
-      "syncDate": "2026-05"
+      "syncDate": "2022 확정값(FAO)"
     },
     "kpi2": {
       "title": "동남아(베트남/태국) 소싱 비중",

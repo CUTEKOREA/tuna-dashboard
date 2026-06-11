@@ -96,17 +96,21 @@ export async function GET(request: Request) {
 
     // ==========================================
     // [D8 FIX] Partial-year metadata for 2026
+    // 달력 월이 아닌 monthlyDetail에 실재하는 월로 라벨 산출 (존재하지 않는 월 누적 주장 방지)
     // ==========================================
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth() + 1; // 1-indexed
     if (baseData._meta) {
       baseData._meta.partialYears = {};
-      if (currentYear === 2026) {
+      const months2026 = Object.keys(baseData.monthlyDetail || {})
+        .filter((m: string) => m.startsWith('2026-'))
+        .map((m: string) => parseInt(m.slice(5, 7), 10))
+        .filter((n: number) => Number.isFinite(n));
+      if (months2026.length > 0) {
+        const firstMonth = Math.min(...months2026);
+        const lastMonth = Math.max(...months2026);
         baseData._meta.partialYears['2026'] = {
           isPartial: true,
-          monthsCovered: currentMonth,
-          label: `1~${currentMonth}월 (${currentMonth}개월간 누적)`
+          monthsCovered: months2026.length,
+          label: `${firstMonth}~${lastMonth}월 (실집계 ${months2026.length}개월)`
         };
       }
     }
@@ -237,13 +241,23 @@ export async function GET(request: Request) {
       networksStatus,
       metrics: {
         exchangeRate: exchangeRate,
+        isExchangeRateLive: erStatus === 'online',
         mgoPrice: mgoPrice || 2050,
+        isMgoLive: mgoStatus === 'online',
+        mgoBasis: mgoStatus === 'online'
+          ? '브렌트유 선물 × 7.45(배럴→톤) × 1.18(MGO 정제 프리미엄) 프록시 산식'
+          : '시세 조회 실패 — 고정 기준치 $2,050/MT 표시 중',
         seaTemperatureAnomaly: sstAnomaly ?? 0,
+        isSstLive: sstAnomaly !== null,
         fishingRiskScore: fishingRiskScore,
+        fishingRiskBasis: '자체 산식: MGO 비용 압력(최대 50점) + ONI 수온 편차(최대 50점) 합산 — 실측 출어 통계 아님',
         latestAuctionMonth: latestMonth || 'N/A',
         arbitrage: {
+          basis: `수입단가 = CIF 고정 기준치(고등어 $${mackerelImportUsd}/kg EUMOFA 노르웨이산 · 오징어 $${squidImportUsd}/kg UN Comtrade 페루산) × 환율 — CIF는 실시간 시세 아님`,
+          isImportLive: false,
           mackerel: {
             importPriceKrw: mackerelImportKrw,
+            importCifUsd: mackerelImportUsd,
             localPriceKrw: mackerelLocal,
             signal: mackerelImportKrw < mackerelLocal ? 'IMPORT' : 'LOCAL_BUY',
             spreadPercent: Math.round(Math.abs((mackerelImportKrw - mackerelLocal) / mackerelLocal * 100)),
@@ -251,6 +265,7 @@ export async function GET(request: Request) {
           },
           squid: {
             importPriceKrw: squidImportKrw,
+            importCifUsd: squidImportUsd,
             localPriceKrw: squidLocal,
             signal: squidImportKrw < squidLocal ? 'IMPORT' : 'LOCAL_BUY',
             spreadPercent: Math.round(Math.abs((squidImportKrw - squidLocal) / squidLocal * 100)),
@@ -261,6 +276,9 @@ export async function GET(request: Request) {
           localAuctionAvg: localAuctionAvg,
           retailAvg: retailAvg,
           marginSpread: marginSpread,
+          retailMultiplier: retailMultiplier,
+          isRetailEstimate: true,
+          retailBasis: `추정 소매가 = 산지 위판가 × ${retailMultiplier} (aT 유통단계별 통계 기반 추정 계수) — aT 실측 소매가 아님`,
           status: marginSpread > 0 ? 'PROFITABLE' : 'NEGATIVE',
           dataSource: latestMonth ? `${latestMonth} 위판 실측 기반` : 'fallback'
         }

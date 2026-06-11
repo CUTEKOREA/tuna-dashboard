@@ -68,7 +68,7 @@ const KPI_THEMES = [
 ];
 
 const CHICKEN_KPIS: Record<string, any> = {
-  k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: 'B2B 프랜차이즈 스펙인 적용', telemetry: 'static', syncDate: '전략 목표' },
+  k1: { title: '태국산 가공육 전환율 (현재/목표)', value: '13%→25%', trend: '📈', desc: '자사 소싱 전략 지표 (수입 점유율 통계 아님) — B2B 프랜차이즈 스펙인 적용', telemetry: 'static', syncDate: '전략 목표' },
   k2: { title: '한국 총 수입량 (2023 역대최대)', value: '23.5만톤', trend: '💰', desc: '관세 할당(TRQ) 최적화 효과', telemetry: 'static', syncDate: 'KITA 2023' },
   k3: { title: '태국 선도 계약 마진 스프레드', value: '+22.4%', trend: '🛡️', desc: '중매인 마진(4.3%) 완전 회피', telemetry: 'static', syncDate: '추정 (선도계약)' },
   k4: { title: '고부가가치(가공육) 수입 비중', value: '64.5%', trend: '🍗', desc: '글로벌 1위 허브 태국 독점', telemetry: 'static', syncDate: 'FAO 23Y' },
@@ -93,7 +93,7 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
   "w_chicken_trade_shift": {
     sit: `<div>
 <p>"HPAI 청정국 지위"란 OIE/WOAH가 인증하는 sanitary 등급. 청정국은 EU·일본·한국 등 prime market 수출 권한 확보, 발병국은 즉시 100% 수입 차단.</p>
-<p>실측: <strong>브라질 = HPAI 발병 위험 + 단순 냉동육 위주. 태국 = HPAI 19년 청정 + 고부가 가공육(순살·꼬치) 수출 70%+</strong>. 두 origin은 동일 commodity가 아닌 완전히 다른 위험·부가가치 등급 — 분리 운영 필수.</p>
+<p>현황: <strong>브라질 = HPAI 발병 위험 + 단순 냉동육 위주. 태국 = HPAI 19년 청정 + 고부가 가공육(순살·꼬치) 수출 70%+</strong>. 두 origin은 동일 commodity가 아닌 완전히 다른 위험·부가가치 등급 — 분리 운영 필수.</p>
 </div>`,
     strat: `<div>
 <p><strong>재정의</strong>: 브라질→태국 전환은 단순 sourcing 다변화가 아닌 <strong>"국내 중간 벤더 마진(4.3%) 회피 + HPAI 위험 zero화의 dual instrument"</strong>.</p>
@@ -103,7 +103,7 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
   "w_chicken_feed_cost": {
     sit: `<div>
 <p>"CBOT 옥수수 선물"이란 시카고상품거래소에서 거래되는 글로벌 사료 곡물 벤치마크. 닭 사육 원가의 60~70%가 사료 — 옥수수 단가 변동이 곧 닭 마진 변동.</p>
-<p>실측: <strong>CBOT 옥수수 $4.15로 전년 대비 하락세 유지 — 사료비 역대 저점 구간. 단, 브라질 HPAI 확산으로 글로벌 사육두수 감축 + 곡물 수요 감소 동시 진행</strong>. 단기 lock-in 윈도우 1~2분기 한정.</p>
+<p>전망(2025E 추정 포함): <strong>CBOT 옥수수 $4.15(2025E)로 전년 대비 하락세 전망 — 사료비 저점 구간. 단, 브라질 HPAI 확산으로 글로벌 사육두수 감축 + 곡물 수요 감소 동시 진행</strong>. 단기 lock-in 윈도우 1~2분기 한정.</p>
 </div>`,
     strat: `<div>
 <p><strong>재정의</strong>: 곡물가 하락은 단순 원가 절감이 아닌 <strong>"사료비를 12개월 고정하여 마진 변동성을 상당 폭 제어할 수 있는 계약 타이밍 기회"</strong>.</p>
@@ -114,7 +114,7 @@ const ENHANCED_INSIGHTS: Record<string, {sit: string, strat: string}> = {
   "w_chicken_arbitrage": {
     sit: `<div>
 <p>"시간 차익거래(Time Arbitrage)"란 물류 리드타임이 다른 origin 간의 공급 격차를 활용해 가격 변동을 monetize하는 트레이딩 기법. HPAI 발병 시점 대비 리드타임 격차가 마진의 핵심 결정 변수.</p>
-<p>실측: <strong>태국 현지 공장 발주 → 부산항 입항 15~20일. HPAI 발병 시 리드타임이 짧을수록 가격 상승폭은 비선형적으로 증가</strong>. 태국 10~14일 vs 브라질 56일 차이가 위기 시 vendor 운명 결정.</p>
+<p>업계추정: <strong>태국 현지 공장 발주 → 부산항 입항 15~20일. HPAI 발병 시 리드타임이 짧을수록 가격 상승폭은 비선형적으로 증가</strong>. 태국 10~14일 vs 브라질 56일 차이가 위기 시 vendor 운명 결정.</p>
 </div>`,
     strat: `<div>
 <p><strong>재정의</strong>: 리드타임 격차는 단순 물류 advantage가 아닌 <strong>"HPAI 사이클 시즌마다 프리미엄 가격을 강제 수취할 systematic arbitrage instrument"</strong>.</p>
@@ -161,10 +161,12 @@ export default function ChickenDashboard() {
           w.sit = ENHANCED_INSIGHTS[w.id].sit;
           w.strat = ENHANCED_INSIGHTS[w.id].strat;
         }
-        // L-12: isLive 필드 기반 동적 telemetry (API 라우트가 isLive를 반환하면 반영)
-        // 현재 모든 chicken API 라우트는 isLive 미반환(정적 스냅샷) → STATIC 유지
-        w.telemetryStatus = w.isLive ? 'live' : (w.telemetryStatus === 'synced' ? 'synced' : 'static');
-        if (!w.syncDate) w.syncDate = '스냅샷';
+        // L-12/L-07: 라우트가 선언한 정직 신호(isLive·telemetry.status·syncDate)를 그대로 소비.
+        // truthiness 격상 금지 — isLive === true 일 때만 LIVE, 라우트가 SYNCED를 선언했을 때만 SYNCED.
+        const declared = String(w.telemetry?.status || w.telemetryStatus || '').toLowerCase();
+        w.telemetryStatus = w.isLive === true ? 'live' : declared === 'synced' ? 'synced' : 'static';
+        if (!w.syncDate && w.telemetry?.syncDate) w.syncDate = w.telemetry.syncDate;
+        // syncDate 부재 시 위조 fallback 금지 — TelemetryBadge가 날짜를 생략함 (패턴 E 정정)
         return w;
       });
       
@@ -207,7 +209,7 @@ export default function ChickenDashboard() {
           syncDate: 'KAMIS 스냅샷',
           sit: `<div>
 <p>"삼복(三伏)"이란 초복·중복·말복 7~8월 한국 닭고기 소비 최절정 시즌. 주간 수요가 평시 대비 2~3배 폭증, vendor의 연간 P&L 결정 분기.</p>
-<p>실측: <strong>여름철 삼복 스팟 수요 폭증 (W27 초복 28,000톤 vs 평시 12,000톤) → 국내 냉동 비축 출하 지연으로 일시적 shortage 발생. 스팟가 최고점 도달 전 출하 timing이 마진의 결정 변수</strong>. 출하 1주 늦으면 단가 30% 차이.</p>
+<p>시나리오 추정: <strong>여름철 삼복 스팟 수요 폭증 (W27 초복 28,000톤 vs 평시 12,000톤 가정) → 국내 냉동 비축 출하 지연으로 일시적 shortage 발생. 스팟가 최고점 도달 전 출하 timing이 마진의 결정 변수</strong>. 출하 1주 늦으면 단가 30% 차이.</p>
 </div>`,
           strat: `<div>
 <p><strong>재정의</strong>: 삼복은 단순 성수기가 아닌 <strong>"비축 → 방출 타이밍 1주 차이가 연간 P&L 20%를 좌우하는 high-stakes operations 게임"</strong>.</p>
@@ -237,7 +239,7 @@ export default function ChickenDashboard() {
           syncDate: 'What-If 시나리오',
           sit: `<div>
 <p>"What-if 시뮬레이션"이란 환율을 외생 변수로 두고 사료비·생산량 변동을 시나리오별로 정량 예측하는 risk model. 영세 농가는 환율 50원 변동에도 줄도산 가능 — 본질적으로 currency-sensitive 산업.</p>
-<p>실측: <strong>원/달러 환율 1,400원 돌파 시 수입 사료비 폭등 → 영세 농가 줄도산 + 국내 생산량 10% 감소 우려. Bull(1,400) 시나리오에서 원가 +12.8%, Extreme(1,450)에서 +18.5%</strong>. 환율은 한국 닭고기 산업의 single biggest external risk.</p>
+<p>시나리오(What-If): <strong>원/달러 환율 1,400원 돌파 시 수입 사료비 폭등 → 영세 농가 줄도산 + 국내 생산량 10% 감소 우려. Bull(1,400) 시나리오에서 원가 +12.8%, Extreme(1,450)에서 +18.5%</strong>. 환율은 한국 닭고기 산업의 single biggest external risk.</p>
 </div>`,
           strat: `<div>
 <p><strong>재정의</strong>: 고환율은 국내 vendor의 위협이 아닌 <strong>"태국 직수입 비중을 자동 확대시키는 sourcing rebalancing 트리거"</strong>. 국내 생산 감소가 곧 수입 vendor의 점유율 expansion.</p>
@@ -473,7 +475,7 @@ export default function ChickenDashboard() {
                   iconColor={sec.color}
                   pillar={pillarS}
                   cardDesc={w.subtitle || ''}
-                  telemetry={{ status, syncDate: w.syncDate || '2026.05' }}
+                  telemetry={{ status, syncDate: w.syncDate }}
                   chartHeight={375}
                   chart={renderChart(w)}
                   takeaway={{

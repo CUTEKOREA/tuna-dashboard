@@ -4,13 +4,13 @@ const HSPING_KEY = process.env.HSPING_API_KEY || "";
 const HSPING_BASE = "https://api.hsping.com/v1/classify";
 
 const FALLBACK = {
-  source: "HS Ping API (Local DB Fallback)",
+  source: "HS Ping 로컬 DB (가공 형태별 HS 코드 내부 매핑표)",
   isLive: false,
   data: [
     { form: "냉동 통갈치", hsCode: "0303.89.9000", conf: 99.8 },
-    { form: "갈치 토막 (Steak)", hsCode: "0304.89.0000", conf: 98.5 },
-    { form: "갈치 순살 (Fillet)", hsCode: "0304.89.0000", conf: 99.1 },
-    { form: "건조/염장 갈치", hsCode: "0305.59.0000", conf: 96.4 },
+    { form: "갈치 토막", hsCode: "0304.89.0000", conf: 98.5 },
+    { form: "갈치 순살", hsCode: "0304.89.0000", conf: 99.1 },
+    { form: "건조·염장 갈치", hsCode: "0305.59.0000", conf: 96.4 },
   ]
 };
 

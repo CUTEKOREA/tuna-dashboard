@@ -106,7 +106,7 @@ const chinaFactorData = [
   { year: '2021', chinaInv: 449, globalPrice: 110, asfOutbreaks: 15 },
   { year: '2022', chinaInv: 452, globalPrice: 115, asfOutbreaks: 8 },
   { year: '2023', chinaInv: 430, globalPrice: 112, asfOutbreaks: 5 },
-  { year: '2024(F)', chinaInv: 415, globalPrice: 118, asfOutbreaks: 2 },
+  { year: '2024(추정)', chinaInv: 415, globalPrice: 118, asfOutbreaks: 2 },
 ];
 
 export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
@@ -121,7 +121,7 @@ export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
       chartHeight={300}
       takeaway={{
         situation: "중국 내 사육 두수(Swine Inventory)가 2019년 ASF 사태로 30% 급감했을 당시, 글로벌 돼지고기 단가는 50% 이상 수직 상승하는 커플링 구조를 보였습니다.",
-        actionPlan: "중국 사육 두수가 하락 반전(415백만 마리 예상)하고 있습니다. 중국 발 재고 비축 사이클 진입 전, 한국 유통업체는 향후 6개월 물량에 대한 글로벌 선도 매입(Forward Buying)을 우선 확정해야 단가 방어가 가능합니다.",
+        actionPlan: "중국 사육 두수는 2024년 415백만 마리로 하락 반전이 추정됐습니다(USDA PSD 업계추정, 2024 기준 동결). 이런 하락 반전 국면에서는 중국 발 재고 비축 사이클 진입 전 향후 6개월 물량의 글로벌 선도 매입(Forward Buying)을 우선 확정해야 단가 방어가 가능합니다.",
         source: "USDA PSD (Swine Inventory), WOAH WAHIS"
       }}
       chart={
@@ -160,13 +160,13 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
       icon={Activity}
       iconColor={accent}
       pillar="S2"
-      cardDesc="100% 곡물 사료에 의존하는 양돈 산업의 수익성 지표 (비율 상승 시 농가 이익)"
-      telemetry={{ status: 'SYNCED', syncDate: 'CBOT -1d' }}
+      cardDesc="100% 곡물 사료에 의존하는 양돈 산업의 수익성 지표 (비율 상승 시 농가 이익) | 자체구성 2023-Q1~2024-Q3, CBOT 방향성 참고"
+      telemetry={{ status: 'STATIC', syncDate: '자체구성 2024-Q3 기준' }}
       chartHeight={300}
       takeaway={{
-        situation: "최근 옥수수 선물 가격 급락(CBOT 185$/t)으로 돈가-옥수수 비율(Hog-Corn Ratio)이 12.5에서 19.8로 극적인 호전을 보이고 있습니다. 이는 농가의 양돈 사육 유인을 강력히 촉발합니다.",
-        actionPlan: "마진 개선으로 인해 글로벌 농가가 모돈(어미돼지) 두수를 늘리는 증식 사이클로 전환했습니다. 향후 6~9개월 뒤 공급 확대(시장 가격 하락)가 예상되므로, 장기 선도 계약보다는 6개월 후 스팟(Spot) 비중을 확대하는 전략이 유효할 수 있습니다.",
-        source: "CBOT Corn Futures, CME Lean Hog"
+        situation: "2024-Q3 기준 옥수수 선물 가격 하락(CBOT 185달러/톤)으로 돈가-옥수수 비율(Hog-Corn Ratio)이 12.5(2023-Q1)에서 19.8로 호전됐습니다. 당시 농가의 양돈 사육 유인을 강하게 자극하는 수준이었습니다.",
+        actionPlan: "이 마진 개선 구간에서 글로벌 농가는 모돈(어미돼지) 증식 사이클로 전환하는 패턴을 보였습니다. 증식 후 6~9개월 뒤 공급 확대(시장 가격 하락)가 따라오는 구조이므로, 유사 국면 재현 시 장기 선도 계약보다 스팟(Spot) 비중 확대가 유효합니다.",
+        source: "CBOT Corn Futures, CME Lean Hog — 자체구성 (2024-Q3 동결 데이터)"
       }}
       chart={
         <ComposedChart data={hogCornData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

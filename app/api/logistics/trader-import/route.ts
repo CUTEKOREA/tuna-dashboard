@@ -1,94 +1,30 @@
 import { NextResponse } from 'next/server';
-import { getCachedData } from '../../../../lib/cache';
 
-const KCS_API_KEY = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
-// Baseline trader shares (based on the static data provided)
-const TRADER_SHARES: Record<string, number> = {
-  FCF: 0.35,
-  DIRECT: 0.30,
-  TRIMARINE: 0.15,
-  ITOCHU: 0.12,
-  MALDIVES: 0.08
-};
-
-async function fetchKcsMonthlyData() {
-  if (!KCS_API_KEY) return null;
-  
-  const now = new Date();
-  const year = now.getFullYear();
-  
-  const params = new URLSearchParams({
-    serviceKey: KCS_API_KEY,
-    strtYymm: `${year}01`,
-    endYymm: `${year}12`,
-    hsSgn: "160414"
-  });
-  
-  const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList?${params.toString().replace(/%25/g, '%')}`;
-  
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    const text = await res.text();
-    
-    // Parse XML for monthly data
-    const monthlyRegex = /<item>[\s\S]*?<impWgt>(\d+)<\/impWgt>[\s\S]*?<year>(\d{4}\.\d{2})<\/year>[\s\S]*?<\/item>/g;
-    const matches = [...text.matchAll(monthlyRegex)];
-    
-    const results: Record<string, number> = {};
-    matches.forEach(m => {
-      const weight = parseInt(m[1], 10);
-      const month = m[2].split('.')[1]; // Get "01", "02"
-      const monthName = new Date(year, parseInt(month, 10) - 1).toLocaleString('en-US', { month: 'short' });
-      results[monthName] = (results[monthName] || 0) + weight;
-    });
-    
-    return results;
-  } catch (e) {
-    console.error("KCS API Error:", e);
-    return null;
-  }
-}
-
+/**
+ * [DEPRECATED 2026-06-11] 패턴 C (A-01 위반) 정정.
+ *
+ * 기존 구현은 KCS(관세청) HS 1604.14 월별 수입 총량(국가 전체)을
+ * 발명된 고정 점유율(FCF 35% / 직거래 30% / TRI MARINE 15% /
+ * ITOCHU 12% / 몰디브 8%)로 기계 분배해 "트레이더별 월 실적"을 합성
+ * 생성하면서 'S-Grade (Empirical) / Direct KCS Integration'으로
+ * 표기했다. 국가 통관 총량과 자사 트레이더별 반입량은 모수 자체가
+ * 다르므로 산식을 전면 제거한다.
+ *
+ * 소비 컴포넌트(TraderImportChart)는 어디에도 렌더되지 않는 죽은
+ * 코드였으며, /logistics의 트레이더 위젯(TraderStatus)은 사내 집계
+ * 정적 데이터(2026-05 기준, STATIC 표기)를 사용한다.
+ */
 export async function GET() {
-  const monthlyVolumes = await fetchKcsMonthlyData();
-  
-  if (!monthlyVolumes) {
-    return NextResponse.json({ error: "Failed to fetch live trade data" }, { status: 500 });
-  }
-
-  // Map to the chart format
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const processedMonthlyData = months
-    .filter(m => monthlyVolumes[m])
-    .map(m => {
-      const total = monthlyVolumes[m];
-      return {
-        month: m,
-        FCF: Math.round(total * TRADER_SHARES.FCF),
-        DIRECT: Math.round(total * TRADER_SHARES.DIRECT),
-        TRIMARINE: Math.round(total * TRADER_SHARES.TRIMARINE),
-        ITOCHU: Math.round(total * TRADER_SHARES.ITOCHU),
-        MALDIVES: Math.round(total * TRADER_SHARES.MALDIVES),
-        Total: total
-      };
-    });
-
-  return NextResponse.json({
-    status: 'success',
-    timestamp: new Date().toISOString(),
-    source: "Korea Customs Service (UNIPASS) / HS 1604.14",
-    auditStatus: {
-      isAudited: true,
-      protocol: "Harness 4-Axis Reliability",
-      grade: "S-Grade (Empirical)",
-      verifiability: "High (Direct KCS Integration)"
+  return NextResponse.json(
+    {
+      isLive: false,
+      deprecated: true,
+      reason:
+        'KCS 국가 통관 총량에 발명 고정 점유율을 곱해 트레이더별 실적을 합성하던 산식이 데이터 무결성 원칙(A-01)에 위배되어 2026-06-11 비활성화. 트레이더별 반입은 사내 집계(TraderStatus, STATIC) 참조.',
     },
-    data: {
-      monthly2026Data: processedMonthlyData,
-      // We can also project the yearly total
-      currentYtdTotal: Object.values(monthlyVolumes).reduce((a, b) => a + b, 0)
-    }
-  });
+    { status: 410 },
+  );
 }

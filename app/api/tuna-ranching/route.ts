@@ -21,7 +21,7 @@ export async function GET() {
   data.livePriceData = {
     japanPrice: 14.85,
     koreaUSPrice: 22.18,
-    lastUpdated: new Date().toISOString()
+    lastUpdated: '2026-05 (정기 갱신 추정치)' // L-09: 현재시각 스탬프 금지 — 추정치 작성 시점 표기
   };
 
   // 2. ICCAT/GLOBEFISH API - 쿼터 소진율
@@ -34,12 +34,12 @@ export async function GET() {
     alertMessage: "유럽 업체의 쿼터 조기 소진으로 단기 덤핑 리스크 감지됨"
   };
 
-  // 3. MOF/FAO API - 양식 vs 어획 크로스오버 스프레드 실시간 추적기 (최근 주간 데이터 추가)
+  // 3. MOF/FAO 통계 기반 양식 vs 어획 크로스오버 스프레드 (정기 갱신 추정치 — 라이브 아님)
   data.aquaculturePremium.push({
-    year: "Live",
+    year: "2026 추정",
     "야생_어획_단가": 23200,
     "양식_단가": 33100,
-    note: "실시간 스프레드 확대 (양식 프리미엄 +42%)"
+    note: "스프레드 확대 (양식 프리미엄 +42%, 2026-05 추정)"
   });
 
   // 4. Middle East Local API + EUMOFA + Logistics + BOK = 글로벌 차익거래 레이더
@@ -121,6 +121,6 @@ export async function GET() {
   // Telemetry 표준화: 정적 JSON + 9개 livePriceData/quotaExhaustion 오버라이트는 SYNCED (정기 갱신 추정치)
   data.isLive = false;
   data.source = data.source || 'tuna_ranching_dashboard.json + 정기 갱신 추정치 (SYNCED)';
-  data.lastUpdated = data.lastUpdated || new Date().toISOString();
+  // L-09: 현재시각을 갱신일로 위조하지 않음 — JSON에 명시된 값이 없으면 생략
   return NextResponse.json(data);
 }

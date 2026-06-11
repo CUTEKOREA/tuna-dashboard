@@ -111,7 +111,7 @@ export default function MscStrategyDashboard() {
                 MSC 전략 인텔리전스 센터
               </h1>
               <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                24개 글로벌 보고서 + 연례보고서 부속 데이터 기반 — MSC 정의 · 현황 · 시장 · 전망 종합 분석 · 30개 위젯
+                24개 글로벌 보고서 + 연례보고서 부속 데이터 기반 — MSC 정의 · 현황 · 시장 · 전망 종합 분석 · 34개 위젯
               </p>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function MscStrategyDashboard() {
           }}>
             <TelemetryBadge status="STATIC" syncDate="2025-26" />
             <span style={{ margin: '0 4px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>Yearbook · Annual Report · ISSF · GlobeScan</span>
+            <span style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>MSC 연감 · 연례보고서 · ISSF · GlobeScan</span>
           </div>
         </div>
       </header>

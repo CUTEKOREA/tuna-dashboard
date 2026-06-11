@@ -15,6 +15,10 @@ export async function GET(request: Request) {
         if (json && json.rates && json.rates.KRW) {
           return {
             timestamp: new Date().toISOString(),
+            // L-12 표준 필드 (additive): isLive / dataAsOf / staleDays
+            isLive: true,
+            dataAsOf: new Date().toISOString().slice(0, 10),
+            staleDays: 0,
             source: "ExchangeRate API (LIVE)",
             metrics: {
               currency: "USD/KRW",
@@ -30,6 +34,11 @@ export async function GET(request: Request) {
       
       return {
         timestamp: new Date().toISOString(),
+        // L-12 표준 필드 (additive): mock 폴백은 isLive:false 정직 표기.
+        // dataAsOf/staleDays는 mock 상수의 실제 빈티지를 알 수 없어 null (수치 발명 금지)
+        isLive: false,
+        dataAsOf: null,
+        staleDays: null,
         source: "BOK / FX API (Fallback/Mock)",
         metrics: {
           currency: "USD/KRW",

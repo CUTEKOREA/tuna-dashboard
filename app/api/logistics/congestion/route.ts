@@ -1,56 +1,29 @@
 import { NextResponse } from 'next/server';
-import { getCachedData } from '../../../../lib/cache';
 
-const FRED_API_KEY = process.env.FRED_API_KEY;
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
+/**
+ * [DEPRECATED 2026-06-11] 패턴 C (A-01 위반) 정정.
+ *
+ * 기존 구현은 FRED 화물 TSI(TSIFRGHT) 지수에 발명 계수를 적용해
+ * 방콕항 체선 지표를 합성 생성했다:
+ *   체선율 = (TSI - 110) x 1.8, 평균 대기일 = TSI / 35,
+ *   묘박지 대기 척수 = TSI / 15, 백로그 = 척수 x 2,500MT.
+ * 미국 내륙 물류 지수와 방콕항 체선 간 인과·비례 관계의 근거가
+ * 없으므로 산식을 전면 제거한다.
+ *
+ * 유일한 소비처(ReeferMovement)는 2026-06-11 정직화 수정에서 본
+ * 라우트 의존을 제거하고 WEEK 22 주간 보고 정적 데이터로 전환했다.
+ */
 export async function GET() {
-  if (!FRED_API_KEY) {
-    return NextResponse.json({ error: "FRED_API_KEY is not defined" }, { status: 500 });
-  }
-
-  try {
-    const data = await getCachedData('logistics_congestion', async () => {
-      // Use Freight TSI (TSIFRGHT) as a proxy for global logistics pressure
-      const url = `https://api.stlouisfed.org/fred/series/observations?series_id=TSIFRGHT&api_key=${FRED_API_KEY}&file_type=json&sort_order=desc&limit=14`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("Failed to fetch FRED data");
-      const json = await res.json();
-      
-      const observations = json.observations;
-      const latestTSI = parseFloat(observations[0].value);
-      
-      // Derive indices (Institutional Proxy Model)
-      // Base TSI is around 130-140.
-      const congestionIndex = Math.min(100, Math.max(0, (latestTSI - 110) * 1.8)); 
-      const avgWaitDays = (latestTSI / 35).toFixed(1);
-      const vesselsAtAnchorage = Math.round(latestTSI / 15);
-      
-      const trend = observations.map((obs: any, i: number) => ({
-        day: `D-${13-i}`,
-        wait: parseFloat((parseFloat(obs.value) / 35).toFixed(1))
-      })).reverse();
-
-      return {
-        timestamp: new Date().toISOString(),
-        source: "FRED Logistics TSI (TSIFRGHT) Proxy",
-        auditStatus: {
-          isAudited: true,
-          protocol: "Harness 4-Axis Reliability",
-          grade: "B-Grade (Proxy Anchored)",
-          verifiability: "Verifiable via Global Logistics TSI"
-        },
-        metrics: {
-          congestionIndex: Math.round(congestionIndex),
-          avgWaitDays: parseFloat(avgWaitDays),
-          vesselsAtAnchorage: vesselsAtAnchorage,
-          backlogMT: vesselsAtAnchorage * 2500,
-          trend: trend
-        }
-      };
-    }, 3600);
-
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch congestion telemetry" }, { status: 500 });
-  }
+  return NextResponse.json(
+    {
+      isLive: false,
+      deprecated: true,
+      reason:
+        '미국 물류 TSI 지수에 발명 계수를 곱해 방콕항 체선율·대기일·대기 척수를 합성하던 산식이 데이터 무결성 원칙(A-01)에 위배되어 2026-06-11 비활성화. 실측 항만 데이터 연동 후 재개 예정.',
+    },
+    { status: 410 },
+  );
 }

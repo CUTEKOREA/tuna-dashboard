@@ -119,7 +119,7 @@ export default function FfaReportPage() {
               textTransform: 'none' as any, letterSpacing: 'normal'
             }}
           >
-            실시간 대시보드
+            메인 대시보드
           </button>
         </div>
       </header>
@@ -131,9 +131,9 @@ export default function FfaReportPage() {
           <span className={styles.sidebarTitle}>슬라이드 목차</span>
           <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {[
-              'Cover Slide',
+              '표지',
               '경영진 요약',
-              'Big Four 경쟁사 분석',
+              '빅4 경쟁사 분석',
               '중국 DWF 선단 팽창',
               'ESG & 지속가능성 규격',
               '대미 로인 수입 & 관세',
@@ -175,9 +175,9 @@ export default function FfaReportPage() {
             {currentSlide > 0 && (
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '0.75rem', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                  FFA Markets Study 2025 UPDATE Slide 0{currentSlide}
+                  FFA 시장 연구 2025 개정판 · 슬라이드 0{currentSlide}
                 </span>
-                <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontWeight: 500 }}>Silla Co. Intelligence Report</span>
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontWeight: 500 }}>신라교역 인텔리전스 리포트</span>
               </div>
             )}
 
@@ -189,7 +189,7 @@ export default function FfaReportPage() {
                 <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(56, 189, 248, 0.08)', border: '1px solid rgba(56, 189, 248, 0.2)', padding: '6px 14px', borderRadius: '500px' }}>
                     <Landmark size={14} className="text-sky-400" />
-                    <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#38bdf8', letterSpacing: '0.1em' }}>EXECUTIVE BRIEFING DECK</span>
+                    <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#38bdf8', letterSpacing: '0.1em' }}>경영진 브리핑 덱</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', lineHeight: '1.25' }}>
@@ -322,9 +322,9 @@ export default function FfaReportPage() {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)', padding: '0.75rem', borderRadius: '8px' }}>
                       <strong style={{ fontSize: '0.75rem', color: '#fff', display: 'block' }}>중국 선단의 특징 및 우회 경로</strong>
                       <ul style={{ fontSize: '0.65rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '4px', paddingLeft: '12px', listStyle: 'disc' }}>
-                        <li>**합작선 활용**: 상해개창 마샬제도 5척, 절강양가 키리바시 5척 등 도서국 국적으로 PNA EEZ 우회 진입.</li>
-                        <li>**금융 정책 지원**: 중국수출입은행 보증 및 성/시 단위의 국가 보조금을 결합한 외교적 쿼터 확보 지원.</li>
-                        <li>**수직 통합 인수**: 스페인 Conservas Albo 및 캐나다 French Creek Seafood를 인수하여 유럽·북미 직채널을 선점.</li>
+                        <li><strong style={{ color: '#fff' }}>합작선 활용</strong>: 상해개창 마샬제도 5척, 절강양가 키리바시 5척 등 도서국 국적으로 PNA EEZ 우회 진입.</li>
+                        <li><strong style={{ color: '#fff' }}>금융 정책 지원</strong>: 중국수출입은행 보증 및 성/시 단위의 국가 보조금을 결합한 외교적 쿼터 확보 지원.</li>
+                        <li><strong style={{ color: '#fff' }}>수직 통합 인수</strong>: 스페인 Conservas Albo 및 캐나다 French Creek Seafood를 인수하여 유럽·북미 직채널을 선점.</li>
                       </ul>
                     </div>
                   </div>
@@ -392,10 +392,10 @@ export default function FfaReportPage() {
                     </div>
                     <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                       <p>
-                        <strong style={{ color: '#fff' }}>대중국 고율 관세의 흔적:</strong> 2018년 트럼프 행정부의 30% 보조 관세 부과 후, 연간 $94M를 상회하던 중국의 수입은 2021년 이후 **$0으로 완전 소멸**했습니다.
+                        <strong style={{ color: '#fff' }}>대중국 고율 관세의 흔적:</strong> 2018년 트럼프 행정부의 30% 보조 관세 부과 후, 연간 $94M를 상회하던 중국의 수입은 2021년 이후 <strong style={{ color: '#fff' }}>$0으로 완전 소멸</strong>했습니다.
                       </p>
                       <p>
-                        <strong style={{ color: '#fff' }}>베트남의 대안 성장:</strong> 중국 퇴출에 따른 반사 혜택으로 베트남 수입액이 2016년 $2.5M에서 2024년 **$54.9M로 20배 이상 급증**하여 2위로 올라섰습니다.
+                        <strong style={{ color: '#fff' }}>베트남의 대안 성장:</strong> 중국 퇴출에 따른 반사 혜택으로 베트남 수입액이 2016년 $2.5M에서 2024년 <strong style={{ color: '#fff' }}>$54.9M로 20배 이상 급증</strong>하여 2위로 올라섰습니다.
                       </p>
                       <p>
                         <strong style={{ color: '#fff' }}>트럼프 2기 리스크:</strong> 보편 추가 관세 15-20% 가해질 시 해외 로인 원가 우위가 마모되며 역내 미국령 사모아(StarKist) 기지로 쏠림 심화 예상.
@@ -441,7 +441,7 @@ export default function FfaReportPage() {
             {/* Bottom Slide Footer (Page Indicators & Controllers) */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '0.75rem', marginTop: '1rem' }}>
               <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
-                Slide {currentSlide + 1} / {totalSlides}
+                슬라이드 {currentSlide + 1} / {totalSlides}
               </span>
               
               {/* Controller Buttons */}
@@ -458,7 +458,7 @@ export default function FfaReportPage() {
                     textTransform: 'none' as any, letterSpacing: 'normal'
                   }}
                 >
-                  PREV
+                  이전
                 </button>
                 <button
                   disabled={currentSlide === totalSlides - 1}
@@ -472,7 +472,7 @@ export default function FfaReportPage() {
                     textTransform: 'none' as any, letterSpacing: 'normal'
                   }}
                 >
-                  NEXT
+                  다음
                 </button>
               </div>
             </div>

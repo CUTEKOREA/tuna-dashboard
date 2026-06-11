@@ -34,7 +34,7 @@ const renderCashewWidget = (opts: {
     pillar={opts.pillar}
     cardDesc={opts.subtitle}
     unit={opts.unit}
-    telemetry={{ status: opts.telemetryStatus, syncDate: opts.syncDate || '2026-05' }}
+    telemetry={{ status: opts.telemetryStatus, syncDate: opts.syncDate }}
     chartHeight={250}
     chart={opts.chart}
     takeaway={{ situation: opts.situation, actionPlan: opts.actionPlan, source: opts.source }}
@@ -124,6 +124,32 @@ const WIDGET_UNITS: Record<string, string> = {
   w37: "%", w38: "%"
 };
 
+// 위젯별 실제 출처 매핑 — 기존 'FAOSTAT 2024' 일괄 fallback이 비FAOSTAT 위젯까지 허위 출처를 부여하던 결함 정정.
+// JSON의 sources 배열을 사용자 노출 한글 라벨로 변환. '[LIVE]' 접두는 해당 라이브 연동이 부재하므로 제거(L-09).
+const SOURCE_LABELS: Record<string, string> = {
+  'FAOSTAT_Data_Domain_TCL_2024.csv': 'FAOSTAT TCL(무역 도메인) 2024 데이터셋',
+  'Cashew_Market_Intelligence_Overview.md': '내부 리서치 노트(캐슈 시장 개요) — 원출처 재확인 필요',
+  'nanoPix_Optical_Sorter_Technical_Spec_v2.md': '내부 기술 노트(광학 선별기 사양 v2) — 원출처 재확인 필요',
+  'Global_Plant_Based_Milk_Market_Trends_2024.md': '내부 리서치 노트(식물성 대체유 동향 2024) — 원출처 재확인 필요',
+  'Cashew_Nut_LCA_Carbon_Footprint_Report_2023.md': '내부 리서치 노트(캐슈 LCA 탄소발자국 2023) — 원출처 재확인 필요',
+  'KCS_API': '관세청(KCS) 통계 인용(정적 스냅샷) — 원출처 재확인 필요',
+  'KCS API (관세청)': '관세청(KCS) 통계 인용(정적 스냅샷) — 원출처 재확인 필요',
+  'DART_API': 'DART 공시 인용(정적 스냅샷) — 원출처 재확인 필요',
+  'DART API (금융감독원)': 'DART 공시 인용(정적 스냅샷) — 원출처 재확인 필요',
+  'MFDS API (식약처 수입식품검역)': '식약처 수입식품검역 통계 인용(정적 스냅샷) — 원출처 재확인 필요',
+  'JRC_EFI_API': 'EU JRC/EFI 자료 인용(정적 스냅샷) — 원출처 재확인 필요',
+};
+
+const formatWidgetSource = (w: any): string => {
+  const raw: string[] = Array.isArray(w.sources) ? w.sources : [];
+  if (!raw.length) return w.source || '출처 재확인 필요';
+  const labels = raw.map((s) => {
+    const clean = String(s).replace(/^\[LIVE\]\s*/, '').trim();
+    return SOURCE_LABELS[clean] || `${clean} — 출처 재확인 필요`;
+  });
+  return Array.from(new Set(labels)).join(' · ');
+};
+
 // 5-Pillar 네비게이터 메타 (캐슈넛 시그니처 그라디언트 — 견과류 stone/nut 톤)
 const SECTIONS = [
   { id: "S1", num: "❶", label: "원료 수급", title: "📍 제1전략기둥: 원물", desc: "글로벌 생산 추이, 수매가 마진 방어선 및 공급망 전환", color: "#f59e0b", start: 0, end: 7 },
@@ -151,6 +177,10 @@ export default function CashewStrategy() {
   );
 
   const { kpis, widgets, d_vietnam_paradox, d_africa_processing, d_macro_sensitivity, d_cnsl_esg } = data;
+
+  // 헤더 카운트는 하드코딩 대신 실렌더 위젯 수에서 동적 산출 (JSON 위젯 + 오버레이 위젯 4종)
+  const overlayWidgetCount = [d_vietnam_paradox, d_africa_processing, d_macro_sensitivity, d_cnsl_esg].filter(Boolean).length;
+  const totalWidgetCount = (widgets?.length || 0) + overlayWidgetCount;
 
   const renderChart = (w: any) => {
     const d = w.data || w.pies;
@@ -275,11 +305,11 @@ export default function CashewStrategy() {
               <h1 style={{ margin:0, fontSize:'1.6rem', fontWeight:800, letterSpacing:'-0.5px', color:'#f8fafc' }}>
                 캐슈넛 산업 전략 지휘소 (Cashew Command Center)
               </h1>
-              <p style={{ margin:0, fontSize:'0.8rem', color:'#64748b' }}>FAOSTAT Real Data · 10 Charts · 127 Data Points</p>
+              <p style={{ margin:0, fontSize:'0.8rem', color:'#64748b' }}>정적 스냅샷 인텔리전스 · 위젯 {totalWidgetCount}개 · 5-Pillar 구조</p>
             </div>
           </div>
           <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: 'none', borderRadius:'8px', color:'#94a3b8' }}>
-            <span style={{ color:'var(--color-success)' }}>FAOSTAT 2024</span> · QCL·TCL·TM·PP·SCL·QV
+            <span style={{ color:'var(--color-success)' }}>FAOSTAT TCL 2024</span> · UN Comtrade · 내부 리서치 노트
           </div>
         </div>
       </header>
@@ -337,25 +367,25 @@ export default function CashewStrategy() {
             </div>
           </div>
 
-          <div style={{ 
-            minWidth: '220px', 
-            background: 'rgba(0,0,0,0.4)', 
-            border: 'none', 
-            borderRadius: '8px', 
+          {/* 종합 스트레스 지수(SCSI)는 산식·출처가 미확정인 임의 합성값(×1.2+40)이어서 제거 — A-01 수치 발명 금지 */}
+          <div style={{
+            minWidth: '220px',
+            background: 'rgba(0,0,0,0.4)',
+            border: 'none',
+            borderRadius: '8px',
             padding: '1rem',
             textAlign: 'center',
 
           }}>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
-              <Activity size={16} color="var(--color-danger)" />
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-danger)', letterSpacing: '1px' }}>SCSI INDEX</div>
+              <Database size={16} color="var(--color-success)" />
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-success)', letterSpacing: '1px' }}>데이터 기준일</div>
             </div>
-            <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f8fafc', lineHeight: 1, marginBottom: '4px' }}>
-              <CountUp end={(() => { const k = kpis; const vals = Object.values(k).map((v: any) => parseFloat(String(v.value).replace(/[^0-9.-]/g,''))); const avg = vals.filter(v => !isNaN(v)).reduce((a,b) => a+b, 0) / Math.max(vals.filter(v => !isNaN(v)).length, 1); return Math.min(100, Math.max(0, Math.round(avg * 1.2 + 40))); })()} duration={2} />
-              <span style={{ fontSize: '1rem', color: '#94a3b8', fontWeight: 600 }}> / 100</span>
+            <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#f8fafc', lineHeight: 1.2, marginBottom: '4px' }}>
+              {data?._metadata?.syncDate || '미기재'}
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#fca5a5', fontWeight: 600 }}>Silla Cashew Stress Index (KPI-Derived)</div>
-            <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '6px' }}>Last Update: {new Date().toLocaleTimeString()}</div>
+            <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 600 }}>정적 스냅샷 · 수동 갱신</div>
+            <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '6px' }}>종합 스트레스 지수는 산식·출처 미확정으로 미산출</div>
           </div>
         </div>
       </div>
@@ -425,8 +455,8 @@ export default function CashewStrategy() {
             {sec.id === 'S1' && d_vietnam_paradox && renderCashewWidget({
               icon: Globe, title: "베트남 캐슈 원물 수입 의존도 리스크 (역설)",
               subtitle: "커널 수출량 대비 원물(RCN) 수입량 격차 (만톤, UN Comtrade 실측)",
-              iconColor: "var(--color-success)", pillar: "S1", telemetryStatus: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'),
-              syncDate: data?._metadata?.syncDate || '2026-05',
+              iconColor: "var(--color-success)", pillar: "S1", telemetryStatus: data?._metadata?.status === 'LIVE' ? 'LIVE' : data?._metadata?.status === 'SYNCED' ? 'SYNCED' : 'STATIC',
+              syncDate: data?._metadata?.syncDate,
               chart: (
                 <AreaChart data={d_vietnam_paradox} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
@@ -455,8 +485,8 @@ export default function CashewStrategy() {
             {sec.id === 'S2' && d_africa_processing && renderCashewWidget({
               icon: Factory, title: "서아프리카 현지 가공 비율 및 B2B 직공급 전환율",
               subtitle: "현지 가공률 상승과 직공급 전환 궤적 (추정 — 실측 시계열 출처 없음)",
-              iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'),
-              syncDate: data?._metadata?.syncDate || '2026-05',
+              iconColor: "var(--color-info)", pillar: "S2", telemetryStatus: data?._metadata?.status === 'LIVE' ? 'LIVE' : data?._metadata?.status === 'SYNCED' ? 'SYNCED' : 'STATIC',
+              syncDate: data?._metadata?.syncDate,
               chart: (
                 <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
@@ -472,7 +502,7 @@ export default function CashewStrategy() {
               situation: (
                 <div>
                   <p>"Origin Grinding(원산지 가공) 정책"이란 산지 정부가 자국 내 1차 가공 비율을 높여 부가가치를 정착시키려 추진하는 산업 정책. 코트디부아르(글로벌 RCN 1위, 점유율 25%)는 2018부터 RCN 수출세 +18% 부과 + 자국 가공 인센티브 동시 가동 → 자국 내 가공 비율 12% → 35% 급증 → 베트남으로 가는 RCN supply 자동 감소.</p>
-                  <p>실측: <strong>서아프리카 자국 가공 비율 2023 12% → 2025 35% (+23%p). 향후 5년 50%+ 정책 목표 → RCN 글로벌 trade 절대량 -40%p 압축 예상. 베트남 trader 마진 sandwich + 한국 vendor 매입가 +28%p 상승 직격</strong>.</p>
+                  <p>추정(실측 아님): <strong>서아프리카 자국 가공 비율 2023 12% → 2025 35% (+23%p). 향후 5년 50%+ 정책 목표 → RCN 글로벌 trade 절대량 -40%p 압축 예상. 베트남 trader 마진 sandwich + 한국 vendor 매입가 +28%p 상승 직격</strong>.</p>
                 </div>
               ),
               actionPlan: (
@@ -486,8 +516,8 @@ export default function CashewStrategy() {
             {sec.id === 'S3' && d_macro_sensitivity && renderCashewWidget({
               icon: Activity, title: "거시 지표 민감도 분석 (What-If 시뮬레이터)",
               subtitle: "운임·환율·기후·프리미엄 변동에 따른 마진 임팩트 (시나리오 모델)",
-              iconColor: "var(--color-warning)", pillar: "S3", telemetryStatus: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'),
-              syncDate: data?._metadata?.syncDate || '2026-05',
+              iconColor: "var(--color-warning)", pillar: "S3", telemetryStatus: data?._metadata?.status === 'LIVE' ? 'LIVE' : data?._metadata?.status === 'SYNCED' ? 'SYNCED' : 'STATIC',
+              syncDate: data?._metadata?.syncDate,
               chart: (
                 <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
@@ -505,7 +535,7 @@ export default function CashewStrategy() {
               situation: (
                 <div>
                   <p>"SCFI(Shanghai Containerized Freight Index, 상하이 컨테이너 운임 지수)"는 글로벌 해상 운임의 weekly benchmark — 인도·서아프리카·동남아 캐슈 운송 단가가 모두 이 지수에 sync. 원달러 환율은 vendor의 수출 매출 환산 결정 → 두 지표가 동시 움직이면 마진은 ±18%p 폭으로 출렁임. "복합 변동성"이 캐슈 vendor의 main risk.</p>
-                  <p>실측: <strong>2026 인도 수확기 진입 → SCFI +12% 급등 → 운임 cost -2.8%p 마진 압축. 동기 원달러 ₩1,365 → ₩1,422 (+4.2%) → 수출 매출 환산 +5.8%p alpha. net 효과 +3.0%p — hedging 안 한 vendor는 완전 운 좋아야 살아남는 구조</strong>.</p>
+                  <p>시나리오 가정(실측 아님): <strong>2026 인도 수확기 진입 → SCFI +12% 급등 → 운임 cost -2.8%p 마진 압축. 동기 원달러 ₩1,365 → ₩1,422 (+4.2%) → 수출 매출 환산 +5.8%p alpha. net 효과 +3.0%p — hedging 안 한 vendor는 완전 운 좋아야 살아남는 구조</strong>.</p>
                 </div>
               ),
               actionPlan: (
@@ -519,8 +549,8 @@ export default function CashewStrategy() {
             {sec.id === 'S5' && d_cnsl_esg && renderCashewWidget({
               icon: Leaf, title: "캐슈 껍질 액(CNSL) 기반 ESG 신사업 포트폴리오",
               subtitle: "부산물(CNSL) 업사이클링을 통한 부가수익 창출 비율 추정",
-              iconColor: "#8b5cf6", pillar: "S5", telemetryStatus: data?._metadata?.isLive ? 'LIVE' : (data ? 'SYNCED' : 'STATIC'),
-              syncDate: data?._metadata?.syncDate || '2026-05',
+              iconColor: "#8b5cf6", pillar: "S5", telemetryStatus: data?._metadata?.status === 'LIVE' ? 'LIVE' : data?._metadata?.status === 'SYNCED' ? 'SYNCED' : 'STATIC',
+              syncDate: data?._metadata?.syncDate,
               chart: (
                 <PieChart>
                   <Pie data={d_cnsl_esg} cx="50%" cy="50%" outerRadius={85} innerRadius={40} dataKey="value" nameKey="name" label={({name,percent}) => `${name} ${(percent*100).toFixed(0)}%`} labelLine={false} fontSize={9}>
@@ -533,7 +563,7 @@ export default function CashewStrategy() {
               situation: (
                 <div>
                   <p>"CNSL(Cashew Nut Shell Liquid, 캐슈넛 외피 액체)"이란 캐슈넛 껍질을 압착·증류해 얻는 갈색 점성 액체. 주성분 카르다놀(cardanol)·아나카르드산(anacardic acid)이 페놀 수지·산업용 레진·자동차 브레이크 라이닝·차세대 바이오 항공유 raw로 재평가 — petrochemical 대체재로 글로벌 친환경 산업의 raw 부족 시대에 단가 +1200~1800% 점프.</p>
-                  <p>실측: <strong>현행 CNSL 폐기/저가 매각 -$0.12/kg → 정제 후 산업용 레진 raw $1.65/kg (13.7배) → 바이오 항공유 정제 raw $2.40/kg (20배). 100톤 가공 vendor 부산물 매출 연 $165,000~$240,000 자동 발생 + 탄소배출권(K-ETS) 평균 12 tCO₂e 감축</strong>.</p>
+                  <p>추정(실측 아님): <strong>현행 CNSL 폐기/저가 매각 -$0.12/kg → 정제 후 산업용 레진 raw $1.65/kg (13.7배) → 바이오 항공유 정제 raw $2.40/kg (20배). 100톤 가공 vendor 부산물 매출 연 $165,000~$240,000 자동 발생 + 탄소배출권(K-ETS) 평균 12 tCO₂e 감축</strong>.</p>
                 </div>
               ),
               actionPlan: (
@@ -556,12 +586,12 @@ export default function CashewStrategy() {
                     icon: Icon, title: cleanTitle,
                     subtitle: w.subtitle || '',
                     iconColor: accent, pillar: sec.id as any,
-                    telemetryStatus: upperStatus, syncDate: w.syncDate || '2024.12',
+                    telemetryStatus: upperStatus, syncDate: w.syncDate,
                     unit: WIDGET_UNITS[w.id],
                     chart: renderChart(w),
                     situation: w.sit,
                     actionPlan: w.strat,
-                    source: w.source || "* FAOSTAT 2024 데이터 기반"
+                    source: formatWidgetSource(w)
                   })}
                 </React.Fragment>
               );

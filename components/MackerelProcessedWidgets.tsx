@@ -81,7 +81,7 @@ export default function MackerelProcessedWidgets() {
         title="칠레-페루 어분(Fishmeal) 제국의 탄생"
         icon={Factory}
         iconColor="#eab308"
-        pillar="P1"
+        pillar="S2"
         cardDesc="FAO FishStatJ Global Production & Non-Food Uses + IFFO — 칠레·페루 고등어류(jack mackerel) 연간 가공량 추이 및 연어 양식·펫케어 매입원가 연동 구조 (자체추정 포함, illustrative)"
         telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023 + IFFO' }}
         customBody={ChartObj1}
@@ -101,7 +101,7 @@ export default function MackerelProcessedWidgets() {
         title="중국의 스텔스 싹쓸이 (블랙홀)"
         icon={AlertTriangle}
         iconColor="var(--color-danger)"
-        pillar="P1"
+        pillar="S2"
         cardDesc="FAO FishStatJ 가공량 통계 — 중국의 고등어 가공량 연간 추이 (훠궈·어묵 내수 수요 견인, 식용/사료 시장 경계 모호화 신호)"
         telemetry={{ status: 'STATIC', syncDate: 'FAO FishStatJ 2023' }}
         customBody={ChartObj2}

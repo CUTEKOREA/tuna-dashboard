@@ -98,8 +98,9 @@ const KPI_THEMES = [
 ];
 
 const GARLIC_KPIS: Record<string, any> = {
-  k1: { title: '글로벌 생산량 (2024)', value: '28M', trend: '📈', desc: '전세계 마늘 연간 2,800만 톤' },
-  k2: { title: '중국 생산 독점률', value: '70%', trend: '⚠️', desc: '패권 및 차이나 리스크 상존' },
+  // k1·k2: W1 차트(FAOSTAT QCL 2024)에서 파생 — 2024 합계 29.69M톤, 중국 21.65M톤(72.9%)
+  k1: { title: '글로벌 생산량 (2024)', value: '29.7M', trend: '📈', desc: '전세계 마늘 연간 약 2,970만 톤 (FAOSTAT 2024)' },
+  k2: { title: '중국 생산 점유율', value: '73%', trend: '⚠️', desc: '패권 및 차이나 리스크 상존 (FAOSTAT 2024 생산 비중)' },
   k3: { title: '흑마늘 마진율 (2034년 추정)', value: '48%', trend: '💰', desc: '고부가가치 2차 가공 마진 방어 (illustrative)' },
   k4: { title: '홍해 사태 보험료', value: '50x', trend: '🚢', desc: '희망봉 우회 시 물류비 폭등' },
   k5: { title: '한국 1인당 소비량', value: '6.7kg', trend: '🇰🇷', desc: 'KREI 2025년산 실측치. 2000년 9.2kg에서 지속 감소' },
@@ -179,6 +180,17 @@ export default function GarlicDashboard() {
   ];
   const savingsPerTEU = (baseCostUSD * fxRateUSD) - (baseCostCNY * fxRateCNY);
 
+  // W5: garlic_w5_sankey.json(수출국→수입국 흐름)을 막대 라벨용 "수출국→수입국" 단일 축으로 변환
+  // (동일 수입국이 복수 흐름에 등장하므로 target 단독 축은 중복 라벨 발생)
+  const w5Flows = w5Data.slice(0, 10).map((d: any) => ({ ...d, flow: `${d.source}→${d.target}` }));
+
+  // W9: garlic_w9_yield.json 원본은 kg/ha — 제목·SIT의 톤/ha 단위에 맞춰 표시값 변환 (1,000배 축 불일치 정정)
+  const w9DataTons = w9Data.map((r: any) => {
+    const o: any = { year: r.year };
+    Object.keys(r).forEach((k) => { if (k !== 'year' && typeof r[k] === 'number') o[k] = Math.round(r[k] / 100) / 10; });
+    return o;
+  });
+
   // 5-Pillar 네비게이터 메타 (마늘 시그니처 그라디언트 — yellow/amber)
   const SECTIONS = [
     { id: 'raw', num: '❶', label: '원료 수급', title: '원물 확보 및 글로벌 생산', desc: '중국 주도의 시장 패권 및 기후/병해충으로 인한 생산 변동성 및 가격 인플레이션 점검', color: '#eab308' },
@@ -218,7 +230,8 @@ export default function GarlicDashboard() {
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
-            <TelemetryBadge status="synced" syncDate="2026.05.17" />
+            {/* 페이지 레벨 동기화 표기: 최신 실데이터 빈티지(KCS·FAOSTAT 2026-06-06 갱신)와 일치 */}
+            <TelemetryBadge status="synced" syncDate="2026-06-06" />
             <div style={{ fontSize: '0.85rem', padding: '0.5rem 1.2rem', background: '#282828', borderRadius: '20px', color: 'var(--text-secondary)', fontWeight: 600 }}>
             <span style={{ color: '#eab308' }}>Global Market 2026</span> · Sourcing · Hubs · ESG
             </div>
@@ -312,7 +325,7 @@ export default function GarlicDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"WSC(World Spice Congress) China Crop Report"는 인도·중국 향신료 협회가 매년 발간하는 중국 마늘 작황 공식 보고서. 글로벌 마늘 시장의 80%를 중국 산둥성(山東省) 한 곳이 좌우 — 산둥의 한 해 작황이 전 세계 마늘 가격의 single anchor가 되는 비대칭 구조.</p>
+                <p>"WSC(World Spice Congress) China Crop Report"는 인도·중국 향신료 협회가 매년 발간하는 중국 마늘 작황 공식 보고서. 본 차트(FAOSTAT QCL) 기준 2024년 글로벌 마늘 생산 약 2,969만톤 중 중국이 2,165만톤(약 73%)을 차지 — 중국 최대 주산지 산둥성(山東省)의 한 해 작황이 전 세계 마늘 가격의 single anchor가 되는 비대칭 구조.</p>
                 <p>실측: <strong>중국 산둥성 2026 재배면적 +8%, 기후 안정에 따른 단수 효율 +6% → 총 수확량 +15% 증가 예측. 글로벌 공급 +12%p 압박 → 원물 가격 -18~-22% 하락 사이클 진입 임박</strong>. 한 지역 한 기후가 전 세계 마늘 P&L을 결정 — agricultural commodity가 사실상 geopolitical instrument.</p>
               </div>
             ),
@@ -373,12 +386,12 @@ export default function GarlicDashboard() {
             situation: (
               <div>
                 <p>"KAMIS(Korea Agro-Fisheries & Food Trade Corporation, 한국농수산식품유통공사) 도매가 지수"는 가락동·강서·구리·인천 등 전국 32개 공영도매시장의 일별 단가를 집계한 한국 농산물 vendor·구매자 동시 기준선. 깐마늘 시장은 5~9월 햇마늘 출하기와 10~4월 저장기로 분기되어 가격 사이클이 명확.</p>
-                <p>실측: <strong>2025-Q2 깐마늘 도매가 15,200원/kg 정점 → 2026-04 9,667원/kg (-36% 정상화). 평년 1.4만원/kg 대비 -31% 아래까지 떨어진 oversupply 국면</strong>. 단기 spot 매수 매력적이나 1년 후 평년 회귀 시 -45% 평가손 가능성 — entry timing이 곧 alpha의 70%.</p>
+                <p>실측(KAMIS 월별, 자기 차트 기준): <strong>2025-09 깐마늘 도매가 20,691원/kg 정점 → 2026-06 7,781원/kg (-62%). 2026년은 1월 11,093원에서 6월 7,781원까지 내리 하락, 평년 6월(8,781원/kg) 대비로도 -11% 낮은 oversupply 국면</strong>. 가격 사이클 진폭이 큰 만큼 entry timing이 곧 alpha의 핵심.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: KAMIS 9,667원은 매수 신호가 아닌 <strong>"평년 1.4만원으로 회귀할 시 spot 매수가 손절 trap이 되는 구간"</strong>. 변동성을 본업으로 만드는 vendor만 수익 가능.</p>
+                <p><strong>재정의</strong>: KAMIS 7,781원(2026-06)은 단순 매수 신호가 아닌 <strong>"평년(월평균 약 1.3만원) 회귀까지의 변동성 자체를 trade해야 하는 구간"</strong>. 변동성을 본업으로 만드는 vendor만 수익 가능.</p>
                 <p><strong>3단계</strong>: ① 국내 햇마늘(창녕·남해·고흥) 농가와 6~9개월 단위 <strong>"평년가 lock 선도계약"</strong> 체결 — 평년 회귀 시 spot 대비 +22%p 마진 보호, 농가에는 가격 변동성 분담 ② 깐마늘 저장 capa(서울·인천 CA 저온창고)를 정상화 국면에 매입·임차 확대 → 2026 가을 가격 spike 시 출하 ③ B2B 외식체인(BBQ·놀부 등 마늘 다소비) 5년 LTA — 시장 평균 +2% 단가로 변동성 vs 안정성 trade하는 win-win 구조 lock-in.</p>
               </div>
             ),
@@ -433,8 +446,8 @@ export default function GarlicDashboard() {
       </div>
       <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        <WidgetCard title="국내 비축 재고 및 용도별 소진 둔화 지표 (단위: %)" icon={RefreshCw} iconColor="#ca8a04" pillar="S2"
-          cardDesc="신선/식용 vs 가공용 재고 소진율 비교 — 외식업황 악화 영향"
+        <WidgetCard title="마늘 소비 형태 구성비 추이 — 신선 vs 가공 (단위: %)" icon={RefreshCw} iconColor="#ca8a04" pillar="S2"
+          cardDesc="신선/식용 vs 가공용 비중 (2010~2026) — 가공 비중의 구조적 확대"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w3Data} layout="vertical">
@@ -451,14 +464,14 @@ export default function GarlicDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"수분 감모(weight loss by moisture)"란 마늘이 저장 중 호흡과 표피 증산으로 무게가 줄어드는 자연 현상. 일반 저온창고 6개월 보관 시 -8~-12%, CA(Controlled Atmosphere, 가스 조절 저장) 시 -3~-5%. 시간이 오래 갈수록 cost 누적 — "재고가 자산이 아니라 시간 소멸형 부채"가 마늘의 본질.</p>
-                <p>실측: <strong>2026 외식업 매출 -7%·B2B 가공 -4% 동반 둔화 → 정부 비축 소진율 평년 78% → 52% (-26%p). 민간 저장고 재고 회전일 145일 → 220일 (+52% 정체)</strong>. 가격이 떨어지는 동시에 보관 cost·감모율은 누적 — vendor 입장에서 "재고 보유 = 매 분기 -3~-5% 자동 손실".</p>
+                <p>"수분 감모(weight loss by moisture)"란 마늘이 저장 중 호흡과 표피 증산으로 무게가 줄어드는 자연 현상. 일반 저온창고 6개월 보관 시 -8~-12%, CA(Controlled Atmosphere, 가스 조절 저장) 시 -3~-5%. 신선 형태로 오래 쥘수록 cost가 누적되는 구조라, 소비가 가공 형태로 이동할수록 신선 재고의 부담은 상대적으로 커짐.</p>
+                <p>실측(자기 차트 기준): <strong>신선/식용 비중 2010년 85% → 2026년 50%로 축소, 가공용은 15% → 50%로 확대 — 16년 만에 가공이 신선과 대등한 절반 시장으로 성장</strong>. 외식·HMR 중심의 수요 구조 전환이 주동인이며, 신선 중심 vendor일수록 저장 감모 cost에 더 길게 노출됨.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 민간 저장고 재고 정체는 "vendor 공동의 risk"가 아닌 <strong>"우리에게는 저가 매입 + 경쟁사 cash flow 압박을 동시 활용할 distress 매입 기회"</strong>.</p>
-                <p><strong>3단계</strong>: ① 저장 6개월 이상 경과한 민간 재고를 평년가 -25%로 distress 매입 — 단 QA 검수 기준을 1+ 등급(수분 8% 이하·부패율 1% 이하)으로 최고 상향, 부적합 lot은 자동 거절 ② 매입 즉시 <strong>가공(다진 마늘·소스화)</strong>으로 즉시 변환 → 신선 형태의 저장 risk를 -38% 절감, 가공 마진 +14%p 추가 확보 ③ 정부(농식품부) 비축 방출 직전 1~2개월 sweet spot — 민간 저장업체 panic selling 압력 최대치, 우리는 distress 매입의 protocol을 미리 ready.</p>
+                <p><strong>재정의</strong>: 가공 비중 50% 도달은 신선 vendor의 위협이 아닌 <strong>"신선 재고의 저장 감모 cost를 가공 SKU 마진으로 전환할 수 있는 구조적 기회"</strong>.</p>
+                <p><strong>3단계</strong>: ① 매입 물량의 가공 전환 비중을 소비 구성비(가공 50%)에 정렬 — 신선 형태 보유 기간을 줄여 감모 cost 노출 축소 ② <strong>다진 마늘·페이스트·소스화</strong> 등 즉시 가공 라인 우선 투자로 신선 재고 회전 단축 ③ KREI 농업관측·농식품부 비축 방출 캘린더를 매입 타이밍 지표로 상시 트래킹 — 방출기 가격 변동을 가공용 저가 매입 윈도우로 활용.</p>
               </div>
             ),
             source: "KREI 농업관측센터 · 농식품부 비축 방출 캘린더 · 저온창고 감모율 R&D",
@@ -541,34 +554,34 @@ export default function GarlicDashboard() {
       </div>
       <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem', marginBottom:'2.5rem' }}>
         
-        <WidgetCard title="양념채소류(양파) 대비 마늘 수요 대체 탄력성 (단위: 톤)" icon={Truck} iconColor="#d97706" pillar="S3"
-          cardDesc="양파 폭등 시 마늘 수요 전이 효과 — 비탄력적 시장 구조"
+        <WidgetCard title="글로벌 마늘 수출 흐름 상위 10 (단위: 톤)" icon={Truck} iconColor="#d97706" pillar="S3"
+          cardDesc="UN Comtrade 상위 10대 양자 수출 흐름 (수출국→수입국) — 중국발 7개 흐름 집중"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
-            <BarChart data={w5Data.slice(0,10)} layout="vertical">
+            <BarChart data={w5Flows} layout="vertical">
               <ChartPatternDefs />
               {grid}
               <XAxis type="number" {...xAxisTextProps} />
-              <YAxis dataKey="target" type="category" width={100} {...yAxisProps} />
+              <YAxis dataKey="flow" type="category" width={110} {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="value" fill="#d97706" name="수출 물량" radius={[0,4,4,0]} />
+              <Bar dataKey="value" fill="#d97706" name="수출 물량 (톤)" radius={[0,4,4,0]} />
             </BarChart>
           }
           takeaway={{
             situation: (
               <div>
-                <p>"교차 가격 탄력성(Cross Price Elasticity, CPE)"이란 A 상품 가격이 1% 오를 때 B 상품 수요가 몇 % 움직이는지 측정. 양념채소(양파·마늘·고추) 간 대체 효과는 economics 교과서대로면 +0.4~+0.8 수준이어야 하나, 실제 한국 식문화에서는 양파↔마늘 CPE가 +0.05 이하 — 거의 독립재(independent goods)에 가까운 구조.</p>
-                <p>실측: <strong>2024 양파 가격 +85% 폭등 → 마늘 수요 +3.2% 미미한 증가. 김치·갈비·찌개·국 레시피상 양파와 마늘은 substitute가 아닌 complement(보완재)로 동시 사용 → 가격 무관 fixed-mix 소비</strong>. 마늘 vendor의 P&L은 양파 가격에 hedged되지 않음, 마늘 자체 수요만이 driver.</p>
+                <p>"무역 흐름 집중도"란 글로벌 교역에서 특정 수출국 발(發) 양자 흐름이 차지하는 비중. 상위 10대 흐름의 구성을 보면 글로벌 마늘 공급망의 실제 모양 — 누가 누구에게 파는지 — 가 드러나며, 수입국 입장에서는 자국향 흐름이 몇 개의 경로에 묶여 있는지가 곧 공급망 리스크.</p>
+                <p>실측(UN Comtrade, 자기 차트 기준): <strong>상위 10대 마늘 수출 흐름 중 7개가 중국발 — 인도네시아 230,806톤·베트남 185,000톤·말레이시아 130,500톤·미국 85,000톤 순. 한국향 흐름은 중국 64,000톤 + 베트남 54,000톤 두 경로(합 118,000톤)뿐</strong>. 비중국 흐름은 아르헨티나→브라질 68,000톤·스페인→독일 35,000톤 등 소수에 그쳐, 글로벌 물동 자체가 중국 단일 허브 구조.</p>
               </div>
             ),
             actionPlan: (
               <div>
-                <p><strong>재정의</strong>: 대체재 부재는 "기회 상실"이 아닌 <strong>"마늘 vendor가 양파 vendor의 cross-elastic risk에서 독립된 시장에서 자체 demand pull을 만들면 monopoly-like 가격 결정력 보유 가능"</strong>.</p>
-                <p><strong>3단계</strong>: ① HMR(가정간편식) 마늘 소스화 R&D — 마늘 디핑 소스·마늘 마요·흑마늘 시럽 등 NEW SKU 개발, 매장 입점 시 마늘 단가 인식 +35% 프리미엄 ② CJ제일제당·오뚜기·동원 등 대형 식품사에 <strong>"마늘 베이스 소스 OEM 공급"</strong> contract — 직접 시장 진입 cost 회피하면서도 가공 마진 lock-in ③ 흑마늘 발효·기능성 식품 channel(아모레퍼시픽 헬스케어 라인, 종근당건강 등) 진출 — 마늘을 "양념"이 아닌 "기능성 식품"으로 카테고리 전환, 단가 25~40배 점프.</p>
+                <p><strong>재정의</strong>: 한국의 마늘 수입은 중국+베트남 2개 경로에 사실상 고정 — <strong>"흐름(route) 다변화 자체가 단가 협상력이자 hedge 자산"</strong>.</p>
+                <p><strong>3단계</strong>: ① 스페인·아르헨티나 등 비중국 수출국과 시범 물량 계약으로 제3 경로 개설 — 중국·베트남 동시 차질 시나리오의 fallback 확보 ② 인도네시아·말레이시아 등 중국 의존 수입국의 단가 동향을 벤치마크로 상시 비교 — 한국향 중국 오퍼가의 적정성 검증 지표로 활용 ③ 관세청·UN Comtrade 월별 흐름 데이터를 트래킹해 신규 수출국 진입·흐름 변동을 조기 감지하는 sourcing 대시보드 운영.</p>
               </div>
             ),
-            source: "UN Comtrade + 한국농촌경제연구원 양념채소 수요 분석 (2020~2026)",
+            source: "UN Comtrade 마늘(HS 0703.20) 양자 무역 흐름 상위 10",
           }} />
 
         <WidgetCard title="정부 TRQ 방출 및 통관 수입 모니터링" icon={Shield} iconColor="#84cc16" pillar="S3"
@@ -719,7 +732,7 @@ export default function GarlicDashboard() {
             situation: (
               <div>
                 <p>"Value Migration(가치 이동)"이란 시장이 성숙기에 진입하면서 마진이 commodity 수량(volume)에서 브랜드·인증·기능성(value-add)으로 이동하는 산업 라이프사이클 패턴. 마늘은 한국에서 commodity 종착역, 유럽·북미에서는 super-food 도약 초입 — 동일 작물이 두 시장에서 정반대 라이프사이클.</p>
-                <p>실측: <strong>한국 1인당 마늘 소비 6.7kg (세계 1위)이나 인구 감소로 시장 -1.2%/년 축소. 미국 1인당 0.9kg / EU 1.6kg로 한국의 1/4~1/7이나 "기능성 갈릭 오일·파우더·발효 흑마늘 추출물" 카테고리 +18%/년 성장 → 절대 시장 규모는 미국·EU가 한국의 4.5배</strong>. volume이 아닌 value 게임으로 이동.</p>
+                <p>실측(자기 차트 기준): <strong>한국 1인당 마늘 소비 6.7kg로 중국(14.3kg)에 이은 최상위권이나 시장 성장률은 +0.8%/년로 사실상 정체. 미국은 1인당 0.9kg(한국의 약 1/7)에 불과하지만 시장규모 $400M로 한국($500M)에 근접하고 성장률 +3.2%/년로 한국의 4배 — 브라질도 +2.8%/년 고성장</strong>. volume이 아닌 value 게임으로 이동.</p>
               </div>
             ),
             actionPlan: (
@@ -742,7 +755,7 @@ export default function GarlicDashboard() {
               <YAxis {...yAxisProps} />
               <RechartsTooltip content={<CustomTooltip />} />
               <Legend wrapperStyle={{fontSize:'10px'}} />
-              <Bar dataKey="value" fill="#facc15" name="무역수지" />
+              <Bar dataKey="value" fill="#facc15" name="금액 (백만 USD)" />
             </BarChart>
           }
           takeaway={{
@@ -866,7 +879,7 @@ export default function GarlicDashboard() {
           cardDesc="FAOSTAT QCL 주요 생산국 단수 시계열 (톤/ha, 2000~2024) — 한국 정체 vs 중국·이집트 상승"
           telemetry={{ status: 'SYNCED', syncDate: '2026-06-06' }} chartHeight={375}
           chart={
-            <LineChart data={w9Data}>
+            <LineChart data={w9DataTons}>
               {grid}
               <XAxis dataKey="year" {...xAxisTextProps} />
               <YAxis {...yAxisProps} />
@@ -896,7 +909,7 @@ export default function GarlicDashboard() {
           }} />
 
         <WidgetCard title="수확량 변동성 및 기후 리스크 지수 (변동률 %)" icon={AlertTriangle} iconColor="#65a30d" pillar="S1"
-          cardDesc="연간 생산 변동률 — 14~18% 변동 계수 (타 작물 대비 높음)"
+          cardDesc="국가별 연간 생산 변동률 — 방글라데시 15.7%·한국 9.8%·이집트 5.2% (국가별 편차 큼)"
           telemetry={{ status: 'SYNCED', syncDate: '2026-05-21' }} chartHeight={375}
           chart={
             <BarChart data={w10Data}>
@@ -912,8 +925,8 @@ export default function GarlicDashboard() {
           takeaway={{
             situation: (
               <div>
-                <p>"변동 계수(Coefficient of Variation, CV)"란 가격 변동성을 평균 대비 표준편차로 측정한 지표 — 낮을수록 안정. 글로벌 commodity 중 밀 CV 8%·옥수수 9%·콩 11% 수준인데 마늘은 <strong>14~18%</strong>로 1.5~2배 — 기후 변동·중국 산둥 단일 의존·투기 자본 유입의 3중 요인이 가격을 매년 ±20% 폭으로 흔듦.</p>
-                <p>실측: <strong>2020~2026 마늘 가격 CV 16.3% (밀의 2배). 최저 6,800원 → 최고 15,200원 (변동폭 +123%). vendor 매입원가 예측 적중률 평균 38%, 제조 마진 분기당 ±7%p 변동 → P&L의 main driver가 가격 변동성</strong>. 마늘 vendor는 사실상 commodity futures trader.</p>
+                <p>"변동 계수(Coefficient of Variation, CV)"란 변동성을 평균 대비 표준편차로 측정한 지표 — 낮을수록 안정. 마늘은 노지 재배 비중이 높아 기후(고온·강우)·병해충에 따라 연간 생산이 크게 출렁이며, 생산 변동이 곧 가격 변동으로 직결되는 구조.</p>
+                <p>실측(자기 차트 기준): <strong>연간 생산 변동률은 방글라데시 15.7%·인도 12.3%·한국 9.8%로 높고, 중국 8.5%·이집트 5.2%는 상대적으로 안정</strong>. 한국은 주요 생산국 중 상위권 변동성으로, 매입원가 예측이 어려워 가격 변동성 관리가 P&L의 main driver — 마늘 vendor는 사실상 commodity futures trader.</p>
               </div>
             ),
             actionPlan: (

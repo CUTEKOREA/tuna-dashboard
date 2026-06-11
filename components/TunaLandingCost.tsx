@@ -124,11 +124,11 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       <div className={styles.cardHeader}>
         <h3 className={styles.cardTitle}>
           <Calculator size={18} style={{ color: '#FCD535' }} />
-          [착지원가] 착지원가 실시간 시뮬레이터
-          <TelemetryBadge status={liveData?.isLive ? 'LIVE' : (liveData ? 'SYNCED' : 'STATIC')} syncDate={liveData?.isLive ? 'Real-time' : (liveData ? liveData.source : '2024년 기준')} />
+          [착지원가] 착지원가 시뮬레이터
+          <TelemetryBadge status={liveData?.isLive ? 'LIVE' : (liveData ? 'SYNCED' : 'STATIC')} syncDate={liveData?.isLive ? '실시간' : (liveData ? liveData.source : undefined)} />
         </h3>
         <p className={styles.cardDesc}>
-          원산지(태국/에콰도르/인도네시아 등)별 FOB 가격에서 한국 도착까지의 총비용(운임+보험+관세+수수료)을 실시간 계산합니다. WITS(관세율), ECOS(환율), Yahoo Finance(유가) API를 연동하여 정밀한 착지원가를 산출합니다.
+          원산지(태국/에콰도르/인도네시아 등)별 FOB 가격에서 한국 도착까지의 총비용(운임+보험+관세+수수료)을 계산합니다. WITS(관세율)·ECOS(환율)·Yahoo Finance(유가) 라이브 조회 성공 시 실시간 환율·유가를 반영하고, 실패 시 기준값으로 산출합니다.
         </p>
       </div>
 

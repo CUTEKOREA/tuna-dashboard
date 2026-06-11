@@ -33,7 +33,7 @@ export default function CarrierUnloadingStatus() {
           운반선 하역 현황
         </h2>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-          태국 방콕(BANGKOK) 양륙 진행 중인 운반선 현황
+          태국 방콕(BANGKOK) 양륙 운반선 현황 — 2026-05-25 주간 보고 기준 (정적 데이터)
         </p>
       </div>
 
@@ -64,14 +64,14 @@ export default function CarrierUnloadingStatus() {
           </tbody>
         </table>
         <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.2)' }}>
-          * 5월 누계 운반선 5척·누적 하역량 19,210 MT. SEIN PHOENIX 하역 중 (5/25 기준 누계 362.98t / 잔 6,592t).
+          * 5월 누계 운반선 5척·누적 하역량 19,210 MT. SEIN PHOENIX는 보고 시점 하역 진행 중이었음 (5/25 기준 누계 362.98t / 잔 6,592t).
         </div>
       </div>
 
       <div>
         <h3 style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 12px 0', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Ship size={16} color="var(--color-info)" />
-          입항 예정 운반선 (방콕)
+          입항 예정이었던 운반선 (방콕 · 2026년 5월 보고 당시)
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
           {incomingVessels.map((v, idx) => (
@@ -85,10 +85,14 @@ export default function CarrierUnloadingStatus() {
                 transition: 'transform 0.18s ease, box-shadow 0.18s ease',
               }}>
               <span style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)' }}>{v.name}</span>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>도착예정: {v.date}</span>
+              <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>보고 당시 도착 예정: {v.date}</span>
             </div>
           ))}
         </div>
+        <p style={{ fontSize: '11px', color: 'var(--text-muted)', margin: '10px 0 0', lineHeight: 1.5 }}>
+          * 2026년 5월 주간 보고 시점의 입항 예정 정보로, 예정일이 모두 경과한 과거 기록입니다.
+          CHERRY STAR(5/13)·JOCHOH(5/15)는 이후 운반선 이동 스케줄(WEEK 22)에 방콕 접안 기록이 확인됩니다.
+        </p>
       </div>
     </div>
   );

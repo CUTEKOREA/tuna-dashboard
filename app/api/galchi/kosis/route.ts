@@ -4,14 +4,14 @@ const KOSIS_KEY = process.env.KOSIS_API_KEY || "";
 const KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do";
 
 const FALLBACK = {
-  source: "KOSIS API (Local DB Fallback)",
+  source: "KOSIS API (로컬 표본 데이터)",
   isLive: false,
   data: [
-    { month: "Jan", "CPI(물가)": 105.2, "도매가(KAMIS)": 95.4 },
-    { month: "Feb", "CPI(물가)": 106.8, "도매가(KAMIS)": 96.1 },
-    { month: "Mar", "CPI(물가)": 108.5, "도매가(KAMIS)": 97.5 },
-    { month: "Apr", "CPI(물가)": 111.0, "도매가(KAMIS)": 101.2 },
-    { month: "May", "CPI(물가)": 115.4, "도매가(KAMIS)": 108.5 },
+    { month: "1월", "CPI(물가)": 105.2, "도매가(KAMIS)": 95.4 },
+    { month: "2월", "CPI(물가)": 106.8, "도매가(KAMIS)": 96.1 },
+    { month: "3월", "CPI(물가)": 108.5, "도매가(KAMIS)": 97.5 },
+    { month: "4월", "CPI(물가)": 111.0, "도매가(KAMIS)": 101.2 },
+    { month: "5월", "CPI(물가)": 115.4, "도매가(KAMIS)": 108.5 },
   ]
 };
 
@@ -34,9 +34,11 @@ export async function GET() {
   return NextResponse.json({
     ...FALLBACK,
     source: health.ok
-      ? `KOSIS Open API (healthcheck OK ${health.checked_at}, ${health.latency_ms}ms · CPI 시계열 매핑 진행 중)`
-      : "KOSIS Open API (healthcheck FAIL, local fallback)",
-    isLive: health.ok,
+      ? `KOSIS Open API (키 정상 — CPI 시계열 실매핑 전, 로컬 표본 표시)`
+      : "KOSIS Open API (healthcheck 실패, 로컬 표본 표시)",
+    // L-09 정직 라벨: healthcheck 200은 데이터 연동이 아니다.
+    // 표시 데이터가 하드코딩 표본인 동안 isLive는 CPI 실매핑 완료 전까지 false 고정.
+    isLive: false,
     apiHealth: health,
   });
 }

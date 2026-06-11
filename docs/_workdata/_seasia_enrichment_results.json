@@ -1,0 +1,1874 @@
+[
+  {
+    "vendorId": "tan-phat",
+    "publicProfile": {
+      "website": "http://www.tanphatfoods.com",
+      "founded": "2010 (2010년 1월 등록)",
+      "headquarters": "베트남 롱안성(Long An) 벤룩현(Ben Luc) 르엉호아면(Luong Hoa) 10조 (Hamlet 10, Luong Hoa Commune, Ben Luc District, Long An Province, Vietnam)",
+      "ownership": "Tan Phat Canned Food JSC (베트남 사업자번호/세금코드 1100790106). 브랜드 'Edison Foods'로도 활동. 모회사·주주 등 지분 구조는 공개정보 없음. (참고: 'Phu Nhat'은 B2B 디렉터리 핸들로만 확인되며 등록 법인명으로는 미확인)",
+      "employees": "301-500명 (자사 신고치, 출처별로 100+~700명까지 편차 있어 미확정)",
+      "revenue": null,
+      "capacityNote": "자사 신고 생산능력(약 100 MT/day, 공장 약 20,000 m2, 자동 생산라인 8개)은 독립 출처로 확인되지 않았습니다. 업계 매체(ATUNA) 및 디렉터리는 자동라인 4개로 보고하고, 회사 자체 페이지의 공장면적(3,000-5,000 m2)과도 상충하여 생산능력 수치는 미검증입니다.",
+      "products": [
+        "Canned tuna (참치캔) — Tongol/Skipjack/Yellowfin 원료, solid/chunk/shredded 형태, in oil/in brine/in oil with chilli, 120g~1700g 용량",
+        "Frozen tuna / cooked tuna loins (냉동·가공 참치 로인, OEM)",
+        "Canned sardine, canned mackerel (정어리캔·고등어캔, in tomato sauce/oil)",
+        "Canned fruit, frozen vegetables and fruit (과일캔·냉동 채소/과일: okra, eggplant, green peas, pineapple, taro, sweet potato, potato, zucchini, mango, pumpkin, dragon fruit 등)"
+      ],
+      "plants": [
+        "베트남 롱안성 벤룩현 참치캔·수산물 가공 공장 (공장 존재는 확인. 단, 면적·자동라인 수 등 세부 규모 수치는 출처 간 상충하여 미확정)"
+      ],
+      "certifications": [
+        {
+          "standard": "BRC (BRCGS Food Safety)",
+          "code": "",
+          "note": "회사 공식 홈페이지 푸터에 'BRC-2025' 인증 이미지 게시 (자사 1차 페이지에 노출되어 인증 클레임 중 가장 근거가 강함). 다만 인증번호 미표기, BRCGS Directory 대조 미실시로 유효성은 미확정 (추정)."
+        },
+        {
+          "standard": "IFS",
+          "code": "",
+          "note": "Saudi Food Show 전시업체 페이지에 'IFS 2025' 인증 문서 참조 존재. 인증번호·IFS Database 대조 미확인으로 미확정 (추정)."
+        }
+      ],
+      "exportMarkets": [
+        "EU / Eastern Europe (자사 신고, 미확정)",
+        "Korea (자사 신고, 미확정)",
+        "Japan / Eastern Asia (자사 신고, 미확정)",
+        "USA (자사 신고, 미확정)",
+        "Middle East (자사 신고, 미확정)",
+        "Africa (자사 신고, 미확정)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2026",
+          "summary": "Gulfood 2026 (두바이) 공식 전시업체 — South Hall 11, Stand SW-N2에서 참치캔 라인 홍보. 현재 영업 중이며 수출 바이어를 적극 모색 중임을 시사."
+        },
+        {
+          "date": "2026",
+          "summary": "Fi (Food Ingredients) South America 2026 전시업체 등록."
+        },
+        {
+          "date": "2024",
+          "summary": "Saudi Food Show 2024 전시업체 등록."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Tan Phat Foods Corporation 공식 홈페이지 (회사 소개)",
+          "url": "http://www.tanphatfoods.com/Introduction.html"
+        },
+        {
+          "label": "Gulfood 2026 전시업체 프로필 (제품·참치 사양)",
+          "url": "https://www.gulfood.com/exhibitors/tan-phat-foods-corporation-edison-foods"
+        },
+        {
+          "label": "MSC 어업/인증 검색 (primary registry — 'Tan Phat' 매칭 없음)",
+          "url": "https://fisheries.msc.org/en/fisheries/?search=Tan+Phat"
+        },
+        {
+          "label": "GoldSupplier 기업 프로필 (자사 신고 정보)",
+          "url": "https://phunhat.goldsupplier.com/about.html"
+        },
+        {
+          "label": "TradeKey 기업 프로필 (B2B 디렉터리, 자사 신고)",
+          "url": "https://www.tradekey.com/company/Tan-Phat-Foods-Corporation-4437059.html"
+        },
+        {
+          "label": "Saudi Food Show 2024 전시업체 프로필 (IFS 2025 문서 참조)",
+          "url": "https://www.thesaudifoodshow.com/exhibitors/tan-phat-foods-corporation-edison-foods"
+        },
+        {
+          "label": "Fi South America 2026 전시업체 프로필",
+          "url": "https://visitor.figlobal.com/event/fi-south-america-2026/exhibitor/RXhoaWJpdG9yXzIzNDQxODA="
+        },
+        {
+          "label": "EU TRACES NT — 베트남 수산물 승인업체 목록 (primary registry, 프로그램 조회 불가)",
+          "url": "https://webgate.ec.europa.eu/tracesnt/directory/listing/establishment/publication/index#!/view/VN/FISHERY_PRODUCTS"
+        }
+      ]
+    },
+    "dataConfidence": "low",
+    "profileSummary": "Tan Phat Canned Food JSC(브랜드 Edison Foods)는 2010년 설립된 베트남 남부 롱안성 벤룩현 소재 참치캔·냉동/가공 참치(OEM) 제조업체로, 정어리·고등어캔과 과일·채소 가공품도 함께 생산합니다. 참치캔은 Tongol/Skipjack/Yellowfin 원료에 solid/chunk/shredded 형태, 120g~1700g 용량을 갖추며, Gulfood 2026 등 국제 식품 전시회에 꾸준히 출전해 수출 바이어를 모색하는 현재 활동 중인 기업입니다. 다만 생산능력·인증·수출실적 등 주요 지표가 대부분 자사 신고에 의존하며 1차 출처로 검증되지 않아, 거래 검토 시 독립 확인이 필요합니다.",
+    "verificationSummary": "법인 정체성(2010년 설립, 세금코드 1100790106 = Tan Phat Canned Food JSC), 본사 소재지(롱안성 벤룩현), 제품 라인(참치캔·가공 참치·정어리/고등어캔·과채 가공품), 2024~2026년 전시회 출전 활동은 공식 홈페이지·전시업체 페이지 등으로 확인되었습니다. 반면 EU 승인코드(DL 223/TS 754)·MSC CoC·US FDA 등록은 1차 등록부 조회에서 확인되지 않아 fabrication-risk로 분류되었고, 생산능력(100 MT/day·20,000 m2·라인 8개)과 ISO/HACCP/Halal/Kosher/BSCI 등은 자사 신고에 그쳐 미검증입니다(BRC·IFS는 자사 페이지 인증 이미지/문서 참조만 확인, 인증번호 미검증).",
+    "recommendedFieldUpdates": {
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": null,
+      "capacityMT": null,
+      "changeNote": "기존 필드 4종(hasFDA·hasEU·msc·capacityMT) 모두 high 확신 변경 근거 없음(검증 신뢰도 전부 low). 특히 msc는 MSC 1차 등록부에서 매칭 0건·ISSF 비참여로 unsubstantiated, hasEU(DL 223/TS 754)·hasFDA는 1차 확인 불가한 fabrication-risk이며, capacityMT는 기존 50과 자사주장 100 모두 무출처/상충이라 자동 변경 보류. 거래 전 TRACES·FDA·MSC 등록부 직접 조회 권고."
+    }
+  },
+  {
+    "vendorId": "highland-dragon",
+    "profileSummary": "Highland Dragon Enterprise(HDE, Cong Ty TNHH Highland Dragon)는 베트남 빈증성 디안 송탄1 공업단지에 본사·주력 캐너리를 둔 참치 가공·통조림 수출 기업으로, 1999년 설립(통조림 가동 2000년경)된 미국계 유한회사로 자체 보고된다. 캔 참치(솔리드·청크·플레이크, 오일/브라인)와 냉동 가열 참치 로인을 주력으로 정어리·고등어 통조림 등을 OEM/계약 생산하며 미국·일본·유럽(EU 승인, 코드 DL 149)·호주로 수출한다. 미국 세관 데이터 기준 2012년 10월 이후 약 2,963건의 선하증권이 확인되며 Wild Planet Foods가 최대 바이어로, 2026년 5월까지 대미 수출이 지속되고 있다.",
+    "verificationSummary": "본사 주소·제품군·수출시장(특히 미국 세관 2,963건 선하증권)·EU 승인(코드 DL 149)·HACCP·Dolphin Safe(EII 등재)는 독립·복수 출처로 확인됐다. 반면 MSC CoC는 인증 검색기에서 미발견(허위 위험)으로 제외했고, 일일 가공능력 50 MT는 B2B 애그리게이터 단일 출처에만 근거(기존 JSON 40 MT도 1차 출처 미확인)해 권고 불가, 1999년 정확한 설립일·미국계 소유·재무 성장률·BRCGS/ISO 22000/Kosher/FCE는 회사 자기보고 수준으로 미확정 단서를 달았다.",
+    "dataConfidence": "medium",
+    "recommendedFieldUpdates": {
+      "capacityMT": null,
+      "hasFDA": true,
+      "hasEU": true,
+      "msc": false,
+      "changeNote": "hasFDA=true: 미국 세관 데이터상 저산성 캔 참치가 2026년 5월까지 미국 항만으로 약 2,963건 반입되어 FDA FCE/SID 등록이 법적으로 전제됨(번호는 비공개 DB라 직접 검증 불가, 강한 정황 근거 high). hasEU=true: VASEP 프로필에 EU 코드 DL 149 명시, EU 승인 상태 확립(high). msc=false: MSC cert-finder 전 경로 검색에서 0건, CoC 인증 ID 부재, ISSF 비참여, 최대 바이어 Wild Planet은 MSC 참치 배제 정책 — 기존 msc=true는 허위 위험으로 정정 권고(low이나 부재 근거 명확). capacityMT=null: 50 MT는 GMDU 등 애그리게이터 단일군에만 근거하고 공식 사이트엔 능력 수치 없음, 기존 40 MT도 1차 출처 미확인이라 어느 쪽도 변경 권고 불가."
+    },
+    "publicProfile": {
+      "website": "http://www.highlanddragon.com.vn/tuna/",
+      "founded": "1999 (설립연도 1999, 통조림 가동 2000년경; 정확한 설립일은 미확정)",
+      "headquarters": "베트남 빈증성 디안 송탄1 공업단지(KCN Song Than 1) 6로 15번지 (호치민시 인근)",
+      "ownership": "미국계 유한회사 (Cong Ty TNHH Highland Dragon) (자기보고, 공시 미확인); 계열사 Highland Dragon Foods (Tan Dong Hiep B 공업단지)",
+      "employees": "777명 (2024, B2B 디렉터리 기준·미확정)",
+      "revenue": "절대액 비공개; 2024년 순매출 전년比 약 +14.57%, 순이익률 +3.03%, 총자산 +6.96% (디렉터리 보고·미감사·미확정)",
+      "capacityNote": "일일 원어 가공능력은 출처 간 상충(애그리게이터 50 MT/일 vs 기존 데이터 40 MT/일)으로 1차 출처 미확인 — 확정 수치 보류",
+      "plants": [
+        "빈증성 디안 송탄1 공업단지 — 주력 캐너리 + 냉동창고 (참치 통조림·가열 로인·냉동)",
+        "빈증성 디안 Tan Dong Hiep B 공업단지 — Highland Dragon Foods (계열/자매 시설)"
+      ],
+      "products": [
+        "캔 참치 (솔리드·청크·플레이크, 오일/브라인·브로스; OEM/계약 생산)",
+        "냉동 가열(pre-cooked) 참치 로인",
+        "캔 정어리·고등어, 하마치(hamachi)·산마(sanma) 통조림"
+      ],
+      "exportMarkets": [
+        "미국",
+        "일본",
+        "영국/유럽 (스칸디나비아 포함)",
+        "호주"
+      ],
+      "certifications": [
+        {
+          "standard": "EU 승인 (DG SANTE / NAFIQAD 시설코드)",
+          "code": "DL 149",
+          "note": "VASEP 프로필에서 코드 확인. 수산물(캔·냉동 참치) EU 수출용 시설. 일부 출처의 'DH 149' 변형은 미확인이라 DL 149만 기재."
+        },
+        {
+          "standard": "HACCP",
+          "code": "",
+          "note": "VASEP·공식 사이트·all.biz 기재. EU/미국 수출 활동과 정합."
+        },
+        {
+          "standard": "Dolphin Safe (Earth Island Institute / EII)",
+          "code": "",
+          "note": "EII savedolphins.eii.org 디렉터리에 베트남 가공업체로 직접 등재 확인."
+        },
+        {
+          "standard": "BRCGS (BRC Food Safety)",
+          "code": "",
+          "note": "자기보고 (공식 사이트·all.biz·VASEP); 인증번호·인증기관·만료일 미확인 (미확정)."
+        },
+        {
+          "standard": "ISO 22000",
+          "code": "",
+          "note": "자기보고; 인증번호 미확인 (미확정). 일부 디렉터리의 'ISO2200' 표기는 전사 오류."
+        },
+        {
+          "standard": "Kosher",
+          "code": "",
+          "note": "자기보고 'Kosher approved'; 'OU' 기관 귀속은 레지스트리 미확인 (미확정)."
+        },
+        {
+          "standard": "US FDA FCE (Food Canning Establishment) 등록",
+          "code": "",
+          "note": "자기보고; FDA FCE/SID DB가 비공개라 번호 직접 검증 불가. 단 미국 세관상 저산성 캔 참치 약 2,963건 반입으로 FCE/SID 보유가 법적 전제(강한 정황·미확정 번호)."
+        }
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2026-05",
+          "summary": "2026년 5월까지 대미 수출 지속(브라인/브로스·오일 캔 참치 필렛). 2012년 10월 이후 약 2,963건 선하증권 누적, 최대 바이어 Wild Planet Foods, 그 외 Natural Catch Seafoods·Shafer-Haggart·Marine Chartering·Sofina Foods·J.A. Kirsch 등."
+        },
+        {
+          "date": "2024",
+          "summary": "디렉터리 보고 성장연도: 임직원 약 777명, 순매출 전년比 약 +14.57% (수치 미감사·애그리게이터 출처, 지표적 참고)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "VASEP 공급업체 프로필 (EU 코드 DL 149·인증·제품·주소)",
+          "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/highland-dragon-enterprise-425.html"
+        },
+        {
+          "label": "미국 수입/세관 데이터 (importinfo — 수입자·물량·항만, 2026년 5월까지)",
+          "url": "https://www.importinfo.com/highland-dragon-enterprise"
+        },
+        {
+          "label": "Earth Island Institute Dolphin Safe 등재 (베트남 가공업체)",
+          "url": "https://savedolphins.eii.org/dolphin-safe/listings/highland-dragon-enterprise"
+        },
+        {
+          "label": "Highland Dragon 공식 웹사이트 (텍스트 프록시 — 설립·소유·제품·인증)",
+          "url": "http://www.highlanddragon.com.vn/tuna/"
+        },
+        {
+          "label": "GMDU 기업 프로필 (임직원 777·재무추이·설립)",
+          "url": "https://www.gmdu.net/corp-669932.html"
+        },
+        {
+          "label": "all.biz 빈증성 프로필 (설립·미국계·제품·시장)",
+          "url": "https://1466-vn.all.biz/"
+        },
+        {
+          "label": "MSC cert-finder 검색 (Highland Dragon — 인증 미발견)",
+          "url": "https://fisheries.msc.org/en/cert-finder/?searchTerm=Highland%20Dragon"
+        },
+        {
+          "label": "Panjiva 공급업체 리포트 (미국 수입 거래 데이터)",
+          "url": "https://panjiva.com/Highland-Dragon-Enterprise/89100696"
+        }
+      ]
+    }
+  },
+  {
+    "vendorId": "ktcfood",
+    "dataConfidence": "medium",
+    "profileSummary": "KTCFOOD(KTC Canned Foodstuff Manufactory)는 베트남 Kien Giang Trading JSC(KTC/KIGITRACO, UPCOM 상장 티커 KTC)의 통조림 수산물 가공 공장 사업부로, 2010년 공장 건설·2012년 2월 가동을 시작했다. Tac Cau 어항(Kien Giang, 2025년 행정 통합 후 An Giang Province) 단일 공장에서 스페인·태국산 자동화 라인으로 일 8만~10만 캔 규모의 참치·정어리·고등어 통조림을 생산하며, EU 승인 시설코드 DH 755를 보유하고 36개국 이상에 수출한다. 2025년 5월 ISSF 참여기업으로 가입했고 베트남 국가브랜드(2020·2022·2024)를 3회 수상한, 통조림 단일 제품군 중심의 검증 가능한 수출 가공업체다.",
+    "verificationSummary": "설립연도·소유구조·자본금·상장정보·생산능력(일 8만~10만 캔)·EU 시설코드 DH 755(NAFIQAD 1차 규제기관 등록 확인)·Dolphin Safe·베트남 국가브랜드·수출시장 등 핵심 사실은 1차 출처로 확인됐으나, MSC Chain of Custody 인증서 ID와 매출 추정치(USD 50M-100M)는 인용 출처에서 확인되지 않아 제외했고, FDA 등록·ISO 22000·IFS·BRCS·HALAL·Kosher는 자사 주장만 있어 미확정으로 표기했다. 기존 JSON의 100 MT/day 생산능력은 '10만 캔/일'의 단위 오류로 확인됐다.",
+    "recommendedFieldUpdates": {
+      "capacityMT": null,
+      "hasEU": true,
+      "hasFDA": null,
+      "msc": false,
+      "changeNote": "capacityMT: 기존 100 MT/day는 단위 오류('80,000~100,000 cans/day'를 오독)로 1차·산업 출처가 MT/day 표기를 전혀 쓰지 않아 null 권고. hasEU: NAFIQAD EU 등록목록에서 DH 755 확인(high). msc: MSC CoC 인증서 ID가 cert-finder에서 미확인이라 false 권고. hasFDA: 자사 주장+317건 미국 수입실적의 간접근거만 있고 FCE/SID 미확인이라 변경 권고 보류(null)."
+    },
+    "publicProfile": {
+      "website": "https://ktcfood.com.vn/",
+      "founded": "공장 건설 2010년, 운영 개시 2012년 2월",
+      "headquarters": "Tac Cau 어항 구역, Minh Phong Hamlet, Binh An Commune, Rach Gia/Chau Thanh, Kien Giang(2025년 행정 통합 후 An Giang Province), 베트남. 모회사 KTC 본사: 190 Tran Phu St, Rach Gia.",
+      "ownership": "Kien Giang Trading Joint Stock Company(KTC/KIGITRACO)의 지점·공장. 2017년 8월 1일 주식회사 전환(정관자본금 VND 364.74십억), 2017년 3월 29일 HOSE IPO, 현재 UPCOM 티커 KTC로 상장.",
+      "employees": "약 500명(모회사 KTC 그룹 기준 수치이며 KTCFOOD 공장 단독 인원은 비공개)",
+      "revenue": null,
+      "capacityNote": "일 80,000~100,000 캔(cans/day). 모든 1차·산업 출처가 MT가 아닌 캔 기준으로 생산능력을 표기하며, 기존 100 MT/day 값은 단위 오류로 확인됨.",
+      "products": [
+        "참치 통조림(오일·염수/물·드레싱/대두유·멕시코 소스·스위트 소스; chunk light, baby yellowfin / 미국 수출 실적 확인 제품)",
+        "정어리·고등어 통조림(토마토/케첩-양파 소스)",
+        "고객 사양 OEM 통조림 수산물(쿡트 로인·냉동 참치 로인·사시미급 생산은 근거 없음)"
+      ],
+      "plants": [
+        "Tac Cau 어항, Binh An Commune, Chau Thanh/Rach Gia, Kien Giang(현 An Giang Province), 베트남 — 단일 통조림 수산물 공장. 스페인·태국산(태국 Golden Technology 설치) 자동화 라인. 일 80,000~100,000 캔. EU 승인 시설코드 DH 755."
+      ],
+      "certifications": [
+        {
+          "standard": "HACCP / EU 승인 수산물 시설",
+          "code": "DH 755",
+          "note": "참치·가다랑어·정어리·고등어 통조림 대상 EU 승인 시설코드. NAFIQAD EU 등록목록(1차 규제기관)에서 확인됨. 도시에 내 가장 강하게 검증된 항목."
+        },
+        {
+          "standard": "Dolphin Safe (Earth Island Institute IMMP)",
+          "code": "",
+          "note": "International Marine Mammal Project 디렉터리에 베트남 가공업체(Processor)로 등재 확인."
+        },
+        {
+          "standard": "ISSF Participating Company",
+          "code": "",
+          "note": "2025년 5월 ISSF 24번째 참여기업으로 가입, 연례 독립 보존조치 감사 약정(확인). 단, '2024 Final Compliance Report 발행' 세부주장은 신규 가입사 특성상 미확정."
+        },
+        {
+          "standard": "Vietnam National Brand (Thuong hieu Quoc gia)",
+          "code": "",
+          "note": "베트남 산업무역부가 2020·2022·2024년 3회 수여(확인)."
+        },
+        {
+          "standard": "FDA (미국 식품시설 등록)",
+          "code": "",
+          "note": "(미확정) 자사 주장 기반. 2006~2026년 317건의 미국 수입 실적이 간접 근거이나 FCE/SID 등 등록번호는 1차 DB에서 확인되지 않음."
+        },
+        {
+          "standard": "ISO 22000:2018",
+          "code": "",
+          "note": "(미확정) 자사 about-us 표기 기반. 인증기관·번호 미확인이며 일부 출처는 ISO 22000-2005로 버전이 불일치."
+        },
+        {
+          "standard": "IFS (International Featured Standards)",
+          "code": "",
+          "note": "(미확정) 자사 표기만 있으며 인증번호·발급기관 DB 미확인."
+        },
+        {
+          "standard": "BRCS (BRCGS)",
+          "code": "",
+          "note": "(미확정) 자사 표기만 있으며 인증번호·발급기관 DB 미확인."
+        },
+        {
+          "standard": "HALAL",
+          "code": "",
+          "note": "(미확정) 자사 표기만 있으며 인증번호·발급기관 DB 미확인."
+        },
+        {
+          "standard": "Kosher",
+          "code": "",
+          "note": "(미확정) 자사 표기만 있으며 인증번호·발급기관 DB 미확인."
+        }
+      ],
+      "exportMarkets": [
+        "전 세계 36개국·지역 이상(유럽·미주·아시아·아프리카·중동)",
+        "미국(지속 수입; 바이어 J.A. Kirsch, Lawrence Wholesale, Nemco, Schreiber Foods, Limson Holding 등, 2026년까지)",
+        "독일·리투아니아·포르투갈·영국(유럽; 국가별 내역은 자사 진술 기반)",
+        "일본·대만·홍콩(아시아)",
+        "이집트·중동·아프리카"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2025-05-28",
+          "summary": "ISSF(International Seafood Sustainability Foundation) 24번째 참여기업으로 가입, 연례 독립 보존조치 감사 약정."
+        },
+        {
+          "date": "2024",
+          "summary": "베트남 국가브랜드(Vietnam National Brand) 3회 연속 수상(2020·2022·2024)."
+        },
+        {
+          "date": "2025-2026",
+          "summary": "미국향 라이트 참치 통조림 수출 지속(최근 기록 선적: 2026년 5월, 미국 바이어 Limson Holding)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "NAFIQAD VN-FFP EU 승인시설 목록 (DH 755, 1차 규제기관)",
+          "url": "http://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/the-branch-of-kien-giang-trading-joint-stock-company-ktc-canned-foodstuff-manufactory-664.html"
+        },
+        {
+          "label": "KTCFOOD 공식 About Us (1차)",
+          "url": "https://ktcfood.com.vn/about-us/"
+        },
+        {
+          "label": "KTCFOOD 공식 홈페이지 (1차)",
+          "url": "https://ktcfood.com.vn/"
+        },
+        {
+          "label": "ISSF — KTCFOOD 참여기업 가입 발표 (인증기관/NGO 1차)",
+          "url": "https://www.iss-foundation.org/about-issf/what-we-publish/2025/05/28/issf-welcomes-vietnams-ktcfood-as-a-new-participating-company/"
+        },
+        {
+          "label": "Kien Giang Trading JSC(KTC) 모회사 About (1차)",
+          "url": "https://www.ktcvn.com.vn/en/about.html"
+        },
+        {
+          "label": "TradingView — UPCOM:KTC 상장정보",
+          "url": "https://www.tradingview.com/symbols/UPCOM-KTC/"
+        },
+        {
+          "label": "Earth Island Institute — Dolphin Safe 등재 (인증 디렉터리 1차)",
+          "url": "https://savedolphins.eii.org/dolphin-safe/listings/kien-giang-trading-joint-stock-company-ktc-ktc-canned-foodstuff-manufactory-ktc-food"
+        },
+        {
+          "label": "베트남 국가브랜드 — KTCFOOD 참치 통조림 프로필 (Nhan Dan)",
+          "url": "https://thuonghieuquocgia.nhandan.vn/thuong-hieu/ca-ngu-dong-hop-ktcfood-38.html"
+        }
+      ]
+    }
+  },
+  {
+    "vendorId": "ycc",
+    "profileSummary": "Yueh Chyang Canned Food Co., Ltd.(YCC)는 베트남 롱안성 벤룩에 가공공장을 둔 통조림 수산물 가공업체로, 태국 Thai Union Group(태국증시 상장)의 100% 자회사다(Songkla Canning을 통해 2007년 12월 51% 최초 투자 후 2016년 95.04%, 2017년 100%로 인수). 참치(캔/파우치), 저온살균 게살, 패류 등을 생산하며 매출은 Thai Union 그룹에 연결 편입되어 있다. 미국이 최대 수출시장으로, 주요 수하인이 Thai Union 계열사(Tri-Union Seafoods, Chicken of the Sea)인 그룹 내 OEM 공급 구조가 특징이다.",
+    "publicProfile": {
+      "website": "https://www.thaiunion.com/en/about/company/subsidiary/174/yueh-chyang-canned-food-co-ltd",
+      "headquarters": "베트남 롱안성 벤룩현 녓짠(Nhut Chanh) 면 (호치민시 인근). 일부 VASEP 등재에는 떠이닌(Tay Ninh)성 표기가 있으나, Thai Union(아카이브)·Panjiva·ImportInfo·FIS 등 다수 출처가 일관되게 롱안성 벤룩으로 명시(동일 Tel +84 72 387 2377).",
+      "founded": "최초 설립연도는 1차 출처로 확정되지 않음. 베트남 집계 사이트의 '1997년 설립' 표기는 미확정. Thai Union(Songkla Canning)의 최초 투자는 2007년 12월(51%).",
+      "ownership": "Thai Union Group PCL(태국)의 100% 자회사. Songkla Canning PCL을 통해 2007년 12월 51%(약 Bt110M) 취득 → 2016년 8월 95.04%로 확대(추가 44.04%, 약 THB 418.8M) → 2017년경 잔여 소수지분 인수로 100% 보유.",
+      "employees": "1,000명 이상 (Thai Union 발표 기준).",
+      "revenue": "단독 최근 매출 미공개(Thai Union 그룹 연결 편입). 참고로 2012년 1~9월 수산 수출액 약 USD 56M (5년 초과 경과, 현재값 아님).",
+      "plants": [
+        "베트남 롱안성 벤룩현: 통조림/저온살균 수산물 가공공장, 냉동 보관능력 최대 400톤, 종업원 1,000명 이상"
+      ],
+      "products": [
+        "통조림/파우치 참치 (Chunk light tuna in water, tuna chunk in brine with vegetable broth — 캔·트레이, 미국 PL/Thai Union 브랜드 공급)",
+        "저온살균 게살 (Thai Union이 꼽은 3대 주력 제품 중 하나; UHT 게살 포함)",
+        "통조림 패류 (굴·조개 등; anchovy·새우 등재)",
+        "참치 로인 (냉동/통조림 — VASEP 등재)"
+      ],
+      "certifications": [
+        {
+          "standard": "HACCP",
+          "code": "",
+          "note": "VASEP 공급사 프로필에 등재. 식품안전."
+        },
+        {
+          "standard": "BRC (BRCGS)",
+          "code": "",
+          "note": "VASEP 공급사 프로필에 등재."
+        },
+        {
+          "standard": "IFS",
+          "code": "",
+          "note": "VASEP 공급사 프로필에 등재."
+        },
+        {
+          "standard": "BSCI",
+          "code": "",
+          "note": "VASEP 공급사 프로필에 등재. 사회적 책임 준수."
+        },
+        {
+          "standard": "HALAL",
+          "code": "",
+          "note": "VASEP 공급사 프로필에 등재."
+        },
+        {
+          "standard": "EU 제3국 승인 수산물 가공장 (DG SANTE/TRACES)",
+          "code": "TS 165",
+          "note": "VASEP 프로필 페이지상 확인된 코드(추정/미확정). EU TRACES-NT 및 NAFIQAD TS 코드 목록에서 독립 재확인 불가(단일 출처). EU 승인 사실 자체는 medium 신뢰."
+        },
+        {
+          "standard": "EII Dolphin Safe (참치)",
+          "code": "",
+          "note": "Earth Island Institute Dolphin Safe 가공업체 디렉터리(베트남)에 등재. MSC와는 별개."
+        }
+      ],
+      "exportMarkets": [
+        "미국 (최대 시장; 2012년 기준 수출의 약 60%, 캔 70%; 2012~2026 미국 선하증권 2,801건)",
+        "유럽연합 (2012년 기준 약 30%)",
+        "캐나다",
+        "아시아 (홍콩·태국·싱가포르) 및 중동 (약 10%)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2016-08",
+          "summary": "Songkla Canning(Thai Union)이 YCC 지분을 51%→95.04%로 확대(추가 44.04% 인수, 약 THB 418.8M) 발표."
+        },
+        {
+          "date": "2017-11",
+          "summary": "Thai Union이 잔여 소수지분을 인수, YCC는 100% 자회사로 보고됨."
+        },
+        {
+          "date": "2012-2026",
+          "summary": "미국향 통조림 참치 지속 수출(선하증권 2,801건). 주요 미국 수하인은 Tri-Union Seafoods LLC와 Chicken of the Sea(모두 Thai Union 미국 계열)로, 그룹 내 OEM 공급이 지속됨."
+        }
+      ],
+      "capacityNote": "냉동 보관능력 최대 400톤(Thai Union 발표). 일일 참치 가공처리량은 약 80 MT/day로, 'Trade Flow Analysis of Pacific Tuna Fisheries'(Industrial Economics Inc./GHA, 2023년 9월) 추정 가공능력표에 명시됨. 두 수치는 별개 지표.",
+      "sources": [
+        {
+          "label": "Thai Union — YCC 자회사 개요 페이지",
+          "url": "https://www.thaiunion.com/en/about/company/subsidiary/174/yueh-chyang-canned-food-co-ltd"
+        },
+        {
+          "label": "VASEP 공급사 프로필 — EU코드 TS 165·HACCP/BRC/IFS/BSCI/HALAL·참치 로인",
+          "url": "http://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/yueh-chyang-canned-food-company-limited-594.html"
+        },
+        {
+          "label": "Undercurrent News — Thai Union, 베트남 캐너 지분 95%로 확대 (2016-08-08)",
+          "url": "https://www.undercurrentnews.com/2016/08/08/thai-union-to-up-stake-in-vietnamese-canner-to-95/"
+        },
+        {
+          "label": "IntraFish — Songkla Canning 지분 95.04% 확대",
+          "url": "https://www.intrafish.com/finance/772039/thai-unions-songkla-canning-to-up-stake-in-vietnam-canner-to-9504-percent"
+        },
+        {
+          "label": "ImportInfo — YCC 미국 수입활동(BoL 2,801건·Tri-Union/Chicken of the Sea)",
+          "url": "https://www.importinfo.com/yueh-chyang-canned-food-company"
+        },
+        {
+          "label": "Panjiva — Cong Ty TNHH Do Hop Viet Cuong / YCC (벤룩, 롱안)",
+          "url": "https://panjiva.com/Cong-Ty-Tnhh-Do-Hop-Viet-Cuong/29802511"
+        },
+        {
+          "label": "Industrial Economics Inc./GHA — Trade Flow Analysis of Pacific Tuna Fisheries (2023-09, 80mt/day)",
+          "url": "https://indecon.com/wp-content/uploads/Final-Tuna-Supply-Report-090723.pdf"
+        },
+        {
+          "label": "EII Dolphin Safe 등재 — Yueh Chyang Canned Food",
+          "url": "https://savedolphins.eii.org/dolphin-safe/listings/yueh-chyang-canned-food-co-ltd"
+        }
+      ]
+    },
+    "dataConfidence": "medium",
+    "verificationSummary": "소유구조(Thai Union 100% via Songkla Canning), 공장 위치·냉동보관 400톤·종업원 1,000명+, 제품군, 수출시장, 인증 표준은 다수 출처로 확인됨. EU 코드 TS 165는 단일 출처 미확정, 1997 설립연도 미확정, MSC CoC 미확인. 일일 가공능력 80 MT/day는 Indecon 2023 1차 보고서로 확인됨.",
+    "recommendedFieldUpdates": {
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": false,
+      "capacityMT": 80,
+      "changeNote": "msc: 공장명 MSC Chain-of-Custody 인증서가 어떤 MSC 검색에서도 발견되지 않아 default-to-reject 적용해 false로 변경(ISSF/MSC는 Thai Union 그룹 차원만 존재). capacityMT: 'Trade Flow Analysis of Pacific Tuna Fisheries'(Indecon/GHA 2023-09) 1차 보고서가 YCC를 '80mt/day'로 명시해 80 MT/day(일일 참치 가공처리량)로 반영. hasFDA/hasEU는 keep-true로 변경 없음(null)."
+    }
+  },
+  {
+    "vendorId": "foodtech",
+    "publicProfile": {
+      "website": "https://www.foodtechjsc.com/",
+      "founded": "1992 (50년 영업허가: 1992.09.28 ~ 2042.09.28)",
+      "headquarters": "본사·공장: Ap 1, Nhut Chanh commune, Ben Luc district, Long An Province, Vietnam (2025년 행정구역 개편으로 Long An이 Tay Ninh Province로 편입되어 VASEP 디렉터리는 'Hamlet 1, Binh Duc Commune, Tay Ninh Province'로 표기 — 미확정). 남부 사무소: 59 Ngo Tat To, Binh Thanh, Ho Chi Minh City.",
+      "ownership": "100% 외국인 투자 기업(공식 사이트). 업계 디렉터리·ISSF 프로필은 '100% 태국계 가족기업'으로 기술하나 태국 모회사는 1차 자료로 미확인 (추정).",
+      "employees": "약 1,200명 (현지 인력; 일부 디렉터리는 '1,000명 이상'으로 기재, 상호 일관)",
+      "revenue": null,
+      "capacityNote": "참치캔 생산능력 40-70 톤/일(8개 라인), 고등어캔 30-40 톤/일(3개 라인)로 제품 라인별 능력이며 단일 공장 합산치가 아님. 70톤/일은 참치캔 최대치이고 통상 가동은 30-40톤/일 수준.",
+      "plants": [
+        "Ben Luc, Long An Province(2025년 개편 후 Tay Ninh Province) — 본사·주공장. 참치캔(8개 라인) + 고등어캔(3개 라인)",
+        "Phu Yen Province — 2008년 개설 지점. 주로 사전조리 참치 로인(pre-cooked tuna loin) 생산"
+      ],
+      "products": [
+        "참치캔(canned tuna) — 주력. 유지·염수 베이스, 솔리드/드레싱/완두 첨가/채소·살사 첨가 등. 미국 무역데이터상 가다랑어(skipjack) 청크",
+        "파우치 참치(pouched tuna) — ISSF 프로필·무역 디렉터리 기재 (미확정, 1차 페이지 미확인)",
+        "사전조리 참치 로인(pre-cooked tuna loin) — Phu Yen 지점에서 2008년부터 생산",
+        "고등어캔(canned mackerel) — 유지·토마토소스, 2차 주력(30-40톤/일)",
+        "정어리캔(canned sardines) — 토마토소스·레몬 첨가, 제품 페이지 표기 (미확정, 1차 페이지 직접 확인 제한적)"
+      ],
+      "certifications": [
+        {
+          "standard": "HACCP",
+          "note": "공식 제품 페이지에 명시된 식품안전 관리 기준. VASEP 디렉터리에서도 확인. 인증번호는 페이지에 미표기"
+        },
+        {
+          "standard": "BRC (BRCGS)",
+          "note": "공식 제품 페이지 및 VASEP 디렉터리에 명시. 인증번호 미표기"
+        },
+        {
+          "standard": "IFS (International Featured Standards)",
+          "note": "공식 제품 페이지 및 VASEP 디렉터리에 명시. 인증번호 미표기"
+        },
+        {
+          "standard": "HALAL",
+          "note": "공식 제품 페이지·VASEP 디렉터리에 명시된 할랄 생산 적합. 인증번호 미표기"
+        },
+        {
+          "standard": "OU (Kosher)",
+          "note": "공식 제품 페이지에 코셔(OU) 적합 명시. 인증번호 미표기"
+        },
+        {
+          "standard": "US FDA registration",
+          "code": "DH 174",
+          "note": "이 code 칸은 EU 코드용이 아님 — US FDA는 별도 항목 참조. (정정 불필요 시 무시)"
+        },
+        {
+          "standard": "ISSF (International Seafood Sustainability Foundation)",
+          "note": "2015년부터 준회원(associate participating company). 회원 자격이며 제품 인증은 아님. World Fishing 트레이드 프레스(2015.03.19)·ISSF 디렉터리로 확인"
+        }
+      ],
+      "exportMarkets": [
+        "미국(USA)",
+        "캐나다(Canada)",
+        "EU",
+        "아시아(Asia)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2025-05",
+          "summary": "미국向 선적 지속. 2025년 5월 기록상 수하인 Safcol USA Inc. 식별, 2007년 이래 누적 351건의 미국 선적 추적됨(Panjiva)."
+        },
+        {
+          "date": "2025",
+          "summary": "베트남 행정구역 개편으로 Long An이 Tay Ninh Province에 편입되어 VASEP 디렉터리가 회사 소재지를 Tay Ninh로 표기 — 구 'Long An' 표기와의 차이를 설명 (정부 1차 자료로는 미확정)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "FOODTECH JSC 공식 사이트 - About Us (1차)",
+          "url": "https://www.foodtechjsc.com/about-us"
+        },
+        {
+          "label": "FOODTECH JSC 공식 사이트 - Products (1차)",
+          "url": "https://www.foodtechjsc.com/products"
+        },
+        {
+          "label": "VASEP 수산물 공급사 디렉터리 - Foodtech (업계협회)",
+          "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/foodtech-joint-stock-company-676.html"
+        },
+        {
+          "label": "Panjiva 공급사 리포트 - 미국 수입데이터",
+          "url": "https://panjiva.com/Foodtech-JSC/40282164"
+        },
+        {
+          "label": "World Fishing - ISSF 신규 준회원 합류(2015)",
+          "url": "https://www.worldfishing.net/new-participating-company-joins-issf/143810.article"
+        },
+        {
+          "label": "ISSF 참여기업 프로필 - Foodtech",
+          "url": "https://www.iss-foundation.org/about-issf/who-we-are/participating-companies/foodtech/"
+        },
+        {
+          "label": "Viet Factory B2B 리스팅 - Foodtech JSC",
+          "url": "https://vietfactory.com/listing/foodtech-jsc/"
+        },
+        {
+          "label": "MSC Cert-Finder 검색(결과 없음 - 음성 확인)",
+          "url": "https://fisheries.msc.org/en/cert-finder/?q=Foodtech"
+        }
+      ]
+    },
+    "dataConfidence": "medium",
+    "profileSummary": "Foodtech JSC는 1992년 설립된 베트남 Long An성(2025년 행정개편 후 Tay Ninh성) 소재의 100% 외국인투자 참치·고등어 통조림 가공업체로, 약 1,200명을 고용하고 참치캔 40-70톤/일·고등어캔 30-40톤/일의 라인별 가공능력을 보유한다. 주력은 참치캔(8개 라인)이며 Phu Yen 지점에서는 사전조리 참치 로인을 생산하고, HACCP·BRC·IFS·HALAL·OU 식품안전 기준 준수와 2015년 ISSF 준회원 자격을 보유한다. 미국(2007년 이래 351건 선적)·캐나다·EU·아시아로 수출하는 OEM/통조림 중심 사업자로, 태국계 가족기업이라는 소유구조 정보는 1차 자료로 미확인 상태다.",
+    "verificationSummary": "설립연도(50년 허가)·100% 외국인투자·인력 규모·2개 공장·라인별 생산능력·HACCP/BRC/IFS/HALAL/OU 기준 명시·ISSF 2015 준회원·USA/Canada/EU/Asia 수출·미국 선적 실적(351건)은 1차 또는 신뢰 가능 출처로 확인되었다. 반면 '태국계 가족기업' 소유구조, EU 코드 'DH 174', 파우치 참치·정어리캔, Tay Ninh 주소 전환의 정부 1차 근거는 2차 출처에만 의존해 미확정이며, BSCI 인증과 2017년 VASEP 톱10 수상은 인용 출처에서 확인되지 않아 제외했다.",
+    "recommendedFieldUpdates": {
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": null,
+      "capacityMT": null,
+      "changeNote": "검증의 existingFieldVerdict가 hasFDA·hasEU=keep-true, msc=keep-false, capacityMT(70)=consistent로 모두 현행 유지를 권고했고 high 확신의 change-to-*/revise 권고가 없으므로 변경 없음."
+    }
+  },
+  {
+    "vendorId": "everwin",
+    "publicProfile": {
+      "website": null,
+      "headquarters": "베트남 호치민시 Thu Duc City, Binh Chieu Ward, Binh Chieu Industrial Zone, Lot E (남부 베트남)",
+      "founded": "2002 (ISSF 프로필 기재, 1차 페이지 직접 확인 불가·미확정)",
+      "ownership": "베트남 FDI 유한책임회사(LLC). 등록자본 54,474,800,000 VND(약 USD 2.1M). 주요 임원 WANG CHENG YI, NGUYEN THI TRUC LY. (명시된 모회사·그룹 소속 근거 없음)",
+      "employees": null,
+      "revenue": null,
+      "plants": [
+        "Thu Duc City(호치민시) Binh Chieu Industrial Zone Lot E 참치 가공공장 — 대만산 냉동 날개다랑어(albacore, Thunnus alalunga, HS 030341) 원료를 수입해 가공"
+      ],
+      "products": [
+        "캔/파우치 참치(food-service·소매용, 가다랑어·날개다랑어 기준)",
+        "프리쿡(쿡) 참치 로인(precooked tuna loin)",
+        "냉동 참치(frozen tuna)",
+        "기타 식품(고등어·칠리소스 등 거래 기록에 포함)"
+      ],
+      "certifications": [
+        {
+          "standard": "ISSF 참여기업(International Seafood Sustainability Foundation)",
+          "note": "ISSF 참여기업 디렉터리에 등재. 2024년 활동 Final Compliance Report 제출은 미확정(1차 페이지 미확인). ISSF는 코드형 인증이 아닌 멤버십."
+        }
+      ],
+      "exportMarkets": [
+        "미국(주력. 바이어 Mitsui Foods Inc.·Kawasho Foods USA Inc., 항구 Baltimore 등, 2007년 이래 약 486건 선적)",
+        "독일(주요 도착시장으로 집계 데이터에 명시)",
+        "대만(거래 흐름 및 냉동 albacore 원료 공급원)"
+      ],
+      "capacityNote": "공개 출처에 생산능력 수치 없음. 기존 JSON 50 MT/day 값은 확인도 반증도 불가(unknown).",
+      "recentDevelopments": [
+        {
+          "date": "2024-2025",
+          "summary": "ISSF 참여 지속(2024년 활동 Final Compliance Report 제출 정황, 미확정). 2023-2026 기간 M&A·증설·신규 인증 관련 공개 뉴스는 확인되지 않음."
+        }
+      ],
+      "sources": [
+        {
+          "label": "ISSF 참여기업 프로필 — Everwin (1차)",
+          "url": "https://www.iss-foundation.org/about-issf/who-we-are/participating-companies/everwin/"
+        },
+        {
+          "label": "vietnamcredit 기업정보 (CR0036671) — 자본·임원",
+          "url": "https://vietnamcredit.com.vn/products/companies/everwin-industrial-co-ltd_36671"
+        },
+        {
+          "label": "Info-clipper 기업 프로필 — 본사 주소",
+          "url": "https://www.info-clipper.com/en/company/vietnam/everwin-industrial-co-ltd.vnd96lvm5.html"
+        },
+        {
+          "label": "tradeImex 관세 데이터 — HS 030341 대만산 냉동 albacore 수입",
+          "url": "https://www.tradeimex.in/company/customs-data/Vietnam-030341-importer/everwin-industrial-co.,-ltd"
+        },
+        {
+          "label": "Panjiva 공급자 리포트 — 미국 수입·바이어·제품",
+          "url": "https://panjiva.com/Everwin-Industrial-Co-Ltd/33436588"
+        },
+        {
+          "label": "Volza 기업 프로필 — 수출시장(미국·독일)",
+          "url": "https://www.volza.com/company-profile/everwin-industrial-co-ltd-160433/"
+        },
+        {
+          "label": "Datamyne 공급자 — 미국 선적·바이어",
+          "url": "https://www.datamyne.com/supplier/1616020/everwin-industrial-co---ltd"
+        },
+        {
+          "label": "MSC 수산물 DB 'Everwin' 검색 (0건)",
+          "url": "https://fisheries.msc.org/en/fisheries/@@search?q=Everwin"
+        }
+      ]
+    },
+    "dataConfidence": "medium",
+    "profileSummary": "Everwin Industrial Co., Ltd.는 2002년 설립된 베트남 호치민시(Thu Duc City) 소재의 FDI 유한책임회사로, Binh Chieu 공단 Lot E 공장에서 대만산 냉동 날개다랑어(albacore)를 원료로 캔/파우치 참치와 프리쿡 참치 로인을 가공하는 참치 가공업체다. 미국(Mitsui Foods·Kawasho Foods USA 등 바이어)을 주력으로 독일·대만에 수출하며, 2007년 이래 약 486건의 미국 선적 실적이 확인된다. 지속가능성 측면에서는 MSC가 아닌 ISSF 참여기업으로 분류된다.",
+    "verificationSummary": "본사 주소·소유구조(FDI LLC, 자본 54.47B VND, 임원 2인)·대만산 albacore 원료 수입(HS 030341)·제품군·수출시장(미국·독일·대만)은 다중 출처로 교차확인됨. 반면 설립연도(2002)와 2024 ISSF Compliance Report 제출은 ISSF 페이지(403)를 직접 열지 못해 미확정이고, EU 승인코드 'DH 226'은 1차 페이지 미확인으로 미기재, 생산능력 50 MT/day는 공개 출처가 전무해 검증 불가, MSC 인증은 공식 DB 0건으로 미지지였다.",
+    "recommendedFieldUpdates": {
+      "capacityMT": null,
+      "hasFDA": true,
+      "hasEU": null,
+      "msc": false,
+      "changeNote": "hasFDA→true: 미국으로 캔/조제 참치 지속 수출(Panjiva 486건+, 바이어 Mitsui·Kawasho)로 외국시설 FDA 등록이 사실상 필수·일관(단 FCE/등록번호 코드는 미확인). msc→false: MSC 공식 DB 'Everwin' 0건, CoC 인증 없음(소속은 ISSF). capacityMT(50)·hasEU(true)는 high 확신 근거 부재로 변경 보류(null)."
+    }
+  },
+  {
+    "vendorId": "halong-canfoco",
+    "publicProfile": {
+      "website": "https://canfoco.com.vn (그룹) / http://www.halongdanang.com (참치 자회사 Da Nang)",
+      "founded": "1957 (모회사 Ha Long Canned Food JSC, 하이퐁); 참치 가공 자회사 Da Nang은 2011년 설립",
+      "headquarters": "No. 71 Le Lai Street, Ngo Quyen District, Hai Phong City, Vietnam (베트남 북부). 일부 디렉터리는 No.43 Le Lai로 표기 — 정본 미확정 (미확정)",
+      "ownership": "하노이거래소(HNX) 상장사, 종목코드 CAN. 최대주주는 Vietnam Fisheries Corporation(Seaprodex, 종목 SEA)으로 27.75% 보유. Novaland 계열이 Seaprodex 지분 24%+를 간접 보유.",
+      "employees": "그룹 약 850~1,000명 이상 (출처별 상이: Seaprodex 850명+, 디렉터리 1,000명+)",
+      "revenue": "2024년 순매출 약 6,818억 VND (전년 대비 -8.06%, 2023년 약 7,416억 VND)",
+      "capacityNote": "공식 사이트·VASEP·증권공시·뉴스 어디에도 구체적 일일/연간 생산능력(MT/day) 미기재. 미국 222건 선적 등으로 상당 규모 가동이 추정되나 정량 능력치 출처 없음 (미확정).",
+      "products": [
+        "참치 통조림/파우치 OEM (tuna in oil, tuna in brine/salt, tongol chunk, light tuna flaked)",
+        "Mexican salad, Exotic salad, dressing",
+        "어류 통조림 — 참치·정어리(sardine)·고등어(mackerel) (Da Nang 자회사)",
+        "그룹 비수산: 파테(pâté 'Cột Đèn'), 육류 통조림, 소시지(retort), 야채·과일 통조림, 냉동 스프링롤, 어유 캡슐·젤라틴·한천"
+      ],
+      "plants": [
+        "Hai Phong (북부) — 본사·주력 통조림 공장 (71 Le Lai, Ngo Quyen)",
+        "Da Nang (중부) — 참치/수산 OEM 자회사 (CANFOCO DANANG, Tho Quang 수산공단, Son Tra, 2011년 설립)",
+        "Dong Thap (남부) — 그룹 회원사 공장"
+      ],
+      "exportMarkets": [
+        "EU/유럽 (특히 독일) — 참치 통조림",
+        "미국 (Newark/NJ 중심, 2017~2025년 222건 선적; 바이어 Nemco Food Trading, Port Royal Sales, Shafer-Haggart)",
+        "호주",
+        "중동 (HALAL 인증 기반)",
+        "아시아"
+      ],
+      "certifications": [
+        {
+          "standard": "EU 제3국 수산물 수출 승인업체 코드 (DG SANTE/TRACES)",
+          "code": "DH 203",
+          "note": "Da Nang 참치 자회사(CANFOCO DANANG)의 EU 승인코드로 VASEP 회원정보·복수 디렉터리에 일관 표기. 단 EU TRACES NT 1차 등재 미확인, 검색상 'DH 358' 상충 결과도 존재 — 정확 번호 미확정 (미확정)."
+        },
+        {
+          "standard": "HACCP",
+          "note": "Da Nang 참치 자회사 (VASEP 회원정보 등재, 인증서 번호 미공개)"
+        },
+        {
+          "standard": "IFS (International Featured Standards)",
+          "note": "Da Nang 참치 자회사 (VASEP 등재, 인증서 번호 미공개)"
+        },
+        {
+          "standard": "HALAL",
+          "note": "Da Nang 참치 자회사 (중동 수출 대응, VASEP 등재)"
+        },
+        {
+          "standard": "BSCI (amfori 사회적책임 감사)",
+          "note": "Da Nang 참치 자회사 (VASEP 등재)"
+        },
+        {
+          "standard": "ISO / FSSC 22000 (모회사 Hai Phong)",
+          "note": "모회사 Hai Phong 공장이 보유했으나 2025~2026 ASF 돼지고기 식품안전 사건으로 ISO 취소·FSSC 22000 정지 보도. Da Nang 참치 자회사 인증과는 별개."
+        }
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2025-09",
+          "summary": "모회사 Hai Phong 공장 냉동창고에서 아프리카돼지열병(ASF) 양성 돼지고기 약 130톤(일부 매체 120톤) 적발·폐기. 식품안전 위반 형사수사 개시. (육류 라인 사건으로 Da Nang 참치 라인과는 직접 무관하나 그룹 평판·거버넌스 리스크.)"
+        },
+        {
+          "date": "2026-01-10~12",
+          "summary": "총괄이사(CEO) Trương Sỹ Toàn 및 품질관리 직원 다수 구속. Hai Phong 공장 2026-01-12부터 14일간 가동 중단. 일부 대형 유통사 제품 회수."
+        },
+        {
+          "date": "2026 (계획)",
+          "summary": "Nam Dinh Vu 산업단지에 신규 공장 건설, 2026년 2분기 착공 예정."
+        }
+      ],
+      "sources": [
+        {
+          "label": "VASEP 회원정보 — Cong ty TNHH MTV Do hop Ha Long - Da Nang (EU코드·인증·제품)",
+          "url": "https://vasep.com.vn/hoi-vien/thong-tin/cong-ty-tnhh-mtv-do-hop-ha-long-da-nang-822.html"
+        },
+        {
+          "label": "Seaprodex 회원사 페이지 — Ha Long Canfoco JSC (설립·직원수·지배구조)",
+          "url": "https://seaprodex.vn/en/about-us/member-company/ha-long-canfoco-joint-stock-company/"
+        },
+        {
+          "label": "StockAnalysis — HNX:CAN 재무 (2024 매출 -8.06%)",
+          "url": "https://stockanalysis.com/quote/hnx/CAN/financials/"
+        },
+        {
+          "label": "ImportInfo — Halong Canfoco Danang 미국 수입활동 (222건·바이어·항구)",
+          "url": "https://www.importinfo.com/halong-canfoco-danang-co-ltd"
+        },
+        {
+          "label": "CafeF — 그룹 3개 공장 구조·경영진·흑자전환·Nam Dinh Vu 신공장",
+          "url": "https://cafef.vn/cong-ty-do-hop-ha-long-hoat-dong-the-nao-ai-dang-quan-ly-188260110154453006.chn"
+        },
+        {
+          "label": "Dan Tri — Hai Phong 공장 가동중단 사유 (2026-01-12)",
+          "url": "https://dantri.com.vn/kinh-doanh/ly-do-nha-may-do-hop-ha-long-o-hai-phong-tam-dung-san-xuat-20260112015246053.htm"
+        },
+        {
+          "label": "DNSE — ISO 취소·FSSC 22000 정지 (모회사 식품안전 사건)",
+          "url": "https://www.dnse.com.vn/senses/tin-tuc/vu-tieu-huy-130-tan-lon-nhiem-benh-tai-do-hop-ha-long-nha-may-hai-phong-chua-the-xac-dinh-thoi-diem-tiep-tuc-san-xuat-35184834"
+        },
+        {
+          "label": "Interfishmarket 기업 프로필 (설립·주소·직원·수출시장)",
+          "url": "https://interfishmarket.com/en/company.aspx?id=107506"
+        }
+      ]
+    },
+    "dataConfidence": "medium",
+    "profileSummary": "Halong Canfoco는 1957년 하이퐁에서 설립된 베트남 북부 통조림 식품 그룹(하노이거래소 HNX:CAN 상장, 최대주주 Seaprodex 27.75%)으로, 그룹 매출의 상당 부분은 파테·육류·야채 통조림이며 2024년 순매출은 약 6,818억 VND(전년比 -8.06%)다. 참치 통조림 OEM의 실질 가공주체는 2011년 다낭에 설립된 자회사 CANFOCO DANANG으로, 참치·정어리·고등어를 가공해 EU(특히 독일)·미국(2017~2025년 222건 선적)·호주·중동·아시아로 수출하며 EU 승인코드·HACCP·IFS·HALAL·BSCI 인증을 보유한다. 다만 2025~2026년 모회사 Hai Phong 공장에서 ASF 오염 돼지고기 약 130톤이 적발돼 CEO 구속·가동 중단·ISO 취소 등 거버넌스·평판 리스크가 현존한다(육류 라인 사건으로 참치 라인과는 직접 무관).",
+    "verificationSummary": "설립연도(1957/2011), 2024 재무(-8.06%), Seaprodex 27.75% 지배구조, 직원수, 제품·3개 공장(Hai Phong·Da Nang·Dong Thap), VASEP 인증 4종(HACCP·IFS·HALAL·BSCI), 미국 222건 수출, ASF 130톤·CEO 구속·가동중단은 1차/협회/증권 출처로 뒷받침됐다. 반면 EU 코드 'DH40'·정관자본 500억 VND·FDA 등록번호 12326850270은 권위 출처 부재로 제외했고, EU 코드 번호(DH203 vs DH358)·71 vs 43 Le Lai 주소·생산능력 정량치는 1차 미확정이라 단서를 달아 표기했다.",
+    "recommendedFieldUpdates": {
+      "hasEU": true,
+      "hasFDA": true,
+      "msc": false,
+      "capacityMT": null,
+      "changeNote": "hasEU=true: VASEP에 EU 승인코드 DH203 등재·독일 등 EU 수출(번호는 미확정이나 승인업체 자체는 타당). hasFDA=true: 2017~2025 미국 222건 통조림 참치 선적으로 FDA 시설등록 사실상 필수(번호 12326850270은 1차 미확인). msc=false 유지: MSC CoC·ISSF 어디에도 미발견. capacityMT=null: 정량 생산능력 1차 출처 부재로 근거 불충분(60 MT/day 유지·변경 모두 근거 없음)."
+    }
+  },
+  {
+    "vendorId": "thanh-dung",
+    "dataConfidence": "medium",
+    "profileSummary": "Thanh Dung Canning Company Limited(CONG TY TNHH DO HOP THANH DUNG)은 2019년 설립된 베트남 중부의 참치 통조림·냉동 수산물 가공 OEM 기업으로, 본사·공장은 Hoa Hiep 1 Industrial Park(Dong Hoa, 구 Phu Yen / 2025년 행정구역 통합으로 현 Dak Lak Province)에 있다. 대표이사는 Vo Thi Quynh Dung이며 정관자본은 100억 VND에서 400억 VND로 증자된 비상장 유한책임회사(LLC)다. NAFIQAD 등록 가공장(코드 TS 980, FR·Canned)으로서 캔·파우치·파테 형태의 참치 제품과 냉동 참치·오징어·문어를 생산하며 미국·사우디아라비아 등으로 수출하고 있다.",
+    "verificationSummary": "설립연도(2019), 대표·LLC 형태·자본 증자(100억→400억 VND), 공장 주소와 NAFIQAD TS 980 코드(FR·Canned, 2020-08-31 등재), OCOP 3성(2023-09-15), 제품군, 사우디 수출 적격, 2024년 8월 보험료 16억 VND 체납 보도는 원문 출처로 직접 확인되었다. 반면 세금코드(잘못된 출처 귀속)·30 MT/day 생산능력·승인 어종에 잘못 병합된 frozen anchovy/pink salmon은 근거가 없어 제외했고, EU 수출 적격은 VASEP 자체 라벨에만 근거해 EU 1차 출처로는 미확정, 미국 최근 선적의 도착지(Seattle)는 실제로 Toronto로 확인되어 정정했다.",
+    "recommendedFieldUpdates": {
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": null,
+      "capacityMT": null,
+      "changeNote": "hasFDA=keep-false(FCE/SID 등록번호 미관측, 미국 선적은 약한 정황뿐), hasEU=insufficient-evidence(EU TRACES 1차 확인 불가, VASEP 자체 라벨뿐), msc=keep-false(MSC CoC·ISSF 등재 없음), 생산능력 30 MT/day는 출처 부재로 미확정 — 어느 필드도 high 확신의 변경 권고가 없어 전부 null 유지."
+    },
+    "publicProfile": {
+      "website": "https://thanhdungcanning.com",
+      "founded": "2019",
+      "headquarters": "Hoa Hiep 1 Industrial Park, Dong Hoa, 구 Phu Yen (2025년 행정구역 통합으로 현 Dak Lak Province), 베트남 중부",
+      "ownership": "비상장 유한책임회사(Cong ty TNHH). 대표이사 겸 법적 대표자 Vo Thi Quynh Dung. 정관자본 100억 VND에서 400억 VND로 2회 증자.",
+      "employees": "약 180명 (2024-06-27 기준 등록)",
+      "revenue": null,
+      "capacityNote": "공개 출처에서 생산능력 수치가 확인되지 않음. 기존 데이터의 30 MT/day 값은 어떤 1차·2차 출처로도 입증되지 않아 미확정 처리.",
+      "plants": [
+        "Hoa Hiep 1 Industrial Park, Dong Hoa, 구 Phu Yen (현 Dak Lak Province), 베트남 중부 — 냉동 + 통조림 수산물 가공시설. NAFIQAD 등록 코드 TS 980, 활동 'FR, Canned'(냉동+통조림), 2020-08-31 등재."
+      ],
+      "products": [
+        "Canned tuna — 해바라기유·대두유·염수·토마토소스 등에 담긴 참치 통조림, tongol 참치 청크(염수), chunk light tuna, bonito 통조림. 대표 제품: 기름·파우치 포장 ocean tuna 통조림(OCOP 제품).",
+        "Tuna pouch / tuna pate — 참치 캔·파우치·파테(공식 웹사이트 기준).",
+        "Frozen tuna / cooked loin — 냉동 yellowfin 참치(poke cube, ground meat, loin), 냉동 증숙·가열 참치. NAFIQAD 승인 어종: skipjack, tongol, frigate, bonito, yellowfin, big eye.",
+        "Frozen squid & octopus, dried goods — 냉동 오징어·문어, 건제품(VASEP 공급사 프로필 기준)."
+      ],
+      "certifications": [
+        {
+          "standard": "NAFIQAD 승인 가공장 (베트남 권한당국 코드; 수산물 수출용)",
+          "code": "TS 980",
+          "note": "어종: skipjack, tongol, frigate, bonito, yellowfin, big eye. 활동 'FR, Canned'(냉동+통조림). Dong Hoa, Phu Yen. 2020-08-31 등재. 사우디 SFDA가 게시한 NAFIQAD 승인 가공장 목록에서 확인. VASEP 공급사 프로필은 TS 980을 'EU Code'로 표기하나 EU TRACES 1차 출처로는 EU 수출 적격이 미확정."
+        },
+        {
+          "standard": "OCOP (One Commune One Product) 3성, 군(district) 단위",
+          "note": "2023-09-15 Dong Hoa Town이 기름 포장 ocean tuna 통조림(파우치) 제품에 부여. 베트남 국내 프로그램이며 수출용 식품안전 인증은 아님."
+        }
+      ],
+      "exportMarkets": [
+        "미국 (주력 시장; 수입사 J.A. Kirsch Corp(약 31 컨테이너), Jana Brands, Pantry Shelf Food, RD Foods Americas 등; 약 49건 선적(추정, 무역 데이터 집계 노이즈 가능). 최근 2025-12 선적은 도착지 Toronto, Canada로 확인)",
+        "사우디아라비아 (SFDA 승인 가공장 목록에 코드 TS 980으로 등재, 수출 적격)",
+        "EU (NAFIQAD TS 계열 승인 및 VASEP의 'EU Code' 표기로 시사되나 EU 1차 출처로 미확정)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2023-09-15",
+          "summary": "Dong Hoa Town으로부터 기름 포장 ocean tuna 통조림(파우치) 제품에 대해 군 단위 OCOP 3성 인증 획득."
+        },
+        {
+          "date": "2024-08-13",
+          "summary": "베트남 언론이 Phu Yen 사회보험기관 발표를 인용해, 약 150명 근로자에 대한 사회·건강·실업·산재보험료 16억 VND 이상(이자 약 1억 4,100만 VND 포함)을 10개월간 체납했다고 보도. OEM 파트너 관점에서 재무·컴플라이언스 리스크 신호."
+        },
+        {
+          "date": "2025-12",
+          "summary": "무역 데이터상 참치 통조림의 대미 선적이 계속됨(가장 최근 기록 선적은 2025-12, Pantry Shelf Food 향, 도착지 Toronto)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "SFDA — 베트남 NAFIQAD 승인 가공장 목록(사우디 수출), TS 980 / Thanh Dung 등재",
+          "url": "https://www.sfda.gov.sa/sites/default/files/2025-08/Vietnam-fish_0.pdf"
+        },
+        {
+          "label": "VASEP 공급사 프로필 — 주소·제품·웹사이트·'EU Code TS 980'",
+          "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/thanh-dung-canning-company-limited-1040.html"
+        },
+        {
+          "label": "Nhip Song Doanh Nghiep — 회사 배경·설립·대표·자본·OCOP·보험료 체납 보도",
+          "url": "https://nhipsongdoanhnghiep.laodongdoanthe.vn/cong-ty-do-hop-thanh-dung-chu-san-pham-ca-ngu-dai-duong-ngam-dau-dong-tui-no-dong-bao-hiem-hon-16-ty-106269.html"
+        },
+        {
+          "label": "공식 웹사이트 — 참치 캔/파우치/파테",
+          "url": "https://thanhdungcanning.com/"
+        },
+        {
+          "label": "ImportGenius — 미국 선적·수입사 기록",
+          "url": "https://www.importgenius.com/suppliers/thanh-dung-canning-co-ltd"
+        }
+      ]
+    }
+  },
+  {
+    "vendorId": "halong-tuna-danang",
+    "profileSummary": "Ha Long Tuna JSC(Cong ty CP Ca Ngu Ha Long, 세금코드 0402131933)는 2022년 1월 12일 베트남 다낭에 설립된 신생 주식회사(JSC) 형태의 참치 가공·수출업체로, 2026년 기준 업력 약 4년의 소규모 OEM/트레이더이다. 주력 제품은 미국 식자재용으로 수출되는 캔 참치(가다랑어류 Auxis thazard, HS 1604.19.1000)이며, 미국이 가장 큰 시장으로 2022년 6월부터 2026년 5월까지 약 283건의 미국 선하증권 기록이 확인된다. 동명의 대형 업체인 Halong Canned Food JSC(CANFOCO, 하이퐁, 1957년 설립) 및 다낭 소재 'HALONG CANFOCO-DANANG'과는 별개의 법인으로, 거래 실적 외 생산능력·인증 등 핵심 정보의 공개 출처가 빈약하다.",
+    "verificationSummary": "설립연도·법인형태·세금코드·법적대표자·다낭 소재지(등기/사무소 2개 주소)·미국 중심 수출실적(283건 BoL, 캔 참치 HS 1604.19.1000)·프랑스/라트비아/콜롬비아 수출은 베트남 등기소와 무역데이터로 확인되었으나, EU 승인코드(TS980/DH137/TS968)는 베트남 EU 'DL' 코드 형식과 불일치하여 미확인이고, 품질인증(FDA/HACCP/IFS/BRC/BSCI)은 VASEP 자기신고뿐 독립 검증이 없으며, 거론된 FDA 등록번호는 어떤 1차 페이지에도 없어 환각 위험으로 배제했다.",
+    "dataConfidence": "low",
+    "publicProfile": {
+      "website": null,
+      "headquarters": "Da Nang, Vietnam (등기 주소: 61 Giap Hai, Nai Hien Dong Ward, Son Tra District; 사무소/선적 주소: 38 Duong Thi Xuan Quy, Ngu Hanh Son — 등기 본점과 사무소가 다른 것으로 추정)",
+      "founded": "2022-01-12",
+      "ownership": "Joint Stock Company (Cong ty Co phan). 법적대표자 Nguyen Van Binh, 세금코드 0402131933. 모회사·그룹 확인되지 않은 독립 법인으로 추정.",
+      "employees": null,
+      "revenue": null,
+      "capacityNote": "공개된 생산능력 수치가 어떤 출처(VASEP·등기소·무역데이터)에서도 확인되지 않음. 4년차 신생 OEM/트레이더로서 자체 대형 설비 없이 제3자 공장에서 위탁가공(co-pack)할 가능성이 있으나 미확인.",
+      "products": [
+        "캔 참치 (canned chunk light tuna, 가다랑어류 Auxis thazard, 물·식물성 육수 충전, 6/66.5oz 식자재용 캔, HS 1604.19.1000)",
+        "파우치 참치 (bagged/pouched tuna)",
+        "참치 가공·보관 (등기 업종: processing and preserving aquatic products — cooked-loin/냉동/sashimi OEM은 공개기록상 미확인)"
+      ],
+      "plants": [
+        "Da Nang, Vietnam (中部) — 가공/수출 거점. 자체공장 vs 위탁가공 여부 미확인. 미국 세관기록상 Vung Tau가 주요 선적항(약 283건 중 210건)으로 다낭 외부에서 위탁가공·선적 가능성 추정."
+      ],
+      "certifications": [],
+      "exportMarkets": [
+        "미국 (최대 시장, 2022.06~2026.05 약 283건 BoL, Newark NJ/New York 항, 바이어 Port Royal Sales·Nemco Food Trading·J.A. Kirsch·C Pacific·Jose Santiago Foodservice, 미국령 버진아일랜드 포함)",
+        "프랑스 (EU, 단일 무역집계 출처 기반 추정)",
+        "라트비아 (EU, 단일 무역집계 출처 기반 추정)",
+        "콜롬비아"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2022-01-12",
+          "summary": "다낭에서 회사 설립·등기(세금코드 0402131933). 2022년 중반부터 미국향 수출 선적 개시."
+        },
+        {
+          "date": "2026-05",
+          "summary": "미국향 선적이 지속(최근 BoL 2026년 5월), 보고 시점 기준 영업 지속 정황."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Vietnam 기업등기 - Cong ty CP Ca Ngu Ha Long (MST 0402131933, 설립일·대표자·등기주소)",
+          "url": "https://www.tratencongty.com/company/511b1f1d-cong-ty-co-phan-ca-ngu-ha-long/"
+        },
+        {
+          "label": "VASEP 회원 프로필 - Cong ty CP Ca Ngu Ha Long (사무소 주소·연락처)",
+          "url": "https://vasep.com.vn/hoi-vien/thong-tin/cong-ty-cp-ca-ngu-ha-long-810.html"
+        },
+        {
+          "label": "ImportInfo - 미국 수입 선하증권 (283건 BoL, 제품·HS·선적항)",
+          "url": "https://www.importinfo.com/halong-tuna-joint-stock-company"
+        },
+        {
+          "label": "ImportKey - 미국 세관기록 (바이어·콜롬비아 선적)",
+          "url": "https://importkey.com/i/halong-tuna-joint-stock-company"
+        },
+        {
+          "label": "Volza - 수출시장 프로필 (미국·프랑스·라트비아)",
+          "url": "https://www.volza.com/company-profile/ha-long-tuna-joint-stock-company-64428914/"
+        },
+        {
+          "label": "Info doanh nghiep - Cong ty CP Ca Ngu Ha Long (등기 업종)",
+          "url": "https://infodoanhnghiep.com/thong-tin/CONG-TY-CO-PHAN-CA-NGU-HA-LONG-31933.html"
+        },
+        {
+          "label": "VASEP English 공급자 프로필 - Ha Long Tuna Joint Stock Company",
+          "url": "http://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/ha-long-tuna-joint-stock-company-893.html"
+        }
+      ]
+    },
+    "recommendedFieldUpdates": {
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": false,
+      "capacityMT": null,
+      "changeNote": "msc=false: MSC Chain of Custody·ISSF 참여기업 목록에서 모두 미발견으로 기존 가정(false)이 검증됨(중확신). hasFDA/hasEU는 자기신고·미확인이며 거론된 FDA 번호는 환각 위험이라 변경 불가(null). capacityMT는 추적 가능한 출처가 없어 25 MT/day 확인·반박 모두 불가(null)."
+    }
+  },
+  {
+    "vendorId": "golden-ocean",
+    "profileSummary": "Golden Ocean Seafood Co., Ltd. (CÔNG TY TNHH THỦY SẢN ĐẠI DƯƠNG VÀNG)는 베트남 남중부 푸옌성(Phú Yén) 뚜이호아시(Tuy Hòa)에 본사를 둔 수산물 가공·수출 기업으로, VASEP(베트남 수산물 가공·수출협회) 회원사다. 베트남 최대 황다랑어(ocean tuna) 양륙·가공 거점인 뚜이호아에 위치해 캔/파우치 가다랑어, tuna loin·portion·kama·tartare 등 참치 제품을 주력으로 하며, pangasius·새우·오징어·게·surimi 등 다종 수산물 라인을 함께 운영하는 OEM형 가공사다. 비상장 유한책임회사(Công ty TNHH) 형태이며 모기업·주주구조는 공개되지 않았다.",
+    "publicProfile": {
+      "website": "https://goldenoceanseafood.com.vn/",
+      "headquarters": "Số 10 Phạm Hồng Thái, Ward 4, Tuy Hòa City, Phú Yên Province, Vietnam (2025년 행정구역 통합 이후 공식 주소는 Đắk Lắk Province로 등재)",
+      "founded": null,
+      "ownership": "비상장 유한책임회사(Công ty TNHH). 웹사이트 영업 담당자 'Sean Bui' 표기; 관련 등록기록(법인세코드 4401067104)의 법적 대표는 'Bùi Quốc Bảo'로 동일인 여부는 미확정(추정). 모기업·주주구조 미공개",
+      "employees": null,
+      "revenue": null,
+      "plants": [
+        "Tuy Hòa City, Phú Yên Province (본사 겸 가공·수출 거점, 10 Phạm Hồng Thái). 별도 공장 주소·라인 수·생산능력은 미공개"
+      ],
+      "products": [
+        "Tuna 캔/파우치 (Skipjack tuna pouched in soya oil 등)",
+        "Tuna loin · portion cut (CO) · kama (CO/KCO) · blackmeat · tendon meat",
+        "Tuna tartare 등 냉동/가공 참치",
+        "Pangasius(메기) 필렛 · tilapia · barramundi · grouper · mackerel · hairtail",
+        "새우(HOSO · Nobashi · PD · breaded 등) · 오징어 · 문어 · 게 · 랍스터 · surimi · 건멸치"
+      ],
+      "certifications": [
+        {
+          "standard": "HACCP",
+          "code": "",
+          "note": "VASEP 회원기록의 품질시스템 항목에 기재. 인증번호 미공개로 디렉터리 수준 정보(미확정)"
+        }
+      ],
+      "exportMarkets": [],
+      "capacityNote": "생산능력(MT/일) 수치가 회사 웹사이트·VASEP 기록·등록기관·무역자료 어디에도 공개되지 않음. 기존 데이터의 15 MT/일은 별개 기업(Kien Giang 소재 Golden Seafood VN)의 수치가 혼입된 것으로 본 업체에 귀속 불가",
+      "recentDevelopments": [
+        {
+          "date": "2024",
+          "summary": "동일 주소(10 Phạm Hồng Thái, Tuy Hòa)에 법인세코드 4401067104, 법적 대표 Bùi Quốc Bảo의 수산물 도매 업종 등록기록 'CÔNG TY TNHH THỦY HẢI SẢN ĐẠI DƯƠNG VÀNG'이 확인됨. 관련·개명 가능성이 있는 별도 법인으로 추정되며 웹사이트의 2019년 설립 주장과 상충(등록일 자체도 2024-05-23 vs 2019-07-23로 미러 간 불일치)"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Golden Ocean Seafood 공식 사이트 (홈)",
+          "url": "https://goldenoceanseafood.com.vn/"
+        },
+        {
+          "label": "Golden Ocean Seafood — Contact(주소·전화·이메일)",
+          "url": "https://goldenoceanseafood.com.vn/contact/"
+        },
+        {
+          "label": "Golden Ocean Seafood — Our Products(제품 카탈로그)",
+          "url": "https://goldenoceanseafood.com.vn/our-products/"
+        },
+        {
+          "label": "Golden Ocean Seafood — About Us(설립연도 주장)",
+          "url": "https://goldenoceanseafood.com.vn/about-us/"
+        },
+        {
+          "label": "VASEP 회원기록 — CÔNG TY TNHH THỦY SẢN ĐẠI DƯƠNG VÀNG",
+          "url": "https://vasep.com.vn/hoi-vien/thong-tin/cong-ty-tnhh-thuy-san-dai-duong-vang-1023.html"
+        },
+        {
+          "label": "베트남 사업자등록 — 법인세코드 4401067104 (Infocom)",
+          "url": "https://infocom.vn/cong-ty-tnhh-thuy-hai-san-dai-duong-vang-4401067104.html"
+        },
+        {
+          "label": "베트남 세코드 조회 — 4401067104 (Thư Viện Pháp Luật)",
+          "url": "https://thuvienphapluat.vn/ma-so-thue/cong-ty-tnhh-thuy-hai-san-dai-duong-vang-mst-4401067104.html"
+        }
+      ]
+    },
+    "dataConfidence": "low",
+    "verificationSummary": "신원·소재지·VASEP 회원 자격·참치 및 다종 수산물 제품 라인은 공식 사이트와 VASEP 기록(동일 전화 +84 918169147)으로 교차 확인됐다. 반면 설립연도(2019 vs 2024 미확정), FDA/EU(DL) 등록, MSC 인증, 생산능력 15 MT/일은 어떤 1차 출처로도 입증되지 않았고, 15 MT/일·일부 FDA·생산 수치는 동명의 별개 업체에서 혼입된 것으로 확인돼 본 업체에 귀속할 수 없다.",
+    "recommendedFieldUpdates": {
+      "hasFDA": false,
+      "hasEU": false,
+      "msc": false,
+      "capacityMT": null,
+      "changeNote": "FDA 등록·미국 수입기록 없음(뚜이호아 FDA 기록은 별개사 Golden Shrimp Seafood JSC), VASEP의 EU 코드란 공란으로 DL 번호 없음, MSC CoC 부재·ISSF 비회원, 15 MT/일은 별개사 Golden Seafood VN(Kien Giang) 수치 혼입 → 해당 3개 플래그 false, capacityMT는 미상으로 제거"
+    }
+  },
+  {
+    "vendorId": "kifocan",
+    "profileSummary": "KIFOCAN(Kien Giang Foodstuff Canning Joint Stock Company)은 베트남 남부 메콩델타 Kien Giang성 Chau Thanh현 Tac Cau 어항 산업단지에 단일 가공·포장공장(PP)을 운영하는 참치·정어리 통조림 제조 및 OEM 가공 전문 기업이다. 약 2005년 설립(1990년대 초 태국 합작 통조림 사업이 전신, 이후 베트남 완전 소유로 전환)된 것으로 알려져 있으며, EU 승인 코드 DH 335와 중국 GACC 등록을 보유해 EU·중국 등으로 수출한다. C레벨 관점에서 EU·중국 시장 접근 자격은 1차 출처로 명확히 확인되나, 자체 공장 처리능력·매출·임직원 등 규모 지표는 공개 1차 출처가 없어 미확정 상태다.",
+    "verificationSummary": "EU 승인(DH 335, PP, 2024-01-03 등재)과 중국 GACC 등록(DH335)은 NAFIQPM 공식 EU 업체목록·중국 세관 등록부 2개 1차 출처로 직접 확인됐고, DH 358(Phillips Seafood) 오기 및 인접사 KTCFOOD(DH 755, ISSF·FDA·KOSHER 등 보유)와의 혼동도 정정·배제됐다. 반면 설립연도·소유이력·2018 품질상·Lebanon/Hong Kong/Marshall Islands 수출은 단일 2차 출처에 의존하며, 자체 공장 처리능력(기존 20 MT/day)·FDA·MSC는 1차 근거가 없어 미확정 또는 현행값 유지로 처리했다.",
+    "dataConfidence": "medium",
+    "publicProfile": {
+      "website": "https://kifocan.vn/",
+      "headquarters": "베트남 Kien Giang성 Chau Thanh현 Binh An면 Minh Phong마을 Tac Cau 어항 산업단지 (남부 메콩델타)",
+      "founded": "약 2005년 (1990년대 초 태국 합작 통조림 사업이 전신, 이후 베트남 완전 소유로 전환; 단일 2차 출처 기반, 추정)",
+      "ownership": "주식회사(Joint Stock Company), 베트남 완전 소유로 보고됨 (구 태국 합작에서 전환). 상장(HOSE/HNX) 이력 및 모회사·주주 공개 정보는 확인되지 않음 (미확정)",
+      "revenue": null,
+      "employees": null,
+      "capacityNote": "자체 공장 처리능력에 대한 공개 1차 출처 없음. 회사 웹사이트의 200,000~250,000톤/년 수치는 Kien Giang/태국만 어장의 연간 어획량을 의미하며 공장 처리량이 아님(VietKings 교차확인). 기존 20 MT/day 값은 근거 없는 가정으로 미확정.",
+      "products": [
+        "참치 통조림 (올리브유·대두유·식물성유 / 염수 / 스프링워터 침지, 칠리오일·마요네즈·커리·토마토소스 등 가미 변형 포함, 고객 OEM 사양)",
+        "정어리 통조림 (예: 토마토소스 정어리)",
+        "고등어 통조림",
+        "참치 원물 처리/캔 전 가공 (냉동 참치 해동·증숙·필레팅 후 고객 지정 침지액으로 통조림화; OEM 기반)"
+      ],
+      "plants": [
+        "단일 가공·포장공장(PP): 베트남 Kien Giang성 Chau Thanh현 Binh An면 Tac Cau 어항 산업단지 (EU 코드 DH 335 / 중국 GACC DH335 등재)"
+      ],
+      "certifications": [
+        {
+          "standard": "EU 제3국 수산물 가공시설 승인 (Reg. (EU) 2017/625)",
+          "code": "DH 335",
+          "note": "활동 분류 PP(가공공장), EU 등재일 2024-01-03. NAFIQPM 공식 EU 업체목록(VN-FFP, 2024-07-17 갱신)에서 직접 확인. (주의: 일부 검색 스니펫의 DH 358은 별개 회사 Phillips Seafood로 오기였음)"
+        },
+        {
+          "standard": "중국 GACC 수입업체 등록",
+          "code": "DH335",
+          "note": "수산물(水产品) 가공·포장(PP), 대중국 수출 등록. 중국 세관 베트남 수산물 승인업체 등록부(Vietnam20180312, 213번) 확인."
+        },
+        {
+          "standard": "베트남 고품질 베트남 제품(Hàng Việt Nam Chất Lượng Cao) 국내 인증 (2018년 보고, 추정)",
+          "note": "단일 2차 출처(VietKings)만 보고, 수여기관·인증코드 독립 확인 불가 (미확정)"
+        }
+      ],
+      "exportMarkets": [
+        "European Union (EU 승인 DH 335)",
+        "China (GACC DH335 등록)",
+        "Poland (2013 Brussels 수산박람회 이후 수주, 추정)",
+        "Germany (2013 Brussels 박람회, 추정)",
+        "France (2013 Brussels 박람회, 추정)",
+        "Lebanon (2차 무역데이터 집계 기반, 추정)",
+        "Hong Kong (2차 무역데이터 집계 기반, 추정)",
+        "Marshall Islands (2차 무역데이터 집계 기반, 추정)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2025-05",
+          "summary": "[혼동 주의·KIFOCAN 아님] 같은 Tac Cau 항의 인접 별개 기업 KTCFOOD(Kien Giang Trading JSC, EU 코드 DH 755)가 2025년 5월 ISSF 참여기업으로 합류함. KTCFOOD의 ISSF·FDA·Dolphin-Safe·Kosher·Halal·IFS·ISO 22000 보유 사실을 KIFOCAN에 귀속해서는 안 됨."
+        }
+      ],
+      "sources": [
+        {
+          "label": "NAFIQPM 공식 EU 수산물 업체목록 (VN-FFP, 2024-07-17 갱신) — DH 335 = KIFOCAN",
+          "url": "https://nafiqpm.mae.gov.vn/portal/DinhKemTinBai/2024-07/VN-FFP-en%20(5)_BmLLcgMsa0KB16RM.pdf"
+        },
+        {
+          "label": "중국 세관(GACC) 베트남 수산물 승인업체 등록부 (2018-03-12, 213번 DH335 = KIFOCAN)",
+          "url": "https://www.chinafeedonline.com.hk/sites/default/files/Vietnam20180312.pdf"
+        },
+        {
+          "label": "KIFOCAN 공식 웹사이트 (TLS 인증서 만료, 접속 시 경고)",
+          "url": "https://kifocan.vn/"
+        },
+        {
+          "label": "KIFOCAN 참치 통조림 제품 페이지",
+          "url": "http://kifocan.vn/index.php/canned-tuna/"
+        },
+        {
+          "label": "VietKings(kyluc.vn) KIFOCAN 프로필 (연혁·설립·제품·수상)",
+          "url": "https://kyluc.vn/tin-tuc/top-bep-vang/hanh-trinh-viet-nam-san-pham-viet-nam-the-best-of-vietnam-de-cu-107-thuc-pham-dong-hop-kien-giang-kifocan"
+        },
+        {
+          "label": "MSC 어업/CoC 인증 검색 (KIFOCAN 결과 없음 — msc=false 근거)",
+          "url": "https://fisheries.msc.org/en/fisheries/?searchText=Kien+Giang"
+        },
+        {
+          "label": "ISSF — KTCFOOD 참여기업 합류 보도 (혼동 배제 근거)",
+          "url": "https://www.iss-foundation.org/about-issf/what-we-publish/2025/05/28/issf-welcomes-vietnams-ktcfood-as-a-new-participating-company/"
+        },
+        {
+          "label": "VASEP 공급사 디렉터리 — Kien Giang Foodstuff Canning JSC",
+          "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/kien-giang-foodstuff-canning-joint-stock-company-584.html"
+        }
+      ]
+    },
+    "recommendedFieldUpdates": {
+      "capacityMT": null,
+      "hasEU": null,
+      "hasFDA": null,
+      "msc": null,
+      "changeNote": "capacityMT: 검증에서 'revise'(20 MT/day 가정 제거, 미확정 처리) 권고됐으나 새 수치 근거가 없어 null로 표기(가정값 폐기). hasEU=true는 1차 2개 출처로 확인되어 변경 불필요(keep-true), hasFDA=false·msc=false는 현행 유지(keep) 권고이므로 모두 null."
+    }
+  },
+  {
+    "vendorId": "thai-union",
+    "dataConfidence": "medium",
+    "profileSummary": "Thai Union Group PCL은 태국 Samut Sakhon에 본사를 둔 세계 최대 상온(shelf-stable) 캔참치 가공기업으로, 1977년 설립되어 1994년 태국증권거래소(SET, 티커 TU)에 상장한 공개기업이다. 창업주 Chansiri 가문이 최대주주이며 Thiraphong Chansiri가 회장 겸 CEO다. Chicken of the Sea, John West, Petit Navire, King Oscar 등 글로벌 브랜드를 보유하고 매출의 약 90%를 태국 외(주로 미국·EU)에서 거두며, 매출의 약 60%가 OEM(자체상표 위탁생산)이고 참치가 매출의 약 절반을 차지해 OEM 파트너로서의 적합성이 높다.",
+    "verificationSummary": "설립연혁·본사주소·상장/지배구조·FY2024 실적(매출 THB 138,433백만, 순이익 THB 4,985백만, GPM 18.5%)·브랜드·OEM 60%/참치 절반·FDA 경고서한(630100, 2022-04-20)·MSC Chain of Custody·EU 제3국 승인은 1차/권위출처로 확인되었으나, 기존 JSON의 1,560 MT/day 생산능력 수치는 어떤 출처로도 뒷받침되지 않아 제외했고(ASEAN Records 페이지에 능력 수치 없음 확인), 종업원 수·일부 plant 국가 수(12 vs 13)·EU 인증코드는 근거가 불충분하다.",
+    "publicProfile": {
+      "website": "https://www.thaiunion.com/",
+      "founded": "1977년 설립(원명 Asian Pacific Thai Tuna Co., Ltd.; 'Thai Union Frozen Products'는 1988년 사명 변경으로 추정), 1994년 11월 22일 태국증권거래소(SET, 티커 TU) 상장",
+      "headquarters": "72/1 Moo 7, Sethakit 1 Road, Tarsrai Sub-district, Mueang Samut Sakhon District, Samut Sakhon Province 74000, Thailand",
+      "ownership": "태국증권거래소(SET, 티커 TU) 상장 공개기업, 법인등록번호 0107537000891, 납입주식수 4,455,132,696주(액면 THB 0.25). 창업주 Chansiri 가문이 최대주주 그룹이며 Thiraphong Chansiri가 회장 겸 CEO(정확한 현재 지분율은 1차 공시에서 미추출).",
+      "employees": "전 세계 약 44,000~49,000명(추정; 출처별 상이, Wikipedia의 49,000명은 2017년 기준 수치)",
+      "revenue": "FY2024 매출 THB 138,433백만(전년比 +1.7%), 순이익 THB 4,985백만(+7.2%), 매출총이익률(GPM) 18.5%(사상 최고), EBITDA THB 13,361백만, EPS THB 1.08",
+      "capacityNote": "세계 최대 상온(shelf-stable) 캔참치 가공기업으로 알려져 있으나, 구체적 일/연간 처리능력 수치는 신뢰 가능한 1차 출처로 확인되지 않음(기존 데이터의 1,560 MT/day는 어떤 출처로도 뒷받침되지 않아 채택하지 않음).",
+      "products": [
+        "Ambient/상온 캔수산물: 캔참치(세계 최대 생산), 정어리, 고등어, 연어, 조리참치로인",
+        "냉동·냉장 수산물: 냉동 사전조리 참치로인(미국 수출분 포함), 새우, 냉동제품",
+        "부가가치·조리·PetCare·해양원료(marine ingredients) — FY2024 성장 카테고리",
+        "OEM/위탁생산(자체상표): 매출의 약 60%가 위탁생산, 나머지가 자사 브랜드이며 참치가 매출의 약 절반",
+        "보유 브랜드(국제): Chicken of the Sea, John West, Petit Navire, Parmentier, Mareblu, King Oscar, Rugen Fisch / (태국): SEALECT, Fisho, Qfresh, Monori, Bellotta, Marvo"
+      ],
+      "plants": [
+        "Samut Sakhon, Thailand — 본사 및 주력 참치 가공시설(2022년 FDA 수산물 HACCP 경고서한 대상 시설)",
+        "글로벌 — 4개 대륙 13개국에 15개 생산시설(프랑스·독일·가나·폴란드·포르투갈·파푸아뉴기니·노르웨이·세이셸·스코틀랜드·베트남·태국·미국 등; 공식 발표상 13개국이나 원자료에 12개국만 명시되어 일부 국가명 미확정)"
+      ],
+      "certifications": [
+        {
+          "standard": "MSC Chain of Custody",
+          "note": "Thai Union은 자사 모든 참치 가공시설이 MSC Chain of Custody 인증을 보유한다고 밝힘(FAIRR 평가로 교차확인). 조달 참치의 99%가 MSC 인증/심사중/FIP 단계이며, Chicken of the Sea는 2026년 말까지 소매 참치 100% MSC 인증 목표. 구체적 MSC-C-xxxxx 인증코드는 페이지에서 확인되지 않음."
+        },
+        {
+          "standard": "ISSF participating company",
+          "note": "ISSF 창립 참여기업으로 보존조치 및 감사 준수 대상(Thai Union Manufacturing Co., Ltd.의 2024년 활동 ISSF Final Compliance Report 존재). Thai Union 임원이 ISSF 이사회 의장직 수행."
+        },
+        {
+          "standard": "EU third-country approved establishment (DG SANTE / TRACES-NT)",
+          "note": "태국은 수산물에 대한 EU 승인 제3국이며 Thai Union은 Thai Union Europe을 통해 EU에 대량 수출. 다만 Samut Sakhon 시설의 구체적 EU 승인코드는 TRACES-NT(JS 렌더링 DB)에서 직접 확인되지 않아 코드 미기재."
+        }
+      ],
+      "exportMarkets": [
+        "미국(2022년 FDA 수산물 HACCP 경고서한의 'precooked tuna loin For USA' 및 미국 브랜드 Chicken of the Sea로 확인)",
+        "유럽연합(Thai Union Europe; John West·Petit Navire·Mareblu·King Oscar·Rugen Fisch 브랜드; 매출의 약 90%가 태국 외, 주로 미국·유럽)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2024-05",
+          "summary": "Red Lobster(미국)의 Chapter 11 파산보호 신청에 따라 소수지분 투자 철수 의사 발표."
+        },
+        {
+          "date": "2025-02",
+          "summary": "FY2024 실적 발표: 매출 THB 138.4십억(전년比 +1.7%, 역대 3위), 사상 최고 GPM 18.5%, 순이익 THB 4,985백만(+7.2%). Ambient·PetCare·부가가치 카테고리가 견인."
+        },
+        {
+          "date": "2025-2026",
+          "summary": "Chicken of the Sea가 2026년 말까지 소매 참치 100% MSC 인증 약속. Thai Union Feedmill(TFM)은 2030년까지 매출 THB 10십억 목표, 에콰도르 신공장 및 인도네시아 확장(약 THB 680백만 capex) 추진."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Thai Union FY2024 실적 보도자료 (공식/IR)",
+          "url": "https://www.thaiunion.com/en/newsroom/press-release/1777/thai-union-fy-2024-sales-reach-to-thb-1384-billion-with-net-profit-5-billion-and-gpm-of-185"
+        },
+        {
+          "label": "Thai Union IR - Company Profile (공식)",
+          "url": "https://investor.thaiunion.com/en/investor-resources/company-profile"
+        },
+        {
+          "label": "FDA Warning Letter - Thai Union Group PLC 630100 (2022-04-20)",
+          "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/thai-union-group-plc-630100-04202022"
+        },
+        {
+          "label": "FAIRR - Thai Union Seafood Traceability 평가 (MSC 근거)",
+          "url": "https://www.fairr.org/resources/companies-assessed/thai-union-group-pcl/seafood-traceability"
+        },
+        {
+          "label": "ISSF participating company - Thai Union / COSI",
+          "url": "https://www.iss-foundation.org/about-issf/who-we-are/participating-companies/thai-union-cosi/"
+        },
+        {
+          "label": "EU 비EU국 승인 시설 (DG SANTE)",
+          "url": "https://food.ec.europa.eu/food-safety/biological-safety/food-hygiene/non-eu-countries-authorised-establishments_en"
+        },
+        {
+          "label": "ASEAN Records - Thai Union 캔참치 가공 (OEM 60%/참치 절반 근거)",
+          "url": "https://aseanrecords.world/thai-union-group-thailand-the-largest-canned-tuna-processor-in-southeast-asia/"
+        },
+        {
+          "label": "Thai Union Group - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Thai_Union_Group"
+        }
+      ]
+    },
+    "recommendedFieldUpdates": {
+      "capacityMT": null,
+      "hasFDA": true,
+      "hasEU": true,
+      "msc": true,
+      "changeNote": "기존 1,560 MT/day는 어떤 출처로도 뒷받침되지 않아(검증 verdict: unsupported, ASEAN Records 페이지에 능력 수치 부재) 제거 권고하나, 대체할 출처 확정 수치도 없어 capacityMT는 null로 둠. hasFDA/hasEU/msc는 검증상 keep-true."
+    }
+  },
+  {
+    "vendorId": "sea-value",
+    "profileSummary": "Sea Value PLC는 2004년 3월 태국 참치 가공사 두 곳(Unicord PLC, I.S.A. Value Co., Ltd.)을 묶어 설립된 비상장 태국 수산 가공 그룹으로, 가장 오래된 사업단위인 Unicord는 1980년부터 운영돼 30년 이상의 업력을 보유한다. 태국 내 6개 가공시설과 프랑스 1개 공장을 합쳐 일 1,000 MT 이상의 처리능력을 갖춘 참치캔 중심 OEM/PB 대형 생산자(태국 2위 참치캔 생산자로 알려짐)로, 350개 이상 브랜드명으로 전 세계에 공급한다. 최근에는 펫푸드 사업으로 빠르게 사업을 확장(그룹 매출의 약 40% 차지) 중이다.",
+    "verificationSummary": "설립연혁·본사주소·생산능력(일 1,000 MT 이상)·공장 8개소 세부·핵심 인증(BRC/IFS/FSSC22000/ISO17025/HACCP/GMP/HALAL·ISSF·IPNLF·Friend of the Sea·Dolphin Safe·MSC 로고)은 회사 공식 2022 브로슈어 원문 직독으로 확인됐다. 반면 매출 수치(약 300억/320억 바트)와 펫푸드 비중·Itochu/F.C.F./Bumble Bee 파트너십·SET 상장 의향은 페이월 처리된 Bangkok Post 스니펫·2차 인덱스에만 근거해 미확정이며, EU 등록코드·FDA FCE 번호·MSC 활성 CoC 인증서는 1차 출처로 검증되지 않았다.",
+    "dataConfidence": "medium",
+    "publicProfile": {
+      "website": "https://www.seavaluegroup.com/",
+      "founded": "2004년 3월 (지주회사 설립); 최고(最古) 사업단위 Unicord PLC는 1980년 설립 — 30년 이상 업력",
+      "headquarters": "39/3 Moo 8, Setthakij 1 Road, Tha Sai, Mueang Samut Sakhon, Samut Sakhon 74000, Thailand (Tel +66 (0) 3442 4437-42)",
+      "ownership": "비상장 태국 그룹. 태국 수산 3사(Thailand Fishery Cold Storage PLC, Wales & Co. Universe Ltd, Chanthaburi Seafood Group = 'Rubicon Group')가 공동 설립. 전략적 파트너로 Itochu·F.C.F. Group(원물 소싱/트레이딩)·Bumble Bee(북미 브랜드)가 거론됨(추정). 태국 증권거래소(SET) 상장 의향을 밝힌 바 있으나 2026년 현재 미상장(추정).",
+      "employees": null,
+      "revenue": "약 300억 바트(전년 실적)·약 320억 바트(전망) — 2022년 10월 Bangkok Post 인터뷰 기준(미확정, 페이월 스니펫 근거). 미국 데이터 애그리게이터의 'US$25M' 수치는 바트 기준과 모순돼 신뢰도 낮음으로 처리.",
+      "capacityNote": "태국 내 6개 가공시설 + 프랑스 1개 공장, 합산 처리능력 일 1,000 MT 이상(인체식품+펫푸드 합산, 그룹 총계). 공식 2022 브로슈어 CAPACITY 페이지 기준.",
+      "products": [
+        "참치캔 (핵심 제품; 태국 2위 참치캔 생산자로 알려짐(추정), Unicord PLC가 350개 이상 브랜드명으로 OEM/PB 공급)",
+        "파우치 참치 / 쿡로인 / 냉동 참치 (프랑스 Sea Value Atlantic은 저온살균·멸균 플라스틱 백 포장의 프리미엄 참치·연어·수산물 공급)",
+        "기타 수산캔 (정어리, 고등어, 필처드 등 부가가치 수산품)",
+        "펫푸드 (전 생애주기 대상 고양이·개 사료; 그룹 매출의 약 40% 차지, 연 약 40% 성장)(추정)"
+      ],
+      "plants": [
+        "Samut Sakhon, Thailand (Unicord PLC) — Plant 1, 1980년 설립, 168,632 sqm",
+        "Samut Sakhon, Thailand (Unicord PLC) — Plant 2, 2008년 설립, 67,592 sqm",
+        "Samut Sakhon, Thailand (Unicord PLC) — Plant 3, 2019년 설립, 12,000 sqm",
+        "Samut Sakhon, Thailand (Unicord PLC) — Plant 4 냉장창고, 10,000 톤 보관능력",
+        "Samut Sakhon, Thailand (Unicord PLC) — Plant 5, 2022년 설립, 22,400 sqm",
+        "Sampran, Nakhon Pathom, Thailand (I.S.A. Value Co., Ltd.) — 1989년 설립, 21,975 sqm, 참치 가공 일 250 MT",
+        "Lignol, France (Sea Value Atlantic S.A.S.) — 2012년 설립, 8,000 sqm, 일 20 MT"
+      ],
+      "certifications": [
+        {
+          "standard": "BRC (BRCGS Food Safety)",
+          "note": "공식 2022 브로슈어 인증 배너에 표기"
+        },
+        {
+          "standard": "IFS (International Featured Standards)",
+          "note": "브로슈어 인증 배너에 표기"
+        },
+        {
+          "standard": "FSSC 22000",
+          "note": "브로슈어 인증 배너에 표기"
+        },
+        {
+          "standard": "ISO/IEC 17025 (시험소)",
+          "note": "브로슈어 인증 배너에 표기(자체 시험소 인정)"
+        },
+        {
+          "standard": "HACCP",
+          "note": "브로슈어 배너 및 FIS/seafood.media 디렉터리에 표기"
+        },
+        {
+          "standard": "GMP",
+          "note": "브로슈어 배너 및 FIS 디렉터리에 표기"
+        },
+        {
+          "standard": "HALAL",
+          "note": "브로슈어 배너 및 FIS 디렉터리에 표기"
+        },
+        {
+          "standard": "MSC (Certified Sustainable Seafood)",
+          "note": "브로슈어 4페이지 인증 배너에 MSC 블루틱 에코라벨 로고 확인(고해상도 직독). 마케팅 표기는 확인되나 활성 Chain of Custody 인증서는 MSC 공급자 DB로 미확인."
+        },
+        {
+          "standard": "Friend of the Sea",
+          "note": "브로슈어 배너의 지속가능성 로고"
+        },
+        {
+          "standard": "Dolphin Safe",
+          "note": "브로슈어 인증 배너의 Dolphin-Safe 로고; FIS 디렉터리에도 표기"
+        },
+        {
+          "standard": "ISSF (International Seafood Sustainability Foundation)",
+          "note": "창립/참여 회원; IUU 등재 선박 회피 서약"
+        },
+        {
+          "standard": "IPNLF (International Pole & Line Foundation)",
+          "note": "2016년 3월 30일 회원 가입(one-by-one/폴앤라인 참치 지지)"
+        },
+        {
+          "standard": "EFSIS",
+          "note": "FIS/seafood.media 공급자 디렉터리에 표기(레거시; 현재 BRCGS에 통합)"
+        }
+      ],
+      "exportMarkets": [
+        "전 세계 OEM/PB ('all over the world', 350개 이상 브랜드명)",
+        "북미 / 미국 (파트너: Bumble Bee Seafoods)(추정)",
+        "유럽 (프랑스 Sea Value Atlantic 공장; 네덜란드 판매·유통법인 Sea Value Europe B.V.)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2022",
+          "summary": "Samut Sakhon에 Unicord 5번째 공장(2022년 설립, 22,400 sqm) 가동. 5년간 약 20억 바트를 Samut Sakhon 증설에 투입했고, 향후 5년간 10억 바트 이상을 펫푸드에 집중 투자할 계획 발표. 펫푸드는 현재 매출의 약 40% 차지(추정). SET 상장 의향 재확인(추정)."
+        },
+        {
+          "date": "2024-2025",
+          "summary": "태국이 세계 2위 펫푸드 수출국으로 부상하는 가운데, Sea Value도 펫푸드 생산을 확대하는 태국 참치 가공사 중 하나로 거론됨(업계/섹터 보도; 회사별 2024-25 수치는 1차 출처로 별도 검증되지 않음)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Sea Value 공식 2022 브로슈어 (SV-Brochure-2022.pdf) — 생산능력·공장·인증 1차 출처",
+          "url": "https://www.seavaluegroup.com/wp-content/uploads/2024/05/SV-Brochure-2022.pdf"
+        },
+        {
+          "label": "Sea Value 공식 웹사이트 — Background (연혁·제품·수출시장)",
+          "url": "https://www.seavaluegroup.com/background/"
+        },
+        {
+          "label": "Sea Value 공식 웹사이트 — Contact Us (본사 주소·전화)",
+          "url": "https://www.seavaluegroup.com/contact-us/"
+        },
+        {
+          "label": "ISSF — 참여기업 페이지 (Sea Value)",
+          "url": "https://www.iss-foundation.org/about-issf/who-we-are/participating-companies/sea-value/"
+        },
+        {
+          "label": "The Fish Site — IPNLF 가입(2016-03-30)",
+          "url": "https://thefishsite.com/articles/sea-value-latest-to-join-international-pole-line-foundation"
+        },
+        {
+          "label": "FIS/seafood.media — 공급자 디렉터리(설립자·Rubicon Group·EFSIS/ISO/HACCP)",
+          "url": "https://seafood.media/fis/companies/details.asp?l=e&filterby=companies&page=1&company_id=156020"
+        },
+        {
+          "label": "Bangkok Post — 펫푸드 전환·매출(페이월, 스니펫 근거)",
+          "url": "https://www.bangkokpost.com/business/2409896/sea-value-pivots-to-booming-pet-food-sector"
+        },
+        {
+          "label": "Nation Thailand — 태국 펫푸드 수출 확대 섹터 보도",
+          "url": "https://www.nationthailand.com/business/trade/40055540"
+        }
+      ]
+    },
+    "recommendedFieldUpdates": {
+      "capacityMT": 1000,
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": true,
+      "changeNote": "MSC: 적대적 검증이 브로슈어 4페이지 인증 배너에서 MSC 블루틱 에코라벨 로고를 고해상도 직독으로 확인(reviewerConfidence=high)했으므로 msc=true로 정정. capacityMT=1000은 브로슈어 CAPACITY 페이지로 일 1,000 MT 이상 확인되어 유지. hasFDA/hasEU는 1차 출처상 등록번호 미확인(confidence low)으로 변경 권고 없음(null)."
+    }
+  },
+  {
+    "vendorId": "chotiwat",
+    "profileSummary": "Chotiwat Manufacturing Public Company Limited(CMC/CMCF)은 1988년 설립된(가족 사업은 1960년 핫야이 어물 거래에서 기원) 태국 송클라주 핫야이 소재의 통합형 참치 가공 OEM 기업으로, 직원 약 3,500명 규모이며 2021년 4월 22일 공개회사(PCL)로 전환했다(SET 상장은 미확정). 캔·파우치 참치(스킵잭·옐로핀·통골·알바코어)를 100개 이상 브랜드에 OEM 공급하며 가공 수산물이 매출의 80% 이상을 차지하고, 2020년 매출 THB 67.4억·2022년 약 THB 70.8억 규모다. 50개국 이상에 수출하며 펫푸드를 매출의 약 30%까지 확대하는 전략을 추진 중이다.",
+    "verificationSummary": "설립연도·본사 주소·소유구조(2021년 PCL 전환, IPO 신청)·직원수·매출·제품군·수출시장·MSC CoC는 공식 출처로 확인됐으나, SET 상장 완료·EU 승인코드·FDA 등록번호는 근거 부족으로 미확정이며 인증코드는 어느 페이지에서도 확인되지 않았다. partially-supported 항목으로 생산능력의 '2014년 NK Seafreeze 합병' 귀속, Kosher 공장 연도(2005가 정확), Kosher(2025/01/31 만료)·TLS 8001 만료 및 SA 8000 미게재, 2025-12-19 수상이 실제로는 2023년 행사를 가리키는 점이 확인됐다.",
+    "dataConfidence": "high",
+    "publicProfile": {
+      "website": "https://www.chotiwat.com/",
+      "founded": "1988 (Chotiwat Manufacturing Co., Ltd. 설립; 가족 사업은 1960년 핫야이 어물 거래에서 기원)",
+      "headquarters": "1069 Asia Highway Road, Kho Hong, Hat Yai, Songkhla 90110, Thailand (공장/등록 주소는 84/22 Moo 7, No. 43 Asia Highway Road, T. Korhong, Hat Yai, Songkhla 90110으로도 표기)",
+      "ownership": "Public Company Limited (2021년 4월 22일 PCL 전환); CH Group / Chotiwattanaphan 가문 계열. 2021년 태국 SEC에 최대 1억8,750만주(~30%, 신주 1억2,500만 + CH Group Capital 보유 6,250만) IPO 신청. SET 상장 완료는 미확정.",
+      "employees": "약 3,500명 (공식 표기는 'up to 3,500')",
+      "revenue": "THB 67.4억 (2020); 약 THB 70.8억 (2022). 캔·파우치 가공 수산물이 매출의 80% 이상.",
+      "capacityNote": "공식 연혁상 현재 생산능력 400 tonnes/day(완제품) + 냉장보관 3,000톤. 보도자료는 완제품 순중량 연 약 87,900톤을 함께 인용. 인도네시아 JV(PT Lautindo Synergy Sejahtera, 49%)가 냉동 트리밍 참치 연 12,700톤(순중량) 추가. '2014년 NK Seafreeze 합병 이후 400t/day'라는 귀속은 공식 페이지에 명시되지 않음(미확정).",
+      "products": [
+        "캔·파우치 참치 OEM (솔리드·청크·슬라이스·플레이크·슈레디드; brine·oil(sunflower/olive/soybean/sesame)·spring water·vegetable broth·sauce; 어종: skipjack·yellowfin·tonggol·albacore; 100개 이상 브랜드 공급)",
+        "참치 로인 / 부가가치 참치 (cooked-loin OEM)",
+        "냉동 트리밍 참치 (인도네시아 JV PT Lautindo Synergy Sejahtera 경유)",
+        "펫푸드 (캔·파우치, 고양이·개용; 매출의 약 30%까지 확대 목표)",
+        "기타 식품/부산물 (연어, 수프, 즉석식 'EzyQuic', 액상 식품보충제 'MPRO', 어분 등 수산 부산물 — 일부는 단일 출처 기반(미확정))"
+      ],
+      "plants": [
+        "Hat Yai, Songkhla, Thailand (메인 공장) — 캔·진공/레토르트 파우치 가공 수산물·펫푸드; 주력 캐닝/cook-loin 시설. 핫야이에 2개 공장 운영(2공장 1996년 증설, Kosher 전용 공장은 2005년 가동 — 추정).",
+        "Hat Yai, Songkhla, Thailand (자회사) — 가축사료용 어분/수산 부산물 생산.",
+        "Indonesia — PT Lautindo Synergy Sejahtera (49% 보유, 2020년 취득); 냉동 트리밍 참치 가공·유통, 연 12,700톤(순중량)."
+      ],
+      "exportMarkets": [
+        "50개국 이상 (유럽·미주·중동·아프리카·오세아니아·아시아; 100개 이상 참치 브랜드 공급)",
+        "United States (수입 데이터로 확인: 고객 Tri Marine North America LLC, 2024-09-30 선적; HTS 1604.14, 약 69개 고객·2,467건 통관 기록)",
+        "Japan·Europe·Americas (프리미엄 냉동 수산물, 역사적으로 계열사 KST(1987 설립) 경유)"
+      ],
+      "certifications": [
+        {
+          "standard": "MSC Chain of Custody",
+          "note": "Marine Stewardship Council CoC, 유효기간 2026-06-13. 인증 ID는 페이지/MSC cert-finder에서 미확인."
+        },
+        {
+          "standard": "ISSF participating company",
+          "note": "International Seafood Sustainability Foundation 참여사로 등재; 인증서 페이지에 'ISSF Members 2026' 표기."
+        },
+        {
+          "standard": "Dolphin Safe",
+          "note": "유효 2026-2027."
+        },
+        {
+          "standard": "MarinTrust",
+          "note": "어분/부산물 책임조달(구 IFFO RS), 유효기간 2029-02-23."
+        },
+        {
+          "standard": "BRCGS Food Safety",
+          "note": "3개 공장 스코프: PO3 Human Food standard products(만료 2026-12-14), PO4 Human Food value-added(만료 2026-08-01), PO5 Pet Food(만료 2026-06-18)."
+        },
+        {
+          "standard": "ISO 9001",
+          "note": "품질경영시스템(만료 2026-10-16)."
+        },
+        {
+          "standard": "ISO 14001",
+          "note": "환경경영시스템(만료 2026-10-16)."
+        },
+        {
+          "standard": "GMP / HACCP",
+          "note": "Good Manufacturing Practice 및 HACCP(둘 다 만료 2026-12-09)."
+        },
+        {
+          "standard": "Halal",
+          "note": "Halal 인증."
+        },
+        {
+          "standard": "SMETA (Sedex) / WCA",
+          "note": "사회·윤리: SMETA 및 Workplace Conditions Assessment. (TLS 8001은 2024-12-15 만료, SA 8000은 인증서 페이지 미게재로 제외)."
+        },
+        {
+          "standard": "Kosher",
+          "note": "Kosher 인증(전용 공장 2005년 가동, 추정). 인증서 페이지상 만료일 2025-01-31로 현 시점 만료 가능성(미확정); 특정 인증기관(OU 등)은 출처에서 미확인."
+        }
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2026-01-09",
+          "summary": "핫야이 병원에 'Rak Kamon Heart Center'(Cath Lab & CCU) 설립 — CSR 활동."
+        },
+        {
+          "date": "2025-12-19",
+          "summary": "CAC(태국 반부패 민간연대) 인증 및 국가 노무관리 우수상(Royal Trophy) 수상 발표. 단, 원문은 'CAC National Conference 2023'·'Thailand Labour Management Excellence Award 2023'을 참조 — 2023년 행사를 다룬 게시일로 보임(미확정)."
+        },
+        {
+          "date": "2021-04-22",
+          "summary": "공개회사(PCL)로 전환, 태국 SEC에 최대 1억8,750만주(~30%) IPO 신청; 펫푸드 확대 전략(매출의 약 30% 목표)의 일환."
+        },
+        {
+          "date": "2020",
+          "summary": "인도네시아 PT Lautindo Synergy Sejahtera 지분 49% 취득 — 냉동 트리밍 참치 가공사(연 12,700톤 순중량)."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Chotiwat Manufacturing — Our History (공식)",
+          "url": "https://www.chotiwat.com/our-company/our-history/"
+        },
+        {
+          "label": "Chotiwat Manufacturing — Our Company (공식)",
+          "url": "https://www.chotiwat.com/our-company/"
+        },
+        {
+          "label": "Chotiwat — Quality Standards / Certificates (공식)",
+          "url": "https://www.chotiwat.com/quality-standards/certificates/"
+        },
+        {
+          "label": "Chotiwat — Tuna Products (공식)",
+          "url": "https://www.chotiwat.com/product/tuna/"
+        },
+        {
+          "label": "ThaiPR — CMCF IPO 신청 발표",
+          "url": "https://www.thaipr.net/en/finance_en/3102105"
+        },
+        {
+          "label": "Bangkok Post — CMCF 펫푸드 확장·2020 매출",
+          "url": "https://www.bangkokpost.com/business/2186763/cmcf-intensifies-efforts-to-expand-into-pet-food-business"
+        },
+        {
+          "label": "ISSF — Chotiwat 참여사 페이지",
+          "url": "https://www.iss-foundation.org/about-issf/who-we-are/participating-companies/chotiwat/"
+        },
+        {
+          "label": "Panjiva — Chotiwat 미국 수입 통관 기록",
+          "url": "https://panjiva.com/Chotiwat-Manufacturing-Co-Ltd/1403556"
+        }
+      ]
+    },
+    "recommendedFieldUpdates": {
+      "capacityMT": 400,
+      "hasEU": null,
+      "hasFDA": null,
+      "msc": true,
+      "changeNote": "capacityMT: 공식 연혁이 현재 400 tonnes/day(완제품, +냉장 3,000톤)를 명시 — 기존 370은 미지지(high). msc: 공식 인증서 페이지·보도자료로 MSC CoC(유효 2026-06-13) 확인(high). hasEU·hasFDA: EU 승인코드·FDA 등록번호 직접 미확인으로 null 유지."
+    }
+  },
+  {
+    "vendorId": "aec-canning",
+    "publicProfile": {
+      "website": "https://www.aeccanning.com/",
+      "headquarters": "태국 사뭇사콘(Samut Sakhon) 본사 - 44/5 Moo.3, Tambon Nadee, Amphoe Mueang Samut Sakhon 74000 (마하차이 지역), Tel 034-432405",
+      "founded": "2016 (B2B 디렉터리 자체보고, 태국 DBD 등록 정황과 일치)",
+      "ownership": null,
+      "employees": "101-500명 자체보고 (단, 동일 디렉터리 간 수치 상충으로 미확정)",
+      "revenue": "연간 생산액 US$10M-US$50M 자체보고 (미확정 - 같은 출처에 'US$100M 초과' 수치도 병기되어 상충)",
+      "capacityNote": "자사 서비스 페이지 기준 일일 200,000캔 이상 생산능력 (cans/day). 디렉터리상 생산라인 5개, 공장면적 5,000-10,000sqm (자체보고, 미확정). 톤(MT/day) 단위 공식 수치는 미공개.",
+      "products": [
+        "통조림 참치 (염수/오일/물, 플레인 및 채소·옥수수 첨가, OEM·자가브랜드)",
+        "통조림 정어리(토마토소스) 및 고등어(프라이드·칠리 등)",
+        "고부가가치 통조림 및 펫푸드 (라용 펫푸드 공장 전용라인)",
+        "OEM / 프라이빗 라벨 종합 생산 및 디자인 커스터마이징 (수출 브랜드 NAVA·AEC)"
+      ],
+      "plants": [
+        "사뭇사콘(마하차이) 본사 - 44/5 Moo.3, Tambon Nadee, Amphoe Mueang Samut Sakhon 74000",
+        "라용 클랭(Klaeng) 주력 어류 통조림 공장 - 39 Moo.5, Tambon Banna, Amphoe Klaeng, Rayong 21110",
+        "라용 클랭 펫푸드 공장 - 47/1 Moo.5, Tambon Banna, Amphoe Klaeng, Rayong 21110"
+      ],
+      "certifications": [
+        {
+          "standard": "ISO 22000 (식품안전경영시스템)",
+          "code": "",
+          "note": "자사 인증 페이지에 표기 (코드 미표기)"
+        },
+        {
+          "standard": "HACCP & GHPs",
+          "code": "",
+          "note": "자사 인증 페이지에 표기 (코드 미표기)"
+        },
+        {
+          "standard": "US FDA Food Canning Establishment (FCE)",
+          "code": "FCE 33417",
+          "note": "자사 인증 페이지에 FCE 33417 및 USFDA 1734569584 표기. 미국 저산성 통조림식품 등록. FDA 공개DB로 현행 활성 여부는 미재검증."
+        },
+        {
+          "standard": "Saudi FDA (SFDA) 등록",
+          "code": "SFDA 2081",
+          "note": "자사 인증 페이지에 표기. 사우디 시장 식품수입 등록."
+        },
+        {
+          "standard": "Thailand 가공시설 번호 (TH)",
+          "code": "TH 2081",
+          "note": "자사 인증 페이지의 태국 국내 번호 (EU 승인번호 아님)"
+        },
+        {
+          "standard": "HALAL",
+          "code": "",
+          "note": "자사 인증 페이지에 표기 (코드 미표기)"
+        },
+        {
+          "standard": "Dolphin Safe (Earth Island Institute / IMMP)",
+          "code": "",
+          "note": "EII savedolphins 디렉터리에 태국 가공업체(Processor)로 등재 확인"
+        },
+        {
+          "standard": "Thai Tuna Industry Association (TTIA) 정회원",
+          "code": "",
+          "note": "thaituna.org 회원 페이지에 Ordinary Member로 등재 확인"
+        },
+        {
+          "standard": "GMP",
+          "code": "",
+          "note": "디렉터리 자체보고 (자사 인증 페이지 미표기, 미확정)"
+        }
+      ],
+      "exportMarkets": [
+        "중동 (사우디아라비아 SFDA 등록 포함)",
+        "아프리카",
+        "아시아",
+        "미국 (FCE/USFDA 통조림 등록)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2023-08",
+          "summary": "태국식품가공협회(TFPA) 회원 전시업체로 등재 (THAIFEX 맥락)."
+        },
+        {
+          "date": "2027-03",
+          "summary": "Gulfood 2027(3.15-19, 두바이 North Hall 1, Stand N1-L25) 전시업체로 등록 - 지속적 수출 마케팅 활동 시사."
+        }
+      ],
+      "sources": [
+        {
+          "label": "A.E.C. Canning 공식 - About us(주소·본사·공장)",
+          "url": "https://www.aeccanning.com/about-us"
+        },
+        {
+          "label": "A.E.C. Canning 공식 - 인증(FCE 33417·USFDA·SFDA·TH·ISO22000·HACCP·HALAL)",
+          "url": "https://www.aeccanning.com/staindard-certificate"
+        },
+        {
+          "label": "A.E.C. Canning 공식 - Services(OEM·일 200,000캔 생산능력)",
+          "url": "https://www.aeccanning.com/services"
+        },
+        {
+          "label": "Thai Tuna Industry Association - 회원(정회원)",
+          "url": "https://thaituna.org/en/our-members-2/"
+        },
+        {
+          "label": "Earth Island Institute - Dolphin Safe 등재(태국 가공업체)",
+          "url": "https://savedolphins.eii.org/dolphin-safe/listings/a-e-c-canning-co-ltd"
+        },
+        {
+          "label": "Thai Food Processors' Association(TFPA) - 회원(2023)",
+          "url": "https://thaifood.org/main/a-e-c-canning-co-ltd/"
+        },
+        {
+          "label": "Gulfood 2027 전시업체 프로필",
+          "url": "https://www.gulfood.com/exhibitors/aec-canning-co-ltd"
+        },
+        {
+          "label": "TradeKey B2B 프로필(설립연도·종업원·생산라인)",
+          "url": "https://www.tradekey.com/company/AEC-CANNING-CO-LTD-11877683.html"
+        }
+      ]
+    },
+    "dataConfidence": "medium",
+    "profileSummary": "A.E.C. Canning Co., Ltd.는 태국 사뭇사콘(마하차이)에 본사를, 라용 클랭에 주력 어류 통조림 공장과 펫푸드 공장을 둔 통조림 수산물 OEM·프라이빗 라벨 제조사다. 통조림 참치·정어리·고등어와 고부가가치 제품, 펫푸드를 생산하며 자사 기준 일일 200,000캔 이상의 생산능력을 보유한다. ISO 22000·HACCP·HALAL·US FDA(FCE 33417)·SFDA 등록을 갖추고 중동·아프리카·아시아·미국을 중심으로 수출하며, TTIA 정회원이자 Dolphin Safe 등재 가공업체다.",
+    "verificationSummary": "본사·라용 2개 공장 주소, 제품군, 일 200,000캔 생산능력, ISO22000·HACCP·HALAL·FCE 33417·USFDA·SFDA 2081·TH 2081·Dolphin Safe·TTIA 정회원은 자사 페이지 또는 권위 레지스트리로 확인됐다. 반면 소유구조, EU 승인, MSC 인증, 톤(MT) 단위 생산능력은 근거가 없었고, 종업원 수·매출·자가브랜드(Fish Bite/Mae Naie)·BRC는 출처 간 상충 또는 미표기로 확정하지 못했다.",
+    "recommendedFieldUpdates": {
+      "hasEU": false,
+      "hasFDA": true,
+      "msc": false,
+      "capacityMT": null,
+      "changeNote": "hasEU=false: 자사 인증 페이지 및 TRACES 등 어디에도 EU 승인번호 부재(USFDA·FCE·SFDA·TH만 표기). msc=false: MSC CoC 미발견 + ISSF 비참여, 지속가능성은 Dolphin Safe뿐. hasFDA=true: 페이지에 FCE 33417·USFDA 1734569584 명기. capacityMT=null: 공개 수치는 200,000캔/일뿐, 톤 단위 미공개로 기존 50MT/day 확인 불가."
+    }
+  },
+  {
+    "vendorId": "kingfisher",
+    "profileSummary": "Kingfisher Holdings Ltd.는 1972년 태국 최초의 참치 통조림 공장(SAFCOL Thailand)으로 출범해 1989년 현 사명으로 변경된 태국의 수산 가공 기업으로, 1990년부터 일본 Maruha Nichiro Corporation이 주요 주주로 참여하고 있다. 통조림·파우치 참치(SEAPAC), 냉동 수산물 및 쿡 로인(KF Foods), 펫푸드, 어류 단백질·캔 제조(K-CAN)를 자체 브랜드와 OEM으로 생산하며 미국·EU·일본·호주·뉴질랜드 등에 수출한다. 모기업 Maruha Nichiro는 2026년 3월 'Umios Corporation'으로 사명을 변경할 예정이어서 최상위 소유 구조의 명칭 변화가 예고되어 있다.",
+    "verificationSummary": "공식 회사 페이지(History·Contact·FoodSafety·SEAPAC·OCCL)와 FDA·Earth Island·Thai Frozen Foods 등 1차/규제기관 출처로 설립연혁, 본사·공장 주소, HACCP 코드(EST.122·VCN.46·VCN.45), MSC(SEAPAC-SP2, 2024년 11월)·BRCGS·ISO·IFFO·Halal·Dolphin Safe 인증, FDA 등록 처리이력, 수출시장(미국·EU·일본·호주·뉴질랜드)이 확인되었다. 반면 기존 JSON의 '60 MT/day 가공능력'은 어떤 1차 출처에서도 확인되지 않아 미검증이며, 매출은 Maruha Nichiro 사업부문 수치(~US$323M 펫푸드 2025·~US$270M 통조림 2024)일 뿐 Kingfisher 단독 감사 매출이 아니고, 중동 수출시장·Kosher는 디렉터리 등 2차 출처에만 근거가 있어 신뢰도가 낮다.",
+    "dataConfidence": "high",
+    "publicProfile": {
+      "website": "https://www.kingfisher.co.th",
+      "founded": "1972년 SAFCOL (Thailand), Ltd.로 설립 — 태국 최초의 참치 통조림 공장. 1989년 Kingfisher Holdings, Ltd.로 사명 변경.",
+      "headquarters": "본사: 22nd Floor, Panjathani Tower, 127/27 Nonsi Road (Ratchadapisek), Chongnonsi, Yannawa, Bangkok 10120, Thailand",
+      "ownership": "Maruha Nichiro Corporation(일본)이 1990년부터 주요 주주. Maruha Nichiro는 2026년 3월 'Umios Corporation'으로 사명 변경 예정(태국 통조림·펫푸드 해외 사업군 내에서 Kingfisher 운영).",
+      "revenue": "Maruha Nichiro 사업부문 기준 태국 통조림 사업 ~US$270M(2024 목표)·상온/펫푸드 사업부문 ~US$323M(2025 목표). Kingfisher 단독 감사 매출이 아닌 그룹 사업부문 수치(2024년 ~US$270M은 독립 확인 미완, 추정).",
+      "employees": null,
+      "capacityNote": "검증된 가공 처리능력 수치 없음. OCCL 냉동창고 보유능력 2,000 MT 초과(2002년 설립), SEAPAC 주력공장 부지 30,000 sqm 초과 및 참치 통조림 공장 2개 운영이 확인됨. 기존 '60 MT/day'는 1차 출처로 확인되지 않은 미검증 값이며, 냉동창고 MT는 통조림 처리능력과 무관함.",
+      "plants": [
+        "Samut Prakan (Bangpoo Industrial Estate, 233 Moo 4) — SEAPAC SP-1(참치 통조림) 및 K-CAN(캔 제조)",
+        "Samut Sakhon (Nadee, Mueang) — SEAPAC SP-2(참치 통조림) 및 Fish Protein 공장",
+        "Songkhla — 오징어·현지 어류 소싱 및 KF Foods 냉동 사업 거점(24,26 Raj-U-thid 1 Road)",
+        "Samut Sakhon — OCCL 냉동창고(2002년 Oceanic Cannery Co., Ltd.로 설립, 보유능력 2,000 MT 초과)"
+      ],
+      "products": [
+        "통조림·파우치 참치(SEAPAC) — 소매·외식용 프리미엄 제품, 수프·샐러드 포함. 미국향 가열처리 참치는 Skipjack·Bigeye·Yellowfin·Albacore 포함. 자체 브랜드 및 OEM 생산.",
+        "냉동 수산물 / 쿡 로인(KF Foods, 1979년 설립) — 냉동 가열처리 참치 로인, 냉동 새우, 흰살생선, 두족류(오징어), 갑각류. 호텔·레스토랑·기내식·슈퍼마켓 공급.",
+        "통조림·파우치 펫푸드 — 캔·파우치·플라스틱 컵 형태의 프리미엄 견묘용 사료. 자체 브랜드 및 OEM. Maruha Nichiro 산하 주요 성장 부문.",
+        "어류 단백질 / 캔 — 참치 단독 및 기타 해양 어류 단백질(IFFO RS/IFFO 인증). K-CAN을 통한 강철·알루미늄 캔(무지·리소그래피)."
+      ],
+      "certifications": [
+        {
+          "standard": "Seafood HACCP (Thai DOF / DLD)",
+          "code": "SEAPAC EST.122; SEAPAC-SP1 VCN.46; SEAPAC-SP2 VCN.45",
+          "note": "SP-1(VCN.46) 및 SP-2(VCN.45) 2027.3.11 만료, EST.122는 2027.9.11까지 유효. 페이지에서 코드 확인됨."
+        },
+        {
+          "standard": "BRCGS (BRC Global Standard for Food Safety)",
+          "code": "",
+          "note": "SEAPAC-SP1, SEAPAC-SP2 적용. KF Foods BRC는 2027.5.20까지 유효."
+        },
+        {
+          "standard": "MSC Chain of Custody",
+          "code": "",
+          "note": "SEAPAC-SP2 대상 MSC 인증서(2024년 11월) 표기. 가공업체용 CoC 인증으로 어업 인증이 아니며, CoC 인증서 ID는 페이지에서 확인되지 않음."
+        },
+        {
+          "standard": "ISO 9001 / 14001 / 17025 / 22000 + FSSC 22000",
+          "code": "",
+          "note": "ISO 9001(KF2, 2027.3.22 만료), ISO 14001(SEAPAC, 2027.11.20 만료), ISO 17025 시험소(KF Foods, 2026.10.23 만료), ISO 22000/FSSC 22000(KF2, SGS, 2024)."
+        },
+        {
+          "standard": "IFFO RS (responsible marine ingredients)",
+          "code": "",
+          "note": "Fish Protein 시설(SEAPAC) 대상, 2018년 8월."
+        },
+        {
+          "standard": "Halal",
+          "code": "",
+          "note": "KF Foods 및 SEAPAC-SP2. Kosher는 2차 디렉터리(FIS)에만 근거하여 (미확정)."
+        },
+        {
+          "standard": "Dolphin Safe (Earth Island Institute / IMMP)",
+          "code": "",
+          "note": "Kingfisher Holdings, Ltd.가 태국 가공업체로 등재(SEAPAC 2024-2025)."
+        }
+      ],
+      "exportMarkets": [
+        "United States",
+        "European Union",
+        "Japan",
+        "Australia",
+        "New Zealand",
+        "Middle East (2차 디렉터리 출처, 추정)"
+      ],
+      "recentDevelopments": [
+        {
+          "date": "2025-07",
+          "summary": "Maruha Nichiro 산하 Kingfisher Holdings, 상온/펫푸드 사업부문 2025년 매출 ~US$323M 목표(역대 최대 추정). CEO는 신규 공장 또는 JV를 통한 성장 여지를 시사했고, 태국산 통조림·펫푸드 수출에 대한 미국 관세 위협을 우려로 언급."
+        },
+        {
+          "date": "2025-03 / 2026-03",
+          "summary": "모기업 Maruha Nichiro가 'Umios Corporation'으로 사명 변경 발표(2026년 3월 1일 발효 — 발효일은 미확정). Kingfisher의 최상위 소유 정체성에 영향."
+        },
+        {
+          "date": "2025-01",
+          "summary": "SEAPAC-Kingfisher가 OceanMind 작성 1년 AREP(조업·활동 리스크 감사) 요약(2024.1.1~12.31)을 공개, EU Catch Certificate에 의해 뒷받침되는 PNG EEZ 환적 등 참치 소싱의 합법성을 검증."
+        }
+      ],
+      "sources": [
+        {
+          "label": "Kingfisher Holdings — 연혁 (공식)",
+          "url": "https://www.kingfisher.co.th/History.php"
+        },
+        {
+          "label": "Kingfisher Holdings — 연락처/공장 주소 (공식)",
+          "url": "https://www.kingfisher.co.th/Contact.php"
+        },
+        {
+          "label": "Kingfisher Holdings — 식품안전/인증 (공식)",
+          "url": "https://www.kingfisher.co.th/FoodSafety.php"
+        },
+        {
+          "label": "Kingfisher Holdings — SEAPAC 자회사 (공식)",
+          "url": "https://www.kingfisher.co.th/Subsidiaries_SEAPAC.php"
+        },
+        {
+          "label": "Kingfisher Holdings — OCCL 냉동창고 (공식)",
+          "url": "https://www.kingfisher.co.th/Subsidiaries_OCCL.php"
+        },
+        {
+          "label": "FDA Warning Letter 종결 — Southeast Asian Packaging and Canning Ltd. (규제기관 1차)",
+          "url": "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/southeast-asian-packaging-and-canning-limited-07252017"
+        },
+        {
+          "label": "Thai Frozen Foods Association — Kingfisher 회원 프로필 (수출시장)",
+          "url": "https://www.thai-frozen.or.th/EN/Member/Detail/239b3f1c-c0d7-6d77-69e3-2d34bf8b6166"
+        },
+        {
+          "label": "Undercurrent News — Maruha Nichiro 태국 펫푸드 매출 목표/관세 (업계 보도)",
+          "url": "https://www.undercurrentnews.com/2025/07/03/maruha-nichiros-thai-pet-food-ops-target-record-323m-sales-despite-us-tariff-threats/"
+        }
+      ]
+    },
+    "recommendedFieldUpdates": {
+      "hasFDA": true,
+      "hasEU": true,
+      "msc": true,
+      "capacityMT": null,
+      "changeNote": "hasFDA·hasEU·msc는 모두 keep-true 권고(FDA WL #423596 2014/종결 2017, EU 수출시장+EU Catch Certificate, MSC SEAPAC-SP2 2024.11 CoC). capacityMT는 60 MT/day가 1차 출처 미검증(unsupported)으로 새 처리능력 값을 확정할 수 없어 null 유지 — 검증된 것은 냉동창고 2,000 MT 초과뿐(가공 처리능력 아님)."
+    }
+  },
+  {
+    "vendorId": "pataya-food",
+    "dataConfidence": "medium",
+    "profileSummary": "Pataya Food Group(Pataya Food Industries Ltd.)는 1979년 설립된 태국의 비상장 종합 수산·식품 그룹으로, 1971년 전신 TTT(Thai Tang Tong)에 뿌리를 둔다. TTT Holding, Nautilus Food (Thailand), Pataya Food Industries 3사를 거느리며 CEO는 Wichai Karanapakorn이다. 2022년 그룹 매출은 약 82억 바트(약 US$241.3M)이며, 캔/파우치 참치(매출 약 32%)를 주력으로 연어·고등어·정어리·게·새우 등 수산가공품과 펫푸드(약 25%), 식물성·즉석식품으로 사업을 다각화하고 있다. 유럽(프랑스)·미국·중국 등으로 수출하는 캔 수산물 수출 선도기업으로 자리한다.",
+    "verificationSummary": "설립연혁·소유구조·CEO·본사/공장 위치·2022년 매출·제품 매출구성·베트남 자회사 EU 코드(DH146/DL1017)·식물성 JV(2020)·펫푸드(Remy)·BRCGS/IFS/ISO/HACCP/Halal/Kosher 인증·Dolphin Safe·ISSF 가입(2011)은 1차/언론 출처로 확인되었다. 반면 MSC Chain of Custody 인증은 발급기관(cert.msc.org) 조회에서 확인되지 않아 제외했고, Bt100억 3개년 매출 목표·\"2007년 이후 3,100+선적\"의 연도·ISSF 2024년 최종보고서·태국 공장 생산능력(MT)·구체적 FDA/EU 승인코드는 근거 부족으로 본문에서 단서를 달거나 제외했다.",
+    "recommendedFieldUpdates": {
+      "hasFDA": null,
+      "hasEU": null,
+      "msc": false,
+      "capacityMT": null,
+      "changeNote": "msc=false 유지 권고: 회사 About 페이지에 약어 'MSC'만 표기되고 발급기관(cert.msc.org/fisheries.msc.org)에서 Pataya CoC 인증번호가 확인되지 않아 fabrication-risk. hasFDA/hasEU는 정황상 보유 가능성 높으나 공개 승인코드 미확인(medium)이라 high 확신 변경 근거 부족으로 null. capacityMT는 1·3차 출처 모두 부재로 기존 100MT/day는 미검증, null 유지."
+    },
+    "publicProfile": {
+      "website": "https://www.patayafood.com",
+      "founded": "1979년 (Pataya Food Industries Ltd.; 전신 TTT/Thai Tang Tong 1971년)",
+      "headquarters": "본사: 1011 Supalai Grand Tower, 27th Floor, Rama 3 Road, Chongnonsi, Yannawa, Bangkok 10120, Thailand / 가공공장: Mahachai, Mueang District, Samut Sakhon 74000, Thailand",
+      "ownership": "태국 비상장 그룹. Pataya Food Group 산하 3사 운영 — TTT Holding Ltd., Nautilus Food (Thailand) Ltd., Pataya Food Industries Ltd. CEO: Wichai Karanapakorn",
+      "employees": null,
+      "revenue": "약 82억 바트 (약 US$241.3M), 2022년 그룹 기준",
+      "plants": [
+        "Mahachai, Samut Sakhon 74000 (태국) — 주력 수산가공 공장(캔/파우치 참치·연어·정어리·고등어·게·새우·펫푸드). 2023년 5억 바트 투자 중 40%를 본 공장 업그레이드에 배정(나머지 60%는 생산능력 확충, R&D/NPD는 미확정)",
+        "Can Tho City, Vietnam (Lot 44, Tra Noc 1 Industrial Park) — 자회사 Pataya Food Industries (Vietnam) Co. Ltd.(1998년 준공). 냉동/캔 게살·새우살·소스가공 어류 생산. EU 수출코드 DH146·DL1017 보유(태국 공장이 아닌 베트남 법인 코드). 인증: BRC, IFS, ISO 22000, HACCP, HALAL, GMP, BSCI",
+        "Bangkok, Thailand — Pataya 공장 내 47,000 sq-ft 식물성 식품 시설(2020년, Atlantic Natural Foods와 JV 'Healthy Life Foods Co.', 브랜드 Loma Linda·Tuno)"
+      ],
+      "products": [
+        "캔/파우치 참치 (Yellowfin·Tongkol·Skipjack·Bonito; solid/chunk/flake, oil/brine/spring water; 캔 142~1800g·파우치 1.2/3kg·사셰 15g) — 그룹 매출 약 32%(2022)",
+        "기타 캔/파우치 수산물 (연어 약 14%·고등어 약 18%·정어리·게·새우, retort-pouch 제품)",
+        "펫푸드 (OEM + 자체 브랜드 Remy; 캔/파우치 습식) — 그룹 매출/생산 약 25%",
+        "즉석식품·다각화 (Nautilus Xten 헬시밀, 식물성 Tuno/Loma Linda, 유기농 과채(Mont Shamau 농장, Rayong), 유기농 닭고기)"
+      ],
+      "certifications": [
+        {
+          "standard": "BRCGS (BRC v9) Food Safety",
+          "code": "",
+          "note": "회사 About 페이지 게재(인증번호 미공개), 태국 시설"
+        },
+        {
+          "standard": "IFS Food",
+          "code": "",
+          "note": "회사 명기, 인증번호 미공개"
+        },
+        {
+          "standard": "ISO 22000 / ISO 9001 / GMP / HACCP",
+          "code": "",
+          "note": "회사 명기 식품안전·품질시스템"
+        },
+        {
+          "standard": "Dolphin Safe (Earth Island Institute)",
+          "code": "",
+          "note": "Pataya Food Industries Ltd.가 승인 가공업체(태국)로 발급기관 목록에서 확인됨"
+        },
+        {
+          "standard": "Halal / Kosher (Orthodox Union)",
+          "code": "",
+          "note": "종교 식이 인증, 회사 명기"
+        },
+        {
+          "standard": "ISSF Participating Company (참치 지속가능성)",
+          "code": "",
+          "note": "2011년 가입(2024년 최종 컴플라이언스 보고서는 미확정)"
+        }
+      ],
+      "exportMarkets": [
+        "European Union / France (태국발 캔 수산물 유럽 수출 선도 자처, 프랑스 마케팅센터 운영)",
+        "United States (미국 세관 수입기록 다수; 바이어 Bumble Bee Foods·Century Pacific·Ocean Brands·Atlantic Natural Foods·Otis McAllister — 선적 건수·시작연도(2007)는 미확정)",
+        "China (마케팅센터 운영, Nautilus Food Shanghai)",
+        "Vietnam / Cambodia / Laos / Myanmar (역내 즉석식품 확장)"
+      ],
+      "capacityNote": "공개된 생산능력(MT/일 또는 연간 톤) 수치를 1차·3차 출처 모두에서 확인하지 못함.",
+      "recentDevelopments": [
+        {
+          "date": "2020-05",
+          "summary": "Atlantic Natural Foods(미국)와 JV 'Healthy Life Foods Co.' 설립 — 방콕 Pataya 공장 내 47,000 sq-ft 상온보관 식물성 식품 공장(Loma Linda·Tuno)"
+        },
+        {
+          "date": "2023-05",
+          "summary": "PFG, 2023년 5억 바트(약 US$14.7M) 투자로 캔 수산물 외 유기농 과채·유기농 닭고기로 다각화. 40%는 Samut Sakhon 공장 업그레이드, 60%는 생산능력 확충에 배정"
+        },
+        {
+          "date": "2017-이후",
+          "summary": "태양광 발전 프로젝트로 연 약 90톤 CO2 절감, Plan International Thailand로부터 Fair Fish Responsible Recruitment Award 수상(노동·지속가능성)"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Pataya Food Group 공식 - 회사 소개",
+          "url": "https://www.patayafood.com/en/company.php"
+        },
+        {
+          "label": "Pataya Food Group 공식 - 인증/About",
+          "url": "https://www.patayafood.com/en/about.php"
+        },
+        {
+          "label": "Bangkok Post - PFG 비캔 식품 다각화(매출·CEO)",
+          "url": "https://www.bangkokpost.com/business/2563014/pfg-diversifies-into-non-canned-foods"
+        },
+        {
+          "label": "Asia Food & Beverages - 매출구성·다각화",
+          "url": "https://asiafoodbeverages.com/pataya-food-group-to-diversify-out-of-canned-seafood-category/"
+        },
+        {
+          "label": "ISSF 참여기업 - Pataya(2011 가입)",
+          "url": "https://www.iss-foundation.org/about-issf/who-we-are/participating-companies/pataya/"
+        },
+        {
+          "label": "Earth Island Institute - Dolphin Safe 등재",
+          "url": "https://savedolphins.eii.org/dolphin-safe/listings/pataya-food-industries-ltd"
+        },
+        {
+          "label": "VASEP - Pataya Vietnam(EU 코드 DH146/DL1017)",
+          "url": "https://seafood.vasep.com.vn/key-seafood-sectors/shrimp/suppliers/details/pataya-food-industries-vietnam-company-limited-473.html"
+        },
+        {
+          "label": "Just-Food - Atlantic Natural Foods JV 식물성 공장",
+          "url": "https://www.just-food.com/news/atlantic-natural-foods-builds-plant-based-facility-in-bangkok-with-jv-partner-pataya-food-group/"
+        }
+      ]
+    }
+  }
+]

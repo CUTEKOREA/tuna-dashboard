@@ -18,7 +18,8 @@ export async function GET() {
     strat: 'HPAI 비발생 시기(저가)에 유럽·미국의 액상·건조란을 대량 수입해 신라교역 거점 창고에 비축해야 합니다. 이를 대형 제과·제빵 B2B 기업에 벤더관리재고(VMI) 방식으로 공급하며, HPAI 쇼크 발생 시 수급 공백에서 차익을 실현합니다.',
     reliability: 68,
     methodology: '4축 포렌식 감사 — SRC:21 FRS:19 VRF:13 INT:15. 지수형 데이터(priceIndex)의 기준 연도(Base Year) 미표기(-9)',
-    source: 'FAOSTAT 가공계란 품목코드(액상란·건조란) & 축산물품질평가원(KAPE) 기반 자체추정. ⚠️ 가격지수(100=2020년 기준)는 illustrative 예시 수치. KCS 실제 수입량 데이터 대조 필요. [STATIC — 실시간 API 미연동]'
+    source: 'FAOSTAT 가공계란 품목코드(액상란·건조란) & 축산물품질평가원(KAPE) 기반 자체추정. ⚠️ 가격지수(100=2020년 기준)는 illustrative 예시 수치. KCS 실제 수입량 데이터 대조 필요. [STATIC — 실시간 API 미연동]',
+    isLive: false // L-12: 정적 스냅샷 — 실시간 API 미연동
   };
 
   return NextResponse.json(data);
