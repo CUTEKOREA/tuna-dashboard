@@ -226,7 +226,7 @@ export default function MackerelDashboard() {
             data: tickerData.tariffComparison,
             badges: ['Verified', 'STATIC'],
             isLive: false,
-            sit: `한국의 냉동고등어 MFN 관세율은 ${tickerData.tariff?.mfn}%이며, RCEP FTA 적용 시 ${tickerData.tariff?.fta}%로 면세 수입이 가능합니다. 노르웨이는 EEA 협정으로 관세 0%입니다.`,
+            sit: `한국의 냉동고등어 MFN 관세율은 ${tickerData.tariff?.mfn}%이며, RCEP FTA 적용 시 ${tickerData.tariff?.fta}%로 면세 수입이 가능합니다. 노르웨이산은 한-EFTA TRQ 500톤 한정 0%이며, 초과분은 기본세율 10%가 적용됩니다 (KMI 2026Q1).`,
             strat: 'RCEP/한-노르웨이 FTA 활용 시 관세 10%p 절감 가능. 연간 수입 13.6만 톤 기준 약 $26M 절감 효과로, FTA C/O(원산지증명서) 100% 확보가 최우선 과제입니다.',
             source: 'World Bank WITS + 관세청 고시 관세율표 (정적)',
             unit: '%'
@@ -430,7 +430,7 @@ export default function MackerelDashboard() {
           ],
           badges: ['Verified'],
           isLive: tariffsLive,
-          sit: `노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이나, 한-EFTA FTA 적용으로 최종 0%가 적용됩니다.`,
+          sit: `노르웨이(${td.origin}) 발 한국(${td.destination}) 도착 냉동고등어(HS ${td.hsCode})의 기본 MFN 관세는 ${td.mfnDuty}%이며, 한-EFTA 0%는 TRQ 500톤 한정 — 초과 물량은 기본세율 10%입니다 (KMI 2026Q1 명문).`,
           strat: 'FTA 100% 활용을 위해 노르웨이 수출업체의 원산지 증명서(C/O) 발급을 계약서에 명문화하고 추적해야 합니다.',
           source: tariffsLive ? 'Tariffs API (라이브 조회)' : 'Tariffs 큐레이션 관세 모델 (정적 폴백)',
           unit: '%'
