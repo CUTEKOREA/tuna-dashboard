@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-06-14 23:44 KST — fund-dashboard 전체 페이지 업그레이드 배치 완료** [CC]:
+> - 사용자 지시("한 페이지 작업 완료 → 라이브 배포 → 다음 작업, 질문 없이 진행")에 따라 홈·/analyze 이후 남은 주요 라우트 7개를 순차 처리하고 각 페이지 완료 시점마다 Vercel production 배포. 순서: `/factor` → `/strategy` → `/quant` → `/scan` → `/jensen` → `/portfolio` → `/report`.
+> - 최종 production alias는 `https://fund-dashboard-chi.vercel.app`. 마지막 배포 `dpl_5M2aCc9XcPoit5o6Pivv51xzTWkc` 기준 `/report`까지 반영됨. 전 페이지 공통 방향: 결론/운용판정 스트립, 근거·주의 칩, 우선 액션 후보, 기존 API 재사용. 백엔드 변경 없음.
+> - 주의: `fund-dashboard` 자체는 Git repo가 아니므로 코드 변경 커밋 없음. 이 HANDOFF 기록만 `tuna-dashboard` repo에 커밋. `/strategy` 라이브 API는 180초 내 응답하지 않아 라이브에서는 로딩 상태·무오류까지 확인했고, 동일 UI 스트립 렌더는 로컬 FastAPI로 검증함.
+
+> 🚀 **2026-06-14 23:43 KST — fund-dashboard /report 운용 리포트 품질 개선 라이브 배포 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/report/page.tsx`에 인쇄/PDF 본문용 운용 결론 블록 추가. `운용 양호/관리 필요/점검 필요/작성 대기`, 총 손익·수익률, 보유/매도 수, 실현·미실현 손익, 최대 비중, 현재가 미수신·손실 경고 표시. 내역이 없을 때 빈 표 대신 안내 행 표시.
+> - 검증: 로컬 `npm run build` 통과, 로컬 `/report` Playwright 검증 통과(`/tmp/fund-dashboard-report-summary.png`, 콘솔 오류 0). Vercel production 배포 `dpl_5M2aCc9XcPoit5o6Pivv51xzTWkc`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/report` Playwright 검증 통과(`/tmp/fund-dashboard-report-summary-live.png`, 콘솔 오류 0).
+
 > 🚀 **2026-06-14 23:38 KST — fund-dashboard /portfolio 리스크 스트립 라이브 배포 완료** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/portfolio/page.tsx`에 포트폴리오 결론 스트립 추가. 보유/매도 수, 미실현 손익·수익률, 최대 비중, 매도 신호 수, 현재가 미수신, 리밸런싱/유지/정리/입력 필요 판정 표시.
 > - 검증: 로컬 `npm run build` 통과, 로컬 `/portfolio` Playwright 검증 통과(`/tmp/fund-dashboard-portfolio-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_5UVCscuM1wnC6CCBWTUgg6sVLN3u`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/portfolio` Playwright 검증 통과(`/tmp/fund-dashboard-portfolio-strip-live.png`, 콘솔 오류 0).
