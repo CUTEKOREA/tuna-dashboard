@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 22:46 KST — fund-dashboard 홈 개선 라이브 배포 완료** [CC]:
+> - 사용자 명시 요청("라이브 배포")에 따라 외부 앱 `../캔들패턴_마스터/fund-dashboard`를 Vercel production 배포. Deployment `dpl_EFxM75Q79ZLYHdFb3wJDoTBgP3yZ`, production URL `https://fund-dashboard-fgdg0fbtv-cutekorea-3280s-projects.vercel.app`, alias `https://fund-dashboard-chi.vercel.app`.
+> - 배포 전 로컬 `npm run build` 통과, Vercel remote build 통과(Next 16.2.7, 12 static pages). 라이브 URL curl 검증: "오늘의 액션", "오늘의 운용 모드", "즉시 검토 후보", "시장 국면 · 레짐" HTML 반영 확인.
+> - Render 백엔드 `https://alpha-capital-api.onrender.com/api/health` 응답 `ok:true` 확인. 확인용 로컬 dev 서버(`127.0.0.1:3001`, `127.0.0.1:8001`)는 배포 검증 후 종료.
+
 > 🎛️ **2026-06-14 22:41 KST — fund-dashboard 홈 '오늘의 운용 액션' 구현** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/page.tsx` 단일 파일 교체: 기존 홈을 "운용 모드(공격/선별/방어) + 액션 카드 4종 + 즉시 검토 후보/변동성 주의 후보 + 테마 촉매 + 시장 레짐" 구조로 재구성. 기존 API(`health`, `jensen`, `market`, `hotlist`)만 재사용해 백엔드 변경 없음.
 > - 검증: `npm run build` 통과(Next 16.2.7, route 9개 static), 로컬 백엔드 `127.0.0.1:8001`+프론트 `127.0.0.1:3001` 실행, curl/Playwright 렌더 확인. Playwright 스크린샷 `/tmp/fund-dashboard-home.png`, 콘솔 오류 0.
