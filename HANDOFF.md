@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 23:29 KST — fund-dashboard /scan 스캔 결론 스트립 라이브 배포 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/scan/page.tsx`에 최근 봉 프리셋(1·2·5·10)과 스캔 결론 스트립 추가. 결과 산출 후 `매수 우위/매도 경계/혼조 관찰/신호 부족`, 우선 확인 종목, 신호 수·매수·매도·고위험 수, 주의 조건 표시.
+> - 검증: 로컬 `npm run build` 통과, 로컬 `/scan` Playwright 검증 통과(`/tmp/fund-dashboard-scan-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_BAgiKzNqXjhMpeoaeZTdfHPUaXSQ`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/scan` Playwright 검증 통과(`/tmp/fund-dashboard-scan-strip-live.png`, 콘솔 오류 0).
+
 > 🚀 **2026-06-14 23:22 KST — fund-dashboard /quant 퀀트 모드 스트립 라이브 배포 완료** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/quant/page.tsx`에 섹터·페어 통합 결론 스트립 추가. `로테이션 우선/페어 기회/혼합 관찰/방어 관찰`, 선두 섹터, RS 양수 비중, z±2 페어 수, 최대 괴리 페어, 주의 조건 표시. 페어 상관 임계값 슬라이더와 0.50·0.70·0.85 프리셋 추가.
 > - 검증: 로컬 `npm run build` 통과, 로컬 `/quant` Playwright 검증 통과(`/tmp/fund-dashboard-quant-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_HmcZxwJwtLN8vwpHJWkj7ziENJuJ`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/quant` Playwright 검증 통과(`/tmp/fund-dashboard-quant-strip-live.png`, 콘솔 오류 0).
