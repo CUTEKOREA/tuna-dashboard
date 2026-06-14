@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-06-14 22:53 KST — fund-dashboard /analyze 결론 스트립 구현** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/analyze/page.tsx` 단일 파일에 결론 스트립 추가. 기존 `/api/analyze` 응답만 사용해 `매수 검토/관망/주의/매도 위험`, 신뢰도 점수, 진입·손절·목표·리스크, 확인 근거/반대 근거 칩을 계산·표시. 백엔드 변경 없음.
+> - 검증: `npm run build` 통과, 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 실행 후 Playwright `/analyze?code=005930` 렌더 확인. 스크린샷 `/tmp/fund-dashboard-analyze-strip.png`, 콘솔 오류 0.
+> - 주의: `fund-dashboard` 자체는 Git repo가 아니므로 코드 변경 커밋 없음. 확인용 로컬 서버 2개(session 82930, 13506)는 사용자 확인용으로 실행 중. 라이브 배포는 아직 하지 않음.
+
 > 🚀 **2026-06-14 22:46 KST — fund-dashboard 홈 개선 라이브 배포 완료** [CC]:
 > - 사용자 명시 요청("라이브 배포")에 따라 외부 앱 `../캔들패턴_마스터/fund-dashboard`를 Vercel production 배포. Deployment `dpl_EFxM75Q79ZLYHdFb3wJDoTBgP3yZ`, production URL `https://fund-dashboard-fgdg0fbtv-cutekorea-3280s-projects.vercel.app`, alias `https://fund-dashboard-chi.vercel.app`.
 > - 배포 전 로컬 `npm run build` 통과, Vercel remote build 통과(Next 16.2.7, 12 static pages). 라이브 URL curl 검증: "오늘의 액션", "오늘의 운용 모드", "즉시 검토 후보", "시장 국면 · 레짐" HTML 반영 확인.
