@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔎 **2026-06-14 22:09 KST — fund-dashboard 배포 소스 위치 확인** [CC]:
+> - 사용자 요청 URL `https://fund-dashboard-chi.vercel.app`는 현재 repo 내부가 아니라 `../캔들패턴_마스터/fund-dashboard`의 Next.js 16.2.7 프론트(`Alpha Capital — Quant Desk`)로 확인. `.vercel/project.json` projectName=`fund-dashboard`, production API base=`https://alpha-capital-api.onrender.com`.
+> - 백엔드는 `../캔들패턴_마스터/analyzer` FastAPI 앱(`api.py`)이며 Render 배포 구조. `/api/health`와 `/api/universes` 프로덕션 응답 정상 확인, `/api/market`은 브레드스 계산으로 장시간 응답이라 중단.
+> - 구조 요약: 프론트 라우트 `/`, `/analyze`, `/factor`, `/strategy`, `/quant`, `/scan`, `/jensen`, `/portfolio`, `/report`; 데이터 엔진은 analyzer의 `patterns/signals/data/webcore/factor/strategy/risk/market/jensen_*` 모듈.
+
 > 🔬 **2026-06-12 — KMI FTA 검증 4라운드 완료 (잔여 의심 소진 — 5과제 전부 종결)** [CC]:
 > - **mackerel 2종 정정**: w_origin_diversification 노르웨이 25Q1 14.2→16.5천 톤·중국 3.3→3.2(양판 명문 일치), 73.9/12.1/8.0%는 "수입액 비중"으로 스코프 명기. w_trq_scenario "추가배정 2,000톤"은 할당관세 아닌 **비축물량 할인방출**(해수부 26-01) — 차트 제거, 2026 TRQ 22,000→20,000톤 정정, EFTA TRQ 500톤 명기. 업스트림 mackerel_fta_quarterly.json yearly를 w80과 동일 對FTA표 T+1 시리즈로 통일(61.7/201.1 對세계 혼입 제거), MackerelFTAQuarterly.tsx 12개 치환(+81.5→+78.3%, +49.7→+49.9%, 스코프 라벨).
 > - **F16 정합(false alarm)**: $74.6M은 2023(23Q4 부록 종합표 74,620천$)과 2025(25Q4 박스 명문) **진짜 우연 일치** — 전 연도(21~25) 명문 재현, 정정 0.
