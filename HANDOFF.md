@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🎛️ **2026-06-14 22:41 KST — fund-dashboard 홈 '오늘의 운용 액션' 구현** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/page.tsx` 단일 파일 교체: 기존 홈을 "운용 모드(공격/선별/방어) + 액션 카드 4종 + 즉시 검토 후보/변동성 주의 후보 + 테마 촉매 + 시장 레짐" 구조로 재구성. 기존 API(`health`, `jensen`, `market`, `hotlist`)만 재사용해 백엔드 변경 없음.
+> - 검증: `npm run build` 통과(Next 16.2.7, route 9개 static), 로컬 백엔드 `127.0.0.1:8001`+프론트 `127.0.0.1:3001` 실행, curl/Playwright 렌더 확인. Playwright 스크린샷 `/tmp/fund-dashboard-home.png`, 콘솔 오류 0.
+> - 주의: `fund-dashboard` 자체는 Git repo가 아니므로 코드 변경 커밋은 없음. 이 HANDOFF 기록만 tuna-dashboard repo에 커밋 예정. 로컬 dev 서버 2개(session 22800, 50846)는 사용자 확인용으로 실행 중.
+
 > 🔎 **2026-06-14 22:09 KST — fund-dashboard 배포 소스 위치 확인** [CC]:
 > - 사용자 요청 URL `https://fund-dashboard-chi.vercel.app`는 현재 repo 내부가 아니라 `../캔들패턴_마스터/fund-dashboard`의 Next.js 16.2.7 프론트(`Alpha Capital — Quant Desk`)로 확인. `.vercel/project.json` projectName=`fund-dashboard`, production API base=`https://alpha-capital-api.onrender.com`.
 > - 백엔드는 `../캔들패턴_마스터/analyzer` FastAPI 앱(`api.py`)이며 Render 배포 구조. `/api/health`와 `/api/universes` 프로덕션 응답 정상 확인, `/api/market`은 브레드스 계산으로 장시간 응답이라 중단.
