@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-06-15 07:25 KST — fund-dashboard /recommend 최종 후보 품질 하드닝 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard`의 `/recommend`를 추가 보강. 최근 매도 신호·고위험 후보 감점/필터, 데이터 소스 커버리지 보너스, 확신도 점수, `우선 검토/선별 관찰/매도 신호 주의/리스크 점검` 상태 칩을 추가해 "점수 높은 종목"보다 "검토 가능한 후보"를 우선 노출하도록 조정. 진입/손절/목표/리스크 숫자는 한국 가격대에서도 깨지지 않도록 축약 표시.
+> - 전역 앱 셸도 모바일 방어 추가(`app-shell/app-sidebar/app-main/app-content/topbar-inner`). 860px 이하에서 사이드바가 상단 가로 탭으로 전환되고 본문이 전체 폭을 사용. `/recommend` 모바일 카드 가독성 문제 해소.
+> - 검증: `npm run build` 통과(Next 16.2.7, `/recommend` 포함 13 static pages). 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 기준 Playwright 데스크톱/모바일 감사 통과: 카드 6개, 콘솔 오류 0, 문서 가로 스크롤 0. 스크린샷 `/tmp/fund-dashboard-recommend-desktop-final.png`, `/tmp/fund-dashboard-recommend-mobile-final.png`.
+> - 주의: 최신 사용자 발화에는 명시 "라이브 배포" 요청이 없으므로 Vercel production 미배포. `fund-dashboard` 자체는 Git repo가 아니므로 코드 변경 커밋 없음. 현재 로컬 확인용 서버 2개(session 47626 backend, 25733 frontend) 실행 중.
+
 > 🧭 **2026-06-15 07:18 KST — fund-dashboard /recommend 최종 추천 후보 기능 로컬 구현** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard`에 신규 라우트 `/recommend` 추가(`app/recommend/page.tsx`) 및 사이드바·홈 빠른 진입 연결. 미국 3개/한국 3개 최종 후보를 `factor + scan + hotlist + jensen + market + analyze`로 점수화해 표시. 가중치: 팩터 30%, 기술 25%, 테마 15%, 관심도 15%, 리스크 15%. 카드별 선정 이유·반대 근거·진입/손절/목표/리스크, 소스별 반영 상태 표시. 표현은 투자권유가 아닌 "우선 검토 후보"로 제한.
 > - 검증: `npm run build` 통과(Next 16.2.7, `/recommend` 포함 13 static pages). 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 기준 Playwright `/recommend` 산출 완료 검증 통과. 스크린샷 `/tmp/fund-dashboard-recommend-complete.png`, 콘솔 오류 0.
