@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 22:58 KST — fund-dashboard /analyze 결론 스트립 라이브 배포 완료** [CC]:
+> - 사용자 명시 요청("라이브 배포")에 따라 외부 앱 `../캔들패턴_마스터/fund-dashboard`를 Vercel production 배포. Deployment `dpl_xWRZP3tTofK1PSEqyRyhNhYx6jjQ`, production URL `https://fund-dashboard-pa5x7wy6w-cutekorea-3280s-projects.vercel.app`, alias `https://fund-dashboard-chi.vercel.app`.
+> - 배포 전 로컬 `npm run build` 통과, Vercel remote build 통과(Next 16.2.7, 12 static pages). 라이브 `/analyze?code=005930` 브라우저 검증에서 `결론`, `신뢰도`, `진입가`, `리스크`, `확인 근거`, `반대 근거` DOM 반영 확인. 콘솔 오류 0, 스크린샷 `/tmp/fund-dashboard-analyze-strip-live.png`.
+> - Render 백엔드 `https://alpha-capital-api.onrender.com/api/health` 응답 `ok:true` 확인.
+
 > 🧭 **2026-06-14 22:53 KST — fund-dashboard /analyze 결론 스트립 구현** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/analyze/page.tsx` 단일 파일에 결론 스트립 추가. 기존 `/api/analyze` 응답만 사용해 `매수 검토/관망/주의/매도 위험`, 신뢰도 점수, 진입·손절·목표·리스크, 확인 근거/반대 근거 칩을 계산·표시. 백엔드 변경 없음.
 > - 검증: `npm run build` 통과, 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 실행 후 Playwright `/analyze?code=005930` 렌더 확인. 스크린샷 `/tmp/fund-dashboard-analyze-strip.png`, 콘솔 오류 0.
