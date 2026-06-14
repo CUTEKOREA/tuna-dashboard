@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-06-15 07:18 KST — fund-dashboard /recommend 최종 추천 후보 기능 로컬 구현** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard`에 신규 라우트 `/recommend` 추가(`app/recommend/page.tsx`) 및 사이드바·홈 빠른 진입 연결. 미국 3개/한국 3개 최종 후보를 `factor + scan + hotlist + jensen + market + analyze`로 점수화해 표시. 가중치: 팩터 30%, 기술 25%, 테마 15%, 관심도 15%, 리스크 15%. 카드별 선정 이유·반대 근거·진입/손절/목표/리스크, 소스별 반영 상태 표시. 표현은 투자권유가 아닌 "우선 검토 후보"로 제한.
+> - 검증: `npm run build` 통과(Next 16.2.7, `/recommend` 포함 13 static pages). 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 기준 Playwright `/recommend` 산출 완료 검증 통과. 스크린샷 `/tmp/fund-dashboard-recommend-complete.png`, 콘솔 오류 0.
+> - 주의: 사용자 명시 "라이브 배포" 요청이 없으므로 Vercel production 미배포. `fund-dashboard` 자체는 Git repo가 아니므로 코드 변경 커밋 없음. 현재 로컬 확인용 서버 2개(session 47626, 12361) 실행 중.
+
 > ✅ **2026-06-14 23:44 KST — fund-dashboard 전체 페이지 업그레이드 배치 완료** [CC]:
 > - 사용자 지시("한 페이지 작업 완료 → 라이브 배포 → 다음 작업, 질문 없이 진행")에 따라 홈·/analyze 이후 남은 주요 라우트 7개를 순차 처리하고 각 페이지 완료 시점마다 Vercel production 배포. 순서: `/factor` → `/strategy` → `/quant` → `/scan` → `/jensen` → `/portfolio` → `/report`.
 > - 최종 production alias는 `https://fund-dashboard-chi.vercel.app`. 마지막 배포 `dpl_5M2aCc9XcPoit5o6Pivv51xzTWkc` 기준 `/report`까지 반영됨. 전 페이지 공통 방향: 결론/운용판정 스트립, 근거·주의 칩, 우선 액션 후보, 기존 API 재사용. 백엔드 변경 없음.
