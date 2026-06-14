@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 23:16 KST — fund-dashboard /strategy 운용 판정 스트립 라이브 배포 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/strategy/page.tsx`에 백테스트 결론 스트립 추가. 결과 산출 후 `운용 후보/소액 검증/사용 보류`, 신뢰도 점수, 성과 근거, 거래 수·R 합계·낙폭, 주의 조건, 리스크 가이드 표시. 거래당 리스크 프리셋(0.5·1·2·3%)도 추가.
+> - 검증: 로컬 `npm run build` 통과, 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 기준 `/strategy` Playwright 스트립 렌더 통과(`/tmp/fund-dashboard-strategy-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_EnzVSzMgW4EMTr8PQkiHumDbWJnA`, alias `https://fund-dashboard-chi.vercel.app`. 라이브 `/strategy`는 페이지·프리셋·로딩 상태 반영 및 콘솔 오류 0 확인(`/tmp/fund-dashboard-strategy-strip-live.png`); Render 전략 API가 180초 내 미응답해 라이브 스트립은 로컬 렌더 검증으로 보완.
+
 > 🚀 **2026-06-14 23:08 KST — fund-dashboard /factor 의사결정 스트립 라이브 배포 완료** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/factor/page.tsx`에 운용 프리셋(균형형·추세형·방어형·타이밍형), 100% 가중치 보정, 팩터 랭킹 결론 스트립 추가. 결과 산출 후 `우선 검토/선별 관찰/보수 관망`, 상위 후보 3종목, 팩터 근거, 과열·변동성·낙폭 주의 칩 표시.
 > - 검증: 로컬 `npm run build` 통과, 로컬 `/factor` Playwright 실행 검증 통과(`/tmp/fund-dashboard-factor-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_DrtZ62kt1nB2ADrV6nAkS9p55Y7o`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/factor` Playwright 검증 통과(`/tmp/fund-dashboard-factor-strip-live.png`, 콘솔 오류 0).
