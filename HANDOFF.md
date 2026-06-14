@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-15 08:45 KST — fund-dashboard /recommend 라이브 배포 및 API 지연 방어 완료** [CC]:
+> - 사용자 명시 "라이브 배포"(영문키 입력 `fkdlqm qovh`)에 따라 외부 앱 `../캔들패턴_마스터/fund-dashboard`를 Vercel production 배포. 1차 배포 `dpl_GrJFqpMEbnivme2kMwG4YGADMfAt`는 프론트 반영·원격 빌드 성공이었으나, 라이브 검증에서 Render `/api/factor`, `/api/scan`, `/api/hotlist`가 180초 무응답으로 후보 0개가 되는 운영 리스크 확인.
+> - 즉시 `/recommend`에 최근 로컬 검증 스냅샷(`2026-06-15 08:42 KST`) 보강 로직 추가. 페이지 진입 즉시 미국/한국 후보 3개씩 표시하고, 라이브 API가 성공하면 동적 결과로 덮어쓰며 실패 시 `라이브 API 지연` 메모와 스냅샷 caution을 노출. API timeouts도 factor/scan 45초, hotlist/jensen/market/analyze 30초로 조정.
+> - 최종 production 재배포 `dpl_AyinupAuJh4N8xRzdeJPw3syhkVj`, alias `https://fund-dashboard-chi.vercel.app`. 검증: 로컬 `npm run build` 통과, Vercel remote build 통과, 라이브 `/recommend` Playwright 데스크톱/모바일 통과(카드 6개, `확신도`, `최근 검증 스냅샷`, `라이브 API` 메모, 콘솔 오류 0, 모바일 scrollWidth=390). 스크린샷 `/tmp/fund-dashboard-recommend-live-final.png`, `/tmp/fund-dashboard-recommend-live-mobile-final.png`.
+> - 주의: Render API의 heavy endpoints는 여전히 장시간 무응답 가능. 다음 개선 후보는 백엔드 캐시/비동기 job/경량 `/api/recommendations` 엔드포인트 신설.
+
 > ✅ **2026-06-15 07:25 KST — fund-dashboard /recommend 최종 후보 품질 하드닝 완료** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard`의 `/recommend`를 추가 보강. 최근 매도 신호·고위험 후보 감점/필터, 데이터 소스 커버리지 보너스, 확신도 점수, `우선 검토/선별 관찰/매도 신호 주의/리스크 점검` 상태 칩을 추가해 "점수 높은 종목"보다 "검토 가능한 후보"를 우선 노출하도록 조정. 진입/손절/목표/리스크 숫자는 한국 가격대에서도 깨지지 않도록 축약 표시.
 > - 전역 앱 셸도 모바일 방어 추가(`app-shell/app-sidebar/app-main/app-content/topbar-inner`). 860px 이하에서 사이드바가 상단 가로 탭으로 전환되고 본문이 전체 폭을 사용. `/recommend` 모바일 카드 가독성 문제 해소.
