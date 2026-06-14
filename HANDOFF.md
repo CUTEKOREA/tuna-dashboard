@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 23:08 KST — fund-dashboard /factor 의사결정 스트립 라이브 배포 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/factor/page.tsx`에 운용 프리셋(균형형·추세형·방어형·타이밍형), 100% 가중치 보정, 팩터 랭킹 결론 스트립 추가. 결과 산출 후 `우선 검토/선별 관찰/보수 관망`, 상위 후보 3종목, 팩터 근거, 과열·변동성·낙폭 주의 칩 표시.
+> - 검증: 로컬 `npm run build` 통과, 로컬 `/factor` Playwright 실행 검증 통과(`/tmp/fund-dashboard-factor-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_DrtZ62kt1nB2ADrV6nAkS9p55Y7o`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/factor` Playwright 검증 통과(`/tmp/fund-dashboard-factor-strip-live.png`, 콘솔 오류 0).
+
 > 🚀 **2026-06-14 22:58 KST — fund-dashboard /analyze 결론 스트립 라이브 배포 완료** [CC]:
 > - 사용자 명시 요청("라이브 배포")에 따라 외부 앱 `../캔들패턴_마스터/fund-dashboard`를 Vercel production 배포. Deployment `dpl_xWRZP3tTofK1PSEqyRyhNhYx6jjQ`, production URL `https://fund-dashboard-pa5x7wy6w-cutekorea-3280s-projects.vercel.app`, alias `https://fund-dashboard-chi.vercel.app`.
 > - 배포 전 로컬 `npm run build` 통과, Vercel remote build 통과(Next 16.2.7, 12 static pages). 라이브 `/analyze?code=005930` 브라우저 검증에서 `결론`, `신뢰도`, `진입가`, `리스크`, `확인 근거`, `반대 근거` DOM 반영 확인. 콘솔 오류 0, 스크린샷 `/tmp/fund-dashboard-analyze-strip-live.png`.
