@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 23:33 KST — fund-dashboard /jensen 테마 결론 스트립 라이브 배포 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/jensen/page.tsx`에 조회 기간(1·3·7일)과 수집 한도(20·30·50개) 컨트롤, 젠슨황 테마 결론 스트립 추가. `테마 편입 후보/뉴스 추적/이벤트 주의`, 상위 후보, 검토점수·상승여력·기술신호, 대표 테마, 뉴스·매수신호·평균점수 근거와 주의 조건 표시.
+> - 검증: 로컬 `npm run build` 통과, 로컬 `/jensen` Playwright 검증 통과(`/tmp/fund-dashboard-jensen-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_5V4yXqaBAi3ytqptvy3E9KNfCR4F`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/jensen` Playwright 검증 통과(`/tmp/fund-dashboard-jensen-strip-live.png`, 콘솔 오류 0).
+
 > 🚀 **2026-06-14 23:29 KST — fund-dashboard /scan 스캔 결론 스트립 라이브 배포 완료** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/scan/page.tsx`에 최근 봉 프리셋(1·2·5·10)과 스캔 결론 스트립 추가. 결과 산출 후 `매수 우위/매도 경계/혼조 관찰/신호 부족`, 우선 확인 종목, 신호 수·매수·매도·고위험 수, 주의 조건 표시.
 > - 검증: 로컬 `npm run build` 통과, 로컬 `/scan` Playwright 검증 통과(`/tmp/fund-dashboard-scan-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_BAgiKzNqXjhMpeoaeZTdfHPUaXSQ`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/scan` Playwright 검증 통과(`/tmp/fund-dashboard-scan-strip-live.png`, 콘솔 오류 0).
