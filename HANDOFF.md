@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-14 23:22 KST — fund-dashboard /quant 퀀트 모드 스트립 라이브 배포 완료** [CC]:
+> - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/quant/page.tsx`에 섹터·페어 통합 결론 스트립 추가. `로테이션 우선/페어 기회/혼합 관찰/방어 관찰`, 선두 섹터, RS 양수 비중, z±2 페어 수, 최대 괴리 페어, 주의 조건 표시. 페어 상관 임계값 슬라이더와 0.50·0.70·0.85 프리셋 추가.
+> - 검증: 로컬 `npm run build` 통과, 로컬 `/quant` Playwright 검증 통과(`/tmp/fund-dashboard-quant-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_HmcZxwJwtLN8vwpHJWkj7ziENJuJ`, alias `https://fund-dashboard-chi.vercel.app`, 라이브 `/quant` Playwright 검증 통과(`/tmp/fund-dashboard-quant-strip-live.png`, 콘솔 오류 0).
+
 > 🚀 **2026-06-14 23:16 KST — fund-dashboard /strategy 운용 판정 스트립 라이브 배포 완료** [CC]:
 > - 외부 앱 `../캔들패턴_마스터/fund-dashboard/app/strategy/page.tsx`에 백테스트 결론 스트립 추가. 결과 산출 후 `운용 후보/소액 검증/사용 보류`, 신뢰도 점수, 성과 근거, 거래 수·R 합계·낙폭, 주의 조건, 리스크 가이드 표시. 거래당 리스크 프리셋(0.5·1·2·3%)도 추가.
 > - 검증: 로컬 `npm run build` 통과, 로컬 FastAPI `127.0.0.1:8001` + Next `127.0.0.1:3001` 기준 `/strategy` Playwright 스트립 렌더 통과(`/tmp/fund-dashboard-strategy-strip.png`, 콘솔 오류 0). Vercel production 배포 `dpl_EnzVSzMgW4EMTr8PQkiHumDbWJnA`, alias `https://fund-dashboard-chi.vercel.app`. 라이브 `/strategy`는 페이지·프리셋·로딩 상태 반영 및 콘솔 오류 0 확인(`/tmp/fund-dashboard-strategy-strip-live.png`); Render 전략 API가 180초 내 미응답해 라이브 스트립은 로컬 렌더 검증으로 보완.
