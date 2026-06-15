@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-15 09:13 KST — fund-dashboard KIS 실시간 랭킹 라이브 배포 완료** [CC]:
+> - 사용자 명시 요청("라이브 배포")에 따라 KIS 라이브 보드를 production 반영. 백엔드는 `../캔들패턴_마스터/analyzer` git repo에서 `b695573 Add KIS live sector rankings API` 커밋 후 `origin/main` push → Render `alpha-capital-api` 자동 배포 완료. production `/api/kis/live-board?market_scope=all&top=5` 검증: HTTP 200, `ok:true`, `configured:true`, partial false, ranking 7종 각 5개, sectors 10개.
+> - 프론트는 `../캔들패턴_마스터/fund-dashboard`에서 `npx vercel deploy --prod --yes` 실행. Vercel deployment `dpl_5SBFLg1JdJDzN7auv2MnMbx3fPMh`, production URL `https://fund-dashboard-jag1217p9-cutekorea-3280s-projects.vercel.app`, alias `https://fund-dashboard-chi.vercel.app`.
+> - 검증: 로컬 `npm run build` 통과, Vercel remote build 통과(Next 16.2.7, `/live` 포함 14 static pages), 라이브 `/live` Playwright 데스크톱/모바일 통과. KIS API response 200, `KIS 연결 정상`, 콘솔 오류 0, scrollWidth=clientWidth, 데스크톱 table/mobile card 분기 정상. 스크린샷 `/tmp/fund-dashboard-live-prod.png`, `/tmp/fund-dashboard-live-prod-mobile.png`.
+> - 운영 메모: KIS REST 기반이라 장 전/장 후에는 0·예상체결·지연값이 섞일 수 있음. 화면에 부분 지연/주의 문구 반영됨.
+
 > 🧭 **2026-06-15 09:04 KST — fund-dashboard KIS 실시간 섹터·랭킹 보드 로컬 구현** [CC]:
 > - 사용자 요청("한국투자증권 API로 떠오른 섹터/실시간랭킹 가능? → 구현해 줘")에 따라 외부 앱 `../캔들패턴_마스터`에 KIS 라이브 보드 추가. 백엔드 `analyzer/kis_live.py` 신설: 상승/하락, 관심등록, HTS조회, 거래량, 거래대금, 체결강도, 업종 지수 랭킹을 KIS OpenAPI REST로 호출하고 표준 row로 정규화. `analyzer/api.py`에 `/api/kis/live-board`, `/api/kis/live-rankings`, `/api/kis/live-sectors` 추가(20초 서버 캐시).
 > - 프론트 `fund-dashboard/app/live/page.tsx` 신규 라우트 추가. `/live`에서 시장 필터(전체/코스피/코스닥/코스피200), 30초 자동 갱신, KIS 연결/부분 지연/섹터 수/주요 변동 요약, 급부상 섹터 카드, 실시간성 종목 랭킹 탭(상승·하락·인기·조회·거래량·거래대금·체결강도)을 제공. 사이드바와 홈 빠른 진입에도 "실시간 랭킹" 연결.
