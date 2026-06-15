@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-06-15 09:04 KST — fund-dashboard KIS 실시간 섹터·랭킹 보드 로컬 구현** [CC]:
+> - 사용자 요청("한국투자증권 API로 떠오른 섹터/실시간랭킹 가능? → 구현해 줘")에 따라 외부 앱 `../캔들패턴_마스터`에 KIS 라이브 보드 추가. 백엔드 `analyzer/kis_live.py` 신설: 상승/하락, 관심등록, HTS조회, 거래량, 거래대금, 체결강도, 업종 지수 랭킹을 KIS OpenAPI REST로 호출하고 표준 row로 정규화. `analyzer/api.py`에 `/api/kis/live-board`, `/api/kis/live-rankings`, `/api/kis/live-sectors` 추가(20초 서버 캐시).
+> - 프론트 `fund-dashboard/app/live/page.tsx` 신규 라우트 추가. `/live`에서 시장 필터(전체/코스피/코스닥/코스피200), 30초 자동 갱신, KIS 연결/부분 지연/섹터 수/주요 변동 요약, 급부상 섹터 카드, 실시간성 종목 랭킹 탭(상승·하락·인기·조회·거래량·거래대금·체결강도)을 제공. 사이드바와 홈 빠른 진입에도 "실시간 랭킹" 연결.
+> - 모바일에서 랭킹 테이블 숫자가 잘려 보이는 문제를 막기 위해 640px 이하에서는 카드형 랭킹 뷰로 전환. 조건부 렌더링 `0` 노출 버그도 수정.
+> - 검증: `analyzer` `py_compile` 통과, 로컬 API `http://127.0.0.1:8001/api/kis/live-board?market_scope=all&top=5` 정상 응답, `fund-dashboard` `npm run build` 통과(Next 16.2.7, `/live` 포함 14 static pages), Playwright 데스크톱/모바일 통과(콘솔 오류 0, scrollWidth=clientWidth, strayZero=false, desktop/mobile 랭킹 분기 정상). 스크린샷 `/tmp/fund-dashboard-live-kis-final.png`, `/tmp/fund-dashboard-live-kis-mobile-final.png`.
+> - 주의: 최신 사용자 발화는 "구현해 줘"라 명시 배포 요청이 아니므로 production 미배포. 이 기능은 프론트 Vercel뿐 아니라 Render 백엔드에도 `analyzer` 변경 배포가 필요함. 현재 로컬 확인용 서버: backend session `70283` (`127.0.0.1:8001`), frontend session `50356` (`127.0.0.1:3001`).
+
 > 🚀 **2026-06-15 08:45 KST — fund-dashboard /recommend 라이브 배포 및 API 지연 방어 완료** [CC]:
 > - 사용자 명시 "라이브 배포"(영문키 입력 `fkdlqm qovh`)에 따라 외부 앱 `../캔들패턴_마스터/fund-dashboard`를 Vercel production 배포. 1차 배포 `dpl_GrJFqpMEbnivme2kMwG4YGADMfAt`는 프론트 반영·원격 빌드 성공이었으나, 라이브 검증에서 Render `/api/factor`, `/api/scan`, `/api/hotlist`가 180초 무응답으로 후보 0개가 되는 운영 리스크 확인.
 > - 즉시 `/recommend`에 최근 로컬 검증 스냅샷(`2026-06-15 08:42 KST`) 보강 로직 추가. 페이지 진입 즉시 미국/한국 후보 3개씩 표시하고, 라이브 API가 성공하면 동적 결과로 덮어쓰며 실패 시 `라이브 API 지연` 메모와 스냅샷 caution을 노출. API timeouts도 factor/scan 45초, hotlist/jensen/market/analyze 30초로 조정.
