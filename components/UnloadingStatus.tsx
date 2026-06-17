@@ -1347,8 +1347,8 @@ export default function UnloadingStatus() {
               {/* Chart - Left */}
               <div style={{ flex: '1 1 600px', minWidth: 0, background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
                 <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
-                <div style={{ width: '100%', height: '350px', position: 'relative', minWidth: 0 }}>
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+                <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '8px' }}>
+                  <div style={{ minWidth: `${Math.max(chartData.length * 50, 500)}px`, height: '350px' }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <ComposedChart data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                         <ChartPatternDefs />
@@ -1363,16 +1363,6 @@ export default function UnloadingStatus() {
                         <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '8px', paddingBottom: '16px' }} verticalAlign="top" />
                         <Bar name="일일 하역량" dataKey="일일하역량" fill="#38bdf8" radius={[4, 4, 0, 0]} maxBarSize={36} />
                         <Line name="누적 하역량" type="monotone" dataKey="누적하역량" stroke="#10b981" strokeWidth={2.5} dot={{ r: 3, fill: '#10b981', strokeWidth: 0 }} />
-                        {chartData.length > 0 && (
-                          <Brush
-                            dataKey="name"
-                            height={30}
-                            stroke="#10b981"
-                            fill="rgba(15, 23, 42, 0.5)"
-                            tickFormatter={() => ''}
-                            startIndex={Math.max(0, chartData.length - 14)}
-                          />
-                        )}
                       </ComposedChart>
                     </ResponsiveContainer>
                   </div>
