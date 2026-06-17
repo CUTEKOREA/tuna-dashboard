@@ -3,6 +3,7 @@ import React from 'react';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
+import FleetPixelMap from './FleetPixelMap';
 import VdsStrategyMatrix from './VdsStrategyMatrix';
 import PnaAccessFeeWidgets from './PnaAccessFeeWidgets';
 import TakeawayBox from './TakeawayBox';
@@ -19,6 +20,14 @@ export default function FleetCommandCenter() {
     <div className={s.wrapper}>
       {/* Zone 1: Hero KPIs */}
       <FleetHeroKPI climateRisk={climateRisk} />
+
+      {/* Zone 2: Fleet Mini-map */}
+      <div style={{ marginBottom: '16px' }}>
+        <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#f8fafc', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '1.2em' }}>🗺️</span> 선대 운영 미니맵 (Fleet Mini-map)
+        </h3>
+        <FleetPixelMap />
+      </div>
 
       {/* Zone 3: Charts + Rankings */}
       <FleetChartSection />
