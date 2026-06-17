@@ -30,7 +30,8 @@ def load_env():
 
 def gen_one(client, model, prompt, out_path, vertex):
     cfg = types.GenerateVideosConfig(aspect_ratio='9:16', number_of_videos=1,
-                                     person_generation='allow_adult')
+                                     person_generation='allow_adult',
+                                     resolution=os.environ.get('VEO_RES', '1080p'))
     op = client.models.generate_videos(model=model, prompt=prompt, config=cfg)
     waited = 0
     while not op.done:
@@ -68,9 +69,12 @@ def main():
     cuts_path = pos[0] if pos else os.path.join(HERE, 'out', 'pilot_script_tuna_extract', 'cuts.json')
 
     env = load_env()
+    if env.get('VEO_RES'):                       # .env의 VEO_RES를 gen_one(os.environ)로 전달
+        os.environ['VEO_RES'] = env['VEO_RES']
     vertex = env.get('VEO_VERTEX', '1') == '1'  # 기본 Vertex(Cloud 크레딧 사용). API키 prepay 소진 우회.
     if vertex:
         project = env.get('VEO_PROJECT') or os.environ.get('GOOGLE_CLOUD_PROJECT', 'gen-lang-client-0963198205')
+        os.environ.setdefault('GOOGLE_CLOUD_QUOTA_PROJECT', project)  # 할당량 경고/오류 방지
         location = env.get('VEO_LOCATION', 'us-central1')
         model = env.get('VEO_MODEL', 'veo-3.0-generate-001')  # Vertex 고품질(Veo3 audio). 3.1-preview는 Vertex 404.
         client = genai.Client(vertexai=True, project=project, location=location)

@@ -7,12 +7,12 @@ export const revalidate = 0;
  * MGO(선박용 경유) 가격 — 주의: 실호가가 아닌 **Brent 선물 환산 추정치**.
  *
  * 환산 로직 (isEstimate: true 로 정직 표기):
- *   - MGO는 통상 Brent 대비 ~15-20% 프리미엄에 거래 → 계수 1.18
+ *   - MGO는 통상 Brent 대비 ~80-90% 프리미엄에 거래 → 계수 1.85
  *   - 1 MT ≈ 7.45 배럴 → $/bbl × 7.45 = $/MT
  *   - 실제 싱가포르 MGO 벙커 호가(Ship & Bunker 등)는 유료 — 라이브 연동 미구현.
  */
-const MGO_MULTIPLIER = 1.18 * 7.45;
-const ESTIMATE_METHOD = 'Brent 선물 기반 환산 추정 (계수 1.18×7.45)';
+const MGO_MULTIPLIER = 1.85 * 7.45;
+const ESTIMATE_METHOD = 'Brent 선물 기반 환산 추정 (계수 1.85×7.45)';
 
 // 하드코딩 캐시 fallback의 실제 기준일.
 // 2026-05-13 = repo history 재작성 커밋일 — 이 캐시값(2050.00)이 존재했음이

@@ -7,16 +7,16 @@ import s from './FleetCommandCenter.module.css';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const rankData = [
-  { r: 1, cap: '이평규', name: 'KONA', weekly: 510, daily: 72.86, badge: 'gold' },
-  { r: 2, cap: '김정훈', name: 'MARI', weekly: 495, daily: 70.71, badge: 'silver' },
-  { r: 3, cap: '김태엽', name: 'N/STAR', weekly: 435, daily: 62.14, badge: 'bronze' },
-  { r: 4, cap: '김형주', name: 'N/SUN', weekly: 285, daily: 40.71, badge: '' },
-  { r: 5, cap: '김승현', name: 'S/PIO', weekly: 191, daily: 27.29, badge: '' },
-  { r: 6, cap: '최용석', name: 'S/CHA', weekly: 170, daily: 24.29, badge: '' },
-  { r: 7, cap: '강창훈', name: 'S/JUP', weekly: 135, daily: 19.29, badge: '' },
-  { r: 8, cap: '정윤채', name: 'S/EXP', weekly: 0, daily: 0, badge: '' },
-  { r: 9, cap: '모승현', name: 'S/HAR', weekly: 0, daily: 0, badge: '' },
-  { r: 10, cap: '김효원', name: 'S/SPR', weekly: 0, daily: 0, badge: '' },
+  { r: 1, cap: '김효원', name: 'S/SPR', weekly: 547, daily: 78.14, badge: 'gold' },
+  { r: 2, cap: '김승현', name: 'S/PIO', weekly: 230, daily: 32.86, badge: 'silver' },
+  { r: 3, cap: '김형주', name: 'N/SUN', weekly: 220, daily: 31.43, badge: 'bronze' },
+  { r: 4, cap: '김태엽', name: 'N/STAR', weekly: 150, daily: 21.43, badge: '' },
+  { r: 5, cap: '김정훈', name: 'MARI', weekly: 120, daily: 17.14, badge: '' },
+  { r: 6, cap: '공준식', name: 'S/EXP', weekly: 0, daily: 0, badge: '' },
+  { r: 7, cap: '최용석', name: 'S/CHA', weekly: 0, daily: 0, badge: '' },
+  { r: 8, cap: '모승현', name: 'S/HAR', weekly: 0, daily: 0, badge: '' },
+  { r: 9, cap: '강장훈', name: 'S/JUP', weekly: 0, daily: 0, badge: '' },
+  { r: 10, cap: '이평규', name: 'KONA', weekly: 0, daily: 0, badge: '' },
 ];
 
 const tabs = [

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -38,6 +39,12 @@ export const metadata: Metadata = {
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   formatDetection: { telephone: false },
+  verification: {
+    google: 'FiLYMR1HrMNkg5-Sc4na1_fjBJtYpxlXmvdqRuaIK58',
+  },
+  other: {
+    'google-adsense-account': 'ca-pub-8056702374530895',
+  },
 };
 
 import DeepOceanCreatures from "@/components/DeepOceanCreatures";
@@ -56,6 +63,14 @@ export default function RootLayout({
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8056702374530895"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <DeepOceanCreatures />
         <ToastProvider>

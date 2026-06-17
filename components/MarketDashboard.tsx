@@ -356,7 +356,7 @@ export default function MarketDashboard() {
                 />
                 <Legend iconType="plainline" iconSize={16} wrapperStyle={{ fontSize: '12px', paddingTop: '10px', letterSpacing: '0.01em' }} />
 
-                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="url(#mktGradSkj)" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#38bdf8', strokeWidth: 0, style: { filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.85))' } }} connectNulls={true} />
+                <Line yAxisId="left" type="monotone" dataKey="skj_bkk" name="SKJ 방콕" stroke="#38bdf8" strokeWidth={2.5} dot={false} activeDot={{ r: 6, fill: '#38bdf8', strokeWidth: 0, style: { filter: 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.85))' } }} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_mnt" name="SKJ 만타" stroke="#2dd4bf" strokeWidth={2} dot={false} connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_abj" name="SKJ 아비장" stroke="#f472b6" strokeWidth={2} dot={false} strokeDasharray="5 5" connectNulls={true} />
                 <Line yAxisId="left" type="monotone" dataKey="skj_sey" name="SKJ 세이셸" stroke="#facc15" strokeWidth={2} dot={false} connectNulls={true} />
@@ -402,7 +402,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 주간 다이제스트: 6월 2주차 시장을 뒤흔드는 핵심 시그널
+          Atuna 주간 다이제스트: 6월 3주차 시장을 뒤흔드는 핵심 시그널
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -410,7 +410,7 @@ export default function MarketDashboard() {
           gap: '16px'
         }}>
           {/* News 1 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 공급망 / 재난
@@ -418,59 +418,103 @@ export default function MarketDashboard() {
               <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.09</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;필리핀 7.8 규모 강진…젠산(GenSan) 참치 가공 허브 전면 가동 중단&quot;
+              &quot;필리핀 남부 7.8 강진 강타, 참치 가공·교역 허브 GenSan 가공 및 물류망 일시 마비&quot;
             </h4>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1 }}>
-              6월 8일 필리핀 남부를 강타한 규모 7.8 지진으로 35명 사망, 200명 이상 부상하며 국가 주요 참치 가공 거점인 제너럴 산토스(GenSan) 시가 심각한 피해를 입었습니다. Century Pacific(General Tuna Corp.) 공장은 최소 1주간 가동 중단에 들어갔으며, Alliance Select Foods는 6월 16일 이후 재가동을 예고했습니다. 1분기 어획량이 3년 내 최저(99,828톤, -7% YoY)인 상황에서 가공 시설까지 마비되어 EU·미국향 참치캔 및 프리쿡 로인 공급에 심각한 차질이 예상됩니다.
-            </p>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>6/8 <strong style={{ color: 'var(--text-main)' }}>규모 7.8 지진</strong>으로 35명 사망, 200여 명 부상 — 최대 참치 가공 허브 <strong style={{ color: 'var(--text-main)' }}>제너럴산토스(GenSan)</strong> 직격</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span><strong style={{ color: 'var(--text-main)' }}>Alliance Select</strong> 등 대형 공장 가동 중단, <strong style={{ color: 'var(--text-main)' }}>6/16 이후</strong> 재가동 예정. Well Delight·Citra Mina·Mommy Gina 등 밀집 가공단지 피해</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>이미 어획량 <strong style={{ color: 'var(--text-main)' }}>-7% YoY</strong>(3년 최저), 선단 <strong style={{ color: 'var(--text-main)' }}>60%만 출어</strong> 중 → 가공망 마비 겹쳐 EU·미국향 통조림·로인 공급 차질 불가피</span>
+              </div>
+            </div>
           </div>
 
           {/* News 2 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                무역 / 관세
+                규제 / 조업
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.04</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.12</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;미국 USTR, 60개국 대상 강제노동 관련 추가 관세(Section 301) 제안…참치 공급국 직격탄&quot;
+              &quot;트럼프, 태평양 해양보호구역(MPA) 미국 상업 참치 조업 전격 재개 허용 서명&quot;
             </h4>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1 }}>
-              미국 무역대표부(USTR)가 강제노동 제품 수입 규제 미비 60개국에 대해 Section 301(b) 추가 관세(10~12.5%)를 제안했습니다. 태국·베트남(10%), 인도네시아·멕시코·에콰도르·EU(12.5%) 등 주요 참치 수출국이 모두 포함되었으며, 7월 공청회 후 최종 결정됩니다. 기존 호혜관세(12.5%) 위에 추가되는 이중 부담으로 미국 참치 수입가가 급등할 전망이며, 2025년 미국 참치캔 수입 155,992톤·파우치 48,837톤의 공급망 구조가 크게 흔들릴 수 있습니다.
-            </p>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>6/11 <strong style={{ color: 'var(--text-main)' }}>Rose Atoll</strong> 등 태평양 MPA <strong style={{ color: 'var(--text-main)' }}>수십만 평방마일</strong>을 미국 상업 참치 선단에 재개방하는 행정명령 서명</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span><strong style={{ color: 'var(--text-main)' }}>WPRFMC</strong>가 <strong style={{ color: 'var(--text-main)' }}>2009년</strong> 이후 지속 요구해온 조업 구역 확보 실현 — 아메리칸사모아 기반 연승선·선망선 어획 역량 대폭 강화</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span><strong style={{ color: 'var(--text-main)' }}>WCPO</strong> 동일 해역 한국 선사에 직접적 도전 — 인접 어장 선박 밀집도 변화 및 어군 거동 패턴 영향 예상</span>
+              </div>
+            </div>
           </div>
 
           {/* News 3 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                시장 / 수입
+                무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.08</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.12</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;영국 참치캔 수입 5년 최고치 108,655톤…6/21 관세 철폐로 태국·중국산 대유입 임박&quot;
+              &quot;영국, 전 참치 제품 관세 전면 유예(0%)…6/21 발효, 태국 가공업계 수출 급증 전망&quot;
             </h4>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1 }}>
-              Seafish 보고서에 따르면 2025년 영국 참치캔 수입이 108,655톤(GBP 4.47억)으로 5년 내 최고치를 기록했습니다. 6월 21일부터 시행되는 관세 철폐(기존 24%)로 태국산(작년 23% 증가, 6,810톤)과 중국산(23% 증가, 5,361톤)의 대거 유입이 예상됩니다. 에콰도르(32,991톤, 19% 증가), 몰디브(P&L, 23% 증가) 등 기존 무관세 협정국과의 가격 경쟁이 극심해질 전망이며, 스페인·이탈리아 프리미엄 제품(톤당 GBP 7,388~GBP 8,126)은 가격 열위로 시장 축소가 불가피합니다.
-            </p>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span><strong style={{ color: 'var(--text-main)' }}>6/21</strong>부터 <strong style={{ color: 'var(--text-main)' }}>2028년 말</strong>까지 모든 참치 제품(통조림·로인·필렛) 기존 최대 <strong style={{ color: 'var(--text-main)' }}>24% → 0%</strong> 관세 전면 유예</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>세계 최대 가공국 태국의 대영국 수출 폭증 전망 → 방콕 SKJ 원어 <strong style={{ color: 'var(--text-main)' }}>$1,825/톤</strong> 정체기에서 수요 유입·어가 상승 기폭제</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>몰디브 등 기존 무관세 협정국 가격 경쟁력 급락, 중국산(<strong style={{ color: 'var(--text-main)' }}>전년 23%↑</strong>) 대거 진입 예상</span>
+              </div>
+            </div>
           </div>
 
           {/* News 4 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '8px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                규제 / ESG
+                규제 / 위생
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.08</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.10</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;OPAGAC, EPO dFAD 회수 재단 출범…IATTC SAC 논의 본격화&quot;
+              &quot;피지·키리바시·솔로몬, EU &apos;영하 18℃ 냉동 참치 규제&apos; 준수 합동 기술 교육 개시&quot;
             </h4>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1 }}>
-              스페인 선망선단(OPAGAC) 주도로 EPO 최초의 민간 자금 dFAD 회수 재단 &apos;Ocean FAD Recovery Foundation&apos;이 출범했습니다. 스페인·에콰도르·파나마·미국 108척 선단이 참여하며 EPO 선망 선단의 약 1/5을 커버합니다. 한편 IATTC SAC 회의(6/8~12)에서 2025년 EPO 총 어획량 994,851톤(가다랑 471,708톤, 전년 대비 -27%)이 보고되었고, 눈다랑어 자원 상태는 양호하나 불확실성 잔존으로 분석되었습니다.
-            </p>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>피지 수바(Suva)에서 EU <strong style={{ color: 'var(--text-main)' }}>-18°C Brine Freezing</strong> 규제 대응 <strong style={{ color: 'var(--text-main)' }}>2주간</strong> 합동 기술 교육 개시</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>유럽향 냉동 참치 원어 선박에 실시간 brine 온도 기록·전송 의무화 — EU 등재 태평양 선망선 <strong style={{ color: 'var(--text-main)' }}>97%</strong>에 직접 영향</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>교육 범위: 선박 엔지니어링, 냉동 시스템, <strong style={{ color: 'var(--text-main)' }}>HACCP</strong> 및 EU 감사 요건 등 실무 검역 전반</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -479,51 +523,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: 필리핀 지진 충격 & 글로벌 관세 연쇄 파장
+          전략 인사이트: 영국 관세 철폐·미국 MPA 개방·EU 위생 규제의 연쇄 파장
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="필리핀 지진 공급망 마비 & 연료비 고공행진의 이중 악재"
+            title="영국 관세 전면 철폐와 방콕 가다랑어 어가 지지 및 판매망 재편"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="젠산 참치 가공 허브 전면 중단 + 번커유 고가 지속으로 글로벌 참치 원료 수급 비상"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.09 (Atuna)' }}
+            cardDesc="영국 24% 관세 유예 → 태국 가공업계 대영국 수출 급증 → 방콕 SKJ 원어 수요 및 어가 상승 압력"
+            telemetry={{ status: 'STATIC', syncDate: '2026.06.12 (Atuna via NotebookLM)' }}
             customBody={<></>}
             takeaway={{
-              situation: "6월 8일 필리핀 남부 7.8 규모 강진으로 제너럴 산토스(GenSan) 소재 Century Pacific·Alliance Select 등 주요 참치 가공 공장이 최소 1~2주 가동 중단에 돌입했습니다. 이미 필리핀 1분기 어획량이 99,828톤으로 3년 최저(YoY -7%)를 기록한 가운데, 국가 조업 선대의 60%만 출어 중인 상황에서 가공 시설까지 마비되며 EU·미국향 참치캔 및 프리쿡 로인 공급이 4~6주간 크게 위축될 전망입니다. 한편 싱가포르 MGO 번커유는 $1,061/톤(1년 전 $605 대비 +75%)으로 고공행진하며 WCPO 선망 운영 마진을 극도로 압박하고 있습니다.",
-              actionPlan: "**[Actionable Insight]** \n(1) **[대체 소싱 즉시 가동]**: 필리핀 공급 공백이 최소 4~6주 지속될 것이므로, 태국(방콕 허브)·인도네시아(비악섬 부활 움직임)·에콰도르(만타) 가공 공장과의 긴급 스팟 계약으로 프리쿡 로인 및 캔 물량을 확보해야 합니다. \n(2) **[연료비 헤지 전략 재검토]**: 중동 분쟁(호르무즈 해협 제한)에 따른 유가 고공행진이 장기화됨에 따라, 조업 연료비를 선물 계약(Fuel Forward Contract)으로 고정하고, SKJ1.8:BKK $1,850/톤 수준의 어가 대비 수지분석을 재실행해야 합니다. \n(3) **[필리핀 복구 모니터링]**: Alliance Select 6/16 재가동 예정, Century Pacific 피해 조사 1주간 진행 — 필리핀 건축안전당국(Building Official) 승인 일정을 추적하고 복구 후 조기 물량 확보 계약을 준비해야 합니다.",
-              source: 'Atuna 2026.06.09 (GenSan Earthquake) & 2026.06.01 (Global Bunker Rates)',
+              situation: "영국 정부가 중동 분쟁 인플레이션 대처를 위해 2026년 6월 21일부터 2028년 말까지 가다랑어·황다랑어 통조림, 로인, 필렛 등 모든 참치 제품의 기존 최대 24% 관세를 전면 유예(0%)했습니다. 세계 최대 가공국 태국 방콕 허브의 대영국 수출 물량 폭증이 예상되며, 현재 정체기($1,825/톤)인 방콕 SKJ 원어 가격에 강력한 수요 유입과 상승 압력의 기폭제가 됩니다. 동시에 미·이란 평화 협상 타결 기대감에 싱가포르 MGO가 $1,150/톤 선으로 안정세를 보이며 조업 비용 환경도 개선되고 있습니다.",
+              actionPlan: "**[Actionable Insight]** \n(1) **[태국 가공업체 선도 계약 체결]**: 6/21 관세 유예 발효에 맞춰 타이유니온·MMP 등 대영국 수출 주문 급증이 예상되는 태국 대형 가공업체들과 SKJ 1.8kg Up 방콕 양륙 비중을 우선 배정한 유리한 선도 판매 계약을 조기 체결해야 합니다. \n(2) **[영국향 OEM 파트너십 강화]**: 몰디브 등 채낚기 원어 시장이 태국 저가 대량 선망 원어로 대체될 수 있으므로, 태국 내 영국향 OEM 전문 가공 바이어들과의 독점 공급 및 연대를 공고히 구축해야 합니다. \n(3) **[유가 하락 기조 활용 조업 극대화]**: MGO $1,150/톤 안정세를 활용해 조업 비용을 최소화하고, 방콕 어가 상승기와 맞물린 집중 조업으로 마진을 극대화해야 합니다.",
+              source: 'Atuna 2026.06.05, 2026.06.08, 2026.06.12 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="미국 301조 추가관세 & 영국 관세 철폐의 글로벌 무역 연쇄 파장"
+            title="미국·EU 중심 어장 및 위생·노동 규제 강화에 따른 전략적 대응"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="미국 강제노동 관세 60개국 타깃 + 영국 수입 구조 재편으로 글로벌 참치 무역 지도 대변동"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.08 (Atuna)' }}
+            cardDesc="미국 MPA 상업 조업 재개방 + EU -18°C brine 규제 + ILO 선원 노동 실사 → WCPO 다중 규제 대응 임계점"
+            telemetry={{ status: 'STATIC', syncDate: '2026.06.12 (Atuna via NotebookLM)' }}
             customBody={<></>}
             takeaway={{
-              situation: "미국 USTR이 60개국 대상 Section 301(b) 강제노동 추가관세(10~12.5%)를 제안하며 태국·베트남·인도네시아·에콰도르·EU 등 주요 참치 수출국이 모두 사정권에 들었습니다. 기존 12.5% 호혜관세 위에 중첩되면 미국 수입가가 22.5~25%까지 상승할 수 있습니다. 동시에 영국은 6월 21일부터 모든 참치 제품 관세를 2년간 면제하면서 태국(기존 24% 관세 부담)·중국산의 대량 유입을 촉발시킵니다. 2025년 영국 참치 수입 108,655톤 역대 최고치 속에 에콰도르·몰디브·가나 등 전통 무관세 협정국의 가격 경쟁력이 급락합니다.",
-              actionPlan: "**[Actionable Insight]** \n(1) **[미국향 수출 비용 시나리오 분석]**: 301조 추가관세 확정 시 태국산 참치캔 미국 CIF가 22.5% 관세 부담 -> 수출단가 경쟁력 재계산 필요. 7월 공청회 결과 전까지 미국향 대량 선적을 앞당기는 '관세 회피 선적(Front-loading)' 전략을 검토해야 합니다. \n(2) **[영국 시장 포지셔닝 재정립]**: 영국 관세 장벽 해제 후 태국·중국 저가 물량이 쏟아지므로, 프리미엄 MSC 인증·폴앤라인(P&L) 차별화 소싱으로 Whole Foods·M&S·Waitrose 등 프리미엄 채널 공략을 강화하고, 범용 캔 시장에서는 태국 OEM 전환을 가속화해야 합니다. \n(3) **[무역 정책 리스크 모니터링 강화]**: 미국 301조 7/6 의견 마감, 7월 청문회 -> 연내 확정 트랙. EU-멕시코 FTA(참치캔 7년 후 무관세) 진행. 이 두 축의 정책 일정을 주간 단위로 추적해 소싱 전략에 선제 반영해야 합니다.",
-              source: 'Atuna 2026.06.04 (US USTR Section 301 Proposal) & 2026.06.08 (UK Tuna Imports Seafish Report)',
-            }}
-          />
-          <WidgetCard
-            title="미국 보호구역(MPA) 조업 규제 제한 입법화 & EPO dFAD 무단 유실에 따른 ESG 리스크"
-            icon={Activity}
-            iconColor="#818cf8"
-            pillar="S5"
-            cardDesc="대통령 독점적 상업 조업 금지 제한 법안 발의 및 동태평양 dFAD 월경·유실 환경 규제 압박"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.05 (Atuna)' }}
-            customBody={<></>}
-            takeaway={{
-              situation: "미국 의회에서 대통령의 독점적 Antiquities Act를 통한 MPA 조업 차단 권한을 제한하고 Magnuson-Stevens법 아래 수산 관리를 통일하자는 입법 청문회가 열렸습니다. 미국 선단 축소(34척에서 15척)를 타개하기 위함입니다. 한편, 동태평양(EPO)에서 투하된 dFAD의 84.2%가 회수되지 못하고 서태평양(WCPO)으로 유실·월경하고 있어, 수산기구(WCPFC/IATTC)의 공동 환경 규제 및 dFAD 추적·회수 책임 의무화가 임박했습니다.",
-              actionPlan: "**[Actionable Insight]** \n(1) **[미국 선단과의 파트너십 구축]**: 미국 몬뉴먼트 보호구역(Jarvis/Wake 섬 등 50~200해리) 내 조업 복원 추진 흐름에 맞춰, 미국 국적 선단과의 장기 공급계약을 선제적으로 맺어 미 서부 해역 원어 소싱 우위를 노려야 합니다. \n(2) **[dFAD 환경 컴플라이언스 선제 정비]**: dFAD 무단 유실과 월경에 대한 국제적 감시망이 타이트해지므로, 생분해성 소재 FAD(Bio-FAD) 전환을 가속화하고 위성 추적장치의 실시간 관측 데이터를 IATTC 규정에 매칭하도록 ESG 리스크를 예방 점검해야 합니다.",
-              source: 'Atuna 2026.06.05 (US Congress MPA Bill & IATTC FAD WG Report)',
+              situation: "미국 백악관이 태평양 MPA(Rose Atoll 등) 수십만 평방마일을 미국 상업 참치 선단에 전격 개방하는 행정명령에 서명하며 WCPO 어장 경쟁이 심화됩니다. EU는 유럽향 냉동 참치에 -18°C brine 동결·실시간 온도 기록 전송을 의무화하는 강력한 비관세 장벽을 가동, EU 등재 태평양 선망선 97%에 직접 영향을 미칩니다. 동시에 ILO 주도로 WCPO 선단 선원 인권 보장·공정 채용 기준(WiFi 설치·송출 프로세스) 요구가 폭증하고 있어 ESG 실사 압박도 거세지고 있습니다.",
+              actionPlan: "**[Actionable Insight]** \n(1) **[초저온 Brine 동결 시스템 선제 투자]**: EU 수출용 고부가가치 원어 loins 시장 유지를 위해, 선단 내 염수 동결기를 -18°C 이하 상시 모니터링 가능한 저온 시스템 센서·HACCP 기록 장치로 개조 설계하여 규제 적격 선박 리스트를 신속히 확보해야 합니다. \n(2) **[미국 MPA 개방에 따른 WCPO 조업 밀집도 분산 전략]**: 미국 선망선 Rose Atoll 등 신규 어장 유입으로 인접 EEZ 경쟁 밀도가 변화하므로, 신라 선단의 조업 구역과 VDS 사용 시기를 데이터 기반 유연 재분배로 효율을 높여야 합니다. \n(3) **[국제 선원 노동 기준 조기 도입]**: 위성 Wi-Fi 인프라 구축·채용 투명성 제고로 글로벌 바이어 공급망 실사 기준을 선제 충족, ESG 프리미엄을 확보해야 합니다.",
+              source: 'Atuna 2026.06.10, 2026.06.11, 2026.06.12 (NotebookLM 종합 분석)',
             }}
           />
 

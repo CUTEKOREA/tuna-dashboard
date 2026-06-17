@@ -1,0 +1,25 @@
+# 숏폼 스크립트 — "로봇이 출근한다: Physical AI 2026" (헐리우드급)
+
+> 출처: NotebookLM "AI / 반도체" + 1차 교차검증 (Roland Berger·KraneShares·NVIDIA·BofA/Morgan Stanley)
+> 9:16 · ~56초 · Veo 3.1 1080p · Pretendard-Black 자막 · teal-orange 그레이드 · 객관 톤
+> 공통 suffix = `anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text`
+
+## 🎬 컷별 제작표
+
+| # | 시간 | 비주얼 프롬프트 (Veo 3.1 · Shot Grammar · EN) | 내레이션 (KR) | 자막(번인) |
+|---|---|---|---|---|
+| **1 훅** | 0–7s | *Low-angle hero shot of a sleek humanoid robot walking through a factory entrance at dawn among human workers, lens flare as the doors open, slow dolly-back reveal, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "2026년, 드디어 로봇이 진짜 '일터'로 출근하기 시작했습니다." | 로봇이 출근한다 |
+| **2 전환점** | 7–15s | *A humanoid robot standing still as holographic financial graphs and glowing data streams swirl and converge around it, forces aligning, slow push-in, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "하드웨어는 무르익었고, 자본은 쏟아졌고, 일손은 부족했죠. 모든 게 맞아떨어진 순간." | 모든 게 맞아떨어졌다 |
+| **3 두뇌** | 15–24s | *A humanoid robot inside a glowing blue simulation grid learning to move, wireframe digital world dissolving into photoreal reality around it, slow orbital camera, ethereal, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "비결은 '두뇌'. 엔비디아 코스모스3가, 로봇이 가상세계에서 스스로 배우게 만들었습니다." | 가상에서 배우는 로봇 |
+| **4 현장** | 24–32s | *Wide shot of several humanoid robots working alongside humans on a real automotive assembly line, sparks and machinery, confident industrial energy, smooth tracking shot, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "BMW와 테슬라는 올해부터 공장에 휴머노이드를 투입합니다. 테슬라만 연말까지 수천 대." | 공장 투입 시작 (테슬라 수천대) |
+| **5 규모** | 32–41s | *Epic visualization of humanoid robots multiplying in neat rows across a vast factory floor stretching to the horizon, sense of explosive scale and growth, slow majestic crane-up, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "출하량은 2026년 9만 대에서, 2030년엔 120만 대로 치솟습니다." | 9만→120만대 · 2050년 5조$ |
+| **6 칩** | 41–49s | *Extreme macro of a glowing AI chip being seated into a humanoid robot's head, circuits and traces lighting up in sequence, the robot's eyes powering on, slow push-in, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "로봇의 심장은 반도체. 손바닥만 한 칩이, 초당 2천조 번을 연산합니다." | 로봇의 두뇌 = AI 반도체 |
+| **7 마무리** | 49–57s | *A humanoid robot and a human worker standing side by side looking toward a bright sunrise horizon, hopeful and grand, soft volumetric light, slow push-in, anamorphic 2x lens with horizontal flares, shallow depth of field, volumetric haze, teal-and-cyan grade with warm amber light accents, crushed blacks, film grain, halation on highlights, photoreal, shot on ARRI Alexa 35, epic neo-noir science-fiction blockbuster aesthetic, 9:16 vertical, no text* | "머지않아, 당신의 동료가 로봇일지도 모릅니다. 물리적 AI의 시대가, 시작됐습니다." | 물리적 AI의 시대 |
+
+## 📌 수치 출처
+- 2026 수렴점(하드웨어·자본·노동력) — Roland Berger / 코스모스3(2026-05 GTC 타이베이) — NVIDIA Newsroom
+- 9만(2026)→120만대(2030) — BofA / 2050년 10억대·$5조 — Morgan Stanley (KraneShares)
+- BMW·테슬라 공장 투입(테슬라 연말 수천대) — Physical AI factory floors / 칩 2,070 FP4 TFLOPS(≈초당 2천조) — Jetson AGX Thor
+
+## 🎵 BGM: "epic cinematic tech, driving hopeful momentum, rising awe, deep pulse, no melody, no vocals, no percussion hits"
+## 메타: 제목 "2026, 로봇이 당신 옆자리로 출근한다" · #휴머노이드 #로봇 #PhysicalAI #엔비디아 #테슬라옵티머스 · AI 라벨 체크

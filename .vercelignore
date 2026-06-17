@@ -2,6 +2,7 @@ google-cloud-sdk/
 google-cloud-cli-darwin-arm.tar.gz
 *.pdf
 *.tar.gz
+scripts/
 .venv/
 jiji_ghana_scraper/
 seafood-data-collector/
@@ -91,3 +92,5 @@ data/**/*.xlsx
 data/**/*.pdf
 data/**/*.shp
 data/food_processors_full.zip
+*.vsix
+_archive/

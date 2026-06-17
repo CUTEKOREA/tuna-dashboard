@@ -31,10 +31,10 @@ DEFAULT_VOICE = 'JBFqnCBsd6RM'
 SKIP = re.compile(r'^\(?\s*(무음|silence|stinger|스팅어)')
 
 
-def tts(text, voice, key, out_path):
+def tts(text, voice, key, out_path, model='eleven_multilingual_v2'):
     body = json.dumps({
         'text': text,
-        'model_id': 'eleven_multilingual_v2',
+        'model_id': model,
         'voice_settings': {'stability': 0.55, 'similarity_boost': 0.75, 'style': 0.15, 'use_speaker_boost': True},
     }).encode('utf-8')
     req = urllib.request.Request(
@@ -67,6 +67,7 @@ def main():
         print('❌ ELEVENLABS_API_KEY 없음 — scripts/video/.env 에 키를 넣으세요(채팅 금지).')
         sys.exit(1)
     voice = env.get('ELEVEN_VOICE_ID', DEFAULT_VOICE)
+    model = env.get('ELEVEN_MODEL', 'eleven_multilingual_v2')
     cuts = json.load(open(cuts_path, encoding='utf-8'))
     outdir = os.path.join(os.path.dirname(cuts_path), 'narration')
     os.makedirs(outdir, exist_ok=True)
@@ -79,7 +80,7 @@ def main():
             continue
         mp3 = os.path.join(outdir, f"cut_{c['idx']:02d}.mp3")
         try:
-            n = tts(text, voice, key, mp3)
+            n = tts(text, voice, key, mp3, model)
             dur = duration(mp3)
             c['narration_audio'] = os.path.relpath(mp3, HERE)
             c['narration_dur'] = dur
