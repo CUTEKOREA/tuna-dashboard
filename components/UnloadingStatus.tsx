@@ -5,6 +5,7 @@ import { Ship, Anchor, AlertCircle, BarChart3, Clock, PackageCheck, TrendingDown
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, Brush } from 'recharts';
 import TermTooltip from './TermTooltip';
 import GensanVesselStatus from './GensanVesselStatus';
+import HarborBanner from './HarborBanner';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // Vessel Stowage Plans
@@ -974,6 +975,11 @@ export default function UnloadingStatus() {
 
       {/* 3. Deep Dive Analytics */}
       <div className={`${styles.deepDiveCard} ${styles.glassPanel}`}>
+        <HarborBanner 
+          vesselName={selectedData.name} 
+          totalAmount={selectedData.reportedTotal} 
+          remainingAmount={selectedData.reportedTotal - selectedData.actualTotal} 
+        />
         <div className={styles.deepDiveHeader}>
           <div className={styles.deepDiveTitle}>
             <TrendingDown color="var(--accent-primary)" />
