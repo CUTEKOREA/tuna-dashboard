@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-18 07:40 KST — tuna-dashboard 하역 현황 픽셀 애니메이션 배포 완료** [CC]:
+> - 사용자 요청("하역 현황에 움직이는 픽셀 선박 및 항구 애니메이션 우선 적용" -> "라이브 배포 해 주세요")에 따라 `tuna-dashboard`에 작업 내역을 반영하고 Vercel 실서버에 배포했습니다.
+> - 주요 작업 내역: `HarborBanner.tsx` 생성 및 `UnloadingStatus.tsx`에 통합. 고품질 항구 픽셀 배경(`harbor_bg.png`) 생성. CSS 애니메이션 및 잔량 기반 HP 스타일 프로그레스 바 적용.
+> - 배포 내역: `git add . && git commit && git push` 완료. Vercel CI 트리거 정상 구동 완료.
+
 > 🚀 **2026-06-15 09:13 KST — fund-dashboard KIS 실시간 랭킹 라이브 배포 완료** [CC]:
 > - 사용자 명시 요청("라이브 배포")에 따라 KIS 라이브 보드를 production 반영. 백엔드는 `../캔들패턴_마스터/analyzer` git repo에서 `b695573 Add KIS live sector rankings API` 커밋 후 `origin/main` push → Render `alpha-capital-api` 자동 배포 완료. production `/api/kis/live-board?market_scope=all&top=5` 검증: HTTP 200, `ok:true`, `configured:true`, partial false, ranking 7종 각 5개, sectors 10개.
 > - 프론트는 `../캔들패턴_마스터/fund-dashboard`에서 `npx vercel deploy --prod --yes` 실행. Vercel deployment `dpl_5SBFLg1JdJDzN7auv2MnMbx3fPMh`, production URL `https://fund-dashboard-jag1217p9-cutekorea-3280s-projects.vercel.app`, alias `https://fund-dashboard-chi.vercel.app`.
