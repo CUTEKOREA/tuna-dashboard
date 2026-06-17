@@ -1339,10 +1339,10 @@ export default function UnloadingStatus() {
           return (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}>
               {/* Chart - Left */}
-              <div style={{ flex: '1 1 600px', background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+              <div style={{ flex: '1 1 600px', minWidth: 0, background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
                 <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
-                <div style={{ width: '100%', height: '350px' }}>
-                  <ResponsiveContainer width="100%" height="100%">
+                <div style={{ width: '100%', height: 350 }}>
+                  <ResponsiveContainer width="99%" height={350}>
                     <ComposedChart data={chartData} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                       <ChartPatternDefs />
                       <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
