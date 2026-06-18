@@ -22,6 +22,16 @@
       "reported_total": 4803,
       "date_range": "2026.05.23 ~ 진행중",
       "mother_vessel": "-"
+    },
+    {
+      "vessel_id": "shin-fuji",
+      "name": "M/V SHIN FUJI",
+      "location": "BANGKOK, THAILAND",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역대기 (Waiting)",
+      "reported_total": 3096,
+      "date_range": "2026.06.19 ~ 예정",
+      "mother_vessel": "-"
     }
   ],
   "unloading_reports": [
@@ -446,6 +456,27 @@
       "species_name": "Yellowfin",
       "reported_amount": 627,
       "actual_amount": 413.00
+    },
+    {
+      "vessel_id": "shin-fuji",
+      "species_id": "SJ",
+      "species_name": "Skipjack",
+      "reported_amount": 2905,
+      "actual_amount": 0
+    },
+    {
+      "vessel_id": "shin-fuji",
+      "species_id": "YF",
+      "species_name": "Yellowfin",
+      "reported_amount": 139,
+      "actual_amount": 0
+    },
+    {
+      "vessel_id": "shin-fuji",
+      "species_id": "BE",
+      "species_name": "Bigeye",
+      "reported_amount": 52,
+      "actual_amount": 0
     }
   ]
 }

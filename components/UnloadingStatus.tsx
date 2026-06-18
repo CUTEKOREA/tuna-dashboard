@@ -40,6 +40,19 @@ const vesselStowagePlans: Record<string, Record<string, string[]>> = {
     '#1-A': ['N/STAR'],
     '#1-B': ['N/STAR', 'MOAMARI'],
     '#1-C': ['MOAMARI'],
+  },
+  'shin-fuji': {
+    '#4-A': ['S/PIO'],
+    '#4-B': ['N/STAR'],
+    '#4-C': ['S/EXP', 'N/STAR'],
+    '#3-A': ['MOAMARI', 'S/EXP'],
+    '#3-B': ['MOAMARI'],
+    '#3-C': ['MOAMARI'],
+    '#2-A': ['N/SUN', 'N/STAR'],
+    '#2-B': ['N/SUN'],
+    '#2-C': ['N/SUN'],
+    '#1-A': ['N/STAR'],
+    '#1-B': ['N/STAR'],
   }
 };
 
@@ -61,6 +74,15 @@ function getCompartmentNominalCapacity(vesselId: string, holdId: string, reporte
       '#1-A': 620, '#1-B': 660, '#1-C': 445
     };
     return caps[holdId] || 400;
+  }
+  if (vesselId === 'shin-fuji') {
+    const caps: Record<string, number> = {
+      '#4-A': 307, '#4-B': 302, '#4-C': 281,
+      '#3-A': 321, '#3-B': 330, '#3-C': 339,
+      '#2-A': 318, '#2-B': 310, '#2-C': 283,
+      '#1-A': 166, '#1-B': 139, '#1-C': 0
+    };
+    return caps[holdId] || 300;
   }
   return Math.round((reportedTotal / numCompartments) * 10) / 10;
 }
@@ -86,7 +108,12 @@ export function parseVesselHoldData(vesselId: string, timeline: any[], reportedT
   const compartmentsList: string[] = [];
 
   for (const h of hatches) {
-    const levels = (isSeinPhoenix && h !== 1) ? ['A', 'B', 'C', 'D'] : ['A', 'B', 'C'];
+    let levels = ['A', 'B', 'C'];
+    if (isSeinPhoenix && h !== 1) {
+      levels = ['A', 'B', 'C', 'D'];
+    } else if (vesselId === 'shin-fuji' && h === 1) {
+      levels = ['A', 'B'];
+    }
     for (const l of levels) {
       compartmentsList.push(`#${h}-${l}`);
     }
