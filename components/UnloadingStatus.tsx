@@ -550,17 +550,17 @@ export default function UnloadingStatus() {
   const staticData = {
     'sein-phoenix': {
       name: 'M/V SEIN PHOENIX',
-      dateRange: '2026.05.23 ~ 진행중',
+      dateRange: '2026.05.23 ~ 2026.06.18',
       location: 'BANGKOK, THAILAND',
       buyer: 'FCF CO.,LTD',
       motherVessel: '-',
-      status: '하역중 (In Progress)',
+      status: '하역완료 (Completed)',
       reportedTotal: 6955.000,
-      actualTotal: 6125.320,
-      surplus: -829.680,
+      actualTotal: 7060.950,
+      surplus: 105.950,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 5792.220, surplus: -853.780 },
-        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 333.100, surplus: 24.100 }
+        { id: 'SJ', name: 'Skipjack', reported: 6646.000, actual: 6677.150, surplus: 31.150 },
+        { id: 'YF', name: 'Yellowfin', reported: 309.000, actual: 383.800, surplus: 74.800 }
       ],
       timeline: [
         { date: '5/23', time: '08:10 ~ 20:30', targetHol: 'S/HAR(#2-A)', dailyAmount: 146.890, cumAmount: 146.890, quality: '어창 개방 측정온도 -24.0℃ ~ -25.0℃. 외관상태 및 색택 전반적으로 양호.' },
@@ -587,7 +587,9 @@ export default function UnloadingStatus() {
         { date: '6/13', time: '08:10 ~ 18:30', targetHol: 'S/HAR(#1-B:131.450), N/STAR(#2-C,#2-D:196.600), S/JUP(#3-C:161.730)', dailyAmount: 489.780, cumAmount: 5412.620, quality: 'S/HAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/JUP(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-C,#2-D) - 어창 개방 측정온도는 -18.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/14)은 약 100톤 하역 진행 예정.' },
         { date: '6/14', time: '08:00 ~ 14:20', targetHol: 'S/JUP(#3-C)', dailyAmount: 93.750, cumAmount: 5506.370, quality: 'S/JUP(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/15)은 약 210톤 하역 진행 예정.' },
         { date: '6/15', time: '08:20 ~ 18:20', targetHol: 'S/JUP(#3-C,#3-D)', dailyAmount: 227.990, cumAmount: 5734.360, quality: 'S/JUP(#3-C,#3-D) - 어창 개방 측정온도는 -19.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/16)은 약 380톤 하역 진행 예정.' },
-        { date: '6/16', time: '08:10 ~ 18:10', targetHol: 'S/SPR(#4-D), N/STAR(#2-D), S/JUP(#3-D)', dailyAmount: 390.960, cumAmount: 6125.320, quality: 'S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/17)은 약 485톤 하역 진행 예정.' }
+        { date: '6/16', time: '08:10 ~ 18:10', targetHol: 'S/SPR(#4-D), N/STAR(#2-D), S/JUP(#3-D)', dailyAmount: 390.960, cumAmount: 6125.320, quality: 'S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/SPR(#4-D) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/17)은 약 485톤 하역 진행 예정.' },
+        { date: '6/17', time: '08:10 ~ 19:30', targetHol: 'S/HAR(#1-B,#1-C), N/STAR(#2-D), S/JUP(#3-D)', dailyAmount: 486.080, cumAmount: 6611.400, quality: 'S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-B,#1-C) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. N/STAR(#2-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/18) 하역 종료 예정.' },
+        { date: '6/18', time: '08:20 ~ 17:40', targetHol: 'S/HAR(#1-C), S/JUP(#3-D)', dailyAmount: 449.550, cumAmount: 7060.950, quality: 'S/JUP(#3-D) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. S/HAR(#1-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 6/18 하역 최종 종료.' }
       ]
     },
     'bao-lucky': {
