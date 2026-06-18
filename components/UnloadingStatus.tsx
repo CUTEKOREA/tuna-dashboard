@@ -13,13 +13,13 @@ const vesselStowagePlans: Record<string, Record<string, string[]>> = {
   'sein-phoenix': {
     '#4-A': ['S/SPR'],
     '#4-B': ['S/SPR'],
-    '#4-C': ['S/SPR', 'MARI'],
+    '#4-C': ['S/SPR', 'MOAMARI'],
     '#4-D': ['S/SPR'],
     '#3-A': ['S/PIO'],
     '#3-B': ['S/PIO'],
     '#3-C': ['S/PIO', 'S/JUP'],
     '#3-D': ['S/JUP'],
-    '#2-A': ['S/HAR', 'MOAKONA'],
+    '#2-A': ['MOAKONA', 'S/HAR'],
     '#2-B': ['MOAKONA'],
     '#2-C': ['N/STAR'],
     '#2-D': ['N/STAR'],
@@ -46,19 +46,19 @@ const vesselStowagePlans: Record<string, Record<string, string[]>> = {
 function getCompartmentNominalCapacity(vesselId: string, holdId: string, reportedTotal: number, numCompartments: number): number {
   if (vesselId === 'sein-phoenix') {
     const caps: Record<string, number> = {
-      '#4-A': 450, '#4-B': 480, '#4-C': 480, '#4-D': 425,
-      '#3-A': 460, '#3-B': 480, '#3-C': 480, '#3-D': 420,
-      '#2-A': 460, '#2-B': 480, '#2-C': 480, '#2-D': 420,
-      '#1-A': 500, '#1-B': 500, '#1-C': 435
+      '#4-A': 45, '#4-B': 775, '#4-C': 575, '#4-D': 490,
+      '#3-A': 335, '#3-B': 620, '#3-C': 560, '#3-D': 595,
+      '#2-A': 375, '#2-B': 695, '#2-C': 560, '#2-D': 520,
+      '#1-A': 200, '#1-B': 360, '#1-C': 250
     };
     return caps[holdId] || 460;
   }
   if (vesselId === 'bao-lucky') {
     const caps: Record<string, number> = {
-      '#4-A': 380, '#4-B': 420, '#4-C': 400,
-      '#3-A': 380, '#3-B': 420, '#3-C': 400,
-      '#2-A': 380, '#2-B': 420, '#2-C': 400,
-      '#1-A': 400, '#1-B': 420, '#1-C': 383
+      '#4-A': 654, '#4-B': 395, '#4-C': 350,
+      '#3-A': 300, '#3-B': 425, '#3-C': 280,
+      '#2-A': 544, '#2-B': 570, '#2-C': 490,
+      '#1-A': 620, '#1-B': 660, '#1-C': 445
     };
     return caps[holdId] || 400;
   }
