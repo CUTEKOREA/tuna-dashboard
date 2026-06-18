@@ -598,11 +598,11 @@ export default function UnloadingStatus() {
       motherVessel: '-',
       status: '하역중 (In Progress)',
       reportedTotal: 4803.000,
-      actualTotal: 2994.690,
-      surplus: -1808.310,
+      actualTotal: 3387.850,
+      surplus: -1415.150,
       species: [
-        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 2592.890, surplus: -1583.110 },
-        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 401.800, surplus: -225.200 }
+        { id: 'SJ', name: 'Skipjack', reported: 4176.000, actual: 2965.650, surplus: -1210.350 },
+        { id: 'YF', name: 'Yellowfin', reported: 627.000, actual: 422.200, surplus: -204.800 }
       ],
       timeline: [
         { 
@@ -708,6 +708,22 @@ export default function UnloadingStatus() {
           dailyAmount: 243.860,
           cumAmount: 2994.690,
           quality: 'MOAKONA(#2-A,#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/CHA(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. S/PIO(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/17)은 약 95톤 하역 작업 예정입니다.'
+        },
+        {
+          date: '6/17',
+          time: '08:10 ~ 10:20',
+          targetHol: 'S/PIO(#4-B), MOAKONA(#2-B)',
+          dailyAmount: 69.010,
+          cumAmount: 3063.700,
+          quality: 'MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/PIO(#4-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/18)은 약 377톤 하역 작업 예정입니다.'
+        },
+        {
+          date: '6/18',
+          time: '08:20 ~ 20:00',
+          targetHol: 'N/STAR(#1-B), MOAMARI(#1-B), MOAKONA(#2-B)',
+          dailyAmount: 324.150,
+          cumAmount: 3387.850,
+          quality: 'MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/19)은 약 430톤 하역 작업 예정입니다.'
         }
       ]
     },
