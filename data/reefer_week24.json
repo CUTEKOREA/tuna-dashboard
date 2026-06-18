@@ -1,0 +1,141 @@
+[
+  {
+    "carrier": "SEIN PHOENIX",
+    "date": "20.05.26",
+    "deliveries": {
+      "CMC": "700",
+      "ISA": "475",
+      "MMP": "809.80",
+      "SK": "25",
+      "TUM": "2,121",
+      "UC": "2,734.00",
+      "OTHER": "14"
+    }
+  },
+  {
+    "carrier": "SEA WEALTH",
+    "date": "22.05.26",
+    "deliveries": {
+      "PTY": "1,000",
+      "RMK": "150",
+      "SPA": "2,000",
+      "TUM": "606",
+      "UC": "490.00",
+      "OTHER": "41"
+    }
+  },
+  {
+    "carrier": "BAO LUCKY",
+    "date": "29.05.26",
+    "deliveries": {
+      "ASIAN": "1,000",
+      "CMC": "727",
+      "MMP": "809.80",
+      "POP": "129",
+      "TUG": "299.00",
+      "TUM": "1,415",
+      "UC": "333.00",
+      "OTHER": "21B/21A"
+    }
+  },
+  {
+    "carrier": "HARU",
+    "date": "29.05.26",
+    "deliveries": {
+      "AEC": "416",
+      "ISA": "460",
+      "SPA": "200",
+      "TUG": "1,000.00",
+      "TUM": "1,000",
+      "UC": "436.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "SANWA FONTAINE",
+    "date": "03.06.26",
+    "deliveries": {
+      "ASIAN": "536",
+      "AYA": "79",
+      "UC": "2,178.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "FONG KUO NO.816",
+    "date": "05.06.26",
+    "deliveries": {
+      "GPZ": "129.50",
+      "PTY": "245",
+      "RMK": "580",
+      "SIF": "230",
+      "SPA": "500",
+      "TUG": "1,000.00",
+      "TUM": "1,209",
+      "UC": "671.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "LIAOYU REEFER 1",
+    "date": "05.06.26",
+    "deliveries": {
+      "TUG": "3,676.25",
+      "TUM": "1,503",
+      "OTHER": "11B/27A"
+    }
+  },
+  {
+    "carrier": "SYOTA MARU",
+    "date": "08.06.26",
+    "deliveries": {
+      "TUG": "1,015.00",
+      "TUM": "2,560",
+      "OTHER": "22C"
+    }
+  },
+  {
+    "carrier": "SEIN GRACE",
+    "date": "10.06.26",
+    "deliveries": {
+      "AEC": "22",
+      "CMC": "400",
+      "MMP": "379.80",
+      "TUG": "2,010.00",
+      "TUM": "1,665",
+      "UC": "278.00",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "YOUTA MARU",
+    "date": "15.06.26",
+    "deliveries": {
+      "TUG": "1,300.00",
+      "TUM": "2,025",
+      "OTHER": "19"
+    }
+  },
+  {
+    "carrier": "SHIN FUJI",
+    "date": "17.06.26",
+    "deliveries": {
+      "I-TAIL": "1618",
+      "TUG": "525.00",
+      "TUM": "400",
+      "UC": "553.00",
+      "OTHER": "22B"
+    }
+  },
+  {
+    "carrier": "AVUMDA REEFER",
+    "date": "18.06.26",
+    "deliveries": {
+      "CMC": "1,000",
+      "I-TAIL": "1,544.419",
+      "TUG": "1,829.669",
+      "TUM": "1,589.206",
+      "OTHER": "11B"
+    }
+  }
+]

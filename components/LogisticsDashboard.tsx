@@ -58,7 +58,7 @@ export default function LogisticsDashboard() {
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
           }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-secondary)' }} />
-            <span>정적 주간 보고 기반 <span style={{ color: 'var(--text-primary)' }}>최신 2026-06-04 · 위젯별 기준일 표기</span></span>
+            <span>정적 주간 보고 기반 <span style={{ color: 'var(--text-primary)' }}>최신 2026-06-18 · 위젯별 기준일 표기</span></span>
           </div>
         </div>
       </header>
@@ -151,13 +151,13 @@ export default function LogisticsDashboard() {
             icon={Navigation}
             iconColor="var(--color-info)"
             pillar="S3"
-            cardDesc="방콕항 운반선 이동 스케줄 — WEEK 22 주간 보고 (2026-05-28~06-04 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-06-04' }}
+            cardDesc="방콕항 운반선 이동 스케줄 — WEEK 24 주간 보고 (2026-06-12~06-18 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-06-18' }}
             customBody={<ReeferMovement />}
             takeaway={{
-              situation: 'WEEK 22(2026-05-28~06-04) 주간 보고 기준 방콕항 입항 운반선 12척의 캔 공장별 배분 물량을 집계. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
+              situation: 'WEEK 24(2026-06-12~06-18) 주간 보고 기준 방콕항 입항 운반선 12척의 캔 공장별 배분 물량을 집계. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
               actionPlan: '체선일이 10일을 초과하는 선박에 대해서는 선하증권(B/L) 분할 양륙 및 인근 송클라 또는 젠산 항구로의 목적지 변경(Diversion)을 적극 검토해야 합니다.',
-              source: '방콕항 운반선 주간 스케줄 WEEK 22 (2026-06-04 기준)',
+              source: '방콕항 운반선 주간 스케줄 WEEK 24 (2026-06-18 기준)',
             }}
           />
         </div>
