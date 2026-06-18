@@ -33,7 +33,7 @@ const longlineFleet = [
 ];
 
 const carrierFleet = [
-  { name: 'SEIN PHOENIX', capa: 7100, load: 6955, pct: 98, status: 'unloading', note: 'BKK 하역 중 (NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180)', color: '#10b981' },
+  { name: 'SEIN PHOENIX', capa: 7100, load: 6955, pct: 98, status: 'unloading', note: 'BKK 하역 완료 (NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180)', color: '#10b981' },
   { name: 'BAO LUCKY', capa: 5800, load: 4803, pct: 83, status: 'unloading', note: 'BKK 하역 중 (MI-885, NT-1,035, C-865, P-375, MK-870, E-773, 타사-930)', color: '#10b981' },
   { name: 'SHIN FUJI', capa: 3200, load: 3096, pct: 97, status: 'port', note: 'BKK 하역 대기 중 (MI-950, NS-670, E-306, NT-900, P-270)', color: '#f59e0b' },
   { name: 'SEIN TOPAZ', capa: 7300, load: 4278, pct: 59, status: 'port', note: 'TARAWA 대기 중 (NS-150, P-980, S-1,178, C-990, J-980, 타사-2,566.8)', color: '#f59e0b' },
