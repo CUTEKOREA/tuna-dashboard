@@ -45,7 +45,7 @@ export default function FleetOperationStatus() {
     { name: 'SEIN PHOENIX (7,100)', load: '6,955t', note: 'NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180 | BKK 하역 완료' },
     { name: 'SHIN IZU (2,400)', load: '2,301(161)t', note: 'S-50(20), C-130, P-200, MK-69(49), E-117(92), J-730, S-1,005 | 통영 하역 중' },
     { name: 'BAO LUCKY (5,800)', load: '4,803t', note: 'MI-885, NT-1,035, C-865, P-375, MK-870, E-773, 타사 물량 -930 | BKK 하역 중' },
-    { name: 'SHIN FUJI (3,200)', load: '3,096t', note: 'MI-950, NS-670, E-306, NT-900, P-270 | 6/14 BKK 도착 예정' },
+    { name: 'SHIN FUJI (3,200)', load: '3,096t', note: 'MI-950, NS-670, E-306, NT-900, P-270 | BKK 하역 중' },
     { name: 'SEIN TOPAZ (7,300)', load: '(4,278)t', note: '예상잔량 -t | NS-150, P-980, S-1,178, (C-990), (J-980), 타사 물량 -2,566.80 | TARAWA 전재 중' },
     { name: 'SEIN GALAXY (3,500)', load: '(1,106(150))t', note: '예상잔량 (2,394)t | (MK-1,106(150)) | 6/11 FUNAFUTI 도착 예정' },
     { name: 'LAKE WIN (500)', load: '150t', note: 'FUNAFUTI 전재 중' },

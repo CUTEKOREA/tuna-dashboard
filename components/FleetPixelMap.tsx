@@ -31,7 +31,7 @@ const carrierFleet = [
   { name: 'SEIN PHOENIX', zone: 'BKK', type: 'carrier', status: 'port', note: '하역 완료', load: 6955, capa: 7100 },
   { name: 'SHIN IZU', zone: '통영', type: 'carrier', status: 'port', note: '하역 중', load: 2301, capa: 2400 },
   { name: 'BAO LUCKY', zone: 'BKK', type: 'carrier', status: 'port', note: '하역 중', load: 4803, capa: 5800 },
-  { name: 'SHIN FUJI', zone: 'BKK', type: 'carrier', status: 'transit', note: 'BKK 도착 예정', load: 3096, capa: 3200 },
+  { name: 'SHIN FUJI', zone: 'BKK', type: 'carrier', status: 'port', note: 'BKK 하역 중', load: 3096, capa: 3200 },
   { name: 'SEIN TOPAZ', zone: 'TARAWA', type: 'carrier', status: 'port', note: '전재 중', load: 4278, capa: 7300 },
   { name: 'SEIN GALAXY', zone: 'FUNAFUTI', type: 'carrier', status: 'transit', note: 'FUNAFUTI 도착 예정', load: 1106, capa: 3500 },
   { name: 'LAKE WIN', zone: 'FUNAFUTI', type: 'carrier', status: 'port', note: '전재 중', load: 150, capa: 500 },
