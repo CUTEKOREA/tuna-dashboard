@@ -155,15 +155,6 @@
       "quality_notes": "S/SPR(#1-A): 어창 개방 측정온도 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호.MOAMARI(#4-C): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 235톤 하역 진행 예정."
     },
     {
-      "vessel_id": "sein-phoenix",
-      "report_date": "6/3",
-      "work_time": "08:10 ~ 18:40",
-      "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
-      "daily_amount": 236.14,
-      "cumulative_amount": 2541.13,
-      "quality_notes": "S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호.MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 330톤 하역 진행 예정."
-    },
-    {
       "vessel_id": "bao-lucky",
       "report_date": "6/2",
       "work_time": "09:00 ~ 17:10",
@@ -171,6 +162,15 @@
       "daily_amount": 229.16,
       "cumulative_amount": 229.16,
       "quality_notes": "S/EXP(#4-A): 어창 개방 측정온도 -18.0℃ ~ -19.0℃. 외관상태 및 색택 전반적으로 양호.N/STAR(#1-A): 어창 개방 측정온도 -19.0℃ ~ -20.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 176톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "sein-phoenix",
+      "report_date": "6/3",
+      "work_time": "08:10 ~ 18:40",
+      "target_holds": "S/PIO(#3-A), MOAKONA(#2-B)",
+      "daily_amount": 236.14,
+      "cumulative_amount": 2541.13,
+      "quality_notes": "S/PIO(#3-A): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호.MOAKONA(#2-B): 어창 개방 측정온도 -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/6) 약 330톤 하역 진행 예정."
     },
     {
       "vessel_id": "bao-lucky",
@@ -299,6 +299,15 @@
       "quality_notes": "N/STAR(#2-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/11)은 약 100톤 하역 진행 예정."
     },
     {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/10",
+      "work_time": "08:10 ~ 19:40",
+      "target_holds": "MOAKONA(#2-A:81.590), S/CHA(#3-A:116.580), S/PIO(#4-B:86.270)",
+      "daily_amount": 284.44,
+      "cumulative_amount": 2221.14,
+      "quality_notes": "S/PIO(#4-B) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃. S/CHA(#3-A) - -21.0℃ ~ -22.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/11)은 약 180톤 하역 진행 예정."
+    },
+    {
       "vessel_id": "sein-phoenix",
       "report_date": "6/11",
       "work_time": "08:10 ~ 14:00",
@@ -308,6 +317,15 @@
       "quality_notes": "S/PIO(#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. - 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/12)은 약 150톤 하역 진행 예정."
     },
     {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/11",
+      "work_time": "08:10 ~ 14:10",
+      "target_holds": "MOAKONA(#2-A:107.730), S/CHA(#3-A,#3-B:98.800)",
+      "daily_amount": 206.53,
+      "cumulative_amount": 2427.67,
+      "quality_notes": "S/CHA(#3-A,#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -23.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/12)은 약 100톤 하역 진행 예정."
+    },
+    {
       "vessel_id": "sein-phoenix",
       "report_date": "6/12",
       "work_time": "08:10 ~ 16:00",
@@ -315,6 +333,15 @@
       "daily_amount": 146.2,
       "cumulative_amount": 4922.84,
       "quality_notes": "S/PIO(#3-B,#3-C) - 어창 개방 측정온도는 -17.0℃ ~ -20.0℃ 입니다. N/STAR(#2-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/13)은 약 530톤 하역 진행 예정."
+    },
+    {
+      "vessel_id": "bao-lucky",
+      "report_date": "6/12",
+      "work_time": "08:20 ~ 14:30",
+      "target_holds": "MOAKONA(#2-A)",
+      "daily_amount": 66.66,
+      "cumulative_amount": 2494.33,
+      "quality_notes": "MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 6/13~6/14 하역 작업 없음. 월요일(6/15) 하역 재개 예정."
     },
     {
       "vessel_id": "sein-phoenix",
@@ -333,33 +360,6 @@
       "daily_amount": 93.75,
       "cumulative_amount": 5506.37,
       "quality_notes": "S/JUP(#3-C) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 외관상태 및 색택 전반적으로 양호하였습니다. 명일(6/15)은 약 210톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/10",
-      "work_time": "08:10 ~ 19:40",
-      "target_holds": "MOAKONA(#2-A:81.590), S/CHA(#3-A:116.580), S/PIO(#4-B:86.270)",
-      "daily_amount": 284.44,
-      "cumulative_amount": 2221.14,
-      "quality_notes": "S/PIO(#4-B) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃. S/CHA(#3-A) - -21.0℃ ~ -22.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/11)은 약 180톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/11",
-      "work_time": "08:10 ~ 14:10",
-      "target_holds": "MOAKONA(#2-A:107.730), S/CHA(#3-A,#3-B:98.800)",
-      "daily_amount": 206.53,
-      "cumulative_amount": 2427.67,
-      "quality_notes": "S/CHA(#3-A,#3-B) - 어창 개방 측정온도는 -20.0℃ ~ -23.0℃. MOAKONA(#2-A) - -21.0℃ ~ -22.0℃. 외관상태 및 색택 전반적으로 양호. 명일(6/12)은 약 100톤 하역 진행 예정."
-    },
-    {
-      "vessel_id": "bao-lucky",
-      "report_date": "6/12",
-      "work_time": "08:20 ~ 14:30",
-      "target_holds": "MOAKONA(#2-A)",
-      "daily_amount": 66.66,
-      "cumulative_amount": 2494.33,
-      "quality_notes": "MOAKONA(#2-A) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃. 외관상태 및 색택 전반적으로 양호. 6/13~6/14 하역 작업 없음. 월요일(6/15) 하역 재개 예정."
     },
     {
       "vessel_id": "sein-phoenix",
@@ -444,6 +444,17 @@
       "cumulative_amount": 3387.85,
       "quality_notes": "MOAKONA(#2-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. N/STAR(#1-B) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. 명일(6/19)은 약 430톤 하역 작업 예정입니다.",
       "created_at": "2026-06-18T18:00:00.000000"
+    },
+    {
+      "id": "new-report-baolucky-6-19",
+      "vessel_id": "bao-lucky",
+      "report_date": "6/19",
+      "work_time": "08:20 ~ 20:40",
+      "target_holds": "S/CHA(#3-B), MOAMARI(#1-B)",
+      "daily_amount": 411.05,
+      "cumulative_amount": 3798.9,
+      "quality_notes": "MOAMARI(#1-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. S/CHA(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -22.0℃ 입니다. 명일(6/20)은 약 330톤 하역 작업 예정입니다.",
+      "created_at": "2026-06-19T21:00:00.000000"
     },
     {
       "id": "new-report-shinfuji-6-20",
