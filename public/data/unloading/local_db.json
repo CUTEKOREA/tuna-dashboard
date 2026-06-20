@@ -455,6 +455,17 @@
       "cumulative_amount": 63.39,
       "quality_notes": "N/STAR(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 명일(6/21)은 공휴일로 하역 작업이 없으며, 재명일(6/22)은 약 140톤 하역 작업 예정입니다.",
       "created_at": "2026-06-20T20:00:00.000000"
+    },
+    {
+      "id": "new-report-baolucky-6-20",
+      "vessel_id": "bao-lucky",
+      "report_date": "6/20",
+      "work_time": "08:10 ~ 17:40",
+      "target_holds": "S/CHA(#3-B,#3-C), MOAMARI(#1-B,#1-C)",
+      "daily_amount": 323.59,
+      "cumulative_amount": 4122.49,
+      "quality_notes": "MOAMARI(#1-B,#1-C) - 어창 개방 측정온도는 -20.0℃ ~ -21.0℃ 입니다. S/CHA(#3-B,#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/21)은 약 100톤 하역 작업 예정입니다.",
+      "created_at": "2026-06-20T21:00:00.000000"
     }
   ],
   "unloading_species": [
@@ -481,14 +492,14 @@
       "species_id": "SJ",
       "species_name": "Skipjack",
       "reported_amount": 4176,
-      "actual_amount": 3048.85
+      "actual_amount": 3622.69
     },
     {
       "vessel_id": "bao-lucky",
       "species_id": "YF",
       "species_name": "Yellowfin",
       "reported_amount": 627,
-      "actual_amount": 339.0
+      "actual_amount": 499.8
     },
     {
       "vessel_id": "shin-fuji",
