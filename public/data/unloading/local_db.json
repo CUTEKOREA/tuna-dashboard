@@ -36,6 +36,18 @@
   ],
   "unloading_reports": [
     {
+      "id": "07be3aeb-836b-4320-b875-7d572e09345a",
+      "date": "2026-06-21",
+      "vessel_id": "bao-lucky",
+      "vessel_name": "M/V BAO LUCKY",
+      "unloaded_mt": 94.9,
+      "work_time": "08:20 - 13:30",
+      "target_holds": [
+        "S/CHA"
+      ],
+      "remarks": "어창 S/CHA(#3-C) 개방 측정온도 -20.0℃ ~ -22.0℃. 내일(6/22) 약 100톤 하역 예정"
+    },
+    {
       "id": "a9a8f1f8-a2cf-47bc-98de-54fb37511e8d",
       "vessel_id": "sein-phoenix",
       "report_date": "5/23",
