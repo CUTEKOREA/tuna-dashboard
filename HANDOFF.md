@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-21 10:10 KST — tuna-dashboard 주요 수산업 주식 시세 위젯 라이브 배포 완료** [AG]:
+> - 사용자 요청("토스 api 를 활용해서 https://leedonggun.co.kr/market 페이지 상단에 주요 수산업 기업의 주식 정보를 실시간으로 제공해 줄 수 있을까?")에 대응하여 `yahoo-finance2` 라이브러리를 활용한 실시간 주식 위젯 구현 및 라이브 배포 완료. (토스 API가 결제용임에 따라 API 키 필요없는 안정적 글로벌 API로 대체 구축).
+> - 신규 생성 파일: `app/api/stocks/route.ts` (API 백엔드), `components/SeafoodStockWidget.tsx` (UI 프론트엔드).
+> - 반영 파일: `components/MarketDashboard.tsx` 상단에 티커 형태로 연동 완료.
+> - 배포 내역: `git add . && git commit && git push` 성공. Vercel CI 트리거 정상.
+
 > 🔑 **2026-06-21 09:53 KST — KIS 및 토스페이먼츠 API 키 설정 및 환경 변수 등록 완료** [AG]:
 > - 한국투자증권 (KIS) API 키 및 토스페이먼츠 (Toss) Open API Key/Secret Key를 대시보드 및 데이터 수집기에 등록 완료했습니다.
 > - 관련 수정 파일: `tuna-dashboard/api_keys_catalog.md` (키 목록 업데이트), `tuna-dashboard/.env.local` 및 `seafood-data-collector/.env` (환경 변수 저장).
