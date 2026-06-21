@@ -8,8 +8,10 @@ const SEAFOOD_COMPANIES = [
   { name: '동원산업', symbol: '006040.KS' },
   { name: '사조산업', symbol: '007160.KS' },
   { name: '한성기업', symbol: '003680.KS' },
-  { name: '동원수산', symbol: '030720.KS' },
-  { name: 'CJ씨푸드', symbol: '011150.KS' },
+  { name: 'Thai Union (태국)', symbol: 'TU.BK' },
+  { name: 'Mowi (노르웨이 연어)', symbol: 'MOWI.OL' },
+  { name: '마루하니치로 (일본)', symbol: '1333.T' },
+  { name: 'Nomad Foods (미국)', symbol: 'NOMD' },
 ];
 
 export async function GET() {

@@ -92,6 +92,11 @@ export default function SeafoodStockWidget() {
           const bgGlow = isUp ? 'rgba(239, 68, 68, 0.05)' : isDown ? 'rgba(59, 130, 246, 0.05)' : 'transparent';
           const Icon = isUp ? TrendingUp : isDown ? TrendingDown : Activity;
 
+          const currencySymbols: Record<string, string> = {
+            'KRW': '₩', 'USD': '$', 'THB': '฿', 'NOK': 'kr ', 'JPY': '¥', 'GBP': '£'
+          };
+          const sym = currencySymbols[stock.currency || 'KRW'] || (stock.currency ? stock.currency + ' ' : '');
+
           return (
             <div key={i} style={{
               flex: '0 0 auto',
@@ -119,7 +124,7 @@ export default function SeafoodStockWidget() {
               ) : (
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: '2px' }}>
                   <span style={{ fontSize: '1.1rem', fontWeight: 700, color: color, fontFamily: 'monospace' }}>
-                    {stock.price?.toLocaleString()}
+                    {sym}{stock.price?.toLocaleString()}
                   </span>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                     <span style={{ fontSize: '0.65rem', color: color, fontWeight: 600, fontFamily: 'monospace' }}>
