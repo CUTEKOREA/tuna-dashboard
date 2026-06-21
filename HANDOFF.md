@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚢 **2026-06-21 18:50 KST — tuna-dashboard BAO LUCKY 6/21 하역 현황 업데이트** [AG]:
+> - 사용자 요청에 따라 BAO LUCKY 6월 21일 하역 보고서 데이터(일일 하역량 94.900 MT, 누계 4,217.390 MT, 잔량 585.610 MT)를 반영하고 라이브 배포 완료.
+> - 반영 파일: `public/data/unloading/local_db.json` (6/21 일일 리포트 추가 및 어종별 실제 누계액 갱신), `components/FleetCommandCenter.tsx` (BAO LUCKY 잔량 텍스트 586t로 최신화).
+> - 배포 내역: `git add . && git commit && git push` 성공. Vercel 배포 진행.
+
 > 🚀 **2026-06-21 10:10 KST — tuna-dashboard 주요 수산업 주식 시세 위젯 라이브 배포 완료** [AG]:
 > - 사용자 요청("토스 api 를 활용해서 https://leedonggun.co.kr/market 페이지 상단에 주요 수산업 기업의 주식 정보를 실시간으로 제공해 줄 수 있을까?")에 대응하여 `yahoo-finance2` 라이브러리를 활용한 실시간 주식 위젯 구현 및 라이브 배포 완료. (토스 API가 결제용임에 따라 API 키 필요없는 안정적 글로벌 API로 대체 구축).
 > - **[추가 업데이트]** 해외 주요 수산 기업(Thai Union, Mowi, 마루하니치로, Nomad Foods) 추가 편입 및 글로벌 통화(฿, kr, ¥, $) 기호 포맷팅 적용 완료.
