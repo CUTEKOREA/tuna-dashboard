@@ -1,5 +1,9 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔑 **2026-06-21 09:53 KST — KIS 및 토스페이먼츠 API 키 설정 및 환경 변수 등록 완료** [AG]:
+> - 한국투자증권 (KIS) API 키 및 토스페이먼츠 (Toss) Open API Key/Secret Key를 대시보드 및 데이터 수집기에 등록 완료했습니다.
+> - 관련 수정 파일: `tuna-dashboard/api_keys_catalog.md` (키 목록 업데이트), `tuna-dashboard/.env.local` 및 `seafood-data-collector/.env` (환경 변수 저장).
+
 > 🚀 **2026-06-18 07:40 KST — tuna-dashboard 하역 현황 픽셀 애니메이션 배포 완료** [CC]:
 > - 사용자 요청("하역 현황에 움직이는 픽셀 선박 및 항구 애니메이션 우선 적용" -> "라이브 배포 해 주세요")에 따라 `tuna-dashboard`에 작업 내역을 반영하고 Vercel 실서버에 배포했습니다.
 > - 주요 작업 내역: `HarborBanner.tsx` 생성 및 `UnloadingStatus.tsx`에 통합. 고품질 항구 픽셀 배경(`harbor_bg.png`) 생성. CSS 애니메이션 및 잔량 기반 HP 스타일 프로그레스 바 적용.
