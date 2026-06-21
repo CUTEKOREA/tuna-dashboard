@@ -42,9 +42,7 @@
       "vessel_name": "M/V BAO LUCKY",
       "unloaded_mt": 94.9,
       "work_time": "08:20 - 13:30",
-      "target_holds": [
-        "S/CHA"
-      ],
+      "target_holds": "S/CHA(#3-C)",
       "remarks": "어창 S/CHA(#3-C) 개방 측정온도 -20.0℃ ~ -22.0℃. 내일(6/22) 약 100톤 하역 예정"
     },
     {
