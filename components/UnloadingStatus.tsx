@@ -138,13 +138,15 @@ export function parseVesselHoldData(vesselId: string, timeline: any[], reportedT
   timeline.forEach(entry => {
     if (entry.dailyAmount === 0 || entry.targetHol === '-') return;
 
-    // Normalize unicode dashes to standard hyphen
-    const normalizedQuality = entry.quality
-      ? entry.quality.replace(/[\u2212\u2013\u2014]/g, '-')
-      : '';
-    const normalizedTargetHol = entry.targetHol
-      ? entry.targetHol.replace(/[\u2212\u2013\u2014]/g, '-')
-      : '';
+    const rawQuality = Array.isArray(entry.quality) ? entry.quality.join(' ') : (entry.quality || '');
+    const normalizedQuality = typeof rawQuality === 'string' 
+      ? rawQuality.replace(/[\u2212\u2013\u2014]/g, '-') 
+      : String(rawQuality);
+
+    const rawTargetHol = Array.isArray(entry.targetHol) ? entry.targetHol.join(', ') : (entry.targetHol || '');
+    const normalizedTargetHol = typeof rawTargetHol === 'string'
+      ? rawTargetHol.replace(/[\u2212\u2013\u2014]/g, '-')
+      : String(rawTargetHol);
 
     // Parse explicit colon-separated volume allocations
     const holdRegexWithAmount = /#([1-4])-([A-D]):\s*(\d+(?:\.\d+)?)/g;
