@@ -13,6 +13,7 @@ import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import SeafoodStockWidget from './SeafoodStockWidget';
 
 // 페이월 데이터 보호: atuna_prices.json 정적 import 금지(클라이언트 번들 노출) —
 // 인증 게이팅된 /api/atuna-prices 응답(history)만 사용
@@ -177,6 +178,8 @@ export default function MarketDashboard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      {/* Seafood Stock Widget at the top of the market page */}
+      <SeafoodStockWidget />
 
       {/* Visual-only scoped styles (no data/logic) — KPI signature top bars, hover glow */}
       <style>{`
