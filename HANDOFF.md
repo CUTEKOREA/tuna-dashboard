@@ -2,6 +2,7 @@
 
 > 🚀 **2026-06-21 10:10 KST — tuna-dashboard 주요 수산업 주식 시세 위젯 라이브 배포 완료** [AG]:
 > - 사용자 요청("토스 api 를 활용해서 https://leedonggun.co.kr/market 페이지 상단에 주요 수산업 기업의 주식 정보를 실시간으로 제공해 줄 수 있을까?")에 대응하여 `yahoo-finance2` 라이브러리를 활용한 실시간 주식 위젯 구현 및 라이브 배포 완료. (토스 API가 결제용임에 따라 API 키 필요없는 안정적 글로벌 API로 대체 구축).
+> - **[추가 업데이트]** 해외 주요 수산 기업(Thai Union, Mowi, 마루하니치로, Nomad Foods) 추가 편입 및 글로벌 통화(฿, kr, ¥, $) 기호 포맷팅 적용 완료.
 > - 신규 생성 파일: `app/api/stocks/route.ts` (API 백엔드), `components/SeafoodStockWidget.tsx` (UI 프론트엔드).
 > - 반영 파일: `components/MarketDashboard.tsx` 상단에 티커 형태로 연동 완료.
 > - 배포 내역: `git add . && git commit && git push` 성공. Vercel CI 트리거 정상.
