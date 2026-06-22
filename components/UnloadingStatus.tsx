@@ -1505,9 +1505,9 @@ export default function UnloadingStatus() {
               <svg width="8" height="100%" viewBox="0 0 8 500" preserveAspectRatio="none" style={{ overflow: 'visible', height: '100%' }}>
                 <defs>
                   <linearGradient id="lane-grad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#6366f1" />
-                    <stop offset="50%" stop-color="#38bdf8" />
-                    <stop offset="100%" stop-color="#10b981" />
+                    <stop offset="0%" stopColor="#6366f1" />
+                    <stop offset="50%" stopColor="#38bdf8" />
+                    <stop offset="100%" stopColor="#10b981" />
                   </linearGradient>
                 </defs>
                 <line x1="4" y1="0" x2="4" y2="100%" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="4" strokeLinecap="round" />

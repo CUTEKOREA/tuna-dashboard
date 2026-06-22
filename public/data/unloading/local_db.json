@@ -36,16 +36,6 @@
   ],
   "unloading_reports": [
     {
-      "id": "07be3aeb-836b-4320-b875-7d572e09345a",
-      "date": "2026-06-21",
-      "vessel_id": "bao-lucky",
-      "vessel_name": "M/V BAO LUCKY",
-      "unloaded_mt": 94.9,
-      "work_time": "08:20 - 13:30",
-      "target_holds": "S/CHA(#3-C)",
-      "remarks": "어창 S/CHA(#3-C) 개방 측정온도 -20.0℃ ~ -22.0℃. 내일(6/22) 약 100톤 하역 예정"
-    },
-    {
       "id": "a9a8f1f8-a2cf-47bc-98de-54fb37511e8d",
       "vessel_id": "sein-phoenix",
       "report_date": "5/23",
@@ -489,15 +479,15 @@
       "created_at": "2026-06-20T21:00:00.000000"
     },
     {
-      "id": "new-report-baolucky-6-21",
+      "id": "3a4e6080-de11-45ff-94f0-9e4651cd433d",
       "vessel_id": "bao-lucky",
       "report_date": "6/21",
       "work_time": "08:20 ~ 13:30",
       "target_holds": "S/CHA(#3-C)",
       "daily_amount": 94.9,
       "cumulative_amount": 4217.39,
-      "quality_notes": "S/CHA(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/22)은 약 100톤 하역 작업 예정입니다.",
-      "created_at": "2026-06-21T18:40:00.000000"
+      "quality_notes": "S/CHA(#3-C) - 어창 개방 측정온도는 -20.0℃ ~ -22.0℃ 입니다. 명일(6/22)은 약 297톤 하역 작업 예정입니다.",
+      "created_at": "2026-06-22T11:09:53.933560"
     }
   ],
   "unloading_species": [
