@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🎨 **2026-06-27 KST — Claude Design 디자인 시스템 카탈로그 claude.ai/design 등재 완료** [CC]:
+> - 사용자 요청("클로드 디자인 기능으로 참치왕국 대시보드 디자인 전반 개선 기획서")에 따라 기획서 작성 → 카탈로그 prebuild → claude.ai/design 등재까지 완료.
+> - 기획서: `docs/2026_claude_design_proposal.md` (v0.1, Phase 0~4). 워크플로: `docs/workflows/2026_design_to_code.md` (등재 시퀀스 + 시안→코드 환원 + 색 단일화 권고).
+> - 산출물: `scratch/design-bundle/` self-contained HTML 37 카드 (Foundations 5 / Signature Gradients 11 / Core Components 7 / Widget Variants 5 / Chart Patterns 6 / Layout Templates 3) + `index.html` 갤러리 + `_ds_manifest.json`. 모든 토큰 globals.css·컴포넌트 CSS에서 1:1 추출. 전수검증: @dsCard 마커 0누락, 외부의존 0(Google Fonts 외), 구조결함 0/37.
+> - **claude.ai/design 등재 완료**: 프로젝트 `silla-tuna-design-system` (projectId `d79df6a0-106c-4122-ac79-857cd13d4b18`), DesignSync write_files 39파일 등재·list_files 검증 완료. design scope(user:design:read/write)는 사용자 인터랙티브 터미널 재로그인으로 토큰에 추가됨(이 버전엔 `/design-login` 없음 — DesignSync 첫 호출 시 lazy 부여).
+> - ⚠️ 미결 결정: globals.css 런타임 시맨틱 색(success #1ed760 등)과 UI_RULES/5-Pillar accent(emerald #10b981 등) **불일치**. `--color-purple #b3b3b3`(회색) 오류 포함. jewel-palette 카드에 경고 명시. 권고=5-Pillar accent 세트로 통일하되 globals.css 변경은 34개 대시보드 외관 영향 → 사용자 승인 후 별도 PR.
+> - 다음 단계: ① 색 토큰 단일화 결정·PR ② Phase 4 신규 commodity(갈치 강화 또는 Pollock 보류 44위젯) 시안→코드 환원 ③ 카드 수정 시 재생성→재업로드. 미배포(scratch·docs만, 라이브 무관).
+
 > 🚢 **2026-06-21 18:50 KST — tuna-dashboard BAO LUCKY 6/21 하역 현황 업데이트** [AG]:
 > - 사용자 요청에 따라 BAO LUCKY 6월 21일 하역 보고서 데이터(일일 하역량 94.900 MT, 누계 4,217.390 MT, 잔량 585.610 MT)를 반영하고 라이브 배포 완료.
 > - 반영 파일: `public/data/unloading/local_db.json` (6/21 일일 리포트 추가 및 어종별 실제 누계액 갱신), `components/FleetCommandCenter.tsx` (BAO LUCKY 잔량 텍스트 586t로 최신화).

@@ -85,12 +85,14 @@
   --text-dim: #7c7c7c; /* 비활성, 캡션 — Slate 500 */
   --text-disabled: #4d4d4d; /* 플레이스홀더 — Slate 600 */
 
-  /* ===== SEMANTIC COLORS (통일) — Jewel Palette ===== */
-  --color-success: #1ed760;
-  --color-warning: #ffa42b;
-  --color-danger: #f3727f;
-  --color-info: #539df5;
-  --color-purple: #b3b3b3;
+  /* ===== SEMANTIC COLORS (통일 — UI_RULES/5-Pillar accent 단일화, 2026-06-27 [CC]) =====
+   * 이전: Spotify 잔재(success #1ed760 / purple #b3b3b3=회색 등)가 UI_RULES 프리미엄 팔레트와
+   * 불일치. 5-Pillar accent bar(WidgetCard.module.css)가 이미 쓰는 값으로 통일. */
+  --color-success: #10b981;   /* emerald (was #1ed760) */
+  --color-warning: #f59e0b;   /* amber   (was #ffa42b) */
+  --color-danger: #ef4444;    /* rose    (was #f3727f) */
+  --color-info: #3b82f6;      /* blue    (was #539df5) */
+  --color-purple: #8b5cf6;    /* violet  (was #b3b3b3=회색 오류) */
 
   /* ===== SPACING SCALE (4px 기반) ===== */
   --space-1:  4px;
