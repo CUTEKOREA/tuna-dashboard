@@ -52,6 +52,7 @@
   - 낙지(두족류 — 활·신선 외식 특이성): `indigo → violet` (#4f46e5 → #8b5cf6) — 양식 미개발 + 활낙지 29.8% 채널 분리 시각 차별화
   - 골뱅이(패류 껍데기): `amber → brown` (#fbbf24 → #92400e)
   - 연어(살색): `pink → rose` (#fb7185 → #be123c)
+  - 김(해조류 — 수출 1위): `deep green → lime` (#166534 → #a3e635) — 갈치/새우(emerald→teal)와 명도·채도 구분. (2026-06-27 Phase 4 시안 등재, 정식 채택 시 유지)
   - 망고스틴(열대과일): `purple → fuchsia → pink`
   - 닭고기(가금류): `amber → orange → red`
   - 소고기(축산-한우 마블링): `red → rose → amber` (#dc2626 → #e11d48 → #f59e0b)
