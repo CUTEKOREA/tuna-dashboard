@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌿 **2026-06-27 KST (4차) — 김(Laver) 대시보드 실데이터 반영 + 정식 승격** [CC]:
+> - 5축 웹 리서치(FAOSTAT·관세청/KATI·통계청·해수부·국립수산과학원·KITA·Grand View) → 적대 출처검증 → confirmed/partial 69건만 반영.
+> - KimDashboard 위젯 5종 STATIC→SYNCED+실출처 교체: S1 마른김 생산(정점比 -15.6%) / S2 김플레이션(소매 +41.8%, 도매 속당 1만원·원초 위판가 반토막 괴리) / S4 수출($648M→$1,133M 수산식품 1위·주요국·글로벌 김스낵 $2.43B→$4.66B CAGR 11.6%) / S5 기후(표층수온 +1.36℃·황백화 서천 3,156ha). P3 물류는 "데이터 연동 예정".
+> - **정식 승격**: app/page.tsx nav 'kim' 등록(menuItem·KeepAlivePanel 렌더·validMenus 2곳·type union·라벨 '김'·Leaf 아이콘). 임시 /kim-preview 라우트 제거. dev 서버에서 메인 200 + 김 메뉴 렌더 검증.
+> - 빌드 게이트(L-03) 통과. commit 307d858(시안 v0)→실데이터 promotion. 미배포(로컬 nav만, Vercel push 없음 — Deployment Protocol). 후속: P3 물류 위젯 + LIVE API 라우트 연동.
+> - 부수: COMPREHENSIVE_RULEBOOK D-04에 김 그라디언트(#166534→#a3e635) 등재.
+
 > 🧹 **2026-06-27 KST (3차) — dead import 정리 + accent 통일 + 김 시안 코드환원** [CC]:
 > - **dead import**(commit 1935de9): eslint-plugin-unused-imports(devDep)+격리 config로 components 미사용 import 547건/178파일 제거 → 0건. react/jsx-uses-vars 병행으로 컴포넌트·React 오삭제 방지. Fleet*/Unloading*(기존 [AG] WIP)은 제외. 빌드 통과.
 > - **accent-primary**(commit 2eca948): 다크 테마 --accent-primary/--accent-gold #1ed760(Spotify green) → #38bdf8(브랜드 cyan). 라이트 테마는 이미 #2563EB였음. 16개 사용처 자동 전파.
