@@ -6,7 +6,9 @@
 > - 산출물: `scratch/design-bundle/` self-contained HTML 37 카드 (Foundations 5 / Signature Gradients 11 / Core Components 7 / Widget Variants 5 / Chart Patterns 6 / Layout Templates 3) + `index.html` 갤러리 + `_ds_manifest.json`. 모든 토큰 globals.css·컴포넌트 CSS에서 1:1 추출. 전수검증: @dsCard 마커 0누락, 외부의존 0(Google Fonts 외), 구조결함 0/37.
 > - **claude.ai/design 등재 완료**: 프로젝트 `silla-tuna-design-system` (projectId `d79df6a0-106c-4122-ac79-857cd13d4b18`), DesignSync write_files 39파일 등재·list_files 검증 완료. design scope(user:design:read/write)는 사용자 인터랙티브 터미널 재로그인으로 토큰에 추가됨(이 버전엔 `/design-login` 없음 — DesignSync 첫 호출 시 lazy 부여).
 > - ⚠️ 미결 결정: globals.css 런타임 시맨틱 색(success #1ed760 등)과 UI_RULES/5-Pillar accent(emerald #10b981 등) **불일치**. `--color-purple #b3b3b3`(회색) 오류 포함. jewel-palette 카드에 경고 명시. 권고=5-Pillar accent 세트로 통일하되 globals.css 변경은 34개 대시보드 외관 영향 → 사용자 승인 후 별도 PR.
-> - 다음 단계: ① 색 토큰 단일화 결정·PR ② Phase 4 신규 commodity(갈치 강화 또는 Pollock 보류 44위젯) 시안→코드 환원 ③ 카드 수정 시 재생성→재업로드. 미배포(scratch·docs만, 라이브 무관).
+> - **색 단일화 완료(2026-06-27, commit 4d05765)**: globals.css 기본 다크 `--color-*` 5개를 5-Pillar accent로 통일(success #10b981 / warning #f59e0b / danger #ef4444 / info #3b82f6 / purple #8b5cf6). 라이트/레드 대체 테마 보존. 빌드 통과. jewel-palette 카드 "통일 완료"로 갱신·재업로드.
+> - **Phase 4 실행 완료**: 신규 commodity 시연으로 **김(Laver)** prototype 4카드 작성(시그니처 그라디언트 제안 #166534→#a3e635 + S1 작황/S2 가공/S4 수출 위젯 시안) → claude.ai/design "Prototype 김(Laver)" 그룹 등재. 현재 프로젝트 총 41카드/7그룹. design-to-code 1단계(시안 먼저) 시연 완료.
+> - 미결(사용자 결정): ① `--accent-primary #1ed760`(Spotify green 브랜드 accent, 16곳) 단일화 여부 — semantic과 별개 축, 메인 외관 영향 ② 김 그라디언트 채택 시 RULEBOOK D-04 등재 ③ 김 prototype → 실제 KimDashboard.tsx 코드 환원(원하면). 미배포(scratch·docs·globals.css 로컬 커밋만, 라이브 무관).
 
 > 🚢 **2026-06-21 18:50 KST — tuna-dashboard BAO LUCKY 6/21 하역 현황 업데이트** [AG]:
 > - 사용자 요청에 따라 BAO LUCKY 6월 21일 하역 보고서 데이터(일일 하역량 94.900 MT, 누계 4,217.390 MT, 잔량 585.610 MT)를 반영하고 라이브 배포 완료.
