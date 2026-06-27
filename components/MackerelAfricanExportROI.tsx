@@ -4,7 +4,7 @@ import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { Target } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_african_export_roi.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 
 export default function MackerelAfricanExportROI() {

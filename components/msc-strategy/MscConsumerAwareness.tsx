@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
-import { TrendingUp, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import WidgetCard from '../WidgetCard';
 
 const awarenessData = [

@@ -6,7 +6,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 import { TrendingUp } from 'lucide-react';
 import rawData from '../data/MackerelNorwaySpread.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function MackerelNorwaySpread() {
   const chartData = useMemo(() => {

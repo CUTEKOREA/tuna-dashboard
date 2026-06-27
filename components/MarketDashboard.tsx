@@ -2,17 +2,14 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  TrendingUp, TrendingDown, Ship, Anchor, AlertTriangle, BarChart2,
+  TrendingUp, TrendingDown, Ship, Anchor, BarChart2,
   Newspaper, Globe, Activity, Search
 } from 'lucide-react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, 
   Tooltip as RechartsTooltip, Legend
 } from 'recharts';
-import TakeawayBox from './TakeawayBox';
-import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import SeafoodStockWidget from './SeafoodStockWidget';
 
 // 페이월 데이터 보호: atuna_prices.json 정적 import 금지(클라이언트 번들 노출) —

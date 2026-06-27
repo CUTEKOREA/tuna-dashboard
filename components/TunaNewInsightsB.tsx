@@ -7,7 +7,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, ComposedChart } from 'recharts';
 import { FlaskConical, Landmark, Factory } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // illustrative 합성치 — KMI/식품산업통계 공개 단일화 대기, 자체추정 시나리오
 const coinBrothData = [

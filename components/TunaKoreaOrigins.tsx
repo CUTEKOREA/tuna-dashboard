@@ -9,7 +9,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Anchor } from 'lucide-react';
 import koreaOriginsData from '../data/tuna_korea_import_origins.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
 

@@ -4,7 +4,7 @@ import React from 'react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
-import { TrendingDown, ShieldAlert, Award, Landmark } from 'lucide-react';
+import { Landmark } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 

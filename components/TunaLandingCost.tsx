@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { DollarSign, Globe, Ship, Calculator, RefreshCcw, TrendingDown, TrendingUp, ChevronDown } from 'lucide-react';
+import { Calculator, RefreshCcw, ChevronDown } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';

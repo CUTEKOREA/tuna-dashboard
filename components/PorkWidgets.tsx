@@ -5,7 +5,7 @@ import { BarChart, Bar, LineChart, Line, ComposedChart, Area, XAxis, YAxis, Cart
 import { Globe, TrendingUp, ShoppingCart, Target, Zap, Shield } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import * as D from './porkData';
-import { ChartPatternDefs, A11Y_PALETTE, getA11yBarProps } from './ChartPatterns';
+import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CT = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;

@@ -1,25 +1,23 @@
 // @ts-nocheck
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
-import {
-  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  ResponsiveContainer, Legend, Scatter,
+import { Line, BarChart, Bar, Area, ComposedChart,
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Scatter,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import { 
-  TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
-  Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
-  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, Leaf, Cpu, Layers, Clock,
-  Map, Microscope, Beaker, FlaskConical, Dna, Award, Tag, Heart, FileSearch
+  TrendingUp, Fish, Anchor, Globe, DollarSign, 
+  Activity, AlertTriangle, ShieldCheck,
+  RefreshCcw, Factory, Truck, Scale, BarChart2,
+  Database, Ship, Zap, BookOpen, Leaf, Clock,
+  Map, Microscope, Heart
 } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import JukkumiFTAQuarterly from './JukkumiFTAQuarterly';
 
 const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {

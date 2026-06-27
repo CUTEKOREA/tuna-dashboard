@@ -7,15 +7,13 @@ import {
   Legend, ComposedChart, Line, LineChart, AreaChart, Area, PieChart, Pie, Cell
 } from 'recharts';
 import {
-  Globe, TrendingUp, AlertTriangle, ShieldCheck, Activity, Zap, Droplets, Ship, Apple, Snowflake, PackageCheck,
-  Database, BookOpen, Hexagon, Workflow, Coins, Leaf, Truck, Factory, Landmark, Anchor
+  Globe, AlertTriangle, ShieldCheck, Activity, Droplets, Ship, Apple, Snowflake, PackageCheck,
+  Database, Workflow, Coins, Leaf, Truck, Factory, Landmark
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 
 import krExportData from '../data/mangosteen_kr_export.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Anchor } from 'lucide-react';
 import TermTooltip from './TermTooltip';

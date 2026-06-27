@@ -8,7 +8,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Recycle, TestTube } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const BYPRODUCT_DATA = [
   { name: '머리/뼈', value: 35, color: '#06b6d4' },

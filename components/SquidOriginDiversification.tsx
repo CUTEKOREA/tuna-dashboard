@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Route } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_origin_diversification.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidOriginDiversification() {
   return (

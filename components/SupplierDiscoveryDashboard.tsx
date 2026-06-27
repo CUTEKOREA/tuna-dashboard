@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import { 
-  Search, Globe, Database, Network, Mail, ArrowRight, BookOpen, ChevronRight, CheckCircle2, ShieldCheck, Zap, Copy, Loader2, BarChart2, Activity,
+  Search, Globe, Database, Mail, ArrowRight, ChevronRight, CheckCircle2, ShieldCheck, Zap, Copy, Loader2, BarChart2, Activity,
   TrendingUp, DollarSign, AlertTriangle, Shield, Newspaper, Calculator, Radar
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, CartesianGrid, Legend, ComposedChart } from 'recharts';
+import { XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, CartesianGrid, Legend } from 'recharts';
 import styles from './TunaExtractDashboard.module.css';
 import SupplierTrademoPhase2 from './SupplierTrademoPhase2';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // Expanded Mock Data for various commodities
 const allMockSuppliers = [

@@ -3,8 +3,7 @@
 
 import React from 'react';
 import {
-  ComposedChart, Line, Bar, Area, XAxis, YAxis, CartesianGrid, Legend,
-  ResponsiveContainer, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip
+  ComposedChart, Line, Bar, Area, XAxis, YAxis, CartesianGrid, Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip
 } from 'recharts';
 import { Activity, ShieldAlert, Target } from 'lucide-react';
 import WidgetCard from './WidgetCard';

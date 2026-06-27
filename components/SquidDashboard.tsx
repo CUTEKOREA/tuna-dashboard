@@ -5,14 +5,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
 import { 
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, Scatter
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Scatter
 } from 'recharts';
 import { 
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
-  Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
+  Activity, AlertTriangle, ShieldCheck, AlertCircle,
   RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, ChevronDown, ChevronUp, Leaf, Cpu, Layers, Clock
+  Database, Ship, Zap, Leaf, Cpu, Layers, Clock
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './SquidDashboard.module.css';

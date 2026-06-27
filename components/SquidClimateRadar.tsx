@@ -4,7 +4,7 @@ import { ThermometerSun } from 'lucide-react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_climate_radar.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidClimateRadar() {
   return (

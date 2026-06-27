@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCcw, DollarSign, Activity } from 'lucide-react';
+import { RefreshCcw, Activity } from 'lucide-react';
 
 interface ExchangeSimulatorProps {
   onSimulationChange: (factors: { nok: number, eur: number, mgo: number }) => void;

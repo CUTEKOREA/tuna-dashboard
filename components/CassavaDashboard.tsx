@@ -2,22 +2,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import CountUp from 'react-countup';
 import {
-  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-  ScatterChart, Scatter, ZAxis, ReferenceArea, ReferenceLine, Sankey
+  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
+  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Sankey
 } from 'recharts';
 import {
-  Globe, TrendingUp, AlertTriangle, Sprout, Factory, ShieldCheck, Banknote,
-  BookOpen, Database, Zap, Activity, Workflow, DollarSign, Scale, RefreshCcw,
-  Hexagon, Target, Truck, Layers, Coins, Leaf, MapPin, Landmark, Shield, Anchor,
-  Dna, Gavel, TestTube, Recycle, ShieldAlert, EyeOff, Pill
+  Globe, TrendingUp, AlertTriangle, Sprout, Factory,
+  BookOpen, Workflow, DollarSign, Scale, RefreshCcw,
+  Hexagon, Target, Leaf, Landmark,
+  Dna, TestTube, Recycle, ShieldAlert, EyeOff
 } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {

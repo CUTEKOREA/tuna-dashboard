@@ -5,21 +5,17 @@ import CountUp from 'react-countup';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  Legend,
   ScatterChart, Scatter, ZAxis, Sankey, ReferenceLine
 } from 'recharts';
 import {
-  Globe, TrendingUp, AlertTriangle, Sprout, Factory, ShieldCheck, Banknote,
-  BookOpen, Database, Zap, Activity, Workflow, DollarSign, Scale, RefreshCcw,
-  Hexagon, Target, Truck, Layers, Coins, Leaf, MapPin, Landmark, Shield, Anchor,
-  Dna, Gavel, TestTube, Recycle, CloudRain
+  Globe, TrendingUp, AlertTriangle, Factory, Database, Activity, Scale, RefreshCcw,
+  Hexagon, Target, Truck, Coins, Leaf, MapPin, Landmark, Shield, Anchor, Gavel, TestTube, Recycle, CloudRain
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 
-import TakeawayBox from './TakeawayBox';
 import WidgetCard, { type TelemetryStatus } from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import CocoaUsdaWidgets from './CocoaUsdaWidgets';
 
 const CustomTooltip = ({ active, payload, label }: any) => {

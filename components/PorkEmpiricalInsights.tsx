@@ -3,8 +3,7 @@
 
 import React from 'react';
 import {
-  ComposedChart, Line, Bar, Area, XAxis, YAxis, CartesianGrid, Legend,
-  ResponsiveContainer, Tooltip, PieChart, Pie, Cell, Sector
+  ComposedChart, Line, Bar, Area, XAxis, YAxis, CartesianGrid, Legend, Tooltip, PieChart, Pie, Cell
 } from 'recharts';
 import { Activity, ShieldAlert, GitFork } from 'lucide-react';
 import WidgetCard from './WidgetCard';

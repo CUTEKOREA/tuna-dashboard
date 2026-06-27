@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart, ScatterChart, Scatter, ZAxis, Cell, PieChart, Pie, Treemap } from 'recharts';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
-import { Globe, TrendingUp, Anchor, ShieldCheck, Ship, DollarSign, Database, Rocket, AlertTriangle, Crosshair, BarChart2, Activity, Zap } from 'lucide-react';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { Globe, ShieldCheck, AlertTriangle } from 'lucide-react';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export function Widget13_Decoupling() {
   const [data, setData] = useState([]);

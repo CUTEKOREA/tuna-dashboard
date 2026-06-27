@@ -5,19 +5,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
 import { 
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, Scatter
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Scatter
 } from 'recharts';
 import { 
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
-  Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
-  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, Workflow, Leaf, Layers
+  Activity, AlertTriangle, ShieldCheck, AlertCircle,
+  RefreshCcw, Crosshair, MapPin, Factory, Scale, BarChart2,
+  Database, Ship, Zap, Leaf, Layers
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
-import styles from './ShrimpDashboard.module.css';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';

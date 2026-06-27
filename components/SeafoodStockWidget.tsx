@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, Activity, AlertTriangle, RefreshCw } from 'lucide-react';
-import styles from '../app/page.module.css';
 
 type StockData = {
   name: string;

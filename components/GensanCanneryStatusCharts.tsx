@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const gensanCanneryData = [
   { name: 'Gentuna/Century', prodMax: 800, prodCurrent: 600, storeMax: 25000, storeCurrent: 12000, procDays: 20 },

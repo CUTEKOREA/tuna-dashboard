@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Package } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import portfolioData from '../data/squid_import_portfolio.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const CATS = [
   { key: '냉동', color: 'var(--color-info)', label: '냉동 오징어' },

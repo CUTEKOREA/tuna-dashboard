@@ -12,7 +12,7 @@
 import React from 'react';
 import { Ship } from 'lucide-react';
 import {
-  ComposedChart, Bar, Line, Area, XAxis, YAxis, CartesianGrid,
+  ComposedChart, Bar, Area, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, Cell,
 } from 'recharts';
 import WidgetCard from './WidgetCard';

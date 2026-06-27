@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, ScatterChart, Scatter, ZAxis, Cell } from 'recharts';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ScatterChart, Scatter, ZAxis, Cell } from 'recharts';
 import { Globe2, Flame, Ship, Lock, Cpu, Network, Anchor, Factory, DollarSign, Leaf } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const SRC = 'FAO Capture Production + RFMO Records (2015-2023)';
 

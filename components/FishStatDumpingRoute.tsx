@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Workflow } from 'lucide-react';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const data = [
   { year: '2020', asiaDiscard: 40, africaImport: 45, scfi: 1000 },

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, PieChart, Pie, Cell } from 'recharts';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Zap, AlertCircle, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import WidgetCard, { Pillar } from './WidgetCard';

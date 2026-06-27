@@ -3,10 +3,10 @@
 import React from 'react';
 import styles from './StrategyIntel.module.css';
 import { 
-  ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell 
+  ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip as RechartsTooltip, Cell 
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { Target, TrendingUp, TrendingDown, Anchor, Factory, Ship, Globe, Zap, ShieldCheck } from 'lucide-react';
+import { Target, TrendingUp, TrendingDown, Zap } from 'lucide-react';
 import TradeRouteSankey from './TradeRouteSankey';
 import CategoryPortfolio from './CategoryPortfolio';
 import TermTooltip from './TermTooltip';

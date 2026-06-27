@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import {
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
+  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend,
   ComposedChart, AreaChart, Area, ScatterChart, Scatter, ZAxis
 } from 'recharts';
 import WidgetCard from './WidgetCard';
 import { Globe, ShieldCheck, Flag, TrendingUp, Navigation } from 'lucide-react';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const countryMap: Record<string, string> = {
   'China': '중국',

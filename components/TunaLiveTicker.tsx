@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { RefreshCcw, Wifi, WifiOff, TrendingUp, TrendingDown, Activity } from 'lucide-react';
+import { RefreshCcw, Wifi, WifiOff } from 'lucide-react';
 
 interface TickerItem {
   id: string;

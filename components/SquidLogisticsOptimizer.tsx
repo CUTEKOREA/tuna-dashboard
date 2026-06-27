@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceL
 import { Snowflake } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_logistics_cost.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidLogisticsOptimizer() {
   return (

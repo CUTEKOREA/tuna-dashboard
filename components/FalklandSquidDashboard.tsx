@@ -2,15 +2,13 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, ComposedChart, Area, AreaChart
+import { Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ComposedChart, Area, AreaChart
 } from 'recharts';
 import { 
-  Ship, Anchor, TrendingUp, AlertCircle, CheckCircle2, FileText, Search, Filter, Box
+  Ship, Anchor, TrendingUp, Search
 } from 'lucide-react';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const vesselData = [
   {

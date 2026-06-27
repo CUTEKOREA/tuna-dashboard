@@ -3,25 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import styles from './PetFoodDashboard.module.css';
 import {
-  AreaChart, Area, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
-  ComposedChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
-  XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer
+  AreaChart, Area, BarChart, Bar, Line, PieChart, Pie, Cell,
+  ComposedChart,
+  XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend
 } from 'recharts';
-import {
-  Globe, Flag, Ship, Briefcase, TrendingUp, Bone, RefreshCcw,
-  AlertCircle, Crown, MapPin, Target, Truck, LineChart as LineChartIcon,
-  ShieldCheck, Leaf, Recycle, ShoppingCart, Award, Factory, Scale,
-  Users, Zap, DollarSign, BarChart2, PieChart as PieChartIcon, Activity,
-  ArrowRightLeft, Network, BookOpen, ChevronDown, ChevronUp, MessageSquare,
-  Anchor, Radio, Thermometer, Eye, FileCheck, Ban
+import { RefreshCcw,
+  AlertCircle, Crown, LineChart as LineChartIcon,
+  ShieldCheck, Leaf, Recycle, Award, Factory, Scale, Zap, DollarSign, PieChart as PieChartIcon, Activity,
+  ArrowRightLeft, Thermometer, Ban
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import PetFoodMap from './PetFoodMap';
-import TakeawayBox from './TakeawayBox';
-import EstimateBadge from './EstimateBadge';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 
 

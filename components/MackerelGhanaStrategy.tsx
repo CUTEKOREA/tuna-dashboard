@@ -3,7 +3,6 @@
 import React from 'react';
 import { Target, Ship, Anchor } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import TakeawayBox from './TakeawayBox';
 
 export default function MackerelGhanaStrategy() {
   const customBody = (

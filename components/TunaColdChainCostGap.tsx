@@ -12,7 +12,7 @@ import React from 'react';
 import { Truck } from 'lucide-react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // ─── 정적 mock 데이터 (Stage 1 한정) ─────────────────────────────────────────
 // 단위: 만원/MT (Bar=해상, Line=항공)

@@ -3,7 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Cell } from 'recharts';
 import { TrendingUp, Package, GitBranch, Award, CircleDollarSign, Layers, Fuel, Zap, Send, ArrowLeftRight } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const SRC = '관세청 C&F 단가 + KMI 수산물 마진 분석 (2019-2023)';
 

@@ -12,14 +12,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
   ReferenceDot
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight4_middlemen.json';
 import useContainerWidth from '../hooks/useContainerWidth';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const Insight4Middlemen = () => {
   const { containerRef, width } = useContainerWidth();

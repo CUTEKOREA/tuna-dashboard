@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Network, TrendingUp, AlertCircle, RefreshCw } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ReeferFreightChart.module.css';
 import TermTooltip from './TermTooltip';

@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Scale, Factory, TrendingUp, RefreshCcw } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const PIE_COLORS = ['#FCD535', '#0ECB81', '#2196F3', '#F6465D', '#9B72CB', '#F0B90B', '#FF9800', '#E91E63'];
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, ReferenceLine, Tooltip as RechartsTooltip, Cell } from 'recharts';
+import { ComposedChart, AreaChart, Area, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Legend, Tooltip as RechartsTooltip, Cell } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link } from 'lucide-react';
-import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
+import { TrendingUp, DollarSign, Scale, Truck, ShoppingCart, Flag } from 'lucide-react';
+import { WidgetCard, tooltipStyle } from './ShrimpWidgetCommon';
 import { tradeQtyMerged, tradeUsdMerged, recent5yr, topExportersQty, topImportersQty, topExportersUsd, topImportersUsd, tradeBalanceCountry, cagr1976 } from './ShrimpDataHelper';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // W11: TradeVolLong
 export const W11_TradeVolLong = () => (

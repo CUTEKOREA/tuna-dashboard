@@ -2,23 +2,18 @@
 
 import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
-import { 
-  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
+import { Line, BarChart, Bar, ComposedChart,
   XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
   Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import { 
-  Anchor, DollarSign, Activity, AlertTriangle, ShieldCheck, Zap, Factory, Snowflake, ShieldAlert, BarChart2, Globe, TrendingUp,
-  BookOpen, ChevronUp, ChevronDown, MessageSquare
+  Anchor, DollarSign, Activity, AlertTriangle, ShieldCheck, Zap, Factory, Snowflake, ShieldAlert, BarChart2, Globe, TrendingUp
 } from 'lucide-react';
 
-import SafeResponsiveContainer from './SafeResponsiveContainer';
-import TakeawayBox from './TakeawayBox';
-import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 import styles from './MackerelStrategy.module.css'; // 재사용
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // Number formatting only — unit attachment happens once in CustomTooltip
 // (keyword-based unit synthesis caused double/false units, e.g. w03 12,120(10억원) shown as '12,120억원')

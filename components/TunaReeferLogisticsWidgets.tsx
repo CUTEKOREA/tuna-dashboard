@@ -4,12 +4,11 @@ import React from 'react';
 import styles from './TunaOperationalInsights.module.css';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip as RechartsTooltip,
-  ComposedChart, Area, Line, ScatterChart, Scatter, ZAxis
+  ComposedChart, Area, Line
 } from 'recharts';
-import { Factory, Anchor, TrendingUp, Ship, Navigation } from 'lucide-react';
+import { Factory, Anchor, TrendingUp, Ship } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
-import TakeawayBox from './TakeawayBox';
 import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 

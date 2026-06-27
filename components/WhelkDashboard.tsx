@@ -2,7 +2,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import CountUp from 'react-countup';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
@@ -11,16 +10,13 @@ import {
 } from 'recharts';
 import {
   Globe, TrendingUp, AlertTriangle, Factory, DollarSign, Scale, RefreshCcw,
-  Target, Layers, Leaf, Landmark, Shield, Dna, Workflow, ShieldAlert, Building2,
-  BookOpen, Database, Zap, Activity, Ship, Navigation, Snowflake, Anchor, Link as LinkIcon,
-  Fish, TrendingDown, Beaker, Thermometer, ShoppingBag, Recycle, Package, FlaskConical
+  Target, Leaf, Shield, Dna, ShieldAlert, Building2, Activity, Ship, Navigation, Snowflake, Anchor,
+  Fish, Thermometer, ShoppingBag, Recycle, Package, FlaskConical
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
-import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import WhelkFTAQuarterly from './WhelkFTAQuarterly';
 
 const CustomTooltip = ({ active, payload, label }: any) => {

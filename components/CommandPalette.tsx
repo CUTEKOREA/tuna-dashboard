@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowRight, BarChart2, Anchor, Factory, Target, ShoppingCart, Waves, Fish, Hexagon, Navigation, Cpu, Workflow, MonitorPlay, Activity } from 'lucide-react';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { Search, ArrowRight, BarChart2, Anchor, Factory, Target, ShoppingCart, Waves, Fish, Hexagon, Navigation, Cpu, Workflow, Activity } from 'lucide-react';
 
 interface CommandItem {
   id: string;

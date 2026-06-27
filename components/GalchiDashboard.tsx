@@ -1,23 +1,18 @@
 // @ts-nocheck
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
-import { 
-  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar 
+import { Line, BarChart, Bar, AreaChart, Area, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend 
 } from 'recharts';
 import { 
-  TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
-  Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
-  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  BookOpen, Workflow, Database, Zap, Ship, Target, Thermometer,
+  TrendingUp, Fish, Anchor, Globe, DollarSign, 
+  Activity, AlertTriangle, ShieldCheck, AlertCircle,
+  RefreshCcw, Crosshair, MapPin, Factory, Truck, BarChart2, Workflow, Zap, Ship, Target, Thermometer,
   GraduationCap, Calendar, Link, Shield, Landmark, FlaskConical,
   TrendingDown as TrendDown, Package, ShoppingCart
 } from 'lucide-react';
 
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css'; // Reuse the glassmorphism styles
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';

@@ -1,10 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { CarFront, TrendingUp, Globe, Ship, AlertTriangle, DollarSign, Package, Calculator, Fuel, Zap, ShieldCheck, Target, FileText, Anchor, BarChart3, ExternalLink, BookOpen, ChevronUp, ChevronDown, MessageSquare } from 'lucide-react';
-import TermTooltip from './TermTooltip';
+import { CarFront, TrendingUp, Globe, Ship, AlertTriangle, DollarSign, Package, Calculator, Fuel, Zap, ShieldCheck, Target, FileText, Anchor, BarChart3 } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import { MarketGrowthChart, MarketShareChart, ShippingCostChart, HybridGrowthChart, FuelPriceChart, AgePenaltyChart } from './UsedCarCharts';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const glass = { background: '#181818', border: 'none', borderRadius: '8px', padding: '1.5rem' } as const;
 const cardTitle = { margin: '0 0 1rem 0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' } as const;

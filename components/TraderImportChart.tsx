@@ -8,16 +8,13 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Cell,
-  LabelList
+  Legend
 } from 'recharts';
-import { RefreshCw, AlertCircle } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const traderData = [
   { year: '2021', FCF: 184154, ITOCHU: 143642, TRIMARINE: 64923, DIRECT: 84651, MALDIVES: 49038, Total: 526408 },

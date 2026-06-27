@@ -8,7 +8,6 @@ import {
   TrendingUp,
   Anchor,
   DollarSign,
-  AlertTriangle,
   Flag,
   Target,
   Factory,

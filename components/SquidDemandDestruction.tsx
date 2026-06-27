@@ -4,7 +4,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { PieChart } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_demand_destruction.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidDemandDestruction() {
   return (

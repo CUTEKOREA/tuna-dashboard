@@ -5,24 +5,19 @@ import CountUp from 'react-countup';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-  ScatterChart, Scatter, ZAxis
+  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import {
-  Globe, TrendingUp, AlertTriangle, Sprout, Factory, ShieldCheck, Banknote,
-  BookOpen, Database, Zap, Activity, Workflow, DollarSign, Scale, RefreshCcw,
-  Hexagon, Target, Truck, Layers, Coins, Leaf, MapPin, Landmark, Shield, Anchor,
-  Dna, Gavel, TestTube, Recycle
+  Globe, TrendingUp, AlertTriangle, Factory, ShieldCheck, Banknote, Database, Activity, DollarSign, Scale, RefreshCcw, Target, Truck, Layers, Leaf, Landmark, Anchor,
+  Dna, TestTube, Recycle
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 
 // Import JSON data
 // --- Removed Static Imports to fix Vercel/Turbopack 500 errors ---
 // We now fetch data from a unified endpoint: /api/carrot/dashboard
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 
 const formatXAxis = (tickItem: any) => {

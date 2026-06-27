@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
+import { Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { Euro } from 'lucide-react';
 import WidgetCard from '../WidgetCard';

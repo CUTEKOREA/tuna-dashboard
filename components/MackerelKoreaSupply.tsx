@@ -5,7 +5,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_korea_supply.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function MackerelKoreaSupply() {
   const chartRef = useRef<HTMLDivElement>(null);

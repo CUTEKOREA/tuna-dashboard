@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MackerelStrategy.module.css';
-import { TrendingUp, AlertTriangle, Ship, Target, Clock, ShieldCheck, DollarSign, Pickaxe } from 'lucide-react';
+import { AlertTriangle, Ship, Target, Clock, ShieldCheck, DollarSign } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 
 export default function MackerelStrategy() {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Legend, ScatterChart, Scatter, ReferenceLine, PieChart, Pie, Cell } from 'recharts';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Zap, Info, AlertCircle, ShoppingCart } from 'lucide-react';
+import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Target, Ship, Zap, AlertCircle, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TakeawayBox from './TakeawayBox';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 
 export { truncateXAxis };

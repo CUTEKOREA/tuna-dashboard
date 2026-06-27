@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar } from 'recharts';
 import { TrendingUp, Activity, Thermometer } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export function SkipjackForecastWidget() {
   const [data, setData] = useState<any>(null);

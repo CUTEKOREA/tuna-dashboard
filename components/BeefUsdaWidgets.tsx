@@ -4,7 +4,7 @@ import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   BarChart,
 } from 'recharts';
-import { Globe, ShoppingBag, FileText, Shield, MapPin, Beef as BeefIcon } from 'lucide-react';
+import { Globe, ShoppingBag, Shield, MapPin, Beef as BeefIcon } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/beef_usda_widgets.json';
 

@@ -9,7 +9,7 @@ import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, BarChart
 import { Shield, TrendingUp } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 interface PolicyRisk {
   id: string; title: string; severity: number; probability: number;

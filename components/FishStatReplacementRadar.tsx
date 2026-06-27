@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, Tooltip } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { AlertTriangle } from 'lucide-react';
 import TermTooltip from './TermTooltip';

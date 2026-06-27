@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { BookOpen, ChevronUp, ChevronDown, Fish, MessageSquare, TrendingUp, Globe, Plane, Target, ShieldAlert } from 'lucide-react';
+import React from 'react';
+import { TrendingUp, Globe, Plane, Target, ShieldAlert } from 'lucide-react';
 
 export default function TunaRanchingEducation() {
 

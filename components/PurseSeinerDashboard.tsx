@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  Treemap, Legend
+  Treemap
 } from 'recharts';
 import { Ship, Globe, Flag, Building2, Link2, Search, Download, ChevronUp, ChevronDown, X, Filter, Database, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import {

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Line } from 'recharts';
 import { Shield, AlertTriangle, TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 /**
  * 명태 정책 리스크 레이더 — 6대 리스크 정량화

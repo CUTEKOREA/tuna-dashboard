@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, ReferenceLine, Tooltip as RechartsTooltip, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
+import { ComposedChart, AreaChart, Area, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Legend, ReferenceLine, Tooltip as RechartsTooltip, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link } from 'lucide-react';
-import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
+import { Anchor, Layers, Factory, Target, ShieldCheck, BarChart2, Cog, AlertTriangle, DivideSquare, Compass } from 'lucide-react';
+import { WidgetCard, tooltipStyle } from './ShrimpWidgetCommon';
 import { processedTimeline, top10Processed, processingRatio } from './ShrimpDataHelper';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // W41: ProcTimeline
 export const W41_ProcTimeline = () => (

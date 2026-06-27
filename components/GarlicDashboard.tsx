@@ -3,17 +3,15 @@
 import React, { useState } from 'react';
 import {
   AreaChart, Area, LineChart, Line, BarChart, Bar, ScatterChart, Scatter,
-  ComposedChart, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  Legend, ResponsiveContainer, ZAxis, LabelList
+  Legend, ZAxis, LabelList
 } from 'recharts';
 import CountUp from 'react-countup';
-import { Info, Layers, TrendingUp, RefreshCw, Zap, Truck, Shield, MapPin, Activity, Leaf, AlertTriangle, ShieldCheck, Recycle, TestTube, Anchor, BookOpen, Globe, Workflow, Database, Factory, DollarSign, Scale } from 'lucide-react';
-import styles from './TunaOperationalInsights.module.css';
+import { Layers, TrendingUp, RefreshCw, Zap, Truck, Shield, MapPin, Activity, Leaf, AlertTriangle, ShieldCheck, Recycle, TestTube, Anchor, Globe, DollarSign } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import GarlicUsdaWidgets from './GarlicUsdaWidgets';
 import { TelemetryBadge } from './TelemetryBadge';
 

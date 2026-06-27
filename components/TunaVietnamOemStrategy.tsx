@@ -6,7 +6,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaExtractDashboard.module.css';
 import { Globe } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const data = [

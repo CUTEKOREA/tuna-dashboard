@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, Cell, ResponsiveContainer, ComposedChart, Area } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell, ComposedChart, Area } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const tt = { backgroundColor: 'rgba(0, 0, 0, 0.2)', border: 'none', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 8px 24px rgba(0,0,0,0.5)' };
 const ttLabel = { color: '#f8fafc', fontWeight: 700, fontSize: '0.85rem' };

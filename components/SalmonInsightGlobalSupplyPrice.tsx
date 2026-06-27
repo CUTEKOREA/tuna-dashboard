@@ -3,7 +3,7 @@ import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { DollarSign } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/salmon_global_supply_price.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { nok: 0, eur: 0, mgo: 0 } }: any) {
   // Apply simulation: EUR price increases if NOK is strong, or MGO is high

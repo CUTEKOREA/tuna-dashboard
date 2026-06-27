@@ -11,14 +11,13 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  ResponsiveContainer
+  Legend
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight5_jumbo_leap.json';
 import useContainerWidth from '../hooks/useContainerWidth';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const Insight5JumboLeap = () => {
   const { containerRef, width } = useContainerWidth();

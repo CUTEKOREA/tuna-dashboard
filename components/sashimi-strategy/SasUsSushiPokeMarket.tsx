@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Utensils, Store, TrendingUp } from 'lucide-react';
+import { Utensils, Store } from 'lucide-react';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import WidgetCard from '../WidgetCard';

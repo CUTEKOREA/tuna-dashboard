@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart } from 'recharts';
+import { Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { Rocket } from 'lucide-react';
 import WidgetCard from '../WidgetCard';

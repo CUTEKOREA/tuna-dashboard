@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
-import { Trophy, Activity } from 'lucide-react';
+import { Trophy } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import data from '../data/squid_tuna_benchmark.json';
 

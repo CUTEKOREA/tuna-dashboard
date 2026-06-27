@@ -8,13 +8,9 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Cell,
   BarChart, Bar, AreaChart, Area
 } from 'recharts';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { TrendingUp, Ship, Briefcase, Skull, ArrowRightLeft, Target, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, Bone, Zap, Fish } from 'lucide-react';
-import TermTooltip from './TermTooltip';
-import TakeawayBox from './TakeawayBox';
-import TelemetryBadge from './TelemetryBadge';
+import { TrendingUp, Ship, Briefcase, Skull, ArrowRightLeft, Anchor, Globe, Crosshair, Map, ThermometerSun, Lightbulb, Cpu, Building2, Leaf, Bone, Zap, Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import UsTunaImportWidget from './UsTunaImportWidget';
 import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
 import UsPolicyImpactWidget from './UsPolicyImpactWidget';

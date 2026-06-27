@@ -9,7 +9,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { AlertTriangle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 interface TacMonitorProps {
   tacData?: Array<{ rfmo: string; species: string; tac: number; consumed: number; pct: number; year: number; note?: string }>;

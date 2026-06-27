@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Flag, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
+import { Flag, CheckCircle, XCircle } from 'lucide-react';
 import WidgetCard from '../WidgetCard';
 
 const rfmoMembership = [

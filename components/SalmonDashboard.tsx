@@ -5,16 +5,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
 import { 
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, Scatter
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Scatter
 } from 'recharts';
 import { 
-  TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
-  Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
-  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, BookOpen, ChevronUp, ChevronDown
+  TrendingUp, Fish, Anchor, Globe, DollarSign, 
+  Activity, AlertTriangle, ShieldCheck, AlertCircle,
+  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale,
+  Database, Zap
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
@@ -30,14 +28,11 @@ import SalmonInsightDoubleMateriality from './SalmonInsightDoubleMateriality';
 import SalmonInsightTradeDown from './SalmonInsightTradeDown';
 import SalmonInsightMarginSqueeze from './SalmonInsightMarginSqueeze';
 import SalmonInsightLogisticsResilience from './SalmonInsightLogisticsResilience';
-import ExchangeSimulator from './ExchangeSimulator';
-import SalmonLiveTicker from './SalmonLiveTicker';
 import SalmonNTBRadar from './SalmonNTBRadar';
 import SalmonForecastSimulator from './SalmonForecastSimulator';
 import SalmonESGTracker from './SalmonESGTracker';
 import SalmonPolicyImpact from './SalmonPolicyImpact';
 import styles from './MackerelStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
 
 /* ─── V4.0 S-Grade: Salmon Monochromatic Theme (Rose/Coral) ─── */
 const SALMON_THEME = {

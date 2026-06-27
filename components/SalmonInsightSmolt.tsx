@@ -5,7 +5,7 @@ import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Line 
 import { ShieldCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/SalmonInsightSmolt.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SalmonInsightSmolt() {
   return (

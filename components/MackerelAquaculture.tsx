@@ -5,7 +5,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 import { Droplets, Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import aquaData from '../data/mackerel_aquaculture.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['#06b6d4', 'var(--color-success)'];
 

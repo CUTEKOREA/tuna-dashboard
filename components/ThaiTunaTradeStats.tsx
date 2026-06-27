@@ -7,20 +7,18 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  Legend, 
-  ResponsiveContainer,
+  Legend,
   PieChart,
   Pie,
   Cell,
   BarChart
 } from 'recharts';
-import { Ship, TrendingUp, Globe, ShoppingCart, Info, Factory } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { TrendingUp, Globe, Factory } from 'lucide-react';
 import tradeData from '../data/thai_tuna_trade_summary.json';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['var(--color-info)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6'];
 

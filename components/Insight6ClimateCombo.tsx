@@ -13,14 +13,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
   ReferenceLine
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight6_combo.json';
 import useContainerWidth from '../hooks/useContainerWidth';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const Insight6ClimateCombo = () => {
   const { containerRef, width } = useContainerWidth();

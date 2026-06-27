@@ -12,7 +12,7 @@ import React from 'react';
 import { MapPin } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // ─── 정적 mock 데이터 (Stage 0 한정) ─────────────────────────────────────────
 // 단위: 원/kg

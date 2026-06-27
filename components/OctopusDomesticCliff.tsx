@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import {
-  ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   AreaChart, Area, Cell,
 } from 'recharts';
 import { AlertTriangle } from 'lucide-react';

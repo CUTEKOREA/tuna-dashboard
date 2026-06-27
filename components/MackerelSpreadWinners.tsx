@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell, ReferenceLine } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ReferenceLine } from 'recharts';
 import { Scissors } from 'lucide-react';
 import rawData from '../data/mackerel_spread.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function MackerelSpreadWinners() {
   const chartRef = useRef<HTMLDivElement>(null);

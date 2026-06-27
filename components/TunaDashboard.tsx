@@ -5,14 +5,10 @@ import CountUp from 'react-countup';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-  ScatterChart, Scatter, ZAxis, LabelList
+  Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, LabelList
 } from 'recharts';
 import {
-  Globe, TrendingUp, AlertTriangle, Fish, Factory, ShieldCheck, Banknote,
-  BookOpen, Database, Zap, Activity, Workflow, DollarSign, Scale, RefreshCcw,
-  Hexagon, Target, Truck, Layers, Coins, Leaf, MapPin, Landmark, Shield, Anchor,
-  Dna, Gavel, TestTube, Recycle, Ship, BarChart2, Star, TrendingDown, AlertCircle,
+  Globe, TrendingUp, AlertTriangle, Factory, ShieldCheck, Database, Zap, Activity, DollarSign, Scale, RefreshCcw, Truck, Leaf, Anchor, Ship, BarChart2, Star, TrendingDown, AlertCircle,
   Eye, FileText, Thermometer
 } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
@@ -95,13 +91,8 @@ import TunaUsLoinImports from './TunaUsLoinImports';
 import EuropeanMarketDashboard from './EuroTunaWidgets';
 
 // Phase MSC: MSC Yearbook 2026 기반 인텔리전스 (5개 위젯)
-import {
-  MscGlobalTunaGrowthTracker,
-  MscEuropeCountryPenetration,
-  MscBrandSourcingScorecard,
-  MscTunaStockHealthGauge,
-  MscConsumerInsightsRadar,
-} from './MscIntelligenceWidgets';
+
+
 
 // --- Absorbed Components for Hybrid Consolidation ---
 import TunaCrossroads from './TunaCrossroads';
@@ -120,7 +111,7 @@ import TunaBioUpcyclingGap from './TunaBioUpcyclingGap';
 import TunaPeptideEfficacy from './TunaPeptideEfficacy';
 import TunaTacMonitor from './TunaTacMonitor';
 import TunaSdgCircular from './TunaSdgCircular';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 // ---------------------------------------------------
 import TunaSupplierHub from './TunaSupplierHub';
 

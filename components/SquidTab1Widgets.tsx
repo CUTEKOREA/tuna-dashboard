@@ -3,7 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Cell } from 'recharts';
 import { Thermometer, AlertOctagon, Flame, TrendingUp, Layers, Shield, ArrowUp, Recycle, ShieldAlert, Scale } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // 1. 글로벌 기후-어획량 상관관계 레이더
 export function Widget01_ClimateYieldRadar() {

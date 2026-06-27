@@ -7,7 +7,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, Area, Cell, ComposedChart } from 'recharts';
 import { Globe, Anchor, Shield } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // EUMOFA EU Fish Market 2025 실측: Ecuador 2024 = 29%(volume) / 48%(value)
 const nauruData = [

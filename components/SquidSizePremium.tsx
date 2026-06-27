@@ -4,7 +4,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { Scissors } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_size_premium.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidSizePremium() {
   return (

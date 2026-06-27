@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './PetFoodMap.module.css';
-import { Map, Store, Info, Target, Stethoscope, Pill, Scissors, ArrowLeft, BarChart3 } from 'lucide-react';
+import { Map, Info, Target, Stethoscope, Pill, Scissors, ArrowLeft, BarChart3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 /* ═══════════════════════════════════════════════
    Category Config — single source of truth

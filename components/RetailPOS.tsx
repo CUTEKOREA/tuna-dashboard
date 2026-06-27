@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 import styles from './RetailPOS.module.css';
-import { ShoppingCart, BellRing, UploadCloud, Store, ArrowDownRight, Tag, Activity, FileText, CheckCircle } from 'lucide-react';
-import { PieChart, Pie, Cell, Tooltip as RechartsTooltip, Legend, ComposedChart, Bar, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, LabelList } from 'recharts';
+import { ShoppingCart, BellRing, Store, ArrowDownRight, Tag, Activity, FileText, CheckCircle } from 'lucide-react';
+import { PieChart, Pie, Cell, Tooltip as RechartsTooltip, ComposedChart, Bar, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import PriceLagSimulator from './PriceLagSimulator';
 import TermTooltip from './TermTooltip';
 import { LandedCostCalculator, BuySignalDashboard } from './FieldTools';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // V2: Interactive Market Share Data
 const marketShareData = [

@@ -1,20 +1,19 @@
 'use client';
 // trigger reload
 
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './TunaOperationalInsights.module.css';
 import {
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
-  AreaChart, Area, ComposedChart, ScatterChart, ZAxis, Scatter, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
+  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend,
+  AreaChart, Area, ComposedChart, Cell
 } from 'recharts';
 import { 
-  Target, Anchor, ShieldCheck, TrendingUp, AlertCircle, Compass, Thermometer, Box, Zap, Map, FileWarning, 
-  Ship, Brain, Leaf, DollarSign, Briefcase, Snowflake, BarChart2, Cpu, RefreshCcw, Network, Scale,
-  Globe, MapPin, Crown, Diamond, Sprout, Flag, Magnet, ArrowRightLeft, CloudRain, Navigation
+  Target, Anchor, ShieldCheck, TrendingUp, AlertCircle, Thermometer, Box, Zap, FileWarning, 
+  Ship, Brain, Leaf, DollarSign, Briefcase, Cpu, Network, Scale, MapPin, Crown, Diamond, Sprout, Flag, Magnet, ArrowRightLeft, CloudRain, Navigation
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import { ReeferCompetitorInflowWidget, ReeferPortCongestionWidget, ReeferSupplyPriceOverlayWidget, ReeferCarrierEfficiencyWidget } from './TunaReeferLogisticsWidgets';
 import { truncateXAxis } from '../lib/chart-standards';
 

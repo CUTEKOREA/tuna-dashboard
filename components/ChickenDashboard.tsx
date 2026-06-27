@@ -2,20 +2,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import CountUp from 'react-countup';
-import {
-  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
+import { Line, BarChart, Bar, Area, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ReferenceArea
 } from 'recharts';
 import {
   Globe, TrendingUp, AlertTriangle, Factory, DollarSign, Scale, RefreshCcw,
-  Target, Layers, Leaf, Landmark, Shield, Dna, Workflow, ShieldAlert, Building2,
-  BookOpen, Database, Zap, Activity, Clock
+  Target, Leaf, ShieldAlert, Building2
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 

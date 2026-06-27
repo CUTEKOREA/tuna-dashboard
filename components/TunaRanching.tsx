@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TunaRanching.module.css';
 import insightsStyles from './TunaInsightsDashboard.module.css';
-import { Waves, TrendingUp, Fish, Ship, PackageSearch, Globe, ShieldAlert, Cpu, Target, RefreshCcw, Building2, Thermometer, Plane, ChevronDown, ChevronUp, MessageSquare, BookOpen, Leaf, Factory, DollarSign, Scale, AlertTriangle } from 'lucide-react';
-import CountUp from 'react-countup';
-import { ComposedChart, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Tooltip as RechartsTooltip, BarChart, Bar, Cell, LineChart, Line, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { Waves, TrendingUp, Fish, Ship, PackageSearch, Globe, ShieldAlert, Target, RefreshCcw, Building2, Thermometer, Plane, Factory, DollarSign, Scale, AlertTriangle } from 'lucide-react';
+import { ComposedChart, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Tooltip as RechartsTooltip, BarChart, Bar, Cell, LineChart, Line, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TunaRestaurantMap from './TunaRestaurantMap';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 
 

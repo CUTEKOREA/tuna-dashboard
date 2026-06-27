@@ -2,9 +2,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend } from 'recharts';
-import { Microscope, Atom, TrendingUp, Fish, Recycle, HeartPulse, ChevronDown, ChevronUp, Star, ArrowRight, Target, Briefcase, Factory, Gem, Sparkles, FlaskConical } from 'lucide-react';
+import { Microscope, Atom, TrendingUp, Fish, Recycle, HeartPulse, ChevronDown, ChevronUp, Star, Target, Briefcase, Factory, Gem, Sparkles, FlaskConical } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import TelemetryBadge from './TelemetryBadge';
 
 const B2B_PILLAR_META: Record<string, {name:string, color:string, icon:any}> = {

@@ -1,13 +1,13 @@
 'use client';
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Legend, ComposedChart, BarChart, Bar, CartesianGrid, Line, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, Legend, ComposedChart, CartesianGrid, Line } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { TrendingUp, ArrowDownRight, Globe, AlertTriangle, ShieldAlert, BarChart3, PieChart, LineChart } from 'lucide-react';
+import { ArrowDownRight, Globe } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
 import declineData from '../data/tuna_traditional_decline.json';
 import empireData from '../data/tuna_thai_empire.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const getKorCountry = (engName: string) => {

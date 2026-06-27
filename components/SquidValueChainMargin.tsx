@@ -4,7 +4,7 @@ import { Factory } from 'lucide-react';
 import { Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from 'recharts';
 import data from '../data/squid_valuechain_margin.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidValueChainMargin() {
   return (

@@ -10,15 +10,13 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Cell
+  Legend
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import data from '../data/insight7_spread_winners.json';
 import useContainerWidth from '../hooks/useContainerWidth';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const Insight7SpreadWinners = () => {
   const { containerRef, width } = useContainerWidth();

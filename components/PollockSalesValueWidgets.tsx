@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ScatterChart, Scatter, Cell } from 'recharts';
+import { ComposedChart, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ScatterChart, Scatter, Cell } from 'recharts';
 import { TrendingUp, Crosshair, PackageSearch, Shuffle, ClipboardSignature, Search, ShieldAlert, CalendarClock, Replace, Store } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // 31. WidgetBlockVsIQF
 const dataIQF = [

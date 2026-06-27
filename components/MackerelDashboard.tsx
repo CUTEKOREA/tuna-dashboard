@@ -5,17 +5,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import CountUp from 'react-countup';
 import { 
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar 
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar 
 } from 'recharts';
 import { 
   TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign, 
-  Activity, AlertTriangle, ShieldCheck, AlertCircle, X, Info,
-  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  BookOpen, Workflow, Database, Zap, Ship
+  Activity, AlertTriangle, ShieldCheck, AlertCircle,
+  RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2, Zap, Ship
 } from 'lucide-react';
 
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';

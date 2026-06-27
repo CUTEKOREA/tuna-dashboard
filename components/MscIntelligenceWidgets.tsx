@@ -28,8 +28,6 @@ import {
   ShieldCheck,
   Users,
   AlertTriangle,
-  BarChart3,
-  Target,
 } from 'lucide-react';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';

@@ -10,12 +10,11 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
   ReferenceLine,
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {

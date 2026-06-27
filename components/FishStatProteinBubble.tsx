@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis, Cell } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ZAxis, Cell } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Target } from 'lucide-react';
 import TermTooltip from './TermTooltip';

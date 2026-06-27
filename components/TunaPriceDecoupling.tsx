@@ -9,7 +9,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { TrendingUp } from 'lucide-react';
 import rawData from '../data/tuna_price_decoupling.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;

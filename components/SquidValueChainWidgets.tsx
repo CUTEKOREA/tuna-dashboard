@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ZAxis, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, AreaChart, Area, ComposedChart, Line, Cell, LabelList } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ZAxis, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, AreaChart, Area, ComposedChart, Line, Cell, LabelList } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Anchor, Factory, ShoppingCart, Truck, DollarSign } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';

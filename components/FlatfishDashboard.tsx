@@ -2,17 +2,15 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import CountUp from 'react-countup';
-import {
-  LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
+import { Line, Bar, AreaChart, Area, ComposedChart,
   PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  Legend, Scatter
+  Legend
 } from 'recharts';
 import {
-  TrendingUp, TrendingDown, Fish, Anchor, Globe, DollarSign,
+  TrendingUp, Fish, Globe, DollarSign,
   Activity, AlertTriangle, ShieldCheck, AlertCircle,
   RefreshCcw, Crosshair, MapPin, Factory, Truck, Scale, BarChart2,
-  Database, Ship, Zap, Snowflake, Shield, Thermometer, Workflow, FlaskConical
+  Database, Ship, Snowflake, Shield, Workflow, FlaskConical
 } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';

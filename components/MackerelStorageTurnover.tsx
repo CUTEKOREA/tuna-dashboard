@@ -4,7 +4,7 @@ import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { Snowflake } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel/mackerel_storage_turnover.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function MackerelStorageTurnover() {
   const chart = (

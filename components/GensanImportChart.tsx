@@ -14,7 +14,7 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const volumeData = [
   { year: '2019', Total: 171219 },

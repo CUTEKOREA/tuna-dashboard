@@ -14,7 +14,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
 import { Anchor, Building2, AlertTriangle, Recycle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // ───────────────────────────────────────────────────────────────
 // 1. 태국 2026-Q1 원어 수입 동향 (S1)

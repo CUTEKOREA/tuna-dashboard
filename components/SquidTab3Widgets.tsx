@@ -3,7 +3,7 @@ import React from 'react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Cell } from 'recharts';
 import { AlertTriangle, GitMerge, Trophy, Clock, Warehouse, Stamp, Crown, Skull, BarChart2, Layers } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const SRC = 'KMI + KAMIS + 관세청 수입통계 (2010-2023)';
 

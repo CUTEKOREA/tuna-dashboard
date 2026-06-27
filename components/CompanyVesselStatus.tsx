@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import styles from './MackerelStrategy.module.css';
 import { Building2 } from 'lucide-react';
 
 export default function CompanyVesselStatus() {

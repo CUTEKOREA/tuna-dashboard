@@ -1,9 +1,9 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { AlertTriangle } from 'lucide-react';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const data = [
   { year: '2020', feed: 45, consumption: 55 },

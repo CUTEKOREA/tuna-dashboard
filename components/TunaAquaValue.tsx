@@ -8,7 +8,7 @@ import {
 import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_aqua_value.json';
 import useContainerWidth from '../hooks/useContainerWidth';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const TunaAquaValue = () => {

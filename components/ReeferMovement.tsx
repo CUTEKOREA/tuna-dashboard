@@ -8,7 +8,7 @@ import styles from './ReeferMovement.module.css';
 import TermTooltip from './TermTooltip';
 
 import BANGKOK_PORT_DATA from '../data/reefer_week24.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // ── helpers ──
 function parseNum(s: any): number {

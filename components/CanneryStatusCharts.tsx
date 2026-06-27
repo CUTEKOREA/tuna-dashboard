@@ -8,12 +8,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  ResponsiveContainer
+  Legend
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const canneryData = [
   { location: 'BANGKOK', name: 'THAI UNION', prodMax: 1300, prodCurrent: 700, storeMax: 62000, storeCurrent: 73000 },

@@ -4,7 +4,7 @@ import { Anchor } from 'lucide-react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_cpue_profit.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidCPUEProfitability() {
   return (

@@ -1,8 +1,7 @@
 // @ts-nocheck
 'use client';
 import React, { useState } from 'react';
-import { Factory, TrendingUp, Globe, ShoppingCart, Leaf, Database, Activity } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import { Factory } from 'lucide-react';
 import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend, W7_KoreaSupply, W8_ImportPartners, W9_ASFSeafood, W10_Portfolio, W11_SelfSufficiency } from './PorkWidgets';
 import PorkUsdaWidgets from './PorkUsdaWidgets';
 import { InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio } from './PorkEmpiricalInsights';

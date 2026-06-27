@@ -2,17 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, 
-  ResponsiveContainer, Legend, Cell
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend
 } from 'recharts';
 import { 
-  TrendingUp, Ship, Anchor, AlertTriangle, ShieldCheck, DollarSign, Calendar,
-  Activity, Thermometer, Database, CheckCircle, XCircle
+  TrendingUp, Anchor, ShieldCheck, DollarSign, Calendar,
+  Activity, Thermometer, CheckCircle
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // 9대 데이터망 한글 표기 (L-01) — 약어(KAMIS·NOAA·FAO 등)는 화이트리스트 허용
 const NETWORK_LABELS: Record<string, string> = {

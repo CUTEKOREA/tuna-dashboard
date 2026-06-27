@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Legend, BarChart, Bar, CartesianGrid } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, Legend, BarChart, Bar, CartesianGrid } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Factory, AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';

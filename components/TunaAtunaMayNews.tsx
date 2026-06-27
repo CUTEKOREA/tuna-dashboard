@@ -1,7 +1,7 @@
 import React from 'react';
 import WidgetCard from './WidgetCard';
 import { Anchor, DollarSign, TrendingDown, Ship } from 'lucide-react';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const mockPriceDropData = [

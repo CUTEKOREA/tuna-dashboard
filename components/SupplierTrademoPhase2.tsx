@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Database, ArrowRight, EyeOff, Target, ShieldCheck } from 'lucide-react';
+import { Loader2, ArrowRight, EyeOff, Target, ShieldCheck } from 'lucide-react';
 import styles from './TunaExtractDashboard.module.css';
 
 interface SupplierTrademoPhase2Props {

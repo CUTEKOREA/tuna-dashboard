@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, ReferenceLine, Tooltip as RechartsTooltip, Cell, ScatterChart, Scatter } from 'recharts';
+import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ReferenceLine, Tooltip as RechartsTooltip, Cell, ScatterChart, Scatter } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link } from 'lucide-react';
+import { Anchor, DollarSign, Activity, Target, Settings, RefreshCw, BarChart2, Briefcase, Flame, Link } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 import { unitPriceExport, aquaValuePerTon, unitPriceTimeline } from './ShrimpDataHelper';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // W31: PriceGap
 export const W31_PriceGap = () => (

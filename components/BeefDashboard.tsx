@@ -1,8 +1,7 @@
 // @ts-nocheck
 'use client';
 import React, { useState } from 'react';
-import { Beef, TrendingUp, Globe, ShoppingCart, Leaf, Activity } from 'lucide-react';
-import styles from './MackerelStrategy.module.css';
+import { Beef } from 'lucide-react';
 import {
   W1_ProductionTrend, W2_Top5Producers, W3_SlaughterUtil, W4_FeedMargin,
   W5_TradeFlow, W6_KoreaImports, W7_KoreaSupply, W8_PriceGap,

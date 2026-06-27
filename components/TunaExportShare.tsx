@@ -9,7 +9,7 @@ import { Anchor } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import rawData from '../data/tuna_export_share.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const colors: Record<string, string> = {
   '일본': '#ef4444',

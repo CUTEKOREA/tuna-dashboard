@@ -4,7 +4,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { CalendarRange } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_inventory_release.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SquidInventoryRelease() {
   return (

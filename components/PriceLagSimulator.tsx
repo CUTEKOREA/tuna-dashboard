@@ -6,7 +6,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './PriceLagSimulator.module.css';
 import { TrendingDown, Activity, DollarSign } from 'lucide-react';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function PriceLagSimulator() {
   const [lagMonths, setLagMonths] = useState(4); // 1 to 6 months

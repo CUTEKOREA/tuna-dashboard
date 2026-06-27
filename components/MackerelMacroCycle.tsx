@@ -5,7 +5,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { TrendingUp, Activity } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_macro.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function MackerelMacroCycle() {
   const chartRef = useRef<HTMLDivElement>(null);

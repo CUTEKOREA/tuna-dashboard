@@ -13,7 +13,7 @@ import React from 'react';
 import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Line, Legend, ComposedChart } from 'recharts';
 import { Ship, Globe, Building2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const FALLBACK_FISH = [
   { market: '부산공동어시장', volume: 12450, avgPrice: 8200 },

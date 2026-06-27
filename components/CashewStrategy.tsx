@@ -5,19 +5,15 @@ import React, { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
-  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
-  ResponsiveContainer, Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
+  PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import {
-  TrendingUp, TrendingDown, Globe, DollarSign,
-  Activity, AlertTriangle, RefreshCcw, Factory, Truck, Scale, BarChart2,
-  BookOpen, Workflow, Database, Zap, Hexagon, Leaf, Target, MapPin, Landmark, Coins, Layers, Sprout
+  TrendingUp, Globe, DollarSign,
+  Activity, AlertTriangle, RefreshCcw, Factory, Truck, Scale, BarChart2, Database, Zap, Hexagon, Leaf, Target, Landmark, Coins, Layers, Sprout
 } from 'lucide-react';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './CashewStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // CashewStrategy section/dynamic widgets용 공통 wrapper — WidgetCard 호출 일원화
 const renderCashewWidget = (opts: {

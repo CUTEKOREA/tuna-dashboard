@@ -1,21 +1,18 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import styles from './FieldTools.module.css';
 import {
-  Calculator, TrendingUp, Handshake, Timer, CloudLightning,
-  Fuel, Ship, Anchor, FileText, DollarSign, AlertTriangle,
-  CheckCircle2, ArrowRight, Gauge, Globe2, Thermometer,
-  ArrowUpRight, ArrowDownRight, Compass, Search, Crosshair, TrendingDown,
-  Shuffle, BarChart2, Activity, Award, Recycle
+  Calculator, Handshake, Timer, CloudLightning,
+  Fuel, Ship, Anchor, FileText, DollarSign, AlertTriangle, Gauge, Globe2, Thermometer, Crosshair, BarChart2, Activity, Award, Recycle
 } from 'lucide-react';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
-  BarChart, Bar, AreaChart, Area, Cell
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
+  BarChart, Bar, Cell
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import FleetOperationStatus from './FleetOperationStatus';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 type ToolTab = 'fleet' | 'logistics' | 'finance' | 'esg';
 

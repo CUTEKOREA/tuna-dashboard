@@ -1,9 +1,9 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Target } from 'lucide-react';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const data = [
   { size: '< 200g (미어)', value: 4500, color: 'var(--color-danger)' },

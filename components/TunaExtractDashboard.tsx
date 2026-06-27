@@ -2,20 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  BarChart, Bar, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, ScatterChart, Scatter,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ZAxis,
+  BarChart, Bar, LineChart, Line, Area, ScatterChart, Scatter,
+  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ZAxis,
   ComposedChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
 } from 'recharts';
 import { 
   Droplets, TrendingUp, AlertTriangle, Lightbulb, 
-  Globe, FlaskConical, Target, ShieldCheck, PieChart as PieChartIcon, CheckCircle2,
-  BookOpen, ChevronUp, ChevronDown, MessageSquare, Fish, Map, Truck
+  Globe, FlaskConical, Target, ShieldCheck, CheckCircle2, Truck
 } from 'lucide-react';
 import styles from './TunaExtractDashboard.module.css';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
-import TermTooltip from './TermTooltip';
 import TunaEsgRiskRadar from './TunaEsgRiskRadar';
 import TunaPngHubStrategy from './TunaPngHubStrategy';
 import TunaGlobalHalalStrategy from './TunaGlobalHalalStrategy';
@@ -24,7 +21,7 @@ import TunaPeptideEfficacy from './TunaPeptideEfficacy';
 import TunaTacMonitor from './TunaTacMonitor';
 import TunaSdgCircular from './TunaSdgCircular';
 import TelemetryBadge from './TelemetryBadge';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {

@@ -1,9 +1,9 @@
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Line } from 'recharts';
+import { Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart, Line } from 'recharts';
 import { Factory } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/salmonInsightAutomationYield.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function SalmonInsightAutomationYield() {
   return (

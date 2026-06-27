@@ -4,7 +4,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 import { TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import data from '../data/squid_shrinkflation.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const ShrinkflationTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;

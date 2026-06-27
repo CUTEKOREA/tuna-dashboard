@@ -1,10 +1,10 @@
 import React from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend, ReferenceLine, Tooltip as RechartsTooltip, Cell, PieChart, Pie } from 'recharts';
+import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, ReferenceLine, Tooltip as RechartsTooltip, Cell, PieChart, Pie } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { Globe, Anchor, TrendingUp, DollarSign, Layers, Factory, Activity, Target, Scale, Truck, ShoppingCart, Flag, ShieldCheck, PieChart as PieChartIcon, Settings, RefreshCw, BarChart2, Briefcase, Flame, Cog, AlertTriangle, DivideSquare, Compass, Link, RefreshCcw } from 'lucide-react';
+import { TrendingUp, DollarSign, Activity, Target, Scale, Flag, ShieldCheck, PieChart as PieChartIcon } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 import { koreaImportTimeline, koreaSelfSufficiency, unitPriceExport } from './ShrimpDataHelper';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // W21: KoreaImportTimeline
 export const W21_KoreaImpTimeline = () => (

@@ -5,7 +5,7 @@ import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import { TrendingUp } from 'lucide-react';
 import data from '../data/pollock_value_decoupling.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 export default function PollockValueDecoupling() {
   const chartData = (data as any[]).map((d: any) => ({

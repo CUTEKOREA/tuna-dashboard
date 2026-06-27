@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
-import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Legend, ComposedChart, BarChart, Bar, CartesianGrid, Line, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, Legend, ComposedChart, BarChart, Bar, CartesianGrid, Line, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import { TrendingUp, ArrowDownRight, Globe, AlertTriangle, ShieldAlert, BarChart3, PieChart, LineChart } from 'lucide-react';
+import { TrendingUp, Globe, AlertTriangle, PieChart } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
 import hegemonyData from '../data/surimi_hegemony.json';
 import lithuaniaData from '../data/surimi_lithuania.json';
 import koreaDeficitData from '../data/surimi_korea_deficit.json';
 import multiplierData from '../data/surimi_multiplier.json';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const getKorCountry = (engName: string) => {
   const map: Record<string, string> = {

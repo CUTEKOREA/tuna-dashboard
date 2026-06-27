@@ -10,7 +10,7 @@ import { Recycle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import rawData from '../data/tuna_petcare_margin.json';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['#ef4444', '#22c55e'];
 

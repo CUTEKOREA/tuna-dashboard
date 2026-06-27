@@ -3,7 +3,7 @@ import React from 'react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart, Scatter, Cell } from 'recharts';
 import { Fuel, Users, BarChart3, Snowflake, Droplets, Wrench, Target, AlertTriangle, RotateCw, Coins } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 const SRC = '내부 영업·운영 데이터 + KAMIS 수산물 마진 분석 (2021-2023)';
 

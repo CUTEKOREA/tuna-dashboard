@@ -3,7 +3,7 @@ import React from 'react';
 import { ComposedChart, AreaChart, Area, BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ScatterChart, Scatter } from 'recharts';
 import { TrendingUp, AlertTriangle, Ship, Thermometer, ShieldAlert, Crosshair, Globe } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // 1. TAC 갭 트래커 Data
 const tacData = [

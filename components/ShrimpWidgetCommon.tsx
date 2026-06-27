@@ -1,9 +1,6 @@
 import React from 'react';
-import { ComposedChart, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Legend, ScatterChart, Scatter, ReferenceLine, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
-import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
-import styles from './MackerelStrategy.module.css';
 
 export const COLORS = ['#f97316', 'var(--color-danger)', 'var(--color-success)', 'var(--color-info)', '#8b5cf6', 'var(--color-warning)', '#06b6d4', '#ec4899', '#64748b', '#22d3ee'];
 export const tooltipStyle: React.CSSProperties = { backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' };
