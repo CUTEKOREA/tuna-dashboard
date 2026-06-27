@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚀 **2026-06-27 KST — 라이브 배포 완료 (이번 세션 14커밋 일괄)** [CC]:
+> - 사용자 "라이브 배포" 명시 요청 → `git push origin main` (c8f7dc6..1e0ad4e, 14커밋). pre-push 훅(C-4 data integrity + L-03 build) 통과.
+> - Vercel 자동 빌드 dpl_52T94v… **READY**(~68s), 프로덕션 도메인 **leedonggun.co.kr** 반영. 라이브 검증: 메인 200, 김 메뉴 렌더, /api/kim/customs isLive=true(2026-05 2,276톤/$37.9M).
+> - 배포 내용: 색 단일화·TelemetryBadge/truncateXAxis 단일화·dead import 592건 정리·accent cyan 통일·김(Laver) 신규 대시보드(실데이터+KCS LIVE API). claude.ai/design 카탈로그 41카드는 별도(scratch).
+> - **미푸시(로컬 유지)**: [AG] Fleet/Unloading WIP(미커밋이라 자동 제외) — 해당 파일 dead import 정리는 [AG] 커밋 후로 보류.
+
+
 > 🚢 **2026-06-27 KST (5차) — 김 P3 물류·통관 위젯 + 관세청 KCS LIVE API 연동** [CC]:
 > - app/api/kim/customs: 마른김(HS 1212.21) 수출 통관 KCS OpenAPI 라우트(mackerel-kcs 패턴 L-11·L-10·L-12). 수출국이라 exp* 집계. **월별=실시간 검증(isLive=true, 2026-05 2,276톤/$37.9M)**, 국가별 분해는 KCS 응답 미포함이라 destIsLive=false → KATI 2024 fallback(정직 STATIC 표기).
 > - components/KimLogisticsWidget: P3 위젯 2종(수출 통관 추이 ComposedChart + 대상국 비중 BarChart), isLive/destIsLive 기반 telemetry 동적·정직.
