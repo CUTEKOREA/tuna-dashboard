@@ -200,7 +200,7 @@ export default function VesselVdsStatus() {
             </div>
           )}
           
-          <div style={{ display: 'flex', gap: '4px', backgroundColor: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid var(--panel-border)' }}>
+          <div style={{ display: 'flex', gap: '4px', backgroundColor: 'rgba(140,170,255,0.10)', padding: '4px', borderRadius: '8px', border: '1px solid var(--panel-border)' }}>
             <button
               onClick={() => { setFleetType('NATIONAL'); setActiveArea('KIRIBATI'); }}
               style={{
@@ -261,7 +261,7 @@ export default function VesselVdsStatus() {
                 fontSize: '14px',
                 borderTopLeftRadius: '8px',
                 borderTopRightRadius: '8px',
-                background: isActive ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
+                background: isActive ? 'rgba(140, 170, 255, 0.10)' : 'transparent',
                 color: isActive ? 'var(--text-main)' : 'var(--text-muted)',
                 border: 'none',
                 borderBottom: isActive ? '2px solid var(--accent-primary)' : '2px solid transparent',
@@ -328,7 +328,7 @@ export default function VesselVdsStatus() {
                       <span style={{ width: '40px', fontWeight: 'bold', textAlign: 'right', color: isOver ? 'var(--accent-danger)' : 'var(--text-main)' }}>
                         {isEmpty ? '-' : `${row.rate}%`}
                       </span>
-                      <div style={{ flex: 1, height: '8px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden' }}>
+                      <div style={{ flex: 1, height: '8px', backgroundColor: 'rgba(140,170,255,0.10)', borderRadius: '4px', overflow: 'hidden' }}>
                         <div 
                           style={{
                             height: '100%',

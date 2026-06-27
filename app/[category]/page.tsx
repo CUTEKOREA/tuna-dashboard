@@ -10,7 +10,7 @@ const Dashboard = dynamic(() => import('../page'), {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: '#0a0a0a',
+      background: '#070b18',
       color: '#94a3b8',
       fontFamily: "'Inter', sans-serif",
     }}>

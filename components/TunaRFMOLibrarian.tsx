@@ -52,7 +52,7 @@ function buildChart(w: Widget): React.ReactElement {
           ))}
         </Pie>
         <Tooltip
-          contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
           formatter={(v: any) => [`${v}${w.unit}`, '비중']}
         />
       </PieChart>
@@ -62,11 +62,11 @@ function buildChart(w: Widget): React.ReactElement {
   if (type === 'bar') {
     return (
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
         <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
         <Tooltip
-          contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+          contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
           formatter={(v: any) => COMMA(Number(v))}
         />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
@@ -80,11 +80,11 @@ function buildChart(w: Widget): React.ReactElement {
   // Composed (default - stacked bar)
   return (
     <ComposedChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
       <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <Tooltip
-        contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
+        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }}
         formatter={(v: any) => COMMA(Number(v))}
       />
       <Legend wrapperStyle={{ fontSize: '11px' }} />

@@ -141,7 +141,7 @@ export default function KoreaConsignmentDashboard() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(0, 0, 0, 0.2)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(0, 0, 0, 0.2)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
             {[
               { id: '2026', label: '2026 상세실적' },
               { id: '2025', label: '2025' },
@@ -229,7 +229,7 @@ export default function KoreaConsignmentDashboard() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {/* Mackerel */}
-                <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>고등어</span>
                     <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: data._liveIntelligence.metrics.arbitrage.mackerel.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
@@ -249,7 +249,7 @@ export default function KoreaConsignmentDashboard() {
                   </div>
                 </div>
                 {/* Squid */}
-                <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ background: 'rgba(2, 14, 28, 0.3)', padding: '14px', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                     <span style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>오징어</span>
                     <span style={{ fontSize: '0.8rem', padding: '2px 8px', borderRadius: '4px', background: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)', color: data._liveIntelligence.metrics.arbitrage.squid.signal === 'IMPORT' ? 'var(--color-success)' : 'var(--color-warning)', fontWeight: 700 }}>
@@ -316,7 +316,7 @@ export default function KoreaConsignmentDashboard() {
                 <CheckCircle size={18} /> 밸류체인 유통 마진 추적기
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', flex: 1, justifyContent: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: 'rgba(2, 14, 28, 0.4)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', background: 'rgba(2, 14, 28, 0.4)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <div style={{ textAlign: 'center', flex: 1 }}>
                     <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '6px' }}>산지 평균 위판가 ({data._liveIntelligence.metrics.latestAuctionMonth} 실측)</div>
                     <div style={{ fontSize: '1.2rem', color: '#38bdf8', fontWeight: 700 }}>₩{data._liveIntelligence.metrics.retailMarginTracker.localAuctionAvg.toLocaleString()}</div>
@@ -356,10 +356,10 @@ export default function KoreaConsignmentDashboard() {
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 100000000).toFixed(0)}억`} />
-              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
               <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
               <Bar dataKey="saleAmount" name="판매금액 (원)" fill="#0ea5e9" radius={[6,6,0,0]} fillOpacity={0.85} />
             </BarChart>
@@ -382,10 +382,10 @@ export default function KoreaConsignmentDashboard() {
           chart={
             <BarChart data={chartData} margin={{ top: 30, right: 10, left: 20, bottom: 40 }}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={activeTab === 'all' ? "name" : "seafoodName"} stroke="#64748b" tick={{fontSize:10}} angle={activeTab === 'all' ? 0 : -30} textAnchor={activeTab === 'all' ? 'middle' : 'end'} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(val) => `${(val / 1000).toFixed(0)}t`} />
-              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
               <Legend wrapperStyle={{fontSize:'11px', top: 0}} />
               <Bar dataKey="saleQty" name="판매물량 (kg)" fill="#8b5cf6" radius={[6,6,0,0]} fillOpacity={0.85} />
             </BarChart>
@@ -409,7 +409,7 @@ export default function KoreaConsignmentDashboard() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100%, 1fr))', gap: '1.5rem' }}>
             {monthsToShow.map(monthStr => (
               <div key={monthStr} className={styles.glassCard} style={{ background: 'rgba(0, 0, 0, 0.2)' }}>
-                <div style={{ position: 'relative', marginBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.6rem' }}>
+                <div style={{ position: 'relative', marginBottom: '1rem', borderBottom: '1px solid rgba(140,170,255,0.10)', paddingBottom: '0.6rem' }}>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e2e8f0', margin: 0 }}>
                     {monthStr} 월간 핵심 어종 거래 실적 (Top 10)
                   </h3>

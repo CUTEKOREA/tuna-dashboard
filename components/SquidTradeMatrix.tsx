@@ -79,7 +79,7 @@ export default function SquidTradeMatrix() {
                       style={{
                         height: '38px', minWidth: '38px',
                         background: isDiag ? 'rgba(255,255,255,0.03)' : cellColor(vol),
-                        border: '1px solid rgba(255,255,255,0.06)',
+                        border: '1px solid rgba(140,170,255,0.12)',
                         textAlign: 'center', cursor: vol > 0 ? 'pointer' : 'default',
                         color: vol > maxVol * 0.3 ? 'var(--text-primary)' : 'rgba(255,255,255,0.4)',
                         fontWeight: vol > maxVol * 0.1 ? 700 : 400,

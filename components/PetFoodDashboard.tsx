@@ -93,7 +93,7 @@ export default function PetFoodDashboard() {
 
 
         {/* ═══ Executive Strategy Command ═══ */}
-        <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'linear-gradient(145deg, #1e293b, #0f172a)', borderRadius: '12px', borderLeft: '4px solid #f472b6', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}>
+        <div style={{ marginBottom: '2rem', padding: '1.5rem', background: 'linear-gradient(145deg, #1a2442, #0a0f1f)', borderRadius: '12px', borderLeft: '4px solid #f472b6', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)' }}>
           <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f8fafc', fontSize: '1.25rem', marginTop: 0, marginBottom: '1rem' }}>
             <Crown size={22} color="#f472b6" /> [경영진 전략 지휘소]
           </h2>

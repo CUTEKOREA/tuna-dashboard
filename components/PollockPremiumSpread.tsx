@@ -21,7 +21,7 @@ export default function PollockPremiumSpread() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
           <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `$${v}`} domain={['dataMin - 500', 'dataMax + 500']} />
-          <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any) => [`$${value.toLocaleString()}/ton`, '']} />
+          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any) => [`$${value.toLocaleString()}/ton`, '']} />
           <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
           <Line type="monotone" dataKey="usa_price" name="미국산 수입 단가 (싱글 프로즌)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-info)' }} />
           <Line type="monotone" dataKey="china_price" name="중국산 수입 단가 (더블 프로즌)" stroke="var(--color-warning)" strokeWidth={2} strokeDasharray="5 5" />

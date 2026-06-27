@@ -42,8 +42,8 @@ export const WidgetWrapper = ({ title, icon: Icon, term, desc, source, situation
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
-    <div style={{ background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
-      <div style={{ padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+    <div style={{ background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+      <div style={{ padding: '1rem', borderBottom: '1px solid rgba(140,170,255,0.10)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ background: 'rgba(59, 130, 246, 0.1)', padding: '8px', borderRadius: '8px' }}>
             <Icon size={18} color="var(--color-info)" />

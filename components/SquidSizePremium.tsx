@@ -19,10 +19,10 @@ export default function SquidSizePremium() {
       chart={
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `₩${val / 1000}k`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
           <Area type="monotone" dataKey="premium_gap" name="프리미엄 갭 (Gap)" fill="rgba(139, 92, 246, 0.2)" stroke="none" />
           <Line type="monotone" dataKey="small" name="소형어 (150-200g)" stroke="var(--text-secondary)" strokeWidth={2} />

@@ -20,36 +20,36 @@ export default function CompanyVesselStatus() {
       </h4>
 
       <div style={{ 
-        background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', 
+        background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', 
         overflow: 'auto', maxHeight: '400px'
       }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontSize: '0.8rem' }}>
           <thead style={{ position: 'sticky', top: 0, background: 'rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(4px)', zIndex: 10 }}>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-              <th rowSpan={2} style={{ padding: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderRight: '1px solid rgba(255,255,255,0.05)' }}>구분</th>
-              <th rowSpan={2} style={{ padding: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderRight: '1px solid rgba(255,255,255,0.05)', minWidth: '120px' }}>회사명</th>
-              <th rowSpan={2} style={{ padding: '10px', color: '#34d399', fontWeight: 700, borderRight: '1px solid rgba(255,255,255,0.05)' }}>소계</th>
-              <th colSpan={2} style={{ padding: '6px', color: '#60a5fa', fontWeight: 600, borderRight: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>참치</th>
-              <th colSpan={5} style={{ padding: '6px', color: 'var(--color-success)', fontWeight: 600, borderRight: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>트롤</th>
-              <th style={{ padding: '6px', color: 'var(--color-warning)', fontWeight: 600, borderRight: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>오징어</th>
-              <th colSpan={2} style={{ padding: '6px', color: '#818cf8', fontWeight: 600, borderRight: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>꽁치</th>
-              <th colSpan={2} style={{ padding: '6px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderBottom: '1px solid rgba(255,255,255,0.05)' }}>기타</th>
+              <th rowSpan={2} style={{ padding: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)' }}>구분</th>
+              <th rowSpan={2} style={{ padding: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', minWidth: '120px' }}>회사명</th>
+              <th rowSpan={2} style={{ padding: '10px', color: '#34d399', fontWeight: 700, borderRight: '1px solid rgba(140,170,255,0.10)' }}>소계</th>
+              <th colSpan={2} style={{ padding: '6px', color: '#60a5fa', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>참치</th>
+              <th colSpan={5} style={{ padding: '6px', color: 'var(--color-success)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>트롤</th>
+              <th style={{ padding: '6px', color: 'var(--color-warning)', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>오징어</th>
+              <th colSpan={2} style={{ padding: '6px', color: '#818cf8', fontWeight: 600, borderRight: '1px solid rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(140,170,255,0.10)' }}>꽁치</th>
+              <th colSpan={2} style={{ padding: '6px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, borderBottom: '1px solid rgba(140,170,255,0.10)' }}>기타</th>
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
               {/* 참치 */}
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>연승</th>
-              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(255,255,255,0.05)' }}>선망</th>
+              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(140,170,255,0.10)' }}>선망</th>
               {/* 트롤 */}
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>북양</th>
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>태평</th>
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>대서</th>
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>인도</th>
-              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(255,255,255,0.05)' }}>남빙</th>
+              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(140,170,255,0.10)' }}>남빙</th>
               {/* 오징어 */}
-              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(255,255,255,0.05)' }}>오채</th>
+              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(140,170,255,0.10)' }}>오채</th>
               {/* 꽁치 */}
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>오꽁</th>
-              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(255,255,255,0.05)' }}>꽁치</th>
+              <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400, borderRight: '1px solid rgba(140,170,255,0.10)' }}>꽁치</th>
               {/* 기타 */}
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>저연</th>
               <th style={{ padding: '6px', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>통저</th>
@@ -62,7 +62,7 @@ export default function CompanyVesselStatus() {
                 <tr 
                   key={row.id} 
                   style={{ 
-                    borderBottom: idx !== data.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                    borderBottom: idx !== data.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none',
                     background: isMajor ? 'rgba(56, 189, 248, 0.05)' : 'transparent',
                     transition: 'background 0.2s'
                   }}

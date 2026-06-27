@@ -51,7 +51,7 @@ export function InsightTimeGapArbitrage() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="원" />
-          <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Area yAxisId="left" type="monotone" dataKey="domestic" name="🇰🇷 국내 도매가" stroke="#f87171" fill="url(#spreadGrad)" />
           <Line yAxisId="left" type="monotone" dataKey="brazil" name="🇧🇷 브라질산 CIF" stroke="#10b981" strokeWidth={3} dot={{ r: 4 }} />
@@ -92,7 +92,7 @@ export function InsightChannelMatrix() {
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="#94a3b8" unit="%" />
           <YAxis dataKey="channel" type="category" stroke="#94a3b8" width={120} />
-          <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar dataKey="margin" name="마진율(%)" radius={[0, 4, 4, 0]}>
             {channelData.map((_, idx) => {
@@ -144,7 +144,7 @@ export function InsightVMILockin() {
           <XAxis dataKey="stage" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="%" domain={[0, 100]} />
           <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
-          <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Area yAxisId="left" type="monotone" dataKey="retention" name="바이어 재계약률(%)" stroke="#3b82f6" fill="url(#retGrad)" />
           <Line yAxisId="right" type="monotone" dataKey="margin" name="평균 마진율(%)" stroke="#10b981" strokeWidth={3} dot={{ r: 4 }} />

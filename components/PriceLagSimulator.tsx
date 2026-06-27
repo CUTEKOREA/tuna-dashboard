@@ -115,7 +115,7 @@ export default function PriceLagSimulator() {
         <SafeResponsiveContainer width="100%" height={300}>
           <ComposedChart data={data} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey="month" tick={{ fill: '#94a3b8', fontSize: 11 }} />
             <YAxis yAxisId="left" domain={[1200, 2200]} tickFormatter={(val) => `${Number(val).toLocaleString()}`} tick={{ fill: '#38bdf8', fontSize: 11 }} />
             <YAxis yAxisId="right" orientation="right" domain={[80, 160]} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} tick={{ fill: '#fbbf24', fontSize: 11 }} />
@@ -123,7 +123,7 @@ export default function PriceLagSimulator() {
             {/* Highlight Spread Window */}
             <ReferenceArea yAxisId="left" x1={`M${p2_start + 1}`} x2={`M${p2_end + 1}`} fill="rgba(16, 185, 129, 0.15)" strokeOpacity={0} />
 
-            <RechartsTooltip cursor={{ fill: 'rgba(255,255,255,0.05)' }} content={<CustomTooltip />} />
+            <RechartsTooltip cursor={{ fill: 'rgba(140,170,255,0.10)' }} content={<CustomTooltip />} />
             
             <Line yAxisId="left" type="monotone" dataKey="cost" name="원어(SKJ) 가격" stroke="#38bdf8" strokeWidth={3} dot={false} />
             <Line yAxisId="right" type="monotone" dataKey="cpi" name="소매 지수" stroke="#fbbf24" strokeWidth={3} dot={false} strokeDasharray="5 5" />

@@ -214,7 +214,7 @@ export default function SalmonForecastSimulator() {
 
               <div style={{
                 fontSize: '0.6rem', color: '#475569', fontStyle: 'italic',
-                borderTop: '1px solid rgba(255,255,255,0.05)',
+                borderTop: '1px solid rgba(140,170,255,0.10)',
                 paddingTop: '0.5rem',
               }}>
                 📚 {forecast.basis}

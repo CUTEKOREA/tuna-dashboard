@@ -11,7 +11,7 @@ export const W41_ProcTimeline = () => (
   <WidgetCard title="가공식품화(Processing) 물동량 추이" icon={Factory} term="Processed Timeline" desc="가공 처리 물동량(톤) 연도별 추이 — FAOSTAT 가공 도메인 파생" source="FAOSTAT 수산 가공 도메인(연도별 가공 물동량 파생, STATIC 2026-05-29)" situation="단순 1차 원물(Raw Commodity) 시장을 벗어나, 글로벌 HMR(가정간편식) 수요 확대와 맞물려 가공(Processed Value-Add) 제품군의 물동량(톤)이 장기 우상향 추세를 보이고 있습니다." actionPlan="[R&D CAPEX 재배분] 구시대적 원양어선 수리 위주 CAPEX 비중을 축소하고, R&D 예산을 고부가가치 소스 배합 및 튀김(Batter & Breading) 공정 등 가공 역량 확보에 우선 배분하여 가공식품 사업으로의 점진적 피벗을 검토해야 합니다." telemetry={{ status: 'STATIC' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={processedTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -27,7 +27,7 @@ export const W42_ProcTop10 = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Processed} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={80} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -43,7 +43,7 @@ export const W43_ProcRatio = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={processingRatio.slice(0, 5)} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -59,7 +59,7 @@ export const W44_VertIntegration = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={processingRatio.slice(0, 5)} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -78,7 +78,7 @@ export const W45_DiseaseRisk = () => {
     <WidgetCard title="EMS/WSSV 질병 리스크 경보" icon={AlertTriangle} term="Disease Collapse" desc="질병 충격 시나리오 개념도 — 자체 추정·예시 데이터(illustrative)" source="자체 추정(illustrative)·예시 데이터 — 1차 출처 미확보" situation="조기폐사증후군(EMS)·백점병(WSSV) 등 양식 질병은 과거 아시아 권역에서 대규모 폐사를 유발한 바 있는 생물학적 꼬리위험(Tail Risk)입니다. 차트의 지수·하락 폭은 검증된 시계열이 아닌 개념 설명용 예시값입니다." actionPlan="[Geographic Hedging Protocol] 양식업 최대 리스크인 팬데믹(WSSV/EHP) 리스크를 원천 봉쇄하십시오. 인도, 베트남, 에콰도르 3개 대륙에 소싱 파이프라인을 33%씩 완벽히 물리적 분산(Geographic Hedging)시켜, 경쟁사 공급망 마비 시 반사이익을 수취하는 시스템을 가동해야 합니다." telemetry={{ status: 'STATIC' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="y" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 160]} />
           <ReferenceLine x="13" stroke="var(--color-danger)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'EMS 판데믹 충격', fill: 'var(--color-danger)', fontSize: 10 }} />
@@ -99,7 +99,7 @@ export const W46_ClimateImpact = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="y" stroke="#94a3b8" fontSize={11} />
           <YAxis yAxisId="L" stroke="var(--color-danger)" fontSize={11} domain={[24, 27]} />
           <YAxis yAxisId="R" orientation="right" stroke="var(--color-info)" fontSize={11} domain={[60, 140]} />
@@ -148,7 +148,7 @@ export const W48_ProcHubROI = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} />
           <YAxis dataKey="name" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -170,7 +170,7 @@ export const W49_ValueChainFlow = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v=>`${v}%`} />
           <YAxis dataKey="step" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />

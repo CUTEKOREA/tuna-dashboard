@@ -565,7 +565,7 @@ export default function GalchiDashboard() {
                 </linearGradient>
               ))}
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -579,7 +579,7 @@ export default function GalchiDashboard() {
         return (
           <BarChart data={d}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -594,7 +594,7 @@ export default function GalchiDashboard() {
         return (
           <ComposedChart data={d}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} domain={[0, 'auto']} />
             {widget.dualAxis && (
@@ -639,7 +639,7 @@ export default function GalchiDashboard() {
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
-            background: '#181818', border: 'none', 
+            background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', boxShadow: '0 0 8px #1ed760', animation: 'pulse 2s infinite' }} />
@@ -655,14 +655,14 @@ export default function GalchiDashboard() {
           const theme = KPI_THEMES[idx % KPI_THEMES.length];
           const IconComp = theme.icon;
           return (
-            <div key={key} className="ds-card" style={{background: '#181818',
+            <div key={key} className="ds-card" style={{background: '#11182f',
               border: 'none', borderRadius: '8px', padding: '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '6px',
               transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
               position: 'relative', overflow: 'hidden'}}
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#11182f'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', maxWidth: '75%', lineHeight: '1.2' }}>{kpi.title}</span>
@@ -698,7 +698,7 @@ export default function GalchiDashboard() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
             {/* Exchange Rate */}
             {liveIntel?.exchange && (
-              <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
+              <div className="ds-card" style={{ background: '#11182f', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <DollarSign size={12} /> USD/KRW
                   {liveIntel.exchange.isLive && <span style={{ color: 'var(--color-success)', fontSize: '0.6rem' }}>●</span>}
@@ -709,7 +709,7 @@ export default function GalchiDashboard() {
             )}
             {/* Landing Cost — 입력 CIF는 HSK 0303.89-2000 실측 통관 단가 (검증 완료 2026-06-11) */}
             {liveIntel?.landingCost && (
-              <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
+              <div className="ds-card" style={{ background: '#11182f', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Package size={12} /> 착지원가 시뮬레이션
                 </div>
@@ -719,7 +719,7 @@ export default function GalchiDashboard() {
             )}
             {/* KCS Import — HSK 0303.89-2000 냉동 갈치 통관 실측 (검증 완료 2026-06-11) */}
             {liveKcs?.summary && (
-              <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
+              <div className="ds-card" style={{ background: '#11182f', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Ship size={12} /> 수입 통관 현황
                   {liveKcs.isLive && <span style={{ color: 'var(--color-success)', fontSize: '0.6rem' }}>●</span>}
@@ -730,7 +730,7 @@ export default function GalchiDashboard() {
             )}
             {/* KAMIS Wholesale */}
             {liveKamis?.current && (
-              <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
+              <div className="ds-card" style={{ background: '#11182f', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <ShoppingCart size={12} /> 도매가
                   {liveKamis.isLive && <span style={{ color: 'var(--color-success)', fontSize: '0.6rem' }}>●</span>}
@@ -741,7 +741,7 @@ export default function GalchiDashboard() {
             )}
             {/* Macro Risk */}
             {liveIntel?.macroRisk && (
-              <div className="ds-card" style={{ background: '#181818', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
+              <div className="ds-card" style={{ background: '#11182f', borderRadius: '8px', padding: '1rem', boxShadow: 'rgba(0,0,0,0.3) 0px 4px 8px' }}>
                 <div style={{ fontSize: '0.7rem', color: '#7c7c7c', fontWeight: 600, marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                   <Activity size={12} /> 환율 리스크
                 </div>
@@ -760,17 +760,17 @@ export default function GalchiDashboard() {
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{
-        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))',
         border: '1px solid rgba(255,255,255,0.04)',
         borderRadius: '16px',
         padding: '6px',
         marginBottom: '2rem',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
@@ -786,7 +786,7 @@ export default function GalchiDashboard() {
                 onClick={() => setActivePart(s.id as any)}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.background = 'rgba(140,170,255,0.12)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.borderColor = `${s.color}40`;
                   }
@@ -824,8 +824,8 @@ export default function GalchiDashboard() {
                 <div style={{
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
-                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  background: isActive ? s.color : 'rgba(140,170,255,0.12)',
+                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',

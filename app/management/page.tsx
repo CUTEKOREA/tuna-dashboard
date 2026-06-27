@@ -945,7 +945,7 @@ export default function ManagementDashboard() {
         <div style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           padding: '10px 4rem',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid rgba(140,170,255,0.12)',
           fontSize: '12px', color: 'rgba(255,255,255,0.7)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -977,13 +977,13 @@ export default function ManagementDashboard() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Link href="/" style={{
                fontSize: '12px', padding: '8px 18px', 
-               background: 'rgba(255,255,255,0.05)', 
+               background: 'rgba(140,170,255,0.10)', 
                border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', 
                color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontWeight: 500,
                transition: 'all 0.3s', backdropFilter: 'blur(4px)',
             }}
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = theme.gold; e.currentTarget.style.color = theme.gold; e.currentTarget.style.background = 'rgba(201,160,80,0.08)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; e.currentTarget.style.background = 'rgba(140,170,255,0.10)'; }}
             >
               ← 참치 대시보드로
             </Link>

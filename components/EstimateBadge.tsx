@@ -9,7 +9,7 @@ export default function EstimateBadge() {
       padding: '2px 8px',
       borderRadius: '4px',
       border: '1px solid #f59e0b',
-      backgroundColor: '#1e293b',
+      backgroundColor: '#1a2442',
       color: 'var(--color-warning)',
       fontSize: '0.75rem',
       fontWeight: 600,

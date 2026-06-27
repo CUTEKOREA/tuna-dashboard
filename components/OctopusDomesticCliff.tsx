@@ -12,7 +12,7 @@ import domestic from '../data/octopus_domestic_resource.json';
 import global from '../data/octopus_global_catch.json';
 
 const tooltipStyle = {
-  background: 'rgba(0,15,30,0.95)',
+  background: 'rgba(10, 16, 40, 0.95)',
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   fontSize: '12px',
@@ -48,7 +48,7 @@ export default function OctopusDomesticCliff() {
               <stop offset="100%" stopColor="#8b5cf6" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fill: '#8b5cf6', fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '한국 문어류 어획']} />
@@ -62,7 +62,7 @@ export default function OctopusDomesticCliff() {
     <div style={{ height: '180px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={productionSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#ef4444', fontSize: 10 }} domain={[0, 7]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val}천 톤`, '국내 생산']} />
@@ -80,7 +80,7 @@ export default function OctopusDomesticCliff() {
     <div style={{ height: '200px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={globalShare2022} layout="vertical" margin={{ top: 8, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
           <YAxis type="category" dataKey="country" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} width={50} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${Number(val).toLocaleString()} 톤`, '2022 어획']} />
@@ -97,8 +97,8 @@ export default function OctopusDomesticCliff() {
   const policy = domestic.policyTimeline as Array<{ year: string; event: string; source: string }>;
 
   const PanelStyle: React.CSSProperties = {
-    background: 'rgba(15, 23, 42, 0.4)',
-    border: '1px solid rgba(255,255,255,0.06)',
+    background: 'rgba(20, 28, 52, 0.4)',
+    border: '1px solid rgba(140,170,255,0.12)',
     borderRadius: '10px',
     padding: '12px 14px',
   };

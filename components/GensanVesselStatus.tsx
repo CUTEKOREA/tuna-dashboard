@@ -47,14 +47,14 @@ export default function GensanVesselStatus() {
 
       <div style={{ display: 'flex', flexDirection: rc.isMobile ? 'column' : 'row', gap: '20px' }}>
         {/* Completed Discharging */}
-        <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px' }}>
+        <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(140, 170, 255, 0.10)', padding: '16px' }}>
           <h3 style={{ fontSize: '14px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', margin: '0 0 16px 0' }}>
             <CheckCircle2 size={16} color="var(--color-success)" />
             하역 완료 선박 (2척)
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {completedVessels.map((v, i) => (
-              <div key={i} style={{ borderBottom: i === completedVessels.length - 1 ? 'none' : '1px solid rgba(255, 255, 255, 0.05)', paddingBottom: i === completedVessels.length - 1 ? 0 : '12px' }}>
+              <div key={i} style={{ borderBottom: i === completedVessels.length - 1 ? 'none' : '1px solid rgba(140, 170, 255, 0.10)', paddingBottom: i === completedVessels.length - 1 ? 0 : '12px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                   <strong style={{ color: '#60a5fa', fontSize: '14px' }}>{v.vessel}</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>{v.shipper}</span>
@@ -73,14 +73,14 @@ export default function GensanVesselStatus() {
         </div>
 
         {/* Incoming Vessels */}
-        <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px' }}>
+        <div style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.02)', borderRadius: '8px', border: '1px solid rgba(140, 170, 255, 0.10)', padding: '16px' }}>
           <h3 style={{ fontSize: '14px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', margin: '0 0 16px 0' }}>
             <Clock size={16} color="var(--color-warning)" />
             입항 예정 선박 (3척 · 2026/05/06 보고 당시)
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {incomingVessels.map((v, i) => (
-              <div key={i} style={{ borderBottom: i === incomingVessels.length - 1 ? 'none' : '1px solid rgba(255, 255, 255, 0.05)', paddingBottom: i === incomingVessels.length - 1 ? 0 : '12px' }}>
+              <div key={i} style={{ borderBottom: i === incomingVessels.length - 1 ? 'none' : '1px solid rgba(140, 170, 255, 0.10)', paddingBottom: i === incomingVessels.length - 1 ? 0 : '12px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                   <strong style={{ color: 'var(--color-warning)', fontSize: '14px' }}>{v.vessel}</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '12px' }}>{v.shipper}</span>

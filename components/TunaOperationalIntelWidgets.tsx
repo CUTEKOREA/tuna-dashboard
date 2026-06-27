@@ -21,7 +21,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{
-        backgroundColor: '#1e293b',
+        backgroundColor: '#1a2442',
         border: '1px solid #334155',
         padding: '12px',
         borderRadius: '6px',

@@ -25,11 +25,11 @@ export default function SquidClimateRadar() {
               <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0.8} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `${val}℃`} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(val) => `${val}k`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '11px' }} />
           <Area yAxisId="left" type="monotone" dataKey="sst_anomaly" name="수온 편차 (SST Anomaly)" stroke="url(#colorSST)" fillOpacity={1} fill="url(#colorSST)" />
           <Line yAxisId="right" type="monotone" dataKey="korea_catch" name="한국 어획량 (천톤)" stroke="#fcd34d" strokeWidth={3} dot={{ r: 3 }} />

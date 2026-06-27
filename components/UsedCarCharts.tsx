@@ -13,7 +13,7 @@ export function MarketGrowthChart({ data }: { data: any[] }) {
     <SafeResponsiveContainer width="100%" height={280}>
       <ComposedChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
@@ -31,7 +31,7 @@ export function MarketShareChart({ data }: { data: any[] }) {
     <SafeResponsiveContainer width="100%" height={280}>
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `${v}%`} />
@@ -47,7 +47,7 @@ export function ShippingCostChart({ data }: { data: any[] }) {
     <SafeResponsiveContainer width="100%" height={260}>
       <BarChart data={data} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
         <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v.toLocaleString()}`} />
         <YAxis type="category" dataKey="route" width={160} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 10 }} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${Number(v).toLocaleString()}`} />
@@ -64,7 +64,7 @@ export function HybridGrowthChart({ data }: { data: any[] }) {
     <SafeResponsiveContainer width="100%" height={280}>
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={v => `$${v}B`} />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}B`} />
@@ -82,7 +82,7 @@ export function FuelPriceChart({ data }: { data: any[] }) {
     <SafeResponsiveContainer width="100%" height={240}>
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey="country" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="$" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `$${v}/L`} />
@@ -99,7 +99,7 @@ export function AgePenaltyChart({ data }: { data: any[] }) {
     <SafeResponsiveContainer width="100%" height={200}>
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey="range" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} />
         <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} unit="%" />
         <Tooltip contentStyle={tt} labelStyle={ttLabel} itemStyle={ttItem} formatter={(v: any) => `${v}%`} />

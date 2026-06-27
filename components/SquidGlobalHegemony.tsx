@@ -21,11 +21,11 @@ export default function SquidGlobalHegemony() {
       chartHeight={400}
       chart={
         <ScatterChart margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis type="number" dataKey="year" name="연도" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} domain={[1988, 2025]} ticks={[1990, 2000, 2010, 2025]} />
           <YAxis type="category" dataKey="area" name="FAO 해역" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} width={120} />
           <ZAxis type="number" dataKey="catch" name="어획 비중" range={[50, 2000]} />
-          <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
+          <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
           <Scatter name="중국 선단" data={chinaData} fill="var(--color-danger)" fillOpacity={0.7} />
           <Scatter name="한국 선단" data={koreaData} fill="var(--color-info)" fillOpacity={0.7} />

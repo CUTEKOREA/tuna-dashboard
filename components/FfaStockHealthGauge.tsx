@@ -99,7 +99,7 @@ function SemiGauge({ ratio, lrp, species, abbr, safetyMargin, speciesColor }: {
               outerRadius={70}
               stroke="none"
             >
-              <Cell fill="rgba(255,255,255,0.06)" />
+              <Cell fill="rgba(140,170,255,0.12)" />
             </Pie>
             {/* 실제 값 게이지 */}
             <Pie
@@ -212,7 +212,7 @@ export default function FfaStockHealthGauge() {
             key={s.abbr}
             style={{
               background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               borderRadius: 12,
               padding: '8px 4px',
             }}
@@ -279,7 +279,7 @@ export default function FfaStockHealthGauge() {
       <div style={{
         background: 'rgba(255,255,255,0.02)',
         borderRadius: 10,
-        border: '1px solid rgba(255,255,255,0.06)',
+        border: '1px solid rgba(140,170,255,0.12)',
         overflow: 'hidden',
       }}>
         <table style={{

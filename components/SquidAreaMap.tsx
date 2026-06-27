@@ -129,7 +129,7 @@ export default function SquidAreaMap() {
             width={mapWidth}
             height={mapHeight}
             viewBox={`0 0 ${mapWidth} ${mapHeight}`}
-            style={{ background: 'rgba(0, 20, 40, 0.6)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}
+            style={{ background: 'rgba(0, 20, 40, 0.6)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}
           >
             {[...Array(7)].map((_: any, i: number) => {
               const y = (mapHeight / 6) * i;
@@ -203,7 +203,7 @@ export default function SquidAreaMap() {
               position: 'absolute',
               top: `${Math.max(12, pos.y - 60)}px`,
               left: isRightEdge ? `${pos.x - 210}px` : `${pos.x + 30}px`,
-              background: 'rgba(0, 15, 30, 0.95)',
+              background: 'rgba(10, 16, 40, 0.95)',
               border: '1px solid rgba(16, 185, 129, 0.4)',
               borderRadius: '10px', padding: '14px',
               color: 'var(--text-primary)', fontSize: '0.9rem',

@@ -126,7 +126,7 @@
   background:
     linear-gradient(
       135deg,
-      rgba(15, 23, 42, 0.80) 0%,
+      rgba(20, 28, 52, 0.80) 0%,
       rgba(8, 15, 30, 0.92) 100%
     );
   backdrop-filter: blur(16px) saturate(1.4);
@@ -191,7 +191,7 @@
   box-shadow:
     0 12px 40px -8px rgba(0, 0, 0, 0.55),
     0 0 28px -4px rgba(6, 182, 212, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    inset 0 1px 0 rgba(140, 170, 255, 0.12);
   border-color: rgba(6, 182, 212, 0.3);
 }
 
@@ -222,7 +222,7 @@
 .cardRegion {
   font-size: 0.72rem;
   color: rgba(203, 213, 225, 0.85);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(140, 170, 255, 0.12);
   padding: 3px 8px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -440,7 +440,7 @@
   font-weight: 600;
   box-shadow:
     0 1px 4px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 rgba(140, 170, 255, 0.10);
 }
 
 .filterGroupDivider {
@@ -452,7 +452,7 @@
 }
 
 .filterBtn {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(20, 28, 52, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(148, 163, 184, 0.08);
@@ -505,7 +505,7 @@
   background:
     linear-gradient(
       160deg,
-      rgba(15, 23, 42, 0.95) 0%,
+      rgba(20, 28, 52, 0.95) 0%,
       rgba(2, 6, 23, 0.98) 100%
     );
   border: 1px solid rgba(6, 182, 212, 0.2);
@@ -532,7 +532,7 @@
 }
 
 .modalContent::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.4);
+  background: rgba(20, 28, 52, 0.4);
   border-radius: 3px;
 }
 
@@ -549,7 +549,7 @@
 /* Firefox scrollbar */
 .modalContent {
   scrollbar-width: thin;
-  scrollbar-color: rgba(6, 182, 212, 0.25) rgba(15, 23, 42, 0.4);
+  scrollbar-color: rgba(6, 182, 212, 0.25) rgba(20, 28, 52, 0.4);
 }
 
 .closeBtn {
@@ -557,7 +557,7 @@
   top: 1.25rem;
   right: 1.25rem;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(140, 170, 255, 0.12);
   color: rgba(148, 163, 184, 0.6);
   cursor: pointer;
   padding: 6px;

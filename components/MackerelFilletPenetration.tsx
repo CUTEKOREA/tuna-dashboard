@@ -20,10 +20,10 @@ export default function MackerelFilletPenetration() {
             <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.05}/>
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
         <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
         <YAxis tickFormatter={(val) => `${val}%`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-        <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
         <Area type="monotone" dataKey="filletShare" name="간편식 밥상 점유율(%)" stroke="#8b5cf6" strokeWidth={3} fillOpacity={1} fill="url(#colorFillet)" />
       </AreaChart>
     </SafeResponsiveContainer>

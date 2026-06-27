@@ -130,9 +130,9 @@ export default function FinancialRiskDashboard() {
             onMouseLeave={e => { e.currentTarget.style.borderColor = theme.border; e.currentTarget.style.color = theme.white; }}>
             <RefreshCw size={14} /> 데이터 새로고침
           </button>
-          <Link href="/management" style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${theme.border}`, color: theme.white, padding: '8px 16px', borderRadius: '8px', fontSize: '13px', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'all 0.2s' }}
+          <Link href="/management" style={{ background: 'rgba(140,170,255,0.10)', border: `1px solid ${theme.border}`, color: theme.white, padding: '8px 16px', borderRadius: '8px', fontSize: '13px', textDecoration: 'none', display: 'flex', alignItems: 'center', transition: 'all 0.2s' }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}>
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(140,170,255,0.10)'; }}>
             경영 대시보드로 이동
           </Link>
         </div>

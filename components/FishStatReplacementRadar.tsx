@@ -34,7 +34,7 @@ export default function FishStatReplacementRadar() {
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
             <PolarGrid stroke="rgba(255,255,255,0.1)" />
             <PolarAngleAxis dataKey="category" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} />
-            <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} />
+            <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Radar name="고등어 (Mackerel)" dataKey="Mackerel" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.4} />
             <Radar name="전갱이 (Jack Mackerel)" dataKey="JackMackerel" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.6} />
             <Radar name="정어리 (Sardine)" dataKey="Sardine" stroke="var(--color-warning)" fill="var(--color-warning)" fillOpacity={0.4} />

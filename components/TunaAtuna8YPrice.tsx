@@ -102,7 +102,7 @@ export default function TunaAtuna8YPrice() {
           onClick={() => setMode(k)}
           style={{
             padding: '0.3rem 0.7rem',
-            background: mode === k ? 'rgba(14,165,233,0.25)' : 'rgba(255,255,255,0.05)',
+            background: mode === k ? 'rgba(14,165,233,0.25)' : 'rgba(140,170,255,0.10)',
             border: mode === k ? '1px solid rgba(14,165,233,0.5)' : '1px solid rgba(255,255,255,0.1)',
             borderRadius: '4px',
             fontSize: '0.74rem',
@@ -118,7 +118,7 @@ export default function TunaAtuna8YPrice() {
 
   const chart = (
     <LineChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis
         dataKey="month"
         stroke="rgba(255,255,255,0.3)"
@@ -132,7 +132,7 @@ export default function TunaAtuna8YPrice() {
         domain={['auto', 'auto']}
       />
       <Tooltip
-        contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0', fontSize: '0.78rem' }}
+        contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0', fontSize: '0.78rem' }}
         formatter={(v: any) => v ? COMMA(Number(v)) + '/톤' : '-'}
       />
       <Legend wrapperStyle={{ fontSize: '10px' }} iconSize={8} />

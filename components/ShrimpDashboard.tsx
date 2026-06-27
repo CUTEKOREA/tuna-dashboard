@@ -45,7 +45,7 @@ const SHRIMP_API_SOURCES: Array<{ key: string; url: string }> = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: '#f8fafc', fontSize: '0.88rem' }}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)', color: '#f8fafc', fontSize: '0.88rem' }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 700, borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: any) => {
           if (entry.value === undefined || entry.name === undefined || entry.name === '') return null;
@@ -277,7 +277,7 @@ export default function ShrimpDashboard() {
                   </linearGradient>
                 ))}
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -293,7 +293,7 @@ export default function ShrimpDashboard() {
           return (
             <ComposedChart data={d}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               {hasDualAxis && <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
@@ -334,7 +334,7 @@ export default function ShrimpDashboard() {
       case "line":
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
@@ -348,7 +348,7 @@ export default function ShrimpDashboard() {
       case "area":
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -362,10 +362,10 @@ export default function ShrimpDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" height={36} />
             {series.map((s: any, i: number) => {
               const p = getA11yBarProps(i);
@@ -377,7 +377,7 @@ export default function ShrimpDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={truncateXAxis} angle={0} textAnchor="middle" height={60} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
@@ -419,7 +419,7 @@ export default function ShrimpDashboard() {
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
-            background: '#181818', border: 'none', 
+            background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: connectedApiCount > 0 ? 'var(--color-success)' : 'var(--color-warning)', boxShadow: connectedApiCount > 0 ? '0 0 8px #1ed760' : 'none', animation: 'pulse 2s infinite' }} />
@@ -440,7 +440,7 @@ export default function ShrimpDashboard() {
           return (
             <div key={key} className="ds-card" style={{
               background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '8px', padding: '1.2rem',
+              border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '8px', padding: '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '6px',
               transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
@@ -479,7 +479,7 @@ export default function ShrimpDashboard() {
       </div>
 
       {/* ═══ API Live & What-If Simulator ═══ */}
-      <div className="ds-card" style={{marginBottom: '2rem', padding: '1.5rem', background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}>
+      <div className="ds-card" style={{marginBottom: '2rem', padding: '1.5rem', background: 'rgba(24, 24, 24, 0.85)', backdropFilter: 'blur(12px)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '8px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px', position: 'relative', overflow: 'hidden'}}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'var(--color-success)' }} />
         <h2 style={{ margin: '0 0 1rem 0', fontSize: '1.13rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Activity color="var(--color-success)" size={20} /> 관세/환율 충격 시뮬레이터
@@ -514,7 +514,7 @@ export default function ShrimpDashboard() {
             </div>
           </div>
 
-          <div style={{ background: '#181818', padding: '1.2rem', borderRadius: '6px', border: '1px solid #1f1f1f', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ background: '#11182f', padding: '1.2rem', borderRadius: '6px', border: '1px solid #1f1f1f', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <h3 style={{ fontSize: '0.88rem', color: 'var(--color-success)', margin: '0 0 0.8rem 0', display: 'flex', alignItems: 'center', gap: '6px' }}><TrendingUp size={16} /> What-If 추정 이익률</h3>
             <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               {(simBaseMargin - ((simExchangeRate - 1385)/100) - simTariff).toFixed(1)}%
@@ -528,17 +528,17 @@ export default function ShrimpDashboard() {
       
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{
-        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))',
         border: '1px solid rgba(255,255,255,0.04)',
         borderRadius: '16px',
         padding: '6px',
         marginBottom: '2rem',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
@@ -554,7 +554,7 @@ export default function ShrimpDashboard() {
                 onClick={() => setActivePart(s.id as any)}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.background = 'rgba(140,170,255,0.12)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.borderColor = `${s.color}40`;
                   }
@@ -587,8 +587,8 @@ export default function ShrimpDashboard() {
                 <div style={{
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
-                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  background: isActive ? s.color : 'rgba(140,170,255,0.12)',
+                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',

@@ -53,7 +53,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
   return (
     <div style={{
-      background: 'rgba(0,15,30,0.95)',
+      background: 'rgba(10, 16, 40, 0.95)',
       border: '1px solid rgba(255,255,255,0.2)',
       borderRadius: 8,
       padding: '10px 14px',

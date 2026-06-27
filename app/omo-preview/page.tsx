@@ -16,7 +16,7 @@ import TunaCannedMarketShare from '@/components/TunaCannedMarketShare';
 
 export default function OmoPreviewPage() {
   return (
-    <div style={{ background: '#0f172a', minHeight: '100vh', padding: '24px' }}>
+    <div style={{ background: '#0a0f1f', minHeight: '100vh', padding: '24px' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <header style={{ marginBottom: '32px' }}>
           <h1

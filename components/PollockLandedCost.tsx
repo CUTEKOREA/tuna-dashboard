@@ -78,7 +78,7 @@ export function PollockLandedCostWaterfall() {
               <SafeResponsiveContainer width="100%" height={180}>
                 <BarChart data={chartData}>
                   <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
                   <XAxis dataKey="name" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
                   <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="₩" />
                   <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} formatter={(v: any) => `₩${v}/kg`} />
@@ -136,7 +136,7 @@ export function PollockRouteComparison() {
               </thead>
               <tbody>
                 {comparison.map((r: any, i: number) => (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <tr key={i} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                     <td style={{ padding: '6px', color: 'var(--text-primary)', fontWeight: 600 }}>{r.route}</td>
                     <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: '#22c55e' }}>₩{r.total_krw_kg?.toLocaleString()}</td>
                     <td style={{ padding: '6px', textAlign: 'right', fontFamily: 'monospace', color: r.margin_pct > 10 ? '#22c55e' : r.margin_pct > 5 ? '#f59e0b' : '#ef4444' }}>{r.margin_pct}%</td>
@@ -155,7 +155,7 @@ export function PollockRouteComparison() {
           <SafeResponsiveContainer width="100%" height={150}>
             <BarChart data={fxData} barGap={1}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
               <XAxis dataKey="fx" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.7rem' }} formatter={(v: any) => `₩${v}`} />

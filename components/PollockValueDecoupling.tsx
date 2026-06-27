@@ -31,7 +31,7 @@ export default function PollockValueDecoupling() {
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={12} tickLine={false} tickFormatter={(v) => `${v}천톤`} domain={['auto', 'auto']} />
           <YAxis yAxisId="right" orientation="right" stroke="#14b8a6" fontSize={12} tickLine={false} tickFormatter={(v) => `$${v}백만`} domain={['auto', 'auto']} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }}
+            contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }}
             formatter={(value: any, name: any) => {
               if (String(name).includes('수량')) return [`${value.toFixed(1)}천톤`, name];
               return [`$${value.toFixed(1)}백만`, name];

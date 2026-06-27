@@ -128,7 +128,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
         padding: '2rem 2rem 1.5rem',
         background: 'linear-gradient(135deg, rgba(6,182,212,0.06) 0%, rgba(139,92,246,0.06) 50%, rgba(16,185,129,0.04) 100%)',
         borderRadius: '16px',
-        border: '1px solid rgba(255,255,255,0.06)',
+        border: '1px solid rgba(140,170,255,0.12)',
         overflow: 'hidden',
       }}>
         {/* Decorative glow behind header */}
@@ -315,7 +315,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                 <span style={{
                   fontSize: '0.6rem',
                   fontWeight: 700,
-                  background: activeFilter === f ? 'rgba(6,182,212,0.2)' : 'rgba(255,255,255,0.06)',
+                  background: activeFilter === f ? 'rgba(6,182,212,0.2)' : 'rgba(140,170,255,0.12)',
                   color: activeFilter === f ? '#06B6D4' : '#64748b',
                   padding: '1px 5px',
                   borderRadius: '6px',
@@ -390,7 +390,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                         marginTop: '6px',
                         height: '3px',
                         borderRadius: '2px',
-                        background: 'rgba(255,255,255,0.06)',
+                        background: 'rgba(140,170,255,0.12)',
                         overflow: 'hidden',
                       }}>
                         <div style={{
@@ -457,7 +457,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                                 fontSize: '0.68rem',
                                 padding: '2px 7px',
                                 borderRadius: '6px',
-                                background: 'rgba(255,255,255,0.05)',
+                                background: 'rgba(140,170,255,0.10)',
                                 color: '#64748b',
                                 border: '1px solid rgba(255,255,255,0.08)',
                                 fontWeight: 600,
@@ -586,7 +586,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
                     <tbody>
                       {selectedVendor.meetingData.details.map((detail: any, idx: number) => (
-                        <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                        <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                           <td style={{ padding: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', width: '25%', verticalAlign: 'top' }}>{detail.category}</td>
                           <td style={{ padding: '0.75rem', color: 'var(--text-main)' }}>
                             {detail.content}
@@ -656,7 +656,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
                         <tbody>
                           {rows.map(([label, value], idx) => (
-                            <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                            <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                               <td style={{ padding: '0.6rem 0.75rem', fontWeight: 600, color: 'var(--text-muted)', width: '24%', verticalAlign: 'top', whiteSpace: 'nowrap' }}>{label}</td>
                               <td style={{ padding: '0.6rem 0.75rem', color: 'var(--text-main)', lineHeight: 1.5 }}>
                                 {value}
@@ -664,7 +664,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                             </tr>
                           ))}
                           {pp.website && (
-                            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                            <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                               <td style={{ padding: '0.6rem 0.75rem', fontWeight: 600, color: 'var(--text-muted)', verticalAlign: 'top', whiteSpace: 'nowrap' }}>웹사이트</td>
                               <td style={{ padding: '0.6rem 0.75rem' }}>
                                 <a href={pp.website} target="_blank" rel="noopener noreferrer" style={{ color: '#38BDF8', textDecoration: 'none', wordBreak: 'break-all' }}>{pp.website}</a>
@@ -679,7 +679,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   {certs.length > 0 && (
                     <div style={{ marginBottom: '1.25rem' }}>
                       {/* ── Section divider ── */}
-                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
+                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(140,170,255,0.12), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.9rem', color: '#E2E8F0', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <ShieldCheck size={15} color="#38BDF8" /> 인증 현황 (출처 검증 결과 — 녹색: 코드 확인 · 황색: 번호 미확인)
                       </h4>
@@ -705,7 +705,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   {devs.length > 0 && (
                     <div style={{ marginBottom: '1.25rem' }}>
                       {/* ── Section divider ── */}
-                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
+                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(140,170,255,0.12), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.9rem', color: '#E2E8F0', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <Newspaper size={15} color="#38BDF8" /> 최근 동향
                       </h4>
@@ -730,7 +730,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
                   {sources.length > 0 && (
                     <div>
                       {/* ── Section divider ── */}
-                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)', margin: '0 0 0.75rem 0' }} />
+                      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(140,170,255,0.12), transparent)', margin: '0 0 0.75rem 0' }} />
                       <h4 style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <ExternalLink size={14} /> 출처
                       </h4>

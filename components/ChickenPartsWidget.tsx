@@ -28,14 +28,14 @@ export default function ChickenPartsWidget() {
   const body = (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {data.chartData && (
-        <div style={{ background: 'rgba(15, 23, 42, 0.4)', borderRadius: '12px', border: '1px solid rgba(245, 158, 11, 0.15)', padding: '1.2rem' }}>
+        <div style={{ background: 'rgba(20, 28, 52, 0.4)', borderRadius: '12px', border: '1px solid rgba(245, 158, 11, 0.15)', padding: '1.2rem' }}>
           <h4 style={{ margin: '0 0 1rem 0', fontSize: '0.95rem', color: '#f8fafc' }}>KCS HS코드 수입단가 추이</h4>
           <div style={{ height: '220px', width: '100%' }}>
             <LineChart width={600} height={220} data={data.chartData.data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
               <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 10 }} />
               <YAxis stroke="#94a3b8" tick={{ fontSize: 10 }} tickFormatter={yFmt} domain={['auto', 'auto']} />
-              <RechartsTooltip contentStyle={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid #f59e0b', borderRadius: '8px', color: '#f8fafc' }} formatter={yFmt} />
+              <RechartsTooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid #f59e0b', borderRadius: '8px', color: '#f8fafc' }} formatter={yFmt} />
               <Legend wrapperStyle={{ fontSize: '11px', color: '#cbd5e1' }} />
               {data.chartData.lines.map((l: any, i: number) => {
                 const color = i === 0 ? '#f59e0b' : '#ea580c';

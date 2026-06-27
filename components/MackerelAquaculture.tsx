@@ -41,7 +41,7 @@ export default function MackerelAquaculture() {
     if (!d) return null;
     return (
       <div style={{
-        background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(16, 185, 129, 0.4)',
+        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(16, 185, 129, 0.4)',
         padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px'
       }}>
         <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#34d399', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
@@ -81,14 +81,14 @@ export default function MackerelAquaculture() {
         <div style={{ display: 'flex', gap: '6px' }}>
           <button onClick={() => setViewMode('trend')} style={{
             padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 600,
-            background: viewMode === 'trend' ? 'rgba(16, 185, 129, 0.3)' : 'rgba(255,255,255,0.05)',
+            background: viewMode === 'trend' ? 'rgba(16, 185, 129, 0.3)' : 'rgba(140,170,255,0.10)',
             color: viewMode === 'trend' ? '#34d399' : 'rgba(255,255,255,0.5)'
           }}>
             <Fish size={14} style={{ verticalAlign: 'text-bottom', marginRight: '4px' }} /> 생산량 추이
           </button>
           <button onClick={() => setViewMode('price')} style={{
             padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 600,
-            background: viewMode === 'price' ? 'rgba(167, 139, 250, 0.3)' : 'rgba(255,255,255,0.05)',
+            background: viewMode === 'price' ? 'rgba(167, 139, 250, 0.3)' : 'rgba(140,170,255,0.10)',
             color: viewMode === 'price' ? '#a78bfa' : 'rgba(255,255,255,0.5)'
           }}>
             💎 가격 프리미엄
@@ -143,7 +143,7 @@ export default function MackerelAquaculture() {
                 <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.05}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v/1000000).toFixed(0)}M`} />
             <YAxis yAxisId="aqua" orientation="right" stroke="rgba(16,185,129,0.5)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={(v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : `${v}`} />
@@ -156,7 +156,7 @@ export default function MackerelAquaculture() {
         {chartWidth > 0 && viewMode === 'price' && (
           <ComposedChart width={chartWidth} height={350} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 20 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v}`} />
             <Tooltip content={<AquaTooltip />} />

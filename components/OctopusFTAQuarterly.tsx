@@ -11,7 +11,7 @@ import { ChartPatternDefs } from './ChartPatterns';
 import raw from '../data/octopus_fta_quarterly.json';
 
 const tooltipStyle = {
-  background: 'rgba(0,15,30,0.95)',
+  background: 'rgba(10, 16, 40, 0.95)',
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   fontSize: '12px',
@@ -29,7 +29,7 @@ export default function OctopusFTAQuarterly() {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={yearly} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#6366f1', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#8b5cf6', fontSize: 10 }} />
@@ -57,7 +57,7 @@ export default function OctopusFTAQuarterly() {
     <div style={{ height: '210px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={qSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="q" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#6366f1', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#8b5cf6', fontSize: 10 }} />
@@ -85,7 +85,7 @@ export default function OctopusFTAQuarterly() {
     <div style={{ height: '210px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={prices} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 10 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} domain={[6, 7.5]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any, name: any) => [`$${val}/kg`, name]} />
@@ -100,7 +100,7 @@ export default function OctopusFTAQuarterly() {
     <div style={{ height: '180px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={origin2026} layout="vertical" margin={{ top: 8, right: 30, left: 30, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(v) => `${v}%`} />
           <YAxis type="category" dataKey="country" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} width={60} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`${val > 0 ? '+' : ''}${val}%`, '전년 동기 대비']} />
@@ -130,8 +130,8 @@ export default function OctopusFTAQuarterly() {
   );
 
   const PanelStyle: React.CSSProperties = {
-    background: 'rgba(15, 23, 42, 0.4)',
-    border: '1px solid rgba(255,255,255,0.06)',
+    background: 'rgba(20, 28, 52, 0.4)',
+    border: '1px solid rgba(140,170,255,0.12)',
     borderRadius: '10px',
     padding: '12px 14px',
   };

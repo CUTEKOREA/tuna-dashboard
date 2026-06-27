@@ -30,7 +30,7 @@ export function WidgetHSKBottleneck() {
           <PolarGrid stroke="rgba(255,255,255,0.1)" />
           <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 10 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)' }} />
           <Radar name="통마리 (0303.67)" dataKey="통마리" stroke="#f43f5e" fill="#f43f5e" fillOpacity={0.5} />
           <Radar name="필레 (0304.75)" dataKey="필레" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.5} />
         </RadarChart>
@@ -67,11 +67,11 @@ export function WidgetWarehouseSniping() {
       chart={
         <ComposedChart data={wareHouseData} margin={{ top: 10, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={12} tickFormatter={(v)=>`${v}t`} domain={[0, 16000]} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={12} tickFormatter={(v)=>`₩${v}`} domain={[1500, 3000]} />
-          <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)' }} />
+          <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)' }} />
           <Bar yAxisId="left" dataKey="inventory" name="보세창고 재고량 (톤)" fill="#475569" opacity={0.7} />
           <Line yAxisId="right" type="monotone" dataKey="price" name="시장 평균 도매가" stroke="var(--color-success)" strokeWidth={3} />
           <Scatter yAxisId="right" dataKey="demandIndex" fill="var(--color-warning)" name="명절/금어기 타겟 수요 지수" />

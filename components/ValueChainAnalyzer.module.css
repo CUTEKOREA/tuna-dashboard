@@ -118,7 +118,7 @@
 .marginBadge {
   font-size: 0.85rem;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(140, 170, 255, 0.10);
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   border: 1px solid var(--panel-border);
@@ -227,7 +227,7 @@
 }
 
 .companyTag {
-  background: rgba(255,255,255,0.05);
+  background: rgba(140,170,255,0.10);
   border: 1px solid rgba(255,255,255,0.1);
   padding: 0.3rem 0.6rem;
   border-radius: 6px;

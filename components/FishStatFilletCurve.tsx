@@ -32,10 +32,10 @@ export default function FishStatFilletCurve() {
       <div style={{ height: '240px', width: '100%' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis tickFormatter={(val) => `${val}%`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-            <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => `${value}%`} />
+            <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => `${value}%`} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             <Line type="monotone" dataKey="fillet" name="순살 필렛 (Fillet)" stroke="var(--color-danger)" strokeWidth={3} dot={{ r: 4, fill: 'var(--color-danger)' }} />
             <Line type="monotone" dataKey="whole" name="통마리 (Raw/Whole)" stroke="#64748b" strokeWidth={2} strokeDasharray="5 5" dot={false} />

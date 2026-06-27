@@ -57,12 +57,12 @@ export default function TraderStatus() {
                 </linearGradient>
               ))}
             </defs>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey="month" stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={12} />
             <YAxis stroke="var(--text-muted)" axisLine={false} tickLine={false} fontSize={11} tickFormatter={(val) => `${(val / 1000)}k`} />
             <Tooltip
               cursor={{ fill: 'rgba(16,185,129,0.06)' }}
-              contentStyle={{ background: 'rgba(15,23,42,0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
+              contentStyle={{ background: 'rgba(20, 28, 52, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(16,185,129,0.25)', borderRadius: '10px', color: 'var(--text-main)', boxShadow: '0 8px 30px rgba(0,0,0,0.45)' }}
               itemStyle={{ fontSize: '13px' }}
               labelStyle={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '4px' }}
               formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
@@ -84,7 +84,7 @@ export default function TraderStatus() {
             style={{
               padding: '11px 10px', borderRadius: '8px', textAlign: 'center',
               background: c.key === 'TOTAL' ? 'rgba(16,185,129,0.08)' : 'rgba(255,255,255,0.03)',
-              border: `1px solid ${c.key === 'TOTAL' ? 'rgba(16,185,129,0.25)' : 'rgba(255,255,255,0.06)'}`,
+              border: `1px solid ${c.key === 'TOTAL' ? 'rgba(16,185,129,0.25)' : 'rgba(140,170,255,0.12)'}`,
               borderTop: `2px solid ${c.color}`,
               transform: hover === i ? 'translateY(-2px)' : 'none',
               boxShadow: hover === i ? `0 6px 18px rgba(0,0,0,0.35)` : 'none',

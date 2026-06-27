@@ -116,7 +116,7 @@ export const SquidVCProduct = () => (
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" />
         <YAxis type="category" dataKey="name" stroke="#94a3b8" width={100} fontSize={11} />
-        <RechartsTooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+        <RechartsTooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
         <Bar dataKey="일렉스" stackId="a" fill={COLORS[0]} name="일렉스" />
         <Bar dataKey="훔볼트" stackId="a" fill={COLORS[3]} name="훔볼트" />
         <Bar dataKey="롤리고" stackId="a" fill={COLORS[5]} name="롤리고" />

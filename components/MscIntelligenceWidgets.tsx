@@ -38,7 +38,7 @@ import TelemetryBadge from './TelemetryBadge';
    TOOLTIP STYLE (dark theme, shared)
 ================================================================ */
 const TOOLTIP_STYLE: React.CSSProperties = {
-  backgroundColor: 'rgba(15,23,42,0.95)',
+  backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
   color: '#e2e8f0',
@@ -117,7 +117,7 @@ export function MscGlobalTunaGrowthTracker() {
                   <stop offset="95%" stopColor="#10b981" stopOpacity={0.02} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.4)" tick={{ fill: '#94a3b8', fontSize: 12 }} />
               <YAxis yAxisId="left" stroke="#38bdf8" tick={{ fill: '#38bdf8', fontSize: 11 }} label={{ value: 'MSC 라벨 판매(천톤)', angle: -90, position: 'insideLeft', style: { fill: '#38bdf8', fontSize: 11 } }} />
               <YAxis yAxisId="right" orientation="right" stroke="#10b981" tick={{ fill: '#10b981', fontSize: 11 }} label={{ value: 'MSC 인증 어획(천톤)', angle: 90, position: 'insideRight', style: { fill: '#10b981', fontSize: 11 } }} />
@@ -170,7 +170,7 @@ export function MscEuropeCountryPenetration() {
         <div className={styles.chartContainer} style={{ height: 320 }}>
           <SafeResponsiveContainer width="100%" height={300}>
             <BarChart data={euroPenetrationData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
               <XAxis type="number" domain={[0, 100]} stroke="rgba(255,255,255,0.4)" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v: number) => `${v}%`} />
               <YAxis type="category" dataKey="country" width={100} tick={{ fill: '#e2e8f0', fontSize: 12 }} />
               <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: number) => [`${value}%`, 'MSC 침투율']} />
@@ -185,7 +185,7 @@ export function MscEuropeCountryPenetration() {
         <div style={{
           background: 'rgba(255,255,255,0.02)',
           borderRadius: 10,
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: '1px solid rgba(140,170,255,0.12)',
           overflow: 'hidden',
         }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
@@ -275,7 +275,7 @@ export function MscBrandSourcingScorecard() {
           {brandData.map((item) => (
             <div key={item.brand} style={{
               background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               borderRadius: 10,
               padding: '14px 18px',
             }}>
@@ -286,7 +286,7 @@ export function MscBrandSourcingScorecard() {
               </div>
 
               {/* Progress bar */}
-              <div style={{ width: '100%', background: 'rgba(255,255,255,0.06)', borderRadius: 6, height: 8, overflow: 'hidden' }}>
+              <div style={{ width: '100%', background: 'rgba(140,170,255,0.12)', borderRadius: 6, height: 8, overflow: 'hidden' }}>
                 <div style={{
                   width: `${item.rate}%`,
                   height: '100%',
@@ -352,7 +352,7 @@ export function MscTunaStockHealthGauge() {
           {/* Stock Health Donut */}
           <div style={{
             background: 'rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.06)',
+            border: '1px solid rgba(140,170,255,0.12)',
             borderRadius: 12,
             padding: '16px',
             textAlign: 'center',
@@ -397,7 +397,7 @@ export function MscTunaStockHealthGauge() {
           {/* HCR Implementation Donut */}
           <div style={{
             background: 'rgba(255,255,255,0.02)',
-            border: '1px solid rgba(255,255,255,0.06)',
+            border: '1px solid rgba(140,170,255,0.12)',
             borderRadius: 12,
             padding: '16px',
             textAlign: 'center',
@@ -524,7 +524,7 @@ export function MscConsumerInsightsRadar() {
           {premiumMetrics.map((m) => (
             <div key={m.label} style={{
               background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               borderRadius: 10,
               padding: '16px',
               textAlign: 'center',

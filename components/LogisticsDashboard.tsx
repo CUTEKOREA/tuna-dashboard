@@ -53,7 +53,7 @@ export default function LogisticsDashboard() {
           </div>
           <div className="ds-card" style={{
             fontSize: '0.88rem', padding: '8px 16px', 
-            background: '#181818', border: 'none', 
+            background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
           }}>

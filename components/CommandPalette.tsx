@@ -150,7 +150,7 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
                   <span style={{ flex: 1, fontSize: 14 }}>{item.label}</span>
                   <span style={{
                     fontSize: 10, color: 'rgba(255,255,255,0.3)',
-                    padding: '2px 8px', background: 'rgba(255,255,255,0.05)',
+                    padding: '2px 8px', background: 'rgba(140,170,255,0.10)',
                     borderRadius: 4,
                   }}>{item.category}</span>
                   {i === selectedIndex && <ArrowRight size={14} style={{ opacity: 0.4 }} />}

@@ -75,7 +75,7 @@ export default function SquidArbitrageRadar() {
             width={w}
             height={h}
             viewBox={`0 0 ${w} ${h}`}
-            style={{ background: 'radial-gradient(circle at center, rgba(3, 40, 60, 1) 0%, rgba(0, 15, 30, 1) 100%)' }}
+            style={{ background: 'radial-gradient(circle at center, rgba(3, 40, 60, 1) 0%, rgba(10, 16, 40, 1) 100%)' }}
           >
             <circle cx={w / 2} cy={h / 2} r={w * 0.2} fill="none" stroke="rgba(56, 189, 248, 0.1)" strokeWidth={1} />
             <circle cx={w / 2} cy={h / 2} r={w * 0.35} fill="none" stroke="rgba(56, 189, 248, 0.1)" strokeWidth={1} />
@@ -171,7 +171,7 @@ export default function SquidArbitrageRadar() {
       </div>
 
       <div style={{ flex: isMobile ? 'none' : '0 0 calc(35% - 20px)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <div style={{ padding: '8px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+        <div style={{ padding: '8px 12px', background: 'rgba(140,170,255,0.10)', borderRadius: '8px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
           <h4 style={{ margin: 0, fontSize: '0.9rem', color: '#e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
             <span>발견된 차익거래 라우트</span>
             <span style={{ color: '#38bdf8' }}>{sortedRoutes.length}건</span>
@@ -185,8 +185,8 @@ export default function SquidArbitrageRadar() {
               onMouseEnter={() => setHoveredRouteId(route.id)}
               onMouseLeave={() => setHoveredRouteId(null)}
               style={{
-                background: hoveredRouteId === route.id ? 'rgba(255,255,255,0.1)' : 'rgba(0, 15, 30, 0.5)',
-                border: `1px solid ${hoveredRouteId === route.id ? route.color : 'rgba(255,255,255,0.05)'}`,
+                background: hoveredRouteId === route.id ? 'rgba(255,255,255,0.1)' : 'rgba(10, 16, 40, 0.5)',
+                border: `1px solid ${hoveredRouteId === route.id ? route.color : 'rgba(140,170,255,0.10)'}`,
                 borderRadius: '8px',
                 padding: '12px',
                 cursor: 'pointer',

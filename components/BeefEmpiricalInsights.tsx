@@ -10,7 +10,7 @@ import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const customTooltipStyle = {
-  background: 'rgba(0,15,30,0.95)',
+  background: 'rgba(10, 16, 40, 0.95)',
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   padding: '8px 12px',
@@ -62,7 +62,7 @@ export function InsightFeedCostSpread({ accent = '#e11d48' }: any) {
       chart={
         <ComposedChart data={feedCostData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
           <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[50, 600]} />
           <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 12]} />
@@ -106,7 +106,7 @@ export function InsightCutTracker({ accent = '#fb923c' }: any) {
       }}
       chart={
         <ComposedChart data={cutTrackerData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9 }} />
           <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} />
           <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[6, 14]} />

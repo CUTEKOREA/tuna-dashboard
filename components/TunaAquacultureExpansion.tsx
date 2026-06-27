@@ -25,7 +25,7 @@ export default function TunaAquacultureExpansion() {
 
     return (
       <div style={{
-        background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
+        background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
         padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>

@@ -216,7 +216,7 @@ export default function VdsStrategyMatrix() {
               <XAxis dataKey="year" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={false} tickLine={false} />
               <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={false} tickLine={false} />
               <Tooltip 
-                contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid #1e293b', borderRadius: 8, fontSize: 13 }}
+                contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid #1a2442', borderRadius: 8, fontSize: 13 }}
                 itemStyle={{ fontWeight: 600 }}
               />
               <Legend wrapperStyle={{ fontSize: 13, paddingTop: 10 }} />
@@ -228,7 +228,7 @@ export default function VdsStrategyMatrix() {
                   stroke={companyColors[c]} 
                   strokeWidth={3}
                   activeDot={{ r: 6 }} 
-                  dot={{ r: 4, fill: '#0f172a', strokeWidth: 2 }}
+                  dot={{ r: 4, fill: '#0a0f1f', strokeWidth: 2 }}
                 />
               ))}
             </LineChart>

@@ -86,7 +86,7 @@ const Insight5JumboLeap = () => {
               tickFormatter={formatYAxisVal}
             />
             
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             
             <Bar 

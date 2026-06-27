@@ -136,7 +136,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     
   // truncateXAxis is defined globally
 return (
-      <div style={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
+      <div style={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', padding: '12px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.3)' }}>
         <p style={{ color: '#cbd5e1', fontWeight: 'bold', marginBottom: '8px', fontSize: '13px', margin: 0 }}>{label}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
           {payload.map((e: any, i: number) => (
@@ -227,7 +227,7 @@ const renderChart = (w: any) => {
                 <span style={{ fontSize: '13px', fontWeight: 600, color: '#e2e8f0' }}>{item.name}</span>
                 <span style={{ fontSize: '15px', fontWeight: 800, color: barColor }}>{item.value}{item.unit}</span>
               </div>
-              <div style={{ width: '100%', height: '8px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden' }}>
+              <div style={{ width: '100%', height: '8px', backgroundColor: 'rgba(140,170,255,0.10)', borderRadius: '4px', overflow: 'hidden' }}>
                 <div style={{ width: `${percentage}%`, height: '100%', backgroundColor: barColor, borderRadius: '4px', boxShadow: `0 0 8px ${barColor}50` }} />
               </div>
               <span style={{ fontSize: '11px', color: '#94a3b8', lineHeight: 1.4 }}>{item.desc}</span>
@@ -238,7 +238,7 @@ const renderChart = (w: any) => {
     );
   }
 
-  const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
+  const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />;
   const isShortData = d.length <= 10;
   const xAxisTextProps: any = { stroke: "rgba(255,255,255,0.1)", tick: { fill: "#cbd5e1", fontSize: 12, fontWeight: 500 }, ...(isShortData ? { interval: 0 } : {}) };
   const yAxisProps = { stroke: "rgba(255,255,255,0.1)", tick: { fill: "#cbd5e1", fontSize: 12, fontWeight: 500 }, tickFormatter: formatYAxis };
@@ -301,7 +301,7 @@ const renderChart = (w: any) => {
             {grid}
             <XAxis dataKey={xKeyVal} {...xAxisTextProps}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
             <YAxis {...yAxisProps} />
-            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
             <Legend wrapperStyle={{fontSize:'11px'}} />
             {w.bars?.map((b: any, i: number) => (
               <Bar key={`b${i}`} stackId={b.stackId} dataKey={b.key || b.dataKey} name={b.name || b.key || b.dataKey} fill={b.color || b.fill} radius={[6,6,0,0]} fillOpacity={0.85} isAnimationActive={false}>
@@ -526,7 +526,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             </div>
           </div>
           <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
-            background: '#181818', border: 'none', 
+            background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600,
             display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
@@ -552,7 +552,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             return (
               <div 
                 key={key} 
-                className="ds-card" style={{background: '#181818', 
+                className="ds-card" style={{background: '#11182f', 
                   border: 'none', 
                   borderRadius: '8px', 
                   padding: '1.2rem', 
@@ -569,7 +569,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#181818';
+                  e.currentTarget.style.background = '#11182f';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -602,13 +602,13 @@ const TunaDashboard = React.memo(function TunaDashboard() {
         borderRadius: '16px',
         padding: '6px',
         marginBottom: '2rem',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)',
       }}>
         {/* 상단 안내 라벨 */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
@@ -624,7 +624,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 onClick={() => setActivePart(s.id)}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.background = 'rgba(140,170,255,0.12)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.borderColor = `${s.color}40`;
                   }
@@ -664,8 +664,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
                 <div style={{
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
-                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  background: isActive ? s.color : 'rgba(140,170,255,0.12)',
+                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',

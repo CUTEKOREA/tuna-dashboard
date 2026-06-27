@@ -187,7 +187,7 @@ export default function TraderImportChart() {
               barSize={rc.isMobile ? 18 : 40}
             >
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.10)" />
               <XAxis 
                 dataKey="year" 
                 stroke="var(--text-muted)" 
@@ -232,7 +232,7 @@ export default function TraderImportChart() {
         </div>
 
         {/* Right Side: 2026 Monthly Trend Breakdown */}
-        <div style={{ flex: rc.isTablet ? 'none' : '1', minWidth: rc.isTablet ? 'auto' : '240px', backgroundColor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '8px', padding: '16px 12px 16px 0', display: 'flex', flexDirection: 'column', height: rc.isTablet ? '200px' : 'auto' }}>
+        <div style={{ flex: rc.isTablet ? 'none' : '1', minWidth: rc.isTablet ? 'auto' : '240px', backgroundColor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '8px', padding: '16px 12px 16px 0', display: 'flex', flexDirection: 'column', height: rc.isTablet ? '200px' : 'auto' }}>
           <h3 style={{ fontSize: '13px', margin: '0 0 16px 20px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '8px', height: '8px', background: 'var(--color-success)', borderRadius: '50%', boxShadow: '0 0 6px #10b981' }} />
             2026 Live Monthly Trend
@@ -243,7 +243,7 @@ export default function TraderImportChart() {
                 <ChartPatternDefs />
                 <XAxis type="number" hide />
                 <YAxis type="category" dataKey="month" axisLine={false} tickLine={false} stroke="var(--text-muted)" tick={{ fontSize: 11, fill: 'var(--text-muted)' }} />
-                <Tooltip content={<CustomTooltipMonthly />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+                <Tooltip content={<CustomTooltipMonthly />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
                 <Bar dataKey="FCF" stackId="a" fill={COLORS.FCF} barSize={24} radius={[4, 0, 0, 4]} />
                 <Bar dataKey="ITOCHU" stackId="a" fill={COLORS.ITOCHU} />
                 <Bar dataKey="TRIMARINE" stackId="a" fill={COLORS.TRIMARINE} />
@@ -257,7 +257,7 @@ export default function TraderImportChart() {
         </div>
       </div>
       
-      <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '11px', color: 'rgba(255,255,255,0.3)', display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid rgba(140,170,255,0.10)', fontSize: '11px', color: 'rgba(255,255,255,0.3)', display: 'flex', justifyContent: 'space-between' }}>
         <span>Harness Reliability Audit: S-Grade</span>
         <span>Last Updated: {new Date(meta?.timestamp).toLocaleString()}</span>
       </div>

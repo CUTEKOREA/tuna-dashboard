@@ -207,7 +207,7 @@ export function BuySignalDashboard() {
       <div className={styles.signalGrid}>
         <div className={styles.gaugeWrapper}>
           <svg width="200" height="120" viewBox="0 0 200 120" className={styles.gaugeSvg}>
-            <path d="M 10 110 A 80 80 0 0 1 190 110" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="12" strokeLinecap="round" />
+            <path d="M 10 110 A 80 80 0 0 1 190 110" fill="none" stroke="rgba(140,170,255,0.10)" strokeWidth="12" strokeLinecap="round" />
             <path d="M 10 110 A 80 80 0 0 1 190 110" fill="none" stroke={signalColor} strokeWidth="12" strokeLinecap="round"
               strokeDasharray={`${progress} ${circumference}`}
               style={{ filter: `drop-shadow(0 0 10px ${signalColor})`, transition: 'stroke-dasharray 1s ease' }}
@@ -587,10 +587,10 @@ function DroneRoiTracker() {
           <SafeResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20, right: 0, left: -20, bottom: 5 }}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.10)" />
               <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} />
               <YAxis stroke="#94a3b8" fontSize={12} />
-              <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+              <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
               <Bar dataKey="drySet" name="공치기 확률 (%)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} barSize={40} />
               <Bar dataKey="fuelWaste" name="낭비 연료(MT/월)" fill="var(--color-warning)" radius={[4, 4, 0, 0]} barSize={40} />
             </BarChart>
@@ -605,7 +605,7 @@ function DroneRoiTracker() {
             <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '0.2rem' }}>월 유류 절감 (OPEX)</div>
             <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--color-success)' }}>+$250K</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '0.8rem', borderRadius: '8px', textAlign: 'center' }}>
+          <div style={{ background: 'rgba(140, 170, 255, 0.10)', padding: '0.8rem', borderRadius: '8px', textAlign: 'center' }}>
             <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>투자 회수 기간 (Payback)</div>
             <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#06b6d4' }}>{payback}개월</div>
           </div>
@@ -721,7 +721,7 @@ function StorageTariffCalculator() {
           </div>
         </div>
         
-        <div style={{ flex: 1, padding: '1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ flex: 1, padding: '1rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>예상 창고료 (-60°C)</span>
             <span style={{ color: 'var(--color-danger)' }}>-${storageTotalCost.toLocaleString()}</span>
@@ -787,11 +787,11 @@ function YieldFreightSpread() {
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(255,255,255,0.03)' : 'rgba(16, 185, 129, 0.1)', border: recommendLoin ? '1px solid rgba(255,255,255,0.05)' : '1px solid #10b981' }}>
+        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(255,255,255,0.03)' : 'rgba(16, 185, 129, 0.1)', border: recommendLoin ? '1px solid rgba(140,170,255,0.10)' : '1px solid #10b981' }}>
           <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '0.5rem' }}>A안. 원어 수입 후 국내 가공 (통관/폐기 포함)</div>
           <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>${Math.round(loinEquivalentCost).toLocaleString()}<span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 'normal' }}> / Meat 1MT당</span></div>
         </div>
-        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(139, 92, 246, 0.1)' : 'rgba(255,255,255,0.03)', border: recommendLoin ? '1px solid #8b5cf6' : '1px solid rgba(255,255,255,0.05)' }}>
+        <div className={styles.totalCostCard} style={{ flex: 1, background: recommendLoin ? 'rgba(139, 92, 246, 0.1)' : 'rgba(255,255,255,0.03)', border: recommendLoin ? '1px solid #8b5cf6' : '1px solid rgba(140,170,255,0.10)' }}>
           <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginBottom: '0.5rem' }}>B안. 현지 Loin(뼈 제거) 수입 (가공마진 포함)</div>
           <div style={{ fontSize: '1.4rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>${Math.round(directLoinCost).toLocaleString()}<span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 'normal' }}> / Loin 1MT당</span></div>
         </div>
@@ -846,7 +846,7 @@ function ExchangeShockIndex() {
         </div>
         
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div className={styles.totalCostCard} style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.05)', padding: '1rem' }}>
+          <div className={styles.totalCostCard} style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(140,170,255,0.10)', padding: '1rem' }}>
             <div style={{ color: '#94a3b8', fontSize: '0.8rem', marginBottom: '0.2rem' }}>1MT 수입 원가 (KRW 환산)</div>
             <div style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>₩{(costKRW / 10000).toFixed(1)}만</div>
           </div>
@@ -897,10 +897,10 @@ function PriceAsymmetryChart() {
       <div style={{ height: '250px', marginBottom: '1.5rem' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} tickMargin={10} />
             <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(val) => `$${val}`} />
-            <RechartsTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', fontSize: '0.85rem' }} itemStyle={{ color: 'var(--text-primary)' }} />
+            <RechartsTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px', fontSize: '0.85rem' }} itemStyle={{ color: 'var(--text-primary)' }} />
             <Line type="monotone" dataKey="retail" name="소비자가 (대형마트 캔)" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 4, fill: '#0ea5e9' }} />
             <Line type="monotone" dataKey="wholesale" name="도매가 (공장 출고)" stroke="#8b5cf6" strokeWidth={2} dot={false} />
             <Line type="monotone" dataKey="raw" name="원어가 (방콕 CFR)" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" dot={false} />
@@ -1003,7 +1003,7 @@ function EcolabelRoiCalculator() {
         </div>
         
         <div style={{ flex: 1, padding: '1.2rem', background: 'rgba(16, 185, 129, 0.05)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.8rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem', borderBottom: '1px solid rgba(140,170,255,0.10)', paddingBottom: '0.8rem' }}>
             <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>예상 톤당 프리미엄 (MSC {mscPremiumPct}%)</span>
             <span style={{ color: 'var(--text-primary)' }}>+${Math.round(mscPremiumDollar)}/MT</span>
           </div>
@@ -1060,11 +1060,11 @@ function ByproductUpcycleTracker() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} layout="vertical" margin={{ top: 0, right: 30, left: 10, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.10)" />
             <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(val) => `$${val}`} />
             <YAxis dataKey="name" type="category" stroke="#94a3b8" fontSize={11} width={90} />
             <RechartsTooltip 
-              contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} 
+              contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} 
               formatter={(value, name) => [`$${value}`, name === 'profit' ? '단순 수익' : '폐기 비용']} 
             />
             <Bar dataKey="cost" stackId="a" fill="var(--color-danger)" radius={[4, 0, 0, 4]} barSize={20} />

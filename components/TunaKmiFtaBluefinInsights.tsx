@@ -80,11 +80,11 @@ export function InsightKmiBluefinYearly() {
       chart={
         <ComposedChart data={yearlyData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="연도" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#38bdf8" />
           <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" unit="$" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="수입량" name="수입량 (톤)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="단가" name="단가 (USD/kg)" stroke="#fbbf24" strokeWidth={3} dot={{ r: 5 }} />
@@ -171,10 +171,10 @@ export function InsightKmiBluefinSupplyShift() {
       chart={
         <BarChart data={supplyShiftData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="국가" stroke="#94a3b8" />
           <YAxis stroke="#94a3b8" unit="%" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <Bar dataKey="2024" name="2024년 점유율 (%)" fill="#64748b" radius={[4, 4, 0, 0]} />
           <Bar dataKey="2025" name="2025년 점유율 (%)" radius={[4, 4, 0, 0]}>
@@ -264,10 +264,10 @@ export function InsightKmiBluefin2026Signal() {
       chart={
         <BarChart data={q1SignalData} margin={{ top: 20, right: 30, left: 80, bottom: 5 }} layout="vertical">
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
           <XAxis type="number" stroke="#94a3b8" unit="%" />
           <YAxis dataKey="항목" type="category" stroke="#94a3b8" width={120} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Bar dataKey="변화율" name="2026 Q1 변화율 (%, 전년동기比)" radius={[0, 4, 4, 0]}>
             {q1SignalData.map((entry, i) => (
               <Cell key={i} fill={entry.색} />

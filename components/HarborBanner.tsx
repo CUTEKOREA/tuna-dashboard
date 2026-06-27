@@ -106,8 +106,8 @@ export default function HarborBanner({ vesselName, totalAmount, remainingAmount 
           <div style={{
             width: '100%',
             height: '24px',
-            background: '#1e293b',
-            border: '2px solid #0f172a',
+            background: '#1a2442',
+            border: '2px solid #0a0f1f',
             position: 'relative'
           }}>
             <div style={{

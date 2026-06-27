@@ -57,7 +57,7 @@ export function PollockSanctionParadox() {
             <div style={{ width: '100%', height: 200 }}>
               <ComposedChart width={800} height={200} data={trendData} style={{ width: '100%', height: '100%' }}>
                 <ChartPatternDefs />
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
                 <XAxis dataKey="year" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                 <YAxis yAxisId="left" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
                 <YAxis yAxisId="right" orientation="right" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
@@ -106,7 +106,7 @@ export function PollockFtaTariffMatrix() {
           <div style={{ width: '100%', height: 200 }}>
             <BarChart width={800} height={200} data={chartData} barGap={2} style={{ width: '100%', height: '100%' }}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
               <XAxis dataKey="name" tick={{ fill: 'var(--text-secondary)', fontSize: 9 }} />
               <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} unit="%" />
               <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />
@@ -182,7 +182,7 @@ export function PollockRiskScorecard() {
               {Object.entries(breakdown).map(([key, val]) => (
                 <div key={key} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.7rem' }}>
                   <span style={{ width: '90px', color: 'var(--text-secondary)', textAlign: 'right' }}>{key.replace(/_/g, ' ')}</span>
-                  <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: '4px', height: '12px', overflow: 'hidden' }}>
+                  <div style={{ flex: 1, background: 'rgba(140,170,255,0.10)', borderRadius: '4px', height: '12px', overflow: 'hidden' }}>
                     <div style={{ width: `${val as number}%`, height: '100%', background: (val as number) >= 90 ? '#ef4444' : (val as number) >= 75 ? '#f59e0b' : '#22c55e', borderRadius: '4px', transition: 'width 0.5s' }} />
                   </div>
                   <span style={{ fontWeight: 700, fontFamily: 'monospace', color: (val as number) >= 90 ? '#ef4444' : '#f59e0b', width: '30px' }}>{val as number}</span>
@@ -192,7 +192,7 @@ export function PollockRiskScorecard() {
             {/* vs Other Species */}
             <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
               {Object.entries(vsSpecies).map(([species, score]) => (
-                <div key={species} style={{ padding: '4px 10px', borderRadius: '12px', background: species === 'pollock' ? 'rgba(239,68,68,0.15)' : 'rgba(255,255,255,0.05)', fontSize: '0.65rem', color: species === 'pollock' ? '#ef4444' : 'var(--text-secondary)' }}>
+                <div key={species} style={{ padding: '4px 10px', borderRadius: '12px', background: species === 'pollock' ? 'rgba(239,68,68,0.15)' : 'rgba(140,170,255,0.10)', fontSize: '0.65rem', color: species === 'pollock' ? '#ef4444' : 'var(--text-secondary)' }}>
                   {species}: <strong>{score as number}</strong>
                 </div>
               ))}

@@ -15,10 +15,10 @@ export default function MackerelSafetyPremium() {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 20, right: 30, left: 25, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="rgba(140,170,255,0.10)" />
         <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
         <YAxis type="category" dataKey="region" stroke="rgba(255,255,255,0.2)" tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }} />
-        <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
         <Bar dataKey="before" name="안전 사태 이전 (판가 인덱스)" fill={A11Y_PALETTE[7]} radius={[0,4,4,0]} barSize={14} fillOpacity={0.5} />
         <Bar dataKey="after" name="안전 사태 이후 (판가 인덱스)" fill="url(#a11y-stripe-h)" radius={[0,4,4,0]} barSize={14}>
           {data.map((entry: any, index: number) => {

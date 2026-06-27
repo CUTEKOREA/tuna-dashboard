@@ -40,7 +40,7 @@ export default function MackerelMacroCycle() {
     if (!d) return null;
     return (
       <div style={{
-        background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
+        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
         padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
       }}>
         <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#67e8f9', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
@@ -106,7 +106,7 @@ export default function MackerelMacroCycle() {
                 <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.05}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v/1000000).toFixed(0)}M`} />
             <YAxis yAxisId="price" orientation="right" stroke="rgba(239, 68, 68, 0.5)" tick={{ fill: 'var(--color-danger)', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />

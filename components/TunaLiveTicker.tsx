@@ -58,7 +58,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
   return (
     <div style={{
       marginBottom: '2rem',
-      background: '#181818',
+      background: '#11182f',
       border: 'none',
       borderRadius: '8px',
       overflow: 'hidden',
@@ -70,7 +70,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0.8rem 1.2rem',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        borderBottom: '1px solid rgba(140,170,255,0.10)',
         background: isFullyLive 
           ? 'linear-gradient(90deg, rgba(252,213,53,0.08) 0%, rgba(14,203,129,0.08) 100%)'
           : 'rgba(255,255,255,0.02)',
@@ -132,7 +132,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
             key={item.id}
             style={{
               padding: '0.9rem 1rem',
-              borderRight: idx < ticker.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+              borderRight: idx < ticker.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none',
               transition: 'all 0.2s',
               cursor: 'default',
               position: 'relative',
@@ -185,7 +185,7 @@ const TunaLiveTicker = React.memo(function TunaLiveTicker() {
       {meta && (
         <div style={{
           padding: '0.4rem 1.2rem',
-          borderTop: '1px solid rgba(255,255,255,0.05)',
+          borderTop: '1px solid rgba(140,170,255,0.10)',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           fontSize: '0.6rem', color: '#4a5568',
         }}>

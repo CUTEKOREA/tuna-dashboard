@@ -8,10 +8,10 @@ import rawData from '../data/mackerel/mackerel_alt_sourcing_index.json';
 export default function MackerelAltSourcingIndex() {
   const chart = (
     <LineChart data={rawData} margin={{ top: 20, right: 20, left: -20, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
       <XAxis dataKey="q" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
       <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`$${v}`} tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-      <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)' }} />
+      <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)' }} />
       <Legend wrapperStyle={{ fontSize: '11px' }} />
       <Line type="monotone" dataKey="norway" name="노르웨이산" stroke="#38bdf8" strokeWidth={3} />
       <Line type="monotone" dataKey="uk" name="영국산" stroke="#cbd5e1" strokeDasharray="5 5" />

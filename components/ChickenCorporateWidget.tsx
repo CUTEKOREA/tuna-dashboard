@@ -33,7 +33,7 @@ export default function ChickenCorporateWidget() {
                 <span>{co.company}</span>
                 <span style={{ color: 'var(--color-danger)', fontWeight: 600 }}>냉동육 {co.frozenFocus}%</span>
               </div>
-              <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden', display: 'flex' }}>
+              <div style={{ width: '100%', height: '8px', background: 'rgba(140,170,255,0.10)', borderRadius: '4px', overflow: 'hidden', display: 'flex' }}>
                 <div style={{ width: `${co.frozenFocus}%`, background: 'var(--color-danger)', height: '100%' }} />
                 <div style={{ width: `${co.processedFocus}%`, background: 'var(--color-info)', height: '100%' }} />
               </div>
@@ -55,7 +55,7 @@ export default function ChickenCorporateWidget() {
                 <span style={{ color: 'var(--color-info)', fontWeight: 600 }}>가공육 {co.processedFocus}%</span>
                 <span>{co.company}</span>
               </div>
-              <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', overflow: 'hidden', display: 'flex' }}>
+              <div style={{ width: '100%', height: '8px', background: 'rgba(140,170,255,0.10)', borderRadius: '4px', overflow: 'hidden', display: 'flex' }}>
                 <div style={{ width: `${co.frozenFocus}%`, background: 'var(--color-danger)', height: '100%' }} />
                 <div style={{ width: `${co.processedFocus}%`, background: 'var(--color-info)', height: '100%' }} />
               </div>

@@ -17,10 +17,10 @@ export default function SquidCollapseCountdown() {
       chartHeight={400}
       chart={
         <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="yearsFromPeak" name="정점 이후 경과년도" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(val) => `Peak ${val > 0 ? '+' + val : val}년`} />
           <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
           <ReferenceLine x={0} stroke="#fcd34d" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: '역사적 어획 정점 (Peak Year)', fill: '#fcd34d', fontSize: 10 }} />
           <ReferenceLine x={6} stroke="var(--color-danger)" strokeDasharray="5 5" label={{ position: 'insideBottomRight', value: 'Point of No Return', fill: 'var(--color-danger)', fontSize: 10, offset: 20 }} />

@@ -17,7 +17,7 @@ export default function GlobalError({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#0a0a0a',
+        background: '#070b18',
         color: '#fff',
         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
       }}>

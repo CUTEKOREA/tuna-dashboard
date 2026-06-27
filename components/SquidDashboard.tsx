@@ -476,7 +476,7 @@ export default function SquidDashboard() {
                   </linearGradient>
                 ))}
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -490,7 +490,7 @@ export default function SquidDashboard() {
           return (
             <BarChart data={d} margin={newChartMargin}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -504,7 +504,7 @@ export default function SquidDashboard() {
         case "line":
           return (
             <LineChart data={d} margin={newChartMargin}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -518,7 +518,7 @@ export default function SquidDashboard() {
           return (
             <ComposedChart data={d} margin={newChartMargin}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={widget.xKey} stroke="#64748b" tick={newTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={(widget.bars && widget.bars.length > 0) ? "band" : "auto"} angle={0} textAnchor="middle" />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatYAxis} />
               {(widget.lines?.some((l:any) => l.yAxisId === 'right') || widget.bars?.some((b:any) => b.yAxisId === 'right') || widget.areas?.some((a:any) => a.yAxisId === 'right')) && (
@@ -567,7 +567,7 @@ export default function SquidDashboard() {
       case "line":
         return (
           <LineChart data={d} margin={chartMargin}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
@@ -581,7 +581,7 @@ export default function SquidDashboard() {
       case "area":
         return (
           <AreaChart data={d} margin={chartMargin}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -595,10 +595,10 @@ export default function SquidDashboard() {
         return (
           <BarChart data={d} margin={chartMargin}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} angle={0} textAnchor="middle" />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
-            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
             <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} iconType="circle" />
             {series.map((s: any, i: number) => {
               const p = getA11yBarProps(i);
@@ -610,7 +610,7 @@ export default function SquidDashboard() {
         return (
           <ComposedChart data={d} margin={chartMargin}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={xTickProps} minTickGap={20} tickFormatter={formatXAxis} scale={series.some((s:any) => s.type !== 'line' && s.type !== 'scatter') ? "band" : "auto"} angle={0} textAnchor="middle" />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={formatYAxis} />}
@@ -659,7 +659,7 @@ export default function SquidDashboard() {
             </div>
           </div>
                     <div className="ds-card" style={{fontSize: '0.88rem', padding: '8px 16px', 
-            background: '#181818', border: 'none', 
+            background: '#11182f', border: 'none', 
             borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#64748B' }} />
@@ -679,14 +679,14 @@ export default function SquidDashboard() {
           const IconComp = theme.icon;
           const parsed = parseAnimatedValue(kpi.value);
           return (
-            <div key={key} className="ds-card" style={{background: '#181818',
+            <div key={key} className="ds-card" style={{background: '#11182f',
               border: 'none', borderRadius: '8px', padding: '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '6px',
               transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
               position: 'relative', overflow: 'hidden'}}
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#11182f'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
               
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
@@ -715,17 +715,17 @@ export default function SquidDashboard() {
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{
-        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))',
         border: '1px solid rgba(255,255,255,0.04)',
         borderRadius: '16px',
         padding: '6px',
         marginBottom: '2rem',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
           padding: '4px 0 8px',
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
+          borderBottom: '1px solid rgba(140,170,255,0.10)',
           marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
@@ -741,7 +741,7 @@ export default function SquidDashboard() {
                 onClick={() => setActivePart(s.id as any)}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.background = 'rgba(140,170,255,0.12)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.borderColor = `${s.color}40`;
                   }
@@ -779,8 +779,8 @@ export default function SquidDashboard() {
                 <div style={{
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
-                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  background: isActive ? s.color : 'rgba(140,170,255,0.12)',
+                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',

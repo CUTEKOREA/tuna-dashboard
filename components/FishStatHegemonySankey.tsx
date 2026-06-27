@@ -46,10 +46,10 @@ export default function FishStatHegemonySankey() {
                 <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0.1}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-            <RechartsTooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} />
+            <RechartsTooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             <Area type="monotone" dataKey="norway" name="노르웨이" stackId="1" stroke="var(--color-danger)" fill="url(#colorNorway)" />
             <Area type="monotone" dataKey="iceland" name="아이슬란드" stackId="1" stroke="var(--color-success)" fill="url(#colorIceland)" />

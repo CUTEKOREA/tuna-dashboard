@@ -18,7 +18,7 @@ export function Widget41_FuelBEP() {
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line yAxisId="left" type="step" dataKey="break_even_catch" name="필요 최소 어획량(BEP 톤)" stroke="var(--color-danger)" strokeWidth={3} strokeDasharray="5 5" />
           <Bar yAxisId="right" dataKey="wti" name="WTI 유가" fill="#64748b" fillOpacity={0.6} />
         </ComposedChart>
@@ -37,7 +37,7 @@ export function Widget42_MiddlemenCollapse() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t}%`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="middlemen_margin" name="중도매인 장악 마진 파이(%)" stroke="var(--color-warning)" strokeWidth={3} />
           <Line type="monotone" dataKey="direct_sourcing" name="프랜차이즈 직수입 비율(%)" stroke="var(--color-info)" strokeWidth={3} />
         </LineChart>
@@ -57,7 +57,7 @@ export function Widget43_WaterfallMargin() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[0, 100]} />
           <YAxis dataKey="step" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="value" name="해당 단계 마진 폭(%)" fill="var(--color-success)" />
         </BarChart>
       }
@@ -76,7 +76,7 @@ export function Widget44_StorageDeadcross() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="price_gain" name="스팟 시세 상승 예상분(%)" fill="var(--color-info)" />
           <Line type="monotone" dataKey="storage_cost" name="월간 누적 창고 보관료(%)" stroke="var(--color-danger)" strokeWidth={3} />
         </ComposedChart>
@@ -96,7 +96,7 @@ export function Widget45_YieldLoss() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="supplier" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="actual_meat" name="실제 살코기 수율(%)" stackId="a" fill="var(--color-success)" />
           <Bar dataKey="ice_glaze" name="얼음물(글레이징) 마이너스" stackId="a" fill="var(--color-danger)" />
         </BarChart>
@@ -115,7 +115,7 @@ export function Widget46_AutomationROI() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="manual_labor" name="기존 수작업 인건비 누적 타격" stroke="#f43f5e" strokeWidth={3} />
           <Line type="monotone" dataKey="baader_machine" name="자동화 기기 설비투자비 + 유지비" stroke="var(--color-info)" strokeWidth={3} />
         </LineChart>
@@ -135,7 +135,7 @@ export function Widget47_ChannelMarginTracker() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="channel" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="margin" name="채널별 영업이익률(%)" fill="var(--color-success)" barSize={20} />
           <Scatter dataKey="volume_share" name="투입 물량 비중(%)" fill="var(--color-info)" />
         </ComposedChart>
@@ -155,7 +155,7 @@ export function Widget48_OpPerDay() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="target" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="margin" name="바다 1일당 순 흑자/적자($)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.margin < 0 ? 'var(--color-danger)' : 'var(--color-success)'} />))}</Bar>
         </BarChart>
       }
@@ -174,7 +174,7 @@ export function Widget49_InventoryTurns() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="items" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="turns" name="연간 회전율(Turns/Yr)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.turns < 2 ? 'var(--color-danger)' : '#6366f1'} />))}</Bar>
         </BarChart>
       }
@@ -193,7 +193,7 @@ export function Widget50_CashConversionCycle() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="client" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={120} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="days" name="매출 대금 회수 소요(Days)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.days > 90 ? 'var(--color-danger)' : 'var(--color-info)'} />))}</Bar>
         </BarChart>
       }

@@ -19,7 +19,7 @@ const data = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
+    <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
       <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>{label}</p>
       <p style={{ color: payload[0].payload.rate < 50 ? '#ef4444' : '#22c55e', margin: '4px 0 0 0', fontSize: '0.8rem' }}>
         업사이클링 비율: {payload[0].value}%
@@ -44,7 +44,7 @@ export default function TunaBioUpcyclingGap() {
           <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
           <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickMargin={10} angle={0} textAnchor="middle" height={60} />
           <YAxis stroke="#94a3b8" fontSize={11} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: '#1e293b' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: '#1a2442' }} />
           <Bar dataKey="rate" radius={[4, 4, 0, 0]} maxBarSize={50}>
             {data.map((entry, i) => (
               <Cell key={i} fill={entry.rate > 90 ? '#8b5cf6' : entry.rate < 30 ? '#ef4444' : '#94a3b8'} />

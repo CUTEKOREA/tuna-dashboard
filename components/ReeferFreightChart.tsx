@@ -136,7 +136,7 @@ export default function ReeferFreightChart() {
       <div className={styles.chartWrapper}>
         <SafeResponsiveContainer width="100%" height={380}>
           <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="month" stroke="var(--text-muted)" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis 
               stroke="var(--text-muted)" 
@@ -157,7 +157,7 @@ export default function ReeferFreightChart() {
         </SafeResponsiveContainer>
       </div>
       
-      <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(140,170,255,0.10)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ fontSize: '11px', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <TrendingUp size={14} />
           <span>Harness 4-Axis Reliability Protocol: {meta?.grade || 'S-Grade'}</span>

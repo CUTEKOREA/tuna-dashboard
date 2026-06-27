@@ -12,7 +12,7 @@ const FreightTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     const eventItem = freightData.find(d => d.year === label);
     return (
-      <div style={{ background: '#181818', borderRadius: '8px', padding: '0.75rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
+      <div style={{ background: '#11182f', borderRadius: '8px', padding: '0.75rem', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
         <p style={{ margin: '0 0 0.25rem 0', fontWeight: 700, color: '#38bdf8' }}>{label}</p>
         {eventItem?.event && (
           <p style={{ margin: '0 0 0.5rem 0', color: '#f97316', fontSize: '0.75rem', fontStyle: 'italic' }}>
@@ -89,7 +89,7 @@ export default function SalmonInsightLogisticsResilience() {
             <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k`} />
             <YAxis yAxisId="right" orientation="right" stroke="#f97316" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}`} />
-            <Tooltip contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
+            <Tooltip contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
             <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
 
             <Bar yAxisId="left" dataKey="importVol" name="EU 역외 수입량 (천 톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={24} />

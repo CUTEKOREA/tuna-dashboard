@@ -46,7 +46,7 @@ export function InsightKoreaSpecialLine() {
           <XAxis dataKey="spec" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
           <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" />
-          <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="yield" name="순살 수율(%)" radius={[4, 4, 0, 0]}>
             {koreaSpecialData.map((entry, idx) => {
@@ -91,7 +91,7 @@ export function InsightRiskNexus() {
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
           <PolarAngleAxis dataKey="risk" tick={{ fill: '#94a3b8', fontSize: 11 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 9 }} />
-          <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Radar name="🇹🇭 태국 리스크" dataKey="thai" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
           <Radar name="🇧🇷 브라질 리스크" dataKey="brazil" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
@@ -130,7 +130,7 @@ export function InsightPartnerMatch() {
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
           <PolarAngleAxis dataKey="axis" tick={{ fill: '#94a3b8', fontSize: 11 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 9 }} />
-          <RTooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px' }} />
+          <RTooltip contentStyle={{ backgroundColor: '#1a2442', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Radar name="CP Foods" dataKey="CP" stroke="#ef4444" fill="#ef4444" fillOpacity={0.25} />
           <Radar name="Betagro" dataKey="Betagro" stroke="#10b981" fill="#10b981" fillOpacity={0.25} />

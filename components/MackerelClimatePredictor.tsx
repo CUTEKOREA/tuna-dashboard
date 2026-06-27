@@ -13,10 +13,10 @@ export default function MackerelClimatePredictor() {
     <div style={{ height: '250px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ScatterChart margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis type="number" dataKey="tempRise" name="수온 편차" unit="°C 상승" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
         <YAxis type="number" dataKey="catchRate" name="대형어 어획량 변동" unit="%" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-        <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
         <Scatter name="연도별 기후 파급" data={data} fill="var(--color-danger)">
           {data.map((entry: any, index: number) => (
             <Cell key={`cell-${index}`} fill={entry.tempRise > 1.4 ? 'var(--color-danger)' : 'var(--color-success)'} />

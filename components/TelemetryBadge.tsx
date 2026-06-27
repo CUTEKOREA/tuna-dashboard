@@ -26,7 +26,7 @@ export const TelemetryBadge: React.FC<TelemetryBadgeProps> = ({ status, syncDate
       : 'rgba(148, 163, 184, 0.16)';
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(15, 23, 42, 0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', padding: '2px 7px', borderRadius: '5px', border: `1px solid ${borderTint}` }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(20, 28, 52, 0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', padding: '2px 7px', borderRadius: '5px', border: `1px solid ${borderTint}` }}>
       {(isLive || isSynced) && (
         <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {isLive && <div className={styles.pulse} />}

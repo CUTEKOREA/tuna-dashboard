@@ -30,7 +30,7 @@ export default function SalmonPolicyImpact() {
               padding: '0.6rem 0.9rem', borderRadius: '6px', textAlign: 'left',
               cursor: 'pointer', transition: 'all 0.2s',
               background: selectedScenario === s.id ? sCfg.bg : 'rgba(255,255,255,0.02)',
-              border: selectedScenario === s.id ? `1px solid ${sCfg.color}40` : '1px solid rgba(255,255,255,0.06)',
+              border: selectedScenario === s.id ? `1px solid ${sCfg.color}40` : '1px solid rgba(140,170,255,0.12)',
               color: '#f8fafc',
             }}>
               <IconComp size={16} color={sCfg.color} />

@@ -9,7 +9,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const d = payload[0].payload;
     return (
-      <div style={{ background: 'rgba(0,15,30,0.95)', border: `1px solid ${d.color}`, padding: '12px', borderRadius: '8px', color: 'var(--text-primary)' }}>
+      <div style={{ background: 'rgba(10, 16, 40, 0.95)', border: `1px solid ${d.color}`, padding: '12px', borderRadius: '8px', color: 'var(--text-primary)' }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>해역: {d.country}</p>
         <p style={{ margin: 0, fontSize: '11px', color: 'var(--text-secondary)' }}>ITQ 쿼터 접근성: <strong style={{ color: 'var(--text-primary)' }}>{d.itq_index}</strong></p>
         <p style={{ margin: '4px 0', fontSize: '11px', color: 'var(--text-secondary)' }}>IUU & ESG 리스크: <strong style={{ color: 'var(--color-danger)' }}>{d.iuu_risk}</strong></p>
@@ -32,7 +32,7 @@ export default function SquidComplianceRisk() {
       chartHeight={400}
       chart={
         <ScatterChart margin={{ top: 20, right: 30, left: 0, bottom: 30 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis type="number" dataKey="itq_index" name="ITQ 쿼터 접근성" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} label={{ value: '쿼터 지분 접근성 (낮음 ← → 높음)', position: 'insideBottom', offset: -25, fill: 'rgba(255,255,255,0.4)', fontSize: 11 }} domain={[0, 100]} />
           <YAxis type="number" dataKey="iuu_risk" name="IUU 사회적 리스크" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 11 }} label={{ value: '리스크 지표 (높을수록 위험)', angle: -90, position: 'insideLeft', offset: 10, fill: 'rgba(255,255,255,0.4)', fontSize: 11 }} domain={[0, 100]} />
           <ZAxis type="number" dataKey="volume" range={[200, 2000]} name="잠재 생산량" />

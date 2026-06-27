@@ -31,7 +31,7 @@ export default function MackerelUnitPrice() {
     if (!d) return null;
     return (
       <div style={{
-        background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)',
+        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)',
         padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '200px'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#fbbf24' }}>{d.country}</p>
@@ -49,7 +49,7 @@ export default function MackerelUnitPrice() {
       {chartWidth > 0 && (
         <BarChart width={chartWidth} height={450} data={data} margin={{ top: 10, right: 30, left: 30, bottom: 20 }} layout="vertical">
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />
           <YAxis type="category" dataKey="country" width={110} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} />
           <Tooltip content={<PriceTooltip />} />

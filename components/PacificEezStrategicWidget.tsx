@@ -7,7 +7,7 @@ import WidgetCard from './WidgetCard';
 
 const PacificMapWithNoSSR = dynamic(() => import('./PacificVesselMap'), {
   ssr: false,
-  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>지도 로딩 중...</div>
+  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>지도 로딩 중...</div>
 });
 
 interface EezData {
@@ -87,7 +87,7 @@ export default function PacificEezStrategicWidget() {
             </thead>
             <tbody>
               {data.map((row, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '12px' }}>
                     <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.8rem' }}>{row.country}</div>
                     <div style={{ fontSize: '0.65rem', color: 'var(--text-tertiary)' }}>{row.countryEn}</div>

@@ -161,7 +161,7 @@ export default function SalmonLiveTicker() {
         display: 'grid',
         gridTemplateColumns: `repeat(${tickers.length || 4}, 1fr)`,
         gap: '0',
-        background: 'linear-gradient(135deg, rgba(15,23,42,0.5), rgba(30,15,50,0.5))',
+        background: 'linear-gradient(135deg, rgba(20, 28, 52, 0.5), rgba(30,15,50,0.5))',
         borderRadius: '8px',
         border: '1px solid rgba(236, 72, 153, 0.2)',
         overflow: 'hidden',
@@ -171,7 +171,7 @@ export default function SalmonLiveTicker() {
           return (
             <div key={i} style={{
               padding: '0.9rem 1rem',
-              borderRight: i < tickers.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+              borderRight: i < tickers.length - 1 ? '1px solid rgba(140,170,255,0.12)' : 'none',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
                 <IconComp size={13} color={t.color} />

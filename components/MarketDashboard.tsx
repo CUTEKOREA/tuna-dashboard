@@ -213,7 +213,7 @@ export default function MarketDashboard() {
         [data-theme='light'] .mkt-kpi.ds-card:hover,
         [data-theme='light'] .mkt-news-grid > .ds-card:hover,
         [data-theme='light'] .mkt-insights > div:hover {
-          box-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.18);
+          box-shadow: 0 12px 32px -12px rgba(20, 28, 52, 0.18);
         }
       `}</style>
 
@@ -346,11 +346,11 @@ export default function MarketDashboard() {
                     <stop offset="100%" stopColor="#3b82f6" />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(56, 189, 248, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />
@@ -378,11 +378,11 @@ export default function MarketDashboard() {
                     <stop offset="100%" stopColor="#c084fc" />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                 <XAxis dataKey="date" stroke="rgba(255,255,255,0.4)" fontSize={12} tickMargin={10} minTickGap={30} />
                 <YAxis yAxisId="left" stroke="rgba(255,255,255,0.4)" fontSize={12} domain={['auto', 'auto']} tickFormatter={(v) => `$${v}`} />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(139, 92, 246, 0.25)', borderRadius: '10px', boxShadow: '0 16px 40px rgba(0, 0, 0, 0.55)' }}
                   itemStyle={{ color: '#fff', fontSize: '13px' }}
                   labelStyle={{ color: 'var(--text-muted)', marginBottom: '4px', fontSize: '12px' }}
                 />

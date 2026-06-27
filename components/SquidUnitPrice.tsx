@@ -25,7 +25,7 @@ const PriceTooltip = ({ active, payload, label }: any) => {
   const sorted = [...payload].filter((p: any) => p.value != null).sort((a: any, b: any) => b.value - a.value);
   return (
     <div style={{
-      background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(34, 197, 94, 0.4)',
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(34, 197, 94, 0.4)',
       padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '200px',
     }}>
       <p style={{ margin: '0 0 10px', fontWeight: 'bold', fontSize: '1.05rem', color: '#4ade80', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{label}년 수출 단가 ($/t)</p>
@@ -78,7 +78,7 @@ export default function SquidUnitPrice() {
   const chart = (
     <div style={{ width: '100%', height: 380 }}>
       <LineChart width={800} height={380} data={priceData} margin={{ top: 10, right: 20, left: 20, bottom: 20 }} style={{ maxWidth: '100%' }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
         <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
         <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${(v / 1000).toFixed(1)}K`} />
         <Tooltip content={<PriceTooltip />} />

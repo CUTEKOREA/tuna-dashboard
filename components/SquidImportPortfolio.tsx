@@ -20,7 +20,7 @@ const PortfolioTooltip = ({ active, payload }: any) => {
   const d = payload[0]?.payload;
   return (
     <div style={{
-      background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)',
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)',
       padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px',
     }}>
       <p style={{ margin: '0 0 10px', fontWeight: 'bold', fontSize: '1.05rem', color: '#fbbf24', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>
@@ -69,7 +69,7 @@ export default function SquidImportPortfolio() {
       chart={
         <BarChart data={portfolioData} margin={{ top: 10, right: 20, left: 20, bottom: 20 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}K`} />
           <Tooltip content={<PortfolioTooltip />} />

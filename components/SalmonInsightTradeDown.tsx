@@ -39,7 +39,7 @@ export default function SalmonInsightTradeDown() {
       <button
         onClick={() => setActiveTab('kr')}
         style={{
-          background: activeTab === 'kr' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.05)',
+          background: activeTab === 'kr' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(140,170,255,0.10)',
           border: `1px solid ${activeTab === 'kr' ? '#38bdf8' : 'transparent'}`,
           color: activeTab === 'kr' ? '#38bdf8' : '#94a3b8',
           padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
@@ -51,7 +51,7 @@ export default function SalmonInsightTradeDown() {
       <button
         onClick={() => setActiveTab('eu')}
         style={{
-          background: activeTab === 'eu' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.05)',
+          background: activeTab === 'eu' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(140,170,255,0.10)',
           border: `1px solid ${activeTab === 'eu' ? '#38bdf8' : 'transparent'}`,
           color: activeTab === 'eu' ? '#38bdf8' : '#94a3b8',
           padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer',
@@ -73,7 +73,7 @@ export default function SalmonInsightTradeDown() {
             <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}k t`} />
             <YAxis yAxisId="right" orientation="right" stroke="#f97316" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}M`} />
-            <Tooltip contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
+            <Tooltip contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
             <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
 
             <Bar yAxisId="left" dataKey="frVol" name="🇫🇷 프랑스 소비량 (천톤)" fill={A11Y_PALETTE[0]} radius={[4, 4, 0, 0]} barSize={14} />
@@ -95,7 +95,7 @@ export default function SalmonInsightTradeDown() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="date" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
               <YAxis stroke="var(--color-warning)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k₩`} />
-              <Tooltip contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
+              <Tooltip contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }} itemStyle={{ fontSize: '0.85rem' }} />
               <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
 
               <Line type="monotone" dataKey="salmon_fresh" name="🇳🇴 생연어 수입 (노량진/KAMIS)" stroke="#f97316" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />

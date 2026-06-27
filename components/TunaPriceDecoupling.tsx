@@ -54,7 +54,7 @@ export default function TunaPriceDecoupling() {
               <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.05} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(59,130,246,0.5)" tick={{ fill: '#3b82f6', fontSize: 11 }} tickFormatter={(v) => `$${v}`} domain={[1300, 2100]} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(239,68,68,0.5)" tick={{ fill: '#ef4444', fontSize: 11 }} tickFormatter={(v) => `₩${v}`} domain={[2500, 3500]} />

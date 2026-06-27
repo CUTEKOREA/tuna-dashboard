@@ -79,7 +79,7 @@ export function PollockPriceForecastChart() {
               </div>
               <SafeResponsiveContainer width="100%" height={220}>
                 <AreaChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
                   <XAxis dataKey="period" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                   <YAxis tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
                   <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />

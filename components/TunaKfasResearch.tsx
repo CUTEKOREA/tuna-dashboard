@@ -65,7 +65,7 @@ export function KfasByproductValueChain() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="part" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0} height={50} />
           <YAxis stroke="#94a3b8" unit="%" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
           <Bar dataKey="protein" name="조단백(g/100g)" fill="#10b981" radius={[4, 4, 0, 0]} />
           <Bar dataKey="lipid" name="조지방" fill="#3b82f6" radius={[4, 4, 0, 0]} />
@@ -114,7 +114,7 @@ export function KfasLonglineEvolution() {
           <XAxis dataKey="period" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
           <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
           <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" unit="%" tick={{ fill: '#f59e0b', fontSize: 12, fontWeight: 500 }} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="vessels" name="조업 척수" fill="#3b82f6" radius={[4, 4, 0, 0]} fillOpacity={0.7} />
           <Line yAxisId="left" type="monotone" dataKey="catch_kt" name="어획량(천톤)" stroke="#ef4444" strokeWidth={3} />
@@ -161,7 +161,7 @@ export function KfasIndianOceanRisk() {
           <PolarGrid stroke="rgba(255,255,255,0.15)" />
           <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} />
           <PolarRadiusAxis angle={30} domain={[0, 3]} tick={{ fill: '#94a3b8', fontSize: 10 }} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
           <Radar name="선망(Purse Seine)" dataKey="purseSeine" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.2} />
           <Radar name="연승(Longline)" dataKey="longline" stroke="#10b981" fill="#10b981" fillOpacity={0.2} />
@@ -211,7 +211,7 @@ export function KfasElderlyFunctionalFood() {
           <XAxis dataKey="product" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 11, fontWeight: 500 }} interval={0} height={60} />
           <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#cbd5e1', fontSize: 12, fontWeight: 500 }} />
           <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" tick={{ fill: '#10b981', fontSize: 12, fontWeight: 500 }} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="protein" name="조단백(%)" fill="#8b5cf6" radius={[4, 4, 0, 0]} />
           <Bar yAxisId="left" dataKey="hardness" name="경도(N)" fill="#f59e0b" radius={[4, 4, 0, 0]} fillOpacity={0.7} />

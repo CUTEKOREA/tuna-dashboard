@@ -219,7 +219,7 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
       {/* Result Table */}
       {result && (
         <div style={{
-          background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
+          background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(140,170,255,0.12)',
           borderRadius: '8px', overflow: 'hidden', marginBottom: '1rem', flex: 1,
         }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem' }}>

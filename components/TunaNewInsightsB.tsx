@@ -55,7 +55,7 @@ export function InsightTunaExtract() {
           <XAxis dataKey="year" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="억" />
           <YAxis yAxisId="right" orientation="right" stroke="#10b981" unit="%" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="액상_시장" name="액상 시장(억원)" fill="#64748b" radius={[4, 4, 0, 0]} />
           <Bar yAxisId="left" dataKey="분말_코인" name="분말/코인 시장(억원)" fill="#10b981" radius={[4, 4, 0, 0]} />
@@ -104,7 +104,7 @@ export function InsightPillarTwo() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="company" stroke="#94a3b8" />
           <YAxis stroke="#94a3b8" unit="%" domain={[0, 18]} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar dataKey="before" name="기존 실효세율(%)" fill="#64748b" radius={[4, 4, 0, 0]} />
           <Bar dataKey="after" name="Pillar Two 적용 후(%) (2026E)" fill="#fbbf24" radius={[4, 4, 0, 0]} />
@@ -149,7 +149,7 @@ export function InsightVietnamOEM() {
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="#94a3b8" />
           <YAxis dataKey="metric" type="category" stroke="#94a3b8" width={100} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar dataKey="Vietnam" name="🇻🇳 베트남 (2026)" fill="#06b6d4" radius={[0, 4, 4, 0]} />
           <Bar dataKey="Thailand" name="🇹🇭 태국 (2026)" fill="#64748b" radius={[0, 4, 4, 0]} />

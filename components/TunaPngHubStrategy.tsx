@@ -38,7 +38,7 @@ export default function TunaPngHubStrategy() {
           <XAxis type="number" stroke="#94a3b8" />
           <YAxis dataKey="cost_type" type="category" stroke="#94a3b8" fontSize={11} width={120} />
           <Tooltip
-            contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', borderColor: '#334155', color: '#f8fafc' }}
+            contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', borderColor: '#334155', color: '#f8fafc' }}
             itemStyle={{ color: '#f8fafc' }}
           />
           <Legend />

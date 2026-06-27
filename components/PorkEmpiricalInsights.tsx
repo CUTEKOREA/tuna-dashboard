@@ -11,7 +11,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const customTooltipStyle = {
-  background: 'rgba(0,15,30,0.95)',
+  background: 'rgba(10, 16, 40, 0.95)',
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   padding: '8px 12px',
@@ -126,7 +126,7 @@ export function InsightAsfChinaFactor({ accent = '#f43f5e' }: any) {
       chart={
         <ComposedChart data={chinaFactorData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9 }} />
           <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[200, 500]} />
           <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 200]} />
@@ -170,7 +170,7 @@ export function InsightHogCornRatio({ accent = '#ec4899' }: any) {
       chart={
         <ComposedChart data={hogCornData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="qtr" stroke="#64748b" tick={{ fontSize: 9 }} />
           <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[150, 300]} />
           <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 25]} />

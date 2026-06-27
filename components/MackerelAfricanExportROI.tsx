@@ -15,11 +15,11 @@ export default function MackerelAfricanExportROI() {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
         <XAxis dataKey="m" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
         <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`$${v}`} tick={{ fill: 'var(--color-danger)', fontSize: 10 }} />
         <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`${v}%`} tick={{ fill: 'var(--color-success)', fontSize: 10 }} />
-        <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)' }} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)' }} />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
         <Area yAxisId="left" type="monotone" dataKey="freightRate" name="해운 운임 (SCFI)" fill="var(--color-danger)" opacity={0.15} stroke="none" />
         <Line yAxisId="right" type="step" dataKey="margin" name="가나 수출 ROI" stroke="var(--color-success)" strokeWidth={3} />

@@ -25,7 +25,7 @@ export default function SalmonInsightClimate() {
           <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-warning)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}`} />
           <Tooltip 
-            contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }}
+            contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}
             itemStyle={{ fontSize: '0.85rem' }}
             formatter={(value: any, name: any) => {
               if (name === 'mortality') return [`${value}%`, '고수온에 따른 해상 폐사율'];

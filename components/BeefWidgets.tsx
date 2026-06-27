@@ -141,7 +141,7 @@ function useFaostatProduction() {
 const CT = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '8px 12px' }}>
+    <div style={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '8px', padding: '8px 12px' }}>
       <p style={{ margin: 0, fontSize: '12px', fontWeight: 700, color: '#f8fafc' }}>{label}</p>
       {payload.map((e: any, i: number) => (
         <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
@@ -182,7 +182,7 @@ export function W1_ProductionTrend({ accent }: any) {
     strat="중국·동남아 수요 급증으로 인한 구조적 가격 상승 사이클. 브라질·호주 산지 직매입선 확보 시 중간 유통 마진 대폭 절감 가능(업계 추정)."
     source={source}>
     <ComposedChart data={productionTrend}>
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} />
@@ -203,7 +203,7 @@ export function W2_Top5Producers({ accent }: any) {
     sit={`${top5[0]?.country}(${top5[0]?.pct}%)·${top5[1]?.country}(${top5[1]?.pct}%) 양강 ${(top5[0]?.pct + top5[1]?.pct).toFixed(1)}% 장악. 상위 5국 합산 ${sumPct.toFixed(1)}% — 돼지고기(중국 단독 44%) 대비 분산도 우수.`}
     strat="단일국 의존 리스크는 낮으나 브라질 BSE/벌목 환경 리스크는 EU 그린딜 규제 강화 시 즉시 발화 가능. 호주·미국 이중 헤지 권장."
     source={source}>
-    <BarChart data={top5} layout="vertical"><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+    <BarChart data={top5} layout="vertical"><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -227,7 +227,7 @@ export function W3_SlaughterUtil({ accent }: any) {
     sit={`호주 가동률이 ${first.month} ${first.auUtil}% → ${latest.month} ${latest.auUtil}% ${auDelta > 0 ? '급등' : '감소'} — 미·호 사이클 ${auDelta > 5 ? '역전' : '안정'}. 미국 최신 ${latest.usUtil}% / 호주 ${latest.auUtil}%, 도체중 미 ${latest.usCarcassKg}kg / 호 ${latest.auCarcassKg}kg.`}
     strat="2025년 호주 공급 사이클 정점 진입. 호주산 장기 선도 계약 조기 체결로 단가 절감 기회(업계 추정 4-6%) 확보 검토."
     source={source}>
-    <ComposedChart data={data}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <ComposedChart data={data}><ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} domain={[60, 100]} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[300, 400]} />
@@ -248,7 +248,7 @@ export function W4_FeedMargin({ accent }: any) {
     strat="옥수수 선물 가격 110 돌파 시 6개월 후 도축 헤드 -10% 예상. 호주 사료 미사용 그래스피드 비중 30%까지 확대로 사료 변동성 헤지."
     source="시카고상품거래소(CBOT) 옥수수·대두박 선물 + 미국 농업통계국(USDA NASS) Feeder Cattle">
     <ComposedChart data={D.feedMarginData}>
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="quarter" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[1, 3]} />
@@ -274,7 +274,7 @@ export function W5_TradeFlow({ accent }: any) {
     strat="브·중 단일축이 흔들리면 (브라질 ESG 제재 등) 호주산 공급 부족 즉시 발생. 우루과이·뉴질랜드 백업 라인 조기 구축 권장."
     source={source}>
     <BarChart data={data} layout="vertical" margin={{ left: 5 }}>
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => `$${v.toLocaleString()}M`} />
       <YAxis type="category" dataKey="route" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={110} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -294,7 +294,7 @@ export function W6_KoreaImports({ accent }: any) {
     strat="미·호 의존도 80% 이하로 낮추기 위해 우루과이·아르헨티나 직거래선 확장. 단가 절감 및 광우병 리스크 분산 동시 도모(업계 추정 8-12% 절감)."
     source={source}>
     <BarChart data={data} layout="vertical">
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} tickFormatter={v => v >= 1000 ? `${(v / 1000).toFixed(0)}K` : v} />
       <YAxis type="category" dataKey="country" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={70} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -317,7 +317,7 @@ export function W7_KoreaSupply({ accent }: any) {
     strat="자급률 갭이 지속 확대 추세 — 안정적 수입 인프라(콜드체인+장기 계약) 선점 기업이 향후 5년 시장 주도. 콜드체인 CAPEX 우선 배정."
     source={source}>
     <ComposedChart data={data}>
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="year" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[10, 16]} />
@@ -352,7 +352,7 @@ export function W8_PriceGap({ accent }: any) {
     sit={sit}
     strat="한우는 명절·선물 프리미엄 채널에만 집중, 일반 외식 B2B는 호주산 위주로 매입. 호주산 단가 변동성 헤지 위해 6개월 선도 매입 계약."
     source={source}>
-    <LineChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+    <LineChart data={data}><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `${(v / 1000).toFixed(0)}K`} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -371,7 +371,7 @@ export function W9_DiseaseRisk({ accent }: any) {
     strat="청정국(호주·독일·뉴질랜드)에서 프리미엄 라인 소싱, 중위험국(브라질·아르헨)은 5% 이내 분산 매입. 고위험국은 우회 가공거점도 차단."
     source="세계동물보건기구(WOAH) 동물보건정보시스템(WAHIS)">
     <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
       <XAxis type="number" dataKey="outbreaks" name="발병 건수" stroke="#64748b" tick={{ fontSize: 9 }} label={{ value: '2018-2024 발병 건수', position: 'insideBottom', offset: -5, fill: '#94a3b8', fontSize: 10 }} />
       <YAxis type="number" dataKey="exportImpact" name="수출 영향도(%)" stroke="#64748b" tick={{ fontSize: 9 }} label={{ value: '수출 영향도 (%)', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 10 }} />
       <ZAxis range={[200, 800]} />
@@ -392,7 +392,7 @@ export function W10_CarbonFootprint({ accent }: any) {
     strat="ESG 보고서에서 소고기는 '리스크 항목'으로 분류, 가능한 수산물·가금류 비중 확대. 소고기 라인은 그래스피드·탄소상쇄 인증 한정으로만 유지."
     source="식량농업기구(FAO) Livestock Environmental Assessment + Poore & Nemecek(2018) Science 360:987">
     <BarChart data={D.carbonFootprintData} layout="vertical">
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal vertical={false} />
       <XAxis type="number" stroke="#64748b" tick={{ fontSize: 9, fill: '#64748b' }} />
       <YAxis type="category" dataKey="category" stroke="#64748b" tick={{ fontSize: 9, fill: '#94a3b8' }} width={90} />
       <RT content={<CT />} /><Legend verticalAlign="top" wrapperStyle={{ fontSize: '10px', paddingBottom: '10px' }} />
@@ -409,7 +409,7 @@ export function W11_Premium({ accent }: any) {
     strat="와규·한우 + 듀얼인증 프리미엄 라인(합산 5%)이 가격 프리미엄 집중 구간. 듀얼인증 호주 그래스피드 직소싱으로 차별화된 고마진 라인업 구축."
     source="미국 농업마케팅서비스(USDA AMS) Retail Lamb·Beef Report + 닐슨(Nielsen) Premium Meat Tracker 2023">
     <ComposedChart data={D.premiumData}>
-      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <ChartPatternDefs /><CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey="segment" stroke="#64748b" tick={{ fontSize: 8, fill: '#64748b' }} angle={-15} textAnchor="end" height={70} interval={0} />
       <YAxis yAxisId="left" stroke="#64748b" tick={{ fontSize: 9 }} tickFormatter={v => `$${v}`} />
       <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fontSize: 9 }} domain={[0, 100]} tickFormatter={v => `${v}%`} />

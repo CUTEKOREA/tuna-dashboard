@@ -8,7 +8,7 @@ import { ShieldCheck, TrendingUp, Anchor, Euro, ShoppingCart, Leaf, Factory, Glo
 
 const COLORS = {
   bg: '#0a0f1e',
-  card: 'rgba(15, 23, 42, 0.85)',
+  card: 'rgba(20, 28, 52, 0.85)',
   cardBorder: 'rgba(51, 65, 85, 0.45)',
   cardHover: 'rgba(30, 41, 59, 0.6)',
   text: '#f1f5f9',
@@ -173,7 +173,7 @@ export function EuroMacroTradeWidget() {
       <div style={{ position: 'relative', zIndex: 2 }}>
         {loading ? (
           <div style={{ width: '100%', height: 260, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-            <div style={{ width: 32, height: 32, border: '3px solid #1e293b', borderTop: '3px solid #3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+            <div style={{ width: 32, height: 32, border: '3px solid #1a2442', borderTop: '3px solid #3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
             <span style={{ color: COLORS.textDim, fontSize: '0.85rem' }}>데이터 로딩 중...</span>
           </div>
         ) : data.length === 0 ? (
@@ -185,7 +185,7 @@ export function EuroMacroTradeWidget() {
                 {data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
               </Pie>
               <RechartsTooltip
-                contentStyle={{ backgroundColor: 'rgba(15,23,42,0.96)', borderColor: 'rgba(51,65,85,0.5)', borderRadius: '10px', color: '#f1f5f9', boxShadow: '0 12px 40px -8px rgba(0,0,0,0.6)', padding: '10px 14px' }}
+                contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.96)', borderColor: 'rgba(51,65,85,0.5)', borderRadius: '10px', color: '#f1f5f9', boxShadow: '0 12px 40px -8px rgba(0,0,0,0.6)', padding: '10px 14px' }}
                 itemStyle={{ color: '#e2e8f0', fontWeight: 600 }}
                 formatter={(value: any) => [`${Math.round(value).toLocaleString()} 톤`, '수입량']}
               />
@@ -288,7 +288,7 @@ export function EuroValueChainWidget() {
       </div>
 
       {/* Flow Diagram */}
-      <div style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(51,65,85,0.3)', borderRadius: '12px', padding: '20px', position: 'relative', zIndex: 2 }}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.6)', border: '1px solid rgba(51,65,85,0.3)', borderRadius: '12px', padding: '20px', position: 'relative', zIndex: 2 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '4px' }}>
           {nodes.map((node, i) => (
             <React.Fragment key={node.label}>

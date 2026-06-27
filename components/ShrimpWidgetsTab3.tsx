@@ -11,7 +11,7 @@ export const W21_KoreaImpTimeline = () => (
   <WidgetCard title="한국 새우 연간 수입 톤수 추이" icon={Target} term="Korea Import Yield" desc="1994년 이후 국내 도입 물량선 (톤)" source="FAOSTAT 수산 무역 — 한국 수입 물량 시계열(1994~2023)" situation="대한민국 새우 수입 물량은 2000년대 이후 구조적 성장기를 거치며 우상향 추세를 보였고, 2023년 기준 약 96,299톤 수준입니다." actionPlan="[조달 규모 우위 확보] 자본력 기반의 바잉 파워(Buying Power)를 활용해 프랜차이즈·대형 외식 B2B 공급 라인을 확대하고, 물량 기반 협상력으로 안정적 매입 단가를 확보하는 것을 검토하십시오." telemetry={{ status: 'STATIC' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={koreaImportTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} interval={0} tick={{ fontSize: 10 }} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -50,7 +50,7 @@ export const W23_KoreaUnitPrice = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={koreaCompare} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -74,7 +74,7 @@ export const W24_AsiaImpCompare = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={asiaImp} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
           <YAxis dataKey="name" type="category" width={50} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -98,7 +98,7 @@ export const W25_KoreaImpInflection = () => {
     <WidgetCard title="한국 수입 3단계 인플렉션(Inflection)" icon={Activity} term="Import Inflection" desc="수입 증가 변곡점 도식 (천톤) — 자체 추정 예시 데이터" source="추세 도식용 자체 추정(illustrative) — 1차 시계열 출처 미확보" situation="2000년대 이후 수입이 우상향한 배경으로는 1) FTA 무관세 발효 2) 미디어 먹방 확산 3) HMR/밀키트 확대가 거론됩니다. 본 차트의 수치는 추세를 도식화한 자체 추정 예시값으로, 정밀 검증된 시계열은 아닙니다." actionPlan="[IQF 조달 비중 확대] HMR 수요 확대에 대응해 블록 냉동 위주의 조달 비중을 낮추고, 즉시 투입 가능한 개별급속냉동(IQF) 포트폴리오 비중을 단계적으로 늘리는 방안을 검토하십시오." telemetry={{ status: 'STATIC' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -143,7 +143,7 @@ export const W27_KoreaFTABenefit = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
           <YAxis dataKey="origin" type="category" width={80} stroke="#94a3b8" fontSize={10} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -165,7 +165,7 @@ export const W28_KoreaPremiumGap = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="item" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -187,7 +187,7 @@ export const W29_KoreaTradeBal = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} />
           <YAxis dataKey="year" type="category" width={40} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -210,7 +210,7 @@ export const W30_KoreaImpVsGDP = () => {
     <WidgetCard title="한국 경제성장률 대비 수입 팽창 속도" icon={TrendingUp} term="GDP Decoupling" desc="GDP 지수 vs 새우 수입 지수 (2015=100) — 자체 추정 예시" source="2015=100 기준 자체 추정(illustrative) 지수 — 검증된 GDP·통관 시계열 매시업 아님" situation="표시된 예시 지수에서는 새우 수입 지수가 GDP 지수보다 빠르게 상승하는 모습이 나타나, 경기 흐름과 일정 부분 탈동조화하는 경향을 시사합니다. 단, 수치는 자체 추정 예시값으로 정밀 검증된 시계열은 아닙니다." actionPlan="[경기방어 수요 점검] 새우 수요가 경기 둔화 국면에서도 비교적 견조한지 실제 소비·수입 시계열로 검증한 뒤, 경기방어 성격이 확인되면 밸류체인 투자 비중 조정을 검토하십시오." telemetry={{ status: 'STATIC' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} domain={[80, 200]} />
           <RechartsTooltip contentStyle={tooltipStyle} />

@@ -542,7 +542,7 @@ export default function ColdStorageDashboard() {
         return (
           <BarChart data={d}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             <RechartsTooltip content={<CustomTooltip unit={widget.unit} unitMap={widget.unitMap} />} />
@@ -556,7 +556,7 @@ export default function ColdStorageDashboard() {
         return (
           <ComposedChart data={d}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
             <XAxis dataKey={widget.xKey} stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatXAxis} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={formatVal} />
             {widget.dualAxis && (
@@ -648,13 +648,13 @@ export default function ColdStorageDashboard() {
           const IconComp = theme.icon;
           return (
             <div key={key} className="ds-card" style={{background: 'rgba(24, 24, 24, 0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1.2rem',
+              border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', padding: '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '6px',
               transition: 'background 0.2s ease, box-shadow 0.2s ease', cursor: 'default',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
               position: 'relative', overflow: 'hidden'}}
               onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-3)'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.5) 0px 8px 24px'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#181818'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#11182f'; e.currentTarget.style.boxShadow = 'rgba(0,0,0,0.3) 0px 8px 8px'; }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{kpi.title}</span>
@@ -687,11 +687,11 @@ export default function ColdStorageDashboard() {
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: '16px', padding: '6px', marginBottom: '2rem',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-          padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px',
+          padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px',
         }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             콜드체인 밸류체인 네비게이터 — {SECTIONS.length}개 섹션을 클릭하여 탐색하세요
@@ -729,8 +729,8 @@ export default function ColdStorageDashboard() {
                 <div style={{
                   width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
-                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  background: isActive ? s.color : 'rgba(140,170,255,0.12)',
+                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
                   transition: 'all 0.25s',
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none',
                 }}>
@@ -838,7 +838,7 @@ export default function ColdStorageDashboard() {
               { t: '동부 최우선', v: '-62°C', d: 'Lineage 퍼스앰보이 · 600팔레트', c: '#38bdf8' },
               { t: '서부 최우선', v: '-60°C', d: 'LaCold · 현장 USDC 검사관', c: '#f43f5e' },
             ].map((k, i) => (
-              <div key={i} style={{ background: 'rgba(24, 24, 24, 0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '4px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
+              <div key={i} style={{ background: 'rgba(24, 24, 24, 0.6)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '4px', boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px' }}>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>{k.t}</span>
                 <span style={{ fontSize: '1.4rem', fontWeight: 700, color: k.c }}>{k.v}</span>
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{k.d}</span>
@@ -873,7 +873,7 @@ export default function ColdStorageDashboard() {
           </div>
 
           {/* 보조·참고 시설 노트 */}
-          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '0.85rem 1rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', padding: '0.85rem 1rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
             <strong style={{ color: 'var(--text-primary)' }}>보조·참고</strong> — FreezPak(서부 -60°C 표방·수산 특화 미확인·검증 中, ☎213-737-5900) · KPAC(서부 -51°C 비공개) · 우오리키/뮤추얼(-60°C 자가창고 → 수입업체 제휴 대상, 직접 임대 불가)<br />
             <strong style={{ color: 'var(--text-primary)' }}>확장 후보</strong> — Americold 바인랜드 NJ(필라델피아·NY/NJ항 지원, 동부 최대급 · 사시미급 -60°C 여부 실사 필요) · 도요레이조(미쓰비시 냉동 자회사 · 글로벌 ULT 운영사)
           </div>

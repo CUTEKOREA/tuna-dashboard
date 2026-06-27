@@ -33,7 +33,7 @@ const defaultTac = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: '#f8fafc' }}>
+    <div style={{ background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '14px', borderRadius: '8px', color: '#f8fafc' }}>
       <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
       {payload.map((entry: any, i: number) => (
         <p key={i} style={{ color: entry.color, margin: '0.25rem 0', fontSize: '0.8rem' }}>
@@ -53,10 +53,10 @@ export default function TunaTacMonitor({ tacData, forecastData }: TacMonitorProp
       {tacEntries.map((t, i) => {
         const pctColor = t.pct > 85 ? '#ef4444' : t.pct > 70 ? '#f59e0b' : '#22c55e';
         return (
-          <div key={i} style={{ flex: 1, background: 'rgba(15, 23, 42, 0.5)', borderRadius: '8px', padding: '0.75rem', border: `1px solid ${pctColor}40` }}>
+          <div key={i} style={{ flex: 1, background: 'rgba(20, 28, 52, 0.5)', borderRadius: '8px', padding: '0.75rem', border: `1px solid ${pctColor}40` }}>
             <div style={{ fontSize: '0.7rem', color: '#94a3b8', marginBottom: '4px' }}>{t.rfmo} · {t.species}</div>
             <div style={{ fontSize: '1.1rem', fontWeight: 700, color: pctColor }}>{t.pct.toFixed(1)}%</div>
-            <div style={{ width: '100%', height: '6px', background: 'rgba(15, 23, 42, 0.9)', borderRadius: '3px', marginTop: '6px', overflow: 'hidden' }}>
+            <div style={{ width: '100%', height: '6px', background: 'rgba(20, 28, 52, 0.9)', borderRadius: '3px', marginTop: '6px', overflow: 'hidden' }}>
               <div style={{ width: `${Math.min(t.pct, 100)}%`, height: '100%', borderRadius: '3px', background: pctColor, transition: 'width 0.6s ease' }} />
             </div>
             <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '4px' }}>{t.consumed.toLocaleString()} / {t.tac.toLocaleString()} MT</div>

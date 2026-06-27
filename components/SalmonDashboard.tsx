@@ -217,7 +217,7 @@ export default function SalmonDashboard() {
                   </linearGradient>
                 ))}
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -230,7 +230,7 @@ export default function SalmonDashboard() {
         case "line":
           return (
             <LineChart data={d}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -244,10 +244,10 @@ export default function SalmonDashboard() {
           return (
             <BarChart data={d}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
               <YAxis stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+              <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
               <Legend wrapperStyle={{fontSize:'11px'}} verticalAlign="top" />
               {widget.bars?.map((b: any, i: number) => {
                 const p = getA11yBarProps(i);
@@ -259,7 +259,7 @@ export default function SalmonDashboard() {
           return (
             <ComposedChart data={d}>
               <ChartPatternDefs />
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
               <XAxis dataKey={xKeyVal} stroke="#64748b" tick={{fontSize:10}} minTickGap={20} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{fontSize:10}} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
               <RechartsTooltip content={<CustomTooltip />} />
@@ -298,7 +298,7 @@ export default function SalmonDashboard() {
       case "line":
         return (
           <LineChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
@@ -312,7 +312,7 @@ export default function SalmonDashboard() {
       case "area":
         return (
           <AreaChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             <RechartsTooltip content={<CustomTooltip />} />
@@ -326,10 +326,10 @@ export default function SalmonDashboard() {
         return (
           <BarChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
             <YAxis stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
-            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+            <RechartsTooltip content={<CustomTooltip />} cursor={{fill: 'rgba(140,170,255,0.10)'}} />
             <Legend wrapperStyle={{ fontSize: '11px' }} iconType="circle" verticalAlign="top" />
             {series.map((s: any, i: number) => {
               const p = getA11yBarProps(i);
@@ -341,7 +341,7 @@ export default function SalmonDashboard() {
         return (
           <ComposedChart data={d} margin={{ top: 20, right: 10, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis dataKey={xAxis} stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => xFmt(String(v))} minTickGap={20} />
             <YAxis yAxisId="left" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />
             {hasRightAxis && <YAxis yAxisId="right" orientation="right" stroke="#94a3b8" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => formatYAxis(v, widget.yUnit)} />}
@@ -385,7 +385,7 @@ export default function SalmonDashboard() {
           </div>
           <div style={{ 
             fontSize: '0.8rem', padding: '0.5rem 1rem', 
-            background: '#181818', border: '1px solid rgba(236, 72, 153, 0.2)', 
+            background: '#11182f', border: '1px solid rgba(236, 72, 153, 0.2)', 
             borderRadius: '8px', color: '#94a3b8', fontWeight: 500
           }}>
             <span style={{ color: SALMON_THEME.primary }}>FishStatJ 1950-2024 + KFAS</span> · 정적 데이터셋
@@ -403,7 +403,7 @@ export default function SalmonDashboard() {
           return (
             <div key={key} className="ds-card" style={{background: 'rgba(24,24,24,0.85)',
               backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', padding: '1.2rem',
+              border: '1px solid rgba(140,170,255,0.12)', borderRadius: '8px', padding: '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '6px',
               transition: 'all 0.3s ease', cursor: 'default',
               boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px',
@@ -450,15 +450,15 @@ export default function SalmonDashboard() {
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
       <div style={{
-        background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))',
+        background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))',
         border: '1px solid rgba(255,255,255,0.04)',
         borderRadius: '16px',
         padding: '6px',
         marginBottom: '2rem', marginTop: '2rem',
-        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-          padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+          padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요
           </span>
@@ -469,7 +469,7 @@ export default function SalmonDashboard() {
             return (
               <button key={s.id}
                 onClick={() => setActivePart(s.id as any)}
-                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(140,170,255,0.12)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
                 onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
                 style={{
                   position: 'relative',
@@ -487,8 +487,8 @@ export default function SalmonDashboard() {
                   background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
                 <div style={{ width: '28px', height: '28px', borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: isActive ? s.color : 'rgba(255,255,255,0.06)',
-                  color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)',
+                  background: isActive ? s.color : 'rgba(140,170,255,0.12)',
+                  color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)',
                   fontSize: '0.75rem', fontWeight: 800,
                   boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
                 <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500,

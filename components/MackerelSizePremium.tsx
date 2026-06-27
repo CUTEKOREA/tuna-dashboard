@@ -19,10 +19,10 @@ export default function MackerelSizePremium() {
             <stop offset="95%" stopColor="var(--color-warning)" stopOpacity={0.05}/>
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
         <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
         <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`${v}x`} tick={{ fill: 'var(--color-warning)', fontSize: 10, fontWeight: 'bold' }} />
-        <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)' }} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)' }} />
         <Area type="monotone" dataKey="multiplier" name="대형 가격 배수" stroke="var(--color-warning)" strokeWidth={3} fillOpacity={1} fill="url(#colorMult)" />
       </AreaChart>
     </SafeResponsiveContainer>

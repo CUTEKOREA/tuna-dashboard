@@ -42,7 +42,7 @@ export default function TunaPeptideEfficacy() {
           <Radar name="효소가수분해 (TPF+HPMC)" dataKey="효소가수분해TPF" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.5} />
           <Radar name="열수추출 (전통방식)" dataKey="열수추출" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.3} />
           <Tooltip
-            contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f8fafc', fontSize: '0.8rem' }}
+            contentStyle={{ backgroundColor: '#0a0f1f', borderColor: '#334155', color: '#f8fafc', fontSize: '0.8rem' }}
             itemStyle={{ color: '#f8fafc' }}
           />
           <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />

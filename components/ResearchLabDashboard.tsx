@@ -149,7 +149,7 @@ export default function ResearchLabDashboard() {
               </p>
             </div>
           </div>
-          <div style={{fontSize:'0.88rem',padding:'8px 16px',background:'#181818',borderRadius:500,color:'var(--text-secondary)',fontWeight:600,display:'flex',alignItems:'center',gap:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
+          <div style={{fontSize:'0.88rem',padding:'8px 16px',background:'#11182f',borderRadius:500,color:'var(--text-secondary)',fontWeight:600,display:'flex',alignItems:'center',gap:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
             <Microscope size={16} color="#8b5cf6" />
             <span>
               검증 아카이브 {archiveCount}건 (기준일 {archiveDate})
@@ -172,7 +172,7 @@ export default function ResearchLabDashboard() {
           {B2B_MODELS.map((model, idx) => {
             const Icon = model.icon;
             return (
-              <div key={idx} style={{background:'#181818',borderRadius:12,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.4) 0px 8px 16px',borderLeft:`4px solid ${model.color}`,position:'relative',overflow:'hidden',transition:'transform 0.2s'}}
+              <div key={idx} style={{background:'#11182f',borderRadius:12,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.4) 0px 8px 16px',borderLeft:`4px solid ${model.color}`,position:'relative',overflow:'hidden',transition:'transform 0.2s'}}
                    onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-4px)';}}
                    onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';}}>
                 <div style={{position:'absolute',top:-20,right:-20,opacity:0.05}}>
@@ -209,7 +209,7 @@ export default function ResearchLabDashboard() {
                   </div>
                 </div>
                 
-                <p style={{margin:'1rem 0 0 0',fontSize:'0.8rem',color:'var(--text-secondary)',lineHeight:1.6,borderTop:'1px solid rgba(255,255,255,0.05)',paddingTop:'1rem'}}>
+                <p style={{margin:'1rem 0 0 0',fontSize:'0.8rem',color:'var(--text-secondary)',lineHeight:1.6,borderTop:'1px solid rgba(140,170,255,0.10)',paddingTop:'1rem'}}>
                   {model.desc}
                 </p>
               </div>
@@ -229,14 +229,14 @@ export default function ResearchLabDashboard() {
 
       {/* Pillar Tabs */}
       <div style={{display:'flex',gap:8,marginBottom:'1.5rem',flexWrap:'wrap'}}>
-        <button onClick={()=>setActivePillar('all')} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:activePillar==='all'?'#8b5cf6':'#181818',color:activePillar==='all'?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px'}}>
+        <button onClick={()=>setActivePillar('all')} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:activePillar==='all'?'#8b5cf6':'#11182f',color:activePillar==='all'?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px'}}>
           전체 보기 ({papers.length})
         </button>
         {pillars.map((p:any) => {
           const meta = B2B_PILLAR_META[p.id] || { name: p.name, color: '#94a3b8', icon: FlaskConical };
           const isActive = activePillar === p.id;
           return (
-            <button key={p.id} onClick={()=>setActivePillar(p.id)} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:isActive?meta.color:'#181818',color:isActive?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px',display:'flex',alignItems:'center',gap:6}}>
+            <button key={p.id} onClick={()=>setActivePillar(p.id)} style={{padding:'8px 16px',borderRadius:500,border:'none',cursor:'pointer',fontSize:'0.8rem',fontWeight:600,background:isActive?meta.color:'#11182f',color:isActive?'#fff':'var(--text-secondary)',transition:'all 0.2s',boxShadow:'rgba(0,0,0,0.2) 0px 4px 8px',display:'flex',alignItems:'center',gap:6}}>
               {meta.name} ({p.count})
             </button>
           );
@@ -250,7 +250,7 @@ export default function ResearchLabDashboard() {
           const isExpanded = expandedCard === p.id;
           const IconComp = meta?.icon || FlaskConical;
           return (
-            <div key={p.id} style={{background:'#181818',borderRadius:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px',overflow:'hidden',transition:'all 0.2s',borderLeft:`3px solid ${meta?.color||'#8b5cf6'}`}}
+            <div key={p.id} style={{background:'#11182f',borderRadius:8,boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px',overflow:'hidden',transition:'all 0.2s',borderLeft:`3px solid ${meta?.color||'#8b5cf6'}`}}
               onMouseEnter={e=>{e.currentTarget.style.boxShadow='rgba(0,0,0,0.5) 0px 8px 24px';}}
               onMouseLeave={e=>{e.currentTarget.style.boxShadow='rgba(0,0,0,0.3) 0px 8px 8px';}}>
               <div style={{padding:'1.2rem 1.5rem',cursor:'pointer'}} onClick={()=>setExpandedCard(isExpanded?null:p.id)}>
@@ -328,7 +328,7 @@ export default function ResearchLabDashboard() {
       {/* Bottom Analytics */}
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,480px),1fr))',gap:'1.5rem',marginBottom:'2.5rem'}}>
         {/* TRL Distribution */}
-        <div style={{background:'#181818',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
+        <div style={{background:'#11182f',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8}}>
             <h3 style={{margin:0,fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
               <Target size={20} color="#8b5cf6" /> 기술성숙도(TRL) 포트폴리오 분포
@@ -342,7 +342,7 @@ export default function ResearchLabDashboard() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={trlDistribution} layout="vertical" margin={{left:20}}>
                 <ChartPatternDefs />
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
                 <XAxis type="number" stroke="#64748b" tick={{fontSize:11}} />
                 <YAxis dataKey="level" type="category" stroke="#64748b" tick={{fontSize:10}} width={130} />
                 <RTooltip content={<CustomTooltip />} />
@@ -355,7 +355,7 @@ export default function ResearchLabDashboard() {
         </div>
 
         {/* Species Distribution */}
-        <div style={{background:'#181818',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
+        <div style={{background:'#11182f',borderRadius:8,padding:'1.5rem',boxShadow:'rgba(0,0,0,0.3) 0px 8px 8px'}}>
           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:8}}>
             <h3 style={{margin:0,fontSize:'1.13rem',fontWeight:700,display:'flex',alignItems:'center',gap:8}}>
               <Fish size={20} color="#8b5cf6" /> 타겟 어종별 상용화 집중도

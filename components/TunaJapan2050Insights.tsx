@@ -141,10 +141,10 @@ export function InsightJapanDemandCliff() {
       chart={
         <ComposedChart data={demandCliffData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="연도" stroke="#94a3b8" />
           <YAxis stroke="#94a3b8" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <Area type="monotone" dataKey="국내" stackId="1" name="국내 수요" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.55} />
           <Area type="monotone" dataKey="인바운드" stackId="1" name="인바운드 수요" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
@@ -223,10 +223,10 @@ export function InsightPerCapitaGamma() {
       chart={
         <LineChart data={perCapitaData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="연도" stroke="#94a3b8" />
           <YAxis stroke="#94a3b8" unit=" kg" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <ReferenceLine x="2022" stroke="#fbbf24" strokeDasharray="4 4" label={{ value: '재구성 종료', fill: '#fbbf24', fontSize: 11, position: 'top' }} />
           <Line type="monotone" dataKey="소비량" name="1인당 소비 (kg/인/년)" stroke="#38bdf8" strokeWidth={3} dot={{ r: 5 }} />
@@ -305,10 +305,10 @@ export function InsightSegmentDecline() {
       chart={
         <LineChart data={segmentData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="연도" stroke="#94a3b8" />
           <YAxis stroke="#94a3b8" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <Line type="monotone" dataKey="사시미" name="사시미" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} />
           <Line type="monotone" dataKey="가츠오부시" name="가츠오부시" stroke="#fbbf24" strokeWidth={2.5} dot={{ r: 4 }} />
@@ -388,10 +388,10 @@ export function InsightSupplyStructure2022() {
       chart={
         <BarChart data={supplyStructureData} margin={{ top: 20, right: 30, left: 80, bottom: 5 }} layout="vertical">
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
           <XAxis type="number" stroke="#94a3b8" unit=" 천 톤" />
           <YAxis dataKey="항목" type="category" stroke="#94a3b8" width={100} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Bar dataKey="value" name="공급량 (천 톤, LWE)" radius={[0, 4, 4, 0]}>
             {supplyStructureData.map((entry, idx) => (
               <Cell key={`cell-${idx}`} fill={entry.fill} />
@@ -472,10 +472,10 @@ export function InsightPriceTier() {
       chart={
         <BarChart data={priceTierData} margin={{ top: 20, right: 30, left: 60, bottom: 5 }} layout="vertical">
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
           <XAxis type="number" stroke="#94a3b8" unit=" JPY" />
           <YAxis dataKey="티어" type="category" stroke="#94a3b8" width={100} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <Bar dataKey="최저가" name="가격 하한 (JPY/kg)" fill="#7dd3fc" radius={[0, 0, 0, 0]} />
           <Bar dataKey="평균" name="평균가 (JPY/kg)" fill="#fbbf24" radius={[0, 0, 0, 0]} />
@@ -555,11 +555,11 @@ export function InsightCohortDoubleShock() {
       chart={
         <ComposedChart data={cohortShockData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="연도" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#a855f7" unit=" kg" />
           <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" unit=" 백만" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.95)', border: 'none', borderRadius: '8px', color: '#f8fafc' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="일인당" name="1인당 소비 (kg/인/년)" fill="#a855f7" radius={[4, 4, 0, 0]} />
           <Line yAxisId="right" type="monotone" dataKey="인구" name="일본 인구 (백만 명)" stroke="#fbbf24" strokeWidth={3} dot={{ r: 5 }} />

@@ -12,7 +12,7 @@ export const W11_TradeVolLong = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={tradeQtyMerged} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -29,7 +29,7 @@ export const W12_TradeUsdLong = () => (
   <WidgetCard title="무역 거래대금 롱텀 트렌드" icon={DollarSign} term="Trade Value LT" desc="1976~2023년 달러 환산 수출입 거래대금" source="FAO FishStatJ 무역 시계열(수출입 거래대금, 1976~2023) · STATIC, 동기화 2026-05-29" situation="물리적 톤수 대비 달러 거래대금이 장기적으로 더 가파르게 상승해, 탈각·포장 등 가공 고도화가 단위가치를 끌어올리는 추세를 보였습니다. 수출·수입 거래대금이 동반 확대되며 시장 규모가 구조적으로 커졌습니다." actionPlan="[가공 허브 내재화] 단순 벌크 수입 브로커리지 모델 의존도를 낮추십시오. 수입 1차 원물을 국내 허브에서 B2C 프리미엄 팩으로 소분해 스프레드 마진을 내부화하는 밸류에드 라인 구축을 검토하십시오." telemetry={{ status: 'STATIC' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={tradeUsdMerged} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(0)}B`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -47,7 +47,7 @@ export const W13_RecentTradeQty = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={recent5yr} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -65,7 +65,7 @@ export const W14_RecentTradeUsd = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={recent5yr} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -83,7 +83,7 @@ export const W15_ExpTop10Qty = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topExportersQty} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -99,7 +99,7 @@ export const W16_ImpTop10Qty = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topImportersQty} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -115,7 +115,7 @@ export const W17_ExpTop10Usd = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topExportersUsd} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -131,7 +131,7 @@ export const W18_ImpTop10Usd = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={topImportersUsd} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -147,7 +147,7 @@ export const W19_TradeBalance = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={tradeBalanceCountry.slice(0, 10).concat(tradeBalanceCountry.slice(-3))} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} formatter={(v:any)=>[ `$${(v/1000).toFixed(0)}M`, '수지' ]} />

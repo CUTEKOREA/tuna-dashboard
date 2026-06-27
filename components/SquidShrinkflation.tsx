@@ -12,7 +12,7 @@ const ShrinkflationTooltip = ({ active, payload, label }: any) => {
   const tradeVal = payload.find((p: any) => p.dataKey === 'trade_usd_million')?.value || 0;
 
   return (
-    <div style={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(239,68,68,0.3)', padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', minWidth: '220px' }}>
+    <div style={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(239,68,68,0.3)', padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', minWidth: '220px' }}>
       <p style={{ margin: '0 0 8px', fontWeight: 700, fontSize: '1rem', color: 'var(--color-danger)' }}>{label}년</p>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
         <span style={{ color: '#60a5fa' }}>총 어획량 (공급)</span>
@@ -47,7 +47,7 @@ export default function SquidShrinkflation() {
               <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0.0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} minTickGap={10} />
           <YAxis yAxisId="left" stroke="rgba(59,130,246,0.3)" tick={{ fill: '#60a5fa', fontSize: 10 }} tickFormatter={v => `${(v / 10000).toFixed(0)}만`} width={45} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(239,68,68,0.3)" tick={{ fill: 'var(--color-danger)', fontSize: 10 }} tickFormatter={v => `$${v.toLocaleString()}`} width={50} />

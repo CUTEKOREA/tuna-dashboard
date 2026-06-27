@@ -50,7 +50,7 @@ export default function SeafoodStockWidget() {
           <div key={i} style={{
             flex: '0 0 auto', width: '160px', height: '80px',
             background: 'rgba(30, 41, 59, 0.4)', borderRadius: '12px',
-            border: '1px solid rgba(255,255,255,0.05)',
+            border: '1px solid rgba(140,170,255,0.10)',
             animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
           }} />
         ))}
@@ -100,11 +100,11 @@ export default function SeafoodStockWidget() {
             <div key={i} style={{
               flex: '0 0 auto',
               minWidth: '150px',
-              background: '#0f172a',
+              background: '#0a0f1f',
               borderRadius: '12px',
-              border: `1px solid ${isUp ? 'rgba(239, 68, 68, 0.2)' : isDown ? 'rgba(59, 130, 246, 0.2)' : 'rgba(255,255,255,0.05)'}`,
+              border: `1px solid ${isUp ? 'rgba(239, 68, 68, 0.2)' : isDown ? 'rgba(59, 130, 246, 0.2)' : 'rgba(140,170,255,0.10)'}`,
               padding: '12px 16px',
-              boxShadow: `0 4px 12px ${bgGlow}, inset 0 1px 0 rgba(255,255,255,0.05)`,
+              boxShadow: `0 4px 12px ${bgGlow}, inset 0 1px 0 rgba(140,170,255,0.10)`,
               display: 'flex',
               flexDirection: 'column',
               gap: '4px',

@@ -99,7 +99,7 @@ export default function PollockDraftInsights() {
                 <XAxis dataKey="year" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v/1000000).toFixed(1)}M t`} />
                 <RechartsTooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }}
                   itemStyle={{ fontWeight: 600 }}
                   formatter={(value: any) => [`${(Number(value)/1000).toFixed(1)}k tons`, '생산량']}
                   labelFormatter={(l) => `${l}년`}
@@ -130,7 +130,7 @@ export default function PollockDraftInsights() {
                 <XAxis dataKey="year" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
                 <RechartsTooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
                   formatter={(value: any) => [`${(Number(value)/1000).toFixed(1)}k tons`, '']}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
@@ -159,7 +159,7 @@ export default function PollockDraftInsights() {
                 <XAxis dataKey="year" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v/1000).toFixed(0)}k t`} />
                 <RechartsTooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
                   formatter={(value: any, name: any) => [`${(Number(value)/1000).toFixed(1)}k tons`, name]}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
@@ -190,7 +190,7 @@ export default function PollockDraftInsights() {
                 <XAxis type="number" tickFormatter={(v) => `$${v}`} stroke="#94a3b8" />
                 <YAxis dataKey="country" type="category" stroke="#94a3b8" width={80} />
                 <RechartsTooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
                   formatter={(value: any, name: any) => [`$${Number(value).toFixed(2)}/ton`, name === 'spread' ? '마진 차액(Spread)' : (name === 'import_price' ? '수입원가' : '수출원가')]}
                 />
                 <Legend wrapperStyle={{ color: '#cbd5e1' }} />
@@ -221,7 +221,7 @@ export default function PollockDraftInsights() {
                 <ZAxis type="number" dataKey="import_vol" range={[50, 400]} name="수입 물량" />
                 <RechartsTooltip 
                   cursor={{ strokeDasharray: '3 3' }}
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
+                  contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
                   formatter={(value: any, name: any) => {
                     if (name === '수입 물량') return [`${(Number(value)/1000).toFixed(1)}k tons`, name];
                     if (name === '수입 단가 ($)') return [`$${Number(value).toFixed(2)}/ton`, name];

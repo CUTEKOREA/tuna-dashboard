@@ -21,7 +21,7 @@ export function Widget17_OilMargin() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={9} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Bar dataKey="추정_영업이익" fill="var(--color-success)" name="척당 월 추정 이익(초과 시 손실 폭주)" radius={[4,4,0,0]} />
             <Line type="monotone" dataKey="MGO_유가" stroke="var(--color-danger)" strokeWidth={3} name="국제 선박 화물유가(MGO)" dot={{r:3}} />
             <Line type="monotone" dataKey="어획_단가" stroke="var(--color-info)" strokeWidth={2} name="현행 스팟 도매가 형성선" dot={false} />
@@ -54,7 +54,7 @@ export function Widget18_FXMargin() {
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`₩${v}`} tickMargin={10} />
             <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Line yAxisId="left" type="monotone" dataKey="환율_원달러" stroke="var(--color-warning)" strokeWidth={3} name="원/달러 환율 공시가" dot={{r:3}} />
             <Line yAxisId="right" type="monotone" dataKey="영업이익률" stroke="var(--color-danger)" strokeWidth={4} name="무역 가공 본부 OPM" dot={{r:4}} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -86,7 +86,7 @@ export function Widget19_CollagenSpinoff() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="sector" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Bar dataKey="매출비중" fill="#cbd5e1" name="그룹 전사 매출 점유(Volume)" radius={[4,4,0,0]} />
             <Bar dataKey="이익기여도" fill="#8b5cf6" name="영업 순수익 현금 캐리 포션" radius={[4,4,0,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -118,7 +118,7 @@ export function Widget20_Portfolio2030() {
             <XAxis type="number" dataKey="이익률" name="이익률(%)" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
             <YAxis type="number" dataKey="성장성" name="성장율(Cagr)" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
             <ZAxis type="number" dataKey="시장크기" range={[50, 600]} name="글로벌 현금동원 마진볼륨(Bubble)" />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Scatter name="포트폴리오 대전환 점유도" data={data} fill="#0ea5e9">
               {data.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={entry.성장성 > 10 ? 'var(--color-danger)' : 'var(--color-info)'} stroke="rgba(0,0,0,0.4)" strokeWidth={1} />

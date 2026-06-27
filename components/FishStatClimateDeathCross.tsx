@@ -42,10 +42,10 @@ export default function FishStatClimateDeathCross() {
                 <stop offset="95%" stopColor="var(--color-info)" stopOpacity={0.1}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis tickFormatter={(val) => `${val}k`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-            <Tooltip formatter={(value: any) => `${value}k Tons`} contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} />
+            <Tooltip formatter={(value: any) => `${value}k Tons`} contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             <Area type="monotone" dataKey="krjp" name="한·일 합산 어획고" stroke="var(--color-warning)" fill="url(#colorKrjp)" />
             <Area type="monotone" dataKey="russia" name="러시아 극동 어획고" stroke="var(--color-info)" fill="url(#colorRussia)" />

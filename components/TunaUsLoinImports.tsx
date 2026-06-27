@@ -39,11 +39,11 @@ export default function TunaUsLoinImports() {
         <div style={{ height: 260 }}>
           <SafeResponsiveContainer width="100%" height="100%">
             <AreaChart data={usLoinData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
               <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 11 }} />
               <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} />
               <Tooltip 
-                contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} 
+                contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.75rem' }} 
                 formatter={(v: any) => [`$${v}M`, '']}
               />
               <Legend wrapperStyle={{ fontSize: '0.7rem' }} />

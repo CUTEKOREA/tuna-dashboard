@@ -10,11 +10,11 @@ export default function MackerelStorageTurnover() {
   const chart = (
     <ComposedChart data={rawData} margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
       <ChartPatternDefs />
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
       <XAxis dataKey="p" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
       <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
       <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v)=>`${v}일`} tick={{ fill: '#fbbf24', fontSize: 10, fontWeight:'bold' }} />
-      <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+      <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
       <Legend wrapperStyle={{ fontSize: '11px' }} />
       <Area yAxisId="left" type="monotone" dataKey="storageVolume" name="창고 내 적재 물량(톤)" fill="rgba(6,182,212,0.15)" stroke="none" />
       <Line yAxisId="right" type="monotone" dataKey="turnoverDays" name="평균 재고 체류시간(일)" stroke="#fbbf24" strokeWidth={3} />

@@ -109,7 +109,7 @@ export default function CassavaDashboard() {
     if (!w) return null;
     const d = w.data;
     if (!d?.length && w.id !== 'w04') return <div style={{height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'#64748b'}}>데이터 없음</div>;
-    const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
+    const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />;
     const xFmt = (v: any) => { if (typeof v !== 'string') return v; const s = v.replace(/\([^)]*\)/g, '').trim(); return s.length > 6 ? s.slice(0,6)+'..' : s; };
     const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={{fontSize:9}} angle={d?.length > 6 ? -20 : 0} textAnchor={d?.length > 6 ? "end" : "middle"} height={d?.length > 6 ? 40 : 30} tickFormatter={xFmt} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
@@ -264,7 +264,7 @@ export default function CassavaDashboard() {
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'center', gap:'1rem' }}>
-            <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: '1px solid rgba(255,255,255,0.05)', borderRadius:'8px', color:'#94a3b8' }}>
+            <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: '1px solid rgba(140,170,255,0.10)', borderRadius:'8px', color:'#94a3b8' }}>
               {/* 단일 출처: /api/cassava 라우트 _metadata.lastSynced (하드코딩 금지) */}
               <span style={{ color:CASSAVA_THEME.tertiary }}>데이터 최종 동기화:</span> {meta?.lastSynced ?? '동기화 정보 없음'} (정적 데이터)
             </div>
@@ -277,7 +277,7 @@ export default function CassavaDashboard() {
         {Object.keys(CASSAVA_KPIS).map((key, idx) => {
           const kpi = CASSAVA_KPIS[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
-            <div key={key} style={{ background: '#181818', border: '1px solid rgba(255,255,255,0.03)', borderRadius:'12px', padding:'1.2rem', display:'flex', flexDirection:'column', gap:'6px', position:'relative', overflow:'hidden' }}>
+            <div key={key} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius:'12px', padding:'1.2rem', display:'flex', flexDirection:'column', gap:'6px', position:'relative', overflow:'hidden' }}>
               <div style={{ position:'absolute', top:'-15px', right:'-15px', width:'60px', height:'60px', borderRadius:'50%', background:`radial-gradient(circle,${t.glow},transparent)`, pointerEvents:'none' }} />
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                 <span style={{ fontSize:'0.72rem', color:'#94a3b8', fontWeight:600 }}>{kpi.title}</span>
@@ -313,7 +313,7 @@ export default function CassavaDashboard() {
           </div>
         </button>
         {showEdu && (
-          <div style={{ background: '#181818', borderRadius:'10px', border: '1px solid rgba(255,255,255,0.05)', padding:'1.5rem', animation:'fadeIn 0.3s' }}>
+          <div style={{ background: '#11182f', borderRadius:'10px', border: '1px solid rgba(140,170,255,0.10)', padding:'1.5rem', animation:'fadeIn 0.3s' }}>
             <div data-mobile-stack style={{ display:'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap:'1.5rem' }}>
               <div>
                 <h3 style={{ color:CASSAVA_THEME.primary, fontSize:'0.9rem', marginBottom:'0.6rem', display:'flex', alignItems:'center', gap:'6px' }}><Dna size={15}/> 4F 플랫폼 & 패러다임 전환 (Value Pivot)</h3>
@@ -339,8 +339,8 @@ export default function CassavaDashboard() {
       </div>
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
-      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+      <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -348,11 +348,11 @@ export default function CassavaDashboard() {
             const isActive = activePart === s.id;
             return (
               <button key={s.id} onClick={() => setActivePart(s.id as any)}
-                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(140,170,255,0.12)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
                 onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
                 style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
                 {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
                 <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
               </button>
             );

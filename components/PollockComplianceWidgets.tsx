@@ -20,7 +20,7 @@ export function Widget13_Decoupling() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="quarter" stroke="rgba(255,255,255,0.5)" fontSize={9} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Line type="monotone" dataKey="미국_MSC_프리미엄" stroke="var(--color-info)" strokeWidth={3} name="미 알래스카 가격" dot={{r:4}} />
             <Line type="step" dataKey="러시아_일반_덤핑" stroke="var(--color-danger)" strokeWidth={2} strokeDasharray="5 5" name="러시아산 제재 단가락" dot={false} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -51,7 +51,7 @@ export function Widget14_MscRatio() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}%`} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Area type="monotone" stackId="1" dataKey="MSC_인증물량_비율" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.6} name="ESG 합격선: MSC 필수요구량" />
             <Area type="monotone" stackId="1" dataKey="무인증_물량_비율" stroke="#334155" fill="#334155" fillOpacity={0.6} name="불량품질/B급 무인증 적체량" />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -83,7 +83,7 @@ export function Widget15_IuuRisk() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
             <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis dataKey="region" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={95} tickMargin={5} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Bar dataKey="위험도" fill="var(--color-danger)" name="적발시 누적 벌금/페널티" radius={[0,4,4,0]} />
             <Bar dataKey="통제율" fill="var(--color-info)" name="바이어의 Traceability 방어력" radius={[0,4,4,0]} />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />
@@ -114,7 +114,7 @@ export function Widget16_ClimateShift() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
             <XAxis dataKey="latitude" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
             <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`${v}만톤`} tickMargin={10} />
-            <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+            <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
             <Area type="monotone" dataKey="1990년_수확량" stroke="#64748b" fill="#64748b" fillOpacity={0.4} name="1990년대 중위도 수확 볼륨" />
             <Area type="monotone" dataKey="2023년_수확량" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.6} name="현재 고위도 수확 최적화 이동 볼륨" />
             <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />

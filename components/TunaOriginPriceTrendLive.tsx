@@ -27,7 +27,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   const { region, price, change, asOf } = payload[0].payload as TunaPriceData;
   return (
-    <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
+    <div style={{ background: '#0a0f1f', border: '1px solid #334155', borderRadius: 6, padding: '8px 12px' }}>
       <p style={{ color: '#f8fafc', fontWeight: 600, margin: 0, fontSize: '0.85rem' }}>
         {region} · {price.toLocaleString()} USD/MT · 전월 대비 {change > 0 ? '+' : ''}{change}% · {asOf}
       </p>
@@ -79,7 +79,7 @@ const TunaOriginPriceTrendLive = () => {
             tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}
             tickFormatter={(v) => v.toLocaleString()}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
           <Bar dataKey="price" fill="url(#tunaOriginPriceLiveGradient)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }

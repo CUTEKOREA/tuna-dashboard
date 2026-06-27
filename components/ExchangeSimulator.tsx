@@ -61,12 +61,12 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
           </p>
         </div>
         <button onClick={resetSimulation} style={{
-          background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+          background: 'rgba(140,170,255,0.10)', border: '1px solid rgba(255,255,255,0.1)',
           color: '#cbd5e1', padding: '0.4rem 0.8rem', borderRadius: '6px', cursor: 'pointer',
           display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', transition: 'all 0.2s'
         }}
         onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+        onMouseLeave={e => e.currentTarget.style.background = 'rgba(140,170,255,0.10)'}
         >
           <RefreshCcw size={14} /> 초기화
         </button>
@@ -74,7 +74,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
 
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
         {/* NOK Simulator */}
-        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.2rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.2rem', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
             <span style={{ color: '#f8fafc', fontWeight: 600, fontSize: '0.9rem' }}>🇳🇴 NOK/KRW (노르웨이 크로네)</span>
             <span style={{ color: nokFactor > 0 ? 'var(--color-danger)' : nokFactor < 0 ? 'var(--color-success)' : '#94a3b8', fontWeight: 700 }}>
@@ -93,7 +93,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
         </div>
 
         {/* EUR Simulator */}
-        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.2rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.2rem', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
             <span style={{ color: '#f8fafc', fontWeight: 600, fontSize: '0.9rem' }}>🇪🇺 EUR/KRW (유로)</span>
             <span style={{ color: eurFactor > 0 ? 'var(--color-danger)' : eurFactor < 0 ? 'var(--color-success)' : '#94a3b8', fontWeight: 700 }}>
@@ -112,7 +112,7 @@ export default function ExchangeSimulator({ onSimulationChange }: ExchangeSimula
         </div>
 
         {/* MGO (Fuel) Simulator */}
-        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.2rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.2rem', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
             <span style={{ color: '#f8fafc', fontWeight: 600, fontSize: '0.9rem' }}>🛢️ MGO (글로벌 해운연료, $/mt)</span>
             <span style={{ color: mgoFactor > 0 ? 'var(--color-danger)' : mgoFactor < 0 ? 'var(--color-success)' : '#94a3b8', fontWeight: 700 }}>

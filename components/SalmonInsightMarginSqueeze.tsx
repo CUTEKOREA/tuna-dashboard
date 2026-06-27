@@ -25,7 +25,7 @@ export default function SalmonInsightMarginSqueeze() {
           <YAxis yAxisId="left" stroke="var(--color-info)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}`} />
           <Tooltip 
-            contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }}
+            contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}
             itemStyle={{ fontSize: '0.85rem' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />

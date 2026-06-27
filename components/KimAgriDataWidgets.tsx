@@ -13,7 +13,7 @@ import { Sprout, Globe, Ship, Anchor, Boxes, Utensils, DollarSign, FlaskConical 
 import WidgetCard from './WidgetCard';
 import { truncateXAxis } from '../lib/chart-standards';
 
-const tip = { background: 'rgba(0,15,30,0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
+const tip = { background: 'rgba(10, 16, 40, 0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
 
 function useJson(path) {
   const [d, setD] = useState(null);
@@ -45,7 +45,7 @@ export function KimProductionTrend() {
       chart={
         <AreaChart data={series} margin={{ top: 10, right: 16, left: -8, bottom: 0 }}>
           <defs><linearGradient id="kimProdReal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#16a34a" stopOpacity={0.5} /><stop offset="95%" stopColor="#16a34a" stopOpacity={0.05} /></linearGradient></defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={20} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}천t`} />
           <Tooltip contentStyle={tip} formatter={(v) => [`${v}천 톤`, '양식 생산']} />
@@ -109,7 +109,7 @@ export function KimExportTrend() {
       chart={
         <AreaChart data={data} margin={{ top: 10, right: 16, left: -5, bottom: 0 }}>
           <defs><linearGradient id="kimExpReal" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#a3e635" stopOpacity={0.5} /><stop offset="95%" stopColor="#a3e635" stopOpacity={0.05} /></linearGradient></defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
           <Tooltip contentStyle={tip} formatter={(v, n) => n === '수출액 (백만 USD)' ? [`$${v}M`, n] : [`${v.toLocaleString()}톤`, n]} />
@@ -139,7 +139,7 @@ export function KimExportDest() {
       telemetry={{ status: 'SYNCED', syncDate: 'KCS 2024' }}
       chart={
         <BarChart data={data} layout="vertical" margin={{ top: 6, right: 24, left: 16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
           <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={58} />
           <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`$${v}M`, '수출액']} />
@@ -168,7 +168,7 @@ export function KimGlobalImporters() {
       telemetry={{ status: 'SYNCED', syncDate: `Comtrade ${d.year || 2023}` }}
       chart={
         <BarChart data={data} layout="vertical" margin={{ top: 6, right: 28, left: 16, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
           <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={52} />
           <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`$${v}M`, '수입액']} />
@@ -202,7 +202,7 @@ export function KimConsumption() {
       chart={
         <AreaChart data={data} margin={{ top: 10, right: 16, left: -8, bottom: 0 }}>
           <defs><linearGradient id="kimConsume" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#65a30d" stopOpacity={0.45} /><stop offset="95%" stopColor="#65a30d" stopOpacity={0.04} /></linearGradient></defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={20} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}kg`} />
           <Tooltip contentStyle={tip} formatter={(v) => [`${v} kg/인/년`, '1인당 공급']} />
@@ -232,7 +232,7 @@ export function KimFxPrice() {
       telemetry={{ status: 'SYNCED', syncDate: 'ECOS·KCS' }}
       chart={
         <ComposedChart data={data} margin={{ top: 10, right: 8, left: -6, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
           <YAxis yAxisId="l" stroke="#94a3b8" fontSize={11} domain={[1000, 1400]} tickFormatter={(v) => `₩${v}`} />
           <YAxis yAxisId="r" orientation="right" stroke="#a3e635" fontSize={11} tickFormatter={(v) => `$${v}`} />
@@ -265,7 +265,7 @@ export function KimWorldProduction() {
       telemetry={{ status: 'SYNCED', syncDate: 'FishStat 2022' }}
       chart={
         <LineChart data={data} margin={{ top: 10, right: 16, left: -6, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={24} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}천t`} />
           <Tooltip contentStyle={tip} formatter={(v, n) => [`${v.toLocaleString()}천 톤`, n]} />
@@ -300,7 +300,7 @@ export function KimResearch() {
       telemetry={{ status: 'SYNCED', syncDate: 'OpenAlex' }}
       chart={
         <BarChart data={data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={12} />
           <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
           <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}편`, '논문']} />

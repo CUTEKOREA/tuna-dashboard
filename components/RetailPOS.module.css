@@ -175,14 +175,14 @@
   padding: 12px 8px;
   color: #94a3b8;
   font-size: 11px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(140, 170, 255, 0.10);
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .trackerTable td {
   padding: 12px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(140, 170, 255, 0.10);
   vertical-align: middle;
 }
 
@@ -277,7 +277,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(140, 170, 255, 0.10);
   border: 1px dashed rgba(255, 255, 255, 0.2);
   color: #cbd5e1;
   padding: 8px 16px;
@@ -310,7 +310,7 @@
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 16px 0;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(140, 170, 255, 0.10);
 }
 
 .sliderArea {
@@ -323,7 +323,7 @@
   background: rgba(255, 255, 255, 0.03);
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(140, 170, 255, 0.10);
 }
 
 .sliderLabel {

@@ -76,7 +76,7 @@
 
 .insightBox {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(140, 170, 255, 0.10);
   padding: 16px;
   border-radius: 8px;
   display: flex;
@@ -112,7 +112,7 @@
   background: rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(140, 170, 255, 0.10);
   margin-bottom: 16px;
 }
 

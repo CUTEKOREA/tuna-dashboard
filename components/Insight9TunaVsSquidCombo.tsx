@@ -29,7 +29,7 @@ const BenchmarkTooltip = ({ active, payload, label }: any) => {
   const tunaRaw = payload[0]?.payload?.TunaRaw || 0;
   
   return (
-    <div style={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(168,85,247,0.4)', padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', minWidth: '220px' }}>
+    <div style={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(168,85,247,0.4)', padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', minWidth: '220px' }}>
       <p style={{ margin: '0 0 8px', fontWeight: 700, color: '#c084fc' }}>{label}년 (성장 지수 1990=100)</p>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
         <span style={{ color: '#f97316' }}>🦑 변동성 (위험자산)</span>
@@ -78,7 +78,7 @@ export default function Insight9TunaVsSquidCombo() {
                   <stop offset="100%" stopColor="#f97316" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
               <XAxis dataKey="Year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: mobile ? 10 : 11 }} minTickGap={mobile ? 30 : 15} />
               <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} width={mobile ? 35 : 45} />
               <Tooltip content={<BenchmarkTooltip />} />

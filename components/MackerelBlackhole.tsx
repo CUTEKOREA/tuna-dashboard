@@ -37,7 +37,7 @@ export default function MackerelBlackhole() {
     if (!d) return null;
     return (
       <div style={{
-        background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
+        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
         padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '1rem', color: '#67e8f9' }}>{d.country}</p>
@@ -79,7 +79,7 @@ export default function MackerelBlackhole() {
       <div ref={chartRef} style={{ width: '100%' }}>
         {chartWidth > 0 && (
           <ScatterChart width={chartWidth} height={400} margin={{ top: 20, right: 30, left: 30, bottom: 20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis type="number" dataKey="import_2023_t" name="2023 수입량" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : `${v}`} label={{ value: '2023 수입량 (톤)', position: 'bottom', offset: 0, style: { fill: 'rgba(255,255,255,0.4)', fontSize: 11 } }} />
             <YAxis type="number" dataKey="growth_pct" name="성장률" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${v}%`} label={{ value: '5년 성장률 (%)', angle: -90, position: 'insideLeft', style: { fill: 'rgba(255,255,255,0.4)', fontSize: 11 } }} />
             <ZAxis type="number" dataKey="import_value_2023_usd_k" range={[30, 400]} />

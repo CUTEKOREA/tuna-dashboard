@@ -15,7 +15,7 @@ const SupplyTooltip = ({ active, payload, viewMode }: any) => {
   if (!d) return null;
   return (
     <div style={{
-      background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(239, 68, 68, 0.4)',
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(239, 68, 68, 0.4)',
       padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px',
     }}>
       <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#f87171', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
@@ -58,7 +58,7 @@ export default function SquidKoreaSupply() {
             onClick={() => setViewMode('supply')}
             style={{
               padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 600,
-              background: viewMode === 'supply' ? 'rgba(59, 130, 246, 0.3)' : 'rgba(255,255,255,0.05)',
+              background: viewMode === 'supply' ? 'rgba(59, 130, 246, 0.3)' : 'rgba(140,170,255,0.10)',
               color: viewMode === 'supply' ? '#60a5fa' : 'rgba(255,255,255,0.5)',
             }}
           >
@@ -68,7 +68,7 @@ export default function SquidKoreaSupply() {
             onClick={() => setViewMode('cost')}
             style={{
               padding: '6px 14px', borderRadius: '6px', border: 'none', fontSize: '0.8rem', cursor: 'pointer', fontWeight: 600,
-              background: viewMode === 'cost' ? 'rgba(167, 139, 250, 0.3)' : 'rgba(255,255,255,0.05)',
+              background: viewMode === 'cost' ? 'rgba(167, 139, 250, 0.3)' : 'rgba(140,170,255,0.10)',
               color: viewMode === 'cost' ? '#a78bfa' : 'rgba(255,255,255,0.5)',
             }}
           >
@@ -118,7 +118,7 @@ export default function SquidKoreaSupply() {
                   <stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.05} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
               <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v / 1000).toFixed(0)}K`} />
               <YAxis yAxisId="right" orientation="right" stroke="rgba(251, 191, 36, 0.5)" tick={{ fill: '#fbbf24', fontSize: 11 }} tickFormatter={(v) => `${v}%`} domain={[0, 100]} />
@@ -137,7 +137,7 @@ export default function SquidKoreaSupply() {
                   <stop offset="95%" stopColor="var(--color-warning)" stopOpacity={0.05} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
               <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${(v / 1000).toFixed(0)}K`} />
               <YAxis yAxisId="right" orientation="right" stroke="rgba(167, 139, 250, 0.5)" tick={{ fill: '#a78bfa', fontSize: 11 }} tickFormatter={(v) => `$${v.toLocaleString()}`} />

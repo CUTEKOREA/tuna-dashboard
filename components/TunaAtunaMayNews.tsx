@@ -47,10 +47,10 @@ export const AtunaBangkokPriceWidget = () => (
     chart={
       <BarChart data={mockPriceDropData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.06)" />
+        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(140,170,255,0.12)" />
         <XAxis type="number" stroke="#94a3b8" />
         <YAxis dataKey="지역" type="category" stroke="#94a3b8" width={100} />
-        <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+        <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
         <Bar dataKey="단가" fill="#3b82f6" radius={[0, 4, 4, 0]} name="톤당 단가 ($)" />
       </BarChart>
     }

@@ -25,7 +25,7 @@ export default function SalmonInsightFeed() {
           <YAxis yAxisId="left" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-success)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `€${v}M`} />
           <Tooltip 
-            contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }}
+            contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}
             itemStyle={{ fontSize: '0.85rem' }}
             formatter={(value: any, name: any) => {
               if (name === 'marine') return [`${value}%`, '전통 어분/어유 비중'];

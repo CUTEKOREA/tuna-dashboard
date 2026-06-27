@@ -24,9 +24,9 @@ export default function SalmonInsightProcessing() {
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} />
           <YAxis dataKey="name" type="category" stroke="#cbd5e1" fontSize={11} tickLine={false} axisLine={false} width={100} />
           <Tooltip 
-            contentStyle={{ background: '#181818', border: 'none', borderRadius: '8px' }}
+            contentStyle={{ background: '#11182f', border: 'none', borderRadius: '8px' }}
             itemStyle={{ fontSize: '0.85rem' }}
-            cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+            cursor={{ fill: 'rgba(140,170,255,0.10)' }}
           />
           <Legend wrapperStyle={{ fontSize: '0.8rem' }} />
           <Bar dataKey="traditional" name="기존 수작업 공정" fill={A11Y_PALETTE[7]} radius={[0, 4, 4, 0]} barSize={15} fillOpacity={0.6} />

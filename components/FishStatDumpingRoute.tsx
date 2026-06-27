@@ -33,11 +33,11 @@ export default function FishStatDumpingRoute() {
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis yAxisId="left" tickFormatter={(val) => `${val}k`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
             <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => `$${val}`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-            <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any) => { return name === 'SCFI' ? [`$${value}`, name] : [`${value}k Tons`, name]; }} />
+            <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any) => { return name === 'SCFI' ? [`$${value}`, name] : [`${value}k Tons`, name]; }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             <Bar yAxisId="left" dataKey="asiaDiscard" name="아시아 미성어 방출" fill="#6366f1" radius={[4, 4, 0, 0]} />
             <Bar yAxisId="left" dataKey="africaImport" name="서아프리카 수입고" fill="#8b5cf6" radius={[4, 4, 0, 0]} />

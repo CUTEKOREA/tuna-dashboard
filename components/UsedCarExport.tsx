@@ -4,7 +4,7 @@ import { CarFront, TrendingUp, Globe, Ship, AlertTriangle, DollarSign, Package, 
 import TakeawayBox from './TakeawayBox';
 import { MarketGrowthChart, MarketShareChart, ShippingCostChart, HybridGrowthChart, FuelPriceChart, AgePenaltyChart } from './UsedCarCharts';
 
-const glass = { background: '#181818', border: 'none', borderRadius: '8px', padding: '1.5rem' } as const;
+const glass = { background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.5rem' } as const;
 const cardTitle = { margin: '0 0 1rem 0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' } as const;
 
 // L-09/L-12: LIVE 판정은 라우트가 출력한 isLive === true 단일 기준. fetch 완료 여부로 SYNCED 격상 금지.
@@ -17,7 +17,7 @@ const DataBadge = ({ source, isLive = false, asOf }: { source?: string; isLive?:
 
 function KpiCard({ icon, label, value, sub, color }: any) {
   return (
-    <div style={{ background: '#181818', padding: '1.1rem', borderRadius: '8px', border: `1px solid ${color}33`, borderLeft: `3px solid ${color}` }}>
+    <div style={{ background: '#11182f', padding: '1.1rem', borderRadius: '8px', border: `1px solid ${color}33`, borderLeft: `3px solid ${color}` }}>
       <div style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>{icon} {label}</div>
       <div style={{ fontSize: '1.4rem', fontWeight: 700, color }}>{value}</div>
       {sub && <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '3px' }}>{sub}</div>}
@@ -96,18 +96,18 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%', marginTop: '0.5rem' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', background: '#181818', padding: '1.25rem', borderRadius: '8px', border: 'none' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', background: '#11182f', padding: '1.25rem', borderRadius: '8px', border: 'none' }}>
         <div>
           <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px' }}>FOB 차량 매입가 (USD)</label>
-          <input type="number" value={fobUsd} onChange={e => setFobUsd(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#181818', border: 'none', borderRadius: '8px', color: '#e2e8f0' }} />
+          <input type="number" value={fobUsd} onChange={e => setFobUsd(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#11182f', border: 'none', borderRadius: '8px', color: '#e2e8f0' }} />
         </div>
         <div>
           <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px' }}>해상 운임 (USD)</label>
-          <input type="number" value={freightUsd} onChange={e => setFreightUsd(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#181818', border: 'none', borderRadius: '8px', color: '#e2e8f0' }} />
+          <input type="number" value={freightUsd} onChange={e => setFreightUsd(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#11182f', border: 'none', borderRadius: '8px', color: '#e2e8f0' }} />
         </div>
         <div>
           <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px' }}>배기량 (CC)</label>
-          <select value={engineCC} onChange={e => setEngineCC(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#181818', border: 'none', borderRadius: '8px', color: '#e2e8f0' }}>
+          <select value={engineCC} onChange={e => setEngineCC(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#11182f', border: 'none', borderRadius: '8px', color: '#e2e8f0' }}>
             <option value={998}>~ 1.0L (기본관세 5%)</option>
             <option value={1498}>1.1L ~ 1.5L (기본관세 10%)</option>
             <option value={1998}>1.6L ~ 3.0L (기본관세 20%)</option>
@@ -116,7 +116,7 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
         </div>
         <div>
           <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8', marginBottom: '6px' }}>제작 연도</label>
-          <input type="number" value={year} onChange={e => setYear(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#181818', border: 'none', borderRadius: '8px', color: '#e2e8f0' }} />
+          <input type="number" value={year} onChange={e => setYear(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: '#11182f', border: 'none', borderRadius: '8px', color: '#e2e8f0' }} />
         </div>
       </div>
       
@@ -262,7 +262,7 @@ export default function UsedCarExport() {
               <KpiCard icon={<Target size={14}/>} label="최적의 마진 구간" value="$2,500+" sub="FOB $5K 매입 시 (대당)" color="#ec4899" />
             </div>
             
-            <div style={{ background: '#181818', borderRadius: '8px', padding: '1rem', border: 'none' }}>
+            <div style={{ background: '#11182f', borderRadius: '8px', padding: '1rem', border: 'none' }}>
               <div style={{ fontSize: '0.85rem', color: '#cbd5e1', fontWeight: 600, marginBottom: '8px' }}>🔥 현지 Top 3 인기 모델 (스크래핑 데이터)</div>
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ flex: 1, minWidth: '140px' }}>
@@ -441,7 +441,7 @@ export default function UsedCarExport() {
               { flag: '🇬🇭', name: 'Abossey Okai (아크라)', desc: '가나 최대 부품 마켓. 전용 앱으로 현대/기아 부품 재고 확인 및 가격 비교 가능', color: 'var(--color-info)' },
               { flag: '🇬🇭', name: 'Tema Port', desc: '서아프리카 최대 컨테이너 항만. 인천→테마 직항 40~50일. GRA/ICUMS 전자통관 시스템 운영', color: 'var(--color-warning)' },
             ].map((hub, i) => (
-              <div key={i} style={{ padding: '1rem', background: '#181818', borderRadius: '10px', borderLeft: `3px solid ${hub.color}` }}>
+              <div key={i} style={{ padding: '1rem', background: '#11182f', borderRadius: '10px', borderLeft: `3px solid ${hub.color}` }}>
                 <div style={{ fontWeight: 600, color: '#e2e8f0', fontSize: '0.9rem', marginBottom: '4px' }}>{hub.flag} {hub.name}</div>
                 <div style={{ color: '#94a3b8', fontSize: '0.82rem', lineHeight: 1.5 }}>{hub.desc}</div>
               </div>
@@ -455,7 +455,7 @@ export default function UsedCarExport() {
         <p style={{ margin: '4px 0 0 0', fontSize: '0.82rem', color: '#94a3b8', lineHeight: 1.5 }}>
           2025년 1월 체결된 나이지리아 정부와 한국 AEDC 간의 전기차 제조·충전 인프라 파트너십의 핵심 내용을 정리합니다. 아프리카 최초의 대규모 EV 생산 시설로, 한국 기업의 부품 공급 및 기술 이전 기회를 제공합니다. Business Insider Africa와 West Africa Automotive의 공식 보도 자료, 나이지리아 정부 발표문을 기반으로 정리했습니다.
         </p>
-          <div style={{ padding: '1.25rem', background: '#181818', borderRadius: '8px', border: 'none', marginBottom: '1rem' }}>
+          <div style={{ padding: '1.25rem', background: '#11182f', borderRadius: '8px', border: 'none', marginBottom: '1rem' }}>
             <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#34d399', marginBottom: '8px' }}>🏭 아프리카 최초 대규모 EV 공장 (2025.1 체결)</div>
             <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#94a3b8', fontSize: '0.82rem', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <li>나이지리아 정부 × 한국 AEDC 파트너십 체결</li>
@@ -542,7 +542,7 @@ export default function UsedCarExport() {
 
       {/* 🎯 비즈니스 모델 근거: 한국 중고차 → 가나 수출 */}
       <div style={{ marginBottom: '24px' }}>
-        <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.5rem', marginBottom: '20px' }}>
+        <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.5rem', marginBottom: '20px' }}>
           <h3 style={{ margin: '0 0 8px 0', fontSize: '1.2rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Ship size={22} color="#eab308" /> 비즈니스 모델 근거: 한국 중고차 매집 → 가나(Ghana) 수출
           </h3>
@@ -554,7 +554,7 @@ export default function UsedCarExport() {
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '20px' }}>
 
           {/* 근거 1: 시장 규모 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #eab308' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #eab308' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(234,179,8,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📊</div>
               <div>
@@ -574,7 +574,7 @@ export default function UsedCarExport() {
           </div>
 
           {/* 근거 2: 브랜드 파워 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #3b82f6' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #3b82f6' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(59,130,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚗</div>
               <div>
@@ -594,7 +594,7 @@ export default function UsedCarExport() {
           </div>
 
           {/* 근거 3: 규제 적합성 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #10b981' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #10b981' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(16,185,129,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>📋</div>
               <div>
@@ -614,7 +614,7 @@ export default function UsedCarExport() {
           </div>
 
           {/* 근거 4: 환율 우위 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #ec4899' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #ec4899' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(236,72,153,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💱</div>
               <div>
@@ -634,7 +634,7 @@ export default function UsedCarExport() {
           </div>
 
           {/* 근거 5: 물류 인프라 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #8b5cf6' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #8b5cf6' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🚢</div>
               <div>
@@ -654,7 +654,7 @@ export default function UsedCarExport() {
           </div>
 
           {/* 근거 6: 상용차 블루오션 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #14b8a6' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #14b8a6' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(20,184,166,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🛻</div>
               <div>
@@ -674,7 +674,7 @@ export default function UsedCarExport() {
           </div>
 
           {/* 근거 7: 수익 모델 */}
-          <div style={{ background: '#181818', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #f59e0b' }}>
+          <div style={{ background: '#11182f', border: 'none', borderRadius: '8px', padding: '1.25rem', borderTop: '3px solid #f59e0b' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(245,158,11,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>💰</div>
               <div>

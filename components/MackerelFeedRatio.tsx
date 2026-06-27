@@ -25,10 +25,10 @@ export default function MackerelFeedRatio() {
       chart={
         <BarChart data={data} stackOffset="expand" margin={{ top: 20, right: 30, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis tickFormatter={(val) => `${val * 100}%`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} formatter={(value: any) => `${value}%`} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} formatter={(value: any) => `${value}%`} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Bar dataKey="edible" name="국내 식용 소비" stackId="a" fill={A11Y_PALETTE[0]} />
           <Bar dataKey="feed" name="양식장 사료/어분용" stackId="a" fill={A11Y_PALETTE[1]} />

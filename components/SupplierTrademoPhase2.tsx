@@ -26,7 +26,7 @@ export default function SupplierTrademoPhase2({ isAnalyzing, results, targetKeyw
         Phase 2: 마이크로 타겟팅 (Trademo B/L 역추적 AI) <Target size={18} color="#10b981" />
       </h3>
       
-      <div style={{ background: 'rgba(15, 23, 42, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '2rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)' }}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.8)', border: '1px solid #334155', borderRadius: '12px', padding: '2rem', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)' }}>
         <p style={{ color: '#94a3b8', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.5' }}>
           수입되는 품목의 글로벌 선적 데이터(B/L)를 관세청 수출입 실적과 교차 대조합니다. 'Company Blind' 처리된 선하증권의 원공급처(Shipper)를 AI 모델이 확률적으로 역추적합니다.
         </p>
@@ -61,14 +61,14 @@ export default function SupplierTrademoPhase2({ isAnalyzing, results, targetKeyw
                     initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.1 }}
                     key={item.id} 
                     style={{ 
-                      background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem',
+                      background: '#1a2442', border: '1px solid #334155', borderRadius: '8px', padding: '1.25rem',
                       display: 'flex', flexDirection: 'column', gap: '1rem'
                     }}
                   >
                     {/* Top Row: Blind -> Unblind */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <div style={{ background: '#0f172a', padding: '0.5rem 1rem', borderRadius: '6px', border: '1px dashed #64748b', color: '#94a3b8', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <div style={{ background: '#0a0f1f', padding: '0.5rem 1rem', borderRadius: '6px', border: '1px dashed #64748b', color: '#94a3b8', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                           <EyeOff size={14} /> {item.blindedName}
                         </div>
                         <ArrowRight size={18} color="#10b981" />
@@ -99,7 +99,7 @@ export default function SupplierTrademoPhase2({ isAnalyzing, results, targetKeyw
                           <span style={{ color: '#94a3b8', fontSize: '0.8rem', display: 'block' }}>안정성 리스크 평가</span>
                           <span style={{ color: getRiskColor(item.risk), fontSize: '0.85rem' }}>{item.riskDesc}</span>
                         </div>
-                        <div style={{ background: getRiskColor(item.risk), color: '#0f172a', width: '36px', height: '36px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '1.2rem' }}>
+                        <div style={{ background: getRiskColor(item.risk), color: '#0a0f1f', width: '36px', height: '36px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '1.2rem' }}>
                           {item.risk}
                         </div>
                       </div>

@@ -33,10 +33,10 @@ export default function FishStatBlackholeBar() {
         <SafeResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 10, right: 30, left: -20, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
             <XAxis type="number" tickFormatter={(val) => `${val}%`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
             <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-            <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => `${value}%`} />
+            <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any) => `${value}%`} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             <Bar dataKey="feed" stackId="a" name="비식용 (양식 사료/어분)" fill="var(--color-danger)" radius={[0, 0, 0, 4]} />
             <Bar dataKey="consumption" stackId="a" name="인간 식용 (Consumption)" fill="var(--color-success)" radius={[0, 4, 4, 0]} />

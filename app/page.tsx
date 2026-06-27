@@ -446,7 +446,7 @@ export default function Home() {
             fontSize: '0.65rem',
             color: 'var(--text-muted)',
             letterSpacing: '0.05em',
-            borderTop: '1px solid rgba(255,255,255,0.05)',
+            borderTop: '1px solid rgba(140,170,255,0.10)',
             paddingTop: '8px',
             display: 'inline-block'
           }}>
@@ -1016,7 +1016,7 @@ export default function Home() {
                       <div style={{
                         marginTop: '18px',
                         padding: '14px 16px',
-                        background: 'rgba(15, 23, 42, 0.5)',
+                        background: 'rgba(20, 28, 52, 0.5)',
                         border: '1px solid rgba(255, 255, 255, 0.08)',
                         borderRadius: '10px',
                         fontSize: '12.5px',

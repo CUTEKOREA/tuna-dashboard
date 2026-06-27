@@ -16,7 +16,7 @@ export function Widget21_SupplyDeadCross() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="domestic" name="한국 연안 어획량" stroke="#f43f5e" strokeWidth={3} />
           <Line type="monotone" dataKey="import" name="글로벌 수입 의존도" stroke="var(--color-info)" strokeWidth={3} />
         </LineChart>
@@ -36,7 +36,7 @@ export function Widget22_ImportHHI() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis domain={[0, 5000]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="hhi" name="집중도 지수(HHI)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.hhi > 3000 ? 'var(--color-danger)' : 'var(--color-success)'} />))}</Bar>
         </BarChart>
       }
@@ -54,7 +54,7 @@ export function Widget23_MarketShareFixation() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="decade" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t}%`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Area type="monotone" dataKey="imported" stackId="1" fill="var(--color-warning)" stroke="var(--color-warning)" name="수입산 소비율" />
           <Area type="monotone" dataKey="domestic" stackId="1" fill="var(--color-info)" stroke="var(--color-info)" name="국산 소비율" />
         </AreaChart>
@@ -74,7 +74,7 @@ export function Widget24_LeadTime() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="origin" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="avg" name="평균 소요 일수(Days)" fill="#8b5cf6" />
         </BarChart>
       }
@@ -93,7 +93,7 @@ export function Widget25_WarehouseGap() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="입고량" fill="var(--color-info)" fillOpacity={0.6} />
           <Line type="monotone" dataKey="출고소비" stroke="#fcd34d" strokeWidth={3} />
         </ComposedChart>
@@ -113,7 +113,7 @@ export function Widget26_CustomsDelay() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="cause" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={110} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="days" name="추가 통관 지연(일)" fill="var(--color-danger)" />
         </BarChart>
       }
@@ -132,7 +132,7 @@ export function Widget27_VendorDominance() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="vendor" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="share" name="시장 점유율(%)" fill="#6366f1" />
         </BarChart>
       }
@@ -150,7 +150,7 @@ export function Widget28_DemandDestruction() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="price" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="volume" name="발주 잔존율(%)" stroke="#ec4899" strokeWidth={3} />
         </LineChart>
       }
@@ -168,7 +168,7 @@ export function Widget29_InflationIndex() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="squid" name="오징어 폭등 궤도" stroke="var(--color-danger)" strokeWidth={3} />
           <Line type="monotone" dataKey="pork" name="돈육 지수" stroke="var(--color-success)" />
           <Line type="monotone" dataKey="chicken" name="계육 지수" stroke="#fcd34d" />
@@ -189,7 +189,7 @@ export function Widget30_ChannelMix() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="b2c_mart" stackId="a" name="전통/대형마트 원물" fill="#06b6d4" />
           <Bar dataKey="b2b_franchise" stackId="a" name="외식/반찬 B2B 가공품" fill="var(--color-warning)" />
           <Bar dataKey="online" stackId="a" name="밀키트 등 HMR" fill="var(--color-info)" />

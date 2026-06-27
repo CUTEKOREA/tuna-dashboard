@@ -55,7 +55,7 @@ const exportData = [
   { year: '2024', usd: 997 },
   { year: '2025', usd: 1133 },
 ];
-const tip ={ background: 'rgba(0,15,30,0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
+const tip ={ background: 'rgba(10, 16, 40, 0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
 const SYNC = { status: 'SYNCED' };
 
 export default function KimDashboard() {
@@ -73,7 +73,7 @@ export default function KimDashboard() {
       <header style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{ width: '44px', height: '44px', borderRadius: '8px', background: `linear-gradient(135deg, ${KIM_FROM}, ${KIM_TO})`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Waves size={24} color="#0f172a" />
+            <Waves size={24} color="#0a0f1f" />
           </div>
           <div>
             <h1 style={{ margin: 0, fontSize: '1.6rem', fontWeight: 800, letterSpacing: '-0.5px', color: '#f8fafc' }}>🌿 김(Laver) 글로벌 밸류체인 대시보드</h1>
@@ -85,7 +85,7 @@ export default function KimDashboard() {
       {/* ═══ KPIs ═══ */}
       <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
         {KPIS.map((kpi, idx) => (
-          <div key={idx} style={{ background: '#181818', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '12px', padding: '1.2rem', position: 'relative', overflow: 'hidden' }}>
+          <div key={idx} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '12px', padding: '1.2rem', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle,${kpi.color}40,transparent)`, pointerEvents: 'none' }} />
             <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
             <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', margin: '6px 0 4px' }}>{kpi.value}</div>
@@ -97,14 +97,14 @@ export default function KimDashboard() {
       </div>
 
       {/* ═══ 5-Pillar 네비게이터 ═══ */}
-      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem' }}>
+      <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem' }}>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
           {PILLARS.map((s, idx) => {
             const isActive = activePart === s.id;
             return (
               <button key={s.id} onClick={() => setActivePart(s.id)}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}18` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s' }}>
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800 }}>{idx + 1}</div>
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800 }}>{idx + 1}</div>
                 <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
               </button>
             );
@@ -141,7 +141,7 @@ export default function KimDashboard() {
                 telemetry={{ status: 'SYNCED', syncDate: 'aT 2026.01' }}
                 chart={
                   <LineChart data={priceData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                     <XAxis dataKey="p" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
                     <YAxis stroke="#94a3b8" fontSize={11} domain={[1000, 1700]} />
                     <Tooltip contentStyle={tip} formatter={(v) => [`${v.toLocaleString()}원/10장`, '소매가']} />
@@ -168,7 +168,7 @@ export default function KimDashboard() {
                   chart={
                     <AreaChart data={exportData} margin={{ top: 10, right: 20, left: -5, bottom: 0 }}>
                       <defs><linearGradient id="kimExp" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#a3e635" stopOpacity={0.5} /><stop offset="95%" stopColor="#a3e635" stopOpacity={0.05} /></linearGradient></defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                       <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
                       <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
                       <Tooltip contentStyle={tip} formatter={(v) => [`$${v}M`, '수출액']} />
@@ -197,7 +197,7 @@ export default function KimDashboard() {
                 telemetry={{ status: 'SYNCED', syncDate: '수과원 2022' }}
                 chart={
                   <BarChart data={[{ k: '세계 평균', v: 0.52 }, { k: '한국 해역', v: 1.36 }]} layout="vertical" margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
                     <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `+${v}℃`} />
                     <YAxis type="category" dataKey="k" stroke="#94a3b8" fontSize={12} width={70} />
                     <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`+${v}℃`, '상승폭']} />

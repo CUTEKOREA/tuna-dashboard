@@ -139,7 +139,7 @@ export function FtaTariffOptimizer() {
       chart={
         <BarChart data={chartData} barGap={2}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
           <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 10 }} />
           <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} unit="%" />
           <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', fontSize: '0.75rem' }} />

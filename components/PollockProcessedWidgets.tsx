@@ -38,7 +38,7 @@ export function WidgetRussiaHegemony() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
           <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-          <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
+          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
           <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
           <Area type="monotone" dataKey="row" name="전세계 기타" stroke="#94a3b8" fillOpacity={1} fill="url(#colorRowPol)" stackId="1" />
           <Area type="monotone" dataKey="russia" name="러시아 명태 가공 (천 톤)" stroke="var(--color-danger)" fillOpacity={1} fill="url(#colorRussiaPol)" stackId="1" />
@@ -76,7 +76,7 @@ export function WidgetEaCollapse() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} />
           <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-          <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
+          <Tooltip contentStyle={{ backgroundColor: '#1a2442', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} formatter={(value: any, name: any) => [`${(Number(value) / 1000).toFixed(1)}k tons`, name]} />
           <Legend wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
           <Line type="monotone" dataKey="japan" name="일본" stroke="#eab308" strokeWidth={3} dot={false} />
           <Line type="monotone" dataKey="korea" name="대한민국" stroke="var(--color-info)" strokeWidth={3} dot={false} />

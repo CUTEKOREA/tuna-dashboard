@@ -82,7 +82,7 @@ const Insight3Blackhole = () => {
               tickFormatter={formatYAxis}
               domain={['dataMin', 'dataMax']}
             />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
             <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <ReferenceLine y={0} stroke="rgba(255,255,255,0.3)" />
             {/* Exports on top (positive) */}

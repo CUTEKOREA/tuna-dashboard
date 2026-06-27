@@ -11,7 +11,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import raw from '../data/mackerel_fta_quarterly.json';
 
 const tooltipStyle = {
-  background: 'rgba(0,15,30,0.95)',
+  background: 'rgba(10, 16, 40, 0.95)',
   border: '1px solid rgba(255,255,255,0.2)',
   borderRadius: '8px',
   fontSize: '12px',
@@ -28,7 +28,7 @@ export default function MackerelFTAQuarterly() {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={yearly} margin={{ top: 20, right: 20, left: -10, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#38bdf8', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#f59e0b', fontSize: 10 }} />
@@ -52,7 +52,7 @@ export default function MackerelFTAQuarterly() {
     <div style={{ height: '220px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={qSeries} margin={{ top: 16, right: 20, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="q" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `${v}천톤`} tick={{ fill: '#38bdf8', fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}M`} tick={{ fill: '#a78bfa', fontSize: 10 }} />
@@ -80,7 +80,7 @@ export default function MackerelFTAQuarterly() {
     <div style={{ height: '200px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={origin} layout="vertical" margin={{ top: 8, right: 30, left: 30, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} tickFormatter={(v) => `${v}%`} />
           <YAxis type="category" dataKey="country" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.7)', fontSize: 11 }} width={60} />
           <Tooltip
@@ -104,7 +104,7 @@ export default function MackerelFTAQuarterly() {
     <div style={{ height: '180px', width: '100%' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={norwayPrice} margin={{ top: 12, right: 20, left: -10, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis stroke="rgba(255,255,255,0.2)" tickFormatter={(v) => `$${v}`} tick={{ fill: '#fb923c', fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(val: any) => [`$${val}/kg`, '냉동 단가']} />
@@ -115,8 +115,8 @@ export default function MackerelFTAQuarterly() {
   );
 
   const PanelStyle: React.CSSProperties = {
-    background: 'rgba(15, 23, 42, 0.4)',
-    border: '1px solid rgba(255,255,255,0.06)',
+    background: 'rgba(20, 28, 52, 0.4)',
+    border: '1px solid rgba(140,170,255,0.12)',
     borderRadius: '10px',
     padding: '12px 14px',
   };

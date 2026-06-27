@@ -655,12 +655,12 @@ export default function FalklandSquidDashboard() {
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#7dd3fc', textTransform: 'uppercase', letterSpacing: '0.15em', width: '50px' }}>#</th>
                     <th style={{ padding: '14px 16px', fontSize: '10px', fontWeight: 700, color: '#7dd3fc', textTransform: 'uppercase', letterSpacing: '0.1em', position: 'sticky', left: 0, zIndex: 31, background: 'linear-gradient(90deg, #0c1929, #111d2e)', boxShadow: '4px 0 16px rgba(0,0,0,0.5)', minWidth: '140px' }}>선명 / 업체</th>
                     {['12월','1월','2월','3월','4월','5월'].map(m => (
-                      <th key={m} style={{ padding: '14px 10px', textAlign: 'right', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: m === '12월' ? '1px solid rgba(255,255,255,0.05)' : 'none', minWidth: '65px' }}>{m}</th>
+                      <th key={m} style={{ padding: '14px 10px', textAlign: 'right', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: m === '12월' ? '1px solid rgba(140,170,255,0.10)' : 'none', minWidth: '65px' }}>{m}</th>
                     ))}
                     <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#67e8f9', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(34,211,238,0.25)', background: 'rgba(34,211,238,0.04)', minWidth: '85px' }}>누계(팬)</th>
                     <th style={{ padding: '14px 14px', textAlign: 'right', fontSize: '10px', fontWeight: 800, color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(52,211,153,0.2)', background: 'rgba(52,211,153,0.04)', minWidth: '95px' }}>누계(KG)</th>
-                    <th style={{ padding: '14px 12px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(255,255,255,0.05)', minWidth: '110px' }}>비중</th>
-                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(255,255,255,0.06)' }}>톤수</th>
+                    <th style={{ padding: '14px 12px', textAlign: 'center', fontSize: '10px', fontWeight: 700, color: '#c4b5fd', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '1px solid rgba(140,170,255,0.10)', minWidth: '110px' }}>비중</th>
+                    <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', borderLeft: '2px solid rgba(140,170,255,0.12)' }}>톤수</th>
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' }}>선령</th>
                     <th style={{ padding: '14px 10px', textAlign: 'center', fontSize: '10px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase' }}>상태</th>
                   </tr>
@@ -702,7 +702,7 @@ export default function FalklandSquidDashboard() {
                             <span style={{ color: '#475569', fontFamily: 'monospace', fontSize: 13 }}>{vessel.rank}</span>
                           )}
                         </td>
-                        <td style={{ padding: '12px 16px', position: 'sticky', left: 0, zIndex: 20, background: rowBg === 'transparent' ? 'var(--surface-0, #0f172a)' : rowBg, boxShadow: '4px 0 16px rgba(0,0,0,0.4)', transition: 'background 0.15s ease' }}>
+                        <td style={{ padding: '12px 16px', position: 'sticky', left: 0, zIndex: 20, background: rowBg === 'transparent' ? 'var(--surface-0, #0a0f1f)' : rowBg, boxShadow: '4px 0 16px rgba(0,0,0,0.4)', transition: 'background 0.15s ease' }}>
                           <div style={{ fontWeight: 700, fontSize: 14, color: '#f8fafc', lineHeight: 1.3, whiteSpace: 'nowrap' }}>{vessel.name}</div>
                           <div style={{ fontSize: 10, color: '#64748b', whiteSpace: 'nowrap' }}>{vessel.company}</div>
                         </td>
@@ -725,7 +725,7 @@ export default function FalklandSquidDashboard() {
                             <span style={{ fontSize: 11, fontWeight: 700, color: '#c4b5fd', fontFamily: 'monospace', minWidth: 36, textAlign: 'right' }}>{percent}%</span>
                           </div>
                         </td>
-                        <td style={{ padding: '12px 10px', textAlign: 'center', fontSize: 12, color: '#94a3b8', fontFamily: 'monospace', borderLeft: '2px solid rgba(255,255,255,0.05)' }}>{vessel.tonnage}</td>
+                        <td style={{ padding: '12px 10px', textAlign: 'center', fontSize: 12, color: '#94a3b8', fontFamily: 'monospace', borderLeft: '2px solid rgba(140,170,255,0.10)' }}>{vessel.tonnage}</td>
                         <td style={{ padding: '12px 10px', textAlign: 'center', fontSize: 12 }}>
                           {vessel.age !== "-" ? (
                             <>

@@ -1,5 +1,5 @@
 .container {
-  background: #181818;
+  background: #11182f;
   border: none;
   border-radius: 8px;
   padding: 2rem;
@@ -41,7 +41,7 @@
 }
 
 .filterBtn {
-  background: #181818;
+  background: #11182f;
   border: none;
   color: #94a3b8;
   padding: 7px 16px;
@@ -98,7 +98,7 @@
 }
 
 .statCard {
-  background: #181818;
+  background: #11182f;
   border: none;
   border-radius: 8px;
   padding: 1rem 1.25rem;
@@ -211,7 +211,7 @@
 /* ─── Detail Panel ─── */
 .detailSection {
   flex: 1;
-  background: #181818;
+  background: #11182f;
   border-radius: 8px;
   border: none;
   display: flex;
@@ -330,7 +330,7 @@
 
 /* ─── Strategy Section ─── */
 .strategyGrid {
-  background: #181818;
+  background: #11182f;
   border-radius: 8px;
   padding: 1.75rem;
   border: none;
@@ -355,7 +355,7 @@
 }
 
 .strategyCard {
-  background: #181818;
+  background: #11182f;
   border: none;
   border-radius: 8px;
   padding: 1.5rem;
@@ -436,7 +436,7 @@
 .strategyAction {
   margin-top: 1rem;
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(140, 170, 255, 0.12);
   font-size: 0.78rem;
   color: #cbd5e1;
   line-height: 1.6;

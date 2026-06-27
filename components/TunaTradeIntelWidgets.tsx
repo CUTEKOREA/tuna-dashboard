@@ -57,10 +57,10 @@ export const WitsTariffWidget = React.memo(function WitsTariffWidget() {
       chart={loading ? undefined : (
         <BarChart data={tariffData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="country" stroke="#64748b" tick={{ fontSize: 10 }} />
           <YAxis stroke="#64748b" tick={{ fontSize: 9 }} unit="%" />
-          <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
+          <Tooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Bar dataKey="MFN" name="MFN 세율" fill="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
           <Bar dataKey="FTA" name="FTA 적용" fill="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
@@ -120,7 +120,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
                 label={({ name, percent }: any) => percent > 0.05 ? `${name} ${(percent * 100).toFixed(0)}%` : ''} labelLine={false} fontSize={9} isAnimationActive={false}>
                 {exporterData.map((_: any, i: number) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
               </Pie>
-              <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
+              <Tooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
             </PieChart>
           </div>
           <div>
@@ -130,7 +130,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
                 label={({ name, percent }: any) => percent > 0.05 ? `${name} ${(percent * 100).toFixed(0)}%` : ''} labelLine={false} fontSize={9} isAnimationActive={false}>
                 {importerData.map((_: any, i: number) => <Cell key={i} fill={PIE_COLORS[(i + 3) % PIE_COLORS.length]} />)}
               </Pie>
-              <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
+              <Tooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
             </PieChart>
           </div>
         </div>
@@ -193,10 +193,10 @@ export const WitsTradeFlowWidget = React.memo(function WitsTradeFlowWidget() {
       chart={loading ? undefined : (
         <BarChart data={chartData} margin={{ top: 30, right: 10, left: 0, bottom: 0 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="Year" stroke="#64748b" tick={{ fontSize: 10 }} />
           <YAxis stroke="#64748b" tick={{ fontSize: 9 }} />
-          <Tooltip contentStyle={{ background: 'rgba(15,23,42,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
+          <Tooltip contentStyle={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8 }} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Bar dataKey="수입액" name="수입액 ($M)" fill="#F6465D" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />
           <Bar dataKey="수출액" name="수출액 ($M)" fill="#0ECB81" radius={[6, 6, 0, 0]} fillOpacity={0.85} isAnimationActive={false} />

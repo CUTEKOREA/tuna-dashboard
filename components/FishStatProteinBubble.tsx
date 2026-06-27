@@ -32,11 +32,11 @@ export default function FishStatProteinBubble() {
       <div style={{ height: '240px', width: '100%' }}>
         <SafeResponsiveContainer width="100%" height="100%">
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: -20 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             <XAxis type="number" dataKey="cost" name="톤당 단가($)" unit="$" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis type="number" dataKey="protein" name="단백질(g/100g)" unit="g" domain={[15, 28]} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <ZAxis type="number" dataKey="volume" range={[100, 1000]} name="거래 볼륨" />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any) => name === '거래 볼륨' ? value : name === '톤당 단가($)' ? `$${value}` : `${value}g`} />
+            <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} formatter={(value: any, name: any) => name === '거래 볼륨' ? value : name === '톤당 단가($)' ? `$${value}` : `${value}g`} />
             <Scatter name="단백질 매트릭스" data={data}>
               {data.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={entry.fill} />

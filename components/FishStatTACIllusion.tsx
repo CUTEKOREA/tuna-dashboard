@@ -33,10 +33,10 @@ export default function FishStatTACIllusion() {
         <SafeResponsiveContainer width="100%" height="100%">
           <ComposedChart data={data} layout="vertical" margin={{ top: 10, right: 30, left: -10, bottom: 0 }}>
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
             <XAxis type="number" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
             <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
-            <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: 'none', borderRadius: '8px' }} />
+            <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: 'none', borderRadius: '8px' }} />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
             {/* Background bar simulating Bullet Chart target (TAC) */}
             <Bar dataKey="tac" name="정부 TAC 할당 목표량" fill="rgba(255,255,255,0.1)" barSize={40} />

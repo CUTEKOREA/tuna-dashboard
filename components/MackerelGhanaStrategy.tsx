@@ -11,7 +11,7 @@ export default function MackerelGhanaStrategy() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '32px' }}>
         
         {/* Cost */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '16px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', padding: '16px' }}>
           <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>수입 원가 (제품+운송)</div>
           <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#0ea5e9', marginBottom: '12px' }}>$34,482</div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginBottom: '4px' }}>
@@ -37,7 +37,7 @@ export default function MackerelGhanaStrategy() {
         </div>
 
         {/* Revenue */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '16px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', padding: '16px' }}>
           <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>총 매출액</div>
           <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#f8fafc', marginBottom: '12px' }}>$60,311</div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginBottom: '4px' }}>
@@ -68,32 +68,32 @@ export default function MackerelGhanaStrategy() {
           <Ship size={18} /> 운송 및 통관 프로세스 타임라인 (S. japonicus 1,328 카톤)
         </h4>
         <div style={{ 
-          background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', padding: '24px',
+          background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', padding: '24px',
           position: 'relative'
         }}>
           {/* Connecting Line */}
           <div style={{ position: 'absolute', top: '50%', left: '40px', right: '40px', height: '2px', background: 'linear-gradient(90deg, #0ea5e9, #10b981)', zIndex: 0 }}></div>
           
           <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
-            <div style={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
+            <div style={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#38bdf8', margin: '0 auto 8px auto' }}></div>
               <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '2px' }}>출항 (부산항)</div>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>2026.02.04</div>
             </div>
             
-            <div style={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
+            <div style={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6366f1', margin: '0 auto 8px auto' }}></div>
               <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '2px' }}>입항 (테마항)</div>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>2026.03.20</div>
             </div>
 
-            <div style={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
+            <div style={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-warning)', margin: '0 auto 8px auto' }}></div>
               <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '2px' }}>통관 (FDA검사)</div>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>2026.03.25</div>
             </div>
 
-            <div style={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
+            <div style={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '12px 16px', textAlign: 'center', color: '#e2e8f0' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-success)', margin: '0 auto 8px auto' }}></div>
               <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '2px' }}>입고 (GGL 2번 창고)</div>
               <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>2026.03.26</div>
@@ -109,12 +109,12 @@ export default function MackerelGhanaStrategy() {
         </h4>
 
         <div style={{ 
-          background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '8px', 
+          background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '8px', 
           overflow: 'hidden' 
         }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ background: 'rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+              <tr style={{ background: 'rgba(140,170,255,0.10)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
                 <th style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 600 }}>계획 월별</th>
                 <th style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 600 }}>수출 선적 (출항)</th>
                 <th style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 600 }}>테마항 입항 (도착)</th>
@@ -135,7 +135,7 @@ export default function MackerelGhanaStrategy() {
                 { month: '2026. 11', ship: '11월 2주차 (1x20ft)', arrive: '12월 4주차', cost: '~$57,200', rev: '$63,000', profit: '$5,800 (9.2%)', note: '연말 시즌 특수 프리미엄가 반영' },
                 { month: '2026. 12', ship: '12월 2주차 (1x20ft)', arrive: '\'27. 1월 4주차', cost: '~$57,200', rev: '$63,500', profit: '$6,300 (9.9%)', note: '2026 결산 및 2027 물량 협의' }
               ].map((row, idx) => (
-                <tr key={idx} style={{ borderBottom: idx !== 7 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                <tr key={idx} style={{ borderBottom: idx !== 7 ? '1px solid rgba(140,170,255,0.10)' : 'none' }}>
                   <td style={{ padding: '12px 16px', color: '#38bdf8', fontWeight: 600, fontSize: '0.85rem' }}>{row.month}</td>
                   <td style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem' }}>{row.ship}</td>
                   <td style={{ padding: '12px 16px', color: 'rgba(255,255,255,0.8)', fontSize: '0.85rem' }}>{row.arrive}</td>

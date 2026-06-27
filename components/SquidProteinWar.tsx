@@ -17,10 +17,10 @@ export default function SquidProteinWar() {
       chartHeight={400}
       chart={
         <AreaChart data={data} stackOffset="expand" margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
           <YAxis tickFormatter={(val) => `${(val * 100).toFixed(0)}%`} stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 10 }} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} formatter={(val: any) => `${val}%`} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-primary)', borderRadius: '8px' }} formatter={(val: any) => `${val}%`} />
           <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '11px' }} />
           <Area type="monotone" dataKey="beef" name="소고기" stackId="1" stroke="var(--color-warning)" fill="var(--color-warning)" fillOpacity={0.4} />
           <Area type="monotone" dataKey="chicken" name="닭고기" stackId="1" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.4} />

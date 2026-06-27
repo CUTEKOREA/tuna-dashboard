@@ -29,7 +29,7 @@ export function Widget5_Importers() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
               <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis dataKey="country" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={80} tickMargin={5} />
-              <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
               <Bar dataKey="volume" name="수입물동량(톤)" radius={[0,4,4,0]}>
                 {data.map((entry: any, idx: number) => <Cell key={idx} fill={entry.color} />)}
               </Bar>
@@ -65,7 +65,7 @@ export function Widget6_UnitPrice() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v)=>`$${v}`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
               <Bar dataKey="수출_러시아단가" fill="#64748b" name="러시아산 원물 수출 단가 (미러)" radius={[4,4,0,0]} />
               <Line type="monotone" dataKey="수입_한국단가" stroke="var(--color-info)" strokeWidth={3} name="한국 수입 단가 (CIF)" dot={{r:3}} />
               <Line type="monotone" dataKey="수입_독일단가" stroke="#fbbf24" strokeWidth={3} name="독일 수입 단가 (CIF)" dot={{r:3}} />
@@ -142,7 +142,7 @@ export function Widget8_KoreaDeficit() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
               <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} tickMargin={10} />
               <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(v) => `$${v}M`} tickMargin={10} />
-              <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
+              <Tooltip contentStyle={{ background: '#0a0f1f', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: '#f8fafc' }} />
               <Area type="monotone" dataKey="수입액" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.4} name="원물 블록 수입 유출 자본금" />
               <Area type="monotone" dataKey="수출액" stroke="var(--color-info)" fill="var(--color-info)" fillOpacity={0.8} name="가공식품 자체 역수출 회수금" />
               <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', paddingTop: '10px' }} />

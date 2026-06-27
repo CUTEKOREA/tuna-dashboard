@@ -32,7 +32,7 @@ export default function MackerelKoreaSupply() {
     if (!d) return null;
     return (
       <div style={{
-        background: 'rgba(0, 15, 30, 0.95)', border: '1px solid rgba(239, 68, 68, 0.4)',
+        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(239, 68, 68, 0.4)',
         padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
       }}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#f87171' }}>{d.year}년</p>
@@ -89,7 +89,7 @@ export default function MackerelKoreaSupply() {
                 <stop offset="5%" stopColor="var(--color-danger)" stopOpacity={0.6}/><stop offset="95%" stopColor="var(--color-danger)" stopOpacity={0.05}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${Math.round(v/1000).toLocaleString()}K`} />
             <YAxis yAxisId="pct" orientation="right" stroke="rgba(251,191,36,0.5)" tick={{ fill: '#fbbf24', fontSize: 11 }} tickFormatter={(v) => `${v}%`} domain={[0, 100]} />

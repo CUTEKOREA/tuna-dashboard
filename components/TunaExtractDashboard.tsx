@@ -309,7 +309,7 @@ export default function TunaExtractDashboard() {
           telemetry={{ status: 'STATIC', syncDate: '내부 원가 모델' }}
           customBody={
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', background: '#0f172a', padding: '1rem', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', background: '#0a0f1f', padding: '1rem', borderRadius: '8px' }}>
                 <span style={{ color: '#cbd5e1', fontWeight: 600 }}>현재 적용 환율 (USD/KRW): <span style={{ color: 'var(--color-info)', fontSize: '1.2rem', marginLeft: '0.5rem' }}>{exchangeRateSlider} 원</span></span>
                 <input
                   type="range" min="1100" max="1600" step="10"
@@ -412,7 +412,7 @@ export default function TunaExtractDashboard() {
                           key={tab.id}
                           onClick={() => setActiveResearchTab(tab.id)}
                           style={{
-                            background: activeResearchTab === tab.id ? 'var(--color-info)' : 'rgba(255,255,255,0.05)',
+                            background: activeResearchTab === tab.id ? 'var(--color-info)' : 'rgba(140,170,255,0.10)',
                             color: activeResearchTab === tab.id ? '#fff' : '#94a3b8',
                             border: '1px solid rgba(255,255,255,0.1)',
                             padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer',

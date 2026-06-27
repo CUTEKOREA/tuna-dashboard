@@ -33,7 +33,7 @@ export function Widget01_ClimateYieldRadar() {
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" stroke="var(--color-danger)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="#67e8f9" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
           <Bar yAxisId="left" dataKey="catch" name="어획량 지수" fill="var(--color-danger)" fillOpacity={0.6} />
           <Line yAxisId="right" type="monotone" dataKey="enso" name="ENSO(수온편차)" stroke="#67e8f9" strokeWidth={3} />
         </ComposedChart>
@@ -83,7 +83,7 @@ export function Widget02_CollapseCountdown() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
           <Line type="monotone" dataKey="cod" name="'90 캐나다 대구 추락" stroke="#64748b" strokeDasharray="5 5" strokeWidth={2} />
           <Line type="monotone" dataKey="squid" name="현재 한국 살오징어" stroke="#f87171" strokeWidth={3} />
         </LineChart>
@@ -132,7 +132,7 @@ export function Widget03_SSTAnomaly() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[0, 2.5]} />
           <YAxis dataKey="area" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={120} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
           <Bar dataKey="temp_diff" name="평년비 수온 델타(°C)">
             {data.map((entry: any, index: number) => (
               <Cell key={`cell-${index}`} fill={entry.temp_diff > 1.5 ? 'var(--color-danger)' : 'var(--color-warning)'} />
@@ -186,7 +186,7 @@ export function Widget04_ProteinGrowth() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="protein" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)', border: '1px solid rgba(255,255,255,0.2)' }} />
           <Bar dataKey="growth" name="연평균 수요 성장률(%)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
@@ -233,7 +233,7 @@ export function Widget05_SpeciesMix() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Area type="monotone" dataKey="대왕오징어" stackId="1" fill="var(--color-danger)" stroke="var(--color-danger)" />
           <Area type="monotone" dataKey="아르헨티나" stackId="1" fill="#06b6d4" stroke="#06b6d4" />
           <Area type="monotone" dataKey="살오징어" stackId="1" fill="#8b5cf6" stroke="#8b5cf6" />
@@ -287,7 +287,7 @@ export function Widget06_MPAExpansion() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(tick) => `${tick * 100}%`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="mpa" name="보호구역(조업금지)" stackId="a" fill="var(--color-success)" />
           <Bar dataKey="fishingZone" name="합법 조업구역" stackId="a" fill="var(--color-info)" fillOpacity={0.6} />
         </BarChart>
@@ -335,7 +335,7 @@ export function Widget07_LatitudeShift() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="decade" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis domain={['auto', 'auto']} stroke="rgba(255,255,255,0.5)" fontSize={11} label={{ value: '평균 위도(N)', angle: -90, position: 'insideLeft', fill: 'var(--text-primary)' }} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="stepAfter" dataKey="latitude" name="주 조업 위도경계선" stroke="var(--color-warning)" strokeWidth={3} dot={{ r: 6 }} />
         </LineChart>
       }
@@ -382,7 +382,7 @@ export function Widget08_FishmealRatio() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Area type="monotone" dataKey="feed" stackId="1" fill="#ec4899" stroke="#ec4899" name="사료폐기/미달(%)" />
           <Area type="monotone" dataKey="food" stackId="1" fill="var(--color-info)" stroke="var(--color-info)" name="식용 가공(%)" />
         </AreaChart>
@@ -431,7 +431,7 @@ export function Widget09_IUURadar() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="country" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="violations" name="AIS 이탈/침범 횟수" fill="#f43f5e" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
@@ -479,7 +479,7 @@ export function Widget10_TACGap() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="tac" name="과학적 한계(TAC)" stroke="var(--color-success)" strokeWidth={2} strokeDasharray="4 4" />
           <Line type="monotone" dataKey="actual" name="실제 조업/남획량" stroke="#eab308" strokeWidth={3} />
         </LineChart>

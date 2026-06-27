@@ -23,7 +23,7 @@ export function Widget11_HegemonyBubble() {
           <XAxis type="number" dataKey="catch" name="생산량(만톤)" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[0, 1000]} />
           <YAxis type="number" dataKey="growth" name="성장률(%)" stroke="rgba(255,255,255,0.5)" fontSize={11} domain={[-30, 20]} />
           <ZAxis type="number" dataKey="size" range={[50, 800]} name="선단규모" />
-          <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Scatter name="국가" data={data} fill="var(--color-danger)">
             {data.map((entry: any, index: number) => (<Cell key={index} fill={entry.growth < 0 ? '#64748b' : (entry.catch > 400 ? 'var(--color-danger)' : 'var(--color-info)')} />))}
           </Scatter>
@@ -44,7 +44,7 @@ export function Widget12_QuotaBurnRate() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis domain={[0, 100]} stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t}%`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="rate" name="쿼터 소진율(%)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.isClosed ? 'var(--color-danger)' : 'var(--color-info)'} />))}</Bar>
         </BarChart>
       }
@@ -63,7 +63,7 @@ export function Widget13_FleetExpansion() {
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="var(--color-danger)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line yAxisId="left" type="monotone" dataKey="ships" name="선박 수(척)" stroke="var(--color-info)" strokeWidth={2} />
           <Line yAxisId="right" type="monotone" dataKey="tonnage" name="총 톤수(GT Index)" stroke="var(--color-danger)" strokeWidth={3} />
         </LineChart>
@@ -82,7 +82,7 @@ export function Widget14_EEZProtectionism() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Area type="monotone" dataKey="fee" name="외국적선 입항/조업료 지수" stroke="var(--color-warning)" fill="var(--color-warning)" fillOpacity={0.3} />
           <Area type="step" dataKey="tariff" name="스팟 수출세/관세율(%)" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.6} />
         </AreaChart>
@@ -102,7 +102,7 @@ export function Widget15_TechVsCPUE() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="name" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="cpue" name="하루 어획량 효율(CPUE)" fill="var(--color-success)" />
           <Bar dataKey="hp" name="광원/마력 투입 자본" fill="#6366f1" />
         </BarChart>
@@ -122,7 +122,7 @@ export function Widget16_TradeFlows() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis dataKey="dest" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={100} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="value" name="이동 물동량(천톤)" fill="#8b5cf6" />
         </BarChart>
       }
@@ -140,7 +140,7 @@ export function Widget17_PortHubs() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="Zhoushan_CN" stroke="var(--color-danger)" strokeWidth={3} />
           <Line type="monotone" dataKey="Callao_PE" stroke="var(--color-info)" strokeWidth={2} />
           <Line type="monotone" dataKey="Busan_KR" stroke="#64748b" strokeWidth={2} strokeDasharray="3 3" />
@@ -161,7 +161,7 @@ export function Widget18_ProcessingBlackhole() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="year" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="Vietnam" stackId="a" fill="var(--color-success)" />
           <Bar dataKey="India" stackId="a" fill="var(--color-warning)" />
           <Bar dataKey="China" stackId="a" fill="var(--color-danger)" />
@@ -182,7 +182,7 @@ export function Widget19_SubsidiesVsDepletion() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="subsidies" name="보조금 지수" fill="var(--color-info)" />
           <Bar dataKey="depletionRate" name="어장 고갈 가속도" fill="var(--color-danger)" />
         </BarChart>
@@ -201,7 +201,7 @@ export function Widget20_CarbonTaxCapex() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Area type="monotone" dataKey="carbonPenalty" name="노후선 탄소세 패널티 누적" stroke="var(--color-danger)" fill="var(--color-danger)" fillOpacity={0.4} />
           <Area type="monotone" dataKey="newShipCapex" name="신조선 친환경 설비 감가상각" stroke="var(--color-success)" fill="var(--color-success)" fillOpacity={0.4} />
         </AreaChart>

@@ -26,7 +26,7 @@ const getKorCountry = (engName: string) => {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
+      <div style={{ background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: number) => (
           <p key={index} style={{ margin: '4px 0', color: entry.color || entry.payload.fill, fontSize: '13px', fontWeight: 600 }}>
@@ -41,7 +41,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const widgetStyle = {
   background: 'rgba(0, 0, 0, 0.2)', 
-  border: '1px solid rgba(255, 255, 255, 0.05)', 
+  border: '1px solid rgba(140, 170, 255, 0.10)', 
   borderRadius: '8px', 
   padding: '1.5rem', 
   display: 'flex', 
@@ -67,7 +67,7 @@ export const WidgetTunaGiantsFall = () => (
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={declineData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />
@@ -98,7 +98,7 @@ export const WidgetThaiEmpire = () => (
     <div style={chartStyle}>
       <SafeResponsiveContainer width="100%" height="100%">
         <AreaChart data={empireData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} minTickGap={5}  angle={0} textAnchor="middle" height={60} tickFormatter={truncateXAxis}/>
           <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} tickFormatter={(v)=>`${v}k`}/>
           <RechartsTooltip content={<CustomTooltip />} />

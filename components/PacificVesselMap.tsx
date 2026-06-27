@@ -646,7 +646,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                   </thead>
                   <tbody>
                     {[...FAD_NODES].sort((a,b) => b.biomass - a.biomass).map((fad, i) => (
-                      <tr key={i} style={{ borderBottom: '1px dashed rgba(255,255,255,0.05)' }}>
+                      <tr key={i} style={{ borderBottom: '1px dashed rgba(140,170,255,0.10)' }}>
                         <td style={{ padding: '4px 0', color: fad.biomass >= 3000 ? 'var(--color-danger)' : 'var(--text-primary)' }}>
                           {fad.biomass >= 3000 && '🎯 '} {fad.id}
                         </td>
@@ -816,7 +816,7 @@ export default function PacificVesselMap({ defaultEezActive = false }: PacificVe
                 {PACIFIC_VESSELS.map((v, i) => {
                   const isDanger = typhoonActive && typhoonCentroids.some(center => Math.hypot(v.lat - center[0], v.lng - center[1]) < dangerRadiusDeg);
                   return (
-                    <tr key={i} style={{ borderBottom: i < PACIFIC_VESSELS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', backgroundColor: isDanger ? 'rgba(239, 68, 68, 0.15)' : 'transparent' }}>
+                    <tr key={i} style={{ borderBottom: i < PACIFIC_VESSELS.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none', backgroundColor: isDanger ? 'rgba(239, 68, 68, 0.15)' : 'transparent' }}>
                       <td style={{ padding: '6px 4px', fontWeight: 'bold', color: isDanger ? 'var(--color-danger)' : 'inherit' }}>{v.name} {isDanger && '⚠️'}</td>
                       <td style={{ textAlign: 'right', padding: '6px 4px', color: isDanger ? '#fca5a5' : 'var(--accent-secondary)' }}>{v.dailyCatch !== '-' ? `${v.dailyCatch}톤` : '-'}</td>
                       <td style={{ textAlign: 'right', padding: '6px 4px', color: isDanger ? '#fca5a5' : 'var(--accent-danger)' }}>{v.load !== '-' ? `${v.load}톤` : '-'}</td>

@@ -3,7 +3,7 @@ import { MapPin, ShieldAlert, Anchor } from 'lucide-react';
 
 export default function WestAfricaMap() {
   return (
-    <div style={{ width: '100%', height: '100%', minHeight: '250px', background: 'rgba(0, 0, 0, 0.2)', borderRadius: '8px', overflow: 'hidden', position: 'relative', border: '1px solid rgba(255,255,255,0.05)' }}>
+    <div style={{ width: '100%', height: '100%', minHeight: '250px', background: 'rgba(0, 0, 0, 0.2)', borderRadius: '8px', overflow: 'hidden', position: 'relative', border: '1px solid rgba(140,170,255,0.10)' }}>
       {/* Background Stylized "Coastline" */}
       <svg style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.15 }} viewBox="0 0 100 100" preserveAspectRatio="none">
         <path d="M0,0 L100,0 L100,100 L60,100 Q50,70 30,80 Q10,90 0,60 Z" fill="#94a3b8" />
@@ -67,7 +67,7 @@ export default function WestAfricaMap() {
       </div>
       
       {/* Legend */}
-      <div style={{ position:'absolute', bottom: '10px', left: '10px', display:'flex', gap:'8px', fontSize:'0.6rem', color:'#94a3b8', background:'rgba(0, 0, 0, 0.2)', padding:'6px 10px', borderRadius:'6px', border:'1px solid rgba(255,255,255,0.05)', backdropFilter:'blur(4px)' }}>
+      <div style={{ position:'absolute', bottom: '10px', left: '10px', display:'flex', gap:'8px', fontSize:'0.6rem', color:'#94a3b8', background:'rgba(0, 0, 0, 0.2)', padding:'6px 10px', borderRadius:'6px', border:'1px solid rgba(140,170,255,0.10)', backdropFilter:'blur(4px)' }}>
         <span style={{ display:'flex', alignItems:'center', gap:'4px' }}><div style={{width:'8px',height:'8px',borderRadius:'50%',background:'var(--color-success)'}}/> 농가 (신선)</span>
         <span style={{ display:'flex', alignItems:'center', gap:'4px' }}><Anchor size={10} color="var(--color-info)" /> 항구 (가공)</span>
         <span style={{ display:'flex', alignItems:'center', gap:'4px' }}><ShieldAlert size={10} color="var(--color-danger)" /> 무장세력 (병목)</span>

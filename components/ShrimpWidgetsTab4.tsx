@@ -12,7 +12,7 @@ export const W31_PriceGap = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={unitPriceExport.slice(0, 10)} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
         <YAxis dataKey="country" type="category" width={80} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -30,7 +30,7 @@ export const W32_AquaUnitCost = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={aquaValuePerTon.slice(0, 10)} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="country" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -45,7 +45,7 @@ export const W33_PriceTrend = () => (
   <WidgetCard title="글로벌 기준선(Benchmark) 단가 사이클" icon={Activity} term="Global Price Cycle" desc="1990~2023년 새우 톤당 평균 수출 단가의 변동성 (FAO 파생)" source="FAO 무역 통계 파생 (수출액÷물량, 자체 산출)" situation="새우의 도매 베이스라인은 타 육류(가금류/돈육)와 달리, 수년 단위로 폭등과 폭락을 오가는 사이클릭(Cyclical) 성향을 보입니다. 데이터가 존재하는 가장 최근 시점(2023년) 단가는 톤당 약 $7,087로, 직전 몇 년($7,300~7,800) 대비 하락 국면입니다. 다만 본 시계열의 절대 최저점은 2004년(약 $5,643)이므로 2023년이 사상 최저점은 아닙니다." actionPlan="[역발상 분할 매입] 사이클 하락 국면에서는 공포에 휩쓸린 일괄 투매보다, 현지 팩토리 물량을 분할로 선도 매입(Forward Buy)하며 평단가를 관리하는 접근이 유효합니다. 콜드체인 터미널 가동률을 단계적으로 끌어올려 재고 회전을 확보하되, 2024년 이후 단가는 본 데이터에 없으므로 최신 실거래가로 별도 확인 후 포지션을 조정하십시오." telemetry={{ status: 'STATIC' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={unitPriceTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} domain={['dataMin - 1000', 'dataMax + 1000']} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -67,7 +67,7 @@ export const W34_OriginCompare = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="size" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -89,7 +89,7 @@ export const W35_ProcMargin = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} layout="vertical" margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} />
           <YAxis dataKey="category" type="category" width={80} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -107,7 +107,7 @@ export const W36_PriceCycle = () => {
     <WidgetCard title="단가 하락장(Down Cycle) 트렌드 (예시)" icon={RefreshCw} term="Down Cycle" desc="팬데믹 이후 단가 흐름 일러스트 — 자체 추정(illustrative) 예시 데이터" source="자체 추정 예시 데이터 ($/kg 단위, 연도별 일러스트)" situation="예시 데이터 기준으로, 팬데믹 기(약 $6.8~7.0/kg)에 고점을 형성한 단가가 이후 하락 추세($4.9/kg대)로 전환되는 모습을 보여줍니다. 본 수치는 검증된 실측 시세가 아닌 사이클 형태 설명용 예시값이며, '10년래 절대바닥' 같은 절대 수준 단정의 근거로는 사용할 수 없습니다." actionPlan="[하락 국면 분할 매입] 하락 추세 국면에서는 일괄 투매·일괄 매집보다 분할 매입으로 평단가를 관리하는 접근이 유효합니다. 단, 본 위젯은 예시값 기반이므로 실제 진입 시점은 FAO·Urner Barry 등 실측 시세를 syncDate와 함께 확인한 뒤 결정하십시오." telemetry={{ status: 'STATIC' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="y" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} domain={[4, 8]} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -125,7 +125,7 @@ export const W37_FeedCost = () => {
     <WidgetCard title="사료(어분/Fishmeal)가 vs 양식 단가 연동성 (예시)" icon={Link} term="Feed-Price Linkage" desc="어분가-출하가 상관 일러스트 — 자체 추정(illustrative) 4점 예시 데이터" source="자체 추정 예시 데이터 (어분가·출하가 4점 산점, 실측 시계열 아님)" situation="예시 4개 점 기준으로, 어분(Fishmeal)가 상승과 새우 출하가 상승이 같은 방향으로 움직이는 양(+)의 연동 경향을 보여줍니다. 다만 4점만으로는 상관계수·리드타임(선행 개월)을 통계적으로 단정할 수 없으며, '원가 60% 어분'·'6~8개월 선행' 수치도 본 위젯에서 검증된 값이 아닙니다." actionPlan="[선행 지표 가설 검증] 어분가가 양식 원가를 끌어올린다는 가설은 합리적이나, 실측 월별 시계열로 상관·시차를 회귀 검증한 뒤에만 트레이딩 트리거로 사용하십시오. 검증 전에는 페루 어분/멸치 어획 지표를 참고 보조 지표로만 모니터링하는 것을 권고합니다." telemetry={{ status: 'STATIC' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <ScatterChart margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="fm" name="어분가" tickFormatter={v=>`$${v}`} stroke="#94a3b8" fontSize={11} />
           <YAxis dataKey="sm" name="새우출하가" tickFormatter={v=>`$${v}`} stroke="#94a3b8" fontSize={11} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -144,7 +144,7 @@ export const W38_ChinaDemand = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <ComposedChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="y" stroke="#94a3b8" fontSize={11} />
           <YAxis yAxisId="L" stroke="#ec4899" fontSize={11} />
           <YAxis yAxisId="R" orientation="right" stroke="var(--color-info)" fontSize={11} />
@@ -165,7 +165,7 @@ export const W39_ValueAddWaterfall = () => {
       <SafeResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
           <ChartPatternDefs />
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v=>`$${v}`} />
           <RechartsTooltip contentStyle={tooltipStyle} />
@@ -183,7 +183,7 @@ export const W40_GoldenLockin = () => {
     <WidgetCard title="단가 지수 저점 인디케이터 (예시)" icon={Flame} term="Price Index Low" desc="가격 지수와 기준선 비교 일러스트 — 자체 추정(illustrative) 예시 데이터" source="자체 추정 예시 데이터 (가격 지수 일러스트 + 임의 기준선 50, 실측 MA 아님)" situation="예시 지수 기준으로, 최근 값(2023~2024, 42~45)이 임의로 설정한 기준선(50)을 하회하며 상대적 저점 구간에 위치합니다. 단 본 지수는 실측 10년 이동평균이 아닌 설명용 예시값이고 기준선 50도 임의값이므로, '역사상 최저'·'데드 바닥' 같은 절대 단정의 근거로는 사용할 수 없습니다." actionPlan="[저점 분할 매입 검토] 상대적 저점 국면에서는 일괄 락인보다 분할 매입으로 평단가를 관리하는 보수적 접근을 권고합니다. 실제 이동평균·밸류에이션은 FAO 등 실측 시계열로 재산출한 뒤, 검증된 저점에 한해 B2B 선도 계약 범위를 단계적으로 확대하십시오. 과도한 레버리지는 지양하십시오." telemetry={{ status: 'STATIC' }}>
       <SafeResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
           <XAxis dataKey="y" stroke="#94a3b8" fontSize={11} />
           <YAxis stroke="#94a3b8" fontSize={11} domain={[30, 80]} />
           <ReferenceLine y={50} stroke="var(--color-danger)" strokeDasharray="3 3" label={{ position: 'top', value: '기준선 50 (예시)', fill: 'var(--color-danger)', fontSize: 10 }} />

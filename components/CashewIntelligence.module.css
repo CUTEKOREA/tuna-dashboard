@@ -12,7 +12,7 @@
 
 .header {
   padding: 24px 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(140, 170, 255, 0.10);
 }
 
 .title {
@@ -36,8 +36,8 @@
   flex-wrap: wrap;
   gap: 8px;
   padding: 16px 32px;
-  background: #181818;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: #11182f;
+  border-bottom: 1px solid rgba(140, 170, 255, 0.10);
 }
 
 .tabButton {

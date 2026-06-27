@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{ 
-        backgroundColor: 'rgba(15, 23, 42, 0.9)', 
+        backgroundColor: 'rgba(20, 28, 52, 0.9)', 
         backdropFilter: 'blur(8px)',
         padding: '12px', 
         border: '1px solid rgba(255,255,255,0.1)', 
@@ -56,9 +56,9 @@ export default React.memo(function ThaiTunaTradeStats() {
         {/* 1. Yearly Trade Trend */}
         <div 
           style={{ 
-            background: 'rgba(15, 23, 42, 0.4)', 
+            background: 'rgba(20, 28, 52, 0.4)', 
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(140, 170, 255, 0.10)',
             borderRadius: '12px',
             padding: '1.5rem'
           }}
@@ -76,7 +76,7 @@ export default React.memo(function ThaiTunaTradeStats() {
             <SafeResponsiveContainer width="100%" height="100%">
               <ComposedChart data={tradeData.yearly_totals}>
                 <ChartPatternDefs />
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
                 <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickMargin={10} />
                 <YAxis stroke="#94a3b8" fontSize={12} tickFormatter={(val) => (val / 1000).toFixed(0) + 'k'} />
                 <Tooltip content={<CustomTooltip />} />
@@ -98,9 +98,9 @@ export default React.memo(function ThaiTunaTradeStats() {
         {/* 2. Top Export Commodities */}
         <div 
           style={{ 
-            background: 'rgba(15, 23, 42, 0.4)', 
+            background: 'rgba(20, 28, 52, 0.4)', 
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(140, 170, 255, 0.10)',
             borderRadius: '12px',
             padding: '1.5rem'
           }}
@@ -118,7 +118,7 @@ export default React.memo(function ThaiTunaTradeStats() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={tradeData.top_commodities_2023} layout="vertical" margin={{ left: 20, right: 30 }}>
                 <ChartPatternDefs />
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
                 <XAxis type="number" hide />
                 <YAxis 
                   dataKey="name" 
@@ -149,9 +149,9 @@ export default React.memo(function ThaiTunaTradeStats() {
         {/* 3. Top Export Partners */}
         <div 
           style={{ 
-            background: 'rgba(15, 23, 42, 0.4)', 
+            background: 'rgba(20, 28, 52, 0.4)', 
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(140, 170, 255, 0.10)',
             borderRadius: '12px',
             padding: '1.5rem'
           }}

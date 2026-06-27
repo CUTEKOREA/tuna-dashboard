@@ -69,7 +69,7 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   const isLive = status === 'live';
   const isSynced = status === 'synced';
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(140,170,255,0.10)' }}>
       <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
         <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
@@ -184,7 +184,7 @@ export default function CashewStrategy() {
     const isTextAxis = d.length > 0 && typeof d[0][w.xKey] === 'string' && isNaN(Number(d[0][w.xKey]));
     const tickProps = isTextAxis ? {fontSize:10, angle:0, textAnchor:'middle' as const, dy: 5} : {fontSize:10};
     const chartMargin = isTextAxis ? { top: 5, right: 10, left: -10, bottom: 10 } : undefined;
-    const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />;
+    const grid = <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />;
     const xAxis = <XAxis dataKey={w.xKey} stroke="#64748b" tick={tickProps} interval={0} tickFormatter={formatXAxis} />;
     const yFmt = (v: number) => v >= 1000000 ? `${(v/1000000).toFixed(1)}M` : v >= 1000 ? `${(v/1000).toFixed(0)}K` : v.toLocaleString();
 
@@ -304,7 +304,7 @@ export default function CashewStrategy() {
               <p style={{ margin:0, fontSize:'0.8rem', color:'#64748b' }}>정적 스냅샷 인텔리전스 · 위젯 {totalWidgetCount}개 · 5-Pillar 구조</p>
             </div>
           </div>
-          <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#181818', border: 'none', borderRadius:'8px', color:'#94a3b8' }}>
+          <div style={{ fontSize:'0.8rem', padding:'0.5rem 1rem', background: '#11182f', border: 'none', borderRadius:'8px', color:'#94a3b8' }}>
             <span style={{ color:'var(--color-success)' }}>FAOSTAT TCL 2024</span> · UN Comtrade · 내부 리서치 노트
           </div>
         </div>
@@ -312,7 +312,7 @@ export default function CashewStrategy() {
 
       {/* ═══ 9-Network Live Status Monitor & SCSI ═══ */}
       <div style={{
-        background: '#181818',
+        background: '#11182f',
         border: 'none',
         borderRadius: '12px',
         padding: '1.5rem',
@@ -391,9 +391,9 @@ export default function CashewStrategy() {
         {Object.keys(kpis).map((key, idx) => {
           const kpi = kpis[key]; const t = KPI_THEMES[idx % KPI_THEMES.length]; const I = t.icon;
           return (
-            <div key={key} style={{ background: '#181818', border: 'none', borderRadius:'8px', padding:'1.2rem', display:'flex', flexDirection:'column', gap:'6px', transition:'all 0.3s', cursor:'default', position:'relative', overflow:'hidden' }}
+            <div key={key} style={{ background: '#11182f', border: 'none', borderRadius:'8px', padding:'1.2rem', display:'flex', flexDirection:'column', gap:'6px', transition:'all 0.3s', cursor:'default', position:'relative', overflow:'hidden' }}
               onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-2px)';e.currentTarget.style.borderColor='rgba(255, 255, 255, 0.1)'}}
-              onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.borderColor='rgba(255, 255, 255, 0.05)'}}>
+              onMouseLeave={e=>{e.currentTarget.style.transform='none';e.currentTarget.style.borderColor='rgba(140, 170, 255, 0.10)'}}>
               <div style={{ position:'absolute', top:'-15px', right:'-15px', width:'60px', height:'60px', borderRadius:'50%', background:`radial-gradient(circle,${t.glow},transparent)`, pointerEvents:'none' }} />
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                 <span style={{ fontSize:'0.72rem', color:'#94a3b8', fontWeight:600 }}>{kpi.title}</span>
@@ -415,8 +415,8 @@ export default function CashewStrategy() {
       </div>
 
       {/* ═══ 5-Pillar 밸류체인 네비게이터 ═══ */}
-      <div style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.5), rgba(15,23,42,0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', marginTop: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: '6px' }}>
+      <div style={{ background: 'linear-gradient(180deg, rgba(20, 28, 52, 0.5), rgba(20, 28, 52, 0.2))', border: '1px solid rgba(255,255,255,0.04)', borderRadius: '16px', padding: '6px', marginBottom: '2rem', marginTop: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(140,170,255,0.10)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', padding: '4px 0 8px', borderBottom: '1px solid rgba(140,170,255,0.10)', marginBottom: '6px' }}>
           <span style={{ fontSize: '0.7rem', color: 'rgba(148,163,184,0.7)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>밸류체인 네비게이터 — 아래 단계를 클릭하여 탐색하세요</span>
         </div>
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '4px' }}>
@@ -424,11 +424,11 @@ export default function CashewStrategy() {
             const isActive = activePart === s.id;
             return (
               <button key={s.id} onClick={() => setActivePart(s.id as any)}
-                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
+                onMouseEnter={(e) => { if (!isActive) { e.currentTarget.style.background = 'rgba(140,170,255,0.12)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = `${s.color}40`; } }}
                 onMouseLeave={(e) => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'transparent'; } }}
                 style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', padding: '12px 8px 14px', background: isActive ? `${s.color}12` : 'transparent', border: `1.5px solid ${isActive ? s.color : 'transparent'}`, borderRadius: '12px', cursor: 'pointer', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)', boxShadow: isActive ? `0 0 20px ${s.color}25, inset 0 1px 0 rgba(255,255,255,0.1)` : 'none', overflow: 'hidden' }}>
                 {isActive && (<div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '3px', background: `linear-gradient(90deg, transparent, ${s.color}, transparent)`, borderRadius: '3px 3px 0 0' }} />)}
-                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(255,255,255,0.06)', color: isActive ? '#0f172a' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: isActive ? s.color : 'rgba(140,170,255,0.12)', color: isActive ? '#0a0f1f' : 'rgba(148,163,184,0.6)', fontSize: '0.75rem', fontWeight: 800, boxShadow: isActive ? `0 0 12px ${s.color}50` : 'none' }}>{idx + 1}</div>
                 <span style={{ fontSize: '0.78rem', fontWeight: isActive ? 700 : 500, color: isActive ? s.color : 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{s.label}</span>
               </button>
             );
@@ -455,7 +455,7 @@ export default function CashewStrategy() {
               syncDate: data?._metadata?.syncDate,
               chart: (
                 <AreaChart data={d_vietnam_paradox} margin={{top:5, right:10, left:-10, bottom:10}}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                   <XAxis dataKey="year" stroke="#64748b" tick={{fontSize:10}} />
                   <YAxis stroke="#64748b" tick={{fontSize:9}} />
                   <RechartsTooltip content={<CustomTooltip />} />
@@ -486,7 +486,7 @@ export default function CashewStrategy() {
               chart: (
                 <ComposedChart data={d_africa_processing} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                   <XAxis dataKey="quarter" stroke="#64748b" tick={{fontSize:10}} />
                   <YAxis stroke="#64748b" tick={{fontSize:9}} unit="%" />
                   <RechartsTooltip content={<CustomTooltip />} />
@@ -517,7 +517,7 @@ export default function CashewStrategy() {
               chart: (
                 <BarChart layout="vertical" data={d_macro_sensitivity} margin={{top:5, right:10, left:-10, bottom:10}}>
                   <ChartPatternDefs />
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={true} vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={true} vertical={false} />
                   <XAxis type="number" stroke="#64748b" tick={{fontSize:9}} unit="%" />
                   <YAxis type="category" dataKey="factor" interval={0} width={100} stroke="#64748b" tick={{fontSize:9}} />
                   <RechartsTooltip content={<CustomTooltip />} />

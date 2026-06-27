@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload }: any) => {
         <span style={{ display: 'inline-block', padding: '2px 8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', fontSize: '11px', color: '#cbd5e1', marginBottom: '12px' }}>
           단면: {data.category}
         </span>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', borderBottom: '1px solid rgba(140,170,255,0.10)', paddingBottom: '8px' }}>
           <div>
             <p style={{ margin: 0, fontSize: '11px', color: '#94a3b8' }}>시장 점유율</p>
             <p style={{ margin: 0, fontSize: '14px', fontWeight: 'bold', color: 'var(--text-primary)' }}>{data.share}%</p>
@@ -72,7 +72,7 @@ export default function CategoryPortfolio() {
         <SafeResponsiveContainer width="100%" height={300}>
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             {/* Grid */}
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
             
             {/* Quadrant Lines (Targeting center points of domain x:0~80, y:-10~40) */}
             <ReferenceLine x={40} stroke="rgba(255,255,255,0.15)" strokeWidth={1} strokeDasharray="5 5" />

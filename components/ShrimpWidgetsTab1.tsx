@@ -11,7 +11,7 @@ export const W01_Megatrend = () => (
   <WidgetCard title="수생태계 메가트렌드 (1970-2022)" icon={Globe} term="Production Megatrend" desc="글로벌 전체 생산량" source="FAO FishStatJ - Global Production Timeline" situation="2000년대 이후 인공 양식(Aquaculture) 인프라의 폭발적 증가로 새우 생산량 곡선이 구조적 수직 팽창(Vertical Expansion) 단계에 진입하며, 글로벌 식량 밸류체인의 판도가 영구적으로 재편되었습니다." actionPlan="[Value-Chain Migration] 자연산 어획에 의존하는 낡은 비즈니스 모델(Legacy Model)에서 즉각 탈피하십시오. 전사 CAPEX를 글로벌 양식 밸류체인 편입 및 스마트 아쿠아팜 지분 확보에 집중하여 매입원가 주도권(Cost Leadership)을 탈환해야 합니다." telemetry={{ status: 'STATIC' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={megatrendData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -27,7 +27,7 @@ export const W02_CapVsAqua = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={capVsAquaData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(0)}M`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -44,7 +44,7 @@ export const W03_AquaValue = () => (
   <WidgetCard title="새우 양식업 본질가치(Value) 성장" icon={DollarSign} term="Aqua Value" desc="양식업 연간 USD 생산가치" source="FAO FishStatJ - Aquaculture Value Timeline" situation="생산량(Volume) 팽창과 마켓 프라이싱(Pricing) 상승이 결합된 강력한 쌍끌이 호황으로, 글로벌 양식 산업의 총체적 시장 가치(Total Addressable Market)가 천문학적 스케일로 팽창 중입니다." actionPlan="[Premium Asset Acquisition] 단순 볼륨(Volume) 기반의 덤핑 경쟁을 즉시 중단하십시오. 단위당 최고 마진율(Value)을 보장하는 친환경 인증(ASC) 및 질병 내성(SPF)을 갖춘 하이엔드 프리미엄 양식장 자산(Asset) 인수에 전사 M&A 역량을 집중." telemetry={{ status: 'STATIC' }}>
     <SafeResponsiveContainer width="100%" height="100%">
       <AreaChart data={aquaValueTimeline} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -60,7 +60,7 @@ export const W04_AquaShare = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={aquaShareData} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${v}%`} domain={[0, 100]} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -77,7 +77,7 @@ export const W05_Top10Prod = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Prod} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -93,7 +93,7 @@ export const W06_Top10Aqua = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Aqua} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -109,7 +109,7 @@ export const W07_Top10Cap = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10Cap} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -125,7 +125,7 @@ export const W08_Top10AquaVal = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <BarChart data={top10AquaVal} margin={{ top: 10, right: 10, left: -20, bottom: 5 }} layout="vertical">
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" horizontal={false} />
         <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={v => `$${(v/1000000).toFixed(1)}B`} />
         <YAxis dataKey="country" type="category" width={70} stroke="#94a3b8" fontSize={11} />
         <RechartsTooltip contentStyle={tooltipStyle} />
@@ -141,7 +141,7 @@ export const W09_CapCeiling = () => (
     <SafeResponsiveContainer width="100%" height="100%">
       <ComposedChart data={captureCeiling} margin={{ top: 10, right: 10, left: -20, bottom: 5 }}>
         <ChartPatternDefs />
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" />
         <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={v => `${(v/1000000).toFixed(1)}M`} domain={[0, 'auto']} />
         <RechartsTooltip contentStyle={tooltipStyle} />

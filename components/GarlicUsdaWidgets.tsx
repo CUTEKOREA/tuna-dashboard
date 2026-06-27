@@ -35,7 +35,7 @@ function buildChart(w: Widget): React.ReactElement {
           label={(e: any) => `${e[w.xKey]} ${e[pieKey]}%`}>
           {data.map((d: any, i: number) => (<Cell key={i} fill={d.fill || '#f59e0b'} />))}
         </Pie>
-        <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => [`${v}%`, '비중']} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => [`${v}%`, '비중']} />
       </PieChart>
     );
   }
@@ -43,10 +43,10 @@ function buildChart(w: Widget): React.ReactElement {
   if (type === 'bar') {
     return (
       <BarChart data={data} margin={{ top: 10, right: 20, left: -10, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
         <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} angle={-15} textAnchor="end" height={60} />
         <YAxis stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
-        <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => COMMA(Number(v))} />
+        <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => COMMA(Number(v))} />
         <Legend wrapperStyle={{ fontSize: '11px' }} />
         {(w.bars || []).map((b) => (<Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color} />))}
       </BarChart>
@@ -55,11 +55,11 @@ function buildChart(w: Widget): React.ReactElement {
 
   return (
     <ComposedChart data={data} margin={{ top: 10, right: 30, left: -10, bottom: 5 }}>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
       <XAxis dataKey={w.xKey} stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} angle={-15} textAnchor="end" height={50} />
       <YAxis yAxisId="left" stroke="rgba(255,255,255,0.2)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
       <YAxis yAxisId="right" orientation="right" stroke="rgba(220,38,38,0.5)" tick={{ fill: 'rgba(220,38,38,0.7)', fontSize: 10 }} tickFormatter={(v: number) => COMMA(v)} />
-      <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => COMMA(Number(v))} />
+      <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(255,255,255,0.2)', color: '#e2e8f0' }} formatter={(v: any) => COMMA(Number(v))} />
       <Legend wrapperStyle={{ fontSize: '11px' }} />
       {(w.bars || []).map((b) => (<Bar key={b.key} yAxisId="left" dataKey={b.key} name={b.name} fill={b.color} />))}
       {(w.lines || []).map((l) => (<Line key={l.key} yAxisId="right" type="monotone" dataKey={l.key} name={l.name} stroke={l.color} strokeWidth={2} dot={{ fill: l.color, r: 3 }} />))}

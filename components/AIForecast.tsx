@@ -115,7 +115,7 @@ const renderAIForecastDot = (props: any) => {
 
     return (
       <g key={`dot-${index}`}>
-        <circle cx={cx} cy={cy} r={5} fill={dotColor} stroke="#1e293b" strokeWidth={2} />
+        <circle cx={cx} cy={cy} r={5} fill={dotColor} stroke="#1a2442" strokeWidth={2} />
         <text 
           x={cx} 
           y={cy - 12} 
@@ -134,7 +134,7 @@ const renderAIForecastDot = (props: any) => {
   // Normal points
   if (isEst && payload.month !== '26-04') return null; // Don't render dots for standard forecast to keep it clean unless it's a spike, actually let's just always render the custom spike dots and nothing else for Est, or keep the original behavior:
   
-  return <circle key={`dot-${index}`} cx={cx} cy={cy} r={4} fill="#1e293b" stroke={dotColor} strokeWidth={2} />;
+  return <circle key={`dot-${index}`} cx={cx} cy={cy} r={4} fill="#1a2442" stroke={dotColor} strokeWidth={2} />;
 };
 
 export default function AIForecast({ hideHeader = false }: { hideHeader?: boolean }) {
@@ -198,7 +198,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
         
         <SafeResponsiveContainer width="100%" height={280}>
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="month" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
             <YAxis yAxisId="left" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} />
             <YAxis yAxisId="right" orientation="right" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
@@ -215,7 +215,7 @@ export default function AIForecast({ hideHeader = false }: { hideHeader?: boolea
             
             {/* Historical Lines */}
             <Line yAxisId="right" type="monotone" dataKey="skj" name="SKJ Raw Material" stroke="var(--color-warning)" strokeWidth={3} dot={renderAIForecastDot} activeDot={{ r: 6 }} />
-            <Line yAxisId="left" type="stepAfter" dataKey="mgo" name="Brent Oil ($/bbl)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4, fill: '#1e293b', strokeWidth: 2 }} />
+            <Line yAxisId="left" type="stepAfter" dataKey="mgo" name="Brent Oil ($/bbl)" stroke="var(--color-info)" strokeWidth={3} dot={{ r: 4, fill: '#1a2442', strokeWidth: 2 }} />
             
             {/* Forecast Lines */}
             <Line yAxisId="right" type="monotone" dataKey="skjEst" name="SKJ Forecast" stroke="var(--color-danger)" strokeWidth={3} strokeDasharray="5 5" dot={false} activeDot={{ r: 6 }} animationDuration={1000} />

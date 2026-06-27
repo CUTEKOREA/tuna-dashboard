@@ -80,7 +80,7 @@ const DonutTooltip = ({ active, payload }: any) => {
   const { name, value, share } = payload[0].payload;
   return (
     <div style={{
-      background: '#0f172a',
+      background: '#0a0f1f',
       border: '1px solid #334155',
       borderRadius: 8,
       padding: '8px 14px',
@@ -100,7 +100,7 @@ const LineTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div style={{
-      background: '#0f172a',
+      background: '#0a0f1f',
       border: '1px solid #334155',
       borderRadius: 8,
       padding: '8px 14px',
@@ -152,7 +152,7 @@ export default function FfaWcpoSupplyDashboard() {
                 label={renderDonutLabel}
                 labelLine={{ stroke: 'rgba(255,255,255,0.25)', strokeWidth: 1 }}
                 strokeWidth={2}
-                stroke="#0f172a"
+                stroke="#0a0f1f"
               >
                 {DONUT_DATA.map((_, i) => (
                   <Cell key={`cell-${i}`} fill={SPECIES_COLORS[i]} />
@@ -261,7 +261,7 @@ export default function FfaWcpoSupplyDashboard() {
                 name="총 어획량"
                 stroke="url(#wcpoLineGrad)"
                 strokeWidth={2.5}
-                dot={{ r: 3.5, fill: '#0f172a', strokeWidth: 2, stroke: '#22d3ee' }}
+                dot={{ r: 3.5, fill: '#0a0f1f', strokeWidth: 2, stroke: '#22d3ee' }}
                 activeDot={{ r: 6, fill: '#22d3ee' }}
               />
             </LineChart>

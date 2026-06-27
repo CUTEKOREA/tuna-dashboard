@@ -33,7 +33,7 @@ export default function MackerelSankey() {
             <span style={{ color: sourceColors[d.source] || 'var(--text-primary)', fontWeight: 600, fontSize: '0.82rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.source}</span>
             <span style={{ color: 'rgba(255,255,255,0.3)', textAlign: 'center' }}>→</span>
             <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.82rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{d.target}</span>
-            <div style={{ height: '16px', borderRadius: '4px', overflow: 'hidden', background: 'rgba(255,255,255,0.05)' }}>
+            <div style={{ height: '16px', borderRadius: '4px', overflow: 'hidden', background: 'rgba(140,170,255,0.10)' }}>
               <div style={{
                 height: '100%', borderRadius: '4px',
                 width: `${Math.max((d.volume_t / maxVol) * 100, 3)}%`,

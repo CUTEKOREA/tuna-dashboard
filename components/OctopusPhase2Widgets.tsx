@@ -22,7 +22,7 @@ import {
 import WidgetCard from './WidgetCard';
 
 /* ─── 공통 유틸 ───────────────────────────────────────────────── */
-const tooltipStyle = { background: 'rgba(15,23,42,0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12 };
+const tooltipStyle = { background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12 };
 const PURPLE = ['#4f46e5', '#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ef4444', '#10b981', '#f59e0b'];
 
 /* ───────────────────────────────────────────────────────────────
@@ -46,7 +46,7 @@ export function OctopusChannelMarginMatrix() {
       chartHeight={320}
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="channel" stroke="#94a3b8" tick={{ fontSize: 11 }} />
           <YAxis yAxisId="left" stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tickFormatter={(v) => `${v}%`} tick={{ fill: '#ef4444', fontSize: 10 }} />
@@ -87,7 +87,7 @@ export function OctopusColdChainYield() {
       chartHeight={320}
       chart={
         <ComposedChart data={routes} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="mode" stroke="#94a3b8" tick={{ fontSize: 10 }} />
           <YAxis yAxisId="left" stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(1)}k`} tick={{ fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="#10b981" tickFormatter={(v) => `${v}%`} tick={{ fill: '#10b981', fontSize: 10 }} />
@@ -138,7 +138,7 @@ export function OctopusPriceTransmission() {
       chartHeight={320}
       chart={
         <ComposedChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="month" stroke="#94a3b8" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" height={50} />
           <YAxis yAxisId="left" stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
           <YAxis yAxisId="right" orientation="right" stroke="#ef4444" tickFormatter={(v) => `${v}%`} tick={{ fill: '#ef4444', fontSize: 10 }} domain={[0, 60]} />
@@ -185,7 +185,7 @@ export function OctopusCephalopodElasticity() {
       chartHeight={320}
       chart={
         <LineChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="month" stroke="#94a3b8" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" height={50} />
           <YAxis stroke="#94a3b8" tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} tick={{ fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${Number(v).toLocaleString()} 원/kg`} />
@@ -228,7 +228,7 @@ export function OctopusAquacultureRace() {
       chartHeight={320}
       chart={
         <ComposedChart data={data} layout="vertical" margin={{ top: 16, right: 30, left: 70, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
           <XAxis type="number" stroke="#94a3b8" tick={{ fontSize: 10 }} domain={[0, 9]} />
           <YAxis type="category" dataKey="player" stroke="#94a3b8" tick={{ fontSize: 10 }} width={150} />
           <Tooltip contentStyle={tooltipStyle} />
@@ -272,7 +272,7 @@ export function OctopusTacCountdown() {
       chartHeight={320}
       chart={
         <BarChart data={stages} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="stage" stroke="#94a3b8" tick={{ fontSize: 10 }} angle={-15} textAnchor="end" height={50} />
           <YAxis stroke="#94a3b8" tick={{ fontSize: 10 }} domain={[2025, 2031]} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${v}년`} />
@@ -315,7 +315,7 @@ export function OctopusFtaTariffMatrix() {
       chartHeight={320}
       chart={
         <BarChart data={data} margin={{ top: 16, right: 10, left: 0, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="hs" stroke="#94a3b8" tick={{ fontSize: 10 }} />
           <YAxis stroke="#94a3b8" tickFormatter={(v) => `${v}%`} tick={{ fontSize: 10 }} />
           <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => `${v}%`} />
@@ -370,7 +370,7 @@ export function OctopusSstCorrelation() {
       chartHeight={320}
       chart={
         <ScatterChart margin={{ top: 16, right: 10, left: 0, bottom: 10 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
           <XAxis dataKey="sst" name="서해 SST" type="number" domain={[12.8, 15.6]} stroke="#94a3b8" tick={{ fontSize: 10 }} unit="℃" />
           <YAxis dataKey="catch" name="문어류 어획" type="number" stroke="#94a3b8" tick={{ fontSize: 10 }} unit="kt" />
           <ZAxis dataKey="year" range={[60, 60]} />

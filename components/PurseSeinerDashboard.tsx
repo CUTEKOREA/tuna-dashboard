@@ -129,7 +129,7 @@ function RfmoDonut() {
             {data.map((d, i) => <Cell key={i} fill={d.color} stroke="transparent" />)}
           </Pie>
           <Tooltip
-            contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
+            contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
             formatter={(v: number, name: string) => [`${v}척`, RFMO_NAMES_KO[name] || name]}
           />
         </PieChart>
@@ -220,7 +220,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
           <XAxis type="number" tick={{ fill: '#64748b', fontSize: 11 }} />
           <YAxis type="category" dataKey="name" tick={{ fill: '#94a3b8', fontSize: 12 }} width={120} />
           <Tooltip
-            contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
+            contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
             formatter={(v: number) => [`${v}척`, '선박 수']}
           />
           <Bar dataKey="count" radius={[0, 6, 6, 0]} cursor="pointer">
@@ -250,7 +250,7 @@ function ContinentTreemap() {
     return (
       <g>
         <rect x={x} y={y} width={width} height={height} rx={6}
-          style={{ fill, stroke: '#0f172a', strokeWidth: 2, opacity: 0.85 }} />
+          style={{ fill, stroke: '#0a0f1f', strokeWidth: 2, opacity: 0.85 }} />
         <text x={x + width / 2} y={y + height / 2 - 8} textAnchor="middle"
           style={{ fill: '#fff', fontSize: 13, fontWeight: 700 }}>{name}</text>
         <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle"
@@ -311,7 +311,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
           <XAxis type="number" tick={{ fill: '#64748b', fontSize: 11 }} />
           <YAxis type="category" dataKey="name" tick={{ fill: '#94a3b8', fontSize: 11 }} width={170} />
           <Tooltip
-            contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
+            contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
             formatter={(v: number, _: any, props: any) => [
               `${v}척 | RFMO: ${props.payload.rfmos}`, '선박 수'
             ]}
@@ -484,7 +484,7 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
       <div style={{
         display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12,
         padding: '12px 16px', background: 'rgba(255,255,255,0.02)',
-        borderRadius: 12, border: '1px solid rgba(255,255,255,0.06)',
+        borderRadius: 12, border: '1px solid rgba(140,170,255,0.12)',
       }}>
         <div style={{ position: 'relative', flex: '1 1 200px' }}>
           <Search size={14} style={{ position: 'absolute', left: 10, top: 9, color: '#64748b' }} />
@@ -493,23 +493,23 @@ function VesselTable({ initialRfmo, initialFlag, initialOperator }: {
             value={search} onChange={e => { setSearch(e.target.value); setPage(1); }}
             style={{
               width: '100%', padding: '7px 10px 7px 30px', borderRadius: 8,
-              border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(140,170,255,0.10)',
               color: '#e2e8f0', fontSize: 13, outline: 'none',
             }}
           />
         </div>
         <select value={rfmoFilter} onChange={e => { setRfmoFilter(e.target.value); setPage(1); }}
-          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1e293b', color: '#e2e8f0', fontSize: 12, cursor: 'pointer' }}>
+          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1a2442', color: '#e2e8f0', fontSize: 12, cursor: 'pointer' }}>
           <option value="">전체 RFMO</option>
           {['WCPFC', 'IOTC', 'IATTC', 'ICCAT'].map(r => <option key={r} value={r}>{r}</option>)}
         </select>
         <select value={flagFilter} onChange={e => { setFlagFilter(e.target.value); setPage(1); }}
-          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1e293b', color: '#e2e8f0', fontSize: 12, cursor: 'pointer', maxWidth: 150 }}>
+          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1a2442', color: '#e2e8f0', fontSize: 12, cursor: 'pointer', maxWidth: 150 }}>
           <option value="">전체 국가</option>
           {allFlags.map(f => <option key={f} value={f}>{FLAG_EMOJI[f] || ''} {flagKo(f)}</option>)}
         </select>
         <select value={opFilter} onChange={e => { setOpFilter(e.target.value); setPage(1); }}
-          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1e293b', color: '#e2e8f0', fontSize: 12, cursor: 'pointer', maxWidth: 180 }}>
+          style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: '#1a2442', color: '#e2e8f0', fontSize: 12, cursor: 'pointer', maxWidth: 180 }}>
           <option value="">전체 운영사</option>
           {allOps.map(o => <option key={o} value={o}>{o}</option>)}
         </select>
@@ -718,7 +718,7 @@ export default function PurseSeinerDashboard() {
       {/* Footer */}
       <div style={{
         marginTop: 24, padding: '12px 16px', borderRadius: 12,
-        background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
+        background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(140,170,255,0.12)',
         fontSize: 11, color: '#475569', textAlign: 'center',
       }}>
         데이터 출처: RFMO 공개 레지스트리 기반 수집 · IMO 체크디짓 검증 + 등차수열 패턴 탐지 적용 ·

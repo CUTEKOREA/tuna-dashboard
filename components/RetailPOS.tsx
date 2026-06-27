@@ -255,7 +255,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
             <SafeResponsiveContainer width="100%" height={320}>
               <ComposedChart data={waterfallData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
                 <ChartPatternDefs />
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
                 <XAxis dataKey="step" tick={{fill: '#94a3b8', fontSize: 11}} axisLine={false} tickLine={false} />
                 <YAxis yAxisId="left" domain={[0, 6500]} tick={{fill: '#94a3b8', fontSize: 11}} tickFormatter={(val) => `$${Number(val).toLocaleString()}`} axisLine={false} tickLine={false} />
                 <YAxis yAxisId="right" orientation="right" domain={[-20, 60]} hide />
@@ -266,7 +266,7 @@ export default function RetailPOS({ hideHeader = false }: { hideHeader?: boolean
                   ))}
                 </Bar>
 
-                <Line yAxisId="right" type="monotone" dataKey="smileLine" stroke="#eab308" strokeWidth={3} strokeDasharray="5 5" dot={{r: 4, fill: '#0f172a', stroke: '#eab308', strokeWidth: 2}} name="부가가치 궤적 (Smile Curve)" />
+                <Line yAxisId="right" type="monotone" dataKey="smileLine" stroke="#eab308" strokeWidth={3} strokeDasharray="5 5" dot={{r: 4, fill: '#0a0f1f', stroke: '#eab308', strokeWidth: 2}} name="부가가치 궤적 (Smile Curve)" />
               </ComposedChart>
             </SafeResponsiveContainer>
           </div>

@@ -75,7 +75,7 @@ const Insight6ClimateCombo = () => {
             margin={{ top: 20, right: 10, left: -20, bottom: 5 }}
           >
             <ChartPatternDefs />
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} minTickGap={20} />
             
             <YAxis
@@ -94,7 +94,7 @@ const Insight6ClimateCombo = () => {
               width={50}
             />
             
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+            <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
             <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '11px' }} />
             <ReferenceLine yAxisId="left" y={0} stroke="rgba(255,255,255,0.2)" />
             

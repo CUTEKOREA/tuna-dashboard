@@ -11,7 +11,7 @@ import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { truncateXAxis } from '../lib/chart-standards';
 
-const tip = { background: 'rgba(0,15,30,0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
+const tip = { background: 'rgba(10, 16, 40, 0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
 
 export default function KimLogisticsWidget() {
   const [data, setData] = useState<any>(null);
@@ -52,7 +52,7 @@ export default function KimLogisticsWidget() {
         telemetry={{ status: isLive ? 'LIVE' : 'STATIC', syncDate: isLive ? '실시간' : 'KATI 2024' }}
         chart={
           <ComposedChart data={monthly} margin={{ top: 10, right: 10, left: -8, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
             <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
             <YAxis yAxisId="l" stroke="#94a3b8" fontSize={11} />
             <YAxis yAxisId="r" orientation="right" stroke="#a3e635" fontSize={11} tickFormatter={(v) => `$${Math.round(v / 1000)}M`} />
@@ -77,7 +77,7 @@ export default function KimLogisticsWidget() {
         telemetry={{ status: destIsLive ? 'LIVE' : 'STATIC', syncDate: destIsLive ? '실시간' : 'KATI 2024' }}
         chart={
           <BarChart data={dest} layout="vertical" margin={{ top: 10, right: 24, left: 14, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
             <XAxis type="number" stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}%`} />
             <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={56} />
             <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}%`, '비중']} />

@@ -10,7 +10,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "80px", background: "#181818", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1rem"}} >
+      <div className="ds-card" style={{display: "flex", flexDirection: "column", minHeight: "80px", background: "#11182f", borderRadius: "8px", boxShadow: "rgba(0,0,0,0.3) 0px 8px 8px", border: "none", padding: "1rem"}} >
         <p style={{ margin: '0 0 5px 0', fontWeight: 700, color: data.color }}>{data.name}</p>
         <p style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1' }}>환경·사회적 영향 (X): {data.x}</p>
         <p style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1' }}>재무적 영향 (Y): {data.y}</p>

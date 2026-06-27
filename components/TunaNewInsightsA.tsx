@@ -55,7 +55,7 @@ export function InsightNauruSwitch() {
           <XAxis dataKey="year" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" unit="%" />
           <YAxis yAxisId="right" orientation="right" stroke="#fbbf24" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Bar yAxisId="left" dataKey="China_EU_Loin" name="🇨🇳 중국 EU 로인 M/S(%)" fill="#ef4444" radius={[4, 4, 0, 0]} />
           <Bar yAxisId="left" dataKey="Ecuador_EU_Loin" name="🇪🇨 에콰도르 EU 로인 M/S(%)" fill="#10b981" radius={[4, 4, 0, 0]} />
@@ -111,7 +111,7 @@ export function InsightIOCollapse() {
           <XAxis dataKey="month" stroke="#94a3b8" />
           <YAxis yAxisId="left" stroke="#94a3b8" domain={[0, 100]} unit="%" />
           <YAxis yAxisId="right" orientation="right" stroke="#ef4444" unit="$" />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Legend />
           <Area yAxisId="left" type="monotone" dataKey="IO_Supply" name="IO 공급 지수" stroke="#f97316" fill="url(#ioGrad)" />
           <Line yAxisId="right" type="monotone" dataKey="SKJ_Price" name="방콕 SKJ 현물가($/t)" stroke="#ef4444" strokeWidth={3} dot={{ r: 4 }} />
@@ -163,7 +163,7 @@ export function InsightEU18C() {
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="#94a3b8" unit="%" domain={[0, 50]} />
           <YAxis dataKey="category" type="category" stroke="#94a3b8" width={140} />
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', border: 'none', borderRadius: '8px' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(20, 28, 52, 0.9)', border: 'none', borderRadius: '8px' }} />
           <Bar dataKey="value" name="글로벌 선단 비율" radius={[0, 4, 4, 0]}>
             {eu18Data.map((entry, idx) => <Cell key={idx} fill={entry.fill} />)}
           </Bar>

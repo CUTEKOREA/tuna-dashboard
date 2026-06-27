@@ -273,8 +273,8 @@
 }
 
 .strategyItem {
-  background: rgba(0, 15, 30, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 16, 40, 0.4);
+  border: 1px solid rgba(140, 170, 255, 0.10);
   border-radius: 8px;
   padding: 1.25rem;
   border-left: 3px solid #10B981;
@@ -306,7 +306,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(140,170,255,0.10);
   font-size: 0.85rem;
 }
 
@@ -377,7 +377,7 @@
 }
 
 .customTooltip {
-  background-color: rgba(0, 15, 30, 0.95);
+  background-color: rgba(10, 16, 40, 0.95);
   border: 1px solid rgba(16, 185, 129, 0.4);
   border-radius: 8px;
   padding: 12px 16px;

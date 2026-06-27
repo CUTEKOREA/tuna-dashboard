@@ -234,7 +234,7 @@ export default function ReeferMovement() {
                   {card.deliveries.map((d, i) => (
                     <span key={i} style={{
                       fontSize: '0.7rem', fontWeight: 600, padding: '3px 8px',
-                      borderRadius: 6, background: 'rgba(255,255,255,0.06)',
+                      borderRadius: 6, background: 'rgba(140,170,255,0.12)',
                       color: '#e2e8f0', display: 'inline-flex', alignItems: 'center', gap: 4
                     }}>
                       <span style={{ color: BAR_COLORS[canneryAgg.findIndex(c => c.name === d.cannery) % BAR_COLORS.length] || '#64748b' }}>●</span>
@@ -272,7 +272,7 @@ export default function ReeferMovement() {
                   })}
                   {card.other && (
                     <div style={{
-                      marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.06)',
+                      marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(140,170,255,0.12)',
                       fontSize: '0.72rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: 4
                     }}>
                       <Package size={12} /> 비고(부두): {card.other}

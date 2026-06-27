@@ -16,7 +16,7 @@ export function Widget31_PriceSpread() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis domain={['auto', 'auto']} stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="peru" name="페루(훔볼트)" stroke="var(--color-success)" strokeWidth={3} />
           <Line type="monotone" dataKey="argentine" name="아르헨티나(숏핀)" stroke="var(--color-info)" strokeWidth={2} />
           <Line type="monotone" dataKey="china" name="중국(원양)" stroke="var(--color-danger)" strokeWidth={2} />
@@ -38,7 +38,7 @@ export function Widget32_Shrinkflation() {
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" domain={[0, 12000]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" domain={[0, 1200]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar yAxisId="right" dataKey="actualWeight" name="실제 해동 중량(g)" fill="#8b5cf6" fillOpacity={0.7} />
           <Line yAxisId="left" type="step" dataKey="price" name="판매 명목 가격(원)" stroke="#fcd34d" strokeWidth={3} />
         </ComposedChart>
@@ -58,7 +58,7 @@ export function Widget33_TariffArbitrage() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis type="number" stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t * 100}%`} />
           <YAxis dataKey="route" type="category" stroke="rgba(255,255,255,0.5)" fontSize={11} width={90} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="margin" name="최종 영업 마진율" stackId="a" fill="var(--color-success)" />
           <Bar dataKey="tariff" name="관세 차감분" stackId="a" fill="var(--color-danger)" />
           <Bar dataKey="cost" name="원가 및 운송비" stackId="a" fill="var(--color-info)" fillOpacity={0.5} />
@@ -78,7 +78,7 @@ export function Widget34_SizePremium() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="large" name="대형 특품 프리미엄" stroke="#f43f5e" strokeWidth={3} />
           <Line type="monotone" dataKey="small" name="소형/일반품 단가" stroke="var(--color-info)" strokeWidth={2} />
         </LineChart>
@@ -99,7 +99,7 @@ export function Widget35_FXHedging() {
           <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" domain={[1200, 1450]} stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar yAxisId="right" dataKey="profit_margin" name="영업 흑자/적자(%)">{data.map((entry: any, index: number) => (<Cell key={index} fill={entry.profit_margin < 0 ? 'var(--color-danger)' : 'var(--color-success)'} />))}</Bar>
           <Line yAxisId="left" type="monotone" dataKey="usd_krw" name="환율(USD/KRW)" stroke="var(--color-warning)" strokeWidth={3} />
         </ComposedChart>
@@ -119,7 +119,7 @@ export function Widget36_VASpread() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="type" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="value" name="판매 가치(Index)" fill="var(--color-info)" radius={[4, 4, 0, 0]} />
         </BarChart>
       }
@@ -138,7 +138,7 @@ export function Widget37_FreightPremium() {
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="left" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis yAxisId="right" orientation="right" stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line yAxisId="left" type="monotone" dataKey="wti" name="WTI 유가(USD/B)" stroke="#f43f5e" strokeWidth={2} />
           <Line yAxisId="right" type="stepAfter" dataKey="freightCost" name="운임 포함 단가상승분(%)" stroke="#8b5cf6" strokeWidth={3} />
         </LineChart>
@@ -157,7 +157,7 @@ export function Widget38_JumboJump() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="year" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Area type="monotone" dataKey="price_index" name="페루산 대왕오징어 원가 지수" fill="#ec4899" stroke="#ec4899" fillOpacity={0.4} />
         </AreaChart>
       }
@@ -176,7 +176,7 @@ export function Widget39_ForwardSpot() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="period" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Bar dataKey="price" name="계약 체결 단가(Index)" fill="var(--color-info)">{data.map((entry: any, index: number) => (<Cell key={index} fill={index === 2 ? 'var(--color-danger)' : 'var(--color-info)'} />))}</Bar>
         </BarChart>
       }
@@ -194,7 +194,7 @@ export function Widget40_SubstitutionElasticity() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
           <XAxis dataKey="squid_increase" stroke="rgba(255,255,255,0.5)" fontSize={11} />
           <YAxis stroke="rgba(255,255,255,0.5)" fontSize={11} tickFormatter={(t) => `${t}%`} />
-          <Tooltip contentStyle={{ background: 'rgba(0,15,30,0.9)' }} />
+          <Tooltip contentStyle={{ background: 'rgba(10, 16, 40, 0.9)' }} />
           <Line type="monotone" dataKey="substitute_rate" name="대왕징어로의 전환 비율(%)" stroke="var(--color-success)" strokeWidth={4} />
         </LineChart>
       }

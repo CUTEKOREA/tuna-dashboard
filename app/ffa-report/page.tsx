@@ -158,11 +158,11 @@ export default function FfaReportPage() {
             width: '100%',
             maxWidth: '1000px',
             aspectRatio: '16 / 9',
-            background: '#111827',
-            border: '1px solid rgba(255, 255, 255, 0.06)',
+            background: '#070b18',
+            border: '1px solid rgba(140, 170, 255, 0.12)',
             borderRadius: '16px',
             padding: '2.5rem',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(140, 170, 255, 0.10)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -171,7 +171,7 @@ export default function FfaReportPage() {
           }}>
             {/* Top Slide Header */}
             {currentSlide > 0 && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '0.75rem', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(140, 170, 255, 0.12)', paddingBottom: '0.75rem', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#38bdf8', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                   FFA 시장 연구 2025 개정판 · 슬라이드 0{currentSlide}
                 </span>
@@ -377,10 +377,10 @@ export default function FfaReportPage() {
                     <div style={{ height: 180 }}>
                       <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={usLoinData} margin={{ top: 5, right: 5, left: -25, bottom: 0 }}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" />
                           <XAxis dataKey="year" tick={{ fill: '#94a3b8', fontSize: 9 }} />
                           <YAxis tick={{ fill: '#94a3b8', fontSize: 9 }} />
-                          <Tooltip contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 8, fontSize: '0.65rem' }} />
+                          <Tooltip contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: '0.65rem' }} />
                           <Area type="monotone" dataKey="태국" stackId="1" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.1} />
                           <Area type="monotone" dataKey="베트남" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.1} />
                           <Area type="monotone" dataKey="피지" stackId="1" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.1} />
@@ -437,7 +437,7 @@ export default function FfaReportPage() {
             </div>
 
             {/* Bottom Slide Footer (Page Indicators & Controllers) */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '0.75rem', marginTop: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(140, 170, 255, 0.12)', paddingTop: '0.75rem', marginTop: '1rem' }}>
               <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
                 슬라이드 {currentSlide + 1} / {totalSlides}
               </span>
@@ -449,7 +449,7 @@ export default function FfaReportPage() {
                   onClick={() => setCurrentSlide((prev) => Math.max(prev - 1, 0))}
                   style={{
                     padding: '4px 12px', fontSize: '0.65rem', fontWeight: 800,
-                    background: currentSlide === 0 ? 'rgba(255,255,255,0.02) !important' : 'rgba(255,255,255,0.05) !important',
+                    background: currentSlide === 0 ? 'rgba(255,255,255,0.02) !important' : 'rgba(140,170,255,0.10) !important',
                     color: currentSlide === 0 ? 'var(--text-dim) !important' : 'var(--text-primary) !important',
                     border: '1px solid var(--panel-border) !important',
                     borderRadius: '4px !important', cursor: currentSlide === 0 ? 'default' : 'pointer',
