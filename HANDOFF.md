@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-06-27 KST — 디자인 부채 단일화 (TelemetryBadge + truncateXAxis)** [CC]:
+> - **TelemetryBadge**(commit 997e63a): 15개 대시보드 인라인 복사본 → 단일 components/TelemetryBadge import 통일. 룰북 위반 소문자 status 13건 해소(정규 컴포넌트 대문자 정규화). Cassava·Mangosteen 데드코드 제거. 순 -297줄.
+> - **truncateXAxis**(commit 8af1e55): lib/chart-standards.ts에 정규 truncateXAxis export 추가, 13개 컴포넌트 per-file 정의 20개 제거. L-02 위반 교정(6자/12자 → 표준 7자). TunaReeferLogisticsWidgets cross-file import 경로 교정. 순 -100줄.
+> - 둘 다 워크플로(리팩토링+적대검증) + 빌드 게이트 L-03 통과. 미배포(로컬 커밋만).
+> - 잔존 무관 dead import(A11Y_PALETTE·ScatterChart·Navigation 등, 검증 중 부수 발견 — 빌드 무해 P2)는 별도 정리 대상.
+
 > 🎨 **2026-06-27 KST — Claude Design 디자인 시스템 카탈로그 claude.ai/design 등재 완료** [CC]:
 > - 사용자 요청("클로드 디자인 기능으로 참치왕국 대시보드 디자인 전반 개선 기획서")에 따라 기획서 작성 → 카탈로그 prebuild → claude.ai/design 등재까지 완료.
 > - 기획서: `docs/2026_claude_design_proposal.md` (v0.1, Phase 0~4). 워크플로: `docs/workflows/2026_design_to_code.md` (등재 시퀀스 + 시안→코드 환원 + 색 단일화 권고).
