@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ShieldAlert, TrendingUp, TrendingDown, Activity, AlertTriangle, RefreshCw, Globe2 } from 'lucide-react';

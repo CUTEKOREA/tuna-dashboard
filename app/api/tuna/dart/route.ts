@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchSinglAcnt, extractKeyFinancials, fetchDartList } from "../../_shared/dart-client";
+import { fetchSinglAcnt, extractKeyFinancials } from "../../_shared/dart-client";
 
 export const runtime = 'nodejs';
 export const revalidate = 3600;

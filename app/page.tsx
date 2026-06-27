@@ -1,24 +1,20 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import CountUp from 'react-countup';
-import { Database, Activity, Anchor, TrendingUp, TrendingDown, Ship, Sun, Moon, AlertTriangle, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Clock, Cpu, Target, ShoppingCart, Waves, Workflow, Fish, Hexagon, MonitorPlay, Command, Wrench, Leaf, Menu, X, Snowflake, CarFront, Compass, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Search, FlaskConical , ScanSearch, Octagon, Box, FlaskRound, Map, TestTube, ShieldCheck} from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef,  Octagon, Box, TestTube, ShieldCheck} from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useRouter, usePathname } from 'next/navigation';
 import { playVHFRadioChatter } from '../lib/audio';
 import { motion } from 'framer-motion';
 
 // ─── Always-loaded (lightweight or market page essentials) ───
-import NotebookLMInsight from '../components/NotebookLMInsight';
 import LiveTicker from '../components/LiveTicker';
-import TermTooltip from '../components/TermTooltip';
 import PageTransition from '../components/PageTransition';
 import AmbientBackground from '../components/AmbientBackground';
 import CommandPalette from '../components/CommandPalette';
-import ScrollReveal from '../components/ScrollReveal';
 import KeepAlivePanel from '../components/KeepAlivePanel';
 
 // ─── Dynamic imports (loaded on-demand per page) ───

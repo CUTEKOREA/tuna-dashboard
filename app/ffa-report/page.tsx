@@ -6,9 +6,7 @@ import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 import {
-  ArrowLeft, BookOpen, ShieldAlert, Award, Landmark, Ship,
-  Users, Building, FileText, ChevronRight, Activity, Globe,
-  ArrowRight, Play, Square, Pause, ExternalLink
+  ArrowLeft, ShieldAlert, Award, Landmark, Activity, Globe
 } from 'lucide-react';
 import styles from './FfaReport.module.css';
 
