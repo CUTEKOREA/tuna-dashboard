@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚢 **2026-06-27 KST (5차) — 김 P3 물류·통관 위젯 + 관세청 KCS LIVE API 연동** [CC]:
+> - app/api/kim/customs: 마른김(HS 1212.21) 수출 통관 KCS OpenAPI 라우트(mackerel-kcs 패턴 L-11·L-10·L-12). 수출국이라 exp* 집계. **월별=실시간 검증(isLive=true, 2026-05 2,276톤/$37.9M)**, 국가별 분해는 KCS 응답 미포함이라 destIsLive=false → KATI 2024 fallback(정직 STATIC 표기).
+> - components/KimLogisticsWidget: P3 위젯 2종(수출 통관 추이 ComposedChart + 대상국 비중 BarChart), isLive/destIsLive 기반 telemetry 동적·정직.
+> - KimDashboard P3 placeholder 교체 → **5-Pillar 전 영역(S1~S5) 실위젯 완비**. 빌드 통과. 미배포.
+> - 후속: 국가별 수출 분해 LIVE화(KCS 응답 구조 추가 조사) · 조미김(HS 2008.99) 별도 라우트.
+
 > 🌿 **2026-06-27 KST (4차) — 김(Laver) 대시보드 실데이터 반영 + 정식 승격** [CC]:
 > - 5축 웹 리서치(FAOSTAT·관세청/KATI·통계청·해수부·국립수산과학원·KITA·Grand View) → 적대 출처검증 → confirmed/partial 69건만 반영.
 > - KimDashboard 위젯 5종 STATIC→SYNCED+실출처 교체: S1 마른김 생산(정점比 -15.6%) / S2 김플레이션(소매 +41.8%, 도매 속당 1만원·원초 위판가 반토막 괴리) / S4 수출($648M→$1,133M 수산식품 1위·주요국·글로벌 김스낵 $2.43B→$4.66B CAGR 11.6%) / S5 기후(표층수온 +1.36℃·황백화 서천 3,156ha). P3 물류는 "데이터 연동 예정".
