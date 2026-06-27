@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-06-27 KST (3차) — dead import 정리 + accent 통일 + 김 시안 코드환원** [CC]:
+> - **dead import**(commit 1935de9): eslint-plugin-unused-imports(devDep)+격리 config로 components 미사용 import 547건/178파일 제거 → 0건. react/jsx-uses-vars 병행으로 컴포넌트·React 오삭제 방지. Fleet*/Unloading*(기존 [AG] WIP)은 제외. 빌드 통과.
+> - **accent-primary**(commit 2eca948): 다크 테마 --accent-primary/--accent-gold #1ed760(Spotify green) → #38bdf8(브랜드 cyan). 라이트 테마는 이미 #2563EB였음. 16개 사용처 자동 전파.
+> - **김 시안 코드환원**(commit ...): components/KimDashboard.tsx (S1/S2/S4 위젯, 5-Pillar nav, 김 그라디언트 #166534→#a3e635) + app/kim-preview 프리뷰 라우트. ⚠️ 예시 데이터 — UI 배포불가 배너, telemetry STATIC. 배포 전 A-01 실연동 + O-04 Audit 필요. RULEBOOK D-04 김 그라디언트 등재. **프로덕션 nav 미등록(WIP 격리)**.
+> - 잔존 후속(선택): ① Fleet*/Unloading* dead import(WIP 정리 후) ② 김 실데이터 연동 → 정식 category 승격 ③ app/·lib/ dead import(이번엔 components만).
+
 > 🧹 **2026-06-27 KST — 디자인 부채 단일화 (TelemetryBadge + truncateXAxis)** [CC]:
 > - **TelemetryBadge**(commit 997e63a): 15개 대시보드 인라인 복사본 → 단일 components/TelemetryBadge import 통일. 룰북 위반 소문자 status 13건 해소(정규 컴포넌트 대문자 정규화). Cassava·Mangosteen 데드코드 제거. 순 -297줄.
 > - **truncateXAxis**(commit 8af1e55): lib/chart-standards.ts에 정규 truncateXAxis export 추가, 13개 컴포넌트 per-file 정의 20개 제거. L-02 위반 교정(6자/12자 → 표준 7자). TunaReeferLogisticsWidgets cross-file import 경로 교정. 순 -100줄.
