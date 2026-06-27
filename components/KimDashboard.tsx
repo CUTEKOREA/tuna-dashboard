@@ -16,9 +16,10 @@
  *  - 기후: 국립수산과학원(표층수온 1968–2022) · 해양수산부(황백화)
  */
 import React, { useState } from 'react';
-import { Sprout, Factory, Ship, Globe, ThermometerSun, Leaf, Waves } from 'lucide-react';
+import { Sprout, Factory, Ship, Globe, ThermometerSun, Waves } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
 import WidgetCard from './WidgetCard';
+import KimLogisticsWidget from './KimLogisticsWidget';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const KIM_FROM = '#166534';
@@ -34,7 +35,7 @@ const KPIS = [
 const PILLARS = [
   { id: 'P1', label: '원료 수급', title: '🌱 Pillar I — 원료 수급', desc: '김 양식 생산량 추이·산지', color: KIM_FROM },
   { id: 'P2', label: '가공·생산', title: '🏭 Pillar II — 가공·생산', desc: '김플레이션·가공 부가가치', color: '#65a30d' },
-  { id: 'P3', label: '물류·통관', title: '🚢 Pillar III — 물류·통관', desc: '콜드체인·검역 (데이터 연동 예정)', color: '#4d7c0f' },
+  { id: 'P3', label: '물류·통관', title: '🚢 Pillar III — 물류·통관', desc: '관세청 KCS 수출 통관 추이·대상국 (LIVE)', color: '#4d7c0f' },
   { id: 'P4', label: '판매·수요', title: '📈 Pillar IV — 판매·수요', desc: '수출 실적·주요국·글로벌 시장', color: '#a3e635' },
   { id: 'P5', label: 'ESG', title: '🌍 Pillar V — ESG·지속가능성', desc: '기후(수온)·황백화 리스크', color: '#15803d' },
 ];
@@ -84,7 +85,7 @@ export default function KimDashboard() {
       {/* ═══ 데이터 출처 배너 (실데이터 v1) ═══ */}
       <div style={{ margin: '1rem 0 1.5rem', padding: '12px 16px', background: 'rgba(132,204,22,0.08)', border: '1px solid rgba(132,204,22,0.3)', borderLeft: `3px solid ${KIM_TO}`, borderRadius: '8px', fontSize: '0.82rem', color: '#d9f99d', lineHeight: 1.55 }}>
         ✅ <strong style={{ color: KIM_TO }}>실데이터 v1</strong> — 통계청·관세청/KATI·해양수산부·국립수산과학원·Grand View Research 검증 수치 반영(적대 출처검증 통과). 위젯 telemetry SYNCED + 실출처 표기.
-        <span style={{ color: '#94a3b8' }}> P3(물류)·일부 시계열은 LIVE API 라우트 연동 후속 예정.</span>
+        <span style={{ color: '#94a3b8' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong>(HS 1212.21) — 실패 시 KATI fallback.</span>
       </div>
 
       {/* ═══ Header ═══ */}
@@ -261,13 +262,7 @@ export default function KimDashboard() {
               />
             )}
 
-            {sec.id === 'P3' && (
-              <div style={{ gridColumn: '1 / -1', padding: '40px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: '#64748b' }}>
-                <Leaf size={28} style={{ opacity: 0.5, marginBottom: '8px' }} />
-                <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>물류·통관 위젯 — 데이터 연동 예정</div>
-                <div style={{ fontSize: '0.75rem', marginTop: '4px' }}>김 수출 콜드체인·해상운임·검역(SPS) 실데이터 연동 후속</div>
-              </div>
-            )}
+            {sec.id === 'P3' && <KimLogisticsWidget />}
           </div>
         </div>
       ))}
