@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌿 **2026-06-28 KST (2) — 김 위젯 13개로 확장 (agri_data 풀세트 실데이터)** [CC]:
+> - 추가 위젯: 글로벌 수입(Comtrade 중국 $1.4B 압도) · 1인당 소비(FAOSTAT 34kg) · 환율vs수출단가(ECOS+KCS, 약달러+단가2배 이중호황) · 세계생산추이 중·한·일(FishStat) · 연구동향(OpenAlex 74편).
+> - 김 대시보드 위젯 13개: S1×3(양식생산/세계비중/세계추이) S2×2(김플레이션/소비) S3×1(KCS LIVE) S4×4(총수출/마른김수출/수출국/글로벌수입+환율단가) S5×2(기후/연구).
+> - 전부 결정론적 추출(scratch/extract_kim_data.py) → public/data/kim/*.json(7개), telemetry SYNCED+실출처. dart(기업)은 키워드노이즈라 제외.
+> - clean 소스 대부분 소진(잔여 FAOSTAT TM/Capture는 중복·미미). 빌드 통과·미배포(로컬).
+
+
 > 🌿 **2026-06-28 KST — 김 페이지 agri_data 풀세트 1차 실데이터 위젯 고도화** [CC]:
 > - 데이터원: GDrive `agri_data/01_수산물(Seafood)/laver` (매뉴얼 v28.4 풀세트, 12G) — FishStat·FAOSTAT·KCS·Comtrade·extras(dart/eumofa/usda/wb/kmi/academic).
 > - `scratch/extract_kim_data.py`로 CSV→경량 JSON 결정론적 추출(환각 0). **정합성 캐치**: 조미김 HS 2008.99는 광범위 세번(땅콩 등 혼입, 10자리 2008991000~999000)이라 제외, 마른김 1212.21(김 전용 세번 1212211010 등)만 정밀 집계. (web 합산 $1,114M 과대 → KCS 마른김 정밀 $477M)
