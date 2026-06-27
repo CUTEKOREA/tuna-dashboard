@@ -20,7 +20,7 @@ import { Sprout, Factory, Ship, Globe, ThermometerSun, Waves } from 'lucide-reac
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
 import WidgetCard from './WidgetCard';
 import KimLogisticsWidget from './KimLogisticsWidget';
-import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest, KimGlobalImporters, KimConsumption } from './KimAgriDataWidgets';
+import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest, KimGlobalImporters, KimConsumption, KimFxPrice, KimWorldProduction, KimResearch } from './KimAgriDataWidgets';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const KIM_FROM = '#166534';
@@ -128,6 +128,7 @@ export default function KimDashboard() {
               <>
                 <KimProductionTrend />
                 <KimGlobalShare />
+                <KimWorldProduction />
               </>
             )}
 
@@ -183,10 +184,12 @@ export default function KimDashboard() {
                 <KimExportTrend />
                 <KimExportDest />
                 <KimGlobalImporters />
+                <KimFxPrice />
               </>
             )}
 
             {sec.id === 'P5' && (
+              <>
               <WidgetCard
                 title="기후 리스크 — 표층수온 상승·황백화"
                 icon={ThermometerSun} iconColor="#f59e0b" pillar="S5"
@@ -209,6 +212,8 @@ export default function KimDashboard() {
                   source: '국립수산과학원(표층수온 1968–2022) · 해양수산부(황백화 피해)',
                 }}
               />
+              <KimResearch />
+              </>
             )}
 
             {sec.id === 'P3' && <KimLogisticsWidget />}

@@ -8,8 +8,8 @@
  * telemetry SYNCED + 실출처/기준연도.
  */
 import React, { useEffect, useState } from 'react';
-import { AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { Sprout, Globe, Ship, Anchor, Boxes, Utensils } from 'lucide-react';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { Sprout, Globe, Ship, Anchor, Boxes, Utensils, DollarSign, FlaskConical } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { truncateXAxis } from '../lib/chart-standards';
 
@@ -213,6 +213,104 @@ export function KimConsumption() {
         situation: `<div><p>한국 1인당 해조류 식용 공급은 ${first?.year} ${first?.v}kg → <strong>${last?.year} ${last?.v}kg (${chg >= 0 ? '+' : ''}${chg}%)</strong>. 세계 최고 수준의 해조류 소비국 — 탄탄한 내수가 수출 변동의 완충.</p></div>`,
         actionPlan: '<div><p><strong>재정의</strong>: 높은 내수 소비 = 수출 일변도 리스크의 안전판이자 신제품 테스트베드.</p><p><strong>3단계</strong>: ① 내수 프리미엄·간편식(스낵·조미) 확대 ② 내수 검증 제품을 수출로 ③ 1인당 소비 정체 시 가공 다양화로 신수요.</p></div>',
         source: 'FAOSTAT 식품수급표(FBS) · 한국 해조류 1인당 공급',
+      }}
+    />
+  );
+}
+
+/* ───────────── S4: 환율 vs 마른김 수출단가 (ECOS + KCS) ───────────── */
+export function KimFxPrice() {
+  const d = useJson('/data/kim/kim_fx.json');
+  if (!d) return <Loading label="환율·단가" />;
+  const data = (d.series || []).filter(s => s.krwUsd).map(s => ({ year: s.year, krw: s.krwUsd, price: s.expUsdPerKg }));
+  const f = data[0], l = data[data.length - 1];
+  return (
+    <WidgetCard
+      title="원/달러 환율 vs 마른김 수출단가"
+      icon={DollarSign} iconColor="#a3e635" pillar="S4"
+      cardDesc="연평균 원/달러(좌)와 마른김 수출단가 $/kg(우) — 환율·단가 동반 상승의 이중 호황"
+      telemetry={{ status: 'SYNCED', syncDate: 'ECOS·KCS' }}
+      chart={
+        <ComposedChart data={data} margin={{ top: 10, right: 8, left: -6, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
+          <YAxis yAxisId="l" stroke="#94a3b8" fontSize={11} domain={[1000, 1400]} tickFormatter={(v) => `₩${v}`} />
+          <YAxis yAxisId="r" orientation="right" stroke="#a3e635" fontSize={11} tickFormatter={(v) => `$${v}`} />
+          <Tooltip contentStyle={tip} />
+          <Legend wrapperStyle={{ fontSize: '11px' }} />
+          <Bar yAxisId="l" dataKey="krw" name="원/달러 (₩)" fill="#475569" radius={[3, 3, 0, 0]} barSize={22} />
+          <Line yAxisId="r" type="monotone" dataKey="price" name="수출단가 ($/kg)" stroke="#a3e635" strokeWidth={2.5} dot={{ r: 4 }} />
+        </ComposedChart>
+      }
+      takeaway={{
+        situation: `<div><p>${f?.year}→${l?.year} 원/달러 <strong>₩${f?.krw}→₩${l?.krw}</strong>(원화 약세)에 더해 마른김 수출단가가 <strong>$${f?.price}→$${l?.price}/kg(약 2배)</strong> 동반 상승 — 환율·단가 <strong>이중 호황</strong>이 수출액 급증의 동력.</p></div>`,
+        actionPlan: '<div><p><strong>재정의</strong>: 현 수출 호조엔 원화 약세 기여분이 큼 — 원화 강세 전환 시 단가 경쟁력 약화 리스크.</p><p><strong>3단계</strong>: ① 환헤지로 환차 변동 완충 ② 단가(브랜드·프리미엄)로 환율 의존도 축소 ③ 원화 강세 시나리오 가격 대응 매뉴얼.</p></div>',
+        source: '한국은행 ECOS 원/달러 연평균 · 관세청 마른김 수출단가($/kg)',
+      }}
+    />
+  );
+}
+
+/* ───────────── S1: 세계 김 생산 추이 (중·한·일) ───────────── */
+export function KimWorldProduction() {
+  const d = useJson('/data/kim/kim_world_production.json');
+  if (!d) return <Loading label="세계 생산 추이" />;
+  const data = (d.trend || []).filter(t => Number(t.year) >= 2000);
+  const last = data[data.length - 1];
+  return (
+    <WidgetCard
+      title="세계 김 생산 추이 (중·한·일)"
+      icon={Globe} iconColor="#16a34a" pillar="S1"
+      cardDesc="FAO FishStat 주요 3국 김 양식 생산량 추이(천 톤) — 2000년 이후"
+      telemetry={{ status: 'SYNCED', syncDate: 'FishStat 2022' }}
+      chart={
+        <LineChart data={data} margin={{ top: 10, right: 16, left: -6, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={24} />
+          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}천t`} />
+          <Tooltip contentStyle={tip} formatter={(v, n) => [`${v.toLocaleString()}천 톤`, n]} />
+          <Legend wrapperStyle={{ fontSize: '11px' }} />
+          <Line type="monotone" dataKey="중국" name="중국" stroke="#0072B2" strokeWidth={2.5} dot={false} />
+          <Line type="monotone" dataKey="한국" name="한국" stroke="#16a34a" strokeWidth={2.5} dot={false} />
+          <Line type="monotone" dataKey="일본" name="일본" stroke="#E69F00" strokeWidth={2} dot={false} strokeDasharray="5 4" />
+        </LineChart>
+      }
+      takeaway={{
+        situation: `<div><p>${last?.year} 기준 <strong>중국 ${last?.['중국']?.toLocaleString()}천 톤</strong>으로 한국(${last?.['한국']?.toLocaleString()})·일본(${last?.['일본']?.toLocaleString()})을 압도. 2000년 이후 중국이 폭발 성장하며 격차 확대, 일본은 감소세.</p></div>`,
+        actionPlan: '<div><p><strong>재정의</strong>: 물량 경쟁(중국)은 불가 — 한국은 품종·가공·brand로 단가 우위를 지키는 게임.</p><p><strong>3단계</strong>: ① 중국 물량과 정면 경쟁 회피 ② 고품질 종자·가공기술 격차 유지 ③ 일본 감소분 한국이 흡수.</p></div>',
+        source: 'FAO FishStat Aquaculture · 중·한·일 김 양식 생산',
+      }}
+    />
+  );
+}
+
+/* ───────────── S5: 김 연구 동향 (OpenAlex) ───────────── */
+export function KimResearch() {
+  const d = useJson('/data/kim/kim_research.json');
+  if (!d) return <Loading label="연구 동향" />;
+  const data = (d.perYear || []);
+  const total = data.reduce((s, p) => s + p.n, 0);
+  const peak = data.reduce((a, b) => b.n > a.n ? b : a, { n: 0 });
+  const top = d.topCited?.[0];
+  return (
+    <WidgetCard
+      title="김 연구 동향 (OpenAlex 학술논문)"
+      icon={FlaskConical} iconColor="#15803d" pillar="S5"
+      cardDesc="김(Porphyra·Pyropia) 관련 학술논문 연도별 발표 수 — R&D·혁신 관심도 대리지표"
+      telemetry={{ status: 'SYNCED', syncDate: 'OpenAlex' }}
+      chart={
+        <BarChart data={data} margin={{ top: 10, right: 16, left: -10, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+          <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={12} />
+          <YAxis stroke="#94a3b8" fontSize={11} allowDecimals={false} />
+          <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}편`, '논문']} />
+          <Bar dataKey="n" name="논문 수 (편)" fill="#22c55e" radius={[3, 3, 0, 0]} />
+        </BarChart>
+      }
+      takeaway={{
+        situation: `<div><p>김 관련 학술논문은 2010년 이후 누적 ${total}편, <strong>${peak.year}년 ${peak.n}편으로 정점</strong> — 기능성식품·양식기술 연구 관심 상승. 최다 인용: "${top?.title}…"(${top?.cited}회, ${top?.year}).</p></div>`,
+        actionPlan: '<div><p><strong>재정의</strong>: 연구 활성화 = 기능성(건강·바이오) 신소재화 기회 신호.</p><p><strong>3단계</strong>: ① 기능성 논문(항산화·식이섬유) IP·제품화 ② 양식 R&D(고수온 내성) 산학협력 ③ 연구 트렌드를 프리미엄 마케팅 근거로.</p></div>',
+        source: 'OpenAlex · 김(Porphyra/Pyropia) 학술논문 메타데이터',
       }}
     />
   );

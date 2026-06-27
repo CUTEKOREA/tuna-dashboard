@@ -1,0 +1,30 @@
+{
+  "source": "한국은행 ECOS 원/달러 연평균 + 관세청 마른김 수출단가($/kg)",
+  "series": [
+    {
+      "year": "2020",
+      "krwUsd": 1192.7,
+      "expUsdPerKg": 8.31
+    },
+    {
+      "year": "2021",
+      "krwUsd": 1113.4,
+      "expUsdPerKg": 10.39
+    },
+    {
+      "year": "2022",
+      "krwUsd": 1204.5,
+      "expUsdPerKg": 10.8
+    },
+    {
+      "year": "2023",
+      "krwUsd": 1274.6,
+      "expUsdPerKg": 12.6
+    },
+    {
+      "year": "2024",
+      "krwUsd": 1328.7,
+      "expUsdPerKg": 16.06
+    }
+  ]
+}
