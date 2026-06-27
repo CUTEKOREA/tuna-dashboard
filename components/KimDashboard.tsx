@@ -16,10 +16,11 @@
  *  - 기후: 국립수산과학원(표층수온 1968–2022) · 해양수산부(황백화)
  */
 import React, { useState } from 'react';
-import { Sprout, Factory, Ship, Globe, ThermometerSun, Waves } from 'lucide-react';
-import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
+import { Factory, Ship, ThermometerSun, Waves } from 'lucide-react';
+import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import WidgetCard from './WidgetCard';
 import KimLogisticsWidget from './KimLogisticsWidget';
+import KimSeasonedWidget from './KimSeasonedWidget';
 import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest, KimGlobalImporters, KimConsumption, KimFxPrice, KimWorldProduction, KimResearch } from './KimAgriDataWidgets';
 import { truncateXAxis } from '../lib/chart-standards';
 
@@ -36,7 +37,7 @@ const KPIS = [
 const PILLARS = [
   { id: 'P1', label: '원료 수급', title: '🌱 Pillar I — 원료 수급', desc: '김 양식 생산량 추이·산지', color: KIM_FROM },
   { id: 'P2', label: '가공·생산', title: '🏭 Pillar II — 가공·생산', desc: '김플레이션·가공 부가가치', color: '#65a30d' },
-  { id: 'P3', label: '물류·통관', title: '🚢 Pillar III — 물류·통관', desc: '관세청 KCS 수출 통관 추이·대상국 (LIVE)', color: '#4d7c0f' },
+  { id: 'P3', label: '물류·통관', title: '🚢 Pillar III — 물류·통관', desc: '관세청 KCS 마른김·조미김 수출 통관·대상국·단가 (LIVE)', color: '#4d7c0f' },
   { id: 'P4', label: '판매·수요', title: '📈 Pillar IV — 판매·수요', desc: '수출 실적·주요국·글로벌 시장', color: '#a3e635' },
   { id: 'P5', label: 'ESG', title: '🌍 Pillar V — ESG·지속가능성', desc: '기후(수온)·황백화 리스크', color: '#15803d' },
 ];
@@ -66,7 +67,7 @@ export default function KimDashboard() {
       {/* ═══ 데이터 출처 배너 (실데이터 v1) ═══ */}
       <div style={{ margin: '1rem 0 1.5rem', padding: '12px 16px', background: 'rgba(132,204,22,0.08)', border: '1px solid rgba(132,204,22,0.3)', borderLeft: `3px solid ${KIM_TO}`, borderRadius: '8px', fontSize: '0.82rem', color: '#d9f99d', lineHeight: 1.55 }}>
         ✅ <strong style={{ color: KIM_TO }}>실데이터 v1</strong> — 통계청·관세청/KATI·해양수산부·국립수산과학원·Grand View Research 검증 수치 반영(적대 출처검증 통과). 위젯 telemetry SYNCED + 실출처 표기.
-        <span style={{ color: '#94a3b8' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong>(HS 1212.21) — 실패 시 KATI fallback.</span>
+        <span style={{ color: '#94a3b8' }}> P3(물류·통관)은 관세청 KCS OpenAPI <strong style={{ color: KIM_TO }}>LIVE 연동</strong> — 마른김(HS 1212.21)·조미김(HS 2008.99.50.10) 분리 집계 + 대상국 비중·원초 vs 가공 단가. 실패 시 관세청 실수집 fallback.</span>
       </div>
 
       {/* ═══ Header ═══ */}
@@ -216,7 +217,12 @@ export default function KimDashboard() {
               </>
             )}
 
-            {sec.id === 'P3' && <KimLogisticsWidget />}
+            {sec.id === 'P3' && (
+              <>
+                <KimLogisticsWidget />
+                <KimSeasonedWidget />
+              </>
+            )}
           </div>
         </div>
       ))}
