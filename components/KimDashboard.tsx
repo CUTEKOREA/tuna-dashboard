@@ -20,7 +20,7 @@ import { Sprout, Factory, Ship, Globe, ThermometerSun, Waves } from 'lucide-reac
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
 import WidgetCard from './WidgetCard';
 import KimLogisticsWidget from './KimLogisticsWidget';
-import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest } from './KimAgriDataWidgets';
+import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest, KimGlobalImporters, KimConsumption } from './KimAgriDataWidgets';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const KIM_FROM = '#166534';
@@ -132,6 +132,7 @@ export default function KimDashboard() {
             )}
 
             {sec.id === 'P2' && (
+              <>
               <WidgetCard
                 title="김플레이션 — 마른김 소매가 급등"
                 icon={Factory} iconColor="#65a30d" pillar="S2"
@@ -152,6 +153,8 @@ export default function KimDashboard() {
                   source: 'aT 한국농수산식품유통공사(KAMIS) · 해양수산부 · 수협중앙회',
                 }}
               />
+              <KimConsumption />
+              </>
             )}
 
             {sec.id === 'P4' && (
@@ -179,6 +182,7 @@ export default function KimDashboard() {
                 />
                 <KimExportTrend />
                 <KimExportDest />
+                <KimGlobalImporters />
               </>
             )}
 
