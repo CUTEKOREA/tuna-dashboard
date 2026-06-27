@@ -11,42 +11,49 @@
   overflow: hidden;
 }
 
+/* Deep Ocean Aurora — 비비드 오로라 밴드 (blur+screen, 2026-06-28 [CC]) */
 /* Primary Orb — Large atmospheric gradient, top-right */
 .orb1 {
   position: absolute;
-  width: 800px;
-  height: 800px;
+  width: 900px;
+  height: 900px;
   border-radius: 50%;
-  top: -20%;
-  right: -12%;
+  top: -22%;
+  right: -14%;
   animation: floatOrb1 35s ease-in-out infinite;
-  opacity: 0.5;
+  opacity: 0.85;
+  filter: blur(60px);
+  mix-blend-mode: screen;
   transform: translateZ(0);
 }
 
 /* Secondary Orb — Bottom-left ambient glow */
 .orb2 {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 720px;
+  height: 720px;
   border-radius: 50%;
-  bottom: -15%;
-  left: -8%;
+  bottom: -18%;
+  left: -10%;
   animation: floatOrb2 40s ease-in-out infinite;
-  opacity: 0.35;
+  opacity: 0.75;
+  filter: blur(60px);
+  mix-blend-mode: screen;
   transform: translateZ(0);
 }
 
 /* Tertiary Orb — Center floating accent */
 .orb3 {
   position: absolute;
-  width: 450px;
-  height: 450px;
+  width: 560px;
+  height: 560px;
   border-radius: 50%;
-  top: 35%;
-  left: 35%;
+  top: 30%;
+  left: 38%;
   animation: floatOrb3 28s ease-in-out infinite;
-  opacity: 0.2;
+  opacity: 0.6;
+  filter: blur(70px);
+  mix-blend-mode: screen;
   transform: translateZ(0);
 }
 
