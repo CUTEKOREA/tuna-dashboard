@@ -11,7 +11,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import { ChartPatternDefs } from './ChartPatterns';
-import { truncateXAxis } from './TunaOperationalIntelWidgets';
+import { truncateXAxis } from '../lib/chart-standards';
 
 // Mock Data based on the REEFER SHIP MOVEMENT analysis
 const data_competitor_inflow = [

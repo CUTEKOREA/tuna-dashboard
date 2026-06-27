@@ -24,7 +24,6 @@ import TunaPeptideEfficacy from './TunaPeptideEfficacy';
 import TunaTacMonitor from './TunaTacMonitor';
 import TunaSdgCircular from './TunaSdgCircular';
 import TelemetryBadge from './TelemetryBadge';
-import { truncateKoreanLabel } from '../lib/chart-standards';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -42,8 +41,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   }
   return null;
 };
-
-export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
 // Fallback UI component for Empty State
 const EmptyState = ({ message }: { message: string }) => (

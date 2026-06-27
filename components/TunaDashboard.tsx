@@ -19,7 +19,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaInsightsDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
-import { truncateKoreanLabel } from '../lib/chart-standards';
+import { truncateXAxis } from '../lib/chart-standards';
 
 // Tuna specific components
 import TunaPrecisionFishing from './TunaPrecisionFishing';
@@ -138,9 +138,6 @@ import FfaEnsoCatchCorrelation from './FfaEnsoCatchCorrelation';
 import FfaVdsMarketIndicator from './FfaVdsMarketIndicator';
 import FfaGlobalProcessingCapacity from './FfaGlobalProcessingCapacity';
 import FfaSupplyConcentrationRisk from './FfaSupplyConcentrationRisk';
-
-export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
-
 
 /* ─── Custom Tooltip ─── */
 const CustomTooltip = ({ active, payload, label }: any) => {

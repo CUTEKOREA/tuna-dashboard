@@ -7,13 +7,7 @@ import styles from './TunaExtractDashboard.module.css';
 import { Globe } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
-
+import { truncateXAxis } from '../lib/chart-standards';
 
 const data = [
   { metric: "미국향 로인 수출($M, '24)", thailand: 75.1, vietnam: 54.9 },
@@ -28,13 +22,7 @@ const ACCENT = 'var(--color-info)';
 export default function TunaVietnamOemStrategy() {
   const CustomTooltip = ({ active, payload }: any) => {
     if (!active || !payload?.length) return null;
-    
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
-return (
+    return (
       <div style={{
         background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
         padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'

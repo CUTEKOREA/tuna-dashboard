@@ -6,13 +6,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './TunaExtractDashboard.module.css';
 import { TrendingUp } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
-
+import { truncateXAxis } from '../lib/chart-standards';
 
 const data = [
   { year: "2020", wild: 85000, farmed: 25000 },
@@ -28,13 +22,8 @@ const ACCENT = '#f472b6';
 export default function TunaAquacultureExpansion() {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (!active || !payload?.length) return null;
-    
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
-return (
+
+    return (
       <div style={{
         background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
         padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'

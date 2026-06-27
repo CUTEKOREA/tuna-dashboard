@@ -9,13 +9,7 @@ import styles from './TunaInsightsDashboard.module.css';
 import data from '../data/tuna_aqua_value.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
-
+import { truncateXAxis } from '../lib/chart-standards';
 
 const TunaAquaValue = () => {
   const { containerRef, width } = useContainerWidth();
@@ -23,13 +17,7 @@ const TunaAquaValue = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
-      
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
-return (
+      return (
         <div className={styles.customTooltip}>
           <p className={styles.tooltipLabel}>{`${label}년 수익 구조`}</p>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

@@ -11,14 +11,7 @@ import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TunaRestaurantMap from './TunaRestaurantMap';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
-
+import { truncateXAxis } from '../lib/chart-standards';
 
 
 /* Data is loaded dynamically via fetch() from /data/tuna_ranching_dashboard.json */
@@ -36,13 +29,8 @@ const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'sta
   if (!status) return null;
   const isLive = status === 'live';
   const isSynced = status === 'synced';
-  
-  
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
+
+
 return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
       <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

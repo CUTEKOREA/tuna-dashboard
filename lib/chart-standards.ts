@@ -20,6 +20,13 @@ export function truncateKoreanLabel(tick: any, maxLen: number = 7): string {
 }
 
 /**
+ * Recharts X축 tickFormatter 표준 (L-02). 한글 7자 초과 시 truncate + 괄호 영문 제거.
+ * 30+ 컴포넌트에 복붙돼 있던 per-file truncateXAxis(6자·12자 변형 혼재)를 이 단일 출처로 통합.
+ * 사용: <XAxis tickFormatter={truncateXAxis} />
+ */
+export const truncateXAxis = (tick: any): string => truncateKoreanLabel(tick, 7);
+
+/**
  * 한글 기준 7자 초과 라벨이 다수(4개 이상)일 때 Smart Rotation 값 반환
  */
 export function getSmartRotation(labels: any[], thresholdLength: number = 7, thresholdCount: number = 4) {

@@ -8,13 +8,7 @@ import TakeawayBox from './TakeawayBox';
 import declineData from '../data/tuna_traditional_decline.json';
 import empireData from '../data/tuna_thai_empire.json';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
-
+import { truncateXAxis } from '../lib/chart-standards';
 
 const getKorCountry = (engName: string) => {
   const map: Record<string, string> = {
@@ -31,13 +25,7 @@ const getKorCountry = (engName: string) => {
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
-return (
+    return (
       <div style={{ background: 'rgba(15, 23, 42, 0.9)', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)', zIndex: 1000}}>
         <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '4px' }}>{label}</p>
         {payload.map((entry: any, index: number) => (

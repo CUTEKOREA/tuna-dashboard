@@ -22,6 +22,7 @@ import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import ShrimpFTAQuarterly from './ShrimpFTAQuarterly';
+import { truncateXAxis } from '../lib/chart-standards';
 
 const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
   S1: [],
@@ -136,12 +137,6 @@ const parseTextWithTooltips = (text: string) => {
     }
     return <React.Fragment key={i}>{part}</React.Fragment>;
   });
-};
-
-const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, ''); // 괄호 영문명 제거
-  return noEng.length > 12 ? noEng.substring(0, 12) + '...' : noEng;
 };
 
 const formatYAxis = (v: number, unit?: string) => {

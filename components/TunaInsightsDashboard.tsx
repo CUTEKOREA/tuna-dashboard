@@ -14,7 +14,6 @@ import TermTooltip from './TermTooltip';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import WidgetCard from './WidgetCard';
-import { truncateKoreanLabel } from '../lib/chart-standards';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import UsTunaImportWidget from './UsTunaImportWidget';
 import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
@@ -25,8 +24,6 @@ import FfaEnsoCatchCorrelation from './FfaEnsoCatchCorrelation';
 import FfaVdsMarketIndicator from './FfaVdsMarketIndicator';
 import FfaGlobalProcessingCapacity from './FfaGlobalProcessingCapacity';
 import FfaSupplyConcentrationRisk from './FfaSupplyConcentrationRisk';
-
-export const truncateXAxis = (tick: any) => truncateKoreanLabel(tick, 7);
 
 const mockArbitrageData = [
   { 연도: '2019년', 태국_매입가: 1200, EU_수출가: 3500 },

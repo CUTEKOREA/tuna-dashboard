@@ -16,6 +16,7 @@ import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import { ReeferCompetitorInflowWidget, ReeferPortCongestionWidget, ReeferSupplyPriceOverlayWidget, ReeferCarrierEfficiencyWidget } from './TunaReeferLogisticsWidgets';
+import { truncateXAxis } from '../lib/chart-standards';
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -38,13 +39,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   }
   return null;
 };
-
-export const truncateXAxis = (tick: any) => {
-  if (typeof tick !== 'string') return tick;
-  const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-  return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-};
-
 
 // Helper components mapping directly into styles
 const CardHeader = ({ title, icon: Icon, term, desc }: any) => (
@@ -264,12 +258,7 @@ const TakeawayBox = ({ id }: { id: string }) => {
     }} as any;
   const data = takeawaysMap[id];
   if (!data) return null;
-  
-  const truncateXAxis = (tick: any) => {
-    if (typeof tick !== 'string') return tick;
-    const noEng = tick.replace(/\s*\([A-Za-z\s]+\)/g, '');
-    return noEng.length > 6 ? noEng.substring(0, 6) + '...' : noEng;
-  };
+
 return (
     <div className={styles.takeaway} style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
       {/* 📊 Chart Situation Description */}
