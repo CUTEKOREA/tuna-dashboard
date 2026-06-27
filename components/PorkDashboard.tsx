@@ -1,25 +1,13 @@
 // @ts-nocheck
 'use client';
 import React, { useState } from 'react';
-import { Factory, TrendingUp, Globe, ShoppingCart, Leaf, Database, Activity, Clock } from 'lucide-react';
+import { Factory, TrendingUp, Globe, ShoppingCart, Leaf, Database, Activity } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend, W7_KoreaSupply, W8_ImportPartners, W9_ASFSeafood, W10_Portfolio, W11_SelfSufficiency } from './PorkWidgets';
 import PorkUsdaWidgets from './PorkUsdaWidgets';
 import { InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio } from './PorkEmpiricalInsights';
+import { TelemetryBadge } from './TelemetryBadge';
 import porkUsdaRaw from '../data/pork_usda_widgets.json';
-
-const TelemetryBadge = ({ status, syncDate }: any) => {
-  if (!status) return null;
-  const c = status === 'live'
-    ? { bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', text: '#34d399', dot: '#10b981' }
-    : { bg: 'rgba(56,189,248,0.1)', border: 'rgba(56,189,248,0.3)', text: '#7dd3fc', dot: '#38bdf8' };
-  return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: c.bg, border: `1px solid ${c.border}`, padding: '2px 8px', borderRadius: '12px', fontSize: '0.65rem', fontWeight: 600, color: c.text }}>
-      {status === 'live' ? <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: c.dot, boxShadow: `0 0 6px ${c.dot}`, animation: 'pulse 2s infinite' }} /> : <Clock size={10} color={c.dot} />}
-      {status.toUpperCase()} {syncDate && <span style={{ opacity: 0.7, marginLeft: '2px', fontWeight: 400 }}>{syncDate}</span>}
-    </div>
-  );
-};
 
 const KPIS = [
   { title: '중국 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 감소 · 글로벌 1위', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },

@@ -19,29 +19,7 @@ import styles from './SquidDashboard.module.css';
 import TakeawayBox from './TakeawayBox';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import { SquidVCFishing, SquidVCProcessing, SquidVCProduct, SquidVCLogistics, SquidVCMarket } from './SquidValueChainWidgets';
-
-/* ─── Telemetry Badge (참치 패턴 동기화) ─── */
-const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
-  if (!status) return null;
-  const isLive = status === 'live';
-  const isSynced = status === 'synced';
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
-      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
-        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
-      </div>
-      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
-        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
-      </span>
-      {!isLive && syncDate && (
-        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
-          {syncDate}
-        </span>
-      )}
-    </div>
-  );
-};
+import { TelemetryBadge } from './TelemetryBadge';
 
 /* ─── 5-Part Section Definitions ─── */
 // 5-Pillar 네비게이터 메타 (Tuna 패턴 + 오징어 시그니처 그라디언트 purple → pink)

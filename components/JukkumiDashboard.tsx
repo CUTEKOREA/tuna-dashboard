@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
 import WidgetCard from './WidgetCard';
+import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 import JukkumiFTAQuarterly from './JukkumiFTAQuarterly';
 
@@ -27,29 +28,6 @@ const EXTRA_BY_PILLAR: Record<string, React.FC[]> = {
   S3: [JukkumiFTAQuarterly],
   S4: [],
   S5: [],
-};
-
-/* ─── Telemetry Badge (참치 패턴 동기화) ─── */
-const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
-  if (!status) return null;
-  const isLive = status === 'live';
-  const isSynced = status === 'synced';
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.03)', padding: '2px 6px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.05)' }}>
-      <div style={{ position: 'relative', width: '6px', height: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {isLive && <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: '#10b981', animation: 'ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite' }} />}
-        <div style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: '50%', background: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B' }} />
-      </div>
-      <span style={{ fontSize: '0.62rem', fontWeight: 700, color: isLive ? '#10b981' : isSynced ? '#3b82f6' : '#64748B', letterSpacing: '0.5px' }}>
-        {isLive ? 'LIVE' : isSynced ? 'SYNCED' : 'STATIC'}
-      </span>
-      {!isLive && syncDate && (
-        <span style={{ fontSize: '0.56rem', fontWeight: 500, color: '#64748B', marginLeft: '2px', whiteSpace: 'nowrap' }}>
-          {syncDate}
-        </span>
-      )}
-    </div>
-  );
 };
 
 /* ─── 5-Part Section Definitions ─── */

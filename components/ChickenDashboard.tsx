@@ -17,6 +17,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
+import { TelemetryBadge } from './TelemetryBadge';
 
 import ChickenCorporateWidget from './ChickenCorporateWidget';
 import ChickenPartsWidget from './ChickenPartsWidget';
@@ -24,22 +25,6 @@ import { InsightTimeGapArbitrage } from './ChickenThaiInsightsA';
 import { InsightPartnerMatch } from './ChickenThaiInsightsB';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
 import ChickenUsdaWidgets from './ChickenUsdaWidgets';
-
-const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
-  if (!status) return null;
-  const colors = {
-    live: { bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', text: '#34d399', dot: '#10b981' },
-    synced: { bg: 'rgba(56,189,248,0.1)', border: 'rgba(56,189,248,0.3)', text: '#7dd3fc', dot: '#38bdf8' },
-    static: { bg: 'rgba(148,163,184,0.1)', border: 'rgba(148,163,184,0.3)', text: '#cbd5e1', dot: '#94a3b8' }
-  };
-  const c = colors[status];
-  return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: c.bg, border: `1px solid ${c.border}`, padding: '2px 8px', borderRadius: '12px', fontSize: '0.65rem', fontWeight: 600, color: c.text, marginLeft: 'auto' }}>
-      {status === 'live' ? <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: c.dot, boxShadow: `0 0 6px ${c.dot}`, animation: 'pulse 2s infinite' }} /> : <Clock size={10} color={c.dot} />}
-      {status.toUpperCase()} {syncDate && <span style={{ opacity: 0.7, marginLeft: '2px', fontWeight: 400 }}>{syncDate}</span>}
-    </div>
-  );
-};
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload?.length) {

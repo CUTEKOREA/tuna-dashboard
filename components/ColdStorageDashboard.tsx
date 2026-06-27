@@ -16,6 +16,7 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TakeawayBox from './TakeawayBox';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
+import { TelemetryBadge } from './TelemetryBadge';
 import styles from './MackerelStrategy.module.css'; // 재사용
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
@@ -58,27 +59,6 @@ const WIDGET_ICONS: Record<string, any> = {
   k01: Snowflake, k02: BarChart2, k03: ShieldCheck, k04: ShieldAlert,
   k05: Zap, k06: Factory, k07: Activity, k08: Anchor,
   us01: Snowflake, us02: Factory, us03: ShieldCheck,
-};
-
-const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
-  if (!status) return null;
-  const config = {
-    live: { bg: 'rgba(16, 185, 129, 0.15)', border: '#10b981', text: '#10b981', label: 'LIVE API' },
-    synced: { bg: 'rgba(56, 189, 248, 0.15)', border: '#c026d3', text: '#c026d3', label: 'SYNCED' },
-    static: { bg: 'rgba(148, 163, 184, 0.15)', border: '#64748b', text: '#94a3b8', label: 'STATIC' }
-  }[status];
-
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-      <span style={{ 
-        background: config.bg, border: `1px solid ${config.border}`, color: config.text, 
-        padding: '2px 6px', borderRadius: '4px', fontSize: '0.6rem', fontWeight: 800, letterSpacing: '0.5px' 
-      }}>
-        {config.label}
-      </span>
-      {syncDate && <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>{syncDate}</span>}
-    </div>
-  );
 };
 
 /* ─── 밸류체인 네비게이터 섹션 정의 ─── */
