@@ -38,10 +38,12 @@
  * so we only declare the hover end-state here (no duplicate transition). */
 .card:hover {
   transform: translateY(-2px);
-  border-color: rgba(56, 189, 248, 0.18);
+  border-color: var(--card-hover-border, rgba(140, 170, 255, 0.32));
+  /* Deep Ocean Aurora — cyan+violet 듀얼 글로우 (2026-06-28 [CC]) */
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.6),
-    0 0 24px rgba(56, 189, 248, 0.07);
+    0 14px 44px rgba(0, 0, 0, 0.6),
+    0 0 26px rgba(34, 211, 238, 0.12),
+    0 0 40px rgba(168, 85, 247, 0.10);
 }
 
 @media (prefers-reduced-motion: reduce) {
