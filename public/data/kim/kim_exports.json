@@ -1,0 +1,85 @@
+{
+  "source": "관세청 KCS · 마른김 HS 1212.21 (2020-2024). 조미김 2008.99은 광범위 세번이라 제외.",
+  "annual": [
+    {
+      "year": "2020",
+      "expUsd": 241050006,
+      "expTon": 29013,
+      "impUsd": 23148070
+    },
+    {
+      "year": "2021",
+      "expUsd": 253743183,
+      "expTon": 24420,
+      "impUsd": 15025642
+    },
+    {
+      "year": "2022",
+      "expUsd": 273171257,
+      "expTon": 25301,
+      "impUsd": 27471323
+    },
+    {
+      "year": "2023",
+      "expUsd": 354879252,
+      "expTon": 28158,
+      "impUsd": 20084689
+    },
+    {
+      "year": "2024",
+      "expUsd": 476561517,
+      "expTon": 29681,
+      "impUsd": 24898456
+    }
+  ],
+  "dest2024": [
+    {
+      "code": "JP",
+      "name": "일본",
+      "expUsd": 151087938,
+      "expTon": 12598
+    },
+    {
+      "code": "TH",
+      "name": "태국",
+      "expUsd": 86090789,
+      "expTon": 3567
+    },
+    {
+      "code": "RU",
+      "name": "러시아 연방",
+      "expUsd": 69296175,
+      "expTon": 2141
+    },
+    {
+      "code": "CN",
+      "name": "중국",
+      "expUsd": 54496097,
+      "expTon": 4649
+    },
+    {
+      "code": "TW",
+      "name": "대만",
+      "expUsd": 30244440,
+      "expTon": 1077
+    },
+    {
+      "code": "ID",
+      "name": "인도네시아",
+      "expUsd": 25142469,
+      "expTon": 1590
+    },
+    {
+      "code": "US",
+      "name": "미국",
+      "expUsd": 23263400,
+      "expTon": 1972
+    },
+    {
+      "code": "VN",
+      "name": "베트남",
+      "expUsd": 14584914,
+      "expTon": 775
+    }
+  ]
+}

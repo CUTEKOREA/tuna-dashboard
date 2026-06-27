@@ -20,6 +20,7 @@ import { Sprout, Factory, Ship, Globe, ThermometerSun, Waves } from 'lucide-reac
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
 import WidgetCard from './WidgetCard';
 import KimLogisticsWidget from './KimLogisticsWidget';
+import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest } from './KimAgriDataWidgets';
 import { truncateXAxis } from '../lib/chart-standards';
 
 const KIM_FROM = '#166534';
@@ -40,13 +41,7 @@ const PILLARS = [
   { id: 'P5', label: 'ESG', title: '🌍 Pillar V — ESG·지속가능성', desc: '기후(수온)·황백화 리스크', color: '#15803d' },
 ];
 
-// ── 검증 실데이터 ──
-// 마른김 생산량 (백만 속) — 2019 정점 177.46 → 2023 141.26 → 2024 149.7 (출처: 해수부/국립수산과학원)
-const productionData = [
-  { year: '2019', value: 177.5, label: '정점' },
-  { year: '2023', value: 141.3, label: '저점권' },
-  { year: '2024', value: 149.7, label: '+6%' },
-];
+// ── 검증 실데이터 (생산·수출 국가별은 agri_data 실데이터 위젯으로 분리: KimAgriDataWidgets) ──
 // 마른김 소매가 (원/10장) 추이 — aT (2024평균 1,271 → 2025.1 1,436 → 2026.1 1,555 역대최고)
 const priceData = [
   { p: '2024 평균', retail: 1271 },
@@ -60,21 +55,7 @@ const exportData = [
   { year: '2024', usd: 997 },
   { year: '2025', usd: 1133 },
 ];
-// 2024 주요 수출국 (백만 USD) — KATI/aT
-const partnerData = [
-  { c: '미국', usd: 214 },
-  { c: '일본', usd: 200 },
-  { c: '태국', usd: 90 },
-  { c: '러시아', usd: 88 },
-  { c: '중국', usd: 87 },
-];
-// 글로벌 김스낵 시장 (십억 USD) — Grand View Research
-const marketData = [
-  { year: '2024', size: 2.43 },
-  { year: '2030E', size: 4.66 },
-];
-
-const tip = { background: 'rgba(0,15,30,0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
+const tip ={ background: 'rgba(0,15,30,0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
 const SYNC = { status: 'SYNCED' };
 
 export default function KimDashboard() {
@@ -144,28 +125,10 @@ export default function KimDashboard() {
           <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
             {sec.id === 'P1' && (
-              <WidgetCard
-                title="마른김 생산량 추이 (정점 대비 −15.6%)"
-                icon={Sprout} iconColor="#65a30d" pillar="S1"
-                cardDesc="한국 마른김 생산량(백만 속, 1속=100장) — 2019 정점 대비 감소 후 2024 +6% 반등"
-                telemetry={{ status: 'SYNCED', syncDate: '해수부 2024' }}
-                chart={
-                  <BarChart data={productionData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                    <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-                    <YAxis stroke="#94a3b8" fontSize={11} />
-                    <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`${v}백만 속`, '생산량']} />
-                    <Bar dataKey="value" name="마른김 생산량 (백만 속)" radius={[3, 3, 0, 0]}>
-                      {productionData.map((d, i) => <Cell key={i} fill={i === 0 ? '#a3e635' : i === 1 ? '#ef4444' : '#16a34a'} />)}
-                    </Bar>
-                  </BarChart>
-                }
-                takeaway={{
-                  situation: '<div><p>한국 마른김 생산은 2019년 1억 7,746만 속 정점 이후 고수온·황백화로 감소, 2024년산 1억 4,970만 속으로 정점 대비 <strong>−15.6%</strong>(전년比 +6% 반등). 물김 양식은 2024년 55.2만 톤, 전남이 전국의 80% 집중.</p></div>',
-                  actionPlan: '<div><p><strong>재정의</strong>: 생산 감소는 작황 변동이 아닌 "고수온 구조 전환" — 산지 분산 + 내성 품종이 본질.</p><p><strong>3단계</strong>: ① 고수온 내성 품종·신규 양식장(2,700ha 개발) 입식 ② 전남 80% 편중 완화 — 산지 다변화 ③ 정점 대비 갭 복원 KPI 추적.</p></div>',
-                  source: '통계청 어업생산동향조사 · 해양수산부 보도자료(2024년산) · 국립수산과학원',
-                }}
-              />
+              <>
+                <KimProductionTrend />
+                <KimGlobalShare />
+              </>
             )}
 
             {sec.id === 'P2' && (
@@ -214,26 +177,8 @@ export default function KimDashboard() {
                     source: '관세청 · KATI/aT · 해양수산부 보도자료(2025·2026)',
                   }}
                 />
-                <WidgetCard
-                  title="2024 주요 수출국 · 글로벌 김스낵 시장"
-                  icon={Globe} iconColor="#a3e635" pillar="S4"
-                  cardDesc="2024년 김 수출 상위국(백만 USD) — 미국·일본 양강. 글로벌 김스낵 시장 CAGR 11.6%"
-                  telemetry={{ status: 'SYNCED', syncDate: 'KATI·GVR' }}
-                  chart={
-                    <BarChart data={partnerData} margin={{ top: 10, right: 20, left: -10, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
-                      <XAxis dataKey="c" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
-                      <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
-                      <Tooltip contentStyle={tip} cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(v) => [`$${v}M`, '수출액']} />
-                      <Bar dataKey="usd" name="2024 수출액 (백만 USD)" fill="#84cc16" radius={[3, 3, 0, 0]} />
-                    </BarChart>
-                  }
-                  takeaway={{
-                    situation: '<div><p>2024년 김 수출 1위 <strong>미국 $214M</strong>(단가 ~$37/kg), 2위 일본 $200M(물량 최대). 글로벌 김스낵 시장은 <strong>$2.43B(2024)→$4.66B(2030E), CAGR 11.6%</strong>, 아·태가 50.6%. 미국향 조미김 비중 90%+.</p></div>',
-                    actionPlan: '<div><p><strong>재정의</strong>: 미국은 "수출처"가 아닌 프리미엄 단가 시험장(최고 단가).</p><p><strong>3단계</strong>: ① 미국 PB·프리미엄 조미김 직납 ② 일본 물량 채널 안정화 ③ CAGR 11.6% 성장 올라타 신흥국(태국 +49.6%) 선점.</p></div>',
-                    source: 'KATI/aT(2024) · Grand View Research / Mordor Intelligence',
-                  }}
-                />
+                <KimExportTrend />
+                <KimExportDest />
               </>
             )}
 
