@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌿 **2026-06-28 KST — 김 페이지 agri_data 풀세트 1차 실데이터 위젯 고도화** [CC]:
+> - 데이터원: GDrive `agri_data/01_수산물(Seafood)/laver` (매뉴얼 v28.4 풀세트, 12G) — FishStat·FAOSTAT·KCS·Comtrade·extras(dart/eumofa/usda/wb/kmi/academic).
+> - `scratch/extract_kim_data.py`로 CSV→경량 JSON 결정론적 추출(환각 0). **정합성 캐치**: 조미김 HS 2008.99는 광범위 세번(땅콩 등 혼입, 10자리 2008991000~999000)이라 제외, 마른김 1212.21(김 전용 세번 1212211010 등)만 정밀 집계. (web 합산 $1,114M 과대 → KCS 마른김 정밀 $477M)
+> - `public/data/kim/{kim_exports,kim_production}.json` + `components/KimAgriDataWidgets.tsx` 4위젯(fetch·SYNCED·실출처): S1 한국 양식 생산(FishStat 73년, 2019정점 61.3만톤→2022 55.7만톤) · S1 세계 생산 비중(중국73%/한국19%/일본8%) · S4 마른김 수출(KCS 2020 $241M→2024 $477M) · S4 2024 수출국 TOP8(일본 $151M, 마른김은 일본중심·미국은 조미김중심 이원채널).
+> - KimDashboard S1·S4를 실데이터 위젯으로 교체(웹추정 const 제거), S2(김플레이션 KAMIS)·S3(KCS LIVE)·S5(기후) 유지. 빌드 통과. **미배포(로컬)**.
+> - 후속(데이터 여력): FAOSTAT FBS 소비/수급 · Comtrade 글로벌 파트너 · EUMOFA EU · dart 기업공시 위젯.
+
 > 🚀 **2026-06-27 KST — 라이브 배포 완료 (이번 세션 14커밋 일괄)** [CC]:
 > - 사용자 "라이브 배포" 명시 요청 → `git push origin main` (c8f7dc6..1e0ad4e, 14커밋). pre-push 훅(C-4 data integrity + L-03 build) 통과.
 > - Vercel 자동 빌드 dpl_52T94v… **READY**(~68s), 프로덕션 도메인 **leedonggun.co.kr** 반영. 라이브 검증: 메인 200, 김 메뉴 렌더, /api/kim/customs isLive=true(2026-05 2,276톤/$37.9M).
