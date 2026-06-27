@@ -23,12 +23,13 @@
   --pastel-aqua: #1db954;
   --pastel-orchid: #b3b3b3;
 
-  /* Accents — Strictly Semantic */
-  --accent-primary: #1ed760;
+  /* Accents — 참치 해양 브랜드 cyan 통일 (2026-06-27 [CC]: Spotify 잔재 #1ed760 제거).
+   * 라이트 테마는 이미 #2563EB(파랑)였음 — 다크도 브랜드 cyan으로 일치. */
+  --accent-primary: #38bdf8;   /* sky cyan (was #1ed760 Spotify green) */
   --accent-secondary: #ffffff;
   --accent-warning: #ffa42b;
   --accent-danger: #f3727f;
-  --accent-gold: #1ed760;
+  --accent-gold: #38bdf8;      /* (미사용 토큰) Spotify green 잔재 제거 — 브랜드 cyan 정렬 */
   
   /* Chart UI Colors */
   --chart-grid: #252525;
