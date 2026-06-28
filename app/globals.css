@@ -2,14 +2,14 @@
 
 :root {
   /* Core Palette (Dark Mode Default) — Institutional Precision */
-  --bg-color: #0f172a; 
-  --panel-bg: rgba(15, 23, 42, 0.6);
-  --panel-border: rgba(255, 255, 255, 0.05);
+  --bg-color: #0a0f1f;
+  --panel-bg: rgba(20, 28, 52, 0.6);
+  --panel-border: rgba(140, 170, 255, 0.10);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  
+
   /* Semantic Backgrounds (Opaque/Solid) */
-  --table-th-bg: rgba(15, 23, 42, 0.8);
+  --table-th-bg: rgba(20, 28, 52, 0.8);
   --highlight-bg: rgba(56, 189, 248, 0.1); 
   --hover-bg: rgba(56, 189, 248, 0.05);
   --warning-bg: rgba(255, 164, 43, 0.08);
@@ -34,7 +34,7 @@
   /* Chart UI Colors */
   --chart-grid: #252525;
   --chart-axis: #b3b3b3;
-  --chart-tooltip-bg: #181818;
+  --chart-tooltip-bg: #11182f;
   --chart-tooltip-border: #272727;
 
 
@@ -113,8 +113,8 @@
   --radius-lg:  8px;
 
   /* ===== SURFACE ELEVATION (Solid Depth) ===== */
-  --surface-0: #0f172a;            /* 최하단 바닥 */
-  --surface-1: rgba(15, 23, 42, 0.6);            /* 카드/패널 */
+  --surface-0: #0a0f1f;            /* 최하단 바닥 (Aurora) */
+  --surface-1: rgba(20, 28, 52, 0.6);            /* 카드/패널 (Aurora) */
   --surface-2: rgba(30, 41, 59, 0.7);            /* 떠있는 요소 (모달, 인사이트 카드) */
   --surface-3: rgba(51, 65, 85, 0.8);            /* 최상위 (드롭다운, 툴팁) */
 
