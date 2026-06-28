@@ -494,7 +494,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
   }, []);
 
   if (!data) return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem', backgroundColor: 'var(--bg-color)' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem', backgroundColor: 'transparent' }}>
       <RefreshCcw size={32} style={{ color: '#38bdf8', animation: 'spin 1s linear infinite' }} />
       <p style={{ color: '#848E9C', fontSize: '1rem' }}>전략 인텔리전스 불러오는 중...</p>
     </div>
@@ -504,7 +504,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
   const kpiKeys = Object.keys(kpis || {});
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--text-primary)', minHeight: '100vh', fontFamily: "'CircularSp', 'Inter', sans-serif", backgroundColor: 'var(--bg-color)' }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--text-primary)', minHeight: '100vh', fontFamily: "'CircularSp', 'Inter', sans-serif", backgroundColor: 'transparent' }}>
       
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom: '2rem', paddingTop: '0.5rem' }}>

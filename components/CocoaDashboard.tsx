@@ -130,7 +130,7 @@ export default function CocoaDashboard() {
 
   if (loading) {
     return (
-      <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'var(--bg-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ width: '40px', height: '40px', border: '3px solid rgba(180,83,9,0.3)', borderTop: '3px solid #d97706', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }}></div>
           <p style={{ color: '#b45309', fontWeight: 600 }}>데이터 불러오는 중...</p>
@@ -141,7 +141,7 @@ export default function CocoaDashboard() {
 
   if (!cocoaData) {
     return (
-      <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'var(--bg-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ textAlign: 'center', maxWidth: '440px' }}>
           <AlertTriangle size={40} color="#b45309" style={{ margin: '0 auto 1rem' }} />
           <p style={{ color: '#b45309', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem' }}>코코아 시장 데이터 미연동</p>
@@ -152,7 +152,7 @@ export default function CocoaDashboard() {
   }
 
   return (
-    <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'var(--bg-color)' }}>
+    <div style={{ padding:'0 1.5rem 3rem', color:'var(--text-primary)', minHeight:'100vh', fontFamily:"'Inter',sans-serif", backgroundColor: 'transparent' }}>
 
       
 

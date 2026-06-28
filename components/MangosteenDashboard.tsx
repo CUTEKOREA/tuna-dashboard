@@ -119,7 +119,7 @@ export default function MangosteenDashboard() {
   const yAxisProps: any = { stroke: "#64748b", tick: { fontSize: 10, fill: '#94a3b8' } };
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--text-primary)', minHeight: '100vh', fontFamily: "'CircularSp', 'Inter', sans-serif", backgroundColor: 'var(--bg-color)' }}>
+    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--text-primary)', minHeight: '100vh', fontFamily: "'CircularSp', 'Inter', sans-serif", backgroundColor: 'transparent' }}>
       
       {/* ═══ Header ═══ */}
       <header style={{ marginBottom: '2.5rem', paddingTop: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1.5rem' }}>
@@ -513,14 +513,14 @@ export default function MangosteenDashboard() {
           telemetry={{ status: 'STATIC', syncDate: '2026-05-29' }}
           customBody={
             <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <li style={{ background: 'var(--bg-color)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #10b981' }}>
+              <li style={{ background: 'transparent', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #10b981' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                   <strong style={{ color: 'var(--text-primary)' }}>태국 및 말레이시아</strong>
                   <span style={{ fontSize: '0.75rem', background: '#10b98120', color: 'var(--color-success)', padding: '2px 8px', borderRadius: '4px' }}>생과 반입</span>
                 </div>
                 <p style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8' }}>증열처리 시설 검역 필수 통과.</p>
               </li>
-              <li style={{ background: 'var(--bg-color)', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #ef4444' }}>
+              <li style={{ background: 'transparent', padding: '1rem', borderRadius: '8px', borderLeft: '4px solid #ef4444' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
                   <strong style={{ color: 'var(--text-primary)' }}>인도네시아 및 필리핀</strong>
                   <span style={{ fontSize: '0.75rem', background: '#ef444420', color: 'var(--color-danger)', padding: '2px 8px', borderRadius: '4px' }}>생과 금지</span>
