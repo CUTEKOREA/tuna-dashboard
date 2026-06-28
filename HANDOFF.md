@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🎨 **2026-06-28 KST (5) — 전 메뉴 Aurora 전수 검증 + 루트배경/레거시토큰 정리** [CC]:
+> - 사용자 스크린샷 제보(주꾸미 순수검정·낙지/오징어 평면다크)로 **진짜 원인 발견**: codemod 색치환은 됐으나 대시보드 루트 div가 `backgroundColor: var(--bg-color)`(불투명)로 body Aurora+AmbientBackground를 가림.
+> - **15개 대시보드 루트 → transparent**(commit 8bd9608): Tuna·Squid·Jukkumi·Octopus·Mackerel·Galchi·Shrimp·Mangosteen·Cocoa·Garlic·ColdStorage·MscStrategy·SashimiSteak·ResearchLab + Shrimp 타임라인.
+> - **globals.css 다크 레거시 토큰 Aurora 정렬**(commit bc312c5): --bg-color/--surface-0 #0f172a→#0a0f1f, --panel-bg/--surface-1/--table-th-bg rgba(15,23,42)→rgba(20,28,52), --panel-border rgba(255,255,255,0.05)→rgba(140,170,255,0.10), --chart-tooltip-bg #181818→#11182f. (panel-bg 18파일·panel-border 24파일 영향)
+> - **전 메뉴 전수 감사 완료**: *Dashboard.tsx 34개 + 비-Dashboard 뷰(Market·PurseSeiner·SEAsiaOEM·CashewStrategy·UsedCarExport·StrategyIntel·ReeferMovement 등) 루트배경 = 전부 transparent/bg없음 확인. 불투명 루트 잔존 0.
+> - 유일 예외 = Fleet/Unloading ([AG] 미커밋 WIP, 의도적 제외).
+
 > 🎨 **2026-06-28 KST (4) — Aurora 미적용 하위디렉터리 보강 (msc/sashimi 66파일)** [CC]:
 > - **이전 "100% Aurora" 보고 정정**: 기존 codemod glob이 `components/*.tsx`(최상위)만 훑어 하위 디렉터리 누락. `components/msc-strategy`(21)·`sashimi-strategy`(45) 위젯이 구 다크 인라인색 잔존(실 렌더 페이지: MscStrategyDashboard·SashimiSteakDashboard·TunaInsightsDashboard).
 > - codemod glob에 `components/**/*.tsx` 재귀 추가 + Fleet*/Unloading*([AG] 미커밋 WIP) 보호 가드. 81건 치환. 렌더 대상 구 다크색 잔존 **0** 확인. 빌드 EXIT 0.
