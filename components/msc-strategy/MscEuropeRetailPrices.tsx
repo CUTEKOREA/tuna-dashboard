@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{
-        backgroundColor: 'rgba(15,23,42,0.95)',
+        backgroundColor: 'rgba(20, 28, 52, 0.95)',
         border: '1px solid rgba(148,163,184,0.15)',
         padding: '12px',
         borderRadius: '8px',
@@ -64,7 +64,7 @@ export default function MscEuropeRetailPrices() {
               <XAxis dataKey="country" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis yAxisId="left" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" tick={{ fill: '#f59e0b', fontSize: 11 }} domain={[0, 50]} axisLine={false} tickLine={false} tickFormatter={(val) => `${val}%`} />
-              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
               <Legend wrapperStyle={{ paddingTop: '10px' }} />
               <Bar yAxisId="left" dataKey="msc" name="MSC 인증" fill="#10b981" radius={[4, 4, 0, 0]} barSize={24} isAnimationActive={false} />
               <Bar yAxisId="left" dataKey="nonMsc" name="비MSC" fill="#64748b" radius={[4, 4, 0, 0]} barSize={24} isAnimationActive={false} />

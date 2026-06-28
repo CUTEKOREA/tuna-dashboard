@@ -41,7 +41,7 @@ export default function SasGlWcpoSupply() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="sp" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
                 <YAxis domain={[0, 2200]} tickFormatter={(v: number) => `${(v / 1000).toFixed(1)}M`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={(v: number, _n: string, p: any) => [`${v.toLocaleString()}천t (${p.payload.pct}%)`, '어획']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number, _n: string, p: any) => [`${v.toLocaleString()}천t (${p.payload.pct}%)`, '어획']} />
                 <Bar dataKey="t" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {SPECIES.map((d) => <Cell key={d.sp} fill={d.color} />)}
                   <LabelList dataKey="pct" position="top" formatter={(v: number) => `${v}%`} fontSize={10.5} fill="#e2e8f0" />

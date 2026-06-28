@@ -43,7 +43,7 @@ export default function SasEuMscGate() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="yr" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <YAxis domain={[0, 55]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={((v: number, _n: string, item: { payload?: { isEstimate?: boolean } }) => [`${v}%${item?.payload?.isEstimate ? ' (추정·1차 미확인)' : ''}`, 'MSC 라벨']) as never} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={((v: number, _n: string, item: { payload?: { isEstimate?: boolean } }) => [`${v}%${item?.payload?.isEstimate ? ' (추정·1차 미확인)' : ''}`, 'MSC 라벨']) as never} />
                 <Bar dataKey="vol" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {MSC_GROWTH.map((d) => (
                     <Cell

@@ -38,7 +38,7 @@ export default function SasKrAccessQuota() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="stage" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
                 <YAxis domain={[0, 15000]} tickFormatter={(v: number) => `$${(v / 1000)}k`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={(v: number) => [`$${v.toLocaleString()}/day`, 'VDS']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`$${v.toLocaleString()}/day`, 'VDS']} />
                 <Bar dataKey="usd" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {VDS.map((d) => <Cell key={d.stage} fill={d.color} />)}
                   <LabelList dataKey="usd" position="top" formatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} fontSize={10.5} fill="#e2e8f0" />

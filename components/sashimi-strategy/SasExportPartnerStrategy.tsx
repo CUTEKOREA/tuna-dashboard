@@ -113,7 +113,7 @@ export default function SasExportPartnerStrategy() {
                     display: 'flex', alignItems: 'center', gap: '4px',
                     padding: '3px 8px', borderRadius: '14px',
                     background: i === 0 ? `${m.color}15` : 'rgba(255,255,255,0.04)',
-                    border: `1px solid ${i === 0 ? m.color + '30' : 'rgba(255,255,255,0.06)'}`,
+                    border: `1px solid ${i === 0 ? m.color + '30' : 'rgba(140,170,255,0.12)'}`,
                     fontSize: '0.6rem', color: i === 0 ? m.color : '#94a3b8', fontWeight: i === 0 ? 600 : 400,
                   }}>
                     <span style={{ fontWeight: 700, color: i === 0 ? m.color : '#64748b' }}>#{i + 1}</span>

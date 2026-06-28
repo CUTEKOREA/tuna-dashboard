@@ -76,7 +76,7 @@ export default function SasKoreaProductionStructure() {
                     }}>{g.purpose}</span>
                   </div>
                   {/* Percentage bar */}
-                  <div style={{ marginTop: '6px', background: '#1e293b', borderRadius: '3px', height: '4px', overflow: 'hidden' }}>
+                  <div style={{ marginTop: '6px', background: '#1a2442', borderRadius: '3px', height: '4px', overflow: 'hidden' }}>
                     <div style={{ width: `${g.pct}%`, height: '100%', background: g.color, borderRadius: '3px' }} />
                   </div>
                   <div style={{ fontSize: '0.65rem', color: '#64748b', marginTop: '2px', textAlign: 'right' }}>{g.pct}%</div>

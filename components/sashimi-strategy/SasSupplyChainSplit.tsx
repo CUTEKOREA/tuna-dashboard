@@ -53,7 +53,7 @@ export default function SasSupplyChainSplit() {
               <YAxis dataKey="name" type="category" width={140} tick={{ fontSize: 12, fontWeight: 600, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1e293b', color: '#e2e8f0' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1a2442', color: '#e2e8f0' }}
                 formatter={(value: number, name: string, props: any) => {
                   if (name === '금액 비중 (%)') return [`${value}% ($${props.payload.importValue}M)`, name];
                   if (name === '물량 비중 (%)') return [`${value}% (${props.payload.volume}kt, 단가: $${props.payload.unitPrice}/kg)`, name];

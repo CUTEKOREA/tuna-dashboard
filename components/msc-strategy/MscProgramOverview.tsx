@@ -83,7 +83,7 @@ export default function MscProgramOverview() {
               gap: '12px',
               padding: '12px 14px',
               background: 'rgba(30,41,59,0.5)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               borderLeft: `3px solid ${p.color}`,
               borderRadius: '0 8px 8px 0',
             }}

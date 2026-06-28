@@ -31,7 +31,7 @@ export default function SasBluefinRanchingEconomics() {
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center',
               background: 'rgba(30,41,59,0.6)', padding: '16px', borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               width: '31%', margin: '0 8px', zIndex: 10,
               transition: 'transform 0.2s',
             }}>
@@ -51,7 +51,7 @@ export default function SasBluefinRanchingEconomics() {
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center',
               background: 'rgba(30,41,59,0.6)', padding: '16px', borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               width: '31%', margin: '0 8px', zIndex: 10,
               transition: 'transform 0.2s',
             }}>
@@ -71,7 +71,7 @@ export default function SasBluefinRanchingEconomics() {
             <div style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center',
               background: 'rgba(30,41,59,0.6)', padding: '16px', borderRadius: '12px',
-              border: '1px solid rgba(255,255,255,0.06)',
+              border: '1px solid rgba(140,170,255,0.12)',
               width: '31%', margin: '0 8px', zIndex: 10,
               transition: 'transform 0.2s',
             }}>

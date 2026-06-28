@@ -90,7 +90,7 @@ export default function SasMarketKPIs() {
                   stroke="#64748b"
                 />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)', background: '#1e293b', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)', background: '#1a2442', color: '#e2e8f0' }}
                   formatter={(value: number, name: string) => [`$${value}M`, name === 'fresh' ? '🟢 Fresh(사시미급)' : '🔵 Frozen·필렛']}
                   labelFormatter={(label: string) => `${label}년`}
                 />

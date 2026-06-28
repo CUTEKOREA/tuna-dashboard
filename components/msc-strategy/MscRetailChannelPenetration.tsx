@@ -25,7 +25,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{
-        backgroundColor: 'rgba(15,23,42,0.95)',
+        backgroundColor: 'rgba(20, 28, 52, 0.95)',
         border: '1px solid rgba(148,163,184,0.15)',
         borderRadius: '8px',
         padding: '12px',
@@ -71,7 +71,7 @@ export default function MscRetailChannelPenetration() {
               <CartesianGrid strokeDasharray="3 3" opacity={0.15} horizontal={false} />
               <XAxis type="number" domain={[0, 100]} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
               <YAxis type="category" dataKey="channel" width={75} stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} />
-              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.05)' }} />
+              <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
               <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.75rem' }} iconType="circle" />
               {countryBars.map((bar) => (
                 <Bar key={bar.key} dataKey={bar.key} name={bar.name} fill={bar.color} radius={[0, 4, 4, 0]} barSize={10} isAnimationActive={false} />

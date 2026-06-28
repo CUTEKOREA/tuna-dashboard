@@ -91,7 +91,7 @@ export default function MscGlobalEngagementKpi() {
       padding: '14px 16px',
       background: 'rgba(30,41,59,0.5)',
       borderRadius: 10,
-      border: '1px solid rgba(255,255,255,0.06)',
+      border: '1px solid rgba(140,170,255,0.12)',
       display: 'flex',
       alignItems: 'center',
       gap: '12px',

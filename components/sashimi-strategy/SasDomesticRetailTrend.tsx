@@ -30,12 +30,12 @@ export default function SasDomesticRetailTrend() {
       customBody={
         <>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 8 }}>
-            <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
               <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 4 }}>일본 수출 비중 (블루핀)</p>
               <div style={{ fontSize: 24, fontWeight: 900, color: '#60a5fa', fontVariantNumeric: 'tabular-nums' }}>&gt; 90%</div>
               <p style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>대부분 초저온 냉동 후 수출</p>
             </div>
-            <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ background: 'rgba(30,41,59,0.5)', padding: 16, borderRadius: 8, border: '1px solid rgba(140,170,255,0.12)' }}>
               <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 4 }}>최대 내수 시장 (프랑스)</p>
               <div style={{ fontSize: 24, fontWeight: 900, color: '#818cf8', fontVariantNumeric: 'tabular-nums' }}>9.0%</div>
               <p style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>생물 참치 가구당 구매 경험률</p>

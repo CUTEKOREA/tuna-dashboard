@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div style={{ backgroundColor: 'rgba(30,41,59,0.95)', padding: 12, borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ backgroundColor: 'rgba(30,41,59,0.95)', padding: 12, borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.3)', border: '1px solid rgba(140,170,255,0.12)' }}>
         <p style={{ fontWeight: 700, color: '#f1f5f9', marginBottom: 4 }}>{data.name}</p>
         <p style={{ fontSize: 14, color: '#cbd5e1' }}>2024년 쿼터: {data.quota.toLocaleString()} 톤</p>
         <p style={{ fontSize: 12, fontWeight: 600, marginTop: 4, color: data.color }}>{data.status}</p>

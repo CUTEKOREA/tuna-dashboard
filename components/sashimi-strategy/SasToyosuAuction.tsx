@@ -86,7 +86,7 @@ export default function SasToyosuAuction() {
             {marketStructure.map((m) => (
               <div key={m.label} style={{
                 background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '8px',
-                border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center',
+                border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '0.88rem', fontWeight: 800, color: m.color }}>{m.value}</div>
                 <div style={{ fontSize: '0.6rem', color: '#94a3b8', marginTop: '1px' }}>{m.label}</div>
@@ -99,7 +99,7 @@ export default function SasToyosuAuction() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
             <div style={{
               padding: '10px', borderRadius: '8px',
-              background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)',
+              background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(140,170,255,0.12)',
             }}>
               <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>일상 거래가</div>
               {priceRanges.map((p) => (

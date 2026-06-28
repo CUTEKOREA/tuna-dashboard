@@ -54,7 +54,7 @@ export default function MscHarvestStrategyTimeline() {
                 <div style={{
                   position: 'absolute', left: '-21px', top: '4px',
                   width: '14px', height: '14px', borderRadius: '50%',
-                  background: m.color, border: '3px solid rgba(15,23,42,0.8)',
+                  background: m.color, border: '3px solid rgba(20, 28, 52, 0.8)',
                   boxShadow: `0 0 8px ${m.color}50`,
                 }} />
 

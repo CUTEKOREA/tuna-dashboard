@@ -16,7 +16,7 @@ const conditionData = [
 ];
 
 const tooltipStyle = {
-  backgroundColor: 'rgba(15,23,42,0.95)',
+  backgroundColor: 'rgba(20, 28, 52, 0.95)',
   border: '1px solid rgba(148,163,184,0.15)',
   borderRadius: 8,
   color: '#e2e8f0',

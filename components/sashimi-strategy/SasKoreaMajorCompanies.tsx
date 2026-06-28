@@ -23,7 +23,7 @@ const CustomBarTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload) return null;
   return (
     <div style={{
-      background: '#1e293b', border: '1px solid #334155', borderRadius: '8px',
+      background: '#1a2442', border: '1px solid #334155', borderRadius: '8px',
       padding: '8px 12px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
     }}>
       <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0' }}>{label}</div>
@@ -99,7 +99,7 @@ export default function SasKoreaMajorCompanies() {
                     <span style={{ fontSize: '0.65rem', color: '#64748b' }}>참치 비중</span>
                     <span style={{ fontSize: '0.7rem', fontWeight: 600, color: c.color }}>{c.tunaShare}%</span>
                   </div>
-                  <div style={{ background: '#1e293b', borderRadius: '3px', height: '5px', overflow: 'hidden' }}>
+                  <div style={{ background: '#1a2442', borderRadius: '3px', height: '5px', overflow: 'hidden' }}>
                     <div style={{
                       width: `${c.tunaShare}%`, height: '100%',
                       background: `linear-gradient(90deg, ${c.color}, ${c.color}80)`,

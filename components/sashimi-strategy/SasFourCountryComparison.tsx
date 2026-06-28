@@ -139,7 +139,7 @@ export default function SasFourCountryComparison() {
           <div
             style={{
               marginTop: '16px',
-              background: 'linear-gradient(135deg, #1e293b, #0f172a)',
+              background: 'linear-gradient(135deg, #1a2442, #0a0f1f)',
               border: '1px solid #f59e0b33',
               borderRadius: '10px',
               padding: '14px 18px',

@@ -36,7 +36,7 @@ export default function SasKoreaMedBftImports() {
           {/* ── 콜아웃 배너 ── */}
           <div
             style={{
-              background: 'linear-gradient(135deg, #1e3a5f, #1e293b)',
+              background: 'linear-gradient(135deg, #1e3a5f, #1a2442)',
               border: '1px solid #38bdf833',
               borderRadius: '10px',
               padding: '14px 18px',
@@ -114,7 +114,7 @@ export default function SasKoreaMedBftImports() {
                     borderRadius: '8px',
                     border: 'none',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                    background: '#1e293b',
+                    background: '#1a2442',
                     color: '#e2e8f0',
                     fontSize: '0.8rem',
                   }}

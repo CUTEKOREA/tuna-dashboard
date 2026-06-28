@@ -42,7 +42,7 @@ export default function SasKrSuperTuna() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="use" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
                 <YAxis domain={[0, 330]} tickFormatter={(v: number) => `${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={(v: number) => [`지수 ${v}`, '부가가치']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`지수 ${v}`, '부가가치']} />
                 <Bar dataKey="idx" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {VALUE.map((d) => <Cell key={d.use} fill={d.color} />)}
                   <LabelList dataKey="idx" position="top" formatter={(v: number) => v === 300 ? '300 (3배)' : `${v}`} fontSize={10.5} fill="#e2e8f0" />

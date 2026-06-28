@@ -53,7 +53,7 @@ export default function SasThailandHub() {
             {thaiMetrics.map((k) => (
               <div key={k.label} style={{
                 background: 'rgba(255,255,255,0.03)', borderRadius: '10px', padding: '10px',
-                border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center',
+                border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: k.color }}>{k.value}</div>
                 <div style={{ fontSize: '0.62rem', color: '#94a3b8', marginTop: '2px' }}>{k.label}</div>
@@ -81,7 +81,7 @@ export default function SasThailandHub() {
               {thaiUnion.strategy.map((s) => (
                 <div key={s.item} style={{
                   padding: '8px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center',
+                  border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
                 }}>
                   <div style={{ fontSize: '1rem' }}>{s.icon}</div>
                   <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#e2e8f0', marginTop: '2px' }}>{s.item}</div>

@@ -71,7 +71,7 @@ export default function MscKoreaPositioning() {
             <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#94a3b8', marginBottom: '10px' }}>
               MSC 인증 전후 비교 — 에콰도르 vs 한국
             </div>
-            <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(140,170,255,0.12)' }}>
               {/* Header */}
               <div style={{
                 display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 0.8fr 0.8fr',

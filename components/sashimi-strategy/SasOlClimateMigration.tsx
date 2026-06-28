@@ -38,7 +38,7 @@ export default function SasOlClimateMigration() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="region" fontSize={9} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-10} textAnchor="end" height={42} />
                 <YAxis domain={[-30, 30]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={(v: number) => [`${v > 0 ? '+' : ''}${v}%`, '변화']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`${v > 0 ? '+' : ''}${v}%`, '변화']} />
                 <ReferenceLine y={0} stroke="#64748b" />
                 <Bar dataKey="pct" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {SHIFT.map((d) => <Cell key={d.region} fill={d.color} />)}

@@ -70,7 +70,7 @@ export default function SasGlobalOutlook2030() {
                   <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>{f.value2024}</span>
                   <span style={{ fontSize: '0.7rem', fontWeight: 700, color: f.color }}>{f.forecast}</span>
                   <span style={{
-                    fontSize: '0.6rem', fontWeight: 600, color: '#0f172a',
+                    fontSize: '0.6rem', fontWeight: 600, color: '#0a0f1f',
                     background: f.color, borderRadius: '10px', padding: '2px 6px', textAlign: 'center',
                   }}>{f.cagr}</span>
                 </div>
@@ -118,7 +118,7 @@ export default function SasGlobalOutlook2030() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '0.7rem', fontWeight: 600, color: '#e2e8f0' }}>{m.flag} {m.name}</span>
                     <span style={{
-                      fontSize: '0.65rem', fontWeight: 700, color: '#0f172a',
+                      fontSize: '0.65rem', fontWeight: 700, color: '#0a0f1f',
                       background: m.color, borderRadius: '10px', padding: '1px 6px',
                     }}>CAGR {m.cagr}</span>
                   </div>

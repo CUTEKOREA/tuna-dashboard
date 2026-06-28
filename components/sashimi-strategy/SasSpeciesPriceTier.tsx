@@ -64,7 +64,7 @@ export default function SasSpeciesPriceTier() {
             display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 0.8fr',
             padding: '6px 10px', fontSize: '0.6rem', fontWeight: 600, color: '#64748b',
             textTransform: 'uppercase', letterSpacing: '0.05em',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            borderBottom: '1px solid rgba(140,170,255,0.12)',
           }}>
             <span>어종</span><span>한국 (원/kg)</span><span>미국 ($/kg)</span><span>용도</span><span>자원 상태</span><span>수은</span>
           </div>
@@ -86,7 +86,7 @@ export default function SasSpeciesPriceTier() {
               <div>
                 <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f1f5f9' }}>{s.krPrice}</div>
                 {/* Price bar */}
-                <div style={{ height: '3px', background: 'rgba(255,255,255,0.06)', borderRadius: '2px', marginTop: '3px', width: '100%' }}>
+                <div style={{ height: '3px', background: 'rgba(140,170,255,0.12)', borderRadius: '2px', marginTop: '3px', width: '100%' }}>
                   <div style={{ height: '100%', width: `${s.barWidth}%`, background: s.color, borderRadius: '2px' }} />
                 </div>
               </div>

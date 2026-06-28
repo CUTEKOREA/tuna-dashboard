@@ -48,7 +48,7 @@ export default function SasJapanDemandDecline() {
             {kpis.map((k) => (
               <div key={k.label} style={{
                 background: 'rgba(255,255,255,0.03)', borderRadius: '10px', padding: '10px',
-                border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center',
+                border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: k.color }}>{k.value}</div>
                 <div style={{ fontSize: '0.62rem', color: '#94a3b8', marginTop: '2px' }}>{k.label}</div>

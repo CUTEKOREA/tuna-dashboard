@@ -28,7 +28,7 @@ function ScatterTooltipContent({ active, payload }: any) {
   const d = payload[0].payload;
   return (
     <div style={{
-      background: 'rgba(15,23,42,0.95)',
+      background: 'rgba(20, 28, 52, 0.95)',
       border: '1px solid rgba(255,255,255,0.1)',
       borderRadius: 8,
       padding: 12,

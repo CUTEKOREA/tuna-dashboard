@@ -24,7 +24,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload) return null;
   return (
     <div style={{
-      background: '#1e293b', border: '1px solid #334155', borderRadius: '8px',
+      background: '#1a2442', border: '1px solid #334155', borderRadius: '8px',
       padding: '10px 14px', boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
     }}>
       <div style={{ fontSize: '0.78rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '6px' }}>{label}</div>
@@ -148,7 +148,7 @@ export default function SasKoreaJapanDependency() {
                   name="일본 비중 (%)"
                   stroke="#f59e0b"
                   strokeWidth={2.5}
-                  dot={{ r: 3, fill: '#f59e0b', stroke: '#1e293b', strokeWidth: 1.5 }}
+                  dot={{ r: 3, fill: '#f59e0b', stroke: '#1a2442', strokeWidth: 1.5 }}
                   isAnimationActive={false}
                 />
               </ComposedChart>

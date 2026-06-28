@@ -43,7 +43,7 @@ export default function MscCanadaGrowthCase() {
             {kpis.map((k) => (
               <div key={k.label} style={{
                 background: 'rgba(255,255,255,0.03)', borderRadius: '10px', padding: '12px',
-                border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center',
+                border: '1px solid rgba(140,170,255,0.12)', textAlign: 'center',
               }}>
                 <div style={{ fontSize: '1.2rem', fontWeight: 800, color: k.color, fontVariantNumeric: 'tabular-nums' }}>{k.value}</div>
                 <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '4px' }}>{k.label}</div>

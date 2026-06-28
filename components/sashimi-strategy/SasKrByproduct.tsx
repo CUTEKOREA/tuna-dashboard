@@ -44,7 +44,7 @@ export default function SasKrByproduct() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="part" fontSize={9} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-10} textAnchor="end" height={40} />
                 <YAxis domain={[0, 60]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={(v: number) => [`${v}%`, '비중']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`${v}%`, '비중']} />
                 <Bar dataKey="pct" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {BAL.map((d) => <Cell key={d.part} fill={d.color} />)}
                   <LabelList dataKey="pct" position="top" formatter={(v: number) => `${v}%`} fontSize={10.5} fill="#e2e8f0" />

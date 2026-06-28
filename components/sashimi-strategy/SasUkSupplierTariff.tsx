@@ -41,7 +41,7 @@ export default function SasUkSupplierTariff() {
                 <XAxis dataKey="sup" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
                 <YAxis domain={[0, 40]} tickFormatter={(v: number) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
                   formatter={(v: number, _n: string, p: any) => [`${v}% · 관세 ${p.payload.tariff}`, '수입 점유']}
                 />
                 <Bar dataKey="share" radius={[4, 4, 0, 0]} isAnimationActive={false}>

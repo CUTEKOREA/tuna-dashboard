@@ -47,7 +47,7 @@ export default function SasCoTreatmentImpact() {
               <YAxis dataKey="name" type="category" width={160} tick={{ fontSize: 11, fontWeight: 600, fill: '#94a3b8' }} axisLine={false} tickLine={false} />
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1e293b', color: '#e2e8f0' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1a2442', color: '#e2e8f0' }}
                 formatter={(value: number, name: string, props: any) => [`$${value.toFixed(2)}/lb`, '도매 단가']}
               />
               <ReferenceLine x={4.5} stroke="#10b981" strokeDasharray="3 3" label={{ position: 'top', value: '정상 프리미엄 기준선 ($4.5)', fill: '#10b981', fontSize: 10 }} />

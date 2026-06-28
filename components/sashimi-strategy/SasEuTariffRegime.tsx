@@ -42,7 +42,7 @@ export default function SasEuTariffRegime() {
                 <XAxis dataKey="ch" fontSize={9} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-12} textAnchor="end" height={42} />
                 <YAxis domain={[0, 26]} tickFormatter={(v: number) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
                   formatter={(v: number, _n: string, p: any) => [`${v}% · ${p.payload.note}`, '관세']}
                 />
                 <Bar dataKey="rate" radius={[4, 4, 0, 0]} isAnimationActive={false}>

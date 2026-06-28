@@ -50,7 +50,7 @@ export default function SasUsDemandSeasonality() {
                 <XAxis dataKey="m" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
                 <YAxis domain={[60, 105]} tickFormatter={(v: number) => `${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
                   formatter={(v: number) => [`${v} (인덱스)`, '계절 수요']}
                 />
                 <Area type="monotone" dataKey="idx" name="계절 수요 인덱스" stroke="#38bdf8" strokeWidth={2} fill="url(#colorSeason)" isAnimationActive={false} />

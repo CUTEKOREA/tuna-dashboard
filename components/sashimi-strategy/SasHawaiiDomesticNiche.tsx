@@ -53,7 +53,7 @@ export default function SasHawaiiDomesticNiche() {
                 stroke="#64748b"
               />
               <Tooltip 
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', background: '#1e293b', color: '#e2e8f0' }}
+                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)', background: '#1a2442', color: '#e2e8f0' }}
               />
               <Legend verticalAlign="top" height={36} iconType="circle" />
               <Area 

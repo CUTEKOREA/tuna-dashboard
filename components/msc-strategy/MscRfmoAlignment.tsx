@@ -44,7 +44,7 @@ export default function MscRfmoAlignment() {
       <div style={{ background: 'rgba(30,41,59,0.3)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.04)', overflow: 'hidden' }}>
         <table style={{ width: '100%', fontSize: 14, borderCollapse: 'collapse' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+            <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.12)' }}>
               {columns.map((col) => (
                 <th key={col} style={{ padding: 12, textAlign: 'center', fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {col}
@@ -91,7 +91,7 @@ export default function MscRfmoAlignment() {
         </table>
 
         {/* Summary Row */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: 12, display: 'flex', justifyContent: 'center', gap: 24, fontSize: 12 }}>
+        <div style={{ borderTop: '1px solid rgba(140,170,255,0.12)', padding: 12, display: 'flex', justifyContent: 'center', gap: 24, fontSize: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 500, color: '#94a3b8' }}>
             <div style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#10b981' }} /> 양호
           </div>

@@ -77,7 +77,7 @@ export default function MscCertificationPipeline() {
       padding: '12px',
       background: 'rgba(30,41,59,0.5)',
       borderRadius: 8,
-      border: '1px solid rgba(255,255,255,0.06)',
+      border: '1px solid rgba(140,170,255,0.12)',
       fontSize: '0.75rem',
       color: '#94a3b8',
       textAlign: 'center' as const,

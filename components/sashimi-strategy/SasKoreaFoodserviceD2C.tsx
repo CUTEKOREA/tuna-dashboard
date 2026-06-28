@@ -106,7 +106,7 @@ export default function SasKoreaFoodserviceD2C() {
                 </thead>
                 <tbody>
                   {brands.map((b) => (
-                    <tr key={b.name} style={{ borderBottom: '1px solid #1e293b' }}>
+                    <tr key={b.name} style={{ borderBottom: '1px solid #1a2442' }}>
                       <td style={{ padding: '6px 8px', fontWeight: 600 }}>{b.name}</td>
                       <td style={{ padding: '6px 8px' }}>{b.stores}</td>
                       <td style={{ padding: '6px 8px' }}>{b.type}</td>

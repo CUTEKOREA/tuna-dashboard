@@ -42,7 +42,7 @@ export default function SasUkChannelSplit() {
                 <XAxis dataKey="chain" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
                 <YAxis domain={[0, 200]} tickFormatter={(v: number) => `£${v}M`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
                   formatter={(v: number) => [`£${v}M`, '연매출']}
                 />
                 <Bar dataKey="rev" radius={[4, 4, 0, 0]} isAnimationActive={false}>

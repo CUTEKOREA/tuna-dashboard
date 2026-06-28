@@ -26,7 +26,7 @@ export default function MscDemographicAcceptance() {
   const body = (
     <div style={{ width: '100%', marginTop: '0.5rem' }}>
       <div style={{
-        border: '1px solid rgba(255,255,255,0.06)',
+        border: '1px solid rgba(140,170,255,0.12)',
         borderRadius: '0.75rem',
         overflow: 'hidden',
         background: 'rgba(30,41,59,0.5)',
@@ -35,7 +35,7 @@ export default function MscDemographicAcceptance() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid rgba(140,170,255,0.12)',
         }}>
           <div style={{
             padding: '0.75rem',

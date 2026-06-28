@@ -41,7 +41,7 @@ export default function SasUsMarginWaterfall() {
                 <XAxis dataKey="stage" fontSize={9.5} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-12} textAnchor="end" height={48} />
                 <YAxis domain={[0, 32]} tickFormatter={(v: number) => `$${v}`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
-                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }}
+                  contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
                   formatter={(v: number) => [`$${v}/kg`, '단가']}
                 />
                 <Bar dataKey="price" radius={[4, 4, 0, 0]} isAnimationActive={false}>

@@ -40,7 +40,7 @@ export default function MscSuspensionHistory() {
                 width: 12,
                 height: 12,
                 borderRadius: '50%',
-                border: '2px solid #0f172a',
+                border: '2px solid #0a0f1f',
                 backgroundColor: item.color,
                 boxShadow: item.shadow,
                 zIndex: 10,

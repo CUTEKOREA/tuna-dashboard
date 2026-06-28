@@ -46,7 +46,7 @@ export default function SasJpImportYen() {
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="p" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <YAxis domain={[120, 170]} tickFormatter={(v: number) => `¥${v}`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1e293b', color: '#e2e8f0' }} formatter={(v: number) => [`¥${v}/$`, '환율']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`¥${v}/$`, '환율']} />
                 <Area type="monotone" dataKey="jpy" name="USD/JPY" stroke="#ef4444" strokeWidth={2.5} fill="url(#colorYen)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>
