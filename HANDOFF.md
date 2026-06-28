@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🎨 **2026-06-28 KST (4) — Aurora 미적용 하위디렉터리 보강 (msc/sashimi 66파일)** [CC]:
+> - **이전 "100% Aurora" 보고 정정**: 기존 codemod glob이 `components/*.tsx`(최상위)만 훑어 하위 디렉터리 누락. `components/msc-strategy`(21)·`sashimi-strategy`(45) 위젯이 구 다크 인라인색 잔존(실 렌더 페이지: MscStrategyDashboard·SashimiSteakDashboard·TunaInsightsDashboard).
+> - codemod glob에 `components/**/*.tsx` 재귀 추가 + Fleet*/Unloading*([AG] 미커밋 WIP) 보호 가드. 81건 치환. 렌더 대상 구 다크색 잔존 **0** 확인. 빌드 EXIT 0.
+> - **Fleet/Unloading 미변경 검증**: codemod 타겟에 실제 Fleet/Unloading 0개(이름에 Fleet 든 sashimi 2개만 포함). [AG] WIP 보존.
+> - commit 069efc7 push → 라이브 배포.
+> - 참고: claude.ai/design 34카드 카탈로그는 "코드의 거울"(디자인시스템 문서화)이지 라이브에 박는 별개 기능 아님 — 라이브 비주얼=Aurora 테마+토큰/컴포넌트 단일화.
+
 > 🚢 **2026-06-28 KST (3) — 김 국가별 수출 LIVE화 + 조미김 별도 라우트 + 적대검증** [CC]:
 > - **Task1 (마른김 국가별 LIVE)**: `/api/kim/customs` destIsLive 정상화. 근본원인=기존 코드가 `<statKor>`(품목명 "건조한 것")을 국가로 오인 → 미국/일본 매칭 0 → destIsLive 항상 false. `<statCd>`/`<statCdCntnKor1>`(국가코드/명) 기반 동적 top-6+기타로 교체.
 > - **종 혼입 제거(L-04)**: HS 1212.21(6자리)은 "식용 해조류" 바스켓(김 ~77%·미역·다시마·기타 혼재) 실측 확인 → `<hsCd>` prefix `1212211`(김류)만 집계, 미역·다시마 배제. 단가 오염($16.6→$25.2/kg) 교정.
