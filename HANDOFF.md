@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 📣 **2026-07-01 KST — AdSense 코드 정식 head 적용 + ads.txt 추가** [CC]:
+> - Google AdSense 안내 코드와 맞게 `app/layout.tsx`의 `next/script` 기반 삽입을 일반 `<script async ... crossorigin="anonymous">`로 교체. 기존 `google-adsense-account` 메타(`ca-pub-8056702374530895`) 유지.
+> - `public/ads.txt` 신규 추가: `google.com, pub-8056702374530895, DIRECT, f08c47fec0942fa0`.
+> - 검증: `npm run build` 통과. 로컬 `/` HTML에서 AdSense script와 메타 확인, `/ads.txt`가 `text/plain` 200으로 응답 확인. **프로덕션 배포 없음**.
+
 > 🔐 **2026-07-01 KST — 공개 메뉴 전환 + 실시간 운영 4메뉴 비밀번호 게이트** [CC]:
 > - 사용자 요청에 따라 전체 Supabase 로그인 의존을 우회하고, **실시간 운영 4개 메뉴만** 비밀번호 게이트 적용: `market`(시장 동향) · `fleet`(선단 운영) · `unloading`(하역 현황) · `logistics`(물류·가공).
 > - 비밀번호: `349900`. 같은 탭 세션에서는 한 번 통과하면 네 운영 메뉴가 함께 열리고, 사이드바 하단의 "실시간 운영 잠금"으로 재잠금 가능.
