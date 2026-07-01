@@ -6,7 +6,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef,  Octagon, Box, TestTube, ShieldCheck} from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { playVHFRadioChatter } from '../lib/audio';
 import { motion } from 'framer-motion';
 
@@ -93,9 +93,36 @@ const initialChartData = [
   { month: '26-Q2', import: 38000, export: 28000, priceHist: 2000, brentPriceHist: 785, priceEst: 2000, note: '전쟁 발발 (지정학 리스크)' },
 ];
 
+const VALID_MENUS = [
+  'market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi',
+  'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa',
+  'mangosteen', 'chicken', 'pork', 'beef', 'whelk', 'kim', 'used-car', 'pollock',
+  'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market',
+  'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak',
+] as const;
+
+type ActiveMenu = (typeof VALID_MENUS)[number];
+
+const MENU_TITLES: Record<string, string> = {
+  'market': '시장 동향', 'fleet': '선단 운영', 'logistics': '물류·가공',
+  'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
+  'squid': '오징어', 'jukkumi': '주꾸미', 'octopus': '낙지', 'pollock': '명태',
+  'flatfish': '가자미', 'shrimp': '새우', 'salmon': '연어', 'ranching': '참다랑어 축양',
+  'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓',
+  'cold-storage': '냉동창고', 'msc': 'MSC 전략', 'sashimi-steak': '사시미/스테이크 전략',
+  'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근',
+  'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'pork': '돼지고기',
+  'beef': '소고기', 'whelk': '골뱅이', 'kim': '김', 'used-car': '중고차',
+  'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스',
+  'research-lab': '연구 재료',
+};
+
+const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(['market', 'fleet', 'unloading', 'logistics']);
+const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
+const OPERATION_PASSWORD = '349900';
+
 
 export default function Home() {
-  const router = useRouter();
   const [chartData, setChartData] = useState<any[]>(initialChartData);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isCrisisMode, setIsCrisisMode] = useState(false);
@@ -104,20 +131,14 @@ export default function Home() {
   const [fxData, setFxData] = useState({ usd_krw: 0, date: '', loading: true });
   const [liveData, setLiveData] = useState<any>(null);
   
-  // Auth state
-  const [session, setSession] = useState<any>(
-    (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) ? { user: { email: 'sillavip@sla.co.kr' } } : null
-  );
-  // 세션 확정 여부 — getSession() 완료 전에는 대시보드/로그인 어느 쪽도 마운트하지 않음 (플래시 방지)
-  const [authChecked, setAuthChecked] = useState<boolean>(
-    (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')))
-  );
+  // 전체 Supabase 로그인 대신 실시간 운영 4개 메뉴만 세션 비밀번호로 잠근다.
+  const [session, setSession] = useState<any>({ user: { email: 'public@silla.local' } });
+  const authChecked = true;
   const pathname = usePathname();
   
-  const [activeMenu, setActiveMenu] = useState<'market' | 'fleet' | 'logistics' | 'unloading' | 'value-chain' | 'mackerel' | 'galchi' | 'squid' | 'jukkumi' | 'octopus' | 'cashew' | 'cassava' | 'garlic' | 'carrot' | 'cocoa' | 'mangosteen' | 'chicken' | 'pork' | 'beef' | 'whelk' | 'kim' | 'used-car' | 'pollock' | 'flatfish' | 'shrimp' | 'salmon' | 'seasia-oem' | 'fleet-strategy' | 'korea-market' | 'cold-storage' | 'research-lab' | 'purse-seiner-db' | 'msc' | 'sashimi-steak'>(() => {
+  const [activeMenu, setActiveMenu] = useState<ActiveMenu>(() => {
     const path = pathname?.replace('/', '');
-    const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'beef', 'whelk', 'kim', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak'];
-    if (path && validMenus.includes(path)) return path as any;
+    if (path && (VALID_MENUS as readonly string[]).includes(path)) return path as ActiveMenu;
     return 'market';
   });
 
@@ -126,12 +147,11 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const currentPath = window.location.pathname.replace('/', '');
-      const validMenus = ['market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen', 'chicken', 'pork', 'beef', 'whelk', 'kim', 'used-car', 'pollock', 'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market', 'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak'];
       
       if (isFirstMount.current) {
         isFirstMount.current = false;
-        if (currentPath && validMenus.includes(currentPath) && currentPath !== activeMenu) {
-          setActiveMenu(currentPath as any);
+        if (currentPath && (VALID_MENUS as readonly string[]).includes(currentPath) && currentPath !== activeMenu) {
+          setActiveMenu(currentPath as ActiveMenu);
           return;
         }
       }
@@ -142,13 +162,19 @@ export default function Home() {
     }
   }, [activeMenu]);
 
-  const handleMenuClick = (menu: any) => {
+  const handleMenuClick = (menu: ActiveMenu) => {
     if (activeMenu === menu) {
       window.location.reload();
     } else {
       setActiveMenu(menu);
     }
   };
+  const [operationAccessGranted, setOperationAccessGranted] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.sessionStorage.getItem(OPERATION_ACCESS_STORAGE_KEY) === 'granted';
+  });
+  const [operationPassword, setOperationPassword] = useState('');
+  const [operationAuthError, setOperationAuthError] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -166,39 +192,13 @@ export default function Home() {
   // Scroll to top and update page title when activeMenu changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    const titles: Record<string, string> = {
-      'market': '시장 동향', 'fleet': '선단 운영', 'logistics': '물류·가공',
-      'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
-      'squid': '오징어', 'jukkumi': '주꾸미', 'octopus': '낙지', 'pollock': '명태', 'flatfish': '가자미', 'shrimp': '새우', 'salmon': '연어',
-      'ranching': '참다랑어 축양', 'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓', 'cold-storage': '냉동창고', 'msc': 'MSC 전략', 'sashimi-steak': '사시미/스테이크 전략',
-      'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근', 'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'pork': '돼지고기', 'beef': '소고기', 'whelk': '골뱅이', 'kim': '김', 'used-car': '중고차', 'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스', 'research-lab': '연구 재료',
-    };
-    document.title = `${titles[activeMenu] || activeMenu} | 참치왕국`;
+    setOperationAuthError('');
+    setOperationPassword('');
+    document.title = `${MENU_TITLES[activeMenu] || activeMenu} | 참치왕국`;
   }, [activeMenu]);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark');
-
-    // Supabase auth listener
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) {
-        setSession({ user: { email: 'sillavip@sla.co.kr' } });
-      } else {
-        setSession(session);
-      }
-      setAuthChecked(true);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (process.env.NODE_ENV === 'development' || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))) {
-        setSession({ user: { email: 'sillavip@sla.co.kr' } });
-      } else {
-        setSession(session);
-      }
-      setAuthChecked(true);
-    });
     
       // Fetch live MGO Price
       async function fetchMgoPrice() {
@@ -259,10 +259,6 @@ export default function Home() {
         }
       })
       .catch(err => console.error("Failed to fetch live data", err));
-
-    return () => {
-      subscription.unsubscribe();
-    };
   }, []);
 
   useEffect(() => {
@@ -326,6 +322,26 @@ export default function Home() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setSession(null);
+  };
+
+  const handleOperationPasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (operationPassword.trim() !== OPERATION_PASSWORD) {
+      setOperationAuthError('비밀번호를 다시 확인해주세요.');
+      return;
+    }
+
+    window.sessionStorage.setItem(OPERATION_ACCESS_STORAGE_KEY, 'granted');
+    setOperationAccessGranted(true);
+    setOperationAuthError('');
+    setOperationPassword('');
+  };
+
+  const handleOperationLock = () => {
+    window.sessionStorage.removeItem(OPERATION_ACCESS_STORAGE_KEY);
+    setOperationAccessGranted(false);
+    setOperationPassword('');
+    setOperationAuthError('');
   };
 
   const toggleTheme = () => {
@@ -399,6 +415,11 @@ export default function Home() {
   const ambientAccent = (['cashew', 'cocoa'].includes(activeMenu)) ? 'emerald' as const
     : (['mackerel', 'galchi', 'fleet'].includes(activeMenu)) ? 'cyan' as const
     : 'cyan' as const;
+  const isOperationMenuLocked = PROTECTED_OPERATION_MENUS.has(activeMenu) && !operationAccessGranted;
+  const activeMenuTitle = MENU_TITLES[activeMenu] || activeMenu;
+  const isPanelActive = (menu: ActiveMenu) => (
+    activeMenu === menu && (!PROTECTED_OPERATION_MENUS.has(menu) || operationAccessGranted)
+  );
 
   return (
     <div className={styles.appWrapper}>
@@ -773,33 +794,33 @@ export default function Home() {
           <span>신라교역 50년사</span>
         </button>
         
-        {/* User / Meta in sidebar bottom */}
-        {session ? (
-            <button 
-              onClick={handleLogout}
-              style={{
-                fontSize: '12px',
-                padding: '10px 12px',
-                backgroundColor: 'rgba(239, 68, 68, 0.05)',
-                border: '1px solid var(--accent-danger)',
-                borderRadius: '8px',
-                color: 'var(--accent-danger)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                width: '100%',
-                marginTop: '1rem'
-              }}
-            >
-              <Lock size={14} /> Sign Out
-            </button>
-          ) : (
-            <div style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '1rem' }}>
-              <Lock size={14} /> Secured View
-            </div>
-          )}
+        {/* Operational access state */}
+        {operationAccessGranted ? (
+          <button
+            onClick={handleOperationLock}
+            style={{
+              fontSize: '12px',
+              padding: '10px 12px',
+              backgroundColor: 'rgba(239, 68, 68, 0.05)',
+              border: '1px solid rgba(239, 68, 68, 0.35)',
+              borderRadius: '8px',
+              color: 'var(--accent-danger)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              width: '100%',
+              marginTop: '1rem'
+            }}
+          >
+            <Lock size={14} /> 실시간 운영 잠금
+          </button>
+        ) : (
+          <div style={{ fontSize: '12px', color: 'var(--text-muted)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', marginTop: '1rem' }}>
+            <Lock size={14} /> 실시간 운영 잠김
+          </div>
+        )}
       </aside>
 
       {/* Main Content Area */}
@@ -820,7 +841,72 @@ export default function Home() {
             </div>
           ) : session ? (
           <>
-          {activeMenu === 'market' && (
+          {isOperationMenuLocked && (
+            <div className={styles.landingOverlay} style={{ position: 'relative', inset: 'auto', justifyContent: 'center', minHeight: 'calc(100vh - 80px)', padding: 'clamp(32px, 8vh, 92px) var(--space-4)' }}>
+              <div className={styles.loginPanel} style={{ width: 'min(420px, 100%)' }}>
+                <Lock size={34} strokeWidth={1.5} style={{ margin: '0 auto 16px auto', color: 'var(--text-main)' }} />
+                <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px', color: 'var(--text-main)' }}>
+                  {activeMenuTitle} 접근 확인
+                </h2>
+                <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '22px', lineHeight: 1.6 }}>
+                  실시간 운영 메뉴는 내부 확인 후 열람할 수 있습니다.
+                </p>
+
+                <form onSubmit={handleOperationPasswordSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <input
+                    type="password"
+                    inputMode="numeric"
+                    placeholder="운영 비밀번호"
+                    value={operationPassword}
+                    onChange={(e) => setOperationPassword(e.target.value)}
+                    autoFocus
+                    style={{
+                      padding: '12px 14px',
+                      borderRadius: '8px',
+                      border: '1px solid var(--panel-border)',
+                      backgroundColor: 'rgba(0,0,0,0.3)',
+                      color: 'var(--text-main)',
+                      fontSize: '14px',
+                      outline: 'none',
+                      transition: 'border-color 0.2s'
+                    }}
+                    required
+                  />
+                  {operationAuthError && (
+                    <div style={{ color: 'var(--accent-danger)', fontSize: '12px', textAlign: 'left', marginTop: '-4px' }}>
+                      {operationAuthError}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    style={{
+                      padding: '14px',
+                      borderRadius: '8px',
+                      backgroundColor: 'var(--accent-primary)',
+                      color: '#fff',
+                      fontWeight: 'bold',
+                      fontSize: '14px',
+                      border: 'none',
+                      cursor: 'pointer',
+                      marginTop: '8px',
+                      transition: 'background-color 0.2s, transform 0.1s'
+                    }}
+                    onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                    onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    확인
+                  </button>
+                </form>
+
+                <div style={{ marginTop: '18px', fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  보호 대상: 시장 동향 · 선단 운영 · 하역 현황 · 물류·가공
+                </div>
+              </div>
+            </div>
+          )}
+
+          {!isOperationMenuLocked && activeMenu === 'market' && (
             <>
               <LiveTicker />
             </>
@@ -834,15 +920,15 @@ export default function Home() {
             }}>
               <PageTransition activeKey={activeMenu}>
 
-              <KeepAlivePanel active={activeMenu === 'market'}>
+              <KeepAlivePanel active={isPanelActive('market')}>
                 <MarketDashboard />
               </KeepAlivePanel>
 
-              <KeepAlivePanel active={activeMenu === 'fleet'}>
+              <KeepAlivePanel active={isPanelActive('fleet')}>
                 <FleetCommandCenter />
               </KeepAlivePanel>
 
-              <KeepAlivePanel active={activeMenu === 'logistics'}>
+              <KeepAlivePanel active={isPanelActive('logistics')}>
                 <LogisticsDashboard />
               </KeepAlivePanel>
 
@@ -936,7 +1022,7 @@ export default function Home() {
                 <UsedCarExport />
               </KeepAlivePanel>
 
-              <KeepAlivePanel active={activeMenu === 'unloading'}>
+              <KeepAlivePanel active={isPanelActive('unloading')}>
                 <UnloadingStatus />
               </KeepAlivePanel>
 

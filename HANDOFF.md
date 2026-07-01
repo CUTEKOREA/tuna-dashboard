@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔐 **2026-07-01 KST — 공개 메뉴 전환 + 실시간 운영 4메뉴 비밀번호 게이트** [CC]:
+> - 사용자 요청에 따라 전체 Supabase 로그인 의존을 우회하고, **실시간 운영 4개 메뉴만** 비밀번호 게이트 적용: `market`(시장 동향) · `fleet`(선단 운영) · `unloading`(하역 현황) · `logistics`(물류·가공).
+> - 비밀번호: `349900`. 같은 탭 세션에서는 한 번 통과하면 네 운영 메뉴가 함께 열리고, 사이드바 하단의 "실시간 운영 잠금"으로 재잠금 가능.
+> - 잠금 상태에서는 보호 대상 `KeepAlivePanel`이 active 되지 않아 운영 대시보드 컴포넌트가 마운트되지 않음. 공개 메뉴(`/galchi` 등)는 비밀번호 없이 렌더 확인.
+> - 검증: `npm run build` 통과. 로컬 `127.0.0.1:3001`에서 `/market` 잠금·오답 에러·`349900` 해제·`/galchi` 공개·새 탭 `/fleet` 잠금 확인. **프로덕션 배포 없음**.
+
 > 🎨 **2026-06-28 KST (5) — 전 메뉴 Aurora 전수 검증 + 루트배경/레거시토큰 정리** [CC]:
 > - 사용자 스크린샷 제보(주꾸미 순수검정·낙지/오징어 평면다크)로 **진짜 원인 발견**: codemod 색치환은 됐으나 대시보드 루트 div가 `backgroundColor: var(--bg-color)`(불투명)로 body Aurora+AmbientBackground를 가림.
 > - **15개 대시보드 루트 → transparent**(commit 8bd9608): Tuna·Squid·Jukkumi·Octopus·Mackerel·Galchi·Shrimp·Mangosteen·Cocoa·Garlic·ColdStorage·MscStrategy·SashimiSteak·ResearchLab + Shrimp 타임라인.
