@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-02 KST — 개선 기획서 + P0 품질 안전망 착수** [CC]:
+> - **기획서**: docs/2026_dashboard_radical_improvement_proposal.md (실측 35대시보드·422위젯·144라우트·73,936 LOC / 부채: 테스트0·lint off·@ts-nocheck 31·직접JSON import 107·ignoreBuildErrors=true). 6축 로드맵.
+> - **P0 착수**: vitest4+zod4. lib/contracts/kcs.ts(KCS 응답 계약). __tests__/kim-customs.contract.test.ts(김 2라우트, fetch모킹 결정론적, 2/2 통과). package.json lint 복구·typecheck·test. .bak_api 6제거. app/api/_shared/hs-codes.ts(L-04 HS 단일출처 초안).
+> - **미배포(로컬)**. 다음: 계약테스트 확대(참치·고등어 등 shape 상이→스키마 분리), @ts-nocheck 31 ratchet, ignoreBuildErrors 단계 해제.
+
 > 🧭 **2026-07-02 KST — robots.txt + sitemap.xml 전용 메타 라우트 추가** [CC]:
 > - AdSense/Google 크롤러가 `/robots.txt`, `/sitemap.xml`을 요청할 때 `[category]` 대시보드 HTML로 빠지지 않도록 `app/robots.ts`, `app/sitemap.ts` 추가.
 > - robots: 전체 크롤러 허용, `Mediapartners-Google`·`Google-Display-Ads-Bot` 명시 허용, sitemap 위치 지정.
