@@ -117,7 +117,7 @@ const MENU_TITLES: Record<string, string> = {
   'research-lab': '연구 재료',
 };
 
-const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(['market', 'fleet', 'unloading', 'logistics']);
+const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(['fleet', 'unloading', 'logistics']);
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = '349900';
 
@@ -139,7 +139,7 @@ export default function Home() {
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(() => {
     const path = pathname?.replace('/', '');
     if (path && (VALID_MENUS as readonly string[]).includes(path)) return path as ActiveMenu;
-    return 'market';
+    return 'value-chain';
   });
 
   const isFirstMount = React.useRef(true);
