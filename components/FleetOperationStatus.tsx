@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './FieldTools.module.css';
-import { Ship, Anchor, MapPin, Package, Calendar } from 'lucide-react';
+import { Anchor } from 'lucide-react';
 
 export default function FleetOperationStatus() {
   const [activeTab, setActiveTab] = useState('pacific');
@@ -87,7 +87,7 @@ export default function FleetOperationStatus() {
         ))}
       </div>
 
-      <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
+      <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '8px', padding: '15px', border: '1px solid rgba(140,170,255,0.10)' }}>
         {activeTab === 'pacific' && (
           <table style={{ width: '100%', fontSize: '13px', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
@@ -101,7 +101,7 @@ export default function FleetOperationStatus() {
             </thead>
             <tbody>
               {pacificFleet.map((v, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
                   <td style={{ padding: '8px', color: '#38bdf8' }}>{v.pos}</td>
                   <td style={{ padding: '8px', color: v.catch !== '-' ? 'var(--color-success)' : '#64748b' }}>{v.catch !== '-' ? `${v.catch} 톤` : '-'}</td>
@@ -126,7 +126,7 @@ export default function FleetOperationStatus() {
             </thead>
             <tbody>
               {atlanticFleet.map((v, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
                   <td style={{ padding: '8px', color: '#38bdf8' }}>{v.pos}</td>
                   <td style={{ padding: '8px', color: v.catch !== '-' ? 'var(--color-success)' : '#64748b' }}>{v.catch !== '-' ? `${v.catch} 톤` : '-'}</td>
@@ -149,7 +149,7 @@ export default function FleetOperationStatus() {
             </thead>
             <tbody>
               {longlineFleet.map((v, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
                   <td style={{ padding: '8px', color: 'var(--color-warning)' }}>{v.load}</td>
                   <td style={{ padding: '8px', color: '#cbd5e1' }}>{v.note}</td>
@@ -170,7 +170,7 @@ export default function FleetOperationStatus() {
             </thead>
             <tbody>
               {carrierFleet.map((v, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '8px', fontWeight: 'bold', color: '#e2e8f0' }}>{v.name}</td>
                   <td style={{ padding: '8px', color: 'var(--color-success)' }}>{v.load}</td>
                   <td style={{ padding: '8px', color: '#cbd5e1' }}>{v.note}</td>

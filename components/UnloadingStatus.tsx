@@ -1,12 +1,18 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import styles from './UnloadingStatus.module.css';
-import { Ship, Anchor, AlertCircle, BarChart3, Clock, PackageCheck, TrendingDown, Thermometer, MapPin } from 'lucide-react';
-import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, Brush } from 'recharts';
+import { Ship, Anchor, AlertCircle, BarChart3, Clock, PackageCheck, TrendingDown, Thermometer, MapPin, FileText, Play, Smartphone } from 'lucide-react';
+import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import TermTooltip from './TermTooltip';
-import GensanVesselStatus from './GensanVesselStatus';
+
 import HarborBanner from './HarborBanner';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
+
+// Lazy-load enhancement components
+const UnloadingReportGenerator = lazy(() => import('./UnloadingReportGenerator'));
+const UnloadingAnalytics = lazy(() => import('./UnloadingAnalytics'));
+const UnloadingTimelineReplay = lazy(() => import('./UnloadingTimelineReplay'));
+const UnloadingFieldMode = lazy(() => import('./UnloadingFieldMode'));
 
 // Vessel Stowage Plans
 const vesselStowagePlans: Record<string, Record<string, string[]>> = {
@@ -506,6 +512,9 @@ export default function UnloadingStatus() {
   const [selectedHold, setSelectedHold] = useState<string | null>(null);
   const [tooltipData, setTooltipData] = useState<any>(null);
   const [apiError, setApiError] = useState<string | null>(null);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showReplayModal, setShowReplayModal] = useState(false);
+  const [showFieldMode, setShowFieldMode] = useState(false);
 
   useEffect(() => {
     let searchParams = '';
@@ -917,12 +926,57 @@ export default function UnloadingStatus() {
     );
   }
 
+  // Field mode check
+  if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('mode') === 'field') {
+    return (
+      <Suspense fallback={<div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>로딩 중...</div>}>
+        <UnloadingFieldMode
+          vessels={vesselsList.map(v => ({ id: v.id, name: v.name, reportedTotal: v.reportedTotal, actualTotal: v.actualTotal, status: v.status, timeline: v.timeline || [] }))}
+          onClose={() => { if (typeof window !== 'undefined') { window.history.replaceState({}, '', window.location.pathname); window.location.reload(); } }}
+        />
+      </Suspense>
+    );
+  }
+
   return (
     <div className={styles.container}>
+      {/* Enhancement Modals */}
+      <Suspense fallback={null}>
+        {showReportModal && (
+          <UnloadingReportGenerator
+            vesselData={selectedData}
+            vesselId={vesselId}
+            onClose={() => setShowReportModal(false)}
+          />
+        )}
+        {showReplayModal && (
+          <UnloadingTimelineReplay
+            vesselData={selectedData}
+            vesselId={vesselId}
+            holdsData={holdsData}
+            onClose={() => setShowReplayModal(false)}
+          />
+        )}
+        {showFieldMode && (
+          <UnloadingFieldMode
+            vessels={vesselsList.map(v => ({ id: v.id, name: v.name, reportedTotal: v.reportedTotal, actualTotal: v.actualTotal, status: v.status, timeline: v.timeline || [] }))}
+            onClose={() => setShowFieldMode(false)}
+          />
+        )}
+      </Suspense>
+
       {/* 1. Macro View Header */}
       <div className={styles.pageTitle}>
         <Anchor size={28} color="var(--accent-primary)" />
         하역 현황 관제 (Fleet Unloading Center)
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px' }}>
+          <button
+            onClick={() => setShowFieldMode(true)}
+            style={{ padding: '6px 14px', borderRadius: '20px', border: '1px solid rgba(56, 189, 248, 0.3)', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', transition: 'all 0.2s' }}
+          >
+            <Smartphone size={14} /> 현장 모드
+          </button>
+        </div>
       </div>
 
       <div className={styles.execGrid}>
@@ -1032,9 +1086,25 @@ export default function UnloadingStatus() {
             <TrendingDown color="var(--accent-primary)" />
             {selectedData.name} - 상세 하역 분석
           </div>
-          <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-            <Clock size={14} style={{display:'inline', marginRight: '4px'}}/> 
-            {selectedData.dateRange} | 판매처: {selectedData.buyer || '-'}{selectedBaseDate ? ` | 최종 보고 ${selectedBaseDate}` : ''}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+              <Clock size={14} style={{display:'inline', marginRight: '4px'}}/> 
+              {selectedData.dateRange} | 판매처: {selectedData.buyer || '-'}{selectedBaseDate ? ` | 최종 보고 ${selectedBaseDate}` : ''}
+            </div>
+            <div style={{ display: 'flex', gap: '6px' }}>
+              <button
+                onClick={() => setShowReportModal(true)}
+                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(56, 189, 248, 0.3)', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
+              >
+                <FileText size={13} /> 보고서
+              </button>
+              <button
+                onClick={() => setShowReplayModal(true)}
+                style={{ padding: '5px 12px', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.3)', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' }}
+              >
+                <Play size={13} /> 리플레이
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1094,7 +1164,7 @@ export default function UnloadingStatus() {
                        L 700,95 C 730,95 765,125 780,155 L 780,160 C 775,175 760,180 750,180 L 730,180
                        L 710,215 C 700,220 680,220 670,220 
                        L 120,220 C 90,220 60,200 60,155 Z" 
-                    fill="rgba(15, 23, 42, 0.45)" 
+                    fill="rgba(20, 28, 52, 0.45)" 
                     stroke="rgba(255, 255, 255, 0.15)" 
                     strokeWidth="2" 
                   />
@@ -1222,7 +1292,7 @@ export default function UnloadingStatus() {
                       left: `${tooltipData.pctX}%`,
                       top: `${tooltipData.pctY}%`,
                       transform: 'translate(-50%, -100%)',
-                      backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                      backgroundColor: 'rgba(20, 28, 52, 0.95)',
                       border: '1px solid rgba(56, 189, 248, 0.4)',
                       borderRadius: '8px',
                       padding: '12px',
@@ -1248,7 +1318,7 @@ export default function UnloadingStatus() {
                     )}
                     <div style={{ marginBottom: '4px' }}>적재업체: <strong>{tooltipData.shippers.join(', ')}</strong></div>
                     <div style={{ marginBottom: '4px' }}>하역 진행: <strong>{tooltipData.actualAmount.toFixed(1)} MT / {tooltipData.nominalCapacity.toFixed(0)} MT</strong> ({(tooltipData.nominalCapacity > 0 ? (tooltipData.actualAmount / tooltipData.nominalCapacity) * 100 : 0).toFixed(1)}%)</div>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '4px', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', borderTop: '1px solid rgba(140,170,255,0.10)', paddingTop: '4px', marginTop: '4px' }}>
                       {tooltipData.qualityDescription}
                     </div>
                   </div>
@@ -1314,7 +1384,7 @@ export default function UnloadingStatus() {
                           <span>{sp.name}</span>
                           <span style={{ color: 'var(--text-muted)' }}>{sp.holdActual.toFixed(1)} / {sp.holdNominal.toFixed(0)} MT</span>
                         </div>
-                        <div style={{ width: '100%', background: 'rgba(255, 255, 255, 0.05)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
+                        <div style={{ width: '100%', background: 'rgba(140, 170, 255, 0.10)', height: '4px', borderRadius: '2px', overflow: 'hidden' }}>
                           <div 
                             style={{ 
                               width: `${sp.percent}%`, 
@@ -1392,7 +1462,7 @@ export default function UnloadingStatus() {
           return (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}>
               {/* Chart - Left */}
-              <div style={{ flex: '1 1 600px', minWidth: 0, background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+              <div style={{ flex: '1 1 600px', minWidth: 0, background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', overflow: 'hidden' }}>
                 <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
                 <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '8px' }}>
                   <div style={{ width: `${Math.max(chartData.length * 55, 750)}px`, height: '350px' }}>
@@ -1402,7 +1472,7 @@ export default function UnloadingStatus() {
                       <XAxis dataKey="name" stroke="#94a3b8" fontSize={11} tickLine={false} />
                       <YAxis stroke="#94a3b8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)}k` : `${v}`} />
                       <RechartsTooltip 
-                        contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
+                        contentStyle={{ backgroundColor: '#0a0f1f', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#fff', fontSize: '13px' }}
                         itemStyle={{ color: '#e2e8f0' }}
                         formatter={(value: any, name: any) => [`${Number(value).toLocaleString()} MT`, name]}
                       />
@@ -1416,7 +1486,7 @@ export default function UnloadingStatus() {
 
               {/* Insights Panel - Right */}
               <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--accent-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <BarChart3 size={16} /> 하역 효율 지표 <BaseDateTag date={selectedBaseDate} />
                   </h4>
@@ -1437,7 +1507,7 @@ export default function UnloadingStatus() {
                 </div>
 
                 {/* Dynamic ETA gauge */}
-                <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)' }}>
                   <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Clock size={16} /> 진척 현황 및 예측 (ETA) <BaseDateTag date={selectedBaseDate} />
                   </h4>
@@ -1465,7 +1535,7 @@ export default function UnloadingStatus() {
                 </div>
 
                 {totalCanneryAmount > 0 && (
-                  <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255,255,255,0.05)', flex: 1 }}>
+                  <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', flex: 1 }}>
                     <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <MapPin size={16} /> 캐너리(양륙처) 비중 <BaseDateTag date={selectedBaseDate} />
                     </h4>
@@ -1493,7 +1563,7 @@ export default function UnloadingStatus() {
         })()}
 
         {/* Timeline Log - Stylized Vertical Shipping Lane */}
-        <div style={{ background: 'rgba(15, 23, 42, 0.3)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(255,255,255,0.05)', position: 'relative' }}>
+        <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(140,170,255,0.10)', position: 'relative' }}>
           <h4 style={{ marginBottom: '20px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>작업 기록 (Vertical Shipping Lane Timeline) <BaseDateTag date={selectedBaseDate} /></span>
             <span style={{ fontSize: '0.8rem' }}><TermTooltip term="어창(Hold)" description="하역 중인 선박의 냉동창고 번호입니다." /></span>
@@ -1510,7 +1580,7 @@ export default function UnloadingStatus() {
                     <stop offset="100%" stopColor="#10b981" />
                   </linearGradient>
                 </defs>
-                <line x1="4" y1="0" x2="4" y2="100%" stroke="rgba(255, 255, 255, 0.05)" strokeWidth="4" strokeLinecap="round" />
+                <line x1="4" y1="0" x2="4" y2="100%" stroke="rgba(140, 170, 255, 0.10)" strokeWidth="4" strokeLinecap="round" />
                 <line 
                   x1="4" y1="0" 
                   x2="4" y2="100%" 
@@ -1581,7 +1651,7 @@ export default function UnloadingStatus() {
                       )}
                     </div>
 
-                    <div className={styles.timelineLog} style={{ flex: 1, margin: 0, background: 'rgba(30, 41, 59, 0.45)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '10px' }}>
+                    <div className={styles.timelineLog} style={{ flex: 1, margin: 0, background: 'rgba(30, 41, 59, 0.45)', border: '1px solid rgba(140, 170, 255, 0.10)', borderRadius: '10px' }}>
                       <div className={styles.logDate} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span>{t.date} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--text-muted)', marginLeft: '8px' }}>{t.time}</span></span>
                         {t.dailyAmount > 0 && (
@@ -1624,9 +1694,17 @@ export default function UnloadingStatus() {
         )}
       </div>
 
-      <div style={{ marginTop: '16px' }}>
-        <GensanVesselStatus />
-      </div>
+      {/* Enhanced Analytics Section */}
+      <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center', color: 'var(--text-muted)' }}>분석 패널 로딩 중...</div>}>
+        <UnloadingAnalytics
+          selectedVessel={selectedData}
+          vesselId={vesselId}
+          allVessels={data}
+          holdsData={holdsData}
+        />
+      </Suspense>
+
+
     </div>
   );
 }

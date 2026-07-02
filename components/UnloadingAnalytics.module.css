@@ -1,0 +1,442 @@
+/* UnloadingAnalytics — Glassmorphic Dark Mode */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: var(--text-main);
+}
+
+/* ─── Tab Bar ─── */
+.tabBar {
+  display: flex;
+  gap: 4px;
+  background: rgba(20, 28, 52, 0.5);
+  border: 1px solid rgba(140, 170, 255, 0.12);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tabActive {
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.15) 0%,
+    rgba(99, 102, 241, 0.1) 100%
+  );
+  color: #f8fafc;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(140, 170, 255, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+/* ─── Tab Content ─── */
+.tabContent {
+  max-height: 680px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.tabContent::-webkit-scrollbar {
+  width: 5px;
+}
+.tabContent::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.tabContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.tabContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ─── Section ─── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.sectionSubtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: -8px;
+}
+
+/* ─── Glass Card ─── */
+.card {
+  background: rgba(20, 28, 52, 0.3);
+  border: 1px solid rgba(140, 170, 255, 0.10);
+  border-radius: 12px;
+  padding: 16px;
+  transition: border-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: rgba(56, 189, 248, 0.15);
+}
+
+.cardTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── Benchmark Table ─── */
+.benchmarkTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.benchmarkTable th {
+  text-align: left;
+  padding: 8px 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 28, 52, 0.8);
+  white-space: nowrap;
+}
+
+.benchmarkTable td {
+  padding: 8px 10px;
+  color: var(--text-secondary, #cbd5e1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background 0.2s ease;
+}
+
+.benchmarkTable tr:hover td {
+  background: rgba(56, 189, 248, 0.04);
+}
+
+.highlightRow td {
+  background: rgba(56, 189, 248, 0.08) !important;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badgeProgress {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.badgeCompleted {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* ─── Comparison Message ─── */
+.comparisonMsg {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-primary);
+  background: rgba(56, 189, 248, 0.06);
+  color: var(--text-secondary, #cbd5e1);
+  margin-top: 8px;
+}
+
+/* ─── Daily Target ─── */
+.targetRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.targetValue {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.targetUnit {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.targetIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.indicatorGreen {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.indicatorYellow {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.indicatorRed {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ─── Chart Container ─── */
+.chartWrap {
+  background: rgba(10, 15, 30, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 12px 8px 4px 0;
+  min-height: 320px;
+  width: 100%;
+}
+
+/* ─── Quality Summary ─── */
+.qualitySummary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qualityRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.qualityIcon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.tempStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.tempStatCard {
+  text-align: center;
+  padding: 10px 8px;
+  background: rgba(20, 28, 52, 0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tempStatLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.tempStatValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+/* ─── Alert Hub ─── */
+.alertList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alertCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(20, 28, 52, 0.3);
+  border: 1px solid rgba(140, 170, 255, 0.10);
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.alertCard:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(2px);
+}
+
+.alertIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.alertIconCritical {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.alertIconWarning {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.alertIconInfo {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.alertIconCompleted {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.alertBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.alertHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.alertSeverity {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.severityCritical {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.severityWarning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.severityInfo {
+  background: rgba(56, 189, 248, 0.2);
+  color: #7dd3fc;
+}
+
+.severityCompleted {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+}
+
+.alertTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.alertDesc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.alertTimestamp {
+  font-size: 0.68rem;
+  color: var(--text-dim, #64748b);
+  margin-top: 4px;
+}
+
+/* ─── Empty State ─── */
+.emptyState {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.emptyIcon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .tabBar {
+    flex-direction: column;
+  }
+
+  .tempStats {
+    grid-template-columns: 1fr;
+  }
+
+  .targetRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

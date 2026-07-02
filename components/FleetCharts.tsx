@@ -11,51 +11,50 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
   Scatter,
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { ChartPatternDefs } from './ChartPatterns';
 
 // Data Definitions
 const weeklyData = [
-  { name: 'S/SPR', captain: '김효원', weekly: 547, avg: 78.14 },
-  { name: 'S/PIO', captain: '김승현', weekly: 230, avg: 32.86 },
-  { name: 'N/SUN', captain: '김형주', weekly: 220, avg: 31.43 },
-  { name: 'N/STAR', captain: '김태엽', weekly: 150, avg: 21.43 },
-  { name: 'MARI', captain: '김정훈', weekly: 120, avg: 17.14 },
-  { name: 'S/EXP', captain: '공준식', weekly: 0, avg: 0 },
-  { name: 'S/CHA', captain: '최용석', weekly: 0, avg: 0 },
+  { name: 'N/STAR', captain: '김태엽', weekly: 375, avg: 53.57 },
+  { name: 'S/PIO', captain: '김승현', weekly: 300, avg: 42.86 },
+  { name: 'N/SUN', captain: '김형주', weekly: 235, avg: 33.57 },
+  { name: 'S/SPR', captain: '김효원', weekly: 165, avg: 23.57 },
+  { name: 'S/CHA', captain: '최용석', weekly: 140, avg: 20.00 },
+  { name: 'KONA', captain: '이평규', weekly: 122, avg: 17.43 },
+  { name: 'MARI', captain: '김정훈', weekly: 105, avg: 15.00 },
+  { name: 'S/EXP', captain: '공준식', weekly: 5, avg: 0.71 },
   { name: 'S/HAR', captain: '모승현', weekly: 0, avg: 0 },
-  { name: 'S/JUP', captain: '강장훈', weekly: 0, avg: 0 },
-  { name: 'KONA', captain: '이평규', weekly: 0, avg: 0 },
+  { name: 'S/JUP', captain: '강창훈', weekly: 0, avg: 0 },
 ];
 
 const monthlyData = [
-  { name: 'S/EXP', month1: 927, month2: 875, month3: 465, month4: 679, month5: 319, month6: 0 },
-  { name: 'S/PIO', month1: 620, month2: 585, month3: 475, month4: 560, month5: 1205, month6: 421 },
-  { name: 'S/CHA', month1: 320, month2: 700, month3: 640, month4: 250, month5: 805, month6: 170 },
+  { name: 'S/EXP', month1: 927, month2: 875, month3: 465, month4: 679, month5: 319, month6: 5 },
+  { name: 'S/PIO', month1: 620, month2: 585, month3: 475, month4: 560, month5: 1205, month6: 721 },
+  { name: 'S/CHA', month1: 320, month2: 700, month3: 640, month4: 250, month5: 805, month6: 310 },
   { name: 'S/HAR', month1: 1095, month2: 935, month3: 1120, month4: 435, month5: 575, month6: 0 },
   { name: 'S/JUP', month1: 175, month2: 595, month3: 855, month4: 310, month5: 845, month6: 135 },
-  { name: 'S/SPR', month1: 806, month2: 485, month3: 1065, month4: 1555, month5: 1234, month6: 547 },
-  { name: 'MARI', month1: 975, month2: 660, month3: 525, month4: 350, month5: 1060, month6: 615 },
-  { name: 'KONA', month1: 722, month2: 330, month3: 659, month4: 430, month5: 596, month6: 510 },
-  { name: 'N/SUN', month1: 665, month2: 310, month3: 502, month4: 528, month5: 0, month6: 505 },
-  { name: 'N/STAR', month1: 675, month2: 880, month3: 515, month4: 1105, month5: 415, month6: 585 },
+  { name: 'S/SPR', month1: 806, month2: 485, month3: 1065, month4: 1555, month5: 1234, month6: 712 },
+  { name: 'MARI', month1: 975, month2: 660, month3: 525, month4: 350, month5: 1060, month6: 720 },
+  { name: 'KONA', month1: 722, month2: 330, month3: 659, month4: 430, month5: 596, month6: 632 },
+  { name: 'N/SUN', month1: 665, month2: 310, month3: 502, month4: 528, month5: 0, month6: 740 },
+  { name: 'N/STAR', month1: 675, month2: 880, month3: 515, month4: 1105, month5: 415, month6: 960 },
 ];
 
 const cumulativeData = [
-  { rank: 10, cap: '공준식', name: 'S/EXP', date: '26/06/14', days: 1, catchTotal: 0, daily: 0.0, diff: '-30.53', avgDiff: '-23.08' },
-  { rank: 4, cap: '김승현', name: 'S/PIO', date: '26/01/22', days: 144, catchTotal: 3326, daily: 23.1, diff: '-7.43', avgDiff: '+0.02' },
-  { rank: 8, cap: '최용석', name: 'S/CHA', date: '26/01/04', days: 162, catchTotal: 2885, daily: 17.8, diff: '-12.72', avgDiff: '-5.27' },
-  { rank: 2, cap: '모승현', name: 'S/HAR', date: '25/05/09', days: 402, catchTotal: 11460, daily: 28.5, diff: '-2.02', avgDiff: '+5.43' },
-  { rank: 7, cap: '강장훈', name: 'S/JUP', date: '25/06/10', days: 370, catchTotal: 7095, daily: 19.2, diff: '-11.35', avgDiff: '-3.90' },
-  { rank: 1, cap: '김효원', name: 'S/SPR', date: '25/09/27', days: 261, catchTotal: 7970, daily: 30.5, diff: '-0.00', avgDiff: '+7.45' },
-  { rank: 5, cap: '김정훈', name: 'MARI', date: '25/04/17', days: 424, catchTotal: 9785, daily: 23.1, diff: '-7.45', avgDiff: '-0.00' },
-  { rank: 6, cap: '이평규', name: 'KONA', date: '26/03/11', days: 96, catchTotal: 2045, daily: 21.3, diff: '-9.23', avgDiff: '-1.78' },
-  { rank: 9, cap: '김형주', name: 'N/SUN', date: '25/10/20', days: 238, catchTotal: 3495, daily: 14.7, diff: '-15.85', avgDiff: '-8.40' },
-  { rank: 3, cap: '김태엽', name: 'N/STAR', date: '25/05/06', days: 405, catchTotal: 9715, daily: 24.0, diff: '-6.54', avgDiff: '+0.91' },
+  { rank: 1, cap: '김효원', name: 'S/SPR', date: '25/09/27', days: 268, catchTotal: 8135, daily: 30.4, diff: '-0.00', avgDiff: '+7.33' },
+  { rank: 2, cap: '모승현', name: 'S/HAR', date: '25/05/09', days: 409, catchTotal: 11460, daily: 28.0, diff: '-2.33', avgDiff: '+5.00' },
+  { rank: 3, cap: '김태엽', name: 'N/STAR', date: '25/05/06', days: 412, catchTotal: 10090, daily: 24.5, diff: '-5.86', avgDiff: '+1.47' },
+  { rank: 4, cap: '김승현', name: 'S/PIO', date: '26/01/22', days: 151, catchTotal: 3626, daily: 24.0, diff: '-6.34', avgDiff: '+0.99' },
+  { rank: 5, cap: '김정훈', name: 'MARI', date: '25/04/17', days: 431, catchTotal: 9890, daily: 23.0, diff: '-7.40', avgDiff: '-0.07' },
+  { rank: 6, cap: '이평규', name: 'KONA', date: '26/03/11', days: 103, catchTotal: 2167, daily: 21.0, diff: '-9.31', avgDiff: '-1.98' },
+  { rank: 7, cap: '강창훈', name: 'S/JUP', date: '25/06/10', days: 377, catchTotal: 7095, daily: 18.8, diff: '-11.53', avgDiff: '-4.20' },
+  { rank: 8, cap: '최용석', name: 'S/CHA', date: '26/01/04', days: 169, catchTotal: 3025, daily: 17.9, diff: '-12.45', avgDiff: '-5.12' },
+  { rank: 9, cap: '김형주', name: 'N/SUN', date: '25/10/20', days: 245, catchTotal: 3730, daily: 15.2, diff: '-15.13', avgDiff: '-7.80' },
+  { rank: 10, cap: '공준식', name: 'S/EXP', date: '26/06/14', days: 8, catchTotal: 5, daily: 0.6, diff: '-29.72', avgDiff: '-22.39' },
 ];
 
 export function WeeklyCatchChart() {

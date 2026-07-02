@@ -9,17 +9,16 @@ import { AtlanticSeinersTable, LonglinersTable, CarriersTable } from './VesselSt
 import RadarOverlay from './RadarOverlay';
 import { playSonarPing } from '../lib/audio';
 import TermTooltip from './TermTooltip';
-import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
 
 // SSR must be disabled for Leaflet to work in Next.js
 const PacificMapWithNoSSR = dynamic(() => import('./PacificVesselMap'), {
   ssr: false,
-  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>Loading Map...</div>
+  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>Loading Map...</div>
 });
 
 const PacificGlobeWithNoSSR = dynamic(() => import('./PacificGlobe'), {
   ssr: false,
-  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>Loading 3D Globe...</div>
+  loading: () => <div style={{ height: '550px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.02)', borderRadius: '8px', border: '1px solid rgba(140,170,255,0.10)' }}>Loading 3D Globe...</div>
 });
 const CAPTAIN_DATA = [
   { rank: 1, name: '김승현', vessel: 'S/PIO', weekly: '215.00', daily: '30.71' },
@@ -271,7 +270,7 @@ export default function FleetPerformance() {
         <h3 className={styles.tableSectionTitle} style={{ margin: 0 }}>
           <Map size={18} /> 실시간 태평양 조업 선망선 및 운반선 위치 (Pacific Fleet GPS)
         </h3>
-        <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', padding: '2px' }}>
+        <div style={{ display: 'flex', background: 'rgba(140,170,255,0.10)', borderRadius: '6px', padding: '2px' }}>
           <button onClick={() => setMapViewMode('2D')} style={{ padding: '5px 10px', fontSize: '12px', fontWeight: mapViewMode === '2D' ? 600 : 400, background: mapViewMode === '2D' ? 'var(--accent-primary)' : 'transparent', color: mapViewMode === '2D' ? 'var(--text-primary)' : 'var(--text-muted)', border: 'none', borderRadius: '4px', cursor: 'pointer', transition: 'all 0.2s' }}>2D Map</button>
           <button onClick={() => setMapViewMode('3D')} style={{ padding: '5px 10px', fontSize: '12px', fontWeight: mapViewMode === '3D' ? 600 : 400, background: mapViewMode === '3D' ? 'var(--accent-primary)' : 'transparent', color: mapViewMode === '3D' ? 'var(--text-primary)' : 'var(--text-muted)', border: 'none', borderRadius: '4px', cursor: 'pointer', transition: 'all 0.2s' }}>3D Globe</button>
         </div>
@@ -337,23 +336,23 @@ export default function FleetPerformance() {
             
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
               <tbody>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '10px 0', color: 'var(--text-muted)' }}>업종</td>
                   <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 500 }}>{VESSEL_SPECS[selectedVessel].type}</td>
                 </tr>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '10px 0', color: 'var(--text-muted)' }}>제조 국가</td>
                   <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 500 }}>{VESSEL_SPECS[selectedVessel].country}</td>
                 </tr>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '10px 0', color: 'var(--text-muted)' }}>선령</td>
                   <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 500 }}>{VESSEL_SPECS[selectedVessel].age} ({VESSEL_SPECS[selectedVessel].year}년 진수)</td>
                 </tr>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '10px 0', color: 'var(--text-muted)' }}>톤수</td>
                   <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 500 }}>{VESSEL_SPECS[selectedVessel].gt} GT</td>
                 </tr>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <tr style={{ borderBottom: '1px solid rgba(140,170,255,0.10)' }}>
                   <td style={{ padding: '10px 0', color: 'var(--text-muted)' }}>기관출력</td>
                   <td style={{ padding: '10px 0', textAlign: 'right', fontWeight: 500 }}>{VESSEL_SPECS[selectedVessel].kw} KW</td>
                 </tr>

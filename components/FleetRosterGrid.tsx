@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Ship, Anchor, Navigation, Package, ArrowUp, ArrowDown, Minus, MapPin, Waves, Truck } from 'lucide-react';
+import { Ship, Anchor, Navigation, Package, ArrowUp, ArrowDown, MapPin } from 'lucide-react';
 import s from './FleetCommandCenter.module.css';
 
 /* ── Data ── */
@@ -189,7 +189,7 @@ function VesselCard({ name, zone, catchAmt, load, capa, trend, status, note }: {
           <span style={{ fontSize: '0.65rem', fontWeight: 700, color: loadColor }}>{pct}%</span>
         </div>
         <div style={{
-          width: '100%', height: 4, background: 'rgba(255,255,255,0.06)',
+          width: '100%', height: 4, background: 'rgba(140,170,255,0.12)',
           borderRadius: 2, overflow: 'hidden',
         }}>
           <div style={{
@@ -256,7 +256,7 @@ function CarrierCard({ name, capa, load, pct, status, note, color }: {
 
       {/* Full-width gauge */}
       <div style={{
-        width: '100%', height: 6, background: 'rgba(255,255,255,0.06)',
+        width: '100%', height: 6, background: 'rgba(140,170,255,0.12)',
         borderRadius: 3, overflow: 'hidden', marginBottom: 6,
       }}>
         <div style={{

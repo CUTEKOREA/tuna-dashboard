@@ -402,7 +402,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 주간 다이제스트: 6월 3주차 시장을 뒤흔드는 핵심 시그널
+          Atuna 주간 다이제스트: 6월 4주차 시장을 뒤흔드는 핵심 시그널
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -410,82 +410,70 @@ export default function MarketDashboard() {
           gap: '16px'
         }}>
           {/* News 1 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                공급망 / 재난
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
+                가격 / 시장
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.09</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.24</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;필리핀 남부 7.8 강진 강타, 참치 가공·교역 허브 GenSan 가공 및 물류망 일시 마비&quot;
+              방콕 가다랑어 원어가 하락세 전환
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>6/8 <strong style={{ color: 'var(--text-main)' }}>규모 7.8 지진</strong>으로 35명 사망, 200여 명 부상 — 최대 참치 가공 허브 <strong style={{ color: 'var(--text-main)' }}>제너럴산토스(GenSan)</strong> 직격</span>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>지정학적 긴장 완화와 유가 급락으로 방콕 가다랑어(SKJ 1.8kg Up) 가격이 <strong style={{ color: 'var(--text-main)' }}>톤당 1,775달러</strong>로 하락 조정되며 가공업계의 원가 압박 완화.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span><strong style={{ color: 'var(--text-main)' }}>Alliance Select</strong> 등 대형 공장 가동 중단, <strong style={{ color: 'var(--text-main)' }}>6/16 이후</strong> 재가동 예정. Well Delight·Citra Mina·Mommy Gina 등 밀집 가공단지 피해</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>이미 어획량 <strong style={{ color: 'var(--text-main)' }}>-7% YoY</strong>(3년 최저), 선단 <strong style={{ color: 'var(--text-main)' }}>60%만 출어</strong> 중 → 가공망 마비 겹쳐 EU·미국향 통조림·로인 공급 차질 불가피</span>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>싱가포르 MGO 가격 톤당 926달러로 폭락 및 호르무즈 해협 선박 통행 부분 재개 반영.</span>
               </div>
             </div>
           </div>
 
           {/* News 2 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                규제 / 조업
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
+                환경 / 조업
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.12</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.30</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;트럼프, 태평양 해양보호구역(MPA) 미국 상업 참치 조업 전격 재개 허용 서명&quot;
+              '2026 슈퍼 엘니뇨' 공식화와 조업 지형 교란
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>6/11 <strong style={{ color: 'var(--text-main)' }}>Rose Atoll</strong> 등 태평양 MPA <strong style={{ color: 'var(--text-main)' }}>수십만 평방마일</strong>을 미국 상업 참치 선단에 재개방하는 행정명령 서명</span>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>미국 NOAA와 세계기상기구(WMO)가 역대급 <strong style={{ color: 'var(--text-main)' }}>'슈퍼 엘니뇨' 도래</strong>를 선언.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span><strong style={{ color: 'var(--text-main)' }}>WPRFMC</strong>가 <strong style={{ color: 'var(--text-main)' }}>2009년</strong> 이후 지속 요구해온 조업 구역 확보 실현 — 아메리칸사모아 기반 연승선·선망선 어획 역량 대폭 강화</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span><strong style={{ color: 'var(--text-main)' }}>WCPO</strong> 동일 해역 한국 선사에 직접적 도전 — 인접 어장 선박 밀집도 변화 및 어군 거동 패턴 영향 예상</span>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>어군이 중태평양으로 대거 이동함에 따라, 동태평양(EPO)과 서중태평양(WCPO) 연안 선단의 심각한 수급 불균형 우려 고조.</span>
               </div>
             </div>
           </div>
 
           {/* News 3 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.12</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.30</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;영국, 전 참치 제품 관세 전면 유예(0%)…6/21 발효, 태국 가공업계 수출 급증 전망&quot;
+              영국 무관세 여파로 에콰도르 수출 타격 우려
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span><strong style={{ color: 'var(--text-main)' }}>6/21</strong>부터 <strong style={{ color: 'var(--text-main)' }}>2028년 말</strong>까지 모든 참치 제품(통조림·로인·필렛) 기존 최대 <strong style={{ color: 'var(--text-main)' }}>24% → 0%</strong> 관세 전면 유예</span>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>영국의 전 Origins 대상 참치 관세 유예 조치로 독점적 무관세 혜택을 잃은 <strong style={{ color: 'var(--text-main)' }}>에콰도르의 하반기 참치 수출액이 5% 이상 감소</strong>할 것으로 예측.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>세계 최대 가공국 태국의 대영국 수출 폭증 전망 → 방콕 SKJ 원어 <strong style={{ color: 'var(--text-main)' }}>$1,825/톤</strong> 정체기에서 수요 유입·어가 상승 기폭제</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>몰디브 등 기존 무관세 협정국 가격 경쟁력 급락, 중국산(<strong style={{ color: 'var(--text-main)' }}>전년 23%↑</strong>) 대거 진입 예상</span>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>저가 강점을 지닌 태국·중국과의 치열한 영국 시장 점유율 경쟁 예고.</span>
               </div>
             </div>
           </div>
@@ -494,25 +482,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                규제 / 위생
+                규제 / 유통
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.10</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.24</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              &quot;피지·키리바시·솔로몬, EU &apos;영하 18℃ 냉동 참치 규제&apos; 준수 합동 기술 교육 개시&quot;
+              EU 규제 장벽 강화에 따른 아시아 선단의 시장 이탈
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>피지 수바(Suva)에서 EU <strong style={{ color: 'var(--text-main)' }}>-18°C Brine Freezing</strong> 규제 대응 <strong style={{ color: 'var(--text-main)' }}>2주간</strong> 합동 기술 교육 개시</span>
+                <span>EU CATCH(디지털 이력 추적) 및 -18°C 초저온 브라인 냉동 규제 준수 부담 가중.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>유럽향 냉동 참치 원어 선박에 실시간 brine 온도 기록·전송 의무화 — EU 등재 태평양 선망선 <strong style={{ color: 'var(--text-main)' }}>97%</strong>에 직접 영향</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>교육 범위: 선박 엔지니어링, 냉동 시스템, <strong style={{ color: 'var(--text-main)' }}>HACCP</strong> 및 EU 감사 요건 등 실무 검역 전반</span>
+                <span>인도네시아와 베트남 등 동남아 중소 선사들이 규제가 덜한 <strong style={{ color: 'var(--text-main)' }}>중동과 아시아 시장으로 공급망을 대거 우회</strong>하기 시작.</span>
               </div>
             </div>
           </div>
@@ -523,37 +507,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: 영국 관세 철폐·미국 MPA 개방·EU 위생 규제의 연쇄 파장
+          전략 인사이트: 슈퍼 엘니뇨·무역 장벽 개편·EU 환경 규제의 연쇄 파장
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="영국 관세 전면 철폐와 방콕 가다랑어 어가 지지 및 판매망 재편"
+            title="슈퍼 엘니뇨 공식화와 유가 급락이 만든 어가 하락 조정·조업 전략 분기점"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="영국 24% 관세 유예 → 태국 가공업계 대영국 수출 급증 → 방콕 SKJ 원어 수요 및 어가 상승 압력"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.12 (Atuna via NotebookLM)' }}
+            cardDesc="유가 $926/톤 급락 + SKJ Bangkok $1,775 조정 + 2026 슈퍼 엘니뇨 → 조업 비용 절감 vs 어군 이동 리스크 공존"
+            telemetry={{ status: 'STATIC', syncDate: '2026.06.30 (Atuna via NotebookLM)' }}
             customBody={<></>}
             takeaway={{
-              situation: "영국 정부가 중동 분쟁 인플레이션 대처를 위해 2026년 6월 21일부터 2028년 말까지 가다랑어·황다랑어 통조림, 로인, 필렛 등 모든 참치 제품의 기존 최대 24% 관세를 전면 유예(0%)했습니다. 세계 최대 가공국 태국 방콕 허브의 대영국 수출 물량 폭증이 예상되며, 현재 정체기($1,825/톤)인 방콕 SKJ 원어 가격에 강력한 수요 유입과 상승 압력의 기폭제가 됩니다. 동시에 미·이란 평화 협상 타결 기대감에 싱가포르 MGO가 $1,150/톤 선으로 안정세를 보이며 조업 비용 환경도 개선되고 있습니다.",
-              actionPlan: "**[Actionable Insight]** \n(1) **[태국 가공업체 선도 계약 체결]**: 6/21 관세 유예 발효에 맞춰 타이유니온·MMP 등 대영국 수출 주문 급증이 예상되는 태국 대형 가공업체들과 SKJ 1.8kg Up 방콕 양륙 비중을 우선 배정한 유리한 선도 판매 계약을 조기 체결해야 합니다. \n(2) **[영국향 OEM 파트너십 강화]**: 몰디브 등 채낚기 원어 시장이 태국 저가 대량 선망 원어로 대체될 수 있으므로, 태국 내 영국향 OEM 전문 가공 바이어들과의 독점 공급 및 연대를 공고히 구축해야 합니다. \n(3) **[유가 하락 기조 활용 조업 극대화]**: MGO $1,150/톤 안정세를 활용해 조업 비용을 최소화하고, 방콕 어가 상승기와 맞물린 집중 조업으로 마진을 극대화해야 합니다.",
-              source: 'Atuna 2026.06.05, 2026.06.08, 2026.06.12 (NotebookLM 종합 분석)',
+              situation: "싱가포르 MGO 유가가 926달러/톤으로 폭락하며 방콕 SKJ 가격이 1,775달러로 하락 조정 중입니다. 반면, 미국 NOAA가 2026 슈퍼 엘니뇨를 공식 선언함에 따라 가다랑어 어군이 중태평양으로 이동할 전망이며, 동태평양 및 서중태평양 연안 조업선들의 수급 불균형과 조업 비용 증가 리스크가 공존하고 있습니다.",
+              actionPlan: "**[Actionable Insight]** \n(1) **[MGO 급락 시점 집중 조업]**: 유가 하락 시기를 활용해 방콕 양륙 비중을 높이고 원가 절감을 극대화합니다. \n(2) **[엘니뇨 대비 어장 이동]**: 중태평양(키리바시 등) 조업 비중을 선제적으로 늘리고, 하반기 VDS(입어일수)를 효율적으로 배분합니다.",
+              source: 'Atuna 2026.06.24, 2026.06.30 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="미국·EU 중심 어장 및 위생·노동 규제 강화에 따른 전략적 대응"
+            title="글로벌 무역 장벽 재편과 EU 규제 강화에 따른 공급망 다변화 전략"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="미국 MPA 상업 조업 재개방 + EU -18°C brine 규제 + ILO 선원 노동 실사 → WCPO 다중 규제 대응 임계점"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.12 (Atuna via NotebookLM)' }}
+            cardDesc="영국 무관세 여파(에콰도르 타격) + EU CATCH·-18°C 브라인 동결 규제 장벽 → 글로벌 참치 공급망 지형 변동"
+            telemetry={{ status: 'STATIC', syncDate: '2026.06.30 (Atuna via NotebookLM)' }}
             customBody={<></>}
             takeaway={{
-              situation: "미국 백악관이 태평양 MPA(Rose Atoll 등) 수십만 평방마일을 미국 상업 참치 선단에 전격 개방하는 행정명령에 서명하며 WCPO 어장 경쟁이 심화됩니다. EU는 유럽향 냉동 참치에 -18°C brine 동결·실시간 온도 기록 전송을 의무화하는 강력한 비관세 장벽을 가동, EU 등재 태평양 선망선 97%에 직접 영향을 미칩니다. 동시에 ILO 주도로 WCPO 선단 선원 인권 보장·공정 채용 기준(WiFi 설치·송출 프로세스) 요구가 폭증하고 있어 ESG 실사 압박도 거세지고 있습니다.",
-              actionPlan: "**[Actionable Insight]** \n(1) **[초저온 Brine 동결 시스템 선제 투자]**: EU 수출용 고부가가치 원어 loins 시장 유지를 위해, 선단 내 염수 동결기를 -18°C 이하 상시 모니터링 가능한 저온 시스템 센서·HACCP 기록 장치로 개조 설계하여 규제 적격 선박 리스트를 신속히 확보해야 합니다. \n(2) **[미국 MPA 개방에 따른 WCPO 조업 밀집도 분산 전략]**: 미국 선망선 Rose Atoll 등 신규 어장 유입으로 인접 EEZ 경쟁 밀도가 변화하므로, 신라 선단의 조업 구역과 VDS 사용 시기를 데이터 기반 유연 재분배로 효율을 높여야 합니다. \n(3) **[국제 선원 노동 기준 조기 도입]**: 위성 Wi-Fi 인프라 구축·채용 투명성 제고로 글로벌 바이어 공급망 실사 기준을 선제 충족, ESG 프리미엄을 확보해야 합니다.",
-              source: 'Atuna 2026.06.10, 2026.06.11, 2026.06.12 (NotebookLM 종합 분석)',
+              situation: "영국이 모든 수입국 대상 참치 관세를 유예함에 따라 기존 무관세 혜택을 누리던 에콰도르의 수출 타격이 가시화되었으며, 태국 및 중국과의 영국 시장 점유율 경쟁이 치열해질 전망입니다. 유럽에서는 EU CATCH 통관제와 -18°C 브라인 동결 규제 등 진입 장벽이 높아져, 인도네시아 등 동남아 선단이 중동 및 아시아로 시장을 우회하고 있습니다.",
+              actionPlan: "**[Actionable Insight]** \n(1) **[영국 시장 점유율 확보 기회]**: 에콰도르의 점유율 하락을 틈타, 자사 선단의 가격 경쟁력을 앞세운 영국 대형 리테일러향 납품 물량 확대를 추진합니다. \n(2) **[EU 프리미엄 시장 선점]**: 아시아 중소 선단들의 이탈로 발생한 EU 공급 공백을 공략하기 위해, 선단 내 -18°C 콜드체인 모니터링 시스템을 조기 도입하여 엄격한 EU 규제를 선제 충족합니다.",
+              source: 'Atuna 2026.06.24, 2026.06.30 (NotebookLM 종합 분석)',
             }}
           />
 

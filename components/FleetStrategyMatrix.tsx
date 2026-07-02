@@ -143,7 +143,7 @@ export default function FleetStrategyMatrix() {
 
         {/* 입어료 및 관세감면 (OPEX & Policy) 위젯 - 데이터가 있는 경우에만 표시 */}
         {fishingFees[selectedCategory] && (
-          <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '20px', marginBottom: '24px' }}>
+          <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '10px', padding: '20px', marginBottom: '24px' }}>
             <h5 style={{ color: '#f43f5e', margin: '0 0 16px 0', fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Globe size={18} /> 글로벌 입어료(OPEX) 및 정책 리스크 분석 <span style={{ fontSize: '0.75rem', background: 'rgba(244, 63, 94, 0.2)', padding: '2px 8px', borderRadius: '10px' }}>2024년 기준</span>
             </h5>
@@ -180,7 +180,7 @@ export default function FleetStrategyMatrix() {
                   <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>주요 지불 대상국 (조업 수역 의존도)</div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {fishingFees[selectedCategory]['key_countries'].map((c: any, i: number) => (
-                      <div key={i} style={{ background: 'rgba(255,255,255,0.05)', padding: '6px 12px', borderRadius: '20px', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <div key={i} style={{ background: 'rgba(140,170,255,0.10)', padding: '6px 12px', borderRadius: '20px', fontSize: '0.85rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <span style={{ color: '#38bdf8', fontWeight: 600 }}>{c.name}</span>
                         <span style={{ opacity: 0.6 }}>${(c.amount / 10000).toFixed(0)}만</span>
                       </div>
@@ -202,7 +202,7 @@ export default function FleetStrategyMatrix() {
         {/* 선령 분포 + 강점/리스크/인사이트 */}
         <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
           {/* 선령 분포 분석 */}
-          <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '16px' }}>
+          <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '10px', padding: '16px' }}>
             <h5 style={{ color: '#fbbf24', margin: '0 0 12px 0', fontSize: '0.9rem' }}>⏳ 선령 분포 분석</h5>
             {hasAges ? (
               <>
@@ -238,7 +238,7 @@ export default function FleetStrategyMatrix() {
           </div>
 
           {/* 강점 / 리스크 / 인사이트 */}
-          <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '10px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ background: 'rgba(0,0,0,0.15)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '10px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <h5 style={{ color: '#60a5fa', margin: 0, fontSize: '0.9rem' }}>📋 전략 요약</h5>
             {matchedMatrix && (
               <>
@@ -262,7 +262,7 @@ export default function FleetStrategyMatrix() {
         </div>
 
         {/* Vessel Table */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', overflow: 'auto', marginBottom: '24px', maxHeight: '500px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', overflow: 'auto', marginBottom: '24px', maxHeight: '500px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead style={{ position: 'sticky', top: 0, background: 'rgba(0, 0, 0, 0.2)', backdropFilter: 'blur(4px)', zIndex: 10 }}>
               <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -283,7 +283,7 @@ export default function FleetStrategyMatrix() {
                 const status = !hasLaunch ? '미수집' : age! >= 35 ? '⛔ 교체시급' : age! >= 25 ? '⚠️ 노후' : age! >= 15 ? '🟡 주의' : '✅ 건전';
                 const statusColor = !hasLaunch ? 'rgba(255,255,255,0.4)' : age! >= 35 ? 'var(--color-danger)' : age! >= 25 ? 'var(--color-warning)' : age! >= 15 ? '#fbbf24' : '#34d399';
                 return (
-                  <tr key={idx} style={{ borderBottom: idx !== details.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', background: isSilla ? 'rgba(56, 189, 248, 0.06)' : 'transparent' }}>
+                  <tr key={idx} style={{ borderBottom: idx !== details.length - 1 ? '1px solid rgba(140,170,255,0.10)' : 'none', background: isSilla ? 'rgba(56, 189, 248, 0.06)' : 'transparent' }}>
                     <td style={{ padding: '10px 16px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.85rem' }}>{ship.name}</td>
                     <td style={{ padding: '10px 16px', color: isSilla ? '#38bdf8' : 'rgba(255,255,255,0.8)', fontSize: '0.8rem', fontWeight: isSilla ? 700 : 400 }}>{ship.company}</td>
                     <td style={{ padding: '10px 16px', color: 'rgba(255,255,255,0.6)', fontSize: '0.8rem' }}>{ship.area || '-'}</td>
@@ -437,7 +437,7 @@ export default function FleetStrategyMatrix() {
                 key={idx}
                 style={{
                   background: 'rgba(0,0,0,0.2)',
-                  border: '1px solid rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(140,170,255,0.10)',
                   borderRadius: '12px',
                   padding: '20px',
                   cursor: 'pointer',
@@ -448,7 +448,7 @@ export default function FleetStrategyMatrix() {
                   gap: '12px'
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                  e.currentTarget.style.background = 'rgba(140,170,255,0.10)';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                   e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
                 }}
@@ -521,7 +521,7 @@ export default function FleetStrategyMatrix() {
         </h4>
 
         {/* Insight 1: 척당 매출 랭킹 */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
           <h5 style={{ color: '#34d399', marginBottom: '4px', fontSize: '1rem' }}>📊 척당 매출(Revenue/Vessel) 랭킹 — "척수가 아닌 효율이 승부"</h5>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>같은 1척이라도 선망은 214억, 꽁치는 15.7억. 14배 격차의 숨겨진 구조</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -538,7 +538,7 @@ export default function FleetStrategyMatrix() {
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ width: '120px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', textAlign: 'right', flexShrink: 0 }}>{item.name}</div>
-                <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: '4px', height: '28px', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ flex: 1, background: 'rgba(140,170,255,0.10)', borderRadius: '4px', height: '28px', position: 'relative', overflow: 'hidden' }}>
                   <div style={{ width: `${Math.min((item.value / 214) * 100, 100)}%`, height: '100%', background: `linear-gradient(90deg, ${item.color}33, ${item.color}88)`, borderRadius: '4px', transition: 'width 1s ease' }} />
                   <span style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     {item.value}억/척 ({item.vessels}척)
@@ -553,7 +553,7 @@ export default function FleetStrategyMatrix() {
         </div>
 
         {/* Insight 2: 재벌 지배력 분석 */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
           <h5 style={{ color: '#60a5fa', marginBottom: '4px', fontSize: '1rem' }}>🏢 3대 그룹 지배력 분석 — "198척 중 103척(52%)을 3개 그룹이 지배"</h5>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>동원·사조 각 44척, 신라 15척. 나머지 35개사가 95척을 영세 분할</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
@@ -570,7 +570,7 @@ export default function FleetStrategyMatrix() {
                 <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{g.vessels}<span style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.5)' }}>척 ({g.pct}%)</span></div>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>{g.detail}</div>
                 {/* Share bar */}
-                <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '4px', height: '6px', marginBottom: '8px' }}>
+                <div style={{ background: 'rgba(140,170,255,0.10)', borderRadius: '4px', height: '6px', marginBottom: '8px' }}>
                   <div style={{ width: `${g.pct * 4.5}%`, height: '100%', background: g.color, borderRadius: '4px' }} />
                 </div>
                 <div style={{ fontSize: '0.8rem', color: g.color }}>{g.strength}</div>
@@ -583,7 +583,7 @@ export default function FleetStrategyMatrix() {
         </div>
 
         {/* Insight 3: 단가 배수 비교 */}
-        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
+        <div style={{ background: 'rgba(0,0,0,0.2)', border: '1px solid rgba(140,170,255,0.10)', borderRadius: '12px', padding: '24px', marginBottom: '20px' }}>
           <h5 style={{ color: '#a78bfa', marginBottom: '4px', fontSize: '1rem' }}>💎 어종별 단가 배수(Price Multiplier) — "같은 바다에서 14배 차이"</h5>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', marginBottom: '16px' }}>가다랑어 1,910원/kg 대비 이빨고기 21,336원/kg — 동일 해역에서 11.2배 마진 격차</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px' }}>
@@ -598,7 +598,7 @@ export default function FleetStrategyMatrix() {
               { species: '명태', price: 1512, mult: '0.8x', emoji: '🧊', vs: '최저' },
               { species: '남극크릴', price: 753, mult: '0.4x', emoji: '🦐', vs: '원료' },
             ].map((item, i) => (
-              <div key={i} style={{ background: i === 0 ? 'rgba(252, 211, 77, 0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${i === 0 ? 'rgba(252, 211, 77, 0.3)' : 'rgba(255,255,255,0.05)'}`, borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+              <div key={i} style={{ background: i === 0 ? 'rgba(252, 211, 77, 0.08)' : 'rgba(255,255,255,0.03)', border: `1px solid ${i === 0 ? 'rgba(252, 211, 77, 0.3)' : 'rgba(140,170,255,0.10)'}`, borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
                 <div style={{ fontSize: '1.5rem', marginBottom: '4px' }}>{item.emoji}</div>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }}>{item.species}</div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: i === 0 ? '#fcd34d' : 'var(--text-primary)' }}>{item.price.toLocaleString()}</div>
