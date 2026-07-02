@@ -6,8 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "echo 'Skipping lint'",
-    "simulate": "node scripts/simulate_webhooks.js"
+    "lint": "eslint .",
+    "simulate": "node scripts/simulate_webhooks.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",
@@ -40,6 +43,8 @@
     "eslint-config-next": "16.2.1",
     "eslint-plugin-unused-imports": "^4.4.1",
     "tailwindcss": "^4",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.9",
+    "zod": "^4.4.3"
   }
 }
