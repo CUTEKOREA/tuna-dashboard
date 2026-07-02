@@ -40,15 +40,15 @@ export function FleetChartSection() {
           {tabs.map(t => (
             <button key={t.id} className={`${s.chartTab} ${activeTab === t.id ? s.chartTabActive : ''}`} onClick={() => setActiveTab(t.id)}>{t.label}</button>
           ))}
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.06.21 보고 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.06.28 보고 기준</span>
         </div>
         {activeTab === 'weekly' && (
           <>
             <WeeklyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>N/STAR(김태엽) 375t, S/PIO(김승현) 300t으로 주간 1·2위 차지. 주간 총 어획량 1,447t(국적 610t, 합작 837t)으로 안정적인 조업세 유지 중.</>}
-                actionPlan={<>N/STAR 일평균 53.57t 호실적. S/EXP(공준식) 6/14 승선 후 첫 주간 실적(5t) 보고됨. S/HAR, S/JUP는 현재 조업 대기 또는 이동 중으로 주간 실적 없음.</>}
+                situation={<>S/SPR(김효원) 215t, N/STAR(조태연) 205t으로 주간 1·2위 차지. 주간 총 어획량 954t(국적 520t, 합작 434t) 기록.</>}
+                actionPlan={<>N/STAR 조태연 신임 선장 주간 2위 호실적. S/HAR(오복근), S/JUP(강창훈) 주간 실적 없음.</>}
               />
             </div>
           </>
@@ -58,8 +58,8 @@ export function FleetChartSection() {
             <MonthlyCatchChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>S/SPR 월간 누적 712t, N/STAR 960t, S/PIO 721t 기록 중. 월간 총 어획량 4,935t으로 순항 중이며 합작선 비중이 62%를 상회함.</>}
-                actionPlan={<>N/STAR의 월간 최고 실적(960t) 요인 분석 및 타 선박 전파. 연간 누계 38,347t(국적 23,393t, 합작 14,954t) 달성으로 연간 목표 달성 궤도 유지.</>}
+                situation={<>N/STAR 월간 누적 1,165t, S/SPR 927t 기록. 월간 총 어획량 5,889t(국적 2,403t, 합작 3,486t).</>}
+                actionPlan={<>연간 누계 39,301t(국적 23,913t, 합작 15,388t) 달성으로 연간 목표 달성 궤도 유지.</>}
               />
             </div>
           </>
@@ -69,8 +69,8 @@ export function FleetChartSection() {
             <CumulativeChart />
             <div style={{ marginTop: 16 }}>
               <TakeawayBox
-                situation={<>김효원(S/SPR) 일어획 30.4t으로 누계 전체 1위 유지. 모승현(S/HAR) 28.0t으로 2위. 공준식(S/EXP)은 6/14 승선 이후 적응기로 일어획 0.6t 기록 중.</>}
-                actionPlan={<>S/EXP 신임 선장 조업 조기 안정화 지원 필요. 김태엽(N/STAR) 3위 진입(+1.47t 평균대비 우위). 김형주(N/SUN)는 15.2t으로 여전히 저실적 지속.</>}
+                situation={<>조태연(N/STAR) 승선 후 4일간 일어획 51.3t으로 현어기 누계 전체 1위 랭크. 김효원(S/SPR) 30.4t으로 2위 유지.</>}
+                actionPlan={<>N/STAR 조태연 신임 선장 조업 호조. S/EXP(공준식) 신임 선장 일어획 11.0t 기록하며 점진적 회복 중. 오복근(S/HAR) 승선 대기.</>}
               />
             </div>
           </>
@@ -81,7 +81,7 @@ export function FleetChartSection() {
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>일일 업무보고 26.06.21 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>일일 업무보고 26.06.28 기준</span>
         </h3>
         <table className={s.rankTable}>
           <thead>
