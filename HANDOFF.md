@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-07-02 KST — robots.txt + sitemap.xml 전용 메타 라우트 추가** [CC]:
+> - AdSense/Google 크롤러가 `/robots.txt`, `/sitemap.xml`을 요청할 때 `[category]` 대시보드 HTML로 빠지지 않도록 `app/robots.ts`, `app/sitemap.ts` 추가.
+> - robots: 전체 크롤러 허용, `Mediapartners-Google`·`Google-Display-Ads-Bot` 명시 허용, sitemap 위치 지정.
+> - sitemap: 공개 대시보드/정적 페이지 URL만 포함. 보호성 운영 메뉴는 제외.
+> - 검증: `npm run build` 통과. 로컬 `127.0.0.1:3002/robots.txt`는 `text/plain` 200 + `Sitemap`/AdSense bot 허용, `/sitemap.xml`은 `application/xml` 200 + 공개 URL 목록으로 응답 확인. **프로덕션 배포 없음**.
+
 > 📣 **2026-07-01 KST — AdSense 코드 정식 head 적용 + ads.txt 추가** [CC]:
 > - Google AdSense 안내 코드와 맞게 `app/layout.tsx`의 `next/script` 기반 삽입을 일반 `<script async ... crossorigin="anonymous">`로 교체. 기존 `google-adsense-account` 메타(`ca-pub-8056702374530895`) 유지.
 > - `public/ads.txt` 신규 추가: `google.com, pub-8056702374530895, DIRECT, f08c47fec0942fa0`.
