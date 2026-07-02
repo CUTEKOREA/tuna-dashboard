@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../_shared/hs-codes';
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -11,6 +12,7 @@ export const revalidate = 300;
  */
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const HSK = HS_CODES.mackerel_frozen.hsSgn;
 
 const FALLBACK_MONTHLY = [
   { month: '2023-08', volume: 11200, value: 21500 },
@@ -39,7 +41,7 @@ export async function GET() {
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
     const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030354`;
+      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${HSK}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
     
@@ -55,7 +57,7 @@ export async function GET() {
         for (const match of items) {
           const itemStr = match[1];
           const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
-          const statKorMatch = itemStr.match(/<statKor>([\s\S]*?)<\/statKor>/);
+          const countryMatch = itemStr.match(/<statCdCntnKor1>([\s\S]*?)<\/statCdCntnKor1>/);
           if (!yearMatch || yearMatch[1] === '총계') continue;
           
           const rawYear = yearMatch[1].replace(/\D/g, ''); 
@@ -69,10 +71,10 @@ export async function GET() {
           
           if (!monthlyTotals[monthKey]) monthlyTotals[monthKey] = { volume: 0, value: 0 };
           monthlyTotals[monthKey].volume += wgt / 1000;
-          monthlyTotals[monthKey].value += amt;
+          monthlyTotals[monthKey].value += amt / 1000;
           
-          if (wgt > 0 && statKorMatch) {
-            const country = statKorMatch[1].trim();
+          if (wgt > 0 && countryMatch) {
+            const country = countryMatch[1].trim();
             if (country && country !== '총계' && country.length > 0) {
               if (!originTotals[country]) originTotals[country] = 0;
               originTotals[country] += wgt;
@@ -114,13 +116,14 @@ export async function GET() {
         }
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[KCS API] 연동 실패, Fallback 데이터 사용');
   }
 
   return NextResponse.json({
     timestamp: new Date().toISOString(),
     isLive,
+    hsCode: HSK,
     source: isLive ? '관세청 KCS OpenAPI (실시간)' : 'KCS Fallback',
     monthly,
     origin

@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 08:54 KST — P0 계약 테스트 확대 + 고등어 KCS 국가 파싱 정정** [CC]:
+> - `docs/2026_dashboard_radical_improvement_proposal.md`의 P0 안전망 후속. KCS 계약 스키마 확장: `KcsMonthlyOriginResponse`, `KcsOriginSummaryResponse`, 원산국 비중 합 검증 helper 추가. 신규 테스트 `__tests__/kcs-routes.contract.test.ts`로 `/api/mackerel-kcs` LIVE XML 모킹, fallback 계약, `/api/galchi/kcs` fallback 계약 검증.
+> - 고등어 KCS 라우트에서 김 국가별 LIVE 버그와 같은 계열의 함정 정정: 국가명은 `<statKor>`(품목명)이 아니라 `<statCdCntnKor1>`로 집계. `impDlr`도 USD→천USD로 변환해 monthly `value` 단위 정합. `app/api/_shared/hs-codes.ts`에 `mackerel_frozen` 추가 후 라우트에서 참조.
+> - 검증: `npm test` 2파일/5테스트 통과, 대상 lint 통과(`app/api/mackerel-kcs/route.ts`, `app/api/_shared/hs-codes.ts`, `lib/contracts/kcs.ts`, KCS 테스트 2개), `npm run build` 통과(Next 16.2.1, 143 routes). `npm run typecheck`는 기존 Recharts formatter/ts-nocheck 해제 전 타입 부채로 실패(이번 변경 파일은 오류 목록 없음).
+> - 미배포(로컬). 무관한 dirty 파일(`data/atuna_prices.json`, 하역/테스트 스크립트 등)은 건드리지 않음.
+
 > 🛡 **2026-07-02 KST — 개선 기획서 + P0 품질 안전망 착수** [CC]:
 > - **기획서**: docs/2026_dashboard_radical_improvement_proposal.md (실측 35대시보드·422위젯·144라우트·73,936 LOC / 부채: 테스트0·lint off·@ts-nocheck 31·직접JSON import 107·ignoreBuildErrors=true). 6축 로드맵.
 > - **P0 착수**: vitest4+zod4. lib/contracts/kcs.ts(KCS 응답 계약). __tests__/kim-customs.contract.test.ts(김 2라우트, fetch모킹 결정론적, 2/2 통과). package.json lint 복구·typecheck·test. .bak_api 6제거. app/api/_shared/hs-codes.ts(L-04 HS 단일출처 초안).

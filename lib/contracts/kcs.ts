@@ -31,8 +31,59 @@ export const KcsMonthlyDestResponse = z.object({
 
 export type KcsMonthlyDestResponseT = z.infer<typeof KcsMonthlyDestResponse>;
 
+export const KcsMonthlyOriginResponse = z.object({
+  timestamp: z.string().optional(),
+  isLive: z.boolean(),
+  hsCode: z.string().min(1).optional(),
+  source: z.string().min(1),
+  monthly: z.array(KcsMonthlyPoint).min(1),
+  origin: z.array(KcsDestPoint).min(1),
+});
+
+export const KcsOriginTradePoint = z.object({
+  origin: z.string().min(1),
+  volume: z.number().finite().nonnegative(), // 톤
+  value: z.number().finite().nonnegative(),  // 천USD
+  share: z.number().finite().nonnegative(),
+});
+
+export const KcsYearlyTradePoint = z.object({
+  year: z.string().regex(/^\d{4}$/),
+  totalWgt: z.number().finite().nonnegative(),
+  totalDlr: z.number().finite().nonnegative(),
+  cnPct: z.number().finite().nonnegative(),
+  cifPerKg: z.number().finite().nonnegative(),
+});
+
+export const KcsOriginSummaryResponse = z.object({
+  isLive: z.boolean(),
+  source: z.string().min(1),
+  hskVerified: z.string().min(1),
+  lastUpdated: z.string().min(1),
+  year: z.string().regex(/^\d{4}$/),
+  summary: z.object({
+    totalWgt: z.number().finite().nonnegative(),
+    totalDlr: z.number().finite().nonnegative(),
+    cnWgt: z.number().finite().nonnegative(),
+    cnDlr: z.number().finite().nonnegative(),
+    cnPct: z.number().finite().nonnegative(),
+    cifPerKg: z.number().finite().positive(),
+    yoy: z.string().optional(),
+  }),
+  yearly: z.array(KcsYearlyTradePoint).min(1),
+  byOrigin: z.array(KcsOriginTradePoint).min(1),
+});
+
+export type KcsMonthlyOriginResponseT = z.infer<typeof KcsMonthlyOriginResponse>;
+export type KcsOriginSummaryResponseT = z.infer<typeof KcsOriginSummaryResponse>;
+
 /** dest 비중 합이 ~100%인지 (동적 top-N + 기타 정합성) */
 export function assertDestSharesSaneish(dest: { value: number }[]): { ok: boolean; sum: number } {
   const sum = dest.reduce((s, d) => s + d.value, 0);
+  return { ok: sum >= 95 && sum <= 101, sum: Math.round(sum * 10) / 10 };
+}
+
+export function assertOriginSharesSaneish(origin: { share: number }[]): { ok: boolean; sum: number } {
+  const sum = origin.reduce((s, d) => s + d.share, 0);
   return { ok: sum >= 95 && sum <= 101, sum: Math.round(sum * 10) / 10 };
 }

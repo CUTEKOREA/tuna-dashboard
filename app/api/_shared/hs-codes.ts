@@ -43,6 +43,11 @@ export const HS_CODES = {
     hsSgn: '0303892000',
     note: '2026-06-11 검증. statKor "갈치". 구 0303899060(아귀) 폐기.',
   },
+  mackerel_frozen: {
+    label: '냉동 고등어',
+    hsSgn: '030354',
+    note: 'KCS nitemtrade 냉동 고등어. 국가명은 statCdCntnKor1, statKor는 품목명이라 국가 집계에 사용 금지.',
+  },
 } satisfies Record<string, HsEntry>;
 
 export type HsKey = keyof typeof HS_CODES;
