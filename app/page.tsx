@@ -139,7 +139,7 @@ export default function Home() {
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(() => {
     const path = pathname?.replace('/', '');
     if (path && (VALID_MENUS as readonly string[]).includes(path)) return path as ActiveMenu;
-    return 'value-chain';
+    return 'market';
   });
 
   const isFirstMount = React.useRef(true);
