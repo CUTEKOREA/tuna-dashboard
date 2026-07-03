@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:18 KST — fishery KCS 국가·단위 파싱 정정** [CC]:
+> - `/api/fishery?source=kcs` 고등어 통합 BFF의 KCS LIVE 파싱을 `statKor`(품목명) → `statCdCntnKor1`(국가명) 기준으로 정정. 고등어 품목명이 원산국 비중에 섞이는 계열 버그를 차단.
+> - 월별 금액도 KCS `impDlr` USD 원값 누적에서 천USD 단위(`amt / 1000`)로 정정해 `mackerel-kcs` 계약과 맞춤.
+> - `__tests__/kcs-routes.contract.test.ts`에 `/api/fishery?source=kcs` LIVE XML 계약 테스트 추가. 국가명·단위·원산국 비중 합·품목명 혼입 금지를 검증.
+> - 검증: KCS 계약 테스트 4/4 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 4파일/15테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:16 KST — 아키텍처 회귀 가드 테스트 추가** [CC]:
 > - P0/P1 기준선 보호용 `__tests__/architecture-guards.test.ts` 추가. CI의 `npm test`에서 직접 JSON import 재발, `@ts-nocheck`, `ignoreBuildErrors: true`, 핵심 KCS HS/HSK 리터럴 재하드코딩을 차단.
 > - 가드 범위: `app/components`의 `../data/*.json` 직접 import 금지, `app/components/lib`의 `@ts-nocheck` 금지, Next build 타입 무시 금지, 김·갈치·고등어 핵심 HS 값은 `app/api/_shared/hs-codes.ts` 경유 강제.

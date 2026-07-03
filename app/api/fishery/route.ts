@@ -89,7 +89,7 @@ export async function GET(request: Request) {
           for (const match of items) {
             const itemStr = match[1];
             const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
-            const statKorMatch = itemStr.match(/<statKor>([\s\S]*?)<\/statKor>/);
+            const countryMatch = itemStr.match(/<statCdCntnKor1>([\s\S]*?)<\/statCdCntnKor1>/);
             if (!yearMatch || yearMatch[1] === "총계") continue;
             const rawYear = yearMatch[1].replace(/\D/g, "");
             if (rawYear.length !== 6) continue;
@@ -102,10 +102,10 @@ export async function GET(request: Request) {
 
             if (!monthlyTotals[monthKey]) monthlyTotals[monthKey] = { volume: 0, value: 0 };
             monthlyTotals[monthKey].volume += wgt / 1000; // kg → 톤
-            monthlyTotals[monthKey].value += amt;
+            monthlyTotals[monthKey].value += amt / 1000; // USD → 천USD
 
-            if (wgt > 0 && statKorMatch) {
-              const country = statKorMatch[1].trim();
+            if (wgt > 0 && countryMatch) {
+              const country = countryMatch[1].trim();
               if (country && country !== "총계" && country.length > 0) {
                 if (!originTotals[country]) originTotals[country] = 0;
                 originTotals[country] += wgt;
