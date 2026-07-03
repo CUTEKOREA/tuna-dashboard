@@ -7,9 +7,11 @@
 import React from 'react';
 import { Anchor } from 'lucide-react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import data from '../data/tuna_korea_position.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getTunaData('koreaPosition');
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;

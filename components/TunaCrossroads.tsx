@@ -7,9 +7,11 @@
 import React from 'react';
 import { Anchor } from 'lucide-react';
 import { Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Area, ComposedChart } from 'recharts';
-import data from '../data/tuna_crossroad.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getTunaData('crossroads');
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;

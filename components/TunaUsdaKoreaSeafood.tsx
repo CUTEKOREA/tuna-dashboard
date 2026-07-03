@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Globe, ShoppingBag, FileText, Shield, MapPin } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/tuna_usda_korea_seafood.json';
+import { getTunaData } from '@/lib/data/tuna';
+
+const rawData = getTunaData('usdaKoreaSeafood');
 
 type Widget = {
   id: string;

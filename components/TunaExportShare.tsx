@@ -7,9 +7,11 @@
 import React from 'react';
 import { Anchor } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import rawData from '../data/tuna_export_share.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getTunaData('exportShare');
 
 const colors: Record<string, string> = {
   '일본': '#ef4444',

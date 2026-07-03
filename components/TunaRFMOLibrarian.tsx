@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Anchor, Globe, Shield, Compass, Fish, Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/tuna_librarian_v1.json';
+import { getTunaData } from '@/lib/data/tuna';
+
+const rawData = getTunaData('librarian');
 
 type Widget = {
   id: string;

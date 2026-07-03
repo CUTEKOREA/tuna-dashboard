@@ -8,9 +8,11 @@ import React from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Recycle } from 'lucide-react';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
-import rawData from '../data/tuna_petcare_margin.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getTunaData('petCareMargin');
 
 const COLORS = ['#ef4444', '#22c55e'];
 

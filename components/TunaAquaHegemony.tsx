@@ -7,8 +7,10 @@
 import React from 'react';
 import { Anchor } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import data from '../data/tuna_aqua_hegemony.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
+
+const data = getTunaData('aquaHegemony');
 
 const countries = (data as any[]).length > 0
   ? Object.keys((data as any[])[0]).filter((k) => k !== 'Year')

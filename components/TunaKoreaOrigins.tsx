@@ -7,9 +7,11 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Anchor } from 'lucide-react';
-import koreaOriginsData from '../data/tuna_korea_import_origins.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const koreaOriginsData = getTunaData('koreaOrigins');
 
 const formatNumber = (n: number) => new Intl.NumberFormat('en-US').format(n);
 

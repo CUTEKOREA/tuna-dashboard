@@ -6,10 +6,12 @@ import {
   ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 } from 'recharts';
 import styles from './TunaInsightsDashboard.module.css';
-import data from '../data/tuna_aqua_value.json';
+import { getTunaData } from '@/lib/data/tuna';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
+
+const data = getTunaData('aquaValue');
 
 function CustomTooltip({ active, payload, label }: any) {
   if (active && payload && payload.length) {

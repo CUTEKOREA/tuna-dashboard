@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 11:05 KST — 참치 데이터 인테이크 분리** [CC]:
+> - P1 데이터 디커플링 후속. `lib/data/tuna.ts`를 추가해 참치 JSON 15종을 `getTunaData()` 단일 진입점 뒤로 이동.
+> - `Tuna*` 위젯 14개와 `ThaiTunaTradeStats.tsx`에서 `../data/tuna*.json`, `thai_tuna_trade_summary.json` 직접 import 제거. `TunaAtuna8YPrice.tsx`의 API 전환 후 남은 죽은 주석 경로도 삭제.
+> - 전체 app/components 직접 JSON import 계측값은 45 → 29로 감소. 이번 P1 데이터 인테이크 배치 누적 제거량은 83개 직접 경로.
+> - 검증: 참치 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 3파일/11테스트, `npm run build`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 11:01 KST — 연어 데이터 인테이크 분리** [CC]:
 > - P1 데이터 디커플링 후속. `lib/data/salmon.ts`를 추가해 연어 insight JSON 15종을 `getSalmonData()` 단일 진입점 뒤로 이동.
 > - `Salmon*` 위젯 15개에서 `../data/salmon*.json`, `../data/Salmon*.json` 직접 import 제거. 연어 위젯 직접 JSON 경로 의존 15개 → 0개.

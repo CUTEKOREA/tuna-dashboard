@@ -5,7 +5,6 @@ import {
 } from 'recharts';
 import { LineChart as IconChart } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-// import rawData from '../data/tuna_atuna_8y.json'; // Deprecated in favor of API
 
 type Entry = {
   month: string;

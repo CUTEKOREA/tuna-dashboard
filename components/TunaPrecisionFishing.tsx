@@ -7,8 +7,10 @@
 import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip, Legend } from 'recharts';
 import { Crosshair } from 'lucide-react';
-import rawData from '../data/tuna_precision_fishing.json';
+import { getTunaData } from '@/lib/data/tuna';
 import WidgetCard from './WidgetCard';
+
+const rawData = getTunaData('precisionFishing');
 
 const CustomRadarTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;

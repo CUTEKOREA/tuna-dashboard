@@ -5,10 +5,12 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ArrowDownRight, Globe } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
-import declineData from '../data/tuna_traditional_decline.json';
-import empireData from '../data/tuna_thai_empire.json';
+import { getTunaData } from '@/lib/data/tuna';
 import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
+
+const declineData = getTunaData('traditionalDecline');
+const empireData = getTunaData('thaiEmpire');
 
 const getKorCountry = (engName: string) => {
   const map: Record<string, string> = {

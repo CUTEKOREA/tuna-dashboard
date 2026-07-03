@@ -14,12 +14,13 @@ import {
   BarChart
 } from 'recharts';
 import { TrendingUp, Globe, Factory } from 'lucide-react';
-import tradeData from '../data/thai_tuna_trade_summary.json';
+import { getTunaData } from '@/lib/data/tuna';
 import TakeawayBox from './TakeawayBox';
 import TelemetryBadge from './TelemetryBadge';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
 
+const tradeData = getTunaData('thaiTradeSummary');
 const COLORS = ['var(--color-info)', 'var(--color-success)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6'];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
