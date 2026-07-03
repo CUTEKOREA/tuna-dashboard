@@ -16,7 +16,6 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 
 const WTO_KEY = process.env.WTO_API_KEY || '';
-const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || '';
 
 // ═══ Pollock Policy Risk Matrix ═══
 const POLLOCK_POLICY_RISK_MATRIX = {
@@ -206,7 +205,7 @@ export async function POST(request: NextRequest) {
       },
       ...POLLOCK_POLICY_RISK_MATRIX,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: POLLOCK_POLICY_RISK_MATRIX }, { status: 500 });
   }
 }

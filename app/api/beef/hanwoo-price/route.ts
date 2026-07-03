@@ -76,7 +76,7 @@ async function fetchKamisItem(itemCode: string, itemCategoryCode: string, kindCo
   }
   const text = await res.text();
   let json: any;
-  try { json = JSON.parse(text); } catch (e) {
+  try { json = JSON.parse(text); } catch {
     logApiFail(label, 'JSON parse failed', text.slice(0, 200));
     return {};
   }
@@ -140,7 +140,7 @@ export async function GET() {
       } else {
         source = 'KAMIS 한우 응답 부족 — 정적 미러';
       }
-    } catch (e) {
+    } catch {
       source = 'KAMIS API 호출 실패 — 정적 미러';
     }
   } else {

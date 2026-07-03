@@ -6,21 +6,6 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 // ==========================================
-// Helper: Safe API Health Check with timeout
-// ==========================================
-async function checkApiHealth(url: string, timeoutMs: number = 3000): Promise<'online' | 'degraded' | 'offline'> {
-  try {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
-    const res = await fetch(url, { signal: controller.signal, method: 'HEAD' });
-    clearTimeout(timer);
-    return res.ok ? 'online' : 'degraded';
-  } catch {
-    return 'offline';
-  }
-}
-
-// ==========================================
 // Helper: Fetch KAMIS retail price for a product
 // ==========================================
 async function fetchKamisPrice(productCode: string, productName: string): Promise<number | null> {
@@ -65,7 +50,7 @@ async function fetchSSTAnomaly(): Promise<number | null> {
   return null;
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // public/data 는 배포에 포함됨(기존 data/ 는 .gitignore /data/ 로 미배포 → 프로덕션 빈 차트 원인이었음)
     const filePath = path.join(process.cwd(), 'public', 'data', 'consignment_3year.json');

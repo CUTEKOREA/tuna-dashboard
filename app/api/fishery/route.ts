@@ -209,7 +209,7 @@ export async function GET(request: Request) {
             }));
           }
         }
-      } catch (e) {
+      } catch {
         console.warn("Live MOF API failed, using fallback");
       }
 
@@ -239,7 +239,7 @@ export async function GET(request: Request) {
             currentNorwayCifKg = Math.round(unitPriceUsd * exchangeRate);
           }
         }
-      } catch (e) {
+      } catch {
         console.warn("Live KCS/ODCLOUD API failed, using fallback CIF");
       }
 

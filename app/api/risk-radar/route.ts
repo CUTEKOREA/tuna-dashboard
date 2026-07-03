@@ -31,7 +31,7 @@ async function fetchMFDSRejections(itemName: string) {
     }));
 
     return { count: totalCount, items: parsed.slice(0, 10), source: 'MFDS_LIVE' };
-  } catch (e) {
+  } catch {
     return { count: 0, items: [], source: 'MFDS_NETWORK_ERROR' };
   }
 }
@@ -71,7 +71,7 @@ async function fetchKOTRAFraudCases(country: string) {
 }
 
 // --- OFAC SDN List Check (lightweight) ---
-async function checkOFACSanctions(country: string, supplierName?: string) {
+async function checkOFACSanctions(country: string) {
   // OFAC sanctioned countries (updated 2024)
   const sanctionedCountries = new Set([
     'CU', 'IR', 'KP', 'SY', 'RU', // Full/Partial sanctions
@@ -141,7 +141,7 @@ Provide a risk assessment in JSON format:
 // --- Main Handler ---
 export async function POST(req: Request) {
   try {
-    const { country, item, supplierName } = await req.json();
+    const { country, item } = await req.json();
     if (!country || !item) {
       return NextResponse.json({ error: 'country and item required' }, { status: 400 });
     }
@@ -150,7 +150,7 @@ export async function POST(req: Request) {
     const [mfds, fraud, ofac] = await Promise.all([
       fetchMFDSRejections(item),
       fetchKOTRAFraudCases(country),
-      checkOFACSanctions(country, supplierName),
+      checkOFACSanctions(country),
     ]);
 
     // AI Risk Assessment
