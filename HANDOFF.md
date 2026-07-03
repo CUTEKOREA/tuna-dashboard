@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:33 KST — USDA/FAS 6개 라우트 fallback 계약 테스트 추가** [CC]:
+> - P0/A-3 라우트 계약 커버리지 후속. `lib/contracts/usda-fas.ts` 신규 추가로 USDA FAS 계열 공통 응답(`isLive/source/marketYear/commodityCode/records/apiHealth`)을 zod 계약화.
+> - `__tests__/usda-fas-routes.contract.test.ts` 신규 추가. `/api/beef/usda-fas`, `/api/cashew/usda-fas`, `/api/chicken/usda-fas`, `/api/salmon/usda-fas`, `/api/shrimp/usda-fas`, `/api/tuna/usda-fas`의 HTTP 503 fallback 경로를 네트워크 없이 검증.
+> - 검증 포인트: `isLive=false` 정직 표기, 요청 연도 보존, commodityCode 보존, 빈 records fallback, `apiHealth.reason=HTTP 503`.
+> - 검증: 신규 테스트 6/6 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 8파일/34테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:30 KST — KCS 이관 라우트 5개 계약 테스트 확대** [CC]:
 > - P0/A-3 라우트 계약 커버리지 후속. `lib/contracts/kcs.ts`에 `KcsImportSummaryResponse` 범용 계약을 추가해 `hs`, `summary`, `byOrigin`, 선택 `yearly/apiHealth` 구조를 검증 가능하게 함.
 > - `__tests__/kcs-import-routes.contract.test.ts` 신규 추가. `/api/cashew/kcs`, `/api/jukkumi/kcs`, `/api/octopus/kcs`, `/api/whelk/kcs`, `/api/flatfish/kcs`의 KCS 실패 fallback 경로를 네트워크 없이 검증.
