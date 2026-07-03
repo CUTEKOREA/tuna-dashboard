@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:16 KST — 아키텍처 회귀 가드 테스트 추가** [CC]:
+> - P0/P1 기준선 보호용 `__tests__/architecture-guards.test.ts` 추가. CI의 `npm test`에서 직접 JSON import 재발, `@ts-nocheck`, `ignoreBuildErrors: true`, 핵심 KCS HS/HSK 리터럴 재하드코딩을 차단.
+> - 가드 범위: `app/components`의 `../data/*.json` 직접 import 금지, `app/components/lib`의 `@ts-nocheck` 금지, Next build 타입 무시 금지, 김·갈치·고등어 핵심 HS 값은 `app/api/_shared/hs-codes.ts` 경유 강제.
+> - 검증: 신규 테스트 단독 3/3 통과, 신규 테스트 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 4파일/14테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 11:14 KST — HS/HSK 단일출처 라우트 이관 1차 완료** [CC]:
 > - P1 데이터 계약 정리 후속. 이미 있던 `app/api/_shared/hs-codes.ts`의 `HS_CODES`를 김·갈치·고등어 KCS 계열 라우트 5개에 실제 연결.
 > - `app/api/kim/customs`, `kim/customs-seasoned`, `galchi/kcs`, `fishery`, `mackerel-ticker`에서 `121221`, `1212211`, `2008995010`, `0303892000`, `030354` 호출값을 라우트 내부 리터럴 대신 공유 테이블 참조로 교체.
