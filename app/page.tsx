@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
@@ -101,33 +102,12 @@ export default function Home() {
     return 'market';
   });
 
-  const isFirstMount = React.useRef(true);
-
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const currentPath = window.location.pathname.replace('/', '');
-      
-      if (isFirstMount.current) {
-        isFirstMount.current = false;
-        if (currentPath && (VALID_MENUS as readonly string[]).includes(currentPath) && currentPath !== activeMenu) {
-          setActiveMenu(currentPath as ActiveMenu);
-          return;
-        }
-      }
-
-      if (currentPath !== activeMenu) {
-        window.history.replaceState(null, '', `/${activeMenu}`);
-      }
+    const currentPath = window.location.pathname.replace('/', '');
+    if (currentPath !== activeMenu) {
+      window.history.replaceState(null, '', `/${activeMenu}`);
     }
   }, [activeMenu]);
-
-  const handleMenuClick = (menu: ActiveMenu) => {
-    if (activeMenu === menu) {
-      window.location.reload();
-    } else {
-      setActiveMenu(menu);
-    }
-  };
   const [operationAccessGranted, setOperationAccessGranted] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.sessionStorage.getItem(OPERATION_ACCESS_STORAGE_KEY) === 'granted';
@@ -148,11 +128,23 @@ export default function Home() {
   // Mobile sidebar state
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+  const navigateToMenu = React.useCallback((menu: ActiveMenu) => {
+    setOperationAuthError('');
+    setOperationPassword('');
+    setActiveMenu(menu);
+  }, []);
+
+  const handleMenuClick = (menu: ActiveMenu) => {
+    if (activeMenu === menu) {
+      window.location.reload();
+    } else {
+      navigateToMenu(menu);
+    }
+  };
+
   // Scroll to top and update page title when activeMenu changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    setOperationAuthError('');
-    setOperationPassword('');
     document.title = `${MENU_TITLES[activeMenu] || activeMenu} | 참치왕국`;
   }, [activeMenu]);
 
@@ -245,7 +237,7 @@ export default function Home() {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       const num = parseInt(e.key);
       if (num >= 1 && num <= menuKeys.length) {
-        setActiveMenu(menuKeys[num - 1] as any);
+        navigateToMenu(menuKeys[num - 1]);
       }
       if (e.key === 'd' || e.key === 'D') toggleTheme();
       if (e.key === 'f' || e.key === 'F') {
@@ -255,7 +247,7 @@ export default function Home() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [toggleTheme]);
+  }, [navigateToMenu, toggleTheme]);
 
   // Ambient color based on active page
   const ambientAccent = (['cashew', 'cocoa'].includes(activeMenu)) ? 'emerald' as const
@@ -271,7 +263,7 @@ export default function Home() {
     <div className={styles.appWrapper}>
       <AmbientBackground accent={ambientAccent} />
       {/* SwimmingTuna removed per user request */}
-      <CommandPalette onNavigate={(menu) => setActiveMenu(menu as any)} />
+      <CommandPalette onNavigate={(menu) => navigateToMenu(menu as ActiveMenu)} />
       
       {/* Mobile Hamburger Button */}
       <button 
@@ -307,7 +299,7 @@ export default function Home() {
           onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.8'; }}
           onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
         >
-          <img src="/logo1.png" alt="Company Logo" style={{ height: '48px', objectFit: 'contain', marginBottom: '8px' }} />
+          <Image src="/logo1.png" alt="Company Logo" width={184} height={48} style={{ height: '48px', width: 'auto', objectFit: 'contain', marginBottom: '8px' }} />
           <p className={styles.subtitle} style={{ fontSize: '0.75rem', marginBottom: '8px' }}>Tuna Market Intelligence</p>
           <div style={{
             fontSize: '0.65rem',
@@ -932,7 +924,7 @@ export default function Home() {
                       transition={{ delay: 0.2, duration: 0.8 }}
                       className={styles.landingBrand}
                     >
-                      <img src="/logo1.png" alt="Silla Co." className={styles.landingLogo} />
+                      <Image src="/logo1.png" alt="Silla Co." width={345} height={90} className={styles.landingLogo} />
                       <h1 className={styles.landingTitle}>TUNA KINGDOM</h1>
                       <p className={styles.landingSubtitle}>S-Grade Executive Intelligence</p>
                     </motion.div>

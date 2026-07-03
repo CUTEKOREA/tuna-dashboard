@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:56 KST — app shell lint debt 제거** [CC]:
+> - `app/page.tsx`: 초기 URL 보정 effect에서 동기 `setActiveMenu`를 제거하고, 메뉴 이동을 `navigateToMenu`로 통합해 클릭·키보드·CommandPalette 진입 시 운영 비밀번호 입력/오류 초기화가 같은 경로를 타도록 정리.
+> - 사이드바/랜딩 로고 `<img>` 2개를 Next `Image`로 교체. 기존 로고 비율(`logo1.png` 982×256) 기준으로 사이드바 184×48, 랜딩 345×90 크기를 지정해 레이아웃을 유지.
+> - 대상 파일 lint warning: `app/page.tsx` 4 → 0. 전체 `npm run lint` 기준선은 163 → 159 warnings로 감소.
+> - 검증: 대상 lint 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 159 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), 로컬 dev `127.0.0.1:3020`에서 `/market` 200·`/carrot` 200 확인. Playwright 패키지는 repo 의존성에 없어 브라우저 자동화는 실행하지 못함.
+> - 미배포(로컬). 기존/무관 dirty 파일(`components/FleetCharts.tsx`, `data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:53 KST — Tuna/Carrot dashboard lint debt 제거** [CC]:
 > - `components/TunaDashboard.tsx`: 렌더 경로가 사라진 `EstimateBadge`와 사용되지 않는 live API state 2개를 제거. 기존 `/api/tuna` fetch와 위젯 렌더 흐름은 유지.
 > - `components/CarrotDashboard.tsx`: 미사용 `ENHANCED_INSIGHTS`/`EstimateBadge`, 미사용 W19 map index를 제거하고 헤더 로고 `<img>`를 Next `Image`로 교체. 44px 헤더 로고 박스와 당근 대시보드 데이터 흐름은 유지.
