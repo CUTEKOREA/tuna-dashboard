@@ -78,6 +78,10 @@ describe('architecture guards', () => {
 
     const directJsonImport = /from\s+['"](?:\.\.\/data|\.\.\/\.\.\/data)\/[^'"]+\.json['"]/;
     expect(await filesWithMatches(files, directJsonImport)).toEqual([]);
+
+    const componentFiles = await listFiles(path.join(ROOT, 'components'));
+    const componentPublicJsonImport = /from\s+['"](?:\.\.\/public\/data|\.\.\/\.\.\/public\/data)\/[^'"]+\.json['"]/;
+    expect(await filesWithMatches(componentFiles, componentPublicJsonImport)).toEqual([]);
   });
 
   it('keeps TypeScript and Next build gates enabled', async () => {

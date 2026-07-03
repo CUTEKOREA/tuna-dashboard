@@ -14,6 +14,15 @@ describe('data intake metadata', () => {
     expect(meta.version).toBe('v1');
   });
 
+  it('serves garlic USDA widgets through the data intake module', () => {
+    const data = getUsdaWidgetData('garlic');
+    const meta = getUsdaWidgetMeta('garlic');
+
+    expect(data.widgets.length).toBeGreaterThan(0);
+    expect(meta.status).toBe('SYNCED');
+    expect(meta.source).toContain('KREI');
+  });
+
   it('extracts top-level source from FTA quarterly datasets', () => {
     const data = getFtaQuarterlyData('shrimp');
     const meta = getFtaQuarterlyMeta('shrimp');

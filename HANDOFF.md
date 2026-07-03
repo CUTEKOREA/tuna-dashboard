@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧄 **2026-07-03 13:20 KST — Garlic USDA 위젯 데이터 인테이크 이관** [CC]:
+> - 기획서 축 B-1 후속. `components/GarlicUsdaWidgets.tsx`의 `../public/data/garlic_usda_widgets.json` 직접 import를 제거하고 `lib/data/usda-widgets.ts`의 `getUsdaWidgetData('garlic')` 경유로 전환.
+> - `lib/data/usda-widgets.ts`에 `garlic` dataset을 추가해 Beef/Chicken/Cocoa/Pork와 같은 USDA 위젯 인테이크 패턴으로 통합.
+> - `__tests__/architecture-guards.test.ts`에 components의 `../public/data/*.json` 직접 import 재발 방지 가드 추가, `__tests__/data-metadata.test.ts`에 garlic dataset 메타/위젯 존재 테스트 추가.
+> - 검증: 컴포넌트 public/data 직접 JSON import 0건 확인, 대상 테스트 2파일/10테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/67테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > ✅ **2026-07-03 13:18 KST — API 캐시 정책 전수 명시 완료 145/145** [CC]:
 > - 기획서 축 E-2 완료. 마지막 4개 미정책 route 중 웹훅/WITS/WTO 계열(`/api/webhooks/unloading`, `/api/wits`, `/api/wto`)은 `dynamic = 'force-dynamic'`, 정적 골뱅이 스냅샷(`/api/whelk/live`)은 `revalidate = 3600`으로 명시.
 > - `scripts/audit_api_cache_policy.mjs` 기본 하한을 141→145로 상향. 하한만 올렸을 때 `141/145 explicit, minimum 145` 실패를 먼저 확인한 뒤 GREEN 전환.
