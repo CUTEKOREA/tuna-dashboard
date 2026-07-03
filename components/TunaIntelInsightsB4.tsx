@@ -265,7 +265,7 @@ export function RasSystemWidget() {
       takeaway={{
         situation: `<div>
 <p><strong>RAS(Recirculating Aquaculture System)</strong>는 부유식 순환여과양식 — 바다에 떠 있는 폐쇄 양식 시설로 물·사료·배설물을 100% 순환시키는 차세대 양식 기술입니다.</p>
-<p>전통 가두리 양식 대비 압도적 우위:</p>
+<p>전통 가두리 양식 대비 뚜렷한 우위:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
 <li>단위 면적당 생산성 <strong>4.5배</strong></li>
 <li>용수 사용 <strong>-95%</strong> (해양 오염 회피)</li>

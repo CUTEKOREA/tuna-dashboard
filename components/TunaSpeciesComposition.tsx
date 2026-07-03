@@ -98,7 +98,7 @@ const TunaSpeciesComposition = () => (
     }
     takeaway={{
       situation: `<div>
-<p>글로벌 참치 어획 구성: <strong>가다랑어(Skipjack) 58.3%</strong>가 압도적 1위. 황다랑어(Yellowfin) 21.7% 합쳐 상위 2개 어종이 <strong>80% 점유</strong>. 눈다랑어(Bigeye) 12.4%, 날개다랑어(Albacore) 5.8%는 비중 작지만 단가 프리미엄(가다랑어의 3~5배).</p>
+<p>글로벌 참치 어획 구성: <strong>가다랑어(Skipjack) 58.3%</strong>가 뚜렷한 1위. 황다랑어(Yellowfin) 21.7% 합쳐 상위 2개 어종이 <strong>80% 점유</strong>. 눈다랑어(Bigeye) 12.4%, 날개다랑어(Albacore) 5.8%는 비중 작지만 단가 프리미엄(가다랑어의 3~5배).</p>
 <p>가다랑어는 표층 회유성 어종으로 ENSO·라니냐 충격 시 글로벌 공급이 <strong>약 20~25% 수준 위축(업계추정)</strong>. 가다랑어 의존도 60%는 단일 기후 변수에 대한 집중 리스크 포지션.</p>
 <p>의미: 어종 다변화는 단순 portfolio가 아닌 <strong>"climate beta hedge"</strong>. 황다랑어·날개다랑어는 더 깊은 수심으로 ENSO 내성 높아 자연 헷지.</p>
 </div>`,

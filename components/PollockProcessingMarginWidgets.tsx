@@ -38,7 +38,7 @@ export function WidgetRoeMarginSpread() {
         situation: `<div>
 <p>"명란(Roe)"이란 명태의 알. 명태 전체 포트폴리오(필레·수리미·로) 중 가장 부가가치 높은 부위로, 한국 시장에서 핵심 밥도둑 반찬으로 자리매김.</p>
 <p>채널별 마진 추정: <strong>벌크 B2B 납품(식당 도매상) 마진 약 8%</strong> vs <strong>고부가 선물세트·저염 명란 브랜드 D2C 마진 약 55%</strong> — 약 6.9배 격차 추정. 같은 어란을 어떤 채널로 어떤 SKU로 파느냐가 마진을 결정.</p>
-<p>왜 이 격차? ① 한국 명란 시장은 사실상 한·일 양국 demand가 글로벌의 95%+ — 압도적 demand pool ② D2C 채널은 중간 유통 마진 300~500bp 직접 회수 ③ 선물세트·저염 SKU는 가격 민감도 낮은 luxury segment ④ 명란은 vegetarian 대체 불가능한 차별화 성분(콜레스테롤·EPA).</p>
+<p>왜 이 격차? ① 한국 명란 시장은 사실상 한·일 양국 demand가 글로벌의 95%+ — 뚜렷한 demand pool ② D2C 채널은 중간 유통 마진 300~500bp 직접 회수 ③ 선물세트·저염 SKU는 가격 민감도 낮은 luxury segment ④ 명란은 vegetarian 대체 불가능한 차별화 성분(콜레스테롤·EPA).</p>
 </div>`,
         actionPlan: `<div>
 <p><strong>재정의</strong>: 명란은 단순 명태 부산물이 아닌 <strong>"한국 향식 luxury food brand의 단독 SKU 후보"</strong>. 어란 매출 portfolio를 B2B 80% → D2C 50%로 재배치하면 EBITDA +12~18%p.</p>

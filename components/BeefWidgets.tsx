@@ -340,7 +340,7 @@ export function W8_PriceGap({ accent }: any) {
     + (gapUs ? `, 미국산 ₩${latest.usImport.toLocaleString()} (갭 ${gapUs}배)` : '')
     + (gapAu ? `, 호주산 ₩${latest.auImport.toLocaleString()} (갭 ${gapAu}배)` : '')
     + (hasUs && hasAu
-      ? ' — 외식·B2B 채널 미·호산 압도적 우위.'
+      ? ' — 외식·B2B 채널 미·호산 뚜렷한 우위.'
       : hasUs
         ? ' — 호주산 수입육은 KAMIS 품목코드 미확정으로 라이브 미연동(추정값 미표시).'
         : ' — 미국산·호주산 수입육 도매가는 KAMIS 품목코드 미확정으로 라이브 미연동(추정값 미표시).');

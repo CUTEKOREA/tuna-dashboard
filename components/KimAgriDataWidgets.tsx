@@ -151,7 +151,7 @@ export function KimExportDest() {
         </BarChart>
       }
       takeaway={{
-        situation: `<div><p>마른김(원물) 수출은 <strong>일본 $${data[0]?.usd}M으로 압도적 1위</strong>, 태국·러시아·중국 순. 미국은 마른김에선 하위권 — <strong>미국은 조미김(가공품) 위주</strong>라 원물 통계에선 낮게 잡힘(채널 이원화).</p></div>`,
+        situation: `<div><p>마른김(원물) 수출은 <strong>일본 $${data[0]?.usd}M으로 뚜렷한 1위</strong>, 태국·러시아·중국 순. 미국은 마른김에선 하위권 — <strong>미국은 조미김(가공품) 위주</strong>라 원물 통계에선 낮게 잡힘(채널 이원화).</p></div>`,
         actionPlan: '<div><p><strong>재정의</strong>: 마른김=일본/아시아 중심, 조미김=미국/서구 중심의 이원 채널 구조.</p><p><strong>3단계</strong>: ① 일본 원물 단가 협상력 강화 ② 미국향은 조미김 가공으로 부가가치 ③ 러시아·태국 성장국 관리.</p></div>',
         source: '관세청 KCS · 마른김 HS 1212.21 2024 국가별',
       }}
@@ -182,7 +182,7 @@ export function KimGlobalImporters() {
         </BarChart>
       }
       takeaway={{
-        situation: `<div><p>세계 김(원초) 최대 수입국은 <strong>중국 $${data[0]?.usdM}M</strong>으로 압도적 — <strong>생산 1위(73%)이면서 동시에 원초 수입 1위</strong>인 역설. 자국 재가공·내수 수요가 그만큼 큼. 한국도 $${data.find(x => x.name === '대한민국')?.usdM || ''}M 수입(가공 원료 보충).</p></div>`,
+        situation: `<div><p>세계 김(원초) 최대 수입국은 <strong>중국 $${data[0]?.usdM}M</strong>으로 뚜렷한 — <strong>생산 1위(73%)이면서 동시에 원초 수입 1위</strong>인 역설. 자국 재가공·내수 수요가 그만큼 큼. 한국도 $${data.find(x => x.name === '대한민국')?.usdM || ''}M 수입(가공 원료 보충).</p></div>`,
         actionPlan: '<div><p><strong>재정의</strong>: 중국은 경쟁자이자 최대 원초 수요처 — "중국 수출 vs 중국 가공 침투" 양면 전략.</p><p><strong>3단계</strong>: ① 중국 원초 수출 채널 확대 ② 중국 재가공 우회 대비 한국 가공 brand moat ③ 원초 부족기 한국 수입선 다변화.</p></div>',
         source: 'UN Comtrade · 김 HS 1212.21 수입 (보고국 기준, 일부 국가 한정)',
       }}

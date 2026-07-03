@@ -102,7 +102,7 @@ export default function MscEcolabelCompetition() {
       telemetry={{ status: 'STATIC', syncDate: '2025-26' }}
       cardDesc="글로벌 마케팅 지표"
       takeaway={{
-        situation: "Dolphin-Safe가 단순 인지도(68%) 1위이나 구매 전환(38%)에서는 MSC(44%)에 뒤집니다. MSC는 '인지도 대비 구매 전환율'이 81.5%로 매우 높아 마니아층의 충성도가 압도적입니다.",
+        situation: "Dolphin-Safe가 단순 인지도(68%) 1위이나 구매 전환(38%)에서는 MSC(44%)에 뒤집니다. MSC는 '인지도 대비 구매 전환율'이 81.5%로 매우 높아 마니아층의 충성도가 뚜렷한입니다.",
         actionPlan: "글로벌 B2C 시장에서는 MSC 단독 라벨링보다 Dolphin-Safe와의 이중 라벨 전략이 프리미엄 극대화에 유효합니다. 수출용 캔 참치 제품에 두 라벨의 동시 표기를 표준화하여 +81% 가격 프리미엄을 확보하세요.",
         source: "MSC UK Consumer Insights 2024",
       }}

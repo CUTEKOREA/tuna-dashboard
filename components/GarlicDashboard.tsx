@@ -768,7 +768,7 @@ export default function GarlicDashboard() {
             situation: (
               <div>
                 <p>"원산지 집중도(Sourcing Concentration)"란 한 품목의 수입을 몇 개 국가가 차지하는지의 지표 — 단일 국가 비중이 높을수록 그 나라의 작황·관세·환율·외교 리스크에 P&L이 직접 노출되는 single-point failure 구조.</p>
-                <p>실측(관세청, 2026.03-04 2개월 누적, 수입액 기준): <strong>중국 79.4%로 압도적 단일 의존, 미얀마 5.3%·덴마크 4.1%·네덜란드 2.6%·미국 2.4%·독일 2.2%·베트남 1.3% 순. 상위 7개국이 97.4%를 차지하며 중국 외 대체 산지는 모두 한 자릿수</strong>. 사실상 중국 산둥성 작황이 한국 마늘 수입 단가의 single anchor.</p>
+                <p>실측(관세청, 2026.03-04 2개월 누적, 수입액 기준): <strong>중국 79.4%로 뚜렷한 단일 의존, 미얀마 5.3%·덴마크 4.1%·네덜란드 2.6%·미국 2.4%·독일 2.2%·베트남 1.3% 순. 상위 7개국이 97.4%를 차지하며 중국 외 대체 산지는 모두 한 자릿수</strong>. 사실상 중국 산둥성 작황이 한국 마늘 수입 단가의 single anchor.</p>
               </div>
             ),
             actionPlan: (
@@ -910,7 +910,7 @@ export default function GarlicDashboard() {
             actionPlan: (
               <div>
                 <p><strong>재정의</strong>: 가격 변동성은 risk가 아닌 <strong>"Quant Agri(데이터·파생상품·AI 기반 농업 vendor) 역량 보유 시 alpha의 main source"</strong>. 변동성을 잘 다루는 vendor만 EBITDA 안정 + Multiple premium.</p>
-                <p><strong>3단계</strong>: ① <strong>선도계약(Forward Contract) 비율 30% → 70%+로 단계 확대</strong> — 산둥 vendor + 의성 농가 통합, 6·12·18개월 layered LTA로 가격 lock-in 비중 압도적 ② 자체 ML 가격 예측 모델 구축 — KAMIS·KCS·NOAA·SCFI·환율·중국 작황·정부 정책 등 25개 변수 feature로 7일·30일·90일 가격 예측 (정확도 목표 72%+) ③ 차후 마늘 ETF·선물 상품 출시 가능 시 한국 KRX 또는 CME에 standardized contract 등재 추진 — 가격 변동성을 vendor risk에서 자본 시장 product로 전환, 신규 수익원 창출.</p>
+                <p><strong>3단계</strong>: ① <strong>선도계약(Forward Contract) 비율 30% → 70%+로 단계 확대</strong> — 산둥 vendor + 의성 농가 통합, 6·12·18개월 layered LTA로 가격 lock-in 비중 뚜렷한 ② 자체 ML 가격 예측 모델 구축 — KAMIS·KCS·NOAA·SCFI·환율·중국 작황·정부 정책 등 25개 변수 feature로 7일·30일·90일 가격 예측 (정확도 목표 72%+) ③ 차후 마늘 ETF·선물 상품 출시 가능 시 한국 KRX 또는 CME에 standardized contract 등재 추진 — 가격 변동성을 vendor risk에서 자본 시장 product로 전환, 신규 수익원 창출.</p>
               </div>
             ),
             source: "UN Comtrade + KRX 농산물 선물거래 + Shanghai Garlic Index (2020~2026)",

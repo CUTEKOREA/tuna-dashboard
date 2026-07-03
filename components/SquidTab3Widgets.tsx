@@ -174,7 +174,7 @@ export function Widget29_InflationIndex() {
           <Line type="monotone" dataKey="chicken" name="계육 지수" stroke="#fcd34d" />
         </LineChart>
       }
-      takeaway={{ situation: `<div><p>"금징어 쇼크"란 한국 오징어 가격이 일반 단백질 인플레이션을 압도적으로 추월하면서 "서민 식재료" 지위를 상실한 현상.</p><p>2019~2023년 가격 지수 추정: 오징어 가격 상승폭이 돼지·닭 대비 현저히 크게 나타남 (업계추정 기반, KAMIS 원자료 교차 확인 권장). 수퍼마켓에서 오징어 가격이 일부 어종 수준에 근접하는 사례 증가.</p><p>의미: 단순 가격 변동이 아닌 <strong>"서민 식재료에서 상대적 프리미엄 식재료로의 카테고리 이동"</strong> 가능성.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 금징어 현상은 위협이 아닌 <strong>"Veblen Good(과시재) repositioning 기회"</strong>.</p><p><strong>3단계</strong>: ① 오징어를 "Veblen Good" 럭셔리 단백질로 포지셔닝 — 가격 인상에도 수요 유지 ② B2C 프리미엄 채널로 격상 — Whole Foods·Erewhon·일본 이세탄 ③ "Premium K-Squid" 자체 brand — ASP +50~80% 프리미엄.</p></div>`, source: SRC }}
+      takeaway={{ situation: `<div><p>"금징어 쇼크"란 한국 오징어 가격이 일반 단백질 인플레이션을 뚜렷한으로 추월하면서 "서민 식재료" 지위를 상실한 현상.</p><p>2019~2023년 가격 지수 추정: 오징어 가격 상승폭이 돼지·닭 대비 현저히 크게 나타남 (업계추정 기반, KAMIS 원자료 교차 확인 권장). 수퍼마켓에서 오징어 가격이 일부 어종 수준에 근접하는 사례 증가.</p><p>의미: 단순 가격 변동이 아닌 <strong>"서민 식재료에서 상대적 프리미엄 식재료로의 카테고리 이동"</strong> 가능성.</p></div>`, actionPlan: `<div><p><strong>재정의</strong>: 금징어 현상은 위협이 아닌 <strong>"Veblen Good(과시재) repositioning 기회"</strong>.</p><p><strong>3단계</strong>: ① 오징어를 "Veblen Good" 럭셔리 단백질로 포지셔닝 — 가격 인상에도 수요 유지 ② B2C 프리미엄 채널로 격상 — Whole Foods·Erewhon·일본 이세탄 ③ "Premium K-Squid" 자체 brand — ASP +50~80% 프리미엄.</p></div>`, source: SRC }}
     />
   );
 }

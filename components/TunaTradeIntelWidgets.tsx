@@ -141,7 +141,7 @@ export const OecBenchmarkWidget = React.memo(function OecBenchmarkWidget() {
 <p>2024 글로벌 참치 조제품 교역 규모: <strong>약 $${data?.globalTradeValueM ? (data.globalTradeValueM / 1000).toFixed(1) : '19.8'}B (약 27조원)</strong>. 의외로 작은 시장 — 글로벌 식품 전체의 0.1% 미만이지만, 우리에게는 본업.</p>
 <p>구도:</p>
 <ul style="margin: 4px 0 0 18px; padding: 0;">
-<li><strong>수출 1위 태국 22.8%</strong> (글로벌 가공 허브 압도적 점유)</li>
+<li><strong>수출 1위 태국 22.8%</strong> (글로벌 가공 허브 뚜렷한 점유)</li>
 <li>2위 에콰도르 11.2%, 3위 베트남 9.1%, 4위 스페인 8.5%</li>
 <li><strong>수입 1위 미국 15.7%</strong> (글로벌 통조림 소비 최대국)</li>
 <li>2위 EU 합계 22.4%, 3위 일본 8.3%, <strong>4위 한국 5.7%</strong></li>

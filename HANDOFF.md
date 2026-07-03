@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:38 KST — 앱 셸 dead code 정리 + P-03 문구 라쳇** [CC]:
+> - `app/page.tsx`의 미사용 동적 import 10개와 끊긴 구형 차트 상태(`initialChartData`, `chartData`, `liveData`, `fxData`), 진입점이 사라진 VHF radio/crisis mode 코드를 제거. 첫 화면에서 불필요하게 호출되던 `/api/exchange`, `/api/tuna-live`도 제거하고, 실제 참조가 남은 MGO 모달용 `/api/mgo`만 유지.
+> - 로컬 스모크 중 `WidgetCard` P-03 런타임 감사가 잡은 `**[Actionable Insight]**` 2건을 계기로, 렌더 소스/공개 데이터에서 금지 패턴(`Actionable Insight`, `(Conviction Buy)`, `(Strong Buy)`, `압도적`, `독보적` 등) 제거. 표현은 `뚜렷한`, `차별화된`, 중립 메모 라벨로 치환하고 `WidgetCard`의 금지 패턴 규칙은 원상 유지.
+> - 검증: 금지 패턴 검색 0건(`components/WidgetCard.tsx` 제외), `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 233 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes). 로컬 `3020`에서 `/market`, `/cashew`, `/value-chain` HEAD 200 + P-03 콘솔 경고 재발 없음.
+> - 미배포(로컬). 기존 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:29 KST — ESLint 게이트 복구 + 스캔 범위 정상화** [CC]:
 > - P0 품질 안전망 후속. `eslint.config.mjs`가 `.vercel/output`, `.agents`, `_archive`, `scratch`, `data`, `artifacts` 등 생성물/운영 작업공간까지 훑던 문제를 정리해 실제 앱 소스 중심으로 린트 범위를 좁힘.
 > - Next/React 19 계열 React Compiler 규칙(`set-state-in-effect`, `static-components`, `refs`, `immutability`, `purity`, `preserve-manual-memoization`)은 기존 레거시 화면 전체를 막지 않도록 경고 기준선으로 전환. 일반 오류는 좁게 수정: 사이드바 로고 링크 `<Link>` 전환, `WidgetCard.displayName`, 갈치/고등어 KPI destructuring, 하역 분석 `const`.

@@ -99,7 +99,7 @@ export function InsightCutTracker({ accent = '#fb923c' }: any) {
       telemetry={{ status: 'STATIC', syncDate: '자체구성 2024-Q3 기준' }}
       chartHeight={300}
       takeaway={{
-        situation: "한국은 순살(Boneless) 수입 비중이 압도적(업계추정 약 32만톤)이나, 미국산 뼈고기(With-bone) 대한 수출 집중도가 높음(업계추정). 2023~2024-Q3 구간에서 명절 시즌(Q1, Q3) 뼈고기 단가 급등 패턴이 관측됐습니다(자체구성 예시 지수).",
+        situation: "한국은 순살(Boneless) 수입 비중이 뚜렷한(업계추정 약 32만톤)이나, 미국산 뼈고기(With-bone) 대한 수출 집중도가 높음(업계추정). 2023~2024-Q3 구간에서 명절 시즌(Q1, Q3) 뼈고기 단가 급등 패턴이 관측됐습니다(자체구성 예시 지수).",
         actionPlan: "LA갈비 등 뼈고기는 명절 3개월 전 선취 매입 검토 권고. B2B 프랜차이즈용 순살 부위는 단가 안정세 시 단기 스팟 매입 비중 확대로 재고 비용 절감 가능.",
         source: "FAOSTAT Detailed Trade Matrix·KCS Import Data 기반 업계추정 (illustrative)"
       }}

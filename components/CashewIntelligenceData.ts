@@ -28,7 +28,7 @@ export const CASHEW_INTELLIGENCE_DATA: IntelligenceTabData[] = [
       { title: '아프리카 개발 부담금 제재', value: '44.86', unit: 'GHS/ton', desc: '생캐슈넛(RCN) 원물 단순 반출에 대한 징벌적 관세(Punitive Tariff)', source: '가나 현지 무역 수출세(Levy) 통칙', reliability: 100, trend: 'alert' },
       { title: '중국 캐슈넛 B2B 수입 파워', value: '+42', unit: '% YoY', desc: '글로벌 RCN 블랙홀로 부상한 중국의 해상 수입 물동량 증가 및 전략적 비축(Strategic Reserve) 물량 팽창 펀더멘털', source: 'NotebookLM 해상 무역 인덱스 [📐 AI Analysis]', reliability: 65, trend: 'up' },
       { title: '무기명 외국자본 진입 위반', value: '0', unit: 'Tolerance', desc: '현지 JV가 부재한 무등록 브로커의 불법 소싱 제재율', source: '아프리카 조달청 매뉴얼 가이드', reliability: 70, trend: 'neutral' },
-      { title: '가나/코트디부아르 원물 독점률', value: '90', unit: '%', desc: '글로벌 RCN(생캐슈넛) 생산량 중 서아프리카 주요국이 차지하는 압도적 원산지 독점력(Monopolistic Power)', source: 'NotebookLM 원물 생산 분포 [📐 AI Analysis]', reliability: 65, trend: 'neutral' },
+      { title: '가나/코트디부아르 원물 독점률', value: '90', unit: '%', desc: '글로벌 RCN(생캐슈넛) 생산량 중 서아프리카 주요국이 차지하는 뚜렷한 원산지 독점력(Monopolistic Power)', source: 'NotebookLM 원물 생산 분포 [📐 AI Analysis]', reliability: 65, trend: 'neutral' },
       { title: '베트남 영세 가공공장 폐업률', value: '34', unit: '%', desc: '아프리카 원물 수급 대란 및 품질 통제 강황에 따른 구조조정(Consolidation) 가속화', source: '베트남 캐슈넛 협회(Vinacas) 분기 통계', reliability: 100, trend: 'down' },
       { title: 'USD-GHS 환율 방어 파워', value: '+12', unit: '% Edge', desc: '현지 Cedi 통화 약세 매크로를 활용한 USD 베이스 FX 차익(Arbitrage)', source: '가나 현지 파이낸싱 환율 방어 ERP', reliability: 75, trend: 'up' }
     ]

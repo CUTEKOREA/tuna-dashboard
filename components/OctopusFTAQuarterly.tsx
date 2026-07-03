@@ -210,7 +210,7 @@ export default function OctopusFTAQuarterly() {
       icon={Ship}
       iconColor="#6366f1"
       pillar="S3"
-      cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 낙지 분기별 시계열. 2022 사상 최고치 이후 정상화 → 2025 안정화 진입 시그널과 동시에 중국 84.3% 단일 의존이 26 Q1까지 고착. 활·신선·냉장 29.8% 비중은 두족류 중 압도적으로 한국 외식 수요 특이성을 노출."
+      cardDesc="KMI(한국해양수산개발원) FTA 체결국 수산물 수입동향 보고서 2021 Q4~2026 Q1 원문 PDF 21건에서 추출한 낙지 분기별 시계열. 2022 사상 최고치 이후 정상화 → 2025 안정화 진입 시그널과 동시에 중국 84.3% 단일 의존이 26 Q1까지 고착. 활·신선·냉장 29.8% 비중은 두족류 중 뚜렷한으로 한국 외식 수요 특이성을 노출."
       telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
       customBody={Body}
       takeaway={{

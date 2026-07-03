@@ -8,7 +8,6 @@ import styles from './page.module.css';
 import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef,  Octagon, Box, TestTube, ShieldCheck} from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname } from 'next/navigation';
-import { playVHFRadioChatter } from '../lib/audio';
 import { motion } from 'framer-motion';
 
 // ─── Always-loaded (lightweight or market page essentials) ───
@@ -21,14 +20,8 @@ import KeepAlivePanel from '../components/KeepAlivePanel';
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
 const FleetCommandCenter = dynamic(() => import('../components/FleetCommandCenter'));
-const FishingDaysStatus = dynamic(() => import('../components/FishingDaysStatus'));
-const VesselVdsStatus = dynamic(() => import('../components/VesselVdsStatus'));
-const ReeferMovement = dynamic(() => import('../components/ReeferMovement'));
 // ReeferFreightChart·TraderImportChart 제거 (2026-06-11): 렌더되지 않는 죽은 import였고,
 // 각각 합성 산식 라우트(/api/logistics/freight·trader-import, A-01 위반으로 비활성화)에 의존.
-const GensanImportChart = dynamic(() => import('../components/GensanImportChart'));
-const CanneryStatusCharts = dynamic(() => import('../components/CanneryStatusCharts'));
-const GensanCanneryStatusCharts = dynamic(() => import('../components/GensanCanneryStatusCharts'));
 const UnloadingStatus = dynamic(() => import('../components/UnloadingStatus'));
 const MackerelDashboard = dynamic(() => import('../components/MackerelDashboard'));
 const GalchiDashboard = dynamic(() => import('../components/GalchiDashboard'));
@@ -52,12 +45,8 @@ const KimDashboard = dynamic(() => import('../components/KimDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
 
-const FieldTools = dynamic(() => import('../components/FieldTools'));
 const SEAsiaOEMDashboard = dynamic(() => import('../components/SEAsiaOEMDashboard'));
 const UsedCarExport = dynamic(() => import('../components/UsedCarExport'));
-const AIForecast = dynamic(() => import('../components/AIForecast'));
-const StrategyIntel = dynamic(() => import('../components/StrategyIntel'));
-const RetailPOS = dynamic(() => import('../components/RetailPOS'));
 const FleetStrategyMatrix = dynamic(() => import('../components/FleetStrategyMatrix'));
 const KoreaConsignmentDashboard = dynamic(() => import('../components/KoreaConsignmentDashboard'));
 const MangosteenDashboard = dynamic(() => import('../components/MangosteenDashboard'));
@@ -68,31 +57,6 @@ const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDash
 const MscStrategyDashboard = dynamic(() => import('../components/MscStrategyDashboard'));
 const SashimiSteakDashboard = dynamic(() => import('../components/SashimiSteakDashboard'));
 
-
-const initialChartData = [
-  { month: '21-Q1', import: 52000, export: 38000, priceHist: 1283, brentPriceHist: 480 },
-  { month: '21-Q2', import: 54000, export: 41000, priceHist: 1323, brentPriceHist: 544 },
-  { month: '21-Q3', import: 58000, export: 45000, priceHist: 1400, brentPriceHist: 584 },
-  { month: '21-Q4', import: 61000, export: 48000, priceHist: 1616, brentPriceHist: 640 },
-  { month: '22-Q1', import: 63000, export: 46000, priceHist: 1716, brentPriceHist: 840 },
-  { month: '22-Q2', import: 59000, export: 42000, priceHist: 1608, brentPriceHist: 960 },
-  { month: '22-Q3', import: 62000, export: 44000, priceHist: 1666, brentPriceHist: 760 },
-  { month: '22-Q4', import: 65000, export: 47000, priceHist: 1660, brentPriceHist: 680 },
-  { month: '23-Q1', import: 45000, export: 35000, priceHist: 1820, brentPriceHist: 656 },
-  { month: '23-Q2', import: 38000, export: 29000, priceHist: 2000, brentPriceHist: 624, note: '라니냐 장기화 (어획 급감)' },
-  { month: '23-Q3', import: 42000, export: 32000, priceHist: 1800, brentPriceHist: 696 },
-  { month: '23-Q4', import: 48000, export: 38000, priceHist: 1516, brentPriceHist: 640 },
-  { month: '24-Q1', import: 55000, export: 42000, priceHist: 1333, brentPriceHist: 664 },
-  { month: '24-Q2', import: 57000, export: 44000, priceHist: 1478, brentPriceHist: 680 },
-  { month: '24-Q3', import: 59000, export: 45000, priceHist: 1576, brentPriceHist: 624 },
-  { month: '24-Q4', import: 60000, export: 46000, priceHist: 1463, brentPriceHist: 600 },
-  { month: '25-Q1', import: 58000, export: 45000, priceHist: 1660, brentPriceHist: 640 },
-  { month: '25-Q2', import: 54000, export: 43000, priceHist: 1510, brentPriceHist: 672 },
-  { month: '25-Q3', import: 52000, export: 41000, priceHist: 1550, brentPriceHist: 688 },
-  { month: '25-Q4', import: 55000, export: 43000, priceHist: 1573, brentPriceHist: 664 },
-  { month: '26-Q1', import: 42000, export: 32000, priceHist: 1580, brentPriceHist: 760 },
-  { month: '26-Q2', import: 38000, export: 28000, priceHist: 2000, brentPriceHist: 785, priceEst: 2000, note: '전쟁 발발 (지정학 리스크)' },
-];
 
 const VALID_MENUS = [
   'market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi',
@@ -124,16 +88,10 @@ const OPERATION_PASSWORD = '349900';
 
 
 export default function Home() {
-  const [chartData, setChartData] = useState<any[]>(initialChartData);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isCrisisMode, setIsCrisisMode] = useState(false);
-  const [isRadioOn, setIsRadioOn] = useState(false);
   const [mgoData, setMgoData] = useState({ price: 0, change: 0, date: '', loading: true });
-  const [fxData, setFxData] = useState({ usd_krw: 0, date: '', loading: true });
-  const [liveData, setLiveData] = useState<any>(null);
   
   // 전체 Supabase 로그인 대신 실시간 운영 4개 메뉴만 세션 비밀번호로 잠근다.
-  const [session, setSession] = useState<any>({ user: { email: 'public@silla.local' } });
+  const session = { user: { email: 'public@silla.local' } };
   const authChecked = true;
   const pathname = usePathname();
   
@@ -216,78 +174,13 @@ export default function Home() {
           } else {
             setMgoData({ price: finalPrice, change: finalChange, date: today, loading: false });
           }
-        } catch (err) {
+        } catch {
           setMgoData({ price: finalPrice, change: finalChange, date: today, loading: false });
         }
       
-      // Inject real-time price into the chart data array
-      setChartData(prev => {
-        const newData = [...prev];
-        const lastIdx = newData.length - 1;
-        // Update current estimation point with exact live Brent price
-        newData[lastIdx] = { ...newData[lastIdx], brentPriceEst: finalPrice, priceEst: 1975 };
-        // Smooth the transition point
-        newData[lastIdx - 1] = { ...newData[lastIdx - 1], brentPriceHist: finalPrice, brentPriceEst: finalPrice, priceHist: 1975, priceEst: 1975 };
-        return newData;
-      });
     }
     fetchMgoPrice();
-
-    async function fetchExchangeRate() {
-      try {
-        const res = await fetch('/api/exchange', { cache: 'no-store' });
-        if (res.ok) {
-          const data = await res.json();
-          setFxData({ usd_krw: data.usd_krw, date: data.date, loading: false });
-        } else {
-          setFxData({ usd_krw: 1455.75, date: new Date().toISOString().slice(0, 10).replace(/-/g, '.'), loading: false });
-        }
-      } catch {
-        setFxData({ usd_krw: 1455.75, date: new Date().toISOString().slice(0, 10).replace(/-/g, '.'), loading: false });
-      }
-    }
-    fetchExchangeRate();
-
-    fetch('/api/tuna-live')
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
-      .then(data => {
-        setLiveData(data.market);
-        if (data.market && data.market.historicalChartData) {
-          setChartData(data.market.historicalChartData);
-        }
-      })
-      .catch(err => console.error("Failed to fetch live data", err));
   }, []);
-
-  useEffect(() => {
-    if (!isRadioOn) return;
-    
-    let timeoutId: NodeJS.Timeout;
-    
-    const scheduleNextTransmission = () => {
-      // Random interval between 8 and 25 seconds
-      const nextInterval = 8000 + Math.random() * 17000;
-      timeoutId = setTimeout(() => {
-        if (isRadioOn) {
-          playVHFRadioChatter();
-          scheduleNextTransmission();
-        }
-      }, nextInterval);
-    };
-    
-    // Initial transmission shortly after turning on
-    timeoutId = setTimeout(() => {
-      playVHFRadioChatter();
-      scheduleNextTransmission();
-    }, 500);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [isRadioOn]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -320,11 +213,6 @@ export default function Home() {
     setAuthLoading(false);
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setSession(null);
-  };
-
   const handleOperationPasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (operationPassword.trim() !== OPERATION_PASSWORD) {
@@ -345,53 +233,10 @@ export default function Home() {
     setOperationAuthError('');
   };
 
-  const toggleTheme = () => {
-    if (isCrisisMode) return; // Disable standard theme toggle during crisis
-    const newTheme = !isDarkMode;
-    setIsDarkMode(newTheme);
+  const toggleTheme = React.useCallback(() => {
+    const newTheme = document.documentElement.getAttribute('data-theme') !== 'dark';
     document.documentElement.setAttribute('data-theme', newTheme ? 'dark' : 'light');
-  };
-
-  const playSirenAudio = () => {
-    try {
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContext) return;
-      const ctx = new AudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(400, ctx.currentTime);
-      osc.frequency.linearRampToValueAtTime(700, ctx.currentTime + 0.4);
-      osc.frequency.linearRampToValueAtTime(400, ctx.currentTime + 0.8);
-      osc.frequency.linearRampToValueAtTime(700, ctx.currentTime + 1.2);
-      osc.frequency.linearRampToValueAtTime(400, ctx.currentTime + 1.6);
-      
-      gain.gain.setValueAtTime(0, ctx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.1);
-      gain.gain.setValueAtTime(0.2, ctx.currentTime + 1.5);
-      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.6);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start();
-      osc.stop(ctx.currentTime + 1.6);
-    } catch (e) {
-      console.warn("Audio not supported or blocked");
-    }
-  };
-
-  const toggleCrisisMode = () => {
-    const newCrisis = !isCrisisMode;
-    setIsCrisisMode(newCrisis);
-    if (newCrisis) {
-      document.documentElement.setAttribute('data-theme', 'crisis');
-      playSirenAudio();
-    } else {
-      document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-    }
-  };
+  }, []);
   // Keyboard shortcuts for number keys
   useEffect(() => {
     const menuKeys = ['market', 'fleet', 'unloading', 'logistics', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'salmon'] as const;
@@ -410,7 +255,7 @@ export default function Home() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [isDarkMode, isCrisisMode]);
+  }, [toggleTheme]);
 
   // Ambient color based on active page
   const ambientAccent = (['cashew', 'cocoa'].includes(activeMenu)) ? 'emerald' as const

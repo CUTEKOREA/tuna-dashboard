@@ -354,7 +354,7 @@ export default function TunaExtractDashboard() {
                 situation: `<div>
 <p>"히스타민"은 생선이 부패하기 시작할 때 생기는 유해 물질로, 두드러기·복통·아나필락시스를 유발합니다. 글로벌 통관 기준은 매우 엄격합니다: <strong>FDA 50mg/kg, EU 200mg/kg</strong>. 기준 초과 시 컨테이너 전량 폐기 + 향후 vendor blacklist 등재.</p>
 <p>자숙 부산물(우리 원료)의 히스타민 측정치: <strong>45mg/kg</strong> — FDA 기준의 90% 아래, EU 기준의 22.5% 수준입니다. 동시에 조단백 함량 <strong>24.8%</strong>로 영양가도 우수.</p>
-<p>왜 이렇게 안전한가? 자숙 공정에서 100°C 이상 열처리가 박테리아(Morganella morganii 등 히스타민 생성균)를 99.9% 사멸시키기 때문입니다. 생부산물 라인(150~200mg/kg, 기준 위험) 대비 안전성 격차가 압도적.</p>
+<p>왜 이렇게 안전한가? 자숙 공정에서 100°C 이상 열처리가 박테리아(Morganella morganii 등 히스타민 생성균)를 99.9% 사멸시키기 때문입니다. 생부산물 라인(150~200mg/kg, 기준 위험) 대비 안전성 격차가 뚜렷한.</p>
 </div>`,
                 actionPlan: `<div>
 <p><strong>재정의</strong>: 자숙 부산물의 히스타민 안전성은 단순 품질 사양이 아니라 <strong>"premium B2B vendor whitelist 등재의 인증 자산"</strong>이다. 글로벌 식품 대기업이 ingredient supplier를 선택할 때 첫 번째 필터링 항목이며, 이 인증을 보유한 vendor만이 supply chain에 들어갈 수 있다.</p>
@@ -710,7 +710,7 @@ export default function TunaExtractDashboard() {
 <li><strong>일본</strong>: 100mg/kg (식품위생법) — 중간</li>
 <li><strong>중국</strong>: 200mg/kg (GB 10136-2015) — EU 동일</li>
 </ul>
-<p>레이더 차트의 실측 수치: ① 한국산 참치 자숙액 <strong>45mg/kg</strong> — FDA(50)도 통과하는 압도적 우위 ② 경쟁 액젓류(멸치·까나리) <strong>185mg/kg</strong> — EU(200) 간신히 통과, FDA는 불가 ③ 미스리 베트남 nuoc mam <strong>230mg/kg</strong> — EU도 통관 거절 위험.</p>
+<p>레이더 차트의 실측 수치: ① 한국산 참치 자숙액 <strong>45mg/kg</strong> — FDA(50)도 통과하는 뚜렷한 우위 ② 경쟁 액젓류(멸치·까나리) <strong>185mg/kg</strong> — EU(200) 간신히 통과, FDA는 불가 ③ 미스리 베트남 nuoc mam <strong>230mg/kg</strong> — EU도 통관 거절 위험.</p>
 <p>비즈니스 의미: <strong>미국 시장 진입이 우리만 가능</strong>합니다. 글로벌 경쟁자(태국 nampla, 베트남 nuoc mam, 한국 멸치액)들이 FDA 50mg/kg을 통과하지 못해 미국 진입이 사실상 막혀 있는데, 우리는 자숙 공정 특성상 자연스럽게 안전. 즉 미국 시장은 <strong>"FDA 기준이 만들어준 사실상의 monopoly"</strong>.</p>
 </div>`,
             actionPlan: `<div>

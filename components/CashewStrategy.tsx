@@ -465,7 +465,7 @@ export default function CashewStrategy() {
               ),
               situation: (
                 <div>
-                  <p>"RCN(Raw Cashew Nuts, 미가공 원물 캐슈)"이란 껍질·CNSL(외피 액체)이 그대로 붙은 1차 농산물 형태의 캐슈넛. 베트남은 글로벌 캐슈넛 가공 점유율 65%로 압도적 1위이나 자체 산지 부족 → RCN을 서아프리카·인도에서 수입해 가공·수출하는 trader-processor 모델. 산지(supply)에서 가공국까지의 마진 의존도가 vendor P&L의 main driver.</p>
+                  <p>"RCN(Raw Cashew Nuts, 미가공 원물 캐슈)"이란 껍질·CNSL(외피 액체)이 그대로 붙은 1차 농산물 형태의 캐슈넛. 베트남은 글로벌 캐슈넛 가공 점유율 65%로 뚜렷한 1위이나 자체 산지 부족 → RCN을 서아프리카·인도에서 수입해 가공·수출하는 trader-processor 모델. 산지(supply)에서 가공국까지의 마진 의존도가 vendor P&L의 main driver.</p>
                   <p>실측(UN Comtrade): <strong>2023년 베트남 RCN(원물) 수입 237만톤 vs 커널 수출 48만톤 — 약 4.9배 격차. 커널 1톤에 RCN 약 4톤이 필요한 구조라 산지 원물가가 가공국 마진을 직접 좌우. 코트디부아르 단가 상승 시 베트남 trader 마진이 자동 압축되는 sandwich 함정</strong>.</p>
                 </div>
               ),
