@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../../_shared/hs-codes';
 import { getCachedData } from '../../../../lib/cache';
 
 export const dynamic = 'force-dynamic';
@@ -7,12 +8,14 @@ export const dynamic = 'force-dynamic';
 // Objective: Fetch real-time import volumes and CIF unit prices for shrimp (CN code: 030617)
 // Dynamically fetches 2024, 2025, and 2026 data directly from KCS.
 
+const SHRIMP_HS = HS_CODES.shrimp_frozen.hsSgn;
+
 async function fetchYearData(apiKey: string, year: string) {
   const params = new URLSearchParams({
     serviceKey: apiKey,
     strtYymm: `${year}01`,
     endYymm: `${year}12`,
-    hsSgn: "030617"
+    hsSgn: SHRIMP_HS
   });
   const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList?${params.toString().replace(/%25/g, '%')}`;
   

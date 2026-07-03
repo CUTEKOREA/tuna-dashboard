@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../../_shared/hs-codes';
 import { getCachedData } from '../../../../lib/cache';
 
 export const dynamic = 'force-dynamic';
@@ -7,6 +8,8 @@ export const dynamic = 'force-dynamic';
 // Objective: Real-time landed cost comparison across major shrimp origins (Ecuador, India, Vietnam, Indonesia)
 // Uses: UN Comtrade (HS 030617), WITS tariff data, HS Ping classification
 // Aligned with: (일반 2023-10) 수입수산물 전략품목 관리 방안 연구
+
+const SHRIMP_HS = HS_CODES.shrimp_frozen.hsSgn;
 
 export async function GET() {
   try {
@@ -17,8 +20,15 @@ export async function GET() {
       let liveTradeData = null;
       if (comtradeKey) {
         try {
-          const url = `https://comtradeapi.un.org/data/v1/get/C/A/HS?reporterCode=410&partnerCode=218,699,704,360&cmdCode=030617&flowCode=M&period=2024&subscription-key=${comtradeKey}`;
-          const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+          const url = new URL('https://comtradeapi.un.org/data/v1/get/C/A/HS');
+          url.searchParams.set('reporterCode', '410');
+          url.searchParams.set('partnerCode', '218,699,704,360');
+          url.searchParams.set('cmdCode', SHRIMP_HS);
+          url.searchParams.set('flowCode', 'M');
+          url.searchParams.set('period', '2024');
+          url.searchParams.set('subscription-key', comtradeKey);
+
+          const res = await fetch(url.toString(), { signal: AbortSignal.timeout(8000) });
           if (res.ok) {
             const json = await res.json();
             if (json?.data?.length > 0) {
@@ -133,7 +143,7 @@ export async function GET() {
         timestamp: new Date().toISOString(),
         isLive,
         source: isLive
-          ? "UN Comtrade HS030617 2024 (LIVE) — CIF·점유율 실측, 관세·운임 정책/추정"
+          ? `UN Comtrade HS${SHRIMP_HS} 2024 (LIVE) — CIF·점유율 실측, 관세·운임 정책/추정`
           : "Sourcing Model (Fallback/Estimated)",
         methodology: "UN Comtrade 한국 수입(reporter 410, partner 4개국) CIF=수입액/순중량 실측 + KMI 전략품목 HHI 편중도. 관세율은 FTA/MFN 정책값, 운임은 추정.",
         sourcingMatrix,

@@ -48,6 +48,11 @@ export const HS_CODES = {
     hsSgn: '030354',
     note: 'KCS nitemtrade 냉동 고등어. 국가명은 statCdCntnKor1, statKor는 품목명이라 국가 집계에 사용 금지.',
   },
+  shrimp_frozen: {
+    label: '냉동 새우',
+    hsSgn: '030617',
+    note: '기존 /api/shrimp/customs 및 sourcing-sim 운영값 이관. 냉동 기타 새우·보리새우류 HS 030617.',
+  },
 
   // 기존 KCS 라우트 로컬 매핑 이관(2026-07-03). 값은 기존 운영 라우트와 동일.
   pollock_frozen: {
