@@ -8,8 +8,10 @@ import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
-import domestic from '../data/octopus_domestic_resource.json';
-import global from '../data/octopus_global_catch.json';
+import { getMiscData } from '@/lib/data/misc';
+
+const domestic = getMiscData('octopusDomesticResource');
+const global = getMiscData('octopusGlobalCatch');
 
 const tooltipStyle = {
   background: 'rgba(10, 16, 40, 0.95)',

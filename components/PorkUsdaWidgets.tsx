@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Globe, MapPin, AlertTriangle, Activity } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/pork_usda_widgets.json';
+import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
+
+const rawData = getUsdaWidgetData('pork');
 
 type Widget = {
   id: string; title: string; subtitle: string; cardDesc: string; chartType: string;

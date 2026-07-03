@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Globe, ShoppingBag, Shield, MapPin, Beef as BeefIcon } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/beef_usda_widgets.json';
+import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
+
+const rawData = getUsdaWidgetData('beef');
 
 type Widget = {
   id: string;

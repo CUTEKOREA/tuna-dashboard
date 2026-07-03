@@ -1,5 +1,6 @@
-import shrimpData from '../data/shrimp_dashboard.json';
+import { getMiscData } from '@/lib/data/misc';
 
+const shrimpData = getMiscData('shrimpDashboard');
 const d: any = shrimpData;
 
 export const tC = (n: string) => {

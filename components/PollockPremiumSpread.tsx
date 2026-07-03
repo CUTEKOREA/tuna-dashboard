@@ -3,8 +3,10 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Diamond } from 'lucide-react';
-import data from '../data/pollock_premium_spread.json';
+import { getPollockData } from '@/lib/data/pollock';
 import WidgetCard from './WidgetCard';
+
+const data = getPollockData('premiumSpread');
 
 export default function PollockPremiumSpread() {
   return (

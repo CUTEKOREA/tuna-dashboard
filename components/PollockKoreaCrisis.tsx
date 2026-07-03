@@ -3,8 +3,10 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { ShieldAlert } from 'lucide-react';
-import data from '../data/pollock_korea_crisis.json';
+import { getPollockData } from '@/lib/data/pollock';
 import WidgetCard from './WidgetCard';
+
+const data = getPollockData('koreaCrisis');
 
 export default function PollockKoreaCrisis() {
   const chartData = (data as any[]).map((d: any) => ({

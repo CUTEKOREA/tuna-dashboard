@@ -7,8 +7,10 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './ReeferMovement.module.css';
 import TermTooltip from './TermTooltip';
 
-import BANGKOK_PORT_DATA from '../data/reefer_week26.json';
+import { getMiscData } from '@/lib/data/misc';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const BANGKOK_PORT_DATA = getMiscData('reeferWeek26');
 
 // ── helpers ──
 function parseNum(s: any): number {

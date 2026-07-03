@@ -17,9 +17,11 @@ import {
 } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
-import data from '../data/insight6_combo.json';
+import { getCrossInsightData } from '@/lib/data/cross-insights';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getCrossInsightData('insight6Combo');
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length >= 2) {

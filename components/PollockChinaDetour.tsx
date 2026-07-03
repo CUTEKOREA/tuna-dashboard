@@ -3,8 +3,10 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Target } from 'lucide-react';
-import data from '../data/pollock_china_detour.json';
+import { getPollockData } from '@/lib/data/pollock';
 import WidgetCard from './WidgetCard';
+
+const data = getPollockData('chinaDetour');
 
 export default function PollockChinaDetour() {
   const chartData = (data as any[]).map((d: any) => ({

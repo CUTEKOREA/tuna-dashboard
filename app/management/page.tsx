@@ -3,14 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ComposedChart, Line, Legend, ReferenceLine, CartesianGrid, Area, AreaChart, LineChart } from 'recharts';
 import { ArrowUpRight, ArrowDownRight, Building2, TrendingUp, DollarSign, Wallet, FileText, PieChart, AlertTriangle, Bell, FileSearch } from 'lucide-react';
-import performData from '../../data/management-performance-2026-03.json';
-import competitorData from '../../data/competitor-data.json';
-import listedCompaniesData from '../../data/listed-companies-data.json';
-import foodtechData from '../../data/foodtech-research-2026.json';
+import { getManagementData } from '@/lib/data/management';
 import Link from 'next/link';
 import InfoTooltip from '../../components/InfoTooltip';
 import TermTooltip from '../../components/TermTooltip';
 import SafeResponsiveContainer from '../../components/SafeResponsiveContainer';
+
+const performData = getManagementData('performance');
+const competitorData = getManagementData('competitor');
+const listedCompaniesData = getManagementData('listedCompanies');
+const foodtechData = getManagementData('foodtech');
 
 // Color Palette — SM Report × Whale Report Premium Fusion
 const theme = {

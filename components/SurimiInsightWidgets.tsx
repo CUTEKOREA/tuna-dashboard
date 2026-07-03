@@ -5,11 +5,13 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { TrendingUp, Globe, AlertTriangle, PieChart } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 
-import hegemonyData from '../data/surimi_hegemony.json';
-import lithuaniaData from '../data/surimi_lithuania.json';
-import koreaDeficitData from '../data/surimi_korea_deficit.json';
-import multiplierData from '../data/surimi_multiplier.json';
+import { getSurimiData } from '@/lib/data/surimi';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const hegemonyData = getSurimiData('hegemony');
+const lithuaniaData = getSurimiData('lithuania');
+const koreaDeficitData = getSurimiData('koreaDeficit');
+const multiplierData = getSurimiData('multiplier');
 
 const getKorCountry = (engName: string) => {
   const map: Record<string, string> = {

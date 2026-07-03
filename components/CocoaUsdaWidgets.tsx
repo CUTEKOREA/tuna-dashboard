@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Globe, Factory, ShoppingBag, TrendingUp, MapPin } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/cocoa_usda_widgets.json';
+import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
+
+const rawData = getUsdaWidgetData('cocoa');
 
 type Widget = {
   id: string;

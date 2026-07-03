@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import styles from './SEAsiaOEMDashboard.module.css';
 import { Target, X, MapPin, ClipboardList, Globe2, BarChart3, Users, Building2, ShieldCheck, ExternalLink, Newspaper } from 'lucide-react';
-import vendorsData from '../data/seasia_oem_vendors.json';
+import { getMiscData } from '@/lib/data/misc';
 import ThaiTunaTradeStats from './ThaiTunaTradeStats';
+
+const vendorsData = getMiscData('seasiaOemVendors');
 
 interface Vendor {
   id: string;

@@ -5,7 +5,9 @@ import { W1_ASFCycle, W2_FeedMargin, W3_TradeSpread, W4_ESG, W5_Top10, W6_Trend,
 import PorkUsdaWidgets from './PorkUsdaWidgets';
 import { InsightPorkSupplyChain, InsightAsfChinaFactor, InsightHogCornRatio } from './PorkEmpiricalInsights';
 import { TelemetryBadge } from './TelemetryBadge';
-import porkUsdaRaw from '../data/pork_usda_widgets.json';
+import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
+
+const porkUsdaRaw = getUsdaWidgetData('pork');
 
 const KPIS = [
   { title: '중국 돈육 생산량 (2024)', value: '57,948천톤', trend: '📊', desc: '전년비 -1.5% 감소 · 글로벌 1위', telemetry: 'synced', syncDate: 'FAOSTAT', color: '#f43f5e' },

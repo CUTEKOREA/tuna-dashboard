@@ -6,7 +6,9 @@ import {
 } from 'recharts';
 import { Globe, ShoppingBag, FileText, TrendingDown, Drumstick } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/chicken_usda_widgets.json';
+import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
+
+const rawData = getUsdaWidgetData('chicken');
 
 type Widget = {
   id: string; title: string; subtitle: string; cardDesc: string; chartType: string;

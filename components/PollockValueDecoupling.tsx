@@ -3,9 +3,11 @@
 import React from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { TrendingUp } from 'lucide-react';
-import data from '../data/pollock_value_decoupling.json';
+import { getPollockData } from '@/lib/data/pollock';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getPollockData('valueDecoupling');
 
 export default function PollockValueDecoupling() {
   const chartData = (data as any[]).map((d: any) => ({

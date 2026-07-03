@@ -9,7 +9,9 @@ import {
 import BeefUsdaWidgets from './BeefUsdaWidgets';
 import { InsightFeedCostSpread, InsightCutTracker, InsightDiseaseRadar } from './BeefEmpiricalInsights';
 import { TelemetryBadge } from './TelemetryBadge';
-import beefUsdaRaw from '../data/beef_usda_widgets.json';
+import { getUsdaWidgetData } from '@/lib/data/usda-widgets';
+
+const beefUsdaRaw = getUsdaWidgetData('beef');
 
 const KPIS = [
   { title: '글로벌 소고기 생산량 (2024)', value: '73,862천톤', trend: '📊', desc: '10년 +8.9% 완만 성장', telemetry: 'synced', syncDate: 'FAOSTAT QCL', color: '#dc2626' },

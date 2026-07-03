@@ -12,8 +12,10 @@ import {
 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 
-import krExportData from '../data/mangosteen_kr_export.json';
+import { getMiscData } from '@/lib/data/misc';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const krExportData = getMiscData('mangosteenKoreaExport');
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
