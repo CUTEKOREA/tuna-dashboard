@@ -84,6 +84,14 @@ describe('architecture guards', () => {
     expect(await filesWithMatches(componentFiles, componentPublicJsonImport)).toEqual([]);
   });
 
+  it('keeps dashboard API routes behind the data intake layer', async () => {
+    const apiFiles = await listFiles(API_DIR);
+    const dashboardRoutes = apiFiles.filter((file) => file.endsWith('/dashboard/route.ts'));
+    const directJsonImport = /from\s+['"][^'"]+\.json['"]/;
+
+    expect(await filesWithMatches(dashboardRoutes, directJsonImport)).toEqual([]);
+  });
+
   it('keeps TypeScript and Next build gates enabled', async () => {
     const sourceFiles = (await Promise.all(
       SOURCE_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))

@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🥕 **2026-07-03 13:49 KST — Dashboard API 데이터 인테이크 이관 1차** [CC]:
+> - 기획서 축 B-1 후속. `app/api/carrot/dashboard/route.ts`와 `app/api/cocoa/dashboard/route.ts`의 직접 JSON import를 제거하고 `lib/data/carrot-dashboard.ts`, `lib/data/cocoa-dashboard.ts` 인테이크 모듈 경유로 전환.
+> - 아키텍처 가드에 `*/dashboard/route.ts` 직접 JSON import 금지 테스트 추가. RED에서 `carrot/dashboard`, `cocoa/dashboard` 두 route를 잡은 뒤 인테이크 이관으로 GREEN 전환.
+> - 검증: dashboard API route 직접 JSON import 0건 확인, `__tests__/architecture-guards.test.ts` 7/7 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/68테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧄 **2026-07-03 13:20 KST — Garlic USDA 위젯 데이터 인테이크 이관** [CC]:
 > - 기획서 축 B-1 후속. `components/GarlicUsdaWidgets.tsx`의 `../public/data/garlic_usda_widgets.json` 직접 import를 제거하고 `lib/data/usda-widgets.ts`의 `getUsdaWidgetData('garlic')` 경유로 전환.
 > - `lib/data/usda-widgets.ts`에 `garlic` dataset을 추가해 Beef/Chicken/Cocoa/Pork와 같은 USDA 위젯 인테이크 패턴으로 통합.

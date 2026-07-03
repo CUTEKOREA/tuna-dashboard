@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import baseData from '@/data/cocoa_market_data.json';
+import { getCocoaDashboardData } from '@/lib/data/cocoa-dashboard';
 
 export const revalidate = 3600;
 
@@ -12,6 +12,6 @@ export async function GET() {
     source:
       '위젯별 정적 스냅샷 — USDA GAIN(코트디부아르·가나·콜롬비아 2025)·Cocoa Barometer·ICCO 실측 앵커 + 시나리오 추정. 실시간 피드 미연동.',
     syncDate: '2026-05-31',
-    data: baseData,
+    data: getCocoaDashboardData(),
   });
 }
