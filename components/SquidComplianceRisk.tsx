@@ -3,7 +3,9 @@ import React from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, CartesianGrid, Tooltip, Cell, ReferenceLine } from 'recharts';
 import { ShieldAlert } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_compliance_risk.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('complianceRisk');
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {

@@ -3,8 +3,10 @@ import React from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { PieChart } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_demand_destruction.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('demandDestruction');
 
 export default function SquidDemandDestruction() {
   return (

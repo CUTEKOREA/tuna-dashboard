@@ -3,8 +3,10 @@ import React from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { CalendarRange } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_inventory_release.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('inventoryRelease');
 
 export default function SquidInventoryRelease() {
   return (

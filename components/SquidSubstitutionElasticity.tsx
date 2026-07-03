@@ -3,7 +3,9 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { GitCompare } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_substitution.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('substitution');
 
 export default function SquidSubstitutionElasticity() {
   return (

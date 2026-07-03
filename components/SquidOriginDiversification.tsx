@@ -3,8 +3,10 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Route } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_origin_diversification.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('originDiversification');
 
 export default function SquidOriginDiversification() {
   return (

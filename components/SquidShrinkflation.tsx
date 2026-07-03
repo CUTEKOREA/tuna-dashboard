@@ -3,8 +3,10 @@ import React from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_shrinkflation.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('shrinkflation');
 
 const ShrinkflationTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;

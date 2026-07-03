@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { Globe, ArrowRight, Package, DollarSign, TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import matrixData from '../data/squid_trade_matrix.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const matrixData = getSquidData('tradeMatrix');
 
 const SHORT_NAMES: Record<string, string> = {
   'China': '🇨🇳 중국', 'Peru': '🇵🇪 페루', 'Spain': '🇪🇸 스페인', 'India': '🇮🇳 인도',

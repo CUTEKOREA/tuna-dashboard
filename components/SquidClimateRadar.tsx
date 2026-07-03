@@ -3,8 +3,10 @@ import React from 'react';
 import { ThermometerSun } from 'lucide-react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_climate_radar.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('climateRadar');
 
 export default function SquidClimateRadar() {
   return (

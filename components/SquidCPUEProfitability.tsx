@@ -3,8 +3,10 @@ import React from 'react';
 import { Anchor } from 'lucide-react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_cpue_profit.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('cpueProfit');
 
 export default function SquidCPUEProfitability() {
   return (

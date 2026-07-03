@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { AreaChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { AlertTriangle, TrendingDown, DollarSign } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import supplyData from '../data/squid_korea_supply.json';
+import { getSquidData } from '@/lib/data/squid';
 
+const supplyData = getSquidData('koreaSupply');
 const data = supplyData.filter((d: any) => d.year <= 2023);
 const latest = data[data.length - 1];
 const peak = data.reduce((a: any, b: any) => a.production_t > b.production_t ? a : b);

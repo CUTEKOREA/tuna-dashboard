@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import priceData from '../data/squid_unit_price.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const priceData = getSquidData('unitPrice');
 
 const COUNTRY_COLORS: Record<string, string> = {
   '중국': 'var(--color-danger)',

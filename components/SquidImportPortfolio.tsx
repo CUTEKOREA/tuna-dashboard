@@ -3,8 +3,10 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Package } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import portfolioData from '../data/squid_import_portfolio.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const portfolioData = getSquidData('importPortfolio');
 
 const CATS = [
   { key: '냉동', color: 'var(--color-info)', label: '냉동 오징어' },

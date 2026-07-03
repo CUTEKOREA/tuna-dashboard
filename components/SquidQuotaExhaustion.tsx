@@ -3,7 +3,9 @@ import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { Target } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_quota_exhaustion.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('quotaExhaustion');
 
 export default function SquidQuotaExhaustion() {
   return (

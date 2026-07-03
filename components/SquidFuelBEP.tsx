@@ -2,9 +2,11 @@
 import React from 'react';
 import { Fuel } from 'lucide-react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
-import data from '../data/squid_fuel_bep.json';
+import { getSquidData } from '@/lib/data/squid';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('fuelBep');
 
 export default function SquidFuelBEP() {
   return (

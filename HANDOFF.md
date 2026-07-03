@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 10:58 KST — 오징어 데이터 인테이크 분리** [CC]:
+> - P1 데이터 디커플링 후속. `lib/data/squid.ts`를 추가해 오징어·두족류 관련 JSON 27종을 `getSquidData()` 단일 진입점 뒤로 이동.
+> - `Squid*` 위젯 26개와 `Insight9TunaVsSquidCombo.tsx`에서 `../data/squid*.json`, `fishstatj_*.json` 직접 import 제거. 오징어 위젯 직접 JSON 경로 의존 27개 → 0개.
+> - 전체 app/components 직접 JSON import 계측값은 87 → 60으로 감소. 이번 P1 데이터 인테이크 배치 누적 제거량은 52개 직접 경로.
+> - 검증: 오징어 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 3파일/11테스트, `npm run build`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 10:52 KST — 고등어 데이터 인테이크 분리** [CC]:
 > - P1 데이터 디커플링 후속. `lib/data/mackerel.ts`를 추가해 고등어 JSON 20종을 `getMackerelData()` 단일 진입점 뒤로 이동.
 > - `Mackerel*` 위젯 19개에서 `../data/mackerel*.json`, `../data/Mackerel*.json`, `../data/mackerel/*.json` 직접 import 제거. 고등어 위젯 직접 JSON 경로 의존 20개 → 0개.

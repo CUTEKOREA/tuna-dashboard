@@ -2,7 +2,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { TrendingDown } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_winners_losers.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('winnersLosers');
 
 const SHORT_NAMES: Record<string, string> = {
   'China': '중국', 'Peru': '페루', 'Japan': '일본', 'Republic of Korea': '한국',

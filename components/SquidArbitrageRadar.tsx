@@ -2,8 +2,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Radar, TrendingUp } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import routeData from '../data/squid_arbitrage_routes.json';
+import { getSquidData } from '@/lib/data/squid';
 import { WORLD_MAP_PATH } from '../data/WORLD_MAP_PATH';
+
+const routeData = getSquidData('arbitrageRoutes');
 
 function latLngToXY(lat: number, lng: number, width: number, height: number) {
   const x = ((lng + 180) / 360) * width;

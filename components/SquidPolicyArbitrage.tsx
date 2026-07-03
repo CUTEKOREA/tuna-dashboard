@@ -3,7 +3,9 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceDot } from 'recharts';
 import { Activity } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_policy_arbitrage.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('policyArbitrage');
 
 const CustomDot = (props: any) => {
   const { cx, cy, payload } = props;

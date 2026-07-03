@@ -3,8 +3,10 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { Snowflake } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_logistics_cost.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('logisticsCost');
 
 export default function SquidLogisticsOptimizer() {
   return (

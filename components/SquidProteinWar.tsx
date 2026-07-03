@@ -3,7 +3,9 @@ import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Skull } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/fishstatj_protein.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('proteinWar');
 
 export default function SquidProteinWar() {
   return (

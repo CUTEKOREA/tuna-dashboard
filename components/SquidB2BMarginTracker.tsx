@@ -3,8 +3,10 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Store } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_b2b_margin.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('b2bMargin');
 
 export default function SquidB2BMarginTracker() {
   return (

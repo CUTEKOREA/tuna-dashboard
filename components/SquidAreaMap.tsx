@@ -2,8 +2,10 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { MapPin, Play, Pause } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import areaMapData from '../data/squid_area_map.json';
+import { getSquidData } from '@/lib/data/squid';
 import { WORLD_MAP_PATH } from '../data/WORLD_MAP_PATH';
+
+const areaMapData = getSquidData('areaMap');
 
 function latLngToXY(lat: number, lng: number, width: number, height: number) {
   const x = ((lng + 180) / 360) * width;

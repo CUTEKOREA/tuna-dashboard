@@ -3,7 +3,9 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { CircleDollarSign } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_fx_hedging.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('fxHedging');
 
 export default function SquidFXHedging() {
   return (

@@ -3,8 +3,10 @@ import React from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Scissors } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/squid_size_premium.json';
+import { getSquidData } from '@/lib/data/squid';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const data = getSquidData('sizePremium');
 
 export default function SquidSizePremium() {
   return (

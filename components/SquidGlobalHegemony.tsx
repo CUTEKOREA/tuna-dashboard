@@ -3,7 +3,9 @@ import React from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ZAxis } from 'recharts';
 import { Globe2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/fishstatj_hegemony.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('globalHegemony');
 
 export default function SquidGlobalHegemony() {
   const chinaData = data.filter(d => d.country === '중국');

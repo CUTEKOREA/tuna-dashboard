@@ -3,7 +3,9 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { AlertOctagon } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import data from '../data/fishstatj_collapse.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('collapseCountdown');
 
 export default function SquidCollapseCountdown() {
   return (

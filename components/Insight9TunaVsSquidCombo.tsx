@@ -6,7 +6,9 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import styles from './MackerelStrategy.module.css';
 import { Trophy } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
-import data from '../data/squid_tuna_benchmark.json';
+import { getSquidData } from '@/lib/data/squid';
+
+const data = getSquidData('tunaBenchmark');
 
 function useContainerWidth(ref: React.RefObject<HTMLDivElement | null>) {
   const [w, setW] = useState(0);
