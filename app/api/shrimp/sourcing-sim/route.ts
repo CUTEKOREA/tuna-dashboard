@@ -6,7 +6,7 @@ import { getCachedData } from '../../../../lib/cache';
 // Uses: UN Comtrade (HS 030617), WITS tariff data, HS Ping classification
 // Aligned with: (일반 2023-10) 수입수산물 전략품목 관리 방안 연구
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('shrimp_sourcing_sim', async () => {
       const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
@@ -151,7 +151,7 @@ export async function GET(request: Request) {
     }, 14400); // Cache for 4 hours
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to run sourcing simulation" }, { status: 500 });
   }
 }

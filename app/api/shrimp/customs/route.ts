@@ -32,7 +32,7 @@ async function fetchYearData(apiKey: string, year: string) {
   return null;
 }
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('kcs_shrimp_import', async () => {
       const apiKey = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
@@ -90,7 +90,7 @@ export async function GET(request: Request) {
     }, 3600); // Cache for 1 hour
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch Korea Customs Data" }, { status: 500 });
   }
 }

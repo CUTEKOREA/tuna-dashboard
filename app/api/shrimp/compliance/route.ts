@@ -6,7 +6,7 @@ import { getCachedData } from '../../../../lib/cache';
 // Uses: WTO Data Portal (SPS/TBT notifications), MFDS (antibiotic detection), OFAC (sanctions)
 // Aligned with: (수시 2025-15) 미 상호주의 대응 수산분야 비관세장벽 영향 연구
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('shrimp_compliance_radar', async () => {
       const wtoKey = process.env.WTO_API_KEY;
@@ -115,7 +115,7 @@ export async function GET(request: Request) {
     }, 7200); // Cache for 2 hours
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch compliance data" }, { status: 500 });
   }
 }

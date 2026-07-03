@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 3600;
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Simulated World Bank / DFI Green Finance Data
     // In production, fetch from World Bank API / IMF data
@@ -25,7 +25,7 @@ export async function GET(request: Request) {
     };
     
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch DFI Finance data" }, { status: 500 });
   }
 }

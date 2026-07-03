@@ -4,7 +4,7 @@ import { getCachedData } from '../../../../lib/cache';
 // Macro API (BOK / Exchange Rate)
 // Objective: Fetch USD/KRW exchange rate to simulate import margin stress.
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('macro_exchange_rate', async () => {
       const url = `https://api.exchangerate-api.com/v4/latest/USD`;
@@ -50,7 +50,7 @@ export async function GET(request: Request) {
     }, 600); // Cache for 10 minutes
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch Macro FX Data" }, { status: 500 });
   }
 }

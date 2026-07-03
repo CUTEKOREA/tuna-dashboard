@@ -4,7 +4,7 @@ import { getCachedData } from '../../../../lib/cache';
 // Krungsri / Thai Dept of Fisheries API
 // Objective: Fetch Thai Shrimp Production and EMS mortality indicators
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('krungsri_shrimp_production', async () => {
       // In production, fetch from Krungsri Research APIs or Thailand MOF
@@ -26,7 +26,7 @@ export async function GET(request: Request) {
     }, 86400); // Cache for 24 hours (Macro data doesn't change by the second)
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch Krungsri Data" }, { status: 500 });
   }
 }

@@ -5,7 +5,7 @@ import { getCachedData } from '../../../../lib/cache';
 // Uses: Open Supply Hub, OFAC SDN, ImportYeti
 // Aligned with: (일반 2025-04) 수산업 강제노동 규범화 대응체계 구축연구
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('shrimp_esg_radar', async () => {
       return {
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
       };
     }, 86400);
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch ESG radar data" }, { status: 500 });
   }
 }

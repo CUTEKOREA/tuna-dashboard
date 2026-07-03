@@ -5,7 +5,7 @@ import { getCachedData } from '../../../../lib/cache';
 // Uses: UN Comtrade (HS 3913 chitosan), OEC, Eurostat, U.S. Census
 // Aligned with: (기본 2025-11) 수산물 업사이클링 생태계 조성 방안 연구
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('shrimp_emerging_markets', async () => {
       const comtradeKey = process.env.UN_COMTRADE_PRIMARY_KEY;
@@ -61,7 +61,7 @@ export async function GET(request: Request) {
       };
     }, 86400);
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch emerging markets data" }, { status: 500 });
   }
 }

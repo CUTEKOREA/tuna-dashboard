@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 3600;
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Static CBOT Corn Futures snapshot (실시간 API 미연동)
     // A-01: Math.random 기반 가짜 실시간 변동 생성 금지 — 정적 기준가만 반환
@@ -28,7 +28,7 @@ export async function GET(request: Request) {
     };
     
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch CBOT data" }, { status: 500 });
   }
 }

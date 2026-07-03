@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 3600;
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Simulated NOAA ENSO (El Nino Southern Oscillation) Data
     // In production, fetch from NOAA API (e.g. Climate Prediction Center)
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     };
     
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch NOAA data" }, { status: 500 });
   }
 }

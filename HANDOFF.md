@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 10:02 KST — cassava/shrimp API unused args 제거** [CC]:
+> - `app/api/cassava/{cbot,dfi,noaa}/route.ts`와 `app/api/shrimp/{compliance,customs,emerging-markets,esg-radar,krungsri,macro,sourcing-sim}/route.ts`에서 사용하지 않는 GET `request` 인자와 outer catch 인자를 제거.
+> - 내부 catch에서 실제 로그에 쓰는 `e`는 유지. 각 라우트의 cache, fallback, JSON 응답 구조는 그대로 유지.
+> - 대상 10개 route lint warning 총 20개 제거. 전체 `npm run lint` 기준선은 138 → 118 warnings로 감소.
+> - 검증: 대상 lint 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 118 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), 대상 파일 `git diff --check` 통과.
+> - 미배포(로컬). 기존/무관 dirty 파일(`components/FleetCharts.tsx`, `data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 10:00 KST — 4개 component dead variable 제거** [CC]:
 > - `components/FieldTools.tsx`: 미사용 `ToolTab`, `yearEnd`, `laborOverseas` 제거. 현장 도구 렌더와 계산식은 유지.
 > - `components/GalchiDashboard.tsx`: 미사용 `PIE_COLORS` 제거, 화면에서 읽지 않는 `liveOsh/liveOfac` value만 hole destructuring으로 정리해 기존 API fetch/setter 흐름은 유지.
