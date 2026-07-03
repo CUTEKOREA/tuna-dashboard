@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 12:14 KST — API 계약 커버리지 하한 30개로 라쳇** [CC]:
+> - `__tests__/architecture-guards.test.ts`의 명시 API 계약 라우트 하한을 20개 → 30개로 상향. 현재 스캔된 계약 라우트는 30개이며 누락 route 0개.
+> - TDD 확인: 하한을 임시 31개로 올려 `expected 30 to be greater than or equal to 31` 실패를 먼저 확인한 뒤, 실측값 30으로 최종 조정.
+> - 검증: 아키텍처 가드 단독 5/5 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 13파일/53테스트, `npm run build` 145 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧪 **2026-07-03 12:11 KST — 교차 품목 API zod 계약 스키마 추가** [CC]:
 > - `/api/cross-commodity-intelligence` 응답을 `lib/contracts/cross-commodity-intelligence.ts`의 zod 스키마로 검증하도록 강화. `STATIC` 메타, 0~100 점수 범위, `/api/` watchRoute, 임계치 초과 알림만 노출되는 구조를 계약화.
 > - TDD로 `__tests__/cross-commodity-api.contract.test.ts`가 먼저 미존재 계약 모듈 import 실패를 내도록 만든 뒤, 계약 스키마를 추가해 GREEN 전환.
