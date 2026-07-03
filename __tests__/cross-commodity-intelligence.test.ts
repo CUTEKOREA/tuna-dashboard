@@ -64,4 +64,23 @@ describe('cross commodity intelligence model', () => {
     );
     expect(intelligence.headline.topAllocation).toBe(intelligence.portfolioCandidates[0].commodity);
   });
+
+  it('surfaces only breached anomaly alerts sorted by urgency', () => {
+    const intelligence = getCrossCommodityIntelligence();
+
+    expect(intelligence.anomalyAlerts.length).toBeGreaterThanOrEqual(3);
+    expect(intelligence.anomalyAlerts.every((alert) => alert.breached)).toBe(true);
+
+    const urgencyScores = intelligence.anomalyAlerts.map((alert) => alert.urgencyScore);
+    expect(urgencyScores).toEqual([...urgencyScores].sort((a, b) => b - a));
+
+    for (const alert of intelligence.anomalyAlerts) {
+      expectScore(alert.urgencyScore);
+      expect(alert.currentValue).toBeGreaterThanOrEqual(alert.threshold);
+      expect(alert.watchRoute).toMatch(/^\/api\//);
+      expect(alert.action).toContain('하십시오');
+    }
+
+    expect(intelligence.headline.topAlert).toBe(intelligence.anomalyAlerts[0].title);
+  });
 });

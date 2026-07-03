@@ -32,6 +32,22 @@ export interface PortfolioCandidate {
   reason: string;
 }
 
+export type AlertSeverity = '주의' | '경계' | '긴급';
+
+export interface AnomalyAlert {
+  title: string;
+  commodity: string;
+  metric: string;
+  watchRoute: string;
+  currentValue: number;
+  threshold: number;
+  unit: string;
+  severity: AlertSeverity;
+  breached: boolean;
+  urgencyScore: number;
+  action: string;
+}
+
 export interface CrossCommodityIntelligence {
   meta: {
     status: 'STATIC';
@@ -42,10 +58,12 @@ export interface CrossCommodityIntelligence {
   substitutionSignals: SubstitutionSignal[];
   riskFactors: RiskFactorSignal[];
   portfolioCandidates: PortfolioCandidate[];
+  anomalyAlerts: AnomalyAlert[];
   headline: {
     primaryRotation: string;
     topRisk: string;
     topAllocation: string;
+    topAlert: string;
   };
 }
 
@@ -168,6 +186,64 @@ const PORTFOLIO_INPUTS = [
   },
 ] as const;
 
+const ALERT_INPUTS = [
+  {
+    title: '오징어 대체 압력 급등',
+    commodity: '오징어',
+    metric: '대체 압력',
+    watchRoute: '/api/squid/squid-forecast',
+    currentValue: 75,
+    threshold: 70,
+    unit: '점',
+    severity: '긴급',
+    action: '대왕오징어 혼합 규격 승인과 페루·중국 공급사 견적 갱신을 즉시 병행하십시오.',
+  },
+  {
+    title: '유가·운임 참치 노출 상단',
+    commodity: '참치',
+    metric: '유가 민감도',
+    watchRoute: '/api/mgo',
+    currentValue: 86,
+    threshold: 80,
+    unit: '점',
+    severity: '경계',
+    action: '원양 조업일수와 선복 계약을 같은 회의체에서 재산정하십시오.',
+  },
+  {
+    title: '새우 통관·검역 리스크',
+    commodity: '새우',
+    metric: '통관 민감도',
+    watchRoute: '/api/shrimp/compliance',
+    currentValue: 84,
+    threshold: 75,
+    unit: '점',
+    severity: '경계',
+    action: '상위 공급사 부적합 이력과 대체국 승인 현황을 매입 한도에 반영하십시오.',
+  },
+  {
+    title: '연어 환율 노출 확대',
+    commodity: '연어',
+    metric: '달러 민감도',
+    watchRoute: '/api/exchange',
+    currentValue: 82,
+    threshold: 80,
+    unit: '점',
+    severity: '주의',
+    action: '원화 판가 전가 가능 채널부터 분기 환헤지 비율을 상향하십시오.',
+  },
+  {
+    title: '마늘 작황 리스크 관찰',
+    commodity: '마늘',
+    metric: '기후 민감도',
+    watchRoute: '/api/garlic/widget',
+    currentValue: 72,
+    threshold: 75,
+    unit: '점',
+    severity: '주의',
+    action: '국산·중국산 원료 전환 가격 차이를 주간 단위로 관찰하십시오.',
+  },
+] as const;
+
 function clampScore(value: number): number {
   return Math.max(0, Math.min(100, Math.round(value)));
 }
@@ -219,6 +295,24 @@ function scorePortfolio(input: (typeof PORTFOLIO_INPUTS)[number]): PortfolioCand
   };
 }
 
+function severityWeight(severity: AlertSeverity): number {
+  if (severity === '긴급') return 18;
+  if (severity === '경계') return 10;
+  return 4;
+}
+
+function scoreAlert(input: (typeof ALERT_INPUTS)[number]): AnomalyAlert {
+  const breached = input.currentValue >= input.threshold;
+  const thresholdPressure = ((input.currentValue - input.threshold) / input.threshold) * 100;
+
+  return {
+    ...input,
+    severity: input.severity as AlertSeverity,
+    breached,
+    urgencyScore: clampScore(input.currentValue * 0.74 + Math.max(0, thresholdPressure) * 0.7 + severityWeight(input.severity)),
+  };
+}
+
 export function getCrossCommodityIntelligence(): CrossCommodityIntelligence {
   const substitutionSignals = SUBSTITUTION_INPUTS.map(scoreSubstitution)
     .sort((a, b) => b.pressureScore - a.pressureScore);
@@ -226,6 +320,9 @@ export function getCrossCommodityIntelligence(): CrossCommodityIntelligence {
     .sort((a, b) => b.averageImpact - a.averageImpact);
   const portfolioCandidates = PORTFOLIO_INPUTS.map(scorePortfolio)
     .sort((a, b) => b.portfolioScore - a.portfolioScore);
+  const anomalyAlerts = ALERT_INPUTS.map(scoreAlert)
+    .filter((alert) => alert.breached)
+    .sort((a, b) => b.urgencyScore - a.urgencyScore);
 
   return {
     meta: {
@@ -237,10 +334,12 @@ export function getCrossCommodityIntelligence(): CrossCommodityIntelligence {
     substitutionSignals,
     riskFactors,
     portfolioCandidates,
+    anomalyAlerts,
     headline: {
       primaryRotation: `${substitutionSignals[0].from} → ${substitutionSignals[0].to}`,
       topRisk: `${riskFactors[0].factor} / ${riskFactors[0].highestCommodity}`,
       topAllocation: portfolioCandidates[0].commodity,
+      topAlert: anomalyAlerts[0].title,
     },
   };
 }

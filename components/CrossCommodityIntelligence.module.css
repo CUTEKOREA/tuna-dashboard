@@ -40,7 +40,7 @@
 
 .headlineGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -226,6 +226,73 @@
   color: #34d399;
   border-color: rgba(52, 211, 153, 0.34);
   background: rgba(52, 211, 153, 0.11);
+}
+
+.alertRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(140, 170, 255, 0.12);
+}
+
+.alertRow:last-child {
+  border-bottom: 0;
+}
+
+.alertHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+}
+
+.alertTitle {
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.alertRoute {
+  margin-top: 3px;
+  color: var(--text-tertiary);
+  font-size: 0.66rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.alertSeverity {
+  padding: 3px 8px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.38);
+  font-size: 0.66rem;
+  font-weight: 850;
+}
+
+.alertMetrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.alertMetrics span,
+.alertMetrics strong {
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid rgba(140, 170, 255, 0.12);
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.42);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.alertMetrics strong {
+  color: #f59e0b;
+  text-align: center;
 }
 
 .note {

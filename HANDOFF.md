@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚨 **2026-07-03 12:04 KST — `/market` 이상 탐지·알림 큐 구현** [CC]:
+> - 기획서 축 D-4 착수. `CrossCommodityIntelligence`에 네 번째 위젯 `이상 탐지·알림 큐`를 추가해 임계치 초과 신호만 표시하고, 각 알림에 감시 대상 API 경로(`watchRoute`), 현재값, 임계값, 긴급도 점수, 조치 문구를 함께 노출.
+> - `lib/data/cross-commodity-intelligence.ts`에 `AnomalyAlert` 모델과 점수화 로직 추가. 임계치 미초과 항목은 필터링하고, `urgencyScore` 기준 내림차순 정렬. 헤드라인에도 `topAlert`를 추가.
+> - TDD로 진행: 먼저 `__tests__/cross-commodity-intelligence.test.ts`에 알림 계약 테스트를 추가해 `anomalyAlerts` 미구현 실패를 확인한 뒤 모델 구현. 이어 `__tests__/cross-commodity-render.test.ts`를 추가해 알림 큐 미렌더 실패를 확인한 뒤 UI 구현.
+> - 검증: 신규/대상 테스트 2파일 6테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 12파일/52테스트, `npm run build` 144 routes). 기존 dev 서버 `127.0.0.1:3020`에서 `/market` Puppeteer 검증: 데스크톱/모바일 모두 알림 큐 렌더, 최상위 알림·watchRoute 표시, 임계치 미초과 알림 숨김, horizontalOverflow=false.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧭 **2026-07-03 11:56 KST — `/market` 교차 품목 인텔리전스 1차 구현** [CC]:
 > - 기획서 축 D 제품도약 착수. `/market` 화면 상단 KPI 아래에 `CrossCommodityIntelligence`를 연결해 대체재 탄력성 매트릭스, 통합 리스크 레이더, 포트폴리오 마진 보드 3개 위젯을 추가.
 > - `lib/data/cross-commodity-intelligence.ts`에 정적 종합 모델을 분리. 가격 격차·수요 이동률·탄력성, 환율/유가/기후/통관/관세 충격, 마진·수요·조달 리스크·헤지 적합도를 0~100점으로 계산하고 정렬.
