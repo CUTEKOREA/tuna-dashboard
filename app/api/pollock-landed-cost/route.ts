@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * 명태 착지원가(Landed Cost) 시뮬레이터 API
  * 

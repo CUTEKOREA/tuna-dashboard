@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * 해양수산부 공공데이터 API — 참치 특화 통합 라우트
  * 

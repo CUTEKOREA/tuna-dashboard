@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // Phase 4: 리스크 레이더 API
 // POST /api/risk-radar

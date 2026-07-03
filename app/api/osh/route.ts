@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // Open Supply Hub API Pipeline — Global Supplier Facility Intelligence
 // POST /api/osh — Search supplier facilities by country/sector/product
 // GET  /api/osh — Health check + available filters

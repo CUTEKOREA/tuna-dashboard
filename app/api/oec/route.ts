@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // OEC (Observatory of Economic Complexity) API Pipeline
 // Tesseract OLAP Engine — Global Trade Flow Benchmark
 // POST /api/oec — Trade flow benchmarks for HS4 product groups

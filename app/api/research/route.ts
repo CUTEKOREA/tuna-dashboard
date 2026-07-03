@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // 간단한 키워드 매칭으로 논문을 분류하는 휴리스틱 함수
 function categorizePaper(title: string, abstract: string) {
   const text = (title + ' ' + abstract).toLowerCase();
