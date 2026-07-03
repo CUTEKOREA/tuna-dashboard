@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-07-03 14:29 KST — `/market` 교차 품목 인텔리전스 블록 제거** [CC]:
+> - 사용자 요청으로 `/market` 상단의 `가격·수요·리스크를 한 번에 묶은 포트폴리오 판단판` 항목을 제거. `components/MarketDashboard.tsx`에서 `CrossCommodityIntelligence` import와 렌더 호출만 제거해 `/cross-intelligence` 전용 화면과 API는 유지.
+> - 재발 방지: `__tests__/market-dashboard-composition.test.ts` 추가. `/market` 조합 소스에 `CrossCommodityIntelligence`와 해당 판단판 문구가 포함되지 않도록 검증.
+> - 검증: 대상 ESLint 통과, `npm run typecheck` 통과, 관련 테스트 2파일/2테스트 통과, `npm run build` 통과(97 static pages). 로컬 `http://localhost:3020/market` Puppeteer 확인: 해당 문구/교차 품목 인텔리전스/대체재 매트릭스 미렌더, 참치 어가 섹션 유지, horizontalOverflow=0. `http://localhost:3020/cross-intelligence`는 `통합 인텔리전스` 정상 유지.
+> - 미배포(로컬). 사용자의 `배포`/`라이브 배포` 명시 전까지 production push 금지. 기존/무관 dirty 파일은 그대로 보존.
+
 > ✅ **2026-07-03 14:19 KST — 통합 인텔리전스 라이브 배포 완료** [CC]:
 > - `git push origin main` 시 pre-push C-4 게이트가 `lib/data/misc.ts`의 빌드타임 import 대상 `data/reefer_week26.json` 미추적을 감지해 push를 차단.
 > - Vercel 빌드 누락 방지를 위해 `data/reefer_week26.json`을 `git add -f`로 추적 대상에 포함. 기존 무관 dirty 파일은 그대로 보존.
@@ -1664,7 +1670,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-07-03 14:19 KST (Claude Code 세션 — 통합 인텔리전스 라이브 배포 완료)
+> **마지막 업데이트**: 2026-07-03 14:29 KST (Claude Code 세션 — `/market` 교차 품목 인텔리전스 블록 로컬 제거)
 
 ---
 
