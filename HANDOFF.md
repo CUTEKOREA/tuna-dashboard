@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 10:37 KST — 전체 ESLint warning 0 달성** [CC]:
+> - 직전 배치에서 남은 `components/FleetCharts.tsx` React Compiler warning 3개를 정리. 기존 선단 어획 데이터 갱신 내용은 보존하고, 세 차트의 mount guard만 `useSyncExternalStore` SSR/client snapshot 패턴으로 교체.
+> - 전체 `npm run lint` 기준 0 errors / 0 warnings 달성. 2026-07-03 품질 라쳇의 lint 기준선은 252 warnings → 0 warnings까지 하강.
+> - 검증: `npx eslint components/FleetCharts.tsx` 0/0, `npx eslint .` 0/0, `npm run typecheck` 통과, `npm run lint` 통과, `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), `git diff --check -- components/FleetCharts.tsx` 통과.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 10:34 KST — React Compiler warning 대폭 정리** [CC]:
 > - `components` 전역의 React Compiler/Next warning 기준선을 46 → 3 warnings로 축소. 이번 작업 범위 33개 파일은 target lint 0 달성.
 > - 주요 변경: Recharts custom tooltip/treemap renderer를 렌더 함수 밖으로 이동, `Math.random()` skeleton bar를 결정론적 높이 배열로 교체, portal/client-ready 플래그를 `useSyncExternalStore` 또는 `document` 가드로 정리, `next/image`로 swimming tuna 이미지를 교체.
