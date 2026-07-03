@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 11:14 KST — HS/HSK 단일출처 라우트 이관 1차 완료** [CC]:
+> - P1 데이터 계약 정리 후속. 이미 있던 `app/api/_shared/hs-codes.ts`의 `HS_CODES`를 김·갈치·고등어 KCS 계열 라우트 5개에 실제 연결.
+> - `app/api/kim/customs`, `kim/customs-seasoned`, `galchi/kcs`, `fishery`, `mackerel-ticker`에서 `121221`, `1212211`, `2008995010`, `0303892000`, `030354` 호출값을 라우트 내부 리터럴 대신 공유 테이블 참조로 교체.
+> - 대상 하드코딩 검색(`hsSgn=121221|030354`, `startsWith('1212211')`, HSK 상수 리터럴 등) 0건. 기존 응답 구조와 fallback 스냅샷은 변경하지 않음.
+> - 검증: 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 3파일/11테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 11:10 KST — app/components 직접 JSON import 0 달성** [CC]:
 > - P1 데이터 디커플링 마감 배치. `lib/data/management.ts`, `surimi.ts`, `cross-insights.ts`, `pollock.ts`, `usda-widgets.ts`, `misc.ts`를 추가해 잔여 JSON 29개를 인테이크 레이어 뒤로 이동.
 > - `app/management/page.tsx`, Surimi/Insight/Pollock/USDA/Mangosteen/Reefer/SEAsia/Octopus/Shrimp 보조 컴포넌트에서 `../data/*.json`, `../../data/*.json` 직접 import 제거.

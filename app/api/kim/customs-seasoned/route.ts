@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../../_shared/hs-codes';
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -18,7 +19,8 @@ export const revalidate = 300;
  */
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
-const HSK = '2008995010'; // 조미김 (statKor="김" 검증 완료 2026-06-28)
+const HSK = HS_CODES.kim_seasoned.hsSgn;
+const STAT_KOR_GUARD = HS_CODES.kim_seasoned.statKorGuard;
 
 // 대상국 비중 차트 색상 (Okabe-Ito A11Y 팔레트 — 색맹 안전)
 const DEST_PALETTE = ['#0072B2', '#E69F00', '#009E73', '#CC79A7', '#56B4E9', '#D55E00', '#64748b'];
@@ -81,7 +83,7 @@ export async function GET() {
 
           // 10자리 코드라 statKor은 항상 "김"이지만 방어적으로 확인 (혼재 차단)
           const statKor = itemStr.match(/<statKor>([\s\S]*?)<\/statKor>/)?.[1]?.trim();
-          if (statKor && statKor !== '김' && statKor !== '-') continue;
+          if (statKor && statKor !== STAT_KOR_GUARD && statKor !== '-') continue;
 
           // 김 = 수출국 → export 필드 집계
           const wgt = parseFloat(itemStr.match(/<expWgt>([\d.]+)<\/expWgt>/)?.[1] || '0');  // kg

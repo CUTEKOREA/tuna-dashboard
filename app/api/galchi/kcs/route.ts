@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../../_shared/hs-codes";
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -22,7 +23,7 @@ export const revalidate = 300;
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
-const HSK = "0303892000"; // 냉동 갈치 (검증 완료 2026-06-11)
+const HSK = HS_CODES.galchi_frozen.hsSgn;
 
 // 관세청 nitemtrade HSK 0303892000 실수집 집계 (2018-2025 연간, 2026-06-11 수집)
 // 단위: totalWgt 톤, totalDlr 천 USD, cifPerKg USD/kg

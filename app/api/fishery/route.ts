@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../_shared/hs-codes";
 
 /**
  * 9대 데이터망 통합 API Proxy (BFF)
@@ -14,6 +15,7 @@ const MOF_API_KEY = process.env.FISHERY_API_KEY || "6438ce04ca4a3ec4bcc72f295ab3
 
 // KCS 관세청 — 고등어 (HS 030354) mackerel-kcs 패턴 동일
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || "fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c";
+const MACKEREL_HS = HS_CODES.mackerel_frozen.hsSgn;
 
 // Fallback 1: EUMOFA 2026 (EU-27 어획량 및 가치)
 const FALLBACK_EUMOFA = {
@@ -73,7 +75,7 @@ export async function GET(request: Request) {
       const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, "0")}`;
       const kcsUrl =
         `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-        `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030354`;
+        `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${MACKEREL_HS}`;
 
       const kcsRes = await fetch(kcsUrl, { signal: AbortSignal.timeout(6000) });
       if (kcsRes.ok) {

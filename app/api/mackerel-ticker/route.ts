@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../_shared/hs-codes';
 
 /**
  * 고등어 실시간 Intelligence Ticker — 통합 BFF
@@ -11,6 +12,7 @@ import { NextResponse } from 'next/server';
 const ECOS_API_KEY = process.env.ECOS_API_KEY || '';
 const KAMIS_API_KEY = process.env.KAMIS_API_KEY || '';
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const MACKEREL_HS = HS_CODES.mackerel_frozen.hsSgn;
 
 export const runtime = 'nodejs';
 export const revalidate = 300; // 5분 캐시
@@ -87,7 +89,7 @@ async function fetchKCS_CIF(): Promise<{ cifUsdTon: number; change: number; isLi
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
     const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=030354`;
+      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${MACKEREL_HS}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
     if (res.ok) {

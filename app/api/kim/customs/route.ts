@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../../_shared/hs-codes';
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -25,6 +26,8 @@ export const revalidate = 300;
  */
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || process.env.DATA_GO_KR_COMMON_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
+const KIM_DRY_HS = HS_CODES.kim_dried.hsSgn;
+const KIM_DRY_PREFIX = HS_CODES.kim_dried.prefix;
 
 // 대상국 비중 차트 색상 (Okabe-Ito A11Y 팔레트 — 색맹 안전)
 const DEST_PALETTE = ['#0072B2', '#E69F00', '#009E73', '#CC79A7', '#56B4E9', '#D55E00', '#64748b'];
@@ -62,7 +65,7 @@ export async function GET() {
     const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
     const startYymm = `${past.getFullYear()}${String(past.getMonth() + 1).padStart(2, '0')}`;
     const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
-      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=121221`;
+      `?serviceKey=${KCS_API_KEY}&strtYymm=${startYymm}&endYymm=${yyyyMM}&hsSgn=${KIM_DRY_HS}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(6000) });
 
@@ -82,7 +85,7 @@ export async function GET() {
 
           // 김류(1212.21.1x)만 — 미역(2x)·다시마(3x)·기타 해조류 제외 (L-04 10자리 정밀)
           const hsCd = (itemStr.match(/<hsCd>([\s\S]*?)<\/hsCd>/)?.[1] || '').trim();
-          if (!hsCd.startsWith('1212211')) continue;
+          if (!KIM_DRY_PREFIX || !hsCd.startsWith(KIM_DRY_PREFIX)) continue;
 
           const rawYear = yearMatch[1].replace(/\D/g, '');
           if (rawYear.length !== 6) continue;
