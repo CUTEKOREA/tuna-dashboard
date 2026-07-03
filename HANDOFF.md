@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 📊 **2026-07-03 14:08 KST — 통합 인텔리전스 화면 노출** [CC]:
+> - 기획서 축 D 제품 도약 후속. 기존 `/api/cross-commodity-intelligence` 모델을 실제 UI로 노출하는 `components/CrossCommodityIntelligenceDashboard.tsx` 추가.
+> - 새 route/menu 키 `cross-intelligence`를 `lib/dashboard-registry.ts`, 사이드바 전략 분석 섹션, public sitemap, `DASHBOARD_PANEL_ORDER`, `app/page.tsx` 패널 맵에 연결.
+> - 화면 구성: 헤드라인 4종(대체 회전·최대 리스크·증액 후보·최상위 경보), 대체재 압력, 리스크 히트맵, 포트폴리오 후보, 이상 경보 링크.
+> - TDD: `dashboard-registry.test.ts`에 `cross-intelligence` public route/sidebar/panel order 기대값을 먼저 추가해 RED 확인 후 GREEN 전환.
+> - 검증: `dashboard-registry.test.ts` 7/7 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 17파일/74테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`). 로컬 `http://localhost:3020/cross-intelligence` Puppeteer 확인: desktop/mobile 모두 제목·4패널·5개 API alert link 렌더, horizontalOverflow=0. API 응답은 STATIC/isLive=false, signals=4, risks=5, portfolio=5, alerts=5.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧪 **2026-07-03 14:03 KST — WITS/US Census 계약 테스트 및 커버리지 하한 32** [CC]:
 > - 기획서 축 A-3 후속. API 계약 테스트 커버리지 하한을 30→32로 라쳇하고, `/api/wits`, `/api/us-census` 계약 테스트 4개를 추가.
 > - RED에서 `contractedRoutes.length` 30 < 32 실패를 확인한 뒤, WITS GET/POST fallback 계약과 US Census GET/POST trend 계약을 추가해 GREEN 전환.

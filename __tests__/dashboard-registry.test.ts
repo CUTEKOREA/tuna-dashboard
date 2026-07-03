@@ -74,6 +74,7 @@ describe('dashboard registry', () => {
       VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics'].includes(menu)),
     );
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('value-chain');
+    expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('sashimi-steak');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
@@ -100,7 +101,7 @@ describe('dashboard registry', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
-      ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
+      ['cross-intelligence', 'cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
       ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
       ['chicken', 'pork', 'beef'],
     ]);
@@ -119,6 +120,7 @@ describe('dashboard registry', () => {
   it('defines dashboard panel render order for every active menu', () => {
     expect(DASHBOARD_PANEL_ORDER).toEqual([
       'market',
+      'cross-intelligence',
       'fleet',
       'logistics',
       'cold-storage',

@@ -67,6 +67,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'beef', title: '소고기', section: 'livestock', accent: 'cyan', sidebar: { icon: 'Beef', suffix: 'Beef' } },
   { key: 'whelk', title: '골뱅이', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Shell', suffix: 'Whelk' } },
   { key: 'kim', title: '김', section: 'fishery', accent: 'cyan', sidebar: { icon: 'Leaf', suffix: 'Laver' } },
+  { key: 'cross-intelligence', title: '통합 인텔리전스', section: 'strategy', accent: 'gold', sidebar: { icon: 'BarChart2', suffix: 'Cross' } },
   { key: 'used-car', title: '중고차', section: 'strategy', accent: 'cyan', sidebar: { icon: 'CarFront', suffix: 'Used Car' } },
   { key: 'pollock', title: '명태', section: 'fishery', accent: 'cyan', shortcutOrder: 11, sidebar: { icon: 'Snowflake', suffix: 'Pollock' } },
   { key: 'flatfish', title: '가자미', section: 'fishery', accent: 'cyan', shortcutOrder: 12, sidebar: { icon: 'FishSymbol', suffix: 'Flatfish' } },
@@ -172,6 +173,7 @@ export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
 
 export const DASHBOARD_PANEL_ORDER = [
   'market',
+  'cross-intelligence',
   'fleet',
   'logistics',
   'cold-storage',
@@ -224,6 +226,7 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'salmon',
   ],
   strategy: [
+    'cross-intelligence',
     'cold-storage',
     'fleet-strategy',
     'korea-market',

@@ -56,6 +56,7 @@ const WhelkDashboard = dynamic(() => import('../components/WhelkDashboard'));
 const KimDashboard = dynamic(() => import('../components/KimDashboard'));
 const TunaDashboard = dynamic(() => import('../components/TunaDashboard'));
 const LogisticsDashboard = dynamic(() => import('../components/LogisticsDashboard'));
+const CrossCommodityIntelligenceDashboard = dynamic(() => import('../components/CrossCommodityIntelligenceDashboard'));
 
 const SEAsiaOEMDashboard = dynamic(() => import('../components/SEAsiaOEMDashboard'));
 const UsedCarExport = dynamic(() => import('../components/UsedCarExport'));
@@ -289,6 +290,7 @@ export default function Home() {
   };
   const dashboardPanels: Record<ActiveMenu, React.ReactNode> = {
     market: <MarketDashboard />,
+    'cross-intelligence': <CrossCommodityIntelligenceDashboard />,
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,
     'cold-storage': <ColdStorageDashboard />,
