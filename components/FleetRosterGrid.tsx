@@ -5,42 +5,41 @@ import s from './FleetCommandCenter.module.css';
 
 /* ── Data ── */
 const pacificFleet = [
-  { name: 'S/EXP', zone: 'S0024 E17533 (KI)', catch: 0, load: 13, capa: 1200, trend: [15, 13, 13, 13, 13], status: 'fishing', note: '' },
-  { name: 'S/PIO', zone: 'S0034 W16719 (H)', catch: 0, load: 481, capa: 1200, trend: [1150, 0, 191, 205, 481], status: 'fishing', note: '' },
-  { name: 'S/CHA', zone: 'S0114 W16733 (H)', catch: 0, load: 0, capa: 1200, trend: [870, 990, 990, 990, 0], status: 'fishing', note: '' },
-  { name: 'S/HAR', zone: '부산', catch: 0, load: 0, capa: 1200, trend: [0, 0, 0, 0, 0], status: 'port', note: '6/1 13:45 부산 오리엔트 조선 안벽 접안, 상가수리(6/9~6/23) 후 6/27 출항 예정' },
-  { name: 'S/JUP', zone: 'N0124 E17250 (KI)', catch: 0, load: 0, capa: 1200, trend: [845, 980, 980, 980, 0], status: 'transship', note: '6/15 10:40 TARAWA 입항, SEIN TOPAZ 편 약 980톤 전재 및 M/E 수리 후 6/18 08:40 출항 완료, SEIN KASAMA 편 M/E 부속 인수 후 6/22 MAJURO 입항 후 수리 예정' },
-  { name: 'S/SPR', zone: 'S0101 W16808 (H)', catch: 0, load: 613, capa: 1200, trend: [1234, 56, 85, 164, 613], status: 'fishing', note: '' },
-  { name: 'MOAMARI', zone: 'S0553 W17300 (KI)', catch: 0, load: 0, capa: 1200, trend: [365, 770, 890, 890, 0], status: 'fishing', note: '' },
-  { name: 'MOAKONA', zone: 'S0519 W17102 (KI)', catch: 0, load: 0, capa: 1200, trend: [636, 1106, 1106, 1106, 0], status: 'fishing', note: '' },
-  { name: 'N/SUN', zone: 'S0212 W16411 (H)', catch: 15, load: 760, capa: 1200, trend: [245, 495, 575, 575, 760], status: 'fishing', note: '' },
-  { name: 'N/STAR', zone: 'S0210 W16413 (H)', catch: 80, load: 825, capa: 1200, trend: [160, 535, 560, 560, 825], status: 'fishing', note: '' },
+  { name: 'S/EXP', zone: 'S0049 W16716 (H)', catch: 0, load: 198, capa: 1200, trend: [15, 13, 13, 13, 198], status: 'fishing', note: '' },
+  { name: 'S/PIO', zone: 'S0050 W16603 (H)', catch: 0, load: 881, capa: 1200, trend: [1150, 0, 191, 205, 881], status: 'fishing', note: '' },
+  { name: 'S/CHA', zone: 'N0110 W16758 (KI)', catch: 0, load: 210, capa: 1200, trend: [870, 990, 990, 990, 210], status: 'fishing', note: '' },
+  { name: 'S/HAR', zone: 'N1339 E13931 (H)', catch: 0, load: 0, capa: 1200, trend: [0, 0, 0, 0, 0], status: 'fishing', note: '' },
+  { name: 'S/JUP', zone: 'MAJURO', catch: 0, load: 0, capa: 1200, trend: [845, 980, 980, 980, 0], status: 'port', note: '6/22 08:15 MAJURO 입항, M/E 수리 중 (출항 일정 M/E 기술자 확인)' },
+  { name: 'S/SPR', zone: 'X-MAS', catch: 0, load: 1026, capa: 1200, trend: [1234, 56, 85, 164, 1026], status: 'port', note: '7/2 06:30 X-MAS 입항, HIKARI 1 및 SEIN VENUS편 약 1,026톤 전재 후 7/5 출항 예정' },
+  { name: 'MOAMARI', zone: 'S0206 W16934 (KI)', catch: 0, load: 285, capa: 1200, trend: [365, 770, 890, 890, 285], status: 'fishing', note: '' },
+  { name: 'MOAKONA', zone: 'S0136 W16354 (H)', catch: 0, load: 201, capa: 1200, trend: [636, 1106, 1106, 1106, 201], status: 'fishing', note: '' },
+  { name: 'N/SUN', zone: 'S0213 W16631 (H)', catch: 0, load: 15, capa: 1200, trend: [245, 495, 575, 575, 15], status: 'fishing', note: '' },
+  { name: 'N/STAR', zone: 'S0102 W16342 (H)', catch: 110, load: 315, capa: 1200, trend: [160, 535, 560, 560, 315], status: 'fishing', note: '' },
 ];
 
 const atlanticFleet = [
-  { name: 'P/MAS', zone: 'N0014 W02037 (H)', catch: 0, load: 390, capa: 1200, trend: [10, 180, 210, 210, 390], status: 'fishing', note: '' },
-  { name: 'P/DIS', zone: 'S0157 W01223 (H)', catch: 40, load: 360, capa: 1200, trend: [900, 200, 320, 320, 360], status: 'fishing', note: '' },
-  { name: 'P/FORE', zone: 'N0223 W02530 (H)', catch: 0, load: 360, capa: 1200, trend: [900, 65, 105, 105, 360], status: 'fishing', note: '' },
-  { name: 'P/PATH', zone: 'S0147 W01629 (H)', catch: 15, load: 80, capa: 1200, trend: [630, 630, 630, 630, 80], status: 'fishing', note: '' },
-  { name: 'P/COM', zone: 'S0019 W00732 (H)', catch: 0, load: 10, capa: 1200, trend: [775, 900, 900, 900, 10], status: 'fishing', note: '' },
-  { name: 'P/QUEEN', zone: 'S0024 W00514 (H)', catch: 0, load: 15, capa: 1200, trend: [870, 900, 900, 900, 15], status: 'fishing', note: '' },
-  { name: 'P/GRACE', zone: 'TEMA', catch: 0, load: 775, capa: 1200, trend: [510, 765, 775, 775, 775], status: 'port', note: '6/14 16:00 TEMA 입항, 하역 후 6/18 출항 예정' },
+  { name: 'P/MAS', zone: 'N0133 W00522 (H)', catch: 0, load: 750, capa: 1200, trend: [10, 180, 210, 210, 750], status: 'port', note: '7/4 06:00 TEMA 입항, 하역 후 7/6 출항 예정' },
+  { name: 'P/DIS', zone: 'N0152 W00954 (L)', catch: 20, load: 900, capa: 1200, trend: [900, 200, 320, 320, 900], status: 'port', note: '7/5 06:00 TEMA 입항, 하역 후 7/7 출항 예정' },
+  { name: 'P/FORE', zone: 'N0117 W00548 (H)', catch: 0, load: 880, capa: 1200, trend: [900, 65, 105, 105, 880], status: 'fishing', note: '' },
+  { name: 'P/PATH', zone: 'S0010 W00641 (H)', catch: 0, load: 900, capa: 1200, trend: [630, 630, 630, 630, 900], status: 'port', note: '7/5 07:00 TEMA 입항, 하역 후 7/7 출항 예정' },
+  { name: 'P/COM', zone: 'S0226 W01710 (H)', catch: 55, load: 805, capa: 1200, trend: [775, 900, 900, 900, 805], status: 'fishing', note: '' },
+  { name: 'P/QUEEN', zone: 'N0130 W01353 (H)', catch: 30, load: 900, capa: 1200, trend: [870, 900, 900, 900, 900], status: 'port', note: '7/7 06:00 TEMA 입항, 하역 후 7/9 출항 예정' },
+  { name: 'P/GRACE', zone: 'S0037 W01643 (H)', catch: 50, load: 590, capa: 1200, trend: [510, 765, 775, 775, 590], status: 'fishing', note: '' },
 ];
 
 const longlineFleet = [
-  { name: 'SY-56', status: '상가수리 후 6/2 11:00 출항 예정 (6/2 보고 기준)', badge: '🚢 입항', badgeColor: '#38bdf8' },
-  { name: 'P-505', status: '타히티 입항 수리, 5/31 출항 완료', badge: '🌊 출항', badgeColor: '#10b981' },
+  { name: 'SY-55', status: '6/21 조업 종료 및 현장발, 7/18경 부산 입항 예정', badge: '귀항 중', badgeColor: '#f59e0b' },
 ];
 
 const carrierFleet = [
-  { name: 'SEIN PHOENIX', capa: 7100, load: 6955, pct: 98, status: 'unloading', note: 'BKK 하역 완료 (NT-1,080, MK-750, S-420, J-1,030, P-1,080, H-930, MI-485, S-1,180)', color: '#10b981' },
-  { name: 'BAO LUCKY', capa: 5800, load: 4803, pct: 83, status: 'unloading', note: 'BKK 하역 중 (MI-885, NT-1,035, C-865, P-375, MK-870, E-773, 타사-930)', color: '#10b981' },
   { name: 'SHIN FUJI', capa: 3200, load: 3096, pct: 97, status: 'unloading', note: 'BKK 하역 중 (MI-950, NS-670, E-306, NT-900, P-270)', color: '#10b981' },
-  { name: 'SEIN TOPAZ', capa: 7300, load: 4278, pct: 59, status: 'port', note: 'TARAWA 대기 중 (NS-150, P-980, S-1,178, C-990, J-980, 타사-2,566.8)', color: '#f59e0b' },
-  { name: 'SEIN GALAXY', capa: 3500, load: 1846, pct: 53, status: 'port', note: 'FUNAFUTI 대기 중 (MK-956, MI-890) 예상잔량: 1,654t', color: '#f59e0b' },
-  { name: 'LAKE WIN', capa: 150, load: 150, pct: 100, status: 'port', note: 'FUNAFUTI 대기 중 (MK-150)', color: '#f59e0b' },
-  { name: 'HIKARI 1', capa: 3700, load: 0, pct: 0, status: 'transit', note: '6/22 X-MAS 도착 예정 예상잔량: 3,700t', color: '#38bdf8' },
-  { name: 'SEIN KASAMA', capa: 7100, load: 0, pct: 0, status: 'transit', note: '6/20 N04 E172 도착 예정 예상잔량: 7,100t', color: '#38bdf8' },
+  { name: 'SEIN TOPAZ', capa: 7300, load: 4278, pct: 59, status: 'unloading', note: 'NINGBO 하역 중 (NS-150, P-980, S-1,178, C-990, J-980 타사 물량-2,566.80)', color: '#10b981' },
+  { name: 'LAKE WIN', capa: 2300, load: 150, pct: 7, status: 'transit', note: '7/11 통영 도착 예정 (MK-150)', color: '#38bdf8' },
+  { name: 'HIKARI 1', capa: 3700, load: 766, pct: 21, status: 'transship', note: 'X-MAS 전재 중 (S-766(96)) 예상잔량: 2,934t', color: '#38bdf8' },
+  { name: 'SEIN VENUS', capa: 5200, load: 2350, pct: 45, status: 'port', note: 'X-MAS 대기 중 (NT-1,060, NS-1,030, (S-260)) 예상잔량: 2,850t', color: '#f59e0b' },
+  { name: 'SEIN KASAMA', capa: 7100, load: 0, pct: 0, status: 'port', note: 'N02 W160 대기 중 예상잔량: 7,100t', color: '#f59e0b' },
+  { name: 'SHIN IZU', capa: 2400, load: 0, pct: 0, status: 'port', note: 'N05 E176 대기 중 예상잔량: 2,400t', color: '#f59e0b' },
+  { name: 'SEIN GALAXY', capa: 3500, load: 1846, pct: 53, status: 'port', note: 'RABAUL 대기 중 (타사 물량 전재 예정) (MK-956, MI-890)', color: '#f59e0b' },
 ];
 
 /* ── Status helpers ── */
