@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { HS_CODES } from '../_shared/hs-codes';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,7 @@ export const dynamic = 'force-dynamic';
  */
 
 const COMTRADE_KEY = process.env.UN_COMTRADE_PRIMARY_KEY || '';
+const POLLOCK_HS = HS_CODES.pollock_frozen.hsSgn;
 
 // ═══ Global Pollock Supply Chain Map ═══
 const POLLOCK_SUPPLY_CHAIN = {
@@ -102,8 +104,15 @@ const POLLOCK_SUPPLY_CHAIN = {
 async function enrichWithComtrade(reporterCode: string, partnerCode: string) {
   if (!COMTRADE_KEY) return null;
   try {
-    const url = `https://comtradeapi.un.org/data/v1/get/C/A/HS?reporterCode=${reporterCode}&partnerCode=${partnerCode}&period=2024&cmdCode=030367&flowCode=M&subscription-key=${COMTRADE_KEY}`;
-    const res = await fetch(url, { next: { revalidate: 86400 } });
+    const url = new URL('https://comtradeapi.un.org/data/v1/get/C/A/HS');
+    url.searchParams.set('reporterCode', reporterCode);
+    url.searchParams.set('partnerCode', partnerCode);
+    url.searchParams.set('period', '2024');
+    url.searchParams.set('cmdCode', POLLOCK_HS);
+    url.searchParams.set('flowCode', 'M');
+    url.searchParams.set('subscription-key', COMTRADE_KEY);
+
+    const res = await fetch(url.toString(), { next: { revalidate: 86400 } });
     if (!res.ok) return null;
     return await res.json();
   } catch { return null; }
