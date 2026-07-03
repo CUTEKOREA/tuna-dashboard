@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-07-03 16:00 KST — 주꾸미·낙지 아이콘 + Atuna 최신 어가 production 배포 완료** [CC]:
+> - 사용자 요청 `배포`로 로컬 ahead 3개 커밋을 `origin/main`에 push: `e39eaae`(주꾸미·낙지 전용 사이드바 아이콘), `3d761a4`(`/market` Atuna 최신 어가 데이터), `72f0e59`(주꾸미 compact body·낙지 long arms 실루엣 보강).
+> - 배포 전 검증: `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 21파일/80테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`). pre-push C-4 143/143 tracked 및 L-03 build gate 통과.
+> - 라이브: Vercel production `dpl_5J3pNgYCo8XfvzVfKQpyZwLMejpU` READY, commit `72f0e59`, alias `https://leedonggun.co.kr` 확인. `https://leedonggun.co.kr/galchi?deploy=72f0e59-*` Puppeteer 확인: 주꾸미·낙지 아이콘 서로 다른 path, 각각 18x18px, `svgFlex=0 0 18px`, 주꾸미 compact body/낙지 long arms path 존재, `horizontalOverflow=0`.
+> - `/market` 라이브 확인: 카드에 SKJ `$1,775`, YF `$2,100`, `2026.06.24`, `2026.06.19`, 방콕 -2.7%, 세이셸 +5.0% 표시, 기존 `$1,825`/`$2,000` 미표시. `https://leedonggun.co.kr/api/atuna-prices` 확인 `latestDate=2026-06-24`, `latestByHub.skj_bkk=1775@2026-06-24`, `latestByHub.yf_sey=2100@2026-06-19`.
+> - 배포 후 관찰: Vercel runtime error scan에서 `/market?_rsc=...&path=market` Next.js invariant 500 1건 감지. 직접 `curl https://leedonggun.co.kr/market`은 200, Puppeteer 화면 검증과 API 검증은 통과. 라우팅 rewrite + `app/[category]` 중복 구조의 배경 RSC 이슈 가능성이 있어 다음 개선 후보.
+> - 기존/무관 dirty 파일(`update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
+
 > 🐙 **2026-07-03 15:50 KST — 주꾸미·낙지 사이드바 아이콘 실루엣 보강** [CC]:
 > - 사용자 요청으로 좌측 사이드바의 `주꾸미 (WEBFOOT OCTOPUS)`, `낙지 (LONG-ARM OCTOPUS)` 전용 아이콘을 더 품목과 어울리는 이미지형 SVG로 보강.
 > - `components/SeafoodSidebarIcons.tsx`에서 주꾸미는 짧고 둥근 다리·넓은 몸통 실루엣으로, 낙지는 좁은 몸통·길게 뻗은 팔과 말린 끝 실루엣으로 차이를 키움. 레지스트리 키(`WebfootOctopus`, `LongArmOctopus`)와 사이드바 고정 18px 정책은 유지.
