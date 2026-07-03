@@ -92,6 +92,17 @@ describe('architecture guards', () => {
     expect(await filesWithMatches(dashboardRoutes, directJsonImport)).toEqual([]);
   });
 
+  it('confines raw JSON imports to lib/data intake modules', async () => {
+    const files = (await Promise.all(
+      SOURCE_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))
+    )).flat();
+    const directJsonImport = /from\s+['"][^'"]+\.json['"]/;
+    const offenders = (await filesWithMatches(files, directJsonImport))
+      .filter((file) => !file.startsWith('lib/data/'));
+
+    expect(offenders).toEqual([]);
+  });
+
   it('keeps TypeScript and Next build gates enabled', async () => {
     const sourceFiles = (await Promise.all(
       SOURCE_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))

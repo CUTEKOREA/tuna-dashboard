@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🇺🇸 **2026-07-03 14:00 KST — US Census 데이터 인테이크 위치 정규화** [CC]:
+> - 기획서 축 B-1 후속. 직접 JSON import가 `lib/data/` 인테이크 모듈 밖에 남지 않도록 `lib/usCensusData.ts` 본문을 `lib/data/us-census.ts`로 이동하고, 기존 경로는 `export *` 호환 래퍼로 유지.
+> - 아키텍처 가드에 “raw JSON import는 `lib/data/` 안에서만 허용” 테스트 추가. RED에서 `lib/usCensusData.ts`를 잡은 뒤 GREEN 전환.
+> - 검증: 인테이크 외부 직접 JSON import 0건. `__tests__/architecture-guards.test.ts` 9/9 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/70테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🌐 **2026-07-03 13:58 KST — WITS 품목-HS 조회 맵 공유화** [CC]:
 > - 기획서 축 B-2 후속. `/api/wits` 내부 `COMMODITY_HS_MAP` 로컬 복제본을 제거하고, `app/api/_shared/hs-codes.ts`의 `WITS_COMMODITY_HS_MAP` 단일 출처를 참조하도록 전환.
 > - 기존 WITS 동작 보존을 위해 15개 품목명·HS6·설명·카테고리 값을 그대로 공유 모듈로 이동. tariff/trade fallback DB는 데이터 스냅샷이므로 route 내부 유지.
