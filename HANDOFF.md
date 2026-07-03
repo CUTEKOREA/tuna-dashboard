@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-07-03 12:55 KST — API 캐시 정책 기준선 게이트 추가** [CC]:
+> - 기획서 축 E-2 성능·관측성 착수. `scripts/audit_api_cache_policy.mjs`를 추가해 `app/api/**/route.ts`의 `revalidate`, `dynamic`, `Cache-Control` 명시 정책 수를 계측하고 CI에서 하한을 강제.
+> - 현재 기준선: 145개 API route 중 61개가 명시 정책 보유(`revalidate` 43, `dynamic` 11, `Cache-Control` 34). 기본 하한은 61로 고정해 후퇴를 차단.
+> - `package.json`의 `npm run verify`를 `lint → typecheck → test → check:api-cache → build → check:bundle`로 확장하고, GitHub Actions path에 새 audit 스크립트를 추가.
+> - TDD 확인: 스크립트 미존재 실패를 먼저 확인한 뒤 구현. 신규 `__tests__/api-cache-policy-script.test.ts` 2개 테스트가 하한 통과와 실패 샘플(`/api/legacy`) 출력을 검증.
+> - 검증: 대상 테스트 1파일/2테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 실제 소스 기준 `npm run check:api-cache` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache` 61/145 OK, `npm run build` 145 routes, `npm run check:bundle` 9 routes OK).
+> - 다음 라쳇 후보: `/api/carrot/arbitrage`, `/api/cashew`, `/api/cassava`, `/api/chicken/*` 등 미정책 route에 revalidate/dynamic 의도를 명시해 하한 61→70으로 상향.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 📦 **2026-07-03 12:53 KST — 라우트 번들 예산 게이트 추가** [CC]:
 > - 기획서 축 E-1 성능·관측성 착수. Next build 산출물 `.next/diagnostics/route-bundle-stats.json`을 읽는 `scripts/check_route_bundle_budget.mjs`를 추가해 라우트별 first-load JS 예산을 CI에서 검사.
 > - 기본 예산: 일반 route 1.30MB, 동적 대시보드 셸 `/[category]` 750KB. 현재 실측 상위 route는 `/management` 1.21MB, `/omo-preview` 1.17MB, `/falkland` 1.15MB, `/ffa-report` 1.10MB, `/` 976KB.

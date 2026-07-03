@@ -11,8 +11,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "check:api-cache": "node scripts/audit_api_cache_policy.mjs",
     "check:bundle": "node scripts/check_route_bundle_budget.mjs",
-    "verify": "npm run lint && npm run typecheck && npm test && npm run build && npm run check:bundle"
+    "verify": "npm run lint && npm run typecheck && npm test && npm run check:api-cache && npm run build && npm run check:bundle"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",
