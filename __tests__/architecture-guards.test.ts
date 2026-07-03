@@ -7,7 +7,7 @@ const SOURCE_DIRS = ['app', 'components', 'lib'];
 const APP_COMPONENT_DIRS = ['app', 'components'];
 const API_DIR = path.join(ROOT, 'app', 'api');
 const TEST_DIR = path.join(ROOT, '__tests__');
-const MIN_CONTRACTED_API_ROUTES = 30;
+const MIN_CONTRACTED_API_ROUTES = 32;
 
 const IGNORED_DIRS = new Set([
   '.git',

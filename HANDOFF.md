@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧪 **2026-07-03 14:03 KST — WITS/US Census 계약 테스트 및 커버리지 하한 32** [CC]:
+> - 기획서 축 A-3 후속. API 계약 테스트 커버리지 하한을 30→32로 라쳇하고, `/api/wits`, `/api/us-census` 계약 테스트 4개를 추가.
+> - RED에서 `contractedRoutes.length` 30 < 32 실패를 확인한 뒤, WITS GET/POST fallback 계약과 US Census GET/POST trend 계약을 추가해 GREEN 전환.
+> - WITS 테스트는 외부 WITS fetch를 503으로 stub해 fallback 경로를 결정론적으로 검증. US Census는 prefetch JSON 기반 coverage/trend 양수 계약을 검증.
+> - 검증: `__tests__/wits-us-census.contract.test.ts` 4/4 통과, `__tests__/architecture-guards.test.ts` 9/9 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 17파일/74테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🇺🇸 **2026-07-03 14:00 KST — US Census 데이터 인테이크 위치 정규화** [CC]:
 > - 기획서 축 B-1 후속. 직접 JSON import가 `lib/data/` 인테이크 모듈 밖에 남지 않도록 `lib/usCensusData.ts` 본문을 `lib/data/us-census.ts`로 이동하고, 기존 경로는 `export *` 호환 래퍼로 유지.
 > - 아키텍처 가드에 “raw JSON import는 `lib/data/` 안에서만 허용” 테스트 추가. RED에서 `lib/usCensusData.ts`를 잡은 뒤 GREEN 전환.
