@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: jukkumi_real_data_v1.json (P0 ground-truth 검증 데이터)을 그대로 반환.
 // 기존: API 키 존재 시 실제 외부 호출 없이 무작위 노이즈를 정적 데이터에 입히고
 //       라이브로 표기했음(허위 LIVE) → 해당 블록 전면 제거.

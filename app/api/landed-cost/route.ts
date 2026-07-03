@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // Phase 3: 착지원가 시뮬레이터 API
 // POST /api/landed-cost

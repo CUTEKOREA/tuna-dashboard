@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // HS Ping API Pipeline — HS Code Auto-Classification
 // POST /api/hs-ping — Classify product description → HS/HTS codes
 // GET  /api/hs-ping — Health check + supported countries

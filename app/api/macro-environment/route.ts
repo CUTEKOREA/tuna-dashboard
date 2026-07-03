@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // Phase 0: 글로벌 환경 스캔 API — ECOS + FRED + KOTRA
 // POST /api/macro-environment

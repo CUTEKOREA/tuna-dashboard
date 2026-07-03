@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // 공급국 집중도 (Supplier Concentration)
 // 정직 STATIC: agri_data mackerel_trade_comtrade.csv 실측 (UN Comtrade 2024,

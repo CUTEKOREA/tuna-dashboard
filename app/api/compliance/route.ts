@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // Compliance & Sanctions Radar API
 // 1차: OFAC SDN(Specially Designated Nationals) 목록 실시간 조회 (공개 CSV, 키 불필요)

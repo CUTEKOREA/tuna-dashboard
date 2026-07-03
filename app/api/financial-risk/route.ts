@@ -3,6 +3,8 @@ import { exec } from 'child_process';
 import path from 'path';
 import util from 'util';
 
+export const dynamic = 'force-dynamic';
+
 const execAsync = util.promisify(exec);
 
 export async function GET() {

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const DART_API_KEY = process.env.DART_API_KEY;
 
 const COMPANIES = [

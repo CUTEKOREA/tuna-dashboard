@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 const HERMES_SERVER = process.env.HERMES_SERVER_URL || 'http://localhost:8765';
 const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434/v1';

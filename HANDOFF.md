@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> ⚙️ **2026-07-03 13:07 KST — 운영성 API 캐시 정책 명시 및 하한 101 라쳇** [CC]:
+> - 기획서 축 E-2 후속. 사용자 입력·외부 API·런타임 실행 성격의 9개 route(`/api/compliance`, `/api/dart-insight`, `/api/financial-risk`, `/api/generate-rfq`, `/api/hermes`, `/api/hs-ping`, `/api/import-yeti`, `/api/landed-cost`, `/api/macro-environment`)에 `dynamic = 'force-dynamic'`을 명시.
+> - 정적 파일 스냅샷 성격인 `/api/jukkumi-intelligence`는 `revalidate = 3600`으로 명시해 빌드 기준 1시간 재검증 route로 표시.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 91→101로 상향. 하한만 올렸을 때 `91/145 explicit, minimum 101` 실패를 먼저 확인한 뒤 GREEN 전환.
+> - 현재 기준선: 145개 API route 중 101개 명시 정책 보유(`revalidate` 63, `dynamic` 31, `Cache-Control` 34). build 출력에서 운영성 9개 route는 `ƒ`, 주꾸미 intelligence는 `1h`.
+> - 검증: `npm run check:api-cache` 101/145 OK, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 대상 테스트 1파일/2테스트 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build` 125 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🐟 **2026-07-03 13:03 KST — 갈치 API 캐시 정책 명시 및 하한 91 라쳇** [CC]:
 > - 기획서 축 E-2 후속. 갈치 계열 13개 route에 명시 정책 추가. 순수 정적 fallback route(`mfds`, `oec`, `wto`)는 `revalidate = 3600`, 외부 API/토큰/스크래핑 계열(`comtrade`, `hsping`, `importyeti`, `kamis`, `kosis`, `noaa`, `ofac`, `osh`, `tariffs`)과 query route(`intel`)는 `dynamic = 'force-dynamic'`.
 > - `scripts/audit_api_cache_policy.mjs` 기본 하한을 78→91로 상향. 하한만 올렸을 때 `78/145 explicit, minimum 91` 실패를 먼저 확인한 뒤 GREEN 전환.
