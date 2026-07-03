@@ -7,7 +7,7 @@ import {
 import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
-import raw from '../data/whelk_fta_quarterly.json';
+import { getFtaQuarterlyData } from '@/lib/data/fta-quarterly';
 
 const tooltipStyle = {
   background: 'rgba(10, 16, 40, 0.95)',
@@ -17,6 +17,7 @@ const tooltipStyle = {
 };
 
 export default function WhelkFTAQuarterly() {
+  const raw = getFtaQuarterlyData('whelk');
   const yearly = raw.yearly as Array<{ year: string; volume: number; value: number }>;
   const shareSeries = raw.originShareVolume as Array<{ year: string; uk: number; ireland: number; other: number }>;
   const prices = raw.unitPriceQuarterly as Array<{ period: string; uk: number; ireland: number }>;

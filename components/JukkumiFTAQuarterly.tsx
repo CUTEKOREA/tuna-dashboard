@@ -7,7 +7,7 @@ import {
 import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
-import raw from '../data/jukkumi_fta_quarterly.json';
+import { getFtaQuarterlyData } from '@/lib/data/fta-quarterly';
 
 const tooltipStyle = {
   background: 'rgba(10, 16, 40, 0.95)',
@@ -17,6 +17,7 @@ const tooltipStyle = {
 };
 
 export default function JukkumiFTAQuarterly() {
+  const raw = getFtaQuarterlyData('jukkumi');
   const yearly = raw.yearly as Array<{ year: string; volume: number; value: number; note: string }>;
   const qSeries = raw.quarter2025 as Array<{ q: string; qVolume: number; cumValue: number }>;
   const origin = raw.originShift as Array<{ country: string; v2025Q1: number; v2026Q1: number; delta: number; shareVal2026: number }>;

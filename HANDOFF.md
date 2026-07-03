@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 10:47 KST — FTA 분기 데이터 인테이크 첫 분리** [CC]:
+> - P1 데이터 디커플링 착수. `lib/data/fta-quarterly.ts`를 추가해 KMI FTA 분기 JSON 5종(고등어·새우·주꾸미·낙지·골뱅이)을 단일 인테이크 함수 `getFtaQuarterlyData()` 뒤로 이동.
+> - `components/MackerelFTAQuarterly.tsx`, `ShrimpFTAQuarterly.tsx`, `JukkumiFTAQuarterly.tsx`, `OctopusFTAQuarterly.tsx`, `WhelkFTAQuarterly.tsx`는 더 이상 `../data/*_fta_quarterly.json`을 직접 import하지 않음. FTA 분기 위젯 직접 JSON 경로 의존 5개 → 0개.
+> - 남은 직접 JSON import는 아직 100여 개 수준이라, 같은 방식으로 품목/위젯 묶음별 인테이크 모듈을 계속 추가하는 것이 다음 P1 작업.
+> - 검증: 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 3파일/11테스트, `npm run build`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 10:43 KST — 앱 품질 게이트 단일 명령/CI 추가** [CC]:
 > - `package.json`에 `npm run verify`를 추가해 lint, typecheck, vitest, build를 한 번에 실행하는 반복 검증 명령으로 묶음.
 > - `.github/workflows/app-quality-gate.yml` 신규 추가. PR/main push에서 app/components/lib/tests 및 핵심 설정 변경 시 Node 24 + `npm ci --no-audit` 후 `npm run verify`를 실행.

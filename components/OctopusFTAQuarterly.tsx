@@ -8,7 +8,7 @@ import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { ChartPatternDefs } from './ChartPatterns';
-import raw from '../data/octopus_fta_quarterly.json';
+import { getFtaQuarterlyData } from '@/lib/data/fta-quarterly';
 
 const tooltipStyle = {
   background: 'rgba(10, 16, 40, 0.95)',
@@ -18,6 +18,7 @@ const tooltipStyle = {
 };
 
 export default function OctopusFTAQuarterly() {
+  const raw = getFtaQuarterlyData('octopus');
   const yearly = raw.yearly as Array<{ year: string; volume: number; value: number }>;
   const qSeries = raw.quarter as Array<{ q: string; qVolume: number; cumValue: number }>;
   const origin2026 = raw.originShift2026Q1 as Array<{ country: string; delta: number; shareVal: number }>;
