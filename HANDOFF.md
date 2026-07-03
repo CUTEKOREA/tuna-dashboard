@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-07-03 13:03 KST — 갈치 API 캐시 정책 명시 및 하한 91 라쳇** [CC]:
+> - 기획서 축 E-2 후속. 갈치 계열 13개 route에 명시 정책 추가. 순수 정적 fallback route(`mfds`, `oec`, `wto`)는 `revalidate = 3600`, 외부 API/토큰/스크래핑 계열(`comtrade`, `hsping`, `importyeti`, `kamis`, `kosis`, `noaa`, `ofac`, `osh`, `tariffs`)과 query route(`intel`)는 `dynamic = 'force-dynamic'`.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 78→91로 상향. 하한만 올렸을 때 `78/145 explicit, minimum 91` 실패를 먼저 확인한 뒤 GREEN 전환.
+> - build 중 `/api/galchi/tariffs`가 외부 TLS 실패 로그를 내는 것을 확인하고, 외부 API 계열을 dynamic으로 정정해 빌드 타임 네트워크 호출을 제거.
+> - 현재 기준선: 145개 API route 중 91개 명시 정책 보유(`revalidate` 62, `dynamic` 22, `Cache-Control` 34). build 출력에서 갈치 외부 API 계열은 `ƒ`, 정적 갈치 3개는 `1h`.
+> - 검증: `npm run check:api-cache` 91/145 OK, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 대상 테스트 1파일/2테스트 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build` 134 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🌾 **2026-07-03 13:00 KST — 농산물·위젯 API 캐시 정책 명시 및 하한 78 라쳇** [CC]:
 > - 기획서 축 E-2 후속. 정적 스냅샷 성격이 명확한 7개 route(`/api/carrot/arbitrage`, `/api/cashew`, `/api/cassava`, `/api/cassava/arbitrage`, `/api/cassava/early-warning`, `/api/cassava/esg`, `/api/cocoa/dashboard`)에 `revalidate = 3600`을 추가.
 > - `/api/cold-storage/widget`은 정적 JSON을 읽지만 `request.url` query id를 쓰는 route라 `revalidate` 대신 `dynamic = 'force-dynamic'`으로 명시. 하한 라쳇 중 발생한 Next dynamic usage 로그를 제거.

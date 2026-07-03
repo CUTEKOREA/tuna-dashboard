@@ -4,7 +4,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const DEFAULT_API_DIR = 'app/api';
-const DEFAULT_MIN_EXPLICIT_POLICY = 78;
+const DEFAULT_MIN_EXPLICIT_POLICY = 91;
 
 function parsePositiveInteger(value, label) {
   const parsed = Number(value);

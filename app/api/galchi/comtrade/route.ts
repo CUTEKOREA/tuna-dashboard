@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 const FALLBACK = {
   source: "UN Comtrade HS 030389 (Forensic 파싱 캐시)",
   isLive: false,

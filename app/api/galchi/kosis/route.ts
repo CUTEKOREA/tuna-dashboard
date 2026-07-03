@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const KOSIS_KEY = process.env.KOSIS_API_KEY || "";
 
 const FALLBACK = {

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 const FALLBACK = {
   source: "US OFAC & EU Sanctions 실시간 조회 (Forensic Fallback)",
   isLive: false,

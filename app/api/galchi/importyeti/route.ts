@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 const FALLBACK = {
   source: "ImportYeti B/L 스크래핑 & US ITA (Forensic Fallback)",
   isLive: false,

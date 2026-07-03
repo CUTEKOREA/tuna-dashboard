@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * 갈치 통합 인텔리전스 API
  * GET /api/galchi/intel?type=exchange|wits|comtrade|macro

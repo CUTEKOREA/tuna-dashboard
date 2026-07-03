@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const HSPING_KEY = process.env.HSPING_API_KEY || "";
 const HSPING_BASE = "https://api.hsping.com/v1/classify";
 

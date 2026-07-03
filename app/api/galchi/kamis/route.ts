@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * 갈치 KAMIS 도매가격 실시간 API
  * GET /api/galchi/kamis?recent=7

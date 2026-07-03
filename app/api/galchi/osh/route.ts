@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 const OSH_TOKEN = process.env.OSH_API_TOKEN || "";
 
 const FALLBACK = {
