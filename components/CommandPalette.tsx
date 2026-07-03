@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowRight, BarChart2, Anchor, Factory, Target, ShoppingCart, Waves, Fish, Hexagon, Navigation, Cpu, Workflow, Activity } from 'lucide-react';
+import { Search, ArrowRight, BarChart2, Beef, Fish, Leaf, Target } from 'lucide-react';
+import { DASHBOARD_COMMANDS } from '../lib/dashboard-registry';
+import type { DashboardSection } from '../lib/dashboard-registry';
 
 interface CommandItem {
   id: string;
@@ -16,29 +18,27 @@ interface CommandPaletteProps {
   onNavigate: (menu: string) => void;
 }
 
+const SECTION_ICONS: Record<DashboardSection, React.ReactNode> = {
+  operation: <BarChart2 size={16} />,
+  fishery: <Fish size={16} />,
+  strategy: <Target size={16} />,
+  agriculture: <Leaf size={16} />,
+  livestock: <Beef size={16} />,
+};
+
 export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const commands: CommandItem[] = [
-    { id: 'market', label: '시장 동향 (Market)', category: '페이지', icon: <BarChart2 size={16} />, action: () => onNavigate('market') },
-    { id: 'fleet', label: '선단 운영', category: '페이지', icon: <Navigation size={16} />, action: () => onNavigate('fleet') },
-    { id: 'logistics', label: '물류 및 가공 (Logistics)', category: '페이지', icon: <Factory size={16} />, action: () => onNavigate('logistics') },
-    { id: 'unloading', label: '하역 현황 (Unloading)', category: '페이지', icon: <Anchor size={16} />, action: () => onNavigate('unloading') },
-    { id: 'value-chain', label: '밸류체인 (Value Chain)', category: 'BETA', icon: <Workflow size={16} />, action: () => onNavigate('value-chain') },
-    { id: 'ai-forecast', label: 'AI 유가·단가 예측', category: 'BETA', icon: <Cpu size={16} />, action: () => onNavigate('ai-forecast') },
-    { id: 'strategy', label: '글로벌 전략 (Strategy)', category: 'BETA', icon: <Target size={16} />, action: () => onNavigate('strategy') },
-    { id: 'retail', label: '소매 유통 (Retail POS)', category: '페이지', icon: <ShoppingCart size={16} />, action: () => onNavigate('retail') },
-    { id: 'ranching', label: '참다랑어 축양', category: '페이지', icon: <Waves size={16} />, action: () => onNavigate('ranching') },
-    { id: 'mackerel', label: '고등어 (Mackerel)', category: '페이지', icon: <Fish size={16} />, action: () => onNavigate('mackerel') },
-    { id: 'squid', label: '오징어 (Squid)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('squid') },
-    { id: 'jukkumi', label: '주꾸미 (Webfoot Octopus)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('jukkumi') },
-    { id: 'octopus', label: '낙지 (Long-Arm Octopus)', category: '페이지', icon: <Activity size={16} />, action: () => onNavigate('octopus') },
-    { id: 'cashew', label: '캐슈넛 (Cashew Nut)', category: '페이지', icon: <Hexagon size={16} />, action: () => onNavigate('cashew') },
-    { id: 'cassava', label: '카사바 (Cassava)', category: '페이지', icon: <Hexagon size={16} />, action: () => onNavigate('cassava') },
-  ];
+  const commands: CommandItem[] = DASHBOARD_COMMANDS.map((command) => ({
+    id: command.key,
+    label: command.label,
+    category: command.category,
+    icon: SECTION_ICONS[command.section],
+    action: () => onNavigate(command.key),
+  }));
 
   const filtered = commands.filter(c =>
     c.label.toLowerCase().includes(query.toLowerCase()) ||

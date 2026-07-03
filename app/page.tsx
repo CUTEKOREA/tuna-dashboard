@@ -10,6 +10,14 @@ import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, Bo
 import { supabase } from '../lib/supabase';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import {
+  ActiveMenu,
+  getDashboardAccent,
+  getDashboardTitle,
+  isActiveMenu,
+  KEYBOARD_SHORTCUT_MENUS,
+  PROTECTED_OPERATION_MENUS,
+} from '../lib/dashboard-registry';
 
 // ─── Always-loaded (lightweight or market page essentials) ───
 import LiveTicker from '../components/LiveTicker';
@@ -58,32 +66,6 @@ const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDash
 const MscStrategyDashboard = dynamic(() => import('../components/MscStrategyDashboard'));
 const SashimiSteakDashboard = dynamic(() => import('../components/SashimiSteakDashboard'));
 
-
-const VALID_MENUS = [
-  'market', 'fleet', 'logistics', 'unloading', 'value-chain', 'mackerel', 'galchi',
-  'squid', 'jukkumi', 'octopus', 'cashew', 'cassava', 'garlic', 'carrot', 'cocoa',
-  'mangosteen', 'chicken', 'pork', 'beef', 'whelk', 'kim', 'used-car', 'pollock',
-  'flatfish', 'shrimp', 'salmon', 'seasia-oem', 'fleet-strategy', 'korea-market',
-  'cold-storage', 'research-lab', 'purse-seiner-db', 'msc', 'sashimi-steak',
-] as const;
-
-type ActiveMenu = (typeof VALID_MENUS)[number];
-
-const MENU_TITLES: Record<string, string> = {
-  'market': '시장 동향', 'fleet': '선단 운영', 'logistics': '물류·가공',
-  'unloading': '하역 현황', 'value-chain': '참치', 'mackerel': '고등어', 'galchi': '갈치',
-  'squid': '오징어', 'jukkumi': '주꾸미', 'octopus': '낙지', 'pollock': '명태',
-  'flatfish': '가자미', 'shrimp': '새우', 'salmon': '연어', 'ranching': '참다랑어 축양',
-  'seasia-oem': '글로벌 OEM', 'petfood': '펫푸드', 'tuna-extract': '참치액젓',
-  'cold-storage': '냉동창고', 'msc': 'MSC 전략', 'sashimi-steak': '사시미/스테이크 전략',
-  'cashew': '캐슈넛', 'cassava': '카사바', 'garlic': '마늘', 'carrot': '당근',
-  'cocoa': '코코아', 'mangosteen': '망고스틴', 'chicken': '닭', 'pork': '돼지고기',
-  'beef': '소고기', 'whelk': '골뱅이', 'kim': '김', 'used-car': '중고차',
-  'fleet-strategy': '선대 전략 분석', 'korea-market': '국내 위판장 인텔리전스',
-  'research-lab': '연구 재료',
-};
-
-const PROTECTED_OPERATION_MENUS = new Set<ActiveMenu>(['fleet', 'unloading', 'logistics']);
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = '349900';
 
@@ -98,7 +80,7 @@ export default function Home() {
   
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>(() => {
     const path = pathname?.replace('/', '');
-    if (path && (VALID_MENUS as readonly string[]).includes(path)) return path as ActiveMenu;
+    if (path && isActiveMenu(path)) return path;
     return 'market';
   });
 
@@ -145,7 +127,7 @@ export default function Home() {
   // Scroll to top and update page title when activeMenu changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = `${MENU_TITLES[activeMenu] || activeMenu} | 참치왕국`;
+    document.title = `${getDashboardTitle(activeMenu)} | 참치왕국`;
   }, [activeMenu]);
 
   useEffect(() => {
@@ -231,13 +213,12 @@ export default function Home() {
   }, []);
   // Keyboard shortcuts for number keys
   useEffect(() => {
-    const menuKeys = ['market', 'fleet', 'unloading', 'logistics', 'value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'salmon'] as const;
     const handler = (e: KeyboardEvent) => {
       // Skip if user is typing in an input
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       const num = parseInt(e.key);
-      if (num >= 1 && num <= menuKeys.length) {
-        navigateToMenu(menuKeys[num - 1]);
+      if (num >= 1 && num <= KEYBOARD_SHORTCUT_MENUS.length) {
+        navigateToMenu(KEYBOARD_SHORTCUT_MENUS[num - 1]);
       }
       if (e.key === 'd' || e.key === 'D') toggleTheme();
       if (e.key === 'f' || e.key === 'F') {
@@ -250,11 +231,9 @@ export default function Home() {
   }, [navigateToMenu, toggleTheme]);
 
   // Ambient color based on active page
-  const ambientAccent = (['cashew', 'cocoa'].includes(activeMenu)) ? 'emerald' as const
-    : (['mackerel', 'galchi', 'fleet'].includes(activeMenu)) ? 'cyan' as const
-    : 'cyan' as const;
+  const ambientAccent = getDashboardAccent(activeMenu);
   const isOperationMenuLocked = PROTECTED_OPERATION_MENUS.has(activeMenu) && !operationAccessGranted;
-  const activeMenuTitle = MENU_TITLES[activeMenu] || activeMenu;
+  const activeMenuTitle = getDashboardTitle(activeMenu);
   const isPanelActive = (menu: ActiveMenu) => (
     activeMenu === menu && (!PROTECTED_OPERATION_MENUS.has(menu) || operationAccessGranted)
   );

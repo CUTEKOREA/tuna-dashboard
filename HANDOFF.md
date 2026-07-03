@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-07-03 12:27 KST — 대시보드 메뉴 레지스트리 1차 추출** [CC]:
+> - 기획서 축 C 팩토리화 착수. `lib/dashboard-registry.ts`를 추가해 34개 실제 `ActiveMenu` 키, 한글 타이틀, 섹션, 배경 액센트, 운영 잠금, 숫자 단축키, CommandPalette 검색 항목을 단일 출처로 분리.
+> - `app/page.tsx`의 `VALID_MENUS`, `MENU_TITLES`, 보호 메뉴 Set, 숫자 단축키 배열, ambient accent 분기를 레지스트리 사용으로 교체. 기존 화면 렌더 분기는 유지해 리스크를 낮춤.
+> - `components/CommandPalette.tsx`의 오래된 죽은 메뉴(`ai-forecast`, `strategy`, `retail`, `ranching`)를 제거하고, 실제 레지스트리 메뉴 34개 전체가 검색되도록 전환.
+> - TDD 확인: 레지스트리 미존재 import 실패 → `DASHBOARD_COMMANDS` 미구현 실패를 먼저 확인한 뒤 구현. 신규 `__tests__/dashboard-registry.test.ts` 3테스트로 유효 메뉴/타이틀/잠금/단축키/검색 항목 계약 고정.
+> - 검증: 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 14파일/57테스트, `npm run build` 145 routes). 로컬 `127.0.0.1:3020/market` Puppeteer 확인: `retail` 검색은 결과 없음, `선망` 검색은 `선망선 DB` 노출, 죽은 `AI 유가` 항목 없음.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🚨 **2026-07-03 12:20 KST — 교차 품목 알림 큐 점수 파생화** [CC]:
 > - `/market` 교차 품목 인텔리전스의 `anomalyAlerts`를 수동 `ALERT_INPUTS` 목록에서 제거하고, 대체재 압력(`substitutionSignals`)과 리스크 민감도(`riskFactors`) 점수에서 자동 파생하도록 전환.
 > - 각 알림에 `sourceKind`(`substitution`/`risk`)와 `sourceKey`를 추가해 어떤 분석 신호에서 나온 알림인지 추적 가능하게 함. API zod 계약도 같은 필드를 요구하도록 갱신.
