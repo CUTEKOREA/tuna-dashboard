@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:45 KST — 정적 스냅샷 API L-12 메타 표준화** [CC]:
+> - `/api/tuna-extract`, `/api/jukkumi-intelligence`, `/api/petfood`가 정적/추정 JSON 스냅샷임을 응답 최상위 `isLive:false`와 `_metadata.status=STATIC`으로 명시하도록 표준화.
+> - `/api/tuna-extract`는 저장소에 `data/tuna_extract_dashboard.json`이 없어 500이 날 수 있던 경로를 정직 fallback으로 전환. 파일 부재 시에도 컴포넌트 fallback을 살릴 수 있게 200 + `_metadata.apiHealth.ok=false`를 반환.
+> - `lib/contracts/static-snapshot.ts`와 `__tests__/static-snapshot-routes.contract.test.ts` 추가. 세 라우트의 L-12 정적 메타 계약을 zod로 검증.
+> - 검증: 신규 테스트 3/3 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 10파일/41테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧪 **2026-07-03 11:42 KST — A-4 위젯 렌더 스냅샷 기준선 추가** [CC]:
 > - 기획서 A-4 착수. `__tests__/widget-render-snapshots.test.ts`를 추가해 `react-dom/server` 기반으로 공통 `TelemetryBadge`와 20개 대표 `WidgetCard` 셸을 렌더링.
 > - `__tests__/__snapshots__/widget-render-snapshots.test.ts.snap`에는 거대 HTML 대신 실제 렌더 HTML의 SHA-256 해시와 구조 요약을 저장: 20 카드, 5-Pillar 분포, LIVE/SYNCED/STATIC 카운트, KPI 40개, SIT/TAK/source 각 20개.

@@ -10,7 +10,17 @@ export async function GET() {
   try {
     const dataPath = path.join(process.cwd(), 'public', 'data', 'jukkumi_real_data_v1.json');
     const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-    return NextResponse.json(data);
+    return NextResponse.json({
+      ...data,
+      isLive: false,
+      _metadata: {
+        isLive: false,
+        status: 'STATIC',
+        source: 'public/data/jukkumi_real_data_v1.json',
+        syncDate: data?._metadata?.syncDate || '2026-05-28',
+        method: 'static JSON snapshot',
+      },
+    });
   } catch (error) {
     console.error('Error fetching Jukkumi intelligence:', error);
     return NextResponse.json(

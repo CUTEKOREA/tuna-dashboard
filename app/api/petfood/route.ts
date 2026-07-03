@@ -253,6 +253,14 @@ export async function GET() {
     { name: "해외 수입", value: 30, fill: "#334155" }
   ];
 
+  data.isLive = false;
+  data._metadata = {
+    isLive: false,
+    status: "STATIC",
+    source: "public/data/petfood_dashboard.json + public/data/agri/petfood_customs.json fallback",
+    syncDate: "2026-05-29",
+    method: "static JSON snapshot with deterministic overrides",
+  };
 
   return NextResponse.json(data);
 }
