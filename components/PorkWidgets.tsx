@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 import React from 'react';
 import { BarChart, Bar, LineChart, Line, ComposedChart, Area, XAxis, YAxis, CartesianGrid, Legend, Cell, Tooltip as RT } from 'recharts';

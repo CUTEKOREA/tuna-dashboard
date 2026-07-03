@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -193,7 +192,7 @@ export default function CashewStrategy() {
         return (
           <PieChart>
             <Pie data={d} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={85} innerRadius={40}
-              label={({name,percent}) => `${name} ${(percent*100).toFixed(0)}%`} labelLine={false} fontSize={9}>
+              label={({name,percent}) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`} labelLine={false} fontSize={9}>
               {d.map((_:any,i:number) => <Cell key={i} fill={PIE_COLORS[i%PIE_COLORS.length]} />)}
             </Pie>
             <RechartsTooltip content={<CustomTooltip />} />
@@ -522,7 +521,7 @@ export default function CashewStrategy() {
                   <YAxis type="category" dataKey="factor" interval={0} width={100} stroke="#64748b" tick={{fontSize:9}} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar dataKey="impact" name="영업 마진 임팩트(%)" radius={[0,4,4,0]}>
-                    {d_macro_sensitivity.map((entry, index) => (
+                    {d_macro_sensitivity.map((entry: any, index: number) => (
                       <Cell key={index} fill={entry.impact > 0 ? '#10b981' : '#ef4444'} />
                     ))}
                   </Bar>
@@ -549,8 +548,8 @@ export default function CashewStrategy() {
               syncDate: data?._metadata?.syncDate,
               chart: (
                 <PieChart>
-                  <Pie data={d_cnsl_esg} cx="50%" cy="50%" outerRadius={85} innerRadius={40} dataKey="value" nameKey="name" label={({name,percent}) => `${name} ${(percent*100).toFixed(0)}%`} labelLine={false} fontSize={9}>
-                    {d_cnsl_esg.map((entry, i) => <Cell key={i} fill={entry.fill} />)}
+                  <Pie data={d_cnsl_esg} cx="50%" cy="50%" outerRadius={85} innerRadius={40} dataKey="value" nameKey="name" label={({name,percent}) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`} labelLine={false} fontSize={9}>
+                    {d_cnsl_esg.map((entry: any, i: number) => <Cell key={i} fill={entry.fill} />)}
                   </Pie>
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{fontSize:'10px'}} />

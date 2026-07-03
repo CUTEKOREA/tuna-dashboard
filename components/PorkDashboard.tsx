@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 import React, { useState } from 'react';
 import { Factory } from 'lucide-react';
@@ -15,7 +14,7 @@ const KPIS = [
   { title: 'ASF 최대 충격폭', value: '-20.9%', trend: '⚠️', desc: '2019 중국 생산량 급감', telemetry: 'synced', syncDate: 'QCL', color: '#ef4444' },
   { title: '돈육 탄소 배출', value: '12.3kg', trend: '🌱', desc: 'CO2e/kg — 수산물 대비 6배', telemetry: 'synced', syncDate: 'FAO', color: '#10b981' },
   { title: '한국 돈육 자급률', value: '66%', trend: '🎯', desc: '34% 구조적 수입 의존', telemetry: 'synced', syncDate: 'PSD', color: '#f59e0b' },
-];
+] as const;
 
 // 5-Pillar 네비게이터 메타 (돼지 시그니처 — pink/rose 톤)
 const PILLARS = [

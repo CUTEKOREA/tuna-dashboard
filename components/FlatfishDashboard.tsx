@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -116,7 +115,7 @@ const WIDGET_UNITS: Record<string, string> = {
 const formatYAxis = (v: number) => {
   if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
   if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-  return v;
+  return String(v);
 };
 
 const formatXAxis = (tickItem: any) => {

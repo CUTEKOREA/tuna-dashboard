@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -11,7 +10,7 @@ import {
 import {
   Globe, TrendingUp, AlertTriangle, Factory, DollarSign, Scale, RefreshCcw,
   Target, Leaf, Shield, Dna, ShieldAlert, Building2, Activity, Ship, Navigation, Snowflake, Anchor,
-  Fish, Thermometer, ShoppingBag, Recycle, Package, FlaskConical
+  Fish, Thermometer, ShoppingBag, Recycle, Package, FlaskConical, ChartPie
 } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import WidgetCard from './WidgetCard';
@@ -324,7 +323,7 @@ export default function WhelkDashboard() {
                   <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={60} />
                   <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(140,170,255,0.10)' }} />
                   <Bar dataKey="value" name="어획량(톤)" fill="var(--color-info)" radius={[0, 4, 4, 0]}>
-                    {globalCaptureData.map((entry, index) => (
+                    {globalCaptureData.map((entry: any, index: number) => (
                       <Cell key={`cell-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 3 ? 'var(--color-success)' : 'var(--color-info)'} />
                     ))}
                   </Bar>
@@ -458,13 +457,13 @@ export default function WhelkDashboard() {
     <h2 style={{ margin: 0, fontSize: '1.3rem', color: '#f8fafc' }}>❷ 가공 및 생산</h2>
   </div>
   <>
-            <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={PieChart} iconColor="var(--color-info)" pillar="S3"
+            <WidgetCard title="국내 수입산 골뱅이 국가별 점유율" icon={ChartPie} iconColor="var(--color-info)" pillar="S3"
               cardDesc="KCS HS160559 2024년 연간 수입금액($M) 기준 국가별 점유율(총 $58.5M, 기타 포함) — 영국·아일랜드 합산 65% 단일 해역 리스크"
               telemetry={{ status: metaStatus, syncDate: metaSyncDate || 'KCS 2026-05-15' }} chartHeight={300}
               chart={
                 <PieChart>
                   <Pie data={importMarketShare} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value">
-                    {importMarketShare.map((entry, index) => (<Cell key={`cell-${index}`} fill={IMPORT_COLORS[index % IMPORT_COLORS.length]} />))}
+                    {importMarketShare.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={IMPORT_COLORS[index % IMPORT_COLORS.length]} />))}
                   </Pie>
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
@@ -598,7 +597,7 @@ export default function WhelkDashboard() {
                   <YAxis domain={[11.5, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar dataKey="value" name="비용($/kg)" fill="var(--color-info)" label={{ position: 'top', fill: '#f8fafc', fontSize: 10 }}>
-                    {waterfallData.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
+                    {waterfallData.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
                   </Bar>
                 </BarChart>
               }
@@ -628,7 +627,7 @@ export default function WhelkDashboard() {
                   <ZAxis dataKey="z" type="number" range={[200, 1500]} name="점유율(%)" />
                   <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomTooltip />} />
                   <Scatter name="브랜드" data={brandPositioningData} fill="var(--color-info)">
-                    {brandPositioningData.map((entry, index) => (<Cell key={`cell-${index}`} fill={index === 0 ? 'var(--color-danger)' : index === 3 ? 'var(--color-warning)' : 'var(--color-info)'} />))}
+                    {brandPositioningData.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={index === 0 ? 'var(--color-danger)' : index === 3 ? 'var(--color-warning)' : 'var(--color-info)'} />))}
                   </Scatter>
                 </ScatterChart>
               }
@@ -644,7 +643,7 @@ export default function WhelkDashboard() {
               chart={
                 <PieChart>
                   <Pie data={channelDemandData} cx="50%" cy="50%" innerRadius={40} outerRadius={80} dataKey="size" paddingAngle={2} labelLine={false} label={({ name, percent }: any) => `${name} ${(percent * 100).toFixed(0)}%`}>
-                    {channelDemandData.map((entry, index) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
+                    {channelDemandData.map((entry: any, index: number) => (<Cell key={`cell-${index}`} fill={entry.fill} />))}
                   </Pie>
                   <RechartsTooltip content={<CustomTooltip />} />
                 </PieChart>
@@ -831,7 +830,7 @@ export default function WhelkDashboard() {
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="cd" name="카드뮴 농도(mg/kg)" fill="var(--color-danger)" radius={[4, 4, 0, 0]} label={{ position: 'top', fill: '#f8fafc', fontSize: 11 }}>
-                    {cadmiumData.map((entry, index) => (<Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />))}
+                    {cadmiumData.map((entry: any, index: number) => (<Cell key={`cd-${index}`} fill={index === 1 ? 'var(--color-danger)' : index === 2 ? 'var(--color-warning)' : 'var(--color-success)'} />))}
                   </Bar>
                   <Line type="monotone" dataKey="limit" name="식약처 기준선(2.0)" stroke="#f8fafc" strokeWidth={2} strokeDasharray="8 4" dot={false} />
                 </ComposedChart>
@@ -881,7 +880,7 @@ export default function WhelkDashboard() {
                   <YAxis dataKey="name" type="category" tick={{ fill: '#f8fafc', fontSize: 11 }} width={90} />
                   <RechartsTooltip content={<CustomTooltip />} />
                   <Bar dataKey="ratio" name="중량 비율(%)" radius={[0, 4, 4, 0]}>
-                    {byproductData.map((entry, index) => (<Cell key={`bp-${index}`} fill={entry.color} />))}
+                    {byproductData.map((entry: any, index: number) => (<Cell key={`bp-${index}`} fill={entry.color} />))}
                   </Bar>
                 </BarChart>
               }

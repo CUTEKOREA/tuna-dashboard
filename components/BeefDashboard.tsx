@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 import React, { useState } from 'react';
 import { Beef } from 'lucide-react';
@@ -19,7 +18,7 @@ const KPIS = [
   { title: '한우 vs 호주산 가격 갭', value: '1.94배', trend: '⚠️', desc: '한우 ₩22.8K vs 호주 ₩11.8K', telemetry: 'synced', syncDate: 'KAMIS 24Y', color: '#fb923c' },
   { title: '소고기 탄소 배출', value: '99.5kg', trend: '🌱', desc: 'CO2e/kg — 돈육 대비 8배', telemetry: 'synced', syncDate: 'FAO LEAP', color: '#f59e0b' },
   { title: '한국 소고기 자급률', value: '36.9%', trend: '🎯', desc: '10년 -10.6%p 폭락', telemetry: 'synced', syncDate: 'KOSIS 23Y', color: '#fbbf24' },
-];
+] as const;
 
 // 5-Pillar 네비게이터 메타 (소고기 시그니처 그라디언트 — 룰북 D-04 red→rose→amber)
 const PILLARS = [

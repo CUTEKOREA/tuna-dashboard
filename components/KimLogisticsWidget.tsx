@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 /**
  * KimLogisticsWidget — 김 P3 물류·통관 (LIVE API 연동)

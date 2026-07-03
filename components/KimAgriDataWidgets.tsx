@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 /**
  * KimAgriDataWidgets — 김(laver) agri_data 풀세트 1차 실데이터 위젯 (2026-06-28 [CC])
@@ -15,17 +14,21 @@ import { truncateXAxis } from '../lib/chart-standards';
 
 const tip = { background: 'rgba(10, 16, 40, 0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
 
-function useJson(path) {
-  const [d, setD] = useState(null);
+function useJson<T extends Record<string, any> = Record<string, any>>(path: string): T | null {
+  const [d, setD] = useState<T | null>(null);
   useEffect(() => {
     let on = true;
-    fetch(path).then(r => r.ok ? r.json() : null).then(j => { if (on) setD(j); }).catch(() => { if (on) setD(null); });
+    fetch(path).then(r => r.ok ? r.json() : null).then(j => { if (on) setD(j as T | null); }).catch(() => { if (on) setD(null); });
     return () => { on = false; };
   }, [path]);
   return d;
 }
 
-const Loading = ({ label }) => (
+function rows<T extends Record<string, any> = Record<string, any>>(value: unknown): T[] {
+  return Array.isArray(value) ? (value as T[]) : [];
+}
+
+const Loading = ({ label }: { label: string }) => (
   <div style={{ padding: '36px', textAlign: 'center', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '12px', color: '#64748b', fontSize: '0.82rem' }}>{label} 로딩 중…</div>
 );
 
@@ -33,9 +36,10 @@ const Loading = ({ label }) => (
 export function KimProductionTrend() {
   const d = useJson('/data/kim/kim_production.json');
   if (!d) return <Loading label="양식 생산" />;
-  const series = (d.korSeries || []).filter(s => Number(s.year) >= 2005).map(s => ({ year: s.year, ton: Math.round(s.ton / 1000) }));
-  const peak = (d.korSeries || []).reduce((a, b) => b.ton > a.ton ? b : a, { ton: 0 });
-  const latest = d.korSeries?.[d.korSeries.length - 1];
+  const korSeries = rows(d.korSeries);
+  const series = korSeries.filter(s => Number(s.year) >= 2005).map(s => ({ year: s.year, ton: Math.round(s.ton / 1000) }));
+  const peak = korSeries.reduce((a, b) => b.ton > a.ton ? b : a, { ton: 0 });
+  const latest = korSeries[korSeries.length - 1];
   return (
     <WidgetCard
       title="한국 김 양식 생산 추이 (FishStat)"
@@ -65,7 +69,7 @@ export function KimProductionTrend() {
 export function KimGlobalShare() {
   const d = useJson('/data/kim/kim_production.json');
   if (!d) return <Loading label="세계 생산 비중" />;
-  const top = (d.globalShare || []).filter(s => s.pct >= 0.5);
+  const top = rows(d.globalShare).filter(s => s.pct >= 0.5);
   const COLORS = ['#0072B2', '#16a34a', '#E69F00', '#CC79A7', '#64748b'];
   const data = top.map((s, i) => ({ name: s.name, value: s.pct, fill: COLORS[i % COLORS.length] }));
   const kor = top.find(s => s.name === '대한민국');
@@ -97,7 +101,7 @@ export function KimGlobalShare() {
 export function KimExportTrend() {
   const d = useJson('/data/kim/kim_exports.json');
   if (!d) return <Loading label="수출 추이" />;
-  const data = (d.annual || []).map(a => ({ year: a.year, usd: Math.round(a.expUsd / 1e6), ton: a.expTon }));
+  const data = rows(d.annual).map(a => ({ year: a.year, usd: Math.round(a.expUsd / 1e6), ton: a.expTon }));
   const first = data[0], last = data[data.length - 1];
   const growth = first ? Math.round((last.usd / first.usd - 1) * 100) : 0;
   return (
@@ -112,7 +116,7 @@ export function KimExportTrend() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `$${v}M`} />
-          <Tooltip contentStyle={tip} formatter={(v, n) => n === '수출액 (백만 USD)' ? [`$${v}M`, n] : [`${v.toLocaleString()}톤`, n]} />
+          <Tooltip contentStyle={tip} formatter={(v, n) => n === '수출액 (백만 USD)' ? [`$${v}M`, n] : [`${Number(v ?? 0).toLocaleString()}톤`, n]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Area type="monotone" dataKey="usd" name="수출액 (백만 USD)" stroke="#65a30d" fill="url(#kimExpReal)" strokeWidth={2.5} />
         </AreaChart>
@@ -130,7 +134,7 @@ export function KimExportTrend() {
 export function KimExportDest() {
   const d = useJson('/data/kim/kim_exports.json');
   if (!d) return <Loading label="수출 대상국" />;
-  const data = (d.dest2024 || []).map(x => ({ name: x.name, usd: Math.round(x.expUsd / 1e6) }));
+  const data = rows(d.dest2024).map(x => ({ name: x.name, usd: Math.round(x.expUsd / 1e6) }));
   return (
     <WidgetCard
       title="2024 마른김 수출국 TOP8 (관세청)"
@@ -159,7 +163,7 @@ export function KimExportDest() {
 export function KimGlobalImporters() {
   const d = useJson('/data/kim/kim_global_trade.json');
   if (!d) return <Loading label="글로벌 수입국" />;
-  const data = (d.importers || []).map(x => ({ name: x.name, usdM: x.usdM }));
+  const data = rows(d.importers).map(x => ({ name: x.name, usdM: x.usdM }));
   return (
     <WidgetCard
       title={`글로벌 김 수입 수요 (Comtrade ${d.year || 2023})`}
@@ -190,7 +194,7 @@ export function KimGlobalImporters() {
 export function KimConsumption() {
   const d = useJson('/data/kim/kim_consumption.json');
   if (!d) return <Loading label="1인당 소비" />;
-  const data = (d.perCapita || []).map(p => ({ year: p.year, v: p.v }));
+  const data = rows(d.perCapita).map(p => ({ year: p.year, v: p.v }));
   const first = data[0], last = data[data.length - 1];
   const chg = first ? Math.round((last.v / first.v - 1) * 100) : 0;
   return (
@@ -222,7 +226,7 @@ export function KimConsumption() {
 export function KimFxPrice() {
   const d = useJson('/data/kim/kim_fx.json');
   if (!d) return <Loading label="환율·단가" />;
-  const data = (d.series || []).filter(s => s.krwUsd).map(s => ({ year: s.year, krw: s.krwUsd, price: s.expUsdPerKg }));
+  const data = rows(d.series).filter(s => s.krwUsd).map(s => ({ year: s.year, krw: s.krwUsd, price: s.expUsdPerKg }));
   const f = data[0], l = data[data.length - 1];
   return (
     <WidgetCard
@@ -255,7 +259,7 @@ export function KimFxPrice() {
 export function KimWorldProduction() {
   const d = useJson('/data/kim/kim_world_production.json');
   if (!d) return <Loading label="세계 생산 추이" />;
-  const data = (d.trend || []).filter(t => Number(t.year) >= 2000);
+  const data = rows(d.trend).filter(t => Number(t.year) >= 2000);
   const last = data[data.length - 1];
   return (
     <WidgetCard
@@ -268,7 +272,7 @@ export function KimWorldProduction() {
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
           <XAxis dataKey="year" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} minTickGap={24} />
           <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => `${v}천t`} />
-          <Tooltip contentStyle={tip} formatter={(v, n) => [`${v.toLocaleString()}천 톤`, n]} />
+          <Tooltip contentStyle={tip} formatter={(v, n) => [`${Number(v ?? 0).toLocaleString()}천 톤`, n]} />
           <Legend wrapperStyle={{ fontSize: '11px' }} />
           <Line type="monotone" dataKey="중국" name="중국" stroke="#0072B2" strokeWidth={2.5} dot={false} />
           <Line type="monotone" dataKey="한국" name="한국" stroke="#16a34a" strokeWidth={2.5} dot={false} />
@@ -288,7 +292,7 @@ export function KimWorldProduction() {
 export function KimResearch() {
   const d = useJson('/data/kim/kim_research.json');
   if (!d) return <Loading label="연구 동향" />;
-  const data = (d.perYear || []);
+  const data = rows(d.perYear);
   const total = data.reduce((s, p) => s + p.n, 0);
   const peak = data.reduce((a, b) => b.n > a.n ? b : a, { n: 0 });
   const top = d.topCited?.[0];

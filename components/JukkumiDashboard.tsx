@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -127,7 +126,7 @@ const WIDGET_ICONS: Record<string, any> = {
 const formatYAxis = (v: number) => {
   if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
   if (v >= 1000) return (v / 1000).toFixed(0) + 'k';
-  return v;
+  return String(v);
 };
 
 export default function JukkumiDashboard() {
@@ -461,10 +460,10 @@ export default function JukkumiDashboard() {
     const takeaway = w.strat || w.tak || w.takeaway || '';
     // L-09: 이 라우트는 정적 JSON(jukkumi_real_data_v1.json)을 반환하므로 isLiveApi 기반 LIVE 표기 금지.
     // 위젯 자체의 telemetry 필드(synced/static)를 우선 적용하고, 없으면 STATIC.
-    const status: 'live' | 'synced' | 'static' =
+    const status: 'LIVE' | 'SYNCED' | 'STATIC' =
       w.isLiveApi
-        ? 'static'  // 이 대시보드에서 isLiveApi=true는 허위 표기이므로 강제 static
-        : (w.telemetry === 'synced' ? 'synced' : 'static');
+        ? 'STATIC'  // 이 대시보드에서 isLiveApi=true는 허위 표기이므로 강제 static
+        : (w.telemetry === 'synced' ? 'SYNCED' : 'STATIC');
 
     return (
       <WidgetCard

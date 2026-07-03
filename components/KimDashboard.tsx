@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 /**
  * KimDashboard — 김(Laver) 신규 commodity 대시보드 (2026-06-27 [CC])
@@ -145,7 +144,7 @@ export default function KimDashboard() {
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
                     <XAxis dataKey="p" stroke="#94a3b8" fontSize={11} tickFormatter={truncateXAxis} />
                     <YAxis stroke="#94a3b8" fontSize={11} domain={[1000, 1700]} />
-                    <Tooltip contentStyle={tip} formatter={(v) => [`${v.toLocaleString()}원/10장`, '소매가']} />
+                    <Tooltip contentStyle={tip} formatter={(v) => [`${Number(v ?? 0).toLocaleString()}원/10장`, '소매가']} />
                     <Line type="monotone" dataKey="retail" name="마른김 소매가 (원/10장)" stroke="#84cc16" strokeWidth={2.5} dot={{ r: 4 }} />
                   </LineChart>
                 }

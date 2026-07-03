@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 /**
  * KimSeasonedWidget — 김 P3 조미김(고부가 가공) 통관 (LIVE API 연동)

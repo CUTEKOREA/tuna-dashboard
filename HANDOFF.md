@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:23 KST — `@ts-nocheck` 28개 전부 제거** [CC]:
+> - P0 타입 안전망 후속. 남아 있던 컴포넌트 `@ts-nocheck` 28개를 모두 제거해 repo 전체 검색 기준 `@ts-nocheck` 0개 달성. Recharts formatter 반환 타입, 동적 JSON state 추론(`never`), KPI telemetry literal, Pie label `percent` optional, Whelk의 Recharts `PieChart` 아이콘 오사용 등을 좁게 정정.
+> - 검증: `npm run typecheck` 통과, `rg '^// @ts-nocheck'` 결과 0, `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), `git diff --check` 통과.
+> - `npm run lint`는 아직 실패: ESLint가 `.vercel/output`, `.agents`, `_archive`, scratch까지 훑고 있고, 기존 React Compiler 규칙 위반(TermTooltip/Tuna* 등)과 prefer-const 잔여가 있음. 다음 P0 후보는 ESLint 대상 범위 정상화 + 실제 소스 lint 오류 분리.
+> - 미배포(로컬). 기존 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧱 **2026-07-03 09:12 KST — Next 빌드 타입 게이트 복구** [CC]:
 > - 직전 `typecheck` 녹색화 후 `next.config.mjs`의 `typescript.ignoreBuildErrors: true` 제거. 이제 `next build`가 타입 오류를 건너뛰지 않고 실제로 `Running TypeScript ...` 단계를 수행함.
 > - 검증: `npm run build` 통과(Next 16.2.1, 143 routes, TypeScript 9.1s 수행), `npm run typecheck` 통과, `npm test` 2파일/5테스트 통과.

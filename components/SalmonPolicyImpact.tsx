@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from 'react';
 import { Building2, TrendingUp, TrendingDown, Zap, AlertTriangle, CheckCircle } from 'lucide-react';

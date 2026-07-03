@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -131,7 +130,7 @@ const WIDGET_ICONS: Record<string, any> = {
 };
 
 export default function MackerelDashboard() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const [tickerData, setTickerData] = useState<any>(null);

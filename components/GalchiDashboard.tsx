@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -152,7 +151,7 @@ const SECTIONS = [
 ];
 
 export default function GalchiDashboard() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [liveIntel, setLiveIntel] = useState<any>(null);
   const [liveKcs, setLiveKcs] = useState<any>(null);

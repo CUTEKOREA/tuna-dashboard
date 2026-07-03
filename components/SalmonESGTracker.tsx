@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useState } from 'react';
 import { Leaf, Shield, Users, Thermometer } from 'lucide-react';

@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -92,7 +91,6 @@ const WIDGET_ICONS: Record<string, any> = {
   w25_squid_chitosan_biomaterial: Leaf, w26_squid_ai_jigging_fuel: Cpu, w27_squid_climate_geopolitics: Globe,
   w28_falkland_waterfall: AlertTriangle, w29_capex_shock: Activity, w30_business_model: TrendingUp,
   w31_eu_squid_supply_shock: TrendingDown, w32_eu_squid_price_tier: BarChart2,
-  w31_eu_squid_supply_shock: TrendingDown, w32_eu_squid_price_tier: BarChart2,
   w33_eu_first_sale_spread: TrendingUp, w34_value_add_funnel: Layers,
   w35_spain_trade_hub: MapPin, w36_stagflation_paradox: TrendingUp,
   w37_spain_arbitrage_trap: Crosshair, w38_vigo_chokepoint_monopoly: AlertTriangle,
@@ -129,7 +127,7 @@ const WIDGET_ICONS: Record<string, any> = {
 const formatYAxis = (v: number) => {
   if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
   if (v >= 1000) return (v / 1000).toFixed(0) + 'k';
-  return v;
+  return String(v);
 };
 
 export default function SquidDashboard() {
