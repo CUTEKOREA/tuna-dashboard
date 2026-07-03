@@ -68,7 +68,8 @@ describe('architecture guards', () => {
   it('keeps core KCS HS codes sourced from the shared mapping', async () => {
     const apiFiles = (await listFiles(API_DIR)).filter((file) => !file.endsWith('app/api/_shared/hs-codes.ts'));
     const forbiddenHsLiterals = [
-      /hsSgn=(?:121221|030354)(?:[&'"`]|$)/,
+      /const\s+HS_CODES\s*=\s*\{/,
+      /hsSgn=(?:121221|030354|030367|0801320000|0801310000|0307599000|0307510000|0307521000|0307600000|1605550000|0302230000|0303330000|0304310000)(?:[&'"`]|$)/,
       /startsWith\(['"]1212211['"]\)/,
       /const\s+HSK\s*=\s*['"](?:2008995010|0303892000)['"]/,
       /statKor\s*!==\s*['"]김['"]/,

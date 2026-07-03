@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 11:22 KST — KCS HS 단일출처 이관 2차 확대** [CC]:
+> - `app/api/_shared/hs-codes.ts`에 기존 KCS 라우트 운영값 16개를 추가: 명태, 캐슈 2종, 주꾸미, 낙지 2종, 골뱅이 2종, 가자미/광어 3종, 연어 5종.
+> - `cashew/kcs`, `jukkumi/kcs`, `octopus/kcs`, `whelk/kcs`, `flatfish/kcs`, `salmon/kcs`, `pollock-kcs`가 라우트 내부 하드코딩 대신 공유 `HS_CODES`를 참조하도록 이관.
+> - `pollock-kcs`의 LIVE 국가 파싱도 `statKor`(품목명) → `statCdCntnKor1`(국가명)로 정정. 명태 품목명이 원산국에 섞이지 않도록 계약 테스트 추가.
+> - 아키텍처 가드 확장: 공유 파일 밖 `const HS_CODES = { ... }` 로컬 KCS 맵과 이번 이관 범위의 URL `hsSgn=` 리터럴 재발을 CI에서 차단.
+> - 검증: 관련 테스트 8개 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 4파일/16테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:18 KST — fishery KCS 국가·단위 파싱 정정** [CC]:
 > - `/api/fishery?source=kcs` 고등어 통합 BFF의 KCS LIVE 파싱을 `statKor`(품목명) → `statCdCntnKor1`(국가명) 기준으로 정정. 고등어 품목명이 원산국 비중에 섞이는 계열 버그를 차단.
 > - 월별 금액도 KCS `impDlr` USD 원값 누적에서 천USD 단위(`amt / 1000`)로 정정해 `mackerel-kcs` 계약과 맞춤.

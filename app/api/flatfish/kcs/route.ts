@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../../_shared/hs-codes";
 import { fetchKCSNitemtrade, aggregateByCountry } from "../../_shared/kcs-client";
 
 export const runtime = 'nodejs';
@@ -16,10 +17,10 @@ export const revalidate = 300;
  * 한국 광어 양식 → 일본 수출 핵심. 제주 60% 집중.
  */
 
-const HS_CODES = {
-  fresh: "0302230000",
-  frozen: "0303330000",
-  fillet: "0304310000",
+const FLATFISH_HS = {
+  fresh: HS_CODES.flatfish_fresh.hsSgn,
+  frozen: HS_CODES.flatfish_frozen.hsSgn,
+  fillet: HS_CODES.flatfish_fillet_fresh.hsSgn,
 };
 
 const FALLBACK_DATA = {
@@ -46,8 +47,8 @@ const FALLBACK_DATA = {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const hsKey = (searchParams.get("hs") || "frozen") as keyof typeof HS_CODES;
-  const hsSgn = HS_CODES[hsKey] || HS_CODES.frozen;
+  const hsKey = (searchParams.get("hs") || "frozen") as keyof typeof FLATFISH_HS;
+  const hsSgn = FLATFISH_HS[hsKey] || FLATFISH_HS.frozen;
   const year = searchParams.get("year") || "2024";
   const month = searchParams.get("month") || undefined;
 

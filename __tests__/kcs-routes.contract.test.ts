@@ -93,6 +93,35 @@ describe('/api/fishery?source=kcs (고등어 통합 BFF)', () => {
   });
 });
 
+describe('/api/pollock-kcs (명태 KCS)', () => {
+  it('LIVE XML에서 국가명은 statCdCntnKor1로 집계하고 명태 품목명 혼입을 막음', async () => {
+    const xml = `
+      <response><body><items>
+        <item>
+          <year>202606</year><hsCd>0303670000</hsCd><statKor>냉동 명태</statKor>
+          <statCd>RU</statCd><statCdCntnKor1>러시아</statCdCntnKor1>
+          <impWgt>800000</impWgt><impDlr>1600000</impDlr>
+        </item>
+        <item>
+          <year>202606</year><hsCd>0303670000</hsCd><statKor>냉동 명태</statKor>
+          <statCd>US</statCd><statCdCntnKor1>미국</statCdCntnKor1>
+          <impWgt>200000</impWgt><impDlr>500000</impDlr>
+        </item>
+      </items></body></response>`;
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(xml, { status: 200 })));
+
+    const mod = await import('../app/api/pollock-kcs/route');
+    const json = await jsonOf(await mod.GET(new Request('http://localhost/api/pollock-kcs?year=2026&month=06')));
+
+    expect(json.isLive).toBe(true);
+    expect(json.source).toContain('030367');
+    expect(json.summary).toMatchObject({ totalWgt: 1000, totalDlr: 2100, ruWgt: 800, ruDlr: 1600, ruPct: 80 });
+    expect(json.byOrigin.find((r: { origin: string }) => r.origin === '러시아')?.share).toBe(80);
+    expect(json.byOrigin.find((r: { origin: string }) => r.origin === '미국')?.share).toBe(20);
+    expect(json.byOrigin.some((r: { origin: string }) => r.origin.includes('명태'))).toBe(false);
+  });
+});
+
 describe('/api/galchi/kcs (갈치 KCS)', () => {
   it('fallback 응답이 HSK 검증·요약·원산국 계약을 만족', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../_shared/hs-codes";
 
 export const runtime = 'nodejs';
 export const revalidate = 300;
@@ -13,6 +14,7 @@ export const revalidate = 300;
 
 const KCS_API_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 const KCS_BASE = "https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList";
+const POLLOCK_HS = HS_CODES.pollock_frozen.hsSgn;
 
 const FALLBACK_DATA = {
   source: "관세청 HS 030367 (2024, Forensic 파싱)",
@@ -50,7 +52,7 @@ export async function GET(request: Request) {
   try {
     const strtYymm = month ? `${year}${month}` : `${year}01`;
     const endYymm = month ? `${year}${month}` : `${year}12`;
-    const url = `${KCS_BASE}?serviceKey=${KCS_API_KEY}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=030367`;
+    const url = `${KCS_BASE}?serviceKey=${KCS_API_KEY}&strtYymm=${strtYymm}&endYymm=${endYymm}&hsSgn=${POLLOCK_HS}`;
 
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
     if (!res.ok) return NextResponse.json(FALLBACK_DATA);
@@ -65,13 +67,13 @@ export async function GET(request: Request) {
     for (const match of items) {
       const itemStr = match[1];
       const yearMatch = itemStr.match(/<year>([\s\S]*?)<\/year>/);
-      const statKorMatch = itemStr.match(/<statKor>([\s\S]*?)<\/statKor>/);
+      const countryMatch = itemStr.match(/<statCdCntnKor1>([\s\S]*?)<\/statCdCntnKor1>/);
       const statCdMatch = itemStr.match(/<statCd>([\s\S]*?)<\/statCd>/);
       const impWgtMatch = itemStr.match(/<impWgt>([\d.]+)<\/impWgt>/);
       const impDlrMatch = itemStr.match(/<impDlr>([\d.]+)<\/impDlr>/);
 
       if (!yearMatch || yearMatch[1] === '총계') continue;
-      const country = (statKorMatch?.[1] || '').trim();
+      const country = (countryMatch?.[1] || '').trim();
       if (country === '총계' || !country) continue;
 
       const wgt = impWgtMatch ? parseFloat(impWgtMatch[1]) : 0;

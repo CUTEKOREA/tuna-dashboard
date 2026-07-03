@@ -48,6 +48,88 @@ export const HS_CODES = {
     hsSgn: '030354',
     note: 'KCS nitemtrade 냉동 고등어. 국가명은 statCdCntnKor1, statKor는 품목명이라 국가 집계에 사용 금지.',
   },
+
+  // 기존 KCS 라우트 로컬 매핑 이관(2026-07-03). 값은 기존 운영 라우트와 동일.
+  pollock_frozen: {
+    label: '냉동 명태',
+    hsSgn: '030367',
+    note: '기존 /api/pollock-kcs HS 030367 운영값 이관.',
+  },
+  cashew_kernel: {
+    label: '까놓은 캐슈',
+    hsSgn: '0801320000',
+    note: '기존 /api/cashew/kcs kernel 운영값 이관.',
+  },
+  cashew_inshell: {
+    label: '껍질 있는 캐슈',
+    hsSgn: '0801310000',
+    note: '기존 /api/cashew/kcs inshell 운영값 이관.',
+  },
+  jukkumi_frozen: {
+    label: '냉동 주꾸미·문어류',
+    hsSgn: '0307599000',
+    note: '기존 /api/jukkumi/kcs frozen 운영값 이관.',
+  },
+  octopus_live: {
+    label: '산 낙지',
+    hsSgn: '0307510000',
+    note: '기존 /api/octopus/kcs live 운영값 이관.',
+  },
+  octopus_frozen: {
+    label: '냉동 낙지/문어',
+    hsSgn: '0307521000',
+    note: '기존 /api/octopus/kcs frozen 운영값 이관.',
+  },
+  whelk_frozen: {
+    label: '산·신선·냉장 골뱅이/패류',
+    hsSgn: '0307600000',
+    note: '기존 /api/whelk/kcs frozen 운영값 이관.',
+  },
+  whelk_canned: {
+    label: '조제·보존 골뱅이 통조림',
+    hsSgn: '1605550000',
+    note: '기존 /api/whelk/kcs canned 운영값 이관.',
+  },
+  flatfish_fresh: {
+    label: '가자미 신선',
+    hsSgn: '0302230000',
+    note: '기존 /api/flatfish/kcs fresh 운영값 이관.',
+  },
+  flatfish_frozen: {
+    label: '가자미 냉동',
+    hsSgn: '0303330000',
+    note: '기존 /api/flatfish/kcs frozen 운영값 이관.',
+  },
+  flatfish_fillet_fresh: {
+    label: '가자미 필렛 신선',
+    hsSgn: '0304310000',
+    note: '기존 /api/flatfish/kcs fillet 운영값 이관.',
+  },
+  salmon_fresh: {
+    label: '대서양연어 신선/냉장',
+    hsSgn: '0302140000',
+    note: '기존 /api/salmon/kcs fresh 운영값 이관.',
+  },
+  salmon_frozen: {
+    label: '대서양연어 냉동',
+    hsSgn: '0303130000',
+    note: '기존 /api/salmon/kcs frozen 운영값 이관.',
+  },
+  salmon_fillet_fresh: {
+    label: '연어 필렛 신선',
+    hsSgn: '0304410000',
+    note: '기존 /api/salmon/kcs fillet_fresh 운영값 이관.',
+  },
+  salmon_fillet_frozen: {
+    label: '연어 필렛 냉동',
+    hsSgn: '0304810000',
+    note: '기존 /api/salmon/kcs fillet_frozen 운영값 이관.',
+  },
+  salmon_smoked: {
+    label: '훈제 연어',
+    hsSgn: '0305410000',
+    note: '기존 /api/salmon/kcs smoked 운영값 이관.',
+  },
 } satisfies Record<string, HsEntry>;
 
 export type HsKey = keyof typeof HS_CODES;

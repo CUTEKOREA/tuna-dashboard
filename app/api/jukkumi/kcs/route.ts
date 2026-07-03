@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../../_shared/hs-codes";
 import { fetchKCSNitemtrade, aggregateByCountry } from "../../_shared/kcs-client";
 
 export const runtime = 'nodejs';
@@ -14,8 +15,8 @@ export const revalidate = 300;
  * 주요 수입: 베트남·중국·태국·인도네시아·모리타니아 등
  */
 
-const HS_CODES = {
-  frozen: "0307599000",
+const JUKKUMI_HS = {
+  frozen: HS_CODES.jukkumi_frozen.hsSgn,
 };
 
 const FALLBACK_DATA = {
@@ -42,8 +43,8 @@ const FALLBACK_DATA = {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const hsKey = (searchParams.get("hs") || "frozen") as keyof typeof HS_CODES;
-  const hsSgn = HS_CODES[hsKey] || HS_CODES.frozen;
+  const hsKey = (searchParams.get("hs") || "frozen") as keyof typeof JUKKUMI_HS;
+  const hsSgn = JUKKUMI_HS[hsKey] || JUKKUMI_HS.frozen;
   const year = searchParams.get("year") || "2024";
   const month = searchParams.get("month") || undefined;
 

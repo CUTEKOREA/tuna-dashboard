@@ -1,14 +1,15 @@
 import { NextResponse } from 'next/server';
+import { HS_CODES } from '../../_shared/hs-codes';
 
 export const revalidate = 3600; // 1시간 캐시
 
 // 관세청 KCS 연어 HS Code
 const SALMON_KCS_CODES = {
-  fresh: '0302140000',    // 대서양연어 (신선/냉장)
-  frozen: '0303130000',   // 대서양연어 (냉동)  
-  fillet_fresh: '0304410000', // 필렛 (신선)
-  fillet_frozen: '0304810000', // 필렛 (냉동)
-  smoked: '0305410000',   // 훈제 연어
+  fresh: HS_CODES.salmon_fresh.hsSgn,
+  frozen: HS_CODES.salmon_frozen.hsSgn,
+  fillet_fresh: HS_CODES.salmon_fillet_fresh.hsSgn,
+  fillet_frozen: HS_CODES.salmon_fillet_frozen.hsSgn,
+  smoked: HS_CODES.salmon_smoked.hsSgn,
 };
 
 // 국가코드 (관세청 기준)

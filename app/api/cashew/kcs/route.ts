@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../../_shared/hs-codes";
 import { fetchKCSNitemtrade, aggregateByCountry } from "../../_shared/kcs-client";
 
 export const runtime = 'nodejs';
@@ -15,9 +16,9 @@ export const revalidate = 300;
  * 공유 KCS 클라이언트 사용 (룰북 L-11 mackerel 패턴 통일).
  */
 
-const HS_CODES = {
-  kernel: "0801320000",   // 까놓은 캐슈 (한국 대다수 수입 형태)
-  inshell: "0801310000",  // 껍질 있는 캐슈
+const CASHEW_HS = {
+  kernel: HS_CODES.cashew_kernel.hsSgn,
+  inshell: HS_CODES.cashew_inshell.hsSgn,
 };
 
 const FALLBACK_DATA = {
@@ -48,8 +49,8 @@ const FALLBACK_DATA = {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const hsKey = (searchParams.get("hs") || "kernel") as keyof typeof HS_CODES;
-  const hsSgn = HS_CODES[hsKey] || HS_CODES.kernel;
+  const hsKey = (searchParams.get("hs") || "kernel") as keyof typeof CASHEW_HS;
+  const hsSgn = CASHEW_HS[hsKey] || CASHEW_HS.kernel;
   const year = searchParams.get("year") || "2024";
   const month = searchParams.get("month") || undefined;
 

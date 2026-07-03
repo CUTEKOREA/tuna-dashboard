@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { HS_CODES } from "../../_shared/hs-codes";
 import { fetchKCSNitemtrade, aggregateByCountry } from "../../_shared/kcs-client";
 
 export const runtime = 'nodejs';
@@ -15,9 +16,9 @@ export const revalidate = 300;
  * 주요 수입국: 영국 (북해), 캐나다 (3Ps 대서양), 한국 자체 어획 일부
  */
 
-const HS_CODES = {
-  frozen: "0307600000",
-  canned: "1605550000",
+const WHELK_HS = {
+  frozen: HS_CODES.whelk_frozen.hsSgn,
+  canned: HS_CODES.whelk_canned.hsSgn,
 };
 
 const FALLBACK_DATA = {
@@ -43,8 +44,8 @@ const FALLBACK_DATA = {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const hsKey = (searchParams.get("hs") || "frozen") as keyof typeof HS_CODES;
-  const hsSgn = HS_CODES[hsKey] || HS_CODES.frozen;
+  const hsKey = (searchParams.get("hs") || "frozen") as keyof typeof WHELK_HS;
+  const hsSgn = WHELK_HS[hsKey] || WHELK_HS.frozen;
   const year = searchParams.get("year") || "2024";
   const month = searchParams.get("month") || undefined;
 
