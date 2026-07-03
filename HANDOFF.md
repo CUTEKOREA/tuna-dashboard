@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 10:43 KST — 앱 품질 게이트 단일 명령/CI 추가** [CC]:
+> - `package.json`에 `npm run verify`를 추가해 lint, typecheck, vitest, build를 한 번에 실행하는 반복 검증 명령으로 묶음.
+> - `.github/workflows/app-quality-gate.yml` 신규 추가. PR/main push에서 app/components/lib/tests 및 핵심 설정 변경 시 Node 24 + `npm ci --no-audit` 후 `npm run verify`를 실행.
+> - 로컬과 CI의 품질 기준을 같은 명령으로 맞춰 기획서 A-1 안전망을 한 단계 강화.
+> - 검증: `npm run verify` 통과(`npm run lint` 0 errors/0 warnings, `npm run typecheck` 통과, `npm test` 3파일/11테스트 통과, `npm run build` 통과).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 10:41 KST — 참치/연어 API 계약 테스트 확대** [CC]:
 > - P0 안전망 후속. `lib/contracts/market.ts`에 참치 ticker, 연어 KCS/KAMIS/Comtrade 응답 zod 계약을 추가하고, `__tests__/salmon-tuna-routes.contract.test.ts` 신규 6테스트 작성.
 > - 네트워크를 강제 차단한 fallback 경로에서 `/api/tuna/ticker` 5개 ticker, `/api/salmon/kcs` timeseries·origin·product share, `/api/salmon/kamis` commodity 가격·프리미엄 지수, `/api/salmon/comtrade` export ranking·한국 수입 시계열 계약을 검증.

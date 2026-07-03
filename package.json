@@ -10,7 +10,8 @@
     "simulate": "node scripts/simulate_webhooks.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",
