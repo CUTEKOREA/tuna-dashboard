@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:26 KST — KCS 공유 클라이언트 계약 테스트 추가** [CC]:
+> - `__tests__/kcs-client.test.ts` 신규 추가. `parseKCSXml`, `aggregateByCountry`, `fetchKCSNitemtrade`의 성공/실패 계약을 네트워크 없이 검증.
+> - 검증 포인트: inline XML 파서 resultCode/item 추출, `statCdCntnKor1` 국가명 집계, kg→톤·USD→천USD 변환, `resultCode !== 00` 시 정직 fallback.
+> - 이 테스트는 `cashew/kcs`, `jukkumi/kcs`, `octopus/kcs`, `whelk/kcs`, `flatfish/kcs`처럼 공유 KCS 클라이언트에 의존하는 라우트의 공통 회귀 안전망.
+> - 검증: 신규 테스트 4/4 통과, 신규 테스트 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 6파일/23테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 11:24 KST — 데이터 인테이크 메타 추출 계약 착수** [CC]:
 > - B-3 기초 작업. `lib/data/metadata.ts`를 추가해 `_meta`, `meta`, `metadata`, top-level `source/fetched/syncDate/method/version/cardDesc`를 표준 `DatasetMeta`로 추출하는 `extractDatasetMeta()` 유틸 도입.
 > - 기존 위젯 반환값은 유지하면서 `lib/data/usda-widgets.ts`에 `getUsdaWidgetMeta()`, `lib/data/fta-quarterly.ts`에 `getFtaQuarterlyMeta()` 추가. USDA는 `_meta`, FTA는 top-level `source`를 표준화.
