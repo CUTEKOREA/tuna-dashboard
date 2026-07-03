@@ -1,11 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
-> 🎛️ **2026-07-03 15:26 KST — 사이드바 주꾸미·낙지 아이콘 축소 방지** [CC]:
+> ✅ **2026-07-03 15:33 KST — 사이드바 주꾸미·낙지 아이콘 축소 방지 라이브 배포 완료** [CC]:
 > - 사용자 제보로 `/value-chain` 좌측 사이드바의 `주꾸미 (WEBFOOT OCTOPUS)`, `낙지 (LONG-ARM OCTOPUS)` 앞 아이콘이 긴 suffix 때문에 작아지거나 안 보이는 문제를 수정.
 > - `app/page.module.css`의 `.menuItem svg`를 `flex: 0 0 18px`, `width/height: 18px`로 고정하고, `.menuItem > span`은 `min-width: 0`, `overflow: hidden`, `text-overflow: ellipsis`로 조정해 아이콘이 텍스트에 밀려 줄어들지 않게 함.
 > - 재발 방지: `__tests__/sidebar-style.test.ts` 추가. 사이드바 메뉴 아이콘 고정폭과 텍스트 shrink 설정이 유지되는지 검증.
 > - 검증: 대상 테스트 2파일/8테스트 통과, TS 테스트 파일 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 로컬 `http://127.0.0.1:3020/value-chain` Puppeteer 확인: 주꾸미·낙지 아이콘 각각 18x18px, `svgFlex=0 0 18px`, `horizontalOverflow=0`. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 20파일/79테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
-> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
+> - 라이브: code commit `54571b9` push 완료. pre-push C-4 143/143 tracked 및 L-03 build gate 통과. Vercel production `dpl_6TXTBesmmnxCRkRcGYmUvKRhset5` READY, aliases `https://leedonggun.co.kr`, `https://tuna-dashboard-kappa.vercel.app` 연결 확인. `https://leedonggun.co.kr/value-chain?deploy=54571b9-*` Puppeteer 확인: 주꾸미·낙지 아이콘 각각 18x18px, `svgFlex=0 0 18px`, `svgFlexShrink=0`, `horizontalOverflow=0`.
+> - 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
 
 > ✅ **2026-07-03 15:15 KST — `/market` 참치 어가 KPI 지역 스프레드 라이브 배포 완료** [CC]:
 > - 사용자 요청으로 `/market` 상단 2개 어가 카드가 아래 차트 `글로벌 참치 어가 추이 (SKJ·YF 지역 스프레드)`와 같은 Atuna 허브 묶음을 반영하도록 수정. 기존 단일 허브 제목 `SKJ 가다랑어 (방콕)`, `YF 황다랑어 (세이셸)`을 각각 `SKJ 가다랑어 지역 스프레드`, `YF 황다랑어 지역 스프레드`로 교체.
