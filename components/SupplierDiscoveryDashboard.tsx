@@ -30,17 +30,9 @@ const allMockSuppliers = [
   { id: 9, name: 'Agro Cassava Exporters', country: 'Nigeria', trust: 90, lastShipment: '2026-05-02', products: 'Dried Cassava Chips', category: 'cassava', hsCode: '0714.10', tariff: '5.0%', trustRationale: '아프리카 현지 물류 제약 리스크를 감안하더라도 가격 경쟁력 (A등급)' }
 ];
 
-const trendData = [
-  { month: 'Jan', demand: 4000 }, { month: 'Feb', demand: 4500 },
-  { month: 'Mar', demand: 4200 }, { month: 'Apr', demand: 5800 },
-  { month: 'May', demand: 6200 }, { month: 'Jun', demand: 7100 },
-];
-
 export default function SupplierDiscoveryDashboard() {
-  const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [activeHsCode, setActiveHsCode] = useState({ code: '', tariff: '' });
   
   const [selectedSupplier, setSelectedSupplier] = useState<any>(null);
   const [isGeneratingRfq, setIsGeneratingRfq] = useState(false);
@@ -64,35 +56,12 @@ export default function SupplierDiscoveryDashboard() {
   // Phase 3: Landed Cost
   const [landedCost, setLandedCost] = useState<any>(null);
   const [isLandedCostLoading, setIsLandedCostLoading] = useState(false);
-  const [fobSlider, setFobSlider] = useState(3.0);
-  const [qtySlider, setQtySlider] = useState(10000);
+  const fobSlider = 3.0;
+  const qtySlider = 10000;
 
   // Phase 4: Risk Radar
   const [riskData, setRiskData] = useState<any>(null);
   const [isRiskLoading, setIsRiskLoading] = useState(false);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
-    setIsSearching(true);
-    setSearchResults([]);
-    
-    setTimeout(() => {
-      const query = searchQuery.toLowerCase();
-      const results = allMockSuppliers.filter(s => 
-        s.category.includes(query) || s.products.toLowerCase().includes(query) || s.name.toLowerCase().includes(query)
-      );
-      
-      if (results.length === 0) {
-        setSearchResults([{ id: 999, name: 'Global Agri Trading Corp', country: 'Singapore', trust: 88, lastShipment: '2026-05-05', products: searchQuery, category: 'general', hsCode: 'Unknown', tariff: 'N/A' }]);
-        setActiveHsCode({ code: 'Auto-Matched', tariff: 'TBD' });
-      } else {
-        setSearchResults(results);
-        setActiveHsCode({ code: results[0].hsCode, tariff: results[0].tariff });
-      }
-      setIsSearching(false);
-    }, 1200);
-  };
 
   const handleMasterSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,11 +80,6 @@ export default function SupplierDiscoveryDashboard() {
     setRiskData(null);
     setLandedCost(null);
     
-    const engCountryMap: Record<string, string> = {
-      '중국': 'China', '베트남': 'Vietnam', '태국': 'Thai', '인도네시아': 'Indo', 
-      '미국': 'US', '일본': 'Japan', '인도': 'India', '노르웨이': 'Norway'
-    };
-    const cName = engCountryMap[macroCountry] || 'Global';
     const query = macroItem.toLowerCase();
 
     // 1. Phase 3: Real OSH API for supplier facilities
@@ -151,7 +115,6 @@ export default function SupplierDiscoveryDashboard() {
             { id: 991, name: `${macroCountry} 지역 공급처 탐색 중`, country: macroCountry, trust: 0, lastShipment: '-', products: macroItem, category: 'pending', hsCode: '-', tariff: '-', trustRationale: 'OSH API에서 해당 품목/국가 시설 데이터를 찾을 수 없습니다. 직접 검색을 권장합니다.' }
           ]);
         }
-        setActiveHsCode({ code: 'OSH Verified', tariff: '분석완료' });
       } catch (err) {
         console.error('OSH error:', err);
       } finally {
@@ -183,7 +146,7 @@ export default function SupplierDiscoveryDashboard() {
             riskDesc: blData.tradeVolume?.[4]?.source === 'KCS_LIVE' ? 'KCS 관세청 실데이터 교차검증 완료' : 'KCS API 응답 없음 — 수동 확인 필요'
           }
         ]);
-      } catch (err) {
+      } catch {
         setIsPhase2Analyzing(false);
         setPhase2Results([{
           id: 'err', blindedName: 'API Error', unblindedName: '조회 실패',
@@ -244,7 +207,7 @@ export default function SupplierDiscoveryDashboard() {
       const res = await fetch('/api/generate-rfq', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ supplier, query: searchQuery })
+        body: JSON.stringify({ supplier, query: macroItem })
       });
       const data = await res.json();
       if (data.rfq) {
@@ -252,7 +215,7 @@ export default function SupplierDiscoveryDashboard() {
       } else {
         setRfqText('Failed to generate RFQ. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setRfqText('Error connecting to LLM server.');
     } finally {
       setIsGeneratingRfq(false);
@@ -637,7 +600,7 @@ export default function SupplierDiscoveryDashboard() {
       </motion.div>
 
       {/* Phase 2: Trademo B/L Micro Targeting */}
-      <SupplierTrademoPhase2 isAnalyzing={isPhase2Analyzing} results={phase2Results} targetKeyword={macroItem || searchQuery} />
+      <SupplierTrademoPhase2 isAnalyzing={isPhase2Analyzing} results={phase2Results} targetKeyword={macroItem} />
 
       {/* Phase 3: Sourcing Terminal */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>

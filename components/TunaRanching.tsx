@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TunaRanching.module.css';
 import insightsStyles from './TunaInsightsDashboard.module.css';
-import { Waves, TrendingUp, Fish, Ship, PackageSearch, Globe, ShieldAlert, Target, RefreshCcw, Building2, Thermometer, Plane, Factory, DollarSign, Scale, AlertTriangle } from 'lucide-react';
+import { Waves, TrendingUp, Fish, Ship, PackageSearch, Globe, ShieldAlert, Target, RefreshCcw, Building2, Thermometer, Plane } from 'lucide-react';
 import { ComposedChart, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Tooltip as RechartsTooltip, BarChart, Bar, Cell, LineChart, Line, Legend, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
@@ -14,15 +14,6 @@ import { truncateXAxis } from '../lib/chart-standards';
 
 
 /* Data is loaded dynamically via fetch() from /data/tuna_ranching_dashboard.json */
-
-const KPI_THEMES = [
-  { border: 'none', glow: 'none', text: '#FCD535', icon: Globe },
-  { border: 'none', glow: 'none', text: '#0ECB81', icon: TrendingUp },
-  { border: 'none', glow: 'none', text: '#2196F3', icon: Factory },
-  { border: 'none', glow: 'none', text: '#F6465D', icon: DollarSign },
-  { border: 'none', glow: 'none', text: '#9B72CB', icon: Scale },
-  { border: 'none', glow: 'none', text: '#F0B90B', icon: AlertTriangle },
-];
 
 const TelemetryBadge = ({ status, syncDate }: { status: 'live' | 'synced' | 'static' | undefined; syncDate?: string }) => {
   if (!status) return null;
@@ -48,40 +39,8 @@ return (
   );
 };
 
-function parseAnimatedValue(valStr: string) {
-  if (!valStr || typeof valStr !== 'string') return null;
-  const match = valStr.match(/^([^\d]*)((?:\d|,|\.)+)(.*)$/);
-  if (match) {
-    const rawNumberStr = match[2];
-    const prefix = match[1];
-    const suffix = match[3];
-    const hasDecimal = rawNumberStr.includes('.');
-    const numberVal = parseFloat(rawNumberStr.replace(/,/g, ''));
-    if (!isNaN(numberVal)) {
-      return { numberVal, prefix, suffix, decimals: hasDecimal ? rawNumberStr.split('.')[1].length : 0 };
-    }
-  }
-  return null;
-}
-
 export default function TunaRanching() {
   const [data, setData] = useState<any>(null);
-
-  const [simTemp, setSimTemp] = useState(24.5);
-  const [simFreight, setSimFreight] = useState(4.2);
-  const [simDepth, setSimDepth] = useState(25);
-  const [simWeight, setSimWeight] = useState(200);
-
-  // GAP-A: Non-linear mortality model based on Mesothermic physiology (O₂ consumption 3.78x)
-  const calcMortalityRate = (temp: number, depth: number, weight: number) => {
-    if (temp <= 26) return 0;
-    const tempExcess = temp - 26;
-    const depthPenalty = depth < 15 ? 1.5 : depth < 25 ? 1.0 : 0.6; // shallow cage = higher risk
-    const weightPenalty = weight > 300 ? 1.4 : weight > 150 ? 1.0 : 0.7; // heavier = more heat
-    return Math.min(0.95, (Math.exp(tempExcess * 0.35) - 1) * 0.05 * depthPenalty * weightPenalty * 3.78 / 3.78);
-  };
-  const mortalityRate = calcMortalityRate(simTemp, simDepth, simWeight);
-  const mortalityCostFactor = 1 + mortalityRate * 0.8; // cost escalation from mortality
 
   useEffect(() => {
     fetch('/api/tuna-ranching')
@@ -92,7 +51,7 @@ export default function TunaRanching() {
 
   if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon || ''} style={{marginBottom: '1rem'}}/></div><div>데이터 로딩 중...</div></div>;
 
-  const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, arbitrageRadar, asianMarketShift, iccatFadBan, kpis, issfScorecard, iscPacificBft, sfdaMilestones } = data;
+  const { aquaculturePremium, gastronomyPriceMap, growthData, quotaData, middleEastMarket, livePriceData, quotaExhaustion, asianMarketShift, iccatFadBan, issfScorecard, iscPacificBft } = data;
 
   const halalSecurityIndexData = [
     { subject: '할랄 인증', score: 95, fullMark: 100 },
