@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../lib/chartFormatters';
 import {
   AreaChart,
   Area,
@@ -171,11 +172,11 @@ export function MscEuropeCountryPenetration() {
           <SafeResponsiveContainer width="100%" height={300}>
             <BarChart data={euroPenetrationData} layout="vertical" margin={{ top: 10, right: 40, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" horizontal={false} />
-              <XAxis type="number" domain={[0, 100]} stroke="rgba(255,255,255,0.4)" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v: number) => `${v}%`} />
+              <XAxis type="number" domain={[0, 100]} stroke="rgba(255,255,255,0.4)" tick={{ fill: '#94a3b8', fontSize: 11 }} tickFormatter={(v: unknown) => `${v}%`} />
               <YAxis type="category" dataKey="country" width={100} tick={{ fill: '#e2e8f0', fontSize: 12 }} />
-              <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: number) => [`${value}%`, 'MSC 침투율']} />
+              <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: unknown) => [`${value}%`, 'MSC 침투율']} />
               <Bar dataKey="penetration" fill="#38bdf8" radius={[0, 6, 6, 0]} barSize={22} isAnimationActive={false}>
-                <LabelList dataKey="penetration" position="right" style={{ fill: '#38bdf8', fontSize: 12, fontWeight: 700 }} formatter={(v: number) => `${v}%`} />
+                <LabelList dataKey="penetration" position="right" style={{ fill: '#38bdf8', fontSize: 12, fontWeight: 700 }} formatter={(v: unknown) => `${v}%`} />
               </Bar>
             </BarChart>
           </SafeResponsiveContainer>
@@ -378,7 +379,7 @@ export function MscTunaStockHealthGauge() {
                       <Cell key={idx} fill={entry.fill} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: number, name: string) => [`${value}개`, name]} />
+                  <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: unknown, name: unknown) => [`${chartFmt.toChartNumber(value)}개`, chartFmt.toChartText(name)]} />
                 </PieChart>
               </SafeResponsiveContainer>
               <div style={{
@@ -423,7 +424,7 @@ export function MscTunaStockHealthGauge() {
                       <Cell key={idx} fill={entry.fill} />
                     ))}
                   </Pie>
-                  <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: number, name: string) => [`${value}개`, name]} />
+                  <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: unknown, name: unknown) => [`${chartFmt.toChartNumber(value)}개`, chartFmt.toChartText(name)]} />
                 </PieChart>
               </SafeResponsiveContainer>
               <div style={{
@@ -514,7 +515,7 @@ export function MscConsumerInsightsRadar() {
               <Radar name="글로벌 평균" dataKey="global" stroke="#38bdf8" fill="#38bdf8" fillOpacity={0.2} strokeWidth={2} isAnimationActive={false} />
               <Radar name="영국" dataKey="uk" stroke="#a78bfa" fill="#a78bfa" fillOpacity={0.15} strokeWidth={2} isAnimationActive={false} />
               <Legend wrapperStyle={{ paddingTop: '10px', fontSize: '0.78rem' }} />
-              <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: number) => [`${value}%`]} />
+              <Tooltip contentStyle={TOOLTIP_STYLE} formatter={(value: unknown) => [`${value}%`]} />
             </RadarChart>
           </SafeResponsiveContainer>
         </div>

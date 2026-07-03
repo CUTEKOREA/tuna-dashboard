@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import WidgetCard from '../WidgetCard';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
@@ -42,8 +43,8 @@ export default function SasEuRetailInflation() {
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="p" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis domain={[1200, 2200]} tickFormatter={(v: number) => `$${(v / 1000).toFixed(1)}k`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`$${v.toLocaleString()}/t`, '가다랑어']} />
+                <YAxis domain={[1200, 2200]} tickFormatter={(v: unknown) => `${(chartFmt.toChartNumber(v) / 1000).toFixed(1)}k`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${chartFmt.formatChartNumber(v)}/t`, '가다랑어']} />
                 <Area type="monotone" dataKey="usd" name="가다랑어 CFR" stroke="#f59e0b" strokeWidth={2.5} fill="url(#colorSkip)" isAnimationActive={false} />
               </AreaChart>
             </SafeResponsiveContainer>

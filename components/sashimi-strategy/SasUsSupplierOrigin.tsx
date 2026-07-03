@@ -65,12 +65,12 @@ export default function SasUsSupplierOrigin() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={supplierData} layout="vertical" margin={{ top: 4, right: 48, left: 8, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                <XAxis type="number" domain={[0, 230]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `$${v}M`} />
+                <XAxis type="number" domain={[0, 230]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `$${v}M`} />
                 <YAxis type="category" dataKey="country" width={72} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={18}>
                   {supplierData.map((d, i) => <Cell key={i} fill={BASE} fillOpacity={0.7} />)}
-                  <LabelList dataKey="value" position="right" formatter={(v: number) => `$${v}M`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                  <LabelList dataKey="value" position="right" formatter={(v: unknown) => `$${v}M`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

@@ -83,7 +83,7 @@ export default function SasMarketKPIs() {
                 <XAxis dataKey="year" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <YAxis
                   domain={[0, 1200]}
-                  tickFormatter={(val: number) => `$${val}M`}
+                  tickFormatter={(val: unknown) => `$${val}M`}
                   fontSize={11}
                   tickLine={false}
                   axisLine={false}
@@ -91,8 +91,8 @@ export default function SasMarketKPIs() {
                 />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)', background: '#1a2442', color: '#e2e8f0' }}
-                  formatter={(value: number, name: string) => [`$${value}M`, name === 'fresh' ? '🟢 Fresh(사시미급)' : '🔵 Frozen·필렛']}
-                  labelFormatter={(label: string) => `${label}년`}
+                  formatter={(value: unknown, name: unknown) => [`$${value}M`, name === 'fresh' ? '🟢 Fresh(사시미급)' : '🔵 Frozen·필렛']}
+                  labelFormatter={(label: unknown) => `${label}년`}
                 />
                 <Area type="monotone" dataKey="frozen" name="frozen" stackId="1" stroke="#38bdf8" strokeWidth={2} fillOpacity={1} fill="url(#colorFrozen)" isAnimationActive={false} />
                 <Area type="monotone" dataKey="fresh" name="fresh" stackId="1" stroke="#10b981" strokeWidth={2} fillOpacity={1} fill="url(#colorFresh)" isAnimationActive={false} />

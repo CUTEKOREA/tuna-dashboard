@@ -181,7 +181,7 @@ export default function FfaSupplyConcentrationRisk() {
               dataKey="비중"
               position="right"
               style={{ fill: 'rgba(255,255,255,0.8)', fontSize: 11, fontWeight: 600 }}
-              formatter={(v: number) => `${v}%`}
+              formatter={(v: unknown) => `${v}%`}
             />
           </Bar>
         </BarChart>

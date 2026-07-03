@@ -36,14 +36,14 @@ export default function SasThaiSourcing() {
               <BarChart data={EU_TARIFF} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="origin" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 28]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <YAxis domain={[0, 28]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
-                  formatter={(v: number, _n: string, p: any) => [`${v}% · ${p.payload.note}`, 'EU 관세']}
+                  formatter={(v: unknown, _n: unknown, p: any) => [`${v}% · ${p.payload.note}`, 'EU 관세']}
                 />
                 <Bar dataKey="rate" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {EU_TARIFF.map((d) => <Cell key={d.origin} fill={d.color} />)}
-                  <LabelList dataKey="rate" position="top" formatter={(v: number) => `${v}%`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="rate" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

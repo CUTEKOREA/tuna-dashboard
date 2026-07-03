@@ -63,7 +63,7 @@ export default function SasToyosuAuction() {
                   <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `¥${v}M`} />
                   <Tooltip
                     contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                    formatter={(value: number) => [`¥${value}M`, '낙찰가']}
+                    formatter={(value: unknown) => [`¥${value}M`, '낙찰가']}
                     labelFormatter={(label) => `${label}년 신년 경매`}
                   />
                   <Bar dataKey="price" radius={[8, 8, 0, 0]} isAnimationActive={false}>

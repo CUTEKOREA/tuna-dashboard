@@ -86,7 +86,7 @@ export default function MscFaoAreaPenetration() {
             tick={{ fill: '#94a3b8', fontSize: 11 }}
             axisLine={false}
             tickLine={false}
-            tickFormatter={(v: number) => `${v}%`}
+            tickFormatter={(v: unknown) => `${v}%`}
           />
           <YAxis
             type="category"
@@ -104,7 +104,7 @@ export default function MscFaoAreaPenetration() {
             <LabelList
               dataKey="pct"
               position="right"
-              formatter={(v: number) => `${v}%`}
+              formatter={(v: unknown) => `${v}%`}
               style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }}
             />
           </Bar>

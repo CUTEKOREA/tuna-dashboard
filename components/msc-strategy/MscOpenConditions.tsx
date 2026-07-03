@@ -38,7 +38,7 @@ export default function MscOpenConditions() {
         tick={{ fill: '#64748b', fontSize: 11 }}
         axisLine={{ stroke: 'rgba(148,163,184,0.12)' }}
         tickLine={false}
-        tickFormatter={(v: number) => `${v}건`}
+        tickFormatter={(v: unknown) => `${v}건`}
       />
       <YAxis
         type="category"
@@ -51,7 +51,7 @@ export default function MscOpenConditions() {
       <Tooltip
         contentStyle={tooltipStyle}
         cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-        formatter={(value: number) => [`${value}건`, '개선 조건 수']}
+        formatter={(value: unknown) => [`${value}건`, '개선 조건 수']}
       />
       <Bar
         dataKey="count"

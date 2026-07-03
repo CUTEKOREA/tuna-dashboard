@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import WidgetCard from '../WidgetCard';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
@@ -166,7 +167,7 @@ export default function SasKoreaMajorCompanies() {
                       position: 'right',
                       fontSize: 11,
                       fill: '#94a3b8',
-                      formatter: (v: number) => `${v}%`,
+                      formatter: (v: unknown) => `${chartFmt.toChartNumber(v)}%`,
                     }}
                   >
                     {exportData.map((entry, index) => (

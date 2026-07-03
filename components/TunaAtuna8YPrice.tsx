@@ -158,9 +158,11 @@ export default function TunaAtuna8YPrice() {
     </LineChart>
   );
 
-  const sit = `Atuna.com 로컬 CSV 기반 8년 시계열 (2017-06 ~ ${stats.lastMonth}). 최신 ${stats.lastMonth}: 가다랑어 $${stats.lastSkj}/톤·황다랑어 $${stats.lastYf}/톤(업계 추정, SKJ × 1.58 적용). 8년 평균은 SKJ $${stats.skjAvg}·YFT $${stats.yfAvg}(illustrative). SKJ 실거래 변동폭 $${stats.skjMin}~$${stats.skjMax}.`;
+  const lastSkj = stats.lastSkj ?? 0;
+  const lastYf = stats.lastYf ?? 0;
+  const sit = `Atuna.com 로컬 CSV 기반 8년 시계열 (2017-06 ~ ${stats.lastMonth}). 최신 ${stats.lastMonth}: 가다랑어 $${lastSkj}/톤·황다랑어 $${lastYf}/톤(업계 추정, SKJ × 1.58 적용). 8년 평균은 SKJ $${stats.skjAvg}·YFT $${stats.yfAvg}(illustrative). SKJ 실거래 변동폭 $${stats.skjMin}~$${stats.skjMax}.`;
 
-  const strat = `Skipjack은 ${stats.lastSkj > stats.skjAvg ? '평균 상회' : '평균 하회'} 구간 — ${stats.lastSkj > stats.skjAvg ? '재고 소진 + Forward 매도' : '저점 매입 + 통조림 라인 풀가동'}. Yellowfin 프리미엄 격차(현재 $${(stats.lastYf || 0) - (stats.lastSkj || 0)}/톤)를 활용한 사시미·필렛 mix 비중 조정. 항만별 차익(아비장-방콕 스프레드) 모니터링하여 글로벌 조달 라우팅 최적화.`;
+  const strat = `Skipjack은 ${lastSkj > stats.skjAvg ? '평균 상회' : '평균 하회'} 구간 — ${lastSkj > stats.skjAvg ? '재고 소진 + Forward 매도' : '저점 매입 + 통조림 라인 풀가동'}. Yellowfin 프리미엄 격차(현재 $${lastYf - lastSkj}/톤)를 활용한 사시미·필렛 mix 비중 조정. 항만별 차익(아비장-방콕 스프레드) 모니터링하여 글로벌 조달 라우팅 최적화.`;
 
   return (
     <WidgetCard

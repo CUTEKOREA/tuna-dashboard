@@ -39,14 +39,14 @@ export default function SasUkSupplierTariff() {
               <BarChart data={SUPPLIERS} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="sup" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 40]} tickFormatter={(v: number) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <YAxis domain={[0, 40]} tickFormatter={(v: unknown) => `${v}%`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
-                  formatter={(v: number, _n: string, p: any) => [`${v}% · 관세 ${p.payload.tariff}`, '수입 점유']}
+                  formatter={(v: unknown, _n: unknown, p: any) => [`${v}% · 관세 ${p.payload.tariff}`, '수입 점유']}
                 />
                 <Bar dataKey="share" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {SUPPLIERS.map((d) => <Cell key={d.sup} fill={d.color} />)}
-                  <LabelList dataKey="share" position="top" formatter={(v: number) => `${v}%`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="share" position="top" formatter={(v: unknown) => `${v}%`} fontSize={11} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

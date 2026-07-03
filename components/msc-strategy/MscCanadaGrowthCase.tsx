@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import { Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, ComposedChart } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { Rocket } from 'lucide-react';
@@ -69,9 +70,10 @@ export default function MscCanadaGrowthCase() {
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
                   labelStyle={{ color: '#e2e8f0' }}
-                  formatter={(value: number, name: string) => {
-                    if (name === '판매량') return [`${value.toLocaleString()} 톤`, name];
-                    return [`${value}개`, name];
+                  formatter={(value: unknown, name: unknown) => {
+                    const label = chartFmt.toChartText(name);
+                    if (label === '판매량') return [`${chartFmt.formatChartNumber(value)} 톤`, label];
+                    return [`${chartFmt.toChartNumber(value)}개`, label];
                   }}
                 />
                 <Area yAxisId="left" type="monotone" dataKey="volume" name="판매량" stroke="#10b981" strokeWidth={3} fill="url(#canadaGrad)" isAnimationActive={false} />

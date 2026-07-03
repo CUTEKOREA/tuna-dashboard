@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { TrendingDown } from 'lucide-react';
@@ -72,7 +73,7 @@ export default function SasJapanDemandDecline() {
                 <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}K`} />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                  formatter={(value: number, name: string) => [`${value.toLocaleString()}K톤`, name === 'sashimi' ? '사시미 소비' : '1인당']}
+                  formatter={(value: unknown, name: unknown) => [`${chartFmt.formatChartNumber(value)}K톤`, name === 'sashimi' ? '사시미 소비' : '1인당']}
                 />
                 <ReferenceLine x="2022" stroke="#f59e0b" strokeDasharray="5 5" label={{ value: '현재', fill: '#f59e0b', fontSize: 10, position: 'top' }} />
                 <Area type="monotone" dataKey="sashimi" name="sashimi" stroke="#ef4444" strokeWidth={2.5} fill="url(#jpDeclineGrad)" isAnimationActive={false} />

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import * as chartFmt from '../lib/chartFormatters';
 import {
   LineChart,
   Line,
@@ -60,7 +61,7 @@ export default function TunaCatchBySpeciesLive() {
           <Tooltip
             contentStyle={{ backgroundColor: '#1a2442', borderColor: '#334155', color: '#f8fafc', borderRadius: '8px' }}
             itemStyle={{ color: '#f8fafc', fontSize: '13px' }}
-            formatter={(value: number, name: string) => [`${value.toLocaleString()}톤`, name]}
+            formatter={(value: unknown, name: unknown) => [`${chartFmt.formatChartNumber(value)}톤`, chartFmt.toChartText(name)]}
             labelFormatter={(label) => `${label}년`}
             labelStyle={{ color: '#94a3b8', fontSize: '13px', marginBottom: '4px' }}
           />

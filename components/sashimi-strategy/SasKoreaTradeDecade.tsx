@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { ArrowLeftRight } from 'lucide-react';
@@ -62,7 +63,7 @@ export default function SasKoreaTradeDecade() {
                 <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}M`} />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                  formatter={(value: number, name: string) => [`$${value}M`, name]}
+                  formatter={(value: unknown, name: unknown) => [`${chartFmt.toChartNumber(value)}M`, chartFmt.toChartText(name)]}
                 />
                 <Legend iconType="circle" wrapperStyle={{ color: '#94a3b8', fontSize: '0.7rem' }} />
                 <Area type="monotone" dataKey="filletExport" name="필렛 수출 (사시미)" stroke="#10b981" strokeWidth={2.5} fill="url(#exportGrad)" isAnimationActive={false} />

@@ -106,7 +106,7 @@ export function monthlyCountryShare(hs: HsCode, topN = 5): {
   const series = [...byTime.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([time, { tot, perCty }]) => {
-      const row: Record<string, any> = { time };
+      const row: Record<string, string | number> & { time: string } = { time };
       for (const c of top) row[c] = tot > 0 ? +(((perCty.get(c) || 0) / tot) * 100).toFixed(2) : 0;
       return row;
     });
@@ -146,7 +146,7 @@ export function monthlyByCountries(hs: HsCode, countryNames: string[]): Array<Re
   return [...byTime.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([time, vals]) => {
-      const row: Record<string, any> = { time };
+      const row: Record<string, string | number> & { time: string } = { time };
       for (const c of countryNames) row[c.toUpperCase()] = vals[c.toUpperCase()] || 0;
       return row;
     });

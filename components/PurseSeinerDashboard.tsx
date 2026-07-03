@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useCallback } from 'react';
+import * as chartFmt from '../lib/chartFormatters';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import {
@@ -130,7 +131,10 @@ function RfmoDonut() {
           </Pie>
           <Tooltip
             contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
-            formatter={(v: number, name: string) => [`${v}척`, RFMO_NAMES_KO[name] || name]}
+            formatter={(v: unknown, name: unknown) => {
+              const label = chartFmt.toChartText(name);
+              return [`${chartFmt.toChartNumber(v)}척`, RFMO_NAMES_KO[label] || label];
+            }}
           />
         </PieChart>
       </ResponsiveContainer>
@@ -221,7 +225,7 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
           <YAxis type="category" dataKey="name" tick={{ fill: '#94a3b8', fontSize: 12 }} width={120} />
           <Tooltip
             contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
-            formatter={(v: number) => [`${v}척`, '선박 수']}
+            formatter={(v: unknown) => [`${v}척`, '선박 수']}
           />
           <Bar dataKey="count" radius={[0, 6, 6, 0]} cursor="pointer">
             {data.map((_, i) => (
@@ -312,7 +316,7 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
           <YAxis type="category" dataKey="name" tick={{ fill: '#94a3b8', fontSize: 11 }} width={170} />
           <Tooltip
             contentStyle={{ background: '#1a2442', border: '1px solid #334155', borderRadius: 8, fontSize: 13 }}
-            formatter={(v: number, _: any, props: any) => [
+            formatter={(v: unknown, _: unknown, props: any) => [
               `${v}척 | RFMO: ${props.payload.rfmos}`, '선박 수'
             ]}
           />

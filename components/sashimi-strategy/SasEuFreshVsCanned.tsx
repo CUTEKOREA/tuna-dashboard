@@ -67,12 +67,12 @@ export default function SasEuFreshVsCanned() {
               <SafeResponsiveContainer width="100%" height="100%">
                 <BarChart data={priceData} layout="vertical" margin={{ top: 0, right: 56, left: 8, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 26]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `${v}€`} />
+                  <XAxis type="number" domain={[0, 26]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
                   <YAxis type="category" dataKey="name" width={76} tick={{ fill: '#cbd5e1', fontSize: 11 }} axisLine={false} tickLine={false} />
                   <Tooltip content={<PriceTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                   <Bar dataKey="price" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={26}>
                     {priceData.map((d, i) => <Cell key={i} fill={d.color} fillOpacity={0.85} />)}
-                    <LabelList dataKey="price" position="right" formatter={(v: number) => `${v} €/kg`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                    <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v} €/kg`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
                   </Bar>
                 </BarChart>
               </SafeResponsiveContainer>

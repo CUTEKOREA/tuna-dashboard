@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import WidgetCard from '../WidgetCard';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, LabelList } from 'recharts';
@@ -37,11 +38,11 @@ export default function SasKrAccessQuota() {
               <BarChart data={VDS} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="stage" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 15000]} tickFormatter={(v: number) => `$${(v / 1000)}k`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`$${v.toLocaleString()}/day`, 'VDS']} />
+                <YAxis domain={[0, 15000]} tickFormatter={(v: unknown) => `${chartFmt.toChartNumber(v) / 1000}k`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${chartFmt.formatChartNumber(v)}/day`, 'VDS']} />
                 <Bar dataKey="usd" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {VDS.map((d) => <Cell key={d.stage} fill={d.color} />)}
-                  <LabelList dataKey="usd" position="top" formatter={(v: number) => `$${(v / 1000).toFixed(0)}k`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="usd" position="top" formatter={(v: unknown) => `${(chartFmt.toChartNumber(v) / 1000).toFixed(0)}k`} fontSize={10.5} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

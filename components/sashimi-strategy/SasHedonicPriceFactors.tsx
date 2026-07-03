@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ReferenceLine } from 'recharts';
 import WidgetCard from '../WidgetCard';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
@@ -42,10 +43,13 @@ export default function SasHedonicPriceFactors() {
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
                 labelStyle={{ color: '#e2e8f0' }}
                 itemStyle={{ color: '#cbd5e1' }}
-                formatter={(value: number, name: string, props: any) => [
-                  `${value > 0 ? '+' : ''}$${value}/lb`, 
-                  props.payload.type === 'Premium' ? '가치 상승 (Premium)' : '가치 하락 (Penalty)'
-                ]}
+                formatter={(value: unknown, name: unknown, props: any) => {
+                  const delta = chartFmt.toChartNumber(value);
+                  return [
+                    `${delta > 0 ? '+' : ''}${delta}/lb`,
+                    props.payload.type === 'Premium' ? '가치 상승 (Premium)' : '가치 하락 (Penalty)'
+                  ];
+                }}
               />
               <Bar dataKey="value" barSize={32} radius={4} isAnimationActive={false}>
                 {HEDONIC_DATA.map((entry, index) => (

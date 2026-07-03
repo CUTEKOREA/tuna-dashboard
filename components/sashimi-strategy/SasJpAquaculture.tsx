@@ -39,8 +39,8 @@ export default function SasJpAquaculture() {
               <BarChart data={FULLCYCLE} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="yr" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
-                <YAxis domain={[0, 18]} tickFormatter={(v: number) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`${v}%`, '완전양식 비중']} />
+                <YAxis domain={[0, 18]} tickFormatter={(v: unknown) => `${v}%`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}%`, '완전양식 비중']} />
                 <Bar dataKey="pct" radius={[4, 4, 0, 0]} fill="#ef4444" isAnimationActive={false} />
               </BarChart>
             </SafeResponsiveContainer>

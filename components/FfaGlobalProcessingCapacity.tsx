@@ -7,6 +7,7 @@
 
 'use client';
 import React from 'react';
+import * as chartFmt from '../lib/chartFormatters';
 import { Factory } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell, LabelList } from 'recharts';
 import WidgetCard from './WidgetCard';
@@ -119,7 +120,7 @@ export default function FfaGlobalProcessingCapacity() {
               dataKey="용량"
               position="right"
               style={{ fill: 'rgba(255,255,255,0.8)', fontSize: 11, fontWeight: 600 }}
-              formatter={(v: number) => `${v.toLocaleString()}`}
+              formatter={(v: unknown) => chartFmt.formatChartNumber(v)}
             />
           </Bar>
         </BarChart>

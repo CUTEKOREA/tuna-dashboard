@@ -73,12 +73,12 @@ export default function SasEuImportSegmentation() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={segData} layout="vertical" margin={{ top: 4, right: 52, left: 8, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.08)" horizontal={false} />
-                <XAxis type="number" domain={[0, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `${v}€`} />
+                <XAxis type="number" domain={[0, 14]} tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v: unknown) => `${v}€`} />
                 <YAxis type="category" dataKey="name" width={86} tick={{ fill: '#cbd5e1', fontSize: 10.5 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<SegTooltip />} cursor={{ fill: 'rgba(148,163,184,0.06)' }} />
                 <Bar dataKey="price" radius={[0, 4, 4, 0]} isAnimationActive={false} barSize={17}>
                   {segData.map((d, i) => <Cell key={i} fill={(CAT as any)[d.cat].color} fillOpacity={0.85} />)}
-                  <LabelList dataKey="price" position="right" formatter={(v: number) => `${v}€/kg`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
+                  <LabelList dataKey="price" position="right" formatter={(v: unknown) => `${v}€/kg`} style={{ fill: '#94a3b8', fontSize: 10, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

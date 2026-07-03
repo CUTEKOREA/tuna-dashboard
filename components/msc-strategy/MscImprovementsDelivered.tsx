@@ -103,7 +103,7 @@ export default function MscImprovementsDelivered() {
                   {improvements.map((d, i) => (
                     <Cell key={i} fill={d.color} fillOpacity={0.85} />
                   ))}
-                  <LabelList dataKey="count" position="right" formatter={(v: number) => `${v}건`} style={{ fill: '#94a3b8', fontSize: 11, fontWeight: 600 }} />
+                  <LabelList dataKey="count" position="right" formatter={(v: unknown) => `${v}건`} style={{ fill: '#94a3b8', fontSize: 11, fontWeight: 600 }} />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

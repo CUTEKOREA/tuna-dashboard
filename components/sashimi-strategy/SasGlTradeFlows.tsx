@@ -54,11 +54,11 @@ export default function SasGlTradeFlows() {
               <BarChart data={EXPORTERS} margin={{ top: 16, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="c" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 2.8]} tickFormatter={(v: number) => `$${v}B`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`$${v}B`, '캔 수출']} />
+                <YAxis domain={[0, 2.8]} tickFormatter={(v: unknown) => `$${v}B`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`$${v}B`, '캔 수출']} />
                 <Bar dataKey="v" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {EXPORTERS.map((d) => <Cell key={d.c} fill={d.color} />)}
-                  <LabelList dataKey="v" position="top" formatter={(v: number) => `$${v}B`} fontSize={10} fill="#e2e8f0" />
+                  <LabelList dataKey="v" position="top" formatter={(v: unknown) => `$${v}B`} fontSize={10} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { ShoppingBag } from 'lucide-react';
@@ -68,7 +69,10 @@ export default function SasUkMarket() {
                 <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
-                  formatter={(value: number, name: string) => [name === 'share' ? `${value}%` : `${value.toLocaleString()}t`, name === 'share' ? 'MSC 비율' : '물량']}
+                  formatter={(value: unknown, name: unknown) => {
+                    const label = chartFmt.toChartText(name);
+                    return [label === 'share' ? `${chartFmt.toChartNumber(value)}%` : `${chartFmt.formatChartNumber(value)}t`, label === 'share' ? 'MSC 비율' : '물량'];
+                  }}
                 />
                 <Bar dataKey="share" name="share" radius={[6, 6, 0, 0]} isAnimationActive={false}>
                   {mscGrowthData.map((_, i) => (

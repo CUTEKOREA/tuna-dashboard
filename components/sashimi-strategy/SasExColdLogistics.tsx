@@ -35,12 +35,12 @@ export default function SasExColdLogistics() {
             <SafeResponsiveContainer width="100%" height="100%">
               <BarChart data={ROUTES} layout="vertical" margin={{ top: 8, right: 40, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} horizontal={false} />
-                <XAxis type="number" domain={[0, 2]} tickFormatter={(v: number) => `${v}x`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <XAxis type="number" domain={[0, 2]} tickFormatter={(v: unknown) => `${v}x`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
                 <YAxis type="category" dataKey="route" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" width={120} />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number, _n: string, p: any) => [`${v}x 운임 · ${p.payload.days}`, '상대비용']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown, _n: unknown, p: any) => [`${v}x 운임 · ${p.payload.days}`, '상대비용']} />
                 <Bar dataKey="usd" radius={[0, 4, 4, 0]} isAnimationActive={false}>
                   {ROUTES.map((d) => <Cell key={d.route} fill={d.color} />)}
-                  <LabelList dataKey="usd" position="right" formatter={(v: number) => `${v}x`} fontSize={11} fill="#e2e8f0" />
+                  <LabelList dataKey="usd" position="right" formatter={(v: unknown) => `${v}x`} fontSize={11} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

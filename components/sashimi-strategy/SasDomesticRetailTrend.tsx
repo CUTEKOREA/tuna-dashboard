@@ -53,7 +53,7 @@ export default function SasDomesticRetailTrend() {
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
                   labelStyle={{ color: '#e2e8f0' }}
                   itemStyle={{ color: '#cbd5e1' }}
-                  formatter={(value: number) => [`${value}%`, '가구 침투율']}
+                  formatter={(value: unknown) => [`${value}%`, '가구 침투율']}
                 />
                 <Bar 
                   dataKey="rate" 
@@ -65,7 +65,7 @@ export default function SasDomesticRetailTrend() {
                   {PENETRATION_DATA.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                  <LabelList dataKey="rate" position="top" formatter={(val: number) => `${val}%`} fontSize={10} fill="#cbd5e1" fontWeight={600} />
+                  <LabelList dataKey="rate" position="top" formatter={(val: unknown) => `${val}%`} fontSize={10} fill="#cbd5e1" fontWeight={600} />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

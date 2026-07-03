@@ -40,14 +40,14 @@ export default function SasUkChannelSplit() {
               <BarChart data={CHAINS} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="chain" fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 200]} tickFormatter={(v: number) => `£${v}M`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <YAxis domain={[0, 200]} tickFormatter={(v: unknown) => `£${v}M`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
-                  formatter={(v: number) => [`£${v}M`, '연매출']}
+                  formatter={(v: unknown) => [`£${v}M`, '연매출']}
                 />
                 <Bar dataKey="rev" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {CHAINS.map((d) => <Cell key={d.chain} fill={d.color} />)}
-                  <LabelList dataKey="rev" position="top" formatter={(v: number) => `£${v}M`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="rev" position="top" formatter={(v: unknown) => `£${v}M`} fontSize={10.5} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

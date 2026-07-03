@@ -69,7 +69,7 @@ export default function MscVsFipComparison() {
           </Pie>
           <Tooltip
             contentStyle={tooltipStyle}
-            formatter={(value: number) => [`${value}%`, '비중']}
+            formatter={(value: unknown) => [`${value}%`, '비중']}
           />
           {/* Center text rendered via Pie label trick */}
           <Pie

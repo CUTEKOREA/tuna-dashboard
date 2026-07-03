@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import WidgetCard from '../WidgetCard';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
@@ -54,7 +55,7 @@ export default function SasEuQuotaProduction() {
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', backgroundColor: 'rgba(30,41,59,0.95)', color: '#e2e8f0' }}
                 labelStyle={{ color: '#e2e8f0' }}
                 itemStyle={{ color: '#cbd5e1' }}
-                formatter={(value: number) => [`${value.toLocaleString()} 톤`, '할당 쿼터']}
+                formatter={(value: unknown) => [`${chartFmt.formatChartNumber(value)} 톤`, '할당 쿼터']}
               />
               <Bar 
                 dataKey="volume" 

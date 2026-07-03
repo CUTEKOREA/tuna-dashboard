@@ -14,6 +14,38 @@ const UnloadingAnalytics = lazy(() => import('./UnloadingAnalytics'));
 const UnloadingTimelineReplay = lazy(() => import('./UnloadingTimelineReplay'));
 const UnloadingFieldMode = lazy(() => import('./UnloadingFieldMode'));
 
+type UnloadingTimelineEntry = {
+  date: string;
+  time: string;
+  targetHol: string;
+  dailyAmount: number;
+  cumAmount: number;
+  quality: string;
+};
+
+type UnloadingSpeciesEntry = {
+  id: string;
+  name: string;
+  reported: number;
+  actual: number;
+  surplus: number;
+};
+
+type UnloadingVesselData = {
+  name: string;
+  dateRange: string;
+  location: string;
+  buyer: string;
+  motherVessel?: string;
+  status: string;
+  reportedTotal: number;
+  actualTotal: number;
+  surplus: number;
+  species: UnloadingSpeciesEntry[];
+  timeline: UnloadingTimelineEntry[];
+  finalReport?: unknown;
+};
+
 // Vessel Stowage Plans
 const vesselStowagePlans: Record<string, Record<string, string[]>> = {
   'sein-phoenix': {
@@ -508,7 +540,7 @@ function RadialGauge({
 export default function UnloadingStatus() {
   const [selectedVessel, setSelectedVessel] = useState('sein-phoenix');
   const [liveData, setLiveData] = useState<any>(null);
-  const [dbData, setDbData] = useState<any>({});
+  const [dbData, setDbData] = useState<Record<string, UnloadingVesselData>>({});
   const [selectedHold, setSelectedHold] = useState<string | null>(null);
   const [tooltipData, setTooltipData] = useState<any>(null);
   const [apiError, setApiError] = useState<string | null>(null);
@@ -558,7 +590,7 @@ export default function UnloadingStatus() {
       });
   }, []);
 
-  const staticData = {
+  const staticData: Record<string, UnloadingVesselData> = {
     'sein-phoenix': {
       name: 'M/V SEIN PHOENIX',
       dateRange: '2026.05.23 ~ 2026.06.18',
@@ -859,14 +891,14 @@ export default function UnloadingStatus() {
     }
   };
 
-  const data = { ...staticData };
+  const data: Record<string, UnloadingVesselData> = { ...staticData };
   Object.keys(dbData).forEach(key => {
     if (dbData[key]) {
       data[key] = dbData[key];
     }
   });
 
-  const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...(d as any) }))
+  const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...d }))
     .sort((a, b) => (b.status.includes('하역중') ? 1 : 0) - (a.status.includes('하역중') ? 1 : 0));
   const activeVessels = vesselsList.filter(v => v.status.includes('하역중'));
   const completedVessels = vesselsList.filter(v => v.status.includes('하역완료'));

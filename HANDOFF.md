@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 09:10 KST — Recharts v3 타입 부채 정리 + typecheck 녹색화** [CC]:
+> - `docs/2026_dashboard_radical_improvement_proposal.md` P0 품질 안전망 후속. Recharts v3가 `number` 단정 formatter를 허용하지 않는 문제를 정리하기 위해 `lib/chartFormatters.ts`를 추가하고, MSC/사시미/원양선망/FFA/오징어 가치사슬 등 차트 formatter·LabelList formatter를 `unknown` 입력 + 안전 숫자/문자 정규화로 교체.
+> - 기존 전역 타입체크 잔여 부채도 좁게 정리: `WidgetCard` telemetry `source` optional 허용(기존 주석 예시와 실제 사용 정합), `TunaAtuna8YPrice` null 가격 방어, `UnloadingStatus` 데이터 병합 타입 명시, `lib/usCensusData.ts` 시계열 row 반환 타입 명시.
+> - 검증: `npm run typecheck` 통과, `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, 143 routes). `git diff --check -- components lib` 통과.
+> - 미배포(로컬). 무관한 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 하역/테스트 스크립트 등)은 stage/수정하지 않음.
+
 > 🛡 **2026-07-03 08:54 KST — P0 계약 테스트 확대 + 고등어 KCS 국가 파싱 정정** [CC]:
 > - `docs/2026_dashboard_radical_improvement_proposal.md`의 P0 안전망 후속. KCS 계약 스키마 확장: `KcsMonthlyOriginResponse`, `KcsOriginSummaryResponse`, 원산국 비중 합 검증 helper 추가. 신규 테스트 `__tests__/kcs-routes.contract.test.ts`로 `/api/mackerel-kcs` LIVE XML 모킹, fallback 계약, `/api/galchi/kcs` fallback 계약 검증.
 > - 고등어 KCS 라우트에서 김 국가별 LIVE 버그와 같은 계열의 함정 정정: 국가명은 `<statKor>`(품목명)이 아니라 `<statCdCntnKor1>`로 집계. `impDlr`도 USD→천USD로 변환해 monthly `value` 단위 정합. `app/api/_shared/hs-codes.ts`에 `mackerel_frozen` 추가 후 라우트에서 참조.

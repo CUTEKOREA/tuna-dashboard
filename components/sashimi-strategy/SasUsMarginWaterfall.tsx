@@ -39,14 +39,14 @@ export default function SasUsMarginWaterfall() {
               <BarChart data={LADDER} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="stage" fontSize={9.5} tickLine={false} axisLine={false} stroke="#64748b" interval={0} angle={-12} textAnchor="end" height={48} />
-                <YAxis domain={[0, 32]} tickFormatter={(v: number) => `$${v}`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
+                <YAxis domain={[0, 32]} tickFormatter={(v: unknown) => `$${v}`} fontSize={11} tickLine={false} axisLine={false} stroke="#64748b" />
                 <Tooltip
                   contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }}
-                  formatter={(v: number) => [`$${v}/kg`, '단가']}
+                  formatter={(v: unknown) => [`$${v}/kg`, '단가']}
                 />
                 <Bar dataKey="price" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {LADDER.map((d) => <Cell key={d.stage} fill={d.color} />)}
-                  <LabelList dataKey="price" position="top" formatter={(v: number) => `$${v}`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="price" position="top" formatter={(v: unknown) => `$${v}`} fontSize={10.5} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

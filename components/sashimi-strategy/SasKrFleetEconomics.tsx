@@ -38,11 +38,11 @@ export default function SasKrFleetEconomics() {
               <BarChart data={AGE} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="seg" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 130]} tickFormatter={(v: number) => `${v}척`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`${v}척`, '원양어선']} />
+                <YAxis domain={[0, 130]} tickFormatter={(v: unknown) => `${v}척`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}척`, '원양어선']} />
                 <Bar dataKey="n" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {AGE.map((d) => <Cell key={d.seg} fill={d.color} />)}
-                  <LabelList dataKey="n" position="top" formatter={(v: number) => `${v}`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="n" position="top" formatter={(v: unknown) => `${v}`} fontSize={10.5} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

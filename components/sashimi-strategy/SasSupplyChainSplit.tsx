@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import * as chartFmt from '../../lib/chartFormatters';
 import SafeResponsiveContainer from '../SafeResponsiveContainer';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import WidgetCard from '../WidgetCard';
@@ -54,10 +55,12 @@ export default function SasSupplyChainSplit() {
               <Tooltip 
                 cursor={{ fill: 'rgba(255,255,255,0.04)' }}
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', background: '#1a2442', color: '#e2e8f0' }}
-                formatter={(value: number, name: string, props: any) => {
-                  if (name === '금액 비중 (%)') return [`${value}% ($${props.payload.importValue}M)`, name];
-                  if (name === '물량 비중 (%)') return [`${value}% (${props.payload.volume}kt, 단가: $${props.payload.unitPrice}/kg)`, name];
-                  return [value, name];
+                formatter={(value: unknown, name: unknown, props: any) => {
+                  const label = chartFmt.toChartText(name);
+                  const pct = chartFmt.toChartNumber(value);
+                  if (label === '금액 비중 (%)') return [`${pct}% ($${props.payload.importValue}M)`, label];
+                  if (label === '물량 비중 (%)') return [`${pct}% (${props.payload.volume}kt, 단가: $${props.payload.unitPrice}/kg)`, label];
+                  return [chartFmt.toChartText(value), label];
                 }}
               />
               <Legend wrapperStyle={{ paddingTop: '10px' }} iconType="circle" />

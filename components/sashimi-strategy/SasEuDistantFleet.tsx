@@ -41,12 +41,12 @@ export default function SasEuDistantFleet() {
               <BarChart data={STOCK} margin={{ top: 18, right: 16, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" opacity={0.15} vertical={false} />
                 <XAxis dataKey="label" fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" interval={0} />
-                <YAxis domain={[0, 450]} tickFormatter={(v: number) => `${v}K`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: number) => [`${v}천t`, '물량']} />
+                <YAxis domain={[0, 450]} tickFormatter={(v: unknown) => `${v}K`} fontSize={10} tickLine={false} axisLine={false} stroke="#64748b" />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', background: '#1a2442', color: '#e2e8f0' }} formatter={(v: unknown) => [`${v}천t`, '물량']} />
                 <ReferenceLine y={430} stroke="#ef4444" strokeDasharray="4 4" label={{ value: 'MSY 상한 430K', position: 'insideTopRight', fontSize: 9, fill: '#fca5a5' }} />
                 <Bar dataKey="t" radius={[4, 4, 0, 0]} isAnimationActive={false}>
                   {STOCK.map((d) => <Cell key={d.label} fill={d.color} />)}
-                  <LabelList dataKey="t" position="top" formatter={(v: number) => `${v}K`} fontSize={10.5} fill="#e2e8f0" />
+                  <LabelList dataKey="t" position="top" formatter={(v: unknown) => `${v}K`} fontSize={10.5} fill="#e2e8f0" />
                 </Bar>
               </BarChart>
             </SafeResponsiveContainer>

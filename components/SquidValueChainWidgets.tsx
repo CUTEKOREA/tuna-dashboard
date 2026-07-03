@@ -1,10 +1,11 @@
 import React from 'react';
+import * as chartFmt from '../lib/chartFormatters';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ZAxis, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, AreaChart, Area, ComposedChart, Line, Cell, LabelList } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Anchor, Factory, ShoppingCart, Truck, DollarSign } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 
-const formatNum = (v: number) => new Intl.NumberFormat('en-US').format(v);
+const formatNum = (v: unknown) => chartFmt.formatChartNumber(v);
 
 // Custom label renderer for scatter points - shows species name next to each dot
 const renderScatterLabel = (props: any) => {
@@ -189,7 +190,7 @@ export const SquidVCMarket = () => (
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" vertical={false} />
         <XAxis dataKey="item" stroke="#94a3b8" fontSize={11} />
         <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => '$'+v} />
-        <RechartsTooltip contentStyle={tooltipStyle} formatter={(v: number) => '$' + v.toFixed(2)} />
+        <RechartsTooltip contentStyle={tooltipStyle} formatter={(v: unknown) => '$' + chartFmt.toChartNumber(v).toFixed(2)} />
         <Bar dataKey="롤리고" fill={COLORS[5]} radius={[4,4,0,0]} barSize={20} />
         <Bar dataKey="일렉스" fill={COLORS[0]} radius={[4,4,0,0]} barSize={20} />
         <Line type="monotone" dataKey="훔볼트" stroke={COLORS[3]} strokeWidth={3} dot={{ r: 4 }} />

@@ -118,7 +118,7 @@ export default function SasKoreaMedBftImports() {
                     color: '#e2e8f0',
                     fontSize: '0.8rem',
                   }}
-                  formatter={(value: number) => [`$${value}M`, '수입액']}
+                  formatter={(value: unknown) => [`$${value}M`, '수입액']}
                 />
                 <Bar dataKey="value" barSize={22} radius={[0, 6, 6, 0]} isAnimationActive={false}>
                   {bftImports.map((entry, idx) => (
