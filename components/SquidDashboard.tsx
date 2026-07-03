@@ -137,7 +137,7 @@ export default function SquidDashboard() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [apiStatus, setApiStatus] = useState("정적 데이터");
+  const [apiStatus] = useState("정적 데이터");
   const [apiCount, setApiCount] = useState(0);
 
   useEffect(() => {
@@ -448,7 +448,6 @@ export default function SquidDashboard() {
     // NEW FORMAT (Claude widgets) — uses xKey, bars, lines, areas
     if (widget.xKey || widget.bars || widget.lines || widget.areas) {
       // Smart label rotation for non-numeric X-axis (Korean labels) - Forced Flat
-      const isNewTextAxis = widget.xKey && d.length > 0 && typeof d[0][widget.xKey] === 'string' && isNaN(Number(d[0][widget.xKey]));
       const newTickProps = { fontSize: 10, angle: 0, textAnchor: 'middle' as const, dy: 5 };
       const newChartMargin = { top: 5, right: 30, left: -10, bottom: 10 };
       switch(chartType) {
@@ -546,7 +545,6 @@ export default function SquidDashboard() {
     const series = widget.series || [];
     const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
     // Smart label rotation for non-numeric X-axis (Korean labels) - Forced Flat
-    const isTextAxis = xAxis !== 'Year' && d.length > 0 && typeof d[0][xAxis] === 'string' && isNaN(Number(d[0][xAxis]));
     const xTickProps = { fill: '#94a3b8', fontSize: 10, angle: 0, textAnchor: 'middle' as const, dy: 5 };
     const chartMargin = { top: 20, right: 30, left: -10, bottom: 10 };
 

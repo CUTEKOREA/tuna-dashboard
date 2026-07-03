@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 10:00 KST — 4개 component dead variable 제거** [CC]:
+> - `components/FieldTools.tsx`: 미사용 `ToolTab`, `yearEnd`, `laborOverseas` 제거. 현장 도구 렌더와 계산식은 유지.
+> - `components/GalchiDashboard.tsx`: 미사용 `PIE_COLORS` 제거, 화면에서 읽지 않는 `liveOsh/liveOfac` value만 hole destructuring으로 정리해 기존 API fetch/setter 흐름은 유지.
+> - `components/SquidDashboard.tsx`: 사용되지 않는 `setApiStatus`, `isNewTextAxis`, `isTextAxis` 제거. API count/status 표시와 차트 tick props는 유지.
+> - `components/UnloadingReportGenerator.tsx`: 미사용 `speciesCodeLabel`, `padR`, `vesselId` destructuring 제거. 보고서 생성 입력/출력 계약은 유지.
+> - 대상 파일 lint warning 총 12개 제거. 전체 `npm run lint` 기준선은 150 → 138 warnings로 감소.
+> - 검증: 대상 lint 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 138 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), 대상 파일 `git diff --check` 통과.
+> - 미배포(로컬). 기존/무관 dirty 파일(`components/FleetCharts.tsx`, `data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:58 KST — 3개 API route lint debt 제거** [CC]:
 > - `app/api/mackerel-ticker/route.ts`: ECOS/KAMIS/KCS fallback catch에서 사용하지 않는 catch 인자 3개를 제거. fallback 경고와 응답 구조는 유지.
 > - `app/api/pollock-landed-cost/route.ts`: POST body에서 실제 사용하는 `route`만 destructuring하고, 사용하지 않는 catch 인자를 제거. GET/POST 응답 계약은 유지.

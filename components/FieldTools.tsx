@@ -14,8 +14,6 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import FleetOperationStatus from './FleetOperationStatus';
 import { ChartPatternDefs } from './ChartPatterns';
 
-type ToolTab = 'fleet' | 'logistics' | 'finance' | 'esg';
-
 export default function FieldTools() {
   return (
     <div className={styles.container}>
@@ -340,7 +338,6 @@ function NegotiationSimulator() {
 function VDSBurnTracker() {
   const today = new Date('2026-05-03T12:00:00Z');
   const yearStart = new Date(today.getFullYear(), 0, 1);
-  const yearEnd = new Date(today.getFullYear(), 11, 31);
   const dayOfYear = Math.floor((today.getTime() - yearStart.getTime()) / 86400000);
   const daysInYear = 365;
   const idealPct = Math.round((dayOfYear / daysInYear) * 100);
@@ -752,7 +749,6 @@ function StorageTariffCalculator() {
 function YieldFreightSpread() {
   const [oceanFreight, setOceanFreight] = useState(200); // per MT
   const laborLocal = 150; // 국내 공장 인건비/MT
-  const laborOverseas = 45; // 해외 현지 임가공/MT
   
   // Whole Round vs Loin Eq
   const yieldRatio = 0.45; // 45% 정육

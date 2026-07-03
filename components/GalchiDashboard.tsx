@@ -64,8 +64,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const PIE_COLORS = ["#38bdf8", "var(--color-success)", "var(--color-warning)", "var(--color-danger)", "#8b5cf6", "#ec4899", "#06b6d4", "#f97316"];
-
 /* ─── KPI Color Themes ─── */
 const KPI_THEMES = [
   { text: 'var(--color-success)', icon: Fish },
@@ -159,8 +157,8 @@ export default function GalchiDashboard() {
   
   // Phase 1-3 New APIs
   const [liveComtrade, setLiveComtrade] = useState<any>(null);
-  const [liveOsh, setLiveOsh] = useState<any>(null);
-  const [liveOfac, setLiveOfac] = useState<any>(null);
+  const [, setLiveOsh] = useState<any>(null);
+  const [, setLiveOfac] = useState<any>(null);
   const [liveImportYeti, setLiveImportYeti] = useState<any>(null);
   const [liveNoaa, setLiveNoaa] = useState<any>(null);
 

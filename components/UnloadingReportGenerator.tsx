@@ -124,13 +124,6 @@ function parseNextDayDate(quality: string): string | null {
   return m ? m[1] : null;
 }
 
-/** Determine species code label: SJ = Skipjack, YF = Yellowfin */
-function speciesCodeLabel(sp: SpeciesEntry): string {
-  if (sp.id === 'SJ' || sp.name === 'Skipjack') return 'SJ(Skipjack)';
-  if (sp.id === 'YF' || sp.name === 'Yellowfin') return 'YF(Yellowfin)';
-  return `${sp.id}(${sp.name})`;
-}
-
 /** Build short vessel name for attachment line */
 function shortVesselName(name: string): string {
   return name.replace(/^M\/V\s+/i, '').trim();
@@ -141,14 +134,9 @@ function fmt(n: number): string {
   return n.toFixed(3);
 }
 
-/** Pad string to fixed width for monospace alignment */
-function padR(s: string, w: number): string {
-  return s.padEnd(w);
-}
-
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export default function UnloadingReportGenerator({ vesselData, vesselId, onClose }: ReportGeneratorProps) {
+export default function UnloadingReportGenerator({ vesselData, onClose }: ReportGeneratorProps) {
   // Dates with actual work (dailyAmount > 0)
   const workDates = useMemo(
     () => vesselData.timeline.filter(t => t.dailyAmount > 0 && t.targetHol !== '-'),
