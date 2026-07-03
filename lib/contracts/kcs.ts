@@ -74,8 +74,32 @@ export const KcsOriginSummaryResponse = z.object({
   byOrigin: z.array(KcsOriginTradePoint).min(1),
 });
 
+export const KcsFlexibleSummary = z.object({
+  totalWgt: z.number().finite().nonnegative(),
+  totalDlr: z.number().finite().nonnegative(),
+  cifPerKg: z.number().finite().nonnegative(),
+}).catchall(z.union([z.number().finite(), z.string()]));
+
+export const KcsImportSummaryResponse = z.object({
+  isLive: z.boolean(),
+  source: z.string().min(1),
+  lastUpdated: z.string().min(1),
+  hs: z.string().min(1),
+  summary: KcsFlexibleSummary,
+  byOrigin: z.array(KcsOriginTradePoint).min(1),
+  yearly: z.array(z.object({
+    year: z.string().regex(/^\d{4}$/),
+  }).catchall(z.union([z.number().finite(), z.string()]))).optional(),
+  apiHealth: z.object({
+    ok: z.boolean(),
+    items_count: z.number().int().nonnegative(),
+    resultCode: z.string().optional(),
+  }).optional(),
+});
+
 export type KcsMonthlyOriginResponseT = z.infer<typeof KcsMonthlyOriginResponse>;
 export type KcsOriginSummaryResponseT = z.infer<typeof KcsOriginSummaryResponse>;
+export type KcsImportSummaryResponseT = z.infer<typeof KcsImportSummaryResponse>;
 
 /** dest 비중 합이 ~100%인지 (동적 top-N + 기타 정합성) */
 export function assertDestSharesSaneish(dest: { value: number }[]): { ok: boolean; sum: number } {

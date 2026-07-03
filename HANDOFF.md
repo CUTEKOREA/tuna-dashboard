@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:30 KST — KCS 이관 라우트 5개 계약 테스트 확대** [CC]:
+> - P0/A-3 라우트 계약 커버리지 후속. `lib/contracts/kcs.ts`에 `KcsImportSummaryResponse` 범용 계약을 추가해 `hs`, `summary`, `byOrigin`, 선택 `yearly/apiHealth` 구조를 검증 가능하게 함.
+> - `__tests__/kcs-import-routes.contract.test.ts` 신규 추가. `/api/cashew/kcs`, `/api/jukkumi/kcs`, `/api/octopus/kcs`, `/api/whelk/kcs`, `/api/flatfish/kcs`의 KCS 실패 fallback 경로를 네트워크 없이 검증.
+> - 검증 포인트: `isLive=false` 정직 표기, HS 코드 유지, 총중량/총금액/CIF 양수, 주요 원산국 점유율, `byOrigin` 합계 95~101%, 품목명("냉동")이 원산국에 섞이지 않음.
+> - 검증: 신규 테스트 5/5 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 7파일/28테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:26 KST — KCS 공유 클라이언트 계약 테스트 추가** [CC]:
 > - `__tests__/kcs-client.test.ts` 신규 추가. `parseKCSXml`, `aggregateByCountry`, `fetchKCSNitemtrade`의 성공/실패 계약을 네트워크 없이 검증.
 > - 검증 포인트: inline XML 파서 resultCode/item 추출, `statCdCntnKor1` 국가명 집계, kg→톤·USD→천USD 변환, `resultCode !== 00` 시 정직 fallback.
