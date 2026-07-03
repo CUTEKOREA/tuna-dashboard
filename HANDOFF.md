@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧪 **2026-07-03 12:11 KST — 교차 품목 API zod 계약 스키마 추가** [CC]:
+> - `/api/cross-commodity-intelligence` 응답을 `lib/contracts/cross-commodity-intelligence.ts`의 zod 스키마로 검증하도록 강화. `STATIC` 메타, 0~100 점수 범위, `/api/` watchRoute, 임계치 초과 알림만 노출되는 구조를 계약화.
+> - TDD로 `__tests__/cross-commodity-api.contract.test.ts`가 먼저 미존재 계약 모듈 import 실패를 내도록 만든 뒤, 계약 스키마를 추가해 GREEN 전환.
+> - 검증: 신규 계약 테스트 1/1 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 13파일/53테스트, `npm run build` 145 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 12:07 KST — 교차 품목 인텔리전스 API 계약 추가** [CC]:
 > - `/api/cross-commodity-intelligence` 신규 route 추가. `/market`의 교차 품목 모델을 자동화/외부 소비자가 재사용할 수 있도록 `substitutionSignals`, `riskFactors`, `portfolioCandidates`, `anomalyAlerts`, `headline`을 JSON으로 제공.
 > - 응답 최상위에 `isLive:false`, `_metadata.status=STATIC`, `_metadata.source=lib/data/cross-commodity-intelligence.ts`, `_metadata.apiHealth.ok=true`를 명시해 LIVE API와 혼동되지 않게 표준화. Next build 기준 1시간 revalidate 정적 route로 생성됨.

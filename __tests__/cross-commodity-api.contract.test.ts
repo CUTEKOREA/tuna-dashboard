@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { CrossCommodityIntelligenceResponse } from '../lib/contracts/cross-commodity-intelligence';
 
 type RouteModule = {
   GET: (request: Request) => Promise<Response>;
@@ -12,7 +13,9 @@ async function jsonOf(res: Response) {
 describe('/api/cross-commodity-intelligence', () => {
   it('returns the market intelligence model with static telemetry metadata', async () => {
     const mod = await import('../app/api/cross-commodity-intelligence/route') as RouteModule;
-    const parsed = await jsonOf(await mod.GET(new Request('http://localhost/api/cross-commodity-intelligence')));
+    const parsed = CrossCommodityIntelligenceResponse.parse(
+      await jsonOf(await mod.GET(new Request('http://localhost/api/cross-commodity-intelligence'))),
+    );
 
     expect(parsed.isLive).toBe(false);
     expect(parsed._metadata).toMatchObject({
