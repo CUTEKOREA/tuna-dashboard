@@ -3,6 +3,7 @@ import sitemap from '../app/sitemap';
 import {
   DASHBOARD_COMMANDS,
   DASHBOARD_MENU_CONFIGS,
+  DASHBOARD_PANEL_ORDER,
   DASHBOARD_TITLES,
   getDashboardAccent,
   getDashboardTitle,
@@ -113,5 +114,45 @@ describe('dashboard registry', () => {
       expect(item.label).toMatch(/[가-힣A-Z]/);
       expect(item.icon).toMatch(/^[A-Za-z][A-Za-z0-9]*$/);
     }
+  });
+
+  it('defines dashboard panel render order for every active menu', () => {
+    expect(DASHBOARD_PANEL_ORDER).toEqual([
+      'market',
+      'fleet',
+      'logistics',
+      'cold-storage',
+      'mackerel',
+      'galchi',
+      'squid',
+      'jukkumi',
+      'octopus',
+      'pollock',
+      'flatfish',
+      'shrimp',
+      'whelk',
+      'kim',
+      'salmon',
+      'cashew',
+      'cassava',
+      'garlic',
+      'carrot',
+      'cocoa',
+      'mangosteen',
+      'chicken',
+      'pork',
+      'beef',
+      'used-car',
+      'unloading',
+      'value-chain',
+      'seasia-oem',
+      'fleet-strategy',
+      'korea-market',
+      'research-lab',
+      'purse-seiner-db',
+      'msc',
+      'sashimi-steak',
+    ]);
+    expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(new Set(VALID_MENUS));
   });
 });

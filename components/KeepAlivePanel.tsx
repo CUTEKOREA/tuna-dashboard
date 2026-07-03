@@ -1,10 +1,33 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useSyncExternalStore } from 'react';
 
 interface KeepAlivePanelProps {
   active: boolean;
   children: React.ReactNode;
+}
+
+function createActivationStore() {
+  let hasBeenActive = false;
+  const listeners = new Set<() => void>();
+
+  return {
+    activate() {
+      if (hasBeenActive) return;
+      hasBeenActive = true;
+      listeners.forEach((listener) => listener());
+    },
+    getSnapshot() {
+      return hasBeenActive;
+    },
+    getServerSnapshot() {
+      return false;
+    },
+    subscribe(listener: () => void) {
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    },
+  };
 }
 
 /**
@@ -14,13 +37,18 @@ interface KeepAlivePanelProps {
  * - When active again: instantly shows with no flicker.
  */
 export default function KeepAlivePanel({ active, children }: KeepAlivePanelProps) {
-  const [hasBeenActive, setHasBeenActive] = useState(active);
+  const activationStore = useMemo(() => createActivationStore(), []);
+  const hasBeenActive = useSyncExternalStore(
+    activationStore.subscribe,
+    activationStore.getSnapshot,
+    activationStore.getServerSnapshot,
+  );
 
-  if (active && !hasBeenActive) {
-    setHasBeenActive(true);
-  }
+  useEffect(() => {
+    if (active) activationStore.activate();
+  }, [active, activationStore]);
 
-  if (!hasBeenActive) return null;
+  if (!hasBeenActive && !active) return null;
 
   return (
     <div

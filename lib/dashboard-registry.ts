@@ -170,6 +170,43 @@ export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
   .filter((menu) => menu.key !== 'market' && !requiresOperationAccess(menu))
   .map((menu) => menu.key) as readonly ActiveMenu[];
 
+export const DASHBOARD_PANEL_ORDER = [
+  'market',
+  'fleet',
+  'logistics',
+  'cold-storage',
+  'mackerel',
+  'galchi',
+  'squid',
+  'jukkumi',
+  'octopus',
+  'pollock',
+  'flatfish',
+  'shrimp',
+  'whelk',
+  'kim',
+  'salmon',
+  'cashew',
+  'cassava',
+  'garlic',
+  'carrot',
+  'cocoa',
+  'mangosteen',
+  'chicken',
+  'pork',
+  'beef',
+  'used-car',
+  'unloading',
+  'value-chain',
+  'seasia-oem',
+  'fleet-strategy',
+  'korea-market',
+  'research-lab',
+  'purse-seiner-db',
+  'msc',
+  'sashimi-steak',
+] as const satisfies readonly ActiveMenu[];
+
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
   operation: ['market', 'fleet', 'unloading', 'logistics'],
   fishery: [

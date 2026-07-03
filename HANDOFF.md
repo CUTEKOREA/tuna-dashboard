@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧩 **2026-07-03 12:50 KST — 본문 대시보드 패널 레지스트리 렌더 이관** [CC]:
+> - 기획서 축 C 팩토리화 후속. `lib/dashboard-registry.ts`에 `DASHBOARD_PANEL_ORDER`를 추가하고, `app/page.tsx`의 34개 수동 `KeepAlivePanel` 렌더 분기를 `DASHBOARD_PANEL_ORDER.map(...)` 기반으로 교체.
+> - 메뉴 URL 상태를 `usePathname()`에서 직접 파생하고 `useRouter().replace()`로 이동하도록 정리해, 수동 `history.replaceState` 이후 사이드바 클릭 이벤트가 죽는 문제를 제거.
+> - 레지스트리 이관 중 노출된 `KeepAlivePanel`의 render 중 `setState` 취약점을 `useSyncExternalStore` 기반 activation store로 교체. 신규 아키텍처 가드가 동일 패턴 재발을 차단.
+> - 검증: `__tests__/architecture-guards.test.ts` RED 확인 후 GREEN, 대상 테스트 2파일/13테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 14파일/62테스트, `npm run build` 145 routes). Puppeteer 확인: `/market`에서 고등어→냉동창고→사시미/스테이크 연속 클릭 시 `/mackerel`→`/cold-storage`→`/sashimi-steak` 전환 및 title 갱신.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧭 **2026-07-03 12:37 KST — 사이드바 메뉴 레지스트리 렌더 이관** [CC]:
 > - 기획서 축 C 팩토리화 후속. `lib/dashboard-registry.ts`에 `SIDEBAR_SECTIONS`와 `SidebarIconKey`/`SidebarMenuItem` 메타를 추가해 5개 사이드바 섹션과 33개 표시 메뉴를 단일 출처로 파생.
 > - `app/page.tsx`의 수동 메뉴 버튼 JSX 300줄 이상을 `SIDEBAR_SECTIONS.map(...)` 렌더로 교체. 기존 `purse-seiner-db`는 유효 route/검색/sitemap에는 남기되, 기존 사이드바 노출 상태를 유지하기 위해 숨김.

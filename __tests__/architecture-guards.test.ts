@@ -121,6 +121,12 @@ describe('architecture guards', () => {
     }
   });
 
+  it('keeps KeepAlivePanel activation state out of the render path', async () => {
+    const source = await readFile(path.join(ROOT, 'components', 'KeepAlivePanel.tsx'), 'utf8');
+
+    expect(source).not.toMatch(/if\s*\(\s*active\s*&&\s*!hasBeenActive\s*\)\s*\{\s*setHasBeenActive\(true\)/);
+  });
+
   it('keeps at least 30 API routes under explicit contract-test coverage', async () => {
     const apiRoutes = new Set((await listFiles(API_DIR)).map(toApiRoute));
     const contractedRoutes = await listContractedApiRoutes();

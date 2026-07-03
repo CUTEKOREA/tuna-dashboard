@@ -8,10 +8,11 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Octagon, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   ActiveMenu,
+  DASHBOARD_PANEL_ORDER,
   getDashboardAccent,
   getDashboardTitle,
   isActiveMenu,
@@ -111,19 +112,13 @@ export default function Home() {
   const session = { user: { email: 'public@silla.local' } };
   const authChecked = true;
   const pathname = usePathname();
+  const router = useRouter();
   
-  const [activeMenu, setActiveMenu] = useState<ActiveMenu>(() => {
+  const activeMenu = React.useMemo<ActiveMenu>(() => {
     const path = pathname?.replace('/', '');
     if (path && isActiveMenu(path)) return path;
     return 'market';
-  });
-
-  useEffect(() => {
-    const currentPath = window.location.pathname.replace('/', '');
-    if (currentPath !== activeMenu) {
-      window.history.replaceState(null, '', `/${activeMenu}`);
-    }
-  }, [activeMenu]);
+  }, [pathname]);
   const [operationAccessGranted, setOperationAccessGranted] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.sessionStorage.getItem(OPERATION_ACCESS_STORAGE_KEY) === 'granted';
@@ -147,8 +142,8 @@ export default function Home() {
   const navigateToMenu = React.useCallback((menu: ActiveMenu) => {
     setOperationAuthError('');
     setOperationPassword('');
-    setActiveMenu(menu);
-  }, []);
+    router.replace(`/${menu}`, { scroll: false });
+  }, [router]);
 
   const handleMenuClick = (menu: ActiveMenu) => {
     if (activeMenu === menu) {
@@ -291,6 +286,46 @@ export default function Home() {
         </span>
       </button>
     );
+  };
+  const dashboardPanels: Record<ActiveMenu, React.ReactNode> = {
+    market: <MarketDashboard />,
+    fleet: <FleetCommandCenter />,
+    logistics: <LogisticsDashboard />,
+    'cold-storage': <ColdStorageDashboard />,
+    mackerel: <MackerelDashboard />,
+    galchi: <GalchiDashboard />,
+    squid: <SquidDashboard />,
+    jukkumi: <JukkumiDashboard />,
+    octopus: <OctopusDashboard />,
+    pollock: <PollockDashboard />,
+    flatfish: <FlatfishDashboard />,
+    shrimp: <ShrimpDashboard />,
+    whelk: <WhelkDashboard />,
+    kim: <KimDashboard />,
+    salmon: <SalmonDashboard />,
+    cashew: <CashewStrategy />,
+    cassava: <CassavaDashboard />,
+    garlic: <GarlicDashboard />,
+    carrot: <CarrotDashboard />,
+    cocoa: <CocoaDashboard />,
+    mangosteen: (
+      <ErrorBoundary fallbackTitle="MangosteenDashboard Error">
+        <MangosteenDashboard />
+      </ErrorBoundary>
+    ),
+    chicken: <ChickenDashboard />,
+    pork: <PorkDashboard />,
+    beef: <BeefDashboard />,
+    'used-car': <UsedCarExport />,
+    unloading: <UnloadingStatus />,
+    'value-chain': <TunaDashboard />,
+    'seasia-oem': <SEAsiaOEMDashboard />,
+    'fleet-strategy': <FleetStrategyMatrix />,
+    'korea-market': <KoreaConsignmentDashboard />,
+    'research-lab': <ResearchLabDashboard />,
+    'purse-seiner-db': <PurseSeinerDashboard />,
+    msc: <MscStrategyDashboard />,
+    'sashimi-steak': <SashimiSteakDashboard />,
   };
 
   return (
@@ -524,147 +559,11 @@ export default function Home() {
             }}>
               <PageTransition activeKey={activeMenu}>
 
-              <KeepAlivePanel active={isPanelActive('market')}>
-                <MarketDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={isPanelActive('fleet')}>
-                <FleetCommandCenter />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={isPanelActive('logistics')}>
-                <LogisticsDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'cold-storage'}>
-                <ColdStorageDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'mackerel'}>
-                <MackerelDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'galchi'}>
-                <GalchiDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'squid'}>
-                <SquidDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'jukkumi'}>
-                <JukkumiDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'octopus'}>
-                <OctopusDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'pollock'}>
-                <PollockDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'flatfish'}>
-                <FlatfishDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'shrimp'}>
-                <ShrimpDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'whelk'}>
-                <WhelkDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'kim'}>
-                <KimDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'salmon'}>
-                <SalmonDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'cashew'}>
-                <CashewStrategy />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'cassava'}>
-                <CassavaDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'garlic'}>
-                <GarlicDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'carrot'}>
-                <CarrotDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'cocoa'}>
-                <CocoaDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'mangosteen'}>
-                <ErrorBoundary fallbackTitle="MangosteenDashboard Error">
-                  <MangosteenDashboard />
-                </ErrorBoundary>
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'chicken'}>
-                <ChickenDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'pork'}>
-                <PorkDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'beef'}>
-                <BeefDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'used-car'}>
-                <UsedCarExport />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={isPanelActive('unloading')}>
-                <UnloadingStatus />
-              </KeepAlivePanel>
-
-
-
-              <KeepAlivePanel active={activeMenu === 'value-chain'}>
-                <TunaDashboard />
-              </KeepAlivePanel>
-
-
-
-              <KeepAlivePanel active={activeMenu === 'seasia-oem'}>
-                <SEAsiaOEMDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'fleet-strategy'}>
-                <FleetStrategyMatrix />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'korea-market'}>
-                <KoreaConsignmentDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'research-lab'}>
-                <ResearchLabDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'purse-seiner-db'}>
-                <PurseSeinerDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'msc'}>
-                <MscStrategyDashboard />
-              </KeepAlivePanel>
-
-              <KeepAlivePanel active={activeMenu === 'sashimi-steak'}>
-                <SashimiSteakDashboard />
-              </KeepAlivePanel>
+              {DASHBOARD_PANEL_ORDER.map((menu) => (
+                <KeepAlivePanel key={menu} active={isPanelActive(menu)}>
+                  {dashboardPanels[menu]}
+                </KeepAlivePanel>
+              ))}
 
               </PageTransition>
 
