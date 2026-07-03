@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 10:52 KST — 고등어 데이터 인테이크 분리** [CC]:
+> - P1 데이터 디커플링 후속. `lib/data/mackerel.ts`를 추가해 고등어 JSON 20종을 `getMackerelData()` 단일 진입점 뒤로 이동.
+> - `Mackerel*` 위젯 19개에서 `../data/mackerel*.json`, `../data/Mackerel*.json`, `../data/mackerel/*.json` 직접 import 제거. 고등어 위젯 직접 JSON 경로 의존 20개 → 0개.
+> - 전체 app/components 직접 JSON import 계측값은 107 → 87로 감소. FTA 분기 분리와 합산하면 이번 P1 배치에서 25개 직접 경로를 제거.
+> - 검증: 고등어 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 3파일/11테스트, `npm run build`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 10:47 KST — FTA 분기 데이터 인테이크 첫 분리** [CC]:
 > - P1 데이터 디커플링 착수. `lib/data/fta-quarterly.ts`를 추가해 KMI FTA 분기 JSON 5종(고등어·새우·주꾸미·낙지·골뱅이)을 단일 인테이크 함수 `getFtaQuarterlyData()` 뒤로 이동.
 > - `components/MackerelFTAQuarterly.tsx`, `ShrimpFTAQuarterly.tsx`, `JukkumiFTAQuarterly.tsx`, `OctopusFTAQuarterly.tsx`, `WhelkFTAQuarterly.tsx`는 더 이상 `../data/*_fta_quarterly.json`을 직접 import하지 않음. FTA 분기 위젯 직접 JSON 경로 의존 5개 → 0개.

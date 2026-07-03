@@ -3,9 +3,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import { Globe } from 'lucide-react';
-import rawData from '../data/mackerel_unit_price.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getMackerelData('unitPrice');
 
 function PriceTooltip({ active, payload }: any) {
   if (!active || !payload?.length) return null;

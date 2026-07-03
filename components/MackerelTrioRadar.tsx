@@ -3,9 +3,10 @@
 import React from 'react';
 import { RadarChart, Radar as ReRadar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import { Target } from 'lucide-react';
-import rawData from '../data/mackerel_trio.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import WidgetCard from './WidgetCard';
 
+const rawData = getMackerelData('trio');
 const COLORS = ['var(--color-info)','var(--color-danger)','var(--color-success)','var(--color-warning)','#8b5cf6','#06b6d4','#ec4899','#f97316'];
 
 export default function MackerelTrioRadar() {

@@ -5,8 +5,10 @@ import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend 
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 import { TrendingUp } from 'lucide-react';
-import rawData from '../data/MackerelNorwaySpread.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getMackerelData('norwaySpread');
 
 export default function MackerelNorwaySpread() {
   const chartData = useMemo(() => {

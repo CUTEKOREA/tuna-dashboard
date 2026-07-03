@@ -4,8 +4,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { TrendingUp, Activity } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel_macro.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getMackerelData('macroCycle');
 
 function MacroTooltip({ active, payload }: any) {
   if (!active || !payload?.length) return null;

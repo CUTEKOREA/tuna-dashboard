@@ -3,9 +3,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ReferenceLine } from 'recharts';
 import { Scissors } from 'lucide-react';
-import rawData from '../data/mackerel_spread.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getMackerelData('spread');
 
 function SpreadTooltip({ active, payload }: any) {
   if (!active || !payload?.length) return null;

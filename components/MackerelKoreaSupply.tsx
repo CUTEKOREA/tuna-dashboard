@@ -4,8 +4,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { ComposedChart, Area, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel_korea_supply.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getMackerelData('koreaSupply');
 
 function KSTooltip({ active, payload }: any) {
   if (!active || !payload?.length) return null;

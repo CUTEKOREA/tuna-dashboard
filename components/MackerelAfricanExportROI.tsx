@@ -3,9 +3,11 @@ import React from 'react';
 import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Target } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel_african_export_roi.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+
+const rawData = getMackerelData('africanExportRoi');
 
 export default function MackerelAfricanExportROI() {
   const data = rawData as any[];

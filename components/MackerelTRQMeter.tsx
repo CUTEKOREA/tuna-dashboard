@@ -3,9 +3,10 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { Clock } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel/mackerel_trq_meter.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 
 const COLORS = ['var(--color-danger)', 'rgba(255,255,255,0.1)'];
+const rawData = getMackerelData('trqMeter');
 
 export default function MackerelTRQMeter() {
   const chart = (

@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import { Truck } from 'lucide-react';
-import rawData from '../data/mackerel_sankey.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import WidgetCard from './WidgetCard';
+
+const rawData = getMackerelData('sankey');
 
 export default function MackerelSankey() {
   const [showAll, setShowAll] = useState(false);

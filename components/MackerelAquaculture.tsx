@@ -4,10 +4,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import { Droplets, Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import aquaData from '../data/mackerel_aquaculture.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['#06b6d4', 'var(--color-success)'];
+const aquaData = getMackerelData('aquaculture');
 
 function AquaTooltip({ active, payload, viewMode }: any) {
   if (!active || !payload?.length) return null;

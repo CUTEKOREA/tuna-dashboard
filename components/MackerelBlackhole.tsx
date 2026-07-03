@@ -4,8 +4,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ZAxis } from 'recharts';
 import { Radar } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel_blackhole.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import WestAfricaMap from './WestAfricaMap';
+
+const rawData = getMackerelData('blackhole');
 
 function BHTooltip({ active, payload }: any) {
   if (!active || !payload?.length) return null;

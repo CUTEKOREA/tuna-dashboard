@@ -4,8 +4,10 @@ import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, CartesianGrid } from 'recha
 import { ShieldCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import rawData from '../data/mackerel_safety_premium.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+
+const rawData = getMackerelData('safetyPremium');
 
 export default function MackerelSafetyPremium() {
   const data = rawData as any[];

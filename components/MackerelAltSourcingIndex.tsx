@@ -3,7 +3,9 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Ship } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel/mackerel_alt_sourcing_index.json';
+import { getMackerelData } from '@/lib/data/mackerel';
+
+const rawData = getMackerelData('altSourcingIndex');
 
 export default function MackerelAltSourcingIndex() {
   const chart = (

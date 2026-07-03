@@ -3,8 +3,10 @@ import React from 'react';
 import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Snowflake } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel/mackerel_storage_turnover.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getMackerelData('storageTurnover');
 
 export default function MackerelStorageTurnover() {
   const chart = (

@@ -3,8 +3,10 @@ import React from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import { CloudLightning } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel_climate_predictor.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+
+const rawData = getMackerelData('climatePredictor');
 
 export default function MackerelClimatePredictor() {
   const data = rawData as any[];

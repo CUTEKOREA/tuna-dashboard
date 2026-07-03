@@ -4,10 +4,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Shield } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/mackerel_norway_alt.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['var(--color-info)','var(--color-danger)','var(--color-success)','var(--color-warning)','#8b5cf6','#06b6d4','#ec4899','#f97316','#14b8a6','#6366f1','#84cc16','#e11d48'];
+const rawData = getMackerelData('norwayAlt');
 
 function NorTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;

@@ -5,8 +5,10 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 import { ShoppingCart } from 'lucide-react';
-import rawData from '../data/MackerelFilletPenetration.json';
+import { getMackerelData } from '@/lib/data/mackerel';
 // 데이터: 정적 JSON (업계 역산 추정치, STATIC)
+
+const rawData = getMackerelData('filletPenetration');
 
 export default function MackerelFilletPenetration() {
   const chartData = useMemo(() => rawData, []);

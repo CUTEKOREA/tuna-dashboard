@@ -5,7 +5,9 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 import { BarChart2 } from 'lucide-react';
-import rawData from '../data/MackerelSizePremium.json';
+import { getMackerelData } from '@/lib/data/mackerel';
+
+const rawData = getMackerelData('sizePremium');
 
 export default function MackerelSizePremium() {
   const chartData = useMemo(() => rawData, []);

@@ -5,9 +5,10 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Factory, AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
+import { getMackerelData } from '@/lib/data/mackerel';
 
-import fishmealData from '../data/mackerel_fishmeal.json';
-import chinaStealthData from '../data/mackerel_china_stealth.json';
+const fishmealData = getMackerelData('fishmeal');
+const chinaStealthData = getMackerelData('chinaStealth');
 
 const getKorCountry = (engName: string) => {
   const map: Record<string, string> = {
