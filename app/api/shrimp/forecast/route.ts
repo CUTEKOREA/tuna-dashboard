@@ -5,12 +5,10 @@ import { getCachedData } from '../../../../lib/cache';
 // Objective: VAR model-based 3-month price forecast using FRED (oil/FX), ECOS (KR rates), KAMIS (domestic), KCS (import CIF)
 // Aligned with: (기본 2024-08) 수산물 무역 단기 전망모형 구축 연구
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const data = await getCachedData('shrimp_price_forecast', async () => {
       const fredKey = process.env.FRED_API_KEY;
-      const ecosKey = process.env.ECOS_API_KEY;
-
       // Attempt to fetch FRED data (WTI Oil, USD/KRW)
       let fredOil = null;
       let fredFx = null;
@@ -69,7 +67,7 @@ export async function GET(request: Request) {
     }, 7200); // Cache for 2 hours
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to generate price forecast" }, { status: 500 });
   }
 }

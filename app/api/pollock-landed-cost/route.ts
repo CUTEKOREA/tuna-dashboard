@@ -140,7 +140,7 @@ async function fetchFredFx() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { route, custom_fx, custom_fob } = body;
+    const { route } = body;
 
     const liveFx = await fetchFredFx();
 
@@ -160,7 +160,7 @@ export async function POST(request: NextRequest) {
       },
       ...POLLOCK_LANDED_COST,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: POLLOCK_LANDED_COST }, { status: 500 });
   }
 }

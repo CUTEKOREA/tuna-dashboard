@@ -39,7 +39,7 @@ async function fetchECOS_FX(): Promise<{ rate: number; change: number; isLive: b
         return { rate: Math.round(latest * 10) / 10, change, isLive: true };
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[ECOS FX] API failed, using fallback');
   }
   return FALLBACK;
@@ -70,7 +70,7 @@ async function fetchKAMIS_Mackerel(): Promise<{ wholesale: number; retail: numbe
         return { wholesale: price, retail: Math.round(price * 1.84), change, isLive: true };
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[KAMIS] API failed, using fallback');
   }
   return FALLBACK;
@@ -124,7 +124,7 @@ async function fetchKCS_CIF(): Promise<{ cifUsdTon: number; change: number; isLi
         }
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[KCS CIF] API failed, using fallback');
   }
   return FALLBACK;

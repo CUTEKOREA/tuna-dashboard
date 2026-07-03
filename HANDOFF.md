@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:58 KST — 3개 API route lint debt 제거** [CC]:
+> - `app/api/mackerel-ticker/route.ts`: ECOS/KAMIS/KCS fallback catch에서 사용하지 않는 catch 인자 3개를 제거. fallback 경고와 응답 구조는 유지.
+> - `app/api/pollock-landed-cost/route.ts`: POST body에서 실제 사용하는 `route`만 destructuring하고, 사용하지 않는 catch 인자를 제거. GET/POST 응답 계약은 유지.
+> - `app/api/shrimp/forecast/route.ts`: 미사용 GET `request`, 미사용 `ECOS_API_KEY` 바인딩, 미사용 outer catch 인자를 제거. FRED 기반 forecast/fallback 로직은 유지.
+> - 대상 파일 lint warning: 각 3 → 0, 총 9개 제거. 전체 `npm run lint` 기준선은 159 → 150 warnings로 감소.
+> - 검증: 대상 lint 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 150 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), 대상 파일 `git diff --check` 통과.
+> - 미배포(로컬). 기존/무관 dirty 파일(`components/FleetCharts.tsx`, `data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:56 KST — app shell lint debt 제거** [CC]:
 > - `app/page.tsx`: 초기 URL 보정 effect에서 동기 `setActiveMenu`를 제거하고, 메뉴 이동을 `navigateToMenu`로 통합해 클릭·키보드·CommandPalette 진입 시 운영 비밀번호 입력/오류 초기화가 같은 경로를 타도록 정리.
 > - 사이드바/랜딩 로고 `<img>` 2개를 Next `Image`로 교체. 기존 로고 비율(`logo1.png` 982×256) 기준으로 사이드바 184×48, 랜딩 345×90 크기를 지정해 레이아웃을 유지.
