@@ -14,13 +14,11 @@ import { truncateXAxis } from '../lib/chart-standards';
 const TunaAquaValue = () => {
   const { containerRef, width } = useContainerWidth();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className={styles.customTooltip}>
           <p className={styles.tooltipLabel}>{`${label}년 수익 구조`}</p>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {payload.map((entry: any, index: number) => (
             <p key={index} className={styles.tooltipValue} style={{ color: entry.color }}>
               <span>{entry.name}:</span>

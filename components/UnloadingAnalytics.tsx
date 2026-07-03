@@ -150,9 +150,6 @@ export default function UnloadingAnalytics({
   }, [allVessels, vesselId]);
 
   const selectedBenchmark = benchmarkData.find(b => b.isSelected);
-  const avgMtPerHr = benchmarkData.length > 0
-    ? benchmarkData.reduce((s, b) => s + b.mtPerHr, 0) / benchmarkData.length
-    : 0;
   const avgDailyAvg = benchmarkData.length > 0
     ? benchmarkData.reduce((s, b) => s + b.dailyAvg, 0) / benchmarkData.length
     : 0;

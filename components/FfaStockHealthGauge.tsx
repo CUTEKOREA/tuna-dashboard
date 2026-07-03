@@ -51,16 +51,10 @@ function SemiGauge({ ratio, lrp, species, abbr, safetyMargin, speciesColor }: {
   const emptyValue = maxVal - filledValue;
   const gaugeColor = getGaugeColor(ratio);
 
-  // LRP 위치 계산 (반원의 각도)
-  const lrpAngle = 180 - (lrp / maxVal) * 180;
-
   const gaugeData = [
     { name: '현재', value: filledValue },
     { name: '여유', value: emptyValue },
   ];
-
-  // 보이지 않는 하단 반원 (PieChart가 전체 원형이므로 아래를 숨김)
-  const hiddenData = [{ name: 'hidden', value: maxVal }];
 
   return (
     <div style={{

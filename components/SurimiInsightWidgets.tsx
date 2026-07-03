@@ -175,7 +175,7 @@ export const WidgetSurimiMultiplier = () => {
       <div style={{...chartStyle, display: 'flex', flexDirection: 'row'}}>
         <SafeResponsiveContainer width="100%" height="100%">
           <RechartsPieChart>
-            <Pie data={multiplierData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value" nameKey="name" label={({name, percent = 0, value}) => `${name} ($${value.toFixed(0)}M)`} labelLine={false} style={{fontSize: '12px', fontWeight: 600}}>
+            <Pie data={multiplierData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="value" nameKey="name" label={({name, value}) => `${name} ($${value.toFixed(0)}M)`} labelLine={false} style={{fontSize: '12px', fontWeight: 600}}>
               {multiplierData.map((entry: any, index: number) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}

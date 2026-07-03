@@ -440,7 +440,7 @@ export default function ChickenDashboard() {
             </div>
           </div>
           <div data-mobile-stack style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'1.5rem' }}>
-            {sec.widgets.map((wId: string, idx: number) => {
+            {sec.widgets.map((wId: string) => {
               const w = getWidget(wId);
               if (!w) return null;
               const Icon = WIDGET_ICONS[w.id] || Target;

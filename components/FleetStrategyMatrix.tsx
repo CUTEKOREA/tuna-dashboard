@@ -23,8 +23,6 @@ const matrixData = [
   { type: '통발·저연승 겸업', company: '정일산업(3), TNS(3), 홍진실업(2), 신지수산(1)', tonnage: '60 ~ 836톤', age: '32.8년', factor: '통발+저연승 겸업 조업 유연성', risk: '특수 수역 접근 제한 + 선대 노후화', color: '#f472b6', vessels: 9, revenue: '53억', perVessel: '5.9억/척', unitPrice: '6,443원/kg', insight: '저연승 4척과 합치면 이빨고기 선단 13척이 초고수익 틈새를 지배' }
 ];
 
-type Category = '참치 (원양선망)' | '참치 (원양연승)' | '명태 (북양트롤)' | '남빙양트롤 (크릴)' | '대서양트롤' | '오징어 (채낚기)' | '꽁치봉수망 (겸업)' | '저연승 (이빨고기)' | '통발·저연승 겸업';
-
 export default function FleetStrategyMatrix() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [vesselDetails, setVesselDetails] = useState<Record<string, any[]>>(fallbackVesselDetails);
@@ -630,4 +628,3 @@ export default function FleetStrategyMatrix() {
     </div>
   );
 }
-

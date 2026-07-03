@@ -56,7 +56,6 @@ const exportData = [
   { year: '2025', usd: 1133 },
 ];
 const tip ={ background: 'rgba(10, 16, 40, 0.92)', border: '1px solid rgba(132,204,22,0.4)', borderRadius: '8px' };
-const SYNC = { status: 'SYNCED' };
 
 export default function KimDashboard() {
   const [activePart, setActivePart] = useState('P1');

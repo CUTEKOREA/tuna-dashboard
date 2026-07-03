@@ -23,7 +23,6 @@ import WidgetCard from './WidgetCard';
 
 /* ─── 공통 유틸 ───────────────────────────────────────────────── */
 const tooltipStyle = { background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12 };
-const PURPLE = ['#4f46e5', '#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ef4444', '#10b981', '#f59e0b'];
 
 /* ───────────────────────────────────────────────────────────────
  *  ❶ S2 활낙지 채널 마진 매트릭스

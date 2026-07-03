@@ -55,10 +55,6 @@ const Insight4Middlemen = () => {
     return null;
   };
 
-  // Find the exact crossing year where import surpasses export fundamentally
-  // For visual "Tipping Point" marker
-  const tippingYear = 1993; // Adjust based on data if necessary, historically early 90s for Korea
-
   return (
     <div className={styles.glassCard} ref={containerRef}>
       <div className={styles.cardHeader}>

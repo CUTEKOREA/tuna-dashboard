@@ -5,8 +5,6 @@ import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Anchor, Factory, ShoppingCart, Truck, DollarSign } from 'lucide-react';
 import { WidgetCard, tooltipStyle, COLORS } from './ShrimpWidgetCommon';
 
-const formatNum = (v: unknown) => chartFmt.formatChartNumber(v);
-
 // Custom label renderer for scatter points - shows species name next to each dot
 const renderScatterLabel = (props: any) => {
   const { x, y, value } = props;

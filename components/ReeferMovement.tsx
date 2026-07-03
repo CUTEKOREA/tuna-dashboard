@@ -16,16 +16,6 @@ function parseNum(s: any): number {
   return parseFloat(s.replace(/,/g, '')) || 0;
 }
 
-// Cannery display-name mapping (short → readable)
-const CANNERY_LABELS: Record<string, string> = {
-  UC: 'Unicord', TUM: 'TUM', TUG: 'TUG', CMC: 'CMC', ISA: 'ISA',
-  GPZ: 'GPZ', 'I-TAIL': 'I-TAIL', RS: 'RS', PTY: 'PTY', PCI: 'PCI',
-  RMK: 'RMK', AEC: 'AEC', AYA: 'AYA', MMP: 'MMP', SK: 'SK',
-  SIF: 'SIF', TCC: 'TCC', TOV: 'TOV', ASIAN: 'ASIAN', SPA: 'SPA',
-  DIMCN: 'DIMCN', GB: 'GB', KF: 'KF', FOOD: 'FOOD', POP: 'POP',
-  SCC: 'SCC', SE: 'SE', SHIP: 'SHIP',
-};
-
 // Color palette for bars
 const BAR_COLORS = [
   'var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6',

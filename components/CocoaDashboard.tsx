@@ -96,8 +96,6 @@ export default function CocoaDashboard() {
   const grid = <CartesianGrid strokeDasharray="3 3" stroke="#282828" vertical={false} />;
   const xAxisTextProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 }, minTickGap: 20 };
   const yAxisProps = { stroke: "var(--text-secondary)", tick: { fontSize: 9 } };
-  const COLORS = ['#78350f', 'var(--color-danger)', '#b45309', '#d97706', 'var(--color-warning)', '#f59e0b'];
-
   const processedPriceData = cocoaData?.w2_price_shock ? cocoaData.w2_price_shock.map((d: any, i: number, arr: any[]) => {
     const isForecast = d.month.includes('(F)');
     const nextIsForecast = i < arr.length - 1 && arr[i+1].month.includes('(F)');
@@ -109,7 +107,7 @@ export default function CocoaDashboard() {
     return { ...d, PriceHist: priceHist, PriceForecast: priceForecast };
   }) : [];
 
-  const renderSankeyNode = ({ x, y, width, height, index, payload }: any) => (
+  const renderSankeyNode = ({ x, y, width, height, payload }: any) => (
     <g>
       <rect x={x} y={y} width={width} height={height} fill="#78350f" rx={2} />
       <text x={x < 150 ? x + width + 5 : x - 5} y={y + height / 2} dy={3} textAnchor={x < 150 ? 'start' : 'end'} fill="#cbd5e1" fontSize={10} fontWeight={600}>

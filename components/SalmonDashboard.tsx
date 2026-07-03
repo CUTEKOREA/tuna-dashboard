@@ -138,7 +138,7 @@ export default function SalmonDashboard() {
   const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
   const [activeModal, setActiveModal] = useState<string | null>(null);
-  const [simulationFactors, setSimulationFactors] = useState({ nok: 0, eur: 0, mgo: 0 });
+  const [simulationFactors] = useState({ nok: 0, eur: 0, mgo: 0 });
   const modalRef = useRef<HTMLDivElement>(null);
   const [apiData, setApiData] = useState<any>({});
 

@@ -374,12 +374,6 @@ const data_byproduct = [
   { item: '펫푸드', rev: 30, margin: 25 },
   { item: '오메가-3 오일', rev: 10, margin: 55 },
 ];
-const data_coldchain = [
-  { month: '1월', rate: 4500, waitDays: 2 },
-  { month: '7월 (폭증)', rate: 6500, waitDays: 7 },
-  { month: '9월 (병목정점)', rate: 7200, waitDays: 9 },
-  { month: '11월', rate: 5800, waitDays: 5 },
-];
 const data_albacore = [
   { year: '2021', skipjack: 80, albacore: 20 },
   { year: '2024', skipjack: 66, albacore: 34 },
@@ -479,9 +473,6 @@ const data_alba_shift = [
   { decade: '2010s', optZone: 27, cpue: 3.1 },
   { decade: '2020s', optZone: 32, cpue: 2.6 },
 ];
-const PIE_COLORS = ['var(--color-danger)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-success)', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316'];
-
-
 // --- Operational Widgets Grouped by S1~S5 ---
 
 export const OperationalS1Widgets = () => (
@@ -1151,4 +1142,3 @@ export const OperationalS5Widgets = () => (
     </div>
   </>
 );
-

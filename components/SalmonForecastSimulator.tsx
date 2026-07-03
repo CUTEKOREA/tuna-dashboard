@@ -65,7 +65,7 @@ export default function SalmonForecastSimulator() {
           sources: data._meta.dataSources,
         });
       }
-    } catch (e) {
+    } catch {
       const fob = selected.fobDefault;
       const freight = 0.45;
       const cif = fob + freight;

@@ -86,8 +86,6 @@ export default function PretextTunaText({
     ctx.scale(dpr, dpr);
 
     let animationId: number;
-    let requiredHeight = 0;
-
     const render = () => {
       // 1. Clear Canvas
       ctx.clearRect(0, 0, cw, canvasOverflowHeight);
@@ -168,8 +166,6 @@ export default function PretextTunaText({
 
         if (lineComplete) break;
       }
-      requiredHeight = y;
-      
       // Render continuously to animate text parting
       animationId = requestAnimationFrame(render);
     };

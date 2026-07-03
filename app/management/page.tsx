@@ -115,7 +115,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 // Executive KPI Card Component
-const KPICard = ({ title, dataObj, chartData, color, icon: Icon, tooltipDesc }: any) => {
+const KPICard = ({ title, dataObj, color, icon: Icon, tooltipDesc }: any) => {
   const isDanger = dataObj.progress < 20;
   const isSuccess = dataObj.progress >= 25;
   const progressColor = isSuccess ? theme.success : (isDanger ? theme.danger : theme.gold);

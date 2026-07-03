@@ -153,8 +153,6 @@ function GhanaCustomsCalculator({ exchangeRate = 14.5 }: { exchangeRate?: number
 export default function UsedCarExport() {
   const [data, setData] = useState<any>(null);
   const [fx, setFx] = useState<any>(null); // 원/달러 환율 — /api/exchange 소비 (isLive 판정 포함)
-  const [activeCountry, setActiveCountry] = useState('all');
-
   useEffect(() => {
     fetch('/api/used-car').then(r => r.json()).then(setData).catch(console.error);
     fetch('/api/exchange').then(r => r.json()).then(setFx).catch(() => {});

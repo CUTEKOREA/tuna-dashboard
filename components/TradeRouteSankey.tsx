@@ -33,12 +33,6 @@ export default function TradeRouteSankey() {
     return styles.active;
   };
 
-  const getThaiEuStatus = () => {
-    if (thaiFtaActive) return styles.success;
-    return ''; // invisible or greyed? We just use standard path line, wait, if no fta it's red? 
-    // Actually if no FTA, they don't ship much to EU, so thin grey.
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>

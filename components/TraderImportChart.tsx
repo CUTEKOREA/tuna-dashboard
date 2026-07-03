@@ -102,7 +102,7 @@ export default function TraderImportChart() {
   const [monthlyData, setMonthlyData] = useState<any[]>([]);
   const [ytdTotal, setYtdTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [meta, setMeta] = useState<any>(null);
 
   useEffect(() => {

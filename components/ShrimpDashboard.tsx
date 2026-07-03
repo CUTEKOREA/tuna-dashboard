@@ -165,7 +165,7 @@ export default function ShrimpDashboard() {
   const [apiData, setApiData] = useState<any>({});
   const [simExchangeRate, setSimExchangeRate] = useState<number>(1385);
   const [simTariff, setSimTariff] = useState<number>(2.0);
-  const [simBaseMargin, setSimBaseMargin] = useState<number>(15.0); // Base profit margin assumption
+  const [simBaseMargin] = useState<number>(15.0); // Base profit margin assumption
 
 
   useEffect(() => {

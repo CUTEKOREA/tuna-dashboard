@@ -52,8 +52,6 @@ const KPI_THEMES = [
   { border: '#282828', glow: 'transparent', text: 'var(--text-secondary)', icon: Coins },
 ];
 
-const COLORS = ['#7e22ce', '#9333ea', '#a855f7', '#c026d3', '#d946ef', '#e879f9', '#db2777', '#f43f5e', '#fb7185', '#fda4af'];
-
 export default function MangosteenDashboard() {
   const [activePart, setActivePart] = useState<'P1' | 'P2' | 'P3' | 'P4' | 'P5'>('P1');
   const [climateYieldData, setClimateYieldData] = useState<any[]>([]);

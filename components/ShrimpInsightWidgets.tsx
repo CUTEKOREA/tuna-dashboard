@@ -7,8 +7,6 @@ import TakeawayBox from './TakeawayBox';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const DATA_URL = '/data/shrimp_real_data_v2.json';
-const COLORS = ['var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-danger)', '#8b5cf6', '#ec4899', '#14b8a6', '#0ea5e9'];
-
 const formatNum = (v: number) => new Intl.NumberFormat('en-US').format(v);
 
 // --- Custom Tooltip Hook ---

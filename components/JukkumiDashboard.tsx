@@ -206,7 +206,6 @@ export default function JukkumiDashboard() {
       // 신형 포맷의 bar/line/area chartType은 series별 type을 가지므로 composed 경로에서 일괄 렌더
       const effectiveType = widget.series ? chartType : (chartType === 'pie' ? 'pie' : 'composed');
       const hasRightAxis = series.some((s: any) => s.yAxisId === 'right');
-      const isTextAxis = xAxis !== 'Year' && d.length > 0 && d[0][xAxis] !== undefined && typeof d[0][xAxis] === 'string' && isNaN(Number(d[0][xAxis]));
       const xTickProps = { fill: '#94a3b8', fontSize: 10, angle: 0, textAnchor: 'middle' as const, dy: 5 };
       const chartMargin = { top: 20, right: 30, left: -10, bottom: 10 };
 

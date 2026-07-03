@@ -74,8 +74,6 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
   const [selectedVendor, setSelectedVendor] = useState<Vendor | null>(null);
 
   const filters = ['All', 'Tier 1: Sweet Spot', 'Tier 1: Global Giants', 'Volume Provider', 'Specialized'];
-  const countries = ['All', 'Vietnam', 'Thailand'];
-
   const filteredData = vendorsData.filter((v: any) => {
     // Country Filter
     if (activeCountry !== 'All' && v.country !== activeCountry) return false;

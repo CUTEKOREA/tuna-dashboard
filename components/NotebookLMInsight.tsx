@@ -4,7 +4,7 @@ import React from 'react';
 import styles from '../app/page.module.css';
 import TermTooltip from './TermTooltip';
 
-export default function NotebookLMInsight({ liveData, mgoData, fxData }: { liveData?: any, mgoData?: any, fxData?: any }) {
+export default function NotebookLMInsight({ liveData, mgoData }: { liveData?: any, mgoData?: any, fxData?: any }) {
   const mgoPriceStr = mgoData?.price ? mgoData.price.toLocaleString('en-US') : '2,050';
   const skjPriceStr = liveData?.arbitrageRadar?.skjPrice ? liveData.arbitrageRadar.skjPrice.toLocaleString('en-US') : '1,975';
   const importVolStr = liveData?.thaiTrade?.importVol ? liveData.thaiTrade.importVol.toLocaleString('en-US') : '193,367';

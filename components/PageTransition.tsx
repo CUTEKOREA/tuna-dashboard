@@ -7,7 +7,7 @@ interface PageTransitionProps {
   activeKey: string;
 }
 
-export default function PageTransition({ children, activeKey }: PageTransitionProps) {
+export default function PageTransition({ children }: PageTransitionProps) {
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {children}

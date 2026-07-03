@@ -14,7 +14,6 @@ import {
   Shield
 } from 'lucide-react';
 import styles from './MackerelStrategy.module.css';
-import TakeawayBox from './TakeawayBox';
 import WidgetCard from './WidgetCard';
 import { TelemetryBadge } from './TelemetryBadge';
 import { ChartPatternDefs, getA11yBarProps } from './ChartPatterns';
@@ -395,22 +394,6 @@ export default function PollockDashboard() {
         return <div style={{color:'#64748b',textAlign:'center',marginTop:'40px'}}>Unsupported</div>;
     }
   };
-
-  const renderStrategicInsight = (title: string, background: string, takeaway: string, accentColor: string) => (
-    <div style={{
-      marginTop: '1.5rem', padding: '1.5rem', background: 'rgba(0, 0, 0, 0.2)', 
-      border: `1px solid ${accentColor}50`, borderRadius: '8px', 
-      boxShadow: `0 4px 20px ${accentColor}15`
-    }}>
-      <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: accentColor, fontSize: '1.1rem', margin: '0 0 1rem 0' }}>
-        <Zap size={20} />
-        C-Level Strategic Insight: {title}
-      </h3>
-      <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-        <TakeawayBox situation={background} actionPlan={takeaway} />
-      </div>
-    </div>
-  );
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
