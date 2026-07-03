@@ -191,12 +191,6 @@ const WIDGET_ICONS: Record<string, any> = {
   w92_ems_blind_spot: Eye, w93_mesotherm_energy: Thermometer
 };
 
-const EstimateBadge = () => (
-  <span style={{ display:'inline-flex', alignItems:'center', gap:'0.3rem', padding:'2px 8px', borderRadius:'500px', border:'none', backgroundColor:'rgba(255,164,43,0.1)', color:'var(--color-warning)', fontSize:'0.66rem', fontWeight:700, letterSpacing:'0.2px', marginLeft:'0.5rem', flexShrink:0, textTransform:'uppercase' as const }}>
-    추정
-  </span>
-);
-
 // TelemetryBadge is now imported from components/TelemetryBadge.tsx
 
 const formatYAxis = (v: number): string => {
@@ -484,8 +478,6 @@ WidgetCard.displayName = 'WidgetCard';
 const TunaDashboard = React.memo(function TunaDashboard() {
   const [data, setData] = useState<any>(null);
   const [activePart, setActivePart] = useState('S1');
-  const [liveArbitrage, setLiveArbitrage] = useState<any>(null);
-  const [liveTrq, setLiveTrq] = useState<any>(null);
 
   useEffect(() => {
     fetch('/api/tuna')
@@ -1074,4 +1066,3 @@ function parseAnimatedValue(valStr: string) {
 }
 
 export default TunaDashboard;
-

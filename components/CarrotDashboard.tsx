@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import CountUp from 'react-countup';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, ComposedChart,
@@ -64,10 +65,6 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 
-const ENHANCED_INSIGHTS: Record<string, any> = {
-  S1: { sit: "한국의 고온 다습한 여름철(7~10월) 단경기 진입 시, 국내 고랭지 작황 붕괴와 중국산 부패율 급증으로 수급 불균형이 극대화됨.", takeaway: "최대 마진 스프레드가 발생하는 7~9월 구간에 한-베트남 FTA(VKFTA 0%) 무관세 특혜를 적용받는 베트남 달랏산 물량을 집중 투입하여 단기 차익 거래를 극대화할 것.", source: "KAMIS x KCS Hybrid API" }
-};
-
 const KPI_THEMES = [
   { border: 'none', glow: 'none', text: '#f97316', icon: Globe },
   { border: 'none', glow: 'none', text: '#ea580c', icon: TrendingUp },
@@ -94,12 +91,6 @@ const SECTIONS = [
   { id: "S4", num: "❹", label: "판매·수요", title: "🛒 제4지주: 판매 및 수요", desc: "장기 수매 계약을 통한 단가 변동성 헤징 및 B2B 점유율 역전", color: "#f59e0b" },
   { id: "S5", num: "❺", label: "ESG·지속가능성", title: "🌍 제5지주: ESG 및 미래 농업", desc: "비규격 폐기 방지 푸드 업사이클링 및 Scope 3 감축 연계", color: "#c2410c" },
 ];
-
-const EstimateBadge = () => (
-  <span style={{ display:'inline-flex', alignItems:'center', gap:'0.3rem', padding:'2px 8px', borderRadius:'500px', border:'none', backgroundColor:'var(--surface-2)', color:'#fbbf24', fontSize:'0.66rem', fontWeight:700, letterSpacing:'0.2px', marginLeft:'0.5rem', flexShrink:0, textTransform:'uppercase' as const }}>
-    ESTIMATE
-  </span>
-);
 
 export default function CarrotDashboard() {
   const [activePart, setActivePart] = useState<'S1' | 'S2' | 'S3' | 'S4' | 'S5'>('S1');
@@ -215,7 +206,7 @@ export default function CarrotDashboard() {
   });
 
   // --- Dynamic W19 Data (Exit Valuation) ---
-  const dynamicW19Data = w19Live.map((d: any, idx: number) => {
+  const dynamicW19Data = w19Live.map((d: any) => {
     if (d.stage && d.stage.includes("IQF 자체가공")) {
       const addedValue = (iqfRate / 30) * 35; // 30% 일때 35, 100% 일때 116.6
       return { ...d, value: addedValue, stage: `+ IQF 자체가공 (수익 ${Math.round(addedValue)}억)` };
@@ -242,7 +233,7 @@ export default function CarrotDashboard() {
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'0.5rem' }}>
           <div style={{ display:'flex', alignItems:'center', gap:'0.75rem' }}>
             <div style={{ width:'44px', height:'44px', display:'flex', alignItems:'center', justifyContent:'center' }}>
-              <img src="/silla_white.png" alt="Silla Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <Image src="/silla_white.png" alt="Silla Logo" width={44} height={44} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
             <div>
               <h1 style={{ margin:0, fontSize:'1.5rem', fontWeight:700, letterSpacing:'-0.5px', color:'var(--text-primary)' }}>

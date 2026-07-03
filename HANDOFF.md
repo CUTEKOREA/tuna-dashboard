@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:53 KST — Tuna/Carrot dashboard lint debt 제거** [CC]:
+> - `components/TunaDashboard.tsx`: 렌더 경로가 사라진 `EstimateBadge`와 사용되지 않는 live API state 2개를 제거. 기존 `/api/tuna` fetch와 위젯 렌더 흐름은 유지.
+> - `components/CarrotDashboard.tsx`: 미사용 `ENHANCED_INSIGHTS`/`EstimateBadge`, 미사용 W19 map index를 제거하고 헤더 로고 `<img>`를 Next `Image`로 교체. 44px 헤더 로고 박스와 당근 대시보드 데이터 흐름은 유지.
+> - 대상 파일 lint warning: `TunaDashboard` 5 → 0, `CarrotDashboard` 4 → 0. 전체 `npm run lint` 기준선은 172 → 163 warnings로 감소.
+> - 검증: 대상 lint 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 163 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), 대상 파일 `git diff --check` 통과.
+> - 미배포(로컬). 기존 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:49 KST — trade-macro API lint debt 제거** [CC]:
 > - `app/api/trade-macro/route.ts`에서 미사용 `countryISO3Map`과 사용하지 않는 catch 인자 7개를 제거. Gemini/KCS/KAMIS/FDA/MFDS 응답 계약과 fallback 로직은 그대로 유지.
 > - 대상 파일 lint warning 8 → 0. 전체 `npm run lint` 기준선은 180 → 172 warnings로 감소.
