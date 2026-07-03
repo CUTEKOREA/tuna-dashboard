@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 11:24 KST — 데이터 인테이크 메타 추출 계약 착수** [CC]:
+> - B-3 기초 작업. `lib/data/metadata.ts`를 추가해 `_meta`, `meta`, `metadata`, top-level `source/fetched/syncDate/method/version/cardDesc`를 표준 `DatasetMeta`로 추출하는 `extractDatasetMeta()` 유틸 도입.
+> - 기존 위젯 반환값은 유지하면서 `lib/data/usda-widgets.ts`에 `getUsdaWidgetMeta()`, `lib/data/fta-quarterly.ts`에 `getFtaQuarterlyMeta()` 추가. USDA는 `_meta`, FTA는 top-level `source`를 표준화.
+> - `__tests__/data-metadata.test.ts` 신규 3테스트로 USDA `_meta`, FTA source, raw array fallback 메타 계약을 검증.
+> - 검증: 신규 테스트 3/3 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 5파일/19테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🔌 **2026-07-03 11:22 KST — KCS HS 단일출처 이관 2차 확대** [CC]:
 > - `app/api/_shared/hs-codes.ts`에 기존 KCS 라우트 운영값 16개를 추가: 명태, 캐슈 2종, 주꾸미, 낙지 2종, 골뱅이 2종, 가자미/광어 3종, 연어 5종.
 > - `cashew/kcs`, `jukkumi/kcs`, `octopus/kcs`, `whelk/kcs`, `flatfish/kcs`, `salmon/kcs`, `pollock-kcs`가 라우트 내부 하드코딩 대신 공유 `HS_CODES`를 참조하도록 이관.

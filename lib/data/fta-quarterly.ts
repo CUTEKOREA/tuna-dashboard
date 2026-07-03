@@ -3,6 +3,7 @@ import mackerelFtaQuarterly from '../../data/mackerel_fta_quarterly.json';
 import octopusFtaQuarterly from '../../data/octopus_fta_quarterly.json';
 import shrimpFtaQuarterly from '../../data/shrimp_fta_quarterly.json';
 import whelkFtaQuarterly from '../../data/whelk_fta_quarterly.json';
+import { extractDatasetMeta } from './metadata';
 
 const ftaQuarterlyDatasets = {
   jukkumi: jukkumiFtaQuarterly,
@@ -18,4 +19,11 @@ export function getFtaQuarterlyData<TCommodity extends FtaQuarterlyCommodity>(
   commodity: TCommodity,
 ): (typeof ftaQuarterlyDatasets)[TCommodity] {
   return ftaQuarterlyDatasets[commodity];
+}
+
+export function getFtaQuarterlyMeta(commodity: FtaQuarterlyCommodity) {
+  return extractDatasetMeta(ftaQuarterlyDatasets[commodity], {
+    status: 'SYNCED',
+    method: 'KMI PDF 수동 추출',
+  });
 }
