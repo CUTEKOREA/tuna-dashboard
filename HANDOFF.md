@@ -1816,3 +1816,11 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 ## 2026-05-21 20:xx KST (OMO)
 - **완료된 것**: Wave 4 (마지막) Mackerel 1개 대형 파일(`MackerelStrategy.tsx`, 240 LOC) ADR-0005 WidgetCard 마이그레이션 완료. subagent 위임 금지 룰 준수, 직접 Read+Write 진행. SIT/TAK/데이터 1글자도 변경하지 않고 래핑 완료. S-grade 검증 통과 후 `[OMO]` 접미사로 별도 커밋. Mackerel 전체 Wave 마이그레이션 완료!
 - **다음 단계**: 다른 commodity (Squid, Salmon 등) 파일들의 ADR-0005 마이그레이션 착수.
+
+## 2026.07.03 - 선단 운영 데이터 갱신
+### 완료된 것
+- 7/3 기준 '해양수산본부 일일 업무보고'를 바탕으로 선단 커맨드 센터(`components/FleetRosterGrid.tsx`, `components/FleetHeroKPI.tsx`) 최신 데이터(연승, 태평양, 대서양, 운반선) 동기화 완료
+- Vercel 프로덕션 라이브 배포 완료
+
+### 다음 단계
+- 신규 선단/어획/하역 리포트 수신 시 대시보드 데이터 동기화 지속
