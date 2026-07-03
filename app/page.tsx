@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef,  Octagon, Box, TestTube, ShieldCheck} from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Octagon, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -17,7 +17,9 @@ import {
   isActiveMenu,
   KEYBOARD_SHORTCUT_MENUS,
   PROTECTED_OPERATION_MENUS,
+  SIDEBAR_SECTIONS,
 } from '../lib/dashboard-registry';
+import type { SidebarIconKey, SidebarMenuItem } from '../lib/dashboard-registry';
 
 // ─── Always-loaded (lightweight or market page essentials) ───
 import LiveTicker from '../components/LiveTicker';
@@ -68,6 +70,38 @@ const SashimiSteakDashboard = dynamic(() => import('../components/SashimiSteakDa
 
 const OPERATION_ACCESS_STORAGE_KEY = 'silla-operation-access';
 const OPERATION_PASSWORD = '349900';
+
+const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
+  Anchor,
+  BarChart2,
+  Beef,
+  Box,
+  CarFront,
+  Carrot,
+  Cherry,
+  Coffee,
+  Droplets,
+  Drumstick,
+  Factory,
+  Fish,
+  FishSymbol,
+  Hexagon,
+  Leaf,
+  LeafyGreen,
+  Navigation,
+  Nut,
+  Octagon,
+  ShieldCheck,
+  Shell,
+  Ship,
+  Shrimp,
+  Snowflake,
+  Sprout,
+  TestTube,
+  Waves,
+};
+
+const SIDEBAR_SUFFIX_STYLE = { fontSize: '0.75em', opacity: 0.8 };
 
 
 export default function Home() {
@@ -237,6 +271,27 @@ export default function Home() {
   const isPanelActive = (menu: ActiveMenu) => (
     activeMenu === menu && (!PROTECTED_OPERATION_MENUS.has(menu) || operationAccessGranted)
   );
+  const renderSidebarItem = (item: SidebarMenuItem) => {
+    const Icon = SIDEBAR_ICONS[item.icon];
+
+    return (
+      <button
+        key={item.key}
+        className={`${styles.menuItem} ${activeMenu === item.key ? styles.menuItemActive : ''}`}
+        onClick={() => { handleMenuClick(item.key); setIsMobileSidebarOpen(false); }}
+      >
+        <Icon size={18} />
+        <span>
+          {item.label}
+          {item.suffix && (
+            <span style={SIDEBAR_SUFFIX_STYLE}>
+              {' '}({item.suffix})
+            </span>
+          )}
+        </span>
+      </button>
+    );
+  };
 
   return (
     <div className={styles.appWrapper}>
@@ -299,282 +354,14 @@ export default function Home() {
           </div>
         </Link>
         
-        <div className={styles.sidebarTitle}>📡 실시간 운영</div>
-        
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'market' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('market'); setIsMobileSidebarOpen(false); }}
-        >
-          <BarChart2 size={18} />
-          <span>시장 동향 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Market)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'fleet' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('fleet'); setIsMobileSidebarOpen(false); }}
-        >
-          <Navigation size={18} />
-          <span>선단 운영 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Fleet)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'unloading' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('unloading'); setIsMobileSidebarOpen(false); }}
-        >
-          <Anchor size={18} />
-          <span>하역 현황 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Unloading)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'logistics' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('logistics'); setIsMobileSidebarOpen(false); }}
-        >
-          <Factory size={18} />
-          <span>물류·가공 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Logistics)</span></span>
-        </button>
-
-        <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🐟 어종별 인텔리전스</div>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'value-chain' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('value-chain'); setIsMobileSidebarOpen(false); }}
-        >
-          <Fish size={18} />
-          <span>참치 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Tuna)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'mackerel' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('mackerel'); setIsMobileSidebarOpen(false); }}
-        >
-          <FishSymbol size={18} />
-          <span>고등어 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Mackerel)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'galchi' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('galchi'); setIsMobileSidebarOpen(false); }}
-        >
-          <Fish size={18} />
-          <span>갈치 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Hairtail)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'squid' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('squid'); setIsMobileSidebarOpen(false); }}
-        >
-          <Droplets size={18} />
-          <span>오징어 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Squid)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'jukkumi' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('jukkumi'); setIsMobileSidebarOpen(false); }}
-        >
-          <Octagon size={18} />
-          <span>주꾸미 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Webfoot Octopus)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'octopus' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('octopus'); setIsMobileSidebarOpen(false); }}
-        >
-          <Octagon size={18} />
-          <span>낙지 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Long-Arm Octopus)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'pollock' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('pollock'); setIsMobileSidebarOpen(false); }}
-        >
-          <Snowflake size={18} />
-          <span>명태 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Pollock)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'flatfish' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('flatfish'); setIsMobileSidebarOpen(false); }}
-        >
-          <FishSymbol size={18} />
-          <span>가자미 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Flatfish)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'shrimp' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('shrimp'); setIsMobileSidebarOpen(false); }}
-        >
-          <Shrimp size={18} />
-          <span>새우 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Shrimp)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'whelk' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('whelk'); setIsMobileSidebarOpen(false); }}
-        >
-          <Shell size={18} />
-          <span>골뱅이 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Whelk)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'kim' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('kim'); setIsMobileSidebarOpen(false); }}
-        >
-          <Leaf size={18} />
-          <span>김 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Laver)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'salmon' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('salmon'); setIsMobileSidebarOpen(false); }}
-        >
-          <Waves size={18} />
-          <span>연어 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Salmon)</span></span>
-        </button>
-
-        <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🔬 전략 분석</div>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'cold-storage' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('cold-storage'); setIsMobileSidebarOpen(false); }}
-        >
-          <Box size={18} />
-          <span>냉동창고 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Cold Storage)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'fleet-strategy' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('fleet-strategy'); setIsMobileSidebarOpen(false); }}
-        >
-          <Ship size={18} />
-          <span>선대 현황 및 분석</span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'korea-market' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('korea-market'); setIsMobileSidebarOpen(false); }}
-        >
-          <Anchor size={18} />
-          <span>국내 위판장 인텔리전스</span>
-        </button>
-
-
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'seasia-oem' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('seasia-oem'); setIsMobileSidebarOpen(false); }}
-        >
-          <Factory size={18} />
-          <span>글로벌 OEM <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(VN/TH)</span></span>
-        </button>
-
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'used-car' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('used-car'); setIsMobileSidebarOpen(false); }}
-        >
-          <CarFront size={18} />
-          <span>중고차 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Used Car)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'msc' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('msc'); setIsMobileSidebarOpen(false); }}
-        >
-          <ShieldCheck size={18} />
-          <span>MSC <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(지속가능성)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'sashimi-steak' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('sashimi-steak'); setIsMobileSidebarOpen(false); }}
-        >
-          <FishSymbol size={18} />
-          <span>사시미/스테이크 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Sashimi/Steak)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'research-lab' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('research-lab'); setIsMobileSidebarOpen(false); }}
-        >
-          <TestTube size={18} />
-          <span>연구 재료 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Research Lab)</span></span>
-        </button>
-
-        <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🌾 농산물 인텔리전스</div>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'cashew' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('cashew'); setIsMobileSidebarOpen(false); }}
-        >
-          <Nut size={18} />
-          <span>캐슈넛 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Cashew)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'cassava' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('cassava'); setIsMobileSidebarOpen(false); }}
-        >
-          <Sprout size={18} />
-          <span>카사바 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Cassava)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'garlic' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('garlic'); setIsMobileSidebarOpen(false); }}
-        >
-          <LeafyGreen size={18} />
-          <span>마늘 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Garlic)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'carrot' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('carrot'); setIsMobileSidebarOpen(false); }}
-        >
-          <Carrot size={18} />
-          <span>당근 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Carrot)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'cocoa' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('cocoa'); setIsMobileSidebarOpen(false); }}
-        >
-          <Coffee size={18} />
-          <span>코코아 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Cocoa)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'mangosteen' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('mangosteen'); setIsMobileSidebarOpen(false); }}
-        >
-          <Cherry size={18} />
-          <span>망고스틴 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Mangosteen)</span></span>
-        </button>
-
-        <div className={styles.sidebarTitle} style={{ marginTop: '1.25rem' }}>🥩 축산물 인텔리전스</div>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'chicken' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('chicken'); setIsMobileSidebarOpen(false); }}
-        >
-          <Drumstick size={18} />
-          <span>닭 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Chicken)</span></span>
-        </button>
-
-        <button 
-          className={`${styles.menuItem} ${activeMenu === 'pork' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('pork'); setIsMobileSidebarOpen(false); }}
-        >
-          <Hexagon size={18} />
-          <span>돼지고기 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Pork)</span></span>
-        </button>
-
-        <button
-          className={`${styles.menuItem} ${activeMenu === 'beef' ? styles.menuItemActive : ''}`}
-          onClick={() => { handleMenuClick('beef'); setIsMobileSidebarOpen(false); }}
-        >
-          <Beef size={18} />
-          <span>소고기 <span style={{ fontSize: '0.75em', opacity: 0.8 }}>(Beef)</span></span>
-        </button>
+        {SIDEBAR_SECTIONS.map((section, index) => (
+          <React.Fragment key={section.section}>
+            <div className={styles.sidebarTitle} style={index === 0 ? undefined : { marginTop: '1.25rem' }}>
+              {section.title}
+            </div>
+            {section.items.map(renderSidebarItem)}
+          </React.Fragment>
+        ))}
 
         <div style={{ flex: 1 }} />
 

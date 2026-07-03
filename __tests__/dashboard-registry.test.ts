@@ -10,6 +10,7 @@ import {
   KEYBOARD_SHORTCUT_MENUS,
   PUBLIC_DASHBOARD_ROUTES,
   PROTECTED_OPERATION_MENU_KEYS,
+  SIDEBAR_SECTIONS,
   VALID_MENUS,
 } from '../lib/dashboard-registry';
 
@@ -84,5 +85,33 @@ describe('dashboard registry', () => {
 
     expect(routes[0]).toBe('');
     expect(dashboardRoutes).toEqual(PUBLIC_DASHBOARD_ROUTES);
+  });
+
+  it('defines sidebar sections from visible registry items in render order', () => {
+    expect(SIDEBAR_SECTIONS.map((section) => section.title)).toEqual([
+      '📡 실시간 운영',
+      '🐟 어종별 인텔리전스',
+      '🔬 전략 분석',
+      '🌾 농산물 인텔리전스',
+      '🥩 축산물 인텔리전스',
+    ]);
+
+    expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
+      ['market', 'fleet', 'unloading', 'logistics'],
+      ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
+      ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
+      ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
+      ['chicken', 'pork', 'beef'],
+    ]);
+
+    const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
+    expect(new Set(sidebarKeys).size).toBe(sidebarKeys.length);
+    expect(sidebarKeys).not.toContain('purse-seiner-db');
+
+    for (const item of SIDEBAR_SECTIONS.flatMap((section) => section.items)) {
+      expect(VALID_MENUS).toContain(item.key);
+      expect(item.label).toMatch(/[가-힣A-Z]/);
+      expect(item.icon).toMatch(/^[A-Za-z][A-Za-z0-9]*$/);
+    }
   });
 });

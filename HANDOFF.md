@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-07-03 12:37 KST — 사이드바 메뉴 레지스트리 렌더 이관** [CC]:
+> - 기획서 축 C 팩토리화 후속. `lib/dashboard-registry.ts`에 `SIDEBAR_SECTIONS`와 `SidebarIconKey`/`SidebarMenuItem` 메타를 추가해 5개 사이드바 섹션과 33개 표시 메뉴를 단일 출처로 파생.
+> - `app/page.tsx`의 수동 메뉴 버튼 JSX 300줄 이상을 `SIDEBAR_SECTIONS.map(...)` 렌더로 교체. 기존 `purse-seiner-db`는 유효 route/검색/sitemap에는 남기되, 기존 사이드바 노출 상태를 유지하기 위해 숨김.
+> - TDD 확인: `SIDEBAR_SECTIONS` 미구현 실패를 먼저 확인한 뒤 구현. 신규 테스트가 섹션 제목, 표시 순서, 중복 없음, 유효 메뉴 여부, 숨김 항목을 검증.
+> - 검증: 대상 테스트 1파일/6테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 14파일/60테스트, `npm run build` 145 routes). Puppeteer 확인: 5개 섹션 노출, `MSC` 클릭 시 `/msc`, `purse-seiner-db` 사이드바 미노출, 사시미/스테이크·연구 재료 노출.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🗺 **2026-07-03 12:30 KST — sitemap 공개 대시보드 라우트 레지스트리 연동** [CC]:
 > - `lib/dashboard-registry.ts`에 `PUBLIC_DASHBOARD_ROUTES`를 추가해 `market` 루트 대체 메뉴와 운영 잠금 메뉴(`fleet`, `unloading`, `logistics`)를 제외한 공개 대시보드 라우트를 자동 파생.
 > - `app/sitemap.ts`의 중복 공개 대시보드 배열을 제거하고 `PUBLIC_DASHBOARD_ROUTES`를 사용하도록 연결. `manual`, `financial-risk`, `ffa-report`, `falkland` 같은 독립 공개 페이지는 sitemap 로컬 배열에 유지.
