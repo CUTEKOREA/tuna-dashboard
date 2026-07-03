@@ -6,6 +6,8 @@ const ROOT = process.cwd();
 const SOURCE_DIRS = ['app', 'components', 'lib'];
 const APP_COMPONENT_DIRS = ['app', 'components'];
 const API_DIR = path.join(ROOT, 'app', 'api');
+const TEST_DIR = path.join(ROOT, '__tests__');
+const MIN_CONTRACTED_API_ROUTES = 20;
 
 const IGNORED_DIRS = new Set([
   '.git',
@@ -44,6 +46,30 @@ async function filesWithMatches(files: string[], pattern: RegExp) {
   return matches.sort();
 }
 
+function toApiRoute(file: string) {
+  return `/api/${path.relative(API_DIR, file).replace(/\/route\.ts$/, '').replace(/\\/g, '/')}`;
+}
+
+function addRouteMatches(source: string, pattern: RegExp, routes: Set<string>) {
+  for (const match of source.matchAll(pattern)) {
+    routes.add(match[1].split('?')[0]);
+  }
+}
+
+async function listContractedApiRoutes() {
+  const testFiles = await listFiles(TEST_DIR, new Set(['.ts']));
+  const routes = new Set<string>();
+
+  for (const file of testFiles) {
+    const source = await readFile(file, 'utf8');
+    addRouteMatches(source, /label:\s*['"`](\/api\/[a-zA-Z0-9_./-]+)['"`]/g, routes);
+    addRouteMatches(source, /describe\(\s*['"`](\/api\/[a-zA-Z0-9_./-]+)(?:\?|\s|['"`])/g, routes);
+    addRouteMatches(source, /new Request\(\s*['"`]http:\/\/localhost(\/api\/[a-zA-Z0-9_?=&./-]+)['"`]/g, routes);
+  }
+
+  return Array.from(routes).sort();
+}
+
 describe('architecture guards', () => {
   it('keeps app and component code behind the data intake layer', async () => {
     const files = (await Promise.all(
@@ -78,5 +104,14 @@ describe('architecture guards', () => {
     for (const pattern of forbiddenHsLiterals) {
       expect(await filesWithMatches(apiFiles, pattern)).toEqual([]);
     }
+  });
+
+  it('keeps at least 20 API routes under explicit contract-test coverage', async () => {
+    const apiRoutes = new Set((await listFiles(API_DIR)).map(toApiRoute));
+    const contractedRoutes = await listContractedApiRoutes();
+    const missingRoutes = contractedRoutes.filter((route) => !apiRoutes.has(route));
+
+    expect(missingRoutes).toEqual([]);
+    expect(contractedRoutes.length).toBeGreaterThanOrEqual(MIN_CONTRACTED_API_ROUTES);
   });
 });

@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:36 KST — API 계약 커버리지 하한 가드 추가** [CC]:
+> - P0/A-3 라우트 계약 커버리지 라쳇. `__tests__/architecture-guards.test.ts`가 계약 테스트 파일의 명시 API 라우트를 스캔해 최소 20개 이상 유지하도록 강제.
+> - 현재 명시 계약 라우트는 21개. 스캔된 라우트가 실제 `app/api/**/route.ts`에 존재하는지도 함께 검증해, 테스트 문자열만 남고 라우트가 사라지는 표류를 차단.
+> - 검증: 아키텍처 가드 단독 4/4 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 8파일/35테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:33 KST — USDA/FAS 6개 라우트 fallback 계약 테스트 추가** [CC]:
 > - P0/A-3 라우트 계약 커버리지 후속. `lib/contracts/usda-fas.ts` 신규 추가로 USDA FAS 계열 공통 응답(`isLive/source/marketYear/commodityCode/records/apiHealth`)을 zod 계약화.
 > - `__tests__/usda-fas-routes.contract.test.ts` 신규 추가. `/api/beef/usda-fas`, `/api/cashew/usda-fas`, `/api/chicken/usda-fas`, `/api/salmon/usda-fas`, `/api/shrimp/usda-fas`, `/api/tuna/usda-fas`의 HTTP 503 fallback 경로를 네트워크 없이 검증.
