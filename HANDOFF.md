@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚨 **2026-07-03 12:20 KST — 교차 품목 알림 큐 점수 파생화** [CC]:
+> - `/market` 교차 품목 인텔리전스의 `anomalyAlerts`를 수동 `ALERT_INPUTS` 목록에서 제거하고, 대체재 압력(`substitutionSignals`)과 리스크 민감도(`riskFactors`) 점수에서 자동 파생하도록 전환.
+> - 각 알림에 `sourceKind`(`substitution`/`risk`)와 `sourceKey`를 추가해 어떤 분석 신호에서 나온 알림인지 추적 가능하게 함. API zod 계약도 같은 필드를 요구하도록 갱신.
+> - 현재 파생 결과: 오징어→대왕오징어 대체 압력 93점이 최상위 알림, 유가·운임/통관·검역/달러 강세/기후·어황은 각 최고 노출 품목 기준으로 임계치 초과 알림 생성.
+> - TDD 확인: 신규 테스트가 먼저 `substitutionAlert` 미존재 실패(`expected undefined to match object`)를 낸 뒤, 모델 파생 로직 구현 후 대상 테스트 3파일/8테스트 통과.
+> - 검증: 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 13파일/54테스트, `npm run build` 145 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 12:14 KST — API 계약 커버리지 하한 30개로 라쳇** [CC]:
 > - `__tests__/architecture-guards.test.ts`의 명시 API 계약 라우트 하한을 20개 → 30개로 상향. 현재 스캔된 계약 라우트는 30개이며 누락 route 0개.
 > - TDD 확인: 하한을 임시 31개로 올려 `expected 30 to be greater than or equal to 31` 실패를 먼저 확인한 뒤, 실측값 30으로 최종 조정.

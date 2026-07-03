@@ -83,4 +83,40 @@ describe('cross commodity intelligence model', () => {
 
     expect(intelligence.headline.topAlert).toBe(intelligence.anomalyAlerts[0].title);
   });
+
+  it('derives anomaly alerts from substitution and risk model scores', () => {
+    const intelligence = getCrossCommodityIntelligence();
+    const topSubstitution = intelligence.substitutionSignals[0];
+    const expectedSubstitutionKey = `${topSubstitution.from}->${topSubstitution.to}`;
+
+    const substitutionAlert = intelligence.anomalyAlerts.find(
+      (alert) => alert.sourceKind === 'substitution' && alert.sourceKey === expectedSubstitutionKey,
+    );
+
+    expect(substitutionAlert).toMatchObject({
+      title: `${topSubstitution.from} 대체 압력 급등`,
+      commodity: topSubstitution.from,
+      metric: '대체 압력',
+      currentValue: topSubstitution.pressureScore,
+      threshold: 70,
+    });
+
+    const breachedRiskFactors = intelligence.riskFactors.filter(
+      (factor) => Math.max(...Object.values(factor.impacts)) >= 75,
+    );
+
+    for (const factor of breachedRiskFactors) {
+      const [highestCommodity, highestImpact] = Object.entries(factor.impacts).sort((a, b) => b[1] - a[1])[0];
+
+      expect(
+        intelligence.anomalyAlerts.some(
+          (alert) =>
+            alert.sourceKind === 'risk' &&
+            alert.sourceKey === factor.factor &&
+            alert.commodity === highestCommodity &&
+            alert.currentValue === highestImpact,
+        ),
+      ).toBe(true);
+    }
+  });
 });

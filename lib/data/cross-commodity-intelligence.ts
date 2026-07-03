@@ -33,8 +33,11 @@ export interface PortfolioCandidate {
 }
 
 export type AlertSeverity = '주의' | '경계' | '긴급';
+export type AlertSourceKind = 'substitution' | 'risk';
 
 export interface AnomalyAlert {
+  sourceKind: AlertSourceKind;
+  sourceKey: string;
   title: string;
   commodity: string;
   metric: string;
@@ -186,63 +189,35 @@ const PORTFOLIO_INPUTS = [
   },
 ] as const;
 
-const ALERT_INPUTS = [
-  {
-    title: '오징어 대체 압력 급등',
-    commodity: '오징어',
-    metric: '대체 압력',
-    watchRoute: '/api/squid/squid-forecast',
-    currentValue: 75,
-    threshold: 70,
-    unit: '점',
-    severity: '긴급',
-    action: '대왕오징어 혼합 규격 승인과 페루·중국 공급사 견적 갱신을 즉시 병행하십시오.',
-  },
-  {
-    title: '유가·운임 참치 노출 상단',
-    commodity: '참치',
-    metric: '유가 민감도',
-    watchRoute: '/api/mgo',
-    currentValue: 86,
-    threshold: 80,
-    unit: '점',
-    severity: '경계',
-    action: '원양 조업일수와 선복 계약을 같은 회의체에서 재산정하십시오.',
-  },
-  {
-    title: '새우 통관·검역 리스크',
-    commodity: '새우',
-    metric: '통관 민감도',
-    watchRoute: '/api/shrimp/compliance',
-    currentValue: 84,
-    threshold: 75,
-    unit: '점',
-    severity: '경계',
-    action: '상위 공급사 부적합 이력과 대체국 승인 현황을 매입 한도에 반영하십시오.',
-  },
-  {
-    title: '연어 환율 노출 확대',
-    commodity: '연어',
-    metric: '달러 민감도',
-    watchRoute: '/api/exchange',
-    currentValue: 82,
-    threshold: 80,
-    unit: '점',
-    severity: '주의',
-    action: '원화 판가 전가 가능 채널부터 분기 환헤지 비율을 상향하십시오.',
-  },
-  {
-    title: '마늘 작황 리스크 관찰',
-    commodity: '마늘',
-    metric: '기후 민감도',
-    watchRoute: '/api/garlic/widget',
-    currentValue: 72,
-    threshold: 75,
-    unit: '점',
-    severity: '주의',
-    action: '국산·중국산 원료 전환 가격 차이를 주간 단위로 관찰하십시오.',
-  },
-] as const;
+const SUBSTITUTION_ALERT_THRESHOLD = 70;
+const RISK_ALERT_THRESHOLD = 75;
+
+const COMMODITY_WATCH_ROUTES: Record<string, string> = {
+  '참치 원어': '/api/tuna/ticker',
+  '참치': '/api/tuna/ticker',
+  '연어': '/api/salmon/kamis',
+  '오징어': '/api/squid/squid-forecast',
+  '새우': '/api/shrimp/compliance',
+  '닭고기': '/api/chicken/parts',
+  '돼지고기': '/api/beef/hanwoo-price',
+  '마늘': '/api/garlic/widget',
+};
+
+const RISK_WATCH_ROUTES: Record<string, string> = {
+  '달러 강세': '/api/exchange',
+  '유가·운임': '/api/mgo',
+  '기후·어황': '/api/typhoon',
+  '통관·검역': '/api/shrimp/compliance',
+  '관세·정책': '/api/tariffs',
+};
+
+const RISK_METRICS: Record<string, string> = {
+  '달러 강세': '달러 민감도',
+  '유가·운임': '유가·운임 민감도',
+  '기후·어황': '기후·어황 민감도',
+  '통관·검역': '통관 민감도',
+  '관세·정책': '정책 민감도',
+};
 
 function clampScore(value: number): number {
   return Math.max(0, Math.min(100, Math.round(value)));
@@ -301,15 +276,78 @@ function severityWeight(severity: AlertSeverity): number {
   return 4;
 }
 
-function scoreAlert(input: (typeof ALERT_INPUTS)[number]): AnomalyAlert {
-  const breached = input.currentValue >= input.threshold;
-  const thresholdPressure = ((input.currentValue - input.threshold) / input.threshold) * 100;
+function alertSeverity(currentValue: number, threshold: number): AlertSeverity {
+  const excess = currentValue - threshold;
+
+  if (currentValue >= 90 || excess >= 15) return '긴급';
+  if (currentValue >= 80 || excess >= 8) return '경계';
+  return '주의';
+}
+
+function scoreAlertUrgency(currentValue: number, threshold: number, severity: AlertSeverity): number {
+  const thresholdPressure = ((currentValue - threshold) / threshold) * 100;
+
+  return clampScore(currentValue * 0.74 + Math.max(0, thresholdPressure) * 0.7 + severityWeight(severity));
+}
+
+function watchRouteForCommodity(commodity: string): string {
+  return COMMODITY_WATCH_ROUTES[commodity] ?? '/api/cross-commodity-intelligence';
+}
+
+function watchRouteForRisk(factor: string, commodity: string): string {
+  return RISK_WATCH_ROUTES[factor] ?? watchRouteForCommodity(commodity);
+}
+
+function directive(action: string, suffix: string): string {
+  return `${action.replace(/\.$/, '')}. ${suffix}`;
+}
+
+function createSubstitutionAlert(signal: SubstitutionSignal): AnomalyAlert | null {
+  const threshold = SUBSTITUTION_ALERT_THRESHOLD;
+
+  if (signal.pressureScore < threshold) return null;
+
+  const severity = alertSeverity(signal.pressureScore, threshold);
 
   return {
-    ...input,
-    severity: input.severity as AlertSeverity,
-    breached,
-    urgencyScore: clampScore(input.currentValue * 0.74 + Math.max(0, thresholdPressure) * 0.7 + severityWeight(input.severity)),
+    sourceKind: 'substitution',
+    sourceKey: `${signal.from}->${signal.to}`,
+    title: `${signal.from} 대체 압력 급등`,
+    commodity: signal.from,
+    metric: '대체 압력',
+    watchRoute: watchRouteForCommodity(signal.from),
+    currentValue: signal.pressureScore,
+    threshold,
+    unit: '점',
+    severity,
+    breached: true,
+    urgencyScore: scoreAlertUrgency(signal.pressureScore, threshold, severity),
+    action: directive(signal.action, `${signal.to} 견적·규격 승인 상태를 즉시 재점검하십시오.`),
+  };
+}
+
+function createRiskAlert(factor: RiskFactorSignal): AnomalyAlert | null {
+  const [commodity, currentValue] = Object.entries(factor.impacts).sort((a, b) => b[1] - a[1])[0];
+  const threshold = RISK_ALERT_THRESHOLD;
+
+  if (currentValue < threshold) return null;
+
+  const severity = alertSeverity(currentValue, threshold);
+
+  return {
+    sourceKind: 'risk',
+    sourceKey: factor.factor,
+    title: `${commodity} ${factor.factor} 리스크`,
+    commodity,
+    metric: RISK_METRICS[factor.factor] ?? `${factor.factor} 민감도`,
+    watchRoute: watchRouteForRisk(factor.factor, commodity),
+    currentValue,
+    threshold,
+    unit: '점',
+    severity,
+    breached: true,
+    urgencyScore: scoreAlertUrgency(currentValue, threshold, severity),
+    action: directive(factor.action, `${commodity} 담당자 기준값과 대체 공급 옵션을 재확인하십시오.`),
   };
 }
 
@@ -320,8 +358,11 @@ export function getCrossCommodityIntelligence(): CrossCommodityIntelligence {
     .sort((a, b) => b.averageImpact - a.averageImpact);
   const portfolioCandidates = PORTFOLIO_INPUTS.map(scorePortfolio)
     .sort((a, b) => b.portfolioScore - a.portfolioScore);
-  const anomalyAlerts = ALERT_INPUTS.map(scoreAlert)
-    .filter((alert) => alert.breached)
+  const anomalyAlerts = [
+    ...substitutionSignals.map(createSubstitutionAlert),
+    ...riskFactors.map(createRiskAlert),
+  ]
+    .filter((alert): alert is AnomalyAlert => Boolean(alert))
     .sort((a, b) => b.urgencyScore - a.urgencyScore);
 
   return {

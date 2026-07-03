@@ -42,6 +42,8 @@ export const CrossCommodityPortfolioCandidate = z.object({
 });
 
 export const CrossCommodityAnomalyAlert = z.object({
+  sourceKind: z.enum(['substitution', 'risk']),
+  sourceKey: z.string().min(1),
   title: z.string().min(1),
   commodity: z.string().min(1),
   metric: z.string().min(1),
