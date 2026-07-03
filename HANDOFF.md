@@ -1,9 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
-> 🚧 **2026-07-03 14:13 KST — 배포 전 C-4 데이터 import 게이트 보정** [CC]:
+> ✅ **2026-07-03 14:19 KST — 통합 인텔리전스 라이브 배포 완료** [CC]:
 > - `git push origin main` 시 pre-push C-4 게이트가 `lib/data/misc.ts`의 빌드타임 import 대상 `data/reefer_week26.json` 미추적을 감지해 push를 차단.
 > - Vercel 빌드 누락 방지를 위해 `data/reefer_week26.json`을 `git add -f`로 추적 대상에 포함. 기존 무관 dirty 파일은 그대로 보존.
-> - 검증 예정: 추적 추가 커밋 후 `npm run verify` 재확인 및 `git push origin main` 재시도.
+> - 검증: `npm run verify` 재통과(`npm run lint`, `npm run typecheck`, `npm test` 17파일/74테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`), pre-push C-4 143/143 tracked 및 L-03 build gate 통과.
+> - 라이브: Vercel production `dpl_3MTVaaqvHWaeQnyfpBCApUvbMSnJ` READY, commit `bfb9463`, `https://leedonggun.co.kr/cross-intelligence` Puppeteer 확인(title `통합 인텔리전스`, 4개 핵심 패널 렌더), `/api/cross-commodity-intelligence` 200 JSON 확인.
 
 > 📊 **2026-07-03 14:08 KST — 통합 인텔리전스 화면 노출** [CC]:
 > - 기획서 축 D 제품 도약 후속. 기존 `/api/cross-commodity-intelligence` 모델을 실제 UI로 노출하는 `components/CrossCommodityIntelligenceDashboard.tsx` 추가.
@@ -1663,7 +1664,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-05-24 (Claude Code 세션 — BeefDashboard 신규 commodity 11 위젯 추가)
+> **마지막 업데이트**: 2026-07-03 14:19 KST (Claude Code 세션 — 통합 인텔리전스 라이브 배포 완료)
 
 ---
 
