@@ -17,9 +17,9 @@ export type SidebarIconKey =
   | 'Hexagon'
   | 'Leaf'
   | 'LeafyGreen'
+  | 'LongArmOctopus'
   | 'Navigation'
   | 'Nut'
-  | 'Octagon'
   | 'ShieldCheck'
   | 'Shell'
   | 'Ship'
@@ -27,7 +27,8 @@ export type SidebarIconKey =
   | 'Snowflake'
   | 'Sprout'
   | 'TestTube'
-  | 'Waves';
+  | 'Waves'
+  | 'WebfootOctopus';
 
 interface SidebarMenuMeta {
   icon: SidebarIconKey;
@@ -54,8 +55,8 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'mackerel', title: '고등어', section: 'fishery', accent: 'cyan', shortcutOrder: 6, sidebar: { icon: 'FishSymbol', suffix: 'Mackerel' } },
   { key: 'galchi', title: '갈치', section: 'fishery', accent: 'cyan', shortcutOrder: 7, sidebar: { icon: 'Fish', suffix: 'Hairtail' } },
   { key: 'squid', title: '오징어', section: 'fishery', accent: 'cyan', shortcutOrder: 8, sidebar: { icon: 'Droplets', suffix: 'Squid' } },
-  { key: 'jukkumi', title: '주꾸미', section: 'fishery', accent: 'cyan', shortcutOrder: 9, sidebar: { icon: 'Octagon', suffix: 'Webfoot Octopus' } },
-  { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'Octagon', suffix: 'Long-Arm Octopus' } },
+  { key: 'jukkumi', title: '주꾸미', section: 'fishery', accent: 'cyan', shortcutOrder: 9, sidebar: { icon: 'WebfootOctopus', suffix: 'Webfoot Octopus' } },
+  { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'LongArmOctopus', suffix: 'Long-Arm Octopus' } },
   { key: 'cashew', title: '캐슈넛', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Nut', suffix: 'Cashew' } },
   { key: 'cassava', title: '카사바', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Sprout', suffix: 'Cassava' } },
   { key: 'garlic', title: '마늘', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'LeafyGreen', suffix: 'Garlic' } },

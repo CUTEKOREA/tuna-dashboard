@@ -110,6 +110,14 @@ describe('dashboard registry', () => {
     expect(new Set(sidebarKeys).size).toBe(sidebarKeys.length);
     expect(sidebarKeys).not.toContain('purse-seiner-db');
 
+    const fisheryItems = SIDEBAR_SECTIONS.find((section) => section.section === 'fishery')?.items ?? [];
+    const jukkumi = fisheryItems.find((item) => item.key === 'jukkumi');
+    const octopus = fisheryItems.find((item) => item.key === 'octopus');
+
+    expect(jukkumi?.icon).toBe('WebfootOctopus');
+    expect(octopus?.icon).toBe('LongArmOctopus');
+    expect(jukkumi?.icon).not.toBe(octopus?.icon);
+
     for (const item of SIDEBAR_SECTIONS.flatMap((section) => section.items)) {
       expect(VALID_MENUS).toContain(item.key);
       expect(item.label).toMatch(/[가-힣A-Z]/);

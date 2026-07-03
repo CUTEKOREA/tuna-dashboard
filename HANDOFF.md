@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐙 **2026-07-03 15:40 KST — 주꾸미·낙지 사이드바 전용 아이콘 적용** [CC]:
+> - 사용자 요청으로 좌측 사이드바의 `주꾸미 (WEBFOOT OCTOPUS)`, `낙지 (LONG-ARM OCTOPUS)` 앞 아이콘을 품목과 어울리는 전용 벡터 이미지로 교체.
+> - 기존 두 메뉴가 공통으로 쓰던 `Octagon` 아이콘을 제거하고 `WebfootOctopus`, `LongArmOctopus` 레지스트리 키를 추가. `components/SeafoodSidebarIcons.tsx`에 주꾸미용 짧고 둥근 다리 실루엣, 낙지용 긴 팔 실루엣 SVG 컴포넌트를 추가해 같은 모양으로 보이지 않게 함.
+> - 재발 방지: `dashboard-registry.test.ts`에 주꾸미는 `WebfootOctopus`, 낙지는 `LongArmOctopus`를 사용하고 서로 다른 아이콘이어야 한다는 계약을 추가.
+> - 검증: 대상 테스트 2파일/8테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 로컬 `http://127.0.0.1:3020/value-chain` Puppeteer 확인: 주꾸미·낙지 SVG path가 서로 다름, 각각 18x18px, `svgFlex=0 0 18px`, `horizontalOverflow=0`. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 20파일/79테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
+
 > ✅ **2026-07-03 15:33 KST — 사이드바 주꾸미·낙지 아이콘 축소 방지 라이브 배포 완료** [CC]:
 > - 사용자 제보로 `/value-chain` 좌측 사이드바의 `주꾸미 (WEBFOOT OCTOPUS)`, `낙지 (LONG-ARM OCTOPUS)` 앞 아이콘이 긴 suffix 때문에 작아지거나 안 보이는 문제를 수정.
 > - `app/page.module.css`의 `.menuItem svg`를 `flex: 0 0 18px`, `width/height: 18px`로 고정하고, `.menuItem > span`은 `min-width: 0`, `overflow: hidden`, `text-overflow: ellipsis`로 조정해 아이콘이 텍스트에 밀려 줄어들지 않게 함.

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Octagon, Box, TestTube, ShieldCheck } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -28,6 +28,7 @@ import PageTransition from '../components/PageTransition';
 import AmbientBackground from '../components/AmbientBackground';
 import CommandPalette from '../components/CommandPalette';
 import KeepAlivePanel from '../components/KeepAlivePanel';
+import { LongArmOctopusIcon, WebfootOctopusIcon } from '../components/SeafoodSidebarIcons';
 
 // ─── Dynamic imports (loaded on-demand per page) ───
 const MgoChartModal = dynamic(() => import('../components/MgoChartModal'));
@@ -90,9 +91,9 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Hexagon,
   Leaf,
   LeafyGreen,
+  LongArmOctopus: LongArmOctopusIcon,
   Navigation,
   Nut,
-  Octagon,
   ShieldCheck,
   Shell,
   Ship,
@@ -101,6 +102,7 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Sprout,
   TestTube,
   Waves,
+  WebfootOctopus: WebfootOctopusIcon,
 };
 
 const SIDEBAR_SUFFIX_STYLE = { fontSize: '0.75em', opacity: 0.8 };
