@@ -32,32 +32,34 @@ function SidebarSvgIcon({
 
 export function WebfootOctopusIcon(props: SidebarSvgIconProps) {
   return (
-    <SidebarSvgIcon {...props}>
-      <path d="M8.25 9.15C8.25 6.05 9.95 4 12 4s3.75 2.05 3.75 5.15v2.05c0 2.05-1.5 3.35-3.75 3.35s-3.75-1.3-3.75-3.35V9.15Z" />
-      <circle cx="10.55" cy="8.65" r="0.55" fill="currentColor" stroke="none" />
-      <circle cx="13.45" cy="8.65" r="0.55" fill="currentColor" stroke="none" />
-      <path d="M8.65 13.25 5.15 16.05" />
-      <path d="M10.4 14.45 8.45 18.5" />
-      <path d="M12 14.75v4.45" />
-      <path d="M13.6 14.45l1.95 4.05" />
-      <path d="M15.35 13.25l3.5 2.8" />
-      <path d="M6.45 17.55c1.7 1.45 3.55 2.2 5.55 2.2s3.85-.75 5.55-2.2" />
+    <SidebarSvgIcon {...props} strokeWidth={props.strokeWidth ?? 2.05}>
+      <path d="M7.65 9.3C7.65 6.05 9.4 4 12 4s4.35 2.05 4.35 5.3v1.25c0 2.35-1.65 3.8-4.35 3.8s-4.35-1.45-4.35-3.8V9.3Z" />
+      <path d="M9.55 7.2c1.55-.65 3.35-.65 4.9 0" opacity="0.5" />
+      <circle cx="10.45" cy="8.75" r="0.62" fill="currentColor" stroke="none" />
+      <circle cx="13.55" cy="8.75" r="0.62" fill="currentColor" stroke="none" />
+      <path d="M8.4 13.35 5.8 15.55c-.6.5-.55 1.3.1 1.65.75.42 1.8.02 2.55-.95l.85-1.1" />
+      <path d="M10.25 14.2 8.95 18c-.25.78.25 1.55 1.02 1.6.82.05 1.45-.62 1.52-1.58l.18-2.8" />
+      <path d="M13.75 14.2 15.05 18c.25.78-.25 1.55-1.02 1.6-.82.05-1.45-.62-1.52-1.58l-.18-2.8" />
+      <path d="M15.6 13.35 18.2 15.55c.6.5.55 1.3-.1 1.65-.75.42-1.8.02-2.55-.95l-.85-1.1" />
+      <path d="M7.15 17.65c1.4 1.4 3.05 2.1 4.85 2.1s3.45-.7 4.85-2.1" opacity="0.72" />
     </SidebarSvgIcon>
   );
 }
 
 export function LongArmOctopusIcon(props: SidebarSvgIconProps) {
   return (
-    <SidebarSvgIcon {...props}>
-      <path d="M9 8.15C9 5.65 10.25 4 12 4s3 1.65 3 4.15v3.45c0 1.85-1.25 3.05-3 3.05s-3-1.2-3-3.05V8.15Z" />
-      <circle cx="10.8" cy="8.6" r="0.5" fill="currentColor" stroke="none" />
-      <circle cx="13.2" cy="8.6" r="0.5" fill="currentColor" stroke="none" />
-      <path d="M9.2 13.1C6.35 14.5 5 16.6 5 19.4" />
-      <path d="M10.65 14.1c-1.3 2.2-1.25 4.15.05 5.95" />
-      <path d="M13.35 14.1c1.3 2.2 1.25 4.15-.05 5.95" />
-      <path d="M14.8 13.1c2.85 1.4 4.2 3.5 4.2 6.3" />
-      <path d="M6.9 18.85c-1.2-.45-1.95-1.3-2.2-2.45" />
-      <path d="M17.1 18.85c1.2-.45 1.95-1.3 2.2-2.45" />
+    <SidebarSvgIcon {...props} strokeWidth={props.strokeWidth ?? 2}>
+      <path d="M9.35 8.2C9.35 5.65 10.45 4 12 4s2.65 1.65 2.65 4.2v3.05c0 1.8-1.1 2.95-2.65 2.95s-2.65-1.15-2.65-2.95V8.2Z" />
+      <circle cx="10.85" cy="8.55" r="0.52" fill="currentColor" stroke="none" />
+      <circle cx="13.15" cy="8.55" r="0.52" fill="currentColor" stroke="none" />
+      <path d="M9.55 12.9c-3.1.95-4.75 3.05-4.95 6.3" />
+      <path d="M10.65 13.95c-2 1.95-2.35 4.05-1.05 6.3" />
+      <path d="M13.35 13.95c2 1.95 2.35 4.05 1.05 6.3" />
+      <path d="M14.45 12.9c3.1.95 4.75 3.05 4.95 6.3" />
+      <path d="M5.05 19.2c1.25-.1 2.2-.72 2.85-1.85" />
+      <path d="M18.95 19.2c-1.25-.1-2.2-.72-2.85-1.85" />
+      <path d="M8.2 16.2c-.65-.65-1.45-.95-2.42-.9" opacity="0.72" />
+      <path d="M15.8 16.2c.65-.65 1.45-.95 2.42-.9" opacity="0.72" />
     </SidebarSvgIcon>
   );
 }

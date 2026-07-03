@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐙 **2026-07-03 15:50 KST — 주꾸미·낙지 사이드바 아이콘 실루엣 보강** [CC]:
+> - 사용자 요청으로 좌측 사이드바의 `주꾸미 (WEBFOOT OCTOPUS)`, `낙지 (LONG-ARM OCTOPUS)` 전용 아이콘을 더 품목과 어울리는 이미지형 SVG로 보강.
+> - `components/SeafoodSidebarIcons.tsx`에서 주꾸미는 짧고 둥근 다리·넓은 몸통 실루엣으로, 낙지는 좁은 몸통·길게 뻗은 팔과 말린 끝 실루엣으로 차이를 키움. 레지스트리 키(`WebfootOctopus`, `LongArmOctopus`)와 사이드바 고정 18px 정책은 유지.
+> - 검증: 대상 테스트 2파일/8테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 로컬 `http://127.0.0.1:3020/galchi` Puppeteer 확인: 두 SVG가 서로 다른 path를 사용, 각각 18x18px, `svgFlex=0 0 18px`, 주꾸미 compact body/낙지 long arms path 존재, `horizontalOverflow=0`. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 21파일/80테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
+
 > 🐟 **2026-07-03 15:44 KST — `/market` Atuna 어가 최신행 반영** [CC]:
 > - 사용자 제보로 `/market`의 `SKJ 가다랑어 지역 스프레드`, `YF 황다랑어 지역 스프레드` 카드와 차트가 `2026.06.12` 기준 구버전 어가를 표시하던 원인을 확인. 배포된 `data/atuna_prices.json`의 최대 기준일이 `2026-06-12`였고, 로컬에만 최신 Atuna 수동 동기화 행 4개가 남아 있어 배포 대상에 빠진 상태였음.
 > - `data/atuna_prices.json`에 최신 수동 동기화 행을 배포 대상 데이터로 포함: `2026-05-30`(아비장/비고), `2026-06-17`(SKJ 만타 2100), `2026-06-19`(SKJ 세이셸 1500, YF 세이셸 2100), `2026-06-24`(SKJ 방콕 1775).
