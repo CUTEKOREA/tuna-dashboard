@@ -378,6 +378,18 @@
   letter-spacing: 0.01em;
 }
 
+.menuItem svg {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.menuItem > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .menuItem:hover {
   background: var(--surface-2);
   color: var(--text-primary);
