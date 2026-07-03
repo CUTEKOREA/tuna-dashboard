@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const dynamic = 'force-dynamic';
+
 // Korea Customs API (LIVE for Shrimp Dashboard)
 // Objective: Fetch real-time import volumes and CIF unit prices for shrimp (CN code: 030617)
 // Dynamically fetches 2024, 2025, and 2026 data directly from KCS.

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const revalidate = 86400;
+
 // Krungsri / Thai Dept of Fisheries API
 // Objective: Fetch Thai Shrimp Production and EMS mortality indicators
 

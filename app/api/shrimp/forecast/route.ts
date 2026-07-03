@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const dynamic = 'force-dynamic';
+
 // Shrimp Price Forecast API (V2.0)
 // Objective: VAR model-based 3-month price forecast using FRED (oil/FX), ECOS (KR rates), KAMIS (domestic), KCS (import CIF)
 // Aligned with: (기본 2024-08) 수산물 무역 단기 전망모형 구축 연구

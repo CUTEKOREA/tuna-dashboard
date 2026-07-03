@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const dynamic = 'force-dynamic';
+
 // Shrimp Sourcing Simulator API (V2.0)
 // Objective: Real-time landed cost comparison across major shrimp origins (Ecuador, India, Vietnam, Indonesia)
 // Uses: UN Comtrade (HS 030617), WITS tariff data, HS Ping classification

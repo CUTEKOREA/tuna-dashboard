@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const dynamic = 'force-dynamic';
+
 // Shrimp Compliance & NTB Radar API (V2.0)
 // Objective: Real-time monitoring of US anti-dumping, EU CSDDD, SIMP traceability, and SPS barriers
 // Uses: WTO Data Portal (SPS/TBT notifications), MFDS (antibiotic detection), OFAC (sanctions)

@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🦐 **2026-07-03 13:11 KST — 새우·오징어 API 캐시 정책 명시 및 하한 121 라쳇** [CC]:
+> - 기획서 축 E-2 후속. 외부 API/실시간 조회 성격의 6개 route(`/api/shrimp/compliance`, `/api/shrimp/customs`, `/api/shrimp/emerging-markets`, `/api/shrimp/forecast`, `/api/shrimp/macro`, `/api/shrimp/sourcing-sim`)에 `dynamic = 'force-dynamic'`을 명시.
+> - 정적/모의 스냅샷 성격의 4개 route(`/api/shrimp/esg-radar`, `/api/shrimp/kamis`, `/api/shrimp/krungsri`, `/api/squid/hsping`)는 각각 1시간 또는 1일 `revalidate`로 명시.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 111→121로 상향. 하한만 올렸을 때 `111/145 explicit, minimum 121` 실패를 먼저 확인한 뒤 GREEN 전환.
+> - 현재 기준선: 145개 API route 중 121개 명시 정책 보유(`revalidate` 68, `dynamic` 46, `Cache-Control` 34). build 출력에서 새우 실시간 route는 `ƒ`, `shrimp/esg-radar`·`shrimp/krungsri`는 `1d`, `shrimp/kamis`·`squid/hsping`은 `1h`.
+> - 검증: `npm run check:api-cache` 121/145 OK, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 대상 테스트 1파일/2테스트 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build` 110 static pages, `npm run check:bundle`).
+> - 다음 라쳇 후보: `/api/squid/importyeti`, `/api/squid/kosis`, `/api/squid/mfds`, `/api/squid/ofac`, `/api/squid/squid-forecast`, `/api/squid/squid-sourcing`, `/api/squid/wto`, `/api/stocks`, `/api/tariffs`, `/api/trade-macro`.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🐟 **2026-07-03 13:09 KST — 수산·명태 API 캐시 정책 명시 및 하한 111 라쳇** [CC]:
 > - 기획서 축 E-2 후속. 외부 API·POST·실시간 enrichment 성격의 9개 route(`/api/mof-fishery`, `/api/oec`, `/api/osh`, `/api/pollock-forecast`, `/api/pollock-landed-cost`, `/api/pollock-policy-risk`, `/api/pollock-supply-chain`, `/api/research`, `/api/risk-radar`)에 `dynamic = 'force-dynamic'`을 명시.
 > - 파일 기반 정적 스냅샷 성격인 `/api/petfood`는 기존 `runtime = 'nodejs'`를 유지하면서 `revalidate = 3600`으로 명시.

@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 
+export const revalidate = 3600;
+
 // 흰다리새우(수입/냉동) 국내 도매가 — agri_data 월간 파이프라인 SYNCED.
 // 데이터: public/data/agri/shrimp_kamis.json
 //   (KAMIS periodProductList item 654/kind01/rank01/cls02, kg 환산, 2026-06-06 코드 검증)

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: 관세청 조정관세(관세법 §69, 오징어 냉동 22%) + FTA 협정세율 + Comtrade CIF 실측.
 // 기존 mock(MFN 20% 등 추정치) → 실제 세율·CIF 기반으로 교체.
 export async function GET() {

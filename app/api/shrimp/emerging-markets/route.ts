@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const dynamic = 'force-dynamic';
+
 // Shrimp Emerging Markets & Bio-Upcycling API (V2.0)
 // Uses: UN Comtrade (HS 3913 chitosan), OEC, Eurostat, U.S. Census
 // Aligned with: (기본 2025-11) 수산물 업사이클링 생태계 조성 방안 연구

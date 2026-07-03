@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getCachedData } from '../../../../lib/cache';
 
+export const dynamic = 'force-dynamic';
+
 // Macro API (BOK / Exchange Rate)
 // Objective: Fetch USD/KRW exchange rate to simulate import margin stress.
 
