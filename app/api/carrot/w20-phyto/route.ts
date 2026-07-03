@@ -11,9 +11,16 @@ export async function GET() {
     const data = JSON.parse(fileContents);
     
     return NextResponse.json({
-      timestamp: new Date().toISOString(),
-      source: "MFDS (식약처) Open API",
-      data: data
+      isLive: false,
+      source: "MFDS static phyto-risk snapshot",
+      data,
+      _metadata: {
+        isLive: false,
+        status: "STATIC",
+        source: "data/carrot_w20_phyto_risk.json",
+        syncDate: "2026-06-06",
+        method: "static JSON snapshot",
+      },
     });
   } catch {
     return NextResponse.json({ error: "Failed to fetch W20 Phyto Risk data" }, { status: 500 });

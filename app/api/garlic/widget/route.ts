@@ -47,7 +47,17 @@ export async function GET(request: Request) {
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(fileContent);
 
-    const response = NextResponse.json({ data });
+    const response = NextResponse.json({
+      data,
+      isLive: false,
+      _metadata: {
+        isLive: false,
+        status: 'STATIC',
+        source: filename,
+        syncDate: '2026-06-06',
+        method: 'static JSON widget snapshot',
+      },
+    });
     response.headers.set('Cache-Control', 'no-store, max-age=0, must-revalidate');
     return response;
   } catch (error) {

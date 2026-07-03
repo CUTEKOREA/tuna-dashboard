@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const type = searchParams.get('type') || 'production';
   
   try {
-    const jsonDirectory = path.join(process.cwd(), 'data/carrot_fao');
+    const jsonDirectory = path.join(process.cwd(), 'data', 'carrot', 'carrot_fao');
     let filename = '';
     
     switch (type) {
@@ -33,9 +33,16 @@ export async function GET(request: Request) {
     const data = JSON.parse(fileContents);
     
     return NextResponse.json({
-      timestamp: new Date().toISOString(),
-      source: "FAOSTAT Open API",
-      data: data
+      isLive: false,
+      source: "FAOSTAT static snapshot",
+      data,
+      _metadata: {
+        isLive: false,
+        status: "STATIC",
+        source: `data/carrot/carrot_fao/${filename}`,
+        syncDate: "2026-06-06",
+        method: "local FAOSTAT extract",
+      },
     });
   } catch {
     return NextResponse.json({ error: "Failed to fetch FAOSTAT data" }, { status: 500 });

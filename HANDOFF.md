@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:49 KST — 정적 상품 API L-12 메타 2차 확대** [CC]:
+> - `/api/carrot/fao`, `/api/carrot/w1-spread`, `/api/carrot/w20-phyto`, `/api/garlic/widget`, `/api/cold-storage/widget`에 `isLive:false`와 `_metadata.status=STATIC` 표준 메타를 추가.
+> - `/api/carrot/fao`의 파일 경로 오류(`data/carrot_fao` → `data/carrot/carrot_fao`)를 정정. `/api/carrot/w1-spread`의 랜덤 노이즈·현재 timestamp 기반 "Live Sim"을 제거하고 1일 revalidate 정적 스냅샷으로 정직화.
+> - `__tests__/static-snapshot-routes.contract.test.ts` 범위를 3개 → 8개 정적 라우트로 확대. 재계측 기준 일반 상품/위젯 정적 파일 라우트는 OK, 남은 GAP은 운영성 라우트(`/api/consignment`, `/api/tuna-local`, `/api/unloading-db`, `/api/us-census`, `/api/webhooks/unloading`).
+> - 검증: 정적 스냅샷 계약 8/8 통과, 아키텍처 가드 포함 대상 테스트 13개 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 10파일/46테스트, `npm run build` 144 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:45 KST — 정적 스냅샷 API L-12 메타 표준화** [CC]:
 > - `/api/tuna-extract`, `/api/jukkumi-intelligence`, `/api/petfood`가 정적/추정 JSON 스냅샷임을 응답 최상위 `isLive:false`와 `_metadata.status=STATIC`으로 명시하도록 표준화.
 > - `/api/tuna-extract`는 저장소에 `data/tuna_extract_dashboard.json`이 없어 500이 날 수 있던 경로를 정직 fallback으로 전환. 파일 부재 시에도 컴포넌트 fallback을 살릴 수 있게 200 + `_metadata.apiHealth.ok=false`를 반환.

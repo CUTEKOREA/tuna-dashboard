@@ -7,6 +7,36 @@ type RouteModule = {
 
 const routes = [
   {
+    label: '/api/carrot/fao',
+    importRoute: () => import('../app/api/carrot/fao/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/carrot/fao?type=production',
+    source: 'data/carrot/carrot_fao/carrot_fao_w1_production.json',
+  },
+  {
+    label: '/api/carrot/w1-spread',
+    importRoute: () => import('../app/api/carrot/w1-spread/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/carrot/w1-spread',
+    source: 'data/carrot_w1_hegemony.json',
+  },
+  {
+    label: '/api/carrot/w20-phyto',
+    importRoute: () => import('../app/api/carrot/w20-phyto/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/carrot/w20-phyto',
+    source: 'data/carrot_w20_phyto_risk.json',
+  },
+  {
+    label: '/api/cold-storage/widget',
+    importRoute: () => import('../app/api/cold-storage/widget/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/cold-storage/widget?id=w01',
+    source: 'cold_storage/cold_storage_w01.json',
+  },
+  {
+    label: '/api/garlic/widget',
+    importRoute: () => import('../app/api/garlic/widget/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/garlic/widget?id=w1',
+    source: 'garlic_w1_hegemony.json',
+  },
+  {
     label: '/api/tuna-extract',
     importRoute: () => import('../app/api/tuna-extract/route') as Promise<RouteModule>,
     url: 'http://localhost/api/tuna-extract',

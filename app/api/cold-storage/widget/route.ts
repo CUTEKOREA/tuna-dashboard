@@ -48,7 +48,17 @@ export async function GET(request: Request) {
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const data = JSON.parse(fileContent);
 
-    return NextResponse.json({ data });
+    return NextResponse.json({
+      data,
+      isLive: false,
+      _metadata: {
+        isLive: false,
+        status: 'STATIC',
+        source: filename,
+        syncDate: '2026-06',
+        method: 'static JSON widget snapshot',
+      },
+    });
   } catch (error) {
     console.error('API /api/cold-storage/widget error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
