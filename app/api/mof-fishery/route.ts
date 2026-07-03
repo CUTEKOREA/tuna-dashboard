@@ -16,9 +16,6 @@ import { NextRequest, NextResponse } from 'next/server';
 const SERVICE_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 const KCS_KEY = process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c';
 
-// HS codes for tuna
-const TUNA_HS_CODES = ['0302', '030231', '030232', '030233', '030234', '030235', '030239', '160414'];
-
 interface ApiEndpoint {
   url: string;
   params: Record<string, string>;

@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 10:08 KST — API 전체 unused lint debt 제거** [CC]:
+> - `app/api` 전역의 남은 unused lint warning 27개 제거. 주요 변경: catch 인자 제거, 미사용 env/base 상수 제거, 미사용 destructuring 제거, `Object.entries(...).map(([cc, d])...)` → `Object.values(...).map(d...)` 정리.
+> - `app/api/_shared/kcs-client.ts`, beef/carrot/galchi/kim/mackerel/pollock/salmon/tuna 등 API 응답 계약과 fallback 동작은 유지. `landed-cost`의 미사용 통화 맵처럼 실제 산식에 쓰이지 않는 잔여 코드만 제거.
+> - `npx eslint app/api --format json` 기준 `app/api` warning 0 달성. 전체 `npm run lint` 기준선은 108 → 81 warnings로 감소.
+> - 검증: `app/api` lint 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 81 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), `git diff --check -- app/api` 통과.
+> - 미배포(로컬). 기존/무관 dirty 파일(`components/FleetCharts.tsx`, `data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 10:05 KST — 추가 API route lint debt 제거** [CC]:
 > - `app/api/beef/hanwoo-price/route.ts`, `app/api/consignment/route.ts`, `app/api/fishery/route.ts`, `app/api/pollock-policy-risk/route.ts`, `app/api/risk-radar/route.ts`에서 미사용 catch 인자·미사용 GET request·미사용 helper/상수를 제거.
 > - API 응답 계약, fallback 경로, cache/no-store 헤더는 유지. `risk-radar`의 OFAC 체크는 실제 사용 인자인 `country`만 받도록 정리.

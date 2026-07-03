@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       source: "FAOSTAT Open API",
       data: data
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch FAOSTAT data" }, { status: 500 });
   }
 }

@@ -73,7 +73,7 @@ export async function GET() {
 
     // Fallback — 실제 캐시 기준일 표기 (오늘 날짜 위장 금지)
     return fallbackResponse();
-  } catch (err) {
+  } catch {
     return fallbackResponse();
   }
 }

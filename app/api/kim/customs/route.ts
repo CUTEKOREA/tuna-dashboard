@@ -135,7 +135,7 @@ export async function GET() {
         }
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[KIM KCS API] 연동 실패, Fallback 데이터 사용');
   }
 

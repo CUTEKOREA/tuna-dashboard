@@ -120,7 +120,7 @@ export async function GET() {
     };
 
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ isLive: false, error: "Failed to build Mangosteen baseline data" }, { status: 500 });
   }
 }

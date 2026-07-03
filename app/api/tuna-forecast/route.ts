@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
     if (include_sensitivity) result.landing_cost_sensitivity = PRICE_FORECAST.landing_cost_sensitivity;
 
     return NextResponse.json(result);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: PRICE_FORECAST }, { status: 500 });
   }
 }

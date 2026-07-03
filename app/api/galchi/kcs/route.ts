@@ -131,8 +131,8 @@ export async function GET(request: Request) {
         cnPct,
         cifPerKg
       },
-      byOrigin: Object.entries(byCountry)
-        .map(([cc, d]) => ({ origin: d.name, volume: Math.round(d.volume), value: Math.round(d.value), share: Math.round(d.volume / totalWgt * 1000) / 10 }))
+      byOrigin: Object.values(byCountry)
+        .map((d) => ({ origin: d.name, volume: Math.round(d.volume), value: Math.round(d.value), share: Math.round(d.volume / totalWgt * 1000) / 10 }))
         .sort((a, b) => b.volume - a.volume)
         .slice(0, 10),
       yearly: YEARLY_ACTUAL,

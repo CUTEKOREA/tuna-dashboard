@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
 const KOSIS_KEY = process.env.KOSIS_API_KEY || "";
-const KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do";
 
 const FALLBACK = {
   source: "KOSIS API (로컬 표본 데이터)",

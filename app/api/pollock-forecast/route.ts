@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
     if (include_scenarios) result.scenarios = POLLOCK_FORECAST.scenarios;
 
     return NextResponse.json(result);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: POLLOCK_FORECAST }, { status: 500 });
   }
 }

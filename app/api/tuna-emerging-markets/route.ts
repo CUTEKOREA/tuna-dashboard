@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
       },
       ...EMERGING_MARKETS,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: EMERGING_MARKETS }, { status: 500 });
   }
 }

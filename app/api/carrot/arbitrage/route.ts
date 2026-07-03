@@ -38,7 +38,7 @@ export async function GET() {
     };
 
     return NextResponse.json(response);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch arbitrage data" }, { status: 500 });
   }
 }

@@ -84,7 +84,7 @@ export async function POST(req: Request) {
         isLive = true;
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[UN Comtrade] 연동 실패, Fallback 데이터 사용');
   }
 

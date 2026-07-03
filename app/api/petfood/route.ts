@@ -59,7 +59,7 @@ export async function GET() {
       fs.readFileSync(path.join(process.cwd(), 'public/data/agri/petfood_customs.json'), 'utf8')
     );
     if (pfCustoms?.d_w12?.length) data.d_w12 = pfCustoms.d_w12;
-  } catch (e) {
+  } catch {
     data.d_w12 = [
       { country: "중국", value: 26650, share: 26.3 },
       { country: "미국", value: 17663, share: 17.4 },

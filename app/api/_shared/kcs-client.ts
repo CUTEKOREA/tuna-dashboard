@@ -167,8 +167,8 @@ export function aggregateByCountry(
     majorDlr,
     majorPct,
     cifPerKg,
-    byOrigin: Object.entries(byCountry)
-      .map(([cc, d]) => ({
+    byOrigin: Object.values(byCountry)
+      .map((d) => ({
         origin: d.name,
         volume: d.volume,
         value: d.value,

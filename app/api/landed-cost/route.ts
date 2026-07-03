@@ -127,14 +127,8 @@ export async function POST(req: Request) {
       '중국': '156', '베트남': '704', '태국': '764', '인도네시아': '360',
       '미국': '842', '일본': '392', '인도': '356',
     };
-    const countryCurrencyMap: Record<string, string> = {
-      '중국': 'CNY', '베트남': 'VND', '태국': 'THB', '인도네시아': 'IDR',
-      '미국': 'USD', '일본': 'JPY', '인도': 'USD',
-    };
-
     const cc = countryCodeMap[originCountry] || 'CN';
     const iso3 = countryISO3Map[originCountry] || '156';
-    const currency = countryCurrencyMap[originCountry] || 'USD';
 
     // Parallel API calls
     const [exchangeRate, freight, tariff] = await Promise.all([

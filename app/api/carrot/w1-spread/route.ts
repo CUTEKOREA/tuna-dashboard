@@ -36,7 +36,7 @@ export async function GET() {
       source: "KAMIS x KCS Hybrid (Live Sim)",
       data: perturbedData
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch W1 spread data" }, { status: 500 });
   }
 }

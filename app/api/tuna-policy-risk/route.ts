@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
       },
       ...POLICY_RISK_MATRIX,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: POLICY_RISK_MATRIX }, { status: 500 });
   }
 }

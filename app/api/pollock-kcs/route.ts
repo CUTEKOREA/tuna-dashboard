@@ -100,8 +100,8 @@ export async function GET(request: Request) {
       isLive: true,
       lastUpdated: new Date().toISOString(),
       summary: { totalWgt, totalDlr, ruWgt, ruDlr, ruPct, cifPerKg },
-      byOrigin: Object.entries(byCountry)
-        .map(([cc, d]) => ({ origin: d.name, volume: d.volume, value: d.value, share: Math.round(d.volume / totalWgt * 1000) / 10 }))
+      byOrigin: Object.values(byCountry)
+        .map((d) => ({ origin: d.name, volume: d.volume, value: d.value, share: Math.round(d.volume / totalWgt * 1000) / 10 }))
         .sort((a, b) => b.volume - a.volume)
         .slice(0, 10),
       yearly: FALLBACK_DATA.yearly,

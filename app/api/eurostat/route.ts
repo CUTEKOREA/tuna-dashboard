@@ -107,7 +107,7 @@ export async function GET() {
         scope = 'EU-27 역외(Extra-EU) 수입, HS 030354 (Eurostat Comext DS-045409)';
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[Eurostat Comext] 연동 실패, Fallback 사용');
   }
 

@@ -132,7 +132,7 @@ export async function POST(request: NextRequest) {
       },
       ...POLLOCK_SUPPLY_CHAIN,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed', data: POLLOCK_SUPPLY_CHAIN }, { status: 500 });
   }
 }

@@ -1,11 +1,5 @@
 import { NextResponse } from "next/server";
 
-// L-10: fallback 키 보유 — env 우선, 없으면 하드코딩 키로 라이브 시도
-const COMTRADE_KEY =
-  process.env.UN_COMTRADE_PRIMARY_KEY ||
-  process.env.UN_COMTRADE_SECONDARY_KEY ||
-  "61063fe9f1d2483ea97a9e526daf20a6";
-
 const FALLBACK = {
   source: "UN Comtrade HS 030389 (Forensic 파싱 캐시)",
   isLive: false,

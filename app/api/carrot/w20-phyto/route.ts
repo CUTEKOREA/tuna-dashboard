@@ -15,7 +15,7 @@ export async function GET() {
       source: "MFDS (식약처) Open API",
       data: data
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch W20 Phyto Risk data" }, { status: 500 });
   }
 }

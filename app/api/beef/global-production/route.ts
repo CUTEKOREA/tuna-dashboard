@@ -40,9 +40,6 @@ const TOP5_M49: Record<string, string> = {
   '840': '미국', '076': '브라질', '156': '중국', '032': '아르헨티나', '036': '호주',
 };
 
-// World Bank Beef 가격 시계열 (월 평균 → 연 평균 환산용, USD/kg) — 100 기준 정규화
-const WB_PRICE_INDEX_BASE_2015 = 100;
-
 interface FaoRow { Year: string; Value: number; 'Area Code (M49)'?: string; Area?: string; }
 
 async function fetchFaostatWorldTrend(): Promise<{ trend: typeof FALLBACK_TREND, src: string } | null> {

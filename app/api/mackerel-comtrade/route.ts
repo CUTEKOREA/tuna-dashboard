@@ -67,7 +67,7 @@ export async function GET() {
         isLive = true;
       }
     }
-  } catch (e) {
+  } catch {
     console.warn('[UN Comtrade mackerel] 연동 실패, Fallback 데이터 사용');
   }
 
