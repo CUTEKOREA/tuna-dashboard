@@ -3,7 +3,9 @@ import { Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart } from
 import { Fish } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import rawData from '../data/salmonInsightFeedBio.json';
+import { getSalmonData } from '@/lib/data/salmon';
+
+const rawData = getSalmonData('feedBio');
 
 export default function SalmonInsightFeedBio() {
   return (

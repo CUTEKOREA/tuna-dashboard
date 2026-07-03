@@ -3,8 +3,9 @@ import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 import { ShoppingCart, RefreshCcw } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import rawData from '../data/salmon_insight_trade_down.json';
+import { getSalmonData } from '@/lib/data/salmon';
 
+const rawData = getSalmonData('tradeDown');
 const euData = rawData.euData;
 
 export default function SalmonInsightTradeDown() {

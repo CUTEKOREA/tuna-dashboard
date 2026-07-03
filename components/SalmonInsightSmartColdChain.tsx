@@ -3,7 +3,9 @@ import { Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ComposedChart 
 import { Truck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import rawData from '../data/salmonInsightSmartColdChain.json';
+import { getSalmonData } from '@/lib/data/salmon';
+
+const rawData = getSalmonData('smartColdChain');
 
 export default function SalmonInsightSmartColdChain() {
   return (

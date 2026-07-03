@@ -5,7 +5,9 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Factory } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import rawData from '../data/SalmonInsightProcessingData.json';
+import { getSalmonData } from '@/lib/data/salmon';
+
+const rawData = getSalmonData('processing');
 
 export default function SalmonInsightProcessing() {
   return (

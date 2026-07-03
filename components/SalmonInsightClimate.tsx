@@ -4,8 +4,10 @@ import React from 'react';
 import { ComposedChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar, Line } from 'recharts';
 import { AlertTriangle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/salmonInsightClimate.json';
+import { getSalmonData } from '@/lib/data/salmon';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getSalmonData('climate');
 
 export default function SalmonInsightClimate() {
   return (

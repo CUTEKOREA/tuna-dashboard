@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { Leaf, Shield, Users, Thermometer } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/salmon_esg_tracker.json';
+import { getSalmonData } from '@/lib/data/salmon';
 
+const rawData = getSalmonData('esgTracker');
 const ICONS: Record<string, any> = { Users, Thermometer, Shield };
 const originData: Record<string, any[]> = rawData.originData;
 

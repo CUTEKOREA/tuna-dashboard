@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { Building2, TrendingUp, TrendingDown, Zap, AlertTriangle, CheckCircle } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/salmon_policy_impact.json';
+import { getSalmonData } from '@/lib/data/salmon';
 
+const rawData = getSalmonData('policyImpact');
 const ICONS: Record<string, any> = { AlertTriangle, CheckCircle, Building2, TrendingDown };
 const SCENARIOS: any[] = rawData.scenarios;
 

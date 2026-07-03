@@ -2,8 +2,10 @@ import React, { useMemo } from 'react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { DollarSign } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/salmon_global_supply_price.json';
+import { getSalmonData } from '@/lib/data/salmon';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const rawData = getSalmonData('globalSupplyPrice');
 
 export default function SalmonInsightGlobalSupplyPrice({ simulationFactors = { nok: 0, eur: 0, mgo: 0 } }: any) {
   // Apply simulation: EUR price increases if NOK is strong, or MGO is high

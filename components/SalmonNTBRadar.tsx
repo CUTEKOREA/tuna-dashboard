@@ -2,8 +2,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Shield, AlertTriangle, CheckCircle, AlertCircle, RefreshCcw, FileSearch } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/salmon_ntb_radar.json';
+import { getSalmonData } from '@/lib/data/salmon';
 
+const rawData = getSalmonData('ntbRadar');
 const staticItems = rawData.complianceItems;
 
 export default function SalmonNTBRadar() {

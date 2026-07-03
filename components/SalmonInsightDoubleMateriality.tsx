@@ -4,7 +4,9 @@ import React from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import { ShieldCheck } from 'lucide-react';
 import WidgetCard from './WidgetCard';
-import rawData from '../data/SalmonInsightDoubleMateriality.json';
+import { getSalmonData } from '@/lib/data/salmon';
+
+const rawData = getSalmonData('doubleMateriality');
 
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {

@@ -3,8 +3,9 @@ import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 import { Ship, Anchor } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs, A11Y_PALETTE } from './ChartPatterns';
-import rawData from '../data/salmon_logistics_resilience.json';
+import { getSalmonData } from '@/lib/data/salmon';
 
+const rawData = getSalmonData('logisticsResilience');
 const euImportData = rawData.euImportData;
 const freightData = rawData.freightData;
 
