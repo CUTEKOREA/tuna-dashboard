@@ -12,7 +12,6 @@ import { RefreshCcw,
   ShieldCheck, Leaf, Recycle, Award, Factory, Scale, Zap, DollarSign, PieChart as PieChartIcon, Activity,
   ArrowRightLeft, Thermometer, Ban
 } from 'lucide-react';
-import TermTooltip from './TermTooltip';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
@@ -23,16 +22,6 @@ const PINK = '#94a3b8';
 const PIE_COLORS = ['var(--color-info)', 'var(--color-success)', 'var(--color-warning)', '#8b5cf6', '#06b6d4', 'var(--color-danger)', '#f97316', '#64748b', '#ec4899', '#14b8a6'];
 
 /* ======= HELPER COMPONENTS ======= */
-const CardHeader = ({ title, icon: Icon, term, desc }: any) => (
-  <div className={styles.cardHeader}>
-    <h3 className={styles.cardTitle}>
-      <Icon size={18} className={styles.cardIcon} /> {title}
-    </h3>
-    {term && <TermTooltip term={term} description={desc} />}
-  </div>
-);
-
-
 const KpiCard = ({ label, value, unit }: { label: string; value: string; unit?: string }) => (
   <div className={styles.kpiCard}>
     <div className={styles.kpiLabel}>{label}</div>
@@ -73,7 +62,31 @@ export default function PetFoodDashboard() {
 
   if (!data) return <div style={{ padding: '2rem', color: '#94a3b8', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column' }}><div><RefreshCcw size={24} className={styles.rotateIcon} style={{marginBottom: '1rem'}}/></div><div>데이터 로딩 중...</div></div>;
 
-  const { kpis, d_simulator, d_channel_share, d_export_dest, d_w01, d_w02, d_w03, d_w04, d_w05, d_w06, d_w07, d_w08, d_w09, d_w10, d_w11, d_w12, d_w13, d_w14, d_w15, d_w16, d_w17, d_w18, d_w19, d_w20, d_w21, d_w22, d_w23, d_w24, d_w25, d_w26, d_w27_radar, d_w28, d_w30, d_w31, d_w32, d_nw01_bycatch, d_nw02_quota, d_nw03_climate, d_nw04_radar, d_nw05_retention, d_nw05_abidjan, d_nw06_mmpa, d_w33, d_w34, d_w35, d_w36, d_kfas_w01, d_kfas_w02, d_kfas_w03, d_kfas_w04, d_kfas_w05, d_illex_risk, d_protein_mix, d_macro_sensitivity, d_sg_b2b } = data;
+  const {
+    d_simulator,
+    d_w09,
+    d_w10,
+    d_w15,
+    d_w16,
+    d_w17,
+    d_w19,
+    d_w20,
+    d_w22,
+    d_w23,
+    d_w24,
+    d_w26,
+    d_w28,
+    d_w31,
+    d_nw02_quota,
+    d_nw03_climate,
+    d_w33,
+    d_w34,
+    d_kfas_w02,
+    d_kfas_w04,
+    d_kfas_w05,
+    d_illex_risk,
+    d_protein_mix,
+  } = data;
 
 
 

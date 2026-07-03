@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:43 KST — PetFoodDashboard lint debt 제거** [CC]:
+> - `components/PetFoodDashboard.tsx`에서 렌더 경로가 사라진 `CardHeader`/`TermTooltip` 잔재와 미사용 JSON destructuring 32개를 제거. 화면 구조·차트·데이터 API는 그대로 두고 실제 사용 키만 명시적으로 바인딩.
+> - 대상 파일 `npx eslint components/PetFoodDashboard.tsx --format json` 기준 warning 33 → 0. 전체 `npm run lint` 기준선은 233 → 200 warnings로 감소.
+> - 검증: `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 200 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), `git diff --check -- components/PetFoodDashboard.tsx` 통과.
+> - 미배포(로컬). 기존 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:38 KST — 앱 셸 dead code 정리 + P-03 문구 라쳇** [CC]:
 > - `app/page.tsx`의 미사용 동적 import 10개와 끊긴 구형 차트 상태(`initialChartData`, `chartData`, `liveData`, `fxData`), 진입점이 사라진 VHF radio/crisis mode 코드를 제거. 첫 화면에서 불필요하게 호출되던 `/api/exchange`, `/api/tuna-live`도 제거하고, 실제 참조가 남은 MGO 모달용 `/api/mgo`만 유지.
 > - 로컬 스모크 중 `WidgetCard` P-03 런타임 감사가 잡은 `**[Actionable Insight]**` 2건을 계기로, 렌더 소스/공개 데이터에서 금지 패턴(`Actionable Insight`, `(Conviction Buy)`, `(Strong Buy)`, `압도적`, `독보적` 등) 제거. 표현은 `뚜렷한`, `차별화된`, 중립 메모 라벨로 치환하고 `WidgetCard`의 금지 패턴 규칙은 원상 유지.
