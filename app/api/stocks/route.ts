@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import YahooFinance from 'yahoo-finance2';
 
+export const dynamic = 'force-dynamic';
+
 const yahooFinance = new YahooFinance({ suppressNotices: ['yahooSurvey'] });
 
 const SEAFOOD_COMPANIES = [

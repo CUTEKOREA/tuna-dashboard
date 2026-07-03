@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: 식약처 식품공전 중금속 기준(실측) + 한국 수입검사 프로토콜 보고서.
 // 기존 mock(국가별 적발률 가공치) → 실제 규제 한도·종별 리스크로 교체.
 export async function GET() {

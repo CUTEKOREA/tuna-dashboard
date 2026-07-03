@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * KOSIS API healthcheck — 키 유효성 + 응답 지연 측정
  * 위젯 데이터는 정적 (CPI 시계열 매핑 작업 별도 필요), 헬스 표기만 LIVE

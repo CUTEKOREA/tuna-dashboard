@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // Trade Macro API — REAL API ONLY (No Mock Data)
 // Sources: Gemini AI (HS Code) → WITS (Tariff) → KCS (Volume) → KAMIS (Price)

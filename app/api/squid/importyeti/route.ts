@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: UN Comtrade 2023 EU 수입 상대비중(실측) + EJF 2025. 기존 mock(벤더별 TEU 가공치) 제거.
 export async function GET() {
   const data = {

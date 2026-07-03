@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: agri_data 실측(UN Comtrade 거울통계) + EJF 2025 보고서 기반.
 // 기존 mock(중국 선단 IUU '적발 건수' 가공치) → 실측 무역 불일치 데이터로 교체.
 export async function GET() {

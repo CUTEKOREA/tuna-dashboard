@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: agri_data squid_unit_price.json 실측(2018-2023). 기존 'AI 예측' mock 제거.
 export async function GET() {
   const data = {

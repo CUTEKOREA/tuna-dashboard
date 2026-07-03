@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // Tariffs.io API Pipeline — Global Tariff Stacking & Landed Cost
 // POST /api/tariffs — Fetch complex tariff stacking (Section 301/232)
 // GET  /api/tariffs — Health check

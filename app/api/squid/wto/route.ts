@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: EU/한국/일본 실제 중금속 한도 + IUU 통상 규정(실측). 기존 mock(분기별 SPS 발동 건수) 제거.
 export async function GET() {
   const data = {
