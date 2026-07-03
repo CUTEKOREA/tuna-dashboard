@@ -1,5 +1,10 @@
 # HANDOFF — 현재 작업 상태
 
+> 🚧 **2026-07-03 14:13 KST — 배포 전 C-4 데이터 import 게이트 보정** [CC]:
+> - `git push origin main` 시 pre-push C-4 게이트가 `lib/data/misc.ts`의 빌드타임 import 대상 `data/reefer_week26.json` 미추적을 감지해 push를 차단.
+> - Vercel 빌드 누락 방지를 위해 `data/reefer_week26.json`을 `git add -f`로 추적 대상에 포함. 기존 무관 dirty 파일은 그대로 보존.
+> - 검증 예정: 추적 추가 커밋 후 `npm run verify` 재확인 및 `git push origin main` 재시도.
+
 > 📊 **2026-07-03 14:08 KST — 통합 인텔리전스 화면 노출** [CC]:
 > - 기획서 축 D 제품 도약 후속. 기존 `/api/cross-commodity-intelligence` 모델을 실제 UI로 노출하는 `components/CrossCommodityIntelligenceDashboard.tsx` 추가.
 > - 새 route/menu 키 `cross-intelligence`를 `lib/dashboard-registry.ts`, 사이드바 전략 분석 섹션, public sitemap, `DASHBOARD_PANEL_ORDER`, `app/page.tsx` 패널 맵에 연결.
