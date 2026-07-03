@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 📦 **2026-07-03 12:53 KST — 라우트 번들 예산 게이트 추가** [CC]:
+> - 기획서 축 E-1 성능·관측성 착수. Next build 산출물 `.next/diagnostics/route-bundle-stats.json`을 읽는 `scripts/check_route_bundle_budget.mjs`를 추가해 라우트별 first-load JS 예산을 CI에서 검사.
+> - 기본 예산: 일반 route 1.30MB, 동적 대시보드 셸 `/[category]` 750KB. 현재 실측 상위 route는 `/management` 1.21MB, `/omo-preview` 1.17MB, `/falkland` 1.15MB, `/ffa-report` 1.10MB, `/` 976KB.
+> - `package.json`의 `npm run verify`를 `lint → typecheck → test → build → check:bundle`로 확장하고, GitHub Actions path에 번들 예산 스크립트를 추가.
+> - TDD 확인: 스크립트 미존재 실패를 먼저 확인한 뒤 구현. 신규 `__tests__/route-bundle-budget-script.test.ts` 2개 테스트가 통과/초과 실패 메시지를 검증.
+> - 검증: 대상 테스트 1파일/2테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 실제 `.next` 기준 `npm run check:bundle` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 15파일/64테스트, `npm run build` 145 routes, `npm run check:bundle` 9 routes OK).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧩 **2026-07-03 12:50 KST — 본문 대시보드 패널 레지스트리 렌더 이관** [CC]:
 > - 기획서 축 C 팩토리화 후속. `lib/dashboard-registry.ts`에 `DASHBOARD_PANEL_ORDER`를 추가하고, `app/page.tsx`의 34개 수동 `KeepAlivePanel` 렌더 분기를 `DASHBOARD_PANEL_ORDER.map(...)` 기반으로 교체.
 > - 메뉴 URL 상태를 `usePathname()`에서 직접 파생하고 `useRouter().replace()`로 이동하도록 정리해, 수동 `history.replaceState` 이후 사이드바 클릭 이벤트가 죽는 문제를 제거.
