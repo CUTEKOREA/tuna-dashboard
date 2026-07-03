@@ -1,11 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
-> 🐟 **2026-07-03 15:06 KST — `/market` 참치 어가 KPI 지역 스프레드 반영** [CC]:
+> ✅ **2026-07-03 15:15 KST — `/market` 참치 어가 KPI 지역 스프레드 라이브 배포 완료** [CC]:
 > - 사용자 요청으로 `/market` 상단 2개 어가 카드가 아래 차트 `글로벌 참치 어가 추이 (SKJ·YF 지역 스프레드)`와 같은 Atuna 허브 묶음을 반영하도록 수정. 기존 단일 허브 제목 `SKJ 가다랑어 (방콕)`, `YF 황다랑어 (세이셸)`을 각각 `SKJ 가다랑어 지역 스프레드`, `YF 황다랑어 지역 스프레드`로 교체.
 > - `lib/data/atuna-price-summary.ts` 추가. SKJ 5개 허브(`방콕·만타·아비장·세이셸·비고`)와 YF 3개 허브(`아비장·세이셸·비고`)의 허브별 최신 관측치, 대표 최신값, 직전 고시 대비 변화율, 최저~최고 스프레드를 한 번에 산출.
 > - 재발 방지: `__tests__/atuna-price-summary.test.ts`로 sparse Atuna 히스토리 계산 계약을 고정하고, `market-dashboard-composition.test.ts`에 상단 카드가 지역 스프레드 문구를 노출하며 옛 단일 허브 제목을 쓰지 않는 가드를 추가.
 > - 검증: 대상 테스트 2파일/4테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run build` 통과(97 static pages), `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 19파일/78테스트, `npm run check:api-cache` 145/145, `npm run build`, `npm run check:bundle`). 로컬 `http://127.0.0.1:3020/market` Puppeteer 확인: 새 SKJ/YF 지역 스프레드 카드 렌더, 옛 단일 허브 제목 미렌더, 참치 어가 차트 유지, horizontalOverflow=0.
-> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
+> - 라이브: code commit `7ad628c` push 완료. pre-push C-4 143/143 tracked 및 L-03 build gate 통과. Vercel production `dpl_6EyerJ8DfMwWy2pikwnMPo5vS8Xn` READY, aliases `https://leedonggun.co.kr`, `https://tuna-dashboard-kappa.vercel.app` 연결 확인. `https://leedonggun.co.kr/market?deploy=7ad628c-*` Puppeteer 확인: 새 SKJ/YF 지역 스프레드 카드 렌더, 옛 단일 허브 제목 미렌더, 참치 어가 차트 유지, horizontalOverflow=0.
+> - 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
 
 > ✅ **2026-07-03 14:55 KST — `/market` 교차 품목 인텔리전스 블록 라이브 배포 완료** [CC]:
 > - 사용자 요청으로 `/market` 상단의 `가격·수요·리스크를 한 번에 묶은 포트폴리오 판단판` 항목을 제거. `components/MarketDashboard.tsx`에서 `CrossCommodityIntelligence` import와 렌더 호출만 제거해 `/cross-intelligence` 전용 화면과 API는 유지.
