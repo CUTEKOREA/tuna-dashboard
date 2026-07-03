@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧭 **2026-07-03 11:56 KST — `/market` 교차 품목 인텔리전스 1차 구현** [CC]:
+> - 기획서 축 D 제품도약 착수. `/market` 화면 상단 KPI 아래에 `CrossCommodityIntelligence`를 연결해 대체재 탄력성 매트릭스, 통합 리스크 레이더, 포트폴리오 마진 보드 3개 위젯을 추가.
+> - `lib/data/cross-commodity-intelligence.ts`에 정적 종합 모델을 분리. 가격 격차·수요 이동률·탄력성, 환율/유가/기후/통관/관세 충격, 마진·수요·조달 리스크·헤지 적합도를 0~100점으로 계산하고 정렬.
+> - 모든 새 위젯 TelemetryBadge는 `STATIC`으로 명시. 출처는 "Atuna·KCS·KAMIS·USDA FAS·FAOSTAT 계열 위젯 종합"으로 표기해 LIVE 신호와 혼동되지 않게 함.
+> - `__tests__/cross-commodity-intelligence.test.ts` 신규 추가. STATIC 메타, 점수 정렬, 0~100 범위, 헤드라인 파생 계약 4개 테스트로 보호.
+> - 검증: 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 신규 테스트 4/4 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 11파일/50테스트, `npm run build` 144 routes). 기존 dev 서버 `127.0.0.1:3020`에서 `/market` Puppeteer 검증: 데스크톱/모바일 모두 새 섹션 3개 렌더, horizontalOverflow=false.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:49 KST — 정적 상품 API L-12 메타 2차 확대** [CC]:
 > - `/api/carrot/fao`, `/api/carrot/w1-spread`, `/api/carrot/w20-phyto`, `/api/garlic/widget`, `/api/cold-storage/widget`에 `isLive:false`와 `_metadata.status=STATIC` 표준 메타를 추가.
 > - `/api/carrot/fao`의 파일 경로 오류(`data/carrot_fao` → `data/carrot/carrot_fao`)를 정정. `/api/carrot/w1-spread`의 랜덤 노이즈·현재 timestamp 기반 "Live Sim"을 제거하고 1일 revalidate 정적 스냅샷으로 정직화.

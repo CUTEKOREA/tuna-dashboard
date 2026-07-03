@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import WidgetCard from './WidgetCard';
 import SeafoodStockWidget from './SeafoodStockWidget';
+import CrossCommodityIntelligence from './CrossCommodityIntelligence';
 
 // 페이월 데이터 보호: atuna_prices.json 정적 import 금지(클라이언트 번들 노출) —
 // 인증 게이팅된 /api/atuna-prices 응답(history)만 사용
@@ -321,6 +322,8 @@ export default function MarketDashboard() {
           </div>
         </div>
       </section>
+
+      <CrossCommodityIntelligence />
 
       {/* ROW 2: TUNA PRICE TRENDS BY REGION */}
       <section className="ds-card">

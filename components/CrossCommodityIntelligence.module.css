@@ -1,0 +1,263 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 16px;
+  align-items: end;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: #38bdf8;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 8px 0 0;
+  color: var(--text-main);
+  font-size: 1.22rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.deck {
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.headlineGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.headlineTile {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(140, 170, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.58);
+}
+
+.headlineLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.headlineValue {
+  margin-top: 6px;
+  color: var(--text-main);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.bodyStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.signalRow {
+  display: grid;
+  grid-template-columns: minmax(104px, 0.75fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(140, 170, 255, 0.12);
+}
+
+.signalRow:last-child {
+  border-bottom: 0;
+}
+
+.pair {
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.trigger {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.score {
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.barShell {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.barFill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22d3ee, #a78bfa);
+}
+
+.riskTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+
+.riskTable th {
+  color: var(--text-muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.riskTable td {
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+}
+
+.riskFactor {
+  color: var(--text-main);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.heatCell {
+  width: 34px;
+  height: 22px;
+  border-radius: 5px;
+  color: #f8fafc;
+  font-size: 0.66rem;
+  font-weight: 900;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.level {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 38px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  border: 1px solid currentColor;
+}
+
+.portfolioRow {
+  display: grid;
+  grid-template-columns: minmax(84px, 0.8fr) 52px 60px 54px;
+  gap: 8px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(140, 170, 255, 0.12);
+}
+
+.portfolioRow:last-child {
+  border-bottom: 0;
+}
+
+.commodity {
+  color: var(--text-main);
+  font-size: 0.8rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.metricLabel {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.metricValue {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+
+.decision {
+  justify-self: end;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 850;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  color: var(--text-main);
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.decisionBuy {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.34);
+  background: rgba(52, 211, 153, 0.11);
+}
+
+.note {
+  color: var(--text-tertiary);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 1180px) {
+  .header,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .headlineGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .signalRow,
+  .portfolioRow {
+    grid-template-columns: 1fr;
+  }
+
+  .decision {
+    justify-self: start;
+  }
+
+  .riskTable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
