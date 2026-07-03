@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 09:49 KST — trade-macro API lint debt 제거** [CC]:
+> - `app/api/trade-macro/route.ts`에서 미사용 `countryISO3Map`과 사용하지 않는 catch 인자 7개를 제거. Gemini/KCS/KAMIS/FDA/MFDS 응답 계약과 fallback 로직은 그대로 유지.
+> - 대상 파일 lint warning 8 → 0. 전체 `npm run lint` 기준선은 180 → 172 warnings로 감소.
+> - 검증: `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 172 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes), 대상 파일 `git diff --check` 통과.
+> - 미배포(로컬). 기존 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 09:47 KST — TunaRanching/SupplierDiscovery lint debt 제거** [CC]:
 > - `components/TunaRanching.tsx`: 미사용 KPI 테마 배열, 숫자 애니메이션 파서, 끊긴 시뮬레이터 state, 미사용 데이터 destructuring 제거. 현 렌더에 연결된 차트/중동/쿼터/미식 지도 데이터 흐름은 유지.
 > - `components/SupplierDiscoveryDashboard.tsx`: 현재 통합 검색(`macroItem`) 흐름과 겹치던 구 단일 검색 state/handler, 미사용 HS 상태, 미사용 trend 데이터, 미사용 slider setter/catch 인자를 제거. RFQ 생성 query는 실제 입력값인 `macroItem`으로 정리.

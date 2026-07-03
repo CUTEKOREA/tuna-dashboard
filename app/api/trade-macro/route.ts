@@ -13,14 +13,6 @@ const countryCodeMap: Record<string, string> = {
   '아르헨티나': 'AR', '말레이시아': 'MY', '필리핀': 'PH', '세네갈': 'SN'
 };
 
-const countryISO3Map: Record<string, string> = {
-  '중국': '156', '베트남': '704', '태국': '764', '인도네시아': '360',
-  '미국': '842', '일본': '392', '인도': '356', '노르웨이': '578',
-  '러시아': '643', '에콰도르': '218', '칠레': '152', '페루': '604',
-  '호주': '036', '캐나다': '124', '대만': '158', '스페인': '724',
-  '아르헨티나': '032', '말레이시아': '458', '필리핀': '608', '세네갈': '686'
-};
-
 // --- 1. Gemini AI: Dynamic HS Code + Tariff + English name ---
 async function fetchGeminiIntelligence(item: string, targetCountry: string) {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -115,7 +107,7 @@ async function fetchKCSVolume(hsCode: string, country: string, year: string) {
     const exportVolume = expMatch?.[1] ? Math.round(parseInt(expMatch[1], 10) / 1000) : 0;
 
     return { year, importVolume, exportVolume, source: 'KCS_LIVE' };
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -179,7 +171,7 @@ async function fetchWholesalePrice(itemName: string) {
 
       if (!price || price === '-') return `${kamisMatch}: 당일 가격 미등록 (KAMIS)`;
       return `${price}원 / ${unit} (${marketName}, KAMIS 실시간)`;
-    } catch (e) {
+    } catch {
       return `조회 실패 (KAMIS 네트워크 오류)`;
     }
   }
@@ -196,7 +188,7 @@ async function fetchWholesalePrice(itemName: string) {
       const simulatedLivePrice = parseInt(seafoodItems[seafoodMatch].replace(/[^0-9]/g, ''), 10);
       const livePriceStr = (simulatedLivePrice * 1.05).toLocaleString() + '원 / kg'; // Adding 5% to show "live" variation
       return `${livePriceStr} (공공데이터포털 실시간 연동 완료)`;
-    } catch (e) {
+    } catch {
       return `${seafoodItems[seafoodMatch]} (API 오류, 내부 DB)`;
     }
   }
@@ -221,7 +213,7 @@ async function fetchGlobalSafetyData(itemName: string, engItemName: string) {
     } else {
       fdaString = '0건 (FDA 최근 적발 없음)';
     }
-  } catch (e) {
+  } catch {
     fdaString = '0건 (FDA 실시간 조회 실패)';
   }
 
@@ -258,7 +250,7 @@ async function fetchGlobalSafetyData(itemName: string, engItemName: string) {
           mfdsString = `${recentCount}건 (MFDS 실시간, 총 ${totalCount}건)`;
         }
       }
-    } catch (e) {
+    } catch {
       mfdsString = `0건 (MFDS 서버 무응답, 내부망 통과)`;
     }
   }
@@ -352,7 +344,7 @@ export async function POST(req: Request) {
             hspingLive = true;
           }
         }
-      } catch (e) {
+      } catch {
         console.warn('HS Ping fetch failed');
       }
     }
@@ -400,7 +392,7 @@ export async function POST(req: Request) {
             comtradeVolume = Math.floor(Math.random() * 50000) + 10000;
             comtradeExport = Math.floor(Math.random() * 10000) + 1000;
           }
-        } catch(e) {
+        } catch {
           console.warn('UN Comtrade fetch failed in trade-macro');
         }
       }
