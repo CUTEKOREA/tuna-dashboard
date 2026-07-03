@@ -498,7 +498,8 @@ export default function MackerelDashboard() {
     </div>
   );
 
-  let { kpis, widgets } = data;
+  let { kpis } = data;
+  const { widgets } = data;
 
   // 동적 KPI 계산 로직 — 6개 전수 연동 (Dynamic Calculation)
   // 연간 확정 행만 사용: '2025Q1'(분기)·'2025E'(추정) 등 비연간 행은 KPI 산출에서 제외하고,

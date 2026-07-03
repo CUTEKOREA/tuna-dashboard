@@ -478,6 +478,7 @@ const WidgetCard = React.memo(({ widget }: { widget: any }) => {
     </div>
   );
 });
+WidgetCard.displayName = 'WidgetCard';
 
 /* ─── 3. 메인 대시보드 컴포넌트 ─── */
 const TunaDashboard = React.memo(function TunaDashboard() {
@@ -1073,5 +1074,4 @@ function parseAnimatedValue(valStr: string) {
 }
 
 export default TunaDashboard;
-
 

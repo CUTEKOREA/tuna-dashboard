@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
 import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef,  Octagon, Box, TestTube, ShieldCheck} from 'lucide-react';
@@ -446,7 +447,7 @@ export default function Home() {
       
       {/* Sidebar Area */}
       <aside className={`${styles.sidebar} ${isMobileSidebarOpen ? styles.sidebarOpen : ''}`}>
-        <a
+        <Link
           href="/"
           onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}
           title="홈으로 이동 (전체 새로고침)"
@@ -480,7 +481,7 @@ export default function Home() {
               WebkitTextFillColor: 'transparent'
             }}>이동건</span>
           </div>
-        </a>
+        </Link>
         
         <div className={styles.sidebarTitle}>📡 실시간 운영</div>
         

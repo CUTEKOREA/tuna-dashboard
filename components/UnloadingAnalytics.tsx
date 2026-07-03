@@ -419,7 +419,7 @@ export default function UnloadingAnalytics({
     const chartH = height - margin.top - margin.bottom;
 
     // Collect all numeric values across all lines
-    let allVals: number[] = [];
+    const allVals: number[] = [];
     data.forEach(d => {
       lines.forEach(l => {
         const v = d[l.key];

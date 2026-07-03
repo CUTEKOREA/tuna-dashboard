@@ -201,7 +201,8 @@ export default function GalchiDashboard() {
     </div>
   );
 
-  let { kpis, widgets } = data;
+  let { kpis } = data;
+  const { widgets } = data;
   kpis = { ...kpis };
 
   // ✅ KCS(HSK 0303.89-2000 냉동 갈치, 검증 완료 2026-06-11) 파생 KPI 주입 복원.
