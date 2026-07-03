@@ -106,6 +106,21 @@ describe('architecture guards', () => {
     }
   });
 
+  it('keeps LIVE telemetry labels backed by runtime signals', async () => {
+    const files = (await Promise.all(
+      APP_COMPONENT_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))
+    )).flat();
+    const hardcodedLiveTelemetry = [
+      /telemetry=\{\{[^}]*status:\s*['"](?:LIVE|live)['"]/,
+      /<TelemetryBadge\b[^>]*\bstatus=["'](?:LIVE|live)["']/,
+      /<TelemetryBadge\b[^>]*\bstatus=\{\s*["'](?:LIVE|live)["']\s*\}/,
+    ];
+
+    for (const pattern of hardcodedLiveTelemetry) {
+      expect(await filesWithMatches(files, pattern)).toEqual([]);
+    }
+  });
+
   it('keeps at least 20 API routes under explicit contract-test coverage', async () => {
     const apiRoutes = new Set((await listFiles(API_DIR)).map(toApiRoute));
     const contractedRoutes = await listContractedApiRoutes();

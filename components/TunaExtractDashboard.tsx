@@ -179,7 +179,7 @@ export default function TunaExtractDashboard() {
         </div>
         <div className={styles.lastUpdated}>
           <CheckCircle2 size={16} color="#22d3ee" />
-          <TelemetryBadge status="LIVE" syncDate="2026-H1" />
+          <TelemetryBadge status="STATIC" syncDate="2026-H1" />
         </div>
       </div>
 

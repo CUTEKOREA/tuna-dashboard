@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 11:39 KST — L-09 LIVE 라벨 정직성 가드 추가** [CC]:
+> - 기획서 KPI의 "LIVE 신뢰 라벨 자동 감사" 착수. `__tests__/architecture-guards.test.ts`에 `TelemetryBadge`/`WidgetCard` 하드코딩 LIVE 표기 금지 가드를 추가해 `isLive` 같은 런타임 신호 없는 리터럴 LIVE 재발을 CI에서 차단.
+> - `components/TunaExtractDashboard.tsx` 헤더의 `TelemetryBadge status="LIVE"`를 `STATIC`으로 정정. `/api/tuna-extract`는 `data/tuna_extract_dashboard.json` 정적 스냅샷을 서빙하므로 LIVE가 아님.
+> - 검증: 리터럴 LIVE 텔레메트리 검색 0건, 아키텍처 가드 단독 5/5 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 8파일/36테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:36 KST — API 계약 커버리지 하한 가드 추가** [CC]:
 > - P0/A-3 라우트 계약 커버리지 라쳇. `__tests__/architecture-guards.test.ts`가 계약 테스트 파일의 명시 API 라우트를 스캔해 최소 20개 이상 유지하도록 강제.
 > - 현재 명시 계약 라우트는 21개. 스캔된 라우트가 실제 `app/api/**/route.ts`에 존재하는지도 함께 검증해, 테스트 문자열만 남고 라우트가 사라지는 표류를 차단.
