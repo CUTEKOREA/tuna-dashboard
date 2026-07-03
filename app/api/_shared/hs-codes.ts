@@ -138,3 +138,27 @@ export const HS_CODES = {
 } satisfies Record<string, HsEntry>;
 
 export type HsKey = keyof typeof HS_CODES;
+
+export type WitsCommodityEntry = {
+  hs6: string;
+  desc: string;
+  category: string;
+};
+
+export const WITS_COMMODITY_HS_MAP: Record<string, WitsCommodityEntry> = {
+  '참치': { hs6: '030342', desc: 'Yellowfin tunas, frozen', category: 'seafood' },
+  '가다랑어': { hs6: '030343', desc: 'Skipjack/stripe-bellied bonito, frozen', category: 'seafood' },
+  '참치통조림': { hs6: '160414', desc: 'Tunas, prepared or preserved', category: 'seafood' },
+  '갈치': { hs6: '030389', desc: 'Hairtail (Largehead hairtail), frozen', category: 'seafood' },
+  '고등어': { hs6: '030354', desc: 'Mackerels, frozen', category: 'seafood' },
+  '명태': { hs6: '030363', desc: 'Alaska pollack, frozen', category: 'seafood' },
+  '연어': { hs6: '030214', desc: 'Atlantic salmon, fresh or chilled', category: 'seafood' },
+  '새우': { hs6: '030617', desc: 'Other shrimps and prawns, frozen', category: 'seafood' },
+  '오징어': { hs6: '030743', desc: 'Squid, frozen', category: 'seafood' },
+  '마늘': { hs6: '070320', desc: 'Garlic, fresh or chilled', category: 'agriculture' },
+  '당근': { hs6: '070610', desc: 'Carrots, fresh or chilled', category: 'agriculture' },
+  '캐슈넛': { hs6: '080132', desc: 'Cashew nuts, shelled', category: 'agriculture' },
+  '카카오': { hs6: '180100', desc: 'Cocoa beans', category: 'agriculture' },
+  '카사바': { hs6: '071410', desc: 'Cassava (manioc), fresh or dried', category: 'agriculture' },
+  '망고스틴': { hs6: '081090', desc: 'Mangosteen, fresh', category: 'agriculture' },
+};

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { WITS_COMMODITY_HS_MAP } from '../_shared/hs-codes';
 
 export const dynamic = 'force-dynamic';
 
@@ -43,25 +44,6 @@ const COUNTRY_ISO3: Record<string, string> = {
   '말레이시아': '458', 'MYS': '458',
   '필리핀': '608', 'PHL': '608',
   '세계': '000', 'World': '000', 'ALL': '000',
-};
-
-// --- HS Code Mapping for Silla Co. Core Commodities ---
-const COMMODITY_HS_MAP: Record<string, { hs6: string; desc: string; category: string }> = {
-  '참치': { hs6: '030342', desc: 'Yellowfin tunas, frozen', category: 'seafood' },
-  '가다랑어': { hs6: '030343', desc: 'Skipjack/stripe-bellied bonito, frozen', category: 'seafood' },
-  '참치통조림': { hs6: '160414', desc: 'Tunas, prepared or preserved', category: 'seafood' },
-  '갈치': { hs6: '030389', desc: 'Hairtail (Largehead hairtail), frozen', category: 'seafood' },
-  '고등어': { hs6: '030354', desc: 'Mackerels, frozen', category: 'seafood' },
-  '명태': { hs6: '030363', desc: 'Alaska pollack, frozen', category: 'seafood' },
-  '연어': { hs6: '030214', desc: 'Atlantic salmon, fresh or chilled', category: 'seafood' },
-  '새우': { hs6: '030617', desc: 'Other shrimps and prawns, frozen', category: 'seafood' },
-  '오징어': { hs6: '030743', desc: 'Squid, frozen', category: 'seafood' },
-  '마늘': { hs6: '070320', desc: 'Garlic, fresh or chilled', category: 'agriculture' },
-  '당근': { hs6: '070610', desc: 'Carrots, fresh or chilled', category: 'agriculture' },
-  '캐슈넛': { hs6: '080132', desc: 'Cashew nuts, shelled', category: 'agriculture' },
-  '카카오': { hs6: '180100', desc: 'Cocoa beans', category: 'agriculture' },
-  '카사바': { hs6: '071410', desc: 'Cassava (manioc), fresh or dried', category: 'agriculture' },
-  '망고스틴': { hs6: '081090', desc: 'Mangosteen, fresh', category: 'agriculture' },
 };
 
 // --- WITS API Indicators ---
@@ -334,7 +316,7 @@ export async function GET() {
     description: 'World Bank WITS — Tariff & Trade Flow Data Integration',
     architecture: 'Live API First, Local JSON Fallback',
     availableIndicators: Object.entries(INDICATORS).map(([k, v]) => ({ name: k, code: v })),
-    availableCommodities: Object.entries(COMMODITY_HS_MAP).map(([name, data]) => ({
+    availableCommodities: Object.entries(WITS_COMMODITY_HS_MAP).map(([name, data]) => ({
       name, hsCode: data.hs6, description: data.desc, category: data.category,
     })),
     availableCountries: Object.entries(COUNTRY_ISO3)
@@ -377,25 +359,25 @@ export async function POST(req: Request) {
     let commodityName: string;
     let commodityDesc: string;
 
-    const hsMatch = COMMODITY_HS_MAP[commodity];
+    const hsMatch = WITS_COMMODITY_HS_MAP[commodity];
     if (hsMatch) {
       hsCode = hsMatch.hs6;
       commodityName = commodity;
       commodityDesc = hsMatch.desc;
     } else if (/^\d{6}$/.test(commodity)) {
       hsCode = commodity;
-      commodityName = Object.entries(COMMODITY_HS_MAP).find(([, v]) => v.hs6 === commodity)?.[0] || commodity;
-      commodityDesc = COMMODITY_HS_MAP[commodityName]?.desc || `HS ${commodity}`;
+      commodityName = Object.entries(WITS_COMMODITY_HS_MAP).find(([, v]) => v.hs6 === commodity)?.[0] || commodity;
+      commodityDesc = WITS_COMMODITY_HS_MAP[commodityName]?.desc || `HS ${commodity}`;
     } else {
       // Fuzzy match
-      const fuzzyMatch = Object.keys(COMMODITY_HS_MAP).find(k => commodity.includes(k) || k.includes(commodity));
+      const fuzzyMatch = Object.keys(WITS_COMMODITY_HS_MAP).find(k => commodity.includes(k) || k.includes(commodity));
       if (fuzzyMatch) {
-        hsCode = COMMODITY_HS_MAP[fuzzyMatch].hs6;
+        hsCode = WITS_COMMODITY_HS_MAP[fuzzyMatch].hs6;
         commodityName = fuzzyMatch;
-        commodityDesc = COMMODITY_HS_MAP[fuzzyMatch].desc;
+        commodityDesc = WITS_COMMODITY_HS_MAP[fuzzyMatch].desc;
       } else {
         return NextResponse.json(
-          { error: `Unknown commodity: ${commodity}. Available: ${Object.keys(COMMODITY_HS_MAP).join(', ')}` },
+          { error: `Unknown commodity: ${commodity}. Available: ${Object.keys(WITS_COMMODITY_HS_MAP).join(', ')}` },
           { status: 400 }
         );
       }

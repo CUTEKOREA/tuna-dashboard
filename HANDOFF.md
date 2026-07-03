@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌐 **2026-07-03 13:58 KST — WITS 품목-HS 조회 맵 공유화** [CC]:
+> - 기획서 축 B-2 후속. `/api/wits` 내부 `COMMODITY_HS_MAP` 로컬 복제본을 제거하고, `app/api/_shared/hs-codes.ts`의 `WITS_COMMODITY_HS_MAP` 단일 출처를 참조하도록 전환.
+> - 기존 WITS 동작 보존을 위해 15개 품목명·HS6·설명·카테고리 값을 그대로 공유 모듈로 이동. tariff/trade fallback DB는 데이터 스냅샷이므로 route 내부 유지.
+> - 아키텍처 가드에 WITS route 내부 품목-HS 로컬 맵 금지 테스트 추가. RED에서 route 내부 `const COMMODITY_HS_MAP`을 잡은 뒤 GREEN 전환.
+> - 검증: `__tests__/architecture-guards.test.ts` 8/8 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/69테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🐟 **2026-07-03 13:55 KST — Pollock Comtrade HS 코드 단일 소스화** [CC]:
 > - 기획서 축 B-2 후속. `/api/pollock-supply-chain`의 Comtrade live enrichment `cmdCode=030367` 직접 하드코딩을 제거하고 `HS_CODES.pollock_frozen.hsSgn` 공유 매핑을 참조하도록 전환.
 > - 아키텍처 가드의 `cmdCode` 직접 하드코딩 금지 범위를 새우 `030617`에서 명태 `030367`까지 확장. RED에서 `app/api/pollock-supply-chain/route.ts`를 잡은 뒤 GREEN 전환.

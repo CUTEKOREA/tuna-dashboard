@@ -120,6 +120,13 @@ describe('architecture guards', () => {
     }
   });
 
+  it('keeps WITS commodity HS lookup in the shared mapping', async () => {
+    const source = await readFile(path.join(API_DIR, 'wits', 'route.ts'), 'utf8');
+
+    expect(source).not.toMatch(/const\s+COMMODITY_HS_MAP\s*:/);
+    expect(source).toMatch(/WITS_COMMODITY_HS_MAP/);
+  });
+
   it('keeps LIVE telemetry labels backed by runtime signals', async () => {
     const files = (await Promise.all(
       APP_COMPONENT_DIRS.map((dir) => listFiles(path.join(ROOT, dir)))
