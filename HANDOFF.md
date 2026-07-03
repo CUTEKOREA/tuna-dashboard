@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🔌 **2026-07-03 12:07 KST — 교차 품목 인텔리전스 API 계약 추가** [CC]:
+> - `/api/cross-commodity-intelligence` 신규 route 추가. `/market`의 교차 품목 모델을 자동화/외부 소비자가 재사용할 수 있도록 `substitutionSignals`, `riskFactors`, `portfolioCandidates`, `anomalyAlerts`, `headline`을 JSON으로 제공.
+> - 응답 최상위에 `isLive:false`, `_metadata.status=STATIC`, `_metadata.source=lib/data/cross-commodity-intelligence.ts`, `_metadata.apiHealth.ok=true`를 명시해 LIVE API와 혼동되지 않게 표준화. Next build 기준 1시간 revalidate 정적 route로 생성됨.
+> - TDD로 `__tests__/cross-commodity-api.contract.test.ts`를 먼저 추가해 route 미존재 실패를 확인한 뒤 route handler 구현.
+> - 검증: 신규 API 계약 테스트 1/1 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 13파일/53테스트, `npm run build` 145 routes). 기존 dev 서버 `127.0.0.1:3020`에서 `/api/cross-commodity-intelligence` 실제 응답 200, `isLive=false`, `metadataStatus=STATIC`, `alertCount=4`, `watchRoute` 포함 확인.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🚨 **2026-07-03 12:04 KST — `/market` 이상 탐지·알림 큐 구현** [CC]:
 > - 기획서 축 D-4 착수. `CrossCommodityIntelligence`에 네 번째 위젯 `이상 탐지·알림 큐`를 추가해 임계치 초과 신호만 표시하고, 각 알림에 감시 대상 API 경로(`watchRoute`), 현재값, 임계값, 긴급도 점수, 조치 문구를 함께 노출.
 > - `lib/data/cross-commodity-intelligence.ts`에 `AnomalyAlert` 모델과 점수화 로직 추가. 임계치 미초과 항목은 필터링하고, `urgencyScore` 기준 내림차순 정렬. 헤드라인에도 `topAlert`를 추가.
