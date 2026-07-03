@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐔 **2026-07-03 12:57 KST — 닭고기 정적 API 캐시 정책 명시 및 하한 70 라쳇** [CC]:
+> - 기획서 축 E-2 후속. `chicken/*` 정적 스냅샷 9개 route(`arbitrage`, `corporates`, `eggs`, `feed-cost`, `global-export`, `global-production`, `parts`, `processing`, `trade-shift`)에 `export const revalidate = 3600`을 추가.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 61→70으로 상향. 하한만 올렸을 때 `61/145 explicit, minimum 70` 실패를 먼저 확인한 뒤 route 정책을 명시해 GREEN 전환.
+> - 현재 기준선: 145개 API route 중 70개 명시 정책 보유(`revalidate` 52, `dynamic` 11, `Cache-Control` 34). build 출력에서 닭고기 9개 route가 모두 `1h` revalidate 정적 route로 표시됨.
+> - 검증: `npm run check:api-cache` 70/145 OK, 대상 테스트 1파일/2테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build` 145 routes, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧭 **2026-07-03 12:55 KST — API 캐시 정책 기준선 게이트 추가** [CC]:
 > - 기획서 축 E-2 성능·관측성 착수. `scripts/audit_api_cache_policy.mjs`를 추가해 `app/api/**/route.ts`의 `revalidate`, `dynamic`, `Cache-Control` 명시 정책 수를 계측하고 CI에서 하한을 강제.
 > - 현재 기준선: 145개 API route 중 61개가 명시 정책 보유(`revalidate` 43, `dynamic` 11, `Cache-Control` 34). 기본 하한은 61로 고정해 후퇴를 차단.

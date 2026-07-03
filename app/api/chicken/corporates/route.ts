@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 export async function GET() {
   const data = {
     id: 'w_chicken_corporates',

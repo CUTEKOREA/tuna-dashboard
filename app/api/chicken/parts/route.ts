@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 export async function GET() {
   return NextResponse.json({
     title: "가금류 부위별 차익거래 및 수급 분석",
