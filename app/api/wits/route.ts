@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // ============================================================================
 // WITS (World Integrated Trade Solution) API Pipeline
 // World Bank — Global Tariff & Trade Data

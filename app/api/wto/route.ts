@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // WTO API Pipeline — Global Trade Policy & Tariffs
 // POST /api/wto — Fetch tariff schedules and dispute info
 // GET  /api/wto — Health check

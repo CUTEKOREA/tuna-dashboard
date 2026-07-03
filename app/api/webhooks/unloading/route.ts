@@ -3,6 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 // 웹훅 보안을 위한 커스텀 토큰 
 const WEBHOOK_SECRET = process.env.UNLOADING_WEBHOOK_SECRET || 'secret123';
 

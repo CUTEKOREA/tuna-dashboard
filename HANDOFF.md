@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-07-03 13:18 KST — API 캐시 정책 전수 명시 완료 145/145** [CC]:
+> - 기획서 축 E-2 완료. 마지막 4개 미정책 route 중 웹훅/WITS/WTO 계열(`/api/webhooks/unloading`, `/api/wits`, `/api/wto`)은 `dynamic = 'force-dynamic'`, 정적 골뱅이 스냅샷(`/api/whelk/live`)은 `revalidate = 3600`으로 명시.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 141→145로 상향. 하한만 올렸을 때 `141/145 explicit, minimum 145` 실패를 먼저 확인한 뒤 GREEN 전환.
+> - 최종 기준선: 145개 API route 전부 명시 정책 보유(`revalidate` 79, `dynamic` 59, `Cache-Control` 34). 누락 샘플 없음.
+> - build 출력에서 `/api/whelk/live`는 `1h`, 웹훅/WITS/WTO는 `ƒ`로 표시. 전체 static page count는 97.
+> - 검증: `npm run check:api-cache` 145/145 OK, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 대상 테스트 1파일/2테스트 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build`, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🐟 **2026-07-03 13:16 KST — 참치·미국 데이터 API 캐시 정책 명시 및 하한 141 라쳇** [CC]:
 > - 기획서 축 E-2 후속. 외부 enrichment/요청 파라미터 성격의 6개 route(`/api/tuna-emerging-markets`, `/api/tuna-forecast`, `/api/tuna-local`, `/api/tuna-policy-risk`, `/api/us-census`, `/api/us-ita`)에 `dynamic = 'force-dynamic'`을 명시.
 > - 파일/정기 스냅샷 성격의 4개 route(`/api/tuna-extract`, `/api/tuna-live`, `/api/tuna-ranching`, `/api/used-car`)는 `revalidate = 3600`으로 명시.
