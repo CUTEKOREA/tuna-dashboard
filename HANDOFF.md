@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 🌾 **2026-07-03 13:00 KST — 농산물·위젯 API 캐시 정책 명시 및 하한 78 라쳇** [CC]:
+> - 기획서 축 E-2 후속. 정적 스냅샷 성격이 명확한 7개 route(`/api/carrot/arbitrage`, `/api/cashew`, `/api/cassava`, `/api/cassava/arbitrage`, `/api/cassava/early-warning`, `/api/cassava/esg`, `/api/cocoa/dashboard`)에 `revalidate = 3600`을 추가.
+> - `/api/cold-storage/widget`은 정적 JSON을 읽지만 `request.url` query id를 쓰는 route라 `revalidate` 대신 `dynamic = 'force-dynamic'`으로 명시. 하한 라쳇 중 발생한 Next dynamic usage 로그를 제거.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 70→78로 상향. 하한만 올렸을 때 `70/145 explicit, minimum 78` 실패를 먼저 확인한 뒤 GREEN 전환.
+> - 현재 기준선: 145개 API route 중 78개 명시 정책 보유(`revalidate` 59, `dynamic` 12, `Cache-Control` 34). build 출력에서 7개 농산물 route는 `1h`, cold-storage widget은 `ƒ` dynamic으로 표시.
+> - 검증: `npm run check:api-cache` 78/145 OK, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 대상 테스트 1파일/2테스트 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build` 144 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🐔 **2026-07-03 12:57 KST — 닭고기 정적 API 캐시 정책 명시 및 하한 70 라쳇** [CC]:
 > - 기획서 축 E-2 후속. `chicken/*` 정적 스냅샷 9개 route(`arbitrage`, `corporates`, `eggs`, `feed-cost`, `global-export`, `global-production`, `parts`, `processing`, `trade-shift`)에 `export const revalidate = 3600`을 추가.
 > - `scripts/audit_api_cache_policy.mjs` 기본 하한을 61→70으로 상향. 하한만 올렸을 때 `61/145 explicit, minimum 70` 실패를 먼저 확인한 뒤 route 정책을 명시해 GREEN 전환.

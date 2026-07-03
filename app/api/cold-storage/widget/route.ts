@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 const fileMap: Record<string, string> = {
   'w01': 'cold_storage/cold_storage_w01.json',
   'w02': 'cold_storage/cold_storage_w02.json',

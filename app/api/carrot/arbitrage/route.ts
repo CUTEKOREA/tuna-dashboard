@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: 베트남/중국산 냉동 다이스 당근 착지원가 비교 모델(정적 기준값).
 // 기존: 무작위 노이즈로 KAMIS 가격·환율 변동을 생성해 라이브로 위장 → 정적 기준값으로 교체, isLive:false.
 export async function GET() {

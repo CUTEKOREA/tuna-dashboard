@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import baseData from '@/data/cocoa_market_data.json';
 
+export const revalidate = 3600;
+
 // 코코아 시장 데이터 — 정적 스냅샷(빌드 타임 import → 항상 번들, 런타임 파일부재 불가).
 // 실시간 API 미연동(L-09/L-12 정직 표기). 과거 버전은 난수 지터로 라이브를 흉내냈으나 전면 제거.
 export async function GET() {

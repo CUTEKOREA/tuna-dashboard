@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const revalidate = 3600;
+
 export async function GET() {
   try {
     // 1. 기존 정적 JSON 데이터 로드

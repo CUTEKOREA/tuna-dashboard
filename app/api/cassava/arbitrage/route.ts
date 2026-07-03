@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: CBOT 밀 시세·KCS 타피오카 FOB 기반 HQCF 대체 경제성 모델(추정).
 // 외부 실시간 API 미연동 → isLive:false, source에서 'Live' 표기 제거.
 export async function GET() {

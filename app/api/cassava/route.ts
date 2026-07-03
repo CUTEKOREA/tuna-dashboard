@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
+export const revalidate = 3600;
+
 // 단일 데이터 빈티지 (SSOT): public/data/cassava_real_data_v1.json 최종 갱신일
 // (git e10359e 2026-06-06 — agri_data 파이프라인 연동, w04 UN Comtrade 2024 재산정과 일치)
 const LAST_SYNCED = '2026-06-06';

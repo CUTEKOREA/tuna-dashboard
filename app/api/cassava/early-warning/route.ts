@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: NOAA 기후·FAO EMPRES-i(CMD 확산) 지표 기반 공급망 조기경보 모델(추정).
 // 외부 실시간 API 미연동(향후 fetch 예정) → isLive:false, source에서 'Live' 표기 제거.
 export async function GET() {

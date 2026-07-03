@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 // 정직 STATIC: 부산물(폐수 바이오가스·펄프 사료화) ESG 수익성 모델(추정).
 // 공장 IoT 센서 실시간 미연동 → isLive:false, source에서 'Live' 표기 제거.
 export async function GET() {
