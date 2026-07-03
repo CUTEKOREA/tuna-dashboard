@@ -9,6 +9,25 @@ import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['var(--color-info)','var(--color-danger)','var(--color-success)','var(--color-warning)','#8b5cf6','#06b6d4','#ec4899','#f97316','#14b8a6','#6366f1','#84cc16','#e11d48'];
 
+function NorTooltip({ active, payload, label }: any) {
+  if (!active || !payload?.length) return null;
+  const total = payload.reduce((s: number, p: any) => s + (p.value || 0), 0);
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(59, 130, 246, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px', maxHeight: '300px', overflowY: 'auto'
+    }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#60a5fa' }}>{label}년 수출국 비중</p>
+      {payload.sort((a: any, b: any) => (b.value || 0) - (a.value || 0)).map((p: any, i: number) => (
+        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', gap: '12px' }}>
+          <span style={{ color: p.color }}>{p.name}</span>
+          <span>{(p.value / 1000).toFixed(0)}K톤 ({total > 0 ? ((p.value / total) * 100).toFixed(1) : 0}%)</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function MackerelNorwayAlt() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -32,25 +51,6 @@ export default function MackerelNorwayAlt() {
     countries.forEach((c: any) => { row[c.country] = c[String(y)] || 0; });
     return row;
   });
-
-  const NorTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload?.length) return null;
-    const total = payload.reduce((s: number, p: any) => s + (p.value || 0), 0);
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(59, 130, 246, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px', maxHeight: '300px', overflowY: 'auto'
-      }}>
-        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#60a5fa' }}>{label}년 수출국 비중</p>
-        {payload.sort((a: any, b: any) => (b.value || 0) - (a.value || 0)).map((p: any, i: number) => (
-          <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', gap: '12px' }}>
-            <span style={{ color: p.color }}>{p.name}</span>
-            <span>{(p.value / 1000).toFixed(0)}K톤 ({total > 0 ? ((p.value / total) * 100).toFixed(1) : 0}%)</span>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   const customBody = (
     <div ref={chartRef} style={{ width: '100%' }}>

@@ -11,27 +11,27 @@ import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 import { truncateXAxis } from '../lib/chart-standards';
 
+function CustomTooltip({ active, payload, label }: any) {
+  if (active && payload && payload.length) {
+    return (
+      <div className={styles.customTooltip}>
+        <p className={styles.tooltipLabel}>{`${label}년 수익 구조`}</p>
+        {payload.map((entry: any, index: number) => (
+          <p key={index} className={styles.tooltipValue} style={{ color: entry.color }}>
+            <span>{entry.name}:</span>
+            <strong>
+              {Number(entry.value).toLocaleString()} {entry.dataKey === 'Aqua_Value' ? '천 USD $' : '톤'}
+            </strong>
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+}
+
 const TunaAquaValue = () => {
   const { containerRef, width } = useContainerWidth();
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className={styles.customTooltip}>
-          <p className={styles.tooltipLabel}>{`${label}년 수익 구조`}</p>
-          {payload.map((entry: any, index: number) => (
-            <p key={index} className={styles.tooltipValue} style={{ color: entry.color }}>
-              <span>{entry.name}:</span>
-              <strong>
-                {Number(entry.value).toLocaleString()} {entry.dataKey === 'Aqua_Value' ? '천 USD $' : '톤'}
-              </strong>
-            </p>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
 
   const formatY1 = (val: number) => `${(val / 1000).toFixed(0)}k 톤`;
   const formatY2 = (val: number) => `$${(val / 1000000).toFixed(0)}M`;

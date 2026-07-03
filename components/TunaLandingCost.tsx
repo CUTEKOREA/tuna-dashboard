@@ -113,10 +113,10 @@ const TunaLandingCost = React.memo(function TunaLandingCost() {
     } finally {
       setLoading(false);
     }
-  }, [origin, product, volume, useFTA]);
+  }, [origin, product, useFTA]);
 
   // Auto-simulate on first render
-  React.useEffect(() => { simulate(); }, []);
+  React.useEffect(() => { simulate(); }, [simulate]);
 
   return (
     <div className={styles.insightCard} style={{ display: 'flex', flexDirection: 'column', minHeight: '540px' }}>

@@ -1,41 +1,42 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { Anchor, TrendingDown } from 'lucide-react';
 
-export default function MgoChartModal({ currentPrice, onClose }: { currentPrice?: number; onClose: () => void }) {
-  const [historyData, setHistoryData] = React.useState<{date: string, price: number}[]>([]);
+type MgoHistoryPoint = { date: string; price: number };
 
-  // Prevent scrolling when modal is open and generate dynamic history ending today
+function buildMgoHistory(currentPrice?: number): MgoHistoryPoint[] {
+  const finalP = currentPrice || 785;
+  const startP = finalP / (1 - 0.022);
+  const generated: MgoHistoryPoint[] = [];
+  const today = new Date();
+
+  for (let i = 0; i < 9; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - ((8 - i) * 4));
+
+    const progress = i / 8;
+    const noise = (Math.sin(i * 1.5) * 0.5 + Math.cos(i * 2.3) * 0.5) * (finalP * 0.005) * Math.sin(progress * Math.PI);
+    const val = startP - (startP - finalP) * progress + noise;
+
+    generated.push({
+      date: `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`,
+      price: i === 8 ? finalP : val,
+    });
+  }
+
+  return generated;
+}
+
+export default function MgoChartModal({ currentPrice, onClose }: { currentPrice?: number; onClose: () => void }) {
+  const historyData = useMemo(() => buildMgoHistory(currentPrice), [currentPrice]);
+
+  // Prevent scrolling when modal is open.
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    
-    // Generate dynamic dates with a smooth realistic curve
-    const finalP = currentPrice || 785;
-    const startP = finalP / (1 - 0.022); // ~2.2% higher 30 days ago
-    
-    const generated = [];
-    const today = new Date();
-    // 9 points representing exactly 1 month
-    for (let i = 0; i < 9; i++) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - ((8 - i) * 4));
-      
-      const progress = i / 8;
-      // Add slight random noise to make it look realistic
-      const noise = (Math.sin(i * 1.5) * 0.5 + Math.cos(i * 2.3) * 0.5) * (finalP * 0.005) * Math.sin(progress * Math.PI);
-      const val = startP - (startP - finalP) * progress + noise;
-      
-      generated.push({
-        date: `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`,
-        price: i === 8 ? finalP : val // Ensure the last point is exactly currentPrice
-      });
-    }
-    setHistoryData(generated);
-
     return () => { document.body.style.overflow = 'auto'; };
-  }, [currentPrice]);
+  }, []);
 
   return (
     <div 

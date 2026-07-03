@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './UnloadingFieldMode.module.css';
 import { X, ChevronDown, Calendar, Clock, Thermometer, CheckCircle } from 'lucide-react';
 
@@ -122,7 +122,7 @@ export default function UnloadingFieldMode({ vessels, onClose }: FieldModeProps)
 
   const formatNum = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     if (!selectedVessel) return;
 
     // Build report text (similar format to the dashboard's report style)
@@ -161,7 +161,7 @@ export default function UnloadingFieldMode({ vessels, onClose }: FieldModeProps)
       // Fallback: prompt
       window.prompt('보고서 텍스트를 복사하세요:', text);
     });
-  }, [selectedVessel, formDate, formTimeStart, formTimeEnd, formAmount, formHolds, formTempMin, formTempMax, formNotes]);
+  };
 
   return (
     <div className={styles.overlay}>

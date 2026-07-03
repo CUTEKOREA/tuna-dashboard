@@ -18,40 +18,40 @@ import data from '../data/insight7_spread_winners.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length >= 2) {
+    const frozen = payload[0].value;
+    const prepared = payload[1].value;
+    const spread = prepared - frozen;
+    const margin = ((spread / frozen) * 100).toFixed(0);
+
+    return (
+      <div className={styles.customTooltip}>
+        <p className={styles.tooltipLabel}>{label}</p>
+        <p className={styles.tooltipValue} style={{ color: 'var(--text-secondary)' }}>
+          <span>냉동/원물 (Frozen):</span>
+          <strong>${frozen.toLocaleString()}/t</strong>
+        </p>
+        <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
+          <span>가공품 (Prepared):</span>
+          <strong>${prepared.toLocaleString()}/t</strong>
+        </p>
+        <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />
+        <p className={styles.tooltipValue} style={{ color: 'var(--color-success)', fontWeight: 'bold' }}>
+          <span>가공 차익 (Spread):</span>
+          <strong>+${spread.toLocaleString()} (+{margin}%)</strong>
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Insight7SpreadWinners = () => {
   const { containerRef, width } = useContainerWidth();
 
   const formatYAxis = (tick: number) => {
     return `$${tick.toLocaleString()}/t`;
-  };
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length >= 2) {
-      const frozen = payload[0].value;
-      const prepared = payload[1].value;
-      const spread = prepared - frozen;
-      const margin = ((spread / frozen) * 100).toFixed(0);
-
-      return (
-        <div className={styles.customTooltip}>
-          <p className={styles.tooltipLabel}>{label}</p>
-          <p className={styles.tooltipValue} style={{ color: 'var(--text-secondary)' }}>
-            <span>냉동/원물 (Frozen):</span>
-            <strong>${frozen.toLocaleString()}/t</strong>
-          </p>
-          <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
-            <span>가공품 (Prepared):</span>
-            <strong>${prepared.toLocaleString()}/t</strong>
-          </p>
-          <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />
-          <p className={styles.tooltipValue} style={{ color: 'var(--color-success)', fontWeight: 'bold' }}>
-            <span>가공 차익 (Spread):</span>
-            <strong>+${spread.toLocaleString()} (+{margin}%)</strong>
-          </p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (

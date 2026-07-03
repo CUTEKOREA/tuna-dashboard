@@ -8,6 +8,8 @@ interface SkeletonLoaderProps {
   count?: number;
 }
 
+const CHART_BAR_HEIGHTS = [42, 68, 54, 81, 37, 73, 59, 88, 49, 64, 76, 53];
+
 export default function SkeletonLoader({ type = 'card', count = 4 }: SkeletonLoaderProps) {
   if (type === 'chart') {
     return (
@@ -18,7 +20,7 @@ export default function SkeletonLoader({ type = 'card', count = 4 }: SkeletonLoa
             <div 
               key={i} 
               className={`${styles.bar} ${styles.shimmer}`}
-              style={{ height: `${30 + Math.random() * 60}%` }}
+              style={{ height: `${CHART_BAR_HEIGHTS[i % CHART_BAR_HEIGHTS.length]}%` }}
             />
           ))}
         </div>

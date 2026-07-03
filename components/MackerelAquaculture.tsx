@@ -9,6 +9,46 @@ import { ChartPatternDefs } from './ChartPatterns';
 
 const COLORS = ['#06b6d4', 'var(--color-success)'];
 
+function AquaTooltip({ active, payload, viewMode }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(16, 185, 129, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px'
+    }}>
+      <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#34d399', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '0.9rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: '#06b6d4' }}>🐟 자연산 어획량</span>
+          <span style={{ fontWeight: 600 }}>{(d.capture_t / 1000000).toFixed(2)}M톤</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: 'var(--color-success)' }}>🏗️ 양식 생산량</span>
+          <span style={{ fontWeight: 600 }}>{d.aquaculture_t.toLocaleString()}톤</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '5px' }}>
+          <span style={{ color: '#fbbf24' }}>📊 양식 비중</span>
+          <span style={{ fontWeight: 700, color: '#fbbf24' }}>{d.aqua_ratio_pct}%</span>
+        </div>
+        {viewMode === 'price' && (
+          <>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#f87171' }}>💰 자연산 단가</span>
+              <span style={{ fontWeight: 600 }}>${d.wild_price_usd}/t</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: '#a78bfa' }}>💎 양식 단가</span>
+              <span style={{ fontWeight: 600 }}>${d.aqua_price_usd}/t</span>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function MackerelAquaculture() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -34,46 +74,6 @@ export default function MackerelAquaculture() {
     { name: '자연산 어획', value: latest.capture_t },
     { name: '양식 생산', value: latest.aquaculture_t },
   ];
-
-  const AquaTooltip = ({ active, payload }: any) => {
-    if (!active || !payload?.length) return null;
-    const d = payload[0]?.payload;
-    if (!d) return null;
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(16, 185, 129, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px'
-      }}>
-        <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#34d399', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '0.9rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ color: '#06b6d4' }}>🐟 자연산 어획량</span>
-            <span style={{ fontWeight: 600 }}>{(d.capture_t / 1000000).toFixed(2)}M톤</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ color: 'var(--color-success)' }}>🏗️ 양식 생산량</span>
-            <span style={{ fontWeight: 600 }}>{d.aquaculture_t.toLocaleString()}톤</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '5px' }}>
-            <span style={{ color: '#fbbf24' }}>📊 양식 비중</span>
-            <span style={{ fontWeight: 700, color: '#fbbf24' }}>{d.aqua_ratio_pct}%</span>
-          </div>
-          {viewMode === 'price' && (
-            <>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: '#f87171' }}>💰 자연산 단가</span>
-                <span style={{ fontWeight: 600 }}>${d.wild_price_usd}/t</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: '#a78bfa' }}>💎 양식 단가</span>
-                <span style={{ fontWeight: 600 }}>${d.aqua_price_usd}/t</span>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    );
-  };
 
   const customBody = (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -147,7 +147,7 @@ export default function MackerelAquaculture() {
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `${(v/1000000).toFixed(0)}M`} />
             <YAxis yAxisId="aqua" orientation="right" stroke="rgba(16,185,129,0.5)" tick={{ fill: 'var(--color-success)', fontSize: 11 }} tickFormatter={(v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : `${v}`} />
-            <Tooltip content={<AquaTooltip />} />
+            <Tooltip content={<AquaTooltip viewMode={viewMode} />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
             <Bar dataKey="capture_t" name="🐟 자연산 어획 (톤)" fill="url(#capGrad)" radius={[2, 2, 0, 0]} />
             <Line type="monotone" dataKey="aquaculture_t" name="🏗️ 양식 생산 (톤)" stroke="var(--color-success)" strokeWidth={2.5} dot={false} yAxisId="aqua" />
@@ -159,7 +159,7 @@ export default function MackerelAquaculture() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.10)" vertical={false} />
             <XAxis dataKey="year" stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
             <YAxis stroke="rgba(255,255,255,0.3)" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} tickFormatter={(v) => `$${v}`} />
-            <Tooltip content={<AquaTooltip />} />
+            <Tooltip content={<AquaTooltip viewMode={viewMode} />} />
             <Legend wrapperStyle={{ paddingTop: '12px', fontSize: '12px' }} />
             <Line type="monotone" dataKey="wild_price_usd" name="🐟 자연산 단가 ($/t)" stroke="var(--color-danger)" strokeWidth={2} dot={false} />
             <Line type="monotone" dataKey="aqua_price_usd" name="💎 양식 단가 ($/t)" stroke="#a78bfa" strokeWidth={2.5} dot={false} />

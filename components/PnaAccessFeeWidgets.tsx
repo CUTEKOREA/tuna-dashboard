@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useSyncExternalStore } from 'react';
 import s from './PnaAccessFeeWidgets.module.css';
 
 /* ═══════════════════════════════════════════════════════
@@ -50,6 +50,12 @@ const PAYMENTS: PaymentSchedule[] = [
 
 /* 패턴 F 정정: D-day는 하드코딩하지 않고 렌더 시점에 납기일로부터 계산 */
 const URGENT_WINDOW_DAYS = 30;
+const subscribeClientSnapshot = () => () => {};
+const getTodaySnapshot = (): string | null => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+const getServerTodaySnapshot = (): string | null => null;
 
 function getDDay(dateStr: string, today: Date): { diff: number; label: string } {
   const [y, m, d] = dateStr.split('.').map(Number);
@@ -249,8 +255,8 @@ function UnitCostComparison() {
    ═══════════════════════════════════════════════════════ */
 function PaymentTimeline() {
   // 하이드레이션 안전: 클라이언트 마운트 후에만 오늘 날짜 기반 D-day 계산
-  const [today, setToday] = useState<Date | null>(null);
-  useEffect(() => setToday(new Date()), []);
+  const todayKey = useSyncExternalStore(subscribeClientSnapshot, getTodaySnapshot, getServerTodaySnapshot);
+  const today = useMemo(() => todayKey ? new Date(`${todayKey}T00:00:00`) : null, [todayKey]);
 
   const rows = PAYMENTS.map(p => {
     if (p.done) return { ...p, status: 'done' as const, label: '✓ 납부완료' };
@@ -308,17 +314,17 @@ function IndustryShareChart() {
 
   // Build SVG donut
   const segments = useMemo(() => {
-    let offset = 0;
     const circumference = 2 * Math.PI * 52;
-    return COMPANIES.map(c => {
+    return COMPANIES.reduce<{ items: Array<CompanyShare & { dasharray: string; dashoffset: number }>; offset: number }>((acc, c) => {
       const pct = c.totalFee / totalFee;
       const len = circumference * pct;
       const gap = circumference - len;
-      const seg = { ...c, dasharray: `${len} ${gap}`, dashoffset: -offset };
-      offset += len;
-      return seg;
-    });
-  }, []);
+      return {
+        items: [...acc.items, { ...c, dasharray: `${len} ${gap}`, dashoffset: -acc.offset }],
+        offset: acc.offset + len,
+      };
+    }, { items: [], offset: 0 }).items;
+  }, [totalFee]);
 
   return (
     <div className={s.card}>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Shield, AlertTriangle, CheckCircle, AlertCircle, RefreshCcw, FileSearch } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 import rawData from '../data/salmon_ntb_radar.json';
@@ -7,13 +7,10 @@ import rawData from '../data/salmon_ntb_radar.json';
 const staticItems = rawData.complianceItems;
 
 export default function SalmonNTBRadar() {
-  const [items, setItems] = useState<any[]>(staticItems);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const items = staticItems;
 
-  useEffect(() => { fetchComplianceData(); }, []);
-
-  async function fetchComplianceData() {
-    setLoading(true);
+  const fetchComplianceData = useCallback(async () => {
     try {
       await fetch('/api/wits', {
         method: 'POST',
@@ -30,9 +27,20 @@ export default function SalmonNTBRadar() {
       });
     } catch (e) { console.warn('[NTB] OFAC error:', e); }
 
-    setItems(staticItems);
     setLoading(false);
-  }
+  }, []);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      void fetchComplianceData();
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [fetchComplianceData]);
+
+  const handleRefresh = () => {
+    setLoading(true);
+    void fetchComplianceData();
+  };
 
   const statusConfig: any = {
     safe: { color: '#10b981', bg: 'rgba(16,185,129,0.1)', border: 'rgba(16,185,129,0.3)', label: '🟢 정상', icon: CheckCircle },
@@ -51,7 +59,7 @@ export default function SalmonNTBRadar() {
   const body = (
     <div style={{ padding: '0 0 0.5rem 0' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
-        <button onClick={fetchComplianceData} style={{
+        <button onClick={handleRefresh} style={{
           background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', padding: '4px',
         }}>
           <RefreshCcw size={14} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />

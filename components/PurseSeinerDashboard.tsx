@@ -19,6 +19,8 @@ import TelemetryBadge from './TelemetryBadge';
 
 /* ───────── 데이터 기준일 (data/purseSeinerData.ts 최종 검증일) ───────── */
 const DATA_DATE = '2026-05-27';
+const CONTINENT_TREEMAP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
+const RFMO_MATRIX_COLUMNS = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'];
 
 /* ───────── L-01 한글 매핑 (데이터 키는 영문 유지, 렌더링만 한글) ───────── */
 const RFMO_NAMES_KO: Record<string, string> = {
@@ -77,6 +79,21 @@ function WidgetHead({ icon, title, desc }: { icon: React.ReactNode; title: strin
       </div>
       <p style={{ margin: 0, fontSize: 11, color: '#64748b', lineHeight: 1.5 }}>{desc}</p>
     </div>
+  );
+}
+
+function ContinentTreemapContent(props: any) {
+  const { x, y, width, height, name, size, fill } = props;
+  if (width < 40 || height < 30) return null;
+  return (
+    <g>
+      <rect x={x} y={y} width={width} height={height} rx={6}
+        style={{ fill, stroke: '#0a0f1f', strokeWidth: 2, opacity: 0.85 }} />
+      <text x={x + width / 2} y={y + height / 2 - 8} textAnchor="middle"
+        style={{ fill: '#fff', fontSize: 13, fontWeight: 700 }}>{name}</text>
+      <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle"
+        style={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}>{size}척</text>
+    </g>
   );
 }
 
@@ -241,27 +258,11 @@ function CountryBarChart({ onFilter }: { onFilter: (flag: string) => void }) {
 /* ───────── Continent Treemap ───────── */
 function ContinentTreemap() {
   const continentStats = useMemo(() => getContinentStats(), []);
-  const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4'];
   const data = continentStats.map((s, i) => ({
     name: CONTINENT_KO[s.continent] || s.continent,
     size: s.count,
-    fill: colors[i % colors.length],
+    fill: CONTINENT_TREEMAP_COLORS[i % CONTINENT_TREEMAP_COLORS.length],
   }));
-
-  const CustomContent = (props: any) => {
-    const { x, y, width, height, name, size, fill } = props;
-    if (width < 40 || height < 30) return null;
-    return (
-      <g>
-        <rect x={x} y={y} width={width} height={height} rx={6}
-          style={{ fill, stroke: '#0a0f1f', strokeWidth: 2, opacity: 0.85 }} />
-        <text x={x + width / 2} y={y + height / 2 - 8} textAnchor="middle"
-          style={{ fill: '#fff', fontSize: 13, fontWeight: 700 }}>{name}</text>
-        <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle"
-          style={{ fill: 'rgba(255,255,255,0.7)', fontSize: 12 }}>{size}척</text>
-      </g>
-    );
-  };
 
   return (
     <div style={{ ...card(), flex: '1 1 340px' }}>
@@ -272,7 +273,7 @@ function ContinentTreemap() {
       />
       <ResponsiveContainer width="100%" height={280}>
         <Treemap data={data} dataKey="size" nameKey="name"
-          content={<CustomContent />} animationDuration={800} />
+          content={<ContinentTreemapContent />} animationDuration={800} />
       </ResponsiveContainer>
     </div>
   );
@@ -334,19 +335,18 @@ function OperatorChart({ onFilter }: { onFilter: (op: string) => void }) {
 /* ───────── Operator × RFMO Heatmap ───────── */
 function OperatorRfmoMatrix() {
   const opStats = useMemo(() => getOperatorStats().slice(0, 12), []);
-  const rfmos = ['WCPFC', 'IOTC', 'IATTC', 'ICCAT'];
 
   const matrix = useMemo(() => {
     return opStats.map(op => {
       const row: any = { operator: op.operator.length > 20 ? op.operator.substring(0, 18) + '…' : op.operator };
-      rfmos.forEach(r => {
+      RFMO_MATRIX_COLUMNS.forEach(r => {
         row[r] = vessels.filter(v => v.operator === op.operator && v.rfmos.includes(r)).length;
       });
       return row;
     });
   }, [opStats]);
 
-  const maxVal = Math.max(...matrix.flatMap(r => rfmos.map(rfmo => r[rfmo])));
+  const maxVal = Math.max(...matrix.flatMap(r => RFMO_MATRIX_COLUMNS.map(rfmo => r[rfmo])));
 
   return (
     <div style={{ ...card(), flex: '1 1 340px' }}>
@@ -360,7 +360,7 @@ function OperatorRfmoMatrix() {
           <thead>
             <tr>
               <th style={{ textAlign: 'left', color: '#94a3b8', padding: '6px 8px', fontWeight: 600 }}>운영사</th>
-              {rfmos.map(r => (
+              {RFMO_MATRIX_COLUMNS.map(r => (
                 <th key={r} style={{ textAlign: 'center', padding: '6px 8px' }}>
                   <span style={badge(RFMO_COLORS[r])}>{r}</span>
                 </th>
@@ -371,7 +371,7 @@ function OperatorRfmoMatrix() {
             {matrix.map((row, i) => (
               <tr key={i}>
                 <td style={{ color: '#cbd5e1', padding: '4px 8px', whiteSpace: 'nowrap' }}>{row.operator}</td>
-                {rfmos.map(r => {
+                {RFMO_MATRIX_COLUMNS.map(r => {
                   const val = row[r];
                   const intensity = maxVal > 0 ? val / maxVal : 0;
                   return (

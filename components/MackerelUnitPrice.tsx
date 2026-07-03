@@ -7,6 +7,25 @@ import rawData from '../data/mackerel_unit_price.json';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
 
+function PriceTooltip({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '200px'
+    }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#fbbf24' }}>{d.country}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>💰 수입 단가</span><span style={{ fontWeight: 700, color: '#fbbf24' }}>${Math.round(d.unit_price_usd).toLocaleString()}/t</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>📦 수입량</span><span>{d.import_vol_t?.toLocaleString()}톤</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>💵 수입액</span><span>${d.import_val_usd_k?.toLocaleString()}K</span></div>
+      </div>
+    </div>
+  );
+}
+
 export default function MackerelUnitPrice() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -24,25 +43,6 @@ export default function MackerelUnitPrice() {
 
   const data = (rawData as any[]).slice(0, 15);
   const maxPrice = Math.max(...data.map((d: any) => d.unit_price_usd));
-
-  const PriceTooltip = ({ active, payload }: any) => {
-    if (!active || !payload?.length) return null;
-    const d = payload[0]?.payload;
-    if (!d) return null;
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '200px'
-      }}>
-        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#fbbf24' }}>{d.country}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>💰 수입 단가</span><span style={{ fontWeight: 700, color: '#fbbf24' }}>${Math.round(d.unit_price_usd).toLocaleString()}/t</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>📦 수입량</span><span>{d.import_vol_t?.toLocaleString()}톤</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>💵 수입액</span><span>${d.import_val_usd_k?.toLocaleString()}K</span></div>
-        </div>
-      </div>
-    );
-  };
 
   const customBody = (
     <div ref={chartRef} style={{ width: '100%' }}>

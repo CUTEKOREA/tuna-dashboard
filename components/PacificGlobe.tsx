@@ -54,7 +54,7 @@ export default function PacificGlobe() {
     if (globeRef.current) {
       globeRef.current.pointOfView({ lat: 0, lng: 160, altitude: 2.0 }, 1000);
     }
-  }, [globeRef.current]);
+  }, []);
 
   const ringsData = FLEET_DATA.map(v => ({
     lat: v.lat,

@@ -7,6 +7,29 @@ import rawData from '../data/mackerel_spread.json';
 import WidgetCard from './WidgetCard';
 import { ChartPatternDefs } from './ChartPatterns';
 
+function SpreadTooltip({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(139, 92, 246, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px'
+    }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '1rem', color: '#c4b5fd' }}>{d.country}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-danger)' }}>📥 수입 단가</span><span>${d.import_price_usd?.toLocaleString()}/t</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-success)' }}>📤 수출 단가</span><span>${d.export_price_usd?.toLocaleString()}/t</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '4px' }}>
+          <span style={{ color: '#a78bfa' }}>💰 스프레드</span><span style={{ fontWeight: 700, color: d.margin_usd > 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>${d.margin_usd?.toLocaleString()}/t ({d.margin_pct}%)</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>수입량</span><span>{d.import_vol_t?.toLocaleString()}t</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>수출량</span><span>{d.export_vol_t?.toLocaleString()}t</span></div>
+      </div>
+    </div>
+  );
+}
+
 export default function MackerelSpreadWinners() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -23,29 +46,6 @@ export default function MackerelSpreadWinners() {
   }, []);
 
   const data = (rawData as any[]).slice(0, 12);
-
-  const SpreadTooltip = ({ active, payload }: any) => {
-    if (!active || !payload?.length) return null;
-    const d = payload[0]?.payload;
-    if (!d) return null;
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(139, 92, 246, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '240px'
-      }}>
-        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '1rem', color: '#c4b5fd' }}>{d.country}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-danger)' }}>📥 수입 단가</span><span>${d.import_price_usd?.toLocaleString()}/t</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-success)' }}>📤 수출 단가</span><span>${d.export_price_usd?.toLocaleString()}/t</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '4px' }}>
-            <span style={{ color: '#a78bfa' }}>💰 스프레드</span><span style={{ fontWeight: 700, color: d.margin_usd > 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>${d.margin_usd?.toLocaleString()}/t ({d.margin_pct}%)</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>수입량</span><span>{d.import_vol_t?.toLocaleString()}t</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>수출량</span><span>{d.export_vol_t?.toLocaleString()}t</span></div>
-        </div>
-      </div>
-    );
-  };
 
   const customBody = (
     <div ref={chartRef} style={{ width: '100%' }}>

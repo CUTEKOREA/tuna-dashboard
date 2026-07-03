@@ -42,7 +42,6 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    setLoading(true);
     fetch('/api/osh', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -58,6 +57,12 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
       .finally(() => setLoading(false));
   }, [selectedCountry]);
 
+  const handleCountrySelect = (country: string) => {
+    if (country === selectedCountry) return;
+    setLoading(true);
+    setSelectedCountry(country);
+  };
+
   const isLive = source === 'OSH_LIVE';
   const totalWorkers = facilities.reduce((sum, f) => {
     const match = (f.workers || '').match(/([\d,]+)/);
@@ -67,7 +72,7 @@ const TunaSupplierHub = React.memo(function TunaSupplierHub() {
   const CountryTabs = (
     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '0.8rem' }}>
       {COUNTRIES.map((c) => (
-        <button key={c.code} onClick={() => setSelectedCountry(c.code)} style={{
+        <button key={c.code} onClick={() => handleCountrySelect(c.code)} style={{
           padding: '6px 14px', fontSize: '0.75rem', fontWeight: 600,
           background: selectedCountry === c.code ? 'rgba(155,114,203,0.2)' : 'rgba(255,255,255,0.03)',
           color: selectedCountry === c.code ? '#c4b5fd' : '#64748b',

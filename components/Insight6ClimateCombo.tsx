@@ -21,38 +21,38 @@ import data from '../data/insight6_combo.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length >= 2) {
+    const enso = payload.find((p: any) => p.dataKey === 'enso_index')?.value || 0;
+    const catchVal = payload.find((p: any) => p.dataKey === 'catch_k_tons')?.value || 0;
+    const importVal = payload.find((p: any) => p.dataKey === 'import_value_m_usd')?.value || 0;
+    const isElNino = enso > 0;
+    return (
+      <div className={styles.customTooltip} style={{ zIndex: 1000, position: 'relative' }}>
+        <p className={styles.tooltipLabel}>{`${label}년`}</p>
+        <p className={styles.tooltipValue} style={{ color: isElNino ? 'var(--color-danger)' : 'var(--color-info)' }}>
+          <span>ENSO 지수:</span>
+          <strong>{enso.toFixed(1)}</strong>
+        </p>
+        <p className={styles.tooltipValue} style={{ color: '#60A5FA' }}>
+          <span>일렉스 어획량:</span>
+          <strong>{Math.round(catchVal * 1000).toLocaleString()} 톤</strong>
+        </p>
+        <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
+          <span>주요국 수입액:</span>
+          <strong>${importVal.toLocaleString()}M</strong>
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Insight6ClimateCombo = () => {
   const { containerRef, width } = useContainerWidth();
 
   const formatRightAxis = (tick: number) => {
     return tick.toLocaleString();
-  };
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length >= 2) {
-      const enso = payload.find((p: any) => p.dataKey === 'enso_index')?.value || 0;
-      const catchVal = payload.find((p: any) => p.dataKey === 'catch_k_tons')?.value || 0;
-      const importVal = payload.find((p: any) => p.dataKey === 'import_value_m_usd')?.value || 0;
-      const isElNino = enso > 0;
-      return (
-        <div className={styles.customTooltip} style={{ zIndex: 1000, position: 'relative' }}>
-          <p className={styles.tooltipLabel}>{`${label}년`}</p>
-          <p className={styles.tooltipValue} style={{ color: isElNino ? 'var(--color-danger)' : 'var(--color-info)' }}>
-            <span>ENSO 지수:</span>
-            <strong>{enso.toFixed(1)}</strong>
-          </p>
-          <p className={styles.tooltipValue} style={{ color: '#60A5FA' }}>
-            <span>일렉스 어획량:</span>
-            <strong>{Math.round(catchVal * 1000).toLocaleString()} 톤</strong>
-          </p>
-          <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
-            <span>주요국 수입액:</span>
-            <strong>${importVal.toLocaleString()}M</strong>
-          </p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (

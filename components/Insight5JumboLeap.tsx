@@ -19,6 +19,25 @@ import data from '../data/insight5_jumbo_leap.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length >= 2) {
+    return (
+      <div className={styles.customTooltip}>
+        <p className={styles.tooltipLabel}>{`${label}년`}</p>
+        <p className={styles.tooltipValue} style={{ color: '#60A5FA' }}>
+          <span>어획량 (훔볼트 오징어):</span>
+          <strong>{payload[0].value.toLocaleString()} 톤</strong>
+        </p>
+        <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
+          <span>가공 수출액 (Prepared):</span>
+          <strong>${payload[1].value.toLocaleString()}M</strong>
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Insight5JumboLeap = () => {
   const { containerRef, width } = useContainerWidth();
 
@@ -28,25 +47,6 @@ const Insight5JumboLeap = () => {
 
   const formatYAxisVal = (tick: number) => {
     return `$${tick.toLocaleString()}M`;
-  };
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length >= 2) {
-      return (
-        <div className={styles.customTooltip}>
-          <p className={styles.tooltipLabel}>{`${label}년`}</p>
-          <p className={styles.tooltipValue} style={{ color: '#60A5FA' }}>
-            <span>어획량 (훔볼트 오징어):</span>
-            <strong>{payload[0].value.toLocaleString()} 톤</strong>
-          </p>
-          <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
-            <span>가공 수출액 (Prepared):</span>
-            <strong>${payload[1].value.toLocaleString()}M</strong>
-          </p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (

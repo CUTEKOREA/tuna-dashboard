@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useSyncExternalStore } from 'react';
 import { 
   TrendingUp, TrendingDown, Ship, Anchor, BarChart2,
   Newspaper, Globe, Activity, Search
@@ -35,6 +35,12 @@ function calcDeltaPct(pair: { latest: { price: number } | null; prev: { price: n
 }
 
 const fmtPct = (p: number) => `${p >= 0 ? '+' : ''}${p.toFixed(1)}%`;
+const subscribeClientSnapshot = () => () => {};
+const getTodayIsoSnapshot = (): string | null => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
+const getServerTodaySnapshot = (): string | null => null;
 
 export default function MarketDashboard() {
   const [priceData, setPriceData] = useState<any[]>([]);
@@ -77,11 +83,7 @@ export default function MarketDashboard() {
   }>({ skjBkk: null, skjDeltaPct: null, yfSey: null, yfDeltaPct: null, latestDate: null });
 
   // 'today' resolved client-side only (avoids SSR/client hydration mismatch)
-  const [todayStr, setTodayStr] = useState<string | null>(null);
-  useEffect(() => {
-    const d = new Date();
-    setTodayStr(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`);
-  }, []);
+  const todayStr = useSyncExternalStore(subscribeClientSnapshot, getTodayIsoSnapshot, getServerTodaySnapshot);
 
   useEffect(() => {
     // Atuna 참치 도매가 — KPI 1·2 + ROW2 차트 공용 단일 소스 (/api/atuna-prices)

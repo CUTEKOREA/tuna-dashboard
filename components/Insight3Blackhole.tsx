@@ -19,6 +19,25 @@ import data from '../data/insight3_blackhole.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className={styles.customTooltip}>
+        <p className={styles.tooltipLabel}>{`${label}년`}</p>
+        <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
+          <span>수출액 (고부가가치):</span>
+          <strong>${payload[0].value.toLocaleString()}M</strong>
+        </p>
+        <p className={styles.tooltipValue} style={{ color: '#F3F4F6' }}>
+          <span>수입액 (원물 블랙홀):</span>
+          <strong>${payload[1].payload.RawImports.toLocaleString()}M</strong>
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Insight3Blackhole = () => {
   const { containerRef, width } = useContainerWidth();
 
@@ -32,25 +51,6 @@ const Insight3Blackhole = () => {
 
   const formatYAxis = (tick: number) => {
     return `$${Math.abs(tick).toLocaleString()}`;
-  };
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className={styles.customTooltip}>
-          <p className={styles.tooltipLabel}>{`${label}년`}</p>
-          <p className={styles.tooltipValue} style={{ color: '#FCD34D' }}>
-            <span>수출액 (고부가가치):</span>
-            <strong>${payload[0].value.toLocaleString()}M</strong>
-          </p>
-          <p className={styles.tooltipValue} style={{ color: '#F3F4F6' }}>
-            <span>수입액 (원물 블랙홀):</span>
-            <strong>${payload[1].payload.RawImports.toLocaleString()}M</strong>
-          </p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (

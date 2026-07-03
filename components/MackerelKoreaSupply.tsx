@@ -7,6 +7,30 @@ import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_korea_supply.json';
 import { ChartPatternDefs } from './ChartPatterns';
 
+function KSTooltip({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(239, 68, 68, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
+    }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#f87171' }}>{d.year}년</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-info)' }}>🏭 국내 생산</span><span>{d.production_t?.toLocaleString()}톤</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-danger)' }}>📦 수입량</span><span>{d.import_t?.toLocaleString()}톤</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#ec4899' }}>🔪 가공 수요(국내)</span><span>{d.processed_t?.toLocaleString()}톤</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '4px' }}>
+          <span style={{ color: '#fbbf24' }}>📊 자급률</span>
+          <span style={{ fontWeight: 700, color: d.self_sufficiency_pct < 50 ? 'var(--color-danger)' : 'var(--color-success)' }}>{d.self_sufficiency_pct}%</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#a78bfa' }}>💰 수입단가</span><span>${d.import_price_usd?.toLocaleString()}/t</span></div>
+      </div>
+    </div>
+  );
+}
+
 export default function MackerelKoreaSupply() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -25,30 +49,6 @@ export default function MackerelKoreaSupply() {
   const data = rawData as any[];
   const latest = data[data.length - 1];
   const peak = data.reduce((a: any, b: any) => a.production_t > b.production_t ? a : b);
-
-  const KSTooltip = ({ active, payload }: any) => {
-    if (!active || !payload?.length) return null;
-    const d = payload[0]?.payload;
-    if (!d) return null;
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(239, 68, 68, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
-      }}>
-        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#f87171' }}>{d.year}년</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-info)' }}>🏭 국내 생산</span><span>{d.production_t?.toLocaleString()}톤</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-danger)' }}>📦 수입량</span><span>{d.import_t?.toLocaleString()}톤</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#ec4899' }}>🔪 가공 수요(국내)</span><span>{d.processed_t?.toLocaleString()}톤</span></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '4px' }}>
-            <span style={{ color: '#fbbf24' }}>📊 자급률</span>
-            <span style={{ fontWeight: 700, color: d.self_sufficiency_pct < 50 ? 'var(--color-danger)' : 'var(--color-success)' }}>{d.self_sufficiency_pct}%</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#a78bfa' }}>💰 수입단가</span><span>${d.import_price_usd?.toLocaleString()}/t</span></div>
-        </div>
-      </div>
-    );
-  };
 
   const customBody = (
     <div style={{ display: 'flex', flexDirection: 'column' }}>

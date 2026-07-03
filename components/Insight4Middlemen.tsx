@@ -20,39 +20,39 @@ import data from '../data/insight4_middlemen.json';
 import useContainerWidth from '../hooks/useContainerWidth';
 import { ChartPatternDefs } from './ChartPatterns';
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length >= 2) {
+    const exportVal = payload[0].value;
+    const importVal = payload[1].value;
+    const isDeficit = importVal > exportVal;
+
+    return (
+      <div className={styles.customTooltip}>
+        <p className={styles.tooltipLabel}>{`${label}년 (한국)`}</p>
+        <p className={styles.tooltipValue} style={{ color: 'var(--color-success)' }}>
+          <span>수출액:</span>
+          <strong>${exportVal.toLocaleString()}M</strong>
+        </p>
+        <p className={styles.tooltipValue} style={{ color: 'var(--color-danger)' }}>
+          <span>수입액:</span>
+          <strong>${importVal.toLocaleString()}M</strong>
+        </p>
+        <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />
+        <p className={styles.tooltipValue} style={{ color: isDeficit ? 'var(--color-danger)' : 'var(--color-success)', fontWeight: 'bold' }}>
+          <span>무역수지:</span>
+          <strong>{isDeficit ? '적자' : '흑자'} (${Math.abs(exportVal - importVal).toLocaleString()}M)</strong>
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const Insight4Middlemen = () => {
   const { containerRef, width } = useContainerWidth();
 
   const formatYAxis = (tick: number) => {
     return `$${tick.toLocaleString()}`;
-  };
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length >= 2) {
-      const exportVal = payload[0].value;
-      const importVal = payload[1].value;
-      const isDeficit = importVal > exportVal;
-
-      return (
-        <div className={styles.customTooltip}>
-          <p className={styles.tooltipLabel}>{`${label}년 (한국)`}</p>
-          <p className={styles.tooltipValue} style={{ color: 'var(--color-success)' }}>
-            <span>수출액:</span>
-            <strong>${exportVal.toLocaleString()}M</strong>
-          </p>
-          <p className={styles.tooltipValue} style={{ color: 'var(--color-danger)' }}>
-            <span>수입액:</span>
-            <strong>${importVal.toLocaleString()}M</strong>
-          </p>
-          <hr style={{ borderColor: 'rgba(255,255,255,0.1)', margin: '4px 0' }} />
-          <p className={styles.tooltipValue} style={{ color: isDeficit ? 'var(--color-danger)' : 'var(--color-success)', fontWeight: 'bold' }}>
-            <span>무역수지:</span>
-            <strong>{isDeficit ? '적자' : '흑자'} (${Math.abs(exportVal - importVal).toLocaleString()}M)</strong>
-          </p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (

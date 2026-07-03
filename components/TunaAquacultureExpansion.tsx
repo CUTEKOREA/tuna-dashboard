@@ -19,28 +19,28 @@ const data = [
 
 const ACCENT = '#f472b6';
 
-export default function TunaAquacultureExpansion() {
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (!active || !payload?.length) return null;
+function CustomTooltip({ active, payload, label }: any) {
+  if (!active || !payload?.length) return null;
 
-    return (
-      <div style={{
-        background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
-        padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
-      }}>
-        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
-          {payload.map((entry: any, index: number) => (
-             <div key={index} style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
-               <span style={{ color: entry.color }}>{entry.name}</span>
-               <span>{entry.value.toLocaleString()} MT</span>
-             </div>
-          ))}
-        </div>
+  return (
+    <div style={{
+      background: 'rgba(20, 28, 52, 0.9)', border: '1px solid rgba(255, 255, 255, 0.1)',
+      padding: '14px', borderRadius: '8px', color: '#f8fafc', boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+    }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', color: '#e2e8f0' }}>{label}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
+        {payload.map((entry: any, index: number) => (
+           <div key={index} style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
+             <span style={{ color: entry.color }}>{entry.name}</span>
+             <span>{entry.value.toLocaleString()} MT</span>
+           </div>
+        ))}
       </div>
-    );
-  };
+    </div>
+  );
+}
 
+export default function TunaAquacultureExpansion() {
   const situation = 'ICCAT/RFMO의 엄격한 어획 쿼터 축소(IOTC 눈다랑어 TAC 80,583톤, ICCAT 73,011톤, 2025 기준)로 태평양 참다랑어(BFT) 자연산 어획량이 2020년 85,000MT에서 2030년 50,000MT로 지속 축소되는 반면, 양식산(Farmed BFT)은 같은 기간 25,000→160,000MT로 6.4배 폭증하며 2026년경 공급량 역전(Cross-over)이 예상됩니다. 초과 어획 시 100~125% 페이백 페널티가 부과되어, 자연산 쿼터의 추가 확대는 사실상 불가능합니다.';
   const actionPlan = '1) 2026년 Cross-over 이전에 고부가가치 참치 축양 인프라 투자를 선점해야 합니다. 2) 호주/스페인/말타 등 기존 BFT 축양 선도 기업 대상 M&A 기회 탐색이 전략적 옵션입니다. 3) 양식산 비중 증가 시 가공 부산물(자숙액 등) 원료의 품질 일관성이 향상되어, 참치액젓 사업의 원료 안정성이 개선될 수 있습니다.';
   const source = 'ICCAT Compendium of Management Recommendations / IOTC Compendium of Active Conservation Measures / FAO Statistical Yearbook(2024) / 수산과학원 — 2026~2030년 데이터는 CAGR 기반 예측치';

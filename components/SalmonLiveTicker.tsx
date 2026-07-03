@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TrendingUp, TrendingDown, RefreshCcw, DollarSign, Ship, Activity, BarChart2 } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 
@@ -11,14 +11,7 @@ export default function SalmonLiveTicker() {
   const [lastUpdate, setLastUpdate] = useState<string>('');
   const [sources, setSources] = useState<string[]>([]);
 
-  useEffect(() => {
-    fetchAllData();
-    const interval = setInterval(fetchAllData, 300000);
-    return () => clearInterval(interval);
-  }, []);
-
-  async function fetchAllData() {
-    setLoading(true);
+  const fetchAllData = useCallback(async () => {
     const items: any[] = [];
     const srcSet = new Set<string>();
 
@@ -132,7 +125,20 @@ export default function SalmonLiveTicker() {
     setSources(Array.from(srcSet));
     setLastUpdate(new Date().toLocaleTimeString('ko-KR'));
     setLoading(false);
-  }
+  }, []);
+
+  useEffect(() => {
+    const start = window.setTimeout(() => {
+      void fetchAllData();
+    }, 0);
+    const interval = window.setInterval(() => {
+      void fetchAllData();
+    }, 300000);
+    return () => {
+      window.clearTimeout(start);
+      window.clearInterval(interval);
+    };
+  }, [fetchAllData]);
 
   const body = (
     <div style={{ padding: '0 0 0.5rem 0' }}>
@@ -146,7 +152,10 @@ export default function SalmonLiveTicker() {
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <button onClick={fetchAllData} style={{
+          <button onClick={() => {
+            setLoading(true);
+            void fetchAllData();
+          }} style={{
             background: 'none', border: 'none', cursor: 'pointer', padding: '4px',
             color: loading ? '#ec4899' : '#64748b',
           }}>

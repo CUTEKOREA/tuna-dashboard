@@ -7,6 +7,34 @@ import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_blackhole.json';
 import WestAfricaMap from './WestAfricaMap';
 
+function BHTooltip({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
+    }}>
+      <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '1rem', color: '#67e8f9' }}>{d.country}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>2019 수입량</span><span style={{ fontWeight: 600 }}>{d.import_2019_t?.toLocaleString()}톤</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>2023 수입량</span><span style={{ fontWeight: 600 }}>{d.import_2023_t?.toLocaleString()}톤</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', color: d.growth_pct > 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>
+          <span>성장률</span><span style={{ fontWeight: 700 }}>{d.growth_pct > 0 ? '+' : ''}{d.growth_pct.toLocaleString()}%</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>2023 수입액</span><span style={{ fontWeight: 600 }}>${d.import_value_2023_usd_k?.toLocaleString()}K</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function MackerelBlackhole() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -29,34 +57,6 @@ export default function MackerelBlackhole() {
     if (growth > 50) return '#34d399';
     if (growth > 0) return '#fbbf24';
     return 'var(--color-danger)';
-  };
-
-  const BHTooltip = ({ active, payload }: any) => {
-    if (!active || !payload?.length) return null;
-    const d = payload[0]?.payload;
-    if (!d) return null;
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
-      }}>
-        <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '1rem', color: '#67e8f9' }}>{d.country}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>2019 수입량</span><span style={{ fontWeight: 600 }}>{d.import_2019_t?.toLocaleString()}톤</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>2023 수입량</span><span style={{ fontWeight: 600 }}>{d.import_2023_t?.toLocaleString()}톤</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', color: d.growth_pct > 0 ? 'var(--color-success)' : 'var(--color-danger)' }}>
-            <span>성장률</span><span style={{ fontWeight: 700 }}>{d.growth_pct > 0 ? '+' : ''}{d.growth_pct.toLocaleString()}%</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>2023 수입액</span><span style={{ fontWeight: 600 }}>${d.import_value_2023_usd_k?.toLocaleString()}K</span>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   const top5Growth = [...data].filter(d => d.growth_pct > 0).sort((a, b) => b.growth_pct - a.growth_pct).slice(0, 5);

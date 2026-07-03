@@ -23,6 +23,14 @@ import WidgetCard from './WidgetCard';
 
 /* ─── 공통 유틸 ───────────────────────────────────────────────── */
 const tooltipStyle = { background: 'rgba(20, 28, 52, 0.95)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, fontSize: 12 };
+const OCTOPUS_SST_POINTS = [
+  { year: 2010, sst: 13.1, catch: 20.8 }, { year: 2011, sst: 13.0, catch: 19.5 }, { year: 2012, sst: 13.3, catch: 19.5 },
+  { year: 2013, sst: 13.5, catch: 16.7 }, { year: 2014, sst: 13.6, catch: 17.7 }, { year: 2015, sst: 13.8, catch: 17.2 },
+  { year: 2016, sst: 14.1, catch: 15.2 }, { year: 2017, sst: 14.0, catch: 15.8 }, { year: 2018, sst: 14.3, catch: 14.5 },
+  { year: 2019, sst: 14.5, catch: 14.2 }, { year: 2020, sst: 14.4, catch: 15.1 }, { year: 2021, sst: 14.7, catch: 14.0 },
+  { year: 2022, sst: 14.9, catch: 16.1 }, { year: 2023, sst: 15.0, catch: 13.2 }, { year: 2024, sst: 15.2, catch: 11.8 },
+  { year: 2025, sst: 15.4, catch: 8.1 },
+];
 
 /* ───────────────────────────────────────────────────────────────
  *  ❶ S2 활낙지 채널 마진 매트릭스
@@ -339,22 +347,14 @@ export function OctopusFtaTariffMatrix() {
  * ─────────────────────────────────────────────────────────────── */
 export function OctopusSstCorrelation() {
   // 서해 SST 연평균(℃) vs 한국 낙지 어획(천 톤) — 2010~2025
-  const points = [
-    { year: 2010, sst: 13.1, catch: 20.8 }, { year: 2011, sst: 13.0, catch: 19.5 }, { year: 2012, sst: 13.3, catch: 19.5 },
-    { year: 2013, sst: 13.5, catch: 16.7 }, { year: 2014, sst: 13.6, catch: 17.7 }, { year: 2015, sst: 13.8, catch: 17.2 },
-    { year: 2016, sst: 14.1, catch: 15.2 }, { year: 2017, sst: 14.0, catch: 15.8 }, { year: 2018, sst: 14.3, catch: 14.5 },
-    { year: 2019, sst: 14.5, catch: 14.2 }, { year: 2020, sst: 14.4, catch: 15.1 }, { year: 2021, sst: 14.7, catch: 14.0 },
-    { year: 2022, sst: 14.9, catch: 16.1 }, { year: 2023, sst: 15.0, catch: 13.2 }, { year: 2024, sst: 15.2, catch: 11.8 },
-    { year: 2025, sst: 15.4, catch: 8.1 },
-  ];
   // 단순 상관계수 (Pearson) 계산
   const r = useMemo(() => {
-    const n = points.length;
-    const sx = points.reduce((s, p) => s + p.sst, 0) / n;
-    const sy = points.reduce((s, p) => s + p.catch, 0) / n;
-    const num = points.reduce((s, p) => s + (p.sst - sx) * (p.catch - sy), 0);
-    const dx = Math.sqrt(points.reduce((s, p) => s + (p.sst - sx) ** 2, 0));
-    const dy = Math.sqrt(points.reduce((s, p) => s + (p.catch - sy) ** 2, 0));
+    const n = OCTOPUS_SST_POINTS.length;
+    const sx = OCTOPUS_SST_POINTS.reduce((s, p) => s + p.sst, 0) / n;
+    const sy = OCTOPUS_SST_POINTS.reduce((s, p) => s + p.catch, 0) / n;
+    const num = OCTOPUS_SST_POINTS.reduce((s, p) => s + (p.sst - sx) * (p.catch - sy), 0);
+    const dx = Math.sqrt(OCTOPUS_SST_POINTS.reduce((s, p) => s + (p.sst - sx) ** 2, 0));
+    const dy = Math.sqrt(OCTOPUS_SST_POINTS.reduce((s, p) => s + (p.catch - sy) ** 2, 0));
     return (num / (dx * dy)).toFixed(3);
   }, []);
   return (
@@ -375,8 +375,8 @@ export function OctopusSstCorrelation() {
           <ZAxis dataKey="year" range={[60, 60]} />
           <Tooltip contentStyle={tooltipStyle} cursor={{ strokeDasharray: '3 3' }} formatter={(v: any, n: any) => n === '문어류 어획' ? `${v} 천 톤` : `${v}℃`} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
-          <Scatter name={`연도별 (r=${r})`} data={points} fill="#a78bfa">
-            {points.map((p, i) => <Cell key={i} fill={p.year >= 2023 ? '#ef4444' : p.year >= 2020 ? '#f59e0b' : '#a78bfa'} />)}
+          <Scatter name={`연도별 (r=${r})`} data={OCTOPUS_SST_POINTS} fill="#a78bfa">
+            {OCTOPUS_SST_POINTS.map((p, i) => <Cell key={i} fill={p.year >= 2023 ? '#ef4444' : p.year >= 2020 ? '#f59e0b' : '#a78bfa'} />)}
           </Scatter>
         </ScatterChart>
       }

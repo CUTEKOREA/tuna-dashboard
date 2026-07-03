@@ -1,15 +1,19 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import React, { useEffect, useRef, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './SwimmingTuna.module.css';
+
+const subscribeClientReady = () => () => {};
+const getClientReadySnapshot = () => true;
+const getServerReadySnapshot = () => false;
 
 export default function SwimmingTuna() {
   const tunaRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeClientReady, getClientReadySnapshot, getServerReadySnapshot);
 
   useEffect(() => {
-    setMounted(true);
     if (typeof window === 'undefined') return;
 
     let animationId: number;
@@ -126,10 +130,14 @@ export default function SwimmingTuna() {
       {/* Subtle ocean glow aura behind the fish */}
       <div className={styles.tunaGlow}></div>
       {/* Real photograph — transparent PNG */}
-      <img
-        ref={imgRef}
+      <Image
+        onLoad={(event) => {
+          imgRef.current = event.currentTarget;
+        }}
         src="/southern-bluefin-tuna.png"
         alt="Southern Bluefin Tuna"
+        width={1200}
+        height={480}
         className={styles.tunaImage}
         draggable={false}
       />

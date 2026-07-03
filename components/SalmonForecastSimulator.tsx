@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Calculator, RefreshCcw, Zap } from 'lucide-react';
 import WidgetCard from './WidgetCard';
 
@@ -28,13 +28,10 @@ export default function SalmonForecastSimulator() {
   const [origin, setOrigin] = useState<string>('칠레');
   const [quantity] = useState<number>(1000);
   const [breakdown, setBreakdown] = useState<CostBreakdown | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [forecast, setForecast] = useState<any>(null);
 
-  useEffect(() => { calculateLandedCost(); }, [origin]);
-
-  async function calculateLandedCost() {
-    setLoading(true);
+  const calculateLandedCost = useCallback(async () => {
     const selected = origins.find(o => o.value === origin) || origins[0];
 
     try {
@@ -99,12 +96,30 @@ export default function SalmonForecastSimulator() {
     });
 
     setLoading(false);
-  }
+  }, [origin, quantity]);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      void calculateLandedCost();
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [calculateLandedCost]);
+
+  const handleOriginSelect = (nextOrigin: string) => {
+    if (nextOrigin === origin) return;
+    setLoading(true);
+    setOrigin(nextOrigin);
+  };
+
+  const handleRefresh = () => {
+    setLoading(true);
+    void calculateLandedCost();
+  };
 
   const body = (
     <div style={{ padding: '0 0 0.5rem 0' }}>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
-        <button onClick={calculateLandedCost} style={{
+        <button onClick={handleRefresh} style={{
           background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', padding: '4px',
         }}>
           <RefreshCcw size={14} style={{ animation: loading ? 'spin 1s linear infinite' : 'none' }} />
@@ -115,7 +130,7 @@ export default function SalmonForecastSimulator() {
         <div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
             {origins.map(o => (
-              <button key={o.value} onClick={() => setOrigin(o.value)} style={{
+              <button key={o.value} onClick={() => handleOriginSelect(o.value)} style={{
                 padding: '0.4rem 0.75rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600,
                 cursor: 'pointer', transition: 'all 0.2s',
                 background: origin === o.value ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.03)',

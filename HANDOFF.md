@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧹 **2026-07-03 10:34 KST — React Compiler warning 대폭 정리** [CC]:
+> - `components` 전역의 React Compiler/Next warning 기준선을 46 → 3 warnings로 축소. 이번 작업 범위 33개 파일은 target lint 0 달성.
+> - 주요 변경: Recharts custom tooltip/treemap renderer를 렌더 함수 밖으로 이동, `Math.random()` skeleton bar를 결정론적 높이 배열로 교체, portal/client-ready 플래그를 `useSyncExternalStore` 또는 `document` 가드로 정리, `next/image`로 swimming tuna 이미지를 교체.
+> - API/데이터 fetch 위젯은 effect 내부 동기 `setState`를 줄이도록 초기 loading state·이벤트 핸들러·0ms deferred fetch로 분리. PNA D-day/Market today 계산은 SSR snapshot 패턴으로 전환.
+> - 검증: 대상 파일 `git diff --check` 통과, `npm run typecheck` 통과, `npm run lint` 통과(0 errors, 3 warnings), `npm test` 2파일/5테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes).
+> - 남은 3 warnings는 기존/무관 dirty `components/FleetCharts.tsx`의 `set-state-in-effect`만 해당. `data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트와 함께 보존. 미배포(로컬).
+
 > 🧹 **2026-07-03 10:16 KST — 화면 컴포넌트 unused lint debt 제거** [CC]:
 > - `app/management/page.tsx`와 30개 화면 컴포넌트에서 렌더에 연결되지 않은 변수·상수·setter·prop destructuring 제거. 주요 대상: `CashewStrategy` 로컬 `TelemetryBadge`, `PollockDashboard` dead insight helper, `TunaOperationalIntelWidgets` 미사용 데이터셋, 각 dashboard의 미사용 색상 배열/콜백 인자/state setter.
 > - 부모가 넘기는 prop 계약은 필요한 경우 유지(`PageTransition.activeKey`, `NotebookLMInsight.fxData` 타입 등)하고, 실제 destructuring만 정리. 화면 데이터 흐름·위젯 렌더·fallback 계약은 변경하지 않음.

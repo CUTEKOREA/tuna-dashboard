@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useSyncExternalStore } from 'react';
 import {
   ComposedChart,
   Line,
@@ -15,6 +15,10 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import { useResponsiveChart } from '../lib/useResponsiveChart';
 import { ChartPatternDefs } from './ChartPatterns';
+
+const subscribeClientReady = () => () => {};
+const getClientReadySnapshot = () => true;
+const getServerReadySnapshot = () => false;
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -77,12 +81,8 @@ const renderCustomDot = (props: any) => {
 };
 
 export default function TunaChart({ data }: { data: any[] }) {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useSyncExternalStore(subscribeClientReady, getClientReadySnapshot, getServerReadySnapshot);
   const rc = useResponsiveChart();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   if (!isClient) {
     return <div style={{ width: '100%', height: '100%', minHeight: rc.isMobile ? '250px' : '400px' }} />;

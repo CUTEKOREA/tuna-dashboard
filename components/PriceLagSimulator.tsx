@@ -8,6 +8,19 @@ import { TrendingDown, Activity, DollarSign } from 'lucide-react';
 import TermTooltip from './TermTooltip';
 import { ChartPatternDefs } from './ChartPatterns';
 
+function CustomTooltip({ active, payload, label }: any) {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{ background: '#0F172A', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px' }}>
+        <p style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: 'bold', color: 'var(--text-primary)' }}>{label}</p>
+        <p style={{ margin: '4px 0', fontSize: '12px', color: '#38bdf8' }}>원어 원가: <strong style={{color:'var(--text-primary)'}}>${payload[0].value} / MT</strong></p>
+        <p style={{ margin: '4px 0', fontSize: '12px', color: '#fbbf24' }}>B2C 판가지수: <strong style={{color:'var(--text-primary)'}}>{payload[1].value} pt</strong></p>
+      </div>
+    );
+  }
+  return null;
+}
+
 export default function PriceLagSimulator() {
   const [lagMonths, setLagMonths] = useState(4); // 1 to 6 months
 
@@ -62,19 +75,6 @@ export default function PriceLagSimulator() {
       p2_end: releaseEnd
     };
   }, [lagMonths]);
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div style={{ background: '#0F172A', border: '1px solid rgba(255,255,255,0.1)', padding: '12px', borderRadius: '8px' }}>
-          <p style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: 'bold', color: 'var(--text-primary)' }}>{label}</p>
-          <p style={{ margin: '4px 0', fontSize: '12px', color: '#38bdf8' }}>원어 원가: <strong style={{color:'var(--text-primary)'}}>${payload[0].value} / MT</strong></p>
-          <p style={{ margin: '4px 0', fontSize: '12px', color: '#fbbf24' }}>B2C 판가지수: <strong style={{color:'var(--text-primary)'}}>{payload[1].value} pt</strong></p>
-        </div>
-      );
-    }
-    return null;
-  };
 
   return (
     <div className={styles.container}>

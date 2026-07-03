@@ -76,8 +76,6 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
     }
   }, [filtered, selectedIndex]);
 
-  useEffect(() => { setSelectedIndex(0); }, [query]);
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -113,7 +111,10 @@ export default function CommandPalette({ onNavigate }: CommandPaletteProps) {
               <input
                 ref={inputRef}
                 value={query}
-                onChange={e => setQuery(e.target.value)}
+                onChange={e => {
+                  setQuery(e.target.value);
+                  setSelectedIndex(0);
+                }}
                 onKeyDown={handleKeyDown}
                 placeholder="페이지 검색... (↑↓ 이동, Enter 선택)"
                 style={{

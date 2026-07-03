@@ -15,9 +15,6 @@ export default function TermTooltip({ term, description }: TermTooltipProps) {
   const [pos, setPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
   const clickRef = useRef<HTMLSpanElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -59,7 +56,7 @@ export default function TermTooltip({ term, description }: TermTooltipProps) {
     setIsOpen(!isOpen);
   };
 
-  const popup = isOpen && mounted ? createPortal(
+  const popup = isOpen && typeof document !== 'undefined' ? createPortal(
     <div ref={popupRef} className={styles.tooltip} style={{
       position: 'fixed',
       top: pos.top,

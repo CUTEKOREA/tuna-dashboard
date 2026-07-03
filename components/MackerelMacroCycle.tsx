@@ -7,6 +7,34 @@ import WidgetCard from './WidgetCard';
 import rawData from '../data/mackerel_macro.json';
 import { ChartPatternDefs } from './ChartPatterns';
 
+function MacroTooltip({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0]?.payload;
+  if (!d) return null;
+  return (
+    <div style={{
+      background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
+      padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
+    }}>
+      <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#67e8f9', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '0.9rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: '#06b6d4' }}>🐟 글로벌 생산량</span>
+          <span style={{ fontWeight: 600 }}>{(d.production_t / 1000000).toFixed(1)}M톤</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span style={{ color: 'var(--color-warning)' }}>📦 무역량</span>
+          <span style={{ fontWeight: 600 }}>{(d.trade_volume_t / 1000).toFixed(0)}K톤</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '5px' }}>
+          <span style={{ color: 'var(--color-danger)' }}>💰 수입 단가</span>
+          <span style={{ fontWeight: 700, color: 'var(--color-danger)' }}>${d.unit_price_usd.toLocaleString()}/t</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function MackerelMacroCycle() {
   const chartRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState(0);
@@ -33,34 +61,6 @@ export default function MackerelMacroCycle() {
   const avgPriceAll = data.reduce((s: number, d: any) => s + d.unit_price_usd, 0) / data.length;
   const phase = avgPriceRecent > avgPriceAll * 1.2 ? '호황기' : avgPriceRecent < avgPriceAll * 0.8 ? '불황기' : '안정기';
   const phaseColor = phase === '호황기' ? 'var(--color-success)' : phase === '불황기' ? 'var(--color-danger)' : '#fbbf24';
-
-  const MacroTooltip = ({ active, payload }: any) => {
-    if (!active || !payload?.length) return null;
-    const d = payload[0]?.payload;
-    if (!d) return null;
-    return (
-      <div style={{
-        background: 'rgba(10, 16, 40, 0.95)', border: '1px solid rgba(6, 182, 212, 0.4)',
-        padding: '14px', borderRadius: '8px', color: 'var(--text-primary)', boxShadow: '0 8px 32px rgba(0,0,0,0.7)', minWidth: '220px'
-      }}>
-        <p style={{ margin: '0 0 10px 0', fontWeight: 'bold', fontSize: '1.05rem', color: '#67e8f9', borderBottom: '1px dashed rgba(255,255,255,0.2)', paddingBottom: '8px' }}>{d.year}년</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '0.9rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ color: '#06b6d4' }}>🐟 글로벌 생산량</span>
-            <span style={{ fontWeight: 600 }}>{(d.production_t / 1000000).toFixed(1)}M톤</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ color: 'var(--color-warning)' }}>📦 무역량</span>
-            <span style={{ fontWeight: 600 }}>{(d.trade_volume_t / 1000).toFixed(0)}K톤</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px dashed rgba(255,255,255,0.15)', paddingTop: '5px' }}>
-            <span style={{ color: 'var(--color-danger)' }}>💰 수입 단가</span>
-            <span style={{ fontWeight: 700, color: 'var(--color-danger)' }}>${d.unit_price_usd.toLocaleString()}/t</span>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   const customBody = (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
