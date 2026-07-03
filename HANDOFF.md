@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🛡 **2026-07-03 10:41 KST — 참치/연어 API 계약 테스트 확대** [CC]:
+> - P0 안전망 후속. `lib/contracts/market.ts`에 참치 ticker, 연어 KCS/KAMIS/Comtrade 응답 zod 계약을 추가하고, `__tests__/salmon-tuna-routes.contract.test.ts` 신규 6테스트 작성.
+> - 네트워크를 강제 차단한 fallback 경로에서 `/api/tuna/ticker` 5개 ticker, `/api/salmon/kcs` timeseries·origin·product share, `/api/salmon/kamis` commodity 가격·프리미엄 지수, `/api/salmon/comtrade` export ranking·한국 수입 시계열 계약을 검증.
+> - 전체 테스트 기준선은 2파일/5테스트 → 3파일/11테스트로 확대. 기획서 A-3 라우트 계약 테스트 커버리지 확장의 다음 단위 완료.
+> - 검증: 신규 테스트 단독 6/6 통과, `npm run typecheck` 통과, `npm run lint` 0 errors/0 warnings, `npm test` 3파일/11테스트 통과, `npm run build` 통과(Next 16.2.1, TypeScript 수행, 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧹 **2026-07-03 10:37 KST — 전체 ESLint warning 0 달성** [CC]:
 > - 직전 배치에서 남은 `components/FleetCharts.tsx` React Compiler warning 3개를 정리. 기존 선단 어획 데이터 갱신 내용은 보존하고, 세 차트의 mount guard만 `useSyncExternalStore` SSR/client snapshot 패턴으로 교체.
 > - 전체 `npm run lint` 기준 0 errors / 0 warnings 달성. 2026-07-03 품질 라쳇의 lint 기준선은 252 warnings → 0 warnings까지 하강.
