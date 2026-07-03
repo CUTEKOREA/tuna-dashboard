@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧪 **2026-07-03 11:42 KST — A-4 위젯 렌더 스냅샷 기준선 추가** [CC]:
+> - 기획서 A-4 착수. `__tests__/widget-render-snapshots.test.ts`를 추가해 `react-dom/server` 기반으로 공통 `TelemetryBadge`와 20개 대표 `WidgetCard` 셸을 렌더링.
+> - `__tests__/__snapshots__/widget-render-snapshots.test.ts.snap`에는 거대 HTML 대신 실제 렌더 HTML의 SHA-256 해시와 구조 요약을 저장: 20 카드, 5-Pillar 분포, LIVE/SYNCED/STATIC 카운트, KPI 40개, SIT/TAK/source 각 20개.
+> - 새 의존성 추가 없음. DOM 테스트 도구 없이 기존 React/ReactDOM/Vitest만 사용해 공통 위젯 헤더·텔레메트리·KPI·SIT/TAK 회귀를 감지.
+> - 검증: 신규 테스트 2/2 통과, 대상 ESLint 0 errors/0 warnings, `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 9파일/38테스트, `npm run build` 143 routes).
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🛡 **2026-07-03 11:39 KST — L-09 LIVE 라벨 정직성 가드 추가** [CC]:
 > - 기획서 KPI의 "LIVE 신뢰 라벨 자동 감사" 착수. `__tests__/architecture-guards.test.ts`에 `TelemetryBadge`/`WidgetCard` 하드코딩 LIVE 표기 금지 가드를 추가해 `isLive` 같은 런타임 신호 없는 리터럴 LIVE 재발을 CI에서 차단.
 > - `components/TunaExtractDashboard.tsx` 헤더의 `TelemetryBadge status="LIVE"`를 `STATIC`으로 정정. `/api/tuna-extract`는 `data/tuna_extract_dashboard.json` 정적 스냅샷을 서빙하므로 LIVE가 아님.

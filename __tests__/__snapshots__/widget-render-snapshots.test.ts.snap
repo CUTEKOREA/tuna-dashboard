@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`widget render snapshots > keeps 20 representative WidgetCard shells stable 1`] = `
+{
+  "cardIds": [
+    "tuna-supply",
+    "tuna-processing",
+    "tuna-logistics",
+    "tuna-demand",
+    "tuna-esg",
+    "salmon-supply",
+    "salmon-processing",
+    "salmon-logistics",
+    "salmon-demand",
+    "salmon-esg",
+    "mackerel-supply",
+    "mackerel-processing",
+    "mackerel-logistics",
+    "mackerel-demand",
+    "mackerel-esg",
+    "squid-supply",
+    "squid-processing",
+    "squid-logistics",
+    "squid-demand",
+    "agri-supply",
+  ],
+  "hash": "a86270af722786de103e11455db02e01523062824b834203c646d6540f57fb59",
+  "pillars": [
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "S1",
+  ],
+  "sampleText": {
+    "firstTitle": true,
+    "lastTitle": true,
+    "takeawaySentence": true,
+  },
+  "statusCounts": {
+    "LIVE": 4,
+    "STATIC": 9,
+    "SYNCED": 7,
+  },
+  "structureCounts": {
+    "actionBlocks": 20,
+    "bodySlots": 20,
+    "cards": 20,
+    "kpiBoxes": 40,
+    "situationBlocks": 20,
+    "sourceBlocks": 20,
+  },
+}
+`;
+
+exports[`widget render snapshots > keeps telemetry badge status markup stable 1`] = `
+{
+  "hash": "df17f5844108af2db4e994257980c15a4babfc4652efc60e86448193be9045ff",
+  "showsLiveSyncDate": false,
+  "showsStaticSyncDate": true,
+  "showsSyncedSyncDate": true,
+  "statuses": {
+    "LIVE": 1,
+    "STATIC": 1,
+    "SYNCED": 1,
+  },
+}
+`;
