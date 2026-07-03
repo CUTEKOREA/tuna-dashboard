@@ -102,6 +102,10 @@ export const DASHBOARD_COMMANDS = DASHBOARD_MENU_CONFIGS.map((menu) => ({
   section: menu.section,
 })) as readonly DashboardCommand[];
 
+export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
+  .filter((menu) => menu.key !== 'market' && !requiresOperationAccess(menu))
+  .map((menu) => menu.key) as readonly ActiveMenu[];
+
 const VALID_MENU_SET = new Set<string>(VALID_MENUS);
 
 export function isActiveMenu(value: string): value is ActiveMenu {

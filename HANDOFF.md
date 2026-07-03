@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🗺 **2026-07-03 12:30 KST — sitemap 공개 대시보드 라우트 레지스트리 연동** [CC]:
+> - `lib/dashboard-registry.ts`에 `PUBLIC_DASHBOARD_ROUTES`를 추가해 `market` 루트 대체 메뉴와 운영 잠금 메뉴(`fleet`, `unloading`, `logistics`)를 제외한 공개 대시보드 라우트를 자동 파생.
+> - `app/sitemap.ts`의 중복 공개 대시보드 배열을 제거하고 `PUBLIC_DASHBOARD_ROUTES`를 사용하도록 연결. `manual`, `financial-risk`, `ffa-report`, `falkland` 같은 독립 공개 페이지는 sitemap 로컬 배열에 유지.
+> - TDD 확인: `PUBLIC_DASHBOARD_ROUTES` 미구현 실패를 먼저 확인한 뒤 구현. `__tests__/dashboard-registry.test.ts`가 공개 route 파생 계약과 sitemap 출력 순서를 함께 검증.
+> - 검증: 대상 테스트 1파일/5테스트 통과, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🧭 **2026-07-03 12:27 KST — 대시보드 메뉴 레지스트리 1차 추출** [CC]:
 > - 기획서 축 C 팩토리화 착수. `lib/dashboard-registry.ts`를 추가해 34개 실제 `ActiveMenu` 키, 한글 타이틀, 섹션, 배경 액센트, 운영 잠금, 숫자 단축키, CommandPalette 검색 항목을 단일 출처로 분리.
 > - `app/page.tsx`의 `VALID_MENUS`, `MENU_TITLES`, 보호 메뉴 Set, 숫자 단축키 배열, ambient accent 분기를 레지스트리 사용으로 교체. 기존 화면 렌더 분기는 유지해 리스크를 낮춤.

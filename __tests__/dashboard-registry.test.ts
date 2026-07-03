@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import sitemap from '../app/sitemap';
 import {
   DASHBOARD_COMMANDS,
   DASHBOARD_MENU_CONFIGS,
@@ -7,6 +8,7 @@ import {
   getDashboardTitle,
   isActiveMenu,
   KEYBOARD_SHORTCUT_MENUS,
+  PUBLIC_DASHBOARD_ROUTES,
   PROTECTED_OPERATION_MENU_KEYS,
   VALID_MENUS,
 } from '../lib/dashboard-registry';
@@ -63,5 +65,24 @@ describe('dashboard registry', () => {
     expect(DASHBOARD_COMMANDS.map((command) => command.key)).not.toEqual(
       expect.arrayContaining(['ai-forecast', 'strategy', 'retail', 'ranching']),
     );
+  });
+
+  it('derives public sitemap dashboard routes from non-protected menus', () => {
+    expect(PUBLIC_DASHBOARD_ROUTES).toEqual(
+      VALID_MENUS.filter((menu) => !['market', 'fleet', 'unloading', 'logistics'].includes(menu)),
+    );
+    expect(PUBLIC_DASHBOARD_ROUTES).toContain('value-chain');
+    expect(PUBLIC_DASHBOARD_ROUTES).toContain('sashimi-steak');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
+  });
+
+  it('publishes public dashboard routes to sitemap in registry order', () => {
+    const publicRouteSet = new Set<string>(PUBLIC_DASHBOARD_ROUTES);
+    const routes = sitemap().map((entry) => new URL(entry.url).pathname.replace(/^\//, ''));
+    const dashboardRoutes = routes.filter((route) => publicRouteSet.has(route));
+
+    expect(routes[0]).toBe('');
+    expect(dashboardRoutes).toEqual(PUBLIC_DASHBOARD_ROUTES);
   });
 });
