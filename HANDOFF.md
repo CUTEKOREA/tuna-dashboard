@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-07-03 13:16 KST — 참치·미국 데이터 API 캐시 정책 명시 및 하한 141 라쳇** [CC]:
+> - 기획서 축 E-2 후속. 외부 enrichment/요청 파라미터 성격의 6개 route(`/api/tuna-emerging-markets`, `/api/tuna-forecast`, `/api/tuna-local`, `/api/tuna-policy-risk`, `/api/us-census`, `/api/us-ita`)에 `dynamic = 'force-dynamic'`을 명시.
+> - 파일/정기 스냅샷 성격의 4개 route(`/api/tuna-extract`, `/api/tuna-live`, `/api/tuna-ranching`, `/api/used-car`)는 `revalidate = 3600`으로 명시.
+> - `scripts/audit_api_cache_policy.mjs` 기본 하한을 131→141로 상향. 하한만 올렸을 때 `131/145 explicit, minimum 141` 실패를 먼저 확인한 뒤 GREEN 전환.
+> - 현재 기준선: 145개 API route 중 141개 명시 정책 보유(`revalidate` 78, `dynamic` 56, `Cache-Control` 34). build 출력에서 참치/중고차 스냅샷은 `1h`, 외부 조회 route는 `ƒ`.
+> - 검증: `npm run check:api-cache` 141/145 OK, 대상 ESLint 0 errors/0 warnings, `npm run typecheck` 통과, 대상 테스트 1파일/2테스트 통과. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 16파일/66테스트, `npm run check:api-cache`, `npm run build` 100 static pages, `npm run check:bundle`).
+> - 남은 미정책 route: `/api/webhooks/unloading`, `/api/whelk/live`, `/api/wits`, `/api/wto`.
+> - 미배포(로컬). 기존/무관 dirty 파일(`data/atuna_prices.json`, `update_local_db.py`, 미추적 하역/테스트 스크립트)은 그대로 보존.
+
 > 🦑 **2026-07-03 13:13 KST — 오징어·시장 API 캐시 정책 명시 및 하한 131 라쳇** [CC]:
 > - 기획서 축 E-2 후속. 정적 실측 위젯 성격의 6개 route(`/api/squid/importyeti`, `/api/squid/mfds`, `/api/squid/ofac`, `/api/squid/squid-forecast`, `/api/squid/squid-sourcing`, `/api/squid/wto`)에 `revalidate = 3600`을 명시.
 > - KOSIS 헬스체크·Yahoo Finance·Tariffs.io·Gemini/KCS/KAMIS 등 런타임 외부 조회 성격의 4개 route(`/api/squid/kosis`, `/api/stocks`, `/api/tariffs`, `/api/trade-macro`)에 `dynamic = 'force-dynamic'`을 명시.

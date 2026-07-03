@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const runtime = 'nodejs';
+export const revalidate = 3600;
 
 export async function GET() {
   const filePath = path.join(process.cwd(), 'public/data/tuna_ranching_dashboard.json');

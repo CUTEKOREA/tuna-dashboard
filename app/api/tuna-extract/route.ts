@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const runtime = 'nodejs';
+export const revalidate = 3600;
 
 const SOURCE_FILE = 'data/tuna_extract_dashboard.json';
 

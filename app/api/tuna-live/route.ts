@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 /**
  * 참치 시장 인텔리전스 (시뮬레이션 데이터)
  *

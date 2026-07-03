@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
+export const revalidate = 3600;
+
 /**
  * /api/used-car — 서아프리카 중고차 수출 인텔리전스 (정적 스냅샷).
  *

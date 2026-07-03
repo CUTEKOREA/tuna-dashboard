@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 // U.S. ITA Data Services API Pipeline
 // POST /api/us-ita — Fetch U.S. trade events, market intelligence, and tariff info
 // GET  /api/us-ita — Health check
