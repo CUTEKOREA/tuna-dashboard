@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> 🐟 **2026-07-03 15:44 KST — `/market` Atuna 어가 최신행 반영** [CC]:
+> - 사용자 제보로 `/market`의 `SKJ 가다랑어 지역 스프레드`, `YF 황다랑어 지역 스프레드` 카드와 차트가 `2026.06.12` 기준 구버전 어가를 표시하던 원인을 확인. 배포된 `data/atuna_prices.json`의 최대 기준일이 `2026-06-12`였고, 로컬에만 최신 Atuna 수동 동기화 행 4개가 남아 있어 배포 대상에 빠진 상태였음.
+> - `data/atuna_prices.json`에 최신 수동 동기화 행을 배포 대상 데이터로 포함: `2026-05-30`(아비장/비고), `2026-06-17`(SKJ 만타 2100), `2026-06-19`(SKJ 세이셸 1500, YF 세이셸 2100), `2026-06-24`(SKJ 방콕 1775).
+> - 재발 방지: `__tests__/atuna-prices-data.test.ts` 추가. 실제 Atuna 데이터 파일의 최신 허브 관측일/가격이 `SKJ 방콕 2026-06-24 $1,775`, `YF 세이셸 2026-06-19 $2,100` 등을 포함하는지 검증.
+> - 검증: 로컬 `/api/atuna-prices` 확인 `latestDate=2026-06-24`, `latestByHub.skj_bkk=1775@2026-06-24`, `latestByHub.yf_sey=2100@2026-06-19`. 로컬 `http://127.0.0.1:3020/market` Puppeteer 확인: 카드에 SKJ `$1,775`, YF `$2,100`, `2026.06.24`, `2026.06.19`, 방콕 -2.7%, 세이셸 +5.0% 표시, 기존 `$1,825`/`$2,000` 카드 미표시, horizontalOverflow=0. `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 21파일/80테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`).
+> - 미배포(로컬). 기존/무관 dirty 파일(`update_local_db.py`, 미추적 하역/테스트 스크립트 등)은 그대로 보존.
+
 > 🐙 **2026-07-03 15:40 KST — 주꾸미·낙지 사이드바 전용 아이콘 적용** [CC]:
 > - 사용자 요청으로 좌측 사이드바의 `주꾸미 (WEBFOOT OCTOPUS)`, `낙지 (LONG-ARM OCTOPUS)` 앞 아이콘을 품목과 어울리는 전용 벡터 이미지로 교체.
 > - 기존 두 메뉴가 공통으로 쓰던 `Octagon` 아이콘을 제거하고 `WebfootOctopus`, `LongArmOctopus` 레지스트리 키를 추가. `components/SeafoodSidebarIcons.tsx`에 주꾸미용 짧고 둥근 다리 실루엣, 낙지용 긴 팔 실루엣 SVG 컴포넌트를 추가해 같은 모양으로 보이지 않게 함.
