@@ -2306,3 +2306,11 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 
 ### 다음 단계
 - 신규 선단/어획/하역 리포트 수신 시 대시보드 데이터 동기화 지속
+
+## 2026.07.06 - 하역현황 갱신
+### 완료된 것
+- 7/4 기준 SHIN FUJI 하역 업무 보고(150.660 MT 하역, 누계 3,001.570 MT)를 `public/data/unloading/local_db.json`에 업데이트 반영 완료
+- SHIN FUJI의 각 어종별(SJ, YF) 누적 하역량(actual_amount) 업데이트
+
+### 다음 단계
+- Vercel 프로덕션 라이브 배포 완료 후 확인
