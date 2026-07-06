@@ -72,7 +72,7 @@ export interface WidgetCardProps {
 
   // === 분류 ===
   pillar: Pillar;          // 5-Pillar 매핑 의무 (W-04)
-  telemetry: TelemetryProps;  // A-02 의무
+  telemetry?: TelemetryProps;  // A-02 (선택)
 
   // === 본문 ===
   chart?: React.ReactNode;          // Recharts JSX (SafeResponsiveContainer 자동 래핑)
@@ -201,7 +201,7 @@ export default function WidgetCard(props: WidgetCardProps) {
           )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px', flexShrink: 0 }}>
-          <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} />
+          {telemetry && <TelemetryBadge status={telemetry.status} syncDate={telemetry.syncDate} />}
           {unit && (
             <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 500, whiteSpace: 'nowrap' }}>
               {unit}
