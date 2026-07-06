@@ -7,6 +7,12 @@ type RouteModule = {
 
 const routes = [
   {
+    label: '/api/bni-global',
+    importRoute: () => import('../app/api/bni-global/route') as Promise<RouteModule>,
+    url: 'http://localhost/api/bni-global',
+    source: 'data/bni_global_dashboard.json',
+  },
+  {
     label: '/api/carrot/fao',
     importRoute: () => import('../app/api/carrot/fao/route') as Promise<RouteModule>,
     url: 'http://localhost/api/carrot/fao?type=production',

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ErrorBoundary from '../components/ErrorBoundary';
 import styles from './page.module.css';
-import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Box, TestTube, ShieldCheck } from 'lucide-react';
+import { Activity, Anchor, Ship, Lock, Radio, BarChart2, Navigation, Factory, BookOpen, Waves, Fish, Hexagon, Command, Leaf, Menu, X, Snowflake, CarFront, Shrimp, Droplets, FishSymbol, Shell, Nut, Sprout, LeafyGreen, Carrot, Coffee, Cherry, Drumstick, Beef, Box, TestTube, ShieldCheck, Globe2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -66,6 +66,7 @@ const KoreaConsignmentDashboard = dynamic(() => import('../components/KoreaConsi
 const MangosteenDashboard = dynamic(() => import('../components/MangosteenDashboard'));
 const ColdStorageDashboard = dynamic(() => import('../components/ColdStorageDashboard'));
 const MarketDashboard = dynamic(() => import('../components/MarketDashboard'));
+const BniGlobalDashboard = dynamic(() => import('../components/BniGlobalDashboard'));
 const ResearchLabDashboard = dynamic(() => import('../components/ResearchLabDashboard'));
 const PurseSeinerDashboard = dynamic(() => import('../components/PurseSeinerDashboard'));
 const MscStrategyDashboard = dynamic(() => import('../components/MscStrategyDashboard'));
@@ -88,6 +89,7 @@ const SIDEBAR_ICONS: Record<SidebarIconKey, React.ElementType> = {
   Factory,
   Fish,
   FishSymbol,
+  Globe2,
   Hexagon,
   Leaf,
   LeafyGreen,
@@ -292,6 +294,7 @@ export default function Home() {
   };
   const dashboardPanels: Record<ActiveMenu, React.ReactNode> = {
     market: <MarketDashboard />,
+    'bni-global': <BniGlobalDashboard />,
     'cross-intelligence': <CrossCommodityIntelligenceDashboard />,
     fleet: <FleetCommandCenter />,
     logistics: <LogisticsDashboard />,

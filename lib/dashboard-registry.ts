@@ -14,6 +14,7 @@ export type SidebarIconKey =
   | 'Factory'
   | 'Fish'
   | 'FishSymbol'
+  | 'Globe2'
   | 'Hexagon'
   | 'Leaf'
   | 'LeafyGreen'
@@ -57,6 +58,7 @@ export const DASHBOARD_MENU_CONFIGS = [
   { key: 'squid', title: '오징어', section: 'fishery', accent: 'cyan', shortcutOrder: 8, sidebar: { icon: 'Droplets', suffix: 'Squid' } },
   { key: 'jukkumi', title: '주꾸미', section: 'fishery', accent: 'cyan', shortcutOrder: 9, sidebar: { icon: 'WebfootOctopus', suffix: 'Webfoot Octopus' } },
   { key: 'octopus', title: '낙지', section: 'fishery', accent: 'cyan', shortcutOrder: 10, sidebar: { icon: 'LongArmOctopus', suffix: 'Long-Arm Octopus' } },
+  { key: 'bni-global', title: 'BNI Global 시장 브리핑', section: 'operation', accent: 'gold', sidebar: { icon: 'Globe2', label: 'BNI Global', suffix: 'Market Brief' } },
   { key: 'cashew', title: '캐슈넛', section: 'agriculture', accent: 'emerald', sidebar: { icon: 'Nut', suffix: 'Cashew' } },
   { key: 'cassava', title: '카사바', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'Sprout', suffix: 'Cassava' } },
   { key: 'garlic', title: '마늘', section: 'agriculture', accent: 'cyan', sidebar: { icon: 'LeafyGreen', suffix: 'Garlic' } },
@@ -174,6 +176,7 @@ export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
 
 export const DASHBOARD_PANEL_ORDER = [
   'market',
+  'bni-global',
   'cross-intelligence',
   'fleet',
   'logistics',
@@ -211,7 +214,7 @@ export const DASHBOARD_PANEL_ORDER = [
 ] as const satisfies readonly ActiveMenu[];
 
 const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
-  operation: ['market', 'fleet', 'unloading', 'logistics'],
+  operation: ['market', 'bni-global', 'fleet', 'unloading', 'logistics'],
   fishery: [
     'value-chain',
     'mackerel',

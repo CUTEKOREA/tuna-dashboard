@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> 📊 **2026-07-06 18:50 KST — BNI Global 거래처 정기 시장 브리핑 로컬 구현** [CC]:
+> - 사용자 요청으로 `/Users/idong-geon/Downloads/BNI Global `의 BNI 정기 PDF 9건과 `~/agri_pipeline/data`의 FRED·KCS·UN Comtrade 처리 CSV를 결합한 거래처 제공용 `/bni-global` 대시보드 초안을 구현.
+> - `scripts/build_bni_global_dashboard.mjs` 추가: BNI PDF 아카이브(최신 `BNI Report 260706.pdf`, 2026-07-06)와 옥수수·소맥·대두·설탕·팜유 처리 CSV를 읽어 `data/bni_global_dashboard.json` 생성. 대두유·동물성 유지는 BNI 직접 추출 보조 시장으로 별도 표기.
+> - `components/BniGlobalDashboard.tsx`/CSS, `lib/data/bni-global.ts`, `/api/bni-global` 추가. 사이드바는 접근성을 위해 `시장 동향` 바로 아래 `BNI Global (Market Brief)` 공개 메뉴로 배치.
+> - 재발 방지: `__tests__/bni-global-data.test.ts` 추가, `dashboard-registry.test.ts`와 `static-snapshot-routes.contract.test.ts` 갱신. 최신 보고서 2026-07-06, 보고서 9건, 구조화 상품 5개, 정적 API 메타데이터를 검증.
+> - 검증: `npm run lint` 통과(기존 TunaExportRaceWidget/TunaInsiderSignalWidget/TunaProteinBasketWidget 경고 7건 유지), `npm run typecheck` 통과, `npm test` 22파일/84테스트 통과, `npm run check:api-cache` 150/150, `npm run build` 통과(102 static pages, 기존 Comtrade 2MB cache warning 유지), `npm run check:bundle` 통과. 로컬 `http://localhost:3000/bni-global` Puppeteer 확인: 제목·BNI 메뉴·최신 PDF·상품/리스크/아카이브 렌더, 데스크톱 오류 0, 모바일 본문 overflow 0.
+> - 미배포(로컬). 기존/무관 미추적 패치·테스트 스크립트는 그대로 보존.
+
 > ✅ **2026-07-03 16:00 KST — 주꾸미·낙지 아이콘 + Atuna 최신 어가 production 배포 완료** [CC]:
 > - 사용자 요청 `배포`로 로컬 ahead 3개 커밋을 `origin/main`에 push: `e39eaae`(주꾸미·낙지 전용 사이드바 아이콘), `3d761a4`(`/market` Atuna 최신 어가 데이터), `72f0e59`(주꾸미 compact body·낙지 long arms 실루엣 보강).
 > - 배포 전 검증: `npm run verify` 통과(`npm run lint`, `npm run typecheck`, `npm test` 21파일/80테스트, `npm run check:api-cache` 145/145, `npm run build` 97 static pages, `npm run check:bundle`). pre-push C-4 143/143 tracked 및 L-03 build gate 통과.
