@@ -2325,3 +2325,10 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - [CC] P1: api_keys_catalog.md 평문 키 7건 마스킹(토스 live secret 포함 — **재발급 권장**). TunaDashboard 헤더 KAMIS 표기 제거(L-09).
 - 검증: python 실호출 시뮬 = dev 서버 실응답 일치 · npm run build 통과(L-03) · 리뷰어 무결.
 - 다음: 제안서 1단계 S 퀵윈(A-1 KAMIS 바스켓, A-2 US Census 관문, A-3 DART 내부자, A-5 Comtrade 레이스). 배포는 사용자 지시 대기.
+
+## 2026.07.06 - [CC] 1단계 S 퀵윈 위젯 4종 신설 (제안서 A-1·A-2·A-3·A-5)
+- [CC] 4종 병렬 구현(빌더→적대검증 체인, 전부 PASS) 후 TunaDashboard 마운트: S3 관문 레이더(US Census district LIVE) · S4 대체재 바스켓(KAMIS 611/613/615/619 LIVE)+수출 레이스(Comtrade 연간 2015~2024, 15~19는 확정 스냅샷 보충 정직 표기) · S5 내부자 지분 시그널(DART elestock+majorstock 8콜, '지분 순증' 라벨 규율).
+- 신규: app/api/tuna/{kamis-basket,us-gateway,insider-signal,comtrade-race}/route.ts + components/Tuna{ProteinBasket,UsGateway,InsiderSignal,ExportRace}Widget.tsx
+- 검증: 4 라우트 dev 실호출 전부 isLive:true(LA 24.9%·고등어 5,359원·이벤트 16건·태국 $2.0B) · npm run build 통과(L-03) · check_s_grade 위반 0.
+- 주의: Comtrade fallback 키 수시간 내 429 가능(검증 중 쿼터 소모, revalidate 86400이라 운영 무해) · Census 공표 랙 ~3개월(당월 빈 응답 시 4개월 소급 설계) · Vercel hobby maxDuration 주의(comtrade-race 60s 설정).
+- 다음: 2단계 M 본체(B-1 참가격 플래그십 — 활용신청 선행, A-6 재무 스코어보드, A-7 ECOS 패스스루). 배포는 사용자 지시 대기.

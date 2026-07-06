@@ -68,6 +68,10 @@ import TunaLiveTicker from './TunaLiveTicker';
 import { WitsTariffWidget, OecBenchmarkWidget, WitsTradeFlowWidget } from './TunaTradeIntelWidgets';
 import UsTunaImportWidget from './UsTunaImportWidget';
 import UsTunaMarketShareWidget from './UsTunaMarketShareWidget';
+import TunaUsGatewayWidget from './TunaUsGatewayWidget';
+import TunaProteinBasketWidget from './TunaProteinBasketWidget';
+import TunaExportRaceWidget from './TunaExportRaceWidget';
+import TunaInsiderSignalWidget from './TunaInsiderSignalWidget';
 import UsPolicyImpactWidget from './UsPolicyImpactWidget';
 import {
   AtunaIoPerfectStormWidget,
@@ -878,6 +882,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <MofTradeBalanceWidget />
               {/* 미국 인구조사국 무역 통계 — 참치캔 공급국 (명태 우회는 PollockDashboard로 분리) */}
               <UsTunaMarketShareWidget />
+              {/* 미국 통관지구(관문) 분포 — 2026-07 A-2 신설 (US Census district LIVE) */}
+              <TunaUsGatewayWidget />
               <TunaUsLoinImports />
 
               {/* 3. 전략적 물류 거점 (PNG 등) */}
@@ -921,6 +927,9 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <TunaPriceDecoupling />
               {/* 미국 시장 — 참치캔 수입 트렌드 + 평균 단가 */}
               <UsTunaImportWidget />
+              {/* 대체 단백질 소매가(KAMIS LIVE) + 글로벌 수출측 점유율(Comtrade 연간) — 2026-07 A-1·A-5 신설 */}
+              <TunaProteinBasketWidget />
+              <TunaExportRaceWidget />
 
               {/* 2. 주요 소비 시장 동향 (EU 및 글로벌 리테일) */}
               <InsightEU18C />
@@ -999,6 +1008,8 @@ const TunaDashboard = React.memo(function TunaDashboard() {
               <TunaEsgRiskRadar />
               {/* 미국 UFLPA 발효 후 가공국 재편 (Census 무역 통계 근거) */}
               <UsPolicyImpactWidget />
+              {/* 거버넌스(G) 시그널: 참치 상장사 내부자 지분변동 (DART LIVE) — 2026-07 A-3 신설 */}
+              <TunaInsiderSignalWidget />
 
               {/* 2. 환경세 및 자원 보존 (TAC) 규제 */}
               <InsightPillarTwo />
