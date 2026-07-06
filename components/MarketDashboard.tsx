@@ -387,7 +387,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 주간 다이제스트: 6월 4주차 시장을 뒤흔드는 핵심 시그널
+          Atuna 주간 다이제스트: 7월 1주차 시장을 뒤흔드는 핵심 시그널
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -400,19 +400,19 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 가격 / 시장
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.24</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.01</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              방콕 가다랑어 원어가 하락세 전환
+              방콕 SKJ 하락 지속 · EPO 황다랑어 풍어로 가격 패리티 근접
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>지정학적 긴장 완화와 유가 급락으로 방콕 가다랑어(SKJ 1.8kg Up) 가격이 <strong style={{ color: 'var(--text-main)' }}>톤당 1,775달러</strong>로 하락 조정되며 가공업계의 원가 압박 완화.</span>
+                <span>중동 위기 완화로 방콕 SKJ(1.8kg Up) 가격이 <strong style={{ color: 'var(--text-main)' }}>톤당 $1,775</strong>로 하락 지속, 업계는 추가 하락 전망.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>싱가포르 MGO 가격 톤당 926달러로 폭락 및 호르무즈 해협 선박 통행 부분 재개 반영.</span>
+                <span>EPO 황다랑어(YF) 이례적 풍어로 만타 가공 허브에서 <strong style={{ color: 'var(--text-main)' }}>SKJ와 가격 패리티</strong> 근접. 파나마 YF 어획 2배·베네수엘라 55% 증가.</span>
               </div>
             </div>
           </div>
@@ -421,21 +421,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                환경 / 조업
+                산업 / 구조조정
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.30</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.03</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              '2026 슈퍼 엘니뇨' 공식화와 조업 지형 교란
+              Sapmer 참치 조업 철수 — P&P 그룹에 선단 매각 협상 개시
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>미국 NOAA와 세계기상기구(WMO)가 역대급 <strong style={{ color: 'var(--text-main)' }}>'슈퍼 엘니뇨' 도래</strong>를 선언.</span>
+                <span>프랑스 Sapmer가 <strong style={{ color: 'var(--text-main)' }}>잔여 선망선 3척(약 5,900톤 적재)</strong>을 네덜란드 P&P 산하 CFTO에 매각하는 독점 협상에 돌입.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>어군이 중태평양으로 대거 이동함에 따라, 동태평양(EPO)과 서중태평양(WCPO) 연안 선단의 심각한 수급 불균형 우려 고조.</span>
+                <span>IO 어획 부진·SKJ/YF 가격 하락으로 2025년 참치 매출 8.5% 감소, 선박 감가 €1,900만 손실 반영. IO 선단 과잉 설비 정리 가속화 신호.</span>
               </div>
             </div>
           </div>
@@ -446,19 +446,19 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.30</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.03</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              영국 무관세 여파로 에콰도르 수출 타격 우려
+              스페인, 비EU산 캔 참치 수입 대폭 감소 — EU 역내 공급 전환 가속
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>영국의 전 Origins 대상 참치 관세 유예 조치로 독점적 무관세 혜택을 잃은 <strong style={{ color: 'var(--text-main)' }}>에콰도르의 하반기 참치 수출액이 5% 이상 감소</strong>할 것으로 예측.</span>
+                <span>Q1 2026 EU 캔 참치 수입 <strong style={{ color: 'var(--text-main)' }}>전년 대비 18% 감소</strong>(약 129,000톤). 에콰도르·인도네시아·중국 등 비EU 공급국 타격.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>저가 강점을 지닌 태국·중국과의 치열한 영국 시장 점유율 경쟁 예고.</span>
+                <span>반면 <strong style={{ color: 'var(--text-main)' }}>EU 역내 공급 51% 급증</strong>(포르투갈 +57%, 독일 +18%). EU CATCH 디지털 통관 전환 부담이 비EU산 감소 원인으로 지목.</span>
               </div>
             </div>
           </div>
@@ -467,21 +467,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                규제 / 유통
+                규제 / 정책
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.06.24</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.01 · 07.03</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              EU 규제 장벽 강화에 따른 아시아 선단의 시장 이탈
+              태평양 어업 장관회의 East New Britain 채택 · 하와이 Ahi 원산지 표시법 시행
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>EU CATCH(디지털 이력 추적) 및 -18°C 초저온 브라인 냉동 규제 준수 부담 가중.</span>
+                <span>FFC 장관회의에서 <strong style={{ color: 'var(--text-main)' }}>East New Britain Initiative 이행 전략</strong> 채택 — 태평양 연안국 수익 배분 강화 및 원양 선단 입어료 회피 차단 방안 의결.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>인도네시아와 베트남 등 동남아 중소 선사들이 규제가 덜한 <strong style={{ color: 'var(--text-main)' }}>중동과 아시아 시장으로 공급망을 대거 우회</strong>하기 시작.</span>
+                <span>하와이 Act 238 발효(7/1): 소매점 판매 <strong style={{ color: 'var(--text-main)' }}>ahi(황다랑·눈다랑) 제품에 원산지 국가 라벨링 의무화</strong>. 미국 수입 참치 유통 투명성 강화 신호.</span>
               </div>
             </div>
           </div>
@@ -492,37 +492,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: 슈퍼 엘니뇨·무역 장벽 개편·EU 환경 규제의 연쇄 파장
+          전략 인사이트: IO 선단 구조조정 · EPO 황다랑어 풍어 · EU 무역 지형 변동
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="슈퍼 엘니뇨 공식화와 유가 급락이 만든 어가 하락 조정·조업 전략 분기점"
+            title="IO 선단 구조조정 가속화 — Sapmer 철수가 시사하는 인도양 참치 산업의 전환점"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="유가 $926/톤 급락 + SKJ Bangkok $1,775 조정 + 2026 슈퍼 엘니뇨 → 조업 비용 절감 vs 어군 이동 리스크 공존"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.30 (Atuna via NotebookLM)' }}
+            cardDesc="Sapmer 선단 매각 + IO 어획 부진 + SKJ/YF 가격 하락 + EPO 황다랑어 풍어 → IO 과잉 설비 정리 및 태평양 중심 공급 재편"
+            telemetry={{ status: 'STATIC', syncDate: '2026.07.06 (Atuna via NotebookLM)' }}
             customBody={<></>}
             takeaway={{
-              situation: "싱가포르 MGO 유가가 926달러/톤으로 폭락하며 방콕 SKJ 가격이 1,775달러로 하락 조정 중입니다. 반면, 미국 NOAA가 2026 슈퍼 엘니뇨를 공식 선언함에 따라 가다랑어 어군이 중태평양으로 이동할 전망이며, 동태평양 및 서중태평양 연안 조업선들의 수급 불균형과 조업 비용 증가 리스크가 공존하고 있습니다.",
-              actionPlan: "(1) **[MGO 급락 시점 집중 조업]**: 유가 하락 시기를 활용해 방콕 양륙 비중을 높이고 원가 절감을 극대화합니다. \n(2) **[엘니뇨 대비 어장 이동]**: 중태평양(키리바시 등) 조업 비중을 선제적으로 늘리고, 하반기 VDS(입어일수)를 효율적으로 배분합니다.",
-              source: 'Atuna 2026.06.24, 2026.06.30 (NotebookLM 종합 분석)',
+              situation: "프랑스 Sapmer가 인도양 선망선 3척을 P&P 그룹에 매각하며 참치 조업에서 사실상 철수합니다. IO에서는 어획 부진과 유가 부담이 지속되어 항차 적자가 반복되고, SKJ 가격(세이셸 기준)은 EUR 1,500/톤에 머물고 있습니다. 반면, 동태평양(EPO)에서는 이례적인 황다랑어(YF) 풍어가 이어지며 만타 허브에서 SKJ와 가격 패리티에 근접하는 이례적 상황이 전개되고 있습니다.",
+              actionPlan: "(1) **[IO 구조조정 매물 모니터링]**: Sapmer 이후 추가 IO 선단 매각 가능성을 주시하고, 양질의 -40°C 초저온 선박 인수 기회를 검토합니다. \n(2) **[EPO YF 풍어 대응]**: 만타 허브 YF 원어 가격이 SKJ 수준까지 하락한 점을 활용해, 황다랑어 중심의 부가가치 가공(사시미·로인) 물량 확보를 추진합니다.",
+              source: 'Atuna 2026.07.01, 2026.07.03 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="글로벌 무역 장벽 재편과 EU 규제 강화에 따른 공급망 다변화 전략"
+            title="EU 수입 지형 변동과 태평양 규제 강화가 만드는 글로벌 참치 공급망 재편"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="영국 무관세 여파(에콰도르 타격) + EU CATCH·-18°C 브라인 동결 규제 장벽 → 글로벌 참치 공급망 지형 변동"
-            telemetry={{ status: 'STATIC', syncDate: '2026.06.30 (Atuna via NotebookLM)' }}
+            cardDesc="EU 비역내산 캔 참치 -18% + EU 역내 공급 +51% + East New Britain Initiative 채택 → 수출 채널 다변화 및 규제 선제 대응 필요"
+            telemetry={{ status: 'STATIC', syncDate: '2026.07.06 (Atuna via NotebookLM)' }}
             customBody={<></>}
             takeaway={{
-              situation: "영국이 모든 수입국 대상 참치 관세를 유예함에 따라 기존 무관세 혜택을 누리던 에콰도르의 수출 타격이 가시화되었으며, 태국 및 중국과의 영국 시장 점유율 경쟁이 치열해질 전망입니다. 유럽에서는 EU CATCH 통관제와 -18°C 브라인 동결 규제 등 진입 장벽이 높아져, 인도네시아 등 동남아 선단이 중동 및 아시아로 시장을 우회하고 있습니다.",
-              actionPlan: "(1) **[영국 시장 점유율 확보 기회]**: 에콰도르의 점유율 하락을 틈타, 자사 선단의 가격 경쟁력을 앞세운 영국 대형 리테일러향 납품 물량 확대를 추진합니다. \n(2) **[EU 프리미엄 시장 선점]**: 아시아 중소 선단들의 이탈로 발생한 EU 공급 공백을 공략하기 위해, 선단 내 -18°C 콜드체인 모니터링 시스템을 조기 도입하여 엄격한 EU 규제를 선제 충족합니다.",
-              source: 'Atuna 2026.06.24, 2026.06.30 (NotebookLM 종합 분석)',
+              situation: "Q1 2026 EU 캔 참치 수입이 18% 급감하며, 에콰도르(-2,771톤)·인도네시아(-39%)·중국(-66%) 등 비EU 공급국이 대폭 축소된 반면, EU 역내(포르투갈·독일) 공급이 51% 급증했습니다. EU CATCH 디지털 통관 전환이 비EU산 진입 장벽을 높이고 있습니다. 태평양에서는 FFC 장관회의가 East New Britain Initiative를 채택하여, 연안국 수익 배분 강화 및 원양 선단 입어 관리가 한층 엄격해질 전망입니다.",
+              actionPlan: "(1) **[EU CATCH 선제 대응]**: 자사 선단의 디지털 어획 증명서 발급 체계를 조기 구축하여, 비EU 경쟁사 대비 EU 시장 접근 우위를 확보합니다. \n(2) **[태평양 VDS 비용 최적화]**: East New Britain Initiative로 입어료 상승이 예상되는 만큼, 키리바시·나우루·마셜 등 PNA 국가와의 선제적 장기 입어 계약을 추진합니다.",
+              source: 'Atuna 2026.07.01, 2026.07.03 (NotebookLM 종합 분석)',
             }}
           />
 
