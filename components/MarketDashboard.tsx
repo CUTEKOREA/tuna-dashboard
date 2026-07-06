@@ -502,7 +502,7 @@ export default function MarketDashboard() {
             iconColor="#818cf8"
             pillar="S2"
             cardDesc="Sapmer 선단 매각 + IO 어획 부진 + SKJ/YF 가격 하락 + EPO 황다랑어 풍어 → IO 과잉 설비 정리 및 태평양 중심 공급 재편"
-            telemetry={{ status: 'STATIC', syncDate: '2026.07.06 (Atuna via NotebookLM)' }}
+
             customBody={<></>}
             takeaway={{
               situation: "프랑스 Sapmer가 인도양 선망선 3척을 P&P 그룹에 매각하며 참치 조업에서 사실상 철수합니다. IO에서는 어획 부진과 유가 부담이 지속되어 항차 적자가 반복되고, SKJ 가격(세이셸 기준)은 EUR 1,500/톤에 머물고 있습니다. 반면, 동태평양(EPO)에서는 이례적인 황다랑어(YF) 풍어가 이어지며 만타 허브에서 SKJ와 가격 패리티에 근접하는 이례적 상황이 전개되고 있습니다.",
@@ -517,7 +517,7 @@ export default function MarketDashboard() {
             iconColor="#818cf8"
             pillar="S3"
             cardDesc="EU 비역내산 캔 참치 -18% + EU 역내 공급 +51% + East New Britain Initiative 채택 → 수출 채널 다변화 및 규제 선제 대응 필요"
-            telemetry={{ status: 'STATIC', syncDate: '2026.07.06 (Atuna via NotebookLM)' }}
+
             customBody={<></>}
             takeaway={{
               situation: "Q1 2026 EU 캔 참치 수입이 18% 급감하며, 에콰도르(-2,771톤)·인도네시아(-39%)·중국(-66%) 등 비EU 공급국이 대폭 축소된 반면, EU 역내(포르투갈·독일) 공급이 51% 급증했습니다. EU CATCH 디지털 통관 전환이 비EU산 진입 장벽을 높이고 있습니다. 태평양에서는 FFC 장관회의가 East New Britain Initiative를 채택하여, 연안국 수익 배분 강화 및 원양 선단 입어 관리가 한층 엄격해질 전망입니다.",
