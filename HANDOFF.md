@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-06 19:03 KST — BNI Global 독립 대시보드 분리 정정** [CC]:
+> - 사용자 정정에 따라 BNI Global을 참치왕국 메인 대시보드/사이드바에 붙이지 않고, 별도 공개 페이지 `/bni-global`만 유지하도록 분리.
+> - `lib/dashboard-registry.ts`와 `app/page.tsx`에서 `bni-global` 메뉴, 사이드바 항목, 메인 패널 렌더, `Globe2` 사이드바 아이콘 연결을 제거. `app/sitemap.ts`에는 독립 공개 라우트로만 등록.
+> - `app/bni-global/page.tsx`/CSS를 추가해 독립 셸을 만들고, `components/RouteScopedGlobalWidgets.tsx`로 `/bni-global`에서는 참치왕국 공용 DeepOcean/Hermes 위젯이 뜨지 않게 함. PWA 등록은 유지.
+> - 재발 방지: `bni-global-data.test.ts`와 `dashboard-registry.test.ts`에 “BNI는 sitemap에는 있지만 `VALID_MENUS`, `PUBLIC_DASHBOARD_ROUTES`, 사이드바, 패널 순서에는 없어야 한다”는 계약과 루트 위젯 route-scope 가드를 추가.
+> - 검증: `npm run lint` 통과(기존 TunaExportRaceWidget/TunaInsiderSignalWidget/TunaProteinBasketWidget 경고 7건 유지), `npm test` 22파일/86테스트 통과, `npm run check:api-cache` 150/150, `npm run build` 통과(103 static pages, `/bni-global` static), `npm run check:bundle` 통과. Puppeteer 확인: `/bni-global` body에 BNI 브리핑 렌더, `asideCount=0`, 참치왕국 텍스트 없음, Hermes 버튼 없음, overflow 0. `/market` 사이드바에도 BNI 메뉴 없음.
+> - 미배포(로컬). 기존/무관 미추적 패치·테스트 스크립트는 그대로 보존.
+
 > 📊 **2026-07-06 18:50 KST — BNI Global 거래처 정기 시장 브리핑 로컬 구현** [CC]:
 > - 사용자 요청으로 `/Users/idong-geon/Downloads/BNI Global `의 BNI 정기 PDF 9건과 `~/agri_pipeline/data`의 FRED·KCS·UN Comtrade 처리 CSV를 결합한 거래처 제공용 `/bni-global` 대시보드 초안을 구현.
 > - `scripts/build_bni_global_dashboard.mjs` 추가: BNI PDF 아카이브(최신 `BNI Report 260706.pdf`, 2026-07-06)와 옥수수·소맥·대두·설탕·팜유 처리 CSV를 읽어 `data/bni_global_dashboard.json` 생성. 대두유·동물성 유지는 BNI 직접 추출 보조 시장으로 별도 표기.

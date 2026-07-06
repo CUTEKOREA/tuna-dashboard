@@ -148,7 +148,7 @@ export default function BniGlobalDashboard() {
       </section>
 
       <section className={styles.commodityWorkspace}>
-        <aside className={styles.commodityList}>
+        <section className={styles.commodityList}>
           <div className={styles.sectionHeading}>
             <span className={styles.sectionLabel}>상품별 브리핑</span>
             <h2>BNI 신호와 데이터 근거</h2>
@@ -163,7 +163,7 @@ export default function BniGlobalDashboard() {
               />
             ))}
           </div>
-        </aside>
+        </section>
 
         <article className={styles.commodityDetail}>
           <div className={styles.detailHeader}>

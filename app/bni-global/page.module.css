@@ -1,0 +1,20 @@
+.page {
+  min-height: 100dvh;
+  padding: clamp(18px, 4vw, 48px);
+  color: var(--text-main);
+  background:
+    linear-gradient(145deg, rgba(7, 16, 31, 0.98) 0%, rgba(8, 13, 28, 0.98) 48%, rgba(11, 18, 34, 0.98) 100%),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.09), rgba(251, 191, 36, 0.07));
+  overflow-x: clip;
+}
+
+.shell {
+  width: min(100%, 1380px);
+  margin: 0 auto;
+}
+
+@media (max-width: 820px) {
+  .page {
+    padding: 14px;
+  }
+}

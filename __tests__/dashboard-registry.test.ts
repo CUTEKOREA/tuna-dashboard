@@ -75,8 +75,8 @@ describe('dashboard registry', () => {
     );
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('value-chain');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('cross-intelligence');
-    expect(PUBLIC_DASHBOARD_ROUTES).toContain('bni-global');
     expect(PUBLIC_DASHBOARD_ROUTES).toContain('sashimi-steak');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('market');
     expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('fleet');
   });
@@ -100,7 +100,7 @@ describe('dashboard registry', () => {
     ]);
 
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
-      ['market', 'bni-global', 'fleet', 'unloading', 'logistics'],
+      ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
       ['cross-intelligence', 'cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
       ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
@@ -110,6 +110,7 @@ describe('dashboard registry', () => {
     const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
     expect(new Set(sidebarKeys).size).toBe(sidebarKeys.length);
     expect(sidebarKeys).not.toContain('purse-seiner-db');
+    expect(sidebarKeys).not.toContain('bni-global');
 
     const fisheryItems = SIDEBAR_SECTIONS.find((section) => section.section === 'fishery')?.items ?? [];
     const jukkumi = fisheryItems.find((item) => item.key === 'jukkumi');
@@ -129,7 +130,6 @@ describe('dashboard registry', () => {
   it('defines dashboard panel render order for every active menu', () => {
     expect(DASHBOARD_PANEL_ORDER).toEqual([
       'market',
-      'bni-global',
       'cross-intelligence',
       'fleet',
       'logistics',
@@ -166,5 +166,6 @@ describe('dashboard registry', () => {
       'sashimi-steak',
     ]);
     expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(new Set(VALID_MENUS));
+    expect(DASHBOARD_PANEL_ORDER).not.toContain('bni-global');
   });
 });

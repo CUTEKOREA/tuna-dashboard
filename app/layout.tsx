@@ -46,10 +46,8 @@ export const metadata: Metadata = {
   },
 };
 
-import DeepOceanCreatures from "@/components/DeepOceanCreatures";
 import { ToastProvider } from "@/components/ToastProvider";
-import HermesAgent from "@/components/HermesAgent";
-import PWARegister from "@/components/PWARegister";
+import RouteScopedGlobalWidgets from "@/components/RouteScopedGlobalWidgets";
 
 export default function RootLayout({
   children,
@@ -70,12 +68,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <DeepOceanCreatures />
         <ToastProvider>
           {children}
         </ToastProvider>
-        <HermesAgent category="농수산물" />
-        <PWARegister />
+        <RouteScopedGlobalWidgets />
       </body>
     </html>
   );

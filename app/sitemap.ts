@@ -5,6 +5,7 @@ const SITE_URL = 'https://leedonggun.co.kr';
 
 const PUBLIC_ROUTES = [
   '',
+  'bni-global',
   ...PUBLIC_DASHBOARD_ROUTES,
   'manual',
   'financial-risk',

@@ -1,7 +1,11 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { GET } from '../app/api/bni-global/route';
+import sitemap from '../app/sitemap';
 import { getBniGlobalDashboard } from '../lib/data/bni-global';
 import { StaticSnapshotResponse } from '../lib/contracts/static-snapshot';
+import { PUBLIC_DASHBOARD_ROUTES, SIDEBAR_SECTIONS, VALID_MENUS } from '../lib/dashboard-registry';
 
 describe('BNI Global dashboard data', () => {
   it('loads the latest BNI report archive and structured commodity coverage', () => {
@@ -40,5 +44,27 @@ describe('BNI Global dashboard data', () => {
     expect(parsed._metadata.source).toBe('data/bni_global_dashboard.json');
     expect(parsed._metadata.syncDate).toBe('2026-07-06');
     expect(parsed._metadata.apiHealth?.ok).toBe(true);
+  });
+
+  it('keeps BNI Global as a standalone public page outside the Tuna Kingdom dashboard menu', () => {
+    const sitemapRoutes = sitemap().map((entry) => new URL(entry.url).pathname.replace(/^\//, ''));
+    const sidebarKeys = SIDEBAR_SECTIONS.flatMap((section) => section.items.map((item) => item.key));
+
+    expect(sitemapRoutes).toContain('bni-global');
+    expect(VALID_MENUS).not.toContain('bni-global');
+    expect(PUBLIC_DASHBOARD_ROUTES).not.toContain('bni-global');
+    expect(sidebarKeys).not.toContain('bni-global');
+  });
+
+  it('keeps global Tuna Kingdom widgets route-scoped away from the standalone page', () => {
+    const root = process.cwd();
+    const layoutSource = readFileSync(path.join(root, 'app/layout.tsx'), 'utf8');
+    const routeScopedSource = readFileSync(path.join(root, 'components/RouteScopedGlobalWidgets.tsx'), 'utf8');
+
+    expect(layoutSource).toContain('RouteScopedGlobalWidgets');
+    expect(layoutSource).not.toContain('<HermesAgent');
+    expect(layoutSource).not.toContain('<DeepOceanCreatures');
+    expect(routeScopedSource).toContain('/bni-global');
+    expect(routeScopedSource).toContain('isStandaloneRoute');
   });
 });
