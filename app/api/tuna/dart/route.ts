@@ -11,10 +11,11 @@ export const revalidate = 3600;
  * 대상 회사: 동원산업, 사조산업, 신라교역
  */
 
+// 2026-07-06 정정: CORPCODE.xml 실검증 — 사조산업 00237717(무효)→00124799, 신라교역 00857727(=하림 코드!)→00135962
 const COMPANIES = [
-  { name: "동원산업", code: "00118026" },  // 2026-06-05 정정: 00128524는 오류(DART CORPCODE 검증, stock:006040)
-  { name: "사조산업", code: "00237717" },
-  { name: "신라교역", code: "00857727" },  // 비상장 가능성 — CFS/OFS 미작성 시 graceful skip
+  { name: "동원산업", code: "00118026" },  // stock 006040
+  { name: "사조산업", code: "00124799" },  // stock 007160
+  { name: "신라교역", code: "00135962" },  // stock 004970 — 상장사 (구 '비상장 가능성' 주석은 하림 코드 오염이 원인)
 ];
 
 const FALLBACK_DATA = {

@@ -2314,3 +2314,14 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 
 ### 다음 단계
 - Vercel 프로덕션 라이브 배포 완료 후 확인
+
+## 2026.07.06 - [CC] API 고도화 제안서 작성
+- [CC] 3중 검증 통과 16개 위젯(병합 후)·기각 2건으로 docs/2026-07-06_API_EXPANSION_PROPOSAL.md + .data.json 작성. 부수 발견: P0 2건(/api/tuna KAMIS 614 허구 KPI, /api/risk-radar MFDS 500) 정정 권고 포함.
+
+## 2026.07.06 - [CC] 0단계 정정: P0 2건 + P1 3건 수리 (제안서 발견분)
+- [CC] P0: /api/tuna 허구 KAMIS 614 KPI 제거 → KCS nitemtrade 실측 `kpi_import_value`(YTD 수입액)로 교체. UNI-PASS trtImpExpStas(404 사망) → nitemtrade 재배선(L-10/L-11), w01 위젯 월별 시계열 실측화(1~5월 $3.4k~5.3k/T 수입·$6.3k~6.7k/T 수출 검증).
+- [CC] P0: /api/risk-radar MFDS 업스트림 500 → `available:false·count:null` 정직 표기 + L-12 isLive 추가. SupplierDiscovery '조회불가' 렌더. ⚠️ MFDS 키 계통 재발급 필요(B-4 선행). KOTRA cmmrcFraudCase도 ERROR — 활용신청 필요(별건).
+- [CC] P1: corp_code 오염 6건 수리 — 신라교역 자리에 하림(00857727)! DART CORPCODE.xml 실검증으로 dart-client 전 코드 정정(동원산업 00118026·사조산업 00124799·신라교역 00135962 등) + 사조씨푸드·동원수산 추가.
+- [CC] P1: api_keys_catalog.md 평문 키 7건 마스킹(토스 live secret 포함 — **재발급 권장**). TunaDashboard 헤더 KAMIS 표기 제거(L-09).
+- 검증: python 실호출 시뮬 = dev 서버 실응답 일치 · npm run build 통과(L-03) · 리뷰어 무결.
+- 다음: 제안서 1단계 S 퀵윈(A-1 KAMIS 바스켓, A-2 US Census 관문, A-3 DART 내부자, A-5 Comtrade 레이스). 배포는 사용자 지시 대기.

@@ -9,95 +9,62 @@ export const revalidate = 300; // 5분 캐시
  * 실시간 API 클라이언트
  * ============================================================ */
 
-// 관세청 수출입무역통계 API (HS Code 1604.14 = 참치 조제품)
-async function fetchKCSImportPrice(): Promise<{ value: string; trend: string; desc: string; period: string } | null> {
-  const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
-  if (!key) return null;
-  try {
-    const now = new Date();
-    const yyyyMM = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}`;
-    const prevMM = `${now.getFullYear()}${String(now.getMonth()).padStart(2, '0')}`;
-    const url = `https://unipass.customs.go.kr:38010/ext/rest/trtImpExpStas/retrieveTrtImpExpStas` +
-      `?crkyCn=${key}&strtYymm=${prevMM}&endYymm=${yyyyMM}&hsSgn=160414&lclsNm=&dtyTp=&natCd=&netSlTp=00&imexTp=1` +
-      `&pageIndex=1&pageSize=10&imexCd=I`;
-    const res = await fetch(url, { next: { revalidate: 300 } });
-    if (!res.ok) return null;
-    const xml = await res.text();
-    // 단가 추출 (totCurAmt / totWghtKg)
-    const amtMatch = xml.match(/<totCurAmt>([\d.]+)<\/totCurAmt>/);
-    const wgtMatch = xml.match(/<totWghtKg>([\d.]+)<\/totWghtKg>/);
-    if (amtMatch && wgtMatch) {
-      const amt = parseFloat(amtMatch[1]);
-      const wgt = parseFloat(wgtMatch[1]);
-      if (wgt > 0) {
-        const pricePerTon = Math.round((amt / wgt) * 1000); // USD/ton
-        const periodLabel = `${prevMM.slice(0, 4)}.${prevMM.slice(4)}~${yyyyMM.slice(0, 4)}.${yyyyMM.slice(4)}`;
-        return {
-          value: `$${pricePerTon.toLocaleString()}`,
-          trend: pricePerTon > 1400 ? '▲' : '▼',
-          desc: `관세청 통관 실측 합산 (${periodLabel}) [🟢 LIVE KCS API]`,
-          period: periodLabel,
-        };
-      }
-    }
-    return null;
-  } catch { return null; }
-}
+// 관세청 KCS nitemtrade — 참치 조제품(HS 160414) 월별 수출입 실적.
+// 구 UNI-PASS trtImpExpStas는 2026-07 기준 404(서비스 종료) — L-11 mackerel 패턴으로 재배선.
+type TunaTradeStats = {
+  monthly: { month: string; impUnit: number; expUnit: number }[]; // USD/Ton
+  latestImpUnit: number | null;   // 최신월 수입단가 (USD/Ton)
+  ytdImpDlrM: number | null;      // 연간 누적 수입액 (Million USD)
+  period: string;
+};
 
-// 관세청 → 총 수입액 (USD)
-async function fetchKCSImportVolume(): Promise<{ value: string; trend: string; desc: string } | null> {
+async function fetchKCSTunaTrade(): Promise<TunaTradeStats | null> {
+  // L-10: env 우선, 없으면 하드코딩 fallback으로 라이브 유지
   const key = (process.env.DATA_GO_KR_NEW_KEY || 'fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c');
-  if (!key) return null;
   try {
     const now = new Date();
     const yyyy = now.getFullYear();
-    const url = `https://unipass.customs.go.kr:38010/ext/rest/trtImpExpStas/retrieveTrtImpExpStas` +
-      `?crkyCn=${key}&strtYymm=${yyyy}01&endYymm=${yyyy}${String(now.getMonth() + 1).padStart(2,'0')}` +
-      `&hsSgn=160414&lclsNm=&dtyTp=&natCd=&netSlTp=00&imexTp=1&pageIndex=1&pageSize=1&imexCd=I`;
-    const res = await fetch(url, { next: { revalidate: 300 } });
+    const yyyyMM = `${yyyy}${String(now.getMonth() + 1).padStart(2, '0')}`;
+    const url = `https://apis.data.go.kr/1220000/nitemtrade/getNitemtradeList` +
+      `?serviceKey=${key}&strtYymm=${yyyy}01&endYymm=${yyyyMM}&hsSgn=160414`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000), next: { revalidate: 300 } });
     if (!res.ok) return null;
     const xml = await res.text();
-    const amtMatch = xml.match(/<totCurAmt>([\d.]+)<\/totCurAmt>/);
-    if (amtMatch) {
-      const amt = Math.round(parseFloat(amtMatch[1]) / 1_000_000); // → Million USD
-      return {
-        value: `$${amt} Million`,
-        trend: '▲',
-        desc: `참치 기공품/생선 수육 평균 단가 $${Math.round(parseFloat(amtMatch[1])/1000).toLocaleString()} / Tonne [🟢 LIVE KCS API]`,
-      };
-    }
-    return null;
-  } catch { return null; }
-}
+    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)];
+    if (items.length === 0) return null;
 
-// aT KAMIS 소매가격 (참치캔 HS: 16041400)
-async function fetchKAMISRetailIndex(): Promise<{ value: string; trend: string; desc: string } | null> {
-  const key = process.env.KAMIS_API_KEY;
-  if (!key) return null;
-  try {
-    const now = new Date();
-    const regDay = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-    // KAMIS 품목코드 614 = 참치통조림(캔)
-    const url = `https://www.kamis.or.kr/service/price/xml.do?action=dailySalesList` +
-      `&p_regday=${regDay}&p_convert_kg_yn=N&p_item_category_code=600&p_country_code=1101` +
-      `&p_product_cls_code=02&p_item_code=614&p_unit=&p_cert_key=${key}&p_cert_id=${process.env.KAMIS_CERT_ID || "7849"}&p_returntype=json`;
-    const res = await fetch(url, { next: { revalidate: 300 } });
-    if (!res.ok) return null;
-    const json = await res.json();
-    const items = json?.data?.item;
-    if (items && items.length > 0) {
-      const price = parseFloat(items[0].dpr1?.replace(/,/g, '') || '0');
-      if (price > 0) {
-        // 기준가 대비 지수 계산 (기준: 2020년 1캔 평균 1,650원)
-        const idx = ((price / 1650) * 100).toFixed(1);
-        return {
-          value: idx,
-          trend: parseFloat(idx) > 115 ? '▲' : '▼',
-          desc: `aT KAMIS 실시간 소매가 동향 반영 [🟢 LIVE KAMIS API]`,
-        };
-      }
+    // 월별 합산 (impWgt/expWgt: kg, impDlr/expDlr: USD — L-11 단위 규약)
+    const totals: Record<string, { impDlr: number; impWgt: number; expDlr: number; expWgt: number }> = {};
+    for (const m of items) {
+      const s = m[1];
+      const year = s.match(/<year>([\s\S]*?)<\/year>/)?.[1] ?? '';
+      if (year.includes('총계')) continue;
+      const raw = year.replace(/\D/g, '');
+      if (raw.length !== 6) continue;
+      const mk = `${raw.slice(0, 4)}-${raw.slice(4, 6)}`;
+      if (!totals[mk]) totals[mk] = { impDlr: 0, impWgt: 0, expDlr: 0, expWgt: 0 };
+      totals[mk].impDlr += parseFloat(s.match(/<impDlr>([\d.]+)<\/impDlr>/)?.[1] ?? '0');
+      totals[mk].impWgt += parseFloat(s.match(/<impWgt>([\d.]+)<\/impWgt>/)?.[1] ?? '0');
+      totals[mk].expDlr += parseFloat(s.match(/<expDlr>([\d.]+)<\/expDlr>/)?.[1] ?? '0');
+      totals[mk].expWgt += parseFloat(s.match(/<expWgt>([\d.]+)<\/expWgt>/)?.[1] ?? '0');
     }
-    return null;
+    const months = Object.keys(totals).sort();
+    if (months.length === 0) return null;
+
+    const monthly = months.map(mk => ({
+      month: mk,
+      impUnit: totals[mk].impWgt > 0 ? Math.round((totals[mk].impDlr / totals[mk].impWgt) * 1000) : 0, // USD/Ton
+      expUnit: totals[mk].expWgt > 0 ? Math.round((totals[mk].expDlr / totals[mk].expWgt) * 1000) : 0,
+    })).filter(r => r.impUnit > 0 || r.expUnit > 0);
+
+    const lastWithImp = [...monthly].reverse().find(r => r.impUnit > 0);
+    const ytdImpDlr = months.reduce((acc, mk) => acc + totals[mk].impDlr, 0);
+    return {
+      monthly,
+      latestImpUnit: lastWithImp ? lastWithImp.impUnit : null,
+      ytdImpDlrM: ytdImpDlr > 0 ? Math.round(ytdImpDlr / 1_000_000) : null,
+      period: `${months[0]}~${months[months.length - 1]}`,
+    };
   } catch { return null; }
 }
 
@@ -140,10 +107,8 @@ export async function GET() {
   }
 
   // ── 병렬 API 호출 ──────────────────────────────────────────
-  const [liveImportPrice, liveImportVol, liveRetailIdx, liveWtiCrude] = await Promise.all([
-    fetchKCSImportPrice(),
-    fetchKCSImportVolume(),
-    fetchKAMISRetailIndex(),
+  const [liveTrade, liveWtiCrude] = await Promise.all([
+    fetchKCSTunaTrade(),
     fetchWTICrude(),
   ]);
 
@@ -171,32 +136,42 @@ export async function GET() {
       syncDate: '2024년 배정치',
       isLive: false
     },
-    kpi_import_price: liveImportPrice ? {
-      ...liveImportPrice,
-      title: '통조림용 참치 평균 수입 단가',
-      telemetry: 'live',
-      isLive: true
-    } : {
-      title: '통조림용 참치 평균 수입 단가',
-      value: '$1,450',
-      trend: '▲ $50',
-      desc: '관세청 HS 160414 통관 캐시값 · 출처: KCS API (조회 실패 — 직전 캐시 표시)',
+    kpi_import_price: liveTrade?.latestImpUnit ? (() => {
+      const impSeries = liveTrade.monthly.filter(r => r.impUnit > 0);
+      const prev = impSeries.length >= 2 ? impSeries[impSeries.length - 2].impUnit : null;
+      return {
+        title: '참치 조제품 평균 수입 단가 (USD/Ton)',
+        value: `$${liveTrade.latestImpUnit.toLocaleString()}`,
+        trend: prev === null ? '—' : liveTrade.latestImpUnit >= prev ? '▲ 전월比' : '▼ 전월比',
+        desc: `관세청 KCS nitemtrade HS 160414 통관 실측 (${liveTrade.period}) [🟢 LIVE KCS API]`,
+        telemetry: 'live',
+        isLive: true
+      };
+    })() : {
+      title: '참치 조제품 평균 수입 단가 (USD/Ton)',
+      value: '$—',
+      trend: '—',
+      desc: '관세청 KCS nitemtrade 조회 실패 — 값 미표시 (허수 방지)',
       telemetry: 'static',
-      syncDate: '2026-05 이전 캐시',
+      syncDate: new Date().toISOString().slice(0, 10),
       isLive: false
     },
-    kpi_retail_price: liveRetailIdx ? {
-      ...liveRetailIdx,
-      title: '국내 참치캔 소매 물가지수',
+    // 구 kpi_retail_price(KAMIS 614)는 허구 연동으로 제거 — KAMIS에 참치캔 품목 부재 (2026-07-06 P0 정정).
+    // 국내 소매가 축은 소비자원 참가격 위젯(B-1)으로 대체 예정.
+    kpi_import_value: liveTrade?.ytdImpDlrM ? {
+      title: '참치 조제품 연간 누적 수입액 (HS 160414)',
+      value: `$${liveTrade.ytdImpDlrM.toLocaleString()}M`,
+      trend: '▲',
+      desc: `관세청 KCS nitemtrade 연간 누적 통관 실측 (${liveTrade.period}) [🟢 LIVE KCS API]`,
       telemetry: 'live',
       isLive: true
     } : {
-      title: '국내 참치캔 소매 물가지수',
-      value: '115.4',
-      trend: '▲ 2.1',
-      desc: '2020년=100 기준 소매가 지수 · 출처: aT KAMIS (조회 실패 — 직전 캐시 표시)',
+      title: '참치 조제품 연간 누적 수입액 (HS 160414)',
+      value: '$—',
+      trend: '—',
+      desc: '관세청 KCS nitemtrade 조회 실패 — 값 미표시 (허수 방지)',
       telemetry: 'static',
-      syncDate: '2026-05 이전 캐시',
+      syncDate: new Date().toISOString().slice(0, 10),
       isLive: false
     },
     kpi_market_share: {
@@ -213,7 +188,7 @@ export async function GET() {
 
 
   // ── 위젯 실시간 오버라이드 (L-09/L-12: fetch 성공 시에만 LIVE, 실패 시 STATIC + 실데이터 기준일) ──
-  const w01IsLive = liveImportPrice !== null;
+  const w01IsLive = !!(liveTrade && liveTrade.monthly.length > 0);
   const realTimeWidgets: any[] = [
     {
       id: 'w01_paradigm',
@@ -221,19 +196,25 @@ export async function GET() {
       chartType: 'composed', xAxis: 'Month', unit: 'USD/Ton',
       reliability: 100,
       isLive: w01IsLive,
-      syncDate: '2026-04 기준(자체 구성)',
+      syncDate: w01IsLive ? new Date().toISOString().slice(0, 10) : '2026-04 기준(자체 구성)',
       source: w01IsLive
-        ? `관세청 KCS API 실측(최신월 라이브, 1~3월 자체 구성) · 통관 집계: ${liveImportPrice!.period} [🟢 LIVE]`
+        ? `관세청 KCS nitemtrade HS 160414 월별 통관 실측 (${liveTrade!.period}) [🟢 LIVE]`
         : '관세청 통관 기반 자체 구성 (2026.01~04) · KCS 조회 실패 — 정적 표시',
       situation: '[단가 스프레드 확대] 관세청 실측 통관 데이터 분석 결과, 참치 원어 수입 단가는 글로벌 조업량 한계로 인해 점진적 상승세를 보이고 있으나, 고부가가치 가공품의 수출 단가가 더 가파르게 상승하며 마진 스프레드가 확대되고 있습니다.',
       takeaway: '[가공 마진 락인] 원어 확보 경쟁 심화에 대비해 장기 공급망을 구축하고, 캔/파우치 등 프리미엄 가공품 수출 비중을 늘려 글로벌 수출 시장의 단가 상승 랠리(Rally)를 극대화해야 합니다.',
-      methodology: '1~3월: 관세청 통관 통계 기반 자체 구성 · 최신월: KCS API 조회 성공 시에만 실측 반영',
-      data: [
-        { Month: '1월', 수입단가: 1350, 수출단가: 2100 },
-        { Month: '2월', 수입단가: 1380, 수출단가: 2150 },
-        { Month: '3월', 수입단가: 1420, 수출단가: 2130 },
-        { Month: '4월', 수입단가: liveImportPrice ? parseInt(liveImportPrice.value.replace(/[$,]/g,'')) : 1450, 수출단가: 2200 },
-      ],
+      methodology: 'KCS nitemtrade HS 160414 월별 합산 — 단가 = 금액(USD) ÷ 중량(kg) × 1000 (USD/Ton). 조회 실패 시 직전 자체 구성값 표시',
+      data: w01IsLive
+        ? liveTrade!.monthly.map(r => ({
+            Month: `${parseInt(r.month.slice(5), 10)}월`,
+            수입단가: r.impUnit,
+            수출단가: r.expUnit,
+          }))
+        : [
+            { Month: '1월', 수입단가: 1350, 수출단가: 2100 },
+            { Month: '2월', 수입단가: 1380, 수출단가: 2150 },
+            { Month: '3월', 수입단가: 1420, 수출단가: 2130 },
+            { Month: '4월', 수입단가: 1450, 수출단가: 2200 },
+          ],
       lines: [
         { key: '수입단가', name: '수입 단가 (USD/Ton)', color: '#F6465D' },
         { key: '수출단가', name: '수출 단가 (USD/Ton)', color: '#0ECB81' },
@@ -302,9 +283,7 @@ export async function GET() {
     _meta: {
       lastUpdated: timestamp,
       liveApis: {
-        kcs_import_price: liveImportPrice ? '🟢 LIVE' : '🟡 Cached',
-        kcs_import_vol: liveImportVol ? '🟢 LIVE' : '🟡 Cached',
-        kamis_retail: liveRetailIdx ? '🟢 LIVE' : '🟡 Cached',
+        kcs_trade: liveTrade ? '🟢 LIVE' : '🟡 Cached',
         wti_crude: wtiMonths.length > 0 ? '🟢 LIVE' : '🟡 Cached',
       },
     },

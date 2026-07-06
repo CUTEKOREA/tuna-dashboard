@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "date": "2026-07-06",
+    "source_proposals": 21,
+    "survived": 19,
+    "merged_pairs": 3,
+    "final_widgets": 16,
+    "rejected": 2,
+    "priority_formula": "insight_value(1-5) * confidence / cost(S=1,S~M=1.5,M=2,M+gate=2.5)",
+    "effort_cost_map": { "S": 1, "S~M": 1.5, "M": 2, "M+gate": 2.5 }
+  },
+  "widgets": [
+    { "id": "A-1", "rank": 1, "title": "단백질 대체재 상대가격 바스켓", "pillar": "판매·수요", "api": "aT KAMIS dailyPriceByCategoryList", "part": "A", "key_status": "held_wired", "effort": "S", "badge": "SYNCED", "insight_value": 3, "confidence": 0.85, "score": 2.55, "verdict": "EDIT", "critical_fixes": ["물오징어 품목코드 615→619 (615=명태)", "참가격 KPI는 B-1 채택 조건부, fallback=skjbkk 분모"] },
+    { "id": "A-2", "rank": 2, "title": "미국 참치 수입 관문 레이더 (원산지×통관지구)", "pillar": "물류·통관", "api": "US Census timeseries/intltrade/imports/hs", "part": "A", "key_status": "held_live_verified", "effort": "S", "badge": "SYNCED(월)", "insight_value": 3, "confidence": 0.85, "score": 2.55, "verdict": "EDIT", "critical_fixes": ["HS6 CON_QY1_MO=0 구조적 — HS10 와일드카드 160414* KG 합산", "본체=district 도넛, 기존 160414 위젯 4개와 중복 회피", "pillar 판매·수요→물류·통관 이동"] },
+    { "id": "A-3", "rank": 3, "title": "DART 내부자 시그널 — 지분변동 타임라인", "pillar": "거시·금융", "api": "Open DART elestock + majorstock", "part": "A", "key_status": "held_shared_key", "effort": "S", "badge": "SYNCED(일)", "insight_value": 3, "confidence": 0.78, "score": 2.34, "verdict": "EDIT", "critical_fixes": ["사유 필드 없음 — '순매수' 아닌 '지분 순증' 라벨", "신라교역 corp_code 상충(00135962 vs 00857727) 선행 해소", "동원F&B 제외(상폐)"] },
+    { "id": "A-4", "rank": 4, "title": "HS10 참치 수입 단가 매트릭스 (어종×원산지)", "pillar": "물류·통관", "api": "관세청 nitemtrade getNitemtradeList", "part": "A", "key_status": "held_live_verified", "effort": "S~M", "badge": "SYNCED(월15일)", "insight_value": 4, "confidence": 0.87, "score": 2.32, "verdict": "EDIT", "critical_fixes": ["연동은 /api/tuna/ticker 기존재 — 신규성은 매트릭스 계층", "국가분해는 statCd 사용(statKor 금지)", "'분해'→'총 스프레드'로 완화"] },
+    { "id": "B-1", "rank": 5, "title": "참치캔 소매가 전가(패스스루) 모니터", "pillar": "판매·수요", "api": "소비자원 참가격 (data.go.kr 3043385)", "part": "B", "key_status": "shared_key_needs_apply_autoapprove", "effort": "M", "badge": "SYNCED(주·금)", "insight_value": 5, "confidence": 0.87, "score": 2.18, "verdict": "KEEP+merge", "flagship": true, "critical_fixes": ["기존 /api/tuna KAMIS 614 허구 KPI 대체(P0)", "KAMIS 횟감 보조축 삭제(참치 품목 부재 실측)", "편의점 표본 3개점 캡션", "명칭 LIVE→주간(금)"] },
+    { "id": "A-5", "rank": 6, "title": "글로벌 참치캔 수출 점유율 레이스 (HS160414 연간)", "pillar": "판매·수요", "api": "UN Comtrade C/A/HS", "part": "A", "key_status": "held", "effort": "S", "badge": "SYNCED(연간·2024확정치)", "insight_value": 2.5, "confidence": 0.82, "score": 2.05, "verdict": "EDIT", "critical_fixes": ["월별→연간 재설계(C/M 랙 17~19개월 실측)", "'조기 포착' 삭제", "reporterCode에 156·410 추가", "죽은 /api/comtrade 재생"] },
+    { "id": "A-6", "rank": 7, "title": "참치 상장 4사 재무 스코어보드", "pillar": "거시·금융", "api": "Open DART fnlttMultiAcnt", "part": "A", "key_status": "held_shared_key", "effort": "M", "badge": "SYNCED(분기)", "insight_value": 4.5, "confidence": 0.9, "score": 2.03, "verdict": "EDIT", "constituents": ["006040 동원산업", "007160 사조산업", "014710 사조씨푸드", "004970 신라교역"], "critical_fixes": ["동원F&B(049770) 2025-07-31 상폐 — 사조산업으로 교체", "동원산업 연결=舊동원F&B 포함 각주"] },
+    { "id": "A-7", "rank": 8, "title": "수입물가 패스스루 랙 모니터", "pillar": "거시·금융", "api": "한국은행 ECOS 401Y015", "part": "A", "key_status": "held_live_verified", "effort": "M", "badge": "SYNCED(월)", "insight_value": 4, "confidence": 0.85, "score": 1.7, "verdict": "EDIT", "critical_fixes": ["품목 101421AA 냉동수산물 + 2차원 코드 W 필수(3행 혼재 실측)", "'어류 지수' 표현 정정", "랙 KPI indicative 라벨", "W−D 환율 전가 분해 보강안"] },
+    { "id": "B-2", "rank": 9, "title": "네이버 데이터랩 수요 펄스", "pillar": "판매·수요", "api": "네이버 datalab/search + shopping/category/keywords", "part": "B", "key_status": "new_key_instant", "effort": "M", "badge": "SYNCED(일)", "insight_value": 4, "confidence": 0.85, "score": 1.7, "verdict": "EDIT+merge", "critical_fixes": ["일 한도 25,000→1,000콜 정정(공식 문서)", "env NAVER 슬롯 없음 — 신규 추가", "상대지수 — 고정 기준구간/Supabase 적재", "'2~4주 선행'→nowcast 완화", "cat_id 사전 확인"] },
+    { "id": "A-8", "rank": 10, "title": "어가 × 참치주 상관·베타 트래커", "pillar": "거시·금융", "api": "yahoo-finance2 chart() (KIS FHKST03010100 옵션)", "part": "A", "key_status": "keyless", "effort": "M", "badge": "SYNCED(일)", "insight_value": 4, "confidence": 0.8, "score": 1.6, "verdict": "EDIT+merge", "tickers": ["006040", "007160", "014710", "004970", "TU.BK"], "critical_fixes": ["서사 반전: 동원산업·사조산업=catcher, 어가 상승 수혜 — 하드코딩 방향 배지 금지, 실측 상관 부호 표시", "롤링 12→36개월", "atuna_prices.json 로컬 소스(Supabase 오기), 90일 트림 서버측 우회"] },
+    { "id": "B-3", "rank": 11, "title": "수입 참치 통관 리드타임 트래커", "pillar": "물류·통관", "api": "관세청 UNI-PASS API028 cargCsclPrgsInfoQry", "part": "B", "key_status": "new_key_autoapprove", "effort": "M+spike", "badge": "LIVE(이벤트)", "insight_value": 4, "confidence": 0.8, "score": 1.28, "verdict": "EDIT", "critical_fixes": ["held=false 정정 — UNI-PASS 키 API별 개별 발급(재사용 불가 실측)", "집계는 자사 B/L 풀 한정(B/L 열거 불가)", "B/L 비공개 저장", "상세 VO 실측 스파이크 선행", "부수 P1: trtImpExpStas 404 수리"] },
+    { "id": "B-4", "rank": 12, "title": "수입 참치 식품안전 리스크 레이더", "pillar": "판매·수요", "api": "식약처 15074318(식품안전나라 I0490) + 15095378", "part": "B", "key_status": "two_key_systems_needed", "effort": "M+repair", "badge": "SYNCED(일)", "insight_value": 3, "confidence": 0.85, "score": 1.28, "verdict": "EDIT", "critical_fixes": ["held=true 반증: 15095378=401, 15074318은 식품안전나라 keyId 별도", "선행 P0: /api/risk-radar 기존 MFDS 호출 HTTP 500 수리"] },
+    { "id": "B-5", "rank": 13, "title": "KRX 수산주 자금흐름 레이더", "pillar": "거시·금융", "api": "KRX stk_bydd_trd (data-dbg.krx.co.kr)", "part": "B", "key_status": "new_key_review_1_3d", "effort": "M", "badge": "SYNCED(T+1)", "insight_value": 3, "confidence": 0.8, "score": 1.2, "verdict": "KEEP", "critical_fixes": ["약관 상업이용 조항 1회 확인", "GET/POST는 승인 후 개발명세서로 확정"] },
+    { "id": "B-6", "rank": 14, "title": "국내 수산 도매시장 참치 경락가", "pillar": "판매·수요", "api": "EPIS 15109049 + 15109236", "part": "B", "key_status": "shared_key_needs_apply_autoapprove", "effort": "M+gate", "badge": "LIVE(게이트 통과 시)", "insight_value": 3.5, "confidence": 0.6, "score": 0.84, "verdict": "EDIT", "hard_gate": "다랑어 품목코드 확인 + 최근 30일 거래일수 월 10일 미만 시 드롭", "critical_fixes": ["가다랑어 제외, 눈다랑어·황다랑어 2종", "'노량진 포함' 단정 제거", "희박 시 단일 시장 콤보 차트 폴백"] },
+    { "id": "A-9", "rank": 15, "title": "EU 참치 수입 플로우 모니터 (CATCH 전후)", "pillar": "물류·통관", "api": "Eurostat Comext DS-045409", "part": "A", "key_status": "keyless", "effort": "M", "badge": "SYNCED(월·랙수개월)", "insight_value": 2.5, "confidence": 0.62, "score": 0.78, "verdict": "EDIT", "critical_fixes": ["거절률 아님 — 통관 물량 추세로 격하(거절 화물 미기록)", "1604.19 제거, 로인=030487", "EuroTunaWidgets 월별 탭 흡수 권장", "CATCH 후 데이터 ~4개월 캐비엇"] },
+    { "id": "B-7", "rank": 16, "title": "전국 수산 냉동·초저온 창고 인프라 맵", "pillar": "물류·통관", "api": "국토부 3048029 (폴백: 파일데이터 15083282)", "part": "B", "key_status": "shared_key_needs_apply_autoapprove", "effort": "M+gate", "badge": "STATIC(월갱신)", "insight_value": 2, "confidence": 0.75, "score": 0.75, "verdict": "EDIT", "critical_fixes": ["held 반증(403) — 활용신청 후 필드 실측 게이트", "-60°C 필터 삭제→취급품목 텍스트 매칭 '추정 후보' 라벨", "'병목 감시'→'거점 스크리닝'으로 정정"] }
+  ],
+  "corrections": [
+    { "priority": "P0", "item": "허구 KAMIS 614 참치통조림 KPI (KAMIS에 참치캔 부재 실측 + json.data.item 오파싱)", "location": "app/api/tuna/route.ts:73-101", "action": "삭제 후 B-1 참가격 위젯으로 대체" },
+    { "priority": "P0", "item": "/api/risk-radar MFDS 호출 HTTP 500 (SalmonNTBRadar·SupplierDiscovery 데이터 사망)", "location": "app/api/risk-radar", "action": "키 계통 재발급·수리" },
+    { "priority": "P1", "item": "UNI-PASS trtImpExpStas 호출 404 — 조용한 null fallback", "location": "app/api/tuna/route.ts:14,20-22", "action": "엔드포인트·키 재검증" },
+    { "priority": "P1", "item": "신라교역 corp_code 상충 00135962 vs 00857727", "location": "app/api/dart-insight vs app/api/tuna/dart", "action": "CORPCODE.xml 재검증 → _shared 단일 출처화" },
+    { "priority": "P1", "item": "api_keys_catalog.md 실키 평문 노출", "location": "docs", "action": "마스킹·env 이관" },
+    { "priority": "P2", "item": "죽은 라우트 6개·미import 컴포넌트 4개", "location": "전역", "action": "A-5가 comtrade 재생, 나머지 정리 판단" }
+  ],
+  "rejected": [
+    { "title": "수산 재정지원 레이더 (면세유·수산예산)", "reason": "원양 선망선은 국내 면세유 제도 밖(해외 벙커링) + 면세유는 조세지출이라 열린재정 세출집행 API에 부재 — 인용 데이터 경로로 구축 불가" },
+    { "title": "어선 해양사고 안전지표 (선단 ESG)", "reason": "API 선박용도가 '어선' 통짜(업종·원양 세분류 부재) — 연안 소형어선 지배 모집단이라 원양 선망 벤치마크 불가, CSDDD 실사에서 역공 소재" }
+  ]
+}

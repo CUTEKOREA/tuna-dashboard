@@ -740,8 +740,8 @@ export default function SupplierDiscoveryDashboard() {
                   <span style={{ color: '#94a3b8', fontSize: '0.85rem' }}>식약처 수입식품 적발</span>
                   <span style={{ marginLeft: 'auto', fontSize: '0.7rem', background: '#451a03', color: '#f59e0b', padding: '2px 6px', borderRadius: '4px' }}>{riskData.mfds?.source}</span>
                 </div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: riskData.mfds?.count > 0 ? '#f59e0b' : '#10b981' }}>
-                  {riskData.mfds?.count || 0}건
+                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: riskData.mfds?.available === false ? '#64748b' : riskData.mfds?.count > 0 ? '#f59e0b' : '#10b981' }}>
+                  {riskData.mfds?.available === false ? '조회불가' : `${riskData.mfds?.count || 0}건`}
                 </div>
                 {riskData.mfds?.items?.slice(0, 2).map((item: any, i: number) => (
                   <div key={i} style={{ marginTop: '0.5rem', padding: '0.5rem', background: '#1a2442', borderRadius: '6px', fontSize: '0.8rem', color: '#94a3b8' }}>

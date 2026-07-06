@@ -526,7 +526,7 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* L-09: 연결 상태 미검증 — 펄스/'연결됨' 상태 주장 제거, 연동 대상 기관만 중립 표기 */}
             <span>연동 API</span>
             <span style={{ margin: '0 8px', color: '#4d4d4d' }}>|</span>
-            <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · KAMIS · WITS · OEC · FRED · OSH · HS Ping</span>
+            <span style={{ color: 'var(--text-primary)' }}>KCS · ECOS · WITS · OEC · FRED · OSH · HS Ping</span>{/* L-09: KAMIS는 참치 미연동(참치캔 품목 부재)이라 표기 제거 (2026-07-06) */}
           </div>
         </div>
       </header>

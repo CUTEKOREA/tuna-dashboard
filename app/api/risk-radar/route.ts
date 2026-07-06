@@ -9,15 +9,18 @@ export const dynamic = 'force-dynamic';
 // ============================================================================
 
 // --- MFDS: 수입식품 부적합 ---
+// ⚠️ 2026-07-06 실측: data.go.kr 1471000 FoodFlshdImprtRejectInfoService는 전 키·전 파라미터 조합에서
+// HTTP 500 (업스트림 사망), 식약처 포털 키(MFDS_API_KEY)는 "인증키 유효하지 않음".
+// count=0으로 위장하지 않고 available=false로 정직 표기 — 키 계통 재발급(B-4) 전까지 위젯은 '조회불가' 렌더.
 async function fetchMFDSRejections(itemName: string) {
   const apiKey = process.env.MFDS_API_KEY;
-  if (!apiKey) return { count: 0, items: [], source: 'API_KEY_MISSING' };
+  if (!apiKey) return { count: null, items: [], source: 'API_KEY_MISSING', available: false };
 
   try {
     const encodedItem = encodeURIComponent(itemName);
     const url = `https://apis.data.go.kr/1471000/FoodFlshdImprtRejectInfoService/getFoodFlshdImprtRejectInfoList?serviceKey=${apiKey}&prdlst_nm=${encodedItem}&numOfRows=20&type=json`;
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return { count: 0, items: [], source: 'MFDS_ERROR' };
+    if (!res.ok) return { count: null, items: [], source: 'MFDS_UNAVAILABLE(업스트림 500 — 키 재발급 필요)', available: false };
 
     const data = await res.json();
     const totalCount = data?.body?.totalCount || 0;
@@ -32,9 +35,9 @@ async function fetchMFDSRejections(itemName: string) {
       violation: i.VLTN_CN || i.vltn_cn || '',
     }));
 
-    return { count: totalCount, items: parsed.slice(0, 10), source: 'MFDS_LIVE' };
+    return { count: totalCount, items: parsed.slice(0, 10), source: 'MFDS_LIVE', available: true };
   } catch {
-    return { count: 0, items: [], source: 'MFDS_NETWORK_ERROR' };
+    return { count: null, items: [], source: 'MFDS_NETWORK_ERROR', available: false };
   }
 }
 
@@ -167,6 +170,8 @@ export async function POST(req: Request) {
       fraud,
       ofac,
       aiAssessment,
+      // L-12: 표준 isLive — 외부 소스 중 하나라도 실측 성공 시에만 true
+      isLive: mfds.source === 'MFDS_LIVE' || fraud.source === 'KOTRA_LIVE',
       _meta: {
         dataSources: {
           mfds: mfds.source,

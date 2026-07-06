@@ -1,5 +1,7 @@
 # 🔑 API Keys Catalog — Silla Co. Intelligence Dashboard
 
+> ⚠️ **보안 (2026-07-06)**: 본 문서의 실키 평문은 전부 마스킹 처리됨. 실제 값은 `~/연구자동화애이전트들/MASTER_API_KEYS.env`(정본)와 `.env.local`에만 둔다. 문서에는 키 이름·앞 8자만 허용.
+
 > **최종 업데이트**: 2026-05-13  
 > **관리 원칙**: API-First Integration Protocol에 따라 모든 데이터 위젯은 Live API를 1순위로 사용합니다.  
 > **환경변수 파일**: `.env.local`
@@ -30,7 +32,7 @@
 | 4 | **식약처 (MFDS)** | `MFDS_API_KEY` | 식품 안전/인허가 정보 | ✅ 활성 |
 | 5 | **공공데이터포털 (통합 API)** | `PUBLIC_DATA_API_KEY` | KOTRA, 해수부, aT, 축평원 등 통합 접속 | ✅ 활성 |
 
-**통합 공공데이터 API Key (`PUBLIC_DATA_API_KEY`):** `fdbf3eb58f1157a1db7c9156e8ce7f88ed9fa2d996116d9079dddb5232133f7c`
+**통합 공공데이터 API Key (`PUBLIC_DATA_API_KEY`):** `fdbf3eb5…(마스킹 — MASTER_API_KEYS.env의 DATA_GO_KR_KEY 참조)`
 
 **참고 엔드포인트 (주요 활용):**
 - **[KOTRA]** `DS00000145` (UNComtrade 기준 수출신고 통계), `DS00000146` (수입신고 통계), `priceInfoByNatn` (국가별 물가정보), `overseasMarketNews` (해외시장뉴스), `cmmrcFraudCase` (무역사기사례), `entryStrategy` (진출전략) 등 19개 핵심 글로벌 데이터 API
@@ -48,10 +50,10 @@
 | 8 | **한국투자증권 (KIS)** | `KIS_APPKEY` / `KIS_API_KEY` | 국내/해외 주식 및 지수 시세 조회 | ✅ 활성 |
 | 9 | **토스페이먼츠 (Toss)** | `TOSS_CLIENT_KEY` / `TOSS_SECRET_KEY` | 결제 연동 및 매출 정산 정보 조회 | ✅ 활성 |
 
-**한국투자증권 API AppKey (`KIS_APPKEY` / `KIS_API_KEY`):** `PSwAxk872rHNPUPSVAm0Uci7SP1u5AztjI0g`  
+**한국투자증권 API AppKey (`KIS_APPKEY` / `KIS_API_KEY`):** `PSwAx…(마스킹 — env KIS_APP_KEY 참조)`  
 **토스페이먼츠 API Key (`TOSS_CLIENT_KEY` / `TOSS_SECRET_KEY`):**
-- Client Key: `tsck_live_kividUXKFFcoet3XLeen9f`
-- Secret Key: `tssk_live_2jVZimXLtczLo212ygluxLY5BJQffGqslOl5wHo0eWxB`
+- Client Key: `tsck_live_…(마스킹 — env TOSS_CLIENT_KEY 참조)`
+- Secret Key: `tssk_live_…(마스킹 — env TOSS_SECRET_KEY 참조. ⚠️ live secret이 git에 노출됐던 이력 있음 — 토스 콘솔에서 재발급 권장)`
 
 ### 🤖 AI / 인프라
 
@@ -84,7 +86,7 @@
 
 ```bash
 # .env.local에 추가
-COMTRADE_API_KEY="61063fe9f1d2483ea97a9e526daf20a6"
+COMTRADE_API_KEY="61063fe9…(마스킹 — env 참조)"
 ```
 
 ```python
@@ -199,7 +201,7 @@ resp = requests.get(url)
 
 ```bash
 # .env.local에 추가
-WTO_API_KEY="9c11cd0e1f954c34865c8c427eb07174"
+WTO_API_KEY="9c11cd0e…(마스킹 — env 참조)"
 ```
 
 ---
@@ -222,7 +224,7 @@ WTO_API_KEY="9c11cd0e1f954c34865c8c427eb07174"
 
 ```bash
 # .env.local에 추가
-USCENSUS_API_KEY="57ed5d9332b5b042e538a9dd3abc83c00a5a66eb"
+USCENSUS_API_KEY="57ed5d93…(마스킹 — env 참조)"
 ```
 
 ---
