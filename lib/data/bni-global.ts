@@ -71,6 +71,31 @@ export interface BniApiCoverage {
   usage: string;
 }
 
+export interface BniApiConnection {
+  source: string;
+  endpoint: string;
+  status: '연결됨' | '내부 API 연결 가능' | '확장 후보';
+  cadence: string;
+  fields: string[];
+  insightUse: string;
+  priority: number;
+}
+
+export interface BniInsightProposal {
+  id: string;
+  lane: string;
+  priority: '상' | '중' | '관찰';
+  title: string;
+  commodity: string;
+  horizon: string;
+  trigger: string;
+  thesis: string;
+  apiStack: string[];
+  action: string;
+  customerQuestion: string;
+  confidence: string;
+}
+
 export interface BniReportArchiveItem {
   date: string;
   file: string;
@@ -114,6 +139,8 @@ export interface BniGlobalDashboardData {
   supplementaryMarkets: BniSupplementaryMarket[];
   riskRadar: BniRiskRadarItem[];
   apiCoverage: BniApiCoverage[];
+  apiConnections: BniApiConnection[];
+  insightProposals: BniInsightProposal[];
   reportArchive: BniReportArchiveItem[];
   nextBuild: string[];
 }

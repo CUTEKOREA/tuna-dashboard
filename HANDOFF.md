@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-06 19:17 KST — BNI Global API 인사이트 제안 큐 추가** [CC]:
+> - 사용자 요청으로 독립 `/bni-global` 대시보드에 활용 가능한 API를 연결한 인사이트 제안 큐를 추가.
+> - `scripts/build_bni_global_dashboard.mjs`가 `apiConnections` 10건과 `insightProposals` 15건을 생성하도록 확장. 연결 축은 BNI PDF, FRED, KCS, UN Comtrade, WITS(`/api/wits`), Tariffs(`/api/tariffs`), ECOS/환율(`/api/exchange`), Trade Macro(`/api/trade-macro`), KAMIS, USDA FAS.
+> - `data/bni_global_dashboard.json` 재생성, `lib/data/bni-global.ts` 타입 확장. 인사이트는 원산지 집중도, 국제가 변화, KCS 통관단가, 관세/환율/국내 전가율 후보를 묶어 고객 질문·실행 액션·근거 API 스택으로 표현.
+> - `components/BniGlobalDashboard.tsx`/CSS에 `API 인사이트 엔진` 섹션 추가. 화면에는 제안 15건, 연결 축 8개, `/api/wits`·`/api/exchange` 등 내부 API 연결 가능 경로, 필드 태그를 노출.
+> - 재발 방지: `bni-global-data.test.ts`에 API 연결 10건 이상, 인사이트 15건 이상, FRED/KCS/Comtrade/WITS/KAMIS 근거 스택, `/api/wits`·`/api/exchange` 엔드포인트 계약을 추가.
+> - 검증: 대상 테스트 6/6, `npm run typecheck`, `npm run verify` 통과(`npm run lint` 기존 경고 7건 유지, `npm test` 22파일/87테스트, `npm run check:api-cache` 150/150, `npm run build` 103 static pages, `npm run check:bundle`). Puppeteer 확인: `/bni-global` 인사이트 카드 15건, `/api/wits`/`/api/exchange` 표시, `asideCount=0`, 참치왕국 텍스트 없음, desktop/mobile overflow 0, errors 0.
+> - 미배포(로컬). 기존/무관 미추적 패치·테스트 스크립트는 그대로 보존.
+
 > **2026-07-06 19:03 KST — BNI Global 독립 대시보드 분리 정정** [CC]:
 > - 사용자 정정에 따라 BNI Global을 참치왕국 메인 대시보드/사이드바에 붙이지 않고, 별도 공개 페이지 `/bni-global`만 유지하도록 분리.
 > - `lib/dashboard-registry.ts`와 `app/page.tsx`에서 `bni-global` 메뉴, 사이드바 항목, 메인 패널 렌더, `Globe2` 사이드바 아이콘 연결을 제거. `app/sitemap.ts`에는 독립 공개 라우트로만 등록.

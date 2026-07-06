@@ -157,6 +157,7 @@
 .panel,
 .commodityList,
 .commodityDetail,
+.insightLab,
 .nextBuild {
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 8px;
@@ -206,6 +207,7 @@
 .commodityList,
 .commodityDetail,
 .panel,
+.insightLab,
 .nextBuild {
   padding: 18px;
 }
@@ -410,6 +412,158 @@
   border-top-color: rgba(16, 185, 129, 0.34) !important;
 }
 
+.insightLab {
+  border-color: rgba(251, 191, 36, 0.20);
+}
+
+.insightLabHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.insightSummary {
+  display: grid;
+  gap: 4px;
+  min-width: 150px;
+  padding: 10px 12px;
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  border-radius: 8px;
+  background: rgba(251, 191, 36, 0.08);
+  text-align: right;
+}
+
+.insightSummary span {
+  color: rgba(226, 232, 240, 0.58);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.insightSummary strong {
+  color: #fbbf24;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.insightGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.insightCard {
+  display: flex;
+  min-height: 310px;
+  flex-direction: column;
+  padding: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.68), rgba(2, 6, 23, 0.34)),
+    radial-gradient(circle at 10% 0%, rgba(251, 191, 36, 0.08), transparent 34%);
+}
+
+.insightTop,
+.insightFooter,
+.connectionTop,
+.connectionMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.insightTop span {
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.priorityBadge {
+  display: inline-flex;
+  min-width: 34px;
+  justify-content: center;
+  padding: 3px 7px;
+  border-radius: 8px;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.insightCard h3 {
+  margin: 12px 0 0;
+  color: var(--text-main);
+  font-size: 16px;
+  line-height: 1.36;
+}
+
+.insightCard p {
+  margin: 9px 0 0;
+  color: rgba(226, 232, 240, 0.70);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.insightFacts {
+  display: grid;
+  gap: 8px;
+  margin: 13px 0 0;
+}
+
+.insightFacts div {
+  padding-top: 8px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.insightFacts dt {
+  color: rgba(226, 232, 240, 0.48);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.insightFacts dd {
+  margin: 3px 0 0;
+  color: rgba(226, 232, 240, 0.74);
+  font-size: 12px;
+  line-height: 1.48;
+}
+
+.insightFooter {
+  align-items: flex-start;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.insightFooter small {
+  color: rgba(226, 232, 240, 0.52);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.apiStack,
+.fieldTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-end;
+}
+
+.apiStack span,
+.fieldTags span {
+  display: inline-flex;
+  min-height: 21px;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 8px;
+  color: #bae6fd;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  background: rgba(56, 189, 248, 0.09);
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .twoColumn,
 .apiAndArchive {
   display: grid;
@@ -508,6 +662,69 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.connectionMatrix {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.connectionItem {
+  display: flex;
+  min-height: 154px;
+  flex-direction: column;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.16);
+}
+
+.connectionTop strong {
+  color: var(--text-main);
+  font-size: 13px;
+}
+
+.connectionTop span {
+  padding: 2px 7px;
+  border-radius: 8px;
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  background: rgba(16, 185, 129, 0.10);
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.connectionItem p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.66);
+  font-size: 12px;
+  line-height: 1.52;
+}
+
+.connectionMeta {
+  margin-top: auto;
+  align-items: flex-start;
+}
+
+.connectionMeta code {
+  max-width: 58%;
+  overflow: hidden;
+  color: #fbbf24;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.connectionMeta small {
+  color: rgba(226, 232, 240, 0.48);
+  font-size: 11px;
+  text-align: right;
+}
+
 .coverageItem div {
   display: flex;
   align-items: center;
@@ -583,7 +800,8 @@
 @media (max-width: 1280px) {
   .kpiGrid,
   .metricStrip,
-  .coverageGrid {
+  .coverageGrid,
+  .insightGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -628,9 +846,32 @@
   .narrativeGrid,
   .riskList,
   .coverageGrid,
+  .connectionMatrix,
+  .insightGrid,
   .nextList,
   .commodityButtons {
     grid-template-columns: 1fr;
+  }
+
+  .insightLabHeader,
+  .insightFooter,
+  .connectionMeta {
+    flex-direction: column;
+  }
+
+  .insightSummary {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+  }
+
+  .apiStack,
+  .fieldTags {
+    justify-content: flex-start;
+  }
+
+  .connectionMeta code {
+    max-width: 100%;
   }
 
   .metricBlock,

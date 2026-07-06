@@ -170,6 +170,99 @@ const API_COVERAGE = [
   },
 ];
 
+const API_CONNECTIONS = [
+  {
+    source: 'BNI Global PDF',
+    endpoint: '/api/bni-global',
+    status: '연결됨',
+    cadence: '보고서 업로드 기준',
+    fields: ['시장 문맥', '전망 문장', '거래처 전달 문안'],
+    insightUse: '정기 보고서의 정성 판단을 가격·수입·교역 데이터와 묶는 기준 문맥',
+    priority: 1,
+  },
+  {
+    source: 'FRED',
+    endpoint: 'agri_pipeline processed CSV',
+    status: '연결됨',
+    cadence: '월간·분기 데이터',
+    fields: ['국제 가격', '월간 변화율', '장기 변동률'],
+    insightUse: '국제 원가 방향과 한국 통관단가가 같은 방향인지 확인',
+    priority: 1,
+  },
+  {
+    source: 'KCS',
+    endpoint: 'agri_pipeline processed CSV',
+    status: '연결됨',
+    cadence: '월간 통관 데이터',
+    fields: ['수입액', '수입중량', '수입단가', '상위 원산지'],
+    insightUse: '한국 바이어가 실제로 어느 원산지에 얼마나 노출되어 있는지 판정',
+    priority: 1,
+  },
+  {
+    source: 'UN Comtrade',
+    endpoint: 'agri_pipeline processed CSV',
+    status: '연결됨',
+    cadence: '연간 교역 데이터',
+    fields: ['HS 코드', '세계 파트너 행', '장기 교역 커버리지'],
+    insightUse: '대체 원산지와 글로벌 공급망 폭을 검토하는 장기 근거',
+    priority: 1,
+  },
+  {
+    source: 'WITS',
+    endpoint: '/api/wits',
+    status: '내부 API 연결 가능',
+    cadence: '요청 시 조회',
+    fields: ['MFN', '협정세율', '무역지표'],
+    insightUse: '원산지 전환 전 관세 차이를 비교해 실제 landed cost 리스크로 전환',
+    priority: 2,
+  },
+  {
+    source: 'Tariffs',
+    endpoint: '/api/tariffs',
+    status: '내부 API 연결 가능',
+    cadence: '요청 시 조회',
+    fields: ['관세율', '원산지 조건', 'HS 기반 비용'],
+    insightUse: '고객별 견적서에 관세 민감도를 붙이는 가격 방어 근거',
+    priority: 2,
+  },
+  {
+    source: 'ECOS·환율',
+    endpoint: '/api/exchange',
+    status: '내부 API 연결 가능',
+    cadence: '시장 데이터 조회',
+    fields: ['KRW/USD', '환율 변화', '원화 원가'],
+    insightUse: '국제 가격은 내려도 원화 매입가는 올라가는 구간을 분리',
+    priority: 2,
+  },
+  {
+    source: 'Trade Macro',
+    endpoint: '/api/trade-macro',
+    status: '내부 API 연결 가능',
+    cadence: '요청 시 조회',
+    fields: ['달러', '유가', '거시 리스크'],
+    insightUse: '원자재 가격 변동과 운임·환율 변수를 같은 메모에 결합',
+    priority: 2,
+  },
+  {
+    source: 'KAMIS',
+    endpoint: '품목별 KAMIS route 확장 후보',
+    status: '확장 후보',
+    cadence: '국내 도소매 가격',
+    fields: ['국내 도매가', '소매가', '가격 전가율'],
+    insightUse: '수입단가 상승이 국내 판매가로 얼마나 전가됐는지 계산',
+    priority: 3,
+  },
+  {
+    source: 'USDA FAS',
+    endpoint: '품목별 USDA FAS route 확장 후보',
+    status: '확장 후보',
+    cadence: '수급 보고서',
+    fields: ['생산량', '재고', '수출 전망'],
+    insightUse: 'BNI 정성 전망을 공식 수급표로 검산',
+    priority: 3,
+  },
+];
+
 function parseCsv(text) {
   const rows = [];
   let row = [];
@@ -308,6 +401,160 @@ function comtradeSummary(rows) {
   };
 }
 
+function formatSignedPct(value) {
+  if (value === null || value === undefined) return '변화율 확인 필요';
+  return `${value > 0 ? '+' : ''}${round(value, 1)}%`;
+}
+
+function hasFinalConsonant(value) {
+  const last = value.charCodeAt(value.length - 1);
+  if (last < 0xac00 || last > 0xd7a3) return false;
+  return (last - 0xac00) % 28 !== 0;
+}
+
+function subjectParticle(value) {
+  return hasFinalConsonant(value) ? '은' : '는';
+}
+
+function connectionNames(...names) {
+  return API_CONNECTIONS
+    .filter((connection) => names.includes(connection.source))
+    .map((connection) => connection.source);
+}
+
+function buildInsightProposals(commodities) {
+  const proposals = [];
+  const add = (proposal) => proposals.push({
+    id: `bni-insight-${String(proposals.length + 1).padStart(2, '0')}`,
+    ...proposal,
+  });
+
+  for (const commodity of commodities) {
+    const concentration = commodity.customs.topCountrySharePct ?? 0;
+    const priceChange = commodity.price.monthChangePct;
+    const topCountry = commodity.customs.topCountry || '주요 원산지';
+    const hsLabel = commodity.hsCodes.join(', ');
+
+    add({
+      lane: '원산지',
+      priority: concentration >= 70 ? '상' : concentration >= 45 ? '중' : '관찰',
+      title: `${commodity.name} ${topCountry} 노출 ${round(concentration, 1)}% 점검`,
+      commodity: commodity.name,
+      horizon: '이번 주 거래처 메모',
+      trigger: `KCS ${commodity.customs.latestMonth} 기준 ${topCountry} 수입 비중 ${round(concentration, 1)}%`,
+      thesis: concentration >= 70
+        ? `${commodity.name}${subjectParticle(commodity.name)} 단일 원산지 가격·물류 차질이 바로 고객 매입가로 번질 수 있습니다.`
+        : `${commodity.name}${subjectParticle(commodity.name)} 원산지 집중도가 중간 수준이라 대체 견적을 붙이면 협상력이 생깁니다.`,
+      apiStack: connectionNames('KCS', 'UN Comtrade', 'WITS'),
+      action: `HS ${hsLabel} 기준으로 ${topCountry} 외 2개 원산지의 통관단가와 관세율을 함께 비교합니다.`,
+      customerQuestion: `“${topCountry} 외 대체 원산지 견적을 지금 받아둘까요?”`,
+      confidence: `${commodity.comtrade.worldPartnerRows.toLocaleString('ko-KR')}개 글로벌 파트너 행`,
+    });
+
+    add({
+      lane: '가격',
+      priority: priceChange !== null && Math.abs(priceChange) >= 5 ? '상' : '중',
+      title: `${commodity.name} 국제가 ${formatSignedPct(priceChange)} 신호를 국내 단가와 대조`,
+      commodity: commodity.name,
+      horizon: '다음 발주 전',
+      trigger: `FRED ${commodity.price.latestDate} ${commodity.price.latestValue ?? '-'} ${commodity.price.unit}`,
+      thesis: priceChange !== null && priceChange > 0
+        ? `국제 가격이 상승 전환했습니다. 국내 통관단가가 아직 덜 움직였다면 선제 매입 논리를 만들 수 있습니다.`
+        : `국제 가격이 안정권이면 기존 견적의 프리미엄을 조정할 여지가 있습니다.`,
+      apiStack: connectionNames('FRED', 'KCS', 'ECOS·환율'),
+      action: `FRED 가격, KCS 단가 ${commodity.customs.unitUsdPerTon ?? '-'} USD/t, KRW/USD를 한 줄로 묶어 원화 원가 변화를 계산합니다.`,
+      customerQuestion: '“국제가는 움직였는데 국내 견적은 얼마나 늦게 따라오고 있습니까?”',
+      confidence: `${commodity.price.observations}개 가격 관측치`,
+    });
+  }
+
+  const sugar = commodities.find((commodity) => commodity.key === 'sugar');
+  const wheat = commodities.find((commodity) => commodity.key === 'wheat');
+  const corn = commodities.find((commodity) => commodity.key === 'corn');
+  const soybean = commodities.find((commodity) => commodity.key === 'soybean');
+  const palmOil = commodities.find((commodity) => commodity.key === 'palm_oil');
+
+  if (sugar) {
+    add({
+      lane: '마진',
+      priority: '상',
+      title: '설탕 가격 반등을 고객 가격표 방어 논리로 전환',
+      commodity: '설탕',
+      horizon: '월간 가격표 개정',
+      trigger: `FRED ${formatSignedPct(sugar.price.monthChangePct)}, KCS ${sugar.customs.topCountry} ${round(sugar.customs.topCountrySharePct ?? 0, 1)}%`,
+      thesis: '설탕은 BNI 점수와 가격 반등이 모두 강합니다. 단순 “가격 상승”보다 원산지·환율·국내 전가율을 묶어 설명해야 합니다.',
+      apiStack: connectionNames('FRED', 'KCS', 'KAMIS', 'ECOS·환율'),
+      action: '정백당·원당 HS를 분리하고 국내 도매가 전가율을 붙여 고객별 인상 허용폭을 제안합니다.',
+      customerQuestion: '“설탕 단가 인상분 중 원재료 요인은 몇 %이고 환율 요인은 몇 %입니까?”',
+      confidence: `${sugar.customs.latestRows}개 최신 통관 행`,
+    });
+  }
+
+  if (wheat) {
+    add({
+      lane: '계약',
+      priority: '상',
+      title: '소맥은 원산지 전환 견적을 먼저 붙이는 상품',
+      commodity: '소맥',
+      horizon: '신규 계약 검토',
+      trigger: `FRED 월간 ${formatSignedPct(wheat.price.monthChangePct)}, 상위 원산지 ${wheat.customs.topCountry}`,
+      thesis: '소맥 국제 가격 상승이 뚜렷합니다. 미국 공급 프리미엄과 비미국산 작황 완화를 분리해 견적 시나리오를 만들어야 합니다.',
+      apiStack: connectionNames('FRED', 'KCS', 'UN Comtrade', 'WITS'),
+      action: '미국·우루과이·호주·캐나다의 통관단가와 MFN/협정세율을 한 화면에서 비교합니다.',
+      customerQuestion: '“기존 원산지를 유지할 때와 전환할 때의 총 원가는 얼마나 벌어집니까?”',
+      confidence: `${wheat.comtrade.hsCodes.length}개 HS 코드`,
+    });
+  }
+
+  if (corn && soybean) {
+    add({
+      lane: '날씨',
+      priority: '상',
+      title: '미국 가뭄 뉴스는 옥수수·대두 동시 알림으로 묶기',
+      commodity: '옥수수·대두',
+      horizon: 'USDA 발표 전후',
+      trigger: `옥수수 점수 ${corn.signalScore}, 대두 점수 ${soybean.signalScore}`,
+      thesis: 'BNI가 반복해서 언급한 미국 가뭄은 단일 품목 뉴스가 아니라 사료·유지류 원가를 동시에 흔드는 공통 변수입니다.',
+      apiStack: connectionNames('BNI Global PDF', 'FRED', 'USDA FAS'),
+      action: 'USDA 수급표가 갱신되면 옥수수·대두 재고 변화와 FRED 가격 반응을 같은 알림으로 묶습니다.',
+      customerQuestion: '“USDA 발표 후 사료·유지 원가를 동시에 잠가야 합니까?”',
+      confidence: 'BNI 리스크 레이더 공통 변수',
+    });
+  }
+
+  if (soybean && palmOil) {
+    add({
+      lane: '대체재',
+      priority: '중',
+      title: '대두유·팜유·동물성 유지 대체 스프레드 큐 만들기',
+      commodity: '유지류',
+      horizon: '주간 브리핑',
+      trigger: `팜유 장기 변화 ${formatSignedPct(palmOil.price.sinceFirstPct)}, 대두 상위 원산지 ${soybean.customs.topCountry}`,
+      thesis: '바이오연료와 UCO 수입이 유지류 가격을 품목별로 다르게 밀고 있습니다. 단일 유지 가격보다 대체 스프레드가 고객 의사결정에 더 직접적입니다.',
+      apiStack: connectionNames('BNI Global PDF', 'FRED', 'KCS', 'USDA FAS'),
+      action: '대두유·팜유·동물성 유지·UCO를 “식품용/연료용 경쟁”으로 나눠 매입 우선순위를 제안합니다.',
+      customerQuestion: '“이번 달에는 어떤 유지류를 먼저 커버하고 어떤 것은 기다려도 됩니까?”',
+      confidence: 'BNI 보조 시장 2개 직접 추출',
+    });
+  }
+
+  add({
+    lane: '자동화',
+    priority: '중',
+    title: '거래처별 한 장 브리핑 자동 생성',
+    commodity: '전체',
+    horizon: '정기 발송',
+    trigger: 'BNI PDF 9건, 구조화 상품 5개, 보조 시장 2개',
+    thesis: '거래처가 원하는 것은 긴 보고서가 아니라 “내 원가와 계약에 무슨 의미인가”입니다.',
+    apiStack: connectionNames('BNI Global PDF', 'KCS', 'FRED', 'ECOS·환율'),
+    action: '거래처 품목 포트폴리오를 입력하면 가격·수입단가·원산지 노출·권장 문안을 1페이지로 출력합니다.',
+    customerQuestion: '“이번 주 우리 회사가 바로 조치할 품목은 무엇입니까?”',
+    confidence: '정기 PDF와 처리 CSV 결합 완료',
+  });
+
+  return proposals;
+}
+
 function dateFromReportName(fileName) {
   const match = fileName.match(/(\d{6})/);
   if (!match) return '';
@@ -411,6 +658,8 @@ async function main() {
     supplementaryMarkets: SUPPLEMENTARY_MARKETS,
     riskRadar: RISK_RADAR,
     apiCoverage: API_COVERAGE,
+    apiConnections: API_CONNECTIONS,
+    insightProposals: buildInsightProposals(commodities),
     reportArchive: reports,
     nextBuild: [
       '대두유와 동물성 유지는 별도 원료 코드/UCO 데이터셋을 추가해 BNI 직접 추출 의존도를 낮춥니다.',

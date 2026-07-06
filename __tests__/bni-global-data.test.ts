@@ -36,6 +36,28 @@ describe('BNI Global dashboard data', () => {
     }
   });
 
+  it('builds a dense API-backed insight proposal queue', () => {
+    const data = getBniGlobalDashboard();
+    const connectedSources = data.apiConnections.map((connection) => connection.source);
+    const insightSources = new Set(data.insightProposals.flatMap((insight) => insight.apiStack));
+
+    expect(data.apiConnections.length).toBeGreaterThanOrEqual(10);
+    expect(data.insightProposals.length).toBeGreaterThanOrEqual(15);
+    expect(connectedSources).toEqual(expect.arrayContaining(['FRED', 'KCS', 'UN Comtrade', 'WITS', 'ECOS·환율']));
+    expect(data.apiConnections.find((connection) => connection.source === 'WITS')?.endpoint).toBe('/api/wits');
+    expect(data.apiConnections.find((connection) => connection.source === 'ECOS·환율')?.endpoint).toBe('/api/exchange');
+
+    for (const insight of data.insightProposals) {
+      expect(insight.title).toMatch(/[가-힣]/);
+      expect(insight.thesis).toMatch(/[가-힣]/);
+      expect(insight.action).toMatch(/[가-힣]/);
+      expect(insight.customerQuestion).toMatch(/[가-힣]/);
+      expect(insight.apiStack.length).toBeGreaterThanOrEqual(3);
+    }
+
+    expect(Array.from(insightSources)).toEqual(expect.arrayContaining(['FRED', 'KCS', 'UN Comtrade', 'WITS', 'KAMIS']));
+  });
+
   it('serves the dashboard through a static API contract', async () => {
     const response = await GET();
     const parsed = StaticSnapshotResponse.parse(await response.json());

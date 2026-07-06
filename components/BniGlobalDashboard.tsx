@@ -14,7 +14,7 @@ import {
   Wheat,
 } from 'lucide-react';
 import { getBniGlobalDashboard } from '../lib/data/bni-global';
-import type { BniCommoditySignal, BniRiskLevel } from '../lib/data/bni-global';
+import type { BniCommoditySignal, BniInsightProposal, BniRiskLevel } from '../lib/data/bni-global';
 import styles from './BniGlobalDashboard.module.css';
 
 const data = getBniGlobalDashboard();
@@ -31,6 +31,12 @@ const riskTone: Record<BniRiskLevel, string> = {
   주의: 'caution',
   경계: 'warning',
   높음: 'danger',
+};
+
+const priorityTone: Record<BniInsightProposal['priority'], string> = {
+  관찰: 'caution',
+  중: 'warning',
+  상: 'danger',
 };
 
 const numberFormatter = new Intl.NumberFormat('ko-KR', {
@@ -96,6 +102,41 @@ function MetricBlock({ label, value, note }: { label: string; value: string; not
       <strong>{value}</strong>
       <small>{note}</small>
     </div>
+  );
+}
+
+function InsightCard({ insight }: { insight: BniInsightProposal }) {
+  return (
+    <article className={styles.insightCard}>
+      <div className={styles.insightTop}>
+        <span>{insight.lane}</span>
+        <b className={`${styles.priorityBadge} ${styles[priorityTone[insight.priority]]}`}>{insight.priority}</b>
+      </div>
+      <h3>{insight.title}</h3>
+      <p>{insight.thesis}</p>
+      <dl className={styles.insightFacts}>
+        <div>
+          <dt>트리거</dt>
+          <dd>{insight.trigger}</dd>
+        </div>
+        <div>
+          <dt>실행</dt>
+          <dd>{insight.action}</dd>
+        </div>
+        <div>
+          <dt>질문</dt>
+          <dd>{insight.customerQuestion}</dd>
+        </div>
+      </dl>
+      <div className={styles.insightFooter}>
+        <small>{insight.horizon} · {insight.confidence}</small>
+        <div className={styles.apiStack}>
+          {insight.apiStack.map((source) => (
+            <span key={`${insight.id}-${source}`}>{source}</span>
+          ))}
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -226,6 +267,24 @@ export default function BniGlobalDashboard() {
         </article>
       </section>
 
+      <section className={styles.insightLab}>
+        <div className={styles.insightLabHeader}>
+          <div className={styles.sectionHeading}>
+            <span className={styles.sectionLabel}>API 인사이트 엔진</span>
+            <h2>연결 가능한 API로 만든 제안 큐</h2>
+          </div>
+          <div className={styles.insightSummary}>
+            <span>제안 {data.insightProposals.length}건</span>
+            <strong>{data.apiConnections.filter((connection) => connection.status !== '확장 후보').length}개 연결 축</strong>
+          </div>
+        </div>
+        <div className={styles.insightGrid}>
+          {data.insightProposals.map((insight) => (
+            <InsightCard insight={insight} key={insight.id} />
+          ))}
+        </div>
+      </section>
+
       <section className={styles.twoColumn}>
         <div className={styles.panel}>
           <div className={styles.sectionHeading}>
@@ -287,6 +346,26 @@ export default function BniGlobalDashboard() {
                 </div>
                 <span>{coverage.status}</span>
                 <p>{coverage.usage}</p>
+              </article>
+            ))}
+          </div>
+          <div className={styles.connectionMatrix}>
+            {data.apiConnections.map((connection) => (
+              <article className={styles.connectionItem} key={connection.source}>
+                <div className={styles.connectionTop}>
+                  <strong>{connection.source}</strong>
+                  <span>{connection.status}</span>
+                </div>
+                <p>{connection.insightUse}</p>
+                <div className={styles.connectionMeta}>
+                  <code>{connection.endpoint}</code>
+                  <small>{connection.cadence}</small>
+                </div>
+                <div className={styles.fieldTags}>
+                  {connection.fields.map((field) => (
+                    <span key={`${connection.source}-${field}`}>{field}</span>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
