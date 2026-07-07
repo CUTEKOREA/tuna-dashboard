@@ -108,6 +108,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'FiLYMR1HrMNkg5-Sc4na1_fjBJtYpxlXmvdqRuaIK58',
+    other: {
+      'naver-site-verification': '6f72024f1ca33c219f8d1b9d6f0f8a0b4780d9f',
+    },
   },
   other: {
     'google-adsense-account': 'ca-pub-8056702374530895',
@@ -157,10 +160,35 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        {/* GA4 */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-YYK3VGG39D"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YYK3VGG39D');`,
+          }}
+        />
+        {/* Microsoft Clarity */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "s1ypdp7bi1");`,
+          }}
+        />
+        {/* JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* AdSense */}
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8056702374530895"
