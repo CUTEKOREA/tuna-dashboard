@@ -434,206 +434,206 @@
       },
       {
         "rank": 2,
-        "seafoodName": "꽃게",
-        "saleAmount": 3818451966.0,
-        "saleQty": 138895.95000000016,
-        "avgUnitPrice": 27491
+        "seafoodName": "갈치류",
+        "saleAmount": 6401509130.0,
+        "saleQty": 422409.5,
+        "avgUnitPrice": 15155
       },
       {
         "rank": 3,
+        "seafoodName": "꽃게",
+        "saleAmount": 5848019711.0,
+        "saleQty": 221191.35,
+        "avgUnitPrice": 26439
+      },
+      {
+        "rank": 4,
+        "seafoodName": "뱀장어",
+        "saleAmount": 4075426500.0,
+        "saleQty": 134949.25,
+        "avgUnitPrice": 30200
+      },
+      {
+        "rank": 5,
         "seafoodName": "돌김",
         "saleAmount": 2503009300.0,
         "saleQty": 582720.0,
         "avgUnitPrice": 4295
       },
       {
-        "rank": 4,
+        "rank": 6,
+        "seafoodName": "낙지",
+        "saleAmount": 2286096170.0,
+        "saleQty": 118136.97,
+        "avgUnitPrice": 19351
+      },
+      {
+        "rank": 7,
+        "seafoodName": "멸치",
+        "saleAmount": 1957101670.0,
+        "saleQty": 649710.0,
+        "avgUnitPrice": 3012
+      },
+      {
+        "rank": 8,
+        "seafoodName": "살오징어",
+        "saleAmount": 1781816120.0,
+        "saleQty": 118178.15,
+        "avgUnitPrice": 15077
+      },
+      {
+        "rank": 9,
         "seafoodName": "김류",
         "saleAmount": 1610322280.0,
         "saleQty": 909187.0,
         "avgUnitPrice": 1771
       },
       {
-        "rank": 5,
-        "seafoodName": "낙지",
-        "saleAmount": 1440649340.0,
-        "saleQty": 75501.59000000055,
-        "avgUnitPrice": 19081
-      },
-      {
-        "rank": 6,
-        "seafoodName": "뱀장어",
-        "saleAmount": 1378490500.0,
-        "saleQty": 59406.75,
-        "avgUnitPrice": 23204
-      },
-      {
-        "rank": 7,
-        "seafoodName": "멸치",
-        "saleAmount": 1179442600.0,
-        "saleQty": 423375.5,
-        "avgUnitPrice": 2786
-      },
-      {
-        "rank": 8,
-        "seafoodName": "주꾸미",
-        "saleAmount": 940283008.0,
-        "saleQty": 23880.000000000047,
-        "avgUnitPrice": 39375
-      },
-      {
-        "rank": 9,
-        "seafoodName": "넙치",
-        "saleAmount": 797442976.0,
-        "saleQty": 64249.24,
-        "avgUnitPrice": 12412
-      },
-      {
         "rank": 10,
-        "seafoodName": "문어",
-        "saleAmount": 741338356.0,
-        "saleQty": 35370.300000000025,
-        "avgUnitPrice": 20959
+        "seafoodName": "갑오징어류",
+        "saleAmount": 1558734580.0,
+        "saleQty": 217080.2,
+        "avgUnitPrice": 7180
       },
       {
         "rank": 11,
-        "seafoodName": "갑오징어류",
-        "saleAmount": 729464060.0,
-        "saleQty": 79638.7,
-        "avgUnitPrice": 9160
+        "seafoodName": "병어",
+        "saleAmount": 1410826560.0,
+        "saleQty": 76374.8,
+        "avgUnitPrice": 18472
       },
       {
         "rank": 12,
-        "seafoodName": "갈치류",
-        "saleAmount": 683521720.0,
-        "saleQty": 41326.5,
-        "avgUnitPrice": 16540
+        "seafoodName": "넙치",
+        "saleAmount": 1174528066.0,
+        "saleQty": 99345.24,
+        "avgUnitPrice": 11823
       },
       {
         "rank": 13,
-        "seafoodName": "부세",
-        "saleAmount": 520756800.0,
-        "saleQty": 28043.600000000006,
-        "avgUnitPrice": 18570
+        "seafoodName": "고등어",
+        "saleAmount": 1162284660.0,
+        "saleQty": 475396.1,
+        "avgUnitPrice": 2445
       },
       {
         "rank": 14,
-        "seafoodName": "가자미류",
-        "saleAmount": 506029150.0,
-        "saleQty": 79302.70000000001,
-        "avgUnitPrice": 6381
+        "seafoodName": "문어",
+        "saleAmount": 1128847618.0,
+        "saleQty": 61171.0,
+        "avgUnitPrice": 18454
       },
       {
         "rank": 15,
-        "seafoodName": "붉은대게",
-        "saleAmount": 471998330.0,
-        "saleQty": 64666.9,
-        "avgUnitPrice": 7299
+        "seafoodName": "조피볼락",
+        "saleAmount": 958161940.0,
+        "saleQty": 47890.8,
+        "avgUnitPrice": 20007
       },
       {
         "rank": 16,
-        "seafoodName": "살오징어",
-        "saleAmount": 454358720.0,
-        "saleQty": 27638.449999999986,
-        "avgUnitPrice": 16439
+        "seafoodName": "주꾸미",
+        "saleAmount": 944726008.0,
+        "saleQty": 24163.0,
+        "avgUnitPrice": 39098
       },
       {
         "rank": 17,
-        "seafoodName": "조피볼락",
-        "saleAmount": 454012360.0,
-        "saleQty": 22263.2,
-        "avgUnitPrice": 20393
+        "seafoodName": "부세",
+        "saleAmount": 927687700.0,
+        "saleQty": 48215.82,
+        "avgUnitPrice": 19240
       },
       {
         "rank": 18,
-        "seafoodName": "대게",
-        "saleAmount": 443049390.0,
-        "saleQty": 13596.249999999998,
-        "avgUnitPrice": 32586
+        "seafoodName": "청어",
+        "saleAmount": 835128380.0,
+        "saleQty": 691256.5,
+        "avgUnitPrice": 1208
       },
       {
         "rank": 19,
-        "seafoodName": "삼치",
-        "saleAmount": 428548880.0,
-        "saleQty": 83856.5,
-        "avgUnitPrice": 5111
+        "seafoodName": "가자미류",
+        "saleAmount": 761816310.0,
+        "saleQty": 137452.9,
+        "avgUnitPrice": 5542
       },
       {
         "rank": 20,
-        "seafoodName": "참조기",
-        "saleAmount": 406468500.0,
-        "saleQty": 15554.599999999995,
-        "avgUnitPrice": 26132
+        "seafoodName": "붉은대게",
+        "saleAmount": 750888110.0,
+        "saleQty": 137644.0,
+        "avgUnitPrice": 5455
       },
       {
         "rank": 21,
-        "seafoodName": "참홍어",
-        "saleAmount": 346832550.0,
-        "saleQty": 37579.0,
-        "avgUnitPrice": 9229
+        "seafoodName": "덕대",
+        "saleAmount": 671559900.0,
+        "saleQty": 31862.0,
+        "avgUnitPrice": 21077
       },
       {
         "rank": 22,
-        "seafoodName": "키조개",
-        "saleAmount": 328071010.0,
-        "saleQty": 130165.60000000002,
-        "avgUnitPrice": 2520
+        "seafoodName": "다시마",
+        "saleAmount": 584410990.0,
+        "saleQty": 86737.0,
+        "avgUnitPrice": 6738
       },
       {
         "rank": 23,
-        "seafoodName": "참돔",
-        "saleAmount": 322537797.20000005,
-        "saleQty": 44808.5,
-        "avgUnitPrice": 7198
+        "seafoodName": "방어",
+        "saleAmount": 548439873.1,
+        "saleQty": 97001.6,
+        "avgUnitPrice": 5654
       },
       {
         "rank": 24,
-        "seafoodName": "아귀",
-        "saleAmount": 281159000.0,
-        "saleQty": 102036.0,
-        "avgUnitPrice": 2755
+        "seafoodName": "소라",
+        "saleAmount": 523969290.0,
+        "saleQty": 83308.7,
+        "avgUnitPrice": 6289
       },
       {
         "rank": 25,
-        "seafoodName": "방어",
-        "saleAmount": 275485243.1,
-        "saleQty": 44559.6,
-        "avgUnitPrice": 6182
+        "seafoodName": "참돔",
+        "saleAmount": 521889426.7,
+        "saleQty": 73471.0,
+        "avgUnitPrice": 7103
       },
       {
         "rank": 26,
-        "seafoodName": "소라",
-        "saleAmount": 262965950.0,
-        "saleQty": 36939.100000000006,
-        "avgUnitPrice": 7119
+        "seafoodName": "아귀",
+        "saleAmount": 514902700.0,
+        "saleQty": 178082.0,
+        "avgUnitPrice": 2891
       },
       {
         "rank": 27,
-        "seafoodName": "복류",
-        "saleAmount": 249976450.0,
-        "saleQty": 29157.0,
-        "avgUnitPrice": 8573
+        "seafoodName": "눈볼대",
+        "saleAmount": 461292700.0,
+        "saleQty": 36832.7,
+        "avgUnitPrice": 12524
       },
       {
         "rank": 28,
-        "seafoodName": "기름가자미",
-        "saleAmount": 247191900.0,
-        "saleQty": 37499.5,
-        "avgUnitPrice": 6592
+        "seafoodName": "참홍어",
+        "saleAmount": 460192950.0,
+        "saleQty": 49761.0,
+        "avgUnitPrice": 9248
       },
       {
         "rank": 29,
-        "seafoodName": "기타해면기타",
-        "saleAmount": 246981165.0,
-        "saleQty": 79001.0,
-        "avgUnitPrice": 3126
+        "seafoodName": "대게",
+        "saleAmount": 459972290.0,
+        "saleQty": 14257.85,
+        "avgUnitPrice": 32261
       },
       {
         "rank": 30,
-        "seafoodName": "우렁쉥이",
-        "saleAmount": 238675550.0,
-        "saleQty": 24461.0,
-        "avgUnitPrice": 9757
+        "seafoodName": "삼치",
+        "saleAmount": 454431080.0,
+        "saleQty": 88359.5,
+        "avgUnitPrice": 5143
       }
     ]
   },
@@ -6785,6 +6785,430 @@
         "saleQty": 7042.5,
         "avgUnitPrice": 7315
       }
+    ],
+    "2026-06": [
+      {
+        "rank": 1,
+        "seafoodName": "갈치류",
+        "saleAmount": 3857870590.0,
+        "saleQty": 201078.0,
+        "avgUnitPrice": 19186
+      },
+      {
+        "rank": 2,
+        "seafoodName": "꽃게",
+        "saleAmount": 2005337655.0,
+        "saleQty": 81153.70000000003,
+        "avgUnitPrice": 24710
+      },
+      {
+        "rank": 3,
+        "seafoodName": "뱀장어",
+        "saleAmount": 1604398000.0,
+        "saleQty": 40533.0,
+        "avgUnitPrice": 39583
+      },
+      {
+        "rank": 4,
+        "seafoodName": "낙지",
+        "saleAmount": 839178050.0,
+        "saleQty": 41883.38000000122,
+        "avgUnitPrice": 20036
+      },
+      {
+        "rank": 5,
+        "seafoodName": "갑오징어류",
+        "saleAmount": 724313170.0,
+        "saleQty": 124878.0,
+        "avgUnitPrice": 5800
+      },
+      {
+        "rank": 6,
+        "seafoodName": "고등어",
+        "saleAmount": 572997830.0,
+        "saleQty": 257705.1,
+        "avgUnitPrice": 2223
+      },
+      {
+        "rank": 7,
+        "seafoodName": "병어",
+        "saleAmount": 558772400.0,
+        "saleQty": 37197.3,
+        "avgUnitPrice": 15022
+      },
+      {
+        "rank": 8,
+        "seafoodName": "다시마",
+        "saleAmount": 556061640.0,
+        "saleQty": 83467.0,
+        "avgUnitPrice": 6662
+      },
+      {
+        "rank": 9,
+        "seafoodName": "청어",
+        "saleAmount": 542903770.0,
+        "saleQty": 460671.0,
+        "avgUnitPrice": 1179
+      },
+      {
+        "rank": 10,
+        "seafoodName": "살오징어",
+        "saleAmount": 459660820.0,
+        "saleQty": 34641.6,
+        "avgUnitPrice": 13269
+      },
+      {
+        "rank": 11,
+        "seafoodName": "멸치",
+        "saleAmount": 426308070.0,
+        "saleQty": 140041.5,
+        "avgUnitPrice": 3044
+      },
+      {
+        "rank": 12,
+        "seafoodName": "부세",
+        "saleAmount": 404941800.0,
+        "saleQty": 19922.220000000005,
+        "avgUnitPrice": 20326
+      },
+      {
+        "rank": 13,
+        "seafoodName": "조피볼락",
+        "saleAmount": 350581390.0,
+        "saleQty": 20051.100000000002,
+        "avgUnitPrice": 17484
+      },
+      {
+        "rank": 14,
+        "seafoodName": "넙치",
+        "saleAmount": 265222790.0,
+        "saleQty": 27933.4,
+        "avgUnitPrice": 9495
+      },
+      {
+        "rank": 15,
+        "seafoodName": "옥돔",
+        "saleAmount": 264887600.0,
+        "saleQty": 13671.5,
+        "avgUnitPrice": 19375
+      },
+      {
+        "rank": 16,
+        "seafoodName": "문어",
+        "saleAmount": 190114112.0,
+        "saleQty": 13334.399999999998,
+        "avgUnitPrice": 14257
+      },
+      {
+        "rank": 17,
+        "seafoodName": "가자미류",
+        "saleAmount": 176520360.0,
+        "saleQty": 45169.2,
+        "avgUnitPrice": 3908
+      },
+      {
+        "rank": 18,
+        "seafoodName": "가시발새우",
+        "saleAmount": 169868000.0,
+        "saleQty": 12285.0,
+        "avgUnitPrice": 13827
+      },
+      {
+        "rank": 19,
+        "seafoodName": "붕장어",
+        "saleAmount": 160869340.0,
+        "saleQty": 28638.5,
+        "avgUnitPrice": 5617
+      },
+      {
+        "rank": 20,
+        "seafoodName": "방어",
+        "saleAmount": 158776770.0,
+        "saleQty": 29633.0,
+        "avgUnitPrice": 5358
+      },
+      {
+        "rank": 21,
+        "seafoodName": "소라",
+        "saleAmount": 155282690.0,
+        "saleQty": 26825.100000000006,
+        "avgUnitPrice": 5789
+      },
+      {
+        "rank": 22,
+        "seafoodName": "눈볼대",
+        "saleAmount": 151409000.0,
+        "saleQty": 22397.0,
+        "avgUnitPrice": 6760
+      },
+      {
+        "rank": 23,
+        "seafoodName": "아귀",
+        "saleAmount": 146357700.0,
+        "saleQty": 57938.0,
+        "avgUnitPrice": 2526
+      },
+      {
+        "rank": 24,
+        "seafoodName": "옥두어",
+        "saleAmount": 135128020.0,
+        "saleQty": 14344.0,
+        "avgUnitPrice": 9421
+      },
+      {
+        "rank": 25,
+        "seafoodName": "참돔",
+        "saleAmount": 128938099.5,
+        "saleQty": 20276.9,
+        "avgUnitPrice": 6359
+      },
+      {
+        "rank": 26,
+        "seafoodName": "붉은대게",
+        "saleAmount": 124710400.0,
+        "saleQty": 35761.8,
+        "avgUnitPrice": 3487
+      },
+      {
+        "rank": 27,
+        "seafoodName": "눈강달이",
+        "saleAmount": 119152900.0,
+        "saleQty": 37864.0,
+        "avgUnitPrice": 3147
+      },
+      {
+        "rank": 28,
+        "seafoodName": "참홍어",
+        "saleAmount": 113360400.0,
+        "saleQty": 12182.0,
+        "avgUnitPrice": 9306
+      },
+      {
+        "rank": 29,
+        "seafoodName": "기타돔류",
+        "saleAmount": 101696610.0,
+        "saleQty": 22240.5,
+        "avgUnitPrice": 4573
+      },
+      {
+        "rank": 30,
+        "seafoodName": "서대류",
+        "saleAmount": 83587700.0,
+        "saleQty": 9489.5,
+        "avgUnitPrice": 8808
+      }
+    ],
+    "2026-07": [
+      {
+        "rank": 1,
+        "seafoodName": "갈치류",
+        "saleAmount": 1860116820.0,
+        "saleQty": 180005.0,
+        "avgUnitPrice": 10334
+      },
+      {
+        "rank": 2,
+        "seafoodName": "뱀장어",
+        "saleAmount": 1092538000.0,
+        "saleQty": 35009.5,
+        "avgUnitPrice": 31207
+      },
+      {
+        "rank": 3,
+        "seafoodName": "살오징어",
+        "saleAmount": 867796580.0,
+        "saleQty": 55898.1,
+        "avgUnitPrice": 15525
+      },
+      {
+        "rank": 4,
+        "seafoodName": "병어",
+        "saleAmount": 647898960.0,
+        "saleQty": 22008.4,
+        "avgUnitPrice": 29439
+      },
+      {
+        "rank": 5,
+        "seafoodName": "덕대",
+        "saleAmount": 629259000.0,
+        "saleQty": 28888.899999999998,
+        "avgUnitPrice": 21782
+      },
+      {
+        "rank": 6,
+        "seafoodName": "고등어",
+        "saleAmount": 509811280.0,
+        "saleQty": 192447.0,
+        "avgUnitPrice": 2649
+      },
+      {
+        "rank": 7,
+        "seafoodName": "멸치",
+        "saleAmount": 351351000.0,
+        "saleQty": 86293.0,
+        "avgUnitPrice": 4072
+      },
+      {
+        "rank": 8,
+        "seafoodName": "꽃새우",
+        "saleAmount": 286110000.0,
+        "saleQty": 39860.0,
+        "avgUnitPrice": 7178
+      },
+      {
+        "rank": 9,
+        "seafoodName": "눈볼대",
+        "saleAmount": 237140000.0,
+        "saleQty": 10289.7,
+        "avgUnitPrice": 23046
+      },
+      {
+        "rank": 10,
+        "seafoodName": "문어",
+        "saleAmount": 197395150.0,
+        "saleQty": 12466.299999999996,
+        "avgUnitPrice": 15834
+      },
+      {
+        "rank": 11,
+        "seafoodName": "붉은대게",
+        "saleAmount": 154179380.0,
+        "saleQty": 37215.299999999996,
+        "avgUnitPrice": 4143
+      },
+      {
+        "rank": 12,
+        "seafoodName": "조피볼락",
+        "saleAmount": 153568190.0,
+        "saleQty": 5576.5,
+        "avgUnitPrice": 27538
+      },
+      {
+        "rank": 13,
+        "seafoodName": "청어",
+        "saleAmount": 137101860.0,
+        "saleQty": 113568.5,
+        "avgUnitPrice": 1207
+      },
+      {
+        "rank": 14,
+        "seafoodName": "방어",
+        "saleAmount": 114177860.0,
+        "saleQty": 22809.0,
+        "avgUnitPrice": 5006
+      },
+      {
+        "rank": 15,
+        "seafoodName": "넙치",
+        "saleAmount": 111862300.0,
+        "saleQty": 7162.6,
+        "avgUnitPrice": 15618
+      },
+      {
+        "rank": 16,
+        "seafoodName": "소라",
+        "saleAmount": 105720650.0,
+        "saleQty": 19544.5,
+        "avgUnitPrice": 5409
+      },
+      {
+        "rank": 17,
+        "seafoodName": "갑오징어류",
+        "saleAmount": 104957350.0,
+        "saleQty": 12563.5,
+        "avgUnitPrice": 8354
+      },
+      {
+        "rank": 18,
+        "seafoodName": "아귀",
+        "saleAmount": 87386000.0,
+        "saleQty": 18108.0,
+        "avgUnitPrice": 4826
+      },
+      {
+        "rank": 19,
+        "seafoodName": "바지락",
+        "saleAmount": 83116140.0,
+        "saleQty": 14701.5,
+        "avgUnitPrice": 5654
+      },
+      {
+        "rank": 20,
+        "seafoodName": "기타해면기타",
+        "saleAmount": 79649250.0,
+        "saleQty": 58385.0,
+        "avgUnitPrice": 1364
+      },
+      {
+        "rank": 21,
+        "seafoodName": "가자미류",
+        "saleAmount": 79266800.0,
+        "saleQty": 12981.0,
+        "avgUnitPrice": 6106
+      },
+      {
+        "rank": 22,
+        "seafoodName": "화살꼴뚜기",
+        "saleAmount": 76758300.0,
+        "saleQty": 7645.5,
+        "avgUnitPrice": 10040
+      },
+      {
+        "rank": 23,
+        "seafoodName": "참돔",
+        "saleAmount": 70413530.0,
+        "saleQty": 8385.599999999999,
+        "avgUnitPrice": 8397
+      },
+      {
+        "rank": 24,
+        "seafoodName": "붕장어",
+        "saleAmount": 69796820.0,
+        "saleQty": 14343.5,
+        "avgUnitPrice": 4866
+      },
+      {
+        "rank": 25,
+        "seafoodName": "농어",
+        "saleAmount": 56690810.0,
+        "saleQty": 4301.0,
+        "avgUnitPrice": 13181
+      },
+      {
+        "rank": 26,
+        "seafoodName": "기타새우류",
+        "saleAmount": 55545800.0,
+        "saleQty": 4584.5,
+        "avgUnitPrice": 12116
+      },
+      {
+        "rank": 27,
+        "seafoodName": "고둥류",
+        "saleAmount": 53417840.0,
+        "saleQty": 7938.5,
+        "avgUnitPrice": 6729
+      },
+      {
+        "rank": 28,
+        "seafoodName": "쏨뱅이",
+        "saleAmount": 51671000.0,
+        "saleQty": 1077.0,
+        "avgUnitPrice": 47977
+      },
+      {
+        "rank": 29,
+        "seafoodName": "눈강달이",
+        "saleAmount": 50055000.0,
+        "saleQty": 10729.0,
+        "avgUnitPrice": 4665
+      },
+      {
+        "rank": 30,
+        "seafoodName": "기름가자미",
+        "saleAmount": 47558310.0,
+        "saleQty": 12493.5,
+        "avgUnitPrice": 3807
+      }
     ]
   },
   "items": [
@@ -6875,6 +7299,14 @@
       "saleAmount": 3888561800.0,
       "saleQty": 4152166.0,
       "avgUnitPrice": 937
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "갈치류",
+      "saleAmount": 3857870590.0,
+      "saleQty": 201078.0,
+      "avgUnitPrice": 19186
     },
     {
       "month": "2024-07",
@@ -7061,12 +7493,28 @@
       "avgUnitPrice": 11925
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꽃게",
+      "saleAmount": 2005337655.0,
+      "saleQty": 81153.70000000003,
+      "avgUnitPrice": 24710
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "굴(참굴)",
       "saleAmount": 1945568992.0,
       "saleQty": 163585.0,
       "avgUnitPrice": 11893
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "갈치류",
+      "saleAmount": 1860116820.0,
+      "saleQty": 180005.0,
+      "avgUnitPrice": 10334
     },
     {
       "month": "2024-03",
@@ -7107,6 +7555,14 @@
       "saleAmount": 1659130000.0,
       "saleQty": 37340.5,
       "avgUnitPrice": 44432
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "뱀장어",
+      "saleAmount": 1604398000.0,
+      "saleQty": 40533.0,
+      "avgUnitPrice": 39583
     },
     {
       "month": "2025-11",
@@ -7293,6 +7749,14 @@
       "avgUnitPrice": 13098
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "뱀장어",
+      "saleAmount": 1092538000.0,
+      "saleQty": 35009.5,
+      "avgUnitPrice": 31207
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "뱀장어",
@@ -7437,6 +7901,14 @@
       "avgUnitPrice": 23888
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "살오징어",
+      "saleAmount": 867796580.0,
+      "saleQty": 55898.1,
+      "avgUnitPrice": 15525
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "돌김",
@@ -7451,6 +7923,14 @@
       "saleAmount": 844694535.0,
       "saleQty": 653502.5,
       "avgUnitPrice": 1293
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "낙지",
+      "saleAmount": 839178050.0,
+      "saleQty": 41883.38000000122,
+      "avgUnitPrice": 20036
     },
     {
       "month": "2024-01",
@@ -7547,6 +8027,14 @@
       "saleAmount": 729936540.0,
       "saleQty": 86429.0,
       "avgUnitPrice": 8446
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "갑오징어류",
+      "saleAmount": 724313170.0,
+      "saleQty": 124878.0,
+      "avgUnitPrice": 5800
     },
     {
       "month": "2025-07",
@@ -7653,6 +8141,14 @@
       "avgUnitPrice": 8363
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "병어",
+      "saleAmount": 647898960.0,
+      "saleQty": 22008.4,
+      "avgUnitPrice": 29439
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "삼치",
@@ -7707,6 +8203,14 @@
       "saleAmount": 629546020.0,
       "saleQty": 22766.299999999963,
       "avgUnitPrice": 27653
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "덕대",
+      "saleAmount": 629259000.0,
+      "saleQty": 28888.899999999998,
+      "avgUnitPrice": 21782
     },
     {
       "month": "2025-04",
@@ -7805,6 +8309,14 @@
       "avgUnitPrice": 11390
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "고등어",
+      "saleAmount": 572997830.0,
+      "saleQty": 257705.1,
+      "avgUnitPrice": 2223
+    },
+    {
       "month": "2025-07",
       "year": "2025",
       "seafoodName": "병어",
@@ -7827,6 +8339,22 @@
       "saleAmount": 560742000.0,
       "saleQty": 105420.0,
       "avgUnitPrice": 5319
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "병어",
+      "saleAmount": 558772400.0,
+      "saleQty": 37197.3,
+      "avgUnitPrice": 15022
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "다시마",
+      "saleAmount": 556061640.0,
+      "saleQty": 83467.0,
+      "avgUnitPrice": 6662
     },
     {
       "month": "2025-10",
@@ -7859,6 +8387,14 @@
       "saleAmount": 544056650.0,
       "saleQty": 62422.100000000006,
       "avgUnitPrice": 8716
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "청어",
+      "saleAmount": 542903770.0,
+      "saleQty": 460671.0,
+      "avgUnitPrice": 1179
     },
     {
       "month": "2025-06",
@@ -7939,6 +8475,14 @@
       "saleAmount": 513291990.0,
       "saleQty": 58777.2,
       "avgUnitPrice": 8733
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "고등어",
+      "saleAmount": 509811280.0,
+      "saleQty": 192447.0,
+      "avgUnitPrice": 2649
     },
     {
       "month": "2026-04",
@@ -8029,6 +8573,14 @@
       "avgUnitPrice": 6099
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "살오징어",
+      "saleAmount": 459660820.0,
+      "saleQty": 34641.6,
+      "avgUnitPrice": 13269
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "삼치",
@@ -8101,6 +8653,14 @@
       "avgUnitPrice": 6256
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "멸치",
+      "saleAmount": 426308070.0,
+      "saleQty": 140041.5,
+      "avgUnitPrice": 3044
+    },
+    {
       "month": "2024-02",
       "year": "2024",
       "seafoodName": "조피볼락",
@@ -8163,6 +8723,14 @@
       "saleAmount": 412823408.0,
       "saleQty": 61742.299999999996,
       "avgUnitPrice": 6686
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "부세",
+      "saleAmount": 404941800.0,
+      "saleQty": 19922.220000000005,
+      "avgUnitPrice": 20326
     },
     {
       "month": "2024-02",
@@ -8395,6 +8963,22 @@
       "saleAmount": 354076800.0,
       "saleQty": 10558.709999999994,
       "avgUnitPrice": 33534
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "멸치",
+      "saleAmount": 351351000.0,
+      "saleQty": 86293.0,
+      "avgUnitPrice": 4072
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "조피볼락",
+      "saleAmount": 350581390.0,
+      "saleQty": 20051.100000000002,
+      "avgUnitPrice": 17484
     },
     {
       "month": "2024-04",
@@ -8661,6 +9245,14 @@
       "avgUnitPrice": 6433
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꽃새우",
+      "saleAmount": 286110000.0,
+      "saleQty": 39860.0,
+      "avgUnitPrice": 7178
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "문어",
@@ -8795,6 +9387,22 @@
       "saleAmount": 265962200.0,
       "saleQty": 94279.5,
       "avgUnitPrice": 2821
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "넙치",
+      "saleAmount": 265222790.0,
+      "saleQty": 27933.4,
+      "avgUnitPrice": 9495
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "옥돔",
+      "saleAmount": 264887600.0,
+      "saleQty": 13671.5,
+      "avgUnitPrice": 19375
     },
     {
       "month": "2024-08",
@@ -8987,6 +9595,14 @@
       "saleAmount": 239895145.0,
       "saleQty": 27081.75,
       "avgUnitPrice": 8858
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "눈볼대",
+      "saleAmount": 237140000.0,
+      "saleQty": 10289.7,
+      "avgUnitPrice": 23046
     },
     {
       "month": "2025-12",
@@ -9341,6 +9957,14 @@
       "avgUnitPrice": 5602
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "문어",
+      "saleAmount": 197395150.0,
+      "saleQty": 12466.299999999996,
+      "avgUnitPrice": 15834
+    },
+    {
       "month": "2025-10",
       "year": "2025",
       "seafoodName": "병어",
@@ -9427,6 +10051,14 @@
       "saleAmount": 190183600.0,
       "saleQty": 91941.0,
       "avgUnitPrice": 2069
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "문어",
+      "saleAmount": 190114112.0,
+      "saleQty": 13334.399999999998,
+      "avgUnitPrice": 14257
     },
     {
       "month": "2026-01",
@@ -9549,6 +10181,14 @@
       "avgUnitPrice": 4618
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가자미류",
+      "saleAmount": 176520360.0,
+      "saleQty": 45169.2,
+      "avgUnitPrice": 3908
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "붉은대게",
@@ -9611,6 +10251,14 @@
       "saleAmount": 170651433.0,
       "saleQty": 26648.4,
       "avgUnitPrice": 6404
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가시발새우",
+      "saleAmount": 169868000.0,
+      "saleQty": 12285.0,
+      "avgUnitPrice": 13827
     },
     {
       "month": "2024-06",
@@ -9717,6 +10365,14 @@
       "avgUnitPrice": 9927
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "붕장어",
+      "saleAmount": 160869340.0,
+      "saleQty": 28638.5,
+      "avgUnitPrice": 5617
+    },
+    {
       "month": "2024-02",
       "year": "2024",
       "seafoodName": "참홍어",
@@ -9763,6 +10419,14 @@
       "saleAmount": 159320180.0,
       "saleQty": 25230.200000000004,
       "avgUnitPrice": 6315
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "방어",
+      "saleAmount": 158776770.0,
+      "saleQty": 29633.0,
+      "avgUnitPrice": 5358
     },
     {
       "month": "2026-05",
@@ -9821,12 +10485,36 @@
       "avgUnitPrice": 3411
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "소라",
+      "saleAmount": 155282690.0,
+      "saleQty": 26825.100000000006,
+      "avgUnitPrice": 5789
+    },
+    {
       "month": "2026-05",
       "year": "2026",
       "seafoodName": "기타해면기타",
       "saleAmount": 154241450.0,
       "saleQty": 47366.5,
       "avgUnitPrice": 3256
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "붉은대게",
+      "saleAmount": 154179380.0,
+      "saleQty": 37215.299999999996,
+      "avgUnitPrice": 4143
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "조피볼락",
+      "saleAmount": 153568190.0,
+      "saleQty": 5576.5,
+      "avgUnitPrice": 27538
     },
     {
       "month": "2024-05",
@@ -9867,6 +10555,14 @@
       "saleAmount": 151568000.0,
       "saleQty": 8633.0,
       "avgUnitPrice": 17557
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "눈볼대",
+      "saleAmount": 151409000.0,
+      "saleQty": 22397.0,
+      "avgUnitPrice": 6760
     },
     {
       "month": "2024-04",
@@ -9947,6 +10643,14 @@
       "saleAmount": 146411600.0,
       "saleQty": 15302.0,
       "avgUnitPrice": 9568
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "아귀",
+      "saleAmount": 146357700.0,
+      "saleQty": 57938.0,
+      "avgUnitPrice": 2526
     },
     {
       "month": "2025-03",
@@ -10093,6 +10797,14 @@
       "avgUnitPrice": 12074
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "청어",
+      "saleAmount": 137101860.0,
+      "saleQty": 113568.5,
+      "avgUnitPrice": 1207
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "참홍어",
@@ -10115,6 +10827,14 @@
       "saleAmount": 135865420.0,
       "saleQty": 82968.0,
       "avgUnitPrice": 1638
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "옥두어",
+      "saleAmount": 135128020.0,
+      "saleQty": 14344.0,
+      "avgUnitPrice": 9421
     },
     {
       "month": "2025-08",
@@ -10229,6 +10949,14 @@
       "avgUnitPrice": 14210
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참돔",
+      "saleAmount": 128938099.5,
+      "saleQty": 20276.9,
+      "avgUnitPrice": 6359
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "꽃게",
@@ -10291,6 +11019,14 @@
       "saleAmount": 125010153.0,
       "saleQty": 8961.5,
       "avgUnitPrice": 13950
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "붉은대게",
+      "saleAmount": 124710400.0,
+      "saleQty": 35761.8,
+      "avgUnitPrice": 3487
     },
     {
       "month": "2024-05",
@@ -10397,6 +11133,14 @@
       "avgUnitPrice": 16499
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "눈강달이",
+      "saleAmount": 119152900.0,
+      "saleQty": 37864.0,
+      "avgUnitPrice": 3147
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "붉은대게",
@@ -10493,12 +11237,28 @@
       "avgUnitPrice": 5330
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "방어",
+      "saleAmount": 114177860.0,
+      "saleQty": 22809.0,
+      "avgUnitPrice": 5006
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "아귀",
       "saleAmount": 113839300.0,
       "saleQty": 31148.0,
       "avgUnitPrice": 3655
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참홍어",
+      "saleAmount": 113360400.0,
+      "saleQty": 12182.0,
+      "avgUnitPrice": 9306
     },
     {
       "month": "2025-10",
@@ -10547,6 +11307,14 @@
       "saleAmount": 111908620.0,
       "saleQty": 9170.5,
       "avgUnitPrice": 12203
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "넙치",
+      "saleAmount": 111862300.0,
+      "saleQty": 7162.6,
+      "avgUnitPrice": 15618
     },
     {
       "month": "2025-07",
@@ -10637,6 +11405,14 @@
       "avgUnitPrice": 1017
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "소라",
+      "saleAmount": 105720650.0,
+      "saleQty": 19544.5,
+      "avgUnitPrice": 5409
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "가시발새우",
@@ -10675,6 +11451,14 @@
       "saleAmount": 104971100.0,
       "saleQty": 27147.0,
       "avgUnitPrice": 3867
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "갑오징어류",
+      "saleAmount": 104957350.0,
+      "saleQty": 12563.5,
+      "avgUnitPrice": 8354
     },
     {
       "month": "2025-02",
@@ -10811,6 +11595,14 @@
       "saleAmount": 102000800.0,
       "saleQty": 10982.1,
       "avgUnitPrice": 9288
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타돔류",
+      "saleAmount": 101696610.0,
+      "saleQty": 22240.5,
+      "avgUnitPrice": 4573
     },
     {
       "month": "2025-09",
@@ -11269,6 +12061,14 @@
       "avgUnitPrice": 1048
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "아귀",
+      "saleAmount": 87386000.0,
+      "saleQty": 18108.0,
+      "avgUnitPrice": 4826
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "김류",
@@ -11365,6 +12165,14 @@
       "avgUnitPrice": 15439
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "서대류",
+      "saleAmount": 83587700.0,
+      "saleQty": 9489.5,
+      "avgUnitPrice": 8808
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "민어",
@@ -11387,6 +12195,14 @@
       "saleAmount": 83126490.0,
       "saleQty": 2660.2000000000007,
       "avgUnitPrice": 31248
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "바지락",
+      "saleAmount": 83116140.0,
+      "saleQty": 14701.5,
+      "avgUnitPrice": 5654
     },
     {
       "month": "2025-10",
@@ -11469,6 +12285,14 @@
       "avgUnitPrice": 6507
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "굴(참굴)",
+      "saleAmount": 80540000.0,
+      "saleQty": 10930.0,
+      "avgUnitPrice": 7369
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "정어리",
@@ -11493,12 +12317,36 @@
       "avgUnitPrice": 9400
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타해면기타",
+      "saleAmount": 79649250.0,
+      "saleQty": 58385.0,
+      "avgUnitPrice": 1364
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꽃새우",
+      "saleAmount": 79368000.0,
+      "saleQty": 13356.0,
+      "avgUnitPrice": 5942
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "쥐치",
       "saleAmount": 79319600.0,
       "saleQty": 6988.0,
       "avgUnitPrice": 11351
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가자미류",
+      "saleAmount": 79266800.0,
+      "saleQty": 12981.0,
+      "avgUnitPrice": 6106
     },
     {
       "month": "2024-11",
@@ -11629,6 +12477,22 @@
       "avgUnitPrice": 4577
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "쏨뱅이",
+      "saleAmount": 76874700.0,
+      "saleQty": 2014.0,
+      "avgUnitPrice": 38170
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "화살꼴뚜기",
+      "saleAmount": 76758300.0,
+      "saleQty": 7645.5,
+      "avgUnitPrice": 10040
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "갑오징어류",
@@ -11691,6 +12555,14 @@
       "saleAmount": 75352260.0,
       "saleQty": 2884.7000000000003,
       "avgUnitPrice": 26121
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "화살꼴뚜기",
+      "saleAmount": 75152700.0,
+      "saleQty": 7561.800000000001,
+      "avgUnitPrice": 9938
     },
     {
       "month": "2024-02",
@@ -11861,6 +12733,14 @@
       "avgUnitPrice": 15016
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타해면기타",
+      "saleAmount": 71846500.0,
+      "saleQty": 40669.0,
+      "avgUnitPrice": 1767
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "꼴뚜기류",
@@ -11957,6 +12837,14 @@
       "avgUnitPrice": 4217
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "참돔",
+      "saleAmount": 70413530.0,
+      "saleQty": 8385.599999999999,
+      "avgUnitPrice": 8397
+    },
+    {
       "month": "2025-10",
       "year": "2025",
       "seafoodName": "기름가자미",
@@ -11971,6 +12859,14 @@
       "saleAmount": 70111760.0,
       "saleQty": 7345.6,
       "avgUnitPrice": 9545
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "붕장어",
+      "saleAmount": 69796820.0,
+      "saleQty": 14343.5,
+      "avgUnitPrice": 4866
     },
     {
       "month": "2024-07",
@@ -12027,6 +12923,14 @@
       "saleAmount": 68878750.0,
       "saleQty": 3383.0,
       "avgUnitPrice": 20360
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "민어",
+      "saleAmount": 68878400.0,
+      "saleQty": 10913.5,
+      "avgUnitPrice": 6311
     },
     {
       "month": "2025-02",
@@ -12357,6 +13261,14 @@
       "avgUnitPrice": 2288
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "돌돔",
+      "saleAmount": 64129560.0,
+      "saleQty": 2248.5000000000005,
+      "avgUnitPrice": 28521
+    },
+    {
       "month": "2024-12",
       "year": "2024",
       "seafoodName": "삼치",
@@ -12397,6 +13309,14 @@
       "avgUnitPrice": 31107
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기름가자미",
+      "saleAmount": 63493960.0,
+      "saleQty": 14275.0,
+      "avgUnitPrice": 4448
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "복류",
@@ -12411,6 +13331,14 @@
       "saleAmount": 63107080.0,
       "saleQty": 10102.5,
       "avgUnitPrice": 6247
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "용가자미",
+      "saleAmount": 62867500.0,
+      "saleQty": 28315.0,
+      "avgUnitPrice": 2220
     },
     {
       "month": "2025-12",
@@ -12669,6 +13597,14 @@
       "avgUnitPrice": 3538
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "우렁쉥이",
+      "saleAmount": 59842960.0,
+      "saleQty": 6627.0,
+      "avgUnitPrice": 9030
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "복류",
@@ -12869,6 +13805,14 @@
       "avgUnitPrice": 6121
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "농어",
+      "saleAmount": 56690810.0,
+      "saleQty": 4301.0,
+      "avgUnitPrice": 13181
+    },
+    {
       "month": "2024-10",
       "year": "2024",
       "seafoodName": "붉은대게",
@@ -12963,6 +13907,14 @@
       "saleAmount": 55691170.0,
       "saleQty": 8974.5,
       "avgUnitPrice": 6205
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타새우류",
+      "saleAmount": 55545800.0,
+      "saleQty": 4584.5,
+      "avgUnitPrice": 12116
     },
     {
       "month": "2025-05",
@@ -13109,6 +14061,14 @@
       "avgUnitPrice": 3011
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "고둥류",
+      "saleAmount": 53417840.0,
+      "saleQty": 7938.5,
+      "avgUnitPrice": 6729
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "청어",
@@ -13139,6 +14099,14 @@
       "saleAmount": 53185000.0,
       "saleQty": 1335.0,
       "avgUnitPrice": 39839
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타낙지류",
+      "saleAmount": 53165000.0,
+      "saleQty": 8430.0,
+      "avgUnitPrice": 6307
     },
     {
       "month": "2024-01",
@@ -13301,6 +14269,14 @@
       "avgUnitPrice": 27167
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "쏨뱅이",
+      "saleAmount": 51671000.0,
+      "saleQty": 1077.0,
+      "avgUnitPrice": 47977
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "기타새우류",
@@ -13461,6 +14437,14 @@
       "avgUnitPrice": 2796
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "눈강달이",
+      "saleAmount": 50055000.0,
+      "saleQty": 10729.0,
+      "avgUnitPrice": 4665
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "주꾸미",
@@ -13515,6 +14499,14 @@
       "saleAmount": 49591100.0,
       "saleQty": 44270.0,
       "avgUnitPrice": 1120
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타새우류",
+      "saleAmount": 49556800.0,
+      "saleQty": 4210.0,
+      "avgUnitPrice": 11771
     },
     {
       "month": "2025-02",
@@ -13707,6 +14699,14 @@
       "saleAmount": 47584790.0,
       "saleQty": 7983.7,
       "avgUnitPrice": 5960
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기름가자미",
+      "saleAmount": 47558310.0,
+      "saleQty": 12493.5,
+      "avgUnitPrice": 3807
     },
     {
       "month": "2025-01",
@@ -14061,6 +15061,14 @@
       "avgUnitPrice": 3808
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타민물새우류",
+      "saleAmount": 44257000.0,
+      "saleQty": 7450.0,
+      "avgUnitPrice": 5941
+    },
+    {
       "month": "2025-06",
       "year": "2025",
       "seafoodName": "기타해면기타",
@@ -14155,6 +15163,14 @@
       "saleAmount": 43290000.0,
       "saleQty": 9087.0,
       "avgUnitPrice": 4764
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "골뱅이",
+      "saleAmount": 43211090.0,
+      "saleQty": 6177.0,
+      "avgUnitPrice": 6995
     },
     {
       "month": "2025-11",
@@ -14309,6 +15325,14 @@
       "avgUnitPrice": 11210
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "옥돔",
+      "saleAmount": 41664380.0,
+      "saleQty": 2399.5,
+      "avgUnitPrice": 17364
+    },
+    {
       "month": "2026-05",
       "year": "2026",
       "seafoodName": "붕장어",
@@ -14347,6 +15371,14 @@
       "saleAmount": 41412105.0,
       "saleQty": 2104.3,
       "avgUnitPrice": 19680
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "바지락",
+      "saleAmount": 41393200.0,
+      "saleQty": 5946.0,
+      "avgUnitPrice": 6962
     },
     {
       "month": "2024-06",
@@ -14395,6 +15427,14 @@
       "saleAmount": 41049900.0,
       "saleQty": 3022.0,
       "avgUnitPrice": 13584
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "고둥류",
+      "saleAmount": 41001760.0,
+      "saleQty": 6190.9,
+      "avgUnitPrice": 6623
     },
     {
       "month": "2024-07",
@@ -14571,6 +15611,14 @@
       "saleAmount": 39914280.0,
       "saleQty": 2814.5,
       "avgUnitPrice": 14182
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "밍크고래",
+      "saleAmount": 39750000.0,
+      "saleQty": 700.0,
+      "avgUnitPrice": 56786
     },
     {
       "month": "2024-07",
@@ -14765,6 +15813,14 @@
       "avgUnitPrice": 1445
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "전갱이",
+      "saleAmount": 38233300.0,
+      "saleQty": 14079.0,
+      "avgUnitPrice": 2716
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "방어",
@@ -14811,6 +15867,14 @@
       "saleAmount": 37972300.0,
       "saleQty": 2249.5,
       "avgUnitPrice": 16880
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "능성어",
+      "saleAmount": 37637844.4,
+      "saleQty": 1519.2,
+      "avgUnitPrice": 24775
     },
     {
       "month": "2024-09",
@@ -14933,6 +15997,14 @@
       "avgUnitPrice": 4647
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "중하",
+      "saleAmount": 36232800.0,
+      "saleQty": 12767.0,
+      "avgUnitPrice": 2838
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "도다리",
@@ -14963,6 +16035,14 @@
       "saleAmount": 35974000.0,
       "saleQty": 2443.0,
       "avgUnitPrice": 14725
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "전복",
+      "saleAmount": 35888780.0,
+      "saleQty": 2236.3,
+      "avgUnitPrice": 16048
     },
     {
       "month": "2025-05",
@@ -15027,6 +16107,14 @@
       "saleAmount": 35409000.0,
       "saleQty": 12960.0,
       "avgUnitPrice": 2732
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "대구",
+      "saleAmount": 35380800.0,
+      "saleQty": 9604.5,
+      "avgUnitPrice": 3684
     },
     {
       "month": "2024-10",
@@ -15173,12 +16261,28 @@
       "avgUnitPrice": 1701
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타돔류",
+      "saleAmount": 34168200.0,
+      "saleQty": 8058.5,
+      "avgUnitPrice": 4240
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "갯장어",
       "saleAmount": 34136900.0,
       "saleQty": 5088.5,
       "avgUnitPrice": 6709
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "밴댕이",
+      "saleAmount": 34128400.0,
+      "saleQty": 7348.0,
+      "avgUnitPrice": 4645
     },
     {
       "month": "2024-05",
@@ -15211,6 +16315,14 @@
       "saleAmount": 33791600.0,
       "saleQty": 1165.0,
       "avgUnitPrice": 29006
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "갯장어",
+      "saleAmount": 33791250.0,
+      "saleQty": 4599.0,
+      "avgUnitPrice": 7348
     },
     {
       "month": "2025-11",
@@ -15301,6 +16413,14 @@
       "avgUnitPrice": 9494
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "해삼",
+      "saleAmount": 33239680.0,
+      "saleQty": 4154.6,
+      "avgUnitPrice": 8001
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "돌가자미",
@@ -15363,6 +16483,14 @@
       "saleAmount": 32831320.0,
       "saleQty": 2616.3,
       "avgUnitPrice": 12549
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "덕대",
+      "saleAmount": 32773900.0,
+      "saleQty": 2243.1,
+      "avgUnitPrice": 14611
     },
     {
       "month": "2024-04",
@@ -15565,6 +16693,14 @@
       "avgUnitPrice": 27280
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "불볼락",
+      "saleAmount": 31163600.0,
+      "saleQty": 4683.8,
+      "avgUnitPrice": 6653
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "문치가자미",
@@ -15597,12 +16733,28 @@
       "avgUnitPrice": 39990
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "대구류",
+      "saleAmount": 30850400.0,
+      "saleQty": 7730.0,
+      "avgUnitPrice": 3991
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "갑오징어류",
       "saleAmount": 30728500.0,
       "saleQty": 4815.0,
       "avgUnitPrice": 6382
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "농어",
+      "saleAmount": 30724350.0,
+      "saleQty": 3050.5,
+      "avgUnitPrice": 10072
     },
     {
       "month": "2025-03",
@@ -15675,6 +16827,14 @@
       "saleAmount": 30383390.0,
       "saleQty": 2015608.570000001,
       "avgUnitPrice": 15
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "개조개",
+      "saleAmount": 30383000.0,
+      "saleQty": 2998.0,
+      "avgUnitPrice": 10134
     },
     {
       "month": "2024-04",
@@ -16005,6 +17165,14 @@
       "avgUnitPrice": 4053
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "다시마",
+      "saleAmount": 28349350.0,
+      "saleQty": 3270.0,
+      "avgUnitPrice": 8670
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "까나리",
@@ -16037,12 +17205,36 @@
       "avgUnitPrice": 9704
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "골뱅이",
+      "saleAmount": 28146670.0,
+      "saleQty": 3454.5,
+      "avgUnitPrice": 8148
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "대하",
       "saleAmount": 28063000.0,
       "saleQty": 1324.5,
       "avgUnitPrice": 21188
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타해면패류",
+      "saleAmount": 28062000.0,
+      "saleQty": 687.0,
+      "avgUnitPrice": 40847
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "전갱이",
+      "saleAmount": 27994900.0,
+      "saleQty": 10872.0,
+      "avgUnitPrice": 2575
     },
     {
       "month": "2024-03",
@@ -16059,6 +17251,14 @@
       "saleAmount": 27858200.0,
       "saleQty": 6983.0,
       "avgUnitPrice": 3989
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "용가자미",
+      "saleAmount": 27856100.0,
+      "saleQty": 7336.0,
+      "avgUnitPrice": 3797
     },
     {
       "month": "2024-03",
@@ -16131,6 +17331,14 @@
       "saleAmount": 27597600.0,
       "saleQty": 6413.0,
       "avgUnitPrice": 4303
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "복류",
+      "saleAmount": 27391520.0,
+      "saleQty": 11962.599999999999,
+      "avgUnitPrice": 2290
     },
     {
       "month": "2025-12",
@@ -16365,6 +17573,14 @@
       "avgUnitPrice": 3451
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "개조개",
+      "saleAmount": 26185900.0,
+      "saleQty": 2098.0,
+      "avgUnitPrice": 12481
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "능성어",
@@ -16419,6 +17635,14 @@
       "saleAmount": 25920710.0,
       "saleQty": 6220.0,
       "avgUnitPrice": 4167
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꼴뚜기류",
+      "saleAmount": 25899050.0,
+      "saleQty": 2608.5,
+      "avgUnitPrice": 9929
     },
     {
       "month": "2025-10",
@@ -16485,6 +17709,14 @@
       "avgUnitPrice": 14456
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "백조기",
+      "saleAmount": 25735200.0,
+      "saleQty": 10159.0,
+      "avgUnitPrice": 2533
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "고둥류",
@@ -16539,6 +17771,14 @@
       "saleAmount": 25413600.0,
       "saleQty": 5758.0,
       "avgUnitPrice": 4414
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타다시마류",
+      "saleAmount": 25368090.0,
+      "saleQty": 5371.0,
+      "avgUnitPrice": 4723
     },
     {
       "month": "2024-10",
@@ -16637,6 +17877,14 @@
       "avgUnitPrice": 881
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "백합",
+      "saleAmount": 25027270.0,
+      "saleQty": 7565.5,
+      "avgUnitPrice": 3308
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "밴댕이",
@@ -16691,6 +17939,14 @@
       "saleAmount": 24818400.0,
       "saleQty": 3263.0,
       "avgUnitPrice": 7606
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "낙지류",
+      "saleAmount": 24780860.0,
+      "saleQty": 1287.7000000000005,
+      "avgUnitPrice": 19244
     },
     {
       "month": "2025-04",
@@ -16795,6 +18051,14 @@
       "saleAmount": 24360270.0,
       "saleQty": 1811.2,
       "avgUnitPrice": 13450
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꽃게",
+      "saleAmount": 24230090.0,
+      "saleQty": 1141.6999999999994,
+      "avgUnitPrice": 21223
     },
     {
       "month": "2026-05",
@@ -16909,6 +18173,14 @@
       "avgUnitPrice": 3376
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "능성어",
+      "saleAmount": 23609800.0,
+      "saleQty": 916.5,
+      "avgUnitPrice": 25761
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "송어",
@@ -16987,6 +18259,14 @@
       "saleAmount": 23083000.0,
       "saleQty": 2612.0,
       "avgUnitPrice": 8837
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "대구",
+      "saleAmount": 23025800.0,
+      "saleQty": 6046.5,
+      "avgUnitPrice": 3808
     },
     {
       "month": "2025-10",
@@ -17365,6 +18645,14 @@
       "avgUnitPrice": 9517
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "쥐치",
+      "saleAmount": 21141830.0,
+      "saleQty": 1761.0,
+      "avgUnitPrice": 12006
+    },
+    {
       "month": "2025-01",
       "year": "2025",
       "seafoodName": "소라",
@@ -17419,6 +18707,14 @@
       "saleAmount": 20975300.0,
       "saleQty": 4735.0,
       "avgUnitPrice": 4430
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "민어",
+      "saleAmount": 20951050.0,
+      "saleQty": 1381.0,
+      "avgUnitPrice": 15171
     },
     {
       "month": "2024-04",
@@ -17493,12 +18789,28 @@
       "avgUnitPrice": 642
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "민꽃게",
+      "saleAmount": 20727500.0,
+      "saleQty": 3242.0,
+      "avgUnitPrice": 6393
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "화살꼴뚜기",
       "saleAmount": 20722450.0,
       "saleQty": 1353.5,
       "avgUnitPrice": 15310
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "삼치",
+      "saleAmount": 20701800.0,
+      "saleQty": 3402.0,
+      "avgUnitPrice": 6085
     },
     {
       "month": "2025-05",
@@ -17701,6 +19013,14 @@
       "avgUnitPrice": 5705
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "서대류",
+      "saleAmount": 19601000.0,
+      "saleQty": 1680.5,
+      "avgUnitPrice": 11664
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "백조기",
@@ -17789,12 +19109,28 @@
       "avgUnitPrice": 92381
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타볼락류",
+      "saleAmount": 19343180.0,
+      "saleQty": 3734.0,
+      "avgUnitPrice": 5180
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "쏨뱅이",
       "saleAmount": 19336200.0,
       "saleQty": 795.0,
       "avgUnitPrice": 24322
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "홍합(섭조개)",
+      "saleAmount": 19326000.0,
+      "saleQty": 7683.0,
+      "avgUnitPrice": 2515
     },
     {
       "month": "2024-11",
@@ -17893,6 +19229,14 @@
       "avgUnitPrice": 12432
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "보구치",
+      "saleAmount": 19139550.0,
+      "saleQty": 4785.5,
+      "avgUnitPrice": 3999
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "민꽃게",
@@ -17923,6 +19267,14 @@
       "saleAmount": 18974600.0,
       "saleQty": 1441.0,
       "avgUnitPrice": 13168
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "대문어",
+      "saleAmount": 18959200.0,
+      "saleQty": 637.0,
+      "avgUnitPrice": 29763
     },
     {
       "month": "2026-01",
@@ -17957,6 +19309,14 @@
       "avgUnitPrice": 2441
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가오리류",
+      "saleAmount": 18884500.0,
+      "saleQty": 7479.0,
+      "avgUnitPrice": 2525
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "농어",
@@ -17987,6 +19347,14 @@
       "saleAmount": 18776400.0,
       "saleQty": 4218.0,
       "avgUnitPrice": 4451
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "고등어류",
+      "saleAmount": 18776200.0,
+      "saleQty": 8750.0,
+      "avgUnitPrice": 2146
     },
     {
       "month": "2025-10",
@@ -18181,6 +19549,14 @@
       "avgUnitPrice": 21453
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "홍합(섭조개)",
+      "saleAmount": 18230000.0,
+      "saleQty": 6297.0,
+      "avgUnitPrice": 2895
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "개조개",
@@ -18245,6 +19621,14 @@
       "avgUnitPrice": 4711
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "갯장어",
+      "saleAmount": 18136600.0,
+      "saleQty": 5817.0,
+      "avgUnitPrice": 3118
+    },
+    {
       "month": "2024-10",
       "year": "2024",
       "seafoodName": "기타해면어류",
@@ -18277,12 +19661,28 @@
       "avgUnitPrice": 4411
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "송어",
+      "saleAmount": 18075000.0,
+      "saleQty": 1038.0,
+      "avgUnitPrice": 17413
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "청어",
       "saleAmount": 17986600.0,
       "saleQty": 17962.0,
       "avgUnitPrice": 1001
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "전복",
+      "saleAmount": 17909750.0,
+      "saleQty": 2128.3,
+      "avgUnitPrice": 8415
     },
     {
       "month": "2025-05",
@@ -18541,6 +19941,14 @@
       "avgUnitPrice": 15068
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "도다리",
+      "saleAmount": 17123880.0,
+      "saleQty": 1903.5,
+      "avgUnitPrice": 8996
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "달고기",
@@ -18603,6 +20011,14 @@
       "saleAmount": 16957900.0,
       "saleQty": 928.1999999999999,
       "avgUnitPrice": 18270
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "감성돔",
+      "saleAmount": 16938900.0,
+      "saleQty": 4772.0,
+      "avgUnitPrice": 3550
     },
     {
       "month": "2024-04",
@@ -18771,6 +20187,14 @@
       "saleAmount": 16228250.0,
       "saleQty": 12031.5,
       "avgUnitPrice": 1349
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "우렁쉥이",
+      "saleAmount": 16221700.0,
+      "saleQty": 3040.0,
+      "avgUnitPrice": 5336
     },
     {
       "month": "2024-05",
@@ -19021,6 +20445,14 @@
       "avgUnitPrice": 37683
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "숭어",
+      "saleAmount": 15751500.0,
+      "saleQty": 1108.3999999999999,
+      "avgUnitPrice": 14211
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "다시마",
@@ -19117,6 +20549,14 @@
       "avgUnitPrice": 9603
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "새우류",
+      "saleAmount": 15426400.0,
+      "saleQty": 1306.0,
+      "avgUnitPrice": 11812
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "기름가자미",
@@ -19179,6 +20619,14 @@
       "saleAmount": 15229700.0,
       "saleQty": 4513.0,
       "avgUnitPrice": 3375
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타게류",
+      "saleAmount": 15193200.0,
+      "saleQty": 2136.0,
+      "avgUnitPrice": 7113
     },
     {
       "month": "2025-11",
@@ -19285,6 +20733,14 @@
       "avgUnitPrice": 5596
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참다랑어",
+      "saleAmount": 14890750.0,
+      "saleQty": 3286.0,
+      "avgUnitPrice": 4532
+    },
+    {
       "month": "2025-01",
       "year": "2025",
       "seafoodName": "화살꼴뚜기",
@@ -19323,6 +20779,14 @@
       "saleAmount": 14831900.0,
       "saleQty": 622.0,
       "avgUnitPrice": 23845
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "대구류",
+      "saleAmount": 14783630.0,
+      "saleQty": 4404.5,
+      "avgUnitPrice": 3356
     },
     {
       "month": "2024-06",
@@ -19403,6 +20867,14 @@
       "saleAmount": 14660110.0,
       "saleQty": 1411.5,
       "avgUnitPrice": 10386
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "복류",
+      "saleAmount": 14657300.0,
+      "saleQty": 1385.0,
+      "avgUnitPrice": 10583
     },
     {
       "month": "2024-12",
@@ -19509,6 +20981,14 @@
       "avgUnitPrice": 4415
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "다랑어류",
+      "saleAmount": 14351700.0,
+      "saleQty": 10810.0,
+      "avgUnitPrice": 1328
+    },
+    {
       "month": "2026-02",
       "year": "2026",
       "seafoodName": "문어류",
@@ -19579,6 +21059,14 @@
       "saleAmount": 14069471.0,
       "saleQty": 1168.4,
       "avgUnitPrice": 12042
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "백합",
+      "saleAmount": 14054000.0,
+      "saleQty": 4531.0,
+      "avgUnitPrice": 3102
     },
     {
       "month": "2025-10",
@@ -19691,6 +21179,14 @@
       "saleAmount": 13714600.0,
       "saleQty": 1123.0,
       "avgUnitPrice": 12212
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "노래미류",
+      "saleAmount": 13711700.0,
+      "saleQty": 1252.0,
+      "avgUnitPrice": 10952
     },
     {
       "month": "2025-12",
@@ -19877,6 +21373,14 @@
       "avgUnitPrice": 17876
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "양태",
+      "saleAmount": 13441000.0,
+      "saleQty": 4212.0,
+      "avgUnitPrice": 3191
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "달고기",
@@ -19939,6 +21443,14 @@
       "saleAmount": 13324100.0,
       "saleQty": 626.0,
       "avgUnitPrice": 21285
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "물메기",
+      "saleAmount": 13318500.0,
+      "saleQty": 2615.0,
+      "avgUnitPrice": 5093
     },
     {
       "month": "2025-10",
@@ -20035,6 +21547,14 @@
       "saleAmount": 13040070.0,
       "saleQty": 1901.0,
       "avgUnitPrice": 6860
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "문어류",
+      "saleAmount": 12995600.0,
+      "saleQty": 778.0,
+      "avgUnitPrice": 16704
     },
     {
       "month": "2024-03",
@@ -20189,6 +21709,14 @@
       "avgUnitPrice": 3905
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "보리새우",
+      "saleAmount": 12712100.0,
+      "saleQty": 4843.85,
+      "avgUnitPrice": 2624
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "용가자미",
@@ -20245,6 +21773,14 @@
       "avgUnitPrice": 4405
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "달고기",
+      "saleAmount": 12660800.0,
+      "saleQty": 4995.0,
+      "avgUnitPrice": 2535
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "달고기",
@@ -20275,6 +21811,14 @@
       "saleAmount": 12614900.0,
       "saleQty": 3753.0,
       "avgUnitPrice": 3361
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "민꽃게",
+      "saleAmount": 12611700.0,
+      "saleQty": 1755.0,
+      "avgUnitPrice": 7186
     },
     {
       "month": "2025-12",
@@ -20389,6 +21933,14 @@
       "avgUnitPrice": 826
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "붉은메기",
+      "saleAmount": 12422000.0,
+      "saleQty": 3964.0,
+      "avgUnitPrice": 3134
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "참홍어",
@@ -20501,6 +22053,14 @@
       "avgUnitPrice": 751
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "문치가자미",
+      "saleAmount": 12213500.0,
+      "saleQty": 1812.5,
+      "avgUnitPrice": 6738
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "홍어",
@@ -20515,6 +22075,14 @@
       "saleAmount": 12201570.0,
       "saleQty": 1317.8,
       "avgUnitPrice": 9259
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가리비류",
+      "saleAmount": 12178560.0,
+      "saleQty": 998.0,
+      "avgUnitPrice": 12203
     },
     {
       "month": "2024-08",
@@ -20741,6 +22309,14 @@
       "avgUnitPrice": 11468
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "병어류",
+      "saleAmount": 11788000.0,
+      "saleQty": 381.0,
+      "avgUnitPrice": 30940
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "양태",
@@ -20763,6 +22339,14 @@
       "saleAmount": 11767750.0,
       "saleQty": 12769.0,
       "avgUnitPrice": 922
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "통치",
+      "saleAmount": 11761000.0,
+      "saleQty": 941.0,
+      "avgUnitPrice": 12498
     },
     {
       "month": "2024-04",
@@ -20851,6 +22435,14 @@
       "saleAmount": 11512610.0,
       "saleQty": 2005.5,
       "avgUnitPrice": 5741
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "성게류",
+      "saleAmount": 11505200.0,
+      "saleQty": 1257.0,
+      "avgUnitPrice": 9153
     },
     {
       "month": "2024-07",
@@ -21003,6 +22595,14 @@
       "saleAmount": 11244800.0,
       "saleQty": 4678.0,
       "avgUnitPrice": 2404
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "통치",
+      "saleAmount": 11241000.0,
+      "saleQty": 1191.0,
+      "avgUnitPrice": 9438
     },
     {
       "month": "2024-07",
@@ -21187,6 +22787,14 @@
       "saleAmount": 10951000.0,
       "saleQty": 307.0,
       "avgUnitPrice": 35671
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "참가자미",
+      "saleAmount": 10946380.0,
+      "saleQty": 2240.0,
+      "avgUnitPrice": 4887
     },
     {
       "month": "2024-11",
@@ -21389,6 +22997,14 @@
       "avgUnitPrice": 1970
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "쥐노래미",
+      "saleAmount": 10540910.0,
+      "saleQty": 897.5,
+      "avgUnitPrice": 11745
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "문어류",
@@ -21429,6 +23045,14 @@
       "avgUnitPrice": 9150
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참가자미",
+      "saleAmount": 10452500.0,
+      "saleQty": 2923.0,
+      "avgUnitPrice": 3576
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "대구류",
@@ -21451,6 +23075,14 @@
       "saleAmount": 10399600.0,
       "saleQty": 608.0,
       "avgUnitPrice": 17105
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "물메기",
+      "saleAmount": 10398500.0,
+      "saleQty": 1325.0,
+      "avgUnitPrice": 7848
     },
     {
       "month": "2025-02",
@@ -21597,6 +23229,14 @@
       "avgUnitPrice": 10789
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "문치가자미",
+      "saleAmount": 10191990.0,
+      "saleQty": 1215.5,
+      "avgUnitPrice": 8385
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "문어류",
@@ -21691,6 +23331,14 @@
       "saleAmount": 10075000.0,
       "saleQty": 13685.0,
       "avgUnitPrice": 736
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "병어류",
+      "saleAmount": 10071000.0,
+      "saleQty": 309.2,
+      "avgUnitPrice": 32571
     },
     {
       "month": "2024-11",
@@ -21917,6 +23565,14 @@
       "avgUnitPrice": 9198
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타고등어류",
+      "saleAmount": 9754100.0,
+      "saleQty": 1340.0,
+      "avgUnitPrice": 7279
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "붉은메기",
@@ -21957,6 +23613,22 @@
       "avgUnitPrice": 6702
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "성대",
+      "saleAmount": 9702300.0,
+      "saleQty": 4896.0,
+      "avgUnitPrice": 1982
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "게류",
+      "saleAmount": 9693100.0,
+      "saleQty": 162.0,
+      "avgUnitPrice": 59834
+    },
+    {
       "month": "2026-02",
       "year": "2026",
       "seafoodName": "붕장어",
@@ -21979,6 +23651,14 @@
       "saleAmount": 9676800.0,
       "saleQty": 594.1,
       "avgUnitPrice": 16288
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "홍어",
+      "saleAmount": 9649300.0,
+      "saleQty": 3190.5,
+      "avgUnitPrice": 3024
     },
     {
       "month": "2024-11",
@@ -22075,6 +23755,14 @@
       "saleAmount": 9538900.0,
       "saleQty": 8100.0,
       "avgUnitPrice": 1178
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "쥐치",
+      "saleAmount": 9519000.0,
+      "saleQty": 591.0,
+      "avgUnitPrice": 16107
     },
     {
       "month": "2025-09",
@@ -22181,6 +23869,14 @@
       "avgUnitPrice": 3458
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "미더덕",
+      "saleAmount": 9341000.0,
+      "saleQty": 1593.0,
+      "avgUnitPrice": 5864
+    },
+    {
       "month": "2026-03",
       "year": "2026",
       "seafoodName": "감성돔",
@@ -22189,12 +23885,28 @@
       "avgUnitPrice": 15814
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "참조기",
+      "saleAmount": 9299700.0,
+      "saleQty": 1647.0,
+      "avgUnitPrice": 5646
+    },
+    {
       "month": "2026-03",
       "year": "2026",
       "seafoodName": "기름가자미",
       "saleAmount": 9272800.0,
       "saleQty": 1720.0,
       "avgUnitPrice": 5391
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "까치복",
+      "saleAmount": 9264800.0,
+      "saleQty": 600.0,
+      "avgUnitPrice": 15441
     },
     {
       "month": "2025-10",
@@ -22365,6 +24077,14 @@
       "avgUnitPrice": 3060
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타갈치류",
+      "saleAmount": 8960100.0,
+      "saleQty": 1950.0,
+      "avgUnitPrice": 4595
+    },
+    {
       "month": "2025-06",
       "year": "2025",
       "seafoodName": "중하",
@@ -22419,6 +24139,30 @@
       "saleAmount": 8864000.0,
       "saleQty": 3040.0,
       "avgUnitPrice": 2916
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "송어",
+      "saleAmount": 8855600.0,
+      "saleQty": 973.0,
+      "avgUnitPrice": 9101
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "부시리",
+      "saleAmount": 8831140.0,
+      "saleQty": 1554.0,
+      "avgUnitPrice": 5683
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "대게",
+      "saleAmount": 8830800.0,
+      "saleQty": 267.6,
+      "avgUnitPrice": 33000
     },
     {
       "month": "2024-04",
@@ -22477,6 +24221,14 @@
       "avgUnitPrice": 3241
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "노래미류",
+      "saleAmount": 8705300.0,
+      "saleQty": 711.0,
+      "avgUnitPrice": 12244
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "홍가자미",
@@ -22491,6 +24243,14 @@
       "saleAmount": 8676000.0,
       "saleQty": 238.0,
       "avgUnitPrice": 36454
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "양태류",
+      "saleAmount": 8670300.0,
+      "saleQty": 1446.0,
+      "avgUnitPrice": 5996
     },
     {
       "month": "2024-05",
@@ -22555,6 +24315,14 @@
       "saleAmount": 8574500.0,
       "saleQty": 3692.0,
       "avgUnitPrice": 2322
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "달고기",
+      "saleAmount": 8561000.0,
+      "saleQty": 3789.0,
+      "avgUnitPrice": 2259
     },
     {
       "month": "2024-03",
@@ -22629,6 +24397,14 @@
       "avgUnitPrice": 3446
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "새우류",
+      "saleAmount": 8433000.0,
+      "saleQty": 334.3,
+      "avgUnitPrice": 25226
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "뚝지",
@@ -22701,6 +24477,14 @@
       "avgUnitPrice": 13986
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "오징어류",
+      "saleAmount": 8315100.0,
+      "saleQty": 350.0,
+      "avgUnitPrice": 23757
+    },
+    {
       "month": "2025-10",
       "year": "2025",
       "seafoodName": "가오리류",
@@ -22723,6 +24507,14 @@
       "saleAmount": 8259600.0,
       "saleQty": 1524.4,
       "avgUnitPrice": 5418
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "먹장어",
+      "saleAmount": 8244730.0,
+      "saleQty": 679.0,
+      "avgUnitPrice": 12142
     },
     {
       "month": "2025-10",
@@ -22755,6 +24547,14 @@
       "saleAmount": 8222000.0,
       "saleQty": 1480.0,
       "avgUnitPrice": 5555
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "양태류",
+      "saleAmount": 8220000.0,
+      "saleQty": 721.0,
+      "avgUnitPrice": 11401
     },
     {
       "month": "2025-11",
@@ -22819,6 +24619,14 @@
       "saleAmount": 8103320.0,
       "saleQty": 1057.0,
       "avgUnitPrice": 7666
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "대게",
+      "saleAmount": 8092100.0,
+      "saleQty": 394.0,
+      "avgUnitPrice": 20538
     },
     {
       "month": "2026-04",
@@ -23045,6 +24853,14 @@
       "avgUnitPrice": 8086
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "오징어류",
+      "saleAmount": 7840575.0,
+      "saleQty": 1112.0,
+      "avgUnitPrice": 7051
+    },
+    {
       "month": "2024-10",
       "year": "2024",
       "seafoodName": "문어류",
@@ -23059,6 +24875,14 @@
       "saleAmount": 7818850.0,
       "saleQty": 1261.0,
       "avgUnitPrice": 6201
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "아귀류",
+      "saleAmount": 7813400.0,
+      "saleQty": 1810.0,
+      "avgUnitPrice": 4317
     },
     {
       "month": "2024-05",
@@ -23117,6 +24941,14 @@
       "avgUnitPrice": 71916
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "명태",
+      "saleAmount": 7766400.0,
+      "saleQty": 1550.0,
+      "avgUnitPrice": 5011
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "눈볼대",
@@ -23131,6 +24963,22 @@
       "saleAmount": 7746000.0,
       "saleQty": 1518.0,
       "avgUnitPrice": 5103
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타문어류",
+      "saleAmount": 7713500.0,
+      "saleQty": 504.0,
+      "avgUnitPrice": 15305
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "바다가재",
+      "saleAmount": 7712762.0,
+      "saleQty": 117.5,
+      "avgUnitPrice": 65641
     },
     {
       "month": "2026-02",
@@ -23325,12 +25173,28 @@
       "avgUnitPrice": 7419
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "홍어",
+      "saleAmount": 7517700.0,
+      "saleQty": 2231.0,
+      "avgUnitPrice": 3370
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "물메기",
       "saleAmount": 7513500.0,
       "saleQty": 1909.0,
       "avgUnitPrice": 3936
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "홍합류",
+      "saleAmount": 7504000.0,
+      "saleQty": 620.0,
+      "avgUnitPrice": 12103
     },
     {
       "month": "2025-06",
@@ -23461,6 +25325,22 @@
       "avgUnitPrice": 2510
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "감성돔",
+      "saleAmount": 7384900.0,
+      "saleQty": 784.5,
+      "avgUnitPrice": 9414
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꼴뚜기류",
+      "saleAmount": 7382200.0,
+      "saleQty": 1027.0,
+      "avgUnitPrice": 7188
+    },
+    {
       "month": "2025-05",
       "year": "2025",
       "seafoodName": "백조기",
@@ -23525,6 +25405,14 @@
       "avgUnitPrice": 6783
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참조기",
+      "saleAmount": 7334600.0,
+      "saleQty": 1658.0,
+      "avgUnitPrice": 4424
+    },
+    {
       "month": "2025-07",
       "year": "2025",
       "seafoodName": "양태",
@@ -23547,6 +25435,14 @@
       "saleAmount": 7283100.0,
       "saleQty": 6227.0,
       "avgUnitPrice": 1170
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가오리류",
+      "saleAmount": 7281500.0,
+      "saleQty": 3237.8999999999996,
+      "avgUnitPrice": 2249
     },
     {
       "month": "2024-12",
@@ -23579,6 +25475,14 @@
       "saleAmount": 7241200.0,
       "saleQty": 1080.0,
       "avgUnitPrice": 6705
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타조기류",
+      "saleAmount": 7239600.0,
+      "saleQty": 1386.0,
+      "avgUnitPrice": 5223
     },
     {
       "month": "2025-07",
@@ -23733,6 +25637,14 @@
       "avgUnitPrice": 11314
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "망둑어류",
+      "saleAmount": 7126100.0,
+      "saleQty": 621.0,
+      "avgUnitPrice": 11475
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "다시마",
@@ -23803,6 +25715,14 @@
       "saleAmount": 7030000.0,
       "saleQty": 2855.0,
       "avgUnitPrice": 2462
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꼼치",
+      "saleAmount": 7010170.0,
+      "saleQty": 558.0,
+      "avgUnitPrice": 12563
     },
     {
       "month": "2026-05",
@@ -23981,6 +25901,14 @@
       "avgUnitPrice": 4166
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "키조개",
+      "saleAmount": 6836600.0,
+      "saleQty": 1836.9,
+      "avgUnitPrice": 3722
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "개조개",
@@ -24019,6 +25947,14 @@
       "saleAmount": 6805400.0,
       "saleQty": 1069.0,
       "avgUnitPrice": 6366
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "우렁이류",
+      "saleAmount": 6800000.0,
+      "saleQty": 210.0,
+      "avgUnitPrice": 32381
     },
     {
       "month": "2024-09",
@@ -24099,6 +26035,14 @@
       "saleAmount": 6725000.0,
       "saleQty": 33.5,
       "avgUnitPrice": 200746
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "양태",
+      "saleAmount": 6723000.0,
+      "saleQty": 1155.0,
+      "avgUnitPrice": 5821
     },
     {
       "month": "2025-07",
@@ -24445,6 +26389,14 @@
       "avgUnitPrice": 12022
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "낙지",
+      "saleAmount": 6268780.0,
+      "saleQty": 752.0,
+      "avgUnitPrice": 8336
+    },
+    {
       "month": "2025-01",
       "year": "2025",
       "seafoodName": "쥐노래미",
@@ -24523,6 +26475,14 @@
       "saleAmount": 6166126.0,
       "saleQty": 964.0,
       "avgUnitPrice": 6396
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "홍가자미",
+      "saleAmount": 6157250.0,
+      "saleQty": 735.0,
+      "avgUnitPrice": 8377
     },
     {
       "month": "2024-05",
@@ -24749,6 +26709,14 @@
       "avgUnitPrice": 20000
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "붕어류",
+      "saleAmount": 6000000.0,
+      "saleQty": 400.0,
+      "avgUnitPrice": 15000
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "성대",
@@ -24949,6 +26917,14 @@
       "avgUnitPrice": 11477
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "털탑고둥",
+      "saleAmount": 5813000.0,
+      "saleQty": 600.0,
+      "avgUnitPrice": 9688
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "꽃게",
@@ -24965,7 +26941,31 @@
       "avgUnitPrice": 19328
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가리맛조개(맛)",
+      "saleAmount": 5781090.0,
+      "saleQty": 630.0,
+      "avgUnitPrice": 9176
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타가오리류",
+      "saleAmount": 5768690.0,
+      "saleQty": 2026.0,
+      "avgUnitPrice": 2847
+    },
+    {
       "month": "2026-04",
+      "year": "2026",
+      "seafoodName": "기타고등어류",
+      "saleAmount": 5766730.0,
+      "saleQty": 860.0,
+      "avgUnitPrice": 6706
+    },
+    {
+      "month": "2026-06",
       "year": "2026",
       "seafoodName": "기타고등어류",
       "saleAmount": 5766730.0,
@@ -24987,6 +26987,14 @@
       "saleAmount": 5755090.0,
       "saleQty": 122.0,
       "avgUnitPrice": 47173
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "북쪽분홍새우",
+      "saleAmount": 5751000.0,
+      "saleQty": 226.5,
+      "avgUnitPrice": 25391
     },
     {
       "month": "2026-05",
@@ -25147,6 +27155,14 @@
       "saleAmount": 5616000.0,
       "saleQty": 597.0,
       "avgUnitPrice": 9407
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "임연수어",
+      "saleAmount": 5609290.0,
+      "saleQty": 765.0,
+      "avgUnitPrice": 7332
     },
     {
       "month": "2025-11",
@@ -25341,6 +27357,14 @@
       "avgUnitPrice": 13873
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "벤자리",
+      "saleAmount": 5351150.0,
+      "saleQty": 851.0,
+      "avgUnitPrice": 6288
+    },
+    {
       "month": "2025-06",
       "year": "2025",
       "seafoodName": "정어리",
@@ -25355,6 +27379,14 @@
       "saleAmount": 5344150.0,
       "saleQty": 244.0,
       "avgUnitPrice": 21902
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "돌돔",
+      "saleAmount": 5336350.0,
+      "saleQty": 154.8,
+      "avgUnitPrice": 34473
     },
     {
       "month": "2025-08",
@@ -25459,6 +27491,14 @@
       "saleAmount": 5189550.0,
       "saleQty": 1084.5,
       "avgUnitPrice": 4785
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "삼치",
+      "saleAmount": 5180400.0,
+      "saleQty": 1101.0,
+      "avgUnitPrice": 4705
     },
     {
       "month": "2025-07",
@@ -25653,6 +27693,14 @@
       "avgUnitPrice": 51352
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "남서대서양적어",
+      "saleAmount": 5027000.0,
+      "saleQty": 700.0,
+      "avgUnitPrice": 7181
+    },
+    {
       "month": "2025-06",
       "year": "2025",
       "seafoodName": "붉바리",
@@ -25715,6 +27763,14 @@
       "saleAmount": 5000000.0,
       "saleQty": 500.0,
       "avgUnitPrice": 10000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "붕어류",
+      "saleAmount": 5000000.0,
+      "saleQty": 200.0,
+      "avgUnitPrice": 25000
     },
     {
       "month": "2024-01",
@@ -25941,6 +27997,22 @@
       "avgUnitPrice": 1611
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참꼴뚜기",
+      "saleAmount": 4799000.0,
+      "saleQty": 221.0,
+      "avgUnitPrice": 21715
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "임연수어",
+      "saleAmount": 4778230.0,
+      "saleQty": 622.5,
+      "avgUnitPrice": 7676
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "노래미류",
@@ -26141,6 +28213,14 @@
       "avgUnitPrice": 2662
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "붉은메기",
+      "saleAmount": 4655000.0,
+      "saleQty": 1295.0,
+      "avgUnitPrice": 3595
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "먹장어",
@@ -26181,6 +28261,22 @@
       "avgUnitPrice": 17223
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "부시리",
+      "saleAmount": 4630300.0,
+      "saleQty": 567.0,
+      "avgUnitPrice": 8166
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타게류",
+      "saleAmount": 4630100.0,
+      "saleQty": 823.5,
+      "avgUnitPrice": 5622
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "삼세기",
@@ -26189,12 +28285,28 @@
       "avgUnitPrice": 24429
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "군평선이",
+      "saleAmount": 4612400.0,
+      "saleQty": 314.0,
+      "avgUnitPrice": 14689
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "노래미류",
       "saleAmount": 4610800.0,
       "saleQty": 343.0,
       "avgUnitPrice": 13443
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "참꼴뚜기",
+      "saleAmount": 4610000.0,
+      "saleQty": 234.0,
+      "avgUnitPrice": 19701
     },
     {
       "month": "2024-12",
@@ -26269,6 +28381,14 @@
       "avgUnitPrice": 1233
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "볼락",
+      "saleAmount": 4557800.0,
+      "saleQty": 349.0,
+      "avgUnitPrice": 13060
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "기타고둥류",
@@ -26317,6 +28437,14 @@
       "avgUnitPrice": 2549
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타아귀류",
+      "saleAmount": 4523840.0,
+      "saleQty": 1300.0,
+      "avgUnitPrice": 3480
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "홍어",
@@ -26347,6 +28475,14 @@
       "saleAmount": 4508000.0,
       "saleQty": 365.0,
       "avgUnitPrice": 12351
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꼼치",
+      "saleAmount": 4505560.0,
+      "saleQty": 395.0,
+      "avgUnitPrice": 11406
     },
     {
       "month": "2025-07",
@@ -26381,6 +28517,14 @@
       "avgUnitPrice": 10286
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "문어류",
+      "saleAmount": 4458000.0,
+      "saleQty": 225.0,
+      "avgUnitPrice": 19813
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "돗돔",
@@ -26411,6 +28555,14 @@
       "saleAmount": 4449090.0,
       "saleQty": 478.0,
       "avgUnitPrice": 9308
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "중하",
+      "saleAmount": 4447100.0,
+      "saleQty": 1374.0,
+      "avgUnitPrice": 3237
     },
     {
       "month": "2025-07",
@@ -26493,6 +28645,14 @@
       "avgUnitPrice": 9821
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "백조기",
+      "saleAmount": 4400900.0,
+      "saleQty": 1095.0,
+      "avgUnitPrice": 4019
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "기타조기류",
@@ -26523,6 +28683,14 @@
       "saleAmount": 4372600.0,
       "saleQty": 778.0,
       "avgUnitPrice": 5620
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "미역치",
+      "saleAmount": 4363000.0,
+      "saleQty": 101.0,
+      "avgUnitPrice": 43198
     },
     {
       "month": "2024-06",
@@ -26571,6 +28739,14 @@
       "saleAmount": 4339000.0,
       "saleQty": 322.0,
       "avgUnitPrice": 13475
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타다시마류",
+      "saleAmount": 4332000.0,
+      "saleQty": 361.0,
+      "avgUnitPrice": 12000
     },
     {
       "month": "2025-10",
@@ -26749,6 +28925,14 @@
       "avgUnitPrice": 18228
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "북쪽분홍새우",
+      "saleAmount": 4220000.0,
+      "saleQty": 208.0,
+      "avgUnitPrice": 20288
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "기타가자미류",
@@ -26869,12 +29053,28 @@
       "avgUnitPrice": 6584
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "어름돔",
+      "saleAmount": 4166350.0,
+      "saleQty": 986.0,
+      "avgUnitPrice": 4226
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "통치",
       "saleAmount": 4161000.0,
       "saleQty": 709.0,
       "avgUnitPrice": 5869
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참서대",
+      "saleAmount": 4154000.0,
+      "saleQty": 69.0,
+      "avgUnitPrice": 60203
     },
     {
       "month": "2025-02",
@@ -26915,6 +29115,14 @@
       "saleAmount": 4118050.0,
       "saleQty": 874.0,
       "avgUnitPrice": 4712
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "성대",
+      "saleAmount": 4114400.0,
+      "saleQty": 1532.0,
+      "avgUnitPrice": 2686
     },
     {
       "month": "2024-05",
@@ -27029,6 +29237,14 @@
       "avgUnitPrice": 7002
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "돌조개",
+      "saleAmount": 4028000.0,
+      "saleQty": 1007.0,
+      "avgUnitPrice": 4000
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "볼락",
@@ -27091,6 +29307,14 @@
       "saleAmount": 4000000.0,
       "saleQty": 1000.0,
       "avgUnitPrice": 4000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "이스라엘잉어",
+      "saleAmount": 4000000.0,
+      "saleQty": 400.0,
+      "avgUnitPrice": 10000
     },
     {
       "month": "2024-08",
@@ -27413,6 +29637,14 @@
       "avgUnitPrice": 8598
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "우렁이류",
+      "saleAmount": 3811000.0,
+      "saleQty": 140.0,
+      "avgUnitPrice": 27221
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "기타볼락류",
@@ -27435,6 +29667,22 @@
       "saleAmount": 3788200.0,
       "saleQty": 1577.0,
       "avgUnitPrice": 2402
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "숭어",
+      "saleAmount": 3780500.0,
+      "saleQty": 2211.3999999999996,
+      "avgUnitPrice": 1710
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "벤자리",
+      "saleAmount": 3780220.0,
+      "saleQty": 371.5,
+      "avgUnitPrice": 10176
     },
     {
       "month": "2024-03",
@@ -27589,6 +29837,14 @@
       "avgUnitPrice": 3340
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "민들조개",
+      "saleAmount": 3705000.0,
+      "saleQty": 1000.0,
+      "avgUnitPrice": 3705
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "부시리",
@@ -27643,6 +29899,14 @@
       "saleAmount": 3667400.0,
       "saleQty": 1105.0,
       "avgUnitPrice": 3319
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "도루묵",
+      "saleAmount": 3658300.0,
+      "saleQty": 402.0,
+      "avgUnitPrice": 9100
     },
     {
       "month": "2024-04",
@@ -27837,6 +30101,14 @@
       "avgUnitPrice": 8022
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "홍가자미",
+      "saleAmount": 3533380.0,
+      "saleQty": 493.0,
+      "avgUnitPrice": 7167
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "망둑어류",
@@ -27867,6 +30139,14 @@
       "saleAmount": 3530000.0,
       "saleQty": 1145.0,
       "avgUnitPrice": 3083
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타고둥류",
+      "saleAmount": 3529500.0,
+      "saleQty": 805.0,
+      "avgUnitPrice": 4384
     },
     {
       "month": "2026-02",
@@ -27989,6 +30269,14 @@
       "avgUnitPrice": 4203
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "입술무늬갑오징어",
+      "saleAmount": 3455000.0,
+      "saleQty": 141.0,
+      "avgUnitPrice": 24504
+    },
+    {
       "month": "2024-10",
       "year": "2024",
       "seafoodName": "밴댕이",
@@ -28051,6 +30339,14 @@
       "saleAmount": 3418702.0,
       "saleQty": 294.0,
       "avgUnitPrice": 11628
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "돌가자미",
+      "saleAmount": 3413400.0,
+      "saleQty": 310.0,
+      "avgUnitPrice": 11011
     },
     {
       "month": "2024-10",
@@ -28365,6 +30661,22 @@
       "avgUnitPrice": 9500
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타둑중개류",
+      "saleAmount": 3246900.0,
+      "saleQty": 498.0,
+      "avgUnitPrice": 6520
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "놀래기",
+      "saleAmount": 3245000.0,
+      "saleQty": 290.0,
+      "avgUnitPrice": 11190
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "군평선이",
@@ -28387,6 +30699,14 @@
       "saleAmount": 3240000.0,
       "saleQty": 48.0,
       "avgUnitPrice": 67500
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "미더덕",
+      "saleAmount": 3240000.0,
+      "saleQty": 588.0,
+      "avgUnitPrice": 5510
     },
     {
       "month": "2026-05",
@@ -28445,6 +30765,14 @@
       "avgUnitPrice": 8931
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "보리새우",
+      "saleAmount": 3214500.0,
+      "saleQty": 224.89999999999998,
+      "avgUnitPrice": 14293
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "군평선이",
@@ -28483,6 +30811,14 @@
       "saleAmount": 3194000.0,
       "saleQty": 4680.0,
       "avgUnitPrice": 682
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "붉바리",
+      "saleAmount": 3193200.0,
+      "saleQty": 77.0,
+      "avgUnitPrice": 41470
     },
     {
       "month": "2024-07",
@@ -28533,6 +30869,14 @@
       "avgUnitPrice": 20159
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타아귀류",
+      "saleAmount": 3183200.0,
+      "saleQty": 800.0,
+      "avgUnitPrice": 3979
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "전복류",
@@ -28547,6 +30891,14 @@
       "saleAmount": 3182400.0,
       "saleQty": 665.0,
       "avgUnitPrice": 4786
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "민들조개",
+      "saleAmount": 3182000.0,
+      "saleQty": 860.0,
+      "avgUnitPrice": 3700
     },
     {
       "month": "2026-01",
@@ -28565,12 +30917,28 @@
       "avgUnitPrice": 5557
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "쥐노래미",
+      "saleAmount": 3169690.0,
+      "saleQty": 305.0,
+      "avgUnitPrice": 10392
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "털게",
       "saleAmount": 3169000.0,
       "saleQty": 87.0,
       "avgUnitPrice": 36425
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타볼락류",
+      "saleAmount": 3161210.0,
+      "saleQty": 338.0,
+      "avgUnitPrice": 9353
     },
     {
       "month": "2025-07",
@@ -28917,6 +31285,14 @@
       "avgUnitPrice": 38127
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타명태류",
+      "saleAmount": 3011600.0,
+      "saleQty": 600.0,
+      "avgUnitPrice": 5019
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "삼세기",
@@ -28979,6 +31355,30 @@
       "saleAmount": 3000000.0,
       "saleQty": 300.0,
       "avgUnitPrice": 10000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "주꾸미",
+      "saleAmount": 3000000.0,
+      "saleQty": 135.0,
+      "avgUnitPrice": 22222
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "이스라엘잉어",
+      "saleAmount": 3000000.0,
+      "saleQty": 200.0,
+      "avgUnitPrice": 15000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타조기류",
+      "saleAmount": 2997000.0,
+      "saleQty": 732.0,
+      "avgUnitPrice": 4094
     },
     {
       "month": "2024-02",
@@ -29333,6 +31733,14 @@
       "avgUnitPrice": 12261
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "미역치",
+      "saleAmount": 2780000.0,
+      "saleQty": 110.0,
+      "avgUnitPrice": 25273
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "통치",
@@ -29381,6 +31789,14 @@
       "avgUnitPrice": 4053
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "다랑어류",
+      "saleAmount": 2757700.0,
+      "saleQty": 1506.0,
+      "avgUnitPrice": 1831
+    },
+    {
       "month": "2024-12",
       "year": "2024",
       "seafoodName": "복류",
@@ -29395,6 +31811,14 @@
       "saleAmount": 2750980.0,
       "saleQty": 219.0,
       "avgUnitPrice": 12562
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "아귀류",
+      "saleAmount": 2748500.0,
+      "saleQty": 500.0,
+      "avgUnitPrice": 5497
     },
     {
       "month": "2026-04",
@@ -29723,6 +32147,14 @@
       "saleAmount": 2627900.0,
       "saleQty": 562.0,
       "avgUnitPrice": 4676
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "매퉁이",
+      "saleAmount": 2627000.0,
+      "saleQty": 1665.0,
+      "avgUnitPrice": 1578
     },
     {
       "month": "2025-03",
@@ -30293,6 +32725,14 @@
       "avgUnitPrice": 2833
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타고둥류",
+      "saleAmount": 2371100.0,
+      "saleQty": 388.0,
+      "avgUnitPrice": 6111
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "삼세기",
@@ -30397,6 +32837,14 @@
       "avgUnitPrice": 1234
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "곤어리",
+      "saleAmount": 2303800.0,
+      "saleQty": 1771.5,
+      "avgUnitPrice": 1300
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "주꾸미류",
@@ -30459,6 +32907,14 @@
       "saleAmount": 2281000.0,
       "saleQty": 437.0,
       "avgUnitPrice": 5220
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "곰치",
+      "saleAmount": 2278600.0,
+      "saleQty": 698.0,
+      "avgUnitPrice": 3264
     },
     {
       "month": "2024-03",
@@ -30557,6 +33013,14 @@
       "avgUnitPrice": 8054
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "도다리",
+      "saleAmount": 2249010.0,
+      "saleQty": 429.5,
+      "avgUnitPrice": 5236
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "곤어리",
@@ -30597,6 +33061,14 @@
       "avgUnitPrice": 24868
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "고등어류",
+      "saleAmount": 2237200.0,
+      "saleQty": 286.0,
+      "avgUnitPrice": 7822
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "돌돔",
@@ -30627,6 +33099,14 @@
       "saleAmount": 2220000.0,
       "saleQty": 888.0,
       "avgUnitPrice": 2500
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "미거지",
+      "saleAmount": 2217800.0,
+      "saleQty": 150.0,
+      "avgUnitPrice": 14785
     },
     {
       "month": "2025-12",
@@ -30707,6 +33187,14 @@
       "saleAmount": 2200000.0,
       "saleQty": 400.0,
       "avgUnitPrice": 5500
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "키크리류",
+      "saleAmount": 2200000.0,
+      "saleQty": 120.0,
+      "avgUnitPrice": 18333
     },
     {
       "month": "2025-03",
@@ -31005,6 +33493,14 @@
       "avgUnitPrice": 7167
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "곰치",
+      "saleAmount": 2098200.0,
+      "saleQty": 514.0,
+      "avgUnitPrice": 4082
+    },
+    {
       "month": "2024-12",
       "year": "2024",
       "seafoodName": "갯장어",
@@ -31061,6 +33557,14 @@
       "avgUnitPrice": 3355
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "고무꺽정이",
+      "saleAmount": 2079600.0,
+      "saleQty": 89.0,
+      "avgUnitPrice": 23366
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "기타굴류",
@@ -31075,6 +33579,14 @@
       "saleAmount": 2072000.0,
       "saleQty": 1154.0,
       "avgUnitPrice": 1795
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가재류",
+      "saleAmount": 2072000.0,
+      "saleQty": 164.0,
+      "avgUnitPrice": 12634
     },
     {
       "month": "2024-02",
@@ -31107,6 +33619,14 @@
       "saleAmount": 2066000.0,
       "saleQty": 931.0,
       "avgUnitPrice": 2219
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "볼락",
+      "saleAmount": 2063000.0,
+      "saleQty": 99.0,
+      "avgUnitPrice": 20838
     },
     {
       "month": "2026-03",
@@ -31325,6 +33845,14 @@
       "avgUnitPrice": 10000
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "미꾸라지",
+      "saleAmount": 2000000.0,
+      "saleQty": 100.0,
+      "avgUnitPrice": 20000
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "민꽃게",
@@ -31365,12 +33893,28 @@
       "avgUnitPrice": 13936
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "노랑가오리",
+      "saleAmount": 1991000.0,
+      "saleQty": 152.4,
+      "avgUnitPrice": 13064
+    },
+    {
       "month": "2026-01",
       "year": "2026",
       "seafoodName": "벌레문치",
       "saleAmount": 1990200.0,
       "saleQty": 79.0,
       "avgUnitPrice": 25192
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "부세",
+      "saleAmount": 1989100.0,
+      "saleQty": 250.0,
+      "avgUnitPrice": 7956
     },
     {
       "month": "2024-12",
@@ -31677,6 +34221,14 @@
       "avgUnitPrice": 8360
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "미거지",
+      "saleAmount": 1906000.0,
+      "saleQty": 105.0,
+      "avgUnitPrice": 18152
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "참조기",
@@ -31723,6 +34275,14 @@
       "saleAmount": 1891000.0,
       "saleQty": 133.0,
       "avgUnitPrice": 14218
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타둑중개류",
+      "saleAmount": 1891000.0,
+      "saleQty": 271.0,
+      "avgUnitPrice": 6978
     },
     {
       "month": "2025-09",
@@ -31795,6 +34355,14 @@
       "saleAmount": 1863080.0,
       "saleQty": 153.0,
       "avgUnitPrice": 12177
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타갈치류",
+      "saleAmount": 1862600.0,
+      "saleQty": 473.0,
+      "avgUnitPrice": 3938
     },
     {
       "month": "2026-02",
@@ -31877,6 +34445,22 @@
       "avgUnitPrice": 7715
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "황돔",
+      "saleAmount": 1840500.0,
+      "saleQty": 733.0,
+      "avgUnitPrice": 2511
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "보구치",
+      "saleAmount": 1839700.0,
+      "saleQty": 590.0,
+      "avgUnitPrice": 3118
+    },
+    {
       "month": "2026-03",
       "year": "2026",
       "seafoodName": "바지락",
@@ -31931,6 +34515,14 @@
       "saleAmount": 1819000.0,
       "saleQty": 163.0,
       "avgUnitPrice": 11160
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "삼세기",
+      "saleAmount": 1818000.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 181800
     },
     {
       "month": "2026-01",
@@ -32205,12 +34797,28 @@
       "avgUnitPrice": 175000
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "명태잡젓",
+      "saleAmount": 1746000.0,
+      "saleQty": 414.0,
+      "avgUnitPrice": 4217
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "기타고둥류",
       "saleAmount": 1745300.0,
       "saleQty": 395.0,
       "avgUnitPrice": 4418
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "등가시치",
+      "saleAmount": 1744000.0,
+      "saleQty": 291.0,
+      "avgUnitPrice": 5993
     },
     {
       "month": "2025-06",
@@ -32325,6 +34933,22 @@
       "avgUnitPrice": 2698
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "괴도라치",
+      "saleAmount": 1717000.0,
+      "saleQty": 49.0,
+      "avgUnitPrice": 35041
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "줄가자미",
+      "saleAmount": 1715310.0,
+      "saleQty": 581.0,
+      "avgUnitPrice": 2952
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "준치",
@@ -32403,6 +35027,14 @@
       "saleAmount": 1700200.0,
       "saleQty": 152.0,
       "avgUnitPrice": 11186
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "정어리",
+      "saleAmount": 1690300.0,
+      "saleQty": 268.0,
+      "avgUnitPrice": 6307
     },
     {
       "month": "2026-04",
@@ -32677,6 +35309,14 @@
       "avgUnitPrice": 30491
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "물렁가시붉은새우",
+      "saleAmount": 1615000.0,
+      "saleQty": 9.5,
+      "avgUnitPrice": 170000
+    },
+    {
       "month": "2026-05",
       "year": "2026",
       "seafoodName": "삼세기",
@@ -32691,6 +35331,14 @@
       "saleAmount": 1614000.0,
       "saleQty": 60.0,
       "avgUnitPrice": 26900
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "벵에돔",
+      "saleAmount": 1613090.0,
+      "saleQty": 57.7,
+      "avgUnitPrice": 27956
     },
     {
       "month": "2025-06",
@@ -32715,6 +35363,14 @@
       "saleAmount": 1610350.0,
       "saleQty": 53.0,
       "avgUnitPrice": 30384
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "밀복",
+      "saleAmount": 1609200.0,
+      "saleQty": 600.0,
+      "avgUnitPrice": 2682
     },
     {
       "month": "2025-01",
@@ -32877,12 +35533,28 @@
       "avgUnitPrice": 18149
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "군평선이",
+      "saleAmount": 1578700.0,
+      "saleQty": 63.0,
+      "avgUnitPrice": 25059
+    },
+    {
       "month": "2024-12",
       "year": "2024",
       "seafoodName": "줄가자미",
       "saleAmount": 1577900.0,
       "saleQty": 86.0,
       "avgUnitPrice": 18348
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "수조기",
+      "saleAmount": 1575200.0,
+      "saleQty": 512.0,
+      "avgUnitPrice": 3077
     },
     {
       "month": "2025-12",
@@ -32923,6 +35595,22 @@
       "saleAmount": 1566900.0,
       "saleQty": 218.0,
       "avgUnitPrice": 7188
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "물렁가시붉은새우",
+      "saleAmount": 1566000.0,
+      "saleQty": 13.5,
+      "avgUnitPrice": 116000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "참서대",
+      "saleAmount": 1566000.0,
+      "saleQty": 59.0,
+      "avgUnitPrice": 26542
     },
     {
       "month": "2025-12",
@@ -32995,6 +35683,22 @@
       "saleAmount": 1550000.0,
       "saleQty": 390.0,
       "avgUnitPrice": 3974
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "박대",
+      "saleAmount": 1549800.0,
+      "saleQty": 300.5,
+      "avgUnitPrice": 5157
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가리맛조개(맛)",
+      "saleAmount": 1545800.0,
+      "saleQty": 169.0,
+      "avgUnitPrice": 9147
     },
     {
       "month": "2025-03",
@@ -33101,6 +35805,14 @@
       "avgUnitPrice": 4826
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "깨다시꽃게",
+      "saleAmount": 1516600.0,
+      "saleQty": 238.0,
+      "avgUnitPrice": 6372
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "고무꺽정이",
@@ -33197,6 +35909,14 @@
       "avgUnitPrice": 14151
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "한치꼴뚜기",
+      "saleAmount": 1500000.0,
+      "saleQty": 250.0,
+      "avgUnitPrice": 6000
+    },
+    {
       "month": "2025-08",
       "year": "2025",
       "seafoodName": "성게류",
@@ -33227,6 +35947,14 @@
       "saleAmount": 1493000.0,
       "saleQty": 67.0,
       "avgUnitPrice": 22284
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "까치복",
+      "saleAmount": 1491100.0,
+      "saleQty": 87.0,
+      "avgUnitPrice": 17139
     },
     {
       "month": "2025-10",
@@ -33333,6 +36061,22 @@
       "avgUnitPrice": 11167
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "준치",
+      "saleAmount": 1446600.0,
+      "saleQty": 492.0,
+      "avgUnitPrice": 2940
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가리비류",
+      "saleAmount": 1446000.0,
+      "saleQty": 44.2,
+      "avgUnitPrice": 32715
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "갯고둥",
@@ -33357,6 +36101,14 @@
       "avgUnitPrice": 15408
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "주꾸미",
+      "saleAmount": 1443000.0,
+      "saleQty": 148.0,
+      "avgUnitPrice": 9750
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "부시리",
@@ -33373,6 +36125,14 @@
       "avgUnitPrice": 6555
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "바지락류",
+      "saleAmount": 1441000.0,
+      "saleQty": 480.0,
+      "avgUnitPrice": 3002
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "기타볼락류",
@@ -33387,6 +36147,14 @@
       "saleAmount": 1440300.0,
       "saleQty": 52.0,
       "avgUnitPrice": 27698
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "적새우",
+      "saleAmount": 1440000.0,
+      "saleQty": 60.0,
+      "avgUnitPrice": 24000
     },
     {
       "month": "2024-03",
@@ -33557,6 +36325,14 @@
       "avgUnitPrice": 5820
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "용치놀래기",
+      "saleAmount": 1396000.0,
+      "saleQty": 152.0,
+      "avgUnitPrice": 9184
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "기타낙지류",
@@ -33579,6 +36355,14 @@
       "saleAmount": 1387000.0,
       "saleQty": 760.0,
       "avgUnitPrice": 1825
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "해삼",
+      "saleAmount": 1386700.0,
+      "saleQty": 111.0,
+      "avgUnitPrice": 12493
     },
     {
       "month": "2025-06",
@@ -33627,6 +36411,14 @@
       "saleAmount": 1377500.0,
       "saleQty": 107.5,
       "avgUnitPrice": 12814
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "옥두어",
+      "saleAmount": 1376500.0,
+      "saleQty": 207.0,
+      "avgUnitPrice": 6650
     },
     {
       "month": "2024-03",
@@ -33763,6 +36555,14 @@
       "saleAmount": 1348000.0,
       "saleQty": 1232.0,
       "avgUnitPrice": 1094
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타해조류",
+      "saleAmount": 1341000.0,
+      "saleQty": 92.0,
+      "avgUnitPrice": 14576
     },
     {
       "month": "2025-05",
@@ -34045,6 +36845,14 @@
       "avgUnitPrice": 3643
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "망치고등어",
+      "saleAmount": 1280000.0,
+      "saleQty": 320.0,
+      "avgUnitPrice": 4000
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "물렁가시붉은새우",
@@ -34213,6 +37021,14 @@
       "avgUnitPrice": 5384
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "먹장어",
+      "saleAmount": 1249000.0,
+      "saleQty": 229.5,
+      "avgUnitPrice": 5442
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "입술무늬갑오징어",
@@ -34227,6 +37043,14 @@
       "saleAmount": 1245500.0,
       "saleQty": 53.0,
       "avgUnitPrice": 23500
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "주름미더덕",
+      "saleAmount": 1243000.0,
+      "saleQty": 1140.0,
+      "avgUnitPrice": 1090
     },
     {
       "month": "2024-05",
@@ -34325,12 +37149,28 @@
       "avgUnitPrice": 5143
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "망둑어류",
+      "saleAmount": 1218300.0,
+      "saleQty": 173.0,
+      "avgUnitPrice": 7042
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "대하",
       "saleAmount": 1217000.0,
       "saleQty": 80.0,
       "avgUnitPrice": 15212
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가무락조개(가무레기)",
+      "saleAmount": 1216000.0,
+      "saleQty": 142.0,
+      "avgUnitPrice": 8563
     },
     {
       "month": "2026-04",
@@ -34477,6 +37317,14 @@
       "avgUnitPrice": 10482
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타해면어류",
+      "saleAmount": 1174000.0,
+      "saleQty": 940.0,
+      "avgUnitPrice": 1249
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "돌가자미",
@@ -34573,6 +37421,14 @@
       "avgUnitPrice": 11600
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타가오리류",
+      "saleAmount": 1156300.0,
+      "saleQty": 400.0,
+      "avgUnitPrice": 2891
+    },
+    {
       "month": "2026-01",
       "year": "2026",
       "seafoodName": "기타해면갑각류",
@@ -34595,6 +37451,14 @@
       "saleAmount": 1141860.0,
       "saleQty": 380.0,
       "avgUnitPrice": 3005
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "낙지류",
+      "saleAmount": 1139200.0,
+      "saleQty": 32.0,
+      "avgUnitPrice": 35600
     },
     {
       "month": "2025-04",
@@ -34667,6 +37531,14 @@
       "saleAmount": 1124510.0,
       "saleQty": 12.5,
       "avgUnitPrice": 89961
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "불볼락",
+      "saleAmount": 1123390.0,
+      "saleQty": 127.0,
+      "avgUnitPrice": 8846
     },
     {
       "month": "2024-03",
@@ -34821,6 +37693,14 @@
       "avgUnitPrice": 9016
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가다랑어",
+      "saleAmount": 1100000.0,
+      "saleQty": 1980.0,
+      "avgUnitPrice": 556
+    },
+    {
       "month": "2025-09",
       "year": "2025",
       "seafoodName": "정어리",
@@ -34933,6 +37813,14 @@
       "avgUnitPrice": 7291
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "밴댕이",
+      "saleAmount": 1079000.0,
+      "saleQty": 471.0,
+      "avgUnitPrice": 2291
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "자리돔",
@@ -34989,6 +37877,14 @@
       "avgUnitPrice": 15262
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "자리돔",
+      "saleAmount": 1076000.0,
+      "saleQty": 142.0,
+      "avgUnitPrice": 7577
+    },
+    {
       "month": "2025-07",
       "year": "2025",
       "seafoodName": "장갱이",
@@ -35029,6 +37925,14 @@
       "avgUnitPrice": 6884
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "입술무늬갑오징어",
+      "saleAmount": 1065000.0,
+      "saleQty": 95.5,
+      "avgUnitPrice": 11152
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "대문어",
@@ -35043,6 +37947,14 @@
       "saleAmount": 1062500.0,
       "saleQty": 529.0,
       "avgUnitPrice": 2009
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "나팔고둥",
+      "saleAmount": 1062360.0,
+      "saleQty": 136.0,
+      "avgUnitPrice": 7811
     },
     {
       "month": "2024-09",
@@ -35293,6 +38205,22 @@
       "avgUnitPrice": 27500
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "학공치",
+      "saleAmount": 1017000.0,
+      "saleQty": 247.0,
+      "avgUnitPrice": 4117
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "날치",
+      "saleAmount": 1016000.0,
+      "saleQty": 201.4,
+      "avgUnitPrice": 5045
+    },
+    {
       "month": "2025-10",
       "year": "2025",
       "seafoodName": "북쪽분홍새우",
@@ -35397,6 +38325,22 @@
       "avgUnitPrice": 7781
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "베도라치",
+      "saleAmount": 1002500.0,
+      "saleQty": 52.5,
+      "avgUnitPrice": 19095
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "어름돔",
+      "saleAmount": 1001600.0,
+      "saleQty": 78.0,
+      "avgUnitPrice": 12841
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "다금바리",
@@ -35461,6 +38405,22 @@
       "avgUnitPrice": 10000
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "미꾸라지",
+      "saleAmount": 1000000.0,
+      "saleQty": 50.0,
+      "avgUnitPrice": 20000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "벌레문치",
+      "saleAmount": 999200.0,
+      "saleQty": 252.0,
+      "avgUnitPrice": 3965
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "먹갈치",
@@ -35509,6 +38469,14 @@
       "avgUnitPrice": 7881
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타해면어류",
+      "saleAmount": 993000.0,
+      "saleQty": 660.0,
+      "avgUnitPrice": 1505
+    },
+    {
       "month": "2025-09",
       "year": "2025",
       "seafoodName": "고무꺽정이",
@@ -35531,6 +38499,22 @@
       "saleAmount": 989000.0,
       "saleQty": 1181.0,
       "avgUnitPrice": 837
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "박대",
+      "saleAmount": 989000.0,
+      "saleQty": 1475.0,
+      "avgUnitPrice": 671
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "베도라치",
+      "saleAmount": 988750.0,
+      "saleQty": 37.5,
+      "avgUnitPrice": 26367
     },
     {
       "month": "2025-10",
@@ -35637,6 +38621,14 @@
       "avgUnitPrice": 1640
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "쑤기미",
+      "saleAmount": 973000.0,
+      "saleQty": 135.0,
+      "avgUnitPrice": 7207
+    },
+    {
       "month": "2025-01",
       "year": "2025",
       "seafoodName": "기타둑중개류",
@@ -35651,6 +38643,14 @@
       "saleAmount": 970000.0,
       "saleQty": 300.0,
       "avgUnitPrice": 3233
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "명태",
+      "saleAmount": 969600.0,
+      "saleQty": 430.0,
+      "avgUnitPrice": 2255
     },
     {
       "month": "2024-04",
@@ -35741,6 +38741,22 @@
       "avgUnitPrice": 11852
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "개불",
+      "saleAmount": 960000.0,
+      "saleQty": 15.0,
+      "avgUnitPrice": 64000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "줄가자미",
+      "saleAmount": 954810.0,
+      "saleQty": 84.0,
+      "avgUnitPrice": 11367
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "보리새우",
@@ -35813,6 +38829,14 @@
       "avgUnitPrice": 1880
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "게류",
+      "saleAmount": 937500.0,
+      "saleQty": 85.2,
+      "avgUnitPrice": 11004
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "곤어리",
@@ -35843,6 +38867,14 @@
       "saleAmount": 928100.0,
       "saleQty": 92.0,
       "avgUnitPrice": 10088
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "벌레문치",
+      "saleAmount": 927700.0,
+      "saleQty": 89.0,
+      "avgUnitPrice": 10424
     },
     {
       "month": "2024-06",
@@ -35933,6 +38965,14 @@
       "avgUnitPrice": 7439
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타복류",
+      "saleAmount": 912000.0,
+      "saleQty": 93.0,
+      "avgUnitPrice": 9806
+    },
+    {
       "month": "2026-04",
       "year": "2026",
       "seafoodName": "고등어류",
@@ -36021,6 +39061,14 @@
       "avgUnitPrice": 4975
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타명태류",
+      "saleAmount": 900000.0,
+      "saleQty": 200.0,
+      "avgUnitPrice": 4500
+    },
+    {
       "month": "2025-10",
       "year": "2025",
       "seafoodName": "참꼴뚜기",
@@ -36051,6 +39099,14 @@
       "saleAmount": 896600.0,
       "saleQty": 135.0,
       "avgUnitPrice": 6641
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "갯가재",
+      "saleAmount": 896300.0,
+      "saleQty": 53.0,
+      "avgUnitPrice": 16911
     },
     {
       "month": "2024-08",
@@ -36237,6 +39293,14 @@
       "avgUnitPrice": 2806
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "벵에돔",
+      "saleAmount": 866700.0,
+      "saleQty": 94.2,
+      "avgUnitPrice": 9201
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "문어류",
@@ -36365,6 +39429,14 @@
       "avgUnitPrice": 22447
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "놀래기",
+      "saleAmount": 853000.0,
+      "saleQty": 107.0,
+      "avgUnitPrice": 7972
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "숭어",
@@ -36379,6 +39451,22 @@
       "saleAmount": 852000.0,
       "saleQty": 86.0,
       "avgUnitPrice": 9907
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "쑤기미",
+      "saleAmount": 851000.0,
+      "saleQty": 137.0,
+      "avgUnitPrice": 6212
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "주름미더덕",
+      "saleAmount": 849500.0,
+      "saleQty": 958.0,
+      "avgUnitPrice": 887
     },
     {
       "month": "2024-11",
@@ -36427,6 +39515,14 @@
       "saleAmount": 838500.0,
       "saleQty": 156.0,
       "avgUnitPrice": 5375
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "상어류",
+      "saleAmount": 837000.0,
+      "saleQty": 765.0,
+      "avgUnitPrice": 1094
     },
     {
       "month": "2025-04",
@@ -36525,12 +39621,36 @@
       "avgUnitPrice": 2940
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "둑중개류",
+      "saleAmount": 816100.0,
+      "saleQty": 702.0,
+      "avgUnitPrice": 1163
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "나팔고둥",
+      "saleAmount": 814290.0,
+      "saleQty": 48.0,
+      "avgUnitPrice": 16964
+    },
+    {
       "month": "2024-02",
       "year": "2024",
       "seafoodName": "기타문어류",
       "saleAmount": 813800.0,
       "saleQty": 82.0,
       "avgUnitPrice": 9924
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "(활)기타",
+      "saleAmount": 813400.0,
+      "saleQty": 35.0,
+      "avgUnitPrice": 23240
     },
     {
       "month": "2024-04",
@@ -36813,6 +39933,14 @@
       "avgUnitPrice": 3648
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "달고기류",
+      "saleAmount": 765000.0,
+      "saleQty": 183.0,
+      "avgUnitPrice": 4180
+    },
+    {
       "month": "2026-01",
       "year": "2026",
       "seafoodName": "삼세기",
@@ -36949,6 +40077,14 @@
       "avgUnitPrice": 3542
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "넙치류",
+      "saleAmount": 743700.0,
+      "saleQty": 22.0,
+      "avgUnitPrice": 33805
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "전복",
@@ -37013,6 +40149,14 @@
       "avgUnitPrice": 15935
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "고무꺽정이",
+      "saleAmount": 731380.0,
+      "saleQty": 115.0,
+      "avgUnitPrice": 6360
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "다랑어류",
@@ -37069,12 +40213,28 @@
       "avgUnitPrice": 3033
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "코끼리조개",
+      "saleAmount": 725000.0,
+      "saleQty": 36.0,
+      "avgUnitPrice": 20139
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "달고기류",
       "saleAmount": 723000.0,
       "saleQty": 198.0,
       "avgUnitPrice": 3652
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타갑오징어류",
+      "saleAmount": 722000.0,
+      "saleQty": 84.0,
+      "avgUnitPrice": 8595
     },
     {
       "month": "2025-07",
@@ -37141,6 +40301,14 @@
       "avgUnitPrice": 13673
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "갯가재",
+      "saleAmount": 711000.0,
+      "saleQty": 37.0,
+      "avgUnitPrice": 19216
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "털게",
@@ -37203,6 +40371,14 @@
       "saleAmount": 702100.0,
       "saleQty": 87.0,
       "avgUnitPrice": 8070
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "상어류",
+      "saleAmount": 701200.0,
+      "saleQty": 309.0,
+      "avgUnitPrice": 2269
     },
     {
       "month": "2025-11",
@@ -37413,6 +40589,14 @@
       "avgUnitPrice": 11400
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "달고기류",
+      "saleAmount": 684000.0,
+      "saleQty": 279.0,
+      "avgUnitPrice": 2452
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "불볼락",
@@ -37539,6 +40723,22 @@
       "saleAmount": 670000.0,
       "saleQty": 34.0,
       "avgUnitPrice": 19706
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "흑돔",
+      "saleAmount": 670000.0,
+      "saleQty": 110.0,
+      "avgUnitPrice": 6091
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "미역",
+      "saleAmount": 669000.0,
+      "saleQty": 76.0,
+      "avgUnitPrice": 8803
     },
     {
       "month": "2025-07",
@@ -37731,6 +40931,14 @@
       "saleAmount": 644000.0,
       "saleQty": 180.0,
       "avgUnitPrice": 3578
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "장갱이",
+      "saleAmount": 644000.0,
+      "saleQty": 47.0,
+      "avgUnitPrice": 13702
     },
     {
       "month": "2024-10",
@@ -38229,6 +41437,14 @@
       "avgUnitPrice": 19167
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타가자미류",
+      "saleAmount": 575000.0,
+      "saleQty": 135.0,
+      "avgUnitPrice": 4259
+    },
+    {
       "month": "2026-02",
       "year": "2026",
       "seafoodName": "쥐노래미",
@@ -38413,6 +41629,14 @@
       "avgUnitPrice": 8558
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "부채새우",
+      "saleAmount": 551000.0,
+      "saleQty": 13.0,
+      "avgUnitPrice": 42385
+    },
+    {
       "month": "2024-12",
       "year": "2024",
       "seafoodName": "명주개량조개(황조개)",
@@ -38459,6 +41683,14 @@
       "saleAmount": 546000.0,
       "saleQty": 40.0,
       "avgUnitPrice": 13650
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타다랑어류",
+      "saleAmount": 546000.0,
+      "saleQty": 55.0,
+      "avgUnitPrice": 9927
     },
     {
       "month": "2024-04",
@@ -38803,6 +42035,14 @@
       "saleAmount": 512000.0,
       "saleQty": 56.0,
       "avgUnitPrice": 9143
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타조개류",
+      "saleAmount": 511920.0,
+      "saleQty": 72.0,
+      "avgUnitPrice": 7110
     },
     {
       "month": "2025-02",
@@ -39197,6 +42437,22 @@
       "avgUnitPrice": 3592
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "황강달이",
+      "saleAmount": 483000.0,
+      "saleQty": 135.0,
+      "avgUnitPrice": 3578
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "(활)기타",
+      "saleAmount": 481900.0,
+      "saleQty": 70.0,
+      "avgUnitPrice": 6884
+    },
+    {
       "month": "2026-01",
       "year": "2026",
       "seafoodName": "(활)기타",
@@ -39259,6 +42515,14 @@
       "saleAmount": 476100.0,
       "saleQty": 77.0,
       "avgUnitPrice": 6183
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "반지",
+      "saleAmount": 474000.0,
+      "saleQty": 60.0,
+      "avgUnitPrice": 7900
     },
     {
       "month": "2026-03",
@@ -39405,6 +42669,14 @@
       "avgUnitPrice": 9406
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "장갱이",
+      "saleAmount": 460000.0,
+      "saleQty": 36.0,
+      "avgUnitPrice": 12778
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "기타고둥류",
@@ -39427,6 +42699,14 @@
       "saleAmount": 458000.0,
       "saleQty": 92.0,
       "avgUnitPrice": 4978
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "물가자미",
+      "saleAmount": 457600.0,
+      "saleQty": 200.0,
+      "avgUnitPrice": 2288
     },
     {
       "month": "2025-07",
@@ -39461,6 +42741,14 @@
       "avgUnitPrice": 7578
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "황돔",
+      "saleAmount": 454400.0,
+      "saleQty": 190.0,
+      "avgUnitPrice": 2392
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "왕밤송이게",
@@ -39475,6 +42763,14 @@
       "saleAmount": 453000.0,
       "saleQty": 120.0,
       "avgUnitPrice": 3775
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "성게류",
+      "saleAmount": 453000.0,
+      "saleQty": 66.0,
+      "avgUnitPrice": 6864
     },
     {
       "month": "2024-08",
@@ -39589,6 +42885,14 @@
       "avgUnitPrice": 36667
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "한치꼴뚜기",
+      "saleAmount": 440000.0,
+      "saleQty": 75.0,
+      "avgUnitPrice": 5867
+    },
+    {
       "month": "2025-01",
       "year": "2025",
       "seafoodName": "둑중개류",
@@ -39685,6 +42989,14 @@
       "avgUnitPrice": 3300
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "군소",
+      "saleAmount": 429000.0,
+      "saleQty": 136.0,
+      "avgUnitPrice": 3154
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "가리맛조개(맛)",
@@ -39693,12 +43005,28 @@
       "avgUnitPrice": 10459
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "삼세기",
+      "saleAmount": 426400.0,
+      "saleQty": 157.0,
+      "avgUnitPrice": 2716
+    },
+    {
       "month": "2024-05",
       "year": "2024",
       "seafoodName": "베도라치류",
       "saleAmount": 426000.0,
       "saleQty": 15.0,
       "avgUnitPrice": 28400
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타가자미류",
+      "saleAmount": 425500.0,
+      "saleQty": 169.5,
+      "avgUnitPrice": 2510
     },
     {
       "month": "2026-04",
@@ -39749,6 +43077,14 @@
       "avgUnitPrice": 8612
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "닭새우",
+      "saleAmount": 422000.0,
+      "saleQty": 7.0,
+      "avgUnitPrice": 60286
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "샛돔",
@@ -39765,6 +43101,14 @@
       "avgUnitPrice": 7500
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "웅어",
+      "saleAmount": 419100.0,
+      "saleQty": 8.0,
+      "avgUnitPrice": 52388
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "참다랑어",
@@ -39779,6 +43123,14 @@
       "saleAmount": 418500.0,
       "saleQty": 95.0,
       "avgUnitPrice": 4405
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "대문어",
+      "saleAmount": 418000.0,
+      "saleQty": 12.0,
+      "avgUnitPrice": 34833
     },
     {
       "month": "2026-01",
@@ -39851,6 +43203,14 @@
       "saleAmount": 414000.0,
       "saleQty": 120.0,
       "avgUnitPrice": 3450
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "정어리",
+      "saleAmount": 414000.0,
+      "saleQty": 360.0,
+      "avgUnitPrice": 1150
     },
     {
       "month": "2024-04",
@@ -39963,6 +43323,14 @@
       "saleAmount": 406000.0,
       "saleQty": 29.0,
       "avgUnitPrice": 14000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가무락조개(가무레기)",
+      "saleAmount": 406000.0,
+      "saleQty": 58.0,
+      "avgUnitPrice": 7000
     },
     {
       "month": "2024-05",
@@ -40421,6 +43789,14 @@
       "avgUnitPrice": 39667
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "용치놀래기",
+      "saleAmount": 357000.0,
+      "saleQty": 35.0,
+      "avgUnitPrice": 10200
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "뚝지",
@@ -40491,6 +43867,14 @@
       "saleAmount": 350000.0,
       "saleQty": 35.0,
       "avgUnitPrice": 10000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꼬치고기류",
+      "saleAmount": 350000.0,
+      "saleQty": 100.0,
+      "avgUnitPrice": 3500
     },
     {
       "month": "2025-02",
@@ -40611,6 +43995,14 @@
       "saleAmount": 337000.0,
       "saleQty": 40.0,
       "avgUnitPrice": 8425
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타해면갑각류",
+      "saleAmount": 336000.0,
+      "saleQty": 90.0,
+      "avgUnitPrice": 3733
     },
     {
       "month": "2024-05",
@@ -40813,6 +44205,14 @@
       "avgUnitPrice": 5159
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "먹갈치",
+      "saleAmount": 325000.0,
+      "saleQty": 3.0,
+      "avgUnitPrice": 108333
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "둑중개류",
@@ -40859,6 +44259,14 @@
       "saleAmount": 320000.0,
       "saleQty": 700.0,
       "avgUnitPrice": 457
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타샛멸류",
+      "saleAmount": 320000.0,
+      "saleQty": 640.0,
+      "avgUnitPrice": 500
     },
     {
       "month": "2025-09",
@@ -40949,6 +44357,14 @@
       "avgUnitPrice": 10500
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "가재류",
+      "saleAmount": 314000.0,
+      "saleQty": 16.0,
+      "avgUnitPrice": 19625
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "벌레문치",
@@ -40981,6 +44397,14 @@
       "avgUnitPrice": 12400
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "바리류",
+      "saleAmount": 310000.0,
+      "saleQty": 3.0,
+      "avgUnitPrice": 103333
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "은대구",
@@ -41011,6 +44435,14 @@
       "saleAmount": 306000.0,
       "saleQty": 38.0,
       "avgUnitPrice": 8053
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "붉벤자리",
+      "saleAmount": 306000.0,
+      "saleQty": 45.0,
+      "avgUnitPrice": 6800
     },
     {
       "month": "2024-01",
@@ -41139,6 +44571,14 @@
       "saleAmount": 298100.0,
       "saleQty": 74.0,
       "avgUnitPrice": 4028
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "등가시치",
+      "saleAmount": 298000.0,
+      "saleQty": 62.0,
+      "avgUnitPrice": 4806
     },
     {
       "month": "2025-05",
@@ -41293,6 +44733,14 @@
       "avgUnitPrice": 19067
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "자주복",
+      "saleAmount": 285000.0,
+      "saleQty": 110.0,
+      "avgUnitPrice": 2591
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "쑤기미",
@@ -41307,6 +44755,14 @@
       "saleAmount": 284000.0,
       "saleQty": 66.0,
       "avgUnitPrice": 4303
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타키크리류",
+      "saleAmount": 284000.0,
+      "saleQty": 35.0,
+      "avgUnitPrice": 8114
     },
     {
       "month": "2025-12",
@@ -41379,6 +44835,14 @@
       "saleAmount": 280000.0,
       "saleQty": 20.0,
       "avgUnitPrice": 14000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "자리돔",
+      "saleAmount": 280000.0,
+      "saleQty": 60.0,
+      "avgUnitPrice": 4667
     },
     {
       "month": "2024-06",
@@ -41653,6 +45117,14 @@
       "avgUnitPrice": 5889
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "베도라치류",
+      "saleAmount": 265000.0,
+      "saleQty": 9.0,
+      "avgUnitPrice": 29444
+    },
+    {
       "month": "2024-10",
       "year": "2024",
       "seafoodName": "기타해면갑각류",
@@ -41773,6 +45245,14 @@
       "avgUnitPrice": 2804
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꼬치고기",
+      "saleAmount": 257700.0,
+      "saleQty": 94.0,
+      "avgUnitPrice": 2741
+    },
+    {
       "month": "2025-01",
       "year": "2025",
       "seafoodName": "먹장어",
@@ -41811,6 +45291,14 @@
       "saleAmount": 255900.0,
       "saleQty": 24.0,
       "avgUnitPrice": 10662
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "은대구",
+      "saleAmount": 255860.0,
+      "saleQty": 79.0,
+      "avgUnitPrice": 3239
     },
     {
       "month": "2024-02",
@@ -42037,6 +45525,14 @@
       "avgUnitPrice": 2008
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "흰꼴뚜기",
+      "saleAmount": 240800.0,
+      "saleQty": 5.0,
+      "avgUnitPrice": 48160
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "기타고둥류",
@@ -42125,6 +45621,14 @@
       "avgUnitPrice": 11333
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "키크리류",
+      "saleAmount": 238000.0,
+      "saleQty": 36.0,
+      "avgUnitPrice": 6611
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "둑중개류",
@@ -42147,6 +45651,14 @@
       "saleAmount": 235600.0,
       "saleQty": 40.0,
       "avgUnitPrice": 5890
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타문어류",
+      "saleAmount": 235500.0,
+      "saleQty": 48.0,
+      "avgUnitPrice": 4906
     },
     {
       "month": "2024-05",
@@ -42221,6 +45733,14 @@
       "avgUnitPrice": 2473
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "바리류",
+      "saleAmount": 230000.0,
+      "saleQty": 2.0,
+      "avgUnitPrice": 115000
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "옥두어",
@@ -42283,6 +45803,14 @@
       "saleAmount": 226000.0,
       "saleQty": 3.0,
       "avgUnitPrice": 75333
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타복류",
+      "saleAmount": 226000.0,
+      "saleQty": 30.0,
+      "avgUnitPrice": 7533
     },
     {
       "month": "2025-11",
@@ -42581,6 +46109,14 @@
       "avgUnitPrice": 69667
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "촉수류",
+      "saleAmount": 209000.0,
+      "saleQty": 19.0,
+      "avgUnitPrice": 11000
+    },
+    {
       "month": "2025-10",
       "year": "2025",
       "seafoodName": "갯가재",
@@ -42707,6 +46243,14 @@
       "saleAmount": 201900.0,
       "saleQty": 140.0,
       "avgUnitPrice": 1442
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "참복",
+      "saleAmount": 201900.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 20190
     },
     {
       "month": "2024-07",
@@ -42869,6 +46413,14 @@
       "avgUnitPrice": 9276
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타꼬치고기류",
+      "saleAmount": 194000.0,
+      "saleQty": 168.0,
+      "avgUnitPrice": 1155
+    },
+    {
       "month": "2026-02",
       "year": "2026",
       "seafoodName": "바지락",
@@ -42883,6 +46435,14 @@
       "saleAmount": 193900.0,
       "saleQty": 4.0,
       "avgUnitPrice": 48475
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "(건)기타",
+      "saleAmount": 193000.0,
+      "saleQty": 24.0,
+      "avgUnitPrice": 8042
     },
     {
       "month": "2024-05",
@@ -42939,6 +46499,14 @@
       "saleAmount": 190000.0,
       "saleQty": 48.0,
       "avgUnitPrice": 3958
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타해면패류",
+      "saleAmount": 190000.0,
+      "saleQty": 145.0,
+      "avgUnitPrice": 1310
     },
     {
       "month": "2025-02",
@@ -43035,6 +46603,22 @@
       "saleAmount": 186000.0,
       "saleQty": 20.0,
       "avgUnitPrice": 9300
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "부채새우",
+      "saleAmount": 186000.0,
+      "saleQty": 24.0,
+      "avgUnitPrice": 7750
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "피조개(큰피조개)",
+      "saleAmount": 185600.0,
+      "saleQty": 103.0,
+      "avgUnitPrice": 1802
     },
     {
       "month": "2024-12",
@@ -43653,6 +47237,14 @@
       "avgUnitPrice": 2944
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "혹돔",
+      "saleAmount": 159000.0,
+      "saleQty": 4.0,
+      "avgUnitPrice": 39750
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "나팔고둥",
@@ -43691,6 +47283,14 @@
       "saleAmount": 158000.0,
       "saleQty": 48.0,
       "avgUnitPrice": 3292
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꺽정이",
+      "saleAmount": 158000.0,
+      "saleQty": 130.0,
+      "avgUnitPrice": 1215
     },
     {
       "month": "2025-03",
@@ -43875,6 +47475,14 @@
       "saleAmount": 150000.0,
       "saleQty": 300.0,
       "avgUnitPrice": 500
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타바지락류",
+      "saleAmount": 150000.0,
+      "saleQty": 9.0,
+      "avgUnitPrice": 16667
     },
     {
       "month": "2025-02",
@@ -44093,6 +47701,14 @@
       "avgUnitPrice": 5975
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "자바리",
+      "saleAmount": 143400.0,
+      "saleQty": 20.0,
+      "avgUnitPrice": 7170
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "미거지",
@@ -44181,6 +47797,14 @@
       "avgUnitPrice": 9400
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "피뿔고둥",
+      "saleAmount": 140500.0,
+      "saleQty": 109.0,
+      "avgUnitPrice": 1289
+    },
+    {
       "month": "2024-11",
       "year": "2024",
       "seafoodName": "망둑어류",
@@ -44245,6 +47869,14 @@
       "avgUnitPrice": 1972
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "매퉁이",
+      "saleAmount": 140000.0,
+      "saleQty": 325.0,
+      "avgUnitPrice": 431
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "둑중개류",
@@ -44291,6 +47923,14 @@
       "saleAmount": 138000.0,
       "saleQty": 25.0,
       "avgUnitPrice": 5520
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "둑중개류",
+      "saleAmount": 138000.0,
+      "saleQty": 118.0,
+      "avgUnitPrice": 1169
     },
     {
       "month": "2024-05",
@@ -44387,6 +48027,14 @@
       "saleAmount": 135000.0,
       "saleQty": 21.0,
       "avgUnitPrice": 6429
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "잿방어",
+      "saleAmount": 135000.0,
+      "saleQty": 81.0,
+      "avgUnitPrice": 1667
     },
     {
       "month": "2024-09",
@@ -44517,6 +48165,14 @@
       "avgUnitPrice": 8600
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "노랑가오리",
+      "saleAmount": 129000.0,
+      "saleQty": 70.0,
+      "avgUnitPrice": 1843
+    },
+    {
       "month": "2025-02",
       "year": "2025",
       "seafoodName": "놀래기",
@@ -44621,6 +48277,14 @@
       "avgUnitPrice": 1786
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타해면갑각류",
+      "saleAmount": 125000.0,
+      "saleQty": 40.0,
+      "avgUnitPrice": 3125
+    },
+    {
       "month": "2026-02",
       "year": "2026",
       "seafoodName": "새꼬막(피조개)",
@@ -44651,6 +48315,14 @@
       "saleAmount": 123100.0,
       "saleQty": 74.0,
       "avgUnitPrice": 1664
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "은대구",
+      "saleAmount": 123100.0,
+      "saleQty": 49.0,
+      "avgUnitPrice": 2512
     },
     {
       "month": "2024-12",
@@ -44699,6 +48371,14 @@
       "saleAmount": 122000.0,
       "saleQty": 20.0,
       "avgUnitPrice": 6100
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "돌가자미",
+      "saleAmount": 121900.0,
+      "saleQty": 131.0,
+      "avgUnitPrice": 931
     },
     {
       "month": "2025-02",
@@ -44773,6 +48453,14 @@
       "avgUnitPrice": 29750
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "곤어리",
+      "saleAmount": 119000.0,
+      "saleQty": 154.0,
+      "avgUnitPrice": 773
+    },
+    {
       "month": "2026-05",
       "year": "2026",
       "seafoodName": "다랑어류",
@@ -44827,6 +48515,14 @@
       "saleAmount": 114500.0,
       "saleQty": 14.5,
       "avgUnitPrice": 7897
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "흰꼴뚜기",
+      "saleAmount": 114500.0,
+      "saleQty": 2.0,
+      "avgUnitPrice": 57250
     },
     {
       "month": "2024-02",
@@ -44979,6 +48675,14 @@
       "saleAmount": 110000.0,
       "saleQty": 10.0,
       "avgUnitPrice": 11000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "개복치",
+      "saleAmount": 110000.0,
+      "saleQty": 5.0,
+      "avgUnitPrice": 22000
     },
     {
       "month": "2024-01",
@@ -45349,6 +49053,14 @@
       "avgUnitPrice": 33333
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "주둥치류",
+      "saleAmount": 100000.0,
+      "saleQty": 160.0,
+      "avgUnitPrice": 625
+    },
+    {
       "month": "2024-04",
       "year": "2024",
       "seafoodName": "둑중개류",
@@ -45411,6 +49123,14 @@
       "saleAmount": 98000.0,
       "saleQty": 6.0,
       "avgUnitPrice": 16333
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꼬치고기",
+      "saleAmount": 98000.0,
+      "saleQty": 90.0,
+      "avgUnitPrice": 1089
     },
     {
       "month": "2024-09",
@@ -45491,6 +49211,14 @@
       "saleAmount": 94600.0,
       "saleQty": 3.0,
       "avgUnitPrice": 31533
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "키조개",
+      "saleAmount": 94200.0,
+      "saleQty": 30.0,
+      "avgUnitPrice": 3140
     },
     {
       "month": "2025-11",
@@ -45611,6 +49339,14 @@
       "saleAmount": 91500.0,
       "saleQty": 20.0,
       "avgUnitPrice": 4575
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "자바리",
+      "saleAmount": 91100.0,
+      "saleQty": 1.0,
+      "avgUnitPrice": 91100
     },
     {
       "month": "2024-04",
@@ -45757,6 +49493,14 @@
       "avgUnitPrice": 18000
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타민어류",
+      "saleAmount": 90000.0,
+      "saleQty": 15.0,
+      "avgUnitPrice": 6000
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "기타검정우럭류",
@@ -45805,6 +49549,14 @@
       "avgUnitPrice": 88000
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "혹돔",
+      "saleAmount": 88000.0,
+      "saleQty": 12.0,
+      "avgUnitPrice": 7333
+    },
+    {
       "month": "2025-12",
       "year": "2025",
       "seafoodName": "농어류",
@@ -45827,6 +49579,14 @@
       "saleAmount": 87000.0,
       "saleQty": 13.0,
       "avgUnitPrice": 6692
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타키크리류",
+      "saleAmount": 87000.0,
+      "saleQty": 15.0,
+      "avgUnitPrice": 5800
     },
     {
       "month": "2024-09",
@@ -45915,6 +49675,14 @@
       "saleAmount": 85000.0,
       "saleQty": 36.0,
       "avgUnitPrice": 2361
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "닭새우",
+      "saleAmount": 85000.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 8500
     },
     {
       "month": "2024-07",
@@ -46085,6 +49853,14 @@
       "avgUnitPrice": 533
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꼬막",
+      "saleAmount": 80000.0,
+      "saleQty": 30.0,
+      "avgUnitPrice": 2667
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "기타가자미류",
@@ -46181,6 +49957,14 @@
       "avgUnitPrice": 400
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "도루묵",
+      "saleAmount": 78000.0,
+      "saleQty": 30.0,
+      "avgUnitPrice": 2600
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "털게",
@@ -46261,6 +50045,14 @@
       "avgUnitPrice": 2533
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꼬막",
+      "saleAmount": 76000.0,
+      "saleQty": 20.0,
+      "avgUnitPrice": 3800
+    },
+    {
       "month": "2024-02",
       "year": "2024",
       "seafoodName": "꼬치고기류",
@@ -46323,6 +50115,14 @@
       "saleAmount": 75000.0,
       "saleQty": 10.0,
       "avgUnitPrice": 7500
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "털게",
+      "saleAmount": 75000.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
     },
     {
       "month": "2024-06",
@@ -46565,12 +50365,36 @@
       "avgUnitPrice": 7000
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "준치",
+      "saleAmount": 70000.0,
+      "saleQty": 28.0,
+      "avgUnitPrice": 2500
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "쌍동가리",
+      "saleAmount": 70000.0,
+      "saleQty": 1.0,
+      "avgUnitPrice": 70000
+    },
+    {
       "month": "2025-09",
       "year": "2025",
       "seafoodName": "밀복",
       "saleAmount": 69600.0,
       "saleQty": 10.0,
       "avgUnitPrice": 6960
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "전어",
+      "saleAmount": 69300.0,
+      "saleQty": 54.0,
+      "avgUnitPrice": 1283
     },
     {
       "month": "2024-04",
@@ -46797,12 +50621,28 @@
       "avgUnitPrice": 32500
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "강담돔",
+      "saleAmount": 65000.0,
+      "saleQty": 2.6,
+      "avgUnitPrice": 25000
+    },
+    {
       "month": "2025-03",
       "year": "2025",
       "seafoodName": "파래류",
       "saleAmount": 64000.0,
       "saleQty": 8.0,
       "avgUnitPrice": 8000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "꺽정이",
+      "saleAmount": 64000.0,
+      "saleQty": 110.0,
+      "avgUnitPrice": 582
     },
     {
       "month": "2025-12",
@@ -46875,6 +50715,14 @@
       "saleAmount": 63000.0,
       "saleQty": 30.0,
       "avgUnitPrice": 2100
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참복",
+      "saleAmount": 63000.0,
+      "saleQty": 3.0,
+      "avgUnitPrice": 21000
     },
     {
       "month": "2024-11",
@@ -47061,6 +50909,14 @@
       "avgUnitPrice": 4000
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "보리멸",
+      "saleAmount": 60000.0,
+      "saleQty": 45.0,
+      "avgUnitPrice": 1333
+    },
+    {
       "month": "2024-09",
       "year": "2024",
       "seafoodName": "가리맛조개(맛)",
@@ -47237,6 +51093,14 @@
       "avgUnitPrice": 2037
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "수조기",
+      "saleAmount": 55000.0,
+      "saleQty": 33.0,
+      "avgUnitPrice": 1667
+    },
+    {
       "month": "2025-11",
       "year": "2025",
       "seafoodName": "은대구",
@@ -47317,6 +51181,14 @@
       "avgUnitPrice": 4417
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "찰가자미",
+      "saleAmount": 52500.0,
+      "saleQty": 7.5,
+      "avgUnitPrice": 7000
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "부시리",
@@ -47365,6 +51237,14 @@
       "avgUnitPrice": 17333
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "털게",
+      "saleAmount": 52000.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "군평선이",
@@ -47395,6 +51275,14 @@
       "saleAmount": 50900.0,
       "saleQty": 7.0,
       "avgUnitPrice": 7271
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "터봇",
+      "saleAmount": 50400.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
     },
     {
       "month": "2024-04",
@@ -47597,6 +51485,14 @@
       "avgUnitPrice": 4800
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타꼬치고기류",
+      "saleAmount": 48000.0,
+      "saleQty": 48.0,
+      "avgUnitPrice": 1000
+    },
+    {
       "month": "2025-06",
       "year": "2025",
       "seafoodName": "가리맛조개(맛)",
@@ -47749,6 +51645,14 @@
       "avgUnitPrice": 15000
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "졸복",
+      "saleAmount": 45000.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 4500
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "미거지",
@@ -47859,6 +51763,22 @@
       "saleAmount": 42000.0,
       "saleQty": 10.0,
       "avgUnitPrice": 4200
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "개상어",
+      "saleAmount": 42000.0,
+      "saleQty": 5.0,
+      "avgUnitPrice": 8400
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "동죽(동조개)",
+      "saleAmount": 41880.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 4188
     },
     {
       "month": "2024-03",
@@ -48021,6 +51941,14 @@
       "avgUnitPrice": 0
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "붉바리",
+      "saleAmount": 40000.0,
+      "saleQty": 1.0,
+      "avgUnitPrice": 40000
+    },
+    {
       "month": "2024-10",
       "year": "2024",
       "seafoodName": "넙치류",
@@ -48035,6 +51963,14 @@
       "saleAmount": 39200.0,
       "saleQty": 0.0,
       "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "기타검정우럭류",
+      "saleAmount": 39200.0,
+      "saleQty": 7.0,
+      "avgUnitPrice": 5600
     },
     {
       "month": "2025-07",
@@ -48059,6 +51995,14 @@
       "saleAmount": 38000.0,
       "saleQty": 2.0,
       "avgUnitPrice": 19000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "청각",
+      "saleAmount": 38000.0,
+      "saleQty": 13.0,
+      "avgUnitPrice": 2923
     },
     {
       "month": "2024-06",
@@ -48155,6 +52099,14 @@
       "saleAmount": 36000.0,
       "saleQty": 2.0,
       "avgUnitPrice": 18000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "꽁치",
+      "saleAmount": 36000.0,
+      "saleQty": 4.0,
+      "avgUnitPrice": 9000
     },
     {
       "month": "2024-04",
@@ -48293,6 +52245,14 @@
       "avgUnitPrice": 351
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "아홉동가리",
+      "saleAmount": 33600.0,
+      "saleQty": 2.4,
+      "avgUnitPrice": 14000
+    },
+    {
       "month": "2024-07",
       "year": "2024",
       "seafoodName": "게류",
@@ -48413,6 +52373,14 @@
       "avgUnitPrice": 32000
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타해조류",
+      "saleAmount": 32000.0,
+      "saleQty": 12.0,
+      "avgUnitPrice": 2667
+    },
+    {
       "month": "2026-05",
       "year": "2026",
       "seafoodName": "가리맛조개(맛)",
@@ -48427,6 +52395,14 @@
       "saleAmount": 31500.0,
       "saleQty": 20.0,
       "avgUnitPrice": 1575
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "제주쏠치",
+      "saleAmount": 31500.0,
+      "saleQty": 0.9,
+      "avgUnitPrice": 35000
     },
     {
       "month": "2025-07",
@@ -48475,6 +52451,14 @@
       "saleAmount": 31000.0,
       "saleQty": 5.0,
       "avgUnitPrice": 6200
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "쏙",
+      "saleAmount": 31000.0,
+      "saleQty": 11.0,
+      "avgUnitPrice": 2818
     },
     {
       "month": "2024-12",
@@ -48717,6 +52701,14 @@
       "avgUnitPrice": 20000
     },
     {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "달강어",
+      "saleAmount": 30000.0,
+      "saleQty": 2.0,
+      "avgUnitPrice": 15000
+    },
+    {
       "month": "2025-06",
       "year": "2025",
       "seafoodName": "까치상어",
@@ -48877,6 +52869,14 @@
       "avgUnitPrice": 4500
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "쌍동가리",
+      "saleAmount": 27000.0,
+      "saleQty": 5.0,
+      "avgUnitPrice": 5400
+    },
+    {
       "month": "2024-03",
       "year": "2024",
       "seafoodName": "아귀류",
@@ -49011,6 +53011,30 @@
       "saleAmount": 25000.0,
       "saleQty": 24.0,
       "avgUnitPrice": 1042
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "다금바리",
+      "saleAmount": 25000.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 2500
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타민물게류",
+      "saleAmount": 25000.0,
+      "saleQty": 30.0,
+      "avgUnitPrice": 833
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "반지",
+      "saleAmount": 25000.0,
+      "saleQty": 15.0,
+      "avgUnitPrice": 1667
     },
     {
       "month": "2024-05",
@@ -49197,6 +53221,14 @@
       "avgUnitPrice": 4200
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "동죽(동조개)",
+      "saleAmount": 20940.0,
+      "saleQty": 5.0,
+      "avgUnitPrice": 4188
+    },
+    {
       "month": "2024-06",
       "year": "2024",
       "seafoodName": "터봇",
@@ -49357,6 +53389,22 @@
       "avgUnitPrice": 6667
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "가다랑어",
+      "saleAmount": 20000.0,
+      "saleQty": 18.0,
+      "avgUnitPrice": 1111
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "점농어",
+      "saleAmount": 20000.0,
+      "saleQty": 2.0,
+      "avgUnitPrice": 10000
+    },
+    {
       "month": "2025-04",
       "year": "2025",
       "seafoodName": "접시조개",
@@ -49379,6 +53427,14 @@
       "saleAmount": 19000.0,
       "saleQty": 5.0,
       "avgUnitPrice": 3800
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타해면연체류",
+      "saleAmount": 19000.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 1900
     },
     {
       "month": "2024-10",
@@ -49461,6 +53517,14 @@
       "avgUnitPrice": 8500
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "달강어",
+      "saleAmount": 17000.0,
+      "saleQty": 4.0,
+      "avgUnitPrice": 4250
+    },
+    {
       "month": "2024-01",
       "year": "2024",
       "seafoodName": "베도라치",
@@ -49523,6 +53587,22 @@
       "saleAmount": 16000.0,
       "saleQty": 6.0,
       "avgUnitPrice": 2667
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "뚝지",
+      "saleAmount": 16000.0,
+      "saleQty": 1.0,
+      "avgUnitPrice": 16000
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "물미거지",
+      "saleAmount": 16000.0,
+      "saleQty": 20.0,
+      "avgUnitPrice": 800
     },
     {
       "month": "2026-03",
@@ -49667,6 +53747,14 @@
       "saleAmount": 13200.0,
       "saleQty": 3.0,
       "avgUnitPrice": 4400
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "청각",
+      "saleAmount": 13000.0,
+      "saleQty": 2.0,
+      "avgUnitPrice": 6500
     },
     {
       "month": "2026-04",
@@ -50101,6 +54189,14 @@
       "avgUnitPrice": 10000
     },
     {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "숭어류",
+      "saleAmount": 4400.0,
+      "saleQty": 2.0,
+      "avgUnitPrice": 2200
+    },
+    {
       "month": "2024-08",
       "year": "2024",
       "seafoodName": "미거지",
@@ -50187,6 +54283,14 @@
       "saleAmount": 2000.0,
       "saleQty": 0.5,
       "avgUnitPrice": 4000
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "기타노래미류",
+      "saleAmount": 2000.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 200
     },
     {
       "month": "2025-06",
@@ -51243,6 +55347,94 @@
       "saleAmount": 0.0,
       "saleQty": 10.0,
       "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "톱날꽃게",
+      "saleAmount": 0.0,
+      "saleQty": 90.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "톳",
+      "saleAmount": 0.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "참게",
+      "saleAmount": 0.0,
+      "saleQty": 1.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "잔뿔소라",
+      "saleAmount": 0.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "비단가리비",
+      "saleAmount": 0.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-06",
+      "year": "2026",
+      "seafoodName": "피뿔고둥",
+      "saleAmount": 0.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "재첩류",
+      "saleAmount": 0.0,
+      "saleQty": 40.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "톱날꽃게",
+      "saleAmount": 0.0,
+      "saleQty": 55.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "갈색띠매물고둥(서해바다골뱅이)",
+      "saleAmount": 0.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "만새기류",
+      "saleAmount": 0.0,
+      "saleQty": 10.0,
+      "avgUnitPrice": 0
+    },
+    {
+      "month": "2026-07",
+      "year": "2026",
+      "seafoodName": "미역",
+      "saleAmount": 0.0,
+      "saleQty": 0.0,
+      "avgUnitPrice": 0
     }
   ],
   "_meta": {
@@ -51280,10 +55472,15 @@
       "2026-02",
       "2026-03",
       "2026-04",
-      "2026-05"
+      "2026-05",
+      "2026-06",
+      "2026-07"
     ],
-    "totalSpecies": 364,
-    "totalRecords": 5557,
-    "generatedAt": "2026-06-05T06:16:40+09:00"
+    "totalSpecies": 369,
+    "totalRecords": 6028,
+    "generatedAt": "2026-07-07T11:18:06+09:00",
+    "samplingBasis": "해양수산부 위판장별 위탁판매 API baseDt=YYYYMM01 월별 스냅샷",
+    "includedPartialMonth": "2026-07",
+    "coverageNote": "2026년 7월은 조회 가능한 2026-07-01 기준 부분 데이터까지 반영"
   }
 }

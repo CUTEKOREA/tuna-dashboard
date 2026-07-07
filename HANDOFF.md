@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-07 11:20 KST — `/korea-market` 위탁판매 2026-07 조회 가능분 반영 준비** [CC]:
+> - 사용자 요청으로 `/korea-market` 위탁판매 데이터의 2026년 범위를 기존 1~5월에서 1~7월로 갱신. 해양수산부 위판장별 위탁판매 API 기준 `2026-06-01` 43,584건, `2026-07-01` 20,400건을 조회해 `public/data/consignment_3year.json`에 병합.
+> - `scripts/fetch_3year_consignment_fast.py`와 `scripts/fetch_3year_consignment.py`의 2026년 수집 범위를 1~7월로 확장하고, 재생성 시 `data/`와 배포 포함 경로 `public/data/`에 동시에 저장하도록 수정.
+> - `/api/consignment`의 2026 진행 라벨이 최신월이 부분집계일 때 `1~7월 (실집계 7개월, 7월 부분집계 포함)`으로 표시되도록 보정. 메타데이터에 `includedPartialMonth=2026-07`, `coverageNote`를 추가.
+> - 검증: 두 JSON 해시 동일, 최신월 `2026-07`, 2026 월 목록 `01~07`, `totalRecords=6028`, `totalSpecies=369`. `npm run typecheck` 및 `npm run build` 통과. 로컬 `http://localhost:3000/api/consignment`에서 `latestAuctionMonth=2026-07`, 부분집계 라벨 정상 확인.
+> - 사용자 명시 배포 요청이 있어 이번 커밋을 `origin/main`에 push해 Vercel 자동 배포 예정. 기존/무관 미추적 패치·테스트 스크립트는 그대로 보존.
+
 > **2026-07-06 19:17 KST — BNI Global API 인사이트 제안 큐 추가** [CC]:
 > - 사용자 요청으로 독립 `/bni-global` 대시보드에 활용 가능한 API를 연결한 인사이트 제안 큐를 추가.
 > - `scripts/build_bni_global_dashboard.mjs`가 `apiConnections` 10건과 `insightProposals` 15건을 생성하도록 확장. 연결 축은 BNI PDF, FRED, KCS, UN Comtrade, WITS(`/api/wits`), Tariffs(`/api/tariffs`), ECOS/환율(`/api/exchange`), Trade Macro(`/api/trade-macro`), KAMIS, USDA FAS.

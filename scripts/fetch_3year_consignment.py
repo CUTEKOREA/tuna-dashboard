@@ -19,7 +19,10 @@ from pathlib import Path
 SERVICE_KEY = "6438ce04ca4a3ec4bcc72f295ab386baa74e52cacce9f725803e18cd8c6d1030"
 BASE_URL = "https://apis.data.go.kr/1192000/select0040List/getselect0040List"
 OUTPUT_DIR = Path(__file__).parent.parent / "data"
+PUBLIC_OUTPUT_DIR = Path(__file__).parent.parent / "public" / "data"
 MAX_ROWS = 100  # API hard limit
+TARGET_MONTHS_2026 = range(1, 8)
+INCLUDED_PARTIAL_MONTH = "2026-07"
 
 # SSL bypass for data.go.kr self-signed cert chain
 SSL_CTX = ssl.create_default_context()
@@ -165,6 +168,9 @@ def build_dashboard_data(agg: dict) -> dict:
             "totalSpecies": len(set(item["seafoodName"] for item in flat_items)),
             "totalRecords": len(flat_items),
             "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%S+09:00"),
+            "samplingBasis": "해양수산부 위판장별 위탁판매 API baseDt=YYYYMM01 월별 스냅샷",
+            "includedPartialMonth": INCLUDED_PARTIAL_MONTH,
+            "coverageNote": "2026년 7월은 조회 가능한 2026-07-01 기준 부분 데이터까지 반영",
         },
     }
 
@@ -174,7 +180,7 @@ def main():
     
     for year in [2024, 2025, 2026]:
         if year == 2026:
-            months = range(1, 6)  # Jan-May 2026
+            months = TARGET_MONTHS_2026
         else:
             months = range(1, 13)
         
@@ -203,14 +209,14 @@ def main():
         for s in species_list[:5]:
             print(f"    {s['rank']:>2}. {s['seafoodName']:<12s} | {s['saleAmount']/1e8:>10,.1f}억원 | {s['saleQty']/1000:>8,.1f}t | ₩{s['avgUnitPrice']:>8,}/kg")
     
-    # Save
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    output_path = OUTPUT_DIR / "consignment_3year.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(dashboard_data, f, ensure_ascii=False, indent=2)
-    
-    print(f"\n✅ Saved to: {output_path}")
-    print(f"   File size: {output_path.stat().st_size / 1024:.1f} KB")
+    # Save both local analysis data and the deployment-included public copy.
+    for output_dir in [OUTPUT_DIR, PUBLIC_OUTPUT_DIR]:
+        output_dir.mkdir(parents=True, exist_ok=True)
+        output_path = output_dir / "consignment_3year.json"
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(dashboard_data, f, ensure_ascii=False, indent=2)
+        print(f"\n✅ Saved to: {output_path}")
+        print(f"   File size: {output_path.stat().st_size / 1024:.1f} KB")
 
 
 if __name__ == "__main__":

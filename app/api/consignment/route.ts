@@ -92,10 +92,12 @@ export async function GET() {
       if (months2026.length > 0) {
         const firstMonth = Math.min(...months2026);
         const lastMonth = Math.max(...months2026);
+        const latestMonthKey = `2026-${String(lastMonth).padStart(2, '0')}`;
+        const includesPartialLatestMonth = baseData._meta.includedPartialMonth === latestMonthKey;
         baseData._meta.partialYears['2026'] = {
           isPartial: true,
           monthsCovered: months2026.length,
-          label: `${firstMonth}~${lastMonth}월 (실집계 ${months2026.length}개월)`
+          label: `${firstMonth}~${lastMonth}월 (실집계 ${months2026.length}개월${includesPartialLatestMonth ? `, ${lastMonth}월 부분집계 포함` : ''})`
         };
       }
     }
