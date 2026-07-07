@@ -160,6 +160,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        {/* Naver Search Advisor */}
+        <meta name="naver-site-verification" content="6f739241c5a353219ffd1b90d90ffbcbc478e89f" />
         {/* GA4 */}
         <script
           async
