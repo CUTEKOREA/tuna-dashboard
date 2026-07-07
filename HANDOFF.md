@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-07 12:47 KST — `/korea-market` 어종별 평균 단가 추이 차트 로컬 추가** [CC]:
+> - 사용자 요청으로 `components/KoreaConsignmentDashboard.tsx`에 선택 기간 거래금액 상위 6개 어종의 월별 평균 단가 라인차트를 추가. 평균 단가는 기존 위탁판매 월별 집계의 `avgUnitPrice`(위탁판매금액 ÷ 위탁판매물량)를 사용.
+> - 차트는 `2026`, `2025`, `2024`, `3개년 요약` 탭 상태에 맞춰 표시되며, 2026년 기준 7월 부분집계 데이터도 자연스럽게 포함.
+> - 검증: `npm run typecheck`, `npm run build` 통과. 로컬 `http://localhost:3000/korea-market` Puppeteer 확인: `2026년 어종별 평균 단가 추이` 제목, 6개 라인, 범례(`갈치류`, `김`, `꽃게`, `낙지`, `돌김`, `뱀장어`), horizontal overflow 0. 배포는 하지 않음.
+> - 기존/무관 dirty 파일(`artifacts/value_chain_widget_inventory.json`, 미추적 패치·테스트 스크립트 등)은 그대로 보존.
+
 > 🧠 **2026-07-07 KST — agri_data 코퍼스 교차 스터디 → 참치 net-new 위젯 2종 추가** [CC]:
 > - 배경: `~/tuna_rag` 로컬 RAG(md 1,912건, bge-m3 임베딩)를 qwen3-coder:30b(map)/gemma4:12b(reduce) 교차 분석한 스터디 산출물(`~/tuna_rag/study`)을 대시보드 보강에 활용. Claude 토큰 0으로 코퍼스 소화(전량 로컬 Ollama).
 > - **검증 우선**: value-chain(132 위젯) 대조 결과 시세·사시미·EU ATQ·교차통찰은 이미 성숙 → 중복 제외. 진짜 net-new 2종만 구현.

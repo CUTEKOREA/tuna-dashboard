@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend
+  BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend
 } from 'recharts';
 import { 
   TrendingUp, Anchor, ShieldCheck, DollarSign, Calendar,
@@ -25,6 +25,8 @@ const NETWORK_LABELS: Record<string, string> = {
   fbx_freight: '해상 운임',
 };
 
+const PRICE_TREND_COLORS = ['#38bdf8', '#f59e0b', '#10b981', '#a78bfa', '#f43f5e', '#22d3ee'];
+
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
@@ -38,6 +40,25 @@ const CustomTooltip = ({ active, payload, label }: any) => {
             </div>
           );
         })}
+      </div>
+    );
+  }
+  return null;
+}
+
+const UnitPriceTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    const validPayload = payload.filter((entry: any) => typeof entry.value === 'number');
+    if (validPayload.length === 0) return null;
+    return (
+      <div className={styles.customTooltip}>
+        <p className={styles.tooltipLabel}>{label}</p>
+        {validPayload.map((entry: any, index: number) => (
+          <div key={index} className={styles.tooltipValue}>
+            <span style={{ color: entry.color }}>{entry.name}</span>
+            <strong>₩{Math.round(entry.value).toLocaleString()} / kg</strong>
+          </div>
+        ))}
       </div>
     );
   }
@@ -112,6 +133,37 @@ export default function KoreaConsignmentDashboard() {
   };
 
   const monthsToShow = activeTab === 'all' ? [] : getMonthsForYear(activeTab);
+
+  const getUnitPriceTrend = () => {
+    const months = activeTab === 'all'
+      ? Object.keys(monthlyDetail).sort()
+      : getMonthsForYear(activeTab).sort();
+
+    const amountBySpecies = new Map<string, number>();
+    months.forEach(month => {
+      (monthlyDetail[month] || []).forEach((item: any) => {
+        amountBySpecies.set(item.seafoodName, (amountBySpecies.get(item.seafoodName) || 0) + (item.saleAmount || 0));
+      });
+    });
+
+    const species = Array.from(amountBySpecies.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 6)
+      .map(([name]) => name);
+
+    const trendData = months.map(month => {
+      const row: Record<string, string | number | null> = { month: month.replace('-', '.') };
+      species.forEach(name => {
+        const found = (monthlyDetail[month] || []).find((item: any) => item.seafoodName === name);
+        row[name] = found?.avgUnitPrice ?? null;
+      });
+      return row;
+    });
+
+    return { species, trendData };
+  };
+
+  const unitPriceTrend = getUnitPriceTrend();
 
   return (
     <div style={{ padding: '0 1.5rem 3rem', color: '#f8fafc', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
@@ -397,6 +449,51 @@ export default function KoreaConsignmentDashboard() {
           }}
         />
       </div>
+
+      {unitPriceTrend.species.length > 0 && (
+        <div style={{ marginTop: '1.5rem' }}>
+          <WidgetCard
+            title={activeTab === 'all' ? '3개년 어종별 평균 단가 추이' : `${activeTab}년 어종별 평균 단가 추이`}
+            icon={DollarSign}
+            iconColor="#f59e0b"
+            pillar="S4"
+            cardDesc="월별 평균 단가 = 위탁판매금액 ÷ 위탁판매물량. 선택 기간 거래금액 상위 6개 어종 기준"
+            unit="원/kg"
+            telemetry={{ status: data ? 'SYNCED' : 'STATIC', syncDate: lastDataMonth }}
+            chartHeight={360}
+            chart={
+              <LineChart data={unitPriceTrend.trendData} margin={{ top: 24, right: 24, left: 8, bottom: 24 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(140,170,255,0.12)" vertical={false} />
+                <XAxis dataKey="month" stroke="#64748b" tick={{ fontSize: 10 }} />
+                <YAxis stroke="#64748b" tick={{ fontSize: 10 }} tickFormatter={(val) => `${Math.round(Number(val) / 1000)}천`} />
+                <RechartsTooltip content={<UnitPriceTooltip />} cursor={{ stroke: 'rgba(148, 163, 184, 0.35)', strokeWidth: 1 }} />
+                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
+                {unitPriceTrend.species.map((name, index) => (
+                  <Line
+                    key={name}
+                    type="monotone"
+                    dataKey={name}
+                    name={name}
+                    stroke={PRICE_TREND_COLORS[index % PRICE_TREND_COLORS.length]}
+                    strokeWidth={2.4}
+                    dot={{ r: 3, strokeWidth: 1.5 }}
+                    activeDot={{ r: 5, strokeWidth: 0 }}
+                    connectNulls
+                    isAnimationActive={false}
+                  />
+                ))}
+              </LineChart>
+            }
+            takeaway={{
+              situation: activeTab === 'all'
+                ? '3개년 월별 평균 단가를 같은 축에서 비교해 거래금액 상위 어종의 가격 변동성과 계절성을 확인합니다.'
+                : `${activeTab}년 거래금액 상위 어종의 월별 kg당 평균 위판 단가를 비교합니다.`,
+              actionPlan: '단가가 급등한 어종은 매입 시점을 나누고, 물량은 유지되지만 단가가 안정적인 어종은 대체 소싱 후보로 우선 검토합니다.',
+              source: '해양수산부 위판장별 위탁판매 현황 월별 집계',
+            }}
+          />
+        </div>
+      )}
 
       {/* Detailed Table Section (Only for specific year) */}
       {activeTab !== 'all' && (
