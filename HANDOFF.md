@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧠 **2026-07-07 KST — agri_data 코퍼스 교차 스터디 → 참치 net-new 위젯 2종 추가** [CC]:
+> - 배경: `~/tuna_rag` 로컬 RAG(md 1,912건, bge-m3 임베딩)를 qwen3-coder:30b(map)/gemma4:12b(reduce) 교차 분석한 스터디 산출물(`~/tuna_rag/study`)을 대시보드 보강에 활용. Claude 토큰 0으로 코퍼스 소화(전량 로컬 Ollama).
+> - **검증 우선**: value-chain(132 위젯) 대조 결과 시세·사시미·EU ATQ·교차통찰은 이미 성숙 → 중복 제외. 진짜 net-new 2종만 구현.
+> - `components/TunaCorpusStudyInsights.tsx` 신설: (1) `IotcTropicalTunaStockStatus`(S1) — IOTC SC28(2025-12) 열대참치 4종 산란자원비/어획강도비 그룹 바차트+기준선 1.0. (2) `AldfgGhostGearReadiness`(S5) — ISSF 2025-07 유실어구(ALDFG) POA 5단계 대응 프레임워크(정성, FAD·MSC 훅).
+> - `TunaDashboard.tsx` S1(RFMO Librarian 다음)·S5(RFMO Librarian 다음)에 각각 배선.
+> - **모든 수치 미러 원문 1:1 대조**. 스터디 카드 오류 2건 발견·정정: (a) qwen이 "cod"→"카드" 음역(09.2759는 대구, 참치 loins는 09.2790/92), (b) IOTC 카드가 황다랑어 수치를 "인도양 참치 일반"으로 오표기 + "과잉어획 7.9%"는 목차 섹션번호 오독 환각. 게시금지 목록 `~/tuna_rag/study/DO_NOT_PUBLISH.md`에 기록.
+> - 검증: `npm run typecheck` 통과, `npm run build` 통과(✓ Compiled 4.4s, 103 static pages), L-01 영문 잔존 0·P-03 금지패턴 0(신규 파일). Puppeteer `/value-chain`: S1 IOTC·S5 ALDFG 렌더 확인, 산란자원비/POA-ALDFG 텍스트 존재, 가로 overflow 0, 신규 위젯發 오류 0(콘솔 P-03 경고는 기존 위젯 "중국 4대 원양기업"의 "압도적" — 별건).
+> - **미배포(로컬 커밋만)**. 무관 미추적 패치·스크립트(patch_*.py 등) 보존.
+
 > **2026-07-07 11:20 KST — `/korea-market` 위탁판매 2026-07 조회 가능분 반영 준비** [CC]:
 > - 사용자 요청으로 `/korea-market` 위탁판매 데이터의 2026년 범위를 기존 1~5월에서 1~7월로 갱신. 해양수산부 위판장별 위탁판매 API 기준 `2026-06-01` 43,584건, `2026-07-01` 20,400건을 조회해 `public/data/consignment_3year.json`에 병합.
 > - `scripts/fetch_3year_consignment_fast.py`와 `scripts/fetch_3year_consignment.py`의 2026년 수집 범위를 1~7월로 확장하고, 재생성 시 `data/`와 배포 포함 경로 `public/data/`에 동시에 저장하도록 수정.

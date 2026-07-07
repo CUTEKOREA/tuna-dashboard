@@ -39,6 +39,9 @@ import {
 } from './TunaKmiFtaBluefinInsights';
 import { KfasByproductValueChain, KfasLonglineEvolution, KfasIndianOceanRisk, KfasElderlyFunctionalFood } from './TunaKfasResearch';
 
+// 코퍼스 교차 스터디 net-new 위젯 (agri_data RAG → 원문 검증)
+import { IotcTropicalTunaStockStatus, AldfgGhostGearReadiness } from './TunaCorpusStudyInsights';
+
 // Phase 4: 국정연 보고서 기반 신규 인텔리전스 (기획서 Phase 1~2 구현)
 import { PolicyRiskScorecard, FtaTariffOptimizer } from './TunaPolicyRiskRadar';
 import { SkipjackForecastWidget, EnsoCorrelationWidget, LandingCostSensitivity } from './TunaForecastWidgets';
@@ -798,6 +801,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
               <TunaRFMOLibrarian filterPillar="S1" />
             </div>
+
+            {/* 🆕 코퍼스 스터디 net-new — IOTC SC28 열대참치 자원상태 (S1: 원료 수급) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <IotcTropicalTunaStockStatus />
+            </div>
           </section>
         )}
 
@@ -1048,6 +1056,11 @@ const TunaDashboard = React.memo(function TunaDashboard() {
             {/* 🆕 RFMO Librarian — IATTC 자원평가 + WCPFC 빌피쉬 혼획 (S5: ESG·지속가능성) */}
             <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
               <TunaRFMOLibrarian filterPillar="S5" />
+            </div>
+
+            {/* 🆕 코퍼스 스터디 net-new — ISSF 유실어구(ALDFG) 대응 프레임워크 (S5) */}
+            <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', marginTop: '1.5rem' }}>
+              <AldfgGhostGearReadiness />
             </div>
 
             <OperationalS5Widgets />
