@@ -23,16 +23,16 @@ const getServerReadySnapshot = () => false;
 
 // Data Definitions
 const weeklyData = [
-  { name: 'N/STAR', captain: '조태연', weekly: 190, avg: 27.14 },
+  { name: 'N/STAR', captain: '조태연', weekly: 195, avg: 27.86 },
+  { name: 'S/PIO', captain: '김승현', weekly: 189, avg: 27.0 },
+  { name: 'S/CHA', captain: '최용석', weekly: 195, avg: 27.86 },
   { name: 'S/EXP', captain: '공준식', weekly: 145, avg: 20.71 },
-  { name: 'S/CHA', captain: '최용석', weekly: 145, avg: 20.71 },
-  { name: 'S/PIO', captain: '김승현', weekly: 139, avg: 19.86 },
+  { name: 'P/GRACE', captain: '-', weekly: 180, avg: 25.71 },
   { name: 'KONA', captain: '이평규', weekly: 88, avg: 12.57 },
   { name: 'MARI', captain: '김정훈', weekly: 75, avg: 10.71 },
-  { name: 'S/SPR', captain: '김효원', weekly: 43, avg: 6.14 },
+  { name: 'S/SPR', captain: '김효원', weekly: 53, avg: 7.57 },
   { name: 'N/SUN', captain: '김형주', weekly: 40, avg: 5.71 },
   { name: 'S/HAR', captain: '오복근', weekly: 0, avg: 0 },
-  { name: 'S/JUP', captain: '강창훈', weekly: 0, avg: 0 },
 ];
 
 const monthlyData = [
