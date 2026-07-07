@@ -5,6 +5,7 @@ import { getMiscData } from '@/lib/data/misc';
 import ThaiTunaTradeStats from './ThaiTunaTradeStats';
 
 const vendorsData = getMiscData('seasiaOemVendors');
+const maCandidatesData = getMiscData('seasiaOemMaCandidates') as any;
 
 interface Vendor {
   id: string;
@@ -69,8 +70,31 @@ const vendorLocation = (v: { region: string; country: string }) => {
 const isCertUnverified = (v: { publicProfileMeta?: any }) =>
   ((v.publicProfileMeta || {}).dataConfidence === 'low');
 
+const formatInt = (value: number | string | undefined) =>
+  Number(value || 0).toLocaleString('ko-KR');
+
+const clipText = (value: string | undefined, max = 110) => {
+  if (!value) return '공개자료상 세부 확인 필요';
+  return value.length > max ? `${value.slice(0, max)}...` : value;
+};
+
+const sourceNoteText = (note: any) => {
+  if (typeof note === 'string') return note;
+  if (!note || typeof note !== 'object') return '원문 주석 확인 필요';
+  const title = note['구분'] || note.category || '주석';
+  const body = note['반영 내용'] || note.content || note.note || '';
+  return body ? `${title}: ${body}` : String(title);
+};
+
+const badgeTone = (screening?: string, grade?: string) => {
+  const key = `${screening || ''} ${grade || ''}`;
+  if (key.includes('우선') || key.includes('상')) return 'priority';
+  if (key.includes('관찰') || key.includes('중')) return 'watch';
+  return 'muted';
+};
+
 const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
-  const [activeTab, setActiveTab] = useState<'vendors' | 'stats'>('vendors');
+  const [activeTab, setActiveTab] = useState<'vendors' | 'ma' | 'stats'>('vendors');
   const [activeCountry, setActiveCountry] = useState<string>('All');
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [selectedVendor, setSelectedVendor] = useState<Vendor | null>(null);
@@ -99,6 +123,13 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
   const euCount = vendorsData.filter((v: any) => v.hasEU && !isCertUnverified(v)).length;
   const certUnverifiedCount = vendorsData.filter((v: any) => (v.hasFDA || v.hasEU || v.msc) && isCertUnverified(v)).length;
   const maxCapacity = Math.max(...vendorsData.map((v: any) => v.capacityMT || 0));
+  const thailandMa = maCandidatesData.thailand;
+  const vietnamMa = maCandidatesData.vietnam;
+  const combinedMa = maCandidatesData.combined;
+  const thaiTopCandidates = thailandMa.topCandidates.slice(0, 8);
+  const vietnamTopCandidates = vietnamMa.topCandidates.slice(0, 6);
+  const thaiTopShipments = thailandMa.topByShipment.slice(0, 6);
+  const vietnamTopShipments = vietnamMa.topByShipment.slice(0, 8);
 
   // Filter count helper
   const getFilterCount = (f: string) => {
@@ -155,9 +186,9 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
           >
             글로벌 OEM 벤더 인텔리전스
           </h2>
-          <p className={styles.subtitle}>태국 및 베트남 참치 통조림/가공업체 심층 프로필 및 전략적 파트너십 벤더 풀</p>
+          <p className={styles.subtitle}>태국·베트남 수산물 가공 OEM 벤더와 M&A 후보군을 함께 보는 전략 스크리닝 보드</p>
           <p style={{ fontSize: '0.72rem', color: '#64748b', margin: '0.4rem 0 0 0', maxWidth: '720px', lineHeight: 1.4 }}>
-            출처: 공개 기업정보·인증현황(US FDA FCE·EU 승인코드·MSC) 기반 큐레이션 — {vendorsData.filter((v: any) => v.meetingData).length}개사 현장 실사 완료, 나머지는 공개정보 기준(미실사). 생산능력·인증은 시점에 따라 변동 가능. 검증메모상 인증 미입증 업체({certUnverifiedCount}개사)는 '미확인'으로 표기하고 인증 집계에서 제외.
+            출처: 공개 기업정보·인증현황(US FDA FCE·EU 승인코드·MSC) 기반 OEM 큐레이션, 태국 44개사 심층 프로파일, 베트남 294개 제조업소 M&A 후보 보고서 반영. {vendorsData.filter((v: any) => v.meetingData).length}개사 현장 실사 완료, 나머지는 공개정보 기준(미실사). 인증 미입증 업체({certUnverifiedCount}개사)는 '미확인'으로 표기하고 인증 집계에서 제외.
           </p>
 
           {/* ── KPI Stats Row ── */}
@@ -173,6 +204,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
               { label: '🇹🇭 태국', value: thailandCount, color: '#F59E0B', icon: '' },
               { label: 'FDA 인증', value: fdaCount, color: '#8B5CF6', icon: '✓' },
               { label: 'EU 인증', value: euCount, color: '#38BDF8', icon: '✓' },
+              { label: 'M&A 전수후보', value: formatInt(combinedMa.totalEntities), color: '#F97316', icon: '' },
             ].map((kpi, i) => (
               <div key={i} style={{
                 display: 'flex',
@@ -221,6 +253,26 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
           >
             <Users size={16} /> 벤더 프로필
           </button>
+          <button
+            onClick={() => setActiveTab('ma')}
+            style={{
+              padding: '9px 18px',
+              borderRadius: '8px',
+              border: 'none',
+              background: activeTab === 'ma' ? 'linear-gradient(135deg, rgba(6,182,212,0.35), rgba(139,92,246,0.2))' : 'transparent',
+              color: activeTab === 'ma' ? '#fff' : '#94a3b8',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              transition: 'all 0.3s ease',
+              boxShadow: activeTab === 'ma' ? '0 2px 12px rgba(6,182,212,0.2)' : 'none',
+            }}
+          >
+            <Building2 size={16} /> M&A 후보
+          </button>
           <button 
             onClick={() => setActiveTab('stats')}
             style={{
@@ -251,7 +303,7 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
         margin: '-1rem 0 0.5rem 0',
       }} />
 
-      {activeTab === 'vendors' ? (
+      {activeTab === 'vendors' && (
         <>
           {/* 2-Step IA: Situation (Filter & Macro Stats) */}
           <div className={styles.filterBar}>
@@ -492,7 +544,163 @@ const SEAsiaOEMDashboard = React.memo(function SEAsiaOEMDashboard() {
             ))}
           </div>
         </>
-      ) : (
+      )}
+
+      {activeTab === 'ma' && (
+        <div className={styles.maPanel}>
+          <section className={styles.maIntro}>
+            <div>
+              <p className={styles.maEyebrow}>Customs-backed M&A screening</p>
+              <h3 className={styles.maTitle}>태국 44개 법인과 베트남 294개 제조업소를 통합 반영</h3>
+              <p className={styles.maLead}>
+                원본 HTML의 통관 기반 선적수와 한국 거래처는 보존하고, 심층 프로파일의 재무·인증·지배구조·스크리닝 등급을
+                대시보드 관점으로 재구성했습니다. 공개자료 기반 예비 스크리닝이므로 투자 판단 전 DBD·NAFIQAD·인증원장·현장실사 재확인이 필요합니다.
+              </p>
+            </div>
+            <div className={styles.maSourceBox}>
+              <div className={styles.maSourceLabel}>반영 파일</div>
+              <div>{thailandMa.sourceFile}</div>
+              <div>{vietnamMa.sourceFile}</div>
+              <span>갱신 기준: {maCandidatesData.updatedAt}</span>
+            </div>
+          </section>
+
+          <section className={styles.maSummaryGrid}>
+            {[
+              { label: '전수 후보', value: `${formatInt(combinedMa.totalEntities)}개`, hint: '태국 법인 + 베트남 제조업소' },
+              { label: '한국향 선적', value: `${formatInt(combinedMa.totalShipments)}건`, hint: '두 보고서 원문 선적수 합계' },
+              { label: '우선 후보', value: `${formatInt(combinedMa.priorityCandidates)}개`, hint: '원문 등급 상·중상 또는 우선 스크리닝' },
+              { label: '관찰 후보', value: `${formatInt(combinedMa.watchCandidates)}개`, hint: '실사·법인특정 후 재평가 대상' },
+            ].map((metric) => (
+              <div className={styles.maMetricCard} key={metric.label}>
+                <div className={styles.maMetricLabel}>{metric.label}</div>
+                <div className={styles.maMetricValue}>{metric.value}</div>
+                <div className={styles.maMetricHint}>{metric.hint}</div>
+              </div>
+            ))}
+          </section>
+
+          <section className={styles.maTwoColumn}>
+            {[
+              {
+                country: '태국',
+                title: thailandMa.title,
+                count: `${formatInt(thailandMa.totalCompanies)}개 법인`,
+                shipments: `${formatInt(thailandMa.totalShipments)}건`,
+                priority: thailandMa.priorityCount,
+                watch: thailandMa.watchCount,
+                notes: thailandMa.sourceNotes,
+              },
+              {
+                country: '베트남',
+                title: vietnamMa.title,
+                count: `${formatInt(vietnamMa.totalManufacturers)}개 제조업소`,
+                shipments: `${formatInt(vietnamMa.totalShipments)}건`,
+                priority: vietnamMa.priorityCount,
+                watch: vietnamMa.watchCount,
+                notes: vietnamMa.sourceNotes,
+              },
+            ].map((country) => (
+              <div className={styles.maCountryCard} key={country.country}>
+                <div className={styles.maCountryHeader}>
+                  <div>
+                    <span className={styles.maCountryName}>{country.country}</span>
+                    <h4>{country.title}</h4>
+                  </div>
+                  <span className={styles.maBadge}>{country.count}</span>
+                </div>
+                <div className={styles.maCountryStats}>
+                  <span>선적 {country.shipments}</span>
+                  <span>우선 {formatInt(country.priority)}개</span>
+                  <span>관찰 {formatInt(country.watch)}개</span>
+                </div>
+                <ul className={styles.maNotes}>
+                  {(country.notes || []).slice(0, 3).map((note: any, idx: number) => (
+                    <li key={idx}>{sourceNoteText(note)}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+
+          <section>
+            <div className={styles.maSectionHeader}>
+              <div>
+                <p className={styles.maEyebrow}>Priority shortlist</p>
+                <h3 className={styles.maSectionTitle}>우선 검토 후보</h3>
+              </div>
+              <span className={styles.maSectionMeta}>태국 {thaiTopCandidates.length}개, 베트남 {vietnamTopCandidates.length}개</span>
+            </div>
+            <div className={styles.maCandidateGrid}>
+              {[...thaiTopCandidates, ...vietnamTopCandidates].map((candidate: any) => {
+                const tone = badgeTone(candidate.screening, candidate.grade);
+                return (
+                  <article className={styles.maCandidateCard} key={`${candidate.country}-${candidate.name}`}>
+                    <div className={styles.maCandidateTop}>
+                      <div>
+                        <span className={styles.maCandidateCountry}>{candidate.country}</span>
+                        <h4>{candidate.name}</h4>
+                      </div>
+                      <span className={`${styles.maBadge} ${tone === 'priority' ? styles.maBadgePriority : tone === 'watch' ? styles.maBadgeWatch : styles.maBadgeMuted}`}>
+                        {candidate.grade || candidate.screening}
+                      </span>
+                    </div>
+                    <div className={styles.maCandidateMeta}>
+                      <span>선적 {formatInt(candidate.shipments)}건</span>
+                      {candidate.buyers ? <span>거래처 {formatInt(candidate.buyers)}사</span> : null}
+                      <span>{candidate.screening || '검토'}</span>
+                    </div>
+                    <p className={styles.maCandidateSummary}>{clipText(candidate.summary || candidate.note || candidate.products, 128)}</p>
+                    {candidate.finance && (
+                      <p className={styles.maCandidateFinance}>{clipText(candidate.finance, 150)}</p>
+                    )}
+                    <div className={styles.maCandidateTrade}>{clipText(candidate.koreaTrade, 150)}</div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className={styles.maTwoColumn}>
+            {[
+              { title: '태국 선적 상위', rows: thaiTopShipments },
+              { title: '베트남 선적 상위', rows: vietnamTopShipments },
+            ].map((table) => (
+              <div className={styles.maTableCard} key={table.title}>
+                <div className={styles.maSectionHeader}>
+                  <h3 className={styles.maSectionTitle}>{table.title}</h3>
+                  <span className={styles.maSectionMeta}>한국향 선적 기준</span>
+                </div>
+                <div className={styles.maTableWrap}>
+                  <table className={styles.maSmallTable}>
+                    <thead>
+                      <tr>
+                        <th>회사</th>
+                        <th>선적</th>
+                        <th>판정</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row: any) => (
+                        <tr key={`${table.title}-${row.rank}-${row.name}`}>
+                          <td>
+                            <strong>{row.name}</strong>
+                            <span>{clipText(row.productGroup || row.products || row.note, 62)}</span>
+                          </td>
+                          <td>{formatInt(row.shipments)}건</td>
+                          <td>{row.grade || row.screening}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </section>
+        </div>
+      )}
+
+      {activeTab === 'stats' && (
         <ThaiTunaTradeStats />
       )}
 

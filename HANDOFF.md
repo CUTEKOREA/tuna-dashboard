@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-07 16:58 KST — `/seasia-oem` 태국 44개사·베트남 294개사 M&A 후보 반영** [CC]:
+> - 사용자 요청으로 `/Users/idong-geon/자료수집/수산물 가공공장`의 `태국_44개사_전체_심층프로파일.html`과 `베트남_수산물가공_MA후보_비교보고서.html`을 파싱해 `/seasia-oem`용 통합 M&A 후보 데이터를 생성.
+> - `scripts/build_seasia_oem_ma_candidates.py`와 `data/seasia_oem_ma_candidates.json` 추가. 집계: 태국 44개 법인/2,660선, 베트남 294개 제조업소/10,528선, 통합 338개 후보/13,188선, 우선 후보 13개, 관찰 후보 57개.
+> - `lib/data/misc.ts`에 데이터셋을 등록하고 `components/SEAsiaOEMDashboard.tsx`에 `M&A 후보` 탭을 추가. 화면에는 통합 KPI, 국가별 요약, 우선 검토 후보, 선적 상위표를 표시. `SEAsiaOEMDashboard.module.css`에 반응형 카드/표 스타일 추가.
+> - 검증: `npm run typecheck` 통과, `npm run build` 통과(기존 UN Comtrade 2MB cache warning 유지), 로컬 `http://localhost:3020/seasia-oem` Puppeteer 확인: `338개`, `13,188건`, `PITI FOODS`, `HAI VIET`, `FISH MANAGER`, `HAVICO` 렌더 및 horizontal overflow 0.
+> - 미배포(로컬). `/data/`는 `.gitignore` 대상이라 `data/seasia_oem_ma_candidates.json`은 배포 커밋 시 `git add -f` 필요. 기존/무관 dirty 파일(`artifacts/value_chain_widget_inventory.json`, 미추적 패치·테스트 스크립트 등)은 그대로 보존.
+
 > **2026-07-07 12:47 KST — `/korea-market` 어종별 평균 단가 추이 차트 로컬 추가** [CC]:
 > - 사용자 요청으로 `components/KoreaConsignmentDashboard.tsx`에 선택 기간 거래금액 상위 6개 어종의 월별 평균 단가 라인차트를 추가. 평균 단가는 기존 위탁판매 월별 집계의 `avgUnitPrice`(위탁판매금액 ÷ 위탁판매물량)를 사용.
 > - 차트는 `2026`, `2025`, `2024`, `3개년 요약` 탭 상태에 맞춰 표시되며, 2026년 기준 7월 부분집계 데이터도 자연스럽게 포함.

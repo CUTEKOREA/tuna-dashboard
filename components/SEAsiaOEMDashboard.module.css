@@ -481,6 +481,347 @@
   box-shadow: 0 0 12px rgba(6, 182, 212, 0.12);
 }
 
+/* --- M&A Screening Tab --- */
+
+.maPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.maIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.85fr);
+  gap: 1rem;
+  align-items: stretch;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.78) 0%, rgba(2, 6, 23, 0.9) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.maEyebrow {
+  margin: 0 0 0.35rem 0;
+  color: #67E8F9;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+.maTitle {
+  margin: 0 0 0.7rem 0;
+  color: #F8FAFC;
+  font-size: 1.28rem;
+  line-height: 1.35;
+}
+
+.maLead {
+  margin: 0;
+  color: rgba(203, 213, 225, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.68;
+}
+
+.maSourceBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: rgba(2, 6, 18, 0.56);
+  border: 1px solid rgba(6, 182, 212, 0.14);
+  color: rgba(203, 213, 225, 0.78);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.maSourceLabel {
+  color: #94A3B8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.maSourceBox span {
+  margin-top: 0.2rem;
+  color: #64748B;
+  font-size: 0.72rem;
+}
+
+.maSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.maMetricCard,
+.maCountryCard,
+.maCandidateCard,
+.maTableCard {
+  background:
+    linear-gradient(150deg, rgba(20, 28, 52, 0.78) 0%, rgba(8, 15, 30, 0.92) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.09);
+  border-top: 2px solid rgba(6, 182, 212, 0.28);
+  border-radius: 12px;
+  box-shadow:
+    0 6px 24px -14px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.maMetricCard {
+  padding: 1rem;
+}
+
+.maMetricLabel {
+  color: #94A3B8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+}
+
+.maMetricValue {
+  color: #F8FAFC;
+  font-size: 1.52rem;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.maMetricHint {
+  margin-top: 0.5rem;
+  color: rgba(148, 163, 184, 0.68);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.maTwoColumn {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.maCountryCard,
+.maTableCard {
+  padding: 1.1rem;
+}
+
+.maCountryHeader,
+.maCandidateTop,
+.maSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.maCountryHeader h4,
+.maCandidateTop h4 {
+  margin: 0.18rem 0 0 0;
+  color: #F8FAFC;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.maCountryName,
+.maCandidateCountry {
+  color: #67E8F9;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.maCountryStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.85rem 0;
+}
+
+.maCountryStats span,
+.maCandidateMeta span {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(140, 170, 255, 0.10);
+  color: rgba(203, 213, 225, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  font-weight: 650;
+}
+
+.maNotes {
+  margin: 0;
+  padding-left: 1rem;
+  color: rgba(203, 213, 225, 0.72);
+  font-size: 0.8rem;
+  line-height: 1.62;
+}
+
+.maSectionTitle {
+  margin: 0;
+  color: #F8FAFC;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.maSectionMeta {
+  color: #64748B;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.maCandidateGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 0.85rem;
+}
+
+.maCandidateCard {
+  padding: 1rem;
+}
+
+.maCandidateMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.8rem 0;
+}
+
+.maCandidateSummary {
+  margin: 0 0 0.7rem 0;
+  color: rgba(226, 232, 240, 0.86);
+  font-size: 0.84rem;
+  line-height: 1.58;
+}
+
+.maCandidateFinance {
+  margin: 0 0 0.7rem 0;
+  color: rgba(125, 211, 252, 0.84);
+  font-size: 0.78rem;
+  line-height: 1.56;
+}
+
+.maCandidateTrade {
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.09);
+  color: rgba(148, 163, 184, 0.78);
+  font-size: 0.76rem;
+  line-height: 1.52;
+}
+
+.maBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: max-content;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.10);
+  color: #CBD5E1;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  font-size: 0.7rem;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.maBadgePriority {
+  background: rgba(16, 185, 129, 0.14);
+  color: #34D399;
+  border-color: rgba(16, 185, 129, 0.34);
+}
+
+.maBadgeWatch {
+  background: rgba(56, 189, 248, 0.13);
+  color: #7DD3FC;
+  border-color: rgba(56, 189, 248, 0.32);
+}
+
+.maBadgeMuted {
+  background: rgba(245, 158, 11, 0.12);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.26);
+}
+
+.maTableWrap {
+  overflow-x: auto;
+  margin-top: 0.8rem;
+}
+
+.maSmallTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+  color: rgba(226, 232, 240, 0.86);
+  font-size: 0.78rem;
+}
+
+.maSmallTable th {
+  padding: 0.55rem 0.65rem;
+  background: rgba(2, 6, 18, 0.62);
+  color: #94A3B8;
+  text-align: left;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.maSmallTable td {
+  padding: 0.65rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+.maSmallTable td:first-child {
+  width: 62%;
+}
+
+.maSmallTable strong {
+  display: block;
+  color: #F8FAFC;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.maSmallTable span {
+  display: block;
+  color: rgba(148, 163, 184, 0.72);
+  font-size: 0.72rem;
+}
+
+@media (max-width: 1100px) {
+  .maIntro,
+  .maTwoColumn,
+  .maCandidateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .maSummaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .maSummaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .maCountryHeader,
+  .maCandidateTop,
+  .maSectionHeader {
+    flex-direction: column;
+  }
+
+  .maSectionMeta {
+    white-space: normal;
+  }
+}
+
 /* --- Modal --- */
 
 .modalOverlay {
