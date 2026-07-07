@@ -109,7 +109,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'FiLYMR1HrMNkg5-Sc4na1_fjBJtYpxlXmvdqRuaIK58',
     other: {
-      'naver-site-verification': '6f72024f1ca33c219f8d1b9d6f0f8a0b4780d9f',
+      'naver-site-verification': '6f739241c5a353219ffd1b90d90ffbcbc478e89f',
     },
   },
   other: {
