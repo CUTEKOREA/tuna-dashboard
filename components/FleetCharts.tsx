@@ -23,15 +23,15 @@ const getServerReadySnapshot = () => false;
 
 // Data Definitions
 const weeklyData = [
-  { name: 'N/STAR', captain: '조태연', weekly: 195, avg: 27.86 },
-  { name: 'S/PIO', captain: '김승현', weekly: 189, avg: 27.0 },
-  { name: 'S/CHA', captain: '최용석', weekly: 195, avg: 27.86 },
-  { name: 'S/EXP', captain: '공준식', weekly: 145, avg: 20.71 },
-  { name: 'P/GRACE', captain: '-', weekly: 180, avg: 25.71 },
-  { name: 'KONA', captain: '이평규', weekly: 88, avg: 12.57 },
-  { name: 'MARI', captain: '김정훈', weekly: 75, avg: 10.71 },
-  { name: 'S/SPR', captain: '김효원', weekly: 53, avg: 7.57 },
-  { name: 'N/SUN', captain: '김형주', weekly: 40, avg: 5.71 },
+  { name: 'N/STAR', captain: '조태연', weekly: 445, avg: 55.63 },
+  { name: 'S/EXP', captain: '공준식', weekly: 245, avg: 30.63 },
+  { name: 'S/CHA', captain: '최용석', weekly: 255, avg: 31.88 },
+  { name: 'S/PIO', captain: '김승현', weekly: 189, avg: 23.63 },
+  { name: 'P/GRACE', captain: '-', weekly: 250, avg: 31.25 },
+  { name: 'MARI', captain: '김정훈', weekly: 215, avg: 26.88 },
+  { name: 'S/SPR', captain: '김효원', weekly: 118, avg: 14.75 },
+  { name: 'KONA', captain: '이평규', weekly: 118, avg: 14.75 },
+  { name: 'N/SUN', captain: '김형주', weekly: 40, avg: 5.0 },
   { name: 'S/HAR', captain: '오복근', weekly: 0, avg: 0 },
 ];
 
