@@ -387,7 +387,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 주간 다이제스트: 7월 1주차 시장을 뒤흔드는 핵심 시그널
+          Atuna 주간 다이제스트: 7월 2주차 시장을 뒤흔드는 핵심 시그널
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -395,93 +395,93 @@ export default function MarketDashboard() {
           gap: '16px'
         }}>
           {/* News 1 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                가격 / 시장
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.01</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              방콕 SKJ 하락 지속 · EPO 황다랑어 풍어로 가격 패리티 근접
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>중동 위기 완화로 방콕 SKJ(1.8kg Up) 가격이 <strong style={{ color: 'var(--text-main)' }}>톤당 $1,775</strong>로 하락 지속, 업계는 추가 하락 전망.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>EPO 황다랑어(YF) 이례적 풍어로 만타 가공 허브에서 <strong style={{ color: 'var(--text-main)' }}>SKJ와 가격 패리티</strong> 근접. 파나마 YF 어획 2배·베네수엘라 55% 증가.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* News 2 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                산업 / 구조조정
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.03</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              Sapmer 참치 조업 철수 — P&P 그룹에 선단 매각 협상 개시
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>프랑스 Sapmer가 <strong style={{ color: 'var(--text-main)' }}>잔여 선망선 3척(약 5,900톤 적재)</strong>을 네덜란드 P&P 산하 CFTO에 매각하는 독점 협상에 돌입.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>IO 어획 부진·SKJ/YF 가격 하락으로 2025년 참치 매출 8.5% 감소, 선박 감가 €1,900만 손실 반영. IO 선단 과잉 설비 정리 가속화 신호.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* News 3 */}
-          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                무역 / 관세
-              </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.03</span>
-            </div>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              스페인, 비EU산 캔 참치 수입 대폭 감소 — EU 역내 공급 전환 가속
-            </h4>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>Q1 2026 EU 캔 참치 수입 <strong style={{ color: 'var(--text-main)' }}>전년 대비 18% 감소</strong>(약 129,000톤). 에콰도르·인도네시아·중국 등 비EU 공급국 타격.</span>
-              </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>반면 <strong style={{ color: 'var(--text-main)' }}>EU 역내 공급 51% 급증</strong>(포르투갈 +57%, 독일 +18%). EU CATCH 디지털 통관 전환 부담이 비EU산 감소 원인으로 지목.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* News 4 */}
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 규제 / 정책
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.01 · 07.03</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.07</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              태평양 어업 장관회의 East New Britain 채택 · 하와이 Ahi 원산지 표시법 시행
+              가봉, EU와 20년 참치 어업 협정 종료 — 자국 수산업 육성 선언
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>FFC 장관회의에서 <strong style={{ color: 'var(--text-main)' }}>East New Britain Initiative 이행 전략</strong> 채택 — 태평양 연안국 수익 배분 강화 및 원양 선단 입어료 회피 차단 방안 의결.</span>
+                <span>가봉 정부가 2007년부터 이어온 <strong style={{ color: 'var(--text-main)' }}>EU-가봉 지속가능어업협정(SFPA)을 6/29 종료</strong>. EU 선단의 연간 32,000톤 어획권 소멸.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>하와이 Act 238 발효(7/1): 소매점 판매 <strong style={{ color: 'var(--text-main)' }}>ahi(황다랑·눈다랑) 제품에 원산지 국가 라벨링 의무화</strong>. 미국 수입 참치 유통 투명성 강화 신호.</span>
+                <span>가봉은 참치 자원의 경제적 이익이 유럽에 편중(협정금 EUR 260만 vs 자원가치 EUR 7,000~9,000만)되었다고 판단. <strong style={{ color: 'var(--text-main)' }}>국내 가공·고용 창출 중심으로 수산업 재편</strong> 추진.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* News 2 */}
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
+                무역 / 시장
+              </div>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.06</span>
+            </div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
+              에콰도르 냉동 로인 EU 수출 2배 증가 · EU 전체 수입은 5년래 최저
+            </h4>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>Q1 EU 냉동 참치 로인 수입 <strong style={{ color: 'var(--text-main)' }}>10,353톤(-1,237톤 YoY)</strong>으로 감소, 평균가 EUR 7,395/톤은 5년래 최저. 에콰도르만 +1,175톤(EUR 5,608/톤)으로 수출 2배 확대.</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>중국 -72%, 가나·인도네시아 감소세. <strong style={{ color: 'var(--text-main)' }}>한국산 프리미엄 로인은 EUR 12,504/톤으로 최고가</strong> 유지. EU CATCH 시스템·-18°C 브라인 규정이 비EU산 진입장벽 높여.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* News 3 */}
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
+                공급망 리스크
+              </div>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.07</span>
+            </div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
+              몰디브 YF 어부, MIFCO 얼음 공급 축소에 조업 위기 경고
+            </h4>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>호르무즈 해협 봉쇄에 따른 연료 부족으로 <strong style={{ color: 'var(--text-main)' }}>MIFCO 제빙 공장 다수 가동 중단</strong>, 선박당 일일 2톤 제한. 어부 노조(BKMU)가 공식 항의.</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>MIFCO 어부 지급액 4월 MVR 7,800만 → 6월 MVR 1,130만으로 <strong style={{ color: 'var(--text-main)' }}>3개월간 85% 급감</strong>. 몰디브 폴앤라인 YF 공급 차질 우려.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* News 4 */}
+          <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
+                수요 트렌드
+              </div>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.07</span>
+            </div>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
+              프랑스 MSC 참치 소비 5년간 90% 급증 · 캔 SKJ 중심 성장
+            </h4>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>프랑스 MSC 인증 참치 소비량 2021~2026년간 <strong style={{ color: 'var(--text-main)' }}>약 90% 성장</strong>. 2024/25 기준 가구 소비 63,840톤 중 17,115톤이 MSC 라벨 제품.</span>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
+                <span>캔 카테고리가 MSC 참치의 73%(12,000톤 이상) 차지, SKJ가 주력. <strong style={{ color: 'var(--text-main)' }}>4개 프랑스 어업이 MSC 인증</strong> 보유(약 49,000톤). IO 선망 YF·ALB 인증 심사 2026년 내 완료 예정.</span>
               </div>
             </div>
           </div>
@@ -492,37 +492,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: IO 선단 구조조정 · EPO 황다랑어 풍어 · EU 무역 지형 변동
+          전략 인사이트: 가봉 SFPA 종료 · 몰디브 공급망 위기 · EU 로인 무역 재편
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="IO 선단 구조조정 가속화 — Sapmer 철수가 시사하는 인도양 참치 산업의 전환점"
+            title="가봉 SFPA 종료와 아프리카 자원 민족주의 — EU 선단 접근권 축소가 글로벌 참치 공급에 미치는 영향"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="Sapmer 선단 매각 + IO 어획 부진 + SKJ/YF 가격 하락 + EPO 황다랑어 풍어 → IO 과잉 설비 정리 및 태평양 중심 공급 재편"
+            cardDesc="가봉 SFPA 종료(연 32,000톤 어획권 소멸) + 몰디브 얼음 공급 위기 + EU 냉동 로인 수입 5년래 최저 → 공급 축소 속 원양 선단 대응 전략 필요"
 
             customBody={<></>}
             takeaway={{
-              situation: "프랑스 Sapmer가 인도양 선망선 3척을 P&P 그룹에 매각하며 참치 조업에서 사실상 철수합니다. IO에서는 어획 부진과 유가 부담이 지속되어 항차 적자가 반복되고, SKJ 가격(세이셸 기준)은 EUR 1,500/톤에 머물고 있습니다. 반면, 동태평양(EPO)에서는 이례적인 황다랑어(YF) 풍어가 이어지며 만타 허브에서 SKJ와 가격 패리티에 근접하는 이례적 상황이 전개되고 있습니다.",
-              actionPlan: "(1) [IO 구조조정 매물 모니터링]: Sapmer 이후 추가 IO 선단 매각 가능성을 주시하고, 양질의 -40°C 초저온 선박 인수 기회를 검토합니다. \n(2) [EPO YF 풍어 대응]: 만타 허브 YF 원어 가격이 SKJ 수준까지 하락한 점을 활용해, 황다랑어 중심의 부가가치 가공(사시미·로인) 물량 확보를 추진합니다.",
-              source: 'Atuna 2026.07.01, 2026.07.03 (NotebookLM 종합 분석)',
+              situation: "가봉이 2007년부터 유지해온 EU와의 참치 어업 협정을 종료하며, 프랑스·스페인 선단의 연간 32,000톤 어획 접근권이 소멸됩니다. 가봉 정부는 협정금(연 EUR 260만)이 실제 자원 가치(EUR 7,000~9,000만)의 8% 미만이라며 자국 가공업 육성으로 전환합니다. 이는 코트디부아르·마다가스카르 등 다른 아프리카 연안국에도 확산될 수 있는 '자원 민족주의' 흐름입니다. 동시에, 몰디브에서는 호르무즈 해협 봉쇄 여파로 연료 부족 → 제빙 공장 가동 중단 → 폴앤라인 YF 어획 차질이 연쇄적으로 발생하고 있습니다.",
+              actionPlan: "(1) [EU 공급 축소 대응]: 가봉 SFPA 종료로 EU 시장 내 원어 공급 감소가 예상되므로, 태평양·WCPO 원어 확보 물량의 EU 수출 비중 확대를 검토합니다. \n(2) [몰디브 공급 차질 모니터링]: 몰디브 폴앤라인 YF는 프리미엄 채널(MSC 인증)의 핵심 소스이므로, 공급 차질 시 세이셸·피지 대체 소싱 루트를 사전 확보합니다.",
+              source: 'Atuna 2026.07.06~07 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="EU 수입 지형 변동과 태평양 규제 강화가 만드는 글로벌 참치 공급망 재편"
+            title="EU 냉동 로인 무역 재편 — 에콰도르 독주 속 한국산 프리미엄 포지셔닝 기회"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="EU 비역내산 캔 참치 -18% + EU 역내 공급 +51% + East New Britain Initiative 채택 → 수출 채널 다변화 및 규제 선제 대응 필요"
+            cardDesc="EU 냉동 로인 수입 -1,237톤(5년래 최저) + 에콰도르 +2배 확대 + 한국산 EUR 12,504 최고가 + 프랑스 MSC 90% 성장 → 프리미엄·지속가능성 전략"
 
             customBody={<></>}
             takeaway={{
-              situation: "Q1 2026 EU 캔 참치 수입이 18% 급감하며, 에콰도르(-2,771톤)·인도네시아(-39%)·중국(-66%) 등 비EU 공급국이 대폭 축소된 반면, EU 역내(포르투갈·독일) 공급이 51% 급증했습니다. EU CATCH 디지털 통관 전환이 비EU산 진입 장벽을 높이고 있습니다. 태평양에서는 FFC 장관회의가 East New Britain Initiative를 채택하여, 연안국 수익 배분 강화 및 원양 선단 입어 관리가 한층 엄격해질 전망입니다.",
-              actionPlan: "(1) [EU CATCH 선제 대응]: 자사 선단의 디지털 어획 증명서 발급 체계를 조기 구축하여, 비EU 경쟁사 대비 EU 시장 접근 우위를 확보합니다. \n(2) [태평양 VDS 비용 최적화]: East New Britain Initiative로 입어료 상승이 예상되는 만큼, 키리바시·나우루·마셜 등 PNA 국가와의 선제적 장기 입어 계약을 추진합니다.",
-              source: 'Atuna 2026.07.01, 2026.07.03 (NotebookLM 종합 분석)',
+              situation: "Q1 2026 EU 냉동 참치 로인 수입이 10,353톤으로 전년 대비 1,237톤 감소하며 5년래 최저를 기록했습니다. 평균가도 EUR 7,395/톤으로 하락했으나, 한국산은 EUR 12,504/톤으로 최고가를 유지하며 프리미엄 시장을 장악 중입니다. 에콰도르만 유일하게 +1,175톤 수출을 늘렸고, 중국(-72%)·인도네시아·가나 등은 큰 폭으로 감소했습니다. 한편, 프랑스에서 MSC 인증 참치 소비가 5년간 90% 성장하며, 지속가능성 인증이 시장 접근의 핵심 요소로 부상하고 있습니다.",
+              actionPlan: "(1) [한국산 프리미엄 로인 확대]: EUR 12,504 최고가를 유지하는 한국산 프리미엄 로인(초저온 YF·BET 사시미급) 채널을 활용해, EU 고급 식재료 시장 공략을 강화합니다. \n(2) [MSC 인증 활용]: 프랑스 MSC 참치 수요 급증(90%) 트렌드에 맞춰, 자사 선단의 MSC 인증 어획물 비중을 확대하고 EU 소매 채널과의 직접 계약을 추진합니다.",
+              source: 'Atuna 2026.07.06~07 (NotebookLM 종합 분석)',
             }}
           />
 
