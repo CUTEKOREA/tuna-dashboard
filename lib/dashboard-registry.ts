@@ -174,7 +174,6 @@ export const PUBLIC_DASHBOARD_ROUTES = DASHBOARD_MENU_CONFIGS
 
 export const DASHBOARD_PANEL_ORDER = [
   'market',
-  'cross-intelligence',
   'fleet',
   'logistics',
   'cold-storage',
@@ -227,7 +226,6 @@ const SIDEBAR_SECTION_KEYS: Record<DashboardSection, readonly ActiveMenu[]> = {
     'salmon',
   ],
   strategy: [
-    'cross-intelligence',
     'cold-storage',
     'fleet-strategy',
     'korea-market',
