@@ -1,0 +1,83 @@
+[
+  {
+    "carrier": "SEIN GRACE",
+    "date": "10.06.26",
+    "deliveries": {
+      "AEC": "22",
+      "CMC": "400",
+      "MMP": "370",
+      "TUG": "2,010",
+      "TUM": "1,665",
+      "UC": "278",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "YOUTA MARU",
+    "date": "15.06.26",
+    "deliveries": {
+      "TUG": "1,300",
+      "TUM": "2,025",
+      "OTHER": "19"
+    }
+  },
+  {
+    "carrier": "AVUNDA REEFER",
+    "date": "18.06.26",
+    "deliveries": {
+      "DIA": "1,000",
+      "ISA": "1,544",
+      "TUG": "1,830",
+      "TUM": "1,589",
+      "OTHER": "11B"
+    }
+  },
+  {
+    "carrier": "SEIN SPRING",
+    "date": "19.06.26",
+    "deliveries": {
+      "MMP": "515",
+      "PTY": "950",
+      "TUG": "700",
+      "TUM": "1,908",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "SEA GLORY II",
+    "date": "23.06.26",
+    "deliveries": {
+      "GB": "468",
+      "GPZ": "600",
+      "PTY": "733",
+      "RMK": "150",
+      "TUG": "500",
+      "TUM": "1,649",
+      "OTHER": "21A"
+    }
+  },
+  {
+    "carrier": "RYOMA",
+    "date": "26.06.26",
+    "deliveries": {
+      "AEC": "135",
+      "PTY": "550",
+      "TUG": "955",
+      "TUM": "1,120",
+      "UC": "650",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "PHAROSTAR",
+    "date": "02.07.26",
+    "deliveries": {
+      "GPZ": "761",
+      "MMP": "300",
+      "PTY": "250",
+      "TUM": "1,239",
+      "UC": "112",
+      "OTHER": "2,662"
+    }
+  }
+]
