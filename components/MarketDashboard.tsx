@@ -421,21 +421,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                무역 / 시장
+                원료 / 가격
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.06</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              에콰도르 냉동 로인 EU 수출 2배 증가 · EU 전체 수입은 5년래 최저
+              에콰도르 SKJ 원료가 $2,150/톤 돌파 — 어획 부진·유가 압박 복합 악재
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>Q1 EU 냉동 참치 로인 수입 <strong style={{ color: 'var(--text-main)' }}>10,353톤(-1,237톤 YoY)</strong>으로 감소, 평균가 EUR 7,395/톤은 5년래 최저. 에콰도르만 +1,175톤(EUR 5,608/톤)으로 수출 2배 확대.</span>
+                <span>만타 허브 SKJ 원료가 <strong style={{ color: 'var(--text-main)' }}>$2,100~$2,200/톤</strong>으로 수년래 최고. 1~5월 에콰도르 선단 SKJ 어획 85,323톤(전년 145,889톤 대비 <strong style={{ color: 'var(--text-main)' }}>-41%</strong>).</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>중국 -72%, 가나·인도네시아 감소세. <strong style={{ color: 'var(--text-main)' }}>한국산 프리미엄 로인은 EUR 12,504/톤으로 최고가</strong> 유지. EU CATCH 시스템·-18°C 브라인 규정이 비EU산 진입장벽 높여.</span>
+                <span>방콕 SKJ $1,775/톤으로 <strong style={{ color: 'var(--text-main)' }}>태국 가공업체가 EU 시장에서 24% 관세 불구 가격 경쟁력 확보</strong>. 에콰도르 디젤 $4.29/갤런 고유가 지속으로 조업 비용 상승.</span>
               </div>
             </div>
           </div>
@@ -446,19 +446,19 @@ export default function MarketDashboard() {
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
                 무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.08</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              스페인 참치 업계, EU-멕시코 협정에 경고 — 7년 후 캔 참치 무관세
+              EU-멕시코 MGA 유럽의회 최종 승인 — 474 대 131 압도적 통과
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>EU-멕시코 현대화 글로벌 협정(MGA) 유럽의회 표결 통과. <strong style={{ color: 'var(--text-main)' }}>7년 후 멕시코산 캔 참치 관세 0%</strong> 완전 자유화 조항에 스페인 갈리시아 가공업계 강력 반발.</span>
+                <span>유럽의회 본회의에서 <strong style={{ color: 'var(--text-main)' }}>iTA(잠정 무역 협정) 474 대 131로 가결</strong>. 각 회원국 비준 전 관세 조항 선적용 가능, 멕시코산 캔 참치 7년 후 무관세 확정.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>갈리시아 MEP "멕시코 다음은 태국·필리핀" 경고. <strong style={{ color: 'var(--text-main)' }}>EU FTA 누적 효과로 역내 가공 산업 위축</strong> 우려. Europêche는 2027년부터 프리쿡 로인 ATQ 철폐 요구.</span>
+                <span>멕시코는 EPO 2위 참치 어업·가공국. <strong style={{ color: 'var(--text-main)' }}>Q1 2026 EU 대 멕시코 냉동 로인 수입 101톤</strong>으로 아직 소규모이나, 무관세 시행 시 물량 급증 예상.</span>
               </div>
             </div>
           </div>
@@ -467,21 +467,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                수요 / 원료
+                시장 규모
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.08</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              태국 냉동 ALB 수입 5년래 최고 — Q1 10,499톤(+16%), 대만산 2배
+              UN FAO: 글로벌 참치 수출 $177억 — 캔 참치 56% 점유, 태국·스페인·에콰도르 3강
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>태국 Q1 냉동 ALB 수입 <strong style={{ color: 'var(--text-main)' }}>10,499톤(+16% YoY)</strong>으로 5년래 최고. 평균가 $3,101/톤. 대만산 5,560톤(거의 2배), 일본산 +55% 증가.</span>
+                <span>2024년 참치·가다랑어·새치류 수출 <strong style={{ color: 'var(--text-main)' }}>$177억(+4% vs 2022)</strong>. 전체 수산물 무역의 10% 차지. 캔 참치가 수출액의 56%, 냉동 36%, 신선 6%.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>SKJ·YF 수입은 감소 추세인 반면 <strong style={{ color: 'var(--text-main)' }}>ALB만 역행 상승</strong>. 프리미엄 수출 시장(미국·EU) 캔 ALB 및 고급 파우치 제품 수요 확대가 원인.</span>
+                <span>수출 점유율 태국 15%, 스페인 10%, 에콰도르 9%. <strong style={{ color: 'var(--text-main)' }}>수입 1위 미국(12%), 2위 일본(9%), 3위 태국(9%)</strong>. 태국은 수출·수입 모두 상위권으로 글로벌 가공 허브 지위 확인.</span>
               </div>
             </div>
           </div>
@@ -492,37 +492,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: EU 무역 지형 격변 · 태국 ALB 수요 폭증 · 가봉 SFPA 종료
+          전략 인사이트: EPO SKJ 공급 위기 · EU 무역 지형 격변 · 글로벌 $177억 시장
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="EU 시장 접근권 동시 다발 변동 — 가봉 SFPA 종료 + EU-멕시코 무관세 + 냉동 로인 5년래 최저"
+            title="에콰도르 SKJ 공급 위기와 태국의 EU 시장 역전 — 원료 가격 구조 재편"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="가봉 SFPA 종료(연 32,000톤 소멸) + EU-멕시코 캔참치 7년 후 무관세 + EU 냉동 로인 수입 -1,237톤 → EU 참치 무역 구조 근본적 재편"
+            cardDesc="만타 SKJ $2,150/톤(수년래 최고) + 에콰도르 어획 -41% + 방콕 SKJ $1,775/톤 → 태국 가공업체 EU 시장 가격 경쟁력 역전"
 
             customBody={<></>}
             takeaway={{
-              situation: "EU 참치 시장에 3가지 구조적 변화가 동시에 진행 중입니다. (1) 가봉 SFPA 종료로 프랑스·스페인 선단의 연간 32,000톤 어획 접근권이 소멸되어 원어 공급 부족이 예상됩니다. (2) EU-멕시코 MGA 협정이 유럽의회를 통과하며 7년 후 멕시코산 캔 참치가 무관세로 EU에 진입하게 됩니다. 스페인 갈리시아 가공업계는 태국·필리핀 FTA까지 합산된 누적 관세 인하 효과를 우려하고 있습니다. (3) Q1 EU 냉동 로인 수입이 5년래 최저(10,353톤)를 기록한 가운데, 한국산만 EUR 12,504/톤으로 프리미엄 유지 중입니다.",
-              actionPlan: "(1) [EU 가공 산업 구조 변화 모니터링]: 멕시코 무관세 시행 7년 유예 기간 동안, EU 역내 캔 참치 생산 비용 구조와 경쟁력 변화를 추적하여 선제적 수출 전략을 수립합니다. \n(2) [한국산 프리미엄 포지셔닝 강화]: EU 시장 내 저가 경쟁 심화 속에서 한국산 초저온 로인(EUR 12,504 최고가)의 차별화 전략을 유지하고, MSC 인증 연계 프리미엄 채널을 확대합니다.",
-              source: 'Atuna 2026.07.06~08 (NotebookLM 종합 분석)',
+              situation: "에콰도르 참치 산업이 복합 악재에 직면하고 있습니다. (1) 1~5월 SKJ 어획이 85,323톤으로 전년(145,889톤) 대비 41% 급감하며 만타 허브 원료가가 $2,100~$2,200/톤(수년래 최고)으로 치솟았습니다. (2) 디젤 $4.29/갤런의 고유가가 지속되어 조업 비용이 상승 중입니다. (3) 반면 방콕 SKJ는 $1,775/톤으로 하락하며, 태국 가공업체가 24% 관세 부담에도 EU 시장에서 가격 경쟁력을 확보하는 역전 현상이 발생했습니다. EU-멕시코 무관세 협정까지 확정되면서 에콰도르의 EU 시장 입지가 양면 압박을 받고 있습니다.",
+              actionPlan: "(1) [원료 조달 전략 다변화]: 에콰도르 SKJ 고가 상황을 감안해, 방콕(SKJ $1,775) 및 WCPO 원어 소싱을 병행하여 원가 경쟁력을 확보합니다. \n(2) [EU 시장 가격 전략 재검토]: 태국 가공업체의 EU 시장 진출 확대에 대응하여, 한국산 프리미엄 포지셔닝(EUR 12,504/톤 최고가)을 유지하되 중가 세그먼트 대응 방안을 마련합니다.",
+              source: 'Atuna 2026.07.06~09 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="태국 ALB 수요 폭증이 시사하는 글로벌 원료 수급 재편 — SKJ/YF 약세 속 ALB 독주"
+            title="EU 참치 무역 구조 근본적 재편 — 가봉 SFPA 종료 + EU-멕시코 확정 + 글로벌 $177억 시장 지형"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="태국 ALB 수입 5년래 최고(10,499톤 +16%) + 대만산 2배 + SKJ·YF 수입 감소 → ALB 중심 프리미엄 가공 시프트 가속"
+            cardDesc="가봉 SFPA 종료(32,000톤 소멸) + EU-멕시코 474:131 최종 승인 + 글로벌 수출 $177억 중 캔 56% → EU 가공·무역 구조 전면 재편"
 
             customBody={<></>}
             takeaway={{
-              situation: "태국이 Q1 냉동 ALB 수입을 5년래 최고인 10,499톤(+16%)으로 끌어올리며, SKJ·YF 수입 감소와 대조적인 행보를 보이고 있습니다. 대만산이 5,560톤으로 거의 2배 증가했고, 일본산도 55% 늘었습니다. 이는 미국·EU 시장에서 캔 ALB와 프리미엄 파우치 제품 수요가 확대되면서, 태국 가공업체들이 고부가 ALB 가공으로 전환하는 흐름을 반영합니다. 동시에, IATTC가 EPO 선망 휴어기를 72일에서 64일로 단축하며 미국 선단에 추가 조업 기회를 부여했습니다.",
-              actionPlan: "(1) [ALB 원료 확보 경쟁 대비]: 태국 가공업체의 ALB 매입 확대로 WCPO 연승선 ALB 가격 상승이 예상됩니다. 자사 연승 선단의 ALB 비중을 점검하고, 대만·일본산과의 가격 경쟁력을 비교 분석합니다. \n(2) [EPO 휴어기 단축 활용]: IATTC 64일 휴어기(8/6 시작)에 맞춰 EPO 조업 일정을 최적화하고, 추가 8일 조업 기회를 활용한 YF 물량 확보 계획을 수립합니다.",
-              source: 'Atuna 2026.07.06~08 (NotebookLM 종합 분석)',
+              situation: "EU 참치 무역에 구조적 변화가 확정 단계에 진입했습니다. (1) 가봉 SFPA 종료로 연간 32,000톤 어획 접근권이 소멸되어 EU 역내 원어 공급 부족이 현실화됩니다. (2) EU-멕시코 MGA가 유럽의회를 474 대 131로 최종 통과하며, 7년 후 멕시코산 캔 참치 무관세 진입이 확정되었습니다. (3) UN FAO 보고서에 따르면 글로벌 참치 수출이 $177억에 도달하며 캔 참치(56%)가 시장을 주도하고 있습니다. 태국(수출 15%)·스페인(10%)·에콰도르(9%)가 3강 체제를 형성 중이며, 수입국으로는 미국(12%)·일본(9%)·태국(9%)이 상위권입니다.",
+              actionPlan: "(1) [EU 가공 산업 재편 모니터링]: 멕시코 무관세 + 태국 FTA 협상 + 가봉 SFPA 종료의 누적 효과로 EU 역내 가공업(특히 스페인 갈리시아)의 경쟁력 변화를 추적합니다. \n(2) [글로벌 시장 포지셔닝]: $177억 시장에서 캔 참치(56%) 중심 성장을 감안해, 자사 가공·유통 전략을 캔·파우치 고부가 제품 중심으로 재편합니다.",
+              source: 'Atuna 2026.07.06~09 (NotebookLM 종합 분석)',
             }}
           />
 
