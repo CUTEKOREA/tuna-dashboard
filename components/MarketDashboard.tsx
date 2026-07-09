@@ -444,21 +444,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                공급망 리스크
+                무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.07</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.08</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              몰디브 YF 어부, MIFCO 얼음 공급 축소에 조업 위기 경고
+              스페인 참치 업계, EU-멕시코 협정에 경고 — 7년 후 캔 참치 무관세
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>호르무즈 해협 봉쇄에 따른 연료 부족으로 <strong style={{ color: 'var(--text-main)' }}>MIFCO 제빙 공장 다수 가동 중단</strong>, 선박당 일일 2톤 제한. 어부 노조(BKMU)가 공식 항의.</span>
+                <span>EU-멕시코 현대화 글로벌 협정(MGA) 유럽의회 표결 통과. <strong style={{ color: 'var(--text-main)' }}>7년 후 멕시코산 캔 참치 관세 0%</strong> 완전 자유화 조항에 스페인 갈리시아 가공업계 강력 반발.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>MIFCO 어부 지급액 4월 MVR 7,800만 → 6월 MVR 1,130만으로 <strong style={{ color: 'var(--text-main)' }}>3개월간 85% 급감</strong>. 몰디브 폴앤라인 YF 공급 차질 우려.</span>
+                <span>갈리시아 MEP "멕시코 다음은 태국·필리핀" 경고. <strong style={{ color: 'var(--text-main)' }}>EU FTA 누적 효과로 역내 가공 산업 위축</strong> 우려. Europêche는 2027년부터 프리쿡 로인 ATQ 철폐 요구.</span>
               </div>
             </div>
           </div>
@@ -467,21 +467,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                수요 트렌드
+                수요 / 원료
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.07</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.08</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              프랑스 MSC 참치 소비 5년간 90% 급증 · 캔 SKJ 중심 성장
+              태국 냉동 ALB 수입 5년래 최고 — Q1 10,499톤(+16%), 대만산 2배
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>프랑스 MSC 인증 참치 소비량 2021~2026년간 <strong style={{ color: 'var(--text-main)' }}>약 90% 성장</strong>. 2024/25 기준 가구 소비 63,840톤 중 17,115톤이 MSC 라벨 제품.</span>
+                <span>태국 Q1 냉동 ALB 수입 <strong style={{ color: 'var(--text-main)' }}>10,499톤(+16% YoY)</strong>으로 5년래 최고. 평균가 $3,101/톤. 대만산 5,560톤(거의 2배), 일본산 +55% 증가.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>캔 카테고리가 MSC 참치의 73%(12,000톤 이상) 차지, SKJ가 주력. <strong style={{ color: 'var(--text-main)' }}>4개 프랑스 어업이 MSC 인증</strong> 보유(약 49,000톤). IO 선망 YF·ALB 인증 심사 2026년 내 완료 예정.</span>
+                <span>SKJ·YF 수입은 감소 추세인 반면 <strong style={{ color: 'var(--text-main)' }}>ALB만 역행 상승</strong>. 프리미엄 수출 시장(미국·EU) 캔 ALB 및 고급 파우치 제품 수요 확대가 원인.</span>
               </div>
             </div>
           </div>
@@ -492,37 +492,37 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: 가봉 SFPA 종료 · 몰디브 공급망 위기 · EU 로인 무역 재편
+          전략 인사이트: EU 무역 지형 격변 · 태국 ALB 수요 폭증 · 가봉 SFPA 종료
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="가봉 SFPA 종료와 아프리카 자원 민족주의 — EU 선단 접근권 축소가 글로벌 참치 공급에 미치는 영향"
+            title="EU 시장 접근권 동시 다발 변동 — 가봉 SFPA 종료 + EU-멕시코 무관세 + 냉동 로인 5년래 최저"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="가봉 SFPA 종료(연 32,000톤 어획권 소멸) + 몰디브 얼음 공급 위기 + EU 냉동 로인 수입 5년래 최저 → 공급 축소 속 원양 선단 대응 전략 필요"
+            cardDesc="가봉 SFPA 종료(연 32,000톤 소멸) + EU-멕시코 캔참치 7년 후 무관세 + EU 냉동 로인 수입 -1,237톤 → EU 참치 무역 구조 근본적 재편"
 
             customBody={<></>}
             takeaway={{
-              situation: "가봉이 2007년부터 유지해온 EU와의 참치 어업 협정을 종료하며, 프랑스·스페인 선단의 연간 32,000톤 어획 접근권이 소멸됩니다. 가봉 정부는 협정금(연 EUR 260만)이 실제 자원 가치(EUR 7,000~9,000만)의 8% 미만이라며 자국 가공업 육성으로 전환합니다. 이는 코트디부아르·마다가스카르 등 다른 아프리카 연안국에도 확산될 수 있는 '자원 민족주의' 흐름입니다. 동시에, 몰디브에서는 호르무즈 해협 봉쇄 여파로 연료 부족 → 제빙 공장 가동 중단 → 폴앤라인 YF 어획 차질이 연쇄적으로 발생하고 있습니다.",
-              actionPlan: "(1) [EU 공급 축소 대응]: 가봉 SFPA 종료로 EU 시장 내 원어 공급 감소가 예상되므로, 태평양·WCPO 원어 확보 물량의 EU 수출 비중 확대를 검토합니다. \n(2) [몰디브 공급 차질 모니터링]: 몰디브 폴앤라인 YF는 프리미엄 채널(MSC 인증)의 핵심 소스이므로, 공급 차질 시 세이셸·피지 대체 소싱 루트를 사전 확보합니다.",
-              source: 'Atuna 2026.07.06~07 (NotebookLM 종합 분석)',
+              situation: "EU 참치 시장에 3가지 구조적 변화가 동시에 진행 중입니다. (1) 가봉 SFPA 종료로 프랑스·스페인 선단의 연간 32,000톤 어획 접근권이 소멸되어 원어 공급 부족이 예상됩니다. (2) EU-멕시코 MGA 협정이 유럽의회를 통과하며 7년 후 멕시코산 캔 참치가 무관세로 EU에 진입하게 됩니다. 스페인 갈리시아 가공업계는 태국·필리핀 FTA까지 합산된 누적 관세 인하 효과를 우려하고 있습니다. (3) Q1 EU 냉동 로인 수입이 5년래 최저(10,353톤)를 기록한 가운데, 한국산만 EUR 12,504/톤으로 프리미엄 유지 중입니다.",
+              actionPlan: "(1) [EU 가공 산업 구조 변화 모니터링]: 멕시코 무관세 시행 7년 유예 기간 동안, EU 역내 캔 참치 생산 비용 구조와 경쟁력 변화를 추적하여 선제적 수출 전략을 수립합니다. \n(2) [한국산 프리미엄 포지셔닝 강화]: EU 시장 내 저가 경쟁 심화 속에서 한국산 초저온 로인(EUR 12,504 최고가)의 차별화 전략을 유지하고, MSC 인증 연계 프리미엄 채널을 확대합니다.",
+              source: 'Atuna 2026.07.06~08 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="EU 냉동 로인 무역 재편 — 에콰도르 독주 속 한국산 프리미엄 포지셔닝 기회"
+            title="태국 ALB 수요 폭증이 시사하는 글로벌 원료 수급 재편 — SKJ/YF 약세 속 ALB 독주"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="EU 냉동 로인 수입 -1,237톤(5년래 최저) + 에콰도르 +2배 확대 + 한국산 EUR 12,504 최고가 + 프랑스 MSC 90% 성장 → 프리미엄·지속가능성 전략"
+            cardDesc="태국 ALB 수입 5년래 최고(10,499톤 +16%) + 대만산 2배 + SKJ·YF 수입 감소 → ALB 중심 프리미엄 가공 시프트 가속"
 
             customBody={<></>}
             takeaway={{
-              situation: "Q1 2026 EU 냉동 참치 로인 수입이 10,353톤으로 전년 대비 1,237톤 감소하며 5년래 최저를 기록했습니다. 평균가도 EUR 7,395/톤으로 하락했으나, 한국산은 EUR 12,504/톤으로 최고가를 유지하며 프리미엄 시장을 장악 중입니다. 에콰도르만 유일하게 +1,175톤 수출을 늘렸고, 중국(-72%)·인도네시아·가나 등은 큰 폭으로 감소했습니다. 한편, 프랑스에서 MSC 인증 참치 소비가 5년간 90% 성장하며, 지속가능성 인증이 시장 접근의 핵심 요소로 부상하고 있습니다.",
-              actionPlan: "(1) [한국산 프리미엄 로인 확대]: EUR 12,504 최고가를 유지하는 한국산 프리미엄 로인(초저온 YF·BET 사시미급) 채널을 활용해, EU 고급 식재료 시장 공략을 강화합니다. \n(2) [MSC 인증 활용]: 프랑스 MSC 참치 수요 급증(90%) 트렌드에 맞춰, 자사 선단의 MSC 인증 어획물 비중을 확대하고 EU 소매 채널과의 직접 계약을 추진합니다.",
-              source: 'Atuna 2026.07.06~07 (NotebookLM 종합 분석)',
+              situation: "태국이 Q1 냉동 ALB 수입을 5년래 최고인 10,499톤(+16%)으로 끌어올리며, SKJ·YF 수입 감소와 대조적인 행보를 보이고 있습니다. 대만산이 5,560톤으로 거의 2배 증가했고, 일본산도 55% 늘었습니다. 이는 미국·EU 시장에서 캔 ALB와 프리미엄 파우치 제품 수요가 확대되면서, 태국 가공업체들이 고부가 ALB 가공으로 전환하는 흐름을 반영합니다. 동시에, IATTC가 EPO 선망 휴어기를 72일에서 64일로 단축하며 미국 선단에 추가 조업 기회를 부여했습니다.",
+              actionPlan: "(1) [ALB 원료 확보 경쟁 대비]: 태국 가공업체의 ALB 매입 확대로 WCPO 연승선 ALB 가격 상승이 예상됩니다. 자사 연승 선단의 ALB 비중을 점검하고, 대만·일본산과의 가격 경쟁력을 비교 분석합니다. \n(2) [EPO 휴어기 단축 활용]: IATTC 64일 휴어기(8/6 시작)에 맞춰 EPO 조업 일정을 최적화하고, 추가 8일 조업 기회를 활용한 YF 물량 확보 계획을 수립합니다.",
+              source: 'Atuna 2026.07.06~08 (NotebookLM 종합 분석)',
             }}
           />
 
