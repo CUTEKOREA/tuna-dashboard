@@ -23,29 +23,29 @@ const getServerReadySnapshot = () => false;
 
 // Data Definitions
 const weeklyData = [
-  { name: 'N/STAR', captain: '조태연', weekly: 445, avg: 55.63 },
-  { name: 'S/EXP', captain: '공준식', weekly: 245, avg: 30.63 },
-  { name: 'S/CHA', captain: '최용석', weekly: 255, avg: 31.88 },
-  { name: 'S/PIO', captain: '김승현', weekly: 189, avg: 23.63 },
-  { name: 'P/GRACE', captain: '-', weekly: 250, avg: 31.25 },
-  { name: 'MARI', captain: '김정훈', weekly: 215, avg: 26.88 },
-  { name: 'S/SPR', captain: '김효원', weekly: 118, avg: 14.75 },
-  { name: 'KONA', captain: '이평규', weekly: 118, avg: 14.75 },
+  { name: 'MARI', captain: '김정훈', weekly: 545, avg: 68.13 },
+  { name: 'N/STAR', captain: '조태연', weekly: 850, avg: 106.25 },
+  { name: 'S/EXP', captain: '공준식', weekly: 423, avg: 52.88 },
+  { name: 'S/CHA', captain: '최용석', weekly: 450, avg: 56.25 },
+  { name: 'S/PIO', captain: '김승현', weekly: 1000, avg: 125.0 },
+  { name: 'S/SPR', captain: '김효원', weekly: 85, avg: 10.63 },
+  { name: 'KONA', captain: '이평규', weekly: 296, avg: 37.0 },
   { name: 'N/SUN', captain: '김형주', weekly: 40, avg: 5.0 },
   { name: 'S/HAR', captain: '오복근', weekly: 0, avg: 0 },
+  { name: 'S/JUP', captain: '강창훈', weekly: 0, avg: 0 },
 ];
 
 const monthlyData = [
-  { name: 'S/EXP', month1: 927, month2: 875, month3: 465, month4: 679, month5: 319, month6: 185, month7: 125 },
-  { name: 'S/PIO', month1: 620, month2: 585, month3: 475, month4: 560, month5: 1205, month6: 881, month7: 69 },
-  { name: 'S/CHA', month1: 320, month2: 700, month3: 640, month4: 250, month5: 805, month6: 380, month7: 130 },
+  { name: 'S/EXP', month1: 927, month2: 875, month3: 465, month4: 679, month5: 319, month6: 185, month7: 423 },
+  { name: 'S/PIO', month1: 620, month2: 585, month3: 475, month4: 560, month5: 1205, month6: 881, month7: 1000 },
+  { name: 'S/CHA', month1: 320, month2: 700, month3: 640, month4: 250, month5: 805, month6: 380, month7: 450 },
   { name: 'S/HAR', month1: 1095, month2: 935, month3: 1120, month4: 435, month5: 575, month6: 0, month7: 0 },
   { name: 'S/JUP', month1: 175, month2: 595, month3: 855, month4: 310, month5: 845, month6: 135, month7: 0 },
-  { name: 'S/SPR', month1: 806, month2: 485, month3: 1065, month4: 1555, month5: 1234, month6: 970, month7: 0 },
-  { name: 'MARI', month1: 975, month2: 660, month3: 525, month4: 350, month5: 1060, month6: 900, month7: 0 },
-  { name: 'KONA', month1: 722, month2: 330, month3: 659, month4: 430, month5: 596, month6: 681, month7: 83 },
+  { name: 'S/SPR', month1: 806, month2: 485, month3: 1065, month4: 1555, month5: 1234, month6: 970, month7: 85 },
+  { name: 'MARI', month1: 975, month2: 660, month3: 525, month4: 350, month5: 1060, month6: 900, month7: 545 },
+  { name: 'KONA', month1: 722, month2: 330, month3: 659, month4: 430, month5: 596, month6: 681, month7: 296 },
   { name: 'N/SUN', month1: 665, month2: 310, month3: 502, month4: 528, month5: 0, month6: 820, month7: 40 },
-  { name: 'N/STAR', month1: 675, month2: 880, month3: 515, month4: 1105, month5: 415, month6: 1165, month7: 190 },
+  { name: 'N/STAR', month1: 675, month2: 880, month3: 515, month4: 1105, month5: 415, month6: 1165, month7: 850 },
 ];
 
 const cumulativeData = [
