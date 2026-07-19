@@ -19,6 +19,7 @@ import { Factory, Ship, ThermometerSun, Waves } from 'lucide-react';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import WidgetCard from './WidgetCard';
 import KimLogisticsWidget from './KimLogisticsWidget';
+import AnimatedNumber from './AnimatedNumber';
 import KimSeasonedWidget from './KimSeasonedWidget';
 import { KimProductionTrend, KimGlobalShare, KimExportTrend, KimExportDest, KimGlobalImporters, KimConsumption, KimFxPrice, KimWorldProduction, KimResearch } from './KimAgriDataWidgets';
 import { truncateXAxis } from '../lib/chart-standards';
@@ -87,7 +88,7 @@ export default function KimDashboard() {
           <div key={idx} style={{ background: '#11182f', border: '1px solid rgba(255,255,255,0.03)', borderRadius: '12px', padding: '1.2rem', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-15px', right: '-15px', width: '60px', height: '60px', borderRadius: '50%', background: `radial-gradient(circle,${kpi.color}40,transparent)`, pointerEvents: 'none' }} />
             <span style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 600 }}>{kpi.title}</span>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', margin: '6px 0 4px' }}>{kpi.value}</div>
+            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#f8fafc', margin: '6px 0 4px' }}><AnimatedNumber value={kpi.value} /></div>
             <div style={{ fontSize: '0.68rem', color: kpi.color, fontWeight: 600 }}>
               <span style={{ background: `${kpi.color}20`, padding: '2px 5px', borderRadius: '4px', marginRight: '4px' }}>{kpi.trend}</span>{kpi.desc}
             </div>
