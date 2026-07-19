@@ -387,7 +387,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 주간 다이제스트: 7월 2주차 시장을 뒤흔드는 핵심 시그널
+          Atuna 주간 다이제스트: 7월 3주차 (7/13~17) 핵심 시그널
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -398,21 +398,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                규제 / 정책
+                원료 / 가격
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.07</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09~16</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              가봉, EU와 20년 참치 어업 협정 종료 — 자국 수산업 육성 선언
+              양극화되는 원어가: 방콕 반등 및 만타 초고가 지속
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>가봉 정부가 2007년부터 이어온 <strong style={{ color: 'var(--text-main)' }}>EU-가봉 지속가능어업협정(SFPA)을 6/29 종료</strong>. EU 선단의 연간 32,000톤 어획권 소멸.</span>
+                <span>하락세를 보이던 <strong style={{ color: 'var(--text-main)' }}>방콕 가다랑어 원어가 $1,790/톤으로 반등</strong>. WCPO 어획 부진과 싱가포르 MGO $1,160/톤 등 연료비 폭등 압박.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>가봉은 참치 자원의 경제적 이익이 유럽에 편중(협정금 EUR 260만 vs 자원가치 EUR 7,000~9,000만)되었다고 판단. <strong style={{ color: 'var(--text-main)' }}>국내 가공·고용 창출 중심으로 수산업 재편</strong> 추진.</span>
+                <span>에콰도르 만타 시장은 극심한 수급난 속에 <strong style={{ color: 'var(--text-main)' }}>가다랑어 $2,150/톤 초고가</strong> 기록, 마진 압박 한계치 도달.</span>
               </div>
             </div>
           </div>
@@ -421,21 +421,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                원료 / 가격
+                환경 / 조업
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.15</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              에콰도르 SKJ 원료가 $2,150/톤 돌파 — 어획 부진·유가 압박 복합 악재
+              '슈퍼 엘니뇨' 2027년까지 지속 전망... 조업 지형의 구조적 교란
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>만타 허브 SKJ 원료가 <strong style={{ color: 'var(--text-main)' }}>$2,100~$2,200/톤</strong>으로 수년래 최고. 1~5월 에콰도르 선단 SKJ 어획 85,323톤(전년 145,889톤 대비 <strong style={{ color: 'var(--text-main)' }}>-41%</strong>).</span>
+                <span>기상 당국 <strong style={{ color: 'var(--text-main)' }}>'슈퍼 엘니뇨' 발생 확률 증가 및 2027년 초까지 지속</strong> 경고. 기후 위기가 상시 리스크로 전환.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>방콕 SKJ $1,775/톤으로 <strong style={{ color: 'var(--text-main)' }}>태국 가공업체가 EU 시장에서 24% 관세 불구 가격 경쟁력 확보</strong>. 에콰도르 디젤 $4.29/갤런 고유가 지속으로 조업 비용 상승.</span>
+                <span>동태평양(EPO) 가다랑어 어획량 급감 전망. <strong style={{ color: 'var(--text-main)' }}>8월 에콰도르 64일 금어기(Veda)와 맞물려 원어 수급 치명적 위협</strong>.</span>
               </div>
             </div>
           </div>
@@ -444,21 +444,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                무역 / 관세
+                규제 / 유통
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.14~16</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              EU-멕시코 MGA 유럽의회 최종 승인 — 474 대 131 압도적 통과
+              EU CATCH 시스템발(發) 유럽 수입 병목 심화 및 유예 조치
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>유럽의회 본회의에서 <strong style={{ color: 'var(--text-main)' }}>iTA(잠정 무역 협정) 474 대 131로 가결</strong>. 각 회원국 비준 전 관세 조항 선적용 가능, 멕시코산 캔 참치 7년 후 무관세 확정.</span>
+                <span>디지털 이력 추적제 <strong style={{ color: 'var(--text-main)' }}>'EU CATCH' 행정 병목 현실화</strong>. 아프리카 등 중소 공급국 대응 지연으로 1분기 프랑스 캔참치 수입 -24% 급감.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>멕시코는 EPO 2위 참치 어업·가공국. <strong style={{ color: 'var(--text-main)' }}>Q1 2026 EU 대 멕시코 냉동 로인 수입 101톤</strong>으로 아직 소규모이나, 무관세 시행 시 물량 급증 예상.</span>
+                <span>규제 적용에 난항을 겪는 미국 수산물 대상 <strong style={{ color: 'var(--text-main)' }}>EU 의회가 CATCH 시스템 적용 유예를 11월 30일까지 5개월 연장</strong>.</span>
               </div>
             </div>
           </div>
@@ -467,21 +467,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                시장 규모
+                무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.17</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              UN FAO: 글로벌 참치 수출 $177억 — 캔 참치 56% 점유, 태국·스페인·에콰도르 3강
+              관세 장벽의 틈새: 미국의 브라질산 참치 예외와 중국-소말리아 밀착
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>2024년 참치·가다랑어·새치류 수출 <strong style={{ color: 'var(--text-main)' }}>$177억(+4% vs 2022)</strong>. 전체 수산물 무역의 10% 차지. 캔 참치가 수출액의 56%, 냉동 36%, 신선 6%.</span>
+                <span>USTR, 브라질산 수입품에 무역법 301조 25% 징벌적 관세 부과했으나 <strong style={{ color: 'var(--text-main)' }}>신선/냉장 황다랑어 및 눈다랑어는 면제</strong>.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>수출 점유율 태국 15%, 스페인 10%, 에콰도르 9%. <strong style={{ color: 'var(--text-main)' }}>수입 1위 미국(12%), 2위 일본(9%), 3위 태국(9%)</strong>. 태국은 수출·수입 모두 상위권으로 글로벌 가공 허브 지위 확인.</span>
+                <span>중국은 <strong style={{ color: 'var(--text-main)' }}>소말리아와 수산물 무관세 수출 협정 전격 체결</strong>. 아프리카 인도양 연안 수산 자원 선점 및 인프라 투자 본격화.</span>
               </div>
             </div>
           </div>
@@ -492,37 +492,35 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: EPO SKJ 공급 위기 · EU 무역 지형 격변 · 글로벌 $177억 시장
+          전략 인사이트: 기후·에너지 이중고 및 규제 장벽 틈새 기회
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="에콰도르 SKJ 공급 위기와 태국의 EU 시장 역전 — 원료 가격 구조 재편"
+            title="'기후·에너지 이중고'에 따른 공급망의 구조적 붕괴 대응"
             icon={Search}
             iconColor="#818cf8"
             pillar="S2"
-            cardDesc="만타 SKJ $2,150/톤(수년래 최고) + 에콰도르 어획 -41% + 방콕 SKJ $1,775/톤 → 태국 가공업체 EU 시장 가격 경쟁력 역전"
-
+            cardDesc="슈퍼 엘니뇨로 인한 조업지 이동 + 중동 리스크발 연료비(MGO $1,160) 폭등 장기화 대비"
             customBody={<></>}
             takeaway={{
-              situation: "에콰도르 참치 산업이 복합 악재에 직면하고 있습니다. (1) 1~5월 SKJ 어획이 85,323톤으로 전년(145,889톤) 대비 41% 급감하며 만타 허브 원료가가 $2,100~$2,200/톤(수년래 최고)으로 치솟았습니다. (2) 디젤 $4.29/갤런의 고유가가 지속되어 조업 비용이 상승 중입니다. (3) 반면 방콕 SKJ는 $1,775/톤으로 하락하며, 태국 가공업체가 24% 관세 부담에도 EU 시장에서 가격 경쟁력을 확보하는 역전 현상이 발생했습니다. EU-멕시코 무관세 협정까지 확정되면서 에콰도르의 EU 시장 입지가 양면 압박을 받고 있습니다.",
-              actionPlan: "(1) [원료 조달 전략 다변화]: 에콰도르 SKJ 고가 상황을 감안해, 방콕(SKJ $1,775) 및 WCPO 원어 소싱을 병행하여 원가 경쟁력을 확보합니다. \n(2) [EU 시장 가격 전략 재검토]: 태국 가공업체의 EU 시장 진출 확대에 대응하여, 한국산 프리미엄 포지셔닝(EUR 12,504/톤 최고가)을 유지하되 중가 세그먼트 대응 방안을 마련합니다.",
-              source: 'Atuna 2026.07.06~09 (NotebookLM 종합 분석)',
+              situation: "슈퍼 엘니뇨로 인한 조업지 이동과 중동 리스크에 따른 연료비 폭등은 일시적 현상이 아닙니다. 에콰도르 가다랑어 극단적 품귀 현상($2,150)과 방콕 가격 반등($1,790)은 기존 공급망 공식이 깨졌음을 의미합니다.",
+              actionPlan: "(1) [방콕 시장 선도 계약 선점]: WCPFC FAD 조업 금지(7/1~8/15)로 8월 초 방콕 양륙 물량 급감 예상. $1,800 돌파 전 선매입 계약 필수. \n(2) [탈(脫) 동태평양 소싱 포트폴리오]: 슈퍼 엘니뇨와 금어기로 남미 발 공급망 병목 심화. 대서양이나 아시아 역내 어장으로 소싱 비중 전환. \n(3) [연료비 변동성 방어 벙커링 계약]: MGO $1,160 폭등 등 조업 유류비 리스크 방어를 위해 장기 벙커링 헷징 계약 검토.",
+              source: 'Atuna 2026.07.13~17 (NotebookLM 종합 분석)',
             }}
           />
 
           <WidgetCard
-            title="EU 참치 무역 구조 근본적 재편 — 가봉 SFPA 종료 + EU-멕시코 확정 + 글로벌 $177억 시장 지형"
+            title="보호무역 및 '규제 장벽'의 틈새를 파고드는 프리미엄·우회 수출 전략"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="가봉 SFPA 종료(32,000톤 소멸) + EU-멕시코 474:131 최종 승인 + 글로벌 수출 $177억 중 캔 56% → EU 가공·무역 구조 전면 재편"
-
+            cardDesc="미국 301조 관세 위협 및 EU CATCH 규제로 중소 공급국 퇴출 가속 → 디지털 인프라 기반 선진 시장 장악 기회"
             customBody={<></>}
             takeaway={{
-              situation: "EU 참치 무역에 구조적 변화가 확정 단계에 진입했습니다. (1) 가봉 SFPA 종료로 연간 32,000톤 어획 접근권이 소멸되어 EU 역내 원어 공급 부족이 현실화됩니다. (2) EU-멕시코 MGA가 유럽의회를 474 대 131로 최종 통과하며, 7년 후 멕시코산 캔 참치 무관세 진입이 확정되었습니다. (3) UN FAO 보고서에 따르면 글로벌 참치 수출이 $177억에 도달하며 캔 참치(56%)가 시장을 주도하고 있습니다. 태국(수출 15%)·스페인(10%)·에콰도르(9%)가 3강 체제를 형성 중이며, 수입국으로는 미국(12%)·일본(9%)·태국(9%)이 상위권입니다.",
-              actionPlan: "(1) [EU 가공 산업 재편 모니터링]: 멕시코 무관세 + 태국 FTA 협상 + 가봉 SFPA 종료의 누적 효과로 EU 역내 가공업(특히 스페인 갈리시아)의 경쟁력 변화를 추적합니다. \n(2) [글로벌 시장 포지셔닝]: $177억 시장에서 캔 참치(56%) 중심 성장을 감안해, 자사 가공·유통 전략을 캔·파우치 고부가 제품 중심으로 재편합니다.",
-              source: 'Atuna 2026.07.06~09 (NotebookLM 종합 분석)',
+              situation: "미국의 무역법 301조 관세 위협과 유럽의 EU CATCH 시스템은 역량 없는 중소 공급국들을 강제 퇴출시키고 있습니다. 완벽한 이력 추적 인프라와 관세 예외 지대를 파악한 기업에게는 선진국 시장 매대를 장악할 절호의 기회입니다.",
+              actionPlan: "(1) [EU CATCH 규제 준수율 기반 점유율 확장]: 프랑스 1분기 수입 24% 급감 등 유럽 대형 유통사들의 재고 부족 상황을 디지털 이력 추적(Traceability) 인프라로 공략. \n(2) [미국 관세 예외국 경유 전략]: 미국이 브라질산 고급 참치를 25% 보복 관세에서 예외로 둔 점을 활용, 주요 타겟국을 우회하는 북미향 하이엔드 수출 라인 개척. \n(3) [아프리카 냉동 콜드체인 선행 투자]: 중국-소말리아 밀착 대응. 단순 원어 매입을 넘어 초저온 냉동 인프라 투자 대가로 장기 독점 조업권 및 원어 수매권 확보 빅딜 추진.",
+              source: 'Atuna 2026.07.13~17 (NotebookLM 종합 분석)',
             }}
           />
 
