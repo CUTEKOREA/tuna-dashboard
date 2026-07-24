@@ -38,7 +38,7 @@ const heatmapData: Record<string, Record<string, Record<string, { remaining: num
     '사조산업': { 'PNG': { remaining: 271.80, rate: 5 }, 'Solomon': { remaining: 42.08, rate: 57 }, 'Kiribati': { remaining: 10.64, rate: 95 }, 'Tuvalu': { remaining: -2.48, rate: 103 }, 'Nauru': { remaining: 19.60, rate: 78 }, 'FSM': { remaining: 26.38, rate: 59 } },
     '사조씨푸드': { 'PNG': { remaining: 58.00, rate: 0 }, 'Solomon': { remaining: -2.40, rate: 113 }, 'Kiribati': { remaining: 5.04, rate: 88 }, 'Tuvalu': { remaining: 4.50, rate: 76 }, 'Nauru': { remaining: -0.30, rate: 102 }, 'FSM': { remaining: 12.00, rate: 0 } },
     '사조오양': { 'PNG': { remaining: 52.80, rate: 9 }, 'Solomon': { remaining: -25.50, rate: 206 }, 'Kiribati': { remaining: 16.66, rate: 61 }, 'Tuvalu': { remaining: 3.70, rate: 81 }, 'Nauru': { remaining: -1.70, rate: 111 }, 'FSM': { remaining: 4.00, rate: 67 } },
-    '신라교역': { 'PNG': { remaining: 315.90, rate: 5 }, 'Solomon': { remaining: 20.29, rate: 54 }, 'Kiribati': { remaining: 66.80, rate: 86 }, 'Tuvalu': { remaining: 9.50, rate: 91 }, 'Nauru': { remaining: 19.20, rate: 86 }, 'FSM': { remaining: 30.35, rate: 38 } }
+    '신라교역': { 'PNG': { remaining: 314.70, rate: 5 }, 'Solomon': { remaining: 20.20, rate: 54 }, 'Kiribati': { remaining: 34.10, rate: 95 }, 'Tuvalu': { remaining: 7.80, rate: 92 }, 'Nauru': { remaining: 19.50, rate: 86 }, 'FSM': { remaining: 32.20, rate: 34 } }
   }
 };
 
@@ -52,12 +52,12 @@ const companyColors: Record<string, string> = {
 
 // ... other constants (sillaData, intelFeed) stay same as 2026 ...
 const sillaData = [
-  { zone: 'PNG', total: 331.00, consumed: 15.10, remaining: 315.90, rate: 5 },
-  { zone: 'Kiribati', total: 494.00, consumed: 427.20, remaining: 66.80, rate: 86 },
-  { zone: 'Solomon', total: 44.00, consumed: 23.71, remaining: 20.29, rate: 54 },
-  { zone: 'Tuvalu', total: 102.00, consumed: 92.50, remaining: 9.50, rate: 91 },
-  { zone: 'Nauru', total: 142.00, consumed: 122.80, remaining: 19.20, rate: 86 },
-  { zone: 'FSM', total: 49.00, consumed: 18.65, remaining: 30.35, rate: 38 },
+  { zone: 'PNG', total: 331.00, consumed: 16.30, remaining: 314.70, rate: 5 },
+  { zone: 'Kiribati', total: 654.00, consumed: 619.80, remaining: 34.10, rate: 95 },
+  { zone: 'Solomon', total: 44.00, consumed: 23.80, remaining: 20.20, rate: 54 },
+  { zone: 'Tuvalu', total: 102.00, consumed: 94.20, remaining: 7.80, rate: 92 },
+  { zone: 'Nauru', total: 142.00, consumed: 122.50, remaining: 19.50, rate: 86 },
+  { zone: 'FSM', total: 49.00, consumed: 16.80, remaining: 32.20, rate: 34 },
 ];
 
 const intelFeed = [

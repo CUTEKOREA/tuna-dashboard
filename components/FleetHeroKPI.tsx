@@ -10,40 +10,40 @@ export default function FleetHeroKPI({ climateRisk }: { climateRisk?: any }) {
       <div className={s.heroHeader}>
         <h2 className={s.heroTitle}>
           <Anchor size={20} /> 선단 운영 커맨드 센터
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>26.07.08 (수) 기준</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>26.07.24 (금) 기준</span>
         </h2>
         {/* L-09: 정적 일일보고 데이터 — 라이브 위장 배지 금지, STATIC 정직 표기 */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '5px 12px', background: 'rgba(148,163,184,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '20px' }}>
-          <span style={{ color: '#94a3b8', fontSize: '0.78rem', fontWeight: 700 }}>STATIC · 일일 업무보고 26.07.08 동기화</span>
+          <span style={{ color: '#94a3b8', fontSize: '0.78rem', fontWeight: 700 }}>STATIC · 일일 업무보고 26.07.24 동기화</span>
         </div>
       </div>
 
       <div className={s.kpiRow}>
         <div className={`${s.kpiCard} ${s.kpiCardHighlight}`}>
           <div className={s.kpiLabel}>{'⚡'} 일일 총 어획량</div>
-          <div className={`${s.kpiValue} ${s.kpiValueAccent}`}><CountUp end={715} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
-          <div style={{ fontSize: '0.72rem', color: '#34d399', marginTop: 4 }}>태평양 645t + 대서양 70t</div>
+          <div className={`${s.kpiValue} ${s.kpiValueAccent}`}><CountUp end={434} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
+          <div style={{ fontSize: '0.72rem', color: '#34d399', marginTop: 4 }}>태평양 24t + 대서양 410t</div>
         </div>
         <div className={s.kpiCard}>
           <div className={s.kpiLabel}>{'📅'} 월간 총 어획량</div>
-          <div className={s.kpiValue}><CountUp end={2247} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>태평양 1,397t + 대서양 850t</div>
+          <div className={s.kpiValue}><CountUp end={8319} duration={2} separator="," /><span className={s.kpiUnit}>MT</span></div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>태평양 4,049.3t + 대서양 4,270t</div>
         </div>
         <div className={s.kpiCard}>
           <div className={s.kpiLabel}>{'📊'} 연간 총 어획량</div>
-          <div className={s.kpiValue}><CountUp end={62336} duration={2.5} separator="," /><span className={s.kpiUnit}>MT</span></div>
-          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>태평양 40,926t + 대서양 21,410t</div>
+          <div className={s.kpiValue}><CountUp end={68408} duration={2.5} separator="," /><span className={s.kpiUnit}>MT</span></div>
+          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 4 }}>태평양 43,577.8t + 대서양 24,830t</div>
         </div>
       </div>
 
       {/* Ratio bar */}
       <div className={s.ratioBar}>
-        <span className={s.ratioLabel} style={{ color: '#38bdf8' }}>태평양 65%</span>
+        <span className={s.ratioLabel} style={{ color: '#38bdf8' }}>태평양 64%</span>
         <div className={s.ratioTrack}>
-          <div className={s.ratioFill} style={{ width: '65%', background: 'linear-gradient(90deg, #38bdf8, #60a5fa)' }} />
-          <div className={s.ratioFill} style={{ width: '35%', background: 'linear-gradient(90deg, #a78bfa, #818cf8)' }} />
+          <div className={s.ratioFill} style={{ width: '64%', background: 'linear-gradient(90deg, #38bdf8, #60a5fa)' }} />
+          <div className={s.ratioFill} style={{ width: '36%', background: 'linear-gradient(90deg, #a78bfa, #818cf8)' }} />
         </div>
-        <span className={s.ratioLabel} style={{ color: '#a78bfa', textAlign: 'right' }}>대서양 35%</span>
+        <span className={s.ratioLabel} style={{ color: '#a78bfa', textAlign: 'right' }}>대서양 36%</span>
       </div>
 
       {/* Climate alert */}

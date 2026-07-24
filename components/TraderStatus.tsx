@@ -15,21 +15,22 @@ const data2026 = [
   { month: '3월', FCF: 11700, ITOCHU: 4915, 'TRI MARINE': 2113, 'Direct deal': 11925, Maldives: 0 },
   { month: '4월', FCF: 14206, ITOCHU: 9963, 'TRI MARINE': 13933, 'Direct deal': 22181, Maldives: 0 },
   { month: '5월', FCF: 32638, ITOCHU: 3371, 'TRI MARINE': 9413, 'Direct deal': 3485, Maldives: 0 },
-  { month: '6월', FCF: 13749, ITOCHU: 2924, 'TRI MARINE': 9465, 'Direct deal': 19619, Maldives: 0 },
+  { month: '6월', FCF: 13749, ITOCHU: 2924, 'TRI MARINE': 9465, 'Direct deal': 23719, Maldives: 0 },
+  { month: '7월', FCF: 4100, ITOCHU: 3711, 'TRI MARINE': 8283, 'Direct deal': 3059, Maldives: 0 },
 ];
 
 // key=데이터키(유지) · name=표시명(한글화) · gid=그라디언트 id · 회사명 고유명은 유지
 const TRADERS = [
-  { key: 'FCF', name: 'FCF', gid: 'tFcf', color: '#38bdf8', total: 112792 },
-  { key: 'ITOCHU', name: 'ITOCHU', gid: 'tIto', color: '#8b5cf6', total: 28080 },
-  { key: 'TRI MARINE', name: 'TRI MARINE', gid: 'tTri', color: '#ec4899', total: 48180 },
-  { key: 'Direct deal', name: '직거래', gid: 'tDir', color: '#10b981', total: 95979 },
+  { key: 'FCF', name: 'FCF', gid: 'tFcf', color: '#38bdf8', total: 116892 },
+  { key: 'ITOCHU', name: 'ITOCHU', gid: 'tIto', color: '#8b5cf6', total: 31791 },
+  { key: 'TRI MARINE', name: 'TRI MARINE', gid: 'tTri', color: '#ec4899', total: 56463 },
+  { key: 'Direct deal', name: '직거래', gid: 'tDir', color: '#10b981', total: 103138 },
   { key: 'Maldives', name: '몰디브', gid: 'tMal', color: '#f59e0b', total: 0 },
 ];
 
 export default function TraderStatus() {
   const [hover, setHover] = React.useState<number | null>(null);
-  const cards = [...TRADERS.filter((t) => t.total > 0), { key: 'TOTAL', name: '합계', gid: '', color: 'var(--text-main)', total: 285031 }];
+  const cards = [...TRADERS.filter((t) => t.total > 0), { key: 'TOTAL', name: '합계', gid: '', color: 'var(--text-main)', total: 308284 }];
 
   return (
     <div style={{
@@ -41,7 +42,7 @@ export default function TraderStatus() {
           <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
             <TermTooltip term="트레이더별 반입 현황 (2026)" description="월별 트레이더별 반입 물량(MT) 추이" />
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 1~6월 트레이더별 반입 실적 (MT) — 사내 집계, 2026-06 기준</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 1~7월 트레이더별 반입 실적 (MT) — 사내 집계, 2026-07 기준</p>
         </div>
       </div>
 

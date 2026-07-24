@@ -11,7 +11,7 @@ import s from './FleetCommandCenter.module.css';
 
 const climateRisk = {
   sstAnomaly: '+1.2℃',
-  impact: 'S/HAR 부산 조선 상가수리 후 6/28 출항 예정. N/STAR 선장 교대 후 6/25 출항 예정. S/JUP MAJURO M/E 수리 대기 중.',
+  impact: 'SEIN TOPAZ 7/24 GENSAN 하역 중. HIKARI 1 8/5 GENSAN 도착 예정. S/JUP MAJURO M/E 수리 중(출항 일정 기술자 확인). SY-55 상가수리(7/22~8/4) 진행 중.',
   riskLevel: 'MODERATE',
 };
 
@@ -41,9 +41,9 @@ export default function FleetCommandCenter() {
       {/* Final Takeaway */}
       <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', borderRadius: 'var(--card-radius)', padding: 24 }}>
         <TakeawayBox
-          situation={<>6/24 기준 BAO LUCKY BKK 하역 완료, SHIN FUJI BKK 하역 중, LAKE WIN 통영 도착 예정(7/11). SEIN TOPAZ NINGBO 도착 예정(7/1). SEIN VENUS X-MAS 전재 중. SEIN GALAXY FUNAFUTI 대기, HIKARI 1 X-MAS 대기. S/HAR 부산 오리엔트 조선 상가수리 후 6/28 출항 예정. S/JUP 6/22 MAJURO 입항, M/E 수리 예정. P/DIS 6/23 ABIDJAN 출항 완료.</>}
-          actionPlan={<>① 하역선 관리: BAO LUCKY 하역 완료 후 일정 확인, SHIN FUJI(잔량 3,096t) BKK 하역 모니터링, SEIN TOPAZ(NINGBO) 및 LAKE WIN(통영) 입항 일정 관리. ② 전재 대기선 관리: SEIN VENUS X-MAS 전재(N/SUN, N/STAR 물량) 및 SEIN GALAXY(FUNAFUTI), HIKARI 1(X-MAS) 대기 모니터링. ③ 태평양 수리/교대: S/HAR 6/28 출항, S/JUP M/E 기술자 일정 확인, N/STAR 선장 교대(김태엽→조태연) 후 6/25 출항 점검. ④ 대서양 선망: P/DIS 출항 완료 후 조업 복귀, 기타 선박 조업 모니터링.</>}
-          source="해양수산본부 일일 업무보고 260624"
+          situation={<>7/23 기준 SEIN TOPAZ 7/24 GENSAN 잔량 하역 중. SEIN VENUS 8/6 BKK 도착 예정. HIKARI 1 8/5 GENSAN 도착 예정(전재 물량 3,214t). SEIN KASAMA X-MAS 대기, SHIN IZU N04 W169 대기, SEIN GALAXY RABAUL 대기 중(타사 물량 전재). S/JUP 6/22 MAJURO 입항(M/E 수리 중, 출항 일정 기술자 확인). SY-55 7/19 부산 입항, 하역 및 상가수리(7/22~8/4) 후 8/8 출항 예정. TAIHO MARU 8/11경 부산 입항 예정(338.699t).</>}
+          actionPlan={<>① 운반선 관리: SEIN TOPAZ GENSAN 하역 완료 확인 및 후속 일정 조율, SEIN VENUS(8/6 BKK) 및 HIKARI 1(8/5 GENSAN) 도착 일정 모니터링, 대기선박(SEIN KASAMA, SHIN IZU, SEIN GALAXY) 스케줄 관리. ② 태평양 선망: MOAMARI 및 MOAKONA 조업 활동 복귀 모니터링, S/JUP M/E 수리 진행 상황 및 출항 일정 점검. ③ 연승선 운영: SY-55 상가수리(7/22~8/4) 진행 확인, TAIHO MARU(8/11경 입항) 입항 준비. ④ 대서양 선망: P/DIS(110t) 및 P/COM(130t) 고어획 조업 지속 모니터링.</>}
+          source="해양수산본부 일일 업무보고 260724"
         />
       </div>
 

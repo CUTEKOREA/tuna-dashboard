@@ -6,46 +6,46 @@ export default function FleetOperationStatus() {
   const [activeTab, setActiveTab] = useState('pacific');
 
   const tabs = [
-    { id: 'pacific', name: '태평양 선망', summary: '일간 94t / 월간 1,739t / 연간 41,267.5t' },
-    { id: 'atlantic', name: '대서양 선망', summary: '일간 0t / 월간 870t / 연간 21,430t' },
-    { id: 'longline', name: '연승 (Longline)', summary: 'SY-55 · 7/19 부산 입항 예정' },
-    { id: 'carrier', name: '운반선 현황', summary: '7척 운항/대기' },
+    { id: 'pacific', name: '태평양 선망', summary: '일간 24t / 월간 4,049.3t / 연간 43,577.8t' },
+    { id: 'atlantic', name: '대서양 선망', summary: '일간 410t / 월간 4,270t / 연간 24,830t' },
+    { id: 'longline', name: '연승 (Longline)', summary: 'SY-55 · 부산 입항 하역/상가수리' },
+    { id: 'carrier', name: '운반선 현황', summary: '6척 운항/대기' },
   ];
 
   const pacificFleet = [
-    { name: 'S/EXP', pos: 'S0242 W16428 (KI)', catch: '-', load: '423(13)', note: '-' },
-    { name: 'S/PIO', pos: 'S0012 W16154 (US)', catch: '-', load: '1,000(75)', note: '7/11 07:00 X-MAS 입항, HIKARI 1 및 SEIN VENUS 편 약 1,000톤 전재 후 7/14 출항 예정' },
-    { name: 'S/CHA', pos: 'S0149 W16816 (KI)', catch: '-', load: '450', note: '-' },
-    { name: 'S/HAR', pos: 'S0324 E16755 (KI)', catch: '-', load: '-', note: '-' },
-    { name: 'S/JUP', pos: 'MAJURO', catch: '-', load: '-', note: '6/22 08:15 MAJURO 입항, M/E 점검 중 (출항 일정 M/E 기술자 확인)' },
-    { name: 'S/SPR', pos: 'S0231 W15614 (KI)', catch: '5', load: '85(5)', note: '-' },
-    { name: 'MOAMARI', pos: 'S0201 W15710 (KI)', catch: '80', load: '545', note: '-' },
-    { name: 'MOAKONA', pos: 'S0237 W15702 (KI)', catch: '9(4)', load: '296(79)', note: '-' },
-    { name: 'NAOERO SUN', pos: 'S0259 W16256 (H)', catch: '-', load: '40', note: '-' },
-    { name: 'NAOERO STAR', pos: 'S0200 W15637 (KI)', catch: '-', load: '850', note: '-' },
+    { name: 'S/EXP', pos: 'S0152 W15536 (KI)', catch: '-', load: '591.3(40.3)', note: '-' },
+    { name: 'S/PIO', pos: 'S0053 W15343 (KI)', catch: '-', load: '139(9)', note: '-' },
+    { name: 'S/CHA', pos: 'S0442 W15300 (KI)', catch: '-', load: '800', note: '-' },
+    { name: 'S/HAR', pos: 'S0102 W15315 (H)', catch: '-', load: '310', note: '-' },
+    { name: 'S/JUP', pos: 'MAJURO', catch: '-', load: '-', note: '6/22 08:15 MAJURO 입항, M/E 수리 중 (출항 일정 M/E 기술자 확인)' },
+    { name: 'S/SPR', pos: 'S0039 W15535 (H)', catch: '-', load: '357(51)', note: '-' },
+    { name: 'MOAMARI', pos: 'N0446 W15743 (KI)', catch: '10', load: '140', note: '-' },
+    { name: 'MOAKONA', pos: 'S0011 W15027 (H)', catch: '14(10)', load: '59(52)', note: '-' },
+    { name: 'NAOERO SUN', pos: 'N0055 W15352 (H)', catch: '-', load: '190', note: '-' },
+    { name: 'NAOERO STAR', pos: 'N0057 W15124 (H)', catch: '-', load: '40', note: '-' },
   ];
 
   const atlanticFleet = [
-    { name: 'P/MAS', pos: 'N0020 W00529 (H)', catch: '-', load: '20', note: '-' },
-    { name: 'P/DIS', pos: 'TEMA', catch: '-', load: '-', note: '7/5 07:00 TEMA 입항, 하역 완료(누: 1,069.907톤, 증: +169.907톤), 7/10 출항 예정' },
-    { name: 'P/FORE', pos: 'N0515 W00016 (G)', catch: '-', load: '-', note: '7/4 16:30 TEMA 입항, 하역(누: 1,006.420톤, 증: +106.420톤) 후 7/9 14:00 출항 완료' },
-    { name: 'P/PATH', pos: 'TEMA', catch: '-', load: '-', note: '7/5 08:00 TEMA 입항, 하역 완료(누: 1,079.228톤, 증: +179.228톤), 7/10 출항 예정' },
-    { name: 'P/COM', pos: 'TEMA', catch: '-', load: '900', note: '7/9 16:00 TEMA 입항, 하역 후 7/12 출항 예정' },
-    { name: 'P/QUEEN', pos: 'TEMA', catch: '-', load: '900', note: '7/7 19:00 TEMA 입항, 하역 후 7/11 출항 예정' },
-    { name: 'P/GRACE', pos: 'N0216 W00352 (C)', catch: '-', load: '900', note: '7/11 06:00 TEMA 입항 및 하역 후 7/13 출항 예정' },
+    { name: 'P/MAS', pos: 'S0100 W01210 (H)', catch: '35', load: '535', note: '-' },
+    { name: 'P/DIS', pos: 'S0101 W01545 (H)', catch: '110', load: '690', note: '-' },
+    { name: 'P/FORE', pos: 'S0557 W02109 (H)', catch: '45', load: '475', note: '-' },
+    { name: 'P/PATH', pos: 'S0308 W02601 (H)', catch: '30', load: '660', note: '-' },
+    { name: 'P/COM', pos: 'S0023 W01352 (H)', catch: '130', load: '450', note: '-' },
+    { name: 'P/QUEEN', pos: 'S0430 W02537 (H)', catch: '35', load: '480', note: '-' },
+    { name: 'P/GRACE', pos: 'S0114 W01429 (H)', catch: '25', load: '130', note: '-' },
   ];
 
   const longlineFleet = [
-    { name: 'SY-55', load: '332.276톤', note: '6/21 조업 종료 및 현장발, 7/19경 부산 입항 예정' },
+    { name: 'SY-55', load: '-', note: '7/19 부산 입항, 하역 및 상가수리(7/22~8/4) 후 8/8 출항 예정' },
+    { name: 'TAIHO MARU', load: '338.699톤 (P-501, P-505)', note: '8/11경 부산 입항 예정' },
   ];
 
   const carrierFleet = [
-    { name: 'SEIN TOPAZ (7,300)', load: '150t', note: 'NS-150, 타사 물량~2,566.80 | 7/12경 NINGBO 출항 후 GENSAN 하역 예정' },
-    { name: 'LAKE WIN (2,300)', load: '150(150)t', note: 'MK-150(150) | 7/11 통영 도착 예정 (7/14 당사 물량 하역 예정)' },
-    { name: 'HIKARI 1 (3,700)', load: '881(171)t', note: '예상잔량 (2,819)t | S-766(96), (P-115(75)) | X-MAS 대기 중' },
-    { name: 'SEIN VENUS (5,200)', load: '(3,235)t', note: '예상잔량 (1,965)t | NT-1,060, NS-1,030, S-260, (P-885) | X-MAS 대기 중' },
-    { name: 'SEIN KASAMA (7,100)', load: '-', note: '예상잔량 7,100t | NO2 W158 대기 중' },
-    { name: 'SHIN IZU (2,400)', load: '-', note: '예상잔량 2,400t | NO4 E179 대기 중' },
+    { name: 'SEIN TOPAZ (7,300)', load: '150t', note: 'NS-150, 타사 물량-2,566.80 | 7/24 GENSAN 잔량 하역 중' },
+    { name: 'SEIN VENUS (5,200)', load: '3,275t', note: 'NT-1,060, NS-1,030, S-260, P-925 | 8/6 BKK 도착 예정' },
+    { name: 'HIKARI 1 (3,700)', load: '3,214(285)t', note: 'S-766(96), P-75(75), MK-428(114), MI-940, NT-1,005 | 8/5 GENSAN 도착 예정' },
+    { name: 'SEIN KASAMA (7,100)', load: '-', note: '예상잔량 7,100t | X-MAS 대기 중' },
+    { name: 'SHIN IZU (2,400)', load: '-', note: '예상잔량 2,400t | N04 W169 대기 중' },
     { name: 'SEIN GALAXY (3,500)', load: '1,846t', note: 'MK-956, MI-890 | RABAUL 대기 중 (타사 물량 전재 예정)' },
   ];
 
@@ -56,7 +56,7 @@ export default function FleetOperationStatus() {
         <div className={styles.toolTitle}>선단 위치 및 어획/하역 현황</div>
         {/* L-09: 일일 업무보고 정적 데이터 — '실시간' 표기 금지, 기준일 정직 표기 */}
         <span className={styles.toolBadge} style={{ background: 'rgba(148, 163, 184, 0.12)', color: '#94a3b8', marginLeft: 'auto' }}>
-          STATIC · 일일 업무보고 26.07.10 동기화
+          STATIC · 일일 업무보고 26.07.21 동기화
         </span>
       </div>
 

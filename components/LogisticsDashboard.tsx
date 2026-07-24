@@ -74,13 +74,13 @@ export default function LogisticsDashboard() {
           icon={TrendingUp}
           iconColor="var(--color-info)"
           pillar="S4"
-          cardDesc="트레이더 단위 반입 물량·점유율 — 사내 집계 (2026년 1~5월, 2026-05 기준)"
-          telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
+          cardDesc="트레이더 단위 반입 물량·점유율 — 사내 집계 (2026년 1~7월, 2026-07 기준)"
+          telemetry={{ status: 'STATIC', syncDate: '2026-07' }}
           customBody={<TraderStatus />}
           takeaway={{
-            situation: '2026년 1~5월 트레이더별 누적 반입 물량(합계 239,274MT)으로 핵심 거래 파트너의 거래 비중을 식별.',
+            situation: '2026년 1~7월 트레이더별 누적 반입 물량(합계 308,284MT)으로 핵심 거래 파트너의 거래 비중을 식별.',
             actionPlan: '점유율 상위 트레이더와의 거래 안정성 강화 + 신규 트레이더 발굴을 통한 거래 다변화.',
-            source: '사내 트레이더 반입 집계 (2026-05 기준)',
+            source: '사내 트레이더 반입 집계 (2026-07 기준)',
           }}
         />
       </section>
