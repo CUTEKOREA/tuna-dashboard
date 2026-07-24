@@ -151,13 +151,13 @@ export default function LogisticsDashboard() {
             icon={Navigation}
             iconColor="var(--color-info)"
             pillar="S3"
-            cardDesc="방콕항 운반선 이동 스케줄 — WEEK 26 주간 보고 (2026-06-26~07-02 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-07-02' }}
+            cardDesc="방콕항 운반선 이동 스케줄 — WEEK 29 주간 보고 (2026-07-17~07-23 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-07-23' }}
             customBody={<ReeferMovement />}
             takeaway={{
-              situation: 'WEEK 26(2026-06-26~07-02) 주간 보고 기준 방콕항 입항 운반선 현황 및 캔 공장별 배분 물량을 집계. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
+              situation: 'WEEK 29(2026-07-17~07-23) 주간 보고 기준 방콕항 입항 운반선 현황 및 캔 공장별 배분 물량을 집계. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
               actionPlan: '체선일이 10일을 초과하는 선박에 대해서는 선하증권(B/L) 분할 양륙 및 인근 송클라 또는 젠산 항구로의 목적지 변경(Diversion)을 적극 검토해야 합니다.',
-              source: '방콕항 운반선 주간 스케줄 WEEK 26 (2026-07-02 기준)',
+              source: '방콕항 운반선 주간 스케줄 WEEK 29 (2026-07-23 기준)',
             }}
           />
         </div>
