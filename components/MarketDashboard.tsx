@@ -387,7 +387,7 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Newspaper size={20} color="#f59e0b" />
-          Atuna 주간 다이제스트: 7월 3주차 (7/13~17) 핵심 시그널
+          Atuna 최근 5일 다이제스트: 7/23~27 (확인 기사 7/23~24)
         </h3>
         <div data-mobile-stack className="mkt-news-grid" style={{
           display: 'grid',
@@ -398,21 +398,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(16, 185, 129, 0.30)', '--news-glow-border': 'rgba(16, 185, 129, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(52, 211, 153, 0.08))', border: '1px solid rgba(16, 185, 129, 0.30)', color: '#10b981', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                원료 / 가격
+                수요 / 가격
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.09~16</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.23~24</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              양극화되는 원어가: 방콕 반등 및 만타 초고가 지속
+              수산물 소비 둔화 속 참치만 역주행 — 유럽 성장·미국 가성비 방어
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>하락세를 보이던 <strong style={{ color: 'var(--text-main)' }}>방콕 가다랑어 원어가 $1,790/톤으로 반등</strong>. WCPO 어획 부진과 싱가포르 MGO $1,160/톤 등 연료비 폭등 압박.</span>
+                <span>EU 전체 수산물 소비는 2014년 대비 21% 줄었지만, 2023년 <strong style={{ color: 'var(--text-main)' }}>가다랑어 662,575톤(+500%)·황다랑어 334,485톤(+49%)</strong>으로 두 어종 합계가 전체 소비의 9%를 차지.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#10b981', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>에콰도르 만타 시장은 극심한 수급난 속에 <strong style={{ color: 'var(--text-main)' }}>가다랑어 $2,150/톤 초고가</strong> 기록, 마진 압박 한계치 도달.</span>
+                <span>미국 상온 수산물 물가는 6월 전년 동월 대비 6.6% 상승했으나, 월마트 5온스 캔참치는 <strong style={{ color: 'var(--text-main)' }}>$0.96로 쇠고기 $6.98/파운드 대비 저가 단백질 지위</strong>를 유지.</span>
               </div>
             </div>
           </div>
@@ -421,21 +421,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(245, 158, 11, 0.30)', '--news-glow-border': 'rgba(245, 158, 11, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(251, 191, 36, 0.08))', border: '1px solid rgba(245, 158, 11, 0.30)', color: '#f59e0b', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                환경 / 조업
+                무역 / 관세
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.15</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.24</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              '슈퍼 엘니뇨' 2027년까지 지속 전망... 조업 지형의 구조적 교란
+              미국 추가 관세 재편 — 태국산 염수 캔 25%, 에콰도르산은 예외
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>기상 당국 <strong style={{ color: 'var(--text-main)' }}>'슈퍼 엘니뇨' 발생 확률 증가 및 2027년 초까지 지속</strong> 경고. 기후 위기가 상시 리스크로 전환.</span>
+                <span>미국이 강제노동 대응을 이유로 주요 교역국에 10~12.5% 추가 관세를 시행. 태국산 염수 캔참치는 기존 12.5%에 추가 12.5%가 붙어 <strong style={{ color: 'var(--text-main)' }}>총 관세율 25%</strong>.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#f59e0b', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>동태평양(EPO) 가다랑어 어획량 급감 전망. <strong style={{ color: 'var(--text-main)' }}>8월 에콰도르 64일 금어기(Veda)와 맞물려 원어 수급 치명적 위협</strong>.</span>
+                <span>에콰도르산 조제·보존 참치(HTUS 1604.14.40)는 예외. 미국의 2025년 에콰도르산 캔참치 수입은 <strong style={{ color: 'var(--text-main)' }}>1,756톤</strong>으로 아직 제한적이나 상대 관세 우위 확보.</span>
               </div>
             </div>
           </div>
@@ -444,21 +444,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(239, 68, 68, 0.30)', '--news-glow-border': 'rgba(239, 68, 68, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(248, 113, 113, 0.08))', border: '1px solid rgba(239, 68, 68, 0.30)', color: '#ef4444', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                규제 / 유통
+                공급 / 조업
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.14~16</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.23</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              EU CATCH 시스템발(發) 유럽 수입 병목 심화 및 유예 조치
+              태국의 아시아산 원어 수입 10% 감소 — 한국 공급은 26% 급감
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>디지털 이력 추적제 <strong style={{ color: 'var(--text-main)' }}>'EU CATCH' 행정 병목 현실화</strong>. 아프리카 등 중소 공급국 대응 지연으로 1분기 프랑스 캔참치 수입 -24% 급감.</span>
+                <span>2026년 1분기 태국의 아시아산 통냉원어 수입은 <strong style={{ color: 'var(--text-main)' }}>95,198톤(-10% 전년 동기 대비)</strong>, 평균 단가는 $1,796/톤. 물량은 2년 만의 최저, 가격은 5년 만의 최저.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#ef4444', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>규제 적용에 난항을 겪는 미국 수산물 대상 <strong style={{ color: 'var(--text-main)' }}>EU 의회가 CATCH 시스템 적용 유예를 11월 30일까지 5개월 연장</strong>.</span>
+                <span>한국산 공급은 <strong style={{ color: 'var(--text-main)' }}>19,642톤(-26%)</strong>으로, 구성은 가다랑어 80%·황다랑어 19%. WCPO 어획 여건과 태국 가공 수요 둔화가 동시에 반영.</span>
               </div>
             </div>
           </div>
@@ -467,21 +467,21 @@ export default function MarketDashboard() {
           <div className="ds-card" style={{ display: 'flex', flexDirection: 'column', gap: '10px', '--news-glow': 'rgba(56, 189, 248, 0.30)', '--news-glow-border': 'rgba(56, 189, 248, 0.35)' } as React.CSSProperties}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div style={{ display: 'inline-block', padding: '4px 10px', background: 'linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(125, 211, 252, 0.08))', border: '1px solid rgba(56, 189, 248, 0.30)', color: '#38bdf8', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.02em', width: 'fit-content' }}>
-                무역 / 관세
+                선단 / 투명성
               </div>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.17</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>Atuna 2026.07.23~24</span>
             </div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 600, lineHeight: 1.4, color: 'var(--text-main)' }}>
-              관세 장벽의 틈새: 미국의 브라질산 참치 예외와 중국-소말리아 밀착
+              대형 연승선 31%가 어창 용량 86% 장악 — 중국·대만 집중
             </h4>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.75, flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>USTR, 브라질산 수입품에 무역법 301조 25% 징벌적 관세 부과했으나 <strong style={{ color: 'var(--text-main)' }}>신선/냉장 황다랑어 및 눈다랑어는 면제</strong>.</span>
+                <span>24m 이상 대형 연승선은 2,283척으로 등록 선단의 31%지만 <strong style={{ color: 'var(--text-main)' }}>글로벌 연승선 어창 용량의 86%</strong>를 차지. 등록 선박 약 40%는 IMO 번호가 없어 추적성 공백.</span>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <span style={{ color: '#38bdf8', flexShrink: 0, marginTop: '2px' }}>▸</span>
-                <span>중국은 <strong style={{ color: 'var(--text-main)' }}>소말리아와 수산물 무관세 수출 협정 전격 체결</strong>. 아프리카 인도양 연안 수산 자원 선점 및 인프라 투자 본격화.</span>
+                <span>대만은 선박 수 623척으로 1위지만, 중국은 611척으로 <strong style={{ color: 'var(--text-main)' }}>어창 용량 229,432㎥</strong>를 확보해 대만 149,668㎥를 크게 상회.</span>
               </div>
             </div>
           </div>
@@ -492,35 +492,35 @@ export default function MarketDashboard() {
       <section>
         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem', marginBottom: '16px', color: 'var(--text-main)' }}>
           <Search size={20} color="#818cf8" />
-          전략 인사이트: 기후·에너지 이중고 및 규제 장벽 틈새 기회
+          전략 인사이트: 저가 수요 방어 · 미국 관세 재편 · 선단 투명성
         </h3>
         <div data-mobile-stack className="mkt-insights" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
 
           <WidgetCard
-            title="'기후·에너지 이중고'에 따른 공급망의 구조적 붕괴 대응"
+            title="저가 수요는 견고하지만 관세 부담은 공급망 안에서 재배분"
             icon={Search}
             iconColor="#818cf8"
-            pillar="S2"
-            cardDesc="슈퍼 엘니뇨로 인한 조업지 이동 + 중동 리스크발 연료비(MGO $1,160) 폭등 장기화 대비"
+            pillar="S4"
+            cardDesc="EU 참치 소비 증가·미국 캔참치 가성비 유지와 주요 아시아 가공국 추가 관세를 함께 반영한 수익성 점검"
             customBody={<></>}
             takeaway={{
-              situation: "슈퍼 엘니뇨로 인한 조업지 이동과 중동 리스크에 따른 연료비 폭등은 일시적 현상이 아닙니다. 에콰도르 가다랑어 극단적 품귀 현상($2,150)과 방콕 가격 반등($1,790)은 기존 공급망 공식이 깨졌음을 의미합니다.",
-              actionPlan: "(1) [방콕 시장 선도 계약 선점]: WCPFC FAD 조업 금지(7/1~8/15)로 8월 초 방콕 양륙 물량 급감 예상. $1,800 돌파 전 선매입 계약 필수. \n(2) [탈(脫) 동태평양 소싱 포트폴리오]: 슈퍼 엘니뇨와 금어기로 남미 발 공급망 병목 심화. 대서양이나 아시아 역내 어장으로 소싱 비중 전환. \n(3) [연료비 변동성 방어 벙커링 계약]: MGO $1,160 폭등 등 조업 유류비 리스크 방어를 위해 장기 벙커링 헷징 계약 검토.",
-              source: 'Atuna 2026.07.13~17 (NotebookLM 종합 분석)',
+              situation: "[확인] EU 전체 수산물 소비는 2014~2023년 21% 감소했지만 가다랑어 소비는 500%, 황다랑어는 49% 증가했습니다. 미국에서는 상온 수산물 물가가 전년 동월 대비 6.6% 올랐어도 5온스 캔참치가 $0.96로 저가 단백질 지위를 유지합니다. 동시에 태국산 염수 캔참치는 미국 총 관세율 25%를 적용받고 에콰도르산 일부 제품은 예외입니다.",
+              actionPlan: "[해석] 최종 수요는 방어되지만 가공·유통 단계의 관세 비용을 소매가에 모두 전가하기는 쉽지 않을 수 있습니다. 미국향 계약은 국가별 실효관세와 제품 규격별 손익을 다시 계산하고, 에콰도르 예외 물량의 확대 여부와 아시아 가공업체의 원어 매입가 조정 신호를 월별로 추적합니다.",
+              source: 'Atuna 2026.07.23~24 (NotebookLM 원문 10건 분석)',
             }}
           />
 
           <WidgetCard
-            title="보호무역 및 '규제 장벽'의 틈새를 파고드는 프리미엄·우회 수출 전략"
+            title="태국 원어 수요 둔화와 연승선 투명성 요구를 동시에 관리"
             icon={Activity}
             iconColor="#818cf8"
             pillar="S3"
-            cardDesc="미국 301조 관세 위협 및 EU CATCH 규제로 중소 공급국 퇴출 가속 → 디지털 인프라 기반 선진 시장 장악 기회"
+            cardDesc="한국산 태국 원어 공급 -26%와 대형 연승선 어창 집중·IMO 식별 공백을 결합한 판매·규제 대응"
             customBody={<></>}
             takeaway={{
-              situation: "미국의 무역법 301조 관세 위협과 유럽의 EU CATCH 시스템은 역량 없는 중소 공급국들을 강제 퇴출시키고 있습니다. 완벽한 이력 추적 인프라와 관세 예외 지대를 파악한 기업에게는 선진국 시장 매대를 장악할 절호의 기회입니다.",
-              actionPlan: "(1) [EU CATCH 규제 준수율 기반 점유율 확장]: 프랑스 1분기 수입 24% 급감 등 유럽 대형 유통사들의 재고 부족 상황을 디지털 이력 추적(Traceability) 인프라로 공략. \n(2) [미국 관세 예외국 경유 전략]: 미국이 브라질산 고급 참치를 25% 보복 관세에서 예외로 둔 점을 활용, 주요 타겟국을 우회하는 북미향 하이엔드 수출 라인 개척. \n(3) [아프리카 냉동 콜드체인 선행 투자]: 중국-소말리아 밀착 대응. 단순 원어 매입을 넘어 초저온 냉동 인프라 투자 대가로 장기 독점 조업권 및 원어 수매권 확보 빅딜 추진.",
-              source: 'Atuna 2026.07.13~17 (NotebookLM 종합 분석)',
+              situation: "[확인] 태국의 1분기 아시아산 통냉원어 수입은 95,198톤으로 10% 감소했고, 한국산은 19,642톤으로 26% 줄었습니다. ISSF 집계에서는 대형 연승선 31%가 어창 용량의 86%를 차지하지만 등록 선박 약 40%에 IMO 번호가 없습니다.",
+              actionPlan: "[해석] 태국 단일 가공시장 의존도가 높을수록 물량·가격 협상 변동성이 커질 수 있으며, 대형 연승선에는 식별·추적성 증빙 요구가 강화될 가능성이 있습니다. 한국산 원어의 고객·양륙지별 채산성을 비교하고, 자사 선단의 IMO·RFMO 등록 정보와 전자 모니터링 자료를 선제적으로 점검합니다.",
+              source: 'Atuna 2026.07.23~24 (NotebookLM 원문 10건 분석)',
             }}
           />
 
