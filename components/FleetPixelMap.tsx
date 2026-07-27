@@ -5,37 +5,36 @@ import s from './FleetPixelMap.module.css';
 
 // --- Data ---
 const pacificFleet = [
-  { name: 'S/EXP', zone: 'N0009 W16410 (H)', type: 'pacific', status: 'fishing', note: '', load: 133, capa: 1200 },
-  { name: 'S/PIO', zone: 'N0209 W15622 (KI)', type: 'pacific', status: 'fishing', note: '', load: 791, capa: 1200 },
-  { name: 'S/CHA', zone: 'N0125 W15707 (KI)', type: 'pacific', status: 'fishing', note: '', load: 180, capa: 1200 },
-  { name: 'S/HAR', zone: '부산', type: 'pacific', status: 'port', note: '상가수리(6/9~6/23) 후 6/28 출항 예정', load: 0, capa: 1200 },
-  { name: 'S/JUP', zone: 'MAJURO', type: 'pacific', status: 'port', note: 'M/E 수리 예정 (출항 일정 기술자 확인)', load: 0, capa: 1200 },
-  { name: 'S/SPR', zone: 'N0123 W15903 (KI)', type: 'pacific', status: 'fishing', note: '', load: 818, capa: 1200 },
-  { name: 'MOAMARI', zone: 'N0005 W16554 (H)', type: 'pacific', status: 'fishing', note: '', load: 205, capa: 1200 },
-  { name: 'MOAKONA', zone: 'S0013 W16424 (H)', type: 'pacific', status: 'fishing', note: '', load: 166, capa: 1200 },
-  { name: 'N/SUN', zone: 'S0017 W16426 (H)', type: 'pacific', status: 'fishing', note: '6/25 X-MAS 입항, 전재 후 6/28 출항 예정', load: 1030, capa: 1200 },
-  { name: 'N/STAR', zone: 'X-MAS', type: 'pacific', status: 'transship', note: 'SEIN VENUS 전재, 선장교대 후 6/25 출항 예정', load: 1060, capa: 1200 },
+  { name: 'S/EXP', zone: 'S0518 W15505 (KI)', type: 'pacific', status: 'fishing', note: '', load: 612, capa: 1200 },
+  { name: 'S/PIO', zone: 'S0450 W15900 (KI)', type: 'pacific', status: 'fishing', note: '', load: 139, capa: 1200 },
+  { name: 'S/CHA', zone: 'S0340 W15344 (KI)', type: 'pacific', status: 'fishing', note: '7/28 08:00 X-MAS 입항, MING RUN 17편 약 900톤 전재 후 7/30 출항 예정', load: 900, capa: 1200 },
+  { name: 'S/HAR', zone: 'S0003 W15021 (H)', type: 'pacific', status: 'fishing', note: '', load: 361, capa: 1200 },
+  { name: 'S/JUP', zone: 'MAJURO', type: 'pacific', status: 'port', note: 'M/E 수리 중 (출항 일정 기술자 확인)', load: 0, capa: 1200 },
+  { name: 'S/SPR', zone: 'S0513 W15503 (KI)', type: 'pacific', status: 'fishing', note: '', load: 357, capa: 1200 },
+  { name: 'MOAMARI', zone: 'S0139 W15320 (KI)', type: 'pacific', status: 'fishing', note: '', load: 210, capa: 1200 },
+  { name: 'MOAKONA', zone: 'S0129 W15217 (H)', type: 'pacific', status: 'fishing', note: '', load: 80, capa: 1200 },
+  { name: 'N/SUN', zone: 'S0459 W15856 (KI)', type: 'pacific', status: 'fishing', note: '', load: 190, capa: 1200 },
+  { name: 'N/STAR', zone: 'S0005 W15024 (KI)', type: 'pacific', status: 'fishing', note: '', load: 90, capa: 1200 },
 ];
 
 const atlanticFleet = [
-  { name: 'P/MAS', zone: 'N0329 W01918 (H)', type: 'atlantic', status: 'fishing', note: '', load: 500, capa: 1200 },
-  { name: 'P/DIS', zone: 'N0517 W00400 (C)', type: 'atlantic', status: 'fishing', note: '6/23 18:00 ABIDJAN 출항 완료', load: 380, capa: 1200 },
-  { name: 'P/FORE', zone: 'N0609 W02055 (H)', type: 'atlantic', status: 'fishing', note: '', load: 460, capa: 1200 },
-  { name: 'P/PATH', zone: 'S0143 W01705 (H)', type: 'atlantic', status: 'fishing', note: '', load: 380, capa: 1200 },
-  { name: 'P/COM', zone: 'S0052 W01624 (H)', type: 'atlantic', status: 'fishing', note: '', load: 440, capa: 1200 },
-  { name: 'P/QUEEN', zone: 'S0129 W02221 (H)', type: 'atlantic', status: 'fishing', note: '', load: 370, capa: 1200 },
-  { name: 'P/GRACE', zone: 'S0813 W00944 (H)', type: 'atlantic', status: 'fishing', note: '', load: 65, capa: 1200 },
+  { name: 'P/MAS', zone: 'S0141 W01852 (H)', type: 'atlantic', status: 'fishing', note: '7/31 14:00 TEMA 입항, 하역 후 8/3 출항 예정', load: 750, capa: 1200 },
+  { name: 'P/DIS', zone: 'N0004 W01025 (H)', type: 'atlantic', status: 'fishing', note: '7/29 14:00 TEMA 입항, 하역 후 8/1 출항 예정', load: 900, capa: 1200 },
+  { name: 'P/FORE', zone: 'S0424 W02108 (H)', type: 'atlantic', status: 'fishing', note: '', load: 520, capa: 1200 },
+  { name: 'P/PATH', zone: 'S0136 W01911 (H)', type: 'atlantic', status: 'fishing', note: '', load: 820, capa: 1200 },
+  { name: 'P/COM', zone: 'S0036 W01821 (H)', type: 'atlantic', status: 'fishing', note: '', load: 655, capa: 1200 },
+  { name: 'P/QUEEN', zone: 'S0611 W02255 (H)', type: 'atlantic', status: 'fishing', note: '', load: 580, capa: 1200 },
+  { name: 'P/GRACE', zone: 'S0039 W01106 (H)', type: 'atlantic', status: 'fishing', note: '', load: 220, capa: 1200 },
 ];
 
 const carrierFleet = [
-  { name: 'BAO LUCKY', zone: 'BKK', type: 'carrier', status: 'port', note: '하역 완료 (누: 4,848, 중: 45)', load: 4893, capa: 5800 },
-  { name: 'SHIN FUJI', zone: 'BKK', type: 'carrier', status: 'port', note: '하역 중', load: 3096, capa: 3200 },
-  { name: 'SEIN TOPAZ', zone: '해상', type: 'carrier', status: 'transit', note: '7/1 NINGBO 도착 예정', load: 4278, capa: 7300 },
-  { name: 'LAKE WIN', zone: '해상', type: 'carrier', status: 'transit', note: '7/11 통영 도착 예정', load: 150, capa: 2300 },
-  { name: 'SEIN VENUS', zone: 'X-MAS', type: 'carrier', status: 'transship', note: 'N/STAR, N/SUN 전재 중', load: 2090, capa: 5200 },
-  { name: 'SEIN GALAXY', zone: 'FUNAFUTI', type: 'carrier', status: 'port', note: 'FUNAFUTI 대기 중', load: 1846, capa: 3500 },
-  { name: 'HIKARI 1', zone: 'X-MAS', type: 'carrier', status: 'port', note: 'X-MAS 대기 중', load: 0, capa: 3700 },
-  { name: 'SEIN KASAMA', zone: '해상', type: 'carrier', status: 'transit', note: '6/25 N02 W162 도착 예정', load: 0, capa: 7100 },
+  { name: 'SEIN TOPAZ', zone: 'GENSAN', type: 'carrier', status: 'port', note: 'NINGBO·GENSAN 하역 완료 (총 4,185.419t)', load: 0, capa: 7300 },
+  { name: 'SEIN VENUS', zone: '해상', type: 'carrier', status: 'transit', note: '8/5 BKK 도착 예정', load: 3275, capa: 5200 },
+  { name: 'HIKARI 1', zone: '해상', type: 'carrier', status: 'transit', note: '8/5 GENSAN 도착 예정', load: 3214, capa: 3700 },
+  { name: 'MING RUN 17', zone: 'X-MAS', type: 'carrier', status: 'port', note: 'X-MAS 대기 중 (S/CHA편 약 900t 전재 예정)', load: 0, capa: 900 },
+  { name: 'SEIN KASAMA', zone: 'X-MAS', type: 'carrier', status: 'port', note: 'X-MAS 대기 중 (예상잔량 7,100t)', load: 0, capa: 7100 },
+  { name: 'SHIN IZU', zone: '해상', type: 'carrier', status: 'port', note: 'N04 W167 대기 중 (예상잔량 2,400t)', load: 0, capa: 2400 },
+  { name: 'SEIN GALAXY', zone: 'RABAUL', type: 'carrier', status: 'port', note: 'RABAUL 대기 중 (타사 물량 전재 예정)', load: 1846, capa: 3500 },
 ];
 
 function getPacificCoordinates(zone: string): { x: number; y: number } {
@@ -44,10 +43,12 @@ function getPacificCoordinates(zone: string): { x: number; y: number } {
   if (z.includes('BKK')) return { x: 18, y: 48 }; 
   if (z.includes('TARAWA')) return { x: 55, y: 55 };
   if (z.includes('FUNAFUTI')) return { x: 58, y: 62 };
-  if (z.includes('MAJURO')) return { x: 48, y: 48 }; 
-  if (z.includes('X-MAS')) return { x: 65, y: 60 }; 
-  
-  if (z.includes('S01') || z.includes('N00') || z.includes('S02')) {
+  if (z.includes('MAJURO')) return { x: 48, y: 48 };
+  if (z.includes('X-MAS')) return { x: 65, y: 60 };
+  if (z.includes('GENSAN')) return { x: 28, y: 50 };
+  if (z.includes('RABAUL')) return { x: 42, y: 58 };
+
+  if (/[SN]0\d{3}\s?W1/.test(z)) {
     const isUS = z.includes('(US)');
     const isH = z.includes('(H)');
     if (isUS) return { x: 65, y: 50 };
@@ -61,7 +62,7 @@ function getAtlanticCoordinates(zone: string): { x: number; y: number } {
   const z = zone.toUpperCase();
   if (z.includes('TEMA') || z.includes('ABIDJAN')) return { x: 75, y: 55 }; 
   
-  if (z.includes('W01') || z.includes('W00') || z.includes('S04') || z.includes('N03')) {
+  if (/[SN]0\d{3}\s?W0/.test(z)) {
     return { x: 35 + (Math.random() * 25), y: 40 + (Math.random() * 20) };
   }
   return { x: 50, y: 50 };

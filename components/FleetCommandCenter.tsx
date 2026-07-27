@@ -11,7 +11,7 @@ import s from './FleetCommandCenter.module.css';
 
 const climateRisk = {
   sstAnomaly: '+1.2℃',
-  impact: 'SEIN TOPAZ 7/24 GENSAN 하역 중. HIKARI 1 8/5 GENSAN 도착 예정. S/JUP MAJURO M/E 수리 중(출항 일정 기술자 확인). SY-55 상가수리(7/22~8/4) 진행 중.',
+  impact: 'SEIN TOPAZ NINGBO·GENSAN 하역 완료(총 4,185.419t). S/CHA 7/28 X-MAS 입항, MING RUN 17편 약 900t 전재 예정. S/JUP MAJURO M/E 수리 중(출항 일정 기술자 확인). SY-55 상가수리(7/22~8/4) 진행 중.',
   riskLevel: 'MODERATE',
 };
 
@@ -41,9 +41,9 @@ export default function FleetCommandCenter() {
       {/* Final Takeaway */}
       <div style={{ background: 'var(--panel-bg)', border: '1px solid var(--panel-border)', borderRadius: 'var(--card-radius)', padding: 24 }}>
         <TakeawayBox
-          situation={<>7/23 기준 SEIN TOPAZ 7/24 GENSAN 잔량 하역 중. SEIN VENUS 8/6 BKK 도착 예정. HIKARI 1 8/5 GENSAN 도착 예정(전재 물량 3,214t). SEIN KASAMA X-MAS 대기, SHIN IZU N04 W169 대기, SEIN GALAXY RABAUL 대기 중(타사 물량 전재). S/JUP 6/22 MAJURO 입항(M/E 수리 중, 출항 일정 기술자 확인). SY-55 7/19 부산 입항, 하역 및 상가수리(7/22~8/4) 후 8/8 출항 예정. TAIHO MARU 8/11경 부산 입항 예정(338.699t).</>}
-          actionPlan={<>① 운반선 관리: SEIN TOPAZ GENSAN 하역 완료 확인 및 후속 일정 조율, SEIN VENUS(8/6 BKK) 및 HIKARI 1(8/5 GENSAN) 도착 일정 모니터링, 대기선박(SEIN KASAMA, SHIN IZU, SEIN GALAXY) 스케줄 관리. ② 태평양 선망: MOAMARI 및 MOAKONA 조업 활동 복귀 모니터링, S/JUP M/E 수리 진행 상황 및 출항 일정 점검. ③ 연승선 운영: SY-55 상가수리(7/22~8/4) 진행 확인, TAIHO MARU(8/11경 입항) 입항 준비. ④ 대서양 선망: P/DIS(110t) 및 P/COM(130t) 고어획 조업 지속 모니터링.</>}
-          source="해양수산본부 일일 업무보고 260724"
+          situation={<>7/26 기준 SEIN TOPAZ NINGBO·GENSAN 하역 완료(총 4,185.419t). SEIN VENUS 8/5 BKK 도착 예정(3,275t). HIKARI 1 8/5 GENSAN 도착 예정(3,214t). S/CHA 7/28 08:00 X-MAS 입항, MING RUN 17편 약 900t 전재 후 7/30 출항 예정. SEIN KASAMA X-MAS 대기, SHIN IZU N04 W167 대기, SEIN GALAXY RABAUL 대기 중(타사 물량 전재). S/JUP 6/22 MAJURO 입항(M/E 수리 중, 출항 일정 기술자 확인). SY-55 7/19 부산 입항, 하역 및 상가수리(7/22~8/4) 후 8/8 출항 예정. TAIHO MARU 8/11경 부산 입항 예정(338.699t).</>}
+          actionPlan={<>① 운반선 관리: MING RUN 17 X-MAS 전재(7/28 S/CHA 900t) 준비 확인, SEIN VENUS(8/5 BKK) 및 HIKARI 1(8/5 GENSAN) 도착 일정 모니터링, 대기선박(SEIN KASAMA, SHIN IZU, SEIN GALAXY) 스케줄 관리. ② 태평양 선망: 일간 72t로 회복(직전 보고 24t) — S/EXP(21t)·N/STAR(50t) 조업세 모니터링, S/JUP M/E 수리 진행 상황 및 출항 일정 점검. ③ 연승선 운영: SY-55 상가수리(7/22~8/4) 진행 확인, TAIHO MARU(8/11경 입항) 입항 준비. ④ 대서양 선망: 일간 375t 호조 — P/MAS(145t) 고어획 지속, TEMA 입항 예정 2척(P/MAS 7/31, P/DIS 7/29) 하역 일정 관리.</>}
+          source="해양수산본부 일일 업무보고 260727"
         />
       </div>
 
