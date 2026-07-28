@@ -1,5 +1,24 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-28 KST — `/fleet` 일일 현황과 주간 현황 탭 분리 및 주간 국적/합작 지표 적용** [AG]:
+> - 사용자 요청으로 `/fleet` 선단 운영 페이지(`FleetCommandCenter.tsx`)의 구성을 일일 현황(Daily)과 주간/월간 실적(Weekly) 탭으로 분리하여 가독성을 높였습니다.
+> - 일일 현황 탭에는 `TakeawayBox`(일일 요약), `FleetPixelMap`(미니맵), `FleetRosterGrid`(선박 상태)를 배치했습니다. 일일 어획량 요약(Hero KPI)은 기존과 같이 수역별(태평양/대서양)로 표기합니다.
+> - 주간/월간 실적 탭에는 제공된 주간 보고서(7/20~7/26)에 맞추어 **소유형태별(국적/합작)**로 데이터를 재구성한 `FleetHeroKPI`를 적용하고, `FleetChartSection`(주간 선장 실적 및 차트), `FleetDetailPanel`(누적 실적)을 배치했습니다.
+> - 검증: `npx tsc --noEmit` 타입 체크 통과. 로컬 실행 정상.
+
+> **2026-07-27 KST — `/fleet` 일일 업무보고 260727(조업일 7/26) 반영** [CC]:
+> - 사용자 제공 해양수산본부 일일 업무보고 260727(월) 이미지를 `/fleet` 선단 운영에 반영. 갱신 파일 5개: `FleetHeroKPI.tsx`(일간 447MT=태평양 72+대서양 375, 월간 9,657MT, 연간 69,746MT, 비율 63:37, 26.07.27 동기화), `FleetRosterGrid.tsx`(태평양 10척·대서양 7척 위치/어획/적재/트렌드, 연승 유지, 운반선 7척 — MING RUN 17 신규 편입·SEIN TOPAZ NINGBO·GENSAN 하역 완료 처리, 선적 9,235t·예상잔량 9,500t), `FleetCommandCenter.tsx`(상황 배너·최종 TakeawayBox·출처 260727), `FleetPixelMap.tsx`(6월 구데이터 → 7/26 위치 전면 갱신 + 좌표 매퍼가 S03~S06/W02 접두도 잡도록 정규식 보정, GENSAN·RABAUL 거점 추가), `FleetOperationStatus.tsx`(보고 원표 미러 — 현재 미사용 컴포넌트지만 동기화 유지).
+> - 주간 선장실적·차트(`FleetAnalysisPanels`/`FleetCharts`)는 주간보고(26.07.24) 기반이라 미변경. 운반선 카드 status를 `port`(영문 raw 노출) → `waiting`/`done` 한글 라벨로 정정(L-01).
+> - 검증: `npm run typecheck`·`npm run build` 통과. 프로덕션 모드 `localhost:3021/fleet` Puppeteer 확인: 신규 수치 13개 마커 전부 렌더, 구 수치(24t+410t, W169, 8/6 BKK) 미표시, horizontal overflow 0, page error 0. dev 서버(Turbopack)는 FATAL panic·리로드 루프가 있어 검증은 `next start`로 수행.
+> - 미배포(로컬 커밋만). Codex의 `/market` 다이제스트 dirty 파일(`MarketDashboard.tsx`, 관련 테스트, HANDOFF 엔트리)과 기존 미추적 패치·테스트 스크립트는 그대로 보존.
+
+> **2026-07-27 10:53 KST — `/market` NotebookLM 최근 5일 기사 다이제스트 갱신** [Codex]:
+> - NotebookLM `8f9b350e-bb4d-4b8a-9d9b-3af868910e86`의 2026-07-23~27 소스를 직접 확인. 해당 기간 실제 수록분은 7/23 기사 5건과 7/24 기사 5건으로, 7/25~27 기사 소스는 없음. 날짜 범위를 벗어난 NotebookLM 초기 응답은 사용하지 않고 원문 source ID에 한정해 10건을 분석.
+> - `components/MarketDashboard.tsx`의 기존 7/13~17 다이제스트를 7/23~27 기준으로 교체. EU·미국 저가 단백질 수요, 미국 태국산 염수 캔참치 총 관세율 25%와 에콰도르 일부 품목 예외, 태국의 아시아산 통냉원어 수입 -10%·한국산 -26%, 대형 연승선 31%의 어창 용량 86% 집중과 IMO 추적성 공백을 4개 카드로 반영.
+> - 전략 인사이트 2건은 `[확인]` 수치와 `[해석]` 대응 방향을 분리하고 출처를 `Atuna 2026.07.23~24 (NotebookLM 원문 10건 분석)`으로 명시. `__tests__/market-dashboard-composition.test.ts`에 날짜·출처·관세·한국 공급 감소·구 다이제스트 제거 회귀 검증을 추가.
+> - 검증: 대상 Vitest 3/3, `npm run typecheck`, `npm run build` 통과(기존 UN Comtrade 2MB cache warning 유지). 프로덕션 모드 `http://127.0.0.1:3021/market` Puppeteer 확인: 데스크톱·모바일 4개 카드와 새 핵심 문구 렌더, 구 7/13~17 문구 미표시, horizontal overflow 0, page error 0. 모바일 콘솔에는 기존 Google iframe의 report-only CSP 로그 1건만 확인.
+> - 미배포(로컬). 기존/무관 dirty 파일(`artifacts/value_chain_widget_inventory.json`, 미추적 패치·테스트 스크립트 등)은 그대로 보존.
+
 > **2026-07-07 16:58 KST — `/seasia-oem` 태국 44개사·베트남 294개사 M&A 후보 반영** [CC]:
 > - 사용자 요청으로 `/Users/idong-geon/자료수집/수산물 가공공장`의 `태국_44개사_전체_심층프로파일.html`과 `베트남_수산물가공_MA후보_비교보고서.html`을 파싱해 `/seasia-oem`용 통합 M&A 후보 데이터를 생성.
 > - `scripts/build_seasia_oem_ma_candidates.py`와 `data/seasia_oem_ma_candidates.json` 추가. 집계: 태국 44개 법인/2,660선, 베트남 294개 제조업소/10,528선, 통합 338개 후보/13,188선, 우선 후보 13개, 관찰 후보 57개.
