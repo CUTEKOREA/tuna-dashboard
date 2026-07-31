@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-31 KST — `/fleet` 일일 업무보고 260731(조업일 7/30) 반영** [AG]:
+> - 사용자 제공 해양수산본부 일일 업무보고 260731(금) 이미지를 `/fleet` 선단 운영에 반영. 갱신 파일 5개: `FleetHeroKPI.tsx`(일간 433MT=태평양 268+대서양 165, 월간 11,154MT, 연간 71,243MT, 비율 63:37, 26.07.31 동기화), `FleetRosterGrid.tsx`(태평양 10척·대서양 7척 위치/어획/적재/트렌드, 운반선 6척 — SEIN TOPAZ 하역 완료 제거, MING RUN 17 capa 6,500·load 900 전재 완료, 선적 9,235t·예상잔량 9,500t), `FleetCommandCenter.tsx`(상황 배너·TakeawayBox·출처 260731, SEIN TOPAZ 제거·MING RUN 17 전재 완료·S/CHA 7/31 12:15 출항 완료), `FleetPixelMap.tsx`(7/30 위치 전면 갱신, SEIN TOPAZ 제거, P/DIS TEMA 정박, SHIN IZU NO2 W165), `FleetOperationStatus.tsx`(원표 미러 전면 갱신 — 26.07.31 동기화).
+> - 주간 선장실적·차트(`FleetAnalysisPanels`/`FleetCharts`)는 주간보고 기반이라 미변경. 연승선(SY-55, TAIHO MARU)은 내용 변동 없음.
+> - 검증: `npx tsc --noEmit` 타입 체크 통과, `npm run build` 통과. SEIN TOPAZ 4개 파일 제거 확인, 태평양 일간 268t 4개 파일 일치 확인.
+> - 미배포(로컬만). 사용자 명시 배포 요청 시 라이브 반영.
+
 > **2026-07-28 KST — `/fleet` 일일 현황과 주간 현황 탭 분리 및 주간 국적/합작 지표 적용** [AG]:
 > - 사용자 요청으로 `/fleet` 선단 운영 페이지(`FleetCommandCenter.tsx`)의 구성을 일일 현황(Daily)과 주간/월간 실적(Weekly) 탭으로 분리하여 가독성을 높였습니다.
 > - 일일 현황 탭에는 `TakeawayBox`(일일 요약), `FleetPixelMap`(미니맵), `FleetRosterGrid`(선박 상태)를 배치했습니다. 일일 어획량 요약(Hero KPI)은 기존과 같이 수역별(태평양/대서양)로 표기합니다.

@@ -10,21 +10,21 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
   const kpiData = isWeekly
     ? {
         title: '주간 총 어획량',
-        val1: 1009, label1: '국적 587t + 합작 422t',
-        val2: 6155, label2: '국적 3,487t + 합작 2,668t',
-        val3: 31613, label3: '국적 18,886t + 합작 12,727t',
+        val1: 917, label1: '국적 549t + 합작 368t',
+        val2: 4362, label2: '국적 2,080t + 합작 2,282t',
+        val3: 43891, label3: '국적 26,141t + 합작 17,750t',
         ratioLeftLabel: '국적 60%', ratioRightLabel: '합작 40%', ratioPercent: 60,
-        syncDate: '26.07.24 (금) 주간 실적 기준',
-        syncLabel: 'STATIC · 주간 실적보고 26.07.24 동기화'
+        syncDate: '26.07.27 (월) 주간 실적 기준',
+        syncLabel: 'STATIC · 주간 실적보고 26.07.27 동기화'
       }
     : {
         title: '일일 총 어획량',
-        val1: 447, label1: '태평양 72t + 대서양 375t',
-        val2: 9657, label2: '태평양 4,362.3t + 대서양 5,295t',
-        val3: 69746, label3: '태평양 43,890.8t + 대서양 25,855t',
+        val1: 433, label1: '태평양 268t + 대서양 165t',
+        val2: 11154, label2: '태평양 5,129.3t + 대서양 6,025t',
+        val3: 71243, label3: '태평양 44,657.8t + 대서양 26,585t',
         ratioLeftLabel: '태평양 63%', ratioRightLabel: '대서양 37%', ratioPercent: 63,
-        syncDate: '26.07.27 (월) 기준',
-        syncLabel: 'STATIC · 일일 업무보고 26.07.27 동기화'
+        syncDate: '26.07.31 (금) 기준',
+        syncLabel: 'STATIC · 일일 업무보고 26.07.31 동기화'
       };
 
   return (
