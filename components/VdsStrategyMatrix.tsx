@@ -34,11 +34,11 @@ const heatmapData: Record<string, Record<string, Record<string, { remaining: num
     '신라교역': { 'PNG': { remaining: 6.49, rate: 99 }, 'Solomon': { remaining: -7.39, rate: 102 }, 'Kiribati': { remaining: 35.85, rate: 87 }, 'Tuvalu': { remaining: 0.90, rate: 99 }, 'Nauru': { remaining: 1.56, rate: 97 }, 'FSM': { remaining: 0.07, rate: 100 } }
   },
   '2026': {
-    '동원산업': { 'PNG': { remaining: 387.80, rate: 14 }, 'Solomon': { remaining: 1.09, rate: 99 }, 'Kiribati': { remaining: 80.95, rate: 84 }, 'Tuvalu': { remaining: 59.97, rate: 64 }, 'Nauru': { remaining: 28.81, rate: 86 }, 'FSM': { remaining: 21.57, rate: 85 } },
-    '사조산업': { 'PNG': { remaining: 271.80, rate: 5 }, 'Solomon': { remaining: 42.08, rate: 57 }, 'Kiribati': { remaining: 10.64, rate: 95 }, 'Tuvalu': { remaining: -2.48, rate: 103 }, 'Nauru': { remaining: 19.60, rate: 78 }, 'FSM': { remaining: 26.38, rate: 59 } },
-    '사조씨푸드': { 'PNG': { remaining: 58.00, rate: 0 }, 'Solomon': { remaining: -2.40, rate: 113 }, 'Kiribati': { remaining: 5.04, rate: 88 }, 'Tuvalu': { remaining: 4.50, rate: 76 }, 'Nauru': { remaining: -0.30, rate: 102 }, 'FSM': { remaining: 12.00, rate: 0 } },
-    '사조오양': { 'PNG': { remaining: 52.80, rate: 9 }, 'Solomon': { remaining: -25.50, rate: 206 }, 'Kiribati': { remaining: 16.66, rate: 61 }, 'Tuvalu': { remaining: 3.70, rate: 81 }, 'Nauru': { remaining: -1.70, rate: 111 }, 'FSM': { remaining: 4.00, rate: 67 } },
-    '신라교역': { 'PNG': { remaining: 314.70, rate: 5 }, 'Solomon': { remaining: 20.20, rate: 54 }, 'Kiribati': { remaining: 34.10, rate: 95 }, 'Tuvalu': { remaining: 7.80, rate: 92 }, 'Nauru': { remaining: 19.50, rate: 86 }, 'FSM': { remaining: 32.20, rate: 34 } }
+    '동원산업': { 'PNG': { remaining: 330.34, rate: 18 }, 'Solomon': { remaining: 18.39, rate: 89 }, 'Kiribati': { remaining: 59.49, rate: 93 }, 'Tuvalu': { remaining: 54.93, rate: 67 }, 'Nauru': { remaining: 25.96, rate: 88 }, 'FSM': { remaining: 15.66, rate: 89 } },
+    '사조산업': { 'PNG': { remaining: 271.81, rate: 5 }, 'Solomon': { remaining: 42.05, rate: 57 }, 'Kiribati': { remaining: 4.26, rate: 99 }, 'Tuvalu': { remaining: -7.25, rate: 108 }, 'Nauru': { remaining: 22.49, rate: 74 }, 'FSM': { remaining: 26.46, rate: 59 } },
+    '사조씨푸드': { 'PNG': { remaining: 58.00, rate: 0 }, 'Solomon': { remaining: -2.40, rate: 113 }, 'Kiribati': { remaining: -3.31, rate: 105 }, 'Tuvalu': { remaining: 4.48, rate: 76 }, 'Nauru': { remaining: 0.56, rate: 96 }, 'FSM': { remaining: 12.00, rate: 0 } },
+    '사조오양': { 'PNG': { remaining: 52.85, rate: 9 }, 'Solomon': { remaining: -25.32, rate: 205 }, 'Kiribati': { remaining: 5.65, rate: 92 }, 'Tuvalu': { remaining: 3.75, rate: 80 }, 'Nauru': { remaining: -1.72, rate: 111 }, 'FSM': { remaining: 4.21, rate: 65 } },
+    '신라교역': { 'PNG': { remaining: 315.03, rate: 5 }, 'Solomon': { remaining: 20.32, rate: 54 }, 'Kiribati': { remaining: 35.29, rate: 95 }, 'Tuvalu': { remaining: 7.76, rate: 92 }, 'Nauru': { remaining: 19.61, rate: 86 }, 'FSM': { remaining: 34.16, rate: 30 } }
   }
 };
 
@@ -52,20 +52,20 @@ const companyColors: Record<string, string> = {
 
 // ... other constants (sillaData, intelFeed) stay same as 2026 ...
 const sillaData = [
-  { zone: 'PNG', total: 331.00, consumed: 16.30, remaining: 314.70, rate: 5 },
-  { zone: 'Kiribati', total: 654.00, consumed: 619.80, remaining: 34.10, rate: 95 },
-  { zone: 'Solomon', total: 44.00, consumed: 23.80, remaining: 20.20, rate: 54 },
-  { zone: 'Tuvalu', total: 102.00, consumed: 94.20, remaining: 7.80, rate: 92 },
-  { zone: 'Nauru', total: 142.00, consumed: 122.50, remaining: 19.50, rate: 86 },
-  { zone: 'FSM', total: 49.00, consumed: 16.80, remaining: 32.20, rate: 34 },
+  { zone: 'PNG', total: 331.00, consumed: 15.97, remaining: 315.03, rate: 5 },
+  { zone: 'Kiribati', total: 684.00, consumed: 648.71, remaining: 35.29, rate: 95 },
+  { zone: 'Solomon', total: 44.00, consumed: 23.68, remaining: 20.32, rate: 54 },
+  { zone: 'Tuvalu', total: 102.00, consumed: 94.24, remaining: 7.76, rate: 92 },
+  { zone: 'Nauru', total: 142.00, consumed: 122.39, remaining: 19.61, rate: 86 },
+  { zone: 'FSM', total: 49.00, consumed: 14.84, remaining: 34.16, rate: 30 },
 ];
 
 const intelFeed = [
-  { date: '05/31', msg: 'SVL to 사조 (Solomon 전배)' },
-  { date: '05/19', msg: 'SVL to 사조 (Kiribati 전배)' },
-  { date: '05/12', msg: 'SVL, TUSA to 사조 (Solomon)' },
-  { date: '04/20', msg: 'PNG to 투발루 (PNG 전배)' },
-  { date: '04/17', msg: 'KIRIKORE to 신라 (Tuvalu 전배) 및 PNG to 나우루' }
+  { date: '07/29', msg: '키리바시 조업일수 추가 구매 (20일)' },
+  { date: '07/27', msg: '키리바시 조업일수 추가 구매 (60일)' },
+  { date: '07/22', msg: '키리바시 조업일수 추가 구매 (80일)' },
+  { date: '07/16', msg: '키리바시 조업일수 추가 구매 (100일)' },
+  { date: '07/10', msg: '키리바시 조업일수 추가 구매 (70일)' }
 ];
 
 export default function VdsStrategyMatrix() {

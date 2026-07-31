@@ -336,17 +336,17 @@ function NegotiationSimulator() {
  * TOOL 4: VDS Quota Burn-Down Tracker
  * ═══════════════════════════════════════════════ */
 function VDSBurnTracker() {
-  const today = new Date('2026-05-03T12:00:00Z');
+  const today = new Date('2026-07-31T12:00:00Z');
   const yearStart = new Date(today.getFullYear(), 0, 1);
   const dayOfYear = Math.floor((today.getTime() - yearStart.getTime()) / 86400000);
   const daysInYear = 365;
   const idealPct = Math.round((dayOfYear / daysInYear) * 100);
 
   const zones = [
-    { country: '🇰🇮 키리바시 (Kiribati)', total: 565, used: 509, color: 'var(--color-danger)' },
-    { country: '🇹🇻 투발루 (Tuvalu)', total: 152, used: 144.2, color: '#f97316' },
-    { country: '🇳🇷 나우루 (Nauru)', total: 240, used: 153.2, color: 'var(--color-warning)' },
-    { country: '🇵🇬 파푸아뉴기니 (PNG)', total: 474, used: 54.8, color: 'var(--color-success)' },
+    { country: '🇰🇮 키리바시 (Kiribati)', total: 684, used: 648.7, color: 'var(--color-danger)' },
+    { country: '🇹🇻 투발루 (Tuvalu)', total: 102, used: 94.2, color: '#f97316' },
+    { country: '🇳🇷 나우루 (Nauru)', total: 142, used: 122.4, color: 'var(--color-warning)' },
+    { country: '🇵🇬 파푸아뉴기니 (PNG)', total: 331, used: 16.0, color: 'var(--color-success)' },
   ];
 
   return (
@@ -358,7 +358,7 @@ function VDSBurnTracker() {
           연간 경과: {idealPct}%
         </span>
         <span className={styles.toolBadge} style={{ background: 'rgba(16, 185, 129, 0.15)', color: 'var(--color-success)', marginLeft: '8px' }}>
-          ✓ 실데이터 (2026.05.03)
+          ✓ 실데이터 (2026.07.31)
         </span>
       </div>
 
