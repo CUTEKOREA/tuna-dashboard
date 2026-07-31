@@ -5,17 +5,13 @@ import { Ship, Anchor } from 'lucide-react';
 
 /* 데이터·수치 무수정 — 시각 폴리시 + 한글화(영문 라벨·날짜). 운반선명·MT·고유명 유지 */
 const currentUnloading = [
-  { sort: 'FCF', no: 5, carriers: 'HUA FU 107 (4,982 MT), ORANGE SEA (4,808 MT), DINOK (4,385 MT), HUA FU 207 (5,777 MT), SEIN PHOENIX (6,955 MT)' },
-  { sort: 'TRI', no: 3, carriers: 'BOYANG CAPELLA (5,697 MT), RYOMA (3,490 MT), GREENSEA BERMEO (5,200 MT)' },
-  { sort: 'ITO', no: 1, carriers: 'LAKE PEARL (4,955 MT)' },
-  { sort: '직거래', no: 2, carriers: 'PACIFIC JOURNEY (3,485 MT), SEIN QUEEN (5,650 MT)' },
+  { sort: 'TRI', no: 1, carriers: 'LAKE PEARL (4,873 MT)' },
 ];
 
 const incomingVessels = [
-  { name: 'MING RUN', date: '5월 5일' },
-  { name: 'JOCHOH', date: '5월 9일' },
-  { name: 'CHERRY STAR', date: '5월 12일' },
-  { name: 'BAO LUCKY', date: '5월 20일' },
+  { name: 'SEIN PRINCESS', date: '7월 28일' },
+  { name: 'SEIN VENUS', date: '8월 5일' },
+  { name: 'HENG HONG 9', date: '8월 7일' },
 ];
 
 export default function CarrierUnloadingStatus() {
@@ -33,7 +29,7 @@ export default function CarrierUnloadingStatus() {
           운반선 하역 현황
         </h2>
         <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-          태국 방콕(BANGKOK) 양륙 운반선 현황 — 2026-05-25 주간 보고 기준 (정적 데이터)
+          태국 방콕(BANGKOK) 양륙 운반선 현황 — 2026-07-31 주간 보고 기준 (정적 데이터)
         </p>
       </div>
 
@@ -58,20 +54,20 @@ export default function CarrierUnloadingStatus() {
             ))}
             <tr style={{ background: 'rgba(16, 185, 129, 0.1)' }}>
               <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>합계</td>
-              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>11</td>
-              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>55,384 MT</td>
+              <td style={{ padding: '12px', textAlign: 'center', fontWeight: 'bold', color: 'var(--color-success)' }}>1</td>
+              <td style={{ padding: '12px', fontWeight: 'bold', color: 'var(--color-success)' }}>4,873 MT</td>
             </tr>
           </tbody>
         </table>
         <div style={{ padding: '12px', fontSize: '11px', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.2)' }}>
-          * 5월 누계 운반선 5척·누적 하역량 19,210 MT. SEIN PHOENIX는 보고 시점 하역 진행 중이었음 (5/25 기준 누계 362.98t / 잔 6,592t).
+          * 7월 누계 운반선 5척·누적 하역량 19,153 MT. The cumulative number of carriers was 5, and the cumulative unloading volume was 19,153 MT in JULY.
         </div>
       </div>
 
       <div>
         <h3 style={{ fontSize: '15px', fontWeight: 'bold', margin: '0 0 12px 0', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Ship size={16} color="var(--color-info)" />
-          입항 예정이었던 운반선 (방콕 · 2026년 5월 보고 당시)
+          입항 예정이었던 운반선 (방콕 · 2026년 7월 보고 당시)
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
           {incomingVessels.map((v, idx) => (
@@ -90,8 +86,7 @@ export default function CarrierUnloadingStatus() {
           ))}
         </div>
         <p style={{ fontSize: '11px', color: 'var(--text-muted)', margin: '10px 0 0', lineHeight: 1.5 }}>
-          * 2026년 5월 주간 보고 시점의 입항 예정 정보로, 예정일이 모두 경과한 과거 기록입니다.
-          CHERRY STAR(5/13)·JOCHOH(5/15)는 이후 운반선 이동 스케줄(WEEK 22)에 방콕 접안 기록이 확인됩니다.
+          * 2026년 7월 주간 보고 시점의 입항 예정 정보로, 예정일이 경과하면 운반선 이동 스케줄에 반영됩니다.
         </p>
       </div>
     </div>

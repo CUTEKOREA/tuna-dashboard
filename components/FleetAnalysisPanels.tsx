@@ -40,7 +40,7 @@ export function FleetChartSection() {
           {tabs.map(t => (
             <button key={t.id} className={`${s.chartTab} ${activeTab === t.id ? s.chartTabActive : ''}`} onClick={() => setActiveTab(t.id)}>{t.label}</button>
           ))}
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.07.24 보고 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: 'auto', alignSelf: 'center' }}>26.07.27 (7/20~26) 보고 기준</span>
         </div>
         {activeTab === 'weekly' && (
           <>
@@ -81,7 +81,7 @@ export function FleetChartSection() {
       <div className={s.rankPanel}>
         <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginTop: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Trophy size={16} color="#fbbf24" /> 주간 선장실적 (Top 10)
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>일일 업무보고 26.07.24 기준</span>
+          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', fontWeight: 500, marginLeft: 'auto' }}>주간 실적 (7/20~26) 기준</span>
         </h3>
         <table className={s.rankTable}>
           <thead>
@@ -117,7 +117,7 @@ export function FleetDetailPanel() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <BarChart3 size={18} color="var(--accent-primary)" />
           <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>선장 현어기 누적 실적 상세</span>
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · 26.07.24 보고 기준</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>({data.length}명) · 26.07.27 (7/20~26) 보고 기준</span>
         </div>
         <ChevronDown size={18} className={`${s.expandChevron} ${isOpen ? s.expandChevronOpen : ''}`} color="var(--text-muted)" />
       </div>

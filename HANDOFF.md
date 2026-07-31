@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> **2026-07-31 KST — 태국 송클라(Songkhla) 공장 데이터 및 운반선 하역 현황 갱신** [AG]:
+> - 사용자 요청에 따라 필리핀 Gensan 지역 데이터를 제거하고, 태국 송클라(Songkhla) 지역 통조림 공장 데이터(7/30 기준)를 신규 반영했습니다.
+> - `components/LogisticsDashboard.tsx`에서 Gensan 차트를 `SongkhlaCanneryStatusCharts.tsx`로 교체하고 관련 날짜(2026-07-31) 및 통계 수치를 갱신했습니다.
+> - `data/reefer_week30.json` 및 `lib/data/misc.ts`에 7월 말(Week 30) 운반선 하역 데이터를 추가 적용했습니다.
+> - `components/CarrierUnloadingStatus.tsx`, `components/UnloadingStatus.tsx` 등 하역 관련 컴포넌트의 날짜와 데이터를 최신화했습니다.
+> - `components/FleetCommandCenter.tsx`의 하역 데이터를 최신화했습니다.
+> - 검증: `npx tsc --noEmit` 타입 체크 통과, `npm run build`를 통해 정적 사이트 빌드 검증을 진행 중입니다 (단일 빌드 시 약간의 지연이 있어 완료 후 재확인 권장).
+> - 미배포(로컬). 사용자 명시 배포 요청 시 라이브 반영.
+
 > **2026-07-31 KST — 260731 수역별 조업일수 현황(VDS) 분석 및 반영** [AG]:
 > - 사용자 제공 `260731_수역별 회사별 조업일수 소진현황.xlsx` 파일을 기반으로 신라교역 및 타 선사들의 2026 어기 VDS 소진율 데이터를 대시보드에 반영했습니다.
 > - `components/VdsStrategyMatrix.tsx`: 2026년 5개 선사의 히트맵 데이터 전면 갱신. 신라교역 자산 현황 최신화(Kiribati 잔여 35.3일/95% 소진, PNG 잔여 315일/5% 소진 등). 엑셀의 최신 '조업일수 전배/추가구매' 정보를 `intelFeed`로 갱신 (키리바시 조업일수 추가 구매 내역 반영).

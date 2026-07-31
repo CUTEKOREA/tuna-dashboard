@@ -16,7 +16,7 @@
         "line": 181,
         "title": "ENSO × 어획량 상관 분석",
         "pillar": "S1",
-        "cardDesc": "NOAA ONI 지수와 WCPO 참치 총 어획량(천 MT)의 연도별 상관관계 시각화",
+        "cardDesc": "NOAA(미국 해양대기청) ONI 지수와 WCPO(서중태평양) 참치 총 어획량(천 MT)의 연도별 상관관계 시각화",
         "unit": null,
         "telemetry": {
           "status": "STATIC",
@@ -33,10 +33,10 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 65,
+        "line": 66,
         "title": "글로벌 가공 캐파 모니터",
         "pillar": "S2",
-        "cardDesc": "국가별 참치 통조림 가공 용량 및 가동률 비교",
+        "cardDesc": "국가별 참치 통조림 가공 용량 및 가동률 비교 (FFA/업계 추정, 2024)",
         "unit": null,
         "telemetry": {
           "status": "STATIC",
@@ -53,7 +53,7 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 343,
+        "line": 337,
         "title": "자원 건강도 게이지",
         "pillar": "S1",
         "cardDesc": "FFA/SPC 최신 자원평가 기반 WCPO 4대 참치 어종 SBrecent/SBF=0 비율 및 LRP 대비 안전 마진",
@@ -76,7 +76,7 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 127,
+        "line": 124,
         "title": "공급 집중도 리스크",
         "pillar": "S1",
         "cardDesc": "PNA 국가별 WCPO 어획 점유율 및 HHI 집중도 분석",
@@ -159,7 +159,7 @@
     "widget_count": 23,
     "widgets": [
       {
-        "line": 113,
+        "line": 120,
         "title": "시장 진입 시나리오 예측기 (Phase 3)",
         "pillar": "S4",
         "cardDesc": "5대 진입 시나리오별 예상 자본금·매출·ROIC 비교 — PHASE 3 진입 전략 보고서",
@@ -171,178 +171,148 @@
         "takeaway": null
       },
       {
-        "line": 149,
+        "line": 156,
         "title": "오징어(Illex) 어획 부진 및 원가 리스크 맵",
         "pillar": "S1",
         "cardDesc": "조업 리스크 — 최근 주차 어획량과 참깨/오징어 대체 단가 추이",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 178,
+        "line": 185,
         "title": "식물성 믹스 원가 방어율 예측기",
         "pillar": "S2",
         "cardDesc": "What-If — 동물성/식물성 단백질 믹스 비율에 따른 마진 시뮬레이터",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 206,
-        "title": "클린 라벨 전환: 카라기난 리스크 방어 🟢 Live API",
+        "line": 213,
+        "title": "클린 라벨 전환: 카라기난 리스크 방어",
         "pillar": "S5",
         "cardDesc": "Carrageenan — 카라기난 성분을 배제한 클린 라벨 제품의 프리미엄 시장 장악력",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
-          "syncDate": "실시간 연동"
+          "status": "STATIC",
+          "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 232,
+        "line": 239,
         "title": "한국 펫푸드 무역수지 추이 (달러)",
         "pillar": "S3",
         "cardDesc": "무역적자 — 수출이 연 25.2% 급성장했으나 여전히 수입의 2.3배가 적자.",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 259,
+        "line": 266,
         "title": "수출 단가 국가별 격차 ($/kg)",
         "pillar": "S4",
         "cardDesc": "Price Gap — 동일 시장에서 미국산이 태국산 대비 3~7배 고가.",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 285,
+        "line": 292,
         "title": "펫푸드 내 원자재 구성비 해부 (%)",
         "pillar": "S4",
         "cardDesc": "수산물 1.8% — 한국 판매 펫푸드 내 수산물 비중이 단 1.8%.",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 307,
+        "line": 314,
         "title": "글로벌 참치 펫푸드 밸류업 마진 비교 (%)",
         "pillar": "S4",
         "cardDesc": "Empirical Data — 태국 참치캔 생산량 폭증의 핵심 요인: 프리미엄 펫푸드 참치육 수요.",
         "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 340,
+        "title": "단백질 원자재별 톤당 글로벌 단가 비교 ($/kg)",
+        "pillar": "S4",
+        "cardDesc": "어분 최저 — 어분 $0.45~0.50/kg으로 최저 동물성 단백질원. (업계 추정치)",
+        "unit": null,
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 333,
-        "title": "단백질 원자재별 톤당 글로벌 단가 비교 ($/kg) 🟢 Live API",
+        "line": 366,
+        "title": "대체 단백질 시장의 폭발적 성장성 전망 (억$)",
         "pillar": "S4",
-        "cardDesc": "어분 최저 — 어분 $0.45~0.50/kg으로 최저 동물성 단백질원.",
-        "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "실시간 연동"
-        },
-        "takeaway": null
-      },
-      {
-        "line": 359,
-        "title": "대체 단백질 시장의 폭발적 성장성 전망 (억$) 🟢 Live API",
-        "pillar": "S4",
-        "cardDesc": "연평균성장률(CAGR) 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망.",
+        "cardDesc": "연평균성장률(CAGR) 8.7% — 대체 단백질 펫푸드 시장 2027년 39억$ 전망. (업계 추정치)",
         "unit": "%",
         "telemetry": {
-          "status": "LIVE",
-          "syncDate": "실시간 연동"
+          "status": "STATIC",
+          "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 387,
+        "line": 394,
         "title": null,
         "pillar": "S4",
         "cardDesc": "EPA+DHA 620 — 줄가자미 EPA+DHA 620.24 mg/100g — 오메가-3 최고",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null,
         "dynamic": true,
         "title_binding": "d_kfas_w05.title",
         "cardDesc_binding": null
       },
       {
-        "line": 413,
+        "line": 420,
         "title": "RFMO 쿼터 축소 → 원물 공급 리스크",
         "pillar": "S1",
         "cardDesc": "FAD -4%/년 — FAD 제한 350→288개로 연 4% 축소. 원물 단가 상승 불가피.",
         "unit": "톤",
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 445,
+        "line": 452,
         "title": "기후변화 → 참치 서식지 이동 전망 (2050/2100)",
         "pillar": "S1",
         "cardDesc": "-15~30% — 중앙 태평양 바이오매스 2100년까지 15~30% 감소 전망.",
         "unit": "°C",
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 488,
+        "title": "틸라피아 껍질 업사이클링 수익성",
+        "pillar": "S2",
+        "cardDesc": "단일 원료 반려견 간식 부가가치 — 업사이클링 마진 자체추정",
+        "unit": null,
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 481,
-        "title": "틸라피아 껍질 업사이클링 수익성 🟢 Live API",
-        "pillar": "S2",
-        "cardDesc": "Single-ingredient — 단일 원료(Single-ingredient) 반려견 간식 부가가치",
-        "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "실시간 연동"
-        },
-        "takeaway": null
-      },
-      {
-        "line": 507,
+        "line": 514,
         "title": "주요 기업 매출 및 이익률 비교 (억 원)",
         "pillar": "S4",
         "cardDesc": "Scoreboard — 로얄캐닌 2,093억 원으로 1위.",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 533,
+        "line": 540,
         "title": "펫푸드 원자재 및 환율 민감도 분석 (%)",
         "pillar": "S4",
         "cardDesc": "Sensitivity (Finansia/Globlex 모델) — 참치 매입가 +10% → 순이익 -8.5%. USD/THB 1 THB 절상(약 3% 평가절상) → i-Tail 수출 93.6% 노출로 순이익 -10%.",
@@ -354,90 +324,75 @@
         "takeaway": null
       },
       {
-        "line": 559,
+        "line": 566,
         "title": "i-Tail 글로벌 ODM 매출 및 이익률 구조 (%)",
         "pillar": "S3",
         "cardDesc": "매출총이익률(GPM) 25% — 마즈·스머커 등 OEM으로 98.7% 매출. 매출총이익률(GPM) 25%.",
         "unit": "%",
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 600,
+        "title": "오에스피(OSP) 매출 및 V자 이익률 회복 (%)",
+        "pillar": "S4",
+        "cardDesc": "V자 회복 — 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복. (공시 기반 추정)",
+        "unit": null,
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 593,
-        "title": "오에스피(OSP) 매출 및 V자 이익률 회복 (%) 🟢 Live API",
-        "pillar": "S4",
-        "cardDesc": "V자 회복 — 원가율 78.6% → 이익률 6.5% 저점 → 15.4% V자 회복.",
-        "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "실시간 연동"
-        },
-        "takeaway": null
-      },
-      {
-        "line": 621,
+        "line": 628,
         "title": "하림펫푸드 매출 및 수직계열화 이익 성장 (억 원)",
         "pillar": "S4",
         "cardDesc": "Vertical Integration — 계열사 닭고기 원가 직접 공급으로 흑자 전환.",
         "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 656,
+        "title": "카테고리별 글로벌 펫푸드 성장률 비교 (%)",
+        "pillar": "S4",
+        "cardDesc": "자체 브랜드(PB) 20.2% — 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배. (업계 추정치)",
+        "unit": null,
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 649,
-        "title": "카테고리별 글로벌 펫푸드 성장률 비교 (%) 🟢 Live API",
-        "pillar": "S4",
-        "cardDesc": "자체 브랜드(PB) 20.2% — 미국 자체 브랜드(PB) 펫푸드 성장률 20.2%로 프리미엄(11.1%)의 2배.",
-        "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "실시간 연동"
-        },
-        "takeaway": null
-      },
-      {
-        "line": 675,
+        "line": 682,
         "title": "태국 휴먼그레이드 참치 수출 및 펫푸드 지수",
         "pillar": "S3",
         "cardDesc": "Empirical Data — 태국 캔참치 수출량과 프리미엄 펫푸드 수요 지수 상관관계",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 701,
+        "line": 708,
         "title": null,
         "pillar": "S2",
         "cardDesc": "항산화 35.2% — Aroase AP-10 효소 최적, DPPH 라디칼 소거능 35.2%",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null,
         "dynamic": true,
         "title_binding": "d_kfas_w02.title",
         "cardDesc_binding": null
       },
       {
-        "line": 728,
+        "line": 735,
         "title": null,
         "pillar": "S2",
         "cardDesc": "수율 72.5% — 스피룰리나 알칼리추출 72.5% 수율, EAA 312mg/g",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null,
         "dynamic": true,
         "title_binding": "d_kfas_w04.title",
@@ -454,14 +409,14 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 39,
+        "line": 41,
         "title": "양식 참다랑어 생산 패권",
         "pillar": "S1",
         "cardDesc": "FAO FishStatJ로 상위 양식국 5개를 누적 면적으로 시각화 — 지중해권(호주·일본·스페인·몰타·멕시코)의 고부가가치 양식 시장 점유율 추이",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "FAO FishStatJ"
+          "status": "STATIC",
+          "syncDate": "FAO FishStatJ 2022"
         },
         "takeaway": null
       }
@@ -474,15 +429,12 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 166,
+        "line": 167,
         "title": "Atuna 가다랑어 8년 가격 (월별)",
         "pillar": "S4",
         "cardDesc": "로컬 CSV (skjbkk.csv) 월별 파싱 — 방콕 기준 가다랑어 최근 8년 월별 거래가(최신 2026-05). YFT는 SKJ 대비 58% 역사적 프리미엄 적용 추정치.",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -502,7 +454,7 @@
         "cardDesc": "인도양(IO) 연료비 폭등 및 어획 부진으로 인한 선단 조업 중단 사태",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-05-27 Atuna"
         },
         "takeaway": null
@@ -514,7 +466,7 @@
         "cardDesc": "2026-05-27 Atuna 보도 기준 방콕 WCPO 가다랑어 산지가 $1,850/t (2025-08 고점 $1,845 대비 5월 회복 추세). 미국 소매업계는 $1,500/t 통제선 압박 — 출처: Atuna News (2026-05-20, 2026-05-26)",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-05-27 Atuna"
         },
         "takeaway": null
@@ -526,7 +478,7 @@
         "cardDesc": "에콰도르 동태평양(EPO) 1분기 가다랑어 어획량 -28% 급감",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-05-27 Atuna"
         },
         "takeaway": null
@@ -538,7 +490,7 @@
         "cardDesc": "디지털 이력 추적(EU CATCH) 시스템 오류로 인한 최대 50% 수입 거절 리스크",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-05-27 Atuna"
         },
         "takeaway": {
@@ -595,11 +547,11 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 33,
-        "title": "참치 어종별 글로벌 어획량 추이 (Live)",
+        "line": 34,
+        "title": "참치 어종별 글로벌 어획량 추이",
         "pillar": "S1",
-        "cardDesc": "FAO FishStat 2015-2022 Capture Quantity (Q_tlw, 톤 live weight) 기반 3대 참치 어종 어획량 시계열",
-        "unit": "(톤, live weight)",
+        "cardDesc": "FAO FishStat 2015-2022 어획량 통계(Q_tlw, 톤 생중량) 기반 3대 참치 어종 어획량 시계열",
+        "unit": "(톤, 생중량 Q_tlw)",
         "telemetry": {
           "status": "SYNCED",
           "syncDate": "2026-05-21"
@@ -670,18 +622,50 @@
     "external_urls": []
   },
   {
+    "file": "components/TunaCorpusStudyInsights.tsx",
+    "widget_count": 2,
+    "widgets": [
+      {
+        "line": 45,
+        "title": "인도양 열대참치 자원상태",
+        "pillar": "S1",
+        "cardDesc": "IOTC 과학위원회 SC28(2025.12) 자원평가 — 4종별 산란자원비(SB/SBMSY)와 어획강도비(F/FMSY). 기준선 1.0: 자원비는 위, 어획비는 아래일수록 건전.",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "IOTC SC28 (2025-12)"
+        },
+        "takeaway": null
+      },
+      {
+        "line": 143,
+        "title": "유실어구 대응 프레임워크",
+        "pillar": "S5",
+        "cardDesc": "ISSF 2025-07 유실어구(ALDFG) 관리계획 지침 — 참치 선망의 부유물집어장치(FAD)와 MSC 인증 요건에 직결되는 대응계획(POA) 구조. 정성 프레임워크(정량 지표 없음).",
+        "unit": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "ISSF 2025-07"
+        },
+        "takeaway": null
+      }
+    ],
+    "api_calls": [],
+    "external_urls": []
+  },
+  {
     "file": "components/TunaCrossroads.tsx",
     "widget_count": 1,
     "widgets": [
       {
-        "line": 30,
-        "title": "글로벌 참다랑어 생산량 크로스로드 (Catch vs Farmed)",
+        "line": 32,
+        "title": "글로벌 참다랑어 생산량 크로스로드 (어획 vs 양식)",
         "pillar": "S1",
-        "cardDesc": "참다랑어 자연 어획량(쿼터로 1980년 이후 정체) vs 축양/양식량(우상향 돌파)을 ComposedChart로 결합",
+        "cardDesc": "참다랑어 자연 어획량(쿼터로 1980년 이후 정체) vs 축양/양식량(우상향 돌파)을 ComposedChart로 결합 — 출처: FAO FishStatJ",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "FAO FishStatJ"
+          "status": "STATIC",
+          "syncDate": "2026-06-05"
         },
         "takeaway": null
       }
@@ -708,10 +692,7 @@
         "pillar": "S4",
         "cardDesc": "국정연 아프리카 수산협력·할랄 수출전략·ASEAN 무역 보고서 기반 아프리카·중동·ASEAN 권역의 참치 수입 성장률·시장 규모·진입 장벽 복합 분석",
         "unit": "(단위: USD Million)",
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "UN Comtrade + 국정연"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -741,18 +722,37 @@
     "external_urls": []
   },
   {
+    "file": "components/TunaExportRaceWidget.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 185,
+        "title": "글로벌 참치캔 수출 점유율 레이스",
+        "pillar": "S4",
+        "cardDesc": "유엔 무역통계(UN Comtrade) 연간 수출액(HS 160414, 참치 조제품·통조림) 기준 태국·에콰도르·스페인·필리핀·중국·한국 점유율 — 분모는 세계 총계가 아닌 6개국 합(글로벌 캔 수출의 약 70% 커버)",
+        "unit": "(단위: %, 6개국 합=100%)",
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/tuna/comtrade-race"
+    ],
+    "external_urls": []
+  },
+  {
     "file": "components/TunaExportShare.tsx",
     "widget_count": 1,
     "widgets": [
       {
-        "line": 45,
+        "line": 47,
         "title": "양식 참다랑어 글로벌 수출 점유율",
         "pillar": "S4",
         "cardDesc": "FAO FishStatJ 무역 데이터에서 양식 생산 10개국 발 수출만 추출. 고부가가치 참다랑어의 극단적 일본 단일 시장 종속 구조 시각화",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "FAO FishStatJ"
+          "status": "STATIC",
+          "syncDate": "FAO FishStatJ 2023"
         },
         "takeaway": null
       }
@@ -765,10 +765,28 @@
     "widget_count": 9,
     "widgets": [
       {
-        "line": 223,
+        "line": 217,
         "title": "제로 코스트의 마법: 자숙액 부가가치",
         "pillar": "S1",
         "cardDesc": "참치캔 가공 후 폐기되던 자숙액을 완제품으로 전환할 때의 단계별 부가가치 vs 가공비용 비교",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 257,
+        "title": "인도양 소형 다랑어 쿼터 압박 경고",
+        "pillar": "S1",
+        "cardDesc": "IOTC 관할 소형 다랑어(Bullet/Frigate)의 연도별 실 어획량 vs 권고 쿼터 추이 — 자원 고갈 임계점 추적",
+        "unit": null,
+        "telemetry": null,
+        "takeaway": null
+      },
+      {
+        "line": 303,
+        "title": "[신규] 환율 기반 원가 방어 시뮬레이터",
+        "pillar": "S2",
+        "cardDesc": "USD/KRW 환율 슬라이더 기반 참치액 vs 멸치·까나리 마진 시뮬레이션",
         "unit": null,
         "telemetry": {
           "status": "STATIC",
@@ -777,99 +795,66 @@
         "takeaway": null
       },
       {
-        "line": 263,
-        "title": "인도양 소형 다랑어 쿼터 압박 경고",
-        "pillar": "S1",
-        "cardDesc": "IOTC 관할 소형 다랑어(Bullet/Frigate)의 연도별 실 어획량 vs 권고 쿼터 추이 — 자원 고갈 임계점 추적",
-        "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "2026-05"
-        },
-        "takeaway": null
-      },
-      {
-        "line": 309,
-        "title": "[신규] 환율 기반 원가 방어 시뮬레이터",
-        "pillar": "S2",
-        "cardDesc": "USD/KRW 환율 슬라이더 기반 참치액 vs 멸치·까나리 마진 시뮬레이션",
-        "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "2026-05-21"
-        },
-        "takeaway": null
-      },
-      {
-        "line": 406,
+        "line": 400,
         "title": "통합 수산과학 실증 연구 (K01~K08)",
         "pillar": "S2",
         "cardDesc": "자숙 부산물 안전·속성발효·저염 코지·디비터링 등 8개 실증 트랙별 데이터 검증",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "KFAS"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 526,
+        "line": 520,
         "title": "SCFI 기반 운임 3개월 지연(Lagging) 반영",
         "pillar": "S3",
         "cardDesc": "상하이운임지수(SCFI)와 실제 톤당 물류비의 시차 추적 — 운임 급등이 원가에 반영되는 3~4개월 지연 구간 시각화",
         "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
-        "line": 562,
+        "line": 556,
         "title": "인도/베트남 소싱 다변화 효율성",
         "pillar": "S3",
-        "cardDesc": "국가별 지정학 리스크 vs 조달 단가 vs 볼륨의 3축 버블 차트 — 차이나 플러스 원(China+1) 다변화 후보 평가",
+        "cardDesc": "국가별 지정학 리스크 vs 조달 단가 vs 볼륨의 3축 버블 차트 — 차이나 플러스 원(China+1) 다변화 후보 평가 (업계 추정치 기반 illustrative)",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 605,
+        "line": 599,
         "title": "간장 대체 소비자 선호도 (2026 최신)",
         "pillar": "S4",
         "cardDesc": "aT 가공식품 세분시장 트렌드 — 참치액·식물성 연두·멸치/까나리액젓의 현재 사용률 vs 향후 사용 의향 스택 비교",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-Q1"
         },
         "takeaway": null
       },
       {
-        "line": 645,
+        "line": 639,
         "title": "대체 액젓류 역상관관계 교차 분석",
         "pillar": "S4",
-        "cardDesc": "국내 멸치/까나리 어획량 지수 vs 참치액 B2B 발주량 지수의 역상관 패턴 — 풍선 효과(Balloon Effect) 추적",
+        "cardDesc": "국내 멸치/까나리 어획량 지수 vs 참치액 B2B 발주량 지수의 역상관 패턴 — 풍선 효과(Balloon Effect) 추적 (해양수산부·내부 데이터 기반)",
         "unit": null,
         "telemetry": {
-          "status": "LIVE",
+          "status": "STATIC",
           "syncDate": "2026-05"
         },
         "takeaway": null
       },
       {
-        "line": 690,
+        "line": 684,
         "title": "글로벌 히스타민 규제 리스크 맵",
         "pillar": "S5",
         "cardDesc": "FDA·EU·일본·중국 등 주요 수출국 히스타민 통관 기준치와 한국산 참치 자숙액·경쟁 액젓류 실측 수치 레이더 비교",
         "unit": null,
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -888,10 +873,7 @@
         "pillar": "S1",
         "cardDesc": "Atuna skjbkk 분기 평균(실측) + 단기 시나리오 forecast — 호르무즈·WCPO·가공업체 저항 3요인 통합",
         "unit": "(단위: USD/MT)",
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "/api/tuna-forecast"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
@@ -900,10 +882,7 @@
         "pillar": "S1",
         "cardDesc": "NOAA ENSO Index와 가다랑어·황다랑어 어획량의 5단계 위상별 상관 — La Niña/El Niño/Neutral 별 가격 영향",
         "unit": "(단위: 어획량 변동 %)",
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "NOAA ENSO Index"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
@@ -912,10 +891,7 @@
         "pillar": "S3",
         "cardDesc": "ECOS 환율 + KCS 통관 시나리오로 5가지 변수(원화 약세·강세·유가 급등·관세 인상)별 착지원가 시뮬레이션",
         "unit": "(단위: ₩/kg)",
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "ECOS + KCS API"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -934,10 +910,7 @@
         "pillar": "S4",
         "cardDesc": "글로벌 피시소스 시장($4.5B)·할랄 시장($1.2B) vs 한국 참치액(700~1,000억원) 규모 비교",
         "unit": "(단위: 십억 달러)",
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05 (UNIDO + KOTRA)"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -970,14 +943,14 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 36,
+        "line": 38,
         "title": "참다랑어 양식 블랙홀 수입국 분석",
         "pillar": "S4",
         "cardDesc": "FAO FishStatJ 양자 무역 데이터로 세계 10대 참다랑어 양식국 발 \\'양식 오리진\\' 수입 물량을 합산 — 2019~2023 일본 블랙홀 구조 분석",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "FAO FishStatJ"
+          "status": "STATIC",
+          "syncDate": "2023-12-31"
         },
         "takeaway": null
       }
@@ -986,11 +959,32 @@
     "external_urls": []
   },
   {
+    "file": "components/TunaInsiderSignalWidget.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 317,
+        "title": "참치 상장사 내부자 지분 시그널",
+        "pillar": "S5",
+        "cardDesc": "금융감독원 전자공시(DART) 임원·주요주주 소유보고 + 5% 대량보유 보고 — 참치 4사 최근 180일 실시간 집계",
+        "unit": "(단위: 주)",
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/tuna/insider-signal"
+    ],
+    "external_urls": [
+      "https://dart.fss.or.kr/dsaf001/main.do?rcptNo=${e.rcept_no}`}"
+    ]
+  },
+  {
     "file": "components/TunaInsightsDashboard.tsx",
     "widget_count": 13,
     "widgets": [
       {
-        "line": 141,
+        "line": 134,
         "title": "Insight 1. 참치 차익거래 마진 레이더",
         "pillar": "S4",
         "cardDesc": "원어 매입가(태국)와 2차 가공 수출가(EU/미주) 사이의 마진 스플릿 추적 — 스프레드 락인 구간 발굴",
@@ -1002,10 +996,10 @@
         "takeaway": null
       },
       {
-        "line": 182,
+        "line": 175,
         "title": "Insight 2. 가공 허브 패권 지도",
         "pillar": "S2",
-        "cardDesc": "1990s 미·일 80%에서 2023 에콰도르 26%/베트남 14%로 이동한 글로벌 참치 가공 허브의 30년 이동 궤적",
+        "cardDesc": "1990년대 미·일 80%에서 2023 에콰도르 26%/베트남 14%로 이동한 글로벌 참치 가공 허브의 30년 이동 궤적",
         "unit": null,
         "telemetry": {
           "status": "STATIC",
@@ -1014,7 +1008,7 @@
         "takeaway": null
       },
       {
-        "line": 224,
+        "line": 217,
         "title": "Insight 3. 신흥 소비 블랙홀 마켓",
         "pillar": "S4",
         "cardDesc": "1인당 GDP $3,000~5,000 진입 국가의 통조림 참치 수요 CAGR — 나이지리아·이집트·콜롬비아 등 신흥 4개국 진입 우선순위 평가",
@@ -1026,7 +1020,7 @@
         "takeaway": null
       },
       {
-        "line": 268,
+        "line": 261,
         "title": "Insight 4. 어장 제로섬 역학 뷰어",
         "pillar": "S1",
         "cardDesc": "FAO FishStat Capture v25 — WCPO vs 대서양 어획량 30년 추세와 ENSO 충격 시점의 시소 패턴 추적",
@@ -1038,7 +1032,7 @@
         "takeaway": null
       },
       {
-        "line": 319,
+        "line": 312,
         "title": "Insight 5. 대체 수산물 헷징 매트릭스",
         "pillar": "S1",
         "cardDesc": "참치 vs 고등어 가격 지수의 역상관(-0.78) 추적 — 흉어 사이클에서 펠라직 어종이 자연 헷지 역할",
@@ -1050,7 +1044,7 @@
         "takeaway": null
       },
       {
-        "line": 364,
+        "line": 357,
         "title": "Insight 7. 양식 vs 어획 패러다임 역전",
         "pillar": "S4",
         "cardDesc": "2015년 야생 어획 vs 양식 단가 크로스오버 이후 양식 프리미엄 +31.9% 구조화 추적 — 일본 외식·중동 럭셔리 채널 선호 전환",
@@ -1062,7 +1056,7 @@
         "takeaway": null
       },
       {
-        "line": 405,
+        "line": 398,
         "title": "Insight 8. 최고가 미식 소비 국가 맵",
         "pillar": "S4",
         "cardDesc": "국가별 신선 참치 수입 단가 히트맵 — 일본($28/kg) 정체 동안 두바이($42)·홍콩($38) 캐치업 가시화",
@@ -1074,7 +1068,7 @@
         "takeaway": null
       },
       {
-        "line": 455,
+        "line": 448,
         "title": "Insight 9. 공급 독과점 HHI 지수 경보",
         "pillar": "S1",
         "cardDesc": "글로벌 참치 수출 시장의 허핀달-허쉬만(HHI) 지수 추세 — 2,500 초과 시 Danger Zone, 매입 협상력 약화 신호",
@@ -1086,7 +1080,7 @@
         "takeaway": null
       },
       {
-        "line": 495,
+        "line": 488,
         "title": "Insight 10. 기후 쇼크 타임머신",
         "pillar": "S1",
         "cardDesc": "해수온 상승에 따른 한대성 참다랑어 vs 온수성 가다랑어 점유율의 30년 역전 침식 추적 — 2035 projection 88%",
@@ -1098,7 +1092,7 @@
         "takeaway": null
       },
       {
-        "line": 540,
+        "line": 533,
         "title": "Insight 11. 정밀 조업(Precision Fishing) 패러다임 전환",
         "pillar": "S2",
         "cardDesc": "3D 소나 + AI FAD 결합 선단의 CPUE +15% / MGO 효율 -28% 추세 — 호르무즈 외생 충격을 제외한 평시 효율 변화",
@@ -1110,7 +1104,7 @@
         "takeaway": null
       },
       {
-        "line": 582,
+        "line": 575,
         "title": "Insight 12. 관세 회피(Tariff Hopping) 밸류체인 진화",
         "pillar": "S3",
         "cardDesc": "USTR 2025-07-31 상호관세(태국 19%·베트남 20%·에콰도르 15%) 후 미국 현지 FDI·USMCA 멕시코로의 거점 이동 추적",
@@ -1122,7 +1116,7 @@
         "takeaway": null
       },
       {
-        "line": 625,
+        "line": 618,
         "title": "Insight 13. 지속가능성(MSC) 더블 프리미엄",
         "pillar": "S5",
         "cardDesc": "Fisheries Research 2025 Hedonic pricing — 일반 캔 vs MSC 단일 vs MSC+Dolphin-Safe 이중 인증의 소매가 지수 비교",
@@ -1134,7 +1128,7 @@
         "takeaway": null
       },
       {
-        "line": 669,
+        "line": 662,
         "title": "Insight 15. 펫케어/해양 콜라겐 업사이클링",
         "pillar": "S5",
         "cardDesc": "참치 부산물(평균 40~55%)을 펫푸드·해양 콜라겐으로 전용한 라인의 영업이익률 vs 통조림 본업 마진 비교",
@@ -1160,7 +1154,7 @@
         "cardDesc": "2026-Q1 태국 냉동 원어 수입 193,367톤. 가다랑어 143,436톤(-5% YoY), 황다랑어 38,348톤(-14% YoY). WCPO 65→48% / IO 22→38% 대체",
         "unit": "(단위: 톤 / %)",
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "Atuna 2026-05-04"
         },
         "takeaway": null
@@ -1172,7 +1166,7 @@
         "cardDesc": "Frime SA: 스페인 최대 신선·냉동 황다랑어 로인·스테이크 가공사. EU 시장 21% 점유, MSC 인증 어장만 사용. 2026년 새 소유주 인수",
         "unit": "(단위: %)",
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "Atuna May 2026"
         },
         "takeaway": null
@@ -1184,7 +1178,7 @@
         "cardDesc": "2026 Q1~Q2 참치 산지가격을 흔든 3가지 동시 충격. 가다랑어 방콕가($/MT) vs MGO 지수(2025-10=100)",
         "unit": "(단위: $/MT · MGO Index)",
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "Atuna 2026-05-06"
         },
         "takeaway": null
@@ -1210,7 +1204,7 @@
     "widget_count": 6,
     "widgets": [
       {
-        "line": 116,
+        "line": 115,
         "title": "일본 사시미 수요 절벽 — 2050년 1/3 토막",
         "pillar": "S4",
         "cardDesc": "Kawamoto(2026) 감마 모델 국내수요 + 로지스틱 인바운드 시나리오. 단위 (천 톤, LWE)",
@@ -1222,7 +1216,7 @@
         "takeaway": null
       },
       {
-        "line": 199,
+        "line": 198,
         "title": "1인당 사시미 소비 감마곡선 — 2050년 27%",
         "pillar": "S4",
         "cardDesc": "감마 분포 모델 기반 1인당 사시미 소비 장기 전망. 단위 (kg/인/년, LWE). AIC -64 최우수 적합.",
@@ -1234,7 +1228,7 @@
         "takeaway": null
       },
       {
-        "line": 280,
+        "line": 279,
         "title": "3개 세그먼트 차등 감소 — 캔만 견뎠다",
         "pillar": "S4",
         "cardDesc": "일본 참치 시장 3대 세그먼트의 22년 추이 비교. 단위 (천 톤, LWE). 2000년 정점 대비 변화율 표기.",
@@ -1246,7 +1240,7 @@
         "takeaway": null
       },
       {
-        "line": 363,
+        "line": 362,
         "title": "일본 2022 공급 구조 — 연승·원어수입이 절반",
         "pillar": "S1",
         "cardDesc": "일본 참치 시장 642k 톤(LWE) 공급원 분해. 국내 어법 4종 + 수입 3종. 한국 원양 연승선단 경쟁 영역 식별.",
@@ -1258,19 +1252,19 @@
         "takeaway": null
       },
       {
-        "line": 447,
-        "title": "사시미 3-Tier 가격 매트릭스 — 14배 격차",
+        "line": 446,
+        "title": "사시미 3단계 가격 매트릭스 — 14배 격차",
         "pillar": "S4",
-        "cardDesc": "일본 도매가 어종·티어별 비교. 14배 = 프리미엄 PBF 상한가(JPY 4,200/kg) ÷ 저가 SKJ 하한가(JPY 300/kg). 통조림용 SKJ vs 양식 PBF 최상등급 양극단. 단위 (JPY/kg).",
+        "cardDesc": "일본 도매가 어종·등급별 비교. 14배 = 프리미엄 PBF 상한가(JPY 4,200/kg) ÷ 저가 SKJ 하한가(JPY 300/kg). Kawamoto(2017) 인용 추정치. 단위 (JPY/kg).",
         "unit": null,
         "telemetry": {
           "status": "STATIC",
-          "syncDate": "Kawamoto T 2026 Fig 6 + 일본 도요스 도매시장 시세"
+          "syncDate": "2026-04-30"
         },
         "takeaway": null
       },
       {
-        "line": 530,
+        "line": 529,
         "title": "코호트 × 인구 더블 쇼크 — 자연 회복 불가",
         "pillar": "S5",
         "cardDesc": "1인당 소비(좌축, kg/인/년) × 일본 인구(우축, 백만 명) 동시 감소의 곱셈 효과 시각화. UN DESA 2024 + Kawamoto 감마 모델.",
@@ -1373,7 +1367,7 @@
         "line": 238,
         "title": "2026 Q1 시그널 — 프랑스 폭증·국내 양식 발진",
         "pillar": "S4",
-        "cardDesc": "2026년 1~3월 누적 vs 2025년 동기간 변화율. 단위 (%, YoY). 프랑스 +240% 폭증과 국내 양식 +667%가 가장 큰 시그널.",
+        "cardDesc": "2026년 1~3월 누적 vs 2025년 동기간 변화율. 단위 (%, 전년동기比). 프랑스 +240% 폭증과 국내 양식 +667%가 가장 큰 시그널.",
         "unit": null,
         "telemetry": {
           "status": "STATIC",
@@ -1390,14 +1384,14 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 52,
+        "line": 54,
         "title": "한국의 양식 참다랑어 수입 출처",
         "pillar": "S3",
         "cardDesc": "FAO FishStatJ 한국 참다랑어 수입 5년치를 양식 Top 10 국가 발만 추출 — 튀르키예·스페인 등 지중해 축양이 한국 프리미엄 시장 장악",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "관세청 + FAO FishStatJ"
+          "status": "STATIC",
+          "syncDate": "2026-05-21"
         },
         "takeaway": null
       }
@@ -1410,14 +1404,14 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 35,
+        "line": 37,
         "title": "한국의 양식 참다랑어 수입 경쟁력",
         "pillar": "S3",
         "cardDesc": "FAO FishStatJ에서 참다랑어 양식 Top 10국 → 한국 수입 물량·금액 이중 Y축. 물량 정체에도 수입액 견고 — 한국 \\'프리미엄 오마카세 성지\\' 증거",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "관세청 + FAO"
+          "status": "STATIC",
+          "syncDate": "2024"
         },
         "takeaway": null
       }
@@ -1451,33 +1445,40 @@
         "line": 46,
         "title": "냉동 눈다랑어(Bigeye) 위탁판매 현황 (2026)",
         "pillar": "S3",
-        "cardDesc": "해양수산부 수산정보포털(FIS) API에서 국내 5대 위판장 냉동 눈다랑어 위탁판매 데이터를 수집해 시장별 거래량·평균 단가 비교",
+        "cardDesc": "해양수산부 수산정보포털(FIS) 위판장 통계 양식 기반 업계 추정치(자체 구성, API 미연동) — 국내 5대 위판장 냉동 눈다랑어 거래량·평균 단가 비교",
         "unit": "(단위: MT / ₩/kg)",
-        "telemetry": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2026 업계 추정"
+        },
         "takeaway": null
       },
       {
-        "line": 104,
+        "line": 99,
         "title": "참치 수출입 무역수지 추이",
         "pillar": "S3",
-        "cardDesc": "관세청 KCS API + 해양수산부 통계 연동. 참치 HS 코드 기준 월별 수출액·수입액·무역수지 추이 — 구조적 적자 해소 전략 시사점",
+        "cardDesc": "관세청 수출입 무역통계·해양수산부 통계 기반 자체 구성(2024-07~12, API 미연동). 참치 HS 코드 기준 월별 수출액·수입액·무역수지 추이",
         "unit": "(단위: USD Million)",
-        "telemetry": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2024-12 기준"
+        },
         "takeaway": null
       },
       {
-        "line": 162,
+        "line": 152,
         "title": "해상운임 물류비 트래커",
         "pillar": "S3",
-        "cardDesc": "KMI 해운지수 + 해운조합 컨테이너 운임으로 주요 수출입 노선(부산→방콕·LA·로테르담 등)의 20ft/40ft 운임 동향 추적",
+        "cardDesc": "KMI 해운지수·해운조합 컨테이너 운임 참고 자체 추정치(2026 초, API 미연동) — 주요 수출입 노선(부산→방콕·LA·로테르담 등) 20ft/40ft 운임 비교",
         "unit": "(단위: USD/컨테이너)",
-        "telemetry": null,
+        "telemetry": {
+          "status": "STATIC",
+          "syncDate": "2026 초 추정"
+        },
         "takeaway": null
       }
     ],
-    "api_calls": [
-      "/api/mof-fishery"
-    ],
+    "api_calls": [],
     "external_urls": []
   },
   {
@@ -1529,7 +1530,7 @@
     "widget_count": 3,
     "widgets": [
       {
-        "line": 37,
+        "line": 39,
         "title": "가다랑어(Skipjack) 액젓 분말화 (2026)",
         "pillar": "S5",
         "cardDesc": "국내 참치액 시장 700~1,000억원(추정, 출처별 편차). 코인 육수 시장 +20% YoY 성장 중. 분말화로 냉동→건화물 전환 시 물류비 획기적 절감 (2026년 기준)",
@@ -1541,7 +1542,7 @@
         "takeaway": null
       },
       {
-        "line": 87,
+        "line": 89,
         "title": "OECD Pillar Two 세금 쇼크 (황다랑어 밸류체인)",
         "pillar": "S4",
         "cardDesc": "조세 피난처와 이전가격 조작에 의존하던 다국적 수산기업의 실효세율이 OECD Pillar Two(2026 시행)로 2배 폭등",
@@ -1553,7 +1554,7 @@
         "takeaway": null
       },
       {
-        "line": 135,
+        "line": 137,
         "title": "베트남 OEM 역전 — 황다랑어 가공 생태계 장악",
         "pillar": "S2",
         "cardDesc": "2026년 베트남 임금 $342(태국 대비 -20%), VKFTA 무관세. MMPA 규제로 원물 부족 → 한국 원양 선단에 절대적 교섭력 집중",
@@ -1576,7 +1577,7 @@
         "line": 48,
         "title": "참치 산지 단가 추이",
         "pillar": "S1",
-        "cardDesc": "WCPFC·IATTC 2025 Q3 보고 + IATTC 추정치를 합산한 5대 해역별 산지 단가",
+        "cardDesc": "WCPFC·IATTC 2025 Q3 공개 자료 기반 자체추정 — 5대 해역별 산지 단가 (Stage 0 illustrative)",
         "unit": "(원/kg)",
         "telemetry": {
           "status": "STATIC",
@@ -1594,7 +1595,7 @@
     "widgets": [
       {
         "line": 49,
-        "title": "참치 산지 단가 추이 (Live)",
+        "title": "참치 산지 단가 추이",
         "pillar": "S1",
         "cardDesc": "Atuna 글로벌 시장가 인덱스 5개 항구(서아프리카·서태평양·동태평양·서인도양·지중해) Skipjack 최신 단가",
         "unit": "(USD/MT)",
@@ -1633,10 +1634,10 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 70,
+        "line": 72,
         "title": "부산물 업사이클링: 프리미엄 펫케어",
         "pillar": "S2",
-        "cardDesc": "Thai Union 2024 재무 기준 펫케어 매출총이익률 분석. 참치 통조림 마진 4~9% vs 프리미엄 펫푸드 원료 28.5%(증권사 추정)",
+        "cardDesc": "Thai Union 2024 재무 기준 펫케어 매출총이익률 참고. 수율 모델(가식부 48%/부산물 52%)은 illustrative 추정. 참치 통조림 마진 4~9% vs 프리미엄 펫푸드 원료 28.5%(비공개 증권사 추정)",
         "unit": "(단위: %)",
         "telemetry": {
           "status": "STATIC",
@@ -1659,12 +1660,9 @@
         "line": 26,
         "title": "N1. 태평양 가공 허브 (PNG) vs 국내 조달 원가율 비교",
         "pillar": "S2",
-        "cardDesc": "동원 RD Tuna Canners PNG 거점의 산지 1차 가공 vs 국내 직조달 cost-type별 단가 비교",
+        "cardDesc": "동원 RD Tuna Canners PNG 거점의 산지 1차 가공 vs 국내 직조달 비용유형별 단가 비교",
         "unit": null,
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "2026-05"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -1683,10 +1681,7 @@
         "pillar": "S5",
         "cardDesc": "국정연 보고서 8건 교차분석으로 참치 산업에 영향을 미치는 6대 통상정책 리스크를 심각도×발생확률 가중 합산으로 정량화",
         "unit": "(단위: 리스크 점수 0~100)",
-        "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "국정연 보고서 8건"
-        },
+        "telemetry": null,
         "takeaway": null
       },
       {
@@ -1695,10 +1690,7 @@
         "pillar": "S3",
         "cardDesc": "WTO MFN 관세율 vs FTA 특혜관세율 루트별 비교로 최적 관세 절감 경로 식별 (KORUS·한-ASEAN·한-EU FTA WITS API 연동)",
         "unit": "(단위: 관세율 %)",
-        "telemetry": {
-          "status": "LIVE",
-          "syncDate": "WITS API"
-        },
+        "telemetry": null,
         "takeaway": null
       }
     ],
@@ -1712,7 +1704,7 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 34,
+        "line": 36,
         "title": "AI 기반 스마트 정밀 조업",
         "pillar": "S1",
         "cardDesc": "전통 직관 조업(Traditional) vs 스마트 정밀 조업(Precision Harvesting) 도입 시 KPI 변화량 레이더 비교",
@@ -1732,7 +1724,7 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 39,
+        "line": 41,
         "title": "원가 vs 소매가: 강한 디커플링",
         "pillar": "S4",
         "cardDesc": "원어 가다랑어 국제 시세(USD/톤, 좌Y) vs 국내 참치 통조림 150g 소매 납품가(₩/캔, 우Y) — 원어 30% 폭락에도 견고한 소매가 디커플링",
@@ -1755,7 +1747,7 @@
         "line": 58,
         "title": "참치 가공 수율 비교",
         "pillar": "S2",
-        "cardDesc": "KFAS 산업통계 기반 어종 4종의 5단계 가공공정 수율(원물=100% 기준)",
+        "cardDesc": "KFAS 산업통계 기반 어종 4종의 5단계 가공공정 수율(원물=100% 기준) — illustrative 시뮬레이션",
         "unit": "(% / 원물 기준)",
         "telemetry": {
           "status": "STATIC",
@@ -1768,11 +1760,30 @@
     "external_urls": []
   },
   {
+    "file": "components/TunaProteinBasketWidget.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 162,
+        "title": "단백질 대체재 상대가격 바스켓",
+        "pillar": "S4",
+        "cardDesc": "KAMIS(농산물유통정보) 소매가 · 품목별 단위 상이(1손/1마리) — 절대 비교 불가, 등락 방향만 유의",
+        "unit": "(단위: 원 · 1손/1마리)",
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/tuna/kamis-basket"
+    ],
+    "external_urls": []
+  },
+  {
     "file": "components/TunaRFMOLibrarian.tsx",
     "widget_count": 1,
     "widgets": [
       {
-        "line": 127,
+        "line": 129,
         "title": null,
         "pillar": null,
         "cardDesc": null,
@@ -1807,7 +1818,7 @@
         "cardDesc": "참치액젓 부산물 자원화 → UN SDG 12.3·14.4·2.4·8.4 기여도 정량화. ESG 보고서·바이어 브랜딩 소재",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
+          "status": "STATIC",
           "syncDate": "FAO SOFIA 2022"
         },
         "takeaway": null
@@ -1824,7 +1835,7 @@
         "line": 64,
         "title": "참치 어종 구성비",
         "pillar": "S1",
-        "cardDesc": "ISSF 2025 Status of the Stocks 기반 글로벌 참치 5개 어종 어획 구성비",
+        "cardDesc": "ISSF 2025 Status of the Stocks 기반 글로벌 참치 5개 어종 어획 구성비 (illustrative)",
         "unit": "(%)",
         "telemetry": {
           "status": "STATIC",
@@ -1841,10 +1852,10 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 130,
+        "line": 135,
         "title": "글로벌 참치 공급업체 발굴 허브",
         "pillar": "S2",
-        "cardDesc": "Open Supply Hub(OSH) API로 6개국(태국·베트남·인도네시아·중국·에콰도르·한국)의 수산물 가공시설 위치·근로자·모기업·ESG 인증 교차 분석",
+        "cardDesc": "Open Supply Hub(OSH) API로 6개국(태국·베트남·인도네시아·중국·에콰도르·한국)의 수산물 가공시설 위치·근로자·모기업·ESG 인증 교차 참조",
         "unit": null,
         "telemetry": null,
         "takeaway": null
@@ -1866,8 +1877,8 @@
         "cardDesc": "ICCAT/IOTC 쿼터 축소 → 원물 가격 상승 → 자숙액 수급 불안정 연쇄 리스크 조기 경보",
         "unit": null,
         "telemetry": {
-          "status": "SYNCED",
-          "syncDate": "IOTC-2026-S30-INF04 + ICCAT 2026"
+          "status": "STATIC",
+          "syncDate": "IOTC-2026-S30-INF04 · ICCAT-2026 기준 (정적)"
         },
         "takeaway": null
       }
@@ -1946,12 +1957,31 @@
     "external_urls": []
   },
   {
+    "file": "components/TunaUsGatewayWidget.tsx",
+    "widget_count": 1,
+    "widgets": [
+      {
+        "line": 113,
+        "title": "미국 참치 수입 관문 레이더",
+        "pillar": "S3",
+        "cardDesc": "미국 인구조사국 수입통계 HS 160414 hs10 합산 · 월 단위",
+        "unit": "(단위: $M / %)",
+        "telemetry": null,
+        "takeaway": null
+      }
+    ],
+    "api_calls": [
+      "/api/tuna/us-gateway"
+    ],
+    "external_urls": []
+  },
+  {
     "file": "components/TunaUsLoinImports.tsx",
     "widget_count": 1,
     "widgets": [
       {
         "line": 25,
-        "title": "미국의 전가열 참치 로인(Loin) 수입 추이 및 관세 영향",
+        "title": "미국의 전가열 참치 로인 수입 추이 및 관세 영향",
         "pillar": "S3",
         "cardDesc": "FFA Markets Study 2025 p.88 표 6 — 미국의 1604.1440 관세 우회(Tariff-hopping)용 전가열 로인 수입액 트렌드 및 대중국 고율 관세 타격 분석",
         "unit": "(단위: 백만 USD)",
@@ -1970,7 +2000,7 @@
     "widget_count": 1,
     "widgets": [
       {
-        "line": 101,
+        "line": 103,
         "title": null,
         "pillar": null,
         "cardDesc": null,

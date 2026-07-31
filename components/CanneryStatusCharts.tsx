@@ -15,8 +15,8 @@ import TermTooltip from './TermTooltip';
 import { ChartPatternDefs } from './ChartPatterns';
 
 const canneryData = [
-  { location: 'BANGKOK', name: 'THAI UNION', prodMax: 1300, prodCurrent: 700, storeMax: 62000, storeCurrent: 73000 },
-  { location: 'BANGKOK', name: 'SEA VALUE', prodMax: 1000, prodCurrent: 500, storeMax: 55000, storeCurrent: 50000 },
+  { location: 'BANGKOK', name: 'THAI UNION', prodMax: 1300, prodCurrent: 900, storeMax: 62000, storeCurrent: 73000 },
+  { location: 'BANGKOK', name: 'SEA VALUE', prodMax: 1000, prodCurrent: 700, storeMax: 55000, storeCurrent: 50000 },
   { location: 'BANGKOK', name: 'GOLDEN PRIZE', prodMax: 350, prodCurrent: 240, storeMax: 25000, storeCurrent: 8500 },
   { location: 'BANGKOK', name: 'PATAYA FOOD', prodMax: 250, prodCurrent: 120, storeMax: 15000, storeCurrent: 3700 },
   { location: 'BANGKOK', name: 'SPA', prodMax: 200, prodCurrent: 120, storeMax: 4000, storeCurrent: 5600 },
@@ -27,11 +27,7 @@ const canneryData = [
   { location: 'BANGKOK', name: 'R.S CANNERY', prodMax: 100, prodCurrent: 40, storeMax: 4000, storeCurrent: 1200 },
   { location: 'BANGKOK', name: 'SK FOODS', prodMax: 120, prodCurrent: 60, storeMax: 7000, storeCurrent: 1200 },
   { location: 'BANGKOK', name: 'KINGFISHER', prodMax: 200, prodCurrent: 20, storeMax: 15000, storeCurrent: 200 },
-  { location: 'BANGKOK', name: 'GLOBAL FROZEN', prodMax: 50, prodCurrent: 40, storeMax: 5000, storeCurrent: 2500 },
-  { location: 'SONGKHLA', name: 'CMC', prodMax: 300, prodCurrent: 120, storeMax: 10000, storeCurrent: 3400 },
-  { location: 'SONGKHLA', name: 'SCC', prodMax: 250, prodCurrent: 50, storeMax: 7000, storeCurrent: 800 },
-  { location: 'SONGKHLA', name: 'SIAM', prodMax: 200, prodCurrent: 60, storeMax: 5000, storeCurrent: 1400 },
-  { location: 'SONGKHLA', name: 'TRP', prodMax: 150, prodCurrent: 70, storeMax: 5000, storeCurrent: 2300 }
+  { location: 'BANGKOK', name: 'GLOBAL FROZEN', prodMax: 50, prodCurrent: 40, storeMax: 5000, storeCurrent: 2500 }
 ];
 
 export default function CanneryStatusCharts() {
@@ -98,7 +94,7 @@ export default function CanneryStatusCharts() {
               <TermTooltip term="공장별 일일 생산량" description="[그래프 설명] 각 가공 공장(Cannery)이 하루에 생산할 수 있는 전체 라인 CAPA(최대 가능 생산량) 대비 보고 시점에 가동된 일 생산량(실적)을 보여줍니다. 실적이 낮으면 고장, 노사문제 혹은 원어 부족을 의미할 수 있습니다." />
             </h2>
             <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-              태국 방콕 및 송클라 지역 캔 공장 일일 <TermTooltip term="CAPA" description="Capacity의 약자로 공장의 최대 가용 생산/보관 능력을 의미합니다." /> 대비 실적 (Metric Tons)
+              태국 방콕 지역 캔 공장 일일 <TermTooltip term="CAPA" description="Capacity의 약자로 공장의 최대 가용 생산/보관 능력을 의미합니다." /> 대비 실적 (Metric Tons)
             </p>
           </div>
           <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>
@@ -151,7 +147,7 @@ export default function CanneryStatusCharts() {
               <TermTooltip term="공장별 원어 보관량" description="[그래프 설명] 각 가공 공장이 보유한 냉동창고의 최대 보관 능력(CAPA) 대비 현재 냉동 참치(원어)를 얼만큼 재고로 확보하고 있는지 보여줍니다. 보관량이 높다면 당분간 참치를 사지 않을 가능성이 큽니다." />
             </h2>
             <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>
-              태국 거점별 캔 공장 보관창고 CAPACITY 대비 확보 현황 (Metric Tons)
+              태국 방콕 지역 캔 공장 보관창고 CAPACITY 대비 확보 현황 (Metric Tons)
             </p>
           </div>
           <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' }}>

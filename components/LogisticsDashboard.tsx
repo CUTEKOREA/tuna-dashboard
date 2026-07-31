@@ -6,7 +6,7 @@ import {
   TrendingUp, Ship, Navigation
 } from 'lucide-react';
 import CanneryStatusCharts from './CanneryStatusCharts';
-import GensanCanneryStatusCharts from './GensanCanneryStatusCharts';
+import SongkhlaCanneryStatusCharts from './SongkhlaCanneryStatusCharts';
 import ReeferMovement from './ReeferMovement';
 import TraderStatus from './TraderStatus';
 import CarrierUnloadingStatus from './CarrierUnloadingStatus';
@@ -58,7 +58,7 @@ export default function LogisticsDashboard() {
             boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
           }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-secondary)' }} />
-            <span>정적 주간 보고 기반 <span style={{ color: 'var(--text-primary)' }}>최신 2026-06-18 · 위젯별 기준일 표기</span></span>
+            <span>정적 주간 보고 기반 <span style={{ color: 'var(--text-primary)' }}>최신 2026-07-31 · 위젯별 기준일 표기</span></span>
           </div>
         </div>
       </header>
@@ -93,32 +93,32 @@ export default function LogisticsDashboard() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           <WidgetCard
-            title="가공 공장 가동 현황 (방콕·송클라)"
+            title="가공 공장 가동 현황 (방콕)"
             icon={Factory}
             iconColor="var(--color-success)"
             pillar="S2"
-            cardDesc="태국 방콕·송클라 통조림 공장 가동률·재고 — 사내 정적 집계 (2026-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
+            cardDesc="태국 방콕 통조림 공장 가동률·재고 — 사내 정적 집계 (2026-07 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-07' }}
             customBody={<CanneryStatusCharts />}
             takeaway={{
-              situation: '2026-05 보고 기준 방콕 및 송클라 지역의 주요 통조림 공장들은 총 보관 용량 대비 원어 재고가 타이트하게 유지됐으며, 전체 CAPA 대비 가동률은 안정적인 수준이었습니다. 당시 운반선 입항 지연으로 2~3주 내 일시적인 원료 부족 현상이 일부 중소 공장에서 발생할 수 있다고 보고됐습니다.',
-              actionPlan: '현재 원료 수급이 안정적인 대형 공장(Thai Union, Sea Value 등) 중심으로 직거래 물량을 사전 확보하고, 재고가 부족한 공장을 타겟으로 현물 프리미엄 판매 전략을 구사하여 이익을 극대화해야 합니다.',
-              source: '태국 캐너리 인텔리전스',
+              situation: '2026-07 보고 기준 방콕 지역 주요 통조림 공장들은 총 보관 용량 대비 원어 재고가 타이트하게 유지됐으며, 전체 CAPA 대비 가동률은 안정적인 수준입니다.',
+              actionPlan: '현재 원료 수급이 안정적인 대형 공장(Thai Union, Sea Value 등) 중심으로 직거래 물량을 사전 확보하고 이익을 극대화해야 합니다.',
+              source: '태국 방콕 캐너리 인텔리전스',
             }}
           />
 
           <WidgetCard
-            title="가공 공장 가동 현황 (필리핀 젠산)"
+            title="가공 공장 가동 현황 (송클라)"
             icon={Factory}
             iconColor="var(--color-success)"
             pillar="S2"
-            cardDesc="필리핀 제너럴 산토스 통조림 공장 가동률 — 사내 정적 집계 (2026-05 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-05' }}
-            customBody={<GensanCanneryStatusCharts />}
+            cardDesc="태국 송클라 통조림 공장 가동률 — 사내 정적 집계 (2026-07 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-07' }}
+            customBody={<SongkhlaCanneryStatusCharts />}
             takeaway={{
-              situation: '2026-05 보고 기준 제너럴 산토스 지역은 지역 연안 어획량 감소로 수입 원어에 대한 의존도가 심화되고 있었습니다. 창고 보관량은 여유가 있었으나, 실질적인 공장 가동률은 방콕 대비 낮게 형성됐습니다.',
-              actionPlan: '필리핀 지역으로의 운반선 직항 노선을 확보하여, 방콕항 체선 시 대체 양륙항으로 활용하는 전략적 유연성이 요구됩니다. 이를 통해 방콕향 운임 상승 리스크를 헷지할 수 있습니다.',
-              source: '필리핀 젠산 캐너리 인텔리전스',
+              situation: '2026-07 보고 기준 송클라 지역은 방콕 대비 안정적인 가동률을 보이고 있습니다.',
+              actionPlan: '송클라 지역 공장으로의 물량 배정을 늘려 수익성을 제고하고 물류 리스크를 분산합니다.',
+              source: '태국 송클라 캐너리 인텔리전스',
             }}
           />
         </div>
@@ -136,13 +136,13 @@ export default function LogisticsDashboard() {
             icon={Ship}
             iconColor="var(--color-info)"
             pillar="S3"
-            cardDesc="방콕항 운반선 하역·입항 현황 — 주간 보고 (2026-05-25 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-05-25' }}
+            cardDesc="방콕항 운반선 하역·입항 현황 — 주간 보고 (2026-07-31 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-07-31' }}
             customBody={<CarrierUnloadingStatus />}
             takeaway={{
-              situation: '2026-05-25 주간 보고 기준 방콕항에서 운반선 11척(55,384MT)이 양륙 진행 중이었음.',
+              situation: '2026-07-31 주간 보고 기준 방콕항에서 운반선 6척(16,047MT)이 양륙 중/대기 중임.',
               actionPlan: '체선이 심화된 항만에서 다른 항만으로 하역 일정 조정 검토.',
-              source: '방콕항 주간 하역 보고 (2026-05-25)',
+              source: '방콕항 주간 하역 보고 (2026-07-31)',
             }}
           />
 
@@ -151,13 +151,13 @@ export default function LogisticsDashboard() {
             icon={Navigation}
             iconColor="var(--color-info)"
             pillar="S3"
-            cardDesc="방콕항 운반선 이동 스케줄 — WEEK 29 주간 보고 (2026-07-17~07-23 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-07-23' }}
+            cardDesc="방콕항 운반선 이동 스케줄 — WEEK 30 주간 보고 (2026-07-24~07-31 기준)"
+            telemetry={{ status: 'STATIC', syncDate: '2026-07-31' }}
             customBody={<ReeferMovement />}
             takeaway={{
-              situation: 'WEEK 29(2026-07-17~07-23) 주간 보고 기준 방콕항 입항 운반선 현황 및 캔 공장별 배분 물량을 집계. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지(Demurrage, 체선료) 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
-              actionPlan: '체선일이 10일을 초과하는 선박에 대해서는 선하증권(B/L) 분할 양륙 및 인근 송클라 또는 젠산 항구로의 목적지 변경(Diversion)을 적극 검토해야 합니다.',
-              source: '방콕항 운반선 주간 스케줄 WEEK 29 (2026-07-23 기준)',
+              situation: 'WEEK 30(2026-07-24~07-31) 주간 보고 기준 방콕항 입항 운반선 현황 및 캔 공장별 배분 물량을 집계. 체선이 심화될 경우 하역 지연에 따른 운반선 데머리지 패널티 리스크가 급증하며 원물 선도 저하 문제가 발생합니다.',
+              actionPlan: '체선일이 10일을 초과하는 선박에 대해서는 B/L 분할 양륙 및 인근 송클라 등으로의 목적지 변경(Diversion)을 검토해야 합니다.',
+              source: '방콕항 운반선 주간 스케줄 WEEK 30 (2026-07-31 기준)',
             }}
           />
         </div>
