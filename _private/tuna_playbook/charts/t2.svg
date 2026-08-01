@@ -1,0 +1,28 @@
+<svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" role="img"><title>VDS access fees</title>
+<line x1="64" y1="238.0" x2="610" y2="238.0" class="grid"/>
+<text x="55" y="242.0" class="ax ar">$0M</text>
+<line x1="64" y1="185.0" x2="610" y2="185.0" class="grid"/>
+<text x="55" y="189.0" class="ax ar">$130M</text>
+<line x1="64" y1="132.0" x2="610" y2="132.0" class="grid"/>
+<text x="55" y="136.0" class="ax ar">$260M</text>
+<line x1="64" y1="79.0" x2="610" y2="79.0" class="grid"/>
+<text x="55" y="83.0" class="ax ar">$390M</text>
+<line x1="64" y1="26.0" x2="610" y2="26.0" class="grid"/>
+<text x="55" y="30.0" class="ax ar">$520M</text>
+<polyline points="64.0,211.9 268.8,46.4" fill="none" stroke="var(--c1)" stroke-width="2.6"/>
+<circle cx="64.0" cy="211.9" r="4.2" fill="var(--c1)"/>
+<text x="64.0" y="200.9" class="lg" text-anchor="middle" fill="var(--c1)">$64M</text>
+<circle cx="268.8" cy="46.4" r="4.2" fill="var(--c1)"/>
+<text x="268.8" y="35.4" class="lg" text-anchor="middle" fill="var(--c1)">$470M</text>
+<rect x="268.8" y="46.4" width="341.2" height="69.3" fill="var(--c6)" opacity="0.13"/>
+<line x1="268.8" y1="46.4" x2="610.0" y2="46.4" stroke="var(--c6)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="268.8" y1="46.4" x2="610.0" y2="115.7" stroke="var(--c6)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="618.0" y="50.4" class="lgv" fill="var(--c6)">$470M?</text>
+<text x="618.0" y="119.7" class="lgv" fill="var(--c6)">$300M+?</text>
+<text x="439.4" y="81.0" class="lgv" text-anchor="middle" fill="var(--c6)">sources disagree</text>
+<text x="64.0" y="259" class="ax am">2010</text>
+<text x="200.5" y="259" class="ax am">2014</text>
+<text x="337.0" y="259" class="ax am">2018</text>
+<text x="473.5" y="259" class="ax am">2022</text>
+<text x="610.0" y="259" class="ax am">2026</text>
+<line x1="64" y1="238" x2="610" y2="238" class="axis"/></svg>

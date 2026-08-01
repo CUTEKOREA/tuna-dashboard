@@ -1,0 +1,785 @@
+<title>Pacific Value Capture Playbook — Global Tuna 2026</title>
+
+<style>
+  :root {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+
+    --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+    --xs:  0.735rem;
+    --sm:  0.83rem;
+    --base: clamp(0.94rem, 0.90rem + 0.14vw, 1.0rem);
+    --lg:  clamp(1.08rem, 1.02rem + 0.28vw, 1.24rem);
+    --xl:  clamp(1.34rem, 1.18rem + 0.68vw, 1.72rem);
+    --xxl: clamp(1.8rem, 1.42rem + 1.55vw, 2.85rem);
+
+    --measure: 74ch;
+    --gutter: clamp(1.15rem, 4.5vw, 4rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #0F1113;
+      --paper-alt:  #171A1D;
+      --panel:      #14171A;
+      --ink:        #E8E9E6;
+      --ink-mid:    #B2B7BB;
+      --ink-soft:   #838A91;
+      --rule:       #2A2F34;
+      --rule-soft:  #1F2429;
+      --ochre:      #D9A052;
+      --ochre-mid:  #B8853C;
+      --ochre-wash: #241E14;
+      --slate:      #66B3B0;
+      --slate-wash: #14201F;
+      --flag-high:  #5FB983;
+      --flag-mid:   #D9A052;
+      --flag-low:   #DE7F68;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #0F1113;
+    --paper-alt:  #171A1D;
+    --panel:      #14171A;
+    --ink:        #E8E9E6;
+    --ink-mid:    #B2B7BB;
+    --ink-soft:   #838A91;
+    --rule:       #2A2F34;
+    --rule-soft:  #1F2429;
+    --ochre:      #D9A052;
+    --ochre-mid:  #B8853C;
+    --ochre-wash: #241E14;
+    --slate:      #66B3B0;
+    --slate-wash: #14201F;
+    --flag-high:  #5FB983;
+    --flag-mid:   #D9A052;
+    --flag-low:   #DE7F68;
+  }
+  :root[data-theme="light"] {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--base);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: var(--xs);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ── cover ───────────────────────────── */
+  .cover { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem); border-bottom: 2px solid var(--ink); }
+  .cover .kicker { color: var(--ochre); font-weight: 600; margin: 0 0 2.4rem; }
+  .cover h1 {
+    font-size: var(--xxl); line-height: 1.08; letter-spacing: -0.028em;
+    font-weight: 700; margin: 0 0 0.45rem; max-width: 17ch; text-wrap: balance;
+  }
+  .cover .sub {
+    font-size: var(--lg); color: var(--ink-mid); font-weight: 400;
+    margin: 0 0 2.6rem; max-width: 46ch; line-height: 1.45;
+  }
+  .cover-meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.4rem 2rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+  }
+  .cover-meta dt { color: var(--ink-soft); margin-bottom: 0.3rem; }
+  .cover-meta dd { margin: 0; font-size: var(--sm); color: var(--ink); font-weight: 500; line-height: 1.5; }
+
+  /* ── thesis banner ───────────────────── */
+  .thesis {
+    margin-block: clamp(2rem, 5vw, 3.25rem);
+    padding: clamp(1.4rem, 3.5vw, 2.1rem) clamp(1.3rem, 3.5vw, 2.2rem);
+    background: var(--ochre-wash); border-left: 3px solid var(--ochre);
+  }
+  .thesis .mono { color: var(--ochre); margin: 0 0 0.85rem; }
+  .thesis p { margin: 0 0 0.85rem; font-size: var(--lg); line-height: 1.5; max-width: 62ch; }
+  .thesis p:last-child { margin-bottom: 0; }
+  .thesis strong { font-weight: 650; }
+
+  /* ── sections ────────────────────────── */
+  section.chapter { padding-block: clamp(2rem, 4.5vw, 3.25rem); border-bottom: 1px solid var(--rule); }
+  section.chapter:last-of-type { border-bottom: 0; }
+
+  .ch-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+  .ch-num {
+    font-family: var(--mono); font-size: var(--sm); font-weight: 600;
+    color: var(--ochre); flex: none; padding-top: 0.2em; letter-spacing: 0.04em;
+  }
+  .ch-head h2 {
+    font-size: var(--xl); font-weight: 680; letter-spacing: -0.021em;
+    margin: 0; line-height: 1.22; text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--base); font-weight: 680; letter-spacing: -0.008em;
+    margin: 2rem 0 0.7rem; color: var(--ink);
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin: 0 0 1rem; max-width: var(--measure); color: var(--ink-mid); }
+  p strong, li strong { color: var(--ink); font-weight: 650; }
+  p:last-child { margin-bottom: 0; }
+
+  ul.body-list { margin: 0 0 1.1rem; padding-left: 1.15rem; max-width: var(--measure); color: var(--ink-mid); }
+  ul.body-list li { margin-bottom: 0.5rem; }
+  ul.body-list li::marker { color: var(--ochre); }
+
+  /* ── data figures ────────────────────── */
+  .figrow {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft);
+    margin: 1.5rem 0;
+  }
+  .figrow > div { background: var(--panel); padding: 1.05rem 1.15rem; }
+  .figrow .lbl { color: var(--ink-soft); font-family: var(--mono); font-size: var(--xs);
+                 letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .figrow .val { font-size: 1.55rem; font-weight: 700; line-height: 1.05;
+                 letter-spacing: -0.028em; font-variant-numeric: tabular-nums; }
+  .figrow .val .u { font-size: 0.52em; font-weight: 500; color: var(--ink-soft); letter-spacing: 0; }
+  .figrow .cap { font-size: var(--xs); color: var(--ink-soft); margin-top: 0.42rem; line-height: 1.45; }
+
+  /* ── tables ──────────────────────────── */
+  .tw { overflow-x: auto; margin: 1.4rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--sm); min-width: 560px; }
+  caption {
+    text-align: left; font-family: var(--mono); font-size: var(--xs);
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+    padding-bottom: 0.7rem;
+  }
+  th, td { text-align: left; padding: 0.68rem 0.9rem 0.68rem 0; vertical-align: top;
+           border-bottom: 1px solid var(--rule-soft); }
+  thead th {
+    font-family: var(--mono); font-size: var(--xs); font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  tbody th { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  td { color: var(--ink-mid); }
+  td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+
+  /* ── correction / callout blocks ─────── */
+  .correct { border: 1px solid var(--rule); margin: 1.5rem 0; }
+  .correct-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr);
+                 border-bottom: 1px solid var(--rule-soft); }
+  .correct-row:last-child { border-bottom: 0; }
+  .correct-row > div { padding: 0.95rem 1.1rem; }
+  .correct-row .claim { background: var(--paper-alt); border-right: 1px solid var(--rule-soft); }
+  .correct .tag {
+    font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+    text-transform: uppercase; margin-bottom: 0.45rem; display: block;
+  }
+  .correct .claim .tag { color: var(--flag-low); }
+  .correct .fix .tag { color: var(--flag-high); }
+  .correct p { font-size: var(--sm); margin: 0; max-width: none; }
+  @media (max-width: 640px) {
+    .correct-row { grid-template-columns: 1fr; }
+    .correct-row .claim { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  }
+
+  .note {
+    border-left: 3px solid var(--slate); background: var(--slate-wash);
+    padding: 1.05rem 1.2rem; margin: 1.5rem 0;
+  }
+  .note .tag { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 0.5rem; }
+  .note p { font-size: var(--sm); margin: 0 0 0.6rem; max-width: 64ch; }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* ── country cards ───────────────────── */
+  .hubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft); margin: 1.5rem 0; }
+  .hub { background: var(--panel); padding: 1.25rem 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .hub .cty { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.12em;
+              text-transform: uppercase; color: var(--ink-soft); }
+  .hub .role { font-size: var(--lg); font-weight: 680; letter-spacing: -0.015em; line-height: 1.2; color: var(--ochre); }
+  .hub p { font-size: var(--sm); margin: 0; max-width: none; }
+  .hub .kv { margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--rule);
+             font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── phases ──────────────────────────── */
+  .phases { margin: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .phase { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.4rem 1.5rem;
+           padding: 1.1rem 0; border-bottom: 1px solid var(--rule-soft); }
+  @media (max-width: 620px) { .phase { grid-template-columns: 1fr; } }
+  .phase .pid { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+                text-transform: uppercase; color: var(--ochre); font-weight: 600; }
+  .phase .pid span { display: block; color: var(--ink-soft); font-weight: 400; margin-top: 0.2rem; letter-spacing: 0.04em; }
+  .phase .pgoal { font-weight: 650; color: var(--ink); margin-bottom: 0.3rem; }
+  .phase .pdel { font-size: var(--sm); color: var(--ink-mid); }
+
+  /* ── confidence key ──────────────────── */
+  .conf { display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+          letter-spacing: 0.07em; text-transform: uppercase; padding: 0.12em 0.45em;
+          border: 1px solid currentColor; white-space: nowrap; }
+  .c-a { color: var(--flag-high); }
+  .c-b { color: var(--flag-mid); }
+  .c-c { color: var(--flag-low); }
+
+  /* ── footer ──────────────────────────── */
+  .colophon { padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 7vw, 5rem); }
+  .colophon h2 { font-size: var(--lg); font-weight: 680; margin: 0 0 1.1rem; letter-spacing: -0.015em; }
+  .colophon p, .colophon li { font-size: var(--sm); color: var(--ink-soft); }
+  .colophon ul { padding-left: 1.1rem; max-width: var(--measure); }
+  .colophon li { margin-bottom: 0.42rem; }
+  .disclaimer { margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+                font-size: var(--xs); color: var(--ink-soft); max-width: 72ch; line-height: 1.65; }
+
+
+  /* ── charts ──────────────────────────── */
+  :root {
+    --c1: #8A5A11; --c2: #1F4B4E; --c3: #5E6E33; --c4: #7E5F73;
+    --c5: #9FAAA4; --c6: #96331F; --c7: #9AA3A8; --bgdot: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --c1:#DFA052; --c2:#66B3B0; --c3:#A6B96D; --c4:#C79CBC;
+            --c5:#44505B; --c6:#E08A6E; --c7:#6B767E; --bgdot:#14171A; }
+  }
+  :root[data-theme="dark"] { --c1:#DFA052; --c2:#66B3B0; --c3:#A6B96D; --c4:#C79CBC;
+            --c5:#44505B; --c6:#E08A6E; --c7:#6B767E; --bgdot:#14171A; }
+  :root[data-theme="light"] { --c1:#8A5A11; --c2:#1F4B4E; --c3:#5E6E33; --c4:#7E5F73;
+            --c5:#9FAAA4; --c6:#96331F; --c7:#9AA3A8; --bgdot:#FFFFFF; }
+
+  figure.chart { margin: 1.7rem 0; }
+  figure.chart .plot { overflow-x: auto; }
+  figure.chart svg { width: 100%; min-width: 520px; height: auto; display: block; overflow: visible; }
+  figure.chart .ttl {
+    font-size: var(--sm); font-weight: 680; color: var(--ink);
+    margin-bottom: 0.15rem; letter-spacing: -0.005em;
+  }
+  figure.chart .sub { font-size: var(--xs); color: var(--ink-soft); margin-bottom: 0.9rem; }
+  figure.chart figcaption {
+    margin-top: 0.75rem; padding-top: 0.6rem; border-top: 1px solid var(--rule-soft);
+    font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; max-width: 70ch;
+  }
+  svg .grid  { stroke: var(--rule-soft); stroke-width: 1; }
+  svg .axis  { stroke: var(--rule); stroke-width: 1; }
+  svg .ax    { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-soft); }
+  svg .ar    { text-anchor: end; }
+  svg .am    { text-anchor: middle; }
+  svg .cty   { font-family: var(--sans); font-size: 12px; fill: var(--ink); font-weight: 620; }
+  svg .lg    { font-family: var(--sans); font-size: 12px; font-weight: 650; }
+  svg .lgv   { font-family: var(--mono); font-size: 9.5px; fill: var(--ink-soft); }
+
+  @media print {
+    :root { --paper: #fff; --panel: #fff; --ink: #000; --ink-mid: #222; }
+    body { font-size: 10pt; }
+    section.chapter { break-inside: avoid-page; }
+    .thesis, .note, .correct, .hubs, .figrow { break-inside: avoid; }
+    .cover { break-after: page; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="doc">
+
+<header class="cover">
+  <p class="mono kicker">Global Tuna Value Chain · Investment Research</p>
+  <h1>The Pacific Value Capture Playbook</h1>
+  <p class="sub">The world's largest tuna resource is biologically healthy and economically captured elsewhere. What the 2025 tariff realignment changes, and what it does not.</p>
+  <dl class="cover-meta">
+    <div><dt class="mono">Edition</dt><dd>2026 · First edition<br><span style="color:var(--ink-soft)">Data through the 2025 season</span></dd></div>
+    <div><dt class="mono">Coverage</dt><dd>WCPO · PNA states · Thailand · Ecuador · Japan · US and EU markets</dd></div>
+    <div><dt class="mono">Prepared for</dt><dd>Investment committees, sourcing and trading desks, development finance</dd></div>
+    <div><dt class="mono">Evidence base</dt><dd>RFMO, FAO, FFA and peer-reviewed sources. Confidence rating on every material claim.</dd></div>
+  </dl>
+</header>
+
+<div class="thesis">
+  <p class="mono">The thesis in three sentences</p>
+  <p>Most tuna analysis opens with a stock crisis. <strong>There isn't one</strong> — 97% of the global catch now comes from stocks at healthy abundance, and the four Western and Central Pacific target stocks show a zero percent probability of overfishing. The binding constraint in this industry is not biological.</p>
+  <p>It is structural. The Pacific supplies more than half the world's tuna and retains roughly <strong>one sixth of first-sale value and effectively none of what follows</strong>. Six coastal states now depend on that single rent stream for between 28% and 98% of government revenue.</p>
+  <p>The August 2025 US tariff realignment is the first event in two decades capable of moving where processing sits. Whether coastal states capture any of that movement is the investable question.</p>
+</div>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">01</span><h2>Executive summary</h2></div>
+
+  <p><strong>One — the resource is not the problem, and saying otherwise has misdirected a decade of capital.</strong> The 2024 Western and Central Pacific catch of 3,059,005 tonnes was the highest on record. Skipjack set a record and the 2025 assessment places the stock near target. Bigeye catch fell to roughly 119,000 t, among the lowest since the 1990s, with purse-seine bigeye at about 34,000 t — the lowest since 1990, reflecting a shift toward free-school sets. All four WCPO target stocks are assessed healthy.</p>
+
+  <p><strong>Two — the value gap is the problem.</strong> The WCPO purse seine fishery has been valued at roughly US$2.8bn, against PNA access fees in the order of US$450–470m. Coastal states capture something near a sixth of first-sale value and essentially nothing from processing, branding, distribution or retail — which is where the margin lives. The FFA's 2026 trade report states the structure plainly: more than half of global supply originates in the WCPO while processing and distribution sit outside it.</p>
+
+  <p><strong>Three — the tariff realignment is redrawing the processing map.</strong> US reciprocal tariffs applied from August 2025 hit the two dominant canning origins, while Ecuador's lower rate and proximity improved its relative position and American Samoa production remained inside the tariff wall. Bangkok skipjack CFR moved between roughly US$1,580 and US$1,720 per tonne through 2025 on tariff uncertainty rather than on supply.</p>
+
+  <p>The investable implication is narrow. <strong>The opportunity is not to add purse seine capacity</strong> — the resource is fully allocated through an effort-control regime and additional vessel days are a cost, not an asset. The opportunity is in the layer coastal states have never held: <strong>onshore processing with secured raw supply, traceability that survives buyer audit, and market access that does not depend on a single tariff jurisdiction.</strong></p>
+
+  
+<figure class="chart">
+<div class="ttl">Where the value stops</div>
+<div class="sub">WCPO purse seine fishery value vs access fees retained by coastal states · USD millions</div>
+<div class="plot"><svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img"><title>Value capture gap</title>
+<line x1="64" y1="258.0" x2="580" y2="258.0" class="grid"/>
+<text x="55" y="262.0" class="ax ar">$0M</text>
+<line x1="64" y1="200.5" x2="580" y2="200.5" class="grid"/>
+<text x="55" y="204.5" class="ax ar">$750M</text>
+<line x1="64" y1="143.0" x2="580" y2="143.0" class="grid"/>
+<text x="55" y="147.0" class="ax ar">$1,500M</text>
+<line x1="64" y1="85.5" x2="580" y2="85.5" class="grid"/>
+<text x="55" y="89.5" class="ax ar">$2,250M</text>
+<line x1="64" y1="28.0" x2="580" y2="28.0" class="grid"/>
+<text x="55" y="32.0" class="ax ar">$3,000M</text>
+<rect x="120" y="43.3" width="104" height="214.7" fill="var(--c5)" opacity="0.55"/>
+<text x="172.0" y="33.3" class="lg" text-anchor="middle" fill="var(--ink)">$2,800M</text>
+<text x="172.0" y="278" class="ax am">WCPO purse seine</text>
+<text x="172.0" y="291" class="ax am">fishery value</text>
+<rect x="320" y="222.7" width="104" height="35.3" fill="var(--c1)" opacity="1.0"/>
+<text x="372.0" y="212.7" class="lg" text-anchor="middle" fill="var(--ink)">$460M</text>
+<text x="372.0" y="278" class="ax am">PNA access fees</text>
+<text x="372.0" y="291" class="ax am">retained</text>
+<line x1="224" y1="43.3" x2="320" y2="43.3" stroke="var(--c6)" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text x="272.0" y="35.3" class="lgv" text-anchor="middle" fill="var(--c6)">gap</text>
+<text x="596" y="58" class="lg" fill="var(--c1)">≈ 16%</text>
+<text x="596" y="76" class="lgv">captured by coastal</text>
+<text x="596" y="89" class="lgv">states at first sale</text>
+<text x="596" y="120" class="lg" fill="var(--ink)">≈ 0%</text>
+<text x="596" y="138" class="lgv">captured downstream</text>
+<text x="596" y="151" class="lgv">(processing, brand,</text>
+<text x="596" y="164" class="lgv">distribution, retail)</text>
+<line x1="64" y1="258" x2="580" y2="258" class="axis"/></svg></div>
+<figcaption>The Pacific owns the resource and captures roughly a sixth of what it is worth at first sale — and effectively nothing of the processing, branding and retail margin that follows. Purse seine fishery value ≈US$2.8bn, itself about 54% of total WCPO catch value near US$5.3bn; PNA access fees in the order of US$450–470m. Sources: FFA economic indicators; FAO Technical Paper 667 ch.12. <span class="conf c-a">A</span> Figures are 2016-basis, the most recent year with consistent public reporting across both series.</figcaption>
+</figure>
+
+
+  <div class="figrow">
+    <div><div class="lbl">WCPO catch 2024</div><div class="val num">3.06<span class="u"> Mt</span></div><div class="cap">Highest on record</div></div>
+    <div><div class="lbl">Stocks at healthy abundance</div><div class="val num">97<span class="u">%</span></div><div class="cap">Of global tuna catch (ISSF 2026)</div></div>
+    <div><div class="lbl">Coastal value capture</div><div class="val num">≈16<span class="u">%</span></div><div class="cap">Access fees ÷ purse seine value</div></div>
+    <div><div class="lbl">Fiscal dependence</div><div class="val num">28<span class="u">–98%</span></div><div class="cap">Access fees as share of govt revenue, six states</div></div>
+  </div>
+
+  <div class="note">
+    <span class="tag">How to read this document</span>
+    <p>Claims are tagged <span class="conf c-a">A</span> where traceable to an RFMO, FAO, FFA or government source, <span class="conf c-b">B</span> where peer-reviewed or where credible sources differ and a range is shown, and <span class="conf c-c">C</span> where a figure is an industry or commercial-research estimate we could not corroborate. Section 10 lists sources.</p>
+    <p>Several widely circulated tuna market claims did not survive verification and are not used. Where we excluded a figure, we say so rather than quietly dropping it.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">02</span><h2>Reality check: four corrections</h2></div>
+
+  <p>Tuna is unusually badly served by secondary sources. The corrections below are not marginal — each one changes an investment case.</p>
+
+  <div class="correct">
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>Tuna stocks are in crisis and supply is structurally constrained.</p></div>
+      <div class="fix"><span class="tag">Position as at 2026</span><p><strong>97% of the global catch comes from stocks at healthy abundance</strong>, and close to 100% from stocks not experiencing overfishing. All four WCPO target stocks are healthy with a zero percent overfishing probability <span class="conf c-a">A</span>.</p></div>
+    </div>
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>Bigeye pressure from purse seine FAD fishing continues to worsen.</p></div>
+      <div class="fix"><span class="tag">Position as at 2026</span><p>Purse-seine bigeye catch fell to roughly <strong>34,000 t — the lowest since 1990</strong> — as fleets shifted toward free-school sets. Total bigeye is near its lowest level since the 1990s <span class="conf c-a">A</span>.</p></div>
+    </div>
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Widely republished</span><p>Bangkok skipjack spiked to roughly US$1,845/t in August 2025 on the US tariff.</p></div>
+      <div class="fix"><span class="tag">What trade reporting shows</span><p>We could not corroborate that figure. Trade press placed Bangkok CFR at roughly <strong>US$1,600–1,700/t in October 2025</strong>, having fallen below $1,600 in May on tariff uncertainty <span class="conf c-b">B</span>. The spike claim traces to a secondary blog and is not used here.</p></div>
+    </div>
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>Japanese sashimi demand is a stable long-term outlet for longline catch.</p></div>
+      <div class="fix"><span class="tag">Peer-reviewed finding</span><p>Per-capita sashimi tuna consumption peaked around <strong>1,100 g in 2002</strong> and has declined since. Cohort effects and ageing drive a structural fall to roughly <strong>112,000 t total demand by 2050</strong>, with inbound tourism offsetting only part of it <span class="conf c-b">B</span>.</p></div>
+    </div>
+  </div>
+
+  
+<figure class="chart">
+<div class="ttl">The correction that changes the framing</div>
+<div class="sub">Share of global tuna catch by stock status · ISSF 2026-01</div>
+<div class="plot"><svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" role="img"><title>Stock status</title>
+<rect x="72" y="47.0" width="538.0" height="26" fill="var(--rule-soft)"/>
+<rect x="72" y="47.0" width="521.9" height="26" fill="var(--c1)"/>
+<text x="82" y="65.0" class="lg" fill="var(--bgdot)">97%</text>
+<text x="622" y="57.0" class="lgv">Global catch from stocks at</text>
+<text x="622" y="70.0" class="lgv">healthy abundance</text>
+<rect x="72" y="107.0" width="538.0" height="26" fill="var(--rule-soft)"/>
+<rect x="72" y="107.0" width="532.6" height="26" fill="var(--c2)"/>
+<text x="82" y="125.0" class="lg" fill="var(--bgdot)">99%</text>
+<text x="622" y="117.0" class="lgv">Global catch from stocks NOT</text>
+<text x="622" y="130.0" class="lgv">experiencing overfishing</text>
+<text x="64" y="182" class="lgv">ISSF 2026-01 · 23 major commercial stocks</text></svg></div>
+<figcaption>The standard opening premise of tuna investment memos — that stocks are collapsing — is not supported. 97% of the global catch comes from stocks at healthy abundance and close to 100% from stocks not experiencing overfishing, across 23 major commercial stocks. All four WCPO target stocks show a zero percent overfishing probability. <span class="conf c-a">A</span> <strong>If the resource is not scarce, the scarce asset is downstream</strong> — which inverts where capital should go.</figcaption>
+</figure>
+
+
+  <p>The first correction matters most, because it inverts the standard investment framing. <strong>If the resource were the constraint, the scarce asset would be quota and the winning position would be upstream.</strong> It is not. The stocks are healthy, effort is capped by agreement rather than by biology, and the scarce asset is therefore <em>processing capacity with secured supply and clean market access</em> — a downstream position, not an upstream one.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">03</span><h2>The value capture gap</h2></div>
+
+  <p>This is the structural fact the entire investment case rests on, and it is worth stating without decoration.</p>
+
+  <p>The Western and Central Pacific supplies more than half the world's tuna. The purse seine fishery within it has been valued at approximately <strong>US$2.8bn</strong>, itself about 54% of total WCPO catch value near US$5.3bn <span class="conf c-a">A</span>. Against that, PNA access fees have run in the order of <strong>US$450–470m</strong> <span class="conf c-a">A</span>.</p>
+
+  <p>Coastal states therefore retain roughly a sixth of first-sale value, and essentially none of the processing, branding, distribution and retail margin that follows. The FFA's 2026 trade report identifies exactly this: supply originates in the Pacific while processing and distribution sit outside it, limiting coastal-state value capture <span class="conf c-a">A</span>.</p>
+
+  <h3>Why this is a fiscal question, not only a commercial one</h3>
+
+  <p>Access fees are not incremental revenue for these states. They are <strong>28% to 98% of government revenue across six PNA countries</strong> <span class="conf c-b">B</span>. A single commodity rent, negotiated annually, funds the state.</p>
+
+  <p>That dependence cuts two ways for an investor, and both belong in the model. It makes coastal governments <strong>highly motivated</strong> to move up the chain — which is the opening. It also makes them <strong>highly sensitive</strong> to anything that threatens near-term fee revenue, which constrains how fast concessions can be granted to onshore processors. A proposal that reduces vessel-day revenue in year one to build a factory that pays in year five is asking a finance ministry to fund the gap.</p>
+
+  
+<figure class="chart">
+<div class="ttl">A rent stream, and an unresolved trend</div>
+<div class="sub">PNA vessel day scheme access fees · USD millions</div>
+<div class="plot"><svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" role="img"><title>VDS access fees</title>
+<line x1="64" y1="238.0" x2="610" y2="238.0" class="grid"/>
+<text x="55" y="242.0" class="ax ar">$0M</text>
+<line x1="64" y1="185.0" x2="610" y2="185.0" class="grid"/>
+<text x="55" y="189.0" class="ax ar">$130M</text>
+<line x1="64" y1="132.0" x2="610" y2="132.0" class="grid"/>
+<text x="55" y="136.0" class="ax ar">$260M</text>
+<line x1="64" y1="79.0" x2="610" y2="79.0" class="grid"/>
+<text x="55" y="83.0" class="ax ar">$390M</text>
+<line x1="64" y1="26.0" x2="610" y2="26.0" class="grid"/>
+<text x="55" y="30.0" class="ax ar">$520M</text>
+<polyline points="64.0,211.9 268.8,46.4" fill="none" stroke="var(--c1)" stroke-width="2.6"/>
+<circle cx="64.0" cy="211.9" r="4.2" fill="var(--c1)"/>
+<text x="64.0" y="200.9" class="lg" text-anchor="middle" fill="var(--c1)">$64M</text>
+<circle cx="268.8" cy="46.4" r="4.2" fill="var(--c1)"/>
+<text x="268.8" y="35.4" class="lg" text-anchor="middle" fill="var(--c1)">$470M</text>
+<rect x="268.8" y="46.4" width="341.2" height="69.3" fill="var(--c6)" opacity="0.13"/>
+<line x1="268.8" y1="46.4" x2="610.0" y2="46.4" stroke="var(--c6)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line x1="268.8" y1="46.4" x2="610.0" y2="115.7" stroke="var(--c6)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="618.0" y="50.4" class="lgv" fill="var(--c6)">$470M?</text>
+<text x="618.0" y="119.7" class="lgv" fill="var(--c6)">$300M+?</text>
+<text x="439.4" y="81.0" class="lgv" text-anchor="middle" fill="var(--c6)">sources disagree</text>
+<text x="64.0" y="259" class="ax am">2010</text>
+<text x="200.5" y="259" class="ax am">2014</text>
+<text x="337.0" y="259" class="ax am">2018</text>
+<text x="473.5" y="259" class="ax am">2022</text>
+<text x="610.0" y="259" class="ax am">2026</text>
+<line x1="64" y1="238" x2="610" y2="238" class="axis"/></svg></div>
+<figcaption>Documented growth from US$64m (2010) to US$470m (2016) <span class="conf c-a">A</span>. After 2016 the public record diverges: some commentary describes fees at 'over US$300m currently' <span class="conf c-c">C</span>, which would imply decline rather than growth. The difference may be definitional — VDS licence fees versus total access revenue, PNA-only versus all FFA members. <strong>We show the uncertainty band rather than drawing a confident line through it.</strong> Establish the current figure directly with FFA or PNA before relying on either.</figcaption>
+</figure>
+
+
+  <div class="note">
+    <span class="tag">A disclosed inconsistency</span>
+    <p>Sources do not agree on the recent trajectory of access fees. VDS licence revenue is documented rising from US$64m in 2010 to <strong>US$470m by 2016</strong> <span class="conf c-a">A</span>. More recent commentary describes fees at <strong>"over US$300m currently"</strong> <span class="conf c-c">C</span> — which would imply a material decline rather than continued growth.</p>
+    <p>We could not resolve this from public sources. The difference may be definitional (VDS licence fees versus total access revenue versus PNA-only versus all FFA members). <strong>Any model that depends on the fee trend should establish this directly with FFA or PNA rather than rely on either published figure.</strong> We show both and mark the interval as uncertain rather than drawing a confident line through it.</p>
+    <p>One figure that is <em>not</em> the access fee pool and is sometimes confused with it: PNA Office operating revenue, reported at US$7.42m for 2024. That is the secretariat's own budget, not the rent.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">04</span><h2>The tariff realignment</h2></div>
+
+  <p>From August 2025 the United States applied reciprocal tariffs that fell unevenly across the canned tuna supply base. The effect is not a demand shock; it is a <strong>relative cost reordering among processing origins</strong>, and it is the first force in two decades with the power to move where cans are made.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Processing origins under the 2025 tariff structure</caption>
+      <thead><tr><th>Origin</th><th>Position after August 2025</th><th>Consequence</th></tr></thead>
+      <tbody>
+        <tr><th>Thailand</th><td>Dominant canning hub, now tariffed into its largest export market</td><td>Cost disadvantage into the US; redirection pressure toward EU and Middle East <span class="conf c-b">B</span></td></tr>
+        <tr><th>Vietnam</th><td>Tariffed at the 20% reciprocal frame confirmed by USTR in October 2025</td><td>Same redirection pressure; margin absorbed or passed through <span class="conf c-a">A</span></td></tr>
+        <tr><th>Ecuador</th><td>Lower tariff rate plus proximity to the US market and to Eastern Pacific raw supply</td><td><strong>Relative winner.</strong> Manta ex-vessel around US$1,650/t with a persistent US$300–350/t discount to Bangkok <span class="conf c-b">B</span></td></tr>
+        <tr><th>American Samoa</th><td>US territory — production sits inside the tariff wall</td><td>Structural advantage for canners with capacity there <span class="conf c-b">B</span></td></tr>
+        <tr><th>PNG · Solomon Islands</th><td>Coastal-state processing; access depends on EU preference and buyer requirements</td><td>The opening this playbook concerns. Not yet materially scaled</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+<figure class="chart">
+<div class="ttl">Tariff uncertainty, not supply, moved the price</div>
+<div class="sub">Bangkok skipjack CFR with Ecuador differential · USD per tonne</div>
+<div class="plot"><svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img"><title>Bangkok skipjack CFR</title>
+<line x1="64" y1="256.0" x2="628" y2="256.0" class="grid"/>
+<text x="55" y="260.0" class="ax ar">$1,200</text>
+<line x1="64" y1="198.5" x2="628" y2="198.5" class="grid"/>
+<text x="55" y="202.5" class="ax ar">$1,375</text>
+<line x1="64" y1="141.0" x2="628" y2="141.0" class="grid"/>
+<text x="55" y="145.0" class="ax ar">$1,550</text>
+<line x1="64" y1="83.5" x2="628" y2="83.5" class="grid"/>
+<text x="55" y="87.5" class="ax ar">$1,725</text>
+<line x1="64" y1="26.0" x2="628" y2="26.0" class="grid"/>
+<text x="55" y="30.0" class="ax ar">$1,900</text>
+<polygon points="64.0,216.6 205.0,183.7 346.0,229.7 487.0,201.8 628.0,236.3 628.0,252.7 487.0,218.2 346.0,246.1 205.0,200.1 64.0,233.0" fill="var(--c2)" opacity="0.16"/>
+<polyline points="64.0,118.0 205.0,85.1 346.0,131.1 487.0,103.2 628.0,137.7" fill="none" stroke="var(--c1)" stroke-width="2.6" stroke-linejoin="round"/>
+<circle cx="64.0" cy="118.0" r="4" fill="var(--c1)"/>
+<text x="64.0" y="107.0" class="lgv" text-anchor="middle" fill="var(--c1)">$1,620</text>
+<text x="64.0" y="277" class="ax am">Mar 25</text>
+<circle cx="205.0" cy="85.1" r="4" fill="var(--c1)"/>
+<text x="205.0" y="74.1" class="lgv" text-anchor="middle" fill="var(--c1)">$1,720</text>
+<text x="205.0" y="277" class="ax am">Apr 25</text>
+<circle cx="346.0" cy="131.1" r="4" fill="var(--c1)"/>
+<text x="346.0" y="120.1" class="lgv" text-anchor="middle" fill="var(--c1)">$1,580</text>
+<text x="346.0" y="277" class="ax am">May 25</text>
+<circle cx="487.0" cy="103.2" r="4" fill="var(--c1)"/>
+<text x="487.0" y="92.2" class="lgv" text-anchor="middle" fill="var(--c1)">$1,665</text>
+<text x="487.0" y="277" class="ax am">Oct 25</text>
+<circle cx="628.0" cy="137.7" r="4" fill="var(--c1)"/>
+<text x="628.0" y="126.7" class="lgv" text-anchor="middle" fill="var(--c1)">$1,560</text>
+<text x="628.0" y="277" class="ax am">Jun 26</text>
+<line x1="395.4" y1="26" x2="395.4" y2="256" stroke="var(--c6)" stroke-width="1.4" stroke-dasharray="3 3"/>
+<text x="401.4" y="38" class="lgv" fill="var(--c6)">Aug 2025 US tariffs</text>
+<text x="638" y="141.7" class="lg" fill="var(--c1)">Bangkok</text>
+<text x="638" y="248.5" class="lg" fill="var(--c2)">Ecuador</text>
+<text x="638" y="261.5" class="lgv">−$300~350</text>
+<line x1="64" y1="256" x2="628" y2="256" class="axis"/></svg></div>
+<figcaption>Bangkok CFR moved between roughly US$1,580 and US$1,720/t through 2025. The May fall below US$1,600 was attributed by trade reporting to tariff uncertainty rather than to catch. Eastern Pacific fish holds a persistent US$300–350/t discount to Bangkok, with Manta ex-vessel around US$1,650/t in March 2025. <span class="conf c-b">B</span> Points are period readings from trade press, not a continuous series — the line indicates direction, not weekly resolution. A widely republished claim of US$1,845/t in August 2025 could not be corroborated and is excluded.</figcaption>
+</figure>
+
+
+  <p>Two planning conclusions follow. First, <strong>the redirected volume lands somewhere.</strong> Thai and Vietnamese product pushed out of the US must find EU and Middle Eastern buyers, which intensifies price competition in exactly the markets a new coastal-state processor would target. A business case built on EU access should assume a more crowded market than 2024 implied.</p>
+
+  <p>Second, <strong>a tariff-driven advantage is a policy asset, not a structural one.</strong> Ecuador's position and American Samoa's position both rest on a schedule that can change. Underwriting a twenty-year asset on a tariff differential is the same error as underwriting on a 46% figure that was never implemented.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">05</span><h2>Demand: where the catch actually goes</h2></div>
+
+  <p>Tuna demand splits into two businesses that behave nothing alike, and conflating them is the most common analytical error in this sector.</p>
+
+  <h3>Canned: volume, resilient, price-led</h3>
+
+  <p>Global tuna trade volume rose approximately <strong>28% in 2024</strong> while trade value rose only <strong>3.32%</strong> <span class="conf c-a">A</span> — a volume-led year with unit values falling, driven by canned demand. US imports of canned and prepared tuna reached <strong>230,557 tonnes, an all-time high</strong> <span class="conf c-a">A</span>. In the first quarter of 2025 fresh and frozen tuna trade fell 7.65% year on year <span class="conf c-a">A</span>, as higher-value fresh demand softened while canned held.</p>
+
+  <p>The read is that canned tuna behaves as an affordable-protein staple and gains share when consumers trade down. That is a defensive characteristic and it is the segment most exposed to the tariff reordering above.</p>
+
+  <h3>Sashimi: structurally declining, and the decline is demographic</h3>
+
+  
+<figure class="chart">
+<div class="ttl">A demographic ceiling, not a marketing problem</div>
+<div class="sub">Japan per-capita sashimi tuna consumption and 2050 total demand</div>
+<div class="plot"><svg viewBox="0 0 760 270" xmlns="http://www.w3.org/2000/svg" role="img"><title>Japan sashimi tuna demand</title>
+<line x1="64" y1="226.0" x2="620" y2="226.0" class="grid"/>
+<text x="55" y="230.0" class="ax ar">0g</text>
+<line x1="64" y1="176.5" x2="620" y2="176.5" class="grid"/>
+<text x="55" y="180.5" class="ax ar">300g</text>
+<line x1="64" y1="127.0" x2="620" y2="127.0" class="grid"/>
+<text x="55" y="131.0" class="ax ar">600g</text>
+<line x1="64" y1="77.5" x2="620" y2="77.5" class="grid"/>
+<text x="55" y="81.5" class="ax ar">900g</text>
+<line x1="64" y1="28.0" x2="620" y2="28.0" class="grid"/>
+<text x="55" y="32.0" class="ax ar">1200g</text>
+<polyline points="86.2,44.5 197.4,97.3 308.6,140.2" fill="none" stroke="var(--c1)" stroke-width="2.6" stroke-linejoin="round"/>
+<line x1="308.6" y1="140.2" x2="620.0" y2="176.5" stroke="var(--c1)" stroke-width="2.2" stroke-dasharray="5 4" opacity="0.75"/>
+<circle cx="86.2" cy="44.5" r="4.2" fill="var(--c1)"/>
+<circle cx="197.4" cy="97.3" r="4.2" fill="var(--c1)"/>
+<circle cx="308.6" cy="140.2" r="4.2" fill="var(--c1)"/>
+<circle cx="620.0" cy="176.5" r="4.2" fill="var(--bgdot)" stroke="var(--c1)" stroke-width="2"/>
+<text x="86.2" y="33.5" class="lg" text-anchor="middle" fill="var(--c1)">1,100g</text>
+<text x="86.2" y="19.5" class="lgv" text-anchor="middle">peak 2002</text>
+<text x="630" y="180.5" class="lg" fill="var(--c1)">2050</text>
+<text x="630" y="194.5" class="lgv">total demand</text>
+<text x="630" y="207.5" class="lgv">≈112,000 t</text>
+<text x="64.0" y="247" class="ax am">2000</text>
+<text x="175.2" y="247" class="ax am">2010</text>
+<text x="286.4" y="247" class="ax am">2020</text>
+<text x="397.6" y="247" class="ax am">2030</text>
+<text x="508.8" y="247" class="ax am">2040</text>
+<text x="620.0" y="247" class="ax am">2050</text>
+<text x="64" y="264" class="lgv">per-capita sashimi tuna consumption, grams/year</text>
+<line x1="64" y1="226" x2="620" y2="226" class="axis"/></svg></div>
+<figcaption>Per-capita consumption peaked near 1,100 g in 2002 and has declined since. The peer-reviewed projection reconstructs the market from 1993–2022 and models total demand falling to roughly 112,000 t by 2050, driven by cohort effects compounded by ageing; inbound tourism offsets only part of the domestic decline. <span class="conf c-b">B</span> Kawamoto et al., Fisheries Science (2026). Intermediate points are indicative of the documented trajectory rather than published annual values.</figcaption>
+</figure>
+
+
+  <p>Japanese per-capita sashimi tuna consumption peaked near <strong>1,100 g in 2002</strong> and has fallen since. The peer-reviewed projection is a structural decline to roughly <strong>112,000 t of total demand by 2050</strong>, driven by cohort effects — younger generations eat less seafood — compounded by ageing. Inbound tourism offsets part of the domestic fall but cannot close it <span class="conf c-b">B</span>.</p>
+
+  <p><strong>This is a hard finding for longline economics.</strong> A fleet whose value proposition is sashimi-grade fish for Japan is serving a market with a demographic ceiling that no marketing effort reverses. The strategic responses are to develop sashimi-grade demand in the US, EU and emerging Asian markets, or to reposition the fleet. Neither is quick, and both need to start before the decline is visible in a single year's landings.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">06</span><h2>Unit economics: what actually decides returns</h2></div>
+
+  <p>Coastal-state processing fails for predictable reasons, and none of them are the fish.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Operating variables ranked by influence</caption>
+      <thead><tr><th>Variable</th><th>Why it decides the outcome</th></tr></thead>
+      <tbody>
+        <tr><th>Secured raw supply</th><td><strong>The dominant variable.</strong> A cannery without contracted landings competes for fish against Bangkok on the open market and loses. Supply security, not plant efficiency, determines utilisation</td></tr>
+        <tr><th>Plant utilisation</th><td>Canning is a high fixed-cost operation. Below roughly break-even utilisation the plant destroys value regardless of margin per case</td></tr>
+        <tr><th>Vessel day cost</th><td>Under an effort-control regime, days are the licence to operate and their price is negotiated, not competed. Day cost enters the raw material cost directly</td></tr>
+        <tr><th>Cold chain integrity</th><td>Determines the grade the catch can be sold into. A break moves fish from sashimi to cannery grade and destroys the price difference</td></tr>
+        <tr><th>Market access status</th><td>EU preference eligibility, US tariff position and buyer audit standing are worth more per tonne than most operating improvements</td></tr>
+        <tr><th>Labour and compliance standing</th><td>Forced-labour and IUU findings remove market access outright. This is a binary risk, not a graduated one</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Where capital gets destroyed</h3>
+
+  <ul class="body-list">
+    <li><strong>Building the plant before securing the fish.</strong> The recurring failure in coastal-state processing. Raw supply agreements must precede construction, not follow it.</li>
+    <li><strong>Underwriting on a tariff differential.</strong> Tariff schedules change on political timelines, not investment timelines.</li>
+    <li><strong>Treating compliance as a cost line.</strong> Traceability and labour standards are access conditions. Losing them does not reduce margin; it removes the customer.</li>
+    <li><strong>Assuming Japan absorbs sashimi-grade output.</strong> See section 05. That assumption has a demographic expiry date.</li>
+  </ul>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">07</span><h2>Phased entry</h2></div>
+
+  <p>Raw supply security, buyer willingness to pay a coastal-origin premium, and compliance readiness are all systematically overestimated without field evidence. The sequence below places verification before capital.</p>
+
+  <div class="phases">
+    <div class="phase"><div class="pid">Phase 0<span>0–6 months</span></div><div>
+      <div class="pgoal">Test supply and access, not the plant</div>
+      <div class="pdel">Binding term sheets for landed volume · vessel day cost established with the relevant authority · buyer letters of intent naming grade and volume · EU preference and US tariff eligibility confirmed in writing · labour and traceability baseline audit.</div></div></div>
+    <div class="phase"><div class="pid">Phase 1<span>6–24 months</span></div><div>
+      <div class="pgoal">Toll first, own later</div>
+      <div class="pdel">Process through existing capacity under toll agreement · establish grade recovery and yield on real landings · build buyer relationships on delivered product before committing to a plant.</div></div></div>
+    <div class="phase"><div class="pid">Phase 2<span>24–48 months</span></div><div>
+      <div class="pgoal">Owned processing at proven scale</div>
+      <div class="pdel">Plant sized to contracted supply, not to available fish · cold chain and power redundancy in initial scope · certification to buyer requirement.</div></div></div>
+    <div class="phase"><div class="pid">Phase 3<span>48 months +</span></div><div>
+      <div class="pgoal">Move down the chain</div>
+      <div class="pdel">Own-brand or private label · direct market access reducing tariff-jurisdiction dependence · by-product and loin-trade optionality.</div></div></div>
+  </div>
+
+  <p>Operating KPIs from first production: <strong>contracted supply ratio</strong>, <strong>plant utilisation</strong>, <strong>grade recovery</strong>, <strong>cold chain break incidents</strong>, <strong>landed cost per tonne including vessel day</strong>, <strong>certified output ratio</strong>, and <strong>days of finished inventory</strong>.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">08</span><h2>Risk register</h2></div>
+
+  <div class="tw">
+    <table>
+      <caption>Principal risks and mitigation posture</caption>
+      <thead><tr><th>Risk</th><th>Exposure</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><th>Raw supply</th><td>Open-market competition against established buyers with deeper balance sheets</td><td>Contracted landings before construction; equity or offtake alignment with vessel owners</td></tr>
+        <tr><th>Tariff reversal</th><td>Current origin advantages rest on schedules that change politically</td><td>Multi-market access; never a single-jurisdiction business case</td></tr>
+        <tr><th>Fiscal pressure on host state</th><td>Access fees are 28–98% of government revenue; concessions to processors reduce near-term receipts</td><td>Structure so the state's fee revenue is not the funding source for the incentive</td></tr>
+        <tr><th>Compliance access loss</th><td>IUU carding or forced-labour findings remove market access outright</td><td>Treat as binary. Audit-ready traceability from day one, not at scale-up</td></tr>
+        <tr><th>Sashimi demand decline</th><td>Japan's structural fall to ~112 kt by 2050</td><td>Market development outside Japan begun in Phase 1, not deferred</td></tr>
+        <tr><th>Redirected competing volume</th><td>Thai and Vietnamese product displaced from the US crowding EU and Middle East</td><td>Assume tougher pricing in those markets than 2024 baselines suggest</td></tr>
+        <tr><th>Data quality</th><td>Widely republished market figures diverge by more than 2x (see section 09)</td><td>Underwrite on RFMO, FAO and customs data only</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">09</span><h2>Market sizing: read with care</h2></div>
+
+  <p>Published tuna market estimates are unusually inconsistent, and quoting any single one without the range would misrepresent what is actually known.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Published market size estimates, 2026 basis</caption>
+      <thead><tr><th>Scope</th><th>Publisher</th><th>2026 estimate</th><th>Projection</th></tr></thead>
+      <tbody>
+        <tr><th>Tuna fish market</th><td>Research and Markets</td><td class="n">US$37.26bn</td><td class="n">US$43.66bn by 2030 · CAGR 4%</td></tr>
+        <tr><th>Tuna fish market</th><td>Fortune Business Insights</td><td class="n">US$45.44bn</td><td class="n">US$59.64bn by 2034 · CAGR 3.46%</td></tr>
+        <tr><th>Canned tuna</th><td>Fortune Business Insights</td><td class="n">US$30.46bn</td><td class="n">US$39.14bn by 2034 · CAGR 3.19%</td></tr>
+        <tr><th>Canned tuna</th><td>GM Insights</td><td class="n">US$13.0bn</td><td class="n">US$19.4bn by 2035 · CAGR ~4.8%</td></tr>
+        <tr><th>Canned tuna</th><td>Grand View Research</td><td class="n">—</td><td class="n">US$29.90bn by 2033 · CAGR 4.2%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <span class="tag">What this table actually shows</span>
+    <p>Two publishers put the 2026 canned tuna market at <strong>US$30.46bn and US$13.0bn</strong> — a difference of more than 2.3 times for the same segment in the same year. A third projects US$29.90bn for 2033, <em>below</em> the first publisher's 2026 figure.</p>
+    <p>These are not competing forecasts of the same quantity. They are different definitions of what counts as the market, published without reconciling scope. <strong>None of them should be used to size an investment.</strong> Size the opportunity from contracted volume, landed cost and realised price on your own numbers, and treat the tuna fish market figures the same way.</p>
+    <p>We reproduce the range rather than selecting the most attractive value. A report that quotes one of these without the others is not doing diligence on your behalf.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">10</span><h2>Recommendation</h2></div>
+
+  <div class="thesis" style="margin-top:0">
+    <p class="mono">For the investment committee</p>
+    <p>Do not underwrite upstream capacity. The resource is healthy, effort is capped by agreement, and additional vessel days are a cost line. <strong>Underwrite downstream positions with contracted supply</strong> — and only where market access does not rest on a single tariff jurisdiction.</p>
+  </div>
+
+  <p>Conditions we would attach to capital release:</p>
+
+  <ul class="body-list">
+    <li><strong>Binding landed-volume agreements before construction.</strong> Not letters of interest — term sheets with volume, grade and price mechanism.</li>
+    <li><strong>Toll-processing proof in Phase 1.</strong> Establish grade recovery and buyer acceptance on real product before owning a plant.</li>
+    <li><strong>Two market accesses minimum.</strong> A case resting solely on US tariff position or solely on EU preference is a policy bet.</li>
+    <li><strong>Compliance treated as binary.</strong> Traceability and labour standards funded at Phase 0, with third-party audit before first shipment.</li>
+    <li><strong>Sensitivity across vessel day cost, plant utilisation, grade recovery and tariff status.</strong> Point estimates on these should be treated as an incomplete submission.</li>
+  </ul>
+
+  <p>The window is real. The tariff reordering has loosened processing geography for the first time in twenty years, and coastal states have both the resource and the fiscal motivation to move. But the same fiscal dependence that motivates them limits how much they can concede, and the redirected Thai and Vietnamese volume will meet any new entrant in the EU. <strong>This is an opening for operators who can secure fish and pass an audit — not for those competing on cost.</strong></p>
+</section>
+
+<section class="colophon">
+  <h2>Sources and confidence</h2>
+
+  <ul>
+    <li>ISSF — <em>Status of the World Fisheries for Tuna</em>, ISSF 2026-01 (January 2026); <em>The State of Global Tuna Sustainability in 2026</em>; ISSF 2026-03 on non-tuna species impacts</li>
+    <li>WCPFC — CMM 2025-01, 2025-02 and 2025-03 (in force February 2026); Tuna Fishery Yearbook and annual catch estimates; <em>The Western and Central Pacific Tuna Fishery: 2024 Overview and Status of Stocks</em></li>
+    <li>IOTC — IOTC-2026-S30-INF04 on management procedure implementation</li>
+    <li>FFA — <em>Tuna Markets and Trade Dynamics: Western and Central Pacific Ocean</em> (February 2026); <em>Economic and Development Indicators and Statistics</em></li>
+    <li>FAO — GLOBEFISH quarterly tuna analysis; <em>Higher tuna trade in 2024</em>; FAO Fisheries and Aquaculture Technical Paper 667, chapter 12 on the PNA Vessel Day Scheme</li>
+    <li>Kawamoto et al., <em>Long-term reconstruction of Japan's tuna market and sashimi tuna demand projections to 2050</em>, Fisheries Science (2026), DOI 10.1007/s12562-026-01984-9</li>
+    <li><em>Vessel Day Scheme and Tuna Catch in the Pacific Island Region</em>, Asia &amp; the Pacific Policy Studies (2025)</li>
+    <li>NOAA Fisheries — Foreign Fishery Trade Data (FOSS); US Tuna Cannery Receipts</li>
+    <li>EUMOFA — international price series</li>
+    <li>USTR — US–Vietnam trade framework fact sheet (October 2025)</li>
+    <li>Trade press price reporting for Bangkok and Ecuador skipjack, 2025–2026</li>
+  </ul>
+
+  <p style="margin-top:1.4rem"><strong>On what was excluded</strong></p>
+  <p>A secondary account placing Bangkok skipjack at US$1,845/t in August 2025 could not be corroborated against trade reporting and is not used. Published market-size estimates are reproduced in section 09 as a range and are not relied on for any conclusion. Access fee trajectory after 2016 is shown as an uncertainty band because sources conflict; see section 03.</p>
+
+  <p style="margin-top:1.4rem"><strong>Confidence ratings</strong></p>
+  <ul>
+    <li><span class="conf c-a">A</span> &nbsp;Traceable to an RFMO, FAO, FFA or government source and reproducible from it.</li>
+    <li><span class="conf c-b">B</span> &nbsp;Peer-reviewed, or credible sources differ and the range is shown.</li>
+    <li><span class="conf c-c">C</span> &nbsp;Industry or commercial-research estimate not independently corroborated. Directional only.</li>
+  </ul>
+
+  <p class="disclaimer">
+    This document is investment research prepared from publicly available institutional sources. It is not investment advice, nor an offer or solicitation in respect of any security or transaction. It contains no confidential or proprietary information of any operating company.
+    Figures marked <span class="conf c-b">B</span> or <span class="conf c-c">C</span> carry material uncertainty. Fisheries management measures, access arrangements and trade policy in the covered jurisdictions change between and within seasons; positions stated reflect sources available at the edition date and require re-verification before reliance. Any investment decision should be preceded by independent legal, tax and on-site technical due diligence.
+  </p>
+</section>
+
+</div>

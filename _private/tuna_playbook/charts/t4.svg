@@ -1,0 +1,12 @@
+<svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" role="img"><title>Stock status</title>
+<rect x="72" y="47.0" width="538.0" height="26" fill="var(--rule-soft)"/>
+<rect x="72" y="47.0" width="521.9" height="26" fill="var(--c1)"/>
+<text x="82" y="65.0" class="lg" fill="var(--bgdot)">97%</text>
+<text x="622" y="57.0" class="lgv">Global catch from stocks at</text>
+<text x="622" y="70.0" class="lgv">healthy abundance</text>
+<rect x="72" y="107.0" width="538.0" height="26" fill="var(--rule-soft)"/>
+<rect x="72" y="107.0" width="532.6" height="26" fill="var(--c2)"/>
+<text x="82" y="125.0" class="lg" fill="var(--bgdot)">99%</text>
+<text x="622" y="117.0" class="lgv">Global catch from stocks NOT</text>
+<text x="622" y="130.0" class="lgv">experiencing overfishing</text>
+<text x="64" y="182" class="lgv">ISSF 2026-01 · 23 major commercial stocks</text></svg>

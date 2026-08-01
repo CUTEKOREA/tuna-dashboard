@@ -1,0 +1,30 @@
+<svg viewBox="0 0 760 270" xmlns="http://www.w3.org/2000/svg" role="img"><title>Japan sashimi tuna demand</title>
+<line x1="64" y1="226.0" x2="620" y2="226.0" class="grid"/>
+<text x="55" y="230.0" class="ax ar">0g</text>
+<line x1="64" y1="176.5" x2="620" y2="176.5" class="grid"/>
+<text x="55" y="180.5" class="ax ar">300g</text>
+<line x1="64" y1="127.0" x2="620" y2="127.0" class="grid"/>
+<text x="55" y="131.0" class="ax ar">600g</text>
+<line x1="64" y1="77.5" x2="620" y2="77.5" class="grid"/>
+<text x="55" y="81.5" class="ax ar">900g</text>
+<line x1="64" y1="28.0" x2="620" y2="28.0" class="grid"/>
+<text x="55" y="32.0" class="ax ar">1200g</text>
+<polyline points="86.2,44.5 197.4,97.3 308.6,140.2" fill="none" stroke="var(--c1)" stroke-width="2.6" stroke-linejoin="round"/>
+<line x1="308.6" y1="140.2" x2="620.0" y2="176.5" stroke="var(--c1)" stroke-width="2.2" stroke-dasharray="5 4" opacity="0.75"/>
+<circle cx="86.2" cy="44.5" r="4.2" fill="var(--c1)"/>
+<circle cx="197.4" cy="97.3" r="4.2" fill="var(--c1)"/>
+<circle cx="308.6" cy="140.2" r="4.2" fill="var(--c1)"/>
+<circle cx="620.0" cy="176.5" r="4.2" fill="var(--bgdot)" stroke="var(--c1)" stroke-width="2"/>
+<text x="86.2" y="33.5" class="lg" text-anchor="middle" fill="var(--c1)">1,100g</text>
+<text x="86.2" y="19.5" class="lgv" text-anchor="middle">peak 2002</text>
+<text x="630" y="180.5" class="lg" fill="var(--c1)">2050</text>
+<text x="630" y="194.5" class="lgv">total demand</text>
+<text x="630" y="207.5" class="lgv">≈112,000 t</text>
+<text x="64.0" y="247" class="ax am">2000</text>
+<text x="175.2" y="247" class="ax am">2010</text>
+<text x="286.4" y="247" class="ax am">2020</text>
+<text x="397.6" y="247" class="ax am">2030</text>
+<text x="508.8" y="247" class="ax am">2040</text>
+<text x="620.0" y="247" class="ax am">2050</text>
+<text x="64" y="264" class="lgv">per-capita sashimi tuna consumption, grams/year</text>
+<line x1="64" y1="226" x2="620" y2="226" class="axis"/></svg>
