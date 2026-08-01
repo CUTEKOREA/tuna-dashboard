@@ -1,30 +1,31 @@
-<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="베트남 인도 원물 수입 비교">
-<title>베트남·인도 원물 수입량 (2012~2023)</title>
-<line x1="58" y1="258.0" x2="650" y2="258.0" class="grid"/>
-<text x="49" y="262.0" class="ax ar">0천</text>
-<line x1="58" y1="210.8" x2="650" y2="210.8" class="grid"/>
-<text x="49" y="214.8" class="ax ar">500천</text>
-<line x1="58" y1="163.6" x2="650" y2="163.6" class="grid"/>
-<text x="49" y="167.6" class="ax ar">1,000천</text>
-<line x1="58" y1="116.4" x2="650" y2="116.4" class="grid"/>
-<text x="49" y="120.4" class="ax ar">1,500천</text>
-<line x1="58" y1="69.2" x2="650" y2="69.2" class="grid"/>
-<text x="49" y="73.2" class="ax ar">2,000천</text>
-<line x1="58" y1="22.0" x2="650" y2="22.0" class="grid"/>
-<text x="49" y="26.0" class="ax ar">2,500천</text>
-<polygon points="58,258 58.0,227.5 111.8,226.9 165.6,203.8 219.5,175.0 273.3,160.4 327.1,136.2 380.9,168.4 434.7,134.8 488.5,141.5 542.4,18.7 596.2,100.4 650.0,33.9 650,258" fill="var(--c1)" opacity="0.13"/>
-<polyline points="58.0,227.5 111.8,226.9 165.6,203.8 219.5,175.0 273.3,160.4 327.1,136.2 380.9,168.4 434.7,134.8 488.5,141.5 542.4,18.7 596.2,100.4 650.0,33.9" fill="none" stroke="var(--c1)" stroke-width="2.4" stroke-linejoin="round"/>
-<circle cx="650.0" cy="33.9" r="3.4" fill="var(--c1)"/>
-<text x="660" y="37.9" class="lg" fill="var(--c1)">베트남</text>
-<text x="660" y="50.9" class="lgv">2,374,461 t</text>
-<polygon points="58,258 58.0,180.4 111.8,179.7 165.6,172.4 219.5,166.5 273.3,189.4 327.1,191.8 380.9,175.8 434.7,177.7 488.5,175.5 542.4,175.5 596.2,128.2 650.0,146.4 650,258" fill="var(--c2)" opacity="0.13"/>
-<polyline points="58.0,180.4 111.8,179.7 165.6,172.4 219.5,166.5 273.3,189.4 327.1,191.8 380.9,175.8 434.7,177.7 488.5,175.5 542.4,175.5 596.2,128.2 650.0,146.4" fill="none" stroke="var(--c2)" stroke-width="2.4" stroke-linejoin="round"/>
-<circle cx="650.0" cy="146.4" r="3.4" fill="var(--c2)"/>
-<text x="660" y="150.4" class="lg" fill="var(--c2)">인도</text>
-<text x="660" y="163.4" class="lgv">1,181,684 t</text>
-<text x="58.0" y="279" class="ax am">2012</text>
-<text x="219.5" y="279" class="ax am">2015</text>
-<text x="380.9" y="279" class="ax am">2018</text>
-<text x="542.4" y="279" class="ax am">2021</text>
-<text x="650.0" y="279" class="ax am">2023</text>
-<line x1="58" y1="258" x2="650" y2="258" class="axis"/></svg>
+<svg viewBox="0 0 760 310" xmlns="http://www.w3.org/2000/svg" role="img"><title>Vietnam RCN imports</title>
+<line x1="58" y1="266.0" x2="642" y2="266.0" class="grid"/>
+<text x="49" y="270.0" class="ax ar">0천</text>
+<line x1="58" y1="185.3" x2="642" y2="185.3" class="grid"/>
+<text x="49" y="189.3" class="ax ar">1,100천</text>
+<line x1="58" y1="104.7" x2="642" y2="104.7" class="grid"/>
+<text x="49" y="108.7" class="ax ar">2,200천</text>
+<line x1="58" y1="24.0" x2="642" y2="24.0" class="grid"/>
+<text x="49" y="28.0" class="ax ar">3,300천</text>
+<rect x="552.2" y="24" width="89.8" height="242" fill="var(--c1)" opacity="0.045"/>
+<line x1="552.2" y1="24" x2="552.2" y2="266" class="grid" stroke-dasharray="3 3"/>
+<text x="597.1" y="17" class="lgv" text-anchor="middle">업계 보고</text>
+<polygon points="58,266 58.0,242.3 102.9,241.8 147.8,223.9 192.8,201.5 237.7,190.2 282.6,171.4 327.5,196.4 372.5,170.3 417.4,175.5 462.3,80.1 507.2,143.6 552.2,91.9 552.2,266" fill="var(--c1)" opacity="0.12"/>
+<polyline points="58.0,242.3 102.9,241.8 147.8,223.9 192.8,201.5 237.7,190.2 282.6,171.4 327.5,196.4 372.5,170.3 417.4,175.5 462.3,80.1 507.2,143.6 552.2,91.9" fill="none" stroke="var(--c1)" stroke-width="2.4" stroke-linejoin="round"/>
+<line x1="552.2" y1="91.9" x2="597.1" y2="71.7" stroke="var(--c1)" stroke-width="2.2" stroke-dasharray="4 3"/>
+<circle cx="597.1" cy="71.7" r="4" fill="var(--bgdot)" stroke="var(--c1)" stroke-width="2"/>
+<line x1="597.1" y1="71.7" x2="642.0" y2="37.2" stroke="var(--c1)" stroke-width="2.2" stroke-dasharray="4 3"/>
+<circle cx="642.0" cy="37.2" r="4" fill="var(--bgdot)" stroke="var(--c1)" stroke-width="2"/>
+<text x="652" y="41.2" class="lg" fill="var(--c1)">베트남</text>
+<text x="652" y="54.2" class="lgv">3,120,000 t</text>
+<polygon points="58,266 58.0,205.7 102.9,205.1 147.8,199.5 192.8,194.9 237.7,212.7 282.6,214.6 327.5,202.1 372.5,203.7 417.4,201.9 462.3,201.9 507.2,165.2 552.2,179.3 552.2,266" fill="var(--c2)" opacity="0.12"/>
+<polyline points="58.0,205.7 102.9,205.1 147.8,199.5 192.8,194.9 237.7,212.7 282.6,214.6 327.5,202.1 372.5,203.7 417.4,201.9 462.3,201.9 507.2,165.2 552.2,179.3" fill="none" stroke="var(--c2)" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="552.2" cy="179.3" r="3.4" fill="var(--c2)"/>
+<text x="560.2" y="171.3" class="lg" fill="var(--c2)">인도</text>
+<text x="58.0" y="287" class="ax am">2012</text>
+<text x="192.8" y="287" class="ax am">2015</text>
+<text x="327.5" y="287" class="ax am">2018</text>
+<text x="462.3" y="287" class="ax am">2021</text>
+<text x="597.1" y="287" class="ax am">2024</text>
+<text x="642.0" y="287" class="ax am">2025</text>
+<line x1="58" y1="266" x2="642" y2="266" class="axis"/></svg>
