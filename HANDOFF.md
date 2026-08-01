@@ -1,5 +1,14 @@
 # HANDOFF — 현재 작업 상태
 
+> 🧺 **2026-08-01 KST — 유튜브 `세탁왕` 기반 세탁 인텔리전스 대시보드 기획서 작성** [CC]:
+> - 사용자 요청으로 `docs/plans/laundry_king_dashboard.md` 기획서 신설. 코드 변경 없음(기획 단계).
+> - 핵심 결정 3건: (D1) 참치왕국 사이드바 미등록 + 독립 공개 라우트 `/laundry` (`/bni-global` 분리 선례), (D2) 세탁 5-Pillar 아날로그 매핑(원단 → 약제 → 공정 → 트러블 → 비용·보관), (D3) 정적 KB 기반이므로 TelemetryBadge `SYNCED`, `LIVE`는 런타임 YouTube API 호출 라우트 1건에만 (L-09/L-12).
+> - 설계: 자막 인제스트(yt-dlp) → Librarian 배치 구조화 → `data/laundry_king_kb.json` → `lib/data/laundry.ts` 인테이크 → 위젯 15종 + 인터랙티브 도구 2종(ADR 0008 패턴 B, S-Grade 화이트리스트 대상). KB 스키마에 `claimSource: 'channel' | 'standard'`와 `verified` 필드를 둬 채널 발언과 표준 상식의 혼입(환각) 차단.
+> - 룰북 충돌 1건 명시: L-10 하드코딩 fallback 키는 **의도적 미적용** — 신규 YouTube API 키를 커밋하지 않고 캐시 fallback + `isLive: false`로 동일 취지 달성.
+> - 미해결: 채널 실물 미검증(YouTube 403으로 영상 목록 실측 불가, 동명 유사 채널 4개 존재). 확정 필요 결정 4건(채널 URL·주 사용자·배치 위치·인제스트 자동화 여부)을 기획서 §12에 정리.
+> - 검증: 문서만 추가라 빌드 영향 없음. 구현 착수 시 Phase별 `npm run typecheck`/`npm run build` 게이트 적용 예정.
+> - 미배포(로컬 커밋만). 기존/무관 dirty 파일 보존.
+
 > **2026-07-31 KST — 태국 송클라(Songkhla) 공장 데이터 및 운반선 하역 현황 갱신** [AG]:
 > - 사용자 요청에 따라 필리핀 Gensan 지역 데이터를 제거하고, 태국 송클라(Songkhla) 지역 통조림 공장 데이터(7/30 기준)를 신규 반영했습니다.
 > - `components/LogisticsDashboard.tsx`에서 Gensan 차트를 `SongkhlaCanneryStatusCharts.tsx`로 교체하고 관련 날짜(2026-07-31) 및 통계 수치를 갱신했습니다.
