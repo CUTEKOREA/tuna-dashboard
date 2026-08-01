@@ -1,0 +1,51 @@
+<svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="글로벌 RCN 수출 물량과 단가">
+<title>글로벌 원물 수출 물량 및 단가 (2010~2023)</title>
+<line x1="58" y1="278.0" x2="700" y2="278.0" class="grid"/>
+<text x="49" y="282.0" class="ax ar">0천</text>
+<line x1="58" y1="214.0" x2="700" y2="214.0" class="grid"/>
+<text x="49" y="218.0" class="ax ar">700천</text>
+<line x1="58" y1="150.0" x2="700" y2="150.0" class="grid"/>
+<text x="49" y="154.0" class="ax ar">1,400천</text>
+<line x1="58" y1="86.0" x2="700" y2="86.0" class="grid"/>
+<text x="49" y="90.0" class="ax ar">2,100천</text>
+<line x1="58" y1="22.0" x2="700" y2="22.0" class="grid"/>
+<text x="49" y="26.0" class="ax ar">2,800천</text>
+<rect x="45.2" y="215.7" width="25.7" height="62.3" fill="var(--c5)" opacity="0.5"/>
+<text x="58.0" y="299" class="ax am">2010</text>
+<rect x="94.5" y="186.7" width="25.7" height="91.3" fill="var(--c5)" opacity="0.5"/>
+<rect x="143.9" y="177.0" width="25.7" height="101.0" fill="var(--c5)" opacity="0.5"/>
+<rect x="193.3" y="155.9" width="25.7" height="122.1" fill="var(--c5)" opacity="0.5"/>
+<text x="206.2" y="299" class="ax am">2013</text>
+<rect x="242.7" y="151.6" width="25.7" height="126.4" fill="var(--c5)" opacity="0.5"/>
+<rect x="292.1" y="127.8" width="25.7" height="150.2" fill="var(--c5)" opacity="0.5"/>
+<rect x="341.5" y="133.6" width="25.7" height="144.4" fill="var(--c5)" opacity="0.5"/>
+<text x="354.3" y="299" class="ax am">2016</text>
+<rect x="390.9" y="108.5" width="25.7" height="169.5" fill="var(--c5)" opacity="0.5"/>
+<rect x="440.2" y="120.2" width="25.7" height="157.8" fill="var(--c5)" opacity="0.5"/>
+<rect x="489.6" y="111.1" width="25.7" height="166.9" fill="var(--c5)" opacity="0.5"/>
+<text x="502.5" y="299" class="ax am">2019</text>
+<rect x="539.0" y="105.1" width="25.7" height="172.9" fill="var(--c5)" opacity="0.5"/>
+<rect x="588.4" y="97.3" width="25.7" height="180.7" fill="var(--c5)" opacity="0.5"/>
+<rect x="637.8" y="87.9" width="25.7" height="190.1" fill="var(--c5)" opacity="0.5"/>
+<text x="650.6" y="299" class="ax am">2022</text>
+<rect x="687.2" y="35.1" width="25.7" height="242.9" fill="var(--c5)" opacity="0.5"/>
+<text x="700.0" y="299" class="ax am">2023</text>
+<polyline points="58.0,169.2 107.4,98.5 156.8,67.0 206.2,136.7 255.5,67.8 304.9,101.4 354.3,-3.6 403.7,16.4 453.1,25.0 502.5,105.0 551.8,97.2 601.2,110.0 650.6,112.7 700.0,130.0" fill="none" stroke="var(--c6)" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="58.0" cy="169.2" r="2.6" fill="var(--c6)"/>
+<circle cx="107.4" cy="98.5" r="2.6" fill="var(--c6)"/>
+<circle cx="156.8" cy="67.0" r="2.6" fill="var(--c6)"/>
+<circle cx="206.2" cy="136.7" r="2.6" fill="var(--c6)"/>
+<circle cx="255.5" cy="67.8" r="2.6" fill="var(--c6)"/>
+<circle cx="304.9" cy="101.4" r="2.6" fill="var(--c6)"/>
+<circle cx="354.3" cy="-3.6" r="2.6" fill="var(--c6)"/>
+<circle cx="403.7" cy="16.4" r="2.6" fill="var(--c6)"/>
+<circle cx="453.1" cy="25.0" r="2.6" fill="var(--c6)"/>
+<circle cx="502.5" cy="105.0" r="2.6" fill="var(--c6)"/>
+<circle cx="551.8" cy="97.2" r="2.6" fill="var(--c6)"/>
+<circle cx="601.2" cy="110.0" r="2.6" fill="var(--c6)"/>
+<circle cx="650.6" cy="112.7" r="2.6" fill="var(--c6)"/>
+<circle cx="700.0" cy="130.0" r="2.6" fill="var(--c6)"/>
+<text x="709" y="282.0" class="ax">$0</text>
+<text x="709" y="154.0" class="ax">$800</text>
+<text x="709" y="26.0" class="ax">$1600</text>
+<line x1="58" y1="278" x2="700" y2="278" class="axis"/></svg>
