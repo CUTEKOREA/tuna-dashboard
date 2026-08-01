@@ -1,0 +1,830 @@
+<title>이동건 — 무역 인텔리전스 대시보드 구축</title>
+
+<style>
+  :root {
+    --ground:      #EEF1F4;
+    --surface:     #F8FAFB;
+    --surface-alt: #E4E9ED;
+    --ink:         #16202B;
+    --ink-mid:     #3E4F5F;
+    --ink-soft:    #6B7C8B;
+    --rule:        #C6D0D8;
+    --rule-soft:   #DAE1E7;
+    --accent:      #97570F;
+    --accent-mid:  #B8762A;
+    --accent-wash: #F0E4D2;
+    --teal:        #1B5A5E;
+
+    --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+            'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+    --step--1: clamp(0.76rem, 0.74rem + 0.10vw, 0.82rem);
+    --step-0:  clamp(0.94rem, 0.90rem + 0.16vw, 1.02rem);
+    --step-1:  clamp(1.12rem, 1.04rem + 0.34vw, 1.32rem);
+    --step-2:  clamp(1.40rem, 1.24rem + 0.72vw, 1.86rem);
+    --step-3:  clamp(1.86rem, 1.52rem + 1.50vw, 2.90rem);
+
+    --measure: 66ch;
+    --pad: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:      #0B1117;
+      --surface:     #121B23;
+      --surface-alt: #18242E;
+      --ink:         #E3EAF0;
+      --ink-mid:     #A9B8C5;
+      --ink-soft:    #7A8B99;
+      --rule:        #24323E;
+      --rule-soft:   #1B2731;
+      --accent:      #DFA55A;
+      --accent-mid:  #C08B42;
+      --accent-wash: #23303A;
+      --teal:        #55AFAB;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #0B1117;
+    --surface:     #121B23;
+    --surface-alt: #18242E;
+    --ink:         #E3EAF0;
+    --ink-mid:     #A9B8C5;
+    --ink-soft:    #7A8B99;
+    --rule:        #24323E;
+    --rule-soft:   #1B2731;
+    --accent:      #DFA55A;
+    --accent-mid:  #C08B42;
+    --accent-wash: #23303A;
+    --teal:        #55AFAB;
+  }
+
+  :root[data-theme="light"] {
+    --ground:      #EEF1F4;
+    --surface:     #F8FAFB;
+    --surface-alt: #E4E9ED;
+    --ink:         #16202B;
+    --ink-mid:     #3E4F5F;
+    --ink-soft:    #6B7C8B;
+    --rule:        #C6D0D8;
+    --rule-soft:   #DAE1E7;
+    --accent:      #97570F;
+    --accent-mid:  #B8762A;
+    --accent-wash: #F0E4D2;
+    --teal:        #1B5A5E;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  /* ---------- shared type utilities ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3.25rem);
+  }
+
+  .masthead .rule-top {
+    height: 3px;
+    background: var(--accent);
+    width: 68px;
+    margin-bottom: 1.75rem;
+  }
+
+  .masthead h1 {
+    font-size: var(--step-3);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0 0 1.1rem;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+
+  .masthead .lede {
+    font-size: var(--step-1);
+    color: var(--ink-mid);
+    max-width: var(--measure);
+    margin: 0 0 2.25rem;
+    line-height: 1.6;
+  }
+
+  .identity {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.25rem;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+  .identity strong {
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- figures strip ---------- */
+  .figures {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .fig {
+    padding: clamp(1.5rem, 3.5vw, 2.25rem) 1.5rem clamp(1.5rem, 3.5vw, 2.25rem) 0;
+    border-right: 1px solid var(--rule-soft);
+  }
+  .fig:last-child { border-right: 0; }
+
+  .fig dt {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.55rem;
+  }
+
+  .fig dd {
+    margin: 0;
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .fig dd .unit {
+    font-size: 0.5em;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-left: 0.25em;
+    letter-spacing: 0;
+  }
+
+  /* ---------- generic section ---------- */
+  .band { border-bottom: 1px solid var(--rule); }
+
+  .band-inner {
+    padding-block: clamp(2.75rem, 6vw, 4.5rem);
+    display: grid;
+    grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  @media (max-width: 720px) {
+    .band-inner { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+
+  .band-head { position: sticky; top: 1.5rem; align-self: start; }
+  @media (max-width: 720px) { .band-head { position: static; } }
+
+  .band-head h2 {
+    font-size: var(--step-1);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    margin: 0.5rem 0 0;
+    line-height: 1.35;
+  }
+
+  .band-body > p {
+    max-width: var(--measure);
+    color: var(--ink-mid);
+    margin: 0 0 1.35rem;
+  }
+  .band-body > p:last-child { margin-bottom: 0; }
+
+  .band-body strong { color: var(--ink); font-weight: 650; }
+
+  /* ---------- pillar list ---------- */
+  .pillars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+  }
+
+  .pillars li {
+    background: var(--surface);
+    padding: 1.05rem 1.25rem;
+    display: grid;
+    grid-template-columns: 2.6rem minmax(0, 1fr);
+    gap: 0.5rem 0.9rem;
+    align-items: baseline;
+  }
+
+  .pillars .idx {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .pillars .lbl { font-weight: 650; }
+  .pillars .dsc {
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    line-height: 1.55;
+  }
+
+  /* ---------- coverage ---------- */
+  .cov-group { margin-bottom: 1.9rem; }
+  .cov-group:last-child { margin-bottom: 0; }
+
+  .cov-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.85rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cov-head h3 {
+    margin: 0;
+    font-size: var(--step-0);
+    font-weight: 650;
+    letter-spacing: -0.005em;
+  }
+  .cov-head .count {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .chip {
+    font-size: var(--step--1);
+    padding: 0.34rem 0.7rem;
+    border: 1px solid var(--rule);
+    color: var(--ink-mid);
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .chip[data-ready="yes"] {
+    border-color: var(--accent-mid);
+    color: var(--accent);
+    background: var(--accent-wash);
+    font-weight: 600;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 1.35rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--rule);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .legend i {
+    width: 0.72rem; height: 0.72rem;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    flex: none;
+  }
+  .legend i.on { border-color: var(--accent-mid); background: var(--accent-wash); }
+
+  /* ---------- source table ---------- */
+  .tbl-scroll { overflow-x: auto; }
+
+  table.src {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+    min-width: 480px;
+  }
+  table.src th,
+  table.src td {
+    text-align: left;
+    padding: 0.72rem 1rem 0.72rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+  table.src th {
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom-color: var(--rule);
+    white-space: nowrap;
+  }
+  table.src td:first-child {
+    font-weight: 650;
+    color: var(--ink);
+    white-space: nowrap;
+    width: 8.5rem;
+  }
+  table.src td:last-child { color: var(--ink-mid); }
+  table.src tr:last-child td { border-bottom: 0; }
+
+  /* ---------- widget anatomy ---------- */
+  .anatomy {
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .anatomy-row {
+    padding: 0.95rem 1.2rem;
+    border-bottom: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+    gap: 0.35rem 1.1rem;
+  }
+  @media (max-width: 560px) {
+    .anatomy-row { grid-template-columns: 1fr; }
+  }
+  .anatomy-row:last-child { border-bottom: 0; }
+  .anatomy-row .k {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .anatomy-row .v { color: var(--ink-mid); font-size: var(--step--1); line-height: 1.6; }
+  .anatomy-row .v b { color: var(--ink); font-weight: 650; }
+
+  /* ---------- stack ---------- */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+  }
+  .stack-cell { background: var(--surface); padding: 1.05rem 1.2rem; }
+  .stack-cell h4 {
+    margin: 0 0 0.5rem;
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .stack-cell p { margin: 0; font-size: var(--step--1); color: var(--ink-mid); line-height: 1.6; }
+  .stack-cell p b { color: var(--ink); font-weight: 650; }
+
+  /* ---------- engagement ---------- */
+  .eng {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+  }
+  .eng-cell {
+    background: var(--surface);
+    padding: 1.3rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .eng-cell .name { font-weight: 650; font-size: var(--step-0); }
+  .eng-cell .price {
+    font-family: var(--mono);
+    font-size: var(--step-1);
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  .eng-cell .note { font-size: var(--step--1); color: var(--ink-soft); line-height: 1.55; margin-top: auto; }
+
+  /* ---------- closing ---------- */
+  .closing { padding-block: clamp(2.75rem, 6vw, 4.5rem) clamp(3.5rem, 8vw, 6rem); }
+  .closing h2 {
+    font-size: var(--step-2);
+    letter-spacing: -0.018em;
+    margin: 0 0 1rem;
+    max-width: 22ch;
+    text-wrap: balance;
+    font-weight: 700;
+  }
+  .closing p { max-width: var(--measure); color: var(--ink-mid); margin: 0 0 2rem; }
+
+  .contact {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    border: 1px solid var(--accent-mid);
+    background: var(--accent-wash);
+    padding: 0.85rem 1.4rem;
+    text-decoration: none;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 140ms ease, transform 140ms ease;
+  }
+  .contact:hover { background: var(--surface-alt); transform: translateY(-1px); }
+  .contact:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .contact .arw { color: var(--ink-soft); }
+
+  .footnote {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--rule-soft);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    max-width: var(--measure);
+    line-height: 1.65;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="rule-top"></div>
+    <p class="eyebrow">Commodity Trade Intelligence · Dashboard Engineering</p>
+    <h1>수입 원가가 흔들리는 지점을 화면 하나로 보이게 만듭니다.</h1>
+    <p class="lede">
+      관세청·UN Comtrade·FAOSTAT·KAMIS 등 공공 무역 데이터를 실시간으로 연동해,
+      농·축·수산 품목의 통관 단가·경쟁국 물량·관세 변동·착륙원가를
+      경영진이 바로 판단할 수 있는 형태로 정리합니다.
+    </p>
+    <div class="identity">
+      <span><strong>이동건</strong></span>
+      <span>무역 인텔리전스 대시보드 구축</span>
+      <span>cutekorea@gmail.com</span>
+    </div>
+  </div>
+</header>
+
+<section class="wrap" aria-label="주요 실적 지표">
+  <dl class="figures">
+    <div class="fig">
+      <dt>구축 대시보드</dt>
+      <dd class="num">35<span class="unit">종</span></dd>
+    </div>
+    <div class="fig">
+      <dt>공공 API 연동</dt>
+      <dd class="num">75<span class="unit">엔드포인트</span></dd>
+    </div>
+    <div class="fig">
+      <dt>화면 컴포넌트</dt>
+      <dd class="num">433<span class="unit">개</span></dd>
+    </div>
+    <div class="fig">
+      <dt>누적 코드</dt>
+      <dd class="num">148<span class="unit">천 줄</span></dd>
+    </div>
+  </dl>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">01 — 문제</p>
+      <h2>엑셀은 과거를 기록하고,<br>대시보드는 다음 수를 보여줍니다</h2>
+    </div>
+    <div class="band-body">
+      <p>
+        수입 단가는 관세청에, 경쟁국 물량은 UN Comtrade에, 산지 시세는 KAMIS에,
+        생산량은 FAOSTAT에 흩어져 있습니다. 담당자가 매달 이걸 손으로 모아
+        엑셀에 붙이는 동안 <strong>데이터는 이미 과거가 됩니다.</strong>
+      </p>
+      <p>
+        저는 이 소스들을 <strong>HSK 10자리 기준으로 직접 연동</strong>해,
+        단가·물량·관세·환율·운임이 한 화면에서 자동으로 갱신되는 구조를 만듭니다.
+        담당자가 데이터를 모으는 대신 <strong>판단에 시간을 쓰게 하는 것</strong>이 목표입니다.
+      </p>
+      <p>
+        모든 차트에는 산출 방법론과 출처를 한 줄로 명기하고,
+        데이터 신선도(실시간·동기화·정적)를 화면에 표시합니다.
+        <strong>출처를 못 대는 숫자는 넣지 않습니다.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">02 — 구조</p>
+      <h2>공급망 5단 프레임워크</h2>
+    </div>
+    <div class="band-body">
+      <p>
+        품목이 무엇이든 원료에서 소비자까지의 경로는 같은 다섯 구간을 지납니다.
+        모든 대시보드를 이 구조로 배치해, 담당자가 다른 품목으로 옮겨가도
+        <strong>화면을 새로 배울 필요가 없게</strong> 만듭니다.
+      </p>
+      <ol class="pillars">
+        <li>
+          <span class="idx">Ⅰ</span><span class="lbl">원료 수급</span>
+          <span class="dsc">생산량·어획량, 기후 리스크, 산지 단가 추이</span>
+        </li>
+        <li>
+          <span class="idx">Ⅱ</span><span class="lbl">가공·생산</span>
+          <span class="dsc">가동률, 수율, 인건비 및 원가 구조</span>
+        </li>
+        <li>
+          <span class="idx">Ⅲ</span><span class="lbl">물류·통관</span>
+          <span class="dsc">해상·항공 운임, 콜드체인, 검역·SPS 장벽</span>
+        </li>
+        <li>
+          <span class="idx">Ⅳ</span><span class="lbl">판매·수요</span>
+          <span class="dsc">점유율, 소매가 전가, 대체재 교차 탄력성</span>
+        </li>
+        <li>
+          <span class="idx">Ⅴ</span><span class="lbl">지속가능성</span>
+          <span class="dsc">탄소 발자국, 인증(MSC 등), 규제 대응</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">03 — 커버리지</p>
+      <h2>구축 완료 품목</h2>
+    </div>
+    <div class="band-body">
+      <p>
+        아래 품목은 <strong>이미 구축이 끝나 동작하는 대시보드</strong>입니다.
+        신규 의뢰 시 처음부터 만들지 않고, 해당 품목 구조를 기반으로
+        <strong>귀사 데이터에 맞춰 조정하는 방식</strong>이라 기간과 비용이 크게 줄어듭니다.
+      </p>
+
+      <div class="cov-group">
+        <div class="cov-head">
+          <h3>수산물</h3><span class="count num">12종</span>
+        </div>
+        <div class="chips">
+          <span class="chip" data-ready="yes">고등어</span>
+          <span class="chip" data-ready="yes">명태</span>
+          <span class="chip" data-ready="yes">연어</span>
+          <span class="chip" data-ready="yes">골뱅이</span>
+          <span class="chip" data-ready="yes">김</span>
+          <span class="chip" data-ready="yes">주꾸미</span>
+          <span class="chip" data-ready="yes">가자미</span>
+          <span class="chip">참치</span>
+          <span class="chip">오징어</span>
+          <span class="chip">갈치</span>
+          <span class="chip">낙지</span>
+          <span class="chip">새우</span>
+        </div>
+      </div>
+
+      <div class="cov-group">
+        <div class="cov-head">
+          <h3>농산물</h3><span class="count num">6종</span>
+        </div>
+        <div class="chips">
+          <span class="chip" data-ready="yes">코코아</span>
+          <span class="chip" data-ready="yes">마늘</span>
+          <span class="chip" data-ready="yes">당근</span>
+          <span class="chip" data-ready="yes">카사바</span>
+          <span class="chip" data-ready="yes">망고스틴</span>
+          <span class="chip">캐슈넛</span>
+        </div>
+      </div>
+
+      <div class="cov-group">
+        <div class="cov-head">
+          <h3>축산물</h3><span class="count num">3종</span>
+        </div>
+        <div class="chips">
+          <span class="chip" data-ready="yes">닭</span>
+          <span class="chip" data-ready="yes">소고기</span>
+          <span class="chip">돼지고기</span>
+        </div>
+      </div>
+
+      <div class="cov-group">
+        <div class="cov-head">
+          <h3>운영·전략 분석</h3><span class="count num">14종</span>
+        </div>
+        <div class="chips">
+          <span class="chip">글로벌 시황</span>
+          <span class="chip">물류·가공</span>
+          <span class="chip">냉동창고</span>
+          <span class="chip">국내 위판장</span>
+          <span class="chip">해외 OEM 소싱</span>
+          <span class="chip">지속가능성 인증</span>
+          <span class="chip">통합 인텔리전스</span>
+          <span class="chip">외 7종</span>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span><i class="on"></i> 즉시 데모 가능</span>
+        <span><i></i> 기업 맞춤 구성 — 별도 협의</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">04 — 데이터</p>
+      <h2>연동 중인 공공 데이터</h2>
+    </div>
+    <div class="band-body">
+      <p>
+        전량 <strong>공공·국제기구 공식 API</strong>를 직접 연동합니다.
+        스크래핑이나 추정치가 아니라 <strong>출처가 확인되는 원천 데이터</strong>입니다.
+      </p>
+      <div class="tbl-scroll">
+        <table class="src">
+          <thead>
+            <tr><th scope="col">구분</th><th scope="col">연동 소스</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>무역·통관</td>
+              <td>관세청(KCS, HSK 10자리) · UN Comtrade · OEC · US Census · Eurostat · WITS · WTO</td>
+            </tr>
+            <tr>
+              <td>농축수산</td>
+              <td>KAMIS 농산물유통정보 · KOSIS 국가통계 · USDA · FAOSTAT · 해양수산부</td>
+            </tr>
+            <tr>
+              <td>규제·인증</td>
+              <td>OFAC 제재 목록 · Open Supply Hub · EU Sanctions Map · 관세율·SPS 장벽</td>
+            </tr>
+            <tr>
+              <td>거시·물류</td>
+              <td>환율 · 선박유(MGO) 가격 · 해상 운임 지수 · 기상·해황 (NOAA)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">05 — 화면 단위</p>
+      <h2>모든 차트가 갖추는 것</h2>
+    </div>
+    <div class="band-body">
+      <p>
+        보기 좋은 차트가 아니라 <strong>결정을 내릴 수 있는 차트</strong>를 만듭니다.
+        모든 화면 단위는 예외 없이 아래 다섯 가지를 포함합니다.
+      </p>
+      <div class="anatomy">
+        <div class="anatomy-row">
+          <div class="k">산출 근거</div>
+          <div class="v">차트 바로 아래 <b>계산 방법과 출처를 한 줄로</b> 명기. 숫자의 출처를 되묻지 않아도 됩니다.</div>
+        </div>
+        <div class="anatomy-row">
+          <div class="k">신선도 표시</div>
+          <div class="v">데이터가 <b>실시간 연동인지, 정기 동기화인지, 고정값인지</b>를 갱신 일자와 함께 화면에 노출. 오래된 숫자로 판단하는 사고를 막습니다.</div>
+        </div>
+        <div class="anatomy-row">
+          <div class="k">현황 진단</div>
+          <div class="v">차트가 지금 <b>무엇을 말하고 있는지</b>를 수치를 포함해 2~3문장으로 서술.</div>
+        </div>
+        <div class="anatomy-row">
+          <div class="k">실행 제안</div>
+          <div class="v">그래서 <b>무엇을 해야 하는지</b>를 마진·리스크 관점의 실행 지침으로 1~2문장. 관찰이 아니라 행동으로 끝냅니다.</div>
+        </div>
+        <div class="anatomy-row">
+          <div class="k">단위·용어</div>
+          <div class="v">모든 수치에 단위를 괄호로 표기(<b>원/kg, $/MT, 톤</b>). 축·범례·툴팁은 전부 한글. 업계 약어는 마우스를 올리면 풀어서 설명합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">06 — 기술</p>
+      <h2>구축 환경</h2>
+    </div>
+    <div class="band-body">
+      <div class="stack-grid">
+        <div class="stack-cell">
+          <h4>Frontend</h4>
+          <p><b>Next.js 16</b> · React 19 · TypeScript</p>
+        </div>
+        <div class="stack-cell">
+          <h4>시각화</h4>
+          <p><b>Recharts</b> · ECharts · Leaflet 지도 · Three.js</p>
+        </div>
+        <div class="stack-cell">
+          <h4>데이터</h4>
+          <p><b>Supabase</b> · 공공 API 직접 연동 · 웹훅 자동 수집</p>
+        </div>
+        <div class="stack-cell">
+          <h4>운영</h4>
+          <p><b>Vercel</b> 서울 리전 · 자동 배포 · 회귀 테스트</p>
+        </div>
+        <div class="stack-cell">
+          <h4>품질</h4>
+          <p>타입 검증 · <b>E2E 테스트</b> · 빌드 게이트 · 모바일 대응</p>
+        </div>
+        <div class="stack-cell">
+          <h4>자동화</h4>
+          <p><b>Python</b> 데이터 파이프라인 · 엑셀·PDF 자동 수집</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap band-inner">
+    <div class="band-head">
+      <p class="eyebrow">07 — 진행 방식</p>
+      <h2>의뢰 유형</h2>
+    </div>
+    <div class="band-body">
+      <div class="eng">
+        <div class="eng-cell">
+          <span class="name">품목 대시보드 구축</span>
+          <span class="price num">300만 원~</span>
+          <span class="note">귀사 취급 품목 1종. 기획·데이터 연동·화면 구축 포함. 통상 3주.</span>
+        </div>
+        <div class="eng-cell">
+          <span class="name">기존 화면 고도화</span>
+          <span class="price num">100만 원~</span>
+          <span class="note">운영 중인 시스템에 분석 모듈 추가. 통상 1주.</span>
+        </div>
+        <div class="eng-cell">
+          <span class="name">운영·유지보수</span>
+          <span class="price num">월 100만 원~</span>
+          <span class="note">정기 데이터 갱신, 장애 대응, 경미한 수정 포함.</span>
+        </div>
+        <div class="eng-cell">
+          <span class="name">시황 분석 리포트</span>
+          <span class="price num">150만 원~</span>
+          <span class="note">품목별 심층 분석 문서. 대시보드 없이 단건 의뢰 가능.</span>
+        </div>
+      </div>
+      <p style="margin-top:1.4rem;font-size:var(--step--1);color:var(--ink-soft);">
+        금액은 VAT 별도이며 범위에 따라 조정됩니다. 단건 의뢰는 착수금 50% 조건으로 진행합니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap closing">
+  <h2>취급 품목을 알려주시면 해당 화면을 보여드리겠습니다.</h2>
+  <p>
+    이미 구축된 품목이면 <strong>바로 데모를 보실 수 있고</strong>,
+    없는 품목이면 기존 구조를 기준으로 <strong>구성안과 소요 기간을 회신</strong>드립니다.
+    검토용 자료 요청도 편하게 주십시오.
+  </p>
+  <a class="contact" href="mailto:cutekorea@gmail.com?subject=%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C%20%EB%AC%B8%EC%9D%98">
+    cutekorea@gmail.com <span class="arw" aria-hidden="true">→</span>
+  </a>
+
+  <p class="footnote">
+    기재된 구축 규모는 실제 저장소의 코드 실측치입니다.
+    기업 고객사의 운영 데이터 및 영업 정보는 비밀유지 의무에 따라 일절 포함하지 않았으며,
+    레퍼런스는 해당 고객사 동의를 얻은 범위에서만 개별 안내드립니다.
+  </p>
+</section>
