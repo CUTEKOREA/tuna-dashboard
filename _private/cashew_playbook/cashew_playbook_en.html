@@ -1,0 +1,685 @@
+<title>Origin Processing Investment Playbook — Global Cashew Value Chain 2026</title>
+
+<style>
+  :root {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+
+    --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+    --xs:  0.735rem;
+    --sm:  0.83rem;
+    --base: clamp(0.94rem, 0.90rem + 0.14vw, 1.0rem);
+    --lg:  clamp(1.08rem, 1.02rem + 0.28vw, 1.24rem);
+    --xl:  clamp(1.34rem, 1.18rem + 0.68vw, 1.72rem);
+    --xxl: clamp(1.8rem, 1.42rem + 1.55vw, 2.85rem);
+
+    --measure: 74ch;
+    --gutter: clamp(1.15rem, 4.5vw, 4rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #0F1113;
+      --paper-alt:  #171A1D;
+      --panel:      #14171A;
+      --ink:        #E8E9E6;
+      --ink-mid:    #B2B7BB;
+      --ink-soft:   #838A91;
+      --rule:       #2A2F34;
+      --rule-soft:  #1F2429;
+      --ochre:      #D9A052;
+      --ochre-mid:  #B8853C;
+      --ochre-wash: #241E14;
+      --slate:      #66B3B0;
+      --slate-wash: #14201F;
+      --flag-high:  #5FB983;
+      --flag-mid:   #D9A052;
+      --flag-low:   #DE7F68;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #0F1113;
+    --paper-alt:  #171A1D;
+    --panel:      #14171A;
+    --ink:        #E8E9E6;
+    --ink-mid:    #B2B7BB;
+    --ink-soft:   #838A91;
+    --rule:       #2A2F34;
+    --rule-soft:  #1F2429;
+    --ochre:      #D9A052;
+    --ochre-mid:  #B8853C;
+    --ochre-wash: #241E14;
+    --slate:      #66B3B0;
+    --slate-wash: #14201F;
+    --flag-high:  #5FB983;
+    --flag-mid:   #D9A052;
+    --flag-low:   #DE7F68;
+  }
+  :root[data-theme="light"] {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--base);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: var(--xs);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ── cover ───────────────────────────── */
+  .cover { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem); border-bottom: 2px solid var(--ink); }
+  .cover .kicker { color: var(--ochre); font-weight: 600; margin: 0 0 2.4rem; }
+  .cover h1 {
+    font-size: var(--xxl); line-height: 1.08; letter-spacing: -0.028em;
+    font-weight: 700; margin: 0 0 0.45rem; max-width: 17ch; text-wrap: balance;
+  }
+  .cover .sub {
+    font-size: var(--lg); color: var(--ink-mid); font-weight: 400;
+    margin: 0 0 2.6rem; max-width: 46ch; line-height: 1.45;
+  }
+  .cover-meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.4rem 2rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+  }
+  .cover-meta dt { color: var(--ink-soft); margin-bottom: 0.3rem; }
+  .cover-meta dd { margin: 0; font-size: var(--sm); color: var(--ink); font-weight: 500; line-height: 1.5; }
+
+  /* ── thesis banner ───────────────────── */
+  .thesis {
+    margin-block: clamp(2rem, 5vw, 3.25rem);
+    padding: clamp(1.4rem, 3.5vw, 2.1rem) clamp(1.3rem, 3.5vw, 2.2rem);
+    background: var(--ochre-wash); border-left: 3px solid var(--ochre);
+  }
+  .thesis .mono { color: var(--ochre); margin: 0 0 0.85rem; }
+  .thesis p { margin: 0 0 0.85rem; font-size: var(--lg); line-height: 1.5; max-width: 62ch; }
+  .thesis p:last-child { margin-bottom: 0; }
+  .thesis strong { font-weight: 650; }
+
+  /* ── sections ────────────────────────── */
+  section.chapter { padding-block: clamp(2rem, 4.5vw, 3.25rem); border-bottom: 1px solid var(--rule); }
+  section.chapter:last-of-type { border-bottom: 0; }
+
+  .ch-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+  .ch-num {
+    font-family: var(--mono); font-size: var(--sm); font-weight: 600;
+    color: var(--ochre); flex: none; padding-top: 0.2em; letter-spacing: 0.04em;
+  }
+  .ch-head h2 {
+    font-size: var(--xl); font-weight: 680; letter-spacing: -0.021em;
+    margin: 0; line-height: 1.22; text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--base); font-weight: 680; letter-spacing: -0.008em;
+    margin: 2rem 0 0.7rem; color: var(--ink);
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin: 0 0 1rem; max-width: var(--measure); color: var(--ink-mid); }
+  p strong, li strong { color: var(--ink); font-weight: 650; }
+  p:last-child { margin-bottom: 0; }
+
+  ul.body-list { margin: 0 0 1.1rem; padding-left: 1.15rem; max-width: var(--measure); color: var(--ink-mid); }
+  ul.body-list li { margin-bottom: 0.5rem; }
+  ul.body-list li::marker { color: var(--ochre); }
+
+  /* ── data figures ────────────────────── */
+  .figrow {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft);
+    margin: 1.5rem 0;
+  }
+  .figrow > div { background: var(--panel); padding: 1.05rem 1.15rem; }
+  .figrow .lbl { color: var(--ink-soft); font-family: var(--mono); font-size: var(--xs);
+                 letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .figrow .val { font-size: 1.55rem; font-weight: 700; line-height: 1.05;
+                 letter-spacing: -0.028em; font-variant-numeric: tabular-nums; }
+  .figrow .val .u { font-size: 0.52em; font-weight: 500; color: var(--ink-soft); letter-spacing: 0; }
+  .figrow .cap { font-size: var(--xs); color: var(--ink-soft); margin-top: 0.42rem; line-height: 1.45; }
+
+  /* ── tables ──────────────────────────── */
+  .tw { overflow-x: auto; margin: 1.4rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--sm); min-width: 560px; }
+  caption {
+    text-align: left; font-family: var(--mono); font-size: var(--xs);
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+    padding-bottom: 0.7rem;
+  }
+  th, td { text-align: left; padding: 0.68rem 0.9rem 0.68rem 0; vertical-align: top;
+           border-bottom: 1px solid var(--rule-soft); }
+  thead th {
+    font-family: var(--mono); font-size: var(--xs); font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  tbody th { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  td { color: var(--ink-mid); }
+  td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+
+  /* ── correction / callout blocks ─────── */
+  .correct { border: 1px solid var(--rule); margin: 1.5rem 0; }
+  .correct-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr);
+                 border-bottom: 1px solid var(--rule-soft); }
+  .correct-row:last-child { border-bottom: 0; }
+  .correct-row > div { padding: 0.95rem 1.1rem; }
+  .correct-row .claim { background: var(--paper-alt); border-right: 1px solid var(--rule-soft); }
+  .correct .tag {
+    font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+    text-transform: uppercase; margin-bottom: 0.45rem; display: block;
+  }
+  .correct .claim .tag { color: var(--flag-low); }
+  .correct .fix .tag { color: var(--flag-high); }
+  .correct p { font-size: var(--sm); margin: 0; max-width: none; }
+  @media (max-width: 640px) {
+    .correct-row { grid-template-columns: 1fr; }
+    .correct-row .claim { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  }
+
+  .note {
+    border-left: 3px solid var(--slate); background: var(--slate-wash);
+    padding: 1.05rem 1.2rem; margin: 1.5rem 0;
+  }
+  .note .tag { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 0.5rem; }
+  .note p { font-size: var(--sm); margin: 0 0 0.6rem; max-width: 64ch; }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* ── country cards ───────────────────── */
+  .hubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft); margin: 1.5rem 0; }
+  .hub { background: var(--panel); padding: 1.25rem 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .hub .cty { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.12em;
+              text-transform: uppercase; color: var(--ink-soft); }
+  .hub .role { font-size: var(--lg); font-weight: 680; letter-spacing: -0.015em; line-height: 1.2; color: var(--ochre); }
+  .hub p { font-size: var(--sm); margin: 0; max-width: none; }
+  .hub .kv { margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--rule);
+             font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── phases ──────────────────────────── */
+  .phases { margin: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .phase { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.4rem 1.5rem;
+           padding: 1.1rem 0; border-bottom: 1px solid var(--rule-soft); }
+  @media (max-width: 620px) { .phase { grid-template-columns: 1fr; } }
+  .phase .pid { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+                text-transform: uppercase; color: var(--ochre); font-weight: 600; }
+  .phase .pid span { display: block; color: var(--ink-soft); font-weight: 400; margin-top: 0.2rem; letter-spacing: 0.04em; }
+  .phase .pgoal { font-weight: 650; color: var(--ink); margin-bottom: 0.3rem; }
+  .phase .pdel { font-size: var(--sm); color: var(--ink-mid); }
+
+  /* ── confidence key ──────────────────── */
+  .conf { display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+          letter-spacing: 0.07em; text-transform: uppercase; padding: 0.12em 0.45em;
+          border: 1px solid currentColor; white-space: nowrap; }
+  .c-a { color: var(--flag-high); }
+  .c-b { color: var(--flag-mid); }
+  .c-c { color: var(--flag-low); }
+
+  /* ── footer ──────────────────────────── */
+  .colophon { padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 7vw, 5rem); }
+  .colophon h2 { font-size: var(--lg); font-weight: 680; margin: 0 0 1.1rem; letter-spacing: -0.015em; }
+  .colophon p, .colophon li { font-size: var(--sm); color: var(--ink-soft); }
+  .colophon ul { padding-left: 1.1rem; max-width: var(--measure); }
+  .colophon li { margin-bottom: 0.42rem; }
+  .disclaimer { margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+                font-size: var(--xs); color: var(--ink-soft); max-width: 72ch; line-height: 1.65; }
+
+  @media print {
+    :root { --paper: #fff; --panel: #fff; --ink: #000; --ink-mid: #222; }
+    body { font-size: 10pt; }
+    section.chapter { break-inside: avoid-page; }
+    .thesis, .note, .correct, .hubs, .figrow { break-inside: avoid; }
+    .cover { break-after: page; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="doc">
+
+<header class="cover">
+  <p class="mono kicker">Global Cashew Value Chain · Investment Research</p>
+  <h1>Origin Processing Investment Playbook</h1>
+  <p class="sub">Where margin is actually created as primary processing relocates from Asia to West Africa — and what an investment committee needs to verify before committing capital.</p>
+  <dl class="cover-meta">
+    <div><dt class="mono">Edition</dt><dd>2026 · First English edition</dd></div>
+    <div><dt class="mono">Coverage</dt><dd>Côte d'Ivoire · Benin · Ghana · Vietnam · India</dd></div>
+    <div><dt class="mono">Prepared for</dt><dd>Investment committees, corporate development, sourcing and supply-chain leadership</dd></div>
+    <div><dt class="mono">Evidence base</dt><dd>Public institutional sources only. Every material claim carries a confidence rating.</dd></div>
+  </dl>
+</header>
+
+<div class="thesis">
+  <p class="mono">The thesis in three sentences</p>
+  <p>The cashew trade has run for four decades on one arbitrage: Africa grows the raw nut, Asia shells it. <strong>That arbitrage is closing</strong> — not gradually, and not because of market forces alone, but because origin governments have made it policy and development banks have funded it.</p>
+  <p>The investable question is no longer <em>whether</em> processing moves to origin. It is <strong>which origin, at what quality position, and financed how</strong> — because in this industry working capital, not capital expenditure, decides who survives the first bad season.</p>
+</div>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">01</span><h2>Executive summary</h2></div>
+
+  <p>Three things are true at once in the 2025–26 cashew market, and most published analysis captures only the first.</p>
+
+  <p><strong>One — Vietnam still dominates, and got bigger.</strong> Vietnam exported roughly 766,600 tonnes of kernels for a record US$5.23bn in 2025, at an average realised price near US$6,817/tonne. It handles over 65% of world raw cashew nut (RCN) imports and supplies more than 80% of internationally traded kernels. Any thesis that treats Vietnam as displaced is wrong.</p>
+
+  <p><strong>Two — Vietnam's margin structure is deteriorating.</strong> In the same year, Vietnam's RCN imports rose about 25% by volume but roughly 48% by value. Buying inputs at a faster rate of inflation than output prices is the textbook definition of a compressing spread. Vietnam also imported approximately 150,000 tonnes of semi-processed kernels in eleven months — equivalent to around 700,000 tonnes of RCN. <strong>Primary shelling is already migrating; the semi-processed import line is the evidence.</strong></p>
+
+  <p><strong>Three — origin processing is scaling, and it is policy-driven.</strong> Côte d'Ivoire processed roughly 600,000–660,000 tonnes domestically in 2025 against about 344,000 tonnes in 2024 — an increase between 67% and 92% depending on the reporting series. Benin, which banned raw cashew exports outright in April 2024, processed an estimated 50,000 tonnes of kernels in 2025, double the prior year. West African processing as a whole rose about 51% in 2025.</p>
+
+  <p>The investment implication is narrow and specific. The opportunity is <strong>not</strong> to build the lowest-cost bulk shelling line in West Africa — that race is being run by state-backed industrial zones with concessional finance. The opportunity is in the positions those zones do not fill well: <strong>quality-controlled, traceable, certification-ready primary processing</strong>, with by-product recovery designed in from day one rather than deferred.</p>
+
+  <div class="figrow">
+    <div>
+      <div class="lbl">Vietnam kernel exports 2025</div>
+      <div class="val num">5.23<span class="u"> bn USD</span></div>
+      <div class="cap">Record. ~766,600 t at ~$6,817/t</div>
+    </div>
+    <div>
+      <div class="lbl">Vietnam RCN imports 2025</div>
+      <div class="val num">3.12<span class="u"> Mt</span></div>
+      <div class="cap">Volume +25% · <strong>value +48%</strong></div>
+    </div>
+    <div>
+      <div class="lbl">Côte d'Ivoire processing</div>
+      <div class="val num">+67<span class="u">–92%</span></div>
+      <div class="cap">≈344 kt (2024) → ≈600–660 kt (2025)</div>
+    </div>
+    <div>
+      <div class="lbl">Shell share of raw weight</div>
+      <div class="val num">70<span class="u">–75%</span></div>
+      <div class="cap">The freight economics of raw export</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="tag">How to read this document</span>
+    <p>Every quantitative claim is tagged <span class="conf c-a">A</span> where it comes from a named institutional source, <span class="conf c-b">B</span> where credible sources report materially different values and we show the range, and <span class="conf c-c">C</span> where the figure is an industry estimate that we could not corroborate independently. Section 10 lists sources in full.</p>
+    <p>We flag disagreement rather than resolving it silently. Where the underlying data genuinely conflicts — and in this market it often does — a single confident number would be less useful than an honest range.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">02</span><h2>Why the old map stopped working</h2></div>
+
+  <p>The conventional description of this value chain — <em>Africa produces, Asia processes, the West consumes</em> — was accurate for a long time and is now a liability for anyone planning capital deployment around it.</p>
+
+  <p>The structural reason is physical. <strong>The shell accounts for roughly 70–75% of raw nut weight</strong> <span class="conf c-a">A</span>. Exporting RCN means paying ocean freight, handling and financing costs on three-quarters of a cargo that will be discarded at destination. Every tonne of kernel shipped instead of raw nut removes about three tonnes of freight from the chain. That arithmetic did not change; what changed is that origin countries acquired the capital, policy instruments and political will to act on it.</p>
+
+  <h3>The policy instruments, in order of severity</h3>
+
+  <div class="tw">
+    <table>
+      <caption>Origin-country measures reshaping raw nut availability</caption>
+      <thead>
+        <tr><th>Country</th><th>Instrument</th><th>Status</th><th>Observed effect</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Benin</th>
+          <td>Outright ban on raw cashew exports</td>
+          <td class="n">In force since 1 Apr 2024</td>
+          <td>Domestic kernel processing ≈50,000 t in 2025 — roughly double the prior year <span class="conf c-a">A</span></td>
+        </tr>
+        <tr>
+          <th>Côte d'Ivoire</th>
+          <td>Export levy on raw nuts (~98.4 CFA/kg) plus an exclusive supply window reserved for domestic processors ahead of the export season</td>
+          <td class="n">Annual, renewed</td>
+          <td>Domestic processing from ≈344 kt (2024) to ≈600–660 kt (2025) <span class="conf c-b">B</span></td>
+        </tr>
+        <tr>
+          <th>Ghana</th>
+          <td>Announced intention to fully ban raw exports; stated target of 50–60% domestic processing</td>
+          <td class="n">Announced, not yet in force</td>
+          <td>≈15,000 t processed in 2025 (+7% YoY) — still below the five-year high <span class="conf c-b">B</span></td>
+        </tr>
+        <tr>
+          <th>Burkina Faso</th>
+          <td>Temporary export suspension</td>
+          <td class="n">Imposed Mar 2025, reported lifted from ~May 2025</td>
+          <td><strong>Episodic, not structural</strong> — model as seasonal policy volatility, not a permanent ban <span class="conf c-a">A</span></td>
+        </tr>
+        <tr>
+          <th>Nigeria</th>
+          <td>Value-addition policy under active debate</td>
+          <td class="n">No binding measure</td>
+          <td>Directional risk to raw availability; no current constraint <span class="conf c-c">C</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Two planning conclusions follow. First, <strong>raw nut availability out of West Africa is now a political variable, not merely an agronomic one</strong> — a sourcing model built on assumed free export of RCN from any single origin carries policy risk that is not priced in most feasibility studies. Second, <strong>the direction is one-way but the pace is uneven</strong>: Benin has acted decisively, Côte d'Ivoire is using price signals rather than prohibition, and Ghana has announced more than it has implemented.</p>
+
+  <h3>The capital behind the policy</h3>
+
+  <p>Policy alone would not move volumes at this rate. Benin's Glo-Djigbé Industrial Zone (GDIZ) has drawn in excess of US$150m from the World Bank, the African Development Bank and ECOWAS, and is configured for 150,000–200,000 t/year of processing capacity with CNSL and biochar recovery designed into the zone rather than added later <span class="conf c-a">A</span>. Côte d'Ivoire has developed three agro-industrial zones (ZAI) alongside shell-valorisation infrastructure under a World Bank competitiveness project <span class="conf c-a">A</span>.</p>
+
+  <p>For a private investor this cuts both ways. Concessional capital lowers the sector's cost of entry and builds shared infrastructure — but it also means <strong>competing against balance sheets that are not required to earn a commercial return on the commodity line</strong>. That is the single strongest argument against entering as a bulk low-cost processor.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">03</span><h2>The Vietnam compression</h2></div>
+
+  <p>Vietnam's position is frequently misread in both directions. It is neither collapsing nor secure.</p>
+
+  <p>The scale is genuine and growing: 3.12 million tonnes of RCN imported in 2025, more than 65% of world raw imports, and over 80% of globally traded kernels <span class="conf c-a">A</span>. Domestic Vietnamese production supplies only around 10% of what its factories require — the model is, and always was, an import-process-export arbitrage rather than an agricultural one.</p>
+
+  <p>The vulnerability is in the spread. Import volume rose ~25% in 2025 while import value rose ~48% <span class="conf c-a">A</span>. Realised export prices rose 13.9% to ~$6,817/t. <strong>Input costs inflated roughly three-and-a-half times faster than output prices.</strong> A processing business absorbs that only through yield, scale, or balance sheet — and it cannot absorb it indefinitely.</p>
+
+  <div class="note">
+    <span class="tag">The tell most analyses miss</span>
+    <p>Vietnam imported approximately <strong>150,000 tonnes of semi-processed kernels in eleven months of 2025</strong> — the raw-nut equivalent of roughly 700,000 tonnes <span class="conf c-a">A</span>.</p>
+    <p>A country with the world's deepest shelling capacity does not import semi-processed kernel unless the economics of shelling at home have deteriorated relative to shelling at origin. This is the clearest available signal that <strong>primary processing has already begun to relocate</strong>, with Vietnam retaining the higher-margin grading, sorting, packing and market-access layer.</p>
+    <p>That is the shape of the migration to underwrite: origin captures shelling; Asia retains finishing and distribution — for now.</p>
+  </div>
+
+  <h3>Trade policy: what the number actually is</h3>
+
+  <p>This point warrants correction because the wrong figure circulates widely. During the first half of 2025 a <strong>46%</strong> tariff on Vietnamese imports was discussed as a negotiating scenario. It was not implemented. In October 2025 the USTR published a framework applying a <strong>20% reciprocal tariff</strong> to Vietnamese-origin imports <span class="conf c-a">A</span>.</p>
+
+  <p>Any model still running 46% materially overstates the case for relocating away from Vietnam. The risk is real but it is 20%, and a feasibility study built on the higher figure will not survive diligence.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">04</span><h2>Regulatory reality check</h2></div>
+
+  <p>Compliance is where cashew feasibility studies most often go wrong, usually by importing assumptions from cocoa or coffee. The corrections below are not marginal — each changes the cost and timing of a compliance programme.</p>
+
+  <div class="correct">
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>EUDR (EU Deforestation Regulation) governs cashew exports to the EU.</p></div>
+      <div class="fix"><span class="tag">Position as at 2026</span><p><strong>Cashew is not a covered commodity.</strong> EUDR Annex I lists cattle, cocoa, coffee, oil palm, rubber, soya and wood. Cashew appears on none of them <span class="conf c-a">A</span>.</p></div>
+    </div>
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>EUDR obligations began to bite in 2025.</p></div>
+      <div class="fix"><span class="tag">Position as at 2026</span><p>Application was deferred once at end-2024 and again by later legislation; for large operators it is scheduled from <strong>30 December 2026</strong> <span class="conf c-a">A</span>.</p></div>
+    </div>
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>CSRD and CSDDD impose near-term direct reporting duties across the supply base.</p></div>
+      <div class="fix"><span class="tag">Position as at 2026</span><p>CSRD wave 2 and 3 reporting deferred by two years; CSDDD first application deferred by one year (Directive (EU) 2025/794) <span class="conf c-a">A</span>.</p></div>
+    </div>
+    <div class="correct-row">
+      <div class="claim"><span class="tag">Common assumption</span><p>US tariff exposure on Vietnamese product is 46%.</p></div>
+      <div class="fix"><span class="tag">Position as at 2026</span><p>The operative frame is a <strong>20% reciprocal tariff</strong> per the USTR framework of October 2025 <span class="conf c-a">A</span>.</p></div>
+    </div>
+  </div>
+
+  <p><strong>None of this means traceability investment can be deferred.</strong> The binding constraint in this sector is not statute — it is private. Large retailers, branded manufacturers and their lenders already require geolocation of supply, documented labour due diligence, physical segregation and lot-level records as a condition of purchase. That functions as de facto regulation, it arrives earlier than the statutory timetable, and it is enforced by losing the account rather than by penalty.</p>
+
+  <p>The practical baseline is HACCP and ISO 22000, with BRCGS, SMETA, Fairtrade or Organic layered selectively by target channel rather than adopted wholesale.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">05</span><h2>Three origins, three different businesses</h2></div>
+
+  <p>Treating West Africa as one sourcing geography is the most common structural error in this sector. The three principal origins are not variations on a theme — they support materially different business models, and the operating disciplines that make one work will not carry to another.</p>
+
+  <div class="hubs">
+    <div class="hub">
+      <span class="cty">Côte d'Ivoire</span>
+      <span class="role">Scale hub</span>
+      <p>The largest RCN supply base in West Africa: ~1.2 Mt production (2023), three agro-industrial zones, and shell-valorisation infrastructure in development.</p>
+      <div class="kv"><strong>Plays to:</strong> volume procurement, plants sited adjacent to production, commodity-grade throughput.<br><strong>Operating priority:</strong> securing early-season volume and processor-priority access before the export window opens.</div>
+    </div>
+    <div class="hub">
+      <span class="cty">Benin</span>
+      <span class="role">Integrated zero-waste hub</span>
+      <p>GDIZ is building toward 150,000–200,000 t/year with CNSL and biochar integrated by design. The raw export ban makes domestic processing structural rather than incentivised.</p>
+      <div class="kv"><strong>Plays to:</strong> industrial-zone tenancy, by-product monetisation, policy-aligned capital.<br><strong>Operating priority:</strong> zone infrastructure leverage, warehousing and drying, simultaneous by-product lines.</div>
+    </div>
+    <div class="hub">
+      <span class="cty">Ghana</span>
+      <span class="role">Compliance-first premium hub</span>
+      <p>Regulated through TCDA with comparatively clear licensing. The World Bank rates Ghanaian RCN among West Africa's highest quality, but processing capacity has lagged and policy long favoured raw export.</p>
+      <div class="kv"><strong>Plays to:</strong> premium whole kernel, traceability, certification-led supply.<br><strong>Operating priority:</strong> licensed local partner structure, lot-level traceability from day one, direct-export pilots.</div>
+    </div>
+  </div>
+
+  <h3>Ghana: the case, and the constraint</h3>
+
+  <p>Ghana is the origin most frequently misjudged, in both directions. It is <strong>not</strong> the cheapest raw material source in the region, and any model that enters on a low-cost premise will not hold. Minimum producer prices and export levies are set administratively — a stated minimum producer price of GH¢12/kg for the 2025/26 season, and a TCDA export levy of GHS 44.86/tonne <span class="conf c-a">A</span> — which puts a floor under input cost by design.</p>
+
+  <p>The offsetting case is quality and clarity. The World Bank identifies Ghanaian RCN as among the top-quality raw nut in West Africa, with buyers demonstrably willing to pay a premium; the same analysis notes that processing capacity expansion stalled for years and that a policy environment favouring raw export compressed processor gross margins <span class="conf c-a">A</span>.</p>
+
+  <p>There is also a hard structural constraint that belongs in any diligence checklist: <strong>foreign entities are restricted from direct farm-gate and district-level aggregation.</strong> A licensed Ghanaian partner structure is not a preference — it is a requirement, and it must be designed into the sourcing model and the traceability architecture from the outset rather than retrofitted <span class="conf c-a">A</span>.</p>
+
+  <p>Read correctly, Ghana is a <em>quality, traceability and certification</em> business, not a volume business.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">06</span><h2>Unit economics: where margin is actually decided</h2></div>
+
+  <p>Cashew processing is routinely underwritten as a capital expenditure business. It is not. It is a working capital and process-control business, and the failure modes cluster accordingly.</p>
+
+  <h3>The metrics that determine the outcome</h3>
+
+  <div class="tw">
+    <table>
+      <caption>Operating variables ranked by influence on profitability</caption>
+      <thead><tr><th>Metric</th><th>Definition</th><th>Why it decides the P&amp;L</th></tr></thead>
+      <tbody>
+        <tr><th>KOR / Outturn</th><td>Weight of good kernel (lbs) recovered from an 80&nbsp;kg bag of RCN. A commonly cited benchmark is <strong>48 lbs</strong> <span class="conf c-a">A</span></td><td>Sets the ceiling on recoverable value and determines whether the raw purchase price was justified</td></tr>
+        <tr><th>Breakage rate</th><td>Broken kernel as a share of total recovered kernel</td><td>Whole kernels carry the premium grades. Breakage moves average realised price directly and irreversibly</td></tr>
+        <tr><th>Moisture control</th><td>Water content through drying, storage and conditioning</td><td>Failure here causes mould and spoilage that compound across every downstream stage</td></tr>
+        <tr><th>Working capital turn</th><td>Speed from harvest-season purchase to processed sale</td><td><strong>The dominant variable.</strong> Raw buying concentrates into 3–4 months; the cash cycle, not the plant, determines survival</td></tr>
+        <tr><th>Storage quality</th><td>Ventilation, drying capacity, segregated storage</td><td>Controls inventory value erosion and the financing cost carried against it</td></tr>
+        <tr><th>Nut count / size</th><td>Kernels per kg and uniformity</td><td>Drives shelling efficiency and grading precision</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Where capital gets destroyed</h3>
+
+  <p>Three errors recur often enough to be treated as a diligence checklist rather than as cautionary anecdotes.</p>
+
+  <ul class="body-list">
+    <li><strong>Financing the plant and underestimating the season.</strong> Raw purchasing compresses into a 3–4 month window. A processor with adequate CAPEX and inadequate working capital buys poor lots late at inflated prices, or cannot buy at all and runs the line below capacity for a year.</li>
+    <li><strong>Deferring warehousing, drying and segregated storage.</strong> These read as secondary spend and behave as primary risk. Inventory that degrades in store converts a good procurement year into a write-down.</li>
+    <li><strong>Designing the kernel line only.</strong> Treating shell, energy recovery and CNSL as later-phase projects forfeits the downside hedge precisely when it is needed — in an oversupplied kernel market.</li>
+  </ul>
+
+  <div class="note">
+    <span class="tag">Underwriting implication</span>
+    <p>A feasibility model for this sector is incomplete without sensitivity analysis across KOR, breakage rate, inventory days, warehouse loss rate, FX and policy variation. Point estimates on any of these are not conservatism — they are an untested assumption in a business where each one independently determines the outcome.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">07</span><h2>By-products: the downside hedge</h2></div>
+
+  <p>Kernel revenue alone does not defend long-run profitability, particularly through oversupplied phases of the price cycle. Since the shell represents 70–75% of raw weight, a processor that treats shell as waste is discarding the majority of its physical input and paying to dispose of it.</p>
+
+  <div class="tw">
+    <table>
+      <caption>By-product streams by commercial maturity</caption>
+      <thead><tr><th>Stream</th><th>Principal application</th><th>Maturity</th><th>Assessment</th></tr></thead>
+      <tbody>
+        <tr><th>CNSL</th><td>Friction linings, resins, coatings, industrial intermediates</td><td>High</td><td>First by-product to evaluate; established industrial demand</td></tr>
+        <tr><th>Shell residue / biochar</th><td>Boiler fuel, solid fuel, carbon narrative</td><td>High</td><td>Energy self-sufficiency plus disposal cost avoided</td></tr>
+        <tr><th>Broken kernels</th><td>Ingredient, paste, powder, food manufacturing</td><td>High</td><td>Recovers value from output that failed whole-grade</td></tr>
+        <tr><th>Testa / meal</th><td>Feed and low-value co-products</td><td>Medium</td><td>Requires clean separation and hygiene control</td></tr>
+        <tr><th>Cashew milk / powder</th><td>Plant-based beverage and ingredient</td><td>Medium</td><td>Needs brand, plant and channel development — a different business</td></tr>
+        <tr><th>Cashew apple</th><td>Juice, fermented beverage, ethanol</td><td>Medium–low</td><td>Collection logistics and very short shelf life remain unsolved at scale</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Sequencing matters more than ambition.</strong> Near term: broken kernels, shell as fuel, CNSL feasibility. Medium term: biochar and boiler energy integration. Longer term: milk, powder and apple-derived products — which are consumer businesses wearing an agro-processing costume, and should be underwritten as such.</p>
+
+  <div class="note">
+    <span class="tag">A caution on CNSL market sizing</span>
+    <p>Published CNSL market estimates for 2025 diverge by more than an order of magnitude — from roughly <strong>US$0.51bn</strong> to <strong>US$3.46bn</strong> to <strong>US$6.96bn</strong> depending on the research house, with CAGRs quoted between 6.7% and 11.4% <span class="conf c-c">C</span>.</p>
+    <p>A thirteen-fold spread between the low and high estimate means these figures are not measuring the same thing — definitions of the addressable market differ fundamentally between publishers. <strong>Do not underwrite a CNSL investment on any of them.</strong> Size the opportunity bottom-up from the shell tonnage your own plant will generate and from firm offtake discussions, not from a top-down market number.</p>
+    <p>We flag this rather than quoting the most attractive figure. Any report that cites one of these numbers without the range is not doing diligence on your behalf.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">08</span><h2>Phased entry: proving before building</h2></div>
+
+  <p>Raw material quality, licensed aggregation structures, storage performance, buyer willingness to pay and by-product economics are all systematically overestimated in the absence of field data. Each is cheap to test and expensive to assume. The sequencing below places verification ahead of capital commitment deliberately.</p>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="pid">Phase 0<span>0–6 months</span></div>
+      <div>
+        <div class="pgoal">Test the investment hypothesis</div>
+        <div class="pdel">Legal and regulatory due diligence in-country · tolling trials with existing capacity · measured KOR and breakage on real lots · letters of intent from named buyers · warehouse and power availability survey.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pid">Phase 1<span>6–18 months</span></div>
+      <div>
+        <div class="pgoal">Premium primary processing in operation</div>
+        <div class="pdel">Shelling, grading and packing at a single site · HACCP / ISO 22000 certification · digital lot-level traceability · backup power installed, not planned.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pid">Phase 2<span>18–36 months</span></div>
+      <div>
+        <div class="pgoal">Diversify the revenue base</div>
+        <div class="pdel">CNSL or shell-energy pilot · direct export of premium whole kernel · B2B ingredient line extension.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="pid">Phase 3<span>36 months +</span></div>
+      <div>
+        <div class="pgoal">Multi-site, multi-product</div>
+        <div class="pdel">Scale-up linked to Côte d'Ivoire or Benin subject to demonstrated demand · retail and private label · deeper zero-waste integration.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Operating KPIs from first production</h3>
+
+  <p>Seven measures are sufficient to run this business and necessary to run it well: <strong>RCN outturn (KOR)</strong>, <strong>whole kernel ratio</strong>, <strong>breakage rate</strong>, <strong>warehouse loss</strong>, <strong>inventory days</strong>, <strong>certified output ratio</strong>, and <strong>by-product recovery ratio</strong>. Reporting that omits inventory days and warehouse loss will show a profitable operation shortly before it shows a write-down.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">09</span><h2>Risk register</h2></div>
+
+  <div class="tw">
+    <table>
+      <caption>Principal risks and mitigation posture</caption>
+      <thead><tr><th>Risk</th><th>Exposure</th><th>Mitigation posture</th></tr></thead>
+      <tbody>
+        <tr><th>Working capital</th><td>Purchasing concentrated into a 3–4 month harvest window against a year-long sales cycle</td><td>Committed seasonal facility arranged before the season, not during it; inventory-days covenant monitored weekly</td></tr>
+        <tr><th>Raw quality and drying</th><td>Up to 25% of RCN in some Sahel origins degrades before reaching collection points; only ~38% of Nigerian collection points have basic drying racks <span class="conf c-b">B</span></td><td>Buy on measured outturn, never on nominal grade; invest at collection level or accept the yield penalty explicitly in the model</td></tr>
+        <tr><th>Policy volatility</th><td>Export bans and levies change between seasons (Burkina Faso 2025 illustrates both directions)</td><td>Multi-origin optionality; never single-origin dependence for raw supply</td></tr>
+        <tr><th>Price cycle</th><td>RCN CNF ~$1,600–1,700/t (Oct 2025), forecast ~$1,700–1,900/t for 2026; West African dryness may tighten early-2026 supply <span class="conf c-b">B</span></td><td>By-product revenue as structural hedge; avoid unhedged long inventory positions</td></tr>
+        <tr><th>Food safety rejection</th><td>Aflatoxin and salmonella findings drive port rejection and destroy account relationships</td><td>HACCP / ISO 22000 as an entry condition; lot-level traceability enabling targeted recall instead of blanket rejection</td></tr>
+        <tr><th>Competing concessional capital</th><td>State-backed zones operate without commercial return requirements on the commodity line</td><td>Do not compete on bulk cost; occupy quality, traceability and certification positions</td></tr>
+        <tr><th>Execution and yield</th><td>KOR and breakage assumptions unverified until production</td><td>Phase 0 tolling trials as a gating condition for capital release</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">10</span><h2>Demand: the case for the output</h2></div>
+
+  <p>Supply-side theses fail when demand is assumed rather than examined. The demand picture here is supportive but should be stated with its uncertainty intact.</p>
+
+  <p>Published global cashew market sizing clusters between roughly <strong>US$8.5bn and US$10.6bn for 2026</strong>, with 2030–2034 projections spanning US$11.9bn to US$14.6bn and CAGRs quoted between 4.6% and 6.7% <span class="conf c-b">B</span>. The spread reflects differing definitions of scope rather than genuine disagreement about direction. Global kernel consumption is forecast to approach <strong>1.56 million tonnes by 2030</strong> <span class="conf c-b">B</span>.</p>
+
+  <p>Growth is concentrated in Asia rather than in the traditional Western markets. Chinese tree-nut consumption is rising around 5% annually, with per-capita use projected to reach roughly 1 kg by 2030 — close to double 2023 levels <span class="conf c-b">B</span>. India is simultaneously the largest consumer and a major processor, which makes it a demand centre and a competitor at once.</p>
+
+  <p>For an origin-processing investment two demand characteristics matter more than headline growth. First, <strong>certified organic kernel commands a 15–20% premium in US and European retail</strong> <span class="conf c-c">C</span> — which is the economic argument for the certification spend in Phase 1. Second, the fastest-growing applications are ingredient-led rather than snack-led: butter, milk, powder and plant-based formats. Ingredient buyers purchase on specification and traceability, which favours precisely the compliance-first position this playbook recommends.</p>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">11</span><h2>Recommendation</h2></div>
+
+  <div class="thesis" style="margin-top:0">
+    <p class="mono">For the investment committee</p>
+    <p>Approve origin processing <strong>only</strong> as a premium, traceable, compliance-led platform — never as a bulk commodity line. The bulk position is occupied by state-backed zones operating on concessional capital, and it cannot be won on cost.</p>
+  </div>
+
+  <p>Conditions we would attach to any capital release:</p>
+
+  <ul class="body-list">
+    <li><strong>Phase 0 completed before CAPEX.</strong> Tolling trials, measured outturn on real lots, and buyer LOIs in hand — not modelled.</li>
+    <li><strong>Sourcing through a licensed local partner structure</strong>, with cross-border mixed-origin material tracked as a distinct traceability risk rather than absorbed into general supply.</li>
+    <li><strong>Plant designed as a complete operation</strong> — storage, drying, backup power and waste-to-energy recovery in the initial scope, not deferred to a later phase.</li>
+    <li><strong>HACCP / ISO 22000 as the floor</strong>, with BRCGS, SMETA, Fairtrade or Organic added by target channel rather than adopted wholesale.</li>
+    <li><strong>Sensitivity analysis mandatory</strong> across KOR, breakage, inventory days, warehouse loss, FX and policy variation. Point estimates on these variables should be treated as an incomplete submission.</li>
+  </ul>
+
+  <p>The window here is real but it is not indefinite. Origin processing capacity is being built now with concessional capital and policy protection. The positions that remain available to commercial investors in three years will be narrower and more expensive than those available today — but only for entrants who can demonstrate quality control and traceability, because that is the one thing the state-backed zones are not optimised to deliver.</p>
+</section>
+
+<section class="colophon">
+  <h2>Sources and confidence</h2>
+
+  <p><strong>Institutional and primary sources</strong> — cited claims trace to the following:</p>
+  <ul>
+    <li>World Bank — <em>Agri-processing adds value in Côte d'Ivoire's cashew industry</em> (2025); Cashew Value Chain Competitiveness Project P158810 ISR (Dec 2024); <em>Ghana: Improving Sanitary and Phytosanitary Practice and Product Quality in the Cashew Nut Sector</em> (2025)</li>
+    <li>UNCTAD — Special issue on cashew nuts (shell 70–75% of raw weight); ComCashew / TechnoServe materials on shell valorisation</li>
+    <li>TCDA Ghana — announcement to cashew exporters (farm-gate aggregation restrictions; export levy GHS 44.86/t); minimum producer price notices, 2025/26 season</li>
+    <li>GDIZ Benin — official brochures and newsletters, 2024–2025 (capacity targets, CNSL and biochar configuration)</li>
+    <li>African Cashew Alliance — market reports and processing statistics, 2025–2026</li>
+    <li>USTR — Fact Sheet on the U.S.–Vietnam trade framework (October 2025)</li>
+    <li>EUR-Lex — Regulation (EU) 2023/1115, 2024/3234, 2025/2650; Directive (EU) 2025/794</li>
+    <li>Vietnamese trade and industry reporting on 2025 export value, RCN import volume and semi-processed kernel imports</li>
+    <li>Côte d'Ivoire — Conseil du Coton et de l'Anacarde (CCA) producer price and processing volume announcements</li>
+  </ul>
+
+  <p style="margin-top:1.4rem"><strong>Confidence ratings</strong></p>
+  <ul>
+    <li><span class="conf c-a">A</span> &nbsp;Attributable to a named institutional source; reproducible from that source.</li>
+    <li><span class="conf c-b">B</span> &nbsp;Credible sources report materially different values; the range is shown rather than a single figure.</li>
+    <li><span class="conf c-c">C</span> &nbsp;Industry estimate or commercial research figure that could not be corroborated independently. Treat as directional only.</li>
+  </ul>
+
+  <p class="disclaimer">
+    This document is investment research prepared from publicly available institutional sources. It is not investment advice, nor an offer or solicitation in respect of any security or transaction. Figures marked <span class="conf c-b">B</span> or <span class="conf c-c">C</span> carry material uncertainty and are presented with their reported ranges for that reason. Trade policy, producer pricing and export regulation in the covered jurisdictions change between and within seasons; positions stated here reflect the sources available at the edition date and require re-verification before reliance. Any investment decision should be preceded by independent legal, tax and on-site technical due diligence.
+  </p>
+</section>
+
+</div>
