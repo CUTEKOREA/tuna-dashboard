@@ -1,0 +1,31 @@
+<svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vietnam versus India raw cashew imports">
+<title>Vietnam vs India RCN imports, 2012–2023</title>
+<line x1="58" y1="258.0" x2="640" y2="258.0" class="grid"/>
+<text x="49" y="262.0" class="ax ar">0k</text>
+<line x1="58" y1="210.8" x2="640" y2="210.8" class="grid"/>
+<text x="49" y="214.8" class="ax ar">500k</text>
+<line x1="58" y1="163.6" x2="640" y2="163.6" class="grid"/>
+<text x="49" y="167.6" class="ax ar">1,000k</text>
+<line x1="58" y1="116.4" x2="640" y2="116.4" class="grid"/>
+<text x="49" y="120.4" class="ax ar">1,500k</text>
+<line x1="58" y1="69.2" x2="640" y2="69.2" class="grid"/>
+<text x="49" y="73.2" class="ax ar">2,000k</text>
+<line x1="58" y1="22.0" x2="640" y2="22.0" class="grid"/>
+<text x="49" y="26.0" class="ax ar">2,500k</text>
+<polygon points="58,258 58.0,227.5 110.9,226.9 163.8,203.8 216.7,175.0 269.6,160.4 322.5,136.2 375.5,168.4 428.4,134.8 481.3,141.5 534.2,18.7 587.1,100.4 640.0,33.9 640,258" fill="var(--c1)" opacity="0.13"/>
+<polyline points="58.0,227.5 110.9,226.9 163.8,203.8 216.7,175.0 269.6,160.4 322.5,136.2 375.5,168.4 428.4,134.8 481.3,141.5 534.2,18.7 587.1,100.4 640.0,33.9" fill="none" stroke="var(--c1)" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="640.0" cy="33.9" r="3.4" fill="var(--c1)"/>
+<text x="650" y="37.9" class="lg" fill="var(--c1)">Vietnam</text>
+<text x="650" y="50.9" class="lgv">2,374,461 t</text>
+<polygon points="58,258 58.0,180.4 110.9,179.7 163.8,172.4 216.7,166.5 269.6,189.4 322.5,191.8 375.5,175.8 428.4,177.7 481.3,175.5 534.2,175.5 587.1,128.2 640.0,146.4 640,258" fill="var(--c2)" opacity="0.13"/>
+<polyline points="58.0,180.4 110.9,179.7 163.8,172.4 216.7,166.5 269.6,189.4 322.5,191.8 375.5,175.8 428.4,177.7 481.3,175.5 534.2,175.5 587.1,128.2 640.0,146.4" fill="none" stroke="var(--c2)" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="640.0" cy="146.4" r="3.4" fill="var(--c2)"/>
+<text x="650" y="150.4" class="lg" fill="var(--c2)">India</text>
+<text x="650" y="163.4" class="lgv">1,181,684 t</text>
+<text x="58.0" y="279" class="ax am">2012</text>
+<text x="216.7" y="279" class="ax am">2015</text>
+<text x="375.5" y="279" class="ax am">2018</text>
+<text x="534.2" y="279" class="ax am">2021</text>
+<text x="640.0" y="279" class="ax am">2023</text>
+<line x1="58" y1="258" x2="640" y2="258" class="axis"/>
+</svg>
