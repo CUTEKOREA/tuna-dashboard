@@ -1,0 +1,610 @@
+<title>Origin Processing Investment Playbook — Overview and Pricing</title>
+
+<style>
+  :root {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+
+    --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+    --xs:  0.735rem;
+    --sm:  0.83rem;
+    --base: clamp(0.94rem, 0.90rem + 0.14vw, 1.0rem);
+    --lg:  clamp(1.08rem, 1.02rem + 0.28vw, 1.24rem);
+    --xl:  clamp(1.34rem, 1.18rem + 0.68vw, 1.72rem);
+    --xxl: clamp(1.8rem, 1.42rem + 1.55vw, 2.85rem);
+
+    --measure: 74ch;
+    --gutter: clamp(1.15rem, 4.5vw, 4rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #0F1113;
+      --paper-alt:  #171A1D;
+      --panel:      #14171A;
+      --ink:        #E8E9E6;
+      --ink-mid:    #B2B7BB;
+      --ink-soft:   #838A91;
+      --rule:       #2A2F34;
+      --rule-soft:  #1F2429;
+      --ochre:      #D9A052;
+      --ochre-mid:  #B8853C;
+      --ochre-wash: #241E14;
+      --slate:      #66B3B0;
+      --slate-wash: #14201F;
+      --flag-high:  #5FB983;
+      --flag-mid:   #D9A052;
+      --flag-low:   #DE7F68;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #0F1113;
+    --paper-alt:  #171A1D;
+    --panel:      #14171A;
+    --ink:        #E8E9E6;
+    --ink-mid:    #B2B7BB;
+    --ink-soft:   #838A91;
+    --rule:       #2A2F34;
+    --rule-soft:  #1F2429;
+    --ochre:      #D9A052;
+    --ochre-mid:  #B8853C;
+    --ochre-wash: #241E14;
+    --slate:      #66B3B0;
+    --slate-wash: #14201F;
+    --flag-high:  #5FB983;
+    --flag-mid:   #D9A052;
+    --flag-low:   #DE7F68;
+  }
+  :root[data-theme="light"] {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--base);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: var(--xs);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ── cover ───────────────────────────── */
+  .cover { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem); border-bottom: 2px solid var(--ink); }
+  .cover .kicker { color: var(--ochre); font-weight: 600; margin: 0 0 2.4rem; }
+  .cover h1 {
+    font-size: var(--xxl); line-height: 1.08; letter-spacing: -0.028em;
+    font-weight: 700; margin: 0 0 0.45rem; max-width: 17ch; text-wrap: balance;
+  }
+  .cover .sub {
+    font-size: var(--lg); color: var(--ink-mid); font-weight: 400;
+    margin: 0 0 2.6rem; max-width: 46ch; line-height: 1.45;
+  }
+  .cover-meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.4rem 2rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+  }
+  .cover-meta dt { color: var(--ink-soft); margin-bottom: 0.3rem; }
+  .cover-meta dd { margin: 0; font-size: var(--sm); color: var(--ink); font-weight: 500; line-height: 1.5; }
+
+  /* ── thesis banner ───────────────────── */
+  .thesis {
+    margin-block: clamp(2rem, 5vw, 3.25rem);
+    padding: clamp(1.4rem, 3.5vw, 2.1rem) clamp(1.3rem, 3.5vw, 2.2rem);
+    background: var(--ochre-wash); border-left: 3px solid var(--ochre);
+  }
+  .thesis .mono { color: var(--ochre); margin: 0 0 0.85rem; }
+  .thesis p { margin: 0 0 0.85rem; font-size: var(--lg); line-height: 1.5; max-width: 62ch; }
+  .thesis p:last-child { margin-bottom: 0; }
+  .thesis strong { font-weight: 650; }
+
+  /* ── sections ────────────────────────── */
+  section.chapter { padding-block: clamp(2rem, 4.5vw, 3.25rem); border-bottom: 1px solid var(--rule); }
+  section.chapter:last-of-type { border-bottom: 0; }
+
+  .ch-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+  .ch-num {
+    font-family: var(--mono); font-size: var(--sm); font-weight: 600;
+    color: var(--ochre); flex: none; padding-top: 0.2em; letter-spacing: 0.04em;
+  }
+  .ch-head h2 {
+    font-size: var(--xl); font-weight: 680; letter-spacing: -0.021em;
+    margin: 0; line-height: 1.22; text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--base); font-weight: 680; letter-spacing: -0.008em;
+    margin: 2rem 0 0.7rem; color: var(--ink);
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin: 0 0 1rem; max-width: var(--measure); color: var(--ink-mid); }
+  p strong, li strong { color: var(--ink); font-weight: 650; }
+  p:last-child { margin-bottom: 0; }
+
+  ul.body-list { margin: 0 0 1.1rem; padding-left: 1.15rem; max-width: var(--measure); color: var(--ink-mid); }
+  ul.body-list li { margin-bottom: 0.5rem; }
+  ul.body-list li::marker { color: var(--ochre); }
+
+  /* ── data figures ────────────────────── */
+  .figrow {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft);
+    margin: 1.5rem 0;
+  }
+  .figrow > div { background: var(--panel); padding: 1.05rem 1.15rem; }
+  .figrow .lbl { color: var(--ink-soft); font-family: var(--mono); font-size: var(--xs);
+                 letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .figrow .val { font-size: 1.55rem; font-weight: 700; line-height: 1.05;
+                 letter-spacing: -0.028em; font-variant-numeric: tabular-nums; }
+  .figrow .val .u { font-size: 0.52em; font-weight: 500; color: var(--ink-soft); letter-spacing: 0; }
+  .figrow .cap { font-size: var(--xs); color: var(--ink-soft); margin-top: 0.42rem; line-height: 1.45; }
+
+  /* ── tables ──────────────────────────── */
+  .tw { overflow-x: auto; margin: 1.4rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--sm); min-width: 560px; }
+  caption {
+    text-align: left; font-family: var(--mono); font-size: var(--xs);
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+    padding-bottom: 0.7rem;
+  }
+  th, td { text-align: left; padding: 0.68rem 0.9rem 0.68rem 0; vertical-align: top;
+           border-bottom: 1px solid var(--rule-soft); }
+  thead th {
+    font-family: var(--mono); font-size: var(--xs); font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  tbody th { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  td { color: var(--ink-mid); }
+  td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+
+  /* ── correction / callout blocks ─────── */
+  .correct { border: 1px solid var(--rule); margin: 1.5rem 0; }
+  .correct-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr);
+                 border-bottom: 1px solid var(--rule-soft); }
+  .correct-row:last-child { border-bottom: 0; }
+  .correct-row > div { padding: 0.95rem 1.1rem; }
+  .correct-row .claim { background: var(--paper-alt); border-right: 1px solid var(--rule-soft); }
+  .correct .tag {
+    font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+    text-transform: uppercase; margin-bottom: 0.45rem; display: block;
+  }
+  .correct .claim .tag { color: var(--flag-low); }
+  .correct .fix .tag { color: var(--flag-high); }
+  .correct p { font-size: var(--sm); margin: 0; max-width: none; }
+  @media (max-width: 640px) {
+    .correct-row { grid-template-columns: 1fr; }
+    .correct-row .claim { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  }
+
+  .note {
+    border-left: 3px solid var(--slate); background: var(--slate-wash);
+    padding: 1.05rem 1.2rem; margin: 1.5rem 0;
+  }
+  .note .tag { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 0.5rem; }
+  .note p { font-size: var(--sm); margin: 0 0 0.6rem; max-width: 64ch; }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* ── country cards ───────────────────── */
+  .hubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft); margin: 1.5rem 0; }
+  .hub { background: var(--panel); padding: 1.25rem 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .hub .cty { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.12em;
+              text-transform: uppercase; color: var(--ink-soft); }
+  .hub .role { font-size: var(--lg); font-weight: 680; letter-spacing: -0.015em; line-height: 1.2; color: var(--ochre); }
+  .hub p { font-size: var(--sm); margin: 0; max-width: none; }
+  .hub .kv { margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--rule);
+             font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── phases ──────────────────────────── */
+  .phases { margin: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .phase { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.4rem 1.5rem;
+           padding: 1.1rem 0; border-bottom: 1px solid var(--rule-soft); }
+  @media (max-width: 620px) { .phase { grid-template-columns: 1fr; } }
+  .phase .pid { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+                text-transform: uppercase; color: var(--ochre); font-weight: 600; }
+  .phase .pid span { display: block; color: var(--ink-soft); font-weight: 400; margin-top: 0.2rem; letter-spacing: 0.04em; }
+  .phase .pgoal { font-weight: 650; color: var(--ink); margin-bottom: 0.3rem; }
+  .phase .pdel { font-size: var(--sm); color: var(--ink-mid); }
+
+  /* ── confidence key ──────────────────── */
+  .conf { display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+          letter-spacing: 0.07em; text-transform: uppercase; padding: 0.12em 0.45em;
+          border: 1px solid currentColor; white-space: nowrap; }
+  .c-a { color: var(--flag-high); }
+  .c-b { color: var(--flag-mid); }
+  .c-c { color: var(--flag-low); }
+
+  /* ── footer ──────────────────────────── */
+  .colophon { padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 7vw, 5rem); }
+  .colophon h2 { font-size: var(--lg); font-weight: 680; margin: 0 0 1.1rem; letter-spacing: -0.015em; }
+  .colophon p, .colophon li { font-size: var(--sm); color: var(--ink-soft); }
+  .colophon ul { padding-left: 1.1rem; max-width: var(--measure); }
+  .colophon li { margin-bottom: 0.42rem; }
+  .disclaimer { margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+                font-size: var(--xs); color: var(--ink-soft); max-width: 72ch; line-height: 1.65; }
+
+
+  /* ── charts ──────────────────────────── */
+  :root {
+    --c1: #8A5A11; --c2: #1F4B4E; --c3: #5E6E33; --c4: #7E5F73;
+    --c5: #9FAAA4; --c6: #96331F; --c7: #9AA3A8; --bgdot: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --c1:#DFA052; --c2:#66B3B0; --c3:#A6B96D; --c4:#C79CBC;
+            --c5:#44505B; --c6:#E08A6E; --c7:#6B767E; --bgdot:#14171A; }
+  }
+  :root[data-theme="dark"] { --c1:#DFA052; --c2:#66B3B0; --c3:#A6B96D; --c4:#C79CBC;
+            --c5:#44505B; --c6:#E08A6E; --c7:#6B767E; --bgdot:#14171A; }
+  :root[data-theme="light"] { --c1:#8A5A11; --c2:#1F4B4E; --c3:#5E6E33; --c4:#7E5F73;
+            --c5:#9FAAA4; --c6:#96331F; --c7:#9AA3A8; --bgdot:#FFFFFF; }
+
+  figure.chart { margin: 1.7rem 0; }
+  figure.chart .plot { overflow-x: auto; }
+  figure.chart svg { width: 100%; min-width: 520px; height: auto; display: block; overflow: visible; }
+  figure.chart .ttl {
+    font-size: var(--sm); font-weight: 680; color: var(--ink);
+    margin-bottom: 0.15rem; letter-spacing: -0.005em;
+  }
+  figure.chart .sub { font-size: var(--xs); color: var(--ink-soft); margin-bottom: 0.9rem; }
+  figure.chart figcaption {
+    margin-top: 0.75rem; padding-top: 0.6rem; border-top: 1px solid var(--rule-soft);
+    font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; max-width: 70ch;
+  }
+  svg .grid  { stroke: var(--rule-soft); stroke-width: 1; }
+  svg .axis  { stroke: var(--rule); stroke-width: 1; }
+  svg .ax    { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-soft); }
+  svg .ar    { text-anchor: end; }
+  svg .am    { text-anchor: middle; }
+  svg .cty   { font-family: var(--sans); font-size: 12px; fill: var(--ink); font-weight: 620; }
+  svg .lg    { font-family: var(--sans); font-size: 12px; font-weight: 650; }
+  svg .lgv   { font-family: var(--mono); font-size: 9.5px; fill: var(--ink-soft); }
+
+  /* ── sales page components ───────────── */
+  .cover .idrow {
+    display:flex; flex-wrap:wrap; gap:0.5rem 2rem; padding-top:1.5rem;
+    border-top:1px solid var(--rule); font-family:var(--mono); font-size:var(--xs);
+    letter-spacing:0.05em; color:var(--ink-soft);
+  }
+  .cover .idrow strong { color:var(--ink); font-weight:600; }
+
+  .reveal { display:grid; gap:1px; background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.6rem 0; }
+  .rv { background:var(--panel); padding:1.35rem 1.4rem; }
+  .rv-tag {
+    display:inline-block; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.11em;
+    text-transform:uppercase; color:var(--ochre); border:1px solid var(--ochre-mid);
+    background:var(--ochre-wash); padding:0.14em 0.5em; margin-bottom:0.7rem;
+  }
+  .rv h3 { margin:0 0 0.6rem; font-size:var(--lg); font-weight:680; letter-spacing:-0.015em; line-height:1.3; }
+  .rv p { font-size:var(--sm); margin:0 0 0.6rem; max-width:66ch; }
+  .rv p:last-child { margin-bottom:0; }
+  .rv .rv-so {
+    padding-top:0.65rem; border-top:1px dashed var(--rule); color:var(--ink-soft);
+  }
+  .rv .rv-so strong { color:var(--ink); }
+
+  .diffs { display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:1px;
+           background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.5rem 0; }
+  .df { background:var(--panel); padding:1.2rem 1.25rem; }
+  .df h3 { margin:0 0 0.55rem; font-size:var(--base); font-weight:680; letter-spacing:-0.01em; }
+  .df p { font-size:var(--sm); margin:0 0 0.55rem; max-width:none; }
+  .df .df-so { color:var(--ink-soft); font-size:var(--xs); padding-top:0.5rem;
+               border-top:1px dashed var(--rule); margin-bottom:0; }
+
+  .tiers { display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); gap:1px;
+           background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.5rem 0; }
+  .tier { background:var(--panel); padding:1.4rem 1.3rem; display:flex; flex-direction:column; gap:0.6rem; position:relative; }
+  .tier.feat { background:var(--ochre-wash); }
+  .t-badge {
+    position:absolute; top:0; right:0; font-family:var(--mono); font-size:0.64rem;
+    letter-spacing:0.1em; text-transform:uppercase; background:var(--ochre);
+    color:var(--bgdot); padding:0.22em 0.6em;
+  }
+  .t-name { font-family:var(--mono); font-size:var(--xs); letter-spacing:0.1em;
+            text-transform:uppercase; color:var(--ink-soft); }
+  .tier.feat .t-name { color:var(--ochre); }
+  .t-price { font-size:1.62rem; font-weight:700; letter-spacing:-0.03em; line-height:1;
+             color:var(--ink); font-variant-numeric:tabular-nums; }
+  .tier ul { margin:0.3rem 0 0; padding-left:1.05rem; font-size:var(--sm); color:var(--ink-mid); }
+  .tier li { margin-bottom:0.4rem; }
+  .tier li::marker { color:var(--ochre); }
+  .t-for { margin:auto 0 0!important; padding-top:0.85rem; border-top:1px dashed var(--rule);
+           font-size:var(--xs); color:var(--ink-soft); }
+  .vat { font-size:var(--xs); color:var(--ink-soft); margin-top:-0.4rem; }
+
+  .fit { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px;
+         background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.4rem 0; }
+  .fit > div { background:var(--panel); padding:1.25rem 1.3rem; }
+  .fit-tag { display:inline-block; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.11em;
+             text-transform:uppercase; padding:0.14em 0.5em; border:1px solid currentColor; margin-bottom:0.8rem; }
+  .fit-y .fit-tag { color:var(--flag-high); }
+  .fit-n .fit-tag { color:var(--flag-low); }
+  .fit ul { margin:0; padding-left:1.05rem; font-size:var(--sm); color:var(--ink-mid); }
+  .fit li { margin-bottom:0.45rem; }
+  .fit-y li::marker { color:var(--flag-high); }
+  .fit-n li::marker { color:var(--flag-low); }
+
+  .closing { padding-block:clamp(2.2rem,5vw,3.5rem) clamp(3rem,7vw,5rem); }
+  .closing h2 { font-size:var(--xl); font-weight:700; letter-spacing:-0.02em; margin:0 0 1rem;
+                max-width:24ch; text-wrap:balance; }
+  .closing > p { max-width:var(--measure); color:var(--ink-mid); margin:0 0 1.8rem; }
+  .contact {
+    display:inline-flex; align-items:baseline; gap:0.85rem; border:1px solid var(--ochre-mid);
+    background:var(--ochre-wash); padding:0.85rem 1.4rem; text-decoration:none; color:var(--ochre);
+    font-family:var(--mono); font-size:var(--base); font-weight:600;
+    transition:transform 140ms ease, background 140ms ease;
+  }
+  .contact:hover { transform:translateY(-1px); background:var(--paper-alt); }
+  .contact:focus-visible { outline:2px solid var(--ochre); outline-offset:3px; }
+  .contact .arw { color:var(--ink-soft); }
+  .footnote { margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule-soft);
+              font-size:var(--xs); color:var(--ink-soft); max-width:72ch; line-height:1.65; }
+
+  @media print {
+    :root { --paper: #fff; --panel: #fff; --ink: #000; --ink-mid: #222; }
+    body { font-size: 10pt; }
+    section.chapter { break-inside: avoid-page; }
+    .thesis, .note, .correct, .hubs, .figrow { break-inside: avoid; }
+    .cover { break-after: page; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="doc">
+
+<header class="cover">
+  <p class="mono kicker">Investment Research · 2026 Edition</p>
+  <h1>Global Cashew<br>Origin Processing Playbook</h1>
+  <p class="sub">What an investment committee has to verify before committing capital to primary processing as it relocates to West Africa. Data through the 2025 season.</p>
+  <div class="idrow">
+    <span><strong>11 chapters</strong> · 5 charts</span>
+    <span>English and Korean editions</span>
+    <span>Confidence rating on every claim</span>
+  </div>
+</header>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">01</span><h2>Why buy this</h2></div>
+
+  <p>Most published cashew research is one of two things: a market-sizing report built on growth rates, or promotional material from an origin government or trade body. Neither tells you <strong>what to verify before capital goes out the door.</strong></p>
+
+  <p>This document was written to answer that one question. Three of its findings are <strong>disclosed in full below</strong> — enough to judge whether the rest is worth buying.</p>
+
+  <div class="reveal">
+    <div class="rv">
+      <span class="rv-tag">Disclosed 01</span>
+      <h3>EUDR does not cover cashew</h3>
+      <p>Annex I of the EU Deforestation Regulation lists cattle, cocoa, coffee, oil palm, rubber, soya and wood. <strong>Cashew appears on none of them.</strong> Application itself has also been deferred to 30 December 2026 for large operators.</p>
+      <p class="rv-so">Numerous cashew feasibility studies nonetheless carry EUDR compliance in the budget, having imported the assumption from cocoa or coffee. <strong>This single line removes months of compliance scoping and its cost.</strong></p>
+    </div>
+
+    <div class="rv">
+      <span class="rv-tag">Disclosed 02</span>
+      <h3>The US tariff on Vietnamese product is 20%, not 46%</h3>
+      <p>The 46% figure was a negotiating scenario discussed in the first half of 2025 and never implemented. The operative frame, published by USTR in October 2025, is a <strong>20% reciprocal tariff</strong>.</p>
+      <p class="rv-so">A model still running 46% materially overstates the case for relocating away from Vietnam. A feasibility study built on that number will not survive diligence.</p>
+    </div>
+
+    <div class="rv">
+      <span class="rv-tag">Disclosed 03</span>
+      <h3>2025 was a record revenue year and margins narrowed</h3>
+      <p>Vietnamese kernel exports reached US$5.23bn in 2025, an all-time high. Over the same period kernel realisations rose <strong>14.0%</strong> while raw material cost per tonne of kernel rose <strong>18.2%</strong>.</p>
+      <p class="rv-so">The report works that spread through on a per-tonne basis and shows the outturn level at which it turns negative. Method and assumptions are stated in full, so the calculation can be rerun on your own cost base.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="tag">Why give these away</span>
+    <p>All three are <strong>facts, not analysis.</strong> Disclosing them costs the report nothing and demonstrates that the remaining eight chapters were held to the same standard. The fastest way to judge research is to check whether it <em>corrects</em> a widely held error.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">02</span><h2>Contents</h2></div>
+
+  <div class="tw">
+    <table>
+      <caption>Eleven chapters</caption>
+      <thead><tr><th>Chapter</th><th>Covers</th></tr></thead>
+      <tbody>
+        <tr><th>01 Executive summary</th><td>Three things true at once in the 2025–26 market, and what follows for capital</td></tr>
+        <tr><th>02 Why the old map stopped working</th><td>Freight economics of a 70–75% shell, five origin policy instruments compared, the development finance behind them</td></tr>
+        <tr><th>03 The Vietnam compression</th><td>Volume–value divergence, the semi-processed kernel signal, <strong>quantified per-tonne spread analysis</strong></td></tr>
+        <tr><th>04 Regulatory reality check</th><td>Four corrections — EUDR, CSRD, CSDDD, tariffs. Why the binding constraint is private, not statutory</td></tr>
+        <tr><th>05 Three origins, three businesses</th><td>Côte d'Ivoire scale / Benin integrated / Ghana premium. Includes Ghana's foreign aggregation restriction and other diligence items</td></tr>
+        <tr><th>06 Unit economics</th><td>KOR, breakage, moisture, working capital turn. The three ways capital gets destroyed</td></tr>
+        <tr><th>07 By-products</th><td>Six streams rated by commercial maturity, with sequencing</td></tr>
+        <tr><th>08 Phased entry</th><td>Phase 0–3 roadmap, gating conditions for capital release, seven operating KPIs</td></tr>
+        <tr><th>09 Risk register</th><td>Working capital, raw quality, policy, price cycle, food safety, competing capital, execution</td></tr>
+        <tr><th>10 Demand</th><td>Market sizing ranges, Asia-led growth, certification premium</td></tr>
+        <tr><th>11 Recommendation</th><td>Five conditions to attach to any capital release</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Five charts</h3>
+  <ul class="body-list">
+    <li>Production by country, 2010–2025 — FAOSTAT solid, industry-reported dashed</li>
+    <li>Domestic processing volume, 2024→2025 — policy converting into tonnage</li>
+    <li>Vietnam RCN imports, 2012–2025 — roughly tenfold growth in dependency</li>
+    <li><strong>Margin bridge, 2024 vs 2025</strong> — kernel revenue, raw input cost and gross spread decomposed</li>
+    <li>Global RCN export volume and unit value cycle, 2010–2023</li>
+  </ul>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">03</span><h2>How this differs</h2></div>
+
+  <div class="diffs">
+    <div class="df">
+      <h3>Every claim carries a confidence rating</h3>
+      <p><span class="conf c-a">A</span> reproducible from a named institutional source · <span class="conf c-b">B</span> sources disagree, range shown · <span class="conf c-c">C</span> uncorroborated industry estimate</p>
+      <p class="df-so">On the judgement that an honest range serves a decision better than a confident single number.</p>
+    </div>
+    <div class="df">
+      <h3>Disagreement is disclosed, not resolved</h3>
+      <p>Published CNSL market estimates for 2025 span US$0.51bn to US$6.96bn — a <strong>thirteenfold</strong> spread. The report shows all three and states plainly that <strong>none of them should be used to underwrite an investment.</strong></p>
+      <p class="df-so">A report that quotes the largest figure is not doing diligence on your behalf.</p>
+    </div>
+    <div class="df">
+      <h3>A data trap was caught and excluded</h3>
+      <p>FAOSTAT's 2024 trade data is incomplete. Vietnamese RCN imports appear at 1.42 Mt against 2.65 Mt in customs reporting. Plotted as-is it produces a striking and <strong>entirely false "Vietnam collapse" conclusion.</strong></p>
+      <p class="df-so">Production and trade domains were assessed separately for completeness, and the reasoning is stated in the document.</p>
+    </div>
+    <div class="df">
+      <h3>Republished errors were traced</h3>
+      <p>Several widely cited market-research figures attribute FAOSTAT 2023 values to 2024 — India at 782,000 t and Vietnam at 347,634 t among them.</p>
+      <p class="df-so">Caught because the underlying data was read directly rather than cited second-hand.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">04</span><h2>Pricing</h2></div>
+
+  <div class="tiers">
+    <div class="tier">
+      <span class="t-name">Single user</span>
+      <span class="t-price num">US$450</span>
+      <ul>
+        <li>English and Korean editions, PDF</li>
+        <li>One named reader</li>
+        <li>All five charts</li>
+      </ul>
+      <p class="t-for">Individual review, early screening</p>
+    </div>
+    <div class="tier feat">
+      <span class="t-badge">Recommended</span>
+      <span class="t-name">Corporate licence</span>
+      <span class="t-price num">US$1,350</span>
+      <ul>
+        <li>English and Korean editions, PDF</li>
+        <li><strong>Unlimited internal distribution</strong></li>
+        <li>Chart source files (SVG) for reuse in internal papers</li>
+        <li>Free update release within six months</li>
+      </ul>
+      <p class="t-for">Investment committee papers, business development review</p>
+    </div>
+    <div class="tier">
+      <span class="t-name">Corporate + briefing</span>
+      <span class="t-price num">US$2,150</span>
+      <ul>
+        <li>Everything in the corporate licence</li>
+        <li><strong>90-minute briefing</strong>, in person or remote</li>
+        <li>Spread analysis rerun on your cost assumptions</li>
+        <li>Two weeks of follow-up questions</li>
+      </ul>
+      <p class="t-for">Immediately pre-committee, when assumptions need testing</p>
+    </div>
+  </div>
+
+  <p class="vat">Prices exclude VAT and any applicable withholding. Invoiced in USD or KRW.</p>
+
+  <div class="note">
+    <span class="tag">On the price</span>
+    <p>Comparable single reports from established research houses run US$3,500–7,500. This one sits below that deliberately: it carries no brand premium and asks to be judged on content.</p>
+    <p>The opposite consideration also applies. Origin processing decisions are made at seven and eight figures. <strong>Removing one wrong assumption returns the price of the report several hundred times over.</strong> The EUDR item disclosed above is already an example.</p>
+  </div>
+
+  <h3>Commissioned research</h3>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Service</th><th>Scope</th><th>From</th><th>Lead time</th></tr></thead>
+      <tbody>
+        <tr><th>Same format, another commodity</th><td>Cocoa, garlic, pollock, whelk and others — same sourcing discipline and confidence ratings</td><td class="n">US$8,000</td><td class="n">4–6 weeks</td></tr>
+        <tr><th>Single-origin deep dive</th><td>One country: regulation, aggregation structure, partner requirements</td><td class="n">US$6,500</td><td class="n">3–4 weeks</td></tr>
+        <tr><th>Quarterly update subscription</th><td>Data and policy refresh each quarter</td><td class="n">US$1,900 / qtr</td><td class="n">—</td></tr>
+        <tr><th>Internal dashboard build</th><td>The report's indicators implemented as a live data dashboard</td><td class="n">On request</td><td class="n">3 weeks +</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">05</span><h2>Who this is for</h2></div>
+
+  <div class="fit">
+    <div class="fit-y">
+      <span class="fit-tag">Good fit</span>
+      <ul>
+        <li>Investment committees assessing West African agro-processing</li>
+        <li>Food manufacturers and trading houses redesigning cashew sourcing</li>
+        <li>Operators considering the move from raw trading into processing</li>
+        <li>Financial institutions appraising African agro-industrial projects</li>
+        <li>Procurement teams that need origin policy monitored</li>
+      </ul>
+    </div>
+    <div class="fit-n">
+      <span class="fit-tag">Poor fit</span>
+      <ul>
+        <li>Consumer brand or retail marketing material</li>
+        <li>Market size and CAGR figures alone — the report argues those numbers are weakly grounded</li>
+        <li>A single confident forecast — this document presents ranges and uncertainty</li>
+        <li>Agronomy or cultivation guidance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <h2>Read a chapter before you buy</h2>
+  <p>Chapter 04, <strong>Regulatory reality check</strong>, is available in full at no cost. It is the fastest way to judge the standard of verification applied to the rest. A note on your organisation and what you are assessing is all that is needed.</p>
+  <a class="contact" href="mailto:cutekorea@gmail.com?subject=Cashew%20Playbook%20enquiry">
+    cutekorea@gmail.com <span class="arw" aria-hidden="true">→</span>
+  </a>
+
+  <p class="footnote">
+    This document is investment research prepared from publicly available institutional sources. It is not investment advice, nor an offer or solicitation in respect of any security or transaction.
+    Trade policy and export regulation in the covered jurisdictions change within seasons; re-verification and independent legal, tax and on-site technical due diligence are required before reliance.
+  </p>
+</section>
+
+</div>

@@ -1,0 +1,612 @@
+<title>산지 가공 투자 플레이북 — 안내 및 가격</title>
+
+<style>
+  :root {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+
+    --sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', 'Helvetica Neue', 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', SFMono-Regular, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+    --xs:  0.735rem;
+    --sm:  0.83rem;
+    --base: clamp(0.94rem, 0.90rem + 0.14vw, 1.0rem);
+    --lg:  clamp(1.08rem, 1.02rem + 0.28vw, 1.24rem);
+    --xl:  clamp(1.34rem, 1.18rem + 0.68vw, 1.72rem);
+    --xxl: clamp(1.8rem, 1.42rem + 1.55vw, 2.85rem);
+
+    --measure: 46em;
+    --gutter: clamp(1.15rem, 4.5vw, 4rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #0F1113;
+      --paper-alt:  #171A1D;
+      --panel:      #14171A;
+      --ink:        #E8E9E6;
+      --ink-mid:    #B2B7BB;
+      --ink-soft:   #838A91;
+      --rule:       #2A2F34;
+      --rule-soft:  #1F2429;
+      --ochre:      #D9A052;
+      --ochre-mid:  #B8853C;
+      --ochre-wash: #241E14;
+      --slate:      #66B3B0;
+      --slate-wash: #14201F;
+      --flag-high:  #5FB983;
+      --flag-mid:   #D9A052;
+      --flag-low:   #DE7F68;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #0F1113;
+    --paper-alt:  #171A1D;
+    --panel:      #14171A;
+    --ink:        #E8E9E6;
+    --ink-mid:    #B2B7BB;
+    --ink-soft:   #838A91;
+    --rule:       #2A2F34;
+    --rule-soft:  #1F2429;
+    --ochre:      #D9A052;
+    --ochre-mid:  #B8853C;
+    --ochre-wash: #241E14;
+    --slate:      #66B3B0;
+    --slate-wash: #14201F;
+    --flag-high:  #5FB983;
+    --flag-mid:   #D9A052;
+    --flag-low:   #DE7F68;
+  }
+  :root[data-theme="light"] {
+    --paper:      #FBFBFA;
+    --paper-alt:  #F1F2F0;
+    --panel:      #FFFFFF;
+    --ink:        #14161A;
+    --ink-mid:    #3C4148;
+    --ink-soft:   #6E757E;
+    --rule:       #D6D8D4;
+    --rule-soft:  #E6E8E4;
+    --ochre:      #8A5A11;
+    --ochre-mid:  #A87424;
+    --ochre-wash: #F3EADA;
+    --slate:      #1F4B4E;
+    --slate-wash: #E4EDEC;
+    --flag-high:  #1F5E3A;
+    --flag-mid:   #8A5A11;
+    --flag-low:   #96331F;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--base);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .doc { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: var(--xs);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ── cover ───────────────────────────── */
+  .cover { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2rem, 5vw, 3.5rem); border-bottom: 2px solid var(--ink); }
+  .cover .kicker { color: var(--ochre); font-weight: 600; margin: 0 0 2.4rem; }
+  .cover h1 {
+    font-size: var(--xxl); line-height: 1.08; letter-spacing: -0.028em;
+    font-weight: 700; margin: 0 0 0.45rem; max-width: 17ch; text-wrap: balance;
+  }
+  .cover .sub {
+    font-size: var(--lg); color: var(--ink-mid); font-weight: 400;
+    margin: 0 0 2.6rem; max-width: 46ch; line-height: 1.45;
+  }
+  .cover-meta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.4rem 2rem; padding-top: 1.6rem; border-top: 1px solid var(--rule);
+  }
+  .cover-meta dt { color: var(--ink-soft); margin-bottom: 0.3rem; }
+  .cover-meta dd { margin: 0; font-size: var(--sm); color: var(--ink); font-weight: 500; line-height: 1.5; }
+
+  /* ── thesis banner ───────────────────── */
+  .thesis {
+    margin-block: clamp(2rem, 5vw, 3.25rem);
+    padding: clamp(1.4rem, 3.5vw, 2.1rem) clamp(1.3rem, 3.5vw, 2.2rem);
+    background: var(--ochre-wash); border-left: 3px solid var(--ochre);
+  }
+  .thesis .mono { color: var(--ochre); margin: 0 0 0.85rem; }
+  .thesis p { margin: 0 0 0.85rem; font-size: var(--lg); line-height: 1.5; max-width: 62ch; }
+  .thesis p:last-child { margin-bottom: 0; }
+  .thesis strong { font-weight: 650; }
+
+  /* ── sections ────────────────────────── */
+  section.chapter { padding-block: clamp(2rem, 4.5vw, 3.25rem); border-bottom: 1px solid var(--rule); }
+  section.chapter:last-of-type { border-bottom: 0; }
+
+  .ch-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+  .ch-num {
+    font-family: var(--mono); font-size: var(--sm); font-weight: 600;
+    color: var(--ochre); flex: none; padding-top: 0.2em; letter-spacing: 0.04em;
+  }
+  .ch-head h2 {
+    font-size: var(--xl); font-weight: 680; letter-spacing: -0.021em;
+    margin: 0; line-height: 1.22; text-wrap: balance;
+  }
+
+  h3 {
+    font-size: var(--base); font-weight: 680; letter-spacing: -0.008em;
+    margin: 2rem 0 0.7rem; color: var(--ink);
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin: 0 0 1rem; max-width: var(--measure); color: var(--ink-mid); }
+  p strong, li strong { color: var(--ink); font-weight: 650; }
+  p:last-child { margin-bottom: 0; }
+
+  ul.body-list { margin: 0 0 1.1rem; padding-left: 1.15rem; max-width: var(--measure); color: var(--ink-mid); }
+  ul.body-list li { margin-bottom: 0.5rem; }
+  ul.body-list li::marker { color: var(--ochre); }
+
+  /* ── data figures ────────────────────── */
+  .figrow {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft);
+    margin: 1.5rem 0;
+  }
+  .figrow > div { background: var(--panel); padding: 1.05rem 1.15rem; }
+  .figrow .lbl { color: var(--ink-soft); font-family: var(--mono); font-size: var(--xs);
+                 letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .figrow .val { font-size: 1.55rem; font-weight: 700; line-height: 1.05;
+                 letter-spacing: -0.028em; font-variant-numeric: tabular-nums; }
+  .figrow .val .u { font-size: 0.52em; font-weight: 500; color: var(--ink-soft); letter-spacing: 0; }
+  .figrow .cap { font-size: var(--xs); color: var(--ink-soft); margin-top: 0.42rem; line-height: 1.45; }
+
+  /* ── tables ──────────────────────────── */
+  .tw { overflow-x: auto; margin: 1.4rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--sm); min-width: 560px; }
+  caption {
+    text-align: left; font-family: var(--mono); font-size: var(--xs);
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-soft);
+    padding-bottom: 0.7rem;
+  }
+  th, td { text-align: left; padding: 0.68rem 0.9rem 0.68rem 0; vertical-align: top;
+           border-bottom: 1px solid var(--rule-soft); }
+  thead th {
+    font-family: var(--mono); font-size: var(--xs); font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  tbody th { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  td { color: var(--ink-mid); }
+  td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+
+  /* ── correction / callout blocks ─────── */
+  .correct { border: 1px solid var(--rule); margin: 1.5rem 0; }
+  .correct-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.35fr);
+                 border-bottom: 1px solid var(--rule-soft); }
+  .correct-row:last-child { border-bottom: 0; }
+  .correct-row > div { padding: 0.95rem 1.1rem; }
+  .correct-row .claim { background: var(--paper-alt); border-right: 1px solid var(--rule-soft); }
+  .correct .tag {
+    font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+    text-transform: uppercase; margin-bottom: 0.45rem; display: block;
+  }
+  .correct .claim .tag { color: var(--flag-low); }
+  .correct .fix .tag { color: var(--flag-high); }
+  .correct p { font-size: var(--sm); margin: 0; max-width: none; }
+  @media (max-width: 640px) {
+    .correct-row { grid-template-columns: 1fr; }
+    .correct-row .claim { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  }
+
+  .note {
+    border-left: 3px solid var(--slate); background: var(--slate-wash);
+    padding: 1.05rem 1.2rem; margin: 1.5rem 0;
+  }
+  .note .tag { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 0.5rem; }
+  .note p { font-size: var(--sm); margin: 0 0 0.6rem; max-width: 64ch; }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* ── country cards ───────────────────── */
+  .hubs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft); margin: 1.5rem 0; }
+  .hub { background: var(--panel); padding: 1.25rem 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .hub .cty { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.12em;
+              text-transform: uppercase; color: var(--ink-soft); }
+  .hub .role { font-size: var(--lg); font-weight: 680; letter-spacing: -0.015em; line-height: 1.2; color: var(--ochre); }
+  .hub p { font-size: var(--sm); margin: 0; max-width: none; }
+  .hub .kv { margin-top: auto; padding-top: 0.75rem; border-top: 1px dashed var(--rule);
+             font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; }
+
+  /* ── phases ──────────────────────────── */
+  .phases { margin: 1.5rem 0; border-top: 1px solid var(--rule); }
+  .phase { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.4rem 1.5rem;
+           padding: 1.1rem 0; border-bottom: 1px solid var(--rule-soft); }
+  @media (max-width: 620px) { .phase { grid-template-columns: 1fr; } }
+  .phase .pid { font-family: var(--mono); font-size: var(--xs); letter-spacing: 0.09em;
+                text-transform: uppercase; color: var(--ochre); font-weight: 600; }
+  .phase .pid span { display: block; color: var(--ink-soft); font-weight: 400; margin-top: 0.2rem; letter-spacing: 0.04em; }
+  .phase .pgoal { font-weight: 650; color: var(--ink); margin-bottom: 0.3rem; }
+  .phase .pdel { font-size: var(--sm); color: var(--ink-mid); }
+
+  /* ── confidence key ──────────────────── */
+  .conf { display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+          letter-spacing: 0.07em; text-transform: uppercase; padding: 0.12em 0.45em;
+          border: 1px solid currentColor; white-space: nowrap; }
+  .c-a { color: var(--flag-high); }
+  .c-b { color: var(--flag-mid); }
+  .c-c { color: var(--flag-low); }
+
+  /* ── footer ──────────────────────────── */
+  .colophon { padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 7vw, 5rem); }
+  .colophon h2 { font-size: var(--lg); font-weight: 680; margin: 0 0 1.1rem; letter-spacing: -0.015em; }
+  .colophon p, .colophon li { font-size: var(--sm); color: var(--ink-soft); }
+  .colophon ul { padding-left: 1.1rem; max-width: var(--measure); }
+  .colophon li { margin-bottom: 0.42rem; }
+  .disclaimer { margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+                font-size: var(--xs); color: var(--ink-soft); max-width: 72ch; line-height: 1.65; }
+
+
+  /* ── charts ──────────────────────────── */
+  :root {
+    --c1: #8A5A11; --c2: #1F4B4E; --c3: #5E6E33; --c4: #7E5F73;
+    --c5: #9FAAA4; --c6: #96331F; --c7: #9AA3A8; --bgdot: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --c1:#DFA052; --c2:#66B3B0; --c3:#A6B96D; --c4:#C79CBC;
+            --c5:#44505B; --c6:#E08A6E; --c7:#6B767E; --bgdot:#14171A; }
+  }
+  :root[data-theme="dark"] { --c1:#DFA052; --c2:#66B3B0; --c3:#A6B96D; --c4:#C79CBC;
+            --c5:#44505B; --c6:#E08A6E; --c7:#6B767E; --bgdot:#14171A; }
+  :root[data-theme="light"] { --c1:#8A5A11; --c2:#1F4B4E; --c3:#5E6E33; --c4:#7E5F73;
+            --c5:#9FAAA4; --c6:#96331F; --c7:#9AA3A8; --bgdot:#FFFFFF; }
+
+  figure.chart { margin: 1.7rem 0; }
+  figure.chart .plot { overflow-x: auto; }
+  figure.chart svg { width: 100%; min-width: 520px; height: auto; display: block; overflow: visible; }
+  figure.chart .ttl {
+    font-size: var(--sm); font-weight: 680; color: var(--ink);
+    margin-bottom: 0.15rem; letter-spacing: -0.005em;
+  }
+  figure.chart .sub { font-size: var(--xs); color: var(--ink-soft); margin-bottom: 0.9rem; }
+  figure.chart figcaption {
+    margin-top: 0.75rem; padding-top: 0.6rem; border-top: 1px solid var(--rule-soft);
+    font-size: var(--xs); color: var(--ink-soft); line-height: 1.55; max-width: 70ch;
+  }
+  svg .grid  { stroke: var(--rule-soft); stroke-width: 1; }
+  svg .axis  { stroke: var(--rule); stroke-width: 1; }
+  svg .ax    { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-soft); }
+  svg .ar    { text-anchor: end; }
+  svg .am    { text-anchor: middle; }
+  svg .cty   { font-family: var(--sans); font-size: 12px; fill: var(--ink); font-weight: 620; }
+  svg .lg    { font-family: var(--sans); font-size: 12px; font-weight: 650; }
+  svg .lgv   { font-family: var(--mono); font-size: 9.5px; fill: var(--ink-soft); }
+
+  /* ── sales page components ───────────── */
+  .cover .idrow {
+    display:flex; flex-wrap:wrap; gap:0.5rem 2rem; padding-top:1.5rem;
+    border-top:1px solid var(--rule); font-family:var(--mono); font-size:var(--xs);
+    letter-spacing:0.05em; color:var(--ink-soft);
+  }
+  .cover .idrow strong { color:var(--ink); font-weight:600; }
+
+  .reveal { display:grid; gap:1px; background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.6rem 0; }
+  .rv { background:var(--panel); padding:1.35rem 1.4rem; }
+  .rv-tag {
+    display:inline-block; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.11em;
+    text-transform:uppercase; color:var(--ochre); border:1px solid var(--ochre-mid);
+    background:var(--ochre-wash); padding:0.14em 0.5em; margin-bottom:0.7rem;
+  }
+  .rv h3 { margin:0 0 0.6rem; font-size:var(--lg); font-weight:680; letter-spacing:-0.015em; line-height:1.3; }
+  .rv p { font-size:var(--sm); margin:0 0 0.6rem; max-width:66ch; }
+  .rv p:last-child { margin-bottom:0; }
+  .rv .rv-so {
+    padding-top:0.65rem; border-top:1px dashed var(--rule); color:var(--ink-soft);
+  }
+  .rv .rv-so strong { color:var(--ink); }
+
+  .diffs { display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:1px;
+           background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.5rem 0; }
+  .df { background:var(--panel); padding:1.2rem 1.25rem; }
+  .df h3 { margin:0 0 0.55rem; font-size:var(--base); font-weight:680; letter-spacing:-0.01em; }
+  .df p { font-size:var(--sm); margin:0 0 0.55rem; max-width:none; }
+  .df .df-so { color:var(--ink-soft); font-size:var(--xs); padding-top:0.5rem;
+               border-top:1px dashed var(--rule); margin-bottom:0; }
+
+  .tiers { display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); gap:1px;
+           background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.5rem 0; }
+  .tier { background:var(--panel); padding:1.4rem 1.3rem; display:flex; flex-direction:column; gap:0.6rem; position:relative; }
+  .tier.feat { background:var(--ochre-wash); }
+  .t-badge {
+    position:absolute; top:0; right:0; font-family:var(--mono); font-size:0.64rem;
+    letter-spacing:0.1em; text-transform:uppercase; background:var(--ochre);
+    color:var(--bgdot); padding:0.22em 0.6em;
+  }
+  .t-name { font-family:var(--mono); font-size:var(--xs); letter-spacing:0.1em;
+            text-transform:uppercase; color:var(--ink-soft); }
+  .tier.feat .t-name { color:var(--ochre); }
+  .t-price { font-size:1.62rem; font-weight:700; letter-spacing:-0.03em; line-height:1;
+             color:var(--ink); font-variant-numeric:tabular-nums; }
+  .tier ul { margin:0.3rem 0 0; padding-left:1.05rem; font-size:var(--sm); color:var(--ink-mid); }
+  .tier li { margin-bottom:0.4rem; }
+  .tier li::marker { color:var(--ochre); }
+  .t-for { margin:auto 0 0!important; padding-top:0.85rem; border-top:1px dashed var(--rule);
+           font-size:var(--xs); color:var(--ink-soft); }
+  .vat { font-size:var(--xs); color:var(--ink-soft); margin-top:-0.4rem; }
+
+  .fit { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1px;
+         background:var(--rule-soft); border:1px solid var(--rule-soft); margin:1.4rem 0; }
+  .fit > div { background:var(--panel); padding:1.25rem 1.3rem; }
+  .fit-tag { display:inline-block; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.11em;
+             text-transform:uppercase; padding:0.14em 0.5em; border:1px solid currentColor; margin-bottom:0.8rem; }
+  .fit-y .fit-tag { color:var(--flag-high); }
+  .fit-n .fit-tag { color:var(--flag-low); }
+  .fit ul { margin:0; padding-left:1.05rem; font-size:var(--sm); color:var(--ink-mid); }
+  .fit li { margin-bottom:0.45rem; }
+  .fit-y li::marker { color:var(--flag-high); }
+  .fit-n li::marker { color:var(--flag-low); }
+
+  .closing { padding-block:clamp(2.2rem,5vw,3.5rem) clamp(3rem,7vw,5rem); }
+  .closing h2 { font-size:var(--xl); font-weight:700; letter-spacing:-0.02em; margin:0 0 1rem;
+                max-width:24ch; text-wrap:balance; }
+  .closing > p { max-width:var(--measure); color:var(--ink-mid); margin:0 0 1.8rem; }
+  .contact {
+    display:inline-flex; align-items:baseline; gap:0.85rem; border:1px solid var(--ochre-mid);
+    background:var(--ochre-wash); padding:0.85rem 1.4rem; text-decoration:none; color:var(--ochre);
+    font-family:var(--mono); font-size:var(--base); font-weight:600;
+    transition:transform 140ms ease, background 140ms ease;
+  }
+  .contact:hover { transform:translateY(-1px); background:var(--paper-alt); }
+  .contact:focus-visible { outline:2px solid var(--ochre); outline-offset:3px; }
+  .contact .arw { color:var(--ink-soft); }
+  .footnote { margin-top:2.4rem; padding-top:1.1rem; border-top:1px solid var(--rule-soft);
+              font-size:var(--xs); color:var(--ink-soft); max-width:72ch; line-height:1.65; }
+
+  @media print {
+    :root { --paper: #fff; --panel: #fff; --ink: #000; --ink-mid: #222; }
+    body { font-size: 10pt; }
+    section.chapter { break-inside: avoid-page; }
+    .thesis, .note, .correct, .hubs, .figrow { break-inside: avoid; }
+    .cover { break-after: page; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="doc">
+
+<header class="cover">
+  <p class="mono kicker">투자 리서치 · 2026년판</p>
+  <h1>글로벌 캐슈넛<br>산지 가공 투자 플레이북</h1>
+  <p class="sub">서아프리카로 이동 중인 1차 가공에 자본을 투입하기 전, 투자심의가 반드시 확인해야 할 것들. 2025년 시즌까지 반영.</p>
+  <div class="idrow">
+    <span><strong>11개 장</strong> · 차트 5종</span>
+    <span>한국어판 · 영문판</span>
+    <span>모든 주장에 신뢰도 등급 표기</span>
+  </div>
+</header>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">01</span><h2>이 문서를 사야 하는 이유</h2></div>
+
+  <p>시중 캐슈 리포트는 대부분 두 가지 중 하나다. 시장 규모와 성장률을 나열한 조사기관 보고서이거나, 산지 정부·협회가 배포하는 홍보 자료다. 어느 쪽도 <strong>자본을 투입하기 전에 무엇을 검증해야 하는지</strong>는 말해주지 않는다.</p>
+
+  <p>본 문서는 그 질문 하나에 답하기 위해 작성됐다. 아래는 문서에서 다루는 내용 중 <strong>세 가지를 미리 공개</strong>한 것이다. 구매 판단에 필요한 만큼은 여기서 확인할 수 있다.</p>
+
+  <div class="reveal">
+    <div class="rv">
+      <span class="rv-tag">공개 ①</span>
+      <h3>EUDR은 캐슈에 적용되지 않는다</h3>
+      <p>EU 산림전용방지규정(EUDR) 부속서 I의 대상 품목은 소·코코아·커피·팜유·고무·대두·목재다. <strong>캐슈는 어디에도 없다.</strong> 적용 시점 자체도 대기업 기준 2026년 12월 30일로 연기됐다.</p>
+      <p class="rv-so">그럼에도 다수의 캐슈 타당성 검토가 EUDR 준수 비용을 예산에 반영하고 있다. 코코아·커피의 전제를 그대로 가져왔기 때문이다. <strong>이 한 줄만으로 컴플라이언스 스코핑 수개월과 그 비용이 절약된다.</strong></p>
+    </div>
+
+    <div class="rv">
+      <span class="rv-tag">공개 ②</span>
+      <h3>미국의 대베트남 관세는 46%가 아니라 20%다</h3>
+      <p>46%는 2025년 상반기 협상 과정에서 논의된 시나리오였고 시행되지 않았다. 2025년 10월 USTR이 발표한 유효 프레임은 <strong>20% 상호관세</strong>다.</p>
+      <p class="rv-so">46%로 돌린 사업성 모델은 베트남 이탈 논거를 과대평가한다. 그 숫자로 작성된 검토서는 실사를 통과하지 못한다.</p>
+    </div>
+
+    <div class="rv">
+      <span class="rv-tag">공개 ③</span>
+      <h3>2025년은 사상 최대 매출이었고, 마진은 줄었다</h3>
+      <p>베트남의 2025년 커널 수출은 52.3억 달러로 사상 최대였다. 같은 기간 커널 실현단가는 <strong>14.0%</strong> 올랐고 커널 1톤당 원물 투입원가는 <strong>18.2%</strong> 올랐다.</p>
+      <p class="rv-so">본문에는 이 스프레드를 톤당 단위로 산출한 계산과, 수율이 어느 지점에서 음수로 전환되는지에 대한 민감도가 들어 있다. 산출 방식과 가정을 전부 공개했으므로 귀사 조건으로 다시 계산할 수 있다.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <span class="tag">이 세 건을 무료로 공개하는 이유</span>
+    <p>세 건 모두 <strong>사실이지 분석이 아니다.</strong> 공개해도 문서의 가치는 줄지 않고, 오히려 나머지 8개 장이 같은 기준으로 검증됐다는 것을 증명한다. 리포트를 판단하는 가장 빠른 방법은 그 리포트가 <em>틀린 통념을 정정하는지</em>를 보는 것이다.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">02</span><h2>구성</h2></div>
+
+  <div class="tw">
+    <table>
+      <caption>본문 11개 장</caption>
+      <thead><tr><th>장</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><th>01 요약</th><td>2025~26년 시장에서 동시에 성립하는 세 가지 사실과 투자 시사점</td></tr>
+        <tr><th>02 기존 지도가 작동을 멈춘 이유</th><td>껍질 70~75%의 물류 경제학, 산지국 정책 수단 5종 비교, 정책 뒤의 개발금융</td></tr>
+        <tr><th>03 베트남의 압축</th><td>수입 물량·금액 괴리, 반가공 커널 수입 신호, <strong>톤당 스프레드 정량 분석</strong></td></tr>
+        <tr><th>04 규제 팩트체크</th><td>EUDR·CSRD·CSDDD·관세 4건 정정. 법령이 아니라 바이어가 구속 조건인 이유</td></tr>
+        <tr><th>05 세 산지, 세 개의 다른 사업</th><td>코트디부아르 규모형 / 베냉 통합형 / 가나 프리미엄형. 가나 외국인 집하 제한 등 실사 항목</td></tr>
+        <tr><th>06 단위경제</th><td>KOR·파손율·수분·운전자본 회전. 자본이 파괴되는 3가지 지점</td></tr>
+        <tr><th>07 부산물</th><td>CNSL·바이오차·파손커널 등 6종 성숙도 평가 및 착수 순서</td></tr>
+        <tr><th>08 단계별 진입</th><td>Phase 0~3 로드맵과 자본 집행 관문 조건, 운영 KPI 7종</td></tr>
+        <tr><th>09 리스크 레지스터</th><td>운전자본·원물품질·정책·가격사이클·식품안전·경쟁·실행 7개 항목과 대응</td></tr>
+        <tr><th>10 수요</th><td>시장 규모 추정치 범위, 아시아 중심 성장, 인증 프리미엄</td></tr>
+        <tr><th>11 권고</th><td>투자심의 앞 자본 집행 조건 5개항</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>차트 5종</h3>
+  <ul class="body-list">
+    <li>국가별 원물 생산량 (2010~2025) — FAOSTAT 실선 / 업계 보고 점선 구분</li>
+    <li>산지 국내 가공량 (2024→2025) — 정책이 물량으로 전환된 증거</li>
+    <li>베트남 원물 수입량 (2012~2025) — 약 10배 증가와 의존 심화</li>
+    <li><strong>마진 압축 브리지 (2024 vs 2025)</strong> — 커널 매출·원물 투입·스프레드 분해</li>
+    <li>글로벌 원물 수출 물량 및 단가 사이클 (2010~2023)</li>
+  </ul>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">03</span><h2>다른 리포트와 무엇이 다른가</h2></div>
+
+  <div class="diffs">
+    <div class="df">
+      <h3>모든 주장에 신뢰도 등급</h3>
+      <p><span class="conf c-a">A</span> 기관 1차 출처로 재현 가능 · <span class="conf c-b">B</span> 출처 간 불일치 시 범위 병기 · <span class="conf c-c">C</span> 미검증 업계 추정</p>
+      <p class="df-so">확신에 찬 단일 수치보다 정직한 범위가 의사결정에 유용하다는 판단에서다.</p>
+    </div>
+    <div class="df">
+      <h3>불일치를 봉합하지 않는다</h3>
+      <p>CNSL 시장 규모 추정치는 조사기관별로 5.1억 달러에서 69.6억 달러까지 <strong>13배</strong> 벌어진다. 본문은 이를 그대로 공개하고 <strong>어느 수치로도 투자를 인수하지 말라</strong>고 명시한다.</p>
+      <p class="df-so">가장 큰 숫자를 인용하는 리포트는 독자를 대신해 실사를 하고 있지 않은 것이다.</p>
+    </div>
+    <div class="df">
+      <h3>데이터 함정을 걸러냈다</h3>
+      <p>FAOSTAT 2024년 무역 데이터는 미완결이다. 베트남 원물 수입이 관세 기준 265만톤인데 FAOSTAT에는 142만톤으로 나타난다. 그대로 그리면 <strong>"베트남 붕괴"라는 강렬하고 틀린 결론</strong>이 나온다.</p>
+      <p class="df-so">생산 도메인은 완결됐고 무역 도메인은 아니라는 점을 구분해 처리했으며, 그 판단 근거를 문서에 기재했다.</p>
+    </div>
+    <div class="df">
+      <h3>재인용 오류를 추적했다</h3>
+      <p>널리 유통되는 시장조사 수치 다수가 FAOSTAT 2023년 값을 2024년으로 표기한다. 인도 782,000톤과 베트남 347,634톤이 그 예다.</p>
+      <p class="df-so">2차 자료를 재인용하지 않고 원자료를 직접 확인했기 때문에 잡힌 오류다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">04</span><h2>가격</h2></div>
+
+  <div class="tiers">
+    <div class="tier">
+      <span class="t-name">단일 사용자</span>
+      <span class="t-price num">₩600,000</span>
+      <ul>
+        <li>한국어판 + 영문판 PDF</li>
+        <li>1인 열람</li>
+        <li>차트 5종 포함</li>
+      </ul>
+      <p class="t-for">개인 검토, 사전 조사 단계</p>
+    </div>
+    <div class="tier feat">
+      <span class="t-badge">권장</span>
+      <span class="t-name">기업 라이선스</span>
+      <span class="t-price num">₩1,800,000</span>
+      <ul>
+        <li>한국어판 + 영문판 PDF</li>
+        <li><strong>사내 무제한 공유</strong></li>
+        <li>차트 원본 파일(SVG) 제공 — 사내 자료에 재사용 가능</li>
+        <li>발간 후 6개월 내 갱신본 무상 제공</li>
+      </ul>
+      <p class="t-for">투자심의 상정, 사업개발팀 검토</p>
+    </div>
+    <div class="tier">
+      <span class="t-name">기업 + 브리핑</span>
+      <span class="t-price num">₩2,900,000</span>
+      <ul>
+        <li>기업 라이선스 전체</li>
+        <li><strong>90분 브리핑</strong> (대면 또는 화상)</li>
+        <li>귀사 조건 기준 스프레드 재계산</li>
+        <li>후속 질의 응답 2주</li>
+      </ul>
+      <p class="t-for">투자심의 직전, 가정 검증 필요 시</p>
+    </div>
+  </div>
+
+  <p class="vat">모든 금액은 VAT 별도. 세금계산서 발행 또는 프리랜서 3.3% 원천징수 중 선택 가능.</p>
+
+  <div class="note">
+    <span class="tag">가격에 대하여</span>
+    <p>동급 조사기관의 단일 리포트는 통상 500만~1,000만 원 선이다. 본 문서는 브랜드 프리미엄 없이 내용으로만 판단받기 위해 그 아래에 두었다.</p>
+    <p>반대로 판단해야 할 것도 있다. 산지 가공 투자 검토는 통상 수십억 원 단위다. <strong>잘못된 전제 하나를 걸러내는 것만으로 리포트 값의 수백 배가 회수된다.</strong> 위에 공개한 EUDR 항목 하나가 이미 그 예다.</p>
+  </div>
+
+  <h3>맞춤 리서치</h3>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>항목</th><th>범위</th><th>금액</th><th>기간</th></tr></thead>
+      <tbody>
+        <tr><th>타 품목 동일 포맷 리포트</th><td>코코아·마늘·골뱅이·명태 등. 동일한 출처 규율과 신뢰도 등급 적용</td><td class="n">1,000만 원~</td><td class="n">4~6주</td></tr>
+        <tr><th>특정 산지 심층 실사 지원</th><td>단일 국가 규제·집하구조·파트너 요건 정밀 조사</td><td class="n">800만 원~</td><td class="n">3~4주</td></tr>
+        <tr><th>정기 갱신 구독</th><td>분기 1회 데이터·정책 갱신본 제공</td><td class="n">분기 250만 원</td><td class="n">—</td></tr>
+        <tr><th>사내 대시보드 구축</th><td>본 리포트 지표를 실시간 연동 대시보드로 구현</td><td class="n">별도 견적</td><td class="n">3주~</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-head"><span class="ch-num">05</span><h2>이 문서가 맞는 독자</h2></div>
+
+  <div class="fit">
+    <div class="fit-y">
+      <span class="fit-tag">적합</span>
+      <ul>
+        <li>서아프리카 농산가공 투자를 검토 중인 투자심의위원회</li>
+        <li>캐슈 소싱 구조를 재설계하려는 식품 제조사·상사</li>
+        <li>원물 트레이딩에서 가공으로 이동을 검토하는 사업자</li>
+        <li>아프리카 농산업 프로젝트를 심사하는 금융기관</li>
+        <li>산지 정책 변동을 모니터링해야 하는 구매 조직</li>
+      </ul>
+    </div>
+    <div class="fit-n">
+      <span class="fit-tag">부적합</span>
+      <ul>
+        <li>캐슈 소매 브랜드 마케팅 자료를 찾는 경우</li>
+        <li>시장 규모·성장률 수치만 필요한 경우 — 본문은 그 수치들의 신뢰도가 낮다고 본다</li>
+        <li>단일 확정 전망치를 원하는 경우 — 본문은 범위와 불확실성을 제시한다</li>
+        <li>영농·재배 기술 자료가 필요한 경우</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <h2>표본을 먼저 보시겠습니까</h2>
+  <p>구매 전 <strong>04장 「규제 팩트체크」 전문</strong>을 무상으로 보내드립니다. 이 장 하나로 문서의 검증 수준을 판단하실 수 있습니다. 회사명과 검토 중인 사안을 간단히 알려주시면 됩니다.</p>
+  <a class="contact" href="mailto:cutekorea@gmail.com?subject=%EC%BA%90%EC%8A%88%EB%84%9B%20%ED%94%8C%EB%A0%88%EC%9D%B4%EB%B6%81%20%EB%AC%B8%EC%9D%98">
+    cutekorea@gmail.com <span class="arw" aria-hidden="true">→</span>
+  </a>
+
+  <p class="footnote">
+    본 문서는 공개된 기관 자료를 바탕으로 작성한 투자 리서치이며 투자 자문이 아닙니다. 특정 증권이나 거래에 관한 청약 또는 청약의 권유가 아닙니다.
+    대상 관할권의 통상 정책과 수출 규제는 시즌 중에도 변경되므로, 의존 전 재확인 및 독립적인 법률·세무·현장 실사가 필요합니다.
+  </p>
+</section>
+
+</div>
