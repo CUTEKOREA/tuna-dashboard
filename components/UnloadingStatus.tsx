@@ -7,6 +7,7 @@ import TermTooltip from './TermTooltip';
 
 import HarborBanner from './HarborBanner';
 import { ChartPatternDefs } from './ChartPatterns';
+import UnloadingHistoryBoundary from './UnloadingHistoryBoundary';
 import {
   getUnloadingEtaLabel,
   getVesselStatusKind,
@@ -2027,6 +2028,7 @@ export default function UnloadingStatus() {
         </Suspense>
       </div>
 
+      <UnloadingHistoryBoundary />
 
     </div>
   );

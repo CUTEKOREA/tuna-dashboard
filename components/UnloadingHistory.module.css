@@ -1,0 +1,85 @@
+.section,
+.stateCard {
+  min-width: 0;
+  overflow: hidden;
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(8, 47, 73, 0.52), rgba(15, 23, 42, 0.72));
+  box-shadow: 0 18px 42px rgba(2, 8, 23, 0.28), inset 0 1px rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+}
+
+.header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.header h2, .stateCard h2 { margin: 5px 0 8px; font-size: clamp(1.35rem, 3vw, 1.8rem); background: linear-gradient(135deg, #f8fafc, #38bdf8); -webkit-background-clip: text; color: transparent; }
+.eyebrow { color: #38bdf8; font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
+.cardDesc, .stateCard p { max-width: 68ch; color: #cbd5e1; font-size: .86rem; line-height: 1.6; }
+.telemetry { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
+
+.chartCard { min-width: 0; margin-top: 20px; padding: 18px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 14px; background: rgba(2, 8, 23, .32); }
+.chartTitle { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.chartTitle > div { display: flex; align-items: center; gap: 8px; }
+.chartTitle span { color: #94a3b8; font-size: .72rem; }
+.chart { min-width: 0; }
+
+.yearTabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 20px 0 14px; padding: 5px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 12px; background: rgba(2, 8, 23, .3); }
+.yearTab, .portButton, .retryButton { min-height: 44px; border: 1px solid transparent; border-radius: 9px; background: transparent; color: #94a3b8; font-weight: 750; cursor: pointer; transition: transform .2s ease, color .2s ease, background .2s ease, border-color .2s ease; }
+.yearTab:hover, .portButton:hover { color: #f8fafc; background: rgba(56, 189, 248, .1); }
+.yearTabActive { color: #f8fafc; border-color: rgba(56, 189, 248, .35); background: rgba(14, 165, 233, .2); }
+.yearTab:focus-visible, .portButton:focus-visible, .retryButton:focus-visible { outline: 3px solid rgba(56, 189, 248, .55); outline-offset: 2px; }
+
+.kpiGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.kpiCard { min-width: 0; padding: 16px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 13px; background: rgba(15, 23, 42, .56); }
+.kpiCard > svg { color: #38bdf8; }
+.kpiCard span { display: block; margin: 7px 0; color: #94a3b8; font-size: .75rem; }
+.kpiCard strong { display: block; color: #f8fafc; font-size: clamp(.95rem, 2vw, 1.18rem); overflow-wrap: anywhere; }
+.kpiCard small { display: block; margin-top: 7px; color: #94a3b8; font-size: .68rem; line-height: 1.45; }
+
+.portFilters { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
+.portButton { padding: 8px 14px; border-color: rgba(148, 163, 184, .18); }
+.portButton[aria-pressed="true"] { color: #f8fafc; border-color: rgba(245, 158, 11, .4); background: rgba(245, 158, 11, .14); }
+
+.desktopTable { min-width: 0; overflow-x: auto; border: 1px solid rgba(148, 163, 184, .13); border-radius: 12px; }
+.desktopTable table { width: 100%; border-collapse: collapse; font-size: .78rem; }
+.desktopTable th, .desktopTable td { padding: 12px 10px; border-bottom: 1px solid rgba(148, 163, 184, .1); text-align: left; vertical-align: top; }
+.desktopTable thead th { color: #94a3b8; background: rgba(2, 8, 23, .38); font-size: .7rem; }
+.desktopTable tbody th { max-width: 180px; color: #f8fafc; overflow-wrap: anywhere; }
+.desktopTable td { color: #cbd5e1; }
+.desktopTable td small { display: block; margin-top: 4px; color: #64748b; }
+.status { display: inline-block; padding: 4px 7px; border-radius: 999px; line-height: 1.35; }
+.verified { color: #67e8f9; background: rgba(6, 182, 212, .12); }
+.partial { color: #fbbf24; background: rgba(245, 158, 11, .12); }
+.unverified { color: #cbd5e1; background: rgba(148, 163, 184, .12); }
+.empty { padding: 28px; border: 1px dashed rgba(148, 163, 184, .22); border-radius: 12px; color: #94a3b8; text-align: center; }
+
+.mobileList { display: none; }
+.voyageCard { min-width: 0; padding: 15px; border: 1px solid rgba(148, 163, 184, .14); border-radius: 12px; background: rgba(15, 23, 42, .52); }
+.voyageCard h3 { color: #f8fafc; font-size: .95rem; overflow-wrap: anywhere; }
+.voyageCard > p { margin: 5px 0 12px; color: #94a3b8; font-size: .72rem; }
+.voyageCard dl { display: grid; gap: 8px; }
+.voyageCard dl > div { display: grid; grid-template-columns: 65px minmax(0, 1fr); gap: 8px; }
+.voyageCard dt { color: #64748b; }
+.voyageCard dd { margin: 0; color: #cbd5e1; overflow-wrap: anywhere; }
+.voyageCard dd small { display: block; margin-top: 3px; color: #64748b; }
+.retryButton { margin-top: 14px; padding: 8px 18px; color: #f8fafc; border-color: rgba(56, 189, 248, .4); background: rgba(14, 165, 233, .18); }
+
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 768px) {
+  .section, .stateCard { padding: 18px 14px; }
+  .header, .chartTitle { align-items: flex-start; flex-direction: column; }
+  .yearTabs { overflow-x: auto; grid-template-columns: repeat(5, minmax(82px, 1fr)); }
+  .kpiGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .desktopTable { display: none; }
+  .mobileList { display: grid; gap: 10px; }
+}
+
+@media (max-width: 480px) {
+  .kpiGrid { grid-template-columns: minmax(0, 1fr); }
+  .chartCard { padding: 12px 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yearTab, .portButton, .retryButton, .voyageCard { transition: none; }
+}

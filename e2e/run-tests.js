@@ -100,7 +100,8 @@ async function main() {
       'tier1_features.spec.js',
       'tier2_boundaries.spec.js',
       'tier3_pairwise.spec.js',
-      'tier4_realworld.spec.js'
+      'tier4_realworld.spec.js',
+      'unloading-history.spec.js'
     ];
 
     const results = [];
