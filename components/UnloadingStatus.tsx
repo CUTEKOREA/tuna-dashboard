@@ -128,7 +128,7 @@ const vesselStowagePlans: Record<string, Record<string, string[]>> = {
     '#1-B': ['S/PIO'],
     '#1-C': ['S/PIO'],
   },
-  'hikari': {
+  'hikari-bangkok-2026-07': {
     '#4-A': ['MOAMARI'],
     '#4-B': ['MOAMARI'],
     '#4-C': ['MOAKONA'],
@@ -181,7 +181,7 @@ function getCompartmentNominalCapacity(vesselId: string, holdId: string, reporte
     };
     return caps[holdId] ?? Math.round((reportedTotal / numCompartments) * 10) / 10;
   }
-  if (vesselId === 'hikari') {
+  if (vesselId === 'hikari-bangkok-2026-07') {
     const caps: Record<string, number> = {
       '#4-A': 137, '#4-B': 390, '#4-C': 314,
       '#3-A': 165, '#3-B': 360, '#3-C': 413,
@@ -535,7 +535,7 @@ type VesselCargoBasis = {
 };
 
 const vesselCargoBases: Record<string, VesselCargoBasis> = {
-  hikari: {
+  'hikari-bangkok-2026-07': {
     sourceDate: '2026.07.20',
     capacity: 3700,
     totalLoaded: 3214,

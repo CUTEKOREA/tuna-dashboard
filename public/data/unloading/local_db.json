@@ -47,7 +47,7 @@
       "updated_at": "2026-08-12T15:34:21+09:00"
     },
     {
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "name": "M/V HIKARI 1",
       "location": "방콕, 태국",
       "buyer": "FCF CO.,LTD",
@@ -803,7 +803,7 @@
     },
     {
       "id": "hikari-loading-7-2-4",
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "report_date": "7/2~7/4",
       "work_time": "선적기록",
       "target_holds": "SHILLA SPRINTER(#2-B:340,#2-C:330)",
@@ -814,7 +814,7 @@
     },
     {
       "id": "hikari-loading-7-14-15",
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "report_date": "7/14~7/15",
       "work_time": "선적기록",
       "target_holds": "MOAKONA(#4-C:314)",
@@ -825,7 +825,7 @@
     },
     {
       "id": "hikari-loading-7-17-19",
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "report_date": "7/17~7/19",
       "work_time": "선적기록",
       "target_holds": "MOAMARI(#4-A:137,#4-B:390,#3-C:413)",
@@ -836,7 +836,7 @@
     },
     {
       "id": "hikari-loading-7-17-20",
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "report_date": "7/17~7/20",
       "work_time": "선적기록",
       "target_holds": "NAOERO STAR(#1-A:280,#1-B:200,#3-A:165,#3-B:360)",
@@ -1381,7 +1381,7 @@
       "updated_at": "2026-08-12T15:34:21+09:00"
     },
     {
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "species_id": "SJ",
       "species_name": "가다랑어",
       "reported_amount": 2515,
@@ -1389,7 +1389,7 @@
       "updated_at": "2026-08-12T16:35:00+09:00"
     },
     {
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "species_id": "YF",
       "species_name": "황다랑어",
       "reported_amount": 358,
@@ -1397,7 +1397,7 @@
       "updated_at": "2026-08-12T16:35:00+09:00"
     },
     {
-      "vessel_id": "hikari",
+      "vessel_id": "hikari-bangkok-2026-07",
       "species_id": "BE",
       "species_name": "눈다랑어",
       "reported_amount": 56,
