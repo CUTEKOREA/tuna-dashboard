@@ -50,6 +50,9 @@ type UnloadingVesselData = {
   status: string;
   reportedTotal: number;
   actualTotal: number;
+  annualActualTotal?: number;
+  annualStartDate?: string;
+  holdDataAvailable?: boolean;
   surplus: number;
   species: UnloadingSpeciesEntry[];
   timeline: UnloadingTimelineEntry[];
@@ -480,6 +483,14 @@ function getCompartmentCoords(vesselId: string, holdId: string) {
 // W-04 freshness: derive the latest report date ('M/D' text, year from dateRange)
 // for a vessel so each block can display its data base date.
 function vesselLatestReport(v: { dateRange?: string; timeline?: { date: string }[] }): { label: string; sortKey: number } | null {
+  const rangeDates = String(v?.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/g);
+  if (rangeDates && rangeDates.length >= 2) {
+    const last = rangeDates[rangeDates.length - 1];
+    return {
+      label: last,
+      sortKey: Number(last.replaceAll('.', '')),
+    };
+  }
   const yearMatch = String(v?.dateRange || '').match(/20\d{2}/);
   const year = yearMatch ? parseInt(yearMatch[0], 10) : 2026;
   let maxKey: number | null = null;
@@ -985,7 +996,11 @@ export default function UnloadingStatus() {
 
   const statusPriority = { progress: 0, waiting: 1, completed: 2 } as const;
   const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...d }))
-    .sort((a, b) => statusPriority[getVesselStatusKind(a.status)] - statusPriority[getVesselStatusKind(b.status)]);
+    .sort((a, b) => {
+      const statusOrder = statusPriority[getVesselStatusKind(a.status)] - statusPriority[getVesselStatusKind(b.status)];
+      if (statusOrder !== 0) return statusOrder;
+      return (vesselLatestReport(b)?.sortKey ?? 0) - (vesselLatestReport(a)?.sortKey ?? 0);
+    });
   const activeVessels = vesselsList.filter(v => getVesselStatusKind(v.status) === 'progress');
   const waitingVessels = vesselsList.filter(v => getVesselStatusKind(v.status) === 'waiting');
   const priorityVessels = [...activeVessels, ...waitingVessels];
@@ -1004,7 +1019,9 @@ export default function UnloadingStatus() {
     누적하역량: t.cumAmount
   }));
 
-  const holdsData = parseVesselHoldData(vesselId, selectedData.timeline || [], selectedData.reportedTotal || 0);
+  const holdsData = selectedData.holdDataAvailable === false
+    ? {}
+    : parseVesselHoldData(vesselId, selectedData.timeline || [], selectedData.reportedTotal || 0);
   const holdIds = Object.keys(holdsData);
   const defaultHoldId = holdIds.find(id => holdsData[id].dischargedVolume > 0)
     ?? holdIds.find(id => holdsData[id].nominalCapacity > 0)
@@ -1034,7 +1051,7 @@ export default function UnloadingStatus() {
       null
     )?.label || null;
   const earliestStart = vesselsList
-    .map(v => (String(v.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/) || [])[0])
+    .map(v => v.annualStartDate || (String(v.dateRange || '').match(/20\d{2}\.\d{2}\.\d{2}/) || [])[0])
     .filter(Boolean)
     .sort()[0] || null;
   const selectedBaseDate = vesselLatestReport(selectedData as any)?.label || null;
@@ -1084,7 +1101,9 @@ export default function UnloadingStatus() {
     const statusKind = getVesselStatusKind(v.status);
     const isProgress = statusKind === 'progress';
     const percent = v.reportedTotal > 0 ? Math.min((v.actualTotal / v.reportedTotal) * 100, 100) : 0;
-    const holds = parseVesselHoldData(v.id, v.timeline || [], v.reportedTotal || 0);
+    const holds = v.holdDataAvailable === false
+      ? {}
+      : parseVesselHoldData(v.id, v.timeline || [], v.reportedTotal || 0);
     const hasCriticalTemp = Object.values(holds).some(hold => hold.lastTemperature !== null && hold.lastTemperature > -18.0);
 
     return (
@@ -1099,6 +1118,7 @@ export default function UnloadingStatus() {
           <div>
             <div className={styles.vesselName}>{v.name}</div>
             <div className={styles.vesselLocation}><MapPin size={12} /> {v.location || '-'}</div>
+            <div className={styles.vesselLocation}><Clock size={12} /> {v.dateRange || '작업일 미확인'}</div>
           </div>
           <div className={styles.vesselMeta}>
             <span className={`${styles.statusBadge} ${styles[statusKind]}`}>
@@ -1239,7 +1259,7 @@ export default function UnloadingStatus() {
             <BarChart3 size={16} /> 누적 통합 하역량 (2026년) <BaseDateTag date={globalBaseDate} />
           </div>
           <div className={styles.execCardValue}>
-            {formatNum(vesselsList.reduce((s, v) => s + v.actualTotal, 0))} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>MT</span>
+            {formatNum(vesselsList.reduce((s, v) => s + (v.annualActualTotal ?? v.actualTotal), 0))} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>MT</span>
           </div>
           <div className={styles.execCardTakeaway}>
             완료 선박: <strong>{completedVessels.length} 척</strong> (방콕 {completedVessels.filter(v => /BANGKOK|방콕/i.test(v.location)).length}, 젠산 {completedVessels.filter(v => /GENSAN|PHILIPPINES|젠산|필리핀/i.test(v.location)).length})
@@ -1248,6 +1268,9 @@ export default function UnloadingStatus() {
                 집계 기간: {earliestStart} ~ {globalBaseDate} (전 선박 누적)
               </span>
             )}
+            <span style={{ display: 'block', fontSize: '0.72rem', marginTop: '2px' }}>
+              연도 경계 항차는 2026년 작업량만 합산
+            </span>
           </div>
         </div>
       </div>
@@ -1358,6 +1381,14 @@ export default function UnloadingStatus() {
           aria-labelledby="unloading-tab-holds"
           className={`${styles.schematicContainer} ${activeDetailTab !== 'holds' ? styles.tabPanelHidden : ''}`}
         >
+          {selectedData.holdDataAvailable === false ? (
+            <div style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)', border: '1px dashed rgba(148, 163, 184, 0.25)', borderRadius: '12px' }}>
+              <Ship size={28} style={{ margin: '0 auto 12px' }} />
+              <strong style={{ display: 'block', color: '#e2e8f0', marginBottom: '6px' }}>화물창별 원자료 없음</strong>
+              선박·일일·누계·어종 합계는 일일 XLS로 확인했지만, 화물창별 물량과 전 작업일 온도는 원표에 없어 표시하지 않습니다.
+            </div>
+          ) : (
+          <>
           <h4 style={{ marginBottom: '16px', fontSize: '1rem', fontWeight: 'bold', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Ship size={18} color="var(--accent-primary)" />
             선박 화물창 적재도 (Cargo Hold Stowage Schematic)
@@ -1649,6 +1680,8 @@ export default function UnloadingStatus() {
               </div>
             </div>
           </div>
+          </>
+          )}
         </div>
 
         {/* Analytics Layout */}
@@ -1660,7 +1693,7 @@ export default function UnloadingStatus() {
           let totalWorkingHours = 0;
           let daysWithTime = 0;
           let timedDischargeAmount = 0;
-          timelineWithAmount.forEach(t => {
+          if (selectedData.holdDataAvailable !== false) timelineWithAmount.forEach(t => {
             if (t.time && t.time !== '-' && t.time.includes('~')) {
               const parts = t.time.split('~').map(s => s.trim());
               if (parts.length === 2) {
@@ -1766,11 +1799,19 @@ export default function UnloadingStatus() {
                     </div>
                     <div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>평균 작업시간</div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{avgWorkingHours.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>시간</span></div>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                        {daysWithTime > 0
+                          ? <>{avgWorkingHours.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>시간</span></>
+                          : <span style={{fontSize:'0.9rem'}}>자료 없음</span>}
+                      </div>
                     </div>
                     <div>
                       <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>시간당 하역속도</div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{avgBurnRate.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>MT/hr</span></div>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                        {totalWorkingHours > 0
+                          ? <>{avgBurnRate.toFixed(1)} <span style={{fontSize:'0.8rem', fontWeight:'normal'}}>MT/hr</span></>
+                          : <span style={{fontSize:'0.9rem'}}>자료 없음</span>}
+                      </div>
                     </div>
                   </div>
                 </div>

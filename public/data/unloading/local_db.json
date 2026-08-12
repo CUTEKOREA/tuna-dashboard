@@ -57,6 +57,62 @@
       "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
       "created_at": "2026-08-12T16:35:00+09:00",
       "updated_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "vessel_id": "sein-phoenix-2025-12",
+      "name": "M/V SEIN PHOENIX",
+      "location": "방콕, 태국",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역완료 (Completed)",
+      "reported_total": 3740,
+      "date_range": "2025.12.18 ~ 2026.01.13",
+      "mother_vessel": "S/PIO · S/JUP · S/EXP · N/STAR",
+      "annual_actual_total": 1687.73,
+      "annual_start_date": "2026.01.05",
+      "hold_data_available": false,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "volta-victory-2026-01",
+      "name": "M/V VOLTA VICTORY",
+      "location": "방콕, 태국",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역완료 (Completed)",
+      "reported_total": 2675,
+      "date_range": "2026.01.05 ~ 2026.01.19",
+      "mother_vessel": "S/CHA · S/JUP · S/PIO",
+      "annual_actual_total": 2652.97,
+      "annual_start_date": "2026.01.05",
+      "hold_data_available": false,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "angara-2026-01",
+      "name": "M/V ANGARA",
+      "location": "방콕, 태국",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역완료 (Completed)",
+      "reported_total": 2657,
+      "date_range": "2026.01.20 ~ 2026.02.02",
+      "mother_vessel": "S/PIO · S/HAR · S/EXP · N/SUN",
+      "annual_actual_total": 2683.08,
+      "annual_start_date": "2026.01.20",
+      "hold_data_available": false,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "salt-lake-2026-01",
+      "name": "M/V SALT LAKE",
+      "location": "방콕, 태국",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역완료 (Completed)",
+      "reported_total": 200,
+      "date_range": "2026.01.13 ~ 2026.01.14",
+      "mother_vessel": "S/HAR",
+      "annual_actual_total": 204.3,
+      "annual_start_date": "2026.01.13",
+      "hold_data_available": false,
+      "updated_at": "2026-08-12T18:00:00+09:00"
     }
   ],
   "unloading_reports": [
@@ -788,6 +844,468 @@
       "cumulative_amount": 0,
       "quality_notes": "크리스마스섬 선적 1,005 MT 전량 FCF(SJ 931·YF 62·BE 12)이며 #1-A·#1-B·#3-A·#3-B에 배치했습니다. 적재 중 어체온도는 #1-A -11.4℃ ~ -12.4℃, #1-B -11.2℃ ~ -12.5℃, #3-A -11.0℃ ~ -12.3℃, #3-B -11.5℃ ~ -12.5℃였습니다. 7/20 최종 적재계획 기준 정격 3,700 MT, 총 적재 3,214 MT, FCF 방콕 하역대상 2,929 MT입니다. #2-A 별도 배정 285 MT(S/SPR 96·MOAKONA 114·S/PIO 75 황다랑어)는 하역 목표에서 제외했습니다.",
       "created_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-18",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/18",
+      "work_time": "-",
+      "target_holds": "N/STAR(2)(#3-A)",
+      "daily_amount": 15.13,
+      "cumulative_amount": 15.13,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-19",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/19",
+      "work_time": "-",
+      "target_holds": "N/STAR(2)(#3-A)",
+      "daily_amount": 104.61,
+      "cumulative_amount": 119.74,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-22",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/22",
+      "work_time": "-",
+      "target_holds": "N/STAR(2)(#3-A)",
+      "daily_amount": 205.06,
+      "cumulative_amount": 324.8,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-23",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/23",
+      "work_time": "-",
+      "target_holds": "N/STAR(2)(#3-A,#3-B)",
+      "daily_amount": 224.65,
+      "cumulative_amount": 549.45,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-24",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/24",
+      "work_time": "-",
+      "target_holds": "N/STAR(2)(#3-B)",
+      "daily_amount": 239.09,
+      "cumulative_amount": 788.54,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-25",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/25",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-B,#3-C), S/EXP(#2-B), N/STAR(2)(#3-B)",
+      "daily_amount": 502.16,
+      "cumulative_amount": 1290.7,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-26",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/26",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-C), S/EXP(#2-B,#2-C)",
+      "daily_amount": 457.32,
+      "cumulative_amount": 1748.02,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-12-27",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2025,
+      "report_date": "12/27",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-C), S/EXP(#2-C)",
+      "daily_amount": 232.96,
+      "cumulative_amount": 1980.98,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-5",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/5",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-C), S/EXP(#2-C)",
+      "daily_amount": 304.69,
+      "cumulative_amount": 2285.67,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-6",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/6",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-C,#3-D), S/EXP(#2-C)",
+      "daily_amount": 287.62,
+      "cumulative_amount": 2573.29,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-7",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/7",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-D), S/EXP(#2-C,#2-D)",
+      "daily_amount": 274.83,
+      "cumulative_amount": 2848.12,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-8",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/8",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-D), S/EXP(#2-D)",
+      "daily_amount": 271.89,
+      "cumulative_amount": 3120.01,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-9",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/9",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-D), S/JUP(#2-D), N/STAR(1)(#3-D)",
+      "daily_amount": 223.95,
+      "cumulative_amount": 3343.96,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-10",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/10",
+      "work_time": "-",
+      "target_holds": "S/JUP(#2-D), N/STAR(1)(#3-D)",
+      "daily_amount": 144.36,
+      "cumulative_amount": 3488.32,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-12",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/12",
+      "work_time": "-",
+      "target_holds": "S/JUP(#2-D)",
+      "daily_amount": 117.38,
+      "cumulative_amount": 3605.7,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "sein-phoenix-2025-12-1-13",
+      "vessel_id": "sein-phoenix-2025-12",
+      "report_year": 2026,
+      "report_date": "1/13",
+      "work_time": "-",
+      "target_holds": "S/JUP(#2-D)",
+      "daily_amount": 63.01,
+      "cumulative_amount": 3668.71,
+      "quality_notes": "08:10 ~ 11:10 작업. S/JUP(#2-D) 개방 온도 -19.0℃ ~ -20.0℃, 외관·색택 양호. XLS 일일량 63.010 MT를 적용했으며 이메일 본문 63.310 MT는 누계 산술과 불일치."
+    },
+    {
+      "id": "volta-victory-2026-01-1-5",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/5",
+      "work_time": "-",
+      "target_holds": "S/JUP(#3-A)",
+      "daily_amount": 161.4,
+      "cumulative_amount": 161.4,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-6",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/6",
+      "work_time": "-",
+      "target_holds": "S/JUP(#2-A), S/PIO(#2-A)",
+      "daily_amount": 61.97,
+      "cumulative_amount": 223.37,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-7",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/7",
+      "work_time": "-",
+      "target_holds": "S/JUP(#3-A), S/PIO(#1-A)",
+      "daily_amount": 358.11,
+      "cumulative_amount": 581.48,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-8",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/8",
+      "work_time": "-",
+      "target_holds": "S/JUP(#3-A), S/PIO(#1-A)",
+      "daily_amount": 141.85,
+      "cumulative_amount": 723.33,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-9",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/9",
+      "work_time": "-",
+      "target_holds": "S/PIO(#1-A)",
+      "daily_amount": 110.02,
+      "cumulative_amount": 833.35,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-12",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/12",
+      "work_time": "-",
+      "target_holds": "S/JUP(#3-A)",
+      "daily_amount": 100.04,
+      "cumulative_amount": 933.39,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-13",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/13",
+      "work_time": "-",
+      "target_holds": "S/CHA(#2-A)",
+      "daily_amount": 151.49,
+      "cumulative_amount": 1084.88,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-14",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/14",
+      "work_time": "-",
+      "target_holds": "S/CHA(#2-A)",
+      "daily_amount": 208.18,
+      "cumulative_amount": 1293.06,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-15",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/15",
+      "work_time": "-",
+      "target_holds": "S/CHA(#2-A), S/JUP(#3-B), S/PIO(#1-A,#1-B)",
+      "daily_amount": 479.08,
+      "cumulative_amount": 1772.14,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-16",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/16",
+      "work_time": "-",
+      "target_holds": "S/CHA(#2-A,#2-B), S/JUP(#3-B), S/PIO(#1-B)",
+      "daily_amount": 268.5,
+      "cumulative_amount": 2040.64,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-17",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/17",
+      "work_time": "-",
+      "target_holds": "S/CHA(#2-B), S/JUP(#3-B)",
+      "daily_amount": 285.75,
+      "cumulative_amount": 2326.39,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "volta-victory-2026-01-1-19",
+      "vessel_id": "volta-victory-2026-01",
+      "report_year": 2026,
+      "report_date": "1/19",
+      "work_time": "-",
+      "target_holds": "S/CHA(#2-B), S/JUP(#3-B)",
+      "daily_amount": 326.58,
+      "cumulative_amount": 2652.97,
+      "quality_notes": "08:20 ~ 17:20 작업. S/CHA(#2-B)와 S/JUP(#3-B) 개방 온도 -29.0℃ ~ -30.0℃, 외관·색택 양호."
+    },
+    {
+      "id": "angara-2026-01-1-20",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/20",
+      "work_time": "-",
+      "target_holds": "N/SUN(#4-A)",
+      "daily_amount": 239.15,
+      "cumulative_amount": 239.15,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-21",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/21",
+      "work_time": "-",
+      "target_holds": "S/EXP(#2-A)",
+      "daily_amount": 143.5,
+      "cumulative_amount": 382.65,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-22",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/22",
+      "work_time": "-",
+      "target_holds": "S/EXP(#2-A,#3-A), N/SUN(#4-A)",
+      "daily_amount": 156.47,
+      "cumulative_amount": 539.12,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-23",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/23",
+      "work_time": "-",
+      "target_holds": "S/EXP(#2-A), N/SUN(#4-A,#4-B)",
+      "daily_amount": 175.23,
+      "cumulative_amount": 714.35,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-24",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/24",
+      "work_time": "-",
+      "target_holds": "S/EXP(#2-A), N/SUN(#4-B)",
+      "daily_amount": 186.96,
+      "cumulative_amount": 901.31,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-26",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/26",
+      "work_time": "-",
+      "target_holds": "S/HAR(#2-B), S/EXP(#3-A,#2-B)",
+      "daily_amount": 226.61,
+      "cumulative_amount": 1127.92,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-27",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/27",
+      "work_time": "-",
+      "target_holds": "S/HAR(#2-B), S/EXP(#3-A), N/SUN(#4-B,#4-C)",
+      "daily_amount": 287.4,
+      "cumulative_amount": 1415.32,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-28",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/28",
+      "work_time": "-",
+      "target_holds": "S/EXP(#3-A), N/SUN(#4-C)",
+      "daily_amount": 274.07,
+      "cumulative_amount": 1689.39,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-29",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/29",
+      "work_time": "-",
+      "target_holds": "S/HAR(#2-B,#2-C,#3-B), N/SUN(#3-A)",
+      "daily_amount": 468.39,
+      "cumulative_amount": 2157.78,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-30",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/30",
+      "work_time": "-",
+      "target_holds": "S/HAR(#2-C,#3-B,#3-C)",
+      "daily_amount": 245.38,
+      "cumulative_amount": 2403.16,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-1-31",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "1/31",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-C), S/HAR(#3-C)",
+      "daily_amount": 228.35,
+      "cumulative_amount": 2631.51,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "angara-2026-01-2-2",
+      "vessel_id": "angara-2026-01",
+      "report_year": 2026,
+      "report_date": "2/2",
+      "work_time": "-",
+      "target_holds": "S/PIO(#3-C)",
+      "daily_amount": 51.57,
+      "cumulative_amount": 2683.08,
+      "quality_notes": "S/PIO(#3-C) 개방 온도 -22.0℃ ~ -24.0℃, 외관·색택 양호. 이메일 본문은 핵심 수치와 작업시간 일부가 마스킹되어 XLS 수치를 적용."
+    },
+    {
+      "id": "salt-lake-2026-01-1-13",
+      "vessel_id": "salt-lake-2026-01",
+      "report_year": 2026,
+      "report_date": "1/13",
+      "work_time": "-",
+      "target_holds": "S/HAR(#3-A)",
+      "daily_amount": 102.65,
+      "cumulative_amount": 102.65,
+      "quality_notes": "일일 XLS 원표 기준. 작업시간·온도는 원표에 미기재."
+    },
+    {
+      "id": "salt-lake-2026-01-1-14",
+      "vessel_id": "salt-lake-2026-01",
+      "report_year": 2026,
+      "report_date": "1/14",
+      "work_time": "-",
+      "target_holds": "S/HAR(#3-A)",
+      "daily_amount": 101.65,
+      "cumulative_amount": 204.3,
+      "quality_notes": "08:20 ~ 11:20 작업. S/HAR(#3-A) 개방 온도 -20.0℃ ~ -21.0℃, 외관·색택 양호."
     }
   ],
   "unloading_species": [
@@ -885,6 +1403,70 @@
       "reported_amount": 56,
       "actual_amount": 0,
       "updated_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "vessel_id": "sein-phoenix-2025-12",
+      "species_id": "SJ",
+      "species_name": "가다랑어",
+      "reported_amount": 3232,
+      "actual_amount": 3089.07,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "sein-phoenix-2025-12",
+      "species_id": "YF",
+      "species_name": "황다랑어",
+      "reported_amount": 508,
+      "actual_amount": 579.64,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "volta-victory-2026-01",
+      "species_id": "SJ",
+      "species_name": "가다랑어",
+      "reported_amount": 2144,
+      "actual_amount": 2096.87,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "volta-victory-2026-01",
+      "species_id": "YF",
+      "species_name": "황다랑어",
+      "reported_amount": 531,
+      "actual_amount": 556.1,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "angara-2026-01",
+      "species_id": "SJ",
+      "species_name": "가다랑어",
+      "reported_amount": 1899,
+      "actual_amount": 1872.55,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "angara-2026-01",
+      "species_id": "YF",
+      "species_name": "황다랑어",
+      "reported_amount": 758,
+      "actual_amount": 810.53,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "salt-lake-2026-01",
+      "species_id": "SJ",
+      "species_name": "가다랑어",
+      "reported_amount": 193,
+      "actual_amount": 195.7,
+      "updated_at": "2026-08-12T18:00:00+09:00"
+    },
+    {
+      "vessel_id": "salt-lake-2026-01",
+      "species_id": "YF",
+      "species_name": "황다랑어",
+      "reported_amount": 7,
+      "actual_amount": 8.6,
+      "updated_at": "2026-08-12T18:00:00+09:00"
     }
   ]
 }
