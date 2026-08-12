@@ -1,40 +1,8 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import s from './FleetPixelMap.module.css';
-
-// --- Data ---
-const pacificFleet = [
-  { name: 'S/EXP', zone: 'S0331 W16728 (KI)', type: 'pacific', status: 'fishing', note: '', load: 672, capa: 1200 },
-  { name: 'S/PIO', zone: 'S0258 W16825 (KI)', type: 'pacific', status: 'fishing', note: '', load: 169, capa: 1200 },
-  { name: 'S/CHA', zone: 'N0151 W15735 (KI)', type: 'pacific', status: 'fishing', note: '7/28 07:40 X-MAS 입항, MING RUN 17편 약 900톤 전재 후 7/31 12:15 출항 완료', load: 0, capa: 1200 },
-  { name: 'S/HAR', zone: 'S0700 W15206 (KI)', type: 'pacific', status: 'fishing', note: '', load: 526, capa: 1200 },
-  { name: 'S/JUP', zone: 'MAJURO', type: 'pacific', status: 'port', note: 'M/E 수리 중 (출항 일정 기술자 확인)', load: 0, capa: 1200 },
-  { name: 'S/SPR', zone: 'S0325 W16842 (KI)', type: 'pacific', status: 'fishing', note: '', load: 397, capa: 1200 },
-  { name: 'MOAMARI', zone: 'S0608 W15254 (KI)', type: 'pacific', status: 'fishing', note: '', load: 300, capa: 1200 },
-  { name: 'MOAKONA', zone: 'S0617 W15232 (KI)', type: 'pacific', status: 'fishing', note: '', load: 162, capa: 1200 },
-  { name: 'N/SUN', zone: 'S0618 W16434 (H)', type: 'pacific', status: 'fishing', note: '', load: 220, capa: 1200 },
-  { name: 'N/STAR', zone: 'S0642 W15142 (H)', type: 'pacific', status: 'fishing', note: '', load: 360, capa: 1200 },
-];
-
-const atlanticFleet = [
-  { name: 'P/MAS', zone: 'N0357 W00250 (G)', type: 'atlantic', status: 'fishing', note: '7/31 09:00 TEMA 입항, 하역 후 8/3 출항 예정', load: 750, capa: 1200 },
-  { name: 'P/DIS', zone: 'TEMA', type: 'atlantic', status: 'port', note: '7/29 12:30 TEMA 입항, 하역 후 8/1 출항 예정', load: 900, capa: 1200 },
-  { name: 'P/FORE', zone: 'S0147 W01951 (H)', type: 'atlantic', status: 'fishing', note: '', load: 690, capa: 1200 },
-  { name: 'P/PATH', zone: 'N0150 W00541 (C)', type: 'atlantic', status: 'fishing', note: '8/1 07:00 TEMA 입항, 하역 후 8/3 출항 예정', load: 900, capa: 1200 },
-  { name: 'P/COM', zone: 'N0055 W01953 (H)', type: 'atlantic', status: 'fishing', note: '8/5 06:00 TEMA 입항, 하역 후 8/7 출항 예정', load: 900, capa: 1200 },
-  { name: 'P/QUEEN', zone: 'N0024 W01335 (H)', type: 'atlantic', status: 'fishing', note: '', load: 665, capa: 1200 },
-  { name: 'P/GRACE', zone: 'S0245 W02138 (H)', type: 'atlantic', status: 'fishing', note: '', load: 370, capa: 1200 },
-];
-
-const carrierFleet = [
-  { name: 'SEIN VENUS', zone: '해상', type: 'carrier', status: 'transit', note: '8/5 BKK 도착 예정', load: 3275, capa: 5200 },
-  { name: 'HIKARI 1', zone: '해상', type: 'carrier', status: 'transit', note: '8/5 GENSAN 도착 예정', load: 3214, capa: 3700 },
-  { name: 'SEIN KASAMA', zone: 'X-MAS', type: 'carrier', status: 'port', note: 'X-MAS 대기 중 (예상잔량 7,100t)', load: 0, capa: 7100 },
-  { name: 'MING RUN 17', zone: 'X-MAS', type: 'carrier', status: 'port', note: 'X-MAS 대기 중 (C-900 전재 완료)', load: 900, capa: 6500 },
-  { name: 'SHIN IZU', zone: '해상', type: 'carrier', status: 'port', note: 'NO2 W165 대기 중 (예상잔량 2,400t)', load: 0, capa: 2400 },
-  { name: 'SEIN GALAXY', zone: 'RABAUL', type: 'carrier', status: 'port', note: 'RABAUL 대기 중 (타사 출항 전재 예정)', load: 1846, capa: 3500 },
-];
+import { atlanticFleet, carrierFleet, pacificFleet } from './FleetRosterGrid';
 
 function getPacificCoordinates(zone: string): { x: number; y: number } {
   const z = zone.toUpperCase();
@@ -52,7 +20,12 @@ function getPacificCoordinates(zone: string): { x: number; y: number } {
     const isH = z.includes('(H)');
     if (isUS) return { x: 65, y: 50 };
     if (isH) return { x: 62, y: 58 };
-    return { x: 45 + (Math.random() * 15), y: 45 + (Math.random() * 15) };
+    const coordinate = z.match(/([NS])(\d{2})(\d{2})\s+([EW])(\d{3})(\d{2})/);
+    if (coordinate) {
+      const lat = (Number(coordinate[2]) + Number(coordinate[3]) / 60) * (coordinate[1] === 'S' ? -1 : 1);
+      const lon = (Number(coordinate[5]) + Number(coordinate[6]) / 60) * (coordinate[4] === 'W' ? -1 : 1);
+      return { x: Math.max(24, Math.min(74, 48 + (lon + 165) * 1.7)), y: Math.max(28, Math.min(72, 50 - lat * 2)) };
+    }
   }
   return { x: 50, y: 50 };
 }
@@ -62,18 +35,37 @@ function getAtlanticCoordinates(zone: string): { x: number; y: number } {
   if (z.includes('TEMA') || z.includes('ABIDJAN')) return { x: 75, y: 55 }; 
   
   if (/[SN]0\d{3}\s?W0/.test(z)) {
-    return { x: 35 + (Math.random() * 25), y: 40 + (Math.random() * 20) };
+    const coordinate = z.match(/([NS])(\d{2})(\d{2})\s+([EW])(\d{3})(\d{2})/);
+    if (coordinate) {
+      const lat = (Number(coordinate[2]) + Number(coordinate[3]) / 60) * (coordinate[1] === 'S' ? -1 : 1);
+      const lon = (Number(coordinate[5]) + Number(coordinate[6]) / 60) * (coordinate[4] === 'W' ? -1 : 1);
+      return { x: Math.max(20, Math.min(80, 64 + lon * 1.45)), y: Math.max(25, Math.min(75, 50 - lat * 2)) };
+    }
   }
   return { x: 50, y: 50 };
 }
 
-const ShipMarker = ({ ship }: { ship: any }) => (
-  <div 
-    className={`${s.shipMarker} ${s[`fleet-${ship.type}`]} ${s[`state-${ship.status === 'transship' ? 'transit' : ship.status}`]}`} 
-    style={{ left: `${ship.pos.x}%`, top: `${ship.pos.y}%` }}
-  >
+const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean; onSelect: () => void }) => {
+  const detailsId = `ship-details-${ship.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+  return (
+    <button
+      type="button"
+      aria-label={`${ship.name} 상세 보기`}
+      aria-expanded={selected}
+      aria-controls={detailsId}
+      onClick={onSelect}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && selected) {
+          event.stopPropagation();
+          onSelect();
+        }
+      }}
+      className={`${s.shipMarker} ${s[`fleet-${ship.type}`]} ${s[`state-${ship.status === 'transship' ? 'transit' : ship.status}`]}`}
+      style={{ left: `${ship.pos.x}%`, top: `${ship.pos.y}%` }}
+    >
     <div className={s.shipBody}></div>
-    <div className={s.tooltip}>
+    <div id={detailsId} className={s.tooltip} hidden={!selected}>
       <div className={s.tooltipTitle}>{ship.name} <span style={{fontSize:'10px', color:'#94a3b8', fontWeight:'normal'}}>({ship.type})</span></div>
       <div className={s.tooltipInfo}>
         <div className={s.tooltipRow}>
@@ -95,14 +87,19 @@ const ShipMarker = ({ ship }: { ship: any }) => (
       </div>
       {ship.note && <div className={s.tooltipNote}>{ship.note}</div>}
     </div>
-  </div>
-);
+    </button>
+  );
+};
 
 export default function FleetPixelMap() {
+  const [selectedShip, setSelectedShip] = useState<string | null>(null);
   
   const mappedPacific = useMemo(() => {
     const positions: Record<string, number> = {};
-    const combined = [...pacificFleet, ...carrierFleet];
+    const combined = [
+      ...pacificFleet.map((ship) => ({ ...ship, type: 'pacific' as const })),
+      ...carrierFleet.map((ship) => ({ ...ship, type: 'carrier' as const, status: ship.status === 'waiting' ? 'port' : ship.status })),
+    ];
     return combined.map((ship) => {
       const basePos = getPacificCoordinates(ship.zone);
       const posKey = `${basePos.x}-${basePos.y}`;
@@ -119,7 +116,8 @@ export default function FleetPixelMap() {
 
   const mappedAtlantic = useMemo(() => {
     const positions: Record<string, number> = {};
-    return atlanticFleet.map((ship) => {
+    return atlanticFleet.map((item) => {
+      const ship = { ...item, type: 'atlantic' as const };
       const basePos = getAtlanticCoordinates(ship.zone);
       const posKey = `${basePos.x}-${basePos.y}`;
       if (positions[posKey]) {
@@ -149,7 +147,7 @@ export default function FleetPixelMap() {
             <rect className={s.landmass} x="68" y="40" width="3" height="2" /> {/* Hawaii */}
           </svg>
           
-          {mappedPacific.map((ship, idx) => <ShipMarker key={idx} ship={ship} />)}
+          {mappedPacific.map((ship) => <ShipMarker key={ship.name} ship={ship} selected={selectedShip === ship.name} onSelect={() => setSelectedShip((current) => current === ship.name ? null : ship.name)} />)}
 
           {/* Legend for Pacific */}
           <div className={s.legend}>
@@ -190,7 +188,7 @@ export default function FleetPixelMap() {
             <path className={s.landmass} d="M100,0 L60,0 L65,30 L70,50 L80,100 L100,100 Z" /> 
           </svg>
           
-          {mappedAtlantic.map((ship, idx) => <ShipMarker key={idx} ship={ship} />)}
+          {mappedAtlantic.map((ship) => <ShipMarker key={ship.name} ship={ship} selected={selectedShip === ship.name} onSelect={() => setSelectedShip((current) => current === ship.name ? null : ship.name)} />)}
 
           {/* Legend for Atlantic */}
           <div className={s.legend}>

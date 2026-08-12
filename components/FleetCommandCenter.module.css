@@ -458,3 +458,48 @@
   .rosterGrid { grid-template-columns: 1fr; }
   .badge { display: none; }
 }
+
+/* 업무 판단 중심 선단 탐색 */
+.taskTabs { display:flex; gap:8px; margin-bottom:24px; padding:6px; overflow-x:auto; border:1px solid var(--panel-border); border-radius:14px; background:rgba(15,23,42,.62); }
+.taskTab { min-height:44px; padding:10px 18px; border:1px solid transparent; border-radius:10px; background:transparent; color:var(--text-muted); font:inherit; font-weight:700; white-space:nowrap; cursor:pointer; }
+.taskTab:hover { color:var(--text-primary); background:rgba(148,163,184,.08); }
+.taskTab:focus-visible { outline:3px solid rgba(56,189,248,.45); outline-offset:2px; }
+.taskTabActive { color:#e0f2fe; border-color:rgba(56,189,248,.45); background:linear-gradient(135deg,rgba(14,165,233,.2),rgba(37,99,235,.12)); }
+.tabPanel { outline:none; }
+.decisionPanel { margin:20px 0 4px; padding:22px; border:1px solid rgba(56,189,248,.28); border-radius:16px; background:linear-gradient(145deg,rgba(8,47,73,.42),rgba(15,23,42,.88)); }
+.decisionHeader,.sectionHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px; }
+.decisionHeader h3,.sectionHeading h3 { margin:4px 0 0; color:#f8fafc; font-size:1.25rem; }
+.eyebrow { color:#38bdf8; font-size:.72rem; font-weight:800; letter-spacing:.09em; }
+.staticBadge { padding:5px 10px; border:1px solid rgba(148,163,184,.25); border-radius:999px; color:#94a3b8; font-size:.72rem; white-space:nowrap; }
+.decisionGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.decisionItem { display:flex; gap:11px; min-height:92px; padding:14px; border:1px solid rgba(148,163,184,.16); border-left-width:3px; border-radius:12px; background:rgba(15,23,42,.72); }
+.decisionItem svg { margin-top:2px; flex:0 0 auto; }
+.decisionItem strong { display:block; margin:2px 0 5px; color:#f8fafc; font-size:.93rem; }
+.decisionItem p,.accessAlert p { margin:0; color:#94a3b8; font-size:.78rem; line-height:1.45; }
+.decisionLevel { display:block; color:#cbd5e1; font-size:.67rem; font-weight:800; }
+.decision_danger { border-left-color:#fb7185; } .decision_danger svg{color:#fb7185}
+.decision_warning { border-left-color:#fbbf24; } .decision_warning svg{color:#fbbf24}
+.decision_primary { border-left-color:#38bdf8; } .decision_primary svg{color:#38bdf8}
+.reportDetails { margin-top:14px; padding-top:12px; border-top:1px solid rgba(148,163,184,.16); color:#cbd5e1; }
+.reportDetails summary { cursor:pointer; font-size:.8rem; font-weight:700; }
+.reportDetails p { color:#94a3b8; font-size:.78rem; line-height:1.6; }
+.sectionHeading { margin:4px 0 16px; }
+.sectionHeading>span { color:#94a3b8; font-size:.74rem; }
+.accessAlert { display:flex; gap:12px; margin-bottom:18px; padding:14px 16px; border:1px solid rgba(251,191,36,.35); border-radius:12px; background:rgba(120,53,15,.14); color:#fbbf24; }
+.accessAlert strong { display:block; margin-bottom:4px; color:#fde68a; }
+
+@media (max-width:768px) {
+  .decisionGrid { grid-template-columns:1fr; }
+  .decisionHeader,.sectionHeading { align-items:flex-start; flex-direction:column; }
+  .taskTabs { margin-inline:-4px; }
+  .kpiRow { grid-template-columns:1fr 1fr; }
+  .kpiCardHighlight { grid-column:1/-1; }
+  .staticBadge { white-space:normal; }
+}
+
+@media (max-width:420px) {
+  .kpiRow { grid-template-columns:1fr; }
+  .kpiCardHighlight { grid-column:auto; }
+  .decisionPanel { padding:16px; }
+  .taskTab { padding:9px 13px; }
+}

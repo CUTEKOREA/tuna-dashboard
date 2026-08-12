@@ -18,16 +18,39 @@ import {
 } from '../lib/dashboard-registry';
 
 describe('dashboard registry', () => {
-  it('routes unloading through the client-only category page to keep hydration stable', () => {
+  it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
     const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
 
     expect(rewriteSource).toBeDefined();
     expect(rewriteSource).not.toContain('unloading');
+    expect(rewriteSource).not.toContain('korea-market');
     expect(categorySource).toContain('ssr: false');
   });
 
+  it('keeps the fleet command center task-focused and deterministic', () => {
+    const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
+    const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
+    const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
+    const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
+
+    for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
+      expect(commandSource).toContain(label);
+    }
+    expect(commandSource).toContain('role="tablist"');
+    expect(commandSource).toContain('role="tabpanel"');
+    expect(commandSource).toContain('onKeyDown');
+    expect(mapSource).not.toContain('Math.random');
+    expect(mapSource).toContain('aria-expanded');
+    expect(mapSource).toContain('aria-controls');
+    expect(mapSource).toContain('hidden={!selected}');
+    expect(mapSource).toContain("event.key === 'Escape'");
+    expect(rosterSource).toContain("port: '⚓ 하역·정박'");
+    expect(rosterSource).not.toContain('statusLabels[status] || status');
+    expect(heroSource).toContain('val1: 1009');
+    expect(heroSource).not.toContain('val1: 917');
+  });
   it('keeps menu keys unique and title-addressable', () => {
     expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(30);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
