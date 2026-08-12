@@ -120,14 +120,14 @@ export default function ReeferMovement() {
           border: '1px solid rgba(148, 163, 184, 0.2)'
         }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--text-muted)' }}></div>
-          WEEK 30 주간 보고 (2026-07-24 ~ 07-30 기준)
+          30주차 주간 보고 (2026-07-24 ~ 07-30 기준)
         </div>
       </div>
 
       {/* ── REEFER MOVEMENT SCHEDULE Header ── */}
       <div style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <AlertTriangle size={16} color="var(--color-warning)" />
-        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] WEEK 30 주간 보고에 기록된 방콕 항구 운반선(Reefer)별 접안 일정과 각 캔 공장(Cannery)별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-07-24 ~ 07-30) : WEEK 30 주간 보고
+        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 30주차 주간 보고에 기록된 방콕 항구 냉동 운반선별 접안 일정과 각 캔 공장별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-07-24 ~ 07-30) : 30주차 주간 보고
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', background: '#10b98118', padding: '3px 10px', borderRadius: 99, fontWeight: 600 }}>
             {BANGKOK_PORT_DATA.length}척 · 공장 배분 {Math.round(grandTotal).toLocaleString()} MT
@@ -144,7 +144,7 @@ export default function ReeferMovement() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <Factory size={16} color="var(--color-info)" />
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (WEEK 30 보고 기준)</span>
+          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (30주차 보고 기준)</span>
           <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: 4 }}>(단위: MT)</span>
         </div>
         <div style={{ height: Math.max(canneryAgg.length * 36 + 30, 200), width: '100%' }}>
@@ -204,7 +204,7 @@ export default function ReeferMovement() {
                     {card.carrier}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: 2 }}>
-                    접안일: {card.date}
+                    보고 당시 접안 예정일: {card.date}
                     {card.other && <span style={{ marginLeft: 8, color: '#475569' }}>부두: {card.other}</span>}
                   </div>
                 </div>
@@ -302,7 +302,7 @@ export default function ReeferMovement() {
             <thead>
               <tr>
                 <th rowSpan={2} className={styles.stickyHeader} style={{ minWidth: '180px' }}>운반선</th>
-                <th rowSpan={2} style={{ minWidth: '100px' }}>접안일</th>
+                <th rowSpan={2} style={{ minWidth: '100px' }}>보고 당시 접안 예정일</th>
                 <th colSpan={COLUMNS.length} className={styles.portHeader}>방콕항 (캔 공장·배분처)</th>
               </tr>
               <tr>

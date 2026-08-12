@@ -1,6 +1,17 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-12 20:50 KST
+> 마지막 업데이트: 2026-08-12 21:04 KST
+
+> ✅ **2026-08-12 21:04 KST — `/logistics` 8월 5일 방콕 주간보고 데이터 갱신** [Hermes]:
+> - Google Drive `2026 주간보고` 폴더에서 수정시각과 문서 기준일이 가장 최신인 `20260805 Bangkok Office Weekly Report.docx`를 확인하고 SHA-256 `2ddb233def797ab6b0cd04dd3180b33e55ef88223a658039e0413acd47e249b1`에 결속했다. 보조 `데이터 정리.xlsx` SHA-256은 `5ccb8a8e6cdac29924653e36d50dbdaaa8568ea6bf8454035ba5fc53d82a018b`이다.
+> - 트레이더 1~8월 누계 **317,175MT**, 8월 **8,891MT**, 현재 하역 3척 **13,764MT**, 8월 누계 2척 **8,891MT**, 방콕 생산·재고 **2,650/122,300MT**, 송클라 **330/4,500MT**, 원어 협의가 **$1,930/MT**, 고반려·고염도 품질 신호를 반영했다.
+> - 원문의 TRI MARINE 누계 `46,463MT`는 월별 합산 `56,463MT`와 10,000MT 상충해 월별 검산값을 사용하고 데이터 모듈에 상충 메모를 보존했다. LAKE PEARL 4,873MT는 현재 하역 합계에는 포함하되 8월 누계에서는 7월 반입분으로 분리했다.
+> - 최신 보고서에 공장별 배분 상세가 없는 냉동 운반선 이동 스케줄은 기존 WEEK 30 역사자료를 유지하고 실제 표시 기간인 2026-07-24~07-30을 명시했다.
+> - 독립 리뷰에서 UC 고반려 잔량 218.277MT 누락, 원문에 없는 시장가 기간 추정, WEEK 30 현재형 표현을 발견해 수정했다. 고반려는 TUG 923.092MT·CMC 109.767MT·UC 218.277MT, 고염도는 TUM 217.103MT/$6,493.44로 원문 표에 맞췄고 WEEK 30 기준일은 2026-07-30으로 바로잡았다.
+> - 로컬 production QA에서 `/logistics`가 레거시 `/` rewrite에 남아 React hydration #418을 일으키는 것을 재현했다. 회귀 테스트를 RED→GREEN으로 추가하고 rewrite에서 제외해 `app/[category]` client-only 경로로 전환했다. 수정 후 데스크톱·390px에서 page error 0, 가로 overflow 0을 확인했다.
+> - 후속 독립 리뷰에서 TRI MARINE 상충의 화면 미공개와 원문에 없는 보고기간 메타데이터를 발견해 수정했다. 트레이더 위젯에 원문 `46,463MT`와 월별 검산 `56,463MT` 및 적용 근거를 직접 표시하고, `source.period`는 제거해 보고일만 보존했다. 물류 화면의 일반 영문 상태·용어(`STATIC`, `Cannery`, `CAPA/CAPACITY`, `Metric Tons`, `WEEK 30`)도 정적·가공 공장·최대 생산/보관능력·미터톤·30주차로 한글화했다.
+> - 신규 데이터 계약 회귀 5/5, 전체 Vitest **120/120**, 타입검사, ESLint 0 errors(기존 warnings 10), Next.js 103페이지 빌드, bundle budget, S-Grade 0건 통과. 로컬 데스크톱·390px 모바일에서 최신 수치 렌더와 가로 overflow 0을 확인했다.
+> - 현재 독립 코드 리뷰 및 프로덕션 배포 전 최종 단계다.
 
 > 🚀 **2026-08-12 20:50 KST — `/unloading` 2026년 누락 하역 4항차 라이브 배포 완료** [Codex]:
 > - 최신 `main`의 HIKARI·위판·선단 변경을 보존해 PR [#278](https://github.com/CUTEKOREA/tuna-dashboard/pull/278)로 병합. production merge commit은 `be30baa`이며, Vercel deployment `dpl_7Ra4FTK93g5oPaAKkarBJ1pz4kjG`가 READY로 `https://leedonggun.co.kr` alias에 연결됨.

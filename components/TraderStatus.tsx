@@ -7,30 +7,32 @@ import {
 import SafeResponsiveContainer from './SafeResponsiveContainer';
 import TermTooltip from './TermTooltip';
 import { ChartPatternDefs } from './ChartPatterns';
+import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
 
 /* 데이터·수치 무수정 — 시각 레이어만 향상 + 영문 한글화(월명·직거래·몰디브) */
-const data2026 = [
-  { month: '1월', FCF: 26344, ITOCHU: 6907, 'TRI MARINE': 3770, 'Direct deal': 18929, Maldives: 0 },
-  { month: '2월', FCF: 14155, ITOCHU: 0, 'TRI MARINE': 9486, 'Direct deal': 19840, Maldives: 0 },
-  { month: '3월', FCF: 11700, ITOCHU: 4915, 'TRI MARINE': 2113, 'Direct deal': 11925, Maldives: 0 },
-  { month: '4월', FCF: 14206, ITOCHU: 9963, 'TRI MARINE': 13933, 'Direct deal': 22181, Maldives: 0 },
-  { month: '5월', FCF: 32638, ITOCHU: 3371, 'TRI MARINE': 9413, 'Direct deal': 3485, Maldives: 0 },
-  { month: '6월', FCF: 13749, ITOCHU: 2924, 'TRI MARINE': 9465, 'Direct deal': 23719, Maldives: 0 },
-  { month: '7월', FCF: 4100, ITOCHU: 3711, 'TRI MARINE': 8283, 'Direct deal': 3059, Maldives: 0 },
-];
+const data2026 = logisticsWeeklyReport.traderReceipts.monthly.map((row) => ({
+  ...row,
+  'Direct deal': row.direct,
+}));
 
 // key=데이터키(유지) · name=표시명(한글화) · gid=그라디언트 id · 회사명 고유명은 유지
-const TRADERS = [
-  { key: 'FCF', name: 'FCF', gid: 'tFcf', color: '#38bdf8', total: 116892 },
-  { key: 'ITOCHU', name: 'ITOCHU', gid: 'tIto', color: '#8b5cf6', total: 31791 },
-  { key: 'TRI MARINE', name: 'TRI MARINE', gid: 'tTri', color: '#ec4899', total: 56463 },
-  { key: 'Direct deal', name: '직거래', gid: 'tDir', color: '#10b981', total: 103138 },
-  { key: 'Maldives', name: '몰디브', gid: 'tMal', color: '#f59e0b', total: 0 },
-];
+const traderStyles = [
+  { sourceKey: 'FCF', key: 'FCF', gid: 'tFcf', color: '#38bdf8' },
+  { sourceKey: 'ITOCHU', key: 'ITOCHU', gid: 'tIto', color: '#8b5cf6' },
+  { sourceKey: 'TRI MARINE', key: 'TRI MARINE', gid: 'tTri', color: '#ec4899' },
+  { sourceKey: 'direct', key: 'Direct deal', gid: 'tDir', color: '#10b981' },
+  { sourceKey: 'Maldives', key: 'Maldives', gid: 'tMal', color: '#f59e0b' },
+] as const;
+
+const TRADERS = traderStyles.map((style, index) => {
+  const trader = logisticsWeeklyReport.traderReceipts.traders[index];
+  if (!trader || trader.key !== style.sourceKey) throw new Error(`트레이더 데이터 누락: ${style.sourceKey}`);
+  return { ...style, name: trader.label, total: trader.total };
+});
 
 export default function TraderStatus() {
   const [hover, setHover] = React.useState<number | null>(null);
-  const cards = [...TRADERS.filter((t) => t.total > 0), { key: 'TOTAL', name: '합계', gid: '', color: 'var(--text-main)', total: 308284 }];
+  const cards = [...TRADERS.filter((t) => t.total > 0), { key: 'TOTAL', name: '합계', gid: '', color: 'var(--text-main)', total: logisticsWeeklyReport.traderReceipts.total }];
 
   return (
     <div style={{
@@ -42,9 +44,13 @@ export default function TraderStatus() {
           <h2 style={{ fontSize: '18px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'var(--text-main)' }}>
             <TermTooltip term="트레이더별 반입 현황 (2026)" description="월별 트레이더별 반입 물량(MT) 추이" />
           </h2>
-          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 1~7월 트레이더별 반입 실적 (MT) — 사내 집계, 2026-07 기준</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-muted)', margin: 0 }}>2026년 1~8월 트레이더별 반입 실적 (MT) — 2026-08-05 주간 보고 기준</p>
         </div>
       </div>
+
+      <p style={{ margin: '0 0 12px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(245, 158, 11, 0.08)', border: '1px solid rgba(245, 158, 11, 0.2)', color: 'var(--text-muted)', fontSize: '12px', lineHeight: 1.5 }}>
+        합계 317,175MT는 월별 검산값입니다. 원문 TRI MARINE 누계 46,463MT는 월별 합산 56,463MT와 10,000MT 차이가 있어 월별 합산값을 적용했습니다.
+      </p>
 
       <div style={{ flex: 1, minHeight: 300 }}>
         <SafeResponsiveContainer width="100%" height={300}>
