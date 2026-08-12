@@ -71715,6 +71715,67 @@
           "saleQty": 75
         }
       }
+    },
+    "2026-08-13": {
+      "sourceRecordCount": 77,
+      "species": {
+        "돌돔": {
+          "saleAmount": 300000,
+          "saleQty": 12
+        },
+        "가자미류": {
+          "saleAmount": 249000,
+          "saleQty": 17
+        },
+        "갯장어": {
+          "saleAmount": 6572000,
+          "saleQty": 322
+        },
+        "기타해면기타": {
+          "saleAmount": 170000,
+          "saleQty": 19
+        },
+        "능성어": {
+          "saleAmount": 173000,
+          "saleQty": 12
+        },
+        "문어": {
+          "saleAmount": 1702000,
+          "saleQty": 90
+        },
+        "방어": {
+          "saleAmount": 1262000,
+          "saleQty": 109
+        },
+        "소라": {
+          "saleAmount": 48000,
+          "saleQty": 5
+        },
+        "양태": {
+          "saleAmount": 113000,
+          "saleQty": 15
+        },
+        "전어": {
+          "saleAmount": 298000,
+          "saleQty": 46
+        },
+        "쥐치": {
+          "saleAmount": 46000,
+          "saleQty": 5
+        },
+        "해삼": {
+          "saleAmount": 44000,
+          "saleQty": 5
+        },
+        "병어": {
+          "saleAmount": 105000,
+          "saleQty": 3
+        },
+        "서대류": {
+          "saleAmount": 187000,
+          "saleQty": 8
+        }
+      }
     }
   }
 }

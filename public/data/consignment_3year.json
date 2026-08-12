@@ -505,22 +505,22 @@
       {
         "rank": 12,
         "seafoodName": "병어",
-        "saleAmount": 55240573900,
-        "saleQty": 3787666.1,
+        "saleAmount": 55240678900,
+        "saleQty": 3787669.1,
         "avgUnitPrice": 14584
       },
       {
         "rank": 13,
         "seafoodName": "문어",
-        "saleAmount": 54336815511,
-        "saleQty": 2558264.66,
+        "saleAmount": 54338517511,
+        "saleQty": 2558354.66,
         "avgUnitPrice": 21240
       },
       {
         "rank": 14,
         "seafoodName": "가자미류",
-        "saleAmount": 54056293529,
-        "saleQty": 7151360.05,
+        "saleAmount": 54056542529,
+        "saleQty": 7151377.05,
         "avgUnitPrice": 7559
       },
       {
@@ -589,8 +589,8 @@
       {
         "rank": 24,
         "seafoodName": "방어",
-        "saleAmount": 25159743958,
-        "saleQty": 7959259.4,
+        "saleAmount": 25161005958,
+        "saleQty": 7959368.4,
         "avgUnitPrice": 3161
       },
       {
@@ -7249,8 +7249,8 @@
       {
         "rank": 6,
         "seafoodName": "병어",
-        "saleAmount": 4159960100,
-        "saleQty": 222305.5,
+        "saleAmount": 4160065100,
+        "saleQty": 222308.5,
         "avgUnitPrice": 18713
       },
       {
@@ -7270,9 +7270,9 @@
       {
         "rank": 9,
         "seafoodName": "문어",
-        "saleAmount": 2434233674,
-        "saleQty": 147485.2,
-        "avgUnitPrice": 16505
+        "saleAmount": 2435935674,
+        "saleQty": 147575.2,
+        "avgUnitPrice": 16506
       },
       {
         "rank": 10,
@@ -7298,16 +7298,16 @@
       {
         "rank": 13,
         "seafoodName": "방어",
-        "saleAmount": 1135934620,
-        "saleQty": 263172.4,
-        "avgUnitPrice": 4316
+        "saleAmount": 1137196620,
+        "saleQty": 263281.4,
+        "avgUnitPrice": 4319
       },
       {
         "rank": 14,
         "seafoodName": "갯장어",
-        "saleAmount": 1093418063,
-        "saleQty": 69900.76,
-        "avgUnitPrice": 15642
+        "saleAmount": 1099990063,
+        "saleQty": 70222.76,
+        "avgUnitPrice": 15664
       },
       {
         "rank": 15,
@@ -7340,9 +7340,9 @@
       {
         "rank": 19,
         "seafoodName": "소라",
-        "saleAmount": 687078880,
-        "saleQty": 111913.5,
-        "avgUnitPrice": 6139
+        "saleAmount": 687126880,
+        "saleQty": 111918.5,
+        "avgUnitPrice": 6140
       },
       {
         "rank": 20,
@@ -7361,8 +7361,8 @@
       {
         "rank": 22,
         "seafoodName": "기타해면기타",
-        "saleAmount": 651839290,
-        "saleQty": 440828.7,
+        "saleAmount": 652009290,
+        "saleQty": 440847.7,
         "avgUnitPrice": 1479
       },
       {
@@ -7396,9 +7396,9 @@
       {
         "rank": 27,
         "seafoodName": "가자미류",
-        "saleAmount": 422228092,
-        "saleQty": 73691.9,
-        "avgUnitPrice": 5730
+        "saleAmount": 422477092,
+        "saleQty": 73708.9,
+        "avgUnitPrice": 5732
       },
       {
         "rank": 28,
@@ -87668,8 +87668,8 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "병어",
-      "saleAmount": 4159960100,
-      "saleQty": 222305.5,
+      "saleAmount": 4160065100,
+      "saleQty": 222308.5,
       "avgUnitPrice": 18713
     },
     {
@@ -87692,9 +87692,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "문어",
-      "saleAmount": 2434233674,
-      "saleQty": 147485.2,
-      "avgUnitPrice": 16505
+      "saleAmount": 2435935674,
+      "saleQty": 147575.2,
+      "avgUnitPrice": 16506
     },
     {
       "month": "2026-08",
@@ -87724,17 +87724,17 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "방어",
-      "saleAmount": 1135934620,
-      "saleQty": 263172.4,
-      "avgUnitPrice": 4316
+      "saleAmount": 1137196620,
+      "saleQty": 263281.4,
+      "avgUnitPrice": 4319
     },
     {
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "갯장어",
-      "saleAmount": 1093418063,
-      "saleQty": 69900.76,
-      "avgUnitPrice": 15642
+      "saleAmount": 1099990063,
+      "saleQty": 70222.76,
+      "avgUnitPrice": 15664
     },
     {
       "month": "2026-08",
@@ -87772,9 +87772,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "소라",
-      "saleAmount": 687078880,
-      "saleQty": 111913.5,
-      "avgUnitPrice": 6139
+      "saleAmount": 687126880,
+      "saleQty": 111918.5,
+      "avgUnitPrice": 6140
     },
     {
       "month": "2026-08",
@@ -87796,8 +87796,8 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "기타해면기타",
-      "saleAmount": 651839290,
-      "saleQty": 440828.7,
+      "saleAmount": 652009290,
+      "saleQty": 440847.7,
       "avgUnitPrice": 1479
     },
     {
@@ -87836,9 +87836,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "가자미류",
-      "saleAmount": 422228092,
-      "saleQty": 73691.9,
-      "avgUnitPrice": 5730
+      "saleAmount": 422477092,
+      "saleQty": 73708.9,
+      "avgUnitPrice": 5732
     },
     {
       "month": "2026-08",
@@ -87868,9 +87868,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "전어",
-      "saleAmount": 329146943,
-      "saleQty": 31954.8,
-      "avgUnitPrice": 10300
+      "saleAmount": 329444943,
+      "saleQty": 32000.8,
+      "avgUnitPrice": 10295
     },
     {
       "month": "2026-08",
@@ -87900,9 +87900,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "쥐치",
-      "saleAmount": 246844900,
-      "saleQty": 11172.95,
-      "avgUnitPrice": 22093
+      "saleAmount": 246890900,
+      "saleQty": 11177.95,
+      "avgUnitPrice": 22087
     },
     {
       "month": "2026-08",
@@ -87940,9 +87940,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "능성어",
-      "saleAmount": 187363718,
-      "saleQty": 6894.9,
-      "avgUnitPrice": 27174
+      "saleAmount": 187536718,
+      "saleQty": 6906.9,
+      "avgUnitPrice": 27152
     },
     {
       "month": "2026-08",
@@ -87988,9 +87988,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "돌돔",
-      "saleAmount": 147966251,
-      "saleQty": 5203.9,
-      "avgUnitPrice": 28434
+      "saleAmount": 148266251,
+      "saleQty": 5215.9,
+      "avgUnitPrice": 28426
     },
     {
       "month": "2026-08",
@@ -88028,9 +88028,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "서대류",
-      "saleAmount": 133629680,
-      "saleQty": 9630.2,
-      "avgUnitPrice": 13876
+      "saleAmount": 133816680,
+      "saleQty": 9638.2,
+      "avgUnitPrice": 13884
     },
     {
       "month": "2026-08",
@@ -88044,9 +88044,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "해삼",
-      "saleAmount": 107565510,
-      "saleQty": 7687.4,
-      "avgUnitPrice": 13992
+      "saleAmount": 107609510,
+      "saleQty": 7692.4,
+      "avgUnitPrice": 13989
     },
     {
       "month": "2026-08",
@@ -88204,9 +88204,9 @@
       "month": "2026-08",
       "year": "2026",
       "seafoodName": "양태",
-      "saleAmount": 37665900,
-      "saleQty": 3317,
-      "avgUnitPrice": 11355
+      "saleAmount": 37778900,
+      "saleQty": 3332,
+      "avgUnitPrice": 11338
     },
     {
       "month": "2026-08",
@@ -89947,14 +89947,14 @@
     ],
     "totalSpecies": 442,
     "totalRecords": 10310,
-    "sourceRowCount": 2331849,
+    "sourceRowCount": 2331926,
     "aggregatedRows": 10310,
-    "generatedAt": "2026-08-12T22:44:34.038+09:00",
+    "generatedAt": "2026-08-13T04:18:27.986+09:00",
     "samplingBasis": "해양수산부 위탁판매 일자별 전체 거래 월별 누적",
-    "latestAuctionDate": "2026-08-12",
-    "checkedThrough": "2026-08-12",
+    "latestAuctionDate": "2026-08-13",
+    "checkedThrough": "2026-08-13",
     "includedPartialMonth": "2026-08",
-    "coverageNote": "2026-08-12 위판일자까지 공개된 전체 거래 반영",
+    "coverageNote": "2026-08-13 위판일자까지 공개된 전체 거래 반영",
     "monthSourceRecordCounts": {
       "2024-01": 48235,
       "2024-02": 36430,
@@ -89987,10 +89987,10 @@
       "2026-05": 69158,
       "2026-06": 61312,
       "2026-07": 535392,
-      "2026-08": 152311
+      "2026-08": 152388
     },
     "officialThrough": "2026-06",
     "liveFrom": "2026-07-01",
-    "liveThrough": "2026-08-12"
+    "liveThrough": "2026-08-13"
   }
 }
