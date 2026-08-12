@@ -116,4 +116,22 @@ describe('SEIN VENUS unloading data', () => {
     expect(analyticsSource).toContain('timedAmount += t.dailyAmount');
     expect(analyticsSource).toContain('!isInProgress(selectedVessel.status) && surplusPct > 3');
   });
+
+  it('prioritizes active operations and groups the long detail view by task', () => {
+    const source = readFileSync(join(process.cwd(), 'components/UnloadingStatus.tsx'), 'utf8');
+
+    expect(source).toContain('오늘의 운영 판단');
+    expect(source).toContain('완료 선박');
+    expect(source).toContain('완료 선박 펼치기');
+    expect(source).toContain("useState<DetailTab>('summary')");
+    expect(source).toContain("{ id: 'summary', label: '운영 요약' }");
+    expect(source).toContain("{ id: 'holds', label: '화물창·품질' }");
+    expect(source).toContain("{ id: 'timeline', label: '작업 기록' }");
+    expect(source).toContain("{ id: 'analysis', label: '분석·보고' }");
+    expect(source).toContain('aria-selected={activeDetailTab === tab.id}');
+    expect(source).toContain('aria-controls={`unloading-panel-${tab.id}`}');
+    expect(source).toContain("event.key === 'ArrowRight'");
+    expect(source.match(/hold\.lastTemperature > -18(?:\.0)?/g)).toHaveLength(2);
+    expect(source).toContain("style={{ display: 'flex', flexWrap: 'wrap'");
+  });
 });

@@ -1,5 +1,12 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-08-12 16:34 KST — `/unloading` 운영 판단 중심 UI 효율화** [Hermes]:
+> - 첫 화면에 선택 선박의 진척률·잔여량·일평균·완료 예상·온도 이상을 모은 `오늘의 운영 판단` 패널을 추가하고, 7일 내 완료 기준 대비 부족량과 권고 조치를 즉시 표시.
+> - 선박 목록을 `진행 선박` 우선으로 재구성하고 완료 선박 7척은 기본 접힘 처리. 선박 카드는 실제 `button`으로 바꿔 키보드·스크린리더 접근성을 개선.
+> - 긴 상세 화면을 `운영 요약 / 화물창·품질 / 작업 기록 / 분석·보고` 4개 업무 탭으로 분리. 기본 화면 문서 높이는 로컬 1280×633 기준 3,989px에서 2,250px로 감소.
+> - 신규 회귀 테스트를 RED→GREEN으로 추가. 전체 Vitest **93/93**, 타입검사, ESLint 0 errors(기존 warnings 10), Next.js 16 Turbopack 전체 빌드 103페이지 통과. 로컬 `http://127.0.0.1:3010/unloading`에서 탭 선택·완료 선박 접힘·API 오류 없음 및 시각 QA 완료.
+> - 미배포(로컬). 다음 단계: 사용자 확인 후 필요하면 4개 탭별 콘텐츠 밀도를 추가 조정하고 명시적 요청 시 라이브 배포.
+
 > ✅ **2026-08-12 16:23 KST — SEIN VENUS 배포 후 App Quality Gate 복구** [Codex]:
 > - 최초 배포 커밋 `a11e71c`의 Vercel production은 READY이며 `https://leedonggun.co.kr/api/unloading-db`에서 SEIN VENUS `하역중`, 총 3,275 MT, 누계 1,077.990 MT, 4일치 작업시간·온도·계획 응답을 확인.
 > - GitHub Actions 실패 원인은 신규 SEIN VENUS 코드가 아니라 과거 데이터/메뉴 변경 뒤 갱신되지 않은 테스트 3건. `atuna-prices-data.test.ts`의 방콕·만타 기대값을 현재 데이터(7/16 $1,790·7/9 $2,150)로 동기화하고, `dashboard-registry.test.ts`는 7/8 의도대로 `cross-intelligence`가 공개 route에는 남되 사이드바·패널 순서에는 없다는 계약으로 정정.

@@ -46,6 +46,15 @@ type UnloadingVesselData = {
   finalReport?: unknown;
 };
 
+type DetailTab = 'summary' | 'holds' | 'timeline' | 'analysis';
+
+const DETAIL_TABS: { id: DetailTab; label: string }[] = [
+  { id: 'summary', label: '운영 요약' },
+  { id: 'holds', label: '화물창·품질' },
+  { id: 'timeline', label: '작업 기록' },
+  { id: 'analysis', label: '분석·보고' },
+];
+
 // Vessel Stowage Plans
 const vesselStowagePlans: Record<string, Record<string, string[]>> = {
   'sein-phoenix': {
@@ -570,6 +579,8 @@ export default function UnloadingStatus() {
   const [showReportModal, setShowReportModal] = useState(false);
   const [showReplayModal, setShowReplayModal] = useState(false);
   const [showFieldMode, setShowFieldMode] = useState(false);
+  const [showCompletedVessels, setShowCompletedVessels] = useState(false);
+  const [activeDetailTab, setActiveDetailTab] = useState<DetailTab>('summary');
 
   useEffect(() => {
     let searchParams = '';
@@ -603,7 +614,6 @@ export default function UnloadingStatus() {
       })
       .then(d => {
         if (d.success && d.data) {
-          console.log("DEBUG_FETCH_DATA:", JSON.stringify(d.data));
           setDbData(d.data);
         }
       })
@@ -932,7 +942,6 @@ export default function UnloadingStatus() {
   const formatNum = (num: number) => num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
   const vesselId = data[selectedVessel as keyof typeof data] ? selectedVessel : 'sein-phoenix';
-  console.log("DEBUG_VESSEL:", JSON.stringify({ selectedVessel, dataKeys: Object.keys(data), vesselId }));
   const selectedData = data[vesselId as keyof typeof data] || data['sein-phoenix'];
   const chartData = (selectedData.timeline || []).map(t => ({
     name: t.date,
@@ -974,6 +983,83 @@ export default function UnloadingStatus() {
     .filter(Boolean)
     .sort()[0] || null;
   const selectedBaseDate = vesselLatestReport(selectedData as any)?.label || null;
+  const selectedTimeline = (selectedData.timeline || []).filter(t => t.dailyAmount > 0);
+  const selectedDailyAverage = selectedTimeline.length > 0
+    ? selectedTimeline.reduce((sum, entry) => sum + entry.dailyAmount, 0) / selectedTimeline.length
+    : 0;
+  const selectedRemaining = Math.max(0, selectedData.reportedTotal - selectedData.actualTotal);
+  const selectedProgress = selectedData.reportedTotal > 0
+    ? Math.min((selectedData.actualTotal / selectedData.reportedTotal) * 100, 100)
+    : 0;
+  const selectedEstimatedDays = selectedDailyAverage > 0 ? Math.ceil(selectedRemaining / selectedDailyAverage) : 0;
+  const sevenDayTarget = selectedRemaining / 7;
+  const dailyGap = Math.max(0, sevenDayTarget - selectedDailyAverage);
+  const criticalHoldCount = Object.values(holdsData)
+    .filter(hold => hold.lastTemperature !== null && hold.lastTemperature > -18).length;
+
+  const selectVessel = (id: string) => {
+    setSelectedVessel(id);
+    setSelectedHold(null);
+    setTooltipData(null);
+    setActiveDetailTab('summary');
+  };
+
+  const handleDetailTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, currentTab: DetailTab) => {
+    const currentIndex = DETAIL_TABS.findIndex(tab => tab.id === currentTab);
+    let nextIndex = currentIndex;
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % DETAIL_TABS.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + DETAIL_TABS.length) % DETAIL_TABS.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = DETAIL_TABS.length - 1;
+    else return;
+
+    event.preventDefault();
+    const nextTab = DETAIL_TABS[nextIndex];
+    setActiveDetailTab(nextTab.id);
+    document.getElementById(`unloading-tab-${nextTab.id}`)?.focus();
+  };
+
+  const renderVesselCard = (v: typeof vesselsList[number]) => {
+    const isProgress = v.status.includes('하역중');
+    const percent = v.reportedTotal > 0 ? Math.min((v.actualTotal / v.reportedTotal) * 100, 100) : 0;
+    const holds = parseVesselHoldData(v.id, v.timeline || [], v.reportedTotal || 0);
+    const hasCriticalTemp = Object.values(holds).some(hold => hold.lastTemperature !== null && hold.lastTemperature > -18.0);
+
+    return (
+      <button
+        type="button"
+        key={v.id}
+        data-testid={`vessel-select-item-${v.id}`}
+        className={`${styles.vesselCard} ${styles.glassPanel} ${vesselId === v.id ? styles.active : ''}`}
+        onClick={() => selectVessel(v.id)}
+      >
+        <div className={styles.vesselHeader}>
+          <div>
+            <div className={styles.vesselName}>{v.name}</div>
+            <div className={styles.vesselLocation}><MapPin size={12} /> {v.location || '-'}</div>
+          </div>
+          <div className={styles.vesselMeta}>
+            <span className={`${styles.statusBadge} ${isProgress ? styles.progress : styles.completed}`}>
+              {v.status.split(' ')[0]}
+            </span>
+            {hasCriticalTemp && <AlertCircle className="alertIcon danger" size={14} />}
+            <span>{formatNum(v.actualTotal)} / {formatNum(v.reportedTotal)} MT</span>
+          </div>
+        </div>
+        <div className={styles.progressContainer}>
+          <RadialGauge
+            dataTestId={`progress-gauge-${v.id}`}
+            progress={percent}
+            radius={22}
+            strokeWidth={4}
+            color={isProgress ? 'var(--accent-primary)' : '#10b981'}
+            glow={isProgress}
+          />
+        </div>
+      </button>
+    );
+  };
 
   if (apiError) {
     return (
@@ -1026,7 +1112,7 @@ export default function UnloadingStatus() {
       {/* 1. Macro View Header */}
       <div className={styles.pageTitle}>
         <Anchor size={28} color="var(--accent-primary)" />
-        하역 현황 관제 (Fleet Unloading Center)
+        하역 관제
         <div style={{ marginLeft: 'auto', display: 'flex', gap: '8px' }}>
           <button
             onClick={() => setShowFieldMode(true)}
@@ -1037,10 +1123,32 @@ export default function UnloadingStatus() {
         </div>
       </div>
 
+      <section className={styles.decisionPanel} aria-labelledby="unloading-decision-title">
+        <div className={styles.decisionLead}>
+          <span className={styles.eyebrow}>오늘의 운영 판단</span>
+          <h2 id="unloading-decision-title">
+            {selectedRemaining > 0
+              ? `${selectedData.name} 하역 ${selectedProgress.toFixed(1)}% 진행`
+              : `${selectedData.name} 하역 완료`}
+          </h2>
+          <p>
+            {dailyGap > 0
+              ? `7일 내 완료 기준 일일 ${formatNum(dailyGap)} MT가 부족합니다. 작업조 또는 접안 일정 조정을 검토하세요.`
+              : '현재 하역 속도는 7일 내 완료 기준을 충족합니다.'}
+          </p>
+        </div>
+        <div className={styles.decisionMetrics}>
+          <div><span>잔여 목표량</span><strong>{formatNum(selectedRemaining)} MT</strong></div>
+          <div><span>현재 일평균</span><strong>{selectedDailyAverage.toFixed(1)} MT</strong></div>
+          <div><span>완료 예상</span><strong>{selectedRemaining > 0 ? `약 ${selectedEstimatedDays}일` : '완료'}</strong></div>
+          <div><span>온도 이상</span><strong className={criticalHoldCount > 0 ? styles.dangerText : ''}>{criticalHoldCount}개 어창</strong></div>
+        </div>
+      </section>
+
       <div className={styles.execGrid}>
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
           <div className={styles.execCardTitle}>
-            <Ship size={16} /> 진행 중인 하역 선박 (Active) <BaseDateTag date={globalBaseDate} />
+            <Ship size={16} /> 하역 중 <BaseDateTag date={globalBaseDate} />
           </div>
           <div className={styles.execCardValue}>{activeVessels.length} 척</div>
           <div className={styles.execCardTakeaway}>
@@ -1050,7 +1158,7 @@ export default function UnloadingStatus() {
         
         <div className={`${styles.execCard} ${styles.glassPanel}`}>
           <div className={styles.execCardTitle}>
-            <AlertCircle size={16} /> 글로벌 항구 병목 (Congestion) <BaseDateTag date={globalBaseDate} />
+            <AlertCircle size={16} /> 항만 체선 위험 <BaseDateTag date={globalBaseDate} />
           </div>
           <div className={styles.execCardValue} style={{ color: 'var(--color-danger)' }}>
             High <span style={{ fontSize: '1rem', fontWeight: 'normal', color: 'var(--text-muted)' }}>(방콕)</span>
@@ -1079,58 +1187,32 @@ export default function UnloadingStatus() {
       </div>
 
       {/* 2. Fleet Grid */}
-      <div style={{ marginTop: '16px' }}>
-        <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>전체 선박 하역 상태 <BaseDateTag date={globalBaseDate} /></h3>
-        <div className={styles.fleetGrid}>
-          {vesselsList.map(v => {
-            const isProgress = v.status.includes('하역중');
-            const percent = v.reportedTotal > 0 ? Math.min((v.actualTotal / v.reportedTotal) * 100, 100) : 0;
-            const holds = parseVesselHoldData(v.id, v.timeline || [], v.reportedTotal || 0);
-            const hasCriticalTemp = Object.values(holds).some(hold => hold.lastTemperature !== null && hold.lastTemperature > -17.0);
-            return (
-              <div 
-                key={v.id} 
-                data-testid={`vessel-select-item-${v.id}`}
-                className={`${styles.vesselCard} ${styles.glassPanel} ${vesselId === v.id ? styles.active : ''}`}
-                onClick={() => {
-                  setSelectedVessel(v.id);
-                  setSelectedHold(null);
-                  setTooltipData(null);
-                }}
-              >
-                <div className={styles.vesselHeader}>
-                  <div>
-                    <div className={styles.vesselName}>{v.name}</div>
-                    <div className={styles.vesselLocation}><MapPin size={12} style={{display:'inline', marginRight: '4px'}}/> {v.location || '-'}</div>
-                  </div>
-                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '6px' }}>
-                    <span className={`${styles.statusBadge} ${isProgress ? styles.progress : styles.completed}`}>
-                      {v.status.split(' ')[0]}
-                    </span>
-                    {hasCriticalTemp && (
-                      <AlertCircle className="alertIcon danger" size={14} style={{ color: '#ef4444' }} />
-                    )}
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                      {formatNum(v.actualTotal)} / {formatNum(v.reportedTotal)} MT
-                    </span>
-                  </div>
-                </div>
-                
-                <div className={styles.progressContainer}>
-                  <RadialGauge 
-                    dataTestId={`progress-gauge-${v.id}`}
-                    progress={percent} 
-                    radius={22} 
-                    strokeWidth={4} 
-                    color={isProgress ? "var(--accent-primary)" : "#10b981"} 
-                    glow={true}
-                  />
-                </div>
-              </div>
-            );
-          })}
+      <section className={styles.fleetSection}>
+        <div className={styles.sectionHeading}>
+          <div>
+            <span className={styles.eyebrow}>우선 확인</span>
+            <h3>진행 선박 {activeVessels.length}척</h3>
+          </div>
+          <BaseDateTag date={globalBaseDate} />
         </div>
-      </div>
+        <div className={styles.fleetGrid}>
+          {activeVessels.map(renderVesselCard)}
+        </div>
+        <button
+          type="button"
+          className={styles.completedToggle}
+          aria-expanded={showCompletedVessels}
+          onClick={() => setShowCompletedVessels(value => !value)}
+        >
+          <span>완료 선박 {completedVessels.length}척</span>
+          <span>{showCompletedVessels ? '완료 선박 접기' : '완료 선박 펼치기'}</span>
+        </button>
+        {showCompletedVessels && (
+          <div className={`${styles.fleetGrid} ${styles.completedGrid}`}>
+            {completedVessels.map(renderVesselCard)}
+          </div>
+        )}
+      </section>
 
       {/* 3. Deep Dive Analytics */}
       <div className={`${styles.deepDiveCard} ${styles.glassPanel}`}>
@@ -1166,8 +1248,32 @@ export default function UnloadingStatus() {
           </div>
         </div>
 
+        <div className={styles.detailTabs} role="tablist" aria-label="하역 상세 업무 보기">
+          {DETAIL_TABS.map(tab => (
+            <button
+              key={tab.id}
+              id={`unloading-tab-${tab.id}`}
+              type="button"
+              role="tab"
+              aria-selected={activeDetailTab === tab.id}
+              aria-controls={`unloading-panel-${tab.id}`}
+              tabIndex={activeDetailTab === tab.id ? 0 : -1}
+              className={activeDetailTab === tab.id ? styles.detailTabActive : styles.detailTab}
+              onClick={() => setActiveDetailTab(tab.id)}
+              onKeyDown={event => handleDetailTabKeyDown(event, tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         {/* 3A. Interactive Cargo Hold Stowage Schematic */}
-        <div className={styles.schematicContainer}>
+        <div
+          id="unloading-panel-holds"
+          role="tabpanel"
+          aria-labelledby="unloading-tab-holds"
+          className={`${styles.schematicContainer} ${activeDetailTab !== 'holds' ? styles.tabPanelHidden : ''}`}
+        >
           <h4 style={{ marginBottom: '16px', fontSize: '1rem', fontWeight: 'bold', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Ship size={18} color="var(--accent-primary)" />
             선박 화물창 적재도 (Cargo Hold Stowage Schematic)
@@ -1533,7 +1639,13 @@ export default function UnloadingStatus() {
           const totalShipperAmount = Array.from(shipperMap.values()).reduce((sum, value) => sum + value, 0);
 
           return (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}>
+            <div
+              id="unloading-panel-summary"
+              role="tabpanel"
+              aria-labelledby="unloading-tab-summary"
+              className={activeDetailTab !== 'summary' ? styles.tabPanelHidden : ''}
+              style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}
+            >
               {/* Chart - Left */}
               <div style={{ flex: '1 1 600px', minWidth: 0, background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', overflow: 'hidden' }}>
                 <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '8px' }}>일일 및 누적 하역 추이 (MT) <BaseDateTag date={selectedBaseDate} /></h4>
@@ -1636,7 +1748,13 @@ export default function UnloadingStatus() {
         })()}
 
         {/* Timeline Log - Stylized Vertical Shipping Lane */}
-        <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(140,170,255,0.10)', position: 'relative' }}>
+        <div
+          id="unloading-panel-timeline"
+          role="tabpanel"
+          aria-labelledby="unloading-tab-timeline"
+          className={activeDetailTab !== 'timeline' ? styles.tabPanelHidden : ''}
+          style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '24px', border: '1px solid rgba(140,170,255,0.10)', position: 'relative' }}
+        >
           <h4 style={{ marginBottom: '20px', fontSize: '0.95rem', color: 'var(--text-muted)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>작업 기록 (Vertical Shipping Lane Timeline) <BaseDateTag date={selectedBaseDate} /></span>
             <span style={{ fontSize: '0.8rem' }}><TermTooltip term="어창(Hold)" description="하역 중인 선박의 냉동창고 번호입니다." /></span>
@@ -1752,7 +1870,7 @@ export default function UnloadingStatus() {
         </div>
 
         {/* Takeaway Box if available */}
-        {(selectedData as any).finalReport && (
+        {activeDetailTab === 'summary' && (selectedData as any).finalReport && (
           <div data-testid="exec-takeaway-box" className={styles.takeawayBox}>
             <h4 style={{ fontSize: '14px', color: '#38BDF8', marginBottom: '8px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
               <AlertCircle size={16} /> 경영진 요약 (Executive Takeaway)
@@ -1768,14 +1886,21 @@ export default function UnloadingStatus() {
       </div>
 
       {/* Enhanced Analytics Section */}
-      <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center', color: 'var(--text-muted)' }}>분석 패널 로딩 중...</div>}>
-        <UnloadingAnalytics
-          selectedVessel={selectedData}
-          vesselId={vesselId}
-          allVessels={data}
-          holdsData={holdsData}
-        />
-      </Suspense>
+      <div
+        id="unloading-panel-analysis"
+        role="tabpanel"
+        aria-labelledby="unloading-tab-analysis"
+        className={activeDetailTab !== 'analysis' ? styles.tabPanelHidden : ''}
+      >
+        <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center', color: 'var(--text-muted)' }}>분석 패널 로딩 중...</div>}>
+          <UnloadingAnalytics
+            selectedVessel={selectedData}
+            vesselId={vesselId}
+            allVessels={data}
+            holdsData={holdsData}
+          />
+        </Suspense>
+      </div>
 
 
     </div>
