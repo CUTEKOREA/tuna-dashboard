@@ -1,6 +1,12 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 00:18 KST
+> 마지막 업데이트: 2026-08-13 00:31 KST
+
+> 🚀 **2026-08-13 00:31 KST — `/fleet` 8월 선단 운영자료 라이브 배포 완료** [Codex]:
+> - 로컬 기능 커밋 `9c3cf85`를 PR [#284](https://github.com/CUTEKOREA/tuna-dashboard/pull/284)로 `main`에 병합했고, production merge commit은 `8d6818736caf0f9a017845be2b97d9171ee66db0`이다.
+> - PR App Quality Gate run `31612026727`, main App Quality Gate run `31612342879`, Data Freshness Audit run `31612342908`이 모두 성공했다. 기존 ESLint warning 이외 오류는 없다.
+> - Vercel production `dpl_3zsLf9UWBmoPTtKzcvcg5DUAjP9K`(`tuna-dashboard-bw9hznm3c-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr`·`https://tuna-dashboard-kappa.vercel.app` alias에 연결됐다.
+> - 라이브 `/fleet`는 `x-matched-path: /[category]`로 응답한다. 잠금 해제 후 데스크톱·390px 모바일에서 HTTP 200, 4개 탭, 611/1,320/46,153 M/T, 태평양 176 M/T, 대서양 220 M/T, TAIHO MARU, HIKARI 1 컨테이너, VDS 1,417/750일과 소계 차이 주석을 확인했다. 가로 overflow 0, console/page/자체 request error 0이며 배포 후 Vercel error log는 없다.
 
 > 🛠️ **2026-08-13 00:18 KST — `/fleet` 8월 9~12일 선단 운영자료 로컬 반영** [Codex]:
 > - 사용자 제공 원문 7건을 `lib/fleet-operations-2026-08-09.ts`의 중앙 데이터 계약으로 구조화했다. 주간 어획 **611 M/T**, 8월 누계 **1,320 M/T**, 연간 누계 **46,153 M/T**, 태평양 8/11 일간 **176 M/T**, 대서양 8/11 일간 **220 M/T**, 운반선·컨테이너 8/12 선적 **9,922.3 M/T**를 기준일별로 분리했다.
