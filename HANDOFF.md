@@ -1,6 +1,12 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 06:32 KST
+> 마지막 업데이트: 2026-08-13 07:17 KST
+
+> 🚀 **2026-08-13 07:17 KST — `/market` 2026년 8월 Atuna 회귀 복구 라이브 배포 완료** [Codex]:
+> - 8월 복구 PR [#285](https://github.com/CUTEKOREA/tuna-dashboard/pull/285)을 최신 `main`과 충돌 없이 병합했다. production merge commit은 `6d6203dda957e6687852f04b2a4d3ab49a3ce411`이다.
+> - PR App Quality Gate run `31641107865`, main App Quality Gate run `31645914987`, Data Freshness Audit run `31645915053`이 모두 성공했다. 전체 검증은 Vitest **137/137**, 타입검사, API cache **150/150**, Next.js **103페이지**, bundle budget을 통과했다.
+> - Vercel production `dpl_HWPozBQujVr2qUzL9P8ghBCr3jxh`(`tuna-dashboard-3sq2nd6ch-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr` alias에 연결됐다.
+> - 라이브 API는 SKJ 방콕 **2026-08-06 $1,900**, SKJ 만타 **2026-07-28 $2,150**을 반환한다. 데스크톱·390px 모바일에서 8월 폴더·가격·기준일 렌더, 구 7월 다이제스트 제목 제거, HTTP 200, 가로 overflow 0, console/page/자체 request error 0을 확인했고 배포 후 Vercel error log는 없다.
 
 > 🚢 **2026-08-13 06:32 KST — `/unloading` 2021~2025 역사 실적 공개 배포본 준비** [Codex]:
 > - Google Drive 하역 원자료 5,945건에서 정제·검토한 98항차를 별도 정적 API와 지연 로딩 패널로 구성했다. 검증 상태는 **검증 87 / 부분확인 4 / 미확인 7**이며 5개년 검증 합계는 **333,290.2658 MT**다.
