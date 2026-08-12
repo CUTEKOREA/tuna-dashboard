@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-12 22:31 KST
+> 마지막 업데이트: 2026-08-13 00:18 KST
+
+> ✅ **2026-08-13 00:18 KST — `/market` 2026년 8월 Atuna 동기화 회귀 복원·라이브 배포 준비** [Codex]:
+> - 라이브 `/market`이 다시 `2026-07-16` SKJ 방콕 **$1,790**과 7월 다이제스트를 표시하는 회귀를 재현했다. 8월 Atuna 반영 커밋 `0ff6fcf`가 별도 브랜치에만 있고 `main`에 병합되지 않아, 이후 `main` 배포가 운영 화면을 이전 상태로 되돌린 것이 원인이다.
+> - 최신 `origin/main`의 `/logistics` 31주차 변경을 보존한 전용 배포 worktree에서 `components/MarketDashboard.tsx`와 `data/atuna_prices.json`만 해당 승인 버전으로 복원했다. API 최신값은 **SKJ 방콕 2026-08-06 $1,900**, **SKJ 만타 2026-07-28 $2,150**이며, 화면에 `Atuna 2026.08 폴더`와 `가격은 8/6 SKJ $1,900 반영`을 다시 노출한다.
+> - 재발 방지를 위해 가격 최신행과 8월 폴더·가격 문구를 고정하는 회귀 테스트를 추가했다. 전체 Vitest **133/133**, 타입검사, API cache **150/150**, ESLint 0 errors(기존 warnings 10), Next.js Turbopack·webpack production 빌드 **103/103**, bundle budget, S-Grade 0건을 통과했다.
+> - 로컬 production 데스크톱·390px 모바일에서 `/market`의 8월 폴더·$1,900·2026.08.06과 `/logistics`의 31주차·4척·18,643.026MT·SEIN VENUS를 확인했다. 두 경로 모두 HTTP 200, 가로 overflow 0, page error 0이다.
+> - 사용자 명시적 라이브 배포 요청에 따라 GitHub 품질 게이트와 Vercel production 배포를 진행한다.
 
 > 🚀 **2026-08-12 22:31 KST — `/fleet-strategy` 2025년 선사별 업종별 원양어업 생산실적 라이브 배포 완료** [Codex]:
 > - 사용자 제공 `25년도 선사별 업종별 원양어업 생산량 자료 (1).pdf` 112~115쪽 화면을 기준으로 36개 선사의 회사 합계와 10개 업종별 생산량을 `lib/fleet-production-2025.ts`에 구조화했다. 원문 총계는 **383,130 M/T**, 신라교역은 **58,349 M/T(전체 15.2%, 2위)**이며 참치선망 **54,803 M/T**, 참치연승 **3,546 M/T**다.

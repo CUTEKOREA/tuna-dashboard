@@ -20,13 +20,14 @@ describe('market dashboard composition', () => {
     expect(source).not.toContain('YF 황다랑어 (세이셸)');
   });
 
-  it('keeps the market digest aligned with the latest verified NotebookLM sources', () => {
+  it('keeps the August Atuna folder and latest price sync visible', () => {
     const source = readFileSync(join(process.cwd(), 'components/MarketDashboard.tsx'), 'utf8');
 
-    expect(source).toContain('7/23~27 (확인 기사 7/23~24)');
-    expect(source).toContain('Atuna 2026.07.23~24 (NotebookLM 원문 10건 분석)');
+    expect(source).toContain('Atuna 2026.08 폴더 (05_ATUNA_뉴스·가격)');
+    expect(source).toContain('가격은 8/6 SKJ $1,900 반영');
+    expect(source).toContain('Atuna 05_ATUNA_뉴스·가격 (2026.08 폴더 전체)');
     expect(source).toContain('태국산 염수 캔 25%, 에콰도르산은 예외');
     expect(source).toContain('한국 공급은 26% 급감');
-    expect(source).not.toContain('Atuna 2026.07.13~17 (NotebookLM 종합 분석)');
+    expect(source).not.toContain('7/23~27 (확인 기사 7/23~24)');
   });
 });
