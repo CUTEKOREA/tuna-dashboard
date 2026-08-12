@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import sitemap from '../app/sitemap';
 import {
@@ -16,6 +18,16 @@ import {
 } from '../lib/dashboard-registry';
 
 describe('dashboard registry', () => {
+  it('routes unloading through the client-only category page to keep hydration stable', () => {
+    const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
+    const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
+    const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
+
+    expect(rewriteSource).toBeDefined();
+    expect(rewriteSource).not.toContain('unloading');
+    expect(categorySource).toContain('ssr: false');
+  });
+
   it('keeps menu keys unique and title-addressable', () => {
     expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(30);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
