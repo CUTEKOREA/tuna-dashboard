@@ -89,7 +89,7 @@ function getTotalDays(vessel: { dateRange?: string; timeline?: TimelineEntry[] }
 
 /** Check if vessel is still in progress */
 function isInProgress(status: string): boolean {
-  return status.includes('진행') || status.toLowerCase().includes('progress');
+  return status.includes('하역중') || status.includes('진행') || status.toLowerCase().includes('progress');
 }
 
 /** Format number with locale */
@@ -130,10 +130,15 @@ export default function UnloadingAnalytics({
 
       // Compute total work hours to get MT/hr
       let totalHours = 0;
+      let timedAmount = 0;
       (v.timeline || []).forEach((t: TimelineEntry) => {
-        totalHours += parseWorkHours(t.time);
+        const hours = parseWorkHours(t.time);
+        if (hours > 0) {
+          totalHours += hours;
+          timedAmount += t.dailyAmount;
+        }
       });
-      const mtPerHr = totalHours > 0 ? v.actualTotal / totalHours : 0;
+      const mtPerHr = totalHours > 0 ? timedAmount / totalHours : 0;
 
       return {
         id,
@@ -306,7 +311,7 @@ export default function UnloadingAnalytics({
     const surplusPct = selectedVessel.reportedTotal > 0
       ? Math.abs(selectedVessel.surplus) / selectedVessel.reportedTotal * 100
       : 0;
-    if (surplusPct > 3) {
+    if (!isInProgress(selectedVessel.status) && surplusPct > 3) {
       const direction = selectedVessel.surplus > 0 ? '초과' : '부족';
       items.push({
         severity: 'WARNING',

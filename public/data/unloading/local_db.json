@@ -33,6 +33,18 @@
       "date_range": "2026.06.20 ~ 2026.07.06",
       "mother_vessel": "-",
       "updated_at": "2026-07-07T08:49:12.027607"
+    },
+    {
+      "vessel_id": "sein-venus",
+      "name": "M/V SEIN VENUS",
+      "location": "방콕, 태국",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역중",
+      "reported_total": 3275,
+      "date_range": "2026.08.07 ~ 진행중",
+      "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
+      "created_at": "2026-08-12T15:34:21+09:00",
+      "updated_at": "2026-08-12T15:34:21+09:00"
     }
   ],
   "unloading_reports": [
@@ -676,6 +688,50 @@
       "cumulative_amount": 3230.22,
       "quality_notes": "N/SUN(#2-C) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. MOAMARI(#3-C) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. 운반선 보고량(3,096톤) 대비 134.220톤 증가한 3,230.220톤으로 하역 종료.",
       "created_at": "2026-07-07T08:49:12.027607"
+    },
+    {
+      "id": "sein-venus-8-7",
+      "vessel_id": "sein-venus",
+      "report_date": "8/7",
+      "work_time": "10:10 ~ 19:00",
+      "target_holds": "N/SUN(#3-B:174.640)",
+      "daily_amount": 174.64,
+      "cumulative_amount": 174.64,
+      "quality_notes": "N/SUN(#3-B) - 어창 개방 측정온도는 -21.0℃ ~ -23.0℃ 입니다. 8/8 약 160톤 하역 예정입니다.",
+      "created_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "id": "sein-venus-8-8",
+      "vessel_id": "sein-venus",
+      "report_date": "8/8",
+      "work_time": "08:10 ~ 13:00",
+      "target_holds": "S/PIO(#2-A:109.070)",
+      "daily_amount": 109.07,
+      "cumulative_amount": 283.71,
+      "quality_notes": "S/PIO(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/9 공휴일로 하역 작업이 없으며, 8/10 약 310톤 하역 예정입니다.",
+      "created_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "id": "sein-venus-8-10",
+      "vessel_id": "sein-venus",
+      "report_date": "8/10",
+      "work_time": "08:10 ~ 16:10",
+      "target_holds": "S/PIO(#1-A:169.330), N/STAR(#2-A:162.140)",
+      "daily_amount": 331.47,
+      "cumulative_amount": 615.18,
+      "quality_notes": "S/PIO(#1-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/11 약 420톤 하역 예정입니다.",
+      "created_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "id": "sein-venus-8-11",
+      "vessel_id": "sein-venus",
+      "report_date": "8/11",
+      "work_time": "08:10 ~ 14:40",
+      "target_holds": "S/PIO(#1-A:80.670,#1-B:41.170), N/STAR(#2-A:143.640), N/SUN(#3-B:197.330)",
+      "daily_amount": 462.81,
+      "cumulative_amount": 1077.99,
+      "quality_notes": "S/PIO(#1-A,#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/12 공휴일로 하역 작업이 없으며, 8/13 약 150톤 하역 예정입니다.",
+      "created_at": "2026-08-12T15:34:21+09:00"
     }
   ],
   "unloading_species": [
@@ -733,6 +789,22 @@
       "species_name": "Bigeye",
       "reported_amount": 0,
       "actual_amount": 0
+    },
+    {
+      "vessel_id": "sein-venus",
+      "species_id": "SJ",
+      "species_name": "가다랑어·눈다랑어 합산",
+      "reported_amount": 2844,
+      "actual_amount": 904.39,
+      "updated_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "vessel_id": "sein-venus",
+      "species_id": "YF",
+      "species_name": "황다랑어",
+      "reported_amount": 431,
+      "actual_amount": 173.6,
+      "updated_at": "2026-08-12T15:34:21+09:00"
     }
   ]
 }

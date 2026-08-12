@@ -1,5 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-08-12 16:08 KST — `/unloading` SEIN VENUS 8/7~8/11 반영 및 프로덕션 배포 준비** [Codex]:
+> - Google Drive `SEIN VENUS (5,200)` 폴더의 일일 XLS 4건·FINAL STOWAGE PLAN·BREAKDOWN과 사용자 제공 8/7·8/8·8/10·8/11 보고 이미지를 대조해 `public/data/unloading/local_db.json`에 신규 선박을 추가. 방콕 하역 문서의 총 적재량은 폴더명 5,200 MT와 별개인 **3,275 MT**, 8/11 누계 **1,077.990 MT**, 잔량 **2,197.010 MT**로 확정.
+> - 일별 실적은 8/7 174.640 MT(10:10~19:00), 8/8 109.070 MT(08:10~13:00), 8/10 331.470 MT(08:10~16:10), 8/11 462.810 MT(08:10~14:40). 각 어창·원적재선·개방 온도와 8/9·8/12 공휴일 및 익일 계획을 작업기록에 반영.
+> - `UnloadingStatus.tsx`에 SEIN VENUS 12개 어창 적재계획·용량과 기본 선택 상태를 추가하고, 원적재선별 하역 비중을 실제 명시 물량으로 계산. 8/11 S/PIO 121.840 MT는 #1-A 잔여 용량 80.670 MT와 #1-B 41.170 MT로 분리했으며, XLS의 SJ 열은 BE 실적을 임의 분리하지 않고 `가다랑어·눈다랑어 합산`으로 표시.
+> - `UnloadingAnalytics.tsx`의 `하역중` 판정, 실작업시간이 있는 물량만 사용하는 처리속도 계산(4일 합계 **38.3 MT/hr**), 진행 선박에 대한 허위 부족·완료 알림을 보정. Next.js 16 전체 빌드를 막던 미사용 `us-census` route 상수 export도 제거.
+> - 검증: SEIN VENUS 회귀 테스트 4/4, `npm run typecheck`, `npm run lint`(0 errors·기존 warnings 10), `npm run build -- --webpack` 전체 103페이지 통과. 로컬 production Chrome 데스크톱·모바일에서 핵심 마커 전부 렌더, 벤치마크 `38.3 / 하역중`, 가로 overflow 0 확인. 전체 테스트는 89/92이며 실패 3건은 기존 Atuna 최신값 기대치 및 제거된 `cross-intelligence` 레지스트리 기대치 불일치로 이번 변경과 무관.
+> - 사용자로부터 라이브 배포 승인을 받았으며, 본 커밋을 `origin/main`에 반영해 Vercel production과 `https://leedonggun.co.kr/unloading`을 후속 확인.
+
 > **2026-07-31 KST — 태국 송클라(Songkhla) 공장 데이터 및 운반선 하역 현황 갱신** [AG]:
 > - 사용자 요청에 따라 필리핀 Gensan 지역 데이터를 제거하고, 태국 송클라(Songkhla) 지역 통조림 공장 데이터(7/30 기준)를 신규 반영했습니다.
 > - `components/LogisticsDashboard.tsx`에서 Gensan 차트를 `SongkhlaCanneryStatusCharts.tsx`로 교체하고 관련 날짜(2026-07-31) 및 통계 수치를 갱신했습니다.
@@ -1810,7 +1818,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-07-03 14:55 KST (Claude Code 세션 — `/market` 교차 품목 인텔리전스 블록 라이브 배포 완료)
+> **마지막 업데이트**: 2026-08-12 16:08 KST (Codex 세션 — `/unloading` SEIN VENUS 8/7~8/11 반영 및 프로덕션 배포 준비)
 
 ---
 

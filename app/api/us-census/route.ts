@@ -17,7 +17,6 @@ export const dynamic = 'force-dynamic';
  */
 
 const PREFETCH_PATH = path.join(process.cwd(), 'public', 'data', 'us_census_timeseries.json');
-const CENSUS_BASE = 'https://api.census.gov/data/timeseries/intltrade';
 
 const NON_COUNTRY = new Set([
   'TOTAL FOR ALL COUNTRIES', 'APEC', 'ASIA', 'ASEAN', 'OECD', 'LAFTA', 'NAFTA', 'USMCA',
@@ -117,5 +116,4 @@ export async function POST(req: Request) {
 }
 
 // 향후 USCENSUS_API_KEY 로 Live 호출이 필요하면 아래 헬퍼 사용:
-//   const url = `${CENSUS_BASE}/imports/hs?get=GEN_VAL_MO,GEN_QTY1_MO,CTY_NAME&I_COMMODITY=${hsCode}&time=${yyyy}&COMM_LVL=HS6&CTY_CODE=*&key=${process.env.USCENSUS_API_KEY}`;
-export { CENSUS_BASE };
+//   const url = `https://api.census.gov/data/timeseries/intltrade/imports/hs?get=GEN_VAL_MO,GEN_QTY1_MO,CTY_NAME&I_COMMODITY=${hsCode}&time=${yyyy}&COMM_LVL=HS6&CTY_CODE=*&key=${process.env.USCENSUS_API_KEY}`;

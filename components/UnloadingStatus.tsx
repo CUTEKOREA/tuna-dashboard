@@ -91,6 +91,20 @@ const vesselStowagePlans: Record<string, Record<string, string[]>> = {
     '#2-C': ['N/SUN'],
     '#1-A': ['N/STAR'],
     '#1-B': ['N/STAR'],
+  },
+  'sein-venus': {
+    '#4-A': [],
+    '#4-B': ['S/SPR'],
+    '#4-C': ['S/SPR', 'N/SUN'],
+    '#3-A': [],
+    '#3-B': ['N/SUN'],
+    '#3-C': ['N/SUN'],
+    '#2-A': ['S/PIO', 'N/STAR'],
+    '#2-B': ['N/STAR'],
+    '#2-C': ['N/STAR'],
+    '#1-A': ['S/PIO'],
+    '#1-B': ['S/PIO'],
+    '#1-C': ['S/PIO'],
   }
 };
 
@@ -121,6 +135,15 @@ function getCompartmentNominalCapacity(vesselId: string, holdId: string, reporte
       '#1-A': 166, '#1-B': 139, '#1-C': 0
     };
     return caps[holdId] || 300;
+  }
+  if (vesselId === 'sein-venus') {
+    const caps: Record<string, number> = {
+      '#4-A': 0, '#4-B': 90, '#4-C': 335,
+      '#3-A': 0, '#3-B': 420, '#3-C': 445,
+      '#2-A': 410, '#2-B': 420, '#2-C': 380,
+      '#1-A': 250, '#1-B': 285, '#1-C': 240
+    };
+    return caps[holdId] ?? Math.round((reportedTotal / numCompartments) * 10) / 10;
   }
   return Math.round((reportedTotal / numCompartments) * 10) / 10;
 }
@@ -538,7 +561,7 @@ function RadialGauge({
 }
 
 export default function UnloadingStatus() {
-  const [selectedVessel, setSelectedVessel] = useState('sein-phoenix');
+  const [selectedVessel, setSelectedVessel] = useState('sein-venus');
   const [liveData, setLiveData] = useState<any>(null);
   const [dbData, setDbData] = useState<Record<string, UnloadingVesselData>>({});
   const [selectedHold, setSelectedHold] = useState<string | null>(null);
@@ -919,7 +942,10 @@ export default function UnloadingStatus() {
 
   const holdsData = parseVesselHoldData(vesselId, selectedData.timeline || [], selectedData.reportedTotal || 0);
   const holdIds = Object.keys(holdsData);
-  const activeSelectedHold = selectedHold && holdIds.includes(selectedHold) ? selectedHold : holdIds[0];
+  const defaultHoldId = holdIds.find(id => holdsData[id].dischargedVolume > 0)
+    ?? holdIds.find(id => holdsData[id].nominalCapacity > 0)
+    ?? holdIds[0];
+  const activeSelectedHold = selectedHold && holdIds.includes(selectedHold) ? selectedHold : defaultHoldId;
   const selectedHoldInfo = holdsData[activeSelectedHold] || { dischargedVolume: 0, nominalCapacity: 1, lastTemperature: -22.5, shippers: [], qualityDescription: '' };
 
   const holdSpeciesBreakdown = (selectedData.species || []).map(sp => {
@@ -1042,7 +1068,7 @@ export default function UnloadingStatus() {
             {formatNum(vesselsList.reduce((s, v) => s + v.actualTotal, 0))} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>MT</span>
           </div>
           <div className={styles.execCardTakeaway}>
-            완료 선박: <strong>{completedVessels.length} 척</strong> (방콕 {completedVessels.filter(v => v.location.includes('BANGKOK')).length}, 젠산 {completedVessels.filter(v => v.location.includes('GENSAN') || v.location.includes('PHILIPPINES')).length})
+            완료 선박: <strong>{completedVessels.length} 척</strong> (방콕 {completedVessels.filter(v => /BANGKOK|방콕/i.test(v.location)).length}, 젠산 {completedVessels.filter(v => /GENSAN|PHILIPPINES|젠산|필리핀/i.test(v.location)).length})
             {earliestStart && globalBaseDate && (
               <span style={{ display: 'block', fontSize: '0.75rem', marginTop: '2px' }}>
                 집계 기간: {earliestStart} ~ {globalBaseDate} (전 선박 누적)
@@ -1443,6 +1469,7 @@ export default function UnloadingStatus() {
           
           let totalWorkingHours = 0;
           let daysWithTime = 0;
+          let timedDischargeAmount = 0;
           timelineWithAmount.forEach(t => {
             if (t.time && t.time !== '-' && t.time.includes('~')) {
               const parts = t.time.split('~').map(s => s.trim());
@@ -1461,13 +1488,14 @@ export default function UnloadingStatus() {
                   let endHour = end[0] + end[1]/60;
                   if (endHour < startHour) endHour += 24; 
                   totalWorkingHours += (endHour - startHour);
+                  timedDischargeAmount += t.dailyAmount;
                   daysWithTime++;
                 }
               }
             }
           });
           const avgWorkingHours = daysWithTime > 0 ? totalWorkingHours / daysWithTime : 0;
-          const avgBurnRate = avgWorkingHours > 0 ? avgDailyAmount / avgWorkingHours : 0;
+          const avgBurnRate = totalWorkingHours > 0 ? timedDischargeAmount / totalWorkingHours : 0;
 
           const remainingTotal = selectedData.reportedTotal - selectedData.actualTotal;
           const estimatedDaysLeft = avgDailyAmount > 0 ? Math.ceil(remainingTotal / avgDailyAmount) : 0;
@@ -1475,21 +1503,34 @@ export default function UnloadingStatus() {
           const etaDate = new Date(today);
           etaDate.setDate(etaDate.getDate() + estimatedDaysLeft);
 
-          const canneryMap = new Map<string, number>();
-          const destinations = ['S/SPR', 'MOAKONA', 'S/HAR', 'S/EXP', 'S/CHA', 'S/JUP', 'MOAMARI'];
+          const shipperMap = new Map<string, number>();
           timelineWithAmount.forEach(t => {
-            if (t.targetHol && t.targetHol !== '-') {
-              let count = destinations.filter(d => t.targetHol.includes(d)).length;
-              if (count === 0) count = 1;
-              const amt = t.dailyAmount / count;
-              destinations.forEach(dest => {
-                if (t.targetHol.includes(dest)) {
-                  canneryMap.set(dest, (canneryMap.get(dest) || 0) + amt);
-                }
+            if (!t.targetHol || t.targetHol === '-') return;
+
+            const groups: { name: string; amount: number | null }[] = [];
+            const shipperRegex = /([A-Z0-9a-z/_-]+(?:\s+[A-Z0-9a-z/_-]+)*)\(([^)]*)\)/g;
+            let shipperMatch: RegExpExecArray | null;
+            while ((shipperMatch = shipperRegex.exec(t.targetHol)) !== null) {
+              const amounts = Array.from(
+                shipperMatch[2].matchAll(/:\s*(\d+(?:\.\d+)?)/g),
+                match => Number(match[1]),
+              );
+              groups.push({
+                name: shipperMatch[1],
+                amount: amounts.length > 0 ? amounts.reduce((sum, value) => sum + value, 0) : null,
               });
             }
+
+            const explicitTotal = groups.reduce((sum, group) => sum + (group.amount ?? 0), 0);
+            const unallocatedGroups = groups.filter(group => group.amount === null);
+            const fallbackAmount = Math.max(0, t.dailyAmount - explicitTotal) / (unallocatedGroups.length || 1);
+
+            groups.forEach(group => {
+              const amount = group.amount ?? fallbackAmount;
+              shipperMap.set(group.name, (shipperMap.get(group.name) || 0) + amount);
+            });
           });
-          const totalCanneryAmount = Array.from(canneryMap.values()).reduce((sum, v) => sum + v, 0);
+          const totalShipperAmount = Array.from(shipperMap.values()).reduce((sum, value) => sum + value, 0);
 
           return (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginBottom: '20px' }}>
@@ -1566,14 +1607,14 @@ export default function UnloadingStatus() {
                   </div>
                 </div>
 
-                {totalCanneryAmount > 0 && (
+                {totalShipperAmount > 0 && (
                   <div style={{ background: 'rgba(20, 28, 52, 0.3)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(140,170,255,0.10)', flex: 1 }}>
                     <h4 style={{ marginBottom: '16px', fontSize: '0.95rem', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <MapPin size={16} /> 캐너리(양륙처) 비중 <BaseDateTag date={selectedBaseDate} />
+                      <MapPin size={16} /> 원적재선별 하역 비중 <BaseDateTag date={selectedBaseDate} />
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                      {Array.from(canneryMap.entries()).sort((a,b) => b[1] - a[1]).map(([name, amount]) => {
-                        const percent = (amount / totalCanneryAmount) * 100;
+                      {Array.from(shipperMap.entries()).sort((a,b) => b[1] - a[1]).map(([name, amount]) => {
+                        const percent = (amount / totalShipperAmount) * 100;
                         return (
                           <div key={name}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '4px' }}>
