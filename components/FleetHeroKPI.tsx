@@ -10,10 +10,10 @@ export default function FleetHeroKPI({ climateRisk, mode = 'daily' }: { climateR
   const kpiData = isWeekly
     ? {
         title: '주간 총 어획량',
-        val1: 917, label1: '국적 549t + 합작 368t',
-        val2: 4362, label2: '국적 2,080t + 합작 2,282t',
-        val3: 43891, label3: '국적 26,141t + 합작 17,750t',
-        ratioLeftLabel: '국적 60%', ratioRightLabel: '합작 40%', ratioPercent: 60,
+        val1: 1009, label1: '국적 587t + 합작 422t',
+        val2: 3445, label2: '국적 1,531t + 합작 1,914t',
+        val3: 42974, label3: '국적 25,592t + 합작 17,382t',
+        ratioLeftLabel: '국적 58%', ratioRightLabel: '합작 42%', ratioPercent: 58,
         syncDate: '26.07.27 (월) 주간 실적 기준',
         syncLabel: 'STATIC · 주간 실적보고 26.07.27 동기화'
       }

@@ -4,7 +4,7 @@ import { Ship, Anchor, Navigation, Package, ArrowUp, ArrowDown, MapPin } from 'l
 import s from './FleetCommandCenter.module.css';
 
 /* ── Data ── */
-const pacificFleet = [
+export const pacificFleet = [
   { name: 'S/EXP', zone: 'S0331 W16728 (KI)', catch: 30, load: 672, capa: 1200, trend: [534, 591, 591, 612, 612, 672], status: 'fishing', note: '' },
   { name: 'S/PIO', zone: 'S0258 W16825 (KI)', catch: 0, load: 169, capa: 1200, trend: [1000, 39, 139, 139, 139, 169], status: 'fishing', note: '' },
   { name: 'S/CHA', zone: 'N0151 W15735 (KI)', catch: 0, load: 0, capa: 1200, trend: [450, 640, 800, 900, 900, 0], status: 'fishing', note: '7/28 07:40 X-MAS 입항, MING RUN 17편 약 900톤 전재 후 7/31 12:15 출항 완료' },
@@ -17,7 +17,7 @@ const pacificFleet = [
   { name: 'N/STAR', zone: 'S0642 W15142 (H)', catch: 110, load: 360, capa: 1200, trend: [650, 0, 0, 40, 90, 360], status: 'fishing', note: '' },
 ];
 
-const atlanticFleet = [
+export const atlanticFleet = [
   { name: 'P/MAS', zone: 'N0357 W00250 (G)', catch: 0, load: 750, capa: 1200, trend: [0, 430, 490, 535, 750, 750], status: 'fishing', note: '7/31 09:00 TEMA 입항, 하역 후 8/3 출항 예정' },
   { name: 'P/DIS', zone: 'TEMA', catch: 0, load: 900, capa: 1200, trend: [0, 350, 420, 690, 900, 900], status: 'port', note: '7/29 12:30 TEMA 입항, 하역 후 8/1 출항 예정' },
   { name: 'P/FORE', zone: 'S0147 W01951 (H)', catch: 35, load: 690, capa: 1200, trend: [0, 380, 395, 475, 520, 690], status: 'fishing', note: '' },
@@ -32,13 +32,13 @@ const longlineFleet = [
   { name: 'TAIHO MARU', status: '338.699톤 (P-501, P-505) | 8/11경 부산 입항 예정', badge: '귀항 중', badgeColor: '#f59e0b' },
 ];
 
-const carrierFleet = [
-  { name: 'SEIN VENUS', capa: 5200, load: 3275, pct: Math.round(3275/5200*100), status: 'transit', note: 'NT-1,060, NS-1,030, S-260, P-925 | 8/5 BKK 도착 예정', color: '#38bdf8' },
-  { name: 'HIKARI 1', capa: 3700, load: 3214, pct: Math.round(3214/3700*100), status: 'transit', note: 'S-766(96), P-75(75), MK-428(114), MI-940, NT-1,005 | 8/5 GENSAN 도착 예정', color: '#38bdf8' },
-  { name: 'SEIN KASAMA', capa: 7100, load: 0, pct: 0, status: 'waiting', note: 'X-MAS 대기 중 | 예상잔량: 7,100t', color: '#f59e0b' },
-  { name: 'MING RUN 17', capa: 6500, load: 900, pct: Math.round(900/6500*100), status: 'waiting', note: 'X-MAS 대기 중 | C-900 전재 완료', color: '#f59e0b' },
-  { name: 'SHIN IZU', capa: 2400, load: 0, pct: 0, status: 'waiting', note: 'NO2 W165 대기 중 | 예상잔량: 2,400t', color: '#f59e0b' },
-  { name: 'SEIN GALAXY', capa: 3500, load: 1846, pct: Math.round(1846/3500*100), status: 'waiting', note: 'MK-956, MI-890 | RABAUL 대기 중 (타사 출항 전재 예정)', color: '#f59e0b' },
+export const carrierFleet = [
+  { name: 'SEIN VENUS', zone: 'BKK', capa: 5200, load: 3275, pct: Math.round(3275/5200*100), status: 'port', note: '방콕 하역 진행 상황은 하역 현황에서 확인', color: '#38bdf8' },
+  { name: 'HIKARI 1', zone: 'GENSAN', capa: 3700, load: 3214, pct: Math.round(3214/3700*100), status: 'transit', note: 'GENSAN 도착 상태 확인 필요', color: '#38bdf8' },
+  { name: 'SEIN KASAMA', zone: 'X-MAS', capa: 7100, load: 0, pct: 0, status: 'waiting', note: 'X-MAS 대기 중 | 예상잔량: 7,100t', color: '#f59e0b' },
+  { name: 'MING RUN 17', zone: 'X-MAS', capa: 6500, load: 900, pct: Math.round(900/6500*100), status: 'waiting', note: 'X-MAS 대기 중 | C-900 전재 완료', color: '#f59e0b' },
+  { name: 'SHIN IZU', zone: 'W165', capa: 2400, load: 0, pct: 0, status: 'waiting', note: 'NO2 W165 대기 중 | 예상잔량: 2,400t', color: '#f59e0b' },
+  { name: 'SEIN GALAXY', zone: 'RABAUL', capa: 3500, load: 1846, pct: Math.round(1846/3500*100), status: 'waiting', note: 'MK-956, MI-890 | RABAUL 대기 중 (타사 출항 전재 예정)', color: '#f59e0b' },
 ];
 
 /* ── Status helpers ── */

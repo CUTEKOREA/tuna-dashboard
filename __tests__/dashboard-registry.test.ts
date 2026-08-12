@@ -28,6 +28,22 @@ describe('dashboard registry', () => {
     expect(categorySource).toContain('ssr: false');
   });
 
+  it('keeps the fleet command center task-focused and deterministic', () => {
+    const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
+    const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
+    const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
+
+    for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
+      expect(commandSource).toContain(label);
+    }
+    expect(commandSource).toContain('role="tablist"');
+    expect(commandSource).toContain('role="tabpanel"');
+    expect(commandSource).toContain('onKeyDown');
+    expect(mapSource).not.toContain('Math.random');
+    expect(mapSource).toContain('aria-expanded');
+    expect(heroSource).toContain('val1: 1009');
+    expect(heroSource).not.toContain('val1: 917');
+  });
   it('keeps menu keys unique and title-addressable', () => {
     expect(DASHBOARD_MENU_CONFIGS.length).toBeGreaterThanOrEqual(30);
     expect(new Set(VALID_MENUS).size).toBe(VALID_MENUS.length);
