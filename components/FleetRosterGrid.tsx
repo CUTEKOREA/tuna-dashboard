@@ -220,7 +220,7 @@ function CarrierCard({ name, capa, load, pct, status, note, color }: {
   const [hovered, setHovered] = useState(false);
   const isDone = status === 'done';
   const statusLabels: Record<string, string> = {
-    done: '✅ 완료', unloading: '📦 하역 중', waiting: '⏳ 대기', transit: '🚢 이동 중',
+    done: '✅ 완료', unloading: '📦 하역 중', waiting: '⏳ 대기', transit: '🚢 이동 중', port: '⚓ 하역·정박',
   };
 
   return (
@@ -244,7 +244,7 @@ function CarrierCard({ name, capa, load, pct, status, note, color }: {
             fontSize: '0.62rem', fontWeight: 600, padding: '2px 8px', borderRadius: 20,
             background: `${color}18`, color, border: `1px solid ${color}30`,
           }}>
-            {statusLabels[status] || status}
+            {statusLabels[status] ?? '상태 확인 필요'}
           </span>
         </div>
         <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>

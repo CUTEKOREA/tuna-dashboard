@@ -32,6 +32,7 @@ describe('dashboard registry', () => {
     const commandSource = readFileSync(join(process.cwd(), 'components/FleetCommandCenter.tsx'), 'utf8');
     const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
     const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
+    const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
 
     for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
       expect(commandSource).toContain(label);
@@ -41,6 +42,11 @@ describe('dashboard registry', () => {
     expect(commandSource).toContain('onKeyDown');
     expect(mapSource).not.toContain('Math.random');
     expect(mapSource).toContain('aria-expanded');
+    expect(mapSource).toContain('aria-controls');
+    expect(mapSource).toContain('hidden={!selected}');
+    expect(mapSource).toContain("event.key === 'Escape'");
+    expect(rosterSource).toContain("port: '⚓ 하역·정박'");
+    expect(rosterSource).not.toContain('statusLabels[status] || status');
     expect(heroSource).toContain('val1: 1009');
     expect(heroSource).not.toContain('val1: 917');
   });

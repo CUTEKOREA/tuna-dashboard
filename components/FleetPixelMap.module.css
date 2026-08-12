@@ -160,6 +160,9 @@
   width: max-content;
   max-width: 200px;
 }
+.tooltip[hidden] {
+  display: none;
+}
 .shipMarker:hover .tooltip,
 .shipMarker:focus-visible .tooltip,
 .shipMarker[aria-expanded='true'] .tooltip {

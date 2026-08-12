@@ -45,17 +45,27 @@ function getAtlanticCoordinates(zone: string): { x: number; y: number } {
   return { x: 50, y: 50 };
 }
 
-const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean; onSelect: () => void }) => (
-  <button
-    type="button"
-    aria-label={`${ship.name} 상세 보기`}
-    aria-expanded={selected}
-    onClick={onSelect}
-    className={`${s.shipMarker} ${s[`fleet-${ship.type}`]} ${s[`state-${ship.status === 'transship' ? 'transit' : ship.status}`]}`}
-    style={{ left: `${ship.pos.x}%`, top: `${ship.pos.y}%` }}
-  >
+const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean; onSelect: () => void }) => {
+  const detailsId = `ship-details-${ship.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+  return (
+    <button
+      type="button"
+      aria-label={`${ship.name} 상세 보기`}
+      aria-expanded={selected}
+      aria-controls={detailsId}
+      onClick={onSelect}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && selected) {
+          event.stopPropagation();
+          onSelect();
+        }
+      }}
+      className={`${s.shipMarker} ${s[`fleet-${ship.type}`]} ${s[`state-${ship.status === 'transship' ? 'transit' : ship.status}`]}`}
+      style={{ left: `${ship.pos.x}%`, top: `${ship.pos.y}%` }}
+    >
     <div className={s.shipBody}></div>
-    <div className={s.tooltip}>
+    <div id={detailsId} className={s.tooltip} hidden={!selected}>
       <div className={s.tooltipTitle}>{ship.name} <span style={{fontSize:'10px', color:'#94a3b8', fontWeight:'normal'}}>({ship.type})</span></div>
       <div className={s.tooltipInfo}>
         <div className={s.tooltipRow}>
@@ -77,8 +87,9 @@ const ShipMarker = ({ ship, selected, onSelect }: { ship: any; selected: boolean
       </div>
       {ship.note && <div className={s.tooltipNote}>{ship.note}</div>}
     </div>
-  </button>
-);
+    </button>
+  );
+};
 
 export default function FleetPixelMap() {
   const [selectedShip, setSelectedShip] = useState<string | null>(null);
@@ -136,7 +147,7 @@ export default function FleetPixelMap() {
             <rect className={s.landmass} x="68" y="40" width="3" height="2" /> {/* Hawaii */}
           </svg>
           
-          {mappedPacific.map((ship) => <ShipMarker key={ship.name} ship={ship} selected={selectedShip === ship.name} onSelect={() => setSelectedShip(ship.name)} />)}
+          {mappedPacific.map((ship) => <ShipMarker key={ship.name} ship={ship} selected={selectedShip === ship.name} onSelect={() => setSelectedShip((current) => current === ship.name ? null : ship.name)} />)}
 
           {/* Legend for Pacific */}
           <div className={s.legend}>
@@ -177,7 +188,7 @@ export default function FleetPixelMap() {
             <path className={s.landmass} d="M100,0 L60,0 L65,30 L70,50 L80,100 L100,100 Z" /> 
           </svg>
           
-          {mappedAtlantic.map((ship) => <ShipMarker key={ship.name} ship={ship} selected={selectedShip === ship.name} onSelect={() => setSelectedShip(ship.name)} />)}
+          {mappedAtlantic.map((ship) => <ShipMarker key={ship.name} ship={ship} selected={selectedShip === ship.name} onSelect={() => setSelectedShip((current) => current === ship.name ? null : ship.name)} />)}
 
           {/* Legend for Atlantic */}
           <div className={s.legend}>
