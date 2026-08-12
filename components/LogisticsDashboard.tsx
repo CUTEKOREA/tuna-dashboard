@@ -77,7 +77,7 @@ export default function LogisticsDashboard() {
             </div>
           </div>
           <div className={styles.reportBadge}>
-            <span>정적 보고 기반 <strong>최신 2026-08-05 · 위젯별 기준일 표기</strong></span>
+            <span>정적 보고 기반 <strong>최신 2026-08-06 · 위젯별 기준일 표기</strong></span>
           </div>
         </div>
       </header>
@@ -226,13 +226,13 @@ export default function LogisticsDashboard() {
                   icon={Navigation}
                   iconColor="var(--color-info)"
                   pillar="S3"
-                  cardDesc="방콕항 운반선 이동 스케줄 — 30주차 주간 보고 (2026-07-24~07-30 기준)"
-                  telemetry={{ status: 'STATIC', syncDate: '2026-07-30', label: '정적' }}
+                  cardDesc="방콕항 운반선 이동 스케줄 — 31주차 주간 보고 (2026-07-31~08-06 기준)"
+                  telemetry={{ status: 'STATIC', syncDate: '2026-08-06', label: '정적' }}
                   customBody={<ReeferMovement />}
                   takeaway={{
-                    situation: '30주차(2026-07-24~07-30) 보고 당시 방콕항 운반선과 캔 공장별 배분 물량입니다. 최신 입항·하역 상태가 아니므로 현재 운영 판단에는 재확인이 필요합니다.',
-                    actionPlan: '현재 체선일이 10일을 초과한 것으로 확인되는 경우에만 B/L 분할 양륙 또는 송클라 등으로의 목적지 변경을 검토합니다.',
-                    source: '방콕항 운반선 주간 스케줄 30주차 (2026-07-30 기준)',
+                    situation: '31주차(2026-07-31~08-06) TTA 보고에는 방콕항 4척의 캔 공장별 배분 18,643.026MT가 기록됐으며, SEIN VENUS 3,275MT가 포함됩니다.',
+                    actionPlan: 'SEIN VENUS 3,275MT와 HENG HONG 9 5,555MT의 실제 하역 진행 상태를 이후 주간보고와 교차 확인합니다.',
+                    source: 'TTA 운반선 이동표 31주차 (2026-08-06 기준)',
                   }}
                 />
               </div>

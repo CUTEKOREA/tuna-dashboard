@@ -2529,3 +2529,9 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - **검증**: 신규 TDD RED→GREEN 4건, 전체 Vitest 132/132, TypeScript, ESLint 오류 0건, S-grade 위반 0건, 격리 production build 103페이지, 번들 예산 통과. Puppeteer 1280/390px에서 네 탭·방향키·접힘·시장가를 확인했고 runtime 오류·가로 overflow는 0건이다.
 - **동시 작업 경계**: 같은 작업트리의 `ReeferMovement.tsx`, `lib/data/misc.ts`, `reefer-week31-*`는 다른 작업자의 31주차 갱신이며 본 개편 커밋에서 제외한다. 물류 개편 커밋은 기존 30주차 보고자료 계약을 유지하고, 작업트리의 31주차 변경은 후속 작업자가 그대로 이어갈 수 있게 보존한다.
 - **다음 단계**: 독립 리뷰 후 물류 개편 파일만 소유권을 분리해 커밋·라이브 배포하고, 주간보고 자동 추출·전주 대비 변화량은 후속 단계로 진행한다.
+
+## 2026-08-12 23:20 KST (Hermes) — 냉동운반선 31주차 반영
+- **완료된 것**: `/logistics`의 보고 시점 냉동운반선 자료를 30주차에서 TTA 31주차(2026-07-31~08-06)로 교체했다. LAKE PEARL 4,873.026MT, SEIN PRINCESS 4,940MT, SEIN VENUS 3,275MT, HENG HONG 9 5,555MT로 총 18,643.026MT다.
+- **완료된 것**: 공장 배분 열에 DIA·SEAP를 반영하고 OTHER를 사용자 노출 `부두`로 한글화했다. 접안일은 현재 예정으로 단정하지 않고 `보고서 기재 접안일`로 표시한다. 선박 보고자료는 현재 운항 상태가 아니라는 경고와 기본 접힘을 유지한다.
+- **데이터 무결성**: `data/reefer_week31.json` SHA-256 `c97b21bc910625dd14a6bd2cab664ab5508fc6b3090edb549048a1d0214ef030`. `/data/` ignore 규칙을 명시적으로 우회해 Git 추적하고 원격 빌드 누락을 방지했다.
+- **다음 단계**: 전체 테스트·타입·린트·빌드·번들·독립 리뷰 후 main fast-forward 배포 및 라이브 390px QA.
