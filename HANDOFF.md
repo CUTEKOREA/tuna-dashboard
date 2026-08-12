@@ -1,15 +1,15 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-12 22:03 KST
+> 마지막 업데이트: 2026-08-12 22:31 KST
 
-> 📊 **2026-08-12 22:03 KST — `/fleet-strategy` 2025년 선사별 업종별 원양어업 생산실적 반영** [Codex]:
+> 🚀 **2026-08-12 22:31 KST — `/fleet-strategy` 2025년 선사별 업종별 원양어업 생산실적 라이브 배포 완료** [Codex]:
 > - 사용자 제공 `25년도 선사별 업종별 원양어업 생산량 자료 (1).pdf` 112~115쪽 화면을 기준으로 36개 선사의 회사 합계와 10개 업종별 생산량을 `lib/fleet-production-2025.ts`에 구조화했다. 원문 총계는 **383,130 M/T**, 신라교역은 **58,349 M/T(전체 15.2%, 2위)**이며 참치선망 **54,803 M/T**, 참치연승 **3,546 M/T**다.
 > - `/fleet-strategy` 상단에 원문 총계·신라교역 생산량·신라교역 선망 생산량·상위 5개사 집중도, 업종별 구성, 상위 5개사 순위, 회사명 검색 가능한 36개사 전수표를 추가했다. 첨부 원문 기반 정적 자료이므로 `STATIC` 의미의 `첨부 원문` 배지를 사용했다.
 > - 원문 표 자체의 검산 차이를 임의 수정하지 않았다. 회사 합계열의 합은 **383,127 M/T**, 업종별 행 합산은 **383,128 M/T**, 표 하단 총계는 **383,130 M/T**다. 씨맥스피셔리·정일산업·홍진실업은 행 합계가 각 1 M/T 차이이고, 해외트롤 하단 합계는 원문 미표기라 행 합산 **62,675 M/T**를 화면에 명시했다.
 > - 1차 production 배포 후 라이브 브라우저에서 React hydration #418을 재현했다. `/fleet-strategy`가 레거시 `/` rewrite에 남아 서버의 `/` 상태와 브라우저 경로 상태가 달라지는 것이 원인이었으며, 정상 동작 중인 `/unloading`·`/korea-market`과 동일하게 `app/[category]` client-only 경로를 사용하도록 rewrite에서 제외하고 회귀 테스트를 추가했다.
-> - 신규 데이터 계약 테스트 4/4, 대상 포함 격리 전체 Vitest **125/125**, 타입검사, Next.js 103페이지 production 빌드, S-Grade 0건 통과. 로컬 `/fleet-strategy` 데스크톱·390px에서 HTTP 200, 36행, 가로 overflow 0, 콘솔·페이지 오류 0을 확인했다.
-> - 동일 worktree에 동시 생성된 냉동 운반선 31주차 파일(`reefer-week31-data.test.ts` 등)은 본 작업과 무관해 수정·커밋하지 않았다. 해당 미완성 테스트 3건 때문에 무필터 전체 Vitest는 실패하므로 관련 파일을 제외한 결과를 위에 기록했다.
-> - 미배포(로컬). 사용자 명시 배포 요청 시 최신 `main`과 통합한 뒤 Vercel production 및 라이브 `/fleet-strategy`를 확인한다.
+> - 깨끗한 배포 worktree 기준 데이터 import 무결성 147건, 전체 Vitest **124/124**, 타입검사, Next.js 103페이지 production 빌드, S-Grade 0건 통과. 동시 진행 중인 냉동 운반선 31주차 로컬 파일은 수정·커밋하지 않았다.
+> - 기능 커밋 `3b54e4c`와 hydration 수정 `6e1a350`을 `main`에 반영. GitHub App Quality Gate run `31601330521`이 성공했고, Vercel production `dpl_4SRD6aRTyAi4AL3rN45cF98f2XCF`가 READY로 `https://leedonggun.co.kr` alias에 연결됐다.
+> - 라이브 `/fleet-strategy`는 `x-matched-path: /[category]`로 응답한다. 데스크톱·390px 모바일에서 HTTP 200, 원문 총계 383,130 M/T, 신라교역 58,349 M/T·선망 54,803 M/T, 36행, 가로 overflow 0, hydration·콘솔·페이지·자체 요청 오류 0을 확인했다. Vercel 오류 로그의 2건은 별도 `/fleet` RSC 요청으로 본 경로 오류는 없었다.
 
 > ✅ **2026-08-12 21:04 KST — `/logistics` 8월 5일 방콕 주간보고 데이터 갱신** [Hermes]:
 > - Google Drive `2026 주간보고` 폴더에서 수정시각과 문서 기준일이 가장 최신인 `20260805 Bangkok Office Weekly Report.docx`를 확인하고 SHA-256 `2ddb233def797ab6b0cd04dd3180b33e55ef88223a658039e0413acd47e249b1`에 결속했다. 보조 `데이터 정리.xlsx` SHA-256은 `5ccb8a8e6cdac29924653e36d50dbdaaa8568ea6bf8454035ba5fc53d82a018b`이다.
