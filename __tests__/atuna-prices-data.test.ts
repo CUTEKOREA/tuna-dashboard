@@ -18,8 +18,8 @@ describe('Atuna price data freshness', () => {
       readFileSync(join(process.cwd(), 'data/atuna_prices.json'), 'utf8'),
     ) as AtunaPriceRow[];
 
-    expect(latestForKey(rows, 'skj_bkk')).toEqual({ date: '2026-06-24', price: 1775 });
-    expect(latestForKey(rows, 'skj_mnt')).toEqual({ date: '2026-06-17', price: 2100 });
+    expect(latestForKey(rows, 'skj_bkk')).toEqual({ date: '2026-07-16', price: 1790 });
+    expect(latestForKey(rows, 'skj_mnt')).toEqual({ date: '2026-07-09', price: 2150 });
     expect(latestForKey(rows, 'skj_sey')).toEqual({ date: '2026-06-19', price: 1500 });
     expect(latestForKey(rows, 'yf_sey')).toEqual({ date: '2026-06-19', price: 2100 });
     expect(latestForKey(rows, 'yf_abj')).toEqual({ date: '2026-05-30', price: 2500 });

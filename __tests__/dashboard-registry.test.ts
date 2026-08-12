@@ -102,7 +102,7 @@ describe('dashboard registry', () => {
     expect(SIDEBAR_SECTIONS.map((section) => section.items.map((item) => item.key))).toEqual([
       ['market', 'fleet', 'unloading', 'logistics'],
       ['value-chain', 'mackerel', 'galchi', 'squid', 'jukkumi', 'octopus', 'pollock', 'flatfish', 'shrimp', 'whelk', 'kim', 'salmon'],
-      ['cross-intelligence', 'cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
+      ['cold-storage', 'fleet-strategy', 'korea-market', 'seasia-oem', 'used-car', 'msc', 'sashimi-steak', 'research-lab'],
       ['cashew', 'cassava', 'garlic', 'carrot', 'cocoa', 'mangosteen'],
       ['chicken', 'pork', 'beef'],
     ]);
@@ -111,6 +111,7 @@ describe('dashboard registry', () => {
     expect(new Set(sidebarKeys).size).toBe(sidebarKeys.length);
     expect(sidebarKeys).not.toContain('purse-seiner-db');
     expect(sidebarKeys).not.toContain('bni-global');
+    expect(sidebarKeys).not.toContain('cross-intelligence');
 
     const fisheryItems = SIDEBAR_SECTIONS.find((section) => section.section === 'fishery')?.items ?? [];
     const jukkumi = fisheryItems.find((item) => item.key === 'jukkumi');
@@ -130,7 +131,6 @@ describe('dashboard registry', () => {
   it('defines dashboard panel render order for every active menu', () => {
     expect(DASHBOARD_PANEL_ORDER).toEqual([
       'market',
-      'cross-intelligence',
       'fleet',
       'logistics',
       'cold-storage',
@@ -165,7 +165,10 @@ describe('dashboard registry', () => {
       'msc',
       'sashimi-steak',
     ]);
-    expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(new Set(VALID_MENUS));
+    expect(new Set(DASHBOARD_PANEL_ORDER)).toEqual(
+      new Set(VALID_MENUS.filter((menu) => menu !== 'cross-intelligence')),
+    );
     expect(DASHBOARD_PANEL_ORDER).not.toContain('bni-global');
+    expect(DASHBOARD_PANEL_ORDER).not.toContain('cross-intelligence');
   });
 });

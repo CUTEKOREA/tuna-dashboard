@@ -1,5 +1,11 @@
 # HANDOFF — 현재 작업 상태
 
+> ✅ **2026-08-12 16:23 KST — SEIN VENUS 배포 후 App Quality Gate 복구** [Codex]:
+> - 최초 배포 커밋 `a11e71c`의 Vercel production은 READY이며 `https://leedonggun.co.kr/api/unloading-db`에서 SEIN VENUS `하역중`, 총 3,275 MT, 누계 1,077.990 MT, 4일치 작업시간·온도·계획 응답을 확인.
+> - GitHub Actions 실패 원인은 신규 SEIN VENUS 코드가 아니라 과거 데이터/메뉴 변경 뒤 갱신되지 않은 테스트 3건. `atuna-prices-data.test.ts`의 방콕·만타 기대값을 현재 데이터(7/16 $1,790·7/9 $2,150)로 동기화하고, `dashboard-registry.test.ts`는 7/8 의도대로 `cross-intelligence`가 공개 route에는 남되 사이드바·패널 순서에는 없다는 계약으로 정정.
+> - 검증: 관련 3파일 12/12, 전체 Vitest **92/92**, ESLint 0 errors(기존 warnings 10), 타입검사, API cache 150/150, Next.js 16 Turbopack 전체 빌드 103페이지, bundle budget 10 routes 전부 통과. 로컬 제한 샌드박스의 Turbopack 정지는 pre-push와 같은 권한 환경에서 재실행해 정상 완료.
+> - 다음 단계: 테스트 정정 커밋을 `origin/main`에 push하고 GitHub App Quality Gate SUCCESS와 Vercel production 재배포를 확인.
+
 > ✅ **2026-08-12 16:08 KST — `/unloading` SEIN VENUS 8/7~8/11 반영 및 프로덕션 배포 준비** [Codex]:
 > - Google Drive `SEIN VENUS (5,200)` 폴더의 일일 XLS 4건·FINAL STOWAGE PLAN·BREAKDOWN과 사용자 제공 8/7·8/8·8/10·8/11 보고 이미지를 대조해 `public/data/unloading/local_db.json`에 신규 선박을 추가. 방콕 하역 문서의 총 적재량은 폴더명 5,200 MT와 별개인 **3,275 MT**, 8/11 누계 **1,077.990 MT**, 잔량 **2,197.010 MT**로 확정.
 > - 일별 실적은 8/7 174.640 MT(10:10~19:00), 8/8 109.070 MT(08:10~13:00), 8/10 331.470 MT(08:10~16:10), 8/11 462.810 MT(08:10~14:40). 각 어창·원적재선·개방 온도와 8/9·8/12 공휴일 및 익일 계획을 작업기록에 반영.
@@ -1818,7 +1824,7 @@
 
 > 어느 에이전트(Claude Code / Antigravity / 그 외)에서 세션을 시작하든 이 파일을 먼저 읽으세요. 직전 세션이 끝낸 지점과 다음 단계가 적혀 있습니다.
 >
-> **마지막 업데이트**: 2026-08-12 16:08 KST (Codex 세션 — `/unloading` SEIN VENUS 8/7~8/11 반영 및 프로덕션 배포 준비)
+> **마지막 업데이트**: 2026-08-12 16:23 KST (Codex 세션 — SEIN VENUS 배포 후 App Quality Gate 복구)
 
 ---
 
