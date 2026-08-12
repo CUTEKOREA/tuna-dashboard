@@ -1,12 +1,13 @@
 # HANDOFF — 현재 작업 상태
 
-> 🚢 **2026-08-12 17:13 KST — `/unloading` HIKARI 1 방콕 하역계획 반영·배포 후 라우팅 안정화** [Codex]:
+> ✅ **2026-08-12 17:18 KST — `/unloading` HIKARI 1 방콕 하역계획 라이브 배포 완료** [Codex]:
 > - Google Drive `HIKARI 1 (3,700)` 폴더의 최종 Stowage Plan(2026.07.20), Breakdown, Mate's Receipt, WCPFC 전재신고서를 교차 확인. 폴더명 **3,700 MT는 정격 적재능력**, 총 적재량은 **3,214 MT**, FCF 방콕 하역대상은 **2,929 MT**, #2-A 별도 배정 황다랑어는 **285 MT**로 기준을 분리했다.
 > - FCF 물량을 어종(SJ 2,515 / YF 358 / BE 56 MT), 원적재선(SHILLA SPRINTER 670 / MOAKONA 314 / MOAMARI 940 / NAOERO STAR 1,005 MT), 11개 사용 어창에 배선. 폴더에는 실제 하역 일보가 없어 누계·일일 하역량·하역 온도는 0 또는 미확인으로 유지하고 선박 상태를 `하역대기`로 표시했다.
 > - `하역대기`를 공용 운영 상태로 추가해 진행·대기 우선 목록에 노출하고, 완료 예상은 `실적 대기`로 표시. 벤치마크 평균·부족/완료 알림에서 제외하며 온도 자료가 없을 때 안전으로 단정하지 않도록 보정했다. 직전 Hermes의 운영 판단·완료선박 접기·4개 상세 탭 구조와 통합했다.
 > - 1차 production `dpl_DTuWJxh556gy2jSquZj8K19Gntyk` READY. 라이브 API와 데스크톱·모바일 화면에서 HIKARI 데이터·4개 물량 기준·대기 상태·알림 0건·온도 실적 대기·가로 overflow 0을 확인했다. API는 배포된 `local_db.json`을 사용해 별도 Supabase 쓰기가 필요하지 않았다.
 > - 라이브 QA 중 React hydration #418을 재현. `/unloading`만 레거시 rewrite로 `/`를 서버 렌더해 브라우저의 `/unloading`과 첫 메뉴가 달라지는 것이 원인이었고, 오류가 없는 기존 `app/[category]` client-only 경로를 사용하도록 rewrite 대상에서 제거했다. 회귀 테스트를 RED→GREEN으로 추가했으며 전체 Vitest **100/100**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, Next.js 16 webpack 전체 빌드 103페이지 통과. 로컬 production에서 잠금/허용 세션 모두 hydration·console·page 오류 0 확인.
-> - 다음 단계: 라우팅 수정 커밋을 `origin/main`에 push하고 Vercel production READY 및 사용자 도메인의 hydration 오류 0을 최종 확인한다.
+> - 최종 코드 커밋 `5986778`, Vercel production `dpl_5amGF6W41J34Xwq7eo2FszxA3DEp` READY 및 `https://leedonggun.co.kr` alias 연결 확인. `/unloading` 응답은 `x-matched-path: /[category]`이며 rewrite 헤더가 사라졌다. 라이브 잠금 세션과 허용 세션 데스크톱·모바일 모두 HTTP 200, HIKARI timeline 4건·species 3건, 가로 overflow 0, console/page 오류 0으로 최종 통과했다.
+> - 다음 단계: 실제 방콕 하역 일보 수신 시 선적계획 레코드는 보존하고, 일일 하역량·누계·개방 온도를 실적 레코드로 추가한다.
 
 > ✅ **2026-08-12 16:34 KST — `/unloading` 운영 판단 중심 UI 효율화** [Hermes]:
 > - 첫 화면에 선택 선박의 진척률·잔여량·일평균·완료 예상·온도 이상을 모은 `오늘의 운영 판단` 패널을 추가하고, 7일 내 완료 기준 대비 부족량과 권고 조치를 즉시 표시.
