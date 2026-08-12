@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 // Pure SVG charts — recharts fails in lazy-loaded tab context
 import { A11Y_PALETTE } from './ChartPatterns';
+import { getVesselStatusKind } from '../lib/unloading-operations';
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -87,9 +88,26 @@ function getTotalDays(vessel: { dateRange?: string; timeline?: TimelineEntry[] }
   return (vessel.timeline || []).length || 1;
 }
 
+export function getAnalyticsStatus(status: string) {
+  const kind = getVesselStatusKind(status);
+  return {
+    kind,
+    label: kind === 'progress' ? '하역중' : kind === 'waiting' ? '하역대기' : '하역완료',
+    comparable: kind !== 'waiting',
+    completed: kind === 'completed',
+  };
+}
+
+export function getTemperatureEvidenceLabel(count: number, allBelowThreshold: boolean): string {
+  if (count === 0) return '하역 온도 실적 대기';
+  return allBelowThreshold
+    ? '전 기간 어창 온도 -18℃ 이하 유지'
+    : '일부 어창 -18℃ 이상 관찰';
+}
+
 /** Check if vessel is still in progress */
 function isInProgress(status: string): boolean {
-  return status.includes('하역중') || status.includes('진행') || status.toLowerCase().includes('progress');
+  return getVesselStatusKind(status) === 'progress';
 }
 
 /** Format number with locale */
@@ -124,8 +142,9 @@ export default function UnloadingAnalytics({
 
   const benchmarkData = useMemo(() => {
     return Object.entries(allVessels).map(([id, v]: [string, any]) => {
+      const statusMeta = getAnalyticsStatus(v.status || '');
       const workDays = getWorkingDays(v.timeline || []);
-      const totalDays = getTotalDays(v);
+      const totalDays = statusMeta.comparable ? getTotalDays(v) : 0;
       const dailyAvg = workDays > 0 ? v.actualTotal / workDays : 0;
 
       // Compute total work hours to get MT/hr
@@ -149,17 +168,21 @@ export default function UnloadingAnalytics({
         mtPerHr,
         actualTotal: v.actualTotal || 0,
         status: v.status || '',
+        statusKind: statusMeta.kind,
+        statusLabel: statusMeta.label,
+        comparable: statusMeta.comparable,
         isSelected: id === vesselId,
       };
     });
   }, [allVessels, vesselId]);
 
   const selectedBenchmark = benchmarkData.find(b => b.isSelected);
-  const avgDailyAvg = benchmarkData.length > 0
-    ? benchmarkData.reduce((s, b) => s + b.dailyAvg, 0) / benchmarkData.length
+  const comparableBenchmarks = benchmarkData.filter(b => b.comparable);
+  const avgDailyAvg = comparableBenchmarks.length > 0
+    ? comparableBenchmarks.reduce((s, b) => s + b.dailyAvg, 0) / comparableBenchmarks.length
     : 0;
 
-  const comparisonPct = avgDailyAvg > 0 && selectedBenchmark
+  const comparisonPct = avgDailyAvg > 0 && selectedBenchmark?.comparable
     ? ((selectedBenchmark.dailyAvg - avgDailyAvg) / avgDailyAvg * 100)
     : 0;
 
@@ -311,7 +334,7 @@ export default function UnloadingAnalytics({
     const surplusPct = selectedVessel.reportedTotal > 0
       ? Math.abs(selectedVessel.surplus) / selectedVessel.reportedTotal * 100
       : 0;
-    if (!isInProgress(selectedVessel.status) && surplusPct > 3) {
+    if (getAnalyticsStatus(selectedVessel.status).completed && surplusPct > 3) {
       const direction = selectedVessel.surplus > 0 ? '초과' : '부족';
       items.push({
         severity: 'WARNING',
@@ -356,7 +379,7 @@ export default function UnloadingAnalytics({
     }
 
     // 5. Completion alert
-    if (!isInProgress(selectedVessel.status)) {
+    if (getAnalyticsStatus(selectedVessel.status).completed) {
       items.push({
         severity: 'COMPLETED',
         title: '하역 완료',
@@ -567,13 +590,19 @@ export default function UnloadingAnalytics({
                           {row.isSelected && <span style={{ color: '#38bdf8', marginRight: 4 }}>▸</span>}
                           {row.name}
                         </td>
-                        <td>{row.totalDays}일</td>
-                        <td>{row.workDays}일</td>
-                        <td>{fmt(row.dailyAvg)}</td>
-                        <td>{fmt(row.mtPerHr)}</td>
+                        <td>{row.comparable ? `${row.totalDays}일` : '—'}</td>
+                        <td>{row.comparable ? `${row.workDays}일` : '—'}</td>
+                        <td>{row.comparable ? fmt(row.dailyAvg) : '—'}</td>
+                        <td>{row.comparable ? fmt(row.mtPerHr) : '—'}</td>
                         <td>
-                          <span className={`${styles.statusBadge} ${isInProgress(row.status) ? styles.badgeProgress : styles.badgeCompleted}`}>
-                            {isInProgress(row.status) ? '하역중' : '하역완료'}
+                          <span className={`${styles.statusBadge} ${
+                            row.statusKind === 'progress'
+                              ? styles.badgeProgress
+                              : row.statusKind === 'waiting'
+                                ? styles.badgeWaiting
+                                : styles.badgeCompleted
+                          }`}>
+                            {row.statusLabel}
                           </span>
                         </td>
                       </tr>
@@ -581,7 +610,7 @@ export default function UnloadingAnalytics({
                   </tbody>
                 </table>
               </div>
-              {selectedBenchmark && (
+              {selectedBenchmark?.comparable && (
                 <div className={styles.comparisonMsg}>
                   <TrendingUp size={13} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
                   현재 하역 속도가 벤치마크 평균보다{' '}
@@ -688,15 +717,20 @@ export default function UnloadingAnalytics({
                 품질 종합 평가
               </div>
               <div className={styles.qualitySummary}>
-                {qualitySummary.allBelowThreshold ? (
+                {qualitySummary.avgTemp === null ? (
+                  <div className={styles.qualityRow}>
+                    <span className={styles.qualityIcon}>⚪</span>
+                    {getTemperatureEvidenceLabel(0, true)}
+                  </div>
+                ) : qualitySummary.allBelowThreshold ? (
                   <div className={styles.qualityRow}>
                     <span className={styles.qualityIcon}>🟢</span>
-                    전 기간 어창 온도 -18℃ 이하 유지
+                    {getTemperatureEvidenceLabel(1, true)}
                   </div>
                 ) : (
                   <div className={styles.qualityRow}>
                     <span className={styles.qualityIcon}>🟡</span>
-                    일부 어창 -18℃ 이상 관찰
+                    {getTemperatureEvidenceLabel(1, false)}
                   </div>
                 )}
                 {qualitySummary.qualityGood && (

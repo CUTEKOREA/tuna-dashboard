@@ -7,6 +7,16 @@ import TermTooltip from './TermTooltip';
 
 import HarborBanner from './HarborBanner';
 import { ChartPatternDefs } from './ChartPatterns';
+import {
+  getUnloadingEtaLabel,
+  getVesselStatusKind,
+} from '../lib/unloading-operations';
+
+export {
+  getUnloadingEtaLabel,
+  getVesselStatusKind,
+} from '../lib/unloading-operations';
+export type { VesselStatusKind } from '../lib/unloading-operations';
 
 // Lazy-load enhancement components
 const UnloadingReportGenerator = lazy(() => import('./UnloadingReportGenerator'));
@@ -114,6 +124,20 @@ const vesselStowagePlans: Record<string, Record<string, string[]>> = {
     '#1-A': ['S/PIO'],
     '#1-B': ['S/PIO'],
     '#1-C': ['S/PIO'],
+  },
+  'hikari': {
+    '#4-A': ['MOAMARI'],
+    '#4-B': ['MOAMARI'],
+    '#4-C': ['MOAKONA'],
+    '#3-A': ['NAOERO STAR'],
+    '#3-B': ['NAOERO STAR'],
+    '#3-C': ['MOAMARI'],
+    '#2-A': ['별도 배정 황다랑어 285 MT'],
+    '#2-B': ['SHILLA SPRINTER'],
+    '#2-C': ['SHILLA SPRINTER'],
+    '#1-A': ['NAOERO STAR'],
+    '#1-B': ['NAOERO STAR'],
+    '#1-C': ['미사용'],
   }
 };
 
@@ -151,6 +175,15 @@ function getCompartmentNominalCapacity(vesselId: string, holdId: string, reporte
       '#3-A': 0, '#3-B': 420, '#3-C': 445,
       '#2-A': 410, '#2-B': 420, '#2-C': 380,
       '#1-A': 250, '#1-B': 285, '#1-C': 240
+    };
+    return caps[holdId] ?? Math.round((reportedTotal / numCompartments) * 10) / 10;
+  }
+  if (vesselId === 'hikari') {
+    const caps: Record<string, number> = {
+      '#4-A': 137, '#4-B': 390, '#4-C': 314,
+      '#3-A': 165, '#3-B': 360, '#3-C': 413,
+      '#2-A': 0, '#2-B': 340, '#2-C': 330,
+      '#1-A': 280, '#1-B': 200, '#1-C': 0
     };
     return caps[holdId] ?? Math.round((reportedTotal / numCompartments) * 10) / 10;
   }
@@ -199,7 +232,7 @@ export function parseVesselHoldData(vesselId: string, timeline: any[], reportedT
       timeline: [],
       nominalCapacity: getCompartmentNominalCapacity(vesselId, holdId, reportedTotal, totalCompCount),
       shippers: vesselStowagePlans[vesselId]?.[holdId] || [],
-      qualityDescription: '대기 중 (No logs yet)',
+      qualityDescription: '하역 실적 대기',
       isSpecificTemperature: false,
       isSpecificQuality: false
     };
@@ -374,9 +407,6 @@ export function parseVesselHoldData(vesselId: string, timeline: any[], reportedT
   });
 
   compartmentsList.forEach(holdId => {
-    if (holdsData[holdId].lastTemperature === null) {
-      holdsData[holdId].lastTemperature = -22.5;
-    }
     if (holdsData[holdId].shippers.length === 0) {
       const parsedShippers: string[] = [];
       timeline.forEach(entry => {
@@ -478,11 +508,33 @@ function BaseDateTag({ date }: { date: string | null }) {
 }
 
 function getTemperatureColor(temp: number | null): { color: string, name: string } {
-  if (temp === null) return { color: '#14b8a6', name: 'Safe' };
-  if (temp < -24.0) return { color: '#0284c7', name: 'Super-Freezing (Optimal)' };
-  if (temp <= -18.0) return { color: '#14b8a6', name: 'Safe Freezing (Standard)' };
-  if (temp <= -17.0) return { color: '#f59e0b', name: 'Warning (Monitored)' };
-  return { color: '#ef4444', name: 'Critical (Spoilage Risk)' };
+  if (temp === null) return { color: '#64748b', name: '실적 대기' };
+  if (temp < -24.0) return { color: '#0284c7', name: '초저온 양호' };
+  if (temp <= -18.0) return { color: '#14b8a6', name: '냉동 안전' };
+  if (temp <= -17.0) return { color: '#f59e0b', name: '주의 관찰' };
+  return { color: '#ef4444', name: '품질 위험' };
+}
+
+type VesselCargoBasis = {
+  sourceDate: string;
+  capacity: number;
+  totalLoaded: number;
+  dischargeTarget: number;
+  excludedCargo: number;
+};
+
+const vesselCargoBases: Record<string, VesselCargoBasis> = {
+  hikari: {
+    sourceDate: '2026.07.20',
+    capacity: 3700,
+    totalLoaded: 3214,
+    dischargeTarget: 2929,
+    excludedCargo: 285,
+  },
+};
+
+export function getVesselCargoBasis(vesselId: string): VesselCargoBasis | null {
+  return vesselCargoBases[vesselId] ?? null;
 }
 
 interface RadialGaugeProps {
@@ -931,10 +983,13 @@ export default function UnloadingStatus() {
     }
   });
 
+  const statusPriority = { progress: 0, waiting: 1, completed: 2 } as const;
   const vesselsList = Object.entries(data).map(([id, d]) => ({ id, ...d }))
-    .sort((a, b) => (b.status.includes('하역중') ? 1 : 0) - (a.status.includes('하역중') ? 1 : 0));
-  const activeVessels = vesselsList.filter(v => v.status.includes('하역중'));
-  const completedVessels = vesselsList.filter(v => v.status.includes('하역완료'));
+    .sort((a, b) => statusPriority[getVesselStatusKind(a.status)] - statusPriority[getVesselStatusKind(b.status)]);
+  const activeVessels = vesselsList.filter(v => getVesselStatusKind(v.status) === 'progress');
+  const waitingVessels = vesselsList.filter(v => getVesselStatusKind(v.status) === 'waiting');
+  const priorityVessels = [...activeVessels, ...waitingVessels];
+  const completedVessels = vesselsList.filter(v => getVesselStatusKind(v.status) === 'completed');
   
   const totalReportedActive = activeVessels.reduce((sum, v) => sum + v.reportedTotal, 0);
   const totalActualActive = activeVessels.reduce((sum, v) => sum + v.actualTotal, 0);
@@ -955,7 +1010,7 @@ export default function UnloadingStatus() {
     ?? holdIds.find(id => holdsData[id].nominalCapacity > 0)
     ?? holdIds[0];
   const activeSelectedHold = selectedHold && holdIds.includes(selectedHold) ? selectedHold : defaultHoldId;
-  const selectedHoldInfo = holdsData[activeSelectedHold] || { dischargedVolume: 0, nominalCapacity: 1, lastTemperature: -22.5, shippers: [], qualityDescription: '' };
+  const selectedHoldInfo = holdsData[activeSelectedHold] || { dischargedVolume: 0, nominalCapacity: 1, lastTemperature: null, shippers: [], qualityDescription: '' };
 
   const holdSpeciesBreakdown = (selectedData.species || []).map(sp => {
     const vesselReported = selectedData.reportedTotal;
@@ -983,6 +1038,7 @@ export default function UnloadingStatus() {
     .filter(Boolean)
     .sort()[0] || null;
   const selectedBaseDate = vesselLatestReport(selectedData as any)?.label || null;
+  const selectedStatusKind = getVesselStatusKind(selectedData.status);
   const selectedTimeline = (selectedData.timeline || []).filter(t => t.dailyAmount > 0);
   const selectedDailyAverage = selectedTimeline.length > 0
     ? selectedTimeline.reduce((sum, entry) => sum + entry.dailyAmount, 0) / selectedTimeline.length
@@ -991,9 +1047,13 @@ export default function UnloadingStatus() {
   const selectedProgress = selectedData.reportedTotal > 0
     ? Math.min((selectedData.actualTotal / selectedData.reportedTotal) * 100, 100)
     : 0;
-  const selectedEstimatedDays = selectedDailyAverage > 0 ? Math.ceil(selectedRemaining / selectedDailyAverage) : 0;
+  const selectedEstimatedDays = selectedStatusKind === 'progress' && selectedDailyAverage > 0
+    ? Math.ceil(selectedRemaining / selectedDailyAverage)
+    : 0;
   const sevenDayTarget = selectedRemaining / 7;
-  const dailyGap = Math.max(0, sevenDayTarget - selectedDailyAverage);
+  const dailyGap = selectedStatusKind === 'progress'
+    ? Math.max(0, sevenDayTarget - selectedDailyAverage)
+    : 0;
   const criticalHoldCount = Object.values(holdsData)
     .filter(hold => hold.lastTemperature !== null && hold.lastTemperature > -18).length;
 
@@ -1021,7 +1081,8 @@ export default function UnloadingStatus() {
   };
 
   const renderVesselCard = (v: typeof vesselsList[number]) => {
-    const isProgress = v.status.includes('하역중');
+    const statusKind = getVesselStatusKind(v.status);
+    const isProgress = statusKind === 'progress';
     const percent = v.reportedTotal > 0 ? Math.min((v.actualTotal / v.reportedTotal) * 100, 100) : 0;
     const holds = parseVesselHoldData(v.id, v.timeline || [], v.reportedTotal || 0);
     const hasCriticalTemp = Object.values(holds).some(hold => hold.lastTemperature !== null && hold.lastTemperature > -18.0);
@@ -1040,7 +1101,7 @@ export default function UnloadingStatus() {
             <div className={styles.vesselLocation}><MapPin size={12} /> {v.location || '-'}</div>
           </div>
           <div className={styles.vesselMeta}>
-            <span className={`${styles.statusBadge} ${isProgress ? styles.progress : styles.completed}`}>
+            <span className={`${styles.statusBadge} ${styles[statusKind]}`}>
               {v.status.split(' ')[0]}
             </span>
             {hasCriticalTemp && <AlertCircle className="alertIcon danger" size={14} />}
@@ -1053,13 +1114,14 @@ export default function UnloadingStatus() {
             progress={percent}
             radius={22}
             strokeWidth={4}
-            color={isProgress ? 'var(--accent-primary)' : '#10b981'}
+            color={isProgress ? 'var(--accent-primary)' : statusKind === 'waiting' ? '#a78bfa' : '#10b981'}
             glow={isProgress}
           />
         </div>
       </button>
     );
   };
+  const selectedCargoBasis = getVesselCargoBasis(vesselId);
 
   if (apiError) {
     return (
@@ -1127,12 +1189,16 @@ export default function UnloadingStatus() {
         <div className={styles.decisionLead}>
           <span className={styles.eyebrow}>오늘의 운영 판단</span>
           <h2 id="unloading-decision-title">
-            {selectedRemaining > 0
+            {selectedStatusKind === 'waiting'
+              ? `${selectedData.name} 하역 실적 대기`
+              : selectedRemaining > 0
               ? `${selectedData.name} 하역 ${selectedProgress.toFixed(1)}% 진행`
               : `${selectedData.name} 하역 완료`}
           </h2>
           <p>
-            {dailyGap > 0
+            {selectedStatusKind === 'waiting'
+              ? `FCF 하역대상 ${formatNum(selectedData.reportedTotal)} MT는 선적계획 기준이며, 실제 하역 보고 입력 전입니다.`
+              : dailyGap > 0
               ? `7일 내 완료 기준 일일 ${formatNum(dailyGap)} MT가 부족합니다. 작업조 또는 접안 일정 조정을 검토하세요.`
               : '현재 하역 속도는 7일 내 완료 기준을 충족합니다.'}
           </p>
@@ -1140,7 +1206,7 @@ export default function UnloadingStatus() {
         <div className={styles.decisionMetrics}>
           <div><span>잔여 목표량</span><strong>{formatNum(selectedRemaining)} MT</strong></div>
           <div><span>현재 일평균</span><strong>{selectedDailyAverage.toFixed(1)} MT</strong></div>
-          <div><span>완료 예상</span><strong>{selectedRemaining > 0 ? `약 ${selectedEstimatedDays}일` : '완료'}</strong></div>
+          <div><span>완료 예상</span><strong>{selectedStatusKind === 'waiting' ? '실적 대기' : selectedRemaining > 0 ? `약 ${selectedEstimatedDays}일` : '완료'}</strong></div>
           <div><span>온도 이상</span><strong className={criticalHoldCount > 0 ? styles.dangerText : ''}>{criticalHoldCount}개 어창</strong></div>
         </div>
       </section>
@@ -1191,12 +1257,12 @@ export default function UnloadingStatus() {
         <div className={styles.sectionHeading}>
           <div>
             <span className={styles.eyebrow}>우선 확인</span>
-            <h3>진행 선박 {activeVessels.length}척</h3>
+            <h3>진행·대기 선박 {priorityVessels.length}척</h3>
           </div>
           <BaseDateTag date={globalBaseDate} />
         </div>
         <div className={styles.fleetGrid}>
-          {activeVessels.map(renderVesselCard)}
+          {priorityVessels.map(renderVesselCard)}
         </div>
         <button
           type="button"
@@ -1247,6 +1313,24 @@ export default function UnloadingStatus() {
             </div>
           </div>
         </div>
+
+        {selectedCargoBasis && (
+          <section className={styles.cargoBasisPanel} data-testid="hikari-cargo-basis" aria-label="HIKARI 1 물량 기준">
+            <div className={styles.cargoBasisHeader}>
+              <div>
+                <span>HIKARI 1 물량 기준</span>
+                <strong>방콕 FCF 하역대상과 선박 총 적재량을 분리 집계</strong>
+              </div>
+              <BaseDateTag date={selectedCargoBasis.sourceDate} />
+            </div>
+            <div className={styles.cargoBasisGrid}>
+              <div><span>정격 적재능력</span><strong>{formatNum(selectedCargoBasis.capacity)} MT</strong></div>
+              <div><span>선박 총 적재량</span><strong>{formatNum(selectedCargoBasis.totalLoaded)} MT</strong></div>
+              <div><span>FCF 하역대상</span><strong>{formatNum(selectedCargoBasis.dischargeTarget)} MT</strong></div>
+              <div><span>#2-A 별도 배정</span><strong>{formatNum(selectedCargoBasis.excludedCargo)} MT</strong></div>
+            </div>
+          </section>
+        )}
 
         <div className={styles.detailTabs} role="tablist" aria-label="하역 상세 업무 보기">
           {DETAIL_TABS.map(tab => (
@@ -1712,7 +1796,7 @@ export default function UnloadingStatus() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '6px' }}>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>예상 종료 시점</span>
                         <span style={{ fontWeight: 'bold', fontSize: '1.05rem', color: '#10b981' }}>
-                          {remainingTotal > 0 ? `+${estimatedDaysLeft}일 필요` : '하역 완료'}
+                          {getUnloadingEtaLabel(selectedData.status, remainingTotal, estimatedDaysLeft)}
                         </span>
                       </div>
                     </div>
@@ -1811,7 +1895,7 @@ export default function UnloadingStatus() {
                   <div 
                     key={idx} 
                     data-testid={`timeline-node-${t.date.replace('/', '-')}`}
-                    className={`${t.dailyAmount === 0 ? 'holiday ' + (styles.holiday || '') : ''}`}
+                    className={`${t.dailyAmount === 0 && t.quality.includes('휴무') ? 'holiday ' + (styles.holiday || '') : ''}`}
                     style={{ display: 'flex', gap: '16px', position: 'relative', alignItems: 'flex-start' }}
                   >
                     <div 
@@ -1858,7 +1942,7 @@ export default function UnloadingStatus() {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
                           <Thermometer size={13} color="#f59e0b" style={{ flexShrink: 0, marginTop: '2px' }} />
-                          <span>{t.quality}{t.dailyAmount === 0 && !t.quality.includes("휴무") ? " (휴무)" : ""}</span>
+                          <span>{t.quality}</span>
                         </div>
                       </div>
                     </div>

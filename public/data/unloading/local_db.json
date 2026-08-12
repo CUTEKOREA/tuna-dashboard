@@ -45,6 +45,18 @@
       "mother_vessel": "S/SPR · S/PIO · N/STAR · N/SUN",
       "created_at": "2026-08-12T15:34:21+09:00",
       "updated_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "vessel_id": "hikari",
+      "name": "M/V HIKARI 1",
+      "location": "방콕, 태국",
+      "buyer": "FCF CO.,LTD",
+      "status": "하역대기",
+      "reported_total": 2929,
+      "date_range": "2026.07.20 선적계획 확정 · 하역실적 대기",
+      "mother_vessel": "S/SPR 670 · MOAKONA 314 · MOAMARI 940 · NAOERO STAR 1,005 MT",
+      "created_at": "2026-08-12T16:35:00+09:00",
+      "updated_at": "2026-08-12T16:35:00+09:00"
     }
   ],
   "unloading_reports": [
@@ -732,6 +744,50 @@
       "cumulative_amount": 1077.99,
       "quality_notes": "S/PIO(#1-A,#1-B) - 어창 개방 측정온도는 -18.0℃ ~ -19.0℃ 입니다. N/STAR(#2-A) - 어창 개방 측정온도는 -19.0℃ ~ -20.0℃ 입니다. N/SUN(#3-B) - 어창 개방 측정온도는 -22.0℃ ~ -23.0℃ 입니다. 8/12 공휴일로 하역 작업이 없으며, 8/13 약 150톤 하역 예정입니다.",
       "created_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "id": "hikari-loading-7-2-4",
+      "vessel_id": "hikari",
+      "report_date": "7/2~7/4",
+      "work_time": "선적기록",
+      "target_holds": "SHILLA SPRINTER(#2-B:340,#2-C:330)",
+      "daily_amount": 0,
+      "cumulative_amount": 0,
+      "quality_notes": "크리스마스섬 선적 766 MT 중 FCF 670 MT(SJ 648·YF 10·BE 12)를 #2-B·#2-C에 배치했습니다. #2-A 황다랑어 96 MT 별도 배정입니다. 적재 중 어체온도는 #2-C -12.3℃ ~ -14.5℃, #2-B -12.0℃ ~ -13.7℃였습니다.",
+      "created_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "id": "hikari-loading-7-14-15",
+      "vessel_id": "hikari",
+      "report_date": "7/14~7/15",
+      "work_time": "선적기록",
+      "target_holds": "MOAKONA(#4-C:314)",
+      "daily_amount": 0,
+      "cumulative_amount": 0,
+      "quality_notes": "크리스마스섬 선적 428 MT 중 FCF 314 MT(SJ 268·YF 38·BE 8)를 #4-C에 배치했습니다. #2-A 황다랑어 114 MT 별도 배정입니다. 적재 중 어체온도는 #4-C -12.8℃ ~ -41.6℃였습니다.",
+      "created_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "id": "hikari-loading-7-17-19",
+      "vessel_id": "hikari",
+      "report_date": "7/17~7/19",
+      "work_time": "선적기록",
+      "target_holds": "MOAMARI(#4-A:137,#4-B:390,#3-C:413)",
+      "daily_amount": 0,
+      "cumulative_amount": 0,
+      "quality_notes": "크리스마스섬 선적 940 MT 전량 FCF(SJ 668·YF 248·BE 24)이며 #4-A·#4-B·#3-C에 배치했습니다. 적재 중 어체온도는 #4-A -11.0℃ ~ -11.9℃, #4-B -11.2℃ ~ -12.5℃, #3-C -11.0℃ ~ -12.5℃였습니다.",
+      "created_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "id": "hikari-loading-7-17-20",
+      "vessel_id": "hikari",
+      "report_date": "7/17~7/20",
+      "work_time": "선적기록",
+      "target_holds": "NAOERO STAR(#1-A:280,#1-B:200,#3-A:165,#3-B:360)",
+      "daily_amount": 0,
+      "cumulative_amount": 0,
+      "quality_notes": "크리스마스섬 선적 1,005 MT 전량 FCF(SJ 931·YF 62·BE 12)이며 #1-A·#1-B·#3-A·#3-B에 배치했습니다. 적재 중 어체온도는 #1-A -11.4℃ ~ -12.4℃, #1-B -11.2℃ ~ -12.5℃, #3-A -11.0℃ ~ -12.3℃, #3-B -11.5℃ ~ -12.5℃였습니다. 7/20 최종 적재계획 기준 정격 3,700 MT, 총 적재 3,214 MT, FCF 방콕 하역대상 2,929 MT입니다. #2-A 별도 배정 285 MT(S/SPR 96·MOAKONA 114·S/PIO 75 황다랑어)는 하역 목표에서 제외했습니다.",
+      "created_at": "2026-08-12T16:35:00+09:00"
     }
   ],
   "unloading_species": [
@@ -805,6 +861,30 @@
       "reported_amount": 431,
       "actual_amount": 173.6,
       "updated_at": "2026-08-12T15:34:21+09:00"
+    },
+    {
+      "vessel_id": "hikari",
+      "species_id": "SJ",
+      "species_name": "가다랑어",
+      "reported_amount": 2515,
+      "actual_amount": 0,
+      "updated_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "vessel_id": "hikari",
+      "species_id": "YF",
+      "species_name": "황다랑어",
+      "reported_amount": 358,
+      "actual_amount": 0,
+      "updated_at": "2026-08-12T16:35:00+09:00"
+    },
+    {
+      "vessel_id": "hikari",
+      "species_id": "BE",
+      "species_name": "눈다랑어",
+      "reported_amount": 56,
+      "actual_amount": 0,
+      "updated_at": "2026-08-12T16:35:00+09:00"
     }
   ]
 }

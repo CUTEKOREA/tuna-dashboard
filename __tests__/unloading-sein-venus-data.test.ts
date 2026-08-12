@@ -112,9 +112,9 @@ describe('SEIN VENUS unloading data', () => {
     expect(source).toContain("'#1-A': 250");
     expect(source).toContain("useState('sein-venus')");
     expect(source).toContain('원적재선별 하역 비중');
-    expect(analyticsSource).toContain("status.includes('하역중')");
+    expect(analyticsSource).toContain("getVesselStatusKind(status) === 'progress'");
     expect(analyticsSource).toContain('timedAmount += t.dailyAmount');
-    expect(analyticsSource).toContain('!isInProgress(selectedVessel.status) && surplusPct > 3');
+    expect(analyticsSource).toContain('getAnalyticsStatus(selectedVessel.status).completed && surplusPct > 3');
   });
 
   it('prioritizes active operations and groups the long detail view by task', () => {

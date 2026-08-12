@@ -253,6 +253,13 @@
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.1);
 }
 
+.statusBadge.waiting {
+  background: rgba(139, 92, 246, 0.12);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.1);
+}
+
 .progressContainer {
   display: flex;
   flex-direction: column;
@@ -316,6 +323,66 @@
   align-items: center;
   gap: 8px;
   color: #f8fafc;
+}
+
+.cargoBasisPanel {
+  margin: -4px 0 24px;
+  padding: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(8, 145, 178, 0.11), rgba(37, 99, 235, 0.07));
+}
+
+.cargoBasisHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.cargoBasisHeader > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cargoBasisHeader span {
+  color: #38bdf8;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.cargoBasisHeader strong {
+  color: #e2e8f0;
+  font-size: 0.88rem;
+}
+
+.cargoBasisGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.cargoBasisGrid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.cargoBasisGrid span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.cargoBasisGrid strong {
+  color: #f8fafc;
+  font-size: 1rem;
 }
 
 .deepDiveGrid {
