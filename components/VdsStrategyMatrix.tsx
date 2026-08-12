@@ -4,6 +4,7 @@ import s from './VdsStrategyMatrix.module.css';
 import { Target, Activity, Zap, TrendingUp } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import SafeResponsiveContainer from './SafeResponsiveContainer';
+import { nationalVds } from '@/lib/fleet-operations-2026-08-09';
 
 // ─── Data ───
 const companies = ['동원산업', '사조산업', '사조씨푸드', '사조오양', '신라교역'];
@@ -38,7 +39,7 @@ const heatmapData: Record<string, Record<string, Record<string, { remaining: num
     '사조산업': { 'PNG': { remaining: 271.81, rate: 5 }, 'Solomon': { remaining: 42.05, rate: 57 }, 'Kiribati': { remaining: 4.26, rate: 99 }, 'Tuvalu': { remaining: -7.25, rate: 108 }, 'Nauru': { remaining: 22.49, rate: 74 }, 'FSM': { remaining: 26.46, rate: 59 } },
     '사조씨푸드': { 'PNG': { remaining: 58.00, rate: 0 }, 'Solomon': { remaining: -2.40, rate: 113 }, 'Kiribati': { remaining: -3.31, rate: 105 }, 'Tuvalu': { remaining: 4.48, rate: 76 }, 'Nauru': { remaining: 0.56, rate: 96 }, 'FSM': { remaining: 12.00, rate: 0 } },
     '사조오양': { 'PNG': { remaining: 52.85, rate: 9 }, 'Solomon': { remaining: -25.32, rate: 205 }, 'Kiribati': { remaining: 5.65, rate: 92 }, 'Tuvalu': { remaining: 3.75, rate: 80 }, 'Nauru': { remaining: -1.72, rate: 111 }, 'FSM': { remaining: 4.21, rate: 65 } },
-    '신라교역': { 'PNG': { remaining: 315.03, rate: 5 }, 'Solomon': { remaining: 20.32, rate: 54 }, 'Kiribati': { remaining: 35.29, rate: 95 }, 'Tuvalu': { remaining: 7.76, rate: 92 }, 'Nauru': { remaining: 19.61, rate: 86 }, 'FSM': { remaining: 34.16, rate: 30 } }
+    '신라교역': { 'PNG': { remaining: 0, rate: 0 }, 'Solomon': { remaining: 0, rate: 0 }, 'Kiribati': { remaining: 0, rate: 0 }, 'Tuvalu': { remaining: 0, rate: 0 }, 'Nauru': { remaining: 0, rate: 0 }, 'FSM': { remaining: 0, rate: 0 } }
   }
 };
 
@@ -50,15 +51,28 @@ const companyColors: Record<string, string> = {
   '신라교역': '#10b981'  // emerald
 };
 
-// ... other constants (sillaData, intelFeed) stay same as 2026 ...
-const sillaData = [
-  { zone: 'PNG', total: 331.00, consumed: 15.97, remaining: 315.03, rate: 5 },
-  { zone: 'Kiribati', total: 684.00, consumed: 648.71, remaining: 35.29, rate: 95 },
-  { zone: 'Solomon', total: 44.00, consumed: 23.68, remaining: 20.32, rate: 54 },
-  { zone: 'Tuvalu', total: 102.00, consumed: 94.24, remaining: 7.76, rate: 92 },
-  { zone: 'Nauru', total: 142.00, consumed: 122.39, remaining: 19.61, rate: 86 },
-  { zone: 'FSM', total: 49.00, consumed: 14.84, remaining: 34.16, rate: 30 },
-];
+const nationalZoneNames: Record<string, string> = {
+  PNG: '파푸아뉴기니',
+  Solomon: '솔로몬제도',
+  Kiribati: '키리바시',
+  Tuvalu: '투발루',
+  Nauru: '나우루',
+  FSM: '미크로네시아',
+};
+
+const currentSillaZone = (zone: string) => {
+  const current = nationalVds.areas.find((item) => item.area === nationalZoneNames[zone]);
+  const total = current?.totals.allocated ?? 0;
+  const consumed = current?.totals.consumed ?? 0;
+  return {
+    total,
+    consumed,
+    remaining: current?.totals.remaining ?? 0,
+    rate: total > 0 ? Math.round(consumed / total * 100) : 0,
+  };
+};
+
+const sillaData = zones.map((zone) => ({ zone, ...currentSillaZone(zone) }));
 
 const intelFeed = [
   { date: '07/29', msg: '키리바시 조업일수 추가 구매 (20일)' },
@@ -89,7 +103,9 @@ export default function VdsStrategyMatrix() {
   const chartData = years.map(y => {
     const dataObj: any = { year: y };
     companies.forEach(c => {
-      dataObj[c] = heatmapData[y][c][activeZone].remaining;
+      dataObj[c] = y === '2026' && c === '신라교역'
+        ? currentSillaZone(activeZone).remaining
+        : heatmapData[y][c][activeZone].remaining;
     });
     return dataObj;
   });
@@ -133,7 +149,9 @@ export default function VdsStrategyMatrix() {
                 <tr key={company}>
                   <td className={s.heatmapCompany}>{company}</td>
                   {zones.map(zone => {
-                    const data = heatmapData[activeYear][company][zone];
+                    const data = activeYear === '2026' && company === '신라교역'
+                      ? currentSillaZone(zone)
+                      : heatmapData[activeYear][company][zone];
                     return (
                       <td key={zone}>
                         <div className={`${s.heatmapCell} ${getCellClass(data.remaining)}`}>
@@ -155,6 +173,7 @@ export default function VdsStrategyMatrix() {
             <div className={s.panelTitle}>
               <span>신라교역 VDS 자산 현황 (2026 기준)</span>
             </div>
+            <div className={s.subtitle}>{nationalVds.source} · {nationalVds.asOf} 기준</div>
             <div className={s.assetList}>
               {sillaData.map(item => (
                 <div key={item.zone} className={s.assetRow}>

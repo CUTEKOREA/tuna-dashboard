@@ -1,6 +1,6 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 00:18 KST
+> 마지막 업데이트: 2026-08-13 00:31 KST
 
 > ✅ **2026-08-13 00:18 KST — `/market` 2026년 8월 Atuna 동기화 회귀 복원·라이브 배포 준비** [Codex]:
 > - 라이브 `/market`이 다시 `2026-07-16` SKJ 방콕 **$1,790**과 7월 다이제스트를 표시하는 회귀를 재현했다. 8월 Atuna 반영 커밋 `0ff6fcf`가 별도 브랜치에만 있고 `main`에 병합되지 않아, 이후 `main` 배포가 운영 화면을 이전 상태로 되돌린 것이 원인이다.
@@ -8,6 +8,20 @@
 > - 재발 방지를 위해 가격 최신행과 8월 폴더·가격 문구를 고정하는 회귀 테스트를 추가했다. 전체 Vitest **133/133**, 타입검사, API cache **150/150**, ESLint 0 errors(기존 warnings 10), Next.js Turbopack·webpack production 빌드 **103/103**, bundle budget, S-Grade 0건을 통과했다.
 > - 로컬 production 데스크톱·390px 모바일에서 `/market`의 8월 폴더·$1,900·2026.08.06과 `/logistics`의 31주차·4척·18,643.026MT·SEIN VENUS를 확인했다. 두 경로 모두 HTTP 200, 가로 overflow 0, page error 0이다.
 > - 사용자 명시적 라이브 배포 요청에 따라 GitHub 품질 게이트와 Vercel production 배포를 진행한다.
+
+> 🚀 **2026-08-13 00:31 KST — `/fleet` 8월 선단 운영자료 라이브 배포 완료** [Codex]:
+> - 로컬 기능 커밋 `9c3cf85`를 PR [#284](https://github.com/CUTEKOREA/tuna-dashboard/pull/284)로 `main`에 병합했고, production merge commit은 `8d6818736caf0f9a017845be2b97d9171ee66db0`이다.
+> - PR App Quality Gate run `31612026727`, main App Quality Gate run `31612342879`, Data Freshness Audit run `31612342908`이 모두 성공했다. 기존 ESLint warning 이외 오류는 없다.
+> - Vercel production `dpl_3zsLf9UWBmoPTtKzcvcg5DUAjP9K`(`tuna-dashboard-bw9hznm3c-cutekorea-3280s-projects.vercel.app`)가 READY이며 `https://leedonggun.co.kr`·`https://tuna-dashboard-kappa.vercel.app` alias에 연결됐다.
+> - 라이브 `/fleet`는 `x-matched-path: /[category]`로 응답한다. 잠금 해제 후 데스크톱·390px 모바일에서 HTTP 200, 4개 탭, 611/1,320/46,153 M/T, 태평양 176 M/T, 대서양 220 M/T, TAIHO MARU, HIKARI 1 컨테이너, VDS 1,417/750일과 소계 차이 주석을 확인했다. 가로 overflow 0, console/page/자체 request error 0이며 배포 후 Vercel error log는 없다.
+
+> 🛠️ **2026-08-13 00:18 KST — `/fleet` 8월 9~12일 선단 운영자료 로컬 반영** [Codex]:
+> - 사용자 제공 원문 7건을 `lib/fleet-operations-2026-08-09.ts`의 중앙 데이터 계약으로 구조화했다. 주간 어획 **611 M/T**, 8월 누계 **1,320 M/T**, 연간 누계 **46,153 M/T**, 태평양 8/11 일간 **176 M/T**, 대서양 8/11 일간 **220 M/T**, 운반선·컨테이너 8/12 선적 **9,922.3 M/T**를 기준일별로 분리했다.
+> - VDS는 국적선 6척(**1,417/965/452일**)과 키리바시 선박 4척(**750/521.8/228.2일**)을 별도 모집단으로 표시했다. 키리바시 국적선 소계는 원문 인쇄 소계와 선박 행 합계가 최대 0.20일 다르므로 인쇄 소계를 유지하고 행 합계를 주석으로 공개했다. 동부 공해·키리바시 공해의 소진일수 제외 조건도 보존했다.
+> - `오늘의 운영 / 선박·수역 / 실적 분석 / VDS·입어료` 탭에 최신 수치를 배선했고, 선박 카드는 8/11 일간 어획으로 정정했다. TAIHO MARU, HIKARI 1 일반 선적·PSS YF 컨테이너를 포함했고, 국적선 음수 잔여는 원천 행 계산값 **10건**으로 자동 산출한다.
+> - `/fleet`을 레거시 루트 rewrite에서 제외해 `app/[category]` client-only 경로로 전환했다. 수정 전 라우팅·일간/주간 혼용 회귀 검사가 실패하고 수정 후 통과함을 확인했다.
+> - `npm run verify` 통과: ESLint **0 errors(기존 warnings 10)**, TypeScript, Vitest **137/137**, API cache **150/150**, Next.js production build **103페이지**, bundle budget. S-Grade 0건, `git diff --check` 통과. 로컬 브라우저 잠금 해제 후 데스크톱·390px 모바일 모두 HTTP 200, 4개 탭 핵심 수치, 가로 overflow 0, console/page error 0을 확인했다.
+> - 상태: 전용 worktree `codex/fleet-ops-20260812`에 로컬 반영. **프로덕션 미배포**(이번 사용자 메시지에 배포 요청 없음).
 
 > 🚀 **2026-08-12 22:31 KST — `/fleet-strategy` 2025년 선사별 업종별 원양어업 생산실적 라이브 배포 완료** [Codex]:
 > - 사용자 제공 `25년도 선사별 업종별 원양어업 생산량 자료 (1).pdf` 112~115쪽 화면을 기준으로 36개 선사의 회사 합계와 10개 업종별 생산량을 `lib/fleet-production-2025.ts`에 구조화했다. 원문 총계는 **383,130 M/T**, 신라교역은 **58,349 M/T(전체 15.2%, 2위)**이며 참치선망 **54,803 M/T**, 참치연승 **3,546 M/T**다.

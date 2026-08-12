@@ -151,7 +151,7 @@ export default function FleetPixelMap() {
 
           {/* Legend for Pacific */}
           <div className={s.legend}>
-            <div className={s.legendTitle}>Pacific Legend</div>
+            <div className={s.legendTitle}>태평양 범례</div>
             <div className={s.legendItem}>
               <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-pacific']}`} style={{backgroundColor:'#38bdf8'}}></div></div>
               <span>태평양 선망선</span>
@@ -192,7 +192,7 @@ export default function FleetPixelMap() {
 
           {/* Legend for Atlantic */}
           <div className={s.legend}>
-            <div className={s.legendTitle}>Atlantic Legend</div>
+            <div className={s.legendTitle}>대서양 범례</div>
             <div className={s.legendItem}>
               <div className={s.legendIcon}><div className={`${s.shipBody} ${s['fleet-atlantic']}`} style={{backgroundColor:'#f59e0b'}}></div></div>
               <span>대서양 선망선</span>

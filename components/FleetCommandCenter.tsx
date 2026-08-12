@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { AlertTriangle, Anchor, CalendarClock, Ship, Wrench } from 'lucide-react';
+import { AlertTriangle, CalendarClock, Ship, TrendingUp } from 'lucide-react';
 import FleetHeroKPI from './FleetHeroKPI';
 import FleetRosterGrid from './FleetRosterGrid';
 import { FleetChartSection, FleetDetailPanel } from './FleetAnalysisPanels';
 import FleetPixelMap from './FleetPixelMap';
 import VdsStrategyMatrix from './VdsStrategyMatrix';
 import PnaAccessFeeWidgets from './PnaAccessFeeWidgets';
+import VesselVdsStatus from './VesselVdsStatus';
+import { carrierLoads, nationalVds, purseSeineCatch } from '@/lib/fleet-operations-2026-08-09';
 import s from './FleetCommandCenter.module.css';
 
 type FleetTaskTab = 'operations' | 'vessels' | 'performance' | 'access';
@@ -19,17 +21,14 @@ const taskTabs = [
   { id: 'access', label: 'VDS·입어료' },
 ] as const;
 
-const climateRisk = {
-  sstAnomaly: '+1.2℃',
-  impact: '7월 31일 보고 당시 S/JUP 기관 수리와 대기 운반선 3척이 확인됐습니다. 현재 상태를 재확인하세요.',
-  riskLevel: '주의',
-};
+const nationalOverrunCount = nationalVds.areas.flatMap((area) => area.rows).filter((row) => row.remaining < 0).length;
+const jointWeeklyShare = Math.round(purseSeineCatch.summary.jointWeekly / purseSeineCatch.summary.weeklyTotal * 100);
 
 const decisions = [
-  { icon: Wrench, level: '긴급', title: 'S/JUP 수리 상태 확인', detail: '7월 31일 보고 당시 기관 수리 · 현재 출항 일정 재확인', tone: 'danger' },
-  { icon: Ship, level: '관리', title: '운반선 3척 상태 확인', detail: '7월 31일 보고 당시 대기 · 현재 전재 순서 재확인', tone: 'warning' },
-  { icon: Anchor, level: '확인', title: 'SEIN VENUS 하역 현황', detail: '현재 방콕 하역 진척은 하역 현황에서 확인', tone: 'primary' },
-  { icon: CalendarClock, level: '기한', title: '입어료 납부 상태', detail: '경과 표시 4건의 실제 납부 여부 재확인', tone: 'danger' },
+  { icon: TrendingUp, level: '생산', title: `합작선 주간 비중 ${jointWeeklyShare}%`, detail: `${purseSeineCatch.summary.jointWeekly} M/T · KONA 183, MARI 140 M/T 견인`, tone: 'primary' },
+  { icon: AlertTriangle, level: 'VDS', title: `국적선 음수 잔여 ${nationalOverrunCount}건`, detail: '키리바시·투발루·나우루 등 수역별 추가권리 확인', tone: 'danger' },
+  { icon: Ship, level: '전재', title: `운반선 선적 ${carrierLoads.loadedTotalMt.toLocaleString()} M/T`, detail: `예상잔량 ${carrierLoads.expectedRemainingMt.toLocaleString()} M/T · 방콕/X-MAS/RABAUL 관리`, tone: 'warning' },
+  { icon: CalendarClock, level: '대서양', title: '8월 11일 일간 220 M/T', detail: 'P/MAS 120 · P/PATH 60 · P/DIS 40 M/T', tone: 'primary' },
 ] as const;
 
 export default function FleetCommandCenter() {
@@ -54,6 +53,10 @@ export default function FleetCommandCenter() {
 
   return (
     <div className={s.wrapper}>
+      <div className={s.commandIntro}>
+        <div><span className={s.eyebrow}>선단 운영 · 2026년 8월</span><h2>2026년 8월 선단 운영현황</h2><p>어획 8월 9일 · VDS 8월 9일 · 대서양 8월 11일 · 운반선 8월 12일 기준</p></div>
+        <span className={s.staticBadge}>첨부 원문 7건</span>
+      </div>
       <div className={s.taskTabs} role="tablist" aria-label="선단 업무 보기">
         {taskTabs.map((tab, index) => (
           <button
@@ -75,11 +78,11 @@ export default function FleetCommandCenter() {
       </div>
 
       <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}>
-          <FleetHeroKPI mode="daily" climateRisk={climateRisk} />
+          <FleetHeroKPI mode="daily" />
           <div className={s.decisionPanel}>
             <div className={s.decisionHeader}>
-              <div><span className={s.eyebrow}>7월 31일 보고 당시 운영 판단</span><h3>현재 상태 재확인이 필요한 4건</h3></div>
-              <span className={s.staticBadge}>7월 31일 보고 기준</span>
+              <div><span className={s.eyebrow}>기준일 분리 운영 판단</span><h3>이번 주 의사결정 4건</h3></div>
+              <span className={s.staticBadge}>8월 9~12일 원문 기준</span>
             </div>
             <div className={s.decisionGrid}>
               {decisions.map(({ icon: Icon, level, title, detail, tone }) => (
@@ -91,7 +94,7 @@ export default function FleetCommandCenter() {
             </div>
             <details className={s.reportDetails}>
               <summary>업무보고 원문 펼치기</summary>
-              <p>S/CHA 전재 후 출항 완료. S/JUP 기관 수리 중이며 출항 일정은 기술자 확인이 필요합니다. 운반선 대기 순서와 대서양 하역 일정을 관리해야 합니다.</p>
+              <p>주간 어획과 VDS는 8월 9일, 대서양 위치·어획은 8월 11일, 운반선은 8월 12일 기준입니다. 모집단과 기준일이 달라 단일 합계로 합산하지 않습니다.</p>
             </details>
           </div>
       </section>
@@ -109,7 +112,8 @@ export default function FleetCommandCenter() {
       </section>
 
       <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}>
-          <div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>입어료 납부 상태 확인 필요</strong><p>경과 표시 4건은 정적 배정표 기준입니다. 실제 납부 여부를 확인한 뒤 상태를 갱신하세요.</p></div></div>
+          <div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>국적선과 키리바시 선박을 분리 집계</strong><p>국적선 6척과 키리바시 선박 4척은 별도 모집단입니다. 음수 잔여는 원문을 그대로 표시했습니다.</p></div></div>
+          <VesselVdsStatus />
           <VdsStrategyMatrix />
           <PnaAccessFeeWidgets />
       </section>
