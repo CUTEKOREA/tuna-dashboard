@@ -28,6 +28,7 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('korea-market');
     expect(rewriteSource).not.toContain('logistics');
     expect(rewriteSource).not.toContain('fleet-strategy');
+    expect(rewriteSource?.match(/\(([^)]+)\)/)?.[1].split('|')).not.toContain('fleet');
     expect(categorySource).toContain('ssr: false');
   });
 
@@ -36,13 +37,16 @@ describe('dashboard registry', () => {
     const mapSource = readFileSync(join(process.cwd(), 'components/FleetPixelMap.tsx'), 'utf8');
     const heroSource = readFileSync(join(process.cwd(), 'components/FleetHeroKPI.tsx'), 'utf8');
     const rosterSource = readFileSync(join(process.cwd(), 'components/FleetRosterGrid.tsx'), 'utf8');
+    const vdsStrategySource = readFileSync(join(process.cwd(), 'components/VdsStrategyMatrix.tsx'), 'utf8');
 
     for (const label of ['오늘의 운영', '선박·수역', '실적 분석', 'VDS·입어료']) {
       expect(commandSource).toContain(label);
     }
     expect(commandSource).toContain('role="tablist"');
     expect(commandSource).toContain('role="tabpanel"');
-    expect(commandSource).toContain('7월 31일 보고 당시 운영 판단');
+    expect(commandSource).toContain('기준일 분리 운영 판단');
+    expect(commandSource).toContain('nationalOverrunCount');
+    expect(commandSource).not.toContain('음수 잔여 11건');
     expect(commandSource).toContain("hidden={activeTab !== 'operations'}");
     expect(commandSource).toContain("hidden={activeTab !== 'vessels'}");
     expect(commandSource).toContain("hidden={activeTab !== 'performance'}");
@@ -59,7 +63,15 @@ describe('dashboard registry', () => {
     expect(mapStyles).toContain('height: 44px');
     expect(rosterSource).toContain("port: '⚓ 하역·정박'");
     expect(rosterSource).not.toContain('statusLabels[status] || status');
-    expect(heroSource).toContain('val1: 1009');
+    expect(rosterSource).not.toContain('weeklyRanking.find');
+    expect(rosterSource).toContain('summary={`일간 ${pacificDailyReport.dailyCatchMt.toLocaleString()');
+    expect(rosterSource).toContain('longlineDailyReport.vessels.map');
+    expect(rosterSource).not.toContain("filter((vessel) => !vessel.name.includes('컨테이너'))");
+    expect(rosterSource).toContain('countLabel={`${carrierFleet.length}건`}');
+    expect(vdsStrategySource).toContain('nationalVds');
+    expect(vdsStrategySource).not.toContain('remaining: 315.03');
+    expect(commandSource).toContain('2026년 8월 선단 운영현황');
+    expect(heroSource).toContain('val1: summary.weeklyTotal');
     expect(heroSource).not.toContain('val1: 917');
   });
   it('keeps menu keys unique and title-addressable', () => {
