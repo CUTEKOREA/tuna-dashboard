@@ -466,6 +466,7 @@
 .taskTab:focus-visible { outline:3px solid rgba(56,189,248,.45); outline-offset:2px; }
 .taskTabActive { color:#e0f2fe; border-color:rgba(56,189,248,.45); background:linear-gradient(135deg,rgba(14,165,233,.2),rgba(37,99,235,.12)); }
 .tabPanel { outline:none; }
+.tabPanel[hidden] { display:none; }
 .decisionPanel { margin:20px 0 4px; padding:22px; border:1px solid rgba(56,189,248,.28); border-radius:16px; background:linear-gradient(145deg,rgba(8,47,73,.42),rgba(15,23,42,.88)); }
 .decisionHeader,.sectionHeading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px; }
 .decisionHeader h3,.sectionHeading h3 { margin:4px 0 0; color:#f8fafc; font-size:1.25rem; }

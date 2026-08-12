@@ -21,14 +21,14 @@ const taskTabs = [
 
 const climateRisk = {
   sstAnomaly: '+1.2℃',
-  impact: 'S/JUP 기관 수리와 대기 운반선 3척의 일정 확인이 필요합니다.',
+  impact: '7월 31일 보고 당시 S/JUP 기관 수리와 대기 운반선 3척이 확인됐습니다. 현재 상태를 재확인하세요.',
   riskLevel: '주의',
 };
 
 const decisions = [
-  { icon: Wrench, level: '긴급', title: 'S/JUP 기관 수리', detail: '출항 일정 미확정 · 기술자 일정 확인', tone: 'danger' },
-  { icon: Ship, level: '관리', title: '운반선 3척 대기', detail: 'SEIN KASAMA · SHIN IZU · SEIN GALAXY 전재 순서 확정', tone: 'warning' },
-  { icon: Anchor, level: '확인', title: 'SEIN VENUS 하역 중', detail: '방콕 하역 진척은 하역 현황에서 확인', tone: 'primary' },
+  { icon: Wrench, level: '긴급', title: 'S/JUP 수리 상태 확인', detail: '7월 31일 보고 당시 기관 수리 · 현재 출항 일정 재확인', tone: 'danger' },
+  { icon: Ship, level: '관리', title: '운반선 3척 상태 확인', detail: '7월 31일 보고 당시 대기 · 현재 전재 순서 재확인', tone: 'warning' },
+  { icon: Anchor, level: '확인', title: 'SEIN VENUS 하역 현황', detail: '현재 방콕 하역 진척은 하역 현황에서 확인', tone: 'primary' },
   { icon: CalendarClock, level: '기한', title: '입어료 납부 상태', detail: '경과 표시 4건의 실제 납부 여부 재확인', tone: 'danger' },
 ] as const;
 
@@ -74,12 +74,11 @@ export default function FleetCommandCenter() {
         ))}
       </div>
 
-      {activeTab === 'operations' && (
-        <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel}>
+      <section id="fleet-panel-operations" role="tabpanel" aria-labelledby="fleet-tab-operations" className={s.tabPanel} hidden={activeTab !== 'operations'}>
           <FleetHeroKPI mode="daily" climateRisk={climateRisk} />
           <div className={s.decisionPanel}>
             <div className={s.decisionHeader}>
-              <div><span className={s.eyebrow}>오늘의 운영 판단</span><h3>확인과 조치가 필요한 4건</h3></div>
+              <div><span className={s.eyebrow}>7월 31일 보고 당시 운영 판단</span><h3>현재 상태 재확인이 필요한 4건</h3></div>
               <span className={s.staticBadge}>7월 31일 보고 기준</span>
             </div>
             <div className={s.decisionGrid}>
@@ -95,32 +94,25 @@ export default function FleetCommandCenter() {
               <p>S/CHA 전재 후 출항 완료. S/JUP 기관 수리 중이며 출항 일정은 기술자 확인이 필요합니다. 운반선 대기 순서와 대서양 하역 일정을 관리해야 합니다.</p>
             </details>
           </div>
-        </section>
-      )}
+      </section>
 
-      {activeTab === 'vessels' && (
-        <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel}>
+      <section id="fleet-panel-vessels" role="tabpanel" aria-labelledby="fleet-tab-vessels" className={s.tabPanel} hidden={activeTab !== 'vessels'}>
           <div className={s.sectionHeading}><div><span className={s.eyebrow}>선박·수역</span><h3>예외 선박과 수역별 배치</h3></div><span>지도는 보고 좌표의 개략 위치입니다</span></div>
           <FleetPixelMap />
           <FleetRosterGrid />
-        </section>
-      )}
+      </section>
 
-      {activeTab === 'performance' && (
-        <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel}>
+      <section id="fleet-panel-performance" role="tabpanel" aria-labelledby="fleet-tab-performance" className={s.tabPanel} hidden={activeTab !== 'performance'}>
           <FleetHeroKPI mode="weekly" />
           <FleetChartSection />
           <FleetDetailPanel />
-        </section>
-      )}
+      </section>
 
-      {activeTab === 'access' && (
-        <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel}>
+      <section id="fleet-panel-access" role="tabpanel" aria-labelledby="fleet-tab-access" className={s.tabPanel} hidden={activeTab !== 'access'}>
           <div className={s.accessAlert}><AlertTriangle size={18} aria-hidden="true" /><div><strong>입어료 납부 상태 확인 필요</strong><p>경과 표시 4건은 정적 배정표 기준입니다. 실제 납부 여부를 확인한 뒤 상태를 갱신하세요.</p></div></div>
           <VdsStrategyMatrix />
           <PnaAccessFeeWidgets />
-        </section>
-      )}
+      </section>
     </div>
   );
 }

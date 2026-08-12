@@ -40,12 +40,21 @@ describe('dashboard registry', () => {
     }
     expect(commandSource).toContain('role="tablist"');
     expect(commandSource).toContain('role="tabpanel"');
+    expect(commandSource).toContain('7월 31일 보고 당시 운영 판단');
+    expect(commandSource).toContain("hidden={activeTab !== 'operations'}");
+    expect(commandSource).toContain("hidden={activeTab !== 'vessels'}");
+    expect(commandSource).toContain("hidden={activeTab !== 'performance'}");
+    expect(commandSource).toContain("hidden={activeTab !== 'access'}");
     expect(commandSource).toContain('onKeyDown');
     expect(mapSource).not.toContain('Math.random');
     expect(mapSource).toContain('aria-expanded');
     expect(mapSource).toContain('aria-controls');
     expect(mapSource).toContain('hidden={!selected}');
     expect(mapSource).toContain("event.key === 'Escape'");
+    expect(mapSource).toContain('aria-label={`${ship.name} 상세 보기`');
+    const mapStyles = readFileSync(join(process.cwd(), 'components/FleetPixelMap.module.css'), 'utf8');
+    expect(mapStyles).toContain('width: 44px');
+    expect(mapStyles).toContain('height: 44px');
     expect(rosterSource).toContain("port: '⚓ 하역·정박'");
     expect(rosterSource).not.toContain('statusLabels[status] || status');
     expect(heroSource).toContain('val1: 1009');
