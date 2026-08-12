@@ -9,6 +9,13 @@
 > - 2026 운영 데이터와 별도 API·컴포넌트로 격리해 기존 누적 **34,132 MT / 완료 11척**은 변하지 않는다. 역사 API·청크 장애도 2026 화면을 유지하고 한글 재시도로 복구한다.
 > - 로컬 검증: ESLint 0 errors(기존 warnings 10), TypeScript, Vitest **160/160**, API cache **151/151**, Next.js 정적 페이지 **104개**, bundle budget, 역사 전용 데스크톱·390px·키보드·API·청크 실패 E2E 통과. 사용자의 명시적 배포 승인에 따라 공개 전용 브랜치에서 PR·Preview·production 검증을 진행한다.
 
+> ✅ **2026-08-13 00:18 KST — `/market` 2026년 8월 Atuna 동기화 회귀 복원·라이브 배포 준비** [Codex]:
+> - 라이브 `/market`이 다시 `2026-07-16` SKJ 방콕 **$1,790**과 7월 다이제스트를 표시하는 회귀를 재현했다. 8월 Atuna 반영 커밋 `0ff6fcf`가 별도 브랜치에만 있고 `main`에 병합되지 않아, 이후 `main` 배포가 운영 화면을 이전 상태로 되돌린 것이 원인이다.
+> - 최신 `origin/main`의 `/logistics` 31주차 변경을 보존한 전용 배포 worktree에서 `components/MarketDashboard.tsx`와 `data/atuna_prices.json`만 해당 승인 버전으로 복원했다. API 최신값은 **SKJ 방콕 2026-08-06 $1,900**, **SKJ 만타 2026-07-28 $2,150**이며, 화면에 `Atuna 2026.08 폴더`와 `가격은 8/6 SKJ $1,900 반영`을 다시 노출한다.
+> - 재발 방지를 위해 가격 최신행과 8월 폴더·가격 문구를 고정하는 회귀 테스트를 추가했다. 전체 Vitest **133/133**, 타입검사, API cache **150/150**, ESLint 0 errors(기존 warnings 10), Next.js Turbopack·webpack production 빌드 **103/103**, bundle budget, S-Grade 0건을 통과했다.
+> - 로컬 production 데스크톱·390px 모바일에서 `/market`의 8월 폴더·$1,900·2026.08.06과 `/logistics`의 31주차·4척·18,643.026MT·SEIN VENUS를 확인했다. 두 경로 모두 HTTP 200, 가로 overflow 0, page error 0이다.
+> - 사용자 명시적 라이브 배포 요청에 따라 GitHub 품질 게이트와 Vercel production 배포를 진행한다.
+
 > 🚀 **2026-08-13 00:31 KST — `/fleet` 8월 선단 운영자료 라이브 배포 완료** [Codex]:
 > - 로컬 기능 커밋 `9c3cf85`를 PR [#284](https://github.com/CUTEKOREA/tuna-dashboard/pull/284)로 `main`에 병합했고, production merge commit은 `8d6818736caf0f9a017845be2b97d9171ee66db0`이다.
 > - PR App Quality Gate run `31612026727`, main App Quality Gate run `31612342879`, Data Freshness Audit run `31612342908`이 모두 성공했다. 기존 ESLint warning 이외 오류는 없다.
