@@ -2522,3 +2522,10 @@ python3 scripts/check_s_grade.py components/TunaDashboard.tsx components/TunaExt
 - 검증: 4 라우트 dev 실호출 전부 isLive:true(LA 24.9%·고등어 5,359원·이벤트 16건·태국 $2.0B) · npm run build 통과(L-03) · check_s_grade 위반 0.
 - 주의: Comtrade fallback 키 수시간 내 429 가능(검증 중 쿼터 소모, revalidate 86400이라 운영 무해) · Census 공표 랙 ~3개월(당월 빈 응답 시 4개월 소급 설계) · Vercel hobby maxDuration 주의(comtrade-race 60s 설정).
 - 다음: 2단계 M 본체(B-1 참가격 플래그십 — 활용신청 선행, A-6 재무 스코어보드, A-7 ECOS 패스스루). 배포는 사용자 지시 대기.
+
+## 2026-08-12 22:12 KST (Hermes) — 물류 의사결정 화면 개편
+- **완료된 것**: `/logistics`를 `오늘의 운영`·`반입·가격`·`공장 운영`·`선박·보고자료` 4개 접근성 탭으로 분리했다. 기본 탭에는 THAI UNION 창고 포화, TRI MARINE 누계 상충, 송클라 저가동, 입항 상태 재확인 등 예외 4건과 필요한 조치를 우선 표시한다.
+- **완료된 것**: 현재 하역 3척·13,764MT, 검산 누계 317,175MT, 원어 협의 시장가 US$1,930/MT, 방콕/송클라 생산 2,650/330MT를 첫 화면 KPI로 유지했다. 선박 이동 보고자료는 현재 상태와 혼동되지 않도록 별도 경고와 기본 접힘으로 변경했다.
+- **검증**: 신규 TDD RED→GREEN 4건, 전체 Vitest 132/132, TypeScript, ESLint 오류 0건, S-grade 위반 0건, 격리 production build 103페이지, 번들 예산 통과. Puppeteer 1280/390px에서 네 탭·방향키·접힘·시장가를 확인했고 runtime 오류·가로 overflow는 0건이다.
+- **동시 작업 경계**: 같은 작업트리의 `ReeferMovement.tsx`, `lib/data/misc.ts`, `reefer-week31-*`는 다른 작업자의 31주차 갱신이며 본 개편 커밋에서 제외한다. 물류 개편 커밋은 기존 30주차 보고자료 계약을 유지하고, 작업트리의 31주차 변경은 후속 작업자가 그대로 이어갈 수 있게 보존한다.
+- **다음 단계**: 독립 리뷰 후 물류 개편 파일만 소유권을 분리해 커밋·라이브 배포하고, 주간보고 자동 추출·전주 대비 변화량은 후속 단계로 진행한다.

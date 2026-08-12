@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  Factory, Truck, RefreshCcw,
-  TrendingUp, Ship, Navigation, DollarSign, AlertTriangle
+  Factory, RefreshCcw, TrendingUp, Ship, Navigation
 } from 'lucide-react';
 import CanneryStatusCharts from './CanneryStatusCharts';
 import SongkhlaCanneryStatusCharts from './SongkhlaCanneryStatusCharts';
@@ -11,10 +10,23 @@ import ReeferMovement from './ReeferMovement';
 import TraderStatus from './TraderStatus';
 import CarrierUnloadingStatus from './CarrierUnloadingStatus';
 import WidgetCard from './WidgetCard';
+import LogisticsOperationsPanel from './LogisticsOperationsPanel';
+import styles from './LogisticsCommandCenter.module.css';
 import { logisticsWeeklyReport } from '@/lib/logistics-weekly-report';
+
+type LogisticsTab = 'operations' | 'receipts' | 'canneries' | 'vessels';
+
+const tabs: Array<{ id: LogisticsTab; label: string; description: string }> = [
+  { id: 'operations', label: '오늘의 운영', description: '예외 신호와 확인 과제' },
+  { id: 'receipts', label: '반입·가격', description: '트레이더 반입과 시장가' },
+  { id: 'canneries', label: '공장 운영', description: '방콕·송클라 생산과 재고' },
+  { id: 'vessels', label: '선박·보고자료', description: '하역 현황과 보고 시점 이동표' },
+];
 
 export default function LogisticsDashboard() {
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<LogisticsTab>('operations');
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useEffect(() => {
     // Simulate loading for the dashboard skeleton
@@ -24,6 +36,26 @@ export default function LogisticsDashboard() {
     return () => clearTimeout(timer);
   }, []);
 
+  const selectTab = (tab: LogisticsTab, focus = false) => {
+    setActiveTab(tab);
+    if (focus) {
+      const index = tabs.findIndex((item) => item.id === tab);
+      tabRefs.current[index]?.focus();
+    }
+  };
+
+  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let nextIndex = index;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length;
+    else if (event.key === 'Home') nextIndex = 0;
+    else if (event.key === 'End') nextIndex = tabs.length - 1;
+    else return;
+
+    event.preventDefault();
+    selectTab(tabs[nextIndex].id, true);
+  };
+
   if (loading) return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: '1rem' }}>
       <RefreshCcw size={32} style={{ color: 'var(--color-success)', animation: 'spin 1s linear infinite' }} />
@@ -32,70 +64,70 @@ export default function LogisticsDashboard() {
   );
 
   return (
-    <div style={{ padding: '0 1.5rem 3rem', color: 'var(--text-primary)', minHeight: '100vh', fontFamily: "'CircularSp', 'Inter', sans-serif" }}>
-      {/* ═══ Header ═══ */}
-      <header style={{ marginBottom: '2rem', paddingTop: '0.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ 
-              width: '44px', height: '44px', borderRadius: '50%', 
-              background: 'linear-gradient(135deg, #10b981, #059669)', 
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
-            }}>
-              <Factory size={24} color="var(--bg-color)" />
+    <div className={styles.dashboard}>
+      <header className={styles.header}>
+        <div className={styles.headerRow}>
+          <div className={styles.brand}>
+            <div className={styles.brandIcon}>
+              <Factory size={24} aria-hidden="true" />
             </div>
             <div>
-              <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.5px', color: 'var(--text-primary)' }}>
-                물류·가공 인텔리전스
-              </h1>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-secondary)' }}>글로벌 밸류체인 운영 상황실</p>
+              <h1>물류·가공 인텔리전스</h1>
+              <p>글로벌 밸류체인 운영 상황실</p>
             </div>
           </div>
-          <div className="ds-card" style={{
-            fontSize: '0.88rem', padding: '8px 16px', 
-            background: '#11182f', border: 'none', 
-            borderRadius: '500px', color: 'var(--text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px',
-            boxShadow: 'rgba(0,0,0,0.3) 0px 8px 8px'
-          }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--text-secondary)' }} />
-            <span>정적 주간 보고 기반 <span style={{ color: 'var(--text-primary)' }}>최신 2026-08-05 · 위젯별 기준일 표기</span></span>
+          <div className={styles.reportBadge}>
+            <span>정적 보고 기반 <strong>최신 2026-08-05 · 위젯별 기준일 표기</strong></span>
           </div>
         </div>
       </header>
 
-      <section style={{ marginBottom: '3rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <AlertTriangle size={24} color="var(--color-warning)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>8월 5일 운영 신호</h2>
-        </div>
-        <div data-mobile-stack style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '1rem' }}>
-          <div className="ds-card" style={{ padding: '1.25rem', borderRadius: '12px' }}>
-            <Ship size={20} color="var(--color-info)" />
-            <p style={{ margin: '0.75rem 0 0.25rem', color: 'var(--text-secondary)', fontSize: '0.82rem' }}>현재 하역 보고</p>
-            <strong style={{ fontSize: '1.35rem', color: 'var(--text-primary)' }}>{logisticsWeeklyReport.unloading.currentTotal.vessels}척 · {logisticsWeeklyReport.unloading.currentTotal.amount.toLocaleString()}MT</strong>
-            <p style={{ margin: '0.5rem 0 0', color: 'var(--text-secondary)', fontSize: '0.78rem' }}>8월 누계 2척·8,891MT, LAKE PEARL은 7월 반입분</p>
-          </div>
-          <div className="ds-card" style={{ padding: '1.25rem', borderRadius: '12px' }}>
-            <DollarSign size={20} color="var(--color-success)" />
-            <p style={{ margin: '0.75rem 0 0.25rem', color: 'var(--text-secondary)', fontSize: '0.82rem' }}>원어 협의 시장가</p>
-            <strong style={{ fontSize: '1.35rem', color: 'var(--text-primary)' }}>${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT</strong>
-            <p style={{ margin: '0.5rem 0 0', color: 'var(--text-secondary)', fontSize: '0.78rem' }}>2026년 8월 5일 보고 · 트레이더-공장 협의 가격</p>
-          </div>
-          <div className="ds-card" style={{ padding: '1.25rem', borderRadius: '12px' }}>
-            <AlertTriangle size={20} color="var(--color-warning)" />
-            <p style={{ margin: '0.75rem 0 0.25rem', color: 'var(--text-secondary)', fontSize: '0.82rem' }}>품질 모니터링</p>
-            <strong style={{ fontSize: '1.1rem', color: 'var(--text-primary)' }}>고반려 3개 공장 · 고염도 1개 공장</strong>
-            <p style={{ margin: '0.5rem 0 0', color: 'var(--text-secondary)', fontSize: '0.78rem' }}>TUG·CMC·UC·TUM 대상 잔량 및 클레임 추적 필요</p>
-          </div>
-        </div>
+      <div className={styles.tabList} role="tablist" aria-label="물류·가공 업무 화면">
+        {tabs.map((tab, index) => (
+          <button
+            key={tab.id}
+            ref={(element) => { tabRefs.current[index] = element; }}
+            id={`logistics-tab-${tab.id}`}
+            className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
+            role="tab"
+            type="button"
+            aria-selected={activeTab === tab.id}
+            aria-controls={`logistics-panel-${tab.id}`}
+            tabIndex={activeTab === tab.id ? 0 : -1}
+            onClick={() => selectTab(tab.id)}
+            onKeyDown={(event) => handleTabKeyDown(event, index)}
+            title={tab.description}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <section
+        id="logistics-panel-operations"
+        className={styles.panel}
+        role="tabpanel"
+        aria-labelledby="logistics-tab-operations"
+        hidden={activeTab !== 'operations'}
+      >
+        <LogisticsOperationsPanel />
       </section>
 
-      {/* ═══ Section 1: TRADER Status ═══ */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <TrendingUp size={24} color="var(--color-info)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>트레이더별 반입 물량 현황</h2>
+      <section
+        id="logistics-panel-receipts"
+        className={styles.panel}
+        role="tabpanel"
+        aria-labelledby="logistics-tab-receipts"
+        hidden={activeTab !== 'receipts'}
+      >
+        <div className={styles.panelHeader}>
+          <TrendingUp size={22} color="var(--color-info)" aria-hidden="true" />
+          <div><h2>반입·가격</h2><p>월별 반입, 트레이더 구성, 시장 협의가와 데이터 상충을 확인합니다.</p></div>
+        </div>
+        <div className={styles.priceSummary}>
+          <span>원어 협의 시장가</span>
+          <strong>${logisticsWeeklyReport.market.rawMaterialPriceUsdPerMt.toLocaleString()}/MT</strong>
+          <small>{logisticsWeeklyReport.market.reportDate} 보고 · 트레이더-통조림 공장 협의 가격</small>
         </div>
         <WidgetCard
           title="트레이더별 반입 물량"
@@ -113,13 +145,18 @@ export default function LogisticsDashboard() {
         />
       </section>
 
-      {/* ═══ Section 2: 가공 (Processing) ═══ */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Factory size={24} color="var(--color-success)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>가공 공장 가동 현황</h2>
+      <section
+        id="logistics-panel-canneries"
+        className={styles.panel}
+        role="tabpanel"
+        aria-labelledby="logistics-tab-canneries"
+        hidden={activeTab !== 'canneries'}
+      >
+        <div className={styles.panelHeader}>
+          <Factory size={22} color="var(--color-success)" aria-hidden="true" />
+          <div><h2>공장 운영</h2><p>방콕·송클라의 생산 가동률, 원어 재고와 예외 공장을 비교합니다.</p></div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div className={styles.stack}>
           <WidgetCard
             title="가공 공장 가동 현황 (방콕)"
             icon={Factory}
@@ -152,13 +189,18 @@ export default function LogisticsDashboard() {
         </div>
       </section>
 
-      {/* ═══ Section 3: 물류 (Logistics) ═══ */}
-      <section style={{ marginBottom: '4rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem' }}>
-          <Truck size={24} color="var(--color-info)" />
-          <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>해상 운송 및 항만 인텔리전스</h2>
+      <section
+        id="logistics-panel-vessels"
+        className={styles.panel}
+        role="tabpanel"
+        aria-labelledby="logistics-tab-vessels"
+        hidden={activeTab !== 'vessels'}
+      >
+        <div className={styles.panelHeader}>
+          <Ship size={22} color="var(--color-info)" aria-hidden="true" />
+          <div><h2>선박·보고자료</h2><p>현재 하역 보고와 보고 시점 냉동 운반선 배분표를 분리해 확인합니다.</p></div>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div className={styles.stack}>
           <WidgetCard
             title="운반선 하역 현황"
             icon={Ship}
@@ -174,20 +216,28 @@ export default function LogisticsDashboard() {
             }}
           />
 
-          <WidgetCard
-            title="냉동 운반선 이동 스케줄"
-            icon={Navigation}
-            iconColor="var(--color-info)"
-            pillar="S3"
-            cardDesc="방콕항 운반선 이동 스케줄 — 30주차 주간 보고 (2026-07-24~07-30 기준)"
-            telemetry={{ status: 'STATIC', syncDate: '2026-07-30', label: '정적' }}
-            customBody={<ReeferMovement />}
-            takeaway={{
-              situation: '30주차(2026-07-24~07-30) 보고 당시 방콕항 운반선과 캔 공장별 배분 물량입니다. 최신 입항·하역 상태가 아니므로 현재 운영 판단에는 재확인이 필요합니다.',
-              actionPlan: '현재 체선일이 10일을 초과한 것으로 확인되는 경우에만 B/L 분할 양륙 또는 송클라 등으로의 목적지 변경을 검토합니다.',
-              source: '방콕항 운반선 주간 스케줄 30주차 (2026-07-30 기준)',
-            }}
-          />
+          <div>
+            <div className={styles.historyNotice}>보고 시점 자료 — 현재 운항 상태가 아닙니다. 실제 입항·접안·하역 여부는 최신 운영 기록으로 재확인해야 합니다.</div>
+            <details className={styles.historyDetails}>
+              <summary><span><Navigation size={17} aria-hidden="true" /> 냉동 운반선 보고자료 펼치기</span></summary>
+              <div className={styles.historyBody}>
+                <WidgetCard
+                  title="냉동 운반선 이동 스케줄"
+                  icon={Navigation}
+                  iconColor="var(--color-info)"
+                  pillar="S3"
+                  cardDesc="방콕항 운반선 이동 스케줄 — 30주차 주간 보고 (2026-07-24~07-30 기준)"
+                  telemetry={{ status: 'STATIC', syncDate: '2026-07-30', label: '정적' }}
+                  customBody={<ReeferMovement />}
+                  takeaway={{
+                    situation: '30주차(2026-07-24~07-30) 보고 당시 방콕항 운반선과 캔 공장별 배분 물량입니다. 최신 입항·하역 상태가 아니므로 현재 운영 판단에는 재확인이 필요합니다.',
+                    actionPlan: '현재 체선일이 10일을 초과한 것으로 확인되는 경우에만 B/L 분할 양륙 또는 송클라 등으로의 목적지 변경을 검토합니다.',
+                    source: '방콕항 운반선 주간 스케줄 30주차 (2026-07-30 기준)',
+                  }}
+                />
+              </div>
+            </details>
+          </div>
         </div>
       </section>
     </div>
