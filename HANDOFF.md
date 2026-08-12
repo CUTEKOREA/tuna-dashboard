@@ -1,6 +1,6 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-12 20:08 KST
+> 마지막 업데이트: 2026-08-12 20:45 KST
 
 ## 완료된 것 — `/fleet` 운영 판단 중심 개편 (로컬, 미배포)
 
@@ -19,13 +19,16 @@
 - 로컬 `/fleet` 잠금 해제 후 4개 탭·지도 마커·모바일 시각 QA를 완료한다.
 - 독립 코드 리뷰 결과를 반영한 뒤 사용자의 명시적 배포 요청 전까지 프로덕션 배포하지 않는다.
 
-> 🚀 **2026-08-12 20:20 KST — `/korea-market` 위판 데이터 일별 전체 거래 동기화 및 배포 준비** [Codex]:
+> ✅ **2026-08-12 20:45 KST — `/korea-market` 위판 데이터 일별 전체 거래 동기화 및 라이브 배포 완료** [Codex]:
 > - 8월 데이터 부족 원인을 재현했다. 기존 수집기는 해양수산부 일별 API에 각 월의 1일(`baseDt=YYYYMM01`)만 요청해 나머지 거래일을 누락했고, 화면의 해수부 상태도 정적 JSON을 읽으면서 `LIVE`로 고정 표시했다.
 > - 완결월은 공공데이터포털의 해양수산부 월별 위탁판매 스냅샷, 미완결월은 해양수산부 일별 API의 모든 거래일·전체 페이지를 누적하는 상태 기반 동기화로 교체했다. 2024-01~2026-06 공식 스냅샷 30개월과 2026-07-01~08-12 일별 거래를 합쳐 **442어종·10,310개 월-어종 집계행**을 생성했다. 월별 공식 파일과 일별 API의 행 단위가 달라 소스행 합계는 내부 완결성 검증에만 사용하고, 화면에는 6월까지 공식 확정·7월 이후 일별 잠정집계를 분리 표기한다.
-> - GitHub Actions가 6시간마다 최근 3일을 재조회하고 신규 공식 월 스냅샷을 자동 승격하도록 추가했다. API는 최신 위판일과 나이를 기준으로 `SYNCED/STALE/OFFLINE`을 산출하며, 화면에는 최신 위판일·8월 부분집계·실제 동기화 상태를 표시한다. 거래 0건 날짜와 API 무자료 코드도 정상 동기화로 처리한다.
+> - GitHub Actions가 6시간마다 최근 3일을 재조회하고 신규 공식 월 스냅샷을 자동 승격하도록 추가했다. API는 데이터 조회 완료일과 나이를 기준으로 `SYNCED/STALE/OFFLINE`을 산출하며, 화면에는 최신 위판일·8월 부분집계·실제 동기화 상태를 표시한다. 거래 0건 날짜와 API 무자료 코드도 정상 동기화로 처리한다.
 > - `/korea-market`을 레거시 `/` rewrite에서 제거해 `app/[category]`의 client-only 경로로 전환하고 React hydration #418 재발 방지 테스트를 추가했다.
-> - 검증: 전체 Vitest **108/108**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, S-Grade 위반 0, Next.js 16 Turbopack·webpack 전체 빌드 103페이지 및 번들 예산 통과. 로컬 production 데스크톱·모바일에서 HTTP 200, 최신 위판일 `2026.08.12`, `2024.01 - 2026.08`, `8월 부분집계`, `SYNCED`, 가로 overflow 0, hydration/page 오류 0을 확인했다. 로컬 차단 환경의 광고·분석 요청 실패는 기능 검증에서 제외했다.
-> - 다음 단계: 코드 커밋을 `origin/main`에 반영하고 Vercel production READY와 라이브 API·화면을 재검증한다.
+> - 검증: 최신 `main` 통합 상태에서 전체 Vitest **109/109**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, S-Grade 위반 0, Next.js 16 Turbopack·webpack 전체 빌드 103페이지 및 번들 예산 통과. 로컬 production 데스크톱·모바일에서 HTTP 200, 최신 위판일 `2026.08.12`, `2024.01 - 2026.08`, `8월 부분집계`, `SYNCED`, 가로 overflow 0, hydration/page 오류 0을 확인했다. 로컬 차단 환경의 광고·분석 요청 실패는 기능 검증에서 제외했다.
+> - 코드 커밋 `8dd4e47`과 직후 자동 동기화 커밋 `899ce46`을 `origin/main`에 반영. GitHub App Quality Gate·Data Freshness Audit·Korea Consignment Data Sync가 모두 성공했고, 최종 Vercel production `dpl_G3CDUSwrGYJ5yLL6ZvZmdLCTXKnK` READY 및 `https://leedonggun.co.kr` alias 연결을 확인했다.
+> - 라이브 API는 최신 위판일 `2026-08-12`, 최신월 `2026-08`, 442어종·10,310 월-어종 집계행, 공식 월집계 `2026-06`, 일별 잠정집계 `2026-07-01~08-12`, 해수부 `SYNCED`를 반환한다. 라이브 데스크톱·모바일은 핵심 표기 전부 렌더, `x-matched-path: /[category]`, 가로 overflow 0, hydration/page 오류 0으로 최종 통과했다.
+> - 사용자에게 도착한 `Failed CLI deployment` 메일은 운영 alias가 없는 별도 CLI 시도 `dpl_7daAPp3on126TEY217iGQcC4pQp3`가 커밋 이메일 팀 연결 문제로 차단된 건이다. Git 연동 production과 운영 도메인에는 영향이 없으며 별도 조치는 필요 없다.
+> - 다음 단계: 6시간 주기 자동 갱신을 유지하고, 공공데이터포털에 2026-07 공식 월 스냅샷이 게시되면 워크플로가 7월 일별 잠정집계를 공식 월집계로 자동 승격하는지 확인한다.
 
 > ✅ **2026-08-12 17:47 KST — `/unloading` 2026년 누락 하역 4항차 원자료 대조·로컬 반영** [Codex]:
 > - Google Drive `2026 하역업무`의 완료 항차 폴더 9개를 라이브 `/unloading` 및 API와 항차 단위로 대조. 기존 반영 5항차 외 누락된 **SEIN PHOENIX(2025.12~2026.01), VOLTA VICTORY, ANGARA, SALT LAKE** 4항차를 확인.
