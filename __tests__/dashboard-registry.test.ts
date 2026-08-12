@@ -18,13 +18,14 @@ import {
 } from '../lib/dashboard-registry';
 
 describe('dashboard registry', () => {
-  it('routes unloading through the client-only category page to keep hydration stable', () => {
+  it('routes hydration-sensitive dashboards through the client-only category page', () => {
     const configSource = readFileSync(join(process.cwd(), 'next.config.mjs'), 'utf8');
     const categorySource = readFileSync(join(process.cwd(), 'app/[category]/page.tsx'), 'utf8');
     const rewriteSource = configSource.match(/source:\s*'([^']+)'/)?.[1];
 
     expect(rewriteSource).toBeDefined();
     expect(rewriteSource).not.toContain('unloading');
+    expect(rewriteSource).not.toContain('korea-market');
     expect(categorySource).toContain('ssr: false');
   });
 

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { getConsignmentFreshness } from '../../../lib/consignment-data';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -56,6 +57,12 @@ export async function GET() {
     const filePath = path.join(process.cwd(), 'public', 'data', 'consignment_3year.json');
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const baseData = JSON.parse(fileContents);
+    const consignmentFreshness = getConsignmentFreshness(baseData._meta ?? {});
+    baseData._meta = {
+      ...(baseData._meta ?? {}),
+      dataStatus: consignmentFreshness.status,
+      dataAgeDays: consignmentFreshness.ageDays,
+    };
 
     // ==========================================
     // [D7 FIX] Float precision cleanup
@@ -209,7 +216,7 @@ export async function GET() {
     // [D1 FIX] Real network health check (limited)
     // ==========================================
     const networksStatus: Record<string, string> = {
-      mof_consignment: 'online', // verified: data loaded from local JSON (해양수산부 공공데이터)
+      mof_consignment: consignmentFreshness.status,
       kcs_customs: 'standby',    // not actively queried in this endpoint
       kamis_retail: mackerelLocalPrice || squidLocalPrice ? 'online' : 'standby',
       nifs_ocean: 'standby',     // not actively queried
