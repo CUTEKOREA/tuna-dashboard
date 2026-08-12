@@ -1,6 +1,13 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-12 20:45 KST
+> 마지막 업데이트: 2026-08-12 20:50 KST
+
+> 🚀 **2026-08-12 20:50 KST — `/unloading` 2026년 누락 하역 4항차 라이브 배포 완료** [Codex]:
+> - 최신 `main`의 HIKARI·위판·선단 변경을 보존해 PR [#278](https://github.com/CUTEKOREA/tuna-dashboard/pull/278)로 병합. production merge commit은 `be30baa`이며, Vercel deployment `dpl_7Ra4FTK93g5oPaAKkarBJ1pz4kjG`가 READY로 `https://leedonggun.co.kr` alias에 연결됨.
+> - 라이브 `/api/unloading-db`에서 DB 항차 9개, 신규 4항차의 일보 42건, 구 SEIN PHOENIX 2026년 합산 1,687.730 MT, VOLTA VICTORY 2,652.970 MT, ANGARA 2,683.080 MT, SALT LAKE 204.300 MT를 확인. 응답 SHA-256은 `6cac186618b70ddc9790ba03b866b9858b43fa8028562831d128653df6756d14`.
+> - Preview 통합 QA에서 방콕 대기 HIKARI 1이 젠산 완료 HIKARI 항차를 덮는 ID 충돌을 발견해 `hikari-bangkok-2026-07`로 분리. 라이브에서 두 HIKARI 항차와 방콕 `하역대기`를 동시에 확인.
+> - 라이브 브라우저 기준 누적 **34,132 MT**, 완료 **11척(방콕 10·젠산 1)**, 누락 4항차 노출, 가로 overflow 0, 앱 콘솔·페이지·자체 요청 오류 0 통과. 외부 Google Ads 403은 대시보드 기능과 무관.
+> - GitHub App Quality Gate run `31593263714`: Vitest **115/115**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, 정적 페이지 103/103, bundle budget 통과.
 
 ## 완료된 것 — `/fleet` 운영 판단 중심 개편 (로컬, 미배포)
 
