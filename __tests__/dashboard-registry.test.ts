@@ -27,6 +27,7 @@ describe('dashboard registry', () => {
     expect(rewriteSource).not.toContain('unloading');
     expect(rewriteSource).not.toContain('korea-market');
     expect(rewriteSource).not.toContain('logistics');
+    expect(rewriteSource).not.toContain('fleet-strategy');
     expect(categorySource).toContain('ssr: false');
   });
 
