@@ -27,6 +27,14 @@
 > - 검증: 전체 Vitest **108/108**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, S-Grade 위반 0, Next.js 16 Turbopack·webpack 전체 빌드 103페이지 및 번들 예산 통과. 로컬 production 데스크톱·모바일에서 HTTP 200, 최신 위판일 `2026.08.12`, `2024.01 - 2026.08`, `8월 부분집계`, `SYNCED`, 가로 overflow 0, hydration/page 오류 0을 확인했다. 로컬 차단 환경의 광고·분석 요청 실패는 기능 검증에서 제외했다.
 > - 다음 단계: 코드 커밋을 `origin/main`에 반영하고 Vercel production READY와 라이브 API·화면을 재검증한다.
 
+> ✅ **2026-08-12 17:47 KST — `/unloading` 2026년 누락 하역 4항차 원자료 대조·로컬 반영** [Codex]:
+> - Google Drive `2026 하역업무`의 완료 항차 폴더 9개를 라이브 `/unloading` 및 API와 항차 단위로 대조. 기존 반영 5항차 외 누락된 **SEIN PHOENIX(2025.12~2026.01), VOLTA VICTORY, ANGARA, SALT LAKE** 4항차를 확인.
+> - 일일 XLS 42건과 최종 보고를 대조해 실제 하역량을 각각 **3,668.710 / 2,652.970 / 2,683.080 / 204.300 MT**로 반영하고, 일별 누계·어종별 계획/실적을 함께 등록. 구 SEIN PHOENIX 최종 메일의 1/13 물량 `63.310`은 XLS 누계 산술과 맞지 않아 XLS 확정값 `63.010`을 사용하고 품질 메모에 충돌을 보존.
+> - 2025년에 시작한 SEIN PHOENIX는 2026년 작업분 **1,687.730 MT**만 연간 KPI에 합산. 완료 선박은 11척, 2026 누계는 **34,131.510 MT(화면 34,132 MT)**, 기간은 1/5~8/11로 갱신.
+> - 화물창별 전 기간 원자료가 없는 과거 4항차는 임의 추정하지 않고 `화물창별 원자료 없음`으로 표시하며 처리속도·온도 판정에서도 제외. API가 연도 경계 합산값·원자료 가용성을 전달하도록 확장.
+> - 최신 `main` 통합 QA에서 방콕 대기 HIKARI 1이 젠산 완료 HIKARI와 같은 `hikari` ID를 사용해 완료 800.110 MT 항차를 덮는 회귀를 발견. 방콕 항차를 `hikari-bangkok-2026-07`로 분리하고 회귀 테스트를 추가해 두 항차와 연간 KPI를 모두 보존.
+> - 최신 `main` 통합 검증: 전체 Vitest **106/106**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, Next.js 103페이지 빌드, bundle budget 통과. 로컬 production Playwright에서 34,132 MT·완료 11척·대기 HIKARI·누락 4항차·가로 overflow 0 확인. 미배포(로컬).
+
 > ✅ **2026-08-12 17:18 KST — `/unloading` HIKARI 1 방콕 하역계획 라이브 배포 완료** [Codex]:
 > - Google Drive `HIKARI 1 (3,700)` 폴더의 최종 Stowage Plan(2026.07.20), Breakdown, Mate's Receipt, WCPFC 전재신고서를 교차 확인. 폴더명 **3,700 MT는 정격 적재능력**, 총 적재량은 **3,214 MT**, FCF 방콕 하역대상은 **2,929 MT**, #2-A 별도 배정 황다랑어는 **285 MT**로 기준을 분리했다.
 > - FCF 물량을 어종(SJ 2,515 / YF 358 / BE 56 MT), 원적재선(SHILLA SPRINTER 670 / MOAKONA 314 / MOAMARI 940 / NAOERO STAR 1,005 MT), 11개 사용 어창에 배선. 폴더에는 실제 하역 일보가 없어 누계·일일 하역량·하역 온도는 0 또는 미확인으로 유지하고 선박 상태를 `하역대기`로 표시했다.

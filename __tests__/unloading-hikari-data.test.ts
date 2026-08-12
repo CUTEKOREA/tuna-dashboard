@@ -18,10 +18,21 @@ async function loadHikari() {
 
   expect(response.status).toBe(200);
   expect(payload.success).toBe(true);
-  return payload.data.hikari;
+  return payload.data['hikari-bangkok-2026-07'];
 }
 
 describe('HIKARI 1 Bangkok unloading plan', () => {
+  it('uses a voyage-specific ID so the completed Gensan HIKARI voyage is not overwritten', async () => {
+    const response = await GET();
+    const payload = await response.json();
+
+    expect(payload.data['hikari-bangkok-2026-07']).toMatchObject({
+      name: 'M/V HIKARI 1',
+      status: '하역대기',
+      reportedTotal: 2929,
+    });
+  });
+
   it('keeps capacity, total cargo, and the FCF discharge target on separate bases', async () => {
     const vessel = await loadHikari();
 
@@ -73,7 +84,7 @@ describe('HIKARI 1 Bangkok unloading plan', () => {
 
   it('maps only the FCF target to holds and leaves missing discharge temperatures unknown', async () => {
     const vessel = await loadHikari();
-    const holds = parseVesselHoldData('hikari', vessel.timeline, vessel.reportedTotal);
+    const holds = parseVesselHoldData('hikari-bangkok-2026-07', vessel.timeline, vessel.reportedTotal);
 
     expect(Object.fromEntries(Object.entries(holds).map(([id, hold]) => [id, hold.nominalCapacity]))).toEqual({
       '#4-A': 137,
@@ -126,7 +137,7 @@ describe('HIKARI 1 Bangkok unloading plan', () => {
   });
 
   it('provides the four cargo bases used by the HIKARI detail summary', () => {
-    expect(getVesselCargoBasis('hikari')).toEqual({
+    expect(getVesselCargoBasis('hikari-bangkok-2026-07')).toEqual({
       sourceDate: '2026.07.20',
       capacity: 3700,
       totalLoaded: 3214,
