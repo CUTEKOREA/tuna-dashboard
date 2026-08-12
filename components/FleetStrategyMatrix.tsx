@@ -5,6 +5,7 @@ import styles from './MackerelStrategy.module.css'; // Reusing an existing modul
 import { Ship, Anchor, AlertTriangle, Target, ArrowLeft, Users, Package, TrendingUp, Globe, DollarSign, Activity } from 'lucide-react';
 import TakeawayBox from './TakeawayBox';
 import CompanyVesselStatus from './CompanyVesselStatus';
+import FleetProduction2025 from './FleetProduction2025';
 
 // Mock detailed data as fallback while loading
 const fallbackVesselDetails: Record<string, any[]> = {
@@ -314,6 +315,7 @@ export default function FleetStrategyMatrix() {
 
   return (
     <div className={styles.glassCard} style={{ borderColor: 'rgba(59, 130, 246, 0.3)', marginTop: '20px' }}>
+      <FleetProduction2025 />
       
       {/* 0. Macro Industry Overview — 전수조사 교정 완료 */}
       <div style={{ marginBottom: '32px' }}>
