@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { HS_CODES } from '../_shared/hs-codes';
-import { requireEnv } from '../_shared/env';
+import { requireEnv , optionalEnv } from '../_shared/env';
 
 /**
  * 고등어 실시간 Intelligence Ticker — 통합 BFF
@@ -12,7 +12,7 @@ import { requireEnv } from '../_shared/env';
 
 const ECOS_API_KEY = process.env.ECOS_API_KEY || '';
 const KAMIS_API_KEY = process.env.KAMIS_API_KEY || '';
-const KCS_API_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
+const KCS_API_KEY = () => optionalEnv('DATA_GO_KR_NEW_KEY');
 const MACKEREL_HS = HS_CODES.mackerel_frozen.hsSgn;
 
 export const runtime = 'nodejs';

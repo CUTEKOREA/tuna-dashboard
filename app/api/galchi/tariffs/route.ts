@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { requireEnv } from '../../_shared/env';
+import { requireEnv , optionalEnv } from '../../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
-const TARIFFS_KEY = () => requireEnv('DATA_GO_KR_NEW_KEY');
+const TARIFFS_KEY = () => optionalEnv('DATA_GO_KR_NEW_KEY');
 const TARIFFS_BASE = "https://api.tariffs.io/v1/calculate";
 
 // 갈치(HS 0303.89-2000)는 FTA TRQ 미적용 — 전 공급국 MFN 10% 동일.

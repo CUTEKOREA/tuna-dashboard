@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { requireEnv } from '../_shared/env';
+import { requireEnv, optionalEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -80,7 +80,7 @@ Return ONLY valid JSON:
 
 // --- 2. KCS API: Real trade volume (관세청 수출입무역통계) ---
 async function fetchKCSVolume(hsCode: string, country: string, year: string) {
-  const apiKey = requireEnv('DATA_GO_KR_NEW_KEY');
+  const apiKey = optionalEnv('DATA_GO_KR_NEW_KEY');
   if (!apiKey) return null;
 
   const countryCode = countryCodeMap[country] || '';

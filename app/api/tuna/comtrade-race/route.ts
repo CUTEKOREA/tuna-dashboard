@@ -20,8 +20,8 @@ export const maxDuration = 60; // Comtrade 실측 지연: 5개년 호출 16~23�
  *    항상 최대 primaryValue와 일치함을 확인 → reporterCode+period별 max 채택으로 dedup.
  */
 
-const COMTRADE_KEY =
-  requireEnv('UN_COMTRADE_PRIMARY_KEY'); // L-10 fallback 키
+// 지연 평가. 모듈 로드 시점에 읽으면 env가 없는 환경(프리뷰 빌드 등)에서 빌드가 깨진다.
+const COMTRADE_KEY = () => requireEnv('UN_COMTRADE_PRIMARY_KEY');
 
 const REPORTERS = [764, 218, 724, 608, 156, 410] as const;
 const REPORTER_KEY: Record<number, CountryKey> = {
@@ -120,7 +120,7 @@ async function fetchComtrade(
     `?cmdCode=160414&flowCode=X&partnerCode=0` +
     `&reporterCode=${REPORTERS.join(',')}` +
     `&period=${periods.join(',')}` +
-    `&subscription-key=${COMTRADE_KEY}`;
+    `&subscription-key=${COMTRADE_KEY()}`;
   const res = await fetch(url, {
     signal: AbortSignal.timeout(timeoutMs),
     next: { revalidate: 86400 },

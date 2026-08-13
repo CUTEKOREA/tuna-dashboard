@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { requireEnv } from '../_shared/env';
+import { requireEnv, optionalEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -42,7 +42,7 @@ async function getExchangeRate(currency: string): Promise<number> {
 
 // --- KCS: 해상수출입 운송비용 ---
 async function getFreightCost(hsCode: string, countryCode: string): Promise<{ freightPerTon: number; source: string }> {
-  const apiKey = requireEnv('DATA_GO_KR_NEW_KEY');
+  const apiKey = optionalEnv('DATA_GO_KR_NEW_KEY');
   if (!apiKey) return { freightPerTon: 150, source: 'ESTIMATE' };
 
   const cleanHs = hsCode.replace(/\./g, '').substring(0, 6);

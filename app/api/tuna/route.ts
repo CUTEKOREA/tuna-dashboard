@@ -20,9 +20,10 @@ type TunaTradeStats = {
 };
 
 async function fetchKCSTunaTrade(): Promise<TunaTradeStats | null> {
-  // L-10: env 우선, 없으면 하드코딩 fallback으로 라이브 유지
-  const key = requireEnv('DATA_GO_KR_NEW_KEY');
   try {
+    // try 안에서 읽는다. 키 미설정은 API 사용 불가와 같으므로 아래 catch가
+    // null로 떨어뜨린다 — 이 라우트는 빌드 시 프리렌더되므로 밖에서 던지면 빌드가 깨진다.
+    const key = requireEnv('DATA_GO_KR_NEW_KEY');
     const now = new Date();
     const yyyy = now.getFullYear();
     const yyyyMM = `${yyyy}${String(now.getMonth() + 1).padStart(2, '0')}`;

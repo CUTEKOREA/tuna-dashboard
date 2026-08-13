@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { requireEnv } from '../_shared/env';
+import { requireEnv, optionalEnv } from '../_shared/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,7 +44,7 @@ async function fetchMFDSRejections(itemName: string) {
 
 // --- KOTRA: 무역사기 사례 ---
 async function fetchKOTRAFraudCases(country: string) {
-  const apiKey = requireEnv('DATA_GO_KR_NEW_KEY');
+  const apiKey = optionalEnv('DATA_GO_KR_NEW_KEY');
   if (!apiKey) return { count: 0, cases: [], source: 'API_KEY_MISSING' };
 
   const kotraCountryMap: Record<string, string> = {

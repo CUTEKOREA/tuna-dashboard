@@ -29,7 +29,7 @@ JSON_FILE = os.path.join(DATA_DIR, "cocoa_market_data.json")
 
 # 실제 환경 변수 로드 (python-dotenv가 없으므로 시스템 env 또는 하드코딩된 fallback 사용)
 KCS_API_KEY = os.environ["KCS_API_KEY"]  # 없으면 KeyError로 즉시 실패
-KAMIS_API_KEY = os.getenv("KAMIS_API_KEY", "f3557f2e-fe2e-4609-9fc7-b01492beb192")
+KAMIS_API_KEY = os.environ["KAMIS_API_KEY"]  # 없으면 KeyError로 즉시 실패
 SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL", "https://axfhrskotysvheptucen.supabase.co")
 SUPABASE_ANON_KEY = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4Zmhyc2tvdHlzdmhlcHR1Y2VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5ODMxNzIsImV4cCI6MjA5MDU1OTE3Mn0.3AmoPfC2gmiulCtyLO6xANUn7YZy1A8VVCoCiHrzFVY")
 
