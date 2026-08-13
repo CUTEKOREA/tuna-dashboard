@@ -1,0 +1,8 @@
+{
+  "widget_id": "B_globefish_market_brief",
+  "patterns": ["squid and cuttlefish", "Argentina.*squid", "squid.*(?:supply|price|landings|catch)", "cephalopod markets"],
+  "chart_type": "card",
+  "min_sources": 2,
+  "max_items": 14,
+  "max_items_per_source": 7
+}

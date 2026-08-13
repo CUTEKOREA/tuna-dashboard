@@ -1,0 +1,6 @@
+{
+  "widget_id": "C_india_mpeda_exports",
+  "patterns": ["frozen squid.*(?:MT|million|crore)", "frozen cuttlefish.*(?:volume|value|percent|%)"],
+  "require_numeric": true,
+  "max_items": 8
+}

@@ -1,0 +1,8 @@
+{
+  "widget_id": "A_falkland_loligo_season",
+  "patterns": ["Doryteuthis gahi.*(?:tonnes|season)", "biomass estimate", "allowable (?:effort|catch)", "season opening", "Season schedules are currently set", "2nd season \\(X licence\\)"],
+  "require_numeric": true,
+  "min_sources": 3,
+  "max_items": 20,
+  "max_items_per_source": 8
+}

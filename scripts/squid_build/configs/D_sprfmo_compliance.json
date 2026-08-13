@@ -1,0 +1,6 @@
+{
+  "widget_id": "D_sprfmo_compliance",
+  "patterns": ["non-compliance.*CMM", "CMM 18-2025.*Jumbo Flying Squid", "China.*(?:Compliant|No Further Action)", "Korea.*(?:Compliant|No Further Action)"],
+  "require_numeric": true,
+  "max_items": 14
+}

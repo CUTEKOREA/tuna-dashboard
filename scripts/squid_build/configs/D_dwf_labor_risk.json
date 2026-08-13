@@ -1,0 +1,6 @@
+{
+  "widget_id": "D_dwf_labor_risk",
+  "patterns": ["forced labor.*(?:fishing|supply chain|catch|products)", "squid jigging vessels", "supplier verification", "chain of custody"],
+  "chart_type": "table",
+  "max_items": 14
+}

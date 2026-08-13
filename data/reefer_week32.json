@@ -1,0 +1,104 @@
+[
+  {
+    "carrier": "LAKE PEARL",
+    "date": "20.07.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "696",
+      "ISA": "470",
+      "PTY": "197",
+      "RMK": "200",
+      "SEAP": "900",
+      "TUG": "750",
+      "TUM": "750",
+      "UC": "910.026",
+      "OTHER": "11B"
+    }
+  },
+  {
+    "carrier": "SEA STAR V",
+    "date": "31.07.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "930",
+      "GB": "316.273",
+      "GPZ": "1,117",
+      "ISA": "500",
+      "MMP": "461",
+      "PTY": "165",
+      "TUM": "462",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "SEIN PRINCESS",
+    "date": "03.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "AEC": "500",
+      "GPZ": "683",
+      "ISA": "410",
+      "RMK": "500",
+      "SIF": "300",
+      "SPA": "622",
+      "TUM": "261",
+      "UC": "1,664",
+      "OTHER": "33"
+    }
+  },
+  {
+    "carrier": "SEIN VENUS",
+    "date": "06.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "GB": "143",
+      "GPZ": "925",
+      "ISA": "760",
+      "MMP": "400",
+      "PTY": "100",
+      "TUM": "947",
+      "OTHER": "41"
+    }
+  },
+  {
+    "carrier": "HENG HONG 9",
+    "date": "06.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "CMC": "487",
+      "GB": "2,136.8",
+      "GPZ": "943.2",
+      "PTY": "533",
+      "RMK": "579",
+      "UC": "876",
+      "OTHER": "23"
+    }
+  },
+  {
+    "carrier": "PACIFIC JOURNEY",
+    "date": "13.08.26",
+    "status": "주간 보고 기록",
+    "daysRemaining": null,
+    "priority": "이력",
+    "deliveries": {
+      "DIA": "470",
+      "GB": "50",
+      "MMP": "365",
+      "RS": "406",
+      "SIF": "300",
+      "SE": "300",
+      "TUM": "349",
+      "OTHER": "21A"
+    }
+  }
+]

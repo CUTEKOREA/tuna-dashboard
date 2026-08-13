@@ -1,6 +1,12 @@
 # HANDOFF
 
-> 마지막 업데이트: 2026-08-13 14:45 KST
+> 마지막 업데이트: 2026-08-13 14:49 KST
+
+> 🚢 **2026-08-13 14:49 KST — `/logistics` TTA 냉동운반선 32주차 반영** [Hermes]:
+> - 원문 `Reefer ship movement for week 32nd.xlsx`의 내부 시트 `WEEK 32`와 기간 헤더를 직접 대조해 실제 보고기간을 **2026-08-07~08-13**으로 확정했다. 원문 SHA-256은 `d4ffd1306f66df858163376fad39f20bcb0c72dd6ea1bc4a85f17eafd430481b`다.
+> - 방콕항 보고는 기존 4척에 **SEA STAR V 3,951.273MT(부두 23)**, **PACIFIC JOURNEY 2,240MT(부두 21A)**가 추가된 **6척·24,834.299MT**다. 각 행의 공장 배분 합과 총량을 독립 재계산해 모두 일치함을 확인했다.
+> - `data/reefer_week32.json`을 별도 이력으로 추가해 31주차를 보존하고, 운반선 위젯·기준일·Telemetry·takeaway를 32주차로 전환했다. 접안일은 원문 기재값이며 현재 운항 상태나 현재 하역 KPI로 합산하지 않는다.
+> - 회귀 테스트는 6척 순서·접안일·신규 2척 배분·선박별 합계·총합·이력 경계를 고정한다. 대상 테스트 5/5, TypeScript, 대상 ESLint, diff check를 통과했다.
 
 > 🔐 **2026-08-13 14:45 KST — 공개 저장소 하드코딩 자격증명 제거 + `/api/shrimp/customs` 수리** [Claude]:
 > - **이 저장소는 공개다.** `process.env.X || '<실제 키>'` 형태로 5개 서비스의 발급키가 소스에 박혀 있었고, `git log -S` 기준 **2026-07-06부터 노출**돼 있었다(data.go.kr 키만 건드린 커밋 11개).
@@ -14,6 +20,7 @@
 > - 공유 `kcs-client`를 재사용하고, 2026-07-06 관세청 스냅샷으로 확인한 **HSK 10자리 9개 세번**을 조회하도록 바꿨다. 모든 metric은 응답에서 산출하며, 응답이 없으면 지어내지 않고 `metrics: null`을 반환한다. 집계는 `customs/rollup.ts`로 분리해 테스트 6건을 붙였다(총계행 이중집계·세번 화이트리스트·원산지 합산·분모 0 단가 거부).
 > - `npm run verify` 통과: Vitest **168/168**, 타입검사, Next.js 빌드, bundle budget. `architecture-guards`의 HS 리터럴 가드도 통과.
 > - 후속: Next.js 빌드 로그가 UN Comtrade 요청 URL을 통째로 출력하면서 `subscription-key`가 Vercel 빌드 로그에 남는다. 별도 처리 필요.
+
 
 > 🦐 **2026-08-13 14:20 KST — `/shrimp` 산업 이해 중심 전면 개편** [Claude]:
 > - 페이지와 새우 아카이브가 서로를 모르는 상태였다. 페이지는 FishStat **2024.1.0**(데이터 ~2022) 위에 있었고 아카이브는 7월부터 **2026.1.0**(~2024) 스냅샷을 갖고 있었다. 위젯을 **80 → 21**로 줄이고 전부 아카이브 1차 실측으로 갈아끼웠다.
@@ -146,6 +153,32 @@
 > - 화물창별 전 기간 원자료가 없는 과거 4항차는 임의 추정하지 않고 `화물창별 원자료 없음`으로 표시하며 처리속도·온도 판정에서도 제외. API가 연도 경계 합산값·원자료 가용성을 전달하도록 확장.
 > - 최신 `main` 통합 QA에서 방콕 대기 HIKARI 1이 젠산 완료 HIKARI와 같은 `hikari` ID를 사용해 완료 800.110 MT 항차를 덮는 회귀를 발견. 방콕 항차를 `hikari-bangkok-2026-07`로 분리하고 회귀 테스트를 추가해 두 항차와 연간 KPI를 모두 보존.
 > - 최신 `main` 통합 검증: 전체 Vitest **106/106**, 타입검사, ESLint 0 errors(기존 warnings 10), API cache 150/150, Next.js 103페이지 빌드, bundle budget 통과. 로컬 production Playwright에서 34,132 MT·완료 11척·대기 HIKARI·누락 4항차·가로 overflow 0 확인. 미배포(로컬).
+
+> ✅ **2026-08-13 14:10 KST — 오징어 대시보드 v5 전면 개편 완료 (P0~P3)** [Claude Code + Codex + OpenCode]:
+> - `/squid` 를 156위젯 가치사슬 서사에서 **39위젯 조달 결정 흐름**(A 조달가능성·B 가격마진·C 무역흐름·D 규제리스크·E 근거거버넌스)으로 교체. `SquidDashboard.tsx` 927→115줄, 구 Squid 컴포넌트 32개·`squid_real_data_v4.json`·mock API 8종 삭제(추적 파일 42건).
+> - 데이터는 `public/data/squid_v5.json` 하나. `scripts/squid_build/`(10 모듈)가 2026-08-12 아카이브 원문에서 생성하고, `scripts/validate_squid_v5.py` 의 측정 게이트(G-001~011 + L-09 + 형태 일치)를 통과해야만 발행된다. 모든 위젯에 `basis`(어종·중량기준·거래단계·통화·기준일·출처ID·제한) 필수.
+> - 위젯 실태: **구조화 데이터 20 · 원문 발췌 15 · 빈 링크카드 4**(`A_argentina_illex_gap` 2026 미공개, `B_landed_cost_calc` 관세율 원천 부재, `D_korea_origin_labeling` 경로가 디렉터리, `E_corrections_log` 미추출). 수치를 만들어 채우지 않았다.
+> - 검토에서 정정한 것: 물량 축이 1000배 어긋나 막대 미렌더 · 오늘 값에 맞춘 하드코딩 축 3개 · 집중도가 KCS 2020~2024 중 2024만 발행(확장하니 중국 의존도 38.8%→49.0%, HHI 2,114→2,741 추이가 드러남) · 발췌 근사중복 35건 · 하이드레이션 불일치 · 차트 없는데 차트형 선언 6건.
+> - 검증: 빌더 자체검사 **17/17**, 검증기 self-test **15/15**, 프론트 **13/13**, `tsc` 0오류, `npm run build` 통과(정적 97/97). 프로덕션 `/squid` 차트 19·카드 39·콘솔 오류 0.
+> - 알려진 잔여: 프로덕션 React #418 하이드레이션 경고는 `/mackerel`·`/pollock`·`/value-chain` 에도 동일한 **기존 이슈**로, 이번 개편의 회귀가 아니다. D 섹션 발췌는 영문·스페인어 원문 인용 상태.
+> - 문서: [기획서](docs/SQUID_REDESIGN_2026-08_PLAN.md) · [작업지시서](docs/SQUID_V5_HANDOFF.md) · [39위젯 명세](docs/squid_v5_widget_spec.csv) · [폐기 77 ID](docs/squid_v5_prune_list.txt)
+
+> ✅ **2026-08-13 12:25 KST — 오징어 대시보드 v5 P1b 추출기 정정 완료** [Codex]:
+> - 변경된 39행 명세를 다시 읽어 `B_eu_first_sale_price`→`B_eu_market_prices`, `B_eu_spread`→`B_species_price_ladder` ID를 전파했다. FAO European Fish Price Report의 표 머리글을 확인해 Squid/Loligo/Illex 거래가격 49행(EUR/kg·USD/kg, 제품형태·규격·추세·인코텀즈·원산지)을 구조화했고, 규격이 명시된 44행만 단일 `import_unit` 단계의 EUR/kg 내림차순 가격 계단으로 만들었다.
+> - `A_korea_tac`은 살오징어 톤수 대신 해수부 표의 민어/대형트롤/2단계, 살오징어/서남해구외끌이중형저인망/2단계, 전 어종/정치망/1단계 3행을 적재했다. `A_sprfmo_cmm18_effort`는 China 570/548,097 GT, Korea 43/38,907 GT, Chinese Taipei 38/38,674 GT, Total 651/625,678 GT를 정수 행으로 만들고 원문 표를 `source_excerpt`에 보존했다.
+> - 조달 신호판은 칠레를 2026-08-06 누적 포획·잔여 78,131.2449톤 근거의 `조업중`, 포클랜드를 2026-08-13이 공개된 2기 일정 안이라는 파생 근거의 `어기중`으로 정정했다. 모든 산지에 문서 경로·도출법·근거유형을 넣었고, 포클랜드는 2026 실제 개장 공지가 아니라 일정 파생임을 이유 문자열에 명시했다. 아르헨티나·한국은 `데이터공백`을 유지했다.
+> - Markdown 쌍이 없거나 표 근거가 유실된 PDF에 한해 메모리상 `pdftotext -layout <pdf> -` 재추출을 허용하고 PDF 원본 인용과 methodology 표기를 강제했다. Drive에는 쓰지 않았고 디스크 캐시도 만들지 않았다. 아르헨티나 PDF는 재추출해도 2024 어기뿐이어서 승격하지 않았다.
+> - 실제 데이터 위젯은 **35개**, 빈 카드 **4개**(`A_argentina_illex_gap`, `B_landed_cost_calc`, `D_korea_origin_labeling`, `E_corrections_log`). 검증: 빌더 자기검사 **16/16**, `validate_squid_v5.py` **39위젯·위반 0**, 검증기 self-test **13/13**. `meta.telemetry=SYNCED`, 미배포(로컬).
+> - 커밋 `fix(squid): correct v5 archive extraction [Codex]`을 시도했으나 샌드박스의 `.git/index.lock: Operation not permitted`로 실패했다. 관련 파일은 작업트리에 보존됐고 다른 미추적 작업은 스테이징하지 않았다.
+> - 다음 단계: P3 UI는 새 위젯 ID와 `어기중` 상태를 소비하고, `state_evidence.evidence_type=schedule_derived`를 관측 상태와 구분해 표시한다.
+
+> ✅ **2026-08-13 11:55 KST — 오징어 대시보드 v5 P1 아카이브 추출기 완료** [Codex]:
+> - `scripts/squid_build/`에 39행 위젯 명세 기반 빌더를 구현. 거버넌스 레지스트리, KMI·FishStat·KCS·Comtrade·HS·페루·칠레 결정론적 추출기, 21개 문서별 설정 추출기, 4개 파생 위젯을 연결하고 `public/data/squid_v5.json`을 생성했다. Google Drive 오징어 아카이브는 읽기 전용으로 사용했으며 PDF는 직접 파싱하지 않았다.
+> - 실제 원문 데이터를 담은 위젯은 32개. 원문 근거가 부족한 7개(`A_argentina_illex_gap`, `A_korea_tac`, `B_eu_first_sale_price`, `B_landed_cost_calc`, `B_eu_spread`, `D_korea_origin_labeling`, `E_corrections_log`)는 수치를 만들지 않고 빈 링크 카드로 유지했다.
+> - FishStat은 종 코드 230행에서 허용 4종으로 먼저 축소한 뒤 생산 레코드 26,905행을 2,297행으로 필터링했다. KCS 2026 범위는 5월까지만, Comtrade는 가용성만 출력하며 점유율·CAGR·세계합계를 생성하지 않는다.
+> - 검증: `python3 scripts/squid_build/tests/test_squid_build.py` **10/10 PASS**, `python3 scripts/validate_squid_v5.py public/data/squid_v5.json` → **위젯 39개, 게이트 위반 0**. 텔레메트리는 `SYNCED`; sources 37, gates 11, monitoring 15. 미배포(로컬).
+> - 커밋 시도는 샌드박스의 `.git` 쓰기 제한(`index.lock: Operation not permitted`)으로 실패. P1 파일과 HANDOFF는 작업트리에 보존되어 있으며 P0/P2/P3 및 기존 미추적 파일은 건드리지 않았다.
+> - 다음 단계: P2/P3에서 이 JSON 계약을 소비하는 UI를 구현하되, 빈 링크 카드 7개는 새 공식 자료가 확보되기 전까지 수치화하지 않는다. 명세/아카이브 불일치 사항은 P1 최종 보고 참조.
 
 > ✅ **2026-08-12 17:18 KST — `/unloading` HIKARI 1 방콕 하역계획 라이브 배포 완료** [Codex]:
 > - Google Drive `HIKARI 1 (3,700)` 폴더의 최종 Stowage Plan(2026.07.20), Breakdown, Mate's Receipt, WCPFC 전재신고서를 교차 확인. 폴더명 **3,700 MT는 정격 적재능력**, 총 적재량은 **3,214 MT**, FCF 방콕 하역대상은 **2,929 MT**, #2-A 별도 배정 황다랑어는 **285 MT**로 기준을 분리했다.

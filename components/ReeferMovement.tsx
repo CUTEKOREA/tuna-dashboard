@@ -10,7 +10,7 @@ import TermTooltip from './TermTooltip';
 import { getMiscData } from '@/lib/data/misc';
 import { ChartPatternDefs } from './ChartPatterns';
 
-const BANGKOK_PORT_DATA = getMiscData('reeferWeek31');
+const BANGKOK_PORT_DATA = getMiscData('reeferWeek32');
 
 // ── helpers ──
 function parseNum(s: any): number {
@@ -124,14 +124,14 @@ export default function ReeferMovement() {
           border: '1px solid rgba(148, 163, 184, 0.2)'
         }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--text-muted)' }}></div>
-          31주차 주간 보고 (2026-07-31 ~ 08-06 기준)
+          32주차 주간 보고 (2026-08-07 ~ 08-13 기준)
         </div>
       </div>
 
       {/* ── REEFER MOVEMENT SCHEDULE Header ── */}
       <div style={{ fontSize: '14px', fontWeight: 'bold', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <AlertTriangle size={16} color="var(--color-warning)" />
-        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 31주차 주간 보고에 기록된 방콕 항구 냉동 운반선별 접안 일정과 각 캔 공장별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-07-31 ~ 08-06) : 31주차 주간 보고
+        <TermTooltip term="운반선 이동 스케줄" description="[표 설명] 32주차 주간 보고에 기록된 방콕 항구 냉동 운반선별 접안 일정과 각 캔 공장별 배분 물량입니다. 이를 통해 보고 시점의 캔 공장별 원재료 수급 상황을 파악할 수 있습니다." /> (2026-08-07 ~ 08-13) : 32주차 주간 보고
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
           <span style={{ fontSize: '0.75rem', color: 'var(--color-success)', background: '#10b98118', padding: '3px 10px', borderRadius: 99, fontWeight: 600 }}>
             {BANGKOK_PORT_DATA.length}척 · 공장 배분 {formatMt(grandTotal)} MT
@@ -148,7 +148,7 @@ export default function ReeferMovement() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
           <Factory size={16} color="var(--color-info)" />
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (31주차 보고 기준)</span>
+          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>캔 공장별 원료 배분 총량 (32주차 보고 기준)</span>
           <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: 4 }}>(단위: MT)</span>
         </div>
         <div style={{ height: Math.max(canneryAgg.length * 36 + 30, 200), width: '100%' }}>
