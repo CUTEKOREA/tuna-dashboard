@@ -1,0 +1,47 @@
+{
+  "bars": [
+    {
+      "color": "#10b981",
+      "key": "MSC 참여율"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "MSC 참여율": 80,
+      "어종군": "백색어류"
+    },
+    {
+      "MSC 참여율": 63,
+      "어종군": "참치"
+    },
+    {
+      "MSC 참여율": 14,
+      "어종군": "소형부어류"
+    }
+  ],
+  "id": "s5_msc_cert",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "B",
+    "input_files": [
+      "07_지속가능성·인증·ESG/msc/2026-08-12_full/MSC_small_pelagic_yearbook_2026.md"
+    ],
+    "input_sha256": [
+      "ed015a8aeb2549bc1d67e26d6c6fc397011481cbf7b3b222eaeacfa1db82535b"
+    ],
+    "method": "manual_extract",
+    "note": "MSC Small Pelagics Yearbook 2026: 소형부어류 14%·백색어류 80%·참치 63% 참여율, 글로벌 어획의 13% 인증, 인증 물량의 58%가 통조림. MSC는 제3자 인증기관이며 공공기관 통계가 아니다.",
+    "period": "2026",
+    "publisher": "Marine Stewardship Council",
+    "rebuild": "python scripts/mackerel/build.py s5_msc_cert",
+    "series": "Track a Fishery",
+    "source_id": "MSC_MACKEREL_FISHERIES"
+  },
+  "sit": "고등어가 속한 소형부어류는 지속가능성 인증에서 가장 뒤처진 어종군이다. MSC 참여 어업이 전체 소형부어류 어획의 20% 미만을 차지하며, 인증 물량의 58%는 통조림으로 간다.",
+  "strat": "인증 원물 확보가 어렵다는 뜻이자, 확보하면 차별화가 된다는 뜻이다. 유럽·미국 대형 유통 납품을 노린다면 인증 물량 선점이 진입 조건에 가깝다.",
+  "subtitle": "MSC Small Pelagics Yearbook 2026 — 소형부어류 어업의 MSC 참여율은 14%로 백색어류 80%·참치 63%에 크게 못 미친다. 글로벌 소형부어류 어획의 13%만 MSC 인증이다.",
+  "title": "MSC 인증 커버리지",
+  "unit": "%",
+  "xKey": "어종군"
+}

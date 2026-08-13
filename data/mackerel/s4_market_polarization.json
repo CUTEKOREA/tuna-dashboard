@@ -1,0 +1,82 @@
+{
+  "bars": [
+    {
+      "color": "#10b981",
+      "key": "EU 수입단가"
+    },
+    {
+      "color": "#f59e0b",
+      "key": "아프리카 수입단가"
+    }
+  ],
+  "chartType": "Composed",
+  "data": [
+    {
+      "EU 수입단가": 2.19,
+      "year": "2019",
+      "격차배수": 2.1,
+      "아프리카 수입단가": 1.03
+    },
+    {
+      "EU 수입단가": 2.07,
+      "year": "2020",
+      "격차배수": 1.5,
+      "아프리카 수입단가": 1.34
+    },
+    {
+      "EU 수입단가": 2.03,
+      "year": "2021",
+      "격차배수": 1.5,
+      "아프리카 수입단가": 1.35
+    },
+    {
+      "EU 수입단가": 2.05,
+      "year": "2022",
+      "격차배수": 1.5,
+      "아프리카 수입단가": 1.39
+    },
+    {
+      "EU 수입단가": 2.22,
+      "year": "2023",
+      "격차배수": 1.9,
+      "아프리카 수입단가": 1.18
+    },
+    {
+      "EU 수입단가": 2.59,
+      "year": "2024",
+      "격차배수": 2.5,
+      "아프리카 수입단가": 1.05
+    }
+  ],
+  "id": "s4_market_polarization",
+  "lines": [
+    {
+      "color": "#ef4444",
+      "key": "격차배수",
+      "yAxisId": "right"
+    }
+  ],
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "A",
+    "input_files": [
+      "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"
+    ],
+    "input_sha256": [
+      "b7e9ad349e541d047b11852505d6efe8afb6e3bbf6e8ee69fe7bdb4591dfde16"
+    ],
+    "method": "script",
+    "note": "EU는 네덜란드·스페인·프랑스·폴란드·덴마크·독일·아일랜드·영국 합산.",
+    "period": "2019-2024",
+    "publisher": "FAO",
+    "rebuild": "python scripts/mackerel/build.py s4_market_polarization",
+    "series": "FishStat Trade Partners",
+    "source_id": "FAO_FISHSTAT_TRADE_PARTNERS"
+  },
+  "sit": "같은 고등어인데 EU 향과 아프리카 향의 단가가 2.5배 벌어진다. 규격·선도·가공도가 다른 사실상 별개의 두 시장이다.",
+  "strat": "두 시장을 하나의 영업 전략으로 묶으면 안 된다. 아프리카는 물량·회수 조건, EU는 규격·인증이 협상의 축이다.",
+  "subtitle": "FAO 양자교역 — 2024년 EU $2.59/kg vs 아프리카 $1.05/kg, 2.5배.",
+  "title": "수입단가 양극화 (EU vs 아프리카)",
+  "unit": "USD/kg / 배",
+  "xKey": "year"
+}

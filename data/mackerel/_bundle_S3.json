@@ -1,0 +1,701 @@
+{
+  "pillar": "S3",
+  "widgets": [
+    {
+      "bars": [
+        {
+          "color": "#10b981",
+          "key": "가나"
+        },
+        {
+          "color": "#0ea5e9",
+          "key": "나이지리아"
+        },
+        {
+          "color": "#94a3b8",
+          "key": "기타아프리카"
+        }
+      ],
+      "chartType": "Composed",
+      "data": [
+        {
+          "YoY": 0,
+          "year": "2019",
+          "가나": 4755,
+          "기타아프리카": 0,
+          "나이지리아": 18031,
+          "수출단가": 1.0
+        },
+        {
+          "YoY": -61.6,
+          "year": "2020",
+          "가나": 4551,
+          "기타아프리카": 106,
+          "나이지리아": 4098,
+          "수출단가": 0.8
+        },
+        {
+          "YoY": 81.0,
+          "year": "2021",
+          "가나": 6582,
+          "기타아프리카": 1248,
+          "나이지리아": 8021,
+          "수출단가": 0.9
+        },
+        {
+          "YoY": 228.2,
+          "year": "2022",
+          "가나": 25142,
+          "기타아프리카": 4074,
+          "나이지리아": 22814,
+          "수출단가": 0.9
+        },
+        {
+          "YoY": 25.0,
+          "year": "2023",
+          "가나": 23429,
+          "기타아프리카": 23123,
+          "나이지리아": 18487,
+          "수출단가": 1.0
+        },
+        {
+          "YoY": -16.9,
+          "year": "2024",
+          "가나": 22196,
+          "기타아프리카": 7145,
+          "나이지리아": 24676,
+          "수출단가": 1.1
+        }
+      ],
+      "id": "s3_africa_volume_price",
+      "lines": [
+        {
+          "color": "#f59e0b",
+          "key": "수출단가",
+          "yAxisId": "right"
+        }
+      ],
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "A",
+        "input_files": [
+          "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"
+        ],
+        "input_sha256": [
+          "b7e9ad349e541d047b11852505d6efe8afb6e3bbf6e8ee69fe7bdb4591dfde16"
+        ],
+        "method": "script",
+        "note": "아프리카 증가율 정의 확정(2026-08-13): 누적·CAGR·최신 YoY 3개 병기. 기존 '+167%' 표기는 FAO 데이터로 재현되지 않는다.",
+        "period": "2019-2024",
+        "publisher": "FAO",
+        "rebuild": "python scripts/mackerel/build.py s3_africa_volume_price",
+        "series": "FishStat Trade Partners",
+        "source_id": "FAO_FISHSTAT_TRADE_PARTNERS"
+      },
+      "sit": "아프리카향은 2019~2024 누적 +137.1% 늘었으나 2024년 -16.9%로 역성장했다. 가나·나이지리아 2개국이 물량의 대부분이다.",
+      "stacked": true,
+      "strat": "성장 서사로 다루면 안 되는 시점이다. 2개국 집중이라 현지 통화·통관 리스크가 곧 물량 리스크다. 단가는 벌크 수준이므로 물량 확보보다 회수 조건이 우선이다.",
+      "subtitle": "2019→2024 누적 +137.1% (CAGR +18.8%/년). 단 2024년 YoY -16.9%로 꺾였다.",
+      "title": "아프리카 수출 물량·단가",
+      "unit": "톤 / USD/kg",
+      "xKey": "year"
+    },
+    {
+      "bars": [
+        {
+          "color": "#0ea5e9",
+          "key": "물량"
+        }
+      ],
+      "chartType": "Bar",
+      "data": [
+        {
+          "경로": "Portugal → France",
+          "물량": 53471
+        },
+        {
+          "경로": "Latvia → Sweden",
+          "물량": 32138
+        },
+        {
+          "경로": "Spain → France",
+          "물량": 15937
+        },
+        {
+          "경로": "Latvia → Denmark",
+          "물량": 14120
+        },
+        {
+          "경로": "Portugal → Italy",
+          "물량": 12484
+        },
+        {
+          "경로": "Latvia → Germany",
+          "물량": 10500
+        },
+        {
+          "경로": "Slovenia → Austria",
+          "물량": 7959
+        },
+        {
+          "경로": "Sweden → Norway",
+          "물량": 7348
+        },
+        {
+          "경로": "Morocco → Italy",
+          "물량": 6168
+        },
+        {
+          "경로": "Spain → Italy",
+          "물량": 5301
+        },
+        {
+          "경로": "Latvia → United Kingdom",
+          "물량": 5156
+        },
+        {
+          "경로": "Morocco → Spain",
+          "물량": 4470
+        }
+      ],
+      "id": "s3_comtrade_matrix",
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "A",
+        "input_files": [
+          "10_원본데이터셋/collections/2026-08-12/api_extracts/un_comtrade/mackerel_trade_comtrade.csv"
+        ],
+        "input_sha256": [
+          "0954a0398c5d9ebba0623dcaf9c39d88c5511487ec208276126a75fe0126ecb8"
+        ],
+        "method": "script",
+        "note": "World 집계행(partnerCode=0) 제외. 수출(X) 신고 기준.",
+        "period": "2025",
+        "publisher": "United Nations",
+        "rebuild": "python scripts/mackerel/build.py s3_comtrade_matrix",
+        "series": "UN Comtrade HS trade",
+        "source_id": "UN_COMTRADE_HS"
+      },
+      "sit": "2025년 신고 기준 교역 경로 상위 12개가 전체 물량의 큰 몫을 차지한다. 신고국 기준이라 재수출이 중복 계상될 수 있다.",
+      "strat": "경쟁사가 어디서 사서 어디로 파는지가 이 표에 그대로 나온다. 우리가 노리는 목적지에 이미 누가 얼마나 넣고 있는지 확인하고 들어간다.",
+      "subtitle": "UN Comtrade 2025년 수출 신고 실측 상위 12개 경로. 전체 262,200톤. HS 030244·030245·030354·030355·160415.",
+      "title": "글로벌 교역 매트릭스 (HS6 5종)",
+      "unit": "톤",
+      "xKey": "경로"
+    },
+    {
+      "areas": [
+        {
+          "color": "#10b981",
+          "key": "나이지리아"
+        },
+        {
+          "color": "#0ea5e9",
+          "key": "가나"
+        },
+        {
+          "color": "#f59e0b",
+          "key": "코트디부아르"
+        },
+        {
+          "color": "#8b5cf6",
+          "key": "204"
+        },
+        {
+          "color": "#ef4444",
+          "key": "중국"
+        },
+        {
+          "color": "#94a3b8",
+          "key": "러시아"
+        }
+      ],
+      "chartType": "Area",
+      "data": [
+        {
+          "204": 0.3,
+          "year": "2019",
+          "가나": 10.6,
+          "나이지리아": 40.3,
+          "러시아": 0.4,
+          "중국": 8.8,
+          "코트디부아르": 0.0
+        },
+        {
+          "204": 0.7,
+          "year": "2020",
+          "가나": 12.5,
+          "나이지리아": 11.3,
+          "러시아": 0.0,
+          "중국": 27.2,
+          "코트디부아르": 0.3
+        },
+        {
+          "204": 0.0,
+          "year": "2021",
+          "가나": 19.3,
+          "나이지리아": 23.6,
+          "러시아": 0.0,
+          "중국": 5.3,
+          "코트디부아르": 3.5
+        },
+        {
+          "204": 0.3,
+          "year": "2022",
+          "가나": 33.2,
+          "나이지리아": 30.1,
+          "러시아": 0.0,
+          "중국": 2.2,
+          "코트디부아르": 4.7
+        },
+        {
+          "204": 2.9,
+          "year": "2023",
+          "가나": 21.1,
+          "나이지리아": 16.6,
+          "러시아": 3.6,
+          "중국": 2.4,
+          "코트디부아르": 20.1
+        },
+        {
+          "204": 5.7,
+          "year": "2024",
+          "가나": 28.2,
+          "나이지리아": 31.3,
+          "러시아": 3.9,
+          "중국": 4.9,
+          "코트디부아르": 8.9
+        }
+      ],
+      "id": "s3_export_destinations",
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "A",
+        "input_files": [
+          "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"
+        ],
+        "input_sha256": [
+          "b7e9ad349e541d047b11852505d6efe8afb6e3bbf6e8ee69fe7bdb4591dfde16"
+        ],
+        "method": "script",
+        "note": "",
+        "period": "2019-2024",
+        "publisher": "FAO",
+        "rebuild": "python scripts/mackerel/build.py s3_export_destinations",
+        "series": "FishStat Trade Partners",
+        "source_id": "FAO_FISHSTAT_TRADE_PARTNERS"
+      },
+      "sit": "수출 목적지가 소수 국가에 몰려 있다. 2024년 1위 나이지리아 단독으로 큰 비중을 차지한다.",
+      "stacked": true,
+      "strat": "목적지 집중은 수입 원산지 집중과 같은 종류의 리스크다. 상위 2개국에 문제가 생기면 대체 판로를 찾는 데 최소 한 시즌이 걸린다.",
+      "subtitle": "FAO 양자교역 — 한국 수출 상위 6개국 비중 추이. 2024년 1위 나이지리아 31.3%.",
+      "title": "한국 수출 목적지 구조 변화",
+      "unit": "%",
+      "xKey": "year"
+    },
+    {
+      "bars": [
+        {
+          "color": "#0ea5e9",
+          "key": "수입물량"
+        }
+      ],
+      "chartType": "Composed",
+      "data": [
+        {
+          "year": "2020",
+          "수입금액": 82.8,
+          "수입물량": 40.1
+        },
+        {
+          "year": "2021",
+          "수입금액": 102.6,
+          "수입물량": 50.5
+        },
+        {
+          "year": "2022",
+          "수입금액": 145.1,
+          "수입물량": 54.9
+        },
+        {
+          "year": "2023",
+          "수입금액": 145.1,
+          "수입물량": 57.0
+        },
+        {
+          "year": "2024",
+          "수입금액": 122.9,
+          "수입물량": 44.9
+        },
+        {
+          "year": "2025",
+          "수입금액": 199.0,
+          "수입물량": 60.9
+        }
+      ],
+      "id": "s3_fta_quarterly",
+      "lines": [
+        {
+          "color": "#f59e0b",
+          "key": "수입금액",
+          "yAxisId": "right"
+        }
+      ],
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "B",
+        "input_files": [
+          "03_무역·가격/kmi_fishdata/2026-08-12_full/KMI_popular_fish_June_2026.md"
+        ],
+        "input_sha256": [
+          "6473ceaf0043588b3416f03b115600f5b3df550742822b9f4485f6dcaac9eb2d"
+        ],
+        "method": "manual_extract",
+        "note": "수치 출처는 저장소 내 data/mackerel_fta_quarterly.json(KMI 보고서 21건 수동 추출본). 아카이브 KMI 자료로 재검증이 필요하며 자동 재현되지 않는다.",
+        "period": "분기",
+        "publisher": "Korea Maritime Institute",
+        "rebuild": "python scripts/mackerel/build.py s3_fta_quarterly",
+        "series": "Fisheries outlook",
+        "source_id": "KMI_FISHERIES_OUTLOOK"
+      },
+      "sit": "2020년 이후 수입 물량은 +51.9% 늘었는데 금액은 +140.3% 늘었다. 증가분의 상당 부분이 물량이 아니라 단가다. 관세 인하 효과가 단가 상승에 상쇄되고 있다.",
+      "strat": "이 위젯만 갱신 주기가 사람 손에 달려 있다. 분기 보고서 발간일을 캘린더에 걸어두고 추출이 밀리면 화면의 최신 분기가 곧 신뢰도 상한이라는 것을 인지해야 한다.",
+      "subtitle": "KMI FTA 수산물 수입동향 보고서 21개 분기 원문에서 수동 추출. 2020→2025 물량 +51.9% / 금액 +140.3% — 금액이 물량보다 빠르게 늘었다.",
+      "title": "FTA 체결국 수입 물량·금액 추이",
+      "unit": "천톤 / 백만USD",
+      "xKey": "year"
+    },
+    {
+      "bars": [
+        {
+          "color": "#0ea5e9",
+          "key": "수입량"
+        }
+      ],
+      "chartType": "Composed",
+      "data": [
+        {
+          "수입단가": 2.24,
+          "수입량": 1628,
+          "월": "2026.01"
+        },
+        {
+          "수입단가": 3.73,
+          "수입량": 1833,
+          "월": "2026.02"
+        },
+        {
+          "수입단가": 4.65,
+          "수입량": 5059,
+          "월": "2026.03"
+        },
+        {
+          "수입단가": 4.51,
+          "수입량": 3513,
+          "월": "2026.04"
+        },
+        {
+          "수입단가": 5.02,
+          "수입량": 3447,
+          "월": "2026.05"
+        }
+      ],
+      "id": "s3_kcs_monthly",
+      "lines": [
+        {
+          "color": "#ef4444",
+          "key": "수입단가",
+          "yAxisId": "right"
+        }
+      ],
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "A",
+        "input_files": [
+          "10_원본데이터셋/legacy_updates/update_2026-07-06/kcs/KCS_2026YTD_HS_mackerel.csv"
+        ],
+        "input_sha256": [
+          "bc167212fd33f3d22f6e3ad72cafe2b50d2b98a324bd1a854b9406c6db899b82"
+        ],
+        "method": "script",
+        "note": "2026-07-06 수집본. 관세청 API가 현재 서비스키 없이 401이라 자동 갱신 불가 — 키 확보 전까지 이 스냅샷이 최신이다. 범용 HS 030489는 고등어 전용이 아니라 제외.",
+        "period": "2026.01~2026.05",
+        "publisher": "Korea Customs Service",
+        "rebuild": "python scripts/mackerel/build.py s3_kcs_monthly",
+        "series": "Item trade statistics API",
+        "source_id": "KCS_NITEMTRADE"
+      },
+      "sit": "2026년 통관 실적은 FAO 연간 통계(2024)보다 1~2년 앞선 유일한 국내 실측이다. 누계 15,480톤이며 노르웨이이 63.5%를 차지한다.",
+      "strat": "월별 단가 추이가 곧 계약 타이밍 지표다. FAO·NSC가 보여주는 국제 가격 방향과 국내 통관 단가가 벌어지는 구간이 재고 확보 기회다.",
+      "subtitle": "관세청 품목별 수출입실적 2026.01~2026.05 누계 15,480톤. 원산지 노르웨이 63.5% · 중국 14.5% · 영국 12.2%. HS 030244·030354·160415.",
+      "title": "관세청 HS10별 월별 수입 실적 (2026)",
+      "unit": "톤 / USD/kg",
+      "xKey": "월"
+    },
+    {
+      "bars": [
+        {
+          "color": "#f59e0b",
+          "key": "수입량"
+        },
+        {
+          "color": "#10b981",
+          "key": "수출량"
+        }
+      ],
+      "chartType": "Composed",
+      "data": [
+        {
+          "year": "2019",
+          "무역수지": -33972,
+          "수입단가": 2.0,
+          "수입량": 42581,
+          "수출단가": 1.1,
+          "수출량": 44778
+        },
+        {
+          "year": "2020",
+          "무역수지": -52491,
+          "수입단가": 1.9,
+          "수입량": 46119,
+          "수출단가": 1.0,
+          "수출량": 36352
+        },
+        {
+          "year": "2021",
+          "무역수지": -68813,
+          "수입단가": 2.0,
+          "수입량": 53945,
+          "수출단가": 1.1,
+          "수출량": 34057
+        },
+        {
+          "year": "2022",
+          "무역수지": -52793,
+          "수입단가": 2.4,
+          "수입량": 51240,
+          "수출단가": 0.9,
+          "수출량": 75745
+        },
+        {
+          "year": "2023",
+          "무역수지": -6896,
+          "수입단가": 2.2,
+          "수입량": 52563,
+          "수출단가": 1.0,
+          "수출량": 111096
+        },
+        {
+          "year": "2024",
+          "무역수지": -6515,
+          "수입단가": 2.4,
+          "수입량": 39454,
+          "수출단가": 1.1,
+          "수출량": 78714
+        }
+      ],
+      "id": "s3_korea_trade_balance",
+      "lines": [
+        {
+          "color": "#ef4444",
+          "key": "수입단가",
+          "yAxisId": "right"
+        },
+        {
+          "color": "#0ea5e9",
+          "key": "수출단가",
+          "yAxisId": "right"
+        }
+      ],
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "A",
+        "input_files": [
+          "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"
+        ],
+        "input_sha256": [
+          "b7e9ad349e541d047b11852505d6efe8afb6e3bbf6e8ee69fe7bdb4591dfde16"
+        ],
+        "method": "script",
+        "note": "",
+        "period": "2019-2024",
+        "publisher": "FAO",
+        "rebuild": "python scripts/mackerel/build.py s3_korea_trade_balance",
+        "series": "FishStat Trade",
+        "source_id": "FAO_FISHSTAT_TRADE"
+      },
+      "sit": "수입단가가 수출단가를 $1.3/kg 웃돈다. 고급 원물(노르웨이 대형어)을 들여오고 소형·저가 물량을 아프리카로 내보내는 구조가 숫자로 드러난다.",
+      "strat": "역조 자체는 구조라 없앨 수 없다. 관리 대상은 역조 폭이다. 수입 단가 상승기에 수출 계약을 선물 고정하면 폭이 벌어진다.",
+      "subtitle": "2024년 수입 $2.4/kg vs 수출 $1.1/kg — 단가 역조 $1.3/kg. 비싸게 사서 싸게 판다.",
+      "title": "한국 수출입 물량·단가·무역수지",
+      "unit": "톤 / USD/kg",
+      "xKey": "year"
+    },
+    {
+      "bars": [
+        {
+          "color": "#8b5cf6",
+          "key": "신고건수"
+        }
+      ],
+      "chartType": "Bar",
+      "data": [
+        {
+          "국가": "중국",
+          "신고건수": 11
+        },
+        {
+          "국가": "대한민국",
+          "신고건수": 10
+        },
+        {
+          "국가": "노르웨이",
+          "신고건수": 9
+        },
+        {
+          "국가": "미국",
+          "신고건수": 6
+        },
+        {
+          "국가": "대만",
+          "신고건수": 6
+        },
+        {
+          "국가": "러시아 연방",
+          "신고건수": 3
+        },
+        {
+          "국가": "일본",
+          "신고건수": 2
+        },
+        {
+          "국가": "프랑스",
+          "신고건수": 1
+        }
+      ],
+      "id": "s3_mfds_safety",
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "A",
+        "input_files": [
+          "06_식품안전·검역·통관/mfds/2026-08-12_full/MFDS_mackerel_imported_food_products_2025.csv"
+        ],
+        "input_sha256": [
+          "2601eb91cd49f812796b628402d3b72ddf7fd2ff0f6943d6c296edaf27f562eb"
+        ],
+        "method": "script",
+        "note": "신고 건수 집계. 부적합 판정 건수가 아니다.",
+        "period": "2025",
+        "publisher": "Ministry of Food and Drug Safety",
+        "rebuild": "python scripts/mackerel/build.py s3_mfds_safety",
+        "series": "Imported food information",
+        "source_id": "MFDS_IMPORTED_FOOD"
+      },
+      "sit": "2025년 고등어 수입식품 신고는 53건이며 중국(11건)이 가장 많다. 물량이 아니라 신고 건수 기준이므로 교역 규모와는 다르다.",
+      "strat": "신규 공급사를 검토할 때 이 목록에 해외제조업소가 있는지부터 본다. 이력이 없는 업소는 등록 절차부터 시작해야 해 리드타임이 길어진다.",
+      "subtitle": "식약처 수입식품정보 2025년 고등어 품목 신고 53건. 신규 거래처 스크리닝용 — 실제 통관 실적이 있는 해외제조업소가 어디인지 확인한다.",
+      "title": "수입식품 신고 이력 (국가별)",
+      "unit": "건",
+      "xKey": "국가"
+    },
+    {
+      "bars": [
+        {
+          "color": "#94a3b8",
+          "key": "수입량"
+        },
+        {
+          "color": "#0ea5e9",
+          "key": "수출량"
+        }
+      ],
+      "chartType": "Composed",
+      "data": [
+        {
+          "year": "2019",
+          "마크업": 14.1,
+          "수입단가": 1.58,
+          "수입량": 75632,
+          "수출단가": 1.81,
+          "수출량": 140619
+        },
+        {
+          "year": "2020",
+          "마크업": 37.6,
+          "수입단가": 1.43,
+          "수입량": 99002,
+          "수출단가": 1.97,
+          "수출량": 103606
+        },
+        {
+          "year": "2021",
+          "마크업": 18.5,
+          "수입단가": 1.55,
+          "수입량": 114561,
+          "수출단가": 1.84,
+          "수출량": 124110
+        },
+        {
+          "year": "2022",
+          "마크업": 30.6,
+          "수입단가": 1.48,
+          "수입량": 108519,
+          "수출단가": 1.94,
+          "수출량": 118539
+        },
+        {
+          "year": "2023",
+          "마크업": 30.2,
+          "수입단가": 1.68,
+          "수입량": 96159,
+          "수출단가": 2.19,
+          "수출량": 99400
+        },
+        {
+          "year": "2024",
+          "마크업": 8.7,
+          "수입단가": 1.95,
+          "수입량": 86010,
+          "수출단가": 2.12,
+          "수출량": 112977
+        }
+      ],
+      "id": "s3_netherlands_hub",
+      "lines": [
+        {
+          "color": "#f59e0b",
+          "key": "수입단가",
+          "yAxisId": "right"
+        },
+        {
+          "color": "#10b981",
+          "key": "수출단가",
+          "yAxisId": "right"
+        }
+      ],
+      "provenance": {
+        "extract_date": "2026-08-12",
+        "grade": "B",
+        "input_files": [
+          "11_분석·가공데이터/collections/2026-08-12/fao_filtered/mackerel_trade_partners.csv"
+        ],
+        "input_sha256": [
+          "b7e9ad349e541d047b11852505d6efe8afb6e3bbf6e8ee69fe7bdb4591dfde16"
+        ],
+        "method": "script",
+        "note": "물량·단가는 FAO 실측. '가공+중계 양립' 해석은 EUMOFA 시장분석 근거.",
+        "period": "2019-2024",
+        "publisher": "European Commission",
+        "rebuild": "python scripts/mackerel/build.py s3_netherlands_hub",
+        "series": "EUMOFA market analysis",
+        "source_id": "EUMOFA_MARKET"
+      },
+      "sit": "네덜란드는 들여온 물량을 다시 내보내며 8.7%의 단가 차를 만든다. 이 차이는 순수 중계 마진이 아니라 훈제·필렛 가공 부가가치가 섞인 값이다.",
+      "strat": "중계 마진만 노리고 같은 구조를 흉내 내면 안 된다. 가공 설비 없이 재수출만 하면 단가 차의 상당 부분이 사라진다.",
+      "subtitle": "FAO 양자교역 — 네덜란드 수입·수출 단가 차. 2024년 마크업 8.7%. 훈제 가공과 중계무역이 함께 일어나는 허브다.",
+      "title": "네덜란드 가공·중계 허브",
+      "unit": "톤 / USD/kg",
+      "xKey": "year"
+    }
+  ]
+}

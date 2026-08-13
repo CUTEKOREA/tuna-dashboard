@@ -1,0 +1,43 @@
+{
+  "bars": [
+    {
+      "color": "#0ea5e9",
+      "key": "생산량"
+    }
+  ],
+  "chartType": "Bar",
+  "data": [
+    {
+      "생산량": 10806,
+      "월": "2026-04"
+    },
+    {
+      "생산량": 3214,
+      "월": "2026-05"
+    }
+  ],
+  "id": "s4_korea_retail",
+  "provenance": {
+    "extract_date": "2026-08-12",
+    "grade": "B",
+    "input_files": [
+      "03_무역·가격/kmi_fishdata/2026-08-12_full/KMI_popular_fish_June_2026.md"
+    ],
+    "input_sha256": [
+      "6473ceaf0043588b3416f03b115600f5b3df550742822b9f4485f6dcaac9eb2d"
+    ],
+    "method": "manual_extract",
+    "note": "KMI 수산관측 2026년 6월호(통권 384호) 대중성 어종 고등어 항목. 소비자가격은 월 대표값이며 규격·채널별 편차가 있다.",
+    "period": "2026-04~2026-05",
+    "publisher": "Korea Maritime Institute",
+    "rebuild": "python scripts/mackerel/build.py s4_korea_retail",
+    "series": "FishData price series",
+    "source_id": "KMI_FISHDATA_PRICE"
+  },
+  "sit": "5월 국내 생산이 3,214톤으로 전월 대비 70% 급감했다. 금어기(4.30~7.3)와 대형선망 자율휴어기가 겹친 계절 요인이며 자원 감소와는 구분해서 읽어야 한다.",
+  "strat": "금어기 구간은 매년 반복된다. 이 시기 국내 물량 공백을 수입으로 메우는 관행이 노르웨이 의존을 구조적으로 굳힌다. 휴어기 전 재고 확보가 단가 방어의 핵심이다.",
+  "subtitle": "KMI 수산관측 2026년 6월호 — 5월 생산 3,214톤(전월 대비 −70%), 소비자가격 kg당 11,474원. 고등어 금어기 4.30~7.3 및 대형선망 자율휴어기 영향.",
+  "title": "국내 생산량·소비자가격 (월간)",
+  "unit": "톤",
+  "xKey": "월"
+}
